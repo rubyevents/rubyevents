@@ -1,6 +1,8 @@
 module Prompts
   module Talk
     class EnhanceTranscript < Prompts::Base
+      MODEL = "gpt-4.1-nano"
+
       def initialize(talk:)
         @talk = talk
       end
