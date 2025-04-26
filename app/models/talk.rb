@@ -86,7 +86,7 @@ class Talk < ApplicationRecord
   has_many :watch_list_talks, dependent: :destroy
   has_many :watch_lists, through: :watch_list_talks
 
-  has_one :talk_transcript, class_name: "Talk::Transcript", dependent: :destroy, touch: true
+  has_one :talk_transcript, class_name: "Talk::Transcript", dependent: :destroy
   accepts_nested_attributes_for :talk_transcript
   delegate :transcript, :raw_transcript, :enhanced_transcript, to: :talk_transcript, allow_nil: true
 
