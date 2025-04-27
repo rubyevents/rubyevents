@@ -55,14 +55,14 @@ module Prompts
           4. Group related sentences into paragraphs.
           5. Determine the start and end times for each paragraph.
           6. Format the improved transcript into the specified JSON structure.
-          7. Agregate the timestamps for the paragraphs and write them in the format "00:00:00". Don't include the milliseconds.
+          7. Aggregate the timestamps for the paragraphs and write them in the format "00:00:00". Don't include the milliseconds.
 
           Remember to preserve the original meaning of the content while making improvements. Ensure that each JSON object in the array represents a paragraph with its corresponding start time, end time, and improved text.
 
           Very important :
           - improve the entire transcript don't stop in the middle of the transcript.
           - do not add any other text than the transcript.
-          - respect the original timestamps and agregate correctly the timestamps for the paragraphs.
+          - respect the original timestamps and aggregate correctly the timestamps for the paragraphs.
         PROMPT
       end
 
