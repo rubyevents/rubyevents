@@ -41,6 +41,8 @@ class User < ApplicationRecord
   encrypts :email, deterministic: true
   encrypts :name
 
+  has_object :email_verification, :password_reset
+
   before_validation if: -> { email.present? } do
     self.email = email.downcase.strip
   end
