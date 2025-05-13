@@ -20,6 +20,8 @@
 
   video_provider: "youtube"
   video_id: "L06FlSoiBi4"
+  slug: "rocking-out-in-ruby-a-playful-introduction-to-sonic-pi"
+  id: "rocking-out-in-ruby-a-playful-introduction-to-sonic-pi"
 
 # Break
 
@@ -38,6 +40,8 @@
       video_provider: "parent"
       speakers:
         - John Cinnamond
+      slug: "lightning-talk-complexity"
+      id: "lightning-talk-complexity"
 
     - title: "Lightning Talk: Ruby Papers We Love"
       start_cue: "04:59"
@@ -46,6 +50,8 @@
       video_provider: "parent"
       speakers:
         - Chris Seaton
+      slug: "lightning-talk-ruby-papers-we-love"
+      id: "lightning-talk-ruby-papers-we-love"
 
     - title: "Lightning Talk: Accessible events"
       start_cue: "08:23"
@@ -54,6 +60,8 @@
       video_provider: "parent"
       speakers:
         - Florian Gilcher
+      slug: "lightning-talk-accessible-events"
+      id: "lightning-talk-accessible-events"
 
     - title: "Lightning Talk: Mistakes I Made Chasing Startup Success"
       start_cue: "14:54"
@@ -62,6 +70,10 @@
       video_provider: "parent"
       speakers:
         - Andy Croll
+      slug: "lightning-talk-mistakes-i-made-chasing-startup-success"
+      id: "lightning-talk-mistakes-i-made-chasing-startup-success"
+  slug: "lightning-talks-part-1-bathruby-2016"
+  id: "lightning-talks-part-1-bathruby-2016"
 
 # Break
 
@@ -78,6 +90,8 @@
 
   video_provider: "youtube"
   video_id: "NfyieD5det8"
+  slug: "how-neo4j-saved-my-relationship"
+  id: "how-neo4j-saved-my-relationship"
 
 # Break
 
@@ -96,6 +110,8 @@
 
   video_provider: "youtube"
   video_id: "qhm7XhM2nZk"
+  slug: "open-source-for-your-benefit"
+  id: "open-source-for-your-benefit"
 
 # Break
 
@@ -114,6 +130,8 @@
       video_provider: "parent"
       speakers:
         - Christopher Turtle
+      slug: "lightning-talk-descent-from-antiquity"
+      id: "lightning-talk-descent-from-antiquity"
 
     - title: "Lightning Talk: Programming and Paragliding - Hopping from Cloud to Cloud"
       start_cue: "04:48"
@@ -122,6 +140,8 @@
       video_provider: "parent"
       speakers:
         - Philip Szalwinski
+      slug: "lightning-talk-programming-and-paragliding-hopping-from-cloud-to-cloud"
+      id: "lightning-talk-programming-and-paragliding-hopping-from-cloud-to-cloud"
 
     - title: "Lightning Talk: The Wonky Limerick"
       start_cue: "09:22"
@@ -130,6 +150,8 @@
       video_provider: "parent"
       speakers:
         - Andrew Faraday
+      slug: "lightning-talk-the-wonky-limerick"
+      id: "lightning-talk-the-wonky-limerick"
 
     - title: "Lightning Talk: The 'Manifesto for Responsible Software Development'"
       start_cue: "13:37"
@@ -138,6 +160,8 @@
       video_provider: "parent"
       speakers:
         - Nils Löwe
+      slug: "lightning-talk-the-manifesto-for-responsible-software-development"
+      id: "lightning-talk-the-manifesto-for-responsible-software-development"
 
     - title: "Lightning Talk: Our anonymous hiring process on Rails"
       start_cue: "18:19"
@@ -146,6 +170,10 @@
       video_provider: "parent"
       speakers:
         - Matthew Bloch
+      slug: "lightning-talk-our-anonymous-hiring-process-on-rails"
+      id: "lightning-talk-our-anonymous-hiring-process-on-rails"
+  slug: "lightning-talks-part-2-bathruby-2016"
+  id: "lightning-talks-part-2-bathruby-2016"
 
 # Lunch
 
@@ -162,6 +190,8 @@
 
   video_provider: "youtube"
   video_id: "cn-L7zjIYfI"
+  slug: "the-surprising-neuroscience-of-gender-inequality"
+  id: "the-surprising-neuroscience-of-gender-inequality"
 
 # Break
 
@@ -178,6 +208,8 @@
 
   video_provider: "youtube"
   video_id: "dxGen7sPWTw"
+  slug: "firing-people"
+  id: "firing-people"
 
 # Break
 
@@ -202,6 +234,8 @@
       video_id: "adam-butler-lighting-talk-bathruby-2016"
       speakers:
         - Adam Butler
+      slug: "life-experiments"
+      id: "life-experiments"
 
     - title: "GRPC and Ruby"
       start_cue: "04:48"
@@ -210,6 +244,8 @@
       video_id: "ed-robinson-lighting-talk-bathruby-2016"
       speakers:
         - Ed Robinson
+      slug: "grpc-and-ruby"
+      id: "grpc-and-ruby"
 
     - title: "Introducing Trans*Code"
       start_cue: "08:54"
@@ -218,6 +254,8 @@
       video_id: "cheryl-morgan-lighting-talk-bathruby-2016"
       speakers:
         - Cheryl Morgan
+      slug: "introducing-trans-code"
+      id: "introducing-trans-code"
 
     - title: "We Need More Gems"
       start_cue: "13:16"
@@ -226,6 +264,8 @@
       video_id: "phil-nash-lighting-talk-bathruby-2016"
       speakers:
         - Phil Nash
+      slug: "we-need-more-gems"
+      id: "we-need-more-gems"
 
     - title: "Building on domain concepts"
       start_cue: "18:47"
@@ -233,6 +273,10 @@
       video_id: "peter-saxton-lighting-talk-bathruby-2016"
       speakers:
         - Peter Saxton
+      slug: "building-on-domain-concepts"
+      id: "building-on-domain-concepts"
+  slug: "lightning-talks-part-3"
+  id: "lightning-talks-part-3"
 
 # Break
 
@@ -250,6 +294,9 @@
     After we've learned about how Ruby executes methods today, we'll dive in to optimizations we can make on method dispatch including various types of inline method caching. You should leave with a better understanding of Ruby's VM internals as well as ways to analyze and optimize your own code. Also the presentation will have really great transitions in Keynote.
   video_provider: "youtube"
   video_id: "b77V0rkr5rk"
+  slug: "how-are-method-calls-formed-bathruby-2016"
+  id: "how-are-method-calls-formed-bathruby-2016"
+
 # Wrap Up
 
 # After Party

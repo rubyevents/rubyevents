@@ -18,6 +18,8 @@
     "Sending a method to an object, then discarding its return value immediately" is one of the most frequent operations that ruby does. By eliminating such wastes of time and memory, ruby execution could be much more efficient. I will share you some stories and outcomes of my journey trying to optimise that part.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/shyouhei.html#apr20
+  slug: "the-send-pop-optimisation"
+  id: "the-send-pop-optimisation"
 
 - title: "State of Sorbet: A Type Checker for Ruby"
   raw_title: "[EN] State of Sorbet: A Type Checker for Ruby / Jake Zimmerman @jez, Paul Tarjan @ptarjan"
@@ -39,6 +41,8 @@
     The talk does not require any previous knowledge of types and should be accessible to a broad audience.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/jez.html#apr19
+  slug: "state-of-sorbet-a-type-checker-for-ruby"
+  id: "state-of-sorbet-a-type-checker-for-ruby"
 
 - title: "Ruby Committers vs the World"
   raw_title: "[JA|EN] Ruby Committers vs the World"
@@ -54,6 +58,8 @@
     Ruby core committers on stage!
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/rubylangorg.html#apr20
+  slug: "ruby-committers-vs-the-world-rubykaigi-2019"
+  id: "ruby-committers-vs-the-world-rubykaigi-2019"
 
 - title: "Pattern matching - New feature in Ruby 2.7"
   raw_title: "[JA] Pattern matching - New feature in Ruby 2.7 / Kazuki Tsujimoto @k_tsj"
@@ -69,6 +75,8 @@
     Ruby core team plans to introduce pattern matching as an experimental feature in Ruby 2.7. In this presentation, we will talk about the current proposed syntax and its design policy.
 
     https://rubykaigi.org/2019/presentations/k_tsj.html#apr18
+  slug: "pattern-matching-new-feature-in-ruby-2-7"
+  id: "pattern-matching-new-feature-in-ruby-2-7"
 
 - title: "The challenges behind Ruby type checking"
   raw_title: "[JA] The challenges behind Ruby type checking / Soutaro Matsumoto @soutaro"
@@ -86,6 +94,8 @@
     This talk is about the difficulties and type system extensions to make the type checking possible. Static type checking is not easy and requires unfamiliar type system features, but we can do that.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/soutaro.html#apr20
+  slug: "the-challenges-behind-ruby-type-checking"
+  id: "the-challenges-behind-ruby-type-checking"
 
 - title: "Fibers Are the Right Solution"
   raw_title: "[EN] Fibers Are the Right Solution / Samuel Williams @ioquatix"
@@ -101,6 +111,8 @@
     The majority of performance improvements in modern processors are due to increased core count rather than increased instruction execution frequency. To maximise hardware utilization, applications need to use multiple processes and threads. Servers that process discrete requests are a good candidate for both parallelization and concurrency improvements. We discuss different ways in which servers can improve processor utilization and how these different approaches affect application code. We show that fibers require minimal changes to existing application code and are thus a good approach for retrofitting existing systems.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/ioquatix.html#apr18
+  slug: "fibers-are-the-right-solution"
+  id: "fibers-are-the-right-solution"
 
 - title: "How RSpec works"
   raw_title: "[EN] How RSpec works / Sam Phippen @samphippen"
@@ -116,6 +128,8 @@
     RSpec is a much beloved series of libraries, currently holding spots 1, 2, 4, 5, and 6 in terms of most downloaded gems. Many of us use it every day, but the question is, how does it work?
 
     In this talk, you will learn about how RSpec executes your tests, the anatomy of an expect(...).to ... expression, and how stubs and mocks work. You'll learn deeply about the behind the scenes architecture of RSpec. This talk is quite technical, and a fair amount of Ruby knowledge is assumed.
+  slug: "how-rspec-works"
+  id: "how-rspec-works"
 
 - title: "Keynote: All bugfixes are incompatibilities"
   raw_title: "[JA][Keynote] All bugfixes are incompatibilities / @nagachika"
@@ -129,6 +143,8 @@
   language: "Japanese"
   description: |-
     https://rubykaigi.org/2019/presentations/nagachika.html#apr19
+  slug: "keynote-all-bugfixes-are-incompatibilities"
+  id: "keynote-all-bugfixes-are-incompatibilities"
 
 - title: "Performance Improvement of Ruby 2.7 JIT in Real World"
   raw_title: "[JA] Performance Improvement of Ruby 2.7 JIT in Real World / Takashi Kokubun @k0kubun"
@@ -145,6 +161,8 @@
     Will that be beneficial for your application in Ruby 2.7? How many times will it make Rails faster? How much additional memory will it consume? Come to the talk and figure it out.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/k0kubun.html#apr18
+  slug: "performance-improvement-of-ruby-2-7-jit-in-real-world"
+  id: "performance-improvement-of-ruby-2-7-jit-in-real-world"
 
 - title: "intimate Chat with Matz and mruby developers about mruby"
   raw_title: "[JA] intimate Chat with Matz and mruby developers about mruby / Hiromasa Ishii @Hir0_IC"
@@ -160,6 +178,8 @@
     Talk about mruby's development confidential stories, current situation, and future of mruby with Yukihio "Matz" Matsumoto creator of the mruby programming language.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/Hir0_IC.html#apr19
+  slug: "intimate-chat-with-matz-and-mruby-developers-about-mruby"
+  id: "intimate-chat-with-matz-and-mruby-developers-about-mruby"
 
 - title: "(partially) Non-volatile mruby"
   raw_title: "[JA] (partially) Non-volatile mruby / Yurie Yamane @yuri_at_earth, Masayoshi Takahashi @takahashim"
@@ -176,6 +196,8 @@
     In RubyKaigi 2018, I talked about basic idea of putting mruby on ROM. But there’s still some objects consuming RAM, such as IREP structure and libraries defined in Ruby. In this session, I will give another solution for the problem to put more structures into ROM. Moreover, I will explain about the change of implementation of instance variables and Hash class in mruby 2.0, and the effect of memory consumption.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/yuri_at_earth.html#apr20
+  slug: "partially-non-volatile-mruby"
+  id: "partially-non-volatile-mruby"
 
 - title: "Write a Ruby interpreter in Ruby for Ruby 3"
   raw_title: "[EN] Write a Ruby interpreter in Ruby for Ruby 3 / Koichi Sasada @ko1"
@@ -191,6 +213,8 @@
     Ruby interpreter called MRI (Matz Ruby Interpreter) or CRuby is written in C language. Writing an interpreter in C has several advantages, such as performance at early development, extensibility in C language and so on. However, now we have several issues because of writing MRI in C. To overcome this issue, I propose to rewrite some part of MRI in Ruby language with C functions. It will be a base of Ruby 3 (or Ruby 2.7). In this talk, I'll show the issues and how to solve them with writing Ruby, how to write MRI internal in Ruby and how to build an interpreter with Ruby code.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/ko1.html#apr18
+  slug: "write-a-ruby-interpreter-in-ruby-for-ruby-3"
+  id: "write-a-ruby-interpreter-in-ruby-for-ruby-3"
 
 - title: "Lightning Talks"
   raw_title: "[JA|EN] Lightning Talks"
@@ -209,6 +233,8 @@
       video_provider: "parent"
       speakers:
         - Naoki Kishida
+      slug: "lightning-talk-how-does-truffleruby-work"
+      id: "lightning-talk-how-does-truffleruby-work"
       # language: TODO
 
     - title: "Lightning Talk: Invitation to Dark Side of Ruby"
@@ -218,6 +244,8 @@
       video_provider: "parent"
       speakers:
         - Satoshi "moris" Tagomori
+      slug: "lightning-talk-invitation-to-dark-side-of-ruby"
+      id: "lightning-talk-invitation-to-dark-side-of-ruby"
       # language: TODO
 
     - title: "Lightning Talk: Automatic Differentiation for Ruby"
@@ -227,6 +255,8 @@
       video_provider: "parent"
       speakers:
         - Lin Yu Hsiang
+      slug: "lightning-talk-automatic-differentiation-for-ruby"
+      id: "lightning-talk-automatic-differentiation-for-ruby"
       # language: TODO
 
     - title: "Lightning Talk: From Emperors to Zombies: Ruby from Unicode 10 to 12.1"
@@ -236,6 +266,8 @@
       video_provider: "parent"
       speakers:
         - Martin J. Dürst
+      slug: "lightning-talk-from-emperors-to-zombies-ruby-from-unicode-10-to-12-1"
+      id: "lightning-talk-from-emperors-to-zombies-ruby-from-unicode-10-to-12-1"
       # language: TODO
 
     - title: "Lightning Talk: From ㍻ to U+32FF"
@@ -245,6 +277,8 @@
       video_provider: "parent"
       speakers:
         - MITSUBOSH
+      slug: "lightning-talk-from-to-u-32ff"
+      id: "lightning-talk-from-to-u-32ff"
       # language: TODO
 
     - title: "Lightning Talk: Dive into middleware with mruby"
@@ -254,6 +288,8 @@
       video_provider: "parent"
       speakers:
         - Yuichiro Kaneko
+      slug: "lightning-talk-dive-into-middleware-with-mruby"
+      id: "lightning-talk-dive-into-middleware-with-mruby"
       # language: TODO
 
     - title: "Lightning Talk: VXLAN VTEPs with Ruby"
@@ -263,6 +299,8 @@
       video_provider: "parent"
       speakers:
         - Sorah Fukumori
+      slug: "lightning-talk-vxlan-vteps-with-ruby"
+      id: "lightning-talk-vxlan-vteps-with-ruby"
       # language: TODO
 
     - title: "Lightning Talk: Write ETL or ELT data processing jobs with bricolage."
@@ -272,6 +310,8 @@
       video_provider: "parent"
       speakers:
         - Hiroyuki Inoue
+      slug: "lightning-talk-write-etl-or-elt-data-processing-jobs-with-bricolage"
+      id: "lightning-talk-write-etl-or-elt-data-processing-jobs-with-bricolage"
       # language: TODO
 
     - title: "Lightning Talk: Applying mruby to World-first Small SAR Satellite"
@@ -281,6 +321,8 @@
       video_provider: "parent"
       speakers:
         - Shunsuke Onishi
+      slug: "lightning-talk-applying-mruby-to-world-first-small-sar-satellite"
+      id: "lightning-talk-applying-mruby-to-world-first-small-sar-satellite"
       # language: TODO
 
     - title: "Lightning Talk: How to Make Bad Source"
@@ -290,6 +332,8 @@
       video_provider: "parent"
       speakers:
         - ODA Hirohito
+      slug: "lightning-talk-how-to-make-bad-source"
+      id: "lightning-talk-how-to-make-bad-source"
       # language: TODO
 
     - title: "Lightning Talk: The TracePoint Bomb!"
@@ -299,6 +343,8 @@
       video_provider: "parent"
       speakers:
         - Koichi ITO
+      slug: "lightning-talk-the-tracepoint-bomb"
+      id: "lightning-talk-the-tracepoint-bomb"
       # language: TODO
 
     - title: "Lightning Talk: Make Ruby Differentiable"
@@ -308,8 +354,12 @@
       video_provider: "parent"
       speakers:
         - nagachika
+      slug: "lightning-talk-make-ruby-differentiable"
+      id: "lightning-talk-make-ruby-differentiable"
       # language: TODO
 
+  slug: "lightning-talks-rubykaigi-2019"
+  id: "lightning-talks-rubykaigi-2019"
 - title: "A light weight JIT compiler project for CRuby"
   raw_title: "[EN] A light weight JIT compiler project for CRuby / Vladimir Makarov @vnmakarov"
   speakers:
@@ -324,6 +374,8 @@
     JITs based on GCC/LLVM as recently introduced CRuby MJIT might be heavy and slow for some environments and applications. CRuby MJIT needs two tier compilation with a light weight compiler used as a tier 1 JIT compiler.
 
     This talk will be about the light weight JIT compiler project for CRuby MJIT. The talk will cover the project motivations, current and future state of the project.
+  slug: "a-light-weight-jit-compiler-project-for-cruby"
+  id: "a-light-weight-jit-compiler-project-for-cruby"
 
 - title: "Pathfinder - Building a Container Platform in Ruby Ecosystem"
   raw_title: "[EN] Pathfinder - Building a Container Platform in Ruby Ecosystem / Giovanni Sakti @giosakti"
@@ -341,6 +393,8 @@
     Further on, for those whom are unfamiliar, this session will also touch a bit about container platform/orchestrator and the generic architecture behind it. So that as a developer, we understand the abstraction that it provides.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/giosakti.html#apr18
+  slug: "pathfinder-building-a-container-platform-in-ruby-ecosystem"
+  id: "pathfinder-building-a-container-platform-in-ruby-ecosystem"
 
 - title: "Keynote: Optimization Techniques Used by the Benchmark Winners"
   raw_title: "[EN][Keynote] Optimization Techniques Used by the Benchmark Winners / Jeremy Evans @jeremyevans0"
@@ -356,6 +410,8 @@
     Sequel and Roda have dominated TechEmpower's independent benchmarks for Ruby web frameworks for years. This presentation will discuss optimizations that Sequel and Roda use, and how to use similar approaches to improve the performance of your own code.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/jeremyevans0.html#apr20
+  slug: "keynote-optimization-techniques-used-by-the-benchmark-winners"
+  id: "keynote-optimization-techniques-used-by-the-benchmark-winners"
 
 - title: "A Type-level Ruby Interpreter for Testing and Understanding"
   raw_title: "[JA] A Type-level Ruby Interpreter for Testing and Understanding / Yusuke Endoh @mametter"
@@ -371,6 +427,8 @@
     We propose a type-level abstract interpreter for Ruby 3's static analysis. This interpreter runs normal (i.e., non-type-annotated) Ruby programs in "type" level: each variable has only a type instead of a value. It reports a possible type-error bug, e.g., attempting to call a unknown method or to pass an invalid type argument during the interpretation. By recording all method definitions and calls, it also creates a summary of the program structure in type signature format. This is useful to understand the code, and can be also used as a prototype of type definition for external type checkers.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/mametter.html#apr18
+  slug: "a-type-level-ruby-interpreter-for-testing-and-understanding"
+  id: "a-type-level-ruby-interpreter-for-testing-and-understanding"
 
 - title: "What is Domain Specific Language?"
   raw_title: "[JA] What is Domain Specific Language? / Tanaka Akira @tanaka_akr"
@@ -386,6 +444,8 @@
     Ruby is known as a good language for DSL (Domain Specific Language). However, it is unclear what differentiate internal DSL and normal library. This presentation tries to explain the difference. Both DSL and normal library solves part of programmers task. They tries to make programming easier. However, DSL tends to use some kind of black magic unlike normal library. The black magic is used to realize succinct and easy-to-read program for many applications in the domain. I hope this presentation makes programmers aware to design good library.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/tanaka_akr.html#apr19
+  slug: "what-is-domain-specific-language"
+  id: "what-is-domain-specific-language"
 
 - title: "RMagick, migrate to ImageMagick 7"
   raw_title: "[JA] RMagick, migrate to ImageMagick 7 / Shizuo Fujita @watson1978"
@@ -401,6 +461,8 @@
     The currently RMagick has some problems about installing on macOS/Windows platform. I will talk about RMagick that it will be migrated from ImageMagick 6 to 7 and it will be solved the problems.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/watson1978.html#apr18
+  slug: "rmagick-migrate-to-imagemagick-7"
+  id: "rmagick-migrate-to-imagemagick-7"
 
 - title: "Terminal curses"
   raw_title: "[JA] Terminal curses / Shugo Maeda @shugomaeda"
@@ -418,6 +480,8 @@
     This talk shows basics of terminals (e.g., real text terminals, terminal emulators, the controlling terminal, /dev/tty and con, pty, control characters, escape sequences, termcap/terminfo, terminal mode), pros and cons of text-based user interfaces, an introduction to curses.gem, its applications, and issues you'll face when programming with curses.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/shugomaeda.html#apr19
+  slug: "terminal-curses"
+  id: "terminal-curses"
 
 - title: "Red Chainer and Cumo: Practical Deep Learning in Ruby"
   raw_title: "[JA] Red Chainer and Cumo: Practical Deep Learning in Ruby / @sonots, @hatappi"
@@ -445,6 +509,8 @@
     Also, @sonots talks about ChainerX and a plan to make a further faster deep learning with its ruby bindings.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/sonots.html#apr20
+  slug: "red-chainer-and-cumo-practical-deep-learning-in-ruby"
+  id: "red-chainer-and-cumo-practical-deep-learning-in-ruby"
 
 - title: "Performance Optimization Techniques of MessagePack-Ruby"
   raw_title: "[JA] Performance Optimization Techniques of MessagePack-Ruby / Sadayuki Furuhashi @frsyuki"
@@ -461,6 +527,8 @@
     MessagePack is known as one of the world's fastest object serialization formats available with compatibility to JSON. MessagePack is fast not just because of its binary format but also because of VERY optimized implementations crafted by enthusiasts for each programming languages. To be the fastest serialization library for Ruby, MessagePack-Ruby implements various performance optimization techniques. This session explains the techniques with numbers and discusses further possible optimizations.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/frsyuki.html#apr20
+  slug: "performance-optimization-techniques-of-messagepack-ruby"
+  id: "performance-optimization-techniques-of-messagepack-ruby"
 
 - title: "Timezone API"
   raw_title: "[JA] Timezone API / nobu @n0kada"
@@ -476,6 +544,8 @@
     The Time, a core class, supports timezone since Ruby 2.6. This talk will give what the API is, and how it is determined to cooperate with existing external libraries.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/n0kada.html#apr20
+  slug: "timezone-api"
+  id: "timezone-api"
 
 - title: "Terminal Editors For Ruby Core Toolchain"
   raw_title: "[EN] Terminal Editors For Ruby Core Toolchain / ITOYANAGI Sakura @aycabta"
@@ -495,6 +565,8 @@
     These are highlights of Ruby 2.7. I'll talk about the technical problems of these and show a demo on Ruby 2.7.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/aycabta.html#apr18
+  slug: "terminal-editors-for-ruby-core-toolchain"
+  id: "terminal-editors-for-ruby-core-toolchain"
 
 - title: "The Selfish Programmer"
   raw_title: "[EN] The Selfish Programmer / Justin Searls @searls"
@@ -514,6 +586,8 @@
     Building an entire app by yourself can be overwhelming, but this talk will make it easier. We'll start with a minimal toolset that one person can maintain. You'll learn how many "bad" coding practices can actually reduce complexity. You may be surprised how selfish coding can make you a better team member, too!
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/searls.html#apr20
+  slug: "the-selfish-programmer"
+  id: "the-selfish-programmer"
 
 - title: "Zeitwerk: A new code loader"
   raw_title: "[EN] Zeitwerk: A new code loader / Xavier Noria @fxn"
@@ -531,6 +605,8 @@
     Zeitwerk is able to preload, lazy load, unload, and eager load the code of gems and applications with a compatible file structure without the need to write require calls.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/fxn.html#apr19
+  slug: "zeitwerk-a-new-code-loader"
+  id: "zeitwerk-a-new-code-loader"
 
 - title: "RubyData Workshop"
   raw_title: "[JA] RubyData Workshop / @mrkn, @284km, @kozo2, @ktou, @znz, and Red Data Tools project members"
@@ -557,6 +633,8 @@
     4. In the last part, Kazuma Furuhashi will explain his achievements of RubyGrant 2018.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/mrkn_workshop.html#apr19
+  slug: "rubydata-workshop"
+  id: "rubydata-workshop"
 
 - title: "The fastest way to bootstrap Ruby on Rails"
   raw_title: "[EN] The fastest way to bootstrap Ruby on Rails / Uchio KONDO @udzura"
@@ -572,6 +650,8 @@
     Ruby on Rails applications sometimes take too long time in bootstrapping, especially when the application is complicated, monolithic or "legacy" one. This inhibits Kubernetes or other orchestrators to do smooth autoscaling. There are technologies such as bootsnap to solve this problem. In addition to them, I propose new strategy - "checkpoint and restore". I used CRIU(Checkpoint and Restore In Userspace) in Linux environment to make "ahead of time" process dump, and boot the application from image to reduce the bootstrap time. In my case, observed bootstrap time is reduced from about 2,500ms to 1,200ms. I will describe what the CRIU is in the first place, use cases where CRIU is effective and some problems using CRIU.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/udzura.html#apr19
+  slug: "the-fastest-way-to-bootstrap-ruby-on-rails"
+  id: "the-fastest-way-to-bootstrap-ruby-on-rails"
 
 - title: "Better CSV processing with Ruby 2.6"
   raw_title: "[JA] Better CSV processing with Ruby 2.6 / Kouhei Sutou @ktou, Kazuma Furuhashi @284km"
@@ -597,6 +677,8 @@
     These improvements are done without breaking backward compatibility.
 
     This talk describes details of these improvements by a new csv maintainer.
+  slug: "better-csv-processing-with-ruby-2-6"
+  id: "better-csv-processing-with-ruby-2-6"
 
 - title: "Practical mruby/c firmware development with CRuby"
   raw_title: "[EN] Practical mruby/c firmware development with CRuby / Hitoshi HASUMI @hasumikin"
@@ -612,6 +694,8 @@
     Writing mruby/c firmware applications is like writing mrbgems. You need to make some C functions and mruby wrapper of them in order to handle peripherals like sensor, flash memory or BLE. Easy to imagine it's hard to develop for a team in a situation of TIGHT COUPLING, right? I will talk about some tools, mrubyc-test and mrubyc-debugger, which I made with CRuby for testing and debugging to keep our team slack coupling.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/hasumikin.html#apr19
+  slug: "practical-mruby-c-firmware-development-with-cruby"
+  id: "practical-mruby-c-firmware-development-with-cruby"
 
 - title: "Compiling Ruby to idiomatic code in static languages"
   raw_title: "[EN] Compiling Ruby to idiomatic code in static languages / @alehander42, @zah"
@@ -634,6 +718,8 @@
     realcode-like, where we infer ruby types on runtime and autotranslate more complicated codebase to Nim(rb2nim): the result requires some manual work, but automates most of it.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/alehander42.html#apr18
+  slug: "compiling-ruby-to-idiomatic-code-in-static-languages"
+  id: "compiling-ruby-to-idiomatic-code-in-static-languages"
 
 - title: "TruffleRuby: Wrapping up compatibility for C extensions"
   raw_title: "[EN] TruffleRuby: Wrapping up compatibility for C extensions / Petr Chalupa @pitr_ch"
@@ -653,6 +739,8 @@
     We have been interpreting the C extensions (and JITing together with Ruby code) for a while, however we have been passing the Ruby objects directly into the C code which had lead to problems. We now have a new innovative technique which no longer requires patches in almost all cases. The objects are wrapped for greater compatibility and there is a virtual GC marking phase to avoid memory leaks.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/pitr_ch.html#apr20
+  slug: "truffleruby-wrapping-up-compatibility-for-c-extensions"
+  id: "truffleruby-wrapping-up-compatibility-for-c-extensions"
 
 - title: "Ruby for NLP"
   raw_title: "[JA] Ruby for NLP / Yoh Osaki @youchan"
@@ -668,6 +756,8 @@
     There is no doubt that Deep Learning was the spark of the recent AI boom. Deep Learning has been improving the field of image recognition and natural language processing. In this presentation, I will explain how to deal with natural language processing in Ruby In the first half I will explain the basic methodology of natural language processing and in the second half I will explain how to deal with Ruby.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/youchan.html#apr18
+  slug: "ruby-for-nlp"
+  id: "ruby-for-nlp"
 
 - title: "Working towards Bundler 3"
   raw_title: "[EN] Working towards Bundler 3 / Colby Swandale @oceanicpanda"
@@ -681,6 +771,8 @@
   language: "English"
   description: |-
     Bundler hit a big milestone this year with the release of Bundler 2 🎉, but not without its bumps and hurdles. We'll look into the problems that some of our users have been experiencing after the Bundler 2 release, what the core team has been doing to fix these issues and what we've since learned. Afterwards, We'll look at the upcoming Bundler 2.1 and Bundler 3 releases.
+  slug: "working-towards-bundler-3"
+  id: "working-towards-bundler-3"
 
 - title: "Pragmatic Monadic Programing in Ruby"
   raw_title: "[JA] Pragmatic Monadic Programing in Ruby / @joker1007"
@@ -698,6 +790,8 @@
     And Monadic syntax suger is very important to take advantage of Monad. I also talk about Implementation of Monadic syntax suger that is inspired by Scala language. I will show popular monad implementations like belows. - Maybe - Either - State - Future (like async syntax in JavaScript) - Parser Combinator
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/joker1007.html#apr18
+  slug: "pragmatic-monadic-programing-in-ruby"
+  id: "pragmatic-monadic-programing-in-ruby"
 
 - title: "Writing Debuggers in Plain Ruby! Fact or fiction?"
   raw_title: "[EN] Writing Debuggers in Plain Ruby! Fact or fiction? / Genadi Samokovarov @gsamokovarov"
@@ -713,6 +807,8 @@
     In this talk, we'll build a simple byebug-like debugger in plain Ruby. We'll try to go all the way, but also explain what we cannot do without some C or Java code.
 
     Let's imagine a Ruby future, where a debugger written in Ruby can be used in CRuby, JRuby and even TruffleRuby!
+  slug: "writing-debuggers-in-plain-ruby-fact-or-fiction"
+  id: "writing-debuggers-in-plain-ruby-fact-or-fiction"
 
 - title: "Beyond `puts`: TruffleRuby’s Modern Debugger Using Chrome"
   raw_title: "[EN] Beyond `puts`: TruffleRuby’s Modern Debugger Using Chrome / Kevin Menard @nirvdrum"
@@ -730,6 +826,8 @@
     In this talk you'll be introduced to TruffleRuby's modern debugger, based on the Chrome browser's DevTools Protocol. TruffleRuby's uniquely powerful set of tools let you debug, profile, and inspect the memory usage of Ruby code, native extensions, and other embedded languages all at the same time. Support for those tools is zero-overhead so you can have them always enabled. I'll show you how it all works and how it lets you step through Ruby code, inspect local variables, evaluate expressions, and more.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/nirvdrum.html#apr19
+  slug: "beyond-puts-truffleruby-s-modern-debugger-using-chrome"
+  id: "beyond-puts-truffleruby-s-modern-debugger-using-chrome"
 
 - title: "Benchmarking your code, inside and out"
   raw_title: "[EN] Benchmarking your code, inside and out / Emily Stolfo @estolfo"
@@ -743,6 +841,8 @@
   language: "English"
   description: |-
     Benchmarking is an important component of writing applications, gems, Ruby implementations, and everything in between. There is never a perfect formula for how to measure the performance of your code, as the requirements vary from codebase to codebase. Elastic has an entire team dedicated to measuring the performance of Elasticsearch and the clients team has worked with them to build a common benchmarking framework for itself. This talk will explore how the Elasticsearch Ruby Client is benchmarked and highlight key elements that are important for any benchmarking framework
+  slug: "benchmarking-your-code-inside-and-out"
+  id: "benchmarking-your-code-inside-and-out"
 
 - title: "The future of the Bundled Bundler with RubyGems"
   raw_title: "[JA] The future of the Bundled Bundler with RubyGems / Hiroshi SHIBATA @hsbt"
@@ -762,6 +862,8 @@
     Finally, I'm going to show the integration plan of RubyGems and Bundler and the part of its implements. Also I will show the issues of the current status. You can resolve them after my talk.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/hsbt.html#apr20
+  slug: "the-future-of-the-bundled-bundler-with-rubygems"
+  id: "the-future-of-the-bundled-bundler-with-rubygems"
 
 - title: "Reducing ActiveRecord memory consumption using Apache Arrow"
   raw_title: "[JA] Reducing ActiveRecord memory consumption using Apache Arrow / Kenta Murata @mrkn"
@@ -779,6 +881,8 @@
     In this talk, I would like to introduce my new approach to reduce the memory consumption of ActiveRecord. This approach employs Apache Arrow as the internal data representation of an ActiveRecord::Result object. This approach can achieve a remarkable reduction of the memory consumption of the pluck method; it is 2-12x efficient than the original implementation.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/mrkn.html#apr20
+  slug: "reducing-activerecord-memory-consumption-using-apache-arrow"
+  id: "reducing-activerecord-memory-consumption-using-apache-arrow"
 
 - title: "dRuby 20th anniversary hands-on workshop"
   raw_title: "[JA] dRuby 20th anniversary hands-on workshop / Masatoshi SEKI @m_seki"
@@ -796,6 +900,8 @@
     Please download (or print) the document. (V0.7) → http://www.druby.org/fukuoka2019.pdf
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/m_seki.html#apr20
+  slug: "druby-20th-anniversary-hands-on-workshop"
+  id: "druby-20th-anniversary-hands-on-workshop"
 
 - title: "Pre-evaluation in Ruby"
   raw_title: "[EN] Pre-evaluation in Ruby / Kevin Deisz @kddeisz"
@@ -815,6 +921,8 @@
     In this talk we'll look at how pre-evaluation works, and what benefits it enables.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/kddeisz.html#apr20
+  slug: "pre-evaluation-in-ruby"
+  id: "pre-evaluation-in-ruby"
 
 - title: "Ruby Serverless Framework"
   raw_title: "[EN] Ruby Serverless Framework / Tung Nguyen @tongueroo"
@@ -830,9 +938,11 @@
     Learn how to run Ruby applications on AWS Lambda with a Serverless Framework specifically designed with Ruby. Demo is provided. We deploy it to AWS Lambda with a single command.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/tongueroo.html#apr20
+  slug: "ruby-serverless-framework"
+  id: "ruby-serverless-framework"
 
 - title: "Keynote: The Year of Concurrency"
-  raw_title: '[JA][Keynote] The Year of Concurrency  / Yukihiro "Matz" Matsumoto @yukihiro_matz'
+  raw_title: "[JA][Keynote] The Year of Concurrency  / Yukihiro \"Matz\" Matsumoto @yukihiro_matz"
   speakers:
     - Yukihiro "Matz" Matsumoto
   event_name: "RubyKaigi 2019"
@@ -843,6 +953,8 @@
   language: "Japanese"
   description: |-
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/yukihiro_matz.html#apr18
+  slug: "keynote-the-year-of-concurrency"
+  id: "keynote-the-year-of-concurrency"
 
 - title: "Building Serverless Applications in Ruby with AWS Lambda"
   raw_title: "[EN] Building Serverless Applications in Ruby with AWS Lambda / Alex Wood @alexwwood"
@@ -858,6 +970,8 @@
     Come join us and learn about how you can build serverless applications using Ruby on AWS Lambda! We will demonstrate how to create Ruby serverless functions for web APIs as well as for event-driven applications, then build, test and deploy them to production. We'll also discuss general best practices for developing serverless applications.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/alexwwood.html#apr18
+  slug: "building-serverless-applications-in-ruby-with-aws-lambda"
+  id: "building-serverless-applications-in-ruby-with-aws-lambda"
 
 - title: "Actionable Code Coverage"
   raw_title: "[EN] Actionable Code Coverage / Michael Grosser @grosser"
@@ -881,6 +995,8 @@
     wishlist for coverage.so
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/grosser.html#apr19
+  slug: "actionable-code-coverage"
+  id: "actionable-code-coverage"
 
 - title: "How to take over a Ruby gem"
   raw_title: "[EN] How to take over a Ruby gem / Maciej Mensfeld @maciejmensfeld"
@@ -898,6 +1014,8 @@
     Come and learn how you can take over a gem, what you can do with it once you have it and what you can do to protect yourself against several types of attacks you're exposed to on a daily basis. Let's exploit the Ruby gems world, and its data together.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/maciejmensfeld.html#apr18
+  slug: "how-to-take-over-a-ruby-gem"
+  id: "how-to-take-over-a-ruby-gem"
 
 - title: "GraphQL Migration: A Proper Use Case for Metaprogramming?"
   raw_title: "[EN] GraphQL Migration: A Proper Use Case for Metaprogramming? / Shawnee Gao @gao_shawnee"
@@ -913,6 +1031,8 @@
     When my team took the plunge to migrate Square’s largest Ruby app to GraphQL, no way were we going to manually redefine over 200 objects. Implementing a GraphQL layer includes repetitive and straightforward processes that can be expedited with metaprogramming. I will start with some GraphQL basics, then dig into process of metaprogramming a GraphQL layer from a demo ruby server. I will explain the benefits of using this design pattern and how it improves developer experience. At the end, I will demo the server handling a set diverse and complex client calls!
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/gao_shawnee.html#apr18
+  slug: "graphql-migration-a-proper-use-case-for-metaprogramming"
+  id: "graphql-migration-a-proper-use-case-for-metaprogramming"
 
 - title: "JRuby: The Road to Ruby 2.6 and Rails 6"
   raw_title: "[EN] JRuby: The Road to Ruby 2.6 and Rails 6 / Charles Nutter @headius, Thomas E Enebo @tom_enebo"
@@ -929,6 +1049,8 @@
     Over the past six months, the JRuby team has been working on filling in edges: getting refinements working well, porting C extensions, and getting well-known applications running. At the same time, we always try to push forward on performance and general compatibility. In this talk, we'll cover recent work to support Rails 6 and Ruby 2.6. We'll show off a major Rails application running on JRuby. And we'll show you how you can help us keep JRuby moving forward.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/headius.html#apr20
+  slug: "jruby-the-road-to-ruby-2-6-and-rails-6"
+  id: "jruby-the-road-to-ruby-2-6-and-rails-6"
 
 - title: "Determining Ruby Process Counts: Theory and Practice"
   raw_title: "[EN] Determining Ruby Process Counts: Theory and Practice / Nate Berkopec @nateberkopec"
@@ -944,6 +1066,8 @@
     You have a Ruby web application or service that takes a certain number of requests per minute. How do you know how many Ruby processes you will need to serve that load? The answer is actually very complex, and getting it wrong can cost you a lot of money! In this talk, we'll go through the mathematics and theory of queues, and then apply them to the configuration and provisioning of Ruby services (web, background job, and otherwise). Finally, we'll discuss the application of this theory in the real world, including multi-threading and the GVL, "autoscaling", containers and deployment processes, and how Guilds may impact this process in the future.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/nateberkopec.html#apr18
+  slug: "determining-ruby-process-counts-theory-and-practice"
+  id: "determining-ruby-process-counts-theory-and-practice"
 
 - title: "How to use OpenAPI3 for API developer"
   raw_title: "[JA] How to use OpenAPI3 for API developer / @ota42y"
@@ -967,6 +1091,8 @@
     The committee is gem which validates request / response in rack layer. I'm developing the function to perform validation using OpenAPI 3 in this gem. And I shifted my application specification to OpenAPI3 from another schema specification called JSON Hyper-Schema.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/ota42y.html#apr18
+  slug: "how-to-use-openapi3-for-api-developer"
+  id: "how-to-use-openapi3-for-api-developer"
 
 - title: "Running Ruby On The Apple II"
   raw_title: "[EN] Running Ruby On The Apple II / Colin Fulton @PeterQuines"
@@ -984,6 +1110,8 @@
     Come see Ruby running where it has never run before, and learn how such a rich language can be squeezed down to fit on the humble Apple II.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/PeterQuines.html#apr20
+  slug: "running-ruby-on-the-apple-ii"
+  id: "running-ruby-on-the-apple-ii"
 
 - title: "Six Years of Ruby Performance: A History"
   raw_title: "[EN] Six Years of Ruby Performance: A History / Noah Gibbs @codefolio"
@@ -999,6 +1127,8 @@
     Ruby keeps getting faster. And people keep asking, "but how fast is it for Rails?" Rails makes a great way to measure Ruby's speed, and how Ruby has changed version-by-version. Let's look at six years of performance graphs for apps big and small. How fast is 2.6.0? With JIT? How close is Ruby 3x3?
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/codefolio.html#apr19
+  slug: "six-years-of-ruby-performance-a-history"
+  id: "six-years-of-ruby-performance-a-history"
 
 - title: "Ruby 3 Progress Report"
   raw_title: "[JA] Ruby 3 Progress Report / Matz & the Ruby Core Team @matzbot"
@@ -1012,6 +1142,8 @@
   language: "Japanese"
   description: |-
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/matzbot.html#apr18
+  slug: "ruby-3-progress-report"
+  id: "ruby-3-progress-report"
 
 - title: "A Deep Learning Adventure"
   raw_title: "[EN] A Deep Learning Adventure / Paolo Perrotta @nusco"
@@ -1029,6 +1161,8 @@
     We'll start from scratch, with a look at supervised learning. Then we'll see Ruby code that trains a neural network. Finally, we'll talk about deep neural networks, and explore a wonderful new concept that's changing the field of computer graphics: Generation Adversarial Networks. See how a deep learning program can invent imaginary animals!
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/nusco.html#apr18
+  slug: "a-deep-learning-adventure"
+  id: "a-deep-learning-adventure"
 
 - title: "Cleaning up a huge ruby application"
   raw_title: "[JA] Cleaning up a huge ruby application / Sangyong Sim @riseshia"
@@ -1054,6 +1188,8 @@
     In this talk, I will explain why cleaning up codes is needed, why it's troublesome, and describe our experience how we deleting more than 50,000 lines codes without closing any services.
 
     RubyKaigi 2018 https://rubykaigi.org/2019/presentations/riseshia.html#apr20
+  slug: "cleaning-up-a-huge-ruby-application"
+  id: "cleaning-up-a-huge-ruby-application"
 
 - title: "Crystalball: predicting test failures"
   raw_title: "[EN] Crystalball: predicting test failures / Alex Rodionov @p0deje"
@@ -1071,6 +1207,8 @@
     Meet Crystalball (https://toptal.github.io/crystalball/) - a regression test selection library we built in Toptal. I'll demonstrate how to use it with RSpec, how it predicts what tests to run and how it can be extended.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/p0deje.html#apr19
+  slug: "crystalball-predicting-test-failures"
+  id: "crystalball-predicting-test-failures"
 
 - title: "Best practices in web API client development"
   raw_title: "[JA] Best practices in web API client development / Go Sueyoshi @sue445"
@@ -1096,6 +1234,8 @@
     I think that designing a good API client will lead to a good gem design, so I believe that my talk is beneficial not only for API client developers but also gem developers.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/sue445.html#apr20
+  slug: "best-practices-in-web-api-client-development"
+  id: "best-practices-in-web-api-client-development"
 
 - title: "Building Homebrew in Ruby: The Good, Bad and Ugly"
   raw_title: "[EN] Building Homebrew in Ruby: The Good, Bad and Ugly / Mike McQuaid @MikeMcQuaid"
@@ -1111,6 +1251,8 @@
     Homebrew is a popular macOS package manager in the Ruby community and is also written in Ruby. As Homebrew isn't a web application and doesn't provide a Ruby library, the Ruby ecosystem works great for us in some ways and less great in others. Learn about things we love, hate and struggle with because Homebrew is built in Ruby.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/MikeMcQuaid.html#apr19
+  slug: "building-homebrew-in-ruby-the-good-bad-and-ugly"
+  id: "building-homebrew-in-ruby-the-good-bad-and-ugly"
 
 - title: "A Bundle of Joy: Rewriting for Performance"
   raw_title: "[EN] A Bundle of Joy: Rewriting for Performance / Matthew Draper @_matthewd"
@@ -1126,6 +1268,8 @@
     Local gem management is a key part of our modern workflow, but our tools are layered on historical approaches and requirements. In this talk we explore a ground-up rewrite of local gem management, and ask whether careful implementation (and some feature-cutting) can produce a tool that meets most people's needs while outperforming the current options. In the process, we'll look at specific design choices that make common operations faster, and which might apply to your projects too.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/_matthewd.html#apr18
+  slug: "a-bundle-of-joy-rewriting-for-performance"
+  id: "a-bundle-of-joy-rewriting-for-performance"
 
 - title: "Play with local vars"
   raw_title: "[EN] Play with local vars / Tatsuhiro Ujihisa @ujm"
@@ -1149,6 +1293,8 @@
 
     Keywords: parse.y, binding, yarv iseq, continuation, flip-flop operator, regular expression, and gdb
     Oh by the way, the whole presentation is likely going to be done inside my Vim.
+  slug: "play-with-local-vars"
+  id: "play-with-local-vars"
 
 - title: "Compacting GC for MRI v2"
   raw_title: "[JA] Compacting GC for MRI v2 / Aaron Patterson @tenderlove"
@@ -1164,6 +1310,8 @@
     In this talk we will cover an implementation for a compacting GC in MRI. MRI's implementation presents unique challenges for implementing a compacting GC. In this talk, we will cover compactor implementation and algorithms, challenges presented by MRI's implementation, compaction reference verification, and results of compactor benchmarks.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/tenderlove.html#apr18
+  slug: "compacting-gc-for-mri-v2"
+  id: "compacting-gc-for-mri-v2"
 
 - title: "Yabeda: Monitoring monogatari"
   raw_title: "[EN] Yabeda: Monitoring monogatari / Andrey Novikov @Envek"
@@ -1179,6 +1327,8 @@
     Developing large and high load application without monitoring is a hard and dangerous task, just like piloting an aircraft without gauges. Why it is so important to keep an eye on how application's “flight“ goes, what things you should care more, and how graphs may help to resolve occurring performance problems quickly. On an example of Sidekiq, Prometheus, and Grafana, we will learn how to take metrics from the Ruby application, what can we see from their visualization, and I will tell a couple of sad tales about how it helps in everyday life (with happy-end!)
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/Envek.html#apr19
+  slug: "yabeda-monitoring-monogatari"
+  id: "yabeda-monitoring-monogatari"
 
 - title: "Ovto: Frontend web framework for Rubyists"
   raw_title: "[JA] Ovto: Frontend web framework for Rubyists / Yutaka HARA @yhara"
@@ -1194,6 +1344,8 @@
     What framework do you use for creating single-page webapps? React, Vue, Angular, etc... If you're tired of wirting JavaScript, Ovto may be a good choice. In this talk, I will in introduce Ovto, a frontend framework which allows you to write single-page webapps all in Ruby. https://github.com/yhara/ovto
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/yhara.html#apr19
+  slug: "ovto-frontend-web-framework-for-rubyists"
+  id: "ovto-frontend-web-framework-for-rubyists"
 
 - title: "Building a game for the Nintendo Switch using Ruby - First Half"
   raw_title: "[EN] Building a game for the Nintendo Switch using Ruby - First Half /Amir Rajan @amirrajan"
@@ -1211,3 +1363,5 @@
     Amir Rajan has done something insane. He released a Nintendo Switch game written entirely in mRuby and C. Amir will share his journey with you from the inception of A Dark Room Switch, it's integration with libSDL, all the way to the submission to his publisher. Hopefully, Amir will inspire others to pursue game development projects of their own using Ruby.
 
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/amirrajan.html#apr19
+  slug: "building-a-game-for-the-nintendo-switch-using-ruby-first-half"
+  id: "building-a-game-for-the-nintendo-switch-using-ruby-first-half"

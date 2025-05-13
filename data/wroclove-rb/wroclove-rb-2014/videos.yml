@@ -25,6 +25,8 @@
     The first part of this talk is intended to demonstrate techniques for managing IT projects in a developer friendly way. So that developers can avoid feeling of burden and disconnection from the rest of the team. So that they can improve their skills and grow up in new areas, without stagnating in doing the same repetitious tasks and working on fenced areas of code. And so that they can be always sure that they are working on the most important task right now and avoid confusion.
     It will be based on guidelines that we established at Arkency throughout years of working remotely. You can apply them to your project slowly and every one of them will help you improve some of the previously mentioned aspects. Together they make tremendous difference and let people enjoy a lot of benefits that a programming job can offer. They create a programmer friendly environment in which they can feel comfortable and productive. After all, IT teams mostly consists of programmers, so the project should be optimized for their efficiency and happiness. But it also creates a nice set of rules that makes the communication between customers, product owners and developers easier.
     But that's not all. Agile provides great opportunity for people to step forward and become leaders. But do you and your company know how to let people enter the path of leadership? How to empower the developers so they can introduce changes that make them more effective? The second part of the talk will show how developers can play the role of project managers. Your company might not become second Valve or Github but you can certainly benefit from applying changes leading towards more flat organization structure. By delegating at least some of the classic project manager actives such as meeting with clients, prioritizing tasks and extracting stories to programmers, they are given a chance to understand the business side of the project more deeply and to collaborate directly with the customer. With the technical and business knowledge, programmers can become true leaders for the projects, capable of independently handling issues and delivering the results, without the need for much supervision.
+  slug: "developer-oriented-project-management"
+  id: "developer-oriented-project-management"
 
 - title: "The Story of Bringing Ideas to Life"
   raw_title: "Jeppe Liisberg - THE STORY OF BRINGING IDEAS TO LIFE"
@@ -45,6 +47,8 @@
 
     This is the story about www.myphoner.com. It started as an idea almost 4 years ago and has been implemented without launch a couple of times, lived in the shadows of bigger ambitions, only to finally come to life as a pet project, starting to see it's first revenue.
     The talk is also about an whole hearted entrepreneur, trying to find his way about life. The adventures of running 3-4 startups at the same time and the ups and downs in life.
+  slug: "the-story-of-bringing-ideas-to-life"
+  id: "the-story-of-bringing-ideas-to-life"
 
 - title: "15 Minutes Rails Application"
   raw_title: "Marcin Stecki - 15 MINUTES RAILS APPLICATION"
@@ -64,6 +68,8 @@
     Marcin Stecki with 15 MINUTES RAILS APPLICATION
 
     15 minutes apps with rails - where this will take you? Let's rant the 'easy application development with Rails' and show how fast can you go wrong.  The "15 minutes legacy rails application".
+  slug: "15-minutes-rails-application"
+  id: "15-minutes-rails-application"
 
 - title: "Please Stand Up!"
   raw_title: "Piotr Misiurek - PLEASE STAND UP!"
@@ -83,6 +89,8 @@
     Piotr Misiurek with PLEASE STAND UP!
 
     What have critical value for developers? The soft skills. That's what make you unique, well-paid and not replaceable. Wozniak had great technical skills but it was nothing without Job's great soft skills. You have to have both Steves inside you if you want be successful and happy developer. It you don't want to be just another brick in the wall.
+  slug: "please-stand-up"
+  id: "please-stand-up"
 
 - title: "Maybe!"
   raw_title: "Markus Schirp - CAN WE WRITE PERFECT TESTS? - MAYBE!"
@@ -105,6 +113,8 @@
     The problem: How to define solid? Traditional metrics like line-coverage, branch-coverage and even statement-coverage can be misleading. Having a statement executed once does not mean all edge cases are specified and bug-free! 
     Automated tools can be used to identify uncovered edge cases that will introduce bugs into your program. Mutation testing brings fuzzing to the implementation level. Unlike input fuzzing it modifies the implementation to check if the test suite can detect a huge set of automatically introduced behaviour changes. 
     This talk will elaborate the history of testing and the metrics that are used to define coverage. And how such metrics can and have misguided development direction. It will also show examples of projects that heavily adopted mutation testing. Especially the long term effects and how the (mutation)-metrics driven approach improved developer happiness and code stability. Showing what kind of actual bugs where caught and how code became naturally streamlined. Lastly the current and future limits of existing mutation testing tools will be presented. The idea is to create the "MUST HAVE"-Feeling in the audience. Finally, you can prove that you have good tests! Do not miss it!
+  slug: "maybe"
+  id: "maybe"
 
 - title: "Application Architecture: Boundaries, Object Roles, & Patterns"
   raw_title: "Adam Hawkins - APPLICATION ARCHITECTURE: BOUNDARIES, OBJECT ROLES, & PATTERNS"
@@ -122,6 +132,8 @@
     Adam Hawkins with APPLICATION ARCHITECTURE: BOUNDARIES, OBJECT ROLES, & PATTERNS
 
     This talk is about something important in the community. The Ruby community is missing something fundamentally important. We don't know how to architect applications. We've grown accustomed to using frameworks for everything and we've lost our way. We no longer talk about making applications, we speak about applications built in frameworks. Example: Oh hey man, did you hear NewApp123 is built in Rails? I take offense to that. The application is not built in Rails, it's built in Ruby than Rails is used to put it online. This mentality is prevalent in the community. It's damaging and encourages technical debt. This talk is about changing everything.
+  slug: "application-architecture-boundaries-object-roles-patterns"
+  id: "application-architecture-boundaries-object-roles-patterns"
 
 - title: "Lightning Talks (Saturday)"
   raw_title: "Lightning talks - Saturday - Wroclove.rb 2014"
@@ -142,6 +154,8 @@
       video_provider: "parent"
       speakers:
         - Marta Paciorkowska
+      slug: "lightning-talk-chef-browser-read-only-chef-ui"
+      id: "lightning-talk-chef-browser-read-only-chef-ui"
 
     - title: "Lightning Talk: Refactoring: Low Hanging Fruit"
       date: "2014-03-14"
@@ -152,6 +166,8 @@
       video_provider: "parent"
       speakers:
         - Norbert Wójtowicz
+      slug: "lightning-talk-refactoring-low-hanging-fruit"
+      id: "lightning-talk-refactoring-low-hanging-fruit"
 
     - title: "Lightning Talk: Ruby Philosophy: Do Ruby Objects exist?"
       date: "2014-03-14"
@@ -162,6 +178,8 @@
       video_provider: "parent"
       speakers:
         - Piotrek Zientara
+      slug: "lightning-talk-ruby-philosophy-do-ruby-objects-exist"
+      id: "lightning-talk-ruby-philosophy-do-ruby-objects-exist"
 
     - title: "Lightning Talk: DHH Code Ping Pong"
       date: "2014-03-14"
@@ -172,6 +190,8 @@
       video_provider: "parent"
       speakers:
         - Marcin Stecki
+      slug: "lightning-talk-dhh-code-ping-pong"
+      id: "lightning-talk-dhh-code-ping-pong"
 
     - title: "Lightning Talk: Java is cool"
       date: "2014-03-14"
@@ -182,6 +202,8 @@
       video_provider: "parent"
       speakers:
         - Aleksander Dąbrowski
+      slug: "lightning-talk-java-is-cool"
+      id: "lightning-talk-java-is-cool"
 
     - title: "Lightning Talk: React.js and Hexagonal.js"
       date: "2014-03-14"
@@ -192,6 +214,8 @@
       video_provider: "parent"
       speakers:
         - Marcin Grzywaczewski
+      slug: "lightning-talk-react-js-and-hexagonal-js"
+      id: "lightning-talk-react-js-and-hexagonal-js"
 
     - title: "Lightning Talk: Random considered harmful"
       date: "2014-03-14"
@@ -202,6 +226,8 @@
       video_provider: "parent"
       speakers:
         - Mateusz Lenik
+      slug: "lightning-talk-random-considered-harmful"
+      id: "lightning-talk-random-considered-harmful"
 
     - title: "Lightning Talk: Nobody Knows Ruby"
       date: "2014-03-14"
@@ -212,6 +238,8 @@
       video_provider: "parent"
       speakers:
         - Arne Brasseur
+      slug: "lightning-talk-nobody-knows-ruby"
+      id: "lightning-talk-nobody-knows-ruby"
 
     - title: "Lightning Talk: RVM"
       date: "2014-03-14"
@@ -222,6 +250,8 @@
       video_provider: "parent"
       speakers:
         - Michal Papis
+      slug: "lightning-talk-rvm"
+      id: "lightning-talk-rvm"
 
     - title: "Lightning Talk: Make Conf Wifi work"
       date: "2014-03-14"
@@ -232,6 +262,8 @@
       video_provider: "parent"
       speakers:
         - Thilo Utke
+      slug: "lightning-talk-make-conf-wifi-work"
+      id: "lightning-talk-make-conf-wifi-work"
 
     - title: "Lightning Talk: How To Get Paid in $, €, £ and not get ripped off"
       date: "2014-03-14"
@@ -242,6 +274,10 @@
       video_provider: "parent"
       speakers:
         - Mateusz Kubiczek
+      slug: "lightning-talk-how-to-get-paid-in-and-not-get-ripped-off"
+      id: "lightning-talk-how-to-get-paid-in-and-not-get-ripped-off"
+  slug: "lightning-talks-saturday"
+  id: "lightning-talks-saturday"
 
 - title: "Integration Tests Are Bogus"
   raw_title: "Piotr Szotkowski - INTEGRATION TESTS ARE BOGUS"
@@ -265,6 +301,8 @@
     This talk covers a new player on the Ruby testing scene: [Bogus](https://github.com/psyho/bogus), a library for stubbing, mocking and spying that goes the extra mile and verifies whether your fakes have any connection with reality – whether the faked methods exist on the actual object, whether they take the right number of arguments and even whether tests for a given class verify the behaviour that the class’s fakes pretend to have.
 
     With Bogus quite a few of the [famously derided integration tests](http://www.infoq.com/presentations/integration-tests-scam) come for free; a change to a method’s name or its signature will make all of the related fakes complain, and all the missing pieces of a system written from outside in will present themselves ready to be implemented.
+  slug: "integration-tests-are-bogus-wroclove-rb-2014"
+  id: "integration-tests-are-bogus-wroclove-rb-2014"
 
 - title: "Q&A: Code Metrics"
   raw_title: "Code Metrics Q&A by Piotr Solnica & Markus Schirp"
@@ -283,6 +321,8 @@
     Questions: https://hackpad.com/wroc_love.rb-2014-Code-Metrics-QA-01r86FOgdrr
 
     By: Piotr Solnica & Markus Schirp
+  slug: "q-a-code-metrics"
+  id: "q-a-code-metrics"
 
 - title: "Migrating To Clojure. So Much Fn"
   raw_title: "Jan Stępień - MIGRATING TO CLOJURE. SO MUCH FN"
@@ -301,6 +341,8 @@
     Jan Stępień with MIGRATING TO CLOJURE. SO MUCH FN.
 
     Migrating a technology stack to a new language is rarely a simple task. It's getting even more challenging when what is changed is not only the language but the whole paradigm. This talk covers a story of stylefruits, where we've been gradually replacing a Ruby-based technology stack serving five million monthly visitors with Clojure. What are the costs and benefits of such a transition? How to make the migration gradual and painless? How to make Ruby and Clojure work with each other on the way? How easy is it to switch from a dynamic, object-oriented language to a functional one based on immutability and laziness? These are just some takeaways from this straight-from-the-trenches report.
+  slug: "migrating-to-clojure-so-much-fn"
+  id: "migrating-to-clojure-so-much-fn"
 
 - title: "From ActiveRecord to Events"
   raw_title: "Emanuele Delbono - FROM ACTIVERECORD TO EVENTS"
@@ -320,6 +362,8 @@
     Emanuele Delbono with FROM ACTIVERECORD TO EVENTS
     We are used to write our rails application with ActiveRecord and store in the database the
     current state of our entities. This kind of storage is not lossless as we might think, we completely miss the story that took the entities in the current state. That's way new architectures are becoming popular, these architectures don't store the state of the models but their deltas. During this session we will give a look at the Event Driven architectures, what problems they solve and how can be implemented in ruby and rails applications.
+  slug: "from-activerecord-to-events"
+  id: "from-activerecord-to-events"
 
 - title: "Ruby Arrays on Steroids"
   raw_title: "RUBY ARRAYS ON STEROIDS - Michael Feathers"
@@ -343,6 +387,8 @@
     ways. In this talk, Michael will outline the facilities available in
     the APL-derived programming languages and demonstrate a gem that
     brings their power to Ruby.
+  slug: "ruby-arrays-on-steroids"
+  id: "ruby-arrays-on-steroids"
 
 - title: "Micro Libraries FTW"
   raw_title: "MICRO LIBRARIES FTW - Piotr Solnica"
@@ -360,6 +406,8 @@
     Piotr Solnica with MICRO LIBRARIES FTW
 
     I'm dreaming about a ruby ecosystem that consists of plenty of awesome, kick-ass, small, focused, well-written, nicely documented, composable libraries. Micro-libraries. I want those libraries to work on all major ruby implementations. I want those libraries to use as little magic and monkey-patching as possible. I want to be able to compose bigger frameworks using those libraries. In this talk I will tell you WHY I want all those things and HOW we could achieve that.
+  slug: "micro-libraries-ftw"
+  id: "micro-libraries-ftw"
 
 - title: "Objectify Your Forms: Beyond Basic User Input"
   raw_title: "OBJECTIFY YOUR FORMS: BEYOND BASIC USER INPUT - Danny Olson"
@@ -382,6 +430,8 @@
     the whole thing.
     What if we could use good old object oriented design principles to make forms a pleasure to deal with? Form objects give us a much simpler way to build any sort of form we want that is straight forward to build, test, and maintain.
     We will build a complicated form using the default Rails helpers, and then we'll rebuild it with a form object and let the audience decide which method they prefer.
+  slug: "objectify-your-forms-beyond-basic-user-input"
+  id: "objectify-your-forms-beyond-basic-user-input"
 
 - title: "Q&A: Legacy Rails"
   raw_title: "Legacy Rails Q&A Michael Feathers, Adam Hawkins, Andrzej Krzywda"
@@ -401,6 +451,8 @@
     Questions: https://hackpad.com/wroc_love.rb-2014-legacy-rails-QA-jkKZpT0WUdb
 
     Participants: Michael Feathers, Adam Hawkins, Andrzej Krzywda
+  slug: "q-a-legacy-rails"
+  id: "q-a-legacy-rails"
 
 - title: "Ruby: Write Once, Run Anywhere"
   raw_title: "RUBY: WRITE ONCE, RUN ANYWHERE - Michał Taszycki"
@@ -420,6 +472,8 @@
     Some people say that Ruby is dying. Bullshit! I'd say it's more alive than ever.
     Ruby used to be a language associated scripting and web backends. Now, thanks to RubyMotion we can write desktop and mobile apps. While Opal allows us to execute Ruby in a browser. With these tools we can finally write cross-platform Ruby applications.
     After this talk you'll know how and you'll be eager to try it yourself.
+  slug: "ruby-write-once-run-anywhere"
+  id: "ruby-write-once-run-anywhere"
 
 - title: "Frontend Choices"
   raw_title: "FRONTEND CHOICES - Alex Coles"
@@ -438,3 +492,5 @@
 
     Rails was born in 2004, the time of the "Ajax revolution". With the help of a little bit of prototype, scriptaculous and RJS, Rails made its mark in part because it facilitated creating beautiful and highly interactive web user interfaces in no time at all.
     Fast forward to 2013. Frameworks like Meteor and Hoodie are capturing increasing mindshare. Are we now in the decade of JavaScript? Is the "Rails Way" still relevant to the Front End?
+  slug: "frontend-choices"
+  id: "frontend-choices"

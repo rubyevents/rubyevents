@@ -16,6 +16,8 @@
   video_provider: "youtube"
   description: |-
     Everyone loves live music. Developers love live coding! In this live session, we’ll build a complete Rails app from scratch using GitHub Copilot. GitHub Copilot is an AI pair programmer that helps developers boost their productivity by writing entire functions by providing natural language prompts right within the IDE.
+  slug: "building-a-rails-app-live-with-ai"
+  id: "building-a-rails-app-live-with-ai"
 
 - title: "Concurrency in Ruby: Threads, Fibers and Ractors Demystified"
   raw_title: "Concurrency in Ruby: Threads, Fibers and Ractors Demystified - Magesh"
@@ -28,6 +30,8 @@
   video_provider: "youtube"
   description: |-
     Speed up your Ruby applications with the power of concurrency! Join us as we demystify threads, fibers, and Ractors, understanding their unique strengths, use cases, and impact on Ruby performance. Learn to tackle I/O bottlenecks and enable parallel execution, boosting your code’s speed.
+  slug: "concurrency-in-ruby-threads-fibers-and-ractors-demystified"
+  id: "concurrency-in-ruby-threads-fibers-and-ractors-demystified"
 
 # Tea Break
 
@@ -42,6 +46,8 @@
   video_provider: "youtube"
   description: |-
     Congratulations! You have just joined a startup that went viral. Your first task is to figure out why their Rails application is slow. Now what? This talk will give you the tools you need to quickly find what’s wrong and learn a top-down approach for triaging performance issues and scaling the app
+  slug: "rails-performance-monitoring-a-primer-for-developers"
+  id: "rails-performance-monitoring-a-primer-for-developers"
 
 - title: "Common Mistakes that make test cases flaky and how to avoid them"
   raw_title: "Common Mistakes that make test cases flaky and how to avoid them - Maheshwari Ramu"
@@ -54,6 +60,8 @@
   video_provider: "youtube"
   description: |-
     Tired of flaky test cases causing frustration and delays? Imagine reliable, consistent tests with accurate results every time. Learn about test automation pitfalls and get practical strategies for a smoother software development process. Stop the frustration, embrace efficiency!
+  slug: "common-mistakes-that-make-test-cases-flaky-and-how-to-avoid-them"
+  id: "common-mistakes-that-make-test-cases-flaky-and-how-to-avoid-them"
 
 - title: "Payment workflow with Ruby and Clickhouse"
   raw_title: "Payment workflow with Ruby and Clickhouse - Harman Sohanpal"
@@ -66,6 +74,8 @@
   video_provider: "youtube"
   description: |-
     Simple tech solution on payments workflow with huge business impact. Equally divided work among idempotent Sidekiq workers, Clickhouse data ingestion from CSV files using s3 connectors and ruby ODBC to show aggregated reports to users via API simplified our payments workflow and reporting.
+  slug: "payment-workflow-with-ruby-and-clickhouse"
+  id: "payment-workflow-with-ruby-and-clickhouse"
 
 # Lunch
 # Energizer
@@ -81,6 +91,8 @@
   video_provider: "youtube"
   description: |-
     Dive deeper into the underlying dynamics of Ruby Metaprogramming to deepen the understanding of the language and its inner workings. We explore its real-world applications and unearth how Ruby gems harness this power to solve real-world coding challenges.
+  slug: "diving-into-dynamic-demystefying-metaprogrammaing-with-ruby"
+  id: "diving-into-dynamic-demystefying-metaprogrammaing-with-ruby"
 
 - title: "Embracing Code Quality with Rubocop"
   raw_title: "Embracing Code Quality with Rubocop - Shloka Shah"
@@ -93,6 +105,8 @@
   video_provider: "youtube"
   description: |-
     Supercharge code quality with Rubocop: the go-to Code-Style Linter for Ruby. Learn practical usage, configuration tips, and maintaining code quality. Tackle legacy code using Rubocop TODO Approach. Understand real-life application. Elevate your code quality by harmonizing a standard among developers.
+  slug: "embracing-code-quality-with-rubocop"
+  id: "embracing-code-quality-with-rubocop"
 
 # Flash Talks
 # Tea Break
@@ -108,6 +122,8 @@
   video_provider: "youtube"
   description: |-
     Kubernetes is a container orchestration system that can help you scale your Rails application with ease. In this talk, I will discuss the benefits of using Kubernetes for Rails applications, and I will show you how to solve the scaling challenges of Rails apps on Kubernetes.
+  slug: "rails-orbiting-the-cloud-mastering-the-scalability-with-kubernetes"
+  id: "rails-orbiting-the-cloud-mastering-the-scalability-with-kubernetes"
 
 - title: "Avoid overengineering & big ball of mud- 7 lessons for maintaining the balance"
   raw_title: "Avoid overengineering & big ball of mud- 7 lessons for maintaining the balance - Chinmay Naik"
@@ -120,6 +136,8 @@
   video_provider: "youtube"
   description: |-
     Teams in technology companies are often in a “tug of war” with themselves. They have to balance between “over-engineering” on one side and a “big ball of mud” on the other. They must maintain this balance to build software for today that can also scale for tomorrow. This talk covers how to do that.
+  slug: "avoid-overengineering-big-ball-of-mud-7-lessons-for-maintaining-the-balance"
+  id: "avoid-overengineering-big-ball-of-mud-7-lessons-for-maintaining-the-balance"
 
 # Networking
 
@@ -138,6 +156,8 @@
   published_at: "2024-12-20"
   description: |-
     From sprockets to Webpacker and js-bundling, Rails tooling for JavaScript has evolved with time. Lets travel through the history of this evolution and how you should build modern Rails Apps in today’s rich JavaScript Ecosystem. An SPA, Monolith or API-only App, we’ll see different Rails solutions!
+  slug: "from-sprockets-to-js-bundling-evolution-of-javascript-tooling-in-rails"
+  id: "from-sprockets-to-js-bundling-evolution-of-javascript-tooling-in-rails"
 
 - title: "Monitoring Rails apps using Open Source"
   raw_title: "Monitoring Rails apps using Open Source - Aniket Rao"
@@ -150,6 +170,8 @@
   published_at: "2024-12-20"
   description: |-
     Exhausted by APM inefficiencies? Harness open-source tools like Grafana, PromQL, OpenMetrics, Jaeger for optimal data handling. Achieve superior monitoring at a lower cost, cutting through data clutter, and rise above the ‘Shannon Limit’.
+  slug: "monitoring-rails-apps-using-open-source"
+  id: "monitoring-rails-apps-using-open-source"
 
 # Tea Break
 
@@ -163,6 +185,8 @@
   published_at: "2024-12-20"
   description: |-
     In an era of heightened security threats, constructing a resilient Multiple Factors Authentication (MFA) framework is vital. In this talk, we’ll explore the strategies and best practices for building a reliable MFA framework. The talk will also discuss how to strike the right balance between security and usability while safeguarding sensitive data. Hopefully, this session will equip you with the knowledge and tools to improve your organization authentication security system.
+  slug: "building-a-resilient-mfa-framework-strategies-and-best-practices"
+  id: "building-a-resilient-mfa-framework-strategies-and-best-practices"
 
 - title: "Look Ma, No Sidekiq: A peek into async future"
   raw_title: "Look Ma, No Sidekiq: A peek into async future - Manu Janardhanan"
@@ -175,6 +199,8 @@
   published_at: "2024-12-20"
   description: |-
     We usually turn to Sidekiq for tackling long-running tasks. However, using the async gem with Falcon lets us execute IO-bound tasks directly with clean, simple, performant and scalable code . Plus, this approach dovetails perfectly with Turbo Frames for embedding task results.
+  slug: "look-ma-no-sidekiq-a-peek-into-async-future"
+  id: "look-ma-no-sidekiq-a-peek-into-async-future"
 
 - title: "From Startup to Scale Up: How to Scale Engineering teams"
   raw_title: "From Startup to Scale Up: How to Scale Engineering teams - Puneet Khushwani"
@@ -187,6 +213,8 @@
   published_at: "2024-12-20"
   description: |-
     When teams are small, design decisions can be made over a coffee, code reviews can be done by sitting next to each other. When we have hundreds of developers, what are the areas for which we should implement checks and balances to ensure quality & efficiency isn’t compromised?
+  slug: "from-startup-to-scale-up-how-to-scale-engineering-teams"
+  id: "from-startup-to-scale-up-how-to-scale-engineering-teams"
 
 # Lunch
 
@@ -201,6 +229,8 @@
   published_at: "2024-12-20"
   description: |-
     This talk dives deep into how to Revolutionize IoT: Preventive Maintenance & Anomaly Detection with Ruby! Witness language-driven magic as we showcase live demos of Ruby-powered IoT devices detecting anomalies and ensuring optimal performance. Join us to discover how Language and AI empower IoT with preventive maintenance.
+  slug: "connecting-the-dots-unleash-the-magic-of-ai-in-iot"
+  id: "connecting-the-dots-unleash-the-magic-of-ai-in-iot"
 
 - title: "Dissecting Rails"
   raw_title: "Dissecting Rails - Ratnadeep Deshmane"
@@ -213,3 +243,5 @@
   published_at: "2024-12-20"
   description: |-
     After evolving for 15 years, Ratnadeep feels Rails is at a stage where it is a bit overwhelming for new developers to get started, because of the surface area of its features. This talk proposes a different approach to teaching Rails that is much more easier, comprehensive and less confusing.
+  slug: "dissecting-rails"
+  id: "dissecting-rails"

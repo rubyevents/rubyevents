@@ -17,6 +17,8 @@
     Lessons Matz has learned from the history of Ruby development
   video_provider: "youtube"
   video_id: "YpRXqcULyVI"
+  slug: "keynote-30-years-of-ruby-rubyconf-taiwan-2023"
+  id: "keynote-30-years-of-ruby-rubyconf-taiwan-2023"
 
 # Track 1
 - title: "A Rails Performance Guidebook: from 0 to 1B requests/day"
@@ -37,6 +39,8 @@
     In this presentation, we will guide you across patterns, strategies, and little tricks to improve performance. We will do that by sharing real stories of our daily experience facing and solving real performance issues in an application that daily serves billions of requests per day.
   video_provider: "youtube"
   video_id: "6fE94oa5xjo"
+  slug: "a-rails-performance-guidebook-from-0-to-1b-requests-day-rubyconf-taiwan-2023"
+  id: "a-rails-performance-guidebook-from-0-to-1b-requests-day-rubyconf-taiwan-2023"
 
 # Track 2
 - title: "L406-D1S1-Adventures in the Dungeons of OpenSSL"
@@ -55,6 +59,8 @@
     As part of implementing Hybrid Public Key Encryption (HPKE; RFC 9180) in Ruby, I had a chance to send a patch into Ruby's OpenSSL gem. Missing functionalities? Major version upgrade of the OpenSSL backend? There is a deep dungeon behind one of Ruby's default gem, and I will talk about one adventure through this dungeon.
   video_provider: "youtube"
   video_id: "kFBe9hVMgR8"
+  slug: "l406-d1s1-adventures-in-the-dungeons-of-openssl"
+  id: "l406-d1s1-adventures-in-the-dungeons-of-openssl"
 
 # Track 1
 - title: "Developing cross-platform mruby software for Dreamcast and Wii"
@@ -77,6 +83,8 @@
     This presentation will (hopefully) be delivered on either of those consoles and will include some live demos.
   video_provider: "youtube"
   video_id: "8bts8Ko6jkA"
+  slug: "developing-cross-platform-mruby-software-for-dreamcast-and-wii"
+  id: "developing-cross-platform-mruby-software-for-dreamcast-and-wii"
 
 # Track 2
 - title: "High Speed Parsing Massive XML Data in Ruby"
@@ -95,6 +103,8 @@
     A massive XML called BioProject has been published. However, when I parsed the XML as it was, rexml got freeze somewhere, and nokogiri ended up consuming a large amount of memory and being slow. Looking at the sample implementation in Python, it uses iterparse() to parse each element in the first layer. Therefore, we created a similar mechanism in Ruby and also used ractor to speed it up.
   video_provider: "youtube"
   video_id: "0W7P29jxUmI"
+  slug: "high-speed-parsing-massive-xml-data-in-ruby"
+  id: "high-speed-parsing-massive-xml-data-in-ruby"
 
 # Track 1
 - title: "Refining Fork Management: From Workarounds to `Process#_fork`"
@@ -117,6 +127,8 @@
     During this session, I will delve into the backstory of _fork and explore the diverse methods the community employed for creating callbacks during forking prior to Ruby 3.1.
   video_provider: "youtube"
   video_id: "nOTLdEpj8oo"
+  slug: "refining-fork-management-from-workarounds-to-process-_fork"
+  id: "refining-fork-management-from-workarounds-to-process-_fork"
 
 # Track 2
 - title: "Translating XML and EPUB using ChatGPT"
@@ -135,6 +147,8 @@
     Natsukantou and epub-translator gems offer XML translation by allowing users to mix & match filters and translation services (DeepL/ChatGPT). The gem's architecture will be presented, showcasing its middleware pattern, the use cases and wizard configuration inference.
   video_provider: "youtube"
   video_id: "P4jCrhoCKmQ"
+  slug: "translating-xml-and-epub-using-chatgpt"
+  id: "translating-xml-and-epub-using-chatgpt"
 
 # Track 1
 - title: "Deep dive into Ruby require"
@@ -155,6 +169,8 @@
     In this presentation, I will introduce the details of the functionality that extends Ruby's require to provide guidance to users on what they can do to load them. And I will also show how $LOAD_PATH is build behind Ruby and Rails by Bundler.
   video_provider: "youtube"
   video_id: "qK3FTOSSD3A"
+  slug: "deep-dive-into-ruby-require"
+  id: "deep-dive-into-ruby-require"
 
 # Track 2
 - title: "Let's pop into Passkeys"
@@ -173,6 +189,8 @@
     Can you recall a world without having to remember passwords? If Passkeys becomes widely available, that world is a few steps away in our future. Instead of remembering passwords, we will use our biometrics, already available in our phones, laptops, and desktops, and public key encryption! To a future with no passwords!
   video_provider: "youtube"
   video_id: "VpJrEVmVTRM"
+  slug: "let-s-pop-into-passkeys"
+  id: "let-s-pop-into-passkeys"
 
 # Track 1
 - title: "Use View Components with Rails Projects from the Design Stage"
@@ -193,6 +211,8 @@
     Let’s start to plan, create, and preview view components from the design stage with Figma, ViewComponent and Lookbook. I will introduce my preferred way to compose view components, the tools and tips which can help build, and how to use partial and helper to render it. I will also show you a pattern to rendering view components with settings and builder.
   video_provider: "youtube"
   video_id: "Mx4ir49-hQs"
+  slug: "use-view-components-with-rails-projects-from-the-design-stage"
+  id: "use-view-components-with-rails-projects-from-the-design-stage"
 
 # Track 2
 - title: "Understanding Parser Generators surronding Ruby with Contributing Lrama"
@@ -211,6 +231,8 @@
     At RubyKaigi 2023, yui-knk introduced Lrama, for which I submitted a PR to implement the 'Named References' feature, a functionality found in GNU Bison. In this presentation, I will delve into the internal workings of Lrama gained through this implementation. Alongside, I will touch upon the foundational knowledge of parsers and parser generators, as well as the current state of parsers surrounding Ruby.
   video_provider: "youtube"
   video_id: "QvU7uvPN5XM"
+  slug: "understanding-parser-generators-surronding-ruby-with-contributing-lrama"
+  id: "understanding-parser-generators-surronding-ruby-with-contributing-lrama"
 
 # Track 1
 - title: "The Rise of Microcontroller Ruby"
@@ -229,6 +251,8 @@
     In this presentation, we will embark on a journey of live coding to bring microcontrollers to life. All you need is (at least) two "Raspberry Pi Pico W" boards, the same number of USB cables, and a laptop. Witness the realization of PicoRuby, a production-ready Ruby implementation for microcontrollers, as we delve into the world of innovation.
   video_provider: "youtube"
   video_id: "WxZNE5zTAjg"
+  slug: "the-rise-of-microcontroller-ruby"
+  id: "the-rise-of-microcontroller-ruby"
 
 # Track 2
 - title: "Component Driven UI with ViewComponent gem"
@@ -249,6 +273,8 @@
     ViewComponents, developed by GitHub simplifies the View layer and makes it much easier to manage.
   video_provider: "youtube"
   video_id: "JlksEZMXt8Y"
+  slug: "component-driven-ui-with-viewcomponent-gem-rubyconf-taiwan-2023"
+  id: "component-driven-ui-with-viewcomponent-gem-rubyconf-taiwan-2023"
 
 # Day 2
 
@@ -269,6 +295,8 @@
     Rails 讓開發 Web Application 變得相當容易，然而因為簡化了許多問題，當我們面臨更複雜的系統時感到極大的挑戰。複雜的 Rails 專案之所以難以維護是 Rails 在架構上的設計造成的限制，讓我們重新思考 Rails 來尋找更容易維護的架構。
   video_provider: "youtube"
   video_id: "g0iumjmIwnk"
+  slug: "rethink-rails-architecture"
+  id: "rethink-rails-architecture"
 
 # Track 2
 - title: "Catching the AI Train"
@@ -286,6 +314,8 @@
     The Large-Language Models have taken application development by storm. Ruby has libraries that help build LLM applications, e.g.: Langchain.rb. We need to understand what kind of LLM applications can be built, how to build them, and what are common pitfalls when building them. We're going to look at building vector (semantic) search, chat bots and business process automation solutions. We're going to learn AI/LLM-related concepts, terms and ideas, learn what AI agents are, and look at some of the latest cutting edge AI research.
   video_provider: "youtube"
   video_id: "DdEamGfNg6o"
+  slug: "catching-the-ai-train"
+  id: "catching-the-ai-train"
 
 # Track 1
 - title: "Handling 225k requests per second to RubyGems.org"
@@ -304,6 +334,8 @@
     Chances are you’ve run bundle install or gem install at some point, seeing as we’re at RubyConf. Turns out, you’re not alone. At peak times, RubyGems.org has received as many as 225 thousand requests per second. How does a small, mostly-volunteer team handle serving all that traffic with their rails app? Let’s dive into how using CDNs, scaling with static files, and wrangling expensive endpoints has kept your favorite gem index up and running over the past decade.
   video_provider: "youtube"
   video_id: "53VESJCfnz4"
+  slug: "handling-225k-requests-per-second-to-rubygems-org"
+  id: "handling-225k-requests-per-second-to-rubygems-org"
 
 # Track 2
 - title: "How Rails 7 Helped Us Achieve GDPR Compliance"
@@ -322,6 +354,8 @@
     Rails 7 introduced a new feature called Active Record Encryption. I will go over what it is, how it works, and how Viewabo used it to help us achieve GDPR compliance. I will include example usage and an overview of the preparatory work that went into implementing Active Record Encryption.
   video_provider: "youtube"
   video_id: "ZhfQwvE_zBU"
+  slug: "how-rails-7-helped-us-achieve-gdpr-compliance"
+  id: "how-rails-7-helped-us-achieve-gdpr-compliance"
 
 # Track 1
 - title: "Yet Another Ruby DSL for LLM"
@@ -338,6 +372,8 @@
     在過去一年裏我們經歷了 LLM 的巨大衝擊，但是對於使用 LLM 實作應用依然困難重重。如何利用 Ruby 的 meta-programming 更好地對 LLM 進行處理和約束從而實作下一世代的 AI 應用是本 Topic 試圖討論的關鍵問題。
   video_provider: "youtube"
   video_id: "IAMMhoA9bmg"
+  slug: "yet-another-ruby-dsl-for-llm"
+  id: "yet-another-ruby-dsl-for-llm"
 
 # Track 2
 - title: "Monadic Approach to Ruby Error Handling"
@@ -360,6 +396,8 @@
     This talk will empower you understand how to use Monadic Handling Ruby code. You'll leave with a deeper appreciation of monads and concrete strategies for encapsulating errors elegantly in your Ruby applications. Join me to discover how monads enable you to minimize disruption and maximize control over error handling in Ruby.
   video_provider: "youtube"
   video_id: "6_bqotkr3dk"
+  slug: "monadic-approach-to-ruby-error-handling"
+  id: "monadic-approach-to-ruby-error-handling"
 
 # Track 1
 - title: "Unearth Ruby builtin Gems"
@@ -384,6 +422,8 @@
     Ruby includes many Gems by default. We can use them without extra installation steps. These Gems includes convenient data structure and algorithms, cross platform file handling and practical simple server, etc. Let's unearth the less known builtin Gems.
   video_provider: "youtube"
   video_id: "WVS_cxn2HuY"
+  slug: "unearth-ruby-builtin-gems"
+  id: "unearth-ruby-builtin-gems"
 
 # Track 2
 - title: "Writing Minitest clone in 30 minutes"
@@ -402,6 +442,8 @@
     Minitest is a testing library for Ruby that's bundled with CRuby. Unlike RSpec, it takes more straightforward approach. Class, method and assertion are all we need to write tests in Minitest. However, there are still some magical things going on here. What do assertions actually do? How does autorun feature work? In this talk, we'll write code together. More specifically, we'll write simpler clone of Minitest and make it work.
   video_provider: "youtube"
   video_id: "4pF5SP1dDq4"
+  slug: "writing-minitest-clone-in-30-minutes"
+  id: "writing-minitest-clone-in-30-minutes"
 
 # Track 1
 - title: "Ever Been Punched by a Colleague?"
@@ -422,6 +464,8 @@
     "Race condition" is a potential issue in Ruby on Rails applications, especially in situations involving multiple threads. This presentation provides a basic understanding of race conditions and how to test and resolve them in Rails. Testing for race conditions is crucial and can be achieved by simulating concurrent scenarios to ensure stability.
   video_provider: "youtube"
   video_id: "Vgud5hkMmJ4"
+  slug: "ever-been-punched-by-a-colleague"
+  id: "ever-been-punched-by-a-colleague"
 
 # Track 2
 - title: "The Forgotten Web"
@@ -442,6 +486,8 @@
     In this presentation we explore the ancient history of web development, discuss the perils of "the modern web application", highlight a brewing generational conflict, and examine how Rails' connection to the past puts it in a unique position to project itself into the future.
   video_provider: "youtube"
   video_id: "CF1DcKV-U0o"
+  slug: "the-forgotten-web"
+  id: "the-forgotten-web"
 
 # Track 1
 - title: "A Brief Introduction to Generative AI Engineer: A Guide for Rubyists"
@@ -462,6 +508,8 @@
     In this talk, we redefine the emerging role of Generative AI Engineer. Beyond just the LLM itself, developing AI applications presents many challenges and tasks. Now software developers can build AI apps by using LLM APIs and don’t have to start learning machine learning from the beginning. We can focus on Prompt Engineering, Retrieval Augmented Generation(RAG), Vector Search, Agents, and OpenAI Function Calling. Join us in exploring the role of AI engineers in this new era.
   video_provider: "youtube"
   video_id: "a2-h2nJqWHA"
+  slug: "a-brief-introduction-to-generative-ai-engineer-a-guide-for-rubyists"
+  id: "a-brief-introduction-to-generative-ai-engineer-a-guide-for-rubyists"
 
 # Track 2
 - title: "Solving Real-World Challenges with Ruby Ractor"
@@ -480,6 +528,8 @@
     In this talk, we explore on how we can take advantage of Ractor to improve parallel processing in some real world scenarios, such as data encryption and transaction processing. We delve into some features of Ractor, with their strength and limitation, and how to migrate thread-based or process-based functionalities using them. This talk hopefully will give the audience more insights on how they can improve their application performance.
   video_provider: "youtube"
   video_id: "Zrck3-lx_Mo"
+  slug: "solving-real-world-challenges-with-ruby-ractor"
+  id: "solving-real-world-challenges-with-ruby-ractor"
 
 # Track 1
 # Missing Talk: Ruby on the Modern JVM with JRuby - Charles Oliver Nutter
@@ -502,6 +552,8 @@
     You've heard the whispers, sensed the hype, but you're still not sure what all the fuss is about with SQLite these days. Join me as we explore the use-cases and benefits of running SQLite in a production environment. Along the way, we will learn why SQLite makes sense as your next production database and how to ensure that your setup is optimized for end-user performance and developer happiness. We will setup and deploy a full Rails application—with caching, background jobs, websockets, and full-text search all backed by SQLite—in these 40 minutes. Come along for the ride!
   video_provider: "youtube"
   video_id: "uT6TUfopY6E"
+  slug: "how-and-why-to-run-sqlite-in-production-rubyconf-taiwan-2023"
+  id: "how-and-why-to-run-sqlite-in-production-rubyconf-taiwan-2023"
 
 # Track 1
 - title: "Keynote: Quest of the Rubyist by Tim Riley"
@@ -522,3 +574,5 @@
     As we enter a land where both peril and opportunity abound, how can we plot a course towards towards the Ruby of our future? Let’s find out together, as we embark on the adventure of our time!
   video_provider: "youtube"
   video_id: "nMmwFzP8brI"
+  slug: "keynote-quest-of-the-rubyist-by-tim-riley"
+  id: "keynote-quest-of-the-rubyist-by-tim-riley"

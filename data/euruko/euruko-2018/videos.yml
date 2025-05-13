@@ -20,6 +20,8 @@
   description: ""
   video_provider: "youtube"
   video_id: "YhPP_Knq0qM"
+  slug: "introduction"
+  id: "introduction"
 
 - title: "Keynote: Ruby After 25 Years"
   raw_title: "Yukihiro Matsumoto - Keynote"
@@ -30,6 +32,8 @@
   description: ""
   video_provider: "youtube"
   video_id: "cs0s5lZAUwc"
+  slug: "keynote-ruby-after-25-years"
+  id: "keynote-ruby-after-25-years"
 
 # Break
 
@@ -42,6 +46,8 @@
   description: ""
   video_provider: "youtube"
   video_id: "1fIlcnrJHxs"
+  slug: "metaprogramming-for-generalists"
+  id: "metaprogramming-for-generalists"
 
 - title: "Ruby in Containers"
   raw_title: "Joannah Nanjekye - Ruby in containers"
@@ -52,6 +58,8 @@
   description: ""
   video_provider: "youtube"
   video_id: "qPNkOPvjecs"
+  slug: "ruby-in-containers"
+  id: "ruby-in-containers"
 
 # Lunch
 
@@ -64,6 +72,8 @@
   description: ""
   video_provider: "youtube"
   video_id: "ObB0dzX_rBs"
+  slug: "tool-belt-of-a-seasoned-bug-hunter"
+  id: "tool-belt-of-a-seasoned-bug-hunter"
 
 - title: "Ducks and Monads: Wonders of Ruby Types"
   raw_title: "Igor Morozov - Ducks and monads: wonders of Ruby types"
@@ -74,6 +84,8 @@
   description: ""
   video_provider: "youtube"
   video_id: "v-H9nK8hqfE"
+  slug: "ducks-and-monads-wonders-of-ruby-types"
+  id: "ducks-and-monads-wonders-of-ruby-types"
 
 # Break
 
@@ -86,6 +98,8 @@
   description: ""
   video_provider: "youtube"
   video_id: "zo3iRBPzscU"
+  slug: "rails-anti-patterns-how-not-to-design-your-database"
+  id: "rails-anti-patterns-how-not-to-design-your-database"
 
 - title: "The Broken Promise of Open Source"
   raw_title: "Coraline Ada Ehmke - The broken promise of Open Source"
@@ -96,6 +110,8 @@
   description: ""
   video_provider: "youtube"
   video_id: "5ByUPh_uPqQ"
+  slug: "the-broken-promise-of-open-source"
+  id: "the-broken-promise-of-open-source"
 
 # Break
 
@@ -108,6 +124,8 @@
   description: ""
   video_provider: "youtube"
   video_id: "OgO1EIFDgPU"
+  slug: "ruby-not-red-color-theory-for-the-rest-of-us"
+  id: "ruby-not-red-color-theory-for-the-rest-of-us"
 
 # Wrap up
 
@@ -126,6 +144,8 @@
   description: ""
   video_provider: "youtube"
   video_id: "wkz-B1w2GVM"
+  slug: "the-case-of-the-missing-method-a-ruby-mystery-story"
+  id: "the-case-of-the-missing-method-a-ruby-mystery-story"
 
 - title: "City Pitches"
   raw_title: "Pitch the next EuRuKo's location"
@@ -142,6 +162,8 @@
       video_provider: "parent"
       speakers:
         - Miles Woodroffe
+      slug: "city-pitch-bristol"
+      id: "city-pitch-bristol"
 
     - title: "City Pitch: Rotterdam"
       start_cue: "04:35"
@@ -151,6 +173,8 @@
       speakers:
         - Floor Drees
         - Rayta van Rijswijk
+      slug: "city-pitch-rotterdam"
+      id: "city-pitch-rotterdam"
 
     - title: "City Pitch: Plovediv"
       start_cue: "07:40"
@@ -159,6 +183,10 @@
       video_provider: "parent"
       speakers:
         - Gabriela Luhova
+      slug: "city-pitch-plovediv"
+      id: "city-pitch-plovediv"
+  slug: "city-pitches"
+  id: "city-pitches"
 
 # Lunch & voting on the next EuRuKo's location
 
@@ -171,6 +199,8 @@
   description: ""
   video_provider: "youtube"
   video_id: "jUc8InwoA-E"
+  slug: "let-s-refactor-some-ruby-code"
+  id: "let-s-refactor-some-ruby-code"
 
 - title: "Debugging Adventures in Rack-land"
   raw_title: "Pan Thomakos - Debugging adventures in Rack-land"
@@ -181,6 +211,8 @@
   description: ""
   video_provider: "youtube"
   video_id: "5o4krwjJbOI"
+  slug: "debugging-adventures-in-rack-land"
+  id: "debugging-adventures-in-rack-land"
 
 # Break
 
@@ -201,6 +233,8 @@
       video_provider: "parent"
       speakers:
         - Tomasz Stachewicz
+      slug: "lightning-talk-having-fun-with-spreadsheets"
+      id: "lightning-talk-having-fun-with-spreadsheets"
 
     - title: "Lightning Talk: The Information Flow: +1 Way to be up-to-date"
       event_name: "EuRuKo 2018"
@@ -211,6 +245,8 @@
       video_provider: "parent"
       speakers:
         - Anna Shcherbinina
+      slug: "lightning-talk-the-information-flow-1-way-to-be-up-to-date"
+      id: "lightning-talk-the-information-flow-1-way-to-be-up-to-date"
 
     - title: "Lightning Talk: CP-8: GitHub Automation with CP-8 Bot"
       event_name: "EuRuKo 2018"
@@ -221,6 +257,8 @@
       video_provider: "parent"
       speakers:
         - Miles Woodroffe
+      slug: "lightning-talk-cp-8-github-automation-with-cp-8-bot"
+      id: "lightning-talk-cp-8-github-automation-with-cp-8-bot"
 
     - title: "Lightning Talk: How To Do Microservices...... badly"
       event_name: "EuRuKo 2018"
@@ -231,6 +269,8 @@
       video_provider: "parent"
       speakers:
         - Mazin Power
+      slug: "lightning-talk-how-to-do-microservices-badly"
+      id: "lightning-talk-how-to-do-microservices-badly"
 
     - title: "Lightning Talk: The Power of Community"
       event_name: "EuRuKo 2018"
@@ -241,6 +281,10 @@
       video_provider: "parent"
       speakers:
         - Gabriela Luhova
+      slug: "lightning-talk-the-power-of-community"
+      id: "lightning-talk-the-power-of-community"
+  slug: "lightning-talks"
+  id: "lightning-talks"
 
 - title: "Scaling a Monolith isn't Scaling Microservices"
   raw_title: "Kerstin Puschke - Scaling a monolith isn't scaling microservices"
@@ -251,6 +295,8 @@
   description: ""
   video_provider: "youtube"
   video_id: "tA8gGd_Rl7E"
+  slug: "scaling-a-monolith-isn-t-scaling-microservices"
+  id: "scaling-a-monolith-isn-t-scaling-microservices"
 
 # Break
 
@@ -263,4 +309,7 @@
   description: ""
   video_provider: "youtube"
   video_id: "6CqmGYvFwAQ"
+  slug: "an-empathy-exercise-contextualising-the-question-of-privilege"
+  id: "an-empathy-exercise-contextualising-the-question-of-privilege"
+
 # Wrap up & announcing the next EuRuKo's location - https://www.youtube.com/watch?v=wMggsShGTzk
