@@ -20,6 +20,8 @@
     So, Rubyists can submit a pull-request for the default gems like net-http, irb or etc after Ruby 3.0. We need to learn about the mechanism of the default gems. and also learn the bundled gems. I will describe a technic for developing the standard libraries with GitHub..
 
     RubyKaigi Takeout: https://rubykaigi.org/2021-takeout/presentations/hsbt.html
+  slug: "how-to-develop-the-standard-libraries-of-ruby"
+  id: "how-to-develop-the-standard-libraries-of-ruby"
 
 - title: "Toycol: Define your own application protocol"
   raw_title: "[JA] Toycol: Define your own application protocol / Misaki Shioi @shioimm"
@@ -39,6 +41,8 @@
     I’ve created a minimal framework that translates the custom toy application protocol for the Web into HTTP/1.x, with which you can define the protocol that clients and servers understand. In this talk, I'd like to show the flexibility of this framework with some examples of both nodes that speak in given protocols.
 
     RubyKaigi Takeout 2021: https://rubykaigi.org/2021-takeout/presentations/coe401_.html
+  slug: "toycol-define-your-own-application-protocol"
+  id: "toycol-define-your-own-application-protocol"
 
 - title: "Do regex dream of Turing Completeness?"
   raw_title: "[EN] Do regex dream of Turing Completeness? / Daniel Magliola @dmagliola"
@@ -58,6 +62,8 @@
     Join me on a wild ride exploring amazing Game of Life patterns, unusual Regex techniques, Turing Completeness, programatically generating complex Regexes with Ruby, and what all this means for our understanding of what a Regex can do.
 
     RubyKaigi 2021: https://rubykaigi.org/2021-takeout/presentations/dmagliola.html
+  slug: "do-regex-dream-of-turing-completeness"
+  id: "do-regex-dream-of-turing-completeness"
 
 - title: "Optimizing Partial Backtraces in Ruby 3"
   raw_title: "[EN] Optimizing Partial Backtraces in Ruby 3 / Jeremy Evans @jeremyevans"
@@ -73,6 +79,8 @@
     Backtraces are very useful tools when debugging problems in Ruby programs. Unfortunately, backtrace generation is expensive for deep callstacks. In older versions of Ruby, this is true even if you only want a partial backtrace, such as a single backtrace frame. Thankfully, Ruby 3 has been optimized so that it no longer processes unnecessary backtrace frames, which can greatly speed up the generation of partial backtraces. Join me for an interesting look a Ruby backtraces, how they are generated, how we optimized partial backtraces in Ruby 3, and how we fixed bugs in the optimization in 3.0.1.
 
     RubyKaigi Takeout: https://rubykaigi.org/2021-takeout/presentations/jeremyevans0.html
+  slug: "optimizing-partial-backtraces-in-ruby-3"
+  id: "optimizing-partial-backtraces-in-ruby-3"
 
 - title: "dRuby in the real-world embedded systems."
   raw_title: "[JA] dRuby in the real-world embedded systems. / @seki and @t-sono1809"
@@ -92,6 +100,8 @@
     We will report an example of using dRuby and CRuby (not mruby) in embedded software for small medical devices. In this talk, we will discuss the architecture of our products.
 
     RubyKaigi Takeout 2021: https://rubykaigi.org/2021-takeout/presentations/m_seki.html
+  slug: "druby-in-the-real-world-embedded-systems"
+  id: "druby-in-the-real-world-embedded-systems"
 
 - title: "It is time to build your mruby VM on the microcontroller?"
   raw_title: "[EN] It is time to build your mruby VM on the microcontroller? / 蒼時弦也 @elct9620"
@@ -107,6 +117,8 @@
     In 2020, I find a mini-arcade maker product that uses ESP8622 and MicroPython. Since I know the mruby/c can run on the ESP32 but it doesn't support running on the ESP8622. Is it possible to implement our own mruby VM and execute Ruby on any microcontroller we want to use it? This talk will show my progress to run a simple mruby script on the ESP8622 by implementing my own small mruby VM.
 
     RubyKaigi Takeout 2021: https://rubykaigi.org/2021-takeout/presentations/elct9620.html
+  slug: "it-is-time-to-build-your-mruby-vm-on-the-microcontroller"
+  id: "it-is-time-to-build-your-mruby-vm-on-the-microcontroller"
 
 - title: "Regular Expressions: Amazing and Dangerous"
   raw_title: "[EN] Regular Expressions: Amazing and Dangerous / Martin J. Dürst @duerst"
@@ -122,6 +134,8 @@
     Many Ruby programmers use regular expressions frequently. They are an amazingly powerful tool for many different kinds of text processing. However, if not used carefully, they can also be dangerous: They may not exactly match what their writer thinks they match, and they may execute very slowly on certain inputs. This talk will help you understand regular expressions better, so that you can make good use of their amazing power while avoiding their dangerous sides. It will also discuss recent changes to Ruby in the area of regular expressions.
 
     RubyKaigi Takeout 2021: https://rubykaigi.org/2021-takeout/presentations/duerst.html
+  slug: "regular-expressions-amazing-and-dangerous"
+  id: "regular-expressions-amazing-and-dangerous"
 
 - title: "Variable Width Allocation: Optimizing Ruby's Memory Layout"
   raw_title: "[EN] Variable Width Allocation: Optimizing Ruby's Memory Layout / @peterzhu2118 and @eightbitraptor"
@@ -141,6 +155,8 @@
     Ruby’s current memory model assumes all objects live in fixed size slots. This means that object data is often stored outside of the Ruby heap, which has implications: an object's data can be scattered across many locations, increasing complexity and causing poor locality resulting in reduced efficiency of CPU caches.
 
     Join us as we explore how our Variable Width Allocation project will move system heap memory into Ruby heap memory, reducing system heap allocations and giving us finer control of the memory layout to optimize for performance.
+  slug: "variable-width-allocation-optimizing-ruby-s-memory-layout"
+  id: "variable-width-allocation-optimizing-ruby-s-memory-layout"
 
 - title: "10 years of Ruby-powered citizen science"
   raw_title: "[EN] 10 years of Ruby-powered citizen science / Mat Schaffer @matschaffer"
@@ -158,6 +174,8 @@
     10 years later our science project continues, with Ruby at its heart. Our radiation measurements span the globe and are freely available for anyone to use. And now with projects like Airnote we’re using that expertise to tackle new environmental challenges such as the California wildfires.
 
     RubyKaigi Takeout 2021: https://rubykaigi.org/2021-takeout/presentations/matschaffer.html
+  slug: "10-years-of-ruby-powered-citizen-science"
+  id: "10-years-of-ruby-powered-citizen-science"
 
 - title: "YJIT - Building a new JIT Compiler inside CRuby"
   raw_title: "[EN] YJIT - Building a new JIT Compiler inside CRuby / Maxime Chevalier-Boisvert @maximecb"
@@ -173,6 +191,8 @@
     YJIT, an open source project led by a small team of developers at Shopify to incrementally build a new JIT compiler inside CRuby. Key advantages are that our compiler delivers very fast warm up, and we have complete, fine-grained control over the entire code generation pipeline. In this talk, I present the approach we are taking to implement YJIT and discuss early performance results. The talk will conclude with a discussion of what steps can be taken to unlock higher levels of performance for all JIT compilers built inside CRuby, be it YJIT, MJIT or any future JIT compiler efforts.
 
     RubyKaigi Takeout 2021: https://rubykaigi.org/2021-takeout/presentations/maximecb.html
+  slug: "yjit-building-a-new-jit-compiler-inside-cruby"
+  id: "yjit-building-a-new-jit-compiler-inside-cruby"
 
 - title: "Graphical Terminal User Interface of Ruby 3.1"
   raw_title: "[EN] Graphical Terminal User Interface of Ruby 3.1 / ITOYANAGI Sakura @aycabta"
@@ -190,6 +210,8 @@
     In this article, I will show you how to utilize this dialog display feature of Reline, with IRB and the Ruby debugger which is a new feature in Ruby 3.1.
 
     RubyKaigi Takeout 2021: https://rubykaigi.org/2021-takeout/presentations/aycabta.html
+  slug: "graphical-terminal-user-interface-of-ruby-3-1"
+  id: "graphical-terminal-user-interface-of-ruby-3-1"
 
 - title: "Why Ruby's JIT was slow"
   raw_title: "[EN] Why Ruby's JIT was slow / Takashi Kokubun @k0kubun"
@@ -209,6 +231,8 @@
     In this talk, you will hear how JIT architectures impact various benchmarks differently, and why it matters for you. You may or may not benefit from Ruby's JIT, depending on what JIT architecture we'll choose beyond the current MJIT. Let's discuss which direction we'd like to go.
 
     RubyKaigi Takeout 2021: https://rubykaigi.org/2021-takeout/presentations/k0kubun.html
+  slug: "why-ruby-s-jit-was-slow"
+  id: "why-ruby-s-jit-was-slow"
 
 - title: "Why Ruby's JIT was slow"
   raw_title: "[JA] Why Ruby's JIT was slow / Takashi Kokubun @k0kubun"
@@ -228,6 +252,8 @@
     In this talk, you will hear how JIT architectures impact various benchmarks differently, and why it matters for you. You may or may not benefit from Ruby's JIT, depending on what JIT architecture we'll choose beyond the current MJIT. Let's discuss which direction we'd like to go.
 
     https://rubykaigi.org/2021-takeout/presentations/k0kubun.html
+  slug: "why-ruby-s-jit-was-slow-rubykaigi-2021-takeout"
+  id: "why-ruby-s-jit-was-slow-rubykaigi-2021-takeout"
 
 - title: "The Art of Execution Control for Ruby's Debugger"
   raw_title: "[JA] The Art of Execution Control for Ruby's Debugger / Koichi Sasada @ko1"
@@ -253,6 +279,8 @@
     In this presentation, we introduce newly created debug.gem and show the tricks to make the fastest debugger.
 
     RubyKaigi Takeout: https://rubykaigi.org/2021-takeout/presentations/ko1.html
+  slug: "the-art-of-execution-control-for-ruby-s-debugger"
+  id: "the-art-of-execution-control-for-ruby-s-debugger"
 
 - title: "Keynote: TypeProf for IDE: Enrich Dev-Experience without Annotations"
   raw_title: "[JA][Keynote] TypeProf for IDE: Enrich Dev-Experience without Annotations / Yusuke Endoh @mame"
@@ -268,6 +296,8 @@
     Ruby 3.0 comes bundled with TypeProf, a code analysis tool that doesn't require so many type annotations. Its primary goal is to create type signatures for existing Ruby programs and help users to apply some external type checkers like Steep. Since the release, we have made an effort to adapt TypeProf to an integrated development environment (IDE), which allows users to enjoy many features supported in an IDE, such as browsing method type signatures inferred on the fly, find definition, find references, error checking, etc. We demonstrate TypeProf for IDE, and present its roadmap.
 
     RubyKaigi Takeout: https://rubykaigi.org/2021-takeout/presentations/mametter.html
+  slug: "keynote-typeprof-for-ide-enrich-dev-experience-without-annotations"
+  id: "keynote-typeprof-for-ide-enrich-dev-experience-without-annotations"
 
 - title: "Building Native Extensions. This Could Take A While..."
   raw_title: "[EN] Building Native Extensions. This Could Take A While... / Mike Dalessio @flavorjones"
@@ -285,6 +315,8 @@
     This talk will provide a deep look at the techniques and toolchain used to ship native versions of Nokogiri and other rubygems with C extensions. Gem maintainers will learn how to build native versions of their own gems, and developers will learn how to use and deploy pre-compiled packages.
 
     RubyKaigi Takeout 2021: https://rubykaigi.org/2021-takeout/presentations/flavorjones.html
+  slug: "building-native-extensions-this-could-take-a-while"
+  id: "building-native-extensions-this-could-take-a-while"
 
 - title: "Parsing Ruby"
   raw_title: "[EN] Parsing Ruby / Kevin Newton @kddnewton"
@@ -300,6 +332,8 @@
     Since Ruby's inception, there have been many different projects that parse Ruby code. This includes everything from development tools to Ruby implementations themselves. This talk dives into the technical details and tradeoffs of how each of these tools parses and subsequently understands your applications. After, we'll discuss how you can do the same with your own projects using the Ripper standard library. You'll see just how far we can take this library toward building useful development tools.
 
     RubyKaigi Takeout 2021: https://rubykaigi.org/2021-takeout/presentations/kddnewton.html
+  slug: "parsing-ruby"
+  id: "parsing-ruby"
 
 - title: "Ruby Archaeology"
   raw_title: "[EN] Ruby Archaeology / Nick Schwaderer @schwad"
@@ -323,6 +357,8 @@
     -  And for the brave: how can you set up an environment to run Ruby 1.8 code from ~2008 on a modern machine?
 
     RubyKaigi Takeout 2021: https://rubykaigi.org/2021-takeout/presentations/schwad4hd14.html
+  slug: "ruby-archaeology"
+  id: "ruby-archaeology"
 
 - title: "Keynote: The Future Shape of Ruby Objects"
   raw_title: "[EN][Keynote] The Future Shape of Ruby Objects / Chris Seaton @chrisseaton"
@@ -338,6 +374,8 @@
     TruffleRuby uses an optimisation called object shapes to optimise Ruby. It automatically learns and understands the layout and types, or the shape, of your objects as your code is running and optimises code to work better with those shapes. As the community tries to make MRI faster, it could be time to adopt object shapes there as well. We’ll talk about what TruffleRuby does, how it does it, and the benefits it achieves in practice.
 
     RubyKaigi Takeout 2021: https://rubykaigi.org/2021-takeout/presentations/chrisgseaton.html
+  slug: "keynote-the-future-shape-of-ruby-objects"
+  id: "keynote-the-future-shape-of-ruby-objects"
 
 - title: "Demystifying DSLs for better analysis and understanding"
   raw_title: "[EN] Demystifying DSLs for better analysis and understanding / Ufuk Kayserilioglu @paracycle"
@@ -355,6 +393,8 @@
     Surfacing DSLs as static artifacts makes working with them much easier. Generating RBI/RBS files that declare the methods which are dynamically created at runtime, allows static analyzers like Sorbet or Steep to work with DSLs. This also allows for better developers tooling and as some kind of "DSL linter".
 
     RubyKaigi Takeout 2021: https://rubykaigi.org/2021-takeout/presentations/paracycle.html
+  slug: "demystifying-dsls-for-better-analysis-and-understanding"
+  id: "demystifying-dsls-for-better-analysis-and-understanding"
 
 - title: "Parallel testing with Ractors: putting CPUs to work"
   raw_title: "[EN] Parallel testing with Ractors: putting CPUs to work / Vinicius Stock @vinistock"
@@ -372,6 +412,8 @@
     Let’s find the answers to these questions by building a test framework built on Ractors, from scratch. We’ll compare the current solutions for parallelization and what advantages or limitations Ractors bring when used in this context.
 
     RubyKaigi Takeout 2021: https://rubykaigi.org/2021-takeout/presentations/vinistock.html
+  slug: "parallel-testing-with-ractors-putting-cpus-to-work"
+  id: "parallel-testing-with-ractors-putting-cpus-to-work"
 
 - title: "The newsletter of RBS updates"
   raw_title: "[JA] The newsletter of RBS updates / Masataka Kuwabara @pocke"
@@ -389,9 +431,11 @@
     RBS for Ruby 3.1 will be released with many changes. I'll pick up and describe some features for this talk.
 
     RubyKaigi Takeout 2021: https://rubykaigi.org/2021-takeout/presentations/p_ck_.html
+  slug: "the-newsletter-of-rbs-updates"
+  id: "the-newsletter-of-rbs-updates"
 
 - title: "Ractor's speed is not light-speed"
-  raw_title: '[EN] Ractor''s speed is not light-speed / Satoshi "moris" Tagomori @tagomoris'
+  raw_title: "[EN] Ractor's speed is not light-speed / Satoshi \"moris\" Tagomori @tagomoris"
   speakers:
     - Satoshi "moris" Tagomori
   event_name: "RubyKaigi 2021 Takeout"
@@ -404,6 +448,8 @@
     Ractor is the new feature, introduced in Ruby 3.0, to run Ruby code on multiple CPU cores. But unfortunately, Ruby 3.0 is not fully ready for actual workloads. This session will show how we can improve web-app performance by Ractor, and what we have to do to run our web apps on Ractor.
 
     RubyKaigi Takeout 2021: https://rubykaigi.org/2021-takeout/presentations/tagomoris.html
+  slug: "ractor-s-speed-is-not-light-speed"
+  id: "ractor-s-speed-is-not-light-speed"
 
 - title: "Just-in-Time Compiling Ruby Regexps on TruffleRuby"
   raw_title: "[EN] Just-in-Time Compiling Ruby Regexps on TruffleRuby / @eregon and @djoooooe"
@@ -423,6 +469,8 @@
     TruffleRuby together with Truffle Regex can now execute Ruby Regexps up to 40 times faster than CRuby! This is possible by just-in-time compiling Ruby Regexps to machine code by using Truffle Regex, a Truffle language for regular expressions. Truffle Regex uses finite-state machines, a much faster alternative to backtracking regexp engines. Because of the unique capability of GraalVM to inline across languages, the Ruby code and the Regexp are optimized and compiled together for ultimate performance.
 
     RubyKaigi Takeout: https://rubykaigi.org/2021-takeout/presentations/eregontp.html
+  slug: "just-in-time-compiling-ruby-regexps-on-truffleruby"
+  id: "just-in-time-compiling-ruby-regexps-on-truffleruby"
 
 - title: "Red Arrow - Ruby and Apache Arrow"
   raw_title: "[JA] Red Arrow - Ruby and Apache Arrow / Sutou Kouhei @kou"
@@ -450,6 +498,8 @@
     - How to integrate with Ruby 3.0 features such as MemoryView and Ractor
 
     RubyKaigi Takeout 2021: https://rubykaigi.org/2021-takeout/presentations/ktou.html
+  slug: "red-arrow-ruby-and-apache-arrow"
+  id: "red-arrow-ruby-and-apache-arrow"
 
 - title: "Charty: Statistical data visualization in Ruby"
   raw_title: "[JA] Charty: Statistical data visualization in Ruby / Kenta Murata @mrkn"
@@ -467,6 +517,8 @@
     Charty makes statistical data visualization easier. If you want to put error bars in a bar plot, you must calculate the mean and the 95% confidence interval before plotting. Charty performs these calculations instead of you. Moreover, Charty can recognize many data types as table data and supports files, Jupyter Notebook, JupyerLab, VSCode, and a terminal emulator as the output destination.
 
     RubyKaigi Takeout 2021: https://rubykaigi.org/2021-takeout/presentations/mrkn.html
+  slug: "charty-statistical-data-visualization-in-ruby"
+  id: "charty-statistical-data-visualization-in-ruby"
 
 - title: "RuboCop in 2021: Stable and Beyond"
   raw_title: "[JA] RuboCop in 2021: Stable and Beyond / Koichi ITO @koic"
@@ -486,6 +538,8 @@
     Through this talk, you will know about benefits and considerations for upgrading RuboCop.
 
     RubyKaigi Takeout 2021: https://rubykaigi.org/2021-takeout/presentations/koic.html
+  slug: "rubocop-in-2021-stable-and-beyond"
+  id: "rubocop-in-2021-stable-and-beyond"
 
 - title: "Beware the Dead End!!"
   raw_title: "[EN] Beware the Dead End!! / Richard Schneeman @schneems"
@@ -501,6 +555,8 @@
     Nothing stops a program from executing quite as fast as a syntax error. After years of “unexpected end” in my dev life, I decided to “do” something about it. In this talk we'll cover lexing, parsing, and indentation informed syntax tree search that power that dead_end Ruby library.
 
     RubyKaigi Takeout 2021: https://rubykaigi.org/2021-takeout/presentations/schneems.html
+  slug: "beware-the-dead-end"
+  id: "beware-the-dead-end"
 
 - title: "Falling down from FreeBSD"
   raw_title: "[JA] Falling down from FreeBSD / やもり @yamori813"
@@ -516,9 +572,11 @@
     Why I started mruby on YABM(Yet Another Bare Metal). I describe inside of mruby and how to use it. Also I talked about IoT use case.
 
     RubyKaigi Takeout 2021: https://rubykaigi.org/2021-takeout/presentations/yamori813.html
+  slug: "falling-down-from-freebsd"
+  id: "falling-down-from-freebsd"
 
 - title: "Keynote: Beyond Ruby 3.0"
-  raw_title: '[JA] Matz Keynote / Yukihiro "Matz" Matsumoto @matz'
+  raw_title: "[JA] Matz Keynote / Yukihiro \"Matz\" Matsumoto @matz"
   speakers:
     - Yukihiro "Matz" Matsumoto
   event_name: "RubyKaigi 2021 Takeout"
@@ -529,6 +587,8 @@
   language: "Japanese"
   description: |-
     RubyKaigi Takeout 2021: https://rubykaigi.org/2021-takeout/presentations/yukihiro_matz.html
+  slug: "keynote-beyond-ruby-3-0-rubykaigi-2021-takeout"
+  id: "keynote-beyond-ruby-3-0-rubykaigi-2021-takeout"
 
 - title: "PRK Firmware: Keyboard is Essentially Ruby"
   raw_title: "[JA] PRK Firmware: Keyboard is Essentially Ruby / Hitoshi HASUMI @hasumikin"
@@ -548,6 +608,8 @@
     The ultimate goal is certainly not a small one --- let's make Ruby comparable to projects such as MicroPython, CircuitPython or Lua in terms of viability as a scripting language for microcontrollers.
 
     RubyKaigi Takeout 2021: https://rubykaigi.org/2021-takeout/presentations/hasumikin.html
+  slug: "prk-firmware-keyboard-is-essentially-ruby"
+  id: "prk-firmware-keyboard-is-essentially-ruby"
 
 - title: "Ruby Committers vs the World"
   raw_title: "Ruby Committers vs the World / CRuby Committers @rubylangorg"
@@ -563,6 +625,8 @@
     Ruby core committers on stage!
 
     RubyKaigi Takeout 2021: https://rubykaigi.org/2021-takeout/presentations/rubylangorg.html
+  slug: "ruby-committers-vs-the-world-rubykaigi-2021-takeout"
+  id: "ruby-committers-vs-the-world-rubykaigi-2021-takeout"
 
 - title: "Ruby, Ractor, QUIC"
   raw_title: "[JA] Ruby, Ractor, QUIC / Yusuke Nakamura @unasuke"
@@ -578,6 +642,8 @@
     From Ruby 3, a parallel processing mechanism called Ractor has been introduced. This has made it easy to implement safe parallel processing in Ruby. In addition, QUIC, which was announced by Google in 2013, standardized in May 2021, and will be used more and more in the future. In this presentation, I will explain what QUIC is, whether it is possible to implement a QUIC server and client with Ractor introduced in Ruby 3, and if so, why it is difficult or impossible.
 
     RubyKaigi Takeout 2021: https://rubykaigi.org/2021-takeout/presentations/yu_suke1994.html
+  slug: "ruby-ractor-quic"
+  id: "ruby-ractor-quic"
 
 - title: "Dive into Encoding"
   raw_title: "[JA] Dive into Encoding / Mari Imaizumi @ima1zumi"
@@ -593,6 +659,8 @@
     Each Ruby String object has an encoding internally. Therefore, it can use a different encoding in the same application. It's very convenient. So, how does Ruby encode a String? What does it mean to have an encoding for each String? As they say, practice makes perfect, so I figured I could understand it by adding self-made encoding. This talk would like to try to add self-made encoding in Ruby and see how Ruby handles encodings.
 
     RubyKaigi Takeout 2021: https://rubykaigi.org/2021-takeout/presentations/ima1zumi.html
+  slug: "dive-into-encoding"
+  id: "dive-into-encoding"
 
 - title: "Crafting exploits, tools and havoc with Ruby"
   raw_title: "[EN] Crafting exploits, tools and havoc with Ruby / Mauro Eldritch @MauroEldritch"
@@ -614,9 +682,11 @@
     There will also be a short lab demo of these tools. Take a seat, grab an exploit, hack stuff.
 
     RubyKaigi Takeout 2021: https://rubykaigi.org/2021-takeout/presentations/MauroEldritch.html
+  slug: "crafting-exploits-tools-and-havoc-with-ruby"
+  id: "crafting-exploits-tools-and-havoc-with-ruby"
 
 - title: "Story of Rucy - How to compile a BPF binary from Ruby"
-  raw_title: '[EN] Story of Rucy - How to "compile" a BPF binary from Ruby / Uchio KONDO @udzura'
+  raw_title: "[EN] Story of Rucy - How to \"compile\" a BPF binary from Ruby / Uchio KONDO @udzura"
   speakers:
     - Uchio KONDO
   event_name: "RubyKaigi 2021 Takeout"
@@ -637,6 +707,8 @@
     Rucy is intended to allow programmers to write their whole BPF programs in Ruby. I'll discuss how to "compile" BPF binaries from Ruby in this talk.
 
     RubyKaigi Takeout 2021: https://rubykaigi.org/2021-takeout/presentations/udzura.html
+  slug: "story-of-rucy-how-to-compile-a-bpf-binary-from-ruby"
+  id: "story-of-rucy-how-to-compile-a-bpf-binary-from-ruby"
 
 - title: "Use Macro all the time ~ マクロを使いまくろ ~"
   raw_title: "[JA] Use Macro all the time ~ マクロを使いまくろ ~ / osyo @osyo-manga"
@@ -656,6 +728,8 @@
     In this session, I will discuss "Implementations for converting AST to Ruby code" and "Implementations for converting AST to another AST". This feature of "converting to another AST" is similar to what is called a "Macro" in other languages. Let's think together about what happens when we implement "Macro" in Ruby.
 
     RubyKaigi Takeout 2021: https://rubykaigi.org/2021-takeout/presentations/pink_bangbi.html
+  slug: "use-macro-all-the-time"
+  id: "use-macro-all-the-time"
 
 - title: "include/prepend in refinements should be prohibited"
   raw_title: "[JA] include/prepend in refinements should be prohibited / Shugo Maeda @shugo"
@@ -673,3 +747,5 @@
     In this talk, I propose a new feature instead of include/prepend in refinements.
 
     RubyKaigi Takeout 2021: https://rubykaigi.org/2021-takeout/presentations/shugomaeda.html
+  slug: "include-prepend-in-refinements-should-be-prohibited"
+  id: "include-prepend-in-refinements-should-be-prohibited"

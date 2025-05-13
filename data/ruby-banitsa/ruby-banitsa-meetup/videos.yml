@@ -14,6 +14,8 @@
   video_provider: "not_recorded"
   description: |-
     With Rails 8 out, Kamal is all the rage about deployment. But can we go even simpler? And by simpler, we mean roll it out all yourself because you know, you may know what you are doing, and competence is indeed bliss! Welcome Evgeni, who will present gobot, a custom deployment tool with automatic self-update, notification, and all the bells and whistles an organization needs.
+  slug: "custom-deployment-tooling"
+  id: "custom-deployment-tooling"
 
 - date: "2024-10-08"
   title: "Authentication Scheming"
@@ -27,6 +29,8 @@
     The circle of city life is spinning—the school year has started yet again, and so has the horrible Sofia traffic, Rails 8 was just announced, and Ruby Banitsa is back from its summer break!
 
     Join us for a talk about the modern authentication primitives in Rails 8 with Hristo Vladev.
+  slug: "authentication-scheming"
+  id: "authentication-scheming"
 
 - date: "2024-07-10"
   title: "Elixir AI Show and Tell"
@@ -42,6 +46,8 @@
     The talk won't be recorded, come in person.
 
     A walk through a random Elxir AI toolchain (Nx, Scholar, Axon, Bumblebee) used to ~~DOMINATE~~ DEMOCRATIZE the book writing market.
+  slug: "elixir-ai-show-and-tell"
+  id: "elixir-ai-show-and-tell"
 
 - date: "2024-05-22"
   title: "Balkan Ruby Code-and-Tell"
@@ -57,6 +63,8 @@
     It was worth it as those systems let us run a smooth registration at the event, do ticket discounts, one-off sales, issue refunds, and freed us from doing error-prone manual invoicing. Let me show you them codes!
 
     Code is not essential for running events, even tech events but I'm a coder, and code I did. It helped!
+  slug: "balkan-ruby-code-and-tell"
+  id: "balkan-ruby-code-and-tell"
 
 - date: "2024-04-24"
   title: "Short but Sweet Tech Talk"
@@ -72,6 +80,8 @@
     We are super happy to have Nick back! Come for a bit of tech and a byte more of hanging out.
 
     In preparation for Balkan Ruby, Nick will present a "short but sweet tech talk".
+  slug: "short-but-sweet-tech-talk"
+  id: "short-but-sweet-tech-talk"
 
 - date: "2024-03-20"
   title: "Practical Observability for Rails Developers"
@@ -83,6 +93,8 @@
   video_provider: "not_recorded"
   description: |-
     Join us for an evening full of carbs and observability insights! Evgeni Dhzelyov will discuss request logging, background jobs logging, and error tracking. How to wire up tracings, and what metrics in Rails applications we should pay attention to.
+  slug: "practical-observability-for-rails-developers"
+  id: "practical-observability-for-rails-developers"
 
 - date: "2024-02-22"
   title: "Interactive UX with Stimulus and Turbo 8"
@@ -94,6 +106,8 @@
   video_provider: "not_recorded"
   description: |-
     Welcome to the very first Ruby Banitsa for 2024! We are starting the year by sharing the excitement around server-side rendering without React. Yes, you heard that right! Come for a talk about Interactive UX with Stimulus and Turbo 8 by Ventsislav Nikolov.
+  slug: "interactive-ux-with-stimulus-and-turbo-8"
+  id: "interactive-ux-with-stimulus-and-turbo-8"
 
 ## 2023
 
@@ -110,6 +124,8 @@
     We are back after a-bit-too-long of a summer break with a lecture from Radoslav Stankov about Component-Driven UI with the help of the view_component gem.
 
     A talk about Component-Driven UI with the help of the view_component Ruby gem.
+  slug: "component-driven-ui-with-viewcomponent-ruby-banitsa-meetup"
+  id: "component-driven-ui-with-viewcomponent-ruby-banitsa-meetup"
 
 - title: "Hotwire at Work"
   raw_title: "Hotwire at Work"
@@ -125,6 +141,8 @@
     Hristo Vladev is following up his May "Intro to Hotwire" talk with a practical "Hotwire at Work" session. This won't be a talk, but a live code-along.
 
     Hotwire is an alternative approach to building modern web applications without using much JavaScript by sending HTML instead of JSON over the wire. It's an alternative to the single-page application frameworks like React.
+  slug: "hotwire-at-work"
+  id: "hotwire-at-work"
 
 - title: "Intro to Hotwire"
   raw_title: "Intro to Hotwire"
@@ -140,6 +158,8 @@
     Are you riding the the React Server Components (RSC) hype train? Did you know that you can avoid the whole hydration/de-hydration approach if you leverage plain old HTML? Hotwire is an alternative approach to building modern web applications without using much JavaScript by sending HTML instead of JSON over the wire.
 
     Some people like it, some even use it, but we are just gonna talk about it. Welcome Hristo Vladev with his Intro to Hotwire to Ruby Banitsa!
+  slug: "intro-to-hotwire"
+  id: "intro-to-hotwire"
 
 - title: "RuboCop's Baddest Cop"
   raw_title: "RuboCop's Baddest Cop"
@@ -151,6 +171,8 @@
   video_provider: "not_recorded"
   description: |-
     Genadi Samokovarov is going to RubyKaigi in Matsumoto, Japan this year and he's going to talk about RuboCop's Baddest Cop; or, how hard it is (was) to enforce method calls without parentheses. But since you're "my kind of people" (наши хора), you'll get to see the very first edition of this talk, right here in Ruby Banitsa! This talk won't be recorded, come and see it live!
+  slug: "rubocop-s-baddest-cop-ruby-banitsa-meetup"
+  id: "rubocop-s-baddest-cop-ruby-banitsa-meetup"
 
 - title: "Mysterious infrastructure"
   raw_title: "Mysterious infrastructure"
@@ -170,6 +192,8 @@
     20:00 – More snack, leftover banitsa 🤢
 
     Dimitar Dimitrov is the Lead of Infrastructure at Dext, Rails Girls Sofia organiser and one of the local Ruby old-timers! Expect a mysterious infrastructure talk! 🔮
+  slug: "mysterious-infrastructure"
+  id: "mysterious-infrastructure"
 
 # TODO: missing event: "February 2023: Social Event" - https://rubybanitsa.com/events/87
 
@@ -187,3 +211,5 @@
     We, and I mean all of us, will talk about the processes we use to deliver our (non) Ruby projects because "good code", whatever your definition for good is, is not enough. How do we structure our workload? Do we use sprints? Do you work on a product or for a client? How do you communicate with clients? And all the evergreen questions!
 
     Come and discourse with us in Barter Community Hub on the 25th of January from 18:30. We won't be streaming this one. While at it, make sure to convince me that chat channel and a Kanban board with a single "Done" column is not enough!
+  slug: "discussion-process-organization"
+  id: "discussion-process-organization"

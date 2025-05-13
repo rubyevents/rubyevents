@@ -17,6 +17,8 @@
 
   video_provider: "youtube"
   video_id: "gr45bkXv-JQ"
+  slug: "extremely-defensive-coding-arrrrcamp-2015"
+  id: "extremely-defensive-coding-arrrrcamp-2015"
 
 - title: "How to stay alive even when others go down: Writing and testing resilient applications in Ruby"
   raw_title: "ArrrrCamp 2015 - How to stay alive even when others go down:..."
@@ -29,6 +31,8 @@
     Your application probably communicates with other services, whether it's a database, a key/value store, or a third-party API: you are performing "external calls". But do you know how your application behaves when one of those external services is behaving unexpected, is unreachable, or sometimes even worse, experiences high latency? This is something that you want to find out during testing, not in production, since it can easily lead to a series of cascading failures that will seriously affect your capacity or can even take your application down. Shopify operates one of the largest Ruby on Rails deployments in the world. We serve about 300k requests per minute on a boring day, integrating with countless external services. Focussing on Resiliency has been one of the most impactful improvements that we made in terms of uptime in the last year. In this talk, I will share some lessons learnt and we will walk through a series of ideas and tools that can help you make your application more stable and more resilient to the failure of external services, an issue that is often neglected until it's too late. More importantly, we will talk about how you can write meaningful and realistic integration tests and set up "chaos testing environments" to gain confidence in your application's resiliency.
   video_provider: "youtube"
   video_id: "mTIO9fj1UIc"
+  slug: "how-to-stay-alive-even-when-others-go-down-writing-and-testing-resilient-applications-in-ruby"
+  id: "how-to-stay-alive-even-when-others-go-down-writing-and-testing-resilient-applications-in-ruby"
 
 - title: "Developing Ruby Applications with Docker"
   raw_title: "ArrrrCamp 2015 - Developing Ruby Applications with Docker by  Laura Frank"
@@ -41,6 +45,8 @@
 
   video_provider: "youtube"
   video_id: "hiiPMgZbzcA"
+  slug: "developing-ruby-applications-with-docker"
+  id: "developing-ruby-applications-with-docker"
 
 # Lunch
 
@@ -55,6 +61,8 @@
 
   video_provider: "youtube"
   video_id: "SBtJ7da_rA8"
+  slug: "peeking-into-ruby-tracing-running-code"
+  id: "peeking-into-ruby-tracing-running-code"
 
 - title: "Ruby keyword args and the options hash, from the parser to the virtual machine"
   raw_title: "ArrrrCamp 2015 - Ruby keyword args and the options hash, from the parser to the virtual machine"
@@ -68,6 +76,8 @@
 
   video_provider: "youtube"
   video_id: "e4t9dts_07g"
+  slug: "ruby-keyword-args-and-the-options-hash-from-the-parser-to-the-virtual-machine"
+  id: "ruby-keyword-args-and-the-options-hash-from-the-parser-to-the-virtual-machine"
 
 - title: "Lightning Talks (Day 1)"
   raw_title: "ArrrrCamp 2015 - Day 1 LIGHTNING TALKS"
@@ -86,6 +96,8 @@
       video_provider: "parent"
       speakers:
         - Yves Hanoulle
+      slug: "lighting-talk-walking"
+      id: "lighting-talk-walking"
 
     - title: "Lighting Talk: Code Bashing in the Enterprise / How Teenagers Force Us To Have Technology That Scales"
       event_name: "ArrrrCamp 2015"
@@ -96,6 +108,8 @@
       video_provider: "parent"
       speakers:
         - Michel Grootjans
+      slug: "lighting-talk-code-bashing-in-the-enterprise-how-teenagers-force-us-to-have-technology-that-scales"
+      id: "lighting-talk-code-bashing-in-the-enterprise-how-teenagers-force-us-to-have-technology-that-scales"
 
     - title: "Lighting Talk: WebRTC with Twilio"
       event_name: "ArrrrCamp 2015"
@@ -106,6 +120,8 @@
       video_provider: "parent"
       speakers:
         - Phil Nash
+      slug: "lighting-talk-webrtc-with-twilio"
+      id: "lighting-talk-webrtc-with-twilio"
 
     - title: "Lighting Talk: Ruby Belgium"
       event_name: "ArrrrCamp 2015"
@@ -116,6 +132,10 @@
       video_provider: "parent"
       speakers:
         - Christophe Philemotte
+      slug: "lighting-talk-ruby-belgium"
+      id: "lighting-talk-ruby-belgium"
+  slug: "lightning-talks-day-1-arrrrcamp-2015"
+  id: "lightning-talks-day-1-arrrrcamp-2015"
 
 - title: "Consequences of an Insightful Algorithm"
   raw_title: "ArrrrCamp 2015 - Consequences of an Insightful Algorithm by Carina C. Zona"
@@ -128,6 +148,8 @@
 
   video_provider: "youtube"
   video_id: "roSxrWNgwgc"
+  slug: "consequences-of-an-insightful-algorithm-arrrrcamp-2015"
+  id: "consequences-of-an-insightful-algorithm-arrrrcamp-2015"
 
 ## Day 2 - Friday
 
@@ -143,6 +165,8 @@
     In a world of pervasive connectivity, APIs are more important than ever before. We can learn much from the rich history of APIs, but even more promise lies ahead of us. Difficult hardly begins to describe API development, but drawing from other disciplines provides a clearer path to superior APIs. Building and evolving the Heroku APIs has been full of epic wins, tragic fails and ongoing struggles. Learn about our journey and join our community to discuss, document, and build tools to realize the promise of a brighter API future.
   video_provider: "youtube"
   video_id: "xTYz7TDs5hA"
+  slug: "api-by-design"
+  id: "api-by-design"
 
 - title: "Opening up to Change"
   raw_title: "ArrrrCamp 2015 - Opening up to change by Andy Pike"
@@ -155,6 +179,8 @@
 
   video_provider: "youtube"
   video_id: "ECCaFvFDfJQ"
+  slug: "opening-up-to-change"
+  id: "opening-up-to-change"
 
 - title: "Developers, Start Designing!"
   raw_title: "ArrrrCamp 2015 - Developers, start designing! by Alexandra Leisse"
@@ -167,6 +193,8 @@
 
   video_provider: "youtube"
   video_id: "7EWvYZpU4pM"
+  slug: "developers-start-designing"
+  id: "developers-start-designing"
 
 # Lunch
 
@@ -181,6 +209,8 @@
 
   video_provider: "youtube"
   video_id: "BqXU2JwMGBE"
+  slug: "game-development-the-ruby-way"
+  id: "game-development-the-ruby-way"
 
 - title: "Decouple All The Things: Asynchronous Messaging Keeps It Simple"
   raw_title: "ArrrrCamp 2015 - Decouple all the things: Asynchronous messaging keeps it simple by Kerstin Puschke"
@@ -193,6 +223,8 @@
 
   video_provider: "youtube"
   video_id: "G4_AnaVsBh0"
+  slug: "decouple-all-the-things-asynchronous-messaging-keeps-it-simple"
+  id: "decouple-all-the-things-asynchronous-messaging-keeps-it-simple"
 
 # Cocktail Break
 
@@ -213,6 +245,8 @@
       video_provider: "parent"
       speakers:
         - Sebastian Gräßl
+      slug: "lightning-talk-ruby-open-source-software-rossconf"
+      id: "lightning-talk-ruby-open-source-software-rossconf"
 
     - title: "Lightning Talk: KampAdmin.be - CoderDojo"
       event_name: "ArrrrCamp 2015"
@@ -223,6 +257,8 @@
       video_provider: "parent"
       speakers:
         - Pieterjan Muller
+      slug: "lightning-talk-kampadmin-be-coderdojo"
+      id: "lightning-talk-kampadmin-be-coderdojo"
 
     - title: "Lightning Talk: Ruby Issues Newsletter"
       event_name: "ArrrrCamp 2015"
@@ -233,6 +269,8 @@
       video_provider: "parent"
       speakers:
         - Sonja Heinen
+      slug: "lightning-talk-ruby-issues-newsletter"
+      id: "lightning-talk-ruby-issues-newsletter"
 
     - title: "Lightning Talk: How To Write Music in Ruby"
       event_name: "ArrrrCamp 2015"
@@ -243,6 +281,8 @@
       video_provider: "parent"
       speakers:
         - Anika Simir
+      slug: "lightning-talk-how-to-write-music-in-ruby"
+      id: "lightning-talk-how-to-write-music-in-ruby"
 
     - title: "Lightning Talk: Ruby TracePoint"
       event_name: "ArrrrCamp 2015"
@@ -253,6 +293,8 @@
       video_provider: "parent"
       speakers:
         - Christophe Philemotte
+      slug: "lightning-talk-ruby-tracepoint"
+      id: "lightning-talk-ruby-tracepoint"
 
     - title: "Lightning Talk: RubyCamp BE"
       event_name: "ArrrrCamp 2015"
@@ -263,6 +305,8 @@
       video_provider: "parent"
       speakers:
         - Joren De Groof
+      slug: "lightning-talk-rubycamp-be"
+      id: "lightning-talk-rubycamp-be"
 
     - title: "Lightning Talk: God, Toilets And Ruby"
       event_name: "ArrrrCamp 2015"
@@ -273,6 +317,8 @@
       video_provider: "parent"
       speakers:
         - Sebastian Eichner
+      slug: "lightning-talk-god-toilets-and-ruby"
+      id: "lightning-talk-god-toilets-and-ruby"
 
     - title: "Lightning Talk: Shoes 4"
       event_name: "ArrrrCamp 2015"
@@ -283,6 +329,10 @@
       video_provider: "parent"
       speakers:
         - Jason Clark
+      slug: "lightning-talk-shoes-4"
+      id: "lightning-talk-shoes-4"
+  slug: "lightning-talks-day-2-arrrrcamp-2015"
+  id: "lightning-talks-day-2-arrrrcamp-2015"
 
 - title: "Stop Building Services, Episode 1: The Phantom Menace"
   raw_title: "ArrrrCamp 2015 - Stop Building Services, Episode 1: The Phantom Menace by Rachel Myers"
@@ -295,3 +345,5 @@
 
   video_provider: "youtube"
   video_id: "qiC9OAculcc"
+  slug: "stop-building-services-episode-1-the-phantom-menace"
+  id: "stop-building-services-episode-1-the-phantom-menace"
