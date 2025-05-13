@@ -72,7 +72,7 @@ export class AddSlug {
           console.log('speakers:', preEventString, speakers.length, this.kebabize(title.value.value))
         }
 
-        if (speakers.length === 0) {
+        if (speakers.length === 0 || preEventString === "todo" || preEventString === "tbd") {
           preEventString = this.kebabize(title.value.value)
         }
 
@@ -82,11 +82,10 @@ export class AddSlug {
         if (!eventName) {
           console.log(`No event name found for ${videoId.value}`, eventName)
           return
-        } else {
-          // console.log(`Event name found for ${videoId.value}`, eventName)
         }
 
-        const id = `${preEventString}-${this.kebabize(eventName)}`
+        const eventNameKebab = this.kebabize(eventName)
+        const id = (preEventString === eventNameKebab) ? eventNameKebab : `${preEventString}-${eventNameKebab}`
 
         if (!slug) {
           console.log(`No slug found for ${videoId.value}`)
