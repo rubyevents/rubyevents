@@ -17,10 +17,10 @@ export class AddSlug {
     let result = str
       .toLowerCase()
       .replace(/([a-z])([A-Z])/g, '$1-$2')
-      .replace(/[\s_\.:]+/g, '-')
-      .replace(/[^a-z0-9\-]/g, '')
+      .replace(/[\s_.:]+/g, '-')
+      .replace(/[^a-z0-9-]/g, '')
 
-    result = result.replace(/\-{2,}/g, '-')
+    result = result.replace(/-{2,}/g, '-')
     result = result.replace(/^-+|-+$/g, '')
 
     return result
@@ -72,7 +72,7 @@ export class AddSlug {
           console.log('speakers:', preEventString, speakers.length, this.kebabize(title.value.value))
         }
 
-        if (speakers.length === 0 || preEventString === "todo" || preEventString === "tbd") {
+        if (speakers.length === 0 || preEventString === 'todo' || preEventString === 'tbd') {
           preEventString = this.kebabize(title.value.value)
         }
 
