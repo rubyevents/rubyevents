@@ -65,19 +65,19 @@ export class AddSlug {
         const title = map.items.find(pair => pair.key.value === 'title')
         const speakersRaw = map.items.find(pair => pair.key.value === 'speakers')
         const speakers = speakersRaw?.value?.items ?? []
+        const videoId = map.items.find(pair => pair.key.value === 'video_id')
+        const slug = slugs[videoId.value]
+
+        if (!slug) {
+          console.log(`No slug found for ${videoId.value}`)
+          return
+        }
 
         let preEventString = speakers.map(speaker => this.kebabize(speaker.value)).join('-')
-
-        if (eventName === 'GoGaRuCo 2012') {
-          console.log('speakers:', preEventString, speakers.length, this.kebabize(title.value.value))
-        }
 
         if (speakers.length === 0 || preEventString === 'todo' || preEventString === 'tbd') {
           preEventString = this.kebabize(title.value.value)
         }
-
-        const videoId = map.items.find(pair => pair.key.value === 'video_id')
-        const slug = slugs[videoId.value]
 
         if (!eventName) {
           console.log(`No event name found for ${videoId.value}`, eventName)
@@ -86,11 +86,6 @@ export class AddSlug {
 
         const eventNameKebab = this.kebabize(eventName)
         const id = (preEventString === eventNameKebab) ? eventNameKebab : `${preEventString}-${eventNameKebab}`
-
-        if (!slug) {
-          console.log(`No slug found for ${videoId.value}`)
-          return
-        }
 
         if (!hasSlug) {
           map.items.push(
