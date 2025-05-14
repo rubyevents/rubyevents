@@ -68,6 +68,10 @@ class Talk < ApplicationRecord
   belongs_to :parent_talk, optional: true, class_name: "Talk", foreign_key: :parent_talk_id
 
   has_many :child_talks, class_name: "Talk", foreign_key: :parent_talk_id, dependent: :destroy
+  has_many :child_talks_speakers, -> { distinct }, through: :child_talks, source: :speakers, class_name: "Speaker"
+  has_many :kept_child_talks_speakers, -> {
+    distinct
+  }, through: :child_talks, source: :kept_speakers, class_name: "Speaker"
   has_many :speaker_talks, dependent: :destroy, inverse_of: :talk, foreign_key: :talk_id
   has_many :kept_speaker_talks, -> { kept }, dependent: :destroy, inverse_of: :talk, foreign_key: :talk_id,
     class_name: "SpeakerTalk"
@@ -411,7 +415,7 @@ class Talk < ApplicationRecord
   def speakers
     return super unless meta_talk
 
-    super.to_a.union(child_talks.flat_map(&:speakers).uniq)
+    child_talks_speakers
   end
 
   def speaker_names

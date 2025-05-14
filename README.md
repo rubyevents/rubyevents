@@ -24,7 +24,7 @@ We have tried to make the setup process as simple as possible so that in a few c
 
 ### Requirements
 
-- Ruby 3.4.1
+- Ruby 3.4.3
 - Node.js 20.11.0
 
 ### Setup
