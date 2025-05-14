@@ -1,7 +1,10 @@
 import fs from 'fs'
 import YAML, { parseDocument } from 'yaml'
 
-export class Formatter {
+// Formatting YAML with Ruby doesn't work well with Emojis, so we're falling back to good ol' JS
+//
+// See https://github.com/rubyevents/rubyevents/pull/656
+class Formatter {
   constructor (path) {
     this.path = path
   }
@@ -43,3 +46,17 @@ export class Formatter {
     fs.writeFileSync(this.path, document.toString(options))
   }
 }
+
+let filesToFormat = []
+
+if (process.argv.length > 2) {
+  filesToFormat = process.argv.slice(2)
+} else {
+  const videos = fs.readdirSync('./data', { recursive: true }).filter(file => file.endsWith('videos.yml'))
+  filesToFormat = videos.map(video => `./data/${video}`)
+}
+
+filesToFormat.forEach(filePath => {
+  const formatter = new Formatter(filePath)
+  formatter.format()
+})

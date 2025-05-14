@@ -24,7 +24,8 @@
     "lint": "standard",
     "lint:yml": "yarn prettier --check data/**/**/*.yml",
     "format": "standard --fix",
-    "format:yml": "node yaml/enforce_strings.mjs && yarn run lint:yml --write"
+    "format:yml": "node scripts/format.mjs",
+    "format:videos": "node scripts/format.mjs && yarn run lint:yml --write"
   },
   "packageManager": "yarn@1.22.19",
   "devDependencies": {
