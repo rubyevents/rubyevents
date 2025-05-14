@@ -1,36 +1,73 @@
 ---
-- title: "WHOLENESS, REPAIRING, AND TO HAVE FUN: 全体性、修復、そして楽しむこと"
-  raw_title:
-    "WHOLENESS, REPAIRING, AND TO HAVE FUN: 全体性、修復、そして楽しむこと / 島田浩二 - Kaigi
-    on Rails 2024"
+# Website: https://kaigionrails.org/2024
+# Schedule: https://kaigionrails.org/2024/schedule
+
+## Day 1 - 2024-10-25
+
+- title: "Keynote: Rails Way, or the highway"
+  raw_title: "Rails Way, or the highway / Palkan - Kaigi on Rails 2024"
   speakers:
-    - 島田浩二
-  event_name: Kaigi on Rails 2024
+    - Vladimir Dementyev
+  event_name: "Kaigi on Rails 2024"
+  date: "2024-10-25"
   published_at: "2024-12-10"
+  track: "Hall Red"
+  slides_url: "https://speakerdeck.com/palkan/kaigi-on-rails-2024-rails-way-or-the-highway"
   description: |-
-    https://kaigionrails.org/2024/talks/snoozer05/
+    https://kaigionrails.org/2024/talks/palkan/
 
     【発表概要】
-    本講演では、これからのアプリケーション開発者の方々に向けて、18年になるRailsとの旅の中で学んだ、ソフトウェアを設計する際に私が大事だと考えていることについてお話します。
-    具体的には、全体が機能するように設計すること、そして変化に向けて設計することの2点について、重要性やアプローチの仕方、Railsがどうそれをサポートしてくれているか、どこから始めると良いかといったことを説明します。
-    本講演を通じて、ソフトウェア設計という大変な仕事に楽しく向き合い続けていくための材料やヒント、糧を届けられればと思います。
+    Rails Way is a software development paradigm that implies sticking to the framework architectural defaults as much as possible. Everyone starts with the Rails Way, but how far can you get without derailing from it? Let’s talk about the Rails Way core principles, how they evolved over time, and how you can embrace and enhanced it using the layered design techniques.
 
 
     【発表者】
-    島田浩二
-    GitHub https://github.com/snoozer05
+    Palkan
+    GitHub https://github.com/palkan
 
     Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
     https://kaigionrails.org/
-  video_provider: youtube
-  video_id: ilFyT5AJpv4
+  language: "english"
+  video_provider: "youtube"
+  video_id: "ZUtRyHeLq4M"
 
-- title: RailsのPull requestsのレビューの時に私が考えていること
-  raw_title: RailsのPull requestsのレビューの時に私が考えていること / Yasuo Honda - Kaigi on Rails 2024
+- title: "Workshop: Rackを理解しRailsアプリケーション開発の足腰を鍛えよう"
+  title_ja: "ワークショップ: Rackを理解しRailsアプリケーション開発の足腰を鍛えよう"
+  raw_title: "ワークショップ: Rackを理解しRailsアプリケーション開発の足腰を鍛えよう"
+  speakers:
+    - hogelog
+  event_name: "Kaigi on Rails 2024"
+  date: "2024-10-25"
+  published_at: "2024-12-10"
+  description: |-
+    https://kaigionrails.org/2024/workshop/
+
+    【発表概要】
+    RailsアプリケーションはRackアプリケーションです。Railsでアプリケーションを書くということはすなわちRackアプリケーションを書いているということですが、普段Railsアプリケーション開発をする際にどこまでRackを意識しているでしょうか。
+    RailsはRackをそこまで意識しなくても開発できるフレームワークですが、Railsの足回りを支えるRackを理解していないと、Railsアプリケーションのチューニング、デプロイ、トラブルシューティングなど様々な場面で立ち止まることになってしまいます。
+    このワークショップでは一からRackを理解し、RackアプリケーションやRackミドルウェア、Rackサーバを自分で書いてみることでRackとはなんなのかしっかり理解しましょう。
+
+    https://github.com/hogelog/kaigionrails-2024-rack-workshop
+
+    【発表者】
+    hogelog
+    GitHub https://github.com/hogelog
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  language: "japanese"
+  video_provider: "not_recorded"
+  video_id: "workshop-kaigi-on-rails-2024"
+
+- title: "RailsのPull requestsのレビューの時に私が考えていること"
+  raw_title: "RailsのPull requestsのレビューの時に私が考えていること / Yasuo Honda - Kaigi on Rails 2024"
   speakers:
     - Yasuo Honda
-  event_name: Kaigi on Rails 2024
+  event_name: "Kaigi on Rails 2024"
+  date: "2024-10-25"
   published_at: "2024-12-10"
+  slides_url: "https://speakerdeck.com/yahonda/railsnopull-requestsnorebiyunoshi-nisi-gakao-eteirukoto"
+  slug: "railsnopull-requestsnorebiyunoshi-nisi-gakao-eteirukoto"
+  track: "Hall Red"
   description: |-
     https://kaigionrails.org/2024/talks/yahonda/
 
@@ -44,17 +81,19 @@
 
     Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
     https://kaigionrails.org/
-  video_provider: youtube
-  video_id: 90e7C4SB6jg
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "90e7C4SB6jg"
 
-- title: Railsの仕組みを理解してモデルを上手に育てる - モデルを見つける、モデルを分割する良いタイミング
-  raw_title:
-    Railsの仕組みを理解してモデルを上手に育てる - モデルを見つける、モデルを分割する良いタイミング - / 五十嵐邦明 - Kaigi
-    on Rails 2024
+- title: "Railsの仕組みを理解してモデルを上手に育てる - モデルを見つける、モデルを分割する良いタイミング"
+  raw_title: "Railsの仕組みを理解してモデルを上手に育てる - モデルを見つける、モデルを分割する良いタイミング - / 五十嵐邦明 - Kaigi on Rails 2024"
   speakers:
-    - 五十嵐邦明
-  event_name: Kaigi on Rails 2024
+    - Kuniaki Igarashi
+  event_name: "Kaigi on Rails 2024"
+  date: "2024-10-25"
   published_at: "2024-12-10"
+  slides_url: "https://speakerdeck.com/igaiga/kaigionrails2024/"
+  track: "Hall Blue"
   description: |-
     https://kaigionrails.org/2024/talks/igaiga/
 
@@ -74,15 +113,19 @@
 
     Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
     https://kaigionrails.org/
-  video_provider: youtube
-  video_id: 2Ier_yHAnq8
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "2Ier_yHAnq8"
 
-- title: 推し活としてのrails new
-  raw_title: 推し活としてのrails new / sakahukamaki - Kaigi on Rails 2024
+- title: "推し活としてのrails new"
+  raw_title: "推し活としてのrails new / sakahukamaki - Kaigi on Rails 2024"
   speakers:
     - sakahukamaki
-  event_name: Kaigi on Rails 2024
+  event_name: "Kaigi on Rails 2024"
+  date: "2024-10-25"
   published_at: "2024-12-10"
+  slides_url: "https://speakerdeck.com/sakahukamaki/oshikatsu-ha-iizo"
+  track: "Hall Red"
   description: |-
     https://kaigionrails.org/2024/talks/sakahukamaki/
 
@@ -102,17 +145,19 @@
 
     Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
     https://kaigionrails.org/
-  video_provider: youtube
-  video_id: SHZWrJwXq1w
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "SHZWrJwXq1w"
 
-- title: そのカラム追加、ちょっと待って！カラム追加で増えるActiveRecordのメモリサイズ、イメージできますか?
-  raw_title:
-    そのカラム追加、ちょっと待って！カラム追加で増えるActiveRecordのメモリサイズ、イメージできますか? / Asayama Kodai
-    - Kaigi on Rails 2024
+- title: "そのカラム追加、ちょっと待って！カラム追加で増えるActiveRecordのメモリサイズ、イメージできますか?"
+  raw_title: "そのカラム追加、ちょっと待って！カラム追加で増えるActiveRecordのメモリサイズ、イメージできますか? / Asayama Kodai - Kaigi on Rails 2024"
   speakers:
     - Asayama Kodai
-  event_name: Kaigi on Rails 2024
+  event_name: "Kaigi on Rails 2024"
+  date: "2024-10-25"
   published_at: "2024-12-10"
+  slides_url: "https://speakerdeck.com/asayamakk/karamuzhui-jia-dezeng-eruactiverecordnomemorisaizu-imezidekimasuka"
+  track: "Hall Blue"
   description: |-
     https://kaigionrails.org/2024/talks/asayamakk/
 
@@ -137,17 +182,19 @@
 
     Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
     https://kaigionrails.org/
-  video_provider: youtube
-  video_id: CBUJ1L9OAmA
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "CBUJ1L9OAmA"
 
-- title: モノリスでも使える！OpenTelemetryでRailsアプリのパフォーマンス分析を始めてみよう
-  raw_title:
-    モノリスでも使える！OpenTelemetryでRailsアプリのパフォーマンス分析を始めてみよう / ymtdzzz - Kaigi on
-    Rails 2024
+- title: "モノリスでも使える！OpenTelemetryでRailsアプリのパフォーマンス分析を始めてみよう"
+  raw_title: "モノリスでも使える！OpenTelemetryでRailsアプリのパフォーマンス分析を始めてみよう / ymtdzzz - Kaigi on Rails 2024"
   speakers:
-    - ymtdzzz
-  event_name: Kaigi on Rails 2024
+    - Yosuke Matsuda
+  event_name: "Kaigi on Rails 2024"
+  date: "2024-10-25"
   published_at: "2024-12-10"
+  slides_url: "https://speakerdeck.com/ymtdzzz/opentelemetryderailsnopahuomansufen-xi-woshi-metemiyou-kor2024"
+  track: "Hall Red"
   description: |-
     https://kaigionrails.org/2024/talks/ymtdzzz/
 
@@ -167,15 +214,20 @@
 
     Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
     https://kaigionrails.org/
-  video_provider: youtube
-  video_id: KZMf1AveoDc
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "KZMf1AveoDc"
 
-- title: Sidekiqで実現する長時間非同期処理の中断と再開
-  raw_title: Sidekiqで実現する長時間非同期処理の中断と再開 / hypermkt - Kaigi on Rails 2024
+- title: "Sidekiqで実現する長時間非同期処理の中断と再開"
+  raw_title: "Sidekiqで実現する長時間非同期処理の中断と再開 / hypermkt - Kaigi on Rails 2024"
   speakers:
-    - hypermkt
-  event_name: Kaigi on Rails 2024
+    - Makoto Chiba
+  event_name: "Kaigi on Rails 2024"
+  date: "2024-10-25"
   published_at: "2024-12-10"
+  slides_url: "https://speakerdeck.com/hypermkt/pausing-and-resuming-long-running-asynchronous-jobs-with-sidekiq"
+  slug: "pausing-and-resuming-long-running-asynchronous-jobs-with-sidekiq"
+  track: "Hall Blue"
   description: |-
     https://kaigionrails.org/2024/talks/hypermkt/
 
@@ -197,15 +249,19 @@
 
     Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
     https://kaigionrails.org/
-  video_provider: youtube
-  video_id: 0XG9Mjv0Z6s
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "0XG9Mjv0Z6s"
 
-- title: カスタムしながら理解するGraphQL Connection
-  raw_title: カスタムしながら理解するGraphQL Connection / yana-gi - Kaigi on Rails 2024
+- title: "カスタムしながら理解するGraphQL Connection"
+  raw_title: "カスタムしながら理解するGraphQL Connection / yana-gi - Kaigi on Rails 2024"
   speakers:
     - yana-gi
-  event_name: Kaigi on Rails 2024
+  event_name: "Kaigi on Rails 2024"
+  date: "2024-10-25"
   published_at: "2024-12-10"
+  slides_url: "https://speakerdeck.com/yanagii/kasutamusinagarali-jie-surugraphql-connection"
+  track: "Hall Red"
   description: |-
     https://kaigionrails.org/2024/talks/yana-gi/
 
@@ -225,17 +281,19 @@
 
     Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
     https://kaigionrails.org/
-  video_provider: youtube
-  video_id: AMWVsFtlkoU
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "AMWVsFtlkoU"
 
-- title: cXML という電子商取引のトランザクションを支えるプロトコルと向きあっている話
-  raw_title:
-    cXML という電子商取引のトランザクションを支えるプロトコルと向きあっている話 / phigasui - Kaigi on Rails
-    2024
+- title: "cXML という電子商取引のトランザクションを支えるプロトコルと向きあっている話"
+  raw_title: "cXML という電子商取引のトランザクションを支えるプロトコルと向きあっている話 / phigasui - Kaigi on Rails 2024"
   speakers:
     - phigasui
-  event_name: Kaigi on Rails 2024
+  event_name: "Kaigi on Rails 2024"
+  date: "2024-10-25"
   published_at: "2024-12-10"
+  slides_url: "https://speakerdeck.com/phigasui/cxml-toiudian-zi-shang-qu-yin-no-toranzakusiyonwozhi-eru-purotokorutoxiang-kiatuteiruhua"
+  track: "Hall Blue"
   description: |-
     https://kaigionrails.org/2024/talks/phigasui/
 
@@ -255,17 +313,21 @@
 
     Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
     https://kaigionrails.org/
-  video_provider: youtube
-  video_id: IOhHO2Eug4g
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "IOhHO2Eug4g"
 
-- title: JRubyのパワーを解き放つ：パフォーマンスと多様性向上のためのRailsアプリ
-  raw_title:
-    JRubyのパワーを解き放つ：パフォーマンスと多様性向上のためのRailsアプリ / Owaru Ryudo - Kaigi on Rails
-    2024
+- title: "Unlocking the Power of JRuby: Migrating Rails Apps for Enhanced Performance and Versatility"
+  title_ja: "JRubyのパワーを解き放つ：パフォーマンスと多様性向上のためのRailsアプリ"
+  raw_title: "JRubyのパワーを解き放つ：パフォーマンスと多様性向上のためのRailsアプリ / Owaru Ryudo - Kaigi on Rails 2024"
   speakers:
-    - Owaru Ryudo
-  event_name: Kaigi on Rails 2024
+    - Mu-Fan Teng
+    # - Ryudo Awaru (japanese name)
+  event_name: "Kaigi on Rails 2024"
+  date: "2024-10-25"
   published_at: "2024-12-10"
+  slides_url: "https://gamma.app/docs/JRubyRails-38yg66zhnpfh7vc?mode=doc"
+  track: "Hall Red"
   description: |-
     https://kaigionrails.org/2024/talks/ryudoawaru/
 
@@ -281,17 +343,19 @@
 
     Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
     https://kaigionrails.org/
-  video_provider: youtube
-  video_id: 7-vksWCWS3s
+  language: "english"
+  video_provider: "youtube"
+  video_id: "7-vksWCWS3s"
 
-- title: リリース8年目のサービスの1800個のERBファイルをViewComponentに移行した方法とその結果
-  raw_title:
-    リリース8年目のサービスの1800個のERBファイルをViewComponentに移行した方法とその結果 / Naoyuki Kataoka
-    - Kaigi on Rails 2024
+- title: "リリース8年目のサービスの1800個のERBファイルをViewComponentに移行した方法とその結果"
+  raw_title: "リリース8年目のサービスの1800個のERBファイルをViewComponentに移行した方法とその結果 / Naoyuki Kataoka - Kaigi on Rails 2024"
   speakers:
     - Naoyuki Kataoka
-  event_name: Kaigi on Rails 2024
+  event_name: "Kaigi on Rails 2024"
+  date: "2024-10-25"
   published_at: "2024-12-10"
+  slides_url: "https://speakerdeck.com/katty0324/ririsu8nian-mu-nosabisuno1800ge-noerbhuairuwoviewcomponentniyi-xing-sitafang-fa-tosonojie-guo"
+  track: "Hall Blue"
   description: |-
     https://kaigionrails.org/2024/talks/katty0324/
 
@@ -314,17 +378,19 @@
 
     Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
     https://kaigionrails.org/
-  video_provider: youtube
-  video_id: HHP1kotYqww
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "HHP1kotYqww"
 
-- title: ActionCableなら簡単? 生成 AIの応答をタイピングアニメーションで表示。実装、コスト削減、テスト、運用まで。
-  raw_title:
-    ActionCableなら簡単? 生成 AIの応答をタイピングアニメーションで表示。実装、コスト削減、テスト、運用まで。 / kaiba
-    - Kaigi on Rails 2024
+- title: "ActionCableなら簡単? 生成 AIの応答をタイピングアニメーションで表示。実装、コスト削減、テスト、運用まで。"
+  raw_title: "ActionCableなら簡単? 生成 AIの応答をタイピングアニメーションで表示。実装、コスト削減、テスト、運用まで。 / kaiba - Kaigi on Rails 2024"
   speakers:
-    - kaiba
-  event_name: Kaigi on Rails 2024
+    - kaibadash
+  event_name: "Kaigi on Rails 2024"
+  date: "2024-10-25"
   published_at: "2024-12-10"
+  slides_url: "https://docs.google.com/presentation/d/1sPCFlWPKmnTcc11Nt99swIJ-M056JtdK2tqHYZ18QEs/edit#slide=id.g300fd7ef164_0_33"
+  track: "Hall Red"
   description: |-
     https://kaigionrails.org/2024/talks/kaibadash/
 
@@ -346,15 +412,19 @@
 
     Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
     https://kaigionrails.org/
-  video_provider: youtube
-  video_id: VEZu2iLpXbo
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "VEZu2iLpXbo"
 
-- title: Rails APIモードのためのシンプルで効果的なCSRF対策
-  raw_title: Rails APIモードのためのシンプルで効果的なCSRF対策 / corocn - Kaigi on Rails 2024
+- title: "Rails APIモードのためのシンプルで効果的なCSRF対策"
+  raw_title: "Rails APIモードのためのシンプルで効果的なCSRF対策 / corocn - Kaigi on Rails 2024"
   speakers:
-    - corocn
-  event_name: Kaigi on Rails 2024
+    - Takahiro Tsuchiya
+  event_name: "Kaigi on Rails 2024"
+  date: "2024-10-25"
   published_at: "2024-12-10"
+  slides_url: "https://speakerdeck.com/corocn/kaigionrails-2024-csrf"
+  track: "Hall Blue"
   description: |-
     https://kaigionrails.org/2024/talks/corocn/
 
@@ -370,15 +440,19 @@
 
     Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
     https://kaigionrails.org/
-  video_provider: youtube
-  video_id: t-X6n2k6d2A
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "t-X6n2k6d2A"
 
-- title: 現実のRuby/Railsアップグレード
-  raw_title: 現実のRuby/Railsアップグレード / Yuichi Takeuchi - Kaigi on Rails 2024
+- title: "現実のRuby/Railsアップグレード"
+  raw_title: "現実のRuby/Railsアップグレード / Yuichi Takeuchi - Kaigi on Rails 2024"
   speakers:
     - Yuichi Takeuchi
-  event_name: Kaigi on Rails 2024
+  event_name: "Kaigi on Rails 2024"
+  date: "2024-10-25"
   published_at: "2024-12-10"
+  slides_url: "https://speakerdeck.com/takeyuweb/railsatupuguredo"
+  track: "Hall Red"
   description: |-
     https://kaigionrails.org/2024/talks/takeyuweb/
 
@@ -404,17 +478,19 @@
 
     Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
     https://kaigionrails.org/
-  video_provider: youtube
-  video_id: zil0umJ1af0
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "zil0umJ1af0"
 
-- title: デプロイを任されたので、教わった通りにデプロイしたら障害になった件 〜俺のやらかしを越えてゆけ〜
-  raw_title:
-    デプロイを任されたので、教わった通りにデプロイしたら障害になった件 〜俺のやらかしを越えてゆけ〜 / izumitomo - Kaigi
-    on Rails 2024
+- title: "デプロイを任されたので、教わった通りにデプロイしたら障害になった件 〜俺のやらかしを越えてゆけ〜"
+  raw_title: "デプロイを任されたので、教わった通りにデプロイしたら障害になった件 〜俺のやらかしを越えてゆけ〜 / izumitomo - Kaigi on Rails 2024"
   speakers:
     - izumitomo
-  event_name: Kaigi on Rails 2024
+  event_name: "Kaigi on Rails 2024"
+  date: "2024-10-25"
   published_at: "2024-12-10"
+  slides_url: "https://speakerdeck.com/techouse/depuroiworen-saretanode-jiao-watutatong-rinidepuroisitarazhang-hai-ninatutajian-an-noyarakasiwoyue-eteyuke"
+  track: "Hall Blue"
   description: |-
     https://kaigionrails.org/2024/talks/izumitomo/
 
@@ -441,17 +517,20 @@
 
     Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
     https://kaigionrails.org/
-  video_provider: youtube
-  video_id: w0fqxSbo3yg
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "w0fqxSbo3yg"
 
-- title: Hotwire or React? 〜Reactの録画機能をHotwireに置き換えて得られた知見〜
-  raw_title:
-    Hotwire or React? 〜Reactの録画機能をHotwireに置き換えて得られた知見〜 / Haruna Tsujita -
-    Kaigi on Rails 2024
+- title: "Hotwire or React? 〜Reactの録画機能をHotwireに置き換えて得られた知見〜"
+  raw_title: "Hotwire or React? 〜Reactの録画機能をHotwireに置き換えて得られた知見〜 / Haruna Tsujita - Kaigi on Rails 2024"
   speakers:
     - Haruna Tsujita
-  event_name: Kaigi on Rails 2024
+  event_name: "Kaigi on Rails 2024"
+  date: "2024-10-25"
   published_at: "2024-12-10"
+  slides_url: "https://speakerdeck.com/harunatsujita/hotwire-or-react"
+  slug: "hotwire-or-react"
+  track: "Hall Red"
   description: |-
     https://kaigionrails.org/2024/talks/haruna-tsujita/
 
@@ -467,15 +546,19 @@
 
     Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
     https://kaigionrails.org/
-  video_provider: youtube
-  video_id: 5ERM5lF8MSA
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "5ERM5lF8MSA"
 
-- title: Capybara+生成AIでどこまで本当に自然言語のテストを書けるか？
-  raw_title: Capybara+生成AIでどこまで本当に自然言語のテストを書けるか？ / Yusuke Iwaki - Kaigi on Rails 2024
+- title: "Capybara+生成AIでどこまで本当に自然言語のテストを書けるか？"
+  raw_title: "Capybara+生成AIでどこまで本当に自然言語のテストを書けるか？ / Yusuke Iwaki - Kaigi on Rails 2024"
   speakers:
     - Yusuke Iwaki
-  event_name: Kaigi on Rails 2024
+  event_name: "Kaigi on Rails 2024"
+  date: "2024-10-25"
   published_at: "2024-12-10"
+  slides_url: "https://speakerdeck.com/yusukeiwaki/capybara-plus-sheng-cheng-aidedokomadeben-dang-nizi-ran-yan-yu-notesutowoshu-keruka"
+  track: "Hall Blue"
   description: |-
     https://kaigionrails.org/2024/talks/YusukeIwaki/
 
@@ -492,15 +575,20 @@
 
     Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
     https://kaigionrails.org/
-  video_provider: youtube
-  video_id: yrVIgFgjQ-Q
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "yrVIgFgjQ-Q"
 
-- title: 作って理解する RDBMSのしくみ
-  raw_title: 作って理解する RDBMSのしくみ / Yudai Takada - Kaigi on Rails 2024
+## Day 2 - 2024-10-26
+- title: "作って理解する RDBMSのしくみ"
+  raw_title: "作って理解する RDBMSのしくみ / Yudai Takada - Kaigi on Rails 2024"
   speakers:
     - Yudai Takada
-  event_name: Kaigi on Rails 2024
+  event_name: "Kaigi on Rails 2024"
+  date: "2024-10-26"
   published_at: "2024-12-10"
+  slides_url: "https://speakerdeck.com/ydah/zuo-tuteli-jie-suru-rdbmsnosikumi"
+  track: "Hall Red"
   description: |-
     https://kaigionrails.org/2024/talks/ydah/
 
@@ -523,17 +611,19 @@
 
     Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
     https://kaigionrails.org/
-  video_provider: youtube
-  video_id: VOeu7s5ifQQ
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "VOeu7s5ifQQ"
 
-- title: 都市伝説バスターズ「WebアプリのボトルネックはDBだから言語の性能は関係ない」
-  raw_title:
-    都市伝説バスターズ「WebアプリのボトルネックはDBだから言語の性能は関係ない」 / Daisuke Aritomo (osyoyu) -
-    Kaigi on Rails 2024
+- title: "都市伝説バスターズ「WebアプリのボトルネックはDBだから言語の性能は関係ない」"
+  raw_title: "都市伝説バスターズ「WebアプリのボトルネックはDBだから言語の性能は関係ない」 / Daisuke Aritomo (osyoyu) - Kaigi on Rails 2024"
   speakers:
-    - Daisuke Aritomo (osyoyu)
-  event_name: Kaigi on Rails 2024
+    - Daisuke Aritomo
+  event_name: "Kaigi on Rails 2024"
+  date: "2024-10-26"
   published_at: "2024-12-10"
+  slides_url: "https://speakerdeck.com/osyoyu/du-shi-chuan-shuo-basutazu-webapurinobotorunetukuhadbdakarayan-yu-noxing-neng-haguan-xi-nai-kaigi-on-rails-2024"
+  track: "Hall Blue"
   description: |-
     https://kaigionrails.org/2024/talks/osyoyu/
 
@@ -555,17 +645,19 @@
 
     Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
     https://kaigionrails.org/
-  video_provider: youtube
-  video_id: Ck3g4pIH9u0
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "Ck3g4pIH9u0"
 
 - title: "Cache to Your Advantage: フラグメントキャッシュの基本と応用"
-  raw_title:
-    "Cache to Your Advantage: フラグメントキャッシュの基本と応用 / Toru Kawamura - Kaigi on
-    Rails 2024"
+  raw_title: "Cache to Your Advantage: フラグメントキャッシュの基本と応用 / Toru Kawamura - Kaigi on Rails 2024"
   speakers:
     - Toru Kawamura
-  event_name: Kaigi on Rails 2024
+  event_name: "Kaigi on Rails 2024"
+  date: "2024-10-26"
   published_at: "2024-12-10"
+  slides_url: "https://drive.google.com/file/d/1Y3saUdJ98bLziDe94-4KTdughGqfAoHP/view"
+  track: "Hall Red"
   description: |-
     https://kaigionrails.org/2024/talks/tkawa/
 
@@ -582,17 +674,19 @@
 
     Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
     https://kaigionrails.org/
-  video_provider: youtube
-  video_id: 35ruNxFJGKw
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "35ruNxFJGKw"
 
-- title: ActiveRecord SQLインジェクションクイズ (Rails 7.1.3.4)
-  raw_title:
-    ActiveRecord SQLインジェクションクイズ (Rails 7.1.3.4) / Koji NAKAMURA - Kaigi on
-    Rails 2024
+- title: "ActiveRecord SQLインジェクションクイズ (Rails 7.1.3.4)"
+  raw_title: "ActiveRecord SQLインジェクションクイズ (Rails 7.1.3.4) / Koji NAKAMURA - Kaigi on Rails 2024"
   speakers:
     - Koji NAKAMURA
-  event_name: Kaigi on Rails 2024
+  event_name: "Kaigi on Rails 2024"
+  date: "2024-10-26"
   published_at: "2024-12-10"
+  slides_url: "https://speakerdeck.com/kozy4324/activerecord-sqlinziekusiyonkuizu-rails-7-dot-1-3-dot-4"
+  track: "Hall Blue"
   description: |-
     https://kaigionrails.org/2024/talks/kozy4324/
 
@@ -612,15 +706,19 @@
 
     Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
     https://kaigionrails.org/
-  video_provider: youtube
-  video_id: jewA8tnPO-4
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "jewA8tnPO-4"
 
-- title: 推し活のハイトラフィックに立ち向かうRailsとアーキテクチャ
-  raw_title: 推し活のハイトラフィックに立ち向かうRailsとアーキテクチャ / Hayato OKUMOTO - Kaigi on Rails 2024
+- title: "推し活のハイトラフィックに立ち向かうRailsとアーキテクチャ"
+  raw_title: "推し活のハイトラフィックに立ち向かうRailsとアーキテクチャ / Hayato OKUMOTO - Kaigi on Rails 2024"
   speakers:
     - Hayato OKUMOTO
-  event_name: Kaigi on Rails 2024
+  event_name: "Kaigi on Rails 2024"
+  date: "2024-10-26"
   published_at: "2024-12-10"
+  slides_url: "https://speakerdeck.com/falcon8823/tui-sihuo-no-haitorahuitukunili-tixiang-kau-railstoakitekutiya-kaigi-on-rails-2024"
+  track: "Hall Red"
   description: |-
     https://kaigionrails.org/2024/talks/falcon8823/
 
@@ -638,15 +736,19 @@
 
     Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
     https://kaigionrails.org/
-  video_provider: youtube
-  video_id: SYEBAEPV0tk
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "SYEBAEPV0tk"
 
-- title: OmniAuthから学ぶOAuth 2.0
-  raw_title: OmniAuthから学ぶOAuth 2.0 / ykpythemind - Kaigi on Rails 2024
+- title: "OmniAuthから学ぶOAuth 2.0"
+  raw_title: "OmniAuthから学ぶOAuth 2.0 / ykpythemind - Kaigi on Rails 2024"
   speakers:
     - ykpythemind
-  event_name: Kaigi on Rails 2024
+  event_name: "Kaigi on Rails 2024"
+  date: "2024-10-26"
   published_at: "2024-12-10"
+  slides_url: "https://speakerdeck.com/ykpythemind/omniauthkaraxue-buoauth2-dot-0-kaigi-on-rails-2024"
+  track: "Hall Blue"
   description: |-
     https://kaigionrails.org/2024/talks/ykpythemind/
 
@@ -661,15 +763,19 @@
 
     Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
     https://kaigionrails.org/
-  video_provider: youtube
-  video_id: LDfefPahOYA
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "LDfefPahOYA"
 
-- title: 入門『状態』
-  raw_title: 入門『状態』 / しんくう - Kaigi on Rails 2024
+- title: "入門『状態』"
+  raw_title: "入門『状態』 / しんくう - Kaigi on Rails 2024"
   speakers:
-    - しんくう
-  event_name: Kaigi on Rails 2024
+    - shinkufencer
+  event_name: "Kaigi on Rails 2024"
+  date: "2024-10-26"
   published_at: "2024-12-10"
+  track: "Hall Red"
+  slides_url: "https://speakerdeck.com/shinkufencer/state-for-beginners-with-rails"
   description: |-
     https://kaigionrails.org/2024/talks/shinkufencer/
 
@@ -687,17 +793,20 @@
 
     Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
     https://kaigionrails.org/
-  video_provider: youtube
-  video_id: NteFoikE8XU
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "NteFoikE8XU"
+  slug: "state-for-beginners-with-rails"
 
-- title: 約9000個の自動テストの時間を50分から10分に短縮、偽陽性率(Flakyテスト)を1%以下に抑えるまでの道のり
-  raw_title:
-    約9000個の自動テストの時間を50分から10分に短縮、偽陽性率(Flakyテスト)を1%以下に抑えるまでの道のり / hatsu - Kaigi
-    on Rails 2024
+- title: "約9000個の自動テストの時間を50分から10分に短縮、偽陽性率(Flakyテスト)を1%以下に抑えるまでの道のり"
+  raw_title: "約9000個の自動テストの時間を50分から10分に短縮、偽陽性率(Flakyテスト)を1%以下に抑えるまでの道のり / hatsu - Kaigi on Rails 2024"
   speakers:
-    - hatsu
-  event_name: Kaigi on Rails 2024
+    - hatsu38
+  event_name: "Kaigi on Rails 2024"
+  date: "2024-10-26"
   published_at: "2024-12-10"
+  slides_url: "https://speakerdeck.com/hatsu38/yue-9000ge-nozi-dong-tesutono-shi-jian-wo50fen-10fen-niduan-suo-flakytesutowo1-percent-yi-xia-niyi-etahua"
+  track: "Hall Blue"
   description: |-
     https://kaigionrails.org/2024/talks/hatsu38/
 
@@ -717,27 +826,50 @@
 
     Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
     https://kaigionrails.org/
-  video_provider: youtube
-  video_id: AF-2CZma30M
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "AF-2CZma30M"
 
-- title: Hotwire光の道とStimulus
-  raw_title: Hotwire光の道とStimulus / Yasuko Ohba (nay3)  - Kaigi on Rails 2024
+- title: "Hotwire光の道とStimulus"
+  raw_title: "Hotwire光の道とStimulus / Yasuko Ohba (nay3)  - Kaigi on Rails 2024"
   speakers:
-    - Yasuko Ohba (nay3)
-  event_name: Kaigi on Rails 2024
+    - Yasuko Ohba
+  event_name: "Kaigi on Rails 2024"
+  date: "2024-10-26"
   published_at: "2024-12-10"
-  description:
-    "https://kaigionrails.org/2024/talks/nay/\n\n【発表概要】\n私はここ数年、Hotwireを使ってRailsアプリケーションを開発しています。Hotwireはとても強力な技術ですが、いろいろなことができるからこそ、かえって本質がクリアになっていないという思いを抱き、効果的な設計原則の言語化に努めてきました。Hotwireを使った開発を続ける中で、私の理想とする設計原則「Hotwire光の道」について、さらに言語化が進んできたので、それをご紹介したいと思います。\n\n「Hotwire光の道」の核心は、サーバサイドですべてをコントロールできるようにすることです。今回は、Stimulusの使いこなしを題材に、この設計原則について話していきたいと思います。\n\nStimulusを用いると、クライアント側で動くJavaScriptを、手軽に、ある程度管理しやすい形で書くことができます。しかし、だからこそ、クライアント側にいろいろな処理を書いてしまいがちです。私自身も、開発のなかでうっかり「光の道」から外れて、クライアント側での実装をしてしまっていたことが何回もあります。そういう場合は、後になって道から外れていたことに気づき、リファクタリングをしています。今回のトークでは、そういった具体例を出しながら、Stimulusをどう使うと（または、どう使わないと）Hotwireの良さを活かしたアプリケーションを作れるのかについて、私の考えをご紹介したいと思います。\n\n\n【発表者】\nYasuko
-    Ohba (nay3) \nGitHub https://github.com/nay\n\nKaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。\nhttps://kaigionrails.org/"
-  video_provider: youtube
-  video_id: XWXGucFGZlI
+  slides_url: "https://speakerdeck.com/nay3/hotwireguang-nodao-tostimulus"
+  slug: "hotwireguang-nodao-tostimulus"
+  track: "Hall Red"
+  description: |-
+    https://kaigionrails.org/2024/talks/nay/
 
-- title: Sidekiq vs Solid Queue
-  raw_title: Sidekiq vs Solid Queue / Shinichi Maeshima - Kaigi on Rails 2024
+    【発表概要】
+    私はここ数年、Hotwireを使ってRailsアプリケーションを開発しています。Hotwireはとても強力な技術ですが、いろいろなことができるからこそ、かえって本質がクリアになっていないという思いを抱き、効果的な設計原則の言語化に努めてきました。Hotwireを使った開発を続ける中で、私の理想とする設計原則「Hotwire光の道」について、さらに言語化が進んできたので、それをご紹介したいと思います。
+
+    「Hotwire光の道」の核心は、サーバサイドですべてをコントロールできるようにすることです。今回は、Stimulusの使いこなしを題材に、この設計原則について話していきたいと思います。
+
+    Stimulusを用いると、クライアント側で動くJavaScriptを、手軽に、ある程度管理しやすい形で書くことができます。しかし、だからこそ、クライアント側にいろいろな処理を書いてしまいがちです。私自身も、開発のなかでうっかり「光の道」から外れて、クライアント側での実装をしてしまっていたことが何回もあります。そういう場合は、後になって道から外れていたことに気づき、リファクタリングをしています。今回のトークでは、そういった具体例を出しながら、Stimulusをどう使うと（または、どう使わないと）Hotwireの良さを活かしたアプリケーションを作れるのかについて、私の考えをご紹介したいと思います。
+
+
+    【発表者】
+    Yasuko Ohba (nay3)
+    GitHub https://github.com/nay
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "XWXGucFGZlI"
+
+- title: "Sidekiq vs Solid Queue"
+  raw_title: "Sidekiq vs Solid Queue / Shinichi Maeshima - Kaigi on Rails 2024"
   speakers:
     - Shinichi Maeshima
-  event_name: Kaigi on Rails 2024
+  event_name: "Kaigi on Rails 2024"
+  date: "2024-10-26"
   published_at: "2024-12-10"
+  slides_url: "https://speakerdeck.com/willnet/sidekiq-vs-solid-queue"
+  track: "Hall Blue"
   description: |-
     https://kaigionrails.org/2024/talks/willnet/
 
@@ -755,15 +887,19 @@
 
     Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
     https://kaigionrails.org/
-  video_provider: youtube
-  video_id: 6Z5c-cKvFwQ
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "6Z5c-cKvFwQ"
 
-- title: The One Person Framework 実践編
-  raw_title: The One Person Framework 実践編 / asonas - Kaigi on Rails 2024
+- title: "The One Person Framework 実践編"
+  raw_title: "The One Person Framework 実践編 / asonas - Kaigi on Rails 2024"
   speakers:
-    - asonas
-  event_name: Kaigi on Rails 2024
+    - Yuya Fujiwara
+  event_name: "Kaigi on Rails 2024"
+  date: "2024-10-26"
   published_at: "2024-12-10"
+  slides_url: "https://speakerdeck.com/asonas/practical-the-one-person-framework"
+  track: "Hall Red"
   description: |-
     https://kaigionrails.org/2024/talks/asonas/
 
@@ -782,17 +918,19 @@
 
     Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
     https://kaigionrails.org/
-  video_provider: youtube
-  video_id: mBw5qcXmWEo
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "mBw5qcXmWEo"
 
-- title: Importmapを使ったJavaScriptの読み込みとブラウザアドオンの影響
-  raw_title:
-    Importmapを使ったJavaScriptの読み込みとブラウザアドオンの影響 / shu_numata - Kaigi on Rails
-    2024
+- title: "Importmapを使ったJavaScriptの読み込みとブラウザアドオンの影響"
+  raw_title: "Importmapを使ったJavaScriptの読み込みとブラウザアドオンの影響 / shu_numata - Kaigi on Rails 2024"
   speakers:
     - shu_numata
-  event_name: Kaigi on Rails 2024
+  event_name: "Kaigi on Rails 2024"
+  date: "2024-10-26"
   published_at: "2024-12-10"
+  slides_url: "https://speakerdeck.com/swamp09/importmapwoshi-tutajavascriptno-du-miip-mitoburauzaadoonnoying-xiang"
+  track: "Hall Blue"
   description: |-
     https://kaigionrails.org/2024/talks/swamp09/
 
@@ -812,15 +950,19 @@
 
     Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
     https://kaigionrails.org/
-  video_provider: youtube
-  video_id: Yig0CKOOekQ
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "Yig0CKOOekQ"
 
-- title: Data Migration on Rails
-  raw_title: Data Migration on Rails / ohbarye - Kaigi on Rails 2024
+- title: "Data Migration on Rails"
+  raw_title: "Data Migration on Rails / ohbarye - Kaigi on Rails 2024"
   speakers:
-    - ohbarye
-  event_name: Kaigi on Rails 2024
+    - Masato Ohba
+  event_name: "Kaigi on Rails 2024"
+  date: "2024-10-26"
   published_at: "2024-12-10"
+  slides_url: "https://speakerdeck.com/ohbarye/data-migration-on-rails"
+  track: "Hall Red"
   description: |-
     https://kaigionrails.org/2024/talks/ohbarye/
 
@@ -838,15 +980,19 @@
 
     Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
     https://kaigionrails.org/
-  video_provider: youtube
-  video_id: 8WgXr7lvU7c
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "8WgXr7lvU7c"
 
-- title: Tuning GraphQL on Rails
-  raw_title: Tuning GraphQL on Rails / Kazuhiko Yamashita - Kaigi on Rails 2024
+- title: "Tuning GraphQL on Rails"
+  raw_title: "Tuning GraphQL on Rails / Kazuhiko Yamashita - Kaigi on Rails 2024"
   speakers:
     - Kazuhiko Yamashita
-  event_name: Kaigi on Rails 2024
+  event_name: "Kaigi on Rails 2024"
+  date: "2024-10-26"
   published_at: "2024-12-10"
+  slides_url: "https://speakerdeck.com/pyama86/tuning-graphql-on-rails"
+  track: "Hall Blue"
   description: |-
     https://kaigionrails.org/2024/talks/pyama86/
 
@@ -861,17 +1007,19 @@
 
     Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
     https://kaigionrails.org/
-  video_provider: youtube
-  video_id: CcMEBD-C7f0
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "CcMEBD-C7f0"
 
-- title: 30万人が利用するチャットをFirebase Realtime DatabaseからActionCableへ移行する方法
-  raw_title:
-    30万人が利用するチャットをFirebase Realtime DatabaseからActionCableへ移行する方法 / Ryosuke
-    Uchida - Kaigi on Rails 2024
+- title: "30万人が利用するチャットをFirebase Realtime DatabaseからActionCableへ移行する方法"
+  raw_title: "30万人が利用するチャットをFirebase Realtime DatabaseからActionCableへ移行する方法 / Ryosuke Uchida - Kaigi on Rails 2024"
   speakers:
     - Ryosuke Uchida
-  event_name: Kaigi on Rails 2024
+  event_name: "Kaigi on Rails 2024"
+  date: "2024-10-26"
   published_at: "2024-12-10"
+  slides_url: "https://speakerdeck.com/ryosk7/30mo-ren-gali-yong-surutiyatutowofirebase-realtime-databasekaraactioncableheyi-xing-surufang-fa"
+  track: "Hall Red"
   description: |-
     https://kaigionrails.org/2024/talks/ryosk7/
 
@@ -890,17 +1038,19 @@
 
     Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
     https://kaigionrails.org/
-  video_provider: youtube
-  video_id: AASwXXBKFJU
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "AASwXXBKFJU"
 
-- title: 大事なデータを守りたい！ActiveRecord Encryptionと、より安全かつ検索可能な暗号化手法の実装例の紹介
-  raw_title:
-    大事なデータを守りたい！ActiveRecord Encryptionと、より安全かつ検索可能な暗号化手法の実装例の紹介 / 小林悟史（小林ノエル）
-    - Kaigi on Rails 2024
+- title: "大事なデータを守りたい！ActiveRecord Encryptionと、より安全かつ検索可能な暗号化手法の実装例の紹介"
+  raw_title: "大事なデータを守りたい！ActiveRecord Encryptionと、より安全かつ検索可能な暗号化手法の実装例の紹介 / 小林悟史（小林ノエル） - Kaigi on Rails 2024"
   speakers:
-    - 小林悟史（小林ノエル）
-  event_name: Kaigi on Rails 2024
+    - Satoshi Kobayashi
+  event_name: "Kaigi on Rails 2024"
+  date: "2024-10-26"
   published_at: "2024-12-10"
+  slides_url: "https://www.docswell.com/s/free_world21/ZQRM4V-2024-10-26-165756"
+  track: "Hall Blue"
   description: |-
     https://kaigionrails.org/2024/talks/f-world21/
 
@@ -924,17 +1074,19 @@
 
     Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
     https://kaigionrails.org/
-  video_provider: youtube
-  video_id: H1QxWUo3Kbs
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "H1QxWUo3Kbs"
 
-- title: サイロ化した金融システムを、packwerk を利用して無事故でリファクタリングした話
-  raw_title:
-    サイロ化した金融システムを、packwerk を利用して無事故でリファクタリングした話 / Kota Kusama - Kaigi on
-    Rails 2024
+- title: "サイロ化した金融システムを、packwerk を利用して無事故でリファクタリングした話"
+  raw_title: "サイロ化した金融システムを、packwerk を利用して無事故でリファクタリングした話 / Kota Kusama - Kaigi on Rails 2024"
   speakers:
     - Kota Kusama
-  event_name: Kaigi on Rails 2024
+  event_name: "Kaigi on Rails 2024"
+  date: "2024-10-26"
   published_at: "2024-12-10"
+  slides_url: "https://speakerdeck.com/coincheck_recruit/sairohua-sitajin-rong-sisutemuwo-packwerk-woli-yong-sitewu-shi-gu-derihuakutaringusitahua"
+  track: "Hall Red"
   description: |-
     https://kaigionrails.org/2024/talks/cc-kusama/
 
@@ -952,15 +1104,19 @@
 
     Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
     https://kaigionrails.org/
-  video_provider: youtube
-  video_id: 1e96QDE3dO0
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "1e96QDE3dO0"
 
-- title: omakaseしないためのrubocop.yml のつくりかた
-  raw_title: omakaseしないためのrubocop.yml のつくりかた / Shu Oogawara - Kaigi on Rails 2024
+- title: "omakaseしないためのrubocop.yml のつくりかた"
+  raw_title: "omakaseしないためのrubocop.yml のつくりかた / Shu Oogawara - Kaigi on Rails 2024"
   speakers:
     - Shu Oogawara
-  event_name: Kaigi on Rails 2024
+  event_name: "Kaigi on Rails 2024"
+  date: "2024-10-26"
   published_at: "2024-12-10"
+  slides_url: "https://speakerdeck.com/linkers_tech/how-to-build-your-rubocop-dot-yml-to-avoid-omakase"
+  track: "Hall Blue"
   description: |-
     https://kaigionrails.org/2024/talks/expajp/
 
@@ -978,15 +1134,19 @@
 
     Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
     https://kaigionrails.org/
-  video_provider: youtube
-  video_id: ZFpL3-RdUys
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "ZFpL3-RdUys"
 
-- title: Identifying User Identity
-  raw_title: Identifying User Identity / MOROHASHI Kyosuke - Kaigi on Rails 2024
+- title: "Identifying User Identity"
+  raw_title: "Identifying User Identity / MOROHASHI Kyosuke - Kaigi on Rails 2024"
   speakers:
-    - MOROHASHI Kyosuke
-  event_name: Kaigi on Rails 2024
+    - Kyosuke MOROHASHI
+  event_name: "Kaigi on Rails 2024"
+  date: "2024-10-26"
   published_at: "2024-12-10"
+  slides_url: "https://speakerdeck.com/moro/identifying-user-idenity"
+  track: "Hall Red"
   description: |-
     https://kaigionrails.org/2024/talks/moro/
 
@@ -1004,17 +1164,19 @@
 
     Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
     https://kaigionrails.org/
-  video_provider: youtube
-  video_id: 55JgSAIivPk
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "55JgSAIivPk"
 
 - title: "Type on Rails: Railsアプリケーションの安全性と開発体験を型で革新する"
-  raw_title:
-    "Type on Rails: Railsアプリケーションの安全性と開発体験を型で革新する / kazzix - Kaigi on Rails
-    2024"
+  raw_title: "Type on Rails: Railsアプリケーションの安全性と開発体験を型で革新する / kazzix - Kaigi on Rails 2024"
   speakers:
-    - kazzix
-  event_name: Kaigi on Rails 2024
+    - Kazuma Murata
+  event_name: "Kaigi on Rails 2024"
+  date: "2024-10-26"
   published_at: "2024-12-10"
+  slides_url: "https://speakerdeck.com/kazzix/type-on-rails-railsapurikesiyonnoan-quan-xing-tokai-fa-ti-yan-woxing-dege-xin-suru"
+  track: "Hall Blue"
   description: |-
     https://kaigionrails.org/2024/talks/kazzix14/
 
@@ -1030,27 +1192,34 @@
 
     Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
     https://kaigionrails.org/
-  video_provider: youtube
-  video_id: Y8aoAB0DBBI
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "Y8aoAB0DBBI"
 
-- title: Rails Way, or the highway
-  raw_title: Rails Way, or the highway / Palkan - Kaigi on Rails 2024
+- title: "Keynote: WHOLENESS, REPAIRING, AND TO HAVE FUN: 全体性、修復、そして楽しむこと"
+  raw_title: "WHOLENESS, REPAIRING, AND TO HAVE FUN: 全体性、修復、そして楽しむこと / 島田浩二 - Kaigi on Rails 2024"
   speakers:
-    - Palkan
-  event_name: Kaigi on Rails 2024
+    - Koji Shimada
+  event_name: "Kaigi on Rails 2024"
+  date: "2024-10-26"
   published_at: "2024-12-10"
+  slides_url: "https://speakerdeck.com/snoozer05/wholeness-repairing-and-to-have-fun"
+  track: "Hall Red"
   description: |-
-    https://kaigionrails.org/2024/talks/palkan/
+    https://kaigionrails.org/2024/talks/snoozer05/
 
     【発表概要】
-    Rails Way is a software development paradigm that implies sticking to the framework architectural defaults as much as possible. Everyone starts with the Rails Way, but how far can you get without derailing from it? Let’s talk about the Rails Way core principles, how they evolved over time, and how you can embrace and enhanced it using the layered design techniques.
+    本講演では、これからのアプリケーション開発者の方々に向けて、18年になるRailsとの旅の中で学んだ、ソフトウェアを設計する際に私が大事だと考えていることについてお話します。
+    具体的には、全体が機能するように設計すること、そして変化に向けて設計することの2点について、重要性やアプローチの仕方、Railsがどうそれをサポートしてくれているか、どこから始めると良いかといったことを説明します。
+    本講演を通じて、ソフトウェア設計という大変な仕事に楽しく向き合い続けていくための材料やヒント、糧を届けられればと思います。
 
 
     【発表者】
-    Palkan
-    GitHub https://github.com/palkan
+    島田浩二
+    GitHub https://github.com/snoozer05
 
     Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
     https://kaigionrails.org/
-  video_provider: youtube
-  video_id: ZUtRyHeLq4M
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "ilFyT5AJpv4"
