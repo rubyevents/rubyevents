@@ -13,6 +13,7 @@
     <% day.dig("grid").each do |grid| %>
       <% start_time = grid["start_time"] %>
       <% end_time = grid["end_time"] %>
+      <% description = grid["description"] %>
       <% slots = grid["slots"] %>
       <% items = grid.fetch("items", []) %>
       <% colspan = (slots != max_cols) ? (max_cols / slots) : 1 %>
@@ -23,6 +24,14 @@
             <%= [start_time, end_time].uniq.join(" - ") %>
           </div>
         </div>
+
+        <% if description %>
+          <div class="border-b">
+            <div class="text-xs p-2">
+              <%= description %>
+            </div>
+          </div>
+        <% end %>
 
         <div class="grid grid-cols-<%= slots %> divide-x">
           <% slots.times do |i| %>
