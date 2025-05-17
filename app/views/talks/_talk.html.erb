@@ -1,4 +1,4 @@
-<%# locals: (talk:) -%>
+<%# locals: (talk:, watched:, signed_in:) -%>
 
 <% video_player_controller = talk.external_player ? nil : "video-player" %>
 
@@ -112,9 +112,9 @@
             <% end %>
           <% end %>
 
-          <% if signed_in? && !talk.scheduled? %>
+          <% if signed_in && !talk.scheduled? %>
             <%= turbo_frame_tag dom_id(talk, :watched_talk) do %>
-              <% if talk.watched? %>
+              <% if watched %>
                 <div class="tooltip tooltip-top" data-tip="Mark talk as unwatched">
                   <%= ui_button url: talk_watched_talk_path(talk), method: :delete, kind: :pill do %>
                     <%= fa("circle-check", size: :xs, style: :solid, class: "fill-green-700") %>
