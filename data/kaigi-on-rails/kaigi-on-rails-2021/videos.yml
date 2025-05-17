@@ -1,0 +1,734 @@
+---
+# Website: https://kaigionrails.org/2021
+# Schedule: https://kaigionrails.org/2021/timetable
+
+# Day 1 - 2021-10-22
+
+- title: "Q&A with kamipo"
+  raw_title: "Q&A with kamipo / kamipo"
+  speakers:
+    - Ryuta Kamizono
+  event_name: "Kaigi on Rails 2021"
+  published_at: "2021-10-24"
+  date: "2021-10-22"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2021/talks/kamipo/
+
+    Railsコミッターであるkamipoさんが皆さまからの質問に答えるQ&Aセッションです。モデレーターはRails/Rubyのコミッター @a_matsuda さんです。
+
+    発表者
+    kamipo
+    GitHub https://github.com/kamipo
+    Twitter https://twitter.com/kamipo
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "FWFyyObp1f4"
+
+- title: "監視を通じたサービスの逐次的進化 ~B/43の決済サービスでの取り組み~"
+  raw_title: "監視を通じたサービスの逐次的進化 ~B/43の決済サービスでの取り組み~ / Shohei Mitani"
+  speakers:
+    - Shohei Mitani
+  event_name: "Kaigi on Rails 2021"
+  published_at: "2021-10-24"
+  date: "2021-10-22"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2021/talks/shohei1913/
+
+    昨今のシステム開発ではマイクロサービスを選択したり、複数の外部サービスを利用したりと複雑化しています。それに伴い、障害ポイントを適切に把握し抜け漏れなく異常を検知する方法を導入することが重要になっています。そのため、NewRelicやSentryなどの監視サービスを導入している企業も多いと思いますが、こうしたツールでは監視しにくいシステム固有の障害ポイントもあります。自社サービスの特徴を理解してどのように正常なシステム動作を定義し監視システムを構築していくか、テーブル設計とRedashを使ったダッシュボード作成方法についてご紹介します。
+
+    資料 https://speakerdeck.com/shoheimitani/kaigi-on-rails-2021
+
+
+    発表者
+    Shohei Mitani
+    GitHub https://github.com/ShoheiMitani
+    Twitter https://twitter.com/shohei1913
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "gQZrRFmunoM"
+
+- title: "銀河スクラムマスター・ガイド -スクラムガイド 2020年版を添えて"
+  raw_title: "銀河スクラムマスター・ガイド -スクラムガイド 2020年版を添えて- / あそなす"
+  speakers:
+    - Yuya Fujiwara
+  event_name: "Kaigi on Rails 2021"
+  published_at: "2021-10-24"
+  date: "2021-10-22"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2021/talks/asonas/
+
+    スクラムを実践したことのない開発チームで少しずつスクラムを取り組んで行ったお話をします。
+    2021年6月に「9月に新しいサービスをリリースしたいです」と言われたのがすべての始まりでした。立ちはだかる荒ぶる四天王、超短期リリース、スコープやコストの調整...。それらをうまく手なづけどうやってチームが動き始めたのか。なぜスクラムを採用しようと思ったのか。うまくいったこといかなかったこと、どのようにイテレーティブにスクラムチームを改善していったか。
+    このトークでは、開発チームでスクラムを導入するまでとスクラムマスターをやったことがない方でもスクラムを始めるための道標を持ち帰ってもらえるようにします。
+
+    明日から使えるキーワードは「それスクラムガイドに書いてあるよ」です。
+
+    資料 https://speakerdeck.com/asonas/the-scrummasters-guide-to-the-galaxy
+
+
+    発表者
+    あそなす
+    GitHub https://github.com/asonas
+    Twitter https://twitter.com/asonas
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "6rTzUmpiHjU"
+
+- title: "ジュニアエンジニアが開発チームに貢献するためのTIPS"
+  raw_title: "ジュニアエンジニアが開発チームに貢献するためのTIPS / ヒロ"
+  speakers:
+    - Hiroya Sakamoto
+  event_name: "Kaigi on Rails 2021"
+  published_at: "2021-10-25"
+  date: "2021-10-23"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2021/talks/sa_tech0518/
+
+    他業種で7年働いた後、受託企業でwebエンジニアとして働きだし約8ヶ月が経過しました。
+    私という一人の人間に対して、「ジュニアエンジニア」と「社会人中途採用」という二つの肩書きが存在している、という感覚を持ちながら日々仕事をしています。
+    エンジニアとしてはジュニア扱いであり、日々周りの人からサポートしてもらいながら開発を行う一方で、「仕事」という側面においては「それなりの経験者」として振る舞うことが求められています。
+    自意識としても「お世話になっている分、周囲の人に貢献したい」という思いは絶えず持っているため、ジュニアエンジニアでありながらもバリューを発揮するために日々試行錯誤を繰り返してきました。
+    そうした自身の経験の中からチームのために有用であると感じた事柄について、「行動編」・「マインドセット編」としてまとめ、ご紹介できればと思います。
+
+    資料 https://speakerdeck.com/hirosaktech/kaigi-on-rails-2021
+
+
+    発表者
+    ヒロ
+    GitHub https://github.com/HiroyaSakamoto
+    Twitter https://twitter.com/sa_tech0518
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "EKY1mOxmfM0"
+
+- title: "Railsのシステムテスト解剖学"
+  raw_title: "Railsのシステムテスト解剖学 / Yusuke Iwaki"
+  speakers:
+    - Yusuke Iwaki
+  event_name: "Kaigi on Rails 2021"
+  published_at: "2021-10-24"
+  date: "2021-10-22"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2021/talks/YusukeIwaki/
+
+    Railsには、ブラウザとRailsサーバーを対向させて自動試験するためのシステムテストという仕組みがあります。
+    システムテストは単なるE2Eテストのフレームワークとして認識されがちですが、一般的なE2Eテストのノウハウをもとに自動テストを組むと不安定なテストに悩まされ、運用負荷が高くなりがちです。
+    このセッションでは「システムテスト解剖学」と題し、システムテスト実行時に何がどう動いているのか、具体的にはCapybaraの構造や特性を明らかにしていきます。そのうえで、不安定なテストはなぜ生まれてしまうのか、どうすれば軽減できるのか、などシステムテストの運用改善のための知見を共有したいと思います。
+
+    資料 https://speakerdeck.com/yusukeiwaki/railsfalse-sisutemutesutojie-pou-xue
+
+
+    発表者
+    Yusuke Iwaki
+    GitHub https://github.com/YusukeIwaki
+    Twitter https://twitter.com/yi01imagination
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "mRSkL8gWcqw"
+
+- title: "JSON Schema で複雑な仕様の入力フォームの実装に立ち向かった話"
+  raw_title: "JSON Schema で複雑な仕様の入力フォームの実装に立ち向かった話 / Kenshi Shiode"
+  speakers:
+    - Kenshi Shiode
+  event_name: "Kaigi on Rails 2021"
+  published_at: "2021-10-24"
+  date: "2021-10-22"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2021/talks/solt9029/
+
+    Ruby on Rails を用いたシステム上で入力フォームを実現する際、Rails が提供しているフォームヘルパーを利用した実装や、React や Vue によるコンポーネントの自前での実装が一般的に行われます。
+
+    ここで、職業で学生を選択した場合は学校名と学年、会社員を選択した場合は役職と年収を入力する...といった、条件分岐が大量に生まれる入力フォームを想像しましょう。
+    一般的な実装手法では、あるフォームの入力値が他のフォームに影響を与えるような、複雑で動的な入力フォームの実現をするために、大量の if 文を書く必要があります。
+    また、ユーザから送信された入力値の正しさをバリデーションするために、バックエンド側に同様の if 文を大量に書く必要が出てきます。
+
+    そこで私は、複雑な仕様の入力フォームの実装のための JSON Schema 活用方法および事例について紹介します。入力フォームの仕様を JSON Schema で定義すれば、大量の if 文を用いることなくフロントエンド側の入力フォームを自動生成することができます。また、その JSON Schema をバックエンド側のバリデーションのロジックにも使い回すことができるため、シンプルでメンテナンス性の高い実装を実現することができます。
+
+    資料 https://speakerdeck.com/solt9029/json-schema-tefu-za-nashi-yang-falseru-li-huomufalseshi-zhuang-nili-tixiang-katutahua
+
+
+    発表者
+    Kenshi Shiode
+    GitHub https://github.com/solt9029
+    Twitter https://twitter.com/solt9029
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "L-f4MwVbwWw"
+
+- title: "Performance as Product Feature"
+  raw_title: "Performance as Product Feature / Leonard Chin (レオ)"
+  speakers:
+    - Leonard Chin
+  event_name: "Kaigi on Rails 2021"
+  published_at: "2021-10-24"
+  date: "2021-10-22"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2021/talks/lchin/
+
+    "Performance is a feature"と言われています。
+
+    スピードは機能だとしたら、それはプロダクトの様々な機能の一つに数えるということになる。その機能のオーナーとして、どのように事業にとって価値のある投資にできるのか？
+
+    このトークでは、パフォーマンスをプロダクト開発として捉えて改善に取り組むアプローチについて紹介します。
+
+    資料 https://speakerdeck.com/lchin/performance-as-a-product-feature
+
+
+    発表者
+    Leonard Chin (レオ)
+    GitHub https://github.com/l15n
+    Twitter https://twitter.com/lchin
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "ZAYNqDfi7og"
+
+- title: 'Polishing on "Polished Ruby Programming"'
+  raw_title: 'Polishing on "Polished Ruby Programming" / Kakutani Shintaro'
+  speakers:
+    - Kakutani Shintaro
+  event_name: "Kaigi on Rails 2021"
+  published_at: "2021-10-24"
+  date: "2021-10-22"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2021/talks/kakutani/
+
+    Jeremy Evans著『Polished Ruby Programming』が出版されました。本書は「Ruby3のリリースにともなう仕様策定の議論やコミュニティの調停、実際の開発にいたるまで驚異的な活動量と熱意をもって取り組ん」だ成果からRuby Prize 2020を受賞した、RubyKaigi 2019のkeynote speakerでもある著者が、自身の圧倒的な活動実績を踏まえて書き下ろした一冊です。
+
+    日本のRubyistの皆さんにも是非読んでもらいたいので、このトークでは本書がどんな内容なのか、その読みどころをダイジェストでお伝えします。原著は英語ですが、Rubyが読めるなら恐れることはありません。「英語で読むのはしんどいな」というRubyistの皆さんは…しばらくお待ちください。話者が訳して日本語版をお届けします 🙃
+
+    本トークでは「Rubyの磨きかた」にもいろいろあるよね、という話をするつもりです。練度を上げたい初級中級Rubyistにとって日々の活動の何らかのヒントになるはずです。
+
+    資料 https://speakerdeck.com/kakutani/kaigionrails-2021
+
+
+    発表者
+    Kakutani Shintaro
+    GitHub https://github.com/kakutani
+    Twitter https://twitter.com/kakutani
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "EJuKeX7k2rY"
+
+- title: "Build and Learn Rails Authentication"
+  raw_title: "Build and Learn Rails Authentication / Ryo Kajiwara (sylph01)"
+  speakers:
+    - Ryo Kajiwara
+  event_name: "Kaigi on Rails 2021"
+  published_at: "2021-10-24"
+  date: "2021-10-22"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2021/talks/s01/
+
+    Railsにおけるユーザー認証というとDeviseがよく知られよく使われていますが、非常によくできてる故に我々は認証技術の内部をあまり気にせずに済んでいるのも事実です。この発表ではDeviseの機能の一部を自分で作ってみることや他の認証ライブラリとのアプローチの比較を行うことで認証技術に関する理解を深め、認証ライブラリの選定や検証を行う手助けをすることを目的としています。
+
+    資料 https://github.com/sylph01/touch-and-learn-rails-authn
+
+
+    発表者
+    Ryo Kajiwara (sylph01)
+    GitHub https://github.com/sylph01
+    Twitter https://twitter.com/s01
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "9K2hrw-L03A"
+
+- title: "FactoryBotのbuild strategiesをいい感じに直してくれるgemを作った話"
+  raw_title: "FactoryBotのbuild strategiesをいい感じに直してくれるgemを作った話 / Keiko Kaneko"
+  speakers:
+    - Keiko Kaneko
+  event_name: "Kaigi on Rails 2021"
+  published_at: "2021-10-24"
+  date: "2021-10-22"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2021/talks/neko314/
+
+    FactoryBotを使ってテストを書いているとcreateしているところをbuild_stubbedやbuildに書き換えたくなることってありますよね。その時どうやってやっていますか？私は1つ1つ書き換えてはテストを実行し、落ちれば元に戻すという方法しか知らず、いたく面倒で非効率的なのでどうにかできないものかと思い、代わりにやってくれるgemを作ってみることにしました。そのお話をします。
+
+    資料 https://speakerdeck.com/neko314/introduce-my-gem-factory-strategist
+
+
+    発表者
+    Keiko Kaneko
+    GitHub https://github.com/neko314
+    Twitter https://twitter.com/neko314_
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "lZ9kg2vDPm0"
+
+- title: "STORES へのID基盤の導入と、ユーザーアカウントの移行を振り返って"
+  raw_title: "STORES へのID基盤の導入と、ユーザーアカウントの移行を振り返って / Takuya Matsumoto"
+  speakers:
+    - Takuya Matsumoto
+  event_name: "Kaigi on Rails 2021"
+  published_at: "2021-10-24"
+  date: "2021-10-22"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2021/talks/upinetree/
+
+    私が携わっている STORES というネットショップ開設サービスでは、この4月にショップオーナー向けの認証プロセスを一新しました。それまでは Rails アプリケーション内に実装した認証機能を利用していましたが、今では新しく構築したID基盤と OpenID Connect 準拠でサービス連携して認証するようになっています。このリリースは大きなトラブルもなく完了し、今も元気に動いていますが、リリースまでにはいくつもの難しい課題がありました。
+
+    ・既存の仕様、データ、UXなどの整合性との戦い
+    ・技術的負債と考古学
+    ・サービス個別の事情と共通基盤としての普遍性の葛藤
+    ・専門性の高い認証・認可の技術領域の学習
+    ・ユーザーへの影響の最小化とサービス無停止でのリリース
+
+    本発表ではこれらの課題に対し私達がどのように乗り越え、ID基盤の導入をリリースしたのかを振り返ります。なお、今回は既存サービスへの導入の過程を主題としてお話するため、ID基盤自体の技術セットやアーキテクチャには深くは触れません。
+
+    資料 https://speakerdeck.com/upinetree/stores-hefalseidji-pan-falsedao-ru-to-yuzaakauntofalseyi-xing-wozhen-rifan-tute
+
+
+    発表者
+    Takuya Matsumoto
+    GitHub https://github.com/upinetree
+    Twitter https://twitter.com/upinetree
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "IX27ReQlTi8"
+
+- title: "RailsエンジニアのためのNext.js入門"
+  raw_title: "RailsエンジニアのためのNext.js入門 / Kazuhito Hokamura"
+  speakers:
+    - Kazuhito Hokamura
+  event_name: "Kaigi on Rails 2021"
+  published_at: "2021-10-24"
+  date: "2021-10-22"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2021/talks/hokaccha/
+
+    Next.jsはReactをベースとしたWebフロントエンドのためのアプリケーションフレームワークです。Railsとは同じレイヤーのフレームワークなのでRailsに組み込んで使うような関係ではありません。しかし、近年においてはRailsはAPIモードでAPIだけを提供し、フロントエンドは別アプリケーションとして作るという構成も珍しくありません。そういったケースでフロントエンドのフレームワークとして有力な候補となるのがNext.jsです。
+
+    Next.jsの特徴として、パスベースのルーティングや自動的なパフォーマンスの最適化、ゼロコンフィグな開発環境、Static Generation や Server-side Rendering を簡単にできる仕組みなどがあります。これらの特徴はRailsと共通するところもあれば全く異なる考え方のものもあります。そういったNext.jsの特徴をRailsの機能と比較しながら解説し、Railsと組み合わせて使う場合のアーキテクチャや実装方法についても説明します。
+
+    資料 https://speakerdeck.com/hokaccha/railsenziniafalsetamefalsenext-dot-jsru-men
+
+
+    発表者
+    Kazuhito Hokamura
+    GitHub https://github.com/hokaccha
+    Twitter https://twitter.com/hokaccha
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "NIEj9avGam4"
+
+- title: "クローズしたはずのサービスが知らぬ間に蘇っていたのでクローズしきった話"
+  raw_title: "クローズしたはずのサービスが知らぬ間に蘇っていたのでクローズしきった話 / Ryunosuke Sato"
+  speakers:
+    - Ryunosuke Sato
+  event_name: "Kaigi on Rails 2021"
+  published_at: "2021-10-24"
+  date: "2021-10-22"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2021/talks/tricknotes/
+
+    「あれ、このサービス、クローズしたはずなのになんかまだ動いているような…!?」
+    そんな経験をされた方はいらっしゃるでしょうか。
+    わたしは10数年プログラマをやっていますが、遭遇したのは初めてでした。
+
+    このトークは、クローズしたサイトをドメイン・コンテンツ含め流用の上で一部改ざんされてのっとられていたので、調査から完全クローズに向けて進めていったという実際の履歴をお話します。
+    N=1の事例の話ではありますが、今後近しい状況に遭遇した方の助けになれば幸いです。
+
+    資料 https://speakerdeck.com/tricknotes/kurozusitahazufalsesabisugazhi-ranujian-nisu-tuteitafalsedekurozusikitutahua
+
+
+    発表者
+    Ryunosuke Sato
+    GitHub https://github.com/tricknotes
+    Twitter https://twitter.com/tricknotes
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "Ly46qy7Pxtc"
+
+## Day 2 - 2021-10-23
+
+- title: "学習者に聴く！Ruby on Rails 学習者の「今」"
+  raw_title: "学習者に聴く！Ruby on Rails 学習者の「今」 / Yohei Yasukawa"
+  speakers:
+    - Yohei Yasukawa
+  event_name: "Kaigi on Rails 2021"
+  published_at: "2021-10-24"
+  date: "2021-10-23"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2021/talks/yasulab/
+
+    YouTube から公開している「Railsチュートリアル完走者に聴く」という対談動画シリーズ（各回２０分〜５０分の動画）やプログラミングスクール合同コンテスト「editch」（全３回）にゲスト参加した経験から、誰がどんな背景で Ruby on Rails を学んでいるのか、また、そういった方々が開発したプロダクトなどをまとめ、Rails 学習者の「今」を参加者と共有します。
+
+    参考リンク
+    ・📺 YouTube - Ruby on Rails チュートリアル https://www.youtube.com/channel/UCgSPCgA1ksSPKg1Jp99EEFw
+    ・🏆editch |プログラミングスクール合同ポートフォリオコンテスト https://editch.org/
+    ・📊 数字で見る！Ruby/Rails 学習者の動向 - note https://note.com/yasslab/n/n4a2cbbe64eca?magazine_key=md778735d3f77
+
+    音声の都合により再収録したものが公開されています。こちらもご参照ください。
+    https://youtu.be/9dG8NQBOjmA
+
+
+    資料 https://speakerdeck.com/yasslab/creative-learning-cycle-on-rails
+
+
+    発表者
+    Yohei Yasukawa
+    GitHub https://github.com/yasulab
+    Twitter https://twitter.com/yasulab
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "s0Grxre51Pk"
+
+- title: "事業に向き合い続けたい私は、それでもRailsを使い続ける"
+  raw_title: "事業に向き合い続けたい私は、それでもRailsを使い続ける / Hideaki Ishii"
+  speakers:
+    - Hideaki Ishii
+  event_name: "Kaigi on Rails 2021"
+  published_at: "2021-10-24"
+  date: "2021-10-23"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2021/talks/danimal141/
+
+    私はエンジニアの責任とは「ただ技術をマスターすることではなく、技術を使って事業上の課題を解決すること」であると考えています。そしてそのための手段としてRailsは「Rails Wayに乗ることで本来やるべきコアな機能開発に集中することができる」非常に素晴らしいフレームワークです。実際に私はこれまで創業期のスタートアップや現職と約8年間、様々な事業課題と向き合い、その度にRailsを使ってそれらの課題を乗り越えてきました。
+
+    しかし近年は世の中の技術トレンドの変化も激しくなり、以前と比べて技術選定の難易度も上がってきました。React.jsやVue.js、TypeScript、API設計としてもRailsが採用しているRESTと比較してGraphQLが登場する等、特にフロントエンドまわりの技術進化は顕著です。そしてプロダクトとして求められるUI/UXもよりリッチになり、Rails単体よりもRailsと他の技術を組み合わせることでより最短で目的を達成できるようなケースも増えてきました。
+
+    今回のトークではGraphQLやReact.js、TypeScriptといった比較的モダンな技術を採用しつつも、Railsの良さを活かした開発事例として私のプロダクト開発についてお話させていただきます。そしてそれを通じて、私が何を大切に考え、どのような軸で技術選定や設計を行ってきたかをお伝えします。
+
+    資料 https://speakerdeck.com/danimal141/shi-ye-nixiang-kihe-isok-ketaisi-ha-soredemorailswoshi-isok-keru
+
+
+    発表者
+    Hideaki Ishii
+    GitHub https://github.com/danimal141
+    Twitter https://twitter.com/danimal141
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "zFwj-4VIhX4"
+
+- title: "マイクロサービス・アーキテクチャと共存する Ruby on Rails のアーキテクチャ的拡張 - その事例と可能性"
+  raw_title: "マイクロサービス・アーキテクチャと共存する Ruby on Rails のアーキテクチャ的拡張 - その事例と可能性 / Sohei Takeno"
+  speakers:
+    - Sohei Takeno
+  event_name: "Kaigi on Rails 2021"
+  published_at: "2021-10-24"
+  date: "2021-10-23"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2021/talks/Altech_2015/
+
+    近年、コンテナ技術やクラウドサービスの発展によって、必ずしも単一のプログラミング言語のみでシステムを構成しないケースも増えてきました。私たちのサービスにおいても、機械学習技術などの導入の必要から、5年前から Ruby 以外の言語と共存していく形で、マイクロサービス・アーキテクチャを段階的に導入してきました。
+
+    この取り組みの中で、Ruby on Rails 自体のアーキテクチャも見直しが必要になりました。例えば、通信に gRPC を採用する場合、HTTP を前提とした Rack の仕組みには乗ることができず、したがってコントローラー層も再定義する必要があります。ほかにも API スキーマの導入、API レスポンスの型付きの組み立て、ActiveRecord に依存しないデータのバッチローディング機構の導入などを行っています。
+
+    今回の発表では、これらの経験を踏まえて単一の統合システムとして設計された Ruby on Rails を Polyglot なマイクロサービス・アーキテクチャに適合させていくにあたって、どういった課題が一般的にあり、それを私たちのサービスにおいてはどのように解決したのかをお話しします。同じ課題を持っている方はもちろんのこと、アーキテクチャ拡張に対して開かれているという Rails の利点を見直す機会となり、今後の発展可能性の議論につながれば幸いです。
+
+    資料 https://speakerdeck.com/altech/the-architectural-extension-of-ruby-on-rails-to-fit-to-microservices
+
+
+    発表者
+    Sohei Takeno
+    GitHub https://github.com/Altech
+    Twitter https://twitter.com/Altech_2015
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "EqDue9R0qDw"
+
+- title: "before_actionとのつらくならない付き合い方"
+  raw_title: "before_actionとのつらくならない付き合い方 / しんくう"
+  speakers:
+    - shinkufencer
+  event_name: "Kaigi on Rails 2021"
+  published_at: "2021-10-24"
+  date: "2021-10-23"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2021/talks/shinkufencer/
+
+    before_actionは便利な機能が故に様々な使い方をしがちな機能の一つだと思っています。そのため安易に使ったbefore_actionが後々辛くなるケースというのも多いと思います。そのため、この発表では初級者から中級者の方向けに、 before_action :set_foo というscafoldで多くの人が見かける実装を切り口に辛くならないbefore_actionとのつらくならない付き合い方をご紹介できればと思っています。
+
+    資料 https://speakerdeck.com/shinkufencer/how-to-using-before-action-with-happy-in-rails
+
+    発表者
+    しんくう
+    GitHub https://github.com/shinkufencer
+    Twitter https://twitter.com/shinkuFencer
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "9d0ICyegG9Y"
+
+- title: "Safe Retry with Idempotency-Key Header"
+  raw_title: "Safe Retry with Idempotency-Key Header / ohbarye"
+  speakers:
+    - ohbarye
+  event_name: "Kaigi on Rails 2021"
+  published_at: "2021-10-24"
+  date: "2021-10-23"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2021/talks/ohbarye/
+
+    商品を注文する、顧客にお金を請求する、他人の口座に送金する…。このような、不可逆で二重に行われてほしくない処理をネットワーク越しにリクエストすることがしばしばあります。もしこれらの処理のリクエストにて通信が失敗するとどうなるでしょうか？
+
+    通信エラーに直面したクライアントはリトライするかもしれません。しかし1回目のリクエストでサーバ側の処理が完了していた場合、リトライにより処理が複数回行われてしまう可能性があります。
+
+    この問題を解決する鍵は冪等性です。サービス呼び出しが冪等、つまり「同一リクエストを何度受け取っても結果が変わらない」仕組みをサーバが備えていれば、クライアントは通信が成功するまでリトライできるようになります。
+
+    その仕組みの1つがIETF draftとして提出されているIdempotency-Key Headerです。これはRFC7231にて冪等ではないとされるPOST/PATCHリクエストを冪等にするためのソリューションで、PayPalやStripeなど一部ベンダーは既に類似実装を各社のAPIに適用しています。
+
+    このセッションではIdempotency-Key Headerが解決する課題とコンセプトを解説し、Rubyアプリケーションにおける実装例を紹介します。例の一つは私が携わる金融サービスで設計・実装したものであり、運用を通じて得られた知見も交えてお話します。
+
+    資料 https://speakerdeck.com/ohbarye/safe-retry-with-idempotency-key-header
+
+
+    発表者
+    ohbarye
+    GitHub https://github.com/ohbarye
+    Twitter https://twitter.com/ohbarye
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "WS4pFZ_dd6M"
+
+- title: "メトリクス可視化から始める Rails ウェブサーバーのチューニング"
+  raw_title: "メトリクス可視化から始める Rails ウェブサーバーのチューニング / s4ichi"
+  speakers:
+    - s4ichi
+  event_name: "Kaigi on Rails 2021"
+  published_at: "2021-10-24"
+  date: "2021-10-23"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2021/talks/s4ichi/
+
+    Puma や Unicorn といったウェブサーバーは、Rails アプリケーションをハイパフォーマンスに運用するために欠かせない存在です。これらを適切に設定することはパフォーマンス面で利点がある他、アプリケーションが動作するホストのリソースを効率良く活用することができるため、コストの削減に繋がる可能性があります。しかしながら、サーバーのプロセスやスレッド数の設定ひとつをとっても、動作環境やサービスのアクセス傾向に応じて設定すべき値も変わってくるため、秘伝の設定ですべて事足りるとも限りません。
+
+    本セッションでは Puma や Unicorn からメトリクスを収集・可視化し、Rails アプリケーションをチューニングしていく事例を紹介します。CPU やメモリの状況といった標準的なメトリクスはもちろん、ウェブサーバー特有のメトリクスも利用してチューニングするプロセスを、アクセス傾向が異なる複数のアプリケーションや isucon の問題を実例に解説します。
+
+    資料 https://speakerdeck.com/s4ichi/metorikusuke-shi-hua-karashi-meru-rails-uebusabafalsetiyuningu-kaigi-on-rails-2021
+
+
+    発表者
+    s4ichi
+    GitHub https://github.com/s4ichi
+    Twitter https://twitter.com/s4ichi
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "rrQPyuIxG9I"
+
+- title: "真の要求を捉え、データベース設計に反映させた話"
+  raw_title: "真の要求を捉え、データベース設計に反映させた話 / imaharu"
+  speakers:
+    - imaharu
+  event_name: "Kaigi on Rails 2021"
+  published_at: "2021-10-24"
+  date: "2021-10-23"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2021/talks/imaharuTech/
+
+    RailsはActiveRecordパターンを採用しているため、データベース設計がアプリケーションコードの品質に大きく影響します。
+    ステークホルダーの要求を理解することで、データベース設計にどのような変化が生じるのか、実際に作成したER図交え紹介します。
+
+    資料 https://docs.google.com/presentation/d/e/2PACX-1vQMGWBxPMd9Owf_Sna9f1B6wrtmDf4DCaCaorJpzBSDzCID39VLLIthM6z693nZcTX1JrIXEXIITGXc/pub?start=false&loop=false&delayms=3000&slide=id.p
+
+    発表者
+    imaharu
+    GitHub https://github.com/imaharu
+    Twitter https://twitter.com/imaharuTech
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "eqPA5A7elp0"
+
+- title: "Webサービス開発者としてスタートしてからOSS Contributionまでの道のり"
+  raw_title: "Webサービス開発者としてスタートしてからOSS Contributionまでの道のり / Masato Yamashita"
+  speakers:
+    - Masato Yamashita
+  event_name: "Kaigi on Rails 2021"
+  published_at: "2021-10-24"
+  date: "2021-10-23"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2021/talks/M_Yamashii/
+
+    Webサービス開発者としてスタートして1年半が過ぎました。
+
+    何も分からなかった状態から、現在は仕事でサービスを改善しつつ、プライベートで記事やOSS Contributionを出すようになりました。
+    ここに至るまでどうやって学んでいったのか、Contributionするまでどんな道のりを歩いてきたのか、Rails初心者の方やOSS Contributionをしてみたい方にお届けします。
+
+    資料 https://speakerdeck.com/myamashii/websabisukai-fa-zhe-tositesutatositekaraoss-contributionmadefalsedao-falseri
+
+
+    発表者
+    Masato Yamashita
+    GitHub https://github.com/M-Yamashita01
+    Twitter https://twitter.com/M_Yamashii
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "zy_x3ewQU84"
+
+- title: "Railsバージョンを倍にしたサービスのそれまでとそれから"
+  raw_title: "Railsバージョンを倍にしたサービスのそれまでとそれから / Shu OGAWARA"
+  speakers:
+    - Shu OGAWARA
+  event_name: "Kaigi on Rails 2021"
+  published_at: "2021-10-24"
+  date: "2021-10-23"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2021/talks/expajp/
+
+    本発表は二部構成になっています。
+
+    【前半】
+    Rails 3で構築されたサービスが、Rails 4へのバージョンアップすら不可能な状態から、3年がかりのリファクタリングを経て一気にRails 6にするまでを話します。
+    なぜバージョンアップ不可能なサービスになってしまったのか、どのようにリファクタリングを進めたのか、を開発と運用の両面から検証します。
+
+    【後半】
+    前半の内容を足がかりとして、継続的に技術的負債を返却するチームにするまでを話します。
+    まず、大規模リファクタリングとRailsバージョンが上がったことのそれぞれについて、メリットを挙げていきます。
+    また、新機能開発および日々の機能改修を進める傍らで、いかに負債を増やさず、あるいは解消していっているかを説明します。
+
+    Railsバージョンが上げられない現場で苦しい思いをしている方々への事例の提供や、バージョンアップはしているけれど負債が放置されてもやもやしている方々への処方箋となることを目指して話します。
+
+    資料 https://speakerdeck.com/linkers_tech/till-and-from-that-time-of-a-web-service-whose-rails-version-was-doubled-number-kaigionrails
+
+
+    発表者
+    Shu OGAWARA
+    GitHub https://github.com/expajp
+    Twitter https://twitter.com/expajp
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "g1jKTvFuuXM"
+
+- title: "logrageの次を考える — Ruby on Railsがデフォルトで出力するログの謎に迫る"
+  raw_title: "logrageの次を考える — Ruby on Railsがデフォルトで出力するログの謎に迫る / Yutaka Kamei"
+  speakers:
+    - Yutaka Kamei
+  event_name: "Kaigi on Rails 2021"
+  published_at: "2021-10-24"
+  date: "2021-10-23"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2021/talks/yykamei/
+
+    Ruby on Railsのアプリケーションをproductionで運用する場合、出力されるログをFluentdを介して、あるいは直接、Datadogなどの監視ツールに収集することが多いと思います。その際、どのようにログを収集するべきなのかについてドキュメントではlogrageを使った方法が紹介されることが多いです。logrageはRailsが出力するリクエストログなどを構造化されたデータ（多くの場合JSON）に整形してくれるので非常に便利なGemですが、現在logrageのrepositoryがあまり活発ではないのを少し心配しています。このままだと、Ruby on Railsのバージョンアップの際に、互換性などの観点でトラブルが発生するかもしれません。いざというときのために、「そもそもlogrageって何をやっているの？」ということを突き詰め、「logrageを使わないアプローチもあるのではないか？」という謎に迫っていきたいと思います。
+
+    資料 https://docs.google.com/presentation/d/e/2PACX-1vT7IpjvurfAeEatc0Nlq-eC9SXsmJcktxKBragCScJrfhCbudYKnOLtdHBchsqfK7EveHEE2bQS3UKf/pub?start=false&loop=false&delayms=3000&slide=id.p
+
+
+    発表者
+    Yutaka Kamei
+    GitHub https://github.com/yykamei
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "WYMDdBhnLck"
+
+- title: "Cache on Rails"
+  raw_title: "Cache on Rails / Masataka Pocke Kuwabara"
+  speakers:
+    - Masataka Pocke Kuwabara
+  event_name: "Kaigi on Rails 2021"
+  published_at: "2021-10-24"
+  date: "2021-10-23"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2021/talks/pocke/
+
+    We can use many cache mechanisms on Rails. You will know the cache mechanisms and be able to apply them to your application by this talk.
+    私達は様々なキャッシュをRailsで使っています。このトークを聞くと、そのようなキャッシュをあなたのRailsアプリケーションで使えるようになるでしょう。
+
+    I'll talk in Japanese, but the slides are written in English.
+
+    資料 https://docs.google.com/presentation/d/e/2PACX-1vR0xHJzkJ6kW26mROTebtOBGFHbMMEi9zFg69BOeSSZkDMqR5ONoMjZTjLeCPBpJH-yWKumEVuSkggR/pub?start=false&loop=false&delayms=3000&slide=id.p
+
+
+    発表者
+    Masataka Pocke Kuwabara
+    GitHub https://github.com/pocke
+    Twitter https://twitter.com/p_ck_
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "CZOXtWvo7jg"
+
+- title: "Keynote: My road as a Rails Contributor"
+  raw_title: 'Keynote "My road as a Rails Contributor" / Rafael França'
+  speakers:
+    - Rafael Mendonça França
+  event_name: "Kaigi on Rails 2021"
+  published_at: "2021-10-24"
+  date: "2021-10-23"
+  language: "english"
+  description: |-
+    https://kaigionrails.org/2021/talks/rafaelfranca/
+
+    RailsコアチームのメンバーであるRafaelさんによる基調講演です。
+    Rafaelさん自身がRailsへの最多コントリビューターになるまでの軌跡を語ります。
+    OSSに関わりたい人や自分のやりたいことを探している人など、全ての開発者に向けたトークです。
+
+    発表者
+    Rafael França
+    GitHub https://github.com/rafaelfranca
+    Twitter https://twitter.com/rafaelfranca
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "0NNhBIgtOzA"
