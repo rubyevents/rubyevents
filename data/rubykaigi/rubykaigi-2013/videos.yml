@@ -594,34 +594,38 @@
   published_at: "2013-06-21"
   video_provider: "vimeo"
   video_id: "68850145"
-  language: "japanese"
+  language: "english"
   description: ""
   talks:
-    - title: "Lightning Talk: Show Your Opensource Activities w/ ScreenX TV"
-      raw_title: "Show Your Opensource Activities w/ ScreenX TV"
+    - title: "Lightning Talk: Challenges building a call center with 3rd party APIs"
+      raw_title: "Challenges building a call center with 3rd party APIs"
       event_name: "RubyKaigi 2013"
-      start_cue: "TODO"
-      end_cue: "TODO"
+      start_cue: "00:55"
+      end_cue: "06:10"
+      thumbnail_cue: "01:04"
       date: "2013-05-31"
       published_at: "2013-06-21"
       video_provider: "parent"
-      video_id: "yasukawa-yohai-lightning-talk-rubykaigi-2013"
+      video_id: "christian-sousa-lightning-talk-rubykaigi-2013"
+      language: "english"
       speakers:
-        - YASUKAWA Yohei
+        - Christian Sousa
       description: |-
-        Knowing WHAT you code is easy; just check your GitHub account, but knowing HOW you code is still difficult. So, we made ScreenX TV, an opensource terminal broadcasting tool, which lets you easily broadcast your terminal to the world.
+        Even with the help of third party APIs (Twilio, Tropo, Adhersion, etc.) that provide telephony functionality, there are mayor design challenges involved when building a call center.
 
-        In this lightning talk, you'll learn how to broadcast, how it works, and how it's used by terminal broadcasters. ScreenX TV http://screenx.tv/
+        But thanks to the ruby community and the availability of incredible gems and libraries this task is now simple enough that just a few developers can build and replicate full feature telephony systems.
 
     - title: "Lightning Talk: A case study on exporting local culture with Rails application"
       raw_title: "A case study on exporting local culture with Rails application"
       event_name: "RubyKaigi 2013"
-      start_cue: "TODO"
-      end_cue: "TODO"
+      start_cue: "07:15"
+      end_cue: "12:12"
+      thumbnail_cue: "07:20"
       date: "2013-05-31"
       published_at: "2013-06-21"
       video_provider: "parent"
       video_id: "yuki-torii-lightning-talk-rubykaigi-2013"
+      language: "english"
       speakers:
         - Yuki Torii
       description: |-
@@ -633,41 +637,45 @@
 
         In this talk, we show our experience and key points of transferring one local culture to other cultures using Rails web application.
 
-    - title: "Lightning Talk: Challenges building a call center with 3rd party APIs"
-      raw_title: "Challenges building a call center with 3rd party APIs"
+    - title: "Lightning Talk: The Pragmatic Glitch"
+      raw_title: "The Pragmatic Glitch"
       event_name: "RubyKaigi 2013"
-      start_cue: "TODO"
-      end_cue: "TODO"
+      start_cue: "12:28"
+      end_cue: "16:25"
+      thumbnail_cue: "12:28"
+      language: "english"
       date: "2013-05-31"
       published_at: "2013-06-21"
       video_provider: "parent"
-      video_id: "christian-sousa-lightning-talk-rubykaigi-2013"
+      video_id: "shimpei-makimoto-lightning-talk-rubykaigi-2013"
       speakers:
-        - Christian Sousa
+        - Shimpei Makimoto
       description: |-
-        Even with the help of third party APIs (Twilio, Tropo, Adhersion, etc.) that provide telephony functionality, there are mayor design challenges involved when building a call center.
+        The meaning of glitch is originally unexpected results by malfunctions. By extension, it stands for phenomena (or arts using them) that are caused by errors in various media. In this presentation, I'll show some image glitch ways that beginners can try easily using Ruby.
 
-        But thanks to the ruby community and the availability of incredible gems and libraries this task is now simple enough that just a few developers can build and replicate full feature telephony systems.
-
-    - title: "Lightning Talk: FlawDetector - finding ruby code's flaw by static analysis"
-      raw_title: "FlawDetector - finding ruby code's flaw by static analysis"
+    - title: "Lightning Talk: Using flash cards to improve your Ruby"
+      raw_title: "Using flash cards to improve your Ruby"
       event_name: "RubyKaigi 2013"
-      start_cue: "TODO"
-      end_cue: "TODO"
+      start_cue: "16:38"
+      end_cue: "21:45"
+      thumbnail_cue: "16:40"
+      language: "english"
       date: "2013-05-31"
       published_at: "2013-06-21"
       video_provider: "parent"
-      video_id: "rikiya-ayukawa-lightning-talk-rubykaigi-2013"
+      video_id: "peter-evjan-lightning-talk-rubykaigi-2013"
       speakers:
-        - Rikiya Ayukawa
+        - Peter Evjan
       description: |-
-        I will introduce my static analysis tool called FlawDetector. It analyzes RubyVM bytecode and detects some "flaws" in ruby code. "flaws" means some bugs and redundant code, which is similar to bug pattern of FindBugs - a static analysis tool of java bytecode. I wish you use FlawDetector and improve it with me.
+        When it comes to memorizing the innards of a programming language in order to understand it better, nothing beats flash cards with spaced repetition in my experience. This presentation will show you how you can apply the same technique to make sure you remember everything you want to remember about Ruby (or anything else for that matter).
 
     - title: "Lightning Talk: Log Strategy at DeNA with Haikanko - a management tool of fluentd cluster"
       raw_title: "Log Strategy at DeNA with Haikanko - a management tool of fluentd cluster"
       event_name: "RubyKaigi 2013"
-      start_cue: "TODO"
-      end_cue: "TODO"
+      start_cue: "22:17"
+      thumbnail_cue: "22:18"
+      end_cue: "26:45"
+      language: "english"
       date: "2013-05-31"
       published_at: "2013-06-21"
       video_provider: "parent"
@@ -681,61 +689,13 @@
 
         Haikanko is written with ruby / sinatra / erb / mina (yet another capistrano).
 
-    - title: "Lightning Talk: The Pragmatic Glitch"
-      raw_title: "The Pragmatic Glitch"
-      event_name: "RubyKaigi 2013"
-      start_cue: "TODO"
-      end_cue: "TODO"
-      date: "2013-05-31"
-      published_at: "2013-06-21"
-      video_provider: "parent"
-      video_id: "shimpei-makimoto-lightning-talk-rubykaigi-2013"
-      speakers:
-        - Shimpei Makimoto
-      description: |-
-        The meaning of glitch is originally unexpected results by malfunctions. By extension, it stands for phenomena (or arts using them) that are caused by errors in various media. In this presentation, I'll show some image glitch ways that beginners can try easily using Ruby.
-
-    - title: "Lightning Talk: Ruby Taiwan Community: We share, we promote, we celebrate."
-      raw_title: "Ruby Taiwan Community: We share, we promote, we celebrate."
-      event_name: "RubyKaigi 2013"
-      start_cue: "TODO"
-      end_cue: "TODO"
-      date: "2013-05-31"
-      published_at: "2013-06-21"
-      video_provider: "parent"
-      video_id: "mu-fan-teng-lightning-talk-rubykaigi-2013"
-      speakers:
-        - Mu-Fan Teng
-      description: |-
-        Introduce the history, activities and achievements of Ruby Taiwan Community and talk about what I have learned from the community.
-
-    - title: "Lightning Talk: Image resizing and cache Engine by Sinatra"
-      raw_title: "Image resizing and cache Engine by Sinatra"
-      event_name: "RubyKaigi 2013"
-      start_cue: "TODO"
-      end_cue: "TODO"
-      speakers:
-        - Chikahiro Tokoro
-      date: "2013-05-31"
-      published_at: "2013-06-21"
-      slides_url: "https://speakerdeck.com/kibitan/rubykaigi-2013-lightning-talk-kibitan"
-      video_provider: "parent"
-      video_id: "chikahiro-tokoro-lightning-talk-rubykaigi-2013"
-      language: "english"
-      description: |-
-        Realtime resizing and caching images engine with GET Parameters made by Sinatra.
-
-        It's useful to use as The Image Server with big web service using many images.
-
-        And also useful to fit the image size to smartphone or mobile views without time and effort.
-
-        https://rubykaigi.org/2013/lightning_talks/#kibitan
-
     - title: "Lightning Talk: a test code generator for RSpec users"
       raw_title: "a test code generator for RSpec users"
       event_name: "RubyKaigi 2013"
-      start_cue: "TODO"
-      end_cue: "TODO"
+      start_cue: "27:18"
+      end_cue: "31:10"
+      thumbnail_cue: "27:20"
+      language: "english"
       date: "2013-05-31"
       published_at: "2013-06-21"
       video_provider: "parent"
@@ -757,25 +717,13 @@
 
         I'll show some examples about rspec-kickstarter in this talk.
 
-    - title: "Lightning Talk: Using flash cards to improve your Ruby"
-      raw_title: "Using flash cards to improve your Ruby"
-      event_name: "RubyKaigi 2013"
-      start_cue: "TODO"
-      end_cue: "TODO"
-      date: "2013-05-31"
-      published_at: "2013-06-21"
-      video_provider: "parent"
-      video_id: "peter-evjan-lightning-talk-rubykaigi-2013"
-      speakers:
-        - Peter Evjan
-      description: |-
-        When it comes to memorizing the innards of a programming language in order to understand it better, nothing beats flash cards with spaced repetition in my experience. This presentation will show you how you can apply the same technique to make sure you remember everything you want to remember about Ruby (or anything else for that matter).
-
     - title: "Lightning Talk: Introduction of '3dcg-arts.net'"
       raw_title: "Introduction of '3dcg-arts.net'"
       event_name: "RubyKaigi 2013"
-      start_cue: "TODO"
-      end_cue: "TODO"
+      start_cue: "31:48"
+      end_cue: "36:36"
+      thumbnail_cue: "31:52"
+      language: "english"
       date: "2013-05-31"
       published_at: "2013-06-21"
       video_provider: "parent"
@@ -784,6 +732,79 @@
         - Hiroyuki Inoue
       description: |-
         I would like to talk about the use of rspec and CI (Jenkins) to improve reliability of 3D computer graphics models conversion software. I'll introduce '3dcg-arts.net', which provides sharing (publish, browse, evaluate, etc) 3D computer graphics works on web browsers. In this service, we developed a software to convert 3D models to a common format for convenient view on web browsers and use rspec and CI for reliability check.
+
+    - title: "Lightning Talk: FlawDetector - finding ruby code's flaw by static analysis"
+      raw_title: "FlawDetector - finding ruby code's flaw by static analysis"
+      event_name: "RubyKaigi 2013"
+      start_cue: "37:15"
+      end_cue: "41:30"
+      thumbnail_cue: "37:16"
+      language: "english"
+      date: "2013-05-31"
+      published_at: "2013-06-21"
+      video_provider: "parent"
+      video_id: "rikiya-ayukawa-lightning-talk-rubykaigi-2013"
+      speakers:
+        - Rikiya Ayukawa
+      description: |-
+        I will introduce my static analysis tool called FlawDetector. It analyzes RubyVM bytecode and detects some "flaws" in ruby code. "flaws" means some bugs and redundant code, which is similar to bug pattern of FindBugs - a static analysis tool of java bytecode. I wish you use FlawDetector and improve it with me.
+
+    - title: "Lightning Talk: Show Your Opensource Activities w/ ScreenX TV"
+      raw_title: "Show Your Opensource Activities w/ ScreenX TV"
+      event_name: "RubyKaigi 2013"
+      start_cue: "41:42"
+      end_cue: "46:50"
+      thumbnail_cue: "41:44"
+      language: "english"
+      date: "2013-05-31"
+      published_at: "2013-06-21"
+      video_provider: "parent"
+      video_id: "yasukawa-yohai-lightning-talk-rubykaigi-2013"
+      speakers:
+        - YASUKAWA Yohei
+      description: |-
+        Knowing WHAT you code is easy; just check your GitHub account, but knowing HOW you code is still difficult. So, we made ScreenX TV, an opensource terminal broadcasting tool, which lets you easily broadcast your terminal to the world.
+
+        In this lightning talk, you'll learn how to broadcast, how it works, and how it's used by terminal broadcasters. ScreenX TV http://screenx.tv/
+
+    - title: "Lightning Talk: Ruby Taiwan Community: We share, we promote, we celebrate."
+      raw_title: "Ruby Taiwan Community: We share, we promote, we celebrate."
+      event_name: "RubyKaigi 2013"
+      start_cue: "47:00"
+      end_cue: "52:10"
+      thumbnail_cue: "47:01"
+      language: "english"
+      date: "2013-05-31"
+      published_at: "2013-06-21"
+      video_provider: "parent"
+      video_id: "mu-fan-teng-lightning-talk-rubykaigi-2013"
+      speakers:
+        - Mu-Fan Teng
+      description: |-
+        Introduce the history, activities and achievements of Ruby Taiwan Community and talk about what I have learned from the community.
+
+    - title: "Lightning Talk: Image resizing and cache Engine by Sinatra"
+      raw_title: "Image resizing and cache Engine by Sinatra"
+      event_name: "RubyKaigi 2013"
+      start_cue: "52:18"
+      end_cue: "55:22"
+      thumbnail_cue: "52:24"
+      language: "english"
+      speakers:
+        - Chikahiro Tokoro
+      date: "2013-05-31"
+      published_at: "2013-06-21"
+      slides_url: "https://speakerdeck.com/kibitan/rubykaigi-2013-lightning-talk-kibitan"
+      video_provider: "parent"
+      video_id: "chikahiro-tokoro-lightning-talk-rubykaigi-2013"
+      description: |-
+        Realtime resizing and caching images engine with GET Parameters made by Sinatra.
+
+        It's useful to use as The Image Server with big web service using many images.
+
+        And also useful to fit the image size to smartphone or mobile views without time and effort.
+
+        https://rubykaigi.org/2013/lightning_talks/#kibitan
 
 - title: "Ruby Committers vs. the World"
   raw_title: "[JA] Ruby Committers vs. the World"
