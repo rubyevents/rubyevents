@@ -56,10 +56,6 @@ class User < ApplicationRecord
       .strip.downcase
   end
 
-  after_update if: :password_digest_previously_changed? do
-    sessions.where.not(id: Current.session).delete_all
-  end
-
   def default_watch_list
     @default_watch_list ||= watch_lists.first || watch_lists.create(name: "Favorites")
   end
