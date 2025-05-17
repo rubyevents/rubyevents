@@ -21,8 +21,8 @@ class Sessions::OmniauthController < ApplicationController
 
     if @user.persisted?
       @user.update(name: name) if name.present?
-      session_record = @user.sessions.create!
-      cookies.signed.permanent[:session_token] = {value: session_record.id, httponly: true}
+
+      sign_in @user
 
       redirect_to redirect_to_path, notice: "Signed in successfully"
     else
