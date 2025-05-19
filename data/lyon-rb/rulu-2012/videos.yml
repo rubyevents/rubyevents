@@ -3,7 +3,7 @@
 ---
 ## Day 1 - 2013-06-22
 
-- title: "The Shy Developer Syndrome"
+- title: "Keynote: The Shy Developer Syndrome"
   raw_title: "The Shy Developer Syndrome - Dave Neary - RuLu 2012"
   speakers:
     - Dave Neary
@@ -12,12 +12,11 @@
   announced_at: "TODO"
   published_at: "2012-08-24"
   description: |-
-    Keynote - RuLu 2012 - http://rulu.eu
-
     The hardest part of joining an open source project for a professional developer is being completely transparent on a mailing list, and submitting your work to public peer review. When you are used to talking about technical details with your manager and colleagues, writing an email to a mailing list can be very daunting: Am I exposing some confidential information here? Have I made a mistake which someone will criticise? Is this message important enough to make an announcement on a public mailing list?
-    I call this "Shy Developer Syndrome". Developers used to working in a commercial software development environment can clam up when asked to work in public.
-    There are some straightforward ways to help experienced developers gain confidence in working in public forums, and gain the respect of their peers in open source projects. This presentation will outline some of the strategies which have worked in the past for me.
 
+    I call this "Shy Developer Syndrome". Developers used to working in a commercial software development environment can clam up when asked to work in public.
+
+    There are some straightforward ways to help experienced developers gain confidence in working in public forums, and gain the respect of their peers in open source projects. This presentation will outline some of the strategies which have worked in the past for me.
 
     Dave is a frequent speaker on GNOME, including accessibility, mobile, community processes and other aspects of the project, Dave used to be a freelance consultant specialising in the relationship between companies and free software communities. He is the former maemo.org docmaster, and product & community manager for the OpenWengo project. Dave recently joined Red Hat to work in the "Open Source and Standards" team.
   video_provider: "youtube"
@@ -32,10 +31,10 @@
   announced_at: "TODO"
   published_at: "2012-08-24"
   description: |-
-    RuLu 2012 Talk - http://rulu.eu
-
     Odors are communication devices. They exist for a reason and are usually trying to tell us something.
+
     Our code smells and it is trying to tell us what is wrong. Does a test case require a lot of setup? Maybe the code being tested is doing too much, or it is not isolated enough for the test? Does an object have an abundance of instance variables? Maybe it should be split into multiple objects? Is a view brittle? Maybe it is too tightly coupled to a model, or maybe the logic needs abstracted into an object that can be tested?
+
     In this talk, I will walk through code from projects that I work on every day, looking for smells that indicate problems, understanding why it smells, what the smell is trying to tell us, and how to refactor it.
 
     Brandon is a developer at GitHub. He spends most of his time crafting beautiful code for Gaug.es and SpeakerDeck.com. Brandon has created and maintains many open-source projects, and shares about his endeavors at opensoul.org.
@@ -51,8 +50,6 @@
   announced_at: "TODO"
   published_at: "2012-08-24"
   description: |-
-    RuLu 2012 Talk - http://rulu.eu
-
     Constants are a rich and under-documented topic in Ruby. We are going to cover them in detail, their relationship with classes and modules, nesting, resolution algorithms, dynamic API, etc. At the end of the talk we will connect the dots to explain at a high level how constant autoloading works in Ruby on Rails.
 
     Everlasting student, Rails core team, Ruby Hero, with a wonderful daughter, Kinesis keyboard user, Segway glider, Gold Winger, I also breathe.
@@ -68,8 +65,6 @@
   announced_at: "TODO"
   published_at: "2012-08-24"
   description: |-
-    RuLu 2012 Talk - http://rulu.eu
-
     This talk will show how to use ActiveWarehouse-ETL to extract, transform and move your data around in Ruby, and what other people do in real life with this toolkit.
 
     Thibaut Barrère is a Ruby freelancer since 2005, doing data processing on a regular basis since then too. He is also bootstrapping a Rails-based SaaS product WiseCashHQ.
@@ -90,7 +85,6 @@
     Sleep: we all do it, and yet somehow it's hard (as most of us can attest every morning). It's also really relevant: as thinkers, creators, and problem solvers, anything that makes our brains less effective matters. Missed sleep makes a difference -- even two fewer hours a night quickly produce measurable cognitive impairment. Things get more interesting when we look at why it's so hard: our sleep cycles are determined by our internal clocks, which often put us in conflict with society's timetables, leaving many of us in a state of "social jet lag", as if we'd been traveling a timezone or more every day. That's not how any of us want to code (or live), I think, and by understanding how and why so many of us are constantly tired, we can start to make things better.
 
     Alex Koppel is Just Another Rails Developer at 6Wunderkinder and the author of the Koala Facebook gem. Before joining the 6W team in Berlin, he helped build a leading social marketing platform, led part of a massive healthcare IT installation in California, and moonlighted as an online bookseller. An amateur cook, eager language learner, and inveterate book reader, Alex dual majored in computer science and scavenger hunts at the University of Chicago.
-
   video_provider: "youtube"
   video_id: "-jQRuSjVeu0"
 
@@ -118,8 +112,6 @@
   announced_at: "TODO"
   published_at: "2012-08-24"
   description: |-
-    RuLu 2012 Talk - http://rulu.eu
-
     Ruby developers are living in the world of Active Record. No matter what ORM you're using, it's an implementation of the Active Record pattern. There's been a recent discussion in our community about separating business logic from the persistence concerns. People are experimenting with different approaches but they still use an ActiveRecord ORM under the hood.
     In this presentation I will give you an introduction to the development of DataMapper 2 - the first true implementation of the Data Mapper pattern in Ruby language. I will talk a little bit about ORM patterns and show you core parts of DM2 that already exist and the ones we're going to build soon.
 
@@ -140,7 +132,6 @@
     infrastructure.
 
     Thorben is the former founder of "kopfmaschine", a German Rails shop located in Bremen and now working to make the cloud a better place for developers at Engine Yard in San Francisco. He is living and breathing Ruby since his days at University where he graduated with his thesis on how to scale large Rails applications.
-
   video_provider: "youtube"
   video_id: "BBml-8p-O8E"
 
@@ -185,11 +176,10 @@
   announced_at: "TODO"
   published_at: "2012-08-24"
   description: |-
-    RuLu 2012 Talk - http://rulu.eu
-
     What does really happen when we call a method? How do the different Ruby implementations actually figure out what code to execute? What plumbing is going on under the hood to get a speedy dispatch? In this talk we will have a look at the internals of the the major Ruby implementations, focusing on their dispatch. From look-up tables and call site caches, to inlining and what on earth is invokedynamic? Fear not, all will be explained!
 
     As current maintainer of Sinatra, Konstantin is an Open Source developer by heart. Ruby has become his language of choice since 2005. He regularly contributes to different widespread projects, like Rubinius, Rack, Travis, Rails and MRI.
+
     He currently holds the position of "Berry Sparkling Lord" at Travis CI.
   video_provider: "youtube"
   video_id: "NG8goJpbKk0"
@@ -233,7 +223,6 @@
   announced_at: "TODO"
   published_at: "2012-08-24"
   description: |-
-
     Gog aims to help developers to insert changelog data inside git commits. Gog allows to create changelogs based on commit data and tagged commits.
 
     @thomasdarde
@@ -252,7 +241,6 @@
     Ruby saved me from depression.
 
     @jevy
-
   video_provider: "youtube"
   video_id: "fDIEq92Mh6c"
 
@@ -321,7 +309,6 @@
   description: |-
     Everyone knows the rule "fat models, thin controllers". It's really efficient when it comes to simple applications, but when we have an enterprise application, suddenly our models seem to look a bit overweight. Actually they are fat and ugly. I want to show a few examples of using DCI architectural pattern (which is complementary to MVC pattern) with Rails as a potential solution for these problems. My personal goal is to encourage people to experiment with the code and thinking outside the box (Rails box). Start thinking through domain model, not database design, to look at Datamapper pattern and DDD concepts. However, DCI is a good start to enter this enterprise world.
 
-
     Marcin is from Poland where he is working as a Senior Ruby Developer at Applicake. Before joining a ruby community Marcin spent years struggling with developing huge applications in PHP in several companies. He has an MSc in Applied Computer Science.
   video_provider: "youtube"
   video_id: "GeGAtGhgPeU"
@@ -336,7 +323,6 @@
   published_at: "2012-08-24"
   description: |-
     You know you should be testing all the time, but do you know why you are testing all the time? One of the main benefits of testing all the time is that it lets you refactor with impunity. Unfortunately too many times we leave the "refactor" out of the red-green-refactor. In this talk I will convince you that you should be refactoring all the time and I'll show you some of the techniques on how you can do it. With good refactoring techniques and regular refactoring even the hairiest of codebases can be tamed.
-
 
     Anthony Eden is the founder of DNSimple and the perpetrator of numerous open source projects such as ActiveWarehouse and Rails SQL Views. Anthony has also contributed to a wide variety of open source projects over the past 17 years as a software developer across a variety of languages including Java, Python and Ruby. Anthony currently lives near Montpellier, France.
   video_provider: "youtube"
