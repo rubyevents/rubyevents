@@ -1,7 +1,8 @@
 ---
 - title: "Opening Keynote Day 1"
   raw_title: "Keynote"
-  description:
+  event_name: "RailsConf 2025"
+  description: ""
   speakers:
     - TBA
   date: "2025-07-08"
@@ -13,6 +14,7 @@
 
 - title: "Startups on Rails in Past, Present and Future"
   raw_title: "Startups on Rails in Past, Present and Future"
+  event_name: "RailsConf 2025"
   description: |-
     In 2025 Ruby on Rails continues to power successful startups: during the last 12 months one of them became the leading AI-powered app builder, another raised $150M, and another filed for IPO. But let’s put things into perspective and explore how the essence of Rails’ appeal to founders since the beginning and into the future.
 
@@ -32,6 +34,7 @@
 
 - title: "Development Speed Optimizations in Rails 8"
   raw_title: "Development Speed Optimizations in Rails 8"
+  event_name: "RailsConf 2025"
   description: |-
     The release of Rails 8 included several speed optimizations for development, especially for larger applications. Let’s talk about what they are, and why they matter. In this talk, you’ll learn about why the Rails boot process is so important, and the changes my team and I made to initializers, file watching, and route drawing.
   speakers:
@@ -45,6 +48,7 @@
 
 - title: "Derailing Our Application: How and Why We Are Decoupling Our Code from Rails"
   raw_title: "Derailing Our Application: How and Why We Are Decoupling Our Code from Rails"
+  event_name: "RailsConf 2025"
   description: |-
     Cisco Meraki is probably the largest Rails shop you’ve never heard of. Our 2 million line Rails monolith has been under continuous development since 2007. As with any large codebase, ours is not without challenges. In “Derailing Our Application,” we share how our architecture has evolved to decouple 800,000 lines of Ruby code from Rails constructs in order to enable us to scale our team to 1,000 engineers and beyond without losing the benefits of Rails. Join us on the track less traveled! All aboard!
   speakers:
@@ -59,6 +63,7 @@
 
 - title: "Yes, You Can Work on Rails & any other Gem"
   raw_title: "Yes, You Can Work on Rails & any other Gem"
+  event_name: "RailsConf 2025"
   description: |-
     Have you ever wanted to dig into the Rails source, but it just seems too daunting?
 
@@ -76,6 +81,7 @@
 
 - title: "The Ghosts of Action View Cache"
   raw_title: "The Ghosts of Action View Cache"
+  event_name: "RailsConf 2025"
   description: |
     It's Railsconf Eve and you're trying to sleep, but you keep being awoken by ghosts trying to tell you about Action View! You're taken to the past, where you learn about Russian Doll Caching. You're shown the present, where brand new tools are built on Action View's foundations. And finally you're shown the future, where Rails applications are more powerful than ever.
 
@@ -91,6 +97,7 @@
 
 - title: "Rails Frontend Evolution: It Was a Setup All Along"
   raw_title: "Rails Frontend Evolution: It Was a Setup All Along"
+  event_name: "RailsConf 2025"
   description: |-
     Remember when Rails dominated the frontend, then seemingly retreated to API-only mode? Plot twist: that wasn't Rails giving up—it was setting the stage for a triumphant return.
 
@@ -110,6 +117,7 @@
 
 - title: "Cache = Cash! 2.0"
   raw_title: "Cache = Cash! 2.0"
+  event_name: "RailsConf 2025"
   description: |-
     Back in 2013, I gave a talk at RailsConf titled "Cache = Cash!", where I explored how caching can dramatically improve Rails performance. A decade later, caching has only become more powerful — but also more dangerous. In this updated session, we’ll go beyond the official Rails documentation and explore advanced caching techniques that can significantly boost performance — if used wisely.
 
@@ -176,6 +184,7 @@
 
 - title: "Evolution of Rails within RubyGems.org"
   raw_title: "Evolution of Rails within RubyGems.org"
+  event_name: "RailsConf 2025"
   description: |-
     As a 16 year old open source Rails app, Rubygems.org can tell a story of how building and maintaining a Rails app has changed over the years.  Join us as we progress from its creation in 2009 until today, exploring how things have changed and what we've learned. We dig into deploying, handling gem dependencies, background processing, web servers, security, and the frontend approaches.  We'll wrap up with our thoughts on the future of security and compliance.
   speakers:
@@ -190,6 +199,7 @@
 
 - title: "Understanding Ruby Web Server Internals: Puma, Falcon, and Pitchfork Compared"
   raw_title: "Understanding Ruby Web Server Internals: Puma, Falcon, and Pitchfork Compared"
+  event_name: "RailsConf 2025"
   description: |-
     As Ruby developers, we often focus on our application code, but the choice of web server can significantly impact performance, scalability, and resource efficiency.
 
@@ -212,6 +222,7 @@
 
 - title: "Keeping the Rails Magic Alive After 18 Years"
   raw_title: "Keeping the Rails Magic Alive After 18 Years"
+  event_name: "RailsConf 2025"
   description: |-
     Hear from someone who wrote the first line of code for a Rails app started in 2007 that's over 3 million lines of code today. Learn from our journey migrating to a Component Based Rails Application (CBRA) and tools we've open sourced along the way which you may not have heard about, but can help with any Rails application.
 
@@ -232,6 +243,7 @@
 
 - title: "Master the Rails Asset Pipeline: Best Practices for Apps & Gems"
   raw_title: "Master the Rails Asset Pipeline: Best Practices for Apps & Gems"
+  event_name: "RailsConf 2025"
   description: |-
     We've all faced it - asset pipeline issues blocking that Friday deploy. From mysterious JavaScript loads to incorrect asset paths in your gems, these roadblocks are frustrating. Learn to master Rails assets from development to production, with practical tips for managing all asset types. Walk away with debugging techniques and optimization strategies you can apply instantly to your apps and gems.
 
@@ -255,14 +267,17 @@
     The talk will have snippets (with gists attached for future reference) and sample repos for the viewers' reference.
     It's going to be technical but guided so the viewers will have a good progression of understanding.
   speakers:
-    - "Adrian Marin 🥑"
+    - Adrian Marin
   date: "2025-07-08"
   published_at: "TODO"
   announced_at: "TODO"
   track: "Main Stage - Liberty"
+  video_provider: "scheduled"
+  video_id: "adrian-marin-railsconf-2025"
 
 - title: "Ruby Internals: A Guide For Rails Developers"
   raw_title: "Ruby Internals: A Guide For Rails Developers"
+  event_name: "RailsConf 2025"
   description: |-
     Ever wondered how Ruby takes your code and runs it? It’s time to go on a journey into Ruby internals designed especially for Rails developers! We’ll learn about all the parts of an interpreter, and how their inner-workings affect our Rails apps! No experience with C is required!
   speakers:
@@ -276,6 +291,7 @@
 
 - title: "The Rails Features We Loved, Lost, and Laughed At"
   raw_title: "The Rails Features We Loved, Lost, and Laughed At"
+  event_name: "RailsConf 2025"
   description: |-
     Rails has always moved fast. Sometimes too fast. It gave us bold ideas, best practices that weren't, and features that felt like magic – until they didn't.
 
@@ -295,12 +311,13 @@
 
 - title: "10 Costly Database Performance Mistakes (and How to Fix Them)"
   raw_title: "10 Costly Database Performance Mistakes (and How to Fix Them)"
+  event_name: "RailsConf 2025"
   description: |-
     After working with countless Rails and Postgres applications as a consultant and backend engineer, I’ve seen firsthand how database mistakes can cause big costs and headaches. Poor data types, inefficient queries, and flawed schema designs slow down operations, and result in excessive costs through over-provisioned servers, downtime, lost users, and engineering hours spent restructuring features.
 
     How do we prevent these pitfalls? Awareness is the first step. And if your database is already serving tons of woefully inefficient queries, where should you focus for the biggest wins?
 
-    In this talk, we’ll break down 10 real-world Rails database mistakes, including how they happened, the impact they had, and most importantly, how to fix them. Topics include query design, indexing, schema optimization, and how the CPU, memory, and IOPS resources tie into Active Record SQL performance.
+    In this talk, we'll break down 10 real-world Rails database mistakes, including how they happened, the impact they had, and most importantly, how to fix them. Topics include query design, indexing, schema optimization, and how the CPU, memory, and IOPS resources tie into Active Record SQL performance.
 
     Expect practical takeaways, real examples, and solutions you can apply immediately. Slides and blog posts will be available at GitHub.
   speakers:
@@ -314,7 +331,8 @@
 
 - title: "Closing Keynote Day 1"
   raw_title: "Keynote"
-  description:
+  event_name: "RailsConf 2025"
+  description: ""
   speakers:
     - TBA
   date: "2025-07-08"
@@ -326,7 +344,8 @@
 
 - title: "Opening Keynote Day 2"
   raw_title: "Keynote"
-  description:
+  event_name: "RailsConf 2025"
+  description: ""
   speakers:
     - TBA
   date: "2025-07-09"
@@ -338,6 +357,7 @@
 
 - title: "Hotwire Native: A Rails developer’s secret tool to building mobile apps"
   raw_title: "Hotwire Native: A Rails developer’s secret tool to building mobile apps"
+  event_name: "RailsConf 2025"
   description: |-
     Building native mobile apps is time-consuming and expensive. Each screen must be built three times: once for web, again for iOS, and a third time for Android.
 
@@ -357,6 +377,7 @@
 
 - title: "What can we do together? A facilitated community-building workshop"
   raw_title: "What can we do together? A facilitated community-building workshop"
+  event_name: "RailsConf 2025"
   description: |-
     Community is one of the best parts of attending in-person conferences. But meeting people and socializing can be daunting. Maybe you want to join a conversation in the hallway but can’t break into the impenetrable group circle. Perhaps it’s your first conference, and everyone seems to already know each other. Or you might be looking for collaborators in a particular Rails subject matter and don’t seem to know where to find them.
 
@@ -372,6 +393,7 @@
 
 - title: "Workshop: How to instrument your Rails app with OpenTelemetry"
   raw_title: "How to instrument your Rails app with OpenTelemetry"
+  event_name: "RailsConf 2025"
   description: |-
     Join an OpenTelemetry maintainer to learn how to instrument your Rails application with this growing open source project. We'll cover the basics of observability and the benefits you can receive from each of OpenTelemetry's three core signals: Traces, Metrics, and Logs. We'll talk about Active Support Notifications and how OpenTelemetry leverages them for automatic instrumentation, as well as the instrumentation strategies in other popular Rails-related libraries. Together, we'll configure the OpenTelemetry SDK in a minimal Rails application, add custom instrumentation to core methods within our application, and export the results to an observability backend.
   speakers:
@@ -385,6 +407,7 @@
 
 - title: "Panel: Ruby Podcast"
   raw_title: "Ruby Podcast Panel"
+  event_name: "RailsConf 2025"
   description: |-
     The Ruby Podcast Panel will feature a collection of Rubyists with active podcasts, engaging in conversation about Ruby, Rails, and the community that has grown up around our favorite tech stack.
   speakers:
@@ -401,6 +424,7 @@
 
 - title: "Panel: The Past, Present and Future of Background Jobs"
   raw_title: "The Past, Present and Future of Background Jobs according to Mike, Rosa, Maciej, and Ben"
+  event_name: "RailsConf 2025"
   description: |-
     Join a discussion between Sidekiq’s Mike Perham, Solid Queue’s Rosa Gutiérrez, Karafka and Shoryuken’s Maciej Mensfeld, and GoodJob’s Ben Sheldon.
 
@@ -421,6 +445,7 @@
 
 - title: "Keynote: The Keynote of Keynotes"
   raw_title: "The Keynote of Keynotes"
+  event_name: "RailsConf 2025"
   description: |-
     Nearly 20 years of RailsConf, nearly 20 years of RailsConf talks and workshops, nearly 20 years of RailsConf keynotes. Talks that loom a little larger than the typical session, that leave behind more of an impact, that have kept us thinking over the years.
 
@@ -440,6 +465,7 @@
 
 - title: "How 10 years of RailsConfs can inform the next 10 years of your career"
   raw_title: "How 10 years of RailsConfs can inform the next 10 years of your career"
+  event_name: "RailsConf 2025"
   description: |-
     RailsConf has played an important role in my professional and personal life. I've learned about technology in ways I wouldn't have otherwise at RailsConf. I've learned about myself in ways I wouldn't have otherwise thanks to RailsConf. I've met people that changed the course of my career thanks to RailsConf. I've met others who have become dear friends thanks to RailsConf. I've done things I've never done before thanks to RailsConf.
 
@@ -455,6 +481,7 @@
 
 - title: "The Front-end is Omakase"
   raw_title: "The Front-end is Omakase"
+  event_name: "RailsConf 2025"
   description: |-
     "Rails is omakase." DHH's classic 2012 blog post is still great reading in 2025. Here's a quote from the article that sums up his main point:
 
@@ -482,6 +509,7 @@
 
 - title: "Precision Pays Off: Handling Money in Rails Apps"
   raw_title: "Precision Pays Off: Handling Money in Rails Apps"
+  event_name: "RailsConf 2025"
   description: |-
     Handling money in software is deceptively tricky. Floating-point arithmetic introduces precision errors that can lead to financial disasters, that's why banks have long relied on COBOL for its fixed-point precision. In this talk, we’ll dive into how Rails solves these problems today using tools like `BigDecimal` and the `Money` gem, which references Martin Fowler’s *Patterns of Enterprise Application Architecture*. We’ll also explore the future of financial applications in Rails, from native money types to fintech, and share real-world stories of how Rails has saved clients from costly mistakes.
   speakers:
@@ -495,6 +523,7 @@
 
 - title: "The future of Rails begins in the browser"
   raw_title: "The future of Rails begins in the browser"
+  event_name: "RailsConf 2025"
   description: |-
     With a mature community and adoption by prominent tech veterans, Ruby on Rails already has a strong foundation, and these elements define both the present state of the framework, as well as its short-term future. But the long-term future of the framework is an equation that will depend heavily on the opposite end of the equation: namely, the newcomers, those who will take their first steps on Rails.
 
@@ -514,6 +543,7 @@
 
 - title: "Not Invented Here: Things Rails Didn't Innovate"
   raw_title: "Not Invented Here: Things Rails Didn't Innovate"
+  event_name: "RailsConf 2025"
   description: |-
     Rails is a mixture of design patterns, practices, and magic. In this talk, we'll explore how Rails embraces ideas from other frameworks and projects.
 
@@ -531,6 +561,7 @@
 
 - title: 'UX & Design for Rails Devs: Elevating the "One Person Framework" Experience'
   raw_title: 'UX & Design for Rails Devs: Elevating the "One Person Framework" Experience'
+  event_name: "RailsConf 2025"
   description: |-
     Rails 8's positioning as the "one-person framework" empowers developers to build complete applications independently, but many struggle with creating interfaces that are both functional and visually appealing. We will blitz through a variety of techniques and applications, pulling from recent examples such as the Rails Guides redesign. This talk will provide actionable UX assessment methods, fundamental visual design principles, and a live redesign demonstration using paper and Figma—equipping Rails developers with essential skills to create applications that are not just functional, but delightful to use.
   speakers:
@@ -544,12 +575,13 @@
 
 - title: "From FTP to Kamal: 20 Years of Deploying Rails"
   raw_title: "From FTP to Kamal: 20 Years of Deploying Rails"
+  event_name: "RailsConf 2025"
   description: |-
-    RailsConf 2025 marks the end of an era—so let’s take a ride through Rails history, deployment-style! From the Wild West days of FTP and CGI to the golden age of Capistrano, Passenger, and Heroku, all the way to Docker and Kamal, Rails deployment has been a journey of innovation, frustration, and occasional existential dread.
+    RailsConf 2025 marks the end of an era—so let's take a ride through Rails history, deployment-style! From the Wild West days of FTP and CGI to the golden age of Capistrano, Passenger, and Heroku, all the way to Docker and Kamal, Rails deployment has been a journey of innovation, frustration, and occasional existential dread.
 
     In this talk, we’ll revisit the tools, hacks, and battle scars of Rails deployment over the last 20 years. Remember Mongrel? FastCGI? The magical experience you had the first time you ran 'git push heroku'? We’ll celebrate the evolution of Rails ops, the community that shaped it, and what lessons we should take into the next 20 years.
 
-    Whether you deployed your first Rails app last week or you’ve been around since script/server, this talk is for you. Expect nostalgia, war stories, and callouts to the projects that paved the way to (and give some background on) what we have today. No grand lessons. No deep takeaways. Just a celebration of how far we’ve come.
+    Whether you deployed your first Rails app last week or you've been around since script/server, this talk is for you. Expect nostalgia, war stories, and callouts to the projects that paved the way to (and give some background on) what we have today. No grand lessons. No deep takeaways. Just a celebration of how far we’ve come.
   speakers:
     - Ben Curtis
   date: "2025-07-10"
@@ -561,6 +593,7 @@
 
 - title: "The Future of: PWAs on Rails"
   raw_title: "The Future of: PWAs on Rails"
+  event_name: "RailsConf 2025"
   description: |-
     Rails is one of the best frameworks for building web applications. It's simple, yet powerful. Core Rails is always adding new features that increase productivity and make the developer's life easier.
 
@@ -580,6 +613,7 @@
 
 - title: "Rails Framework Defaults: Defusing the Time Bomb in Your Upgraded App"
   raw_title: "Rails Framework Defaults: Defusing the Time Bomb in Your Upgraded App"
+  event_name: "RailsConf 2025"
   description: |-
     Yay, you did it: you upgraded Rails and it's live in production! All done, right? Not so fast: most upgrade talks and tutorials skip over the important step of upgrading Rails framework defaults. Your Rails upgrade isn't really done until you've disarmed the time bomb of outdated defaults. It can be tricky and isn't well documented, but you can do it with these steps.
   speakers:
@@ -593,6 +627,7 @@
 
 - title: "Silent Killers: Lessons from the Brink"
   raw_title: "Silent Killers: Lessons from the Brink"
+  event_name: "RailsConf 2025"
   description: |-
     Every Rails app starts with a solid foundation, but as features evolve and teams change, even the best projects can drift toward complexity. Over time, code that once felt effortless can become tangled, slow, and hard to maintain. This talk dives deep into what truly degrades a Rails application over time. We’ll explore practical ways to diagnose the health of a codebase, including underutilized metrics beyond test coverage and churn. Along the way, I’ll share battle-tested strategies for bringing struggling Rails apps back to life without a painful rewrite.
   speakers:
@@ -606,6 +641,7 @@
 
 - title: "Unraveling the black box: past, present and future of authentication in Rails"
   raw_title: "Unraveling the black box: past, present and future of authentication in Rails"
+  event_name: "RailsConf 2025"
   description: |-
     We often treat authentication as a black box because we’ve been standing on the shoulders of giants (aka Devise). Recently, a long-awaited feature has shipped with Rails 8: a built-in authentication generator! Let’s explore how the new default works and what we can learn from history and precedents when creating our authN flows.
   speakers:
@@ -619,8 +655,9 @@
 
 - title: "Internationalization on Rails: Unpacking the Rails I18n Toolkit"
   raw_title: "Internationalization on Rails: Unpacking the Rails I18n Toolkit"
+  event_name: "RailsConf 2025"
   description: |-
-    Building an app that’s "just in English" might feel sufficient, but what if your next user prefers Spanish, German, or Chinese? Localization and internationalization are often an afterthought for many developers, if they are thought of at all. But it’s not only big, global companies that can benefit from them. They’re essential for startups and solo developers, too. In this talk, I’ll demystify internationalization and show you how Rails makes it easy to bake internationalization into your app from the start. You’ll learn how to use tools built into Rails and from gems in the wider ecosystem to easily support multilingual users, and make your app available to more people, wherever they are!
+    Building an app that's "just in English" might feel sufficient, but what if your next user prefers Spanish, German, or Chinese? Localization and internationalization are often an afterthought for many developers, if they are thought of at all. But it’s not only big, global companies that can benefit from them. They’re essential for startups and solo developers, too. In this talk, I’ll demystify internationalization and show you how Rails makes it easy to bake internationalization into your app from the start. You’ll learn how to use tools built into Rails and from gems in the wider ecosystem to easily support multilingual users, and make your app available to more people, wherever they are!
   speakers:
     - Chris Fung
   date: "2025-07-10"
@@ -632,8 +669,9 @@
 
 - title: "The History of Rails in 10 Blog Posts"
   raw_title: "The History of Rails in 10 Blog Posts"
+  event_name: "RailsConf 2025"
   description: |-
-    Calling nostalgic veterans and newbies alike! We’re traveling through time on a tour of some of the most influential blog posts to hit the Rails community over the past two decades. With stops at iconic locations including in testing, service objects, and JavaScript, you won't want to miss it! Bring your chrono-passport and see you in 2003!
+    Calling nostalgic veterans and newbies alike! We're traveling through time on a tour of some of the most influential blog posts to hit the Rails community over the past two decades. With stops at iconic locations including in testing, service objects, and JavaScript, you won't want to miss it! Bring your chrono-passport and see you in 2003!
   speakers:
     - Joël Quenneville
   date: "2025-07-10"
@@ -645,6 +683,7 @@
 
 - title: "The ActiveRecord Tapes"
   raw_title: "The ActiveRecord Tapes"
+  event_name: "RailsConf 2025"
   description: |-
     In this talk, we'll dig deep into the design decisions of the Attributes API. We'll talk to its author and hear their experience from "I think this would help with the current project I'm on!" to "Oh no, I'm rewriting all of ActiveRecord!".
 
@@ -660,6 +699,7 @@
 
 - title: "Off the Rails: Validating non-model classes with…ActiveModel?"
   raw_title: "Off the Rails: Validating non-model classes with…ActiveModel?"
+  event_name: "RailsConf 2025"
   description: |-
     Have you ever wished you could run Rails validators to check that a Hash, Struct or Data instance is properly formatted? Have you ever wanted to be able to compose complex validation logic on the fly rather than registering them at a class level with complicated conditionals? Did you ever have a use case for a single, generic validation and thought it’d be overkill to create a new ActiveModel class?
 
@@ -677,6 +717,7 @@
 
 - title: "The Modern View Layer Rails Deserves: A Vision for 2025 and Beyond"
   raw_title: "The Modern View Layer Rails Deserves: A Vision for 2025 and Beyond"
+  event_name: "RailsConf 2025"
   description: |-
     Rails revolutionized web development and continues to evolve, but its view layer has remained largely unchanged while frontend needs have evolved dramatically. Rails has maintained its relevance by adopting technologies like Turbolinks and now Turbo/Hotwire while preserving its core principles.
 
@@ -696,6 +737,7 @@
 
 - title: "From Resque to SolidQueue - Rethinking our background jobs for modern times"
   raw_title: "From Resque to SolidQueue - Rethinking our background jobs for modern times"
+  event_name: "RailsConf 2025"
   description: |-
     If your Rails app has been around for a while, you might still be using Resque for background jobs. We were too—until scaling issues, missing features, and increasing maintenance costs made it clear that Resque was no longer working for us.
 
@@ -714,9 +756,12 @@
   published_at: "TODO"
   announced_at: "TODO"
   track: "Breakout 1 - Independence"
+  video_provider: "scheduled"
+  video_id: "andrew-markle-railsconf-2025"
 
 - title: "The Rails Story: Two Decades of Design and Decisions"
   raw_title: "The Rails Story: Two Decades of Design and Decisions"
+  event_name: "RailsConf 2025"
   description: |-
     Ever wondered why Rails is built the way it is? This talk explores the thoughtful design decisions behind Ruby on Rails, tracing how its features evolved over the past two decades. We'll uncover the historical context and reasoning behind Rails' choices, such as "Convention over Configuration," and why some features have evolved or disappeared entirely. Beginners will clearly understand Rails’ fundamentals, while experienced developers will gain a deeper appreciation of the framework they use every day.
   speakers:
@@ -730,6 +775,7 @@
 
 - title: "Closing Keynote Day 3"
   raw_title: "Keynote"
+  event_name: "RailsConf 2025"
   description:
   speakers:
     - TBA
