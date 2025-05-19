@@ -10,6 +10,9 @@ application.register("auto-click", AutoClickController)
 import AutoSubmitController from "./auto_submit_controller"
 application.register("auto-submit", AutoSubmitController)
 
+import Bridge__ButtonController from "./bridge/button_controller"
+application.register("bridge--button", Bridge__ButtonController)
+
 import DropdownController from "./dropdown_controller"
 application.register("dropdown", DropdownController)
 
@@ -49,8 +52,17 @@ application.register("toggable", ToggableController)
 import TooltipController from "./tooltip_controller"
 application.register("tooltip", TooltipController)
 
+import TopBannerController from "./top_banner_controller"
+application.register("top-banner", TopBannerController)
+
 import TransitionController from "./transition_controller"
 application.register("transition", TransitionController)
 
 import VideoPlayerController from "./video_player_controller"
 application.register("video-player", VideoPlayerController)
+
+import ScrollController from "./scroll_controller"
+application.register("scroll", ScrollController)
+
+import ButtonController from "./bridge/button_controller"
+application.register("bridge--button", ButtonController)

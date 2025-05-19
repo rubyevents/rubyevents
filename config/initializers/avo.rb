@@ -81,7 +81,7 @@ Avo.configure do |config|
   config.associations_lookup_list_limit = 10000
 
   ## == Customization ==
-  config.app_name = "RubyVideo"
+  config.app_name = "RubyEvents"
   # config.timezone = 'UTC'
   # config.currency = 'USD'
   # config.hide_layout_when_printing = false

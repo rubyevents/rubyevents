@@ -1,6 +1,6 @@
-<div class="container py-8">
-  <h1 class="title">
-    Events
+<div class="container py-8 hotwire-native:mb-6">
+  <h1 class="title hotwire-native:hidden">
+    <%= title "Events" %>
     <% if params[:s].present? %>
       : search results for "<%= params[:s] %>"
     <% end %>
@@ -11,7 +11,7 @@
     </span>
   </h1>
 
-  <div class="flex flex-wrap w-full justify-between py-8 gap-1">
+  <div class="flex flex-wrap w-full justify-between py-8 hotwire-native:hidden gap-1">
     <% ("a".."z").each do |letter| %>
       <%= link_to events_path(letter: letter), id: letter, class: class_names("flex items-center justify-center w-10 text-gray-500 rounded hover:bg-brand-lighter border", "bg-brand-lighter": letter == params[:letter]) do %>
         <%= letter.upcase %>

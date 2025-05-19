@@ -19,7 +19,7 @@ module Youtube
           videos_count: metadata.contentDetails.itemCount,
           metadata_parser: DEFAULT_METADATA_PARSER,
           slug: metadata.snippet.title.parameterize,
-          banner_background: "#DC153C",
+          banner_background: "#081625",
           featured_background: "#000000",
           featured_color: "#FFFFFF"
         })

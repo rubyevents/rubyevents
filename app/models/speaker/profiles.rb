@@ -1,6 +1,6 @@
 # -*- SkipSchemaAnnotations
 class Speaker::Profiles < ActiveRecord::AssociatedObject
-  performs(retries: 3) { limits_concurrency key: -> { _1.id } }
+  performs(retries: 3) { limits_concurrency key: -> { it.id } }
 
   def enhance_all_later
     enhance_with_github_later

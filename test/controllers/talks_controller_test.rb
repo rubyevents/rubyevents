@@ -122,11 +122,39 @@ class TalksControllerTest < ActionDispatch::IntegrationTest
     assert_equal talk.slug, json_response["talks"].first["slug"]
   end
 
+  test "should get index as JSON with a custom per_page" do
+    assert Talk.watchable.count > 2
+    get talks_url(format: :json, limit: 2)
+    assert_response :success
+
+    json_response = JSON.parse(response.body)
+
+    assert_equal 2, json_response["talks"].size
+  end
+
   test "should get show as JSON" do
     get talk_url(@talk, format: :json)
     assert_response :success
 
     json_response = JSON.parse(response.body)
     assert_equal @talk.slug, json_response["talk"]["slug"]
+  end
+
+  test "should get index with created_after" do
+    talk = Talk.create!(title: "test", description: "test", date: "2023-01-01", created_at: "2023-01-01", video_provider: "youtube")
+    talk_2 = Talk.create!(title: "test 2", description: "test", date: "2025-01-01", created_at: "2025-01-01", video_provider: "youtube")
+
+    get talks_url(created_after: "2024-01-01")
+    assert_response :success
+    assert assigns(:talks).size.positive?
+    refute assigns(:talks).ids.include?(talk.id)
+    assert assigns(:talks).ids.include?(talk_2.id)
+    assert assigns(:talks).all? { |talk| talk.created_at >= Date.parse("2024-01-01") }
+  end
+
+  test "should get index with invalide created_after" do
+    get talks_url(created_after: "wrong-date")
+    assert_response :success
+    assert assigns(:talks).size.positive?
   end
 end

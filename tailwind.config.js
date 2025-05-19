@@ -1,5 +1,6 @@
 const defaultTheme = require('daisyui/src/theming/themes.js')['[data-theme=light]']
 const defaultTailwindTheme = require('tailwindcss/defaultTheme')
+const plugin = require('tailwindcss/plugin')
 
 module.exports = {
   content: [
@@ -8,7 +9,7 @@ module.exports = {
     './app/helpers/**/*.rb',
     './app/assets/stylesheets/**/*.css',
     './app/javascript/**/*.js',
-    './config/initializers/heroicon.rb',
+    './config/initializers/*.rb',
     './data/**/**'
   ],
   theme: {
@@ -99,6 +100,10 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/typography'),
-    require('daisyui')
+    require('daisyui'),
+    plugin(function ({ addVariant }) {
+      addVariant('hotwire-native', 'html[data-bridge-platform] &')
+      addVariant('non-hotwire-native', 'html:not([data-bridge-platform]) &')
+    })
   ]
 }

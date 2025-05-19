@@ -2,6 +2,6 @@
   class="image rounded-xl"
   id="<%= dom_id(talk, :vimeo) %>"
   data-video-player-target="player"
-  data-vimeo-id="<%= talk.video_id %>">
-
-</div>
+  data-vimeo-id="<%= video_id %>"
+  data-vimeo-start-time="<%= talk.start_seconds %>"
+  data-vimeo-end-time="<%= talk.end_seconds %>"></div>

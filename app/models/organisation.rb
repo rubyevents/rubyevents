@@ -50,17 +50,21 @@ class Organisation < ApplicationRecord
   end
 
   def description
-    start_year = events.minimum(:date).year
-    end_year = events.maximum(:date).year
+    start_year = events.minimum(:date)&.year
+    end_year = events.maximum(:date)&.year
 
-    time_range = if start_year == end_year
-      %(in #{start_year})
+    time_range = if start_year && start_year == end_year
+      %( in #{start_year})
+    elsif start_year && end_year
+      %( between #{start_year} and #{end_year})
     else
-      %(between #{start_year} and #{end_year})
+      ""
     end
 
+    event_type = pluralize(events.size, meetup? ? "event-series" : "event")
+
     <<~DESCRIPTION
-      #{name} is a #{frequency} #{kind} and hosted #{pluralize(events.size, "event")} #{time_range}. We have currently indexed #{pluralize(events.sum { |event| event.talks_count }, "#{name} talk")}.
+      #{name} is a #{frequency} #{kind} and hosted #{event_type}#{time_range}. We have currently indexed #{pluralize(events.sum { |event| event.talks_count }, "#{name} talk")}.
     DESCRIPTION
   end
 
@@ -78,7 +82,7 @@ class Organisation < ApplicationRecord
           alt: title
         },
         description: description,
-        site_name: "RubyVideo.dev"
+        site_name: "RubyEvents.org"
       },
       twitter: {
         card: "summary_large_image",

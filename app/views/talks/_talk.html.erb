@@ -94,7 +94,7 @@
 
           <% if talk.vimeo? || talk.parent_talk&.vimeo? %>
             <%= ui_tooltip "Watch on Vimeo" do %>
-              <%= ui_button url: "https://vimeo.com/video/#{talk.video_id}", kind: :pill, target: "_blank" do %>
+              <%= ui_button url: talk.external_player_url, kind: :pill, target: "_blank" do %>
                 <%= fa("vimeo-v-brands", size: :xs, style: :solid) %>
                 <span class="text-xs">Play on Vimeo</span>
               <% end %>
@@ -104,11 +104,12 @@
           <% if talk.static_metadata&.external_player_url.present? || talk.parent_talk&.static_metadata&.external_player_url.present? %>
             <% player_url = talk.parent_talk&.static_metadata&.external_player_url || talk.static_metadata.external_player_url %>
 
-            <a class="tooltip tooltip-top" data-tip="Play on external player website" href="<%= player_url %>" target="_blank" data-action="click->video-player#pause">
-              <div class="flex gap-2 items-center rounded-full border bg-gray-100 hover:bg-gray-200/50 border-gray-200 font-regular px-3 py-1 text-sm cursor-pointer">
-                <span class="text-xs text-nowrap">Play on Website</span>
-              </div>
-            </a>
+            <%= ui_tooltip "Watch on Website" do %>
+              <%= ui_button url: player_url, kind: :pill, target: "_blank", data: {action: "click->video-player#pause"} do %>
+                <%= fa("website-brands", size: :xs, style: :solid) %>
+                <span class="text-xs">Play on Website</span>
+              <% end %>
+            <% end %>
           <% end %>
 
           <% if signed_in? && !talk.scheduled? %>
@@ -131,7 +132,7 @@
             <% end %>
           <% end %>
 
-          <div class="tooltip tooltip-top" data-tip="You can suggest some modifications to this talk">
+          <div class="tooltip tooltip-top hotwire-native:hidden" data-tip="You can suggest some modifications to this talk">
             <%= ui_button url: edit_talk_path(talk), kind: :pill, data: {turbo_frame: "modal"} do %>
               <%= fa("pen", size: :xs, style: :solid) %>
               <span class="text-xs">Edit</span>

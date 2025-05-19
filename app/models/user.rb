@@ -53,7 +53,7 @@ class User < ApplicationRecord
     value
       .gsub(GITHUB_URL_PATTERN, "")
       .delete("@")
-      .strip
+      .strip.downcase
   end
 
   after_update if: :password_digest_previously_changed? do

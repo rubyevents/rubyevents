@@ -18,7 +18,7 @@ def create_playlist_items(playlist, organisation_slug)
   playlist_videos.map! { |metadata| parser.new(metadata: metadata, event_name: playlist.title).cleaned }
 
   path = "#{File.join(Rails.root, "data_preparation", organisation_slug, playlist.slug)}/videos.yml"
-  puts "#{playlist_videos.length} videos have ben added to  : #{playlist.title}"
+  puts "#{playlist_videos.length} videos have been added to  : #{playlist.title}"
 
   yaml = playlist_videos.map { |item| item.to_h.stringify_keys }.to_yaml
 

@@ -11,7 +11,7 @@ class SitemapsController < ApplicationController
     Rails.cache.fetch(["sitemap", Talk.all, Event.all, Speaker.all, Topic.approved], expires_in: 24.hours) do
       adapter = SitemapStringAdapter.new
 
-      SitemapGenerator::Sitemap.default_host = "https://www.rubyvideo.dev"
+      SitemapGenerator::Sitemap.default_host = "https://www.rubyevents.org"
 
       SitemapGenerator::Sitemap.create(adapter: adapter) do
         add talks_path, priority: 0.9, changefreq: "weekly"

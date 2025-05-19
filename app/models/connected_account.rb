@@ -28,4 +28,6 @@ class ConnectedAccount < ApplicationRecord
   belongs_to :user
 
   encrypts :access_token
+
+  normalizes :username, with: ->(value) { value.strip.downcase }
 end

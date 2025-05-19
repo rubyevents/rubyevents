@@ -17,8 +17,8 @@
 <% end %>
 
 <% if Rails.env.development? %>
-  <%= ui_button url: speaker_url(@speaker, host: "https://rubyvideo.dev", port: 443), target: :_blank, kind: :neutral, size: :sm do %>
+  <%= ui_button url: speaker_url(@speaker, host: "https://rubyevents.org", port: 443), target: :_blank, kind: :neutral, size: :sm do %>
     <%= fa :browser, size: :xs %>
-    <span>Show on RubyVideo.dev</span>
+    <span>Show on RubyEvents.org</span>
   <% end %>
 <% end %>

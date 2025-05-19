@@ -91,20 +91,20 @@
   event_name: "Vienna.rb March 2025"
   date: "2025-03-06"
   announced_at: "2025-02-03"
-  published_at: "TODO"
+  published_at: "2025-03-10"
   video_provider: "children"
   video_id: "vienna-rb-march-2025"
-  thumbnail_xs: https://secure.meetupstatic.com/photos/event/3/3/2/b/600_525853099.webp?w=750
-  thumbnail_sm: https://secure.meetupstatic.com/photos/event/3/3/2/b/600_525853099.webp?w=750
-  thumbnail_md: https://secure.meetupstatic.com/photos/event/3/3/2/b/600_525853099.webp?w=750
-  thumbnail_lg: https://secure.meetupstatic.com/photos/event/3/3/2/b/600_525853099.webp?w=750
-  thumbnail_xl: https://secure.meetupstatic.com/photos/event/3/3/2/b/600_525853099.webp?w=750
+  thumbnail_xs: "https://secure.meetupstatic.com/photos/event/1/8/8/5/600_526206277.webp?w=750"
+  thumbnail_sm: "https://secure.meetupstatic.com/photos/event/1/8/8/5/600_526206277.webp?w=750"
+  thumbnail_md: "https://secure.meetupstatic.com/photos/event/1/8/8/5/600_526206277.webp?w=750"
+  thumbnail_lg: "https://secure.meetupstatic.com/photos/event/1/8/8/5/600_526206277.webp?w=750"
+  thumbnail_xl: "https://secure.meetupstatic.com/photos/event/1/8/8/5/600_526206277.webp?w=750"
   description: |-
     It's the Vienna.rb spring edition! 🌸 Are you interested in the Ruby language or Ruby on Rails? Join us. We have great talks, good vibes, and yummy snacks! 😋
 
-    We have something special this time: Lightning Talks! ⚡ Lightning talks are limited to 10 minutes and are an excellent opportunity for first-time speakers to try their hand at public speaking.
+    We have something special this time: Lightning Talks! ⚡
 
-    Have you always wanted to give public speaking a try? Now is your chance! Reach out to organizers@ruby.wien! 🙂
+    Lightning talks are limited to 10 minutes and are an excellent opportunity for first-time speakers to try their hand at public speaking. Check it out!
 
     Talks & Lightning Talks
     ~~~~~~~~~~~~~~~~~~~~~~~
@@ -113,9 +113,17 @@
     ▶️ Balancing Quality and Speed of Testing with the Undercover Gem
     🗒️ We'll take a look at Ruby test coverage strategies and the variables that come into play when preventing faults in our software products. We'll discuss what makes tests good, what to test versus not to and when is the right time to do it. I'll introduce the undercover Ruby gem and additionally share a few stories about turning this idea and gem into a side hustle.
 
-    ⚡ TBA
-    ▶️ TBA
-    🗒️ TBA
+    ⚡ Seth Horsley
+    ▶️ Building Beautiful UIs with ruby: A Rails-native Approach
+    🗒️ Tired of slow ERB templates and messy view logic? Discover how Phlex and RubyUI bring blazing-fast (12x!) and beautiful components to Rails while maintaining the Ruby way we all love. Let's see how we can build modern, accessible UIs without leaving the Rails ecosystem!
+
+    ⚡ Anton Bangratz
+    ▶️ Jujutsu: Will it replace Git?
+    🗒️ Jujutsu is a DVCS, or "distributed version control system". You are probably familiar with the biggest of those systems: Git. Jujutsiy is said to be easier and simpler than Git while being even more powerful. In this talk we'll find out if that's true!
+
+    ⚡ Johannes Daxböck
+    ▶️ Logical, Mr Matz: A Foray into Logic Programming in Ruby
+    🗒️ Ruby supports multiple programming paradigms, including object-oriented, functional, and imperative/procedural styles. However, it is rarely associated with logic programming. In this talk, I'll explore the concepts and applications of logic programming through its most prominent language, Prolog, and compare them to Ruby. We'll also dive into some Ruby archaeology, uncovering existing Ruby-based logic programming libraries.
 
     Location
     ~~~~~~~~
@@ -149,20 +157,176 @@
     - title: "Balancing Quality and Speed of Testing with the Undercover Gem"
       event_name: "Vienna.rb March 2025"
       date: "2025-03-06"
-      published_at: "TODO"
+      published_at: "2025-03-10"
       speakers:
         - Jan Grodowski
-      video_id: "jan-grodowski-vienna-rb-march-2025"
-      video_provider: "scheduled"
+      id: "jan-grodowski-vienna-rb-march-2025"
+      video_id: "G7kuYXr5oKA"
+      video_provider: "youtube"
       description: |-
-        We'll take a look at Ruby test coverage strategies and the variables that come into play when preventing faults in our software products. We'll discuss what makes tests good, what to test versus not to and when is the right time to do it. I'll introduce the undercover Ruby gem and additionally share a few stories about turning this idea and gem into a side hustle.
+        We're joined by Jan Grodowski (https://x.com/mrgrodo), a Staff Engineer at Shopify. Jan dives deep into Ruby testing and shares what he has learned as a Solopreneur maintaining UndercoverCI ( https://undercover-ci.com ).
 
-    - title: "Lightning Talks"
+        Thank you to Platogo for hosting!
+
+        Follow Vienna.rb on:
+        - https://www.meetup.com/vienna-rb
+        - https://x.com/vienna-rb
+        - https://bsky.app/profile/ruby.wien
+
+        Timestamps:
+        00:00 Start
+        23:25 Live Demo
+        49:40 Q&A
+
+    - title: "Building Beautiful UIs with Ruby: A Rails-Native Approach"
       event_name: "Vienna.rb March 2025"
       date: "2025-03-06"
+      published_at: "2025-03-10"
+      speakers:
+        - Seth Horsley
+      id: "seth-horsley-vienna-rb-march-2025"
+      video_id: "rQOHlmwPHoo"
+      video_provider: "youtube"
+      slides_url: "https://speakerdeck.com/seth4242/building-a-beautiful-ui-with-phlex-and-rubyui"
+      description: |-
+        We're joined by Seth Horsley (https://github.com/SethHorsley) from StateCert. Seth shares the future of Rails UIs with us. Creating amazing interfaces with plain Ruby using Ruby UI ( https://github.com/ruby-ui/ruby_ui ).
+
+        Thank you to Platogo for hosting!
+
+        Follow Vienna.rb on:
+        - https://www.meetup.com/vienna-rb
+        - https://x.com/vienna-rb
+        - https://bsky.app/profile/ruby.wien
+
+        Timestamps:
+        00:00 Start
+        4:08 Demo
+        7:13 Q&A
+
+    - title: "Jujutsu: Will it replace Git?"
+      event_name: "Vienna.rb March 2025"
+      date: "2025-03-06"
+      published_at: "2025-03-10"
+      speakers:
+        - Anton Bangratz
+      id: "anton-bangratz-vienna-rb-march-2025"
+      video_id: "6TMVcYxRjZ0"
+      video_provider: "youtube"
+      description: |-
+        We're joined by Anton "Tony" Bangratz (https://github.com/abangratz). Anton is a veteran Ruby developer from Vienna who works at Platogo. In this talk, he shares his experience using Jujutsu ( https://jj-vcs.github.io/jj/latest/ ) and explains why you should probably use it too!
+
+        Thank you to Platogo for hosting!
+
+        Follow Vienna.rb on:
+        - https://www.meetup.com/vienna-rb
+        - https://x.com/vienna-rb
+        - https://bsky.app/profile/ruby.wien
+
+        Timestamps:
+        00:00 Start
+        0:52 What is Jujutsu
+        8:46 Q&A
+
+    - title: "Logical, Mr Matz: A Foray into Logic Programming in Ruby"
+      event_name: "Vienna.rb March 2025"
+      date: "2025-03-06"
+      published_at: "2025-03-10"
+      speakers:
+        - Johannes Daxböck
+      id: "johannes-daxboeck-vienna-rb-march-2025"
+      video_id: "_rdIWfyfuK4"
+      video_provider: "youtube"
+      description: |-
+        We're joined by Johannes Daxböck (https://www.linkedin.com/in/johdax). Johannes shares his exploration of logic programming in Ruby with us. If you have worked with Prolog at some point, this one might interest you. If you haven't, then too!
+
+        Thank you to Platogo for hosting!
+
+        Follow Vienna.rb on:
+        - https://www.meetup.com/vienna-rb
+        - https://x.com/vienna-rb
+        - https://bsky.app/profile/ruby.wien
+
+        Timestamps:
+        00:00 Start
+        00:51 Intro to logic programming
+        14:48 Q&A
+
+- title: "Vienna.rb June 2025"
+  event_name: "Vienna.rb June 2025"
+  date: "2025-06-05"
+  announced_at: "2025-05-09"
+  published_at: "TODO"
+  video_provider: "children"
+  video_id: "vienna-rb-june-2025"
+  thumbnail_xs: "https://secure.meetupstatic.com/photos/event/2/0/6/3/600_527828291.webp?w=750"
+  thumbnail_sm: "https://secure.meetupstatic.com/photos/event/2/0/6/3/600_527828291.webp?w=750"
+  thumbnail_md: "https://secure.meetupstatic.com/photos/event/2/0/6/3/600_527828291.webp?w=750"
+  thumbnail_lg: "https://secure.meetupstatic.com/photos/event/2/0/6/3/600_527828291.webp?w=750"
+  thumbnail_xl: "https://secure.meetupstatic.com/photos/event/2/0/6/3/600_527828291.webp?w=750"
+  description: |-
+    It's Summer; it's time for Vienna.rb! 🏖️
+
+    Are you interested in the Ruby language or Ruby on Rails? Join us. We have great talks, good vibes, and yummy snacks! 😋
+
+    We have something very special in store this time.
+
+    First, we're excited to host Hana Harencarova! Hana works at GitHub and is traveling all the way from Switzerland to give a talk. She's in love with Ruby and shares her passion by teaching at Ruby Monstas Zürich and co-organizing the Helvetic Ruby conference.
+
+    Second, we're happy to announce the first-ever Vienna.rb Ruby Quiz! Everyone can participate, and there will be awesome prizes, sponsored by the Ruby Community, to win! 🏆
+
+    Talks
+    ~~~~~~~~~~~~~~~~~~~~~~~
+
+    🗣️ Hana Harencarova
+    ▶️ TBD
+    🗒️ TBD
+
+    🗣️ Alexander Fiedler
+    ▶️ Building with Rails
+    🗒️ PlanRadar provides a platform for construction management, and that platform is built on Ruby on Rails! Let's learn how the team at PlanRadar uses Rails, and discover why they chose it in the first place.
+
+    Location
+    ~~~~~~~~
+
+    PlanRadar EU Zentrale
+    Kärntner Ring 5-7
+    Top 201
+    1010 Wien, Österreich
+
+    Sponsors
+    ~~~~~~~~~
+
+    ⭐ PlanRadar
+
+    PlanRadar is a leading platform for digital documentation, communication, and reporting in construction, facility management, and real estate projects. It enables customers to work more efficiently, enhance quality, and achieve full project transparency. By improving collaboration and providing access to real-time data, PlanRadar’s easy-to-use platform adds value to every person involved in a building’s lifecycle, with flexible capabilities for all company sizes and processes. Today, PlanRadar serves more than 150,000 users across 75+ countries.
+
+    Huge thanks to PlanRadar for hosting and providing us with refreshments and snacks! 🙌
+
+    ~~~
+
+    ⭐ Looking to sponsor or give a talk?
+
+    We are looking for sponsors and speakers. If you are interested, contact us at organizers@ruby.wien!
+
+    https://www.meetup.com/vienna-rb/events/307283556
+  talks:
+    - title: "Talk by Hana Harencarova"
+      event_name: "Vienna.rb June 2025"
+      date: "2025-06-05"
       published_at: "TODO"
       speakers:
-        - TBA
-      video_id: "lightning-talks-vienna-rb-march-2025"
+        - Hana Harencarova
+      video_id: "hana-harencarova-vienna-rb-june-2025"
       video_provider: "scheduled"
-      description: "Lightning talks are limited to 10 minutes and are an excellent opportunity for first-time speakers to try their hand at public speaking."
+      description: |-
+        TBA
+    - title: "Building with Rails"
+      event_name: "Vienna.rb June 2025"
+      date: "2025-06-05"
+      published_at: "TODO"
+      speakers:
+        - Alexander Fiedler
+      video_id: "alexander-fiedler-vienna-rb-june-2025"
+      video_provider: "scheduled"
+      description: |-
+        PlanRadar provides a platform for construction management, and that platform is built on Ruby on Rails! Let's learn how the team at PlanRadar uses Rails, and discover why they chose it in the first place.

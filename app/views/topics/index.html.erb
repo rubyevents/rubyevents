@@ -2,7 +2,7 @@
   <div class="flex items-center gap-2 title text-primary">
     <h1 style="view-transition-name: title">Topics</h1>
   </div>
-  <div class="flex flex-wrap w-full justify-between py-8 gap-1">
+  <div class="flex flex-wrap w-full justify-between hotwire-native:hidden py-8 gap-1">
     <% ("a".."z").each do |letter| %>
       <%= link_to topics_path(letter: letter), class: class_names("flex items-center justify-center w-10 text-gray-500 rounded hover:bg-brand-lighter border", "bg-brand-lighter": letter == params[:letter]) do %>
         <%= letter.upcase %>

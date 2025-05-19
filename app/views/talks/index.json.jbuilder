@@ -1,7 +1,12 @@
 json.talks @talks do |talk|
   json.slug talk.slug
   json.title talk.title
+  json.video_id talk.video_id
+  json.video_provider talk.video_provider
   json.date talk.date
+  json.parent_talk_slug talk.parent_talk&.slug
+  json.child_talks_slugs talk.child_talks.pluck(:slug)
+  json.language talk.language
   json.url talk_url(talk)
   json.video_id talk.video_id
   json.video_provider talk.video_provider

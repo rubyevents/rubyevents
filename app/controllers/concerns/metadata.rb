@@ -9,7 +9,7 @@ module Metadata
 
   def set_default_meta_tags
     set_meta_tags({
-      description: "On a mission to index all Ruby conferences. Your go-to place for talks and events about Ruby."
+      description: "On a mission to index all Ruby events. Your go-to place for talks and events about Ruby."
     })
   end
 end

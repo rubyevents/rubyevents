@@ -10,6 +10,31 @@
   </div>
 
   <div>
+    <%= form.label :twitter, "Twitter/X (URL or handle)" %>
+    <%= form.text_field :twitter, class: "input input-bordered w-full" %>
+  </div>
+
+  <div>
+    <%= form.label :mastodon, "Mastodon (Full URL/handle)" %>
+    <%= form.text_field :mastodon, class: "input input-bordered w-full" %>
+  </div>
+
+  <div>
+    <%= form.label :linkedin, "LinkedIn (URL or slug)" %>
+    <%= form.text_field :linkedin, class: "input input-bordered w-full" %>
+  </div>
+
+  <div>
+    <%= form.label :bsky, "Bluesky (URL or handle)" %>
+    <%= form.text_field :bsky, class: "input input-bordered w-full" %>
+  </div>
+
+  <div>
+    <%= form.label :speakerdeck, "Speakerdeck" %>
+    <%= form.text_field :speakerdeck, class: "input input-bordered w-full" %>
+  </div>
+
+  <div>
     <%= form.label :bio %>
     <%= form.text_area :bio, rows: 4, class: "textarea textarea-bordered w-full" %>
   </div>
