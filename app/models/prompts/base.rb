@@ -1,5 +1,7 @@
 module Prompts
   class Base
+    MODEL = "gpt-4.1-nano"
+
     def to_params
       {
         model: model,
@@ -11,7 +13,7 @@ module Prompts
     private
 
     def model
-      "gpt-4o-mini"
+      self.class::MODEL
     end
 
     def response_format
