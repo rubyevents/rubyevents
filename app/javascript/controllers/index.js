@@ -66,3 +66,6 @@ application.register("scroll", ScrollController)
 
 import ButtonController from "./bridge/button_controller"
 application.register("bridge--button", ButtonController)
+
+import UpcomingController from "./upcoming_controller"
+application.register("upcoming", UpcomingController)
