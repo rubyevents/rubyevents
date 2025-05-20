@@ -7,7 +7,7 @@ class Avo::Resources::Event < Avo::BaseResource
     if id.is_a?(Array)
       query.where(slug: id)
     else
-      query.find_by(slug: id)
+      query.find_by(slug: id) || query.find_by(id:)
     end
   }
   self.external_link = -> {
@@ -27,6 +27,7 @@ class Avo::Resources::Event < Avo::BaseResource
     field :talks, as: :has_many
     field :speakers, as: :has_many, through: :talks
     field :topics, as: :has_many
+    field :social_profiles, as: :has_many, use_resource: "Avo::Resources::SocialProfile"
   end
 
   def actions

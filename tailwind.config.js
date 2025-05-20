@@ -52,12 +52,24 @@ module.exports = {
           '0%': { opacity: '1' },
           '100%': { opacity: '0' }
         }
+      },
+      colors: {
+        github: { DEFAULT: '#FFFFFF' },
+        twitter: { DEFAULT: '#74C0FC' },
+        bsky: { DEFAULT: '#0085FF' },
+        mastodon: { DEFAULT: '#6364FF' },
+        linkedin: { DEFAULT: '#0A66C2' },
+        speakerdeck: { DEFAULT: '#009287' }
       }
     }
   },
   safelist: [
     { pattern: /grid-cols-(1|2|3|4|5|6|7|8|9|10)/ },
-    { pattern: /col-span-(1|2|3|4|5|6|7|8|9|10)/ }
+    { pattern: /col-span-(1|2|3|4|5|6|7|8|9|10)/ },
+    {
+      pattern: /bg-(github|twitter|bsky|mastodon|linkedin|speakerdeck)/,
+      variants: ['hover']
+    }
   ],
   daisyui: {
     logs: false,

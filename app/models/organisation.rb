@@ -28,6 +28,7 @@
 class Organisation < ApplicationRecord
   include Sluggable
   include Suggestable
+  include Sociable
 
   include ActionView::Helpers::TextHelper
 

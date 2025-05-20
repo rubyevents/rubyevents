@@ -1,0 +1,18 @@
+<%= turbo_stream.update "flashes" do %>
+   <%= render "shared/flashes" %>
+<% end %>
+
+<% if @social_profile.persisted? %>
+  <%= turbo_stream.update "socials" do %>
+    <%= render "speakers/socials", speaker: @social_profile.sociable %>
+  <% end %>
+
+  <%= turbo_stream.append "social-profiles" do %>
+    <%= render "social_profiles/form", social_profile: @social_profile, url: social_profile_path(@social_profile) %>
+    <%= render "shared/new_profile", sociable: @social_profile.sociable, social_profile: SocialProfile.new %>
+  <% end %>
+<% else %>
+  <%= turbo_stream.replace @social_profile do %>
+    <%= render "social_profiles/form", social_profile: @social_profile, url: speaker_social_profiles_path(@social_profile.sociable, @social_profile) %>
+  <% end %>
+<% end %>

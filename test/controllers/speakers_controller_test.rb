@@ -59,7 +59,7 @@ class SpeakersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create a suggestion for speaker" do
-    patch speaker_url(@speaker), params: {speaker: {bio: "new bio", github: "new-github", name: "new-name", slug: "new-slug", twitter: "new-twitter", website: "new-website"}}
+    patch speaker_url(@speaker), params: {speaker: {bio: "new bio", github: "new-github", name: "new-name", slug: "new-slug"}}
 
     @speaker.reload
 
@@ -70,7 +70,7 @@ class SpeakersControllerTest < ActionDispatch::IntegrationTest
 
   test "admin can update directly the speaker" do
     sign_in_as users(:admin)
-    patch speaker_url(@speaker), params: {speaker: {bio: "new bio", github: "new-github", name: "new-name", slug: "new-slug", twitter: "new-twitter", website: "new-website"}}
+    patch speaker_url(@speaker), params: {speaker: {bio: "new bio", github: "new-github", name: "new-name", slug: "new-slug"}}
 
     @speaker.reload
 
@@ -88,14 +88,12 @@ class SpeakersControllerTest < ActionDispatch::IntegrationTest
     sign_in_as user
 
     assert_no_changes -> { @speaker.suggestions.pending.count } do
-      patch speaker_url(@speaker), params: {speaker: {bio: "new bio", name: "new-name", twitter: "new-twitter", website: "new-website"}}
+      patch speaker_url(@speaker), params: {speaker: {bio: "new bio", name: "new-name"}}
     end
 
     assert_redirected_to speaker_url(@speaker)
     assert_equal "new bio", @speaker.reload.bio
     assert_equal @speaker.name, "new-name"
-    assert_equal @speaker.twitter, "new-twitter"
-    assert_equal @speaker.website, "new-website"
     assert_equal user.id, @speaker.suggestions.last.suggested_by_id
   end
 

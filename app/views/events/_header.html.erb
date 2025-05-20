@@ -14,18 +14,20 @@
 </div>
 
 <div class="container py-8">
-  <div class="block lg:flex gap-8 align-center justify-between">
-    <div class="flex flex-col lg:flex-row gap-8 items-center lg:justify-right text-center lg:text-left mb-6 lg:mb-0">
+  <div class="justify-between block lg:flex gap-8 align-center">
+    <div class="flex flex-col items-center mb-6 text-center lg:flex-row gap-8 lg:justify-right lg:text-left lg:mb-0">
       <%= image_tag image_path(event.avatar_image_path),
             class: "rounded-full border border-[#D9DFE3] size-24 md:size-36",
             alt: "#{event.name} Avatar",
             style: "view-transition-name: avatar",
             loading: :lazy %>
 
-      <div class="flex-col flex justify-center">
-        <h1 class="mb-2 text-black font-bold" style="view-transition-name: title"><%= event.name %></h1>
+      <div class="flex flex-col justify-center">
+        <h1 class="mb-2 font-bold text-black" style="view-transition-name: title"><%= event.name %></h1>
         <h3 class="text-[#636B74]"><%= event.location %> • <%= event.formatted_dates %></h3>
-        <%= external_link_to event.website.gsub(%r{^https?://}, "").gsub(%r{/$}, ""), event.website %>
+        <% if event.website.present? %>
+          <%= external_link_to event.website.gsub(%r{^https?://}, "").gsub(%r{/$}, ""), event.website %>
+        <% end %>
       </div>
     </div>
 

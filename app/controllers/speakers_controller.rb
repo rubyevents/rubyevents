@@ -69,13 +69,7 @@ class SpeakersController < ApplicationController
     params.require(:speaker).permit(
       :name,
       :github,
-      :twitter,
-      :bsky,
-      :linkedin,
-      :mastodon,
       :bio,
-      :website,
-      :speakerdeck,
       :pronouns_type,
       :pronouns,
       :slug

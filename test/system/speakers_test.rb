@@ -14,11 +14,22 @@ class SpeakersTest < ApplicationSystemTestCase
 
     fill_in "Bio", with: @speaker.bio
     fill_in "Name", with: @speaker.name
-    fill_in "Twitter", with: @speaker.twitter
-    fill_in "Website", with: @speaker.website
     click_on "Suggest modifications"
 
     assert_text "Your suggestion was successfully created and will be reviewed soon."
+  end
+
+  test "should update Speaker's social profile" do
+    visit speaker_url(@speaker)
+    assert_selector "h1", text: @speaker.name
+    click_on "Suggest improvements"
+
+    assert_text "Suggesting a modification"
+
+    fill_in "social_profile_value", with: "john"
+    click_on "Save"
+
+    assert_text "Saved"
   end
 
   test "broadcast a speaker about partial" do

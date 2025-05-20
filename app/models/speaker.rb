@@ -39,6 +39,7 @@ class Speaker < ApplicationRecord
   include ActionView::RecordIdentifier
   include Sluggable
   include Suggestable
+  include Sociable
   include Speaker::Searchable
   slug_from :name
 

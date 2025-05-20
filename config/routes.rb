@@ -57,7 +57,14 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :speakers, param: :slug, only: [:index, :show, :update, :edit]
+  resources :speakers, param: :slug, only: [] do
+    resources :social_profiles, only: [:new, :create], module: :speakers
+  end
+
+  resources :speakers, param: :slug, only: [:index, :show, :update, :edit] do
+    resources :social_profiles, only: [:edit, :update], shallow: true
+  end
+
   resources :events, param: :slug, only: [:index, :show, :update, :edit] do
     scope module: :events do
       resources :schedules, only: [:index], path: "/schedule" do

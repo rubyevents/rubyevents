@@ -47,11 +47,6 @@
     </div>
   </div>
 
-  <div>
-    <%= form.label :website %>
-    <%= form.text_field :website, class: "input input-bordered w-full" %>
-  </div>
-
   <div class="flex items-center gap-4">
     <%= ui_button "Suggest modifications", type: :submit %>
     <%= ui_button "Cancel", data: {action: "click->modal#close"}, role: :button, kind: :ghost %>

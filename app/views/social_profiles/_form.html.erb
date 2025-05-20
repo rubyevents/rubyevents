@@ -1,0 +1,13 @@
+<%= turbo_frame_tag social_profile do %>
+  <%= form_with(model: social_profile, url: url, class: "flex flex-col") do |form| %>
+    <%= form.label :value, "#{form.object.provider.humanize} (URL/Handle/Username)" %>
+    <div class="flex flex-col gap-x-1">
+      <span class="text-red-500"><%= social_profile.errors["value"] ? social_profile.errors["value"].first : "" %></span>
+      <div class="flex items-center gap-x-2">
+        <%= form.hidden_field :provider, class: "input input-bordered w-full" %>
+        <%= form.text_field :value, class: "input input-bordered w-full" %>
+        <%= ui_button "Save", type: :submit %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

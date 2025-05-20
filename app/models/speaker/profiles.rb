@@ -15,13 +15,14 @@ class Speaker::Profiles < ActiveRecord::AssociatedObject
     socials = github_client.social_accounts(speaker.github)
     links = socials.pluck(:provider, :url).to_h
 
+    speaker.build_twitter(links["twitter"]) if links["twitter"].present?
+    speaker.build_mastodon(links["mastodon"]) if links["mastodon"].present?
+    speaker.build_bsky(links["bluesky"]) if links["bluesky"].present?
+    speaker.build_linkedin(links["linkedin"]) if links["linkedin"].present?
+    speaker.build_website(profile.blog) if profile.blog.present?
+
     speaker.update!(
-      twitter: speaker.twitter.presence || links["twitter"] || "",
-      mastodon: speaker.mastodon.presence || links["mastodon"] || "",
-      bsky: speaker.bsky.presence || links["bluesky"] || "",
-      linkedin: speaker.linkedin.presence || links["linkedin"] || "",
       bio: speaker.bio.presence || profile.bio || "",
-      website: speaker.website.presence || profile.blog || "",
       github_metadata: {
         profile: JSON.parse(profile.body),
         socials: JSON.parse(socials.body)

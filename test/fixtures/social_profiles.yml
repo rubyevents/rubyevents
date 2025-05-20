@@ -1,0 +1,63 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the "{}" from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+# == Schema Information
+#
+# Table name: social_profiles
+#
+#  id            :integer          not null, primary key
+#  provider      :string           not null
+#  sociable_type :string           not null, indexed => [sociable_id]
+#  value         :string           not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  sociable_id   :integer          not null, indexed => [sociable_type]
+#
+# Indexes
+#
+#  index_social_profiles_on_sociable  (sociable_type,sociable_id)
+#
+speaker:
+  provider: "twitter"
+  value: "one"
+  sociable: one
+  sociable_type: Speaker
+
+twitter:
+  provider: "twitter"
+  value: "jim"
+  sociable: jim
+  sociable_type: Speaker
+
+linkedin:
+  provider: "linkedin"
+  value: "jim"
+  sociable: jim
+  sociable_type: Speaker
+
+bsky:
+  provider: "bsky"
+  value: "@jim"
+  sociable: jim
+  sociable_type: Speaker
+
+mastodon:
+  provider: "mastodon"
+  value: "@jim@ruby.social"
+  sociable: jim
+  sociable_type: Speaker
+
+speakerdeck:
+  provider: "speakerdeck"
+  value: "jim"
+  sociable: jim
+  sociable_type: Speaker
+
+website:
+  provider: "website"
+  value: "https://jim.com"
+  sociable: jim
+  sociable_type: Speaker

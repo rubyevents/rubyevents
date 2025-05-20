@@ -5,8 +5,11 @@ module Suggestable
     has_many :suggestions, as: :suggestable, dependent: :destroy
   end
 
-  def create_suggestion_from(params:, user: Current.user)
-    suggestions.create(content: select_differences_for(params), suggested_by_id: user&.id).tap do |suggestion|
+  # NOTE: validate before saving
+  def create_suggestion_from(params:, user: Current.user, new_record: false)
+    params = select_differences_for(params) unless new_record
+
+    suggestions.create(content: params, suggested_by_id: user&.id).tap do |suggestion|
       suggestion.approved!(approver: user) if managed_by?(user)
     end
   end

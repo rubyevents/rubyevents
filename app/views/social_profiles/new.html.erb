@@ -1,0 +1,3 @@
+<%= turbo_frame_tag @social_profile do %>
+  <%= render "form", social_profile: @social_profile, url: speaker_social_profiles_path(@social_profile.sociable, @social_profile) %>
+<% end %>
