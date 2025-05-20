@@ -27,7 +27,7 @@ class Session < ApplicationRecord
     self.ip_address = Current.ip_address
   end
 
-  def sign_out_siblings
+  def sign_out_siblings!
     user.sessions.without(self).delete_all
   end
 end
