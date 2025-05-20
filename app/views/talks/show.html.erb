@@ -13,9 +13,12 @@
         <% end %>
       </div>
 
+      <% watched = signed_in? ? @talk.watched?(Current.user) : false %>
+      <% cache_key = [@talk, watched, signed_in?].compact %>
+
       <%= turbo_frame_tag "talk", target: "_top", data: {turbo_action: "advance"} do %>
-        <% cache [@talk, Current.user].compact do %>
-          <%= render partial: "talks/talk", locals: {talk: @talk} %>
+        <% cache cache_key do %>
+          <%= render partial: "talks/talk", locals: {talk: @talk, watched: watched, signed_in: signed_in?} %>
         <% end %>
       <% end %>
 
