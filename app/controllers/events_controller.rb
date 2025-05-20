@@ -16,21 +16,10 @@ class EventsController < ApplicationController
   def show
     set_meta_tags(@event)
 
-    event_talks = if @event.organisation.meetup?
-      @event.talks_in_running_order.where(meta_talk: true).or(
-        @event.talks_in_running_order.where.not(video_provider: "parent")
-      ).order(date: :desc)
+    if @event.organisation.meetup?
+      redirect_to event_events_path(@event)
     else
-      @event.talks_in_running_order.order(date: :asc)
-    end
-
-    event_talks = event_talks.includes(:speakers, :parent_talk, child_talks: :speakers)
-
-    if params[:q].present?
-      talks = event_talks.pagy_search(params[:q])
-      @pagy, @talks = pagy_meilisearch(talks, limit: 21)
-    else
-      @pagy, @talks = pagy(event_talks, limit: 21)
+      redirect_to event_talks_path(@event)
     end
   end
 

@@ -12,7 +12,7 @@ class OrganisationsController < ApplicationController
   def show
     set_meta_tags(@organisation)
 
-    @events = @organisation.events.order(date: :desc)
+    @events = @organisation.events.sort_by { |event| event.start_date }.reverse
   end
 
   private

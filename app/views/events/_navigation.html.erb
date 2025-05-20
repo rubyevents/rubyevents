@@ -1,5 +1,14 @@
 <div role="tablist" class="mb-12 tabs tabs-bordered">
-  <%= active_link_to "Talks", event_path(event), class: "tab", active_class: "tab-active", role: "tab" %>
+  <% if event.organisation.meetup? %>
+    <%= active_link_to "Events", event_events_path(event), class: "tab", active_class: "tab-active", role: "tab" %>
+  <% end %>
+
+  <%= active_link_to "Talks", event_talks_path(event), class: "tab", active_class: "tab-active", role: "tab" %>
+
+  <% if event.organisation.meetup? %>
+    <%= active_link_to "Videos", event_videos_path(event), class: "tab", active_class: "tab-active", role: "tab" %>
+  <% end %>
+
   <%= active_link_to "Speakers", event_speakers_path(event), class: "tab", active_class: "tab-active", role: "tab" %>
 
   <% if event.schedule.exist? %>

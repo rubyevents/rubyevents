@@ -20,7 +20,9 @@
     <%= vite_javascript_tag "application", media: "all", "data-turbo-track": "reload" %>
     <%= vite_stylesheet_tag "application.css", media: "all", "data-turbo-track": "reload" %>
 
-    <meta name="turbo-cache-control" content="no-cache">
+    <% unless hotwire_native_app? %>
+      <meta name="turbo-cache-control" content="no-cache">
+    <% end %>
     <meta name="view-transition" content="same-origin">
 
     <%= favicon_link_tag "favicon/favicon.ico", rel: "icon", type: "image/x-icon" %>

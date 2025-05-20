@@ -94,7 +94,7 @@
 
           <% if talk.vimeo? || talk.parent_talk&.vimeo? %>
             <%= ui_tooltip "Watch on Vimeo" do %>
-              <%= ui_button url: "https://vimeo.com/video/#{talk.video_id}", kind: :pill, target: "_blank" do %>
+              <%= ui_button url: talk.external_player_url, kind: :pill, target: "_blank" do %>
                 <%= fa("vimeo-v-brands", size: :xs, style: :solid) %>
                 <span class="text-xs">Play on Vimeo</span>
               <% end %>
