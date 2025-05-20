@@ -8,6 +8,7 @@ class PasswordsController < ApplicationController
     if !@user.authenticate(params[:current_password])
       redirect_to edit_password_path, alert: "The current password you entered is incorrect"
     elsif @user.update(user_params)
+      Current.session.sign_out_siblings!
       redirect_to root_path, notice: "Your password has been changed"
     else
       render :edit, status: :unprocessable_entity

@@ -7,7 +7,7 @@
 #  bio             :text             default(""), not null
 #  bsky            :string           default(""), not null
 #  bsky_metadata   :json             not null
-#  github          :string           default(""), not null
+#  github          :string           default(""), not null, indexed
 #  github_metadata :json             not null
 #  linkedin        :string           default(""), not null
 #  mastodon        :string           default(""), not null
@@ -26,6 +26,7 @@
 # Indexes
 #
 #  index_speakers_on_canonical_id  (canonical_id)
+#  index_speakers_on_github        (github) UNIQUE WHERE github IS NOT NULL AND github != ''
 #  index_speakers_on_name          (name)
 #  index_speakers_on_slug          (slug) UNIQUE
 #
@@ -66,7 +67,7 @@ class Speaker < ApplicationRecord
 
   # validations
   validates :canonical, exclusion: {in: ->(speaker) { [speaker] }, message: "can't be itself"}
-  validates :name, presence: true, uniqueness: {case_sensitive: false}
+  validates :github, uniqueness: {case_sensitive: false}, allow_blank: true
 
   # scope
   scope :with_talks, -> { where.not(talks_count: 0) }
@@ -193,32 +194,28 @@ class Speaker < ApplicationRecord
 
   def to_meta_tags
     {
-      title: meta_title,
+      title: name,
       description: meta_description,
       og: {
-        title: meta_title,
+        title: name,
         type: :website,
         image: {
           _: github_avatar_url,
-          alt: meta_title
+          alt: name
         },
         description: meta_description,
-        site_name: "RubyVideo.dev"
+        site_name: "RubyEvents.org"
       },
       twitter: {
         card: "summary_large_image",
         site: twitter,
-        title: meta_title,
+        title: name,
         description: meta_description,
         image: {
           src: github_avatar_url
         }
       }
     }
-  end
-
-  def meta_title
-    "Conferences talks from #{name}"
   end
 
   def meta_description
@@ -263,5 +260,15 @@ class Speaker < ApplicationRecord
       website: #{website}
       bio: #{bio}
     HEREDOC
+  end
+
+  def to_mobile_json(request)
+    {
+      id: id,
+      name: name,
+      slug: slug,
+      avatar_url: avatar_url,
+      url: Router.speaker_url(self, host: "#{request.protocol}#{request.host}:#{request.port}")
+    }
   end
 end

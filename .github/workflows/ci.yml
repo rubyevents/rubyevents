@@ -135,7 +135,7 @@ jobs:
       packages: write
       attestations: write
       id-token: write
-    timeout-minutes: 60
+    timeout-minutes: 30
 
     env:
       DOCKER_BUILDKIT: 1

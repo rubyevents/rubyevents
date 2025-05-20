@@ -2,7 +2,7 @@
 require "fileutils"
 
 APP_ROOT = File.expand_path("..", __dir__)
-APP_NAME = "rubyvideo"
+APP_NAME = "rubyevents"
 
 def system!(*args)
   system(*args, exception: true)

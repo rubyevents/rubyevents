@@ -14,22 +14,62 @@ days:
   - name: "Conference Day"
     date: "2025-02-28"
     grid:
-      - start_time: "Morning"
-        end_time: "Morning"
+      - start_time: "10:00"
+        end_time: "14:00"
         slots: 1
         items:
           - title: Workshops
             description: The Main Event Starts With Morning Workshops
 
-      - start_time: "Afternoon"
-        end_time: "Afternoon"
+      - start_time: "15:00"
+        end_time: "16:00"
         slots: 1
         items:
-          - title: Talks
-            description: Afternoon Talks
+          - title: Conference Hall Opens
+            description: Registration and welcome
 
-      - start_time: "Evening"
-        end_time: "Evening"
+      - start_time: "16:00"
+        end_time: "16:45"
+        slots: 1
+
+      - start_time: "16:45"
+        end_time: "17:00"
+        slots: 1
+        items:
+          - Coffee Break
+
+      - start_time: "17:00"
+        end_time: "17:45"
+        slots: 1
+
+      - start_time: "17:45"
+        end_time: "18:15"
+        slots: 1
+        items:
+          - Longer Coffee Break
+
+      - start_time: "18:15"
+        end_time: "19:00"
+        slots: 1
+
+      - start_time: "19:00"
+        end_time: "19:15"
+        slots: 1
+        items:
+          - Coffee Break
+
+      - start_time: "19:15"
+        end_time: "20:00"
+        slots: 1
+
+      - start_time: "20:00"
+        end_time: "23:00"
+        slots: 1
+        items:
+          - Museum Tours
+
+      - start_time: "21:00"
+        end_time: "02:30"
         slots: 1
         items:
           - title: After-Party

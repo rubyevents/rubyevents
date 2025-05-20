@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1<%= ",maximum-scale=1,user-scalable=0" if hotwire_native_app? %>">
 
     <% if Rails.env.production? || Rails.env.staging? %>
       <link rel="canonical" href="<%= canonical_url %>">
@@ -14,13 +14,15 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= display_meta_tags site: "Ruby Video" %>
+    <%= display_meta_tags site: "" %>
 
     <%= vite_client_tag %>
     <%= vite_javascript_tag "application", media: "all", "data-turbo-track": "reload" %>
     <%= vite_stylesheet_tag "application.css", media: "all", "data-turbo-track": "reload" %>
 
-    <meta name="turbo-cache-control" content="no-cache">
+    <% unless hotwire_native_app? %>
+      <meta name="turbo-cache-control" content="no-cache">
+    <% end %>
     <meta name="view-transition" content="same-origin">
 
     <%= favicon_link_tag "favicon/favicon.ico", rel: "icon", type: "image/x-icon" %>
@@ -34,7 +36,10 @@
   </head>
 
   <body data-controller="preserve-scroll">
-    <%= render "shared/navbar" %>
+    <div class="hotwire-native:hidden">
+      <%= render "shared/top_banner" %>
+      <%= render "shared/navbar" %>
+    </div>
 
     <div class="min-h-screen">
       <%= yield %>

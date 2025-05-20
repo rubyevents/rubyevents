@@ -6,7 +6,9 @@ Rails.application.routes.draw do
 
   # static pages
   get "uses", to: "page#uses"
+  get "/privacy", to: "page#privacy"
   get "/components", to: "page#components"
+  get "/about", to: "page#about"
 
   # authentication
   get "/auth/failure", to: "sessions/omniauth#failure"
@@ -63,6 +65,9 @@ Rails.application.routes.draw do
       end
       resources :speakers, only: [:index]
       resources :talks, only: [:index]
+      resources :related_talks, only: [:index]
+      resources :events, only: [:index]
+      resources :videos, only: [:index]
     end
   end
   resources :organisations, param: :slug, only: [:index, :show]
@@ -99,5 +104,19 @@ Rails.application.routes.draw do
 
   resources :watch_lists, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
     resources :talks, only: [:create, :destroy], controller: "watch_list_talks"
+  end
+
+  namespace :hotwire do
+    namespace :native do
+      namespace :v1 do
+        get "home", to: "/page#home", defaults: {format: "json"}
+        namespace :android do
+          resource :path_configuration, only: :show
+        end
+        namespace :ios do
+          resource :path_configuration, only: :show
+        end
+      end
+    end
   end
 end

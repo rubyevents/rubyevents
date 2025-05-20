@@ -205,6 +205,24 @@ class TalkTest < ActiveSupport::TestCase
     assert_equal [@talk], Talk.ft_search("Hotwire Cookbook")
     assert_equal [@talk], Talk.ft_search("Hotwire Cookbook: Common Uses, Essential Patterns")
     assert_equal [@talk], Talk.ft_search('Hotwire"') # with an escaped quote
+
+    @talk.index.destroy!
+    @talk.reload.reindex # Need to reload or we get a FrozenError from trying to update attributes on the destroyed index record.
+    assert_equal [@talk], Talk.ft_search("Hotwire Cookbook")
+  end
+
+  test "full text search creating and deleting a talk" do
+    talk = Talk.create!(title: "Full text seach with Sqlite", summary: "On using sqlite full text search with an ActiveRecord backed virtual table", date: Time.current)
+    talk.speakers.create!(name: "Kasper Timm Hansen")
+
+    assert_equal [talk], Talk.ft_search("sqlite full text search") # title
+    assert_equal [talk], Talk.ft_search("ActiveRecord backed virtual table") # summary
+    assert_equal [talk], Talk.ft_search("Kasper Timm Hansen") # speaker
+
+    talk.destroy
+    assert_empty Talk.ft_search("sqlite full text search")
+    assert_empty Talk.ft_search("ActiveRecord backed virtual table")
+    assert_empty Talk.ft_search("Kasper Timm Hansen")
   end
 
   test "full text search on title with snippets" do

@@ -39,10 +39,12 @@ export default class extends Controller {
 
     if (this.hasStartSecondsValue) {
       providerParams.start = this.startSecondsValue
+      providerParams.start_time = this.startSecondsValue
     }
 
     if (this.hasEndSecondsValue) {
       providerParams.end = this.endSecondsValue
+      providerParams.end_time = this.endSecondsValue
     }
 
     return {

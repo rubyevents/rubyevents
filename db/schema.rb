@@ -162,6 +162,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_18_073648) do
     t.json "bsky_metadata", default: {}, null: false
     t.json "github_metadata", default: {}, null: false
     t.index ["canonical_id"], name: "index_speakers_on_canonical_id"
+    t.index ["github"], name: "index_speakers_on_github", unique: true, where: "github IS NOT NULL AND github != ''"
     t.index ["name"], name: "index_speakers_on_name"
     t.index ["slug"], name: "index_speakers_on_slug", unique: true
   end

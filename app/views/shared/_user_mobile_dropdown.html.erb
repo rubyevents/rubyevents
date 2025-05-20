@@ -30,7 +30,7 @@
 
   <% c.with_menu_item_link_to "Use", uses_path %>
   <% c.with_menu_item_link_to "Analytics", analytics_dashboards_path %>
-
+  <% c.with_menu_item_link_to "About", about_path %>
   <% signed_in do %>
     <% c.with_menu_item_divider %>
     <% c.with_menu_item_button_to t("sign_out"), Current.session, method: :delete, id: :sign_out %>

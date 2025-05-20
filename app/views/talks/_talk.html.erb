@@ -94,7 +94,7 @@
 
           <% if talk.vimeo? || talk.parent_talk&.vimeo? %>
             <%= ui_tooltip "Watch on Vimeo" do %>
-              <%= ui_button url: "https://vimeo.com/video/#{talk.video_id}", kind: :pill, target: "_blank" do %>
+              <%= ui_button url: talk.external_player_url, kind: :pill, target: "_blank" do %>
                 <%= fa("vimeo-v-brands", size: :xs, style: :solid) %>
                 <span class="text-xs">Play on Vimeo</span>
               <% end %>
@@ -132,7 +132,7 @@
             <% end %>
           <% end %>
 
-          <div class="tooltip tooltip-top" data-tip="You can suggest some modifications to this talk">
+          <div class="tooltip tooltip-top hotwire-native:hidden" data-tip="You can suggest some modifications to this talk">
             <%= ui_button url: edit_talk_path(talk), kind: :pill, data: {turbo_frame: "modal"} do %>
               <%= fa("pen", size: :xs, style: :solid) %>
               <span class="text-xs">Edit</span>

@@ -5,7 +5,7 @@ require "net/http"
 require "json"
 require "yaml"
 
-API_ENDPOINT = "https://www.rubyvideo.dev/speakers.json"
+API_ENDPOINT = "https://www.rubyevents.org/speakers.json"
 # API_ENDPOINT = "http://localhost:3000/speakers.json"
 OUTPUT_FILE = "data/speakers.yml"
 

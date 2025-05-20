@@ -110,7 +110,6 @@ gem "pagy"
 gem "dockerfile-rails", ">= 1.2", group: :development
 
 # gem "activerecord-enhancedsqlite3-adapter"
-gem "litestream"
 gem "solid_cache"
 gem "solid_queue"
 gem "mission_control-jobs"
@@ -144,7 +143,12 @@ gem "json-repair", "~> 0.2.0"
 
 gem "redcarpet", "~> 3.6"
 gem "country_select"
+
+# admin
 gem "avo"
+gem "marksmith"
+gem "commonmarker"
+
 gem "frozen_record", "~> 0.27.2"
 gem "diffy"
 gem "discard"

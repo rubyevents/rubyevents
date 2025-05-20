@@ -19,7 +19,9 @@ Rails.application.configure do
   config.public_file_server.headers = {"cache-control" => "public, max-age=#{1.year.to_i}"}
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  config.asset_host = "https://staging.rubyvideo.dev"
+  config.asset_host = lambda { |source, request = nil|
+    request&.host&.include?("rubyevents.org") ? "https://staging.rubyevents.org" : "https://staging.rubyvideo.dev"
+  }
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
@@ -85,7 +87,8 @@ Rails.application.configure do
   config.hosts = [
     "rubyvideo.dev", # Allow requests to the server itself
     /.*\.rubyvideo\.dev/, # Allow requests from subdomains like `www.example.com`
-    /.*\.adrienpoly\.com/ # Allow requests from subdomains like `www.example.com`
+    /.*\.adrienpoly\.com/, # Allow requests from subdomains like `www.example.com`
+    /.*\.rubyevents\.org/
   ]
   # Skip DNS rebinding protection for the default health check endpoint.
   config.host_authorization = {exclude: ->(request) { request.path == "/up" }}

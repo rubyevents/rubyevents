@@ -21,7 +21,7 @@
 # rubocop:enable Layout/LineLength
 
 one:
-  email: one@rubyvideo.dev
+  email: one@rubyevents.org
   password_digest: <%= BCrypt::Password.create("Secret1*3*5*") %>
   verified: true
 
@@ -31,7 +31,7 @@ lazaro_nixon:
   verified: true
 
 admin:
-  email: admin@rubyvideo.dev
+  email: admin@rubyevents.org
   password_digest: <%= BCrypt::Password.create("Secret1*3*5*") %>
   verified: true
   admin: true

@@ -18,8 +18,9 @@ class TalksController < ApplicationController
     @talks = @talks.for_event(params[:event]) if params[:event].present?
     @talks = @talks.for_speaker(params[:speaker]) if params[:speaker].present?
     @talks = @talks.where(kind: talk_kind) if talk_kind.present?
+    @talks = @talks.where("created_at >= ?", created_after) if created_after
     @talks = @talks.order(order_by) if order_by
-    @pagy, @talks = pagy(@talks, items: 20, page: params[:page]&.to_i || 1)
+    @pagy, @talks = pagy(@talks, **pagy_params)
   end
 
   # GET /talks/1
@@ -50,7 +51,9 @@ class TalksController < ApplicationController
     return if params[:s].present? && params[:order_by].blank?
     order_by_options = {
       "date_desc" => "talks.date DESC",
-      "date_asc" => "talks.date ASC"
+      "date_asc" => "talks.date ASC",
+      "created_at_desc" => "talks.created_at DESC",
+      "created_at_asc" => "talks.created_at ASC"
     }
 
     @order_by ||= begin
@@ -58,6 +61,19 @@ class TalksController < ApplicationController
 
       order_by_options[order]
     end
+  end
+
+  def created_after
+    Date.parse(params[:created_after]) if params[:created_after].present?
+  rescue ArgumentError
+    nil
+  end
+
+  def pagy_params
+    {
+      limit: params[:limit]&.to_i,
+      page: params[:page]&.to_i
+    }.compact_blank
   end
 
   def talk_kind

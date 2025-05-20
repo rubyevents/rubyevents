@@ -26,7 +26,7 @@ class Analytics::DashboardsController < ApplicationController
     @top_referrers = Rails.cache.fetch("top_referrers", expires_at: Time.current.end_of_day) do
       Ahoy::Visit
         .where("date(started_at) BETWEEN ? AND ?", 60.days.ago.to_date, Date.yesterday)
-        .where.not(referring_domain: [nil, "", "rubyvideo.dev", "www.rubyvideo.dev"])
+        .where.not(referring_domain: [nil, "", "rubyvideo.dev", "www.rubyvideo.dev", "rubyevents.org", "www.rubyevents.org"])
         .group(:referring_domain)
         .order(Arel.sql("COUNT(*) DESC"))
         .limit(10)
