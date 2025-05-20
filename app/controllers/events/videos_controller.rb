@@ -1,11 +1,12 @@
-class Events::TalksController < ApplicationController
+class Events::VideosController < ApplicationController
   include WatchedTalks
   skip_before_action :authenticate_user!, only: %i[index]
   before_action :set_event, only: %i[index]
   before_action :set_user_favorites, only: %i[index]
 
   def index
-    @talks = @event.talks_in_running_order.includes(:speakers, :parent_talk, child_talks: :speakers)
+    @talks = @event.talks_in_running_order.watchable.includes(:speakers, :parent_talk, child_talks: :speakers).reverse
+    @active_talk = Talk.find_by(slug: params[:active_talk])
   end
 
   private

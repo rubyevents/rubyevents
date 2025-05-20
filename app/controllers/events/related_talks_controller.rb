@@ -1,4 +1,4 @@
-class Events::TalksController < ApplicationController
+class Events::RelatedTalksController < ApplicationController
   include WatchedTalks
   skip_before_action :authenticate_user!, only: %i[index]
   before_action :set_event, only: %i[index]
@@ -6,6 +6,7 @@ class Events::TalksController < ApplicationController
 
   def index
     @talks = @event.talks_in_running_order.includes(:speakers, :parent_talk, child_talks: :speakers)
+    @active_talk = Talk.find_by(slug: params[:active_talk])
   end
 
   private
