@@ -72,6 +72,10 @@
       <div class="flex flex-wrap w-full divide-y justify-between">
         <div class="py-4 font-bold text-xl">
           <span><%= talk.title %></span>
+          <% if talk.original_title.present? %>
+            <div class="text-gray-500 text-xs mb-2">Original title: <%= talk.original_title %></div>
+          <% end %>
+
         </div>
 
         <div class="flex grow gap-1 py-3 lg:divide-y-0 text-xs xl:justify-end overflow-y-visible overflow-x-scroll lg:overflow-x-hidden order-last xl:order-none">

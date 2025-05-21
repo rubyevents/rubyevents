@@ -15,6 +15,7 @@
 #  language            :string           default("en"), not null
 #  like_count          :integer          default(0)
 #  meta_talk           :boolean          default(FALSE), not null
+#  original_title      :string           default(""), not null
 #  published_at        :datetime
 #  slides_url          :string
 #  slug                :string           default(""), not null, indexed
@@ -488,6 +489,7 @@ class Talk < ApplicationRecord
     assign_attributes(
       event: event,
       title: static_metadata.title,
+      original_title: static_metadata.original_title || "",
       description: static_metadata.description,
       date: static_metadata.try(:date) || parent_talk&.static_metadata.try(:date),
       published_at: static_metadata.try(:published_at) || parent_talk&.static_metadata.try(:published_at),

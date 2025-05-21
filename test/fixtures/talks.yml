@@ -15,6 +15,7 @@
 #  language            :string           default("en"), not null
 #  like_count          :integer          default(0)
 #  meta_talk           :boolean          default(FALSE), not null
+#  original_title      :string           default(""), not null
 #  published_at        :datetime
 #  slides_url          :string
 #  slug                :string           default(""), not null, indexed
@@ -96,3 +97,13 @@ brightonruby_2024_one:
   external_player: true
   event: brightonruby_2024
   date: "2024-06-30"
+
+non_english_talk_one:
+  title: Non English Talk Title
+  original_title: Palestra não em inglês
+  description: Non English talk description
+  slug: non-english-talk-title
+  kind: "talk"
+  video_provider: mp4
+  external_player: true
+  date: "2025-05-20"

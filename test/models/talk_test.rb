@@ -322,4 +322,10 @@ class TalkTest < ActiveSupport::TestCase
     assert_equal 0, talk.kept_speaker_talks.count
     assert_equal 0, speaker_talk.speaker.talks_count
   end
+
+  test "should return original title" do
+    talk = talks(:non_english_talk_one)
+
+    assert_equal "Palestra não em inglês", talk.original_title
+  end
 end
