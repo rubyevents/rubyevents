@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&display=swap');
 
 :root {
   font-family: Inter, sans-serif;
@@ -13,25 +13,6 @@
 @layer components {
   body {
     @apply bg-base-100 leading-relaxed text-base-content;
-  }
-
-  h1,
-  .h1 {
-    @apply font-serif text-3xl font-bold text-primary;
-  }
-
-  h2,
-  .h2 {
-    @apply font-serif text-xl  font-bold;
-  }
-
-  p.secondary {
-    @apply text-neutral-content;
-  }
-
-  a.link-ghost {
-    @apply hover:underline;
-    text-decoration: none;
   }
 
   mark {

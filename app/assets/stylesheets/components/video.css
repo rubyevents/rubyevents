@@ -1,24 +1,48 @@
-@layer components {
-  .banner-img .v-vlite {
+@utility banner-img {
+  & .v-vlite {
     --vlite-controlsColor: #dc143c;
     --vlite-controlsOpacity: 1;
     --vlite-controlBarBackground: linear-gradient(0deg, #000 -50%, #fff);
   }
+}
 
-  .v-playbackRateSelect.v-controlButton {
+@utility v-vlite {
+  .banner-img & {
+    --vlite-controlsColor: #dc143c;
+    --vlite-controlsOpacity: 1;
+    --vlite-controlBarBackground: linear-gradient(0deg, #000 -50%, #fff);
+  }
+}
+
+@utility v-playbackRateSelect {
+  &.v-controlButton {
+    color: var(--vlite-controlsColor);
+    text-align: center;
+  }
+}
+
+@utility v-controlButton {
+  &.v-playbackRateSelect {
     color: var(--vlite-controlsColor);
     text-align: center;
   }
 
-  .v-loader {
-    display: none !important;
+  &.v-openInYouTube svg {
+    width: 65%;
+    fill: var(--vlite-controlsColor);
   }
+}
 
-  .v-bigPlay {
-    opacity: 0.5 !important;
-  }
-  
-  .v-openInYouTube.v-controlButton svg {
+@utility v-loader {
+  display: none !important;
+}
+
+@utility v-bigPlay {
+  opacity: 0.5 !important;
+}
+
+@utility v-openInYouTube {
+  &.v-controlButton svg {
     width: 65%;
     fill: var(--vlite-controlsColor);
   }

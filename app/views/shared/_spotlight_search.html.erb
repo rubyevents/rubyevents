@@ -14,19 +14,19 @@
               name: "query",
               autofocus: true,
               autocomplete: "off",
-              class: "w-full p-2 outline-none",
+              class: "w-full p-2 outline-hidden border-0",
               data: {action: "spotlight-search#search keydown.enter->spotlight-search#navigate:stop", spotlight_search_target: "searchInput"} %>
         <%= heroicon("x-mark", size: :sm, class: "absolute right-2 top-1/2 -translate-y-1/2 hidden cursor-pointer", data: {action: "click->spotlight-search#clear", spotlight_search_target: "clear"}) %>
         <%= heroicon("arrow-path", size: :sm, class: "absolute right-2 top-0 bottom-0 my-auto animate-spin hidden text-gray-600", data: {spotlight_search_target: "loading"}) %>
       </div>
 
     <div role="listbox" data-spotlight-search-target="searchResults" aria-live="polite">
-      <div class="flex items-center gap-2 mt-4 border-b pb-4 hidden" data-spotlight-search-target="allSearchResults">
+      <div class="flex items-center gap-2 mt-4 border-b border-base-300 pb-4 hidden" data-spotlight-search-target="allSearchResults">
         <div role="option">search <%= main_resource %> for <strong class="text-base-content" data-spotlight-search-target="searchQuery"></strong></div>
         <kbd class="kbd kbd-sm text-base-content">⏎</kbd>
       </div>
 
-      <div class="grid md:grid-cols-3 divide-x">
+      <div class="grid md:grid-cols-3 divide-x divide-base-300">
         <% resources.unshift(main_resource) %>
         <% resources.uniq.each_with_index do |resource, index| %>
           <% padding = {"0" => "pr-4", "1" => "px-4", "2" => "pl-4"}.dig(index.to_s) %>

@@ -4,7 +4,7 @@
     <span class="title">Getting Started: Ways to Contribute</span>
   </h1>
 
-  <div role="tablist" class="tabs tabs-bordered mt-6">
+  <div role="tablist" class="tabs tabs-border mt-6">
     <input type="radio" name="contribution-tabs" role="tab" class="tab" aria-label="Introduction" checked="checked" style="width: 125px">
     <div role="tabpanel" class="tab-content py-6">
       <%= render "contributions/introduction" %>
@@ -63,7 +63,7 @@
 
         <div id="overdue-scheduled-talks" class="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4 min-w-full mb-6">
           <% @overdue_scheduled_talks.group_by(&:event).each do |event, talks| %>
-            <%= content_tag :div, id: dom_id(event), class: "p-4 rounded-lg border bg-white", target: :_blank do %>
+            <%= content_tag :div, id: dom_id(event), class: "p-4 rounded-lg border border-base-300 bg-white", target: :_blank do %>
               <article class="prose">
                 <h3 class="line-clamp-1">Event: <%= event.name %></h3>
 
@@ -91,7 +91,7 @@
         <div id="overdue-scheduled-talks" class="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4 min-w-full mb-6">
 
           <% @talks_without_speakers.group_by(&:event).sort_by { |_event, talks| talks.minimum(:date) }.each do |event, talks| %>
-            <%= content_tag :div, id: dom_id(event), class: "p-4 rounded-lg border bg-white", target: :_blank do %>
+            <%= content_tag :div, id: dom_id(event), class: "p-4 rounded-lg border border-base-300 bg-white", target: :_blank do %>
               <article class="">
                 <div class="prose">
                   <h3 class="line-clamp-1">Event: <%= event.name %></h3>
@@ -129,7 +129,7 @@
 
         <div id="overdue-scheduled-talks" class="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4 min-w-full mb-6">
           <% @not_published_talks.group_by(&:event).sort_by { |_event, talks| talks.minimum(:date) }.each do |event, talks| %>
-            <%= content_tag :div, id: dom_id(event), class: "p-4 rounded-lg border bg-white", target: :_blank do %>
+            <%= content_tag :div, id: dom_id(event), class: "p-4 rounded-lg border border-base-300 bg-white", target: :_blank do %>
               <article class="prose">
                 <h3 class="line-clamp-1">Event: <%= event.name %></h3>
 
@@ -169,7 +169,7 @@
         <h3 class="font-bold mb-3">Conferences from RubyConferences.org with a video link (<%= pluralize(@with_video_link.count, "event") %>)</h3>
         <div id="missing-conferences-with-link" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 min-w-full mb-6">
           <% @with_video_link.each do |event| %>
-            <%= link_to event["video_link"], id: "#{event["name"]}-pending", class: "hover:bg-gray-100 p-4 rounded-lg border bg-white", target: :_blank do %>
+            <%= link_to event["video_link"], id: "#{event["name"]}-pending", class: "hover:bg-gray-100 p-4 rounded-lg border border-base-300 bg-white", target: :_blank do %>
               <div class="flex flex-col">
                 <h3 class="line-clamp-1 font-semibold"><%= event["name"] %></h3>
 
@@ -182,7 +182,7 @@
         <h3 class="font-bold mb-3">Conferences from RubyConferences.org without a video link (<%= pluralize(@without_video_link.count, "event") %>)</h3>
         <div id="missing-conferences-without-link" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 min-w-full mb-6">
           <% @without_video_link.each do |event| %>
-            <%= link_to event["url"], id: "#{event["name"]}-pending", class: "hover:bg-gray-100 p-4 rounded-lg border bg-white", target: :_blank do %>
+            <%= link_to event["url"], id: "#{event["name"]}-pending", class: "hover:bg-gray-100 p-4 rounded-lg border border-base-300 bg-white", target: :_blank do %>
               <div class="flex flex-col">
                 <h3 class="line-clamp-1 font-semibold"><%= event["name"] %></h3>
 
@@ -209,7 +209,7 @@
 
         <div id="events-without-schedule" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 min-w-full mb-6">
           <% @conferences_with_missing_schedule.each do |organisation, events| %>
-            <%= content_tag :div, id: dom_id(organisation, "without-schedule"), class: "p-4 rounded-lg border bg-white", target: :_blank do %>
+            <%= content_tag :div, id: dom_id(organisation, "without-schedule"), class: "p-4 rounded-lg border border-base-300 bg-white", target: :_blank do %>
               <div class="flex flex-col">
                 <h3 class="line-clamp-1"><p>Organisation: <%= link_to organisation.name, organisation, class: "hover:underline" %></p></h3>
 
