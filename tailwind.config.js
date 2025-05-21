@@ -90,8 +90,8 @@ module.exports = {
     require('@tailwindcss/typography'),
     require('daisyui'),
     plugin(function ({ addVariant }) {
-      addVariant('hotwire-native', 'html[data-bridge-platform] &')
-      addVariant('non-hotwire-native', 'html:not([data-bridge-platform]) &')
+      addVariant('hotwire-native', 'html[data-hotwire-native-app] &')
+      addVariant('non-hotwire-native', 'html:not([data-hotwire-native-app]) &')
     })
   ]
 }
