@@ -6,7 +6,7 @@
   <div class="grid grid-cols-2 gap-8" data-controller="upcoming">
     <div id="upcoming-events" class="flex flex-col gap-2 mt-8">
       <% @events.each do |event| %>
-        <%= link_to event, class: "event-item flex gap-4 group p-2 hover:bg-gray-200 rounded-md", data: { action: "mouseover->upcoming#reveal", upcoming_target: "item", event_id: event.id } do %>
+        <%= link_to event, class: "event-item flex gap-4 group p-2 hover:bg-gray-200 rounded-md", data: {action: "mouseover->upcoming#reveal", upcoming_target: "item", event_id: event.id} do %>
           <div class="flex flex-col lg:flex-row gap-8 items-center lg:justify-right text-center lg:text-left mb-6 lg:mb-0">
             <%= image_tag image_path(event.avatar_image_path),
                   class: "rounded-xl border border-[#D9DFE3] size-16",
