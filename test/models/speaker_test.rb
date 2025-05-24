@@ -104,4 +104,44 @@ class SpeakerTest < ActiveSupport::TestCase
     assert_equal 0, speaker.reload.talks.count
     assert_equal 0, speaker.reload.talks_count
   end
+
+  test "avatar_url returns github profile first" do
+    speaker = speakers(:yaroslav)
+    assert_equal "https://github.com/yshmarov.png?size=200", speaker.avatar_url
+  end
+
+  test "avatar_url returns bsky if github is not present" do
+    speaker = speakers(:yaroslav)
+    speaker.update(github: "")
+    speaker.update(bsky_metadata: { "avatar" => "https://bsky.app/avatar.png" })
+
+    assert_equal "https://bsky.app/avatar.png", speaker.avatar_url
+  end
+
+  test "avatar_url returns fallback url if github and bsky not present" do
+    speaker = speakers(:yaroslav)
+    speaker.update(github: "")
+
+    assert_equal "https://ui-avatars.com/api/?name=Y+S&size=200&background=DC133C&color=fff", speaker.avatar_url
+  end
+
+  test "avatar_rank returns 1 if github is present" do
+    speaker = speakers(:yaroslav)
+    assert_equal 1, speaker.avatar_rank
+  end
+
+  test "avatar_rank returns 2 if bsky is present and github not" do
+    speaker = speakers(:yaroslav)
+    speaker.update(github: "")
+    speaker.update(bsky_metadata: { "avatar" => "https://bsky.app/avatar.png" })
+
+    assert_equal 2, speaker.avatar_rank
+  end
+
+  test "avatar_rank returns 3 if bsky and github not present" do
+    speaker = speakers(:yaroslav)
+    speaker.update(github: "")
+
+    assert_equal 3, speaker.avatar_rank
+  end
 end
