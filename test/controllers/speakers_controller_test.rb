@@ -95,7 +95,7 @@ class SpeakersControllerTest < ActionDispatch::IntegrationTest
     assert_equal "new bio", @speaker.reload.bio
     assert_equal @speaker.name, "new-name"
     assert_equal @speaker.twitter, "new-twitter"
-    assert_equal @speaker.website, "new-website"
+    assert_equal @speaker.website, "https://new-website"
     assert_equal user.id, @speaker.suggestions.last.suggested_by_id
   end
 
