@@ -11,9 +11,9 @@ class SpeakerTest < ActiveSupport::TestCase
     assert_equal "https://www.google.com", speaker.website
   end
 
-  test "normalizes website convert http to https" do
+  test "normalizes website keep http" do
     speaker = Speaker.new(website: "http://www.google.com")
-    assert_equal "https://www.google.com", speaker.website
+    assert_equal "http://www.google.com", speaker.website
   end
 
   test "normalizes website returns '' if website is blank" do
