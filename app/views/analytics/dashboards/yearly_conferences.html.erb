@@ -1,11 +1,12 @@
+<% # in the future, it would be nice to group by continent but city info is not currently available %>
 <%= turbo_frame_tag "yearly_conferences" do %>
   <h2 class="text-center mb-4 flex items-center justify-center">
     Ruby conferences by year
     <span class="ml-2">
-      <%= ui_tooltip "Note the last year might be incomplete until the year is over" do %>
+      <%= ui_tooltip "Note the last year might have incomplete information until December comes" do %>
         <%= fa("question-circle") %>
       <% end %>
     </span>
   </h2>
-  <%= column_chart @yearly_conferences, id: :yearly_conferences_chart, xtitle: "Year", ytitle: "# Confs" %>
+  <%= column_chart @yearly_conferences, id: :yearly_conferences_chart, colors: ["#4285F4", "#DB4437", "#F4B400", "#0F9D58" ], xtitle: "Year", ytitle: "# Confs" %>
 <% end %>
