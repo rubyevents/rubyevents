@@ -141,12 +141,12 @@ class Speaker < ApplicationRecord
   end
 
   def avatar_url(...)
-    bsky_avatar_url(...) || github_avatar_url(...) || fallback_avatar_url(...)
+    github_avatar_url(...) || bsky_avatar_url(...) || fallback_avatar_url(...)
   end
 
   def avatar_rank
-    return 1 if bsky_avatar_url.present?
-    return 2 if github_avatar_url.present?
+    return 1 if github_avatar_url.present?
+    return 2 if bsky_avatar_url.present?
 
     3
   end
