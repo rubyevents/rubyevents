@@ -29,9 +29,10 @@ We have tried to make the setup process as simple as possible so that in a few c
 
 ### Setup
 
-To prepare your database and seed content, run:
+To prepare your database and seed content via `docker-compose`, run:
 
 ```
+# Note: this requires docker daemon running on your machine.
 bin/setup
 ```
 
