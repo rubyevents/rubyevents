@@ -113,7 +113,7 @@ class SpeakerTest < ActiveSupport::TestCase
   test "avatar_url returns bsky if github is not present" do
     speaker = speakers(:yaroslav)
     speaker.update(github: "")
-    speaker.update(bsky_metadata: { "avatar" => "https://bsky.app/avatar.png" })
+    speaker.update(bsky_metadata: {"avatar" => "https://bsky.app/avatar.png"})
 
     assert_equal "https://bsky.app/avatar.png", speaker.avatar_url
   end
@@ -133,7 +133,7 @@ class SpeakerTest < ActiveSupport::TestCase
   test "avatar_rank returns 2 if bsky is present and github not" do
     speaker = speakers(:yaroslav)
     speaker.update(github: "")
-    speaker.update(bsky_metadata: { "avatar" => "https://bsky.app/avatar.png" })
+    speaker.update(bsky_metadata: {"avatar" => "https://bsky.app/avatar.png"})
 
     assert_equal 2, speaker.avatar_rank
   end
