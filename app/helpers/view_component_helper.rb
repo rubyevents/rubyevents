@@ -25,8 +25,6 @@ module ViewComponentHelper
       text = capture(&)
     end
 
-    url = "http://#{url}" if URI(url).scheme.nil?
-
     classes = class_names("link inline-flex items-center gap-2 flex-nowrap", attributes.delete(:class))
     link_to url, class: classes, target: "_blank", rel: "noopener noreferrer", **attributes do
       concat(content_tag(:span) { text }).concat(fa("arrow-up-right-from-square", size: :xs))
