@@ -18,18 +18,6 @@ require "rails/test_unit/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-ActiveRecord::AssociatedObject.class_eval {
-  def self.generates_token(expires_in:, &)
-    purpose = attribute_name
-    record.generates_token_for(purpose, expires_in:, &)
-
-    define_singleton_method(:find_by_token) { find_by_token_for(purpose, it) }
-    define_singleton_method(:find_by_token!) { find_by_token_for!(purpose, it) }
-
-    define_method(:token) { record.generate_token_for(purpose) }
-  end
-}
-
 module Rubyvideo
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
