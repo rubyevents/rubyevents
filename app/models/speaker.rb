@@ -102,7 +102,7 @@ class Speaker < ApplicationRecord
     # if it already starts with https://, return as is
     return website if website.start_with?("https://")
 
-    # if it starts with http://, convert it to https://
+    # if it starts with http://, return as is
     return website if website.start_with?("http://")
 
     # otherwise, prepend https://
