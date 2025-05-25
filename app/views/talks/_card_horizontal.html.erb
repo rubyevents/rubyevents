@@ -24,25 +24,25 @@
     ) do %>
 
   <div class="flex aspect-video shrink-0 relative w-20">
-    <%= image_tag talk.thumbnail_sm, srcset: ["#{talk.thumbnail_sm} 2x"], id: dom_id(talk), class: "w-full h-auto aspect-video object-cover border rounded #{talk.thumbnail_classes}", loading: :lazy %>
+    <%= image_tag talk.thumbnail_sm, srcset: ["#{talk.thumbnail_sm} 2x"], id: dom_id(talk), class: "w-full h-auto aspect-video object-cover border border-base-300 rounded-sm #{talk.thumbnail_classes}", loading: :lazy %>
 
-    <div class="absolute inset-0 bg-black/50 justify-center items-center rounded hidden group-[.active]:flex">
+    <div class="absolute inset-0 bg-black/50 justify-center items-center rounded-sm hidden group-[.active]:flex">
       <%= fa("play", size: :sm, class: "fill-white") %>
     </div>
 
-    <div class="absolute inset-0 bg-black/50 justify-center items-center rounded hidden group-[.watched]:flex group-[.active]:hidden">
+    <div class="absolute inset-0 bg-black/50 justify-center items-center rounded-sm hidden group-[.watched]:flex group-[.active]:hidden">
       <%= fa("circle-check", size: :sm, class: "fill-white") %>
     </div>
 
-    <div class="absolute inset-0 bg-black/50 justify-center items-center rounded hidden group-[.not\_recorded]:flex group-[.watched]:hidden group-[.active]:hidden">
+    <div class="absolute inset-0 bg-black/50 justify-center items-center rounded-sm hidden group-[.not\_recorded]:flex group-[.watched]:hidden group-[.active]:hidden">
       <%= fa("video-slash", size: :sm, class: "fill-white") %>
     </div>
 
-    <div class="absolute inset-0 bg-black/50 justify-center items-center rounded hidden group-[.not\_published]:flex group-[.watched]:hidden group-[.active]:hidden">
+    <div class="absolute inset-0 bg-black/50 justify-center items-center rounded-sm hidden group-[.not\_published]:flex group-[.watched]:hidden group-[.active]:hidden">
       <%= fa("upload", size: :sm, class: "fill-white") %>
     </div>
 
-    <div class="absolute inset-0 bg-black/50 justify-center items-center rounded hidden group-[.scheduled]:flex group-[.active]:hidden">
+    <div class="absolute inset-0 bg-black/50 justify-center items-center rounded-sm hidden group-[.scheduled]:flex group-[.active]:hidden">
       <%= fa("clock", size: :sm, class: "fill-white") %>
     </div>
   </div>

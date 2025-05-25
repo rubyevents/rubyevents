@@ -1,7 +1,16 @@
-@layer components {
-  .modal-box.spotlight {
+@utility modal-box {
+  &.spotlight {
     @apply max-w-full;
   }
+}
+
+@utility spotlight {
+  &.modal-box {
+    @apply max-w-full;
+  }
+}
+
+@layer components {
 
   [role="option"][aria-selected="true"] {
     @apply font-bold;

@@ -1,5 +1,19 @@
-@layer components {
-  nav.pagy.nav {
+@utility pagy {
+  &nav.nav {
+    @apply mx-auto flex justify-normal gap-4 bg-transparent text-base-content sm:gap-8;
+
+    .current {
+      @apply font-semibold text-primary;
+    }
+
+    .page.disabled {
+      @apply text-base-300;
+    }
+  }
+}
+
+@utility nav {
+  &nav.pagy {
     @apply mx-auto flex justify-normal gap-4 bg-transparent text-base-content sm:gap-8;
 
     .current {

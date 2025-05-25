@@ -5,13 +5,13 @@ class Ui::DropdownComponent < ApplicationComponent
     divider: lambda { render Ui::DividerComponent.new(class: "my-2") },
     link_to: lambda { |*args, **attributes, &block|
       content_tag :li do
-        attributes[:class] = class_names("!whitespace-nowrap", attributes[:class])
+        attributes[:class] = class_names("whitespace-nowrap!", attributes[:class])
         concat link_to(*args, **attributes, &block)
       end
     },
     button_to: lambda { |*args, **attributes|
       content_tag :li do
-        attributes[:class] = class_names("!whitespace-nowrap", attributes[:class])
+        attributes[:class] = class_names("whitespace-nowrap!", attributes[:class])
         concat button_to(*args, **attributes)
       end
     }
@@ -57,6 +57,6 @@ class Ui::DropdownComponent < ApplicationComponent
   end
 
   def content_classes
-    class_names("dropdown-content menu menu-smp-2 mt-4 w-max z-[1] rounded-lg shadow-2xl bg-white text-neutral", attributes.delete(:content_classes))
+    class_names("dropdown-content menu menu-smp-2 mt-4 w-max z-1 rounded-lg shadow-2xl bg-white text-neutral", attributes.delete(:content_classes))
   end
 end
