@@ -1,6 +1,7 @@
 json.talk do
   json.slug @talk.slug
   json.title @talk.title
+  json.original_title @talk.original_title
   json.description @talk.description
   json.summary @talk.summary
   json.date @talk.date

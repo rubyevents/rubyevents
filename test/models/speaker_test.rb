@@ -1,24 +1,24 @@
 require "test_helper"
 
 class SpeakerTest < ActiveSupport::TestCase
-  test "valid_website_url preserve the website url if already valid" do
+  test "normalizes website preserve the website url if already valid" do
     speaker = Speaker.new(website: "https://www.google.com")
-    assert_equal "https://www.google.com", speaker.valid_website_url
+    assert_equal "https://www.google.com", speaker.website
   end
 
-  test "valid_website_url add https to the website if it is not present" do
+  test "normalizes website add https to the website if it is not present" do
     speaker = Speaker.new(website: "www.google.com")
-    assert_equal "https://www.google.com", speaker.valid_website_url
+    assert_equal "https://www.google.com", speaker.website
   end
 
-  test "valid_website_url convert http to https" do
+  test "normalizes website keep http" do
     speaker = Speaker.new(website: "http://www.google.com")
-    assert_equal "https://www.google.com", speaker.valid_website_url
+    assert_equal "http://www.google.com", speaker.website
   end
 
-  test "valid_website_url returns # if website is blank" do
+  test "normalizes website returns '' if website is blank" do
     speaker = Speaker.new(website: "")
-    assert_equal "#", speaker.valid_website_url
+    assert_equal "", speaker.website
   end
 
   test "speaker user association" do

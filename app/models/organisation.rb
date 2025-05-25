@@ -41,7 +41,7 @@ class Organisation < ApplicationRecord
   validates :name, presence: true
 
   # enums
-  enum :kind, {conference: 0, meetup: 1}
+  enum :kind, {conference: 0, meetup: 1, organisation: 2}
   enum :frequency, {unknown: 0, yearly: 1, monthly: 2, biyearly: 3, quarterly: 4}
 
   def title

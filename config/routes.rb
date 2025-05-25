@@ -44,6 +44,7 @@ Rails.application.routes.draw do
       get :monthly_visits
       get :top_referrers
       get :top_landing_pages
+      get :yearly_conferences
       get :yearly_talks
       get :top_searches
     end
@@ -65,6 +66,9 @@ Rails.application.routes.draw do
       end
       resources :speakers, only: [:index]
       resources :talks, only: [:index]
+      resources :related_talks, only: [:index]
+      resources :events, only: [:index]
+      resources :videos, only: [:index]
     end
   end
   resources :organisations, param: :slug, only: [:index, :show]

@@ -15,6 +15,7 @@
 #  language            :string           default("en"), not null
 #  like_count          :integer          default(0)
 #  meta_talk           :boolean          default(FALSE), not null
+#  original_title      :string           default(""), not null
 #  published_at        :datetime
 #  slides_url          :string
 #  slug                :string           default(""), not null, indexed
@@ -68,6 +69,10 @@ class Talk < ApplicationRecord
   belongs_to :parent_talk, optional: true, class_name: "Talk", foreign_key: :parent_talk_id
 
   has_many :child_talks, class_name: "Talk", foreign_key: :parent_talk_id, dependent: :destroy
+  has_many :child_talks_speakers, -> { distinct }, through: :child_talks, source: :speakers, class_name: "Speaker"
+  has_many :kept_child_talks_speakers, -> {
+    distinct
+  }, through: :child_talks, source: :kept_speakers, class_name: "Speaker"
   has_many :speaker_talks, dependent: :destroy, inverse_of: :talk, foreign_key: :talk_id
   has_many :kept_speaker_talks, -> { kept }, dependent: :destroy, inverse_of: :talk, foreign_key: :talk_id,
     class_name: "SpeakerTalk"
@@ -374,7 +379,13 @@ class Talk < ApplicationRecord
     when "vimeo"
       "https://vimeo.com/video/#{video_id}"
     when "parent"
-      timestamp = start_seconds ? "&t=#{start_seconds}" : ""
+      timestamp = ""
+
+      if parent_talk.video_provider == "vimeo"
+        timestamp = start_seconds ? "#t=#{start_seconds}" : ""
+      elsif parent_talk.video_provider == "youtube"
+        timestamp = start_seconds ? "&t=#{start_seconds}" : ""
+      end
 
       "#{parent_talk.provider_url}#{timestamp}"
     else
@@ -411,7 +422,7 @@ class Talk < ApplicationRecord
   def speakers
     return super unless meta_talk
 
-    super.to_a.union(child_talks.flat_map(&:speakers).uniq)
+    child_talks_speakers
   end
 
   def speaker_names
@@ -442,7 +453,7 @@ class Talk < ApplicationRecord
   end
 
   def event_name
-    return event.name unless event.organisation.meetup?
+    return event.name unless event.meetup?
 
     static_metadata.try("event_name") || event.name
   end
@@ -478,6 +489,7 @@ class Talk < ApplicationRecord
     assign_attributes(
       event: event,
       title: static_metadata.title,
+      original_title: static_metadata.original_title || "",
       description: static_metadata.description,
       date: static_metadata.try(:date) || parent_talk&.static_metadata.try(:date),
       published_at: static_metadata.try(:published_at) || parent_talk&.static_metadata.try(:published_at),

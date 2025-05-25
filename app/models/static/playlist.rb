@@ -42,12 +42,12 @@ module Static
     def within_next_days?
       period = 4.days
 
-      if start_date.present?
-        return ((start_date - period)..start_date).cover?(Date.today)
-      end
-
       if end_date.present?
         return ((end_date - period)..end_date).cover?(Date.today)
+      end
+
+      if start_date.present?
+        return ((start_date - period)..start_date).cover?(Date.today)
       end
 
       if event_record.present?

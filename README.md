@@ -24,14 +24,15 @@ We have tried to make the setup process as simple as possible so that in a few c
 
 ### Requirements
 
-- Ruby 3.4.1
-- Node.js 20.11.0
+- Ruby 3.4.3
+- Node.js 22.15.1
 
 ### Setup
 
-To prepare your database and seed content, run:
+To prepare your database and seed content via `docker-compose`, run:
 
 ```
+# Note: this requires docker daemon running on your machine.
 bin/setup
 ```
 

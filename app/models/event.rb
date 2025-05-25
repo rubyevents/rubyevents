@@ -193,6 +193,14 @@ class Event < ApplicationRecord
     }
   end
 
+  def meetup?
+    (static_metadata && static_metadata.kind == "meetup") || organisation.meetup?
+  end
+
+  def conference?
+    (static_metadata && static_metadata.kind == "conference") || organisation.conference?
+  end
+
   def static_metadata
     Static::Playlist.find_by(slug: slug)
   end

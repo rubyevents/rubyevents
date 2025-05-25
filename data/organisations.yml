@@ -199,7 +199,7 @@
 - name: paris.rb
   website: https://paris-rb.org
   twitter: parisrb
-  kind: conference
+  kind: organisation
   frequency: yearly
   playlist_matcher: Paris.rb conf
   default_country_code: FR
@@ -720,7 +720,7 @@
   language: english
   youtube_channel_id: ""
 
-- name: Lyon.rb Meetup
+- name: Lyon.rb
   website: https://www.meetup.com/LyonRB
   twitter: lyonrb
   kind: meetup
@@ -791,3 +791,53 @@
   slug: ruby-montevideo
   language: english
   youtube_channel_id: UCNTm-kFfkP_ArKDcXoQpxiQ
+
+- name: RubyConf Uruguay
+  website: http://rubyconfuruguay.org
+  twitter: rubyconfuruguay
+  kind: conference
+  frequency: yearly
+  playlist_matcher: RubyConf Uruguay
+  default_country_code: UY
+  youtube_channel_name: rubyconfuruguay9171
+  slug: rubyconf-uruguay
+  language: spanish
+  youtube_channel_id: UCfUYtVgYsL-6C5_mGydDuvA
+
+- name: Latvian Ruby Community
+  website: https://lu.ma/latviarb
+  twitter: ""
+  kind: meetup
+  frequency: monthly
+  playlist_matcher: ""
+  default_country_code: LV
+  youtube_channel_name: ""
+  slug: latvian-ruby-community
+  language: english
+  youtube_channel_id: ""
+
+- name: Toronto Ruby Meetup
+  website: https://toronto-ruby.com
+  twitter: toronto_ruby
+  youtube_channel_name: TorontoRuby
+  kind: meetup
+  frequency: monthly
+  playlist_matcher: ''
+  default_country_code: CA
+  slug: toronto-ruby
+  language: english
+  youtube_channel_id: UClHJzi2-L5SA5K7GaV5p1JQ
+
+- name: ChicagoRuby
+  website: https://chicagoruby.org
+  meetup: https://www.meetup.com/ChicagoRuby
+  vimeo: https://vimeo.com/chicagoruby
+  twitter: chicagoruby
+  kind: meetup
+  frequency: monthly
+  playlist_matcher:
+  default_country_code: US
+  youtube_channel_name: ChicagoRubyMeetups
+  slug: chicagoruby
+  language: english
+  youtube_channel_id: UCjlqhpqtKHGmM7O12QB_N9A
