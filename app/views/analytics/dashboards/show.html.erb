@@ -44,5 +44,10 @@
       <h2 class="text-center mb-4">Yearly talks</h2>
       <div class="bg-gray-300 rounded-lg animate-pulse h-[300px]"></div>
     <% end %>
+
+    <%= turbo_frame_tag "yearly_conferences", src: yearly_conferences_analytics_dashboards_path, lazy: true do %>
+      <h2 class="text-center mb-4">Yearly Conferencess</h2>
+      <div class="bg-gray-300 rounded-lg animate-pulse h-[300px]"></div>
+    <% end %>
   </div>
 </div>

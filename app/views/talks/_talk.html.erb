@@ -72,6 +72,10 @@
       <div class="flex flex-wrap w-full divide-y justify-between">
         <div class="py-4 font-bold text-xl">
           <span><%= talk.title %></span>
+          <% if talk.original_title.present? %>
+            <div class="text-gray-500 text-xs mb-2">Original title: <%= talk.original_title %></div>
+          <% end %>
+
         </div>
 
         <div class="flex grow gap-1 py-3 lg:divide-y-0 text-xs xl:justify-end overflow-y-visible overflow-x-scroll lg:overflow-x-hidden order-last xl:order-none">
@@ -94,7 +98,7 @@
 
           <% if talk.vimeo? || talk.parent_talk&.vimeo? %>
             <%= ui_tooltip "Watch on Vimeo" do %>
-              <%= ui_button url: "https://vimeo.com/video/#{talk.video_id}", kind: :pill, target: "_blank" do %>
+              <%= ui_button url: talk.external_player_url, kind: :pill, target: "_blank" do %>
                 <%= fa("vimeo-v-brands", size: :xs, style: :solid) %>
                 <span class="text-xs">Play on Vimeo</span>
               <% end %>
@@ -115,24 +119,24 @@
           <% if signed_in? && !talk.scheduled? %>
             <%= turbo_frame_tag dom_id(talk, :watched_talk) do %>
               <% if talk.watched? %>
-                <div class="tooltip tooltip-top" data-tip="Mark talk as unwatched">
+                <%= ui_tooltip "Mark talk as unwatched" do %>
                   <%= ui_button url: talk_watched_talk_path(talk), method: :delete, kind: :pill do %>
                     <%= fa("circle-check", size: :xs, style: :solid, class: "fill-green-700") %>
                     <span class="text-xs text-nowrap">Watched</span>
                   <% end %>
-                </div>
+                <% end %>
               <% else %>
-                <div class="tooltip tooltip-top" data-tip="Mark talk as watched">
+                <%= ui_tooltip "Mark talk as watched" do %>
                   <%= ui_button url: talk_watched_talk_path(talk), method: :post, kind: :pill do %>
                     <%= fa("circle", size: :xs, style: :regular) %>
                     <span class="text-xs text-nowrap">Watched</span>
                   <% end %>
-                </div>
+                <% end %>
               <% end %>
             <% end %>
           <% end %>
 
-          <div class="tooltip tooltip-top hotwire-native:hidden" data-tip="You can suggest some modifications to this talk">
+          <div class="tooltip hotwire-native:hidden" data-tip="You can suggest some modifications to this talk">
             <%= ui_button url: edit_talk_path(talk), kind: :pill, data: {turbo_frame: "modal"} do %>
               <%= fa("pen", size: :xs, style: :solid) %>
               <span class="text-xs">Edit</span>
