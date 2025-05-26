@@ -346,14 +346,14 @@ class TalkTest < ActiveSupport::TestCase
       assert @talk.enhanced_transcript.cues.present?
 
       # Verify LLM request was created
-      assert_equal 1, LlmRequest.count
-      request = LlmRequest.first
+      assert_equal 1, LLM::Request.count
+      request = LLM::Request.first
       assert_equal @talk, request.resource
       assert request.duration > 0
       assert request.raw_response.present?
 
       # Second call should use cache
-      assert_no_changes "LlmRequest.count" do
+      assert_no_changes "LLM::Request.count" do
         perform_enqueued_jobs do
           @talk.agents.improve_transcript_later
         end
@@ -375,14 +375,14 @@ class TalkTest < ActiveSupport::TestCase
       assert @talk.summary.present?
 
       # Verify LLM request was created
-      assert_equal 1, LlmRequest.count
-      request = LlmRequest.first
+      assert_equal 1, LLM::Request.count
+      request = LLM::Request.first
       assert_equal @talk, request.resource
       assert request.duration > 0
       assert request.raw_response.present?
 
       # Second call should use cache
-      assert_no_changes "LlmRequest.count" do
+      assert_no_changes "LLM::Request.count" do
         perform_enqueued_jobs do
           @talk.agents.summarize_later
         end
@@ -401,14 +401,14 @@ class TalkTest < ActiveSupport::TestCase
       end
 
       # Verify LLM request was created
-      assert_equal 1, LlmRequest.count
-      request = LlmRequest.first
+      assert_equal 1, LLM::Request.count
+      request = LLM::Request.first
       assert_equal @talk, request.resource
       assert request.duration > 0
       assert request.raw_response.present?
 
       # Second call should use cache
-      assert_no_changes "LlmRequest.count" do
+      assert_no_changes "LLM::Request.count" do
         perform_enqueued_jobs do
           @talk.agents.analyze_topics_later
         end
@@ -429,15 +429,15 @@ class TalkTest < ActiveSupport::TestCase
       end
 
       # Verify successful request was created
-      assert_equal 1, LlmRequest.count
-      request = LlmRequest.first
+      assert_equal 1, LLM::Request.count
+      request = LLM::Request.first
       assert_equal @talk, request.resource
       assert request.duration > 0
       assert request.raw_response.present?
       assert request.success
 
       # Second call should use cache
-      assert_no_changes "LlmRequest.count" do
+      assert_no_changes "LLM::Request.count" do
         perform_enqueued_jobs do
           @talk.agents.improve_transcript_later
         end

@@ -56,6 +56,6 @@ class Talk::Agents < ActiveRecord::AssociatedObject
   private
 
   def client
-    @client ||= Llm::Client.new
+    @client ||= LLM::Client.new
   end
 end
