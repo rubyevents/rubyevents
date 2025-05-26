@@ -19,7 +19,9 @@
 #  index_llm_requests_on_resource      (resource_type,resource_id)
 #  index_llm_requests_on_task_name     (task_name)
 #
-class LlmRequest < ApplicationRecord
+class LLM::Request < ApplicationRecord
+  self.table_name = "llm_requests"
+
   belongs_to :resource, polymorphic: true
 
   validates :request_hash, presence: true, uniqueness: true
