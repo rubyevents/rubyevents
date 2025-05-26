@@ -45,16 +45,27 @@
         <div>
           <div class="relative flex gap-0 px-5 pt-0 md:gap-[10%] md:px-10 flex-col-reverse md:flex-row-reverse md:justify-between">
             <div class="flex flex-col gap-3 ">
-              <p class="font-mono text-[#D9D9D9] text-[.625rem] uppercase">About</p>
+              <p class="font-mono text-[#D9D9D9] text-[.625rem] uppercase">Description</p>
 
-              <article class="max-w-[788px] text-[1.5rem] text-[#D9D9D9] prose">
-                <%= simple_format auto_link(@talk.description, html: {target: "_blank", class: "link"}) %>
-              </article>
+              <div class="relative group" id="descToggle">
+                <article id="descContent" class="max-w-[788px] text-[1.5rem] text-[#D9D9D9] prose max-h-[450px] group-data-[expanded]:max-h-none overflow-y-hidden">
+                  <%= simple_format auto_link(@talk.description, html: {target: "_blank", class: "link"}) %>
+                </article>
+                <div id="descExpandControls" class="desc-expand-controls">
+                  <div class="absolute bottom-0 left-0 w-full h-56 bg-gradient-to-t from-[#333333]/90 to-transparent group-data-[expanded]:hidden flex justify-center items-end pointer-events-none"></div>
+                  <button type="button" class="btn btn-sm btn-white shadow absolute bottom-4 left-1/2 -translate-x-1/2 group-data-[expanded]:hidden z-20" onclick="descToggle.toggleAttribute('data-expanded')">
+                    Show more
+                  </button>
+                  <button type="button" class="btn btn-sm btn-white shadow absolute bottom-4 left-1/2 -translate-x-1/2 hidden group-data-[expanded]:flex z-20" onclick="descToggle.toggleAttribute('data-expanded')">
+                    Show less
+                  </button>
+                </div>
+              </div>
             </div>
 
             <div class="flex gap-7 md:flex-col">
               <div class="mb-10 flex flex-col md:mb-0">
-                <p class="font-mono text-[#D9D9D9] text-[.625rem] uppercase">Speakers</p>
+                <p class="font-mono text-[#D9D9D9] text-[.625rem] uppercase"><%= "Speaker".pluralize(@talk.speakers.count) %></p>
 
                 <div class="my-6">
                   <% @talk.speakers.each do |speaker| %>
@@ -106,18 +117,18 @@
 
           <% if @talk.child_talks.any? %>
             <div class="mx-auto mt-5 px-5 md:my-16 md:px-10">
-              <p class="mt-12 font-mono text-[#D9D9D9] text-[.625rem] uppercase">Talks</p>
+              <p class="mt-12 font-mono text-[#D9D9D9] text-[.625rem] uppercase"><%= "Talk".pluralize(@talk.child_talks.count) %></p>
 
               <div class="mt-3 flex flex-col gap-4 divide">
                 <% @talk.child_talks.each do |talk| %>
                   <%= link_to talk, class: "flex justify-between p-2 gap-4 bg-[#131313] hover:opacity-85" do %>
                     <div class="flex gap-6">
-                      <div class="w-[150px]">
+                      <div class="min-w-[150px] w-[150px]">
                         <%= image_tag talk.thumbnail_lg, class: "rounded" %>
                       </div>
 
                       <div class="flex flex-col justify-center">
-                        <div class="truncate line-clamp-2"><%= talk.title %></div>
+                        <div class="text-ellipsis line-clamp-1 overflow-hidden"><%= talk.title %></div>
                         <div class="text-[#d9d9d9]"><%= talk.speakers.map(&:name).to_sentence %></div>
                       </div>
                     </div>
@@ -147,3 +158,15 @@
     </div>
   </div>
 </main>
+
+<script>
+  document.addEventListener('turbo:load', function() {
+    var content = document.getElementById('descContent');
+    var controls = document.getElementById('descExpandControls');
+    if (content && controls) {
+      if (content.scrollHeight <= 450) {
+        controls.style.display = 'none';
+      }
+    }
+  });
+</script>
