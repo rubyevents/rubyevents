@@ -1,5 +1,5 @@
 class User::EmailVerification < ActiveRecord::AssociatedObject
-  generates_token(expires_in: 2.days, &:verified?)
+  generates_token(expires_in: 2.days) { user.verified? }
 
   def verify!
     user.update! verified: true

@@ -1,5 +1,5 @@
 class User::PasswordReset < ActiveRecord::AssociatedObject
-  generates_token(expires_in: 20.minutes) { password_salt.last(10) }
+  generates_token(expires_in: 20.minutes) { user.password_salt.last(10) }
 
   def valid?
     user.verified?
