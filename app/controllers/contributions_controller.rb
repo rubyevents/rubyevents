@@ -1,7 +1,7 @@
 class ContributionsController < ApplicationController
   include Turbo::ForceFrameResponse
   force_frame_response only: %i[show]
-  skip_before_action :authenticate_user!, only: %i[index]
+  skip_before_action :authenticate_user!, only: %i[index show]
 
   STEPS = %i[speakers_without_github talks_without_slides events_without_videos
     events_without_location events_without_dates talks_dates_out_of_bounds missing_videos_cue].freeze
