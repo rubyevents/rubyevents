@@ -81,6 +81,24 @@ class Topic < ApplicationRecord
     canonical || self
   end
 
+  def to_meta_tags
+    {
+      title: name,
+      description: description,
+      og: {
+        title: name,
+        type: :website,
+        description: description,
+        site_name: "RubyEvents.org"
+      },
+      twitter: {
+        card: "summary",
+        title: name,
+        description: description
+      }
+    }
+  end
+
   # enums state machine
 
   def rejected!
