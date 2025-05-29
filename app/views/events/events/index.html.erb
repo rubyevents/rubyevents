@@ -7,7 +7,7 @@
     <div class="w-full">
       <div class="w-full flex flex-col gap-8" role="tablist" aria-orientation="vertical">
         <% @event.talks_in_running_order.where(meta_talk: true).reverse.each do |talk| %>
-          <%= link_to talk, class: "flex gap-10 group", data: {turbo_frame: "_top"} do %>
+          <%= link_to event_event_path(slug: talk.event, id: talk), class: "flex gap-10 group", data: {turbo_frame: "_top"} do %>
             <div class="w-[10rem] mt-2">
               <time datetime="<%= talk.date.iso8601 %>" class="text-black font-medium text-lg">
                 <% if talk.date.year == Date.today.year %>

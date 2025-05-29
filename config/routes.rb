@@ -67,7 +67,7 @@ Rails.application.routes.draw do
       resources :speakers, only: [:index]
       resources :talks, only: [:index]
       resources :related_talks, only: [:index]
-      resources :events, only: [:index]
+      resources :events, only: [:index, :show]
       resources :videos, only: [:index]
     end
   end
