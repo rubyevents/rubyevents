@@ -22,8 +22,8 @@
 
     <% unless hotwire_native_app? %>
       <meta name="turbo-cache-control" content="no-cache">
+      <meta name="view-transition" content="same-origin">
     <% end %>
-    <meta name="view-transition" content="same-origin">
 
     <%= favicon_link_tag "favicon/favicon.ico", rel: "icon", type: "image/x-icon" %>
     <%= favicon_link_tag "favicon/favicon-16x16.png", rel: "icon", sizes: "16x16", type: "image/png" %>
