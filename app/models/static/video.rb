@@ -74,7 +74,7 @@ module Static
     end
 
     def meta_talk?
-      talks.any?
+      attributes.key?("talks")
     end
   end
 end

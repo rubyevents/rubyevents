@@ -484,7 +484,11 @@ class Talk < ApplicationRecord
       end
     end
 
-    if static_metadata.blank? || (Array.wrap(static_metadata.speakers).none? && Array.wrap(static_metadata.talks).none?)
+    no_speakers = Array.wrap(static_metadata.speakers).none?
+    no_talks = Array.wrap(static_metadata.talks).none?
+    meta_talk = static_metadata.meta_talk?
+
+    if static_metadata.blank? || (no_speakers && no_talks && !meta_talk)
       puts "No speakers for Video ID: #{video_id}"
       return
     end
