@@ -10,7 +10,9 @@
              {}
            end %>
 
-        <%= sanitize oembed_json.dig("html"), tags: ["iframe"], attributes: ["id", "class", "src", "width", "height", "style", "frameborder", "allowtransparency", "allowfullscreen"] %>
+        <div class="responsive-iframe-container">
+          <%= sanitize oembed_json.dig("html"), tags: ["iframe"], attributes: ["id", "class", "src", "width", "height", "style", "frameborder", "allowtransparency", "allowfullscreen"] %>
+        </div>
       <% end %>
     <% end %>
 
