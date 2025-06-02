@@ -1,24 +1,36 @@
+@utility navbar {
+  view-transition-name: navbar;
+  contain: layout;
+}
+
+@utility banner-img {
+  & .v-vlite {
+    contain: layout;
+  }
+}
+
+@utility v-vlite {
+  .banner-img & {
+    contain: layout;
+  }
+}
+
+@utility card-horizontal-img {
+  & img {
+    contain: layout;
+  }
+}
+
+@utility gallery {
+  & img {
+    contain: layout;
+  }
+}
+
 @layer components {
   ::view-transition-group(root) {
     animation: none;
     mix-blend-mode: normal;
-  }
-
-  .navbar {
-    view-transition-name: navbar;
-    contain: layout;
-  }
-
-  .banner-img .v-vlite {
-    contain: layout;
-  }
-
-  .card-horizontal-img img {
-    contain: layout;
-  }
-
-  .gallery img {
-    contain: layout;
   }
 
   @keyframes fade-in {

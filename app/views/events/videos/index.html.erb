@@ -20,14 +20,14 @@
         </div>
 
         <% if @talks.empty? %>
-          <div class="flex justify-center border rounded" style="padding-top: 3rem; padding-bottom: 3rem; padding-right: 1rem; padding-left: 1rem">
+          <div class="flex justify-center border border-base-300 rounded-sm" style="padding-top: 3rem; padding-bottom: 3rem; padding-right: 1rem; padding-left: 1rem">
             <div class="text-center text-gray-600">
               <p>
-                <b>No talks found for this event.</b>
+                <b>No videos found for this event.</b>
               </p>
               <p class="mt-2">
                 Please
-                <a href="https://github.com/adrienpoly/rubyvideo/issues/new?title=<%= CGI.escape("#{@event.name} Recordings") %>&body=<%= CGI.escape("<!-- Your Content Here -->\n\nIssue opened from event page: #{event_url(@event)}") %>" class="text-primary" target="_blank">open an issue on GitHub</a>
+                <a href="https://github.com/rubyevents/rubyevents/issues/new?title=<%= CGI.escape("#{@event.name} Recordings") %>&body=<%= CGI.escape("<!-- Your Content Here -->\n\nIssue opened from event page: #{event_url(@event)}") %>" class="text-primary" target="_blank">open an issue on GitHub</a>
                 if you know how to get access to the recordings of this event. Thank you!
               </p>
             </div>

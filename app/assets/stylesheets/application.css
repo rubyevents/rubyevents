@@ -1,22 +1,81 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import "tailwindcss";
+@import "./bridge/components.css";
 
-@import "components/button.css";
-@import "components/diff.css";
-@import "components/dropdown.css";
-@import "components/form.css";
-@import "components/markdown.css";
-@import "components/modal.css";
-@import "components/nav.css";
-@import "components/pagination.css";
-@import "components/tabs.css";
-@import "components/skeleton.css";
-@import "components/spotlight.css";
-@import "components/transition.css";
-@import "components/typography.css";
-@import "components/video.css";
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark;
+}
 
-@import "vlitejs/vlite.css";
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true; /* set as default */
+  prefersdark: false; /* set as default dark mode (prefers-color-scheme:dark) */
+  color-scheme: light; /* color of browser-provided UI */
 
-@import "bridge/components";
+  --color-base-100: oklch(98.16% 0.0017 247.84);
+  --color-base-200: oklch(94.76% 0.0058 247.84);
+  --color-base-300: oklch(91.30% .001588 247.84);
+  --color-base-content: oklch(21% 0.006 285.885);
+  --color-primary: oklch(57.12% 0.2219 20.09);
+  --color-primary-content: oklch(98% 0.003 247.858);
+  --color-secondary: oklch(53.12% 0.1743 297.64);
+  --color-secondary-content: oklch(97% 0.014 254.604);
+  --color-accent: '#1DA1F2';
+  --color-accent-content: '#ffffff';
+  --color-neutral: '#261B23';
+  --color-neutral-content: '#ffffff';
+
+  /* border radius */
+  --radius-selector: 0.5rem;
+  --radius-field: 0.5rem;
+  --radius-box: 0.5rem;
+
+  /* base sizes */
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+
+  /* border size */
+  --border: 1px;
+
+  /* effects */
+  --depth: 0;
+  --noise: 1;
+
+  --card-p: 1rem;
+}
+
+@import './components/button.css';
+@import './components/diff.css';
+@import './components/dropdown.css';
+@import './components/form.css';
+@import './components/markdown.css';
+@import './components/modal.css';
+@import './components/nav.css';
+@import './components/pagination.css';
+@import './components/tabs.css';
+@import './components/skeleton.css';
+@import './components/spotlight.css';
+@import './components/transition.css';
+@import './components/typography.css' layer(utilities);
+@import './components/video.css';
+
+@import "../../../node_modules/vlitejs/dist/vlite.css";
+
+@config '../../../tailwind.config.js';
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-base-300);
+  }
+}

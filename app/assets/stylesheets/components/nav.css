@@ -1,24 +1,22 @@
-@layer components {
-  .desktop-menu {
-    @apply hidden gap-6 md:flex;
+@utility desktop-menu {
+  @apply hidden gap-6 md:flex;
 
-    li,
-    title {
-      @apply m-0 inline-block;
-      div {
-        @apply invisible h-0.5 bg-primary;
-      }
-      &.active {
-        @apply relative;
-        & > div {
-          view-transition-name: navbar-active;
-          @apply visible absolute bottom-0 w-full font-bold;
-        }
+  li,
+  title {
+    @apply m-0 inline-block;
+    div {
+      @apply invisible h-0.5 bg-primary;
+    }
+    &.active {
+      @apply relative;
+      & > div {
+        view-transition-name: navbar-active;
+        @apply visible absolute bottom-0 w-full font-bold;
       }
     }
   }
+}
 
-  .mobile-menu {
-    @apply flex md:hidden;
-  }
+@utility mobile-menu {
+  @apply flex md:hidden;
 }

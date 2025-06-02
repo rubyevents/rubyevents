@@ -1,20 +1,39 @@
-@layer components {
-  details > summary {
-    list-style: none;
-  }
-
+@utility menu {
   /* fix the dropdown button to links, by default daisyui adds padding to the form element */
   /* therefore the inner button does not fill the dropdown item */
   /* and only the text of the button is clickable */
-  .menu li form.button_to {
+  & li form.button_to {
     padding: 0;
     display: block;
   }
 
-  .menu li form.button_to button {
+  & li form.button_to button {
     display: block;
     width: 100%;
     text-align: start;
     padding: 0.5rem 1rem;
+  }
+}
+
+@utility button_to {
+  /* fix the dropdown button to links, by default daisyui adds padding to the form element */
+  /* therefore the inner button does not fill the dropdown item */
+  /* and only the text of the button is clickable */
+  .menu li &form {
+    padding: 0;
+    display: block;
+  }
+
+  .menu li &form button {
+    display: block;
+    width: 100%;
+    text-align: start;
+    padding: 0.5rem 1rem;
+  }
+}
+
+@layer components {
+  details > summary {
+    list-style: none;
   }
 }

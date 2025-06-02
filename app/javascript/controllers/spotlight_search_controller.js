@@ -106,7 +106,10 @@ export default class extends Controller {
 
   // callbacks
   appear () {
-    this.searchInputTarget.focus()
+    console.log('appear', this.searchInputTarget)
+    requestAnimationFrame(() => {
+      this.searchInputTarget.focus()
+    })
   }
 
   // private

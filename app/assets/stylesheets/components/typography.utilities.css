@@ -1,0 +1,20 @@
+@utility h1 {
+  @apply font-serif text-3xl font-bold text-primary;
+}
+
+@utility h2 {
+  @apply font-serif text-xl  font-bold;
+}
+
+@utility secondary {
+  &p {
+    @apply text-neutral-content;
+  }
+}
+
+@utility link-ghost {
+  &a {
+    @apply hover:underline;
+    text-decoration: none;
+  }
+}

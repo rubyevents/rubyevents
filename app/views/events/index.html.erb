@@ -13,11 +13,11 @@
 
   <div class="flex flex-wrap w-full justify-between py-8 hotwire-native:hidden gap-1">
     <% ("a".."z").each do |letter| %>
-      <%= link_to events_path(letter: letter), id: letter, class: class_names("flex items-center justify-center w-10 text-gray-500 rounded hover:bg-brand-lighter border", "bg-brand-lighter": letter == params[:letter]) do %>
+      <%= link_to events_path(letter: letter), id: letter, class: class_names("flex items-center justify-center w-10 text-gray-500 rounded-sm hover:bg-brand-lighter border", "bg-brand-lighter": letter == params[:letter]) do %>
         <%= letter.upcase %>
       <% end %>
     <% end %>
-    <%= link_to events_path, class: class_names("flex items-center justify-center w-10 text-gray-500 rounded hover:bg-brand-lighter border", "bg-brand-lighter": params[:letter].blank?) do %>
+    <%= link_to events_path, class: class_names("flex items-center justify-center w-10 text-gray-500 rounded-sm hover:bg-brand-lighter border", "bg-brand-lighter": params[:letter].blank?) do %>
         all
       <% end %>
   </div>

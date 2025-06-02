@@ -5,7 +5,7 @@
 
   <div id="talks-dates-out-of-bounds" class="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4 min-w-full mb-6">
     <% @out_of_bound_talks.select { |_event, talks| talks.any? }.each do |event, talks| %>
-      <%= content_tag :div, id: dom_id(event), class: "p-4 rounded-lg border bg-white", target: :_blank do %>
+      <%= content_tag :div, id: dom_id(event), class: "p-4 rounded-lg border border-base-300 bg-white", target: :_blank do %>
         <article class="prose">
           <h3 class="line-clamp-1">Event: <%= event.name %></h3>
 

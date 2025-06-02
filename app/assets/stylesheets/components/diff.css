@@ -1,11 +1,9 @@
-@layer components {
-  .diff {
-    del {
-      @apply text-error;
-    }
+@utility diff {
+  del {
+    @apply text-error;
+  }
 
-    ins {
-      @apply text-success;
-    }
+  ins {
+    @apply text-success;
   }
 }

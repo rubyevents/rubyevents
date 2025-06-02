@@ -1,8 +1,6 @@
 module.exports = {
   plugins: {
-    'postcss-import': {},
-    'tailwindcss/nesting': {},
-    tailwindcss: {},
+    '@tailwindcss/postcss': {},
     rfs: {
       twoDimensional: false,
       baseValue: 14,
@@ -11,7 +9,6 @@ module.exports = {
       breakpointUnit: 'px',
       factor: 5,
       safariIframeResizeBugFix: false
-    },
-    autoprefixer: {}
+    }
   }
 }
