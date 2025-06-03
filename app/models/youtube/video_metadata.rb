@@ -21,8 +21,10 @@ module Youtube
           title: title,
           raw_title: raw_title,
           speakers: speakers,
+          date: "TODO",
           event_name: @event_name,
           published_at: @metadata.published_at,
+          announced_at: "TODO",
           description: description,
           video_provider: "youtube",
           video_id: @metadata.video_id

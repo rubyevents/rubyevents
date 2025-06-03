@@ -56,6 +56,7 @@ class Event < ApplicationRecord
 
   # scopes
   scope :without_talks, -> { where.missing(:talks) }
+  scope :with_talks, -> { where.associated(:talks) }
   scope :canonical, -> { where(canonical_id: nil) }
   scope :not_canonical, -> { where.not(canonical_id: nil) }
   scope :ft_search, ->(query) { where("lower(events.name) LIKE ?", "%#{query.downcase}%") }

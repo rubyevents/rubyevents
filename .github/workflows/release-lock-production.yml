@@ -5,7 +5,7 @@ on: workflow_dispatch
 jobs:
   release-lock-production:
     name: Release Lock Production
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
       - name: Checkout code
