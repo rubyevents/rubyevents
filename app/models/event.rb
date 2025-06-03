@@ -232,6 +232,12 @@ class Event < ApplicationRecord
     Rails.root.join("app", "assets", "images", event_image_path, filename).exist? ? event_path : default_path
   end
 
+  def event_image_for(filename)
+    event_path = [event_image_path, filename].join("/")
+
+    Rails.root.join("app", "assets", "images", event_image_path, filename).exist? ? event_path : nil
+  end
+
   def banner_image_path
     event_image_or_default_for("banner.webp")
   end
@@ -250,6 +256,14 @@ class Event < ApplicationRecord
 
   def poster_image_path
     event_image_or_default_for("poster.webp")
+  end
+
+  def sticker_image_path
+    event_image_for("sticker.webp")
+  end
+
+  def sticker?
+    sticker_image_path.present?
   end
 
   def banner_background

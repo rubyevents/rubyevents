@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get "/privacy", to: "page#privacy"
   get "/components", to: "page#components"
   get "/about", to: "page#about"
+  get "/stickers", to: "page#stickers"
 
   # authentication
   get "/auth/failure", to: "sessions/omniauth#failure"

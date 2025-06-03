@@ -93,4 +93,8 @@ class PageController < ApplicationController
 
   def about
   end
+
+  def stickers
+    @events = Event.all.select(&:sticker?)
+  end
 end
