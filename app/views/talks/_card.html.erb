@@ -12,27 +12,27 @@
     <% if language && language != "English" %>
       <div class="absolute top-0 left-0 z-20 flex p-1 px-2 m-3 rounded-full bg-black/15 backdrop-blur-md">
         <span><%= language_to_emoji(language) %></span>
-        <span class="items-center hidden ml-1 text-sm text-white group-hover:flex"><%= language %></span>
+        <span class="items-center hidden ml-1 text-sm text-white lg:group-hover:flex"><%= language %></span>
       </div>
     <% end %>
 
     <% if talk.scheduled? || talk.parent_talk&.scheduled? %>
       <div class="absolute top-0 right-0 z-20 flex gap-2 p-2 m-3 rounded-full bg-black/15 backdrop-blur-md">
-        <span class="items-center hidden ml-1 text-sm text-white group-hover:flex">Scheduled</span>
+        <span class="items-center hidden ml-1 text-sm text-white lg:group-hover:flex">Scheduled</span>
         <span><%= fa("clock", size: :sm, class: "fill-white") %></span>
       </div>
     <% end %>
 
     <% if talk.not_published? || talk.parent_talk&.not_published? %>
       <div class="absolute top-0 right-0 z-20 flex gap-2 p-2 m-3 rounded-full bg-black/15 backdrop-blur-md">
-        <span class="items-center hidden ml-1 text-sm text-white group-hover:flex">Not published</span>
+        <span class="items-center hidden ml-1 text-sm text-white lg:group-hover:flex">Not published</span>
         <span><%= fa("upload", size: :sm, class: "fill-white") %></span>
       </div>
     <% end %>
 
     <% if talk.not_recorded? || talk.parent_talk&.not_recorded? %>
       <div class="absolute top-0 right-0 z-20 flex gap-2 p-2 m-3 rounded-full bg-black/15 backdrop-blur-md">
-        <span class="items-center hidden ml-1 text-sm text-white group-hover:flex">Not recorded</span>
+        <span class="items-center hidden ml-1 text-sm text-white lg:group-hover:flex">Not recorded</span>
         <span><%= fa("video-slash", size: :sm, class: "fill-white") %></span>
       </div>
     <% end %>
@@ -46,7 +46,7 @@
     <% if talk.parent_talk %>
       <div class="absolute bottom-0 left-0 z-20 flex content-center gap-2 p-2 m-3 rounded-full bg-black/15 backdrop-blur-md">
         <span><%= fa("rectangle-history", size: :sm, class: "fill-white") %></span>
-        <span class="items-center hidden gap-1 ml-1 text-xs font-normal text-white group-hover:inline-flex line-clamp-1">
+        <span class="items-center hidden gap-1 ml-1 text-xs font-normal text-white lg:group-hover:inline-flex line-clamp-1">
           <span class="text-nowrap">Part of</span>
           <span class="text-gray-300 line-clamp-1"><%= talk.parent_talk.title %></span>
         </span>
@@ -73,7 +73,7 @@
         </div>
       </div>
     <% else %>
-      <div class="absolute inset-0 z-10 items-center justify-center hidden group-hover:flex bg-black/30 rounded-t-xl">
+      <div class="absolute inset-0 z-10 items-center justify-center hidden lg:group-hover:flex bg-black/30 rounded-t-xl">
         <div class="p-3 bg-gray-500 rounded-full hover:bg-primary">
           <%= fa("play", size: :md, class: "fill-white") %>
         </div>
