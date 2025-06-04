@@ -8,8 +8,13 @@ class EventsTest < ApplicationSystemTestCase
   test "visiting the index" do
     events(:tropical_rb_2024)
     visit root_url
+
     click_on "Events"
-    assert_selector "h1", text: "Events"
+    assert_selector "h1", text: "Upcoming Events"
+
+    click_on "Archive"
+    assert_selector "h1", text: "Events Archive"
+
     find("a#t", text: "T").click
     assert_selector "span", text: "Tropical Ruby"
   end

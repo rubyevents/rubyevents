@@ -37,6 +37,7 @@ class Event < ApplicationRecord
   # associations
   belongs_to :organisation, strict_loading: false
   has_many :talks, dependent: :destroy, inverse_of: :event, foreign_key: :event_id
+  has_many :watchable_talks, -> { watchable }, class_name: "Talk"
   has_many :speakers, -> { distinct }, through: :talks
   has_many :topics, -> { distinct }, through: :talks
   belongs_to :canonical, class_name: "Event", optional: true
@@ -57,6 +58,7 @@ class Event < ApplicationRecord
   # scopes
   scope :without_talks, -> { where.missing(:talks) }
   scope :with_talks, -> { where.associated(:talks) }
+  scope :with_watchable_talks, -> { where.associated(:watchable_talks) }
   scope :canonical, -> { where(canonical_id: nil) }
   scope :not_canonical, -> { where.not(canonical_id: nil) }
   scope :ft_search, ->(query) { where("lower(events.name) LIKE ?", "%#{query.downcase}%") }
@@ -124,7 +126,7 @@ class Event < ApplicationRecord
     return start_date.strftime("%B %d, %Y") if start_date == end_date
 
     if start_date.strftime("%Y-%m") == end_date.strftime("%Y-%m")
-      return "#{start_date.strftime("%B %d")}-#{end_date.strftime("%d")}, #{year}"
+      return "#{start_date.strftime("%B %d")}-#{end_date.strftime("%d, %Y")}"
     end
 
     if start_date.strftime("%Y") == end_date.strftime("%Y")
@@ -141,7 +143,13 @@ class Event < ApplicationRecord
   def country_name
     return nil if country_code.blank?
 
-    ISO3166::Country.new(country_code)&.iso_short_name
+    ISO3166::Country.new(country_code)&.translations&.[]("en")
+  end
+
+  def country_url
+    Router.country_path(static_metadata.country&.translations&.[]("en")&.parameterize)
+  rescue
+    Router.countries_path
   end
 
   def held_in_sentence

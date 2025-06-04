@@ -61,6 +61,12 @@ Rails.application.routes.draw do
   resources :speakers, param: :slug, only: [:index, :show, :update, :edit]
   resources :events, param: :slug, only: [:index, :show, :update, :edit] do
     scope module: :events do
+      collection do
+        get "/past" => "past#index", :as => :past
+        get "/archive" => "archive#index", :as => :archive
+        resources :countries, param: :country, only: [:index, :show]
+      end
+
       resources :schedules, only: [:index], path: "/schedule" do
         get "/day/:date", action: :show, on: :collection, as: :day
       end

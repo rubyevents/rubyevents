@@ -29,13 +29,13 @@ class PageController < ApplicationController
       .select(&:featured?)
       .sort_by(&:home_sort_date)
       .reverse
-      .take(15)
+      .take(25)
       .map(&:slug)
 
     @featured_events = Event.distinct
       .includes(:organisation)
       .where(slug: playlist_slugs)
-      .with_talks
+      .with_watchable_talks
       .in_order_of(:slug, playlist_slugs)
 
     respond_to do |format|
