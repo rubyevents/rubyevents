@@ -103,25 +103,8 @@ module Static
 
     def country
       return nil if location.blank?
-      return nil if location.downcase == "online"
-      return nil if location.downcase == "earth"
-      return nil if location.downcase == "unknown"
 
-      country_split = location.split(",").last&.strip
-
-      return nil if country_split.blank?
-
-      country = ISO3166::Country.search(country_split)
-      return country if country.present?
-
-      return ISO3166::Country.new("US") if ISO3166::Country.new("US").subdivisions.keys.include?(country_split)
-      return ISO3166::Country.new("GB") if country_split == "UK"
-      return ISO3166::Country.new("GB") if country_split == "Scotland"
-
-      country = ISO3166::Country.find_country_by_iso_short_name(country_split)  if country.nil?
-      country = ISO3166::Country.find_country_by_unofficial_names(country_split) if country.nil?
-
-      country
+      Country.find(location.to_s.split(",").last&.strip)
     end
 
     def home_sort_date

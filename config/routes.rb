@@ -64,6 +64,7 @@ Rails.application.routes.draw do
       collection do
         get "/past" => "past#index", :as => :past
         get "/archive" => "archive#index", :as => :archive
+        resources :countries, param: :country, only: [:index, :show]
       end
 
       resources :schedules, only: [:index], path: "/schedule" do

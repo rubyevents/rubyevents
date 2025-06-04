@@ -143,7 +143,13 @@ class Event < ApplicationRecord
   def country_name
     return nil if country_code.blank?
 
-    ISO3166::Country.new(country_code)&.iso_short_name
+    ISO3166::Country.new(country_code)&.translations["en"]
+  end
+
+  def country_url
+    Router.country_path(static_metadata.country&.translations["en"].parameterize)
+  rescue
+    Router.countries_path
   end
 
   def held_in_sentence
