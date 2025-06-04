@@ -19,6 +19,7 @@ class TopicsController < ApplicationController
       overflow: :empty_page,
       page: page_number
     )
+    set_meta_tags(@topic)
   end
 
   def set_user_favorites

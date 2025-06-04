@@ -207,8 +207,8 @@ class Speaker < ApplicationRecord
         site_name: "RubyEvents.org"
       },
       twitter: {
-        card: "summary_large_image",
-        site: twitter,
+        card: "summary",
+        site: "@#{twitter}",
         title: name,
         description: meta_description,
         image: {

@@ -5,7 +5,7 @@ on: workflow_dispatch
 jobs:
   seed-production:
     name: Seed Production
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
       - name: Checkout code

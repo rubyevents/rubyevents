@@ -10,6 +10,17 @@
   language: english
   youtube_channel_id: UCWnPjmqvljcafA0z2U1fwKQ
 
+- name: RailsConf Europe
+  website: http://www.railsconfeurope.com/
+  twitter: railsconf
+  youtube_channel_name: ""
+  kind: conference
+  frequency: yearly
+  playlist_matcher: ""
+  slug: railsconf-europe
+  language: english
+  youtube_channel_id: ""
+
 - name: Rails Pacific
   website: https://x.com/railspacific
   twitter: railspacific
@@ -80,13 +91,13 @@
   language: english
   youtube_channel_id: UChetoakh7nU0EXrKN8QFUUA
 
-- name: Helsinki Ruby Brigade
-  website: https://rubybrigade.fi
-  kind: meetup
-  frequency: monthly
+- name: Helsinki Ruby
+  website: https://helsinkiruby.fi
+  kind: organisation
+  frequency: quarterly
   default_country_code: FI
   youtube_channel_name: helsinkiruby
-  slug: helsinki-ruby-brigade
+  slug: helsinki-ruby
   language: english
   youtube_channel_id: UCcoS038f4xA_Lz5AoD0ShzA
 
@@ -651,7 +662,7 @@
 - name: SF Bay Area Ruby
   website: https://lu.ma/sfruby
   twitter: sfruby
-  kind: meetup
+  kind: organisation
   frequency: monthly
   playlist_matcher: SF Bay Area Ruby
   default_country_code: US
@@ -854,5 +865,84 @@
   default_country_code: DE
   youtube_channel_name: ""
   slug: ruby-frankfurt
+  language: english
+  youtube_channel_id: ""
+
+- name: Bluegrass Ruby Users Group
+  website: https://www.meetup.com/the-bluegrass-developers-guild
+  guild: https://guild.host/bluegrass-ruby
+  website: https://bluegrassruby.club
+  twitter: ""
+  mastodon: ""
+  kind: meetup
+  frequency: monthly
+  playlist_matcher:
+  default_country_code: US
+  youtube_channel_name: ""
+  slug: bluegrass-ruby
+  language: english
+  youtube_channel_id: ""
+
+- name: "Philippine Ruby Users Group"
+  website: "https://web.archive.org/web/20180320054823/http://pinoyrb.org/"
+  meetup: https://www.meetup.com/ruby-phil/
+  twitter: ""
+  mastodon: ""
+  kind: meetup
+  frequency: monthly
+  playlist_matcher:
+  default_country_code: PH
+  youtube_channel_name: ""
+  slug: ruby-phil
+  language: english
+  youtube_channel_id: ""
+
+- name: MerseyRails
+  website: https://merseyrails.com
+  twitter: therubyhound
+  kind: meetup
+  frequency: monthly
+  playlist_matcher: ""
+  default_country_code: UK
+  youtube_channel_name: ""
+  slug: merseyrails
+  language: english
+  youtube_channel_id: ""
+
+- name: Artificial Ruby
+  website: https://www.artificialruby.ai
+  twitter: artificialruby
+  kind: organisation
+  frequency: monthly
+  playlist_matcher: Artificial Ruby
+  default_country_code: US
+  youtube_channel_name: artificial_ruby
+  slug: artificialruby
+  language: english
+  youtube_channel_id: "UCKeTdPW5f7IMMsKP25XwOgA"
+
+- name: Nepal Ruby Community
+  website: https://rubynepal.org
+  github: https://github.com/rubynepal
+  meetup: https://www.meetup.com/nepal-ruby-users-group
+  twitter: ruby_nepal
+  kind: organisation
+  frequency: monthly
+  playlist_matcher: "RubyNepal"
+  default_country_code: NP
+  youtube_channel_name: RubyNepal
+  slug: nepal-ruby
+  language: english
+  youtube_channel_id: "UCoRCDWyFmaby7F4qWRUHgAQ"
+
+- name: Ruby Romania
+  website: https://rubyromania.ro
+  twitter: ""
+  kind: meetup
+  frequency: monthly
+  playlist_matcher: ""
+  default_country_code: RO
+  youtube_channel_name: RubyRomaniaCommunity
+  slug: ruby-romania
   language: english
   youtube_channel_id: ""

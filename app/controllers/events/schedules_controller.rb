@@ -18,6 +18,7 @@ class Events::SchedulesController < ApplicationController
 
   def set_event
     @event = Event.includes(organisation: :events).find_by!(slug: params[:event_slug])
+    set_meta_tags(@event)
 
     @days = @event.schedule.days
     @tracks = @event.schedule.tracks

@@ -12,7 +12,13 @@ class OrganisationsController < ApplicationController
   def show
     set_meta_tags(@organisation)
 
-    @events = @organisation.events.sort_by { |event| event.start_date }.reverse
+    @events = @organisation.events.sort_by { |event|
+      begin
+        event.start_date || Date.today
+      rescue
+        Date.today
+      end
+    }.reverse
   end
 
   private

@@ -48,7 +48,7 @@ module Static
     end
 
     def thumbnail_cue_in_seconds
-      self["thumbnail_cue"] ? convert_cue_to_seconds(self["thumbnail_cue"]) : (start_cue_in_seconds + 5)
+      (self["thumbnail_cue"] && self["thumbnail_cue"] != "TODO") ? convert_cue_to_seconds(self["thumbnail_cue"]) : (start_cue_in_seconds + 5)
     end
 
     def convert_cue_to_seconds(cue)
@@ -74,7 +74,7 @@ module Static
     end
 
     def meta_talk?
-      talks.any?
+      attributes.key?("talks")
     end
   end
 end

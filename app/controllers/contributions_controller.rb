@@ -1,7 +1,7 @@
 class ContributionsController < ApplicationController
   include Turbo::ForceFrameResponse
   force_frame_response only: %i[show]
-  skip_before_action :authenticate_user!, only: %i[index]
+  skip_before_action :authenticate_user!, only: %i[index show]
 
   STEPS = %i[speakers_without_github talks_without_slides events_without_videos
     events_without_location events_without_dates talks_dates_out_of_bounds missing_videos_cue].freeze
@@ -19,7 +19,7 @@ class ContributionsController < ApplicationController
 
     # Talks without speakers
 
-    @talks_without_speakers = Speaker.find_by(name: "TODO").talks
+    @talks_without_speakers = Speaker.find_by(name: "TODO").talks + Speaker.find_by(name: "TBD").talks
     @talks_without_speakers_count = @talks_without_speakers.count
 
     # Missing events
@@ -60,12 +60,12 @@ class ContributionsController < ApplicationController
 
   def talks_without_slides
     speakers_with_speakerdeck = Speaker.where.not(speakerdeck: "")
-    @talks_without_slides = Talk.preload(:speakers).joins(:speakers).where(slides_url: nil).where(speakers: {id: speakers_with_speakerdeck}).order(date: :desc)
+    @talks_without_slides = Talk.past.preload(:speakers).joins(:speakers).where(slides_url: nil).where(speakers: {id: speakers_with_speakerdeck}).order(date: :desc)
     @talks_without_slides_count = @talks_without_slides.count
   end
 
   def events_without_videos
-    @events_without_videos = Event.includes(:organisation).left_joins(:talks).where(talks_count: 0).group_by(&:organisation)
+    @events_without_videos = Event.past.includes(:organisation).left_joins(:talks).where(talks_count: 0).group_by(&:organisation)
     @events_without_videos_count = @events_without_videos.flat_map(&:last).count
 
     @events_without_location = Static::Playlist.where(location: nil).group_by(&:__file_path)
