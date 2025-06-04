@@ -1,13 +1,13 @@
 class Country
   def self.find(term)
-    term = term.gsub("-", " ")
+    term = term.tr("-", " ")
 
     return nil if term.blank?
     return nil if term.downcase == "online"
     return nil if term.downcase == "earth"
     return nil if term.downcase == "unknown"
 
-    return ISO3166::Country.new("US") if ISO3166::Country.new("US").subdivisions.keys.include?(term)
+    return ISO3166::Country.new("US") if ISO3166::Country.new("US").subdivisions.key?(term)
     return ISO3166::Country.new("GB") if term == "UK"
     return ISO3166::Country.new("GB") if term == "Scotland"
 
