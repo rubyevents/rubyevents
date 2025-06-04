@@ -28,11 +28,11 @@ module Static
         return end_date.today?
       end
 
-      if event_record.present?
+      if event_record.present? && event_record.start_date
         return event_record.start_date.today?
       end
 
-      if event_record.present?
+      if event_record.present? && event_record.end_date
         return event_record.end_date.today?
       end
 
@@ -42,19 +42,19 @@ module Static
     def within_next_days?
       period = 4.days
 
-      if start_date.present?
-        return ((start_date - period)..start_date).cover?(Date.today)
-      end
-
       if end_date.present?
         return ((end_date - period)..end_date).cover?(Date.today)
       end
 
-      if event_record.present?
+      if start_date.present?
+        return ((start_date - period)..start_date).cover?(Date.today)
+      end
+
+      if event_record.present? && event_record.start_date
         return ((event_record.start_date - period)..event_record.start_date).cover?(Date.today)
       end
 
-      if event_record.present?
+      if event_record.present? && event_record.end_date
         return ((event_record.end_date - period)..event_record.end_date).cover?(Date.today)
       end
 
@@ -64,7 +64,7 @@ module Static
     def past?
       if end_date.present?
         end_date.past?
-      elsif event_record.present?
+      elsif event_record.present? && event_record.end_date.present?
         event_record.end_date.past?
       else
         false

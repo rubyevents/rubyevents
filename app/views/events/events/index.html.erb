@@ -7,8 +7,8 @@
     <div class="w-full">
       <div class="w-full flex flex-col gap-8" role="tablist" aria-orientation="vertical">
         <% @event.talks_in_running_order.where(meta_talk: true).reverse.each do |talk| %>
-          <%= link_to talk, class: "flex gap-10 group", data: {turbo_frame: "_top"} do %>
-            <div class="w-[10rem] mt-2">
+          <%= link_to talk, class: "flex flex-col sm:flex-row gap-4 sm:gap-10 group w-full overflow-hidden", data: {turbo_frame: "_top"} do %>
+            <div class="w-full sm:w-[10rem] mt-2 flex-shrink-0">
               <time datetime="<%= talk.date.iso8601 %>" class="text-black font-medium text-lg">
                 <% if talk.date.year == Date.today.year %>
                   <%= talk.date.strftime("%b %d") %>
@@ -21,9 +21,9 @@
               </div>
             </div>
 
-            <div class="bg-white rounded p-5 w-full border border-gray-200 group-hover:border-gray-400">
-              <div class="grid grid-cols-[230px_1fr] gap-8">
-                <div class="flex aspect-video overflow-hidden">
+            <div class="bg-white rounded p-5 w-full border border-gray-200 group-hover:border-gray-400 overflow-x-auto">
+              <div class="grid grid-cols-1 sm:grid-cols-[230px_1fr] gap-4 sm:gap-8">
+                <div class="flex aspect-video overflow-hidden w-full max-w-full">
                   <%= image_tag(
                         talk.thumbnail_lg,
                         srcset: ["#{talk.thumbnail_lg} 2x"],
@@ -36,7 +36,7 @@
                         class: "w-full object-cover rounded-xl #{talk.thumbnail_classes}"
                       ) %>
                 </div>
-                <div>
+                <div class="min-w-0">
                   <div class="font-mono text-xl font-medium text-black">
                     <%= talk.title %>
                   </div>
@@ -65,12 +65,29 @@
                           </div>
                         </div>
                       <% end %>
+
+                      <% if talk.speakers.none? %>
+                        -
+                      <% end %>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           <% end %>
+        <% end %>
+
+        <% if @talks.empty? %>
+          <div class="flex justify-center border rounded" style="padding-top: 3rem; padding-bottom: 3rem; padding-right: 1rem; padding-left: 1rem">
+            <div class="text-center text-gray-600">
+              <p>
+                <b>No events found for this meetup.</b>
+              </p>
+              <p class="mt-2">
+                Feel free to contribute events and talks to this meetup if you know how to access the details.
+              </p>
+            </div>
+          </div>
         <% end %>
       </div>
     </div>

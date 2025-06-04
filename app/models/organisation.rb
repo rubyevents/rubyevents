@@ -41,7 +41,7 @@ class Organisation < ApplicationRecord
   validates :name, presence: true
 
   # enums
-  enum :kind, {conference: 0, meetup: 1}
+  enum :kind, {conference: 0, meetup: 1, organisation: 2}
   enum :frequency, {unknown: 0, yearly: 1, monthly: 2, biyearly: 3, quarterly: 4}
 
   def title
@@ -61,9 +61,10 @@ class Organisation < ApplicationRecord
     end
 
     event_type = pluralize(events.size, meetup? ? "event-series" : "event")
+    frequency_text = (kind == "organisation") ? "" : " is a #{frequency} #{kind} and "
 
     <<~DESCRIPTION
-      #{name} is a #{frequency} #{kind} and hosted #{event_type}#{time_range}. We have currently indexed #{pluralize(events.sum { |event| event.talks_count }, "#{name} talk")}.
+      #{name} #{frequency_text}hosted #{event_type}#{time_range}. We have currently indexed #{pluralize(events.sum { |event| event.talks_count }, "#{name} talk")}.
     DESCRIPTION
   end
 
@@ -85,7 +86,7 @@ class Organisation < ApplicationRecord
       },
       twitter: {
         card: "summary_large_image",
-        site: "adrienpoly",
+        site: "@rubyevents_org",
         title: title,
         description: description,
         image: {

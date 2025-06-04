@@ -96,6 +96,19 @@ class Speaker < ApplicationRecord
     "https://#{instance}/@#{handle}"
   }
 
+  normalizes :website, with: ->(website) {
+    return "" if website.blank?
+
+    # if it already starts with https://, return as is
+    return website if website.start_with?("https://")
+
+    # if it starts with http://, return as is
+    return website if website.start_with?("http://")
+
+    # otherwise, prepend https://
+    "https://#{website}"
+  }
+
   def self.reset_talks_counts
     find_each do |speaker|
       speaker.update_column(:talks_count, speaker.talks.count)
@@ -179,19 +192,6 @@ class Speaker < ApplicationRecord
     broadcast_update target: dom_id(self, :header_content), partial: "speakers/header_content", locals: {speaker: self}
   end
 
-  def valid_website_url
-    return "#" if website.blank?
-
-    # if it already starts with https://, return as is
-    return website if website.start_with?("https://")
-
-    # if it starts with http://, convert it to https://
-    return website.sub("http://", "https://") if website.start_with?("http://")
-
-    # otherwise, prepend https://
-    "https://#{website}"
-  end
-
   def to_meta_tags
     {
       title: name,
@@ -207,8 +207,8 @@ class Speaker < ApplicationRecord
         site_name: "RubyEvents.org"
       },
       twitter: {
-        card: "summary_large_image",
-        site: twitter,
+        card: "summary",
+        site: "@#{twitter}",
         title: name,
         description: meta_description,
         image: {

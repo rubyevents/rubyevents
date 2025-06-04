@@ -5,7 +5,8 @@
   description: ""
   published_at: "2024-11-30"
   channel_id: ""
-  year: 2024
+  kind: meetup
+  frequency: monthly
   videos_count: 0
   metadata_parser: Youtube::VideoMetadata
   slug: sf-bay-area-ruby-meetup
@@ -13,3 +14,20 @@
   featured_background: "#0038FF"
   featured_color: "#FFFFFF"
   website: https://lu.ma/sfruby
+
+- id: sfruby-2025
+  title: San Francisco Ruby Conference 2025
+  location: San Francisco, CA
+  description: ""
+  start_date: "2025-11-19"
+  end_date: "2025-11-20"
+  kind: conference
+  frequency: yearly
+  year: "2025"
+  videos_count: 0
+  metadata_parser: Youtube::VideoMetadata
+  slug: sfruby-2025
+  banner_background: "linear-gradient(oklch(0.65 0.17 250), oklch(0.45 0.17 250), oklch(0.45 0.17 250));"
+  featured_background: "linear-gradient(oklch(0.65 0.17 250), oklch(0.45 0.17 250), oklch(0.45 0.17 250));"
+  featured_color: "#FFFFFF"
+  website: https://sfruby.com

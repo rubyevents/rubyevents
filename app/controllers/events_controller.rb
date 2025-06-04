@@ -16,7 +16,7 @@ class EventsController < ApplicationController
   def show
     set_meta_tags(@event)
 
-    if @event.organisation.meetup?
+    if @event.meetup?
       redirect_to event_events_path(@event)
     else
       redirect_to event_talks_path(@event)

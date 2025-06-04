@@ -15,6 +15,7 @@
 #  language            :string           default("en"), not null
 #  like_count          :integer          default(0)
 #  meta_talk           :boolean          default(FALSE), not null
+#  original_title      :string           default(""), not null
 #  published_at        :datetime
 #  slides_url          :string
 #  slug                :string           default(""), not null, indexed
@@ -221,10 +222,14 @@ class Talk < ApplicationRecord
   scope :without_summary, -> { where("summary IS NULL OR summary = ''") }
   scope :without_topics, -> { where.missing(:talk_topics) }
   scope :with_topics, -> { joins(:talk_topics) }
+  scope :with_speakers, -> { joins(:speaker_talks).distinct }
   scope :for_topic, ->(topic_slug) { joins(:topics).where(topics: {slug: topic_slug}) }
   scope :for_speaker, ->(speaker_slug) { joins(:speakers).where(speakers: {slug: speaker_slug}) }
   scope :for_event, ->(event_slug) { joins(:event).where(events: {slug: event_slug}) }
   scope :watchable, -> { where(video_provider: WATCHABLE_PROVIDERS) }
+  scope :upcoming, -> { where(date: Date.today...) }
+  scope :today, -> { where(date: Date.today) }
+  scope :past, -> { where(date: ...Date.today) }
 
   def managed_by?(visiting_user)
     return false unless visiting_user.present?
@@ -253,7 +258,7 @@ class Talk < ApplicationRecord
       },
       twitter: {
         card: "summary_large_image",
-        site: "adrienpoly",
+        site: "@rubyevents_org",
         title: title,
         description: description,
         image: {
@@ -452,7 +457,7 @@ class Talk < ApplicationRecord
   end
 
   def event_name
-    return event.name unless event.organisation.meetup?
+    return event.name unless event.meetup?
 
     static_metadata.try("event_name") || event.name
   end
@@ -480,7 +485,11 @@ class Talk < ApplicationRecord
       end
     end
 
-    if static_metadata.blank? || (Array.wrap(static_metadata.speakers).none? && Array.wrap(static_metadata.talks).none?)
+    no_speakers = Array.wrap(static_metadata.speakers).none?
+    no_talks = Array.wrap(static_metadata.talks).none?
+    meta_talk = static_metadata.meta_talk?
+
+    if static_metadata.blank? || (no_speakers && no_talks && !meta_talk)
       puts "No speakers for Video ID: #{video_id}"
       return
     end
@@ -488,6 +497,7 @@ class Talk < ApplicationRecord
     assign_attributes(
       event: event,
       title: static_metadata.title,
+      original_title: static_metadata.original_title || "",
       description: static_metadata.description,
       date: static_metadata.try(:date) || parent_talk&.static_metadata.try(:date),
       published_at: static_metadata.try(:published_at) || parent_talk&.static_metadata.try(:published_at),

@@ -5,9 +5,7 @@ class Identity::EmailsController < ApplicationController
   end
 
   def update
-    if !@user.authenticate(params[:current_password])
-      redirect_to edit_identity_email_path, alert: "The password you entered is incorrect"
-    elsif @user.update(email: params[:email])
+    if @user.update(params.permit(:email, :password_challenge))
       redirect_to_root
     else
       render :edit, status: :unprocessable_entity

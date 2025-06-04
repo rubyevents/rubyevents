@@ -3,12 +3,12 @@ class PageController < ApplicationController
 
   def home
     home_page_cached_data = Rails.cache.fetch("home_page_content", expires_in: 1.hour) do
-      latest_talks = Talk.watchable.order(date: :desc).limit(10)
+      latest_talks = Talk.watchable.with_speakers.order(date: :desc).limit(10)
       {
         talks_count: Talk.count,
         speakers_count: Speaker.count,
         latest_talk_ids: latest_talks.pluck(:id),
-        upcoming_talk_ids: Talk.where(date: Date.today..).order(date: :asc).limit(15).pluck(:id),
+        upcoming_talk_ids: Talk.with_speakers.where(date: Date.today..).order(date: :asc).limit(15).pluck(:id),
         latest_event_ids: Event.order(date: :desc).limit(10).pluck(:id).sample(4),
         featured_speaker_ids: Speaker.with_github
           .joins(:talks)
@@ -29,13 +29,13 @@ class PageController < ApplicationController
       .select(&:featured?)
       .sort_by(&:home_sort_date)
       .reverse
-      .take(15)
+      .take(25)
       .map(&:slug)
 
     @featured_events = Event.distinct
       .includes(:organisation)
       .where(slug: playlist_slugs)
-      .where.associated(:talks)
+      .with_watchable_talks
       .in_order_of(:slug, playlist_slugs)
 
     respond_to do |format|
