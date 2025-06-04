@@ -5,7 +5,7 @@ on: workflow_dispatch
 jobs:
   deploy-staging:
     name: Deploy to Staging
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
       DOCKER_BUILDKIT: 1

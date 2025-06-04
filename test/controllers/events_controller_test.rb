@@ -7,24 +7,24 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get events_url
+    get archive_events_url
     assert_response :success
-    assert_select "h1", /Events/i
+    assert_select "h1", /Events Archive/i
     assert_select "##{dom_id(@event)}", 1
   end
 
   test "should get index with search results" do
-    get events_url(s: "rails")
+    get archive_events_url(s: "rails")
     assert_response :success
-    assert_select "h1", /Events/i
-    assert_select "h1", /search results for "rails"/i
+    assert_select "h1", /Events Archive/i
+    assert_select "div", /search results for "rails"/i
     assert_select "##{dom_id(@event)}", 1
   end
 
   test "should get index and return events in the correct order" do
     event_names = %i[brightonruby_2024 rails_world_2023 tropical_rb_2024 railsconf_2017 rubyconfth_2022].map { |event| events(event) }.map(&:name)
 
-    get events_url
+    get archive_events_url
 
     assert_response :success
 
@@ -34,7 +34,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index search result" do
-    get events_url(letter: "T")
+    get archive_events_url(letter: "T")
     assert_response :success
     assert_select "span", text: "Tropical Ruby 2024"
   end
@@ -102,7 +102,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   test "should display an empty state message when no events are found" do
     Event.destroy_all
 
-    get events_url
+    get archive_events_url
 
     assert_response :success
     assert_select "p", text: "No events found"

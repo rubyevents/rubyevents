@@ -1,10 +1,11 @@
----
 # TODO: talks running order
 # TODO: talk dates
 
 # Website: https://web.archive.org/web/20130818201623/http://www.railsconf.com/
 # Schedule: https://web.archive.org/web/20130817161430/http://railsconf.com/2013/schedule
 
+# https://ericbrooke.blog/2013/04/30/ruby-on-rails-conference/
+---
 - title: "Using Elasticsearch with Rails Apps"
   raw_title: "Rails Conf 2013 Using Elasticsearch with Rails Apps by Brian Gugliemetti"
   speakers:
@@ -13,7 +14,7 @@
   date: "2013-06-25"
   published_at: "TODO"
   description: |-
-    Elasticsearch is a powerful text search engine that's easy to configure and to integrate into your Rails and Ruby applications. But it's more than just a general text search engine--elasticsearch stores data in JSON format allowing for faceting and complex searches. There are gems that integrate it with ActiveRecord, but it can also be used easily outside of ActiveRecord. Learn from the real-world application of elasticsearch for general text searches to specific catalog-type searches. 
+    Elasticsearch is a powerful text search engine that's easy to configure and to integrate into your Rails and Ruby applications. But it's more than just a general text search engine--elasticsearch stores data in JSON format allowing for faceting and complex searches. There are gems that integrate it with ActiveRecord, but it can also be used easily outside of ActiveRecord. Learn from the real-world application of elasticsearch for general text searches to specific catalog-type searches.
 
     We'll cover the elasticsearch basics, the existing gems you can use to integrate, and the lessons learned from integrating into existing projects. Examples include: how to index existing ActiveRecord models for general text searches, how to use elasticsearch for autocomplete, and how to use for complex queries.
   video_provider: "youtube"
@@ -134,12 +135,12 @@
   date: "2013-06-25"
   published_at: "TODO"
   description: |-
-    The future is real time! With the Rails 4.0 Live Streaming API we finally have the ability to easily add real time functionality to our apps. Learn all about the live streaming API, how best to take advantage of this in the browser, and how to deploy a real-time ready Rails app. Get ready to open your apps to a whole new world of interaction and functionality. Topics we will cover: 
-    * Live Streaming API 
-    * EventMachine vs Rails 4.0 
-    * Node.js vs Rails 4.0 
-    * Polling vs Live Streaming 
-    * Websockets & Rails 4.0 
+    The future is real time! With the Rails 4.0 Live Streaming API we finally have the ability to easily add real time functionality to our apps. Learn all about the live streaming API, how best to take advantage of this in the browser, and how to deploy a real-time ready Rails app. Get ready to open your apps to a whole new world of interaction and functionality. Topics we will cover:
+    * Live Streaming API
+    * EventMachine vs Rails 4.0
+    * Node.js vs Rails 4.0
+    * Polling vs Live Streaming
+    * Websockets & Rails 4.0
     * Puma
   video_provider: "youtube"
   video_id: "fOI3EjsUEww"
@@ -258,17 +259,17 @@
   date: "2013-06-25"
   published_at: "TODO"
   description: |-
-    Usability researchers have known for years that people browsing the Internet 
-    don't read things word by word - they scan pages for the content they want. Yet 
-    many API's and documentation resources are written as though users are reading 
-    every word. If busy users can't find what they are looking for, you'll have 
+    Usability researchers have known for years that people browsing the Internet
+    don't read things word by word - they scan pages for the content they want. Yet
+    many API's and documentation resources are written as though users are reading
+    every word. If busy users can't find what they are looking for, you'll have
     more support tickets (an expense), or more frustration (lost revenue).
-    Writing effective documentation requires knowing who your users are and how 
-    they are finding answers to their questions. In this presentation, we'll 
-    examine practical techniques to make your documentation work for busy users. 
+    Writing effective documentation requires knowing who your users are and how
+    they are finding answers to their questions. In this presentation, we'll
+    examine practical techniques to make your documentation work for busy users.
     Looking at examples and user testing from our experience at Twilio, attendees will learn:
-    - how users find (or fail to find) your documentation 
-    - how users view and get started (or fail to get started) with your product 
+    - how users find (or fail to find) your documentation
+    - how users view and get started (or fail to get started) with your product
     - how to take advantage of underused documentation tools like your error messages, your API, and SEO.
   video_provider: "youtube"
   video_id: "cC67PzBgRYE"
@@ -297,14 +298,14 @@
   description: |-
     Go has rapidly built a reputation as a great language for web development. But as Rails developers, we already have a really, really great language for web development -- why should we be interested in Go?
     I'm convinced that every web developer would benefit from exposure to the Go approach to programming, which places a strong emphasis on up-front error handling and modular, namespaced libraries. Let's sit down and compare some code!
-    In this talk, we will: 
-    * Compare idiomatic approaches to common problems such as error handling, dependency management and testing in Go and Ruby. 
-    * Think carefully about tradeoffs between different programming styles and examine how programming languages encourage one style or another. 
-    * Tease out common ideas and best practices that apply to all web applications, regardless of language or framework. 
+    In this talk, we will:
+    * Compare idiomatic approaches to common problems such as error handling, dependency management and testing in Go and Ruby.
+    * Think carefully about tradeoffs between different programming styles and examine how programming languages encourage one style or another.
+    * Tease out common ideas and best practices that apply to all web applications, regardless of language or framework.
     * Read a bunch of code.
-    We will not: 
-    * Try to convince anyone to ditch Ruby/Rails and embrace Go. 
-    * Make vague, unsubstantiated claims about the benefits of static or dynamic typing. 
+    We will not:
+    * Try to convince anyone to ditch Ruby/Rails and embrace Go.
+    * Make vague, unsubstantiated claims about the benefits of static or dynamic typing.
     * Assume any prior knowledge of Go.
   video_provider: "youtube"
   video_id: "-zz-byus8DA"
@@ -433,7 +434,7 @@
   published_at: "TODO"
   description: |-
     Two completely different ways have emerged for using Rails as the back end to a rich client-side JavaScript application.
-    * The 37Signals "Russian Doll" approach, where the server generally returns HTML to the client. This approach uses aggressive caching and a little bit of JavaScript glue to keep the application fast. 
+    * The 37Signals "Russian Doll" approach, where the server generally returns HTML to the client. This approach uses aggressive caching and a little bit of JavaScript glue to keep the application fast.
     * The "Rails API" approach, where the server generally returns JSON to the client, and a JavaScript MVC framework handles the actual display.
     Which of these will work for you?
     We will look at code to see the structural difference between these two approaches and see what the speed, extensibility, and maintainability trade-offs are. At the end of the talk, you will be better equipped to chose a structure for your next rich-client application.
@@ -503,10 +504,10 @@
   published_at: "TODO"
   description: |-
     The Ruby on Rails developer faces an interesting duality. Their inner Rubyist is driven by a sense of beauty and explores a wide range of ways to solve a problem. The inner Railser is driven by a strong set of conventions and is guided by the Rails Way™. The /lib directory is where these developers meet and end result is a junk drawer of awkward code.
-    In this talk, I go over a few ways to keep this junk drawer problem from happening by adding some conventions I've created from building Rails in anger: 
-    * Treat /lib as a temple (keep /lib in a state to extract to a gem in minutes) 
-    * Avoid autoloading everything in /lib 
-    * Use configuration to hide credentials from your library code 
+    In this talk, I go over a few ways to keep this junk drawer problem from happening by adding some conventions I've created from building Rails in anger:
+    * Treat /lib as a temple (keep /lib in a state to extract to a gem in minutes)
+    * Avoid autoloading everything in /lib
+    * Use configuration to hide credentials from your library code
     * Isolate your Domain Objects from library concerns through DCI
   video_provider: "youtube"
   video_id: "xXLijKrPMv4"
@@ -520,7 +521,7 @@
   published_at: "TODO"
   description: |-
     The field of natural language processing and the many topics encompassed within it (summarization, full-text search, sentiment analysis, content categorization, etc.) is one of fastest growing, most complex and most highly demanded knowledge sets in the software industry today.
-    From spell checking in your SMS client to programmatically evaluating what your Twitter followers think of you, there is no shortage of real-world text processing and linguistic analysis problems all around us waiting to be solved. As Rubyists and software engineers, its important for us to know what tools related to NLP are available to us and how we can make use of them most effectively. 
+    From spell checking in your SMS client to programmatically evaluating what your Twitter followers think of you, there is no shortage of real-world text processing and linguistic analysis problems all around us waiting to be solved. As Rubyists and software engineers, its important for us to know what tools related to NLP are available to us and how we can make use of them most effectively.
 
     While there are a number of really great open-source libraries for natural language processing in Ruby and many great strides have been made in recent years, there's still often a need to leverage tools and libraries externally from the Ruby ecosystem. Some of the best open-source NLP frameworks available rely very heavily on contributions from the academic world where Ruby as a language doesn't have the same presence as other languages like Python or Java.
     In this talk, I'll provide a beginner friendly introduction to NLP in general and I'll give a quick overview of the tools and related projects that are currently available in the Ruby community. In addition, using real-world examples I'll demonstrate how to painlessly leverage high performance, mature and well-established NLP libraries directly from your Ruby application using JRuby and JDK 7.
@@ -563,10 +564,10 @@
   published_at: "TODO"
   description: |-
     Unwieldy templates (a.k.a. views) are all too common in Rails apps, even among teams that otherwise craft high-quality code. Being brought into or having to maintain a project with poorly-crafted templates leads to extreme frustration and less than-adequite-velocity. At philosophie, we have started to use a few simple patterns that result in templates that are easier to maintain. By investing a small amount of time up-front learning and applying these patterns we have saved countless hours in the long run.
-    Topics include: 
-    * The Decorator Pattern 
-    * Using View objects 
-    * Sanely building forms 
+    Topics include:
+    * The Decorator Pattern
+    * Using View objects
+    * Sanely building forms
     * And more!
   video_provider: "youtube"
   video_id: "elRlAjtaFsg"
@@ -637,13 +638,13 @@
   date: "2013-06-25"
   published_at: "TODO"
   description: |-
-    Developers: how many times have you had to completely rip out your hard earned code for a totally new site design? 
+    Developers: how many times have you had to completely rip out your hard earned code for a totally new site design?
     Designers: how many times has a re-design taken 4 times as long as the developer said it would and not looked good in the end?
     Change all that by using an incremental approach to design. Set up your code to change all the buttons at once or prioritize design changes to make each small change good enough for production.
     A designer and developer will talk about the challenges and joys of making this process work in two production sites.
-    Topics covered: 
-    * What is incremental design? 
-    * How to design with incremental changes in mind 
+    Topics covered:
+    * What is incremental design?
+    * How to design with incremental changes in mind
     * How to develop for incremental design, including utilizing SASS, structuring your mark-up and CSS, and structuring your Rails views and partials
   video_provider: "youtube"
   video_id: "t97ePwSk_wc"
@@ -685,9 +686,9 @@
   published_at: "TODO"
   description: |-
     Coming from a hacker background, I've continually been surprised by how frequently new grads lacked the skills needed, particularly in community learning. When I was asked to teach Ruby on Rails at Columbia University I observed that a significant number of the skills required to become successful professionals in the industry are acquired on the job and aren't being taught in school.
-    This presentation will review: 
-    - Lessons learned from the experience teaching in my alma mater's CS program. 
-    - How I developed a hacker-centric curriculum teaching not only the algorithms, but the keys to being a successful developer in the modern open source driven Rails community. 
+    This presentation will review:
+    - Lessons learned from the experience teaching in my alma mater's CS program.
+    - How I developed a hacker-centric curriculum teaching not only the algorithms, but the keys to being a successful developer in the modern open source driven Rails community.
     - How we as hackers can fix this.
   video_provider: "youtube"
   video_id: "a0teD9ynuTM"
@@ -728,7 +729,7 @@
   date: "2013-06-25"
   published_at: "TODO"
   description: |-
-    Datomic is a new database categorized as NewSQL and was created by Rich Hickey. Everybody knows this big name and thinks of Clojure. It is true Datomic fits well to Clojure programming. However, it is not only for Clojure people. 
+    Datomic is a new database categorized as NewSQL and was created by Rich Hickey. Everybody knows this big name and thinks of Clojure. It is true Datomic fits well to Clojure programming. However, it is not only for Clojure people.
     Absolutely, Rubyists can use it. We have Diametric gem (https://github.com/relevance/diametric). Using Diametric, we can dive into Datomic from Ruby, from Rails.
     On Diametric, Datomic's entity is an ActiveModel compliant. Diametric supports Rails' scaffolding. Its usage might look like Datamapper or MongoDB. Eventually, Diametric's API design settled in a bit far from Ruby, Rails style. In another word, it is not ORM-like. Even though the API design may puzzle Rubyists, Diametric chose the one to expose Datomic's intrinsic properties. It is to leverage a good side of Datomic for us. I believe the more Rubyists use Diametric, the more they like it.
     In my talk, I'll introduce Diametric gem and how to use it as well as why its API design is good for us. Also, I will cover how Ruby helped to integrate Datomic API in Diametric gem.
@@ -758,13 +759,13 @@
   description: |-
     Nearly every developer will be asked to present to his or her peers at some point. Those that do it well will tend to have an outsized influence on their team, company, and community.
     This talk will demonstrate (mostly by example) the straightforward techniques for giving excellent presentations, from a veteran conference speaker and teacher.
-    Topics to cover include: 
-    * Phrases that turn your audience against you. 
-    * Basic body language tips that affect perception. 
-    * How to be more interesting than the internet. 
-    * The power of live coding and demos. 
-    * Being funny without resorting to reddit memes. 
-    * How to get plenty of questions during Q&A. 
+    Topics to cover include:
+    * Phrases that turn your audience against you.
+    * Basic body language tips that affect perception.
+    * How to be more interesting than the internet.
+    * The power of live coding and demos.
+    * Being funny without resorting to reddit memes.
+    * How to get plenty of questions during Q&A.
     * How to get an unfair amount of talk acceptances (aka 'Bribing conference organizers').
   video_provider: "youtube"
   video_id: "l9JXH7JPjR4"
@@ -1168,15 +1169,15 @@
   published_at: "TODO"
   description: |-
     As your simple Rails app grows into a larger system or set of systems, using simple constants and Yaml files for configuration may no longer suffice. The meaning of 'configuration' expands to include business logic alongside the customary hostnames and timeout intervals; the rate at which configuration changes are required increases; non-engineers begin to require the ability to make configuration changes themselves; different environments require different configurations. This presentation will examine several patterns that can be applied to handle these issues, keeping iteration team high and reducing the burden on your engineering team. We'll create and iterate on a simple game as a case study to illustrate the value of these principles in practice, and also look at a few open source projects that integrate some of these concepts.
-    Topics: 
-    * moving configuration values out of source 
-    * sharing configuration across multiple applications/services 
-    * working with sensitive configuration data (eg API keys) 
-    * dynamically updating configuration without deployments or restarts 
-    * cascading/overlaying configuration values based on environment and context 
-    * running experiments and A/B tests 
-    * change control 
-    * testing and multi-stage deployment of configuration changesets 
+    Topics:
+    * moving configuration values out of source
+    * sharing configuration across multiple applications/services
+    * working with sensitive configuration data (eg API keys)
+    * dynamically updating configuration without deployments or restarts
+    * cascading/overlaying configuration values based on environment and context
+    * running experiments and A/B tests
+    * change control
+    * testing and multi-stage deployment of configuration changesets
     * allowing non-developers to change configuration values
   video_provider: "youtube"
   video_id: "MDeUgHHTiyg"
@@ -1256,7 +1257,7 @@
   date: "2013-06-25"
   published_at: "TODO"
   description: |-
-    The good news: you're quickly signing up new customers, you've scaled your Rails app to a growing cluster of 10+ servers, and the business is really starting to take off. Great! The bad news: Just 30m of failures is starting to be measured in hundreds or even thousands of dollars. Who's going to make sure the lights stay on when your app is starting to fall over? Or worse, what if your app is up, but sign-ups, payments, or some other critical function is broken? 
+    The good news: you're quickly signing up new customers, you've scaled your Rails app to a growing cluster of 10+ servers, and the business is really starting to take off. Great! The bad news: Just 30m of failures is starting to be measured in hundreds or even thousands of dollars. Who's going to make sure the lights stay on when your app is starting to fall over? Or worse, what if your app is up, but sign-ups, payments, or some other critical function is broken?
 
     Learn how you can build a robust monitoring infrastructure using the Sensu platform: track business metrics in all of your applications, any system metric on your servers, and do so all with the help of BatsD - a time series data store for real-time needs. We'll also talk about how to look at trending data and how you can integrate Sensu against PagerDuty, RabbitMQ, or any other third-party service. Oh, and of course - everything's written in Ruby, so you can even use your favorite gems!
   video_provider: "youtube"
@@ -1308,10 +1309,10 @@
   published_at: "TODO"
   description: |-
     Ruby developers have many great options for simply hosting their web applications. But what happens when your product outgrows Heroku? Managing your own servers can be an intimidating task for the average developer. This session will cover the lessons we've learned at Braintree from building and maintaining our infrastructure. It will cover how we leverage Ruby to automate and control all of our environments. Some specific topics we'll cover:
-    * Orchestrating servers with capistrano 
-    * Using puppet for configuration management 
-    * Our cap and puppet workflow using git 
-    * How vagrant can provide a sane test environment 
+    * Orchestrating servers with capistrano
+    * Using puppet for configuration management
+    * Our cap and puppet workflow using git
+    * How vagrant can provide a sane test environment
     * Some pitfalls you should avoid
   video_provider: "youtube"
   video_id: "KmUq-SIFmgE"

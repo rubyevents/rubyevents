@@ -66,3 +66,6 @@ application.register("scroll", ScrollController)
 
 import ButtonController from "./bridge/button_controller"
 application.register("bridge--button", ButtonController)
+
+import EventListController from "./event_list_controller"
+application.register("event-list", EventListController)

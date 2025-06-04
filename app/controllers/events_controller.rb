@@ -7,9 +7,7 @@ class EventsController < ApplicationController
 
   # GET /events
   def index
-    @events = Event.canonical.includes(:organisation).order("events.name ASC")
-    @events = @events.where("lower(events.name) LIKE ?", "#{params[:letter].downcase}%") if params[:letter].present?
-    @events = @events.ft_search(params[:s]) if params[:s].present?
+    @events = Event.all.select { |event| event.end_date }.select { |event| event.end_date >= Date.today }.select { |event| event.organisation.conference? }.sort_by { |event| event.start_date }
   end
 
   # GET /events/1

@@ -101,6 +101,12 @@ module Static
       nil
     end
 
+    def country
+      return nil if location.blank?
+
+      Country.find(location.to_s.split(",").last&.strip)
+    end
+
     def home_sort_date
       if published_date
         return published_date
