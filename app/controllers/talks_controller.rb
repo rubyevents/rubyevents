@@ -43,6 +43,13 @@ class TalksController < ApplicationController
     end
   end
 
+  def feed
+    @talks = Talk.order(created_at: :desc).limit(20)
+    respond_to do |format|
+      format.xml
+    end
+  end
+
   private
 
   def order_by

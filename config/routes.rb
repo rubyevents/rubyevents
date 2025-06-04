@@ -56,6 +56,9 @@ Rails.application.routes.draw do
       resource :watched_talk, only: [:create, :destroy]
       resource :slides, only: :show
     end
+    collection do
+      get :feed, defaults: {format: "xml"}
+    end
   end
 
   resources :speakers, param: :slug, only: [:index, :show, :update, :edit]
