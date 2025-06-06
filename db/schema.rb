@@ -89,6 +89,21 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_24_174213) do
     t.index ["slug"], name: "index_events_on_slug"
   end
 
+  create_table "llm_requests", force: :cascade do |t|
+    t.string "request_hash", null: false
+    t.json "raw_response", null: false
+    t.float "duration", null: false
+    t.string "resource_type", null: false
+    t.integer "resource_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "success", default: false, null: false
+    t.string "task_name", default: "", null: false
+    t.index ["request_hash"], name: "index_llm_requests_on_request_hash", unique: true
+    t.index ["resource_type", "resource_id"], name: "index_llm_requests_on_resource"
+    t.index ["task_name"], name: "index_llm_requests_on_task_name"
+  end
+
   create_table "organisations", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.text "description", default: "", null: false

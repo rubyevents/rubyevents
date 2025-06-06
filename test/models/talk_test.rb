@@ -105,9 +105,11 @@ class TalkTest < ActiveSupport::TestCase
 
     refute @talk.enhanced_transcript.cues.present?
     VCR.use_cassette("talks/transcript-enhancement") do
-      assert_changes "@talk.reload.enhanced_transcript.cues.count" do
-        perform_enqueued_jobs do
-          @talk.agents.improve_transcript_later
+      assert_changes "@talk.reload.updated_at" do
+        assert_changes "@talk.reload.enhanced_transcript.cues.count" do
+          perform_enqueued_jobs do
+            @talk.agents.improve_transcript_later
+          end
         end
       end
       assert @talk.enhanced_transcript.cues.present?
@@ -327,5 +329,119 @@ class TalkTest < ActiveSupport::TestCase
     talk = talks(:non_english_talk_one)
 
     assert_equal "Palestra não em inglês", talk.original_title
+  end
+  test "llm request caching for transcript enhancement" do
+    @talk = talks(:one)
+    @talk = Talk.includes(event: :organisation).find(@talk.id)
+
+    refute @talk.enhanced_transcript.cues.present?
+    VCR.use_cassette("talks/transcript-enhancement") do
+      assert_changes "@talk.reload.updated_at" do
+        assert_changes "@talk.reload.enhanced_transcript.cues.count" do
+          perform_enqueued_jobs do
+            @talk.agents.improve_transcript_later
+          end
+        end
+      end
+      assert @talk.enhanced_transcript.cues.present?
+
+      # Verify LLM request was created
+      assert_equal 1, LLM::Request.count
+      request = LLM::Request.first
+      assert_equal @talk, request.resource
+      assert request.duration > 0
+      assert request.raw_response.present?
+
+      # Second call should use cache
+      assert_no_changes "LLM::Request.count" do
+        perform_enqueued_jobs do
+          @talk.agents.improve_transcript_later
+        end
+      end
+    end
+  end
+
+  test "llm request caching for summarization" do
+    @talk = talks(:one)
+    @talk = Talk.includes(event: :organisation).find(@talk.id)
+
+    refute @talk.summary.present?
+    VCR.use_cassette("talks/summarize") do
+      assert_changes "@talk.reload.summary.present?" do
+        perform_enqueued_jobs do
+          @talk.agents.summarize_later
+        end
+      end
+      assert @talk.summary.present?
+
+      # Verify LLM request was created
+      assert_equal 1, LLM::Request.count
+      request = LLM::Request.first
+      assert_equal @talk, request.resource
+      assert request.duration > 0
+      assert request.raw_response.present?
+
+      # Second call should use cache
+      assert_no_changes "LLM::Request.count" do
+        perform_enqueued_jobs do
+          @talk.agents.summarize_later
+        end
+      end
+    end
+  end
+
+  test "llm request caching for topic analysis" do
+    @talk = talks(:one)
+
+    VCR.use_cassette("talks/extract_topics") do
+      assert_changes "@talk.topics.count" do
+        perform_enqueued_jobs do
+          @talk.agents.analyze_topics_later
+        end
+      end
+
+      # Verify LLM request was created
+      assert_equal 1, LLM::Request.count
+      request = LLM::Request.first
+      assert_equal @talk, request.resource
+      assert request.duration > 0
+      assert request.raw_response.present?
+
+      # Second call should use cache
+      assert_no_changes "LLM::Request.count" do
+        perform_enqueued_jobs do
+          @talk.agents.analyze_topics_later
+        end
+      end
+    end
+  end
+
+  test "llm request caching with successful response" do
+    @talk = talks(:one)
+    @talk = Talk.includes(event: :organisation).find(@talk.id)
+
+    VCR.use_cassette("talks/transcript-enhancement") do
+      # First call should succeed and create a successful request
+      assert_changes "@talk.reload.enhanced_transcript.cues.count" do
+        perform_enqueued_jobs do
+          @talk.agents.improve_transcript_later
+        end
+      end
+
+      # Verify successful request was created
+      assert_equal 1, LLM::Request.count
+      request = LLM::Request.first
+      assert_equal @talk, request.resource
+      assert request.duration > 0
+      assert request.raw_response.present?
+      assert request.success
+
+      # Second call should use cache
+      assert_no_changes "LLM::Request.count" do
+        perform_enqueued_jobs do
+          @talk.agents.improve_transcript_later
+        end
+      end
+    end
   end
 end
