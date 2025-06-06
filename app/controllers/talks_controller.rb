@@ -44,7 +44,7 @@ class TalksController < ApplicationController
   end
 
   def feed
-    @talks = Talk.order(created_at: :desc).limit(20)
+    @talks = Talk.past.watchable.order(published_at: :desc).limit(20)
     respond_to do |format|
       format.xml
     end
