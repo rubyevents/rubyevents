@@ -7,7 +7,7 @@ class EventsController < ApplicationController
 
   # GET /events
   def index
-    @events = Event.all.select { |event| event.end_date }.select { |event| event.end_date >= Date.today }.select { |event| event.conference? }.sort_by { |event| event.start_date }
+    @events = Event.all.select { |event| event.end_date }.select { |event| event.end_date >= Date.today }.select { |event| event.static_metadata.conference? }.sort_by { |event| event.start_date }
   end
 
   # GET /events/1

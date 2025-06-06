@@ -7,8 +7,10 @@
 #  city            :string
 #  country_code    :string
 #  date            :date
+#  end_date        :date
 #  name            :string           default(""), not null, indexed
 #  slug            :string           default(""), not null, indexed
+#  start_date      :date
 #  talks_count     :integer          default(0), not null
 #  website         :string           default("")
 #  created_at      :datetime         not null
@@ -44,6 +46,7 @@ class Event < ApplicationRecord
   has_many :aliases, class_name: "Event", foreign_key: "canonical_id"
 
   has_object :schedule
+  has_object :static_metadata
 
   def talks_in_running_order(child_talks: true)
     talks.in_order_of(:video_id, video_ids_in_running_order(child_talks: child_talks))
@@ -163,17 +166,13 @@ class Event < ApplicationRecord
   end
 
   def kind
-    if meetup?
+    if static_metadata.meetup?
       "meetup"
-    elsif conference?
+    elsif static_metadata.conference?
       "conference"
     else
       "event"
     end
-  end
-
-  def frequency
-    static_metadata&.frequency || organisation.frequency
   end
 
   def description
@@ -184,7 +183,7 @@ class Event < ApplicationRecord
     talks_text = talks.any? ? " and features #{talks.size} #{"talk".pluralize(talks.size)} from various speakers" : ""
 
     @description = <<~DESCRIPTION
-      #{event_name} is a #{frequency} #{kind}#{held_in_sentence}#{talks_text}#{keynotes}.
+      #{event_name} is a #{static_metadata.frequency} #{kind}#{held_in_sentence}#{talks_text}#{keynotes}.
     DESCRIPTION
   end
 
@@ -215,15 +214,11 @@ class Event < ApplicationRecord
   end
 
   def meetup?
-    (static_metadata && static_metadata.kind == "meetup") || organisation.meetup?
+    static_metadata.meetup?
   end
 
   def conference?
-    (static_metadata && static_metadata.kind == "conference") || organisation.conference?
-  end
-
-  def static_metadata
-    Static::Playlist.find_by(slug: slug)
+    static_metadata.conference?
   end
 
   def event_image_path
@@ -275,62 +270,16 @@ class Event < ApplicationRecord
     sticker_image_path.present?
   end
 
-  def banner_background
-    static_metadata.banner_background.present? ? static_metadata.banner_background : "#081625"
-  rescue => _e
-    "#081625"
-  end
-
   def watchable_talks?
     talks.where.not(video_provider: ["scheduled", "not_published", "not_recorded"]).exists?
   end
 
   def featured_metadata?
-    return false unless static_metadata
-
-    static_metadata.featured_background.present? || static_metadata.featured_color.present?
+    static_metadata.featured_background?
   end
 
   def featurable?
     featured_metadata? && watchable_talks?
-  end
-
-  def featured_background
-    return static_metadata.featured_background if static_metadata.featured_background.present?
-
-    "black"
-  rescue => _e
-    "black"
-  end
-
-  def featured_color
-    static_metadata.featured_color.present? ? static_metadata.featured_color : "white"
-  rescue => _e
-    "white"
-  end
-
-  def location
-    static_metadata.location.present? ? static_metadata.location : "Earth"
-  rescue => _e
-    "Earth"
-  end
-
-  def start_date
-    @start_date ||= static_metadata.start_date.present? ? static_metadata.start_date : talks.minimum(:date)
-  rescue => _e
-    talks.minimum(:date)
-  end
-
-  def end_date
-    @end_date ||= static_metadata.end_date.present? ? static_metadata.end_date : talks.maximum(:date)
-  rescue => _e
-    talks.maximum(:date)
-  end
-
-  def year
-    static_metadata.year.present? ? static_metadata.year : talks.first.try(:date).try(:year)
-  rescue => _e
-    talks.first.try(:date).try(:year)
   end
 
   def website

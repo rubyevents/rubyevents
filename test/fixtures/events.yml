@@ -7,8 +7,10 @@
 #  city            :string
 #  country_code    :string
 #  date            :date
+#  end_date        :date
 #  name            :string           default(""), not null, indexed
 #  slug            :string           default(""), not null, indexed
+#  start_date      :date
 #  talks_count     :integer          default(0), not null
 #  website         :string           default("")
 #  created_at      :datetime         not null

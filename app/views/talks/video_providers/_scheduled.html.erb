@@ -14,8 +14,8 @@
 
     held at <%= talk.event.name %>
 
-    <% if talk.event.location && !talk.event.location.in?(["Earth", "online", "Online"]) %>
-      in <%= talk.event.location %>
+    <% if talk.event.static_metadata.location && !talk.event.static_metadata.location.in?(["Earth", "online", "Online"]) %>
+      in <%= talk.event.static_metadata.location %>
     <% end %>
 
     on <%= talk.formatted_date %>.

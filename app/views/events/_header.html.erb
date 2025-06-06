@@ -2,12 +2,12 @@
   class="w-full md:h-[198px] lg:h-[267px] xl:h-[336px] 2xl:h-[405px] justify-center align-center flex mt-3 border-t border-b hotwire-native:hidden"
   style="
     view-transition-name: hero;
-    <% if event.banner_background.start_with?("data:") %>
-      background: url('<%= event.banner_background %>');
+    <% if event.static_metadata.banner_background.start_with?("data:") %>
+      background: url('<%= event.static_metadata.banner_background %>');
       background-repeat: no-repeat;
       background-size: cover;
     <% else %>
-      background: <%= event.banner_background %>;
+      background: <%= event.static_metadata.banner_background %>;
     <% end %>
   ">
   <%= image_tag image_path(@event.banner_image_path), class: "w-full md:container" %>
@@ -24,7 +24,7 @@
 
       <div class="flex-col flex justify-center break-all">
         <h1 class="mb-2 text-black font-bold" style="view-transition-name: title"><%= title event.name %></h1>
-        <h3 class="text-[#636B74]"><%= link_to event.location, event.country_url, class: "link" %> • <%= event.formatted_dates %></h3>
+        <h3 class="text-[#636B74]"><%= link_to event.static_metadata.location, event.country_url, class: "link" %> • <%= event.formatted_dates %></h3>
         <%= external_link_to event.website.gsub(%r{^https?://}, "").gsub(%r{/$}, ""), event.website %>
       </div>
     </div>
