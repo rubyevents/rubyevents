@@ -102,6 +102,7 @@ class Talk < ApplicationRecord
 
   validates :date, presence: true
   # validates :published_at, presence: true, if: :published? # TODO: enable
+  validate :parent_talk_id_cannot_be_self
 
   # delegates
   delegate :name, to: :event, prefix: true, allow_nil: true
@@ -598,5 +599,15 @@ class Talk < ApplicationRecord
       speakers: speakers.map { |speaker| speaker.to_mobile_json(request) },
       url: Router.talk_url(self, host: "#{request.protocol}#{request.host}:#{request.port}")
     }
+  end
+
+  private
+
+  def parent_talk_id_cannot_be_self
+    return if parent_talk_id.nil?
+
+    if parent_talk_id == id
+      errors.add(:parent_talk_id, "cannot be the same as the talk itself")
+    end
   end
 end
