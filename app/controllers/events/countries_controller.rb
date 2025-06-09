@@ -9,7 +9,7 @@ class Events::CountriesController < ApplicationController
   def show
     @country = Country.find(params[:country])
     if @country.present?
-      @events = Event.all.select { |event| event.static_metadata&.country == @country }.sort_by { |event| event.static_metadata&.home_sort_date || Time.at(0).to_date }.reverse
+      @events = Event.includes(:organisation).all.select { |event| event.static_metadata&.country == @country }.sort_by { |event| event.static_metadata&.home_sort_date || Time.at(0).to_date }.reverse
     else
       head :not_found
     end
