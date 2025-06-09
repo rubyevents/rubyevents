@@ -1,7 +1,7 @@
 # -*- SkipSchemaAnnotations
 
 class Event::StaticMetadata < ActiveRecord::AssociatedObject
-  delegate :published_date, to: :static_repository
+  delegate :published_date, :home_sort_date, to: :static_repository, allow_nil: true
 
   def conference?
     static_repository&.kind == "conference" || event.organisation.conference?
@@ -64,6 +64,12 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
 
   def location
     static_repository&.location&.presence || "Earth"
+  end
+
+  def country
+    return nil if location.blank?
+
+    Country.find(location.to_s.split(",").last&.strip)
   end
 
   private
