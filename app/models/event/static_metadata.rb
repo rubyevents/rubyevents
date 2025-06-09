@@ -1,9 +1,7 @@
 # -*- SkipSchemaAnnotations
 
 class Event::StaticMetadata < ActiveRecord::AssociatedObject
-  def home_updated_text
-    static_repository.home_updated_text
-  end
+  delegate :published_date, to: :static_repository
 
   def conference?
     static_repository&.kind == "conference" || event.organisation.conference?
@@ -65,10 +63,7 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
   end
 
   def location
-    static_repository.location.present? ? static_repository.location : "Earth"
-  rescue => e
-    raise "No location found for #{event.name} :  #{e.message}" if Rails.env.local?
-    "Earth"
+    static_repository&.location&.presence || "Earth"
   end
 
   private

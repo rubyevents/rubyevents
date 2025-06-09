@@ -5,16 +5,6 @@ module Static
     self.backend = Backends::MultiFileBackend.new("**/**/playlists.yml")
     self.base_path = Rails.root.join("data")
 
-    def future?
-      if start_date.present?
-        start_date.future?
-      elsif event_record.present?
-        event_record.start_date.future?
-      else
-        false
-      end
-    end
-
     def featured?
       within_next_days? || today? || past?
     end
@@ -129,32 +119,6 @@ module Static
       end
 
       Time.at(0)
-    end
-
-    def home_updated_text
-      if published_date
-        return "Talks recordings were published #{time_ago_in_words(published_date)} ago."
-      end
-
-      if today?
-        return "Takes place today."
-      end
-
-      if end_date.present? && end_date.past?
-        return "Took place #{time_ago_in_words(end_date)} ago."
-      end
-
-      if event_record.present? && event_record.end_date.past?
-        return "Took place #{time_ago_in_words(event_record.end_date)} ago."
-      end
-
-      if start_date.present? && start_date.future?
-        return "Takes place in #{time_ago_in_words(start_date)}."
-      end
-
-      if event_record.present? && event_record.start_date.future?
-        "Takes place in #{time_ago_in_words(event_record.start_date)}."
-      end
     end
   end
 end

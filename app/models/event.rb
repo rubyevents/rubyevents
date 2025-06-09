@@ -41,6 +41,8 @@ class Event < ApplicationRecord
   has_many :talks, dependent: :destroy, inverse_of: :event, foreign_key: :event_id
   has_many :watchable_talks, -> { watchable }, class_name: "Talk"
   has_many :speakers, -> { distinct }, through: :talks
+  has_many :keynote_speakers, -> { joins(:talks).where(talks: {kind: "keynote"}).distinct },
+    through: :talks, source: :speakers
   has_many :topics, -> { distinct }, through: :talks
   belongs_to :canonical, class_name: "Event", optional: true
   has_many :aliases, class_name: "Event", foreign_key: "canonical_id"
@@ -121,8 +123,10 @@ class Event < ApplicationRecord
     HEREDOC
   end
 
-  def keynote_speakers
-    speakers.merge(talks.keynote)
+  def today?
+    (start_date..end_date).cover?(Date.today)
+  rescue => _e
+    false
   end
 
   def formatted_dates
@@ -179,12 +183,18 @@ class Event < ApplicationRecord
     return @description if @description.present?
 
     event_name = organisation.organisation? ? name : organisation.name
-    keynotes = keynote_speakers.any? ? %(, including keynotes by #{keynote_speakers.map(&:name).to_sentence}) : ""
-    talks_text = talks.any? ? " and features #{talks.size} #{"talk".pluralize(talks.size)} from various speakers" : ""
 
     @description = <<~DESCRIPTION
-      #{event_name} is a #{static_metadata.frequency} #{kind}#{held_in_sentence}#{talks_text}#{keynotes}.
+      #{event_name} is a #{static_metadata.frequency} #{kind}#{held_in_sentence}#{talks_text}#{keynote_speakers_text}.
     DESCRIPTION
+  end
+
+  def keynote_speakers_text
+    keynote_speakers.size.positive? ? %(, including keynotes by #{keynote_speakers.map(&:name).to_sentence}) : ""
+  end
+
+  def talks_text
+    talks.size.positive? ? " and features #{talks.size} #{"talk".pluralize(talks.size)} from various speakers" : ""
   end
 
   def to_meta_tags
