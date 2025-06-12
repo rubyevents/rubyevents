@@ -18,7 +18,7 @@
 #  talk_id  (talk_id => talks.id)
 #
 class Talk::Transcript < ApplicationRecord
-  belongs_to :talk
+  belongs_to :talk, touch: true
 
   serialize :enhanced_transcript, coder: TranscriptSerializer
   serialize :raw_transcript, coder: TranscriptSerializer
