@@ -8,9 +8,9 @@ class EventsController < ApplicationController
   # GET /events
   def index
     @events = Event.includes(:organisation, :keynote_speakers)
+      .conference
       .where(start_date: Date.today..)
       .order(start_date: :asc)
-      .select { |event| event.static_metadata.conference? }
   end
 
   # GET /events/1

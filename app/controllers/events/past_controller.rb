@@ -3,8 +3,9 @@ class Events::PastController < ApplicationController
 
   def index
     @events = Event.includes(:organisation, :keynote_speakers)
+      .conference
       .where(end_date: ..Date.today)
       .order(start_date: :desc)
-      .select { |event| event.static_metadata.conference? }
+      .limit(50)
   end
 end

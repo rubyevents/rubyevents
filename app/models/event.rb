@@ -8,6 +8,7 @@
 #  country_code    :string
 #  date            :date
 #  end_date        :date
+#  kind            :string           default("event"), not null, indexed
 #  name            :string           default(""), not null, indexed
 #  slug            :string           default(""), not null, indexed
 #  start_date      :date
@@ -21,6 +22,7 @@
 # Indexes
 #
 #  index_events_on_canonical_id     (canonical_id)
+#  index_events_on_kind             (kind)
 #  index_events_on_name             (name)
 #  index_events_on_organisation_id  (organisation_id)
 #  index_events_on_slug             (slug)
@@ -56,6 +58,7 @@ class Event < ApplicationRecord
 
   # validations
   validates :name, presence: true
+  validates :kind, presence: true
   VALID_COUNTRY_CODES = ISO3166::Country.codes
   validates :country_code, inclusion: {in: VALID_COUNTRY_CODES}, allow_nil: true
   validates :canonical, exclusion: {in: ->(event) { [event] }, message: "can't be itself"}
@@ -69,6 +72,9 @@ class Event < ApplicationRecord
   scope :ft_search, ->(query) { where("lower(events.name) LIKE ?", "%#{query.downcase}%") }
   scope :past, -> { where(date: ..Date.today).order(date: :desc) }
   scope :upcoming, -> { where(date: Date.today..).order(date: :asc) }
+
+  # enums
+  enum :kind, ["event", "conference", "meetup"].index_by(&:itself), default: "event"
 
   def assign_canonical_event!(canonical_event:)
     ActiveRecord::Base.transaction do
@@ -169,16 +175,6 @@ class Event < ApplicationRecord
     end
   end
 
-  def kind
-    if static_metadata.meetup?
-      "meetup"
-    elsif static_metadata.conference?
-      "conference"
-    else
-      "event"
-    end
-  end
-
   def description
     return @description if @description.present?
 
@@ -221,14 +217,6 @@ class Event < ApplicationRecord
         }
       }
     }
-  end
-
-  def meetup?
-    static_metadata.meetup?
-  end
-
-  def conference?
-    static_metadata.conference?
   end
 
   def event_image_path
