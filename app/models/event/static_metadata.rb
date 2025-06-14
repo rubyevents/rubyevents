@@ -3,12 +3,20 @@
 class Event::StaticMetadata < ActiveRecord::AssociatedObject
   delegate :published_date, :home_sort_date, to: :static_repository, allow_nil: true
 
+  def kind
+    return static_repository.kind if static_repository&.kind
+    return "conference" if event.organisation.conference?
+    return "meetup" if event.organisation.meetup?
+
+    "event"
+  end
+
   def conference?
-    static_repository&.kind == "conference" || event.organisation.conference?
+    kind == "conference"
   end
 
   def meetup?
-    static_repository&.kind == "meetup" || event.organisation.meetup?
+    kind == "meetup"
   end
 
   def frequency

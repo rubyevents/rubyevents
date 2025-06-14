@@ -22,6 +22,7 @@ class Avo::Resources::Event < Avo::BaseResource
     field :end_date, as: :date, hide_on: :index
     field :city, as: :text, hide_on: :index
     field :country_code, as: :select, options: country_options, include_blank: true
+    field :kind, hide_on: :index
     field :slug, as: :text
     field :updated_at, as: :date, sortable: true
     # field :suggestions, as: :has_many

@@ -8,6 +8,7 @@
 #  country_code    :string
 #  date            :date
 #  end_date        :date
+#  kind            :string           default("event"), not null, indexed
 #  name            :string           default(""), not null, indexed
 #  slug            :string           default(""), not null, indexed
 #  start_date      :date
@@ -21,6 +22,7 @@
 # Indexes
 #
 #  index_events_on_canonical_id     (canonical_id)
+#  index_events_on_kind             (kind)
 #  index_events_on_name             (name)
 #  index_events_on_organisation_id  (organisation_id)
 #  index_events_on_slug             (slug)
@@ -36,6 +38,7 @@ railsconf_2017:
   date: 2017-05-01
   organisation: railsconf
   city: Phoenix
+  kind: conference
   name: RailsConf 2017
   slug: railsconf-2017
 
@@ -43,6 +46,7 @@ rubyconfth_2022:
   date: 2022-05-01
   organisation: rubyconfth
   city: Bangkok
+  kind: conference
   name: RubyConf TH 2022
   slug: rubyconfth-2022
 
@@ -50,16 +54,19 @@ rails_world_2023:
   date: 2023-10-26
   organisation: rails_world
   name: Rails World 2023
+  kind: conference
   slug: rails-world-2023
 
 tropical_rb_2024:
   date: 2024-04-04
   organisation: rails_world
   name: Tropical Ruby 2024
+  kind: conference
   slug: tropical-rb-2024
 
 brightonruby_2024:
   date: 2024-06-28
   organisation: brightonruby
   name: Brighton Ruby 2024
+  kind: conference  
   slug: brightonruby-2024
