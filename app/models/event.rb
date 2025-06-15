@@ -289,14 +289,14 @@ class Event < ApplicationRecord
       id: id,
       name: name,
       slug: slug,
-      location: location,
+      location: static_metadata.location,
       start_date: start_date&.to_s,
       end_date: end_date&.to_s,
       card_image_url: Router.image_path(card_image_path, host: "#{request.protocol}#{request.host}:#{request.port}"),
       featured_image_url: Router.image_path(featured_image_path,
         host: "#{request.protocol}#{request.host}:#{request.port}"),
-      featured_background: featured_background,
-      featured_color: featured_color,
+      featured_background: static_metadata.featured_background,
+      featured_color: static_metadata.featured_color,
       url: Router.event_url(self, host: "#{request.protocol}#{request.host}:#{request.port}")
     }
   end
