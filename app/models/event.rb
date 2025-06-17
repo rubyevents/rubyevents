@@ -7,6 +7,7 @@
 #  city            :string
 #  country_code    :string
 #  date            :date
+#  date_precision  :string           default("day"), not null
 #  end_date        :date
 #  kind            :string           default("event"), not null, indexed
 #  name            :string           default(""), not null, indexed
@@ -62,6 +63,7 @@ class Event < ApplicationRecord
   VALID_COUNTRY_CODES = ISO3166::Country.codes
   validates :country_code, inclusion: {in: VALID_COUNTRY_CODES}, allow_nil: true
   validates :canonical, exclusion: {in: ->(event) { [event] }, message: "can't be itself"}
+  validates :date_precision, presence: true
 
   # scopes
   scope :without_talks, -> { where.missing(:talks) }
@@ -75,6 +77,7 @@ class Event < ApplicationRecord
 
   # enums
   enum :kind, ["event", "conference", "meetup"].index_by(&:itself), default: "event"
+  enum :date_precision, ["day", "month", "year"].index_by(&:itself), default: "day"
 
   def assign_canonical_event!(canonical_event:)
     ActiveRecord::Base.transaction do
@@ -136,17 +139,24 @@ class Event < ApplicationRecord
   end
 
   def formatted_dates
-    return start_date.strftime("%B %d, %Y") if start_date == end_date
+    case date_precision
+    when "year"
+      start_date.strftime("%Y")
+    when "month"
+      start_date.strftime("%B %Y")
+    when "day"
+      return start_date.strftime("%B %d, %Y") if start_date == end_date
 
-    if start_date.strftime("%Y-%m") == end_date.strftime("%Y-%m")
-      return "#{start_date.strftime("%B %d")}-#{end_date.strftime("%d, %Y")}"
+      if start_date.strftime("%Y-%m") == end_date.strftime("%Y-%m")
+        return "#{start_date.strftime("%B %d")}-#{end_date.strftime("%d, %Y")}"
+      end
+
+      if start_date.strftime("%Y") == end_date.strftime("%Y")
+        return "#{start_date.strftime("%B %d")} - #{end_date.strftime("%B %d, %Y")}"
+      end
+
+      "#{start_date.strftime("%b %d, %Y")} - #{end_date.strftime("%b %d, %Y")}"
     end
-
-    if start_date.strftime("%Y") == end_date.strftime("%Y")
-      return "#{start_date.strftime("%B %d")} - #{end_date.strftime("%B %d, %Y")}"
-    end
-
-    "#{start_date.strftime("%b %d, %Y")} - #{end_date.strftime("%b %d, %Y")}"
   rescue => _e
     # TODO: notify to error tracking
 

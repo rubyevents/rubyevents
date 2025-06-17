@@ -37,6 +37,7 @@ MeiliSearch::Rails.deactivate! do
       event.update(
         name: event_data["title"],
         date: event_data["date"] || event_data["published_at"],
+        date_precision: event_data["date_precision"] || "day",
         organisation: organisation,
         website: event_data["website"],
         start_date: event.static_metadata.start_date,
