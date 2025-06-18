@@ -70,7 +70,14 @@ brightonruby_2024:
   date: 2024-06-28
   organisation: brightonruby
   name: Brighton Ruby 2024
-  kind: conference  
+  kind: conference
   slug: brightonruby-2024
-  call_for_papers_link: https://www.brightonruby.com/cfp
-  call_for_papers_deadline: 2024-04-30
+
+future_conference:
+  date: <%= 3.weeks.from_now %>
+  organisation: rails_world
+  name: Future Conference
+  kind: conference
+  slug: future-conference
+  call_for_papers_link: https://www.futureconference.com/cfp
+  call_for_papers_deadline: <%= 2.weeks.from_now %>
