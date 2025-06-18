@@ -14,6 +14,6 @@ class CallForPapersControllerTest < ActionDispatch::IntegrationTest
   test "should get index call4papers info" do
     get call_for_papers_path
     assert_select "div", /CFP closes at/i
-    assert_select "link", href: @event.call_for_papers_link
+    assert_select "link", href: @event.cfp_link
   end
 end

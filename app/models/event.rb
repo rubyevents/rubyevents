@@ -3,23 +3,24 @@
 #
 # Table name: events
 #
-#  id                       :integer          not null, primary key
-#  call_for_papers_deadline :date
-#  call_for_papers_link     :string
-#  city                     :string
-#  country_code             :string
-#  date                     :date
-#  end_date                 :date
-#  kind                     :string           default("event"), not null, indexed
-#  name                     :string           default(""), not null, indexed
-#  slug                     :string           default(""), not null, indexed
-#  start_date               :date
-#  talks_count              :integer          default(0), not null
-#  website                  :string           default("")
-#  created_at               :datetime         not null
-#  updated_at               :datetime         not null
-#  canonical_id             :integer          indexed
-#  organisation_id          :integer          not null, indexed
+#  id              :integer          not null, primary key
+#  cfp_close_date  :date
+#  cfp_link        :string
+#  cfp_open_date   :date
+#  city            :string
+#  country_code    :string
+#  date            :date
+#  end_date        :date
+#  kind            :string           default("event"), not null, indexed
+#  name            :string           default(""), not null, indexed
+#  slug            :string           default(""), not null, indexed
+#  start_date      :date
+#  talks_count     :integer          default(0), not null
+#  website         :string           default("")
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  canonical_id    :integer          indexed
+#  organisation_id :integer          not null, indexed
 #
 # Indexes
 #

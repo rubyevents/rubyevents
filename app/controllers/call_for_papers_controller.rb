@@ -3,6 +3,6 @@ class CallForPapersController < ApplicationController
 
   # GET /events
   def index
-    @events = Event.where(call_for_papers_deadline: Date.today..).order(call_for_papers_deadline: :asc)
+    @events = Event.where(cfp_close_date: Date.today..).order(cfp_close_date: :asc)
   end
 end
