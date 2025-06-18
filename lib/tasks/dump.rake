@@ -12,13 +12,13 @@ namespace :dump do
     current_page = 1
 
     loop do
-      uri = URI("#{API_ENDPOINT}?page=#{current_page}&limit=500&sort=created_at_asc&created_after=#{dump_updated_at}")
+      uri = URI("#{API_ENDPOINT}?page=#{current_page}&limit=500&all=true&sort=created_at_asc&created_after=#{dump_updated_at}")
       response = Net::HTTP.get(uri)
       parsed_response = JSON.parse(response)
 
       parsed_response["talks"].each do |talk|
         video_id = talk["video_id"]
-        next if video_id.nil? || video_id == "" || talk["video_provider"] == "parent"
+        next if video_id.nil? || video_id == ""
 
         talks_slugs[video_id] = talk.dig("slug")
       end
@@ -29,5 +29,8 @@ namespace :dump do
     end
     data = {"updated_at" => Time.current.to_date.to_s, "talks_slugs" => talks_slugs}.to_yaml
     File.write("data/talks_slugs.yml", data)
+
+    data = YAML.load_file(TALKS_SLUGS_FILE)
+    puts "Total talks slugs: #{data.dig("talks_slugs").size}"
   end
 end
