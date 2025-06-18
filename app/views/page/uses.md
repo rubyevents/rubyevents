@@ -12,7 +12,7 @@ For compatible browsers, it tries to demonstrate some of the possibilities of th
 
 ## Source code
 
-RubyEvents is open source, the source code is available on [Github](https://github.com/rubyevents/rubyevents).
+RubyEvents is open source, the source code is available on [GitHub](https://github.com/rubyevents/rubyevents).
 
 Contributions are welcome!
 
