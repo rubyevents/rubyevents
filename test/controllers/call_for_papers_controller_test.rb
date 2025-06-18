@@ -8,7 +8,7 @@ class CallForPapersControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
     get call_for_papers_path
     assert_response :success
-    assert_select "h1", /Open Call4Papers/i
+    assert_select "h1", /Open Call For Papers/i
   end
 
   test "should get index call4papers info" do
