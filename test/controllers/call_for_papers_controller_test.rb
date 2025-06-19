@@ -22,7 +22,7 @@ class CallForPapersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index call4papers opened" do
-    @event.update(cfp_open_date: 1.week.ago, cfp_close_date: 1.day.ago)
+    @event.update(cfp_open_date: 1.week.ago, cfp_close_date: 1.day.from_now)
 
     get call_for_papers_path
     assert_select "div", /CFP closes at/i
