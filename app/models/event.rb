@@ -313,4 +313,8 @@ class Event < ApplicationRecord
       url: Router.event_url(self, host: "#{request.protocol}#{request.host}:#{request.port}")
     }
   end
+
+  def cfp_opened?
+    cfp_open_date.present? && cfp_open_date <= Date.today
+  end
 end
