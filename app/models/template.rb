@@ -3,6 +3,10 @@ class Template
   include ActiveModel::Attributes
   include ActiveModel::Validations
 
+  VIDEO_PROVIDERS = [
+    "YouTube", "Vimeo, MP4", "Not Published", "Not Recorded", "Scheduled"
+  ]
+
   attribute :title, :string
   attribute :raw_title, :string
   attribute :event_name, :string
@@ -25,10 +29,9 @@ class Template
 
   attribute :start_cue, :time
   attribute :end_cue, :time
+  attribute :description, :string
 
   attr_accessor :children
-
-  attribute :description, :string
 
   validates :title, presence: true
   validates :event_name, presence: true

@@ -16,7 +16,10 @@
                 <%= form.label :title, "Title *", class: "label" %>
                 <%= form.text_field :title,
                       class:
-                        "input input-bordered w-full #{"input-error" if @talk.errors[:title].any?}",
+                        class_names(
+                          "input input-bordered w-full",
+                          "input-error": @talk.errors[:title].any?
+                        ),
                       placeholder: "e.g., Introducing Type Guard to Steep" %>
                 <% if @talk.errors[:title].any? %>
                   <div class="label">
@@ -29,7 +32,10 @@
                 <%= form.label :event_name, "Event Name *", class: "label" %>
                 <%= form.text_field :event_name,
                       class:
-                        "input input-bordered w-full #{"input-error" if @talk.errors[:event_name].any?}",
+                        class_names(
+                          "input input-bordered w-full",
+                          "input-error": @talk.errors[:event_name].any?
+                        ),
                       placeholder: "e.g., RubyKaigi 2025" %>
                 <% if @talk.errors[:event_name].any? %>
                   <div class="label">
@@ -42,7 +48,10 @@
                 <%= form.label :date, "Date *", class: "label" %>
                 <%= form.date_field :date,
                       class:
-                        "input input-bordered w-full #{"input-error" if @talk.errors[:date].any?}" %>
+                        class_names(
+                          "input input-bordered w-full",
+                          "input-error": @talk.errors[:date].any?
+                        ) %>
                 <% if @talk.errors[:date].any? %>
                   <div class="label">
                     <span class="label-text-alt text-error"><%= @talk.errors[:date].join(", ") %></span>
@@ -171,14 +180,7 @@
                 <div class="form-control">
                   <%= form.label :video_provider, "Video Provider", class: "label" %>
                   <%= form.select :video_provider,
-                        [
-                          %w[YouTube youtube],
-                          %w[Vimeo vimeo],
-                          %w[MP4 mp4],
-                          ["Not Published", "not_published"],
-                          ["Not Recorded", "not_recorded"],
-                          %w[Scheduled scheduled]
-                        ],
+                        ::Template::VIDEO_PROVIDERS.map { [it, it.squish.underscore] },
                         {prompt: "Select provider..."},
                         {class: "select select-bordered w-full"} %>
                 </div>
