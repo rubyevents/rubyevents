@@ -36,6 +36,13 @@ Rails.application.routes.draw do
 
   resources :contributions, only: [:index, :show], param: :step
 
+  resources :templates, only: [:new, :create] do
+    collection do
+      get :new_child
+      delete :delete_child
+    end
+  end
+
   # resources
   namespace :analytics do
     resource :dashboards, only: [:show] do

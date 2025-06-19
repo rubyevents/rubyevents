@@ -69,3 +69,6 @@ application.register("bridge--button", ButtonController)
 
 import EventListController from "./event_list_controller"
 application.register("event-list", EventListController)
+
+import CopyToClipboardController from "./copy_to_clipboard_controller.js"
+application.register("copy-to-clipboard", CopyToClipboardController)
