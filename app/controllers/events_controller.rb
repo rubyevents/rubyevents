@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   include WatchedTalks
   include Pagy::Backend
-  skip_before_action :authenticate_user!, only: %i[index show update]
+  skip_before_action :authenticate_user!, only: %i[index show update feed]
   before_action :set_event, only: %i[show edit update]
   before_action :set_user_favorites, only: %i[show]
 
@@ -36,6 +36,13 @@ class EventsController < ApplicationController
       redirect_to event_path(@event), notice: suggestion.notice
     else
       render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def feed
+    @events = Event.order(date: :desc).limit(20)
+    respond_to do |format|
+      format.xml
     end
   end
 
