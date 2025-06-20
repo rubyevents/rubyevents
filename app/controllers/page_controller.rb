@@ -35,7 +35,7 @@ class PageController < ApplicationController
     @featured_events = Event.distinct
       .includes(:organisation)
       .where(slug: playlist_slugs)
-      .with_watchable_talks
+      # .with_watchable_talks
       .in_order_of(:slug, playlist_slugs)
 
     respond_to do |format|
@@ -71,7 +71,7 @@ class PageController < ApplicationController
             {
               name: "Recent Events",
               items: Event.past.limit(10).map { |event| event.to_mobile_json(request) },
-              url: events_url
+              url: past_events_url
             }
           ]
         }
@@ -92,5 +92,9 @@ class PageController < ApplicationController
   end
 
   def about
+  end
+
+  def stickers
+    @events = Event.all.select(&:sticker?)
   end
 end

@@ -44,7 +44,7 @@ class Talk::Thumbnails < ActiveRecord::AssociatedObject
 
     talk.child_talks.each do |child_talk|
       if child_talk.static_metadata&.start_cue == "TODO"
-        puts "state_cue of #{child_talk.video_id} TODO. Skipping..."
+        puts "start_cue of #{child_talk.video_id} is TODO. Skipping..."
         next
       end
 

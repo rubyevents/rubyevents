@@ -7,15 +7,15 @@
     </span>
 
     <% if talk.date.past? %>
-      This <%= talk.kind %> was
+      This <%= talk.formatted_kind %> was
     <% else %>
-      This <%= talk.kind %> is scheduled to be
+      This <%= talk.formatted_kind %> is scheduled to be
     <% end %>
 
     held at <%= talk.event.name %>
 
-    <% if talk.event.location && !talk.event.location.in?(["Earth", "online", "Online"]) %>
-      in <%= talk.event.location %>
+    <% if talk.event.static_metadata.location && !talk.event.static_metadata.location.in?(["Earth", "online", "Online"]) %>
+      in <%= talk.event.static_metadata.location %>
     <% end %>
 
     on <%= talk.formatted_date %>.

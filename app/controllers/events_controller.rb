@@ -7,7 +7,10 @@ class EventsController < ApplicationController
 
   # GET /events
   def index
-    @events = Event.all.select { |event| event.end_date }.select { |event| event.end_date >= Date.today }.select { |event| event.organisation.conference? }.sort_by { |event| event.start_date }
+    @events = Event.includes(:organisation, :keynote_speakers)
+      .conference
+      .where(start_date: Date.today..)
+      .order(start_date: :asc)
   end
 
   # GET /events/1

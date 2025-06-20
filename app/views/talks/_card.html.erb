@@ -72,7 +72,9 @@
           Watched
         </div>
       </div>
-    <% else %>
+    <% end %>
+
+    <% if talk.published? %>
       <div class="absolute inset-0 z-10 items-center justify-center hidden lg:group-hover:flex bg-black/30 rounded-t-xl">
         <div class="p-3 bg-gray-500 rounded-full hover:bg-primary">
           <%= fa("play", size: :md, class: "fill-white") %>

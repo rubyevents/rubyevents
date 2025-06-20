@@ -18,8 +18,11 @@ class Avo::Resources::Event < Avo::BaseResource
     field :id, as: :id
     field :name, as: :text, link_to_record: true, sortable: true
     field :date, as: :date, hide_on: :index
+    field :start_date, as: :date, hide_on: :index
+    field :end_date, as: :date, hide_on: :index
     field :city, as: :text, hide_on: :index
-    field :country_code, as: :text
+    field :country_code, as: :select, options: country_options, include_blank: true
+    field :kind, hide_on: :index
     field :slug, as: :text
     field :updated_at, as: :date, sortable: true
     # field :suggestions, as: :has_many
@@ -37,5 +40,9 @@ class Avo::Resources::Event < Avo::BaseResource
     filter Avo::Filters::Name
     filter Avo::Filters::WithoutTalks
     filter Avo::Filters::Canonical
+  end
+
+  def country_options
+    ISO3166::Country.all.map { |country| [country.translations["en"], country.alpha2] }.sort_by { |country| country.first }
   end
 end
