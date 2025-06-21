@@ -75,6 +75,9 @@ Rails.application.routes.draw do
       resources :events, only: [:index]
       resources :videos, only: [:index]
     end
+    collection do
+      get :feed, defaults: {format: "xml"}
+    end
   end
   resources :organisations, param: :slug, only: [:index, :show]
 
