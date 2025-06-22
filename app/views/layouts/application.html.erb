@@ -21,7 +21,6 @@
     <%= vite_stylesheet_tag "application.css", media: "all", "data-turbo-track": "reload" %>
 
     <% unless hotwire_native_app? %>
-      <meta name="turbo-cache-control" content="no-cache">
       <meta name="view-transition" content="same-origin">
     <% end %>
 
