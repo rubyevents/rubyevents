@@ -28,6 +28,16 @@ class SpeakersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should show speaker with talks as JSON" do
+    get speaker_url(@speaker_with_talk), as: :json
+
+    assert_response :success
+
+    json_response = JSON.parse(response.body)
+    assert_equal json_response["name"], @speaker_with_talk.name
+    assert_equal json_response["talks"].first["title"], @speaker.talks.first.title
+  end
+
   test "should show speaker with talks" do
     get speaker_url(@speaker_with_talk)
     assert_response :success
