@@ -1,0 +1,27 @@
+@layer components {
+  .hw-combobox__main__wrapper {
+    @apply min-h-12;
+  }
+
+  .hw-combobox__main__wrapper:has(input:focus) {
+    box-shadow: none;
+    border-color: var(--fallback-bc, oklch(var(--bc)/0.2));
+    outline-style: solid;
+    outline-width: 2px;
+    outline-offset: 2px;
+    outline-color: var(--fallback-bc, oklch(var(--bc)/0.2));
+  }
+
+  .hw-combobox__main__wrapper input:focus {
+    box-shadow: none;
+    border-color: none;
+    outline-style: none;
+    outline-color: none;
+  }
+
+  :root {
+    --hw-focus-color: rgb(var(--fallback-bc));
+    --hw-combobox-width: 100%;
+    --hw-combobox-width--multiple: 100%;
+  }
+}

@@ -246,6 +246,11 @@ GEM
       activesupport (>= 7)
     hashdiff (1.1.2)
     hashie (5.0.0)
+    hotwire_combobox (0.4.0)
+      platform_agent (>= 1.0.1)
+      rails (>= 7.0.7.2)
+      stimulus-rails (>= 1.2)
+      turbo-rails (>= 1.2)
     httparty (0.23.1)
       csv
       mini_mime (>= 1.0.0)
@@ -382,6 +387,9 @@ GEM
     parser (3.3.8.0)
       ast (~> 2.4.1)
       racc
+    platform_agent (1.0.1)
+      activesupport (>= 5.2.0)
+      useragent (~> 0.16.3)
     pp (0.6.2)
       prettyprint
     pretty_please (0.2.0)
@@ -644,6 +652,7 @@ DEPENDENCIES
   frozen_record (~> 0.27.2)
   google-protobuf
   groupdate
+  hotwire_combobox (~> 0.4.0)
   iso-639
   jbuilder
   json-repair (~> 0.2.0)
