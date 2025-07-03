@@ -219,7 +219,7 @@ class Speaker < ApplicationRecord
   end
 
   def to_combobox_display
-    name 
+    name
   end
 
   def meta_description
