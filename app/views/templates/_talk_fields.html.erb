@@ -47,9 +47,13 @@
 
       <div class="form-control">
         <%= form.label :speakers, "Speakers", class: "label" %>
-        <%= form.text_field :speakers,
-              class: "input input-bordered w-full",
-              placeholder: "Comma-separated, e.g., Takeshi KOMIYA, Jane Doe" %>
+        <!-- Using combobox tag here because form.combobox doesn't generate the right ID for some reason -->
+        <%= combobox_tag "template[children_attributes][#{index}][speakers]",
+              async_src: speakers_search_templates_path,
+              multiselect_chip_src: speakers_search_chips_templates_path,
+              name_when_new: "template[children_attributes][#{index}][speakers]",
+              free_text: true,
+              placeholder: "Search or add speakers..." %>
       </div>
 
       <div class="form-control">

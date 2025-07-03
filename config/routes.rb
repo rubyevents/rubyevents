@@ -40,6 +40,8 @@ Rails.application.routes.draw do
     collection do
       get :new_child
       delete :delete_child
+      get :speakers_search
+      post :speakers_search_chips
     end
   end
 
