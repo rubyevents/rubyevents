@@ -25,6 +25,7 @@ class TemplatesController < ApplicationController
   def speakers_search
     @speakers = Speaker.canonical
     @speakers = @speakers.ft_search(search_query) if search_query
+    @speakers = @speakers.limit(100)
   end
 
   def speakers_search_chips
