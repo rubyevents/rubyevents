@@ -22,7 +22,26 @@ class TemplatesController < ApplicationController
   def delete_child
   end
 
+  def speakers_search
+    @speakers = Speaker.canonical
+    @speakers = @speakers.ft_search(search_query) if search_query
+    @speakers = @speakers.limit(100)
+  end
+
+  def speakers_search_chips
+    @speakers = params[:combobox_values].split(",").map do |value|
+      Speaker.find_by(id: value) || OpenStruct.new(to_combobox_display: value, id: value)
+    end
+    render turbo_stream: helpers.combobox_selection_chips_for(@speakers)
+  end
+
   private
+
+  helper_method :search_query
+
+  def search_query
+    params[:q].presence
+  end
 
   def talk_params
     params.require(:template).permit(

@@ -61,11 +61,12 @@
 
               <div class="form-control">
                 <%= form.label :speakers, "Speakers", class: "label" %>
-                <%= text_field_tag :speakers,
-                      "",
-                      class: "input input-bordered w-full",
-                      placeholder: "Comma-separated, e.g., Takeshi KOMIYA, Jane Doe",
-                      autocomplete: "on" %>
+                <%= form.combobox :speakers,
+                      speakers_search_templates_path,
+                      multiselect_chip_src: speakers_search_chips_templates_path,
+                      name_when_new: "template[speakers]",
+                      free_text: true,
+                      class: "w-full" %>
               </div>
             </div>
 
