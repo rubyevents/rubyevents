@@ -1,4 +1,4 @@
-<%# locals: (talk:) -%>
+<%# locals: (talk:, user_favorite_talks_ids:) -%>
 
 <% video_player_controller = talk.external_player ? nil : "video-player" %>
 
@@ -84,6 +84,33 @@
               <%= fa :avocado, size: :xs, style: :solid %>
 
               <span class="text-xs">Open in Avo</span>
+            <% end %>
+          <% end %>
+
+          <% if default_watch_list %>
+            <%= turbo_frame_tag dom_id(talk, :bookmark) do %>
+              <% if user_favorite_talks_ids.include?(talk.id) %>
+                <%= ui_tooltip "Add talk to your watch list" do %>
+                  <%= ui_button url: watch_list_talk_path(default_watch_list, talk.id), method: :delete, kind: :pill do %>
+                    <%= fa("bookmark", size: :xs, style: :solid, class: "text-primary") %>
+                    <span class="text-xs">Bookmark</span>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <%= ui_tooltip "Add talk to your watch list" do %>
+                  <%= ui_button url: watch_list_talks_path(default_watch_list, talk_id: talk.id), method: :post, kind: :pill do %>
+                    <%= fa("bookmark", size: :xs, style: :regular) %>
+                    <span class="text-xs">Bookmark</span>
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% else %>
+            <%= ui_tooltip "Add talk to your watch list" do %>
+              <%= ui_button url: sign_in_path(redirect_to: request.fullpath), data: {turbo_frame: "modal"}, kind: :pill do %>
+                <%= fa("bookmark", size: :xs, style: :regular) %>
+                <span class="text-xs">Bookmark</span>
+              <% end %>
             <% end %>
           <% end %>
 
