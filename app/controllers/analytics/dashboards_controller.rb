@@ -23,7 +23,7 @@ class Analytics::DashboardsController < ApplicationController
     #   conferences at the moment. To optimize this code, we probably want to add yearly info to the Rollup class.
     # 2. Note that some years are integers and some are strings. We should probably convert them all to either format in import.
     #   (to reproduce, remove the `.to_s` in the map below)
-    @yearly_conferences = Event.all.select(&:conference?).select { |event| event.start_date.present? || event.year.present? }.group_by { |event| event.start_date&.year || event.year.to_i }.map { |year, events| [year.to_s, events.count] }.sort
+    @yearly_conferences = Event.all.select(&:conference?).select { |event| event.start_date.present? || event.static_metadata.year.present? }.group_by { |event| event.start_date&.year || event.static_metadata.year.to_i }.map { |year, events| [year.to_s, events.count] }.sort
   end
 
   def yearly_talks

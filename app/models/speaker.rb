@@ -218,6 +218,10 @@ class Speaker < ApplicationRecord
     }
   end
 
+  def to_combobox_display
+    name
+  end
+
   def meta_description
     <<~HEREDOC
       Discover all the talks given by #{name} on subjects related to Ruby language or Ruby Frameworks such as Rails, Hanami and others

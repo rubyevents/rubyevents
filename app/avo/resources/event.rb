@@ -18,6 +18,7 @@ class Avo::Resources::Event < Avo::BaseResource
     field :id, as: :id
     field :name, as: :text, link_to_record: true, sortable: true
     field :date, as: :date, hide_on: :index
+    field :date_precision, as: :select, options: ::Event.date_precisions, hide_on: :index
     field :start_date, as: :date, hide_on: :index
     field :end_date, as: :date, hide_on: :index
     field :city, as: :text, hide_on: :index

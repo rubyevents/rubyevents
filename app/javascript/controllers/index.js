@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import HwComboboxController from "@josefarias/hotwire_combobox"
+application.register("hw-combobox", HwComboboxController)
+
 import AutoClickController from "./auto-click_controller"
 application.register("auto-click", AutoClickController)
 
@@ -69,3 +72,6 @@ application.register("bridge--button", ButtonController)
 
 import EventListController from "./event_list_controller"
 application.register("event-list", EventListController)
+
+import CopyToClipboardController from "./copy_to_clipboard_controller.js"
+application.register("copy-to-clipboard", CopyToClipboardController)

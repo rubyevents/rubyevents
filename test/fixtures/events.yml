@@ -10,6 +10,7 @@
 #  city            :string
 #  country_code    :string
 #  date            :date
+#  date_precision  :string           default("day"), not null
 #  end_date        :date
 #  kind            :string           default("event"), not null, indexed
 #  name            :string           default(""), not null, indexed

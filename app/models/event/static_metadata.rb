@@ -35,6 +35,10 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
     event.talks.map(&:date).max
   end
 
+  def date_precision
+    static_repository.date_precision || "day"
+  end
+
   def year
     static_repository.year.present? ? static_repository.year : event.talks.first.try(:date).try(:year)
   rescue => _e
