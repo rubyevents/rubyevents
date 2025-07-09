@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   end
 
   resources :topics, param: :slug, only: [:index, :show]
+  resources :call_for_papers, only: :index
   resources :sessions, only: [:index, :show, :destroy]
   resource :password, only: [:edit, :update]
   namespace :identity do
