@@ -1,0 +1,5 @@
+<%= form_with(url: search, method: :get, local: true) do |f| %>
+  <%= f.label :query, "Search" %>
+  <%= f.text_field :query, value: params[:query], placeholder: "Enter search term" %>
+  <%= f.submit "Search" %>
+<% end %>
