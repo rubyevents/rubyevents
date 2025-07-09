@@ -242,9 +242,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_17_115359) do
     t.string "language", default: "en", null: false
     t.string "slides_url"
     t.boolean "summarized_using_ai", default: true, null: false
+    t.string "kind", default: "talk", null: false
     t.boolean "external_player", default: false, null: false
     t.string "external_player_url", default: "", null: false
-    t.string "kind", default: "talk", null: false
     t.integer "parent_talk_id"
     t.boolean "meta_talk", default: false, null: false
     t.integer "start_seconds"

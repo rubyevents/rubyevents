@@ -76,7 +76,10 @@ class Event < ApplicationRecord
   scope :upcoming, -> { where(date: Date.today..).order(date: :asc) }
 
   # enums
+  attribute :kind, :string
   enum :kind, ["event", "conference", "meetup"].index_by(&:itself), default: "event"
+
+  attribute :date_precision, :string
   enum :date_precision, ["day", "month", "year"].index_by(&:itself), default: "day"
 
   def assign_canonical_event!(canonical_event:)

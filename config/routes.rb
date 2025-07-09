@@ -85,6 +85,7 @@ Rails.application.routes.draw do
       resources :related_talks, only: [:index]
       resources :events, only: [:index]
       resources :videos, only: [:index]
+      resources :search, only: [:index]
     end
   end
   resources :organisations, param: :slug, only: [:index, :show]
