@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get "/privacy", to: "page#privacy"
   get "/components", to: "page#components"
   get "/about", to: "page#about"
+  get "/stickers", to: "page#stickers"
 
   # authentication
   get "/auth/failure", to: "sessions/omniauth#failure"
@@ -34,6 +35,15 @@ Rails.application.routes.draw do
   end
 
   resources :contributions, only: [:index, :show], param: :step
+
+  resources :templates, only: [:new, :create] do
+    collection do
+      get :new_child
+      delete :delete_child
+      get :speakers_search
+      post :speakers_search_chips
+    end
+  end
 
   # resources
   namespace :analytics do
@@ -65,6 +75,7 @@ Rails.application.routes.draw do
         get "/past" => "past#index", :as => :past
         get "/archive" => "archive#index", :as => :archive
         get "/feed" => "feeds#index", :as => :feed
+        resources :countries, param: :country, only: [:index, :show]
       end
 
       resources :schedules, only: [:index], path: "/schedule" do

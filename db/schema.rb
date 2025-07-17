@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_24_174213) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_17_115359) do
   create_table "ahoy_events", force: :cascade do |t|
     t.integer "visit_id"
     t.integer "user_id"
@@ -83,10 +83,30 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_24_174213) do
     t.integer "talks_count", default: 0, null: false
     t.integer "canonical_id"
     t.string "website", default: ""
+    t.date "start_date"
+    t.date "end_date"
+    t.string "kind", default: "event", null: false
+    t.string "date_precision", default: "day", null: false
     t.index ["canonical_id"], name: "index_events_on_canonical_id"
+    t.index ["kind"], name: "index_events_on_kind"
     t.index ["name"], name: "index_events_on_name"
     t.index ["organisation_id"], name: "index_events_on_organisation_id"
     t.index ["slug"], name: "index_events_on_slug"
+  end
+
+  create_table "llm_requests", force: :cascade do |t|
+    t.string "request_hash", null: false
+    t.json "raw_response", null: false
+    t.float "duration", null: false
+    t.string "resource_type", null: false
+    t.integer "resource_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "success", default: false, null: false
+    t.string "task_name", default: "", null: false
+    t.index ["request_hash"], name: "index_llm_requests_on_request_hash", unique: true
+    t.index ["resource_type", "resource_id"], name: "index_llm_requests_on_resource"
+    t.index ["task_name"], name: "index_llm_requests_on_task_name"
   end
 
   create_table "organisations", force: :cascade do |t|

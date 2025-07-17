@@ -7,8 +7,12 @@
 #  city            :string
 #  country_code    :string
 #  date            :date
+#  date_precision  :string           default("day"), not null
+#  end_date        :date
+#  kind            :string           default("event"), not null, indexed
 #  name            :string           default(""), not null, indexed
 #  slug            :string           default(""), not null, indexed
+#  start_date      :date
 #  talks_count     :integer          default(0), not null
 #  website         :string           default("")
 #  created_at      :datetime         not null
@@ -19,6 +23,7 @@
 # Indexes
 #
 #  index_events_on_canonical_id     (canonical_id)
+#  index_events_on_kind             (kind)
 #  index_events_on_name             (name)
 #  index_events_on_organisation_id  (organisation_id)
 #  index_events_on_slug             (slug)
@@ -39,11 +44,14 @@ class Event < ApplicationRecord
   has_many :talks, dependent: :destroy, inverse_of: :event, foreign_key: :event_id
   has_many :watchable_talks, -> { watchable }, class_name: "Talk"
   has_many :speakers, -> { distinct }, through: :talks
+  has_many :keynote_speakers, -> { joins(:talks).where(talks: {kind: "keynote"}).distinct },
+    through: :talks, source: :speakers
   has_many :topics, -> { distinct }, through: :talks
   belongs_to :canonical, class_name: "Event", optional: true
   has_many :aliases, class_name: "Event", foreign_key: "canonical_id"
 
   has_object :schedule
+  has_object :static_metadata
 
   def talks_in_running_order(child_talks: true)
     talks.in_order_of(:video_id, video_ids_in_running_order(child_talks: child_talks))
@@ -51,9 +59,11 @@ class Event < ApplicationRecord
 
   # validations
   validates :name, presence: true
+  validates :kind, presence: true
   VALID_COUNTRY_CODES = ISO3166::Country.codes
   validates :country_code, inclusion: {in: VALID_COUNTRY_CODES}, allow_nil: true
   validates :canonical, exclusion: {in: ->(event) { [event] }, message: "can't be itself"}
+  validates :date_precision, presence: true
 
   # scopes
   scope :without_talks, -> { where.missing(:talks) }
@@ -64,6 +74,10 @@ class Event < ApplicationRecord
   scope :ft_search, ->(query) { where("lower(events.name) LIKE ?", "%#{query.downcase}%") }
   scope :past, -> { where(date: ..Date.today).order(date: :desc) }
   scope :upcoming, -> { where(date: Date.today..).order(date: :asc) }
+
+  # enums
+  enum :kind, ["event", "conference", "meetup"].index_by(&:itself), default: "event"
+  enum :date_precision, ["day", "month", "year"].index_by(&:itself), default: "day"
 
   def assign_canonical_event!(canonical_event:)
     ActiveRecord::Base.transaction do
@@ -118,22 +132,31 @@ class Event < ApplicationRecord
     HEREDOC
   end
 
-  def keynote_speakers
-    speakers.merge(talks.keynote)
+  def today?
+    (start_date..end_date).cover?(Date.today)
+  rescue => _e
+    false
   end
 
   def formatted_dates
-    return start_date.strftime("%B %d, %Y") if start_date == end_date
+    case date_precision
+    when "year"
+      start_date.strftime("%Y")
+    when "month"
+      start_date.strftime("%B %Y")
+    when "day"
+      return start_date.strftime("%B %d, %Y") if start_date == end_date
 
-    if start_date.strftime("%Y-%m") == end_date.strftime("%Y-%m")
-      return "#{start_date.strftime("%B %d")}-#{end_date.strftime("%d, %Y")}"
+      if start_date.strftime("%Y-%m") == end_date.strftime("%Y-%m")
+        return "#{start_date.strftime("%B %d")}-#{end_date.strftime("%d, %Y")}"
+      end
+
+      if start_date.strftime("%Y") == end_date.strftime("%Y")
+        return "#{start_date.strftime("%B %d")} - #{end_date.strftime("%B %d, %Y")}"
+      end
+
+      "#{start_date.strftime("%b %d, %Y")} - #{end_date.strftime("%b %d, %Y")}"
     end
-
-    if start_date.strftime("%Y") == end_date.strftime("%Y")
-      return "#{start_date.strftime("%B %d")} - #{end_date.strftime("%B %d, %Y")}"
-    end
-
-    "#{start_date.strftime("%b %d, %Y")} - #{end_date.strftime("%b %d, %Y")}"
   rescue => _e
     # TODO: notify to error tracking
 
@@ -143,7 +166,13 @@ class Event < ApplicationRecord
   def country_name
     return nil if country_code.blank?
 
-    ISO3166::Country.new(country_code)&.iso_short_name
+    ISO3166::Country.new(country_code)&.translations&.[]("en")
+  end
+
+  def country_url
+    Router.country_path(static_metadata.country&.translations&.[]("en")&.parameterize)
+  rescue
+    Router.countries_path
   end
 
   def held_in_sentence
@@ -156,30 +185,22 @@ class Event < ApplicationRecord
     end
   end
 
-  def kind
-    if meetup?
-      "meetup"
-    elsif conference?
-      "conference"
-    else
-      "event"
-    end
-  end
-
-  def frequency
-    static_metadata&.frequency || organisation.frequency
-  end
-
   def description
     return @description if @description.present?
 
     event_name = organisation.organisation? ? name : organisation.name
-    keynotes = keynote_speakers.any? ? %(, including keynotes by #{keynote_speakers.map(&:name).to_sentence}) : ""
-    talks_text = talks.any? ? " and features #{talks.size} #{"talk".pluralize(talks.size)} from various speakers" : ""
 
     @description = <<~DESCRIPTION
-      #{event_name} is a #{frequency} #{kind}#{held_in_sentence}#{talks_text}#{keynotes}.
+      #{event_name} is a #{static_metadata.frequency} #{kind}#{held_in_sentence}#{talks_text}#{keynote_speakers_text}.
     DESCRIPTION
+  end
+
+  def keynote_speakers_text
+    keynote_speakers.size.positive? ? %(, including keynotes by #{keynote_speakers.map(&:name).to_sentence}) : ""
+  end
+
+  def talks_text
+    talks.size.positive? ? " and features #{talks.size} #{"talk".pluralize(talks.size)} from various speakers" : ""
   end
 
   def to_meta_tags
@@ -208,18 +229,6 @@ class Event < ApplicationRecord
     }
   end
 
-  def meetup?
-    (static_metadata && static_metadata.kind == "meetup") || organisation.meetup?
-  end
-
-  def conference?
-    (static_metadata && static_metadata.kind == "conference") || organisation.conference?
-  end
-
-  def static_metadata
-    Static::Playlist.find_by(slug: slug)
-  end
-
   def event_image_path
     ["events", organisation.slug, slug].join("/")
   end
@@ -228,11 +237,27 @@ class Event < ApplicationRecord
     ["events", "default"].join("/")
   end
 
+  def default_organisation_image_path
+    ["events", organisation.slug, "default"].join("/")
+  end
+
   def event_image_or_default_for(filename)
     event_path = [event_image_path, filename].join("/")
+    default_organisation_path = [default_organisation_image_path, filename].join("/")
     default_path = [default_event_image_path, filename].join("/")
 
-    Rails.root.join("app", "assets", "images", event_image_path, filename).exist? ? event_path : default_path
+    base = Rails.root.join("app", "assets", "images")
+
+    return event_path if (base / event_path).exist?
+    return default_organisation_path if (base / default_organisation_path).exist?
+
+    default_path
+  end
+
+  def event_image_for(filename)
+    event_path = [event_image_path, filename].join("/")
+
+    Rails.root.join("app", "assets", "images", event_image_path, filename).exist? ? event_path : nil
   end
 
   def banner_image_path
@@ -255,10 +280,12 @@ class Event < ApplicationRecord
     event_image_or_default_for("poster.webp")
   end
 
-  def banner_background
-    static_metadata.banner_background.present? ? static_metadata.banner_background : "#081625"
-  rescue => _e
-    "#081625"
+  def sticker_image_path
+    event_image_for("sticker.webp")
+  end
+
+  def sticker?
+    sticker_image_path.present?
   end
 
   def watchable_talks?
@@ -266,51 +293,11 @@ class Event < ApplicationRecord
   end
 
   def featured_metadata?
-    return false unless static_metadata
-
-    static_metadata.featured_background.present? || static_metadata.featured_color.present?
+    static_metadata.featured_background?
   end
 
   def featurable?
     featured_metadata? && watchable_talks?
-  end
-
-  def featured_background
-    return static_metadata.featured_background if static_metadata.featured_background.present?
-
-    "black"
-  rescue => _e
-    "black"
-  end
-
-  def featured_color
-    static_metadata.featured_color.present? ? static_metadata.featured_color : "white"
-  rescue => _e
-    "white"
-  end
-
-  def location
-    static_metadata.location.present? ? static_metadata.location : "Earth"
-  rescue => _e
-    "Earth"
-  end
-
-  def start_date
-    @start_date ||= static_metadata.start_date.present? ? static_metadata.start_date : talks.minimum(:date)
-  rescue => _e
-    talks.minimum(:date)
-  end
-
-  def end_date
-    @end_date ||= static_metadata.end_date.present? ? static_metadata.end_date : talks.maximum(:date)
-  rescue => _e
-    talks.maximum(:date)
-  end
-
-  def year
-    static_metadata.year.present? ? static_metadata.year : talks.first.try(:date).try(:year)
-  rescue => _e
-    talks.first.try(:date).try(:year)
   end
 
   def website
@@ -322,14 +309,14 @@ class Event < ApplicationRecord
       id: id,
       name: name,
       slug: slug,
-      location: location,
+      location: static_metadata.location,
       start_date: start_date&.to_s,
       end_date: end_date&.to_s,
       card_image_url: Router.image_path(card_image_path, host: "#{request.protocol}#{request.host}:#{request.port}"),
       featured_image_url: Router.image_path(featured_image_path,
         host: "#{request.protocol}#{request.host}:#{request.port}"),
-      featured_background: featured_background,
-      featured_color: featured_color,
+      featured_background: static_metadata.featured_background,
+      featured_color: static_metadata.featured_color,
       url: Router.event_url(self, host: "#{request.protocol}#{request.host}:#{request.port}")
     }
   end

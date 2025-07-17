@@ -13,8 +13,8 @@ module ViewComponentHelper
     end
   end
 
-  def ui_tooltip(text, &block)
-    tag.div data: {controller: "tooltip", tooltip_content_value: text} do
+  def ui_tooltip(text, **kwargs, &block)
+    tag.div data: {controller: "tooltip", tooltip_content_value: text}, **kwargs do
       yield
     end
   end

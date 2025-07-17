@@ -86,7 +86,7 @@ GEM
       device_detector (>= 1)
       safely_block (>= 0.4)
     annotaterb (4.14.0)
-    appsignal (4.5.9)
+    appsignal (4.5.15)
       logger
       rack (>= 2.0.0)
     ast (2.4.3)
@@ -108,10 +108,10 @@ GEM
       view_component (>= 3.7.0)
       zeitwerk (>= 2.6.12)
     avo-heroicons (0.1.1)
-    base64 (0.2.0)
+    base64 (0.3.0)
     bcrypt (3.1.20)
     bcrypt_pbkdf (1.1.1)
-    benchmark (0.4.0)
+    benchmark (0.4.1)
     better_html (2.1.1)
       actionview (>= 6.0)
       activesupport (>= 6.0)
@@ -119,7 +119,7 @@ GEM
       erubi (~> 1.4)
       parser (>= 2.4)
       smart_properties
-    bigdecimal (3.1.9)
+    bigdecimal (3.2.2)
     bindex (0.8.1)
     bootsnap (1.18.4)
       msgpack (~> 1.2)
@@ -140,7 +140,7 @@ GEM
     commonmarker (2.3.0-x86_64-darwin)
     commonmarker (2.3.0-x86_64-linux)
     concurrent-ruby (1.3.5)
-    connection_pool (2.5.1)
+    connection_pool (2.5.3)
     countries (7.1.1)
       unaccent (~> 0.3)
     country_select (10.0.1)
@@ -175,7 +175,7 @@ GEM
     dotenv-rails (3.1.8)
       dotenv (= 3.1.8)
       railties (>= 6.1)
-    drb (2.2.1)
+    drb (2.2.3)
     dry-cli (1.2.0)
     dry-core (1.1.0)
       concurrent-ruby (~> 1.0)
@@ -198,7 +198,7 @@ GEM
       dry-inflector (~> 1.0)
       dry-logic (~> 1.4)
       zeitwerk (~> 2.6)
-    ed25519 (1.3.0)
+    ed25519 (1.4.0)
     erb_lint (0.9.0)
       activesupport
       better_html (>= 2.0.1)
@@ -246,6 +246,11 @@ GEM
       activesupport (>= 7)
     hashdiff (1.1.2)
     hashie (5.0.0)
+    hotwire_combobox (0.4.0)
+      platform_agent (>= 1.0.1)
+      rails (>= 7.0.7.2)
+      stimulus-rails (>= 1.2)
+      turbo-rails (>= 1.2)
     httparty (0.23.1)
       csv
       mini_mime (>= 1.0.0)
@@ -284,7 +289,7 @@ GEM
       sshkit (>= 1.23.0, < 2.0)
       thor (~> 1.3)
       zeitwerk (>= 2.6.18, < 3.0)
-    language_server-protocol (3.17.0.4)
+    language_server-protocol (3.17.0.5)
     lint_roller (1.1.0)
     listen (3.9.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
@@ -382,6 +387,9 @@ GEM
     parser (3.3.8.0)
       ast (~> 2.4.1)
       racc
+    platform_agent (1.0.1)
+      activesupport (>= 5.2.0)
+      useragent (~> 0.16.3)
     pp (0.6.2)
       prettyprint
     pretty_please (0.2.0)
@@ -403,7 +411,7 @@ GEM
       nio4r (~> 2.0)
     raabro (1.4.0)
     racc (1.8.1)
-    rack (3.1.14)
+    rack (3.1.16)
     rack-mini-profiler (3.3.1)
       rack (>= 1.2.0)
     rack-protection (4.1.1)
@@ -461,7 +469,7 @@ GEM
     rb-fsevent (0.11.2)
     rb-inotify (0.11.1)
       ffi (~> 1.0)
-    rbs (3.9.2)
+    rbs (3.9.4)
       logger
     rdoc (6.13.1)
       psych (>= 4.0.0)
@@ -488,13 +496,13 @@ GEM
       lint_roller (~> 1.1)
       rubocop (>= 1.75.0, < 2.0)
       rubocop-ast (>= 1.38.0, < 2.0)
-    ruby-lsp (0.23.14)
+    ruby-lsp (0.24.1)
       language_server-protocol (~> 3.17.0)
       prism (>= 1.2, < 2.0)
-      rbs (>= 3, < 4)
+      rbs (>= 3, < 5)
       sorbet-runtime (>= 0.5.10782)
-    ruby-lsp-rails (0.4.0)
-      ruby-lsp (>= 0.23.0, < 0.24.0)
+    ruby-lsp-rails (0.4.6)
+      ruby-lsp (>= 0.24.0, < 0.25.0)
     ruby-openai (7.4.0)
       event_stream_parser (>= 0.3.0, < 2.0.0)
       faraday (>= 1)
@@ -526,7 +534,7 @@ GEM
       fugit (~> 1.11.0)
       railties (>= 7.1)
       thor (~> 1.3.1)
-    sorbet-runtime (0.5.12028)
+    sorbet-runtime (0.5.12163)
     sqlite3 (2.6.0-aarch64-linux-gnu)
     sqlite3 (2.6.0-arm64-darwin)
     sqlite3 (2.6.0-x86_64-darwin)
@@ -607,7 +615,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.7.2)
+    zeitwerk (2.7.3)
 
 PLATFORMS
   aarch64-linux
@@ -644,10 +652,11 @@ DEPENDENCIES
   frozen_record (~> 0.27.2)
   google-protobuf
   groupdate
+  hotwire_combobox (~> 0.4.0)
   iso-639
   jbuilder
   json-repair (~> 0.2.0)
-  kamal
+  kamal (= 2.5.3)
   listen (~> 3.5)
   marksmith
   meilisearch-rails (= 0.14.2)
