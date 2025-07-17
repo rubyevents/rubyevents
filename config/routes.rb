@@ -64,6 +64,7 @@ Rails.application.routes.draw do
       collection do
         get "/past" => "past#index", :as => :past
         get "/archive" => "archive#index", :as => :archive
+        get "/feed" => "feeds#index", :as => :feed
       end
 
       resources :schedules, only: [:index], path: "/schedule" do
@@ -74,9 +75,6 @@ Rails.application.routes.draw do
       resources :related_talks, only: [:index]
       resources :events, only: [:index]
       resources :videos, only: [:index]
-    end
-    collection do
-      get :feed, defaults: {format: "xml"}
     end
   end
   resources :organisations, param: :slug, only: [:index, :show]
