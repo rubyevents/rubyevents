@@ -84,6 +84,25 @@ MeiliSearch::Rails.deactivate! do
       rescue ActiveRecord::RecordInvalid => e
         puts "Couldn't save: #{talk_data["title"]} (#{talk_data["video_id"]}), error: #{e.message}"
       end
+
+      if event.sponsors_file.exist?
+        event.sponsors_file.file.each do |sponsors|
+          sponsors["tiers"].each do |tier|
+            tier["sponsors"].each do |sponsor|
+
+              event.sponsors.find_or_create_by!(slug: sponsor["slug"].downcase) do |s|
+                s.name = sponsor["name"]
+                s.website = sponsor["website"]
+                # s.logo_url = sponsor["logo"]
+                s.description = sponsor["description"]
+                # s.level = sponsor["level"]
+                # s.event = event
+                # s.organisation = organisation
+              end
+            end
+          end
+        end
+      end
     end
   end
 end
