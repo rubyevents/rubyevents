@@ -44,6 +44,7 @@ GEM
       erubi (~> 1.11)
       rails-dom-testing (~> 2.2)
       rails-html-sanitizer (~> 1.6)
+    active_genie (0.29.0)
     active_job-performs (0.3.2)
       activejob (>= 6.1)
     active_link_to (1.0.5)
@@ -150,6 +151,9 @@ GEM
       rexml
     crass (1.0.6)
     csv (3.3.4)
+    cuprite (0.17)
+      capybara (~> 3.0)
+      ferrum (~> 0.17.0)
     date (3.4.1)
     debug (1.10.0)
       irb (~> 1.10)
@@ -219,6 +223,12 @@ GEM
       multipart-post (~> 2.0)
     faraday-net_http (3.4.0)
       net-http (>= 0.5.0)
+    ferrum (0.17.1)
+      addressable (~> 2.5)
+      base64 (~> 0.2)
+      concurrent-ruby (~> 1.1)
+      webrick (~> 1.7)
+      websocket-driver (~> 0.7)
     ffi (1.17.2-aarch64-linux-gnu)
     ffi (1.17.2-arm64-darwin)
     ffi (1.17.2-x86_64-darwin)
@@ -608,6 +618,7 @@ GEM
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
+    webrick (1.9.1)
     websocket (1.2.11)
     websocket-driver (0.7.7)
       base64
@@ -625,6 +636,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  active_genie
   active_job-performs (~> 0.3.1)
   active_record-associated_object
   ahoy_matey
@@ -640,6 +652,7 @@ DEPENDENCIES
   commonmarker
   countries
   country_select
+  cuprite
   debug
   diffy
   discard

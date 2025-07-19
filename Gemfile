@@ -163,3 +163,6 @@ gem "omniauth-rails_csrf_protection"
 gem "ostruct"
 
 gem "hotwire_combobox", "~> 0.4.0"
+
+gem "cuprite"
+gem 'active_genie'

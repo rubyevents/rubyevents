@@ -78,7 +78,7 @@ class DownloadSponsors
     }
       
     result = ActiveGenie::DataExtractor.call(session.html, schema)
-    File.write(save_file, result.to_yaml)
+    File.write(save_file,  [result.stringify_keys].to_yaml)
     
   ensure
     session&.driver&.quit
