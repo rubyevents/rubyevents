@@ -1,0 +1,31 @@
+<div class="container py-8">
+  <div class="flex items-center gap-4 mb-8">
+    <%= link_to @back_path, class: "btn btn-ghost btn-sm" do %>
+      <%= heroicon "arrow-left", size: :sm %>
+      Back to Sponsors
+    <% end %>
+  </div>
+
+  <div class="max-w-2xl mx-auto text-center">
+    <% if @sponsor.logo_url.present? %>
+      <div class="flex justify-center mb-6">
+        <img src="<%= @sponsor.logo_url %>" alt="<%= @sponsor.name %> logo" class="h-24 w-auto">
+      </div>
+    <% end %>
+
+    <h1 class="text-4xl font-bold mb-4"><%= @sponsor.name %></h1>
+
+    <% if @sponsor.description.present? %>
+      <p class="text-lg text-gray-600 mb-6"><%= @sponsor.description %></p>
+    <% end %>
+
+    <% if @sponsor.website.present? %>
+      <div class="flex justify-center">
+        <%= link_to @sponsor.website, target: "_blank", rel: "noopener noreferrer", class: "btn btn-primary" do %>
+          Visit Website
+          <%= heroicon "arrow-top-right-on-square", size: :sm, class: "ml-2" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

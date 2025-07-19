@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_17_115359) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_19_190411) do
   create_table "ahoy_events", force: :cascade do |t|
     t.integer "visit_id"
     t.integer "user_id"
@@ -185,6 +185,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_17_115359) do
     t.index ["github"], name: "index_speakers_on_github", unique: true, where: "github IS NOT NULL AND github != ''"
     t.index ["name"], name: "index_speakers_on_name"
     t.index ["slug"], name: "index_speakers_on_slug", unique: true
+  end
+
+  create_table "sponsors", force: :cascade do |t|
+    t.string "name"
+    t.string "website"
+    t.string "logo_url"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_sponsors_on_slug"
   end
 
   create_table "suggestions", force: :cascade do |t|
