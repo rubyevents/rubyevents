@@ -90,15 +90,17 @@ MeiliSearch::Rails.deactivate! do
           sponsors["tiers"].each do |tier|
             tier["sponsors"].each do |sponsor|
 
-              event.sponsors.find_or_create_by!(slug: sponsor["slug"].downcase) do |s|
+              sponsor = Sponsor.find_or_create_by!(slug: sponsor["slug"].downcase) do |s|
                 s.name = sponsor["name"]
                 s.website = sponsor["website"]
-                # s.logo_url = sponsor["logo"]
+                s.logo_url = sponsor["logo"]
                 s.description = sponsor["description"]
                 # s.level = sponsor["level"]
                 # s.event = event
                 # s.organisation = organisation
               end
+
+              event.event_sponsors.find_or_create_by!(sponsor: sponsor, event: event, tier: tier["name"])
             end
           end
         end
