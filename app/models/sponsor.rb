@@ -4,6 +4,7 @@
 #
 #  id            :integer          not null, primary key
 #  description   :text
+#  logo_url      :string
 #  main_location :string
 #  name          :string
 #  slug          :string           indexed
@@ -72,6 +73,17 @@ class Sponsor < ApplicationRecord
   end
 
   def logo_image_path
-    sponsor_image_or_default_for("logo.webp")
+    # First try local asset, then fallback to logo_url
+    if sponsor_image_for("logo.webp")
+      sponsor_image_or_default_for("logo.webp")
+    elsif logo_url.present?
+      logo_url
+    else
+      sponsor_image_or_default_for("logo.webp")
+    end
+  end
+  
+  def has_logo_image?
+    sponsor_image_for("logo.webp").present? || logo_url.present?
   end
 end

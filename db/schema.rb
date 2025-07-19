@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_19_225634) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_19_231642) do
   create_table "ahoy_events", force: :cascade do |t|
     t.integer "visit_id"
     t.integer "user_id"
@@ -205,6 +205,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_19_225634) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.string "main_location"
+    t.string "logo_url"
     t.index ["slug"], name: "index_sponsors_on_slug"
   end
 

@@ -19,8 +19,8 @@
               <% sponsor = event_sponsor.sponsor %>
               <%= link_to sponsor_path(sponsor), class: "group" do %>
                 <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-4 aspect-square flex items-center justify-center">
-                  <% if sponsor.sponsor_image_for("logo.webp") %>
-                    <%= image_tag image_path(sponsor.logo_image_path), 
+                  <% if sponsor.has_logo_image? %>
+                    <%= image_tag sponsor.logo_image_path, 
                           alt: "#{sponsor.name} logo", 
                           class: "max-w-full max-h-full object-contain" %>
                   <% else %>
