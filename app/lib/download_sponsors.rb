@@ -2,7 +2,6 @@ require 'yaml'
 require 'uri'
 require 'capybara'
 require 'capybara/cuprite'
-require 'pry'
 
 class DownloadSponsors
   def initialize
