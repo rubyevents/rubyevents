@@ -1,0 +1,44 @@
+<%= render partial: "events/header", locals: {event: @event} %>
+
+<%= turbo_frame_tag dom_id(@event), data: {turbo_action: "advance", turbo_frame: "_top"} do %>
+  <div class="container py-8">
+    <%= render partial: "events/navigation", locals: {event: @event} %>
+    
+    <!-- Sponsors Section -->
+    <% if @sponsors_by_tier.any? %>
+      <% @sponsors_by_tier.each do |tier, event_sponsors| %>
+        <div class="mb-12">
+          <!-- Tier Title -->
+          <h2 class="text-2xl font-bold text-gray-900 mb-6 capitalize">
+            <%= tier.present? ? "#{tier} Sponsors" : "Sponsors" %>
+          </h2>
+          
+          <!-- Sponsors Grid for this Tier -->
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+            <% event_sponsors.each do |event_sponsor| %>
+              <% sponsor = event_sponsor.sponsor %>
+              <%= link_to sponsor_path(sponsor), class: "group" do %>
+                <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-4 aspect-square flex items-center justify-center">
+                  <% if sponsor.sponsor_image_for("logo.webp") %>
+                    <%= image_tag image_path(sponsor.logo_image_path), 
+                          alt: "#{sponsor.name} logo", 
+                          class: "max-w-full max-h-full object-contain" %>
+                  <% else %>
+                    <!-- Fallback for sponsors without logos -->
+                    <div class="text-center">
+                      <span class="text-sm font-medium text-gray-700"><%= sponsor.name %></span>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="text-center py-12 text-gray-500">
+        <p class="text-lg">No sponsors for this event yet.</p>
+      </div>
+    <% end %>
+  </div>
+<% end %>

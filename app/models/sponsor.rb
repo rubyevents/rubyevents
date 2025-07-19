@@ -70,4 +70,8 @@ class Sponsor < ApplicationRecord
   def banner_image_path
     sponsor_image_or_default_for("banner.webp")
   end
+
+  def logo_image_path
+    sponsor_image_or_default_for("logo.webp")
+  end
 end

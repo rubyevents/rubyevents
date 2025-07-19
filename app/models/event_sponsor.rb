@@ -3,6 +3,7 @@
 # Table name: event_sponsors
 #
 #  id         :integer          not null, primary key
+#  tier       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  event_id   :integer          not null, indexed
