@@ -4,14 +4,14 @@
 #
 # Table name: sponsors
 #
-#  id          :integer          not null, primary key
-#  description :text
-#  logo_url    :string
-#  name        :string
-#  slug        :string           indexed
-#  website     :string
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id            :integer          not null, primary key
+#  description   :text
+#  main_location :string
+#  name          :string
+#  slug          :string           indexed
+#  website       :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
 #
 # Indexes
 #
@@ -20,11 +20,11 @@
 one:
   name: MyString
   website: MyString
-  logo_url: MyString
   description: MyText
+  slug: mystring
 
 two:
-  name: MyString
+  name: Another String
   website: MyString
-  logo_url: MyString
   description: MyText
+  slug: another-string

@@ -2,7 +2,7 @@
 #
 
 Rails.application.routes.draw do
-  resources :sponsors, only: [:index, :show]
+  resources :sponsors, param: :slug, only: [:index, :show]
   extend Authenticator
 
   # static pages

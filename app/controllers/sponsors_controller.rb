@@ -23,6 +23,8 @@ class SponsorsController < ApplicationController
   private
 
   def set_sponsor
-    @sponsor = Sponsor.find(params[:id])
+    @sponsor = Sponsor.find_by(slug: params[:slug])
+    
+    redirect_to sponsors_path, status: :moved_permanently, notice: "Sponsor not found" if @sponsor.blank?
   end
 end

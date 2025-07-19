@@ -10,7 +10,7 @@ class Avo::Resources::Sponsor < Avo::BaseResource
     field :name, as: :text
     field :website, as: :text
     field :slug, as: :text
-    field :logo_url, as: :text
     field :description, as: :textarea
+    field :main_location, as: :text
   end
 end

@@ -2,14 +2,14 @@
 #
 # Table name: sponsors
 #
-#  id          :integer          not null, primary key
-#  description :text
-#  logo_url    :string
-#  name        :string
-#  slug        :string           indexed
-#  website     :string
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id            :integer          not null, primary key
+#  description   :text
+#  main_location :string
+#  name          :string
+#  slug          :string           indexed
+#  website       :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
 #
 # Indexes
 #
@@ -18,6 +18,10 @@
 class Sponsor < ApplicationRecord
   include Sluggable
   slug_from :name
+
+  # associations
+  has_many :event_sponsors, dependent: :destroy
+  has_many :events, through: :event_sponsors
 
   validates :name, presence: true, uniqueness: true
 
@@ -33,4 +37,37 @@ class Sponsor < ApplicationRecord
     # otherwise, prepend https://
     "https://#{website}"
   }
+
+  def sponsor_image_path
+    ["sponsors", slug].join("/")
+  end
+
+  def default_sponsor_image_path
+    ["sponsors", "default"].join("/")
+  end
+
+  def sponsor_image_or_default_for(filename)
+    sponsor_path = [sponsor_image_path, filename].join("/")
+    default_path = [default_sponsor_image_path, filename].join("/")
+
+    base = Rails.root.join("app", "assets", "images")
+
+    return sponsor_path if (base / sponsor_path).exist?
+
+    default_path
+  end
+
+  def sponsor_image_for(filename)
+    sponsor_path = [sponsor_image_path, filename].join("/")
+
+    Rails.root.join("app", "assets", "images", sponsor_image_path, filename).exist? ? sponsor_path : nil
+  end
+
+  def avatar_image_path
+    sponsor_image_or_default_for("avatar.webp")
+  end
+
+  def banner_image_path
+    sponsor_image_or_default_for("banner.webp")
+  end
 end
