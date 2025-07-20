@@ -25,7 +25,7 @@
         video_player_end_seconds_value: talk.end_seconds
       } do %>
 
-  <div class="aspect-video banner-img card-horizontal-img relative rounded-xl overflow-hidden outline outline-1 bg-gray-300 outline-gray-300" style="view-transition-name: <%= dom_id(talk, :image) %>">
+  <div class="aspect-video banner-img card-horizontal-img relative rounded-xl overflow-hidden outline outline-1 bg-gray-300 outline-gray-300" style="view-transition-name: <%= dom_id(talk, :image) %>" data-turbo-permanent=true>
     <% if talk.external_player %>
       <%= link_to talk.external_player_url, target: "_blank", class: "relative w-full h-full block" do %>
         <%= image_tag talk.thumbnail_xl, class: "w-full h-full object-cover rounded-xl" %>
@@ -88,20 +88,18 @@
           <% end %>
 
           <% if default_watch_list %>
-            <%= turbo_frame_tag dom_id(talk, :bookmark) do %>
-              <% if user_favorite_talks_ids.include?(talk.id) %>
-                <%= ui_tooltip "Add talk to your watch list" do %>
-                  <%= ui_button url: watch_list_talk_path(default_watch_list, talk.id), method: :delete, kind: :pill do %>
-                    <%= fa("bookmark", size: :xs, style: :solid, class: "text-primary") %>
-                    <span class="text-xs">Bookmark</span>
-                  <% end %>
+            <% if user_favorite_talks_ids.include?(talk.id) %>
+              <%= ui_tooltip "Add talk to your watch list" do %>
+                <%= ui_button url: watch_list_talk_path(default_watch_list, talk.id), method: :delete, kind: :pill do %>
+                  <%= fa("bookmark", size: :xs, style: :solid, class: "text-primary") %>
+                  <span class="text-xs">Bookmark</span>
                 <% end %>
-              <% else %>
-                <%= ui_tooltip "Add talk to your watch list" do %>
-                  <%= ui_button url: watch_list_talks_path(default_watch_list, talk_id: talk.id), method: :post, kind: :pill do %>
-                    <%= fa("bookmark", size: :xs, style: :regular) %>
-                    <span class="text-xs">Bookmark</span>
-                  <% end %>
+              <% end %>
+            <% else %>
+              <%= ui_tooltip "Add talk to your watch list" do %>
+                <%= ui_button url: watch_list_talks_path(default_watch_list, talk_id: talk.id), method: :post, kind: :pill do %>
+                  <%= fa("bookmark", size: :xs, style: :regular) %>
+                  <span class="text-xs">Bookmark</span>
                 <% end %>
               <% end %>
             <% end %>
@@ -144,20 +142,18 @@
           <% end %>
 
           <% if signed_in? && !talk.scheduled? %>
-            <%= turbo_frame_tag dom_id(talk, :watched_talk) do %>
-              <% if talk.watched? %>
-                <%= ui_tooltip "Mark talk as unwatched" do %>
-                  <%= ui_button url: talk_watched_talk_path(talk), method: :delete, kind: :pill do %>
-                    <%= fa("circle-check", size: :xs, style: :solid, class: "fill-green-700") %>
-                    <span class="text-xs text-nowrap">Watched</span>
-                  <% end %>
+            <% if talk.watched? %>
+              <%= ui_tooltip "Mark talk as unwatched" do %>
+                <%= ui_button url: talk_watched_talk_path(talk), method: :delete, kind: :pill do %>
+                  <%= fa("circle-check", size: :xs, style: :solid, class: "fill-green-700") %>
+                  <span class="text-xs text-nowrap">Watched</span>
                 <% end %>
-              <% else %>
-                <%= ui_tooltip "Mark talk as watched" do %>
-                  <%= ui_button url: talk_watched_talk_path(talk), method: :post, kind: :pill do %>
-                    <%= fa("circle", size: :xs, style: :regular) %>
-                    <span class="text-xs text-nowrap">Watched</span>
-                  <% end %>
+              <% end %>
+            <% else %>
+              <%= ui_tooltip "Mark talk as watched" do %>
+                <%= ui_button url: talk_watched_talk_path(talk), method: :post, kind: :pill do %>
+                  <%= fa("circle", size: :xs, style: :regular) %>
+                  <span class="text-xs text-nowrap">Watched</span>
                 <% end %>
               <% end %>
             <% end %>
