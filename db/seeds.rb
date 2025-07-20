@@ -90,17 +90,24 @@ MeiliSearch::Rails.deactivate! do
           sponsors["tiers"].each do |tier|
             tier["sponsors"].each do |sponsor|
 
-              sponsor = Sponsor.find_or_create_by!(slug: sponsor["slug"].downcase) do |s|
-                s.name = sponsor["name"]
-                s.website = sponsor["website"]
-                s.logo_url = sponsor["logo_url"]
-                s.description = sponsor["description"]
+              s = Sponsor.find_by(name: sponsor["name"]) || Sponsor.find_by(slug: sponsor["slug"].downcase)
+
+              s ||= Sponsor.find_or_initialize_by(name: sponsor["name"])
+
+              s.update(
+                website: sponsor["website"],
+                logo_url: sponsor["logo_url"],
+                description: sponsor["description"],
                 # s.level = sponsor["level"]
                 # s.event = event
                 # s.organisation = organisation
+              )
+
+              if !s.persisted?
+                s = Sponsor.find_by(slug: s.slug) || Sponsor.find_by(name: s.name)
               end
 
-              event.event_sponsors.find_or_create_by!(sponsor: sponsor, event: event, tier: tier["name"])
+              event.event_sponsors.find_or_create_by!(sponsor: s, event: event, tier: tier["name"])
             end
           end
         end
