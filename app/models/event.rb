@@ -324,7 +324,7 @@ class Event < ApplicationRecord
     }
   end
 
-  def cfp_opened?
+  def cfp_open?
     return cfp_open_date <= Date.today if cfp_open_date.present?
 
     cfp_close_date > Date.today

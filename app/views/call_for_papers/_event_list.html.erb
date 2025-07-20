@@ -12,7 +12,7 @@
       <div class="flex-col flex justify-center relative overflow-hidden">
         <div class="text-black group-hover:text-inherit font-bold text-xl" style="view-transition-name: title"><%= event.name %></div>
         <div class="text-[#636B74] group-hover:text-inherit"><%= event.formatted_dates %> • <%= event.static_metadata.location %></div>
-        <% if event.cfp_opened? %>
+        <% if event.cfp_open? %>
           <div class="text-[#636B74] group-hover:text-inherit font-bold">CFP closes at <%= event.cfp_close_date.strftime("%B %d, %Y") %></div>
         <% else %>
           <div class="text-[#636B74] group-hover:text-inherit font-bold">CFP opens at <%= event.cfp_open_date.strftime("%B %d, %Y") %></div>
