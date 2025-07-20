@@ -93,7 +93,7 @@ MeiliSearch::Rails.deactivate! do
               sponsor = Sponsor.find_or_create_by!(slug: sponsor["slug"].downcase) do |s|
                 s.name = sponsor["name"]
                 s.website = sponsor["website"]
-                s.logo_url = sponsor["logo"]
+                s.logo_url = sponsor["logo_url"]
                 s.description = sponsor["description"]
                 # s.level = sponsor["level"]
                 # s.event = event

@@ -3,7 +3,7 @@
 <%= turbo_frame_tag dom_id(@event), data: {turbo_action: "advance", turbo_frame: "_top"} do %>
   <div class="container py-8">
     <%= render partial: "events/navigation", locals: {event: @event} %>
-    
+
     <!-- Sponsors Section -->
     <% if @sponsors_by_tier.any? %>
       <% @sponsors_by_tier.each do |tier, event_sponsors| %>
@@ -12,16 +12,16 @@
           <h2 class="text-2xl font-bold text-gray-900 mb-6 capitalize">
             <%= tier.present? ? "#{tier} Sponsors" : "Sponsors" %>
           </h2>
-          
+
           <!-- Sponsors Grid for this Tier -->
           <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
             <% event_sponsors.each do |event_sponsor| %>
               <% sponsor = event_sponsor.sponsor %>
-              <%= link_to sponsor_path(sponsor), class: "group" do %>
+              <%= link_to sponsor_path(sponsor), class: "group", data: { turbo_frame: "_top" } do %>
                 <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-4 aspect-square flex items-center justify-center">
                   <% if sponsor.has_logo_image? %>
-                    <%= image_tag sponsor.logo_image_path, 
-                          alt: "#{sponsor.name} logo", 
+                    <%= image_tag sponsor.logo_image_path,
+                          alt: "#{sponsor.name} logo",
                           class: "max-w-full max-h-full object-contain" %>
                   <% else %>
                     <!-- Fallback for sponsors without logos -->
