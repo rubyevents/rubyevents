@@ -1,7 +1,7 @@
-class CallForPapersController < ApplicationController
+class CFPController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
 
-  # GET /call_for_papers
+  # GET /cfp
   def index
     @events = Event.where(cfp_close_date: Date.today..).order(cfp_close_date: :asc)
   end
