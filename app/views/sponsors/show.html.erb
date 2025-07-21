@@ -1,0 +1,19 @@
+<%= render partial: "header", locals: {sponsor: @sponsor} %>
+
+<%= turbo_frame_tag dom_id(@sponsor), data: {turbo_action: "advance", turbo_frame: "_top"} do %>
+  <div class="container py-8">
+    <%= render partial: "navigation", locals: {sponsor: @sponsor} %>
+    <!-- Supported Events Section -->
+    <% if @sponsor.events.any? %>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <% @sponsor.events.includes(:organisation).each do |event| %>
+          <%= render "events/card", event: event %>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="text-center py-12 text-gray-500">
+        <p class="text-lg">No supported events yet.</p>
+      </div>
+    <% end %>
+  </div>
+<% end %>

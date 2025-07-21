@@ -1,0 +1,31 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# == Schema Information
+#
+# Table name: sponsors
+#
+#  id            :integer          not null, primary key
+#  description   :text
+#  logo_url      :string
+#  main_location :string
+#  name          :string
+#  slug          :string           indexed
+#  website       :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+# Indexes
+#
+#  index_sponsors_on_slug  (slug)
+#
+one:
+  name: MyString
+  website: MyString
+  description: MyText
+  slug: mystring
+
+two:
+  name: Another String
+  website: MyString
+  description: MyText
+  slug: another-string

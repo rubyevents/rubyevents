@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_17_115359) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_19_231642) do
   create_table "ahoy_events", force: :cascade do |t|
     t.integer "visit_id"
     t.integer "user_id"
@@ -69,6 +69,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_17_115359) do
   create_table "email_verification_tokens", force: :cascade do |t|
     t.integer "user_id", null: false
     t.index ["user_id"], name: "index_email_verification_tokens_on_user_id"
+  end
+
+  create_table "event_sponsors", force: :cascade do |t|
+    t.integer "event_id", null: false
+    t.integer "sponsor_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "tier"
+    t.index ["event_id"], name: "index_event_sponsors_on_event_id"
+    t.index ["sponsor_id"], name: "index_event_sponsors_on_sponsor_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -185,6 +195,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_17_115359) do
     t.index ["github"], name: "index_speakers_on_github", unique: true, where: "github IS NOT NULL AND github != ''"
     t.index ["name"], name: "index_speakers_on_name"
     t.index ["slug"], name: "index_speakers_on_slug", unique: true
+  end
+
+  create_table "sponsors", force: :cascade do |t|
+    t.string "name"
+    t.string "website"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.string "main_location"
+    t.string "logo_url"
+    t.index ["slug"], name: "index_sponsors_on_slug"
   end
 
   create_table "suggestions", force: :cascade do |t|
@@ -324,6 +346,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_17_115359) do
 
   add_foreign_key "connected_accounts", "users"
   add_foreign_key "email_verification_tokens", "users"
+  add_foreign_key "event_sponsors", "events"
+  add_foreign_key "event_sponsors", "sponsors"
   add_foreign_key "events", "events", column: "canonical_id"
   add_foreign_key "events", "organisations"
   add_foreign_key "password_reset_tokens", "users"
