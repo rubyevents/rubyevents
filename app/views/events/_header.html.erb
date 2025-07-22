@@ -37,4 +37,33 @@
   <p class="mt-6 text-[#636B74] max-w-[700px]">
     <%= event.description %>
   </p>
+
+  <% if event.cfp_link.present? %>
+    <div class="mt-6 p-4 bg-gray-100 rounded-lg max-w-[700px]">
+      <h3 class="font-bold text-lg mb-2">Call for Papers</h3>
+      <% if event.cfp_open_date.present? && event.cfp_open_date > Date.today %>
+        <p class="text-[#636B74] mb-3">
+          The CFP opens on <%= event.cfp_open_date.strftime("%B %d, %Y") %><% if event.cfp_close_date.present? %> and closes on <%= event.cfp_close_date.strftime("%B %d, %Y") %><% end %>.
+        </p>
+      <% elsif event.cfp_close_date.present? && event.cfp_close_date > Date.today %>
+        <p class="text-[#636B74] mb-3">
+          The CFP is currently open and closes on <%= event.cfp_close_date.strftime("%B %d, %Y") %>.
+        </p>
+      <% elsif event.cfp_close_date.present? && event.cfp_close_date <= Date.today %>
+        <p class="text-[#636B74] mb-3">
+          The CFP closed on <%= event.cfp_close_date.strftime("%B %d, %Y") %>.
+        </p>
+      <% else %>
+        <p class="text-[#636B74] mb-3">
+          Call for Papers information is available.
+        </p>
+      <% end %>
+
+      <% if event.cfp_close_date.blank? || event.cfp_close_date > Date.today %>
+        <%= external_link_to "Submit your proposal", event.cfp_link, class: "btn btn-primary btn-sm" %>
+      <% else %>
+        <%= external_link_to "View CFP details", event.cfp_link, class: "btn btn-secondary btn-sm" %>
+      <% end %>
+    </div>
+  <% end %>
 </div>
