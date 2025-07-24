@@ -18,8 +18,7 @@
     <div class="flex flex-col lg:flex-row gap-8 items-center lg:justify-right text-center lg:text-left mb-6 lg:mb-0">
       <%= image_tag image_path(event.avatar_image_path),
             class: "rounded-full border border-[#D9DFE3] size-24 md:size-36",
-            alt: "#{event.name} Avatar",
-            style: "view-transition-name: avatar",
+            alt: event.name.to_s,
             loading: :lazy %>
 
       <div class="flex-col flex justify-center break-all">
