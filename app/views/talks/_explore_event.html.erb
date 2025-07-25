@@ -22,7 +22,7 @@
       <% speakers_with_avatars.each do |speaker| %>
         <div class="avatar bg-white border-2">
           <div class="w-8">
-            <img src="<%= speaker.avatar_url %>" loading="lazy">
+            <img src="<%= speaker.avatar_url %>" loading="lazy" alt="<%= speaker.name %>">
           </div>
         </div>
       <% end %>

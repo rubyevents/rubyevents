@@ -5,9 +5,10 @@
   </h1>
 
   <div role="tablist" class="tabs tabs-bordered mt-6">
-    <input type="radio" name="contribution-tabs" role="tab" class="tab" aria-label="Introduction" checked="checked" style="width: 125px">
+    <input type="radio" name="contribution-tabs" role="tab" class="tab" aria-label="Introduction" checked style="width: 125px">
     <div role="tabpanel" class="tab-content py-6">
       <%= render "contributions/introduction" %>
+    </div>
 
     <input type="radio" name="contribution-tabs" role="tab" class="tab" aria-label="Speakers without GitHub handles" style="width: 300px">
     <div role="tabpanel" class="tab-content py-6">
@@ -88,7 +89,7 @@
           These talks currently don't have speakers assigned.
         </article>
 
-        <div id="overdue-scheduled-talks" class="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4 min-w-full mb-6">
+        <div id="talks-without-speakers" class="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4 min-w-full mb-6">
 
           <% @talks_without_speakers.group_by(&:event).sort_by { |_event, talks| talks.minimum(:date) }.each do |event, talks| %>
             <%= content_tag :div, id: dom_id(event), class: "p-4 rounded-lg border bg-white", target: :_blank do %>
@@ -127,7 +128,7 @@
           If available, you can also provide the <code>slides_url</code> so we can show the slides next to the talk.
         </article>
 
-        <div id="overdue-scheduled-talks" class="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4 min-w-full mb-6">
+        <div id="not-published-talks" class="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4 min-w-full mb-6">
           <% @not_published_talks.group_by(&:event).sort_by { |_event, talks| talks.minimum(:date) }.each do |event, talks| %>
             <%= content_tag :div, id: dom_id(event), class: "p-4 rounded-lg border bg-white", target: :_blank do %>
               <article class="prose">

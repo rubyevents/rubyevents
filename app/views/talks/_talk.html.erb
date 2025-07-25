@@ -157,7 +157,7 @@
             <% end %>
 
             <% if more_speakers %>
-              <div class="flex flex-col gap-4 hover:bg-gray-200 transition-bg duration-300 ease-in-out md:p-2 px-4 rounded-lg cursor-pointer" class="tooltip tooltip-top tooltip-success" onclick="document.querySelector('[name=talk_tabs][aria-label=Speakers]').checked = true" data-tip="<%= talk.speakers.to_a.from(2).map(&:name).to_sentence %>">
+              <div class="flex flex-col gap-4 hover:bg-gray-200 transition-bg duration-300 ease-in-out md:p-2 px-4 rounded-lg cursor-pointer" onclick="document.querySelector('[name=talk_tabs][aria-label=Speakers]').checked = true" data-tip="<%= talk.speakers.to_a.from(2).map(&:name).to_sentence %>">
                 <div class="flex items-center <% if !talk.meta_talk? %> gap-x-4 <% end %>">
                   <div class="avatar-group -space-x-6 rtl:space-x-reverse">
                     <% talk.speakers.to_a.from(speaker_preview_count).each do |speaker| %>
@@ -276,7 +276,6 @@
 
           <p class="flex">
             <span><%= talk.event_name %></span>
-            <span><%#= talk.event_edition %></span>
           </p>
         </article>
       </div>
