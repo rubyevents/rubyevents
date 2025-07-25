@@ -910,7 +910,7 @@
       event_name: "RailsConf 2025"
       start_cue: "00:15"
       end_cue: "01:23"
-      thumbnail_cue: "00:15"
+      thumbnail_cue: "00:21"
       video_id: noel-rappin-lightning-talks-railsconf-2025
       video_provider: "parent"
       speakers:
@@ -1072,22 +1072,80 @@
   video_provider: "youtube"
   video_id: "vNyxiNh8Q7k"
 
-- title: "New and Improved Features in Rails 8.1"
+- title: "Lightning Talks: New and Improved Features in Rails 8.1"
   raw_title: "New and Improved Features in Rails 8.1"
   event_name: "RailsConf 2025"
   description: |-
     The Ruby & Rails Infrastructure team at Shopify are stewards of Ruby and Rails within the company, and our mission is to ensure they remain Shopify's tools of choice for building great software. Sometimes that means building big new features into Rails. But often it means finding gaps and making improvements to existing features in the framework.
 
     Join us for a series of lightning talks about new features that we have added to Rails over the last year, to be released as part of Rails 8.1.
-  speakers:
-    - Andrew Novoselac
   date: "2025-07-09"
   published_at: "2025-07-23"
   announced_at: "TODO"
   track: "Breakout 1 - Independence"
   video_provider: "youtube"
   video_id: "gAHlLqnLM1o"
+  talks:
+    - title: "Shopify Lightning Talks Intro"
+      event_name: "RailsConf 2025"
+      start_cue: "00:15"
+      end_cue: "01:23"
+      thumbnail_cue: "00:18"
+      video_id: andrew-novoselac-intro-lightning-talks-railsconf-2025
+      video_provider: "parent"
+      speakers:
+        - Andrew Novoselac
 
+    - title: "Lightning Talk: A Story of Eliminating Postgres Not Null Violations"
+      event_name: "RailsConf 2025"
+      start_cue: "01:30"
+      end_cue: "06:23"
+      thumbnail_cue: "01:35"
+      video_id: jenny-shen-lightning-talks-railsconf-2025
+      video_provider: "parent"
+      speakers:
+        - Jenny Shen
+
+    - title: "Lightning Talk: Structured Event Reporter"
+      event_name: "RailsConf 2025"
+      start_cue: "06:28"
+      end_cue: "10:32"
+      thumbnail_cue: "06:33"
+      video_id: george-ma-lightning-talks-railsconf-2025
+      video_provider: "parent"
+      speakers:
+        - George Ma
+
+    - title: "Lightning Talk: When Logs Betray Sensitive Secrets"
+      event_name: "RailsConf 2025"
+      start_cue: "10:35"
+      end_cue: "15:48"
+      thumbnail_cue: "10:42"
+      video_id: jill-klang-lightning-talks-railsconf-2025
+      video_provider: "parent"
+      speakers:
+        - Jill Klang
+
+    - title: "Lightning Talk: Do you test your tests?"
+      event_name: "RailsConf 2025"
+      start_cue: "15:48"
+      end_cue: "23:10"
+      thumbnail_cue: "15:53"
+      video_id: nikita-vasilevsky-lightning-talks-railsconf-2025
+      video_provider: "parent"
+      speakers:
+        - Nikita Vasilevsky
+
+    - title: "Lightning Talk: Rails Error Reporter Middleware"
+      event_name: "RailsConf 2025"
+      start_cue: "23:12"
+      end_cue: "29:37"
+      thumbnail_cue: "23:28"
+      video_id: andrew-novoselac-lightning-talks-railsconf-2025
+      video_provider: "parent"
+      speakers:
+        - Andrew Novoselac
+                            
 - title: "Contributing to Rails? Start with the Gems You Already Use"
   raw_title: "Contributing to Rails? Start with the Gems You Already Use"
   event_name: "RailsConf 2025"
