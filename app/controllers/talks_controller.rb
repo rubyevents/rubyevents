@@ -13,13 +13,17 @@ class TalksController < ApplicationController
   def index
     @talks = Talk.includes(:speakers, event: :organisation, child_talks: :speakers)
     @talks = @talks.watchable unless params[:all].present?
-    @talks = @talks.ft_search(params[:s]).with_snippets.ranked if params[:s].present?
+    @talks = @talks.ft_search(params[:s]).with_snippets if params[:s].present?
     @talks = @talks.for_topic(params[:topic]) if params[:topic].present?
     @talks = @talks.for_event(params[:event]) if params[:event].present?
     @talks = @talks.for_speaker(params[:speaker]) if params[:speaker].present?
     @talks = @talks.where(kind: talk_kind) if talk_kind.present?
     @talks = @talks.where("created_at >= ?", created_after) if created_after
-    @talks = @talks.order(order_by) if order_by
+    if order_by.present?
+      @talks = @talks.order(order_by)
+    elsif params[:s].present?
+      @talks = @talks.ranked
+    end
     @pagy, @talks = pagy(@talks, **pagy_params)
   end
 
@@ -57,7 +61,7 @@ class TalksController < ApplicationController
     }
 
     @order_by ||= begin
-      order = params[:order_by].presence_in(order_by_options.keys) || "date_desc"
+      order = params[:order_by].presence_in(order_by_options.keys)
 
       order_by_options[order]
     end
