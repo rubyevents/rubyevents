@@ -5,6 +5,7 @@
         <%= image_tag image_path(event.avatar_image_path),
               class: "rounded-xl border border-[#D9DFE3] size-16",
               alt: event.name.to_s,
+              style: "view-transition-name: #{dom_id(event, :logo)}",
               loading: :lazy %>
       </div>
 
