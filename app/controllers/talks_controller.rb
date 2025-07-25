@@ -19,11 +19,14 @@ class TalksController < ApplicationController
     @talks = @talks.for_speaker(params[:speaker]) if params[:speaker].present?
     @talks = @talks.where(kind: talk_kind) if talk_kind.present?
     @talks = @talks.where("created_at >= ?", created_after) if created_after
-    if order_by.present?
-      @talks = @talks.order(order_by)
-    elsif params[:s].present?
+
+    # Apply ordering (handles search ranking vs custom ordering)
+    if order_by == :ranked
       @talks = @talks.ranked
+    elsif order_by.present?
+      @talks = @talks.order(order_by)
     end
+
     @pagy, @talks = pagy(@talks, **pagy_params)
   end
 
@@ -50,9 +53,11 @@ class TalksController < ApplicationController
   private
 
   def order_by
-    # when searching, don't order by date as the search results are already ordered by relevance
-    # unless the user explicitly asks for it
-    return if params[:s].present? && params[:order_by].blank?
+    # When searching, use relevance ranking unless user explicitly requests different ordering
+    if params[:s].present? && !explicit_ordering_requested?
+      return :ranked
+    end
+
     order_by_options = {
       "date_desc" => "talks.date DESC",
       "date_asc" => "talks.date ASC",
@@ -60,11 +65,12 @@ class TalksController < ApplicationController
       "created_at_asc" => "talks.created_at ASC"
     }
 
-    @order_by ||= begin
-      order = params[:order_by].presence_in(order_by_options.keys)
+    requested_order = params[:order_by].presence_in(order_by_options.keys) || "date_desc"
+    order_by_options[requested_order]
+  end
 
-      order_by_options[order]
-    end
+  def explicit_ordering_requested?
+    params[:order_by].present? && params[:order_by] != "relevance"
   end
 
   def created_after
