@@ -356,11 +356,12 @@
   speakers:
     - Robby Russell
   date: "2025-07-08"
-  published_at: "TODO"
+  published_at: "2025-07-23"
   announced_at: "TODO"
   track: "Main Stage - Liberty"
-  video_provider: "scheduled"
-  video_id: "robby-russell-railsconf-2025"
+  id: "robby-russell-railsconf-2025"
+  video_provider: "youtube"
+  video_id: "sjvsBvugcf4"
 
 - title: "10 Costly Database Performance Mistakes (and How to Fix Them)"
   raw_title: "10 Costly Database Performance Mistakes (and How to Fix Them)"
@@ -437,12 +438,13 @@
 
     This panel is designed to be both reflective and forward-looking, offering insights for developers at all levels. It will provide a rare opportunity to hear directly from those who have shaped Rails, making it a must-attend session for anyone invested in its future.
   speakers:
-    - Kinsey Durham Grace
-    - Evan Phoenix
-    - Marty Haught
-    - Eileen M. Uchitelle
-    - Nadia Odunayo
+    - Aaron Patterson
     - Sarah Mei
+    - Evan Phoenix
+    - Nadia Odunayo
+    - Chad Fowler
+    - Eileen M. Uchitelle
+    - Marty Haught
   date: "2025-07-09"
   published_at: "2025-07-23"
   announced_at: "TODO"
@@ -451,7 +453,7 @@
   video_provider: "youtube"
   video_id: "JLPPHX6khbo"
 
-- title: "Hotwire Native: A Rails developer’s secret tool to building mobile apps"
+- title: "Workshop: Hotwire Native - A Rails developer’s secret tool to building mobile apps"
   raw_title: "Hotwire Native: A Rails developer’s secret tool to building mobile apps"
   event_name: "RailsConf 2025"
   description: |-
@@ -472,7 +474,7 @@
   video_provider: "youtube"
   video_id: "gIOkC44_dA8"
 
-- title: "What can we do together? A facilitated community-building workshop"
+- title: "Workshop: What can we do together? A facilitated community-building workshop"
   raw_title: "What can we do together? A facilitated community-building workshop"
   event_name: "RailsConf 2025"
   description: |-
@@ -610,20 +612,6 @@
   video_provider: "youtube"
   video_id: "4deGaTJ-t14"
 
-- title: "Precision Pays Off: Handling Money in Rails Apps"
-  raw_title: "Precision Pays Off: Handling Money in Rails Apps"
-  event_name: "RailsConf 2025"
-  description: |-
-    Handling money in software is deceptively tricky. Floating-point arithmetic introduces precision errors that can lead to financial disasters, that's why banks have long relied on COBOL for its fixed-point precision. In this talk, we’ll dive into how Rails solves these problems today using tools like `BigDecimal` and the `Money` gem, which references Martin Fowler’s *Patterns of Enterprise Application Architecture*. We’ll also explore the future of financial applications in Rails, from native money types to fintech, and share real-world stories of how Rails has saved clients from costly mistakes.
-  speakers:
-    - Ian Lourenço
-  date: "2025-07-10"
-  published_at: "TODO"
-  announced_at: "TODO"
-  track: "Breakout 2 - Freedom"
-  video_provider: "scheduled"
-  video_id: "ian-lourenco-railsconf-2025"
-
 - title: "The future of Rails begins in the browser"
   raw_title: "The future of Rails begins in the browser"
   event_name: "RailsConf 2025"
@@ -638,7 +626,7 @@
     - Vladimir Dementyev
     - Albert Pazderin
   date: "2025-07-10"
-  published_at: "TODO"
+  published_at: "2025-07-23"
   announced_at: "TODO"
   track: "Main Stage - Liberty"
   id: "vladimir-dementyev-albert-pazderin-railsconf-2025"
@@ -657,7 +645,7 @@
   speakers:
     - Caleb Hearth
   date: "2025-07-10"
-  published_at: "TODO"
+  published_at: "2025-07-23"
   announced_at: "TODO"
   track: "Breakout 1 - Independence"
   id: "caleb-hearth-railsconf-2025"
@@ -672,7 +660,7 @@
   speakers:
     - John Athayde
   date: "2025-07-10"
-  published_at: "TODO"
+  published_at: "2025-07-23"
   announced_at: "TODO"
   track: "Breakout 2 - Freedom"
   id: "john-athayde-railsconf-2025"
@@ -691,7 +679,7 @@
   speakers:
     - Ben Curtis
   date: "2025-07-10"
-  published_at: "TODO"
+  published_at: "2025-07-23"
   announced_at: "TODO"
   track: "Main Stage - Liberty"
   id: "ben-curtis-railsconf-2025"
@@ -712,7 +700,7 @@
   speakers:
     - Edy Silva
   date: "2025-07-10"
-  published_at: "TODO"
+  published_at: "2025-07-23"
   announced_at: "TODO"
   track: "Breakout 1 - Independence"
   id: "edy-silva-railsconf-2025"
@@ -727,7 +715,7 @@
   speakers:
     - Josh Puetz
   date: "2025-07-10"
-  published_at: "TODO"
+  published_at: "2025-07-23"
   announced_at: "TODO"
   track: "Breakout 2 - Freedom"
   id: "josh-puetz-railsconf-2025"
@@ -742,7 +730,7 @@
   speakers:
     - Joe Leo
   date: "2025-07-10"
-  published_at: "TODO"
+  published_at: "2025-07-23"
   announced_at: "TODO"
   track: "Main Stage - Liberty"
   id: "joe-leo-railsconf-2025"
@@ -757,7 +745,7 @@
   speakers:
     - Alicia Rojas
   date: "2025-07-10"
-  published_at: "TODO"
+  published_at: "2025-07-23"
   announced_at: "TODO"
   track: "Breakout 1 - Independence"
   id: "alicia-rojas-railsconf-2025"
@@ -772,7 +760,7 @@
   speakers:
     - Chris Fung
   date: "2025-07-10"
-  published_at: "TODO"
+  published_at: "2025-07-23"
   announced_at: "TODO"
   track: "Breakout 2 - Freedom"
   id: "chris-fung-railsconf-2025"
@@ -787,7 +775,7 @@
   speakers:
     - Joël Quenneville
   date: "2025-07-10"
-  published_at: "TODO"
+  published_at: "2025-07-23"
   announced_at: "TODO"
   track: "Main Stage - Liberty"
   id: "joel-quenneville-railsconf-2025"
@@ -804,7 +792,7 @@
   speakers:
     - Tess Griffin
   date: "2025-07-10"
-  published_at: "TODO"
+  published_at: "2025-07-23"
   announced_at: "TODO"
   track: "Breakout 1 - Independence"
   id: "tess-griffin-railsconf-2025"
@@ -823,7 +811,7 @@
   speakers:
     - Andy Andrea
   date: "2025-07-10"
-  published_at: "TODO"
+  published_at: "2025-07-23"
   announced_at: "TODO"
   track: "Breakout 2 - Freedom"
   id: "andy-andrea-railsconf-2025"
@@ -844,7 +832,7 @@
   speakers:
     - Marco Roth
   date: "2025-07-10"
-  published_at: "TODO"
+  published_at: "2025-07-23"
   announced_at: "TODO"
   track: "Main Stage - Liberty"
   id: "marco-roth-railsconf-2025"
@@ -869,7 +857,7 @@
   speakers:
     - Andrew Markle
   date: "2025-07-10"
-  published_at: "TODO"
+  published_at: "2025-07-23"
   announced_at: "TODO"
   track: "Breakout 1 - Independence"
   id: "andrew-markle-railsconf-2025"
@@ -884,21 +872,21 @@
   speakers:
     - Ratnadeep Deshmane
   date: "2025-07-10"
-  published_at: "TODO"
+  published_at: "2025-07-23"
   announced_at: "TODO"
   track: "Breakout 2 - Freedom"
   id: "ratnadeep-deshmane-railsconf-2025"
   video_provider: "youtube"
   video_id: "NOXeX8_kscg"
 
-- title: "Closing Keynote Day 3"
+- title: "Closing Keynote: Why is Aaron Patterson?"
   raw_title: "Keynote"
   event_name: "RailsConf 2025"
   description:
   speakers:
     - Aaron Patterson
   date: "2025-07-10"
-  published_at: "TODO"
+  published_at: "2025-07-23"
   announced_at: "2025-06-04 15:05:00 UTC"
   track: "Main Stage - Liberty"
   id: "aaron-patterson-railsconf-2025"
@@ -911,13 +899,162 @@
   event_name: "RailsConf 2025"
   description: |-
     Rapid fire talks in under 5 minutes from the community. So much to inspire in so little time!
-  speakers: []
   date: "2025-07-09"
   published_at: "2025-07-23"
   announced_at: "TODO"
   track: "Main Stage - Liberty"
   video_provider: "youtube"
   video_id: "XucQAvZanfM"
+  talks:
+    - title: "Lightning Talks Intro"
+      event_name: "RailsConf 2025"
+      start_cue: "00:15"
+      end_cue: "01:23"
+      thumbnail_cue: "00:15"
+      video_id: noel-rappin-lightning-talks-railsconf-2025
+      video_provider: "parent"
+      speakers:
+        - Noel Rappin
+
+    - title: "Lightning Talk: Open source Ruby gem analytics with ClickHouse"
+      event_name: "RailsConf 2025"
+      start_cue: "01:25"
+      end_cue: "07:29"
+      thumbnail_cue: "01:33"
+      video_id: zoe-steinkamp-lightning-talks-railsconf-2025
+      video_provider: "parent"
+      speakers:
+        - Zoe Steinkamp
+
+    - title: "Lightning Talk: Programming in the Low Memery Environment of Your Brain"
+      event_name: "RailsConf 2025"
+      start_cue: "07:32"
+      end_cue: "13:01"
+      thumbnail_cue: "07:37"
+      video_id: jeremy-smith-lightning-talks-railsconf-2025
+      video_provider: "parent"
+      speakers:
+        - Jeremy Smith
+
+    - title: "Lightning Talk: An crash course in Linguistics w/ Ruby & Rails"
+      event_name: "RailsConf 2025"
+      start_cue: "13:06"
+      end_cue: "18:05"
+      thumbnail_cue: "13:12"
+      video_id: sam-poder-lightning-talks-railsconf-2025
+      video_provider: "parent"
+      speakers:
+        - Sam Poder
+
+    - title: "Lightning Talk: Terminus: A Hanami application for e-ink displays"
+      event_name: "RailsConf 2025"
+      start_cue: "18:19"
+      end_cue: "23:02"
+      thumbnail_cue: "18:24"
+      video_id: brook-kuhlmann-lightning-talks-railsconf-2025
+      video_provider: "parent"
+      speakers:
+        - Brook Kuhlmann
+
+    - title: "Lightning Talk: What is `Data` class?"
+      event_name: "RailsConf 2025"
+      start_cue: "23:04"
+      end_cue: "28:05"
+      thumbnail_cue: "23:09"
+      video_id: kelly-popko-lightning-talks-railsconf-2025
+      video_provider: "parent"
+      speakers:
+        - Kelly Popko
+
+    - title: "Lightning Talk: Peace, Love, and CRUD: A Rails Journey to Calm"
+      event_name: "RailsConf 2025"
+      start_cue: "28:14"
+      end_cue: "34:27"
+      thumbnail_cue: "28:19"
+      video_id: tia-anderson-lightning-talks-railsconf-2025
+      video_provider: "parent"
+      speakers:
+        - Tia Anderson
+
+    - title: "Lightning Talk: Build AI in Rails: Now Agents are Controller; Makes Code Tons of Fun!"
+      event_name: "RailsConf 2025"
+      start_cue: "34:38"
+      end_cue: "40:13"
+      thumbnail_cue: "34:43"
+      video_id: justin-bowen-lightning-talks-railsconf-2025
+      video_provider: "parent"
+      speakers:
+        - Justin Bowen
+
+    - title: "Lightning Talk: 10 years of Rails Girls São Paulo"
+      event_name: "RailsConf 2025"
+      start_cue: "40:16"
+      end_cue: "43:10"
+      thumbnail_cue: "40:21"
+      video_id: debora-fernandes-lightning-talks-railsconf-2025
+      video_provider: "parent"
+      speakers:
+        - Débora Fernandes
+
+    - title: "Lightning Talk: Playing with Memory: Manual Management in C"
+      event_name: "RailsConf 2025"
+      start_cue: "43:19"
+      end_cue: "48:45"
+      thumbnail_cue: "43:24"
+      video_id: shardly-romelus-lightning-talks-railsconf-2025
+      video_provider: "parent"
+      speakers:
+        - Shardly Romelus
+
+    - title: "Lightning Talk: Gamified Developer Experiences"
+      event_name: "RailsConf 2025"
+      start_cue: "48:48"
+      end_cue: "54:15"
+      thumbnail_cue: "48:53"
+      video_id: rachael-wright-munn-lightning-talks-railsconf-2025
+      video_provider: "parent"
+      speakers:
+        - Rachael Wright-Munn
+
+    - title: "Lightning Talk: Ugly Colors: How I Built a Web App to Rank Ugly Colors"
+      event_name: "RailsConf 2025"
+      start_cue: "54:22"
+      end_cue: "57:55"
+      thumbnail_cue: "54:27"
+      video_id: lucy-chen-lightning-talks-railsconf-2025
+      video_provider: "parent"
+      speakers:
+        - Lucy Chen
+
+    - title: "Lightning Talk: The Other Side of Fear"
+      event_name: "RailsConf 2025"
+      start_cue: "58:01"
+      end_cue: "01:02:55"
+      thumbnail_cue: "58:01"
+      video_id: alan-ridlehoover-lightning-talks-railsconf-2025
+      video_provider: "parent"
+      speakers:
+        - Alan Ridlehoover
+
+    - title: "Lightning Talk: Save your coffee money: Jemalloc in 5 minutes"
+      event_name: "RailsConf 2025"
+      start_cue: "01:03:03"
+      end_cue: "01:07:12"
+      thumbnail_cue: "01:03:08"
+      video_id: yasar-celep-lightning-talks-railsconf-2025
+      video_provider: "parent"
+      speakers:
+        - Yaşar Celep
+
+    - title: "Lightning Talk: Ruby UI - From React to Hotwire"
+      event_name: "RailsConf 2025"
+      start_cue: "01:07:20"
+      end_cue: "01:12:24"
+      thumbnail_cue: "01:07:25"
+      video_id: cirdes-henrique-lightning-talks-railsconf-2025
+      video_provider: "parent"
+      speakers:
+        - Cirdes Henrique
 
 - title: "Simplifying at Scale: 7 Years of Rails Architecture at Persona"
   raw_title: "Simplifying at Scale: 7 Years of Rails Architecture at Persona"
