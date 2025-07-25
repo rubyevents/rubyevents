@@ -10,6 +10,19 @@
       <% end %>
     </h1>
   </div>
+
+  <div class="flex justify-end items-center">
+    <div class="flex items-center gap-2">
+      <label for="order_by" class="text-sm font-medium text-gray-700">Sort by:</label>
+      <select id="order_by" name="order_by" class="select select-bordered select-sm" data-controller="url-filter" data-url-filter-param-value="order_by">
+        <% if params[:s].present? %>
+          <option value="relevance" <%= "selected" if (params[:order_by] || "relevance") == "relevance" %>>Relevance</option>
+        <% end %>
+        <option value="date_desc" <%= "selected" if params[:order_by] == "date_desc" %>>Date (newest first)</option>
+        <option value="date_asc" <%= "selected" if params[:order_by] == "date_asc" %>>Date (oldest first)</option>
+      </select>
+    </div>
+  </div>
   <%= turbo_frame_tag "talks", target: "_top" do %>
     <div id="talks" class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gallery">
       <%= render partial: "talks/card",
