@@ -87,7 +87,7 @@ Once your playlists are currated, you can run the next script to extract the vid
 rails runner scripts/extract_videos.rb
 ```
 
-At this point you have this structure
+At this point you have this structure:
 
 ```
 data/
@@ -101,7 +101,7 @@ data/
 ├── speakers.yml
 ```
 
-To extract a maximum of information from the Youbute metadata, the raw video information is parsed by a class `Youtube::VideoMetadata`. This class will try to extract speakers from the title. This is the default parser but sometime the speakers ar you can create a new class and specify it in the `playlists.yml` file.
+To extract a maximum of information from the Youtube metadata, the raw video information is parsed by a class `Youtube::VideoMetadata`. This class will try to extract speakers from the title. This is the default parser but sometimes the speakers are not extracted correctly, you can create a new class and specify it in the `playlists.yml` file.
 
 ```yml
 - id: PL9_jjLrTYxc2uUcqG2wjZ1ppt-TkFG-gm
@@ -117,4 +117,4 @@ To extract a maximum of information from the Youbute metadata, the raw video inf
 
 ### Step 4 - move the data
 
-Once the data is prepared you can move it to the main `/data` folder
+Once the data is prepared you can move it to the main `/data` folder.
