@@ -19,9 +19,16 @@
     </div>
   </div>
 
-  <p class="mt-3 md:mt-9 mb-6 text-[#636B74] max-w-[700px]">
+  <p class="mt-3 md:mt-9 mb-3 text-[#636B74] max-w-[700px]">
     <%= @organisation.description %>
   </p>
+
+  <% if @organisation.static_metadata.ended? %>
+    <div class="flex -mt-0.5 mb-4 text-gray-400">
+      <%= heroicon "archive-box", size: :sm, class: "mt-0.5" %>
+      <span class="text-sm mt-0.5 ml-0.5">This event series is not active anymore.</span>
+    </div>
+  <% end %>
 
   <% if (featured_event = @events.find { |event| event.featurable? }) %>
     <div class="hidden lg:block">

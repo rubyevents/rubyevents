@@ -4,6 +4,9 @@
 # Table name: events
 #
 #  id              :integer          not null, primary key
+#  cfp_close_date  :date
+#  cfp_link        :string
+#  cfp_open_date   :date
 #  city            :string
 #  country_code    :string
 #  date            :date
@@ -319,5 +322,11 @@ class Event < ApplicationRecord
       featured_color: static_metadata.featured_color,
       url: Router.event_url(self, host: "#{request.protocol}#{request.host}:#{request.port}")
     }
+  end
+
+  def cfp_open?
+    return cfp_open_date <= Date.today if cfp_open_date.present?
+
+    cfp_close_date > Date.today
   end
 end
