@@ -31,6 +31,7 @@ export default class extends Controller {
   // methods
 
   init () {
+    if (this.isPreview) return
     if (!this.hasPlayerTarget) return
 
     this.player = new Vlitejs(this.playerTarget, this.options)
@@ -68,10 +69,12 @@ export default class extends Controller {
   // callbacks
 
   appear () {
+    if (!this.ready) return
     this.#togglePictureInPicturePlayer(false)
   }
 
   disappear () {
+    if (!this.ready) return
     this.#togglePictureInPicturePlayer(true)
   }
 
@@ -166,5 +169,9 @@ export default class extends Controller {
     }
 
     return !this.player.isPaused
+  }
+
+  get isPreview () {
+    return document.documentElement.hasAttribute('data-turbo-preview')
   }
 }
