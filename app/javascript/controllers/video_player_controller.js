@@ -147,8 +147,10 @@ export default class extends Controller {
     const toggleClasses = () => {
       if (enabled && this.isPlaying) {
         this.playerWrapperTarget.classList.add('picture-in-picture')
+        this.playerWrapperTarget.querySelector('.v-controlBar').classList.add('v-hidden')
       } else {
         this.playerWrapperTarget.classList.remove('picture-in-picture')
+        this.playerWrapperTarget.querySelector('.v-controlBar').classList.remove('v-hidden')
       }
     }
 
