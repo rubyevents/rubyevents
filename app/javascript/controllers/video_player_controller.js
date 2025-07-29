@@ -68,11 +68,11 @@ export default class extends Controller {
   // callbacks
 
   appear () {
-    this.#togglePictureInPictureplayer(false)
+    this.#togglePictureInPicturePlayer(false)
   }
 
   disappear () {
-    this.#togglePictureInPictureplayer(true)
+    this.#togglePictureInPicturePlayer(true)
   }
 
   handlePlayerReady (player) {
@@ -140,7 +140,7 @@ export default class extends Controller {
     return anchorTag
   }
 
-  #togglePictureInPictureplayer (enabled) {
+  #togglePictureInPicturePlayer (enabled) {
     const toggleClasses = () => {
       if (enabled && this.isPlaying) {
         this.playerWrapperTarget.classList.add('picture-in-picture')
