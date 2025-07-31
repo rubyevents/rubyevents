@@ -1,8 +1,6 @@
-<% if event.cfp_link.present? && event.cfp_close_date.present? %>
-  <% cfp_days = (event.cfp_close_date - Date.current).to_i %>
-
-  <% if event.cfp_open_date.present? && event.cfp_open_date > Date.current %>
-    <% cfp_open_days = (event.cfp_open_date - Date.current).to_i %>
+<% if event.cfp.present? && event.cfp.close_date.present? %>
+  <% if event.cfp.future? %>
+    <% cfp_open_days = event.cfp.days_until_open %>
 
     <div class="flex flex-col justify-center">
       <div class="self-end w-16 h-16 bg-blue-500 text-white rounded-xl flex flex-col items-center justify-center text-xs leading-none">
@@ -12,20 +10,26 @@
       </div>
     </div>
 
-  <% elsif cfp_days >= 0 %>
-    <div class="flex flex-col justify-center">
-      <div class="self-end w-16 h-16 bg-green-500 text-white rounded-xl flex flex-col items-center justify-center text-xs leading-none">
-        <div class="text-[10px]">CFP</div>
+  <% elsif event.cfp.open? %>
+    <% cfp_days = event.cfp.days_remaining %>
 
-        <% if cfp_days == 0 %>
-          <div class="text-[12px]">Last day!</div>
-        <% elsif cfp_days == 1 %>
-          <div class="text-[12px]">Tomorrow</div>
-        <% else %>
-          <div class="text-lg font-bold"><%= cfp_days %></div>
-          <div class="text-[10px]"><%= "day".pluralize(cfp_days) %></div>
-        <% end %>
+    <% if cfp_days && cfp_days >= 0 %>
+      <div class="flex flex-col justify-center">
+        <div class="self-end w-16 h-16 bg-green-500 text-white rounded-xl flex flex-col items-center justify-center text-xs leading-none">
+
+          <% if cfp_days == 0 %>
+            <div class="text-lg font-bold">CFP</div>
+            <div class="text-[10px]">Last day!</div>
+          <% elsif cfp_days == 1 %>
+            <div class="text-lg font-bold">CFP</div>
+            <div class="text-[10px]">Tomorrow</div>
+          <% else %>
+            <div class="text-[10px]">CFP</div>
+            <div class="text-lg font-bold"><%= cfp_days %></div>
+            <div class="text-[10px]"><%= "day".pluralize(cfp_days) %></div>
+          <% end %>
+        </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
 <% end %>
