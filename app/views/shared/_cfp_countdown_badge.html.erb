@@ -13,7 +13,7 @@
   <% elsif event.cfp.open? %>
     <% cfp_days = event.cfp.days_remaining %>
 
-    <% if cfp_days && cfp_days >= 0 %>
+    <% if cfp_days %>
       <div class="flex flex-col justify-center">
         <div class="self-end w-16 h-16 bg-green-500 text-white rounded-xl flex flex-col items-center justify-center text-xs leading-none">
 

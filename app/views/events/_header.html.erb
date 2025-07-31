@@ -46,7 +46,7 @@
           The CFP opens on <%= event.cfp.formatted_open_date %><% if event.cfp.close_date.present? %> and closes on <%= event.cfp.formatted_close_date %><% end %>.
         <% elsif event.cfp.open? %>
           The CFP is currently open and closes on <%= event.cfp.formatted_close_date %>.
-        <% elsif event.cfp.close_date.present? %>
+        <% elsif event.cfp.closed? %>
           The CFP closed on <%= event.cfp.formatted_close_date %>.
         <% else %>
           Call for Papers information is available.
