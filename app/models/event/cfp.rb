@@ -70,10 +70,10 @@ class Event::CFP < ActiveRecord::AssociatedObject
   end
 
   def formatted_open_date
-    open_date&.strftime("%B %d, %Y")
+    I18n.l(open_date, default: "unknown")
   end
 
   def formatted_close_date
-    close_date&.strftime("%B %d, %Y")
+    I18n.l(close_date, default: "unknown")
   end
 end
