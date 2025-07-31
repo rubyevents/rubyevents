@@ -38,7 +38,7 @@
     <%= event.description %>
   </p>
 
-  <% if event.cfp.present? %>
+  <% if event.cfp.present? && event.start_date && event.start_date > Date.today %>
     <div class="mt-6 p-4 bg-gray-100 rounded-lg max-w-[700px]">
       <h3 class="font-bold text-lg mb-2">Call for Papers</h3>
       <p class="text-[#636B74] mb-3">
