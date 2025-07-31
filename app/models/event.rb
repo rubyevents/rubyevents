@@ -324,5 +324,4 @@ class Event < ApplicationRecord
       url: Router.event_url(self, host: "#{request.protocol}#{request.host}:#{request.port}")
     }
   end
-
 end
