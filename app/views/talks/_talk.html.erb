@@ -264,11 +264,11 @@
           </p>
 
           <p>
-            Date: <% if talk.date %> <%= talk.formatted_date %> <% else %> unknown<% end %><br>
+            Date: <%= talk.formatted_date %><br>
 
             <span class="text-gray-400">
-              Published: <% if talk.published_at %><%= talk.published_at.strftime("%B %d, %Y") %><% elsif talk.published? %> unknown <% else %> not published <% end %><br>
-              Announced: <% if talk.announced_at %><%= talk.announced_at.strftime("%B %d, %Y") %><% else %> unknown<% end %>
+              Published: <% if talk.published_at %><%= l(talk.published_at, default: "unknown") %><% elsif talk.published? %> unknown <% else %> not published <% end %><br>
+              Announced: <%= l(talk.announced_at, default: "unknown") %>
             </span>
           </p>
 

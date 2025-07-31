@@ -149,22 +149,19 @@ class Event < ApplicationRecord
     when "month"
       start_date.strftime("%B %Y")
     when "day"
-      return start_date.strftime("%B %d, %Y") if start_date == end_date
+      return I18n.l(start_date, default: "unknown") if start_date == end_date
 
       if start_date.strftime("%Y-%m") == end_date.strftime("%Y-%m")
         return "#{start_date.strftime("%B %d")}-#{end_date.strftime("%d, %Y")}"
       end
 
       if start_date.strftime("%Y") == end_date.strftime("%Y")
-        return "#{start_date.strftime("%B %d")} - #{end_date.strftime("%B %d, %Y")}"
+        return "#{I18n.l(start_date, format: :month_day, default: "unknown")} - #{I18n.l(end_date, default: "unknown")}"
       end
 
-      "#{start_date.strftime("%b %d, %Y")} - #{end_date.strftime("%b %d, %Y")}"
+      "#{I18n.l(start_date, format: :medium,
+        default: "unknown")} - #{I18n.l(end_date, format: :medium, default: "unknown")}"
     end
-  rescue => _e
-    # TODO: notify to error tracking
-
-    "Unknown"
   end
 
   def country_name
