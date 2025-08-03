@@ -11,16 +11,29 @@
     </h1>
   </div>
 
-  <div class="flex justify-end items-center">
+  <div class="flex justify-end items-center gap-2">
+    <% if filtered_search? %>
+      <div class="text-sm">Results: <%= @pagy.count %></div>
+    <% end %>
+
+    <div class="text-sm text-gray-500">Sort by:</div>
     <div class="flex items-center gap-2">
-      <label for="order_by" class="text-sm font-medium text-gray-700">Sort by:</label>
-      <select id="order_by" name="order_by" class="select select-bordered select-sm" data-controller="url-filter" data-url-filter-param-value="order_by">
-        <% if params[:s].present? %>
-          <option value="relevance" <%= "selected" if (params[:order_by] || "relevance") == "relevance" %>>Relevance</option>
-        <% end %>
-        <option value="date_desc" <%= "selected" if params[:order_by] == "date_desc" %>>Date (newest first)</option>
-        <option value="date_asc" <%= "selected" if params[:order_by] == "date_asc" %>>Date (oldest first)</option>
-      </select>
+      <details class="dropdown dropdown-end">
+        <summary class="btn m-1 pl-0 bg-transparent hover:bg-transparent border-none shadow-none font-normal"><%= ordering_title %></summary>
+        <ul class="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+          <% if params[:s].present? %>
+            <li>
+              <%= link_to "Relevance", {**search_params, order_by: "ranked"} %>
+            </li>
+          <% end %>
+          <li>
+            <%= link_to "Newest first", {**search_params, order_by: "date_desc"} %>
+          </li>
+          <li>
+            <%= link_to "Oldest first", {**search_params, order_by: "date_asc"} %>
+          </li>
+        </ul>
+      </details>
     </div>
   </div>
   <%= turbo_frame_tag "talks", target: "_top" do %>

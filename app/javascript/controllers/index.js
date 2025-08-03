@@ -67,8 +67,5 @@ application.register("top-banner", TopBannerController)
 import TransitionController from "./transition_controller"
 application.register("transition", TransitionController)
 
-import UrlFilterController from "./url_filter_controller"
-application.register("url-filter", UrlFilterController)
-
 import VideoPlayerController from "./video_player_controller"
 application.register("video-player", VideoPlayerController)
