@@ -1,3 +1,54 @@
-This profile is not claimed yet.
-<br>
-<%= link_to "Claim your profile", sign_in_path(connect_id: params[:id]), class: "btn btn-primary", data: {turbo_frame: "modal"} %>
+<div class="flex flex-col items-center justify-center text-center space-y-6 py-12 px-6">
+  <!-- Icon -->
+  <div class="flex items-center justify-center w-20 h-20 bg-primary/10 rounded-full">
+    <%= heroicon :user_plus, variant: :outline, class: "w-10 h-10 text-primary" %>
+  </div>
+
+  <!-- Heading -->
+  <div class="space-y-2">
+    <h2 class="text-2xl font-bold text-base-content">
+      🎉 Profile Ready to Claim!
+    </h2>
+    <p class="text-base-content/70 max-w-md">
+      This profile is waiting for you! Connect with your GitHub account to claim it and start building your Ruby community presence.
+    </p>
+  </div>
+
+  <!-- Features list -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md text-sm">
+    <div class="flex items-center space-x-2 text-base-content/80">
+      <%= heroicon :pencil, variant: :outline, class: "w-5 h-5 text-success flex-shrink-0" %>
+      <span>Track your talks</span>
+    </div>
+    <div class="flex items-center space-x-2 text-base-content/80">
+      <%= heroicon :pencil, variant: :outline, class: "w-5 h-5 text-success flex-shrink-0" %>
+      <span>Connect with speakers</span>
+    </div>
+    <div class="flex items-center space-x-2 text-base-content/80">
+      <%= heroicon :pencil, variant: :outline, class: "w-5 h-5 text-success flex-shrink-0" %>
+      <span>Showcase your events</span>
+    </div>
+    <div class="flex items-center space-x-2 text-base-content/80">
+      <%= heroicon :pencil, variant: :outline, class: "w-5 h-5 text-success flex-shrink-0" %>
+      <span>Join the community</span>
+    </div>
+  </div>
+
+  <!-- CTA Button -->
+  <div class="pt-4">
+    <%= ui_button url: sign_in_path(connect_id: params[:id]),
+                  kind: :primary,
+                  size: :lg,
+                  class: "px-8 shadow-lg",
+                  data: {turbo_frame: "modal"} do %>
+      <%= heroicon :arrow_right, variant: :outline, class: "w-5 h-5 mr-2" %>
+      Claim Your Profile
+    <% end %>
+  </div>
+  
+  <!-- Trust indicator -->
+  <div class="text-xs text-base-content/50 flex items-center space-x-1">
+    <%= heroicon :shield_check, variant: :outline, class: "w-4 h-4" %>
+    <span>Secure GitHub authentication</span>
+  </div>
+</div>

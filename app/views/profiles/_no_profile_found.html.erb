@@ -1,0 +1,61 @@
+<div class="flex flex-col items-center justify-center text-center space-y-6 py-12 px-6">
+  <!-- Icon -->
+  <div class="flex items-center justify-center w-20 h-20 bg-neutral/10 rounded-full">
+    <%= heroicon :magnifying_glass, variant: :outline, class: "w-10 h-10 text-neutral" %>
+  </div>
+  
+  <!-- Heading -->
+  <div class="space-y-2">
+    <h2 class="text-2xl font-bold text-base-content">
+      🤷‍♂️ No Profile Found Here
+    </h2>
+    <p class="text-base-content/70 max-w-md">
+      This page doesn't have an associated profile yet. But don't worry - there's still plenty to explore in the Ruby community!
+    </p>
+  </div>
+  
+  <!-- Suggestions list -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md text-sm">
+    <div class="flex items-center space-x-2 text-base-content/80">
+      <%= heroicon :video_camera, variant: :outline, class: "w-5 h-5 text-neutral flex-shrink-0" %>
+      <span>Browse talks</span>
+    </div>
+    <div class="flex items-center space-x-2 text-base-content/80">
+      <%= heroicon :calendar_days, variant: :outline, class: "w-5 h-5 text-neutral flex-shrink-0" %>
+      <span>Discover events</span>
+    </div>
+    <div class="flex items-center space-x-2 text-base-content/80">
+      <%= heroicon :users, variant: :outline, class: "w-5 h-5 text-neutral flex-shrink-0" %>
+      <span>Meet speakers</span>
+    </div>
+    <div class="flex items-center space-x-2 text-base-content/80">
+      <%= heroicon :hashtag, variant: :outline, class: "w-5 h-5 text-neutral flex-shrink-0" %>
+      <span>Explore topics</span>
+    </div>
+  </div>
+  
+  <!-- CTA Buttons -->
+  <div class="flex flex-col sm:flex-row gap-3 pt-4">
+    <%= ui_button url: talks_path, 
+                  kind: :primary, 
+                  size: :lg,
+                  class: "px-6 shadow-lg" do %>
+      <%= heroicon :play, variant: :outline, class: "w-5 h-5 mr-2" %>
+      Browse Talks
+    <% end %>
+    
+    <%= ui_button url: events_path, 
+                  kind: :secondary, 
+                  size: :lg,
+                  class: "px-6" do %>
+      <%= heroicon :calendar, variant: :outline, class: "w-5 h-5 mr-2" %>
+      View Events
+    <% end %>
+  </div>
+  
+  <!-- Community indicator -->
+  <div class="text-xs text-base-content/50 flex items-center space-x-1">
+    <%= heroicon :heart, variant: :outline, class: "w-4 h-4" %>
+    <span>Explore the Ruby community</span>
+  </div>
+</div>

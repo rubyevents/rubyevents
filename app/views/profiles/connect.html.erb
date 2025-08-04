@@ -2,7 +2,7 @@
   <%= render "friend_prompt" %>
 <% else %>
   <% if Current.user.present? %>
-    Nothing to see here 🙌
+    <%= render "no_profile_found" %>
   <% else %>
     <%= render "claim_profile" %>
   <% end %>
