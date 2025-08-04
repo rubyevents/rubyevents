@@ -26,10 +26,10 @@
         <kbd class="kbd kbd-sm text-base-content">⏎</kbd>
       </div>
 
-      <div class="grid md:grid-cols-3 divide-x">
+      <div class="grid md:grid-cols-3 md:divide-x gap-4 md:gap-0">
         <% resources.unshift(main_resource) %>
         <% resources.uniq.each_with_index do |resource, index| %>
-          <% padding = {"0" => "pr-4", "1" => "px-4", "2" => "pl-4"}.dig(index.to_s) %>
+          <% padding = {"0" => "md:pr-4", "1" => "md:px-4", "2" => "md:pl-4"}.dig(index.to_s) %>
           <div id="<%= resource %>_search_results" class="<%= padding %>" data-spotlight-search-target="<%= resource %>SearchResults"></div>
         <% end %>
       </div>
