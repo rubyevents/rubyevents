@@ -7,8 +7,8 @@ class Sessions::OmniauthController < ApplicationController
     # This needs to be refactored to be more robust when we have more states
     if state.present?
       key, value = state.split(":")
-      connect_id = key == "connect_id" ? value : nil
-      connect_to = key == "connect_to" ? value : nil
+      connect_id = (key == "connect_id") ? value : nil
+      connect_to = (key == "connect_to") ? value : nil
     end
 
     connected_account = ConnectedAccount.find_or_initialize_by(provider: omniauth.provider, uid: omniauth.uid)
