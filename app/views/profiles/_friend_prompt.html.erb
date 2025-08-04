@@ -3,7 +3,7 @@
   <div class="flex items-center justify-center w-20 h-20 bg-success/10 rounded-full">
     <%= heroicon :user_group, variant: :outline, class: "w-10 h-10 text-success" %>
   </div>
-  
+
   <!-- Heading -->
   <div class="space-y-2">
     <h2 class="text-2xl font-bold text-base-content">
@@ -13,7 +13,7 @@
       Connect with this Ruby community member to expand your network and discover new opportunities together.
     </p>
   </div>
-  
+
   <!-- Features list -->
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md text-sm">
     <div class="flex items-center space-x-2 text-base-content/80">
@@ -33,21 +33,21 @@
       <span>Collaborate on projects</span>
     </div>
   </div>
-  
+
   <!-- CTA Button -->
   <div class="pt-4">
     <% if Current.user.present? %>
       <%# TODO: Add connection button %>
-      <%= ui_button url: "#", 
-                    kind: :primary, 
+      <%= ui_button url: "#",
+                    kind: :primary,
                     size: :lg,
                     class: "px-8 shadow-lg" do %>
         <%= heroicon :plus, variant: :outline, class: "w-5 h-5 mr-2" %>
         Connect
       <% end %>
     <% else %>
-      <%= ui_button url: sign_in_path(connect_to: params[:id]), 
-                    kind: :primary, 
+      <%= ui_button url: sign_in_path(connect_to: params[:id]),
+                    kind: :primary,
                     size: :lg,
                     class: "px-8 shadow-lg",
                     data: {turbo_frame: "modal"} do %>
@@ -56,7 +56,7 @@
       <% end %>
     <% end %>
   </div>
-  
+
   <!-- Network indicator -->
   <div class="text-xs text-base-content/50 flex items-center space-x-1">
     <%= heroicon :globe_alt, variant: :outline, class: "w-4 h-4" %>

@@ -3,7 +3,7 @@
   <div class="flex items-center justify-center w-20 h-20 bg-neutral/10 rounded-full">
     <%= heroicon :magnifying_glass, variant: :outline, class: "w-10 h-10 text-neutral" %>
   </div>
-  
+
   <!-- Heading -->
   <div class="space-y-2">
     <h2 class="text-2xl font-bold text-base-content">
@@ -13,7 +13,7 @@
       This page doesn't have an associated profile yet. But don't worry - there's still plenty to explore in the Ruby community!
     </p>
   </div>
-  
+
   <!-- Suggestions list -->
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md text-sm">
     <div class="flex items-center space-x-2 text-base-content/80">
@@ -33,26 +33,26 @@
       <span>Explore topics</span>
     </div>
   </div>
-  
+
   <!-- CTA Buttons -->
   <div class="flex flex-col sm:flex-row gap-3 pt-4">
-    <%= ui_button url: talks_path, 
-                  kind: :primary, 
+    <%= ui_button url: talks_path,
+                  kind: :primary,
                   size: :lg,
                   class: "px-6 shadow-lg" do %>
       <%= heroicon :play, variant: :outline, class: "w-5 h-5 mr-2" %>
       Browse Talks
     <% end %>
-    
-    <%= ui_button url: events_path, 
-                  kind: :secondary, 
+ 
+    <%= ui_button url: events_path,
+                  kind: :secondary,
                   size: :lg,
                   class: "px-6" do %>
       <%= heroicon :calendar, variant: :outline, class: "w-5 h-5 mr-2" %>
       View Events
     <% end %>
   </div>
-  
+
   <!-- Community indicator -->
   <div class="text-xs text-base-content/50 flex items-center space-x-1">
     <%= heroicon :heart, variant: :outline, class: "w-4 h-4" %>
