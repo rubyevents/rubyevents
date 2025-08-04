@@ -36,18 +36,12 @@
 
   <!-- CTA Buttons -->
   <div class="flex flex-col sm:flex-row gap-3 pt-4">
-    <%= ui_button url: talks_path,
-                  kind: :primary,
-                  size: :lg,
-                  class: "px-6 shadow-lg" do %>
+    <%= ui_button url: talks_path, kind: :primary, size: :lg, class: "px-6 shadow-lg" do %>
       <%= heroicon :play, variant: :outline, class: "w-5 h-5 mr-2" %>
       Browse Talks
     <% end %>
- 
-    <%= ui_button url: events_path,
-                  kind: :secondary,
-                  size: :lg,
-                  class: "px-6" do %>
+
+    <%= ui_button url: events_path, kind: :secondary, size: :lg, class: "px-6" do %>
       <%= heroicon :calendar, variant: :outline, class: "w-5 h-5 mr-2" %>
       View Events
     <% end %>

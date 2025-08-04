@@ -36,11 +36,7 @@
 
   <!-- CTA Button -->
   <div class="pt-4">
-    <%= ui_button url: sign_in_path(connect_id: params[:id]),
-                  kind: :primary,
-                  size: :lg,
-                  class: "px-8 shadow-lg",
-                  data: {turbo_frame: "modal"} do %>
+    <%= ui_button url: sign_in_path(connect_id: params[:id]), kind: :primary, size: :lg, class: "px-8 shadow-lg", data: {turbo_frame: "modal"} do %>
       <%= heroicon :arrow_right, variant: :outline, class: "w-5 h-5 mr-2" %>
       Claim Your Profile
     <% end %>
