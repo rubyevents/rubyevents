@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_18_000304) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_04_193826) do
   create_table "ahoy_events", force: :cascade do |t|
     t.integer "visit_id"
     t.integer "user_id"
@@ -291,6 +291,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_18_000304) do
     t.datetime "updated_at", null: false
     t.string "name"
     t.string "github_handle"
+    t.string "connect_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["github_handle"], name: "index_users_on_github_handle", unique: true, where: "github_handle IS NOT NULL"
   end

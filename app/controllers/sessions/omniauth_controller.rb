@@ -3,12 +3,21 @@ class Sessions::OmniauthController < ApplicationController
   skip_before_action :authenticate_user!
 
   def create
+    state = query_params["state"]
+    # This needs to be refactored to be more robust when we have more states
+    if state.present?
+      key, value = state.split(":")
+      connect_id = key == "connect_id" ? value : nil
+      connect_to = key == "connect_to" ? value : nil
+    end
+
     connected_account = ConnectedAccount.find_or_initialize_by(provider: omniauth.provider, uid: omniauth.uid)
 
     if connected_account.new_record?
       @user = User.find_or_create_by(email: github_email) do |user|
         user.password = SecureRandom.base58
         user.verified = true
+        user.connect_id = connect_id if connect_id.present?
         user.github_handle = omniauth.info&.try(:nickname)
       end
       connected_account.user = @user
@@ -17,6 +26,11 @@ class Sessions::OmniauthController < ApplicationController
       connected_account.save!
     else
       @user = connected_account.user
+    end
+
+    if connect_to.present?
+      # TODO: Create connection
+      # new_friend = User.find_by(connect_id: connect_to)
     end
 
     if @user.persisted?

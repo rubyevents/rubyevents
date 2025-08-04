@@ -1,0 +1,9 @@
+<% if @found_user %>
+  <%= render "friend_prompt" %>
+<% else %>
+  <% if Current.user.present? %>
+    Nothing to see here 🙌
+  <% else %>
+    <%= render "claim_profile" %>
+  <% end %>
+<% end %>

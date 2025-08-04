@@ -25,6 +25,11 @@ Rails.application.routes.draw do
     mount Avo::Engine, at: Avo.configuration.root_path
   end
 
+  scope :profiles do
+    get "connect", to: redirect("/")
+    get "connect/:id", to: "profiles#connect"
+  end
+
   resources :topics, param: :slug, only: [:index, :show]
   resources :cfp, only: :index
   resources :sessions, only: [:index, :show, :destroy]

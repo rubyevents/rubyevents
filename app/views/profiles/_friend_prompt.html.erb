@@ -1,0 +1,9 @@
+Awesome. You discovered a friend.
+Connect to get started.
+<br>
+<% if Current.user.present? %>
+  <%# TODO: Add connection button %>
+  <%= link_to "Connect", "#", class: "btn btn-primary" %>
+<% else %>
+  <%= link_to "Sign in", sign_in_path(connect_to: params[:id]), class: "btn btn-primary", data: {turbo_frame: "modal"} %>
+<% end %>

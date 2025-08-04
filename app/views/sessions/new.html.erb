@@ -7,7 +7,7 @@
     </div>
     <div class="mt-8 space-y-6">
       <div>
-        <%= ui_button url: "/auth/github?redirect_to=#{redirect_to_path}", kind: :neutral, class: "w-full", method: :post, data: {turbo: false} do %>
+        <%= ui_button url: "/auth/github?redirect_to=#{redirect_to_path}&state=#{@state}", kind: :neutral, class: "w-full", method: :post, data: {turbo: false} do %>
           <%= icon "github", size: :sm, class: "mr-2" %>
           Sign in with GitHub
         <% end %>
@@ -15,7 +15,7 @@
 
       <% if Rails.env.development? %>
         <div>
-          <%= button_to "/auth/developer", method: :post, data: {turbo: false}, class: "btn w-full btn-accent" do %>
+          <%= button_to "/auth/developer?state=#{@state}", method: :post, data: {turbo: false}, class: "btn w-full btn-accent" do %>
             Sign in with OmniAuth (Development)
           <% end %>
         </div>
