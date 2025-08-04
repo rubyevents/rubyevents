@@ -1,9 +1,9 @@
 <% if @found_user %>
-  <%= render "friend_prompt" %>
+  <%= render partial: "friend_prompt" %>
 <% else %>
   <% if Current.user.present? %>
-    <%= render "no_profile_found" %>
+    <%= render partial: "no_profile_found" %>
   <% else %>
-    <%= render "claim_profile" %>
+    <%= render partial: "claim_profile" %>
   <% end %>
 <% end %>
