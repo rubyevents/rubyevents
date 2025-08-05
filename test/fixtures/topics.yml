@@ -5,7 +5,7 @@
 #
 #  id           :integer          not null, primary key
 #  description  :text
-#  name         :string           indexed
+#  name         :string           uniquely indexed
 #  published    :boolean          default(FALSE)
 #  slug         :string           default(""), not null, indexed
 #  status       :string           default("pending"), not null, indexed

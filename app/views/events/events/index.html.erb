@@ -11,9 +11,9 @@
             <div class="w-full sm:w-[10rem] mt-2 flex-shrink-0">
               <time datetime="<%= talk.date.iso8601 %>" class="text-black font-medium text-lg">
                 <% if talk.date.year == Date.today.year %>
-                  <%= talk.date.strftime("%b %d") %>
+                  <%= l(talk.date, format: :month_day, default: "unknown") %>
                 <% else %>
-                  <%= talk.date.strftime("%b %d, %Y") %>
+                  <%= l(talk.date, format: :medium, default: "unknown") %>
                 <% end %>
               </time>
               <div class="text-gray-400 font-normal">
@@ -42,7 +42,7 @@
                   </div>
 
                   <div>
-                    <%= talk.date.strftime("%B %d, %Y") %>
+                    <%= l(talk.date, default: "unknown") %>
                   </div>
 
                   <div class="mt-3">

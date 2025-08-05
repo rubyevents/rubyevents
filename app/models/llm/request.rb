@@ -5,7 +5,7 @@
 #  id            :integer          not null, primary key
 #  duration      :float            not null
 #  raw_response  :json             not null
-#  request_hash  :string           not null, indexed
+#  request_hash  :string           not null, uniquely indexed
 #  resource_type :string           not null, indexed => [resource_id]
 #  success       :boolean          default(FALSE), not null
 #  task_name     :string           default(""), not null, indexed

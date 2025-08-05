@@ -18,10 +18,4 @@
   <% if event.schedule.exist? %>
     <%= active_link_to "Schedule", event_schedules_path(event), class: "tab", active_class: "tab-active", role: "tab" %>
   <% end %>
-
-  <% if false %>
-    <a role="tab" class="tab">Organizers</a>
-    <a role="tab" class="tab">Photos</a>
-    <a role="tab" class="tab">Sponsors</a>
-  <% end %>
 </div>

@@ -7,8 +7,8 @@
 #  discarded_at :datetime
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  speaker_id   :integer          not null, indexed, indexed => [talk_id]
-#  talk_id      :integer          not null, indexed => [speaker_id], indexed
+#  speaker_id   :integer          not null, indexed, uniquely indexed => [talk_id]
+#  talk_id      :integer          not null, uniquely indexed => [speaker_id], indexed
 #
 # Indexes
 #

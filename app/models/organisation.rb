@@ -36,6 +36,7 @@ class Organisation < ApplicationRecord
   # associations
   has_many :events, dependent: :destroy, inverse_of: :organisation, foreign_key: :organisation_id, strict_loading: true
   has_many :talks, through: :events
+  has_object :static_metadata
 
   # validations
   validates :name, presence: true

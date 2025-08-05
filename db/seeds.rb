@@ -42,7 +42,10 @@ MeiliSearch::Rails.deactivate! do
         website: event_data["website"],
         start_date: event.static_metadata.start_date,
         end_date: event.static_metadata.end_date,
-        kind: event.static_metadata.kind
+        kind: event.static_metadata.kind,
+        cfp_close_date: event_data["cfp_close_date"],
+        cfp_link: event_data["cfp_link"],
+        cfp_open_date: event_data["cfp_open_date"]
       )
 
       puts event.slug unless Rails.env.test?

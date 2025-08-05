@@ -4,9 +4,6 @@
 
 import { application } from "./application"
 
-import HwComboboxController from "@josefarias/hotwire_combobox"
-application.register("hw-combobox", HwComboboxController)
-
 import AutoClickController from "./auto-click_controller"
 application.register("auto-click", AutoClickController)
 
@@ -16,11 +13,17 @@ application.register("auto-submit", AutoSubmitController)
 import Bridge__ButtonController from "./bridge/button_controller"
 application.register("bridge--button", Bridge__ButtonController)
 
+import CopyToClipboardController from "./copy_to_clipboard_controller"
+application.register("copy-to-clipboard", CopyToClipboardController)
+
 import DropdownController from "./dropdown_controller"
 application.register("dropdown", DropdownController)
 
 import EventController from "./event_controller"
 application.register("event", EventController)
+
+import EventListController from "./event_list_controller"
+application.register("event-list", EventListController)
 
 import LazyLoadingController from "./lazy_loading_controller"
 application.register("lazy-loading", LazyLoadingController)
@@ -33,6 +36,9 @@ application.register("preserve-scroll", PreserveScrollController)
 
 import PronounsSelectController from "./pronouns_select_controller"
 application.register("pronouns-select", PronounsSelectController)
+
+import ScrollController from "./scroll_controller"
+application.register("scroll", ScrollController)
 
 import ScrollIntoViewController from "./scroll_into_view_controller"
 application.register("scroll-into-view", ScrollIntoViewController)
@@ -63,15 +69,3 @@ application.register("transition", TransitionController)
 
 import VideoPlayerController from "./video_player_controller"
 application.register("video-player", VideoPlayerController)
-
-import ScrollController from "./scroll_controller"
-application.register("scroll", ScrollController)
-
-import ButtonController from "./bridge/button_controller"
-application.register("bridge--button", ButtonController)
-
-import EventListController from "./event_list_controller"
-application.register("event-list", EventListController)
-
-import CopyToClipboardController from "./copy_to_clipboard_controller.js"
-application.register("copy-to-clipboard", CopyToClipboardController)
