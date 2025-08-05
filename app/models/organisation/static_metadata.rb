@@ -1,5 +1,3 @@
-# -*- SkipSchemaAnnotations
-
 class Organisation::StaticMetadata < ActiveRecord::AssociatedObject
   def ended?
     static_repository.try(:ended) || false
