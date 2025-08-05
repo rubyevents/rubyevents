@@ -1,5 +1,3 @@
-# -*- SkipSchemaAnnotations
-
 class Talk::Thumbnails < ActiveRecord::AssociatedObject
   def path
     directory / "#{talk.video_id}.webp"

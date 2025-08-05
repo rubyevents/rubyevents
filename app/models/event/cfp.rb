@@ -1,5 +1,3 @@
-# -*- SkipSchemaAnnotations
-
 class Event::CFP < ActiveRecord::AssociatedObject
   def open?
     return false if closed?
