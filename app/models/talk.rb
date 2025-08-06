@@ -407,11 +407,7 @@ class Talk < ApplicationRecord
   end
 
   def formatted_date
-    date.strftime("%B %d, %Y")
-  rescue => _e
-    # TODO: notify to error tracking
-
-    "Unknown"
+    I18n.l(date, default: "unknown")
   end
 
   def formatted_duration

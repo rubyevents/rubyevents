@@ -4,6 +4,9 @@
 # Table name: events
 #
 #  id              :integer          not null, primary key
+#  cfp_close_date  :date
+#  cfp_link        :string
+#  cfp_open_date   :date
 #  city            :string
 #  country_code    :string
 #  date            :date
@@ -55,6 +58,7 @@ class Event < ApplicationRecord
   has_object :schedule
   has_object :static_metadata
   has_object :sponsors_file
+  has_object :cfp
 
   def talks_in_running_order(child_talks: true)
     talks.in_order_of(:video_id, video_ids_in_running_order(child_talks: child_talks))
@@ -148,22 +152,19 @@ class Event < ApplicationRecord
     when "month"
       start_date.strftime("%B %Y")
     when "day"
-      return start_date.strftime("%B %d, %Y") if start_date == end_date
+      return I18n.l(start_date, default: "unknown") if start_date == end_date
 
       if start_date.strftime("%Y-%m") == end_date.strftime("%Y-%m")
         return "#{start_date.strftime("%B %d")}-#{end_date.strftime("%d, %Y")}"
       end
 
       if start_date.strftime("%Y") == end_date.strftime("%Y")
-        return "#{start_date.strftime("%B %d")} - #{end_date.strftime("%B %d, %Y")}"
+        return "#{I18n.l(start_date, format: :month_day, default: "unknown")} - #{I18n.l(end_date, default: "unknown")}"
       end
 
-      "#{start_date.strftime("%b %d, %Y")} - #{end_date.strftime("%b %d, %Y")}"
+      "#{I18n.l(start_date, format: :medium,
+        default: "unknown")} - #{I18n.l(end_date, format: :medium, default: "unknown")}"
     end
-  rescue => _e
-    # TODO: notify to error tracking
-
-    "Unknown"
   end
 
   def country_name
