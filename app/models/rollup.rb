@@ -3,10 +3,10 @@
 # Table name: rollups
 #
 #  id         :integer          not null, primary key
-#  dimensions :json             not null, indexed => [name, interval, time]
-#  interval   :string           not null, indexed => [name, time, dimensions]
-#  name       :string           not null, indexed => [interval, time, dimensions]
-#  time       :datetime         not null, indexed => [name, interval, dimensions]
+#  dimensions :json             not null, uniquely indexed => [name, interval, time]
+#  interval   :string           not null, uniquely indexed => [name, time, dimensions]
+#  name       :string           not null, uniquely indexed => [interval, time, dimensions]
+#  time       :datetime         not null, uniquely indexed => [name, interval, dimensions]
 #  value      :float
 #
 # Indexes
