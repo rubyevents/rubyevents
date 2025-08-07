@@ -1,6 +1,16 @@
+<%# comment to invalidate cache #1 %>
 <%= link_to speaker_path(speaker), id: dom_id(speaker), class: "flex justify-between items-center" do %>
   <div class="flex items-center gap-3">
-    <span><%= sanitize speaker.name_with_snippet %></span>
+    <%= image_tag speaker.avatar_url,
+          class: "rounded-full size-8",
+          alt: "#{speaker.name} Avatar",
+          loading: :lazy,
+          style: "view-transition-name: #{dom_id(speaker, :avatar)}",
+          onerror: "this.style.display='none'; this.nextElementSibling.style.display='flex';" %>
+    <div class="rounded-full size-8 bg-gray-100 items-center justify-center hidden">
+      <span class="text-xs font-bold text-gray-600"><%= speaker.name.first %></span>
+    </div>
+    <span style="<%= "view-transition-name: #{dom_id(speaker, :name)}" %>"><%= sanitize speaker.name_with_snippet %></span>
   </div>
 
   <%= ui_badge(speaker.talks_count, kind: :secondary, outline: true, size: :lg, class: "min-w-10") %>

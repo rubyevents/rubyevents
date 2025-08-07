@@ -4,13 +4,14 @@
           class: "rounded-full border border-[#D9DFE3] size-24 md:size-36",
           height: 200,
           width: 200,
+          style: "view-transition-name: #{dom_id(speaker, :avatar)}",
           alt: "GitHub picture profile of #{speaker.github}",
           loading: :lazy %>
   </div>
 
   <div class="flex-col flex gap-2 title justify-center items-center lg:items-start">
     <div class="flex flex-col lg:flex-row items-center justify-center lg:justify-start text-black font-bold gap-2 flex-nowrap">
-      <h1 class="flex gap-2 items-center" style="view-transition-name: title"><%= speaker.name %>
+      <h1 class="flex gap-2 items-center" style="<%= "view-transition-name: #{dom_id(speaker, :name)}" %>"><%= speaker.name %>
         <% if speaker.pronouns.present? && ["dont_specify", "not_specified"].exclude?(speaker.pronouns_type) %>
           <span class="text-sm content-center text-[#737373]">(<%= speaker.pronouns %>)</span>
         <% end %>
