@@ -154,7 +154,13 @@ class Speaker < ApplicationRecord
   end
 
   def avatar_url(...)
-    bsky_avatar_url(...) || github_avatar_url(...) || fallback_avatar_url(...)
+    local_avatar_url || bsky_avatar_url(...) || github_avatar_url(...) || fallback_avatar_url(...)
+  end
+
+  def local_avatar_url
+    return nil if github.blank?
+
+    Rails.application.assets.resolver.resolve("picture_profile/#{github.downcase}.webp").presence
   end
 
   def avatar_rank
