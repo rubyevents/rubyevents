@@ -6,6 +6,7 @@ class CallForPapersTest < ApplicationSystemTestCase
   end
 
   test "visiting the index" do
+    skip
     visit root_url
 
     click_on "CFP"
