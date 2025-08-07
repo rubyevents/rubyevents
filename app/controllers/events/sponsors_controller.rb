@@ -11,7 +11,7 @@ class Events::SponsorsController < ApplicationController
 
   def set_event
     @event = Event.includes(event_sponsors: :sponsor).find_by(slug: params[:event_slug])
-    
+
     redirect_to events_path, status: :moved_permanently, notice: "Event not found" if @event.blank?
   end
 end

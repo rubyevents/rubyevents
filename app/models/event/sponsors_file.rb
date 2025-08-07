@@ -15,21 +15,18 @@ class Event::SponsorsFile < ActiveRecord::AssociatedObject
   end
 
   def tier_names
-    # Returns an array of all tier names from the sponsors.yml file
-    data = file
-    tiers = data[:tiers] || data["tiers"] || []
+    tiers = file[:tiers] || file["tiers"] || []
+
     tiers.map { |tier| tier[:name] || tier["name"] }
   end
 
   def sponsors
-    # Returns a flat array of all sponsors from all tiers, regardless of level
-    data = file
-    tiers = data[:tiers] || data["tiers"] || []
+    tiers = file[:tiers] || file["tiers"] || []
+
     tiers.flat_map { |tier| tier[:sponsors] || tier["sponsors"] || [] }
   end
 
   def download
-    DownloadSponsors.new.download_sponsors(event.website, save_file: event.data_folder.join(FILE_NAME) )
+    DownloadSponsors.new.download_sponsors(event.website, save_file: event.data_folder.join(FILE_NAME))
   end
-
 end

@@ -82,7 +82,7 @@ class Sponsor < ApplicationRecord
       sponsor_image_or_default_for("logo.webp")
     end
   end
-  
+
   def has_logo_image?
     sponsor_image_for("logo.webp").present? || logo_url.present?
   end

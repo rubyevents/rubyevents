@@ -92,7 +92,6 @@ MeiliSearch::Rails.deactivate! do
         event.sponsors_file.file.each do |sponsors|
           sponsors["tiers"].each do |tier|
             tier["sponsors"].each do |sponsor|
-
               s = Sponsor.find_by(name: sponsor["name"]) || Sponsor.find_by(slug: sponsor["slug"].downcase)
 
               s ||= Sponsor.find_or_initialize_by(name: sponsor["name"])
@@ -100,7 +99,7 @@ MeiliSearch::Rails.deactivate! do
               s.update(
                 website: sponsor["website"],
                 logo_url: sponsor["logo_url"],
-                description: sponsor["description"],
+                description: sponsor["description"]
                 # s.level = sponsor["level"]
                 # s.event = event
                 # s.organisation = organisation
