@@ -113,7 +113,6 @@ MeiliSearch::Rails.deactivate! do
 
               s.update(
                 website: sponsor["website"],
-                logo_url: sponsor["logo_url"],
                 description: sponsor["description"],
                 domain: domain
                 # s.level = sponsor["level"]
@@ -122,6 +121,7 @@ MeiliSearch::Rails.deactivate! do
               )
 
               s.add_logo_url(sponsor["logo_url"]) if sponsor["logo_url"].present?
+              s.logo_url = sponsor["logo_url"] if sponsor["logo_url"].present? && s.logo_url.blank?
 
               if !s.persisted?
                 s = Sponsor.find_by(slug: s.slug) || Sponsor.find_by(name: s.name)
