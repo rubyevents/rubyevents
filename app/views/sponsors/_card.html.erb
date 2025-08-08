@@ -7,16 +7,18 @@
       <% image_size_class = grid_layout ? "w-24 h-24 sm:w-32 sm:h-32" : "w-32 h-32 sm:w-40 sm:h-40" %>
 
       <% if sponsor.has_logo_image? %>
-        <%= image_tag(
-              sponsor.logo_image_path,
-              alt: "#{sponsor.name} logo",
-              class: "#{image_size_class} object-contain",
-              loading: "lazy",
-              onerror: "this.style.display='none'; this.nextElementSibling.style.display='flex';"
-            ) %>
+        <div class="<%= sponsor.logo_background_class %> rounded-lg p-2 border border-gray-200">
+          <%= image_tag(
+                sponsor.logo_image_path,
+                alt: "#{sponsor.name} logo",
+                class: "#{image_size_class} object-contain",
+                loading: "lazy",
+                onerror: "this.style.display='none'; this.nextElementSibling.style.display='flex';"
+              ) %>
 
-        <div class="<%= image_size_class %> items-center justify-center" style="display: none;">
-          <span class="text-lg font-semibold text-gray-700 text-center line-clamp-3"><%= sponsor.name %></span>
+          <div class="<%= image_size_class %> items-center justify-center" style="display: none;">
+            <span class="text-lg font-semibold text-gray-700 text-center line-clamp-3"><%= sponsor.name %></span>
+          </div>
         </div>
       <% else %>
         <div class="<%= image_size_class %> flex items-center justify-center">

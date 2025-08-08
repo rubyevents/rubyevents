@@ -92,22 +92,42 @@ MeiliSearch::Rails.deactivate! do
         event.sponsors_file.file.each do |sponsors|
           sponsors["tiers"].each do |tier|
             tier["sponsors"].each do |sponsor|
-              s = Sponsor.find_by(name: sponsor["name"]) || Sponsor.find_by(slug: sponsor["slug"].downcase)
+              s = nil
+              domain = nil
 
+              if sponsor["website"].present?
+                begin
+                  uri = URI.parse(sponsor["website"])
+                  host = uri.host || sponsor["website"]
+                  parts = host.downcase.split(".")
+                  parts.shift if parts.first == "www"
+                  domain = parts.last(2).join(".") if parts.length >= 2
+                  s = Sponsor.find_by(domain: domain) if domain.present?
+                rescue URI::InvalidURIError
+                  # If parsing fails, continue with other matching methods
+                end
+              end
+
+              s ||= Sponsor.find_by(name: sponsor["name"]) || Sponsor.find_by(slug: sponsor["slug"]&.downcase)
               s ||= Sponsor.find_or_initialize_by(name: sponsor["name"])
 
               s.update(
                 website: sponsor["website"],
                 logo_url: sponsor["logo_url"],
-                description: sponsor["description"]
+                description: sponsor["description"],
+                domain: domain
                 # s.level = sponsor["level"]
                 # s.event = event
                 # s.organisation = organisation
               )
 
+              s.add_logo_url(sponsor["logo_url"]) if sponsor["logo_url"].present?
+
               if !s.persisted?
                 s = Sponsor.find_by(slug: s.slug) || Sponsor.find_by(name: s.name)
               end
+
+              s.save!
 
               event.event_sponsors.find_or_create_by!(sponsor: s, event: event, tier: tier["name"])
             end

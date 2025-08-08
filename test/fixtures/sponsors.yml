@@ -4,15 +4,18 @@
 #
 # Table name: sponsors
 #
-#  id            :integer          not null, primary key
-#  description   :text
-#  logo_url      :string
-#  main_location :string
-#  name          :string
-#  slug          :string           indexed
-#  website       :string
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
+#  id              :integer          not null, primary key
+#  description     :text
+#  domain          :string
+#  logo_background :string           default("white")
+#  logo_url        :string
+#  logo_urls       :json
+#  main_location   :string
+#  name            :string
+#  slug            :string           indexed
+#  website         :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #
 # Indexes
 #

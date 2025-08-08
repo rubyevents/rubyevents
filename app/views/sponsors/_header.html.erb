@@ -19,15 +19,16 @@
   <div class="block lg:flex gap-8 align-center justify-between">
     <div class="flex flex-col lg:flex-row gap-8 items-center lg:justify-right text-center lg:text-left mb-6 lg:mb-0">
       <% if sponsor.has_logo_image? %>
-        <%= image_tag sponsor.logo_image_path,
-              class: "rounded-lg border border-[#D9DFE3] size-24 md:size-36 object-contain p-2",
-              alt: "#{sponsor.name} Logo",
-              style: "view-transition-name: avatar",
-              loading: :lazy,
-              onerror: "this.style.display='none'; this.nextElementSibling.style.display='flex';" %>
-        <div class="rounded-lg border border-[#D9DFE3] size-24 md:size-36 bg-gray-100 items-center justify-center hidden"
+        <div class="<%= sponsor.logo_background_class %> rounded-lg border <%= sponsor.logo_border_class %> size-24 md:size-36 p-2"
              style="view-transition-name: avatar">
-          <span class="text-4xl md:text-6xl font-bold text-gray-600"><%= sponsor.name.first %></span>
+          <%= image_tag sponsor.logo_image_path,
+                class: "w-full h-full object-contain",
+                alt: "#{sponsor.name} Logo",
+                loading: :lazy,
+                onerror: "this.style.display='none'; this.nextElementSibling.style.display='flex';" %>
+          <div class="w-full h-full bg-gray-100 items-center justify-center hidden">
+            <span class="text-4xl md:text-6xl font-bold text-gray-600"><%= sponsor.name.first %></span>
+          </div>
         </div>
       <% elsif sponsor.sponsor_image_for("avatar.webp") %>
         <%= image_tag image_path(sponsor.avatar_image_path),
@@ -55,6 +56,9 @@
 
     <div class="flex flex-col gap-3 place-items-center">
       <%= ui_button "Back to Sponsors", url: sponsors_path, kind: :secondary, size: :sm, class: "w-full" %>
+      <% if Current.user&.admin? && sponsor.logo_urls.present? %>
+        <%= ui_button "Manage Logos", url: sponsor_logos_path(sponsor), kind: :primary, size: :sm, class: "w-full" %>
+      <% end %>
     </div>
   </div>
 

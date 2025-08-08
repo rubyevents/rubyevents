@@ -2,15 +2,18 @@
 #
 # Table name: sponsors
 #
-#  id            :integer          not null, primary key
-#  description   :text
-#  logo_url      :string
-#  main_location :string
-#  name          :string
-#  slug          :string           indexed
-#  website       :string
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
+#  id              :integer          not null, primary key
+#  description     :text
+#  domain          :string
+#  logo_background :string           default("white")
+#  logo_url        :string
+#  logo_urls       :json
+#  main_location   :string
+#  name            :string
+#  slug            :string           indexed
+#  website         :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #
 # Indexes
 #
@@ -25,6 +28,8 @@ class Sponsor < ApplicationRecord
   has_many :events, through: :event_sponsors
 
   validates :name, presence: true, uniqueness: true
+
+  before_save :ensure_unique_logo_urls
 
   normalizes :website, with: ->(website) {
     return "" if website.blank?
@@ -85,5 +90,42 @@ class Sponsor < ApplicationRecord
 
   def has_logo_image?
     sponsor_image_for("logo.webp").present? || logo_url.present?
+  end
+
+  def logo_background_class
+    case logo_background
+    when "black"
+      "bg-black"
+    when "transparent"
+      "bg-transparent"
+    else
+      "bg-white"
+    end
+  end
+
+  def logo_border_class
+    case logo_background
+    when "black"
+      "border-gray-600"
+    when "transparent"
+      "border-gray-300"
+    else
+      "border-gray-200"
+    end
+  end
+
+  def add_logo_url(url)
+    return if url.blank?
+
+    self.logo_urls ||= []
+    self.logo_urls << url unless logo_urls.include?(url)
+
+    logo_urls.uniq!
+  end
+
+  private
+
+  def ensure_unique_logo_urls
+    self.logo_urls = (logo_urls || []).uniq.reject(&:blank?)
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_19_231642) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_08_095915) do
   create_table "ahoy_events", force: :cascade do |t|
     t.integer "visit_id"
     t.integer "user_id"
@@ -96,10 +96,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_19_231642) do
     t.date "start_date"
     t.date "end_date"
     t.string "kind", default: "event", null: false
-    t.string "date_precision", default: "day", null: false
     t.string "cfp_link"
     t.date "cfp_open_date"
     t.date "cfp_close_date"
+    t.string "date_precision", default: "day", null: false
     t.index ["canonical_id"], name: "index_events_on_canonical_id"
     t.index ["kind"], name: "index_events_on_kind"
     t.index ["name"], name: "index_events_on_name"
@@ -209,6 +209,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_19_231642) do
     t.string "slug"
     t.string "main_location"
     t.string "logo_url"
+    t.json "logo_urls", default: []
+    t.string "domain"
+    t.string "logo_background", default: "white"
     t.index ["slug"], name: "index_sponsors_on_slug"
   end
 

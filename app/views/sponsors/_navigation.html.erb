@@ -1,6 +1,6 @@
 <div role="tablist" class="mb-12 tabs tabs-bordered">
   <% if sponsor.events.any? %>
-    <a role="tab" class="tab tab-active">Supported Events</a>
+    <%= link_to "Supported Events", sponsor_path(sponsor), role: "tab", class: "tab tab-active" %>
   <% end %>
 
   <% if false %>
