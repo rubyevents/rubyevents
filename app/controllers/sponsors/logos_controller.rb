@@ -1,5 +1,4 @@
 class Sponsors::LogosController < ApplicationController
-  skip_before_action :authenticate_user!
   before_action :set_sponsor
   before_action :ensure_admin!
 
