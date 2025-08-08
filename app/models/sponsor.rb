@@ -22,7 +22,7 @@
 class Sponsor < ApplicationRecord
   include Sluggable
   include UrlNormalizable
-  
+
   slug_from :name
 
   # associations

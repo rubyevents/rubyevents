@@ -50,7 +50,7 @@ class SponsorTest < ActiveSupport::TestCase
     assert_nil sponsor.website
   end
 
-   test "should strip query params from website" do
+  test "should strip query params from website" do
     sponsor = Sponsor.create!(name: "Query Corp", website: "https://example.com?utm_source=newsletter&ref=123")
     assert_equal "https://example.com", sponsor.website
   end
