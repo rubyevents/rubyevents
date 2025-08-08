@@ -1,3 +1,5 @@
+require "public_suffix"
+
 speakers = YAML.load_file("#{Rails.root}/data/speakers.yml")
 organisations = YAML.load_file("#{Rails.root}/data/organisations.yml")
 videos_to_ignore = YAML.load_file("#{Rails.root}/data/videos_to_ignore.yml")
@@ -99,11 +101,11 @@ MeiliSearch::Rails.deactivate! do
                 begin
                   uri = URI.parse(sponsor["website"])
                   host = uri.host || sponsor["website"]
-                  parts = host.downcase.split(".")
-                  parts.shift if parts.first == "www"
-                  domain = parts.last(2).join(".") if parts.length >= 2
+                  parsed = PublicSuffix.parse(host)
+                  domain = parsed.domain
+
                   s = Sponsor.find_by(domain: domain) if domain.present?
-                rescue URI::InvalidURIError
+                rescue PublicSuffix::Error, URI::InvalidURIError
                   # If parsing fails, continue with other matching methods
                 end
               end
