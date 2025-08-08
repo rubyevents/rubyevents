@@ -22,10 +22,10 @@
         </div>
         <div class="flex items-center gap-3">
           <span class="text-sm text-gray-600">Background:</span>
-          <%= form_with model: @sponsor, url: sponsor_logos_path(@sponsor), method: :patch, local: true, class: "inline-block", data: { turbo_action: "replace" } do |form| %>
+          <%= form_with model: @sponsor, url: sponsor_logos_path(@sponsor), method: :patch, local: true, class: "inline-block", data: {turbo_action: "replace"} do |form| %>
             <%= form.select :logo_background, [["White", "white"], ["Black", "black"], ["Transparent", "transparent"]],
-                { selected: @sponsor.logo_background || "white" },
-                { class: "select select-sm select-bordered", onchange: "this.form.submit();" } %>
+                  {selected: @sponsor.logo_background || "white"},
+                  {class: "select select-sm select-bordered", onchange: "this.form.submit();"} %>
           <% end %>
         </div>
       </div>
@@ -34,7 +34,7 @@
     <% if @sponsor.logo_urls.present? %>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="logos-grid">
         <% @sponsor.logo_urls.each do |logo_url| %>
-          <div class="logo-card bg-gray-50 rounded-lg shadow-md p-4 transition-colors duration-200 <%= 'ring-2 ring-blue-500' if @sponsor.logo_url == logo_url %>">
+          <div class="logo-card bg-gray-50 rounded-lg shadow-md p-4 transition-colors duration-200 <%= "ring-2 ring-blue-500" if @sponsor.logo_url == logo_url %>">
             <div class="flex justify-center mb-2 h-6">
               <% if @sponsor.logo_url == logo_url %>
                 <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
@@ -43,7 +43,7 @@
               <% end %>
             </div>
             <div class="mb-4">
-              <div class="logo-bg border-2 border-gray-200 rounded-lg p-4 transition-colors duration-200 <%= case @sponsor.logo_background when 'black' then 'bg-black' when 'transparent' then 'bg-transparent' else 'bg-white' end %>">
+              <div class="logo-bg border-2 border-gray-200 rounded-lg p-4 transition-colors duration-200 <%= case @sponsor.logo_background when "black" then "bg-black" when "transparent" then "bg-transparent" else "bg-white" end %>">
                 <img src="<%= logo_url %>" alt="<%= @sponsor.name %> logo" class="max-w-full h-32 object-contain mx-auto" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                 <div class="text-center text-gray-500 hidden">
                   <p>Image failed to load</p>
@@ -60,7 +60,7 @@
                 <button class="btn btn-sm btn-disabled" disabled>Selected</button>
               </div>
             <% else %>
-              <%= form_with model: @sponsor, url: sponsor_logos_path(@sponsor), method: :patch, local: true, class: "text-center", data: { turbo_action: "replace" } do |form| %>
+              <%= form_with model: @sponsor, url: sponsor_logos_path(@sponsor), method: :patch, local: true, class: "text-center", data: {turbo_action: "replace"} do |form| %>
                 <%= form.hidden_field :logo_url, value: logo_url %>
                 <%= form.submit "Select Logo", class: "btn btn-sm btn-outline btn-primary" %>
               <% end %>
