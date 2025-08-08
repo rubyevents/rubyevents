@@ -1,4 +1,3 @@
-# -*- SkipSchemaAnnotations
 class Speaker::Profiles < ActiveRecord::AssociatedObject
   performs(retries: 3) { limits_concurrency key: -> { it.id } }
 
