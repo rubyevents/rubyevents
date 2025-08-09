@@ -21,6 +21,8 @@
 #
 class Sponsor < ApplicationRecord
   include Sluggable
+  include UrlNormalizable
+
   slug_from :name
 
   # associations
@@ -31,18 +33,7 @@ class Sponsor < ApplicationRecord
 
   before_save :ensure_unique_logo_urls
 
-  normalizes :website, with: ->(website) {
-    return "" if website.blank?
-
-    # if it already starts with https://, return as is
-    return website if website.start_with?("https://")
-
-    # if it starts with http://, return as is
-    return website if website.start_with?("http://")
-
-    # otherwise, prepend https://
-    "https://#{website}"
-  }
+  normalize_url :website
 
   def sponsor_image_path
     ["sponsors", slug].join("/")

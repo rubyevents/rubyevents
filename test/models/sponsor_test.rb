@@ -49,4 +49,19 @@ class SponsorTest < ActiveSupport::TestCase
     # Rails normalizes will set the attribute but nil values remain nil if not explicitly converted
     assert_nil sponsor.website
   end
+
+  test "should strip query params from website" do
+    sponsor = Sponsor.create!(name: "Query Corp", website: "https://example.com?utm_source=newsletter&ref=123")
+    assert_equal "https://example.com", sponsor.website
+  end
+
+  test "should strip fragment from website" do
+    sponsor = Sponsor.create!(name: "Fragment Corp", website: "https://example.com/path#section")
+    assert_equal "https://example.com/path", sponsor.website
+  end
+
+  test "should prepend https and strip params if missing scheme" do
+    sponsor = Sponsor.create!(name: "Coerce Corp", website: "example.com/?utm_campaign=abc#top")
+    assert_equal "https://example.com/", sponsor.website
+  end
 end
