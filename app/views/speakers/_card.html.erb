@@ -1,4 +1,4 @@
-<%= link_to speaker_path(speaker), class: "w-48 sm:w-64 flex relative bg-white rounded-xl border h-full" do %>
+<%= link_to speaker_path(speaker), class: "w-48 sm:w-64 flex relative bg-white rounded-xl border h-full", data: {turbo_frame: "_top"} do %>
   <div class="card card-compact w-full pt-6">
     <figure class="flex justify-center">
       <%= image_tag speaker.avatar_url(size: 250),

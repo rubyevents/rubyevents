@@ -9,7 +9,7 @@ class EventsController < ApplicationController
   def index
     @events = Event.includes(:organisation, :keynote_speakers)
       .conference
-      .where(start_date: Date.today..)
+      .where(end_date: Date.today..)
       .order(start_date: :asc)
   end
 
@@ -18,10 +18,20 @@ class EventsController < ApplicationController
     set_meta_tags(@event)
 
     if @event.meetup?
-      redirect_to event_events_path(@event)
+      all_meetup_events = @event.talks.where(meta_talk: true).includes(:speakers, :parent_talk, child_talks: :speakers)
+      @upcoming_meetup_events = all_meetup_events.where("date >= ?", Date.today).order(date: :asc).limit(4)
+      @recent_meetup_events = all_meetup_events.where("date < ?", Date.today).order(date: :desc).limit(4)
+      @recent_talks = @event.talks.where(meta_talk: false).includes(:speakers, :parent_talk, child_talks: :speakers).order(date: :desc).to_a.sample(8)
+      @featured_speakers = @event.speakers.joins(:talks).distinct.to_a.sample(8)
     else
-      redirect_to event_talks_path(@event)
+      @keynotes = @event.talks.joins(:speakers).where(kind: "keynote").includes(:speakers, event: :organisation)
+      @recent_talks = @event.talks.watchable.includes(:speakers, event: :organisation).limit(8).shuffle
+      keynote_speakers = @event.speakers.joins(:talks).where(talks: {kind: "keynote"}).distinct
+      other_speakers = @event.speakers.joins(:talks).where.not(talks: {kind: "keynote"}).distinct.limit(8)
+      @featured_speakers = (keynote_speakers + other_speakers.first(8 - keynote_speakers.size)).uniq.shuffle
     end
+
+    @sponsors = @event.event_sponsors.includes(:sponsor).joins(:sponsor).shuffle
   end
 
   # GET /events/1/edit

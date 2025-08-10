@@ -84,6 +84,10 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
     Country.find(location.to_s.split(",").last&.strip)
   end
 
+  def last_edition?
+    static_repository&.last_edition || false
+  end
+
   private
 
   def static_repository

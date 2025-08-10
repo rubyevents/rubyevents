@@ -1,0 +1,82 @@
+<%= render partial: "events/header", locals: {event: @event} %>
+
+<%= turbo_frame_tag dom_id(@event), data: {turbo_action: "advance", turbo_frame: "_top"} do %>
+  <div class="container py-8">
+    <%= render partial: "events/navigation", locals: {event: @event} %>
+
+    <div class="flex flex-col gap-8 mt-8">
+      <% if @event.cfp_link.present? || @event.cfp_open_date.present? || @event.cfp_close_date.present? %>
+        <section class="bg-white rounded-lg border p-8">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="text-2xl">📝</div>
+            <h2 class="text-2xl font-bold text-gray-900">Call for Papers</h2>
+          </div>
+
+          <div class="grid gap-6 md:grid-cols-2">
+            <% if @event.cfp_open_date.present? %>
+              <div class="flex flex-col">
+                <h3 class="font-semibold text-gray-700 mb-2">CFP Opens</h3>
+                <div class="text-lg text-primary">
+                  <%= @event.cfp_open_date.strftime("%B %d, %Y") %>
+                </div>
+              </div>
+            <% end %>
+
+            <% if @event.cfp_close_date.present? %>
+              <div class="flex flex-col">
+                <h3 class="font-semibold text-gray-700 mb-2">CFP Closes</h3>
+                <div class="text-lg text-primary">
+                  <%= @event.cfp_close_date.strftime("%B %d, %Y") %>
+                </div>
+                <% if @event.cfp_close_date >= Date.today %>
+                  <div class="text-sm text-green-600 mt-1">
+                    <%= pluralize((@event.cfp_close_date - Date.today).to_i, "day") %> remaining
+                  </div>
+                <% else %>
+                  <div class="text-sm text-red-600 mt-1">CFP closed</div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+
+          <% if @event.cfp_link.present? %>
+            <div class="mt-8">
+              <% if @event.cfp.open? %>
+                <%= link_to "Submit Your Talk Proposal",
+                      @event.cfp_link,
+                      class: "inline-flex items-center px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-colors duration-200",
+                      target: "_blank",
+                      rel: "noopener" %>
+              <% else %>
+                <%= link_to "See CFP Details",
+                      @event.cfp_link,
+                      class: "inline-flex items-center px-6 py-3 bg-gray-600 text-white font-semibold rounded-lg hover:bg-gray-700 transition-colors duration-200",
+                      target: "_blank",
+                      rel: "noopener" %>
+              <% end %>
+            </div>
+          <% end %>
+        </section>
+      <% else %>
+        <div class="text-center py-12">
+          <div class="max-w-md mx-auto">
+            <div class="text-6xl mb-4">📝</div>
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">No CFP Information</h2>
+            <p class="text-gray-600 mb-6">
+              We don't have Call for Papers information for <%= @event.name %> yet.
+            </p>
+            <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-left">
+              <h3 class="font-semibold text-amber-800 mb-2">How to contribute:</h3>
+              <ul class="text-sm text-amber-700 space-y-1">
+                <li>• Check the event website for CFP details</li>
+                <li>• Look for CFP announcements on social media</li>
+                <li>• <a href="https://github.com/rubyevents/rubyevents/issues/new?title=<%= CGI.escape("#{@event.name} CFP Information") %>&body=<%= CGI.escape("<!-- CFP Details Here -->\n\nIssue opened from event page: #{event_url(@event)}") %>" class="underline hover:text-amber-900" target="_blank">Open an issue on GitHub</a> to report CFP details</li>
+                <li>• <a href="https://github.com/rubyevents/rubyevents/blob/main/docs/contributing.md" class="underline hover:text-amber-900" target="_blank">Submit CFP data via GitHub</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

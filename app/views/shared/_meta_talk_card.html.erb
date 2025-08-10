@@ -1,0 +1,78 @@
+<%= link_to meta_talk, class: "flex flex-col sm:flex-row gap-4 sm:gap-10 group w-full overflow-hidden", data: {turbo_frame: "_top"} do %>
+  <% unless local_assigns[:hide_date_sidebar] %>
+    <div class="w-full sm:w-[10rem] mt-2 flex-shrink-0">
+      <time datetime="<%= meta_talk.date.iso8601 %>" class="text-black font-medium text-lg">
+        <% if meta_talk.date.year == Date.today.year %>
+          <%= l(meta_talk.date, format: :month_day, default: "unknown") %>
+        <% else %>
+          <%= l(meta_talk.date, format: :medium, default: "unknown") %>
+        <% end %>
+      </time>
+      <div class="text-gray-400 font-normal">
+        <%= meta_talk.date.strftime("%A") %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="bg-white rounded p-5 w-full border border-gray-200 group-hover:border-gray-400 overflow-x-auto">
+    <div class="grid grid-cols-1 sm:grid-cols-[230px_1fr] gap-4 sm:gap-8">
+      <div class="flex aspect-video overflow-hidden w-full max-w-full">
+        <%= image_tag(
+              meta_talk.thumbnail_lg,
+              srcset: ["#{meta_talk.thumbnail_lg} 2x"],
+              id: dom_id(meta_talk),
+              height: 174,
+              width: 310,
+              loading: "lazy",
+              alt: "talk by #{meta_talk.speakers.map(&:name).join(", ")}: #{meta_talk.title}",
+              style: "view-transition-name: #{dom_id(meta_talk, :image)}",
+              class: "w-full object-cover rounded-xl #{meta_talk.thumbnail_classes}"
+            ) %>
+      </div>
+      <div class="min-w-0">
+        <div class="font-mono text-xl font-medium text-black">
+          <%= meta_talk.title %>
+        </div>
+
+        <div>
+          <%= l(meta_talk.date, default: "unknown") %>
+        </div>
+
+        <% unless local_assigns[:hide_speakers] %>
+          <div class="mt-3">
+            <%= "Speaker".pluralize(meta_talk.speakers.count) %>:
+            <% if local_assigns[:compact_speakers] %>
+              <div class="text-sm text-gray-600 mt-1 line-clamp-1">
+                <%= meta_talk.speakers.map(&:name).join(", ") %>
+              </div>
+            <% else %>
+              <div class="flex flex-row flex-wrap gap-4 mt-2">
+                <% meta_talk.speakers.each do |speaker| %>
+                  <div class="flex gap-1">
+                    <div class="avatar placeholder">
+                      <div class="w-6 h-6 rounded-full bg-primary text-neutral-content">
+                        <% if speaker.custom_avatar? %>
+                          <%= image_tag speaker.avatar_url(size: 48) %>
+                        <% else %>
+                          <span class="text-xs"><%= speaker.name.split(" ").map(&:first).join %></span>
+                        <% end %>
+                      </div>
+                    </div>
+
+                    <div>
+                      <%= speaker.name %>
+                    </div>
+                  </div>
+                <% end %>
+
+                <% if meta_talk.speakers.none? %>
+                  -
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

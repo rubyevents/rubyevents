@@ -9,17 +9,31 @@ class TalksController < ApplicationController
   before_action :set_talk, only: %i[show edit update]
   before_action :set_user_favorites, only: %i[index show]
 
+  ORDER_BY_OPTIONS = {
+    "date_desc" => "talks.date DESC",
+    "date_asc" => "talks.date ASC",
+    "created_at_desc" => "talks.created_at DESC",
+    "created_at_asc" => "talks.created_at ASC"
+  }.freeze
+
   # GET /talks
   def index
     @talks = Talk.includes(:speakers, event: :organisation, child_talks: :speakers)
     @talks = @talks.watchable unless params[:all].present?
-    @talks = @talks.ft_search(params[:s]).with_snippets.ranked if params[:s].present?
+    @talks = @talks.ft_search(params[:s]).with_snippets if params[:s].present?
     @talks = @talks.for_topic(params[:topic]) if params[:topic].present?
     @talks = @talks.for_event(params[:event]) if params[:event].present?
     @talks = @talks.for_speaker(params[:speaker]) if params[:speaker].present?
     @talks = @talks.where(kind: talk_kind) if talk_kind.present?
     @talks = @talks.where("created_at >= ?", created_after) if created_after
-    @talks = @talks.order(order_by) if order_by
+
+    # Apply ordering (handles search ranking vs custom ordering)
+    if order_by_key == "ranked"
+      @talks = @talks.ranked
+    elsif order_by_key.present?
+      @talks = @talks.order(ORDER_BY_OPTIONS[order_by_key])
+    end
+
     @pagy, @talks = pagy(@talks, **pagy_params)
   end
 
@@ -45,22 +59,22 @@ class TalksController < ApplicationController
 
   private
 
-  def order_by
-    # when searching, don't order by date as the search results are already ordered by relevance
-    # unless the user explicitly asks for it
-    return if params[:s].present? && params[:order_by].blank?
-    order_by_options = {
-      "date_desc" => "talks.date DESC",
-      "date_asc" => "talks.date ASC",
-      "created_at_desc" => "talks.created_at DESC",
-      "created_at_asc" => "talks.created_at ASC"
-    }
-
-    @order_by ||= begin
-      order = params[:order_by].presence_in(order_by_options.keys) || "date_desc"
-
-      order_by_options[order]
+  helper_method :order_by_key
+  def order_by_key
+    if params[:s].present? && !explicit_ordering_requested?
+      return "ranked"
     end
+
+    params[:order_by].presence_in(ORDER_BY_OPTIONS.keys) || "date_desc"
+  end
+
+  helper_method :filtered_search?
+  def filtered_search?
+    params[:s].present?
+  end
+
+  def explicit_ordering_requested?
+    params[:order_by].present? && params[:order_by] != "ranked"
   end
 
   def created_after
@@ -90,6 +104,11 @@ class TalksController < ApplicationController
   # Only allow a list of trusted parameters through.
   def talk_params
     params.require(:talk).permit(:title, :description, :summarized_using_ai, :summary, :date, :slides_url)
+  end
+
+  helper_method :search_params
+  def search_params
+    params.permit(:s, :topic, :event, :speaker, :kind, :created_after, :all, :order_by)
   end
 
   def set_user_favorites

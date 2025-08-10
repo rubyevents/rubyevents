@@ -5,8 +5,8 @@
 #
 #  id              :integer          not null, primary key
 #  admin           :boolean          default(FALSE), not null
-#  email           :string           not null, indexed
-#  github_handle   :string           indexed
+#  email           :string           not null, uniquely indexed
+#  github_handle   :string           uniquely indexed
 #  name            :string
 #  password_digest :string           not null
 #  verified        :boolean          default(FALSE), not null

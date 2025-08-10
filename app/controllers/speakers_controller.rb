@@ -27,6 +27,15 @@ class SpeakersController < ApplicationController
     @talks = @speaker.kept_talks.includes(:speakers, event: :organisation, child_talks: :speakers).order(date: :desc)
     @talks_by_kind = @talks.group_by(&:kind)
     @topics = @speaker.topics.approved.tally.sort_by(&:last).reverse.map(&:first)
+    @events = @speaker.events.includes(:organisation).distinct.order(start_date: :desc)
+    @events_with_stickers = @events.select(&:sticker?)
+    @events_by_year = @events.group_by { |event| event.start_date&.year || "Unknown" }
+
+    # Group events by country for the map tab
+    @countries_with_events = @events.map { |event|
+      country = event.static_metadata&.country
+      [country, @events.select { |e| e.static_metadata&.country == country }] if country
+    }.compact.uniq(&:first).sort_by { |country, _| country.translations["en"] }
 
     @back_path = speakers_path
 

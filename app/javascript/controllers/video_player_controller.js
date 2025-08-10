@@ -1,4 +1,5 @@
 import { Controller } from '@hotwired/stimulus'
+import { useIntersection } from 'stimulus-use'
 import Vlitejs from 'vlitejs'
 import YouTube from 'vlitejs/providers/youtube.js'
 import Vimeo from 'vlitejs/providers/vimeo.js'
@@ -16,14 +17,21 @@ export default class extends Controller {
     endSeconds: Number
   }
 
-  static targets = ['player']
+  static targets = ['player', 'playerWrapper']
   playbackRateOptions = [1, 1.25, 1.5, 1.75, 2]
+
+  initialize () {
+    useIntersection(this, { element: this.playerWrapperTarget, threshold: 0.5, visibleAttribute: null })
+  }
 
   connect () {
     this.init()
   }
 
+  // methods
+
   init () {
+    if (this.isPreview) return
     if (!this.hasPlayerTarget) return
 
     this.player = new Vlitejs(this.playerTarget, this.options)
@@ -56,6 +64,18 @@ export default class extends Controller {
       },
       onReady: this.handlePlayerReady.bind(this)
     }
+  }
+
+  // callbacks
+
+  appear () {
+    if (!this.ready) return
+    this.#togglePictureInPicturePlayer(false)
+  }
+
+  disappear () {
+    if (!this.ready) return
+    this.#togglePictureInPicturePlayer(true)
   }
 
   handlePlayerReady (player) {
@@ -121,5 +141,39 @@ export default class extends Controller {
     anchorTag.dataset.action = 'click->video-player#pause'
 
     return anchorTag
+  }
+
+  #togglePictureInPicturePlayer (enabled) {
+    const toggleClasses = () => {
+      if (enabled && this.isPlaying) {
+        this.playerWrapperTarget.classList.add('picture-in-picture')
+        this.playerWrapperTarget.querySelector('.v-controlBar').classList.add('v-hidden')
+      } else {
+        this.playerWrapperTarget.classList.remove('picture-in-picture')
+        this.playerWrapperTarget.querySelector('.v-controlBar').classList.remove('v-hidden')
+      }
+    }
+
+    // Check if View Transition API is supported
+    if (document.startViewTransition && typeof document.startViewTransition === 'function') {
+      document.startViewTransition(toggleClasses)
+    } else {
+      // Fallback for browsers without View Transition API support
+      toggleClasses()
+    }
+  }
+
+  get isPlaying () {
+    // Vlitejs doesn't have a method to check if the video is playing
+    // there is a method to check if the video is paused
+    if (this.player.isPaused === undefined || this.player.isPaused === null) {
+      return false
+    }
+
+    return !this.player.isPaused
+  }
+
+  get isPreview () {
+    return document.documentElement.hasAttribute('data-turbo-preview')
   }
 }

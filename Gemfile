@@ -66,6 +66,12 @@ gem "minisky", "~> 0.4.0"
 # Extract Collaborator Objects from your Active Records, a new concept called Associated Objects
 gem "active_record-associated_object"
 
+# Headless Chrome driver for Capybara
+gem "cuprite"
+
+# Reusable modules for tasks like data extraction, scoring, and ranking
+gem "active_genie"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[mri windows]
