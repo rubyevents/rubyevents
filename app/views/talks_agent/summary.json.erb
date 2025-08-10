@@ -1,0 +1,22 @@
+<%= {
+  format:{
+    type: "json_schema",
+    json_schema: {
+      strict: true,
+      name: "talk_summary",
+      schema: {
+        type: "object",
+        additionalProperties: false,
+        required: ["summary", "keywords"],
+        properties: {
+          summary: {type: "string"},
+          keywords: {
+            type: "array",
+            items: {type: "string"}
+          }
+        }
+      }
+    }
+  }
+}.to_json.html_safe %>
+        

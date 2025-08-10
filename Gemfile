@@ -149,7 +149,7 @@ gem "google-protobuf", require: false
 
 gem "active_job-performs", "~> 0.3.1"
 
-gem "ruby-openai"
+gem "ruby-openai", "~> 8.1.0"
 
 gem "json-repair", "~> 0.2.0"
 
@@ -175,3 +175,5 @@ gem "omniauth-rails_csrf_protection"
 gem "ostruct"
 
 gem "hotwire_combobox", "~> 0.4.0"
+
+gem "activeagent"
