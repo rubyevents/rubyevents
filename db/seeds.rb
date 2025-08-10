@@ -131,7 +131,7 @@ MeiliSearch::Rails.deactivate! do
 
               s.save!
 
-              event.event_sponsors.find_or_create_by!(sponsor: s, event: event).update!(tier: tier["name"])
+              event.event_sponsors.find_or_create_by!(sponsor: s, event: event).update!(tier: tier["name"], badge: sponsor["badge"])
             end
           end
         end

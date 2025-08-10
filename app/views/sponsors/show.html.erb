@@ -2,21 +2,184 @@
 
 <%= turbo_frame_tag dom_id(@sponsor), data: {turbo_action: "advance", turbo_frame: "_top"} do %>
   <div class="container py-8">
-    <%= render partial: "navigation", locals: {sponsor: @sponsor} %>
-
     <% if @events_by_year.any? %>
-      <% @events_by_year.each do |year, events| %>
-        <div class="mb-12">
-          <h2 class="text-2xl font-bold text-gray-900 mb-6">
-            <%= year %>
-          </h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <% events.each do |event| %>
-              <%= render "events/card", event: event %>
+      <div role="tablist" class="tabs tabs-bordered mt-6">
+        <input type="radio" name="sponsor_tabs" role="tab" class="tab" aria-label="Supported Events (<%= @events.count %>)" checked>
+
+        <div role="tabpanel" class="tab-content mt-6">
+          <% @events_by_year.each do |year, events| %>
+            <div class="mb-12">
+              <h2 class="text-2xl font-bold text-gray-900 mb-6">
+                <%= year %>
+              </h2>
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <% events.each do |event| %>
+                  <%= render "events/card", event: event %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+        <% if @countries_with_events.any? %>
+          <input type="radio" name="sponsor_tabs" role="tab" class="tab px-6" aria-label="Map (<%= @countries_with_events.count %>)">
+
+          <div role="tabpanel" class="tab-content mt-6">
+            <div class="space-y-8">
+              <% @countries_with_events.group_by { |country, _| country.continent }.sort_by(&:first).each do |continent, countries_group| %>
+                <div>
+                  <h3 class="text-lg font-semibold mb-4"><%= continent %></h3>
+                  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <% countries_group.each do |country, events| %>
+                      <%= render "shared/country_card", country: country, events: events %>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+
+        <input type="radio" name="sponsor_tabs" role="tab" class="tab px-6" aria-label="Statistics">
+
+        <div role="tabpanel" class="tab-content mt-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="stats stats-vertical bg-white border">
+              <div class="stat">
+                <div class="stat-title">Total Events Sponsored</div>
+                <div class="stat-value text-primary"><%= @statistics[:total_events] %></div>
+                <div class="stat-desc">
+                  <% if @statistics[:first_sponsorship] && @statistics[:latest_sponsorship] %>
+                    <%= @statistics[:first_sponsorship].year %> - <%= @statistics[:latest_sponsorship].year %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+
+            <div class="stats stats-vertical bg-white border">
+              <div class="stat">
+                <div class="stat-title">Geographic Reach</div>
+                <div class="stat-value text-secondary"><%= @statistics[:total_countries] %></div>
+                <div class="stat-desc"><%= pluralize(@statistics[:total_continents], "continent") %></div>
+              </div>
+            </div>
+
+            <div class="stats stats-vertical bg-white border">
+              <div class="stat">
+                <div class="stat-title">Talks at Sponsored Events</div>
+                <div class="stat-value"><%= @statistics[:total_talks] %></div>
+                <div class="stat-desc">Supporting knowledge sharing</div>
+              </div>
+            </div>
+
+            <div class="stats stats-vertical bg-white border">
+              <div class="stat">
+                <div class="stat-title">Conference Organisations</div>
+                <div class="stat-value"><%= @statistics[:total_organisations] %></div>
+                <div class="stat-desc">Unique partnerships</div>
+              </div>
+            </div>
+
+            <% if @statistics[:years_active].any? %>
+              <div class="stats stats-vertical bg-white border">
+                <div class="stat">
+                  <div class="stat-title">Years Active</div>
+                  <div class="stat-value"><%= @statistics[:years_active].size %></div>
+                  <div class="stat-desc">
+                    <%= @statistics[:years_active].first %> - <%= @statistics[:years_active].last %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+
+            <% if @statistics[:sponsorship_tiers].any? %>
+              <div class="card bg-white border">
+                <div class="card-body">
+                  <h3 class="card-title text-lg">Sponsorship Tiers</h3>
+                  <div class="space-y-2">
+                    <% @statistics[:sponsorship_tiers].each do |tier, count| %>
+                      <div class="flex justify-between items-center">
+                        <span class="capitalize"><%= tier || "Standard" %></span>
+                        <span class="badge badge-outline"><%= count %></span>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+
+            <% if @statistics[:events_by_size].any? %>
+              <div class="card bg-white border">
+                <div class="card-body">
+                  <h3 class="card-title text-lg">Event Scale</h3>
+                  <div class="space-y-2">
+                    <% ["Flagship Event", "Major Conference", "Regional Conference", "Community Gathering", "Upcoming Event", "Event Awaiting Content"].each do |size| %>
+                      <% if @statistics[:events_by_size][size] %>
+                        <div class="flex justify-between items-center">
+                          <div class="flex items-center gap-2">
+                            <span class="text-sm">
+                              <% case size %>
+                              <% when "Flagship Event" %>
+                                🏆
+                              <% when "Major Conference" %>
+                                🎯
+                              <% when "Regional Conference" %>
+                                🌍
+                              <% when "Community Gathering" %>
+                                🤝
+                              <% when "Upcoming Event" %>
+                                📅
+                              <% when "Event Awaiting Content" %>
+                                ⏳
+                              <% end %>
+                            </span>
+                            <span><%= size %></span>
+                          </div>
+                          <span class="badge badge-outline"><%= @statistics[:events_by_size][size] %></span>
+                        </div>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
             <% end %>
           </div>
+
+          <% if @statistics[:events_by_organisation].any? %>
+            <div class="mt-6">
+              <h3 class="text-lg font-semibold mb-4">Top Supported Organisations</h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+                <% @statistics[:events_by_organisation].each do |org, count| %>
+                  <div class="card card-compact bg-white border">
+                    <div class="card-body">
+                      <%= link_to organisation_path(org), class: "hover:underline", data: {turbo_frame: "_top"} do %>
+                        <h4 class="font-semibold text-sm"><%= org.name %></h4>
+                      <% end %>
+                      <p class="text-sm text-gray-500"><%= pluralize(count, "event") %></p>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+
+          <% if @statistics[:badges_with_events].any? %>
+            <div class="mt-6">
+              <h3 class="text-lg font-semibold mb-4">Additional Sponsorships</h3>
+              <div class="space-y-2">
+                <% @statistics[:badges_with_events].each do |badge, event| %>
+                  <div class="flex items-center gap-2">
+                    <span class="badge badge-lg badge-primary"><%= badge %></span>
+                    <span class="text-sm text-gray-600">at</span>
+                    <%= link_to event.name, event_path(event), class: "text-sm hover:underline", data: {turbo_frame: "_top"} %>
+                    <span class="text-sm text-gray-500">(<%= event.start_date&.year %>)</span>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
         </div>
-      <% end %>
+      </div>
     <% else %>
       <div class="text-center py-12 text-gray-500">
         <p class="text-lg">No supported events yet.</p>

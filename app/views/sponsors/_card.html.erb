@@ -30,6 +30,12 @@
     <div class="card-body items-center text-center pt-4 px-0 justify-center <%= "pb-6" if defined?(hide_event_count) && hide_event_count %>">
       <h3 class="<%= grid_layout ? "text-sm sm:text-base" : "text-xl" %> font-semibold text-slate-700 line-clamp-1"><%= sponsor.name %></h3>
 
+      <% if defined?(event_sponsor) && event_sponsor&.badge.present? %>
+        <div class="mt-2 mx-4 px-2 py-1 <%= grid_layout ? "text-xs" : "text-sm" %> bg-blue-600 text-white rounded-full font-medium truncate text-center max-w-full" title="<%= event_sponsor.badge %>">
+          <%= event_sponsor.badge %>
+        </div>
+      <% end %>
+
       <% unless defined?(hide_event_count) && hide_event_count %>
         <div class="<%= grid_layout ? "text-xs sm:text-sm" : "text-base" %> text-slate-600"><%= pluralize(sponsor.events.count, "event") %></div>
       <% end %>

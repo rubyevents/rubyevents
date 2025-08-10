@@ -79,8 +79,8 @@ class Event < ApplicationRecord
   scope :canonical, -> { where(canonical_id: nil) }
   scope :not_canonical, -> { where.not(canonical_id: nil) }
   scope :ft_search, ->(query) { where("lower(events.name) LIKE ?", "%#{query.downcase}%") }
-  scope :past, -> { where(date: ..Date.today).order(date: :desc) }
-  scope :upcoming, -> { where(date: Date.today..).order(date: :asc) }
+  scope :past, -> { where(end_date: ..Date.today).order(end_date: :desc) }
+  scope :upcoming, -> { where(start_date: Date.today..).order(start_date: :asc) }
 
   # enums
   enum :kind, ["event", "conference", "meetup"].index_by(&:itself), default: "event"

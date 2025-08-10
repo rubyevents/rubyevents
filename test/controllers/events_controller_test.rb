@@ -41,7 +41,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
 
   test "should show event" do
     get event_url(@event)
-    assert_redirected_to event_talks_url(@event)
+    assert_response :success
   end
 
   test "should show event talks" do

@@ -2,9 +2,14 @@
 #
 
 Rails.application.routes.draw do
+  namespace :sponsors do
+    resources :missing, only: [:index]
+  end
+
   resources :sponsors, param: :slug, only: [:index, :show] do
     resource :logos, only: [:show, :update], controller: "sponsors/logos"
   end
+
   extend Authenticator
 
   # static pages
@@ -90,6 +95,7 @@ Rails.application.routes.draw do
       resources :events, only: [:index]
       resources :videos, only: [:index]
       resources :sponsors, only: [:index]
+      resources :cfp, only: [:index]
     end
   end
   resources :organisations, param: :slug, only: [:index, :show]

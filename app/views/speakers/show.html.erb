@@ -77,43 +77,7 @@
                 <h3 class="text-lg font-semibold mb-4"><%= continent %></h3>
                 <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   <% countries_group.each do |country, events| %>
-                    <div class="card card-compact bg-white border">
-                      <div class="card-body">
-                        <div class="flex items-center justify-between">
-                          <div class="flex items-center gap-4">
-                            <span class="text-2xl"><%= country.emoji_flag %></span>
-                            <div>
-                              <%= link_to country_path(country.translations["en"].parameterize), class: "hover:underline" do %>
-                                <h4 class="font-semibold"><%= country.translations["en"] %></h4>
-                              <% end %>
-                              <p class="text-sm text-gray-500"><%= pluralize(events.count, "event") %></p>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="mt-3 space-y-1">
-                          <% events.first(3).each do |event| %>
-                            <%= link_to event, class: "block text-sm hover:underline text-gray-700" do %>
-                              • <%= event.name %> (<%= event.start_date&.year %>)
-                            <% end %>
-                          <% end %>
-                          <% if events.count > 3 %>
-                            <div class="collapse collapse-arrow">
-                              <input type="checkbox" class="collapse-checkbox">
-                              <div class="collapse-title text-sm text-gray-500 italic p-0 min-h-0">
-                                and <%= events.count - 3 %> more...
-                              </div>
-                              <div class="collapse-content space-y-1 p-0">
-                                <% events.drop(3).each do |event| %>
-                                  <%= link_to event, class: "block text-sm hover:underline text-gray-700" do %>
-                                    • <%= event.name %> (<%= event.start_date&.year %>)
-                                  <% end %>
-                                <% end %>
-                              </div>
-                            </div>
-                          <% end %>
-                        </div>
-                      </div>
-                    </div>
+                    <%= render "shared/country_card", country: country, events: events %>
                   <% end %>
                 </div>
               </div>
