@@ -1,0 +1,28 @@
+
+<%= {
+  format:  {
+    type: "json_schema",
+    json_schema: {
+      # strict: true,
+      name: "talk_transcript",
+      schema: {
+        type: "object",
+        properties: {
+          transcript: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                start_time: {type: "string"},
+                end_time: {type: "string"},
+                text: {type: "string"}
+              }
+            }
+          }
+        },
+        required: ["transcript"],
+        additionalProperties: false
+      }
+    }
+  }
+}.to_json.html_safe %>
