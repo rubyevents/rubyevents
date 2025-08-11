@@ -37,7 +37,7 @@
       <% end %>
 
       <% unless defined?(hide_event_count) && hide_event_count %>
-        <div class="<%= grid_layout ? "text-xs sm:text-sm" : "text-base" %> text-slate-600"><%= pluralize(sponsor.events.count, "event") %></div>
+        <div class="<%= grid_layout ? "text-xs sm:text-sm" : "text-base" %> text-slate-600"><%= pluralize(sponsor.events.size, "event") %></div>
       <% end %>
     </div>
   </div>
