@@ -323,13 +323,8 @@ class DownloadSponsors
   def generate_slug(name)
     return "unknown-sponsor" if name.blank?
 
-    name.to_s
-      .downcase
-      .gsub(/[^a-z0-9\s-]/, '')
-      .gsub(/\s+/, '-')
-      .gsub(/-+/, '-')
-      .gsub(/^-|-$/, '')
-      .presence || "unknown-sponsor"
+    slug = name.parameterize
+    slug.presence || "unknown-sponsor"
   end
 
   # DATA SAVING METHODS
