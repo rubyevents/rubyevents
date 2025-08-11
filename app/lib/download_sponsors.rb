@@ -73,12 +73,15 @@ class DownloadSponsors
     session.visit(url)
     session.driver.wait_for_network_idle
 
+    # Heuristic: look for links with 'sponsor' in href or text, but not logo/image links
     sponsor_link = session.all("a[href]").find do |a|
       href = a[:href].to_s.downcase
       text = a.text.downcase
+      # Must contain 'sponsor' and not be a fragment or empty
       (href.include?("sponsor") || text.include?("sponsor")) &&
         !href.strip.empty? &&
         !href.start_with?("#") &&
+        # Avoid links that are just logo images
         !a.first("img", minimum: 0)
     end
 
