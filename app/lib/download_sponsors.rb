@@ -8,14 +8,15 @@ class DownloadSponsors
   class ValidationError < StandardError; end
 
   MAX_RETRIES = 3
-  RETRY_DELAY = 2 # seconds
-  NETWORK_TIMEOUT = 30 # seconds
+  RETRY_DELAY = 2
+  NETWORK_TIMEOUT = 30
 
   def initialize
     Capybara.register_driver(:cuprite_scraper) do |app|
       Capybara::Cuprite::Driver.new(app, window_size: [1200, 800], timeout: NETWORK_TIMEOUT)
     end
     @session = Capybara::Session.new(:cuprite_scraper)
+    @retry_count = 0
   end
 
   attr_reader :session
@@ -55,6 +56,12 @@ class DownloadSponsors
     sponsor_link ? URI.join(url, sponsor_link[:href]).to_s : nil
   end
 
+  def find_sponsor_page_with_retry(url)
+    with_retry("finding sponsor page") do
+      find_sponsor_page(url)
+    end
+  end
+
   # Finds and returns all sponsor page links (hrefs) for a given URL using Capybara + Cuprite
   # Returns an array of unique links (absolute URLs)
   def download_sponsors_data(url, save_file:)
@@ -65,11 +72,35 @@ class DownloadSponsors
     session&.driver&.quit
   end
 
+  def download_sponsors_data_with_retry(url, save_file:)
+    with_retry("downloading sponsor data") do
+      download_sponsors_data(url, save_file:)
+    end
+  end
+
   def download_sponsors_data_from_html(html_content, save_file:)
     extract_and_save_sponsors_data(html_content, save_file)
   end
 
   private
+
+  def with_retry(operation_name)
+    @retry_count = 0
+    begin
+      yield
+    rescue => e
+      @retry_count += 1
+      if @retry_count <= MAX_RETRIES
+        puts "WARNING: Attempt #{@retry_count} failed for #{operation_name}: #{e.message}"
+        puts "Retrying in #{RETRY_DELAY} seconds..."
+        sleep(RETRY_DELAY)
+        retry
+      else
+        puts "ERROR: All #{MAX_RETRIES} attempts failed for #{operation_name}"
+        raise e
+      end
+    end
+  end
 
   def extract_and_save_sponsors_data(html_content, save_file, url = nil)
     sponsor_schema = {
