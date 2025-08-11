@@ -4,9 +4,16 @@ require "capybara"
 require "capybara/cuprite"
 
 class DownloadSponsors
+  class DownloadError < StandardError; end
+  class ValidationError < StandardError; end
+
+  MAX_RETRIES = 3
+  RETRY_DELAY = 2 # seconds
+  NETWORK_TIMEOUT = 30 # seconds
+
   def initialize
     Capybara.register_driver(:cuprite_scraper) do |app|
-      Capybara::Cuprite::Driver.new(app, window_size: [1200, 800], timeout: 20)
+      Capybara::Cuprite::Driver.new(app, window_size: [1200, 800], timeout: NETWORK_TIMEOUT)
     end
     @session = Capybara::Session.new(:cuprite_scraper)
   end
