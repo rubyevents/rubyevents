@@ -12,7 +12,7 @@ class SponsorsController < ApplicationController
   # GET /sponsors/1
   def show
     @back_path = sponsors_path
-    @events = @sponsor.events.order(start_date: :desc).includes(:organisation)
+    @events = @sponsor.events.includes(:organisation, :static_metadata, :talks).order(start_date: :desc)
     @events_by_year = @events.group_by { |event| event.start_date&.year || "Unknown" }
 
     @countries_with_events = @events.map { |event|
@@ -29,11 +29,11 @@ class SponsorsController < ApplicationController
     event_sponsors = @sponsor.event_sponsors.includes(event: [:talks, :organisation])
 
     {
-      total_events: @events.count,
-      total_countries: @countries_with_events.count,
-      total_continents: @countries_with_events.map { |country, _| country.continent }.uniq.count,
-      total_organisations: @events.map(&:organisation).uniq.count,
-      total_talks: @events.joins(:talks).count,
+      total_events: @events.size,
+      total_countries: @countries_with_events.size,
+      total_continents: @countries_with_events.map { |country, _| country.continent }.uniq.size,
+      total_organisations: @events.map(&:organisation).uniq.size,
+      total_talks: @events.joins(:talks).size,
       years_active: @events_by_year.keys.reject { |y| y == "Unknown" }.sort,
       first_sponsorship: @events.minimum(:start_date),
       latest_sponsorship: @events.maximum(:start_date),
@@ -45,7 +45,7 @@ class SponsorsController < ApplicationController
   end
 
   def classify_event_size(event)
-    talk_count = event.talks.count
+    talk_count = event.talks.size
 
     if talk_count == 0
       if event.start_date && event.start_date > Date.today

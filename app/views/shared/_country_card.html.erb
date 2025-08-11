@@ -7,7 +7,7 @@
           <%= link_to country_path(country.translations["en"].parameterize), class: "hover:underline" do %>
             <h4 class="font-semibold"><%= country.translations["en"] %></h4>
           <% end %>
-          <p class="text-sm text-gray-500"><%= pluralize(events.count, "event") %></p>
+          <p class="text-sm text-gray-500"><%= pluralize(events.size, "event") %></p>
         </div>
       </div>
     </div>
@@ -17,11 +17,11 @@
           • <%= event.name %> (<%= event.start_date&.year %>)
         <% end %>
       <% end %>
-      <% if events.count > 3 %>
+      <% if events.size > 3 %>
         <div class="collapse collapse-arrow">
           <input type="checkbox" class="collapse-checkbox">
           <div class="collapse-title text-sm text-gray-500 italic p-0 min-h-0">
-            and <%= events.count - 3 %> more...
+            and <%= events.size - 3 %> more...
           </div>
           <div class="collapse-content space-y-1 p-0">
             <% events.drop(3).each do |event| %>
