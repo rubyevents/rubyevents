@@ -2,6 +2,7 @@ require "yaml"
 require "uri"
 require "capybara"
 require "capybara/cuprite"
+require "fileutils"
 
 class DownloadSponsors
   class DownloadError < StandardError; end
@@ -184,6 +185,8 @@ class DownloadSponsors
       sponsor['website'] ||= ""
       sponsor['logo_url'] ||= ""
       sponsor['slug'] ||= generate_slug(sponsor['name'])
+      sponsor['website'] = validate_url(sponsor['website'])
+      sponsor['logo_url'] = validate_url(sponsor['logo_url'])
 
       sponsor
     end.compact
@@ -230,7 +233,28 @@ class DownloadSponsors
       .presence || "unknown-sponsor"
   end
 
+  def validate_url(url)
+    return "" if url.blank?
+
+    begin
+      uri = URI(url)
+      if uri.scheme.nil?
+        "https://#{url}"
+      else
+        url
+      end
+    rescue URI::InvalidURIError
+      ""
+    end
+  end
+
   def save_data_to_file(data, save_file)
-    File.write(save_file, [data.stringify_keys].to_yaml)
+    FileUtils.mkdir_p(File.dirname(save_file))
+
+    yaml_content = [data.stringify_keys].to_yaml
+
+    temp_file = "#{save_file}.tmp"
+    File.write(temp_file, yaml_content)
+    File.rename(temp_file, save_file)
   end
 end
