@@ -48,6 +48,27 @@ class DownloadSponsors
     end
   end
 
+  def find_sponsor_page_with_retry(url)
+    with_retry("finding sponsor page") do
+      find_sponsor_page(url)
+    end
+  end
+
+  def download_sponsors_data_with_retry(url, save_file:)
+    with_retry("downloading sponsor data") do
+      download_sponsors_data(url, save_file:)
+    end
+  end
+
+  def download_sponsors_data_from_html(html_content, save_file:)
+    puts "Processing sponsor data from provided HTML (#{html_content.length} characters)"
+    extract_and_save_sponsors_data(html_content, save_file)
+  end
+
+  private
+
+  # MAIN METHODS
+
   def find_sponsor_page(url)
     puts "Searching for sponsor page at: #{url}"
 
@@ -76,12 +97,6 @@ class DownloadSponsors
     raise DownloadError, "Failed to find sponsor page: #{e.message}"
   end
 
-  def find_sponsor_page_with_retry(url)
-    with_retry("finding sponsor page") do
-      find_sponsor_page(url)
-    end
-  end
-
   # Finds and returns all sponsor page links (hrefs) for a given URL using Capybara + Cuprite
   # Returns an array of unique links (absolute URLs)
   def download_sponsors_data(url, save_file:)
@@ -100,18 +115,7 @@ class DownloadSponsors
     cleanup_session
   end
 
-  def download_sponsors_data_with_retry(url, save_file:)
-    with_retry("downloading sponsor data") do
-      download_sponsors_data(url, save_file:)
-    end
-  end
-
-  def download_sponsors_data_from_html(html_content, save_file:)
-    puts "Processing sponsor data from provided HTML (#{html_content.length} characters)"
-    extract_and_save_sponsors_data(html_content, save_file)
-  end
-
-  private
+  # UTILITY METHODS
 
   def with_retry(operation_name)
     @retry_count = 0
@@ -157,6 +161,8 @@ class DownloadSponsors
   rescue => e
     puts "WARNING: Error during session cleanup: #{e.message}"
   end
+
+  # DATA EXTRACTION METHODS
 
   def extract_and_save_sponsors_data(html_content, save_file, url = nil)
     puts "Extracting sponsor data from HTML"
@@ -209,6 +215,8 @@ class DownloadSponsors
     raise DownloadError, "Failed to extract sponsor data: #{e.message}"
   end
 
+  # DATA VALIDATION METHODS
+
   def validate_and_process_data(data)
     puts "Validating and processing extracted data"
 
@@ -227,6 +235,24 @@ class DownloadSponsors
     puts "ERROR: Data validation failed: #{e.message}"
     raise ValidationError, "Data validation failed: #{e.message}"
   end
+
+  def validate_url(url)
+    return "" if url.blank?
+
+    begin
+      uri = URI(url)
+      if uri.scheme.nil?
+        "https://#{url}"
+      else
+        url
+      end
+    rescue URI::InvalidURIError
+      puts "WARNING: Invalid URL: #{url}"
+      ""
+    end
+  end
+
+  # DATA PROCESSING METHODS
 
   def process_tier(tier, index)
     puts "Processing tier: #{tier['name'] || "Unnamed tier #{index}"}"
@@ -310,21 +336,7 @@ class DownloadSponsors
       .presence || "unknown-sponsor"
   end
 
-  def validate_url(url)
-    return "" if url.blank?
-
-    begin
-      uri = URI(url)
-      if uri.scheme.nil?
-        "https://#{url}"
-      else
-        url
-      end
-    rescue URI::InvalidURIError
-      puts "WARNING: Invalid URL: #{url}"
-      ""
-    end
-  end
+  # DATA SAVING METHODS
 
   def save_data_to_file(data, save_file)
     puts "Saving data to file: #{save_file}"
