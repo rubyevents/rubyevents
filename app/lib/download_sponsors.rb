@@ -6,6 +6,7 @@ require "fileutils"
 
 class DownloadSponsors
   class DownloadError < StandardError; end
+
   class ValidationError < StandardError; end
 
   MAX_RETRIES = 3
@@ -26,7 +27,7 @@ class DownloadSponsors
 
     puts "Starting sponsor download process"
     puts "Save file: #{save_file}"
-    puts "Arguments: base_url=#{base_url}, sponsors_url=#{sponsors_url}, html=#{html ? 'provided' : 'not provided'}"
+    puts "Arguments: base_url=#{base_url}, sponsors_url=#{sponsors_url}, html=#{html ? "provided" : "not provided"}"
 
     begin
       if base_url
@@ -141,8 +142,8 @@ class DownloadSponsors
         window_size: [1200, 800],
         timeout: NETWORK_TIMEOUT,
         browser_options: {
-          'disable-web-security' => true,
-          'disable-features' => 'VizDisplayCompositor'
+          "disable-web-security" => true,
+          "disable-features" => "VizDisplayCompositor"
         }
       )
     end
@@ -205,7 +206,7 @@ class DownloadSponsors
     save_data_to_file(validated_result, save_file)
 
     puts "Data extraction and validation completed successfully"
-    puts "Found #{validated_result['tiers']&.sum { |tier| tier['sponsors']&.length || 0 } || 0} sponsors across #{validated_result['tiers']&.length || 0} tiers"
+    puts "Found #{validated_result["tiers"]&.sum { |tier| tier["sponsors"]&.length || 0 } || 0} sponsors across #{validated_result["tiers"]&.length || 0} tiers"
 
     validated_result
   rescue => e
@@ -217,17 +218,17 @@ class DownloadSponsors
   def validate_and_process_data(data)
     puts "Validating and processing extracted data"
 
-    unless data.is_a?(Hash) && data['tiers'].is_a?(Array)
+    unless data.is_a?(Hash) && data["tiers"].is_a?(Array)
       raise ValidationError, "Invalid data structure: expected Hash with 'tiers' array"
     end
 
-    processed_tiers = data['tiers'].map.with_index do |tier, index|
+    processed_tiers = data["tiers"].map.with_index do |tier, index|
       process_tier(tier, index)
     end
-    processed_tiers.reject! { |tier| tier['sponsors'].empty? }
-    processed_tiers.sort_by! { |tier| tier['level'] || Float::INFINITY }
+    processed_tiers.reject! { |tier| tier["sponsors"].empty? }
+    processed_tiers.sort_by! { |tier| tier["level"] || Float::INFINITY }
 
-    { 'tiers' => processed_tiers }
+    {"tiers" => processed_tiers}
   rescue => e
     raise ValidationError, "Data validation failed: #{e.message}\n Backtrace: \n #{e.backtrace.join("\n")}"
   end
@@ -251,21 +252,21 @@ class DownloadSponsors
   # DATA PROCESSING METHODS
 
   def process_tier(tier, index)
-    puts "Processing tier: #{tier['name'] || "Unnamed tier #{index}"}"
+    puts "Processing tier: #{tier["name"] || "Unnamed tier #{index}"}"
 
-    tier['name'] ||= "Tier #{index + 1}"
-    tier['level'] ||= index + 1
-    tier['description'] ||= ""
-    tier['sponsors'] ||= []
+    tier["name"] ||= "Tier #{index + 1}"
+    tier["level"] ||= index + 1
+    tier["description"] ||= ""
+    tier["sponsors"] ||= []
 
-    processed_sponsors = process_sponsors(tier['sponsors'])
+    processed_sponsors = process_sponsors(tier["sponsors"])
     deduplicated_sponsors = deduplicate_sponsors(processed_sponsors)
 
     {
-      'name' => tier['name'],
-      'description' => tier['description'],
-      'level' => tier['level'],
-      'sponsors' => deduplicated_sponsors
+      "name" => tier["name"],
+      "description" => tier["description"],
+      "level" => tier["level"],
+      "sponsors" => deduplicated_sponsors
     }
   end
 
@@ -275,13 +276,13 @@ class DownloadSponsors
     sponsors.map do |sponsor|
       next unless sponsor.is_a?(Hash)
 
-      sponsor['name'] ||= "Unknown Sponsor"
-      sponsor['badge'] ||= ""
-      sponsor['website'] ||= ""
-      sponsor['logo_url'] ||= ""
-      sponsor['slug'] ||= generate_slug(sponsor['name'])
-      sponsor['website'] = validate_url(sponsor['website'])
-      sponsor['logo_url'] = validate_url(sponsor['logo_url'])
+      sponsor["name"] ||= "Unknown Sponsor"
+      sponsor["badge"] ||= ""
+      sponsor["website"] ||= ""
+      sponsor["logo_url"] ||= ""
+      sponsor["slug"] ||= generate_slug(sponsor["name"])
+      sponsor["website"] = validate_url(sponsor["website"])
+      sponsor["logo_url"] = validate_url(sponsor["logo_url"])
 
       sponsor
     end.compact
@@ -290,7 +291,7 @@ class DownloadSponsors
   def deduplicate_sponsors(sponsors)
     puts "Deduplicating #{sponsors.length} sponsors"
 
-    grouped = sponsors.group_by { |s| s['name'].to_s.downcase.strip }
+    grouped = sponsors.group_by { |s| s["name"].to_s.downcase.strip }
 
     merged_sponsors = grouped.map do |name, duplicates|
       if duplicates.length == 1
@@ -308,13 +309,13 @@ class DownloadSponsors
   def merge_sponsor_duplicates(duplicates)
     merged = duplicates.first.dup
 
-    all_badges = duplicates.map { |s| s['badge'] }.compact.reject(&:empty?)
-    merged['badge'] = all_badges.uniq.join(', ') if all_badges.any?
+    all_badges = duplicates.map { |s| s["badge"] }.compact.reject(&:empty?)
+    merged["badge"] = all_badges.uniq.join(", ") if all_badges.any?
 
     # Prefer non-empty values
     duplicates.each do |duplicate|
-      merged['website'] = duplicate['website'] if merged['website'].empty? && !duplicate['website'].empty?
-      merged['logo_url'] = duplicate['logo_url'] if merged['logo_url'].empty? && !duplicate['logo_url'].empty?
+      merged["website"] = duplicate["website"] if merged["website"].empty? && !duplicate["website"].empty?
+      merged["logo_url"] = duplicate["logo_url"] if merged["logo_url"].empty? && !duplicate["logo_url"].empty?
     end
 
     merged
