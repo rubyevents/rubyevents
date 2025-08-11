@@ -30,7 +30,7 @@ class PageController < ApplicationController
       .select(&:featured?)
       .sort_by(&:home_sort_date)
       .reverse
-      .take(25)
+      .take(15)
       .map(&:slug)
 
     @featured_events = Event.distinct
