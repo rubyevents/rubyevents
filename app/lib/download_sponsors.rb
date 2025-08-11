@@ -136,6 +136,71 @@ class DownloadSponsors
     }
 
     result = ActiveGenie::DataExtractor.call(html_content, schema)
-    File.write(save_file, [result.stringify_keys].to_yaml)
+    validated_result = validate_and_process_data(result)
+    save_data_to_file(validated_result, save_file)
+
+    validated_result
+  end
+
+  def validate_and_process_data(data)
+    unless data.is_a?(Hash) && data['tiers'].is_a?(Array)
+      raise ValidationError, "Invalid data structure: expected Hash with 'tiers' array"
+    end
+
+    processed_tiers = data['tiers'].map.with_index do |tier, index|
+      process_tier(tier, index)
+    end
+    processed_tiers.reject! { |tier| tier['sponsors'].empty? }
+    processed_tiers.sort_by! { |tier| tier['level'] || Float::INFINITY }
+
+    { 'tiers' => processed_tiers }
+  end
+
+  def process_tier(tier, index)
+    tier['name'] ||= "Tier #{index + 1}"
+    tier['level'] ||= index + 1
+    tier['description'] ||= ""
+    tier['sponsors'] ||= []
+
+    processed_sponsors = process_sponsors(tier['sponsors'])
+
+    {
+      'name' => tier['name'],
+      'description' => tier['description'],
+      'level' => tier['level'],
+      'sponsors' => processed_sponsors
+    }
+  end
+
+  def process_sponsors(sponsors)
+    return [] unless sponsors.is_a?(Array)
+
+    sponsors.map do |sponsor|
+      next unless sponsor.is_a?(Hash)
+
+      sponsor['name'] ||= "Unknown Sponsor"
+      sponsor['badge'] ||= ""
+      sponsor['website'] ||= ""
+      sponsor['logo_url'] ||= ""
+      sponsor['slug'] ||= generate_slug(sponsor['name'])
+
+      sponsor
+    end.compact
+  end
+
+  def generate_slug(name)
+    return "unknown-sponsor" if name.blank?
+
+    name.to_s
+      .downcase
+      .gsub(/[^a-z0-9\s-]/, '')
+      .gsub(/\s+/, '-')
+      .gsub(/-+/, '-')
+      .gsub(/^-|-$/, '')
+      .presence || "unknown-sponsor"
+  end
+
+  def save_data_to_file(data, save_file)
+    File.write(save_file, [data.stringify_keys].to_yaml)
   end
 end
