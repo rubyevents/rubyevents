@@ -13,10 +13,7 @@ class DownloadSponsors
   NETWORK_TIMEOUT = 30
 
   def initialize
-    Capybara.register_driver(:cuprite_scraper) do |app|
-      Capybara::Cuprite::Driver.new(app, window_size: [1200, 800], timeout: NETWORK_TIMEOUT)
-    end
-    @session = Capybara::Session.new(:cuprite_scraper)
+    setup_capybara
     @retry_count = 0
   end
 
@@ -27,34 +24,56 @@ class DownloadSponsors
 
     raise ArgumentError, "Exactly one of base_url, sponsors_url, or html must be provided" if provided_args.length != 1
 
-    if base_url
-      sponsor_page = find_sponsor_page(base_url)
-      p "Page found: #{sponsor_page}"
-      sponsor_page = sponsor_page.blank? ? base_url : sponsor_page
-      download_sponsors_data(sponsor_page, save_file:)
-    elsif sponsors_url
-      download_sponsors_data(sponsors_url, save_file:)
-    elsif html
-      download_sponsors_data_from_html(html, save_file:)
+    puts "Starting sponsor download process"
+    puts "Save file: #{save_file}"
+    puts "Arguments: base_url=#{base_url}, sponsors_url=#{sponsors_url}, html=#{html ? 'provided' : 'not provided'}"
+
+    begin
+      if base_url
+        sponsor_page = find_sponsor_page_with_retry(base_url)
+        puts "Sponsor page found: #{sponsor_page}"
+        sponsor_page = sponsor_page.blank? ? base_url : sponsor_page
+        download_sponsors_data_with_retry(sponsor_page, save_file:)
+      elsif sponsors_url
+        download_sponsors_data_with_retry(sponsors_url, save_file:)
+      elsif html
+        download_sponsors_data_from_html(html, save_file:)
+      end
+
+      puts "Sponsor download completed successfully"
+    rescue => e
+      puts "ERROR: Failed to download sponsors: #{e.message}"
+      puts "Backtrace: #{e.backtrace.join("\n")}"
+      raise DownloadError, "Failed to download sponsors: #{e.message}"
     end
   end
 
   def find_sponsor_page(url)
+    puts "Searching for sponsor page at: #{url}"
+
     session.visit(url)
     session.driver.wait_for_network_idle
 
-    # Heuristic: look for links with 'sponsor' in href or text, but not logo/image links
     sponsor_link = session.all("a[href]").find do |a|
       href = a[:href].to_s.downcase
       text = a.text.downcase
-      # Must contain 'sponsor' and not be a fragment or empty
       (href.include?("sponsor") || text.include?("sponsor")) &&
         !href.strip.empty? &&
         !href.start_with?("#") &&
-        # Avoid links that are just logo images
         !a.first("img", minimum: 0)
     end
-    sponsor_link ? URI.join(url, sponsor_link[:href]).to_s : nil
+
+    if sponsor_link
+      result = URI.join(url, sponsor_link[:href]).to_s
+      puts "Found sponsor link: #{result}"
+      result
+    else
+      puts "WARNING: No sponsor link found on page"
+      nil
+    end
+  rescue => e
+    puts "ERROR: Error finding sponsor page: #{e.message}"
+    raise DownloadError, "Failed to find sponsor page: #{e.message}"
   end
 
   def find_sponsor_page_with_retry(url)
@@ -66,11 +85,19 @@ class DownloadSponsors
   # Finds and returns all sponsor page links (hrefs) for a given URL using Capybara + Cuprite
   # Returns an array of unique links (absolute URLs)
   def download_sponsors_data(url, save_file:)
+    puts "Downloading sponsor data from: #{url}"
+
     session.visit(url)
     session.driver.wait_for_network_idle
-    extract_and_save_sponsors_data(session.html, save_file, url)
+    html_content = session.html
+
+    puts "Successfully retrieved HTML content (#{html_content.length} characters)"
+    extract_and_save_sponsors_data(html_content, save_file, url)
+  rescue => e
+    puts "ERROR: Error downloading sponsor data: #{e.message}"
+    raise DownloadError, "Failed to download sponsor data: #{e.message}"
   ensure
-    session&.driver&.quit
+    cleanup_session
   end
 
   def download_sponsors_data_with_retry(url, save_file:)
@@ -80,6 +107,7 @@ class DownloadSponsors
   end
 
   def download_sponsors_data_from_html(html_content, save_file:)
+    puts "Processing sponsor data from provided HTML (#{html_content.length} characters)"
     extract_and_save_sponsors_data(html_content, save_file)
   end
 
@@ -103,7 +131,36 @@ class DownloadSponsors
     end
   end
 
+  def setup_capybara
+    Capybara.register_driver(:cuprite_scraper) do |app|
+      Capybara::Cuprite::Driver.new(
+        app,
+        window_size: [1200, 800],
+        timeout: NETWORK_TIMEOUT,
+        browser_options: {
+          'disable-web-security' => true,
+          'disable-features' => 'VizDisplayCompositor'
+        }
+      )
+    end
+    @session = Capybara::Session.new(:cuprite_scraper)
+  rescue => e
+    puts "ERROR: Failed to setup Capybara: #{e.message}"
+    raise DownloadError, "Failed to setup web scraper: #{e.message}"
+  end
+
+  def cleanup_session
+    if session&.driver
+      session.driver.quit
+      puts "Session cleaned up"
+    end
+  rescue => e
+    puts "WARNING: Error during session cleanup: #{e.message}"
+  end
+
   def extract_and_save_sponsors_data(html_content, save_file, url = nil)
+    puts "Extracting sponsor data from HTML"
+
     sponsor_schema = {
       type: "object",
       properties: {
@@ -136,14 +193,25 @@ class DownloadSponsors
       tiers: {type: "array", items: tier_schema}
     }
 
+    puts "Calling ActiveGenie::DataExtractor"
     result = ActiveGenie::DataExtractor.call(html_content, schema)
+
     validated_result = validate_and_process_data(result)
+
     save_data_to_file(validated_result, save_file)
 
+    puts "Data extraction and validation completed successfully"
+    puts "Found #{validated_result['tiers']&.sum { |tier| tier['sponsors']&.length || 0 } || 0} sponsors across #{validated_result['tiers']&.length || 0} tiers"
+
     validated_result
+  rescue => e
+    puts "ERROR: Error during data extraction: #{e.message}"
+    raise DownloadError, "Failed to extract sponsor data: #{e.message}"
   end
 
   def validate_and_process_data(data)
+    puts "Validating and processing extracted data"
+
     unless data.is_a?(Hash) && data['tiers'].is_a?(Array)
       raise ValidationError, "Invalid data structure: expected Hash with 'tiers' array"
     end
@@ -155,9 +223,14 @@ class DownloadSponsors
     processed_tiers.sort_by! { |tier| tier['level'] || Float::INFINITY }
 
     { 'tiers' => processed_tiers }
+  rescue => e
+    puts "ERROR: Data validation failed: #{e.message}"
+    raise ValidationError, "Data validation failed: #{e.message}"
   end
 
   def process_tier(tier, index)
+    puts "Processing tier: #{tier['name'] || "Unnamed tier #{index}"}"
+
     tier['name'] ||= "Tier #{index + 1}"
     tier['level'] ||= index + 1
     tier['description'] ||= ""
@@ -193,16 +266,20 @@ class DownloadSponsors
   end
 
   def deduplicate_sponsors(sponsors)
+    puts "Deduplicating #{sponsors.length} sponsors"
+
     grouped = sponsors.group_by { |s| s['name'].to_s.downcase.strip }
 
     merged_sponsors = grouped.map do |name, duplicates|
       if duplicates.length == 1
         duplicates.first
       else
+        puts "Found #{duplicates.length} duplicates for sponsor: #{name}"
         merge_sponsor_duplicates(duplicates)
       end
     end
 
+    puts "After deduplication: #{merged_sponsors.length} unique sponsors"
     merged_sponsors
   end
 
@@ -244,11 +321,14 @@ class DownloadSponsors
         url
       end
     rescue URI::InvalidURIError
+      puts "WARNING: Invalid URL: #{url}"
       ""
     end
   end
 
   def save_data_to_file(data, save_file)
+    puts "Saving data to file: #{save_file}"
+
     FileUtils.mkdir_p(File.dirname(save_file))
 
     yaml_content = [data.stringify_keys].to_yaml
@@ -256,5 +336,10 @@ class DownloadSponsors
     temp_file = "#{save_file}.tmp"
     File.write(temp_file, yaml_content)
     File.rename(temp_file, save_file)
+
+    puts "Data saved successfully (#{yaml_content.length} characters)"
+  rescue => e
+    puts "ERROR: Failed to save data to file: #{e.message}"
+    raise DownloadError, "Failed to save data: #{e.message}"
   end
 end
