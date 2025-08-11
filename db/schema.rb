@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_09_194302) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_10_205552) do
   create_table "ahoy_events", force: :cascade do |t|
     t.integer "visit_id"
     t.integer "user_id"
@@ -97,10 +97,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_09_194302) do
     t.date "start_date"
     t.date "end_date"
     t.string "kind", default: "event", null: false
+    t.string "date_precision", default: "day", null: false
     t.string "cfp_link"
     t.date "cfp_open_date"
     t.date "cfp_close_date"
-    t.string "date_precision", default: "day", null: false
     t.index ["canonical_id"], name: "index_events_on_canonical_id"
     t.index ["kind"], name: "index_events_on_kind"
     t.index ["name"], name: "index_events_on_name"
@@ -195,6 +195,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_09_194302) do
     t.string "linkedin", default: "", null: false
     t.json "bsky_metadata", default: {}, null: false
     t.json "github_metadata", default: {}, null: false
+    t.boolean "admin", default: false, null: false
+    t.string "password_digest"
+    t.string "email"
     t.index ["canonical_id"], name: "index_speakers_on_canonical_id"
     t.index ["github"], name: "index_speakers_on_github", unique: true, where: "github IS NOT NULL AND github != ''"
     t.index ["name"], name: "index_speakers_on_name"

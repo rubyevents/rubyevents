@@ -4,14 +4,17 @@
 # Table name: speakers
 #
 #  id              :integer          not null, primary key
+#  admin           :boolean          default(FALSE), not null
 #  bio             :text             default(""), not null
 #  bsky            :string           default(""), not null
 #  bsky_metadata   :json             not null
+#  email           :string
 #  github          :string           default(""), not null, uniquely indexed
 #  github_metadata :json             not null
 #  linkedin        :string           default(""), not null
 #  mastodon        :string           default(""), not null
 #  name            :string           default(""), not null, indexed
+#  password_digest :string
 #  pronouns        :string           default(""), not null
 #  pronouns_type   :string           default("not_specified"), not null
 #  slug            :string           default(""), not null, uniquely indexed
@@ -108,6 +111,8 @@ class Speaker < ApplicationRecord
     # otherwise, prepend https://
     "https://#{website}"
   }
+
+  encrypts :email, deterministic: true
 
   def self.reset_talks_counts
     find_each do |speaker|
