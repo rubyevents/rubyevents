@@ -163,12 +163,13 @@ class DownloadSponsors
     tier['sponsors'] ||= []
 
     processed_sponsors = process_sponsors(tier['sponsors'])
+    deduplicated_sponsors = deduplicate_sponsors(processed_sponsors)
 
     {
       'name' => tier['name'],
       'description' => tier['description'],
       'level' => tier['level'],
-      'sponsors' => processed_sponsors
+      'sponsors' => deduplicated_sponsors
     }
   end
 
@@ -186,6 +187,35 @@ class DownloadSponsors
 
       sponsor
     end.compact
+  end
+
+  def deduplicate_sponsors(sponsors)
+    grouped = sponsors.group_by { |s| s['name'].to_s.downcase.strip }
+
+    merged_sponsors = grouped.map do |name, duplicates|
+      if duplicates.length == 1
+        duplicates.first
+      else
+        merge_sponsor_duplicates(duplicates)
+      end
+    end
+
+    merged_sponsors
+  end
+
+  def merge_sponsor_duplicates(duplicates)
+    merged = duplicates.first.dup
+
+    all_badges = duplicates.map { |s| s['badge'] }.compact.reject(&:empty?)
+    merged['badge'] = all_badges.uniq.join(', ') if all_badges.any?
+
+    # Prefer non-empty values
+    duplicates.each do |duplicate|
+      merged['website'] = duplicate['website'] if merged['website'].empty? && !duplicate['website'].empty?
+      merged['logo_url'] = duplicate['logo_url'] if merged['logo_url'].empty? && !duplicate['logo_url'].empty?
+    end
+
+    merged
   end
 
   def generate_slug(name)
