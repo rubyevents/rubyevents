@@ -12,13 +12,12 @@ class SponsorsController < ApplicationController
   # GET /sponsors/1
   def show
     @back_path = sponsors_path
-    @events = @sponsor.events.includes(:organisation, :static_metadata, :talks).order(start_date: :desc)
+    @events = @sponsor.events.includes(:organisation, :talks).order(start_date: :desc)
     @events_by_year = @events.group_by { |event| event.start_date&.year || "Unknown" }
 
-    @countries_with_events = @events.map { |event|
-      country = event.static_metadata&.country
-      [country, @events.select { |e| e.static_metadata&.country == country }] if country
-    }.compact.uniq(&:first).sort_by { |country, _| country.translations["en"] }
+    @countries_with_events = @events.group_by { |event| event.static_metadata&.country }
+    .compact
+    .sort_by { |country, _| country.translations["en"] }
 
     @statistics = prepare_sponsor_statistics
   end
