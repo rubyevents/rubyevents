@@ -4,7 +4,7 @@
   <div class="container py-8">
     <% if @events_by_year.any? %>
       <div role="tablist" class="tabs tabs-bordered mt-6">
-        <input type="radio" name="sponsor_tabs" role="tab" class="tab" aria-label="Supported Events (<%= @events.count %>)" checked>
+        <input type="radio" name="sponsor_tabs" role="tab" class="tab" aria-label="Supported Events (<%= @events.size %>)" checked>
 
         <div role="tabpanel" class="tab-content mt-6">
           <% @events_by_year.each do |year, events| %>
@@ -22,7 +22,7 @@
         </div>
 
         <% if @countries_with_events.any? %>
-          <input type="radio" name="sponsor_tabs" role="tab" class="tab px-6" aria-label="Map (<%= @countries_with_events.count %>)">
+          <input type="radio" name="sponsor_tabs" role="tab" class="tab px-6" aria-label="Map (<%= @countries_with_events.size %>)">
 
           <div role="tabpanel" class="tab-content mt-6">
             <div class="space-y-8">
