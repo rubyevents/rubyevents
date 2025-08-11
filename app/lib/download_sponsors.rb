@@ -42,9 +42,7 @@ class DownloadSponsors
 
       puts "Sponsor download completed successfully"
     rescue => e
-      puts "ERROR: Failed to download sponsors: #{e.message}"
-      puts "Backtrace: #{e.backtrace.join("\n")}"
-      raise DownloadError, "Failed to download sponsors: #{e.message}"
+      raise DownloadError, "Failed to download sponsors: #{e.message}\n Backtrace: \n #{e.backtrace.join("\n")}"
     end
   end
 
@@ -93,8 +91,7 @@ class DownloadSponsors
       nil
     end
   rescue => e
-    puts "ERROR: Error finding sponsor page: #{e.message}"
-    raise DownloadError, "Failed to find sponsor page: #{e.message}"
+    raise DownloadError, "Failed to find sponsor page: #{e.message}\n Backtrace: \n #{e.backtrace.join("\n")}"
   end
 
   # Finds and returns all sponsor page links (hrefs) for a given URL using Capybara + Cuprite
@@ -109,8 +106,7 @@ class DownloadSponsors
     puts "Successfully retrieved HTML content (#{html_content.length} characters)"
     extract_and_save_sponsors_data(html_content, save_file, url)
   rescue => e
-    puts "ERROR: Error downloading sponsor data: #{e.message}"
-    raise DownloadError, "Failed to download sponsor data: #{e.message}"
+    raise DownloadError, "Failed to download sponsor data: #{e.message}\n Backtrace: \n #{e.backtrace.join("\n")}"
   ensure
     cleanup_session
   end
@@ -149,8 +145,7 @@ class DownloadSponsors
     end
     @session = Capybara::Session.new(:cuprite_scraper)
   rescue => e
-    puts "ERROR: Failed to setup Capybara: #{e.message}"
-    raise DownloadError, "Failed to setup web scraper: #{e.message}"
+    raise DownloadError, "Failed to setup web scraper: #{e.message}\n Backtrace: \n #{e.backtrace.join("\n")}"
   end
 
   def cleanup_session
@@ -211,8 +206,7 @@ class DownloadSponsors
 
     validated_result
   rescue => e
-    puts "ERROR: Error during data extraction: #{e.message}"
-    raise DownloadError, "Failed to extract sponsor data: #{e.message}"
+    raise DownloadError, "Failed to extract sponsor data: #{e.message}\n Backtrace: \n #{e.backtrace.join("\n")}"
   end
 
   # DATA VALIDATION METHODS
@@ -232,8 +226,7 @@ class DownloadSponsors
 
     { 'tiers' => processed_tiers }
   rescue => e
-    puts "ERROR: Data validation failed: #{e.message}"
-    raise ValidationError, "Data validation failed: #{e.message}"
+    raise ValidationError, "Data validation failed: #{e.message}\n Backtrace: \n #{e.backtrace.join("\n")}"
   end
 
   def validate_url(url)
@@ -351,7 +344,6 @@ class DownloadSponsors
 
     puts "Data saved successfully (#{yaml_content.length} characters)"
   rescue => e
-    puts "ERROR: Failed to save data to file: #{e.message}"
-    raise DownloadError, "Failed to save data: #{e.message}"
+    raise DownloadError, "Failed to save data: #{e.message}\n Backtrace: \n #{e.backtrace.join("\n")}"
   end
 end
