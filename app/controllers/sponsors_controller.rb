@@ -16,8 +16,8 @@ class SponsorsController < ApplicationController
     @events_by_year = @events.group_by { |event| event.start_date&.year || "Unknown" }
 
     @countries_with_events = @events.group_by { |event| event.static_metadata&.country }
-    .compact
-    .sort_by { |country, _| country.translations["en"] }
+      .compact
+      .sort_by { |country, _| country.translations["en"] }
 
     @statistics = prepare_sponsor_statistics
   end
