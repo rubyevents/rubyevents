@@ -17,7 +17,7 @@ module Sluggable
     self.slug = slug.presence || I18n.transliterate(send(slug_source).downcase).parameterize
 
     # if slug is already taken, add a random string to the end
-    if self.class.exists?(slug: slug)
+    if self.class.exists?(slug: slug) && self.class.auto_suffix_on_collision
       self.slug = "#{slug}-#{SecureRandom.hex(4)}"
     end
   end
@@ -27,9 +27,10 @@ module Sluggable
   end
 
   class_methods do
-    attr_reader :slug_source
+    attr_reader :slug_source, :auto_suffix_on_collision
 
-    def slug_from(attribute)
+    def configure_slug(attribute:, auto_suffix_on_collision: false)
+      @auto_suffix_on_collision = auto_suffix_on_collision
       @slug_source = attribute.to_sym
     end
   end

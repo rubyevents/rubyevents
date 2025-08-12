@@ -40,7 +40,7 @@ class Speaker < ApplicationRecord
   include Sluggable
   include Suggestable
   include Speaker::Searchable
-  slug_from :name
+  configure_slug(attribute: :name, auto_suffix_on_collision: true)
 
   PRONOUNS = {
     "Not specified": :not_specified,

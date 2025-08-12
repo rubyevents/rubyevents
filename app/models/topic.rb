@@ -29,7 +29,7 @@
 class Topic < ApplicationRecord
   include Sluggable
 
-  slug_from :name
+  configure_slug(attribute: :name, auto_suffix_on_collision: false)
 
   has_many :talk_topics
   has_many :talks, through: :talk_topics

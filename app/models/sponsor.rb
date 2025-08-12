@@ -23,7 +23,7 @@ class Sponsor < ApplicationRecord
   include Sluggable
   include UrlNormalizable
 
-  slug_from :name
+  configure_slug(attribute: :name, auto_suffix_on_collision: false)
 
   # associations
   has_many :event_sponsors, dependent: :destroy

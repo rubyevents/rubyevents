@@ -39,7 +39,6 @@ You are working on RubyVideo, a modern Ruby on Rails 8 application that aggregat
 - Follow Rails 8 conventions and modern Rails patterns
 - Use `standardrb` for Ruby formatting (never `rubocop`)
 - Models include concerns: `Suggestable`, `Sluggable`, `Rollupable`, `Searchable`, `Watchable`
-- Use `slug_from :title` or similar for slug generation
 - Prefer `belongs_to` with `optional: true` when appropriate
 - Use `has_many` with `dependent: :destroy` for cascade deletes
 
@@ -52,7 +51,7 @@ class Talk < ApplicationRecord
   include Suggestable
   include Searchable
   include Watchable
-  slug_from :title
+  configure_slug(attribute: :title, auto_suffix_on_collision: true)
 
   belongs_to :event, optional: true, counter_cache: :talks_count, touch: true
   has_many :speaker_talks, dependent: :destroy
