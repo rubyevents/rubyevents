@@ -79,7 +79,7 @@ class TalksControllerTest < ActionDispatch::IntegrationTest
     assert_equal "2024-01-01", @talk.date.to_s
 
     # some attributes cannot be changed
-    assert_not_equal "new slug", @talk.slug
+    assert_not_equal "new-slug", @talk.slug
   end
 
   test "owner can update directly the talk" do
@@ -99,7 +99,7 @@ class TalksControllerTest < ActionDispatch::IntegrationTest
     assert_equal "2024-01-01", @talk.date.to_s
 
     # some attributes cannot be changed
-    assert_not_equal "new slug", @talk.slug
+    assert_not_equal "new-slug", @talk.slug
   end
 
   test "should show topics" do
