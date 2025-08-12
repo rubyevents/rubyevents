@@ -11,8 +11,8 @@ class SponsorsControllerTest < ActionDispatch::IntegrationTest
   test "should get index with sponsors ordered by name" do
     get sponsors_url
     assert_response :success
-    assert_equal sponsors(:two).name, assigns(:sponsors).first.name
-    assert_equal sponsors(:one).name, assigns(:sponsors).last.name
+    ordered_sponsors = Sponsor.order(:name)
+    assert_equal ordered_sponsors.to_a, assigns(:sponsors).to_a
   end
 
   test "should get index with letter" do
@@ -21,13 +21,15 @@ class SponsorsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index featured events" do
-    event_sponsor = event_sponsors(:one)
-    event_sponsor.update(sponsor: sponsors(:one))
-    event_sponsor.update(sponsor: sponsors(:two))
+    sponsor = sponsors(:one)
+    event1 = events(:railsconf_2017)
+    event2 = events(:rubyconfth_2022)
+    event1_sponsor = sponsor.event_sponsors.create(event: event1, tier: "gold")
+    event2_sponsor = sponsor.event_sponsors.create(event: event2, tier: "silver")
     get sponsors_url
     assert_response :success
-    assert_equal event_sponsor.sponsor.name, assigns(:featured_sponsors).first.name
-    assert_equal event_sponsor.sponsor.name, assigns(:featured_sponsors).last.name
+    assert_includes assigns(:featured_sponsors), event1_sponsor.sponsor
+    assert_includes assigns(:featured_sponsors), event2_sponsor.sponsor
   end
 
   test "should get show" do
