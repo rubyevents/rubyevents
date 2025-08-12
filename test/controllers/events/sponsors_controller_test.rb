@@ -1,8 +1,6 @@
 require "test_helper"
 
 class Events::SponsorsControllerTest < ActionDispatch::IntegrationTest
-  fixtures :all
-
   test "should get index" do
     get event_sponsors_path(event_sponsors(:one).event)
     assert_response :success
