@@ -2,7 +2,7 @@ class Avo::Resources::User < Avo::BaseResource
   self.title = :name
   self.includes = [:speaker]
   self.search = {
-    query: -> { query.where(email: params[:q]) }
+    query: -> { query.where("LOWER(email) LIKE ? OR LOWER(name) LIKE ?", "%#{params[:q].downcase}%", "%#{params[:q].downcase}%") }
   }
 
   def fields
