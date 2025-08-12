@@ -46,8 +46,8 @@ class DownloadSponsors
 
       # A fragment link has a fragment and points to the same page (same host and path)
       is_fragment = uri.fragment &&
-                    uri.host == base_uri.host &&
-                    (uri.path == "/" || uri.path == base_uri.path)
+        uri.host == base_uri.host &&
+        (uri.path == "/" || uri.path == base_uri.path)
 
       # Must contain 'sponsor' and not be a fragment or empty
       (href.include?("sponsor") || text.include?("sponsor")) &&

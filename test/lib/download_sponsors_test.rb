@@ -4,7 +4,7 @@ require "socket"
 
 class DownloadSponsorsTest < ActiveSupport::TestCase
   def self.find_free_port
-    server = TCPServer.new('127.0.0.1', 0)
+    server = TCPServer.new("127.0.0.1", 0)
     port = server.addr[1]
     server.close
     port
@@ -18,8 +18,8 @@ class DownloadSponsorsTest < ActiveSupport::TestCase
     @base_url = "http://127.0.0.1:#{@port}"
 
     @server_thread = Thread.new do
-      @server = WEBrick::HTTPServer.new(Port: @port, Logger: WEBrick::Log.new("/dev/null"), AccessLog: [])
-      @server.mount_proc '/' do |req, res|
+      @server = WEBrick::HTTPServer.new(Port: @port, Logger: WEBrick::Log.new(File::NULL), AccessLog: [])
+      @server.mount_proc "/" do |req, res|
         handle_test_request(req, res)
       end
       @server.start
@@ -27,21 +27,18 @@ class DownloadSponsorsTest < ActiveSupport::TestCase
 
     # Wait for server to start
     sleep 0.1
-    WebMock.enable!
   end
 
   def teardown
     @server&.shutdown
     @server_thread&.kill
-    WebMock.disable!
-    WebMock.reset!
   end
 
   private
 
   def handle_test_request(req, res)
     res.status = 200
-    res['Content-Type'] = 'text/html'
+    res["Content-Type"] = "text/html"
     res.body = @current_html_content || "<html><body></body></html>"
   end
 
