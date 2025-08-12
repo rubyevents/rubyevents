@@ -68,11 +68,26 @@ class DownloadSponsors
     sponsor_schema = {
       type: "object",
       properties: {
-        name: {type: "string", description: "Name of the sponsor"},
-        badge: {type: "string", description: "Extra badge/tag when this sponsor sponored something besides the tier. Usually something like 'Drinkup Sponsor', 'Climbing Sponsor', 'Hack Space Sponsor', 'Nursery Sponsor', 'Scheduler and Drinkup Sponsor', 'Design Sponsor', 'Party Sponsor', 'Lightning Talks Sponsor' or similar. Leave empty if none applies."},
-        website: {type: "string", description: "URL for the sponsor"},
-        slug: {type: "string", description: "name without spaces, url-safe, all-lowercase, dasherized"},
-        logo_url: {type: "string", description: url ? "Full URL path for logo, if it is a relative path include the #{URI(url).origin} as the host, else keep the original URL" : "Full URL path for logo"}
+        name: {
+          type: "string",
+          description: "Official company or organization name as displayed on the website. Extract the exact name without abbreviations unless that's how it's presented."
+        },
+        badge: {
+          type: "string",
+          description: "Special sponsorship role or additional service beyond the tier level. Common examples include: 'Drinkup Sponsor', 'Climbing Sponsor', 'Hack Space Sponsor', 'Nursery Sponsor', 'Party Sponsor', 'Lightning Talks Sponsor', 'Coffee Sponsor', 'Lunch Sponsor', 'Breakfast Sponsor', 'Networking Sponsor', 'Swag Sponsor', 'Livestream Sponsor', 'Accessibility Sponsor', 'Diversity Sponsor', 'Travel Sponsor', 'Venue Sponsor', 'WiFi Sponsor', 'Welcome Reception Sponsor'. Leave empty string if no special badge is mentioned."
+        },
+        website: {
+          type: "string",
+          description: "Complete URL to the sponsor's main website. Must be a valid HTTP/HTTPS URL. If only a domain is provided, prepend with 'https://'. Do not include tracking parameters or fragments."
+        },
+        slug: {
+          type: "string",
+          description: "URL-safe identifier derived from the company name. Convert to lowercase, replace spaces and special characters with hyphens, remove consecutive hyphens. Examples: 'Evil Martians' -> 'evil-martians', 'AppSignal' -> 'appsignal', '84codes' -> '84codes'"
+        },
+        logo_url: {
+          type: "string",
+          description: url ? "Complete URL path to the sponsor's logo image. If the logo path is relative (starts with / or ./ or just a filename), prepend with '#{URI(url).origin}'. Ensure the URL points to an actual image file (png, jpg, jpeg, svg, webp). Avoid placeholder or broken image URLs." : "Complete URL path to the sponsor's logo image. Must be a valid HTTP/HTTPS URL pointing to an image file."
+        }
       },
       required: ["name", "badge", "website", "logo_url", "slug"],
       additionalProperties: false
@@ -81,12 +96,22 @@ class DownloadSponsors
     tier_schema = {
       type: "object",
       properties: {
-        name: {type: "string", description: "Name of the tier"},
-        description: {type: "string", description: "sponsor description as written on the website. Leave blank if there is no exact description of this tier."},
-        level: {type: "integer", description: "positive integer representing the sponsorship hierarchy where 1 is highest. Always start at 1. Higher numbers indicate lower sponsorship hierarchy."},
+        name: {
+          type: "string",
+          description: "Exact name of the sponsorship tier as displayed on the website. Common tier names include: 'Platinum', 'Gold', 'Silver', 'Bronze', 'Diamond', 'Ruby', 'Emerald', 'Sapphire', 'Premier', 'Principal', 'Supporting', 'Community', 'Partner', 'Friend', 'Startup', 'Individual', 'Media Partner', 'Travel Sponsor', 'Diversity Sponsor'."
+        },
+        description: {
+          type: "string",
+          description: "Official description of this sponsorship tier as written on the website. Include benefits, perks, or explanatory text if provided. If no specific description exists for this tier, provide an empty string. Do not invent descriptions."
+        },
+        level: {
+          type: "integer",
+          description: "Numeric hierarchy level where 1 is the highest/most premium tier. Assign based on visual prominence, price indicators, or explicit hierarchy. Common patterns: Platinum/Diamond=1, Gold=2, Silver=3, Bronze=4, Community/Supporting=higher numbers. If unclear, estimate based on sponsor logos size and placement."
+        },
         sponsors: {
           type: "array",
-          items: sponsor_schema
+          items: sponsor_schema,
+          description: "Array of all sponsors in this tier. Each sponsor should be a complete object with all required fields."
         }
       },
       required: ["name", "sponsors", "level", "description"],
@@ -94,7 +119,16 @@ class DownloadSponsors
     }
 
     schema = {
-      tiers: {type: "array", items: tier_schema}
+      type: "object",
+      properties: {
+        tiers: {
+          type: "array",
+          items: tier_schema,
+          description: "Complete list of all sponsorship tiers found on the page, ordered by hierarchy level (1=highest). Look for sponsor sections, partner sections, and supporter sections. Include all visible sponsor information."
+        }
+      },
+      required: ["tiers"],
+      additionalProperties: false
     }
 
     result = ActiveGenie::DataExtractor.call(html_content, schema)
