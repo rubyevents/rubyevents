@@ -79,18 +79,36 @@ class Sponsor < ApplicationRecord
   end
 
   def logo_image_path
-    # First try local asset, then fallback to logo_url
     if sponsor_image_for("logo.webp")
       sponsor_image_or_default_for("logo.webp")
-    elsif logo_url.present?
+    elsif logo_url.present? && logo_url_accessible?
       logo_url
     else
-      sponsor_image_or_default_for("logo.webp")
+      avatar_image_path
     end
   end
 
   def has_logo_image?
-    sponsor_image_for("logo.webp").present? || logo_url.present?
+    sponsor_image_for("logo.webp").present? || (logo_url.present? && logo_url_accessible?)
+  end
+
+  def logo_url_accessible?
+    return false unless logo_url.present?
+
+    begin
+      uri = URI.parse(logo_url)
+      return false unless uri.is_a?(URI::HTTP) || uri.is_a?(URI::HTTPS)
+
+      response = Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == "https") do |http|
+        http.open_timeout = 5
+        http.read_timeout = 10
+        http.head(uri.path.empty? ? "/" : uri.path)
+      end
+
+      response.is_a?(Net::HTTPSuccess) || response.is_a?(Net::HTTPRedirection)
+    rescue
+      false
+    end
   end
 
   def logo_background_class

@@ -24,11 +24,7 @@
           <%= image_tag sponsor.logo_image_path,
                 class: "w-full h-full object-contain",
                 alt: "#{sponsor.name} Logo",
-                loading: :lazy,
-                onerror: "this.style.display='none'; this.nextElementSibling.style.display='flex';" %>
-          <div class="w-full h-full bg-gray-100 items-center justify-center hidden">
-            <span class="text-4xl md:text-6xl font-bold text-gray-600"><%= sponsor.name.first %></span>
-          </div>
+                loading: :lazy %>
         </div>
       <% else %>
         <%= image_tag image_path(sponsor.avatar_image_path),
