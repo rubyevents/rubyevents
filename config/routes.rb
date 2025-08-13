@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get "/components", to: "page#components"
   get "/about", to: "page#about"
   get "/stickers", to: "page#stickers"
+  get "/stamps", to: "stamps#index"
 
   # authentication
   get "/auth/failure", to: "sessions/omniauth#failure"
