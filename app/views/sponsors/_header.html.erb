@@ -30,17 +30,12 @@
             <span class="text-4xl md:text-6xl font-bold text-gray-600"><%= sponsor.name.first %></span>
           </div>
         </div>
-      <% elsif sponsor.sponsor_image_for("avatar.webp") %>
+      <% else %>
         <%= image_tag image_path(sponsor.avatar_image_path),
               class: "rounded-lg border border-[#D9DFE3] size-24 md:size-36",
               alt: "#{sponsor.name} Avatar",
               style: "view-transition-name: avatar",
               loading: :lazy %>
-      <% else %>
-        <div class="rounded-lg border border-[#D9DFE3] size-24 md:size-36 bg-gray-100 flex items-center justify-center"
-             style="view-transition-name: avatar">
-          <span class="text-4xl md:text-6xl font-bold text-gray-600"><%= sponsor.name.first %></span>
-        </div>
       <% end %>
 
       <div class="flex-col flex justify-center break-all">

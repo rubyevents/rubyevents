@@ -64,4 +64,37 @@ class SponsorTest < ActiveSupport::TestCase
     sponsor = Sponsor.create!(name: "Coerce Corp", website: "example.com/?utm_campaign=abc#top")
     assert_equal "https://example.com/", sponsor.website
   end
+
+  test "should generate avatar URL with ui-avatars when no local image or logo" do
+    sponsor = Sponsor.create!(name: "Test Corp")
+    expected_url = "https://ui-avatars.com/api/?name=TC&size=200&background=f3f4f6&color=4b5563&font-size=0.4&length=2"
+    assert_equal expected_url, sponsor.generate_avatar_url
+  end
+
+  test "should generate avatar URL with custom size" do
+    sponsor = Sponsor.create!(name: "Test Corp")
+    expected_url = "https://ui-avatars.com/api/?name=TC&size=100&background=f3f4f6&color=4b5563&font-size=0.4&length=2"
+    assert_equal expected_url, sponsor.generate_avatar_url(size: 100)
+  end
+
+  test "should return ui-avatars URL when no local image or logo" do
+    sponsor = Sponsor.create!(name: "Test Corp")
+    expected_url = "https://ui-avatars.com/api/?name=TC&size=200&background=f3f4f6&color=4b5563&font-size=0.4&length=2"
+    assert_equal expected_url, sponsor.avatar_image_path
+  end
+
+  test "should return local avatar image when present" do
+    sponsor = Sponsor.create!(name: "Test Corp")
+
+    avatar_dir = Rails.root.join("app", "assets", "images", "sponsors", sponsor.slug)
+    avatar_dir.mkpath
+    avatar_file = avatar_dir.join("avatar.webp")
+
+    File.write(avatar_file, "fake webp content")
+
+    assert_equal "sponsors/#{sponsor.slug}/avatar.webp", sponsor.avatar_image_path
+
+    avatar_file.delete
+    avatar_dir.rmdir
+  end
 end

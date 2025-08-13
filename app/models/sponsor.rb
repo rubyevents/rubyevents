@@ -61,11 +61,21 @@ class Sponsor < ApplicationRecord
   end
 
   def avatar_image_path
-    sponsor_image_or_default_for("avatar.webp")
+    if sponsor_image_for("avatar.webp")
+      sponsor_image_or_default_for("avatar.webp")
+    else
+      generate_avatar_url
+    end
   end
 
   def banner_image_path
     sponsor_image_or_default_for("banner.webp")
+  end
+
+  def generate_avatar_url(size: 200)
+    url_safe_initials = name.split(" ").map(&:first).join("")
+
+    "https://ui-avatars.com/api/?name=#{url_safe_initials}&size=#{size}&background=f3f4f6&color=4b5563&font-size=0.4&length=2"
   end
 
   def logo_image_path

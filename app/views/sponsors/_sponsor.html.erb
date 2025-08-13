@@ -13,14 +13,8 @@
           </div>
         </div>
       </div>
-    <% elsif sponsor.sponsor_image_for("avatar.webp") %>
-      <%= image_tag image_path(sponsor.avatar_image_path), class: "size-8 rounded border border-[#D9DFE3]", loading: "lazy" %>
     <% else %>
-      <div class="avatar placeholder">
-        <div class="size-8 rounded bg-gray-100 text-gray-600 border border-[#D9DFE3] flex items-center justify-center">
-          <span class="text-sm font-bold"><%= sponsor.name.split(" ").map(&:first).join.first(2) %></span>
-        </div>
-      </div>
+      <%= image_tag image_path(sponsor.avatar_image_path), class: "size-8 rounded border border-[#D9DFE3]", loading: "lazy" %>
     <% end %>
 
     <span class="line-clamp-1"><%= sponsor.name %></span>
