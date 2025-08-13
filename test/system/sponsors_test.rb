@@ -31,7 +31,7 @@ class SponsorsTest < ApplicationSystemTestCase
     assert_text @sponsor_one.name
     assert_text @sponsor_one.description
     assert_text @sponsor_one.main_location
-    assert_link "#{@sponsor_one.domain}"
+    assert_link @sponsor_one.domain.to_s
     assert_selector "img[src*='#{@sponsor_one.logo_url}']"
 
     assert_selector "input[aria-label='Supported Events (1)'][checked]"
@@ -44,7 +44,6 @@ class SponsorsTest < ApplicationSystemTestCase
     assert_selector "input[aria-label='Map (1)']"
     find("input[aria-label='Map (1)']").click
     within ".tab-content" do
-
       country = @railsconf_2017.static_metadata&.country
       country_events = @sponsor_one.events.group_by { |event| event.static_metadata&.country }
         .compact
@@ -53,8 +52,8 @@ class SponsorsTest < ApplicationSystemTestCase
 
       assert_selector "h3", text: country&.continent || "Unknown"
       assert_text "🇺🇸"
-      assert_text country&.translations["en"]
-      assert_text "#{event_count} #{'event'.pluralize(event_count)}"
+      assert_text country&.translations&.[]("en")
+      assert_text "#{event_count} #{"event".pluralize(event_count)}"
       assert_text "#{@railsconf_2017.name} (#{@railsconf_2017.start_date.year})"
     end
 
