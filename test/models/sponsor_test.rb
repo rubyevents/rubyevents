@@ -65,7 +65,7 @@ class SponsorTest < ActiveSupport::TestCase
     assert_equal "https://example.com/", sponsor.website
   end
 
-  test "should generate avatar URL with ui-avatars when no local image or logo" do
+  test "should generate avatar URL with ui-avatars" do
     sponsor = Sponsor.create!(name: "Test Corp")
     expected_url = "https://ui-avatars.com/api/?name=TC&size=200&background=f3f4f6&color=4b5563&font-size=0.4&length=2"
     assert_equal expected_url, sponsor.generate_avatar_url
