@@ -59,7 +59,7 @@ class Talk < ApplicationRecord
   include Suggestable
   include Searchable
   include Watchable
-  slug_from :title
+  configure_slug(attribute: :title, auto_suffix_on_collision: true)
 
   # include MeiliSearch::Rails
   # extend Pagy::Meilisearch

@@ -31,7 +31,7 @@ class Organisation < ApplicationRecord
 
   include ActionView::Helpers::TextHelper
 
-  slug_from :name
+  configure_slug(attribute: :name, auto_suffix_on_collision: false)
 
   # associations
   has_many :events, dependent: :destroy, inverse_of: :organisation, foreign_key: :organisation_id, strict_loading: true
