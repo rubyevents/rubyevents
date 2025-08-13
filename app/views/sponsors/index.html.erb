@@ -17,21 +17,23 @@
   </div>
 
   <% if @featured_sponsors.present? %>
-    <div class="my-8 hotwire-native:hidden">
-      <div class="relative" data-controller="scroll">
-        <div class="overflow-x-auto scroll-smooth snap-x snap-mandatory" data-scroll-target="container" data-action="scroll->scroll#checkScroll">
-          <div class="flex pb-4 gap-4">
-            <% @featured_sponsors.each do |sponsor| %>
-              <div class="snap-start" data-scroll-target="card">
-                <%= render partial: "sponsors/card", locals: {sponsor: sponsor} %>
-              </div>
-            <% end %>
+    <% cache @featured_sponsors do %>
+      <div class="my-8 hotwire-native:hidden">
+        <div class="relative" data-controller="scroll">
+          <div class="overflow-x-auto scroll-smooth snap-x snap-mandatory" data-scroll-target="container" data-action="scroll->scroll#checkScroll">
+            <div class="flex pb-4 gap-4">
+              <% @featured_sponsors.each do |sponsor| %>
+                <div class="snap-start" data-scroll-target="card">
+                  <%= render partial: "sponsors/card", locals: {sponsor: sponsor}, cached: true %>
+                </div>
+              <% end %>
+            </div>
           </div>
-        </div>
 
-        <div class="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white to-transparent pointer-events-none" data-scroll-target="gradient"></div>
+          <div class="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white to-transparent pointer-events-none" data-scroll-target="gradient"></div>
+        </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
 
   <div class="flex flex-wrap w-full justify-between py-8 hotwire-native:hidden gap-1">
@@ -43,6 +45,8 @@
   </div>
 
   <div id="sponsors" class="hotwire-native:mt-3 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 lg:gap-x-12 gap-y-2 min-w-full">
-    <%= render partial: "sponsors/sponsor", collection: @sponsors, as: :sponsor %>
+    <% cache @sponsors do %>
+      <%= render partial: "sponsors/sponsor", collection: @sponsors, as: :sponsor, cached: true %>
+    <% end %>
   </div>
 </div>
