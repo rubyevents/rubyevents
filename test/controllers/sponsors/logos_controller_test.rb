@@ -32,6 +32,7 @@ class Sponsors::LogosControllerTest < ActionDispatch::IntegrationTest
     sign_in_as(users(:admin))
     patch sponsor_logos_path(sponsors(:one)), params: {sponsor: {logo_url: "https://example.com/logo.png", logo_background: "transparent"}}
     assert_response :redirect
+    assert_redirected_to sponsor_logos_path(sponsors(:one))
     assert_equal "https://example.com/logo.png", assigns(:sponsor).logo_url
     assert_equal "transparent", assigns(:sponsor).logo_background
     assert_equal "Updated successfully.", flash[:notice]
