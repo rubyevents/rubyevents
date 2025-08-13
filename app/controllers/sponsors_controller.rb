@@ -4,9 +4,9 @@ class SponsorsController < ApplicationController
 
   # GET /sponsors
   def index
-    @sponsors = Sponsor.includes(:event_sponsors).order(:name)
+    @sponsors = Sponsor.includes(:events).order(:name)
     @sponsors = @sponsors.where("lower(name) LIKE ?", "#{params[:letter].downcase}%") if params[:letter].present?
-    @featured_sponsors = Sponsor.joins(:event_sponsors).group("sponsors.id").order("COUNT(event_sponsors.id) DESC").limit(25).includes(:event_sponsors)
+    @featured_sponsors = Sponsor.joins(:event_sponsors).group("sponsors.id").order("COUNT(event_sponsors.id) DESC").limit(25).includes(:events)
   end
 
   # GET /sponsors/1
