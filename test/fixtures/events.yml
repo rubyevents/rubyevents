@@ -40,6 +40,8 @@
 
 railsconf_2017:
   date: 2017-05-01
+  start_date: 2017-05-01
+  end_date: 2017-05-01
   organisation: railsconf
   city: Phoenix
   kind: conference
@@ -48,6 +50,8 @@ railsconf_2017:
 
 rubyconfth_2022:
   date: 2022-05-01
+  start_date: 2022-05-01
+  end_date: 2022-05-01
   organisation: rubyconfth
   city: Bangkok
   kind: conference
@@ -56,6 +60,8 @@ rubyconfth_2022:
 
 rails_world_2023:
   date: 2023-10-26
+  start_date: 2023-10-26
+  end_date: 2023-10-26
   organisation: rails_world
   name: Rails World 2023
   kind: conference
@@ -63,6 +69,8 @@ rails_world_2023:
 
 tropical_rb_2024:
   date: 2024-04-04
+  start_date: 2024-04-04
+  end_date: 2024-04-04
   organisation: rails_world
   name: Tropical Ruby 2024
   kind: conference
@@ -70,6 +78,8 @@ tropical_rb_2024:
 
 brightonruby_2024:
   date: 2024-06-28
+  start_date: 2024-06-28
+  end_date: 2024-06-28
   organisation: brightonruby
   name: Brighton Ruby 2024
   kind: conference
@@ -77,10 +87,24 @@ brightonruby_2024:
 
 future_conference:
   date: <%= 3.weeks.from_now %>
+  start_date: <%= 3.weeks.from_now %>
+  end_date: <%= 3.weeks.from_now %>
   organisation: rails_world
   name: Future Conference
   kind: conference
-  slug: future-conference
+  slug: future_conference
   cfp_link: https://www.futureconference.com/cfp
   cfp_open_date: <%= 1.week.from_now %>
   cfp_close_date: <%= 2.weeks.from_now %>
+
+# Event specifically for testing sponsors missing page - should NEVER have sponsors added
+no_sponsors_event:
+  date: 2025-03-15
+  start_date: 2025-03-15
+  end_date: 2025-03-15
+  organisation: brightonruby
+  city: Brighton
+  country_code: GB
+  kind: conference
+  name: Test Conference Without Sponsors
+  slug: no_sponsors_event
