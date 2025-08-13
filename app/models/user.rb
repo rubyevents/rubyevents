@@ -39,7 +39,7 @@ class User < ApplicationRecord
   normalizes :github_handle, with: ->(value) { normalize_github_handle(value) }
 
   encrypts :email, deterministic: true
-  encrypts :name
+  encrypts :name # TODO: remove this once we've decrypted all the names
 
   before_validation if: -> { email.present? } do
     self.email = email.downcase.strip
