@@ -1,5 +1,3 @@
-# -*- SkipSchemaAnnotations
-
 class Event::StaticMetadata < ActiveRecord::AssociatedObject
   delegate :published_date, :home_sort_date, to: :static_repository, allow_nil: true
 

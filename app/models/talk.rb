@@ -59,7 +59,7 @@ class Talk < ApplicationRecord
   include Suggestable
   include Searchable
   include Watchable
-  slug_from :title
+  configure_slug(attribute: :title, auto_suffix_on_collision: true)
 
   # include MeiliSearch::Rails
   # extend Pagy::Meilisearch
@@ -460,7 +460,7 @@ class Talk < ApplicationRecord
   end
 
   def fetch_and_update_raw_transcript!
-    youtube_transcript = Youtube::Transcript.get(video_id)
+    youtube_transcript = YouTube::Transcript.get(video_id)
     transcript = talk_transcript || Talk::Transcript.new(talk: self)
     transcript.update!(raw_transcript: ::Transcript.create_from_youtube_transcript(youtube_transcript))
   end
@@ -468,7 +468,7 @@ class Talk < ApplicationRecord
   def fetch_duration_from_youtube!
     return unless youtube?
 
-    duration = Youtube::Video.new.duration(video_id)
+    duration = YouTube::Video.new.duration(video_id)
     update! duration_in_seconds: ActiveSupport::Duration.parse(duration).to_i
   end
 

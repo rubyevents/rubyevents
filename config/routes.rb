@@ -2,6 +2,14 @@
 #
 
 Rails.application.routes.draw do
+  namespace :sponsors do
+    resources :missing, only: [:index]
+  end
+
+  resources :sponsors, param: :slug, only: [:index, :show] do
+    resource :logos, only: [:show, :update], controller: "sponsors/logos"
+  end
+
   extend Authenticator
 
   # static pages
@@ -10,6 +18,7 @@ Rails.application.routes.draw do
   get "/components", to: "page#components"
   get "/about", to: "page#about"
   get "/stickers", to: "page#stickers"
+  get "/stamps", to: "stamps#index"
 
   # authentication
   get "/auth/failure", to: "sessions/omniauth#failure"
@@ -90,6 +99,8 @@ Rails.application.routes.draw do
       resources :related_talks, only: [:index]
       resources :events, only: [:index]
       resources :videos, only: [:index]
+      resources :sponsors, only: [:index]
+      resources :cfp, only: [:index]
     end
   end
   resources :organisations, param: :slug, only: [:index, :show]

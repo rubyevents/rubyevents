@@ -7,74 +7,7 @@
     <div class="w-full">
       <div class="w-full flex flex-col gap-8" role="tablist" aria-orientation="vertical">
         <% @event.talks_in_running_order.where(meta_talk: true).reverse.each do |talk| %>
-          <%= link_to talk, class: "flex flex-col sm:flex-row gap-4 sm:gap-10 group w-full overflow-hidden", data: {turbo_frame: "_top"} do %>
-            <div class="w-full sm:w-[10rem] mt-2 flex-shrink-0">
-              <time datetime="<%= talk.date.iso8601 %>" class="text-black font-medium text-lg">
-                <% if talk.date.year == Date.today.year %>
-                  <%= l(talk.date, format: :month_day, default: "unknown") %>
-                <% else %>
-                  <%= l(talk.date, format: :medium, default: "unknown") %>
-                <% end %>
-              </time>
-              <div class="text-gray-400 font-normal">
-                <%= talk.date.strftime("%A") %>
-              </div>
-            </div>
-
-            <div class="bg-white rounded p-5 w-full border border-gray-200 group-hover:border-gray-400 overflow-x-auto">
-              <div class="grid grid-cols-1 sm:grid-cols-[230px_1fr] gap-4 sm:gap-8">
-                <div class="flex aspect-video overflow-hidden w-full max-w-full">
-                  <%= image_tag(
-                        talk.thumbnail_lg,
-                        srcset: ["#{talk.thumbnail_lg} 2x"],
-                        id: dom_id(talk),
-                        height: 174,
-                        width: 310,
-                        loading: "lazy",
-                        alt: "talk by #{talk.speakers.map(&:name).join(", ")}: #{talk.title}",
-                        style: "view-transition-name: #{dom_id(talk, :image)}",
-                        class: "w-full object-cover rounded-xl #{talk.thumbnail_classes}"
-                      ) %>
-                </div>
-                <div class="min-w-0">
-                  <div class="font-mono text-xl font-medium text-black">
-                    <%= talk.title %>
-                  </div>
-
-                  <div>
-                    <%= l(talk.date, default: "unknown") %>
-                  </div>
-
-                  <div class="mt-3">
-                    <%= "Speaker".pluralize(talk.speakers.count) %>:
-                    <div class="flex flex-row flex-wrap gap-4 mt-2">
-                      <% talk.speakers.each do |speaker| %>
-                        <div class="flex gap-1">
-                          <div class="avatar placeholder">
-                            <div class="w-6 h-6 rounded-full bg-primary text-neutral-content">
-                              <% if speaker.custom_avatar? %>
-                                <%= image_tag speaker.avatar_url(size: 48) %>
-                              <% else %>
-                                <span class="text-xs"><%= speaker.name.split(" ").map(&:first).join %></span>
-                              <% end %>
-                            </div>
-                          </div>
-
-                          <div>
-                            <%= speaker.name %>
-                          </div>
-                        </div>
-                      <% end %>
-
-                      <% if talk.speakers.none? %>
-                        -
-                      <% end %>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          <% end %>
+          <%= render "shared/meta_talk_card", meta_talk: talk %>
         <% end %>
 
         <% if @talks.empty? %>

@@ -40,7 +40,7 @@
 class Event < ApplicationRecord
   include Suggestable
   include Sluggable
-  slug_from :name
+  configure_slug(attribute: :name, auto_suffix_on_collision: false)
 
   # associations
   belongs_to :organisation, strict_loading: false
@@ -50,11 +50,14 @@ class Event < ApplicationRecord
   has_many :keynote_speakers, -> { joins(:talks).where(talks: {kind: "keynote"}).distinct },
     through: :talks, source: :speakers
   has_many :topics, -> { distinct }, through: :talks
+  has_many :event_sponsors, dependent: :destroy
+  has_many :sponsors, through: :event_sponsors
   belongs_to :canonical, class_name: "Event", optional: true
   has_many :aliases, class_name: "Event", foreign_key: "canonical_id"
 
   has_object :schedule
   has_object :static_metadata
+  has_object :sponsors_file
   has_object :cfp
 
   def talks_in_running_order(child_talks: true)
@@ -76,8 +79,8 @@ class Event < ApplicationRecord
   scope :canonical, -> { where(canonical_id: nil) }
   scope :not_canonical, -> { where.not(canonical_id: nil) }
   scope :ft_search, ->(query) { where("lower(events.name) LIKE ?", "%#{query.downcase}%") }
-  scope :past, -> { where(date: ..Date.today).order(date: :desc) }
-  scope :upcoming, -> { where(date: Date.today..).order(date: :asc) }
+  scope :past, -> { where(end_date: ..Date.today).order(end_date: :desc) }
+  scope :upcoming, -> { where(start_date: Date.today..).order(start_date: :asc) }
 
   # enums
   enum :kind, ["event", "conference", "meetup"].index_by(&:itself), default: "event"

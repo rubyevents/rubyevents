@@ -1,9 +1,12 @@
 ---
+# Day 1 - September 4, 2025
+
 - title: "Opening Keynote"
   speakers:
     - David Heinemeier Hansson
   description: |-
     DHH will kick off the third edition of Rails World in Amsterdam with an Opening Keynote highlighting what is new in Rails today, and where the framework is headed tomorrow.
+  track: "Track 1"
   video_provider: "scheduled"
   video_id: "dhh-rails-world-2025"
   date: "2025-09-04"
@@ -12,15 +15,16 @@
   event_name: "Rails World 2025"
   language: "english"
 
-- title: "From Chaos to Clarity: Structured Event Reporting in Rails"
+- title: "Multi-Tenant Rails: Everybody Gets a Database!"
   speakers:
-    - Adrianna Chang
+    - Mike Dalessio
   description: |-
-    Events in Rails applications are like the heartbeat of your code - whether it’s a log, a telemetry signal, or a business event, they tell us when something interesting is happening. To truly harness he power of these events for observability and data analysis, we need high-quality, contextualized data. The human-readable lines that Rails.logger provides is great for manual inspection but falls short in production and analytics contexts.
+    As Rails's SQLite support has improved, it's finally possible to have truly multi-tenant Rails applications - isolated data for each account! - without sacrificing performance or ease of use. This talk describes a novel, production-vetted approach to isolating tenant data everywhere in Rails: the database, fragment caches, background jobs, Active Storage, Turbo Stream broadcasts, Action Mailer, and even the testing framework.
 
-    At Shopify, we recognized the need for a unified approach to events. After years of managing various in-house solutions for structured logging, we built support for structured events into the Rails framework itself. This talk will unveil the Structured Event Reporter, Rails’ new approach to structured events, and showcase how we’re using it to power events in our monolith.
+    You'll learn how to build a new multi-tenant app or migrate an existing one. You'll learn the technical details of how Rails can support multiple tenants and strict data isolation. You'll see a live demonstration of a multi-tenant app. And you'll learn why a deployment topology like this might make sense for you, and how it scales up and out.
+  track: "Track 1"
   video_provider: "scheduled"
-  video_id: "adrianna-chang-rails-world-2025"
+  video_id: "mike-dalessio-rails-world-2025"
   date: "2025-09-04"
   published_at: "TODO"
   announced_at: "2025-05-20"
@@ -37,10 +41,248 @@
 
     Learn how Rails' integrated power—Kafka (Karafka), Action Cable for real-time debugging, and optimized request handling—enabled our small team to build a high-throughput system, slashing latency from hours to seconds and saving hundreds of thousands of dollars per year.
 
-    Learn how Rails’ conventions and ecosystem offer startup agility with enterprise-level performance, proving it’s the ideal toolkit for rapid growth and reclaiming control. See how your team can leverage Rails to conquer data challenges and achieve massive ROI.
+    Learn how Rails' conventions and ecosystem offer startup agility with enterprise-level performance, proving it's the ideal toolkit for rapid growth and reclaiming control. See how your team can leverage Rails to conquer data challenges and achieve massive ROI.
+  track: "Track 2"
   video_provider: "scheduled"
   video_id: "austin-story-rails-world-2025"
   date: "2025-09-04"
+  published_at: "TODO"
+  announced_at: "2025-05-20"
+  event_name: "Rails World 2025"
+  language: "english"
+
+- title: "SQLite Replication with Beamer"
+  speakers:
+    - Kevin McConnell
+  description: |-
+    SQLite is an increasingly popular choice for powering Rails applications. It's fast, simple to use, and has an impressive feature set. But without a conventional database server, scaling beyond a single application server can be challenging.
+
+    Beamer is a lightweight replication tool for SQLite, designed to make it easy to add read-only replicas to your writable databases. In this talk, we'll cover how Beamer works and how you can use it to build multi-server, geographically distributed SQLite-based Rails applications.
+  track: "Track 1"
+  video_provider: "scheduled"
+  video_id: "kevin-mcconnell-rails-world-2025"
+  date: "2025-09-04"
+  published_at: "TODO"
+  announced_at: "2025-05-20"
+  event_name: "Rails World 2025"
+  language: "english"
+
+- title: "Teaching Rails with the Real Thing: Onboarding Engineers into a (Massive) Monolith"
+  speakers:
+    - Katarina Rossi
+  description: |-
+    At Procore, our Rails monolith is massive - among the largest in the world - and intimidating to newcomers. I designed and taught a course that helped over 900 engineers of varying skill levels stop fearing it by teaching Rails and our monolith at the same time. Rather than using generic tutorials, we grounded everything in the actual product they'd be working on - layering Rails fundamentals with the domain-specific knowledge they really needed. In this talk, I'll share how learning science, product context, and deep app knowledge came together to make our course work—and how you can adapt it for your team.
+  track: "Track 2"
+  video_provider: "scheduled"
+  video_id: "katarina-rossi-rails-world-2025"
+  date: "2025-09-04"
+  published_at: "TODO"
+  announced_at: "2025-05-20"
+  event_name: "Rails World 2025"
+  language: "english"
+
+- title: "The Rise of the Agent: Rails in the AI Era"
+  speakers:
+    - Kinsey Durham Grace
+  description: |-
+    Prompting is a start, but agents are the future. In this talk, we'll explore how intelligent agents are changing how we build software — and how we can bring them to life in the Rails ecosystem. From early CLI bots to multi-tool agents powered by LLMs, we'll trace the evolution, show what's working in production, and give you practical patterns for building agents with a Rails mindset.
+  track: "Track 1"
+  video_provider: "scheduled"
+  video_id: "kinsey-durham-rails-world-2025"
+  date: "2025-09-04"
+  published_at: "TODO"
+  announced_at: "2025-05-20"
+  event_name: "Rails World 2025"
+  language: "english"
+
+- title: "Resumable Jobs with Active Job Continuations"
+  speakers:
+    - Donal McBreen
+  description: |-
+    Long-running jobs can cause problems. They can delay deployments and leave old versions of your code running longer than expected. Interrupting them can leave data in an inconsistent state or cause redundant rework.
+
+    Active Job Continuations let you define multi-step workflows or checkpoint iterations to track your progress, and they're easy to integrate with your existing jobs. From there, they handle interrupting and resuming jobs across application restarts.
+
+    We built Active Job Continuations at 37signals to make Basecamp's jobs container-friendly for deploying with Kamal. Come to this talk to learn more about how it works.
+  track: "Track 2"
+  video_provider: "scheduled"
+  video_id: "donal-mcbreen-rails-world-2025"
+  date: "2025-09-04"
+  published_at: "TODO"
+  announced_at: "2025-05-20"
+  event_name: "Rails World 2025"
+  language: "english"
+
+- title: "Taming the Beast: Safely Managing Database Operations in Rails in a Team of 100s"
+  speakers:
+    - Miles McGuire
+  description: |-
+    Intercom leverages Rails to empower hundreds of engineers to move fast and make the changes they need in production without a lengthy centralized review process. But allowing arbitrary migrations to run across hundreds of tables and hundreds of terabytes of data in MySQL comes with inherent risks. In this session, we'll look at where we came from, what changes we've made to reduce risk and enable people to move fast while safely leveraging Rails' power, and where we're going in the future.
+  track: "Track 1"
+  video_provider: "scheduled"
+  video_id: "miles-mcguire-rails-world-2025"
+  date: "2025-09-04"
+  published_at: "TODO"
+  announced_at: "2025-05-20"
+  event_name: "Rails World 2025"
+  language: "english"
+
+- title: "From Chaos to Clarity: Structured Event Reporting in Rails"
+  speakers:
+    - Adrianna Chang
+  description: |-
+    Events in Rails applications are like the heartbeat of your code - whether it's a log, a telemetry signal, or a business event, they tell us when something interesting is happening. To truly harness he power of these events for observability and data analysis, we need high-quality, contextualized data. The human-readable lines that Rails.logger provides is great for manual inspection but falls short in production and analytics contexts.
+
+    At Shopify, we recognized the need for a unified approach to events. After years of managing various in-house solutions for structured logging, we built support for structured events into the Rails framework itself. This talk will unveil the Structured Event Reporter, Rails' new approach to structured events, and showcase how we're using it to power events in our monolith.
+  track: "Track 2"
+  video_provider: "scheduled"
+  video_id: "adrianna-chang-rails-world-2025"
+  date: "2025-09-04"
+  published_at: "TODO"
+  announced_at: "2025-05-20"
+  event_name: "Rails World 2025"
+  language: "english"
+
+- title: "The $1B Rails Startup: Scaling from 0 to Unicorn in Four Years"
+  speakers:
+    - Jack Sharkey
+  description: |-
+    We started when Rails was "dead." Everyone said it wouldn't scale, wasn't fast enough, and that no one used it anymore. Four years later, we've processed $1B+, handle 150k RPM, and run a feature-complete marketplace with real-time chat, notifications, payments, and live streaming - all on a Rails monolith with just 15 engineers.
+
+    This talk breaks down how Rails gave us a competitive edge, the technical and hiring challenges we faced, and what Rails needs to improve to stay the best framework for startups.
+  track: "Track 1"
+  video_provider: "scheduled"
+  video_id: "jack-sharkey-rails-world-2025"
+  date: "2025-09-04"
+  published_at: "TODO"
+  announced_at: "2025-05-20"
+  event_name: "Rails World 2025"
+  language: "english"
+
+- title: "Active Record 8: Resilient by Default"
+  speakers:
+    - Hartley McGuire
+  description: |-
+    Databases crash, connections drop, and queries timeout at the worst possible moments. Rather than writing custom rescue code everywhere, Rails is revolutionizing how Active Record handles these inevitable hiccups.
+
+    This technical deep dive explores key improvements in connection management, error handling, and recovery strategies introduced in Rails 7 and optimized in Rails 8. You'll learn how Active Record intelligently manages connection pools and retries failed queries.
+
+    Whether you're running a massive production app or building a new side project, you'll walk away knowing how to leverage these features to build applications that bend instead of break when database chaos strikes.
+  track: "Track 2"
+  video_provider: "scheduled"
+  video_id: "hartley-mcguire-rails-world-2025"
+  date: "2025-09-04"
+  published_at: "TODO"
+  announced_at: "2025-05-20"
+  event_name: "Rails World 2025"
+  language: "english"
+
+- title: "Keynote: Hotwire Native - A Rails Developer's Secret Tool for Building Mobile Apps"
+  speakers:
+    - Joe Masilotti
+  description: |-
+    Hotwire Native lowers the barrier to launching native apps on the App Store and Google Play. Rails developers can now ship to iOS and Android without rewriting their entire stack. By reusing your existing HTML and CSS, you can keep your business logic on the server and stay productive in Rails - without needing to become a mobile expert.
+  track: "Track 1"
+  video_provider: "scheduled"
+  video_id: "joe-masilotti-rails-world-2025"
+  date: "2025-09-04"
+  published_at: "TODO"
+  announced_at: "2025-05-20"
+  event_name: "Rails World 2025"
+  language: "english"
+
+# Day 2 - September 5, 2025
+
+- title: "Ruby & Rails - a Chat with Maintainers"
+  speakers:
+    - Hiroshi Shibata
+    - Aaron Patterson
+    - Jean Boussier
+  description: |-
+    Join maintainers of Ruby and Rails for an insightful conversation about the current state and future direction of both projects. This panel discussion will cover recent developments, upcoming features, and the collaborative efforts between the Ruby and Rails core teams.
+  track: "Track 1"
+  video_provider: "scheduled"
+  video_id: "ruby-rails-maintainers-rails-world-2025"
+  date: "2025-09-05"
+  published_at: "TODO"
+  announced_at: "2025-05-20"
+  event_name: "Rails World 2025"
+  language: "english"
+
+- title: "Ruby Stability at Scale"
+  speakers:
+    - Peter Zhu
+  description: |-
+    There are many talks, articles, and tutorials on how to monitor your Rails app for stability. These assume the source of the bug comes from your application code, from Rails itself, or from a gem. But what if the source of instability comes from Ruby or a native gem? If Ruby crashes, do you have any monitoring or ways to debug it?
+
+    In this talk, we'll look at how we deal with Ruby crashes in the Shopify monolith, the world's largest Ruby on Rails application, and how you can use some of our techniques. We'll cover topics such as how we monitor crashes, capture core dumps for debugging, prevent crashes, and minimize the impact of crashes on production.
+  track: "Track 1"
+  video_provider: "scheduled"
+  video_id: "peter-zhu-rails-world-2025"
+  date: "2025-09-05"
+  published_at: "TODO"
+  announced_at: "2025-05-20"
+  event_name: "Rails World 2025"
+  language: "english"
+
+- title: "Rails Under a Microscope: Diagnosing Slowness at the Byte Level"
+  speakers:
+    - Snehal Ahire
+  description: |-
+    We realized our legacy code didn't need a rewrite, it needed a performance plan.
+
+    This talk shares how we tackled real production issues like memory bloat, slow queries, and Sidekiq queues piling up under load, where simple fixes like batching jobs or tweaking retries didn't help much.
+
+    We thought Active Record was the bottleneck, but fixing it only scratched the surface. We optimised query access patterns, chose more efficient data structures, restructured background jobs, and introduced smarter database caching and indexing strategies.
+
+    I'll share how we analysed query plans, fine-tuned database performance, and replaced slow, fragile logic with leaner, more explicit code paths that scaled better and failed less while Rails stayed right at the center of it all.
+  track: "Track 2"
+  video_provider: "scheduled"
+  video_id: "snehal-ahire-rails-world-2025"
+  date: "2025-09-05"
+  published_at: "TODO"
+  announced_at: "2025-05-20"
+  event_name: "Rails World 2025"
+  language: "english"
+
+- title: "Make Rails AI-Ready by Design with the Model Context Protocol"
+  speakers:
+    - Paweł Strzałkowski
+  description: |-
+    Remember the joy of Rails scaffold creating web interfaces in DHH's demos? Let's make it just as simple for AI integrations!
+
+    Imagine Rails scaffolding not just views for humans, but a parallel, AI interaction layer - out of the box!
+
+    How? By embracing convention over configuration with the Model Context Protocol (MCP), the emerging standard (backed by Google & OpenAI) for AI-app interactions.
+    Example: Scaffold a ReservationsController and instantly let an AI agent book a room via MCP - just like agents may use it with GitHub or JIRA today.
+
+    I'll show:
+    - A full-stack AI-ready app scaffolded live
+    - An AI agent using it
+    - How backend, frontend, and AI layers cooperate
+    - How to make your app speak AI natively
+
+    Ultimately, this talk shows Rails' competitive advantage for the AI era.
+  track: "Track 1"
+  video_provider: "scheduled"
+  video_id: "pawel-strzalkowski-rails-world-2025"
+  date: "2025-09-05"
+  published_at: "TODO"
+  announced_at: "2025-05-20"
+  event_name: "Rails World 2025"
+  language: "english"
+
+- title: "Reading Rails 1.0 Source Code"
+  speakers:
+    - OKURA Masafumi
+  description: |-
+    Rails is great. In fact, Rails has been great since the very beginning. However, in terms of technical details, Rails 1.0 was very different from Rails 8. Lots of things have changed, many frameworks have been introduced and overall quality has been polished.
+    This leads to an interesting question. What makes Rails Rails itself? What core parts of Rails still remain after 20 years?
+    In this anthropological talk, we dive into the source code of Rails 1.0 and explore internals.
+  track: "Track 2"
+  video_provider: "scheduled"
+  video_id: "masafumi-okura-rails-world-2025"
+  date: "2025-09-05"
   published_at: "TODO"
   announced_at: "2025-05-20"
   event_name: "Rails World 2025"
@@ -57,60 +299,40 @@
     - Creating your own generators
     - Organizing features by modules and concerns (e.g., the User model may have teams, billing, etc., organized under app/models/user/)
     - Adding domainwording and class methods, like allow_unauthenticated_access or rate_limit
+  track: "Track 1"
   video_provider: "scheduled"
   video_id: "chris-oliver-rails-world-2025"
-  date: "2025-09-04"
+  date: "2025-09-05"
   published_at: "TODO"
   announced_at: "2025-05-20"
   event_name: "Rails World 2025"
   language: "english"
 
-- title: "Resumable Jobs with Active Job Continuations"
+- title: "Coming Soon: Offline Mode to Hotwire with Service Workers"
   speakers:
-    - Donal McBreen
+    - Rosa Gutierrez
   description: |-
-    Long-running jobs can cause problems. They can delay deployments and leave old versions of your code running longer than expected. Interrupting them can leave data in an inconsistent state or cause redundant rework.
-
-    Active Job Continuations let you define multi-step workflows or checkpoint iterations to track your progress, and they’re easy to integrate with your existing jobs. From there, they handle interrupting and resuming jobs across application restarts.
-
-    We built Active Job Continuations at 37signals to make Basecamp's jobs container-friendly for deploying with Kamal. Come to this talk to learn more about how it works.
+    Rosa is trying out a new methodology called Conference Driven Development™, so she's actually hard at work on building what she will discuss in her talk at Rails World. So for now, this abstract is To Be Determined. Wish her luck!
+  track: "Track 2"
   video_provider: "scheduled"
-  video_id: "donal-mcbreen-rails-world-2025"
-  date: "2025-09-04"
+  video_id: "rosa-gutierrez-rails-world-2025"
+  date: "2025-09-05"
   published_at: "TODO"
   announced_at: "2025-05-20"
   event_name: "Rails World 2025"
   language: "english"
 
-- title: "Active Record 8: Resilient by Default"
+- title: "Introducing ReActionView: An ActionView-Compatible ERB Engine"
   speakers:
-    - Hartley McGuire
+    - Marco Roth
   description: |-
-    Databases crash, connections drop, and queries timeout at the worst possible moments. Rather than writing custom rescue code everywhere, Rails is revolutionizing how Active Record handles these inevitable hiccups.
-
-    This technical deep dive explores key improvements in connection management, error handling, and recovery strategies introduced in Rails 7 and optimized in Rails 8. You'll learn how Active Record intelligently manages connection pools and retries failed queries.
-
-    Whether you're running a massive production app or building a new side project, you'll walk away knowing how to leverage these features to build applications that bend instead of break when database chaos strikes.
+    This talk is the conclusion of a journey I've been sharing throughout 2025. At RubyKaigi, I introduced Herb: a new HTML-aware ERB parser and tooling ecosystem. At RailsConf, I released developer tools built on Herb, including a formatter, linter, and language server, alongside a vision for modernizing and improving the Rails view layer. At Rails World, I'll debut ReActionView: a new ERB engine built on Herb, fully compatible with `.html.erb` but with HTML validation, better error feedback, reactive updates, and built-in tooling.
+  track: "Track 1"
   video_provider: "scheduled"
-  video_id: "hartley-mcguire-rails-world-2025"
-  date: "2025-09-04"
+  video_id: "marco-roth-rails-world-2025"
+  date: "2025-09-05"
   published_at: "TODO"
-  announced_at: "2025-05-20"
-  event_name: "Rails World 2025"
-  language: "english"
-
-- title: "The $1B Rails Startup: Scaling from 0 to Unicorn in Four Years"
-  speakers:
-    - Jack Sharkey
-  description: |-
-    We started when Rails was “dead.” Everyone said it wouldn’t scale, wasn’t fast enough, and that no one used it anymore. Four years later, we’ve processed $1B+, handle 150k RPM, and run a feature-complete marketplace with real-time chat, notifications, payments, and live streaming - all on a Rails monolith with just 15 engineers.
-
-    This talk breaks down how Rails gave us a competitive edge, the technical and hiring challenges we faced, and what Rails needs to improve to stay the best framework for startups.
-  video_provider: "scheduled"
-  video_id: "jack-sharkey-rails-world-2025"
-  date: "2025-09-04"
-  published_at: "TODO"
-  announced_at: "2025-05-20"
+  announced_at: "2025-08-04"
   event_name: "Rails World 2025"
   language: "english"
 
@@ -119,153 +341,25 @@
     - Jason Meller
   description: |-
     Back in 2024, many of us in the Rails community dismissed passkeys as hype rather than a real password replacement. But now we're facing a serious problem - a newer and more sophisticated attack called Real-Time Phishing is gaining popularity and effortlessly defeating nearly all popular 2FA methods, except one: passkeys. Even security experts are getting fooled, and AI makes these attacks frighteningly scalable. In this session, I'll demo exactly how attackers execute real-time phishing live. Then we'll turn the tables: I'll guide you step-by-step through adding secure, user-friendly passkey authentication as an MFA option to your Rails 8 apps. Come on, Rails! Let's give passkeys one more chance.
+  track: "Track 2"
   video_provider: "scheduled"
   video_id: "jason-meller-rails-world-2025"
-  date: "2025-09-04"
+  date: "2025-09-05"
   published_at: "TODO"
   announced_at: "2025-05-20"
   event_name: "Rails World 2025"
   language: "english"
 
-- title: "Hotwire Native: A Rails Developer’s Secret Tool to Building Mobile Apps"
+- title: "LLM Evaluations & Reinforcement Learning for Shopify Sidekick on Rails"
   speakers:
-    - Joe Masilotti
+    - Andrew Mcnamara
+    - Charlie Lee
   description: |-
-    Building native mobile apps is time-consuming and expensive. Each screen must be built three times: once for web, again for iOS, and a third time for Android.
-
-    But with Hotwire Native, you only need to build your screens once, in HTML and CSS, and then reuse them across all three platforms. If you already have a Hotwire-enabled Rails app, you can use the screens you've already built!
-
-    And you don't need to be an expert in Swift or Kotlin. A thin wrapper for each platform enables continuous updates by only making changes to your Rails codebase. Deploy your code, and all three platforms get your changes immediately.
-
-    Join me as I build iOS and Android apps from scratch, live. Learn the essentials, practical tips, and common pitfalls I’ve picked up since working with Hotwire Native since 2016.
+    This talk explores building production LLM systems through Shopify Sidekick's Rails architecture, covering orchestration patterns and tool integration strategies. We'll establish statistically rigorous LLM-based evaluation frameworks that move beyond subjective 'vibe testing.' Finally, we'll demonstrate how robust evaluation systems become critical infrastructure for reinforcement learning pipelines, while exploring how RL can learn to hack evaluations and strategies to mitigate this.
+  track: "Track 1"
   video_provider: "scheduled"
-  video_id: "joe-masilotti-rails-world-2025"
-  date: "2025-09-04"
-  published_at: "TODO"
-  announced_at: "2025-05-20"
-  event_name: "Rails World 2025"
-  language: "english"
-
-- title: "Teaching Rails with the Real Thing: Onboarding Engineers into a (Massive) Monolith"
-  speakers:
-    - Katarina Rossi
-  description: |-
-    At Procore, our Rails monolith is massive - among the largest in the world - and intimidating to newcomers. I designed and taught a course that helped over 900 engineers of varying skill levels stop fearing it by teaching Rails and our monolith at the same time. Rather than using generic tutorials, we grounded everything in the actual product they’d be working on - layering Rails fundamentals with the domain-specific knowledge they really needed. In this talk, I’ll share how learning science, product context, and deep app knowledge came together to make our course work—and how you can adapt it for your team.
-  video_provider: "scheduled"
-  video_id: "katarina-rossi-rails-world-2025"
-  date: "2025-09-04"
-  published_at: "TODO"
-  announced_at: "2025-05-20"
-  event_name: "Rails World 2025"
-  language: "english"
-
-- title: "SQLite Replication with Beamer"
-  speakers:
-    - Kevin McConnell
-  description: |-
-    SQLite is an increasingly popular choice for powering Rails applications. It's fast, simple to use, and has an impressive feature set. But without a conventional database server, scaling beyond a single application server can be challenging.
-
-    Beamer is a lightweight replication tool for SQLite, designed to make it easy to add read-only replicas to your writable databases. In this talk, we'll cover how Beamer works and how you can use it to build multi-server, geographically distributed SQLite-based Rails applications.
-  video_provider: "scheduled"
-  video_id: "kevin-mcconnell-rails-world-2025"
-  date: "2025-09-04"
-  published_at: "TODO"
-  announced_at: "2025-05-20"
-  event_name: "Rails World 2025"
-  language: "english"
-
-- title: "Beyond the Prompt: Building Real-World LLM Features in Rails"
-  speakers:
-    - Kinsey Durham Grace
-  description: |-
-    Prompting an LLM is easy. Building a Rails app that reliably integrates one? That’s a different story. This talk goes beyond prompt hacking to explore what it takes to bring LLM-powered features into real-world Rails apps—with real users, latency constraints, and production consequences. We’ll cover architectural patterns like model orchestration, prompt versioning, and skill/tool design, all tailored to the Rails ecosystem. You’ll learn how to connect your LLM to internal APIs, business logic, and background jobs, while keeping everything observable, testable, and maintainable. Whether you're adding a smart assistant or orchestrating agents, you’ll leave with practical Rails-specific strategies and patterns to build it right.
-  video_provider: "scheduled"
-  video_id: "kinsey-durham-rails-world-2025"
-  date: "2025-09-04"
-  published_at: "TODO"
-  announced_at: "2025-05-20"
-  event_name: "Rails World 2025"
-  language: "english"
-
-- title: "Reading Rails 1.0 Source Code"
-  speakers:
-    - OKURA Masafumi
-  description: |-
-    Rails is great. In fact, Rails has been great since the very beginning. However, in terms of technical details, Rails 1.0 was very different from Rails 8. Lots of things have changed, many frameworks have been introduced and overall quality has been polished.
-    This leads to an interesting question. What makes Rails Rails itself? What core parts of Rails still remain after 20 years?
-    In this anthropological talk, we dive into the source code of Rails 1.0 and explore internals.
-  video_provider: "scheduled"
-  video_id: "masafumi-okura-rails-world-2025"
-  date: "2025-09-04"
-  published_at: "TODO"
-  announced_at: "2025-05-20"
-  event_name: "Rails World 2025"
-  language: "english"
-
-- title: "Multi-Tenant Rails: Everybody Gets a Database!"
-  speakers:
-    - Mike Dalessio
-  description: |-
-    As Rails’s SQLite support has improved, it's finally possible to have truly multi-tenant Rails applications - isolated data for each account! - without sacrificing performance or ease of use. This talk describes a novel, production-vetted approach to isolating tenant data everywhere in Rails: the database, fragment caches, background jobs, Active Storage, Turbo Stream broadcasts, Action Mailer, and even the testing framework.
-
-    You’ll learn how to build a new multi-tenant app or migrate an existing one. You'll learn the technical details of how Rails can support multiple tenants and strict data isolation. You'll see a live demonstration of a multi-tenant app. And you'll learn why a deployment topology like this might make sense for you, and how it scales up and out.
-  video_provider: "scheduled"
-  video_id: "mike-dalessio-rails-world-2025"
-  date: "2025-09-04"
-  published_at: "TODO"
-  announced_at: "2025-05-20"
-  event_name: "Rails World 2025"
-  language: "english"
-
-- title: "Taming the Beast: Safely Managing Database Operations in Rails in a Team of 100s"
-  speakers:
-    - Miles McGuire
-  description: |-
-    Intercom leverages Rails to empower hundreds of engineers to move fast and make the changes they need in production without a lengthy centralized review process. But allowing arbitrary migrations to run across hundreds of tables and hundreds of terabytes of data in MySQL comes with inherent risks. In this session, we’ll look at where we came from, what changes we've made to reduce risk and enable people to move fast while safely leveraging Rails’ power, and where we're going in the future.
-  video_provider: "scheduled"
-  video_id: "miles-mcguire-rails-world-2025"
-  date: "2025-09-04"
-  published_at: "TODO"
-  announced_at: "2025-05-20"
-  event_name: "Rails World 2025"
-  language: "english"
-
-- title: "Make Rails AI-Ready by Design with the Model Context Protocol"
-  speakers:
-    - Paweł Strzałkowski
-  description: |-
-    Remember the joy of Rails scaffold creating web interfaces in DHH’s demos? Let’s make it just as simple for AI integrations!
-
-    Imagine Rails scaffolding not just views for humans, but a parallel, AI interaction layer - out of the box!
-
-    How? By embracing convention over configuration with the Model Context Protocol (MCP), the emerging standard (backed by Google & OpenAI) for AI-app interactions.
-    Example: Scaffold a ReservationsController and instantly let an AI agent book a room via MCP - just like agents may use it with GitHub or JIRA today.
-
-    I’ll show:
-    - A full-stack AI-ready app scaffolded live
-    - An AI agent using it
-    - How backend, frontend, and AI layers cooperate
-    - How to make your app speak AI natively
-
-    Ultimately, this talk shows Rails’ competitive advantage for the AI era.
-  video_provider: "scheduled"
-  video_id: "pawel-strzalkowski-rails-world-2025"
-  date: "2025-09-04"
-  published_at: "TODO"
-  announced_at: "2025-05-20"
-  event_name: "Rails World 2025"
-  language: "english"
-
-- title: "Ruby Stability at Scale"
-  speakers:
-    - Peter Zhu
-  description: |-
-    There are many talks, articles, and tutorials on how to monitor your Rails app for stability. These assume the source of the bug comes from your application code, from Rails itself, or from a gem. But what if the source of instability comes from Ruby or a native gem? If Ruby crashes, do you have any monitoring or ways to debug it?
-
-    In this talk, we'll look at how we deal with Ruby crashes in the Shopify monolith, the world's largest Ruby on Rails application, and how you can use some of our techniques. We'll cover topics such as how we monitor crashes, capture core dumps for debugging, prevent crashes, and minimize the impact of crashes on production.
-  video_provider: "scheduled"
-  video_id: "peter-zhu-rails-world-2025"
-  date: "2025-09-04"
+  video_id: "andrew-mcnamara-charlie-lee-rails-world-2025"
+  date: "2025-09-05"
   published_at: "TODO"
   announced_at: "2025-05-20"
   event_name: "Rails World 2025"
@@ -281,61 +375,17 @@
 
     Even though we couldn't enable Turbo Drive, we got a huge DX and performance boost from using other parts of Hotwire, making the migration more than worth it.
 
-    I’ll share specific examples and lessons learned along the way. You'll leave optimistic about introducing Hotwire to a mature codebase.
+    I'll share specific examples and lessons learned along the way. You'll leave optimistic about introducing Hotwire to a mature codebase.
 
-    As a bonus, you’ll see:
+    As a bonus, you'll see:
     - When it's beneficial
     - How fast it pays back
     - How to introduce it gradually
     - Two concrete examples of complex Hotwire UIs
+  track: "Track 2"
   video_provider: "scheduled"
   video_id: "radan-skoric-rails-world-2025"
-  date: "2025-09-04"
-  published_at: "TODO"
-  announced_at: "2025-05-20"
-  event_name: "Rails World 2025"
-  language: "english"
-
-- title: "Coming Soon: Offline Mode to Hotwire with Service Workers"
-  speakers:
-    - Rosa Gutierrez
-  description: |-
-    Rosa is trying out a new methodology called Conference Driven Development™, so she's actually hard at work on building what she will discuss in her talk at Rails World. So for now, this abstract is To Be Determined. Wish her luck!
-  video_provider: "scheduled"
-  video_id: "rosa-gutierrez-rails-world-2025"
-  date: "2025-09-04"
-  published_at: "TODO"
-  announced_at: "2025-05-20"
-  event_name: "Rails World 2025"
-  language: "english"
-
-- title: "Rails Under a Microscope: Diagnosing Slowness at the Byte Level"
-  speakers:
-    - Snehal Ahire
-  description: |-
-    We realized our legacy code didn’t need a rewrite, it needed a performance plan.
-
-    This talk shares how we tackled real production issues like memory bloat, slow queries, and Sidekiq queues piling up under load, where simple fixes like batching jobs or tweaking retries didn’t help much.
-
-    We thought Active Record was the bottleneck, but fixing it only scratched the surface. We optimised query access patterns, chose more efficient data structures, restructured background jobs, and introduced smarter database caching and indexing strategies.
-
-    I’ll share how we analysed query plans, fine-tuned database performance, and replaced slow, fragile logic with leaner, more explicit code paths that scaled better and failed less while Rails stayed right at the center of it all.
-  video_provider: "scheduled"
-  video_id: "snehal-ahire-rails-world-2025"
-  date: "2025-09-04"
-  published_at: "TODO"
-  announced_at: "2025-05-20"
-  event_name: "Rails World 2025"
-  language: "english"
-
-- title: "A Tour of Rails Internals"
-  speakers:
-    - Xavier Noria
-  description: |-
-    This talk covers the user-adjacent internals of Rails that you might be curious about- features like the query cache, the executor, etc that are working quietly behind the scenes for you. If you’ve ever wondered “how does Rails do that?”, this talk is for you.
-  video_provider: "scheduled"
-  video_id: "xavier-noria-rails-world-2025"
-  date: "2025-09-04"
+  date: "2025-09-05"
   published_at: "TODO"
   announced_at: "2025-05-20"
   event_name: "Rails World 2025"
@@ -346,9 +396,10 @@
     - Aaron Patterson
   description: |-
     We actually never know with Aaron. We'll find out what this session is about when you do.
+  track: "Track 1"
   video_provider: "scheduled"
   video_id: "aaron-patterson-rails-world-2025"
-  date: "2025-09-04"
+  date: "2025-09-05"
   published_at: "TODO"
   announced_at: "2025-05-20"
   event_name: "Rails World 2025"

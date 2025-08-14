@@ -1,4 +1,4 @@
-module Youtube
+module YouTube
   class Video < Client
     def get_statistics(video_id)
       path = "/videos"

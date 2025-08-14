@@ -70,7 +70,7 @@
 
                 <ul>
                   <% talks.each do |talk| %>
-                    <li><%= link_to talk.title, "https://github.com/adrienpoly/rubyvideo/edit/main/#{talk.static_metadata.__file_path}", target: "_blank" if talk.static_metadata %> (<%= link_to talk.date.to_fs(:long), talk %>, <%= time_ago_in_words(talk.date) %> ago)</li>
+                    <li><%= link_to talk.title, "https://github.com/rubyevents/rubyevents/edit/main/#{talk.static_metadata.__file_path}", target: "_blank" if talk.static_metadata %> (<%= link_to talk.date.to_fs(:long), talk %>, <%= time_ago_in_words(talk.date) %> ago)</li>
                   <% end %>
                 </ul>
               </article>
@@ -103,7 +103,7 @@
                 <div class="prose">
                   <ul>
                     <% talks.each do |talk| %>
-                      <li><%= link_to talk.title, "https://github.com/adrienpoly/rubyvideo/edit/main/#{talk.static_metadata.__file_path}", target: "_blank" if talk.static_metadata %> (<%= link_to talk.date.to_fs(:long), talk %>)</li>
+                      <li><%= link_to talk.title, "https://github.com/rubyevents/rubyevents/edit/main/#{talk.static_metadata.__file_path}", target: "_blank" if talk.static_metadata %> (<%= link_to talk.date.to_fs(:long), talk %>)</li>
                     <% end %>
                   </ul>
                 </div>
@@ -136,7 +136,7 @@
 
                 <ul>
                   <% talks.each do |talk| %>
-                    <li><%= link_to talk.title, "https://github.com/adrienpoly/rubyvideo/edit/main/#{talk.static_metadata.__file_path}", target: "_blank" if talk.static_metadata %> (<%= link_to talk.date.to_fs(:long), talk %>, <%= time_ago_in_words(talk.date) %> ago)</li>
+                    <li><%= link_to talk.title, "https://github.com/rubyevents/rubyevents/edit/main/#{talk.static_metadata.__file_path}", target: "_blank" if talk.static_metadata %> (<%= link_to talk.date.to_fs(:long), talk %>, <%= time_ago_in_words(talk.date) %> ago)</li>
                   <% end %>
                 </ul>
               </article>
@@ -156,7 +156,7 @@
 
           <p>We are checking against <a href="https://rubyconferences.org" target="_blank">rubyconferences.org</a> to identify missing events. Below, we will list conferences with video links first, followed by those without a video link.</p>
 
-          <p>If you would like to contribute data for any of the events listed below, please refer to <a href="https://github.com/adrienpoly/rubyvideo/blob/main/docs/contributing.md" target="_blank">this guide</a> to add the event to the site.</p>
+          <p>If you would like to contribute data for any of the events listed below, please refer to <a href="https://github.com/rubyevents/rubyevents/blob/main/docs/contributing.md" target="_blank">this guide</a> to add the event to the site.</p>
         </article>
 
         <h3 class="font-bold mb-3">Conferences from RubyConferences.org we already indexed</h3>

@@ -1,3 +1,5 @@
+require "public_suffix"
+
 speakers = YAML.load_file("#{Rails.root}/data/speakers.yml")
 organisations = YAML.load_file("#{Rails.root}/data/organisations.yml")
 videos_to_ignore = YAML.load_file("#{Rails.root}/data/videos_to_ignore.yml")
@@ -86,6 +88,53 @@ MeiliSearch::Rails.deactivate! do
         end
       rescue ActiveRecord::RecordInvalid => e
         puts "Couldn't save: #{talk_data["title"]} (#{talk_data["video_id"]}), error: #{e.message}"
+      end
+
+      if event.sponsors_file.exist?
+        event.sponsors_file.file.each do |sponsors|
+          sponsors["tiers"].each do |tier|
+            tier["sponsors"].each do |sponsor|
+              s = nil
+              domain = nil
+
+              if sponsor["website"].present?
+                begin
+                  uri = URI.parse(sponsor["website"])
+                  host = uri.host || sponsor["website"]
+                  parsed = PublicSuffix.parse(host)
+                  domain = parsed.domain
+
+                  s = Sponsor.find_by(domain: domain) if domain.present?
+                rescue PublicSuffix::Error, URI::InvalidURIError
+                  # If parsing fails, continue with other matching methods
+                end
+              end
+
+              s ||= Sponsor.find_by(name: sponsor["name"]) || Sponsor.find_by(slug: sponsor["slug"]&.downcase)
+              s ||= Sponsor.find_or_initialize_by(name: sponsor["name"])
+
+              s.update(
+                website: sponsor["website"],
+                description: sponsor["description"],
+                domain: domain
+                # s.level = sponsor["level"]
+                # s.event = event
+                # s.organisation = organisation
+              )
+
+              s.add_logo_url(sponsor["logo_url"]) if sponsor["logo_url"].present?
+              s.logo_url = sponsor["logo_url"] if sponsor["logo_url"].present? && s.logo_url.blank?
+
+              if !s.persisted?
+                s = Sponsor.find_by(slug: s.slug) || Sponsor.find_by(name: s.name)
+              end
+
+              s.save!
+
+              event.event_sponsors.find_or_create_by!(sponsor: s, event: event).update!(tier: tier["name"], badge: sponsor["badge"])
+            end
+          end
+        end
       end
     end
   end

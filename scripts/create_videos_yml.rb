@@ -9,9 +9,9 @@ if playlist_id.blank?
   exit 1
 end
 
-puts Youtube::PlaylistItems.new
+puts YouTube::PlaylistItems.new
   .all(playlist_id: playlist_id)
-  .map { |metadata| Youtube::VideoMetadata.new(metadata: metadata, event_name: "TODO").cleaned }
+  .map { |metadata| YouTube::VideoMetadata.new(metadata: metadata, event_name: "TODO").cleaned }
   .map { |item| item.to_h.stringify_keys }
   .to_yaml
   .gsub("- title:", "\n- title:") # Visually separate the talks with a newline

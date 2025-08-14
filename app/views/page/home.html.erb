@@ -64,5 +64,28 @@
         <%= render partial: "events/card", collection: @latest_events, as: :event %>
       </div>
     </section>
+
+    <% if @featured_sponsors.present? %>
+      <section class="flex flex-col w-full gap-4">
+        <div class="flex items-center justify-between w-full">
+          <h2 class="text-primary shrink-0">Featured sponsors</h2>
+          <%= link_to "see all sponsors", sponsors_path, class: "link text-right w-full" %>
+        </div>
+
+        <div class="relative" data-controller="scroll">
+          <div class="overflow-x-auto scroll-smooth snap-x snap-mandatory" data-scroll-target="container" data-action="scroll->scroll#checkScroll">
+            <div class="flex pb-4 gap-4">
+              <% @featured_sponsors.each do |sponsor| %>
+                <div class="snap-start" data-scroll-target="card">
+                  <%= render partial: "sponsors/card", locals: {sponsor: sponsor} %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white to-transparent pointer-events-none" data-scroll-target="gradient"></div>
+        </div>
+      </section>
+    <% end %>
   </div>
 </main>

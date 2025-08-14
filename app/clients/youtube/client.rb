@@ -1,4 +1,4 @@
-module Youtube
+module YouTube
   class Client < ApplicationClient
     BASE_URI = "https://youtube.googleapis.com/youtube/v3"
 

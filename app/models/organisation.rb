@@ -31,7 +31,7 @@ class Organisation < ApplicationRecord
 
   include ActionView::Helpers::TextHelper
 
-  slug_from :name
+  configure_slug(attribute: :name, auto_suffix_on_collision: false)
 
   # associations
   has_many :events, dependent: :destroy, inverse_of: :organisation, foreign_key: :organisation_id, strict_loading: true
@@ -43,7 +43,7 @@ class Organisation < ApplicationRecord
 
   # enums
   enum :kind, {conference: 0, meetup: 1, organisation: 2}
-  enum :frequency, {unknown: 0, yearly: 1, monthly: 2, biyearly: 3, quarterly: 4}
+  enum :frequency, {unknown: 0, yearly: 1, monthly: 2, biyearly: 3, quarterly: 4, irregular: 5}
 
   def title
     %(All #{name} #{kind.pluralize})

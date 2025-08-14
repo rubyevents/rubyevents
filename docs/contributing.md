@@ -2,7 +2,7 @@
 
 This guide provides steps on how to contribute new videos to the platform. If you wish to make a contribution, please submit a Pull Request (PR) with the necessary information detailed below.
 
-There are a few scripts available to help you build those data files by scraping the Youtube API. To use them, you must first create a Youtube API Key and add it to your .env file. Here are the guidlines to get a key https://developers.google.com/youtube/registering_an_application
+There are a few scripts available to help you build those data files by scraping the YouTube API. To use them, you must first create a YouTube API Key and add it to your .env file. Here are the guidelines to get a key https://developers.google.com/youtube/registering_an_application
 
 ```
 YOUTUBE_API_KEY=some_key
@@ -39,7 +39,7 @@ This will update your `data_preparation/organisations.yml` file with the youtube
 
 ### Step 2 - Create the Playlists
 
-This workflow assumes the Youtube channel is organized by playlist with 1 event equating to 1 playlist. Run the following script to create the playlist file:
+This workflow assumes the YouTube channel is organized by playlist with 1 event equating to 1 playlist. Run the following script to create the playlist file:
 
 ```
 rails runner scripts/create_playlists.rb
@@ -101,7 +101,7 @@ data/
 ├── speakers.yml
 ```
 
-To extract a maximum of information from the Youtube metadata, the raw video information is parsed by a class `Youtube::VideoMetadata`. This class will try to extract speakers from the title. This is the default parser but sometimes the speakers are not extracted correctly, you can create a new class and specify it in the `playlists.yml` file.
+To extract a maximum of information from the YouTube metadata, the raw video information is parsed by a class `YouTube::VideoMetadata`. This class will try to extract speakers from the title. This is the default parser but sometimes the speakers are not extracted correctly, you can create a new class and specify it in the `playlists.yml` file.
 
 ```yml
 - id: PL9_jjLrTYxc2uUcqG2wjZ1ppt-TkFG-gm
@@ -112,7 +112,7 @@ To extract a maximum of information from the Youtube metadata, the raw video inf
   year: "2015"
   videos_count: 21
   slug: rubyconf-au-2015
-  metadata_parser: "Youtube::VideoMetadata::RubyConfAu" # custom parser
+  metadata_parser: "YouTube::VideoMetadata::RubyConfAu" # custom parser
 ```
 
 ### Step 4 - move the data
