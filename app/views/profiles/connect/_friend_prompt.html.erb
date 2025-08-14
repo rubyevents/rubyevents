@@ -40,7 +40,7 @@
       <%# TODO: Add connection button %>
       <%= ui_button url: "#", kind: :primary, size: :lg, class: "px-8 shadow-lg" do %>
         <%= heroicon :plus, variant: :outline, class: "w-5 h-5 mr-2" %>
-        Connect
+        Connect (not implemented)
       <% end %>
     <% else %>
       <%= ui_button url: sign_in_path(connect_to: params[:id]), kind: :primary, size: :lg, class: "px-8 shadow-lg", data: {turbo_frame: "modal"} do %>

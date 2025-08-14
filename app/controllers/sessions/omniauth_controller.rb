@@ -17,7 +17,6 @@ class Sessions::OmniauthController < ApplicationController
       @user = User.find_or_create_by(email: github_email) do |user|
         user.password = SecureRandom.base58
         user.verified = true
-        user.connect_id = connect_id if connect_id.present?
         user.github_handle = omniauth.info&.try(:nickname)
       end
       connected_account.user = @user
@@ -26,6 +25,13 @@ class Sessions::OmniauthController < ApplicationController
       connected_account.save!
     else
       @user = connected_account.user
+    end
+
+    # If the user connected through a passport connection URL, we need to create a connected account for it
+    if connect_id.present?
+      passport_account = ConnectedAccount.find_or_initialize_by(provider: "passport", uid: connect_id)
+      passport_account.user = @user
+      passport_account.save!
     end
 
     if connect_to.present?

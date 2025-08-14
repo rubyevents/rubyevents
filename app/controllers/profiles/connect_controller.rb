@@ -7,6 +7,12 @@ class Profiles::ConnectController < ApplicationController
 
   def show
     @connect_id = params[:id]
-    @found_user = User.find_by(connect_id: @connect_id)
+    @found_account = ConnectedAccount.find_by(uid: @connect_id, provider: "passport")
+
+    # The user landed on their own connect page
+    if Current.user && Current.user.passport_account.present? && Current.user.passport_account == @found_account
+      # This should probably redirect to the profile page when we have one
+      redirect_to root_path, notice: "You did it. You landed on your profile page 🙌"
+    end
   end
 end

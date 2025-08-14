@@ -46,6 +46,7 @@ Rails.application.routes.draw do
 
   namespace :profiles do
     resources :connect, only: [:index, :show]
+    resources :claim, only: [:create]
   end
 
   resources :contributions, only: [:index, :show], param: :step
