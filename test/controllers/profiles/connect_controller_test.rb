@@ -3,10 +3,10 @@ require "test_helper"
 class Profiles::ConnectControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = users(:one)
-    @user.update(connect_id: "one")
+    @user.connected_accounts.create(provider: "passport", uid: "one")
 
     @lazaro = users(:lazaro_nixon)
-    @lazaro.update(connect_id: "lazaro")
+    @lazaro.connected_accounts.create(provider: "passport", uid: "lazaro")
   end
 
   test "should redirect to root path" do
@@ -32,7 +32,7 @@ class Profiles::ConnectControllerTest < ActionDispatch::IntegrationTest
     get profiles_connect_path(id: "one")
     assert_response :success
     assert_includes response.body, "🎉 Awesome! You Discovered a Friend"
-    assert_select ".pt-4 a.btn.btn-primary", text: "Connect"
+    assert_select ".pt-4 a.btn.btn-primary.btn-disabled.hidden", text: "Connect"
   end
 
   test "user should see no profile found page" do

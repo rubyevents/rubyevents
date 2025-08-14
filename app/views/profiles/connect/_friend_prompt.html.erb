@@ -37,22 +37,21 @@
   <!-- CTA Button -->
   <div class="pt-4">
     <% if Current.user.present? %>
-      <%# TODO: Add connection button %>
-      <%= ui_button url: "#", kind: :primary, size: :lg, class: "px-8 shadow-lg" do %>
+      <%= ui_button url: "#", kind: :primary, size: :lg, class: "px-8 shadow-lg btn-disabled hidden" do %>
         <%= heroicon :plus, variant: :outline, class: "w-5 h-5 mr-2" %>
-        Connect (not implemented)
+        Connect
       <% end %>
     <% else %>
       <%= ui_button url: sign_in_path(connect_to: params[:id]), kind: :primary, size: :lg, class: "px-8 shadow-lg", data: {turbo_frame: "modal"} do %>
         <%= heroicon :arrow_right, variant: :outline, class: "w-5 h-5 mr-2" %>
         Sign In and Connect
       <% end %>
-    <% end %>
-  </div>
 
-  <!-- Network indicator -->
-  <div class="text-xs text-base-content/50 flex items-center space-x-1">
-    <%= heroicon :globe_alt, variant: :outline, class: "w-4 h-4" %>
-    <span>Join the Ruby community network</span>
+      <!-- Network indicator -->
+      <div class="text-xs text-base-content/50 flex items-center space-x-1">
+        <%= heroicon :globe_alt, variant: :outline, class: "w-4 h-4" %>
+        <span>Join the Ruby community network</span>
+      </div>
+    <% end %>
   </div>
 </div>
