@@ -146,7 +146,7 @@
                 <% end %>
               <% end %>
             <% else %>
-              <%= link_to sign_in_path(redirect_to: request.fullpath), data: {turbo_frame: "modal"} do %>
+              <%= link_to new_session_path(redirect_to: request.fullpath), data: {turbo_frame: "modal"} do %>
                 <%= heroicon :bookmark, class: "shrink-0 cursor-pointer mt-1", variant: :outline, size: :sm %>
               <% end %>
             <% end %>
