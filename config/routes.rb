@@ -33,7 +33,6 @@ Rails.application.routes.draw do
     resource :password_reset, only: [:new, :edit, :create, :update]
   end
 
-
   authenticate :admin do
     mount MissionControl::Jobs::Engine, at: "/jobs"
     mount Avo::Engine, at: Avo.configuration.root_path
@@ -41,7 +40,6 @@ Rails.application.routes.draw do
 
   resources :topics, param: :slug, only: [:index, :show]
   resources :cfp, only: :index
-
 
   resources :contributions, only: [:index, :show], param: :step
 
