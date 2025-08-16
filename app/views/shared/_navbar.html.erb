@@ -41,7 +41,7 @@
         <% end %>
 
         <% signed_out do %>
-          <%= link_to "Sign in", sign_in_path, data: {turbo_frame: "modal"}, class: "btn btn-primary" %>
+          <%= link_to "Sign in", new_session_path, data: {turbo_frame: "modal"}, class: "btn btn-primary" %>
         <% end %>
       </ul>
 

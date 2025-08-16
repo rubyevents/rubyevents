@@ -3,6 +3,10 @@
     <h1 class="title">
       <%= title "Events by Country" %>
     </h1>
+
+    <div class="flex flex-col gap-3 place-items-center">
+      <%= ui_button "View all cities", url: cities_path, kind: :secondary, size: :sm, class: "w-full" %>
+    </div>
   </div>
 
   <div class="mt-6">

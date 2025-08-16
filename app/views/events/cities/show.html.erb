@@ -3,26 +3,31 @@
 <div class="container py-8">
   <div class="block lg:flex gap-8 align-center justify-between">
     <div class="flex flex-col lg:flex-row gap-8 items-center lg:justify-right text-center lg:text-left mb-6 lg:mb-0">
-      <span class="fi fi-<%= @country.alpha2.downcase %> border rounded w-36 text-[80pt]"></span>
+      <% if @country.present? %>
+        <span class="fi fi-<%= @country.alpha2.downcase %> border rounded w-36 text-[80pt]"></span>
+      <% end %>
       <div class="flex-col flex justify-center">
         <h1 class="mb-2 text-black font-bold" style="view-transition-name: title">
-          <%= title "Ruby Events in #{@country.translations["en"]}" %>
+          <%= title "Ruby Events in #{@city.titleize}" %>
         </h1>
         <h3 class="hidden md:block text-[#636B74]">
           <% if @country.present? %>
-            <%= @country.translations["en"] %>, <%= @country.continent %>
+            <%= @city.titleize %>,
+            <%= link_to @country.translations["en"], country_path(@country.translations["en"].parameterize), class: "hover:underline" %>
           <% end %>
         </h3>
       </div>
     </div>
 
-    <div class="flex flex-col gap-3 place-items-center">
-      <%= ui_button "View all countries", url: countries_path, kind: :secondary, size: :sm, class: "w-full" %>
-    </div>
+    <% if @country.present? %>
+      <div class="flex flex-col gap-3 place-items-center">
+        <%= ui_button "View all events in #{@country.translations["en"]}", url: country_path(@country.translations["en"].parameterize), kind: :secondary, size: :sm, class: "w-full" %>
+      </div>
+    <% end %>
   </div>
 
   <p class="mt-3 md:mt-9 mb-6 text-[#636B74] max-w-[700px]">
-    We have indexed <%= pluralize(@events.count, "event") %> in <%= @country.translations["en"] %>.
+    We have indexed <%= pluralize(@events.count, "event") %> in <%= @city.titleize %>.
   </p>
 
   <% if (featured_event = @events.find { |event| event.featurable? }) && false %>
@@ -44,25 +49,5 @@
         </section>
       </div>
     <% end %>
-  <% end %>
-
-  <% if @events_by_city.any? %>
-    <div id="cities" class="mt-12">
-      <section class="flex flex-col w-full gap-4">
-        <div class="flex items-center justify-between w-full">
-          <h2 class="text-primary shrink-0">Cities</h2>
-        </div>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 lg:gap-x-12 gap-y-2 min-w-full">
-          <% @events_by_city.each do |city, events| %>
-            <%= link_to city_path(city.parameterize), id: "city-#{city.parameterize}", class: "event flex justify-between items-center" do %>
-              <div class="flex items-center gap-2">
-                <span class="event-name"><%= city %></span>
-              </div>
-              <%= ui_badge(events.count, kind: :secondary, outline: true, size: :lg, class: "min-w-10") %>
-            <% end %>
-          <% end %>
-        </div>
-      </section>
-    </div>
   <% end %>
 </div>

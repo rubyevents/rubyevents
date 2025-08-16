@@ -34,7 +34,7 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
   def sign_in_as(user)
-    post(sign_in_url, params: {email: user.email, password: "Secret1*3*5*"})
+    post(sessions_url, params: {email: user.email, password: "Secret1*3*5*"})
     user
   end
 end
