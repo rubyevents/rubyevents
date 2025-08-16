@@ -22,7 +22,7 @@ class SpeakersController < ApplicationController
     end
   end
 
-  # GET /speakers/1
+  # GET /speakers/first-last
   def show
     @talks = @speaker.kept_talks.includes(:speakers, event: :organisation, child_talks: :speakers).order(date: :desc)
     @talks_by_kind = @talks.group_by(&:kind)
@@ -40,6 +40,10 @@ class SpeakersController < ApplicationController
     @back_path = speakers_path
 
     set_meta_tags(@speaker)
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   # GET /speakers/1/edit
