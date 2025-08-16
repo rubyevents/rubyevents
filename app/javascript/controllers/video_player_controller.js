@@ -40,6 +40,11 @@ export default class extends Controller {
   get options () {
     const providerOptions = {}
     const providerParams = {}
+    // Youtube videos have their own controls, so we need to hide the Vlitejs controls
+    const controls = this.hasProviderValue && this.providerValue !== 'youtube'
+
+    // Hide the Vlitejs controls if the video is a Youtube video
+    providerParams.controls = !controls
 
     if (this.hasProviderValue && this.providerValue !== 'mp4') {
       providerOptions.provider = this.providerValue
@@ -60,7 +65,7 @@ export default class extends Controller {
       options: {
         providerParams,
         poster: this.posterValue,
-        controls: true
+        controls
       },
       onReady: this.handlePlayerReady.bind(this)
     }
