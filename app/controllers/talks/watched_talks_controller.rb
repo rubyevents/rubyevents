@@ -8,13 +8,13 @@ class Talks::WatchedTalksController < ApplicationController
   def create
     @talk.mark_as_watched!
 
-    redirect_to @talk
+    redirect_back fallback_location: @talk
   end
 
   def destroy
     @talk.unmark_as_watched!
 
-    redirect_to @talk
+    redirect_back fallback_location: @talk
   end
 
   private
