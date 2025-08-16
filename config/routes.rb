@@ -81,6 +81,7 @@ Rails.application.routes.draw do
       collection do
         get "/past" => "past#index", :as => :past
         get "/archive" => "archive#index", :as => :archive
+        get "/feed" => "feeds#index", :as => :feed
         resources :countries, param: :country, only: [:index, :show]
         resources :cities, param: :city, only: [:index, :show]
       end
