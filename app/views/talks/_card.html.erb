@@ -163,9 +163,9 @@
           <div class="flex items-center gap-2 font-light">
             <% speakers_count = talk.speakers.size %>
             <% if speakers_count > 1 %>
-              <%= fa("users", size: :sm, class: "shrink-0 grow-0 my-1") %>
+              <%= fa("users", size: :sm, style: :light, class: "shrink-0 grow-0 my-1") %>
             <% elsif speakers_count == 1 %>
-              <%= fa("user", size: :sm, class: "shrink-0 grow-0 my-1") %>
+              <%= fa("user", size: :sm, style: :regular, class: "shrink-0 grow-0 my-1") %>
             <% end %>
 
             <div class="line-clamp-1">
@@ -182,7 +182,7 @@
           </div>
           <% if talk.event %>
             <div class="flex items-center gap-2 font-light">
-              <%= fa("map-pin", size: :sm, class: "shrink-0 grow-0") %>
+              <%= fa("location-dot", size: :sm, style: :light, class: "shrink-0 grow-0") %>
               <%= link_to talk.event_name,
                     talk.event,
                     class: "link link-ghost line-clamp-1",
@@ -197,9 +197,9 @@
           <%= ui_tooltip "Slides available" do %>
             <%= fa(
                   "presentation-screen",
-                  style: "regular",
+                  style: :regular,
                   size: :sm,
-                  class: "shrink-0 grow-0 my-1 text-black"
+                  class: "shrink-0 grow-0 text-black"
                 ) %>
           <% end %>
         <% end %>
@@ -212,7 +212,7 @@
                   <%= fa(
                         "bookmark",
                         style: :solid,
-                        class: "text-primary shrink-0 cursor-pointer mt-1",
+                        class: "text-primary shrink-0 cursor-pointer",
                         size: :sm
                       ) %>
                 <% end %>
@@ -220,7 +220,7 @@
                 <%= button_to watch_list_talks_path(default_watch_list, talk_id: talk.id), method: :post do %>
                   <%= fa(
                         "bookmark",
-                        class: "shrink-0 cursor-pointer mt-1",
+                        class: "shrink-0 cursor-pointer",
                         style: :regular,
                         size: :sm
                       ) %>
@@ -230,7 +230,7 @@
               <%= link_to new_session_path(redirect_to: request.fullpath), data: {turbo_frame: "modal"} do %>
                 <%= fa(
                       "bookmark",
-                      class: "shrink-0 cursor-pointer mt-1",
+                      class: "shrink-0 cursor-pointer",
                       style: :regular,
                       size: :sm
                     ) %>
