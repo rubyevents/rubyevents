@@ -2,6 +2,14 @@
 #
 
 Rails.application.routes.draw do
+  namespace :sponsors do
+    resources :missing, only: [:index]
+  end
+
+  resources :sponsors, param: :slug, only: [:index, :show] do
+    resource :logos, only: [:show, :update], controller: "sponsors/logos"
+  end
+
   extend Authenticator
 
   # static pages
@@ -10,15 +18,20 @@ Rails.application.routes.draw do
   get "/components", to: "page#components"
   get "/about", to: "page#about"
   get "/stickers", to: "page#stickers"
+  get "/stamps", to: "stamps#index"
 
   # authentication
   get "/auth/failure", to: "sessions/omniauth#failure"
   get "/auth/:provider/callback", to: "sessions/omniauth#create"
   post "/auth/:provider/callback", to: "sessions/omniauth#create"
-  get "sign_in", to: "sessions#new"
-  post "sign_in", to: "sessions#create"
-  get "sign_up", to: "registrations#new"
-  post "sign_up", to: "registrations#create"
+  resources :sessions, only: [:new, :create, :destroy]
+
+  resource :password, only: [:edit, :update]
+  namespace :identity do
+    resource :email, only: [:edit, :update]
+    resource :email_verification, only: [:show, :create]
+    resource :password_reset, only: [:new, :edit, :create, :update]
+  end
 
   authenticate :admin do
     mount MissionControl::Jobs::Engine, at: "/jobs"
@@ -26,13 +39,7 @@ Rails.application.routes.draw do
   end
 
   resources :topics, param: :slug, only: [:index, :show]
-  resources :sessions, only: [:index, :show, :destroy]
-  resource :password, only: [:edit, :update]
-  namespace :identity do
-    resource :email, only: [:edit, :update]
-    resource :email_verification, only: [:show, :create]
-    resource :password_reset, only: [:new, :edit, :create, :update]
-  end
+  resources :cfp, only: :index
 
   resources :contributions, only: [:index, :show], param: :step
 
@@ -75,6 +82,7 @@ Rails.application.routes.draw do
         get "/past" => "past#index", :as => :past
         get "/archive" => "archive#index", :as => :archive
         resources :countries, param: :country, only: [:index, :show]
+        resources :cities, param: :city, only: [:index, :show]
       end
 
       resources :schedules, only: [:index], path: "/schedule" do
@@ -85,6 +93,8 @@ Rails.application.routes.draw do
       resources :related_talks, only: [:index]
       resources :events, only: [:index]
       resources :videos, only: [:index]
+      resources :sponsors, only: [:index]
+      resources :cfp, only: [:index]
     end
   end
   resources :organisations, param: :slug, only: [:index, :show]

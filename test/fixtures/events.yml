@@ -4,6 +4,9 @@
 # Table name: events
 #
 #  id              :integer          not null, primary key
+#  cfp_close_date  :date
+#  cfp_link        :string
+#  cfp_open_date   :date
 #  city            :string
 #  country_code    :string
 #  date            :date
@@ -69,5 +72,15 @@ brightonruby_2024:
   date: 2024-06-28
   organisation: brightonruby
   name: Brighton Ruby 2024
-  kind: conference  
+  kind: conference
   slug: brightonruby-2024
+
+future_conference:
+  date: <%= 3.weeks.from_now %>
+  organisation: rails_world
+  name: Future Conference
+  kind: conference
+  slug: future-conference
+  cfp_link: https://www.futureconference.com/cfp
+  cfp_open_date: <%= 1.week.from_now %>
+  cfp_close_date: <%= 2.weeks.from_now %>

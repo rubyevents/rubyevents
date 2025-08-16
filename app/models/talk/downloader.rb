@@ -1,5 +1,3 @@
-# -*- SkipSchemaAnnotations
-
 class Talk::Downloader < ActiveRecord::AssociatedObject
   def download_path
     Rails.root / "tmp" / "videos" / talk.video_provider / "#{talk.video_id}.mp4"

@@ -23,13 +23,14 @@ class PageController < ApplicationController
     @upcoming_talks = Talk.includes(event: :organisation).where(id: home_page_cached_data[:upcoming_talk_ids])
     @latest_events = Event.includes(:organisation).where(id: home_page_cached_data[:latest_event_ids])
     @featured_speakers = Speaker.where(id: home_page_cached_data[:featured_speaker_ids]).sample(10)
+    @featured_sponsors = Sponsor.joins(:event_sponsors).group("sponsors.id").order("COUNT(event_sponsors.id) DESC").limit(25)
 
     # Add featured events logic
     playlist_slugs = Static::Playlist.where.not(featured_background: nil)
       .select(&:featured?)
       .sort_by(&:home_sort_date)
       .reverse
-      .take(25)
+      .take(15)
       .map(&:slug)
 
     @featured_events = Event.distinct

@@ -22,7 +22,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index and return events in the correct order" do
-    event_names = %i[brightonruby_2024 rails_world_2023 tropical_rb_2024 railsconf_2017 rubyconfth_2022].map { |event| events(event) }.map(&:name)
+    event_names = %i[brightonruby_2024 future_conference rails_world_2023 tropical_rb_2024 railsconf_2017 rubyconfth_2022].map { |event| events(event) }.map(&:name)
 
     get archive_events_url
 
@@ -41,7 +41,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
 
   test "should show event" do
     get event_url(@event)
-    assert_redirected_to event_talks_url(@event)
+    assert_response :success
   end
 
   test "should show event talks" do

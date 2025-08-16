@@ -26,7 +26,7 @@
 #  utm_medium       :string
 #  utm_source       :string
 #  utm_term         :string
-#  visit_token      :string           indexed
+#  visit_token      :string           uniquely indexed
 #  visitor_token    :string
 #  user_id          :integer          indexed
 #

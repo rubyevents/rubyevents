@@ -1,5 +1,3 @@
-# -*- SkipSchemaAnnotations
-
 class Event::StaticMetadata < ActiveRecord::AssociatedObject
   delegate :published_date, :home_sort_date, to: :static_repository, allow_nil: true
 
@@ -82,6 +80,10 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
     return nil if location.blank?
 
     Country.find(location.to_s.split(",").last&.strip)
+  end
+
+  def last_edition?
+    static_repository&.last_edition || false
   end
 
   private

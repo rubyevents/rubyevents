@@ -5,8 +5,8 @@
 #
 #  id              :integer          not null, primary key
 #  admin           :boolean          default(FALSE), not null
-#  email           :string           not null, indexed
-#  github_handle   :string           indexed
+#  email           :string           not null, uniquely indexed
+#  github_handle   :string           uniquely indexed
 #  name            :string
 #  password_digest :string           not null
 #  verified        :boolean          default(FALSE), not null
@@ -39,7 +39,7 @@ class User < ApplicationRecord
   normalizes :github_handle, with: ->(value) { normalize_github_handle(value) }
 
   encrypts :email, deterministic: true
-  encrypts :name
+  encrypts :name # TODO: remove this once we've decrypted all the names
 
   before_validation if: -> { email.present? } do
     self.email = email.downcase.strip

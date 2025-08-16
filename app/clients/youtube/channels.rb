@@ -1,7 +1,7 @@
 require "open-uri"
 
-module Youtube
-  class Channels < Youtube::Client
+module YouTube
+  class Channels < YouTube::Client
     def id_by_name(channel_name:)
       response = get("/channels", query: {forUsername: "\"#{channel_name}\"", key: token, part: "snippet,contentDetails,statistics"})
       response.try(:items)&.first&.id || fallback_using_scrapping(channel_name: channel_name)

@@ -25,4 +25,13 @@ class EventTest < ActiveSupport::TestCase
     event = Event.new(name: "test", organisation: @organisation, website: nil)
     assert_equal "https://railsconf.org", event.website
   end
+
+  test "don't create a unique slug in case of collison" do
+    event = Event.create(name: "test")
+    assert_equal "test", event.slug
+
+    event = Event.create(name: "test")
+    assert_equal "test", event.slug
+    refute event.valid?
+  end
 end

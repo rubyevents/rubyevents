@@ -90,6 +90,20 @@ class SpeakerTest < ActiveSupport::TestCase
     assert_equal "username", Speaker.new(linkedin: "username").linkedin
   end
 
+  test "create a slug for cyrillic speaker name" do
+    speaker = Speaker.create(name: "Руслан Корнев")
+    assert_equal "ruslan-kornev", speaker.slug
+    assert_equal "ruslan-kornev", speaker.to_param
+  end
+
+  test "create a unique slug in case of collison" do
+    speaker = Speaker.create(name: "john")
+    assert_equal "john", speaker.slug
+
+    speaker = Speaker.create(name: "john")
+    assert speaker.slug.include?("john-")
+  end
+
   test "assign_canonical_speaker! resets talks_count" do
     speaker = speakers(:yaroslav)
     assert speaker.talks_count.positive?

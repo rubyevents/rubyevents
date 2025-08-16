@@ -5,9 +5,10 @@
   </h1>
 
   <div role="tablist" class="tabs tabs-bordered mt-6">
-    <input type="radio" name="contribution-tabs" role="tab" class="tab" aria-label="Introduction" checked="checked" style="width: 125px">
+    <input type="radio" name="contribution-tabs" role="tab" class="tab" aria-label="Introduction" checked style="width: 125px">
     <div role="tabpanel" class="tab-content py-6">
       <%= render "contributions/introduction" %>
+    </div>
 
     <input type="radio" name="contribution-tabs" role="tab" class="tab" aria-label="Speakers without GitHub handles" style="width: 300px">
     <div role="tabpanel" class="tab-content py-6">
@@ -69,7 +70,7 @@
 
                 <ul>
                   <% talks.each do |talk| %>
-                    <li><%= link_to talk.title, "https://github.com/adrienpoly/rubyvideo/edit/main/#{talk.static_metadata.__file_path}", target: "_blank" if talk.static_metadata %> (<%= link_to talk.date.to_fs(:long), talk %>, <%= time_ago_in_words(talk.date) %> ago)</li>
+                    <li><%= link_to talk.title, "https://github.com/rubyevents/rubyevents/edit/main/#{talk.static_metadata.__file_path}", target: "_blank" if talk.static_metadata %> (<%= link_to talk.date.to_fs(:long), talk %>, <%= time_ago_in_words(talk.date) %> ago)</li>
                   <% end %>
                 </ul>
               </article>
@@ -88,7 +89,7 @@
           These talks currently don't have speakers assigned.
         </article>
 
-        <div id="overdue-scheduled-talks" class="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4 min-w-full mb-6">
+        <div id="talks-without-speakers" class="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4 min-w-full mb-6">
 
           <% @talks_without_speakers.group_by(&:event).sort_by { |_event, talks| talks.minimum(:date) }.each do |event, talks| %>
             <%= content_tag :div, id: dom_id(event), class: "p-4 rounded-lg border bg-white", target: :_blank do %>
@@ -102,7 +103,7 @@
                 <div class="prose">
                   <ul>
                     <% talks.each do |talk| %>
-                      <li><%= link_to talk.title, "https://github.com/adrienpoly/rubyvideo/edit/main/#{talk.static_metadata.__file_path}", target: "_blank" if talk.static_metadata %> (<%= link_to talk.date.to_fs(:long), talk %>)</li>
+                      <li><%= link_to talk.title, "https://github.com/rubyevents/rubyevents/edit/main/#{talk.static_metadata.__file_path}", target: "_blank" if talk.static_metadata %> (<%= link_to talk.date.to_fs(:long), talk %>)</li>
                     <% end %>
                   </ul>
                 </div>
@@ -127,7 +128,7 @@
           If available, you can also provide the <code>slides_url</code> so we can show the slides next to the talk.
         </article>
 
-        <div id="overdue-scheduled-talks" class="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4 min-w-full mb-6">
+        <div id="not-published-talks" class="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4 min-w-full mb-6">
           <% @not_published_talks.group_by(&:event).sort_by { |_event, talks| talks.minimum(:date) }.each do |event, talks| %>
             <%= content_tag :div, id: dom_id(event), class: "p-4 rounded-lg border bg-white", target: :_blank do %>
               <article class="prose">
@@ -135,7 +136,7 @@
 
                 <ul>
                   <% talks.each do |talk| %>
-                    <li><%= link_to talk.title, "https://github.com/adrienpoly/rubyvideo/edit/main/#{talk.static_metadata.__file_path}", target: "_blank" if talk.static_metadata %> (<%= link_to talk.date.to_fs(:long), talk %>, <%= time_ago_in_words(talk.date) %> ago)</li>
+                    <li><%= link_to talk.title, "https://github.com/rubyevents/rubyevents/edit/main/#{talk.static_metadata.__file_path}", target: "_blank" if talk.static_metadata %> (<%= link_to talk.date.to_fs(:long), talk %>, <%= time_ago_in_words(talk.date) %> ago)</li>
                   <% end %>
                 </ul>
               </article>
@@ -155,7 +156,7 @@
 
           <p>We are checking against <a href="https://rubyconferences.org" target="_blank">rubyconferences.org</a> to identify missing events. Below, we will list conferences with video links first, followed by those without a video link.</p>
 
-          <p>If you would like to contribute data for any of the events listed below, please refer to <a href="https://github.com/adrienpoly/rubyvideo/blob/main/docs/contributing.md" target="_blank">this guide</a> to add the event to the site.</p>
+          <p>If you would like to contribute data for any of the events listed below, please refer to <a href="https://github.com/rubyevents/rubyevents/blob/main/docs/contributing.md" target="_blank">this guide</a> to add the event to the site.</p>
         </article>
 
         <h3 class="font-bold mb-3">Conferences from RubyConferences.org we already indexed</h3>

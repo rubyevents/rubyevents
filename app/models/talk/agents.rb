@@ -1,4 +1,3 @@
-# -*- SkipSchemaAnnotations
 class Talk::Agents < ActiveRecord::AssociatedObject
   performs retries: 3 do
     # this is to comply to the rate limit of openai 60 000 tokens per minute

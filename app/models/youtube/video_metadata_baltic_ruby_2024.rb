@@ -1,4 +1,4 @@
-module Youtube
+module YouTube
   class VideoMetadataBalticRuby2024
     SPEAKERS_SECTION_SEPARATOR = " - "
     SEPARATOR_IN_BETWEEN_SPEAKERS = / & |, | and /

@@ -7,14 +7,14 @@
 #  bio             :text             default(""), not null
 #  bsky            :string           default(""), not null
 #  bsky_metadata   :json             not null
-#  github          :string           default(""), not null, indexed
+#  github          :string           default(""), not null, uniquely indexed
 #  github_metadata :json             not null
 #  linkedin        :string           default(""), not null
 #  mastodon        :string           default(""), not null
 #  name            :string           default(""), not null, indexed
 #  pronouns        :string           default(""), not null
 #  pronouns_type   :string           default("not_specified"), not null
-#  slug            :string           default(""), not null, indexed
+#  slug            :string           default(""), not null, uniquely indexed
 #  speakerdeck     :string           default(""), not null
 #  talks_count     :integer          default(0), not null
 #  twitter         :string           default(""), not null
@@ -40,7 +40,7 @@ class Speaker < ApplicationRecord
   include Sluggable
   include Suggestable
   include Speaker::Searchable
-  slug_from :name
+  configure_slug(attribute: :name, auto_suffix_on_collision: true)
 
   PRONOUNS = {
     "Not specified": :not_specified,

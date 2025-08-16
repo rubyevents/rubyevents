@@ -1,6 +1,6 @@
 # This class is used to keep the raw metadata when you want to feed them to chat GPT
 # for post processing
-module Youtube
+module YouTube
   class NullParser
     def initialize(metadata:, event_name:, options: {})
       @metadata = metadata

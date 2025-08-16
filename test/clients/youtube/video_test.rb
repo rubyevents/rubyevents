@@ -1,9 +1,9 @@
 require "test_helper"
 
-module Youtube
+module YouTube
   class VideoTest < ActiveSupport::TestCase
     def setup
-      @client = Youtube::Video.new
+      @client = YouTube::Video.new
     end
 
     test "should return statistics for a valid video" do
