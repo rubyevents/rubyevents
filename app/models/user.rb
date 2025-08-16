@@ -59,4 +59,8 @@ class User < ApplicationRecord
   def default_watch_list
     @default_watch_list ||= watch_lists.first || watch_lists.create(name: "Favorites")
   end
+
+  def passport_account
+    connected_accounts.find_by(provider: "passport")
+  end
 end

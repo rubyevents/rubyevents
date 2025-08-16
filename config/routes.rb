@@ -41,6 +41,11 @@ Rails.application.routes.draw do
   resources :topics, param: :slug, only: [:index, :show]
   resources :cfp, only: :index
 
+  namespace :profiles do
+    resources :connect, only: [:index, :show]
+    resources :claim, only: [:create]
+  end
+
   resources :contributions, only: [:index, :show], param: :step
 
   resources :templates, only: [:new, :create] do
