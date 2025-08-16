@@ -29,11 +29,12 @@ module ApplicationHelper
       link_to("@marcoroth", "https://github.com/marcoroth", target: "_blank", class: "link", alt: "Marco Roth")
     ].shuffle.join(" and ")
     output = ["Made with"]
-    output << heroicon(:heart, variant: :solid, size: :sm, class: "text-primary inline")
+    output << fa(:heart, size: :sm, class: "fill-red-700 inline")
     output << "for the Ruby community by"
     output << maintainers
     output << "and wonderful"
-    output << link_to("contributors", "https://github.com/rubyevents/rubyevents/graphs/contributors", target: "_blank", class: "link")
+    output << link_to("contributors", "https://github.com/rubyevents/rubyevents/graphs/contributors", target: "_blank",
+      class: "link")
     output << "using an"
     output << link_to("edge stack.", uses_path, class: "link")
     sanitize(output.join(" "), tags: %w[a span svg path], attributes: %w[href target class alt d xmlns viewBox fill])

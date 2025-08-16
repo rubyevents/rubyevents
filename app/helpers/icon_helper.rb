@@ -47,12 +47,6 @@ module IconHelper
     end
   end
 
-  def heroicon(icon_name, size: :md, variant: :outline, **options)
-    classes = class_names(SIZE_CLASSES[size], options[:class])
-    path = "icons/heroicons/#{variant}/#{icon_name.to_s.tr("_", "-")}.svg"
-    cached_inline_svg(path, class: classes, **options.except(:class))
-  end
-
   def fontawesome(icon_name, size: :md, type: nil, style: :solid, **options)
     classes = class_names(SIZE_CLASSES[size], options[:class])
     cached_inline_svg "icons/fontawesome/#{[icon_name, type, style].compact.join("-")}.svg", class: classes, **options.except(:class)
