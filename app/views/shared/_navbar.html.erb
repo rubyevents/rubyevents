@@ -22,8 +22,9 @@
 
         <% signed_in do %>
           <div class="flex items-center gap-2">
-            <%= render "shared/navbar/link", link_title: "Favorites", path: watch_lists_path %>
-
+            <ul class="desktop-menu">
+              <%= render "shared/navbar/link", link_title: "Favorites", path: watch_lists_path %>
+            </ul>
             <% if Current.user.default_watch_list.talks_count.positive? %>
               <div class="badge badge-secondary"><%= Current.user.default_watch_list.talks_count %></div>
             <% end %>

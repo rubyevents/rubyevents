@@ -1,10 +1,10 @@
 <%= ui_dropdown align: :end, content_classes: "mt-5 shadow-xl min-w-32", id: "user_navbar_toggle" do |c| %>
   <% c.with_toggle_open do %>
-    <%= heroicon "x-mark", size: :lg %>
+    <%= fa("xmark", size: :lg) %>
   <% end %>
 
   <% c.with_toggle_close do %>
-    <%= heroicon "bars-3", size: :lg %>
+    <%= fa("bars", size: :lg) %>
   <% end %>
 
   <% c.with_menu_item_link_to "Home", root_path %>
@@ -34,7 +34,10 @@
   <% c.with_menu_item_link_to "About", about_path %>
   <% signed_in do %>
     <% c.with_menu_item_divider %>
-    <% c.with_menu_item_button_to t("sign_out"), Current.session, method: :delete, id: :sign_out %>
+    <% c.with_menu_item_button_to t("sign_out"),
+         Current.session,
+         method: :delete,
+         id: :sign_out %>
     <% if Current.user&.admin? %>
       <% c.with_menu_item_link_to "Suggestions", admin_suggestions_path %>
       <% c.with_menu_item_link_to t("admin"), avo_path %>
