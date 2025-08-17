@@ -8,7 +8,7 @@
 #  bio             :text             default(""), not null
 #  bsky            :string           default(""), not null
 #  bsky_metadata   :json             not null
-#  email           :string           uniquely indexed
+#  email           :string           indexed
 #  github_handle   :string           uniquely indexed
 #  github_metadata :json             not null
 #  linkedin        :string           default(""), not null
@@ -30,9 +30,9 @@
 # Indexes
 #
 #  index_users_on_canonical_id   (canonical_id)
-#  index_users_on_email          (email) UNIQUE
-#  index_users_on_github_handle  (github_handle) UNIQUE WHERE github_handle IS NOT NULL
-#  index_users_on_name           (name) WHERE name IS NOT NULL AND name != ''
+#  index_users_on_email          (email)
+#  index_users_on_github_handle  (github_handle) UNIQUE WHERE github_handle IS NOT NULL AND github_handle != ''
+#  index_users_on_name           (name)
 #  index_users_on_slug           (slug) UNIQUE WHERE slug IS NOT NULL AND slug != ''
 #
 # rubocop:enable Layout/LineLength
@@ -113,7 +113,7 @@ class User < ApplicationRecord
   encrypts :email, deterministic: true
 
   before_validation if: -> { email.present? } do
-    self.email = email.downcase.strip
+    self.email = email&.downcase&.strip
   end
 
   before_validation if: :email_changed?, on: :update do
@@ -132,7 +132,7 @@ class User < ApplicationRecord
     value
       .gsub(GITHUB_URL_PATTERN, "")
       .delete("@")
-      .strip.downcase
+      .strip&.downcase
   end
 
   def self.reset_talks_counts

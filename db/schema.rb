@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_08_17_060410) do
+ActiveRecord::Schema[8.1].define(version: 2025_08_17_223427) do
   create_table "_litestream_lock", id: false, force: :cascade do |t|
     t.integer "id"
   end
@@ -351,9 +351,9 @@ ActiveRecord::Schema[8.1].define(version: 2025_08_17_060410) do
     t.boolean "verified", default: false, null: false
     t.string "website", default: "", null: false
     t.index ["canonical_id"], name: "index_users_on_canonical_id"
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["github_handle"], name: "index_users_on_github_handle", unique: true, where: "github_handle IS NOT NULL"
-    t.index ["name"], name: "index_users_on_name", where: "name IS NOT NULL AND name != ''"
+    t.index ["email"], name: "index_users_on_email"
+    t.index ["github_handle"], name: "index_users_on_github_handle", unique: true, where: "github_handle IS NOT NULL AND github_handle != ''"
+    t.index ["name"], name: "index_users_on_name"
     t.index ["slug"], name: "index_users_on_slug", unique: true, where: "slug IS NOT NULL AND slug != ''"
   end
 
