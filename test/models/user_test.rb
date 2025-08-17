@@ -1,7 +1,6 @@
 require "test_helper"
 
 class UserTest < ActiveSupport::TestCase
-
   test "can create a user with just a name" do
     user = User.create!(name: "John Doe")
     assert_equal "john-doe", user.slug
