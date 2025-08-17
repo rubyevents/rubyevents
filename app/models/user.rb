@@ -123,8 +123,8 @@ class User < ApplicationRecord
   # Speaker scopes
   scope :with_talks, -> { where.not(talks_count: 0) }
   scope :speakers, -> { where("talks_count > 0") }
-  scope :with_github, -> { where.not(github_handle: nil) }
-  scope :without_github, -> { where(github_handle: nil) }
+  scope :with_github, -> { where.not(github_handle: [nil, ""]) }
+  scope :without_github, -> { where(github_handle: [nil, ""]) }
   scope :canonical, -> { where(canonical_id: nil) }
   scope :not_canonical, -> { where.not(canonical_id: nil) }
 
