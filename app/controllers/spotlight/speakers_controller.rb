@@ -3,7 +3,7 @@ class Spotlight::SpeakersController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
-    @speakers = Speaker.canonical
+    @speakers = User.speakers.canonical
     @speakers = @speakers.ft_search(search_query).with_snippets.ranked if search_query
     @speakers_count = @speakers.count(:id)
     @speakers = @speakers.limit(5)

@@ -1,6 +1,17 @@
 require "test_helper"
 
 class UserTest < ActiveSupport::TestCase
+
+  test "can create a user with just a name" do
+    user = User.create!(name: "John Doe")
+    assert_equal "john-doe", user.slug
+  end
+
+  test "the slug provided is used" do
+    user = User.create!(name: "John Doe", slug: "john-doe-2")
+    assert_equal "john-doe-2", user.slug
+  end
+
   test "should normalize github_handle by stripping URL, www, and @" do
     user = users(:one)
 

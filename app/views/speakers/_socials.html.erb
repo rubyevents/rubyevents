@@ -1,7 +1,7 @@
 <div id="<%= dom_id(speaker, :socials) %>">
   <div id="socials" class="flex items-center gap-2">
-    <% if speaker.github.present? %>
-      <%= ui_button url: "https://www.github.com/#{speaker.github}", kind: :circle, size: :sm, target: "_blank", class: "hover:bg-black hover:fill-white border-base-200" do %>
+    <% if speaker.github_handle.present? %>
+      <%= ui_button url: "https://www.github.com/#{speaker.github_handle}", kind: :circle, size: :sm, target: "_blank", class: "hover:bg-black hover:fill-white border-base-200" do %>
         <%= fab("github", size: :md) %>
       <% end %>
     <% end %>

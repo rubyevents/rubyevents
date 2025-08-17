@@ -17,7 +17,7 @@
     </span>
 
     <div class="avatar-group -space-x-3 rtl:space-x-reverse mt-4">
-      <% speakers_with_avatars = event.speakers.where.not(github: "").sample(8) %>
+      <% speakers_with_avatars = event.speakers.with_github.sample(8) %>
 
       <% speakers_with_avatars.each do |speaker| %>
         <div class="avatar bg-white border-2">
