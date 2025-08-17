@@ -76,7 +76,7 @@ class User < ApplicationRecord
   has_object :profiles
 
   validates :email, format: {with: URI::MailTo::EMAIL_REGEXP}, allow_nil: true
-  validates :github_handle, presence: true, uniqueness: true, allow_nil: true
+  validates :github_handle, presence: true, uniqueness: true, allow_blank: true
   validates :canonical, exclusion: {in: ->(user) { [user] }, message: "can't be itself"}
 
   normalizes :github_handle, with: ->(value) { normalize_github_handle(value) }
