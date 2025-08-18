@@ -132,7 +132,7 @@ class User < ApplicationRecord
     value
       .gsub(GITHUB_URL_PATTERN, "")
       .delete("@")
-      .strip&.downcase
+      .strip
   end
 
   def self.reset_talks_counts
@@ -295,5 +295,10 @@ class User < ApplicationRecord
       # on the user_talks table. The update above swallows the error if the user_talk duet exists already
       UserTalk.where(user_id: id).destroy_all
     end
+  end
+
+  def set_slug
+    self.slug = slug.presence || github_handle.presence&.downcase
+    super
   end
 end

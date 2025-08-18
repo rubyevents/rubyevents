@@ -11,9 +11,10 @@ class UserTest < ActiveSupport::TestCase
     assert_equal "john-doe-2", user.slug
   end
 
-  test "downcasing github_handle" do
+  test "not downcasing github_handle" do
     user = User.create!(name: "John Doe", github_handle: "TEKIN")
-    assert_equal "tekin", user.github_handle
+    assert_equal "TEKIN", user.github_handle
+    assert_equal "tekin", user.slug
   end
 
   test "should normalize github_handle by stripping URL, www, and @" do
