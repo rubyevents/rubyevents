@@ -69,10 +69,10 @@ class Talk < ApplicationRecord
   belongs_to :parent_talk, optional: true, class_name: "Talk", foreign_key: :parent_talk_id
 
   has_many :child_talks, class_name: "Talk", foreign_key: :parent_talk_id, dependent: :destroy
-  has_many :child_talks_speakers, -> { distinct }, through: :child_talks, source: :users, class_name: "Speaker"
+  has_many :child_talks_speakers, -> { distinct }, through: :child_talks, source: :users, class_name: "User"
   has_many :kept_child_talks_speakers, -> {
     distinct
-  }, through: :child_talks, source: :kept_speakers, class_name: "Speaker"
+  }, through: :child_talks, source: :kept_speakers, class_name: "User"
   # User associations (for merged Speaker functionality)
   has_many :user_talks, dependent: :destroy, inverse_of: :talk, foreign_key: :talk_id
   has_many :kept_user_talks, -> { kept }, dependent: :destroy, inverse_of: :talk, foreign_key: :talk_id,
