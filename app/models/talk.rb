@@ -61,23 +61,22 @@ class Talk < ApplicationRecord
   include Watchable
   configure_slug(attribute: :title, auto_suffix_on_collision: true)
 
-  # include MeiliSearch::Rails
-  # extend Pagy::Meilisearch
-
   # associations
   belongs_to :event, optional: true, counter_cache: :talks_count, touch: true
   belongs_to :parent_talk, optional: true, class_name: "Talk", foreign_key: :parent_talk_id
 
   has_many :child_talks, class_name: "Talk", foreign_key: :parent_talk_id, dependent: :destroy
-  has_many :child_talks_speakers, -> { distinct }, through: :child_talks, source: :speakers, class_name: "Speaker"
-  has_many :kept_child_talks_speakers, -> {
-    distinct
-  }, through: :child_talks, source: :kept_speakers, class_name: "Speaker"
-  has_many :speaker_talks, dependent: :destroy, inverse_of: :talk, foreign_key: :talk_id
-  has_many :kept_speaker_talks, -> { kept }, dependent: :destroy, inverse_of: :talk, foreign_key: :talk_id,
-    class_name: "SpeakerTalk"
-  has_many :speakers, through: :speaker_talks, inverse_of: :talks
-  has_many :kept_speakers, through: :kept_speaker_talks, inverse_of: :talks, class_name: "Speaker", source: :speaker
+  has_many :child_talks_speakers, -> { distinct }, through: :child_talks, source: :users, class_name: "User"
+  has_many :kept_child_talks_speakers, -> { distinct }, through: :child_talks, source: :kept_speakers,
+    class_name: "User"
+  # User associations (for merged Speaker functionality)
+  has_many :user_talks, dependent: :destroy, inverse_of: :talk, foreign_key: :talk_id
+  has_many :kept_user_talks, -> { kept }, dependent: :destroy, inverse_of: :talk, foreign_key: :talk_id,
+    class_name: "UserTalk"
+  has_many :users, through: :user_talks, inverse_of: :talks
+  has_many :speakers, -> { where("users.talks_count > 0") }, through: :user_talks, inverse_of: :talks, source: :user
+  has_many :kept_speakers, -> { where("users.talks_count > 0") }, through: :kept_user_talks, inverse_of: :talks,
+    class_name: "Speaker", source: :user
 
   has_many :talk_topics, dependent: :destroy
   has_many :topics, through: :talk_topics
@@ -223,9 +222,9 @@ class Talk < ApplicationRecord
   scope :without_summary, -> { where("summary IS NULL OR summary = ''") }
   scope :without_topics, -> { where.missing(:talk_topics) }
   scope :with_topics, -> { joins(:talk_topics) }
-  scope :with_speakers, -> { joins(:speaker_talks).distinct }
+  scope :with_speakers, -> { joins(:user_talks).distinct }
   scope :for_topic, ->(topic_slug) { joins(:topics).where(topics: {slug: topic_slug}) }
-  scope :for_speaker, ->(speaker_slug) { joins(:speakers).where(speakers: {slug: speaker_slug}) }
+  scope :for_speaker, ->(speaker_slug) { joins(:users).where(users: {slug: speaker_slug}) }
   scope :for_event, ->(event_slug) { joins(:event).where(events: {slug: event_slug}) }
   scope :watchable, -> { where(video_provider: WATCHABLE_PROVIDERS) }
   scope :upcoming, -> { where(date: Date.today...) }
@@ -236,7 +235,7 @@ class Talk < ApplicationRecord
     return false unless visiting_user.present?
     return true if visiting_user.admin?
 
-    speakers.exists?(user: visiting_user)
+    users.exists?(id: visiting_user.id)
   end
 
   def published?
@@ -518,7 +517,7 @@ class Talk < ApplicationRecord
     self.kind = static_metadata.kind if static_metadata.try(:kind).present?
 
     self.speakers = Array.wrap(static_metadata.speakers).reject(&:blank?).map { |speaker_name|
-      Speaker.find_by(slug: speaker_name.parameterize) || Speaker.find_or_create_by(name: speaker_name.strip)
+      User.find_by(slug: speaker_name.parameterize) || User.find_or_create_by(name: speaker_name.strip)
     }
 
     self.slug = unused_slugs.first

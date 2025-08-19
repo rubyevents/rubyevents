@@ -3,7 +3,6 @@ import { useIntersection } from 'stimulus-use'
 import Vlitejs from 'vlitejs'
 import YouTube from 'vlitejs/providers/youtube.js'
 import Vimeo from 'vlitejs/providers/vimeo.js'
-import youtubeSvg from '../../assets/images/icons/fontawesome/youtube-brands-solid.svg?raw'
 
 Vlitejs.registerProvider('youtube', YouTube)
 Vlitejs.registerProvider('vimeo', Vimeo)
@@ -40,7 +39,21 @@ export default class extends Controller {
   get options () {
     const providerOptions = {}
     const providerParams = {}
+    // Youtube videos have their own controls, so we need to hide the Vlitejs controls
+    let controls = true
 
+    // Hide the Vlitejs controls if the video is a Youtube video
+    providerParams.controls = !controls
+
+    if (this.hasProviderValue && this.providerValue === 'youtube') {
+      // Set YT rel to 0 to show related videos from the respective channel
+      providerOptions.rel = 0
+      providerOptions.autohide = 0
+      // Show YT controls
+      providerOptions.controls = 1
+      // Hide the Vlitejs controls
+      controls = false
+    }
     if (this.hasProviderValue && this.providerValue !== 'mp4') {
       providerOptions.provider = this.providerValue
     }
@@ -60,7 +73,7 @@ export default class extends Controller {
       options: {
         providerParams,
         poster: this.posterValue,
-        controls: true
+        controls
       },
       onReady: this.handlePlayerReady.bind(this)
     }
@@ -89,11 +102,11 @@ export default class extends Controller {
       const volumeButton = player.elements.container.querySelector('.v-volumeButton')
       const playbackRateSelect = this.createPlaybackRateSelect(this.playbackRateOptions, player)
       volumeButton.parentNode.insertBefore(playbackRateSelect, volumeButton.nextSibling)
+    }
 
-      if (this.providerValue === 'youtube') {
-        const openInYouTube = this.createOpenInYoutube()
-        volumeButton.parentNode.insertBefore(openInYouTube, volumeButton.previousSibling)
-      }
+    if (this.providerValue === 'youtube') {
+      // The overlay is messing with the hover state of he player
+      player.elements.container.querySelector('.v-overlay').remove()
     }
   }
 
@@ -128,19 +141,6 @@ export default class extends Controller {
     if (!this.ready) return
 
     this.player.pause()
-  }
-
-  createOpenInYoutube () {
-    const videoId = this.playerTarget.dataset.youtubeId
-
-    const anchorTag = document.createElement('a')
-    anchorTag.className = 'v-openInYouTube v-controlButton'
-    anchorTag.innerHTML = youtubeSvg
-    anchorTag.href = `https://www.youtube.com/watch?v=${videoId}`
-    anchorTag.target = '_blank'
-    anchorTag.dataset.action = 'click->video-player#pause'
-
-    return anchorTag
   }
 
   #togglePictureInPicturePlayer (enabled) {

@@ -9,11 +9,11 @@
 
   <%= ui_dropdown id: "dropdown" do |c| %>
     <% c.with_toggle_open do %>
-      <%= heroicon "x-mark", size: :lg %>
+      <%= fa("xmark", size: :lg) %>
     <% end %>
 
     <% c.with_toggle_close do %>
-      <%= heroicon "bars-3", size: :lg %>
+      <%= fa("bars", size: :lg) %>
     <% end %>
 
     <% c.with_menu_item_link_to "link", "#" %>

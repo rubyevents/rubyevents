@@ -61,7 +61,8 @@ class Speaker < ApplicationRecord
   has_many :topics, through: :talks
 
   belongs_to :canonical, class_name: "Speaker", optional: true
-  belongs_to :user, primary_key: :github_handle, foreign_key: :github, optional: true
+  belongs_to :user, -> { where.not(github_handle: [nil, ""]) }, primary_key: :github_handle, foreign_key: :github,
+    optional: true
 
   has_object :profiles
 
@@ -71,8 +72,8 @@ class Speaker < ApplicationRecord
 
   # scope
   scope :with_talks, -> { where.not(talks_count: 0) }
-  scope :with_github, -> { where.not(github: "") }
-  scope :without_github, -> { where(github: "") }
+  scope :with_github, -> { where.not(github: [nil, ""]) }
+  scope :without_github, -> { where(github: [nil, ""]) }
   scope :canonical, -> { where(canonical_id: nil) }
   scope :not_canonical, -> { where.not(canonical_id: nil) }
 

@@ -24,10 +24,14 @@ Rails.application.routes.draw do
   get "/auth/failure", to: "sessions/omniauth#failure"
   get "/auth/:provider/callback", to: "sessions/omniauth#create"
   post "/auth/:provider/callback", to: "sessions/omniauth#create"
-  get "sign_in", to: "sessions#new"
-  post "sign_in", to: "sessions#create"
-  get "sign_up", to: "registrations#new"
-  post "sign_up", to: "registrations#create"
+  resources :sessions, only: [:new, :create, :destroy]
+
+  resource :password, only: [:edit, :update]
+  namespace :identity do
+    resource :email, only: [:edit, :update]
+    resource :email_verification, only: [:show, :create]
+    resource :password_reset, only: [:new, :edit, :create, :update]
+  end
 
   authenticate :admin do
     mount MissionControl::Jobs::Engine, at: "/jobs"
@@ -36,13 +40,6 @@ Rails.application.routes.draw do
 
   resources :topics, param: :slug, only: [:index, :show]
   resources :cfp, only: :index
-  resources :sessions, only: [:index, :show, :destroy]
-  resource :password, only: [:edit, :update]
-  namespace :identity do
-    resource :email, only: [:edit, :update]
-    resource :email_verification, only: [:show, :create]
-    resource :password_reset, only: [:new, :edit, :create, :update]
-  end
 
   namespace :profiles do
     resources :connect, only: [:index, :show]
@@ -90,6 +87,7 @@ Rails.application.routes.draw do
         get "/past" => "past#index", :as => :past
         get "/archive" => "archive#index", :as => :archive
         resources :countries, param: :country, only: [:index, :show]
+        resources :cities, param: :city, only: [:index, :show]
       end
 
       resources :schedules, only: [:index], path: "/schedule" do

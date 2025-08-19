@@ -4,10 +4,6 @@ class SessionsController < ApplicationController
 
   skip_before_action :authenticate_user!, only: %i[new create]
 
-  def index
-    @sessions = Current.user.sessions.order(created_at: :desc)
-  end
-
   def new
     @user = User.new
     # Add connect_id or connect_to to state if present
@@ -22,7 +18,7 @@ class SessionsController < ApplicationController
       sign_in user
       redirect_to root_path, notice: "Signed in successfully"
     else
-      redirect_to sign_in_path(email_hint: params[:email]), alert: "That email or password is incorrect"
+      redirect_to new_session_path(email_hint: params[:email]), alert: "That email or password is incorrect"
     end
   end
 

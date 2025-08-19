@@ -1,12 +1,12 @@
-<%= form_with(model: speaker, class: "flex flex-col gap-4") do |form| %>
+<%= form_with(model: speaker, url: speaker_path(speaker), class: "flex flex-col gap-4") do |form| %>
   <div>
     <%= form.label :name %>
     <%= form.text_field :name, class: "input input-bordered w-full" %>
   </div>
 
   <div>
-    <%= form.label :github, "GitHub" %>
-    <%= form.text_field :github, class: "input input-bordered w-full" %>
+    <%= form.label :github_handle, "GitHub" %>
+    <%= form.text_field :github_handle, class: "input input-bordered w-full" %>
   </div>
 
   <div>

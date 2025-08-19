@@ -1,16 +1,20 @@
-<%= ui_button url: edit_speaker_path(@speaker), kind: :neutral, size: :sm, data: {turbo_frame: "modal"} do %>
-  <%= fa "pen", size: :xs %>
-  <span>Update speaker page</span>
-<% end %>
+<% if false %>
+    <!-- While merging the speaker and user models we disable the actions for now -->
+    <!-- TODO: Re-enable when the merge is complete and once the user profile is ready -->
+  <%= ui_button url: edit_speaker_path(@speaker), kind: :neutral, size: :sm, data: {turbo_frame: "modal"} do %>
+    <%= fa "pen", size: :xs %>
+    <span>Update speaker page</span>
+  <% end %>
 
-<% if speaker.github.present? || speaker.bsky.present? %>
-  <%= ui_button url: speakers_enhance_path(@speaker), method: :put, kind: :neutral, size: :sm do %>
-    <%= fa "wand-magic-sparkles", size: :xs %>
-    <span>Enhance Profile</span>
+  <% if speaker.github_handle.present? || speaker.bsky.present? %>
+    <%= ui_button url: speakers_enhance_path(@speaker), method: :put, kind: :neutral, size: :sm do %>
+      <%= fa "wand-magic-sparkles", size: :xs %>
+      <span>Enhance Profile</span>
+    <% end %>
   <% end %>
 <% end %>
 
-<%= ui_button url: avo.resources_speaker_path(@speaker), target: :_blank, kind: :neutral, size: :sm do %>
+<%= ui_button url: avo.resources_user_path(@speaker), target: :_blank, kind: :neutral, size: :sm do %>
   <%= fa :avocado, size: :xs %>
 
   <span>Open in Avo</span>

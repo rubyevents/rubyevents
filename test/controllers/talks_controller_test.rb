@@ -83,10 +83,7 @@ class TalksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "owner can update directly the talk" do
-    user = User.create!(email: "test@example.com", password: "Secret1*3*5*", github_handle: @talk.speakers.first.github, verified: true)
-    assert user.persisted?
-    assert_equal user, @talk.speakers.first.user
-
+    user = @talk.users.first
     sign_in_as user
 
     patch talk_url(@talk), params: {talk: {summary: "new summary", description: "new description", slug: "new-slug", title: "new title", date: "2024-01-01"}}
