@@ -125,27 +125,15 @@ export default class extends Controller {
     const ytPlayer = player.instance
 
     ytPlayer.addEventListener('onStateChange', (event) => {
-      const stateNames = {
-        '-1': 'unstarted',
-        0: 'ended',
-        1: 'playing',
-        2: 'paused',
-        3: 'buffering',
-        5: 'video cued'
+      const YOUTUBE_STATES = {
+        ENDED: 0,
+        PLAYING: 1,
+        PAUSED: 2
       }
 
-      console.log('YouTube Event: onStateChange', {
-        event: 'onStateChange',
-        state: event.data,
-        stateName: stateNames[event.data] || 'unknown',
-        currentTime: ytPlayer.getCurrentTime?.(),
-        duration: ytPlayer.getDuration?.(),
-        videoLoadedFraction: ytPlayer.getVideoLoadedFraction?.()
-      })
-
-      if (event.data === 1 && this.currentUserPresentValue) {
+      if (event.data === YOUTUBE_STATES.PLAYING && this.currentUserPresentValue) {
         this.startProgressTracking()
-      } else if (event.data === 2 || event.data === 0) {
+      } else if (event.data === YOUTUBE_STATES.PAUSED || event.data === YOUTUBE_STATES.ENDED) {
         this.stopProgressTracking()
       }
     })
