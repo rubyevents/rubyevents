@@ -75,6 +75,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :watched_talks, only: [:index]
+
   resources :speakers, param: :slug, only: [:index, :show, :update, :edit]
   resources :events, param: :slug, only: [:index, :show, :update, :edit] do
     scope module: :events do

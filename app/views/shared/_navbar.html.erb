@@ -1,6 +1,6 @@
-<div class="navbar relative z-50 bg-transparent">
+<div class="relative z-50 bg-transparent navbar">
   <div class="container grid grid-cols-2 lg:grid-cols-[1fr_auto_1fr] justify-between items-center">
-    <div class="items-center gap-6 hidden lg:flex">
+    <div class="items-center hidden gap-6 lg:flex">
       <ul class="desktop-menu">
         <%= render "shared/navbar/link", link_title: "Events", path: events_path %>
         <%= render "shared/navbar/link", link_title: "Videos", path: talks_path %>
@@ -11,18 +11,19 @@
       </ul>
     </div>
 
-    <div class="flex justify-start lg:justify-center items-center">
+    <div class="flex items-center justify-start lg:justify-center">
       <%= link_to root_path do %>
         <%= image_tag image_path("logo.png"), class: "size-10 hover:opacity-80" %>
       <% end %>
     </div>
 
-    <div class="flex justify-end items-center">
-      <ul class="hidden lg:flex items-center gap-4">
+    <div class="flex items-center justify-end">
+      <ul class="items-center hidden gap-4 lg:flex">
 
         <% signed_in do %>
           <div class="flex items-center gap-2">
             <ul class="desktop-menu">
+              <%= render "shared/navbar/link", link_title: "Recently Watched", path: watched_talks_path %>
               <%= render "shared/navbar/link", link_title: "Favorites", path: watch_lists_path %>
             </ul>
             <% if Current.user.default_watch_list.talks_count.positive? %>
@@ -46,7 +47,7 @@
         <% end %>
       </ul>
 
-      <div class="flex lg:hidden gap-2">
+      <div class="flex gap-2 lg:hidden">
         <%= render "shared/navbar/search_bar", id: "magnifying-glass-mobile" %>
         <%= render "shared/user_mobile_dropdown" %>
       </div>
