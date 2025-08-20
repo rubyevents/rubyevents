@@ -16,7 +16,8 @@ export default class extends Controller {
     startSeconds: Number,
     endSeconds: Number,
     watchedTalkPath: String,
-    currentUserPresent: { default: false, type: Boolean }
+    currentUserPresent: { default: false, type: Boolean },
+    progressSeconds: { default: 0, type: Number }
   }
 
   static targets = ['player', 'playerWrapper']
@@ -111,8 +112,11 @@ export default class extends Controller {
       // The overlay is messing with the hover state of he player
       player.elements.container.querySelector('.v-overlay').remove()
 
-      // Setup YouTube API event listeners for logging
       this.setupYouTubeEventLogging(player)
+    }
+
+    if (this.hasProgressSecondsValue && this.progressSecondsValue > 0) {
+      this.player.seekTo(this.progressSecondsValue)
     }
   }
 
@@ -143,11 +147,15 @@ export default class extends Controller {
     if (this.progressInterval) return
     if (!this.currentUserPresentValue) return
 
-    this.progressInterval = setInterval(() => {
-      if (this.player?.instance?.getCurrentTime && this.hasWatchedTalkPathValue) {
-        const currentTime = this.player.instance.getCurrentTime()
+    this.progressSecondsValue = Math.floor(this.currentTime)
 
-        this.updateWatchedProgress(Math.floor(currentTime))
+    this.updateWatchedProgress(this.progressSecondsValue)
+
+    this.progressInterval = setInterval(() => {
+      if (this.hasWatchedTalkPathValue) {
+        this.progressSecondsValue = Math.floor(this.currentTime)
+
+        this.updateWatchedProgress(this.progressSecondsValue)
       }
     }, 5000)
   }
@@ -243,5 +251,9 @@ export default class extends Controller {
 
   get isPreview () {
     return document.documentElement.hasAttribute('data-turbo-preview')
+  }
+
+  get currentTime () {
+    return this.player.instance.getCurrentTime()
   }
 }
