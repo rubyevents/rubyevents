@@ -1,6 +1,6 @@
-<div class="relative z-50 bg-transparent navbar">
+<div class="navbar relative z-50 bg-transparent">
   <div class="container grid grid-cols-2 lg:grid-cols-[1fr_auto_1fr] justify-between items-center">
-    <div class="items-center hidden gap-6 lg:flex">
+    <div class="items-center gap-6 hidden lg:flex">
       <ul class="desktop-menu">
         <%= render "shared/navbar/link", link_title: "Events", path: events_path %>
         <%= render "shared/navbar/link", link_title: "Videos", path: talks_path %>
@@ -11,14 +11,14 @@
       </ul>
     </div>
 
-    <div class="flex items-center justify-start lg:justify-center">
+    <div class="flex justify-start lg:justify-center items-center">
       <%= link_to root_path do %>
         <%= image_tag image_path("logo.png"), class: "size-10 hover:opacity-80" %>
       <% end %>
     </div>
 
-    <div class="flex items-center justify-end">
-      <ul class="items-center hidden gap-4 lg:flex">
+    <div class="flex justify-end items-center">
+      <ul class="hidden lg:flex items-center gap-4">
 
         <% signed_in do %>
           <div class="flex items-center gap-2">
@@ -47,7 +47,7 @@
         <% end %>
       </ul>
 
-      <div class="flex gap-2 lg:hidden">
+      <div class="flex lg:hidden gap-2">
         <%= render "shared/navbar/search_bar", id: "magnifying-glass-mobile" %>
         <%= render "shared/user_mobile_dropdown" %>
       </div>
