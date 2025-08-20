@@ -269,6 +269,7 @@ class TalkTest < ActiveSupport::TestCase
   test "mark talk as watched" do
     talk = talks(:two)
     Current.user = users(:one)
+    watched_talks(:two).delete
 
     assert_equal 0, talk.watched_talks.count
 
