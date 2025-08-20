@@ -3,29 +3,30 @@
 #
 # Table name: users
 #
-#  id              :integer          not null, primary key
-#  admin           :boolean          default(FALSE), not null
-#  bio             :text             default(""), not null
-#  bsky            :string           default(""), not null
-#  bsky_metadata   :json             not null
-#  email           :string           indexed
-#  github_handle   :string           uniquely indexed
-#  github_metadata :json             not null
-#  linkedin        :string           default(""), not null
-#  mastodon        :string           default(""), not null
-#  name            :string           indexed
-#  password_digest :string
-#  pronouns        :string           default(""), not null
-#  pronouns_type   :string           default("not_specified"), not null
-#  slug            :string           default(""), not null, uniquely indexed
-#  speakerdeck     :string           default(""), not null
-#  talks_count     :integer          default(0), not null
-#  twitter         :string           default(""), not null
-#  verified        :boolean          default(FALSE), not null
-#  website         :string           default(""), not null
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  canonical_id    :integer          indexed
+#  id                  :integer          not null, primary key
+#  admin               :boolean          default(FALSE), not null
+#  bio                 :text             default(""), not null
+#  bsky                :string           default(""), not null
+#  bsky_metadata       :json             not null
+#  email               :string           indexed
+#  github_handle       :string           uniquely indexed
+#  github_metadata     :json             not null
+#  linkedin            :string           default(""), not null
+#  mastodon            :string           default(""), not null
+#  name                :string           indexed
+#  password_digest     :string
+#  pronouns            :string           default(""), not null
+#  pronouns_type       :string           default("not_specified"), not null
+#  slug                :string           default(""), not null, uniquely indexed
+#  speakerdeck         :string           default(""), not null
+#  talks_count         :integer          default(0), not null
+#  twitter             :string           default(""), not null
+#  verified            :boolean          default(FALSE), not null
+#  watched_talks_count :integer          default(0), not null
+#  website             :string           default(""), not null
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  canonical_id        :integer          indexed
 #
 # Indexes
 #
