@@ -115,6 +115,20 @@ export default class extends Controller {
       this.setupYouTubeEventLogging(player)
     }
 
+    if (this.providerValue === 'vimeo') {
+      player.instance.on('ended', () => {
+        this.stopProgressTracking()
+      })
+
+      player.instance.on('pause', () => {
+        this.stopProgressTracking()
+      })
+
+      player.instance.on('play', () => {
+        this.startProgressTracking()
+      })
+    }
+
     if (this.hasProgressSecondsValue && this.progressSecondsValue > 0) {
       this.player.seekTo(this.progressSecondsValue)
     }
@@ -143,17 +157,19 @@ export default class extends Controller {
     })
   }
 
-  startProgressTracking () {
+  async startProgressTracking () {
     if (this.progressInterval) return
     if (!this.currentUserPresentValue) return
 
-    this.progressSecondsValue = Math.floor(this.currentTime)
+    const currentTime = await this.getCurrentTime()
+    this.progressSecondsValue = Math.floor(currentTime)
 
     this.updateWatchedProgress(this.progressSecondsValue)
 
-    this.progressInterval = setInterval(() => {
+    this.progressInterval = setInterval(async () => {
       if (this.hasWatchedTalkPathValue) {
-        this.progressSecondsValue = Math.floor(this.currentTime)
+        const currentTime = await this.getCurrentTime()
+        this.progressSecondsValue = Math.floor(currentTime)
 
         this.updateWatchedProgress(this.progressSecondsValue)
       }
@@ -253,7 +269,12 @@ export default class extends Controller {
     return document.documentElement.hasAttribute('data-turbo-preview')
   }
 
-  get currentTime () {
-    return this.player.instance.getCurrentTime()
+  async getCurrentTime () {
+    try {
+      return await this.player.instance.getCurrentTime()
+    } catch (error) {
+      console.error('Error getting current time:', error)
+      return 0
+    }
   }
 }
