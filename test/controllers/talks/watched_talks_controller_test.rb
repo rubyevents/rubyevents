@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class Talks::WatchedTalksControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -7,14 +7,14 @@ class Talks::WatchedTalksControllerTest < ActionDispatch::IntegrationTest
     @watched_talk = watched_talks(:one)
   end
 
-  test 'should update watched talk progress for authenticated user' do
+  test "should update watched talk progress for authenticated user" do
     sign_in_as @user
 
     initial_progress = @watched_talk.progress_seconds
     new_progress = 150
 
     patch talk_watched_talk_path(@talk), params: {
-      watched_talk: { progress_seconds: new_progress }
+      watched_talk: {progress_seconds: new_progress}
     }
 
     assert_response :ok
