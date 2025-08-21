@@ -19,7 +19,7 @@ class TalksController < ApplicationController
   # GET /talks
   def index
     @talks = Talk.includes(:speakers, event: :organisation, child_talks: :speakers)
-    @talks = @talks.watchable unless params[:all].present?
+    # @talks = @talks.watchable unless params[:all].present?
     @talks = @talks.ft_search(params[:s]).with_snippets if params[:s].present?
     @talks = @talks.for_topic(params[:topic]) if params[:topic].present?
     @talks = @talks.for_event(params[:event]) if params[:event].present?
