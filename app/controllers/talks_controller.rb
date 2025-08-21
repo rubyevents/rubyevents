@@ -26,6 +26,8 @@ class TalksController < ApplicationController
     @talks = @talks.for_speaker(params[:speaker]) if params[:speaker].present?
     @talks = @talks.where(kind: talk_kind) if talk_kind.present?
     @talks = @talks.where("created_at >= ?", created_after) if created_after
+    @talks = @talks.watchable if params[:status] == "published"
+    @talks = @talks.scheduled if params[:status] == "scheduled"
 
     # Apply ordering (handles search ranking vs custom ordering)
     if order_by_key == "ranked"
@@ -108,7 +110,7 @@ class TalksController < ApplicationController
 
   helper_method :search_params
   def search_params
-    params.permit(:s, :topic, :event, :speaker, :kind, :created_after, :all, :order_by)
+    params.permit(:s, :topic, :event, :speaker, :kind, :created_after, :all, :order_by, :status)
   end
 
   def set_user_favorites
