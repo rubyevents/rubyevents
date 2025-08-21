@@ -11,7 +11,7 @@
     </h1>
   </div>
 
-  <div class="flex justify-end items-center gap-2 hotwire-native:hidden">
+  <div class="flex items-center justify-end gap-2 hotwire-native:hidden">
     <% if filtered_search? %>
       <div class="text-sm">Results: <%= @pagy.count %></div>
     <% end %>
@@ -19,8 +19,8 @@
     <div class="text-sm text-gray-500">Sort by:</div>
     <div class="flex items-center gap-2">
       <details class="dropdown dropdown-end">
-        <summary class="btn m-1 pl-0 bg-transparent hover:bg-transparent border-none shadow-none font-normal"><%= ordering_title %></summary>
-        <ul class="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+        <summary class="pl-0 m-1 font-normal bg-transparent border-none shadow-none btn hover:bg-transparent"><%= ordering_title %></summary>
+        <ul class="menu dropdown-content bg-base-100 rounded-box z-30 w-52 p-2 shadow">
           <% if params[:s].present? %>
             <li>
               <%= link_to "Relevance", {**search_params, order_by: "ranked"} %>
@@ -48,7 +48,7 @@
               back_to: back_to_from_request
             } %>
     </div>
-    <div class="flex mt-4 w-full">
+    <div class="flex w-full mt-4">
       <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
     </div>
   <% end %>
