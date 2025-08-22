@@ -11,7 +11,7 @@
     </h1>
   </div>
 
-  <div class="flex flex-col items-end justify-end gap-4 sm:items-center sm:flex-row hotwire-native:hidden">
+  <div class="flex items-center justify-end gap-2 hotwire-native:hidden">
     <% if filtered_search? %>
       <div class="text-sm">Results: <%= @pagy.count %></div>
     <% end %>
@@ -26,16 +26,10 @@
     </div>
 
     <div class="flex items-center gap-2">
-      <div class="text-sm text-gray-500">Sort by:</div>
-      <div class="flex items-center gap-2">
-        <details class="dropdown dropdown-end">
-          <summary class="pl-0 m-1 font-normal bg-transparent border-none shadow-none btn hover:bg-transparent"><%= ordering_title %></summary>
-          <ul class="z-30 p-2 shadow menu dropdown-content bg-base-100 rounded-box w-52">
-            <% if params[:s].present? %>
-              <li>
-                <%= link_to "Relevance", {**search_params, order_by: "ranked"} %>
-              </li>
-            <% end %>
+      <details class="dropdown dropdown-end">
+        <summary class="pl-0 m-1 font-normal bg-transparent border-none shadow-none btn hover:bg-transparent"><%= ordering_title %></summary>
+        <ul class="menu dropdown-content bg-base-100 rounded-box z-30 w-52 p-2 shadow">
+          <% if params[:s].present? %>
             <li>
               <%= link_to "Newest first", {**search_params, order_by: "date_desc"} %>
             </li>

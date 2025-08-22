@@ -1,7 +1,7 @@
 <div id="event-list" class="relative group rounded-xl flex flex-col gap-2 md:h-[75vh] md:overflow-scroll">
   <% events.each do |event| %>
     <%= link_to event, class: "call-for-papers-item flex gap-4 group p-2 hover:bg-gray-200 rounded-md" do %>
-      <div class="flex flex-col lg:flex-row gap-8 items-center lg:justify-right text-center lg:text-left">
+      <div class="flex flex-col lg:flex-row gap-8 items-center lg:justify-right text-center lg:text-left flex-shrink-0">
         <%= image_tag image_path(event.avatar_image_path),
               class: "rounded-xl border border-[#D9DFE3] size-16",
               alt: event.name.to_s,
@@ -18,7 +18,7 @@
         <% end %>
       </div>
 
-      <div class="flex gap-2 absolute right-2">
+      <div class="hidden sm:flex gap-2 absolute right-2">
         <%= render "shared/cfp_countdown_badge", event: event %>
         <%= render "shared/event_countdown_badge", event: event %>
       </div>
