@@ -17,11 +17,11 @@
     <% end %>
 
     <div class="tabs tabs-boxed">
-      <%= link_to "All Talks", talks_path(search_params.except(:status)),
+      <%= link_to "All", talks_path(search_params.except(:status).merge(status: "all")),
+            class: "tab #{"tab-active" if params[:status] == "all"}" %>
+      <%= link_to "Published", talks_path(search_params.except(:status)),
             class: "tab #{"tab-active" if params[:status].blank?}" %>
-      <%= link_to "Published", talks_path(search_params.except(:status).merge(status: "published")),
-            class: "tab #{"tab-active" if params[:status] == "published"}" %>
-      <%= link_to "Upcoming", talks_path(search_params.except(:status).merge(status: "scheduled")),
+      <%= link_to "Scheduled", talks_path(search_params.except(:status).merge(status: "scheduled")),
             class: "tab #{"tab-active" if params[:status] == "scheduled"}" %>
     </div>
 

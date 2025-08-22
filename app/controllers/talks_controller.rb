@@ -19,14 +19,13 @@ class TalksController < ApplicationController
   # GET /talks
   def index
     @talks = Talk.includes(:speakers, event: :organisation, child_talks: :speakers)
-    # @talks = @talks.watchable unless params[:all].present?
     @talks = @talks.ft_search(params[:s]).with_snippets if params[:s].present?
     @talks = @talks.for_topic(params[:topic]) if params[:topic].present?
     @talks = @talks.for_event(params[:event]) if params[:event].present?
     @talks = @talks.for_speaker(params[:speaker]) if params[:speaker].present?
     @talks = @talks.where(kind: talk_kind) if talk_kind.present?
     @talks = @talks.where("created_at >= ?", created_after) if created_after
-    @talks = @talks.watchable if params[:status] == "published"
+    @talks = @talks.watchable if params[:status].blank? && params[:status] != "all"
     @talks = @talks.scheduled if params[:status] == "scheduled"
 
     # Apply ordering (handles search ranking vs custom ordering)
