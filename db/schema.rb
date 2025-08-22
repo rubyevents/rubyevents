@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_08_17_223427) do
+ActiveRecord::Schema[8.1].define(version: 2025_08_22_175423) do
   create_table "_litestream_lock", id: false, force: :cascade do |t|
     t.integer "id"
   end
@@ -86,6 +86,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_08_17_223427) do
     t.integer "sponsor_id", null: false
     t.string "tier"
     t.datetime "updated_at", null: false
+    t.index ["event_id", "sponsor_id", "tier"], name: "index_event_sponsors_on_event_sponsor_tier_unique", unique: true
     t.index ["event_id"], name: "index_event_sponsors_on_event_id"
     t.index ["sponsor_id"], name: "index_event_sponsors_on_sponsor_id"
   end
