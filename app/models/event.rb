@@ -54,6 +54,7 @@ class Event < ApplicationRecord
   has_many :sponsors, through: :event_sponsors
   belongs_to :canonical, class_name: "Event", optional: true
   has_many :aliases, class_name: "Event", foreign_key: "canonical_id"
+  has_many :cfps, dependent: :destroy
 
   has_object :schedule
   has_object :static_metadata
