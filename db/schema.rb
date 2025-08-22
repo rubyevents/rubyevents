@@ -98,6 +98,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_09_03_125458) do
     t.integer "sponsor_id", null: false
     t.string "tier"
     t.datetime "updated_at", null: false
+    t.index ["event_id", "sponsor_id", "tier"], name: "index_event_sponsors_on_event_sponsor_tier_unique", unique: true
     t.index ["event_id"], name: "index_event_sponsors_on_event_id"
     t.index ["sponsor_id"], name: "index_event_sponsors_on_sponsor_id"
   end
