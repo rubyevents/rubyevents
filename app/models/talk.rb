@@ -227,7 +227,6 @@ class Talk < ApplicationRecord
   scope :for_speaker, ->(speaker_slug) { joins(:users).where(users: {slug: speaker_slug}) }
   scope :for_event, ->(event_slug) { joins(:event).where(events: {slug: event_slug}) }
   scope :scheduled, -> { where(video_provider: "scheduled") }
-  scope :published, -> { where.not(video_provider: ["scheduled"]) }
   scope :watchable, -> { where(video_provider: WATCHABLE_PROVIDERS) }
   scope :upcoming, -> { where(date: Date.today...) }
   scope :today, -> { where(date: Date.today) }
