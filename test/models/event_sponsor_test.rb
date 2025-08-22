@@ -21,7 +21,7 @@ class EventSponsorTest < ActiveSupport::TestCase
 
     assert_not duplicate.valid?
     assert_includes duplicate.errors[:sponsor_id],
-                   "is already associated with this event for the same tier"
+      "is already associated with this event for the same tier"
   end
 
   test "allows same sponsor for different events with same tier" do
@@ -41,7 +41,7 @@ class EventSponsorTest < ActiveSupport::TestCase
 
     assert_not duplicate.valid?
     assert_includes duplicate.errors[:sponsor_id],
-                   "is already associated with this event for the same tier"
+      "is already associated with this event for the same tier"
   end
 
   test "treats empty string tier as nil" do

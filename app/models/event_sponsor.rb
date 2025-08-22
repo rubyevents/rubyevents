@@ -25,7 +25,7 @@ class EventSponsor < ApplicationRecord
   belongs_to :event
   belongs_to :sponsor
 
-  validates :sponsor_id, uniqueness: { scope: [:event_id, :tier], message: "is already associated with this event for the same tier" }
+  validates :sponsor_id, uniqueness: {scope: [:event_id, :tier], message: "is already associated with this event for the same tier"}
 
   before_validation :normalize_tier
 
