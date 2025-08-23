@@ -20,19 +20,13 @@
       <% speakers_with_avatars = event.speakers.with_github.sample(8) %>
 
       <% speakers_with_avatars.each do |speaker| %>
-        <div class="avatar bg-white border-2">
-          <div class="w-8">
-            <img src="<%= speaker.avatar_url %>" loading="lazy" alt="<%= speaker.name %>">
-          </div>
-        </div>
+        <%= ui_avatar(speaker) %>
       <% end %>
 
       <% if event.speakers.size > speakers_with_avatars.size %>
-        <div class="avatar placeholder border-2">
-          <div class="bg-neutral text-neutral-content w-8">
-            <span>+<%= event.speakers.size - speakers_with_avatars.size %></span>
-          </div>
-        </div>
+        <%= ui_avatar(nil) do %>
+          <span>+<%= event.speakers.size - speakers_with_avatars.size %></span>
+        <% end %>
       <% end %>
     </div>
   </div>

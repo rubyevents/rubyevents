@@ -185,13 +185,7 @@
                   <div class="avatar-group -space-x-6 rtl:space-x-reverse">
                     <% talk.speakers.to_a.from(speaker_preview_count).each do |speaker| %>
                       <div class="avatar placeholder border-none <% if talk.meta_talk? %>hidden <% end %>">
-                        <%= content_tag :div, class: "w-12 rounded-full bg-primary text-neutral-content" do %>
-                          <% if speaker.custom_avatar? %>
-                            <%= image_tag speaker.avatar_url(size: 48) %>
-                          <% else %>
-                            <span class="text-lg"><%= speaker.name.split(" ").map(&:first).join %></span>
-                          <% end %>
-                        <% end %>
+                        <%= ui_avatar speaker %>
                       </div>
                     <% end %>
                   </div>

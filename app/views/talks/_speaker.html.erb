@@ -3,7 +3,7 @@
     <div class="avatar placeholder">
       <div class="w-12 rounded-full bg-primary text-neutral-content">
         <% if speaker.custom_avatar? %>
-          <%= image_tag speaker.avatar_url(size: 48) %>
+          <%= ui_avatar(speaker) %>
         <% else %>
           <span class="text-lg"><%= speaker.name.split(" ").map(&:first).join %></span>
         <% end %>

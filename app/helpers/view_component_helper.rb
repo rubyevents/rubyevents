@@ -4,7 +4,8 @@ module ViewComponentHelper
     button: "Ui::ButtonComponent",
     divider: "Ui::DividerComponent",
     dropdown: "Ui::DropdownComponent",
-    modal: "Ui::ModalComponent"
+    modal: "Ui::ModalComponent",
+    avatar: "Ui::AvatarComponent"
   }.freeze
 
   UI_HELPERS.each do |name, component|

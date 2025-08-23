@@ -1,0 +1,13 @@
+<div class="avatar placeholder">
+  <div class="<%= size_class %> rounded-full bg-primary text-neutral-content <%= outline && "outline outline-2" %>">
+    <% if content %>
+      <%= content %>
+    <% elsif avatarable.custom_avatar? %>
+      <%= image_tag avatarable.avatar_url(size: image_size), loading: "lazy" %>
+    <% else %>
+      <%= content_tag :span, class: text_size do %>
+        <%= avatarable.name.split(" ").map(&:first).join %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
