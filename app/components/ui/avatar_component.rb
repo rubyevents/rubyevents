@@ -17,7 +17,7 @@ class Ui::AvatarComponent < ApplicationComponent
       image_size: 200,
       text_size: "text-3xl"
     }
-  }
+  }.freeze
 
   param :avatarable
   option :size, Dry::Types["coercible.symbol"].enum(*SIZE_MAPPING.keys), default: proc { :md }
