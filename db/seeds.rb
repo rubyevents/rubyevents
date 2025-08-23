@@ -44,13 +44,26 @@ MeiliSearch::Rails.deactivate! do
         website: event_data["website"],
         start_date: event.static_metadata.start_date,
         end_date: event.static_metadata.end_date,
-        kind: event.static_metadata.kind,
-        cfp_close_date: event_data["cfp_close_date"],
-        cfp_link: event_data["cfp_link"],
-        cfp_open_date: event_data["cfp_open_date"]
+        kind: event.static_metadata.kind
       )
 
       puts event.slug unless Rails.env.test?
+
+
+      cfp_file_path = "#{Rails.root}/data/#{organisation.slug}/#{event.slug}/cfp.yml"
+
+      if File.exist?(cfp_file_path)
+        cfps = YAML.load_file(cfp_file_path)
+
+        cfps.each do |cfp_data|
+          event.cfps.create(
+            name: cfp_data["name"],
+            link: cfp_data["link"],
+            open_date: cfp_data["open_date"],
+            close_date: cfp_data["close_date"]
+          )
+        end
+      end
 
       talks = YAML.load_file("#{Rails.root}/data/#{organisation.slug}/#{event.slug}/videos.yml")
 
