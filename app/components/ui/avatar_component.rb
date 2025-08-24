@@ -15,7 +15,7 @@ class Ui::AvatarComponent < ApplicationComponent
     lg: {
       size_class: "w-40",
       image_size: 200,
-      text_size: "text-3xl"
+      text_size: "text-6xl"
     }
   }.freeze
 
