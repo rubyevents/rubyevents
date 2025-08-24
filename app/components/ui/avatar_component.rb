@@ -3,7 +3,7 @@
 class Ui::AvatarComponent < ApplicationComponent
   SIZE_MAPPING = {
     sm: {
-      size_class: "w-7",
+      size_class: "w-8",
       image_size: 48,
       text_size: "text-xs"
     },
