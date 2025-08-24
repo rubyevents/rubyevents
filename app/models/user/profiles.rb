@@ -6,9 +6,8 @@ class User::Profiles < ActiveRecord::AssociatedObject
     enhance_with_bsky_later
   end
 
-  performs def enhance_with_github(force: false)
+  performs def enhance_with_github
     return unless user.github_handle?
-    return if user.verified? && !force
 
     profile = github_client.profile(user.github_handle)
     socials = github_client.social_accounts(user.github_handle)

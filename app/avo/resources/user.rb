@@ -43,9 +43,12 @@ class Avo::Resources::User < Avo::BaseResource
     filter Avo::Filters::Name
     filter Avo::Filters::Slug
     filter Avo::Filters::GitHubHandle
+    filter Avo::Filters::GitHubHandlePresence
+    filter Avo::Filters::BioPresence
   end
 
   def actions
     action Avo::Actions::AssignCanonicalUser
+    action Avo::Actions::UserFetchGitHub
   end
 end
