@@ -71,7 +71,7 @@
             <% more_speakers_count = all_speakers.count - shown_speakers.count %>
 
             <% if more_speakers_count.positive? %>
-              <%= ui_avatar(nil) do %>
+              <%= ui_avatar(nil, kind: :neutral) do %>
                 <span>+<%= more_speakers_count %></span>
               <% end %>
             <% end %>

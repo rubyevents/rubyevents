@@ -1,5 +1,5 @@
 <div class="avatar placeholder">
-  <div class="<%= size_class %> rounded-full bg-primary text-neutral-content <%= outline && "outline outline-2" %>">
+  <div class="<%= size_class %> rounded-full <%= kind_class %> text-neutral-content <%= outline && "outline outline-2" %>">
     <% if content %>
       <%= content %>
     <% elsif avatarable.custom_avatar? %>

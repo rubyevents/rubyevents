@@ -19,10 +19,16 @@ class Ui::AvatarComponent < ApplicationComponent
     }
   }.freeze
 
+  KIND_MAPPING = {
+    primary: "bg-primary",
+    neutral: "bg-neutral"
+  }.freeze
+
   param :avatarable
   option :size, Dry::Types["coercible.symbol"].enum(*SIZE_MAPPING.keys), default: proc { :md }
   option :size_class, Dry::Types["coercible.string"], default: proc { SIZE_MAPPING[size][:size_class] }
   option :outline, type: Dry::Types["strict.bool"], default: proc { false }
+  option :kind, Dry::Types["coercible.symbol"].enum(*KIND_MAPPING.keys), default: proc { :primary }
 
   private
 
@@ -32,5 +38,9 @@ class Ui::AvatarComponent < ApplicationComponent
 
   def text_size
     SIZE_MAPPING[size][:text_size]
+  end
+
+  def kind_class
+    KIND_MAPPING[kind]
   end
 end
