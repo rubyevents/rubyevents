@@ -149,7 +149,7 @@ class User < ApplicationRecord
   def passport_account
     connected_accounts.find_by(provider: "passport")
   end
-  
+
   # Speaker-specific methods (adapted from Speaker model)
   def title
     name
