@@ -75,7 +75,7 @@
                   <div class="text-md font-bold"><%= talk.title %></div><br>
                   <div class="text-gray-500 group-hover:text-white inline-flex flex-wrap gap-2 justify-center">
                     <% talk.speakers.each do |speaker| %>
-                      <%= ui_avatar(speaker, outline: true, size: :sm) %>
+                      <%= ui_avatar(speaker, outline: true) %>
                     <% end %>
                   </div>
 
