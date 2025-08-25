@@ -2,7 +2,7 @@
   <div class="<%= size_class %> rounded-full <%= kind_class %> text-neutral-content <%= outline && "outline outline-2" %>">
     <% if content %>
       <%= content %>
-    <% else avatarable.custom_avatar? %>
+    <% else %>
       <%= content_tag :span, class: [text_size, avatarable.custom_avatar? && "hidden"].select(&:itself) do %>
         <%= avatarable.name.split(" ").map(&:first).join %>
       <% end %>
