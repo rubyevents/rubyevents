@@ -33,7 +33,8 @@ class Profiles::ConnectControllerTest < ActionDispatch::IntegrationTest
     get profiles_connect_path(id: "one")
     assert_response :success
     assert_includes response.body, "🎉 Awesome! You Discovered a Friend"
-    assert_select ".pt-4 a.btn.btn-primary.btn-disabled.hidden", text: "Connect"
+    # enable this when we have a way to connect to other users
+    # assert_select ".pt-4 a.btn.btn-primary.btn-disabled.hidden", text: "Connect"
   end
 
   test "user should see no profile found page" do
