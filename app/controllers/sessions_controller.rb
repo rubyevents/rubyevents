@@ -6,6 +6,9 @@ class SessionsController < ApplicationController
 
   def new
     @user = User.new
+    # Add connect_id or connect_to to state if present
+    @state = "connect_id:#{params[:connect_id]}" if params[:connect_id].present?
+    @state = "connect_to:#{params[:connect_to]}" if params[:connect_to].present?
   end
 
   def create

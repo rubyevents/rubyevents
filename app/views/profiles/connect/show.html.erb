@@ -1,0 +1,13 @@
+<% if @found_account.present? %>
+  <%= render partial: "friend_prompt", locals: {found_user: @found_user} %>
+<% else %>
+  <% if Current.user.present? %>
+    <% if Current.user.passport_account.present? %>
+      <%= render partial: "no_profile_found" %>
+    <% else %>
+      <%= render partial: "claim_profile" %>
+    <% end %>
+  <% else %>
+    <%= render partial: "claim_profile" %>
+  <% end %>
+<% end %>

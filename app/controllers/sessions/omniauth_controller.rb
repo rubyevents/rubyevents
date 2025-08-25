@@ -3,6 +3,14 @@ class Sessions::OmniauthController < ApplicationController
   skip_before_action :authenticate_user!
 
   def create
+    state = query_params["state"]
+    # This needs to be refactored to be more robust when we have more states
+    if state.present?
+      key, value = state.split(":")
+      connect_id = (key == "connect_id") ? value : nil
+      connect_to = (key == "connect_to") ? value : nil
+    end
+
     connected_account = ConnectedAccount.find_or_initialize_by(provider: omniauth.provider, username: omniauth_params[:username])
 
     if connected_account.new_record?
@@ -19,6 +27,18 @@ class Sessions::OmniauthController < ApplicationController
       connected_account.save!
     else
       @user = connected_account.user
+    end
+
+    # If the user connected through a passport connection URL, we need to create a connected account for it
+    if connect_id.present?
+      passport_account = ConnectedAccount.find_or_initialize_by(provider: "passport", uid: connect_id)
+      passport_account.user = @user
+      passport_account.save!
+    end
+
+    if connect_to.present?
+      # TODO: Create connection
+      # new_friend = User.find_by(connect_id: connect_to)
     end
 
     if @user.persisted?

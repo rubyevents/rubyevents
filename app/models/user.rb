@@ -146,6 +146,10 @@ class User < ApplicationRecord
     @default_watch_list ||= watch_lists.first || watch_lists.create(name: "Favorites")
   end
 
+  def passport_account
+    connected_accounts.find_by(provider: "passport")
+  end
+
   # Speaker-specific methods (adapted from Speaker model)
   def title
     name
