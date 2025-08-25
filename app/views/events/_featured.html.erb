@@ -43,22 +43,14 @@
             <% event.keynote_speakers.each do |keynote_speaker| %>
               <% shown_speakers << keynote_speaker %>
 
-              <div class="avatar bg-white">
-                <div class="w-12 lg:w-28 xl:w-40">
-                  <img src="<%= keynote_speaker.avatar_url %>" onerror="this.parentElement.parentElement.remove()" loading="lazy" alt="<%= keynote_speaker.name %>">
-                </div>
-              </div>
+              <%= ui_avatar(keynote_speaker, size: :lg, size_class: "w-12 lg:w-28 xl:w-40") %>
             <% end %>
 
             <% if event.keynote_speakers.none? %>
               <% speakers_with_avatars.first(4).each do |speaker| %>
                 <% shown_speakers << speaker %>
 
-                <div class="avatar bg-white">
-                  <div class="w-12 lg:w-28 xl:w-40">
-                    <img src="<%= speaker.avatar_url %>" loading="lazy" alt="<%= speaker.name %>">
-                  </div>
-                </div>
+                <%= ui_avatar(speaker, size: :lg, size_class: "w-12 lg:w-28 xl:w-40") %>
               <% end %>
             <% end %>
           </div>
@@ -72,22 +64,16 @@
               <% remaining_speakers.first(10).each do |speaker| %>
                 <% shown_speakers << speaker %>
 
-                <div class="avatar bg-white">
-                  <div class="w-8 xl:w-12">
-                    <img src="<%= speaker.avatar_url %>" loading="lazy" alt="<%= speaker.name %>">
-                  </div>
-                </div>
+                <%= ui_avatar(speaker) %>
               <% end %>
             <% end %>
 
             <% more_speakers_count = all_speakers.count - shown_speakers.count %>
 
             <% if more_speakers_count.positive? %>
-              <div class="avatar placeholder">
-                <div class="bg-neutral text-neutral-content w-8 xl:w-12">
-                  <span>+<%= more_speakers_count %></span>
-                </div>
-              </div>
+              <%= ui_avatar(nil, kind: :neutral) do %>
+                <span>+<%= more_speakers_count %></span>
+              <% end %>
             <% end %>
           </div>
         </div>

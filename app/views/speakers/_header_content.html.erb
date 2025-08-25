@@ -1,11 +1,6 @@
 <div id="<%= dom_id(speaker, :header_content) %>" class="flex flex-col lg:flex-row gap-8 items-center lg:justify-right text-center lg:text-left mb-6 lg:mb-0">
   <div class="relative w-fit">
-    <%= image_tag speaker.avatar_url(size: 200),
-          class: "rounded-full border border-[#D9DFE3] size-24 md:size-36",
-          height: 200,
-          width: 200,
-          alt: "GitHub picture profile of #{speaker.github_handle}",
-          loading: :lazy %>
+    <%= ui_avatar(speaker, size_class: "size-24 md:size-36", size: :lg) %>
   </div>
 
   <div class="flex-col flex gap-2 title justify-center items-center lg:items-start">

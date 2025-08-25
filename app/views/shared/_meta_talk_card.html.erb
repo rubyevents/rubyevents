@@ -50,13 +50,7 @@
                 <% meta_talk.speakers.each do |speaker| %>
                   <div class="flex gap-1">
                     <div class="avatar placeholder">
-                      <div class="w-6 h-6 rounded-full bg-primary text-neutral-content">
-                        <% if speaker.custom_avatar? %>
-                          <%= image_tag speaker.avatar_url(size: 48) %>
-                        <% else %>
-                          <span class="text-xs"><%= speaker.name.split(" ").map(&:first).join %></span>
-                        <% end %>
-                      </div>
+                      <%= ui_avatar(speaker, size: :sm) %>
                     </div>
 
                     <div>
