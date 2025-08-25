@@ -177,11 +177,3 @@ gem "ostruct"
 gem "hotwire_combobox", "~> 0.4.0"
 
 gem "rails-i18n", "~> 8.0"
-
-# To install these gems, run `BUNDLE_WITH=qr_generation bundle install`
-group :qr_generation, optional: true do
-  gem "prawn"
-  gem "rqrcode"
-  gem "chunky_png"
-  gem "mini_magick"
-end
