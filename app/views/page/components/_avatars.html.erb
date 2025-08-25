@@ -23,7 +23,10 @@
 <p>Outline</p>
 <div class="flex items-center justify-start gap-4 mt-4 mb-8 flex-wrap bg-gray-500 p-2 w-80">
   <% [true, false].each do |value| %>
-    <%= ui_avatar avatarable, outline: value %>
+    <div class="text-center text-white">
+      <%= ui_avatar avatarable, outline: value %><br>
+      <%= value.to_s %>
+    </div>
   <% end %>
 </div>
 <p>Custom size class</p>
