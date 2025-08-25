@@ -1,5 +1,5 @@
 <% if @found_account.present? %>
-  <%= render partial: "friend_prompt" %>
+  <%= render partial: "friend_prompt", locals: {found_user: @found_user} %>
 <% else %>
   <% if Current.user.present? %>
     <% if Current.user.passport_account.present? %>
