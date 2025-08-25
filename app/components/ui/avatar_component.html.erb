@@ -7,7 +7,7 @@
         <%= avatarable.name.split(" ").map(&:first).join %>
       <% end %>
       <% if avatarable.custom_avatar? %>
-        <%= image_tag avatarable.avatar_url(size: image_size), loading: "lazy", onerror: "this.previousElementSibling.classList.remove('hidden'); this.remove(); " %>
+        <%= image_tag avatarable.avatar_url(size: image_size), loading: "lazy", onerror: "this.previousElementSibling.classList.remove('hidden'); this.remove()" %>
       <% end %>
     <% end %>
   </div>
