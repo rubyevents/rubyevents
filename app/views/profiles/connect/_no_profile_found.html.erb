@@ -16,22 +16,22 @@
 
   <!-- Suggestions list -->
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md text-sm">
-    <div class="flex items-center space-x-2 text-base-content/80">
+    <a href="<%= talks_path %>" class="flex items-center space-x-2 text-base-content/80">
       <%= fa "video", variant: :solid, class: "w-5 h-5 text-neutral flex-shrink-0" %>
       <span>Browse talks</span>
-    </div>
-    <div class="flex items-center space-x-2 text-base-content/80">
+    </a>
+    <a href="<%= events_path %>" class="flex items-center space-x-2 text-base-content/80">
       <%= fa "calendar-days", variant: :solid, class: "w-5 h-5 text-neutral flex-shrink-0" %>
       <span>Discover events</span>
-    </div>
-    <div class="flex items-center space-x-2 text-base-content/80">
+    </a>
+    <a href="<%= speakers_path %>" class="flex items-center space-x-2 text-base-content/80">
       <%= fa :users, variant: :solid, class: "w-5 h-5 text-neutral flex-shrink-0" %>
       <span>Meet speakers</span>
-    </div>
-    <div class="flex items-center space-x-2 text-base-content/80">
+    </a>
+    <a href="<%= topics_path %>" class="flex items-center space-x-2 text-base-content/80">
       <%= fa :hashtag, variant: :solid, class: "w-5 h-5 text-neutral flex-shrink-0" %>
       <span>Explore topics</span>
-    </div>
+    </a>
   </div>
 
   <!-- CTA Buttons -->
