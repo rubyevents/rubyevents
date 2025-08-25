@@ -3,6 +3,7 @@ import { useIntersection } from 'stimulus-use'
 import Vlitejs from 'vlitejs'
 import YouTube from 'vlitejs/providers/youtube.js'
 import Vimeo from 'vlitejs/providers/vimeo.js'
+import { patch } from '@rails/request.js'
 
 Vlitejs.registerProvider('youtube', YouTube)
 Vlitejs.registerProvider('vimeo', Vimeo)
@@ -13,7 +14,10 @@ export default class extends Controller {
     src: String,
     provider: String,
     startSeconds: Number,
-    endSeconds: Number
+    endSeconds: Number,
+    watchedTalkPath: String,
+    currentUserPresent: { default: false, type: Boolean },
+    progressSeconds: { default: 0, type: Number }
   }
 
   static targets = ['player', 'playerWrapper']
@@ -107,7 +111,91 @@ export default class extends Controller {
     if (this.providerValue === 'youtube') {
       // The overlay is messing with the hover state of he player
       player.elements.container.querySelector('.v-overlay').remove()
+
+      this.setupYouTubeEventLogging(player)
     }
+
+    if (this.providerValue === 'vimeo') {
+      player.instance.on('ended', () => {
+        this.stopProgressTracking()
+      })
+
+      player.instance.on('pause', () => {
+        this.stopProgressTracking()
+      })
+
+      player.instance.on('play', () => {
+        this.startProgressTracking()
+      })
+    }
+
+    if (this.hasProgressSecondsValue && this.progressSecondsValue > 0) {
+      this.player.seekTo(this.progressSecondsValue)
+    }
+  }
+
+  setupYouTubeEventLogging (player) {
+    if (!player.instance) {
+      console.log('YouTube API not available for event logging')
+      return
+    }
+
+    const ytPlayer = player.instance
+
+    ytPlayer.addEventListener('onStateChange', (event) => {
+      const YOUTUBE_STATES = {
+        ENDED: 0,
+        PLAYING: 1,
+        PAUSED: 2
+      }
+
+      if (event.data === YOUTUBE_STATES.PLAYING && this.currentUserPresentValue) {
+        this.startProgressTracking()
+      } else if (event.data === YOUTUBE_STATES.PAUSED || event.data === YOUTUBE_STATES.ENDED) {
+        this.stopProgressTracking()
+      }
+    })
+  }
+
+  async startProgressTracking () {
+    if (this.progressInterval) return
+    if (!this.currentUserPresentValue) return
+
+    const currentTime = await this.getCurrentTime()
+    this.progressSecondsValue = Math.floor(currentTime)
+
+    this.updateWatchedProgress(this.progressSecondsValue)
+
+    this.progressInterval = setInterval(async () => {
+      if (this.hasWatchedTalkPathValue) {
+        const currentTime = await this.getCurrentTime()
+        this.progressSecondsValue = Math.floor(currentTime)
+
+        this.updateWatchedProgress(this.progressSecondsValue)
+      }
+    }, 5000)
+  }
+
+  stopProgressTracking () {
+    if (this.progressInterval) {
+      clearInterval(this.progressInterval)
+      this.progressInterval = null
+    }
+  }
+
+  updateWatchedProgress (progressSeconds) {
+    if (!this.hasWatchedTalkPathValue) return
+    if (!this.currentUserPresentValue) return
+
+    patch(this.watchedTalkPathValue, {
+      body: {
+        watched_talk: {
+          progress_seconds: progressSeconds
+        }
+      }
+    }).catch(error => {
+      console.error('Error updating watch progress:', error)
+    })
   }
 
   createPlaybackRateSelect (options, player) {
@@ -143,6 +231,10 @@ export default class extends Controller {
     this.player.pause()
   }
 
+  disconnect () {
+    this.stopProgressTracking()
+  }
+
   #togglePictureInPicturePlayer (enabled) {
     const toggleClasses = () => {
       if (enabled && this.isPlaying) {
@@ -175,5 +267,14 @@ export default class extends Controller {
 
   get isPreview () {
     return document.documentElement.hasAttribute('data-turbo-preview')
+  }
+
+  async getCurrentTime () {
+    try {
+      return await this.player.instance.getCurrentTime()
+    } catch (error) {
+      console.error('Error getting current time:', error)
+      return 0
+    }
   }
 }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_08_17_223427) do
+ActiveRecord::Schema[8.1].define(version: 2025_08_20_225005) do
   create_table "_litestream_lock", id: false, force: :cascade do |t|
     t.integer "id"
   end
@@ -349,6 +349,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_08_17_223427) do
     t.string "twitter", default: "", null: false
     t.datetime "updated_at", null: false
     t.boolean "verified", default: false, null: false
+    t.integer "watched_talks_count", default: 0, null: false
     t.string "website", default: "", null: false
     t.index ["canonical_id"], name: "index_users_on_canonical_id"
     t.index ["email"], name: "index_users_on_email"
@@ -379,6 +380,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_08_17_223427) do
 
   create_table "watched_talks", force: :cascade do |t|
     t.datetime "created_at", null: false
+    t.integer "progress_seconds", default: 0, null: false
     t.integer "talk_id", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
