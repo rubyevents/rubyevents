@@ -1,5 +1,5 @@
 class ContributionsController < ApplicationController
-  include Turbo::ForceFrameResponse
+  include Turbo::ForceResponse
   force_frame_response only: %i[show]
   skip_before_action :authenticate_user!, only: %i[index show]
 

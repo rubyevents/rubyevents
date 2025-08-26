@@ -1,5 +1,9 @@
 class TemplatesController < ApplicationController
+  include Turbo::ForceResponse
+
   skip_before_action :authenticate_user!
+  force_frame_response only: [:new_child, :delete_child]
+  force_stream_response only: [:speakers_search]
 
   def new
     @talk = Template.new

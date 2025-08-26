@@ -1,6 +1,6 @@
 module RemoteModal
   extend ActiveSupport::Concern
-  include Turbo::ForceFrameResponse
+  include Turbo::ForceResponse
 
   included do
     layout :define_layout
