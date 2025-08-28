@@ -468,8 +468,8 @@ class Talk < ApplicationRecord
   def fetch_duration_from_youtube!
     return unless youtube?
 
-    duration = YouTube::Video.new.duration(video_id)
-    update! duration_in_seconds: ActiveSupport::Duration.parse(duration).to_i
+    duration_seconds = YouTube::Video.new.duration(video_id)
+    update duration_in_seconds: duration_seconds
   end
 
   def update_from_yml_metadata!(event: nil)
