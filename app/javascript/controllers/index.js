@@ -4,9 +4,6 @@
 
 import { application } from "./application"
 
-import HwComboboxController from "@josefarias/hotwire_combobox"
-application.register("hw-combobox", HwComboboxController)
-
 import AutoClickController from "./auto-click_controller"
 application.register("auto-click", AutoClickController)
 
