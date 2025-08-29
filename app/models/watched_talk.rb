@@ -25,6 +25,9 @@ class WatchedTalk < ApplicationRecord
   private
 
   def calculate_progress_percentage
+    return unless progress_seconds && talk.duration_in_seconds
+    return if talk.duration_in_seconds.zero?
+
     self.progress_percentage = (progress_seconds.to_f / talk.duration_in_seconds * 100).round(2)
   end
 end
