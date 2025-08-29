@@ -7,7 +7,7 @@
   <div class="w-full flex">
     <div class="flex-grow">
       <div class="flex items-center justify-between w-full hotwire-native:hidden">
-        <%= link_to back_path do %>
+        <%= link_to sanitize(back_path) do %>
           <div class="flex items-center gap-2 title text-base text-primary mb-4">
             <%= fa("arrow-left-long", class: "transition-arrow fill-primary", size: :xs) %>
             <div style="view-transition-name: title"><%= back_to_title %></div>

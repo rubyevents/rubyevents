@@ -1,7 +1,7 @@
 <div class="container flex flex-col w-full gap-4 my-8">
   <% back_path = params[:back_to].presence || topics_path %>
   <% back_to_title = params[:back_to_title].presence || "Topics" %>
-  <%= link_to back_path, class: "hotwire-native:hidden" do %>
+  <%= link_to sanitize(back_path), class: "hotwire-native:hidden" do %>
     <div class="flex items-center gap-2 title text-primary">
       <%= fa("arrow-left-long", class: "transition-arrow fill-primary", size: :xs) %>
       <div style="view-transition-name: title"><%= back_to_title %></div>
