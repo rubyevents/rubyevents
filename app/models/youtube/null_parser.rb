@@ -15,7 +15,8 @@ module YouTube
           published_at: @metadata.published_at,
           description: @metadata.description,
           video_provider: "youtube",
-          video_id: @metadata.video_id
+          video_id: @metadata.video_id,
+          duration_in_seconds: @metadata.duration_in_seconds
         }
       )
     end
