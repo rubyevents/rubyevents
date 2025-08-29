@@ -17,6 +17,7 @@
     By, David Heinemeier Hansson
   video_provider: "youtube"
   video_id: "KJVTM7mE1Cc"
+  duration_in_seconds: 3784
 
 - title: "Leveraging Microsoft Azure from Ruby"
   raw_title: "RailsConf 2015 - Leveraging Microsoft Azure from Ruby"
@@ -126,6 +127,7 @@
     have something for you.
   video_provider: "youtube"
   video_id: "MA4jJNUG_dI"
+  duration_in_seconds: 2003
 
 - title: "Interviewing like a Unicorn: How Great Teams Hire"
   raw_title: "RailsConf 2015 - Interviewing like a Unicorn: How Great Teams Hire"
@@ -423,6 +425,7 @@
     your career off on the right foot.
   video_provider: "youtube"
   video_id: "SaNlfSeTWwI"
+  duration_in_seconds: 1486
 
 - title: "How Does Bundler Work, Anyway?"
   raw_title: "RailsConf 2015 - How Does Bundler Work, Anyway?"
@@ -509,6 +512,7 @@
     New programmers often react with dread when the word "refactoring" starts getting thrown around at standup. Maybe you've seen fellow Rubyists struggle with old code, or a colleague spend days on one module only to end up with exactly zero changes to functionality. What exactly is refactoring, and why would anyone want to do it? What are some tips for approaching a refactor, both generally and in Rails?
   video_provider: "youtube"
   video_id: "HFaXuMQTnOc"
+  duration_in_seconds: 1995
 
 - title: "Civic Hacking on Rails"
   raw_title: "RailsConf 2015 - Civic Hacking on Rails"
@@ -631,6 +635,7 @@
     We talk about bringing new developers "up to speed quickly." Imposter syndrome is bad enough, but often junior developers feel pressured to learn faster and produce more. Developers often focus on velocity as the critical measure of success. The need for speed actually amplifies insecurities, magnifies imposter syndrome, and hinders growth. Instead let's talk about how we can track and plan progress using meaningful goals and metrics.
   video_provider: "youtube"
   video_id: "9Xyc708VV1g"
+  duration_in_seconds: 2056
 
 - title: "Crossing the Bridge: Connecting Rails and Your Front-End Framework"
   raw_title: "RailsConf 2015 - Crossing the Bridge: Connecting Rails and Your Front-End Framework"
@@ -703,6 +708,7 @@
     ECMAScript 6 has a metric ton of new Ruby-friendly features that make working with JavaScript less painful—including but not limited to: classes, implicitly returning functions, string interpolation, and modules. In this session, we'll take a look at how you can use these features today in your Rails applications.
   video_provider: "youtube"
   video_id: "Ayj1kgQNhAg"
+  duration_in_seconds: 1914
 
 - title: "Your Front End Framework is Overkill - Server Side Javascript w/ Rails"
   raw_title: "RailsConf 2015 -  Your Front End Framework is Overkill - Server Side Javascript w/ Rails"
@@ -766,6 +772,7 @@
     According to Gartner, there will be nearly 26 billion devices on the Internet of Things (IoT) by 2020. ABI Research estimates that more than 30 billion devices will be wirelessly connected to the IoT by 2020. This discussion provides examples examples, ideas, tools and best-practices for Rails developers to start building IoT applications that connect their web applications to the real world.
   video_provider: "youtube"
   video_id: "4FtnvyH0qq4"
+  duration_in_seconds: 1885
 
 - title: "Beyond Hogwarts: A Half-Blood's Perspective on Inclusive Magical Education"
   raw_title: "RailsConf 2015 - Beyond Hogwarts: A Half-Blood's Perspective on Inclusive Magical Education"
@@ -779,6 +786,7 @@
     When Voldemort and his forces threatened us all, two of the three wizards (and witch) who led his defeat were not raised in the magical world. Schools like Hogwarts can help us identify and train those with innate magical talents and interests whom we might otherwise never discover. But how to find and teach those beyond the reach of our owls? This talk explores our options and will serve as a call to action for the Magical world. As we will see, these challenges are almost magically mirrored by the Rails community as we seek to find and train developers from non-traditional paths.
   video_provider: "youtube"
   video_id: "ZHlEw0ZYStY"
+  duration_in_seconds: 1311
 
 - title: "Crossing the Canyon of Cognizance: A Shared Adventure"
   raw_title: "RailsConf 2015 - Crossing the Canyon of Cognizance: A Shared Adventure"
@@ -853,6 +861,7 @@
     Most of the four learning stages - unconscious incompetence, conscious incompetence, conscious competence and unconscious competence - are bridged by acquiring experience. But the gap between unconscious incompetence to conscious competence is where the most discomfort and discouragement occurs. Helping new developers bridge the void ensures a vibrant, accessible community, and having visible members/mentors in each stage encourages newcomers' learning. This talk illustrates (literally!) how to help new colleagues build this bridge and prevent losing them in the what-do-I-even-Google abyss.
   video_provider: "youtube"
   video_id: "_HoaAIYcihY"
+  duration_in_seconds: 2499
 
 - title: "Get Started with Component-based Rails Applications!"
   raw_title: "RailsConf 2015 - Get started with Component-based Rails applications!"
@@ -950,6 +959,7 @@
     What does haggling at a garage sale have to do with load balancing in distributed systems? How does bidding in an art auction relate to cloud service orchestration? Familiarity with the ideas and technologies involved in cloud computing is becoming ever more important for developers. This talk will demonstrate how you can use game theory — the study of strategic decision making — to design more efficient, and innovative, distributed systems.
   video_provider: "youtube"
   video_id: "1hl20hpOxpo"
+  duration_in_seconds: 1577
 
 - title: "High performance APIs in Ruby using ActiveRecord and Goliath"
   raw_title: "RailsConf 2015 - High performance APIs in Ruby using ActiveRecord and Goliath"
@@ -964,6 +974,7 @@
     We had a real-time API in Rails that needed much lower latency and massive throughput. We wanted to preserve our investment in business logic inside ActiveRecord models while scaling up to 1000X throughput and cutting latency in half. Conventional wisdom would say this was impossible in Ruby, but we succeeded and actually surpassed our expectations. We'll discuss how we did it, using Event-Machine for the reactor pattern, Synchrony to avoid callback hell and to make testing easy, Goliath as the non-blocking web server, and sharding across many cooperative processes.
   video_provider: "youtube"
   video_id: "U8An88L5nBk"
+  duration_in_seconds: 1867
 
 - title: "Why Your New API Product Will Fail"
   raw_title: "RailsConf 2015 - Why Your New API Product Will Fail"
@@ -1040,6 +1051,7 @@
     Software is grown, not built, and that becomes clearest when we need to change it. This talk will discuss the motivations behind a framework migration, how to divide that migration into soluble subproblems, and how to conquer those subproblems in a test-driven way, all while ensuring the new codebase is designed with further growth in mind. We'll touch on mounting Rack applications inside Rails, SOA architecture, and how to map components of one framework to another.
   video_provider: "youtube"
   video_id: "5SDWBLV3tSg"
+  duration_in_seconds: 1879
 
 - title: "Speed Science"
   raw_title: "RailsConf 2015 - Speed Science"
@@ -1053,6 +1065,7 @@
     Run your app faster, with less RAM and a quicker boot time today. How? With science! In this talk we'll focus on the process of turning performance problems into reproducible bugs we can understand and squash. We'll look at real world use cases where small changes resulted in huge real world performance gains. You'll walk away with concrete and actionable advice to improve the speed of your app, and with the tools to equip your app for a lifetime of speed. Live life in the fast lane, with science!
   video_provider: "youtube"
   video_id: "m2nj5sUE3hg"
+  duration_in_seconds: 2457
 
 - title: "Slightly Less Painful Time Zones"
   raw_title: "RailsConf 2015 - Slightly Less Painful Time Zones"
@@ -1066,6 +1079,7 @@
     For developers, there are two things that are certain for time zones: you can’t avoid having to deal with them, and you will screw them up at some point. There are, however, some ways to mitigate the pain. This talk will discuss tactics for avoiding time zone mayhem, using a feature to send out weekly email reports in a customer’s local time zone as a case study. It will cover idiosyncrasies of how time zones are handled in Ruby and Rails, how to write tests to avoid false positives, and advice on how to release time zone-related code changes more safely.
   video_provider: "youtube"
   video_id: "VFDurYw6aZ8"
+  duration_in_seconds: 1815
 
 - title: "Better callbacks in Rails 5"
   raw_title: "RailsConf 2015 - Better callbacks in Rails 5"
@@ -1184,6 +1198,7 @@
     When you want to talk to someone, where do you turn? Skype? Slack or HipChat? Maybe even an old-fashioned telephone? As great (or not) as these are, they all fail in one important way: Context. As developers, why don’t we enable our users to communicate where they are doing everything else, right inside the browser or mobile app? The technology to make contextual communications is evolving quickly with exciting technologies like WebRTC, speech recognition and natural language processing. This talk is about how to apply those building blocks and bring contextual communication to your apps.
   video_provider: "youtube"
   video_id: "5JF4EKm9Evk"
+  duration_in_seconds: 2574
 
 - title: "ActiveJob: A Service Oriented Architecture"
   raw_title: "RailsConf 2015 - ActiveJob: A Service Oriented Architecture"
@@ -1212,6 +1227,7 @@
     Learning to keep your Rails application secure is an often-overlooked part of learning Rails, so let's take a trip through the world of Ruby on Rails security! The journey will start with an overview of security features offered by the popular web framework, then we'll detour through dangerous pitfalls and unsafe defaults, and finally end with suggestions for improving security in Rails itself. As a bonus, we'll talk about how to integrate security into the development process.
   video_provider: "youtube"
   video_id: "AFOlxqQCTxs"
+  duration_in_seconds: 2036
 
 - title: "The power of cache in a slow world"
   raw_title: "RailsConf 2015 - The power of cache in a slow world"
@@ -1225,6 +1241,7 @@
     Most of us have some form of cache anxiety. We’re good at caching static content like images and scripts, but taking the next step - caching dynamic and user-specific content - is confusing and often requires a leap of faith. In this talk you’ll learn new and old strategies for caching dynamic content, HTTP performance rules to live by, and a better understanding of how to accelerate any application. This is just what the doctor ordered: a prescription for cache money.
   video_provider: "youtube"
   video_id: "AuKn65E8T3w"
+  duration_in_seconds: 2259
 
 - title: "(Re)Building a large scale payments system on Rails"
   raw_title: "RailsConf 2015 - (Re)Building a large scale payments system on Rails"
@@ -1238,6 +1255,7 @@
     Payments applications typically require a strong audit trail, very predictable failure behavior and strong transactional integrity. In Ruby/Rails, ActiveRecord allows any part of the code to modify anything in the database, failures are often silently ignored, and database transactions are hidden for convenience by default. In this talk I'll explore how to solve those problems and use RoR to build a large scale payments system.
   video_provider: "youtube"
   video_id: "3pskVqOenoM"
+  duration_in_seconds: 2479
 
 - title: "What If Shakespeare Wrote Ruby?"
   raw_title: "RailsConf 2015 - What If Shakespeare Wrote Ruby?"
@@ -1267,6 +1285,7 @@
     Every once a while, Rails might behave in strange ways that you did not expect, and it could be difficult to figure out what is really going on. Was it a bug in the framework? Could it be one of the gems I am using? Did I do something wrong? In this session, we will look at some tips, tricks and tools to help you debug your Rails issues. Along the way, you will also learn how to dive into the Rails codebase without getting lost. The next time you a mysterious bug finds its way into your Rails applications, you will be well-equipped to pry open the black box yourself!
   video_provider: "youtube"
   video_id: "IjbYhE9mWuk"
+  duration_in_seconds: 2222
 
 - title: "Now Hear This! Putting Real-Time Voice, Video and Text into Rails"
   raw_title: "RailsConf 2015 - Now Hear This! Putting Real-Time Voice, Video and Text into Rails"
@@ -1280,6 +1299,7 @@
     When you want to talk to someone, where do you turn? Skype? Slack or HipChat? Maybe even an old-fashioned telephone? As great (or not) as these are, they all fail in one important way: Context. As developers, why don’t we enable our users to communicate where they are doing everything else, right inside the browser or mobile app? The technology to make contextual communications is evolving quickly with exciting technologies like WebRTC, speech recognition and natural language processing. This talk is about how to apply those building blocks and bring contextual communication to your apps.
   video_provider: "youtube"
   video_id: "Umve48uvlWc"
+  duration_in_seconds: 2587
 
 - title: "Designing a Great Ruby API - How We're Simplifying Rails 5"
   raw_title: "RailsConf 2015 - Designing a Great Ruby API - How We're Simplifying Rails 5"
@@ -1293,6 +1313,7 @@
     The most useful APIs are simple and composeable. Omnipotent DSLs can be great, but sometimes we want to just write Ruby. We're going to look at the process of designing a new API for attributes and type casting in Rails 5.0, and why simpler is better. We'll unravel some of the mysteries behind the internals of Active Record. After all, Rails is ultimately just a large legacy code base. In this talk you'll learn about the process of finding those simple APIs which are begging to be extracted, and the refactoring process that can be used to tease them out slowly.
   video_provider: "youtube"
   video_id: "PUuYAksQWg4"
+  duration_in_seconds: 2290
 
 - title: "Bringing UX to Your Code"
   raw_title: "RailsConf 2015 - Bringing UX to Your Code"
@@ -1306,6 +1327,7 @@
     User Centered Design as a process is almost thirty years old now. The philosophy has permeated our products and the way we build our interfaces. But this philosophy is rarely extended to the code we write. We'll take a look at some principles of UX and Interface Design and relate them back to our code. By comparing code that gets it right to code that gets it desperately wrong, we'll learn some principles that we can use to write better, more usable code.
   video_provider: "youtube"
   video_id: "RZolYCvdn4o"
+  duration_in_seconds: 1815
 
 - title: "Coding: Art or Craft?"
   raw_title: "RailsConf 2015 - Coding: Art or Craft?"
@@ -1334,6 +1356,7 @@
     Our code is full of hidden assumptions, things that seem like nothing, secrets that we did not name and thus cannot see. These secrets represent missing concepts and this talk shows you how to expose those concepts with code that is easy to understand, change and extend. Being explicit about hidden ideas makes your code simpler, your apps clearer and your life better. Even very small ideas matter. Everything, even nothing, is something.
   video_provider: "youtube"
   video_id: "29MAL8pJImQ"
+  duration_in_seconds: 2153
 
 - title: "Keynote - Day 1 Closing"
   raw_title: "RailsConf 2015 - Keynote - Day 1 Closing"
@@ -1383,6 +1406,7 @@
     01:36:57 - Adam Cuppy @adamcuppy
   video_provider: "youtube"
   video_id: "N92aD4mNUFA"
+  duration_in_seconds: 6036
   talks:
     - title: "Lightning Talk: Andela"
       start_cue: "00:12"
@@ -1668,6 +1692,7 @@
     Applications today are spidery and include thousands of possible optimization points. No matter how deep performance testing data are, developers are still at a loss when asked to derive meaningful and actionable data that pinpoint to bottlenecks in the application. You know things are slow, but you are left with the challenge of figuring out where to optimize. This presentation describes a new kind of analytics, called performance analytics, that provide tangible ways to root cause performance problems in today’s applications and clearly identify where and what to optimize.
   video_provider: "youtube"
   video_id: "gtFcClubNXw"
+  duration_in_seconds: 1768
 
 - title: "Deploy and Manage Ruby on Rails Apps on AWS"
   raw_title: "RailsConf 2015 - Deploy and Manage Ruby on Rails Apps on AWS"
@@ -1683,6 +1708,7 @@
     In this hands-on lab, we will get you started with running your Rails applications on AWS. Starting with a simple sample application, we will walk you through deploying to AWS, then enhancing your application with features from the AWS SDK for Ruby's Rails plugin.
   video_provider: "youtube"
   video_id: "OQoYTeGJYf4"
+  duration_in_seconds: 3338
 
 - title: "Voila, Indexes! A Look at Some Simple Preventative Magick"
   raw_title: "RailsConf 2015 - Voila, Indexes! A Look at Some Simple Preventative Magick"
@@ -1696,6 +1722,7 @@
     A gentleman wizard and his sarcastic manservant examine a common anti-pattern in schema design, in which indexes are “left for later”. The pitfalls and dangers of this approach are set forth. Right incantations (which is to say, scenarios and sample code) for battling this devious tendency will be presented, with all magic (that is, “buzz”) words thoroughly demystified and clearly explained. Walk away with a new understanding of why your application tables deserve indexes from day one, and how to make sure you’ve got them covered.
   video_provider: "youtube"
   video_id: "nYfMDnmmitY"
+  duration_in_seconds: 2011
 
 - title: "http://exploration"
   raw_title: "RailsConf 2015 - http://exploration"
@@ -1709,6 +1736,7 @@
     We're web developers. But how well do we know the web's core protocol, HTTP? In this lab, we'll explore the protocol to see exactly what's going on between the browser and the web server. We'll cover: HTTP basics HTTP methods (GET, POST, PUT, etc.) HTTPS Troubleshooting tools Proxies Caching HTTP/2 We'll investigate how we can take advantage of HTTP features to troubleshoot problems, and to improve the performance of our Rails apps.
   video_provider: "youtube"
   video_id: "kmfUfjpDpz0"
+  duration_in_seconds: 4437
 
 - title: "What is this PGP thing, and how can I use it?"
   raw_title: "RailsConf 2015 - What is this PGP thing, and how can I use it?"
@@ -1722,6 +1750,7 @@
     The need to keep your personal information, sensitive or nonsensitive, secure from prying eyes isn't new, but recent events have brought it back into the public eye. In this workshop, we'll build and upload public keys, explore Git commit signing, and learn to sign others' PGP keys. If we have time, we'll exchange key fingerprints and show IDs, then discuss signing and verifying gems. You'll need a photo ID and your own computer for this workshop.
   video_provider: "youtube"
   video_id: "7xz2P4i34ic"
+  duration_in_seconds: 1784
 
 - title: "Test Driving your Rails Infrastructure with Chef"
   raw_title: "RailsConf 2015 - Test Driving your Rails Infrastructure with Chef"
@@ -1750,6 +1779,7 @@
     Capybara has allowed us to build complex and ambitious applications with the confidence that everything comes together in the user experience we're targeting. As the capabilities of the web have grown, interactions and behavior in our applications have become more complex and harder to test. Our tests become coupled to CSS selectors, fail intermittently, take longer and our confidence dwindles. In this talk, I'll go over best practices for working with a large Capybara test suite and dig into APIs and options we can use to handle complex apps such as a chat app not written in Ruby.
   video_provider: "youtube"
   video_id: "BvLJDr6RkCI"
+  duration_in_seconds: 1940
 
 - title: "Closing Keynote: Ease at Work"
   raw_title: "RailsConf 2015 - Closing Keynote"

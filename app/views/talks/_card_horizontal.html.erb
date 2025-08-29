@@ -1,7 +1,7 @@
-<%# locals: (talk:, current_talk: nil, compact: false, turbo_frame: nil, watched_talks_ids:, tag: :a, tooltip: true) -%>
+<%# locals: (talk:, current_talk: nil, compact: false, turbo_frame: nil, user_watched_talks:, tag: :a, tooltip: true) -%>
 
 <% active = talk == current_talk %>
-<% watched = watched_talks_ids.include?(talk.id) %>
+<% watched_talk = user_watched_talks.find { |wt| wt.talk_id == talk.id } %>
 
 <% not_recorded = talk.not_recorded? || talk.parent_talk&.not_recorded? %>
 <% not_published = talk.not_published? || talk.parent_talk&.not_published? %>
@@ -10,7 +10,7 @@
 <%= content_tag(
       tag,
       href: talk_path(talk),
-      class: class_names("w-full flex items-center gap-4 p-2 rounded-lg hover:bg-gray-200 group", active: active, watched: watched, not_recorded: not_recorded, scheduled: scheduled, not_published: not_published),
+      class: class_names("w-full flex items-center gap-4 p-2 rounded-lg hover:bg-gray-200 group", active: active, watched: watched_talk.present?, not_recorded: not_recorded, scheduled: scheduled, not_published: not_published),
       id: dom_id(talk, :card_horizontal),
       data: {
         talk_horizontal_card: true,
@@ -45,6 +45,14 @@
     <div class="absolute inset-0 bg-black/50 justify-center items-center rounded hidden group-[.scheduled]:flex group-[.active]:hidden">
       <%= fa("clock", size: :sm, class: "fill-white") %>
     </div>
+
+    <% if watched_talk %>
+      <div class="absolute bottom-0 left-0 right-0 z-10">
+        <div class="w-full h-1 bg-white/40">
+          <div class="h-1 bg-primary" style="width: <%= watched_talk.progress_percentage.to_s %>%"></div>
+        </div>
+      </div>
+    <% end %>
   </div>
 
   <div class="flex flex-col gap-1 text-sm">

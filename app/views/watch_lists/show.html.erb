@@ -1,5 +1,5 @@
 <%= turbo_frame_tag "watch_list_talks", target: "" do %>
   <%= render partial: "watch_lists/watch_list",
         locals: {watch_list: @watch_list,
-                 watched_talks_ids: user_watched_talks_ids} %>
+                 user_watched_talks: user_watched_talks} %>
 <% end %>

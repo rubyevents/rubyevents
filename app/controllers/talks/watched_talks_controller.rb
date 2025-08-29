@@ -42,6 +42,6 @@ class Talks::WatchedTalksController < ApplicationController
                talk: @talk,
                current_talk: @talk,
                turbo_frame: "talk",
-               watched_talks_ids: user_watched_talks_ids}
+               user_watched_talks: user_watched_talks}
   end
 end

@@ -16,7 +16,8 @@ module YouTube
           thumbnail_lg: metadata.snippet.thumbnails.standard&.url,
           thumbnail_xl: metadata.snippet.thumbnails.maxres&.url,
           video_provider: "youtube",
-          video_id: metadata.contentDetails.videoId
+          video_id: metadata.contentDetails.videoId,
+          duration_in_seconds: YouTube::Video.new.duration(metadata.contentDetails.videoId)
         })
       end
     end
