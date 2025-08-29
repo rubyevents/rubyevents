@@ -47,8 +47,8 @@ class Event < ApplicationRecord
   has_many :talks, dependent: :destroy, inverse_of: :event, foreign_key: :event_id
   has_many :watchable_talks, -> { watchable }, class_name: "Talk"
   has_many :speakers, -> { distinct }, through: :talks, class_name: "User"
-  has_many :keynote_speakers, -> { joins(:talks).where(talks: {kind: "keynote"}).distinct },
-    through: :talks, source: :speakers
+  has_many :keynote_talks, -> { where(kind: "keynote") }, class_name: "Talk", foreign_key: :event_id, inverse_of: :event
+  has_many :keynote_speakers, -> { distinct }, through: :keynote_talks, source: :speakers
   has_many :topics, -> { distinct }, through: :talks
   has_many :event_sponsors, dependent: :destroy
   has_many :sponsors, through: :event_sponsors
@@ -200,7 +200,9 @@ class Event < ApplicationRecord
   end
 
   def keynote_speakers_text
-    keynote_speakers.size.positive? ? %(, including keynotes by #{keynote_speakers.map(&:name).to_sentence}) : ""
+    return "" if keynote_speakers.empty?
+
+    ", including keynotes by #{keynote_speakers.map(&:name).to_sentence}"
   end
 
   def talks_text

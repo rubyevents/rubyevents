@@ -5,6 +5,8 @@ module Static
     self.backend = Backends::MultiFileBackend.new("**/**/playlists.yml")
     self.base_path = Rails.root.join("data")
 
+    attr_writer :event_record
+
     def featured?
       within_next_days? || today? || past?
     end
@@ -70,7 +72,9 @@ module Static
     end
 
     def event_record
-      @event_record ||= Event.find_by(slug: slug)
+      return @event_record if defined?(@event_record)
+
+      @event_record = Event.find_by(slug: slug)
     end
 
     def start_date

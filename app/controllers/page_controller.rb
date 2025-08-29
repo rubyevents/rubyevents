@@ -28,7 +28,15 @@ class PageController < ApplicationController
     @featured_sponsors = Sponsor.joins(:event_sponsors).includes(:events).group("sponsors.id").order("COUNT(event_sponsors.id) DESC").limit(10)
 
     # Add featured events logic
-    playlist_slugs = Static::Playlist.where.not(featured_background: nil)
+    playlists = Static::Playlist.where.not(featured_background: nil)
+    playlist_slugs = playlists.map(&:slug)
+    events_by_slug = Event.where(slug: playlist_slugs).index_by(&:slug)
+
+    playlists.each do |playlist|
+      playlist.event_record = events_by_slug[playlist.slug]
+    end
+
+    playlist_slugs = playlists
       .select(&:featured?)
       .sort_by(&:home_sort_date)
       .reverse
@@ -36,7 +44,7 @@ class PageController < ApplicationController
       .map(&:slug)
 
     @featured_events = Event.distinct
-      .includes(:organisation, :keynote_speakers, :speakers)
+      .includes(:organisation, :speakers, :talks, :keynote_speakers)
       .where(slug: playlist_slugs)
       # .with_watchable_talks
       .in_order_of(:slug, playlist_slugs)
