@@ -2,13 +2,12 @@
 #
 # Table name: watched_talks
 #
-#  id                  :integer          not null, primary key
-#  progress_percentage :float            default(0.0), not null
-#  progress_seconds    :integer          default(0), not null
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
-#  talk_id             :integer          not null, indexed, uniquely indexed => [user_id]
-#  user_id             :integer          not null, uniquely indexed => [talk_id], indexed
+#  id               :integer          not null, primary key
+#  progress_seconds :integer          default(0), not null
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  talk_id          :integer          not null, indexed, uniquely indexed => [user_id]
+#  user_id          :integer          not null, uniquely indexed => [talk_id], indexed
 #
 # Indexes
 #
@@ -20,14 +19,10 @@ class WatchedTalk < ApplicationRecord
   belongs_to :user, default: -> { Current.user }, touch: true, counter_cache: :watched_talks_count
   belongs_to :talk
 
-  before_save :calculate_progress_percentage
+  def progress_percentage
+    return 0.0 unless progress_seconds && talk.duration_in_seconds
+    return 0.0 if talk.duration_in_seconds.zero?
 
-  private
-
-  def calculate_progress_percentage
-    return unless progress_seconds && talk.duration_in_seconds
-    return if talk.duration_in_seconds.zero?
-
-    self.progress_percentage = (progress_seconds.to_f / talk.duration_in_seconds * 100).round(2)
+    (progress_seconds.to_f / talk.duration_in_seconds * 100).round(2)
   end
 end

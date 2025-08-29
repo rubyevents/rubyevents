@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_08_29_103417) do
+ActiveRecord::Schema[8.1].define(version: 2025_08_20_225005) do
   create_table "_litestream_lock", id: false, force: :cascade do |t|
     t.integer "id"
   end
@@ -380,7 +380,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_08_29_103417) do
 
   create_table "watched_talks", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.float "progress_percentage", default: 0.0, null: false
     t.integer "progress_seconds", default: 0, null: false
     t.integer "talk_id", null: false
     t.datetime "updated_at", null: false
