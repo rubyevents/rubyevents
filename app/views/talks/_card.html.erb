@@ -1,7 +1,7 @@
-<%# locals: (talk:, user_favorite_talks_ids: [], favoritable: false, back_to: nil, back_to_title: nil, user_watched_talks: []) -%>
+<%# locals: (talk:, user_favorite_talks_ids: [], favoritable: false, back_to: nil, back_to_title: nil, user_watched_talks: [], watched_talks: []) -%>
 
 <% language = Language.by_code(talk.language) %>
-<% watched_talk = user_watched_talks.find { |wt| wt.talk_id == talk.id } %>
+<% watched_talk = watched_talks.find { |wt| wt.talk_id == talk.id } %>
 
 <div
   class="relative w-full bg-white border card card-compact"
