@@ -56,6 +56,12 @@ jobs:
       - name: erb-lint Check
         run: bundle exec erblint --lint-all
 
+      - name: Herb Linter Check
+        run: npx @herb-tools/linter "**/*.html.erb" --github
+
+      - name: Herb Formatter Check
+        run: npx @herb-tools/formatter --check
+
   test:
     runs-on: ubuntu-latest
     env:
