@@ -18,4 +18,11 @@
 class WatchedTalk < ApplicationRecord
   belongs_to :user, default: -> { Current.user }, touch: true, counter_cache: :watched_talks_count
   belongs_to :talk
+
+  def progress_percentage
+    return 0.0 unless progress_seconds && talk.duration_in_seconds
+    return 0.0 if talk.duration_in_seconds.zero?
+
+    (progress_seconds.to_f / talk.duration_in_seconds * 100).round(2)
+  end
 end

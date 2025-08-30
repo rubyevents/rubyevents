@@ -103,7 +103,7 @@
                   locals: {
                     favoritable: true,
                     user_favorite_talks_ids: @user_favorite_talks_ids,
-                    watched_talks_ids: user_watched_talks_ids,
+                    user_watched_talks: user_watched_talks,
                     back_to: event_path(@event),
                     back_to_title: @event.name
                   } %>
@@ -124,7 +124,7 @@
                   locals: {
                     favoritable: true,
                     user_favorite_talks_ids: @user_favorite_talks_ids,
-                    watched_talks_ids: user_watched_talks_ids,
+                    user_watched_talks: user_watched_talks,
                     back_to: event_path(@event),
                     back_to_title: @event.name
                   } %>

@@ -12,9 +12,9 @@ class WatchedTalksControllerTest < ActionDispatch::IntegrationTest
     get watched_talks_url
     assert_response :success
 
-    watched_talk_ids = assigns(:talks).map(&:talk_id)
+    talk_ids = assigns(:talks).map(&:id)
     user_watched_talk_ids = @user.watched_talks.pluck(:talk_id)
 
-    assert_equal user_watched_talk_ids.sort, watched_talk_ids.sort
+    assert_equal user_watched_talk_ids.sort, talk_ids.sort
   end
 end
