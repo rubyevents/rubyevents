@@ -5,7 +5,8 @@ class WatchedTalkTest < ActiveSupport::TestCase
     talk = talks(:one)
     watched_talk = watched_talks(:one)
 
-    talk.update!(duration_in_seconds: 1000, completed: false)
+    talk.update!(duration_in_seconds: 1000)
+    watched_talk.update!(completed: false)
 
     watched_talk.update!(progress_seconds: 500)
 
@@ -20,8 +21,9 @@ class WatchedTalkTest < ActiveSupport::TestCase
     talk = talks(:one)
     watched_talk = watched_talks(:one)
 
-    talk.update!(duration_in_seconds: 1000, completed: false)
-
+    talk.update!(duration_in_seconds: 1000)
+    watched_talk.update!(completed: false)
+    
     watched_talk.update!(progress_seconds: 0)
 
     watched_talk.update_progress!(850)
