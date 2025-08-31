@@ -195,37 +195,36 @@
                 ) %>
           <% end %>
         <% end %>
-
         <% if favoritable %>
           <div class="self-end hotwire-native:hidden">
             <% if default_watch_list %>
               <% if user_favorite_talks_ids.include?(talk.id) %>
                 <%= button_to watch_list_talk_path(default_watch_list, talk.id), method: :delete do %>
                   <%= fa(
-                        "bookmark",
-                        style: :solid,
-                        class: "text-primary shrink-0 cursor-pointer",
-                        size: :sm
-                      ) %>
+                    "bookmark",
+                    style: :solid,
+                    class: "text-primary shrink-0 cursor-pointer",
+                    size: :sm
+                  ) %>
                 <% end %>
               <% else %>
                 <%= button_to watch_list_talks_path(default_watch_list, talk_id: talk.id), method: :post do %>
                   <%= fa(
-                        "bookmark",
-                        class: "shrink-0 cursor-pointer",
-                        style: :regular,
-                        size: :sm
-                      ) %>
+                    "bookmark",
+                    class: "shrink-0 cursor-pointer",
+                    style: :regular,
+                    size: :sm
+                  ) %>
                 <% end %>
               <% end %>
             <% else %>
               <%= link_to new_session_path(redirect_to: request.fullpath), data: {turbo_frame: "modal"} do %>
                 <%= fa(
-                      "bookmark",
-                      class: "shrink-0 cursor-pointer",
-                      style: :regular,
-                      size: :sm
-                    ) %>
+                  "bookmark",
+                  class: "shrink-0 cursor-pointer",
+                  style: :regular,
+                  size: :sm
+                ) %>
               <% end %>
             <% end %>
           </div>
