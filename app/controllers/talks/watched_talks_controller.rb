@@ -18,7 +18,7 @@ class Talks::WatchedTalksController < ApplicationController
   end
 
   def update
-    @talk.watched_talks.find_or_create_by!(user: Current.user).update!(watched_talk_params)
+    @talk.watched_talks.find_or_create_by!(user: Current.user).update_progress!(watched_talk_params[:progress_seconds])
 
     head :ok
   end

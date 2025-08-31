@@ -3,6 +3,7 @@
 # Table name: watched_talks
 #
 #  id               :integer          not null, primary key
+#  completed        :boolean          default(FALSE), not null
 #  progress_seconds :integer          default(0), not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
@@ -24,5 +25,11 @@ class WatchedTalk < ApplicationRecord
     return 0.0 if talk.duration_in_seconds.zero?
 
     (progress_seconds.to_f / talk.duration_in_seconds * 100).round(2)
+  end
+
+  def update_progress!(seconds)
+    self.progress_seconds = seconds
+    self.completed = true if progress_percentage >= 90.0 && !completed?
+    save!
   end
 end

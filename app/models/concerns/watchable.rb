@@ -6,7 +6,7 @@ module Watchable
   end
 
   def mark_as_watched!
-    watched_talks.find_or_create_by!(user: Current.user)
+    watched_talks.find_or_create_by!(user: Current.user).update!(completed: true)
   end
 
   def unmark_as_watched!
@@ -14,6 +14,6 @@ module Watchable
   end
 
   def watched?(user = Current.user)
-    watched_talks.exists?(user: user)
+    watched_talks.exists?(user: user, completed: true)
   end
 end
