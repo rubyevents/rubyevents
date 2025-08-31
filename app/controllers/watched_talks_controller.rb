@@ -1,10 +1,24 @@
 class WatchedTalksController < ApplicationController
+  include ActionView::RecordIdentifier
   include WatchedTalks
 
   def index
-    @talks = Current.user.watched_talks
+    @watched_talks = Current.user.watched_talks
       .includes(talk: [:speakers, {event: :organisation}, {child_talks: :speakers}])
       .order(created_at: :desc)
-      .map(&:talk)
+    
+    @talks = @watched_talks.map(&:talk)
+  end
+
+  def destroy
+    @watched_talk = Current.user.watched_talks.find(params[:id])
+    @watched_talk.delete
+
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.remove(dom_id(@watched_talk.talk))
+      end
+      format.html { redirect_to watched_talks_path, notice: "Video removed from watched list" }
+    end
   end
 end
