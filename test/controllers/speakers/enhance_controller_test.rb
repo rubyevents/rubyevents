@@ -6,7 +6,7 @@ class Speakers::EnhanceControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "#patch" do
-    speaker = speakers(:one)
+    speaker = users(:marco)
 
     assert_nil speaker.github_metadata.dig("profile", "login")
 
@@ -21,6 +21,6 @@ class Speakers::EnhanceControllerTest < ActionDispatch::IntegrationTest
 
     speaker.reload
 
-    assert_equal "obie", speaker.github_metadata.dig("profile", "login")
+    assert_equal "marcoroth", speaker.github_metadata.dig("profile", "login")
   end
 end

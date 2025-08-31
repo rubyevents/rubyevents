@@ -12,6 +12,8 @@ class Events::TalksController < ApplicationController
 
   def set_event
     @event = Event.includes(:organisation, talks: :speakers).find_by(slug: params[:event_slug])
+    return redirect_to(root_path, status: :moved_permanently) unless @event
+
     set_meta_tags(@event)
   end
 

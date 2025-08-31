@@ -81,7 +81,9 @@ class TalksController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def show
-    @talk = Talk.includes(:speakers, :topics).find_by!(slug: params[:slug])
+    @talk = Talk.includes(:speakers, :topics).find_by(slug: params[:slug])
+    return redirect_to(root_path, status: :moved_permanently) unless @talk
+
     @pagy, @related_talks = pagy(@talk.related_talks, limit: 6)
   end
 end

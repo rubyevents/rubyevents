@@ -7,11 +7,11 @@ class Avo::Actions::AssignCanonicalSpeaker < Avo::BaseAction
   def fields
     field :speaker_id, as: :select, name: "Canonical speaker",
       help: "The name of the speaker to be set as canonical",
-      options: -> { Speaker.order(:name).pluck(:name, :id) }
+      options: -> { User.speakers.order(:name).pluck(:name, :id) }
   end
 
   def handle(query:, fields:, current_user:, resource:, **args)
-    canonical_speaker = Speaker.find(fields[:speaker_id])
+    canonical_speaker = User.find(fields[:speaker_id])
 
     query.each do |record|
       record.assign_canonical_speaker!(canonical_speaker: canonical_speaker)

@@ -19,7 +19,7 @@ class ContributionsController < ApplicationController
 
     # Talks without speakers
 
-    @talks_without_speakers = Speaker.find_by(name: "TODO").talks + Speaker.find_by(name: "TBD").talks
+    @talks_without_speakers = User.find_by(name: "TODO").talks + User.find_by(name: "TBD").talks
     @talks_without_speakers_count = @talks_without_speakers.count
 
     # Missing events
@@ -54,12 +54,12 @@ class ContributionsController < ApplicationController
 
   def speakers_without_github
     speaker_ids_with_pending_github_suggestions = Suggestion.pending.where("json_extract(content, '$.github') IS NOT NULL").where(suggestable_type: "Speaker").pluck(:suggestable_id)
-    @speakers_without_github = Speaker.canonical.without_github.order(talks_count: :desc).where.not(id: speaker_ids_with_pending_github_suggestions)
+    @speakers_without_github = User.speakers.canonical.without_github.order(talks_count: :desc).where.not(id: speaker_ids_with_pending_github_suggestions)
     @speakers_without_github_count = @speakers_without_github.count
   end
 
   def talks_without_slides
-    speakers_with_speakerdeck = Speaker.where.not(speakerdeck: "")
+    speakers_with_speakerdeck = User.speakers.where.not(speakerdeck: "")
     @talks_without_slides = Talk.past.preload(:speakers).joins(:speakers).where(slides_url: nil).where(speakers: {id: speakers_with_speakerdeck}).order(date: :desc)
     @talks_without_slides_count = @talks_without_slides.count
   end

@@ -1,6 +1,6 @@
 class Speakers::EnhanceController < ApplicationController
   def update
-    @speaker = Speaker.find_by(slug: params[:slug])
+    @speaker = User.find_by(slug: params[:slug])
 
     @speaker.profiles.enhance_all_later
 

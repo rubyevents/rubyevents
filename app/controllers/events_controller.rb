@@ -53,7 +53,9 @@ class EventsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_event
-    @event = Event.includes(:organisation).find_by!(slug: params[:slug])
+    @event = Event.includes(:organisation).find_by(slug: params[:slug])
+    return redirect_to(root_path, status: :moved_permanently) unless @event
+
     redirect_to event_path(@event.canonical), status: :moved_permanently if @event.canonical.present?
   end
 
