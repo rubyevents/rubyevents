@@ -54,7 +54,7 @@ jobs:
         run: yarn lint:yml
 
       - name: erb-lint Check
-        run: bundle exec erblint --lint-all
+        run: bundle exec erb_lint --lint-all
 
   test:
     runs-on: ubuntu-latest
