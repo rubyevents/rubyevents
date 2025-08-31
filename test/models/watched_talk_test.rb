@@ -23,7 +23,7 @@ class WatchedTalkTest < ActiveSupport::TestCase
 
     talk.update!(duration_in_seconds: 1000)
     watched_talk.update!(completed: false)
-    
+
     watched_talk.update!(progress_seconds: 0)
 
     watched_talk.update_progress!(850)
