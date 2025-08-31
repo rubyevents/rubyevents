@@ -69,9 +69,9 @@
 
   <% if show_remove_from_watched && watched_talk %>
     <div class="flex items-center">
-      <%= button_to watched_talk_path(watched_talk), 
-        onclick: "event.stopPropagation();",
-        method: :delete,
+      <%= button_to watched_talk_path(watched_talk),
+            onclick: "event.stopPropagation();",
+            method: :delete,
             class: "btn btn-ghost btn-sm p-1" do %>
         <%= fa("xmark", size: :sm, class: "text-gray-600 shrink-0") %>
       <% end %>
