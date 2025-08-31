@@ -27,7 +27,8 @@ module YouTube
           announced_at: "TODO",
           description: description,
           video_provider: "youtube",
-          video_id: @metadata.video_id
+          video_id: @metadata.video_id,
+          duration_in_seconds: @metadata.duration_in_seconds
         }
       )
     end

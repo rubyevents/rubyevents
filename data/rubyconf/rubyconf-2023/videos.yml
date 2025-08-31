@@ -15,6 +15,7 @@
     In this pre-recorded presentation, Matz shares insights into Ruby and answers questions submitted by the Ruby community.
   video_provider: "youtube"
   video_id: "Dxy9UBoZjTQ"
+  duration_in_seconds: 3321
 
 - title: "Which Time Is It?"
   raw_title: "RubyConf 2023 - Which Time Is It? by Joël Quenneville"
@@ -58,6 +59,7 @@
     Ever wondered why a line of Ruby code with no side effects has no performance impact? This talk will explain the concept of "popped" instruction sequences, demystifying how CRuby works behind the scenes to avoid running unnecessary code. We'll delve into parsing, compiling, abstract syntax trees, and instruction sequence. You’ll leave this talk with a deeper understanding of Ruby's inner workings and why they matter.
   video_provider: "youtube"
   video_id: "8R78YHyQ9ko"
+  duration_in_seconds: 1604
 
 - title: "Get your Data prod ready, Fast, with Ruby Polars!"
   raw_title: "RubyConf 2023 - Get your Data prod ready, Fast, with Ruby Polars! by Paul Reece"
@@ -70,6 +72,7 @@
     Imagine you receive a CSV of data that has over 500,000 rows and 100 columns. Data is randomly missing in some places, some of the column names are wrong, and you have mixed Data types in some of the columns.  Correcting and cleaning that data by hand could take hours. Fear not! There is a better and faster way.  We will look into using Ruby Polars, a gem written in Rust with a Ruby API, to wrangle and clean tabular data to get it prod ready. By learning some basic operations used in Polars you can greatly expedite the import process of CSV files and API Data. Whether your goal is to use the Data in an existing application or use it in a Ruby AI/Machine learning project(since cleaning Data is a vital first step in this process), this talk will get you well on your way!
   video_provider: "youtube"
   video_id: "QjTLx7po1jY"
+  duration_in_seconds: 1995
 
 - title: "State of the RubyGems"
   raw_title: "RubyConf 2023 - State of the RubyGems by Samuel Giddins"
@@ -82,6 +85,7 @@
     Part history, part state of the union, and part roadmap for community feedback, this talk will cover how Ruby Central came to have an open source team, what we have been doing for the last 8.5 years, highlights from our work in 2023, and a deep dive into the ideas that we would like to get onto our road map. If you want to know more about Ruby Central, RubyGems, or project planning in long-running open source projects, this is the talk for you.
   video_provider: "youtube"
   video_id: "wV9JpikPM9g"
+  duration_in_seconds: 2101
 
 - title: "Rooftop Ruby podcast"
   raw_title: "RubyConf 2023 - Rooftop Ruby podcast by Collin Donnell"
@@ -97,6 +101,7 @@
     Live - Rooftop Ruby podcast
   video_provider: "youtube"
   video_id: "_RSLyjYeNTU"
+  duration_in_seconds: 2384
 
 - title: "Re-interpreting Data"
   raw_title: "RubyConf 2023 - Re-interpreting Data by Murray Steele"
@@ -123,6 +128,7 @@
     For decades, the Ruby community has been fractured in the way that it parses and understands Ruby code. After countless tools have been developed and person-hours have been invested, we still don't have a common language for understanding Ruby code. No longer! Starting in Ruby 3.3, we will have a single API for parsing and understanding Ruby code. This talk will cover the history of how we got here, what is getting built today, and what you can expect from this exciting future.
   video_provider: "youtube"
   video_id: "F9X5uJO9PV8"
+  duration_in_seconds: 2402
 
 - title: "Demystifying the Ruby package ecosystem"
   raw_title: "RubyConf 2023 - Demystifying the Ruby package ecosystem by Jenny Shen"
@@ -140,6 +146,7 @@
     - Ensuring you're selecting the right gems to avoid security risks
   video_provider: "youtube"
   video_id: "fkfCXFxJW08"
+  duration_in_seconds: 2082
 
 - title: "The Unbreakable Code Whose Breaking Won WWII"
   raw_title: "RubyConf 2023 - The Unbreakable Code Whose Breaking Won WWII by Aji Slater"
@@ -184,6 +191,7 @@
     Sharon Steed is the founder of Communilogue, an empathy consultancy that teaches audiences how to make empathy actionable so individuals can better connect with their coworkers; companies can better understand their consumers; and everyone can bring more humanity into the office.
   video_provider: "youtube"
   video_id: "wkOh5yCLX60"
+  duration_in_seconds: 2711
 
 - title: "Keynote: Our superpower"
   raw_title: "RubyConf 2023 - Keynote by Saron Yitbarek"
@@ -196,6 +204,7 @@
     Saron Yitbarek shares stories and lessons she's learned from years of helping new developers transition into tech careers and building developer communities.
   video_provider: "youtube"
   video_id: "07gTTE4NPZk"
+  duration_in_seconds: 2290
 
 - title: "Ruby on Rack: The Magic Between Request and Response"
   raw_title: "RubyConf 2023 - Ruby on Rack: The Magic Between Request and Response by Meagan Waller"
@@ -208,6 +217,7 @@
     Are you ready to embark on an expedition into the core of Ruby web applications? Well, get ready, because it's time to delve into  web development with Rack—the powerhouse that fuels popular Ruby web frameworks like Rails and Sinatra. In this captivating talk, we'll plunge deep into the inner workings of Rack, the unsung hero of web development. We'll uncover its secrets, bask in its versatility, and summon the magic of custom Rack middleware—where session management, authentication, and caching reside. For developers at all levels, this talk offers practical insights and fresh perspectives. Equip yourself with the prowess to wield Rack's middleware magic, making your development journey more efficient and enjoyable.
   video_provider: "youtube"
   video_id: "cJ7V9Mg1vzc"
+  duration_in_seconds: 2241
 
 - title: "The Second Oldest Bug"
   raw_title: "RubyConf 2023 - The Second Oldest Bug by Jeremy Evans"
@@ -220,6 +230,7 @@
     Historically, calling a method with a very large number of arguments resulted in a core dump. In Ruby 1.9, this was improved to instead raise SystemStackError.  In Ruby 2.2, the issue was fixed for methods defined in Ruby.  However, in Ruby 3.2, this is still an issue for methods defined in C.  This issue was reported as a bug over 12 years ago, and was the second oldest open bug in Ruby's bug tracker.  Come learn about stacks, heaps, argument handling during method dispatch, and how we fixed this bug in Ruby 3.3.
   video_provider: "youtube"
   video_id: "cIKYxSLCyX0"
+  duration_in_seconds: 2665
 
 - title: "Wrapping Rust in Ruby"
   raw_title: "RubyConf 2023 - Wrapping Rust in Ruby by Garen Torikian"
@@ -232,6 +243,7 @@
     Ruby is slow. Despite improvements over the years, the language will never be as fast as a compiled language. To compensate for this, whenever Ruby developers need to run performance critical code, it's not uncommon for them to interoperate with a library written in C. Dozens of well known gems, such as Nokogiri and Bcrypt, already do this. But with C comes other problems: how can we ensure that our low-level code is safe from memory leaks and other security vulnerabilities? In this talk, I'll introduce the oxidize-rb project, which is a suite of open source tools which makes it possible to call Rust libraries from within Ruby. I'll also demonstrate how simple it is to incorporate Rust code (including Cargo dependencies) into a Ruby gem.
   video_provider: "youtube"
   video_id: "l7TPj7dRHso"
+  duration_in_seconds: 1861
 
 - title: "The Secret Ingredient: How To Understand and Resolve Just About Any Flaky Test"
   raw_title: "RubyConf 2023 - The Secret Ingredient: How To Understand and Resolve Just... by Alan Ridlehoover"
@@ -269,6 +281,7 @@
   published_at: "TODO"
   video_provider: "youtube"
   video_id: "JreuXFz8MpE"
+  duration_in_seconds: 6490
   talks:
     - title: "Lightning Talks Intro"
       start_cue: "00:17"

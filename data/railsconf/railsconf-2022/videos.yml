@@ -16,6 +16,7 @@
     Keynote: RailsConf 2022 - It's been a minute! by Aaron Patterson
   video_provider: "youtube"
   video_id: "qqTFm2ZtRHg"
+  duration_in_seconds: 3536
 
 - title: "`rails c` with me - turbocharge your use of the interactive console"
   raw_title: "RailsConf 2022 - `rails c` with meturbocharge your use of the interactive console by Sweta Sanghavi"
@@ -28,6 +29,7 @@
     Spinning up the rails console can be a quick way to answer a question with a back of the envelope calculation. But, what else can we use it for, and how does it work? Allow me to show you new ways to leverage the console's features and become an even more expert debugger. You'll leave with some simple tactics to save you time and write more performant code. While you're here, we'll look under the hood to see how the features of the console are encoded and we'll trace back the history of these libraries to see how they arrived in our Rails application.
   video_provider: "youtube"
   video_id: "AZquxGaSjGo"
+  duration_in_seconds: 1627
 
 - title: "ELI5: A Game Show on Rails"
   raw_title: "RailsConf 2022 - ELI5: A Game Show on Rails by Andy Glass"
@@ -84,6 +86,7 @@
     You've probably heard "Kubernetes is overcomplicated! Just use Heroku!" But it turns out that, while Kubernetes can be complicated, it doesn't have to be. In this talk, you'll learn how to deploy with Kubernetes in a way that is nearly as friendly as with Heroku.
   video_provider: "youtube"
   video_id: "mN-BedLhkKQ"
+  duration_in_seconds: 1666
 
 - title: '"Build vs Buy" on Rails'
   raw_title: 'RailsConf 2022 - "Build vs Buy" on Rails by Colin Loretz'
@@ -116,6 +119,7 @@
     Opening Keynote: The Journey to Zeitwerk by Xavier Noria
   video_provider: "youtube"
   video_id: "57AsQrxjLEs"
+  duration_in_seconds: 3729
 
 - title: "Breaking up with the bundle"
   raw_title: "RailsConf 2022 - Breaking up with the bundle by Joel Hawksley"
@@ -184,6 +188,7 @@
     Pop quiz: How do you best make one Rails app communicate with another? How do you split one big Rails app into two smaller ones? How do you switch from a Rails app to a constellation of Rails services? Event streaming provides the most robust answer. Simple but powerful Kafka streams unlock a world of capabilities with their durability and consistency, but integrating with Rails poses challenges. Join us and learn simple reading and writing to Kafka with Rails, broader distributed systems design, and the magical transactional outbox. You'll leave with the knowledge you need to make the switch.
   video_provider: "youtube"
   video_id: "meJwkdaRnHw"
+  duration_in_seconds: 1886
 
 - title: "Kuby: Active Deployment for Rails Apps"
   raw_title: "RailsConf 2022 - Kuby: Active Deployment for Rails Apps by Cameron Dutro"
@@ -198,6 +203,7 @@
     One of the Rails mantras is "convention over configuration," sane defaults that limit the cognitive overhead of application development. It's easy to learn and easy to build with... right up until you want to deploy your app to production. At that point, the hand-holding ends. Like the Roadrunner, Rails stops right before the cliff and lets you, Wile E. Coyote, sail over the edge. We have active record for interacting with databases, active storage for storing files, etc, but where's active deployment? Come learn how Kuby, a new deployment tool, is trying to bridge the gap.
   video_provider: "youtube"
   video_id: "PJeET-SZssM"
+  duration_in_seconds: 1827
 
 - title: "Leveling Up from Planning to Production"
   raw_title: "RailsConf 2022 - Leveling Up from Planning to Production by Thomas Countz"
@@ -279,6 +285,7 @@
     JRuby is back in 2022 with Ruby 3.1 support and new work on performance and scaling. For over a decade, Ruby users have turned to JRuby to get access to world-class garbage collection, native JIT compilation for increased performance, and true parallel threading. Today, you can take your Rails app and reduce both latency and resource costs by hosting a single JRuby process for all your concurrent users. JRuby is the only alternative Ruby deployed at scale, powering companies all over the world in mission critical areas. Come see how JRuby can help you scale today!
   video_provider: "youtube"
   video_id: "Y4Jt1I8lCK4"
+  duration_in_seconds: 1823
 
 - title: "React-ing to Hotwire"
   raw_title: "RailsConf 2022 - React-ing to Hotwire by David Hill"
@@ -293,6 +300,7 @@
     I was fully onboard with React as my front-end Javascript framework of choice for years. That all changed when I suddenly had to support a stand-alone React app that I had no hand in building. Thankfully Hotwire had just been released, and my manager was aware of how painful maintaining this application was going to be. So I started the process of migrating the React app into the Rails app, using Hotwire as the new front-end framework. How did it go, what lessons were learned, and would I do it again?
   video_provider: "youtube"
   video_id: "SS7LoJKkmYs"
+  duration_in_seconds: 1369
 
 - title: "How music works, using Ruby"
   raw_title: "RailsConf 2022 - How music works, using Ruby by Thijs Cadier"
@@ -325,6 +333,7 @@
     Did you know that people can knock your Rails application offline just by submitting specially formatted strings in a form or API request? In this talk, we’ll take a look at what’s really going on with a regex denial of service (DoS) attack. We’ll take a peek into the CRuby regex engine to see what it’s really doing when we ask it to match against a string. With a basic understanding of how regular expressions work, we can better understand what these attacks do, why they tie up so much CPU, and what we can do to guard against them.
   video_provider: "youtube"
   video_id: "XpF3H6w1NSY"
+  duration_in_seconds: 1845
 
 - title: "Call me back, Postgres"
   raw_title: "RailsConf 2022 - Call me back, Postgres by Ifat Ribon"
@@ -339,6 +348,7 @@
     Rails' Active Record callbacks provide a simple interface for executing a process when something happens to a database record. However, sometimes Active Record callbacks aren’t the best solution available. For those cases, this talk introduces a great alternative: Postgres' trigger functionality, a way of implementing callbacks at the database level. Coupled with Postgres' listen and notify features, you can develop creative solutions for making your Rails app the center of an otherwise complex system, managing data syncing and other processes seamlessly, regardless of consumers of the app.
   video_provider: "youtube"
   video_id: "ZwxX58q1a5A"
+  duration_in_seconds: 1823
 
 - title: "Keynote: A tech görl origin story"
   raw_title: "RailsConf 2022 - Keynote: A tech görl origin story by Crystal Tia Martin"
@@ -353,6 +363,7 @@
     Keynote: A tech görl origin story by Crystal Tia Martin
   video_provider: "youtube"
   video_id: "4dLqPN7ozpo"
+  duration_in_seconds: 2605
 
 - title: "O(1), O(n) and O(#$*&!)"
   raw_title: "RailsConf 2022 - O(1), O(n) and O(#$*&!) by Stephen Prater"
@@ -367,6 +378,7 @@
     Reasoning about the performance of your code doesn't need to require a PhD in computer science or specialized tooling - We'll learn how to quickly recognize and diagnose common performance issues like excessive algorithmic complexity and IO waiting using OpenTelemetry compatible tools. Then we'll fix those issues, and ensure that they stay fixed using automated performance testing, even as your application grows.
   video_provider: "youtube"
   video_id: "c7CHdAhf85g"
+  duration_in_seconds: 1613
 
 - title: "Git your PR accepted. Rebase your changes like a pro"
   raw_title: "RailsConf 2022 - Git your PR accepted. Rebase your changes like a pro by Daniel Magliola"
@@ -419,6 +431,7 @@
     Active Record associations seem magical—add a has_many here, a belongs_to there, and suddenly your models are loaded with behavior. Could it be magic, or is it plain old Ruby with some thoughtful design and a bit of metaprogramming? In this talk we'll study Active Record associations by writing our own belongs_to and has_many macros. We'll dynamically define methods, cache query results, replace a a Relation with a CollectionProxy, and automatically prevent N+1 queries with inverses. You'll leave with a deeper understanding of associations, and a new appreciation for their magic.
   video_provider: "youtube"
   video_id: "ImwNMYjRMSg"
+  duration_in_seconds: 1923
 
 - title: "Experimental Patterns in ActiveRecord"
   raw_title: "RailsConf 2022 - Experimental Patterns in ActiveRecord by John Crepezzi"
@@ -449,6 +462,7 @@
     Keynote: Meditations on Software by Vaidehi Joshi
   video_provider: "youtube"
   video_id: "t46d9GUXy0A"
+  duration_in_seconds: 2642
 
 - title: "The Mrs Triggs Problem"
   raw_title: "RailsConf 2022 - The Mrs Triggs Problem by Andy Croll"
@@ -481,6 +495,7 @@
     Ruby on Rails is a huge framework. There are modules, classes, established conventions, and a slew of code that's meant to be off-limits. But, what if we took our ornery childish self and played around? This is a talk about strategies for debugging, taught through the lens of experimentation and childish play. In this talk, we will override, extend, and disable all sorts of Rails internals and see what happens.
   video_provider: "youtube"
   video_id: "GAtCF44yufw"
+  duration_in_seconds: 2221
 
 - title: "Your TDD Treasure Map"
   raw_title: 'RailsConf 2022 - Your TDD Treasure Map by Christopher "Aji" Slater'
@@ -496,6 +511,7 @@
     We know testing is vital and makes refactoring painless. But how to set sail to that TDD treasure? Yarr, we need to test to get experience, but need experience to test. Let’s draw a map with simple strategies for identifying test cases and building a robust test suite. X marks the spot w/ TDD tools for newbies and seasoned pirates alike.
   video_provider: "youtube"
   video_id: "jCgb4JjqQVA"
+  duration_in_seconds: 1611
 
 - title: "Your test suite is making too many database calls!"
   raw_title: "RailsConf 2022 - Your test suite is making too many database calls! by Joël Quenneville"
@@ -545,6 +561,7 @@
     As applications built on Rails get larger and larger, and more and more engineers work in the same monolith, our community needs to think more about what sort of tooling and architectural changes will help us continue to scale. This talk shares ideas around a toolchain, and more importantly, the social and cultural programs needed to support that toolchain, that can be used to help engineers in an ever-growing Rails codebase continue to have high velocity, manage their complexity, and claim ownership over their own business subdomains.
   video_provider: "youtube"
   video_id: "xBFUVl91JtI"
+  duration_in_seconds: 1637
 
 - title: "Your Service Layer Needn't be Fancy, It Just Needs to Exist"
   raw_title: "RailsConf 2022 - Your Service Layer Needn't be Fancy, It Just Needs to Exist by David Copeland"
@@ -559,6 +576,7 @@
     Where would you put your business logic if not in Active Records? The answer is a service layer. Your service layer provides a seam between your user interface and your database that contains all the code that makes your app your app. This single design decision will buoy your app's sustainability for years. You'll learn why this is and how to start a service layer today without any patterns, principles, or fancy libraries.
   video_provider: "youtube"
   video_id: "xFDn4TxKDrQ"
+  duration_in_seconds: 1802
   slides_url: "https://davetron5000.github.io/service-layer-railsconf-2022/"
 
 - title: "Pictures Of You, Pictures Of Me, Crypto Steganography"
@@ -574,6 +592,7 @@
     I was puzzled when a friend sent me a Buffy the Vampire Slayer picture out of the blue but, knowing that friend is an oddball, thought nothing of it. Days later, again without warning, a Babylon 5 picture. A few days after that a picture from Firefly. Then he repeated the pictures. A cryptic comment led me to understand that there was more to them than met the eye. Come learn the history, applications, and math behind crypto steganography how unravelling the mystery of the pictures culminated in the resolution of a 15 year rivalry when the US Olympic men’s curling team won the gold in 2018.
   video_provider: "youtube"
   video_id: "GQgnUHF2SNE"
+  duration_in_seconds: 1739
 
 - title: "Come on in! Making yourself at home in a new codebase"
   raw_title: "RailsConf 2022 - Come on in! Making yourself at home in a new codebase by Mercedes Bernard"
@@ -620,6 +639,7 @@
     You have 2 seconds to respond - Atob - Justin Powers
   video_provider: "youtube"
   video_id: "oCN-uA2oeeY"
+  duration_in_seconds: 1902
 
 - title: "More Engineers, More Problems: Solutions for Big Teams"
   raw_title: "RailsConf 2022 - More Engineers, More Problems: Solutions for Big Teams - Chime -"
@@ -638,6 +658,7 @@
      - Chime - Noel Rappin, David Trejo, Brian Lesperance, Chris Dwan
   video_provider: "youtube"
   video_id: "BJWeKT7H7EA"
+  duration_in_seconds: 1763
 
 - title: "Finding the Needle in the Stack Trace: APM Logs-in-Context"
   raw_title: "RailsConf 2022 - Finding the Needle in the Stack Trace: APM Logs-in-Context - New Relic -"
@@ -654,6 +675,7 @@
     - New Relic - Kayla Reopelle and Mike Neville-O'Neill
   video_provider: "youtube"
   video_id: "J-KFRqA_SPY"
+  duration_in_seconds: 1382
 
 - title: "Functional Programming in Plain Terms"
   raw_title: "RailsConf 2022 - Functional Programming in Plain Terms by Eric Weinstein"
@@ -668,6 +690,7 @@
     Have you ever wanted to know what a monad is? How about a functor? What about algebraic data types and parametric polymorphism? If you've been interested in these ideas but scared off by the language, you're not alone: for an approach that champions composing simple pieces, functional programming is full of complex jargon. In this talk, we'll cover these topics from a Ruby and Rails perspective, composing small ideas in everyday language. Before we're through, you'll have a rich new set of FP ideas to apply to your projects—and you'll finally learn what a monad is (hint: it's not a burrito).
   video_provider: "youtube"
   video_id: "ffvOnr4TbAg"
+  duration_in_seconds: 1754
 
 - title: "The pitfalls of realtime-ification"
   raw_title: "RailsConf 2022 - The pitfalls of realtime-ification by Vladimir Dementyev"
@@ -718,6 +741,7 @@
     Perhaps you've heard of a magical band of cartoon lemurs with a love for teaching Ruby, but what exactly goes into making one of these talks? We'll look at my entire toolset and process for creating illustrated conference talks including ideation, storyboarding, art, code tie-ins, and more. Perhaps you'll even learn to make a few lemurs of your own!
   video_provider: "youtube"
   video_id: "_8nXpuYPaHo"
+  duration_in_seconds: 1811
 
 - title: "Learn it, Do it, Teach it: How to Unstick Our Middle Devs"
   raw_title: "RailsConf 2022 - Learn it, Do it, Teach it: How to Unstick Our Middle Devs by Chelsea Kaufman"
@@ -732,6 +756,7 @@
     One definition of the middle: a difficult or unpleasant position. Yuck! It certainly can feel that way for mid-level developers. Fortunately, we've uncovered a model that will help managers create an environment where their devs can thrive. Our Learn it Do it Teach it (LDT) model will foster more learning, while keeping their hands on the code, and adding in the magic touch, teaching. This talk will demonstrate how managers can implement a LDT model into a developer’s day to day. Growth plans like this model will allow your team to move from mids into seniors both faster and more confidently.
   video_provider: "youtube"
   video_id: "TQ3o1fXANtQ"
+  duration_in_seconds: 1687
 
 - title: "Building a diverse engineering team"
   raw_title: "RailsConf 2022 - Building a diverse engineering team - Wrapbook - Zaid Zawaideh & Jessica Lawrence"
@@ -747,6 +772,7 @@
     Building a diverse engineering team - Wrapbook -  Zaid Zawaideh & Jessica Lawrence
   video_provider: "youtube"
   video_id: "55KN3d_VVs0"
+  duration_in_seconds: 1933
 
 - title: "Growing Your Background Job Knowledge"
   raw_title: "RailsConf 2022 - Growing Your Background Job Knowledge - Weedmaps - Jake Anderson"
@@ -762,6 +788,7 @@
     - Weedmaps - Jake Anderson
   video_provider: "youtube"
   video_id: "DaRj3DkVWyE"
+  duration_in_seconds: 1922
 
 - title: "The Future of Ruby on Rails at Shopify"
   raw_title: "RailsConf 2022 - Shopify"
@@ -776,6 +803,7 @@
     Shopify
   video_provider: "youtube"
   video_id: "yfEJxRtIOEw"
+  duration_in_seconds: 492
 
 - title: "Keynote: The Success of Ruby on Rails - Ensuring Growth for the Next 100 Years"
   raw_title: "RailsConf 2022 - Keynote: The Success of Ruby on Rails by Eileen Uchitelle"
@@ -791,6 +819,7 @@
     Keynote: The Success of Ruby on Rails by Eileen M. Uchitelle
   video_provider: "youtube"
   video_id: "p17xn05zc9c"
+  duration_in_seconds: 3222
 
 - title: "A Rails Performance Guidebook: from 0 to 1B requests/day"
   raw_title: "RailsConf 2022 - A Rails Performance Guidebook: from 0 to 1B requests/day by Cristian Planas"
@@ -920,6 +949,7 @@
     A Star Trek themed exploration of queuing theory and scaling applications with parallelism and concurrency. A general overview of the differences between parallelism and concurrency as well as when to apply more threads or more processes. We’ll go over examples of sidekiq and puma with different concurrency settings in various IO scenarios.
   video_provider: "youtube"
   video_id: "N6LxQkyky3w"
+  duration_in_seconds: 1803
 
 - title: "Ruby Archaeology"
   raw_title: "RailsConf 2022 - Ruby Archaeology by Nick Schwaderer"
@@ -955,6 +985,7 @@
     Ever felt overwhelmed when figuring out how to upgrade a Rails app? Unsure where you should begin? We’ll talk about how upgrading should be treated as a feature, and how you can get buy-in from management for upgrading Rails. Have you heard about how GitHub or Shopify uses dual-booting to run two versions of Rails at once and wondered how that works? We’ll talk about three approaches you can use to upgrade your app. You’ll leave this talk with takeaways you can put into practice for your next Rails upgrade.
   video_provider: "youtube"
   video_id: "NHZCQeh91p0"
+  duration_in_seconds: 1491
 
 - title: "Let Your Body Lead: Career Planning With Somatics"
   raw_title: "RailsConf 2022 - Let Your Body Lead: Career Planning With Somatics by Amy Newell"
@@ -1006,6 +1037,7 @@
     Maya Toussaint, Caterina Paun & Stephanie Minn
   video_provider: "youtube"
   video_id: "d0pE0HNNX4Y"
+  duration_in_seconds: 1980
 
 - title: "Bringing Your Rails Monolith Along As The Business Grows"
   raw_title: "RailsConf 2022 - Bringing Your Rails Monolith Along As The Business Grows - Ontra - Carrick Rogers"
@@ -1020,6 +1052,7 @@
     Bringing Your Rails Monolith Along As The Business Grows - Ontra - Carrick Rogers
   video_provider: "youtube"
   video_id: "ihkBemw3tPk"
+  duration_in_seconds: 1661
 
 - title: "Puny to Powerful PostgreSQL Rails Apps"
   raw_title: "RailsConf 2022 - Puny to Powerful PostgreSQL Rails Apps by Andrew Atkinson"
@@ -1034,3 +1067,4 @@
     This talk covers 5 challenging areas when scaling Rails applications on PostgreSQL databases. From identifying symptoms to applying solutions and understanding trade-offs, this talk will equip you with practical working knowledge you can apply immediately. This talk covers topics like safe migrations, understanding database connections, query optimization, database maintenance, and database replication and partitioning.
   video_provider: "youtube"
   video_id: "QshRTj2f3hE"
+  duration_in_seconds: 1787
