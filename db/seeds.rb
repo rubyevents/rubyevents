@@ -421,3 +421,7 @@ topics = [
 
 # create topics
 Topic.create_from_list(topics, status: :approved)
+
+User.order(Arel.sql("RANDOM()")).limit(5).each do |user|
+  user.watched_talk_seeder.seed_development_data
+end

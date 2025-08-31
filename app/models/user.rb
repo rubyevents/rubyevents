@@ -74,7 +74,7 @@ class User < ApplicationRecord
 
   belongs_to :canonical, class_name: "User", optional: true
 
-  has_object :profiles
+  has_object :profiles, :talk_recommender, :watched_talk_seeder
 
   validates :email, format: {with: URI::MailTo::EMAIL_REGEXP}, allow_blank: true
   validates :github_handle, presence: true, uniqueness: true, allow_blank: true
@@ -120,6 +120,9 @@ class User < ApplicationRecord
   before_validation if: :email_changed?, on: :update do
     self.verified = false
   end
+
+  # Seed watched talks for new users in development
+  after_create :seed_development_watched_talks, if: -> { Rails.env.development? }
 
   # Speaker scopes
   scope :with_talks, -> { where.not(talks_count: 0) }
@@ -305,5 +308,13 @@ class User < ApplicationRecord
   def set_slug
     self.slug = slug.presence || github_handle.presence&.downcase
     super
+  end
+
+  private
+
+  def seed_development_watched_talks
+    watched_talk_seeder.seed_development_data
+  rescue => e
+    Rails.logger.warn "Failed to seed watched talks for user #{id}: #{e.message}"
   end
 end
