@@ -1,7 +1,7 @@
-require 'test_helper'
+require "test_helper"
 
 class WatchedTalkTest < ActiveSupport::TestCase
-  test 'update_progress! method marks as completed when reaching 90%' do
+  test "update_progress! method marks as completed when reaching 90%" do
     talk = talks(:one)
     watched_talk = watched_talks(:one)
 
@@ -16,7 +16,7 @@ class WatchedTalkTest < ActiveSupport::TestCase
     assert watched_talk.completed?
   end
 
-  test 'update_progress! method does not mark as completed when below 90%' do
+  test "update_progress! method does not mark as completed when below 90%" do
     talk = talks(:one)
     watched_talk = watched_talks(:one)
 
