@@ -29,7 +29,7 @@
         <%= link_to "see all talks", talks_path, class: "link text-right w-full" %>
       </div>
       <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 md:[&>:nth-child(4)]:hidden lg:grid-cols-4 lg:[&>:nth-child(4)]:block">
-        <%= render partial: "talks/card", collection: @latest_talks.first(4), as: :talk, cached: true, locals: {back_to: root_path, back_to_title: "Home"} %>
+        <%= render partial: "talks/card", collection: @latest_talks.first(4), as: :talk, cached: true, locals: {back_to: root_path, back_to_title: "Home", user_watched_talks: user_watched_talks} %>
       </div>
     </section>
 

@@ -1,4 +1,6 @@
 class PageController < ApplicationController
+  include WatchedTalks
+  
   skip_before_action :authenticate_user!
 
   def home
