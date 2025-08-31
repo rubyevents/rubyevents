@@ -16,7 +16,7 @@ class WatchedTalksController < ApplicationController
 
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.remove(dom_id(@watched_talk.talk))
+        render turbo_stream: turbo_stream.remove(dom_id(@watched_talk.talk, :card_horizontal))
       end
       format.html { redirect_to watched_talks_path, notice: "Video removed from watched list" }
     end

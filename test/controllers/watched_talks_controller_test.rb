@@ -35,7 +35,7 @@ class WatchedTalksControllerTest < ActionDispatch::IntegrationTest
 
     delete watched_talk_path(@watched_talk), headers: {"Accept" => "text/vnd.turbo-stream.html"}
 
-    assert_turbo_stream action: "remove", target: dom_id(@watched_talk.talk)
+    assert_turbo_stream action: "remove", target: dom_id(@watched_talk.talk, :card_horizontal)
 
     assert_not WatchedTalk.exists?(@watched_talk.id)
   end
