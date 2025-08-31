@@ -9,7 +9,7 @@ speakers.each do |speaker|
   User.find_or_create_by!(slug: speaker["slug"]) do |s|
     s.name = speaker["name"]
     s.twitter = speaker["twitter"]
-    s.github = speaker["github"]
+    s.github_handle = speaker["github"]
     s.website = speaker["website"]
     s.bio = speaker["bio"]
   end
