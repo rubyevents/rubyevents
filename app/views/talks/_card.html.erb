@@ -163,7 +163,7 @@
             <div class="line-clamp-1">
               <% talk.speakers.each do |speaker| %>
                 <%= link_to speaker.name,
-                      speaker_path(speaker),
+                      profile_path(speaker),
                       class: "link link-ghost",
                       data: {
                         turbo_frame: "_top"

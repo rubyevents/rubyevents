@@ -2,8 +2,14 @@
   <div class="card-body">
     <div class="flex flex-col gap-4">
       <% title = suggestion.suggestable.try(:suggestion_summary) || "#{suggestion.suggestable.class} : #{suggestion.suggestable.title}" %>
-      <%= link_to suggestion.suggestable, target: "_blank", class: "" do %>
-        <%= simple_format title %>
+      <% if suggestion.suggestable.is_a?(User) %>
+        <%= link_to profile_path(suggestion.suggestable), target: "_blank", class: "" do %>
+          <%= simple_format title %>
+        <% end %>
+      <% else %>
+        <%= link_to suggestion.suggestable, target: "_blank", class: "" do %>
+          <%= simple_format title %>
+        <% end %>
       <% end %>
 
       <div class="font-semibold">Changes:</div>

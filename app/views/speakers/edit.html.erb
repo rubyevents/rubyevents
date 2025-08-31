@@ -1,7 +1,0 @@
-<% content_for :canonical_url, speaker_url(@speaker) %>
-
-<div class="w-full p-4 flex flex-col gap-4">
-  <h1 class="text-4xl font-bold w-full whitespace-nowrap"><%= form_title_for_user_kind(user_kind) %></h1>
-
-  <%= render "form", speaker: @speaker %>
-</div>

@@ -44,6 +44,7 @@ Rails.application.routes.draw do
   namespace :profiles do
     resources :connect, only: [:index, :show]
     resources :claim, only: [:create]
+    resources :enhance, only: [:update], param: :slug
   end
 
   resources :contributions, only: [:index, :show], param: :step
@@ -82,7 +83,8 @@ Rails.application.routes.draw do
 
   resources :watched_talks, only: [:index]
 
-  resources :speakers, param: :slug, only: [:index, :show, :update, :edit]
+  resources :speakers, param: :slug, only: [:index, :show]
+  resources :profiles, param: :slug, only: [:show, :update, :edit]
   resources :events, param: :slug, only: [:index, :show, :update, :edit] do
     scope module: :events do
       collection do
@@ -105,10 +107,6 @@ Rails.application.routes.draw do
     end
   end
   resources :organisations, param: :slug, only: [:index, :show]
-
-  namespace :speakers do
-    resources :enhance, only: [:update], param: :slug
-  end
 
   namespace "spotlight" do
     resources :talks, only: [:index]

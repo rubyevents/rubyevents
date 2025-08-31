@@ -207,7 +207,7 @@ class User < ApplicationRecord
   end
 
   def broadcast_header
-    broadcast_update target: dom_id(self, :header_content), partial: "speakers/header_content", locals: {speaker: self}
+    broadcast_update target: dom_id(self, :header_content), partial: "profiles/header_content", locals: {speaker: self}
   end
 
   def to_meta_tags
@@ -282,7 +282,7 @@ class User < ApplicationRecord
       name: name,
       slug: slug,
       avatar_url: avatar_url,
-      url: Router.speaker_url(self, host: "#{request.protocol}#{request.host}:#{request.port}")
+      url: Router.profile_url(self, host: "#{request.protocol}#{request.host}:#{request.port}")
     }
   end
 

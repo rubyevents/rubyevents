@@ -1,11 +1,7 @@
 class SpeakersController < ApplicationController
   skip_before_action :authenticate_user!
-  before_action :set_speaker, only: %i[show edit update]
-  before_action :set_user_favorites, only: %i[show]
+  before_action :set_speaker, only: %i[show]
   include Pagy::Backend
-  include RemoteModal
-  include WatchedTalks
-  respond_with_remote_modal only: [:edit]
 
   # GET /speakers
   def index
@@ -24,36 +20,7 @@ class SpeakersController < ApplicationController
 
   # GET /speakers/1
   def show
-    @talks = @speaker.kept_talks.includes(:speakers, event: :organisation, child_talks: :speakers).order(date: :desc)
-    @talks_by_kind = @talks.group_by(&:kind)
-    @topics = @speaker.topics.approved.tally.sort_by(&:last).reverse.map(&:first)
-    @events = @speaker.events.includes(:organisation).distinct.order(start_date: :desc)
-    @events_with_stickers = @events.select(&:sticker?)
-    @events_by_year = @events.group_by { |event| event.start_date&.year || "Unknown" }
-
-    # Group events by country for the map tab
-    @countries_with_events = @events.map { |event|
-      country = event.static_metadata&.country
-      [country, @events.select { |e| e.static_metadata&.country == country }] if country
-    }.compact.uniq(&:first).sort_by { |country, _| country.translations["en"] }
-
-    @back_path = speakers_path
-
-    set_meta_tags(@speaker)
-  end
-
-  # GET /speakers/1/edit
-  def edit
-  end
-
-  # PATCH/PUT /speakers/1
-  def update
-    suggestion = @speaker.create_suggestion_from(params: speaker_params, user: Current.user)
-    if suggestion.persisted?
-      redirect_to speaker_path(@speaker), notice: suggestion.notice
-    else
-      render :edit, status: :unprocessable_entity
-    end
+    redirect_to profile_path(@speaker), status: :moved_permanently
   end
 
   private
@@ -69,10 +36,9 @@ class SpeakersController < ApplicationController
   end
 
   def set_speaker
-    @speaker = User.includes(:talks).find_by(slug: params[:slug])
+    @speaker = User.find_by(slug: params[:slug])
 
     redirect_to speakers_path, status: :moved_permanently, notice: "Speaker not found" if @speaker.blank?
-    redirect_to speaker_path(@speaker.canonical) if @speaker&.canonical.present?
   end
 
   def speaker_params

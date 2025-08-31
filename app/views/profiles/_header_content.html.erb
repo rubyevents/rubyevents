@@ -1,0 +1,30 @@
+<div id="<%= dom_id(user, :header_content) %>" class="flex flex-col lg:flex-row gap-8 items-center lg:justify-right text-center lg:text-left mb-6 lg:mb-0">
+  <div class="relative w-fit">
+    <%= ui_avatar(user, size_class: "size-24 md:size-36", size: :lg) %>
+  </div>
+
+  <div class="flex-col flex gap-2 title justify-center items-center lg:items-start">
+    <div class="flex flex-col lg:flex-row items-center justify-center lg:justify-start text-black font-bold gap-2 flex-nowrap">
+      <h1 class="flex gap-2 items-center" style="view-transition-name: title"><%= user.name %>
+        <% if user.pronouns.present? && ["dont_specify", "not_specified"].exclude?(user.pronouns_type) %>
+          <span class="text-sm content-center text-[#737373]">(<%= user.pronouns %>)</span>
+        <% end %>
+        <% if user.verified? %>
+          <%= fa("badge-check", class: "fill-blue-500", size: :sm) %>
+        <% end %>
+      </h1>
+    </div>
+
+    <p class="text-[#636B74] max-w-[700px]">
+      <%= user.bio %>
+    </p>
+    <% if user.website.present? %>
+      <%= external_link_to user.website.gsub(%r{^https?://}, ""), user.website, class: "text-center" %>
+    <% end %>
+
+    <div class="mt-2 flex justify-center lg:justify-start">
+      <%= render "profiles/socials", user: user %>
+
+    </div>
+  </div>
+</div>

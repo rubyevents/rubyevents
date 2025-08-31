@@ -18,6 +18,6 @@ class Avo::Actions::AssignCanonicalSpeaker < Avo::BaseAction
     end
 
     succeed "Assigning canonical speaker #{canonical_speaker.name} to #{query.count} speakers"
-    redirect_to avo.resources_speaker_path(canonical_speaker), status: :permanent_redirect
+    redirect_to avo.resources_user_path(canonical_speaker), status: :permanent_redirect
   end
 end
