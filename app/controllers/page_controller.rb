@@ -6,7 +6,7 @@ class PageController < ApplicationController
       latest_talks = Talk.watchable.with_speakers.order(date: :desc).limit(10)
       {
         talks_count: Talk.count,
-        speakers_count: Speaker.count,
+        speakers_count: User.speakers.count,
         latest_talk_ids: latest_talks.pluck(:id),
         upcoming_talk_ids: Talk.with_speakers.where(date: Date.today..).order(date: :asc).limit(15).pluck(:id),
         latest_event_ids: Event.order(date: :desc).limit(10).pluck(:id).sample(4),

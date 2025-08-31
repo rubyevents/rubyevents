@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.github.com/users/obie
+    uri: https://api.github.com/users/marcoroth
     body:
       encoding: US-ASCII
       string: ''
@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sat, 07 Dec 2024 18:45:13 GMT
+      - Sun, 31 Aug 2025 12:50:19 GMT
       Content-Type:
       - application/json; charset=utf-8
       Cache-Control:
@@ -27,9 +27,9 @@ http_interactions:
       Vary:
       - Accept,Accept-Encoding, Accept, X-Requested-With
       Etag:
-      - W/"ce7c75d1483f1db5733d01bc5a49df6e12c485de6b2f3d5092fba4dfeea62cef"
+      - W/"ac9f8d023f9baf09e5d01e0e6c993bf6d1965f0d10a51db641cbfa7781e8ea3d"
       Last-Modified:
-      - Tue, 03 Dec 2024 18:56:07 GMT
+      - Thu, 31 Jul 2025 00:01:14 GMT
       X-Github-Media-Type:
       - github.v3; format=json
       X-Github-Api-Version-Selected:
@@ -55,33 +55,31 @@ http_interactions:
       - default-src 'none'
       Server:
       - github.com
+      Accept-Ranges:
+      - bytes
       X-Ratelimit-Limit:
       - '60'
       X-Ratelimit-Remaining:
-      - '59'
+      - '56'
       X-Ratelimit-Reset:
-      - '1733600712'
+      - '1756647580'
       X-Ratelimit-Resource:
       - core
       X-Ratelimit-Used:
-      - '1'
-      Accept-Ranges:
-      - bytes
+      - '4'
       Content-Length:
-      - '1354'
+      - '1308'
       X-Github-Request-Id:
-      - DBDF:E113B:3C26360:3DA5DB2:675497B8
+      - 2360:966B7:22EA547:20A6560:68B4450B
     body:
       encoding: ASCII-8BIT
-      string: '{"login":"obie","id":3908,"node_id":"MDQ6VXNlcjM5MDg=","avatar_url":"https://avatars.githubusercontent.com/u/3908?v=4","gravatar_id":"","url":"https://api.github.com/users/obie","html_url":"https://github.com/obie","followers_url":"https://api.github.com/users/obie/followers","following_url":"https://api.github.com/users/obie/following{/other_user}","gists_url":"https://api.github.com/users/obie/gists{/gist_id}","starred_url":"https://api.github.com/users/obie/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/obie/subscriptions","organizations_url":"https://api.github.com/users/obie/orgs","repos_url":"https://api.github.com/users/obie/repos","events_url":"https://api.github.com/users/obie/events{/privacy}","received_events_url":"https://api.github.com/users/obie/received_events","type":"User","user_view_type":"public","site_admin":false,"name":"Obie
-        Fernandez","company":"Let The Music Pay, Inc. @letthemusicpay ","blog":"http://obiefernandez.com","location":"Mexico
-        City","email":null,"hireable":null,"bio":"Consultant, 30 year veteran of professional
-        software development, serial entrepreneur, and best-selling author. Chief
-        Scientist at @OlympiaAI ","twitter_username":"obie","public_repos":73,"public_gists":15,"followers":658,"following":32,"created_at":"2008-03-26T16:10:01Z","updated_at":"2024-12-03T18:56:07Z"}'
-  recorded_at: Sat, 07 Dec 2024 18:45:12 GMT
+      string: '{"login":"marcoroth","id":6411752,"node_id":"MDQ6VXNlcjY0MTE3NTI=","avatar_url":"https://avatars.githubusercontent.com/u/6411752?v=4","gravatar_id":"","url":"https://api.github.com/users/marcoroth","html_url":"https://github.com/marcoroth","followers_url":"https://api.github.com/users/marcoroth/followers","following_url":"https://api.github.com/users/marcoroth/following{/other_user}","gists_url":"https://api.github.com/users/marcoroth/gists{/gist_id}","starred_url":"https://api.github.com/users/marcoroth/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/marcoroth/subscriptions","organizations_url":"https://api.github.com/users/marcoroth/orgs","repos_url":"https://api.github.com/users/marcoroth/repos","events_url":"https://api.github.com/users/marcoroth/events{/privacy}","received_events_url":"https://api.github.com/users/marcoroth/received_events","type":"User","user_view_type":"public","site_admin":false,"name":"Marco
+        Roth","company":null,"blog":"https://marcoroth.dev","location":"Basel, Switzerland","email":null,"hireable":true,"bio":"Rubyist,
+        Full-Stack Devloper and Open Source Contributor","twitter_username":"marcoroth_","public_repos":235,"public_gists":1,"followers":758,"following":1261,"created_at":"2014-01-15T17:12:11Z","updated_at":"2025-07-31T00:01:14Z"}'
+  recorded_at: Sun, 31 Aug 2025 12:50:19 GMT
 - request:
     method: get
-    uri: https://api.github.com/users/obie/social_accounts
+    uri: https://api.github.com/users/marcoroth/social_accounts
     body:
       encoding: US-ASCII
       string: ''
@@ -98,7 +96,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sat, 07 Dec 2024 18:45:13 GMT
+      - Sun, 31 Aug 2025 12:50:19 GMT
       Content-Type:
       - application/json; charset=utf-8
       Cache-Control:
@@ -106,7 +104,7 @@ http_interactions:
       Vary:
       - Accept,Accept-Encoding, Accept, X-Requested-With
       Etag:
-      - W/"e77f23180f06e9e330ed2ec5e65291bb24381c3824dc1a6da12c30bc63956b74"
+      - W/"f08849f5816b536d0a1684db14dfa38b6caaa6fe37648fe70d4a1cd16cb6869b"
       X-Github-Media-Type:
       - github.v3; format=json
       X-Github-Api-Version-Selected:
@@ -132,24 +130,69 @@ http_interactions:
       - default-src 'none'
       Server:
       - github.com
+      Accept-Ranges:
+      - bytes
       X-Ratelimit-Limit:
       - '60'
       X-Ratelimit-Remaining:
-      - '58'
+      - '55'
       X-Ratelimit-Reset:
-      - '1733600712'
+      - '1756647580'
       X-Ratelimit-Resource:
       - core
       X-Ratelimit-Used:
-      - '2'
-      Accept-Ranges:
-      - bytes
+      - '5'
       Content-Length:
-      - '218'
+      - '263'
       X-Github-Request-Id:
-      - DBE0:DF0E2:38D2D3D:3A527E1:675497B9
+      - 272B:55CE9:5F8BEA3:596EEA7:68B4450B
     body:
       encoding: ASCII-8BIT
-      string: '[{"provider":"twitter","url":"https://twitter.com/obie"},{"provider":"linkedin","url":"https://www.linkedin.com/in/obiefernandez/"},{"provider":"generic","url":"https://open.spotify.com/artist/4LHIbLatBkqIRlJkviJHbn"}]'
-  recorded_at: Sat, 07 Dec 2024 18:45:12 GMT
+      string: '[{"provider":"twitter","url":"https://twitter.com/marcoroth_"},{"provider":"mastodon","url":"https://ruby.social/@marcoroth"},{"provider":"bluesky","url":"https://bsky.app/profile/marcoroth.dev"},{"provider":"linkedin","url":"https://linkedin.com/in/marco-roth"}]'
+  recorded_at: Sun, 31 Aug 2025 12:50:19 GMT
+- request:
+    method: get
+    uri: https://api.bsky.app/xrpc/app.bsky.actor.getProfile?actor=marcoroth.dev
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.bsky.app
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Powered-By:
+      - Express
+      Access-Control-Allow-Origin:
+      - "*"
+      Atproto-Content-Labelers:
+      - did:plc:ar7c4by46qjdydhdevvrndac;redact
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"45c-jk6VGoI+wKtGuEpAMdBAerN9Bi8"
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Sun, 31 Aug 2025 12:50:20 GMT
+      Keep-Alive:
+      - timeout=90
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=63072000
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJkaWQiOiJkaWQ6cGxjOmZ2YW1nYmxldWRzemFvMnVmdDNzeXN1YiIsImhhbmRsZSI6Im1hcmNvcm90aC5kZXYiLCJkaXNwbGF5TmFtZSI6Ik1hcmNvIFJvdGgiLCJhdmF0YXIiOiJodHRwczovL2Nkbi5ic2t5LmFwcC9pbWcvYXZhdGFyL3BsYWluL2RpZDpwbGM6ZnZhbWdibGV1ZHN6YW8ydWZ0M3N5c3ViL2JhZmtyZWlkZnB5c3A3cXprdHEzcjdjcTRqanZnZ2p4ZTRma2p6N3h5a3E2aWFoNmdpN3p4ZG9pZWNlQGpwZWciLCJhc3NvY2lhdGVkIjp7Imxpc3RzIjowLCJmZWVkZ2VucyI6MCwic3RhcnRlclBhY2tzIjowLCJsYWJlbGVyIjpmYWxzZSwiYWN0aXZpdHlTdWJzY3JpcHRpb24iOnsiYWxsb3dTdWJzY3JpcHRpb25zIjoiZm9sbG93ZXJzIn19LCJsYWJlbHMiOltdLCJjcmVhdGVkQXQiOiIyMDIzLTExLTExVDE2OjQ5OjQ5LjM1NloiLCJkZXNjcmlwdGlvbiI6IkZ1bGwtU3RhY2sgV2ViIERldmVsb3BlciDigKIgT1NTIENvbnRyaWJ1dG9yIOKAoiBFbGVjdHJvbmljIE11c2ljIEFkZGljdCDigKIgUnVieS9SYWlscywgSmF2YVNjcmlwdC9TdGltdWx1cywgQ3J5c3RhbCDigKIgSG90d2lyZSBDb250cmlidXRvcnMgVGVhbSDigKIgU3RpbXVsdXNSZWZsZXggQ29yZS5cclxuXG5XZWJzaXRlOiBtYXJjb3JvdGguZGV2XG5cbkJ1aWxkaW5nOiBydWJ5ZXZlbnRzLm9yZyB8IHJ1Ynljb25mZXJlbmNlcy5vcmcgfCBnZW0uc2ggfCBob3R3aXJlLmlvIiwiaW5kZXhlZEF0IjoiMjAyNS0wNy0xMVQwNzozNzowMC45MzJaIiwiYmFubmVyIjoiaHR0cHM6Ly9jZG4uYnNreS5hcHAvaW1nL2Jhbm5lci9wbGFpbi9kaWQ6cGxjOmZ2YW1nYmxldWRzemFvMnVmdDNzeXN1Yi9iYWZrcmVpZm5pY21pb3hobjZ5eGs1cWNncnFicnQ2NGxycWpoeHp0dWZlcGk2NjRndWJ4ZWc0Y3RlaUBqcGVnIiwiZm9sbG93ZXJzQ291bnQiOjE3ODYsImZvbGxvd3NDb3VudCI6MjY0LCJwb3N0c0NvdW50Ijo2MjgsInBpbm5lZFBvc3QiOnsiY2lkIjoiYmFmeXJlaWVucXFnNmdwY3Z5eWE3djc2d2VvY21vbTU1ZGo0Z2FvYXl4ZW1rcGZ1dmZ4dTR5czZlaG0iLCJ1cmkiOiJhdDovL2RpZDpwbGM6ZnZhbWdibGV1ZHN6YW8ydWZ0M3N5c3ViL2FwcC5ic2t5LmZlZWQucG9zdC8zbGx3Z3dxcHRmMjJsIn19
+  recorded_at: Sun, 31 Aug 2025 12:50:20 GMT
 recorded_with: VCR 6.3.1

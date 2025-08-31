@@ -46,7 +46,7 @@ class Event < ApplicationRecord
   belongs_to :organisation, strict_loading: false
   has_many :talks, dependent: :destroy, inverse_of: :event, foreign_key: :event_id
   has_many :watchable_talks, -> { watchable }, class_name: "Talk"
-  has_many :speakers, -> { distinct }, through: :talks
+  has_many :speakers, -> { distinct }, through: :talks, class_name: "User"
   has_many :keynote_speakers, -> { joins(:talks).where(talks: {kind: "keynote"}).distinct },
     through: :talks, source: :speakers
   has_many :topics, -> { distinct }, through: :talks

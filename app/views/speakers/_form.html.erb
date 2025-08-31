@@ -42,7 +42,7 @@
   <div>
     <%= form.label :pronouns %>
     <div data-controller="pronouns-select">
-      <%= form.select :pronouns_type, Speaker::PRONOUNS, {}, class: "select select-bordered w-full", data: {action: "pronouns-select#change", pronouns_select_target: "type"} %>
+      <%= form.select :pronouns_type, User::PRONOUNS, {}, class: "select select-bordered w-full", data: {action: "pronouns-select#change", pronouns_select_target: "type"} %>
       <%= form.text_field :pronouns, placeholder: "Custom pronouns", class: "hidden mt-3 input input-bordered w-full", data: {pronouns_select_target: "input"} %>
     </div>
   </div>

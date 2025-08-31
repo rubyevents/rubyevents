@@ -3,7 +3,7 @@ class LeaderboardController < ApplicationController
 
   def index
     @filter = params[:filter] || "all_time"
-    @ranked_speakers = Speaker.left_joins(:talks)
+    @ranked_speakers = User.speakers
       .group(:id)
       .order("COUNT(talks.id) DESC")
       .select("speakers.name, speakers.github, speakers.id, speakers.slug, speakers.updated_at, speakers.bsky_metadata, speakers.github_metadata, COUNT(talks.id) as talks_count")
