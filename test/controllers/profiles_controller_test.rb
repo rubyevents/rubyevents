@@ -29,6 +29,14 @@ class ProfilesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to profile_url(@user)
   end
 
+  test "should redirect to github handle user when slug and github handle are different" do
+    user = users(:one)
+    user.github_handle = "new-github"
+    user.save
+    get profile_url(user.slug)
+    assert_redirected_to profile_url(user.github_handle)
+  end
+
   test "should get edit in a remote modal" do
     get edit_profile_url(@user), headers: {"Turbo-Frame" => "modal"}
     assert_response :success

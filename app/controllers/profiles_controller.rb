@@ -56,6 +56,13 @@ class ProfilesController < ApplicationController
   def set_user
     @user = User.includes(:talks).find_by(slug: params[:slug])
 
+    # When the user is found from its slug, but the github handle is different, we need to redirect to the github handle
+    if @user.present? && @user.github_handle.present? && @user.github_handle != params[:slug]
+      return redirect_to profile_path(@user.github_handle), status: :moved_permanently
+    end
+
+    @user = User.includes(:talks).find_by(github_handle: params[:slug]) unless @user.present?
+
     redirect_to speakers_path, status: :moved_permanently, notice: "User not found" if @user.blank?
     redirect_to profile_path(@user.canonical) if @user&.canonical.present?
   end
