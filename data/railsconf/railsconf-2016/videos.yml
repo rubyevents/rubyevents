@@ -15,6 +15,7 @@
     Intro by David Heinemeier Hansson (DHH).  Jeremy is an app builder and software steward at Basecamp and a Rails core team member.
   video_provider: "youtube"
   video_id: "nUVsZ4vS1Y8"
+  duration_in_seconds: 4304
 
 # ---
 
@@ -164,6 +165,7 @@
     Searching content across multiple database tables and columns doesn't have to suck. Thanks to Postgres, rolling your own search isn't difficult. Following an actual feature evolution I worked on for a client, we will start with a search feature that queries a single column with LIKE and build up to a SQL-heavy solution for finding results across multiple columns and tables using database views. We will look at optimizing the query time and why this could be a better solution over introducing extra dependencies which clutter your code and need to be stubbed in tests.
   video_provider: "youtube"
   video_id: "OzHhJPlgZaw"
+  duration_in_seconds: 1639
 
 # Track: Sponsored
 - title: "How We Deploy Shopify"
@@ -194,6 +196,7 @@
     ActiveJob made a huge impact when it landed Rails 4.2. Most job processors support it and many developers use it. But few ever need to dig into the internals. How exactly does ActiveJob allow us to execute performant, thread-safe, asynchronous jobs in a language not known for concurrency? This talk will answer that question. We'll build our own asynchronous job processor from scratch and along the way we'll take a deep dive into queues, job serialization, scheduled tasks, and Ruby's memory model.
   video_provider: "youtube"
   video_id: "E-1ICY8DMh4"
+  duration_in_seconds: 2451
 
 # Lunch
 
@@ -279,6 +282,7 @@
     Rails ships as a number of components, Active Record, Active Support, ..., largely independent of each other, but somehow something orchestrates them and presents a unified view of the system. Then we have config/boot.rb, config/application.rb... what do they do? Application initializers, environment configuration, what runs when? Understanding how that works becomes an inflection point in any Rails programmer that goes through it. You go from that cloudy idea of an initialization that sets things up for a certain definition of "things", to a well-understood process.
   video_provider: "youtube"
   video_id: "vSza2FZucV8"
+  duration_in_seconds: 2368
 
 # ---
 
@@ -368,6 +372,7 @@
     Ever felt jealous of "other" Ruby web frameworks whose applications can be run from a single file? Did you know Rails can do this too? Starting from a fresh "rails new" install, we'll gradually delete and pare away to find the beautiful, light, modular and object-oriented web framework underneath. Eventually we'll end up with a tweet-size Rails application! We'll learn about Rails' initialization process and default "stack", and investigate the bare-bones required to get a Rails app up and running.
   video_provider: "youtube"
   video_id: "SXV-RRsjsFc"
+  duration_in_seconds: 2405
 
 # ---
 
@@ -451,6 +456,7 @@
     Almost all applications have assets like CSS, JavaScript and others. That means the asset pipeline is an integral part of the Ruby on Rails framework. In this talk we'll show you how the asset pipeline works, and how you can take full advantage of the asset pipeline's features. Ever wondered how to convert an SVG to PNG automatically? Wanted to know what exactly happens to your CoffeeScript files? We'll explore that, and more.
   video_provider: "youtube"
   video_id: "CzFFYelG7WY"
+  duration_in_seconds: 1808
 
 # ---
 
@@ -492,6 +498,7 @@
     common issues (and a few funny ones) we see when people take their "but it works in development!" app to a production environment.
   video_provider: "youtube"
   video_id: "yDJV9mr--Yo"
+  duration_in_seconds: 1839
 
 - title: "Tweaking Ruby GC Parameters for Fun, Speed, and Profit"
   raw_title: "RailsConf 2016 - Tweaking Ruby GC Parameters for Fun, Speed, and Profit by Helio Cola"
@@ -541,6 +548,7 @@
     Assertions (or expectations) are the most important part of any test framework. How are they written? What happens when one fails? How does a test communicate its results? Past talks have shown how test frameworks work from the very top: how they find, load, select, and run tests. Instead of reading code from the top, we’ll write code from scratch starting with assertions and building up a full test framework. By the end, you'll know how every square inch of your testing framework works.
   video_provider: "youtube"
   video_id: "VPr5pmlAq20"
+  duration_in_seconds: 1892
 
 # ---
 
@@ -555,6 +563,7 @@
   description: ""
   video_provider: "youtube"
   video_id: "ggPE-JHzfAM"
+  duration_in_seconds: 2890
 
 ## Day 2 - 2016-05-05
 
@@ -570,6 +579,7 @@
     With a background in Psychology, Computer Science and Cybersecurity, Art Direction & Design, Chanelle Henry has an intense passion for problem-solving and creating methodologies; helping outline, encourage, and propel the UX Process. Currently serving as a Director of User Experience at Bluewolf, she uses creative and innovative solutions to execute ideas to consult with everyone from startups to Fortune 50 companies to help refine their goals, make progress, spread the gospel of UX.
   video_provider: "youtube"
   video_id: "f3RcrToGIEQ"
+  duration_in_seconds: 2900
 
 # ---
 
@@ -643,6 +653,7 @@
     There are many development tricks and habits that lie at the root of productive coding. IDEs, like RubyMine, are a big one. Adopting a new tool does require an initial investment of time though, as you customize your environment and learn the shortcuts.
   video_provider: "youtube"
   video_id: "issom99iWDs"
+  duration_in_seconds: 2392
 
 # Track: Your Tech Career
 - title: "How to Get and Love Your First Rails Job"
@@ -717,6 +728,7 @@
     Your team gains a new developer. You are responsible for bringing them up to speed. While not everyone is a natural teacher, everyone can be taught basic teaching fundamentals. We will take a look at principles anyone can use to become a more effective trainer/teacher. Better teaching technique makes the training process more effective and enjoyable. Effective training reduces new developer frustration and increases job satisfaction for everyone.
   video_provider: "youtube"
   video_id: "L0cYUD0-XNs"
+  duration_in_seconds: 2257
 
 # Track: Sponsored
 - title: "From Excel to Rails: A Path to Enlightened Internal Software"
@@ -748,6 +760,7 @@
     If you apply for a programming job, you may be asked to complete a take home code challenge, "pair program" with another developer, and/or sketch out some code on a whiteboard. A lot has been said of the validity and fairness of these tactics, but, company ethics aside, what if you just need a job? In this talk, I'll show you a series of mistakes I have seen in these interview challenges and give you strategies for avoiding them. I'll give recommendations for how you can impress the programmers grading your work and I'll tell you which rules you should bend in your solutions.
   video_provider: "youtube"
   video_id: "g5lWfHEeibs"
+  duration_in_seconds: 2143
 
 # ---
 
@@ -805,6 +818,7 @@
     Baskin-Robbins wishes it had as many flavors as there are JS frameworks, build tools, and cool new "low-level" languages. You just want to solve a problem, not have a 500-framework bake-off! And how will you know whether you picked the right one? Don't flip that table, because we'll use the "hype cycle" and the history of Ruby and Rails as a guide to help you understand which front-end and back-end technologies are a fit for your needs now and in the future.
   video_provider: "youtube"
   video_id: "O6TtfK9gGvA"
+  duration_in_seconds: 2047
 
 # Track: Sponsored
 - title: "Packaging and Shipping Rails Applications in Docker"
@@ -837,6 +851,7 @@
     In this talk we'll learn about the options we have to let a computer running Ruby do multiple things simultaneously. We'll answer questions such as: What's the difference between how Puma and Unicorn handle serving multiple Rails HTTP requests at the same time? Why does ActionCable use Eventmachine? How do these underlying mechanism actually work if you strip away the complexity?
   video_provider: "youtube"
   video_id: "5AxtY4dfuwc"
+  duration_in_seconds: 2176
 
 # ---
 
@@ -890,6 +905,7 @@
     What do you do when a maintainer leaves a project with over 44 million downloads? That is what we had to consider this year when Sprockets lost the developer responsible for more than 70% of the commits. In this talk we will look at recent efforts to revive Sprockets, and make it more maintainable. We will look into how your projects can be structured to avoid burnout and survive a change of maintainers. Let's save Sprockets.
   video_provider: "youtube"
   video_id: "imE397wVWgY"
+  duration_in_seconds: 2287
 
 # Track: Sponsored
 - title: "Small Details, Big Impact"
@@ -921,6 +937,7 @@
     This is a talk for anyone who wants a more diverse engineering culture at work. If you've ever been frustrated by the sameness of your engineering peers, you'll hear practical advice you can use immediately. Creating a diverse team is more than a moral issue - it makes business sense. Diverse engineering teams recruit the best talent, are more innovative, better reflect the needs of their users and make for incredibly fun places to work.
   video_provider: "youtube"
   video_id: "zi335PDgL7A"
+  duration_in_seconds: 1786
 
 # ---
 
@@ -973,6 +990,7 @@
     When you look at your response times, satisfied that they are "fast enough", you're forgetting an important thing: your users are on the other side of a network connection, and their browser has to process and render the data that you sent so quickly. This talk examines some often overlooked parts of web applications that can destroy your user experience even when your response times seem fantastic. We'll talk about networks, routing, client and server-side VMs, and how to measure and mitigate their issues.
   video_provider: "youtube"
   video_id: "KP1nKRprj0Q"
+  duration_in_seconds: 2423
 
 # Track: Sponsored
 - title: "How Compose uses Rails to Scale Work, Now Open-Sourced"
@@ -1003,6 +1021,7 @@
     At the beginning of 2015 I was a Director in the non-profit sector, 13 years into my career. My days revolved around crisis intervention and violence prevention. I kept people alive and was well respected in my field. A mom of two, flying solo, people thought I was brave, stubborn... and a little insane... to step out on the ledge of career change. Come on out on the ledge and humble yourself with me. It'll make you a better engineer.
   video_provider: "youtube"
   video_id: "hZLz9p58ZqU"
+  duration_in_seconds: 2536
 
 # ---
 
@@ -1018,6 +1037,7 @@
   description: ""
   video_provider: "youtube"
   video_id: "DHHHnPwSY5I"
+  duration_in_seconds: 5595
   talks:
     - title: "Lightning Talk: Tim Oliver"
       start_cue: "1:05"
@@ -1194,6 +1214,7 @@
     Aaron was born and raised on the mean streets of Salt Lake City. His only hope for survival was to join the local gang of undercover street ballet performers known as the Tender Tights. As a Tender Tights member, Aaron learned to perfect the technique of self-defense pirouettes so that nobody, not even the Parkour Posse could catch him. Between vicious street dance-offs, Aaron taught himself to program. He learned to combine the art of street ballet with the craft of software engineering. Using these unique skills, he was able to leave his life on the streets and become a professional software engineer. He is currently Pirouetting through Processes, and Couruing through code for GitHub. Sometimes he thinks back fondly on his life in the Tender Tights, but then he remembers that it is better to have Tender Loved and Lost than to never have Tender Taught at all.
   video_provider: "youtube"
   video_id: "xMFs9DTympQ"
+  duration_in_seconds: 3078
 
 # ---
 
@@ -1231,6 +1252,7 @@
     Translation, be it a word, sentence, concept, or idea, for different audiences has always been a challenge. This talk tackles problems of translation, especially those that tend to crop up in building software. We'll dive into the eminently practical—how to design apps for easier localization, common pitfalls, solutions for managing translations, approaches to version control with translations—and the more subjective—possible impacts of cultural differences, and what makes a "good" translation.
   video_provider: "youtube"
   video_id: "uFOwICzjrvU"
+  duration_in_seconds: 1768
 
 # Track: Alternative Frameworks
 - title: "Build Realtime Apps with Ruby & Pakyow"
@@ -1245,6 +1267,7 @@
     Client-side frameworks dominate the conversation about the future of web apps. Where does that leave us Ruby developers? Let's explore a way to build realtime apps driven by a traditional backend, without writing a single line of JavaScript! You’ll walk away with a new way to build modern, realtime apps employing client-side patterns.
   video_provider: "youtube"
   video_id: "ttnlh_Y0XJM"
+  duration_in_seconds: 1846
 
 # Track: Sponsored
 - title: "Step 1) Hack, Step 2) ?, Step 3) Profit"
@@ -1278,6 +1301,7 @@
     Join me for a wild ride through the dizzying highs and terrifying lows of web security in 2015. Take a look at some major breaches of the year, from Top Secret clearances, to medical records, all the way to free beer. We’ll look at how attack trends have changed over the past year and new ways websites are being compromised. We’ve pulled together data from all the sites we protect to show you insights on types and patterns of attacks, and sophistication and origin of the attackers. After the bad, we’ll look at the good - new technologies like U2F and RASP that are helping secure the web.
   video_provider: "youtube"
   video_id: "UoiCylwUoq4"
+  duration_in_seconds: 2039
 
 # ---
 
@@ -1311,6 +1335,7 @@
     Your phone rings in the middle of the night and the site is down—- do you know what to do? Whether it's Black Friday or a DDoS attack, our Ruby apps and Ruby devs have to be prepared for the best and the worst. Don't let a crisis catch you off guard! Fortunately, you can sharpen your skills ahead of time with load testing. Learn tips and common pitfalls when simulating application load, as well as key metrics and graphs to understand when site availability is compromised.
   video_provider: "youtube"
   video_id: "hgpNRhQWWNw"
+  duration_in_seconds: 1749
 
 # Track: Alternative Frameworks
 - title: "Going Serverless"
@@ -1325,6 +1350,7 @@
     Serverless is a new framework that allows developers to easily harness AWS Lambda and Api Gateway to build and deploy full fledged API services without needing to deal with any ops level overhead or paying for servers when they're not in use. It's kinda like Heroku on-demand for single functions.
   video_provider: "youtube"
   video_id: "stOpBNo5l-E"
+  duration_in_seconds: 1685
 
 # Track: Sponsored
 - title: "Your Software is Broken — Pay Attention"
@@ -1358,6 +1384,7 @@
     Rails comes with protection against SQL injection, cross site scripting, and cross site request forgery. It provides strong parameters and encrypted session cookies out of the box. What else is there to worry about? Unfortunately, security does not stop at the well-known vulnerabilities and even the most secure web framework cannot save you from everything. Let's take a deep dive into real world examples of security gone wrong!
   video_provider: "youtube"
   video_id: "3P9naxOfUC4"
+  duration_in_seconds: 2597
 
 # ---
 
@@ -1449,6 +1476,7 @@
     If you've struggled through writing complex queries in raw SQL, ActiveRecord methods are a helpful breath of fresh air. If you're not careful though, those methods could potentially leave your site open to a nasty SQL Injection attack. We'll take a look at the most common ActiveRecord methods (and some of the lesser known ones!) with one question in mind....will it inject? If it's vulnerable to a SQL injection attack, we'll cover how to structure your query to keep your data secure.
   video_provider: "youtube"
   video_id: "2GHWAYys1is"
+  duration_in_seconds: 1960
 
 # ---
 
@@ -1499,6 +1527,7 @@
     You may have heard about Phoenix and Elixir. It is a language and framework that give you performance without sacrificing productivity. Learn why Phoenix is a great choice for Rails developers and how you can introduce it into your organization.
   video_provider: "youtube"
   video_id: "OxhTQdcieQE"
+  duration_in_seconds: 1713
 
 # Track: Sponsored
 - title: "Priming You for Your Job Search"
@@ -1524,6 +1553,7 @@
     n\n
   video_provider: "youtube"
   video_id: "RrN0NA4rRbU"
+  duration_in_seconds: 1529
 
 - title: "Turbo Rails with Rust"
   raw_title: "RailsConf 2016 - Turbo Rails with Rust by Godfrey Chan"
@@ -1538,6 +1568,7 @@
     Ruby is not the fastest language in the world, there is no doubt about it. This doesn't turn out to matter all that much – Ruby and its ecosystem has so much more to offer, making it a worthwhile tradeoff a lot of the times. However, you might occasionally encounter workloads that are simply not suitable for Ruby. This is especially true for frameworks like Rails, where the overhead wants to be as little as possible. In this talk, we will explore building a native Ruby extension with Rust to speed up parts of Rails. What does Rust have to offer here over plain-old C? Let's find out!
   video_provider: "youtube"
   video_id: "PbJI8yCsEkA"
+  duration_in_seconds: 2512
 
 # ---
 
@@ -1595,6 +1626,7 @@
     GitLab, the open source alternative to GitHub written in Rails, does not scale automatically out of the box, as it stores its git repositories on a single filesystem, making storage capabilities hard to expand. Rather than attaching a NAS server, we decided to use a cloud-based object storage (such as S3) to replace the FS. This introduced changes to both the Ruby layer and the deeper C layers. In this talk, we will show the audience how we did the change and overcame the performance loss introduced by network I/O. We will also show how we achieved high-availability after the changes.GitLab, the open source alternative to GitHub written in Rails, does not scale automatically out of the box, as it stores its git repositories on a single filesystem, making storage capabilities hard to expand. Rather than attaching a NAS server, we decided to use a cloud-based object storage (such as S3) to replace the FS. This introduced changes to both the Ruby layer and the deeper C layers. In this talk, we will show the audience how we did the change and overcame the performance loss introduced by network I/O. We will also show how we achieved high-availability after the changes.
   video_provider: "youtube"
   video_id: "byZcOH92CiY"
+  duration_in_seconds: 2304
 
 # Track: Sponsored
 - title: "Strong Practices for Rails Applications Continuous Delivery"
@@ -1679,6 +1711,7 @@
     Once a year at RailsConf, we take a moment to appreciate their contributions and hopefully encourage others to make a difference.
   video_provider: "youtube"
   video_id: "JSNogJGaMms"
+  duration_in_seconds: 586
 
 - title: "Sponsored: 5.0 / 30 (Hired)"
   raw_title: "RailsConf 2016 - Sponsor: Hired by Bradley Herman"
