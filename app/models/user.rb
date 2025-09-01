@@ -207,7 +207,7 @@ class User < ApplicationRecord
   end
 
   def broadcast_header
-    broadcast_update target: dom_id(self, :header_content), partial: "profiles/header_content", locals: {speaker: self}
+    broadcast_update target: dom_id(self, :header_content), partial: "profiles/header_content", locals: {user: self}
   end
 
   def to_meta_tags
