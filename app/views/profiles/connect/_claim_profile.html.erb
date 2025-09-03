@@ -8,7 +8,7 @@
   <!-- Heading -->
   <div class="space-y-6">
     <h2 class="text-2xl font-bold text-base-content">
-      Passsport <span class="text-primary"><%= @connect_id.upcase %></span> is available to Claim!
+      Passsport <span class="text-primary"><%= connect_id.upcase %></span> is available to Claim!
     </h2>
     <p class="text-base-content/70 max-w-md">
       <% if Current.user %>
@@ -44,12 +44,12 @@
     <% if Current.user %>
       <%= ui_button url: profiles_claims_path(id: params[:id]), kind: :primary, size: :lg, class: "px-8 shadow-lg", data: {turbo_method: :post} do %>
         <%= fa "arrow-right", variant: :solid, class: "w-5 h-5 mr-2" %>
-        Claim my passport
+        Claim my Passport
       <% end %>
     <% else %>
       <%= ui_button url: new_session_path(connect_id: params[:id]), kind: :primary, size: :lg, class: "px-8 shadow-lg", data: {turbo_frame: "modal"} do %>
         <%= fa "arrow-right", variant: :solid, class: "w-5 h-5 mr-2" %>
-        Claim my passport
+        Claim my Passport
       <% end %>
     <% end %>
   </div>

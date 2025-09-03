@@ -30,9 +30,7 @@ class Sessions::OmniauthController < ApplicationController
 
     # If the user connected through a passport connection URL, we need to create a connected account for it
     if connect_id.present?
-      passport_account = ConnectedAccount.find_or_initialize_by(provider: "passport", uid: connect_id)
-      passport_account.user = @user
-      passport_account.save!
+      @user.connected_accounts.find_or_create_by!(provider: "passport", uid: connect_id)
     end
 
     if connect_to.present?

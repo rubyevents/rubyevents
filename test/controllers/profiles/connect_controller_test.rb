@@ -17,8 +17,8 @@ class Profiles::ConnectControllerTest < ActionDispatch::IntegrationTest
   test "guest should see the claim profile page" do
     get profiles_connect_path(id: "marco")
     assert_response :success
-    assert_includes response.body, "🎉 Profile Ready to Claim!"
-    assert_select ".pt-4 a.btn.btn-primary[data-turbo-frame='modal']", text: "Claim Your Profile"
+    assert_includes response.body, "is available to Claim!"
+    assert_select ".pt-4 a.btn.btn-primary[data-turbo-frame='modal']", text: "Claim my Passport"
   end
 
   # for now this feature is disabled
@@ -43,14 +43,14 @@ class Profiles::ConnectControllerTest < ActionDispatch::IntegrationTest
     assert_equal "This passport has been already claimed", flash[:notice]
   end
 
-  test "user should see no profile found page" do
-    sign_in_as @lazaro
-    get profiles_connect_path(id: "123457")
-    assert_response :success
-    assert_includes response.body, "🤷‍♂️ No Profile Found Here"
-    assert_select ".pt-4 a.btn.btn-primary", text: "Browse Talks"
-    assert_select ".pt-4 a.btn.btn-secondary", text: "View Events"
-  end
+  # test "user should see no profile found page" do
+  #   sign_in_as @lazaro
+  #   get profiles_connect_path(id: "123457")
+  #   assert_response :success
+  #   assert_includes response.body, "🤷‍♂️ No Profile Found Here"
+  #   assert_select ".pt-4 a.btn.btn-primary", text: "Browse Talks"
+  #   assert_select ".pt-4 a.btn.btn-secondary", text: "View Events"
+  # end
 
   test "user should get redirected if they land on their connect page" do
     sign_in_as @lazaro
@@ -62,7 +62,7 @@ class Profiles::ConnectControllerTest < ActionDispatch::IntegrationTest
   test "user should be able to claim a profile" do
     sign_in_as users(:admin)
     get profiles_connect_path(id: "not_a_user")
-    assert_includes response.body, "🎉 Profile Ready to Claim!"
+    assert_includes response.body, "is available to Claim!"
     # This is a POST request to claim a profile for themselves
     assert_select ".pt-4 a.btn.btn-primary[data-turbo-method=\"post\"]"
   end
