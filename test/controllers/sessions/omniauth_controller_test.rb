@@ -69,17 +69,31 @@ class Sessions::OmniauthControllerTest < ActionDispatch::IntegrationTest
     OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(
       provider: :github,
       uid: connected_account.uid,
-      info: {email: @user.email},
-      params: {
-        redirect_to: profile_path(@user),
-        state: "connect_id:123456"
-      }
+      info: {email: @user.email}
     )
     assert_no_difference "User.count" do
       post "/auth/github/callback"
     end
 
     assert_redirected_to profile_path(@user)
+  end
+
+  test "assign redirect_to (github)" do
+    connected_account = connected_accounts(:github_connected_account)
+
+    OmniAuth.config.before_callback_phase = lambda do |env|
+      env["omniauth.params"] = {"redirect_to" => "/events"}
+    end
+
+    OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(
+      provider: :github,
+      uid: connected_account.uid,
+      info: {email: @user.email}
+    )
+
+    post "/auth/github/callback"
+
+    assert_redirected_to events_path
   end
 
   test "full oauth flow" do

@@ -46,6 +46,6 @@
 
   <% signed_out do %>
     <% c.with_menu_item_divider %>
-    <% c.with_menu_item_link_to "Sign in", new_session_path, data: {turbo_frame: "modal"} %>
+    <% c.with_menu_item_link_to "Sign in", new_session_path(redirect_to: request.fullpath), data: {turbo_frame: "modal"} %>
   <% end %>
 <% end %>

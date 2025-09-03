@@ -76,7 +76,7 @@ class Sessions::OmniauthController < ApplicationController
   end
 
   def redirect_to_path
-    query_params["redirect_to"] || root_path
+    query_params["redirect_to"].presence || root_path
   end
 
   def username
