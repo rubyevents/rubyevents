@@ -55,6 +55,16 @@ class Event < ApplicationRecord
   belongs_to :canonical, class_name: "Event", optional: true
   has_many :aliases, class_name: "Event", foreign_key: "canonical_id"
 
+  # Event participation associations
+  has_many :event_participations, dependent: :destroy
+  has_many :participants, through: :event_participations, source: :user
+  has_many :speaker_participants, -> { where(event_participations: {attended_as: :speaker}) },
+    through: :event_participations, source: :user
+  has_many :keynote_speaker_participants, -> { where(event_participations: {attended_as: :keynote_speaker}) },
+    through: :event_participations, source: :user
+  has_many :visitor_participants, -> { where(event_participations: {attended_as: :visitor}) },
+    through: :event_participations, source: :user
+
   has_object :schedule
   has_object :static_metadata
   has_object :sponsors_file

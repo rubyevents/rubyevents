@@ -37,6 +37,7 @@ class Avo::Resources::User < Avo::BaseResource
     field :user_talks, as: :has_many, hide_on: :index
     field :connected_accounts, as: :has_many
     field :sessions, as: :has_many
+    field :participated_events, as: :has_many, hide_on: :index, use_resource: Avo::Resources::Event
   end
 
   def filters

@@ -73,6 +73,16 @@ class User < ApplicationRecord
   has_many :aliases, class_name: "User", foreign_key: "canonical_id"
   has_many :topics, through: :talks
 
+  # Event participation associations
+  has_many :event_participations, dependent: :destroy
+  has_many :participated_events, through: :event_participations, source: :event
+  has_many :speaker_events, -> { where(event_participations: {attended_as: :speaker}) },
+    through: :event_participations, source: :event
+  has_many :keynote_speaker_events, -> { where(event_participations: {attended_as: :keynote_speaker}) },
+    through: :event_participations, source: :event
+  has_many :visitor_events, -> { where(event_participations: {attended_as: :visitor}) },
+    through: :event_participations, source: :event
+
   belongs_to :canonical, class_name: "User", optional: true
 
   has_object :profiles
@@ -146,6 +156,10 @@ class User < ApplicationRecord
   # User-specific methods
   def default_watch_list
     @default_watch_list ||= watch_lists.first || watch_lists.create(name: "Favorites")
+  end
+
+  def main_participation_to(event)
+    event_participations.in_order_of(:attended_as, EventParticipation.attended_as.keys).where(event: event).first
   end
 
   # Speaker-specific methods (adapted from Speaker model)
