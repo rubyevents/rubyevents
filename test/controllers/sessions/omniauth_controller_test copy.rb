@@ -20,7 +20,6 @@ class Sessions::OmniauthControllerTest < ActionDispatch::IntegrationTest
     OmniAuth.config.test_mode = false
     OmniAuth.config.mock_auth[:github] = nil
     OmniAuth.config.mock_auth[:developer] = nil
-    OmniAuth.config.before_callback_phase = nil
   end
 
   test "creates a new user if not exists (developer)" do
@@ -31,6 +30,7 @@ class Sessions::OmniauthControllerTest < ActionDispatch::IntegrationTest
     end
     user = User.find_by(github_handle: "new-user")
     assert_equal 1, user.connected_accounts.count
+    OmniAuth.config.mock_auth[:developer] = nil
   end
 
   test "creates a new user if not exists (github)" do
@@ -41,6 +41,7 @@ class Sessions::OmniauthControllerTest < ActionDispatch::IntegrationTest
 
     assert_equal "twitter", User.last.connected_accounts.last.username
     assert_equal "twitter", User.last.github_handle
+    OmniAuth.config.mock_auth[:github] = nil
   end
 
   test "finds existing user if already exists (developer)" do
@@ -49,6 +50,7 @@ class Sessions::OmniauthControllerTest < ActionDispatch::IntegrationTest
       post "/auth/developer/callback"
     end
     assert_redirected_to root_path
+    OmniAuth.config.mock_auth[:developer] = nil
   end
 
   test "finds existing user if already exists (github)" do
@@ -57,6 +59,7 @@ class Sessions::OmniauthControllerTest < ActionDispatch::IntegrationTest
       post "/auth/github/callback"
     end
     assert_redirected_to root_path
+    OmniAuth.config.mock_auth[:github] = nil
   end
 
   test "assign a passport to the existing user (github)" do
@@ -80,6 +83,7 @@ class Sessions::OmniauthControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to profile_path(@user)
+    OmniAuth.config.mock_auth[:github] = nil
   end
 
   test "full oauth flow" do
@@ -91,6 +95,7 @@ class Sessions::OmniauthControllerTest < ActionDispatch::IntegrationTest
     follow_redirect!  # goes to /auth/github/callback
 
     assert_redirected_to profile_path(@user)
+    OmniAuth.config.mock_auth[:github] = nil
   end
 
   test "finds existing user by email if already exists and creates a new connected account(github)" do
@@ -103,6 +108,7 @@ class Sessions::OmniauthControllerTest < ActionDispatch::IntegrationTest
     assert_equal ConnectedAccount.last.user, user
     assert_equal ConnectedAccount.last.username, "one"
     assert_redirected_to root_path
+    OmniAuth.config.mock_auth[:github] = nil
   end
 
   test "creates a new session for the user" do
@@ -116,6 +122,7 @@ class Sessions::OmniauthControllerTest < ActionDispatch::IntegrationTest
     OmniAuth.config.mock_auth[:developer] = @developer_auth
     post "/auth/developer/callback"
     assert_not_nil cookies["session_token"]
+    OmniAuth.config.mock_auth[:developer] = nil
   end
 
   test "redirects to root_path with a success notice" do
@@ -123,5 +130,6 @@ class Sessions::OmniauthControllerTest < ActionDispatch::IntegrationTest
     post "/auth/developer/callback"
     assert_redirected_to root_path
     assert_equal "Signed in successfully", flash[:notice]
+    OmniAuth.config.mock_auth[:developer] = nil
   end
 end

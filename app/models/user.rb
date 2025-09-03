@@ -60,6 +60,7 @@ class User < ApplicationRecord
   # Authentication and user-specific associations
   has_many :sessions, dependent: :destroy, inverse_of: :user
   has_many :connected_accounts, dependent: :destroy
+  has_many :passports, -> { passport }, class_name: "ConnectedAccount"
   has_many :watch_lists, dependent: :destroy
   has_many :watched_talks, dependent: :destroy
 

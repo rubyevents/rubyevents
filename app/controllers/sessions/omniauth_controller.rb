@@ -3,7 +3,6 @@ class Sessions::OmniauthController < ApplicationController
   skip_before_action :authenticate_user!
 
   def create
-    state = query_params["state"]
     # This needs to be refactored to be more robust when we have more states
     if state.present?
       key, value = state.split(":")
@@ -46,7 +45,11 @@ class Sessions::OmniauthController < ApplicationController
 
       sign_in @user
 
-      redirect_to redirect_to_path, notice: "Signed in successfully"
+      if connect_id.present?
+        redirect_to profile_path(@user), notice: "🙌 Congrats you claimed your passport"
+      else
+        redirect_to redirect_to_path, notice: "Signed in successfully"
+      end
     else
       redirect_to new_session_path, alert: "Authentication failed"
     end
@@ -98,6 +101,10 @@ class Sessions::OmniauthController < ApplicationController
 
   def query_params
     request.env["omniauth.params"]
+  end
+
+  def state
+    @state ||= query_params.dig("state")
   end
 
   def fetch_github_email(oauth_token)

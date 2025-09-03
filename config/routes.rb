@@ -43,7 +43,7 @@ Rails.application.routes.draw do
 
   namespace :profiles do
     resources :connect, only: [:index, :show]
-    resources :claim, only: [:create]
+    resources :claims, only: [:create]
     resources :enhance, only: [:update], param: :slug
   end
 

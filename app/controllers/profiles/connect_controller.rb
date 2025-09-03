@@ -2,7 +2,7 @@ class Profiles::ConnectController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
-    redirect_to root_path
+    redirect_to root_path, notice: "No profile here"
   end
 
   def show
@@ -10,10 +10,25 @@ class Profiles::ConnectController < ApplicationController
     @found_account = ConnectedAccount.find_by(uid: @connect_id, provider: "passport")
     @found_user = @found_account&.user
 
-    # The user landed on their own connect page
-    if Current.user && Current.user.passport_account.present? && Current.user.passport_account == @found_account
-      # This should probably redirect to the profile page when we have one
-      redirect_to root_path, notice: "You did it. You landed on your profile page 🙌"
+    if current_user_passport?
+      # The user landed on their own connect page
+      redirect_to profile_path(Current.user), notice: "You did it. You landed on your profile page 🙌"
+    elsif passport_already_claimed?
+      redirect_to root_path, notice: "This passport has been already claimed"
     end
+  end
+
+  private
+
+  def current_user_passport?
+    return false unless @connect_id.present?
+
+    Current.user&.passports&.pluck(:uid)&.include?(@connect_id)
+  end
+
+  def passport_already_claimed?
+    return false unless @connect_id.present?
+
+    ConnectedAccount.passport.exists?(uid: @connect_id)
   end
 end
