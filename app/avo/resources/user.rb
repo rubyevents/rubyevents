@@ -11,6 +11,9 @@ class Avo::Resources::User < Avo::BaseResource
   self.search = {
     query: -> { query.where("lower(name) LIKE ? OR email LIKE ?", "%#{params[:q]&.downcase}%", "%#{params[:q]}%") }
   }
+  self.external_link = -> {
+    main_app.profile_path(record)
+  }
 
   def fields
     field :id, as: :id, link_to_record: true

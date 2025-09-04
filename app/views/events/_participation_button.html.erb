@@ -1,0 +1,49 @@
+<div id="participation_button" class="mt-4">
+  <% if Current.user %>
+    <% if participation&.attended_as_visitor? %>
+      <%= ui_tooltip "Remove your participation to this event" do %>
+        <%= ui_button url: event_event_participation_path(event, participation), params: {attended_as: "visitor"}, method: :delete, kind: :pill, class: "w-full", data: {turbo_frame: "modal"} do %>
+          <%= fa("circle-check", size: :xs, style: :solid, class: "fill-green-700") %>
+          <span class="text-nowrap">
+            Participated as Visitor
+          </span>
+        <% end %>
+      <% end %>
+    <% elsif participation %>
+      <%= ui_button kind: :pill, class: "w-full", disabled: true do %>
+        <%= fa("circle-check", size: :xs, style: :solid, class: "fill-green-700") %>
+        <span class="text-nowrap">
+          <% case participation.attended_as %>
+          <% when "keynote_speaker" %>
+            Participated as Keynote Speaker
+          <% when "speaker" %>
+            Participated as Speaker
+          <% end %>
+        </span>
+      <% end %>
+
+    <% else %>
+      <%= ui_tooltip "Add this event to your list of participations" do %>
+        <%= ui_button url: event_event_participations_path(event), params: {attended_as: "visitor"}, method: :post, kind: :pill, class: "w-full", data: {turbo_frame: "modal"} do %>
+          <%= fa("plus", style: :solid) %>
+          <span class="text-nowrap">Add to My Events</span>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% if defined?(errors) && errors&.any? %>
+      <div class="mt-2 text-sm text-red-600">
+        <% errors.full_messages.each do |message| %>
+          <div><%= message %></div>
+        <% end %>
+      </div>
+    <% end %>
+  <% else %>
+    <%= ui_tooltip "Add this event to your list of participations" do %>
+      <%= ui_button url: new_session_path(redirect_to: request.fullpath), kind: :pill, class: "w-full", data: {turbo_frame: "modal"} do %>
+        <%= fa("plus", style: :solid) %>
+        <span class="text-nowrap">Add to My Events</span>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

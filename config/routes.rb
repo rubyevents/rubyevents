@@ -86,6 +86,8 @@ Rails.application.routes.draw do
   resources :speakers, param: :slug, only: [:index, :show]
   resources :profiles, param: :slug, only: [:show, :update, :edit]
   resources :events, param: :slug, only: [:index, :show, :update, :edit] do
+    resources :event_participations, only: [:create, :destroy]
+
     scope module: :events do
       collection do
         get "/past" => "past#index", :as => :past

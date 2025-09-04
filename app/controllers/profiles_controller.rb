@@ -12,8 +12,14 @@ class ProfilesController < ApplicationController
     @talks = @user.kept_talks.includes(:speakers, event: :organisation, child_talks: :speakers).order(date: :desc)
     @talks_by_kind = @talks.group_by(&:kind)
     @topics = @user.topics.approved.tally.sort_by(&:last).reverse.map(&:first)
-    @events = @user.events.includes(:organisation).distinct.order(start_date: :desc)
+    # Load participated events (from event_participations)
+    @events = @user.participated_events.includes(:organisation).distinct.order(start_date: :desc)
     @events_with_stickers = @events.select(&:sticker?)
+
+    @participated_events_by_type = @events.group_by { |event|
+      participation = @user.event_participations.find_by(event: event)
+      participation&.attended_as || "visitor"
+    }
     @events_by_year = @events.group_by { |event| event.start_date&.year || "Unknown" }
 
     # Group events by country for the map tab

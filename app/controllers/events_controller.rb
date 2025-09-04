@@ -32,6 +32,8 @@ class EventsController < ApplicationController
     end
 
     @sponsors = @event.event_sponsors.includes(:sponsor).joins(:sponsor).shuffle
+
+    @participation = Current.user&.main_participation_to(@event)
   end
 
   # GET /events/1/edit
