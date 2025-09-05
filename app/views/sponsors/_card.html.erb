@@ -31,7 +31,7 @@
       <h3 class="<%= grid_layout ? "text-sm sm:text-base" : "text-xl" %> font-semibold text-slate-700 line-clamp-1"><%= sponsor.name %></h3>
 
       <% if defined?(event_sponsor) && event_sponsor&.badge.present? %>
-        <div class="mt-2 mx-4 px-2 py-1 <%= grid_layout ? "text-xs" : "text-sm" %> bg-blue-600 text-white rounded-full font-medium truncate text-center max-w-full" title="<%= event_sponsor.badge %>">
+        <div class="mt-2 mx-4 px-2 py-1 <%= grid_layout ? "text-xs" : "text-sm" %> bg-blue-600 text-white rounded-full font-medium truncate text-center max-w-full" aria-label="<%= event_sponsor.badge %>">
           <%= event_sponsor.badge %>
         </div>
       <% end %>
