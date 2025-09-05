@@ -177,3 +177,5 @@ gem "ostruct"
 gem "hotwire_combobox", "~> 0.4.0"
 
 gem "rails-i18n", "~> 8.0"
+
+gem "reactionview"
