@@ -7,8 +7,13 @@ class User::Index < ApplicationRecord
   belongs_to :user, foreign_key: :rowid
 
   def self.search(query)
-    query = query&.gsub(/[^[:word:]]/, " ") || "" # remove non-word characters
+    query = remove_invalid_search_characters(query) || "" # remove non-word characters
+    query = remove_unbalanced_quotes(query)
     query = query.split.map { |word| "#{word}*" }.join(" ") # wildcard search
+    query = query.strip.presence
+
+    return all if query.blank?
+
     where("#{table_name} match ?", query)
   end
 
@@ -23,5 +28,17 @@ class User::Index < ApplicationRecord
 
   def reindex
     update! id: user.id, name: user.name, github_handle: user.github_handle
+  end
+
+  def self.remove_invalid_search_characters(query)
+    query.gsub(/[^\w"]/, " ")
+  end
+
+  def self.remove_unbalanced_quotes(query)
+    if query.count("\"").even?
+      query
+    else
+      query.tr("\"", " ")
+    end
   end
 end
