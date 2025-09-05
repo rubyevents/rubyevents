@@ -311,6 +311,10 @@ GEM
       activesupport (>= 7.1)
     hashdiff (1.2.1)
     hashie (5.0.0)
+    herb (0.7.0-aarch64-linux-gnu)
+    herb (0.7.0-arm64-darwin)
+    herb (0.7.0-x86_64-darwin)
+    herb (0.7.0-x86_64-linux-gnu)
     hotwire_combobox (0.4.0)
       platform_agent (>= 1.0.1)
       rails (>= 7.0.7.2)
@@ -521,6 +525,9 @@ GEM
       erb
       psych (>= 4.0.0)
       tsort
+    reactionview (0.1.0)
+      actionview (>= 7.0)
+      herb (>= 0.7.0, < 1.0.0)
     redcarpet (3.6.1)
     regexp_parser (2.11.3)
     reline (0.6.2)
@@ -738,6 +745,7 @@ DEPENDENCIES
   rails-controller-testing
   rails-i18n (~> 8.0)
   rails_autolink (~> 1.1)
+  reactionview
   redcarpet (~> 3.6)
   ruby-lsp-rails
   ruby-openai
