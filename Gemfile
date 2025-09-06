@@ -157,7 +157,7 @@ gem "redcarpet", "~> 3.6"
 gem "country_select"
 
 # admin
-gem "avo"
+gem "avo", github: "adrienpoly/avo", branch: "resolve-herb-crash"
 gem "marksmith"
 gem "commonmarker"
 
@@ -177,3 +177,5 @@ gem "ostruct"
 gem "hotwire_combobox", "~> 0.4.0"
 
 gem "rails-i18n", "~> 8.0"
+
+gem "reactionview"

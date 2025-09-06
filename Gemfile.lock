@@ -1,4 +1,26 @@
 GIT
+  remote: https://github.com/adrienpoly/avo.git
+  revision: b0efc70c21d183edc4dc35cc56cc027bcfbd4794
+  branch: resolve-herb-crash
+  specs:
+    avo (3.24.0)
+      actionview (>= 6.1)
+      active_link_to
+      activerecord (>= 6.1)
+      activesupport (>= 6.1)
+      addressable
+      avo-heroicons (>= 0.1.1)
+      docile
+      inline_svg
+      meta-tags
+      pagy (>= 7.0.0)
+      prop_initializer (>= 0.2.0)
+      turbo-rails (>= 2.0.0)
+      turbo_power (>= 0.6.0)
+      view_component (>= 3.7.0)
+      zeitwerk (>= 2.6.12)
+
+GIT
   remote: https://github.com/rails/rails.git
   revision: 80827ca7ff33ca3026f2c74fe8249ccc6f513318
   branch: main
@@ -126,22 +148,6 @@ GEM
       rack (>= 2.0.0)
     ast (2.4.3)
     authentication-zero (4.0.3)
-    avo (3.22.2)
-      actionview (>= 6.1)
-      active_link_to
-      activerecord (>= 6.1)
-      activesupport (>= 6.1)
-      addressable
-      avo-heroicons (>= 0.1.1)
-      docile
-      inline_svg
-      meta-tags
-      pagy (>= 7.0.0)
-      prop_initializer (>= 0.2.0)
-      turbo-rails (>= 2.0.0)
-      turbo_power (>= 0.6.0)
-      view_component (>= 3.7.0)
-      zeitwerk (>= 2.6.12)
     avo-heroicons (0.1.1)
     base64 (0.3.0)
     bcrypt (3.1.20)
@@ -293,6 +299,10 @@ GEM
       activesupport (>= 7.1)
     hashdiff (1.2.0)
     hashie (5.0.0)
+    herb (0.7.0-aarch64-linux-gnu)
+    herb (0.7.0-arm64-darwin)
+    herb (0.7.0-x86_64-darwin)
+    herb (0.7.0-x86_64-linux-gnu)
     hotwire_combobox (0.4.0)
       platform_agent (>= 1.0.1)
       rails (>= 7.0.7.2)
@@ -430,7 +440,7 @@ GEM
       actionpack (>= 4.2)
       omniauth (~> 2.0)
     ostruct (0.6.3)
-    pagy (9.3.5)
+    pagy (9.4.0)
     parallel (1.27.0)
     parser (3.3.9.0)
       ast (~> 2.4.1)
@@ -502,6 +512,9 @@ GEM
     rdoc (6.14.2)
       erb
       psych (>= 4.0.0)
+    reactionview (0.1.0)
+      actionview (>= 7.0)
+      herb (>= 0.7.0, < 1.0.0)
     redcarpet (3.6.1)
     regexp_parser (2.10.0)
     reline (0.6.2)
@@ -672,7 +685,7 @@ DEPENDENCIES
   annotaterb
   appsignal
   authentication-zero
-  avo
+  avo!
   bcrypt (~> 3.1.7)
   bootsnap
   byebug (~> 11.1)
@@ -718,6 +731,7 @@ DEPENDENCIES
   rails-controller-testing
   rails-i18n (~> 8.0)
   rails_autolink (~> 1.1)
+  reactionview
   redcarpet (~> 3.6)
   ruby-lsp-rails
   ruby-openai
