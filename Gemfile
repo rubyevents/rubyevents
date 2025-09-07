@@ -126,7 +126,6 @@ gem "solid_cache"
 gem "solid_queue"
 gem "mission_control-jobs"
 
-gem "meilisearch-rails", "0.14.2" # https://github.com/meilisearch/meilisearch-rails/issues/347#issuecomment-2588854111
 gem "ahoy_matey"
 gem "vite_rails"
 gem "meta-tags", "~> 2.18"
