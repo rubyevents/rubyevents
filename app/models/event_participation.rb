@@ -31,7 +31,7 @@ class EventParticipation < ApplicationRecord
   validates :attended_as, presence: true, inclusion: {in: %w[speaker keynote_speaker visitor]}
 
   # enums
-  enum :attended_as, %w[keynote_speaker speaker visitor].index_by(&:itself), prefix: true
+  enum :attended_as, %w[organiser keynote_speaker speaker visitor].index_by(&:itself), prefix: true
 
   def name
     "#{user.name} - #{event.name} - #{attended_as}"
