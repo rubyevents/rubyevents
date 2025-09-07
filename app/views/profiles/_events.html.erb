@@ -8,7 +8,7 @@
       <% participated_events_by_type.each do |participation_type, events| %>
         <div>
           <h3 class="text-lg font-semibold mb-4">
-            <%= participation_type.humanize %> Events
+            <%= t("event_participation.attended_as.#{participation_type}", default: participation_type.humanize) %>
           </h3>
           <div class="mb-6">
             <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">

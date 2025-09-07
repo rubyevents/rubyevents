@@ -28,7 +28,6 @@ class EventParticipation < ApplicationRecord
 
   # validations
   validates :user_id, uniqueness: {scope: [:event_id, :attended_as]}
-  validates :attended_as, presence: true, inclusion: {in: %w[speaker keynote_speaker visitor]}
 
   # enums
   enum :attended_as, %w[organiser keynote_speaker speaker visitor].index_by(&:itself), prefix: true
