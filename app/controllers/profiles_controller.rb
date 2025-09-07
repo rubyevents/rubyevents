@@ -16,8 +16,11 @@ class ProfilesController < ApplicationController
     @events = @user.participated_events.includes(:organisation).distinct.order(start_date: :desc)
     @events_with_stickers = @events.select(&:sticker?)
 
+    event_participations = @user.event_participations.includes(:event).where(event: @events)
+    participation_lookup = event_participations.index_by(&:event_id)
+
     @participated_events_by_type = @events.group_by { |event|
-      participation = @user.event_participations.find_by(event: event)
+      participation = participation_lookup[event.id]
       participation&.attended_as || "visitor"
     }
     @events_by_year = @events.group_by { |event| event.start_date&.year || "Unknown" }

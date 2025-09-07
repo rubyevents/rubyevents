@@ -3,134 +3,14 @@
 
 <div class="container py-8">
   <%= render partial: "profiles/header", locals: {user: @user} %>
-
-  <% if @topics.any? && @talks.length.positive? %>
-    <div class="mt-9 mb-3">
-      <%= render partial: "topics/badge_list", locals: {topics: @topics, back_to_url: back_to_from_request, back_to_title: @user.name} %>
-    </div>
-  <% end %>
+  <%= render partial: "profiles/topics", locals: {topics: @topics, user: @user, talks: @talks} %>
 
   <hr class="my-6">
 
   <div role="tablist" class="tabs tabs-bordered mt-6">
-    <% if @talks.length.positive? %>
-      <%# Talks %>
-      <input type="radio" name="talk_tabs" role="tab" class="tab" aria-label="Talks (<%= @talks.size %>)" <%= "checked" if @talks.size.positive? %>>
-      <div role="tabpanel" class="tab-content mt-6">
-        <div role="tablist" class="tabs tabs-boxed bg-base-100 mt-2">
-          <input type="radio" name="talk_kinds" role="tab" class="tab px-6 !rounded-lg" aria-label="All" <%= "checked" if @talks.size.positive? %>>
-          <div role="tabpanel" class="tab-content mt-6">
-            <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 md:[&>:nth-child(4)]:hidden lg:grid-cols-4 lg:[&>:nth-child(4)]:block">
-              <%= render partial: "talks/card",
-                    collection: @talks,
-                    as: :talk,
-                    locals: {
-                      favoritable: true,
-                      user_favorite_talks_ids: @user_favorite_talks_ids,
-                      user_watched_talks: user_watched_talks,
-                      back_to: back_to_from_request,
-                      back_to_title: @user.name
-                    } %>
-            </div>
-          </div>
-          <% @talks_by_kind.each do |kind, talks| %>
-            <input type="radio" name="talk_kinds" role="tab" class="tab px-6 !rounded-lg" aria-label="<%= talks.first.formatted_kind.pluralize %> (<%= talks.size %>)">
-
-            <div role="tabpanel" class="tab-content mt-6">
-              <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 md:[&>:nth-child(4)]:hidden lg:grid-cols-4 lg:[&>:nth-child(4)]:block">
-                <%= render partial: "talks/card",
-                      collection: talks,
-                      as: :talk,
-                      locals: {
-                        favoritable: true,
-                        user_favorite_talks_ids: @user_favorite_talks_ids,
-                        user_watched_talks: user_watched_talks,
-                        back_to: back_to_from_request,
-                        back_to_title: @user.name
-                      } %>
-              </div>
-            </div>
-          <% end %>
-
-        </div>
-      </div>
-    <% end %>
-
-    <%# Event Participations %>
-    <input type="radio" name="talk_tabs" role="tab" class="tab px-6" aria-label="Event participations (<%= @events.size %>)" <%= "checked" if @talks.size.zero? %>>
-
-    <div role="tabpanel" class="tab-content mt-6">
-      <div class="space-y-8">
-        <% @participated_events_by_type.each do |participation_type, events| %>
-          <div>
-            <h3 class="text-lg font-semibold mb-4">
-              <%= participation_type.humanize %> Events
-            </h3>
-            <div class="mb-6">
-              <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                <%= render partial: "events/card", collection: events, as: :event %>
-              </div>
-            </div>
-          </div>
-        <% end %>
-
-        <div class="text-center py-12 hidden only:block">
-          <div class="mb-6">
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">No participated events yet</h3>
-            <p class="text-gray-600 mb-6 max-w-xl mx-auto">
-              <% if Current.user == @user %>
-                You haven't marked your participation in any events yet. Visit <%= link_to "event pages", events_path, class: "link link-primary link-ghost" %> or search events with <kbd class="kbd kbd-sm text-base-content">⌘ k</kbd> and click "Add to My Events" to start building your event history.
-              <% elsif Current.user %>
-                This user hasn't marked their participation in any events yet.
-              <% else %>
-                Sign in to manage your profile and mark your participation in events you've attended.
-              <% end %>
-            </p>
-          </div>
-
-          <% if Current.user && Current.user == @user %>
-            <div class="space-y-3">
-              <%= link_to events_path, class: "btn btn-primary" do %>
-                <%= fa("magnifying-glass", style: :regular) %>
-                Browse Events
-              <% end %>
-            </div>
-          <% elsif !Current.user %>
-            <div class="space-y-3">
-              <%= link_to "Sign in", new_session_path(redirect_to: request.fullpath), data: {turbo_frame: "modal"}, class: "btn btn-primary" %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
-
-    <%# Stickers %>
-    <% if @events_with_stickers.any? %>
-      <input type="radio" name="talk_tabs" role="tab" class="tab px-6" aria-label="Stickers (<%= @events_with_stickers.size %>)">
-
-      <div role="tabpanel" class="tab-content mt-6">
-        <%= render partial: "shared/stickers_display", locals: {events: @events_with_stickers} %>
-      </div>
-    <% end %>
-
-    <%# Map %>
-    <% if @countries_with_events.any? %>
-      <input type="radio" name="talk_tabs" role="tab" class="tab px-6" aria-label="Map (<%= @countries_with_events.size %>)">
-
-      <div role="tabpanel" class="tab-content mt-6">
-        <div class="space-y-8">
-          <% @countries_with_events.group_by { |country, _| country.continent }.sort_by(&:first).each do |continent, countries_group| %>
-            <div>
-              <h3 class="text-lg font-semibold mb-4"><%= continent %></h3>
-              <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                <% countries_group.each do |country, events| %>
-                  <%= render "shared/country_card", country: country, events: events %>
-                <% end %>
-              </div>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
+    <%= render partial: "profiles/talks", locals: {user: @user, talks: @talks, user_favorite_talks_ids: @user_favorite_talks_ids, talks_by_kind: @talks_by_kind} %>
+    <%= render partial: "profiles/events", locals: {user: @user, events: @events, talks: @talks, participated_events_by_type: @participated_events_by_type} %>
+    <%= render partial: "profiles/stickers", locals: {user: @user, events_with_stickers: @events_with_stickers} %>
+    <%= render partial: "profiles/map", locals: {user: @user, countries_with_events: @countries_with_events} %>
   </div>
 </div>
