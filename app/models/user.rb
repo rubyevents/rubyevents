@@ -42,6 +42,7 @@ class User < ApplicationRecord
   include Sluggable
   include Suggestable
   include User::Searchable
+
   configure_slug(attribute: :name, auto_suffix_on_collision: true)
 
   GITHUB_URL_PATTERN = %r{\A(https?://)?(www\.)?github\.com/}i

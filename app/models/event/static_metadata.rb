@@ -55,6 +55,7 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
     "black"
   rescue => e
     raise "No featured background found for #{event.name} :  #{e.message}" if Rails.env.local?
+
     "black"
   end
 
@@ -62,6 +63,7 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
     static_repository.featured_color.present? ? static_repository.featured_color : "white"
   rescue => e
     raise "No featured color found for #{event.name} :  #{e.message}" if Rails.env.local?
+
     "white"
   end
 
@@ -69,6 +71,7 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
     static_repository.banner_background.present? ? static_repository.banner_background : "#081625"
   rescue => e
     raise "No featured background found for #{event.name} :  #{e.message}" if Rails.env.local?
+
     "#081625"
   end
 

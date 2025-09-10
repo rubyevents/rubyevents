@@ -25,7 +25,7 @@
         video_player_end_seconds_value: talk.end_seconds,
         video_player_watched_talk_path_value: talk_watched_talk_path(talk),
         video_player_current_user_present_value: signed_in?,
-        video_player_progress_seconds_value: talk.watched_talks.select { |it| it.user_id == Current.user&.id }.min_by(&:created_at)&.progress_seconds || 0
+        video_player_progress_seconds_value: talk.watched_talks.select { |watched_talk| watched_talk.user_id == Current.user&.id }.min_by(&:created_at)&.progress_seconds || 0
       } do %>
 
   <div class="relative overflow-hidden bg-gray-300 aspect-video banner-img card-horizontal-img rounded-xl outline outline-1 outline-gray-300" data-turbo-permanent="true">

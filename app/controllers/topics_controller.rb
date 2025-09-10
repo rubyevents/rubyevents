@@ -1,6 +1,7 @@
 class TopicsController < ApplicationController
   include Pagy::Backend
   include WatchedTalks
+
   skip_before_action :authenticate_user!
   before_action :set_user_favorites, only: %i[show]
 

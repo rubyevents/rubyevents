@@ -2,6 +2,7 @@ require "test_helper"
 
 class TalkTest < ActiveSupport::TestCase
   include ActiveJob::TestHelper
+
   test "should handle empty transcript" do
     talk = Talk.new(title: "Sample Talk", date: Date.today, talk_transcript_attributes: {raw_transcript: Transcript.new})
     assert talk.save

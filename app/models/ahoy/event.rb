@@ -22,6 +22,7 @@ class Ahoy::Event < ApplicationRecord
 
   self.table_name = "ahoy_events"
   include Rollupable
+
   rollup_default_column :time
 
   belongs_to :visit
