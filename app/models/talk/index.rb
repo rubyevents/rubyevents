@@ -2,6 +2,7 @@ class Talk::Index < ApplicationRecord
   self.table_name = :talks_search_index
 
   include ActiveRecord::SQLite::Index # Depends on `table_name` being assigned.
+
   class_attribute :index_columns, default: {title: 0, summary: 1, speaker_names: 2}
 
   belongs_to :talk, foreign_key: :rowid

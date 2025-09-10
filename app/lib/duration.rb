@@ -6,6 +6,7 @@ class Duration
       parts = seconds.parts
     else
       raise "seconds (`#{seconds.inspect}`) is not an Integer or ActiveSupport::Duration" if raise
+
       return "??:??"
     end
 

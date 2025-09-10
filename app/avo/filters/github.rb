@@ -3,6 +3,7 @@ class Avo::Filters::GitHub < Avo::Filters::BooleanFilter
 
   def apply(request, query, values)
     return query if values["has_github"] && values["no_github"]
+
     if values["has_github"]
       query = query.where.not(github: ["", nil])
     elsif values["no_github"]

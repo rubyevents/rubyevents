@@ -11,6 +11,7 @@ module YouTube
       loop do
         next_page_token = response.try(:nextPageToken)
         break if next_page_token.nil?
+
         response = get(path, query: query.merge({key: token, maxResults: 50, pageToken: next_page_token}))
         all_items += response.items
       end

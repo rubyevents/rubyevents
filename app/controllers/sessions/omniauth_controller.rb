@@ -111,6 +111,7 @@ class Sessions::OmniauthController < ApplicationController
 
   def fetch_github_email(oauth_token)
     return unless oauth_token
+
     response = GitHub::UserClient.new(token: oauth_token).emails
 
     emails = response.parsed_body
