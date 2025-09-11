@@ -14,7 +14,6 @@ You are working on RubyVideo, a modern Ruby on Rails 8 application that aggregat
 - Frontend: Vite + Tailwind CSS + daisyUI + Stimulus controllers
 - Background Jobs: Solid Queue
 - Caching: Solid Cache
-- Search: MeiliSearch for full-text search
 - Authentication: Custom session-based auth with GitHub OAuth
 - Admin: Avo admin panel
 - Deployment: Kamal on Hetzner VPS
@@ -190,12 +189,6 @@ config.solid_queue.connects_to = {database: {writing: :queue}}
 ```
 
 ### Search & Data
-
-**MeiliSearch Integration:**
-
-- Full-text search for `Talk` and `Speaker` models
-- Include `Searchable` concern in searchable models
-- Reindex in test setup: `Talk.reindex_all`
 
 **Data Structure:**
 

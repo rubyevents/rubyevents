@@ -1,4 +1,3 @@
-require "pagy/extras/meilisearch"
 require "pagy/extras/overflow"
 require "pagy/extras/gearbox"
 require "pagy/extras/countless"

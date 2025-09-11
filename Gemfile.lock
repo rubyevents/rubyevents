@@ -373,11 +373,6 @@ GEM
     marksmith (0.4.7)
       activesupport
     matrix (0.4.3)
-    meilisearch (0.28.4)
-      httparty (~> 0.17)
-    meilisearch-rails (0.14.2)
-      meilisearch (~> 0.28.4)
-      mutex_m (~> 0.2)
     meta-tags (2.22.1)
       actionpack (>= 6.0.0, < 8.1)
     metrics (0.14.0)
@@ -715,13 +710,13 @@ DEPENDENCIES
   google-protobuf
   groupdate
   hotwire_combobox (~> 0.4.0)
+  httparty
   iso-639
   jbuilder
   json-repair (~> 0.2.0)
   kamal
   listen (~> 3.5)
   marksmith
-  meilisearch-rails (= 0.14.2)
   meta-tags (~> 2.18)
   minisky (~> 0.4.0)
   minitest-difftastic (~> 0.2)
