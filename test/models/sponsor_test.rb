@@ -64,4 +64,74 @@ class SponsorTest < ActiveSupport::TestCase
     sponsor = Sponsor.create!(name: "Coerce Corp", website: "example.com/?utm_campaign=abc#top")
     assert_equal "https://example.com/", sponsor.website
   end
+
+  test "should default logo_background to white" do
+    sponsor = Sponsor.create!(name: "Default Corp")
+    assert_equal "white", sponsor.logo_background
+  end
+
+  test "should generate correct sponsor_image_path" do
+    sponsor = Sponsor.create!(name: "Image Test Corp")
+    expected_path = "sponsors/#{sponsor.slug}"
+    assert_equal expected_path, sponsor.sponsor_image_path
+  end
+
+  test "should generate correct default_sponsor_image_path" do
+    sponsor = Sponsor.create!(name: "Default Image Corp")
+    assert_equal "sponsors/default", sponsor.default_sponsor_image_path
+  end
+
+  test "should generate correct avatar_image_path" do
+    sponsor = Sponsor.create!(name: "Avatar Corp")
+    expected_path = "sponsors/default/avatar.webp"
+    assert_equal expected_path, sponsor.avatar_image_path
+  end
+
+  test "should generate correct banner_image_path" do
+    sponsor = Sponsor.create!(name: "Banner Corp")
+    expected_path = "sponsors/default/banner.webp"
+    assert_equal expected_path, sponsor.banner_image_path
+  end
+
+  test "should generate correct logo_image_path" do
+    sponsor = Sponsor.create!(name: "Logo Corp")
+    expected_path = "sponsors/default/logo.webp"
+    assert_equal expected_path, sponsor.logo_image_path
+  end
+
+  test "should fallback to logo_url when local logo doesn't exist" do
+    sponsor = Sponsor.create!(name: "Logo URL Corp", logo_url: "https://example.com/logo.png")
+    assert_equal "https://example.com/logo.png", sponsor.logo_image_path
+  end
+
+  test "should not add duplicate logo_urls" do
+    sponsor = Sponsor.create!(name: "Duplicate Logo Corp")
+    sponsor.add_logo_url("https://example.com/logo.png")
+    sponsor.add_logo_url("https://example.com/logo.png")
+
+    assert_equal 1, sponsor.logo_urls.count
+  end
+
+  test "should not add blank logo_urls" do
+    sponsor = Sponsor.create!(name: "Blank Logo Corp")
+    sponsor.add_logo_url("")
+    sponsor.add_logo_url(nil)
+
+    assert_empty sponsor.logo_urls
+  end
+
+  test "should ensure unique logo_urls on save" do
+    sponsor = Sponsor.create!(name: "Unique Logo Corp")
+    sponsor.logo_urls = ["https://example.com/logo.png", "https://example.com/logo.png", "https://example.com/other.png"]
+    sponsor.save!
+
+    assert_equal 2, sponsor.logo_urls.count
+    assert_includes sponsor.logo_urls, "https://example.com/logo.png"
+    assert_includes sponsor.logo_urls, "https://example.com/other.png"
+  end
+
+  test "should preserve https:// prefix in domain" do
+    sponsor = Sponsor.create!(name: "Domain Corp", domain: "https://example.com")
+    assert_equal "https://example.com", sponsor.domain
+  end
 end
