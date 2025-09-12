@@ -100,6 +100,7 @@ Rails.application.routes.draw do
         get "/day/:date", action: :show, on: :collection, as: :day
       end
       resources :speakers, only: [:index]
+      resources :visitors, only: [:index]
       resources :talks, only: [:index]
       resources :related_talks, only: [:index]
       resources :events, only: [:index]

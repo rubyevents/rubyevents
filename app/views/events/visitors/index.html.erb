@@ -1,0 +1,18 @@
+<%= render partial: "events/header", locals: {event: @event, participation: @participation} %>
+
+<%= turbo_frame_tag dom_id(@event), data: {turbo_action: "advance", turbo_frame: "_top"} do %>
+  <div class="container py-8">
+    <%= render partial: "events/navigation", locals: {event: @event} %>
+    <div class="flex items-start flex-wrap gap-8 sm:flex-nowrap w-full">
+      <div class="w-full">
+        <div id="keynote-visitors" class="mb-12 min-w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 h-full">
+          <% @visitors.each do |visitor| %>
+            <div class="border rounded-lg bg-white hover:bg-gray-200 transition-bg duration-300 ease-in-out">
+              <%= render partial: "talks/visitor", locals: {visitor: visitor} %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
