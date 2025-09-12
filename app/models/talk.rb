@@ -76,7 +76,7 @@ class Talk < ApplicationRecord
   has_many :users, through: :user_talks, inverse_of: :talks
   has_many :speakers, -> { where("users.talks_count > 0") }, through: :user_talks, inverse_of: :talks, source: :user
   has_many :kept_speakers, -> { where("users.talks_count > 0") }, through: :kept_user_talks, inverse_of: :talks,
-    class_name: "Speaker", source: :user
+    class_name: "User", source: :user
 
   has_many :talk_topics, dependent: :destroy
   has_many :topics, through: :talk_topics

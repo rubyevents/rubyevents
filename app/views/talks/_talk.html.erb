@@ -28,7 +28,7 @@
         video_player_progress_seconds_value: talk.watched_talks.select { |it| it.user_id == Current.user&.id }.min_by(&:created_at)&.progress_seconds || 0
       } do %>
 
-  <div class="relative overflow-hidden bg-gray-300 aspect-video banner-img card-horizontal-img rounded-xl outline outline-1 outline-gray-300" data-turbo-permanent=true>
+  <div class="relative overflow-hidden bg-gray-300 aspect-video banner-img card-horizontal-img rounded-xl outline outline-1 outline-gray-300" data-turbo-permanent="true">
     <% if talk.external_player %>
       <%= link_to talk.external_player_url, target: "_blank", class: "relative w-full h-full block" do %>
         <%= image_tag talk.thumbnail_xl, class: "w-full h-full object-cover rounded-xl", style: "view-transition-name: #{dom_id(talk, :image)}" %>

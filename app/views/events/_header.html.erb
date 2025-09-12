@@ -1,3 +1,4 @@
+<%# locals: (event:, participation: nil) -%>
 <div
   class="w-full md:h-[198px] lg:h-[267px] xl:h-[336px] 2xl:h-[405px] justify-center align-center flex mt-3 border-t border-b hotwire-native:hidden"
   style="
@@ -37,8 +38,9 @@
       </div>
     </div>
 
-    <div class="flex flex-col gap-3 place-items-center">
+    <div class="flex flex-col gap-2">
       <%= ui_button "View all #{event.organisation.name} events", url: organisation_path(event.organisation), kind: :secondary, size: :sm, class: "w-full" %>
+      <%= render "events/participation_button", event: event, participation: participation %>
     </div>
   </div>
 

@@ -46,7 +46,7 @@ gem "tzinfo-data", platforms: %i[windows jruby]
 gem "bootsnap", require: false
 
 # Deploy this application anywhere as a Docker container [https://kamal-deploy.org]
-gem "kamal", "2.5.3", require: false
+gem "kamal", require: false
 
 # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
 gem "thruster", require: false
@@ -80,6 +80,7 @@ gem "yt"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  gem "bundler-audit", require: false
   gem "debug", platforms: %i[mri windows]
   gem "byebug", "~> 11.1"
   gem "minitest-difftastic", "~> 0.2"
@@ -139,7 +140,7 @@ gem "rails_autolink", "~> 1.1"
 
 gem "sitemap_generator", "~> 6.3"
 
-gem "view_component", "~> 3.7"
+gem "view_component"
 
 gem "dry-initializer-rails"
 

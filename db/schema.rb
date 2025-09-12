@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_08_31_112728) do
+ActiveRecord::Schema[8.1].define(version: 2025_09_03_125458) do
+
   create_table "_litestream_lock", id: false, force: :cascade do |t|
     t.integer "id"
   end
@@ -77,6 +78,18 @@ ActiveRecord::Schema[8.1].define(version: 2025_08_31_112728) do
   create_table "email_verification_tokens", force: :cascade do |t|
     t.integer "user_id", null: false
     t.index ["user_id"], name: "index_email_verification_tokens_on_user_id"
+  end
+
+  create_table "event_participations", force: :cascade do |t|
+    t.string "attended_as", null: false
+    t.datetime "created_at", null: false
+    t.integer "event_id", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["attended_as"], name: "index_event_participations_on_attended_as"
+    t.index ["event_id"], name: "index_event_participations_on_event_id"
+    t.index ["user_id", "event_id", "attended_as"], name: "idx_on_user_id_event_id_attended_as_ca0a2916e2", unique: true
+    t.index ["user_id"], name: "index_event_participations_on_user_id"
   end
 
   create_table "event_sponsors", force: :cascade do |t|
@@ -392,6 +405,8 @@ ActiveRecord::Schema[8.1].define(version: 2025_08_31_112728) do
 
   add_foreign_key "connected_accounts", "users"
   add_foreign_key "email_verification_tokens", "users"
+  add_foreign_key "event_participations", "events"
+  add_foreign_key "event_participations", "users"
   add_foreign_key "event_sponsors", "events"
   add_foreign_key "event_sponsors", "sponsors"
   add_foreign_key "events", "events", column: "canonical_id"

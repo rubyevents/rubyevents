@@ -1,16 +1,21 @@
-<div class="flex flex-col items-center justify-center text-center space-y-6 py-12 px-6">
+<div class="flex flex-col items-center justify-center text-center space-y-8 py-12 px-6">
   <!-- Icon -->
-  <div class="flex items-center justify-center w-20 h-20 bg-primary/10 rounded-full">
-    <%= fa "user-plus", variant: :solid, class: "w-10 h-10 text-primary" %>
+  <div class="text-4xl">
+    🎉 🎉 🎉
+    <%#= fa "user-plus", variant: :solid, class: "w-10 h-10 text-primary" %>
   </div>
 
   <!-- Heading -->
-  <div class="space-y-2">
+  <div class="space-y-6">
     <h2 class="text-2xl font-bold text-base-content">
-      🎉 Profile Ready to Claim!
+      Passsport <span class="text-primary"><%= connect_id.upcase %></span> is available to Claim!
     </h2>
     <p class="text-base-content/70 max-w-md">
-      This profile is waiting for you! Connect with your GitHub account to claim it and start building your Ruby community presence.
+      <% if Current.user %>
+        This Ruby passport is waiting for you! Claim it and start building your Ruby community presence.
+      <% else %>
+        This Ruby passport is waiting for you! Sign in with your GitHub account to claim it and start building your Ruby community presence.
+      <% end %>
     </p>
   </div>
 
@@ -36,15 +41,15 @@
 
   <!-- CTA Button -->
   <div class="pt-4">
-    <% if Current.user && Current.user.passport_account.blank? %>
-      <%= ui_button url: profiles_claim_index_path(id: params[:id]), kind: :primary, size: :lg, class: "px-8 shadow-lg", data: {turbo_method: :post} do %>
+    <% if Current.user %>
+      <%= ui_button url: profiles_claims_path(id: params[:id]), kind: :primary, size: :lg, class: "px-8 shadow-lg", data: {turbo_method: :post} do %>
         <%= fa "arrow-right", variant: :solid, class: "w-5 h-5 mr-2" %>
-        Claim Your Profile
+        Claim my Passport
       <% end %>
     <% else %>
       <%= ui_button url: new_session_path(connect_id: params[:id]), kind: :primary, size: :lg, class: "px-8 shadow-lg", data: {turbo_frame: "modal"} do %>
         <%= fa "arrow-right", variant: :solid, class: "w-5 h-5 mr-2" %>
-        Claim Your Profile
+        Claim my Passport
       <% end %>
     <% end %>
   </div>

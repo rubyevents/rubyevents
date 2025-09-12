@@ -14,14 +14,15 @@
   <% c.with_menu_item_link_to "About", about_path %>
   <% if Current.user %>
     <% c.with_menu_item_divider %>
+    <% c.with_menu_item_link_to "My Profile", profile_path(Current.user) %>
+    <% if Current.user&.admin? %>
+      <% c.with_menu_item_link_to "Suggestions", admin_suggestions_path %>
+      <% c.with_menu_item_link_to t("admin"), avo_path %>
+      <% c.with_menu_item_divider %>
+    <% end %>
     <% c.with_menu_item_button_to t("sign_out"),
          Current.session,
          method: :delete,
          id: :sign_out %>
-
-    <% if Current.user&.admin? %>
-      <% c.with_menu_item_link_to "Suggestions", admin_suggestions_path %>
-      <% c.with_menu_item_link_to t("admin"), avo_path %>
-    <% end %>
   <% end %>
 <% end %>

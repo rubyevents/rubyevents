@@ -46,7 +46,7 @@ class Event < ApplicationRecord
   belongs_to :organisation, strict_loading: false
   has_many :talks, dependent: :destroy, inverse_of: :event, foreign_key: :event_id
   has_many :watchable_talks, -> { watchable }, class_name: "Talk"
-  has_many :speakers, -> { distinct }, through: :talks
+  has_many :speakers, -> { distinct }, through: :talks, class_name: "User"
   has_many :keynote_speakers, -> { joins(:talks).where(talks: {kind: "keynote"}).distinct },
     through: :talks, source: :speakers
   has_many :topics, -> { distinct }, through: :talks
@@ -54,6 +54,16 @@ class Event < ApplicationRecord
   has_many :sponsors, through: :event_sponsors
   belongs_to :canonical, class_name: "Event", optional: true
   has_many :aliases, class_name: "Event", foreign_key: "canonical_id"
+
+  # Event participation associations
+  has_many :event_participations, dependent: :destroy
+  has_many :participants, through: :event_participations, source: :user
+  has_many :speaker_participants, -> { where(event_participations: {attended_as: :speaker}) },
+    through: :event_participations, source: :user
+  has_many :keynote_speaker_participants, -> { where(event_participations: {attended_as: :keynote_speaker}) },
+    through: :event_participations, source: :user
+  has_many :visitor_participants, -> { where(event_participations: {attended_as: :visitor}) },
+    through: :event_participations, source: :user
 
   has_object :schedule
   has_object :static_metadata
