@@ -6,6 +6,7 @@ class Avo::Filters::Canonical < Avo::Filters::BooleanFilter
 
   def apply(request, query, values)
     return query if values["canonical"] && values["not_canonical"]
+
     if values["canonical"]
       query = query.canonical
     elsif values["not_canonical"]

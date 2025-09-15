@@ -40,6 +40,7 @@
 class Event < ApplicationRecord
   include Suggestable
   include Sluggable
+
   configure_slug(attribute: :name, auto_suffix_on_collision: false)
 
   # associations

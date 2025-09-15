@@ -1,5 +1,6 @@
 class Events::RelatedTalksController < ApplicationController
   include WatchedTalks
+
   skip_before_action :authenticate_user!, only: %i[index]
   before_action :set_event, only: %i[index]
   before_action :set_user_favorites, only: %i[index]

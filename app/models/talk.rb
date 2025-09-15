@@ -59,6 +59,7 @@ class Talk < ApplicationRecord
   include Suggestable
   include Searchable
   include Watchable
+
   configure_slug(attribute: :title, auto_suffix_on_collision: true)
 
   # associations

@@ -222,6 +222,7 @@ class Rollup < ApplicationRecord
         if dimension_names.size != groups.size
           raise ArgumentError, "Expected dimension_names to be size #{groups.size}, not #{dimension_names.size}"
         end
+
         dimension_names
       else
         groups.map { |group| determine_dimension_name(group) }
@@ -264,6 +265,7 @@ class Rollup < ApplicationRecord
           unless key.is_a?(Array) && key.size == expected_key_size
             raise "Expected result key to be Array with size #{expected_key_size}"
           end
+
           time = key[-1]
           # may be able to support dimensions in SQLite by sorting dimension names
           dimension_names.each_with_index do |dn, i|

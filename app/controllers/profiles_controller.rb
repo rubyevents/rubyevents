@@ -5,6 +5,7 @@ class ProfilesController < ApplicationController
   include Pagy::Backend
   include RemoteModal
   include WatchedTalks
+
   respond_with_remote_modal only: [:edit]
 
   # GET /profiles/:slug

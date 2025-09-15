@@ -2,6 +2,7 @@ class NormalizeGitHubHandle < ActiveRecord::Migration[8.0]
   def change
     User.all.each do |u|
       next if u.github_handle.blank?
+
       u.update_column(:github_handle, u.github_handle.strip.downcase)
     end
 

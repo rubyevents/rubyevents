@@ -2,6 +2,7 @@ class TalksController < ApplicationController
   include RemoteModal
   include Pagy::Backend
   include WatchedTalks
+
   skip_before_action :authenticate_user!
 
   respond_with_remote_modal only: [:edit]
