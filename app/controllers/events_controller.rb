@@ -11,6 +11,21 @@ class EventsController < ApplicationController
       .conference
       .where(end_date: Date.today..)
       .order(start_date: :asc)
+
+    respond_to do |format|
+      format.html
+      format.ics do
+        cal = Icalendar::Calendar.new
+
+        @events.where(date_precision: :day).each do |event|
+          cal.add_event(event.to_ical)
+        end
+
+        cal.publish
+
+        render plain: cal.to_ical
+      end
+    end
   end
 
   # GET /events/1

@@ -334,4 +334,16 @@ class Event < ApplicationRecord
       url: Router.event_url(self, host: "#{request.protocol}#{request.host}:#{request.port}")
     }
   end
+
+  def to_ical
+    Icalendar::Event.new.tap do |event|
+      event.id = id
+      event.dtstart = start_date
+      event.dtend = end_date
+      event.summary = name
+      event.description = description
+      event.location = static_metadata.location
+      event.url = website
+    end
+  end
 end
