@@ -322,6 +322,12 @@ GEM
       multi_xml (>= 0.5.2)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
+    icalendar (2.11.2)
+      base64
+      ice_cube (~> 0.16)
+      logger
+      ostruct
+    ice_cube (0.17.0)
     importmap-rails (2.2.2)
       actionpack (>= 6.0.0)
       activesupport (>= 6.0.0)
@@ -715,6 +721,7 @@ DEPENDENCIES
   google-protobuf
   groupdate
   hotwire_combobox (~> 0.4.0)
+  icalendar (~> 2.11)
   iso-639
   jbuilder
   json-repair (~> 0.2.0)
