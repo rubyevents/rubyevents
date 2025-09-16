@@ -1,7 +1,7 @@
 ---
-- tiers:
-    - name: Main
-      description:
+- "tiers":
+    - "name": "Main"
+      "description": |
         1 dedicated session (30 mins max, no commercial talks accepted),
         Access to attendees list (attendees who agreed to share their contact with sponsors),
         Large Stand (in-person event), Large Virtual booth, Your logo on conference
@@ -12,11 +12,11 @@
         logo on conference website, Your company mentioned and the logo shown during
         the opening remarks, 10 free tickets for the online event, 5 free tickets for
         the in-person event
-      level: 1
-      sponsors: []
+      "level": 1
+      "sponsors": []
 
-    - name: Diamond
-      description:
+    - "name": "Diamond"
+      "description": |
         Access to attendees list (attendees who agreed to share their contact
         with sponsors), Large Stand (in-person event), Medium Virtual booth, Your logo
         on conference rollup banners (in-person event), Your own rollup banner (80x200cm)
@@ -26,11 +26,11 @@
         communications, Your logo on conference website, Your company mentioned and the
         logo shown during the opening remarks, 8 free tickets for the online event,
         4 free tickets for the in-person event
-      level: 2
-      sponsors: []
+      "level": 2
+      "sponsors": []
 
-    - name: Platinum
-      description:
+    - "name": "Platinum"
+      "description": |
         Small Stand (in-person event), Small Virtual booth, Your logo on
         conference rollup banners (in-person event), Your own rollup banner (80x200cm)
         in the conference room (in-person event), Your logo displayed on rotation in
@@ -39,16 +39,16 @@
         communications, Your logo on conference website, Your company mentioned and the
         logo shown during the opening remarks, 6 free tickets for the online event,
         3 free tickets for the in-person event
-      level: 3
-      sponsors:
-        - name: Mikamai
-          badge: ""
-          website: https://www.mikamai.com/
-          slug: mikamai
-          logo_url: ""
+      "level": 3
+      "sponsors":
+        - "name": "Mikamai"
+          "badge": ""
+          "website": "https://www.mikamai.com/"
+          "slug": "mikamai"
+          "logo_url": ""
 
-    - name: Gold
-      description:
+    - "name": "Gold"
+      "description": |
         Your logo on conference rollup banners (in-person event), Your own
         rollup banner (80x200cm) in the conference room (in-person event), Your logo
         displayed on rotation in the lower third throughout the event, Bring your gadgets
@@ -56,120 +56,119 @@
         bag, Your logo in pre-event communications, Your logo on conference website,
         Your company mentioned and the logo shown during the opening remarks, 5 free
         tickets for the online event, 2 free tickets for the in-person event
-      level: 4
-      sponsors:
-        - name: Deliveroo
-          badge: ""
-          website: https://www.deliveroo.it/
-          slug: deliveroo
-          logo_url: ""
+      "level": 4
+      "sponsors":
+        - "name": "Deliveroo"
+          "badge": ""
+          "website": "https://www.deliveroo.it/"
+          "slug": "deliveroo"
+          "logo_url": ""
 
-    - name: Silver
-      description:
+    - "name": "Silver"
+      "description": |
         Your logo on conference rollup banners (in-person event), Your logo
         displayed on rotation in the lower third throughout the event, Bring your gadgets
         to the in-person event, Your own digital flyer and/or gadget in digital swag
         bag, Your logo in pre-event communications, Your logo on conference website,
         Your company mentioned and the logo shown during the opening remarks, 4 free
         tickets for the online event, 1 free tickets for the in-person event
-      level: 5
-      sponsors:
-        - name: SeeWeb
-          badge: ""
-          website: https://seeweb.it/
-          slug: seeweb
-          logo_url: ""
+      "level": 5
+      "sponsors":
+        - "name": "SeeWeb"
+          "badge": ""
+          "website": "https://seeweb.it/"
+          "slug": "seeweb"
+          "logo_url": ""
 
-        - name: DNSimple
-          badge: ""
-          website: https://dnsimple.com/
-          slug: dnsimple
-          logo_url: ""
+        - "name": "DNSimple"
+          "badge": ""
+          "website": "https://dnsimple.com/"
+          "slug": "dnsimple"
+          "logo_url": ""
 
-        - name: Commit Software
-          badge: ""
-          website: https://www.commitsoftware.it/
-          slug: commit-software
-          logo_url: ""
+        - "name": "Commit Software"
+          "badge": ""
+          "website": "https://www.commitsoftware.it/"
+          "slug": "commit-software"
+          "logo_url": ""
 
-    - name: Bronze
-      description:
+    - "name": "Bronze"
+      "description": |
         Your logo in pre-event communications, Your logo on conference website,
         Your company mentioned and the logo shown during the opening remarks, 2 free
         tickets for the online event
-      level: 6
-      sponsors:
+      "level": 6
+      "sponsors":
+        - "name": "DatoCMS"
+          "badge": ""
+          "website": "https://www.datocms.com/"
+          "slug": "datocms"
+          "logo_url": ""
 
-        - name: DatoCMS
-          badge: ""
-          website: https://www.datocms.com/
-          slug: datocms
-          logo_url: ""
+        - "name": "worders"
+          "badge": ""
+          "website": "https://worders.net/"
+          "slug": "worders"
+          "logo_url": ""
 
-        - name: worders
-          badge: ""
-          website: https://worders.net/
-          slug: worders
-          logo_url: ""
+        - "name": "blue-apron"
+          "badge": ""
+          "website": "https://www.blueapron.com/"
+          "slug": "blue-apron"
+          "logo_url": ""
 
-        - name: blue-apron
-          badge: ""
-          website: https://www.blueapron.com/
-          slug: blue-apron
-          logo_url: ""
+        - "name": "Erlang Solutions"
+          "badge": ""
+          "website": "https://www.erlang-solutions.com/"
+          "slug": "erlang-solutions"
+          "logo_url": ""
 
-        - name: Erlang Solutions
-          badge: ""
-          website: https://www.erlang-solutions.com/
-          slug: erlang-solutions
-          logo_url: ""
+        - "name": "Pragmatic Programmers"
+          "badge": ""
+          "website": "https://pragprog.com/"
+          "slug": "pragmatic-programmers"
+          "logo_url": ""
 
-        - name: Pragmatic Programmers
-          badge: ""
-          website: https://pragprog.com/
-          slug: pragmatic-programmers
-          logo_url: ""
+        - "name": "JetBrains"
+          "badge": ""
+          "website": "https://www.jetbrains.com/"
+          "slug": "jetbrains"
+          "logo_url": ""
 
-        - name: JetBrains
-          badge: ""
-          website: https://www.jetbrains.com/
-          slug: jetbrains
-          logo_url: ""
+        - "name": "Unixstickers"
+          "badge": ""
+          "website": "https://www.unixstickers.com/"
+          "slug": "unixstickers"
+          "logo_url": ""
 
-        - name: Unixstickers
-          badge: ""
-          website: https://www.unixstickers.com/
-          slug: unixstickers
-          logo_url: ""
+        - "name": "AppSignal"
+          "badge": ""
+          "website": "https://www.appsignal.com/"
+          "slug": "appsignal"
+          "logo_url": ""
 
-        - name: AppSignal
-          badge: ""
-          website: https://www.appsignal.com/
-          slug: appsignal
-          logo_url: ""
+        - "name": "Shopify"
+          "badge": ""
+          "website": "https://www.shopify.com/"
+          "slug": "shopify"
+          "logo_url": ""
 
-        - name: Shopify
-          badge: ""
-          website: https://www.shopify.com/
-          slug: shopify
-          logo_url: ""
+        - "name": "Simplificator"
+          "badge": ""
+          "website": "https://www.simplificator.com/"
+          "slug": "simplificator"
+          "logo_url": ""
 
-        - name: Simplificator
-          badge: ""
-          website: https://www.simplificator.com/
-          slug: simplificator
-          logo_url: ""
+        - "name": "Rebased"
+          "badge": ""
+          "website": "https://rebased.pl/"
+          "slug": "rebased"
+          "logo_url": ""
 
-        - name: Rebased
-          badge: ""
-          website: https://rebased.pl/
-          slug: rebased
-          logo_url: ""
-
-    - name: Diversity
-      description:
+    - "name": "Diversity"
+      "description": |
         Your logo in pre-event communications, Your logo on conference website,
         Your company mentioned and the logo shown during the opening remarks, 2 free
         tickets for the online event
-      level: 7
-      sponsors: []
+      "level": 7
+      "sponsors": []
