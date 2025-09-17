@@ -1,4 +1,26 @@
 GIT
+  remote: https://github.com/adrienpoly/avo.git
+  revision: 4ec7b65fdbd2c6435991cf81c32953620faacf0e
+  branch: resolve-herb-crash
+  specs:
+    avo (3.24.0)
+      actionview (>= 6.1)
+      active_link_to
+      activerecord (>= 6.1)
+      activesupport (>= 6.1)
+      addressable
+      avo-heroicons (>= 0.1.1)
+      docile
+      inline_svg
+      meta-tags
+      pagy (>= 7.0.0)
+      prop_initializer (>= 0.2.0)
+      turbo-rails (>= 2.0.0)
+      turbo_power (>= 0.6.0)
+      view_component (>= 3.7.0)
+      zeitwerk (>= 2.6.12)
+
+GIT
   remote: https://github.com/rails/rails.git
   revision: 5abed4e6e7fbc7de5fff1d201451487b06632a8d
   branch: main
@@ -133,22 +155,6 @@ GEM
       metrics (~> 0.12)
       traces (~> 0.18)
     authentication-zero (4.0.3)
-    avo (3.24.0)
-      actionview (>= 6.1)
-      active_link_to
-      activerecord (>= 6.1)
-      activesupport (>= 6.1)
-      addressable
-      avo-heroicons (>= 0.1.1)
-      docile
-      inline_svg
-      meta-tags
-      pagy (>= 7.0.0)
-      prop_initializer (>= 0.2.0)
-      turbo-rails (>= 2.0.0)
-      turbo_power (>= 0.6.0)
-      view_component (>= 3.7.0)
-      zeitwerk (>= 2.6.12)
     avo-heroicons (0.1.1)
     base64 (0.3.0)
     bcrypt (3.1.20)
@@ -311,6 +317,10 @@ GEM
       activesupport (>= 7.1)
     hashdiff (1.2.1)
     hashie (5.0.0)
+    herb (0.7.2-aarch64-linux-gnu)
+    herb (0.7.2-arm64-darwin)
+    herb (0.7.2-x86_64-darwin)
+    herb (0.7.2-x86_64-linux-gnu)
     hotwire_combobox (0.4.0)
       platform_agent (>= 1.0.1)
       rails (>= 7.0.7.2)
@@ -414,13 +424,13 @@ GEM
       net-protocol
     net-ssh (7.3.0)
     nio4r (2.7.4)
-    nokogiri (1.18.9-aarch64-linux-gnu)
+    nokogiri (1.18.10-aarch64-linux-gnu)
       racc (~> 1.4)
-    nokogiri (1.18.9-arm64-darwin)
+    nokogiri (1.18.10-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.18.9-x86_64-darwin)
+    nokogiri (1.18.10-x86_64-darwin)
       racc (~> 1.4)
-    nokogiri (1.18.9-x86_64-linux-gnu)
+    nokogiri (1.18.10-x86_64-linux-gnu)
       racc (~> 1.4)
     oauth2 (2.0.14)
       faraday (>= 0.17.3, < 4.0)
@@ -516,6 +526,9 @@ GEM
     rdoc (6.14.2)
       erb
       psych (>= 4.0.0)
+    reactionview (0.1.2)
+      actionview (>= 7.0)
+      herb (>= 0.7.0, < 1.0.0)
     redcarpet (3.6.1)
     regexp_parser (2.11.2)
     reline (0.6.2)
@@ -686,7 +699,7 @@ DEPENDENCIES
   annotaterb
   appsignal
   authentication-zero
-  avo
+  avo!
   bcrypt (~> 3.1.7)
   bootsnap
   bundler-audit
@@ -733,6 +746,7 @@ DEPENDENCIES
   rails-controller-testing
   rails-i18n (~> 8.0)
   rails_autolink (~> 1.1)
+  reactionview
   redcarpet (~> 3.6)
   ruby-lsp-rails
   ruby-openai
