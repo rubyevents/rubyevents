@@ -1,7 +1,7 @@
 <div class="flex flex-col gap-4">
-  <div id="talks" class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gallery">
-    <p class="only:block hidden">Whoops! you have no videos!</p>
-    <%= render partial: "talks/card",
+  <% if watch_list.talks.present? %>
+    <div id="talks" class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gallery">
+      <%= render partial: "talks/card",
           collection: watch_list.talks,
           as: :talk,
           locals: {
@@ -11,5 +11,12 @@
             back_to: watch_lists_path,
             back_to_title: watch_list.name
           } %>
-  </div>
+    </div>
+  <% else %>
+    <div class="py-8 text-center">
+      <h2 class="mb-4 text-xl">No favorite videos yet</h2>
+      <p class="mb-4 text-gray-600">Start favorite videos to see them appear here.</p>
+      <%= link_to "Browse Videos", talks_path, class: "btn btn-primary" %>
+    </div>
+  <% end %>
 </div>
