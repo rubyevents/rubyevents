@@ -1,4 +1,26 @@
 GIT
+  remote: https://github.com/adrienpoly/avo.git
+  revision: 4ec7b65fdbd2c6435991cf81c32953620faacf0e
+  branch: resolve-herb-crash
+  specs:
+    avo (3.24.0)
+      actionview (>= 6.1)
+      active_link_to
+      activerecord (>= 6.1)
+      activesupport (>= 6.1)
+      addressable
+      avo-heroicons (>= 0.1.1)
+      docile
+      inline_svg
+      meta-tags
+      pagy (>= 7.0.0)
+      prop_initializer (>= 0.2.0)
+      turbo-rails (>= 2.0.0)
+      turbo_power (>= 0.6.0)
+      view_component (>= 3.7.0)
+      zeitwerk (>= 2.6.12)
+
+GIT
   remote: https://github.com/rails/rails.git
   revision: d25e3f81c3196e30752d18713b35ff21e49f4c43
   branch: main
@@ -698,7 +720,7 @@ DEPENDENCIES
   annotaterb
   appsignal
   authentication-zero
-  avo
+  avo!
   bcrypt (~> 3.1.7)
   bootsnap
   bundler-audit

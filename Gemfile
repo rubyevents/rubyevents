@@ -157,7 +157,7 @@ gem "redcarpet", "~> 3.6"
 gem "country_select"
 
 # admin
-gem "avo"
+gem "avo", github: "adrienpoly/avo", branch: "resolve-herb-crash"
 gem "marksmith"
 gem "commonmarker"
 
