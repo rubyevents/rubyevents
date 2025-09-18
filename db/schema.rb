@@ -11,6 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[8.1].define(version: 2025_09_03_125458) do
+
   create_table "_litestream_lock", id: false, force: :cascade do |t|
     t.integer "id"
   end
@@ -391,6 +392,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_09_03_125458) do
   end
 
   create_table "watched_talks", force: :cascade do |t|
+    t.boolean "completed", default: false, null: false
     t.datetime "created_at", null: false
     t.integer "progress_seconds", default: 0, null: false
     t.integer "talk_id", null: false

@@ -5,6 +5,7 @@
 # Table name: watched_talks
 #
 #  id               :integer          not null, primary key
+#  completed        :boolean          default(FALSE), not null
 #  progress_seconds :integer          default(0), not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
