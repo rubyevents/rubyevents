@@ -136,7 +136,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "page#home"
 
-  resources :watch_lists, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
+  resources :watch_lists, only: [:index, :new, :create, :show, :edit, :update, :destroy], path: "bookmarks" do
     resources :talks, only: [:create, :destroy], controller: "watch_list_talks"
   end
 

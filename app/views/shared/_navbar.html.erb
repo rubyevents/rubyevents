@@ -24,7 +24,7 @@
           <div class="flex items-center gap-2">
             <ul class="desktop-menu">
               <%= render "shared/navbar/link", link_title: "Recently Watched", path: watched_talks_path %>
-              <%= render "shared/navbar/link", link_title: "Favorites", path: watch_lists_path %>
+              <%= render "shared/navbar/link", link_title: "Bookmarks", path: watch_lists_path %>
             </ul>
             <% if Current.user.default_watch_list.talks_count.positive? %>
               <div class="badge badge-secondary"><%= Current.user.default_watch_list.talks_count %></div>
