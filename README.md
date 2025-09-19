@@ -22,6 +22,17 @@ For more information on contributing conference data, please visit [this page](/
 
 We have tried to make the setup process as simple as possible so that in a few commands you can have the project with real data running locally.
 
+### Devcontainers
+
+In addition to the local development flow described below, we support [devcontainers](https://containers.dev).
+If you open this project in VS Code and you have the [dev containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) installed, it will prompt you and ask if you want to reopen in a dev contatiner.
+This will set up the dev environment for you in docker, and reopen your editor from within the context of the rails container, so you can run commands and work with the project as if it was local.
+All file changes will be present locally when you close the container.
+
+- Use `gh auth login` to auth with GitHub, so you can push commits from within the container.
+- Do not run `bin/setup`. It starts docker containers, and you're already in one.
+- The application is forwarded to [localhost:3000](localhost:3000) and starts automatically on boot.
+
 ### Requirements
 
 - Ruby 3.4.5

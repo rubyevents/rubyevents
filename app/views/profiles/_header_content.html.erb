@@ -10,7 +10,7 @@
           <span class="text-sm content-center text-[#737373]">(<%= user.pronouns %>)</span>
         <% end %>
         <% if user.verified? %>
-          <%= ui_tooltip "#{user.name} is a verified speaker" do %>
+          <%= ui_tooltip "#{user.name} is a verified Rubyist" do %>
             <%= fa("badge-check", class: "fill-blue-500", size: :sm) %>
           <% end %>
         <% end %>
