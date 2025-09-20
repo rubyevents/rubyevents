@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_09_03_125458) do
+ActiveRecord::Schema[8.1].define(version: 2025_09_20_194438) do
   create_table "_litestream_lock", id: false, force: :cascade do |t|
     t.integer "id"
   end
@@ -58,6 +58,17 @@ ActiveRecord::Schema[8.1].define(version: 2025_09_03_125458) do
     t.string "visitor_token"
     t.index ["user_id"], name: "index_ahoy_visits_on_user_id"
     t.index ["visit_token"], name: "index_ahoy_visits_on_visit_token", unique: true
+  end
+
+  create_table "badge_awards", force: :cascade do |t|
+    t.datetime "awarded_at", null: false
+    t.string "badge_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["badge_id"], name: "index_badge_awards_on_badge_id"
+    t.index ["user_id", "badge_id"], name: "index_badge_awards_on_user_id_and_badge_id_unique_awarded", unique: true
+    t.index ["user_id"], name: "index_badge_awards_on_user_id"
   end
 
   create_table "connected_accounts", force: :cascade do |t|
@@ -401,6 +412,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_09_03_125458) do
     t.index ["user_id"], name: "index_watched_talks_on_user_id"
   end
 
+  add_foreign_key "badge_awards", "users"
   add_foreign_key "connected_accounts", "users"
   add_foreign_key "email_verification_tokens", "users"
   add_foreign_key "event_participations", "events"
