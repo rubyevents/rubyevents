@@ -43,12 +43,12 @@ class Events::CountriesControllerTest < ActionDispatch::IntegrationTest
     assert_kind_of Array, events
 
     # All events should either match the country or be filtered out
-    # The controller filters events where event.static_metadata&.country == @country
+    # The controller filters events where event.country == @country
     country = assigns(:country)
     if country.present?
       events.each do |event|
         # Each event should either have matching country or be included due to the filtering logic
-        assert event.static_metadata.nil? || event.static_metadata.country == country || event.static_metadata.country.nil?
+        assert event.static_metadata.nil? || event.country == country || event.country.nil?
       end
     end
   end
