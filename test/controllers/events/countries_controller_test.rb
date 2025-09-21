@@ -43,7 +43,7 @@ class Events::CountriesControllerTest < ActionDispatch::IntegrationTest
     assert_kind_of Array, events
 
     # All events should either match the country or be filtered out
-    # The controller filters events where event..country == @country
+    # The controller filters events where event.country == @country
     country = assigns(:country)
     if country.present?
       events.each do |event|
