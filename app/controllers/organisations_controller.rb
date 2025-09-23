@@ -1,5 +1,6 @@
 class OrganisationsController < ApplicationController
   include Pagy::Backend
+
   skip_before_action :authenticate_user!, only: %i[index show]
   before_action :set_organisation, only: %i[show]
 

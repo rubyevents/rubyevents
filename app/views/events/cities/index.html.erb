@@ -19,7 +19,7 @@
           <% next unless cities&.any? %>
 
           <h2 class="mt-6">
-            <% country_object = @events_by_city[cities.first].first.static_metadata&.country %>
+            <% country_object = @events_by_city[cities.first].first.country %>
             <% if country_object.present? %>
               <%= link_to country_path(country.parameterize), class: "hover:underline" do %>
                 <%= country_object.emoji_flag %> <%= country %>
