@@ -66,6 +66,12 @@ class Event < ApplicationRecord
   has_many :visitor_participants, -> { where(event_participations: {attended_as: :visitor}) },
     through: :event_participations, source: :user
 
+  has_many :event_involvements, dependent: :destroy
+  has_many :involved_users, -> { where(event_involvements: {involvementable_type: "User"}) },
+    through: :event_involvements, source: :involvementable, source_type: "User"
+  has_many :involved_organisations, -> { where(event_involvements: {involvementable_type: "Organisation"}) },
+    through: :event_involvements, source: :involvementable, source_type: "Organisation"
+
   has_object :schedule
   has_object :static_metadata
   has_object :sponsors_file

@@ -20,6 +20,10 @@ class SponsorsController < ApplicationController
       .reject { |country, _| country.nil? }
       .sort_by { |country, _| country.translations["en"] }
 
+    involvements = @sponsor.event_involvements.includes(:event).order(:position)
+    @involvements_by_role = involvements.group_by(&:role)
+    @involved_events = @sponsor.involved_events.includes(:organisation).distinct.order(start_date: :desc)
+
     @statistics = prepare_sponsor_statistics
   end
 

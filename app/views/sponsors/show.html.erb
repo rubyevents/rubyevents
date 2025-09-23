@@ -21,6 +21,23 @@
           <% end %>
         </div>
 
+        <% if @involvements_by_role.any? %>
+          <input type="radio" name="sponsor_tabs" role="tab" class="tab px-6" aria-label="Involvements (<%= @involved_events.size %>)">
+
+          <div role="tabpanel" class="tab-content mt-6">
+            <% @involvements_by_role.each do |role, involvements| %>
+              <div class="mb-12">
+                <h3 class="text-xl font-bold text-gray-900 mb-6"><%= role %></h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  <% involvements.each do |involvement| %>
+                    <%= render partial: "events/card", locals: {event: involvement.event} %>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+
         <% if @countries_with_events.any? %>
           <input type="radio" name="sponsor_tabs" role="tab" class="tab px-6" aria-label="Map (<%= @countries_with_events.size %>)">
 

@@ -22,6 +22,10 @@
 
   <%= active_link_to "Participants", event_participants_path(event), class: "tab", active_class: "tab-active", role: "tab" %>
 
+  <% if event.event_involvements.any? %>
+    <%= active_link_to "Involvements", event_involvements_path(event), class: "tab", active_class: "tab-active", role: "tab" %>
+  <% end %>
+
   <% unless event.meetup? %>
     <%= active_link_to event_schedules_path(event), class: class_names("tab", {"text-red-500" => !event.schedule.exist?}), active_class: "tab-active", role: "tab" do %>
       Schedule
