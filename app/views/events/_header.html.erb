@@ -26,9 +26,9 @@
       <div class="flex-col flex justify-center break-all">
         <h1 class="mb-2 text-black font-bold"><%= title event.name %></h1>
         <h3 class="text-[#636B74]">
-          <% if event.static_metadata.location.present? && event.static_metadata.country.present? %>
-            <%= link_to event.static_metadata.location.gsub(", #{event.static_metadata.country.translations["en"]}", ""), city_path(event.static_metadata.location.parameterize), class: "link" %>,
-            <%= link_to event.static_metadata.country.translations["en"], event.country_url, class: "link" %>
+          <% if event.static_metadata.location.present? && event.country.present? %>
+            <%= link_to event.static_metadata.location.gsub(", #{event.country.translations["en"]}", ""), city_path(event.static_metadata.location.parameterize), class: "link" %>,
+            <%= link_to event.country.translations["en"], event.country_url, class: "link" %>
           <% else %>
             <%= link_to event.static_metadata.location, event.country_url, class: "link" %>
           <% end %>

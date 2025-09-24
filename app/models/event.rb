@@ -178,6 +178,12 @@ class Event < ApplicationRecord
     end
   end
 
+  def country
+    return nil if country_code.blank?
+
+    ISO3166::Country.new(country_code)
+  end
+
   def country_name
     return nil if country_code.blank?
 
