@@ -49,7 +49,6 @@ MeiliSearch::Rails.deactivate! do
 
       puts event.slug unless Rails.env.test?
 
-
       cfp_file_path = "#{Rails.root}/data/#{organisation.slug}/#{event.slug}/cfp.yml"
 
       if File.exist?(cfp_file_path)

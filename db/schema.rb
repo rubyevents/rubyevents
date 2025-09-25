@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_08_19_022348) do
+ActiveRecord::Schema[8.1].define(version: 2025_08_23_020826) do
   create_table "ahoy_events", force: :cascade do |t|
     t.string "name"
     t.text "properties"
@@ -95,9 +95,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_08_19_022348) do
 
   create_table "events", force: :cascade do |t|
     t.integer "canonical_id"
-    t.date "cfp_close_date"
-    t.string "cfp_link"
-    t.date "cfp_open_date"
     t.string "city"
     t.string "country_code"
     t.datetime "created_at", null: false
