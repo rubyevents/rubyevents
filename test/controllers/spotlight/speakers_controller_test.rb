@@ -27,6 +27,24 @@ class Spotlight::SpeakersControllerTest < ActionDispatch::IntegrationTest
     assert assigns(:speakers_count).positive?
   end
 
+  test "should filter out unbalanced quotes" do
+    get spotlight_speakers_url(format: :turbo_stream, s: 'marco"')
+    assert_response :success
+    assert_equal "text/vnd.turbo-stream.html", @response.media_type
+  end
+
+  test "should filter out invalid quotes" do
+    get spotlight_speakers_url(format: :turbo_stream, s: "'")
+    assert_response :success
+    assert_equal "text/vnd.turbo-stream.html", @response.media_type
+  end
+
+  test "should filter out invalid quotes with single quotes" do
+    get spotlight_speakers_url(format: :turbo_stream, s: "marco'")
+    assert_response :success
+    assert_equal "text/vnd.turbo-stream.html", @response.media_type
+  end
+
   test "should not track analytics" do
     assert_no_difference "Ahoy::Event.count" do
       with_event_tracking do

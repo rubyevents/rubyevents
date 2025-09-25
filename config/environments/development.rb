@@ -83,6 +83,8 @@ Rails.application.configure do
   # https://bugs.webkit.org/show_bug.cgi?id=193533
   config.action_view.preload_links_header = false
 
+  config.solid_queue.logger = ActiveSupport::Logger.new($stdout)
+
   if ENV["PROFILE"]
     config.cache_classes = true
     config.eager_load = true

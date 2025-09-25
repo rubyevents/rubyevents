@@ -1,4 +1,4 @@
-<%= link_to speaker_path(speaker), id: dom_id(speaker), class: "flex justify-between items-center" do %>
+<%= link_to profile_path(speaker), id: dom_id(speaker), class: "flex justify-between items-center" do %>
   <div class="flex items-center gap-3">
     <span><%= sanitize speaker.name_with_snippet %></span>
   </div>

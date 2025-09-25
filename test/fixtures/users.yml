@@ -59,14 +59,14 @@ two:
   password_digest: <%= BCrypt::Password.create("Secret1*3*5*") %>
 
 marco:
-  email: marco@rubyevents.org
+  email: marcoroth@rubyevents.org
   password_digest: <%= BCrypt::Password.create("Secret1*3*5*") %>
-  name: Marco
-  twitter: marco
+  name: Marco Roth
+  twitter: marcoroth
   github_handle: marcoroth
   bio: "Marco"
-  website: https://marco.com/
-  slug: marco
+  website: https://marcoroth.dev
+  slug: marcoroth
   talks_count: 2
 
 yaroslav:

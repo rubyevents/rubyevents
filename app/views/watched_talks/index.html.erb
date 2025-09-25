@@ -4,7 +4,6 @@
       <%= title "Recently Watched Videos" %>
     </h1>
   </div>
-
   <% if @talks.present? %>
     <div id="talks" class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gallery">
       <%= render partial: "talks/card",
@@ -12,7 +11,7 @@
             as: :talk,
             locals: {
               favoritable: true,
-              user_favorite_talks_ids: [],
+              user_favorite_talks_ids: @user_favorite_talks_ids,
               watched_talks: @watched_talks,
               back_to: watched_talks_path
             } %>

@@ -1,7 +1,9 @@
 module Admin
   class SuggestionsController < ApplicationController
+    include Pagy::Backend
+
     def index
-      @suggestions = Suggestion.pending
+      @pagy, @suggestions = pagy(Suggestion.pending.order(created_at: :asc))
     end
 
     def update

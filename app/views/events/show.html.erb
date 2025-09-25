@@ -1,4 +1,4 @@
-<%= render partial: "events/header", locals: {event: @event} %>
+<%= render partial: "events/header", locals: {event: @event, participation: @participation} %>
 
 <%= turbo_frame_tag dom_id(@event), data: {turbo_action: "advance", turbo_frame: "_top"} do %>
   <div class="container py-8">

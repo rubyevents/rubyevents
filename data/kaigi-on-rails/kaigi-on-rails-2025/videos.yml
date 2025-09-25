@@ -1,22 +1,456 @@
 # Website: https://kaigionrails.org/2025/
 # Videos: -
 ---
-- title: "Keynote by Kyosuke MOROHASHI"
+## Day 1 - 2025-09-26
+
+- title: "Keynote: dynamic!"
   speakers:
     - Kyosuke MOROHASHI
   event_name: "Kaigi on Rails 2025"
   date: "2025-09-26"
+  track: "Hall Red"
   description: ""
   language: "japanese"
   video_provider: "scheduled"
-  video_id: "kyosuke-morohashi-kaigi-on-rails-2025"
+  video_id: "moro-dynamic-kaigi-on-rails-2025"
+  id: "moro-dynamic-kaigi-on-rails-2025"
 
-- title: "Keynote by Samuel Williams"
+# 13:30-14:00
+- title: "RailsのPostgreSQL 18対応"
+  speakers:
+    - Yasuo Honda
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-26"
+  track: "Hall Red"
+  description: ""
+  language: "japanese"
+  video_provider: "scheduled"
+  video_id: "yasuo-honda-kaigi-on-rails-2025"
+  id: "yasuo-honda-kaigi-on-rails-2025"
+
+- title: "高度なUI/UXこそHotwireで作ろう"
+  speakers:
+    - Naofumi Kagami
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-26"
+  track: "Hall Blue"
+  description: ""
+  language: "japanese"
+  video_provider: "scheduled"
+  video_id: "naofumi-kagami-kaigi-on-rails-2025"
+  id: "naofumi-kagami-kaigi-on-rails-2025"
+
+# 14:10-14:25
+- title: "そのpreloadは必要？──見過ごされたpreloadが技術的負債として爆発した日"
+  speakers:
+    - mugi
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-26"
+  track: "Hall Red"
+  description: ""
+  language: "japanese"
+  video_provider: "scheduled"
+  video_id: "mugi-kaigi-on-rails-2025"
+  id: "mugi-kaigi-on-rails-2025"
+
+- title: "入門 FormObject"
+  speakers:
+    - Shu Oogawara
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-26"
+  track: "Hall Blue"
+  description: ""
+  language: "japanese"
+  video_provider: "scheduled"
+  video_id: "shu-oogawara-kaigi-on-rails-2025"
+  id: "shu-oogawara-kaigi-on-rails-2025"
+
+# 14:35-15:05
+- title: "Railsアプリケーション開発者のためのブックガイド"
+  speakers:
+    - Masayoshi Takahashi
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-26"
+  track: "Hall Red"
+  description: ""
+  language: "japanese"
+  video_provider: "scheduled"
+  video_id: "masayoshi-takahashi-kaigi-on-rails-2025"
+  id: "masayoshi-takahashi-kaigi-on-rails-2025"
+
+- title: "もう並列実行は怖くない"
+  speakers:
+    - katakyo
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-26"
+  track: "Hall Blue"
+  description: ""
+  language: "japanese"
+  video_provider: "scheduled"
+  video_id: "katakyo-kaigi-on-rails-2025"
+  id: "katakyo-kaigi-on-rails-2025"
+
+# 15:45-16:00
+- title: "全問正解率約3%: RubyKaigiで出題したやりがちな危険コード5選"
+  speakers:
+    - Yuta Nakashima
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-26"
+  track: "Hall Red"
+  description: ""
+  language: "japanese"
+  video_provider: "scheduled"
+  video_id: "yuta-nakashima-kaigi-on-rails-2025"
+  id: "yuta-nakashima-kaigi-on-rails-2025"
+
+- title: "Web Componentsで実現する Hotwire"
+  speakers:
+    - Daichi KUDO
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-26"
+  track: "Hall Blue"
+  description: ""
+  language: "japanese"
+  video_provider: "scheduled"
+  video_id: "daichi-kudo-kaigi-on-rails-2025"
+  id: "daichi-kudo-kaigi-on-rails-2025"
+
+# 16:10-16:40
+- title: "5年間のFintech × Rails実践に学ぶ - 基本に忠実な運用で築く高信頼性システム"
+  speakers:
+    - ohbarye
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-26"
+  track: "Hall Red"
+  description: ""
+  language: "japanese"
+  video_provider: "scheduled"
+  video_id: "ohbarye-kaigi-on-rails-2025"
+  id: "ohbarye-kaigi-on-rails-2025"
+
+- title: "あなたのWebサービスはAIに自動テストしてもらえる？"
+  speakers:
+    - Yusuke Iwaki
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-26"
+  track: "Hall Blue"
+  description: ""
+  language: "japanese"
+  video_provider: "scheduled"
+  video_id: "yusuke-iwaki-kaigi-on-rails-2025"
+  id: "yusuke-iwaki-kaigi-on-rails-2025"
+
+# 16:50-17:05
+- title: "2分台で1500examples完走！爆速CIを支える環境構築術"
+  speakers:
+    - Hayato OKUMOTO
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-26"
+  track: "Hall Red"
+  description: ""
+  language: "japanese"
+  video_provider: "scheduled"
+  video_id: "hayato-okumoto-kaigi-on-rails-2025"
+  id: "hayato-okumoto-kaigi-on-rails-2025"
+
+- title: "ChatGPT Structured Outputs × Hotwireアプリケーション開発と実践事例"
+  speakers:
+    - yuto0214w
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-26"
+  track: "Hall Blue"
+  description: ""
+  language: "japanese"
+  video_provider: "scheduled"
+  video_id: "yuto0214w-kaigi-on-rails-2025"
+  id: "yuto0214w-kaigi-on-rails-2025"
+
+# 17:15-17:45
+- title: "Railsによる人工的「設計」入門"
+  speakers:
+    - Yasuko Ohba
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-26"
+  track: "Hall Red"
+  description: ""
+  language: "japanese"
+  video_provider: "scheduled"
+  video_id: "yasuko-ohba-kaigi-on-rails-2025"
+  id: "yasuko-ohba-kaigi-on-rails-2025"
+
+- title: "テストがflakyでしかなかったサービスのテストを全部書き直した話"
+  speakers:
+    - Chisato Hasegawa
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-26"
+  track: "Hall Blue"
+  description: ""
+  language: "japanese"
+  video_provider: "scheduled"
+  video_id: "chisato-hasegawa-kaigi-on-rails-2025"
+  id: "chisato-hasegawa-kaigi-on-rails-2025"
+
+# 17:55-18:10
+- title: "今改めてServiceクラスについて考える 〜あるRails開発者の10年〜"
+  speakers:
+    - Tomohiro Hashidate
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-26"
+  track: "Hall Red"
+  description: ""
+  language: "japanese"
+  video_provider: "scheduled"
+  video_id: "tomohiro-hashidate-kaigi-on-rails-2025"
+  id: "tomohiro-hashidate-kaigi-on-rails-2025"
+
+- title: "Heroku でもいいじゃない！君はまだ本当の Heroku を知らないだけだ。"
+  speakers:
+    - koji sumi
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-26"
+  track: "Hall Blue"
+  description: ""
+  language: "japanese"
+  video_provider: "scheduled"
+  video_id: "koji-sumi-kaigi-on-rails-2025"
+  id: "koji-sumi-kaigi-on-rails-2025"
+
+## Day 2 - 2025-09-27
+
+# 10:00-10:30
+- title: "2重リクエスト完全攻略HANDBOOK"
+  speakers:
+    - Shohei Mitani
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-27"
+  track: "Hall Red"
+  description: ""
+  language: "japanese"
+  video_provider: "scheduled"
+  video_id: "shohei-mitani-kaigi-on-rails-2025"
+  id: "shohei-mitani-kaigi-on-rails-2025"
+
+- title: "ActiveRecord使いが知るべき世界：Java/Go/TypeScriptのORMアプローチ比較"
+  speakers:
+    - tora-kouno # 河野裕隆
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-27"
+  track: "Hall Blue"
+  description: ""
+  language: "japanese"
+  video_provider: "scheduled"
+  video_id: "tora-kouno-kaigi-on-rails-2025"
+  id: "tora-kouno-kaigi-on-rails-2025"
+
+# 10:40-10:55
+- title: "小規模から中規模開発へ、構造化ログからはじめる信頼性の担保"
+  speakers:
+    - kakudooo
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-27"
+  track: "Hall Red"
+  description: ""
+  language: "japanese"
+  video_provider: "scheduled"
+  video_id: "kakudooo-kaigi-on-rails-2025"
+  id: "kakudooo-kaigi-on-rails-2025"
+
+- title: "履歴 on Rails : Bitemporal Data Modelで実現する履歴管理"
+  speakers:
+    - hypermkt
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-27"
+  track: "Hall Blue"
+  description: ""
+  language: "japanese"
+  video_provider: "scheduled"
+  video_id: "hypermkt-kaigi-on-rails-2025"
+  id: "hypermkt-kaigi-on-rails-2025"
+
+# 11:05-11:35
+- title: "Sidekiq その前に：Webアプリケーションにおける非同期ジョブ設計原則"
+  speakers:
+    - morihirok
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-27"
+  track: "Hall Red"
+  description: ""
+  language: "japanese"
+  video_provider: "scheduled"
+  video_id: "morihirok-kaigi-on-rails-2025"
+  id: "morihirok-kaigi-on-rails-2025"
+
+- title: "階層構造を表現するデータ構造とリファクタリング"
+  speakers:
+    - yuhi
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-27"
+  track: "Hall Blue"
+  description: ""
+  language: "japanese"
+  video_provider: "scheduled"
+  video_id: "yuhi-kaigi-on-rails-2025"
+  id: "yuhi-kaigi-on-rails-2025"
+
+# 13:05-13:20
+- title: "Railsアプリから何を切り出す？機能分離の判断基準"
+  speakers:
+    - yumu
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-27"
+  track: "Hall Red"
+  description: ""
+  language: "japanese"
+  video_provider: "scheduled"
+  video_id: "yumu-kaigi-on-rails-2025"
+  id: "yumu-kaigi-on-rails-2025"
+
+- title: "Range on Rails ― 「多重範囲型」という新たな選択肢"
+  speakers:
+    - umeda-rizap # 梅田智大
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-27"
+  track: "Hall Blue"
+  description: ""
+  language: "japanese"
+  video_provider: "scheduled"
+  video_id: "umeda-rizap-kaigi-on-rails-2025"
+  id: "umeda-rizap-kaigi-on-rails-2025"
+
+# 13:30-14:00
+- title: "Introducing ReActionView: A ActionView-Compatible ERB Engine"
+  speakers:
+    - Marco Roth
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-27"
+  track: "Hall Red"
+  description: ""
+  language: "english"
+  video_provider: "scheduled"
+  video_id: "marco-roth-kaigi-on-rails-2025"
+  id: "marco-roth-kaigi-on-rails-2025"
+
+- title: "非同期処理実行基盤、Delayed脱出〜SolidQueue完全移行への旅路。"
+  speakers:
+    - Shohei Kobayashi
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-27"
+  track: "Hall Blue"
+  description: ""
+  language: "japanese"
+  video_provider: "scheduled"
+  video_id: "shohei-kobayashi-kaigi-on-rails-2025"
+  id: "shohei-kobayashi-kaigi-on-rails-2025"
+
+# 14:10-14:25
+- title: "非同期jobを駆使したPuppeteerでのE2Eテスト・収録の安定化"
+  speakers:
+    - Kazuma Muramatsu
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-27"
+  track: "Hall Red"
+  description: ""
+  language: "japanese"
+  video_provider: "scheduled"
+  video_id: "kazuma-muramatsu-kaigi-on-rails-2025"
+  id: "kazuma-muramatsu-kaigi-on-rails-2025"
+
+- title: "自分でRuby製アプリを使い続けて良かったこと"
+  speakers:
+    - hotoolong
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-27"
+  track: "Hall Blue"
+  description: ""
+  language: "japanese"
+  video_provider: "scheduled"
+  video_id: "hotoolong-kaigi-on-rails-2025"
+  id: "hotoolong-kaigi-on-rails-2025"
+
+# 14:35-14:50
+- title: "マンガアプリAPIと共存するWeb体験版の作り方 〜 コンテンツ保護技術を添えて"
+  speakers:
+    - baba
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-27"
+  track: "Hall Red"
+  description: ""
+  language: "japanese"
+  video_provider: "scheduled"
+  video_id: "baba-kaigi-on-rails-2025"
+  id: "baba-kaigi-on-rails-2025"
+
+- title: "ドメイン指定Cookieとサービス間共有Redisで作る認証基盤サービス"
+  speakers:
+    - kokuyouwind # 黒曜
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-27"
+  track: "Hall Blue"
+  description: ""
+  language: "japanese"
+  video_provider: "scheduled"
+  video_id: "kokuyouwind-kaigi-on-rails-2025"
+  id: "kokuyouwind-kaigi-on-rails-2025"
+
+# 15:30-16:00
+- title: "Rails on SQLite: exciting new ways to cause outages"
+  speakers:
+    - André Arko
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-27"
+  track: "Hall Red"
+  description: ""
+  language: "english"
+  video_provider: "scheduled"
+  video_id: "andre-arko-kaigi-on-rails-2025"
+  id: "andre-arko-kaigi-on-rails-2025"
+
+- title: '複雑なデータ処理 × 静的サイト" を両立させる、楽をするRails運用'
+  speakers:
+    - hogelog
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-27"
+  track: "Hall Blue"
+  description: ""
+  language: "japanese"
+  video_provider: "scheduled"
+  video_id: "hogelog-kaigi-on-rails-2025"
+  id: "hogelog-kaigi-on-rails-2025"
+
+# 16:10-16:25
+- title: "rails g authenticationから学ぶRails8.0時代の認証"
+  speakers:
+    - Shinichi Maeshima
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-27"
+  track: "Hall Red"
+  description: ""
+  language: "japanese"
+  video_provider: "scheduled"
+  video_id: "shinichi-maeshima-kaigi-on-rails-2025"
+  id: "shinichi-maeshima-kaigi-on-rails-2025"
+
+- title: "「技術負債にならない・間違えない」権限管理の設計と実装"
+  speakers:
+    - Yusuke Ishimi
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-27"
+  track: "Hall Blue"
+  description: ""
+  language: "japanese"
+  video_provider: "scheduled"
+  video_id: "yusuke-ishimi-kaigi-on-rails-2025"
+  id: "yusuke-ishimi-kaigi-on-rails-2025"
+
+# 17:05-17:45 Closing Keynote
+- title: "Keynote: Building and Deploying Interactive Rails Applications with Falcon"
   speakers:
     - Samuel Williams
   event_name: "Kaigi on Rails 2025"
   date: "2025-09-27"
+  track: "Hall Red"
   description: ""
   language: "english"
   video_provider: "scheduled"
   video_id: "samuel-williams-kaigi-on-rails-2025"
+  id: "samuel-williams-kaigi-on-rails-2025"

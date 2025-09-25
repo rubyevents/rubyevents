@@ -12,13 +12,13 @@ class Events::CitiesController < ApplicationController
 
     @cities_by_country = @events_by_city.keys.group_by { |city|
       events = @events_by_city[city]
-      country = events.first.static_metadata&.country
+      country = events.first.country
       country&.translations&.dig("en") || "Unknown"
     }.sort_by { |country, _cities| country }.to_h
 
     @clean_city_names = {}
     @events_by_city.each do |city, events|
-      country = events.first.static_metadata&.country
+      country = events.first.country
       country_name = country&.translations&.dig("en")
       clean_name = city
 
@@ -32,7 +32,7 @@ class Events::CitiesController < ApplicationController
     @countries_by_continent = @cities_by_country.keys.group_by { |country_name|
       city = @cities_by_country[country_name].first
       events = @events_by_city[city]
-      country = events.first.static_metadata&.country
+      country = events.first.country
       country&.continent || "Unknown"
     }.sort_by { |continent, _countries| continent || "ZZ" }.to_h
   end
@@ -47,7 +47,7 @@ class Events::CitiesController < ApplicationController
     if @events.empty?
       redirect_to cities_path
     else
-      @country = @events.first.static_metadata&.country
+      @country = @events.first.country
     end
   end
 end
