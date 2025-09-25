@@ -4,9 +4,6 @@
 # Table name: events
 #
 #  id              :integer          not null, primary key
-#  cfp_close_date  :date
-#  cfp_link        :string
-#  cfp_open_date   :date
 #  city            :string
 #  country_code    :string
 #  date            :date
@@ -59,7 +56,6 @@ class Event < ApplicationRecord
   has_object :schedule
   has_object :static_metadata
   has_object :sponsors_file
-  has_object :cfp
 
   def talks_in_running_order(child_talks: true)
     talks.in_order_of(:video_id, video_ids_in_running_order(child_talks: child_talks))
@@ -324,5 +320,9 @@ class Event < ApplicationRecord
       featured_color: static_metadata.featured_color,
       url: Router.event_url(self, host: "#{request.protocol}#{request.host}:#{request.port}")
     }
+  end
+
+  def open_cfps
+    cfps.where(close_date: Date.today..)
   end
 end
