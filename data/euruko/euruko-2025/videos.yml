@@ -1,20 +1,32 @@
 # Website: https://2025.euruko.org/
-# Schedule: TODO
-
-# TODO: running order
-# TODO: talk dates
 ---
-- title: "Prioritization justice: lessons from making background jobs fair at scale"
-  raw_title: "Prioritization justice: lessons from making background jobs fair at scale by Alexander Baygeldin"
+- title: "Opening Ceremony"
+  raw_title: "Opening Ceremony with Zuzanna Kusznir, Andrzej Krzywda Henrique Cardoso de Faria"
   event_name: "EuRuKo 2025"
   date: "2025-09-18"
   published_at: "TODO"
   announced_at: "2025-05-24"
   speakers:
-    - Alexander Baygeldin
+    - Zuzanna Kusznir
+    - Andrzej Krzywda
+    - Henrique Cardoso de Faria
   description: ""
   video_provider: "scheduled"
-  video_id: "alexander-baygeldin-euruko-2025"
+  video_id: "opening-ceremony-euruko-2025"
+  id: "opening-ceremony-euruko-2025"
+
+- title: "Opening Keynote"
+  raw_title: 'Opening Keynote by Yukihiro "Matz" Matsumoto'
+  event_name: "EuRuKo 2025"
+  date: "2025-09-18"
+  published_at: "TODO"
+  announced_at: "2025-05-24"
+  speakers:
+    - Yukihiro "Matz" Matsumoto
+  description: ""
+  video_provider: "scheduled"
+  video_id: "yukihiro-matz-matsumoto-euruko-2025"
+  id: "yukihiro-matz-matsumoto-euruko-2025"
 
 - title: "Introducing ReActionView: A new ActionView-Compatible ERB Engine"
   raw_title: "Introducing ReActionView: A new ActionView-Compatible ERB Engine by Marco Roth"
@@ -24,153 +36,13 @@
   announced_at: "2025-05-24"
   speakers:
     - Marco Roth
-  description: ""
+  description: |-
+    This talk is the conclusion of a journey I've been sharing throughout 2025. At RubyKaigi, I introduced Herb: a new HTML-aware ERB parser and tooling ecosystem. At RailsConf, I released developer tools built on Herb, including a formatter, linter, and language server, alongside a vision for modernizing and improving the Rails view layer.
+
+    Now, I'll continue with ReActionView: a new ERB engine built on Herb, fully compatible with .html.erb but with HTML validation, better error feedback, reactive updates, and built-in tooling.
   video_provider: "scheduled"
   video_id: "marco-roth-euruko-2025"
-
-- title: "RubyLLM: Making AI Development Beautiful Again"
-  raw_title: "RubyLLM: Making AI Development Beautiful Again by Carmine Paolino"
-  event_name: "EuRuKo 2025"
-  date: "2025-09-18"
-  published_at: "TODO"
-  announced_at: "2025-05-24"
-  speakers:
-    - Carmine Paolino
-  description: ""
-  video_provider: "scheduled"
-  video_id: "carmine-paolino-euruko-2025"
-
-- title: "Rewrite with confidence: validating business rules through isolated testing"
-  raw_title: "Rewrite with confidence: validating business rules through isolated testing by Szymon Fiedler"
-  event_name: "EuRuKo 2025"
-  date: "2025-09-18"
-  published_at: "TODO"
-  announced_at: "2025-05-24"
-  speakers:
-    - Szymon Fiedler
-  description: ""
-  video_provider: "scheduled"
-  video_id: "szymon-fiedler-euruko-2025"
-
-- title: "Making Rails AI-Native with the Model Context Protocol"
-  raw_title: "Making Rails AI-Native with the Model Context Protocol by Paweł Strzałkowski"
-  event_name: "EuRuKo 2025"
-  date: "2025-09-18"
-  published_at: "TODO"
-  announced_at: "2025-05-24"
-  speakers:
-    - Paweł Strzałkowski
-  description: ""
-  video_provider: "scheduled"
-  video_id: "pawel-strzalkowski-euruko-2025"
-
-- title: "gRPC on Ruby On Rails - a perfect match!"
-  raw_title: "gRPC on Ruby On Rails - a perfect match! by Emiliano Della Casa"
-  event_name: "EuRuKo 2025"
-  date: "2025-09-18"
-  published_at: "TODO"
-  announced_at: "2025-05-24"
-  speakers:
-    - Emiliano Della Casa
-  description: ""
-  video_provider: "scheduled"
-  video_id: "emiliano-della-casa-euruko-2025"
-
-- title: "Don't Let Your AI Guess: Teach It to Test!"
-  raw_title: "Don't Let Your AI Guess: Teach It to Test! by Lucian Ghinda"
-  event_name: "EuRuKo 2025"
-  date: "2025-09-18"
-  published_at: "TODO"
-  announced_at: "2025-05-24"
-  speakers:
-    - Lucian Ghinda
-  description: ""
-  video_provider: "scheduled"
-  video_id: "lucian-ghinda-euruko-2025"
-
-- title: "How to improve your own and others' code"
-  raw_title: "How to improve your own and others' code by Fritz Meissner"
-  event_name: "EuRuKo 2025"
-  date: "2025-09-18"
-  published_at: "TODO"
-  announced_at: "2025-05-24"
-  speakers:
-    - Fritz Meissner
-  description: ""
-  video_provider: "scheduled"
-  video_id: "fritz-meissner-euruko-2025"
-
-- title: "Smoke and Mirrors: the Tricks Behind Magical Ruby Interfaces"
-  raw_title: "Smoke and Mirrors: the Tricks Behind Magical Ruby Interfaces by Joel Drapper"
-  event_name: "EuRuKo 2025"
-  date: "2025-09-18"
-  published_at: "TODO"
-  announced_at: "2025-05-24"
-  speakers:
-    - Joel Drapper
-  description: ""
-  video_provider: "scheduled"
-  video_id: "joel-drapper-euruko-2025"
-
-- title: "PicoRuby Hands-on: Internet of Things Edition"
-  raw_title: "PicoRuby Hands-on: Internet of Things Edition by Hitoshi HASUMI"
-  event_name: "EuRuKo 2025"
-  date: "2025-09-18"
-  published_at: "TODO"
-  announced_at: "2025-05-24"
-  speakers:
-    - Hitoshi Hasumi
-  description: ""
-  video_provider: "scheduled"
-  video_id: "hitoshi-hasumi-euruko-2025"
-
-- title: "How a Ruby profiler works: Stackprof under a microscope"
-  raw_title: "How a Ruby profiler works: Stackprof under a microscope by Ivo Anjo"
-  event_name: "EuRuKo 2025"
-  date: "2025-09-18"
-  published_at: "TODO"
-  announced_at: "2025-05-24"
-  speakers:
-    - Ivo Anjo
-  description: ""
-  video_provider: "scheduled"
-  video_id: "ivo-anjo-euruko-2025"
-
-- title: "The hidden value of niche open-source projects"
-  raw_title: "The hidden value of niche open-source projects by Rémy Hannequin"
-  event_name: "EuRuKo 2025"
-  date: "2025-09-18"
-  published_at: "TODO"
-  announced_at: "2025-05-24"
-  speakers:
-    - Rémy Hannequin
-  description: ""
-  video_provider: "scheduled"
-  video_id: "remy-hannequin-euruko-2025"
-
-- title: "Roasting Code for Fun & Profit with Structured AI Workflows"
-  raw_title: "Roasting Code for Fun & Profit with Structured AI Workflows by Obie Fernandez"
-  event_name: "EuRuKo 2025"
-  date: "2025-09-18"
-  published_at: "TODO"
-  announced_at: "2025-05-24"
-  speakers:
-    - Obie Fernandez
-  description: ""
-  video_provider: "scheduled"
-  video_id: "obie-fernandez-euruko-2025"
-
-- title: 'Don''t Be "Thread"-ened: Testing Multithreaded Code with Confidence'
-  raw_title: 'Don''t Be "Thread"-ened: Testing Multithreaded Code with Confidence by Julia Egorova'
-  event_name: "EuRuKo 2025"
-  date: "2025-09-18"
-  published_at: "TODO"
-  announced_at: "2025-05-24"
-  speakers:
-    - Julia Egorova
-  description: ""
-  video_provider: "scheduled"
-  video_id: "julia-egorova-euruko-2025"
+  id: "marco-roth-euruko-2025"
 
 - title: "Postgres Partitioning Best Practices"
   raw_title: "Postgres Partitioning Best Practices by Karen Jex"
@@ -180,9 +52,67 @@
   announced_at: "2025-05-24"
   speakers:
     - Karen Jex
-  description: ""
+  description: |-
+    As the databases behind your apps grow, you need strategies to help manage large tables. Partitioning your Postgres tables might be the approach you need. This talk will give you an understanding of whether partitioning is right for you and, if so, how you need to go about putting it in place.
   video_provider: "scheduled"
   video_id: "karen-jex-euruko-2025"
+  id: "karen-jex-euruko-2025"
+
+- title: "Rewrite with confidence: validating business rules through isolated testing"
+  raw_title: "Rewrite with confidence: validating business rules through isolated testing by Szymon Fiedler"
+  event_name: "EuRuKo 2025"
+  date: "2025-09-18"
+  published_at: "TODO"
+  announced_at: "2025-05-24"
+  speakers:
+    - Szymon Fiedler
+  description: |-
+    Learn how we used Rubys metaprogramming at Lemonade Inc. to rewrite critical business logic by building a snapshot-based verification system. See how recording HTTP interactions and raw database state enabled equivalence verification when documentation was sparse and business rules were scattered.
+  video_provider: "scheduled"
+  video_id: "szymon-fiedler-euruko-2025"
+  id: "szymon-fiedler-euruko-2025"
+
+- title: "The hidden value of niche open-source projects"
+  raw_title: "The hidden value of niche open-source projects by Rémy Hannequin"
+  event_name: "EuRuKo 2025"
+  date: "2025-09-18"
+  published_at: "TODO"
+  announced_at: "2025-05-24"
+  speakers:
+    - Rémy Hannequin
+  description: |-
+    Imagine your quirky side project sparking professional breakthroughs. Discover how a niche Ruby gem turned passion into progress and learn why your wild idea might be the one that changes everything.
+  video_provider: "scheduled"
+  video_id: "remy-hannequin-euruko-2025"
+  id: "remy-hannequin-euruko-2025"
+
+- title: "How a Ruby profiler works: Stackprof under a microscope"
+  raw_title: "How a Ruby profiler works: Stackprof under a microscope by Ivo Anjo"
+  event_name: "EuRuKo 2025"
+  date: "2025-09-18"
+  published_at: "TODO"
+  announced_at: "2025-05-24"
+  speakers:
+    - Ivo Anjo
+  description: |-
+    Stackprof is a powerful, low-overhead Ruby profiler. Did you know its built with only 2k lines of C + Ruby? In this talk well learn how to use a profiler by examining how one works, end-to-end: from different triggers, to sampling data to reduce overhead to producing pretty flamegraphs.
+  video_provider: "scheduled"
+  video_id: "ivo-anjo-euruko-2025"
+  id: "ivo-anjo-euruko-2025"
+
+- title: "Conquering Massive Traffic Spikes in Ruby Applications with Pitchfork"
+  raw_title: 'Conquering Massive Traffic Spikes in Ruby Applications with Pitchfork by Sangyong "Shia" Sim'
+  event_name: "EuRuKo 2025"
+  date: "2025-09-18"
+  published_at: "TODO"
+  announced_at: "2025-05-24"
+  speakers:
+    - Sangyong "Shia" Sim
+  description: |-
+    Discover how we tackled extreme traffic spikes on our Rails platform using Pitchfork. Learn to efficiently warm up Rails applications and significantly improve latency during massive sales events.
+  video_provider: "scheduled"
+  video_id: "sangyong-shia-sim-euruko-2025"
+  id: "sangyong-shia-sim-euruko-2025"
 
 - title: "Building interactive Ruby gem tutorials with Wasm - yes, right in the browser!"
   raw_title: "Building interactive Ruby gem tutorials with Wasm - yes, right in the browser! by Albert Pazderin"
@@ -192,6 +122,293 @@
   announced_at: "2025-05-24"
   speakers:
     - Albert Pazderin
-  description: ""
+  description: |-
+    What if you could experiment with a gem instantly? No environment setup, no need to install a library, clone a repo, or read tons of docs. That could accelerate adoption--especially for new gems finding an audience. Well, its possible! My talk is on bringing Ruby gems into browsers via WebAssembly!
   video_provider: "scheduled"
   video_id: "albert-pazderin-euruko-2025"
+  id: "albert-pazderin-euruko-2025"
+
+- title: "Roasting Code for Fun & Profit with Structured AI Workflows"
+  raw_title: "Roasting Code for Fun & Profit with Structured AI Workflows by Obie Fernandez"
+  event_name: "EuRuKo 2025"
+  date: "2025-09-18"
+  published_at: "TODO"
+  announced_at: "2025-05-24"
+  speakers:
+    - Obie Fernandez
+  description: |-
+    Roast is Shopify's innovative Ruby-based tool leveraging structured AI workflows and state machines to analyze, grade, and generate deterministic, high-quality code across many languages, not just Ruby. Its modular prompt architecture enables easy customization and enables developer collaboration.
+  video_provider: "scheduled"
+  video_id: "obie-fernandez-euruko-2025"
+  id: "obie-fernandez-euruko-2025"
+
+- title: "RubyLLM: Making AI Development Beautiful Again"
+  raw_title: "RubyLLM: Making AI Development Beautiful Again by Carmine Paolino"
+  event_name: "EuRuKo 2025"
+  date: "2025-09-19"
+  published_at: "TODO"
+  announced_at: "2025-05-24"
+  speakers:
+    - Carmine Paolino
+  description: |-
+    While others drown in Python-like frameworks and provider-specific abstractions, were proving AI development can be as elegant as Rails itself. 1700+ GitHub stars in its first week shows the Ruby community is ready for AI development thats beautiful AND async-fast.
+  video_provider: "scheduled"
+  video_id: "carmine-paolino-euruko-2025"
+  id: "carmine-paolino-euruko-2025"
+
+- title: 'Don''t Be "Thread"-ened: Testing Multithreaded Code with Confidence'
+  raw_title: 'Don''t Be "Thread"-ened: Testing Multithreaded Code with Confidence by Julia Egorova'
+  event_name: "EuRuKo 2025"
+  date: "2025-09-19"
+  published_at: "TODO"
+  announced_at: "2025-05-24"
+  speakers:
+    - Julia Egorova
+  description: |-
+    All code deserves testing--but especially multithreaded code. Yet, threads really love to do their own thing--running in random orders, messing with timing, fighting over shared resources. So, my talk will dig into the world of multithreaded testing and check out tools and tips for taming the chaos!
+  video_provider: "scheduled"
+  video_id: "julia-egorova-euruko-2025"
+  id: "julia-egorova-euruko-2025"
+
+- title: "City Pitches"
+  raw_title: "City Pitches"
+  event_name: "EuRuKo 2025"
+  date: "2025-09-19"
+  published_at: "TODO"
+  announced_at: "TODO"
+  video_provider: "children"
+  video_id: "city-pitches-euruko-2025"
+  id: "city-pitches-euruko-2025"
+  description: |-
+    Every year, Euruko takes place in a different European city — chosen by the community.
+
+    If you want to bring Euruko to your city in 2026, submit your pitch below!
+
+    Selected proposals will have a dedicated moment during Euruko 2025 to present their city live on stage.
+  talks:
+    - title: "City Pitch: Paris"
+      raw_title: "City Pitch: Paris"
+      event_name: "EuRuKo 2025"
+      date: "2025-09-19"
+      published_at: "TODO"
+      announced_at: "TODO"
+      speakers:
+        - Rémy Hannequin
+      description: ""
+      video_provider: "scheduled"
+      video_id: "city-pitch-paris-euruko-2025"
+      id: "city-pitch-paris-euruko-2025"
+
+    - title: "City Pitch: Poznań"
+      raw_title: "City Pitch: Poznań"
+      event_name: "EuRuKo 2025"
+      date: "2025-09-19"
+      published_at: "TODO"
+      announced_at: "TODO"
+      speakers:
+        - Chris Hasinski
+      description: ""
+      video_provider: "scheduled"
+      video_id: "city-pitch-poznan-euruko-2025"
+      id: "city-pitch-poznan-euruko-2025"
+
+    - title: "City Pitch: Brno"
+      raw_title: "City Pitch: Brno"
+      event_name: "EuRuKo 2025"
+      date: "2025-09-19"
+      published_at: "TODO"
+      announced_at: "TODO"
+      speakers:
+        - Oliver Morgan
+      description: ""
+      video_provider: "scheduled"
+      video_id: "city-pitch-brno-euruko-2025"
+      id: "city-pitch-brno-euruko-2025"
+
+    - title: "City Pitch: Coimbra"
+      raw_title: "City Pitch: Coimbra"
+      event_name: "EuRuKo 2025"
+      date: "2025-09-19"
+      published_at: "TODO"
+      announced_at: "TODO"
+      speakers:
+        - TODO
+      description: ""
+      video_provider: "scheduled"
+      video_id: "city-pitch-coimbra-euruko-2025"
+      id: "city-pitch-coimbra-euruko-2025"
+
+- title: "gRPC on Ruby On Rails - a perfect match!"
+  raw_title: "gRPC on Ruby On Rails - a perfect match! by Emiliano Della Casa"
+  event_name: "EuRuKo 2025"
+  date: "2025-09-19"
+  published_at: "TODO"
+  announced_at: "2025-05-24"
+  speakers:
+    - Emiliano Della Casa
+  description: ""
+  video_provider: "scheduled"
+  video_id: "emiliano-della-casa-euruko-2025"
+  id: "emiliano-della-casa-euruko-2025"
+
+- title: "Prioritization justice: lessons from making background jobs fair at scale"
+  raw_title: "Prioritization justice: lessons from making background jobs fair at scale by Alexander Baygeldin"
+  event_name: "EuRuKo 2025"
+  date: "2025-09-19"
+  published_at: "TODO"
+  announced_at: "2025-05-24"
+  speakers:
+    - Alexander Baygeldin
+  description: |-
+    Are you treating your users fairly? They could be stuck in the queue while a greedy user monopolizes resources. And you might not even know it! In this talk, you'll see if its time for you to take background job prioritization seriously--and how to make it fair for all users.
+  video_provider: "scheduled"
+  video_id: "alexander-baygeldin-euruko-2025"
+  id: "alexander-baygeldin-euruko-2025"
+
+- title: "Lightning Talks"
+  raw_title: "Lightning Talks"
+  event_name: "EuRuKo 2025"
+  date: "2025-09-19"
+  time: "13:30 - 15:45"
+  speakers:
+    - TODO
+  description: ""
+  video_id: "lightning-talks-euruko-2025"
+  video_provider: "scheduled"
+  id: "scheduled"
+
+- title: "Workshop: PicoRuby Hands-on: Internet of Things Edition"
+  raw_title: "Workshop: PicoRuby Hands-on: Internet of Things Edition by Hitoshi Hasumi"
+  event_name: "EuRuKo 2025"
+  date: "2025-09-19"
+  time: "13:30 - 15:45"
+  announced_at: "2025-05-24"
+  speakers:
+    - Hitoshi Hasumi
+  description: |-
+    The hugely popular PicoRuby workshop from EuRuKo 2024 is back again this year!
+
+    No prior experience with microcontrollers? No problem!
+
+    This talk starts from the basics and introduces you to practical applications.
+
+    The 2025 edition includes exciting new content, such as WiFi networking and BLE, providing insights into transforming your Ruby code into a true IoT solution.
+  video_provider: "not_recorded"
+  video_id: "hitoshi-hasumi-euruko-2025"
+  id: "hitoshi-hasumi-euruko-2025"
+
+- title: "Workshop: Smoke and Mirrors: the Tricks Behind Magical Ruby Interfaces"
+  raw_title: "Workshop: Smoke and Mirrors: the Tricks Behind Magical Ruby Interfaces by Joel Drapper"
+  event_name: "EuRuKo 2025"
+  date: "2025-09-19"
+  time: "13:30 - 15:45"
+  announced_at: "2025-05-24"
+  speakers:
+    - Joel Drapper
+  description: |-
+    Ruby feels like magic, but every magic trick can be learned.  Bridging programming and meta-programming, this is a practical technical talk/workshop about the patterns and interfaces you can implement to make your own magical APIs in Ruby.
+  video_provider: "not_recorded"
+  video_id: "joel-drapper-euruko-2025"
+  id: "joel-drapper-euruko-2025"
+
+- title: "Workshop: How to improve your own and others code"
+  raw_title: "Workshop: How to improve your own and others code by Fritz Meissner"
+  event_name: "EuRuKo 2025"
+  date: "2025-09-19"
+  time: "13:30 - 15:45"
+  announced_at: "2025-05-24"
+  speakers:
+    - Fritz Meissner
+  description: |-
+    Wish you worked with understandable and easily changeable code? Practice fixing the incomprehensible in an interactive, zero-background-required exercise on the career-changing topic of refactoring. Bonus: take it home! Learn how to run your own coding exercise to spread the knowledge even further.
+  video_provider: "not_recorded"
+  video_id: "fritz-meissner-euruko-2025"
+  id: "fritz-meissner-euruko-2025"
+
+- title: "Workshop: Dont Let Your AI Guess: Teach It to Test!"
+  raw_title: "Workshop: Dont Let Your AI Guess: Teach It to Test! by Lucian Ghinda"
+  event_name: "EuRuKo 2025"
+  date: "2025-09-19"
+  time: "13:30 - 15:45"
+  announced_at: "2025-05-24"
+  speakers:
+    - Lucian Ghinda
+  description: |-
+    Stop letting AI guess your tests! Learn how to guide LLMs like ChatGPT to write smarter, bug-catching tests using proven test design techniques--built for the way Ruby devs think, test, and ship fast.
+  video_provider: "not_recorded"
+  video_id: "lucian-ghinda-euruko-2025"
+  id: "lucian-ghinda-euruko-2025"
+
+- title: "Workshop: What Really Happens When You `Thread.new`"
+  raw_title: "Workshop: What Really Happens When You `Thread.new` by Dmitrijs Zubriks"
+  event_name: "EuRuKo 2025"
+  date: "2025-09-19"
+  time: "13:30 - 15:45"
+  announced_at: "2025-05-24"
+  speakers:
+    - Dmitrijs Zubriks
+  description: |-
+    This workshop peels back the layers of Ruby MRI to reveal what is really happening beneath the language's abstractions. Using Thread.new call as a starting point, the session dives deep into CRuby's internals - not with a high-level overview of concurrency models, but with a practical look at the underlying machinery in action.
+
+    The entire execution path will be traced, beginning with a single line of Ruby code. The process will be followed as it's transformed into YARV bytecode, creates a native OS thread, and interacts with the VM's core scheduling components.
+
+    Along the way, participants will gain an understanding of the functions that manage a thread's lifecycle and how Ruby interacts with the operating system behind the scenes. Modern observability tools will be used to make these internal processes visible. By the end of the workshop, attendees will have an intuitive mental model of how CRuby works.
+  video_provider: "not_recorded"
+  video_id: "dmitrijs-zubriks-euruko-2025"
+  id: "dmitrijs-zubriks-euruko-2025"
+
+- title: "Workshop: Hands-on with Message Queues: Build and Connect Microservices with AMQP"
+  raw_title: "Workshop: Hands-on with Message Queues: Build and Connect Microservices with AMQP by Anders Bälter and Patrik Ragnarsson"
+  event_name: "EuRuKo 2025"
+  date: "2025-09-19"
+  time: "13:30 - 15:45"
+  announced_at: "2025-05-24"
+  speakers:
+    - Anders Bälter
+    - Patrik Ragnarsson
+  description: |-
+    This workshop covers the basics of building applications with a microservice architecture. Youll learn how services communicate using message brokers and how to implement this with LavinMQ and AMQP. Through hands-on exercises, youll gain practical experience in designing scalable, decoupled systems that handle real-world messaging patterns. Perfect for anyone looking to get started or refine their approach to microservices.
+  video_provider: "not_recorded"
+  video_id: "anders-balter-patrik-ragnarsson-euruko-2025"
+  id: "anders-balter-patrik-ragnarsson-euruko-2025"
+
+- title: "Navigating uncharted waters: coding agents and tooling evolution"
+  raw_title: "Navigating uncharted waters: coding agents and tooling evolution by José Valim"
+  event_name: "EuRuKo 2025"
+  date: "2025-09-19"
+  published_at: "TODO"
+  announced_at: "2025-05-24"
+  speakers:
+    - José Valim
+  description: |-
+    As AI becomes increasingly integrated into software development, we find ourselves facing questions about how our programming languages and tools should evolve - questions that dont yet have clear answers. Rather than prescribing solutions, this talk explores possible directions that developers and tooling authors should be grappling with.
+  video_provider: "scheduled"
+  video_id: "jose-valim-euruko-2025"
+  id: "jose-valim-euruko-2025"
+
+- title: "Making Rails AI-Native with the Model Context Protocol"
+  raw_title: "Making Rails AI-Native with the Model Context Protocol by Paweł Strzałkowski"
+  event_name: "EuRuKo 2025"
+  date: "2025-09-19"
+  published_at: "TODO"
+  announced_at: "2025-05-24"
+  speakers:
+    - Paweł Strzałkowski
+  description: |-
+    Remember Rails scaffold magic? Now, scaffold AI interactions! See how Rails + the Model Context Protocol standard unlock your apps core features for AI agents. This is the Ruby competitive advantage for the AI era: make your app AI-native effortlessly!
+  video_provider: "scheduled"
+  video_id: "pawel-strzalkowski-euruko-2025"
+  id: "pawel-strzalkowski-euruko-2025"
+
+- title: "Closing Keynote"
+  raw_title: "Closing Keynote by Eileen M. Uchitelle"
+  event_name: "EuRuKo 2025"
+  date: "2025-09-19"
+  published_at: "TODO"
+  announced_at: "2025-05-24"
+  speakers:
+    - Eileen M. Uchitelle
+  description: ""
+  video_provider: "scheduled"
+  video_id: "eileen-m-uchitelle-euruko-2025"
+  id: "eileen-m-uchitelle-euruko-2025"
