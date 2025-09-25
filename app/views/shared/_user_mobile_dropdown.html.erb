@@ -34,6 +34,7 @@
   <% c.with_menu_item_link_to "About", about_path %>
   <% signed_in do %>
     <% c.with_menu_item_divider %>
+    <% c.with_menu_item_link_to "My Ruby Events Profile", profile_path(Current.user) %>
     <% c.with_menu_item_button_to t("sign_out"),
          Current.session,
          method: :delete,
