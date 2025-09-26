@@ -321,7 +321,8 @@ class Talk < ApplicationRecord
         thumbnail_xl: "maxresdefault"
       }
 
-      return "https://i.ytimg.com/vi/#{video_id}/#{youtube[size]}.jpg"
+      url = "https://i.ytimg.com/vi/#{video_id}/#{youtube[size]}.jpg"
+      return url unless default_thumbnail?(url)
     end
 
     if video_provider == "parent" && parent_talk.present?
@@ -333,6 +334,18 @@ class Talk < ApplicationRecord
     end
 
     fallback_thumbnail
+  end
+
+  def default_thumbnail?(thumbnail_url)
+    uri = URI.parse(thumbnail_url)
+    response = Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
+      http.request_head(uri.path)
+    end
+
+    response["Content-Length"].to_i < 5000
+  rescue => e
+    Rails.logger.error("Error validating default thumbnail: #{e.message}")
+    false
   end
 
   def external_player_utm_params
