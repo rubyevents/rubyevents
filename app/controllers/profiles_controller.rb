@@ -89,6 +89,7 @@ class ProfilesController < ApplicationController
       :mastodon,
       :bio,
       :website,
+      :location,
       :speakerdeck,
       :pronouns_type,
       :pronouns,

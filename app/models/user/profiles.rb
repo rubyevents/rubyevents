@@ -20,6 +20,7 @@ class User::Profiles < ActiveRecord::AssociatedObject
       linkedin: user.linkedin.presence || links["linkedin"] || "",
       bio: user.bio.presence || profile.bio || "",
       website: user.website.presence || profile.blog || "",
+      location: user.location.presence || profile.location || "",
       github_metadata: {
         profile: JSON.parse(profile.body),
         socials: JSON.parse(socials.body)
