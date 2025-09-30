@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_09_20_194438) do
+ActiveRecord::Schema[8.1].define(version: 2025_09_30_165602) do
   create_table "_litestream_lock", id: false, force: :cascade do |t|
     t.integer "id"
   end
@@ -361,6 +361,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_09_20_194438) do
     t.string "github_handle"
     t.json "github_metadata", default: {}, null: false
     t.string "linkedin", default: "", null: false
+    t.string "location"
     t.string "mastodon", default: "", null: false
     t.string "name"
     t.string "password_digest"

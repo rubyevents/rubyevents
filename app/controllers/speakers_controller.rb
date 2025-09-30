@@ -41,23 +41,6 @@ class SpeakersController < ApplicationController
     redirect_to speakers_path, status: :moved_permanently, notice: "Speaker not found" if @speaker.blank?
   end
 
-  def speaker_params
-    params.require(:speaker).permit(
-      :name,
-      :github_handle,
-      :twitter,
-      :bsky,
-      :linkedin,
-      :mastodon,
-      :bio,
-      :website,
-      :speakerdeck,
-      :pronouns_type,
-      :pronouns,
-      :slug
-    )
-  end
-
   def set_user_favorites
     return unless Current.user
 
