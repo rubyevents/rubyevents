@@ -21,8 +21,8 @@
           </div>
         </div>
       <% else %>
-        <div class="<%= image_size_class %> flex items-center justify-center">
-          <span class="text-lg font-semibold text-gray-700 text-center line-clamp-3"><%= sponsor.name %></span>
+        <div class="bg-gray-100 rounded-lg p-2 border border-gray-200">
+          <%= image_tag image_path(sponsor.avatar_image_path), class: "#{image_size_class} object-contain", loading: "lazy" %>
         </div>
       <% end %>
     </figure>
