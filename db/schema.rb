@@ -361,7 +361,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_09_30_165602) do
     t.string "github_handle"
     t.json "github_metadata", default: {}, null: false
     t.string "linkedin", default: "", null: false
-    t.string "location"
+    t.string "location", default: ""
     t.string "mastodon", default: "", null: false
     t.string "name"
     t.string "password_digest"
