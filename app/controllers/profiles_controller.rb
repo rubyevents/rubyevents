@@ -2,6 +2,7 @@ class ProfilesController < ApplicationController
   skip_before_action :authenticate_user!
   before_action :set_user, only: %i[show edit update]
   before_action :set_user_favorites, only: %i[show]
+  before_action :set_mutual_events, only: %i[show]
   include Pagy::Backend
   include RemoteModal
   include WatchedTalks
@@ -95,6 +96,14 @@ class ProfilesController < ApplicationController
       :pronouns,
       :slug
     )
+  end
+
+  def set_mutual_events
+    @mutual_events = if Current.user
+      @user.participated_events.where(id: Current.user.participated_events).distinct.order(start_date: :desc)
+    else
+      Event.none
+    end
   end
 
   def set_user_favorites
