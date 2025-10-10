@@ -8,14 +8,14 @@ class Events::ParticipationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get event_participations_url(@event)
+    get event_participants_url(@event)
     assert_response :success
     assert_select "div", /#{@user.name}/
   end
 
   test "should get index for signed in user" do
     sign_in_as @user
-    get event_participations_url(@event)
+    get event_participants_url(@event)
     assert_response :success
     assert_select "div", /#{@user.name}/
   end
