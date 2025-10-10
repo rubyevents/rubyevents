@@ -15,9 +15,9 @@
   <% end %>
 
   <div id="<%= dom_id(event, :participants) %>" class="mb-12 min-w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 h-full">
-    <% participants.each do |visitor| %>
+    <% participants.each do |participant| %>
       <div class="border rounded-lg bg-white hover:bg-gray-200 transition-bg duration-300 ease-in-out">
-        <%= render partial: "talks/visitor", locals: {visitor: visitor} %>
+        <%= render partial: "users/card", locals: {user: participant} %>
       </div>
     <% end %>
   </div>

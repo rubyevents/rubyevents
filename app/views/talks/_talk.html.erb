@@ -178,7 +178,7 @@
 
             <% talk.speakers.take(speaker_preview_count).each do |speaker| %>
               <%= content_tag :div, class: class_names("hidden xl:block" => more_speakers) do %>
-                <%= render partial: "talks/speaker", locals: {speaker: speaker} %>
+                <%= render partial: "users/card", locals: {user: speaker} %>
               <% end %>
             <% end %>
 
@@ -322,7 +322,7 @@
           <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             <% talk.speakers.each do |speaker| %>
               <div class="duration-300 ease-in-out bg-gray-100 border rounded-lg hover:bg-gray-200/50 transition-bg">
-                <%= render partial: "talks/speaker", locals: {speaker: speaker} %>
+                <%= render partial: "users/card", locals: {user: speaker} %>
               </div>
             <% end %>
           </div>
