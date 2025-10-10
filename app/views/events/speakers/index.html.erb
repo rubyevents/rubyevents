@@ -1,4 +1,4 @@
-<%= render partial: "events/header", locals: {event: @event} %>
+<%= render partial: "events/header", locals: {event: @event, participation: @participation} %>
 
 <%= turbo_frame_tag dom_id(@event), data: {turbo_action: "advance", turbo_frame: "_top"} do %>
   <div class="container py-8">
@@ -17,7 +17,7 @@
                     <%= speaker.meetup_talks_count %> talks
                   </div>
                 <% end %>
-                <%= render partial: "talks/speaker", locals: {speaker: speaker} %>
+                <%= render partial: "users/card", locals: {user: speaker} %>
               </div>
             <% end %>
           </div>
@@ -32,7 +32,7 @@
             <div id="keynote-speakers" class="mb-12 min-w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 h-full">
               <% speakers.each do |kind, speaker| %>
                 <div class="border rounded-lg bg-white hover:bg-gray-200 transition-bg duration-300 ease-in-out">
-                  <%= render partial: "talks/speaker", locals: {speaker: speaker} %>
+                  <%= render partial: "users/card", locals: {user: speaker} %>
                 </div>
               <% end %>
             </div>

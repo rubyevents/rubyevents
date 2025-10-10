@@ -21,17 +21,22 @@
         <% end %>
       </h1>
     </div>
-
     <p class="text-[#636B74] max-w-[700px]">
       <%= user.bio %>
     </p>
-    <% if user.website.present? %>
-      <%= external_link_to user.website.gsub(%r{^https?://}, ""), user.website, class: "text-center" %>
+    <% if user.location.present? %>
+      <p class="max-w-[700px] flex flex-row justify-center items-center gap-2">
+        <%= fa("location-dot", size: :xs, style: :regular) %> <%= user.location %>
+      </p>
     <% end %>
-
+    <% if user.website.present? %>
+      <div class="link inline-flex items-center gap-2 flex-nowrap">
+        <%= fa("website-brands", size: :xs) %>
+        <%= external_link_to user.website.gsub(%r{^https?://}, ""), user.website, class: "link inline-flex items-center gap-2 flex-nowrap" %>
+      </div>
+    <% end %>
     <div class="mt-2 flex justify-center lg:justify-start">
       <%= render "profiles/socials", user: user %>
-
     </div>
   </div>
 </div>

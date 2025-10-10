@@ -81,7 +81,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :watched_talks, only: [:index]
+  resources :watched_talks, only: [:index, :destroy]
 
   resources :speakers, param: :slug, only: [:index, :show]
   resources :profiles, param: :slug, only: [:show, :update, :edit]
@@ -100,6 +100,7 @@ Rails.application.routes.draw do
         get "/day/:date", action: :show, on: :collection, as: :day
       end
       resources :speakers, only: [:index]
+      resources :participants, only: [:index]
       resources :talks, only: [:index]
       resources :related_talks, only: [:index]
       resources :events, only: [:index]

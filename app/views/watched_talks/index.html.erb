@@ -1,19 +1,18 @@
-<div class="container flex flex-col w-full gap-4 my-8 hotwire-native:my-0 hotwire-native:mb-8">
+<div class="container container-sm flex flex-col w-full gap-4 my-8 hotwire-native:my-0 hotwire-native:mb-8">
   <div class="flex items-end gap-2 title text-primary hotwire-native:mb-3">
     <h1 class="title hotwire-native:hidden" style="view-transition-name: title">
       <%= title "Recently Watched Videos" %>
     </h1>
   </div>
   <% if @talks.present? %>
-    <div id="talks" class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gallery">
-      <%= render partial: "talks/card",
+    <div id="talks" class="flex flex-col gap-2">
+      <%= render partial: "talks/card_horizontal",
             collection: @talks,
             as: :talk,
             locals: {
-              favoritable: true,
-              user_favorite_talks_ids: @user_favorite_talks_ids,
-              watched_talks: @watched_talks,
-              back_to: watched_talks_path
+              user_watched_talks: user_watched_talks,
+              show_remove_from_watched: true,
+              tooltip: false
             } %>
     </div>
   <% else %>
