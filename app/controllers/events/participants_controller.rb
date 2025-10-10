@@ -1,9 +1,9 @@
-class Events::VisitorsController < ApplicationController
+class Events::ParticipantsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index]
 
   def index
     @event = Event.includes(:event_participations).find_by(slug: params[:event_slug])
-    @visitors = @event.visitor_participants.includes(:connected_accounts)
+    @participants = @event.participants.includes(:connected_accounts).order(:name)
     @participation = Current.user&.main_participation_to(@event)
   end
 end

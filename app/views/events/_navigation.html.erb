@@ -20,9 +20,7 @@
     <%= active_link_to "Speakers", event_speakers_path(event), class: "tab", active_class: "tab-active", role: "tab" %>
   <% end %>
 
-  <% if event.visitor_participants.any? %>
-    <%= active_link_to "Attendees", event_visitors_path(event), class: "tab", active_class: "tab-active", role: "tab" %>
-  <% end %>
+  <%= active_link_to "Participants", event_participants_path(event), class: "tab", active_class: "tab-active", role: "tab" %>
 
   <% unless event.meetup? %>
     <%= active_link_to event_schedules_path(event), class: class_names("tab", {"text-red-500" => !event.schedule.exist?}), active_class: "tab-active", role: "tab" do %>
