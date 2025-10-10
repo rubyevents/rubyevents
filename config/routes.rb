@@ -43,7 +43,8 @@ Rails.application.routes.draw do
 
   namespace :profiles do
     resources :connect, only: [:index, :show]
-    resources :claim, only: [:create]
+    resources :claims, only: [:create]
+    resources :enhance, only: [:update], param: :slug
   end
 
   resources :contributions, only: [:index, :show], param: :step
@@ -82,8 +83,11 @@ Rails.application.routes.draw do
 
   resources :watched_talks, only: [:index, :destroy]
 
-  resources :speakers, param: :slug, only: [:index, :show, :update, :edit]
+  resources :speakers, param: :slug, only: [:index, :show]
+  resources :profiles, param: :slug, only: [:show, :update, :edit]
   resources :events, param: :slug, only: [:index, :show, :update, :edit] do
+    resources :event_participations, only: [:create, :destroy]
+
     scope module: :events do
       collection do
         get "/past" => "past#index", :as => :past
@@ -105,10 +109,6 @@ Rails.application.routes.draw do
     end
   end
   resources :organisations, param: :slug, only: [:index, :show]
-
-  namespace :speakers do
-    resources :enhance, only: [:update], param: :slug
-  end
 
   namespace "spotlight" do
     resources :talks, only: [:index]
@@ -136,7 +136,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "page#home"
 
-  resources :watch_lists, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
+  resources :watch_lists, only: [:index, :new, :create, :show, :edit, :update, :destroy], path: "bookmarks" do
     resources :talks, only: [:create, :destroy], controller: "watch_list_talks"
   end
 

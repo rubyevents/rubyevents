@@ -80,6 +80,7 @@ gem "yt"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  gem "bundler-audit", require: false
   gem "debug", platforms: %i[mri windows]
   gem "byebug", "~> 11.1"
   gem "minitest-difftastic", "~> 0.2"
@@ -126,7 +127,6 @@ gem "solid_cache"
 gem "solid_queue"
 gem "mission_control-jobs"
 
-gem "meilisearch-rails", "0.14.2" # https://github.com/meilisearch/meilisearch-rails/issues/347#issuecomment-2588854111
 gem "ahoy_matey"
 gem "vite_rails"
 gem "meta-tags", "~> 2.18"
@@ -139,7 +139,7 @@ gem "rails_autolink", "~> 1.1"
 
 gem "sitemap_generator", "~> 6.3"
 
-gem "view_component", "~> 3.7"
+gem "view_component"
 
 gem "dry-initializer-rails"
 
@@ -164,6 +164,8 @@ gem "commonmarker"
 gem "frozen_record", "~> 0.27.2"
 gem "diffy"
 gem "discard"
+
+gem "httparty"
 
 # Use OmniAuth to support multi-provider authentication [https://github.com/omniauth/omniauth]
 gem "omniauth"

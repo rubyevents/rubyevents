@@ -23,7 +23,7 @@ class SitemapsController < ApplicationController
         add speakers_path, priority: 0.7, changefreq: "weekly"
 
         User.speakers.canonical.pluck(:slug, :updated_at).each do |speaker_slug, updated_at|
-          add speaker_path(speaker_slug), priority: 0.9, lastmod: updated_at
+          add profile_path(speaker_slug), priority: 0.9, lastmod: updated_at
         end
 
         add events_path, priority: 0.7, changefreq: "weekly"

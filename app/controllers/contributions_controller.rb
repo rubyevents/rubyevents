@@ -1,5 +1,6 @@
 class ContributionsController < ApplicationController
   include Turbo::ForceResponse
+
   force_frame_response only: %i[show]
   skip_before_action :authenticate_user!, only: %i[index show]
 
@@ -60,7 +61,7 @@ class ContributionsController < ApplicationController
 
   def talks_without_slides
     speakers_with_speakerdeck = User.speakers.where.not(speakerdeck: "")
-    @talks_without_slides = Talk.past.preload(:speakers).joins(:speakers).where(slides_url: nil).where(speakers: {id: speakers_with_speakerdeck}).order(date: :desc)
+    @talks_without_slides = Talk.past.preload(:speakers).joins(:users).where(slides_url: nil).where(users: {id: speakers_with_speakerdeck}).order(date: :desc)
     @talks_without_slides_count = @talks_without_slides.count
   end
 

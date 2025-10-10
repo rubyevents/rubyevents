@@ -163,7 +163,7 @@
             <div class="line-clamp-1">
               <% talk.speakers.each do |speaker| %>
                 <%= link_to speaker.name,
-                      speaker_path(speaker),
+                      profile_path(speaker),
                       class: "link link-ghost",
                       data: {
                         turbo_frame: "_top"
@@ -199,7 +199,7 @@
           <div class="self-end hotwire-native:hidden">
             <% if default_watch_list %>
               <% if user_favorite_talks_ids.include?(talk.id) %>
-                <%= button_to watch_list_talk_path(default_watch_list, talk.id), method: :delete do %>
+                <%= button_to watch_list_talk_path(default_watch_list, talk.id), method: :delete, form: {class: "h-5"} do %>
                   <%= fa(
                         "bookmark",
                         style: :solid,
@@ -208,7 +208,7 @@
                       ) %>
                 <% end %>
               <% else %>
-                <%= button_to watch_list_talks_path(default_watch_list, talk_id: talk.id), method: :post do %>
+                <%= button_to watch_list_talks_path(default_watch_list, talk_id: talk.id), method: :post, form: {class: "h-5"} do %>
                   <%= fa(
                         "bookmark",
                         class: "shrink-0 cursor-pointer",

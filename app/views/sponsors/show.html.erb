@@ -13,8 +13,8 @@
                 <%= year %>
               </h2>
               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <% events.each do |event| %>
-                  <%= render "events/card", event: event %>
+                <%= cache events do %>
+                  <%= render partial: "events/card", collection: events, as: :event, cached: true %>
                 <% end %>
               </div>
             </div>

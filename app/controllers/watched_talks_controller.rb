@@ -8,6 +8,7 @@ class WatchedTalksController < ApplicationController
       .order(created_at: :desc)
 
     @talks = @watched_talks.map(&:talk)
+    @user_favorite_talks_ids = Current.user.default_watch_list.talks.ids
   end
 
   def destroy

@@ -4,7 +4,6 @@
       <%= title "Recently Watched Videos" %>
     </h1>
   </div>
-
   <% if @talks.present? %>
     <div id="talks" class="flex flex-col gap-2">
       <%= render partial: "talks/card_horizontal",

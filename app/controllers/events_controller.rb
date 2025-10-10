@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   include WatchedTalks
   include Pagy::Backend
+
   skip_before_action :authenticate_user!, only: %i[index show update]
   before_action :set_event, only: %i[show edit update]
   before_action :set_user_favorites, only: %i[show]
@@ -32,6 +33,8 @@ class EventsController < ApplicationController
     end
 
     @sponsors = @event.event_sponsors.includes(:sponsor).joins(:sponsor).shuffle
+
+    @participation = Current.user&.main_participation_to(@event)
   end
 
   # GET /events/1/edit

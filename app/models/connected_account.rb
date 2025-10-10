@@ -30,4 +30,6 @@ class ConnectedAccount < ApplicationRecord
   encrypts :access_token
 
   normalizes :username, with: ->(value) { value.strip.downcase }
+
+  enum :provider, ["developer", "github", "passport"].index_by(&:itself)
 end
