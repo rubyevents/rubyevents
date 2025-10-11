@@ -3108,9 +3108,9 @@
         execution system is secretly a DAG, and how the `stepper_motor`
         architecture is informed by VFX software instead of the imperative
         `ActiveJob` methods.
-      video_id: lrug-2025-08-11-stepper-motor
-      video_provider: not_published
-      published_at: Not published
+      video_provider: mp4
+      video_id: https://assets.lrug.org/videos/2025/august/julik-tarkhanov-stepper-motor-effortless-long-running-workflows-for-rails-lrug-aug-2025.mp4
+      published_at: TODO
     - title: "No Browser Required: Dynamic OpenGraph Images with Rails and Rust"
       event_name: LRUG August 2025
       date: "2025-08-11"
@@ -3126,6 +3126,84 @@
         ask\n* Using the [Himg](https://github.com/Jamedjo/himg/) library\n* Server
         side request forgery and injection attacks\n* What OpenGraph images are and
         how they can help you go viral \U0001F98B"
-      video_id: lrug-2025-08-11-no-browser-required
+      video_provider: mp4
+      video_id: https://assets.lrug.org/videos/2025/august/james-edwards-jones-no-browser-required-dynamic-opengraph-images-with-rails-and-rust-lrug-aug-2025.mp4
+      published_at: TODO
+- title: LRUG September 2025
+  event_name: LRUG September 2025
+  date: "2025-09-15"
+  published_at: "2025-08-13"
+  announced_at: "2025-08-13"
+  video_provider: children
+  video_id: lrug-september-2025
+  description: https://lrug.org/meetings/2025/september/
+  talks:
+    - title: Inheriting Gems
+      event_name: LRUG September 2025
+      date: "2025-09-15"
+      announced_at: "2025-08-13"
+      speakers:
+        - Karl Lingiah
+      description:
+        As Ruby developers we all rely on the vast RubyGem ecosystem, but
+        as gem users we're not necessarily aware of everything that goes into maintaining
+        the gems that make up that ecosystem. When I became a developer advocate at
+        Vonage, I went from gem user to gem maintainer overnight. In this talk I would
+        like to share that journey, and some of the lessons I learned along the way.
+      video_provider: mp4
+      video_id: https://assets.lrug.org/videos/2025/september/karl-lingiah-inheriting-gems-lrug-sep-2025.mp4
+      published_at: TODO
+    - title: Get on the same side of the table
+      event_name: LRUG September 2025
+      date: "2025-09-15"
+      announced_at: "2025-08-13"
+      speakers:
+        - Joel Chippindale
+      description: |-
+        Imagine the following situation. You disagree with your colleague (or your manager) but are unable to change their minds. You feel stuck and frustrated. The only options you feel you have available are to repeat your argument more forcefully or give up. Neither feels like a good option.
+
+        Does this situation sound familiar to you?
+
+        In this talk, we will explore how to get unstuck, have more effective discussions with your colleagues, and increase your influence.
+      video_provider: mp4
+      video_id: https://assets.lrug.org/videos/2025/september/joel-chippindale-get-on-the-same-side-of-the-table-lrug-sep-2025.mp4
+      published_at: TODO
+- title: LRUG October 2025
+  event_name: LRUG October 2025
+  date: "2025-10-13"
+  published_at: "2025-09-16"
+  announced_at: "2025-09-16"
+  video_provider: children
+  video_id: lrug-october-2025
+  description: https://lrug.org/meetings/2025/october/
+  talks:
+    - title: Extreme Versioning
+      event_name: LRUG October 2025
+      date: "2025-10-13"
+      announced_at: "2025-09-16"
+      speakers:
+        - Harry Lascelles
+      description:
+        An exploration into the world of Software Versioning, with an emphasis
+        on the RubyGems ecosystem. This talk will cover extreme real-world examples
+        from Rubyland and beyond, including code examples, footguns and award winners,
+        as well as tips for developers navigating version management. It will get quite
+        technical, so bring your regex hard hat.
+      video_id: lrug-2025-10-13-extreme-versioning
+      video_provider: not_published
+      published_at: Not published
+    - title: De-mystifying the GVL
+      event_name: LRUG October 2025
+      date: "2025-10-13"
+      announced_at: "2025-09-16"
+      speakers:
+        - Josh Bebbington
+      description:
+        The Global VM Lock is one of Ruby’s more mysterious 'under the hood'
+        features. This talk explores new ways to peer inside it, using Ruby's modern
+        instrumentation to reveal how it actually performs work. I'll demonstrate how
+        we've applied those learnings at Carwow, to optimise the performance and reliability
+        of our Sidekiq workers.
+      video_id: lrug-2025-10-13-de-mystifying-the-gvl
       video_provider: not_published
       published_at: Not published
