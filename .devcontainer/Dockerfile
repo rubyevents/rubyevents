@@ -17,6 +17,7 @@ RUN apt-get update -qq && \
     pkg-config \
     python-is-python3 \
     sqlite3 \
+    chromium chromium-driver \
     && rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Copy application code

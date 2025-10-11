@@ -24,7 +24,7 @@
       "onAutoForward": "notify"
     }
   },
-  "postCreateCommand": "bin/rails db:prepare",
+  "postCreateCommand": "yarn install && bin/rails db:prepare",
   "postStartCommand": "bin/dev",
   "mounts": [
     "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached"
