@@ -1,7 +1,7 @@
 <%# Event Participations v1 %>
 
 <% cache [user, events, Current.user] do %>
-  <input type="radio" name="talk_tabs" role="tab" class="tab px-6" aria-label="Events (<%= events.size %>)" <%= "checked" if talks.size.zero? %>>
+  <input type="radio" name="talk_tabs" role="tab" class="tab px-6" aria-label="Attended Events (<%= events.size %>)" <%= "checked" if talks.size.zero? %>>
 
   <div role="tabpanel" class="tab-content mt-6">
     <div class="space-y-8">

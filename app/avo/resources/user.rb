@@ -42,6 +42,7 @@ class Avo::Resources::User < Avo::BaseResource
     field :sessions, as: :has_many
     field :event_participations, as: :has_many, hide_on: :index, use_resource: Avo::Resources::EventParticipation
     field :participated_events, as: :has_many, hide_on: :index, use_resource: Avo::Resources::Event
+    field :event_involvements, as: :has_many, hide_on: :index
   end
 
   def filters
