@@ -40,6 +40,7 @@ Rails.application.routes.draw do
 
   resources :topics, param: :slug, only: [:index, :show]
   resources :cfp, only: :index
+  resources :countries, param: :country, only: [:index, :show]
 
   namespace :profiles do
     resources :connect, only: [:index, :show]
@@ -92,7 +93,8 @@ Rails.application.routes.draw do
       collection do
         get "/past" => "past#index", :as => :past
         get "/archive" => "archive#index", :as => :archive
-        resources :countries, param: :country, only: [:index, :show]
+        get "/countries" => redirect("/countries")
+        get "/countries/:country" => redirect { |params, _| "/countries/#{params[:country]}" }
         resources :cities, param: :city, only: [:index, :show]
       end
 
