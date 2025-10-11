@@ -1,0 +1,15 @@
+services:
+  rails-app:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    command: sleep infinity
+    environment:
+      - RAILS_ENV=development
+      - NODE_ENV=development
+    ports:
+      - "3000:3000"
+    volumes:
+      - ..:/rails:cached
+    stdin_open: true
+    tty: true

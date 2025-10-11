@@ -1,6 +1,6 @@
 <h2 class="text-2xl font-bold mb-4">Avatar</h2>
 
-<% avatarable = Speaker.first %>
+<% avatarable = User.speakers.first %>
 <div class="flex gap-16 w-full">
   <div class="flex items-center justify-start gap-4 mb-8 flex-wrap">
     <% [:primary, :neutral].each do |kind| %>

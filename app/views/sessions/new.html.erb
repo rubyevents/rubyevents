@@ -1,4 +1,4 @@
-<% redirect_to_path = params.delete(:redirect_to) || root_path %>
+<% redirect_to_path = params.delete(:redirect_to) || request.url %>
 
 <div class="flex items-center justify-center sm:py-24 px-4 sm:px-6 lg:px-8">
   <div class="max-w-md w-full space-y-8">

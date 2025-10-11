@@ -22,7 +22,7 @@ class Stamp
   end
 
   def self.missing_for_events
-    event_countries = Event.all.map { |event| event.static_metadata&.country }.compact.uniq
+    event_countries = Event.all.map { |event| event.country }.compact.uniq
     stamp_countries = all.select(&:has_country?).map(&:country).compact.uniq
 
     event_countries.reject { |event_country|

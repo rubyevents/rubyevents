@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_08_20_225005) do
+ActiveRecord::Schema[8.1].define(version: 2025_09_30_165602) do
   create_table "_litestream_lock", id: false, force: :cascade do |t|
     t.integer "id"
   end
@@ -60,6 +60,17 @@ ActiveRecord::Schema[8.1].define(version: 2025_08_20_225005) do
     t.index ["visit_token"], name: "index_ahoy_visits_on_visit_token", unique: true
   end
 
+  create_table "badge_awards", force: :cascade do |t|
+    t.datetime "awarded_at", null: false
+    t.string "badge_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["badge_id"], name: "index_badge_awards_on_badge_id"
+    t.index ["user_id", "badge_id"], name: "index_badge_awards_on_user_id_and_badge_id_unique_awarded", unique: true
+    t.index ["user_id"], name: "index_badge_awards_on_user_id"
+  end
+
   create_table "connected_accounts", force: :cascade do |t|
     t.string "access_token"
     t.datetime "created_at", null: false
@@ -79,6 +90,18 @@ ActiveRecord::Schema[8.1].define(version: 2025_08_20_225005) do
     t.index ["user_id"], name: "index_email_verification_tokens_on_user_id"
   end
 
+  create_table "event_participations", force: :cascade do |t|
+    t.string "attended_as", null: false
+    t.datetime "created_at", null: false
+    t.integer "event_id", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["attended_as"], name: "index_event_participations_on_attended_as"
+    t.index ["event_id"], name: "index_event_participations_on_event_id"
+    t.index ["user_id", "event_id", "attended_as"], name: "idx_on_user_id_event_id_attended_as_ca0a2916e2", unique: true
+    t.index ["user_id"], name: "index_event_participations_on_user_id"
+  end
+
   create_table "event_sponsors", force: :cascade do |t|
     t.string "badge"
     t.datetime "created_at", null: false
@@ -86,6 +109,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_08_20_225005) do
     t.integer "sponsor_id", null: false
     t.string "tier"
     t.datetime "updated_at", null: false
+    t.index ["event_id", "sponsor_id", "tier"], name: "index_event_sponsors_on_event_sponsor_tier_unique", unique: true
     t.index ["event_id"], name: "index_event_sponsors_on_event_id"
     t.index ["sponsor_id"], name: "index_event_sponsors_on_sponsor_id"
   end
@@ -338,6 +362,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_08_20_225005) do
     t.string "github_handle"
     t.json "github_metadata", default: {}, null: false
     t.string "linkedin", default: "", null: false
+    t.string "location", default: ""
     t.string "mastodon", default: "", null: false
     t.string "name"
     t.string "password_digest"
@@ -389,8 +414,11 @@ ActiveRecord::Schema[8.1].define(version: 2025_08_20_225005) do
     t.index ["user_id"], name: "index_watched_talks_on_user_id"
   end
 
+  add_foreign_key "badge_awards", "users"
   add_foreign_key "connected_accounts", "users"
   add_foreign_key "email_verification_tokens", "users"
+  add_foreign_key "event_participations", "events"
+  add_foreign_key "event_participations", "users"
   add_foreign_key "event_sponsors", "events"
   add_foreign_key "event_sponsors", "sponsors"
   add_foreign_key "events", "events", column: "canonical_id"
