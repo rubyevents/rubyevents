@@ -208,6 +208,7 @@ class Talk < ApplicationRecord
   scope :for_event, ->(event_slug) { joins(:event).where(events: {slug: event_slug}) }
   scope :scheduled, -> { where(video_provider: "scheduled") }
   scope :watchable, -> { where(video_provider: WATCHABLE_PROVIDERS) }
+  scope :youtube, -> { where(video_provider: "youtube") }
   scope :upcoming, -> { where(date: Date.today...) }
   scope :today, -> { where(date: Date.today) }
   scope :past, -> { where(date: ...Date.today) }
