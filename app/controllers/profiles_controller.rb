@@ -33,6 +33,11 @@ class ProfilesController < ApplicationController
       .reject { |country, _| country.nil? }
       .sort_by { |country, _| country.translations["en"] }
 
+    event_countries = @events.map(&:country).compact.uniq
+    @stamps = Stamp.all.select { |stamp|
+      stamp.has_country? && event_countries.include?(stamp.country)
+    }
+
     @back_path = speakers_path
 
     set_meta_tags(@user)

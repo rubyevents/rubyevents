@@ -19,6 +19,7 @@ class CountriesController < ApplicationController
         .to_h
 
       @users = User.where("location LIKE ?", "%#{@country.translations["en"]}%").order(talks_count: :desc)
+      @stamps = Stamp.all.select { |stamp| stamp.has_country? && stamp.country == @country }
     else
       head :not_found
     end
