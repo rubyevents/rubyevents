@@ -86,6 +86,7 @@ class User < ApplicationRecord
     through: :event_participations, source: :event
 
   belongs_to :canonical, class_name: "User", optional: true
+  has_one :contributor, dependent: :nullify
 
   has_object :profiles
 
@@ -175,6 +176,10 @@ class User < ApplicationRecord
 
   def verified?
     connected_accounts.find { |account| account.provider == "github" }
+  end
+
+  def contributor?
+    contributor.present?
   end
 
   def managed_by?(visiting_user)

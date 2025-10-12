@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_09_30_165602) do
+ActiveRecord::Schema[8.1].define(version: 2025_10_12_114916) do
   create_table "_litestream_lock", id: false, force: :cascade do |t|
     t.integer "id"
   end
@@ -83,6 +83,18 @@ ActiveRecord::Schema[8.1].define(version: 2025_09_30_165602) do
     t.index ["provider", "uid"], name: "index_connected_accounts_on_provider_and_uid", unique: true
     t.index ["provider", "username"], name: "index_connected_accounts_on_provider_and_username", unique: true
     t.index ["user_id"], name: "index_connected_accounts_on_user_id"
+  end
+
+  create_table "contributors", force: :cascade do |t|
+    t.string "avatar_url"
+    t.datetime "created_at", null: false
+    t.string "html_url"
+    t.string "login", null: false
+    t.string "name"
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["login"], name: "index_contributors_on_login", unique: true
+    t.index ["user_id"], name: "index_contributors_on_user_id"
   end
 
   create_table "email_verification_tokens", force: :cascade do |t|
@@ -416,6 +428,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_09_30_165602) do
 
   add_foreign_key "badge_awards", "users"
   add_foreign_key "connected_accounts", "users"
+  add_foreign_key "contributors", "users"
   add_foreign_key "email_verification_tokens", "users"
   add_foreign_key "event_participations", "events"
   add_foreign_key "event_participations", "users"

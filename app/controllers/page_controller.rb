@@ -100,4 +100,8 @@ class PageController < ApplicationController
   def stickers
     @events = Event.all.select(&:sticker?)
   end
+
+  def contributors
+    @contributors = Contributor.includes(:user).order(:name, :login)
+  end
 end

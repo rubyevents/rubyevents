@@ -4,14 +4,40 @@
   <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4 p-4 rounded-[32px] bg-white auto-rows-fr">
     <% stamps.each do |stamp| %>
       <div class="aspect-square flex items-center justify-center">
-        <%= link_to country_path(stamp.country.translations["en"].parameterize), class: "block h-full w-full group" do %>
-          <div class="w-full h-full border-4 border-dotted border-gray-300 rounded-xl p-2 bg-white">
-            <div class="w-full h-full rounded-xl flex items-center justify-center relative overflow-hidden">
-              <%= image_tag stamp.asset_path,
-                    alt: "#{stamp.name} passport stamp",
-                    class: "w-4/5 h-4/5 object-contain transition-all duration-300 group-hover:scale-125 group-hover:opacity-70",
-                    style: "transform: rotate(#{rand(-15..15)}deg)",
-                    loading: "lazy" %>
+        <% if stamp.has_country? %>
+          <%= link_to country_path(stamp.country.translations["en"].parameterize), class: "block h-full w-full group" do %>
+            <div class="w-full h-full border-4 border-dotted border-gray-300 rounded-xl p-2 bg-white">
+              <div class="w-full h-full rounded-xl flex items-center justify-center relative overflow-hidden">
+                <%= image_tag stamp.asset_path,
+                      alt: "#{stamp.name} passport stamp",
+                      class: "w-4/5 h-4/5 object-contain transition-all duration-300 group-hover:scale-125 group-hover:opacity-70",
+                      style: "transform: rotate(#{rand(-15..15)}deg)",
+                      loading: "lazy" %>
+              </div>
+            </div>
+          <% end %>
+        <% elsif stamp.code == "RUBYEVENTS-CONTRIBUTOR" %>
+          <%= link_to contributors_path, class: "block h-full w-full group" do %>
+            <div class="w-full h-full border-4 border-dotted border-gray-300 rounded-xl p-2 bg-white">
+              <div class="w-full h-full rounded-xl flex items-center justify-center relative overflow-hidden">
+                <%= image_tag stamp.asset_path,
+                      alt: "#{stamp.name} passport stamp",
+                      class: "w-4/5 h-4/5 object-contain transition-all duration-300 group-hover:scale-125 group-hover:opacity-70",
+                      style: "transform: rotate(#{rand(-15..15)}deg)",
+                      loading: "lazy" %>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <div class="block h-full w-full group">
+            <div class="w-full h-full border-4 border-dotted border-gray-300 rounded-xl p-2 bg-white">
+              <div class="w-full h-full rounded-xl flex items-center justify-center relative overflow-hidden">
+                <%= image_tag stamp.asset_path,
+                      alt: "#{stamp.name} passport stamp",
+                      class: "w-4/5 h-4/5 object-contain transition-all duration-300 group-hover:scale-125 group-hover:opacity-70",
+                      style: "transform: rotate(#{rand(-15..15)}deg)",
+                      loading: "lazy" %>
+              </div>
             </div>
           </div>
         <% end %>

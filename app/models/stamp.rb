@@ -13,9 +13,23 @@ class Stamp
       @all_stamps ||= load_stamps_from_filesystem
     end
 
+    def contributor_stamp
+      @contributor_stamp ||= all.find { |s| s.code == "RUBYEVENTS-CONTRIBUTOR" }
+    end
+
     def for(events:)
       event_countries = events.map { |event| event.country }.compact.uniq
       all.select { |stamp| stamp.has_country? && event_countries.include?(stamp.country) }
+    end
+
+    def for_user(user)
+      stamps = self.for(events: user.participated_events).to_a
+
+      if user.contributor? && contributor_stamp
+        stamps << contributor_stamp
+      end
+
+      stamps
     end
 
     def grouped_by_continent

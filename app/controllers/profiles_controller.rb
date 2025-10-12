@@ -33,7 +33,7 @@ class ProfilesController < ApplicationController
       .reject { |country, _| country.nil? }
       .sort_by { |country, _| country.translations["en"] }
 
-    @stamps = Stamp.for(events: @events)
+    @stamps = Stamp.for_user(@user)
 
     @back_path = speakers_path
 
