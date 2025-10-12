@@ -26,7 +26,12 @@
     </p>
     <% if user.location.present? %>
       <p class="max-w-[700px] flex flex-row justify-center items-center gap-2">
-        <%= fa("location-dot", size: :xs, style: :regular) %> <%= user.location %>
+        <%= fa("location-dot", size: :xs, style: :regular) %>
+        <% if (country = find_country_from_location(user.location)) %>
+          <%= link_to user.location, country_path(country.translations["en"].parameterize), class: "link" %>
+        <% else %>
+          <%= user.location %>
+        <% end %>
       </p>
     <% end %>
     <% if user.website.present? %>

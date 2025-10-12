@@ -8,26 +8,33 @@ class Stamp
   attribute :country
   attribute :has_country, :boolean, default: false
 
-  def self.all
-    @all_stamps ||= load_stamps_from_filesystem
-  end
+  class << self
+    def all
+      @all_stamps ||= load_stamps_from_filesystem
+    end
 
-  def self.grouped_by_continent
-    stamps_by_continent = all.select(&:has_country?).group_by { |stamp| stamp.country&.continent }
-    custom_stamps = all.reject(&:has_country?)
+    def for(events:)
+      event_countries = events.map { |event| event.country }.compact.uniq
+      all.select { |stamp| stamp.has_country? && event_countries.include?(stamp.country) }
+    end
 
-    stamps_by_continent["Custom"] = custom_stamps if custom_stamps.any?
+    def grouped_by_continent
+      stamps_by_continent = all.select(&:has_country?).group_by { |stamp| stamp.country&.continent }
+      custom_stamps = all.reject(&:has_country?)
 
-    stamps_by_continent
-  end
+      stamps_by_continent["Custom"] = custom_stamps if custom_stamps.any?
 
-  def self.missing_for_events
-    event_countries = Event.all.map { |event| event.country }.compact.uniq
-    stamp_countries = all.select(&:has_country?).map(&:country).compact.uniq
+      stamps_by_continent
+    end
 
-    event_countries.reject { |event_country|
-      stamp_countries.include?(event_country) || (event_country == ISO3166::Country.new("GB") && uk_subdivisions_covered?)
-    }.sort_by { |c| c.translations["en"] }
+    def missing_for_events
+      event_countries = Event.all.map { |event| event.country }.compact.uniq
+      stamp_countries = all.select(&:has_country?).map(&:country).compact.uniq
+
+      event_countries.reject { |event_country|
+        stamp_countries.include?(event_country) || (event_country == ISO3166::Country.new("GB") && uk_subdivisions_covered?)
+      }.sort_by { |c| c.translations["en"] }
+    end
   end
 
   def asset_path

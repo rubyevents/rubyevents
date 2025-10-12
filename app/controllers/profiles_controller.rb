@@ -46,6 +46,8 @@ class ProfilesController < ApplicationController
       end
     end
 
+    @stamps = Stamp.for(events: @events)
+
     @back_path = speakers_path
 
     set_meta_tags(@user)

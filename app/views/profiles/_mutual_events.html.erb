@@ -7,6 +7,7 @@
     <div role="tabpanel" class="tab-content mt-6">
       <div class="space-y-8">
         <div class="mb-6">
+          <h3 class="text-lg font-semibold mb-4"><%= user.name %> and <%= Current.user.name %> both attended</h3>
           <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             <%= render partial: "events/card", collection: events, as: :event, cached: true %>
           </div>

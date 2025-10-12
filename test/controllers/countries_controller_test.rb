@@ -1,6 +1,6 @@
 require "test_helper"
 
-class Events::CountriesControllerTest < ActionDispatch::IntegrationTest
+class CountriesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @railsconf_event = events(:railsconf_2017)
     @rubyconfth_event = events(:rubyconfth_2022)
@@ -12,7 +12,7 @@ class Events::CountriesControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
     get countries_path
     assert_response :success
-    assert_select "h1", /Events by Country/i
+    assert_select "h1", /Countries/i
   end
 
   test "should display countries grouped by continent on index" do
@@ -22,10 +22,12 @@ class Events::CountriesControllerTest < ActionDispatch::IntegrationTest
     # Verify that @countries_by_continent is assigned
     assert_not_nil assigns(:countries_by_continent)
     assert_not_nil assigns(:events_by_country)
+    assert_not_nil assigns(:users_by_country)
 
     # Check that the assigned variables are hashes
     assert_kind_of Hash, assigns(:countries_by_continent)
     assert_kind_of Hash, assigns(:events_by_country)
+    assert_kind_of Hash, assigns(:users_by_country)
   end
 
   test "should handle invalid country parameter" do
@@ -33,14 +35,17 @@ class Events::CountriesControllerTest < ActionDispatch::IntegrationTest
     assert_response :not_found
   end
 
-  test "should filter events by country on show page" do
-    # Test the filtering logic by checking that events are properly filtered
+  test "should filter events and users by country on show page" do
+    # Test the filtering logic by checking that events and users are properly filtered
     get country_path("united-states")
     assert_response :success
 
     events = assigns(:events)
+    users = assigns(:users)
     assert_not_nil events
+    assert_not_nil users
     assert_kind_of Array, events
+    assert_kind_of ActiveRecord::Relation, users
 
     # All events should either match the country or be filtered out
     # The controller filters events where event.country == @country
