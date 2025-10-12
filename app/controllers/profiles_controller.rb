@@ -46,7 +46,7 @@ class ProfilesController < ApplicationController
       end
     end
 
-    @stamps = Stamp.for(events: @events)
+    @stamps = Stamp.for_user(@user)
 
     @back_path = speakers_path
 

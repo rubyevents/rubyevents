@@ -8,7 +8,7 @@
       <div class="mb-6">
         <div class="mb-4 flex items-center justify-between">
           <h3 class="text-lg font-semibold text-gray-800">
-            <%= stamps.size %> <%= "STAMP".pluralize(stamps.size) %> COLLECTED
+            <%= stamps.size %> <%= "stamp".pluralize(stamps.size).upcase %> COLLECTED
           </h3>
           <%= link_to "View all stamps", stamps_path, class: "link text-sm" %>
         </div>
