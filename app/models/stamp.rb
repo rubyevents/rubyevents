@@ -35,9 +35,7 @@ class Stamp
         stamp_countries.include?(event_country) || (event_country == ISO3166::Country.new("GB") && uk_subdivisions_covered?)
       }.sort_by { |c| c.translations["en"] }
     end
-
   end
-
 
   def asset_path
     ActionController::Base.helpers.asset_path("stamps/#{File.basename(file_path)}")
