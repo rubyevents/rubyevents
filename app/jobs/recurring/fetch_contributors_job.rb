@@ -2,6 +2,8 @@ class Recurring::FetchContributorsJob < ApplicationJob
   queue_as :low
 
   def perform
+    return if ENV["SEED_SMOKE_TEST"]
+
     Rails.logger.info "Fetching contributors from GitHub..."
     contributors_data = GitHub::ContributorsClient.new.fetch_all
 
