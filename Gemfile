@@ -157,7 +157,7 @@ gem "redcarpet", "~> 3.6"
 gem "country_select"
 
 # admin
-gem "avo", "3.24.0"
+gem "avo"
 gem "marksmith"
 gem "commonmarker"
 
