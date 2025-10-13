@@ -14,6 +14,7 @@ class Ui::StampComponent < ApplicationComponent
   option :size, type: Dry::Types["coercible.symbol"].enum(*SIZE_MAPPING.keys), default: proc { :full }
   option :interactive, type: Dry::Types["strict.bool"], default: proc { true }
   option :rotate, type: Dry::Types["strict.bool"], default: proc { false }
+  option :zoom_effect, type: Dry::Types["strict.bool"], default: proc { false }
 
   def kind
     if stamp.has_country?
@@ -49,17 +50,18 @@ class Ui::StampComponent < ApplicationComponent
   end
 
   def image_style
-    if rotate
-      "transform: rotate(#{rand(-15..15)}deg);"
-    else
-      ""
-    end
+    transform = []
+
+    transform << "rotate(#{rand(-15..15)}deg)" if rotate
+    transform << "scale(#{rand(0.92..0.97)})" if zoom_effect
+    "transform: #{transform.join(" ")};"
   end
 
   def component_classes
     class_names(
       "aspect-square flex items-center justify-center",
-      SIZE_MAPPING[size]
+      SIZE_MAPPING[size],
+      "transition-transform duration-300 hover:!scale-100 hover:!rotate-0": zoom_effect
     )
   end
 end
