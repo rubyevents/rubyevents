@@ -13,6 +13,10 @@ class Stamp
       @all_stamps ||= load_stamps_from_filesystem
     end
 
+    def country_stamps
+      @country_stamps ||= all.select(&:has_country?)
+    end
+
     def contributor_stamp
       @contributor_stamp ||= all.find { |s| s.code == "RUBYEVENTS-CONTRIBUTOR" }
     end
@@ -39,6 +43,10 @@ class Stamp
 
     def online_stamp
       @online_stamp ||= all.find { |s| s.code == "ONLINE" }
+    end
+
+    def for_country(country)
+      country_stamps.find { |s| s.code == country }
     end
 
     def for(events:)
