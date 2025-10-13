@@ -60,6 +60,13 @@
       <%= ui_stamp(country_stamp, size: size) %><br>
     </div>
   <% end %>
+
+  <% [:sm, :md, :lg, :xl].each do |size| %>
+    <div class="flex flex-col gap-2 items-center text-center">
+      <%= size %> (with rotate and zoom effect)
+      <%= ui_stamp(country_stamp, size: size, rotate: true, zoom_effect: true) %><br>
+    </div>
+  <% end %>
 </div>
 
 <p>Interactive vs Static</p>
@@ -85,11 +92,11 @@
     Straight
   </div>
   <div class="flex flex-col gap-2 items-center text-center">
-    <%= ui_stamp(country_stamp, rotate: true, size: :xl) %><br>
-    Rotated
+    <%= ui_stamp(country_stamp, rotate: true, size: :xl, zoom_effect: true) %><br>
+    Rotated with zoom effect
   </div>
   <div class="flex flex-col gap-2 items-center text-center">
-    <%= ui_stamp(country_stamp, rotate: false, size: :xl) %><br>
-    Straight
+    <%= ui_stamp(country_stamp, rotate: false, size: :xl, zoom_effect: true) %><br>
+    Straight with zoom effect
   </div>
 </div>
