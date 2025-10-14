@@ -61,7 +61,8 @@ class Ui::StampComponent < ApplicationComponent
     class_names(
       "aspect-square flex items-center justify-center",
       SIZE_MAPPING[size],
-      "transition-transform duration-300 hover:!scale-100 hover:!rotate-0": zoom_effect
+      attributes.delete(:class),
+      "transition-transform duration-300 hover:!scale-110 hover:!rotate-0": zoom_effect
     )
   end
 end

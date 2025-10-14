@@ -5,13 +5,15 @@
     <% stamps.each do |stamp| %>
       <div class="w-full h-full border-4 border-dotted border-gray-300 rounded-xl p-2 bg-white">
         <div class="w-full h-full rounded-xl flex items-center justify-center relative overflow-hidden p-4">
-          <%= ui_stamp(stamp, rotate: true, zoom_effect: true) %>
+          <%= ui_stamp(stamp, rotate: true, zoom_effect: true, class: "hover:opacity-70") %>
         </div>
       </div>
     <% end %>
 
     <% cols_per_row = 6 %>
-    <% remaining = (cols_per_row - (stamps.count % cols_per_row)) % cols_per_row %>
+    <% min_rows = 3 %>
+    <% remaining = [min_rows * cols_per_row - stamps.count, (cols_per_row - (stamps.count % cols_per_row)) % cols_per_row].max %>
+    <%# remaining = (cols_per_row - (stamps.count % cols_per_row)) % cols_per_row %>
 
     <% remaining.times do %>
       <div class="aspect-square flex items-center justify-center">
