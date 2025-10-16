@@ -7,6 +7,9 @@ class Stamp
   attribute :file_path, :string
   attribute :country
   attribute :has_country, :boolean, default: false
+  attribute :has_event, :boolean, default: false
+  attribute :event
+  attribute :event_slug, :string
 
   class << self
     def all
@@ -15,6 +18,10 @@ class Stamp
 
     def country_stamps
       @country_stamps ||= all.select(&:has_country?)
+    end
+
+    def event_stamps
+      @event_stamps ||= all.select(&:has_event?)
     end
 
     def contributor_stamp
@@ -55,7 +62,11 @@ class Stamp
     end
 
     def for_user(user)
-      stamps = self.for(events: user.participated_events).to_a
+      user_events = user.participated_events
+      stamps = self.for(events: user_events).to_a
+
+      event_stamps_for_user = user_events.flat_map { |event| for_event(event) }
+      stamps = (stamps + event_stamps_for_user).uniq { |stamp| stamp.code }
 
       if user.contributor? && contributor_stamp
         stamps << contributor_stamp
@@ -88,6 +99,17 @@ class Stamp
       stamps
     end
 
+    def for_event(event)
+      return [] unless event&.slug
+
+      prefix = "#{event.event_image_path}/"
+
+      event_stamps.select { |stamp|
+        (stamp.event_slug.present? && stamp.event_slug == event.slug) ||
+          stamp.file_path.start_with?(prefix)
+      }
+    end
+
     def user_attended_triathlon_2025?(user)
       required_event_slugs = ["rails-world-2025", "friendly-rb-2025", "euruko-2025"]
       attended_event_slugs = user.participated_events.pluck(:slug)
@@ -113,7 +135,7 @@ class Stamp
 
     def grouped_by_continent
       stamps_by_continent = all.select(&:has_country?).group_by { |stamp| stamp.country&.continent }
-      custom_stamps = all.reject(&:has_country?)
+      custom_stamps = all.reject(&:has_country?).reject(&:has_event?)
 
       stamps_by_continent["Custom"] = custom_stamps if custom_stamps.any?
 
@@ -131,20 +153,47 @@ class Stamp
   end
 
   def asset_path
-    ActionController::Base.helpers.asset_path("stamps/#{File.basename(file_path)}")
+    relative_path = file_path.to_s
+
+    if relative_path.include?(File::SEPARATOR) || (File::ALT_SEPARATOR && relative_path.include?(File::ALT_SEPARATOR))
+      ActionController::Base.helpers.asset_path(relative_path)
+    else
+      ActionController::Base.helpers.asset_path("stamps/#{relative_path}")
+    end
   end
 
   def has_country?
     has_country
   end
 
+  def has_event?
+    has_event
+  end
+
+  def event
+    return @event if defined?(@event)
+
+    @event = Event.find_by(slug: event_slug) if event_slug.present?
+  end
+
   def self.load_stamps_from_filesystem
-    stamps_directory = Rails.root.join("app", "assets", "images", "stamps")
-    return [] unless File.directory?(stamps_directory)
+    images_directory = Rails.root.join("app", "assets", "images")
+    stamps_directory = images_directory.join("stamps")
 
-    stamp_files = Dir.glob(File.join(stamps_directory, "*.webp")).map { |file| File.basename(file, ".webp") }
+    static_stamps =
+      if File.directory?(stamps_directory)
+        Dir.glob(stamps_directory.join("*.webp")).map { |file| File.basename(file, ".webp") }
+      else
+        []
+      end
 
-    stamp_files.map { |stamp_code| create_stamp_from_code(stamp_code) }.compact.sort_by(&:name)
+    event_stamp_files = Dir.glob(images_directory.join("events", "**", "stamp*.webp"))
+
+    (static_stamps.map { |stamp_code| create_stamp_from_code(stamp_code) } +
+      event_stamp_files.map { |file| create_stamp_from_event_file(file, images_directory) })
+      .compact
+      .uniq { |stamp| stamp.code }
+      .sort_by(&:name)
   end
 
   def self.create_stamp_from_code(stamp_code)
@@ -204,6 +253,36 @@ class Stamp
         )
       end
     end
+  end
+
+  def self.create_stamp_from_event_file(file, images_directory)
+    relative_path = Pathname.new(file).relative_path_from(images_directory)
+    path_parts = relative_path.each_filename.to_a
+    event_slug = path_parts[-2]
+    basename = Pathname.new(file).basename(".webp").to_s
+
+    return nil unless event_slug.present? && basename.present?
+
+    event = Event.find_by(slug: event_slug)
+
+    variant_suffix = basename.sub(/^stamp[_-]?/i, "")
+    code_parts = [event&.slug || event_slug, basename].compact
+    code = code_parts.join("-").upcase
+
+    display_name = event&.name || event_slug.titleize
+    variant_label = variant_suffix.present? ? "Stamp #{variant_suffix.titleize}" : "Stamp"
+    name = "#{display_name} (#{variant_label})"
+
+    new(
+      code: code,
+      name: name,
+      file_path: relative_path.to_s,
+      country: event&.country,
+      has_country: false,
+      has_event: true,
+      event: event,
+      event_slug: event_slug
+    )
   end
 
   def self.uk_subdivisions_covered?

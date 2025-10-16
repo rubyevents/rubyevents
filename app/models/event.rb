@@ -311,8 +311,23 @@ class Event < ApplicationRecord
     event_image_for("sticker.webp")
   end
 
+  def stamp_image_paths
+    base = Rails.root.join("app", "assets", "images")
+    Dir.glob(base.join(event_image_path, "stamp*.webp")).map { |path|
+      Pathname.new(path).relative_path_from(base).to_s
+    }.sort
+  end
+
+  def stamp_image_path
+    stamp_image_paths.first
+  end
+
   def sticker?
     sticker_image_path.present?
+  end
+
+  def stamp?
+    stamp_image_paths.any?
   end
 
   def watchable_talks?
