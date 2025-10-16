@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<% html_attributes = {lang: "en", "data-hotwire-native-app": hotwire_native_app?}.compact_blank %>%
-<%= tag.html **html_attributes do %>
+<html lang="en" <% if hotwire_native_app? %> data-hotwire-native-app <% end %>>
   <head>
     <meta name="viewport" content="width=device-width,initial-scale=1<%= ",maximum-scale=1,user-scalable=0" if hotwire_native_app? %>">
 
@@ -50,4 +49,4 @@
     <%= turbo_frame_tag "modal", target: "_top" %>
     <%= render "shared/flashes" %>
   </body>
-<% end %>
+</html>
