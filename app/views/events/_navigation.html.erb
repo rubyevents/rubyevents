@@ -5,10 +5,12 @@
     <%= active_link_to "Events", event_events_path(event), class: "tab", active_class: "tab-active", role: "tab" %>
   <% end %>
 
-  <%= active_link_to event_talks_path(event), class: class_names("tab", {"text-red-500" => !event.talks.any?}), active_class: "tab-active", role: "tab" do %>
-    Talks
-    <% unless event.talks.any? %>
-      <%= fa("question-circle", size: :xs, class: "ml-1 fill-red-500") %>
+  <% if !event.retreat? || event.talks.any? %>
+    <%= active_link_to event_talks_path(event), class: class_names("tab", {"text-red-500" => !event.talks.any?}), active_class: "tab-active", role: "tab" do %>
+      Talks
+      <% unless event.talks.any? %>
+        <%= fa("question-circle", size: :xs, class: "ml-1 fill-red-500") %>
+      <% end %>
     <% end %>
   <% end %>
 
@@ -26,21 +28,25 @@
     <%= active_link_to "Involvements", event_involvements_path(event), class: "tab", active_class: "tab-active", role: "tab" %>
   <% end %>
 
-  <% unless event.meetup? %>
+  <% if event.conference? || event.schedule.exist? %>
     <%= active_link_to event_schedules_path(event), class: class_names("tab", {"text-red-500" => !event.schedule.exist?}), active_class: "tab-active", role: "tab" do %>
       Schedule
       <% unless event.schedule.exist? %>
         <%= fa("question-circle", size: :xs, class: "ml-1 fill-red-500") %>
       <% end %>
     <% end %>
+  <% end %>
 
+  <% if event.conference? || event.sponsors.exists? %>
     <%= active_link_to event_sponsors_path(event), class: class_names("tab", {"text-red-500" => !event.sponsors.any?}), active_class: "tab-active", role: "tab" do %>
       Sponsors
       <% unless event.sponsors.any? %>
         <%= fa("question-circle", size: :xs, class: "ml-1 fill-red-500") %>
       <% end %>
     <% end %>
+  <% end %>
 
+  <% if event.conference? || event.cfp.present? %>
     <%= active_link_to event_cfp_index_path(event), class: class_names("tab", {"text-red-500" => event.cfp_link.blank? && event.cfp_open_date.blank? && event.cfp_close_date.blank?}), active_class: "tab-active", role: "tab" do %>
       <% if event.cfp.open? %>
         CFP <span class="text-green-600"> (open)</span>
