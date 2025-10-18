@@ -16,12 +16,17 @@ class ProfilesController < ApplicationController
     @topics = @user.topics.approved.tally.sort_by(&:last).reverse.map(&:first)
     # Load participated events (from event_participations)
     @events = @user.participated_events.includes(:organisation).distinct.in_order_of(:attended_as, EventParticipation.attended_as.keys)
+    @upcoming_events = @user.upcoming_events.includes(:organisation).distinct.in_order_of(:attended_as, EventParticipation.attended_as.keys)
     @events_with_stickers = @events.select(&:sticker?)
 
     event_participations = @user.event_participations.includes(:event).where(event: @events)
     participation_lookup = event_participations.index_by(&:event_id)
 
     @participated_events_by_type = @events.group_by { |event|
+      participation = participation_lookup[event.id]
+      participation&.attended_as || "visitor"
+    }
+    @upcoming_events_by_type = @upcoming_events.group_by { |event|
       participation = participation_lookup[event.id]
       participation&.attended_as || "visitor"
     }

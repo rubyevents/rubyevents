@@ -1,14 +1,13 @@
 <%# Event Participations v1 %>
 
 <% cache [user, events, Current.user] do %>
-  <input type="radio" name="talk_tabs" role="tab" class="tab px-6" aria-label="Attended Events (<%= events.size %>)" <%= "checked" if talks.size.zero? %>>
-
+  <input type="radio" name="talk_tabs" role="tab" class="tab px-6" aria-label="Upcoming Events (<%= events.size %>)">
   <div role="tabpanel" class="tab-content mt-6">
     <div class="space-y-8">
       <% participated_events_by_type.each do |participation_type, events| %>
         <div>
           <h3 class="text-lg font-semibold mb-4">
-            <%= t("event_participation.past.attended_as.#{participation_type}", default: participation_type.humanize) %>
+            <%= t("event_participation.upcoming.attended_as.#{participation_type}", default: participation_type.humanize) %>
           </h3>
           <div class="mb-6">
             <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -23,14 +22,14 @@
 
       <div class="text-center py-12 hidden only:block">
         <div class="mb-6">
-          <h3 class="text-lg font-semibold text-gray-900 mb-2">No participated events yet</h3>
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">No upcoming events yet</h3>
           <p class="text-gray-600 mb-6 max-w-xl mx-auto">
             <% if Current.user == user %>
               You haven't marked your participation in any events yet. Visit <%= link_to "event pages", events_path, class: "link link-primary link-ghost" %> or search events with <kbd class="kbd kbd-sm text-base-content">⌘ k</kbd> and click "Add to My Events" to start building your event history.
             <% elsif Current.user %>
               This user hasn't marked their participation in any events yet.
             <% else %>
-              Sign in to manage your profile and mark your participation in events you've attended.
+              Sign in to manage your profile and mark your participation in events you will attend.
             <% end %>
           </p>
         </div>
