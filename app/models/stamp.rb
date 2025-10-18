@@ -199,59 +199,24 @@ class Stamp
   def self.create_stamp_from_code(stamp_code)
     stamp_upper = stamp_code.upcase
     file_path = "#{stamp_code}.webp"
+    country = ISO3166::Country.new(stamp_upper)
 
-    case stamp_upper
-    when "SCT", "SCOTLAND", "GB-SCT"
+    if country
       new(
-        code: "SCT",
-        name: "Scotland",
+        code: stamp_upper,
+        name: country.translations["en"],
         file_path: file_path,
-        country: ISO3166::Country.new("GB"),
-        has_country: true
-      )
-    when "ENG", "ENGLAND", "GB-ENG"
-      new(
-        code: "ENG",
-        name: "England",
-        file_path: file_path,
-        country: ISO3166::Country.new("GB"),
-        has_country: true
-      )
-    when "NIR", "NI", "NORTHERN-IRELAND", "GB-NIR"
-      new(
-        code: "NIR",
-        name: "Northern Ireland",
-        file_path: file_path,
-        country: ISO3166::Country.new("GB"),
-        has_country: true
-      )
-    when "WLS", "WALES", "GB-WLS"
-      new(
-        code: "WLS",
-        name: "Wales",
-        file_path: file_path,
-        country: ISO3166::Country.new("GB"),
+        country: country,
         has_country: true
       )
     else
-      country = ISO3166::Country.new(stamp_upper)
-      if country
-        new(
-          code: stamp_upper,
-          name: country.translations["en"],
-          file_path: file_path,
-          country: country,
-          has_country: true
-        )
-      else
-        new(
-          code: stamp_upper,
-          name: stamp_code.titleize,
-          file_path: file_path,
-          country: nil,
-          has_country: false
-        )
-      end
+      new(
+        code: stamp_upper,
+        name: stamp_code.titleize,
+        file_path: file_path,
+        country: nil,
+        has_country: false
+      )
     end
   end
 
