@@ -1,33 +1,42 @@
 <div class="container py-8 hotwire-native:py-3">
-  <h1 class="title hotwire-native:hidden">
+  <h1 class="title py-4 hotwire-native:hidden">
     <%= title "Speakers" %>
     <% if params[:s].present? %>
       : search results for "<%= params[:s] %>"
     <% end %>
   </h1>
-  <div class="flex flex-wrap w-full justify-between py-8 hotwire-native:hidden gap-1">
-    <% ("a".."z").each do |letter| %>
-      <%= link_to speakers_path(letter: letter), class: class_names("flex items-center justify-center w-10 text-gray-500 rounded hover:bg-brand-lighter border", "bg-brand-lighter": letter == params[:letter]) do %>
-        <%= letter.upcase %>
-      <% end %>
-    <% end %>
-    <% if params[:letter] %>
-      <%= link_to speakers_path, class: class_names("flex items-center justify-center w-10 text-gray-500 rounded hover:bg-brand-lighter border", "bg-brand-lighter": params[:letter].blank?) do %>
-        all
-      <% end %>
+
+  <div class="mb-6 hotwire-native:hidden">
+    <%= form_with url: speakers_path, method: :get, data: {controller: "auto-submit", turbo_frame: "speakers"}, class: "flex items-center align-center gap-2" do |form| %>
+      <%= form.text_field :s,
+            value: params[:s],
+            placeholder: "Search speakers...",
+            class: "input input-bordered flex-1" %>
+      <%= form.submit "Search", class: "btn btn-primary" %>
     <% end %>
   </div>
-  <div id="speakers" class="hotwire-native:mt-3 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 lg:gap-x-12 gap-y-2 min-w-full">
-    <%# we need special cache key for speakers because @speakers is paginated %>
-    <% cache [@speakers.except(:order).pluck(:id, :updated_at).hash] do %>
-      <%= render partial: "speakers/speaker", collection: @speakers, as: :speaker, cached: true %>
+
+  <%= turbo_frame_tag "speakers" do %>
+    <div
+      class="
+        hotwire-native:mt-3 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8
+        lg:gap-x-12 gap-y-2 min-w-full
+      ">
+      <%# we need special cache key for speakers because @speakers is paginated %>
+      <% cache [@speakers.except(:order).pluck(:id, :updated_at).hash] do %>
+        <%= render partial: "speakers/speaker",
+              collection: @speakers,
+              as: :speaker,
+              cached: true %>
+      <% end %>
+    </div>
+    <% if @pagy.next.present? %>
+      <%= turbo_frame_tag :pagination,
+            data: {
+              controller: "lazy-loading",
+              lazy_loading_src_value:
+                speakers_path(s: params[:s], page: @pagy.next, format: :turbo_stream)
+            } %>
     <% end %>
-  </div>
-  <% if @pagy.next.present? %>
-    <%= turbo_frame_tag :pagination,
-          data: {
-            controller: "lazy-loading",
-            lazy_loading_src_value: speakers_path(letter: params[:letter], s: params[:s], page: @pagy.next, format: :turbo_stream)
-          } %>
   <% end %>
 </div>
