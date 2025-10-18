@@ -1,5 +1,9 @@
 class TemplatesController < ApplicationController
+  include Turbo::ForceResponse
+
   skip_before_action :authenticate_user!
+  force_frame_response only: [:new_child, :delete_child]
+  force_stream_response only: [:speakers_search]
 
   def new
     @talk = Template.new
@@ -23,14 +27,14 @@ class TemplatesController < ApplicationController
   end
 
   def speakers_search
-    @speakers = Speaker.canonical
+    @speakers = User.speakers.canonical
     @speakers = @speakers.ft_search(search_query) if search_query
     @speakers = @speakers.limit(100)
   end
 
   def speakers_search_chips
     @speakers = params[:combobox_values].split(",").map do |value|
-      Speaker.find_by(id: value) || OpenStruct.new(to_combobox_display: value, id: value)
+      User.speakers.find_by(id: value) || OpenStruct.new(to_combobox_display: value, id: value)
     end
     render turbo_stream: helpers.combobox_selection_chips_for(@speakers)
   end

@@ -28,6 +28,8 @@ class Sponsor < ApplicationRecord
   # associations
   has_many :event_sponsors, dependent: :destroy
   has_many :events, through: :event_sponsors
+  has_many :event_involvements, as: :involvementable, dependent: :destroy
+  has_many :involved_events, through: :event_involvements, source: :event
 
   validates :name, presence: true, uniqueness: true
 

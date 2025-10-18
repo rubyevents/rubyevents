@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   include WatchedTalks
   include Pagy::Backend
+
   skip_before_action :authenticate_user!, only: %i[index show update]
   before_action :set_event, only: %i[show edit update]
   before_action :set_user_favorites, only: %i[show]
@@ -32,6 +33,8 @@ class EventsController < ApplicationController
     end
 
     @sponsors = @event.event_sponsors.includes(:sponsor).joins(:sponsor).shuffle
+
+    @participation = Current.user&.main_participation_to(@event)
   end
 
   # GET /events/1/edit
@@ -53,7 +56,9 @@ class EventsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_event
-    @event = Event.includes(:organisation).find_by!(slug: params[:slug])
+    @event = Event.includes(:organisation).find_by(slug: params[:slug])
+    return redirect_to(root_path, status: :moved_permanently) unless @event
+
     redirect_to event_path(@event.canonical), status: :moved_permanently if @event.canonical.present?
   end
 

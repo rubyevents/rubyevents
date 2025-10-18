@@ -2,6 +2,7 @@ require "test_helper"
 
 class TalkTest < ActiveSupport::TestCase
   include ActiveJob::TestHelper
+
   test "should handle empty transcript" do
     talk = Talk.new(title: "Sample Talk", date: Date.today, talk_transcript_attributes: {raw_transcript: Transcript.new})
     assert talk.save
@@ -215,7 +216,7 @@ class TalkTest < ActiveSupport::TestCase
 
   test "full text search creating and deleting a talk" do
     talk = Talk.create!(title: "Full text seach with Sqlite", summary: "On using sqlite full text search with an ActiveRecord backed virtual table", date: Time.current)
-    talk.speakers.create!(name: "Kasper Timm Hansen")
+    talk.users.create!(name: "Kasper Timm Hansen")
 
     assert_equal [talk], Talk.ft_search("sqlite full text search") # title
     assert_equal [talk], Talk.ft_search("ActiveRecord backed virtual table") # summary
@@ -269,6 +270,7 @@ class TalkTest < ActiveSupport::TestCase
   test "mark talk as watched" do
     talk = talks(:two)
     Current.user = users(:one)
+    watched_talks(:two).delete
 
     assert_equal 0, talk.watched_talks.count
 
@@ -315,14 +317,14 @@ class TalkTest < ActiveSupport::TestCase
     assert_includes Talk.for_topic("activerecord"), talk
   end
 
-  test "discarded speaker_talks" do
+  test "discarded user_talks" do
     talk = talks(:one)
-    speaker_talk = talk.speaker_talks.first
-    assert_equal 1, speaker_talk.speaker.talks_count
-    speaker_talk.discard
-    assert_equal 1, talk.speaker_talks.count
-    assert_equal 0, talk.kept_speaker_talks.count
-    assert_equal 0, speaker_talk.speaker.talks_count
+    user_talk = talk.user_talks.first
+    assert_equal 1, user_talk.user.talks_count
+    user_talk.discard
+    assert_equal 1, talk.user_talks.count
+    assert_equal 0, talk.kept_user_talks.count
+    assert_equal 0, user_talk.user.talks_count
   end
 
   test "should return original title" do

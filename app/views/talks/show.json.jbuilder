@@ -27,14 +27,12 @@ json.talk do
     end
   end
 
-  json.speakers @talk.speakers do |speaker|
-    json.id speaker.id
-    json.name speaker.name
-    json.slug speaker.slug
-    if speaker.user.present?
-      json.bio speaker.user.bio
-      json.avatar_url speaker.user.avatar_url
-    end
+  json.speakers @talk.speakers do |user|
+    json.id user.id
+    json.name user.name
+    json.slug user.slug
+    json.bio user.bio
+    json.avatar_url user.avatar_url
   end
 
   json.topics @talk.approved_topics do |topic|

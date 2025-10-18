@@ -1,4 +1,14 @@
 ---
+- name: RubyEvents.org
+  website: https://rubyevents.org/
+  twitter: rubyevents_org
+  youtube_channel_name: ""
+  frequency: yearly
+  kind: organisation
+  slug: rubyevents
+  language: english
+  youtube_channel_id: ""
+
 - name: RailsConf
   website: https://railsconf.org/
   twitter: railsconf
@@ -400,7 +410,7 @@
   youtube_channel_id: UCWnPjmqvljcafA0z2U1fwKQ
 
 - name: MountainWest RubyConf
-  website: http://mtnwestrubyconf.org
+  website: https://web.archive.org/web/20160331205937/http://mtnwestrubyconf.org/
   twitter: mwrc
   kind: conference
   frequency: yearly
@@ -1292,15 +1302,15 @@
   youtube_channel_id: ''
 
 - name: RubyConf Colombia
-  website: http://2015.rubyconf.co/
+  website: https://www.rubyconf.co/
   twitter: rubyconfco
-  youtube_channel_name: ''
   kind: conference
   frequency: yearly
-  playlist_matcher: ''
+  default_country_code: CO
+  youtube_channel_name: RubyConfCo
   slug: rubyconf-colombia
-  language: english
-  youtube_channel_id: ''
+  language: spanish
+  youtube_channel_id: UCLvVrdSpILOIW8PN1d2fJmg
 
 - name: RubyConfBY
   website: https://2016.rubyconference.by/en/
@@ -1519,6 +1529,19 @@
   language: english
   youtube_channel_id: ''
 
+- name: Railsberry
+  website: "https://web.archive.org/web/20120623201143/http://railsberry.com/"
+  twitter: railsberry
+  youtube_channel_name: applicake
+  kind: conference
+  frequency: yearly
+  playlist_matcher: Railsberry
+  default_country_code: PL
+  slug: railsberry
+  language: english
+  youtube_channel_id: UC8dsjHz_0WVzHjAANKiAqGw
+  ended: true
+
 - name: Abril Pro Ruby
   website: ""
   original_website: "http://abrilproruby.com/"
@@ -1713,7 +1736,7 @@
   language: english
   youtube_channel_id: ''
 
-- name: Ruby Retreat
+- name: Ruby Retreat AU
   website: https://retreat.ruby.org.au
   twitter:
   mastodon:
@@ -1721,9 +1744,10 @@
   kind: conference
   frequency: yearly
   playlist_matcher: ''
-  slug: ruby-retreat
+  slug: ruby-retreat-au
   language: english
   youtube_channel_id: ''
+  default_country_code: AU
 
 - name: Ruby Fringe
   website: https://rubyfringe.com
@@ -1974,7 +1998,7 @@
   youtube_channel_id: UCPkGcnK-vKiYVmefSp22enA
 
 - name: Rubycon
-  website: https://rubycon.netlify.app/
+  website: https://www.rubycon.it/
   twitter: "https://x.com/rubycon2026"
   bsky: "https://bsky.app/profile/rubyconitaly.bsky.social"
   mastodon: "https://mastodon.social/@rubycon"
@@ -1986,3 +2010,36 @@
   language: english
   youtube_channel_id: 'UCNqcu--Vp9H7JfGHW4TYzIw'
   default_country_code: IT
+
+- name: Sheffield Ruby
+  website: https://shrug.org/
+  twitter: "https://x.com/sheffieldruby"
+  kind: meetup
+  frequency: monthly
+  playlist_matcher: ""
+  default_country_code: GB
+  youtube_channel_name: ""
+  slug: shrug
+  language: english
+  youtube_channel_id: "UCoyqucxoFXDFnh3khD0rjUg"
+
+- name: RubyHiroba
+  website: http://rubyhiroba.org
+  youtube_channel_name: ""
+  frequency: yearly
+  kind: organisation
+  slug: rubyhiroba
+  language: japanese
+  youtube_channel_id: ""
+
+- name: Poznań Ruby User Group (PRUG)
+  website: https://luma.com/prug
+  twitter: ""
+  kind: meetup
+  frequency: monthly
+  playlist_matcher: ""
+  default_country_code: PL
+  youtube_channel_name: ""
+  slug: poznanrubyusergroup
+  language: english
+  youtube_channel_id: ""

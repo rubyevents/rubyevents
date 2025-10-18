@@ -2,6 +2,7 @@ class TalksController < ApplicationController
   include RemoteModal
   include Pagy::Backend
   include WatchedTalks
+
   skip_before_action :authenticate_user!
 
   respond_with_remote_modal only: [:edit]
@@ -19,13 +20,14 @@ class TalksController < ApplicationController
   # GET /talks
   def index
     @talks = Talk.includes(:speakers, event: :organisation, child_talks: :speakers)
-    @talks = @talks.watchable unless params[:all].present?
     @talks = @talks.ft_search(params[:s]).with_snippets if params[:s].present?
     @talks = @talks.for_topic(params[:topic]) if params[:topic].present?
     @talks = @talks.for_event(params[:event]) if params[:event].present?
     @talks = @talks.for_speaker(params[:speaker]) if params[:speaker].present?
     @talks = @talks.where(kind: talk_kind) if talk_kind.present?
     @talks = @talks.where("created_at >= ?", created_after) if created_after
+    @talks = @talks.watchable if params[:status].blank? && params[:status] != "all"
+    @talks = @talks.scheduled if params[:status] == "scheduled"
 
     # Apply ordering (handles search ranking vs custom ordering)
     if order_by_key == "ranked"
@@ -96,7 +98,7 @@ class TalksController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_talk
-    @talk = Talk.includes(:approved_topics, speakers: :user, event: :organisation).find_by(slug: params[:slug])
+    @talk = Talk.includes(:approved_topics, :speakers, event: :organisation, watched_talks: :user).find_by(slug: params[:slug])
 
     redirect_to talks_path, status: :moved_permanently if @talk.blank?
   end
@@ -108,7 +110,7 @@ class TalksController < ApplicationController
 
   helper_method :search_params
   def search_params
-    params.permit(:s, :topic, :event, :speaker, :kind, :created_after, :all, :order_by)
+    params.permit(:s, :topic, :event, :speaker, :kind, :created_after, :all, :order_by, :status)
   end
 
   def set_user_favorites

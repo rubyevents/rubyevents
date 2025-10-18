@@ -1,0 +1,2 @@
+<%= turbo_stream.replace_all(".participation_button", partial: "events/participation_button", locals: {event: @event, participation: @participation}) %>
+<%= turbo_stream.replace("participants_list", partial: "events/participants/list", locals: {event: @event, participants: @participants, participation: @participation}) %>

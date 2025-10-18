@@ -11,10 +11,10 @@
         <%= event.formatted_dates %>
 
         <% if event.static_metadata.last_edition? %>
-            <div class="flex items-center justify-center mt-auto -mb-0.5 text-gray-400">
-              <%= heroicon "archive-box", size: :sm %>
-              <span class="text-sm mt-0.5 ml-1">Final Edition</span>
-            </div>
+          <div class="flex items-center justify-center mt-auto -mb-0.5 text-gray-400">
+            <%= fa "box-archive", size: :xs, style: :regular, class: "fill-gray-400" %>
+            <span class="text-sm mt-0.5 ml-1">Final Edition</span>
+          </div>
         <% end %>
       </div>
     </div>

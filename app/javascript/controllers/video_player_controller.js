@@ -3,7 +3,7 @@ import { useIntersection } from 'stimulus-use'
 import Vlitejs from 'vlitejs'
 import YouTube from 'vlitejs/providers/youtube.js'
 import Vimeo from 'vlitejs/providers/vimeo.js'
-import youtubeSvg from '../../assets/images/icons/fontawesome/youtube-brands-solid.svg?raw'
+import { patch } from '@rails/request.js'
 
 Vlitejs.registerProvider('youtube', YouTube)
 Vlitejs.registerProvider('vimeo', Vimeo)
@@ -14,7 +14,10 @@ export default class extends Controller {
     src: String,
     provider: String,
     startSeconds: Number,
-    endSeconds: Number
+    endSeconds: Number,
+    watchedTalkPath: String,
+    currentUserPresent: { default: false, type: Boolean },
+    progressSeconds: { default: 0, type: Number }
   }
 
   static targets = ['player', 'playerWrapper']
@@ -40,7 +43,21 @@ export default class extends Controller {
   get options () {
     const providerOptions = {}
     const providerParams = {}
+    // Youtube videos have their own controls, so we need to hide the Vlitejs controls
+    let controls = true
 
+    // Hide the Vlitejs controls if the video is a Youtube video
+    providerParams.controls = !controls
+
+    if (this.hasProviderValue && this.providerValue === 'youtube') {
+      // Set YT rel to 0 to show related videos from the respective channel
+      providerOptions.rel = 0
+      providerOptions.autohide = 0
+      // Show YT controls
+      providerOptions.controls = 1
+      // Hide the Vlitejs controls
+      controls = false
+    }
     if (this.hasProviderValue && this.providerValue !== 'mp4') {
       providerOptions.provider = this.providerValue
     }
@@ -60,7 +77,7 @@ export default class extends Controller {
       options: {
         providerParams,
         poster: this.posterValue,
-        controls: true
+        controls
       },
       onReady: this.handlePlayerReady.bind(this)
     }
@@ -89,12 +106,96 @@ export default class extends Controller {
       const volumeButton = player.elements.container.querySelector('.v-volumeButton')
       const playbackRateSelect = this.createPlaybackRateSelect(this.playbackRateOptions, player)
       volumeButton.parentNode.insertBefore(playbackRateSelect, volumeButton.nextSibling)
-
-      if (this.providerValue === 'youtube') {
-        const openInYouTube = this.createOpenInYoutube()
-        volumeButton.parentNode.insertBefore(openInYouTube, volumeButton.previousSibling)
-      }
     }
+
+    if (this.providerValue === 'youtube') {
+      // The overlay is messing with the hover state of he player
+      player.elements.container.querySelector('.v-overlay').remove()
+
+      this.setupYouTubeEventLogging(player)
+    }
+
+    if (this.providerValue === 'vimeo') {
+      player.instance.on('ended', () => {
+        this.stopProgressTracking()
+      })
+
+      player.instance.on('pause', () => {
+        this.stopProgressTracking()
+      })
+
+      player.instance.on('play', () => {
+        this.startProgressTracking()
+      })
+    }
+
+    if (this.hasProgressSecondsValue && this.progressSecondsValue > 0) {
+      this.player.seekTo(this.progressSecondsValue)
+    }
+  }
+
+  setupYouTubeEventLogging (player) {
+    if (!player.instance) {
+      console.log('YouTube API not available for event logging')
+      return
+    }
+
+    const ytPlayer = player.instance
+
+    ytPlayer.addEventListener('onStateChange', (event) => {
+      const YOUTUBE_STATES = {
+        ENDED: 0,
+        PLAYING: 1,
+        PAUSED: 2
+      }
+
+      if (event.data === YOUTUBE_STATES.PLAYING && this.currentUserPresentValue) {
+        this.startProgressTracking()
+      } else if (event.data === YOUTUBE_STATES.PAUSED || event.data === YOUTUBE_STATES.ENDED) {
+        this.stopProgressTracking()
+      }
+    })
+  }
+
+  async startProgressTracking () {
+    if (this.progressInterval) return
+    if (!this.currentUserPresentValue) return
+
+    const currentTime = await this.getCurrentTime()
+    this.progressSecondsValue = Math.floor(currentTime)
+
+    this.updateWatchedProgress(this.progressSecondsValue)
+
+    this.progressInterval = setInterval(async () => {
+      if (this.hasWatchedTalkPathValue) {
+        const currentTime = await this.getCurrentTime()
+        this.progressSecondsValue = Math.floor(currentTime)
+
+        this.updateWatchedProgress(this.progressSecondsValue)
+      }
+    }, 5000)
+  }
+
+  stopProgressTracking () {
+    if (this.progressInterval) {
+      clearInterval(this.progressInterval)
+      this.progressInterval = null
+    }
+  }
+
+  updateWatchedProgress (progressSeconds) {
+    if (!this.hasWatchedTalkPathValue) return
+    if (!this.currentUserPresentValue) return
+
+    patch(this.watchedTalkPathValue, {
+      body: {
+        watched_talk: {
+          progress_seconds: progressSeconds
+        }
+      }
+    }).catch(error => {
+      console.error('Error updating watch progress:', error)
+    })
   }
 
   createPlaybackRateSelect (options, player) {
@@ -130,17 +231,8 @@ export default class extends Controller {
     this.player.pause()
   }
 
-  createOpenInYoutube () {
-    const videoId = this.playerTarget.dataset.youtubeId
-
-    const anchorTag = document.createElement('a')
-    anchorTag.className = 'v-openInYouTube v-controlButton'
-    anchorTag.innerHTML = youtubeSvg
-    anchorTag.href = `https://www.youtube.com/watch?v=${videoId}`
-    anchorTag.target = '_blank'
-    anchorTag.dataset.action = 'click->video-player#pause'
-
-    return anchorTag
+  disconnect () {
+    this.stopProgressTracking()
   }
 
   #togglePictureInPicturePlayer (enabled) {
@@ -175,5 +267,14 @@ export default class extends Controller {
 
   get isPreview () {
     return document.documentElement.hasAttribute('data-turbo-preview')
+  }
+
+  async getCurrentTime () {
+    try {
+      return await this.player.instance.getCurrentTime()
+    } catch (error) {
+      console.error('Error getting current time:', error)
+      return 0
+    }
   }
 }

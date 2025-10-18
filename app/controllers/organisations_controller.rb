@@ -1,5 +1,6 @@
 class OrganisationsController < ApplicationController
   include Pagy::Backend
+
   skip_before_action :authenticate_user!, only: %i[index show]
   before_action :set_organisation, only: %i[show]
 
@@ -25,6 +26,7 @@ class OrganisationsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_organisation
-    @organisation = Organisation.includes(:events).find_by!(slug: params[:slug])
+    @organisation = Organisation.includes(:events).find_by(slug: params[:slug])
+    redirect_to(root_path, status: :moved_permanently) unless @organisation
   end
 end

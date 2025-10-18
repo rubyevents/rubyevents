@@ -1,0 +1,18 @@
+<% if countries_with_events.any? %>
+  <input type="radio" name="talk_tabs" role="tab" class="tab px-6" aria-label="Map (<%= countries_with_events.size %>)">
+
+  <div role="tabpanel" class="tab-content mt-6">
+    <div class="space-y-8">
+      <% countries_with_events.group_by { |country, _| country.continent }.sort_by(&:first).each do |continent, countries_group| %>
+        <div>
+          <h3 class="text-lg font-semibold mb-4"><%= continent %></h3>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <% countries_group.each do |country, events| %>
+              <%= render "shared/country_card", country: country, events: events %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

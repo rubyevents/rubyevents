@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_08_23_020826) do
+ActiveRecord::Schema[8.1].define(version: 2025_10_12_114916) do
   create_table "ahoy_events", force: :cascade do |t|
     t.string "name"
     t.text "properties"
@@ -77,9 +77,47 @@ ActiveRecord::Schema[8.1].define(version: 2025_08_23_020826) do
     t.index ["user_id"], name: "index_connected_accounts_on_user_id"
   end
 
+  create_table "contributors", force: :cascade do |t|
+    t.string "avatar_url"
+    t.datetime "created_at", null: false
+    t.string "html_url"
+    t.string "login", null: false
+    t.string "name"
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["login"], name: "index_contributors_on_login", unique: true
+    t.index ["user_id"], name: "index_contributors_on_user_id"
+  end
+
   create_table "email_verification_tokens", force: :cascade do |t|
     t.integer "user_id", null: false
     t.index ["user_id"], name: "index_email_verification_tokens_on_user_id"
+  end
+
+  create_table "event_involvements", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "event_id", null: false
+    t.integer "involvementable_id", null: false
+    t.string "involvementable_type", null: false
+    t.integer "position", default: 0
+    t.string "role", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_event_involvements_on_event_id"
+    t.index ["involvementable_type", "involvementable_id", "event_id", "role"], name: "idx_involvements_on_involvementable_and_event_and_role", unique: true
+    t.index ["involvementable_type", "involvementable_id"], name: "index_event_involvements_on_involvementable"
+    t.index ["role"], name: "index_event_involvements_on_role"
+  end
+
+  create_table "event_participations", force: :cascade do |t|
+    t.string "attended_as", null: false
+    t.datetime "created_at", null: false
+    t.integer "event_id", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["attended_as"], name: "index_event_participations_on_attended_as"
+    t.index ["event_id"], name: "index_event_participations_on_event_id"
+    t.index ["user_id", "event_id", "attended_as"], name: "idx_on_user_id_event_id_attended_as_ca0a2916e2", unique: true
+    t.index ["user_id"], name: "index_event_participations_on_user_id"
   end
 
   create_table "event_sponsors", force: :cascade do |t|
@@ -89,6 +127,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_08_23_020826) do
     t.integer "sponsor_id", null: false
     t.string "tier"
     t.datetime "updated_at", null: false
+    t.index ["event_id", "sponsor_id", "tier"], name: "index_event_sponsors_on_event_sponsor_tier_unique", unique: true
     t.index ["event_id"], name: "index_event_sponsors_on_event_id"
     t.index ["sponsor_id"], name: "index_event_sponsors_on_sponsor_id"
   end
@@ -316,18 +355,48 @@ ActiveRecord::Schema[8.1].define(version: 2025_08_23_020826) do
     t.index ["status"], name: "index_topics_on_status"
   end
 
+  create_table "user_talks", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "discarded_at"
+    t.integer "talk_id", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["talk_id"], name: "index_user_talks_on_talk_id"
+    t.index ["user_id", "talk_id"], name: "index_user_talks_on_user_id_and_talk_id", unique: true
+    t.index ["user_id"], name: "index_user_talks_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.boolean "admin", default: false, null: false
+    t.text "bio", default: "", null: false
+    t.string "bsky", default: "", null: false
+    t.json "bsky_metadata", default: {}, null: false
+    t.integer "canonical_id"
     t.boolean "cfp_subscription", default: false
     t.datetime "created_at", null: false
-    t.string "email", null: false
+    t.string "email"
     t.string "github_handle"
+    t.json "github_metadata", default: {}, null: false
+    t.string "linkedin", default: "", null: false
+    t.string "location", default: ""
+    t.string "mastodon", default: "", null: false
     t.string "name"
-    t.string "password_digest", null: false
+    t.string "password_digest"
+    t.string "pronouns", default: "", null: false
+    t.string "pronouns_type", default: "not_specified", null: false
+    t.string "slug", default: "", null: false
+    t.string "speakerdeck", default: "", null: false
+    t.integer "talks_count", default: 0, null: false
+    t.string "twitter", default: "", null: false
     t.datetime "updated_at", null: false
     t.boolean "verified", default: false, null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["github_handle"], name: "index_users_on_github_handle", unique: true, where: "github_handle IS NOT NULL"
+    t.integer "watched_talks_count", default: 0, null: false
+    t.string "website", default: "", null: false
+    t.index ["canonical_id"], name: "index_users_on_canonical_id"
+    t.index ["email"], name: "index_users_on_email"
+    t.index ["github_handle"], name: "index_users_on_github_handle", unique: true, where: "github_handle IS NOT NULL AND github_handle != ''"
+    t.index ["name"], name: "index_users_on_name"
+    t.index ["slug"], name: "index_users_on_slug", unique: true, where: "slug IS NOT NULL AND slug != ''"
   end
 
   create_table "watch_list_talks", force: :cascade do |t|
@@ -352,6 +421,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_08_23_020826) do
 
   create_table "watched_talks", force: :cascade do |t|
     t.datetime "created_at", null: false
+    t.integer "progress_seconds", default: 0, null: false
     t.integer "talk_id", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
@@ -362,7 +432,11 @@ ActiveRecord::Schema[8.1].define(version: 2025_08_23_020826) do
 
   add_foreign_key "cfps", "events"
   add_foreign_key "connected_accounts", "users"
+  add_foreign_key "contributors", "users"
   add_foreign_key "email_verification_tokens", "users"
+  add_foreign_key "event_involvements", "events"
+  add_foreign_key "event_participations", "events"
+  add_foreign_key "event_participations", "users"
   add_foreign_key "event_sponsors", "events"
   add_foreign_key "event_sponsors", "sponsors"
   add_foreign_key "events", "events", column: "canonical_id"
@@ -378,6 +452,8 @@ ActiveRecord::Schema[8.1].define(version: 2025_08_23_020826) do
   add_foreign_key "talks", "events"
   add_foreign_key "talks", "talks", column: "parent_talk_id"
   add_foreign_key "topics", "topics", column: "canonical_id"
+  add_foreign_key "user_talks", "talks"
+  add_foreign_key "user_talks", "users"
   add_foreign_key "watch_list_talks", "talks"
   add_foreign_key "watch_list_talks", "watch_lists"
 
@@ -385,4 +461,5 @@ ActiveRecord::Schema[8.1].define(version: 2025_08_23_020826) do
   # Note that virtual tables may not work with other database engines. Be careful if changing database.
   create_virtual_table "speakers_search_index", "fts5", ["name", "github", "tokenize = porter"]
   create_virtual_table "talks_search_index", "fts5", ["title", "summary", "speaker_names", "tokenize = porter"]
+  create_virtual_table "users_search_index", "fts5", ["name", "github_handle", "tokenize = porter"]
 end

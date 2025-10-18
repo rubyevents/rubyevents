@@ -17,14 +17,9 @@ class ActiveSupport::TestCase
   include EventTrackingHelper
 
   setup do
-    # @@once ||= begin
-    #   MeiliSearch::Rails::Utilities.reindex_all_models
-    #   true
-    # end
-
     Talk.reindex_all
-    Speaker.reindex_all
-    Speaker.reset_talks_counts
+    User.reindex_all
+    User.reset_talks_counts
   end
   # Run tests in parallel with specified workers
   parallelize(workers: :number_of_processors)
@@ -38,5 +33,3 @@ class ActiveSupport::TestCase
     user
   end
 end
-
-# MeiliSearch::Rails::Utilities.clear_all_indexes

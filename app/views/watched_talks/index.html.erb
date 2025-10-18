@@ -1,0 +1,25 @@
+<div class="container container-sm flex flex-col w-full gap-4 my-8 hotwire-native:my-0 hotwire-native:mb-8">
+  <div class="flex items-end gap-2 title text-primary hotwire-native:mb-3">
+    <h1 class="title hotwire-native:hidden" style="view-transition-name: title">
+      <%= title "Recently Watched Videos" %>
+    </h1>
+  </div>
+  <% if @talks.present? %>
+    <div id="talks" class="flex flex-col gap-2">
+      <%= render partial: "talks/card_horizontal",
+            collection: @talks,
+            as: :talk,
+            locals: {
+              user_watched_talks: user_watched_talks,
+              show_remove_from_watched: true,
+              tooltip: false
+            } %>
+    </div>
+  <% else %>
+    <div class="py-8 text-center">
+      <h2 class="mb-4 text-xl">No watched videos yet</h2>
+      <p class="mb-4 text-gray-600">Start watching videos to see them appear here.</p>
+      <%= link_to "Browse Videos", talks_path, class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

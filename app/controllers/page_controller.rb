@@ -6,13 +6,15 @@ class PageController < ApplicationController
       latest_talks = Talk.watchable.with_speakers.order(date: :desc).limit(10)
       {
         talks_count: Talk.count,
-        speakers_count: Speaker.count,
+        speakers_count: User.speakers.count,
         latest_talk_ids: latest_talks.pluck(:id),
         upcoming_talk_ids: Talk.with_speakers.where(date: Date.today..).order(date: :asc).limit(15).pluck(:id),
         latest_event_ids: Event.order(date: :desc).limit(10).pluck(:id).sample(4),
-        featured_speaker_ids: Speaker.with_github
+        featured_speaker_ids: User.with_github
           .joins(:talks)
           .where(talks: {date: 12.months.ago..})
+          .order(Arel.sql("RANDOM()"))
+          .limit(40)
           .pluck(:id)
       }
     end
@@ -22,8 +24,8 @@ class PageController < ApplicationController
     @latest_talks = Talk.includes(event: :organisation).where(id: home_page_cached_data[:latest_talk_ids])
     @upcoming_talks = Talk.includes(event: :organisation).where(id: home_page_cached_data[:upcoming_talk_ids])
     @latest_events = Event.includes(:organisation).where(id: home_page_cached_data[:latest_event_ids])
-    @featured_speakers = Speaker.where(id: home_page_cached_data[:featured_speaker_ids]).sample(10)
-    @featured_sponsors = Sponsor.joins(:event_sponsors).group("sponsors.id").order("COUNT(event_sponsors.id) DESC").limit(25)
+    @featured_speakers = User.where(id: home_page_cached_data[:featured_speaker_ids]).sample(10)
+    @featured_sponsors = Sponsor.joins(:event_sponsors).includes(:events).group("sponsors.id").order("COUNT(event_sponsors.id) DESC").limit(10)
 
     # Add featured events logic
     playlist_slugs = Static::Playlist.where.not(featured_background: nil)
@@ -34,7 +36,7 @@ class PageController < ApplicationController
       .map(&:slug)
 
     @featured_events = Event.distinct
-      .includes(:organisation)
+      .includes(:organisation, :keynote_speakers, :speakers)
       .where(slug: playlist_slugs)
       # .with_watchable_talks
       .in_order_of(:slug, playlist_slugs)
@@ -97,5 +99,9 @@ class PageController < ApplicationController
 
   def stickers
     @events = Event.all.select(&:sticker?)
+  end
+
+  def contributors
+    @contributors = Contributor.includes(:user).order(:name, :login)
   end
 end

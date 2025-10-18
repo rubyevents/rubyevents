@@ -17,7 +17,17 @@ class Talks::WatchedTalksController < ApplicationController
     redirect_back fallback_location: @talk
   end
 
+  def update
+    @talk.watched_talks.find_or_create_by!(user: Current.user).update!(watched_talk_params)
+
+    head :ok
+  end
+
   private
+
+  def watched_talk_params
+    params.require(:watched_talk).permit(:progress_seconds)
+  end
 
   def set_talk
     @talk = Talk.includes(event: :organisation).find_by(slug: params[:talk_slug])
@@ -32,6 +42,6 @@ class Talks::WatchedTalksController < ApplicationController
                talk: @talk,
                current_talk: @talk,
                turbo_frame: "talk",
-               watched_talks_ids: user_watched_talks_ids}
+               user_watched_talks: user_watched_talks}
   end
 end

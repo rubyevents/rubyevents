@@ -4,59 +4,6 @@
     position: relative;
   }
 
-  .passport-stamp-card figure {
-    overflow: visible;
-    padding: 8px;
-  }
-
-  .passport-stamp {
-    transition: all 0.3s ease;
-    transform: rotate(-2deg) scale(0.98);
-    position: relative;
-    filter: brightness(0) saturate(100%) sepia(1) hue-rotate(220deg) saturate(2) opacity(0.8);
-  }
-
-  .passport-stamp-card:nth-child(even) .passport-stamp {
-    transform: rotate(2deg) scale(1.02) scaleY(0.96);
-  }
-
-  .passport-stamp-card:nth-child(3n) .passport-stamp {
-    transform: rotate(-3deg) scale(0.94) scaleX(1.05);
-  }
-
-  .passport-stamp-card:nth-child(4n) .passport-stamp {
-    transform: rotate(1.5deg) scale(1.01) scaleY(1.03);
-  }
-
-  .passport-stamp-card:nth-child(5n) .passport-stamp {
-    transform: rotate(-1deg) scale(0.97) scaleX(0.98);
-  }
-
-  .passport-stamp-card:nth-child(6n) .passport-stamp {
-    transform: rotate(2.5deg) scale(1.03) scaleY(0.97);
-  }
-
-  .passport-stamp-card:nth-child(7n) .passport-stamp {
-    transform: rotate(-2.5deg) scale(0.99) scaleX(1.02);
-  }
-
-  .passport-stamp-card:nth-child(8n) .passport-stamp {
-    transform: rotate(0.5deg) scale(1.04) scaleY(0.95);
-  }
-
-  .passport-stamp-card:nth-child(9n) .passport-stamp {
-    transform: rotate(-1.5deg) scale(0.96) scaleX(1.03);
-  }
-
-  .passport-stamp-card:nth-child(10n) .passport-stamp {
-    transform: rotate(3deg) scale(1.01) scaleY(1.02);
-  }
-
-  .passport-stamp-card:hover .passport-stamp {
-    filter: none;
-    transform: rotate(0deg) scale(1) scaleX(1) scaleY(1) !important;
-  }
-
 </style>
 
 <div class="container mx-auto px-4 py-8">
@@ -86,6 +33,35 @@
         </div>
       <% end %>
 
+      <% if @event_stamps.any? %>
+        <div class="mb-12">
+          <h2 class="text-2xl font-semibold mb-6 text-gray-800">Event Stamps</h2>
+
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+            <% @event_stamps.each do |stamp| %>
+              <div class="card bg-base-100 border border-gray-200 hover:border-gray-400 transition-colors duration-300 passport-stamp-card">
+                <%= ui_stamp(stamp, rotate: true, size: :xl, class: "mx-auto p-4", zoom_effect: true) %>
+                <div class="card-body items-center text-center p-4">
+                  <h3 class="card-title text-sm">
+                    <%= stamp.name %>
+                  </h3>
+                  <div class="badge badge-outline badge-sm truncate">
+                    <%= stamp.code %>
+                  </div>
+                  <% if stamp.event %>
+                    <div class="card-actions mt-2">
+                      <%= link_to "View Event",
+                            event_path(stamp.event),
+                            class: "btn btn-xs btn-secondary" %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
       <% @stamps_by_continent.each do |continent, stamps| %>
         <div class="mb-12">
           <h2 class="text-2xl font-semibold mb-6 text-gray-800"><%= continent || "Unknown" %></h2>
@@ -93,12 +69,7 @@
           <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
             <% stamps.each do |stamp| %>
               <div class="card bg-base-100 border border-gray-200 hover:border-gray-400 transition-colors duration-300 passport-stamp-card">
-                <figure class="px-4 pt-4">
-                  <%= image_tag stamp.asset_path,
-                        alt: "#{stamp.name} passport stamp",
-                        class: "rounded-xl w-full h-32 object-contain passport-stamp",
-                        loading: "lazy" %>
-                </figure>
+                <%= ui_stamp(stamp, rotate: true, size: :xl, class: "mx-auto p-4", zoom_effect: true) %>
                 <div class="card-body items-center text-center p-4">
                   <h3 class="card-title text-sm">
                     <%= stamp.name %>
