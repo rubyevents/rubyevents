@@ -13,7 +13,7 @@ class CFPControllerTest < ActionDispatch::IntegrationTest
 
   test "should get call4papers link" do
     get cfp_index_path
-    assert_select "link", href: @event.cfp_link
+    assert_select "link", href: @event.cfps.first.link
   end
 
   test "should get call4papers open in future" do
@@ -22,7 +22,7 @@ class CFPControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index call4papers opened" do
-    @event.update(cfp_open_date: 1.week.ago, cfp_close_date: 1.day.from_now)
+    @event.cfps.first.update(open_date: 1.week.ago, close_date: 1.day.from_now)
 
     get cfp_index_path
     assert_select "div", /CFP closes at/i

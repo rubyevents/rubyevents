@@ -3,6 +3,6 @@ class CFPController < ApplicationController
 
   # GET /cfp
   def index
-    @events = Event.where(cfp_close_date: Date.today..).order(cfp_close_date: :asc)
+    @events = Event.includes(:cfps).where(cfps: {close_date: Date.today..}).order(cfps: {close_date: :asc})
   end
 end

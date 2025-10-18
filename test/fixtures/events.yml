@@ -4,9 +4,6 @@
 # Table name: events
 #
 #  id              :integer          not null, primary key
-#  cfp_close_date  :date
-#  cfp_link        :string
-#  cfp_open_date   :date
 #  city            :string
 #  country_code    :string
 #  date            :date
@@ -81,6 +78,3 @@ future_conference:
   name: Future Conference
   kind: conference
   slug: future-conference
-  cfp_link: https://www.futureconference.com/cfp
-  cfp_open_date: <%= 1.week.from_now %>
-  cfp_close_date: <%= 2.weeks.from_now %>
