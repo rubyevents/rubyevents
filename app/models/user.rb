@@ -9,10 +9,10 @@
 #  bsky                :string           default(""), not null
 #  bsky_metadata       :json             not null
 #  email               :string           indexed
-#  github_handle       :string           uniquely indexed
+#  github_handle       :string
 #  github_metadata     :json             not null
 #  linkedin            :string           default(""), not null
-#  location            :string
+#  location            :string           default("")
 #  mastodon            :string           default(""), not null
 #  name                :string           indexed
 #  password_digest     :string
@@ -31,11 +31,11 @@
 #
 # Indexes
 #
-#  index_users_on_canonical_id   (canonical_id)
-#  index_users_on_email          (email)
-#  index_users_on_github_handle  (github_handle) UNIQUE WHERE github_handle IS NOT NULL AND github_handle != ''
-#  index_users_on_name           (name)
-#  index_users_on_slug           (slug) UNIQUE WHERE slug IS NOT NULL AND slug != ''
+#  index_users_on_canonical_id         (canonical_id)
+#  index_users_on_email                (email)
+#  index_users_on_lower_github_handle  (lower(github_handle)) UNIQUE WHERE github_handle IS NOT NULL AND github_handle != ''
+#  index_users_on_name                 (name)
+#  index_users_on_slug                 (slug) UNIQUE WHERE slug IS NOT NULL AND slug != ''
 #
 # rubocop:enable Layout/LineLength
 class User < ApplicationRecord
@@ -157,6 +157,11 @@ class User < ApplicationRecord
     find_each do |user|
       user.update_column(:talks_count, user.talks.count)
     end
+  end
+
+  def self.find_by_github_handle(handle)
+    return nil if handle.blank?
+    where("lower(github_handle) = ?", handle.downcase).first
   end
 
   # User-specific methods

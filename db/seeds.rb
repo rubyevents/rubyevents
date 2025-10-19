@@ -6,13 +6,14 @@ videos_to_ignore = YAML.load_file("#{Rails.root}/data/videos_to_ignore.yml")
 
 # create speakers
 speakers.each do |speaker|
-  User.find_or_create_by!(slug: speaker["slug"]) do |s|
-    s.name = speaker["name"]
-    s.twitter = speaker["twitter"]
-    s.github_handle = speaker["github"]
-    s.website = speaker["website"]
-    s.bio = speaker["bio"]
-  end
+  user = User.find_by(slug: speaker["slug"]) || User.find_by_github_handle(speaker["github"]) || User.new
+  user.update!(
+    name: speaker["name"],
+    twitter: speaker["twitter"],
+    github_handle: speaker["github"],
+    website: speaker["website"],
+    bio: speaker["bio"]
+  )
 end
 
 organisations.each do |org|

@@ -89,7 +89,7 @@ class ProfilesController < ApplicationController
     #   return redirect_to profile_path(@user.github_handle), status: :moved_permanently
     # end
 
-    @user = User.includes(:talks).find_by(github_handle: params[:slug]) unless @user.present?
+    @user = User.includes(:talks).find_by_github_handle(params[:slug]) unless @user.present?
 
     redirect_to speakers_path, status: :moved_permanently, notice: "User not found" if @user.blank?
     redirect_to profile_path(@user.canonical) if @user&.canonical.present?
