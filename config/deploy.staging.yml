@@ -3,7 +3,7 @@
 service: rubyvideo_staging
 
 # Name of the container image.
-image: adrienpoly/rubyvideo_staging
+image: rubyvideo_staging
 
 # Deploy to these servers.
 servers:
@@ -36,9 +36,7 @@ proxy:
 
 # Credentials for your image host.
 registry:
-  username: adrienpoly
-  password:
-    - KAMAL_REGISTRY_PASSWORD
+  server: "localhost:5555"
 
 env:
   clear:
