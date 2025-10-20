@@ -11,14 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[8.1].define(version: 2025_10_12_114916) do
-  create_table "_litestream_lock", id: false, force: :cascade do |t|
-    t.integer "id"
-  end
-
-  create_table "_litestream_seq", force: :cascade do |t|
-    t.integer "seq"
-  end
-
   create_table "ahoy_events", force: :cascade do |t|
     t.string "name"
     t.text "properties"
@@ -60,15 +52,15 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_12_114916) do
     t.index ["visit_token"], name: "index_ahoy_visits_on_visit_token", unique: true
   end
 
-  create_table "badge_awards", force: :cascade do |t|
-    t.datetime "awarded_at", null: false
-    t.string "badge_id"
+  create_table "cfps", force: :cascade do |t|
+    t.date "close_date"
     t.datetime "created_at", null: false
+    t.integer "event_id", null: false
+    t.string "link"
+    t.string "name"
+    t.date "open_date"
     t.datetime "updated_at", null: false
-    t.integer "user_id", null: false
-    t.index ["badge_id"], name: "index_badge_awards_on_badge_id"
-    t.index ["user_id", "badge_id"], name: "index_badge_awards_on_user_id_and_badge_id_unique_awarded", unique: true
-    t.index ["user_id"], name: "index_badge_awards_on_user_id"
+    t.index ["event_id"], name: "index_cfps_on_event_id"
   end
 
   create_table "connected_accounts", force: :cascade do |t|
@@ -142,9 +134,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_12_114916) do
 
   create_table "events", force: :cascade do |t|
     t.integer "canonical_id"
-    t.date "cfp_close_date"
-    t.string "cfp_link"
-    t.date "cfp_open_date"
     t.string "city"
     t.string "country_code"
     t.datetime "created_at", null: false
@@ -383,6 +372,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_12_114916) do
     t.string "bsky", default: "", null: false
     t.json "bsky_metadata", default: {}, null: false
     t.integer "canonical_id"
+    t.boolean "cfp_subscription", default: false
     t.datetime "created_at", null: false
     t.string "email"
     t.string "github_handle"
@@ -440,7 +430,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_12_114916) do
     t.index ["user_id"], name: "index_watched_talks_on_user_id"
   end
 
-  add_foreign_key "badge_awards", "users"
+  add_foreign_key "cfps", "events"
   add_foreign_key "connected_accounts", "users"
   add_foreign_key "contributors", "users"
   add_foreign_key "email_verification_tokens", "users"

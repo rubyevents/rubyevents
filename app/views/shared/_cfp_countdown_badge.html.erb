@@ -1,35 +1,37 @@
-<% if event.cfp.present? && event.cfp.close_date.present? %>
-  <% if event.cfp.future? %>
-    <% cfp_open_days = event.cfp.days_until_open %>
+<% event.cfps.each do |cfp| %>
+  <% if cfp.close_date.present? %>
+    <% if cfp.future? %>
+      <% cfp_open_days = cfp.days_until_open %>
 
-    <div class="flex flex-col justify-center">
-      <div class="self-end w-16 h-16 bg-blue-500 text-white rounded-xl flex flex-col items-center justify-center text-xs leading-none">
-        <div class="text-[10px]">CFP in</div>
-        <div class="text-lg font-bold"><%= cfp_open_days %></div>
-        <div class="text-[10px]"><%= "day".pluralize(cfp_open_days) %></div>
-      </div>
-    </div>
-
-  <% elsif event.cfp.open? %>
-    <% cfp_days = event.cfp.days_remaining %>
-
-    <% if cfp_days %>
       <div class="flex flex-col justify-center">
-        <div class="self-end w-16 h-16 bg-green-500 text-white rounded-xl flex flex-col items-center justify-center text-xs leading-none">
-
-          <% if cfp_days == 0 %>
-            <div class="text-lg font-bold">CFP</div>
-            <div class="text-[10px]">Last day!</div>
-          <% elsif cfp_days == 1 %>
-            <div class="text-lg font-bold">CFP</div>
-            <div class="text-[10px]">Tomorrow</div>
-          <% else %>
-            <div class="text-[10px]">CFP</div>
-            <div class="text-lg font-bold"><%= cfp_days %></div>
-            <div class="text-[10px]"><%= "day".pluralize(cfp_days) %></div>
-          <% end %>
+        <div class="self-end w-16 h-16 bg-blue-500 text-white rounded-xl flex flex-col items-center justify-center text-xs leading-none">
+          <div class="text-[10px]">CFP in</div>
+          <div class="text-lg font-bold"><%= cfp_open_days %></div>
+          <div class="text-[10px]"><%= "day".pluralize(cfp_open_days) %></div>
         </div>
       </div>
+
+    <% elsif cfp.open? %>
+      <% cfp_days = cfp.days_remaining %>
+
+      <% if cfp_days %>
+        <div class="flex flex-col justify-center">
+          <div class="self-end w-16 h-16 bg-green-500 text-white rounded-xl flex flex-col items-center justify-center text-xs leading-none">
+
+            <% if cfp_days == 0 %>
+              <div class="text-lg font-bold">CFP</div>
+              <div class="text-[10px]">Last day!</div>
+            <% elsif cfp_days == 1 %>
+              <div class="text-lg font-bold">CFP</div>
+              <div class="text-[10px]">Tomorrow</div>
+            <% else %>
+              <div class="text-[10px]">CFP</div>
+              <div class="text-lg font-bold"><%= cfp_days %></div>
+              <div class="text-[10px]"><%= "day".pluralize(cfp_days) %></div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
+<% end %>
 <% end %>

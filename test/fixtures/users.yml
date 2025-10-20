@@ -8,11 +8,12 @@
 #  bio                 :text             default(""), not null
 #  bsky                :string           default(""), not null
 #  bsky_metadata       :json             not null
+#  cfp_subscription    :boolean          default(FALSE)
 #  email               :string           indexed
 #  github_handle       :string           uniquely indexed
 #  github_metadata     :json             not null
 #  linkedin            :string           default(""), not null
-#  location            :string
+#  location            :string           default("")
 #  mastodon            :string           default(""), not null
 #  name                :string           indexed
 #  password_digest     :string
