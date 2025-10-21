@@ -7,6 +7,7 @@ class PageController < ApplicationController
       {
         talks_count: Talk.count,
         speakers_count: User.speakers.count,
+        events_count: Event.count,
         latest_talk_ids: latest_talks.pluck(:id),
         upcoming_talk_ids: Talk.with_speakers.where(date: Date.today..).order(date: :asc).limit(15).pluck(:id),
         latest_event_ids: Event.order(date: :desc).limit(10).pluck(:id).sample(4),
@@ -21,6 +22,7 @@ class PageController < ApplicationController
 
     @talks_count = home_page_cached_data[:talks_count]
     @speakers_count = home_page_cached_data[:speakers_count]
+    @events_count = home_page_cached_data[:events_count]
     @latest_talks = Talk.includes(event: :organisation).where(id: home_page_cached_data[:latest_talk_ids])
     @upcoming_talks = Talk.includes(event: :organisation).where(id: home_page_cached_data[:upcoming_talk_ids])
     @latest_events = Event.includes(:organisation).where(id: home_page_cached_data[:latest_event_ids])

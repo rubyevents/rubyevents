@@ -3,7 +3,12 @@
 <main class="container hotwire-native:mt-6">
   <div class="hotwire-native:hidden w-full flex flex-col items-center pt-16 pb-12 text-center">
     <h1 class="text-5xl font-bold tracking-tight text-slate-700">On a mission to index all Ruby events</h1>
-    <p class="mt-6 text-xl leading-8 text-slate-600 sm:max-w-md lg:max-w-none"> So far we have indexed <span class="font-semibold"><%= @talks_count %></span> talks of those from <span class="font-semibold"><%= @speakers_count %></span> speakers</p>
+    <p class="mt-6 text-xl leading-8 text-slate-600 sm:max-w-md lg:max-w-none">
+      We have indexed
+      <span class="font-semibold"><%= @events_count %></span> events and
+      <span class="font-semibold"><%= @talks_count %></span> talks from
+      <span class="font-semibold"><%= @speakers_count %></span> speakers.
+    </p>
   </div>
 
   <% cache @featured_events do %>
