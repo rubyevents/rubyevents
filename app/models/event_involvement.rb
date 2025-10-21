@@ -2,13 +2,14 @@
 #
 # Table name: event_involvements
 #
-#  id                    :integer          not null, primary key
-#  involvementable_type  :string           not null, indexed => [involvementable_id, event_id, role]
-#  role                  :string           not null, indexed, indexed => [involvementable_type, involvementable_id, event_id]
-#  created_at            :datetime         not null
-#  updated_at            :datetime         not null
-#  event_id              :integer          not null, indexed, indexed => [involvementable_type, involvementable_id, role]
-#  involvementable_id    :integer          not null, indexed => [involvementable_type, event_id, role]
+#  id                   :integer          not null, primary key
+#  involvementable_type :string           not null, uniquely indexed => [involvementable_id, event_id, role], indexed => [involvementable_id]
+#  position             :integer          default(0)
+#  role                 :string           not null, uniquely indexed => [involvementable_type, involvementable_id, event_id], indexed
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  event_id             :integer          not null, uniquely indexed => [involvementable_type, involvementable_id, role], indexed
+#  involvementable_id   :integer          not null, uniquely indexed => [involvementable_type, event_id, role], indexed => [involvementable_type]
 #
 # Indexes
 #
