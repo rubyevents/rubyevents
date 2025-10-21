@@ -5,21 +5,33 @@
 
   <div role="tabpanel" class="tab-content mt-6">
     <div class="space-y-8">
-      <% participated_events_by_type.each do |participation_type, events| %>
         <div>
-          <h3 class="text-lg font-semibold mb-4">
-            <%= t("event_participation.past.attended_as.#{participation_type}", default: participation_type.humanize) %>
-          </h3>
+          <h3 class="text-lg font-semibold mb-4">Future Events</h3>
           <div class="mb-6">
             <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-              <% events = events.sort_by(&:start_date).reverse %>
-              <%= cache events do %>
-                <%= render partial: "events/card", collection: events, as: :event, cached: true %>
+              <% future_events = events.upcoming.sort_by(&:start_date).reverse %>
+              <% future_events.each do |event| %>
+                <%= cache event do %>
+                  <%= render partial: "events/card", locals: {event: event, participation: participations[event.id]} %>
+                <% end %>
               <% end %>
             </div>
           </div>
         </div>
-      <% end %>
+
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Past Events</h3>
+          <div class="mb-6">
+            <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+              <% past_events = events.past.sort_by(&:start_date).reverse %>
+              <% past_events.each do |event| %>
+                <%= cache event do %>
+                  <%= render partial: "events/card", locals: {event: event, participation: participations[event.id]} %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
 
       <div class="text-center py-12 hidden only:block">
         <div class="mb-6">
