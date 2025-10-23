@@ -1,7 +1,7 @@
-<%= link_to profile_path(speaker), data: {turbo_frame: "_top"}, id: dom_id(speaker), class: "flex justify-between items-center" do %>
-  <div class="flex items-center gap-3">
-    <div class="relative w-fit">
-      <%= ui_avatar(speaker, size: :md) %>
+<%= link_to profile_path(speaker), id: dom_id(speaker), class: "flex justify-between items-center" do %>
+  <div class="flex items-center gap-3 gap-y-4">
+    <div class="flex w-fit">
+      <%= ui_avatar(speaker, size: :sm) %>
     </div>
 
     <span><%= sanitize speaker.name_with_snippet %></span>

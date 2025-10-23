@@ -1,15 +1,43 @@
-<%= turbo_stream.append "speakers" do %>
-  <% cache @speakers do %>
-    <%= render partial: "speakers/speaker", collection: @speakers, as: :speaker, cached: true %>
+<% if @pagy.page == 1 %>
+  <%# On initial load OR a new search load speakers %>
+  <%= turbo_stream.update "speakers" do %>
+    <% cache [@speakers.except(:order).pluck(:id, :updated_at).hash] do %>
+      <%= render partial: "speakers/speaker",
+      collection: @speakers,
+      as: :speaker,
+      cached: true %>
+    <% end %>
+  <% end %>
+<% else %>
+  <%# Otherwise it's a pagination request, so append %>
+  <%= turbo_stream.append "speakers" do %>
+    <% cache @speakers do %>
+      <%= render partial: "speakers/speaker",
+      collection: @speakers,
+      as: :speaker,
+      cached: true %>
+    <% end %>
   <% end %>
 <% end %>
 
-<% if @pagy.next.present? %>
-  <%= turbo_stream.replace "pagination" do %>
-    <%= turbo_frame_tag :pagination,
-                        data: {
-                          controller: "lazy-loading",
-                          lazy_loading_src_value: speakers_path(letter: params[:letter], s: params[:s], page: @pagy.next, format: :turbo_stream)
-                        } %>
-  <% end %>
+<%= turbo_stream.replace :pagination do %>
+  <%# Always render a pagination frame. Previously, reaching the end of a result set removed the pagination frame, which resulted in subsequent searches having no pagination %>
+  <% frame_data =
+    (
+      if @pagy.next.present?
+        {
+          controller: "lazy-loading",
+          lazy_loading_src_value:
+            speakers_path(
+              letter: params[:letter],
+              s: params[:s],
+              page: @pagy.next,
+              format: :turbo_stream,
+            ),
+        }
+      else
+        {}
+      end
+    ) %>
+  <%= turbo_frame_tag :pagination, data: frame_data %>
 <% end %>

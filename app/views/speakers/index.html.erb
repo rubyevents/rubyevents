@@ -7,7 +7,7 @@
   </h1>
 
   <div class="mb-6 hotwire-native:hidden">
-    <%= form_with url: speakers_path, method: :get, data: {controller: "auto-submit", turbo_frame: "speakers"}, class: "flex items-center align-center gap-2" do |form| %>
+    <%= form_with url: speakers_path, method: :get, data: {controller: "auto-submit", turbo_stream: true, turbo_action: :advance}, class: "flex items-center align-center gap-2" do |form| %>
       <%= form.text_field :s,
             value: params[:s],
             placeholder: "Search speakers...",
@@ -16,27 +16,31 @@
     <% end %>
   </div>
 
-  <%= turbo_frame_tag "speakers" do %>
-    <div
-      class="
-        hotwire-native:mt-3 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8
-        lg:gap-x-12 gap-y-2 min-w-full
-      ">
-      <%# we need special cache key for speakers because @speakers is paginated %>
-      <% cache [@speakers.except(:order).pluck(:id, :updated_at).hash] do %>
-        <%= render partial: "speakers/speaker",
-              collection: @speakers,
-              as: :speaker,
-              cached: true %>
-      <% end %>
-    </div>
-    <% if @pagy.next.present? %>
-      <%= turbo_frame_tag :pagination,
-            data: {
-              controller: "lazy-loading",
-              lazy_loading_src_value:
-                speakers_path(s: params[:s], page: @pagy.next, format: :turbo_stream)
-            } %>
+  <div
+    id="speakers"
+    class="
+      hotwire-native:mt-3 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8
+      lg:gap-x-12 gap-y-2 min-w-full
+    ">
+    <%# we need special cache key for speakers because @speakers is paginated %>
+    <% cache [@speakers.except(:order).pluck(:id, :updated_at).hash] do %>
+      <%= render partial: "speakers/speaker",
+            collection: @speakers,
+            as: :speaker,
+            cached: true %>
     <% end %>
-  <% end %>
+  </div>
+  <%= turbo_frame_tag :pagination,
+        data:
+          (
+            if @pagy.next.present?
+              {
+                controller: "lazy-loading",
+                lazy_loading_src_value:
+                  speakers_path(s: params[:s], page: @pagy.next, format: :turbo_stream)
+              }
+            else
+              {}
+            end
+          ) %>
 </div>
