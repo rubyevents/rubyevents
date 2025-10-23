@@ -3,9 +3,10 @@ import { useDebounce } from 'stimulus-use'
 
 export default class extends Controller {
   static debounces = ['submit']
+  static values = { wait: { type: Number, default: 350 } }
 
   initialize () {
-    useDebounce(this)
+    useDebounce(this, { wait: this.waitValue })
 
     this.element.addEventListener('keydown', () => this.submit())
     this.element.addEventListener('search', () => this.submit())
