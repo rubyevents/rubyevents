@@ -1,7 +1,19 @@
 <%= link_to profile_path(speaker), id: dom_id(speaker), class: "flex justify-between items-center" do %>
-  <div class="flex items-center gap-3">
+  <div class="flex items-center gap-3 gap-y-4">
+    <div class="flex w-fit">
+      <%= ui_avatar(speaker, size: :sm) %>
+    </div>
+
     <span><%= sanitize speaker.name_with_snippet %></span>
   </div>
 
-  <%= ui_badge(speaker.talks_count, kind: :secondary, outline: true, size: :lg, class: "min-w-10") %>
+  <div class="flex items-center gap-2">
+    <%= ui_badge(
+          speaker.talks_count,
+          kind: :secondary,
+          outline: true,
+          size: :lg,
+          class: "min-w-10"
+        ) %>
+  </div>
 <% end %>
