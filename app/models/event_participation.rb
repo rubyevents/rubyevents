@@ -2,12 +2,14 @@
 #
 # Table name: event_participations
 #
-#  id          :integer          not null, primary key
-#  attended_as :string           not null, uniquely indexed => [user_id, event_id], indexed
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  event_id    :integer          not null, uniquely indexed => [user_id, attended_as], indexed
-#  user_id     :integer          not null, uniquely indexed => [event_id, attended_as], indexed
+#  id                 :integer          not null, primary key
+#  attendance_details :json
+#  attended_as        :string           not null, uniquely indexed => [user_id, event_id], indexed
+#  verified_at        :datetime
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  event_id           :integer          not null, uniquely indexed => [user_id, attended_as], indexed
+#  user_id            :integer          not null, uniquely indexed => [event_id, attended_as], indexed
 #
 # Indexes
 #
@@ -28,6 +30,8 @@ class EventParticipation < ApplicationRecord
 
   # validations
   validates :user_id, uniqueness: {scope: [:event_id, :attended_as]}
+
+  store_accessor :attendance_details, :verification
 
   # enums
   enum :attended_as, %w[organiser keynote_speaker speaker visitor].index_by(&:itself), prefix: true

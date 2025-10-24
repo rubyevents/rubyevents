@@ -18,4 +18,8 @@ class Avo::Resources::EventParticipation < Avo::BaseResource
   def filters
     filter Avo::Filters::AttendedAs
   end
+
+  def actions
+    action Avo::Actions::ImportPassportScans
+  end
 end
