@@ -83,7 +83,9 @@ jobs:
         run: bin/rails db:prepare
 
       - name: Run tests
-        run: bin/rails test test:system
+        run: |
+            bin/rails test
+            bin/rails test:system
   seed_smoke_test:
     runs-on: ubuntu-latest
     env:
