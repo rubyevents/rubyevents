@@ -19,12 +19,8 @@ class ProfilesController < ApplicationController
     @events_with_stickers = @events.select(&:sticker?)
 
     event_participations = @user.event_participations.includes(:event).where(event: @events)
-    participation_lookup = event_participations.index_by(&:event_id)
+    @participations = event_participations.index_by(&:event_id)
 
-    @participated_events_by_type = @events.group_by { |event|
-      participation = participation_lookup[event.id]
-      participation&.attended_as || "visitor"
-    }
     @events_by_year = @events.group_by { |event| event.start_date&.year || "Unknown" }
 
     # Group events by country for the map tab
@@ -32,6 +28,21 @@ class ProfilesController < ApplicationController
       .map { |code, events| [ISO3166::Country.new(code), events] }
       .reject { |country, _| country.nil? }
       .sort_by { |country, _| country.translations["en"] }
+
+    @involved_events = @user.involved_events.includes(:organisation).distinct.order(start_date: :desc)
+    event_involvements = @user.event_involvements.includes(:event).where(event: @involved_events)
+    involvement_lookup = event_involvements.group_by(&:event_id)
+
+    @involvements_by_role = {}
+    @involved_events.each do |event|
+      involvements = involvement_lookup[event.id] || []
+      involvements.each do |involvement|
+        @involvements_by_role[involvement.role] ||= []
+        @involvements_by_role[involvement.role] << event
+      end
+    end
+
+    @stamps = Stamp.for_user(@user)
 
     @back_path = speakers_path
 
@@ -74,7 +85,7 @@ class ProfilesController < ApplicationController
     #   return redirect_to profile_path(@user.github_handle), status: :moved_permanently
     # end
 
-    @user = User.includes(:talks).find_by(github_handle: params[:slug]) unless @user.present?
+    @user = User.includes(:talks).find_by_github_handle(params[:slug]) unless @user.present?
 
     redirect_to speakers_path, status: :moved_permanently, notice: "User not found" if @user.blank?
     redirect_to profile_path(@user.canonical) if @user&.canonical.present?

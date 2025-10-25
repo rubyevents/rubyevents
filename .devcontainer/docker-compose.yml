@@ -10,6 +10,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ..:/rails:cached
+      - ..:/rails:cached # Mounts the local project directory
+      - /rails/node_modules # Prevents overwriting node_modules
     stdin_open: true
     tty: true

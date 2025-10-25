@@ -16,7 +16,17 @@
         <% end %>
         <% if user.passports.any? %>
           <%= ui_tooltip "#{user.name} claimed their Ruby Passport" do %>
-            <%= fa("passport", class: "fill-orange-800", size: :md) %>
+            <%= fa("passport", class: "fill-orange-800") %>
+          <% end %>
+        <% end %>
+
+        <% if user.contributor? %>
+          <%= link_to contributors_path, class: "inline-flex items-center" do %>
+            <%= ui_tooltip "#{user.name} contributed to RubyEvents.org" do %>
+              <span class="flex items-center justify-center size-5 bg-green-500 rounded-full">
+                <span style="transform: scale(0.6);"><%= fa("code-pull-request", class: "fill-white") %></span>
+              </span>
+            <% end %>
           <% end %>
         <% end %>
       </h1>

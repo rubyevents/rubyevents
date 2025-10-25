@@ -66,7 +66,7 @@ class ContributionsController < ApplicationController
   end
 
   def events_without_videos
-    @events_without_videos = Event.past.includes(:organisation).left_joins(:talks).where(talks_count: 0).group_by(&:organisation)
+    @events_without_videos = Event.past.not_retreat.includes(:organisation).left_joins(:talks).where(talks_count: 0).group_by(&:organisation)
     @events_without_videos_count = @events_without_videos.flat_map(&:last).count
 
     @events_without_location = Static::Playlist.where(location: nil).group_by(&:__file_path)

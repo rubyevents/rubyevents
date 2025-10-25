@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_09_30_165602) do
+ActiveRecord::Schema[8.1].define(version: 2025_10_19_212653) do
   create_table "_litestream_lock", id: false, force: :cascade do |t|
     t.integer "id"
   end
@@ -74,9 +74,35 @@ ActiveRecord::Schema[8.1].define(version: 2025_09_30_165602) do
     t.index ["user_id"], name: "index_connected_accounts_on_user_id"
   end
 
+  create_table "contributors", force: :cascade do |t|
+    t.string "avatar_url"
+    t.datetime "created_at", null: false
+    t.string "html_url"
+    t.string "login", null: false
+    t.string "name"
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["login"], name: "index_contributors_on_login", unique: true
+    t.index ["user_id"], name: "index_contributors_on_user_id"
+  end
+
   create_table "email_verification_tokens", force: :cascade do |t|
     t.integer "user_id", null: false
     t.index ["user_id"], name: "index_email_verification_tokens_on_user_id"
+  end
+
+  create_table "event_involvements", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "event_id", null: false
+    t.integer "involvementable_id", null: false
+    t.string "involvementable_type", null: false
+    t.integer "position", default: 0
+    t.string "role", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_event_involvements_on_event_id"
+    t.index ["involvementable_type", "involvementable_id", "event_id", "role"], name: "idx_involvements_on_involvementable_and_event_and_role", unique: true
+    t.index ["involvementable_type", "involvementable_id"], name: "index_event_involvements_on_involvementable"
+    t.index ["role"], name: "index_event_involvements_on_role"
   end
 
   create_table "event_participations", force: :cascade do |t|
@@ -365,9 +391,9 @@ ActiveRecord::Schema[8.1].define(version: 2025_09_30_165602) do
     t.boolean "verified", default: false, null: false
     t.integer "watched_talks_count", default: 0, null: false
     t.string "website", default: "", null: false
+    t.index "lower(github_handle)", name: "index_users_on_lower_github_handle", unique: true, where: "github_handle IS NOT NULL AND github_handle != ''"
     t.index ["canonical_id"], name: "index_users_on_canonical_id"
     t.index ["email"], name: "index_users_on_email"
-    t.index ["github_handle"], name: "index_users_on_github_handle", unique: true, where: "github_handle IS NOT NULL AND github_handle != ''"
     t.index ["name"], name: "index_users_on_name"
     t.index ["slug"], name: "index_users_on_slug", unique: true, where: "slug IS NOT NULL AND slug != ''"
   end
@@ -404,7 +430,9 @@ ActiveRecord::Schema[8.1].define(version: 2025_09_30_165602) do
   end
 
   add_foreign_key "connected_accounts", "users"
+  add_foreign_key "contributors", "users"
   add_foreign_key "email_verification_tokens", "users"
+  add_foreign_key "event_involvements", "events"
   add_foreign_key "event_participations", "events"
   add_foreign_key "event_participations", "users"
   add_foreign_key "event_sponsors", "events"

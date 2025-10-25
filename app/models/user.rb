@@ -9,10 +9,10 @@
 #  bsky                :string           default(""), not null
 #  bsky_metadata       :json             not null
 #  email               :string           indexed
-#  github_handle       :string           uniquely indexed
+#  github_handle       :string
 #  github_metadata     :json             not null
 #  linkedin            :string           default(""), not null
-#  location            :string
+#  location            :string           default("")
 #  mastodon            :string           default(""), not null
 #  name                :string           indexed
 #  password_digest     :string
@@ -31,11 +31,11 @@
 #
 # Indexes
 #
-#  index_users_on_canonical_id   (canonical_id)
-#  index_users_on_email          (email)
-#  index_users_on_github_handle  (github_handle) UNIQUE WHERE github_handle IS NOT NULL AND github_handle != ''
-#  index_users_on_name           (name)
-#  index_users_on_slug           (slug) UNIQUE WHERE slug IS NOT NULL AND slug != ''
+#  index_users_on_canonical_id         (canonical_id)
+#  index_users_on_email                (email)
+#  index_users_on_lower_github_handle  (lower(github_handle)) UNIQUE WHERE github_handle IS NOT NULL AND github_handle != ''
+#  index_users_on_name                 (name)
+#  index_users_on_slug                 (slug) UNIQUE WHERE slug IS NOT NULL AND slug != ''
 #
 # rubocop:enable Layout/LineLength
 class User < ApplicationRecord
@@ -85,7 +85,11 @@ class User < ApplicationRecord
   has_many :visitor_events, -> { where(event_participations: {attended_as: :visitor}) },
     through: :event_participations, source: :event
 
+  has_many :event_involvements, as: :involvementable, dependent: :destroy
+  has_many :involved_events, through: :event_involvements, source: :event
+
   belongs_to :canonical, class_name: "User", optional: true
+  has_one :contributor, dependent: :nullify
 
   has_object :profiles, :talk_recommender, :watched_talk_seeder
 
@@ -158,6 +162,11 @@ class User < ApplicationRecord
     end
   end
 
+  def self.find_by_github_handle(handle)
+    return nil if handle.blank?
+    where("lower(github_handle) = ?", handle.downcase).first
+  end
+
   # User-specific methods
   def default_watch_list
     @default_watch_list ||= watch_lists.first || watch_lists.create(name: "Favorites")
@@ -178,6 +187,10 @@ class User < ApplicationRecord
 
   def verified?
     connected_accounts.find { |account| account.provider == "github" }
+  end
+
+  def contributor?
+    contributor.present?
   end
 
   def managed_by?(visiting_user)
@@ -263,6 +276,8 @@ class User < ApplicationRecord
   end
 
   def assign_canonical_speaker!(canonical_speaker:)
+    return if canonical_speaker.blank?
+
     ActiveRecord::Base.transaction do
       self.canonical = canonical_speaker
       self.github_handle = nil

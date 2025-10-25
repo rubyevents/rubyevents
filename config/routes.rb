@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get "/components", to: "page#components"
   get "/about", to: "page#about"
   get "/stickers", to: "page#stickers"
+  get "/contributors", to: "page#contributors"
   get "/stamps", to: "stamps#index"
 
   # authentication
@@ -103,6 +104,7 @@ Rails.application.routes.draw do
       end
       resources :speakers, only: [:index]
       resources :participants, only: [:index]
+      resources :involvements, only: [:index]
       resources :talks, only: [:index]
       resources :related_talks, only: [:index]
       resources :events, only: [:index]

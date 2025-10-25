@@ -26,10 +26,12 @@
     "lint": "standard",
     "lint:yml": "yarn prettier --check data/**/**/*.yml",
     "format": "standard --fix",
-    "format:yml": "node yaml/enforce_strings.mjs && yarn run lint:yml --write"
+    "format:yml": "node yaml/enforce_strings.mjs && yarn run lint:yml --write",
+    "herb:lint": "herb-lint '**/*.html{+*,}.erb'"
   },
   "packageManager": "yarn@1.22.19",
   "devDependencies": {
+    "@herb-tools/linter": "^0.7.5",
     "autoprefixer": "^10.4.14",
     "daisyui": "^4.12.14",
     "postcss": "^8.4.38",

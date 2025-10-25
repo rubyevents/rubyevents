@@ -31,7 +31,8 @@ All file changes will be present locally when you close the container.
 
 - Use `gh auth login` to auth with GitHub, so you can push commits from within the container.
 - Do not run `bin/setup`. It starts docker containers, and you're already in one.
-- The application is forwarded to [localhost:3000](localhost:3000) and starts automatically on boot.
+- After the container is set up, run `bin/dev` in the terminal to start the development server. The application will be forwarded to [localhost:3000](localhost:3000).
+- To run system tests, use `HEADLESS=true bin/rails test`. The HEADLESS=true environment variable ensures Chrome runs in headless mode, which is required in the container environment. 
 
 ### Requirements
 

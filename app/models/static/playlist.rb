@@ -69,6 +69,10 @@ module Static
       kind == "meetup"
     end
 
+    def retreat?
+      kind == "retreat"
+    end
+
     def event_record
       @event_record ||= Event.find_by(slug: slug)
     end

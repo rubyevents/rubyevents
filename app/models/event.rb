@@ -66,6 +66,12 @@ class Event < ApplicationRecord
   has_many :visitor_participants, -> { where(event_participations: {attended_as: :visitor}) },
     through: :event_participations, source: :user
 
+  has_many :event_involvements, dependent: :destroy
+  has_many :involved_users, -> { where(event_involvements: {involvementable_type: "User"}) },
+    through: :event_involvements, source: :involvementable, source_type: "User"
+  has_many :involved_organisations, -> { where(event_involvements: {involvementable_type: "Organisation"}) },
+    through: :event_involvements, source: :involvementable, source_type: "Organisation"
+
   has_object :schedule
   has_object :static_metadata
   has_object :sponsors_file
@@ -94,7 +100,7 @@ class Event < ApplicationRecord
   scope :upcoming, -> { where(start_date: Date.today..).order(start_date: :asc) }
 
   # enums
-  enum :kind, ["event", "conference", "meetup"].index_by(&:itself), default: "event"
+  enum :kind, ["event", "conference", "meetup", "retreat"].index_by(&:itself), default: "event"
   enum :date_precision, ["day", "month", "year"].index_by(&:itself), default: "day"
 
   def assign_canonical_event!(canonical_event:)
@@ -305,8 +311,23 @@ class Event < ApplicationRecord
     event_image_for("sticker.webp")
   end
 
+  def stamp_image_paths
+    base = Rails.root.join("app", "assets", "images")
+    Dir.glob(base.join(event_image_path, "stamp*.webp")).map { |path|
+      Pathname.new(path).relative_path_from(base).to_s
+    }.sort
+  end
+
+  def stamp_image_path
+    stamp_image_paths.first
+  end
+
   def sticker?
     sticker_image_path.present?
+  end
+
+  def stamp?
+    stamp_image_paths.any?
   end
 
   def watchable_talks?

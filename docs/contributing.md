@@ -23,7 +23,7 @@ Add the following information to the `data_preparation/organisations.yml` file:
   website: https://railsconf.org/
   twitter: railsconf
   youtube_channel_name: confreaks
-  kind: conference # Choose either 'conference' or 'meetup'
+  kind: conference # Choose either 'conference' or 'meetup' or 'retreat'
   frequency: yearly # Specify if it's 'yearly' or 'monthly'; if you need something else, open a PR with this new frequency
   language: english # Default language of the talks from this conference
   default_country_code: AU # default country to be assigned to the associated events
@@ -81,7 +81,7 @@ Here is an example for RailsConf/RubyConf:
 
 ### Step 3 - Create the Videos
 
-Once your playlists are currated, you can run the next script to extract the video information. It will iterate the playlist and extract all videos.
+Once your playlists are curated, you can run the next script to extract the video information. It will iterate the playlist and extract all videos.
 
 ```bash
 rails runner scripts/extract_videos.rb
@@ -99,6 +99,23 @@ data/
 │   │   └── videos.yml
 │   ├── playlists.yml
 ├── speakers.yml
+```
+
+Each video entry in the `videos.yml` files must have the following required fields:
+- `speakers`: Array of speaker names. Videos without speakers will not be displayed in the app.
+- `date`: The date when the talk was presented (in YYYY-MM-DD format). Videos without dates will not be displayed in the app.
+
+Example of a valid video entry:
+```yaml
+- title: "What Rust can teach us about Ruby"
+  event_name: "RubyConf Example 2025"
+  published_at: "2025-10-12"
+  description: "A presentation about Rust and Ruby"
+  video_provider: youtube
+  video_id: "abc123xyz"
+  speakers:
+    - "Jane Doe"
+  date: "2025-10-11"
 ```
 
 To extract a maximum of information from the YouTube metadata, the raw video information is parsed by a class `YouTube::VideoMetadata`. This class will try to extract speakers from the title. This is the default parser but sometimes the speakers are not extracted correctly, you can create a new class and specify it in the `playlists.yml` file.
