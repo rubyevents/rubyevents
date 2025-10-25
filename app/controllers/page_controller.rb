@@ -84,6 +84,10 @@ class PageController < ApplicationController
   def featured
   end
 
+  def recommended
+    @recommended_talks = Current.user.talk_recommender.talks(limit: 64) if Current.user
+  end
+
   def components
   end
 

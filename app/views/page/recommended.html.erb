@@ -1,0 +1,30 @@
+<main class="container">
+  <div class="flex flex-col w-full gap-4">
+    <div class="flex items-center justify-between w-full">
+      <h2 class="text-primary shrink-0">Recommended for you</h2>
+    </div>
+
+    <% if @recommended_talks.present? %>
+      <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 md:[&>:nth-child(4)]:hidden lg:grid-cols-4 lg:[&>:nth-child(4)]:block">
+        <%= render partial: "talks/card", collection: @recommended_talks, as: :talk, cached: true, locals: {back_to: root_path, back_to_title: "Home"} %>
+      </div>
+    <% else %>
+      <div class="flex justify-center border rounded" style="padding-top: 3rem; padding-bottom: 3rem; padding-right: 1rem; padding-left: 1rem">
+        <div class="text-center text-gray-600">
+          <p>
+            <b>No recommendations available yet.</b>
+          </p>
+          <p class="mt-2">
+            Watch some talks to get personalized recommendations based on your interests.
+          </p>
+          <p class="mt-4">
+            <a href="<%= talks_path %>" class="flex items-center space-x-2 text-base-content/80">
+              <%= fa "video", variant: :solid, class: "w-5 h-5 text-neutral flex-shrink-0" %>
+              <span>Browse talks</span>
+            </a>
+          </p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</main>
