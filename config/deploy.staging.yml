@@ -2,7 +2,7 @@
 service: rubyvideo_staging
 
 # Name of the container image.
-image: adrienpoly/rubyvideo_staging
+image: rubyvideo_staging
 
 # Deploy to these servers.
 servers:
@@ -29,9 +29,7 @@ proxy:
 
 # Credentials for your image host.
 registry:
-  username: adrienpoly
-  password:
-    - KAMAL_REGISTRY_PASSWORD
+  server: "localhost:5555"
 
 env:
   clear:
@@ -70,7 +68,6 @@ builder:
   secrets:
     - RAILS_MASTER_KEY
   remote: ssh://root@138.199.198.123
-
   # # Build image via remote server (useful for faster amd64 builds on arm64 computers)
   # remote: ssh://docker@docker-builder-server
   #
