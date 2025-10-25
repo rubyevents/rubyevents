@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_09_03_125458) do
+ActiveRecord::Schema[8.1].define(version: 2025_09_30_165602) do
   create_table "_litestream_lock", id: false, force: :cascade do |t|
     t.integer "id"
   end
@@ -98,6 +98,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_09_03_125458) do
     t.integer "sponsor_id", null: false
     t.string "tier"
     t.datetime "updated_at", null: false
+    t.index ["event_id", "sponsor_id", "tier"], name: "index_event_sponsors_on_event_sponsor_tier_unique", unique: true
     t.index ["event_id"], name: "index_event_sponsors_on_event_id"
     t.index ["sponsor_id"], name: "index_event_sponsors_on_sponsor_id"
   end
@@ -350,6 +351,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_09_03_125458) do
     t.string "github_handle"
     t.json "github_metadata", default: {}, null: false
     t.string "linkedin", default: "", null: false
+    t.string "location", default: ""
     t.string "mastodon", default: "", null: false
     t.string "name"
     t.string "password_digest"

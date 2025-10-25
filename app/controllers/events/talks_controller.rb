@@ -1,5 +1,6 @@
 class Events::TalksController < ApplicationController
   include WatchedTalks
+
   skip_before_action :authenticate_user!, only: %i[index]
   before_action :set_event, only: %i[index]
   before_action :set_user_favorites, only: %i[index]
@@ -12,6 +13,8 @@ class Events::TalksController < ApplicationController
 
   def set_event
     @event = Event.includes(:organisation, talks: :speakers).find_by(slug: params[:event_slug])
+    return redirect_to(root_path, status: :moved_permanently) unless @event
+
     set_meta_tags(@event)
   end
 

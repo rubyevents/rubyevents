@@ -12,6 +12,7 @@
 #  github_handle       :string           uniquely indexed
 #  github_metadata     :json             not null
 #  linkedin            :string           default(""), not null
+#  location            :string
 #  mastodon            :string           default(""), not null
 #  name                :string           indexed
 #  password_digest     :string
@@ -42,6 +43,7 @@ class User < ApplicationRecord
   include Sluggable
   include Suggestable
   include User::Searchable
+
   configure_slug(attribute: :name, auto_suffix_on_collision: true)
 
   GITHUB_URL_PATTERN = %r{\A(https?://)?(www\.)?github\.com/}i
@@ -60,6 +62,7 @@ class User < ApplicationRecord
   # Authentication and user-specific associations
   has_many :sessions, dependent: :destroy, inverse_of: :user
   has_many :connected_accounts, dependent: :destroy
+  has_many :passports, -> { passport }, class_name: "ConnectedAccount"
   has_many :watch_lists, dependent: :destroy
   has_many :watched_talks, dependent: :destroy
 
@@ -71,6 +74,16 @@ class User < ApplicationRecord
   has_many :events, -> { distinct }, through: :talks, inverse_of: :speakers
   has_many :aliases, class_name: "User", foreign_key: "canonical_id"
   has_many :topics, through: :talks
+
+  # Event participation associations
+  has_many :event_participations, dependent: :destroy
+  has_many :participated_events, through: :event_participations, source: :event
+  has_many :speaker_events, -> { where(event_participations: {attended_as: :speaker}) },
+    through: :event_participations, source: :event
+  has_many :keynote_speaker_events, -> { where(event_participations: {attended_as: :keynote_speaker}) },
+    through: :event_participations, source: :event
+  has_many :visitor_events, -> { where(event_participations: {attended_as: :visitor}) },
+    through: :event_participations, source: :event
 
   belongs_to :canonical, class_name: "User", optional: true
 
@@ -150,8 +163,8 @@ class User < ApplicationRecord
     @default_watch_list ||= watch_lists.first || watch_lists.create(name: "Favorites")
   end
 
-  def passport_account
-    connected_accounts.find_by(provider: "passport")
+  def main_participation_to(event)
+    event_participations.in_order_of(:attended_as, EventParticipation.attended_as.keys).where(event: event).first
   end
 
   # Speaker-specific methods (adapted from Speaker model)
@@ -210,7 +223,7 @@ class User < ApplicationRecord
   end
 
   def broadcast_header
-    broadcast_update target: dom_id(self, :header_content), partial: "speakers/header_content", locals: {speaker: self}
+    broadcast_update target: dom_id(self, :header_content), partial: "profiles/header_content", locals: {user: self}
   end
 
   def to_meta_tags
@@ -285,7 +298,7 @@ class User < ApplicationRecord
       name: name,
       slug: slug,
       avatar_url: avatar_url,
-      url: Router.speaker_url(self, host: "#{request.protocol}#{request.host}:#{request.port}")
+      url: Router.profile_url(self, host: "#{request.protocol}#{request.host}:#{request.port}")
     }
   end
 
@@ -314,7 +327,15 @@ class User < ApplicationRecord
 
   def seed_development_watched_talks
     watched_talk_seeder.seed_development_data
-  rescue => e
-    Rails.logger.warn "Failed to seed watched talks for user #{id}: #{e.message}"
+  end
+  
+  def speakerdeck_user_from_slides_url
+    handles = talks
+      .map(&:static_metadata).compact
+      .map(&:slides_url).compact
+      .select { |url| url.include?("speakerdeck.com") }
+      .map { |url| url.split("/")[3] }.uniq
+
+    (handles.count == 1) ? handles.first : nil
   end
 end

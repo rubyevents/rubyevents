@@ -3,7 +3,6 @@ class Sessions::OmniauthController < ApplicationController
   skip_before_action :authenticate_user!
 
   def create
-    state = query_params["state"]
     # This needs to be refactored to be more robust when we have more states
     if state.present?
       key, value = state.split(":")
@@ -29,11 +28,13 @@ class Sessions::OmniauthController < ApplicationController
       @user = connected_account.user
     end
 
+    if @user.previously_new_record?
+      @user.profiles.enhance_with_github_later
+    end
+
     # If the user connected through a passport connection URL, we need to create a connected account for it
     if connect_id.present?
-      passport_account = ConnectedAccount.find_or_initialize_by(provider: "passport", uid: connect_id)
-      passport_account.user = @user
-      passport_account.save!
+      @user.connected_accounts.find_or_create_by!(provider: "passport", uid: connect_id)
     end
 
     if connect_to.present?
@@ -47,7 +48,11 @@ class Sessions::OmniauthController < ApplicationController
 
       sign_in @user
 
-      redirect_to redirect_to_path, notice: "Signed in successfully"
+      if connect_id.present?
+        redirect_to profile_path(@user), notice: "🙌 Congrats you claimed your passport"
+      else
+        redirect_to redirect_to_path, notice: "Signed in successfully"
+      end
     else
       redirect_to new_session_path, alert: "Authentication failed"
     end
@@ -76,7 +81,7 @@ class Sessions::OmniauthController < ApplicationController
   end
 
   def redirect_to_path
-    query_params["redirect_to"] || root_path
+    query_params["redirect_to"].presence || root_path
   end
 
   def username
@@ -101,6 +106,10 @@ class Sessions::OmniauthController < ApplicationController
     request.env["omniauth.params"]
   end
 
+  def state
+    @state ||= query_params.dig("state")
+  end
+
   def fetch_github_email(oauth_token)
     return unless oauth_token
     response = GitHub::UserClient.new(token: oauth_token).emails
@@ -108,5 +117,9 @@ class Sessions::OmniauthController < ApplicationController
     emails = response.parsed_body
     primary_email = emails.find { |email| email.primary && email.verified }
     primary_email&.email
+  rescue => e
+    # had the case of a user where this method would fail this will need to be investigated in details
+    Rails.error.report(e)
+    nil
   end
 end

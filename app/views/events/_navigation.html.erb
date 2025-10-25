@@ -20,6 +20,8 @@
     <%= active_link_to "Speakers", event_speakers_path(event), class: "tab", active_class: "tab-active", role: "tab" %>
   <% end %>
 
+  <%= active_link_to "Participants", event_participants_path(event), class: "tab", active_class: "tab-active", role: "tab" %>
+
   <% unless event.meetup? %>
     <%= active_link_to event_schedules_path(event), class: class_names("tab", {"text-red-500" => !event.schedule.exist?}), active_class: "tab-active", role: "tab" do %>
       Schedule
@@ -45,10 +47,5 @@
         <%= fa("question-circle", size: :xs, class: "ml-1 fill-red-500") %>
       <% end %>
     <% end %>
-  <% end %>
-
-  <% if false %>
-    <a role="tab" class="tab">Organizers</a>
-    <a role="tab" class="tab">Photos</a>
   <% end %>
 </div>
