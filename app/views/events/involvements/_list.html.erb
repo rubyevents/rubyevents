@@ -1,9 +1,9 @@
 <div id="involvements_list">
   <% if involvements_by_role.any? %>
     <% involvements_by_role.each do |role, involvements| %>
-      <div class="mb-8">
-        <h3 class="text-lg font-semibold mb-4"><%= role.pluralize(involvements.count) %></h3>
-        <div class="mb-6 min-w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 h-full">
+      <div class="mb-12">
+        <h2 class="mb-6"><%= role.pluralize(involvements.count) %></h2>
+        <div class="min-w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 h-full">
           <% involvements.each do |involvement| %>
             <% if involvement.involvementable_type == "User" %>
               <div class="border rounded-lg bg-white hover:bg-gray-200 transition-bg duration-300 ease-in-out">
