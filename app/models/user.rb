@@ -347,4 +347,10 @@ class User < ApplicationRecord
 
     (handles.count == 1) ? handles.first : nil
   end
+
+  private
+
+  def seed_development_watched_talks
+    watched_talk_seeder.seed_development_data
+  end
 end
