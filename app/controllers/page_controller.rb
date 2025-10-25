@@ -1,5 +1,5 @@
 class PageController < ApplicationController
-  skip_before_action :authenticate_user!
+  skip_before_action :authenticate_user!, except: %i[recommended]
 
   def home
     home_page_cached_data = Rails.cache.fetch("home_page_content", expires_in: 1.hour) do
