@@ -328,7 +328,7 @@ class User < ApplicationRecord
   def seed_development_watched_talks
     watched_talk_seeder.seed_development_data
   end
-  
+
   def speakerdeck_user_from_slides_url
     handles = talks
       .map(&:static_metadata).compact
