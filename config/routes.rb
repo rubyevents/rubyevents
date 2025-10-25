@@ -121,6 +121,8 @@ Rails.application.routes.draw do
     resources :events, only: [:index]
   end
 
+  get "/recommended", to: "page#recommended"
+
   get "/featured" => "page#featured"
 
   get "leaderboard", to: "leaderboard#index"
