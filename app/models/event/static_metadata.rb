@@ -3,7 +3,6 @@
 #        wouldn't it be better to move them to the event model?
 #        by the way Event model has already the kind enums, so maybe
 #        things could be simplified?
-
 class Event::StaticMetadata < ActiveRecord::AssociatedObject
   delegate :published_date, :home_sort_date, to: :static_repository, allow_nil: true
 

@@ -82,12 +82,9 @@ class Event < ApplicationRecord
   end
 
   # validations
-  validates :name, presence: true
-  validates :kind, presence: true
-  VALID_COUNTRY_CODES = ISO3166::Country.codes
-  validates :country_code, inclusion: {in: VALID_COUNTRY_CODES}, allow_nil: true
+  validates :date_precision, :kind, :name, presence: true
+  validates :country_code, inclusion: {in: ISO3166::Country.codes}, allow_nil: true
   validates :canonical, exclusion: {in: ->(event) { [event] }, message: "can't be itself"}
-  validates :date_precision, presence: true
 
   # scopes
   scope :without_talks, -> { where.missing(:talks) }
