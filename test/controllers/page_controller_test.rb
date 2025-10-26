@@ -35,5 +35,4 @@ class PageControllerTest < ActionDispatch::IntegrationTest
     assert_select "meta[name='twitter:card'][content=summary_large_image]"
     assert_select "meta[name='twitter:image'][content=?]", expected_logo_url
   end
-
 end
