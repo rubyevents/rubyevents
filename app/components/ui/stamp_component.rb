@@ -19,6 +19,8 @@ class Ui::StampComponent < ApplicationComponent
   def kind
     if stamp.has_country?
       :country
+    elsif stamp.has_event?
+      :event
     elsif stamp.code == "RUBYEVENTS-CONTRIBUTOR"
       :contributor
     else
@@ -27,13 +29,15 @@ class Ui::StampComponent < ApplicationComponent
   end
 
   def clickable?
-    [:country, :contributor].include?(kind)
+    [:country, :event, :contributor].include?(kind)
   end
 
   def url
     case kind
     when :country
       country_path(stamp.country.translations["en"].parameterize)
+    when :event
+      stamp.event ? event_path(stamp.event) : nil
     when :contributor
       contributors_path
     when :other
