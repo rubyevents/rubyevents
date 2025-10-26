@@ -3,7 +3,7 @@ class Events::PastController < ApplicationController
 
   def index
     @events = Event.includes(:organisation, :keynote_speakers)
-      .conference
+      .not_meetup
       .where(end_date: ...Date.today)
       .order(start_date: :desc)
       .limit(50)

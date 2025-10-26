@@ -287,8 +287,8 @@
             Date: <%= talk.formatted_date %><br>
 
             <span class="text-gray-400">
-              Published: <% if talk.published_at %><%= l(talk.published_at, default: "unknown") %><% elsif talk.published? %> unknown <% else %> not published <% end %><br>
-              Announced: <%= l(talk.announced_at, default: "unknown") %>
+              Published: <% if talk.published_at %><%= l(talk.published_at&.to_date, default: "unknown") %><% elsif talk.published? %> unknown <% else %> not published <% end %><br>
+              Announced: <% if talk.announced_at %><%= l(talk.announced_at&.to_date, default: "unknown") %><% end %>
             </span>
           </p>
 

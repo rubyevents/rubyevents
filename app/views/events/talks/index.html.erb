@@ -6,6 +6,10 @@
 
     <div class="flex items-start flex-wrap gap-8 sm:flex-nowrap w-full">
       <div class="w-full">
+        <% if @talks.any? %>
+          <h2 class="mb-6">Talks (<%= @talks.size %>)</h2>
+        <% end %>
+
         <div id="talks" class="min-w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 h-full">
           <%= render partial: "talks/card",
                 collection: @talks,

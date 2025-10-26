@@ -9,7 +9,7 @@
 
   <div role="tablist" class="tabs tabs-bordered mt-6">
     <%= render partial: "profiles/talks", locals: {user: @user, talks: @talks, user_favorite_talks_ids: @user_favorite_talks_ids, talks_by_kind: @talks_by_kind} %>
-    <%= render partial: "profiles/events", locals: {user: @user, events: @events, talks: @talks, participated_events_by_type: @participated_events_by_type} %>
+    <%= render partial: "profiles/events", locals: {user: @user, events: @events, talks: @talks, participations: @participations} %>
     <%= render partial: "profiles/mutual_events", locals: {user: @user, events: @mutual_events} %>
     <%= render partial: "profiles/involvements", locals: {user: @user, events: @involved_events, involvements_by_role: @involvements_by_role} %>
     <%= render partial: "profiles/stamps", locals: {user: @user, stamps: @stamps} %>

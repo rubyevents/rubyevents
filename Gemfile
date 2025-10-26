@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby file: ".ruby-version"
 
 # Use main development branch of Rails from github
-gem "rails", github: "rails/rails", branch: "main"
+gem "rails", "8.1.0.rc1"
 
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
@@ -120,7 +120,6 @@ group :test do
 end
 
 gem "pagy"
-gem "dockerfile-rails", ">= 1.2", group: :development
 
 # gem "activerecord-enhancedsqlite3-adapter"
 gem "solid_cache"
@@ -129,7 +128,7 @@ gem "mission_control-jobs"
 
 gem "ahoy_matey"
 gem "vite_rails"
-gem "meta-tags", "~> 2.18"
+gem "meta-tags"
 gem "groupdate"
 gem "appsignal"
 gem "chartkick", "~> 5.0"

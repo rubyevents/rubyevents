@@ -97,7 +97,7 @@ class Event < ApplicationRecord
   scope :upcoming, -> { where(start_date: Date.today..).order(start_date: :asc) }
 
   # enums
-  enum :kind, ["event", "conference", "meetup"].index_by(&:itself), default: "event"
+  enum :kind, ["event", "conference", "meetup", "retreat"].index_by(&:itself), default: "event"
   enum :date_precision, ["day", "month", "year"].index_by(&:itself), default: "day"
 
   def assign_canonical_event!(canonical_event:)
@@ -304,8 +304,16 @@ class Event < ApplicationRecord
     event_image_or_default_for("poster.webp")
   end
 
+  def stickers
+    Sticker.for_event(self)
+  end
+
+  def sticker_image_paths
+    stickers.map(&:file_path)
+  end
+
   def sticker_image_path
-    event_image_for("sticker.webp")
+    sticker_image_paths.first
   end
 
   def stamp_image_paths
@@ -320,7 +328,7 @@ class Event < ApplicationRecord
   end
 
   def sticker?
-    sticker_image_path.present?
+    sticker_image_paths.any?
   end
 
   def stamp?

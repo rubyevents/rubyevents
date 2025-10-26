@@ -49,6 +49,7 @@ class SponsorsController < ApplicationController
   end
 
   def classify_event_size(event)
+    return "Retreat" if event.retreat?
     talk_count = event.talks.size
 
     if talk_count == 0

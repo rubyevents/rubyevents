@@ -10,7 +10,7 @@
 #  bsky_metadata       :json             not null
 #  cfp_subscription    :boolean          default(FALSE)
 #  email               :string           indexed
-#  github_handle       :string           uniquely indexed
+#  github_handle       :string
 #  github_metadata     :json             not null
 #  linkedin            :string           default(""), not null
 #  location            :string           default("")
@@ -32,11 +32,11 @@
 #
 # Indexes
 #
-#  index_users_on_canonical_id   (canonical_id)
-#  index_users_on_email          (email)
-#  index_users_on_github_handle  (github_handle) UNIQUE WHERE github_handle IS NOT NULL AND github_handle != ''
-#  index_users_on_name           (name)
-#  index_users_on_slug           (slug) UNIQUE WHERE slug IS NOT NULL AND slug != ''
+#  index_users_on_canonical_id         (canonical_id)
+#  index_users_on_email                (email)
+#  index_users_on_lower_github_handle  (lower(github_handle)) UNIQUE WHERE github_handle IS NOT NULL AND github_handle != ''
+#  index_users_on_name                 (name)
+#  index_users_on_slug                 (slug) UNIQUE WHERE slug IS NOT NULL AND slug != ''
 #
 # rubocop:enable Layout/LineLength
 class User < ApplicationRecord
@@ -160,6 +160,11 @@ class User < ApplicationRecord
     end
   end
 
+  def self.find_by_github_handle(handle)
+    return nil if handle.blank?
+    where("lower(github_handle) = ?", handle.downcase).first
+  end
+
   # User-specific methods
   def default_watch_list
     @default_watch_list ||= watch_lists.first || watch_lists.create(name: "Favorites")
@@ -269,6 +274,8 @@ class User < ApplicationRecord
   end
 
   def assign_canonical_speaker!(canonical_speaker:)
+    return if canonical_speaker.blank?
+
     ActiveRecord::Base.transaction do
       self.canonical = canonical_speaker
       self.github_handle = nil

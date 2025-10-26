@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_10_12_114916) do
+ActiveRecord::Schema[8.1].define(version: 2025_10_19_212653) do
   create_table "ahoy_events", force: :cascade do |t|
     t.string "name"
     t.text "properties"
@@ -392,9 +392,9 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_12_114916) do
     t.boolean "verified", default: false, null: false
     t.integer "watched_talks_count", default: 0, null: false
     t.string "website", default: "", null: false
+    t.index "lower(github_handle)", name: "index_users_on_lower_github_handle", unique: true, where: "github_handle IS NOT NULL AND github_handle != ''"
     t.index ["canonical_id"], name: "index_users_on_canonical_id"
     t.index ["email"], name: "index_users_on_email"
-    t.index ["github_handle"], name: "index_users_on_github_handle", unique: true, where: "github_handle IS NOT NULL AND github_handle != ''"
     t.index ["name"], name: "index_users_on_name"
     t.index ["slug"], name: "index_users_on_slug", unique: true, where: "slug IS NOT NULL AND slug != ''"
   end
