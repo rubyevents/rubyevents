@@ -94,7 +94,7 @@ Rails.application.routes.draw do
       resources :stamps, only: [:index]
       resources :stickers, only: [:index]
       resources :involvements, only: [:index]
-      resource :map, only: [:show]
+      resources :map, only: [:index]
     end
   end
   resources :events, param: :slug, only: [:index, :show, :update, :edit] do
