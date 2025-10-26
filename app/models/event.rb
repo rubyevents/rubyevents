@@ -367,8 +367,4 @@ class Event < ApplicationRecord
       url: Router.event_url(self, host: "#{request.protocol}#{request.host}:#{request.port}")
     }
   end
-
-  def open_cfps
-    cfps.where(close_date: Date.today..)
-  end
 end
