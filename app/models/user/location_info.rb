@@ -22,7 +22,7 @@ class User::LocationInfo < ActiveRecord::AssociatedObject
   def link_path
     return nil unless country.present?
 
-    "/countries/#{country.translations['en'].parameterize}"
+    "/countries/#{country.translations["en"].parameterize}"
   end
 
   private
