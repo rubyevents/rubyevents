@@ -31,12 +31,9 @@ class CountriesController < ApplicationController
     users_by_country = {}
 
     User.where.not(location: [nil, ""]).find_each do |user|
-      Country.all.each do |slug, country|
-        if user.location.downcase.include?(country.translations["en"].downcase)
-          users_by_country[country] ||= Set.new
-          users_by_country[country] << user
-          break
-        end
+      if (country = user.location_info.country)
+        users_by_country[country] ||= Set.new
+        users_by_country[country] << user
       end
     end
 

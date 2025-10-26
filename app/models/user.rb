@@ -92,6 +92,7 @@ class User < ApplicationRecord
   has_one :contributor, dependent: :nullify
 
   has_object :profiles
+  has_object :location_info
 
   validates :email, format: {with: URI::MailTo::EMAIL_REGEXP}, allow_blank: true
   validates :github_handle, presence: true, uniqueness: true, allow_blank: true

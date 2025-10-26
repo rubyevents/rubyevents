@@ -1,16 +1,13 @@
 <%# locals: (user:, stamps:) %>
 
 <% if stamps.any? %>
-  <input type="radio" name="talk_tabs" role="tab" class="tab px-6" aria-label="Stamps (<%= stamps.size %>)">
-
-  <div role="tabpanel" class="tab-content mt-6">
-    <div class="space-y-8">
-      <div class="mb-6">
+  <div class="space-y-8">
+    <div class="mb-6">
         <div class="mb-4 flex items-center justify-between">
           <h3 class="text-lg font-semibold text-gray-800">
             <%= stamps.size %> <%= "Stamp".pluralize(stamps.size) %> Collected
           </h3>
-          <%= link_to "View all stamps", stamps_path, class: "link text-sm" %>
+          <%= link_to "View all stamps", stamps_path, class: "link text-sm", data: {turbo_frame: "_top"} %>
         </div>
 
         <p class="text-[#636B74] mb-6">
@@ -19,7 +16,6 @@
 
         <!-- Stamps Grid -->
         <%= render partial: "shared/stamps_grid", locals: {stamps: stamps} %>
-      </div>
     </div>
   </div>
 <% end %>

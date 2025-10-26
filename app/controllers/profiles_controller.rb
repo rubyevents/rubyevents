@@ -11,6 +11,32 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/:slug
   def show
+    if @user.kept_talks.any?
+      redirect_to profile_talks_path(@user)
+    else
+      load_profile_data_for_show
+      set_meta_tags(@user)
+    end
+  end
+
+  # GET /profiles/:slug/edit
+  def edit
+    set_modal_options(size: :lg)
+  end
+
+  # PATCH/PUT /profiles/:slug
+  def update
+    suggestion = @user.create_suggestion_from(params: user_params, user: Current.user)
+    if suggestion.persisted?
+      redirect_to profile_path(@user), notice: suggestion.notice
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def load_profile_data_for_show
     @talks = @user.kept_talks.includes(:speakers, event: :organisation, child_talks: :speakers).order(date: :desc)
     @talks_by_kind = @talks.group_by(&:kind)
     @topics = @user.topics.approved.tally.sort_by(&:last).reverse.map(&:first)
@@ -45,26 +71,7 @@ class ProfilesController < ApplicationController
     @stamps = Stamp.for_user(@user)
 
     @back_path = speakers_path
-
-    set_meta_tags(@user)
   end
-
-  # GET /profiles/:slug/edit
-  def edit
-    set_modal_options(size: :lg)
-  end
-
-  # PATCH/PUT /profiles/:slug
-  def update
-    suggestion = @user.create_suggestion_from(params: user_params, user: Current.user)
-    if suggestion.persisted?
-      redirect_to profile_path(@user), notice: suggestion.notice
-    else
-      render :edit, status: :unprocessable_entity
-    end
-  end
-
-  private
 
   helper_method :user_kind
   def user_kind
