@@ -184,6 +184,9 @@ class Event < ApplicationRecord
     end
   end
 
+  # REFACTOR: nil is unnecessary, return already returns nil
+  #           we can even remove the nil check because ISO3166::Country.new(nil)
+  #           returns nil anyway
   def country
     return nil if country_code.blank?
 
@@ -268,6 +271,7 @@ class Event < ApplicationRecord
     ["events", organisation.slug, "default"].join("/")
   end
 
+  # TODO: this could be private
   def event_image_or_default_for(filename)
     event_path = [event_image_path, filename].join("/")
     default_organisation_path = [default_organisation_image_path, filename].join("/")

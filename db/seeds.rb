@@ -424,4 +424,34 @@ Topic.create_from_list(topics, status: :approved)
 Rake::Task["backfill:speaker_participation"].invoke
 Rake::Task["backfill:event_involvements"].invoke
 Rake::Task["speakerdeck:set_usernames_from_slides_url"].invoke
-Rake::Task["contributors:fetch"].invoke
+
+# Fetch GitHub contributors data
+# IMPORTANT: This task attempts to fetch contributors from the GitHub API using RUBYVIDEO_GITHUB_TOKEN.
+# The token requires 'repo', 'read:org', and 'workflow' scopes to function properly.
+#
+# WHY WE CATCH ERRORS HERE:
+# 1. GitHub token may be invalid, expired, or missing in local development environments
+# 2. GitHub API may be temporarily unavailable
+# 3. Contributors data is NOT critical to application functionality - it only enhances the admin UI
+# 4. Without error handling, any GitHub API failure would block the entire database seed process
+#
+# IMPORTANCE OF THIS PATTERN:
+# - Allows developers to bootstrap the application without GitHub credentials configured
+# - Makes the seed task resilient to external API failures
+# - Ensures all core data (events, talks, speakers, sponsors) is seeded even if GitHub API fails
+# - In production with valid credentials, contributors will be fetched successfully
+# - The warning message helps developers understand why contributors may be missing
+#
+# See: app/clients/github/contributors_client.rb and app/jobs/recurring/fetch_contributors_job.rb
+begin
+  Rake::Task["contributors:fetch"].invoke
+rescue ApplicationClient::Unauthorized => e
+  puts "Warning: Could not fetch GitHub contributors due to invalid/missing GitHub token."
+  puts "This is expected in local development if RUBYVIDEO_GITHUB_TOKEN is not configured."
+  puts "Contributors data is optional - the application can run without it."
+  Rails.logger.warn("Skipping contributors fetch: #{e.message}")
+rescue => e
+  puts "Warning: Failed to fetch GitHub contributors: #{e.message}"
+  puts "Continuing with database seed..."
+  Rails.logger.warn("Skipping contributors fetch due to error: #{e.message}")
+end
