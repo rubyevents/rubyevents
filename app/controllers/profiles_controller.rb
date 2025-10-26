@@ -11,12 +11,8 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/:slug
   def show
-    if @user.kept_talks.any?
-      redirect_to profile_talks_path(@user)
-    else
-      load_profile_data_for_show
-      set_meta_tags(@user)
-    end
+    load_profile_data_for_show
+    set_meta_tags(@user)
   end
 
   # GET /profiles/:slug/edit
