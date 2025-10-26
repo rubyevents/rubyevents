@@ -25,4 +25,3 @@ class RecommendationsControllerTest < ActionDispatch::IntegrationTest
     assert_select "p", text: /Watch some talks to get personalized recommendations/
   end
 end
-
