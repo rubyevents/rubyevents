@@ -17,7 +17,7 @@
 <% end %>
 
 <% if Rails.env.development? %>
-  <%= ui_button url: profile_url(user, host: "https://rubyevents.org", port: 443), target: :_blank, kind: :neutral, size: :sm do %>
+  <%= ui_button url: "https://rubyevents.org#{profile_path(user)}", target: :_blank, kind: :neutral, size: :sm do %>
     <%= fa :browser, size: :xs %>
     <span>Show on RubyEvents.org</span>
   <% end %>

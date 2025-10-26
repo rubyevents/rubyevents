@@ -67,7 +67,7 @@
           <%= link_to "see all stamps", stamps_path, class: "link" %>
         </div>
 
-        <%= render partial: "shared/stamps_grid", locals: {stamps: @stamps} %>
+        <%= render partial: "shared/stamps_grid", locals: {stamps: @stamps, min_rows: 1} %>
       </section>
     </div>
   <% end %>

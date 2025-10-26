@@ -4,9 +4,6 @@
 # Table name: events
 #
 #  id              :integer          not null, primary key
-#  cfp_close_date  :date
-#  cfp_link        :string
-#  cfp_open_date   :date
 #  city            :string
 #  country_code    :string
 #  date            :date
@@ -55,6 +52,7 @@ class Event < ApplicationRecord
   has_many :sponsors, through: :event_sponsors
   belongs_to :canonical, class_name: "Event", optional: true
   has_many :aliases, class_name: "Event", foreign_key: "canonical_id"
+  has_many :cfps, dependent: :destroy
 
   # Event participation associations
   has_many :event_participations, dependent: :destroy
@@ -75,7 +73,6 @@ class Event < ApplicationRecord
   has_object :schedule
   has_object :static_metadata
   has_object :sponsors_file
-  has_object :cfp
 
   def talks_in_running_order(child_talks: true)
     talks.in_order_of(:video_id, video_ids_in_running_order(child_talks: child_talks))
@@ -307,8 +304,16 @@ class Event < ApplicationRecord
     event_image_or_default_for("poster.webp")
   end
 
+  def stickers
+    Sticker.for_event(self)
+  end
+
+  def sticker_image_paths
+    stickers.map(&:file_path)
+  end
+
   def sticker_image_path
-    event_image_for("sticker.webp")
+    sticker_image_paths.first
   end
 
   def stamp_image_paths
@@ -323,7 +328,7 @@ class Event < ApplicationRecord
   end
 
   def sticker?
-    sticker_image_path.present?
+    sticker_image_paths.any?
   end
 
   def stamp?

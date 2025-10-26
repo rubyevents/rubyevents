@@ -273,6 +273,8 @@ class User < ApplicationRecord
   end
 
   def assign_canonical_speaker!(canonical_speaker:)
+    return if canonical_speaker.blank?
+
     ActiveRecord::Base.transaction do
       self.canonical = canonical_speaker
       self.github_handle = nil

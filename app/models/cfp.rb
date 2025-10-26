@@ -1,4 +1,30 @@
-class Event::CFP < ActiveRecord::AssociatedObject
+# == Schema Information
+#
+# Table name: cfps
+#
+#  id         :integer          not null, primary key
+#  close_date :date
+#  link       :string
+#  name       :string
+#  open_date  :date
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  event_id   :integer          not null, indexed
+#
+# Indexes
+#
+#  index_cfps_on_event_id  (event_id)
+#
+# Foreign Keys
+#
+#  event_id  (event_id => events.id)
+#
+class CFP < ApplicationRecord
+  belongs_to :event
+
+  scope :open, -> { where("close_date >= ?", Date.today).where("open_date IS NULL OR open_date <= ?", Date.today) }
+  scope :closed, -> { where("close_date < ?", Date.today) }
+
   def open?
     return false if closed?
     return false if future?
@@ -49,18 +75,6 @@ class Event::CFP < ActiveRecord::AssociatedObject
     return nil if open?
 
     (Date.current - close_date).to_i
-  end
-
-  def link
-    event.cfp_link
-  end
-
-  def open_date
-    event.cfp_open_date
-  end
-
-  def close_date
-    event.cfp_close_date
   end
 
   def present?

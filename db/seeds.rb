@@ -47,13 +47,26 @@ organisations.each do |org|
       country_code: event.static_metadata.country&.alpha2,
       start_date: event.static_metadata.start_date,
       end_date: event.static_metadata.end_date,
-      kind: event.static_metadata.kind,
-      cfp_close_date: event_data["cfp_close_date"],
-      cfp_link: event_data["cfp_link"],
-      cfp_open_date: event_data["cfp_open_date"]
+      kind: event.static_metadata.kind
     )
 
     puts event.slug unless Rails.env.test?
+
+    cfp_file_path = "#{Rails.root}/data/#{organisation.slug}/#{event.slug}/cfp.yml"
+
+    if File.exist?(cfp_file_path)
+      cfps = YAML.load_file(cfp_file_path)
+
+      cfps.each do |cfp_data|
+        event.cfps.find_or_create_by(
+          link: cfp_data["link"],
+          open_date: cfp_data["open_date"]
+        ).update(
+          name: cfp_data["name"],
+          close_date: cfp_data["close_date"]
+        )
+      end
+    end
 
     if event.videos_file?
       event.videos_file.each do |talk_data|
