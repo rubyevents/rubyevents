@@ -13,9 +13,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### Testing
 
+- `bin/vite build --clear --mode=test` - Build Vite assets for tests (one-time setup before running tests)
 - `bin/rails test` - Run the full test suite (uses Minitest)
 - `bin/rails test test/system/` - Run system tests
 - `bin/rails test test/models/speaker_test.rb` - Run specific test file
+
+**Important**: Always run `bin/vite build --clear --mode=test` before running the test suite for the first time or after making frontend changes. This prevents race conditions with parallel test execution. The build assets are cached and reused across test runs.
 
 ### Linting & Formatting
 

@@ -13,5 +13,11 @@ export default defineConfig({
         ]
       }
     })
-  ]
+  ],
+  build: {
+    // In test mode, disable emptyOutDir to prevent race conditions when
+    // multiple test processes run in parallel. The output directory should
+    // be cleaned once before tests via `bin/vite build --clear --mode=test`.
+    emptyOutDir: process.env.RAILS_ENV !== 'test'
+  }
 })
