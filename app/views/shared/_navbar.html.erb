@@ -4,7 +4,7 @@
       <ul class="desktop-menu">
         <%= render "shared/navbar/link", link_title: "Events", path: events_path %>
         <%= render "shared/navbar/link", link_title: "Videos", path: talks_path %>
-        <%= render "shared/navbar/link", link_title: "Recommended", path: recommended_path if Current.user %>
+        <%= render "shared/navbar/link", link_title: "For you", path: recommendations_path if Current.user %>
         <%= render "shared/navbar/link", link_title: "Speakers", path: speakers_path %>
         <%= render "shared/navbar/link", link_title: "Sponsors", path: sponsors_path %>
         <%= render "shared/navbar/link", link_title: "Topics", path: topics_path %>
