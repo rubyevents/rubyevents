@@ -22,6 +22,9 @@
 class CFP < ApplicationRecord
   belongs_to :event
 
+  scope :open, -> { where("close_date >= ?", Date.today).where("open_date IS NULL OR open_date <= ?", Date.today) }
+  scope :closed, -> { where("close_date < ?", Date.today) }
+
   def open?
     return false if closed?
     return false if future?

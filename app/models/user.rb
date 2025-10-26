@@ -8,7 +8,6 @@
 #  bio                 :text             default(""), not null
 #  bsky                :string           default(""), not null
 #  bsky_metadata       :json             not null
-#  cfp_subscription    :boolean          default(FALSE)
 #  email               :string           indexed
 #  github_handle       :string
 #  github_metadata     :json             not null

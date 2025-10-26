@@ -372,7 +372,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_19_212653) do
     t.string "bsky", default: "", null: false
     t.json "bsky_metadata", default: {}, null: false
     t.integer "canonical_id"
-    t.boolean "cfp_subscription", default: false
     t.datetime "created_at", null: false
     t.string "email"
     t.string "github_handle"

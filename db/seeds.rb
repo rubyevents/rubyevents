@@ -58,10 +58,11 @@ organisations.each do |org|
       cfps = YAML.load_file(cfp_file_path)
 
       cfps.each do |cfp_data|
-        event.cfps.create(
-          name: cfp_data["name"],
+        event.cfps.find_or_create_by(
           link: cfp_data["link"],
           open_date: cfp_data["open_date"],
+        ).update(
+          name: cfp_data["name"],
           close_date: cfp_data["close_date"]
         )
       end
