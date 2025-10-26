@@ -1,4 +1,5 @@
 {
+  "_comment": "PARALLEL TEST EXECUTION: autoBuild must be false in test mode. See vite.config.mjs for details.",
   "all": {
     "sourceCodeDir": "app/javascript",
     "watchAdditionalPaths": ["app/assets/stylesheets"]
@@ -10,6 +11,7 @@
     "port": 3036
   },
   "test": {
+    "_comment": "autoBuild MUST be false to prevent 8 parallel test workers from triggering builds simultaneously. The Vite assets are built once before tests via `bin/vite build --clear --mode=test` and then reused by all workers.",
     "autoBuild": false,
     "publicOutputDir": "vite-test",
     "port": 3037
