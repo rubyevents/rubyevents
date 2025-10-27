@@ -57,23 +57,23 @@
           <div class="container hotwire-native:hidden flex flex-col items-center text-center">
             <h2 class="text-2xl font-bold tracking-tight mb-6">On a mission to index all Ruby events</h2>
             <div class="flex flex-wrap gap-4 justify-center items-center text-sm">
-              <div class="flex items-center gap-2">
+              <div class="flex flex-wrap justify-center items-center gap-2 mb-12 lg:mb-6">
                 <span class="opacity-80">We have indexed</span>
-                <span class="inline-flex items-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm font-semibold border" style="border-color: color-mix(in srgb, var(--featured-color) 25%, transparent);">
+                <%= link_to events_path, class: "inline-flex items-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm font-semibold border hover:bg-white/30 transition-colors", style: "border-color: color-mix(in srgb, var(--featured-color) 25%, transparent);" do %>
                   <%= @events_count %> events
-                </span>
+                <% end %>
 
                 <span class="opacity-80">and</span>
 
-                <span class="inline-flex items-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm font-semibold border" style="border-color: color-mix(in srgb, var(--featured-color) 25%, transparent);">
+                <%= link_to talks_path, class: "inline-flex items-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm font-semibold border hover:bg-white/30 transition-colors", style: "border-color: color-mix(in srgb, var(--featured-color) 25%, transparent);" do %>
                   <%= @talks_count %> talks
-                </span>
+                <% end %>
 
                 <span class="opacity-80">from</span>
 
-                <span class="inline-flex items-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm font-semibold border" style="border-color: color-mix(in srgb, var(--featured-color) 25%, transparent);">
+                <%= link_to speakers_path, class: "inline-flex items-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm font-semibold border hover:bg-white/30 transition-colors", style: "border-color: color-mix(in srgb, var(--featured-color) 25%, transparent);" do %>
                   <%= @speakers_count %> speakers
-                </span>
+                <% end %>
               </div>
             </div>
           </div>
