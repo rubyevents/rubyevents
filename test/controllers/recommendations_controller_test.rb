@@ -12,7 +12,8 @@ class RecommendationsControllerTest < ActionDispatch::IntegrationTest
 
     get recommendations_path
     assert_response :success
-    assert_select "h2", "Recommended for you"
+    assert_select "h1", "Recommended for you"
+    assert_select "h2", "No recommendations yet"
   end
 
   test "should display no recommendations message when user has no watch history" do
@@ -21,7 +22,6 @@ class RecommendationsControllerTest < ActionDispatch::IntegrationTest
 
     get recommendations_path
     assert_response :success
-    assert_select "p", text: /No recommendations available yet/
-    assert_select "p", text: /Watch some talks to get personalized recommendations/
+    assert_select "p", text: /Watch some talks to get personalized recommendations based on your interests and viewing history./
   end
 end
