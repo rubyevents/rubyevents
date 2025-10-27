@@ -78,6 +78,9 @@ gem "ruby_llm"
 # YouTube V3 API client.
 gem "yt"
 
+# Family of libraries that support various formats of XML "feeds".
+gem "rss", "~> 0.3.1"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "bundler-audit", require: false
