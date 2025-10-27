@@ -52,6 +52,14 @@
 
                 <%= ui_avatar(speaker, size: :lg, size_class: "w-12 lg:w-28 xl:w-40") %>
               <% end %>
+
+              <% if speakers_with_avatars.none? %>
+                <% event.participants.first(4).each do |participant| %>
+                  <% shown_speakers << participant %>
+
+                  <%= ui_avatar(participant, size: :lg, size_class: "w-12 lg:w-28 xl:w-40") %>
+                <% end %>
+              <% end %>
             <% end %>
           </div>
         </div>
@@ -59,9 +67,16 @@
         <div class="mt-12">
           <div class="avatar-group -space-x-6 lg:-space-x-3 rtl:space-x-reverse">
             <% remaining_speakers = speakers_with_avatars - shown_speakers %>
+            <% remaining_participants = event.participants - shown_speakers %>
 
             <% if remaining_speakers.any? %>
               <% remaining_speakers.first(10).each do |speaker| %>
+                <% shown_speakers << speaker %>
+
+                <%= ui_avatar(speaker) %>
+              <% end %>
+            <% elsif remaining_participants.any? %>
+              <% remaining_participants.first(10).each do |speaker| %>
                 <% shown_speakers << speaker %>
 
                 <%= ui_avatar(speaker) %>

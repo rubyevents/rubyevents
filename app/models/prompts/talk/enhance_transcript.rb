@@ -1,7 +1,7 @@
 module Prompts
   module Talk
     class EnhanceTranscript < Prompts::Base
-      MODEL = "gpt-4.1-mini"
+      MODEL = "gpt-5-mini"
 
       def initialize(talk:)
         @talk = talk

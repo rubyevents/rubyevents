@@ -4,3 +4,6 @@ youtube_video_statistics_job:
 rollup_aggregate_analytics:
   class: Recurring::RollupJob
   schedule: every hour
+fetch_contributors:
+  class: Recurring::FetchContributorsJob
+  schedule: every day at 2am

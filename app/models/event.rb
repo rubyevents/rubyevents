@@ -4,9 +4,6 @@
 # Table name: events
 #
 #  id              :integer          not null, primary key
-#  cfp_close_date  :date
-#  cfp_link        :string
-#  cfp_open_date   :date
 #  city            :string
 #  country_code    :string
 #  date            :date
@@ -40,13 +37,14 @@
 class Event < ApplicationRecord
   include Suggestable
   include Sluggable
+
   configure_slug(attribute: :name, auto_suffix_on_collision: false)
 
   # associations
   belongs_to :organisation, strict_loading: false
   has_many :talks, dependent: :destroy, inverse_of: :event, foreign_key: :event_id
   has_many :watchable_talks, -> { watchable }, class_name: "Talk"
-  has_many :speakers, -> { distinct }, through: :talks
+  has_many :speakers, -> { distinct }, through: :talks, class_name: "User"
   has_many :keynote_speakers, -> { joins(:talks).where(talks: {kind: "keynote"}).distinct },
     through: :talks, source: :speakers
   has_many :topics, -> { distinct }, through: :talks
@@ -54,11 +52,27 @@ class Event < ApplicationRecord
   has_many :sponsors, through: :event_sponsors
   belongs_to :canonical, class_name: "Event", optional: true
   has_many :aliases, class_name: "Event", foreign_key: "canonical_id"
+  has_many :cfps, dependent: :destroy
+
+  # Event participation associations
+  has_many :event_participations, dependent: :destroy
+  has_many :participants, through: :event_participations, source: :user
+  has_many :speaker_participants, -> { where(event_participations: {attended_as: :speaker}) },
+    through: :event_participations, source: :user
+  has_many :keynote_speaker_participants, -> { where(event_participations: {attended_as: :keynote_speaker}) },
+    through: :event_participations, source: :user
+  has_many :visitor_participants, -> { where(event_participations: {attended_as: :visitor}) },
+    through: :event_participations, source: :user
+
+  has_many :event_involvements, dependent: :destroy
+  has_many :involved_users, -> { where(event_involvements: {involvementable_type: "User"}) },
+    through: :event_involvements, source: :involvementable, source_type: "User"
+  has_many :involved_organisations, -> { where(event_involvements: {involvementable_type: "Organisation"}) },
+    through: :event_involvements, source: :involvementable, source_type: "Organisation"
 
   has_object :schedule
   has_object :static_metadata
   has_object :sponsors_file
-  has_object :cfp
 
   def talks_in_running_order(child_talks: true)
     talks.in_order_of(:video_id, video_ids_in_running_order(child_talks: child_talks))
@@ -83,7 +97,7 @@ class Event < ApplicationRecord
   scope :upcoming, -> { where(start_date: Date.today..).order(start_date: :asc) }
 
   # enums
-  enum :kind, ["event", "conference", "meetup"].index_by(&:itself), default: "event"
+  enum :kind, ["event", "conference", "meetup", "retreat"].index_by(&:itself), default: "event"
   enum :date_precision, ["day", "month", "year"].index_by(&:itself), default: "day"
 
   def assign_canonical_event!(canonical_event:)
@@ -165,6 +179,12 @@ class Event < ApplicationRecord
       "#{I18n.l(start_date, format: :medium,
         default: "unknown")} - #{I18n.l(end_date, format: :medium, default: "unknown")}"
     end
+  end
+
+  def country
+    return nil if country_code.blank?
+
+    ISO3166::Country.new(country_code)
   end
 
   def country_name
@@ -284,12 +304,35 @@ class Event < ApplicationRecord
     event_image_or_default_for("poster.webp")
   end
 
+  def stickers
+    Sticker.for_event(self)
+  end
+
+  def sticker_image_paths
+    stickers.map(&:file_path)
+  end
+
   def sticker_image_path
-    event_image_for("sticker.webp")
+    sticker_image_paths.first
+  end
+
+  def stamp_image_paths
+    base = Rails.root.join("app", "assets", "images")
+    Dir.glob(base.join(event_image_path, "stamp*.webp")).map { |path|
+      Pathname.new(path).relative_path_from(base).to_s
+    }.sort
+  end
+
+  def stamp_image_path
+    stamp_image_paths.first
   end
 
   def sticker?
-    sticker_image_path.present?
+    sticker_image_paths.any?
+  end
+
+  def stamp?
+    stamp_image_paths.any?
   end
 
   def watchable_talks?

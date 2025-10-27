@@ -1,4 +1,4 @@
-<%# locals: (talk:, user_favorite_talks_ids:) -%>
+<%# locals: (talk:, user_favorite_talks_ids:) %>
 
 <% video_player_controller = talk.external_player ? nil : "video-player" %>
 
@@ -25,10 +25,10 @@
         video_player_end_seconds_value: talk.end_seconds,
         video_player_watched_talk_path_value: talk_watched_talk_path(talk),
         video_player_current_user_present_value: signed_in?,
-        video_player_progress_seconds_value: talk.watched_talks.select { |it| it.user_id == Current.user&.id }.min_by(&:created_at)&.progress_seconds || 0
+        video_player_progress_seconds_value: talk.watched_talks.select { |watched_talk| watched_talk.user_id == Current.user&.id }.min_by(&:created_at)&.progress_seconds || 0
       } do %>
 
-  <div class="relative overflow-hidden bg-gray-300 aspect-video banner-img card-horizontal-img rounded-xl outline outline-1 outline-gray-300" data-turbo-permanent=true>
+  <div class="relative overflow-hidden bg-gray-300 aspect-video banner-img card-horizontal-img rounded-xl outline outline-1 outline-gray-300" data-turbo-permanent="true">
     <% if talk.external_player %>
       <%= link_to talk.external_player_url, target: "_blank", class: "relative w-full h-full block" do %>
         <%= image_tag talk.thumbnail_xl, class: "w-full h-full object-cover rounded-xl", style: "view-transition-name: #{dom_id(talk, :image)}" %>
@@ -178,7 +178,7 @@
 
             <% talk.speakers.take(speaker_preview_count).each do |speaker| %>
               <%= content_tag :div, class: class_names("hidden xl:block" => more_speakers) do %>
-                <%= render partial: "talks/speaker", locals: {speaker: speaker} %>
+                <%= render partial: "users/card", locals: {user: speaker} %>
               <% end %>
             <% end %>
 
@@ -278,7 +278,7 @@
           <p>
             <b><%= talk.title %></b><br>
             <%= talk.speakers.map(&:name).to_sentence %>
-            <% if talk.event.static_metadata.location %> • <%= talk.event.static_metadata.location %><% end %>
+            <% if talk.location %> • <%= talk.location %><% end %>
             <% if language && language != "English" %> • <%= language %> <% end %> •
             <%= talk.formatted_kind %>
           </p>
@@ -287,8 +287,8 @@
             Date: <%= talk.formatted_date %><br>
 
             <span class="text-gray-400">
-              Published: <% if talk.published_at %><%= l(talk.published_at, default: "unknown") %><% elsif talk.published? %> unknown <% else %> not published <% end %><br>
-              Announced: <%= l(talk.announced_at, default: "unknown") %>
+              Published: <% if talk.published_at %><%= l(talk.published_at&.to_date, default: "unknown") %><% elsif talk.published? %> unknown <% else %> not published <% end %><br>
+              Announced: <% if talk.announced_at %><%= l(talk.announced_at&.to_date, default: "unknown") %><% end %>
             </span>
           </p>
 
@@ -322,7 +322,7 @@
           <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             <% talk.speakers.each do |speaker| %>
               <div class="duration-300 ease-in-out bg-gray-100 border rounded-lg hover:bg-gray-200/50 transition-bg">
-                <%= render partial: "talks/speaker", locals: {speaker: speaker} %>
+                <%= render partial: "users/card", locals: {user: speaker} %>
               </div>
             <% end %>
           </div>

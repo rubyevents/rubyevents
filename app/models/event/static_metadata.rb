@@ -17,6 +17,10 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
     kind == "meetup"
   end
 
+  def retreat?
+    kind == "retreat"
+  end
+
   def frequency
     static_repository&.frequency || event.organisation.frequency
   end

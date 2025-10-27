@@ -13,13 +13,30 @@
                 <%= year %>
               </h2>
               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <% events.each do |event| %>
-                  <%= render "events/card", event: event %>
+                <%= cache events do %>
+                  <%= render partial: "events/card", collection: events, as: :event, cached: true %>
                 <% end %>
               </div>
             </div>
           <% end %>
         </div>
+
+        <% if @involvements_by_role.any? %>
+          <input type="radio" name="sponsor_tabs" role="tab" class="tab px-6" aria-label="Involvements (<%= @involved_events.size %>)">
+
+          <div role="tabpanel" class="tab-content mt-6">
+            <% @involvements_by_role.each do |role, involvements| %>
+              <div class="mb-12">
+                <h3 class="text-xl font-bold text-gray-900 mb-6"><%= role %></h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  <% involvements.each do |involvement| %>
+                    <%= render partial: "events/card", locals: {event: involvement.event} %>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
 
         <% if @countries_with_events.any? %>
           <input type="radio" name="sponsor_tabs" role="tab" class="tab px-6" aria-label="Map (<%= @countries_with_events.size %>)">
@@ -113,7 +130,7 @@
                 <div class="card-body">
                   <h3 class="card-title text-lg">Event Scale</h3>
                   <div class="space-y-2">
-                    <% ["Flagship Event", "Major Conference", "Regional Conference", "Community Gathering", "Upcoming Event", "Event Awaiting Content"].each do |size| %>
+                    <% ["Flagship Event", "Major Conference", "Regional Conference", "Community Gathering", "Retreat", "Upcoming Event", "Event Awaiting Content"].each do |size| %>
                       <% if @statistics[:events_by_size][size] %>
                         <div class="flex justify-between items-center">
                           <div class="flex items-center gap-2">

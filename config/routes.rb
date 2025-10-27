@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get "/components", to: "page#components"
   get "/about", to: "page#about"
   get "/stickers", to: "page#stickers"
+  get "/contributors", to: "page#contributors"
   get "/stamps", to: "stamps#index"
 
   # authentication
@@ -40,10 +41,12 @@ Rails.application.routes.draw do
 
   resources :topics, param: :slug, only: [:index, :show]
   resources :cfp, only: :index
+  resources :countries, param: :country, only: [:index, :show]
 
   namespace :profiles do
     resources :connect, only: [:index, :show]
-    resources :claim, only: [:create]
+    resources :claims, only: [:create]
+    resources :enhance, only: [:update], param: :slug
   end
 
   resources :contributions, only: [:index, :show], param: :step
@@ -80,15 +83,19 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :watched_talks, only: [:index]
+  resources :watched_talks, only: [:index, :destroy]
 
-  resources :speakers, param: :slug, only: [:index, :show, :update, :edit]
+  resources :speakers, param: :slug, only: [:index, :show]
+  resources :profiles, param: :slug, only: [:show, :update, :edit]
   resources :events, param: :slug, only: [:index, :show, :update, :edit] do
+    resources :event_participations, only: [:create, :destroy]
+
     scope module: :events do
       collection do
         get "/past" => "past#index", :as => :past
         get "/archive" => "archive#index", :as => :archive
-        resources :countries, param: :country, only: [:index, :show]
+        get "/countries" => redirect("/countries")
+        get "/countries/:country" => redirect { |params, _| "/countries/#{params[:country]}" }
         resources :cities, param: :city, only: [:index, :show]
       end
 
@@ -96,19 +103,18 @@ Rails.application.routes.draw do
         get "/day/:date", action: :show, on: :collection, as: :day
       end
       resources :speakers, only: [:index]
+      resources :participants, only: [:index]
+      resources :involvements, only: [:index]
       resources :talks, only: [:index]
       resources :related_talks, only: [:index]
       resources :events, only: [:index]
       resources :videos, only: [:index]
       resources :sponsors, only: [:index]
       resources :cfp, only: [:index]
+      resources :collectibles, only: [:index]
     end
   end
   resources :organisations, param: :slug, only: [:index, :show]
-
-  namespace :speakers do
-    resources :enhance, only: [:update], param: :slug
-  end
 
   namespace "spotlight" do
     resources :talks, only: [:index]
@@ -117,6 +123,8 @@ Rails.application.routes.draw do
   end
 
   get "/featured" => "page#featured"
+
+  resources :recommendations, only: [:index]
 
   get "leaderboard", to: "leaderboard#index"
 
@@ -136,7 +144,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "page#home"
 
-  resources :watch_lists, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
+  resources :watch_lists, only: [:index, :new, :create, :show, :edit, :update, :destroy], path: "bookmarks" do
     resources :talks, only: [:create, :destroy], controller: "watch_list_talks"
   end
 

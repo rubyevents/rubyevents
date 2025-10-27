@@ -1,0 +1,29 @@
+{
+  "name": "RubyEvents Dev",
+  "dockerComposeFile": "./docker-compose.yml",
+  "service": "rails-app",
+  "workspaceFolder": "/rails",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "git.terminalGitEditor": true
+      }
+    }
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/sshd:1": {}
+  },
+  "forwardPorts": [3000],
+  "portsAttributes": {
+    "3000": {
+      "label": "Rails Server",
+      "onAutoForward": "notify"
+    }
+  },
+  "postCreateCommand": "bin/rails db:prepare",
+  "mounts": [
+    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached"
+  ]
+}

@@ -15,9 +15,14 @@ class SponsorsController < ApplicationController
     @events = @sponsor.events.includes(:organisation, :talks).order(start_date: :desc)
     @events_by_year = @events.group_by { |event| event.start_date&.year || "Unknown" }
 
-    @countries_with_events = @events.group_by { |event| event.static_metadata&.country }
-      .compact
+    @countries_with_events = @events.group_by(&:country_code)
+      .map { |code, events| [ISO3166::Country.new(code), events] }
+      .reject { |country, _| country.nil? }
       .sort_by { |country, _| country.translations["en"] }
+
+    involvements = @sponsor.event_involvements.includes(:event).order(:position)
+    @involvements_by_role = involvements.group_by(&:role)
+    @involved_events = @sponsor.involved_events.includes(:organisation).distinct.order(start_date: :desc)
 
     @statistics = prepare_sponsor_statistics
   end
@@ -44,6 +49,7 @@ class SponsorsController < ApplicationController
   end
 
   def classify_event_size(event)
+    return "Retreat" if event.retreat?
     talk_count = event.talks.size
 
     if talk_count == 0

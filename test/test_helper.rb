@@ -17,11 +17,6 @@ class ActiveSupport::TestCase
   include EventTrackingHelper
 
   setup do
-    # @@once ||= begin
-    #   MeiliSearch::Rails::Utilities.reindex_all_models
-    #   true
-    # end
-
     Talk.reindex_all
     User.reindex_all
     User.reset_talks_counts
@@ -38,5 +33,3 @@ class ActiveSupport::TestCase
     user
   end
 end
-
-# MeiliSearch::Rails::Utilities.clear_all_indexes

@@ -59,6 +59,7 @@ class Talk < ApplicationRecord
   include Suggestable
   include Searchable
   include Watchable
+
   configure_slug(attribute: :title, auto_suffix_on_collision: true)
 
   # associations
@@ -76,7 +77,7 @@ class Talk < ApplicationRecord
   has_many :users, through: :user_talks, inverse_of: :talks
   has_many :speakers, -> { where("users.talks_count > 0") }, through: :user_talks, inverse_of: :talks, source: :user
   has_many :kept_speakers, -> { where("users.talks_count > 0") }, through: :kept_user_talks, inverse_of: :talks,
-    class_name: "Speaker", source: :user
+    class_name: "User", source: :user
 
   has_many :talk_topics, dependent: :destroy
   has_many :topics, through: :talk_topics
@@ -165,28 +166,7 @@ class Talk < ApplicationRecord
     language.present? ? Language.find(language)&.alpha2 : Language::DEFAULT
   end
 
-  # search
-  # meilisearch do
-  #   attribute :title
-  #   attribute :description
-  #   attribute :summary
-  #   attribute :speaker_names do
-  #     speakers.pluck(:name)
-  #   end
-  #   attribute :event_name do
-  #     event_name
-  #   end
-
-  #   searchable_attributes [:title, :description, :speaker_names, :event_name, :summary]
-  #   sortable_attributes [:title]
-
-  #   attributes_to_highlight ["*"]
-  # end
-
-  # meilisearch enqueue: true
-
   # ensure that during the reindex process the associated records are eager loaded
-  scope :meilisearch_import, -> { includes(:speakers, :event) }
   scope :without_raw_transcript, -> {
     joins(:talk_transcript)
       .where(%(
@@ -228,6 +208,7 @@ class Talk < ApplicationRecord
   scope :for_event, ->(event_slug) { joins(:event).where(events: {slug: event_slug}) }
   scope :scheduled, -> { where(video_provider: "scheduled") }
   scope :watchable, -> { where(video_provider: WATCHABLE_PROVIDERS) }
+  scope :youtube, -> { where(video_provider: "youtube") }
   scope :upcoming, -> { where(date: Date.today...) }
   scope :today, -> { where(date: Date.today) }
   scope :past, -> { where(date: ...Date.today) }
@@ -432,6 +413,10 @@ class Talk < ApplicationRecord
 
   def language_name
     Language.by_code(language)
+  end
+
+  def location
+    static_metadata.try(:location) || event.static_metadata.location
   end
 
   def slug_candidates

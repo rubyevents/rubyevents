@@ -24,7 +24,10 @@ task :export_assets, [:conference_name] => :environment do |t, args|
   end
 
   conference_pages.each do |id, page|
-    artboard_exports = page["artboards"].select { |id, artboard| artboard["name"].in?(["card", "featured", "avatar", "banner", "poster", "sticker"]) }
+    artboard_exports = page["artboards"].select { |id, artboard|
+      artboard["name"].in?(["card", "featured", "avatar", "banner", "poster"]) ||
+        artboard["name"].downcase.start_with?("sticker")
+    }
     event = Event.includes(:organisation).find_by(name: page["name"])
 
     next if event.nil?
@@ -46,7 +49,7 @@ task export_stickers: :environment do
   pages = response["pagesAndArtboards"].select { |_id, page| page["artboards"].any? }
 
   pages.each do |id, page|
-    artboard_exports = page["artboards"].select { |id, artboard| artboard["name"].in?(["sticker"]) }
+    artboard_exports = page["artboards"].select { |id, artboard| artboard["name"].downcase.start_with?("sticker") }
     event = Event.includes(:organisation).find_by(name: page["name"])
 
     next if event.nil?

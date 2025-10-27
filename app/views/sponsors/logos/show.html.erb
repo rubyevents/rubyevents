@@ -44,7 +44,7 @@
             </div>
             <div class="mb-4">
               <div class="logo-bg border-2 border-gray-200 rounded-lg p-4 transition-colors duration-200 <%= case @sponsor.logo_background when "black" then "bg-black" when "transparent" then "bg-transparent" else "bg-white" end %>">
-                <img src="<%= logo_url %>" alt="<%= @sponsor.name %> logo" class="max-w-full h-32 object-contain mx-auto" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <%= image_tag logo_url, alt: "#{@sponsor.name} logo", class: "max-w-full h-32 object-contain mx-auto", onerror: "this.style.display='none'; this.nextElementSibling.style.display='block';" %>
                 <div class="text-center text-gray-500 hidden">
                   <p>Image failed to load</p>
                 </div>

@@ -9,9 +9,10 @@
 #  bsky                :string           default(""), not null
 #  bsky_metadata       :json             not null
 #  email               :string           indexed
-#  github_handle       :string           uniquely indexed
+#  github_handle       :string
 #  github_metadata     :json             not null
 #  linkedin            :string           default(""), not null
+#  location            :string           default("")
 #  mastodon            :string           default(""), not null
 #  name                :string           indexed
 #  password_digest     :string
@@ -30,11 +31,11 @@
 #
 # Indexes
 #
-#  index_users_on_canonical_id   (canonical_id)
-#  index_users_on_email          (email)
-#  index_users_on_github_handle  (github_handle) UNIQUE WHERE github_handle IS NOT NULL AND github_handle != ''
-#  index_users_on_name           (name)
-#  index_users_on_slug           (slug) UNIQUE WHERE slug IS NOT NULL AND slug != ''
+#  index_users_on_canonical_id         (canonical_id)
+#  index_users_on_email                (email)
+#  index_users_on_lower_github_handle  (lower(github_handle)) UNIQUE WHERE github_handle IS NOT NULL AND github_handle != ''
+#  index_users_on_name                 (name)
+#  index_users_on_slug                 (slug) UNIQUE WHERE slug IS NOT NULL AND slug != ''
 #
 # rubocop:enable Layout/LineLength
 class User < ApplicationRecord
@@ -42,6 +43,7 @@ class User < ApplicationRecord
   include Sluggable
   include Suggestable
   include User::Searchable
+
   configure_slug(attribute: :name, auto_suffix_on_collision: true)
 
   GITHUB_URL_PATTERN = %r{\A(https?://)?(www\.)?github\.com/}i
@@ -60,6 +62,7 @@ class User < ApplicationRecord
   # Authentication and user-specific associations
   has_many :sessions, dependent: :destroy, inverse_of: :user
   has_many :connected_accounts, dependent: :destroy
+  has_many :passports, -> { passport }, class_name: "ConnectedAccount"
   has_many :watch_lists, dependent: :destroy
   has_many :watched_talks, dependent: :destroy
 
@@ -72,9 +75,23 @@ class User < ApplicationRecord
   has_many :aliases, class_name: "User", foreign_key: "canonical_id"
   has_many :topics, through: :talks
 
-  belongs_to :canonical, class_name: "User", optional: true
+  # Event participation associations
+  has_many :event_participations, dependent: :destroy
+  has_many :participated_events, through: :event_participations, source: :event
+  has_many :speaker_events, -> { where(event_participations: {attended_as: :speaker}) },
+    through: :event_participations, source: :event
+  has_many :keynote_speaker_events, -> { where(event_participations: {attended_as: :keynote_speaker}) },
+    through: :event_participations, source: :event
+  has_many :visitor_events, -> { where(event_participations: {attended_as: :visitor}) },
+    through: :event_participations, source: :event
 
-  has_object :profiles
+  has_many :event_involvements, as: :involvementable, dependent: :destroy
+  has_many :involved_events, through: :event_involvements, source: :event
+
+  belongs_to :canonical, class_name: "User", optional: true
+  has_one :contributor, dependent: :nullify
+
+  has_object :profiles, :talk_recommender, :watched_talk_seeder, :speakerdeck_feed
 
   validates :email, format: {with: URI::MailTo::EMAIL_REGEXP}, allow_blank: true
   validates :github_handle, presence: true, uniqueness: true, allow_blank: true
@@ -121,6 +138,9 @@ class User < ApplicationRecord
     self.verified = false
   end
 
+  # Seed watched talks for new users in development
+  after_create :seed_development_watched_talks, if: -> { Rails.env.development? }
+
   # Speaker scopes
   scope :with_talks, -> { where.not(talks_count: 0) }
   scope :speakers, -> { where("talks_count > 0") }
@@ -142,13 +162,18 @@ class User < ApplicationRecord
     end
   end
 
-  # User-specific methods
-  def default_watch_list
-    @default_watch_list ||= watch_lists.first || watch_lists.create(name: "Favorites")
+  def self.find_by_github_handle(handle)
+    return nil if handle.blank?
+    where("lower(github_handle) = ?", handle.downcase).first
   end
 
-  def passport_account
-    connected_accounts.find_by(provider: "passport")
+  # User-specific methods
+  def default_watch_list
+    @default_watch_list ||= watch_lists.first || watch_lists.create(name: "Bookmarks")
+  end
+
+  def main_participation_to(event)
+    event_participations.in_order_of(:attended_as, EventParticipation.attended_as.keys).where(event: event).first
   end
 
   # Speaker-specific methods (adapted from Speaker model)
@@ -162,6 +187,10 @@ class User < ApplicationRecord
 
   def verified?
     connected_accounts.find { |account| account.provider == "github" }
+  end
+
+  def contributor?
+    contributor.present?
   end
 
   def managed_by?(visiting_user)
@@ -207,7 +236,7 @@ class User < ApplicationRecord
   end
 
   def broadcast_header
-    broadcast_update target: dom_id(self, :header_content), partial: "speakers/header_content", locals: {speaker: self}
+    broadcast_update target: dom_id(self, :header_content), partial: "profiles/header_content", locals: {user: self}
   end
 
   def to_meta_tags
@@ -247,6 +276,8 @@ class User < ApplicationRecord
   end
 
   def assign_canonical_speaker!(canonical_speaker:)
+    return if canonical_speaker.blank?
+
     ActiveRecord::Base.transaction do
       self.canonical = canonical_speaker
       self.github_handle = nil
@@ -282,7 +313,7 @@ class User < ApplicationRecord
       name: name,
       slug: slug,
       avatar_url: avatar_url,
-      url: Router.speaker_url(self, host: "#{request.protocol}#{request.host}:#{request.port}")
+      url: Router.profile_url(self, host: "#{request.protocol}#{request.host}:#{request.port}")
     }
   end
 
@@ -305,5 +336,21 @@ class User < ApplicationRecord
   def set_slug
     self.slug = slug.presence || github_handle.presence&.downcase
     super
+  end
+
+  def speakerdeck_user_from_slides_url
+    handles = talks
+      .map(&:static_metadata).compact
+      .map(&:slides_url).compact
+      .select { |url| url.include?("speakerdeck.com") }
+      .map { |url| url.split("/")[3] }.uniq
+
+    (handles.count == 1) ? handles.first : nil
+  end
+
+  private
+
+  def seed_development_watched_talks
+    watched_talk_seeder.seed_development_data
   end
 end

@@ -1,0 +1,56 @@
+<%= render partial: "events/header", locals: {event: @event, participation: nil} %>
+
+<%= turbo_frame_tag dom_id(@event), data: {turbo_action: "advance", turbo_frame: "_top"} do %>
+  <div class="container py-8">
+    <%= render partial: "events/navigation", locals: {event: @event} %>
+
+    <div class="flex flex-col gap-12 mt-8">
+      <% if @stamps.any? %>
+        <section class="bg-white rounded-lg border p-6 shadow-sm">
+          <div class="mb-6">
+            <h2 class="text-2xl font-bold text-gray-900 mb-2">Stamps</h2>
+            <p class="text-gray-600">
+              Collect stamps by attending <%= @event.name %>.
+            </p>
+          </div>
+
+          <%= render partial: "shared/stamps_grid", locals: {stamps: @stamps, min_rows: 1} %>
+        </section>
+      <% end %>
+
+      <% if @stickers.any? %>
+        <section class="bg-gradient-to-b from-gray-400 via-gray-500 to-gray-600 rounded-lg border border-gray-300 p-6 shadow-sm">
+          <div class="mb-6">
+            <h2 class="text-2xl font-bold text-white mb-2">Stickers</h2>
+            <p class="text-gray-200">
+              Available stickers for <%= @event.name %>.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+            <% @stickers.each do |sticker| %>
+              <div class="group relative bg-white/10 backdrop-blur-sm rounded-lg p-4 hover:bg-white/20 transition-colors border border-white/20">
+                <div class="aspect-square flex items-center justify-center mb-2">
+                  <%= image_tag sticker.asset_path, class: "max-w-full max-h-full object-contain group-hover:scale-110 transition-transform" %>
+                </div>
+                <p class="text-xs text-white text-center truncate"><%= sticker.name %></p>
+              </div>
+            <% end %>
+          </div>
+        </section>
+      <% end %>
+
+      <% if @stamps.empty? && @stickers.empty? %>
+        <div class="text-center py-12">
+          <div class="max-w-md mx-auto">
+            <div class="text-6xl mb-4">🎨</div>
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">No Collectibles Yet</h2>
+            <p class="text-gray-600 mb-6">
+              There are no stamps or stickers available for <%= @event.name %> yet.
+            </p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

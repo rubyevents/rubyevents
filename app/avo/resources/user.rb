@@ -3,13 +3,16 @@ class Avo::Resources::User < Avo::BaseResource
   self.includes = []
   self.find_record_method = -> {
     if id.is_a?(Array)
-      query.where(slug: id)
+      (id.first.to_i == 0) ? query.where(slug: id) : query.where(id: id)
     else
-      query.find_by(slug: id)
+      (id.to_i == 0) ? query.find_by_slug(id) : query.find(id)
     end
   }
   self.search = {
     query: -> { query.where("lower(name) LIKE ? OR email LIKE ?", "%#{params[:q]&.downcase}%", "%#{params[:q]}%") }
+  }
+  self.external_link = -> {
+    main_app.profile_path(record)
   }
 
   def fields
@@ -37,6 +40,9 @@ class Avo::Resources::User < Avo::BaseResource
     field :user_talks, as: :has_many, hide_on: :index
     field :connected_accounts, as: :has_many
     field :sessions, as: :has_many
+    field :event_participations, as: :has_many, hide_on: :index, use_resource: Avo::Resources::EventParticipation
+    field :participated_events, as: :has_many, hide_on: :index, use_resource: Avo::Resources::Event
+    field :event_involvements, as: :has_many, hide_on: :index
   end
 
   def filters
