@@ -11,14 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[8.1].define(version: 2025_10_19_212653) do
-  create_table "_litestream_lock", id: false, force: :cascade do |t|
-    t.integer "id"
-  end
-
-  create_table "_litestream_seq", force: :cascade do |t|
-    t.integer "seq"
-  end
-
   create_table "ahoy_events", force: :cascade do |t|
     t.string "name"
     t.text "properties"
@@ -58,6 +50,17 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_19_212653) do
     t.string "visitor_token"
     t.index ["user_id"], name: "index_ahoy_visits_on_user_id"
     t.index ["visit_token"], name: "index_ahoy_visits_on_visit_token", unique: true
+  end
+
+  create_table "cfps", force: :cascade do |t|
+    t.date "close_date"
+    t.datetime "created_at", null: false
+    t.integer "event_id", null: false
+    t.string "link"
+    t.string "name"
+    t.date "open_date"
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_cfps_on_event_id"
   end
 
   create_table "connected_accounts", force: :cascade do |t|
@@ -429,6 +432,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_19_212653) do
     t.index ["user_id"], name: "index_watched_talks_on_user_id"
   end
 
+  add_foreign_key "cfps", "events"
   add_foreign_key "connected_accounts", "users"
   add_foreign_key "contributors", "users"
   add_foreign_key "email_verification_tokens", "users"
