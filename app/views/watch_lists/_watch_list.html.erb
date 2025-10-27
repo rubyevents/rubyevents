@@ -13,10 +13,27 @@
             } %>
     </div>
   <% else %>
-    <div class="py-8 text-center">
-      <h2 class="mb-4 text-xl">No favorite videos yet</h2>
-      <p class="mb-4 text-gray-600">Start favorite videos to see them appear here.</p>
-      <%= link_to "Browse Videos", talks_path, class: "btn btn-primary" %>
+    <div class="text-center py-12">
+      <div class="max-w-md mx-auto">
+        <div class="text-6xl mb-4">🔖</div>
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">No bookmarks yet</h2>
+        <p class="text-gray-600 mb-6">
+          Start bookmarking talks and easily find them later.
+        </p>
+        <div class="bg-purple-50 border border-purple-200 rounded-lg p-4 text-left">
+          <h3 class="font-semibold text-purple-800 mb-2">How to bookmark talks:</h3>
+          <ul class="text-sm text-purple-700 space-y-1">
+            <li>• Browse talks and click the bookmark icon</li>
+            <li>• Access your bookmarks anytime</li>
+          </ul>
+        </div>
+        <div class="mt-6">
+          <%= link_to talks_path, class: "btn btn-primary" do %>
+            <%= fa "video", variant: :solid, class: "w-5 h-5 mr-2" %>
+            Browse Talks
+          <% end %>
+        </div>
+      </div>
     </div>
   <% end %>
 </div>

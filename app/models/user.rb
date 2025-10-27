@@ -169,7 +169,7 @@ class User < ApplicationRecord
 
   # User-specific methods
   def default_watch_list
-    @default_watch_list ||= watch_lists.first || watch_lists.create(name: "Favorites")
+    @default_watch_list ||= watch_lists.first || watch_lists.create(name: "Bookmarks")
   end
 
   def main_participation_to(event)
