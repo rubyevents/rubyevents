@@ -134,6 +134,8 @@ Rails.application.routes.draw do
 
   get "/featured" => "page#featured"
 
+  resources :recommendations, only: [:index]
+
   get "leaderboard", to: "leaderboard#index"
 
   # admin

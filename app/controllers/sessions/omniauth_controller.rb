@@ -39,6 +39,7 @@ class Sessions::OmniauthController < ApplicationController
 
     if @user.persisted?
       @user.update(name: omniauth_params[:name]) if omniauth_params[:name].present?
+      @user.watched_talk_seeder.seed_development_data if Rails.env.development?
 
       sign_in @user
 
