@@ -384,6 +384,10 @@ class User < ApplicationRecord
     (handles.count == 1) ? handles.first : nil
   end
 
+  def to_param
+    github_handle.presence || slug
+  end
+
   private
 
   def seed_development_watched_talks
