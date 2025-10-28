@@ -6,55 +6,32 @@ class Avo::Actions::ImportPassportScans < Avo::BaseAction
   # end
 
   def fields
+    field :event, as: :select, options: Event.all.map { |event| [event.name, event.id] }, include_blank: true, required: true
     field :file, as: :file, accept: "text/csv"
   end
 
   def handle(query:, fields:, current_user:, resource:, **args)
-    puts ["field!->", fields[:file]].inspect
+    event_id = fields[:event]
+    begin
+      event = Event.find(event_id)
+    rescue ActiveRecord::RecordNotFound
+      error "Event not found: #{event_id}"
+      return
+    end
     file = fields[:file]
 
     if file.present?
-
       rows = []
-      # puts ["file->", file, file.read].inspect
       CSV.parse(file.read, headers: true) do |row|
-        slug = case row["event"]
-        when "rails_world_2025"
-          "rails-world-2025"
-        when "friendly_25"
-          "friendly-rb-2025"
-        when "euruko_25"
-          "euruko-2025"
-          # when "prug"
-          #   "prug-2025"
-        end
-
-        new_row = row.to_h.merge({
-          slug:
-        }).stringify_keys
-
-        rows << new_row
+        rows << row.to_h.stringify_keys
       end
-
-      # Cache events
-      row_events = rows.map { |row| row["slug"] }.uniq
-      events = Event.where(slug: row_events).index_by(&:slug)
 
       # Cache connected accounts
       connected_accounts = ConnectedAccount.where(uid: rows.map { |row| row["connect_id"] }).index_by(&:uid)
 
       rows.each do |row|
-        event = events[row["slug"]]
-
-        if event.blank?
-          error "Event name not found: #{row["event"]}"
-          next
-        end
-
         if row["connect_id"].present?
-          # search for aconnected account
           connected_account = connected_accounts[row["connect_id"]]
-
           next if connected_account.blank?
 
           user = connected_account.user

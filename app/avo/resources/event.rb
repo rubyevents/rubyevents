@@ -1,8 +1,8 @@
 class Avo::Resources::Event < Avo::BaseResource
   self.includes = []
-  # self.search = {
-  #   query: -> { query.ransack(id_eq: params[:q], m: "or").result(distinct: false) }
-  # }
+  self.search = {
+    query: -> { query.where("lower(name) LIKE ? OR lower(slug) LIKE ?", "%#{params[:q]&.downcase}%", "%#{params[:q]&.downcase}%") }
+  }
   self.find_record_method = -> {
     if id.is_a?(Array)
       query.where(slug: id)
