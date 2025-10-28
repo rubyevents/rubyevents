@@ -19,12 +19,7 @@
   <% if participants.any? %>
     <h2 class="mb-6">Known Participants (<%= participants.size %>)</h2>
     <% if Current.user && participation.blank? %>
-      <div
-        class="
-          mb-6 border-2 border-dashed border-purple-300 rounded-lg
-          bg-purple-50 p-4
-        "
-      >
+      <div class="mb-6 border-2 border-dashed border-purple-300 rounded-lg bg-purple-50 p-4">
         <div class="flex items-center gap-4">
           <div class="text-3xl">👋</div>
 
@@ -43,21 +38,10 @@
     <% end %>
   <% end %>
 
-  <div
-    id="<%= dom_id(event, :participants) %>"
-    class="
-      mb-12 min-w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3
-      h-full
-    "
-  >
+  <div id="<%= dom_id(event, :participants) %>" class=" mb-12 min-w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 h-full">
     <% participants.each do |participant| %>
       <% event_participation = participant.event_participations.find_by(event: event) %>
-      <div
-        class="
-          border rounded-lg bg-white hover:bg-gray-200 transition-bg
-          duration-300 ease-in-out
-        "
-      >
+      <div class="border rounded-lg bg-white hover:bg-gray-200 transition-bg duration-300 ease-in-out">
         <%= render partial: "users/card", locals: {user: participant, event_participation: event_participation} %>
       </div>
     <% end %>
