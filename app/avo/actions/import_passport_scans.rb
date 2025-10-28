@@ -1,9 +1,6 @@
 class Avo::Actions::ImportPassportScans < Avo::BaseAction
   self.name = "Import Passport Scans"
   self.standalone = true
-  # self.visible = -> do
-  #   true
-  # end
 
   def fields
     field :event, as: :select, options: Event.all.map { |event| [event.name, event.id] }, include_blank: true, required: true
