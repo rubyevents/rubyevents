@@ -503,8 +503,8 @@ class Talk < ApplicationRecord
     self.kind = static_metadata.kind if static_metadata.try(:kind).present?
 
     self.speakers = Array.wrap(static_metadata.speakers).reject(&:blank?).map { |speaker_name|
-      User.find_by(slug: speaker_name.parameterize) ||
-        User.find_by_name_or_alias(speaker_name.strip) ||
+      User.find_by_name_or_alias(speaker_name.strip) ||
+        User.find_by(slug: speaker_name.parameterize) ||
         User.find_or_create_by(name: speaker_name.strip)
     }
 

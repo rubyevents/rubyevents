@@ -252,4 +252,52 @@ class UserTest < ActiveSupport::TestCase
     assert_equal canonical_user, user.canonical
     assert_not_nil canonical_user.aliases.find_by(name: "Old Method User")
   end
+
+  test "find_by_name_or_alias excludes users marked for deletion" do
+    user = User.create!(name: "Marked User", github_handle: "marked-for-deletion-test")
+    user.update_column(:marked_for_deletion, true)
+
+    found_user = User.find_by_name_or_alias("Marked User")
+    assert_nil found_user
+  end
+
+  test "find_by_name_or_alias finds alias even if original user is marked for deletion" do
+    canonical_user = User.create!(name: "Canonical User", github_handle: "canonical-marked-test")
+    marked_user = User.create!(name: "Duplicate User", github_handle: "duplicate-marked-test")
+
+    marked_user.assign_canonical_user!(canonical_user: canonical_user)
+    marked_user.reload
+
+    alias_record = Alias.find_by(aliasable_type: "User", name: "Duplicate User")
+    assert_not_nil alias_record
+    assert_equal canonical_user.id, alias_record.aliasable_id
+
+    found_via_alias = User.find_by_name_or_alias("Duplicate User")
+    assert_equal canonical_user.id, found_via_alias.id
+  end
+
+  test "find_by_slug_or_alias excludes users marked for deletion" do
+    user = User.create!(name: "Slug Marked User", github_handle: "slug-marked-test")
+    original_slug = user.slug
+    user.update_column(:marked_for_deletion, true)
+
+    found_user = User.find_by_slug_or_alias(original_slug)
+    assert_nil found_user
+  end
+
+  test "find_by_slug_or_alias finds alias even if original user is marked for deletion" do
+    canonical_user = User.create!(name: "Canonical Slug User", github_handle: "canonical-slug-marked")
+    marked_user = User.create!(name: "Duplicate Slug User", github_handle: "duplicate-slug-marked")
+    original_slug = marked_user.slug
+
+    marked_user.assign_canonical_user!(canonical_user: canonical_user)
+    marked_user.reload
+
+    alias_record = Alias.find_by(aliasable_type: "User", slug: original_slug)
+    assert_not_nil alias_record
+    assert_equal canonical_user.id, alias_record.aliasable_id
+
+    found_user = User.find_by_slug_or_alias(original_slug)
+    assert_equal canonical_user.id, found_user.id
+  end
 end

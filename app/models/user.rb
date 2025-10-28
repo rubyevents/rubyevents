@@ -179,7 +179,7 @@ class User < ApplicationRecord
   def self.find_by_name_or_alias(name)
     return nil if name.blank?
 
-    user = find_by(name: name)
+    user = find_by(name: name, marked_for_deletion: false)
     return user if user
 
     alias_record = Alias.find_by(aliasable_type: "User", name: name)
@@ -189,7 +189,7 @@ class User < ApplicationRecord
   def self.find_by_slug_or_alias(slug)
     return nil if slug.blank?
 
-    user = find_by(slug: slug)
+    user = find_by(slug: slug, marked_for_deletion: false)
     return user if user
 
     alias_record = Alias.find_by(aliasable_type: "User", slug: slug)
