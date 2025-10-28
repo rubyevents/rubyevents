@@ -1,6 +1,7 @@
 <div id="participants_list">
   <% if participants.any? %>
     <h2 class="mb-6">Known Participants (<%= participants.size %>)</h2>
+
     <% if Current.user && participation.blank? %>
       <div class="mb-6 border-2 border-dashed border-purple-300 rounded-lg bg-purple-50 p-4">
         <div class="flex items-center gap-4">
