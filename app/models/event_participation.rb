@@ -39,4 +39,8 @@ class EventParticipation < ApplicationRecord
   def name
     "#{user.name} - #{event.name} - #{attended_as}"
   end
+
+  def verified?
+    verified_at.present?
+  end
 end
