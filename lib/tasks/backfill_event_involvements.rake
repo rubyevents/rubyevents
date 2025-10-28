@@ -29,7 +29,7 @@ namespace :backfill do
           involvement_group["users"]&.each_with_index do |user_name, index|
             next if user_name.blank?
 
-            user = User.find_by(name: user_name)
+            user = User.find_by_name_or_alias(user_name)
             unless user
               puts "\nCreating user: #{user_name}"
               user = User.create!(name: user_name)

@@ -13,6 +13,7 @@
 #  github_metadata     :json             not null
 #  linkedin            :string           default(""), not null
 #  location            :string           default("")
+#  marked_for_deletion :boolean          default(FALSE), not null, indexed
 #  mastodon            :string           default(""), not null
 #  name                :string           indexed
 #  password_digest     :string
@@ -34,6 +35,7 @@
 #  index_users_on_canonical_id         (canonical_id)
 #  index_users_on_email                (email)
 #  index_users_on_lower_github_handle  (lower(github_handle)) UNIQUE WHERE github_handle IS NOT NULL AND github_handle != ''
+#  index_users_on_marked_for_deletion  (marked_for_deletion)
 #  index_users_on_name                 (name)
 #  index_users_on_slug                 (slug) UNIQUE WHERE slug IS NOT NULL AND slug != ''
 #
@@ -72,7 +74,8 @@ class User < ApplicationRecord
   has_many :kept_talks, -> { joins(:user_talks).where(user_talks: {discarded_at: nil}).distinct },
     through: :user_talks, inverse_of: :speakers, class_name: "Talk", source: :talk
   has_many :events, -> { distinct }, through: :talks, inverse_of: :speakers
-  has_many :aliases, class_name: "User", foreign_key: "canonical_id"
+  has_many :canonical_aliases, class_name: "User", foreign_key: "canonical_id"
+  has_many :aliases, as: :aliasable, dependent: :destroy
   has_many :topics, through: :talks
 
   # Event participation associations
@@ -152,6 +155,8 @@ class User < ApplicationRecord
   scope :without_github, -> { where(github_handle: [nil, ""]) }
   scope :canonical, -> { where(canonical_id: nil) }
   scope :not_canonical, -> { where.not(canonical_id: nil) }
+  scope :marked_for_deletion, -> { where(marked_for_deletion: true) }
+  scope :not_marked_for_deletion, -> { where(marked_for_deletion: false) }
 
   def self.normalize_github_handle(value)
     value
@@ -169,6 +174,26 @@ class User < ApplicationRecord
   def self.find_by_github_handle(handle)
     return nil if handle.blank?
     where("lower(github_handle) = ?", handle.downcase).first
+  end
+
+  def self.find_by_name_or_alias(name)
+    return nil if name.blank?
+
+    user = find_by(name: name)
+    return user if user
+
+    alias_record = Alias.find_by(aliasable_type: "User", name: name)
+    alias_record&.aliasable
+  end
+
+  def self.find_by_slug_or_alias(slug)
+    return nil if slug.blank?
+
+    user = find_by(slug: slug)
+    return user if user
+
+    alias_record = Alias.find_by(aliasable_type: "User", slug: slug)
+    alias_record&.aliasable
   end
 
   # User-specific methods
@@ -280,21 +305,7 @@ class User < ApplicationRecord
   end
 
   def assign_canonical_speaker!(canonical_speaker:)
-    return if canonical_speaker.blank?
-
-    ActiveRecord::Base.transaction do
-      self.canonical = canonical_speaker
-      self.github_handle = nil
-      save!
-
-      user_talks.each do |user_talk|
-        UserTalk.create(talk: user_talk.talk, user: canonical_speaker)
-      end
-
-      # We need to destroy the remaining user_talks. They can be remaining given the unicity constraint
-      # on the user_talks table. The update above swallows the error if the user_talk duet exists already
-      UserTalk.where(user_id: id).destroy_all
-    end
+    assign_canonical_user!(canonical_user: canonical_speaker)
   end
 
   def primary_speaker
@@ -323,17 +334,38 @@ class User < ApplicationRecord
 
   def assign_canonical_user!(canonical_user:)
     ActiveRecord::Base.transaction do
-      self.canonical = canonical_user
-      self.github_handle = nil
-      save!
-
-      user_talks.each do |user_talk|
-        UserTalk.create(talk: user_talk.talk, user: canonical_user)
+      if name.present? && slug.present?
+        canonical_user.aliases.find_or_create_by!(name: name, slug: slug)
       end
 
-      # We need to destroy the remaining user_talks. They can be remaining given the unicity constraint
-      # on the user_talks table. The update above swallows the error if the user_talk duet exists already
-      UserTalk.where(user_id: id).destroy_all
+      user_talks.each do |user_talk|
+        duplicated = user_talk.dup
+        duplicated.user = canonical_user
+        duplicated.save
+      end
+
+      event_participations.each do |participation|
+        duplicated = participation.dup
+        duplicated.user = canonical_user
+        duplicated.save
+      end
+
+      event_involvements.each do |involvement|
+        duplicated = involvement.dup
+        duplicated.involvementable = canonical_user
+        duplicated.save
+      end
+
+      user_talks.destroy_all
+      event_participations.destroy_all
+      event_involvements.destroy_all
+
+      update_columns(
+        canonical_id: canonical_user.id,
+        github_handle: nil,
+        slug: "",
+        marked_for_deletion: true
+      )
     end
   end
 

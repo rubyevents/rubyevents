@@ -13,6 +13,7 @@
 #  github_metadata     :json             not null
 #  linkedin            :string           default(""), not null
 #  location            :string           default("")
+#  marked_for_deletion :boolean          default(FALSE), not null, indexed
 #  mastodon            :string           default(""), not null
 #  name                :string           indexed
 #  password_digest     :string
@@ -34,6 +35,7 @@
 #  index_users_on_canonical_id         (canonical_id)
 #  index_users_on_email                (email)
 #  index_users_on_lower_github_handle  (lower(github_handle)) UNIQUE WHERE github_handle IS NOT NULL AND github_handle != ''
+#  index_users_on_marked_for_deletion  (marked_for_deletion)
 #  index_users_on_name                 (name)
 #  index_users_on_slug                 (slug) UNIQUE WHERE slug IS NOT NULL AND slug != ''
 #
