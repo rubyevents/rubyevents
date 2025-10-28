@@ -434,6 +434,9 @@ topics = [
 # create topics
 Topic.create_from_list(topics, status: :approved)
 
+User.order(Arel.sql("RANDOM()")).limit(5).each do |user|
+  user.watched_talk_seeder.seed_development_data
+end
 Rake::Task["backfill:speaker_participation"].invoke
 Rake::Task["backfill:event_involvements"].invoke
 Rake::Task["speakerdeck:set_usernames_from_slides_url"].invoke

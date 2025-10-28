@@ -134,9 +134,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_19_212653) do
 
   create_table "events", force: :cascade do |t|
     t.integer "canonical_id"
-    t.date "cfp_close_date"
-    t.string "cfp_link"
-    t.date "cfp_open_date"
     t.string "city"
     t.string "country_code"
     t.datetime "created_at", null: false

@@ -16,10 +16,28 @@
             } %>
     </div>
   <% else %>
-    <div class="py-8 text-center">
-      <h2 class="mb-4 text-xl">No watched videos yet</h2>
-      <p class="mb-4 text-gray-600">Start watching videos to see them appear here.</p>
-      <%= link_to "Browse Videos", talks_path, class: "btn btn-primary" %>
+    <div class="text-center py-12">
+      <div class="max-w-md mx-auto">
+        <div class="text-6xl mb-4">📺</div>
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">No watched videos yet</h2>
+        <p class="text-gray-600 mb-6">
+          Start watching talks to track your viewing history and pick up where you left off.
+        </p>
+        <div class="bg-purple-50 border border-purple-200 rounded-lg p-4 text-left">
+          <h3 class="font-semibold text-purple-800 mb-2">How it works:</h3>
+          <ul class="text-sm text-purple-700 space-y-1">
+            <li>• Watch talks to automatically track your progress</li>
+            <li>• See your recently watched videos here</li>
+            <li>• Resume watching where you left off</li>
+          </ul>
+        </div>
+        <div class="mt-6">
+          <%= link_to talks_path, class: "btn btn-primary" do %>
+            <%= fa "video", variant: :solid, class: "w-5 h-5 mr-2" %>
+            Browse Talks
+          <% end %>
+        </div>
+      </div>
     </div>
   <% end %>
 </div>
