@@ -518,6 +518,8 @@ GEM
     reline (0.6.2)
       io-console (~> 0.5)
     rexml (3.4.4)
+    rss (0.3.1)
+      rexml
     rubocop (1.80.2)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
@@ -732,6 +734,7 @@ DEPENDENCIES
   rails-i18n (~> 8.0)
   rails_autolink (~> 1.1)
   redcarpet (~> 3.6)
+  rss (~> 0.3.1)
   ruby-lsp-rails
   ruby-openai
   ruby_llm

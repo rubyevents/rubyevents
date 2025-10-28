@@ -91,7 +91,7 @@ class User < ApplicationRecord
   belongs_to :canonical, class_name: "User", optional: true
   has_one :contributor, dependent: :nullify
 
-  has_object :profiles
+  has_object :profiles, :talk_recommender, :watched_talk_seeder, :speakerdeck_feed
 
   validates :email, format: {with: URI::MailTo::EMAIL_REGEXP}, allow_blank: true
   validates :github_handle, presence: true, uniqueness: true, allow_blank: true
@@ -138,6 +138,9 @@ class User < ApplicationRecord
     self.verified = false
   end
 
+  # Seed watched talks for new users in development
+  after_create :seed_development_watched_talks, if: -> { Rails.env.development? }
+
   # Speaker scopes
   scope :with_talks, -> { where.not(talks_count: 0) }
   scope :speakers, -> { where("talks_count > 0") }
@@ -166,7 +169,7 @@ class User < ApplicationRecord
 
   # User-specific methods
   def default_watch_list
-    @default_watch_list ||= watch_lists.first || watch_lists.create(name: "Favorites")
+    @default_watch_list ||= watch_lists.first || watch_lists.create(name: "Bookmarks")
   end
 
   def main_participation_to(event)
@@ -343,5 +346,11 @@ class User < ApplicationRecord
       .map { |url| url.split("/")[3] }.uniq
 
     (handles.count == 1) ? handles.first : nil
+  end
+
+  private
+
+  def seed_development_watched_talks
+    watched_talk_seeder.seed_development_data
   end
 end

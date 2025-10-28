@@ -52,6 +52,17 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_19_321254) do
     t.index ["visit_token"], name: "index_ahoy_visits_on_visit_token", unique: true
   end
 
+  create_table "cfps", force: :cascade do |t|
+    t.date "close_date"
+    t.datetime "created_at", null: false
+    t.integer "event_id", null: false
+    t.string "link"
+    t.string "name"
+    t.date "open_date"
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_cfps_on_event_id"
+  end
+
   create_table "connected_accounts", force: :cascade do |t|
     t.string "access_token"
     t.datetime "created_at", null: false
@@ -125,9 +136,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_19_321254) do
 
   create_table "events", force: :cascade do |t|
     t.integer "canonical_id"
-    t.date "cfp_close_date"
-    t.string "cfp_link"
-    t.date "cfp_open_date"
     t.string "city"
     t.string "country_code"
     t.datetime "created_at", null: false
@@ -423,6 +431,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_19_321254) do
     t.index ["user_id"], name: "index_watched_talks_on_user_id"
   end
 
+  add_foreign_key "cfps", "events"
   add_foreign_key "connected_accounts", "users"
   add_foreign_key "contributors", "users"
   add_foreign_key "email_verification_tokens", "users"
