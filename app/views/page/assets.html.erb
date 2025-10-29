@@ -75,7 +75,8 @@
                                 <% if has_asset %>
                                   <%= image_tag event.event_image_for("avatar.webp"),
                                         style: "width: 100%; height: 100%; object-fit: contain;",
-                                        alt: "#{event.name} - Avatar" %>
+                                        alt: "#{event.name} - Avatar",
+                                        loading: "lazy" %>
                                 <% else %>
                                   <div style="display: flex; align-items: center; justify-content: center; height: 100%; text-align: center;">
                                     <div>
@@ -113,7 +114,8 @@
                               <% if has_asset %>
                                 <%= image_tag event.event_image_for("banner.webp"),
                                       style: "width: 100%; height: 100%; object-fit: contain;",
-                                      alt: "#{event.name} - Banner" %>
+                                      alt: "#{event.name} - Banner",
+                                      loading: "lazy" %>
                               <% else %>
                                 <div style="display: flex; align-items: center; justify-content: center; height: 100%; text-align: center;">
                                   <div>
@@ -152,7 +154,8 @@
                                   <% if has_asset %>
                                     <%= image_tag event.event_image_for("#{type}.webp"),
                                           style: "width: 100%; height: 100%; object-fit: contain;",
-                                          alt: "#{event.name} - #{specs[:name]}" %>
+                                          alt: "#{event.name} - #{specs[:name]}",
+                                          loading: "lazy" %>
                                   <% else %>
                                     <div style="display: flex; align-items: center; justify-content: center; height: 100%; text-align: center;">
                                       <div>
@@ -192,7 +195,8 @@
                                     <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
                                       <%= image_tag sticker_path,
                                             style: "width: 100%; height: 100%; object-fit: contain;",
-                                            alt: "#{event.name} - Sticker #{index + 1}" %>
+                                            alt: "#{event.name} - Sticker #{index + 1}",
+                                            loading: "lazy" %>
                                     </div>
                                   </div>
                                 </div>
@@ -238,7 +242,8 @@
                                     <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
                                       <%= image_tag stamp_path,
                                             style: "width: 100%; height: 100%; object-fit: contain;",
-                                            alt: "#{event.name} - Stamp #{index + 1}" %>
+                                            alt: "#{event.name} - Stamp #{index + 1}",
+                                            loading: "lazy" %>
                                     </div>
                                   </div>
                                 </div>
