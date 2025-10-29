@@ -4,9 +4,6 @@
 # Table name: events
 #
 #  id              :integer          not null, primary key
-#  cfp_close_date  :date
-#  cfp_link        :string
-#  cfp_open_date   :date
 #  city            :string
 #  country_code    :string
 #  date            :date
