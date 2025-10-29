@@ -4,6 +4,9 @@
 # Table name: events
 #
 #  id              :integer          not null, primary key
+#  cfp_close_date  :date
+#  cfp_link        :string
+#  cfp_open_date   :date
 #  city            :string
 #  country_code    :string
 #  date            :date
@@ -52,7 +55,6 @@ class Event < ApplicationRecord
   has_many :sponsors, through: :event_sponsors
   belongs_to :canonical, class_name: "Event", optional: true
   has_many :aliases, class_name: "Event", foreign_key: "canonical_id"
-  has_many :cfps, dependent: :destroy
 
   # Event participation associations
   has_many :event_participations, dependent: :destroy
@@ -73,15 +75,19 @@ class Event < ApplicationRecord
   has_object :schedule
   has_object :static_metadata
   has_object :sponsors_file
+  has_object :cfp
 
   def talks_in_running_order(child_talks: true)
     talks.in_order_of(:video_id, video_ids_in_running_order(child_talks: child_talks))
   end
 
   # validations
-  validates :date_precision, :kind, :name, presence: true
-  validates :country_code, inclusion: {in: ISO3166::Country.codes}, allow_nil: true
+  validates :name, presence: true
+  validates :kind, presence: true
+  VALID_COUNTRY_CODES = ISO3166::Country.codes
+  validates :country_code, inclusion: {in: VALID_COUNTRY_CODES}, allow_nil: true
   validates :canonical, exclusion: {in: ->(event) { [event] }, message: "can't be itself"}
+  validates :date_precision, presence: true
 
   # scopes
   scope :without_talks, -> { where.missing(:talks) }
@@ -94,7 +100,7 @@ class Event < ApplicationRecord
   scope :upcoming, -> { where(start_date: Date.today..).order(start_date: :asc) }
 
   # enums
-  enum :kind, ["event", "conference", "meetup", "retreat", "hackathon"].index_by(&:itself), default: "event"
+  enum :kind, ["event", "conference", "meetup", "retreat"].index_by(&:itself), default: "event"
   enum :date_precision, ["day", "month", "year"].index_by(&:itself), default: "day"
 
   def assign_canonical_event!(canonical_event:)
@@ -178,9 +184,6 @@ class Event < ApplicationRecord
     end
   end
 
-  # REFACTOR: nil is unnecessary, return already returns nil
-  #           we can even remove the nil check because ISO3166::Country.new(nil)
-  #           returns nil anyway
   def country
     return nil if country_code.blank?
 
@@ -265,7 +268,6 @@ class Event < ApplicationRecord
     ["events", organisation.slug, "default"].join("/")
   end
 
-  # TODO: this could be private
   def event_image_or_default_for(filename)
     event_path = [event_image_path, filename].join("/")
     default_organisation_path = [default_organisation_image_path, filename].join("/")
