@@ -41,7 +41,7 @@
               <% assets = event_data[:assets] %>
               <% missing_assets = event_data[:missing_assets] %>
 
-              <div class="bg-white rounded-lg overflow-hidden" style="border: 1px solid <%= event_data[:has_any_assets] ? '#E5E5E5' : '#E74C3C' %>;">
+              <div class="bg-white rounded-lg overflow-hidden" style="border: 1px solid <%= event_data[:has_any_assets] ? "#E5E5E5" : "#E74C3C" %>;">
                 <div class="px-4 py-3 bg-gray-50 flex items-center justify-between" style="border-bottom: 1px solid #E5E5E5;">
                   <div class="flex items-center gap-3">
                     <h3 class="text-lg font-semibold text-gray-900"><%= event.name %></h3>
@@ -65,13 +65,13 @@
                       <% has_asset = assets["avatar"] %>
                       <div class="flex justify-center">
                         <div style="width: 200px;">
-                          <div class="relative bg-white overflow-hidden" style="border: <%= has_asset ? '1px solid #E5E5E5' : '1px dashed #E5E5E5' %>;">
+                          <div class="relative bg-white overflow-hidden" style="border: <%= has_asset ? "1px solid #E5E5E5" : "1px dashed #E5E5E5" %>;">
                             <div style="padding-bottom: 100%; position: relative; background-color: #FAFAFA;">
                               <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
                                 <% if has_asset %>
                                   <%= image_tag event.event_image_for("avatar.webp"),
-                                      style: "width: 100%; height: 100%; object-fit: contain;",
-                                      alt: "#{event.name} - Avatar" %>
+                                        style: "width: 100%; height: 100%; object-fit: contain;",
+                                        alt: "#{event.name} - Avatar" %>
                                 <% else %>
                                   <div style="display: flex; align-items: center; justify-content: center; height: 100%; text-align: center;">
                                     <div>
@@ -103,13 +103,13 @@
                       <% has_asset = assets["banner"] %>
                       <% banner_bg = event.static_metadata.banner_background.presence || "#FAFAFA" %>
                       <div>
-                        <div class="relative bg-white overflow-hidden" style="border: <%= has_asset ? '1px solid #E5E5E5' : '1px dashed #E5E5E5' %>;">
+                        <div class="relative bg-white overflow-hidden" style="border: <%= has_asset ? "1px solid #E5E5E5" : "1px dashed #E5E5E5" %>;">
                           <div style="padding-bottom: <%= (specs[:height].to_f / specs[:width].to_f * 100).round(2) %>%; position: relative; background: <%= banner_bg %>;">
                             <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
                               <% if has_asset %>
                                 <%= image_tag event.event_image_for("banner.webp"),
-                                    style: "width: 100%; height: 100%; object-fit: contain;",
-                                    alt: "#{event.name} - Banner" %>
+                                      style: "width: 100%; height: 100%; object-fit: contain;",
+                                      alt: "#{event.name} - Banner" %>
                               <% else %>
                                 <div style="display: flex; align-items: center; justify-content: center; height: 100%; text-align: center;">
                                   <div>
@@ -142,13 +142,13 @@
                           <% has_asset = assets[type] %>
                           <% bg_color = (type == "featured" && event.static_metadata.featured_background.present?) ? event.static_metadata.featured_background : "#FAFAFA" %>
                           <div>
-                            <div class="relative bg-white overflow-hidden" style="border: <%= has_asset ? '1px solid #E5E5E5' : '1px dashed #E5E5E5' %>;">
+                            <div class="relative bg-white overflow-hidden" style="border: <%= has_asset ? "1px solid #E5E5E5" : "1px dashed #E5E5E5" %>;">
                               <div style="padding-bottom: <%= (specs[:height].to_f / specs[:width].to_f * 100).round(2) %>%; position: relative; background: <%= bg_color %>;">
                                 <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
                                   <% if has_asset %>
                                     <%= image_tag event.event_image_for("#{type}.webp"),
-                                        style: "width: 100%; height: 100%; object-fit: contain;",
-                                        alt: "#{event.name} - #{specs[:name]}" %>
+                                          style: "width: 100%; height: 100%; object-fit: contain;",
+                                          alt: "#{event.name} - #{specs[:name]}" %>
                                   <% else %>
                                     <div style="display: flex; align-items: center; justify-content: center; height: 100%; text-align: center;">
                                       <div>
@@ -187,8 +187,8 @@
                                   <div style="padding-bottom: 100%; position: relative; background-color: #FAFAFA;">
                                     <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
                                       <%= image_tag sticker_path,
-                                          style: "width: 100%; height: 100%; object-fit: contain;",
-                                          alt: "#{event.name} - Sticker #{index + 1}" %>
+                                            style: "width: 100%; height: 100%; object-fit: contain;",
+                                            alt: "#{event.name} - Sticker #{index + 1}" %>
                                     </div>
                                   </div>
                                 </div>
@@ -233,8 +233,8 @@
                                   <div style="padding-bottom: 100%; position: relative; background-color: #FAFAFA;">
                                     <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
                                       <%= image_tag stamp_path,
-                                          style: "width: 100%; height: 100%; object-fit: contain;",
-                                          alt: "#{event.name} - Stamp #{index + 1}" %>
+                                            style: "width: 100%; height: 100%; object-fit: contain;",
+                                            alt: "#{event.name} - Stamp #{index + 1}" %>
                                     </div>
                                   </div>
                                 </div>
