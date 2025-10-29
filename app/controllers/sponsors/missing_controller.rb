@@ -8,7 +8,7 @@ class Sponsors::MissingController < ApplicationController
       .left_joins(:event_sponsors)
       .where(event_sponsors: {id: nil})
       .past
-      .includes(:organisation)
+      .includes(:series)
       .order(start_date: :desc)
     @events_by_year = @events_without_sponsors.group_by { |event| event.start_date&.year || "Unknown" }
   end

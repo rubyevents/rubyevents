@@ -384,7 +384,7 @@ class Talk < ApplicationRecord
       Talk.order("RANDOM()").excluding(self).limit(limit).ids
     end
 
-    Talk.includes(event: :organisation).where(id: ids)
+    Talk.includes(event: :series).where(id: ids)
   end
 
   def formatted_date

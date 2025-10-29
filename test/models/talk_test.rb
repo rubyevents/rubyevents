@@ -102,7 +102,7 @@ class TalkTest < ActiveSupport::TestCase
 
   test "enhance talk transcript" do
     @talk = talks(:one)
-    @talk = Talk.includes(event: :organisation).find(@talk.id)
+    @talk = Talk.includes(event: :series).find(@talk.id)
 
     refute @talk.enhanced_transcript.cues.present?
     VCR.use_cassette("talks/transcript-enhancement") do
@@ -119,7 +119,7 @@ class TalkTest < ActiveSupport::TestCase
 
   test "summarize talk" do
     @talk = talks(:one)
-    @talk = Talk.includes(event: :organisation).find(@talk.id)
+    @talk = Talk.includes(event: :series).find(@talk.id)
 
     refute @talk.summary.present?
     VCR.use_cassette("talks/summarize") do
@@ -305,7 +305,7 @@ class TalkTest < ActiveSupport::TestCase
 
   test "should return the event thumbnail for non youtube talks" do
     talk = talks(:brightonruby_2024_one).tap do |t|
-      ActiveRecord::Associations::Preloader.new(records: [t], associations: [event: :organisation]).call
+      ActiveRecord::Associations::Preloader.new(records: [t], associations: [event: :series]).call
     end
 
     assert_match %r{^/assets/events/brightonruby/brightonruby-2024/poster-.*.webp$}, talk.thumbnail
@@ -334,7 +334,7 @@ class TalkTest < ActiveSupport::TestCase
   end
   test "llm request caching for transcript enhancement" do
     @talk = talks(:one)
-    @talk = Talk.includes(event: :organisation).find(@talk.id)
+    @talk = Talk.includes(event: :series).find(@talk.id)
 
     refute @talk.enhanced_transcript.cues.present?
     VCR.use_cassette("talks/transcript-enhancement") do
@@ -365,7 +365,7 @@ class TalkTest < ActiveSupport::TestCase
 
   test "llm request caching for summarization" do
     @talk = talks(:one)
-    @talk = Talk.includes(event: :organisation).find(@talk.id)
+    @talk = Talk.includes(event: :series).find(@talk.id)
 
     refute @talk.summary.present?
     VCR.use_cassette("talks/summarize") do
@@ -420,7 +420,7 @@ class TalkTest < ActiveSupport::TestCase
 
   test "llm request caching with successful response" do
     @talk = talks(:one)
-    @talk = Talk.includes(event: :organisation).find(@talk.id)
+    @talk = Talk.includes(event: :series).find(@talk.id)
 
     VCR.use_cassette("talks/transcript-enhancement") do
       # First call should succeed and create a successful request

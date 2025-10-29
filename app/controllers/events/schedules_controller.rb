@@ -21,7 +21,7 @@ class Events::SchedulesController < ApplicationController
   private
 
   def set_event
-    @event = Event.includes(organisation: :events).find_by(slug: params[:event_slug])
+    @event = Event.includes(series: :events).find_by(slug: params[:event_slug])
     return redirect_to(root_path, status: :moved_permanently) unless @event
 
     set_meta_tags(@event)
