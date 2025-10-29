@@ -1,4 +1,4 @@
-class Avo::Resources::Organisation < Avo::BaseResource
+class Avo::Resources::EventSeries < Avo::BaseResource
   self.single_includes = [:events]
   # self.search = {
   #   query: -> { query.ransack(id_eq: params[:q], m: "or").result(distinct: false) }
@@ -11,7 +11,7 @@ class Avo::Resources::Organisation < Avo::BaseResource
     end
   }
   self.external_link = -> {
-    main_app.organisation_path(record)
+    main_app.series_path(record)
   }
 
   def fields
@@ -20,8 +20,8 @@ class Avo::Resources::Organisation < Avo::BaseResource
     field :description, as: :text, hide_on: [:index, :forms]
     field :website, as: :text
     field :language, as: :text
-    field :kind, as: :select, enum: ::Organisation.kinds
-    field :frequency, as: :select, enum: ::Organisation.frequencies, hide_on: :index
+    field :kind, as: :select, enum: ::EventSeries.kinds
+    field :frequency, as: :select, enum: ::EventSeries.frequencies, hide_on: :index
     field :youtube_channel_id, as: :text, hide_on: :index
     field :youtube_channel_name, as: :text, hide_on: :index
     field :slug, as: :text, hide_on: :index

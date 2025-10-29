@@ -3,8 +3,8 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
 
   def kind
     return static_repository.kind if static_repository&.kind
-    return "conference" if event.organisation&.conference?
-    return "meetup" if event.organisation&.meetup?
+    return "conference" if event.series&.conference?
+    return "meetup" if event.series&.meetup?
 
     "event"
   end
@@ -22,7 +22,7 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
   end
 
   def frequency
-    static_repository&.frequency || event.organisation.frequency
+    static_repository&.frequency || event.series.frequency
   end
 
   def start_date

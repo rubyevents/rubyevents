@@ -209,10 +209,10 @@
         </article>
 
         <div id="events-without-schedule" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 min-w-full mb-6">
-          <% @conferences_with_missing_schedule.each do |organisation, events| %>
-            <%= content_tag :div, id: dom_id(organisation, "without-schedule"), class: "p-4 rounded-lg border bg-white", target: :_blank do %>
+          <% @conferences_with_missing_schedule.each do |series, events| %>
+            <%= content_tag :div, id: dom_id(series, "without-schedule"), class: "p-4 rounded-lg border bg-white", target: :_blank do %>
               <div class="flex flex-col">
-                <h3 class="line-clamp-1"><p>Organisation: <%= link_to organisation.name, organisation, class: "hover:underline" %></p></h3>
+                <h3 class="line-clamp-1"><p>Event Series: <%= link_to series.name, series_path(series), class: "hover:underline" %></p></h3>
 
                 <b class="mt-4 mb-2">Events without schedule:</b>
 

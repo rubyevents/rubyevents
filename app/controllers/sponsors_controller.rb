@@ -12,7 +12,7 @@ class SponsorsController < ApplicationController
   # GET /sponsors/1
   def show
     @back_path = sponsors_path
-    @events = @sponsor.events.includes(:organisation, :talks).order(start_date: :desc)
+    @events = @sponsor.events.includes(:series, :talks).order(start_date: :desc)
     @events_by_year = @events.group_by { |event| event.start_date&.year || "Unknown" }
 
     @countries_with_events = @events.group_by(&:country_code)
@@ -22,7 +22,7 @@ class SponsorsController < ApplicationController
 
     involvements = @sponsor.event_involvements.includes(:event).order(:position)
     @involvements_by_role = involvements.group_by(&:role)
-    @involved_events = @sponsor.involved_events.includes(:organisation).distinct.order(start_date: :desc)
+    @involved_events = @sponsor.involved_events.includes(:series).distinct.order(start_date: :desc)
 
     @statistics = prepare_sponsor_statistics
   end
@@ -30,19 +30,19 @@ class SponsorsController < ApplicationController
   private
 
   def prepare_sponsor_statistics
-    event_sponsors = @sponsor.event_sponsors.includes(event: [:talks, :organisation])
+    event_sponsors = @sponsor.event_sponsors.includes(event: [:talks, :series])
 
     {
       total_events: @events.size,
       total_countries: @countries_with_events.size,
       total_continents: @countries_with_events.map { |country, _| country.continent }.uniq.size,
-      total_organisations: @events.map(&:organisation).uniq.size,
+      total_series: @events.map(&:series).uniq.size,
       total_talks: @events.joins(:talks).size,
       years_active: @events_by_year.keys.reject { |y| y == "Unknown" }.sort,
       first_sponsorship: @events.minimum(:start_date),
       latest_sponsorship: @events.maximum(:start_date),
       sponsorship_tiers: event_sponsors.group(:tier).count.sort_by { |_, count| -count },
-      events_by_organisation: @events.group_by(&:organisation).transform_values(&:count).sort_by { |_, count| -count }.first(5),
+      events_by_series: @events.group_by(&:series).transform_values(&:count).sort_by { |_, count| -count }.first(5),
       badges_with_events: event_sponsors.includes(:event).map { |es| [es.badge, es.event] if es.badge.present? }.compact,
       events_by_size: @events.includes(:talks).group_by { |event| classify_event_size(event) }.transform_values(&:count)
     }

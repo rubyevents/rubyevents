@@ -7,9 +7,9 @@ namespace :backfill do
     error_count = 0
     events_processed = 0
 
-    Organisation.find_each do |organisation|
-      Event.where(organisation: organisation).find_each do |event|
-        involvements_path = Rails.root.join("data", organisation.slug, event.slug, "involvements.yml")
+    EventSeries.find_each do |series|
+      Event.where(series: series).find_each do |event|
+        involvements_path = Rails.root.join("data", series.slug, event.slug, "involvements.yml")
 
         next unless File.exist?(involvements_path)
 

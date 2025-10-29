@@ -50,7 +50,7 @@
                     <h3 class="font-semibold text-gray-900 mb-1 hover:text-brand-600">
                       <%= event.name %>
                     </h3>
-                    <p class="text-sm text-gray-600 mb-2"><%= event.organisation.name %></p>
+                    <p class="text-sm text-gray-600 mb-2"><%= event.series.name %></p>
                     <div class="flex items-center text-xs text-gray-500">
                       <%= fa("clock", size: :xs, class: "fill-gray-400 mr-1") %>
                       <%= event.start_date&.strftime("%B %Y") || "Date unknown" %>

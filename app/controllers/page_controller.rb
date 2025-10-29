@@ -23,9 +23,9 @@ class PageController < ApplicationController
     @talks_count = home_page_cached_data[:talks_count]
     @speakers_count = home_page_cached_data[:speakers_count]
     @events_count = home_page_cached_data[:events_count]
-    @latest_talks = Talk.includes(event: :organisation).where(id: home_page_cached_data[:latest_talk_ids])
-    @upcoming_talks = Talk.includes(event: :organisation).where(id: home_page_cached_data[:upcoming_talk_ids])
-    @latest_events = Event.includes(:organisation).where(id: home_page_cached_data[:latest_event_ids])
+    @latest_talks = Talk.includes(event: :series).where(id: home_page_cached_data[:latest_talk_ids])
+    @upcoming_talks = Talk.includes(event: :series).where(id: home_page_cached_data[:upcoming_talk_ids])
+    @latest_events = Event.includes(:series).where(id: home_page_cached_data[:latest_event_ids])
     @featured_speakers = User.where(id: home_page_cached_data[:featured_speaker_ids]).sample(10)
     @featured_sponsors = Sponsor.joins(:event_sponsors).includes(:events).group("sponsors.id").order("COUNT(event_sponsors.id) DESC").limit(10)
     @recommended_talks = Current.user.talk_recommender.talks(limit: 4) if Current.user
@@ -39,7 +39,7 @@ class PageController < ApplicationController
       .map(&:slug)
 
     @featured_events = Event.distinct
-      .includes(:organisation, :keynote_speakers, :speakers)
+      .includes(:series, :keynote_speakers, :speakers)
       .where(slug: playlist_slugs)
       # .with_watchable_talks
       .in_order_of(:slug, playlist_slugs)
