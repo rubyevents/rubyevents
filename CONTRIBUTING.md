@@ -2,6 +2,8 @@
 
 This guide provides steps on how to contribute new videos to the platform. If you wish to make a contribution, please submit a Pull Request (PR) with the necessary information detailed below.
 
+> **Note**: For information on adding visual assets (logos, banners, stickers, etc.), see the [Adding Visual Assets Guide](ADDING_VISUAL_ASSETS.md). You can view all event assets at https://rubyevents.org/pages/assets
+
 There are a few scripts available to help you build those data files by scraping the YouTube API. To use them, you must first create a YouTube API Key and add it to your .env file. Here are the guidelines to get a key https://developers.google.com/youtube/registering_an_application
 
 ```
@@ -23,7 +25,7 @@ Add the following information to the `data_preparation/organisations.yml` file:
   website: https://railsconf.org/
   twitter: railsconf
   youtube_channel_name: confreaks
-  kind: conference # Choose either 'conference' or 'meetup' or 'retreat'
+  kind: conference # Choose either 'conference', 'meetup', 'retreat', or 'hackathon'
   frequency: yearly # Specify if it's 'yearly' or 'monthly'; if you need something else, open a PR with this new frequency
   language: english # Default language of the talks from this conference
   default_country_code: AU # default country to be assigned to the associated events

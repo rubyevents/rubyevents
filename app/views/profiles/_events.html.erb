@@ -4,9 +4,7 @@
 <% past_events = events.past.sort_by(&:start_date).reverse %>
 
 <% cache [user, events, Current.user] do %>
-  <input type="radio" name="talk_tabs" role="tab" class="tab px-6" aria-label="Attended Events (<%= events.size %>)" <%= "checked" if talks.size.zero? %>>
-
-  <div role="tabpanel" class="tab-content mt-6">
+  <div>
     <div class="space-y-8">
         <% if future_events.any? %>
           <div>

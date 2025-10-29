@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get "/stickers", to: "page#stickers"
   get "/contributors", to: "page#contributors"
   get "/stamps", to: "stamps#index"
+  get "/pages/assets", to: "page#assets"
 
   # authentication
   get "/auth/failure", to: "sessions/omniauth#failure"
@@ -85,8 +86,20 @@ Rails.application.routes.draw do
 
   resources :watched_talks, only: [:index, :destroy]
 
-  resources :speakers, param: :slug, only: [:index, :show]
-  resources :profiles, param: :slug, only: [:show, :update, :edit]
+  resources :speakers, param: :slug, only: [:index]
+  get "/speakers/:slug", to: redirect("/profiles/%{slug}", status: 301), as: :speaker
+
+  resources :profiles, param: :slug, only: [:show, :update, :edit] do
+    scope module: :profiles do
+      resources :talks, only: [:index]
+      resources :events, only: [:index]
+      resources :mutual_events, only: [:index]
+      resources :stamps, only: [:index]
+      resources :stickers, only: [:index]
+      resources :involvements, only: [:index]
+      resources :map, only: [:index]
+    end
+  end
   resources :events, param: :slug, only: [:index, :show, :update, :edit] do
     resources :event_participations, only: [:create, :destroy]
 

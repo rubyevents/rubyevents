@@ -16,7 +16,12 @@ This project is open source, and contributions are greatly appreciated. One of t
 
 We also have a page on the deployed site that has up-to-date information with the remaining known TODOs. Check out the ["Getting Started: Ways to Contribute" page on RubyEvents.org](https://www.rubyevents.org/contributions) and feel free to start working on any of the remaining TODOs. Any help is greatly appreciated.
 
-For more information on contributing conference data, please visit [this page](/docs/contributing.md).
+For more information on contributing:
+- Conference data: [Contributing Guide](/docs/contributing.md)
+- Visual assets (logos, banners, etc.): [Adding Visual Assets Guide](/docs/ADDING_VISUAL_ASSETS.md)
+- Sponsor information: [Adding Sponsors Guide](/docs/ADDING_SPONSORS.md)
+
+You can view all event assets and their status at: https://rubyevents.org/pages/assets
 
 ## Getting Started
 

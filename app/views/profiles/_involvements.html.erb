@@ -1,9 +1,6 @@
 <% cache [user, events, Current.user] do %>
   <% if events.any? %>
-    <input type="radio" name="talk_tabs" role="tab" class="tab px-6" aria-label="Involved Events (<%= events.size %>)">
-
-    <div role="tabpanel" class="tab-content mt-6">
-      <div class="space-y-8">
+    <div class="space-y-8">
         <% if involvements_by_role.any? %>
           <% involvements_by_role.each do |role, events| %>
             <div>
@@ -34,7 +31,6 @@
             </div>
           </div>
         <% end %>
-      </div>
     </div>
   <% end %>
 <% end %>

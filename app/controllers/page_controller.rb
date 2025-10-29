@@ -107,4 +107,38 @@ class PageController < ApplicationController
   def contributors
     @contributors = Contributor.includes(:user).order(:name, :login)
   end
+
+  def assets
+    @events = Event.includes(:organisation).order("organisations.name, events.name")
+
+    @asset_types = {
+      "avatar" => {width: 256, height: 256, name: "Avatar"},
+      "banner" => {width: 1300, height: 350, name: "Banner"},
+      "card" => {width: 600, height: 350, name: "Card"},
+      "featured" => {width: 615, height: 350, name: "Featured"},
+      "poster" => {width: 600, height: 350, name: "Poster"},
+      "sticker" => {width: 350, height: 350, name: "Sticker"},
+      "stamp" => {width: 512, height: 512, name: "Stamp"}
+    }
+
+    @events_with_assets = @events.map do |event|
+      assets = {}
+      @asset_types.except("sticker", "stamp").each do |type, _|
+        asset_path = event.event_image_for("#{type}.webp")
+        assets[type] = asset_path.present?
+      end
+
+      sticker_paths = event.sticker_image_paths
+      stamp_paths = event.stamp_image_paths
+
+      {
+        event: event,
+        assets: assets,
+        has_any_assets: assets.values.any?,
+        missing_assets: assets.select { |_, exists| !exists }.keys,
+        sticker_paths: sticker_paths,
+        stamp_paths: stamp_paths
+      }
+    end
+  end
 end
