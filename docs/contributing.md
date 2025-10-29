@@ -23,7 +23,7 @@ Add the following information to the `data_preparation/organisations.yml` file:
   website: https://railsconf.org/
   twitter: railsconf
   youtube_channel_name: confreaks
-  kind: conference # Choose either 'conference' or 'meetup' or 'retreat'
+  kind: conference # Choose either 'conference', 'meetup', 'retreat', or 'hackathon'
   frequency: yearly # Specify if it's 'yearly' or 'monthly'; if you need something else, open a PR with this new frequency
   language: english # Default language of the talks from this conference
   default_country_code: AU # default country to be assigned to the associated events
