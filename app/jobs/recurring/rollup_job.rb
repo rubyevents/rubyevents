@@ -1,16 +1,32 @@
 class Recurring::RollupJob < ApplicationJob
+  include ActiveJob::Continuable
+
   queue_as :low
 
   def perform(*args)
-    # first we remove suspicious visits
-    cleanup_suspicious_recent_visits
+    step :cleanup_suspicious_visits do
+      cleanup_suspicious_recent_visits
+    end
 
-    # then we rollup the visits and events
-    Ahoy::Visit.rollup("ahoy_visits", interval: :day)
-    Ahoy::Visit.rollup("ahoy_visits", interval: :month)
-    Ahoy::Event.rollup("ahoy_events", interval: :day)
-    Ahoy::Event.rollup("ahoy_events", interval: :month)
-    Talk.rollup("talks", interval: :year, column: :date)
+    step :rollup_visits_daily do
+      Ahoy::Visit.rollup("ahoy_visits", interval: :day)
+    end
+
+    step :rollup_visits_monthly do
+      Ahoy::Visit.rollup("ahoy_visits", interval: :month)
+    end
+
+    step :rollup_events_daily do
+      Ahoy::Event.rollup("ahoy_events", interval: :day)
+    end
+
+    step :rollup_events_monthly do
+      Ahoy::Event.rollup("ahoy_events", interval: :month)
+    end
+
+    step :rollup_talks_yearly do
+      Talk.rollup("talks", interval: :year, column: :date)
+    end
   end
 
   def cleanup_suspicious_recent_visits

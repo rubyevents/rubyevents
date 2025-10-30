@@ -12,6 +12,7 @@ VCR.configure do |c|
   c.ignore_hosts "chromedriver.storage.googleapis.com", "googlechromelabs.github.io", "edgedl.me.gvt1.com"
   c.filter_sensitive_data("<OPENAI_API_KEY>") { ENV["OPENAI_ACCESS_TOKEN"] }
   c.filter_sensitive_data("<OPENAI_ORGANIZATION_ID>") { ENV["OPENAI_ORGANIZATION_ID"] }
+  c.filter_sensitive_data("<GITHUB_TOKEN>") { ENV["RUBYVIDEO_GITHUB_TOKEN"] }
 end
 class ActiveSupport::TestCase
   include EventTrackingHelper
