@@ -60,8 +60,6 @@ class SponsorsController < ApplicationController
       end
     end
 
-    # TODO: these strings are being used in multiple places,
-    #       we should move them to a constant to make sure they are consistent
     case talk_count
     when 1..5
       "Community Gathering"
