@@ -52,6 +52,7 @@ class Event < ApplicationRecord
   has_many :sponsors, through: :event_sponsors
   belongs_to :canonical, class_name: "Event", optional: true
   has_many :aliases, class_name: "Event", foreign_key: "canonical_id"
+  has_many :cfps, dependent: :destroy
 
   # Event participation associations
   has_many :event_participations, dependent: :destroy
@@ -72,7 +73,6 @@ class Event < ApplicationRecord
   has_object :schedule
   has_object :static_metadata
   has_object :sponsors_file
-  has_object :cfp
 
   def talks_in_running_order(child_talks: true)
     talks.in_order_of(:video_id, video_ids_in_running_order(child_talks: child_talks))
@@ -97,7 +97,7 @@ class Event < ApplicationRecord
   scope :upcoming, -> { where(start_date: Date.today..).order(start_date: :asc) }
 
   # enums
-  enum :kind, ["event", "conference", "meetup", "retreat"].index_by(&:itself), default: "event"
+  enum :kind, ["event", "conference", "meetup", "retreat", "hackathon"].index_by(&:itself), default: "event"
   enum :date_precision, ["day", "month", "year"].index_by(&:itself), default: "day"
 
   def assign_canonical_event!(canonical_event:)
