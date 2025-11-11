@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_10_19_212653) do
+ActiveRecord::Schema[8.1].define(version: 2025_10_19_321254) do
   create_table "ahoy_events", force: :cascade do |t|
     t.string "name"
     t.text "properties"
@@ -109,11 +109,13 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_19_212653) do
   end
 
   create_table "event_participations", force: :cascade do |t|
+    t.json "attendance_details"
     t.string "attended_as", null: false
     t.datetime "created_at", null: false
     t.integer "event_id", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
+    t.datetime "verified_at"
     t.index ["attended_as"], name: "index_event_participations_on_attended_as"
     t.index ["event_id"], name: "index_event_participations_on_event_id"
     t.index ["user_id", "event_id", "attended_as"], name: "idx_on_user_id_event_id_attended_as_ca0a2916e2", unique: true

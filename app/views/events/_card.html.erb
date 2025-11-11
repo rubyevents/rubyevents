@@ -13,7 +13,14 @@
         <%= event.formatted_dates %>
 
         <% if participation.present? %>
-          <%= ui_badge(participation.attended_as.humanize, size: :sm, class: "mt-2 bg-blue-700 border-blue-700") %>
+        <div class="flex items-center justify-center gap-2 mt-2">
+
+          <% if participation.verified? %>
+            <%= verified_attendance_badge %>
+          <% end %>
+
+          <%= ui_badge(participation.attended_as.humanize, size: :md, class: "bg-neutral-600 border-neutral-600 rounded-md") %>
+        </div>
         <% end %>
 
         <% if event.static_metadata.last_edition? %>

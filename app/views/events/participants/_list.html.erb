@@ -20,8 +20,9 @@
 
   <div id="<%= dom_id(event, :participants) %>" class="mb-12 min-w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 h-full">
     <% participants.each do |participant| %>
+      <% event_participation = participant.event_participations.find_by(event: event) %>
       <div class="border rounded-lg bg-white hover:bg-gray-200 transition-bg duration-300 ease-in-out">
-        <%= render partial: "users/card", locals: {user: participant} %>
+        <%= render partial: "users/card", locals: {user: participant, event_participation: event_participation} %>
       </div>
     <% end %>
   </div>

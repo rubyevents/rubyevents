@@ -13,6 +13,10 @@
         <% if user.passports.any? %>
           <%= fa("passport", class: "fill-orange-800", size: :xs) %>
         <% end %>
+
+        <% if defined?(event_participation) && event_participation.verified? %>
+          <%= verified_attendance_badge %>
+        <% end %>
       </div>
 
       <div class="text-xs text-gray-500 line-clamp-1">

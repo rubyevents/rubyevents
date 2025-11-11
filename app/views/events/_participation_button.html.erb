@@ -1,15 +1,25 @@
 <% tooltip_text = event.start_date&.future? ? "Add this event to your upcoming events" : "Add this event to your list of participations" %>
+
 <% event_status = event.start_date&.future? ? "upcoming" : "past" %>
 
 <div class="participation_button mt-4">
   <% if Current.user %>
     <% if participation&.attended_as_visitor? %>
-      <%= ui_tooltip "Remove your participation to this event" do %>
-        <%= ui_button url: event_event_participation_path(event, participation), params: {attended_as: "visitor"}, method: :delete, kind: :neutral, size: :sm, class: "w-full", data: {turbo_frame: "modal"} do %>
-          <%= fa("circle-check", size: :xs, style: :solid, class: "fill-green-700") %>
-          <span class="text-nowrap">
-            <%= t("event_participation.#{event_status}.attended_as.visitor") %>
-          </span>
+      <% if participation.verified? %>
+        <%= ui_tooltip t("event_participation.verified_attendance") do %>
+          <%= ui_button url: "", params: {attended_as: "visitor"}, disabled: false, kind: :neutral, size: :sm, class: "w-full", data: {turbo_frame: "modal"} do %>
+            <%= fa("badge-check", class: "fill-blue-500", size: :sm) %>
+            <span class="text-nowrap">
+              <%= t("event_participation.#{event_status}.attended_as.verified_attendance") %>
+            </span>
+          <% end %>
+        <% end %>
+      <% else %>
+        <%= ui_tooltip "Remove your participation to this event" do %>
+          <%= ui_button url: event_event_participation_path(event, participation), params: {attended_as: "visitor"}, method: :delete, kind: :neutral, size: :sm, class: "w-full", data: {turbo_frame: "modal"} do %>
+            <%= fa("circle-check", size: :xs, style: :solid, class: "fill-green-700") %>
+            <span class="text-nowrap"><%= t("event_participation.#{event_status}.attended_as.visitor") %></span>
+          <% end %>
         <% end %>
       <% end %>
     <% elsif participation %>
@@ -24,7 +34,6 @@
           <% end %>
         </span>
       <% end %>
-
     <% else %>
       <%= ui_tooltip tooltip_text do %>
         <%= ui_button url: event_event_participations_path(event), params: {attended_as: "visitor"}, method: :post, outline: true, size: :sm, kind: :neutral, class: "w-full", data: {turbo_frame: "modal"} do %>
