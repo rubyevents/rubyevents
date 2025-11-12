@@ -19,13 +19,16 @@ class ProfilesControllerTest < ActionDispatch::IntegrationTest
 
   test "should redirect to canonical user" do
     talk = @user_with_talk.talks.first
+    original_slug = @user_with_talk.slug
+
     @user_with_talk.assign_canonical_speaker!(canonical_speaker: @user)
     @user_with_talk.reload
+
     assert_equal @user, @user_with_talk.canonical
     assert @user.talks.ids.include?(talk.id)
     assert @user_with_talk.talks.empty?
 
-    get profile_url(@user_with_talk)
+    get profile_url(original_slug)
     assert_redirected_to profile_url(@user)
   end
 
@@ -102,5 +105,28 @@ class ProfilesControllerTest < ActionDispatch::IntegrationTest
     get profile_url(user)
     assert_response :success
     assert_equal 0, assigns(:talks).count
+  end
+
+  test "should find user by alias slug and redirect to canonical slug" do
+    user = User.create!(name: "Test User", github_handle: "test-controller-user")
+    user.aliases.create!(name: "Old Name", slug: "old-controller-slug")
+
+    get profile_url("old-controller-slug")
+    assert_redirected_to profile_url(user)
+  end
+
+  test "should redirect from alias slug to canonical user when user has canonical" do
+    canonical_user = User.create!(name: "Canonical User", github_handle: "canonical-controller")
+    duplicate_user = User.create!(name: "Duplicate User", github_handle: "duplicate-controller")
+
+    duplicate_user.assign_canonical_user!(canonical_user: canonical_user)
+    duplicate_user.reload
+
+    alias_record = Alias.find_by(slug: "duplicate-controller")
+    assert_not_nil alias_record
+    assert_equal canonical_user.id, alias_record.aliasable_id
+
+    get profile_url("duplicate-controller")
+    assert_redirected_to profile_url(canonical_user)
   end
 end

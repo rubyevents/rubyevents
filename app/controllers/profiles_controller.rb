@@ -80,18 +80,22 @@ class ProfilesController < ApplicationController
   end
 
   def set_user
-    @user = User.includes(:talks, :passports).find_by(slug: params[:slug])
-
-    # TODO review this redirection as it causes some issues with the redirect loop
-    # # When the user is found from its slug, but the github handle is different, we need to redirect to the github handle
-    # if @user.present? && @user.github_handle.present? && @user.github_handle != params[:slug]
-    #   return redirect_to profile_path(@user.github_handle), status: :moved_permanently
-    # end
-
+    @user = User.includes(:talks, :passports).find_by_slug_or_alias(params[:slug])
     @user = User.includes(:talks).find_by_github_handle(params[:slug]) unless @user.present?
 
-    redirect_to speakers_path, status: :moved_permanently, notice: "User not found" if @user.blank?
-    redirect_to profile_path(@user.canonical) if @user&.canonical.present?
+    if @user.blank?
+      redirect_to speakers_path, status: :moved_permanently, notice: "User not found"
+      return
+    end
+
+    if @user.canonical.present?
+      redirect_to profile_path(@user.canonical), status: :moved_permanently
+      return
+    end
+
+    if params[:slug] != @user.slug
+      redirect_to profile_path(@user), status: :moved_permanently
+    end
   end
 
   def user_params

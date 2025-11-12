@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_10_19_212653) do
+ActiveRecord::Schema[8.1].define(version: 2025_10_28_150340) do
   create_table "ahoy_events", force: :cascade do |t|
     t.string "name"
     t.text "properties"
@@ -50,6 +50,18 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_19_212653) do
     t.string "visitor_token"
     t.index ["user_id"], name: "index_ahoy_visits_on_user_id"
     t.index ["visit_token"], name: "index_ahoy_visits_on_visit_token", unique: true
+  end
+
+  create_table "aliases", force: :cascade do |t|
+    t.integer "aliasable_id", null: false
+    t.string "aliasable_type", null: false
+    t.datetime "created_at", null: false
+    t.string "name", null: false
+    t.string "slug", null: false
+    t.datetime "updated_at", null: false
+    t.index ["aliasable_type", "aliasable_id"], name: "index_aliases_on_aliasable"
+    t.index ["aliasable_type", "name"], name: "index_aliases_on_aliasable_type_and_name", unique: true
+    t.index ["aliasable_type", "slug"], name: "index_aliases_on_aliasable_type_and_slug", unique: true
   end
 
   create_table "cfps", force: :cascade do |t|
@@ -378,6 +390,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_19_212653) do
     t.json "github_metadata", default: {}, null: false
     t.string "linkedin", default: "", null: false
     t.string "location", default: ""
+    t.boolean "marked_for_deletion", default: false, null: false
     t.string "mastodon", default: "", null: false
     t.string "name"
     t.string "password_digest"
@@ -394,6 +407,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_19_212653) do
     t.index "lower(github_handle)", name: "index_users_on_lower_github_handle", unique: true, where: "github_handle IS NOT NULL AND github_handle != ''"
     t.index ["canonical_id"], name: "index_users_on_canonical_id"
     t.index ["email"], name: "index_users_on_email"
+    t.index ["marked_for_deletion"], name: "index_users_on_marked_for_deletion"
     t.index ["name"], name: "index_users_on_name"
     t.index ["slug"], name: "index_users_on_slug", unique: true, where: "slug IS NOT NULL AND slug != ''"
   end
