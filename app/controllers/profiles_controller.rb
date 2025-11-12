@@ -88,10 +88,10 @@ class ProfilesController < ApplicationController
       return
     end
 
-    if @user.canonical.present?
-      redirect_to profile_path(@user.canonical), status: :moved_permanently
-      return
-    end
+    # if @user.canonical.present?
+    #   redirect_to profile_path(@user.canonical), status: :moved_permanently
+    #   return
+    # end
 
     if params[:slug] != @user.slug
       redirect_to profile_path(@user), status: :moved_permanently
