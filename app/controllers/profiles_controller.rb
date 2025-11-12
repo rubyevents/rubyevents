@@ -93,7 +93,7 @@ class ProfilesController < ApplicationController
     #   return
     # end
 
-    if params[:slug] != @user.slug
+    if params[:slug] != @user.to_param
       redirect_to profile_path(@user), status: :moved_permanently
     end
   end
