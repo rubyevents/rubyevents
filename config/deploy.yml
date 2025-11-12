@@ -2,7 +2,7 @@
 service: rubyvideo
 
 # Name of the container image.
-image: adrienpoly/rubyvideo
+image: rubyvideo
 
 # Deploy to these servers.
 servers:
@@ -29,9 +29,7 @@ proxy:
 
 # Credentials for your image host.
 registry:
-  username: adrienpoly
-  password:
-    - KAMAL_REGISTRY_PASSWORD
+  server: "localhost:5555"
 
 # Configure builder setup.
 builder:
@@ -44,6 +42,7 @@ builder:
   secrets:
     - RAILS_MASTER_KEY
   remote: ssh://root@5.75.232.156
+  local: false
 
 env:
   clear:
