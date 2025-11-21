@@ -18,20 +18,20 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  canonical_id    :integer          indexed
-#  organisation_id :integer          not null, indexed
+#  event_series_id :integer          not null, indexed
 #
 # Indexes
 #
 #  index_events_on_canonical_id     (canonical_id)
 #  index_events_on_kind             (kind)
 #  index_events_on_name             (name)
-#  index_events_on_organisation_id  (organisation_id)
+#  index_events_on_event_series_id  (event_series_id)
 #  index_events_on_slug             (slug)
 #
 # Foreign Keys
 #
 #  canonical_id     (canonical_id => events.id)
-#  organisation_id  (organisation_id => organisations.id)
+#  event_series_id  (event_series_id => event_series.id)
 #
 # rubocop:enable Layout/LineLength
 class Event < ApplicationRecord
@@ -41,7 +41,7 @@ class Event < ApplicationRecord
   configure_slug(attribute: :name, auto_suffix_on_collision: false)
 
   # associations
-  belongs_to :organisation, strict_loading: false
+  belongs_to :series, class_name: "EventSeries", foreign_key: :event_series_id, strict_loading: false
   has_many :talks, dependent: :destroy, inverse_of: :event, foreign_key: :event_id
   has_many :watchable_talks, -> { watchable }, class_name: "Talk"
   has_many :speakers, -> { distinct }, through: :talks, class_name: "User"
@@ -67,8 +67,8 @@ class Event < ApplicationRecord
   has_many :event_involvements, dependent: :destroy
   has_many :involved_users, -> { where(event_involvements: {involvementable_type: "User"}) },
     through: :event_involvements, source: :involvementable, source_type: "User"
-  has_many :involved_organisations, -> { where(event_involvements: {involvementable_type: "Organisation"}) },
-    through: :event_involvements, source: :involvementable, source_type: "Organisation"
+  has_many :involved_event_series, -> { where(event_involvements: {involvementable_type: "EventSeries"}) },
+    through: :event_involvements, source: :involvementable, source_type: "EventSeries"
 
   has_object :schedule
   has_object :static_metadata
@@ -115,7 +115,7 @@ class Event < ApplicationRecord
   end
 
   def data_folder
-    Rails.root.join("data", organisation.slug, slug)
+    Rails.root.join("data", series.slug, slug)
   end
 
   def videos_file?
@@ -148,7 +148,7 @@ class Event < ApplicationRecord
       #{description}
       #{city}
       #{country_code}
-      #{organisation.name}
+      #{series.name}
       #{date}
     HEREDOC
   end
@@ -212,7 +212,7 @@ class Event < ApplicationRecord
   def description
     return @description if @description.present?
 
-    event_name = organisation.organisation? ? name : organisation.name
+    event_name = series.organisation? ? name : series.name
 
     @description = <<~DESCRIPTION
       #{event_name} is a #{static_metadata.frequency} #{kind}#{held_in_sentence}#{talks_text}#{keynote_speakers_text}.
@@ -254,26 +254,26 @@ class Event < ApplicationRecord
   end
 
   def event_image_path
-    ["events", organisation.slug, slug].join("/")
+    ["events", series.slug, slug].join("/")
   end
 
   def default_event_image_path
     ["events", "default"].join("/")
   end
 
-  def default_organisation_image_path
-    ["events", organisation.slug, "default"].join("/")
+  def default_event_series_image_path
+    ["events", series.slug, "default"].join("/")
   end
 
   def event_image_or_default_for(filename)
     event_path = [event_image_path, filename].join("/")
-    default_organisation_path = [default_organisation_image_path, filename].join("/")
+    default_event_series_path = [default_event_series_image_path, filename].join("/")
     default_path = [default_event_image_path, filename].join("/")
 
     base = Rails.root.join("app", "assets", "images")
 
     return event_path if (base / event_path).exist?
-    return default_organisation_path if (base / default_organisation_path).exist?
+    return default_event_series_path if (base / default_event_series_path).exist?
 
     default_path
   end
@@ -348,7 +348,7 @@ class Event < ApplicationRecord
   end
 
   def website
-    self[:website].presence || organisation.website
+    self[:website].presence || series.website
   end
 
   def to_mobile_json(request)

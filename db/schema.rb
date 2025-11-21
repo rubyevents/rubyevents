@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_10_28_150340) do
+ActiveRecord::Schema[8.1].define(version: 2025_10_29_032709) do
   create_table "ahoy_events", force: :cascade do |t|
     t.string "name"
     t.text "properties"
@@ -132,6 +132,25 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_28_150340) do
     t.index ["user_id"], name: "index_event_participations_on_user_id"
   end
 
+  create_table "event_series", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.text "description", default: "", null: false
+    t.integer "frequency", default: 0, null: false
+    t.integer "kind", default: 0, null: false
+    t.string "language", default: "", null: false
+    t.string "name", default: "", null: false
+    t.string "slug", default: "", null: false
+    t.string "twitter", default: "", null: false
+    t.datetime "updated_at", null: false
+    t.string "website", default: "", null: false
+    t.string "youtube_channel_id", default: "", null: false
+    t.string "youtube_channel_name", default: "", null: false
+    t.index ["frequency"], name: "index_event_series_on_frequency"
+    t.index ["kind"], name: "index_event_series_on_kind"
+    t.index ["name"], name: "index_event_series_on_name"
+    t.index ["slug"], name: "index_event_series_on_slug"
+  end
+
   create_table "event_sponsors", force: :cascade do |t|
     t.string "badge"
     t.datetime "created_at", null: false
@@ -152,18 +171,18 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_28_150340) do
     t.date "date"
     t.string "date_precision", default: "day", null: false
     t.date "end_date"
+    t.integer "event_series_id", null: false
     t.string "kind", default: "event", null: false
     t.string "name", default: "", null: false
-    t.integer "organisation_id", null: false
     t.string "slug", default: "", null: false
     t.date "start_date"
     t.integer "talks_count", default: 0, null: false
     t.datetime "updated_at", null: false
     t.string "website", default: ""
     t.index ["canonical_id"], name: "index_events_on_canonical_id"
+    t.index ["event_series_id"], name: "index_events_on_event_series_id"
     t.index ["kind"], name: "index_events_on_kind"
     t.index ["name"], name: "index_events_on_name"
-    t.index ["organisation_id"], name: "index_events_on_organisation_id"
     t.index ["slug"], name: "index_events_on_slug"
   end
 
@@ -180,25 +199,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_28_150340) do
     t.index ["request_hash"], name: "index_llm_requests_on_request_hash", unique: true
     t.index ["resource_type", "resource_id"], name: "index_llm_requests_on_resource"
     t.index ["task_name"], name: "index_llm_requests_on_task_name"
-  end
-
-  create_table "organisations", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.text "description", default: "", null: false
-    t.integer "frequency", default: 0, null: false
-    t.integer "kind", default: 0, null: false
-    t.string "language", default: "", null: false
-    t.string "name", default: "", null: false
-    t.string "slug", default: "", null: false
-    t.string "twitter", default: "", null: false
-    t.datetime "updated_at", null: false
-    t.string "website", default: "", null: false
-    t.string "youtube_channel_id", default: "", null: false
-    t.string "youtube_channel_name", default: "", null: false
-    t.index ["frequency"], name: "index_organisations_on_frequency"
-    t.index ["kind"], name: "index_organisations_on_kind"
-    t.index ["name"], name: "index_organisations_on_name"
-    t.index ["slug"], name: "index_organisations_on_slug"
   end
 
   create_table "password_reset_tokens", force: :cascade do |t|
@@ -452,8 +452,8 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_28_150340) do
   add_foreign_key "event_participations", "users"
   add_foreign_key "event_sponsors", "events"
   add_foreign_key "event_sponsors", "sponsors"
+  add_foreign_key "events", "event_series"
   add_foreign_key "events", "events", column: "canonical_id"
-  add_foreign_key "events", "organisations"
   add_foreign_key "password_reset_tokens", "users"
   add_foreign_key "sessions", "users"
   add_foreign_key "speakers", "speakers", column: "canonical_id"

@@ -14,7 +14,7 @@ For multi-track conferences, each talk in `videos.yml` must have a `track` field
 
 Schedules are stored in YAML files at:
 ```
-data/{organization-name}/{event-name}/schedule.yml
+data/{series-name}/{event-name}/schedule.yml
 ```
 
 For example:
@@ -244,7 +244,7 @@ tracks:
 First, check if a schedule file already exists:
 
 ```bash
-ls data/{organization}/{event}/schedule.yml
+ls data/{series-name}/{event}/schedule.yml
 ```
 
 ### 2. Create or Edit the Schedule File
@@ -252,7 +252,7 @@ ls data/{organization}/{event}/schedule.yml
 If the file doesn't exist, create it:
 
 ```bash
-touch data/{organization}/{event}/schedule.yml
+touch data/{series-name}/{event}/schedule.yml
 ```
 
 ### 3. Gather Schedule Information

@@ -33,11 +33,11 @@ class ProfilesController < ApplicationController
   private
 
   def load_profile_data_for_show
-    @talks = @user.kept_talks.includes(:speakers, event: :organisation, child_talks: :speakers).order(date: :desc)
+    @talks = @user.kept_talks.includes(:speakers, event: :series, child_talks: :speakers).order(date: :desc)
     @talks_by_kind = @talks.group_by(&:kind)
     @topics = @user.topics.approved.tally.sort_by(&:last).reverse.map(&:first)
     # Load participated events (from event_participations)
-    @events = @user.participated_events.includes(:organisation).distinct.in_order_of(:attended_as, EventParticipation.attended_as.keys)
+    @events = @user.participated_events.includes(:series).distinct.in_order_of(:attended_as, EventParticipation.attended_as.keys)
     @events_with_stickers = @events.select(&:sticker?)
 
     event_participations = @user.event_participations.includes(:event).where(event: @events)
@@ -51,7 +51,7 @@ class ProfilesController < ApplicationController
       .reject { |country, _| country.nil? }
       .sort_by { |country, _| country.translations["en"] }
 
-    @involved_events = @user.involved_events.includes(:organisation).distinct.order(start_date: :desc)
+    @involved_events = @user.involved_events.includes(:series).distinct.order(start_date: :desc)
     event_involvements = @user.event_involvements.includes(:event).where(event: @involved_events)
     involvement_lookup = event_involvements.group_by(&:event_id)
 

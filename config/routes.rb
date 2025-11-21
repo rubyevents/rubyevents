@@ -110,6 +110,7 @@ Rails.application.routes.draw do
         get "/countries" => redirect("/countries")
         get "/countries/:country" => redirect { |params, _| "/countries/#{params[:country]}" }
         resources :cities, param: :city, only: [:index, :show]
+        resources :series, param: :slug, only: [:index, :show]
       end
 
       resources :schedules, only: [:index], path: "/schedule" do
@@ -127,7 +128,9 @@ Rails.application.routes.draw do
       resources :collectibles, only: [:index]
     end
   end
-  resources :organisations, param: :slug, only: [:index, :show]
+
+  get "/organisations", to: redirect("/events/series")
+  get "/organisations/:slug", to: redirect("/events/series/%{slug}")
 
   namespace "spotlight" do
     resources :talks, only: [:index]

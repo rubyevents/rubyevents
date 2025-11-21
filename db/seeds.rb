@@ -1,7 +1,7 @@
 require "public_suffix"
 
 speakers = YAML.load_file("#{Rails.root}/data/speakers.yml")
-organisations = YAML.load_file("#{Rails.root}/data/organisations.yml")
+event_series_data = YAML.load_file("#{Rails.root}/data/event_series.yml")
 videos_to_ignore = YAML.load_file("#{Rails.root}/data/videos_to_ignore.yml")
 
 # create speakers
@@ -21,22 +21,22 @@ rescue ActiveRecord::RecordInvalid => e
   puts "Couldn't save: #{speaker["name"]} (#{speaker["github"]}), error: #{e.message}"
 end
 
-organisations.each do |org|
-  organisation = Organisation.find_or_initialize_by(slug: org["slug"])
+event_series_data.each do |series|
+  event_series = EventSeries.find_or_initialize_by(slug: series["slug"])
 
-  organisation.update!(
-    name: org["name"],
-    website: org["website"],
-    twitter: org["twitter"] || "",
-    youtube_channel_name: org["youtube_channel_name"],
-    kind: org["kind"],
-    frequency: org["frequency"],
-    youtube_channel_id: org["youtube_channel_id"],
-    slug: org["slug"],
-    language: org["language"] || ""
+  event_series.update!(
+    name: series["name"],
+    website: series["website"],
+    twitter: series["twitter"] || "",
+    youtube_channel_name: series["youtube_channel_name"],
+    kind: series["kind"],
+    frequency: series["frequency"],
+    youtube_channel_id: series["youtube_channel_id"],
+    slug: series["slug"],
+    language: series["language"] || ""
   )
 
-  events = YAML.load_file("#{Rails.root}/data/#{organisation.slug}/playlists.yml")
+  events = YAML.load_file("#{Rails.root}/data/#{event_series.slug}/playlists.yml")
 
   events.each do |event_data|
     event = Event.find_or_create_by(slug: event_data["slug"])
@@ -45,7 +45,7 @@ organisations.each do |org|
       name: event_data["title"],
       date: event_data["date"] || event_data["published_at"],
       date_precision: event_data["date_precision"] || "day",
-      organisation: organisation,
+      series: event_series,
       website: event_data["website"],
       country_code: event.static_metadata.country&.alpha2,
       start_date: event.static_metadata.start_date,
@@ -55,7 +55,7 @@ organisations.each do |org|
 
     puts event.slug unless Rails.env.test?
 
-    cfp_file_path = "#{Rails.root}/data/#{organisation.slug}/#{event.slug}/cfp.yml"
+    cfp_file_path = "#{Rails.root}/data/#{event_series.slug}/#{event.slug}/cfp.yml"
 
     if File.exist?(cfp_file_path)
       cfps = YAML.load_file(cfp_file_path)

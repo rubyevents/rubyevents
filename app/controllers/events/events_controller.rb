@@ -9,7 +9,7 @@ class Events::EventsController < ApplicationController
   private
 
   def set_event
-    @event = Event.includes(:organisation, talks: :speakers).find_by(slug: params[:event_slug])
+    @event = Event.includes(:series, talks: :speakers).find_by(slug: params[:event_slug])
     set_meta_tags(@event)
   end
 end

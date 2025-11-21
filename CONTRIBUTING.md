@@ -14,11 +14,11 @@ YOUTUBE_API_KEY=some_key
 
 The proposed workflow is to create the data files in the `/data_preparation` folder using the scripts. Once you have validated those files and eventually cleaned a few errors, you can copy them to `/data` and open a PR with that content.
 
-### Step 1 - Prepare the Organization
+### Step 1 - Prepare the Event Series
 
-Everything starts with an organization. An organization is the entity organizing the events.
+Everything starts with an event series. An event series groups related events together (e.g., RailsConf 2020, RailsConf 2021, etc.).
 
-Add the following information to the `data_preparation/organisations.yml` file:
+Add the following information to the `data_preparation/event_series.yml` file:
 
 ```yml
 - name: Railsconf
@@ -34,10 +34,10 @@ Add the following information to the `data_preparation/organisations.yml` file:
 Then run this script:
 
 ```bash
-rails runner scripts/prepare_organisations.rb
+rails runner scripts/prepare_event_series.rb
 ```
 
-This will update your `data_preparation/organisations.yml` file with the youtube_channel_id information.
+This will update your `data_preparation/event_series.yml` file with the youtube_channel_id information.
 
 ### Step 2 - Create the Playlists
 
@@ -51,7 +51,7 @@ You will end up with a data structure like this:
 
 ```
 data/
-├── organisations.yml
+├── event_series.yml
 ├── railsconf
     └── playlists.yml
 ```
@@ -64,7 +64,7 @@ At this point, go through the `playlists.yml` and perform a bit of verification 
 
 **Multi-Events Channels**
 
-Some YouTube channels will host multiple conferences. For example, RubyCentral hosts Rubyconf and RailsConf. To cope with that, you can specify in the organization a regex to filter the playlists of this channel. The regex is case insensitive.
+Some YouTube channels will host multiple conferences. For example, RubyCentral hosts Rubyconf and RailsConf. To cope with that, you can specify in the event series a regex to filter the playlists of this channel. The regex is case insensitive.
 
 Here is an example for RailsConf/RubyConf:
 
@@ -93,7 +93,7 @@ At this point you have this structure:
 
 ```
 data/
-├── organisations.yml
+├── event_series.yml
 ├── railsconf
 │   ├── railsconf-2021
 │   │   └── videos.yml

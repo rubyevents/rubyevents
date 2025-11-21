@@ -1,7 +1,7 @@
 # rubocop:disable Layout/LineLength
 # == Schema Information
 #
-# Table name: organisations
+# Table name: event_series
 #
 #  id                   :integer          not null, primary key
 #  description          :text             default(""), not null
@@ -19,13 +19,13 @@
 #
 # Indexes
 #
-#  index_organisations_on_frequency  (frequency)
-#  index_organisations_on_kind       (kind)
-#  index_organisations_on_name       (name)
-#  index_organisations_on_slug       (slug)
+#  index_event_series_on_frequency  (frequency)
+#  index_event_series_on_kind       (kind)
+#  index_event_series_on_name       (name)
+#  index_event_series_on_slug       (slug)
 #
 # rubocop:enable Layout/LineLength
-class Organisation < ApplicationRecord
+class EventSeries < ApplicationRecord
   include Sluggable
   include Suggestable
 
@@ -34,7 +34,7 @@ class Organisation < ApplicationRecord
   configure_slug(attribute: :name, auto_suffix_on_collision: false)
 
   # associations
-  has_many :events, dependent: :destroy, inverse_of: :organisation, foreign_key: :organisation_id, strict_loading: true
+  has_many :events, dependent: :destroy, inverse_of: :series, foreign_key: :event_series_id, strict_loading: true
   has_many :talks, through: :events
   has_object :static_metadata
 
