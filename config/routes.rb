@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get "/stickers", to: "page#stickers"
   get "/contributors", to: "page#contributors"
   get "/stamps", to: "stamps#index"
+  get "/pages/assets", to: "page#assets"
 
   # authentication
   get "/auth/failure", to: "sessions/omniauth#failure"

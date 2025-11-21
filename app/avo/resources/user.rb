@@ -22,6 +22,7 @@ class Avo::Resources::User < Avo::BaseResource
     field :email, as: :text, link_to_record: true, hide_on: :index
     field :github_handle, as: :text, link_to_record: true
     field :admin, as: :boolean
+    field :marked_for_deletion, as: :boolean, hide_on: :index
 
     field :slug, as: :text, hide_on: :index
     field :bio, as: :textarea, hide_on: :index
@@ -36,6 +37,7 @@ class Avo::Resources::User < Avo::BaseResource
     field :talks_count, as: :number, sortable: true
     field :canonical, as: :belongs_to, hide_on: [:index, :forms], searchable: true
 
+    field :aliases, as: :has_many, hide_on: :index
     field :talks, as: :has_many, hide_on: :index
     field :user_talks, as: :has_many, hide_on: :index
     field :connected_accounts, as: :has_many
