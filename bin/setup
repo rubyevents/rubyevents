@@ -4,14 +4,14 @@ require "fileutils"
 APP_ROOT = File.expand_path("..", __dir__)
 APP_NAME = "rubyevents"
 
-def system!(*args)
-  system(*args, exception: true)
-end
+def system!(cmd)
+  system(cmd, exception: true)
+rescue StandardError => e
+  STDOUT.puts
+  STDOUT.puts "Failed to run #{cmd}: #{e.message}"
+  STDOUT.puts
 
-def docker_compose!(options)
-  system!("docker compose #{options}")
-rescue Errno::ENOENT
-  system!("docker-compose #{options}")
+  raise
 end
 
 FileUtils.chdir APP_ROOT do
