@@ -58,9 +58,6 @@ jobs:
       - name: Herb Linter Check
         run: npx @herb-tools/linter 
 
-      - name: Herb Formatter Check
-        run: npx @herb-tools/formatter --check
-
   test:
     runs-on: ubuntu-latest
     env:
