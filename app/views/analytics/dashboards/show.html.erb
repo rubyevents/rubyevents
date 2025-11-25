@@ -24,7 +24,7 @@
       <div class="bg-gray-300 rounded-lg animate-pulse h-[300px]"></div>
     <% end %>
 
-    <%# TODO convert those metrics to Rollup to re enable them  %>
+    <%# TODO convert those metrics to Rollup to re enable them %>
     <% if Current.user&.admin? && false %>
       <%= turbo_frame_tag "top_referrers", src: top_referrers_analytics_dashboards_path, lazy: true do %>
         <h2 class="text-center mb-4">Top referrers</h2>
