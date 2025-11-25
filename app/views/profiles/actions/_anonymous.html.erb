@@ -8,10 +8,13 @@
   <% if !user.verified? %>
     <div class="flex flex-col gap-4 hotwire-native:hidden">
       <div class="content text-sm">
-        <span>Are you <strong><%= user.name %></strong>?
-        <%= link_to new_session_path(redirect_to: request.fullpath), class: "link link-neutral font-light", data: {turbo_frame: "modal"} do %>
-          Claim your profile to manage and edit content.</span>
-        <% end %>
+        <span>
+          Are you <strong><%= user.name %></strong>?
+
+          <%= link_to new_session_path(redirect_to: request.fullpath), class: "link link-neutral font-light", data: {turbo_frame: "modal"} do %>
+            Claim your profile to manage and edit content.
+          <% end %>
+        </span>
       </div>
 
       <% if false %>
