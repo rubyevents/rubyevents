@@ -55,6 +55,9 @@ jobs:
       - name: erb-lint Check
         run: bundle exec erb_lint --lint-all
 
+      - name: Herb Linter Check
+        run: npx @herb-tools/linter 
+
   test:
     runs-on: ubuntu-latest
     env:
