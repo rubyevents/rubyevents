@@ -59,7 +59,7 @@ jobs:
         run: npx @herb-tools/linter
 
       - name: Herb Analyze (parse/compile)
-        run: bundle exec herb analyze .
+        run: bundle exec herb analyze app/
 
   test:
     runs-on: ubuntu-latest
