@@ -14,13 +14,13 @@
         <% event.cfps.each do |cfp| %>
           <div class="text-[#636B74] group-hover:text-inherit font-bold">
             <% if cfp.close_date.present? && (cfp.open_date.past? || cfp.open_date.blank?) %>
-              CFP closes at
+              CFP closes on
               <%= cfp.formatted_close_date %>
             <% elsif cfp.open_date.present? && cfp.open_date.past? %>
-              CFP opened at
+              CFP opened on
               <%= cfp.formatted_open_date %>
             <% elsif cfp.open_date.present? && cfp.open_date.future? %>
-              CFP opens at
+              CFP opens on
               <%= cfp.formatted_open_date %>
             <% end %>
           </div>
