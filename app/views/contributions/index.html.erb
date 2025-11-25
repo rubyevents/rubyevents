@@ -47,7 +47,7 @@
 
     <input type="radio" name="contribution-tabs" role="tab" class="tab" aria-label="Overdue scheduled talks (<%= @overdue_scheduled_talks_count %>)" style="width: 250px">
     <div role="tabpanel" class="tab-content py-6">
-      <div class="">
+      <div>
         <h2 class="mb-4">Overdue scheduled talks (<%= @overdue_scheduled_talks_count %>)</h2>
 
         <article class="prose mb-6">
@@ -82,7 +82,7 @@
 
     <input type="radio" name="contribution-tabs" role="tab" class="tab" aria-label="Talks without speakers (<%= @talks_without_speakers_count %>)" style="width: 225px">
     <div role="tabpanel" class="tab-content py-6">
-      <div class="">
+      <div>
         <h2 class="mb-4">Talks without speakers (<%= @talks_without_speakers_count %>)</h2>
 
         <article class="prose mb-6">
@@ -93,7 +93,7 @@
 
           <% @talks_without_speakers.group_by(&:event).sort_by { |_event, talks| talks.minimum(:date) }.each do |event, talks| %>
             <%= content_tag :div, id: dom_id(event), class: "p-4 rounded-lg border bg-white", target: :_blank do %>
-              <article class="">
+              <article>
                 <div class="prose">
                   <h3 class="line-clamp-1">Event: <%= event.name %></h3>
                 </div>
@@ -117,7 +117,7 @@
 
     <input type="radio" name="contribution-tabs" role="tab" class="tab" aria-label="Not published talks (<%= @not_published_talks_count %>)" style="width: 200px">
     <div role="tabpanel" class="tab-content py-6">
-      <div class="">
+      <div>
         <h2 class="mb-4">Not published talks (<%= @not_published_talks_count %>)</h2>
 
         <article class="prose mb-6">
@@ -148,7 +148,7 @@
 
     <input type="radio" name="contribution-tabs" role="tab" class="tab" aria-label="Add missing events (<%= @conferences_to_index %>)" style="width: 225px">
     <div role="tabpanel" class="tab-content py-6">
-      <div class="">
+      <div>
         <h2 class="mb-4">Add missing events (<%= @conferences_to_index %>)</h2>
 
         <article class="prose mb-6">
@@ -156,7 +156,7 @@
 
           <p>We are checking against <a href="https://rubyconferences.org" target="_blank">rubyconferences.org</a> to identify missing events. Below, we will list conferences with video links first, followed by those without a video link.</p>
 
-          <p>If you would like to contribute data for any of the events listed below, please refer to <a href="https://github.com/rubyevents/rubyevents/blob/main/docs/contributing.md" target="_blank">this guide</a> to add the event to the site.</p>
+          <p>If you would like to contribute data for any of the events listed below, please refer to <a href="https://github.com/rubyevents/rubyevents/blob/main/CONTRIBUTING.md" target="_blank">this guide</a> to add the event to the site.</p>
         </article>
 
         <h3 class="font-bold mb-3">Conferences from RubyConferences.org we already indexed</h3>
@@ -201,7 +201,7 @@
 
     <input type="radio" name="contribution-tabs" role="tab" class="tab" aria-label="Events without schedule (<%= @conferences_with_missing_schedule_count %>)" style="width: 250px">
     <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
-      <div class="">
+      <div>
         <h2 class="mb-4">Events without schedule (<%= @conferences_with_missing_schedule_count %>)</h2>
 
         <article class="prose mb-6">

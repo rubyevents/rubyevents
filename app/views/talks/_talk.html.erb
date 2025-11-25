@@ -1,4 +1,4 @@
-<%# locals: (talk:, user_favorite_talks_ids:) -%>
+<%# locals: (talk:, user_favorite_talks_ids:) %>
 
 <% video_player_controller = talk.external_player ? nil : "video-player" %>
 
@@ -278,7 +278,7 @@
           <p>
             <b><%= talk.title %></b><br>
             <%= talk.speakers.map(&:name).to_sentence %>
-            <% if talk.event.static_metadata.location %> • <%= talk.event.static_metadata.location %><% end %>
+            <% if talk.location %> • <%= talk.location %><% end %>
             <% if language && language != "English" %> • <%= language %> <% end %> •
             <%= talk.formatted_kind %>
           </p>
@@ -287,8 +287,8 @@
             Date: <%= talk.formatted_date %><br>
 
             <span class="text-gray-400">
-              Published: <% if talk.published_at %><%= l(talk.published_at, default: "unknown") %><% elsif talk.published? %> unknown <% else %> not published <% end %><br>
-              Announced: <%= l(talk.announced_at, default: "unknown") %>
+              Published: <% if talk.published_at %><%= l(talk.published_at&.to_date, default: "unknown") %><% elsif talk.published? %> unknown <% else %> not published <% end %><br>
+              Announced: <% if talk.announced_at %><%= l(talk.announced_at&.to_date, default: "unknown") %><% end %>
             </span>
           </p>
 

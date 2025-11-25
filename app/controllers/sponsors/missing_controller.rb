@@ -4,7 +4,7 @@ class Sponsors::MissingController < ApplicationController
   # GET /sponsors/missing
   def index
     @back_path = sponsors_path
-    @events_without_sponsors = Event.conference
+    @events_without_sponsors = Event.not_meetup
       .left_joins(:event_sponsors)
       .where(event_sponsors: {id: nil})
       .past

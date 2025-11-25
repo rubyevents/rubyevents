@@ -1,17 +1,21 @@
 <div id="participants_list">
-  <% if participants.any? && Current.user && participation.blank? %>
-    <div class="mb-6 border-2 border-dashed border-purple-300 rounded-lg bg-purple-50 p-4">
-      <div class="flex items-center gap-4">
-        <div class="text-3xl">👋</div>
-        <div class="flex-1">
-          <h3 class="text-base font-semibold text-gray-900">Were you there?</h3>
-          <p class="text-sm text-gray-600">Mark yourself as a participant!</p>
-        </div>
-        <div class="flex-shrink-0">
-          <%= render partial: "events/participation_button", locals: {event: event, participation: participation} %>
+  <% if participants.any? %>
+    <h2 class="mb-6">Known Participants (<%= participants.size %>)</h2>
+
+    <% if Current.user && participation.blank? %>
+      <div class="mb-6 border-2 border-dashed border-purple-300 rounded-lg bg-purple-50 p-4">
+        <div class="flex items-center gap-4">
+          <div class="text-3xl">👋</div>
+          <div class="flex-1">
+            <h3 class="text-base font-semibold text-gray-900">Were you there?</h3>
+            <p class="text-sm text-gray-600">Mark yourself as a participant!</p>
+          </div>
+          <div class="flex-shrink-0">
+            <%= render partial: "events/participation_button", locals: {event: event, participation: participation} %>
+          </div>
         </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
 
   <div id="<%= dom_id(event, :participants) %>" class="mb-12 min-w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 h-full">

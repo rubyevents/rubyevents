@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby file: ".ruby-version"
 
 # Use main development branch of Rails from github
-gem "rails", github: "rails/rails", branch: "main"
+gem "rails", "8.1.0.rc1"
 
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
@@ -78,6 +78,9 @@ gem "ruby_llm"
 # YouTube V3 API client.
 gem "yt"
 
+# Family of libraries that support various formats of XML "feeds".
+gem "rss", "~> 0.3.1"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "bundler-audit", require: false
@@ -108,6 +111,8 @@ group :development do
   gem "standardrb", "~> 1.0", require: false
   gem "erb_lint", require: false
   gem "authentication-zero", require: false
+
+  gem "reactionview"
 end
 
 group :test do
@@ -120,7 +125,6 @@ group :test do
 end
 
 gem "pagy"
-gem "dockerfile-rails", ">= 1.2", group: :development
 
 # gem "activerecord-enhancedsqlite3-adapter"
 gem "solid_cache"
@@ -129,7 +133,7 @@ gem "mission_control-jobs"
 
 gem "ahoy_matey"
 gem "vite_rails"
-gem "meta-tags", "~> 2.18"
+gem "meta-tags"
 gem "groupdate"
 gem "appsignal"
 gem "chartkick", "~> 5.0"
@@ -173,11 +177,10 @@ gem "omniauth-github"
 # Provides a mitigation against CVE-2015-9284 [https://github.com/cookpad/omniauth-rails_csrf_protection]
 gem "omniauth-rails_csrf_protection"
 
-# silence Ruby 3.4 warnings
-gem "ostruct"
-
 gem "hotwire_combobox", "~> 0.4.0"
 
 gem "rails-i18n", "~> 8.0"
 
-gem "reactionview"
+# Ruby standards gems
+gem "openssl" # https://github.com/ruby/openssl/issues/949
+gem "ostruct"

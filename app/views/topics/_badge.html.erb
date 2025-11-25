@@ -1,3 +1,3 @@
-<%= link_to topic_path(topic, back_to: back_to_url, back_to_title: back_to_title) do %>
+<%= link_to topic_path(topic, back_to: back_to_url, back_to_title: back_to_title), data: {turbo_frame: "_top"} do %>
   <div class="badge badge-ghost hover:bg-gray-300 px-2 py-3 text-xs">#<%= topic.name.parameterize %></div>
 <% end %>

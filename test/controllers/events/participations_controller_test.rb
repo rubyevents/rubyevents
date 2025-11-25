@@ -19,4 +19,9 @@ class Events::ParticipationsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select "div", /#{@user.name}/
   end
+
+  test "should redirect to root path if event is not found" do
+    get event_participants_url(event_slug: "react-conf")
+    assert_redirected_to root_path
+  end
 end

@@ -6,13 +6,19 @@ videos_to_ignore = YAML.load_file("#{Rails.root}/data/videos_to_ignore.yml")
 
 # create speakers
 speakers.each do |speaker|
-  User.find_or_create_by!(slug: speaker["slug"]) do |s|
-    s.name = speaker["name"]
-    s.twitter = speaker["twitter"]
-    s.github_handle = speaker["github"]
-    s.website = speaker["website"]
-    s.bio = speaker["bio"]
-  end
+  user = User.find_by_github_handle(speaker["github"]) ||
+    User.find_by(slug: speaker["slug"]) ||
+    User.find_by_name_or_alias(speaker["name"]) ||
+    User.new
+  user.update!(
+    name: speaker["name"],
+    twitter: speaker["twitter"],
+    github_handle: speaker["github"],
+    website: speaker["website"],
+    bio: speaker["bio"]
+  )
+rescue ActiveRecord::RecordInvalid => e
+  puts "Couldn't save: #{speaker["name"]} (#{speaker["github"]}), error: #{e.message}"
 end
 
 organisations.each do |org|
@@ -44,50 +50,63 @@ organisations.each do |org|
       country_code: event.static_metadata.country&.alpha2,
       start_date: event.static_metadata.start_date,
       end_date: event.static_metadata.end_date,
-      kind: event.static_metadata.kind,
-      cfp_close_date: event_data["cfp_close_date"],
-      cfp_link: event_data["cfp_link"],
-      cfp_open_date: event_data["cfp_open_date"]
+      kind: event.static_metadata.kind
     )
 
     puts event.slug unless Rails.env.test?
 
-    talks = YAML.load_file("#{Rails.root}/data/#{organisation.slug}/#{event.slug}/videos.yml")
+    cfp_file_path = "#{Rails.root}/data/#{organisation.slug}/#{event.slug}/cfp.yml"
 
-    talks.each do |talk_data|
-      if talk_data["title"].blank? || videos_to_ignore.include?(talk_data["video_id"])
-        puts "Ignored video: #{talk_data["raw_title"]}"
-        next
+    if File.exist?(cfp_file_path)
+      cfps = YAML.load_file(cfp_file_path)
+
+      cfps.each do |cfp_data|
+        event.cfps.find_or_create_by(
+          link: cfp_data["link"],
+          open_date: cfp_data["open_date"]
+        ).update(
+          name: cfp_data["name"],
+          close_date: cfp_data["close_date"]
+        )
       end
+    end
 
-      talk = Talk.find_by(video_id: talk_data["video_id"], video_provider: talk_data["video_provider"])
-      talk = Talk.find_by(video_id: talk_data["video_id"]) if talk.blank?
-      talk = Talk.find_by(video_id: talk_data["id"].to_s) if talk.blank?
-      talk = Talk.find_by(slug: talk_data["slug"].to_s) if talk.blank?
+    if event.videos_file?
+      event.videos_file.each do |talk_data|
+        if talk_data["title"].blank? || videos_to_ignore.include?(talk_data["video_id"])
+          puts "Ignored video: #{talk_data["raw_title"]}"
+          next
+        end
 
-      talk = Talk.find_or_initialize_by(video_id: talk_data["video_id"].to_s) if talk.blank?
+        talk = Talk.find_by(video_id: talk_data["video_id"], video_provider: talk_data["video_provider"])
+        talk = Talk.find_by(video_id: talk_data["video_id"]) if talk.blank?
+        talk = Talk.find_by(video_id: talk_data["id"].to_s) if talk.blank?
+        talk = Talk.find_by(slug: talk_data["slug"].to_s) if talk.blank?
 
-      talk.video_provider = talk_data["video_provider"] || :youtube
-      talk.update_from_yml_metadata!(event: event)
+        talk = Talk.find_or_initialize_by(video_id: talk_data["video_id"].to_s) if talk.blank?
 
-      child_talks = Array.wrap(talk_data["talks"])
+        talk.video_provider = talk_data["video_provider"] || :youtube
+        talk.update_from_yml_metadata!(event: event)
 
-      next if child_talks.none?
+        child_talks = Array.wrap(talk_data["talks"])
 
-      child_talks.each do |child_talk_data|
-        child_talk = Talk.find_by(video_id: child_talk_data["video_id"], video_provider: child_talk_data["video_provider"])
-        child_talk = Talk.find_by(video_id: child_talk_data["video_id"]) if child_talk.blank?
-        child_talk = Talk.find_by(video_id: child_talk_data["id"].to_s) if child_talk.blank?
-        child_talk = Talk.find_by(slug: child_talk_data["slug"].to_s) if child_talk.blank?
+        next if child_talks.none?
 
-        child_talk = Talk.find_or_initialize_by(video_id: child_talk_data["video_id"].to_s) if child_talk.blank?
+        child_talks.each do |child_talk_data|
+          child_talk = Talk.find_by(video_id: child_talk_data["video_id"], video_provider: child_talk_data["video_provider"])
+          child_talk = Talk.find_by(video_id: child_talk_data["video_id"]) if child_talk.blank?
+          child_talk = Talk.find_by(video_id: child_talk_data["id"].to_s) if child_talk.blank?
+          child_talk = Talk.find_by(slug: child_talk_data["slug"].to_s) if child_talk.blank?
 
-        child_talk.video_provider = child_talk_data["video_provider"] || :parent
-        child_talk.parent_talk = talk
-        child_talk.update_from_yml_metadata!(event: event)
+          child_talk = Talk.find_or_initialize_by(video_id: child_talk_data["video_id"].to_s) if child_talk.blank?
+
+          child_talk.video_provider = child_talk_data["video_provider"] || :parent
+          child_talk.parent_talk = talk
+          child_talk.update_from_yml_metadata!(event: event)
+        end
+      rescue ActiveRecord::RecordInvalid => e
+        puts "Couldn't save: #{talk_data["title"]} (#{talk_data["video_id"]}), error: #{e.message}"
       end
-    rescue ActiveRecord::RecordInvalid => e
-      puts "Couldn't save: #{talk_data["title"]} (#{talk_data["video_id"]}), error: #{e.message}"
     end
 
     if event.sponsors_file.exist?
@@ -418,5 +437,10 @@ topics = [
 # create topics
 Topic.create_from_list(topics, status: :approved)
 
+User.order(Arel.sql("RANDOM()")).limit(5).each do |user|
+  user.watched_talk_seeder.seed_development_data
+end
 Rake::Task["backfill:speaker_participation"].invoke
+Rake::Task["backfill:event_involvements"].invoke
 Rake::Task["speakerdeck:set_usernames_from_slides_url"].invoke
+Rake::Task["contributors:fetch"].invoke

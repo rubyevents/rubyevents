@@ -16,7 +16,13 @@ This project is open source, and contributions are greatly appreciated. One of t
 
 We also have a page on the deployed site that has up-to-date information with the remaining known TODOs. Check out the ["Getting Started: Ways to Contribute" page on RubyEvents.org](https://www.rubyevents.org/contributions) and feel free to start working on any of the remaining TODOs. Any help is greatly appreciated.
 
-For more information on contributing conference data, please visit [this page](/docs/contributing.md).
+For more information on contributing:
+
+- Conference data: [Contributing Guide](/CONTRIBUTING.md)
+- Visual assets (logos, banners, etc.): [Adding Visual Assets Guide](/docs/ADDING_VISUAL_ASSETS.md)
+- Sponsor information: [Adding Sponsors Guide](/docs/ADDING_SPONSORS.md)
+
+You can view all event assets and their status at: https://rubyevents.org/pages/assets
 
 ## Getting Started
 
@@ -31,7 +37,8 @@ All file changes will be present locally when you close the container.
 
 - Use `gh auth login` to auth with GitHub, so you can push commits from within the container.
 - Do not run `bin/setup`. It starts docker containers, and you're already in one.
-- The application is forwarded to [localhost:3000](localhost:3000) and starts automatically on boot.
+- After the container is set up, run `bin/dev` in the terminal to start the development server. The application will be forwarded to [localhost:3000](localhost:3000).
+- To run system tests, use `HEADLESS=true bin/rails test`. The HEADLESS=true environment variable ensures Chrome runs in headless mode, which is required in the container environment.
 
 ### Requirements
 

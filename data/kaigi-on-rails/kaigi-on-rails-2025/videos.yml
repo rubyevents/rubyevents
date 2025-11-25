@@ -486,11 +486,9 @@
   video_id: "marco-roth-kaigi-on-rails-2025"
   id: "marco-roth-kaigi-on-rails-2025"
   description: |-
-    After introducing Herb, the HTML-aware ERB parser at RubyKaigi in April, I’m now releasing ReActionView - a drop-in ActionView replacement bringing LiveView-style reactivity to Rails while maintaining HTML-over-the-wire philosophy.
+    This talk is the conclusion of a journey I’ve been sharing throughout 2025. At RubyKaigi, I introduced Herb: a new HTML-aware ERB parser and tooling ecosystem. At RailsConf, I released developer tools built on Herb, including a formatter, linter, and language server, alongside a vision for modernizing and improving the Rails view layer.
 
-    This talk completes a trilogy by delivering the practical payoff: the ActionView-compatible ReActionView engine, built on Herb, the new Prism-powered HTML-aware ERB parser.
-
-    ReActionView maintains ActionView compatibility while bringing HTML-awareness and reactivity to HTML+ERB views.
+    Now, I’ll continue with ReActionView: a new ERB engine built on Herb, fully compatible with `.html.erb` but with HTML validation, better error feedback, reactive updates, and built-in tooling.
   slides_url: "https://speakerdeck.com/marcoroth/introducing-reactionview-a-new-actionview-compatible-erb-engine-at-kaigi-on-rails-2025-tokyo-japan"
 
 - title: "非同期処理実行基盤、Delayed脱出〜SolidQueue完全移行への旅路。"
