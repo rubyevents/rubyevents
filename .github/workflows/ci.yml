@@ -56,7 +56,10 @@ jobs:
         run: bundle exec erb_lint --lint-all
 
       - name: Herb Linter Check
-        run: npx @herb-tools/linter 
+        run: npx @herb-tools/linter
+
+      - name: Herb Analyze (parse/compile)
+        run: bundle exec herb analyze .
 
   test:
     runs-on: ubuntu-latest
