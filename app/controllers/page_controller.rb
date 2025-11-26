@@ -31,7 +31,7 @@ class PageController < ApplicationController
     @recommended_talks = Current.user.talk_recommender.talks(limit: 4) if Current.user
 
     # Add featured events logic
-    playlist_slugs = Static::Playlist.where.not(featured_background: nil)
+    playlist_slugs = Static::Event.where.not(featured_background: nil)
       .select(&:featured?)
       .sort_by(&:home_sort_date)
       .reverse
@@ -109,7 +109,7 @@ class PageController < ApplicationController
   end
 
   def assets
-    @events = Event.includes(:organisation).order("organisations.name, events.name")
+    @events = Event.includes(:series).order("event_series.name, events.name")
 
     @asset_types = {
       "avatar" => {width: 256, height: 256, name: "Avatar"},

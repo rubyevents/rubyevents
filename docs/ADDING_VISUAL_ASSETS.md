@@ -47,15 +47,17 @@ app/assets/images/events/railsconf/railsconf-2025/
 
 ## Brand Colors
 
-In addition to images, you can specify brand colors for your event in the `playlists.yml` file:
+In addition to images, you can specify brand colors for your event in its `event.yml` file:
 
 ```yaml
-- id: railsconf-2025
-  title: RailsConf 2025
-  # ... other fields ...
-  banner_background: "#FF0000"      # Background color for banner
-  featured_background: "#000000"    # Background color for featured display
-  featured_color: "#FFFFFF"         # Text color for featured display
+# data/railsconf/railsconf-2025/event.yml
+---
+id: railsconf-2025
+title: RailsConf 2025
+# ... other fields ...
+banner_background: "#FF0000"      # Background color for banner
+featured_background: "#000000"    # Background color for featured display
+featured_color: "#FFFFFF"         # Text color for featured display
 ```
 
 These colors support:
@@ -131,7 +133,7 @@ Copy your assets to this directory.
 
 ### 5. Add Brand Colors
 
-Edit the event's entry in `data/{organization}/playlists.yml` to add brand colors:
+Edit the event's `event.yml` file at `data/{organization}/{event-slug}/event.yml` to add brand colors:
 
 ```yaml
 banner_background: "#your-color"
@@ -156,6 +158,6 @@ Visit https://rubyevents.org/pages/assets (or your local development server at h
 - Don't rely on CSS to resize images
 
 ### Color not applied
-- Verify the color value in `playlists.yml`
+- Verify the color value in `event.yml`
 - Check the color format is valid CSS
-- Restart the server after changing `playlists.yml`
+- Restart the server after changing `event.yml`

@@ -44,9 +44,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Conference data is stored in YAML files under `/data/`:
 
-- `data/event_series.yml` - Event series (conference organizers/series)
 - `data/speakers.yml` - Global speaker database
-- `data/{series-slug}/playlists.yml` - YouTube playlist mappings
+- `data/{series-slug}/series.yml` - Event series metadata (conference organizers/series)
+- `data/{series-slug}/{event-name}/event.yml` - Event metadata (dates, location, colors, etc.)
 - `data/{series-slug}/{event-name}/videos.yml` - Individual talk data
 - `data/{series-slug}/{event-name}/schedule.yml` - Event schedules
 
