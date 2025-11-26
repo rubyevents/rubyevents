@@ -9,7 +9,7 @@
 
 def extract_videos_for_event(event_file_path)
   event_slug = File.basename(File.dirname(event_file_path))
-  series_slug = File.basename(File.dirname(File.dirname(event_file_path)))
+  File.basename(File.dirname(event_file_path, 2))
   event_data = YAML.load_file(event_file_path)
   event = OpenStruct.new(event_data.merge("slug" => event_slug))
 
