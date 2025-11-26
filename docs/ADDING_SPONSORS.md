@@ -10,7 +10,7 @@ Sponsor data is stored in YAML files within the conference/event directories. Ea
 
 Sponsors are stored in YAML files at:
 ```
-data/{organization-name}/{event-name}/sponsors.yml
+data/{series-name}/{event-name}/sponsors.yml
 ```
 
 For example:
@@ -89,7 +89,7 @@ For example:
 
 | Field | Required | Description |
 |-------|----------|-------------|
-| `name` | Yes | Official company/organization name |
+| `name` | Yes | Official company name |
 | `website` | Yes | Full URL to sponsor's website |
 | `slug` | Yes | URL-safe identifier (no spaces or special characters) |
 | `logo_url` | Yes | Full URL to sponsor's logo image |
@@ -124,7 +124,7 @@ Some sponsors may have special designations indicated by the `badge` field:
 First, check if a sponsors file already exists:
 
 ```bash
-ls data/{organization}/{event}/sponsors.yml
+ls data/{series-name}/{event}/sponsors.yml
 ```
 
 ### 2. Create or Edit the Sponsors File
@@ -132,7 +132,7 @@ ls data/{organization}/{event}/sponsors.yml
 If the file doesn't exist, create it:
 
 ```bash
-touch data/{organization}/{event}/sponsors.yml
+touch data/{series-name}/{event}/sponsors.yml
 ```
 
 ### 3. Gather Sponsor Information

@@ -160,8 +160,8 @@ class UserTest < ActiveSupport::TestCase
   test "assign_canonical_user! reassigns event participations" do
     user = User.create!(name: "Participant", github_handle: "participant-events")
     canonical_user = User.create!(name: "Canonical Participant", github_handle: "canonical-events")
-    org = Organisation.create!(name: "Test Org", slug: "test-org")
-    event = Event.create!(name: "Test Event", slug: "test-event", organisation: org, date: Date.today)
+    series = EventSeries.create!(name: "Test Series", slug: "test-series")
+    event = Event.create!(name: "Test Event", slug: "test-event", series: series, date: Date.today)
 
     EventParticipation.create!(user: user, event: event, attended_as: :speaker)
 
@@ -180,8 +180,8 @@ class UserTest < ActiveSupport::TestCase
   test "assign_canonical_user! preserves event participation attributes" do
     user = User.create!(name: "Keynote Speaker", github_handle: "keynote-speaker")
     canonical_user = User.create!(name: "Canonical Keynote", github_handle: "canonical-keynote")
-    org = Organisation.create!(name: "Test Org Attrs", slug: "test-org-attrs")
-    event = Event.create!(name: "Test Event Attrs", slug: "test-event-attrs", organisation: org, date: Date.today)
+    series = EventSeries.create!(name: "Test seriesAttrs", slug: "test-org-attrs")
+    event = Event.create!(name: "Test Event Attrs", slug: "test-event-attrs", series: series, date: Date.today)
 
     EventParticipation.create!(
       user: user,
@@ -201,8 +201,8 @@ class UserTest < ActiveSupport::TestCase
   test "assign_canonical_user! reassigns event involvements" do
     user = User.create!(name: "Organizer", github_handle: "organizer-events")
     canonical_user = User.create!(name: "Canonical Organizer", github_handle: "canonical-organizer")
-    org = Organisation.create!(name: "Test Org 2", slug: "test-org-2")
-    event = Event.create!(name: "Test Event 2", slug: "test-event-2", organisation: org, date: Date.today)
+    series = EventSeries.create!(name: "Test series2", slug: "test-org-2")
+    event = Event.create!(name: "Test Event 2", slug: "test-event-2", series: series, date: Date.today)
 
     EventInvolvement.create!(involvementable: user, event: event, role: :organizer, position: 1)
 
@@ -221,8 +221,8 @@ class UserTest < ActiveSupport::TestCase
   test "assign_canonical_user! preserves event involvement attributes" do
     user = User.create!(name: "MC", github_handle: "mc-host")
     canonical_user = User.create!(name: "Canonical MC", github_handle: "canonical-mc")
-    org = Organisation.create!(name: "Test Org Involvement", slug: "test-org-involvement")
-    event = Event.create!(name: "Test Event Involvement", slug: "test-event-involvement", organisation: org, date: Date.today)
+    series = EventSeries.create!(name: "Test Series", slug: "test-series")
+    event = Event.create!(name: "Test Event Involvement", slug: "test-event-involvement", series: series, date: Date.today)
 
     EventInvolvement.create!(
       involvementable: user,

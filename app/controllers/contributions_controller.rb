@@ -39,7 +39,7 @@ class ContributionsController < ApplicationController
     @already_index_conferences = @upstream_conferences.count - @conferences_to_index
 
     # Conferences with missing schedules
-    @conferences_with_missing_schedule = Event.joins(:organisation).where(organisation: {kind: :conference}).reject { |event| event.schedule.exist? }.group_by(&:organisation)
+    @conferences_with_missing_schedule = Event.joins(:series).where(series: {kind: :conference}).reject { |event| event.schedule.exist? }.group_by(&:series)
     @conferences_with_missing_schedule_count = @conferences_with_missing_schedule.flat_map(&:last).count
   end
 
@@ -66,7 +66,7 @@ class ContributionsController < ApplicationController
   end
 
   def events_without_videos
-    @events_without_videos = Event.past.not_retreat.includes(:organisation).left_joins(:talks).where(talks_count: 0).group_by(&:organisation)
+    @events_without_videos = Event.past.not_retreat.includes(:series).left_joins(:talks).where(talks_count: 0).group_by(&:series)
     @events_without_videos_count = @events_without_videos.flat_map(&:last).count
 
     @events_without_location = Static::Playlist.where(location: nil).group_by(&:__file_path)

@@ -4,10 +4,10 @@
   <article class="prose mb-6">This section highlights events that do not have associated videos available. Explore these events to see if the talks weren't recorded or just not yet added the site.</article>
 
   <div id="events-without-locations" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 min-w-full mb-6">
-    <% @events_without_videos.each do |organisation, events| %>
-      <%= content_tag :div, id: dom_id(organisation, "without-videos"), class: "p-4 rounded-lg border bg-white", target: :_blank do %>
+    <% @events_without_videos.each do |series, events| %>
+      <%= content_tag :div, id: dom_id(series, "without-videos"), class: "p-4 rounded-lg border bg-white", target: :_blank do %>
         <div class="flex flex-col">
-          <h3 class="line-clamp-1"><p>Organisation: <%= link_to organisation.name, organisation, class: "hover:underline" %></p></h3>
+          <h3 class="line-clamp-1"><p>Event Series: <%= link_to series.name, series_path(series), class: "hover:underline" %></p></h3>
 
           <b class="mt-4 mb-2">Events without videos:</b>
 

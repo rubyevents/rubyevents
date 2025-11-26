@@ -30,7 +30,7 @@ class Talks::WatchedTalksController < ApplicationController
   end
 
   def set_talk
-    @talk = Talk.includes(event: :organisation).find_by(slug: params[:talk_slug])
+    @talk = Talk.includes(event: :series).find_by(slug: params[:talk_slug])
   end
 
   def broadcast_update_to_event_talks

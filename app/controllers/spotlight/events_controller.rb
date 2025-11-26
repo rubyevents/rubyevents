@@ -3,7 +3,7 @@ class Spotlight::EventsController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
-    @events = Event.includes(:organisation).canonical.order(date: :desc)
+    @events = Event.includes(:series).canonical.order(date: :desc)
     @events = @events.ft_search(search_query) if search_query.present?
     @events_count = @events.count
     @events = @events.limit(5)
