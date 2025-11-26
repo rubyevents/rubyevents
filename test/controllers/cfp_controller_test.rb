@@ -18,13 +18,13 @@ class CFPControllerTest < ActionDispatch::IntegrationTest
 
   test "should get call4papers open in future" do
     get cfp_index_path
-    assert_select "div", /CFP opens at/i
+    assert_select "div", /CFP opens on/i
   end
 
   test "should get index call4papers opened" do
     @event.cfps.first.update(open_date: 1.week.ago, close_date: 1.day.from_now)
 
     get cfp_index_path
-    assert_select "div", /CFP closes at/i
+    assert_select "div", /CFP closes on/i
   end
 end

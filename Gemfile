@@ -81,6 +81,12 @@ gem "yt"
 # Family of libraries that support various formats of XML "feeds".
 gem "rss", "~> 0.3.1"
 
+# Powerful and seamless HTML-aware ERB parsing and tooling.
+gem "herb", "~> 0.8"
+
+# An ActionView-compatible ERB engine with modern DX - re-imagined with Herb.
+gem "reactionview", "~> 0.1"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "bundler-audit", require: false
