@@ -109,7 +109,7 @@ class PageController < ApplicationController
   end
 
   def assets
-    @events = Event.includes(:organisation).order("organisations.name, events.name")
+    @events = Event.includes(:series).order("event_series.name, events.name")
 
     @asset_types = {
       "avatar" => {width: 256, height: 256, name: "Avatar"},

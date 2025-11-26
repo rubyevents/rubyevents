@@ -29,18 +29,18 @@
     </div>
 
     <div class="space-y-8">
-      <% @events_with_assets.group_by { |e| e[:event].organisation }.sort_by { |org, _| org.name }.each do |organisation, org_events| %>
+      <% @events_with_assets.group_by { |e| e[:event].series }.sort_by { |series, _| series.name }.each do |series, series_events| %>
         <div class="bg-white rounded-lg overflow-hidden" style="border: 1px solid #E5E5E5;">
           <div class="bg-gray-50 px-6 py-4" style="border-bottom: 1px solid #E5E5E5;">
-            <h2 class="text-2xl font-bold text-gray-900"><%= organisation.name %></h2>
+            <h2 class="text-2xl font-bold text-gray-900"><%= series.name %></h2>
             <p class="text-gray-600 text-sm mt-1">
-              <%= org_events.count %> events •
-              <%= org_events.count { |e| e[:has_any_assets] } %> with assets
+              <%= series_events.count %> events •
+              <%= series_events.count { |e| e[:has_any_assets] } %> with assets
             </p>
           </div>
 
           <div class="p-6 space-y-6">
-            <% org_events.sort_by { |e| e[:event].end_date || e[:event].start_date || e[:event].date || Date.new(1900, 1, 1) }.reverse.each do |event_data| %>
+            <% series_events.sort_by { |e| e[:event].end_date || e[:event].start_date || e[:event].date || Date.new(1900, 1, 1) }.reverse.each do |event_data| %>
               <% event = event_data[:event] %>
               <% assets = event_data[:assets] %>
               <% missing_assets = event_data[:missing_assets] %>
