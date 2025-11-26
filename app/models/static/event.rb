@@ -1,5 +1,5 @@
 module Static
-  class Playlist < FrozenRecord::Base
+  class Event < FrozenRecord::Base
     include ActionView::Helpers::DateHelper
 
     self.backend = Backends::MultiFileBackend.new("**/**/event.yml")
@@ -93,7 +93,7 @@ module Static
     end
 
     def event_record
-      @event_record ||= Event.find_by(slug: slug)
+      @event_record ||= ::Event.find_by(slug: slug)
     end
 
     def start_date

@@ -31,7 +31,7 @@ class PageController < ApplicationController
     @recommended_talks = Current.user.talk_recommender.talks(limit: 4) if Current.user
 
     # Add featured events logic
-    playlist_slugs = Static::Playlist.where.not(featured_background: nil)
+    playlist_slugs = Static::Event.where.not(featured_background: nil)
       .select(&:featured?)
       .sort_by(&:home_sort_date)
       .reverse
