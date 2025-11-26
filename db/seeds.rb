@@ -127,14 +127,14 @@ series_files.each do |series_file_path|
                 parsed = PublicSuffix.parse(host)
                 domain = parsed.domain
 
-                s = Sponsor.find_by(domain: domain) if domain.present?
+                s = Organization.find_by(domain: domain) if domain.present?
               rescue PublicSuffix::Error, URI::InvalidURIError
                 # If parsing fails, continue with other matching methods
               end
             end
 
-            s ||= Sponsor.find_by(name: sponsor["name"]) || Sponsor.find_by(slug: sponsor["slug"]&.downcase)
-            s ||= Sponsor.find_or_initialize_by(name: sponsor["name"])
+            s ||= Organization.find_by(name: sponsor["name"]) || Organization.find_by(slug: sponsor["slug"]&.downcase)
+            s ||= Organization.find_or_initialize_by(name: sponsor["name"])
 
             s.update(
               website: sponsor["website"],
@@ -149,12 +149,12 @@ series_files.each do |series_file_path|
             s.logo_url = sponsor["logo_url"] if sponsor["logo_url"].present? && s.logo_url.blank?
 
             if !s.persisted?
-              s = Sponsor.find_by(slug: s.slug) || Sponsor.find_by(name: s.name)
+              s = Organization.find_by(slug: s.slug) || Organization.find_by(name: s.name)
             end
 
             s.save!
 
-            event.event_sponsors.find_or_create_by!(sponsor: s, event: event).update!(tier: tier["name"], badge: sponsor["badge"])
+            event.sponsors.find_or_create_by!(organization: s, event: event).update!(tier: tier["name"], badge: sponsor["badge"])
           end
         end
       end

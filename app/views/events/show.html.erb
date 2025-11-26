@@ -179,11 +179,11 @@
                  data-scroll-target="container"
                  data-action="scroll->scroll#checkScroll">
               <div class="flex pb-4 gap-4">
-                <% @sponsors.each do |event_sponsor| %>
+                <% @sponsors.each do |sponsor| %>
                   <div class="snap-start" data-scroll-target="card">
-                    <%= render partial: "sponsors/card", locals: {
-                          sponsor: event_sponsor.sponsor,
-                          event_sponsor: event_sponsor,
+                    <%= render partial: "organizations/card", locals: {
+                          organization: sponsor.organization,
+                          sponsor: sponsor,
                           turbo_frame: true,
                           hide_event_count: true
                         } %>

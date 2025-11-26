@@ -1,67 +1,54 @@
 require "test_helper"
 
 class SponsorTest < ActiveSupport::TestCase
-  test "should generate slug from name" do
-    sponsor = Sponsor.new(name: "Example Corp")
-    sponsor.valid?
-    assert_equal "example-corp", sponsor.slug
+  def setup
+    @event = events(:railsconf_2017)
+    @organization = organizations(:one)
   end
 
-  test "should validate presence of name" do
-    sponsor = Sponsor.new(name: "")
-    assert_not sponsor.valid?
-    assert_includes sponsor.errors[:name], "can't be blank"
+  test "allows same organization for same event with different tiers" do
+    Sponsor.create!(event: @event, organization: @organization, tier: "gold")
+
+    assert_nothing_raised do
+      Sponsor.create!(event: @event, organization: @organization, tier: "silver")
+    end
   end
 
-  test "should validate uniqueness of name" do
-    Sponsor.create!(name: "Unique Corp")
-    duplicate_sponsor = Sponsor.new(name: "Unique Corp")
-    assert_not duplicate_sponsor.valid?
-    assert_includes duplicate_sponsor.errors[:name], "has already been taken"
+  test "prevents duplicate organization for same event and tier" do
+    Sponsor.create!(event: @event, organization: @organization, tier: "gold")
+
+    duplicate = Sponsor.new(event: @event, organization: @organization, tier: "gold")
+
+    assert_not duplicate.valid?
+    assert_includes duplicate.errors[:organization_id],
+      "is already associated with this event for the same tier"
   end
 
-  test "should normalize website with https prefix" do
-    sponsor = Sponsor.new(name: "Test Corp", website: "example.com")
-    sponsor.save!
-    assert_equal "https://example.com", sponsor.website
+  test "allows same organization for different events with same tier" do
+    other_event = events(:rubyconfth_2022)
+
+    Sponsor.create!(event: @event, organization: @organization, tier: "gold")
+
+    assert_nothing_raised do
+      Sponsor.create!(event: other_event, organization: @organization, tier: "gold")
+    end
   end
 
-  test "should preserve https:// prefix in website" do
-    sponsor = Sponsor.new(name: "Test Corp", website: "https://example.com")
-    sponsor.save!
-    assert_equal "https://example.com", sponsor.website
+  test "handles nil tiers correctly" do
+    Sponsor.create!(event: @event, organization: @organization, tier: nil)
+
+    duplicate = Sponsor.new(event: @event, organization: @organization, tier: nil)
+
+    assert_not duplicate.valid?
+    assert_includes duplicate.errors[:organization_id],
+      "is already associated with this event for the same tier"
   end
 
-  test "should preserve http:// prefix in website" do
-    sponsor = Sponsor.new(name: "Test Corp", website: "http://example.com")
-    sponsor.save!
-    assert_equal "http://example.com", sponsor.website
-  end
+  test "treats empty string tier as nil" do
+    Sponsor.create!(event: @event, organization: @organization, tier: "")
 
-  test "should handle blank website" do
-    sponsor = Sponsor.new(name: "Test Corp", website: "")
-    sponsor.save!
-    assert_equal "", sponsor.website
-  end
+    duplicate = Sponsor.new(event: @event, organization: @organization, tier: nil)
 
-  test "should handle nil website" do
-    sponsor = Sponsor.create!(name: "Test Corp", website: nil)
-    # Rails normalizes will set the attribute but nil values remain nil if not explicitly converted
-    assert_nil sponsor.website
-  end
-
-  test "should strip query params from website" do
-    sponsor = Sponsor.create!(name: "Query Corp", website: "https://example.com?utm_source=newsletter&ref=123")
-    assert_equal "https://example.com", sponsor.website
-  end
-
-  test "should strip fragment from website" do
-    sponsor = Sponsor.create!(name: "Fragment Corp", website: "https://example.com/path#section")
-    assert_equal "https://example.com/path", sponsor.website
-  end
-
-  test "should prepend https and strip params if missing scheme" do
-    sponsor = Sponsor.create!(name: "Coerce Corp", website: "example.com/?utm_campaign=abc#top")
-    assert_equal "https://example.com/", sponsor.website
+    assert_not duplicate.valid?
   end
 end

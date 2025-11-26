@@ -23,9 +23,9 @@
 # Indexes
 #
 #  index_events_on_canonical_id     (canonical_id)
+#  index_events_on_event_series_id  (event_series_id)
 #  index_events_on_kind             (kind)
 #  index_events_on_name             (name)
-#  index_events_on_event_series_id  (event_series_id)
 #  index_events_on_slug             (slug)
 #
 # Foreign Keys
@@ -48,8 +48,8 @@ class Event < ApplicationRecord
   has_many :keynote_speakers, -> { joins(:talks).where(talks: {kind: "keynote"}).distinct },
     through: :talks, source: :speakers
   has_many :topics, -> { distinct }, through: :talks
-  has_many :event_sponsors, dependent: :destroy
-  has_many :sponsors, through: :event_sponsors
+  has_many :sponsors, dependent: :destroy
+  has_many :organizations, through: :sponsors
   belongs_to :canonical, class_name: "Event", optional: true
   has_many :aliases, class_name: "Event", foreign_key: "canonical_id"
   has_many :cfps, dependent: :destroy

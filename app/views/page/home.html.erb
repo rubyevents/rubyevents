@@ -163,19 +163,19 @@
         </section>
       <% end %>
 
-      <% if @featured_sponsors.present? %>
+      <% if @featured_organizations.present? %>
         <section class="flex flex-col w-full gap-4">
           <div class="flex items-center justify-between w-full">
-            <h2 class="text-primary shrink-0">Featured sponsors</h2>
-            <%= link_to "see all sponsors", sponsors_path, class: "link text-right w-full" %>
+            <h2 class="text-primary shrink-0">Featured organizations</h2>
+            <%= link_to "see all organizations", organizations_path, class: "link text-right w-full" %>
           </div>
 
           <div class="relative" data-controller="scroll">
             <div class="overflow-x-auto scroll-smooth snap-x snap-mandatory" data-scroll-target="container" data-action="scroll->scroll#checkScroll">
               <div class="flex pb-4 gap-4">
-                <% @featured_sponsors.each do |sponsor| %>
+                <% @featured_organizations.each do |organization| %>
                   <div class="snap-start" data-scroll-target="card">
-                    <%= render partial: "sponsors/card", locals: {sponsor: sponsor} %>
+                    <%= render partial: "organizations/card", locals: {organization: organization} %>
                   </div>
                 <% end %>
               </div>

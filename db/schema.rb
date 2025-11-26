@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_10_29_032709) do
+ActiveRecord::Schema[8.1].define(version: 2025_11_26_171948) do
   create_table "ahoy_events", force: :cascade do |t|
     t.string "name"
     t.text "properties"
@@ -151,18 +151,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_29_032709) do
     t.index ["slug"], name: "index_event_series_on_slug"
   end
 
-  create_table "event_sponsors", force: :cascade do |t|
-    t.string "badge"
-    t.datetime "created_at", null: false
-    t.integer "event_id", null: false
-    t.integer "sponsor_id", null: false
-    t.string "tier"
-    t.datetime "updated_at", null: false
-    t.index ["event_id", "sponsor_id", "tier"], name: "index_event_sponsors_on_event_sponsor_tier_unique", unique: true
-    t.index ["event_id"], name: "index_event_sponsors_on_event_id"
-    t.index ["sponsor_id"], name: "index_event_sponsors_on_sponsor_id"
-  end
-
   create_table "events", force: :cascade do |t|
     t.integer "canonical_id"
     t.string "city"
@@ -199,6 +187,23 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_29_032709) do
     t.index ["request_hash"], name: "index_llm_requests_on_request_hash", unique: true
     t.index ["resource_type", "resource_id"], name: "index_llm_requests_on_resource"
     t.index ["task_name"], name: "index_llm_requests_on_task_name"
+  end
+
+  create_table "organizations", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.text "description"
+    t.string "domain"
+    t.integer "kind", default: 0, null: false
+    t.string "logo_background", default: "white"
+    t.string "logo_url"
+    t.json "logo_urls", default: []
+    t.string "main_location"
+    t.string "name"
+    t.string "slug"
+    t.datetime "updated_at", null: false
+    t.string "website"
+    t.index ["kind"], name: "index_organizations_on_kind"
+    t.index ["slug"], name: "index_organizations_on_slug"
   end
 
   create_table "password_reset_tokens", force: :cascade do |t|
@@ -261,18 +266,15 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_29_032709) do
   end
 
   create_table "sponsors", force: :cascade do |t|
+    t.string "badge"
     t.datetime "created_at", null: false
-    t.text "description"
-    t.string "domain"
-    t.string "logo_background", default: "white"
-    t.string "logo_url"
-    t.json "logo_urls", default: []
-    t.string "main_location"
-    t.string "name"
-    t.string "slug"
+    t.integer "event_id", null: false
+    t.integer "organization_id", null: false
+    t.string "tier"
     t.datetime "updated_at", null: false
-    t.string "website"
-    t.index ["slug"], name: "index_sponsors_on_slug"
+    t.index ["event_id", "organization_id", "tier"], name: "index_sponsors_on_event_organization_tier_unique", unique: true
+    t.index ["event_id"], name: "index_sponsors_on_event_id"
+    t.index ["organization_id"], name: "index_sponsors_on_organization_id"
   end
 
   create_table "suggestions", force: :cascade do |t|
@@ -450,13 +452,13 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_29_032709) do
   add_foreign_key "event_involvements", "events"
   add_foreign_key "event_participations", "events"
   add_foreign_key "event_participations", "users"
-  add_foreign_key "event_sponsors", "events"
-  add_foreign_key "event_sponsors", "sponsors"
   add_foreign_key "events", "event_series"
   add_foreign_key "events", "events", column: "canonical_id"
   add_foreign_key "password_reset_tokens", "users"
   add_foreign_key "sessions", "users"
   add_foreign_key "speakers", "speakers", column: "canonical_id"
+  add_foreign_key "sponsors", "events"
+  add_foreign_key "sponsors", "organizations"
   add_foreign_key "suggestions", "users", column: "approved_by_id"
   add_foreign_key "suggestions", "users", column: "suggested_by_id"
   add_foreign_key "talk_topics", "talks"

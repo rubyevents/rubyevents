@@ -2,14 +2,6 @@
 #
 
 Rails.application.routes.draw do
-  namespace :sponsors do
-    resources :missing, only: [:index]
-  end
-
-  resources :sponsors, param: :slug, only: [:index, :show] do
-    resource :logos, only: [:show, :update], controller: "sponsors/logos"
-  end
-
   extend Authenticator
 
   # static pages
@@ -128,6 +120,18 @@ Rails.application.routes.draw do
       resources :collectibles, only: [:index]
     end
   end
+
+  resources :organizations, param: :slug, only: [:index, :show] do
+    resource :logos, only: [:show, :update], controller: "organizations/logos"
+  end
+
+  namespace :sponsors do
+    resources :missing, only: [:index]
+  end
+
+  get "/sponsors", to: redirect("/organizations", status: 301)
+  get "/sponsors/:slug", to: redirect("/organizations/%{slug}", status: 301)
+  get "/sponsors/:slug/logos", to: redirect("/organizations/%{slug}/logos", status: 301)
 
   get "/organisations", to: redirect("/events/series")
   get "/organisations/:slug", to: redirect("/events/series/%{slug}")

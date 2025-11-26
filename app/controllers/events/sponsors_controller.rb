@@ -4,13 +4,13 @@ class Events::SponsorsController < ApplicationController
 
   # GET /events/:event_slug/sponsors
   def index
-    @sponsors_by_tier = @event.event_sponsors.includes(:sponsor).group_by(&:tier)
+    @sponsors_by_tier = @event.sponsors.includes(:organization).group_by(&:tier)
   end
 
   private
 
   def set_event
-    @event = Event.includes(event_sponsors: :sponsor).find_by(slug: params[:event_slug])
+    @event = Event.includes(sponsors: :organization).find_by(slug: params[:event_slug])
 
     redirect_to events_path, status: :moved_permanently, notice: "Event not found" if @event.blank?
   end
