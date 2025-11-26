@@ -5,6 +5,25 @@ class CountriesController < ApplicationController
     @countries_by_continent = Event.all.map { |event| event.country }.uniq.group_by { |country| country&.continent || "Unknown" }.sort_by { |key, _value| key || "ZZ" }.to_h
     @events_by_country = Event.all.sort_by { |event| event.static_metadata&.home_sort_date || Time.at(0).to_date }.reverse.group_by { |event| event.country || "Unknown" }.sort_by { |key, value| (key.is_a?(String) ? key : key&.iso_short_name) || "ZZ" }.to_h
     @users_by_country = calculate_users_by_country
+
+    events = Event.where.not(lng: nil, lat: nil)
+    @geojson = {
+      type: "FeatureCollection",
+      features: events.map { |event|
+        {
+          type: "Feature",
+          geometry: {
+            type: "Point",
+            coordinates: [event.lng, event.lat]
+          },
+          properties: {
+            name: event.name,
+            slug: event.slug,
+            url: event_url(event)
+          }
+        }
+      }
+    }
   end
 
   def show

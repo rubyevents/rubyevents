@@ -1,20 +1,22 @@
 require "bundler/setup"
 require "dotenv/load"
+require "parallel"
 require_relative "../../config/environment"
 
 class Geolocate < Thor
-  desc "playlists", "Geolocate playlist entries based on location field"
-  option :files, aliases: :f, type: :string, default: "data/**/playlists.yml", desc: "Glob pattern or file path for playlist files"
+  desc "files [FILES...]", "Geolocate event.yml files based on location field"
   option :overwrite, type: :boolean, default: false, desc: "Overwrite existing coordinates"
-  def playlists
-    files = Dir.glob(options[:files])
+  def files(*file_patterns)
+    file_patterns = ["data/**/event.yml"] if file_patterns.empty?
+    
+    files = file_patterns.flat_map { |pattern| Dir.glob(pattern) }.uniq
     if files.empty?
-      puts "No files found matching pattern: #{options[:files]}"
+      puts "No files found matching patterns: #{file_patterns.join(", ")}"
       exit 1
     end
 
     Parallel.each(files, in_threads: 5) do |file_path|
-      process_playlist_file(file_path, options[:overwrite])
+      process_event_file(file_path, options[:overwrite])
     end
   end
 
@@ -39,37 +41,34 @@ class Geolocate < Thor
 
   private
 
-  def process_playlist_file(file_path, overwrite)
+  def process_event_file(file_path, overwrite)
     data = YAML.load_file(file_path)
 
-    unless data
-      puts "⚠ Skipping #{file_path}, failed to parse YAML"
+    unless data.is_a?(Hash)
+      puts "⚠ Skipping #{file_path}, invalid YAML structure"
       return
     end
 
-    modified = false
-
-    data.each do |entry|
-      next unless entry.is_a?(Hash)
-
-      location = entry["location"]
-      next if location.nil? || location.empty?
-      next if entry["coordinates"] && !overwrite
-
-      coordinates = geocode_location(location)
-
-      if coordinates
-        entry["coordinates"] = coordinates
-        modified = true
-        puts "✓ #{file_path}: #{entry["title"]} (#{location}) -> #{coordinates}"
-      else
-        puts "✗ #{file_path}: Failed to geocode #{entry["title"]} (#{location})"
-      end
+    location = data["location"]
+    unless location.present?
+      puts "⚠ Skipping #{file_path}: No location field"
+      return
     end
 
-    return unless modified
+    if data["coordinates"] && !overwrite
+      puts "⚠ Skipping #{file_path}: Already has coordinates"
+      return
+    end
 
-    File.write(file_path, YAML.dump(data))
+    coordinates = geocode_location(location)
+
+    if coordinates
+      data["coordinates"] = coordinates
+      File.write(file_path, YAML.dump(data))
+      puts "✓ #{file_path}: #{data["title"]} (#{location}) -> #{coordinates}"
+    else
+      puts "✗ #{file_path}: Failed to geocode (#{location})"
+    end
   rescue => e
     puts "✗ Error processing #{file_path}: #{e.message}"
   end
