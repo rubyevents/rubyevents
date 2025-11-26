@@ -1,18 +1,18 @@
-class SponsorsController < ApplicationController
+class OrganizationsController < ApplicationController
   skip_before_action :authenticate_user!
-  before_action :set_sponsor, only: %i[show]
+  before_action :set_organization, only: %i[show]
 
-  # GET /sponsors
+  # GET /organizations
   def index
-    @sponsors = Sponsor.includes(:events).order(:name)
-    @sponsors = @sponsors.where("lower(name) LIKE ?", "#{params[:letter].downcase}%") if params[:letter].present?
-    @featured_sponsors = Sponsor.joins(:event_sponsors).group("sponsors.id").order("COUNT(event_sponsors.id) DESC").limit(25).includes(:events)
+    @organizations = Organization.includes(:events).order(:name)
+    @organizations = @organizations.where("lower(name) LIKE ?", "#{params[:letter].downcase}%") if params[:letter].present?
+    @featured_organizations = Organization.joins(:sponsors).group("organizations.id").order("COUNT(sponsors.id) DESC").limit(25).includes(:events)
   end
 
-  # GET /sponsors/1
+  # GET /organizations/1
   def show
-    @back_path = sponsors_path
-    @events = @sponsor.events.includes(:series, :talks).order(start_date: :desc)
+    @back_path = organizations_path
+    @events = @organization.events.includes(:series, :talks).order(start_date: :desc)
     @events_by_year = @events.group_by { |event| event.start_date&.year || "Unknown" }
 
     @countries_with_events = @events.group_by(&:country_code)
@@ -20,17 +20,17 @@ class SponsorsController < ApplicationController
       .reject { |country, _| country.nil? }
       .sort_by { |country, _| country.translations["en"] }
 
-    involvements = @sponsor.event_involvements.includes(:event).order(:position)
+    involvements = @organization.event_involvements.includes(:event).order(:position)
     @involvements_by_role = involvements.group_by(&:role)
-    @involved_events = @sponsor.involved_events.includes(:series).distinct.order(start_date: :desc)
+    @involved_events = @organization.involved_events.includes(:series).distinct.order(start_date: :desc)
 
-    @statistics = prepare_sponsor_statistics
+    @statistics = prepare_organization_statistics
   end
 
   private
 
-  def prepare_sponsor_statistics
-    event_sponsors = @sponsor.event_sponsors.includes(event: [:talks, :series])
+  def prepare_organization_statistics
+    sponsors = @organization.sponsors.includes(event: [:talks, :series])
 
     {
       total_events: @events.size,
@@ -41,9 +41,9 @@ class SponsorsController < ApplicationController
       years_active: @events_by_year.keys.reject { |y| y == "Unknown" }.sort,
       first_sponsorship: @events.minimum(:start_date),
       latest_sponsorship: @events.maximum(:start_date),
-      sponsorship_tiers: event_sponsors.group(:tier).count.sort_by { |_, count| -count },
+      sponsorship_tiers: sponsors.group(:tier).count.sort_by { |_, count| -count },
       events_by_series: @events.group_by(&:series).transform_values(&:count).sort_by { |_, count| -count }.first(5),
-      badges_with_events: event_sponsors.includes(:event).map { |es| [es.badge, es.event] if es.badge.present? }.compact,
+      badges_with_events: sponsors.includes(:event).map { |s| [s.badge, s.event] if s.badge.present? }.compact,
       events_by_size: @events.includes(:talks).group_by { |event| classify_event_size(event) }.transform_values(&:count)
     }
   end
@@ -72,9 +72,9 @@ class SponsorsController < ApplicationController
     end
   end
 
-  def set_sponsor
-    @sponsor = Sponsor.find_by(slug: params[:slug])
+  def set_organization
+    @organization = Organization.find_by(slug: params[:slug])
 
-    redirect_to sponsors_path, status: :moved_permanently, notice: "Sponsor not found" if @sponsor.blank?
+    redirect_to organizations_path, status: :moved_permanently, notice: "Organization not found" if @organization.blank?
   end
 end

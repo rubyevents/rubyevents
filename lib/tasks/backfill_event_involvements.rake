@@ -54,16 +54,16 @@ namespace :backfill do
           involvement_group["organisations"]&.each_with_index do |org_name, index|
             next if org_name.blank?
 
-            sponsor = Sponsor.find_by(name: org_name)
-            unless sponsor
-              puts "\nCreating sponsor: #{org_name}"
-              sponsor = Sponsor.create!(name: org_name)
+            organization = Organization.find_by(name: org_name)
+            unless organization
+              puts "\nCreating organization: #{org_name}"
+              organization = Organization.create!(name: org_name)
             end
 
             user_count = involvement_group["users"]&.compact&.size || 0
 
             involvement = EventInvolvement.find_or_initialize_by(
-              involvementable: sponsor,
+              involvementable: organization,
               event: event,
               role: role
             )
@@ -73,7 +73,7 @@ namespace :backfill do
               created_count += 1 if involvement.previously_new_record?
               print "."
             else
-              puts "\nFailed to create involvement for sponsor #{org_name} in #{event.name}: #{involvement.errors.full_messages.join(", ")}"
+              puts "\nFailed to create involvement for organization #{org_name} in #{event.name}: #{involvement.errors.full_messages.join(", ")}"
               error_count += 1
             end
           end

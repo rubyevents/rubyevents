@@ -33,6 +33,7 @@ class Avo::Resources::Event < Avo::BaseResource
     field :participants, as: :has_many, through: :event_participations, class_name: "User"
     field :event_involvements, as: :has_many
     field :topics, as: :has_many
+    field :sponsors, as: :has_many
   end
 
   def actions

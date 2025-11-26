@@ -32,7 +32,7 @@ class EventsController < ApplicationController
       @featured_speakers = (keynote_speakers + other_speakers.first(8 - keynote_speakers.size)).uniq.shuffle
     end
 
-    @sponsors = @event.event_sponsors.includes(:sponsor).joins(:sponsor).shuffle
+    @sponsors = @event.sponsors.includes(:organization).joins(:organization).shuffle
 
     @participation = Current.user&.main_participation_to(@event)
   end
