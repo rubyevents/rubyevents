@@ -1,7 +1,6 @@
 require "public_suffix"
 
 speakers = YAML.load_file("#{Rails.root}/data/speakers.yml")
-event_series_data = YAML.load_file("#{Rails.root}/data/event_series.yml")
 videos_to_ignore = YAML.load_file("#{Rails.root}/data/videos_to_ignore.yml")
 
 # create speakers
@@ -21,8 +20,13 @@ rescue ActiveRecord::RecordInvalid => e
   puts "Couldn't save: #{speaker["name"]} (#{speaker["github"]}), error: #{e.message}"
 end
 
-event_series_data.each do |series|
-  event_series = EventSeries.find_or_initialize_by(slug: series["slug"])
+series_files = Dir.glob("#{Rails.root}/data/*/series.yml")
+
+series_files.each do |series_file_path|
+  series = YAML.load_file(series_file_path)
+  series_slug = File.basename(File.dirname(series_file_path))
+  event_series = EventSeries.find_or_initialize_by(slug: series_slug)
+  event_files = Dir.glob("#{Rails.root}/data/#{event_series.slug}/*/event.yml")
 
   event_series.update!(
     name: series["name"],
@@ -32,14 +36,14 @@ event_series_data.each do |series|
     kind: series["kind"],
     frequency: series["frequency"],
     youtube_channel_id: series["youtube_channel_id"],
-    slug: series["slug"],
+    slug: series_slug,
     language: series["language"] || ""
   )
 
-  events = YAML.load_file("#{Rails.root}/data/#{event_series.slug}/playlists.yml")
-
-  events.each do |event_data|
-    event = Event.find_or_create_by(slug: event_data["slug"])
+  event_files.each do |event_file_path|
+    event_data = YAML.load_file(event_file_path)
+    event_slug = File.basename(File.dirname(event_file_path))
+    event = Event.find_or_create_by(slug: event_slug)
 
     event.update(
       name: event_data["title"],

@@ -97,6 +97,6 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
   private
 
   def static_repository
-    @static_repository ||= Static::Playlist.find_by(slug: event.slug)
+    @static_repository ||= Static::Playlist.find_by_slug(event.slug)
   end
 end

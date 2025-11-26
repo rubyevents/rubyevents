@@ -39,9 +39,9 @@ rails runner scripts/prepare_event_series.rb
 
 This will update your `data_preparation/event_series.yml` file with the youtube_channel_id information.
 
-### Step 2 - Create the Playlists
+### Step 2 - Create the Events
 
-This workflow assumes the YouTube channel is organized by playlist with 1 event equating to 1 playlist. Run the following script to create the playlist file:
+This workflow assumes the YouTube channel is organized by playlist with 1 event equating to 1 playlist. Run the following script to create the event files:
 
 ```
 rails runner scripts/create_playlists.rb
@@ -53,14 +53,17 @@ You will end up with a data structure like this:
 data/
 ├── event_series.yml
 ├── railsconf
-    └── playlists.yml
+│   ├── railsconf-2021
+│   │   └── event.yml
+│   ├── railsconf-2022
+│   │   └── event.yml
 ```
 
-At this point, go through the `playlists.yml` and perform a bit of verification and editing:
+At this point, go through each `event.yml` file and perform a bit of verification and editing:
 
 - Add missing descriptions.
-- Ensure all playlists are relevant.
 - Ensure the year is correct.
+- Verify the dates and location.
 
 **Multi-Events Channels**
 
@@ -83,7 +86,7 @@ Here is an example for RailsConf/RubyConf:
 
 ### Step 3 - Create the Videos
 
-Once your playlists are curated, you can run the next script to extract the video information. It will iterate the playlist and extract all videos.
+Once your events are curated, you can run the next script to extract the video information. It will iterate each event and extract all videos from the associated YouTube playlist.
 
 ```bash
 rails runner scripts/extract_videos.rb
@@ -96,10 +99,11 @@ data/
 ├── event_series.yml
 ├── railsconf
 │   ├── railsconf-2021
+│   │   ├── event.yml
 │   │   └── videos.yml
 │   ├── railsconf-2022
+│   │   ├── event.yml
 │   │   └── videos.yml
-│   ├── playlists.yml
 ├── speakers.yml
 ```
 
@@ -120,18 +124,20 @@ Example of a valid video entry:
   date: "2025-10-11"
 ```
 
-To extract a maximum of information from the YouTube metadata, the raw video information is parsed by a class `YouTube::VideoMetadata`. This class will try to extract speakers from the title. This is the default parser but sometimes the speakers are not extracted correctly, you can create a new class and specify it in the `playlists.yml` file.
+To extract a maximum of information from the YouTube metadata, the raw video information is parsed by a class `YouTube::VideoMetadata`. This class will try to extract speakers from the title. This is the default parser but sometimes the speakers are not extracted correctly, you can create a new class and specify it in the `event.yml` file.
 
 ```yml
-- id: PL9_jjLrTYxc2uUcqG2wjZ1ppt-TkFG-gm
-  title: RubyConf AU 2015
-  description: ""
-  published_at: "2017-05-20"
-  channel_id: UCr38SHAvOKMDyX3-8lhvJHA
-  year: "2015"
-  videos_count: 21
-  slug: rubyconf-au-2015
-  metadata_parser: "YouTube::VideoMetadata::RubyConfAu" # custom parser
+# data/rubyconf-au/rubyconf-au-2015/event.yml
+---
+id: PL9_jjLrTYxc2uUcqG2wjZ1ppt-TkFG-gm
+title: RubyConf AU 2015
+description: ""
+published_at: "2017-05-20"
+channel_id: UCr38SHAvOKMDyX3-8lhvJHA
+year: "2015"
+videos_count: 21
+slug: rubyconf-au-2015
+metadata_parser: "YouTube::VideoMetadata::RubyConfAu" # custom parser
 ```
 
 ### Step 4 - move the data

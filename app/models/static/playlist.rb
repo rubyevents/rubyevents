@@ -2,8 +2,15 @@ module Static
   class Playlist < FrozenRecord::Base
     include ActionView::Helpers::DateHelper
 
-    self.backend = Backends::MultiFileBackend.new("**/**/playlists.yml")
+    self.backend = Backends::MultiFileBackend.new("**/**/event.yml")
     self.base_path = Rails.root.join("data")
+
+    class << self
+      def find_by_slug(slug)
+        @slug_index ||= all.index_by(&:slug)
+        @slug_index[slug]
+      end
+    end
 
     def featured?
       within_next_days? || today? || past?
@@ -75,6 +82,14 @@ module Static
 
     def hackathon?
       kind == "hackathon"
+    end
+
+    def slug
+      @slug ||= begin
+        return attributes["slug"] if attributes["slug"].present?
+
+        File.basename(File.dirname(__file_path))
+      end
     end
 
     def event_record

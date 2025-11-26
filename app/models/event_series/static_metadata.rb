@@ -6,6 +6,6 @@ class EventSeries::StaticMetadata < ActiveRecord::AssociatedObject
   private
 
   def static_repository
-    @static_repository ||= Static::EventSeries.find_by(slug: event_series.slug)
+    @static_repository ||= Static::EventSeries.find_by_slug(event_series.slug)
   end
 end

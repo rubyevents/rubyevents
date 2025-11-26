@@ -3,17 +3,21 @@
 #
 organisations = YAML.load_file("#{Rails.root}/data_preparation/organisations.yml")
 
-# create a directory for each organisation and add a playlist.yml file
-def create_playlists(organisation)
+# create a directory for each event and add an event.yml file
+def create_events(organisation)
   playlists = YouTube::Playlists.new.all(channel_id: organisation["youtube_channel_id"], title_matcher: organisation["playlist_matcher"])
   playlists.sort_by! { |playlist| playlist.year.to_i }
   playlists.select! { |playlist| playlist.videos_count.positive? }
 
-  File.write("#{Rails.root}/data_preparation/#{organisation["slug"]}/playlists.yml", playlists.map { |item| item.to_h.stringify_keys }.to_yaml.gsub("- id: ", "\n- id: "))
+  playlists.each do |playlist|
+    event_dir = "#{Rails.root}/data_preparation/#{organisation["slug"]}/#{playlist.slug}"
+    FileUtils.mkdir_p(event_dir)
+    File.write("#{event_dir}/event.yml", playlist.to_h.stringify_keys.to_yaml)
+  end
 end
 
 # This is the main loop
 organisations.each do |organisation|
   FileUtils.mkdir_p(File.join("#{Rails.root}/data_preparation", organisation["slug"]))
-  create_playlists(organisation)
+  create_events(organisation)
 end
