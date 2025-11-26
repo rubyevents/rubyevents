@@ -42,7 +42,7 @@ class EventSeries < ApplicationRecord
   validates :name, presence: true
 
   # enums
-  enum :kind, {conference: 0, meetup: 1, organisation: 2, retreat: 3, hackathon: 4}
+  enum :kind, {conference: 0, meetup: 1, organisation: 2, retreat: 3, hackathon: 4, event: 5}
   enum :frequency, {unknown: 0, yearly: 1, monthly: 2, biyearly: 3, quarterly: 4, irregular: 5}
 
   def title
