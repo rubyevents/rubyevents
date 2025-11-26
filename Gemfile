@@ -188,3 +188,5 @@ gem "rails-i18n", "~> 8.0"
 # Ruby standards gems
 gem "openssl" # https://github.com/ruby/openssl/issues/949
 gem "ostruct"
+
+gem "geocoder"

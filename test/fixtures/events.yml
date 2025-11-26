@@ -10,6 +10,8 @@
 #  date_precision  :string           default("day"), not null
 #  end_date        :date
 #  kind            :string           default("event"), not null, indexed
+#  lat             :decimal(10, 7)
+#  lng             :decimal(10, 7)
 #  name            :string           default(""), not null, indexed
 #  slug            :string           default(""), not null, indexed
 #  start_date      :date

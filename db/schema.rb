@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_11_26_171948) do
+ActiveRecord::Schema[8.1].define(version: 2025_11_26_203734) do
   create_table "ahoy_events", force: :cascade do |t|
     t.string "name"
     t.text "properties"
@@ -161,6 +161,8 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_26_171948) do
     t.date "end_date"
     t.integer "event_series_id", null: false
     t.string "kind", default: "event", null: false
+    t.decimal "lat", precision: 10, scale: 7
+    t.decimal "lng", precision: 10, scale: 7
     t.string "name", default: "", null: false
     t.string "slug", default: "", null: false
     t.date "start_date"
