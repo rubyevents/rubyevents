@@ -1,0 +1,43 @@
+<div class="container container-sm flex flex-col w-full gap-4 my-8 hotwire-native:my-0 hotwire-native:mb-8">
+  <div class="flex items-end gap-2 title text-primary hotwire-native:mb-3">
+    <h1 class="title hotwire-native:hidden" style="view-transition-name: title">
+      <%= title "Recently Watched Videos" %>
+    </h1>
+  </div>
+  <% if @talks.present? %>
+    <div id="talks" class="flex flex-col gap-2">
+      <%= render partial: "talks/card_horizontal",
+            collection: @talks,
+            as: :talk,
+            locals: {
+              user_watched_talks: user_watched_talks,
+              show_remove_from_watched: true,
+              tooltip: false
+            } %>
+    </div>
+  <% else %>
+    <div class="text-center py-12">
+      <div class="max-w-md mx-auto">
+        <div class="text-6xl mb-4">📺</div>
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">No watched videos yet</h2>
+        <p class="text-gray-600 mb-6">
+          Start watching talks to track your viewing history and pick up where you left off.
+        </p>
+        <div class="bg-purple-50 border border-purple-200 rounded-lg p-4 text-left">
+          <h3 class="font-semibold text-purple-800 mb-2">How it works:</h3>
+          <ul class="text-sm text-purple-700 space-y-1">
+            <li>• Watch talks to automatically track your progress</li>
+            <li>• See your recently watched videos here</li>
+            <li>• Resume watching where you left off</li>
+          </ul>
+        </div>
+        <div class="mt-6">
+          <%= link_to talks_path, class: "btn btn-primary" do %>
+            <%= fa "video", variant: :solid, class: "w-5 h-5 mr-2" %>
+            Browse Talks
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

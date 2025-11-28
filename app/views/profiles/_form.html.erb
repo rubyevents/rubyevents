@@ -1,0 +1,71 @@
+<%= form_with(model: user, url: profile_path(user)) do |form| %>
+  <div class="grid lg:grid-cols-2 gap-4 mb-8">
+    <div class="col-span-2">
+      <%= form.label :bio %>
+      <%= form.text_area :bio, rows: 4, class: "textarea textarea-bordered w-full" %>
+    </div>
+
+    <div>
+      <%= form.label :name %>
+      <%= form.text_field :name, class: "input input-bordered w-full" %>
+    </div>
+
+    <div>
+      <%= form.label :location %>
+      <%= form.text_field :location, class: "input input-bordered w-full" %>
+    </div>
+
+    <div>
+      <%= form.label :github_handle, "GitHub" %>
+      <%= form.text_field :github_handle, class: "input input-bordered w-full" %>
+    </div>
+
+    <div>
+      <%= form.label :twitter, "Twitter/X (URL or handle)" %>
+      <%= form.text_field :twitter, class: "input input-bordered w-full" %>
+    </div>
+
+    <div>
+      <%= form.label :mastodon, "Mastodon (Full URL/handle)" %>
+      <%= form.text_field :mastodon, class: "input input-bordered w-full" %>
+    </div>
+
+    <div>
+      <%= form.label :linkedin, "LinkedIn (URL or slug)" %>
+      <%= form.text_field :linkedin, class: "input input-bordered w-full" %>
+    </div>
+
+    <div>
+      <%= form.label :bsky, "Bluesky (URL or handle)" %>
+      <%= form.text_field :bsky, class: "input input-bordered w-full" %>
+    </div>
+
+    <div>
+      <%= form.label :speakerdeck, "Speakerdeck" %>
+      <%= form.text_field :speakerdeck, class: "input input-bordered w-full" %>
+    </div>
+
+    <div>
+      <%= form.label :pronouns %>
+      <div data-controller="pronouns-select">
+        <%= form.select :pronouns_type, User::PRONOUNS, {}, class: "select select-bordered w-full", data: {action: "pronouns-select#change", pronouns_select_target: "type"} %>
+        <%= form.text_field :pronouns, placeholder: "Custom pronouns", class: "hidden mt-3 input input-bordered w-full", data: {pronouns_select_target: "input"} %>
+      </div>
+    </div>
+
+    <div>
+      <%= form.label :website %>
+      <%= form.text_field :website, class: "input input-bordered w-full" %>
+    </div>
+  </div>
+
+  <div class="flex items-center gap-4 justify-end">
+    <%= ui_button "Cancel", data: {action: "click->modal#close"}, role: :button, kind: :ghost %>
+
+    <% if user.managed_by?(Current.user) %>
+      <%= ui_button "Update profile", type: :submit %>
+    <% else %>
+      <%= ui_button "Suggest modifications", type: :submit %>
+    <% end %>
+  </div>
+<% end %>

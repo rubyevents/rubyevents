@@ -1,0 +1,30 @@
+<%= link_to organization_path(organization), id: dom_id(organization), class: "flex justify-between" do %>
+  <div class="flex items-center gap-2">
+    <% if organization.has_logo_image? %>
+      <div class="<%= organization.logo_background_class %> size-8 rounded border border-[#D9DFE3] p-1">
+        <%= image_tag organization.logo_image_path,
+              class: "w-full h-full object-contain",
+              alt: "#{organization.name} Logo",
+              loading: "lazy",
+              onerror: "this.style.display='none'; this.nextElementSibling.style.display='flex';" %>
+        <div class="avatar placeholder hidden">
+          <div class="w-full h-full bg-gray-100 text-gray-600 flex items-center justify-center">
+            <span class="text-sm font-bold"><%= organization.name.split(" ").map(&:first).join.first(2) %></span>
+          </div>
+        </div>
+      </div>
+    <% elsif organization.organization_image_for("avatar.webp") %>
+      <%= image_tag image_path(organization.avatar_image_path), class: "size-8 rounded border border-[#D9DFE3]", loading: "lazy" %>
+    <% else %>
+      <div class="avatar placeholder">
+        <div class="size-8 rounded bg-gray-100 text-gray-600 border border-[#D9DFE3] flex items-center justify-center">
+          <span class="text-sm font-bold"><%= organization.name.split(" ").map(&:first).join.first(2) %></span>
+        </div>
+      </div>
+    <% end %>
+
+    <span class="line-clamp-1"><%= organization.name %></span>
+  </div>
+
+  <%= ui_badge(organization.events.size, kind: :secondary, outline: true, size: :lg, class: "min-w-10") %>
+<% end %>

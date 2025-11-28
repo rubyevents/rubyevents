@@ -10,17 +10,46 @@ class AddUniqueIndexOnGitHubInSpeaker < ActiveRecord::Migration[8.0]
       speaker.assign_canonical_speaker!(canonical_speaker: speaker.canonical)
     end
 
-    # fix one by one
-    Speaker.find_by(name: "Andrew").assign_canonical_speaker!(canonical_speaker: Speaker.find_by(name: "Andrew Nesbitt"))
-    Speaker.find_by(name: "HASUMI Hitoshi").assign_canonical_speaker!(canonical_speaker: Speaker.find_by(name: "Hitoshi Hasumi"))
-    Speaker.find_by(name: "hogelog").assign_canonical_speaker!(canonical_speaker: Speaker.find_by(name: "Sunao Hogelog Komuro"))
-    Speaker.find_by(name: "Jônatas Paganini").assign_canonical_speaker!(canonical_speaker: Speaker.find_by(name: "Jônatas Davi Paganini"))
-    Speaker.find_by(name: "Sutou Kouhei").assign_canonical_speaker!(canonical_speaker: Speaker.find_by(name: "Kouhei Sutou"))
-    Speaker.find_by(slug: "maciek-rzasa").assign_canonical_speaker!(canonical_speaker: Speaker.find_by(slug: "maciej-rzasa"))
-    Speaker.find_by(slug: "mario-alberto-chavez").assign_canonical_speaker!(canonical_speaker: Speaker.find_by(slug: "mario-chavez"))
-    Speaker.find_by(slug: "enrique-morellon").assign_canonical_speaker!(canonical_speaker: Speaker.find_by(slug: "enrique-mogollan"))
-    Speaker.find_by(slug: "masafumi-okura").assign_canonical_speaker!(canonical_speaker: Speaker.find_by(slug: "okura-masafumi"))
-    Speaker.find_by(slug: "oliver-lacan").assign_canonical_speaker!(canonical_speaker: Speaker.find_by(slug: "olivier-lacan"))
+    # fix one by one - with nil checks for safety
+    andrew_speaker = Speaker.find_by(name: "Andrew")
+    andrew_nesbitt_speaker = Speaker.find_by(name: "Andrew Nesbitt")
+    andrew_speaker&.assign_canonical_speaker!(canonical_speaker: andrew_nesbitt_speaker) if andrew_nesbitt_speaker
+
+    hasumi_speaker = Speaker.find_by(name: "HASUMI Hitoshi")
+    hitoshi_speaker = Speaker.find_by(name: "Hitoshi Hasumi")
+    hasumi_speaker&.assign_canonical_speaker!(canonical_speaker: hitoshi_speaker) if hitoshi_speaker
+
+    hogelog_speaker = Speaker.find_by(name: "hogelog")
+    sunao_speaker = Speaker.find_by(name: "Sunao Hogelog Komuro")
+    hogelog_speaker&.assign_canonical_speaker!(canonical_speaker: sunao_speaker) if sunao_speaker
+
+    jonatas_speaker = Speaker.find_by(name: "Jônatas Paganini")
+    jonatas_davi_speaker = Speaker.find_by(name: "Jônatas Davi Paganini")
+    jonatas_speaker&.assign_canonical_speaker!(canonical_speaker: jonatas_davi_speaker) if jonatas_davi_speaker
+
+    sutou_speaker = Speaker.find_by(name: "Sutou Kouhei")
+    kouhei_speaker = Speaker.find_by(name: "Kouhei Sutou")
+    sutou_speaker&.assign_canonical_speaker!(canonical_speaker: kouhei_speaker) if kouhei_speaker
+
+    maciek_speaker = Speaker.find_by(slug: "maciek-rzasa")
+    maciej_speaker = Speaker.find_by(slug: "maciej-rzasa")
+    maciek_speaker&.assign_canonical_speaker!(canonical_speaker: maciej_speaker) if maciej_speaker
+
+    mario_alberto_speaker = Speaker.find_by(slug: "mario-alberto-chavez")
+    mario_speaker = Speaker.find_by(slug: "mario-chavez")
+    mario_alberto_speaker&.assign_canonical_speaker!(canonical_speaker: mario_speaker) if mario_speaker
+
+    enrique_morellon_speaker = Speaker.find_by(slug: "enrique-morellon")
+    enrique_mogollan_speaker = Speaker.find_by(slug: "enrique-mogollan")
+    enrique_morellon_speaker&.assign_canonical_speaker!(canonical_speaker: enrique_mogollan_speaker) if enrique_mogollan_speaker
+
+    masafumi_speaker = Speaker.find_by(slug: "masafumi-okura")
+    okura_speaker = Speaker.find_by(slug: "okura-masafumi")
+    masafumi_speaker&.assign_canonical_speaker!(canonical_speaker: okura_speaker) if okura_speaker
+
+    oliver_speaker = Speaker.find_by(slug: "oliver-lacan")
+    olivier_speaker = Speaker.find_by(slug: "olivier-lacan")
+    oliver_speaker&.assign_canonical_speaker!(canonical_speaker: olivier_speaker) if olivier_speaker
     add_index :speakers, :github, unique: true, where: "github IS NOT NULL AND github != ''"
   end
 

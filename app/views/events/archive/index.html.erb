@@ -1,0 +1,52 @@
+<div class="container py-8 hotwire-native:mb-6">
+  <div class="flex items-center justify-between w-full hotwire-native:hidden">
+    <h1 class="title">
+      <%= title "Events Archive" %>
+      <span class="text-base text-gray-500">
+        (<%= pluralize(@events.includes(:series).where(series: {kind: "conference"}).count, "conference") %>,
+        <%= pluralize(@events.includes(:series).where(series: {kind: "meetup"}).count, "meetup") %>,
+        <%= pluralize(@events.includes(:series).where(series: {kind: "retreat"}).count, "retreat") %>)
+      </span>
+    </h1>
+
+    <div class="flex gap-4 whitespace-nowrap">
+      <%= link_to "Upcoming Events", events_path, class: "link text-right w-full" %>
+      <%= link_to "Past Events", past_events_path, class: "link text-right w-full" %>
+    </div>
+  </div>
+
+  <div class="flex flex-wrap w-full justify-between py-8 hotwire-native:hidden gap-1">
+    <%= link_to archive_events_path, class: class_names("flex items-center justify-center w-10 text-gray-500 rounded hover:bg-brand-lighter border", "bg-brand-lighter": params[:letter].blank?) do %>
+        all
+    <% end %>
+
+    <% ("a".."z").each do |letter| %>
+      <%= link_to archive_events_path(letter: letter), id: letter, class: class_names("flex items-center justify-center w-10 text-gray-500 rounded hover:bg-brand-lighter border", "bg-brand-lighter": letter == params[:letter]) do %>
+        <%= letter.upcase %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <% if params[:letter].present? %>
+    <div class="font-medium mb-12">
+      Events starting with "<%= params[:letter].upcase %>"
+    </div>
+  <% end %>
+
+  <% if params[:s].present? %>
+    <div class="font-medium mb-12">
+      search results for "<%= params[:s] %>"
+    </div>
+  <% end %>
+
+  <% if @events.any? %>
+    <% @events.group_by(&:series).each do |series, events| %>
+      <h2><%= link_to series.name, series_path(series) %></h2>
+      <div id="<%= dom_id(series, "events") %>" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 lg:gap-x-12 gap-y-2 min-w-full pt-4 pb-8">
+        <%= render partial: "events/event", collection: events %>
+      </div>
+    <% end %>
+  <% else %>
+    <p>No events found</p>
+  <% end %>
+</div>

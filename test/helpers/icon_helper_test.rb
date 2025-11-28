@@ -51,24 +51,4 @@ class IconHelperTest < ActionView::TestCase
     result = cached_inline_svg(@icon, data: {test: 'value"with"quotes'})
     assert_includes result, 'data-test="value&quot;with&quot;quotes"'
   end
-
-  test "heroicon" do
-    result = heroicon("magnifying-glass", size: :md)
-    assert_includes result, 'viewBox="0 0 24 24"'
-    assert_includes result, 'class="h-6 w-6"'
-    assert_includes result, 'aria-hidden="true"'
-    assert_not_includes result, ' hidden="true"'
-
-    # Verify SVG structure
-    doc = Nokogiri::HTML.fragment(result)
-    svg = doc.at_css("svg")
-
-    assert_not_nil svg, "Should be a valid SVG element"
-    assert_equal "svg", svg.name
-    assert_not_nil svg.at_css("path"), "SVG should contain a path element"
-
-    # Verify proper closing of tags
-    assert result.include?("</svg>"), "SVG should have a closing tag"
-    assert_match(/<svg[^>]*>.*<\/svg>/m, result, "SVG should be properly closed")
-  end
 end

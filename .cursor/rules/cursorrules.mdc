@@ -1,0 +1,304 @@
+---
+alwaysApply: true
+---
+
+# RubyVideo Rails 8 Project - Cursor Rules
+
+You are working on RubyVideo, a modern Ruby on Rails 8 application that aggregates and curates Ruby conference videos. This is a sophisticated video platform with AI-powered features, search, analytics, and social features.
+
+## Project Overview
+
+**Tech Stack:**
+
+- Rails 8.0 with SQLite database
+- Frontend: Vite + Tailwind CSS + daisyUI + Stimulus controllers
+- Background Jobs: Solid Queue
+- Caching: Solid Cache
+- Authentication: Custom session-based auth with GitHub OAuth
+- Admin: Avo admin panel
+- Deployment: Kamal on Hetzner VPS
+- Analytics: Ahoy for page tracking
+- AI Features: OpenAI integration for summarization and topic extraction
+
+**Architecture:**
+
+- ViewComponent pattern for reusable UI components
+- Concerns for shared model behavior
+- Associated Objects pattern using `active_record-associated_object`
+- Slug-based routing for SEO
+- Background jobs for data processing
+- YAML-based conference data structure
+
+## Development Standards
+
+### Ruby/Rails Code
+
+**General Rails Conventions:**
+
+- Follow Rails 8 conventions and modern Rails patterns
+- Use `standardrb` for Ruby formatting (never `rubocop`)
+- Models include concerns: `Suggestable`, `Sluggable`, `Rollupable`, `Searchable`, `Watchable`
+- Prefer `belongs_to` with `optional: true` when appropriate
+- Use `has_many` with `dependent: :destroy` for cascade deletes
+
+**Model Patterns:**
+
+```ruby
+class Talk < ApplicationRecord
+  include Rollupable
+  include Sluggable
+  include Suggestable
+  include Searchable
+  include Watchable
+  configure_slug(attribute: :title, auto_suffix_on_collision: true)
+
+  belongs_to :event, optional: true, counter_cache: :talks_count, touch: true
+  has_many :speaker_talks, dependent: :destroy
+  has_many :speakers, through: :speaker_talks
+
+  validates :title, presence: true
+  enum :kind, ["talk", "keynote", "panel"].index_by(&:itself), default: "talk"
+
+  scope :watchable, -> { where(external_player: false) }
+  scope :canonical, -> { where(canonical_id: nil) }
+end
+```
+
+**Controller Patterns:**
+
+- Inherit from `ApplicationController` which includes:
+  - `Authenticable` - session-based authentication
+  - `Metadata` - SEO meta tags
+  - `Analytics` - page view tracking
+- Use `skip_before_action :authenticate_user!` for public pages
+- Follow RESTful routing patterns
+- Use `Current.user` for current user access
+- Implement pagination with `pagy` gem
+
+```ruby
+class TalksController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :show]
+
+  def show
+    @talk = Talk.includes(:speakers, :topics).find_by(slug: params[:slug])
+    return redirect_to(root_path, status: :moved_permanently) unless @talk
+
+    @pagy, @related_talks = pagy(@talk.related_talks, limit: 6)
+  end
+end
+```
+
+**Authentication Patterns:**
+
+- Session-based authentication, not JWT
+- Use `Current.user` to access current user
+- GitHub OAuth integration available
+- Admin users have `admin: true` boolean
+- Route constraints use `Authenticator` module
+
+### ViewComponent Architecture
+
+> **Detailed UI Component Rules**: See [viewcomponents.mdc](./viewcomponents.mdc) for comprehensive UI component guidelines.
+
+**Component Structure:**
+
+- All components inherit from `ApplicationComponent`
+- Components located in `app/components/`
+- UI components in `app/components/ui/` namespace
+
+```ruby
+class Ui::ButtonComponent < ApplicationComponent
+  option :kind, type: Dry::Types["coercible.symbol"].enum(:primary, :secondary), default: proc { :primary }
+  option :size, type: Dry::Types["coercible.symbol"].enum(:sm, :md, :lg), default: proc { :md }
+
+  private
+
+  def component_classes
+    class_names(
+      "btn",
+      KIND_MAPPING[kind],
+      SIZE_MAPPING[size]
+    )
+  end
+end
+```
+
+**Component Conventions:**
+
+- Use mapping constants for CSS class variants
+- Implement `component_classes` method for dynamic styling
+- Use `class_names` helper for conditional classes
+- Support both `param` and `option` for parameters
+- Include `display` option for conditional rendering
+
+### Frontend Development
+
+**Stimulus Controllers:**
+
+- Located in `app/javascript/controllers/`
+- Follow Stimulus conventions with kebab-case names
+- Use Stimulus actions for interactive components
+
+**CSS/Styling:**
+
+- Tailwind CSS with daisyUI components
+- Follow utility-first approach
+- Use CSS variables for theming
+- Responsive design with mobile-first approach
+
+**Assets:**
+
+- Vite for asset bundling
+- Images in `app/assets/images/`
+- Use WebP format for optimized images
+
+### Database & Models
+
+**Schema Patterns:**
+
+- Use `annotaterb` gem for model annotations
+- SQLite database with proper indexing
+- Use foreign key constraints
+- Counter cache patterns: `counter_cache: :talks_count`
+
+**Data Validation:**
+
+- Validate presence of required fields
+- Use Rails enum for status fields
+- Normalize data with `normalizes` callback
+- Encrypt sensitive data: `encrypts :email, deterministic: true`
+
+**Associations:**
+
+- Use `inverse_of` for bidirectional associations
+- `strict_loading: false` where needed for performance
+- Scoped associations: `has_many :approved_topics, -> { approved }`
+
+### Background Jobs & Processing
+
+**Job Patterns:**
+
+- Use Solid Queue for background processing
+- Jobs in `app/jobs/` directory
+- Process video metadata, transcripts, AI summaries
+- Handle external API calls asynchronously
+
+**Queue Configuration:**
+
+```ruby
+config.active_job.queue_adapter = :solid_queue
+config.solid_queue.connects_to = {database: {writing: :queue}}
+```
+
+### Search & Data
+
+**Data Structure:**
+
+- Conference data stored in YAML files under `data/`
+- Organizations, speakers, events, and videos defined in YAML
+- Rake tasks process and import data
+
+### Testing Standards
+
+**Test Structure:**
+
+- Use Minitest (not RSpec)
+- Parallel test execution enabled
+- VCR for API mocking
+- Fixtures for test data
+- System tests with Capybara + Selenium
+
+**Test Patterns:**
+
+```ruby
+class TalkTest < ActiveSupport::TestCase
+  test "creates slug from title" do
+    talk = talks(:ruby_conf_talk)
+    assert_equal "awesome-ruby-talk", talk.slug
+  end
+
+  test "belongs to event" do
+    talk = talks(:ruby_conf_talk)
+    assert_equal events(:ruby_conf_2023), talk.event
+  end
+end
+```
+
+**Test Helper Setup:**
+
+- Search reindexing in setup
+- Sign in helper: `sign_in_as(user)`
+- VCR cassettes for external API calls
+
+### API & Integrations
+
+**External APIs:**
+
+- YouTube API for video metadata
+- GitHub API for user authentication
+- OpenAI API for AI features
+- All API clients in `app/clients/` directory
+
+**AI Features:**
+
+- Transcript enhancement
+- Topic extraction
+- Talk summarization
+- All AI prompts stored in `app/models/prompts/`
+
+### Development Commands
+
+**Common Commands:**
+
+- `bin/setup` - Full setup including Docker and database seeding
+- `bin/dev` - Start Rails server, jobs, and Vite
+- `bin/lint` - Run all linters and formatters
+- `bin/rails test` - Run full test suite
+- `bundle exec standardrb --fix` - Fix Ruby formatting
+- `yarn format` - Fix JavaScript formatting
+
+**Data Management:**
+
+- `bin/rails db:seed` - Seed database from YAML files
+- YAML files define conference structure and video metadata
+
+### Deployment & Production
+
+**Kamal Deployment:**
+
+- Use Kamal for containerized deployment
+- Dockerfile included for production builds
+- Environment-specific configurations
+
+**Monitoring:**
+
+- AppSignal for error tracking and performance monitoring
+- Ahoy for user analytics
+- Mission Control for job monitoring
+
+## Code Quality Standards
+
+1. **Always run `standardrb --fix` for Ruby formatting**
+2. **Use `yarn format` for JavaScript formatting**
+3. **Include tests for new functionality**
+4. **Follow Rails naming conventions**
+5. **Use ViewComponents for reusable UI elements**
+6. **Implement proper error handling**
+7. **Add appropriate database indexes**
+8. **Use background jobs for long-running tasks**
+9. **Follow security best practices**
+10. **Write clear, descriptive commit messages**
+
+## Common Patterns to Follow
+
+- Models use concerns for shared behavior
+- Controllers are slim with business logic in models/services
+- ViewComponents for reusable UI with design system consistency
+- Background jobs for external API calls and heavy processing
+- Proper caching strategies with Solid Cache
+- SEO-friendly URLs with slugs
+- Responsive design with Tailwind CSS
+- Session-based authentication
+- Comprehensive test coverage
+
+When implementing features, always consider performance, security, accessibility, and maintainability. Follow Rails conventions and this project's established patterns.

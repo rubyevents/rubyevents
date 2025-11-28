@@ -1,0 +1,5 @@
+<div role="tablist" class="mb-12 tabs tabs-bordered">
+  <% if organization.events.any? %>
+    <%= link_to "Supported Events", organization_path(organization), role: "tab", class: "tab tab-active" %>
+  <% end %>
+</div>

@@ -1,0 +1,41 @@
+<%= render partial: "events/header", locals: {event: @event} %>
+
+<%= turbo_frame_tag dom_id(@event), data: {turbo_action: "advance", turbo_frame: "_top"} do %>
+  <div class="container py-8">
+    <%= render partial: "events/navigation", locals: {event: @event} %>
+
+    <% if @sponsors_by_tier.any? %>
+      <% @sponsors_by_tier.each do |tier, sponsors| %>
+        <div>
+          <h2 class="mb-6 capitalize">
+            <%= tier %>
+          </h2>
+
+          <div class="mb-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+            <% sponsors.each do |sponsor| %>
+              <%= render "organizations/card", organization: sponsor.organization, sponsor: sponsor, turbo_frame: true, grid_layout: true, hide_event_count: true %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="text-center py-12">
+        <div class="max-w-md mx-auto">
+          <div class="text-6xl mb-4">🤝</div>
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">No Sponsors Yet</h2>
+          <p class="text-gray-600 mb-6">
+            Help us make this information complete! Do you know who sponsored <%= @event.name %>?
+          </p>
+          <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-left">
+            <h3 class="font-semibold text-amber-800 mb-2">How to contribute:</h3>
+            <ul class="text-sm text-amber-700 space-y-1">
+              <li>• Check the event website or program</li>
+              <li>• Look for sponsor logos in videos or photos</li>
+              <li>• <a href="https://github.com/rubyevents/rubyevents/blob/main/docs/ADDING_SPONSORS.md" class="underline hover:text-amber-900" target="_blank">Submit sponsor data via GitHub</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

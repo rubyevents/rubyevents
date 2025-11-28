@@ -5,7 +5,7 @@
 # - extract the speakers from the title
 # - remove the event_name from the title to make less redondant
 # - remove leading separators from the title
-module Youtube
+module YouTube
   class VideoMetadata
     SPEAKERS_SECTION_SEPARATOR = " by "
     SEPARATOR_IN_BETWEEN_SPEAKERS = / & |, | and /

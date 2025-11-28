@@ -1,6 +1,8 @@
 module Prompts
   module Talk
     class Summary < Prompts::Base
+      MODEL = "gpt-5"
+
       def initialize(talk:)
         @talk = talk
       end
@@ -54,7 +56,7 @@ module Prompts
 
           6. Format your summary as a JSON object with the following schema:
             {
-              "summary": "Your summary text here",
+              "summary": "Your summary text here using markdown",
               "keywords": ["keyword1", "keyword2", "keyword3"]
             }
 
@@ -64,6 +66,8 @@ module Prompts
             - Free of personal opinions or external information not present in the provided content
 
           8. Output your JSON object containing the summary, ensuring it is properly formatted and enclosed in <answer> tags.
+
+          9. Uses markdown for the summary to make it more readable define clear sections and uses bullets for the key points. do not use level 1 headings only start from level 2 (##).
         PROMPT
       end
 

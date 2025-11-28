@@ -6,13 +6,17 @@
 
     <div class="flex items-start flex-wrap gap-8 sm:flex-nowrap w-full">
       <div class="w-full">
+        <% if @talks.any? %>
+          <h2 class="mb-6">Talks (<%= @talks.size %>)</h2>
+        <% end %>
+
         <div id="talks" class="min-w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 h-full">
           <%= render partial: "talks/card",
                 collection: @talks,
                 locals: {
                   favoritable: true,
                   user_favorite_talks_ids: @user_favorite_talks_ids,
-                  watched_talks_ids: user_watched_talks_ids,
+                  user_watched_talks: user_watched_talks,
                   back_to: back_to_from_request,
                   back_to_title: @event.name
                 },
@@ -20,16 +24,22 @@
         </div>
 
         <% if @talks.empty? %>
-          <div class="flex justify-center border rounded" style="padding-top: 3rem; padding-bottom: 3rem; padding-right: 1rem; padding-left: 1rem">
-            <div class="text-center text-gray-600">
-              <p>
-                <b>No talks found for this event.</b>
+          <div class="text-center py-12">
+            <div class="max-w-md mx-auto">
+              <div class="text-6xl mb-4">🎤</div>
+              <h2 class="text-2xl font-bold text-gray-900 mb-4">No Talks Yet</h2>
+              <p class="text-gray-600 mb-6">
+                Help us make this information complete! Do you have recordings or information about talks from <%= @event.name %>?
               </p>
-              <p class="mt-2">
-                Please
-                <a href="https://github.com/adrienpoly/rubyvideo/issues/new?title=<%= CGI.escape("#{@event.name} Recordings") %>&body=<%= CGI.escape("<!-- Your Content Here -->\n\nIssue opened from event page: #{event_url(@event)}") %>" class="text-primary" target="_blank">open an issue on GitHub</a>
-                if you know how to get access to the recordings of this event. Thank you!
-              </p>
+              <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-left">
+                <h3 class="font-semibold text-amber-800 mb-2">How to contribute:</h3>
+                <ul class="text-sm text-amber-700 space-y-1">
+                  <li>• Check if recordings are available online</li>
+                  <li>• Look for talk abstracts and speaker information</li>
+                  <li>• <a href="https://github.com/rubyevents/rubyevents/issues/new?title=<%= CGI.escape("#{@event.name} Recordings") %>&body=<%= CGI.escape("<!-- Your Content Here -->\n\nIssue opened from event page: #{event_url(@event)}") %>" class="underline hover:text-amber-900" target="_blank">Open an issue on GitHub</a> to report available recordings</li>
+                  <li>• <a href="https://github.com/rubyevents/rubyevents/blob/main/CONTRIBUTING.md" class="underline hover:text-amber-900" target="_blank">Submit talk data via GitHub</a></li>
+                </ul>
+              </div>
             </div>
           </div>
         <% end %>

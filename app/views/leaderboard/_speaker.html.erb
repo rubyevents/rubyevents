@@ -1,15 +1,10 @@
 <tr>
   <td class="font-bold"><%= speaker_counter + 1 %></td>
   <td style="view-transition-name: <%= dom_id(speaker, :Leaderboard) if speaker_counter < 10 %>">
-    <%= link_to speaker_path(speaker), class: "link link-hover" do %>
+    <%= link_to profile_path(speaker) do %>
       <div class="flex items-center gap-4">
-        <% if speaker.custom_avatar? %>
-          <%= image_tag speaker.avatar_url(size: 128), class: "rounded-full w-10 h-10", alt: "GitHub picture profile of #{speaker.name}", loading: :lazy %>
-        <% else %>
-          <div class="rounded-full w-10 h-10 bg-gray-200"></div>
-        <% end %>
-
-        <%= speaker.name %>
+        <%= ui_avatar(speaker) %>
+        <span class="link link-hover"><%= speaker.name %></span>
       </div>
     <% end %>
   </td>

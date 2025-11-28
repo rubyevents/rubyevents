@@ -23,7 +23,7 @@ module Authenticable
   private
 
   def authenticate_user!
-    redirect_to sign_in_path unless Current.user
+    redirect_to new_session_path unless Current.user
   end
 
   def set_current_request_details

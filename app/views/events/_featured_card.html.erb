@@ -1,0 +1,32 @@
+<div
+  data-event-list-target="poster" data-event-id="<%= event.slug %>"
+  class="hidden w-full lg:h-92 p-4 lg:p-16 border rounded-[25px] lg:rounded-[50px] text-center lg:text-left"
+  style="
+    color: <%= event.static_metadata.featured_color %>;
+    <% if event.static_metadata.featured_background.start_with?("data:") %>
+      background: url('<%= event.static_metadata.featured_background %>');
+      background-repeat: no-repeat;
+      background-size: cover;
+    <% else %>
+      background: <%= event.static_metadata.featured_background %>;
+    <% end %>
+  ">
+  <a href="<%= event_path(event) %>">
+    <div class="grid-cols-[1fr_2fr]">
+      <div>
+        <div class="flex justify-center mb-9">
+          <%= image_tag event.featured_image_path, class: "w-[200px] max-h-none lg:w-full", loading: "lazy", width: 615, height: 350, alt: event.name %>
+        </div>
+
+        <div class="flex flex-col gap-3 lg:h-48 lg:max-h-48 overflow-hidden items-center lg:items-start">
+          <h1 class="text-inherit font-bold text-xl line-clamp-1 lg:line-clamp-2"><%= event.name %></h1>
+          <h2 class="text-inherit opacity-60 text-sm line-clamp-1"><%= event.static_metadata.location %> • <%= event.formatted_dates %></h2>
+          <h2 class="text-inherit font-medium text-sm line-clamp-3 hidden lg:block">
+            <%= event.description %>
+            <%= home_updated_text(event) %>
+          </h2>
+        </div>
+      </div>
+    </div>
+  </a>
+</div>

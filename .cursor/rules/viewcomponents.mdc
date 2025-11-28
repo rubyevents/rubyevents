@@ -1,0 +1,436 @@
+---
+alwaysApply: false
+---
+
+# RubyVideo ViewComponents - UI Component Rules
+
+> **Main Project Rules**: See [cursorrules.mdc](./cursorrules.mdc) for complete RubyVideo project guidelines.
+
+## UI Component Architecture
+
+This document defines specific rules for creating and maintaining UI components in the `Ui::` namespace within RubyVideo's ViewComponent architecture.
+
+## Component Structure & Inheritance
+
+### Base Component Pattern
+
+All UI components MUST inherit from `ApplicationComponent`:
+
+```ruby
+class Ui::ComponentNameComponent < ApplicationComponent
+  # Component implementation
+end
+```
+
+### ApplicationComponent Features
+
+The base `ApplicationComponent` provides:
+
+- `Dry::Initializer` integration for type-safe parameters
+- Automatic `attributes` handling for HTML attributes
+- `display` option for conditional rendering
+- `render?` method that respects the `display` option
+
+## UI Component Conventions
+
+### 1. Component Naming
+
+- **File naming**: `snake_case_component.rb` (e.g., `button_component.rb`)
+- **Class naming**: `Ui::PascalCaseComponent` (e.g., `Ui::ButtonComponent`)
+- **Template naming**: `snake_case_component.html.erb` (e.g., `button_component.html.erb`)
+
+### 2. Parameter Definition
+
+Use `Dry::Types` for type-safe parameters with proper defaults:
+
+```ruby
+class Ui::ButtonComponent < ApplicationComponent
+  # Required parameter
+  param :text, default: proc {}
+
+  # Optional parameter with type constraint
+  option :url, Dry::Types["coercible.string"], optional: true
+
+  # Enum parameter with default
+  option :kind, type: Dry::Types["coercible.symbol"].enum(:primary, :secondary), default: proc { :primary }
+
+  # Boolean parameter
+  option :disabled, type: Dry::Types["strict.bool"], default: proc { false }
+end
+```
+
+### 3. CSS Class Management
+
+#### Mapping Constants Pattern
+
+Define mapping constants for CSS class variants:
+
+```ruby
+class Ui::ButtonComponent < ApplicationComponent
+  KIND_MAPPING = {
+    primary: "btn-primary",
+    secondary: "btn-secondary",
+    neutral: "btn-neutral btn-outline",
+    ghost: "btn-ghost"
+  }.freeze
+
+  SIZE_MAPPING = {
+    sm: "btn-sm",
+    md: "",
+    lg: "btn-lg"
+  }.freeze
+end
+```
+
+#### Component Classes Method
+
+Implement `component_classes` method for dynamic styling:
+
+```ruby
+private
+
+def component_classes
+  class_names(
+    "btn",                    # Base class
+    KIND_MAPPING[kind],       # Variant class
+    SIZE_MAPPING[size],       # Size class
+    "btn-outline": outline,   # Conditional class
+    "btn-disabled": disabled  # State class
+  )
+end
+```
+
+#### Final Classes Method
+
+Combine component classes with user-provided classes:
+
+```ruby
+private
+
+def classes
+  [component_classes, attributes[:class]].join(" ")
+end
+```
+
+### 4. Content Handling
+
+#### Content Method Pattern
+
+Handle both parameter content and block content:
+
+```ruby
+private
+
+def content
+  text.presence || super  # Use param if provided, otherwise use block content
+end
+```
+
+#### Call Method for Complex Rendering
+
+Use `call` method for complex rendering logic:
+
+```ruby
+def call
+  case button_kind
+  when :link
+    link_to(url, class: classes, **attributes.except(:class)) { content }
+  when :button
+    tag.button(type: type, class: classes, **attributes.except(:class)) { content }
+  end
+end
+```
+
+### 5. Stimulus Integration
+
+#### Before Render Hook
+
+Use `before_render` for Stimulus controller setup:
+
+```ruby
+def before_render
+  attributes[:data] = {
+    controller: "modal",
+    modal_open_value: open,
+    action: "keydown.esc->modal#close"
+  }.merge(attributes[:data] || {})
+end
+```
+
+#### Data Attributes
+
+Pass Stimulus values through data attributes:
+
+```ruby
+attributes[:data] = {
+  controller: "dropdown",
+  dropdown_open_value: open,
+  action: "click->dropdown#toggle"
+}
+```
+
+## Common UI Component Patterns
+
+### Button Component
+
+```ruby
+class Ui::ButtonComponent < ApplicationComponent
+  KIND_MAPPING = {
+    primary: "btn-primary",
+    secondary: "btn-secondary",
+    ghost: "btn-ghost"
+  }.freeze
+
+  SIZE_MAPPING = {
+    sm: "btn-sm",
+    md: "",
+    lg: "btn-lg"
+  }.freeze
+
+  param :text, default: proc {}
+  option :url, Dry::Types["coercible.string"], optional: true
+  option :kind, type: Dry::Types["coercible.symbol"].enum(*KIND_MAPPING.keys), default: proc { :primary }
+  option :size, type: Dry::Types["coercible.symbol"].enum(*SIZE_MAPPING.keys), default: proc { :md }
+  option :disabled, type: Dry::Types["strict.bool"], default: proc { false }
+
+  def call
+    if url.present?
+      link_to(url, class: classes, **attributes.except(:class)) { content }
+    else
+      tag.button(type: :button, class: classes, **attributes.except(:class)) { content }
+    end
+  end
+
+  private
+
+  def classes
+    [component_classes, attributes[:class]].join(" ")
+  end
+
+  def component_classes
+    class_names(
+      "btn",
+      KIND_MAPPING[kind],
+      SIZE_MAPPING[size],
+      "btn-disabled": disabled
+    )
+  end
+
+  def content
+    text.presence || super
+  end
+end
+```
+
+### Badge Component
+
+```ruby
+class Ui::BadgeComponent < ApplicationComponent
+  KIND_MAPPING = {
+    primary: "badge-primary",
+    secondary: "badge-secondary",
+    neutral: "badge-neutral"
+  }.freeze
+
+  SIZE_MAPPING = {
+    xs: "badge-xs",
+    sm: "badge-sm",
+    md: "badge-md",
+    lg: "badge-lg"
+  }.freeze
+
+  param :text, optional: true
+  option :kind, type: Dry::Types["coercible.symbol"].enum(*KIND_MAPPING.keys), default: proc { :primary }
+  option :size, type: Dry::Types["coercible.symbol"].enum(*SIZE_MAPPING.keys), default: proc { :md }
+
+  def call
+    content_tag(:span, class: classes, **attributes.except(:class)) do
+      content
+    end
+  end
+
+  private
+
+  def classes
+    [component_classes, attributes[:class]].join(" ")
+  end
+
+  def component_classes
+    class_names(
+      "badge",
+      KIND_MAPPING[kind],
+      SIZE_MAPPING[size]
+    )
+  end
+
+  def content
+    text.presence || super
+  end
+end
+```
+
+### Modal Component
+
+```ruby
+class Ui::ModalComponent < ApplicationComponent
+  POSITION_MAPPING = {
+    top: "modal-top",
+    middle: "modal-middle",
+    bottom: "modal-bottom",
+    responsive: "modal-bottom sm:modal-middle"
+  }.freeze
+
+  SIZE_MAPPING = {
+    md: "",
+    lg: "!max-w-[800px]"
+  }.freeze
+
+  option :open, type: Dry::Types["strict.bool"], default: proc { false }
+  option :position, type: Dry::Types["coercible.symbol"].enum(*POSITION_MAPPING.keys), default: proc { :responsive }
+  option :size, type: Dry::Types["coercible.symbol"].enum(*SIZE_MAPPING.keys), default: proc { :md }
+
+  def before_render
+    attributes[:data] = {
+      controller: "modal",
+      modal_open_value: open,
+      action: "keydown.esc->modal#close"
+    }.merge(attributes[:data] || {})
+  end
+
+  private
+
+  def classes
+    [component_classes, attributes.delete(:class)].compact_blank.join(" ")
+  end
+
+  def component_classes
+    class_names(
+      "modal",
+      POSITION_MAPPING[position]
+    )
+  end
+
+  def size_class
+    SIZE_MAPPING[size]
+  end
+end
+```
+
+## Template Patterns
+
+### Basic Template Structure
+
+```erb
+<!-- button_component.html.erb -->
+<%= call %>
+```
+
+### Complex Template with Slots
+
+```erb
+<!-- modal_component.html.erb -->
+<div class="<%= classes %>" <%= tag.attributes(attributes) %>>
+  <div class="modal-box <%= size_class %>">
+    <% if close_button %>
+      <form method="dialog">
+        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+      </form>
+    <% end %>
+    <%= content %>
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</div>
+```
+
+## Testing UI Components
+
+### Component Test Structure
+
+```ruby
+class Ui::ButtonComponentTest < ViewComponent::TestCase
+  test "renders primary button" do
+    render_inline(Ui::ButtonComponent.new("Click me", kind: :primary))
+
+    assert_selector("button.btn.btn-primary", text: "Click me")
+  end
+
+  test "renders as link when url provided" do
+    render_inline(Ui::ButtonComponent.new("Click me", url: "/test"))
+
+    assert_selector("a.btn", text: "Click me", href: "/test")
+  end
+
+  test "applies custom classes" do
+    render_inline(Ui::ButtonComponent.new("Click me", class: "custom-class"))
+
+    assert_selector("button.custom-class")
+  end
+end
+```
+
+## Best Practices
+
+### 1. Type Safety
+
+- Always use `Dry::Types` for parameter validation
+- Define enum constraints for variant options
+- Use `optional: true` for non-required parameters
+
+### 2. CSS Architecture
+
+- Use mapping constants for variant classes
+- Implement `component_classes` method for dynamic styling
+- Support custom classes through `attributes[:class]`
+
+### 3. Content Flexibility
+
+- Support both parameter content and block content
+- Use `content` method to handle both cases
+- Implement `call` method for complex rendering logic
+
+### 4. Stimulus Integration
+
+- Use `before_render` for controller setup
+- Pass values through data attributes
+- Support custom actions and controllers
+
+### 5. Accessibility
+
+- Include proper ARIA attributes
+- Support keyboard navigation
+- Ensure proper semantic HTML
+
+### 6. Performance
+
+- Use `freeze` on mapping constants
+- Minimize method calls in templates
+- Cache computed values when appropriate
+
+## Common Mistakes to Avoid
+
+1. **Don't** hardcode CSS classes in templates
+2. **Don't** forget to handle both parameter and block content
+3. **Don't** skip type validation for parameters
+4. **Don't** forget to merge custom attributes
+5. **Don't** ignore accessibility requirements
+6. **Don't** create components without proper mapping constants
+
+## Component Checklist
+
+When creating a new UI component, ensure:
+
+- [ ] Inherits from `ApplicationComponent`
+- [ ] Uses proper naming convention (`Ui::NameComponent`)
+- [ ] Defines mapping constants for variants
+- [ ] Implements `component_classes` method
+- [ ] Handles both parameter and block content
+- [ ] Supports custom CSS classes
+- [ ] Includes proper type validation
+- [ ] Has corresponding template file
+- [ ] Includes comprehensive tests
+- [ ] Follows accessibility guidelines
+- [ ] Documents all options and parameters
+
+This ensures consistency across all UI components and maintains the design system's integrity.

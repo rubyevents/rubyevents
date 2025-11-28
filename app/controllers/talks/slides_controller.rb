@@ -1,5 +1,6 @@
 class Talks::SlidesController < ApplicationController
-  include Turbo::ForceFrameResponse
+  include Turbo::ForceResponse
+
   force_frame_response
 
   skip_before_action :authenticate_user!

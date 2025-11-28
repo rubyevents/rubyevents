@@ -1,51 +1,82 @@
+require "public_suffix"
+
 speakers = YAML.load_file("#{Rails.root}/data/speakers.yml")
-organisations = YAML.load_file("#{Rails.root}/data/organisations.yml")
 videos_to_ignore = YAML.load_file("#{Rails.root}/data/videos_to_ignore.yml")
 
 # create speakers
 speakers.each do |speaker|
-  Speaker.find_or_create_by!(slug: speaker["slug"]) do |s|
-    s.name = speaker["name"]
-    s.twitter = speaker["twitter"]
-    s.github = speaker["github"]
-    s.website = speaker["website"]
-    s.bio = speaker["bio"]
-  end
+  user = User.find_by_github_handle(speaker["github"]) ||
+    User.find_by(slug: speaker["slug"]) ||
+    User.find_by_name_or_alias(speaker["name"]) ||
+    User.new
+  user.update!(
+    name: speaker["name"],
+    twitter: speaker["twitter"],
+    github_handle: speaker["github"],
+    website: speaker["website"],
+    bio: speaker["bio"]
+  )
+rescue ActiveRecord::RecordInvalid => e
+  puts "Couldn't save: #{speaker["name"]} (#{speaker["github"]}), error: #{e.message}"
 end
 
-MeiliSearch::Rails.deactivate! do
-  organisations.each do |org|
-    organisation = Organisation.find_or_initialize_by(slug: org["slug"])
+series_files = Dir.glob("#{Rails.root}/data/*/series.yml")
 
-    organisation.update!(
-      name: org["name"],
-      website: org["website"],
-      twitter: org["twitter"] || "",
-      youtube_channel_name: org["youtube_channel_name"],
-      kind: org["kind"],
-      frequency: org["frequency"],
-      youtube_channel_id: org["youtube_channel_id"],
-      slug: org["slug"],
-      language: org["language"] || ""
+series_files.each do |series_file_path|
+  series = YAML.load_file(series_file_path)
+  series_slug = File.basename(File.dirname(series_file_path))
+  event_series = EventSeries.find_or_initialize_by(slug: series_slug)
+  event_files = Dir.glob("#{Rails.root}/data/#{event_series.slug}/*/event.yml")
+
+  event_series.update!(
+    name: series["name"],
+    website: series["website"],
+    twitter: series["twitter"] || "",
+    youtube_channel_name: series["youtube_channel_name"],
+    kind: series["kind"],
+    frequency: series["frequency"],
+    youtube_channel_id: series["youtube_channel_id"],
+    slug: series_slug,
+    language: series["language"] || ""
+  )
+
+  event_files.each do |event_file_path|
+    event_data = YAML.load_file(event_file_path)
+    event_slug = File.basename(File.dirname(event_file_path))
+    event = Event.find_or_create_by(slug: event_slug)
+
+    event.update(
+      name: event_data["title"],
+      date: event_data["date"] || event_data["published_at"],
+      date_precision: event_data["date_precision"] || "day",
+      series: event_series,
+      website: event_data["website"],
+      country_code: event.static_metadata.country&.alpha2,
+      start_date: event.static_metadata.start_date,
+      end_date: event.static_metadata.end_date,
+      kind: event.static_metadata.kind
     )
 
-    events = YAML.load_file("#{Rails.root}/data/#{organisation.slug}/playlists.yml")
+    puts event.slug unless Rails.env.test?
 
-    events.each do |event_data|
-      event = Event.find_or_create_by(slug: event_data["slug"])
+    cfp_file_path = "#{Rails.root}/data/#{event_series.slug}/#{event.slug}/cfp.yml"
 
-      event.update(
-        name: event_data["title"],
-        date: event_data["date"] || event_data["published_at"],
-        organisation: organisation,
-        website: event_data["website"]
-      )
+    if File.exist?(cfp_file_path)
+      cfps = YAML.load_file(cfp_file_path)
 
-      puts event.slug unless Rails.env.test?
+      cfps.each do |cfp_data|
+        event.cfps.find_or_create_by(
+          link: cfp_data["link"],
+          open_date: cfp_data["open_date"]
+        ).update(
+          name: cfp_data["name"],
+          close_date: cfp_data["close_date"]
+        )
+      end
+    end
 
-      talks = YAML.load_file("#{Rails.root}/data/#{organisation.slug}/#{event.slug}/videos.yml")
-
-      talks.each do |talk_data|
+    if event.videos_file?
+      event.videos_file.each do |talk_data|
         if talk_data["title"].blank? || videos_to_ignore.include?(talk_data["video_id"])
           puts "Ignored video: #{talk_data["raw_title"]}"
           next
@@ -81,11 +112,55 @@ MeiliSearch::Rails.deactivate! do
         puts "Couldn't save: #{talk_data["title"]} (#{talk_data["video_id"]}), error: #{e.message}"
       end
     end
+
+    if event.sponsors_file.exist?
+      event.sponsors_file.file.each do |sponsors|
+        sponsors["tiers"].each do |tier|
+          tier["sponsors"].each do |sponsor|
+            s = nil
+            domain = nil
+
+            if sponsor["website"].present?
+              begin
+                uri = URI.parse(sponsor["website"])
+                host = uri.host || sponsor["website"]
+                parsed = PublicSuffix.parse(host)
+                domain = parsed.domain
+
+                s = Organization.find_by(domain: domain) if domain.present?
+              rescue PublicSuffix::Error, URI::InvalidURIError
+                # If parsing fails, continue with other matching methods
+              end
+            end
+
+            s ||= Organization.find_by(name: sponsor["name"]) || Organization.find_by(slug: sponsor["slug"]&.downcase)
+            s ||= Organization.find_or_initialize_by(name: sponsor["name"])
+
+            s.update(
+              website: sponsor["website"],
+              description: sponsor["description"],
+              domain: domain
+              # s.level = sponsor["level"]
+              # s.event = event
+              # s.organisation = organisation
+            )
+
+            s.add_logo_url(sponsor["logo_url"]) if sponsor["logo_url"].present?
+            s.logo_url = sponsor["logo_url"] if sponsor["logo_url"].present? && s.logo_url.blank?
+
+            if !s.persisted?
+              s = Organization.find_by(slug: s.slug) || Organization.find_by(name: s.name)
+            end
+
+            s.save!
+
+            event.sponsors.find_or_create_by!(organization: s, event: event).update!(tier: tier["name"], badge: sponsor["badge"])
+          end
+        end
+      end
+    end
   end
 end
-
-# reindex all talk in MeiliSearch
-# Talk.reindex! unless Rails.env.test? || Rails.env.production?
 
 topics = [
   "A/B Testing",
@@ -365,3 +440,11 @@ topics = [
 
 # create topics
 Topic.create_from_list(topics, status: :approved)
+
+User.order(Arel.sql("RANDOM()")).limit(5).each do |user|
+  user.watched_talk_seeder.seed_development_data
+end
+Rake::Task["backfill:speaker_participation"].invoke
+Rake::Task["backfill:event_involvements"].invoke
+Rake::Task["speakerdeck:set_usernames_from_slides_url"].invoke
+Rake::Task["contributors:fetch"].invoke

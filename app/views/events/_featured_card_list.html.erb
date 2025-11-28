@@ -1,0 +1,9 @@
+<div class="block gap-8 mt-6 overflow-scroll md:grid xl:grid-cols-2" data-controller="event-list">
+  <%= render partial: "events/event_list", locals: {events: events} %>
+
+  <div class="hidden md:block">
+    <% events.each do |event| %>
+      <%= render partial: "events/featured_card", locals: {event: event} %>
+    <% end %>
+  </div>
+</div>

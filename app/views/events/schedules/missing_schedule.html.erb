@@ -1,0 +1,25 @@
+<%= render partial: "events/header", locals: {event: @event} %>
+
+<%= turbo_frame_tag dom_id(@event), data: {turbo_action: "advance", turbo_frame: "_top"} do %>
+  <div class="container py-8">
+    <%= render partial: "events/navigation", locals: {event: @event} %>
+
+    <div class="text-center py-12">
+      <div class="max-w-md mx-auto">
+        <div class="text-6xl mb-4">📅</div>
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">No Schedule Yet</h2>
+        <p class="text-gray-600 mb-6">
+          Help us make this information complete! Do you have the schedule for <%= @event.name %>?
+        </p>
+        <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-left">
+          <h3 class="font-semibold text-amber-800 mb-2">How to contribute:</h3>
+          <ul class="text-sm text-amber-700 space-y-1">
+            <li>• Check the event website or program</li>
+            <li>• Look for official schedules or agendas</li>
+            <li>• <a href="https://github.com/rubyevents/rubyevents/blob/main/docs/ADDING_SCHEDULES.md" class="underline hover:text-amber-900" target="_blank">Submit schedule data via GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

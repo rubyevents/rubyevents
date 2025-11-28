@@ -3,8 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby file: ".ruby-version"
 
-# Use main development branch of Rails
-gem "rails", "~> 8.0"
+# Use main development branch of Rails from github
+gem "rails", "8.1.0.rc1"
 
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
@@ -66,10 +66,32 @@ gem "minisky", "~> 0.4.0"
 # Extract Collaborator Objects from your Active Records, a new concept called Associated Objects
 gem "active_record-associated_object"
 
+# Headless Chrome driver for Capybara
+gem "cuprite"
+
+# Reusable modules for tasks like data extraction, scoring, and ranking
+gem "active_genie"
+
+# A single delightful Ruby way to work with AI.
+gem "ruby_llm"
+
+# YouTube V3 API client.
+gem "yt"
+
+# Family of libraries that support various formats of XML "feeds".
+gem "rss", "~> 0.3.1"
+
+# Powerful and seamless HTML-aware ERB parsing and tooling.
+gem "herb", "~> 0.8"
+
+# An ActionView-compatible ERB engine with modern DX - re-imagined with Herb.
+gem "reactionview", "~> 0.1"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  gem "bundler-audit", require: false
   gem "debug", platforms: %i[mri windows]
-  gem "byebug", "~> 11.1"
+  gem "byebug"
   gem "minitest-difftastic", "~> 0.2"
 end
 
@@ -107,17 +129,15 @@ group :test do
 end
 
 gem "pagy"
-gem "dockerfile-rails", ">= 1.2", group: :development
 
 # gem "activerecord-enhancedsqlite3-adapter"
 gem "solid_cache"
 gem "solid_queue"
 gem "mission_control-jobs"
 
-gem "meilisearch-rails", "0.14.2" # https://github.com/meilisearch/meilisearch-rails/issues/347#issuecomment-2588854111
 gem "ahoy_matey"
 gem "vite_rails"
-gem "meta-tags", "~> 2.18"
+gem "meta-tags"
 gem "groupdate"
 gem "appsignal"
 gem "chartkick", "~> 5.0"
@@ -127,7 +147,7 @@ gem "rails_autolink", "~> 1.1"
 
 gem "sitemap_generator", "~> 6.3"
 
-gem "view_component", "~> 3.7"
+gem "view_component"
 
 gem "dry-initializer-rails"
 
@@ -153,12 +173,18 @@ gem "frozen_record", "~> 0.27.2"
 gem "diffy"
 gem "discard"
 
+gem "httparty"
+
 # Use OmniAuth to support multi-provider authentication [https://github.com/omniauth/omniauth]
 gem "omniauth"
 gem "omniauth-github"
-
 # Provides a mitigation against CVE-2015-9284 [https://github.com/cookpad/omniauth-rails_csrf_protection]
 gem "omniauth-rails_csrf_protection"
 
-# silence Ruby 3.4 warnings
+gem "hotwire_combobox", "~> 0.4.0"
+
+gem "rails-i18n", "~> 8.0"
+
+# Ruby standards gems
+gem "openssl" # https://github.com/ruby/openssl/issues/949
 gem "ostruct"

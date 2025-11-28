@@ -1,15 +1,17 @@
 class EventsController < ApplicationController
   include WatchedTalks
   include Pagy::Backend
+
   skip_before_action :authenticate_user!, only: %i[index show update]
   before_action :set_event, only: %i[show edit update]
   before_action :set_user_favorites, only: %i[show]
 
   # GET /events
   def index
-    @events = Event.canonical.includes(:organisation).order("events.name ASC")
-    @events = @events.where("lower(events.name) LIKE ?", "#{params[:letter].downcase}%") if params[:letter].present?
-    @events = @events.ft_search(params[:s]) if params[:s].present?
+    @events = Event.includes(:series, :keynote_speakers)
+      .not_meetup
+      .where(end_date: Date.today..)
+      .order(start_date: :asc)
   end
 
   # GET /events/1
@@ -17,10 +19,22 @@ class EventsController < ApplicationController
     set_meta_tags(@event)
 
     if @event.meetup?
-      redirect_to event_events_path(@event)
+      all_meetup_events = @event.talks.where(meta_talk: true).includes(:speakers, :parent_talk, child_talks: :speakers)
+      @upcoming_meetup_events = all_meetup_events.where("date >= ?", Date.today).order(date: :asc).limit(4)
+      @recent_meetup_events = all_meetup_events.where("date < ?", Date.today).order(date: :desc).limit(4)
+      @recent_talks = @event.talks.where(meta_talk: false).includes(:speakers, :parent_talk, child_talks: :speakers).order(date: :desc).to_a.sample(8)
+      @featured_speakers = @event.speakers.joins(:talks).distinct.to_a.sample(8)
     else
-      redirect_to event_talks_path(@event)
+      @keynotes = @event.talks.joins(:speakers).where(kind: "keynote").includes(:speakers, event: :series)
+      @recent_talks = @event.talks.watchable.includes(:speakers, event: :series).limit(8).shuffle
+      keynote_speakers = @event.speakers.joins(:talks).where(talks: {kind: "keynote"}).distinct
+      other_speakers = @event.speakers.joins(:talks).where.not(talks: {kind: "keynote"}).distinct.limit(8)
+      @featured_speakers = (keynote_speakers + other_speakers.first(8 - keynote_speakers.size)).uniq.shuffle
     end
+
+    @sponsors = @event.sponsors.includes(:organization).joins(:organization).shuffle
+
+    @participation = Current.user&.main_participation_to(@event)
   end
 
   # GET /events/1/edit
@@ -42,7 +56,9 @@ class EventsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_event
-    @event = Event.includes(:organisation).find_by!(slug: params[:slug])
+    @event = Event.includes(:series).find_by(slug: params[:slug])
+    return redirect_to(root_path, status: :moved_permanently) unless @event
+
     redirect_to event_path(@event.canonical), status: :moved_permanently if @event.canonical.present?
   end
 

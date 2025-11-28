@@ -1,0 +1,6 @@
+<%= turbo_stream.append "children" do %>
+  <% index = Time.current.to_i %>
+  <%= fields_for 'template[children_attributes][]', ::Template.new, index: index do |form| %>
+    <%= render "talk_fields", form: form, index: index %>
+  <% end %>
+<% end %>

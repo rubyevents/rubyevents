@@ -9,7 +9,7 @@ class TalksTest < ApplicationSystemTestCase
 
   test "visiting the index" do
     visit talks_url
-    assert_selector "h1", text: "Talks"
+    assert_selector "h1", text: "Video Recordings of Talks"
   end
 
   test "should update Talk" do

@@ -2,6 +2,7 @@ require "test_helper"
 
 class TalkTest < ActiveSupport::TestCase
   include ActiveJob::TestHelper
+
   test "should handle empty transcript" do
     talk = Talk.new(title: "Sample Talk", date: Date.today, talk_transcript_attributes: {raw_transcript: Transcript.new})
     assert talk.save
@@ -101,13 +102,15 @@ class TalkTest < ActiveSupport::TestCase
 
   test "enhance talk transcript" do
     @talk = talks(:one)
-    @talk = Talk.includes(event: :organisation).find(@talk.id)
+    @talk = Talk.includes(event: :series).find(@talk.id)
 
     refute @talk.enhanced_transcript.cues.present?
     VCR.use_cassette("talks/transcript-enhancement") do
-      assert_changes "@talk.reload.enhanced_transcript.cues.count" do
-        perform_enqueued_jobs do
-          @talk.agents.improve_transcript_later
+      assert_changes "@talk.reload.updated_at" do
+        assert_changes "@talk.reload.enhanced_transcript.cues.count" do
+          perform_enqueued_jobs do
+            @talk.agents.improve_transcript_later
+          end
         end
       end
       assert @talk.enhanced_transcript.cues.present?
@@ -116,7 +119,7 @@ class TalkTest < ActiveSupport::TestCase
 
   test "summarize talk" do
     @talk = talks(:one)
-    @talk = Talk.includes(event: :organisation).find(@talk.id)
+    @talk = Talk.includes(event: :series).find(@talk.id)
 
     refute @talk.summary.present?
     VCR.use_cassette("talks/summarize") do
@@ -213,7 +216,7 @@ class TalkTest < ActiveSupport::TestCase
 
   test "full text search creating and deleting a talk" do
     talk = Talk.create!(title: "Full text seach with Sqlite", summary: "On using sqlite full text search with an ActiveRecord backed virtual table", date: Time.current)
-    talk.speakers.create!(name: "Kasper Timm Hansen")
+    talk.users.create!(name: "Kasper Timm Hansen")
 
     assert_equal [talk], Talk.ft_search("sqlite full text search") # title
     assert_equal [talk], Talk.ft_search("ActiveRecord backed virtual table") # summary
@@ -267,6 +270,7 @@ class TalkTest < ActiveSupport::TestCase
   test "mark talk as watched" do
     talk = talks(:two)
     Current.user = users(:one)
+    watched_talks(:two).delete
 
     assert_equal 0, talk.watched_talks.count
 
@@ -301,7 +305,7 @@ class TalkTest < ActiveSupport::TestCase
 
   test "should return the event thumbnail for non youtube talks" do
     talk = talks(:brightonruby_2024_one).tap do |t|
-      ActiveRecord::Associations::Preloader.new(records: [t], associations: [event: :organisation]).call
+      ActiveRecord::Associations::Preloader.new(records: [t], associations: [event: :series]).call
     end
 
     assert_match %r{^/assets/events/brightonruby/brightonruby-2024/poster-.*.webp$}, talk.thumbnail
@@ -313,19 +317,133 @@ class TalkTest < ActiveSupport::TestCase
     assert_includes Talk.for_topic("activerecord"), talk
   end
 
-  test "discarded speaker_talks" do
+  test "discarded user_talks" do
     talk = talks(:one)
-    speaker_talk = talk.speaker_talks.first
-    assert_equal 1, speaker_talk.speaker.talks_count
-    speaker_talk.discard
-    assert_equal 1, talk.speaker_talks.count
-    assert_equal 0, talk.kept_speaker_talks.count
-    assert_equal 0, speaker_talk.speaker.talks_count
+    user_talk = talk.user_talks.first
+    assert_equal 1, user_talk.user.talks_count
+    user_talk.discard
+    assert_equal 1, talk.user_talks.count
+    assert_equal 0, talk.kept_user_talks.count
+    assert_equal 0, user_talk.user.talks_count
   end
 
   test "should return original title" do
     talk = talks(:non_english_talk_one)
 
     assert_equal "Palestra não em inglês", talk.original_title
+  end
+  test "llm request caching for transcript enhancement" do
+    @talk = talks(:one)
+    @talk = Talk.includes(event: :series).find(@talk.id)
+
+    refute @talk.enhanced_transcript.cues.present?
+    VCR.use_cassette("talks/transcript-enhancement") do
+      assert_changes "@talk.reload.updated_at" do
+        assert_changes "@talk.reload.enhanced_transcript.cues.count" do
+          perform_enqueued_jobs do
+            @talk.agents.improve_transcript_later
+          end
+        end
+      end
+      assert @talk.enhanced_transcript.cues.present?
+
+      # Verify LLM request was created
+      assert_equal 1, LLM::Request.count
+      request = LLM::Request.first
+      assert_equal @talk, request.resource
+      assert request.duration > 0
+      assert request.raw_response.present?
+
+      # Second call should use cache
+      assert_no_changes "LLM::Request.count" do
+        perform_enqueued_jobs do
+          @talk.agents.improve_transcript_later
+        end
+      end
+    end
+  end
+
+  test "llm request caching for summarization" do
+    @talk = talks(:one)
+    @talk = Talk.includes(event: :series).find(@talk.id)
+
+    refute @talk.summary.present?
+    VCR.use_cassette("talks/summarize") do
+      assert_changes "@talk.reload.summary.present?" do
+        perform_enqueued_jobs do
+          @talk.agents.summarize_later
+        end
+      end
+      assert @talk.summary.present?
+
+      # Verify LLM request was created
+      assert_equal 1, LLM::Request.count
+      request = LLM::Request.first
+      assert_equal @talk, request.resource
+      assert request.duration > 0
+      assert request.raw_response.present?
+
+      # Second call should use cache
+      assert_no_changes "LLM::Request.count" do
+        perform_enqueued_jobs do
+          @talk.agents.summarize_later
+        end
+      end
+    end
+  end
+
+  test "llm request caching for topic analysis" do
+    @talk = talks(:one)
+
+    VCR.use_cassette("talks/extract_topics") do
+      assert_changes "@talk.topics.count" do
+        perform_enqueued_jobs do
+          @talk.agents.analyze_topics_later
+        end
+      end
+
+      # Verify LLM request was created
+      assert_equal 1, LLM::Request.count
+      request = LLM::Request.first
+      assert_equal @talk, request.resource
+      assert request.duration > 0
+      assert request.raw_response.present?
+
+      # Second call should use cache
+      assert_no_changes "LLM::Request.count" do
+        perform_enqueued_jobs do
+          @talk.agents.analyze_topics_later
+        end
+      end
+    end
+  end
+
+  test "llm request caching with successful response" do
+    @talk = talks(:one)
+    @talk = Talk.includes(event: :series).find(@talk.id)
+
+    VCR.use_cassette("talks/transcript-enhancement") do
+      # First call should succeed and create a successful request
+      assert_changes "@talk.reload.enhanced_transcript.cues.count" do
+        perform_enqueued_jobs do
+          @talk.agents.improve_transcript_later
+        end
+      end
+
+      # Verify successful request was created
+      assert_equal 1, LLM::Request.count
+      request = LLM::Request.first
+      assert_equal @talk, request.resource
+      assert request.duration > 0
+      assert request.raw_response.present?
+      assert request.success
+
+      # Second call should use cache
+      assert_no_changes "LLM::Request.count" do
+        perform_enqueued_jobs do
+          @talk.agents.improve_transcript_later
+        end
+      end
+    end
   end
 end

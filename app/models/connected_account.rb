@@ -6,9 +6,9 @@
 #  id           :integer          not null, primary key
 #  access_token :string
 #  expires_at   :datetime
-#  provider     :string           indexed => [uid], indexed => [username]
-#  uid          :string           indexed => [provider]
-#  username     :string           indexed => [provider]
+#  provider     :string           uniquely indexed => [uid], uniquely indexed => [username]
+#  uid          :string           uniquely indexed => [provider]
+#  username     :string           uniquely indexed => [provider]
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  user_id      :integer          not null, indexed
@@ -30,4 +30,6 @@ class ConnectedAccount < ApplicationRecord
   encrypts :access_token
 
   normalizes :username, with: ->(value) { value.strip.downcase }
+
+  enum :provider, ["developer", "github", "passport"].index_by(&:itself)
 end
