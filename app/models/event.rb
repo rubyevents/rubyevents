@@ -96,9 +96,9 @@ class Event < ApplicationRecord
   scope :past, -> { where(end_date: ..Date.today).order(end_date: :desc) }
   scope :upcoming, -> { where(start_date: Date.today..).order(start_date: :asc) }
 
-  attribute :kind, :string    
+  attribute :kind, :string
   attribute :date_precision, :string
-  
+
   # enums
   enum :kind, ["event", "conference", "meetup", "retreat", "hackathon"].index_by(&:itself), default: "event"
   enum :date_precision, ["day", "month", "year"].index_by(&:itself), default: "day"
