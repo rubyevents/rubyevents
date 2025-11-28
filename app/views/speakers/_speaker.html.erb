@@ -3,5 +3,11 @@
     <span><%= sanitize speaker.name_with_snippet %></span>
   </div>
 
-  <%= ui_badge(speaker.talks_count, kind: :secondary, outline: true, size: :lg, class: "min-w-10") %>
+  <%= ui_badge(
+        speaker.talks_count,
+        kind: :secondary,
+        outline: true,
+        size: :lg,
+        class: "min-w-10"
+      ) %>
 <% end %>
