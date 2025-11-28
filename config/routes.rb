@@ -90,6 +90,7 @@ Rails.application.routes.draw do
       resources :stickers, only: [:index]
       resources :involvements, only: [:index]
       resources :map, only: [:index]
+      resources :aliases, only: [:index]
     end
   end
   resources :events, param: :slug, only: [:index, :show, :update, :edit] do

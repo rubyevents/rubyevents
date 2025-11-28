@@ -1,0 +1,14 @@
+<%= render layout: "profiles/tab_layout", locals: {
+      user: @user,
+      topics: @topics,
+      talks: @talks,
+      events: @events,
+      mutual_events: @mutual_events,
+      stamps: @stamps,
+      events_with_stickers: @events_with_stickers,
+      involvements_by_role: @involvements_by_role,
+      countries_with_events: @countries_with_events,
+      aliases: @aliases
+    } do %>
+  <%= render partial: "profiles/aliases", locals: {user: @user, aliases: @aliases} %>
+<% end %>
