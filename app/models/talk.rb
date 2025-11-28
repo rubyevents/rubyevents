@@ -114,6 +114,8 @@ class Talk < ApplicationRecord
 
   # enums
   enum :video_provider, %w[youtube mp4 vimeo scheduled not_published not_recorded parent children].index_by(&:itself)
+
+  attribute :kind, :string
   enum :kind,
     %w[keynote talk lightning_talk panel workshop gameshow podcast q_and_a discussion fireside_chat
       interview award].index_by(&:itself)
