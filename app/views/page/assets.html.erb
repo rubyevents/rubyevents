@@ -1,0 +1,321 @@
+<div style="background-color: #F5F5F5;" class="min-h-screen py-8">
+  <div class="container mx-auto px-4">
+    <div class="mb-8">
+      <h1 class="text-4xl font-bold text-gray-900 mb-2">Event Assets Overview</h1>
+      <p class="text-gray-600">View all event assets with their dimensions, similar to Sketch or Figma artboards</p>
+      <p class="text-gray-600 mt-2">
+        For information on how to add or manage visual assets, see the
+        <%= link_to "Adding Visual Assets Guide", "https://github.com/rubyevents/rubyevents/blob/main/docs/ADDING_VISUAL_ASSETS.md", class: "text-blue-600 hover:text-blue-800 underline", target: "_blank", rel: "noopener" %>
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+      <div class="bg-white rounded-lg p-4" style="border: 1px solid #E5E5E5;">
+        <div class="text-gray-600 text-sm mb-1">Total Events</div>
+        <div class="text-2xl font-bold text-gray-900"><%= @events_with_assets.count %></div>
+      </div>
+      <div class="bg-white rounded-lg p-4" style="border: 1px solid #E5E5E5;">
+        <div class="text-gray-600 text-sm mb-1">With Assets</div>
+        <div class="text-2xl font-bold text-green-600"><%= @events_with_assets.count { |e| e[:has_any_assets] } %></div>
+      </div>
+      <div class="bg-white rounded-lg p-4" style="border: 1px solid #E5E5E5;">
+        <div class="text-gray-600 text-sm mb-1">Without Assets</div>
+        <div class="text-2xl font-bold text-red-600"><%= @events_with_assets.count { |e| !e[:has_any_assets] } %></div>
+      </div>
+      <div class="bg-white rounded-lg p-4" style="border: 1px solid #E5E5E5;">
+        <div class="text-gray-600 text-sm mb-1">Asset Types</div>
+        <div class="text-2xl font-bold text-blue-600"><%= @asset_types.count %></div>
+      </div>
+    </div>
+
+    <div class="space-y-8">
+      <% @events_with_assets.group_by { |e| e[:event].series }.sort_by { |series, _| series.name }.each do |series, series_events| %>
+        <div class="bg-white rounded-lg overflow-hidden" style="border: 1px solid #E5E5E5;">
+          <div class="bg-gray-50 px-6 py-4" style="border-bottom: 1px solid #E5E5E5;">
+            <h2 class="text-2xl font-bold text-gray-900"><%= series.name %></h2>
+            <p class="text-gray-600 text-sm mt-1">
+              <%= series_events.count %> events •
+              <%= series_events.count { |e| e[:has_any_assets] } %> with assets
+            </p>
+          </div>
+
+          <div class="p-6 space-y-6">
+            <% series_events.sort_by { |e| e[:event].end_date || e[:event].start_date || e[:event].date || Date.new(1900, 1, 1) }.reverse.each do |event_data| %>
+              <% event = event_data[:event] %>
+              <% assets = event_data[:assets] %>
+              <% missing_assets = event_data[:missing_assets] %>
+
+              <div class="bg-white rounded-lg overflow-hidden" style="border: 1px solid <%= event_data[:has_any_assets] ? "#E5E5E5" : "#E74C3C" %>;">
+                <div class="px-4 py-3 bg-gray-50 flex items-center justify-between" style="border-bottom: 1px solid #E5E5E5;">
+                  <div class="flex items-center gap-3">
+                    <h3 class="text-lg font-semibold text-gray-900"><%= event.name %></h3>
+                    <% if !event_data[:has_any_assets] %>
+                      <span class="px-2 py-1 text-xs font-medium bg-red-100 text-red-800 rounded">No Assets</span>
+                    <% elsif missing_assets.any? %>
+                      <span class="px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-800 rounded">
+                        <%= missing_assets.count %> Missing
+                      </span>
+                    <% else %>
+                      <span class="px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded">Complete</span>
+                    <% end %>
+                  </div>
+                  <%= link_to "View Event →", event, class: "text-blue-600 hover:text-blue-800 text-sm" %>
+                </div>
+
+                <div class="p-6" style="background-color: #F5F5F5;">
+                  <div class="space-y-6">
+                    <% if @asset_types["avatar"] %>
+                      <% specs = @asset_types["avatar"] %>
+                      <% has_asset = assets["avatar"] %>
+                      <div class="flex justify-center">
+                        <div style="width: 200px;">
+                          <div class="relative bg-white overflow-hidden" style="border: <%= has_asset ? "1px solid #E5E5E5" : "1px dashed #E5E5E5" %>;">
+                            <div style="padding-bottom: 100%; position: relative; background-color: #FAFAFA;">
+                              <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
+                                <% if has_asset %>
+                                  <%= image_tag event.event_image_for("avatar.webp"),
+                                        style: "width: 100%; height: 100%; object-fit: contain;",
+                                        alt: "#{event.name} - Avatar",
+                                        loading: "lazy" %>
+                                <% else %>
+                                  <div style="display: flex; align-items: center; justify-content: center; height: 100%; text-align: center;">
+                                    <div>
+                                      <svg style="width: 2rem; height: 2rem; color: #CCCCCC; margin: 0 auto 0.5rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                      </svg>
+                                      <p style="font-size: 0.75rem; color: #999999;">Missing</p>
+                                    </div>
+                                  </div>
+                                <% end %>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="mt-2 flex items-center justify-center gap-2">
+                            <% if has_asset %>
+                              <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                              <span class="text-xs text-gray-600">avatar.webp <%= specs[:width] %>×<%= specs[:height] %></span>
+                            <% else %>
+                              <div class="w-2 h-2 rounded-full bg-red-400"></div>
+                              <span class="text-xs text-gray-400">avatar.webp <%= specs[:width] %>×<%= specs[:height] %></span>
+                            <% end %>
+                          </div>
+                        </div>
+                      </div>
+                    <% end %>
+
+                    <% if @asset_types["banner"] %>
+                      <% specs = @asset_types["banner"] %>
+                      <% has_asset = assets["banner"] %>
+                      <% banner_bg = event.static_metadata.banner_background.presence || "#FAFAFA" %>
+                      <div>
+                        <div class="relative bg-white overflow-hidden" style="border: <%= has_asset ? "1px solid #E5E5E5" : "1px dashed #E5E5E5" %>;">
+                          <div style="padding-bottom: <%= (specs[:height].to_f / specs[:width].to_f * 100).round(2) %>%; position: relative; background: <%= banner_bg %>;">
+                            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
+                              <% if has_asset %>
+                                <%= image_tag event.event_image_for("banner.webp"),
+                                      style: "width: 100%; height: 100%; object-fit: contain;",
+                                      alt: "#{event.name} - Banner",
+                                      loading: "lazy" %>
+                              <% else %>
+                                <div style="display: flex; align-items: center; justify-content: center; height: 100%; text-align: center;">
+                                  <div>
+                                    <svg style="width: 3rem; height: 3rem; color: #CCCCCC; margin: 0 auto 0.5rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                    </svg>
+                                    <p style="font-size: 0.75rem; color: #999999;">Missing</p>
+                                  </div>
+                                </div>
+                              <% end %>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="mt-2 flex items-center justify-center gap-2">
+                          <% if has_asset %>
+                            <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                            <span class="text-xs text-gray-600">banner.webp <%= specs[:width] %>×<%= specs[:height] %></span>
+                          <% else %>
+                            <div class="w-2 h-2 rounded-full bg-red-400"></div>
+                            <span class="text-xs text-gray-400">banner.webp <%= specs[:width] %>×<%= specs[:height] %></span>
+                          <% end %>
+                        </div>
+                      </div>
+                    <% end %>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      <% ["card", "featured", "poster"].each do |type| %>
+                        <% if @asset_types[type] %>
+                          <% specs = @asset_types[type] %>
+                          <% has_asset = assets[type] %>
+                          <% bg_color = (type == "featured" && event.static_metadata.featured_background.present?) ? event.static_metadata.featured_background : "#FAFAFA" %>
+                          <div>
+                            <div class="relative bg-white overflow-hidden" style="border: <%= has_asset ? "1px solid #E5E5E5" : "1px dashed #E5E5E5" %>;">
+                              <div style="padding-bottom: <%= (specs[:height].to_f / specs[:width].to_f * 100).round(2) %>%; position: relative; background: <%= bg_color %>;">
+                                <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
+                                  <% if has_asset %>
+                                    <%= image_tag event.event_image_for("#{type}.webp"),
+                                          style: "width: 100%; height: 100%; object-fit: contain;",
+                                          alt: "#{event.name} - #{specs[:name]}",
+                                          loading: "lazy" %>
+                                  <% else %>
+                                    <div style="display: flex; align-items: center; justify-content: center; height: 100%; text-align: center;">
+                                      <div>
+                                        <svg style="width: 3rem; height: 3rem; color: #CCCCCC; margin: 0 auto 0.5rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                        </svg>
+                                        <p style="font-size: 0.75rem; color: #999999;">Missing</p>
+                                      </div>
+                                    </div>
+                                  <% end %>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="mt-2 flex items-center justify-center gap-2">
+                              <% if has_asset %>
+                                <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                                <span class="text-xs text-gray-600"><%= type %>.webp <%= specs[:width] %>×<%= specs[:height] %></span>
+                              <% else %>
+                                <div class="w-2 h-2 rounded-full bg-red-400"></div>
+                                <span class="text-xs text-gray-400"><%= type %>.webp <%= specs[:width] %>×<%= specs[:height] %></span>
+                              <% end %>
+                            </div>
+                          </div>
+                        <% end %>
+                      <% end %>
+                    </div>
+
+                    <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <h4 class="text-sm font-semibold text-gray-700 mb-3">Stickers</h4>
+                        <div class="flex gap-4 flex-wrap">
+                          <% if event_data[:sticker_paths].any? %>
+                            <% event_data[:sticker_paths].each_with_index do |sticker_path, index| %>
+                              <div>
+                                <div class="relative bg-white overflow-hidden" style="border: 1px solid #E5E5E5; width: 150px;">
+                                  <div style="padding-bottom: 100%; position: relative; background-color: #FAFAFA;">
+                                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
+                                      <%= image_tag sticker_path,
+                                            style: "width: 100%; height: 100%; object-fit: contain;",
+                                            alt: "#{event.name} - Sticker #{index + 1}",
+                                            loading: "lazy" %>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="mt-2 flex items-center justify-center gap-2">
+                                  <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                                  <span class="text-xs text-gray-600"><%= File.basename(sticker_path) %> <%= @asset_types["sticker"][:width] %>×<%= @asset_types["sticker"][:height] %></span>
+                                </div>
+                              </div>
+                            <% end %>
+                          <% else %>
+                            <div>
+                              <div class="relative bg-white overflow-hidden" style="border: 1px dashed #E5E5E5; width: 150px;">
+                                <div style="padding-bottom: 100%; position: relative; background-color: #FAFAFA;">
+                                  <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
+                                    <div style="display: flex; align-items: center; justify-content: center; height: 100%; text-align: center;">
+                                      <div>
+                                        <svg style="width: 2rem; height: 2rem; color: #CCCCCC; margin: 0 auto 0.5rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                        </svg>
+                                        <p style="font-size: 0.75rem; color: #999999;">Missing</p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="mt-2 flex items-center justify-center gap-2">
+                                <div class="w-2 h-2 rounded-full bg-red-400"></div>
+                                <span class="text-xs text-gray-400">sticker.webp <%= @asset_types["sticker"][:width] %>×<%= @asset_types["sticker"][:height] %></span>
+                              </div>
+                            </div>
+                          <% end %>
+                        </div>
+                      </div>
+
+                      <div>
+                        <h4 class="text-sm font-semibold text-gray-700 mb-3">Stamps</h4>
+                        <div class="flex gap-4 flex-wrap">
+                          <% if event_data[:stamp_paths].any? %>
+                            <% event_data[:stamp_paths].each_with_index do |stamp_path, index| %>
+                              <div>
+                                <div class="relative bg-white overflow-hidden" style="border: 1px solid #E5E5E5; width: 150px;">
+                                  <div style="padding-bottom: 100%; position: relative; background-color: #FAFAFA;">
+                                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
+                                      <%= image_tag stamp_path,
+                                            style: "width: 100%; height: 100%; object-fit: contain;",
+                                            alt: "#{event.name} - Stamp #{index + 1}",
+                                            loading: "lazy" %>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="mt-2 flex items-center justify-center gap-2">
+                                  <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                                  <span class="text-xs text-gray-600"><%= File.basename(stamp_path) %> <%= @asset_types["stamp"][:width] %>×<%= @asset_types["stamp"][:height] %></span>
+                                </div>
+                              </div>
+                            <% end %>
+                          <% else %>
+                            <div>
+                              <div class="relative bg-white overflow-hidden" style="border: 1px dashed #E5E5E5; width: 150px;">
+                                <div style="padding-bottom: 100%; position: relative; background-color: #FAFAFA;">
+                                  <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
+                                    <div style="display: flex; align-items: center; justify-content: center; height: 100%; text-align: center;">
+                                      <div>
+                                        <svg style="width: 2rem; height: 2rem; color: #CCCCCC; margin: 0 auto 0.5rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                        </svg>
+                                        <p style="font-size: 0.75rem; color: #999999;">Missing</p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="mt-2 flex items-center justify-center gap-2">
+                                <div class="w-2 h-2 rounded-full bg-red-400"></div>
+                                <span class="text-xs text-gray-400">stamp.webp <%= @asset_types["stamp"][:width] %>×<%= @asset_types["stamp"][:height] %></span>
+                              </div>
+                            </div>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+
+                    <% if event.static_metadata.featured_color.present? || event.static_metadata.featured_background.present? || event.static_metadata.banner_background.present? %>
+                      <div class="mt-6 pt-6" style="border-top: 1px solid #E5E5E5;">
+                        <h4 class="text-sm font-semibold text-gray-700 mb-3">Event Colors</h4>
+                        <div class="flex gap-4">
+                          <% if event.static_metadata.banner_background.present? %>
+                            <div>
+                              <div class="w-20 h-20 mb-2" style="background: <%= event.static_metadata.banner_background %>; border: 1px solid #E5E5E5;"></div>
+                              <div class="text-xs text-gray-600">Banner BG</div>
+                              <div class="text-xs font-mono text-gray-500 line-clamp-1" style="width: 80px;" title="<%= event.static_metadata.banner_background %>"><%= event.static_metadata.banner_background %></div>
+                            </div>
+                          <% end %>
+
+                          <% if event.static_metadata.featured_background.present? %>
+                            <div>
+                              <div class="w-20 h-20 mb-2" style="background-color: <%= event.static_metadata.featured_background %>; border: 1px solid #E5E5E5;"></div>
+                              <div class="text-xs text-gray-600">Featured BG</div>
+                              <div class="text-xs font-mono text-gray-500"><%= event.static_metadata.featured_background %></div>
+                            </div>
+                          <% end %>
+
+                          <% if event.static_metadata.featured_color.present? %>
+                            <div>
+                              <div class="w-20 h-20 mb-2" style="background-color: <%= event.static_metadata.featured_color %>; border: 1px solid #E5E5E5;"></div>
+                              <div class="text-xs text-gray-600">Featured Color</div>
+                              <div class="text-xs font-mono text-gray-500"><%= event.static_metadata.featured_color %></div>
+                            </div>
+                          <% end %>
+                        </div>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -16,15 +16,33 @@ This project is open source, and contributions are greatly appreciated. One of t
 
 We also have a page on the deployed site that has up-to-date information with the remaining known TODOs. Check out the ["Getting Started: Ways to Contribute" page on RubyEvents.org](https://www.rubyevents.org/contributions) and feel free to start working on any of the remaining TODOs. Any help is greatly appreciated.
 
-For more information on contributing conference data, please visit [this page](/docs/contributing.md).
+For more information on contributing:
+
+- Conference data: [Contributing Guide](/CONTRIBUTING.md)
+- Visual assets (logos, banners, etc.): [Adding Visual Assets Guide](/docs/ADDING_VISUAL_ASSETS.md)
+- Sponsor information: [Adding Sponsors Guide](/docs/ADDING_SPONSORS.md)
+
+You can view all event assets and their status at: https://rubyevents.org/pages/assets
 
 ## Getting Started
 
 We have tried to make the setup process as simple as possible so that in a few commands you can have the project with real data running locally.
 
+### Devcontainers
+
+In addition to the local development flow described below, we support [devcontainers](https://containers.dev).
+If you open this project in VS Code and you have the [dev containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) installed, it will prompt you and ask if you want to reopen in a dev contatiner.
+This will set up the dev environment for you in docker, and reopen your editor from within the context of the rails container, so you can run commands and work with the project as if it was local.
+All file changes will be present locally when you close the container.
+
+- Use `gh auth login` to auth with GitHub, so you can push commits from within the container.
+- Do not run `bin/setup`. It starts docker containers, and you're already in one.
+- After the container is set up, run `bin/dev` in the terminal to start the development server. The application will be forwarded to [localhost:3000](localhost:3000).
+- To run system tests, use `HEADLESS=true bin/rails test`. The HEADLESS=true environment variable ensures Chrome runs in headless mode, which is required in the container environment.
+
 ### Requirements
 
-- Ruby 3.4.4
+- Ruby 3.4.7
 - Node.js 22.15.1
 
 ### Setup

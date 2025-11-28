@@ -1,0 +1,12 @@
+<%= render partial: "events/header", locals: {event: @event, participation: @participation} %>
+
+<%= turbo_frame_tag dom_id(@event), data: {turbo_action: "advance", turbo_frame: "_top"} do %>
+  <div class="container py-8">
+    <%= render partial: "events/navigation", locals: {event: @event} %>
+    <div class="flex items-start flex-wrap gap-8 sm:flex-nowrap w-full">
+      <div class="w-full">
+        <%= render partial: "events/participants/list", locals: {event: @event, participants: @participants, participation: @participation} %>
+      </div>
+    </div>
+  </div>
+<% end %>

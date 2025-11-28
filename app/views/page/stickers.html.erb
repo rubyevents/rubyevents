@@ -1,16 +1,29 @@
 <div class="bg-black">
   <div class="container">
-    <div class="flex w-full items-center justify-center bg-black p-12">
-      <div class="mx-auto w-full overflow-hidden rounded-[40px] bg-gradient-to-b from-gray-300 via-gray-600 to-gray-600 p-[4px]">
-        <div class="back flex overflow-hidden aspect-[16/11] w-full items-center justify-center rounded-[40px] bg-gradient-to-b from-gray-400 via-gray-500 to-gray-600">
-          <div class="grid grid-cols-3 gap-[5vw] w-full h-full p-12">
-            <% @events.shuffle.each do |event| %>
-              <%= link_to event, class: "max-w-[10vw]", style: "transform: rotate(#{(-20...20).to_a.sample}deg) translateY(#{(0...10).to_a.sample}vw) translateX(#{(0...10).to_a.sample}vh) scale(#{100 + (-10...10).to_a.sample}%)" do %>
-                <%= image_tag event.sticker_image_path, class: "transition transition-transform hover:scale-105" %>
+    <%= render partial: "shared/stickers_display", locals: {events: @events} %>
+
+    <div class="pb-12">
+      <h2 class="text-3xl font-bold text-center text-white mb-8">Available Stickers</h2>
+
+      <div class="space-y-8">
+        <% @events.group_by(&:series).sort_by { |org, _| org.name }.each do |series, series_events| %>
+          <div class="bg-gray-900 rounded-lg p-6">
+            <h3 class="text-xl font-semibold text-white mb-4"><%= series.name %></h3>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+              <% series_events.sort_by { |e| e.date || Date.new(1900, 1, 1) }.reverse.each do |event| %>
+                <% event.stickers.each do |sticker| %>
+                  <%= link_to event, class: "group relative bg-gray-800 rounded-lg p-4 hover:bg-gray-700 transition-colors" do %>
+                    <div class="aspect-square flex items-center justify-center mb-2">
+                      <%= image_tag sticker.asset_path, class: "max-w-full max-h-full object-contain group-hover:scale-110 transition-transform" %>
+                    </div>
+                    <p class="text-xs text-gray-300 text-center truncate"><%= event.name %></p>
+                  <% end %>
+                <% end %>
               <% end %>
-            <% end %>
+            </div>
           </div>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>

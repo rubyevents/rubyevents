@@ -1,0 +1,38 @@
+<%= link_to organization_path(organization), class: "flex flex-col gap-4 hover:bg-gray-200 transition-bg duration-300 ease-in-out p-2 px-4 rounded-lg", data: {turbo_frame: ((defined?(turbo_frame) && turbo_frame) ? "_top" : nil)} do %>
+  <div class="flex items-center gap-4">
+    <% if organization.has_logo_image? %>
+      <div class="<%= organization.logo_background_class %> rounded-lg p-2 border <%= organization.logo_border_class %> w-12 h-12 flex items-center justify-center flex-shrink-0">
+        <%= image_tag(
+              organization.logo_image_path,
+              alt: "#{organization.name} logo",
+              class: "w-10 h-10 object-contain",
+              loading: "lazy",
+              onerror: "this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            ) %>
+        <div class="w-10 h-10 items-center justify-center" style="display: none;">
+          <span class="text-xs font-semibold text-gray-700 text-center line-clamp-2"><%= organization.name %></span>
+        </div>
+      </div>
+    <% else %>
+      <div class="w-12 h-12 flex items-center justify-center flex-shrink-0 bg-gray-100 rounded-lg border border-gray-200">
+        <span class="text-xs font-semibold text-gray-700 text-center line-clamp-2"><%= organization.name[0..1].upcase %></span>
+      </div>
+    <% end %>
+
+    <div class="flex-1 min-w-0">
+      <div class="font-bold text-base line-clamp-1">
+        <%= organization.name %>
+      </div>
+
+      <div class="text-xs text-gray-500 line-clamp-1">
+        <% if defined?(sponsor) && sponsor&.badge.present? %>
+          <%= sponsor.badge %>
+        <% elsif !defined?(hide_event_count) || !hide_event_count %>
+          <%= pluralize(organization.events.size, "event") %>
+        <% else %>
+          <%= organization.website&.gsub(%r{https?://}, "")&.gsub(%r{www\.}, "")&.split("/")&.first || "-" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

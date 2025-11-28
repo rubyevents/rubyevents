@@ -1,4 +1,4 @@
-module Youtube
+module YouTube
   class VideoMetadataBalticRuby2024
     SPEAKERS_SECTION_SEPARATOR = " - "
     SEPARATOR_IN_BETWEEN_SPEAKERS = / & |, | and /
@@ -55,7 +55,7 @@ module Youtube
       return title if title.blank?
 
       title.gsub(/^[-:]?/, "").strip.then do |title|
-        title.gsub(/[-:,\.]$/, "").strip
+        title.gsub(/[-:,.]$/, "").strip
       end
     end
 

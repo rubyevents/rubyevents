@@ -74,7 +74,8 @@ module.exports = {
           'accent-content': '#ffffff',
           neutral: '#261B23',
           'neutral-content': '#ffffff',
-          'base-100': '#F8F9FA'
+          'base-100': '#F8F9FA',
+          '--animation-btn': 'none'
           // 'base-200': '#FFFFFF',
           // 'base-content': '#2F2F2F'
           // 'base-100': '#ffffff',

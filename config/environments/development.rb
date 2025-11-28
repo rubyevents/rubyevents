@@ -59,6 +59,9 @@ Rails.application.configure do
   # Highlight code that enqueued background job in logs.
   config.active_job.verbose_enqueue_logs = true
 
+  # Suppress logger output for asset requests.
+  config.assets.quiet = true
+
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 
@@ -79,6 +82,8 @@ Rails.application.configure do
   # https://vite-ruby.netlify.app/guide/troubleshooting.html#safari-does-not-reflect-css-and-js-changes-in-development
   # https://bugs.webkit.org/show_bug.cgi?id=193533
   config.action_view.preload_links_header = false
+
+  config.solid_queue.logger = ActiveSupport::Logger.new($stdout)
 
   if ENV["PROFILE"]
     config.cache_classes = true

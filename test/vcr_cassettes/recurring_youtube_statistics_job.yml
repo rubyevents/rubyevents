@@ -1,66 +1,66 @@
 ---
 http_interactions:
-- request:
-    method: get
-    uri: https://youtube.googleapis.com/youtube/v3/videos?id=F75k4Oc6g9Q&key=AIzaSyCe3yTMydyYrEKSS0N0oh9w5y9Rct3g3QU&maxResults=50&part=statistics
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Content-Type:
-      - application/json; charset=UTF-8
-      Vary:
-      - Origin
-      - Referer
-      - X-Origin
-      Date:
-      - Wed, 08 Jan 2025 22:23:33 GMT
-      Server:
-      - scaffolding on HTTPServer2
-      X-Xss-Protection:
-      - '0'
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Content-Type-Options:
-      - nosniff
-      Alt-Svc:
-      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
-      Transfer-Encoding:
-      - chunked
-    body:
-      encoding: ASCII-8BIT
-      string: |
-        {
-          "kind": "youtube#videoListResponse",
-          "etag": "V60dqYQfDUoSn3bi_kr_AEZP2KU",
-          "items": [
-            {
-              "kind": "youtube#video",
-              "etag": "pVbmMiy3eNUSosIwPZ4Fgc5MK2o",
-              "id": "F75k4Oc6g9Q",
-              "statistics": {
-                "viewCount": "13105",
-                "likeCount": "371",
-                "favoriteCount": "0",
-                "commentCount": "31"
+  - request:
+      method: get
+      uri: https://youtube.googleapis.com/youtube/v3/videos?id=F75k4Oc6g9Q&key=REDACTED_YOUTUBE_API_KEY&maxResults=50&part=statistics
+      body:
+        encoding: US-ASCII
+        string: ""
+      headers:
+        Accept-Encoding:
+          - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+        Accept:
+          - "*/*"
+        User-Agent:
+          - Ruby
+    response:
+      status:
+        code: 200
+        message: OK
+      headers:
+        Content-Type:
+          - application/json; charset=UTF-8
+        Vary:
+          - Origin
+          - Referer
+          - X-Origin
+        Date:
+          - Wed, 08 Jan 2025 22:23:33 GMT
+        Server:
+          - scaffolding on HTTPServer2
+        X-Xss-Protection:
+          - "0"
+        X-Frame-Options:
+          - SAMEORIGIN
+        X-Content-Type-Options:
+          - nosniff
+        Alt-Svc:
+          - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+        Transfer-Encoding:
+          - chunked
+      body:
+        encoding: ASCII-8BIT
+        string: |
+          {
+            "kind": "youtube#videoListResponse",
+            "etag": "V60dqYQfDUoSn3bi_kr_AEZP2KU",
+            "items": [
+              {
+                "kind": "youtube#video",
+                "etag": "pVbmMiy3eNUSosIwPZ4Fgc5MK2o",
+                "id": "F75k4Oc6g9Q",
+                "statistics": {
+                  "viewCount": "13105",
+                  "likeCount": "371",
+                  "favoriteCount": "0",
+                  "commentCount": "31"
+                }
               }
+            ],
+            "pageInfo": {
+              "totalResults": 1,
+              "resultsPerPage": 1
             }
-          ],
-          "pageInfo": {
-            "totalResults": 1,
-            "resultsPerPage": 1
           }
-        }
-  recorded_at: Wed, 08 Jan 2025 22:23:33 GMT
+    recorded_at: Wed, 08 Jan 2025 22:23:33 GMT
 recorded_with: VCR 6.3.1

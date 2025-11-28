@@ -40,7 +40,6 @@ env:
     RAILS_ENV: staging
   secret:
     - RAILS_MASTER_KEY
-    - MEILI_MASTER_KEY
 
 # Aliases are triggered with "bin/kamal <alias>". You can overwrite arguments on invocation:
 # "bin/kamal logs -r job" will tail logs from the first server in the job section.
@@ -87,46 +86,6 @@ builder:
 
 # Use accessory services (secrets come from .kamal/secrets).
 # accessories:
-# accessories:
-#   search:
-#     image: getmeili/meilisearch:v1.10
-#     host: 159.69.222.18
-#     port: 7700
-#     env:
-#       clear:
-#         MEILI_HTTP_ADDR: rubyvideo_staging-search:7700
-#         MEILI_ENV: production
-#         MEILI_DB_PATH: /rails/storage/meilisearch
-#         MEILI_NO_ANALYTICS: true
-#         MEILI_DUMP_DIR: /rails/storage/meilisearch/dumps
-#         MEILI_MAX_INDEXING_MEMORY: 2Gb
-#         MEILI_SNAPSHOT_DIR: /rails/storage/meilisearch/snapshots
-#       secret:
-#         - MEILI_MASTER_KEY
-#     volumes:
-#       - "storage:/rails/storage"
-
-#   db:
-#     image: mysql:8.0
-#     host: 192.168.0.2
-#     # Change to 3306 to expose port to the world instead of just local network.
-#     port: "127.0.0.1:3306:3306"
-#     env:
-#       clear:
-#         MYSQL_ROOT_HOST: '%'
-#       secret:
-#         - MYSQL_ROOT_PASSWORD
-#     files:
-#       - config/mysql/production.cnf:/etc/mysql/my.cnf
-#       - db/production.sql:/docker-entrypoint-initdb.d/setup.sql
-#     directories:
-#       - data:/var/lib/mysql
-#   redis:
-#     image: redis:7.0
-#     host: 192.168.0.2
-#     port: 6379
-#     directories:
-#       - data:/data
 accessories:
   litestream:
     roles: ["web"]

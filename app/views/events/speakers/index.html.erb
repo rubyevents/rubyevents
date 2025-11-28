@@ -1,4 +1,4 @@
-<%= render partial: "events/header", locals: {event: @event} %>
+<%= render partial: "events/header", locals: {event: @event, participation: @participation} %>
 
 <%= turbo_frame_tag dom_id(@event), data: {turbo_action: "advance", turbo_frame: "_top"} do %>
   <div class="container py-8">
@@ -6,20 +6,37 @@
 
     <div class="flex items-start flex-wrap gap-8 sm:flex-nowrap w-full">
       <div class="w-full">
-        <% titles = Talk.speaker_role_titles %>
+        <% if @event.meetup? && @speakers_with_counts %>
+          <h2 class="mb-6">Speakers (<%= @speakers_with_counts.size %>)</h2>
 
-        <% grouped = @event.talks.flat_map { |talk| talk.speakers.map { |speaker| [talk.kind, speaker] } }.group_by(&:first).transform_values(&:uniq).sort_by { |kind, _speakers| Talk.kinds.values.index(kind) } %>
-
-        <% grouped.each do |kind, speakers| %>
-          <h2 class="mb-6"><%= titles[kind.to_sym].pluralize(speakers.count) %></h2>
-
-          <div id="keynote-speakers" class="mb-12 min-w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 h-full">
-            <% speakers.each do |kind, speaker| %>
-              <div class="border rounded-lg bg-white hover:bg-gray-200 transition-bg duration-300 ease-in-out">
-                <%= render partial: "talks/speaker", locals: {speaker: speaker} %>
+          <div class="mb-12 min-w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 h-full">
+            <% @speakers_with_counts.each do |speaker| %>
+              <div class="border rounded-lg bg-white hover:bg-gray-200 transition-bg duration-300 ease-in-out relative">
+                <% if speaker.meetup_talks_count > 1 %>
+                  <div class="absolute top-2 right-2 bg-primary text-white text-xs font-semibold px-2 py-1 rounded-full">
+                    <%= speaker.meetup_talks_count %> talks
+                  </div>
+                <% end %>
+                <%= render partial: "users/card", locals: {user: speaker} %>
               </div>
             <% end %>
           </div>
+        <% else %>
+          <% titles = Talk.speaker_role_titles %>
+
+          <% grouped = @event.talks.flat_map { |talk| talk.speakers.map { |speaker| [talk.kind, speaker] } }.group_by(&:first).transform_values(&:uniq).sort_by { |kind, _speakers| Talk.kinds.values.index(kind) } %>
+
+          <% grouped.each do |kind, speakers| %>
+            <h2 class="mb-6"><%= titles[kind.to_sym].pluralize(speakers.count) %></h2>
+
+            <div id="keynote-speakers" class="mb-12 min-w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 h-full">
+              <% speakers.each do |kind, speaker| %>
+                <div class="border rounded-lg bg-white hover:bg-gray-200 transition-bg duration-300 ease-in-out">
+                  <%= render partial: "users/card", locals: {user: speaker} %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
         <% end %>
       </div>
     </div>

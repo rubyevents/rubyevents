@@ -19,6 +19,24 @@ class Spotlight::TalksControllerTest < ActionDispatch::IntegrationTest
     assert_equal "text/vnd.turbo-stream.html", @response.media_type
   end
 
+  test "should filter out unbalanced quotes" do
+    get spotlight_talks_url(format: :turbo_stream, s: 'Hotwire"')
+    assert_response :success
+    assert_equal "text/vnd.turbo-stream.html", @response.media_type
+  end
+
+  test "should filter out invalid quotes" do
+    get spotlight_talks_url(format: :turbo_stream, s: "'")
+    assert_response :success
+    assert_equal "text/vnd.turbo-stream.html", @response.media_type
+  end
+
+  test "should filter out invalid search characters" do
+    get spotlight_talks_url(format: :turbo_stream, s: "Hotwire\nCookbook")
+    assert_response :success
+    assert_equal "text/vnd.turbo-stream.html", @response.media_type
+  end
+
   test "should limit results to 5 talks" do
     6.times do |i|
       Talk.create!(

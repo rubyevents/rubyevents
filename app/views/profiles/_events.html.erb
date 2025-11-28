@@ -1,0 +1,68 @@
+<%# Event Participations v1 %>
+
+<% future_events = events.upcoming.sort_by(&:start_date).reverse %>
+<% past_events = events.past.sort_by(&:start_date).reverse %>
+
+<% cache [user, events, Current.user] do %>
+  <div>
+    <div class="space-y-8">
+        <% if future_events.any? %>
+          <div>
+            <h3 class="text-lg font-semibold mb-4">Future Events</h3>
+            <div class="mb-6">
+              <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                <% future_events.each do |event| %>
+                  <%= cache [event, participations[event.id]] do %>
+                    <%= render partial: "events/card", locals: {event: event, participation: participations[event.id]} %>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+
+        <% if past_events.any? %>
+          <div>
+            <h3 class="text-lg font-semibold mb-4">Past Events</h3>
+            <div class="mb-6">
+              <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                <% past_events.each do |event| %>
+                  <%= cache [event, participations[event.id]] do %>
+                    <%= render partial: "events/card", locals: {event: event, participation: participations[event.id]} %>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+
+      <div class="text-center py-12 hidden only:block">
+        <div class="mb-6">
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">No participated events yet</h3>
+          <p class="text-gray-600 mb-6 max-w-xl mx-auto">
+            <% if Current.user == user %>
+              You haven't marked your participation in any events yet. Visit <%= link_to "event pages", events_path, class: "link link-primary link-ghost" %> or search events with <kbd class="kbd kbd-sm text-base-content">⌘ k</kbd> and click "Add to My Events" to start building your event history.
+            <% elsif Current.user %>
+              This user hasn't marked their participation in any events yet.
+            <% else %>
+              Sign in to manage your profile and mark your participation in events you've attended.
+            <% end %>
+          </p>
+        </div>
+
+        <% if Current.user && Current.user == user %>
+          <div class="space-y-3">
+            <%= link_to events_path, class: "btn btn-primary" do %>
+              <%= fa("magnifying-glass", style: :regular) %>
+              Browse Events
+            <% end %>
+          </div>
+        <% elsif !Current.user %>
+          <div class="space-y-3">
+            <%= link_to "Sign in", new_session_path(redirect_to: request.fullpath), data: {turbo_frame: "modal"}, class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

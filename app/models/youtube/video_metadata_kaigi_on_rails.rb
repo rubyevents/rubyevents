@@ -1,4 +1,4 @@
-module Youtube
+module YouTube
   class VideoMetadataKaigiOnRails < VideoMetadata
     # TODO: `SPEAKERS_SECTION_SEPARATOR` should be a method so that chldren classes can override it
     def title

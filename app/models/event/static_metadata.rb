@@ -1,12 +1,10 @@
-# -*- SkipSchemaAnnotations
-
 class Event::StaticMetadata < ActiveRecord::AssociatedObject
   delegate :published_date, :home_sort_date, to: :static_repository, allow_nil: true
 
   def kind
     return static_repository.kind if static_repository&.kind
-    return "conference" if event.organisation&.conference?
-    return "meetup" if event.organisation&.meetup?
+    return "conference" if event.series&.conference?
+    return "meetup" if event.series&.meetup?
 
     "event"
   end
@@ -19,8 +17,16 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
     kind == "meetup"
   end
 
+  def retreat?
+    kind == "retreat"
+  end
+
+  def hackathon?
+    kind == "hackathon"
+  end
+
   def frequency
-    static_repository&.frequency || event.organisation.frequency
+    static_repository&.frequency || event.series.frequency
   end
 
   def start_date
@@ -84,9 +90,13 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
     Country.find(location.to_s.split(",").last&.strip)
   end
 
+  def last_edition?
+    static_repository&.last_edition || false
+  end
+
   private
 
   def static_repository
-    @static_repository ||= Static::Playlist.find_by(slug: event.slug)
+    @static_repository ||= Static::Event.find_by_slug(event.slug)
   end
 end

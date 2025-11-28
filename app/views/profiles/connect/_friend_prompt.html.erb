@@ -1,0 +1,64 @@
+<div class="flex flex-col items-center justify-center text-center space-y-6 py-12 px-6">
+  <!-- Icon -->
+  <div class="flex items-center justify-center w-20 h-20 bg-success/10 rounded-full">
+    <% if found_user.present? %>
+      <%= image_tag found_user.avatar_url, class: "w-full h-full rounded-full" %>
+    <% else %>
+      <%= fa "user-group", variant: :solid, class: "w-10 h-10 text-success" %>
+    <% end %>
+  </div>
+
+  <!-- Heading -->
+  <div class="space-y-2">
+    <h2 class="text-2xl font-bold text-base-content">
+      🎉 Awesome! You Discovered a Friend
+    </h2>
+    <p class="text-base-content/70 max-w-md">
+      Connect with <%= found_user.name %> to expand your network and discover new opportunities together.
+    </p>
+  </div>
+
+  <!-- Features list -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md text-sm">
+    <div class="flex items-center space-x-2 text-base-content/80">
+      <%= fa "comments", variant: :solid, class: "w-5 h-5 text-success flex-shrink-0" %>
+      <span>Start conversations</span>
+    </div>
+    <div class="flex items-center space-x-2 text-base-content/80">
+      <%= fa :calendar, variant: :solid, class: "w-5 h-5 text-success flex-shrink-0" %>
+      <span>Share events</span>
+    </div>
+    <div class="flex items-center space-x-2 text-base-content/80">
+      <%= fa "graduation-cap", variant: :solid, class: "w-5 h-5 text-success flex-shrink-0" %>
+      <span>Exchange knowledge</span>
+    </div>
+    <div class="flex items-center space-x-2 text-base-content/80">
+      <%= fa :sparkles, variant: :solid, class: "w-5 h-5 text-success flex-shrink-0" %>
+      <span>Collaborate on projects</span>
+    </div>
+  </div>
+
+  <!-- CTA Button -->
+  <div class="pt-4">
+    <% if Current.user.present? %>
+      <% if false # enable this when we have a way to connect to other users %>
+        <%= ui_button url: "#", kind: :primary, size: :lg, class: "px-8 shadow-lg btn-disabled hidden" do %>
+          <%= fa :plus, variant: :solid, class: "w-5 h-5 mr-2" %>
+          Connect
+        <% end %>
+      <% else %>
+      <% end %>
+    <% else %>
+      <%= ui_button url: new_session_path(connect_to: params[:id]), kind: :primary, size: :lg, class: "px-8 shadow-lg", data: {turbo_frame: "modal"} do %>
+        <%= fa "arrow-right", variant: :solid, class: "w-5 h-5 mr-2" %>
+        Sign In and Connect
+      <% end %>
+
+      <!-- Network indicator -->
+      <div class="text-xs text-base-content/50 flex items-center space-x-1 pt-4 justify-center">
+        <%= fa "globe", variant: :solid, class: "w-4 h-4" %>
+        <span>Join the Ruby community network</span>
+      </div>
+    <% end %>
+  </div>
+</div>

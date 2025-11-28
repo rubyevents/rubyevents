@@ -1,0 +1,93 @@
+<div class="container py-8">
+  <div class="flex items-center mb-8">
+    <%= link_to @back_path, class: "mr-4 text-gray-500 hover:text-gray-700" do %>
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+      </svg>
+    <% end %>
+    <h1 class="title">
+      <%= title "Conferences Missing Sponsor Data" %>
+    </h1>
+  </div>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
+    <div class="flex items-start">
+      <%= fa("question-circle", size: :md, class: "fill-blue-600 mt-0.5 mr-4 flex-shrink-0") %>
+      <div>
+        <h2 class="font-semibold text-blue-800 text-lg mb-2">Help Complete Our Database</h2>
+        <p class="text-blue-700 mb-4">
+          The conferences listed below are missing sponsor information. If you have knowledge about
+          who sponsored these events, please consider contributing this data to help make RubyEvents.org
+          more complete.
+        </p>
+        <div class="bg-white border border-blue-200 rounded p-4">
+          <h3 class="font-semibold text-blue-800 mb-2">How to contribute sponsor data:</h3>
+          <ul class="text-sm text-blue-700 space-y-1">
+            <li>• Research the event website, program, or recorded videos</li>
+            <li>• Look for sponsor logos and acknowledgments</li>
+            <li>• <a href="https://github.com/rubyevents/rubyevents/blob/main/docs/ADDING_SPONSORS.md" class="underline hover:text-blue-900" target="_blank">Follow our contribution guide</a> to submit the data</li>
+            <li>• Create a pull request with the sponsor information</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <% if @events_by_year.any? %>
+    <div class="space-y-8">
+      <% @events_by_year.each do |year, events| %>
+        <div>
+          <h2 class="text-2xl font-bold text-gray-900 mb-4 border-b border-gray-200 pb-2">
+            <%= year %>
+            <span class="text-base font-normal text-gray-500 ml-2">(<%= pluralize(events.size, "event") %>)</span>
+          </h2>
+
+          <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <% events.each do |event| %>
+              <%= link_to event_path(event), class: "block bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow hover:border-gray-300" do %>
+                <div class="flex items-start justify-between">
+                  <div class="flex-1">
+                    <h3 class="font-semibold text-gray-900 mb-1 hover:text-brand-600">
+                      <%= event.name %>
+                    </h3>
+                    <p class="text-sm text-gray-600 mb-2"><%= event.series.name %></p>
+                    <div class="flex items-center text-xs text-gray-500">
+                      <%= fa("clock", size: :xs, class: "fill-gray-400 mr-1") %>
+                      <%= event.start_date&.strftime("%B %Y") || "Date unknown" %>
+                    </div>
+                    <% if event.city.present? %>
+                      <div class="flex items-center text-xs text-gray-500 mt-1">
+                        <svg class="w-3 h-3 mr-1 fill-gray-400" viewBox="0 0 24 24">
+                          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                        </svg>
+                        <%= [event.city, event.country_code].compact.join(", ") %>
+                      </div>
+                    <% end %>
+                  </div>
+                  <%= fa("question-circle", size: :sm, class: "fill-red-500 ml-2 flex-shrink-0") %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="mt-12 text-center">
+      <p class="text-gray-600 mb-4">
+        Total conferences missing sponsor data: <strong><%= @events_without_sponsors.size %></strong>
+      </p>
+      <p class="text-sm text-gray-500">
+        Last updated: <%= Date.current.strftime("%B %d, %Y") %>
+      </p>
+    </div>
+  <% else %>
+    <div class="text-center py-12">
+      <div class="text-6xl mb-4">🎉</div>
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">All Conferences Have Sponsor Data!</h2>
+      <p class="text-gray-600">
+        Great news! All conferences in our database have sponsor information.
+      </p>
+    </div>
+  <% end %>
+</div>

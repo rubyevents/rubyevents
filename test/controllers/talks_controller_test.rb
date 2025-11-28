@@ -79,14 +79,11 @@ class TalksControllerTest < ActionDispatch::IntegrationTest
     assert_equal "2024-01-01", @talk.date.to_s
 
     # some attributes cannot be changed
-    assert_not_equal "new slug", @talk.slug
+    assert_not_equal "new-slug", @talk.slug
   end
 
   test "owner can update directly the talk" do
-    user = User.create!(email: "test@example.com", password: "Secret1*3*5*", github_handle: @talk.speakers.first.github, verified: true)
-    assert user.persisted?
-    assert_equal user, @talk.speakers.first.user
-
+    user = @talk.users.first
     sign_in_as user
 
     patch talk_url(@talk), params: {talk: {summary: "new summary", description: "new description", slug: "new-slug", title: "new title", date: "2024-01-01"}}
@@ -99,7 +96,7 @@ class TalksControllerTest < ActionDispatch::IntegrationTest
     assert_equal "2024-01-01", @talk.date.to_s
 
     # some attributes cannot be changed
-    assert_not_equal "new slug", @talk.slug
+    assert_not_equal "new-slug", @talk.slug
   end
 
   test "should show topics" do
