@@ -2,8 +2,9 @@
 # frozen_string_literal: true
 
 # MCP Server for Claude Code
-# Run with: rails runner bin/mcp_server
+# Run with: bin/mcp_server
 
+require_relative "../config/environment"
 require "json"
 
 class MCPServer
