@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby file: ".ruby-version"
 
 # Use main development branch of Rails from github
-gem "rails", "8.1.0.rc1"
+gem "rails", "8.1.1"
 
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
