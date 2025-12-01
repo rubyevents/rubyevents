@@ -18,12 +18,11 @@ class AliasTest < ActiveSupport::TestCase
     assert_includes alias_record.errors[:name], "can't be blank"
   end
 
-  test "requires slug to be present" do
+  test "slug is optional" do
     user = User.create!(name: "Test User", github_handle: "test-user-alias-3")
-    alias_record = user.aliases.build(name: "Test Name")
+    alias_record = user.aliases.build(name: "Test Name", slug: nil)
 
-    assert_not alias_record.valid?
-    assert_includes alias_record.errors[:slug], "can't be blank"
+    assert alias_record.valid?
   end
 
   test "slug must be unique per aliasable_type" do

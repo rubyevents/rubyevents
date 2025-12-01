@@ -95,9 +95,17 @@ class Event < ApplicationRecord
   scope :canonical, -> { where(canonical_id: nil) }
   scope :not_canonical, -> { where.not(canonical_id: nil) }
   scope :ft_search, ->(query) {
-    joins("LEFT OUTER JOIN aliases AS event_aliases ON event_aliases.aliasable_type = 'Event' AND event_aliases.aliasable_id = events.id")
+    joins(<<~SQL.squish)
+      LEFT OUTER JOIN aliases AS event_aliases
+        ON event_aliases.aliasable_type = 'Event'
+        AND event_aliases.aliasable_id = events.id
+    SQL
       .joins("LEFT OUTER JOIN event_series AS search_series ON search_series.id = events.event_series_id")
-      .joins("LEFT OUTER JOIN aliases AS series_aliases ON series_aliases.aliasable_type = 'EventSeries' AND series_aliases.aliasable_id = search_series.id")
+      .joins(<<~SQL.squish)
+        LEFT OUTER JOIN aliases AS series_aliases
+          ON series_aliases.aliasable_type = 'EventSeries'
+          AND series_aliases.aliasable_id = search_series.id
+      SQL
       .where(
         "lower(events.name) LIKE :query OR lower(event_aliases.name) LIKE :query " \
         "OR lower(search_series.name) LIKE :query OR lower(series_aliases.name) LIKE :query",
@@ -139,7 +147,8 @@ class Event < ApplicationRecord
         next
       end
 
-      existing_global = Alias.find_by(aliasable_type: "Event", name: alias_name) || Alias.find_by(aliasable_type: "Event", slug: slug)
+      existing_global = Alias.find_by(aliasable_type: "Event", name: alias_name)
+      existing_global ||= Alias.find_by(aliasable_type: "Event", slug: slug)
 
       next if existing_global
 
