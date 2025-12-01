@@ -48,6 +48,15 @@ class TalksControllerTest < ActionDispatch::IntegrationTest
   test "should redirect to talks for wrong slugs" do
     get talk_url("wrong-slug")
     assert_response :moved_permanently
+    assert_redirected_to talks_path
+  end
+
+  test "should redirect to correct talk slug when accessed via alias" do
+    @talk.aliases.create!(name: "Old Title", slug: "old-talk-slug")
+
+    get talk_url("old-talk-slug")
+    assert_response :moved_permanently
+    assert_redirected_to talk_path(@talk)
   end
 
   test "should get edit" do

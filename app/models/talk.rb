@@ -86,6 +86,8 @@ class Talk < ApplicationRecord
   has_many :watch_list_talks, dependent: :destroy
   has_many :watch_lists, through: :watch_list_talks
 
+  has_many :aliases, as: :aliasable, dependent: :destroy
+
   has_one :talk_transcript, class_name: "Talk::Transcript", dependent: :destroy
   accepts_nested_attributes_for :talk_transcript
   delegate :transcript, :raw_transcript, :enhanced_transcript, to: :talk_transcript, allow_nil: true
@@ -135,6 +137,16 @@ class Talk < ApplicationRecord
       interview: "Interviewer/Interviewee",
       award: "Award Presenter/Winner"
     }
+  end
+
+  def self.find_by_slug_or_alias(slug)
+    return nil if slug.blank?
+
+    talk = find_by(slug: slug)
+    return talk if talk
+
+    alias_record = Alias.find_by(aliasable_type: "Talk", slug: slug)
+    alias_record&.aliasable
   end
 
   def formatted_kind
@@ -437,7 +449,10 @@ class Talk < ApplicationRecord
 
   def unused_slugs
     used_slugs = Talk.excluding(self).where(slug: slug_candidates).pluck(:slug)
-    slug_candidates - used_slugs
+    used_alias_slugs = Alias.where(aliasable_type: "Talk", slug: slug_candidates)
+      .where.not(aliasable_id: id)
+      .pluck(:slug)
+    slug_candidates - used_slugs - used_alias_slugs
   end
 
   def event_name
@@ -510,7 +525,13 @@ class Talk < ApplicationRecord
         User.find_or_create_by(name: speaker_name.strip)
     }
 
-    self.slug = unused_slugs.first
+    new_slug = unused_slugs.first
+
+    if slug.present? && slug != new_slug
+      aliases.find_or_create_by!(name: title, slug: slug)
+    end
+
+    self.slug = new_slug
 
     save!
   end

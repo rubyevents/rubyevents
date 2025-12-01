@@ -170,6 +170,82 @@ class TalkTest < ActiveSupport::TestCase
     assert_equal "Hotwire Cookbook: Common Uses, Essential Patterns & Best Practices", @talk.title
   end
 
+  test "update_from_yml_metadata creates alias when slug changes" do
+    @talk = talks(:one)
+    original_title = @talk.title
+
+    old_slug = "old-legacy-slug"
+
+    @talk.update_columns(slug: old_slug)
+    @talk.update_from_yml_metadata!
+
+    assert_not_equal old_slug, @talk.slug
+    assert_equal "Hotwire Cookbook: Common Uses, Essential Patterns & Best Practices", @talk.title
+
+    alias_record = @talk.aliases.find_by(slug: old_slug)
+
+    assert_not_nil alias_record
+    assert_equal original_title, alias_record.name
+  end
+
+  test "update_from_yml_metadata does not create duplicate aliases" do
+    @talk = talks(:one)
+    old_slug = "old-legacy-slug"
+
+    @talk.aliases.create!(name: @talk.title, slug: old_slug)
+    @talk.update_columns(slug: old_slug)
+
+    assert_no_difference "@talk.aliases.count" do
+      @talk.update_from_yml_metadata!
+    end
+  end
+
+  test "find_by_slug_or_alias finds talk by slug" do
+    @talk = talks(:one)
+    found = Talk.find_by_slug_or_alias(@talk.slug)
+
+    assert_equal @talk, found
+  end
+
+  test "find_by_slug_or_alias finds talk by alias slug" do
+    @talk = talks(:one)
+    @talk.aliases.create!(name: "Old Title", slug: "old-talk-slug")
+
+    found = Talk.find_by_slug_or_alias("old-talk-slug")
+
+    assert_equal @talk, found
+  end
+
+  test "find_by_slug_or_alias returns nil for non-existent slug" do
+    found = Talk.find_by_slug_or_alias("non-existent-slug")
+
+    assert_nil found
+  end
+
+  test "find_by_slug_or_alias returns nil for blank slug" do
+    assert_nil Talk.find_by_slug_or_alias(nil)
+    assert_nil Talk.find_by_slug_or_alias("")
+  end
+
+  test "unused_slugs excludes slugs used as aliases by other talks" do
+    @talk = talks(:one)
+    other_talk = talks(:two)
+
+    candidate_slug = @talk.slug_candidates.first
+    other_talk.aliases.create!(name: "Some Title", slug: candidate_slug)
+
+    assert_not_includes @talk.unused_slugs, candidate_slug
+  end
+
+  test "unused_slugs allows talk to keep its own alias slug" do
+    @talk = talks(:one)
+
+    candidate_slug = @talk.slug_candidates.second
+    @talk.aliases.create!(name: "Old Title", slug: candidate_slug)
+
+    assert_includes @talk.unused_slugs, candidate_slug
+  end
+
   test "language is english by default" do
     assert_equal "en", Talk.new.language
   end
