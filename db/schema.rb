@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_11_26_171948) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_01_144052) do
   create_table "ahoy_events", force: :cascade do |t|
     t.string "name"
     t.text "properties"
@@ -57,7 +57,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_26_171948) do
     t.string "aliasable_type", null: false
     t.datetime "created_at", null: false
     t.string "name", null: false
-    t.string "slug", null: false
+    t.string "slug"
     t.datetime "updated_at", null: false
     t.index ["aliasable_type", "aliasable_id"], name: "index_aliases_on_aliasable"
     t.index ["aliasable_type", "name"], name: "index_aliases_on_aliasable_type_and_name", unique: true
@@ -475,6 +475,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_26_171948) do
   # Virtual tables defined in this database.
   # Note that virtual tables may not work with other database engines. Be careful if changing database.
   create_virtual_table "speakers_search_index", "fts5", ["name", "github", "tokenize = porter"]
-  create_virtual_table "talks_search_index", "fts5", ["title", "summary", "speaker_names", "tokenize = porter"]
+  create_virtual_table "talks_search_index", "fts5", ["title", "summary", "speaker_names", "event_names", "tokenize = porter"]
   create_virtual_table "users_search_index", "fts5", ["name", "github_handle", "tokenize = porter"]
 end

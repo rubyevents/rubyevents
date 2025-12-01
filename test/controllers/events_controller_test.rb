@@ -64,6 +64,20 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to event_url(canonical_event)
   end
 
+  test "should redirect to root for wrong slugs" do
+    get event_url("wrong-slug")
+    assert_response :moved_permanently
+    assert_redirected_to root_path
+  end
+
+  test "should redirect to correct event slug when accessed via alias" do
+    @event.slug_aliases.create!(name: "Old Name", slug: "old-event-slug")
+
+    get event_url("old-event-slug")
+    assert_response :moved_permanently
+    assert_redirected_to event_path(@event)
+  end
+
   test "should get edit" do
     sign_in_as @user
     get edit_event_url(@event)
