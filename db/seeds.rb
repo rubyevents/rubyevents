@@ -40,6 +40,8 @@ series_files.each do |series_file_path|
     language: series["language"] || ""
   )
 
+  event_series.sync_aliases_from_list(series["aliases"]) if series["aliases"].present?
+
   event_files.each do |event_file_path|
     event_data = YAML.load_file(event_file_path)
     event_slug = File.basename(File.dirname(event_file_path))
@@ -56,6 +58,8 @@ series_files.each do |series_file_path|
       end_date: event.static_metadata.end_date,
       kind: event.static_metadata.kind
     )
+
+    event.sync_aliases_from_list(event_data["aliases"]) if event_data["aliases"].present?
 
     puts event.slug unless Rails.env.test?
 

@@ -2,6 +2,7 @@
 # == Schema Information
 #
 # Table name: events
+# Database name: primary
 #
 #  id              :integer          not null, primary key
 #  city            :string
@@ -52,6 +53,7 @@ class Event < ApplicationRecord
   has_many :organizations, through: :sponsors
   belongs_to :canonical, class_name: "Event", optional: true
   has_many :aliases, class_name: "Event", foreign_key: "canonical_id"
+  has_many :slug_aliases, as: :aliasable, class_name: "Alias", dependent: :destroy
   has_many :cfps, dependent: :destroy
 
   # Event participation associations
@@ -92,9 +94,58 @@ class Event < ApplicationRecord
   scope :with_watchable_talks, -> { where.associated(:watchable_talks) }
   scope :canonical, -> { where(canonical_id: nil) }
   scope :not_canonical, -> { where.not(canonical_id: nil) }
-  scope :ft_search, ->(query) { where("lower(events.name) LIKE ?", "%#{query.downcase}%") }
+  scope :ft_search, ->(query) {
+    joins("LEFT OUTER JOIN aliases AS event_aliases ON event_aliases.aliasable_type = 'Event' AND event_aliases.aliasable_id = events.id")
+      .joins("LEFT OUTER JOIN event_series AS search_series ON search_series.id = events.event_series_id")
+      .joins("LEFT OUTER JOIN aliases AS series_aliases ON series_aliases.aliasable_type = 'EventSeries' AND series_aliases.aliasable_id = search_series.id")
+      .where(
+        "lower(events.name) LIKE :query OR lower(event_aliases.name) LIKE :query " \
+        "OR lower(search_series.name) LIKE :query OR lower(series_aliases.name) LIKE :query",
+        query: "%#{query.downcase}%"
+      )
+      .distinct
+  }
   scope :past, -> { where(end_date: ..Date.today).order(end_date: :desc) }
   scope :upcoming, -> { where(start_date: Date.today..).order(start_date: :asc) }
+
+  def self.find_by_name_or_alias(name)
+    return nil if name.blank?
+
+    event = find_by(name: name)
+    return event if event
+
+    alias_record = Alias.find_by(aliasable_type: "Event", name: name)
+    alias_record&.aliasable
+  end
+
+  def self.find_by_slug_or_alias(slug)
+    return nil if slug.blank?
+
+    event = find_by(slug: slug)
+    return event if event
+
+    alias_record = Alias.find_by(aliasable_type: "Event", slug: slug)
+    alias_record&.aliasable
+  end
+
+  def sync_aliases_from_list(alias_names)
+    Array.wrap(alias_names).each do |alias_name|
+      slug = alias_name.parameterize
+
+      existing_own = slug_aliases.find_by(name: alias_name) || slug_aliases.find_by(slug: slug)
+
+      if existing_own
+        existing_own.update(name: alias_name) if existing_own.name != alias_name
+        next
+      end
+
+      existing_global = Alias.find_by(aliasable_type: "Event", name: alias_name) || Alias.find_by(aliasable_type: "Event", slug: slug)
+
+      next if existing_global
+
+      slug_aliases.create!(name: alias_name, slug: slug)
+    end
+  end
 
   attribute :kind, :string
   attribute :date_precision, :string

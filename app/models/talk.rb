@@ -2,6 +2,7 @@
 # == Schema Information
 #
 # Table name: talks
+# Database name: primary
 #
 #  id                  :integer          not null, primary key
 #  announced_at        :datetime
@@ -423,6 +424,20 @@ class Talk < ApplicationRecord
 
   def speaker_names
     speakers.pluck(:name).join(" ")
+  end
+
+  def event_names
+    return "" unless event
+
+    names = [event.name]
+    names += event.slug_aliases.pluck(:name)
+
+    if event.series
+      names << event.series.name
+      names += event.series.aliases.pluck(:name)
+    end
+
+    names.compact.uniq.join(" ")
   end
 
   def language_name
