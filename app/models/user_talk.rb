@@ -1,6 +1,7 @@
 # == Schema Information
 #
 # Table name: user_talks
+# Database name: primary
 #
 #  id           :integer          not null, primary key
 #  discarded_at :datetime

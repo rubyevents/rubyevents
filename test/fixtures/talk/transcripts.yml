@@ -1,6 +1,7 @@
 # == Schema Information
 #
 # Table name: talk_transcripts
+# Database name: primary
 #
 #  id                  :integer          not null, primary key
 #  enhanced_transcript :text

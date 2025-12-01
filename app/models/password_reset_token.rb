@@ -2,6 +2,7 @@
 # == Schema Information
 #
 # Table name: password_reset_tokens
+# Database name: primary
 #
 #  id      :integer          not null, primary key
 #  user_id :integer          not null, indexed

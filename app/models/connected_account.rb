@@ -2,6 +2,7 @@
 # == Schema Information
 #
 # Table name: connected_accounts
+# Database name: primary
 #
 #  id           :integer          not null, primary key
 #  access_token :string

@@ -2,6 +2,7 @@
 # == Schema Information
 #
 # Table name: topics
+# Database name: primary
 #
 #  id           :integer          not null, primary key
 #  description  :text

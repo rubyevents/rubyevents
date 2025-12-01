@@ -2,6 +2,7 @@
 # == Schema Information
 #
 # Table name: ahoy_events
+# Database name: primary
 #
 #  id         :integer          not null, primary key
 #  name       :string           indexed => [time]

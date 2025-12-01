@@ -1,6 +1,7 @@
 # == Schema Information
 #
 # Table name: event_involvements
+# Database name: primary
 #
 #  id                   :integer          not null, primary key
 #  involvementable_type :string           not null, uniquely indexed => [involvementable_id, event_id, role], indexed => [involvementable_id]
