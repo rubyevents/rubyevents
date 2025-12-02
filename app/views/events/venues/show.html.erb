@@ -54,6 +54,7 @@
           <% if @venue.latitude.present? && @venue.longitude.present? %>
             <div class="w-full md:w-96 h-64 rounded-lg overflow-hidden border">
               <iframe
+                title="Map showing location of <%= @venue.name %>"
                 width="100%"
                 height="100%"
                 frameborder="0"
