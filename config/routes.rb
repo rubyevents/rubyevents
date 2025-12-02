@@ -109,6 +109,7 @@ Rails.application.routes.draw do
       resources :schedules, only: [:index], path: "/schedule" do
         get "/day/:date", action: :show, on: :collection, as: :day
       end
+      resource :venue, only: [:show]
       resources :speakers, only: [:index]
       resources :participants, only: [:index]
       resources :involvements, only: [:index]
