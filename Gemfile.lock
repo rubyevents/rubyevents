@@ -277,6 +277,7 @@ GEM
       rake (>= 13)
     groupdate (6.7.0)
       activesupport (>= 7.1)
+    hana (1.3.7)
     hashdiff (1.2.1)
     hashie (5.0.0)
     herb (0.8.2-aarch64-linux-gnu)
@@ -314,6 +315,11 @@ GEM
       activesupport (>= 7.0.0)
     json (2.16.0)
     json-repair (0.2.0)
+    json_schemer (2.4.0)
+      bigdecimal
+      hana (~> 1.3)
+      regexp_parser (~> 2.0)
+      simpleidn (~> 0.2)
     jwt (3.1.2)
       base64
     kamal (2.7.0)
@@ -577,6 +583,7 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 4.0)
       websocket (~> 1.0)
+    simpleidn (0.2.3)
     sitemap_generator (6.3.0)
       builder (~> 3.0)
     smart_properties (1.17.0)
@@ -725,6 +732,7 @@ DEPENDENCIES
   iso-639
   jbuilder
   json-repair (~> 0.2.0)
+  json_schemer
   kamal (= 2.7.0)
   listen (~> 3.5)
   marksmith
@@ -751,6 +759,7 @@ DEPENDENCIES
   ruby-lsp-rails
   ruby-openai
   ruby_llm
+  ruby_llm-schema
   selenium-webdriver
   sitemap_generator (~> 6.3)
   solid_cache

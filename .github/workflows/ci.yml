@@ -52,6 +52,9 @@ jobs:
       - name: Lint YAML data files
         run: yarn lint:yml
 
+      - name: Validate YAML data schemas
+        run: bin/rails validate:all
+
       - name: erb-lint Check
         run: bundle exec erb_lint --lint-all
 

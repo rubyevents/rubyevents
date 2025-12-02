@@ -76,7 +76,7 @@
         <div class="py-4 text-xl font-bold">
           <span><%= talk.title %></span>
           <% if talk.original_title.present? %>
-            <div class="mb-2 text-xs text-gray-500">Original title: <%= talk.original_title %></div>
+            <div class="mb-2 text-xs text-gray-500">Original title (<%= talk.language %>): <%= talk.original_title %></div>
           <% end %>
 
         </div>

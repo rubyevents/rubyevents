@@ -1,10 +1,10 @@
 import fs from 'fs'
 import { Formatter } from './formatter.mjs'
 
-const videos = fs.readdirSync('./data', { recursive: true }).filter(file => file.endsWith('videos.yml'))
+const files = fs.readdirSync('./data', { recursive: true }).filter(file => file.endsWith('.yml'))
 
-videos.forEach(video => {
-  console.log(`Enforcing Strings: ${video}`)
-  const formatter = new Formatter(`./data/${video}`)
+files.forEach(file => {
+  console.log(`Enforcing Strings: ${file}`)
+  const formatter = new Formatter(`./data/${file}`)
   formatter.format()
 })
