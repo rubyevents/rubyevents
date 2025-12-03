@@ -9,13 +9,13 @@ speakers.each do |speaker|
     User.find_by(slug: speaker["slug"]) ||
     User.find_by_name_or_alias(speaker["name"]) ||
     User.new
-  user.update!(
-    name: speaker["name"],
-    twitter: speaker["twitter"],
-    github_handle: speaker["github"],
-    website: speaker["website"],
-    bio: speaker["bio"]
-  )
+
+  user.name = speaker["name"]
+  user.twitter = speaker["twitter"] if speaker["twitter"].present?
+  user.github_handle = speaker["github"] if speaker["github"].present?
+  user.website = speaker["website"] if speaker["website"].present?
+  user.bio = speaker["bio"] if speaker["bio"].present?
+  user.save!
 rescue ActiveRecord::RecordInvalid => e
   puts "Couldn't save: #{speaker["name"]} (#{speaker["github"]}), error: #{e.message}"
 end
