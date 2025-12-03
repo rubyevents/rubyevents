@@ -1,0 +1,227 @@
+---
+- title: "Metaprogramming Ruby"
+  speakers:
+    - Dave Thomas
+  event_name: "The Rails Edge 2007"
+  date: "2007-01-25"
+  video_provider: "not_recorded"
+  video_id: "dave-thomas-metaprogramming-ruby-the-rails-edge-2007"
+  description: |-
+    Ever wonder just how Rails declarations such as "has many" and "belongs_to" work? Ever wished you could write your own code that worked the same way?
+
+    It turns out that this style of programming, often called metaprogramming, is easier than you might think. In this talk we'll see how Ruby's open classes, compile-time execution, and full meta-object model make it easy to write your own extensions. After this talk, you'll know how to adapt Ruby to express your intent directly, making your programs easier to write and maintain.
+
+- title: "What's New in Rails?"
+  speakers:
+    - Mike Clark
+  event_name: "The Rails Edge 2007"
+  date: "2007-01-25"
+  video_provider: "not_recorded"
+  video_id: "mike-clark-whats-new-in-rails-the-rails-edge-2007"
+  description: |-
+    Rails is constantly evolving, and being on the inside track can help you better plan for the future. In this session we'll give you an overview of latest and greatest Rails features that you can start using today, the bleeding edge features that you'll want to start using tomorrow, and the up-to-the-minute thoughts on what's on the horizon.
+
+    Topics include REST, ActiveResource, Simply Helpful, Capistrano Goodies, and What's Coming in Rails 2.0.
+
+- title: "Reusing RJS"
+  speakers:
+    - Marcel Molina
+  event_name: "The Rails Edge 2007"
+  date: "2007-01-25"
+  video_provider: "not_recorded"
+  video_id: "marcel-molina-reusing-rjs-the-rails-edge-2007"
+  description: |-
+    RJS emerged in the Rails 1.1 release as a new approach to implementing sophisticated Ajax behavior. Now that we've all been using it for a while and our apps come to rely on it more and more, we're starting to run into age old problems like, "How do I take this bit of RJS that I'm using here, and use it over here also?". It turns out that there is no immediately obvious path to staying DRY with RJS.
+
+    This talk shows how to eliminate duplication in RJS, going step by step through various refactorings and finally ending with advice on how to avoid the problem altogether by recognizing when RJS might not be the best solution to some problems.
+
+- title: "The Meaning of CRUD"
+  speakers:
+    - Chad Fowler
+  event_name: "The Rails Edge 2007"
+  date: "2007-01-25"
+  video_provider: "not_recorded"
+  video_id: "chad-fowler-the-meaning-of-crud-the-rails-edge-2007"
+  description: |-
+    David Heinemeier Hansson, the creator of Rails, is the first to step up and admit it: Rails is boring. It's filled with cliches. Faced with Rails for the first time, any experienced web developer would be hard pressed to find a major feature he or she hadn't encountered in a previous technology. The magic isn't in the "what". It's in the "how".
+
+    Rails weaves all this prior art together such that it gets out of the developer's way. The primary mechanism it uses to achieve this is what's known as Convention Over Configuration. Sacrificing configurability in favor of the "Golden Path" takes the task of making repetitive, mundane decisions out of the hands of the developers, freeing them to focus on creating applications that do something new.
+
+    Rails 1.2 brings us another powerful set of conventions in the form of its built in CRUD and REST support. Are these new conventions about writing web services more easily? Or about supporting Ajax and pure HTML clients more seamlessly? Yes. But these are just fortunate side effects.
+
+    This session will take you on a tour of the new and improved world of Rails RESTfulness, showing you the new conventions and how you can use them to focus on the fun parts of programming.
+
+- title: "The Deployment Golden Path"
+  speakers:
+    - James Duncan Davidson
+  event_name: "The Rails Edge 2007"
+  date: "2007-01-26"
+  video_provider: "not_recorded"
+  video_id: "james-duncan-davidson-deployment-golden-path-the-rails-edge-2007"
+  description: |-
+    Up until recently, deploying Rails apps has been a hodge-podge of tricks and experimentation and there haven't been a lot of good solid answers. That's changing. Over the last few months, a growing awareness of the issues around Rails deployment has spread through the Rails community, as has a lot of discussion about how to best do it. And there's a growing consensus that proxy-based solutions using Mongrel behind Apache or Lighttpd are the most flexible and scalable way to go.
+
+    This session will directly address the difficulties associated with deployment and start you down a solid path for deploying your own applications. And, since this area of Rails is still in flux, we'll be sure to address all of the latest developments in the space.
+
+- title: "Building View Frameworks"
+  speakers:
+    - Bruce Williams
+  event_name: "The Rails Edge 2007"
+  date: "2007-01-26"
+  video_provider: "not_recorded"
+  video_id: "bruce-williams-building-view-frameworks-the-rails-edge-2007"
+  description: |-
+    It's a sad, but universal truth in the world of web apps—developing the view layer of an application is tricky business. No matter what platform and language you're using, views can easily become repetitive messes that are hard to read, impossible to maintain, difficult to test—and worst of all, no fun to develop.
+
+    Although Rails isn't immune to these difficulties, it comes with more than enough facilities to pack a punch. In this session you'll pick up techniques to DRY up your views that go far beyond just making a few helpers and reusing partials. Learn how to build frameworks to generate UI and controller code, expand your knowledge of view-related Rails internals, and discover how to avoid common pitfalls along the way.
+
+- title: "Streamlined: Accelerate your CRUD"
+  speakers:
+    - Justin Gehtland
+  event_name: "The Rails Edge 2007"
+  date: "2007-01-26"
+  video_provider: "not_recorded"
+  video_id: "justin-gehtland-streamlined-the-rails-edge-2007"
+  description: |-
+    Streamlined is an open source framework which extends Rails to provide fast development for CRUD applications. With Streamlined, you get real-world scaffolding right out of the box. In addition, we've taken the declarative approach of ActiveRecord and applied it to the view layer, giving you a simpler way to customize the rendered portion of the app. On top of that, Streamlined is a meta-framework, allowing you to plug in other generators, display systems, layout managers, etc.
+
+    In this talk, you'll learn how to get started with the default features of Streamlined, from generating your application, to modifying the way relationships are represented and tracked, to overriding the default layouts and stylesheets. We'll look at the ways Streamlined extends or wraps parts of Rails, and how to extend it yourself to customize your applications. We'll also take a look at the upcoming releases and features of Streamlined.
+
+- title: "Creating Rails Plugins"
+  speakers:
+    - Chad Fowler
+    - Bruce Williams
+  event_name: "The Rails Edge 2007"
+  date: "2007-01-26"
+  video_provider: "not_recorded"
+  video_id: "chad-fowler-bruce-williams-rails-plugins-the-rails-edge-2007"
+  description: |-
+    How do you reuse models and other application functionality across multiple Rails applications? How do you flexibly extend your applications at runtime? How do you override or extend core Rails functionality without creating a mess of patched source files that have to be applied to every Rails project? The answer to all of these questions lies in the simple, powerful Rails plugin architecture.
+
+    This session will guide you step by step through creating a Rails plugin from scratch. You'll see how plugins can be used to distribute Rails models, views, and controllers. You'll learn how plugins can extend an application's functionality dynamically and transparently. You'll learn to add filters, callbacks and observers to controllers and models without muddying the application's source code.
+
+- title: "Amazon's S3 Web Service"
+  speakers:
+    - Marcel Molina
+  event_name: "The Rails Edge 2007"
+  date: "2007-01-26"
+  video_provider: "not_recorded"
+  video_id: "marcel-molina-amazon-s3-the-rails-edge-2007"
+  description: |-
+    Amazon's S3 web service is starting to get a lot of attention from people building applications that need to store and serve up lots of data. S3 is inexpensive, robust and simple. The headache of administering file servers appears to soon be a thing of the past.
+
+    In this talk we'll learn the basic concepts of S3 then take a look at how you can integrate S3 into your Rails application.
+
+- title: "Rails and Ajax"
+  speakers:
+    - Justin Gehtland
+  event_name: "The Rails Edge 2007"
+  date: "2007-01-27"
+  video_provider: "not_recorded"
+  video_id: "justin-gehtland-rails-and-ajax-the-rails-edge-2007"
+  description: |-
+    Rails delivers on the promise of increased developer productivity —not only in classic web application development, but in the emerging Ajax-enabled web world, too. Its close coupling with Prototype and Script.aculo.us, as well as its ground-breaking RJS templates, make Rails one of the most productive environments for creating Ajax applications available today.
+
+    This talk will walk through Rails implementations of Ajax, including the helper methods that generate your JavaScript and the JavaScript that gets emitted. We'll examine how you can design your controllers and actions to differentiate between regular web requests and Ajax requests, and we'll dig into RJS templates and in-line RJS to look at code-centric Ajax, which solves some problems while creating others.
+
+- title: "Ruby Idioms for Rails Programmers"
+  speakers:
+    - Stuart Halloway
+  event_name: "The Rails Edge 2007"
+  date: "2007-01-27"
+  video_provider: "not_recorded"
+  video_id: "stuart-halloway-ruby-idioms-the-rails-edge-2007"
+  description: |-
+    The success of Rails has enabled programmers to get great results without having a deep knowledge of Ruby. Nevertheless, a good understanding of Ruby idioms is essential to being a great Rails coder. Ruby style does not come overnight because "There is More Than One Way To Do It" (TMTOWDI).
+
+    In this talk we will look at the Rails codebase itself, Rails applications, and pure Ruby applications to get a sense of Ruby idioms and style. When there are many ways to do it, some are better than others. We'll find them.
+
+- title: "Rake: Building Up Ruby"
+  speakers:
+    - Jim Weirich
+  event_name: "The Rails Edge 2007"
+  date: "2007-01-27"
+  video_provider: "not_recorded"
+  video_id: "jim-weirich-rake-the-rails-edge-2007"
+  description: |-
+    Most people have used rake in passing as part of a Rails project. What you might not realize is that Rake is a general purpose build tool that can do more than just automate simple tasks in Rails. Rake allows you to define complex task relationships and makes sure that everything gets done, in the right order, just in time as you need it. Best of all, the Rake recipe file (known as a Rakefile) is just pure Ruby, so you already know most of what you need to put Rake to good use.
+
+    This session will cover the basics of writing your own Rake tasks, creating dependencies, and managing your software builds. We will cover how to dynamically generate tasks at runtime and how to write rules that will allow Rake to automatically infer tasks when given the right hints. We will also see some some advanced features such as multitasking jobs and creating Rake plugins.
+
+    Rake is a powerful tool to have in your toolkit. By the time we are done, you will be able to use it effectively.
+
+- title: "Red, Green, Refactor"
+  speakers:
+    - Jim Weirich
+  event_name: "The Rails Edge 2007"
+  date: "2007-01-27"
+  video_provider: "not_recorded"
+  video_id: "jim-weirich-red-green-refactor-the-rails-edge-2007"
+  description: |-
+    One of the most practical practices coming out of the XP movement is the notion of Unit Tests. Whether you are actually doing some form of Agile development or not, unit tests are an important part of writing your software. The XP approach to writing unit tests is more than just writing the tests before you write the code. We like to call it "Test-Driven" because we use the unit test to incrementally drive the design and form of the production code.
+
+    The TDD approach is to write a little bit of unit test (that fails, hence "red"), then write only enough production code to make the test pass (that's the "green"). Then we examine the code and look for ways to improve it (finally "refactor"). The whole cycle from failing tests to passing tests to improved code is very short, often on the order of minutes.
+
+    This presentation will be a live demonstration of the Test Driven Design technique. We will use TDD to develop a small piece of functionality by following the Red, Green, Refactor cycle.
+
+- title: "Rinda and DRB"
+  speakers:
+    - Justin Gehtland
+  event_name: "The Rails Edge 2007"
+  date: "2007-01-27"
+  video_provider: "not_recorded"
+  video_id: "justin-gehtland-rinda-drb-the-rails-edge-2007"
+  description: |-
+    Learn about Ruby's support for simple work distribution. DRB is Ruby's built-in distributed object library, and Rinda is a message-delivery (technically tuple space) implementation on top of it. With Rinda, you can set up multiple parallel processes, distribute data, and manage work flows across applications.
+
+- title: "Rails Production Tricks and Tips"
+  speakers:
+    - James Duncan Davidson
+  event_name: "The Rails Edge 2007"
+  date: "2007-01-27"
+  video_provider: "not_recorded"
+  video_id: "james-duncan-davidson-rails-production-tricks-the-rails-edge-2007"
+  description: |-
+    When you take your application into production, there are lots of obvious questions, such as, "How many servers do I need?" and "How many Mongrel processes should I run?" Every deployed application is different, but there are some lessons that can be learned from other deployed applications. This session will outline some obvious and not-so-obvious things that you should think about as you are taking your application into production, based on information from real life deployments.
+
+- title: "Buried Treasure: Hidden Rails Tips"
+  speakers:
+    - Dave Thomas
+  event_name: "The Rails Edge 2007"
+  date: "2007-01-27"
+  video_provider: "not_recorded"
+  video_id: "dave-thomas-buried-treasure-the-rails-edge-2007"
+  description: |-
+    While writing the second edition of the Rails book, I've come across dozens of little, hidden Rails tips and techniques. They may not be obvious when you read the API documentation, or they may apply in different ways than you'd think. But they're more than curiosities—each of these tips and techniques has saved me time (or saved my butt) while writing real Rails applications.
+
+    From unexpected uses of with_options() to new kinds of rendering, from console tricks to TextMate addons, we'll have some fun while digging for treasure in Rails and Ruby. (And bring your own secrets too—there'll be a time to share.)
+
+- title: "The Presenter Pattern"
+  speakers:
+    - Marcel Molina
+  event_name: "The Rails Edge 2007"
+  date: "2007-01-27"
+  video_provider: "not_recorded"
+  video_id: "marcel-molina-presenter-pattern-the-rails-edge-2007"
+  description: |-
+    Keeping templates simple by extracting reused view logic into helpers is a good thing, but as your Rails application grows, so too will your helper files. After a while, it feels like you are trading off one evil for another as application_helper.rb balloons to hundreds of lines.
+
+    And a big helper file isn't your only problem. Some view logic gets sophisticated enough to require a handful of helpers to accomplish a single task, that themselves call there own set of helpers. These groups of methods also often need to pass some shared state around, and the functional nature of helpers makes for a clumsy experience. Now you not only have a big helper file, but its methods accomplish many unrelated tasks. Comprehending which methods accomplish what task and where becomes a lot of work. Refactoring gets harder and harder. Soon enough you have a real mess on your hands and you so you leave it be as Good Enough.
+
+    Rails is about making it simple to do the right thing, so from this pain, the Presenter pattern has emerged as a nice solution to combat the complexity of view logic. In this talk we'll take a quick look at the Presenter pattern: what it is and how it can be used to encapsulate sophisticated view logic. The Presenter pattern is shaping up to maybe be one of the next big extractions in Rails core. The jury is still out, but it's looking promising.
+
+- title: "Testing Rails Applications"
+  speakers:
+    - Stuart Halloway
+  event_name: "The Rails Edge 2007"
+  date: "2007-01-27"
+  video_provider: "not_recorded"
+  video_id: "stuart-halloway-testing-rails-the-rails-edge-2007"
+  description: |-
+    Automated testing takes a lot of guesswork out of developing, maintaining, and refactoring applications. With a good test suite, you can aggressively improve your code over time.
+
+    Rails has a great support for automated testing. We'll take a quick tour through unit tests, functional tests, integration tests, and Rake tasks that support testing.
+
+    A comprehensive test plan takes more that just the testing support in Rails. We will integrate several other tools into the Rails testing process: rcov for code coverage, cerberus for continuous integration, FlexMock for mock and stub objects, and Selenium for browser-level integration testing.
+
+    Testing is not just good for applications, it is good for programmers. We will conclude by showing you how to use testing as an exploration tool when reading other people's code.
