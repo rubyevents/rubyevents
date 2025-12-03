@@ -6,7 +6,7 @@
     - Toshiaki Koshiba
   event_name: "RubyConf 2011"
   date: "2011-09-29" # TODO
-  published_at: "2011-12-12"
+  published_at: "2011-10-26"
   description: |-
     Let's go to "Shibuya Rubyist Lunch" at Tokyo, Japan
   video_provider: "youtube"
@@ -18,7 +18,7 @@
     - Konstantin Haase
   event_name: "RubyConf 2011"
   date: "2011-09-29" # TODO
-  published_at: "2011-12-12"
+  published_at: "2011-12-07"
   description: |-
     What does really happen when we call a method? How do the different Ruby implementations actually figure out what code to execute? What plumbing is going on under the hood to get a speedy dispatch? In this talk we will have a look at the internals of the four major Ruby implementations - 1.8, 1.9, JRuby and Rubinius, focusing on their dispatch. From look-up tables and call site caches, to inlining and what on earth is invokedynamic? Expect C, C++, Java, and, of course, Ruby code. But fear not, all will be explained!
   video_provider: "youtube"
@@ -30,7 +30,7 @@
     - Dave McCrory
   event_name: "RubyConf 2011"
   date: "2011-09-29" # TODO
-  published_at: "2011-12-12"
+  published_at: "2011-12-07"
   description: |-
     Ruby code creating services for it to then consume aka Service Metaprogramming A very large number of Ruby apps are deployed in hosted environments. Many of these hosted environments offer both internal and external services with APIs that your Ruby app can consume. The problem is that the use of these services often requires provisioning tasks for each service and the service must always be there or the app will fail. This session will show Metaprogramming Ruby code and a RubyGem for provisioning/de-provisioning, binding/unbinding, sharing configuration state, and more. This allows your application to create a Redis or MySQL instance only if needed (say on initial startup) or bind to a specific service, but only if/when it is present. This approach eliminates many of the forgotten steps during deployments and makes it easier to understand what your Ruby code really depends on because it is all encapsulated in the application's code itself!
   video_provider: "youtube"
@@ -42,7 +42,7 @@
     - Sarah Mei
   event_name: "RubyConf 2011"
   date: "2011-09-29" # TODO
-  published_at: "2011-12-12"
+  published_at: "2011-12-07"
   description: |-
     Diaspora is the crowd-funded open-source decentralized social network built on Rails. Full buzzword compliance: on by default. We have many thousands of active users and they generate a lot of social data. But after nine months of full-time development with MongoDB as our primary storage engine, a few months ago we converted it all to MySQL. Wait...what? Most people are going the other way, dropping Mongo into a project in place of MySQL or PostgreSQL. Plus, conventional wisdom says that social data is ill-suited to a traditional data store. Come hear a story about a large-scale Rails project that tried it both ways. You'll see crisis and redemption, facts and figures, nerds, kittens, ponycorns, and, of course, the secret sauce. Hecklers will be piped to /dev/null.
   video_provider: "youtube"
@@ -55,7 +55,7 @@
     - Paul Pagel
   event_name: "RubyConf 2011"
   date: "2011-09-29" # TODO
-  published_at: "2011-12-12"
+  published_at: "2011-12-07"
   description: |-
     Learning how to be a well versed and competent developer is a life long process, but it must begin somewhere. One of the toughest parts about starting a career as a developer is the massive technology stack involved in pushing anything out to the real world. Similar to learning physics, chemistry, or biology for the first time, there is a whole language you need to learn before you can achieve any sort of mastery. With Limelight, you can teach the fundamental principles of becoming a Software Craftsman while only using Ruby! We will first explore Limelight as an educational tool, and then get our hands on our keyboards and work through an example Limelight Lesson. We will actually be writing some code! If you have JRuby on your machine, Limelight will do the rest of the setup.
   video_provider: "youtube"
@@ -68,7 +68,7 @@
     - Srushti Ambekallu
   event_name: "RubyConf 2011"
   date: "2011-09-29" # TODO
-  published_at: "2011-12-12"
+  published_at: "2011-12-07"
   description: |-
     The Ruby community has driven a lot of technical innovation in deployment and configuration management over the last few years, and so the idea of delivering high-quality software rapidly should be familiar to many of us. But although many of our tools are state-of-the-art, our practices could stand a bit of scrutiny. Your friendly neighborhood server admin probably isn't thrilled with running RVM or compiling gems in production, and your nervous project manager is asking why deploying constantly is such a great idea anyway. Won't you just stop coding for, like, five minutes and click around the app for a bit, just to make them feel better? In this talk, the maintainers of two competing continuous integration servers at two competing shops lead you on a Socratic tour of the past, present, and future of continuous delivery as seen through an Agile Ruby lens. We'll talk about the changing deployment toolchain, the difficulty of evolving code as it's deployed, and how to coach your developers, testers, and client to be "production-ready, any time."
   video_provider: "youtube"
@@ -80,7 +80,7 @@
     - Jonas Nicklas
   event_name: "RubyConf 2011"
   date: "2011-09-29" # TODO
-  published_at: "2011-12-12"
+  published_at: "2011-12-07"
   description: |-
     As Rails programmers we talk a lot about the beauty, not only of the products we build, but the code we write. Why is this beauty important? Can we think systematically about the emotional effects of the code we are writing? Code is meant to be read and used, not just by machines, but perhaps even more importantly by people. How people are affected by the products they use has been studied extensively in the field of industrial design, can we apply these lessons to the code we write?
   video_provider: "youtube"
@@ -92,7 +92,7 @@
     - Jonathan Weiss
   event_name: "RubyConf 2011"
   date: "2011-09-29" # TODO
-  published_at: "2011-12-12"
+  published_at: "2011-12-07"
   description: |-
     We use EventMachine heavily in production. It is handling uploads to S3, managing thousands of messages a second or distributing agent workload. This taught us a load about EventMachine and some weired corner-cases. I want to about such advanced EventMachine topics and shared some use-cases and experiences from the trenches.
   video_provider: "youtube"
@@ -104,7 +104,7 @@
     - Hemant Kumar
   event_name: "RubyConf 2011"
   date: "2011-09-29" # TODO
-  published_at: "2011-12-12"
+  published_at: "2011-12-06"
   description: |-
     As Ruby programmers our server side programs throw us in all kind of troubles. Hung processes, memory leaks, process spending too much time in GC, profiling etceteras. As mostly live coding and hands on session, I intend to show - how to use modern tools to find and fix these problems. I will be demonstrating, how to use GDB with live process, using rbtrace, perftools and various ways to detect memory leaks & performance bottle necks in your process.
   video_provider: "youtube"
@@ -116,7 +116,7 @@
     - David Copeland
   event_name: "RubyConf 2011"
   date: "2011-09-29" # TODO
-  published_at: "2011-12-12"
+  published_at: "2011-10-28"
   description: |-
     Rubyists love testing, and test-driven-development is becoming THE way to write code. But, do we do this with our command-line tools? How DO you write a test that your awesome application cleans up its temp files? How does one make a failing test for a missing command-line option? What's the easiest way to check our app's exit codes? This talk will answer these questions with some real-world examples. We'll talk briefly about the challenges particular to testing command-line apps, and then dive into some code where we'll show off techniques for organizing code for testability, tools for interacting with the filesystem, and how to create full-blown acceptance tests for your command-line app. In no time, you'll be able to write your command-line apps the same way you write your other code: test-first.
   video_provider: "youtube"
@@ -128,7 +128,7 @@
     - Brian Ford
   event_name: "RubyConf 2011"
   date: "2011-09-29" # TODO
-  published_at: "2011-12-12"
+  published_at: "2011-10-28"
   description: |-
     Ruby, the beautiful, malleable language with a lovely object model and great reflection capabilities... and almost zero tools. If I had a coin for every time some Smalltalker gloated about the Smalltalk class browser or some bloke bragged about the Java refactoring tools, I could start my own bitcoin. Building great tools for Ruby requires great support for Ruby itself. The problem is, there is often a giant molten blob of C or Java code in the Ruby implementation with a thin veneer of "Ruby" method bindings. Rather than supporting great Ruby tools, that effectively prevents building them. How does one browse core library classes like Array when the code is not even Ruby? Rubinius addresses this situation on two levels. Firstly, the Rubinius core library is written primarily in Ruby. Curious what that Array#[] method does? Just pull up the Ruby code and take a look. Rubinius also creates first-class Ruby objects for Ruby infrastructure. When a method is defined, there is actually an object, CompiledMethod, that you can lay your hands on, inspect, and manipulate like any other Ruby object. Secondly, Rubinius builds essential tools into the virtual machine. There is a built-in debugger, profiler, and also stats for the garbage collector. Further, Rubinius has a facility, named Agent, for querying and controlling the virtual machine. Nikita is a top-secret project to create a set of simple, integrated applications that use the Rubinius facilities to build tools for Ruby. The interface is a Sproutcore application, which enables using the tools remotely, for example, to monitor servers. In this talk, we'll look at the Rubinius features that support writing tools for Ruby and examine how those features are used in Nikita. Then we'll set Nikita loose on some problem code. It might get bloody.
   video_provider: "youtube"
@@ -140,7 +140,7 @@
     - Christopher Bertels
   event_name: "RubyConf 2011"
   date: "2011-09-29" # TODO
-  published_at: "2011-12-12"
+  published_at: "2011-10-28"
   description: |-
     Fancy is a self-hosted, dynamic, class based, pure object-oriented programming language heavily inspired by Smalltalk, Ruby and Erlang that runs on the Rubinius VM. It has first class integration with Ruby, support for asynchronous message sends, futures and actors, a simple syntax and consistent semantics, object oriented pattern matching that preserves encapsulation and much more. Fancy runs on Rubinius, a modern bytecode virtual machine designed for Ruby. It is the first fully self-hosted language running on Rubinius besides Ruby. This talk will show Fancy's semantics and language features, its integration with Ruby code, as well as how the new implementation for the Rubinius VM works and what Rubinius has to offer for programming language creators alike.
   video_provider: "youtube"
@@ -152,7 +152,7 @@
     - David A. Black
   event_name: "RubyConf 2011"
   date: "2011-09-29" # TODO
-  published_at: "2011-12-12"
+  published_at: "2011-10-28"
   description: |-
     An examination of a large handful of features and characteristics of Ruby that, once understood, provide a solid foundation for continued learning and/or mentoring
   video_provider: "youtube"
@@ -164,7 +164,7 @@
     - Dewayne VanHoozer
   event_name: "RubyConf 2011"
   date: "2011-09-29" # TODO
-  published_at: "2011-12-12"
+  published_at: "2011-10-28"
   description: |-
     Ruby has demonstrated itself to be an extraordinary tool for the rapid development of prototype systems in an environment of unclear, undefined, ill-defined, missing requirements. As a dynamic language its ability to rapidly morph based upon the needs of the moment is remarkable. The way that it can be used to hide complexity via domain specific languages is unparalleled. This session reviews 5 years of success using Ruby within a research and development lab of a major USA defence contractor. Lessons learned, evolved patterns and suggestions for future improvements are on the agenda. There are movies. Bring your own popcorn.
   video_provider: "youtube"
@@ -176,7 +176,7 @@
     - Steve Klabnik
   event_name: "RubyConf 2011"
   date: "2011-09-29" # TODO
-  published_at: "2011-12-12"
+  published_at: "2011-12-07"
   description: |-
     It's been two years since _why the lucky stiff has departed Ruby. His work, however, carries on. Shoes was one of _why's most ambitious projects, and a tiny but scrappy team has kept Shoes alive. If you haven't heard of Shoes, it's a GUI toolkit for Ruby. Most of these are simply bindings to toolkits written in other languages, like QT or Tk. Shoes is native to Ruby, so it uses Ruby-only features heavily, such as blocks. Shoes also includes packaging functionality that allows you to distribute your apps on Linux, OSX, and Windows. In this talk, Steve will cover the basics of building applications with Shoes, the challenges of maintaining a large polyglot project with an absent inventor, and what's in store for the future of Shoes.
   video_provider: "youtube"
@@ -188,7 +188,7 @@
     - TODO
   event_name: "RubyConf 2011"
   date: "2011-09-29" # TODO
-  published_at: "2011-12-12"
+  published_at: "2011-10-26"
   description: ""
   video_provider: "youtube"
   video_id: "Xnt7VBzpQyg"
@@ -200,7 +200,7 @@
     - Sidu Ponnappa
   event_name: "RubyConf 2011"
   date: "2011-09-29" # TODO
-  published_at: "2011-12-12"
+  published_at: "2011-10-26"
   description: |-
     In typical service oriented architectures, monolithic applications are sliced along domain verticals to create several independently evolving 'services' that can be used in combination to achieve various outcomes. Rails applications lend themselves to this architecture beautifully and are slowly making inroads in big organisations for this reason. One of the big problems with this approach is that analyzing and managing large quantities of data from multiple services to produce a result becomes very hard. What was originally a relatively simple task when all data sat in the same database as part of a monolithic application, becomes, when split into multiple services, a whole different beast. This talk will focus on our experiences building a system involving about a dozen rails based services integrated over HTTP and XML and the issues we had to deal with when working with large data sets. We will talk about: * Various problems we faced while building RESTful APIs which demanded asynchronous communication between two services * Places where this asynchronous communication was needed to be initiated by the server, essentially a push mechanism instead of pull * Different approaches to this solution ** Sharing a database using read-only 'remote models' ** Creating read only local caches at each consumer *** Propagating updates by having the producer explicitly update each consumer *** Propagating updates using a message queue and the pros and cons of integrating with them in Ruby
   video_provider: "youtube"
@@ -212,7 +212,7 @@
     - Jeremy Hinegardner
   event_name: "RubyConf 2011"
   date: "2011-09-29" # TODO
-  published_at: "2011-12-12"
+  published_at: "2011-10-26"
   description: |-
     One of the amazing things that we as Ruby developers benefit from, when using JRuby, is the existing ecosystem of Java libraries and platforms for manipulating Big Data. The most famous, and probably of the most use to rubyists is Hadoop and the Hadoop ecosystem of projects. This talk will touch on how we, as developers who use Ruby, may be use JRuby within a variety of Hadoop and Hadoop related projects such as HDFS, MapReduce, HBase, Hive, Zookeeper, etc.
   video_provider: "youtube"
@@ -225,7 +225,7 @@
     - Micah Martin
   event_name: "RubyConf 2011"
   date: "2011-09-29" # TODO
-  published_at: "2011-12-12"
+  published_at: "2011-10-26"
   description: |-
     Father-son-team Bob and Micah Martin open the hood on a pure ruby GUI tool they built to monitor their website, cleancoders.com. During this whimsical tour Bob and Micah will reveal how they made use of Limelight, along with a simple web service layer, to build a desktop GUI that provides vivid realtime information on usage of their site.
   video_provider: "youtube"
@@ -237,7 +237,7 @@
     - Joshua Ballanco
   event_name: "RubyConf 2011"
   date: "2011-09-29" # TODO
-  published_at: "2011-12-12"
+  published_at: "2011-10-26"
   description: |-
     Pop quiz, hot shot! What is the value of this Ruby expression: "2 + 3"? What if I told you that somewhere earlier I had done this: "class Fixnum; alias :+ :*; end"? Changes everything, right? We're all familiar with Ruby's open classes. For many of us, they're one of the facets of Ruby that make it so much fun to work with. However, Ruby treats bindings as first class objects, and they are, similarly, open. This can lead to problems. What sorts of problems? Well, effectively, the only way to know what a Ruby program will do is to run it. Stated another way: it is impossible to reason about Ruby. Now, this may not seem like such a big deal for the seasoned Rubyist. So long as we're responsible in how we write our code and make sure not to do anything too crazy, we can have a pretty good idea of what any piece of code will do ahead of time. Unfortunately, compilers and runtimes can't rely on "responsible" programmers and having a "pretty good idea" of what code will do just doesn't cut it for a VM. As a result, method caches get invalidated far too often and whole classes of common optimizations do not work with Ruby. So, what's a programming language to do? Luckily, Ruby is not alone in facing this dilema. The Scheme community has been confronting similar issues from the very beginning, and in the R5RS and R6RS reports, they outlined a solution. This talk will take a look at what makes first-class environments and "eval" so problematic, and what lessons Ruby might learn from Scheme in how to be more reasonable.
   video_provider: "youtube"
@@ -249,7 +249,7 @@
     - Bradley Grzesiak
   event_name: "RubyConf 2011"
   date: "2011-09-29" # TODO
-  published_at: "2011-12-12"
+  published_at: "2011-10-26"
   description: |-
     We use encryption every day, from SSL to SSH to passing notes to your crush during Social Studies class. But how does it actually work? I'll avoid most of the math but cover the concepts of both symmetric and asymmetric encryption, including hashing and signing. I'll also show how to use OpenSSL from inside ruby and show off the idkfa gem, a library to securely store sensitive information into your code repositories.
   video_provider: "youtube"
@@ -261,7 +261,7 @@
     - Prakash Murthy
   event_name: "RubyConf 2011"
   date: "2011-09-29" # TODO
-  published_at: "2011-12-12"
+  published_at: "2011-10-26"
   description: |-
     The talk will focus on less than one day length events that any Rubyists can organize in their locality to nurture and grow a vibrant ruby community. Specifically, the talk will explore in detail two such events - Code Retreat & Rails Bugmash, and will be based on my experience in organizing Code Retreats in Boulder (Feb 2011) & Fort Collins (June 2011), and Rails Bugmashes in Boulder and Bangalore (both in May 2011).
   video_provider: "youtube"
@@ -273,7 +273,7 @@
     - Andy Delcambre
   event_name: "RubyConf 2011"
   date: "2011-09-29" # TODO
-  published_at: "2011-12-12"
+  published_at: "2011-10-26"
   description: |-
     At Engine Yard, we release the main AppCloud code base at least once a day, many times more often than that. Yet we still have a fairly rigorous testing and release process. We have simply automated and connected as much of the process as possible. In this talk I will discuss how we do our deployments and how it ties in with our continuous integration service, and how we automated and tied it all together.
   video_provider: "youtube"
@@ -285,7 +285,7 @@
     - Rob Sanheim
   event_name: "RubyConf 2011"
   date: "2011-09-29" # TODO
-  published_at: "2011-12-12"
+  published_at: "2011-10-25"
   description: |-
     Two years ago, I was about to turn 30. I was working constantly. And I was in the worst shape of my life. I weighed almost 270 pounds. My back, hands, and wrists ached constantly from repetitive stress and poor posture after working long hours. A full eight hour day or programming left me exhausted and irritable. I got on a plan to get in shape and lose weight, and given enough time and good habits, it worked. I lost a ton of weight and feel great. Along the way, a funny thing happened: I became much more effective as a developer, getting more done in less time. Work is more fun, my repetitive stress injury is gone, and eight hours of pair programming doesn't destroy me like it used to. This talk will discuss pragmatic ways to improve your health, reduce stress, and improve focus, all without a gym membership or dreadful treadmill sessions. We'll touch on modern science that demonstrates the importance of the mind/body connection, and cover some hacker friendly diet and exercise plans.
   video_provider: "youtube"
@@ -297,7 +297,7 @@
     - Ben Klang
   event_name: "RubyConf 2011"
   date: "2011-09-29" # TODO
-  published_at: "2011-12-12"
+  published_at: "2011-10-25"
   description: |-
     Adhearsion is a new way to write voice-enabled applications. It's not just an API or library -- it's a fully-featured framework, the first of its kind, designed for maximal code reuse and intuitiveness. Building on ideas learned from existing Ruby web development frameworks, Adhearsion brings test-driven development, ActiveRecord models and the full power of the Ruby language to the world of telephone applications. This talk covers Adhearsion's powerful eventing interfaces for call control. Rather than handling each call session in a linear (and often blocking) sequence, we can react to events as they happen during the call, such as code reacting to the active speaker in a multi-channel conference, handling mid-call DTMF keypresses or manipulating state as calls are set up and torn down.
   video_provider: "youtube"
@@ -309,7 +309,7 @@
     - Jamis Buck
   event_name: "RubyConf 2011"
   date: "2011-09-29" # TODO
-  published_at: "2011-12-12"
+  published_at: "2011-10-25"
   description: |-
     Why does the word "algorithms" convey such a sense of musty dustiness? It doesn't have to! Implementing algorithms can be a fantastic way to grow your craft, practice programming idioms and patters, learn new programming languages, and just generally have a good time! Come learn how to generate, navigate, and solve MAZES in a variety of ways. Be prepared to drink from a firehose as I walk (run?) through eleven maze generation algorithms and several ways to solve mazes, in just 45 minutes! You'll never think of algorithms the same way again.
   video_provider: "youtube"
@@ -321,7 +321,7 @@
     - Aja Hammerly
   event_name: "RubyConf 2011"
   date: "2011-09-29" # TODO
-  published_at: "2011-12-12"
+  published_at: "2011-10-20"
   description: |-
     Many projects involve large datasets. While humans are master pattern matchers, trying to find patterns and issues by looking at reams of text is hard. Sometimes you just need the 30,000 foot view but creating diagrams by hand is time consuming and prone to error. The graph gem makes it quick and easy to create visualizations of your data. In this talk, we'll learn how to use nokogiri and graph to get data out of an XML file and into a format where you can see relationships and patterns. We'll also see how color coding and clustering can emphasize the patterns in your data. Many of the examples will come from my work with adaptive education apps.
   video_provider: "youtube"
@@ -333,7 +333,7 @@
     - Yukihiro "Matz" Matsumoto
   event_name: "RubyConf 2011"
   date: "2011-09-29" # TODO
-  published_at: "2011-12-12"
+  published_at: "2011-10-21"
   description: |-
     Keynote speech by the creator of the Ruby (Programming Language) Yukihiro "Matz" Matsumoto.
   video_provider: "youtube"
@@ -345,7 +345,7 @@
     - Tim Connor
   event_name: "RubyConf 2011"
   date: "2011-09-29" # TODO
-  published_at: "2011-12-12"
+  published_at: "2011-10-21"
   description: |-
     Lightning talk from the International Ruby Conference 2011
   video_provider: "youtube"
@@ -357,7 +357,7 @@
     - Amit Kumar
   event_name: "RubyConf 2011"
   date: "2011-09-29" # TODO
-  published_at: "2011-12-12"
+  published_at: "2011-10-25"
   description: |-
     The enterprise is a closed ecosystem with its own rules. Internet is all about openness and freedom. Solving the `Big Data` problem for an Enterprise requires: 1) Maintain large amounts of structured and unstructured data 2) Complying with internal technical standards and enterprisy architectural guidelines 3) Local as well as global enterprise regulations etc. I would like to share how Ruby helped in building a scalable Analytic application. The application uses OLAP Cubes and deals with data slicing/dicing.
   video_provider: "youtube"
@@ -369,7 +369,7 @@
     - Jim Weirich
   event_name: "RubyConf 2011"
   date: "2011-09-29" # TODO
-  published_at: "2011-12-12"
+  published_at: "2011-10-25"
   description: |-
     Do you always seem to be fixing bugs in your software project? Are you spending more time fixing defects that actually implementing new behavior? If so, this talk is for you. In the mid-90s, Steve Maquire wrote a book that strongly effected the way I developed software. Primarily writing in C and C++ in those years, the struggle to deliver bug free software was especially a challenge. In the book "Writing Solid Code", Steve gives sage advice on the problems of developing large software projects and the challenges that go with making sure your softare actual does what you think it should. Although as Ruby developers we are no longer using C to deliver our large projects, the challenge of writing solid, reliable code is still before us. Based on Maquire's advice and my own years of Ruby experience, this talk will show developers tools, techniques and practices that they can use to improve their software and begin writing solid code.
   video_provider: "youtube"
@@ -381,7 +381,7 @@
     - Piotr Szotkowski
   event_name: "RubyConf 2011"
   date: "2011-09-29" # TODO
-  published_at: "2011-12-12"
+  published_at: "2011-10-25"
   description: |-
     Entities and their relations are the backbone of many Ruby applications -- from trivial, one-off commandline utilities to full-blown social network websites. The good old relational databases, while showing extreme abilities in both adaptation and survival, are no longer the obvious choice for persistence -- and sometimes obviously not an ideal one. This talk discusses various entity/relation modelling approaches and different persistence techniques -- from rigid schemas in suits to collections of hippie free-form documents; from good old (transactional!) PStore through join-table-happy RDBMSes and muscle-flexing NoSQL hools to (social!) graph databases, waiting patiently for broader recognition and prime time. Quite a few interesting Ruby libraries for gluing all this together are also pondered upon -- from world-class champions like Active Record or ARel to less known gems like Candy and Ambition.
   video_provider: "youtube"
@@ -393,7 +393,7 @@
     - Avdi Grimm
   event_name: "RubyConf 2011"
   date: "2011-09-29" # TODO
-  published_at: "2011-12-12"
+  published_at: "2011-10-25"
   description: |-
     You know how to raise and rescue exceptions. But do you know how they work, and how how to structure a robust error handling strategy for your app? This talk starts with a technical deep dive into Ruby's exception facility, covering features, tricks, and gotchas you never knew about. You'll learn how to retry failed operations; how to override "raise" for fun and profit; and advanced techniques for matching exceptions in rescue clauses. From there, we'll move on to patterns and guidelines for structuring a robust, failure-resilient codebase. We'll look at strategies for avoiding failure cascades; how to characterize and verify the exception-safety of critical methods; and alternatives to raising exceptions for when "fail fast" isn't the right answer. Finally, you'll learn about the three exception classes every app needs.
   video_provider: "youtube"
@@ -405,7 +405,7 @@
     - Gregory Moeck
   event_name: "RubyConf 2011"
   date: "2011-09-29" # TODO
-  published_at: "2011-12-12"
+  published_at: "2011-10-25"
   description: |-
     Although the Ruby community has embraced TDD like no other community ever has, we have always looked at mock objects with disdain, and perhaps even a little hatred. I've heard conference speakers call them "Wastes of time", "Scams", and even "Testing Heresies". Why would anyone have ever developed these pieces of junk? In reality though many in the agile community have embraced mock objects within their testing cycles because they have found using these fake objects improves the design of their systems. But why not Rubyists? Most Rubyists don't get mock objects because they don't understand their history or their creators intent. They try to fit them into their current workflow without understanding them, and find them unhelpful and stupid. After all, almost all of the good literature on the subject is written in Java, and we know how frustrating it is to read Java when your used to Ruby. As such, this talk will attempt to demonstrate in Ruby the usefulness of mock objects, and how to use them to improve the design of your system. Specifically the following will be covered: * Why do we need mock objects (Following the 'Tell, Don't Ask Principle') * Why you should only mock objects you own * Why you shouldn't use mocks to test boundary objects like external API calls * Why you should mock roles, not Objects * Why you should only mock your immediate neighbors * Why listening to your unit tests will tell you about design problems in your code
   video_provider: "youtube"
@@ -417,7 +417,7 @@
     - Richard Crowley
   event_name: "RubyConf 2011"
   date: "2011-09-29" # TODO
-  published_at: "2011-12-12"
+  published_at: "2011-10-25"
   description: |-
     Configuration management shouldn't be a luxury. It should be a right available to teams of every size and skill because it makes you confident when you deploy and calm when you scale up. Until now, however, the tools have been focused on the exotic possibilities seen at enormous scale in sprawling organizations. Blueprint is different. Blueprint reverse engineers servers to understand how they're configured and makes it painless to push the configuration to your coworkers and to production. It understands system packages, gems, config files, source installations, and more. In this talk we'll discuss the architecture of the Blueprint tools, their use and how they fit into most workflows, their limitations and how users address them, and some of the tools being built on top of Blueprint to manage many servers at once.
   video_provider: "youtube"
@@ -429,7 +429,7 @@
     - Rein Henrichs
   event_name: "RubyConf 2011"
   date: "2011-09-29" # TODO
-  published_at: "2011-12-12"
+  published_at: "2011-10-25"
   description: |-
     The Fabulous Five are back! Last year we blew your mind. This year we will blow your heart. Join us as we put on our robes and wizard hats and enchant you with witty banter, amusing anecdotes and live Q&A. We'll cover topics ranging from "best ruby interpreter" to "best ruby interpretive dance". Featuring Aaron "The Kissing Bandit" Patterson, Ben "It's Bleything, not Bleything!" Bleything, Yosef "Totally Great" Mendelssohn, Jon "The Bear Brogrammer" Barnette, and Evan "Totes Not Creepy" Phoenix. Moderated by Rein Henrichs.
   video_provider: "youtube"
