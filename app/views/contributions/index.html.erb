@@ -121,7 +121,7 @@
         <h2 class="mb-4">Not published talks (<%= @not_published_talks_count %>)</h2>
 
         <article class="prose mb-6">
-          These talks have been held, were recorded, but have not been published yet. Or maybe they are already published but haven't been added to RubyVideo yet.<br><br>
+          These talks have been held, were recorded, but have not been published yet. Or maybe they are already published but haven't been added to rubyevents.org yet.<br><br>
 
           If the talk recording is available, you can change the <code>video_provider</code> from <code>not_published</code> to <code>youtube</code> (or any other video provider we support) and provide the <code>video_id</code> so we can embed it.<br><br>
 
@@ -152,7 +152,7 @@
         <h2 class="mb-4">Add missing events (<%= @conferences_to_index %>)</h2>
 
         <article class="prose mb-6">
-          <p>If you know of an event that's not yet on RubyVideo.dev, please feel free to add it. This includes events in the future, events with unrecorded talks, or events with talks not yet uploaded online.</p>
+          <p>If you know of an event that's not yet on rubyevents.org, please feel free to add it. This includes events in the future, events with unrecorded talks, or events with talks not yet uploaded online.</p>
 
           <p>We are checking against <a href="https://rubyconferences.org" target="_blank">rubyconferences.org</a> to identify missing events. Below, we will list conferences with video links first, followed by those without a video link.</p>
 
@@ -164,7 +164,7 @@
         <article class="prose mb-6">
           <p>We already indexed <%= pluralize(@already_index_conferences, "conference") %> out of the <%= pluralize(@upstream_conferences.count, "conference") %> listed on RubyConferences.org.</p>
 
-          <p>There are <%= pluralize(@conferences_to_index, "more conference") %> from RubyConferences.org to be added to RubyVideo.dev.</p>
+          <p>There are <%= pluralize(@conferences_to_index, "more conference") %> from RubyConferences.org to be added to rubyevents.org.</p>
         </article>
 
         <h3 class="font-bold mb-3">Conferences from RubyConferences.org with a video link (<%= pluralize(@with_video_link.count, "event") %>)</h3>
