@@ -27,6 +27,7 @@ class VideoSchema < RubyLLM::Schema
       string :video_id, required: false
       string :language, required: false
       string :track, required: false
+      string :location, description: "Location within the venue", required: false
       string :start_cue, description: "Start time cue in video", required: false
       string :end_cue, description: "End time cue in video", required: false
       string :thumbnail_cue, description: "Thumbnail time cue", required: false
