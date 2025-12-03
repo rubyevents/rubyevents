@@ -151,3 +151,19 @@
   video_id: "z7E1zx9j31M"
   speakers:
     - Jim Weirich
+
+- title: "Merb, Rubinius and the Engine Yard Stack"
+  raw_title: "Merb, Rubinius and the Engine Yard Stack"
+  event_name: "Google Tech Talks"
+  date: "2008-10-20"
+  published_at: "2008-10-21"
+  description: |-
+    In this talk we will explore a few of the open source projects we work on here at Engine Yard. I will give a detailed overview of the Merb web framework and what it brings to the table. We will also discuss Rubinius, an alternate ruby VM based on SmallTalk 80 blue book that also uses LLVM for low level optimizations. We will also explore the 'stack' we are working on at EY which includes our own variant of Gentoo linux as well as a full stack of software dedicated to running ruby applications as efficiently as possible.
+
+    Merb, like Ruby on Rails is an MVC framework. Unlike Rails, Merb is ORM-agnostic, JavaScript library agnostic, and template language agnostic, preferring plugins that add in support for a particular feature rather than trying to produce a monolithic library with everything in the core. While trying to keep the core as minimal and clean as possible, this hasnt meant a sacrifice of features. Merb has a very comprehensive set of features, which are continually improving.
+
+    Rubinius is a project to develop the next generation virtual machine for the Ruby programming language, drawing on the best virtual machine research and technology of the last 30 years. It implements the core libraries in Ruby, making a system easily accessible for development and extension. Rubinius is also an excellent platform for experimenting with cutting-edge technology like software transactional memory.
+  video_provider: "youtube"
+  video_id: "TcMklv40YMY"
+  speakers:
+    - Ezra Zygmuntowicz
