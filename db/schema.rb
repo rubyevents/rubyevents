@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_01_144052) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_03_110659) do
   create_table "ahoy_events", force: :cascade do |t|
     t.string "name"
     t.text "properties"
@@ -143,8 +143,8 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_01_144052) do
     t.string "twitter", default: "", null: false
     t.datetime "updated_at", null: false
     t.string "website", default: "", null: false
-    t.string "youtube_channel_id", default: "", null: false
-    t.string "youtube_channel_name", default: "", null: false
+    t.string "youtube_channel_id", default: ""
+    t.string "youtube_channel_name", default: ""
     t.index ["frequency"], name: "index_event_series_on_frequency"
     t.index ["kind"], name: "index_event_series_on_kind"
     t.index ["name"], name: "index_event_series_on_name"

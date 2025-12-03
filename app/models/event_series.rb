@@ -13,10 +13,10 @@
 #  slug                 :string           default(""), not null, indexed
 #  twitter              :string           default(""), not null
 #  website              :string           default(""), not null
-#  youtube_channel_name :string           default(""), not null
+#  youtube_channel_name :string           default("")
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
-#  youtube_channel_id   :string           default(""), not null
+#  youtube_channel_id   :string           default("")
 #
 # Indexes
 #

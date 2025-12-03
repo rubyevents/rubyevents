@@ -74,6 +74,10 @@ gem "active_genie"
 
 # A single delightful Ruby way to work with AI.
 gem "ruby_llm"
+gem "ruby_llm-schema"
+
+# JSON Schema validator
+gem "json_schemer"
 
 # YouTube V3 API client.
 gem "yt"
