@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_04_145850) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_04_195048) do
   create_table "ahoy_events", force: :cascade do |t|
     t.string "name"
     t.text "properties"
@@ -331,7 +331,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_04_145850) do
     t.string "slides_url"
     t.string "slug", default: "", null: false
     t.integer "start_seconds"
-    t.string "static_id"
+    t.string "static_id", null: false
     t.boolean "summarized_using_ai", default: true, null: false
     t.text "summary", default: "", null: false
     t.string "thumbnail_lg", default: "", null: false

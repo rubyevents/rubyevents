@@ -35,7 +35,7 @@
 #  updated_at          :datetime         not null, indexed
 #  event_id            :integer          indexed
 #  parent_talk_id      :integer          indexed
-#  static_id           :string           uniquely indexed
+#  static_id           :string           not null, uniquely indexed
 #  video_id            :string           default(""), not null
 #
 # Indexes
