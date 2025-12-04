@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class VideoSchema < RubyLLM::Schema
-  string :id, description: "Unique identifier for the video", required: false
+  string :id, description: "Unique identifier for the video", required: true
   string :title, description: "Title of the talk"
   string :raw_title, description: "Original/raw title from the video source", required: false
   string :original_title, description: "Original title in native language", required: false
