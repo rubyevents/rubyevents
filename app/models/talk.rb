@@ -35,6 +35,7 @@
 #  updated_at          :datetime         not null, indexed
 #  event_id            :integer          indexed
 #  parent_talk_id      :integer          indexed
+#  static_id           :string           uniquely indexed
 #  video_id            :string           default(""), not null
 #
 # Indexes
@@ -44,6 +45,7 @@
 #  index_talks_on_kind                     (kind)
 #  index_talks_on_parent_talk_id           (parent_talk_id)
 #  index_talks_on_slug                     (slug)
+#  index_talks_on_static_id                (static_id) UNIQUE
 #  index_talks_on_title                    (title)
 #  index_talks_on_updated_at               (updated_at)
 #  index_talks_on_video_provider_and_date  (video_provider,date)
@@ -510,6 +512,7 @@ class Talk < ApplicationRecord
 
     assign_attributes(
       event: event,
+      static_id: static_metadata.id,
       title: static_metadata.title,
       original_title: static_metadata.original_title || "",
       description: static_metadata.description,

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_03_110659) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_04_145850) do
   create_table "ahoy_events", force: :cascade do |t|
     t.string "name"
     t.text "properties"
@@ -331,6 +331,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_03_110659) do
     t.string "slides_url"
     t.string "slug", default: "", null: false
     t.integer "start_seconds"
+    t.string "static_id"
     t.boolean "summarized_using_ai", default: true, null: false
     t.text "summary", default: "", null: false
     t.string "thumbnail_lg", default: "", null: false
@@ -348,6 +349,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_03_110659) do
     t.index ["kind"], name: "index_talks_on_kind"
     t.index ["parent_talk_id"], name: "index_talks_on_parent_talk_id"
     t.index ["slug"], name: "index_talks_on_slug"
+    t.index ["static_id"], name: "index_talks_on_static_id", unique: true
     t.index ["title"], name: "index_talks_on_title"
     t.index ["updated_at"], name: "index_talks_on_updated_at"
     t.index ["video_provider", "date"], name: "index_talks_on_video_provider_and_date"

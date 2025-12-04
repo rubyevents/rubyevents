@@ -4,7 +4,8 @@
 ---
 ## Day 1
 
-- title: "String Theory"
+- id: "chris-kelly-ruby-lugdunum-conference-2014"
+  title: "String Theory"
   raw_title: "String Theory"
   speakers:
     - Chris Kelly
@@ -17,7 +18,8 @@
   description: |-
     Peer into the dark and mysterious world of Ruby internals, delve to the point that the basic String becomes a complex web of optimizations, flags and peculiarities. The starting point for String Theory is the observation that immutable strings are more performant than mutable ones, and 23 character strings are more performant than longer ones. The how and why of these idiosyncrasies is where our journey begins. We'll chip away at the Ruby VM to explore how String is implemented in C, to fully understand String Theory we'll need to journey into Ruby memory structures and ultimately to the garbage collector. Get your spelunking gear ready as we discover how the GC has evolved, once we emerge from the darkness you'll see Ruby in a whole new light.
 
-- title: "Wrapper's Delight"
+- id: "emily-stolfo-ruby-lugdunum-conference-2014"
+  title: "Wrapper's Delight"
   raw_title: "Wrapper's Delight"
   speakers:
     - Emily Stolfo
@@ -32,7 +34,8 @@
 
     There are two main points to keep in mind while building an API and making design choices: Ruby gem API design is a form of user experience design and a good API should be easy to maintain. We'll take a look at a number of UX principles and see how they apply to API design and discuss how to optimize for unanticipated changes in what we are wrapping.
 
-- title: "PostgreSQL for the Ruby/Rails Developer"
+- id: "yannick-schutz-ruby-lugdunum-conference-2014"
+  title: "PostgreSQL for the Ruby/Rails Developer"
   raw_title: "Postgresql for the ruby/rails developer"
   speakers:
     - Yannick Schutz
@@ -55,7 +58,8 @@
 
     It might also interest you, GO/PHP/Python dev!
 
-- title: "Anatomy of a Mocked Call"
+- id: "sam-phippen-ruby-lugdunum-conference-2014"
+  title: "Anatomy of a Mocked Call"
   raw_title: "Anatomy of a mocked call"
   speakers:
     - Sam Phippen
@@ -70,7 +74,8 @@
 
     This talk will give a guided tour, with code, through RSpec's mocks. We'll look at one of the most simple cases possible. We'll also look at the most complicated case I can conceive of. Hopefully everyone will learn a little something about testing whilst watching this talk.
 
-- title: "RubyMotion Under the Bonnet"
+- id: "eloy-durn-ruby-lugdunum-conference-2014"
+  title: "RubyMotion Under the Bonnet"
   raw_title: "RubyMotion under the bonnet"
   speakers:
     - Eloy Durán
@@ -83,7 +88,8 @@
   description: |-
     RubyMotion is a toolchain that lets you develop native applications using the Ruby language. This talk will focus on what makes RubyMotion tick and take a look at Ruby from a static point of view, covering topics such as AOT vs JIT compilation, memory management, and interfacing with different languages and runtimes.
 
-- title: "Large-scale Rails Applications"
+- id: "konstantin-tennhard-ruby-lugdunum-conference-2014"
+  title: "Large-scale Rails Applications"
   raw_title: "Large-scale Rails Applications"
   speakers:
     - Konstantin Tennhard
@@ -100,7 +106,8 @@
 
 ## Day 2
 
-- title: "Compilers for Free"
+- id: "tom-stuart-ruby-lugdunum-conference-2014"
+  title: "Compilers for Free"
   raw_title: "Compilers for Free"
   speakers:
     - Tom Stuart
@@ -115,7 +122,8 @@
 
     This maths-free talk uses Ruby to explain how partial evaluation works, how it can be used to make programs go faster, and how it compares to ideas like currying and partial application from the world of functional programming. It then investigates what happens when you run a partial evaluator on itself, and reveals some surprising results about how these techniques can be used to automatically generate compilers instead of writing them from scratch.
 
-- title: "A Problem with Frogs"
+- id: "paolo-perrotta-ruby-lugdunum-conference-2014"
+  title: "A Problem with Frogs"
   raw_title: "A Problem with Frogs"
   speakers:
     - Paolo Perrotta
@@ -130,7 +138,8 @@
 
     This is a speech about the theory of complexity—but don’t worry, it’s more fun than it sounds. I’ll try to answer a question that applies to most things you do as a developer, from writing code to talking to customers: how do you solve a problem, when you don’t even know what the problem is?
 
-- title: "Modern Concurrency Practices in Ruby"
+- id: "arnab-deka-ruby-lugdunum-conference-2014"
+  title: "Modern Concurrency Practices in Ruby"
   raw_title: "Modern Concurrency Practices in Ruby"
   speakers:
     - Arnab Deka
@@ -147,7 +156,8 @@
 
     This talk is a primer on these different paradigms of concurrency, briefly touching on the traditional threads-based model, but focusing more on modern paradigms like actors/futures/STM/channels, with examples and demos.
 
-- title: "More Code, Fewer Pixels"
+- id: "cameron-daigle-ruby-lugdunum-conference-2014"
+  title: "More Code, Fewer Pixels"
   raw_title: "More Code, Fewer Pixels"
   speakers:
     - Cameron Daigle
@@ -162,7 +172,8 @@
 
     Join me as I dive into the vagaries of Hashrocket's design-develop-revise-repeat feedback loop – and learn how we turn static markup into an essential communication tool through rich UI prototyping, generated content, and general cleverness.
 
-- title: "Ruby & You"
+- id: "terence-lee-ruby-lugdunum-conference-2014"
+  title: "Ruby & You"
   raw_title: "Ruby & You"
   speakers:
     - Terence Lee
@@ -179,7 +190,8 @@
 
     This talk goes through the steps and mistakes I learned on how to interact with members of ruby-core, tell war stories from core, and explain how you can get contributions upstream and improve Ruby for everyone.
 
-- title: "Panel: Discussion of Ruby's Future"
+- id: "discussion-ruby-future-rulu-2014"
+  title: "Panel: Discussion of Ruby's Future"
   raw_title: "Discussion of Ruby's Future"
   speakers:
     - TODO

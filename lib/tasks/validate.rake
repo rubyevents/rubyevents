@@ -125,6 +125,32 @@ namespace :validate do
     exit 1 unless success
   end
 
+  desc "Validate that all Static::Video records have unique ids"
+  task unique_video_ids: :environment do
+    all_ids = []
+
+    Static::Video.all.each do |video|
+      all_ids << video.id
+      video.talks.each { |talk| all_ids << talk.id }
+    end
+
+    duplicates = all_ids.tally.select { |_id, count| count > 1 }
+
+    if duplicates.any?
+      puts "Duplicate video ids found (#{duplicates.count}):\n\n"
+
+      duplicates.each do |id, count|
+        puts "❌ #{id} (#{count} occurrences)"
+      end
+
+      puts
+
+      exit 1
+    else
+      puts "All video ids are unique"
+    end
+  end
+
   desc "Validate all YAML files"
   task all: :environment do
     results = []
@@ -168,7 +194,14 @@ namespace :validate do
     puts "Validating unique video ids..."
     puts "=" * 60
 
-    duplicates = Static::Video.pluck(:id).compact.reject(&:blank?).tally.select { |_id, count| count > 1 }
+    all_ids = []
+
+    Static::Video.all.each do |video|
+      all_ids << video.id
+      video.talks.each { |talk| all_ids << talk.id }
+    end
+
+    duplicates = all_ids.tally.select { |_id, count| count > 1 }
 
     if duplicates.any?
       puts "Duplicate video ids found (#{duplicates.count}):\n\n"

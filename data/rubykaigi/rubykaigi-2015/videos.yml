@@ -4,7 +4,8 @@
 # TODO: conference website
 # TODO: schedule website
 
-- title: "Keynote: Ruby 2020"
+- id: "evan-phoenix-rubykaigi-2015"
+  title: "Keynote: Ruby 2020"
   raw_title: "Ruby: 2020 - RubyKaigi 2015 Keynote"
   speakers:
     - Evan Phoenix
@@ -16,7 +17,8 @@
   description: |-
     http://rubykaigi.org/2015/presentations/evanphx
 
-- title: "Introducing the Crystal Programming Language"
+- id: "lein-weber-rubykaigi-2015"
+  title: "Introducing the Crystal Programming Language"
   raw_title: "Introducing the Crystal Programming Language - RubyKaigi 2015"
   speakers:
     - Lein Weber
@@ -34,7 +36,8 @@
 
     In this session, we’ll take a close look at these differences as well as the similarities, and what Ruby developers can learn from this exciting language.
 
-- title: "High Performance Template Engine: Guide to optimize your Ruby code"
+- id: "takashi-kokubun-rubykaigi-2015"
+  title: "High Performance Template Engine: Guide to optimize your Ruby code"
   raw_title: "High Performance Template Engine: Guide to optimize your Ruby code - RubyKaigi 2015"
   speakers:
     - Takashi Kokubun
@@ -52,7 +55,8 @@
     In this talk, we show the process of creating faster Haml implementations: Faml and Hamlit. You will see how to improve the performance of your code.
     We will show you the typical structure of template engines first, so experience with them is not required. After this talk, you'll be able to optimize your application using the techniques we will show you.
 
-- title: "Linux loves Ruby, Ruby loves Linux - Keynote"
+- id: "kosaki-motohiro-rubykaigi-2015"
+  title: "Linux loves Ruby, Ruby loves Linux - Keynote"
   raw_title: "Linux loves Ruby, Ruby loves Linux - RubyKaigi 2015 Keynote"
   speakers:
     - KOSAKI Motohiro
@@ -64,7 +68,8 @@
   description: |-
     http://rubykaigi.org/2015/presentations/kosaki
 
-- title: "Fast Metaprogramming with Truffle"
+- id: "kevin-menard-rubykaigi-2015"
+  title: "Fast Metaprogramming with Truffle"
   raw_title: "Fast Metaprogramming with Truffle - RubyKaigi 2015"
   speakers:
     - Kevin Menard
@@ -80,7 +85,8 @@
 
     We’ll show you how JRuby+Truffle has eliminated the cost of metaprogramming so Rubyists can write idiomatic Ruby without having to worry about hidden performance trade-offs."
 
-- title: "Compiling Ruby scripts"
+- id: "koichi-sasada-rubykaigi-2015"
+  title: "Compiling Ruby scripts"
   raw_title: "Compiling Ruby scripts - RubyKaigi 2015"
   speakers:
     - Koichi Sasada
@@ -94,7 +100,8 @@
 
     Ruby (MRI) 2.2 compiles Ruby scripts into bytecode (instruction sequences) at run time. This approach is simple, but has several problems such as overhead of compile time. We are working on making an Ahead of Time compiler which compiles Ruby script before executing the script. This compiler will help to reduce boot time and to reduce memory consumption on multiple Ruby processes. In this presentation, we will introduce the compiler and that mechanism.
 
-- title: "Turbo Rails with Rust"
+- id: "yehuda-katz-rubykaigi-2015"
+  title: "Turbo Rails with Rust"
   raw_title: "Turbo Rails with Rust - RubyKaigi 2015"
   speakers:
     - Yehuda Katz
@@ -111,7 +118,8 @@
 
     However, you might occasionally encounter workloads that are simply not suitable for Ruby. In this talk, we will explore building a native extension with Rust to speed up parts of Rails. (No prior experience with Rust required!) What does Rust has to offer in this scenario over plain-old C? Let's find out!
 
-- title: "Time flies like an arrow; Fruit flies like a banana: Parsers for Great Good"
+- id: "hsing-hui-hsu-rubykaigi-2015"
+  title: "Time flies like an arrow; Fruit flies like a banana: Parsers for Great Good"
   raw_title: "Time flies like an arrow; Fruit flies like a banana: Parsers for Great Good - RubyKaigi 2015"
   speakers:
     - Hsing-Hui Hsu
@@ -135,7 +143,8 @@
     in webserver routing -- and recognize when they may be the right tool
     to use in our own code.
 
-- title: "The history of testing framework in Ruby"
+- id: "kouhei-sutou-rubykaigi-2015"
+  title: "The history of testing framework in Ruby"
   raw_title: "The history of testing framework in Ruby - RubyKaigi 2015"
   speakers:
     - Kouhei Sutou
@@ -153,7 +162,8 @@
 
     This talk describes about the history of bundled testing framework in Ruby and some major testing frameworks for Ruby in chronological order.
 
-- title: "The worst Ruby codes I've seen in my life"
+- id: "fernando-hamasaki-de-amorim-rubykaigi-2015"
+  title: "The worst Ruby codes I've seen in my life"
   raw_title: "The worst Ruby codes I've seen in my life - RubyKaigi 2015"
   speakers:
     - Fernando Hamasaki de Amorim
@@ -169,7 +179,8 @@
 
     You will see a collection of bad Ruby codes, with a description of how these codes affected negatively their applications and the solutions to fix and avoid them. Long classes, coupling, misapplication of OO, illegible code, tangled flows, naming issues and other things you can ever imagine are examples what you'll get.
 
-- title: "The future of Ruby is in motion!"
+- id: "laurent-sansonetti-rubykaigi-2015"
+  title: "The future of Ruby is in motion!"
   raw_title: "The future of Ruby is in motion! - RubyKaigi 2015"
   speakers:
     - Laurent Sansonetti
@@ -183,7 +194,8 @@
 
     In this presentation we will give a quick and gentle introduction to RubyMotion, a Ruby toolchain to write cross-platform apps for iOS and Android. Then, we will cover 3 of its latest features: Apple Watch, Apple TV and a cross-platform game engine. We will do live demos and coding.
 
-- title: "Writing web application in Ruby"
+- id: "youchan-rubykaigi-2015"
+  title: "Writing web application in Ruby"
   raw_title: "Writing web application in Ruby - RubyKaigi 2015"
   speakers:
     - youchan
@@ -205,7 +217,8 @@
     I think many Rubyists are still lost, so I created a Virtual DOM implementation in Ruby called Hyalite.
     All right, Opal, Hyalite ... tools have been gathered. Let's build web applications on server-side and front-end with Ruby!
 
-- title: "Plugin-based software design with Ruby and RubyGems"
+- id: "sadayuki-furuhashi-rubykaigi-2015"
+  title: "Plugin-based software design with Ruby and RubyGems"
   raw_title: "Plugin-based software design with Ruby and RubyGems - RubyKaigi 2015"
   speakers:
     - Sadayuki Furuhashi
@@ -220,7 +233,8 @@
     Plugin architecture is known as a technique that brings extensibility to a program. Ruby has good language features for plugins. RubyGems.org is an excellent platform for plugin distribution. However, creating plugin architecture is not as easy as writing code without it: plugin loader, packaging, loosely-coupled API, and performance. Loading two versions of a gem is a unsolved challenge that is solved in Java on the other hand.
     I have designed some open-source software such as Fluentd and Embulk. They provide most of functions by plugins. I will talk about their plugin-based architecture.
 
-- title: "Experiments in sharing Java VM technology with CRuby"
+- id: "matthew-gaudet-rubykaigi-2015"
+  title: "Experiments in sharing Java VM technology with CRuby"
   raw_title: "Experiments in sharing Java VM technology with CRuby - RubyKaigi 2015"
   speakers:
     - Matthew Gaudet
@@ -238,7 +252,8 @@
 
     We want to share results from these experiments, talk about how we connected to CRuby, and discuss how this may one day become a part of everyone's CRuby.
 
-- title: "Lightning Talks"
+- id: "lightning-talks-rubykaigi-2015"
+  title: "Lightning Talks"
   raw_title: "Lightning Talks - RubyKaigi 2015"
   event_name: "RubyKaigi 2015"
   date: "2015-12-11"
@@ -347,7 +362,8 @@
       speakers:
         - Pilar Andrea Huidobro Peltier
 
-- title: "TRICK 2015: The second Transcendental Ruby Imbroglio Contest for RubyKaigi"
+- id: "yusuke-endoh-rubykaigi-2015"
+  title: "TRICK 2015: The second Transcendental Ruby Imbroglio Contest for RubyKaigi"
   raw_title: "TRICK 2015: The second Transcendental Ruby Imbroglio Contest for RubyKaigi - RubyKaigi 2015"
   speakers:
     - Yusuke Endoh
@@ -361,7 +377,8 @@
 
     The result presentation of TRICK 2015, an esoteric Ruby programming contest, will take place. You can (perhaps) enjoy some winning entries of unearthly Ruby code selected by esoteric judges.
 
-- title: "Ruby meets Go"
+- id: "masaki-matsushita-rubykaigi-2015"
+  title: "Ruby meets Go"
   raw_title: "Ruby meets Go - RubyKaigi 2015"
   speakers:
     - Masaki Matsushita
@@ -378,7 +395,8 @@
     First, I'd like to show you how to use Go code from Ruby with FFI and fiddle.
     Then, I will talk about how to build gems with Golang.
 
-- title: "Ruby and PostgreSQL, a love story"
+- id: "franck-verrot-rubykaigi-2015"
+  title: "Ruby and PostgreSQL, a love story"
   raw_title: "Ruby and PostgreSQL, a love story - RubyKaigi 2015"
   speakers:
     - Franck Verrot
@@ -392,7 +410,8 @@
 
     In this talk we will learn just enough of mruby's (the ISO-compliant version of Ruby) internals to understand how one can embed mruby in an external program (like PostgreSQL), and start writing Foreign Data Wrappers in Ruby.
 
-- title: "Saving people from typos"
+- id: "yuki-nishijima-rubykaigi-2015"
+  title: "Saving people from typos"
   raw_title: "Saving people from typos - RubyKaigi 2015"
   speakers:
     - Yuki Nishijima
@@ -410,7 +429,8 @@
 
     Let's learn how to take advantage of this new feature in Ruby 2.3 and save ourselves from typos forever!
 
-- title: "Request and Response"
+- id: "aaron-patterson-rubykaigi-2015"
+  title: "Request and Response"
   raw_title: "Request and Response - RubyKaigi 2015"
   speakers:
     - Aaron Patterson
@@ -429,7 +449,8 @@
     to more exciting topics like adding HTTP2 support and what that means for
     developing Rails applications.
 
-- title: "Let's make a functional language!"
+- id: "yutaka-hara-rubykaigi-2015"
+  title: "Let's make a functional language!"
   raw_title: "Let's make a functional language! - RubyKaigi 2015"
   speakers:
     - Yutaka HARA
@@ -443,7 +464,8 @@
 
     Recently, functional programming with type inference has become popular, let's try to make it! But what if you don't know where to start...? For such a Rubyist, this talk will explain from basics of language implementation to the Hindley-Milner type inference. We can make a functional language!
 
-- title: "mruby on the minimal embedded resource"
+- id: "shota-nakano-rubykaigi-2015"
+  title: "mruby on the minimal embedded resource"
   raw_title: "mruby on the minimal embedded resource - RubyKaigi 2015"
   speakers:
     - Shota Nakano
@@ -460,7 +482,8 @@
     Although mruby is a minimal implementation of Ruby, it requires huge RAM as is Embed field. A lot of embedded board has poor RAM less than 128KB, except for rich embedded board, like Raspberry Pi.
     An external NOR Flash as mruby RAM cache is cheap solution. Typically, NOR Flash's writing frequency is limited, 100 thousand times. I also introduce performance measurement to reduce mruby RAM writting.
 
-- title: "Building CLI Apps for Everyone"
+- id: "terence-lee-rubykaigi-2015"
+  title: "Building CLI Apps for Everyone"
   raw_title: "Building CLI Apps for Everyone - RubyKaigi 2015"
   speakers:
     - Terence Lee
@@ -485,7 +508,8 @@
 
     Since mruby is designed to be embedded and statically compiled, it's also really good at packaging ruby code.
 
-- title: "Ruby Committers vs the World"
+- id: "ruby-committers-rubykaigi-2015"
+  title: "Ruby Committers vs the World"
   raw_title: "Ruby Committers vs the World - RubyKaigi 2015"
   speakers:
     - Ruby Committers # TODO: list each person
@@ -497,7 +521,8 @@
   description: |-
     http://rubykaigi.org/2015/presentations/committers
 
-- title: "Refinements - the Worst Feature You Ever Loved"
+- id: "paolo-nusco-perrotta-rubykaigi-2015"
+  title: "Refinements - the Worst Feature You Ever Loved"
   raw_title: "Refinements - the Worst Feature You Ever Loved - RubyKaigi 2015"
   speakers:
     - Paolo "Nusco" Perrotta
@@ -515,7 +540,8 @@
 
     Are Refinements the best idea since blocks and modules, or a terrible mistake? Decide for yourself. I'll tell you the good, the bad and the ugly about refinements. At the end of this speech, you'll understand the trade-offs of this controversial feature, and know what all the fuss is about.
 
-- title: "It's dangerous to GC alone. Take this!"
+- id: "robert-young-rubykaigi-2015"
+  title: "It's dangerous to GC alone. Take this!"
   raw_title: "It's dangerous to GC alone. Take this! - RubyKaigi 2015"
   speakers:
     - Robert Young
@@ -532,7 +558,8 @@
 
     We’re actually doing it: open sourcing the core components of IBM’s Java Virtual Machine into an open language toolkit. Our first proof of concept language is Ruby. This talk will discuss the process and results of integrating a new garbage collector into Ruby.
 
-- title: "Beyond Saas: Building for Enterprise"
+- id: "josh-kalderimis-rubykaigi-2015"
+  title: "Beyond Saas: Building for Enterprise"
   raw_title: "Beyond Saas: Building for Enterprise - RubyKaigi 2015"
   speakers:
     - Josh Kalderimis
@@ -552,7 +579,8 @@
 
     This talk is the story of how we added an Enterprise offering to our existing hosted Continuous Integration service, the bumps we hit along the way, and what we would do differently now.
 
-- title: "making robots with mruby"
+- id: "yurie-yamane-rubykaigi-2015"
+  title: "making robots with mruby"
   raw_title: "making robots with mruby - RubyKaigi 2015"
   speakers:
     - Yurie Yamane
@@ -569,7 +597,8 @@
     今回の対象はLEGO Mindstorms EV3とraspberry pi。
     Cに比べて遅いのでハードウェア制御には向かないのでは？と言われがちなmrubyを使って倒立振子の制御をします。
 
-- title: "Rhebok, High Performance Rack Handler"
+- id: "masahiro-nagano-rubykaigi-2015"
+  title: "Rhebok, High Performance Rack Handler"
   raw_title: "Rhebok, High Performance Rack Handler - RubyKaigi 2015"
   speakers:
     - Masahiro Nagano
@@ -585,7 +614,8 @@
 
     In this presentation, I'll introduce the Rack interface spec, the architecture of widely used rack servers, and technology that supports performance of Rhebok includes prefork_engine, picohttpparser, system calls.
 
-- title: "Ruby for one day game programming camp for beginners"
+- id: "ippei-obayashi-rubykaigi-2015"
+  title: "Ruby for one day game programming camp for beginners"
   raw_title: "Ruby for one day game programming camp for beginners - RubyKaigi 2015"
   speakers:
     - Ippei Obayashi
@@ -601,7 +631,8 @@
 
     As you know, Ruby is one of the best languages to learn programming itself and used in the camp to build a simple game within one day. This talk provides experiences and messages coming from the events, and explains the history of frameworks used in the event. This talk give you a hint to educate beginners.
 
-- title: "DIY (Do-it-Yourself) Testing"
+- id: "emily-stolfo-rubykaigi-2015"
+  title: "DIY (Do-it-Yourself) Testing"
   raw_title: "DIY (Do-it-Yourself) Testing - RubyKaigi 2015"
   speakers:
     - Emily Stolfo
@@ -619,7 +650,8 @@
 
     Using these common tests and the Ruby driver's test suite as examples, this talk will demonstrate when existing test frameworks aren't the best choice and show how you can build your own.
 
-- title: "Running Ruby on Solaris"
+- id: "naohisa-goto-rubykaigi-2015"
+  title: "Running Ruby on Solaris"
   raw_title: "Running Ruby on Solaris - RubyKaigi 2015"
   speakers:
     - Naohisa Goto
@@ -639,7 +671,8 @@
     Recent changes to Ruby (CRuby) needed for Solaris
     Bugs potentially affected to all platforms but revealed by running on Solaris
 
-- title: "Pragmatic Testing of Ruby Core"
+- id: "shibata-hiroshi-rubykaigi-2015"
+  title: "Pragmatic Testing of Ruby Core"
   raw_title: "Pragmatic Testing of Ruby Core - RubyKaigi 2015"
   speakers:
     - Shibata Hiroshi
@@ -652,7 +685,8 @@
     When you need to understand a new library or framework, you might try to invoke the test suite with "rake test" or "rake spec". CRuby also has a test suite like many libraries and frameworks, written in Ruby. But, It's different from typical ruby libraries. Therefore many Rubyists don't know how to run the CRuby test suite.
     This is because CRuby's test suite has historical and complex structures. In this talk, I explain the details of the CRuby test suite and protips for CRuby's testing technology.
 
-- title: "Charming Robots"
+- id: "julian-cheal-rubykaigi-2015"
+  title: "Charming Robots"
   raw_title: "Charming Robots - RubyKaigi 2015"
   speakers:
     - Julian Cheal
@@ -669,7 +703,8 @@
 
     Web apps are great and everything, but imagine using Ruby to fly drones and make them dance to the sounds of dubstep! Or to control disco lights and other robots! Sounds fun, right? In this talk, we will not only explore how we can write code to make this possible, but it will also be full of exciting, interactive (and possibly dangerous ;) ) demos!
 
-- title: "Prepare yourself against Zombie epidemic"
+- id: "christophe-philemotte-rubykaigi-2015"
+  title: "Prepare yourself against Zombie epidemic"
   raw_title: "Prepare yourself against Zombie epidemic - RubyKaigi 2015"
   speakers:
     - Christophe Philemotte
@@ -687,7 +722,8 @@
 
     We can code, we'll be prepared ... or not.
 
-- title: "Discussion on Thread between version 1.8.6 and 2.2.3"
+- id: "mayumi-emori-rubykaigi-2015"
+  title: "Discussion on Thread between version 1.8.6 and 2.2.3"
   raw_title: "Discussion on Thread between version 1.8.6 and 2.2.3 - RubyKaigi 2015"
   speakers:
     - Mayumi EMORI
@@ -704,7 +740,8 @@
     Ruby1.8.6 のThreadはよく刺さり、自前でのThread監視機能を作成を余儀なくされた。では、最新のRuby2.2.3ではどうだろうか？
     またRuby1.8.6では、Threadが高確率で刺さるために回避せざるを得なかった、あの実装方法は、Ruby2.2.3では使えるのだろうか？
 
-- title: "Data Analytics Service Company and Its Ruby Usage"
+- id: "satoshi-moris-tagomori-rubykaigi-2015"
+  title: "Data Analytics Service Company and Its Ruby Usage"
   raw_title: "Data Analytics Service Company and Its Ruby Usage - RubyKaigi 2015"
   speakers:
     - Satoshi "moris" Tagomori
@@ -720,7 +757,8 @@
 
     Data analytics platform architecture is very far from well-known web service architecture. There are huge scale queues, workers, schedulers and distributed processing clusters, besides well-known parts like web application servers written in RoR and RDBMSs.
 
-- title: "Actor, Thread and me"
+- id: "masatoshi-seki-rubykaigi-2015"
+  title: "Actor, Thread and me"
   raw_title: "Actor, Thread and me - RubyKaigi 2015"
   speakers:
     - Masatoshi SEKI
@@ -740,7 +778,8 @@
 
     Today, Recap what Actor Model is.
 
-- title: "Upcoming Improvements to JRuby 9000"
+- id: "charles-nutter-rubykaigi-2015"
+  title: "Upcoming Improvements to JRuby 9000"
   raw_title: "Upcoming Improvements to JRuby 9000 - RubyKaigi 2015"
   speakers:
     - Charles Nutter
@@ -755,7 +794,8 @@
 
     JRuby 9000 is here! After years of work, JRuby now supports Ruby 2.2 and ships with a redesigned optimizing runtime. The first update release improved performance and compatibility, and we've only just begun. In this talk we'll show you where we stand today and cover upcoming work that will keep JRuby moving forward: profiling, inlining, unboxing...oh my!
 
-- title: "Usage and implementation of Reish which is an Unix shell for Rubyist"
+- id: "keiju-ishitsuka-rubykaigi-2015"
+  title: "Usage and implementation of Reish which is an Unix shell for Rubyist"
   raw_title: "Usage and implementation of Reish which is an Unix shell for Rubyist - RubyKaigi 2015"
   speakers:
     - Keiju Ishitsuka
@@ -769,7 +809,8 @@
 
     Reish is an Unix shell for Rubyist. It was a language that was realized Ruby in the syntax of the shell. I will introduce usage and implementation of Reish.
 
-- title: "Keynote: Ruby 3 challenges"
+- id: "yukihiro-matz-matsumoto-rubykaigi-2015"
+  title: "Keynote: Ruby 3 challenges"
   raw_title: "Ruby3 challenges - RubyKaigi 2015 Keynote"
   speakers:
     - Yukihiro "Matz" Matsumoto
