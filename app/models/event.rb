@@ -75,6 +75,7 @@ class Event < ApplicationRecord
   has_object :schedule
   has_object :static_metadata
   has_object :sponsors_file
+  has_object :cfp_file
   has_object :venue
 
   def talks_in_running_order(child_talks: true)
