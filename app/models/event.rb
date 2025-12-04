@@ -79,7 +79,7 @@ class Event < ApplicationRecord
   has_object :venue
 
   def talks_in_running_order(child_talks: true)
-    talks.in_order_of(:video_id, video_ids_in_running_order(child_talks: child_talks))
+    talks.in_order_of(:static_id, video_ids_in_running_order(child_talks: child_talks))
   end
 
   # validations
@@ -198,12 +198,12 @@ class Event < ApplicationRecord
   def video_ids_in_running_order(child_talks: true)
     if child_talks
       videos_file.flat_map { |talk|
-        [talk.dig("video_id"), *talk["talks"]&.map { |child_talk|
-          child_talk.dig("video_id")
+        [talk.dig("id"), *talk["talks"]&.map { |child_talk|
+          child_talk.dig("id")
         }]
       }
     else
-      videos_file.map { |talk| talk.dig("video_id") }
+      videos_file.map { |talk| talk.dig("id") }
     end
   end
 

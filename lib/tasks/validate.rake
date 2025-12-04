@@ -151,6 +151,37 @@ namespace :validate do
     end
   end
 
+  desc "Validate that all YouTube videos have a published_at date"
+  task youtube_published_at: :environment do
+    missing_published_at = []
+
+    Static::Video.all.each do |video|
+      if video.video_provider == "youtube" && (video.published_at.blank? || video.published_at == "TODO")
+        missing_published_at << video
+      end
+
+      video.talks.each do |talk|
+        if talk.video_provider == "youtube" && (talk.published_at.blank? || talk.published_at == "TODO")
+          missing_published_at << talk
+        end
+      end
+    end
+
+    if missing_published_at.any?
+      puts "YouTube videos missing published_at date (#{missing_published_at.count}):\n\n"
+
+      missing_published_at.each do |video|
+        puts "❌ #{video.id} (#{video.title})"
+      end
+
+      puts
+
+      exit 1
+    else
+      puts "All YouTube videos have a published_at date"
+    end
+  end
+
   desc "Validate all YAML files"
   task all: :environment do
     results = []
@@ -215,6 +246,40 @@ namespace :validate do
       results << false
     else
       puts "All video ids are unique"
+
+      results << true
+    end
+
+    puts "\n" + "=" * 60
+    puts "Validating YouTube videos have published_at..."
+    puts "=" * 60
+
+    missing_published_at = []
+
+    Static::Video.all.each do |video|
+      if video.video_provider == "youtube" && (video.published_at.blank? || video.published_at == "TODO")
+        missing_published_at << video
+      end
+
+      video.talks.each do |talk|
+        if talk.video_provider == "youtube" && (talk.published_at.blank? || talk.published_at == "TODO")
+          missing_published_at << talk
+        end
+      end
+    end
+
+    if missing_published_at.any?
+      puts "YouTube videos missing published_at date (#{missing_published_at.count}):\n\n"
+
+      missing_published_at.each do |video|
+        puts "❌ #{video.id} (#{video.title})"
+      end
+
+      puts
+
+      results << false
+    else
+      puts "All YouTube videos have a published_at date"
 
       results << true
     end

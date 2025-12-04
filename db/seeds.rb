@@ -86,34 +86,20 @@ series_files.each do |series_file_path|
           next
         end
 
-        talk = Talk.find_by(video_id: talk_data["video_id"], video_provider: talk_data["video_provider"])
-        talk = Talk.find_by(video_id: talk_data["video_id"]) if talk.blank?
-        talk = Talk.find_by(video_id: talk_data["id"].to_s) if talk.blank?
-        talk = Talk.find_by(slug: talk_data["slug"].to_s) if talk.blank?
-
-        talk = Talk.find_or_initialize_by(video_id: talk_data["video_id"].to_s) if talk.blank?
-
-        talk.video_provider = talk_data["video_provider"] || :youtube
+        talk = Talk.find_or_initialize_by(static_id: talk_data["id"])
         talk.update_from_yml_metadata!(event: event)
 
-        child_talks = Array.wrap(talk_data["talks"])
+        child_talks = talk_data["talks"]
 
-        next if child_talks.none?
+        next unless child_talks
 
-        child_talks.each do |child_talk_data|
-          child_talk = Talk.find_by(video_id: child_talk_data["video_id"], video_provider: child_talk_data["video_provider"])
-          child_talk = Talk.find_by(video_id: child_talk_data["video_id"]) if child_talk.blank?
-          child_talk = Talk.find_by(video_id: child_talk_data["id"].to_s) if child_talk.blank?
-          child_talk = Talk.find_by(slug: child_talk_data["slug"].to_s) if child_talk.blank?
-
-          child_talk = Talk.find_or_initialize_by(video_id: child_talk_data["video_id"].to_s) if child_talk.blank?
-
-          child_talk.video_provider = child_talk_data["video_provider"] || :parent
+        Array.wrap(child_talks).each do |child_talk_data|
+          child_talk = Talk.find_or_initialize_by(static_id: child_talk_data["id"])
           child_talk.parent_talk = talk
           child_talk.update_from_yml_metadata!(event: event)
         end
       rescue ActiveRecord::RecordInvalid => e
-        puts "Couldn't save: #{talk_data["title"]} (#{talk_data["video_id"]}), error: #{e.message}"
+        puts "Couldn't save: #{talk_data["title"]} (#{talk_data["id"]}), error: #{e.message}"
       end
     end
 
