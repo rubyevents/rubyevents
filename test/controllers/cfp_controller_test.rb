@@ -8,7 +8,7 @@ class CFPControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
     get cfp_index_path
     assert_response :success
-    assert_select "h1", /Open Call For Papers/i
+    assert_select "h1", /Open Call for Proposals/i
   end
 
   test "should get call4papers link" do
