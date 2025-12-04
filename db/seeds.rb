@@ -437,4 +437,8 @@ end
 Rake::Task["backfill:speaker_participation"].invoke
 Rake::Task["backfill:event_involvements"].invoke
 Rake::Task["speakerdeck:set_usernames_from_slides_url"].invoke
-Rake::Task["contributors:fetch"].invoke
+begin
+  Rake::Task["contributors:fetch"].invoke
+rescue ApplicationClient::Unauthorized => e
+  puts "Skipping fetching contributors: #{e.message}"
+end
