@@ -42,7 +42,8 @@ class Spotlight::TalksControllerTest < ActionDispatch::IntegrationTest
       Talk.create!(
         title: "Talk #{i}",
         event: @event,
-        date: Time.current
+        date: Time.current,
+        static_id: "test-spotlight-talk-#{i}"
       )
     end
 
