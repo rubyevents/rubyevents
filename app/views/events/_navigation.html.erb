@@ -1,10 +1,6 @@
 <div role="tablist" class="mb-12 tabs tabs-bordered">
   <%= active_link_to "Overview", event_path(event), class: "tab", active_class: "tab-active", role: "tab" %>
 
-  <% if event.meetup? %>
-    <%= active_link_to "Events", event_events_path(event), class: "tab", active_class: "tab-active", role: "tab" %>
-  <% end %>
-
   <% if !event.retreat? || event.talks.any? %>
     <%= active_link_to event_talks_path(event), class: class_names("tab", {"text-red-500" => !event.talks.any?}), active_class: "tab-active", role: "tab" do %>
       Talks
@@ -12,10 +8,6 @@
         <%= fa("question-circle", size: :xs, class: "ml-1 fill-red-500") %>
       <% end %>
     <% end %>
-  <% end %>
-
-  <% if event.meetup? %>
-    <%= active_link_to "Videos", event_videos_path(event), class: "tab", active_class: "tab-active", role: "tab" %>
   <% end %>
 
   <% if event.speakers.any? %>

@@ -180,7 +180,7 @@ class Event < ApplicationRecord
   end
 
   def data_folder
-    Rails.root.join("data", series.slug, slug)
+    static_metadata&.data_folder || Rails.root.join("data", series.slug, slug)
   end
 
   def videos_file?

@@ -13,13 +13,19 @@ class Events::SeriesController < ApplicationController
   def show
     set_meta_tags(@event_series)
 
-    @events = @event_series.events.sort_by { |event|
+    all_events = @event_series.events.sort_by { |event|
       begin
         event.start_date || Date.today
       rescue
         Date.today
       end
-    }.reverse
+    }
+
+    @upcoming_events = all_events.select { |e| e.start_date && e.start_date >= Date.today }.reverse
+    @past_events = all_events.select { |e| e.start_date.nil? || e.start_date < Date.today }.reverse
+
+    # For backwards compatibility
+    @events = all_events.reverse
   end
 
   private

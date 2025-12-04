@@ -1,5 +1,5 @@
 class Event::StaticMetadata < ActiveRecord::AssociatedObject
-  delegate :published_date, :home_sort_date, to: :static_repository, allow_nil: true
+  delegate :published_date, :home_sort_date, :data_folder, to: :static_repository, allow_nil: true
 
   def kind
     return static_repository.kind if static_repository&.kind

@@ -6,7 +6,7 @@
 
     <div class="flex flex-col gap-12 mt-8">
       <section class="bg-white rounded-lg border p-6 shadow-sm">
-        <div class="grid gap-6 items-center <%= (@event.start_date.present? && @event.start_date > Date.today && @event.date_precision == "day" || (@event.today? && !@event.meetup?)) ? "grid-cols-2 sm:grid-cols-4" : "grid-cols-3" %>">
+        <div class="grid gap-6 items-center <%= (@event.start_date.present? && @event.start_date > Date.today && @event.date_precision == "day" || @event.today?) ? "grid-cols-2 sm:grid-cols-4" : "grid-cols-3" %>">
           <div class="text-center">
             <% if @event.retreat? %>
               <% duration = (@event.end_date - @event.start_date).to_i %>
@@ -28,13 +28,8 @@
             <% end %>
           </div>
           <div class="text-center">
-            <% if @event.meetup? %>
-              <div class="text-3xl font-bold text-primary mb-1"><%= @event.talks.where(meta_talk: true).count %></div>
-              <div class="text-sm font-medium text-gray-600">Events</div>
-            <% else %>
-              <div class="text-3xl font-bold text-primary mb-1"><%= @event.sponsors.count %></div>
-              <div class="text-sm font-medium text-gray-600">Sponsors</div>
-            <% end %>
+            <div class="text-3xl font-bold text-primary mb-1"><%= @event.sponsors.count %></div>
+            <div class="text-sm font-medium text-gray-600">Sponsors</div>
           </div>
 
           <% if @event.start_date.present? && @event.start_date > Date.today && @event.date_precision == "day" %>
@@ -62,7 +57,7 @@
               </div>
               <div class="text-sm font-medium text-gray-600">Days Until</div>
             </div>
-          <% elsif @event.today? && !@event.meetup? %>
+          <% elsif @event.today? %>
             <div class="text-center">
               <div class="text-2xl font-bold text-green-600 mb-1 animate-pulse">
                 LIVE
@@ -73,36 +68,7 @@
         </div>
       </section>
 
-      <% if @event.meetup? && (@upcoming_meetup_events&.any? || @recent_meetup_events&.any?) %>
-
-        <% if @upcoming_meetup_events&.any? %>
-          <section class="flex flex-col w-full gap-4">
-            <div class="flex items-center justify-between w-full">
-              <h2 class="text-primary shrink-0">Upcoming Events</h2>
-              <%= link_to "see all events", event_events_path(@event), class: "link text-right w-full" %>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <% @upcoming_meetup_events.each do |meta_talk| %>
-                <%= render "shared/meta_talk_card", meta_talk: meta_talk, compact_speakers: true, hide_date_sidebar: true %>
-              <% end %>
-            </div>
-          </section>
-        <% end %>
-
-        <% if @recent_meetup_events&.any? %>
-          <section class="flex flex-col w-full gap-4">
-            <div class="flex items-center justify-between w-full">
-              <h2 class="text-primary shrink-0">Recent Events</h2>
-              <%= link_to "see all events", event_events_path(@event), class: "link text-right w-full" %>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <% @recent_meetup_events.each do |meta_talk| %>
-                <%= render "shared/meta_talk_card", meta_talk: meta_talk, compact_speakers: true, hide_date_sidebar: true %>
-              <% end %>
-            </div>
-          </section>
-        <% end %>
-      <% elsif @keynotes&.any? %>
+      <% if @keynotes&.any? %>
         <section class="flex flex-col w-full gap-4">
           <div class="flex items-center justify-between w-full">
             <h2 class="text-primary shrink-0">Keynotes</h2>

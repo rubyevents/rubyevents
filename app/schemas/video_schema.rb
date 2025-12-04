@@ -23,7 +23,9 @@ class VideoSchema < RubyLLM::Schema
       string :date, required: false
       string :published_at, required: false
       string :announced_at, required: false
-      string :video_provider, required: false
+      string :video_provider,
+        description: "Video hosting provider",
+        enum: ["youtube", "vimeo", "not_recorded", "scheduled", "mp4", "parent", "not_published"]
       string :video_id, required: false
       string :language, required: false
       string :track, required: false
@@ -67,9 +69,13 @@ class VideoSchema < RubyLLM::Schema
   string :announced_at, description: "Date when the talk was announced", required: false
   string :location, description: "Location within the venue", required: false
 
+  string :start_cue, description: "Start time cue in video", required: false
+  string :end_cue, description: "End time cue in video", required: false
+  string :thumbnail_cue, description: "Thumbnail time cue", required: false
+
   string :video_provider,
     description: "Video hosting provider",
-    enum: ["youtube", "vimeo", "not_recorded", "scheduled", "mp4", "parent", "children", "not_published"]
+    enum: ["youtube", "vimeo", "not_recorded", "scheduled", "mp4", "children", "not_published"]
   string :video_id, description: "Video ID on the provider platform"
 
   boolean :external_player, description: "Whether to use external player", required: false

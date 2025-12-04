@@ -90,10 +90,14 @@ module Static
 
     def slug
       @slug ||= begin
-        return attributes["slug"] if attributes["slug"].present?
+        raw_slug = attributes["slug"].presence || attributes["id"].presence || File.basename(File.dirname(__file_path))
 
-        File.basename(File.dirname(__file_path))
+        raw_slug.sub(/^\d{4}-\d{2}-/, "")
       end
+    end
+
+    def data_folder
+      Pathname.new(File.dirname(__file_path))
     end
 
     def event_record
