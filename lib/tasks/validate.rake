@@ -165,6 +165,28 @@ namespace :validate do
     results << validate_files("data/**/schedule.yml", ScheduleSchema, "schedule.yml")
 
     puts "\n" + "=" * 60
+    puts "Validating unique video ids..."
+    puts "=" * 60
+
+    duplicates = Static::Video.pluck(:id).compact.reject(&:blank?).tally.select { |_id, count| count > 1 }
+
+    if duplicates.any?
+      puts "Duplicate video ids found (#{duplicates.count}):\n\n"
+
+      duplicates.each do |id, count|
+        puts "❌ #{id} (#{count} occurrences)"
+      end
+
+      puts
+
+      results << false
+    else
+      puts "All video ids are unique"
+
+      results << true
+    end
+
+    puts "\n" + "=" * 60
     puts "Overall: #{results.all? ? "All validations passed!" : "Some validations failed"}"
     puts "=" * 60
 

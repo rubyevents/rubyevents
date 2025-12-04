@@ -14,7 +14,7 @@ class VideoSchema < RubyLLM::Schema
 
   array :talks, description: "Sub-talks for panel discussions", required: false do
     object do
-      string :id, required: false
+      string :id, required: true
       string :title, required: false
       string :raw_title, required: false
       string :description, required: false
