@@ -1,0 +1,46 @@
+name: Setup Development Environment for GitHub Copilot
+
+
+# Automatically run the setup steps when they are changed to allow for easy validation, and
+# allow manual testing through the repository's "Actions" tab
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+  pull_request:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+
+jobs:
+  # The job MUST be called `copilot-setup-steps` or it will not be picked up by Copilot.
+  copilot-setup-steps:
+    runs-on: ubuntu-latest
+
+    # Only let github read the repository contents
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 30 # Fetch past 30 commits, so reasonable amount of commit context is included
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      
+      - name: Run bin/setup
+        run: bin/setup --skip-server
+
+      - name: Validate setup
+        run: |
+          echo "Testing database connectivity..."
+          bundle exec rails runner \
+            "puts 'Database connection: OK'; \
+            puts 'User count: ' + User.count.to_s"
+
+          echo "Running code style validation..."
+          bundle exec standardrb
