@@ -8,6 +8,10 @@ module Static
         @slug_index ||= all.index_by(&:slug)
         @slug_index[slug]
       end
+
+      def import_all!
+        all.each(&:import!)
+      end
     end
 
     def slug
@@ -16,6 +20,36 @@ module Static
 
         File.basename(File.dirname(__file_path))
       end
+    end
+
+    def import!
+      event_series = ::EventSeries.find_or_initialize_by(slug: slug)
+
+      event_series.update!(
+        name: name,
+        website: website,
+        twitter: twitter || "",
+        youtube_channel_name: youtube_channel_name,
+        kind: kind,
+        frequency: frequency,
+        youtube_channel_id: youtube_channel_id,
+        slug: slug,
+        language: language || ""
+      )
+
+      event_series.sync_aliases_from_list(aliases) if aliases.present?
+
+      events.each(&:import!)
+
+      event_series
+    end
+
+    def events
+      @events ||= Static::Event.all.select { |event| event.series_slug == slug }
+    end
+
+    def __file_path
+      attributes["__file_path"]
     end
   end
 end

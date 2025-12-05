@@ -27,6 +27,10 @@ module Static
       all_talks_map[id]
     end
 
+    def self.import_all!
+      all.each(&:import!)
+    end
+
     def raw_title
       super || title
     end
@@ -99,6 +103,45 @@ module Static
 
     def meta_talk?
       attributes.key?("talks")
+    end
+
+    def import!(event: nil, parent_talk: nil)
+      if title.blank? || ignored?
+        puts "Ignored video: #{raw_title}"
+        return nil
+      end
+
+      event ||= find_event
+
+      raise "Event not found for video #{id}" unless event
+
+      talk = ::Talk.find_or_initialize_by(static_id: id)
+      talk.parent_talk = parent_talk if parent_talk
+      talk.update_from_yml_metadata!(event: event)
+
+      talks.each do |child_video|
+        child_video.import!(event: event, parent_talk: talk)
+      end
+
+      talk
+    rescue ActiveRecord::RecordInvalid => e
+      puts "Couldn't save: #{title} (#{id}), error: #{e.message}"
+      nil
+    end
+
+    def ignored?
+      Static::IgnoredVideo.where(video_id: video_id).exists?
+    end
+
+    def find_event
+      return nil unless __file_path
+
+      event_slug = __file_path.split("/")[-2]
+      ::Event.find_by(slug: event_slug)
+    end
+
+    def __file_path
+      attributes["__file_path"]
     end
   end
 end
