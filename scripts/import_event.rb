@@ -3,7 +3,6 @@ series_slug = ARGV[0]
 videos_to_ignore = YAML.load_file("#{Rails.root}/data/videos_to_ignore.yml")
 
 if series_slug.blank?
-  data_dir = Rails.root.join("data")
   series_slugs = Static::EventSeries.all.map(&:slug).sort
 
   series_slug = IO.popen(["fzy"], "r+") do |fzy|
