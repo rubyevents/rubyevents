@@ -1,4 +1,9 @@
-require "guard/plugin"
+begin
+  require "guard/plugin"
+rescue LoadError
+  return
+end
+
 require "fileutils"
 
 module Guard
