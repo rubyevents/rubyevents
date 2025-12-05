@@ -9,9 +9,15 @@ export default defineConfig({
           'config/routes.rb',
           'app/views/**/*',
           'app/controllers/**/*',
-          'app/models/**/*'
+          'app/models/**/*',
+          'tmp/vite-reload'
         ]
       }
     })
-  ]
+  ],
+  server: {
+    watch: {
+      ignored: ['**/data/**']
+    }
+  }
 })

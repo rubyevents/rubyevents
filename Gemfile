@@ -116,6 +116,9 @@ group :development do
   # Use listen to watch files for changes [https://github.com/guard/listen]
   gem "listen", "~> 3.5"
 
+  # Guard for watching file changes and auto-importing [https://github.com/guard/guard]
+  gem "guard"
+
   gem "error_highlight", ">= 0.4.0", platforms: [:ruby]
   gem "ruby-lsp-rails", require: false
   gem "standardrb", "~> 1.0", require: false
