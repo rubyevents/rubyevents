@@ -18,13 +18,12 @@ class Spotlight::SpeakersControllerTest < ActionDispatch::IntegrationTest
     assert_equal @speaker.id, assigns(:speakers).first.id
   end
 
-  test "should limit results to 5 speakers" do
-    6.times { |i| User.create!(name: "Speaker #{i}", talks_count: 1, email: "speaker#{i}@rubyevents.org", password: "password") }
+  test "should limit speakers results" do
+    16.times { |i| User.create!(name: "Speaker #{i}", talks_count: 1, email: "speaker#{i}@rubyevents.org", password: "password") }
 
     get spotlight_speakers_url(format: :turbo_stream)
     assert_response :success
-    assert_equal 5, assigns(:speakers).size
-    assert assigns(:speakers_count).positive?
+    assert_equal 15, assigns(:speakers).size
   end
 
   test "should filter out unbalanced quotes" do

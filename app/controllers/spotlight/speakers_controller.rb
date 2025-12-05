@@ -1,12 +1,14 @@
 class Spotlight::SpeakersController < ApplicationController
+  LIMIT = 15
+
   disable_analytics
   skip_before_action :authenticate_user!
 
   def index
     @speakers = User.speakers.canonical
     @speakers = @speakers.ft_search(search_query).with_snippets.ranked if search_query
-    @speakers_count = @speakers.count(:id)
-    @speakers = @speakers.limit(5)
+    @speakers = @speakers.limit(LIMIT)
+
     respond_to do |format|
       format.turbo_stream
     end
