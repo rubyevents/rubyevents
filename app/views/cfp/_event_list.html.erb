@@ -11,10 +11,19 @@
       <div class="flex-col flex justify-center relative overflow-hidden">
         <div class="text-black group-hover:text-inherit font-bold text-xl"><%= event.name %></div>
         <div class="text-[#636B74] group-hover:text-inherit"><%= event.formatted_dates %> • <%= event.static_metadata.location %></div>
-        <% if event.cfp.open? %>
-          <div class="text-[#636B74] group-hover:text-inherit font-bold">CFP closes at <%= event.cfp.formatted_close_date %></div>
-        <% else %>
-          <div class="text-[#636B74] group-hover:text-inherit font-bold">CFP opens at <%= event.cfp.formatted_open_date %></div>
+        <% event.cfps.each do |cfp| %>
+          <div class="text-[#636B74] group-hover:text-inherit font-bold">
+            <% if cfp.close_date.present? && (cfp.open_date.past? || cfp.open_date.blank?) %>
+              CFP closes on
+              <%= cfp.formatted_close_date %>
+            <% elsif cfp.open_date.present? && cfp.open_date.past? %>
+              CFP opened on
+              <%= cfp.formatted_open_date %>
+            <% elsif cfp.open_date.present? && cfp.open_date.future? %>
+              CFP opens on
+              <%= cfp.formatted_open_date %>
+            <% end %>
+          </div>
         <% end %>
       </div>
 

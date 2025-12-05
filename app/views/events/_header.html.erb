@@ -1,4 +1,4 @@
-<%# locals: (event:, participation: nil) -%>
+<%# locals: (event:, participation: nil) %>
 <div
   class="w-full md:h-[198px] lg:h-[267px] xl:h-[336px] 2xl:h-[405px] justify-center align-center flex mt-3 border-t border-b hotwire-native:hidden"
   style="
@@ -39,7 +39,7 @@
     </div>
 
     <div class="flex flex-col gap-2">
-      <%= ui_button "View all #{event.organisation.name} events", url: organisation_path(event.organisation), kind: :secondary, size: :sm, class: "w-full" %>
+      <%= ui_button "View all #{event.series.name} events", url: series_path(event.series), kind: :secondary, size: :sm, class: "w-full" %>
       <%= render "events/participation_button", event: event, participation: participation %>
     </div>
   </div>
@@ -48,25 +48,27 @@
     <%= event.description %>
   </p>
 
-  <% if event.cfp.present? && event.start_date && event.start_date > Date.today %>
-    <div class="mt-6 p-4 bg-gray-100 rounded-lg max-w-[700px]">
-      <h3 class="font-bold text-lg mb-2">Call for Papers</h3>
-      <p class="text-[#636B74] mb-3">
-        <% if event.cfp.future? %>
-          The CFP opens on <%= event.cfp.formatted_open_date %><% if event.cfp.close_date.present? %> and closes on <%= event.cfp.formatted_close_date %><% end %>.
-        <% elsif event.cfp.open? %>
-          The CFP is currently open and closes on <%= event.cfp.formatted_close_date %>.
-        <% elsif event.cfp.closed? %>
-          The CFP closed on <%= event.cfp.formatted_close_date %>.
+  <% event.cfps.each do |cfp| %>
+    <% if event.start_date && event.start_date > Date.today %>
+      <div class="mt-6 p-4 bg-gray-100 rounded-lg max-w-[700px]">
+        <h3 class="font-bold text-lg mb-2">Call for Proposals</h3>
+        <p class="text-[#636B74] mb-3">
+          <% if cfp.future? %>
+            The CFP opens on <%= cfp.formatted_open_date %><% if cfp.close_date.present? %> and closes on <%= cfp.formatted_close_date %><% end %>.
+          <% elsif cfp.open? %>
+            The CFP is currently open and closes on <%= cfp.formatted_close_date %>.
+          <% elsif cfp.closed? %>
+            The CFP closed on <%= cfp.formatted_close_date %>.
+          <% else %>
+            Call for Proposals information is available.
+          <% end %>
+        </p>
+        <% if cfp.close_date.blank? || cfp.open? %>
+          <%= external_link_to "Submit your proposal", cfp.link, class: "btn btn-primary btn-sm" %>
         <% else %>
-          Call for Papers information is available.
+          <%= external_link_to "View CFP details", cfp.link, class: "btn btn-secondary btn-sm" %>
         <% end %>
-      </p>
-      <% if event.cfp.close_date.blank? || event.cfp.open? %>
-        <%= external_link_to "Submit your proposal", event.cfp.link, class: "btn btn-primary btn-sm" %>
-      <% else %>
-        <%= external_link_to "View CFP details", event.cfp.link, class: "btn btn-secondary btn-sm" %>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   <% end %>
 </div>

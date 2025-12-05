@@ -1,175 +1,248 @@
 ---
-# TODO: talks running order
-# TODO: talk dates
-# TODO: conference website
-# TODO: schedule website
-
-- title: "Beyond the language. An introduction to algorithms"
+- id: "simone-carletti-rubyday-2015"
+  title: "Beyond the language. An introduction to algorithms"
   raw_title: "RubyDay 2015 - S. Carletti - Beyond the language. An introduction to algorithms."
   speakers:
     - Simone Carletti
   event_name: "rubyday 2015"
   date: "2015-11-13"
-  published_at: "TODO"
+  published_at: "2016-01-08"
   kind: "keynote"
+  language: "english"
   description: |-
-    Opening keynote from RubyDay 2015 in Turin, by Simone Carletti.
+    Mastering a programming language is not enough to write efficient code. Programmers often try to squeeze a programming language as much as they can in order to achieve the best performance, without realizing that the solution could be found in a more efficient algorithm or data structure.
+
+    The talk is meant to inspire you to learn more about algorithm design by demonstrating how a properly designed algorithm may drastically increase the efficiency of your code, regardless of the Ruby version you are using.
   video_provider: "youtube"
   video_id: "Iv1z5KjDBSA"
 
-- title: "Sonic PI: live music, live coding"
+- id: "ju-liu-rubyday-2015"
+  title: "Sonic PI: live music, live coding"
   raw_title: "RubyDay 2015 - Ju Liu - Sonic PI: live music, live coding"
   speakers:
     - Ju Liu
   event_name: "rubyday 2015"
   date: "2015-11-13"
-  published_at: "TODO"
+  track: "Room 1"
+  published_at: "2016-01-11"
+  language: "english"
   description: |-
-    Ju Liu's talk from RubyDay 2015 in Turin.
+    Sonic PI is a free live coding synth where you can write code to compose and perform music. In this talk, I will go through the main features of the application and show how easy it is to start composing your own pieces writing plain old Ruby. Then, we will move on to the more advanced synth features, using multiple threads and sample manipulation to start producing more complex tracks. After all that, we get the party started with some live coding!
   video_provider: "youtube"
   video_id: "r2xMo3J8-CA"
+  slides_url: "https://speakerdeck.com/weppos/beyond-the-language-rubyday-2015"
 
-- title: "Flux on Rails: ripensare la assets pipeline e l'architettura del frontend"
+- id: "gregorio-setti-rubyday-2015"
+  title: "Flux on Rails: ripensare la assets pipeline e l'architettura del frontend"
   raw_title: "RubyDay 2015 - G. Setti - Flux on Rails: ripensare la assets pipeline e l'architettura del frontend"
   speakers:
     - Gregorio Setti
   event_name: "rubyday 2015"
   date: "2015-11-13"
-  published_at: "TODO"
+  track: "Room 2"
+  published_at: "2016-01-11"
+  language: "italian"
   description: |-
-    Gregorio Setti's talk from RubyDay 2015 in Turin
+    Il paradigma MVC è ormai radicato e presente in ogni parte dello sviluppo web. Esistono però altri pattern, talvolta più flessibili ed efficienti, che iniziano a mettere in discussione l'egemonia dell'MVC soprattutto nello sviluppo frontend. La necessità di creare interfacce reattive e dinamiche trova un'ottima soluzione in Flux. In questo talk vedremo come si può implementare questa architettura all'interno dell'ecosistema Rails, e come i componenti React possono aiutarci a mantenere un frontend elegante e ben organizzato.
   video_provider: "youtube"
   video_id: "haLI8IxJO2A"
 
-- title: "Deep diving: how to explore a new code base"
-  raw_title: "RubyDay 2015 - C. Philemotte - Deep diving: how to explore a new code base"
-  speakers:
-    - Christophe Philemotte
-  event_name: "rubyday 2015"
-  date: "2015-11-13"
-  published_at: "TODO"
-  description: |-
-    Christophe Philemotte's talk from RubyDay 2015 in Turin.
-  video_provider: "youtube"
-  video_id: "eI3e7E2PDQg"
-
-- title: "The joy of Ruby debugging - Pry universe"
-  raw_title: "RubyDay 2015 - E. Carlesso - The joy of Ruby debugging - Pry universe"
-  speakers:
-    - Enrico Carlesso
-  event_name: "rubyday 2015"
-  date: "2015-11-13"
-  published_at: "TODO"
-  description: |-
-    Enrico Carlesso's talk from RubyDay 2015 in Turin.
-  video_provider: "youtube"
-  video_id: "4f4e5WNAeE8"
-
-- title: "require() bombed my multi-threaded app!"
-  raw_title: "RubyDay 2015 - J. Martin - require() bombed my multi-threaded app!"
-  speakers:
-    - Jonathan Martin
-  event_name: "rubyday 2015"
-  date: "2015-11-13"
-  published_at: "TODO"
-  description: |-
-    Jonathan Martin's talk from RubyDay 2015 in Turin.
-  video_provider: "youtube"
-  video_id: "rV8un2Py6Kk"
-
-- title: "How teaching kids to code made me a better developer"
-  raw_title: "RubyDay 2015 - R. Huidobro - How teaching kids to code made me a better developer"
-  speakers:
-    - Carmen Huidobro
-  event_name: "rubyday 2015"
-  date: "2015-11-13"
-  published_at: "TODO"
-  description: |-
-    Carmen Huidobro's talk from RubyDay 2015 in Turin.
-  video_provider: "youtube"
-  video_id: "CPXb0W_VdSk"
-
-- title: "Making hybrid apps that don't suck"
-  raw_title: "RubyDay 2015 - D. Muto - Making hybrid apps that don't suck"
-  speakers:
-    - David Muto
-  event_name: "rubyday 2015"
-  date: "2015-11-13"
-  published_at: "TODO"
-  description: |-
-    David Muto's talk from RubyDay 2015 in Turin
-  video_provider: "youtube"
-  video_id: "LObvMbX8Cko"
-
-- title: "CI/CD and devops with Ruby and Rails"
-  raw_title: "RubyDay 2015 - P. Riti - CI/CD and devops with Ruby and Rails"
-  speakers:
-    - Pierluigi Riti
-  event_name: "rubyday 2015"
-  date: "2015-11-13"
-  published_at: "TODO"
-  description: |-
-    Pierluigi Riti's talk from RubyDay 2015 in Turin
-  video_provider: "youtube"
-  video_id: "K2lg2HxEZE8"
-
-- title: "Is it me you're searching for?"
-  raw_title: "RubyDay 2015 - J. Kiesel - Is it me you're searching for?"
-  speakers:
-    - James Kiesel
-  event_name: "rubyday 2015"
-  date: "2015-11-13"
-  published_at: "TODO"
-  description: |-
-    James Kiesel's talk from RubyDay 2015 in Turin.
-  video_provider: "youtube"
-  video_id: "p8qrRSp72I0"
-
-- title: "JSON API"
-  raw_title: "RubyDay 2015 - M. Otte-Witte - JSON API"
-  speakers:
-    - Marco Otte-Witte
-  event_name: "rubyday 2015"
-  date: "2015-11-13"
-  published_at: "TODO"
-  description: |-
-    Marco Otte-Witte's talk from RubyDay 2015 in Turin
-  video_provider: "youtube"
-  video_id: "fixLcFPXo0I"
-
-- title: "E-Commerce is hard"
-  raw_title: "RubyDay 2015 - A. Lepore - E-Commerce is hard"
-  speakers:
-    - Alessandro Lepore
-  event_name: "rubyday 2015"
-  date: "2015-11-13"
-  published_at: "TODO"
-  description: |-
-    Alessandro Lepore's talk from RubyDay 2015 in Turin
-  video_provider: "youtube"
-  video_id: "xoaffxR67B4"
-
-- title: "Elixir for the rubyist"
+- id: "hal-fulton-rubyday-2015"
+  title: "Elixir for the rubyist"
   raw_title: "RubyDay 2015 - H. Fulton - Elixir for the rubyist"
   speakers:
     - Hal Fulton
   event_name: "rubyday 2015"
   date: "2015-11-13"
-  published_at: "TODO"
+  track: "Room 1"
+  published_at: "2016-02-08"
+  language: "english"
   description: |-
-    Hal Fulton's talk from RubyDay 2015 in Turin.
+    Elixir is based on Erlang, but it borrows heavily from Ruby. If you understand functional programming (or if you want to), this is an excellent new language to learn. If you appreciate the beauty and elegance of Ruby, you might love Elixir, too.
   video_provider: "youtube"
   video_id: "UNWPp5YSDXQ"
 
-- title: "Lotus and the future of Ruby"
+- id: "christophe-philemotte-rubyday-2015"
+  title: "Deep diving: how to explore a new code base"
+  raw_title: "RubyDay 2015 - C. Philemotte - Deep diving: how to explore a new code base"
+  speakers:
+    - Christophe Philemotte
+  event_name: "rubyday 2015"
+  date: "2015-11-13"
+  track: "Room 2"
+  published_at: "2016-01-12"
+  language: "english"
+  description: |-
+    As a developer, diving in a new code base is not uncommon: you've just been hired, you change of project, you want to help an open source project, the open source library your project depends on is buggy, etc. It's like entering in a underwater cave, you don't know the treasures or the monsters you'll find there, neither if the path is treacherous or if it's a true labyrinth where you'll get lost. You can prepare yourself, you can plan your visit, you can equip yourself, you can survive and find the gem you're looking for...
+  video_provider: "youtube"
+  video_id: "eI3e7E2PDQg"
+
+- id: "jonathan-martin-rubyday-2015"
+  title: "require() bombed my multi-threaded app!"
+  raw_title: "RubyDay 2015 - J. Martin - require() bombed my multi-threaded app!"
+  speakers:
+    - Jonathan Martin
+  event_name: "rubyday 2015"
+  date: "2015-11-13"
+  track: "Room 1"
+  published_at: "2016-01-20"
+  language: "english"
+  description: |-
+    Would you like Circular Dependencies with that? In Rails we take autoloading for granted, but slow test suites and evasive multi-thread bombs too often drive us to upbraid ActiveSupport's autoloading magic.
+
+    To dispel the magic, we will cover nothing less than the entirety of require's modest origins, the enlightening truth of Ruby execution, a selection of minimal autoload examples, the most interesting ways to break integration specs, and utopian isolation practices. All while speeding up your test suite.
+  video_provider: "youtube"
+  video_id: "rV8un2Py6Kk"
+
+- id: "enrico-carlesso-rubyday-2015"
+  title: "The joy of Ruby debugging - Pry universe"
+  raw_title: "RubyDay 2015 - E. Carlesso - The joy of Ruby debugging - Pry universe"
+  speakers:
+    - Enrico Carlesso
+  event_name: "rubyday 2015"
+  date: "2015-11-13"
+  track: "Room 2"
+  published_at: "2016-01-12"
+  language: "english"
+  description: |-
+    Let's be honest, in typical programming world debugging is a pain in the ass. `printf` everywhere, rerun the code every time... Such a waste of time.
+
+    But Ruby... Ruby is different, is such a great language for introspection and live code analysis. Here's where Pry shines. During this talk we will meet Pry alongside some other tool in his universe, like `pry-rescue`, `pry-stack_explorer` and we will see how debugging a simple Ruby script or a large RubyOnRails application is easy, and fun!
+  video_provider: "youtube"
+  video_id: "4f4e5WNAeE8"
+
+- id: "carmen-huidobro-rubyday-2015"
+  title: "How teaching kids to code made me a better developer"
+  raw_title: "RubyDay 2015 - R. Huidobro - How teaching kids to code made me a better developer"
+  speakers:
+    - Carmen Huidobro
+  event_name: "rubyday 2015"
+  date: "2015-11-13"
+  track: "Room 1"
+  published_at: "2016-01-21"
+  language: "english"
+  description: |-
+    Kids have this magical ability to take something you think you understand well and turn it upside down within an instant. They challenge norms and ask questions that you never thought existed or could be asked.
+
+    In this talk, I'll go over some of the challenges I faced introducing kids to the world of programming, and how their inquisitiveness changed the way I look at software development, how I learn to get better at it and what I want to do with it in the coming years. It has also made me a more confident and active community member, which I will outline.
+  video_provider: "youtube"
+  video_id: "CPXb0W_VdSk"
+
+- id: "alessandro-lepore-rubyday-2015"
+  title: "E-Commerce is hard"
+  raw_title: "RubyDay 2015 - A. Lepore - E-Commerce is hard"
+  speakers:
+    - Alessandro Lepore
+  event_name: "rubyday 2015"
+  date: "2015-11-13"
+  track: "Room 2"
+  published_at: "2016-02-08"
+  language: "italian"
+  description: |-
+    Gli e-commerce sono delle "brutte bestie" in fatto di complessità. Nel mondo Ruby e Rails abbiamo la fortuna di avere il progetto Spree Commerce che ci offre una buona base di codice su cui costruire i nostri progetti. Vediamo insieme cosa è, come funziona, che problemi risolve e come può migliorare grazie al nostro aiuto.
+  video_provider: "youtube"
+  video_id: "xoaffxR67B4"
+
+- id: "david-muto-rubyday-2015"
+  title: "Making hybrid apps that don't suck"
+  raw_title: "RubyDay 2015 - D. Muto - Making hybrid apps that don't suck"
+  speakers:
+    - David Muto
+  event_name: "rubyday 2015"
+  date: "2015-11-13"
+  track: "Room 1"
+  published_at: "2016-01-27"
+  language: "english"
+  description: |-
+    Want to make hybrid apps that don't suck? I'll go over tips and tricks, the ups and downs, and the pros and cons as well as the overall process that Shopify took to develop a world class hybrid app for iOS and Android using Rails, CoffeeScript, Objective-C and Java.
+  video_provider: "youtube"
+  video_id: "LObvMbX8Cko"
+
+- id: "pierluigi-riti-rubyday-2015"
+  title: "CI/CD and devops with Ruby and Rails"
+  raw_title: "RubyDay 2015 - P. Riti - CI/CD and devops with Ruby and Rails"
+  speakers:
+    - Pierluigi Riti
+  event_name: "rubyday 2015"
+  date: "2015-11-13"
+  track: "Room 2"
+  published_at: "2016-01-27"
+  language: "english"
+  description: |-
+    Creating a secure and strong web application can be a real challenge. There are many elements that must be taken into account including the HTTPS setup, host server and the input sanitization/authorization/authentication mechanisms.
+
+    In this lecture we will walk through the setup of a simple, yet secure ToDO application. We will focus on the most common threats and the best practices for maintaining proper security.
+  video_provider: "youtube"
+  video_id: "K2lg2HxEZE8"
+
+- id: "james-kiesel-rubyday-2015"
+  title: "Is it me you're searching for?"
+  raw_title: "RubyDay 2015 - J. Kiesel - Is it me you're searching for?"
+  speakers:
+    - James Kiesel
+  event_name: "rubyday 2015"
+  date: "2015-11-13"
+  track: "Room 1"
+  published_at: "2016-01-28"
+  language: "english"
+  description: |-
+    Search is a ubiquitous, yet often-overlooked part of many applications; your site's search can make (or break!) your user experience pretty easily. Here we'll talk through some of the options for doing full text searching in your Rails applications.
+  video_provider: "youtube"
+  video_id: "p8qrRSp72I0"
+
+- id: "rubyday-2015-lightning-talks"
+  title: "Lightning Talks"
+  raw_title: "RubyDay 2015 - Lightning Talks"
+  speakers:
+    - Unknown
+  event_name: "rubyday 2015"
+  date: "2015-11-13"
+  track: "Room 2"
+  description: ""
+  video_provider: "not_recorded"
+  video_id: "rubyday-2015-lightning-talks"
+
+- id: "marco-otte-witte-rubyday-2015"
+  title: "JSON API"
+  raw_title: "RubyDay 2015 - M. Otte-Witte - JSON API"
+  speakers:
+    - Marco Otte-Witte
+  event_name: "rubyday 2015"
+  date: "2015-11-13"
+  track: "Room 1"
+  published_at: "2016-01-28"
+  language: "english"
+  description: |-
+    This talk explains what [JSON API](https://jsonapi.org/) is, why it's so important and how it can be implemented in Ruby servers (Rails or others). I will use a sample project to illustrate client/server communication and show how both sides benefit from using the standard.
+  video_provider: "youtube"
+  video_id: "fixLcFPXo0I"
+
+- id: "sante-rotondi-rubyday-2015"
+  title: "Presentazione progetto Italy On Rails"
+  raw_title: "RubyDay 2015 - Sante Rotondi - Presentazione progetto Italy On Rails"
+  speakers:
+    - Sante Rotondi
+  event_name: "rubyday 2015"
+  date: "2015-11-13"
+  track: "Room 2"
+  published_at: "TODO"
+  language: "italian"
+  description: |-
+    Durante questo talk verrà presentato il progetto Italy On Rails, organizzato dall'Associazione Ruby Italia per promuovere Ruby come strumento di lavoro e divertimento. Non possiamo svelarti di più su questo progetto adesso, ma se verrai ad ascoltare il talk ti sarà richiesto di aiutare a dar forma alla prima operazione di questo tipo al mondo.
+  video_provider: "not_recorded"
+  video_id: "sante-rotondi-rubyday-2015"
+
+- id: "luca-guidi-rubyday-2015"
+  title: "Lotus and the future of Ruby"
   raw_title: "RubyDay 2015 - L. Guidi - Lotus and the future of Ruby"
   speakers:
     - Luca Guidi
   event_name: "rubyday 2015"
   date: "2015-11-13"
-  published_at: "TODO"
+  published_at: "2016-01-08"
   kind: "keynote"
+  language: "english"
   description: |-
-    Closing keynote of RubyDay 2015 in Turin, by Luca Guidi
+    Lotus is an emerging web framework for Ruby. It's fast, lightweight but yet powerful. Luca will show the main ideas, how to get started and the technical problems that it aims to solve. We'll discuss together why a project like this it's important for the future of Ruby and the Community.
   video_provider: "youtube"
   video_id: "XCgsXUKLsOc"

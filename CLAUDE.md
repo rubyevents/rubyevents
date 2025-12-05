@@ -33,10 +33,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### Core Models & Relationships
 
-- **Event**: Ruby conferences/meetups (belongs_to Organisation)
+- **Event**: Ruby conferences/meetups (belongs_to EventSeries)
 - **Talk**: Conference presentations (belongs_to Event, has_many SpeakerTalks)
 - **Speaker**: Presenters (has_many SpeakerTalks, has social media fields)
-- **Organisation**: Conference organizers (has_many Events)
+- **EventSeries**: Conference series/organizers (has_many Events)
 - **Topic**: AI-extracted talk topics (has_many TalkTopics)
 - **WatchList**: User-curated lists (belongs_to User, has_many WatchListTalks)
 
@@ -44,11 +44,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Conference data is stored in YAML files under `/data/`:
 
-- `data/organisations.yml` - Conference organizers
 - `data/speakers.yml` - Global speaker database
-- `data/{org-name}/playlists.yml` - YouTube playlist mappings
-- `data/{org-name}/{event-name}/videos.yml` - Individual talk data
-- `data/{org-name}/{event-name}/schedule.yml` - Event schedules
+- `data/{series-slug}/series.yml` - Event series metadata (conference organizers/series)
+- `data/{series-slug}/{event-name}/event.yml` - Event metadata (dates, location, colors, etc.)
+- `data/{series-slug}/{event-name}/videos.yml` - Individual talk data
+- `data/{series-slug}/{event-name}/schedule.yml` - Event schedules
 
 ### Technology Stack
 

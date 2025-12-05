@@ -4,13 +4,14 @@
 # TODO: conference website
 # TODO: schedule website
 
-- title: "Chef Cookbook Design Patterns"
+- id: "joshua-timberman-mountainwest-rubyconf-2011"
+  title: "Chef Cookbook Design Patterns"
   raw_title: "MWRC 2011 - Chef Cookbook Design Patterns"
   speakers:
     - Joshua Timberman
   event_name: "MountainWest RubyConf 2011"
-  date: "2015-02-17"
-  published_at: "TODO"
+  date: "2011-03-17"
+  published_at: "2015-02-17"
   description: |-
     By, Joshua Timberman
     This talk will teach you how Opscode designs and writes Chef cookbooks to be sharable - not only in the Open Source sense, but sharable between various internal infrastructures and environments. Come to this talk if you want to learn more about: How Chef uses attributes How to dynamically build configuration with search Accessing internal Chef objects within recipes
@@ -18,13 +19,14 @@
   video_provider: "youtube"
   video_id: "A3pzIZJpDYg"
 
-- title: "Fog or: How I Learned to Stop Worrying and Love the Cloud"
+- id: "wesley-beary-mountainwest-rubyconf-2011"
+  title: "Fog or: How I Learned to Stop Worrying and Love the Cloud"
   raw_title: 'MWRC 2011 - fog or: How I Learned to Stop Worrying and Love the Cloud"'
   speakers:
     - Wesley Beary
   event_name: "MountainWest RubyConf 2011"
-  date: "2015-02-17"
-  published_at: "TODO"
+  date: "2011-03-17"
+  published_at: "2015-02-17"
   description: |-
     Cloud computing scared the crap out of me - the quirks and nightmares of provisioning cloud computing, dns, storage, ... on AWS, Terremark, Rackspace, ... - I mean, where do you even start?
 
@@ -35,13 +37,14 @@
   video_provider: "youtube"
   video_id: "PTfulYN4ctA"
 
-- title: "Ruby Supercomputing: Using The GPU For Massive Performance Speedup"
+- id: "preston-lee-mountainwest-rubyconf-2011"
+  title: "Ruby Supercomputing: Using The GPU For Massive Performance Speedup"
   raw_title: "MWRC 2011 - Ruby Supercomputing: Using The GPU For Massive Performance Speedup"
   speakers:
     - Preston Lee
   event_name: "MountainWest RubyConf 2011"
-  date: "2015-02-17"
-  published_at: "TODO"
+  date: "2011-03-17"
+  published_at: "2015-02-17"
   description: |-
     By, Preston Lee
     Applications typically measure processing throughput as a function of CPU-bound algorithm performance. Most modern production systems will contain 2-16 processor cores, but highly concurrent, compute-heavy algorithms may still reach hard limits. Within recent years, vendors such as Nvidia and Apple have formalized specifications and APIs that allow every developer to run potentially 1,000s of concurrent threads using a piece of hardware already present in the machine: the GPU.
@@ -49,13 +52,14 @@
   video_provider: "youtube"
   video_id: "C6y4YkpaT_I"
 
-- title: "Behind the Keys: Redis Oyster Cult"
+- id: "nick-quaranto-mountainwest-rubyconf-2011"
+  title: "Behind the Keys: Redis Oyster Cult"
   raw_title: "MWRC 2011 - Behind the Keys: Redis Oyster Cult"
   speakers:
     - Nick Quaranto
   event_name: "MountainWest RubyConf 2011"
-  date: "2015-02-17"
-  published_at: "TODO"
+  date: "2011-03-17"
+  published_at: "2015-02-17"
   description: |-
     By, Nick Quaranto
     Redis is an "advanced key-value store" but really, it's much more than that. Redis goes above and beyond GET and SET, and it's time for you to learn how that can help you write faster Ruby apps. We'll explore the rest that Redis has to offer, such as sorted sets, publish/subscribe, transactions, and more with real-world use cases of each.
@@ -63,13 +67,14 @@
   video_provider: "youtube"
   video_id: "NOs-SX05Y3g"
 
-- title: "SOA and the Monolithic Rails App Anti-Pattern"
+- id: "chris-wyckoff-mountainwest-rubyconf-2011"
+  title: "SOA and the Monolithic Rails App Anti-Pattern"
   raw_title: "MWRC 2011 - SOA and the Monolithic Rails App Anti-Pattern"
   speakers:
     - Chris Wyckoff
   event_name: "MountainWest RubyConf 2011"
-  date: "2015-02-17"
-  published_at: "TODO"
+  date: "2011-03-17"
+  published_at: "2015-02-17"
   description: |-
     By, Chris Wyckoff
     Ruby on Rails is a wonderful framework that makes creating websites simple and fun. But, perhaps because it is a pleasure to work with, Rails can be overused. A simple CRUD application can quickly become a behemoth, it's responsibilities encompassing far more functionality than one application should. In the startup world, one such app can run an entire business. Monolithic Rails applications are an anti-pattern that hamper productivity, increase bugs, and, if you are a startup, can threaten your business. How do you fix the problem? Decompose your application into several independent, reusable services. This talk relates my experience leading a team of developers who re-architected a monolithic Rails app -- an app that effectively was the business -- into a service-oriented architecture (SOA). Using targeted code examples, it seeks to describe not only the advantages of a service-oriented approach, but also techniques for refactoring a production application into a more distributed architecture without destroying the business in the process. Finally, this talk highlights some common SOA pitfalls and describes effective ways to avoid or remedy them. Attendees will walk away with a clear demonstration of how to refactor or think about building their app with SOA in mind.
@@ -77,13 +82,14 @@
   video_provider: "youtube"
   video_id: "XuGupkgRiNY"
 
-- title: "Service Oriented Design in Practice"
+- id: "bryan-helmkamp-mountainwest-rubyconf-2011"
+  title: "Service Oriented Design in Practice"
   raw_title: "MWRC 2011 - Service Oriented Design in Practice"
   speakers:
     - Bryan Helmkamp
   event_name: "MountainWest RubyConf 2011"
-  date: "2015-02-17"
-  published_at: "TODO"
+  date: "2011-03-17"
+  published_at: "2015-02-17"
   description: |-
     By, Bryan Helmkamp
     Implementing a Service Oriented Design with Ruby can lower maintenance costs by increasing isolation, scalability and code reuse. That's the theory, anyway. It's true, but in practice there are lots of nitty gritty details of rolling out a service oriented design that can reduce the expected benefits -- or even leave you worse off than you started.
@@ -95,13 +101,14 @@
   video_provider: "youtube"
   video_id: "MNRi5zmZGVk"
 
-- title: "The State of C Extensions: Alive and Well, so Learn to Deal"
+- id: "sam-rawlins-mountainwest-rubyconf-2011"
+  title: "The State of C Extensions: Alive and Well, so Learn to Deal"
   raw_title: "MWRC 2011 - The State of C Extensions: Alive and Well, so Learn to Deal"
   speakers:
     - Sam Rawlins
   event_name: "MountainWest RubyConf 2011"
-  date: "2015-02-17"
-  published_at: "TODO"
+  date: "2011-03-17"
+  published_at: "2015-02-17"
   description: |-
     By, Sam Rawlins
     Ruby C Extensions have been a roller coaster ride over the last few years. While many Rubyists shy away from such non-Ruby code, its hard to imagine our Ruby ecosystem without them. Many of the most popular gems are C extensions. They are thriving today, and can play nice everywhere that Ruby plays nice! C extensions are not a drag on the community, but instead an exciting path that exposes Ruby to a greater computing landscape.
@@ -109,13 +116,14 @@
   video_provider: "youtube"
   video_id: "tmMJx_WD4r0"
 
-- title: "Whatever Happened to Desktop Development in Ruby?"
+- id: "andy-maleh-mountainwest-rubyconf-2011"
+  title: "Whatever Happened to Desktop Development in Ruby?"
   raw_title: "MWRC 2011 - Whatever Happened to Desktop Development in Ruby?"
   speakers:
     - Andy Maleh
   event_name: "MountainWest RubyConf 2011"
-  date: "2015-02-18"
-  published_at: "TODO"
+  date: "2011-03-18"
+  published_at: "2015-02-18"
   description: |-
     By, Andy Maleh
     While web development is thriving in the Ruby world with Rails, Sinatra, and other frameworks, desktop development is still not very common as a lot of developers rely on Java technologies like Eclipse or straight .NET technologies such as Windows Forms. This talk will walk attendees through some Ruby desktop development frameworks/libraries, contrasting the pros and cons of each, and mentioning what is missing that discourages developers from relying on Ruby to build desktop applications. Frameworks/libraries covered will include MacRuby, Shoes, Limelight, and Glimmer.
@@ -123,13 +131,14 @@
   video_provider: "youtube"
   video_id: "2LK3cZiP9AU"
 
-- title: "Modeling Concurrency in Ruby and Beyond"
+- id: "ilya-grigorik-mountainwest-rubyconf-2011"
+  title: "Modeling Concurrency in Ruby and Beyond"
   raw_title: "MWRC 2011 - Modeling concurrency in Ruby and beyond"
   speakers:
     - Ilya Grigorik
   event_name: "MountainWest RubyConf 2011"
-  date: "2015-02-18"
-  published_at: "TODO"
+  date: "2011-03-18"
+  published_at: "2015-02-18"
   description: |-
     By, Ilya Grigorik
     The world of concurrent computation is a complicated one. We have to think about the hardware, the runtime, and even choose between half a dozen different models and primitives: fork/wait, threads, shared memory, message passing, semaphores, and transactions just to name a few. And that's only the beginning.
@@ -141,14 +150,15 @@
   video_provider: "youtube"
   video_id: "OWZR__Bmkvs"
 
-- title: "Securing Your Rails App"
+- id: "jim-weirich-mountainwest-rubyconf-2011"
+  title: "Securing Your Rails App"
   raw_title: "MWRC 2011 - Securing Your Rails App"
   speakers:
     - Jim Weirich
     - Matt Yoho
   event_name: "MountainWest RubyConf 2011"
-  date: "2015-02-18"
-  published_at: "TODO"
+  date: "2011-03-18"
+  published_at: "2015-02-18"
   description: |-
     By, Jim Weirich & Matt Yoho
     Then it starts to scan the computer and transmit bits of information every time he clicks the mouse while he's surfing. After a while, [...] we've accumulated a complete mirror image of the content of his hard drive [...]. And then it's time for the hostile takeover. -- Lisbeth Salander in Stieg Larsson's "The Girl with the Dragon Tattoo" Hacker dramas like the Stieg Larrson book make for good fiction, but we know that real life rarely matches drama. And with all the security features that Rails 3 has added, surely it is difficult to hack a typical Rails web site. Right? Wrong! Without deliberate attention to the details of security, it almost certain that your site has flaws that a knowledgeable hacker can exploit. This talk will cover the ins and outs of web security and help you build a site that is protected from the real Lisbeth Salanders of the world.
@@ -156,13 +166,14 @@
   video_provider: "youtube"
   video_id: "Ki8Qa_ArTP4"
 
-- title: "Monkeypatching Your Brain"
+- id: "david-brady-mountainwest-rubyconf-2011"
+  title: "Monkeypatching Your Brain"
   raw_title: "MWRC 2011 - Monkeypatching Your Brain"
   speakers:
     - David Brady
   event_name: "MountainWest RubyConf 2011"
-  date: "2015-02-18"
-  published_at: "TODO"
+  date: "2011-03-18"
+  published_at: "2015-02-18"
   description: |-
     By, David Brady
     Your entire nervous systems literally wired to be reprogrammed. Are you working with its strengths? Do you know how to tell if you're not? In this session we'll explore some exciting discoveries in neuroscience and psychology, and then immediately put this knowledge to use creating iterative change inside our brains. Or maybe we'll just monkeypatch some stuff and see what happens. If you want to start or break new habit instantly, start unit testing your own behavior, or if you just think it would be fun to know how to hack a debug breakpoint into somebody else's brain, this talk is for you!
@@ -170,13 +181,14 @@
   video_provider: "youtube"
   video_id: "wWv45N9zzx8"
 
-- title: "Fascism and Faux-pen Source"
+- id: "zed-a-shaw-mountainwest-rubyconf-2011"
+  title: "Fascism and Faux-pen Source"
   raw_title: "MWRC 2011 - Fascism and Faux-pen Source"
   speakers:
     - Zed A. Shaw
   event_name: "MountainWest RubyConf 2011"
-  date: "2015-02-18"
-  published_at: "TODO"
+  date: "2011-03-18"
+  published_at: "2015-02-18"
   description: |-
     By, Zed A. Shaw
     Everything you need to know to run your very own Faux-pen Source project in the Fascist style. I'll cover the history of Fascism, how it works, relevant scholarly research, and how you can leverage fascist tactics and "the community" to further your own goals.
@@ -184,13 +196,14 @@
   video_provider: "youtube"
   video_id: "EvfLPXUHfVc"
 
-- title: "Using Ruby with Xbox Kinect for Fun and Profit"
+- id: "nate-peel-mountainwest-rubyconf-2011"
+  title: "Using Ruby with Xbox Kinect for Fun and Profit"
   raw_title: "MWRC 2011 - Using Ruby with Xbox Kinect for fun and profit"
   speakers:
     - Nate Peel
   event_name: "MountainWest RubyConf 2011"
-  date: "2015-02-18"
-  published_at: "TODO"
+  date: "2011-03-18"
+  published_at: "2015-02-18"
   description: |-
     By Nate Peel
     The Xbox Kinect is an exciting new way to interact with not only your Xbox 360, but your computer. In this segment Nate will show you how to use Ruby to interact with a Kinect, and gather skeleton sequences for an animation that can be imported into a 3d program for use in a game or movie.
@@ -198,13 +211,14 @@
   video_provider: "youtube"
   video_id: "CJcxkzVe0XQ"
 
-- title: "Ruby on Android"
+- id: "joe-obrien-mountainwest-rubyconf-2011"
+  title: "Ruby on Android"
   raw_title: "MWRC 2011 - Ruby on Android"
   speakers:
     - Joe O'Brien
   event_name: "MountainWest RubyConf 2011"
-  date: "2015-02-18"
-  published_at: "TODO"
+  date: "2011-03-18"
+  published_at: "2015-02-18"
   description: |-
     By, Joe O'Brien
     With the advent of JRuby many doors have been opened that were not before for Ruby. One particular place is the android platform. Using Ruby, we can easily leverage the Android platform and API's to create incredible applications. Since we are using Ruby, testing becomes a trivial exercise. I'll walk through the options we have for developing full feature-rich applications for both the Android tablet and the phone. I'll show how we can use JRuby to sidestep the complexity and configuration-heavy frameworks that are traditionally for Android development.
@@ -212,13 +226,14 @@
   video_provider: "youtube"
   video_id: "9I8oBMWVjo4"
 
-- title: "Tiny Tools Tidy Tests"
+- id: "evan-light-mountainwest-rubyconf-2011"
+  title: "Tiny Tools Tidy Tests"
   raw_title: "MWRC 2011 - Tiny Tools Tidy Tests"
   speakers:
     - Evan Light
   event_name: "MountainWest RubyConf 2011"
-  date: "2015-02-18"
-  published_at: "TODO"
+  date: "2011-03-18"
+  published_at: "2015-02-18"
   description: |-
     By, Evan Light
     I admit it. I like my code to read like English when possible. I am not unique in that regard. But, at least as importantly, I like my tools to be tractable; I'm unhappy if a quick trip to a gem's /lib results in confusion and frustration. If I can't understand my tools, I can't extend them. I can't truly make them *my* tools.
@@ -232,13 +247,14 @@
   video_provider: "youtube"
   video_id: "rRgcZOO5Sxk"
 
-- title: "Parsing Expressions in Ruby"
+- id: "michael-jackson-mountainwest-rubyconf-2011"
+  title: "Parsing Expressions in Ruby"
   raw_title: "MWRC 2011 - Parsing Expressions in Ruby"
   speakers:
     - Michael Jackson
   event_name: "MountainWest RubyConf 2011"
-  date: "2015-02-19"
-  published_at: "TODO"
+  date: "2011-03-18"
+  published_at: "2015-02-19"
   description: |-
     By, Michael Jackson
     As a programmer one of your most useful tools is the regular expression. Like a trusty old hammer, Regexp is always ready and willing to parse your random bits of text with brutal precision and accuracy.
@@ -248,13 +264,14 @@
   video_provider: "youtube"
   video_id: "_6h16aGz_eo"
 
-- title: "Essentials for Tech Startups"
+- id: "devlin-daley-mountainwest-rubyconf-2011"
+  title: "Essentials for Tech Startups"
   raw_title: "MWRC 2011 - Essentials for Tech Startups"
   speakers:
     - Devlin Daley
   event_name: "MountainWest RubyConf 2011"
-  date: "2015-02-19"
-  published_at: "TODO"
+  date: "2011-03-18"
+  published_at: "2015-02-19"
   description: |-
     By, Devlin Daley
     Many in our community want to blaze their own trails with their own company. We'll cover the essentials for software startups: how to tell if you've got a viable idea, funding options, do's and dont's, business models and how to get things off the ground. These essentials apply to founders as well as those thinking of working for a startup.
@@ -262,13 +279,14 @@
   video_provider: "youtube"
   video_id: "1KQ0v5uOog4"
 
-- title: "Ruby: The Challenges Ahead"
+- id: "yehuda-katz-mountainwest-rubyconf-2011"
+  title: "Ruby: The Challenges Ahead"
   raw_title: "MWRC 2011 - Ruby: The Challenges Ahead"
   speakers:
     - Yehuda Katz
   event_name: "MountainWest RubyConf 2011"
-  date: "2015-02-19"
-  published_at: "TODO"
+  date: "2011-03-18"
+  published_at: "2015-02-19"
   description: |-
     By, Yehuda Katz
     Through Rails, Ruby has been thrust upon an adoring public. Over the past several years, Ruby has matured, with two world-class alternative implementation, a library for just about anything, and a community that values software engineering. There are still some challenges ahead, most notably concurrency, library maturity and language development itself.
@@ -276,13 +294,14 @@
   video_provider: "youtube"
   video_id: "ZDgdwL3dE6E"
 
-- title: "Confessions of a Data Junkie: Fetching, Parsing, and Visualization"
+- id: "bobby-wilson-mountainwest-rubyconf-2011"
+  title: "Confessions of a Data Junkie: Fetching, Parsing, and Visualization"
   raw_title: "MWRC 2011 - Confessions of a Data Junkie: Fetching, Parsing, and Visualization"
   speakers:
     - Bobby Wilson
   event_name: "MountainWest RubyConf 2011"
-  date: "2015-02-19"
-  published_at: "TODO"
+  date: "2011-03-18"
+  published_at: "2015-02-19"
   description: |-
     By, Bobby Wilson
     This is not a scientific talk. It's a survey of each step in my process of creating something meaningful out of a pile of data. The talk will be a blend of anecdotes, process, data sources, tools available, and good ol' hacks. We live in a world filled with recorded data. Lots of that data is online, and retrievable in some fashion. Unfortunately, that data is often sparse, poorly labeled, and uninsured. Enter Ruby, with a wide variety of gems and libraries to help us trudge through funky data, store it, sort it out, and spit shine it for the masses.
@@ -290,13 +309,14 @@
   video_provider: "youtube"
   video_id: "MC6j11rpcoY"
 
-- title: "Ruby.is_a? Community # = true"
+- id: "wayne-e-seguin-mountainwest-rubyconf-2011"
+  title: "Ruby.is_a? Community # = true"
   raw_title: "MWRC 2011 - Ruby.is_a? Community # = true"
   speakers:
     - Wayne E. Seguin
   event_name: "MountainWest RubyConf 2011"
-  date: "2015-02-19"
-  published_at: "TODO"
+  date: "2011-03-18"
+  published_at: "2015-02-19"
   description: |-
     By, Wayne E. Seguin
     The single most important driving force that has kept me going since I started working with Ruby is the community itself. I will discuss various aspects of why I love the Ruby community and present my thoughts on our unique and awesome community with it's rosy effervescent essence.

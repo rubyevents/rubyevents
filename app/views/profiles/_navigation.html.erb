@@ -1,0 +1,35 @@
+<%# locals: (user:, talks:, events:, mutual_events:, stamps:, events_with_stickers:, involvements_by_role:, countries_with_events:, aliases: []) %>
+
+<div role="tablist" class="tabs tabs-bordered">
+  <% if talks.length.positive? %>
+    <%= active_link_to "Talks (#{talks.size})", profile_talks_path(user), class: "tab px-6", active_class: "tab-active", role: "tab" %>
+  <% end %>
+
+  <% if events.any? %>
+    <%= active_link_to "Attended Events (#{events.size})", profile_events_path(user), class: "tab px-6", active_class: "tab-active", role: "tab" %>
+  <% end %>
+
+  <% if mutual_events&.any? && Current.user && Current.user != user %>
+    <%= active_link_to "Mutual Events (#{mutual_events.size})", profile_mutual_events_path(user), class: "tab px-6", active_class: "tab-active", role: "tab" %>
+  <% end %>
+
+  <% if involvements_by_role.any? %>
+    <%= active_link_to "Involvements", profile_involvements_path(user), class: "tab px-6", active_class: "tab-active", role: "tab" %>
+  <% end %>
+
+  <% if stamps.any? %>
+    <%= active_link_to "Stamps (#{stamps.size})", profile_stamps_path(user), class: "tab px-6", active_class: "tab-active", role: "tab" %>
+  <% end %>
+
+  <% if events_with_stickers.any? %>
+    <%= active_link_to "Stickers (#{events_with_stickers.size})", profile_stickers_path(user), class: "tab px-6", active_class: "tab-active", role: "tab" %>
+  <% end %>
+
+  <% if countries_with_events&.any? %>
+    <%= active_link_to "Map", profile_map_index_path(user), class: "tab px-6", active_class: "tab-active", role: "tab" %>
+  <% end %>
+
+  <% if Current.user&.admin? %>
+    <%= active_link_to "Aliases (#{aliases.size})", profile_aliases_path(user), class: "tab px-6", active_class: "tab-active", role: "tab" %>
+  <% end %>
+</div>

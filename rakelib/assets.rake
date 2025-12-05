@@ -13,7 +13,7 @@ task :export_assets, [:conference_name] => :environment do |t, args|
 
   if (conference_name = args[:conference_name])
     conference_pages = conference_pages.select { |_id, page|
-      playlist = Event.preload(:organisation).find_by(name: page["name"])
+      playlist = Event.preload(:series).find_by(name: page["name"])
 
       if playlist
         page["name"] == conference_name || playlist.slug == conference_name
@@ -24,13 +24,16 @@ task :export_assets, [:conference_name] => :environment do |t, args|
   end
 
   conference_pages.each do |id, page|
-    artboard_exports = page["artboards"].select { |id, artboard| artboard["name"].in?(["card", "featured", "avatar", "banner", "poster", "sticker"]) }
-    event = Event.includes(:organisation).find_by(name: page["name"])
+    artboard_exports = page["artboards"].select { |id, artboard|
+      artboard["name"].in?(["card", "featured", "avatar", "banner", "poster"]) ||
+        artboard["name"].downcase.start_with?("sticker")
+    }
+    event = Event.includes(:series).find_by(name: page["name"])
 
     next if event.nil?
 
     item_ids = artboard_exports.keys.join(",")
-    target_directory = Rails.root.join("app", "assets", "images", "events", event.organisation.slug, event.slug)
+    target_directory = Rails.root.join("app", "assets", "images", "events", event.series.slug, event.slug)
 
     Command.run "#{sketchtool} export artboards #{sketch_file} --items=#{item_ids} --output=#{target_directory} --save-for-web=YES --formats=webp"
   end
@@ -46,14 +49,14 @@ task export_stickers: :environment do
   pages = response["pagesAndArtboards"].select { |_id, page| page["artboards"].any? }
 
   pages.each do |id, page|
-    artboard_exports = page["artboards"].select { |id, artboard| artboard["name"].in?(["sticker"]) }
-    event = Event.includes(:organisation).find_by(name: page["name"])
+    artboard_exports = page["artboards"].select { |id, artboard| artboard["name"].downcase.start_with?("sticker") }
+    event = Event.includes(:series).find_by(name: page["name"])
 
     next if event.nil?
     next if artboard_exports.keys.empty?
 
     item_ids = artboard_exports.keys.join(",")
-    target_directory = Rails.root.join("app", "assets", "images", "events", event.organisation.slug, event.slug)
+    target_directory = Rails.root.join("app", "assets", "images", "events", event.series.slug, event.slug)
 
     Command.run "#{sketchtool} export artboards #{sketch_file} --items=#{item_ids} --output=#{target_directory} --save-for-web=YES --formats=webp"
   end

@@ -2,6 +2,7 @@
 # == Schema Information
 #
 # Table name: watch_lists
+# Database name: primary
 #
 #  id          :integer          not null, primary key
 #  description :text

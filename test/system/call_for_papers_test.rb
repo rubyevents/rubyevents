@@ -10,6 +10,6 @@ class CallForPapersTest < ApplicationSystemTestCase
     visit root_url
 
     click_on "CFP"
-    assert_selector "h1", text: "Open Call For Papers"
+    assert_selector "h1", text: "Open Call for Proposals"
   end
 end

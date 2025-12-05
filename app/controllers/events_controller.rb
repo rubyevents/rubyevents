@@ -8,8 +8,8 @@ class EventsController < ApplicationController
 
   # GET /events
   def index
-    @events = Event.includes(:organisation, :keynote_speakers)
-      .conference
+    @events = Event.includes(:series, :keynote_speakers)
+      .not_meetup
       .where(end_date: Date.today..)
       .order(start_date: :asc)
   end
@@ -25,14 +25,14 @@ class EventsController < ApplicationController
       @recent_talks = @event.talks.where(meta_talk: false).includes(:speakers, :parent_talk, child_talks: :speakers).order(date: :desc).to_a.sample(8)
       @featured_speakers = @event.speakers.joins(:talks).distinct.to_a.sample(8)
     else
-      @keynotes = @event.talks.joins(:speakers).where(kind: "keynote").includes(:speakers, event: :organisation)
-      @recent_talks = @event.talks.watchable.includes(:speakers, event: :organisation).limit(8).shuffle
+      @keynotes = @event.talks.joins(:speakers).where(kind: "keynote").includes(:speakers, event: :series)
+      @recent_talks = @event.talks.watchable.includes(:speakers, event: :series).limit(8).shuffle
       keynote_speakers = @event.speakers.joins(:talks).where(talks: {kind: "keynote"}).distinct
       other_speakers = @event.speakers.joins(:talks).where.not(talks: {kind: "keynote"}).distinct.limit(8)
       @featured_speakers = (keynote_speakers + other_speakers.first(8 - keynote_speakers.size)).uniq.shuffle
     end
 
-    @sponsors = @event.event_sponsors.includes(:sponsor).joins(:sponsor).shuffle
+    @sponsors = @event.sponsors.includes(:organization).joins(:organization).shuffle
 
     @participation = Current.user&.main_participation_to(@event)
   end
@@ -56,8 +56,12 @@ class EventsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_event
-    @event = Event.includes(:organisation).find_by(slug: params[:slug])
+    @event = Event.includes(:series).find_by(slug: params[:slug])
+    @event ||= Event.find_by_slug_or_alias(params[:slug])
+
     return redirect_to(root_path, status: :moved_permanently) unless @event
+
+    return redirect_to event_path(@event), status: :moved_permanently if @event.slug != params[:slug]
 
     redirect_to event_path(@event.canonical), status: :moved_permanently if @event.canonical.present?
   end

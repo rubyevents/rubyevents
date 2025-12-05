@@ -10,18 +10,28 @@
   <% c.with_menu_item_link_to "Home", root_path %>
   <% c.with_menu_item_link_to "Talks", talks_path %>
   <% c.with_menu_item_link_to "Speakers", speakers_path %>
-  <% c.with_menu_item_link_to "Sponsors", sponsors_path %>
+  <% c.with_menu_item_link_to "Organizations", organizations_path %>
   <% c.with_menu_item_link_to "Events", events_path %>
   <% c.with_menu_item_link_to "Topics", topics_path %>
   <% c.with_menu_item_link_to "Contribute", contributions_path %>
+  <% c.with_menu_item_link_to "Event Assets", pages_assets_path %>
   <% c.with_menu_item_link_to "Leaderboard", leaderboard_path %>
 
   <% signed_in do %>
+    <% c.with_menu_item_link_to "For You", recommendations_path %>
     <% c.with_menu_item_link_to watched_talks_path do %>
       <div class="flex items-center gap-2">
         <span>Recently Watched</span>
         <% if Current.user.watched_talks_count.positive? %>
           <div class="badge badge-secondary"><%= Current.user.watched_talks_count %></div>
+        <% end %>
+      </div>
+    <% end %>
+    <% c.with_menu_item_link_to watch_lists_path do %>
+      <div class="flex items-center gap-2">
+        <span>Bookmarks</span>
+        <% if Current.user.default_watch_list.talks_count.positive? %>
+          <div class="badge badge-secondary"><%= Current.user.default_watch_list.talks_count %></div>
         <% end %>
       </div>
     <% end %>

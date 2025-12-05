@@ -13,7 +13,7 @@ class Sessions::OmniauthControllerTest < ActionDispatch::IntegrationTest
     @user = github.user
     @github_auth = OmniAuth::AuthHash.new(github.attributes
                                           .slice("provider", "uid")
-                                          .merge({info: {email: github.user.email}}))
+                                          .merge(info: {nickname: github.user.github_handle, email: github.user.email}))
   end
 
   def teardown
@@ -66,6 +66,18 @@ class Sessions::OmniauthControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_path
   end
 
+  test "finds existing user if already exists (github) with different casing" do
+    github = connected_accounts(:github_connected_account)
+    @user = github.user
+    OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(github.attributes
+                                          .slice("provider", "uid")
+                                          .merge({username: github.user.github_handle.upcase, info: {nickname: github.user.github_handle.upcase, email: github.user.email}}))
+    assert_no_difference "User.count" do
+      post "/auth/github/callback"
+    end
+    assert_redirected_to root_path
+  end
+
   test "assign a passport to the existing user (github)" do
     connected_account = connected_accounts(:github_connected_account)
 
@@ -76,7 +88,7 @@ class Sessions::OmniauthControllerTest < ActionDispatch::IntegrationTest
     OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(
       provider: :github,
       uid: connected_account.uid,
-      info: {email: @user.email}
+      info: {nickname: connected_account.username, email: @user.email}
     )
     assert_no_difference "User.count" do
       post "/auth/github/callback"

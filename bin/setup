@@ -4,14 +4,14 @@ require "fileutils"
 APP_ROOT = File.expand_path("..", __dir__)
 APP_NAME = "rubyevents"
 
-def system!(*args)
-  system(*args, exception: true)
-end
+def system!(cmd)
+  system(cmd, exception: true)
+rescue StandardError => e
+  STDOUT.puts
+  STDOUT.puts "Failed to run #{cmd}: #{e.message}"
+  STDOUT.puts
 
-def docker_compose!(options)
-  system!("docker compose #{options}")
-rescue Errno::ENOENT
-  system!("docker-compose #{options}")
+  raise
 end
 
 FileUtils.chdir APP_ROOT do
@@ -47,6 +47,9 @@ FileUtils.chdir APP_ROOT do
 
   puts "\n== How to start the application =="
   puts "\n use 'bin/dev' to start the Rails server, solid_queue and Vite"
+
+  puts "\n== How to set up initial data =="
+  puts "\n use 'bin/rails db:seed' to set up initial data"
 
   unless ARGV.include?("--skip-server")
     puts "\n== Starting development server =="

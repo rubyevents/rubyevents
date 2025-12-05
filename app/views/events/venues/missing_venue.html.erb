@@ -1,0 +1,26 @@
+<%= render partial: "events/header", locals: {event: @event} %>
+
+<%= turbo_frame_tag dom_id(@event), data: {turbo_action: "advance", turbo_frame: "_top"} do %>
+  <div class="container py-8">
+    <%= render partial: "events/navigation", locals: {event: @event} %>
+
+    <div class="text-center py-12">
+      <div class="max-w-md mx-auto">
+        <div class="text-6xl mb-4">📍</div>
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">No Venue Information Yet</h2>
+        <p class="text-gray-600 mb-6">
+          Help us make this information complete! Do you know the venue details for <%= @event.name %>?
+        </p>
+        <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-left">
+          <h3 class="font-semibold text-amber-800 mb-2">How to contribute:</h3>
+          <ul class="text-sm text-amber-700 space-y-1">
+            <li>• Check the event website for venue information</li>
+            <li>• Look for address, directions, and room details</li>
+            <li>• <a href="https://github.com/rubyevents/rubyevents/issues/new?title=<%= CGI.escape("#{@event.name} Venue Information") %>&body=<%= CGI.escape("Venue Name: \nAddress: \nWebsite: \n\nIssue opened from event page: #{event_url(@event)}") %>" class="underline hover:text-amber-900" target="_blank">Open an issue on GitHub</a></li>
+            <li>• <a href="https://github.com/rubyevents/rubyevents/blob/main/CONTRIBUTING.md" class="underline hover:text-amber-900" target="_blank">Submit data via GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

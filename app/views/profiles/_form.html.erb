@@ -12,9 +12,7 @@
 
     <div>
       <%= form.label :location %>
-      <%= form.combobox :location, ISO3166::Country.all.map { |country| country.translations["en"] }.sort do |combobox| %>
-        <% combobox.customize_fieldset class: "w-full" %>
-      <% end %>
+      <%= form.text_field :location, class: "input input-bordered w-full" %>
     </div>
 
     <div>

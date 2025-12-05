@@ -2,11 +2,9 @@
 # == Schema Information
 #
 # Table name: events
+# Database name: primary
 #
 #  id              :integer          not null, primary key
-#  cfp_close_date  :date
-#  cfp_link        :string
-#  cfp_open_date   :date
 #  city            :string
 #  country_code    :string
 #  date            :date
@@ -21,20 +19,20 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  canonical_id    :integer          indexed
-#  organisation_id :integer          not null, indexed
+#  event_series_id :integer          not null, indexed
 #
 # Indexes
 #
 #  index_events_on_canonical_id     (canonical_id)
+#  index_events_on_event_series_id  (event_series_id)
 #  index_events_on_kind             (kind)
 #  index_events_on_name             (name)
-#  index_events_on_organisation_id  (organisation_id)
 #  index_events_on_slug             (slug)
 #
 # Foreign Keys
 #
 #  canonical_id     (canonical_id => events.id)
-#  organisation_id  (organisation_id => organisations.id)
+#  event_series_id  (event_series_id => event_series.id)
 #
 # rubocop:enable Layout/LineLength
 class Event < ApplicationRecord
@@ -44,17 +42,19 @@ class Event < ApplicationRecord
   configure_slug(attribute: :name, auto_suffix_on_collision: false)
 
   # associations
-  belongs_to :organisation, strict_loading: false
+  belongs_to :series, class_name: "EventSeries", foreign_key: :event_series_id, strict_loading: false
   has_many :talks, dependent: :destroy, inverse_of: :event, foreign_key: :event_id
   has_many :watchable_talks, -> { watchable }, class_name: "Talk"
   has_many :speakers, -> { distinct }, through: :talks, class_name: "User"
   has_many :keynote_speakers, -> { joins(:talks).where(talks: {kind: "keynote"}).distinct },
     through: :talks, source: :speakers
   has_many :topics, -> { distinct }, through: :talks
-  has_many :event_sponsors, dependent: :destroy
-  has_many :sponsors, through: :event_sponsors
+  has_many :sponsors, dependent: :destroy
+  has_many :organizations, through: :sponsors
   belongs_to :canonical, class_name: "Event", optional: true
   has_many :aliases, class_name: "Event", foreign_key: "canonical_id"
+  has_many :slug_aliases, as: :aliasable, class_name: "Alias", dependent: :destroy
+  has_many :cfps, dependent: :destroy
 
   # Event participation associations
   has_many :event_participations, dependent: :destroy
@@ -66,13 +66,20 @@ class Event < ApplicationRecord
   has_many :visitor_participants, -> { where(event_participations: {attended_as: :visitor}) },
     through: :event_participations, source: :user
 
+  has_many :event_involvements, dependent: :destroy
+  has_many :involved_users, -> { where(event_involvements: {involvementable_type: "User"}) },
+    through: :event_involvements, source: :involvementable, source_type: "User"
+  has_many :involved_event_series, -> { where(event_involvements: {involvementable_type: "EventSeries"}) },
+    through: :event_involvements, source: :involvementable, source_type: "EventSeries"
+
   has_object :schedule
   has_object :static_metadata
   has_object :sponsors_file
-  has_object :cfp
+  has_object :cfp_file
+  has_object :venue
 
   def talks_in_running_order(child_talks: true)
-    talks.in_order_of(:video_id, video_ids_in_running_order(child_talks: child_talks))
+    talks.in_order_of(:static_id, video_ids_in_running_order(child_talks: child_talks))
   end
 
   # validations
@@ -89,12 +96,73 @@ class Event < ApplicationRecord
   scope :with_watchable_talks, -> { where.associated(:watchable_talks) }
   scope :canonical, -> { where(canonical_id: nil) }
   scope :not_canonical, -> { where.not(canonical_id: nil) }
-  scope :ft_search, ->(query) { where("lower(events.name) LIKE ?", "%#{query.downcase}%") }
+  scope :ft_search, ->(query) {
+    joins(<<~SQL.squish)
+      LEFT OUTER JOIN aliases AS event_aliases
+        ON event_aliases.aliasable_type = 'Event'
+        AND event_aliases.aliasable_id = events.id
+    SQL
+      .joins("LEFT OUTER JOIN event_series AS search_series ON search_series.id = events.event_series_id")
+      .joins(<<~SQL.squish)
+        LEFT OUTER JOIN aliases AS series_aliases
+          ON series_aliases.aliasable_type = 'EventSeries'
+          AND series_aliases.aliasable_id = search_series.id
+      SQL
+      .where(
+        "lower(events.name) LIKE :query OR lower(event_aliases.name) LIKE :query " \
+        "OR lower(search_series.name) LIKE :query OR lower(series_aliases.name) LIKE :query",
+        query: "%#{query.downcase}%"
+      )
+      .distinct
+  }
   scope :past, -> { where(end_date: ..Date.today).order(end_date: :desc) }
   scope :upcoming, -> { where(start_date: Date.today..).order(start_date: :asc) }
 
+  def self.find_by_name_or_alias(name)
+    return nil if name.blank?
+
+    event = find_by(name: name)
+    return event if event
+
+    alias_record = Alias.find_by(aliasable_type: "Event", name: name)
+    alias_record&.aliasable
+  end
+
+  def self.find_by_slug_or_alias(slug)
+    return nil if slug.blank?
+
+    event = find_by(slug: slug)
+    return event if event
+
+    alias_record = Alias.find_by(aliasable_type: "Event", slug: slug)
+    alias_record&.aliasable
+  end
+
+  def sync_aliases_from_list(alias_names)
+    Array.wrap(alias_names).each do |alias_name|
+      slug = alias_name.parameterize
+
+      existing_own = slug_aliases.find_by(name: alias_name) || slug_aliases.find_by(slug: slug)
+
+      if existing_own
+        existing_own.update(name: alias_name) if existing_own.name != alias_name
+        next
+      end
+
+      existing_global = Alias.find_by(aliasable_type: "Event", name: alias_name)
+      existing_global ||= Alias.find_by(aliasable_type: "Event", slug: slug)
+
+      next if existing_global
+
+      slug_aliases.create!(name: alias_name, slug: slug)
+    end
+  end
+
+  attribute :kind, :string
+  attribute :date_precision, :string
+
   # enums
-  enum :kind, ["event", "conference", "meetup"].index_by(&:itself), default: "event"
+  enum :kind, ["event", "conference", "meetup", "retreat", "hackathon", "workshop"].index_by(&:itself), default: "event"
   enum :date_precision, ["day", "month", "year"].index_by(&:itself), default: "day"
 
   def assign_canonical_event!(canonical_event:)
@@ -112,7 +180,7 @@ class Event < ApplicationRecord
   end
 
   def data_folder
-    Rails.root.join("data", organisation.slug, slug)
+    Rails.root.join("data", series.slug, slug)
   end
 
   def videos_file?
@@ -130,12 +198,12 @@ class Event < ApplicationRecord
   def video_ids_in_running_order(child_talks: true)
     if child_talks
       videos_file.flat_map { |talk|
-        [talk.dig("video_id"), *talk["talks"]&.map { |child_talk|
-          child_talk.dig("video_id")
+        [talk.dig("id"), *talk["talks"]&.map { |child_talk|
+          child_talk.dig("id")
         }]
       }
     else
-      videos_file.map { |talk| talk.dig("video_id") }
+      videos_file.map { |talk| talk.dig("id") }
     end
   end
 
@@ -145,7 +213,7 @@ class Event < ApplicationRecord
       #{description}
       #{city}
       #{country_code}
-      #{organisation.name}
+      #{series.name}
       #{date}
     HEREDOC
   end
@@ -209,7 +277,7 @@ class Event < ApplicationRecord
   def description
     return @description if @description.present?
 
-    event_name = organisation.organisation? ? name : organisation.name
+    event_name = series.organisation? ? name : series.name
 
     @description = <<~DESCRIPTION
       #{event_name} is a #{static_metadata.frequency} #{kind}#{held_in_sentence}#{talks_text}#{keynote_speakers_text}.
@@ -251,26 +319,26 @@ class Event < ApplicationRecord
   end
 
   def event_image_path
-    ["events", organisation.slug, slug].join("/")
+    ["events", series.slug, slug].join("/")
   end
 
   def default_event_image_path
     ["events", "default"].join("/")
   end
 
-  def default_organisation_image_path
-    ["events", organisation.slug, "default"].join("/")
+  def default_event_series_image_path
+    ["events", series.slug, "default"].join("/")
   end
 
   def event_image_or_default_for(filename)
     event_path = [event_image_path, filename].join("/")
-    default_organisation_path = [default_organisation_image_path, filename].join("/")
+    default_event_series_path = [default_event_series_image_path, filename].join("/")
     default_path = [default_event_image_path, filename].join("/")
 
     base = Rails.root.join("app", "assets", "images")
 
     return event_path if (base / event_path).exist?
-    return default_organisation_path if (base / default_organisation_path).exist?
+    return default_event_series_path if (base / default_event_series_path).exist?
 
     default_path
   end
@@ -306,13 +374,36 @@ class Event < ApplicationRecord
     event_image_or_default_for("poster.webp")
   end
 
+  def stickers
+    Sticker.for_event(self)
+  end
+
   # sticker - 350x350
+  def sticker_image_paths
+    stickers.map(&:file_path)
+  end
+
   def sticker_image_path
-    event_image_for("sticker.webp")
+    sticker_image_paths.first
+  end
+
+  def stamp_image_paths
+    base = Rails.root.join("app", "assets", "images")
+    Dir.glob(base.join(event_image_path, "stamp*.webp")).map { |path|
+      Pathname.new(path).relative_path_from(base).to_s
+    }.sort
+  end
+
+  def stamp_image_path
+    stamp_image_paths.first
   end
 
   def sticker?
-    sticker_image_path.present?
+    sticker_image_paths.any?
+  end
+
+  def stamp?
+    stamp_image_paths.any?
   end
 
   def watchable_talks?
@@ -328,7 +419,7 @@ class Event < ApplicationRecord
   end
 
   def website
-    self[:website].presence || organisation.website
+    self[:website].presence || series.website
   end
 
   def to_mobile_json(request)

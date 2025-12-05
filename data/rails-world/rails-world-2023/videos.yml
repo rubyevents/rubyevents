@@ -4,7 +4,8 @@
 
 ## Day 1: October 5, 2023
 
-- title: "Opening Keynote"
+- id: "david-heinemeier-hansson-rails-world-2023"
+  title: "Opening Keynote"
   raw_title: "Rails World 2023 Opening Keynote - David Heinemeier Hansson"
   speakers:
     - David Heinemeier Hansson
@@ -26,13 +27,14 @@
   video_provider: "youtube"
   video_id: "iqXjGiQ_D-A"
 
-- title: "Strada: Bridging The Web and Native Worlds"
+- id: "jay-ohms-rails-world-2023"
+  title: "Strada: Bridging The Web and Native Worlds"
   raw_title: "Jay Ohms - Strada: Bridging the web and native worlds - Rails World 2023"
   speakers:
     - Jay Ohms
   event_name: "Rails World 2023"
   date: "2023-10-05"
-  published_at: "2023-10-12"
+  published_at: "2023-10-19"
   track: "Track 1"
   description: |-
     Strada is the missing library to take your Turbo Native apps to the next level. Turbo Native enables web developers to ship native apps, but the experience is limited to a WebView container within a native shell. The native app doesn’t have any knowledge about the web content that is being rendered, but Strada bridges that gap.
@@ -47,13 +49,14 @@
   video_provider: "youtube"
   video_id: "LKBMXqc43Q8"
 
-- title: "Solid Cache: A Disk Backed Rails Cache"
+- id: "donal-mcbreen-rails-world-2023"
+  title: "Solid Cache: A Disk Backed Rails Cache"
   raw_title: "Donal McBreen - Solid Cache: A disk backed Rails cache - Rails World 2023"
   speakers:
     - Donal McBreen
   event_name: "Rails World 2023"
   date: "2023-10-05"
-  published_at: "2023-10-12"
+  published_at: "2023-10-19"
   track: "Track 2"
   description: |-
     A disk cache can hold much more data than a memory one. But is it fast enough?
@@ -71,13 +74,14 @@
   video_provider: "youtube"
   video_id: "wYeVne3aRow"
 
-- title: "Making a Difference with Turbo"
+- id: "jorge-manrubia-rails-world-2023"
+  title: "Making a Difference with Turbo"
   raw_title: "Jorge Manrubia - Making a difference with Turbo - Rails World 2023"
   speakers:
     - Jorge Manrubia
   event_name: "Rails World 2023"
   date: "2023-10-05"
-  published_at: "2023-10-16"
+  published_at: "2023-10-19"
   track: "Track 1"
   slides_url: "https://dev.37signals.com/assets/files/a-happier-happy-path-in-turbo-with-morphing/rails-world-2023-making-difference-with-turbo.pdf"
   description: |-
@@ -96,13 +100,14 @@
   video_provider: "youtube"
   video_id: "m97UsXa6HFg"
 
-- title: "Everything We Learned While Implementing ActiveRecord::Encryption"
+- id: "kylie-stradley-rails-world-2023"
+  title: "Everything We Learned While Implementing ActiveRecord::Encryption"
   raw_title: "Kylie Stradley - Everything We Learned While Implementing ActiveRecord::Encryption - Rails World"
   speakers:
     - Kylie Stradley
   event_name: "Rails World 2023"
   date: "2023-10-05"
-  published_at: "2023-10-16"
+  published_at: "2023-10-19"
   track: "Track 2"
   description: |-
     ‪@GitHub‬ encrypts your data at rest, as well as specific sensitive database columns. What you may not know is that they recently replaced their in-house db column encryption strategy with ActiveRecord::Encryption, in place. While they were able to complete this transition seamlessly for GitHub’s developers, the process was not quite seamless for our team and some of our customers, and mistakes were made along the way.
@@ -123,13 +128,14 @@
 
 # Lunch
 
-- title: "The Future of Rails as a Full-Stack Framework powered by Hotwire"
+- id: "marco-roth-rails-world-2023"
+  title: "The Future of Rails as a Full-Stack Framework powered by Hotwire"
   raw_title: "Marco Roth - The Future of Rails as a Full-Stack Framework powered by Hotwire - Rails World 2023"
   speakers:
     - Marco Roth
   event_name: "Rails World 2023"
   date: "2023-10-05"
-  published_at: "2023-10-16"
+  published_at: "2023-10-19"
   track: "Track 1"
   slides_url: "https://speakerdeck.com/marcoroth/the-future-of-rails-as-a-full-stack-framework-powered-by-hotwire"
   description: |-
@@ -147,13 +153,14 @@
   video_provider: "youtube"
   video_id: "iRjei4nj41o"
 
-- title: "Migrating Shopify's Core Rails Monolith to Trilogy"
+- id: "adrianna-chang-rails-world-2023"
+  title: "Migrating Shopify's Core Rails Monolith to Trilogy"
   raw_title: "Adrianna Chang - Migrating Shopify’s Core Rails Monolith to Trilogy - Rails World 2023"
   speakers:
     - Adrianna Chang
   event_name: "Rails World 2023"
   date: "2023-10-05"
-  published_at: "2023-10-17"
+  published_at: "2023-10-19"
   track: "Track 2"
   description: |-
     Trilogy is a client library for MySQL-compatible database servers. It was open sourced along with an Active Record adapter by GitHub this past year. With promises of improved performance, better portability and compatibility, and fewer dependencies, Shopify’s Rails Infrastructure team decided to migrate our core Rails monolith from Mysql2 to Trilogy.
@@ -169,13 +176,14 @@
 
 # 13:30 - 14:30 - Workshop - Test Smarter, Not Harder - Crafting a Test Selection Framework from Scratch  - Christian Bruckmayer, Staff Engineer, Shopify
 
-- title: "Building an Offline Experience with a Rails-powered PWA"
+- id: "alicia-rojas-rails-world-2023"
+  title: "Building an Offline Experience with a Rails-powered PWA"
   raw_title: "Alicia Rojas - Building an offline experience with a Rails-powered PWA - Rails World 2023"
   speakers:
     - Alicia Rojas
   event_name: "Rails World 2023"
   date: "2023-10-05"
-  published_at: "2023-10-16"
+  published_at: "2023-10-19"
   track: "Track 1"
   description: |-
     Progressive web apps (PWAs) allow us to provide rich offline experiences as native apps would, while still being easy to use and share, as web apps are. Learn how to turn your regular Rails app into a PWA, taking advantage of the front-end tools that come with Rails by default since version 7.
@@ -192,13 +200,14 @@
   video_provider: "youtube"
   video_id: "Gj8ov0cOuA0"
 
-- title: "Guardrails: Keeping Customer Data Separate in a Multi Tenant System"
+- id: "miles-mcguire-rails-world-2023"
+  title: "Guardrails: Keeping Customer Data Separate in a Multi Tenant System"
   raw_title: "Miles McGuire - Guardrails: Keeping customer data separate in a multi tenant system - Rails World"
   speakers:
     - Miles McGuire
   event_name: "Rails World 2023"
   date: "2023-10-05"
-  published_at: "2023-10-17"
+  published_at: "2023-10-19"
   track: "Track 2"
   description: |-
     @Intercominc Staff Engineer Miles McGuire shares the solution they created to ensure that they never “cross the streams” on customer data using ActiveRecord and Rails’ MemCacheStore, as well as the exciting knock-on benefits it offered for observability. 
@@ -213,13 +222,14 @@
 
 # 14:45 - 16:15 -Workshop - AI Driven Development - Sean Marcia, Founder, Ruby for Good
 
-- title: "Implementing Native Composite Primary Key Support in Rails 7.1"
+- id: "nikita-vasilevsky-rails-world-2023"
+  title: "Implementing Native Composite Primary Key Support in Rails 7.1"
   raw_title: "Nikita Vasilevsky - Implementing Native Composite Primary Key Support in Rails 7.1 - Rails World '23"
   speakers:
     - Nikita Vasilevsky
   event_name: "Rails World 2023"
   date: "2023-10-05"
-  published_at: "2023-10-12"
+  published_at: "2023-10-19"
   track: "Track 1"
   slides_url: "https://speakerdeck.com/nikitavasilevsky/rails-world-2023-composite-primary-keys-in-rails-7-dot-1"
   description: |-
@@ -234,13 +244,14 @@
   video_provider: "youtube"
   video_id: "aOD0bZfQvoY"
 
-- title: "Zeitwerk Internals"
+- id: "xavier-noria-rails-world-2023"
+  title: "Zeitwerk Internals"
   raw_title: "Xavier Noria - Zeitwerk Internals - Rails World 2023"
   speakers:
     - Xavier Noria
   event_name: "Rails World 2023"
   date: "2023-10-05"
-  published_at: "2023-10-16"
+  published_at: "2023-10-19"
   track: "Track 2"
   slides_url: "https://www.slideshare.net/fxn/zeitwerk-internals"
   description: |-
@@ -263,13 +274,14 @@
   video_provider: "youtube"
   video_id: "YTMS1N7jI78"
 
-- title: "Using Multiple Databases with Active Record"
+- id: "julia-lpez-rails-world-2023"
+  title: "Using Multiple Databases with Active Record"
   raw_title: "Julia López - Using Multiple Databases with Active Record - Rails World 2023"
   speakers:
     - Julia López
   event_name: "Rails World 2023"
   date: "2023-10-05"
-  published_at: "2023-10-16"
+  published_at: "2023-10-19"
   track: "Track 1"
   slides_url: "https://speakerdeck.com/yukideluxe/using-multiple-databases-with-active-record"
   description: |-
@@ -288,13 +300,14 @@
   video_provider: "youtube"
   video_id: "XjCqiyYVypI"
 
-- title: "Propshaft and the Modern Asset Pipeline"
+- id: "breno-gazzola-rails-world-2023"
+  title: "Propshaft and the Modern Asset Pipeline"
   raw_title: "Breno Gazzola - Propshaft and the Modern Asset Pipeline - Rails World 2023"
   speakers:
     - Breno Gazzola
   event_name: "Rails World 2023"
   date: "2023-10-05"
-  published_at: "2023-10-17"
+  published_at: "2023-10-19"
   track: "Track 2"
   description: |-
     Breno Gazzola, Co-Founder & CTO of FestaLab, discusses Propshaft, the heart of the new asset pipeline introduced in Rails 7. 
@@ -316,13 +329,14 @@
   video_provider: "youtube"
   video_id: "yFgQco_ccgg"
 
-- title: "Keynote: The Magic of Rails"
+- id: "eileen-m-uchitelle-rails-world-2023"
+  title: "Keynote: The Magic of Rails"
   raw_title: "Eileen Uchitelle - The Magic of Rails - Rails World 2023"
   speakers:
     - Eileen M. Uchitelle
   event_name: "Rails World 2023"
   date: "2023-10-05"
-  published_at: "2023-10-16"
+  published_at: "2023-10-17"
   track: "Track 1"
   slides_url: "https://speakerdeck.com/eileencodes/rails-world-2023-day-1-closing-keynote-the-magic-of-rails"
   description: |-
@@ -343,7 +357,8 @@
 
 ## Day 2 - October 6, 2023
 
-- title: "Rails Core AMA"
+- id: "aaron-patterson-rails-world-2023"
+  title: "Rails Core AMA"
   raw_title: "Rails Core AMA - Rails World 2023"
   speakers:
     - Aaron Patterson
@@ -378,13 +393,14 @@
   video_provider: "youtube"
   video_id: "9GzYoUFIkwE"
 
-- title: "Powerful Rails Features You Might Not Know"
+- id: "chris-oliver-rails-world-2023"
+  title: "Powerful Rails Features You Might Not Know"
   raw_title: "Chris Oliver - Powerful Rails Features You Might Not Know - Rails World 2023"
   speakers:
     - Chris Oliver
   event_name: "Rails World 2023"
   date: "2023-10-06"
-  published_at: "2023-10-16"
+  published_at: "2023-10-19"
   track: "Track 1"
   slides_url: "https://speakerdeck.com/excid3/powerful-rails-features-you-might-not-know"
   description: |-
@@ -407,13 +423,14 @@
   video_provider: "youtube"
   video_id: "iPCqwZ9Ouc4"
 
-- title: "Rails and the Ruby Garbage Collector: How to Speed Up Your Rails App"
+- id: "peter-zhu-rails-world-2023"
+  title: "Rails and the Ruby Garbage Collector: How to Speed Up Your Rails App"
   raw_title: "Peter Zhu - Rails and the Ruby Garbage Collector: How to Speed Up Your Rails App - Rails World 2023"
   speakers:
     - Peter Zhu
   event_name: "Rails World 2023"
   date: "2023-10-06"
-  published_at: "2023-10-18"
+  published_at: "2023-10-19"
   track: "Track 2"
   slides_url: "https://blog.peterzhu.ca/assets/rails_world_2023_slides.pdf"
   description: |-
@@ -434,13 +451,14 @@
   video_provider: "youtube"
   video_id: "IcN7yFTS8jY"
 
-- title: "Rails::HTML5: The Strange and Remarkable Three-Year Journey"
+- id: "mike-dalessio-rails-world-2023"
+  title: "Rails::HTML5: The Strange and Remarkable Three-Year Journey"
   raw_title: "Mike Dalessio - Rails::HTML5: the strange and remarkable three-year journey - Rails World 2023"
   speakers:
     - Mike Dalessio
   event_name: "Rails World 2023"
   date: "2023-10-06"
-  published_at: "2023-10-17"
+  published_at: "2023-10-19"
   track: "Track 1"
   slides_url: "https://mike.daless.io/prez/2023/10/06/rails-world-rails-html5"
   description: |-
@@ -459,13 +477,14 @@
   video_provider: "youtube"
   video_id: "USPLEASZ0Dc"
 
-- title: "Demystifying the Ruby Package Ecosystem"
+- id: "jenny-shen-rails-world-2023"
+  title: "Demystifying the Ruby Package Ecosystem"
   raw_title: "Jenny Shen - Demystifying the Ruby package ecosystem - Rails World 2023"
   speakers:
     - Jenny Shen
   event_name: "Rails World 2023"
   date: "2023-10-06"
-  published_at: "2023-10-18"
+  published_at: "2023-10-19"
   track: "Track 2"
   slides_url: "https://github.com/jenshenny/demystifying-ruby-ecosystem"
   description: |-
@@ -488,13 +507,14 @@
 
 # Lunch
 
-- title: "Just enough Turbo Native to be dangerous"
+- id: "joe-masilotti-rails-world-2023"
+  title: "Just enough Turbo Native to be dangerous"
   raw_title: "Joe Masilotti - Just enough Turbo Native to be dangerous - Rails World 2023"
   speakers:
     - Joe Masilotti
   event_name: "Rails World 2023"
   date: "2023-10-06"
-  published_at: "2023-10-18"
+  published_at: "2023-10-19"
   track: "Track 1"
   slides_url: "https://speakerdeck.com/joemasilotti/just-enough-turbo-native-to-be-dangerous"
   description: |-
@@ -512,13 +532,14 @@
   video_provider: "youtube"
   video_id: "hAq05KSra2g"
 
-- title: "Applying Shape Up in the Real World"
+- id: "ryan-singer-rails-world-2023"
+  title: "Applying Shape Up in the Real World"
   raw_title: "Ryan Singer - Applying Shape Up in the Real World - Rails World 2023"
   speakers:
     - Ryan Singer
   event_name: "Rails World 2023"
   date: "2023-10-06"
-  published_at: "2023-10-18"
+  published_at: "2023-10-19"
   track: "Track 2"
   description: |-
     Teams everywhere are tired of scrum and curious about Shape Up. But very few of them are able to apply it by-the-book, because their companies are structured differently than 37signals, where Shape Up was created.
@@ -537,13 +558,14 @@
 
 # 13:30 - 15:00 Workshop - AI Driven Development - Cynthia Lo, Program Manager, GitHub
 
-- title: "Untangling Cables and Demystifying Twisted Transistors"
+- id: "vladimir-dementyev-rails-world-2023"
+  title: "Untangling Cables and Demystifying Twisted Transistors"
   raw_title: "Vladimir Dementyev - Untangling cables and demystifying twisted transistors - Rails World 2023"
   speakers:
     - Vladimir Dementyev
   event_name: "Rails World 2023"
   date: "2023-10-06"
-  published_at: "2023-10-18"
+  published_at: "2023-10-19"
   track: "Track 1"
   slides_url: "https://speakerdeck.com/palkan/railsworld-2023-untangling-cables-and-demystifying-twisted-transistors"
   description: |-
@@ -560,13 +582,14 @@
   video_provider: "youtube"
   video_id: "GrHpop5HtxM"
 
-- title: "Tailwind CSS: It looks awful, and it works"
+- id: "adam-wathan-rails-world-2023"
+  title: "Tailwind CSS: It looks awful, and it works"
   raw_title: "Adam Wathan - Tailwind CSS: It looks awful, and it works - Rails World 2023"
   speakers:
     - Adam Wathan
   event_name: "Rails World 2023"
   date: "2023-10-06"
-  published_at: "2023-10-18"
+  published_at: "2023-10-19"
   track: "Track 2"
   description: |-
     In his talk at #RailsWorld, Tailwind CSS creator @AdamWathan of @TailwindLabs will explain why “separation of concerns” isn’t the right way to think about the relationship between HTML and CSS, why presentational class names lead to code that’s so much easier to maintain, as well as loads of tips, tricks, and best practices for getting the most out of Tailwind CSS.
@@ -579,13 +602,14 @@
   video_provider: "youtube"
   video_id: "TNXM4bqGqek"
 
-- title: "Hotwire Cookbook: Common Uses, Essential Patterns & Best Practices"
+- id: "yaroslav-shmarov-rails-world-2023"
+  title: "Hotwire Cookbook: Common Uses, Essential Patterns & Best Practices"
   raw_title: "Yaroslav Shmarov - Hotwire Cookbook: Common Uses, Essential Patterns & Best Practices  - Rails World"
   speakers:
     - Yaroslav Shmarov
   event_name: "Rails World 2023"
   date: "2023-10-06"
-  published_at: "2023-10-18"
+  published_at: "2023-10-19"
   track: "Track 1"
   slides_url: "https://www.icloud.com/keynote/031WsmVqF1yJVtjl2riyTgw_A#RailsWorld_2023_Hotwire_Cookbook_Yaroslav_Shmarov"
   description: |-
@@ -609,13 +633,14 @@
   video_provider: "youtube"
   video_id: "F75k4Oc6g9Q"
 
-- title: "Wildest Dreams of Making Profit on Open Source"
+- id: "irina-nazarova-rails-world-2023"
+  title: "Wildest Dreams of Making Profit on Open Source"
   raw_title: "Irina Nazarova - Wildest Dreams of Making Profit on Open Source - Rails World 2023"
   speakers:
     - Irina Nazarova
   event_name: "Rails World 2023"
   date: "2023-10-06"
-  published_at: "2023-10-18"
+  published_at: "2023-10-19"
   track: "Track 2"
   slides_url: "https://speakerdeck.com/irinanazarova/wildest-dreams-of-making-profit-on-open-source-rails-world-2023-irina-nazarova"
   description: |-
@@ -633,13 +658,14 @@
 
 # 15:00 - 16:00 - Workshop - Test Smarter, Not Harder - Crafting a Test Selection Framework from Scratch - Christian Bruckmayer, Staff Engineer, Shopify
 
-- title: "Don't Call It a Comeback"
+- id: "jason-charnes-rails-world-2023"
+  title: "Don't Call It a Comeback"
   raw_title: "Jason Charnes - Don't Call It a Comeback - Rails World 2023"
   speakers:
     - Jason Charnes
   event_name: "Rails World 2023"
   date: "2023-10-06"
-  published_at: "2023-10-18"
+  published_at: "2023-10-19"
   track: "Track 1"
   slides_url: "https://railsworld2023.jasoncharnes.com"
   description: |-
@@ -654,13 +680,14 @@
   video_provider: "youtube"
   video_id: "Dj8VGizRT6E"
 
-- title: "Monolith-ifying Perfectly Good Microservices"
+- id: "brian-scalan-rails-world-2023"
+  title: "Monolith-ifying Perfectly Good Microservices"
   raw_title: "Brian Scalan - Monolith-ifying perfectly good microservices - Rails World 2023"
   speakers:
     - Brian Scalan
   event_name: "Rails World 2023"
   date: "2023-10-06"
-  published_at: "2023-10-18"
+  published_at: "2023-10-19"
   track: "Track 2"
   description: |-
     Many conference talks have been created from engineers splitting services out of dusty old monolith apps. However, @Intercominc did the exact opposite - they moved multiple services back into their monolith and got huge productivity and reliability wins, allowing them to ship better features to their customers.
@@ -674,13 +701,14 @@
   video_provider: "youtube"
   video_id: "wV1Yva-Dp4Y"
 
-- title: "Keynote: Future of Developer Acceleration with Rails"
+- id: "aaron-patterson-rails-world-2023-keynote-future-of-developer-ac"
+  title: "Keynote: Future of Developer Acceleration with Rails"
   raw_title: "Aaron Patterson - Future of Developer Acceleration with Rails - Rails World 2023"
   speakers:
     - Aaron Patterson
   event_name: "Rails World 2023"
   date: "2023-10-06"
-  published_at: "2023-10-16"
+  published_at: "2023-10-18"
   track: "Track 1"
   description: |-
     What would development be like if Rails had tight integration with Language Servers? Rails Core member and Shopify Senior Staff Engineer Aaron Patterson takes a look at how language servers work, how we can improve language server support in Rails, and how this will increase our productivity as Rails developers. 

@@ -1,4 +1,4 @@
-<%# locals: (talk:, current_talk: nil, compact: false, turbo_frame: nil, user_watched_talks:, tag: :a, tooltip: true, show_remove_from_watched: false) -%>
+<%# locals: (talk:, current_talk: nil, compact: false, turbo_frame: nil, user_watched_talks:, tag: :a, tooltip: true, show_remove_from_watched: false) %>
 
 <% active = talk == current_talk %>
 <% watched_talk = user_watched_talks.find { |wt| wt.talk_id == talk.id } %>

@@ -1,6 +1,7 @@
 # == Schema Information
 #
 # Table name: llm_requests
+# Database name: primary
 #
 #  id            :integer          not null, primary key
 #  duration      :float            not null

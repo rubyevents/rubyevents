@@ -2,9 +2,87 @@
 # Website: https://rubybanitsa.com/events
 # Videos: https://www.youtube.com/@gsamokovarov/videos
 
+# 2025
+
+- id: "postgresql-tips-and-tricks-ruby-banitsa-september-2025"
+  title: "PostgreSQL tips & tricks"
+  raw_title: "PostgreSQL tips & tricks by Nikola Jichev"
+  event_name: "Ruby Banitsa September 2025"
+  date: "2025-09-09"
+  speakers:
+    - "Nikola Jichev"
+  video_id: "postgresql-tips-and-tricks-ruby-banitsa-september-2025"
+  video_provider: "not_published"
+  description: |-
+    Those hidden gems that make your database life easier and your queries faster. Potential topics include advanced indexing strategies, window functions, and vector handling for AI applications.
+
+- id: "radoslav-stankov-ruby-banitsa-july-2025"
+  title: "Angry Batch"
+  raw_title: "Ruby Banitsa – Angry Batch by Radoslav Stankov"
+  event_name: "Ruby Banitsa July 2025"
+  date: "2025-07-24"
+  speakers:
+    - "Radoslav Stankov"
+  video_id: "JM2hqxmwrRg"
+  published_at: "2025-08-28"
+  video_provider: "youtube"
+  language: "Bulgarian"
+  description: |-
+    If you ever needed to orchestrate background jobs, you know the feelings associated with it. Welcome our regular code-therapist, Radoslav Stankov, who wrote Angry Batch, a tool that helps with job orchestration and cortisol level regulation.
+
+- id: "modern-ux-classic-dx-ruby-banitsa-june-2025"
+  title: "Modern UX. Classic DX."
+  raw_title: "Modern UX. Classic DX. by Hristo Vladev"
+  event_name: "Ruby Banitsa June 2025"
+  date: "2025-06-11"
+  speakers:
+    - "Hristo Vladev"
+  video_id: "modern-ux-classic-dx-ruby-banitsa-june-2025"
+  video_provider: "not_published"
+  description: |-
+    A presentation exploring contemporary user experience design combined with traditional developer experience principles. Leveraging Inertia JS and Rails together.
+
+- id: "darth-vs-vibe-coder-ruby-banitsa-april-2025"
+  title: "Darth vs Vibe Coder"
+  raw_title: "Darth (дърт) vs Vibe Coder"
+  event_name: "Ruby Banitsa April 2025"
+  date: "2025-04-15"
+  speakers:
+    - "Deyan Dobrinov"
+    - "Genadi Samokovarov"
+  video_id: "darth-vs-vibe-coder-ruby-banitsa-april-2025"
+  video_provider: "not_published"
+  description: |-
+    This inaugural Ruby Banitsa Versus event features a debate between two contrasting coding philosophies. Darth coders develop independently without AI assistance, while Vibe coders leverage AI tools throughout their development process.
+
+- id: "crafting-a-toy-programming-language-ruby-banitsa-february-2025"
+  title: "Crafting a toy programming language"
+  raw_title: "Crafting a toy programming language by Ivan Alexandrov"
+  event_name: "Ruby Banitsa February 2025"
+  date: "2025-02-17"
+  speakers:
+    - "Ivan Alexandrov"
+  video_id: "crafting-a-toy-programming-language-ruby-banitsa-february-2025"
+  video_provider: "not_published"
+  description: |-
+    The presentation explores formal grammars and their role in modern programming languages. Attendees will learn about Formal Grammars, Lexers, Parsers, Interpreters, and discover popular parser-generator tools while beginning to build their own programming language.
+
+- id: "administrating-balkan-ruby-ruby-banitsa-january-2025"
+  title: "Administrating Balkan Ruby"
+  raw_title: "Administrating Balkan Ruby by Genadi Samokovarov"
+  event_name: "Ruby Banitsa January 2025"
+  date: "2025-01-27"
+  speakers:
+    - "Genadi Samokovarov"
+  video_id: "administrating-balkan-ruby-ruby-banitsa-january-2025"
+  video_provider: "not_published"
+  description: |-
+    Building a custom admin interface for the Balkan Ruby conference management system. The Balkan Ruby platform handles ticket sales, invoicing, lineup management, sponsorship, scheduling, and operates as a multi-tenant system serving multiple events.
+
 # 2024
 
-- date: "2024-11-22"
+- id: "custom-deployment-tooling-ruby-banitsa-november-2024"
+  date: "2024-11-22"
   title: "Custom Deployment Tooling"
   raw_title: "Custom Deployment Tooling"
   event_name: "Ruby Banitsa November 2024"
@@ -15,7 +93,8 @@
   description: |-
     With Rails 8 out, Kamal is all the rage about deployment. But can we go even simpler? And by simpler, we mean roll it out all yourself because you know, you may know what you are doing, and competence is indeed bliss! Welcome Evgeni, who will present gobot, a custom deployment tool with automatic self-update, notification, and all the bells and whistles an organization needs.
 
-- date: "2024-10-08"
+- id: "authentication-scheming-ruby-banitsa-october-2024"
+  date: "2024-10-08"
   title: "Authentication Scheming"
   raw_title: "Authentication Scheming"
   event_name: "Ruby Banitsa October 2024"
@@ -28,7 +107,8 @@
 
     Join us for a talk about the modern authentication primitives in Rails 8 with Hristo Vladev.
 
-- date: "2024-07-10"
+- id: "elixir-ai-show-and-tell-ruby-banitsa-july-2024"
+  date: "2024-07-10"
   title: "Elixir AI Show and Tell"
   raw_title: "Elixir AI Show and Tell"
   event_name: "Ruby Banitsa July 2024"
@@ -43,7 +123,8 @@
 
     A walk through a random Elxir AI toolchain (Nx, Scholar, Axon, Bumblebee) used to ~~DOMINATE~~ DEMOCRATIZE the book writing market.
 
-- date: "2024-05-22"
+- id: "balkan-ruby-code-and-tell-ruby-banitsa-may-2024"
+  date: "2024-05-22"
   title: "Balkan Ruby Code-and-Tell"
   raw_title: "Balkan Ruby Code-and-Tell"
   event_name: "Ruby Banitsa May 2024"
@@ -58,7 +139,8 @@
 
     Code is not essential for running events, even tech events but I'm a coder, and code I did. It helped!
 
-- date: "2024-04-24"
+- id: "short-but-sweet-tech-talk-ruby-banitsa-april-2024"
+  date: "2024-04-24"
   title: "Short but Sweet Tech Talk"
   raw_title: "Short but Sweet Tech Talk"
   event_name: "Ruby Banitsa April 2024"
@@ -73,7 +155,8 @@
 
     In preparation for Balkan Ruby, Nick will present a "short but sweet tech talk".
 
-- date: "2024-03-20"
+- id: "practical-observability-for-rails-developers-ruby-banitsa-march-2024"
+  date: "2024-03-20"
   title: "Practical Observability for Rails Developers"
   raw_title: "Practical Observability for Rails Developers"
   event_name: "Ruby Banitsa March 2024"
@@ -84,7 +167,8 @@
   description: |-
     Join us for an evening full of carbs and observability insights! Evgeni Dhzelyov will discuss request logging, background jobs logging, and error tracking. How to wire up tracings, and what metrics in Rails applications we should pay attention to.
 
-- date: "2024-02-22"
+- id: "interactive-ux-with-stimulus-and-turbo-8-ruby-banitsa-february-2024"
+  date: "2024-02-22"
   title: "Interactive UX with Stimulus and Turbo 8"
   raw_title: "Interactive UX with Stimulus and Turbo 8"
   event_name: "Ruby Banitsa February 2024"
@@ -97,13 +181,15 @@
 
 ## 2023
 
-- title: "Component-Driven UI with ViewComponent"
+- id: "radoslav-stankov-ruby-banitsa-november-2023"
+  title: "Component-Driven UI with ViewComponent"
   raw_title: "Component-Driven UI with ViewComponent"
   event_name: "Ruby Banitsa November 2023"
   date: "2023-11-02"
   speakers:
     - "Radoslav Stankov"
   video_id: "V61ITjlJE1A"
+  published_at: "2023-11-07"
   video_provider: "youtube"
   language: "Bulgarian"
   description: |-
@@ -111,7 +197,8 @@
 
     A talk about Component-Driven UI with the help of the view_component Ruby gem.
 
-- title: "Hotwire at Work"
+- id: "hotwire-at-work-ruby-banitsa-june-2023"
+  title: "Hotwire at Work"
   raw_title: "Hotwire at Work"
   event_name: "Ruby Banitsa June 2023"
   date: "2023-06-07"
@@ -126,7 +213,8 @@
 
     Hotwire is an alternative approach to building modern web applications without using much JavaScript by sending HTML instead of JSON over the wire. It's an alternative to the single-page application frameworks like React.
 
-- title: "Intro to Hotwire"
+- id: "hotwire-at-work-ruby-banitsa-may-2023"
+  title: "Intro to Hotwire"
   raw_title: "Intro to Hotwire"
   event_name: "Ruby Banitsa May 2023"
   date: "2023-05-18"
@@ -141,7 +229,8 @@
 
     Some people like it, some even use it, but we are just gonna talk about it. Welcome Hristo Vladev with his Intro to Hotwire to Ruby Banitsa!
 
-- title: "RuboCop's Baddest Cop"
+- id: "genadi-samokovarov-ruby-banitsa-april-2023"
+  title: "RuboCop's Baddest Cop"
   raw_title: "RuboCop's Baddest Cop"
   event_name: "Ruby Banitsa April 2023"
   date: "2023-04-20"
@@ -152,7 +241,8 @@
   description: |-
     Genadi Samokovarov is going to RubyKaigi in Matsumoto, Japan this year and he's going to talk about RuboCop's Baddest Cop; or, how hard it is (was) to enforce method calls without parentheses. But since you're "my kind of people" (наши хора), you'll get to see the very first edition of this talk, right here in Ruby Banitsa! This talk won't be recorded, come and see it live!
 
-- title: "Mysterious infrastructure"
+- id: "dimitar-dimitrov-ruby-banitsa-march-2023"
+  title: "Mysterious infrastructure"
   raw_title: "Mysterious infrastructure"
   event_name: "Ruby Banitsa March 2023"
   date: "2023-03-06"
@@ -173,7 +263,8 @@
 
 # TODO: missing event: "February 2023: Social Event" - https://rubybanitsa.com/events/87
 
-- title: "Discussion: Process Organization"
+- id: "gabriela-luhova-ruby-banitsa-january-2023"
+  title: "Discussion: Process Organization"
   raw_title: "Process organization discussion with Gabriela Luhova"
   event_name: "Ruby Banitsa January 2023"
   date: "2023-01-25"

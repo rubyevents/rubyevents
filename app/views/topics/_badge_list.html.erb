@@ -11,6 +11,8 @@
   <% end %>
 
   <% if more_topics.any? %>
-    <span data-action="click->toggable#toggle" data-toggable-target="toggle" class="cursor-pointer badge badge-ghost hover:bg-gray-300 px-2 py-3"><%= more_topics.count %> more</span>
+    <button type="button" data-action="click->toggable#toggle">
+      <div class="badge badge-ghost hover:bg-gray-300 px-2 py-3 text-xs" data-toggable-target="toggle"><%= more_topics.count %> more</div>
+    </button>
   <% end %>
 </div>

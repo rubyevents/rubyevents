@@ -1,7 +1,3 @@
 <% if events_with_stickers.any? %>
-  <input type="radio" name="talk_tabs" role="tab" class="tab px-6" aria-label="Stickers (<%= events_with_stickers.size %>)">
-
-  <div role="tabpanel" class="tab-content mt-6">
-    <%= render partial: "shared/stickers_display", locals: {events: events_with_stickers} %>
-  </div>
+  <%= render partial: "shared/stickers_display", locals: {events: events_with_stickers} %>
 <% end %>

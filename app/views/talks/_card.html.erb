@@ -1,4 +1,4 @@
-<%# locals: (talk:, user_favorite_talks_ids: [], favoritable: false, back_to: nil, back_to_title: nil, user_watched_talks: [], watched_talks: [], show_remove_from_watched: false) -%>
+<%# locals: (talk:, user_favorite_talks_ids: [], favoritable: false, back_to: nil, back_to_title: nil, user_watched_talks: [], watched_talks: [], show_remove_from_watched: false) %>
 
 <% language = Language.by_code(talk.language) %>
 <% watched_talk = watched_talks.find { |wt| wt.talk_id == talk.id } || user_watched_talks.find { |wt| wt.talk_id == talk.id } %>

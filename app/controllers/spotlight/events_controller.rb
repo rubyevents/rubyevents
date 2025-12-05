@@ -1,12 +1,14 @@
 class Spotlight::EventsController < ApplicationController
+  LIMIT = 15
+
   disable_analytics
   skip_before_action :authenticate_user!
 
   def index
-    @events = Event.includes(:organisation).canonical.order(date: :desc)
+    @events = Event.includes(:series).canonical.order(date: :desc)
     @events = @events.ft_search(search_query) if search_query.present?
-    @events_count = @events.count
-    @events = @events.limit(5)
+    @events = @events.limit(LIMIT)
+
     respond_to do |format|
       format.turbo_stream
     end

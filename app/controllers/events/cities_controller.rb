@@ -39,7 +39,7 @@ class Events::CitiesController < ApplicationController
 
   def show
     @city = params[:city]
-    @events = Event.includes(:organisation).all
+    @events = Event.includes(:series).all
       .select { |event| event.static_metadata&.location&.parameterize == @city }
       .sort_by { |event| event.static_metadata&.home_sort_date || Time.at(0).to_date }
       .reverse

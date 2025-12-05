@@ -1,4 +1,4 @@
-<%# locals: (talk:, user_favorite_talks_ids:) -%>
+<%# locals: (talk:, user_favorite_talks_ids:) %>
 
 <% video_player_controller = talk.external_player ? nil : "video-player" %>
 
@@ -76,7 +76,7 @@
         <div class="py-4 text-xl font-bold">
           <span><%= talk.title %></span>
           <% if talk.original_title.present? %>
-            <div class="mb-2 text-xs text-gray-500">Original title: <%= talk.original_title %></div>
+            <div class="mb-2 text-xs text-gray-500">Original title (<%= talk.language %>): <%= talk.original_title %></div>
           <% end %>
 
         </div>
@@ -272,13 +272,13 @@
         </div>
       <% end %>
 
-      <input type="radio" name="talk_tabs" role="tab" class="tab" aria-label="Description" <%= "checked" if talk.summary.blank? %>>
+      <input type="radio" name="talk_tabs" role="tab" class="tab" aria-label="Description" <% if talk.summary.blank? %> checked <% end %>>
       <div role="tabpanel" class="tab-content !rounded-s-xl rounded-xl bg-base-200/50 p-6 mt-6 overflow-hidden">
         <article class="prose">
           <p>
             <b><%= talk.title %></b><br>
             <%= talk.speakers.map(&:name).to_sentence %>
-            <% if talk.event.static_metadata.location %> • <%= talk.event.static_metadata.location %><% end %>
+            <% if talk.location %> • <%= talk.location %><% end %>
             <% if language && language != "English" %> • <%= language %> <% end %> •
             <%= talk.formatted_kind %>
           </p>
@@ -287,8 +287,8 @@
             Date: <%= talk.formatted_date %><br>
 
             <span class="text-gray-400">
-              Published: <% if talk.published_at %><%= l(talk.published_at, default: "unknown") %><% elsif talk.published? %> unknown <% else %> not published <% end %><br>
-              Announced: <%= l(talk.announced_at, default: "unknown") %>
+              Published: <% if talk.published_at %><%= l(talk.published_at&.to_date, default: "unknown") %><% elsif talk.published? %> unknown <% else %> not published <% end %><br>
+              Announced: <%= l(talk.announced_at&.to_date, default: "unknown") %>
             </span>
           </p>
 

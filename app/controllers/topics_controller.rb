@@ -16,7 +16,7 @@ class TopicsController < ApplicationController
     return redirect_to(root_path, status: :moved_permanently) unless @topic
 
     @pagy, @talks = pagy_countless(
-      @topic.talks.includes(:speakers, event: :organisation, child_talks: :speakers).order(date: :desc),
+      @topic.talks.includes(:speakers, event: :series, child_talks: :speakers).order(date: :desc),
       gearbox_extra: true,
       gearbox_limit: [12, 24, 48, 96],
       overflow: :empty_page,

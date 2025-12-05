@@ -5,7 +5,7 @@
         <%= render "shared/navbar/link", link_title: "Events", path: events_path %>
         <%= render "shared/navbar/link", link_title: "Videos", path: talks_path %>
         <%= render "shared/navbar/link", link_title: "Speakers", path: speakers_path %>
-        <%= render "shared/navbar/link", link_title: "Sponsors", path: sponsors_path %>
+        <%= render "shared/navbar/link", link_title: "Organizations", path: organizations_path %>
         <%= render "shared/navbar/link", link_title: "Topics", path: topics_path %>
         <%= render "shared/navbar/link", link_title: "CFP", path: cfp_index_path %>
       </ul>
@@ -23,6 +23,7 @@
         <% signed_in do %>
           <div class="flex items-center gap-2">
             <ul class="desktop-menu">
+              <%= render "shared/navbar/link", link_title: "For You", path: recommendations_path %>
               <%= render "shared/navbar/link", link_title: "Recently Watched", path: watched_talks_path %>
               <%= render "shared/navbar/link", link_title: "Bookmarks", path: watch_lists_path %>
             </ul>

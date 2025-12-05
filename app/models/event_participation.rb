@@ -1,6 +1,7 @@
 # == Schema Information
 #
 # Table name: event_participations
+# Database name: primary
 #
 #  id          :integer          not null, primary key
 #  attended_as :string           not null, uniquely indexed => [user_id, event_id], indexed
@@ -30,7 +31,7 @@ class EventParticipation < ApplicationRecord
   validates :user_id, uniqueness: {scope: [:event_id, :attended_as]}
 
   # enums
-  enum :attended_as, %w[organiser keynote_speaker speaker visitor].index_by(&:itself), prefix: true
+  enum :attended_as, %w[keynote_speaker speaker visitor].index_by(&:itself), prefix: true
 
   def name
     "#{user.name} - #{event.name} - #{attended_as}"

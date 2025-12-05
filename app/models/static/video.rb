@@ -3,6 +3,30 @@ module Static
     self.backend = Backends::MultiFileBackend.new("**/**/videos.yml")
     self.base_path = Rails.root.join("data")
 
+    def self.child_talks
+      @child_talks ||= Static::Video.all.flat_map(&:talks).compact
+    end
+
+    def self.child_talks_map
+      @child_talks_map ||= child_talks.to_h { |talk| [talk.id, talk] }
+    end
+
+    def self.all_talks
+      @all_talks ||= Static::Video.all + child_talks
+    end
+
+    def self.all_talks_map
+      @child_talks_map ||= all_talks.to_h { |talk| [talk.id, talk] }
+    end
+
+    def self.find_child_talk_by_id(id)
+      child_talks_map[id]
+    end
+
+    def self.find_by_static_id(id)
+      all_talks_map[id]
+    end
+
     def raw_title
       super || title
     end

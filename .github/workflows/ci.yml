@@ -8,7 +8,7 @@ on:
 
 concurrency:
   group: ci-${{ github.ref }}
-  cancel-in-progress: true # Add this line to explicitly enable cancellation
+  cancel-in-progress: true
 
 jobs:
   lint:
@@ -17,18 +17,17 @@ jobs:
       RAILS_ENV: test
       RUBOCOP_CACHE_ROOT: tmp/rubocop
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          bundler: default
           bundler-cache: true
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version-file: ".node-version"
           cache: yarn
 
       - name: Install dependencies
@@ -53,26 +52,34 @@ jobs:
       - name: Lint YAML data files
         run: yarn lint:yml
 
+      - name: Validate YAML data schemas
+        run: bin/rails validate:all
+
       - name: erb-lint Check
         run: bundle exec erb_lint --lint-all
+
+      - name: Herb Linter Check
+        run: npx @herb-tools/linter
+
+      - name: Herb Analyze (parse/compile)
+        run: bundle exec herb analyze app/
 
   test:
     runs-on: ubuntu-latest
     env:
       RAILS_ENV: test
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          bundler: default
           bundler-cache: true
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version-file: ".node-version"
           cache: yarn
 
       - name: Install dependencies
@@ -90,27 +97,23 @@ jobs:
         run: |
           bin/rails test
           bin/rails test:system
-
-      # - name: Smoke test database seeds
-      #   run: sudo bin/rails db:reset
   seed_smoke_test:
     runs-on: ubuntu-latest
     env:
       RAILS_ENV: test
       SEED_SMOKE_TEST: true
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          bundler: default
           bundler-cache: true
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version-file: ".node-version"
           cache: yarn
 
       - name: Install dependencies
@@ -148,7 +151,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Docker Buildx for cache
         uses: docker/setup-buildx-action@v3
@@ -157,14 +160,13 @@ jobs:
         uses: crazy-max/ghaction-github-runtime@v3
 
       - name: Setup SSH
-        uses: webfactory/ssh-agent@v0.7.0
+        uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          bundler: default
           bundler-cache: true
 
       - name: Deploy with Kamal

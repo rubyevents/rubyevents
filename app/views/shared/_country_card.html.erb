@@ -13,7 +13,7 @@
     </div>
     <div class="mt-3 space-y-1">
       <% events.first(3).each do |event| %>
-        <%= link_to event, class: "block text-sm hover:underline text-gray-700" do %>
+        <%= link_to event, class: "block text-sm hover:underline text-gray-700", data: {turbo_frame: "_top"} do %>
           • <%= event.name %> (<%= event.start_date&.year %>)
         <% end %>
       <% end %>
@@ -25,7 +25,7 @@
           </div>
           <div class="collapse-content space-y-1 p-0">
             <% events.drop(3).each do |event| %>
-              <%= link_to event, class: "block text-sm hover:underline text-gray-700" do %>
+              <%= link_to event, class: "block text-sm hover:underline text-gray-700", data: {turbo_frame: "_top"} do %>
                 • <%= event.name %> (<%= event.start_date&.year %>)
               <% end %>
             <% end %>
