@@ -349,22 +349,27 @@ class Event < ApplicationRecord
     Rails.root.join("app", "assets", "images", event_image_path, filename).exist? ? event_path : nil
   end
 
+  # banner - 1300x350
   def banner_image_path
     event_image_or_default_for("banner.webp")
   end
 
+  # card - 600x350
   def card_image_path
     event_image_or_default_for("card.webp")
   end
 
+  # avatar - 256x256
   def avatar_image_path
     event_image_or_default_for("avatar.webp")
   end
 
+  # featured - 615x350
   def featured_image_path
     event_image_or_default_for("featured.webp")
   end
 
+  # poster - 600x350
   def poster_image_path
     event_image_or_default_for("poster.webp")
   end
@@ -373,6 +378,7 @@ class Event < ApplicationRecord
     Sticker.for_event(self)
   end
 
+  # sticker - 350x350
   def sticker_image_paths
     stickers.map(&:file_path)
   end
