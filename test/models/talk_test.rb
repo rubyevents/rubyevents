@@ -80,7 +80,7 @@ class TalkTest < ActiveSupport::TestCase
       video_provider: "mp4",
       video_id: "https://videos.brightonruby.com/videos/2024/drew-bragg-who-wants-to-be-a-ruby-engineer.mp4",
       date: Date.today,
-      static_id: "drew-bragg-who-wants-to-be-a-ruby-engineer-brighton-ruby-2024"
+      static_id: "drew-bragg-who-wants-to-be-a-ruby-engineer"
     )
 
     assert_equal "gameshow", talk.kind
