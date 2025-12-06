@@ -32,6 +32,14 @@ class VideoSchema < RubyLLM::Schema
       string :end_cue, description: "End time cue in video", required: false
       string :thumbnail_cue, description: "Thumbnail time cue", required: false
       string :slides_url, required: false
+      array :additional_resources, required: false do
+        object do
+          string :name, required: true
+          string :url, required: true
+          string :type, enum: ["write-up", "blog", "article", "source-code", "code", "repo", "github", "documentation", "docs", "slides", "presentation", "video", "podcast", "audio", "gem", "library", "transcript", "handout", "notes", "photos", "link"], required: true
+          string :title, required: false
+        end
+      end
       string :thumbnail_xs, required: false
       string :thumbnail_sm, required: false
       string :thumbnail_md, required: false
@@ -87,6 +95,15 @@ class VideoSchema < RubyLLM::Schema
   string :language, description: "Language of the talk", required: false
 
   string :slides_url, description: "URL to the slides", required: false
+
+  array :additional_resources, description: "Additional resources related to the talk", required: false do
+    object do
+      string :name, description: "Display name for the resource", required: true
+      string :url, description: "URL to the resource", required: true
+      string :type, description: "Type of resource", enum: ["write-up", "blog", "article", "source-code", "code", "repo", "github", "documentation", "docs", "slides", "presentation", "video", "podcast", "audio", "gem", "library", "transcript", "handout", "notes", "photos", "link"], required: true
+      string :title, description: "Full title of the resource", required: false
+    end
+  end
 
   string :thumbnail_xs, description: "Extra small thumbnail URL", required: false
   string :thumbnail_sm, description: "Small thumbnail URL", required: false

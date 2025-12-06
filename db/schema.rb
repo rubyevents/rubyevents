@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_04_195048) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_06_194409) do
   create_table "ahoy_events", force: :cascade do |t|
     t.string "name"
     t.text "properties"
@@ -312,6 +312,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_04_195048) do
   end
 
   create_table "talks", force: :cascade do |t|
+    t.json "additional_resources", default: [], null: false
     t.datetime "announced_at"
     t.datetime "created_at", null: false
     t.date "date"

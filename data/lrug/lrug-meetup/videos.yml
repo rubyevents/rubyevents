@@ -36,6 +36,11 @@
         file header for it, could I _hear_ my data?  Yes, you can.  You probably
         don't want to, but you can.  You can do something similar with BMP and
         MIDI files too!
+      additional_resources:
+        - name: "Transcript"
+          type: "transcript"
+          title: "Talks ∋ Re-interpreting Data"
+          url: "http://h-lame.com/talks/re-interpreting-data/"
       video_id: "lrug-2020-01-13-re-interpreting-data"
       video_provider: "not_published"
     - id: "nuno-silva-lrug-january-2020"
@@ -256,6 +261,11 @@
         We all know how valuable it is to keep the quality of your code high. Working on a high quality codebase is more enjoyable and enables us to deliver value much more effectively for our users and yet, time and again I hear engineers saying, “I am not allowed to spend sufficient time on code quality”.
 
         This talk clarifies the value of maintaining a high quality codebase, gives you guidance on how to talk about this to help you get the support of your colleagues and managers for spending time on this and also outlines some key practices that will help you achieve this.
+      additional_resources:
+        - name: "Transcript"
+          type: "transcript"
+          title: "How to take control of code quality"
+          url: "https://blog.mocoso.co.uk/talks/2020/02/27/take-control-of-code-quality/"
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2020/april/joel-chippindale-how-to-take-control-of-your-code-quality-lrug-apr-2020.mp4"
       slides_url: "https://blog.mocoso.co.uk/assets/take-control-of-code-quality/take-control-of-code-quality--lrug-apr-2020.pdf"
@@ -529,6 +539,15 @@
         are a stateless, standardized way to represent user data. This talk will
         discuss why JWTs matter and the nuts and bolts of JWTs. We’ll also discuss
         how you might use a JWT in your Rails or Ruby application.
+      additional_resources:
+        - name: "Link"
+          type: "link"
+          title: "Building a Secure Signed JWT"
+          url: "https://fusionauth.io/learn/expert-advice/tokens/building-a-secure-jwt"
+        - name: "Repository"
+          type: "repo"
+          title: "Ruby JWT Examples"
+          url: "https://github.com/fusionauth/fusionauth-example-ruby-jwt"
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2020/october/dan-moore-jwts-what-rails-developers-need-to-know-lrug-oct-2020.mp4"
       slides_url: "https://docs.google.com/presentation/d/1Sr52vuZzUB2EgdOw_CZD1tgbs5e0amCbfQH_Wx7iagQ/"
@@ -582,6 +601,11 @@
         last 4+ years writing Ruby, and most of the 15+ before that writing Perl. The
         switch between the two was less traumatic than he expected, but it did lead to
         starting another open source software project last year...
+      additional_resources:
+        - name: "Link"
+          type: "link"
+          title: 'Links to pages and projects mentioned in "Patches Welcome!"'
+          url: "https://denny.me/LRUG"
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2020/november/denny-de-la-haye-patches-welcome-lrug-nov-2020.mp4"
     - id: "cameron-dutro-lrug-november-2020"
@@ -949,6 +973,11 @@
         leads to 'spaghetti code'. This talk will introduce a solution to this
         problem called [packwerk](https://github.com/Shopify/packwerk) (a ruby
         gem by Shopify), as well as touch on some alternatives.
+      additional_resources:
+        - name: "Link"
+          type: "link"
+          title: 'Blog post on "Improving Rails scalability using modularity with enforced boundaries"'
+          url: "https://robertfaldo.medium.com/improving-rails-scalability-using-the-modular-monolith-approach-with-enforced-boundaries-f8cea89e85b9"
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2021/july/rob-faldo-improving-rails-scalability-using-modularity-with-enforced-boundaries-lrug-jul-2021.mp4"
       slides_url: "https://docs.google.com/presentation/d/12EjD9OtIOtFpRqBaFKWmu4y1ogJK-WsO8l5TgTt1EmI/edit?usp=sharing"
@@ -1052,8 +1081,19 @@
         editor-specific plugins, as well as how Solargraph learns about your
         Ruby. I'll also talk about the challenges that Rails poses for such
         tooling and how solargraph-rails attempts to overcome them.
-
-        Write-up: [If The Shoe Fritz - A conversation between your editor and a language server](http://iftheshoefritz.com/lsp/intellisense/solargraph/2021/07/24/conversation-editor-lsp.html)
+      additional_resources:
+        - name: "Write-Up"
+          type: "write-up"
+          title: "If The Shoe Fritz - A conversation between your editor and a language server"
+          url: "http://iftheshoefritz.com/lsp/intellisense/solargraph/2021/07/24/conversation-editor-lsp.html"
+        - name: "Source Code"
+          type: "code"
+          title: "The solargraph-rails plugin"
+          url: "https://github.com/iftheshoefritz/solargraph-rails"
+        - name: "Source Code"
+          type: "code"
+          title: "The solargraph project"
+          url: "https://github.com/castwide/solargraph"
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2021/october/fritz-meissner-your-editor-language-server-protocol-and-solargraph-lrug-oct-2021.mp4"
       slides_url: "http://iftheshoefritz.com/lsp/intellisense/solargraph/lrug/2021/10/11/lrug-solargraph.html"
@@ -1175,6 +1215,15 @@
         checked the *coverage* of the speakers. They know the lighting rig has the
         proper colored gels *covering* the lamps. They’re nervous, but they’ve got
         it all __covered__.
+      additional_resources:
+        - name: "Link"
+          type: "link"
+          title: "Presentation Resources"
+          url: "https://kevinjmurphy.com/coverage"
+        - name: "Link"
+          type: "link"
+          title: "Blog post: Ruby's Got You Covered"
+          url: "https://dev.to/kevin_j_m/rubys-got-you-covered-2c6k"
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2021/december/kevin-murphy-enough-coverage-to-beat-the-band-lrug-dec-2021.mp4"
     - id: "johnson-zhan-lrug-december-2021"
@@ -1389,8 +1438,11 @@
         [some](https://buildpacks.io/docs/app-developer-guide/build-an-app/) [tricks](https://github.com/CGA1123/slugcmplr)
         to help you do just that by detaching building and releasing your application
         to production!
-
-        Write-up: [🚢 Ship faster with git-tree based caching](https://blog.bissy.io/posts/merge_to_deploy_in_a_minute/)
+      additional_resources:
+        - name: "Write-Up"
+          type: "write-up"
+          title: "🚢 Ship faster with git-tree based caching"
+          url: "https://blog.bissy.io/posts/merge_to_deploy_in_a_minute/"
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2022/march/christian-gregg-running-full-builds-after-merging-ship-faster-with-git-tree-based-caching-lrug-mar-2022.mp4"
     - id: "eleanor-mchugh-lrug-march-2022"
@@ -1684,6 +1736,11 @@
         app so smoothly that we became drunk on our own competence and totally
         messed up our upgrade to ruby 3.1 the following week.  A rare talk
         where you will learn some best _and_ worst practices.
+      additional_resources:
+        - name: "Transcript"
+          type: "transcript"
+          title: "Talks ∋ The long road to ruby 3.0 vs. the short road to ruby 3.1"
+          url: "http://h-lame.com/talks/the-long-road-to-ruby-3-0-vs-the-short-road-to-ruby-3-1/"
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2022/october/murray-steele-the-long-road-to-ruby-3-0-vs-the-short-road-to-ruby-3-1-lrug-oct-2022.mp4"
 - id: "lrug-november-2022"
@@ -2004,8 +2061,11 @@
         Ruby has leftward assignment. It has rightward assignment. But what about upward assignment?
 
         In this talk, we’ll misuse Ruby’s internals to build an arrow operator that lets us assign upwards. We’ll see some powerful Ruby metaprogramming features that allow us to bend Ruby to our will – and we’ll talk about why it’s good to write code that’s just plain daft.
-
-        Write-up: [Upward assignment in Ruby](https://alexwlchan.net/2023/upward-assignment/)
+      additional_resources:
+        - name: "Write-Up"
+          type: "write-up"
+          title: "Upward assignment in Ruby"
+          url: "https://alexwlchan.net/2023/upward-assignment/"
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2023/april/alex-making-a-working-upwards-assignment-operator-lrug-apr-2023.mp4"
     - id: "stan-lo-lrug-april-2023"
@@ -2196,6 +2256,15 @@
         I've been working with Ruby since the early 2000s. Ruby has changed a lot in that time,
         but we don't always remember how much. Let's rewrite a short program so that it runs in
         a twenty-year-old version of Ruby and see how much syntax and performance has changed for the better in twenty years
+      additional_resources:
+        - name: "Transcript"
+          type: "transcript"
+          title: "Back in my day... - transcript from the Brighton Ruby 2023 version of this talk"
+          url: "https://po-ru.com/2023/07/05/back-in-my-day"
+        - name: "Source Code"
+          type: "code"
+          title: "Supporting git repo for the code used in Back in my day..."
+          url: "https://github.com/threedaymonk/back-in-my-day"
       video_id: "lrug-2023-09-11-back-in-my-day"
       video_provider: "not_published"
 - id: "lrug-october-2023"
@@ -2511,6 +2580,11 @@
       description: |-
         Flaky tests are awful, in this talk we'll explore why tests flake and look at
         some techniques and tools you can use to discover why your tests are flaking.
+      additional_resources:
+        - name: "Transcript"
+          type: "transcript"
+          title: "Talks ∋ Do you want a flake with that?"
+          url: "http://h-lame.com/talks/do-you-want-a-flake-with-that/"
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2024/april/murray-steele-do-you-want-a-flake-with-that-lrug-apr-2024.mp4"
     - id: "frederick-cheung-lrug-april-2024"
@@ -2733,6 +2807,23 @@
         By breaking open the silos of existing social media like this, we can fight
         the enshittification of the web and reclaim a bit of power from the massive
         companies that own our online lives.
+      additional_resources:
+        - name: "Source Code"
+          type: "code"
+          title: "Federails, a Rails engine to add ActivityPub to your app"
+          url: "https://gitlab.com/experimentslabs/federails"
+        - name: "Source Code"
+          type: "code"
+          title: "Caber, a simple ReBAC / Zanzibar gem"
+          url: "https://github.com/manyfold3d/caber"
+        - name: "Source Code"
+          type: "code"
+          title: "Mittsu, a Ruby port of Three.js"
+          url: "https://github.com/danini-the-panini/mittsu"
+        - name: "Link"
+          type: "link"
+          title: "And the reason behind all this: Manyfold, a Rails app for managing and sharing 3d models"
+          url: "https://manyfold.app"
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2024/october/james-smith-fighting-enshittification-with-activity-pub-lrug-oct-2024.mp4"
       slides_url: "https://floppy.org.uk/activitypub-talk/"
@@ -3126,6 +3217,11 @@
         code? Practice fixing the incomprehensible in an interactive,
         zero-background-required exercise on the career-changing topic of
         refactoring.
+      additional_resources:
+        - name: "Source Code"
+          type: "code"
+          title: "The Noisy Animal code kata"
+          url: "https://github.com/thoughtbot/noisy-animals-kata"
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2025/july/fritz-meissner-if-you-wish-it-was-better-change-it-lrug-jul-2025.mp4"
 - id: "lrug-august-2025"
