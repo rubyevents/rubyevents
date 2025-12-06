@@ -316,6 +316,29 @@
         </div>
       <% end %>
 
+      <% if talk.additional_resources.present? %>
+        <input type="radio" name="talk_tabs" role="tab" class="tab" aria-label="Resources">
+        <div role="tabpanel" class="tab-content !rounded-s-xl rounded-xl bg-base-200/50 p-6 mt-6 overflow-hidden">
+          <ul class="space-y-4">
+            <% talk.additional_resources.each do |resource| %>
+              <li class="flex items-start gap-3">
+                <%= fa(resource_icon(resource), size: :sm, class: "fill-gray-500 mt-1 flex-shrink-0") %>
+
+                <div class="flex flex-col">
+                  <%= link_to resource["url"], target: "_blank", rel: "noopener noreferrer", class: "link link-primary" do %>
+                    <%= resource_display_title(resource) %>
+                  <% end %>
+
+                  <span class="text-xs text-gray-500">
+                    <%= resource["name"] %> · <%= resource_domain(resource) %>
+                  </span>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
       <% if talk.speakers.length.positive? %>
         <input type="radio" name="talk_tabs" role="tab" class="tab" aria-label="<%= "Speaker".pluralize(talk.speakers.size) %>">
         <div role="tabpanel" class="tab-content !rounded-s-xl rounded-xl bg-base-200/50 p-6 mt-6 overflow-hidden">
