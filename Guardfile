@@ -2,7 +2,7 @@
 
 require_relative "lib/guard/data_import"
 
-guard :data_import do
+guard :data_import, wait_for_delay: 2 do
   watch(%r{^data/speakers\.yml$})
   watch(%r{^data/topics\.yml$})
   watch(%r{^data/videos_to_ignore\.yml$})

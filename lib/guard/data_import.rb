@@ -1,31 +1,39 @@
-begin
-  require "guard/plugin"
-rescue LoadError
-  return
-end
-
+require "guard/plugin"
 require "fileutils"
 
 module Guard
   class DataImport < Plugin
     def run_on_modifications(paths)
-      paths.each do |path|
-        import_for_path(path)
-      end
+      process_paths(paths)
     end
 
     def run_on_additions(paths)
-      paths.each do |path|
-        import_for_path(path)
-      end
+      process_paths(paths)
     end
 
     private
 
+    def process_paths(paths)
+      return if paths.empty?
+
+      UI.info "Processing #{paths.size} file(s)..."
+
+      success_count = 0
+
+      paths.each do |path|
+        success_count += 1 if import_for_path(path)
+      end
+
+      if success_count > 0
+        trigger_vite_reload
+        UI.info "Finished processing #{success_count} file(s)"
+      end
+    end
+
     def import_for_path(path)
       UI.info "File changed: #{path}"
 
-      case path
+      result = case path
       when "data/speakers.yml"
         import_speakers
       when "data/topics.yml"
@@ -44,12 +52,20 @@ module Guard
         import_sponsors($1, $2)
       when %r{^data/([^/]+)/([^/]+)/schedule\.yml$}
         UI.info "Schedule file changed - no import action needed"
+
+        true
       else
         UI.warning "Unknown file pattern: #{path}"
+
+        false
       end
+
+      result
     rescue => e
       UI.error "Error importing #{path}: #{e.message}"
       UI.error e.backtrace.first(5).join("\n")
+
+      false
     end
 
     def import_speakers
@@ -114,15 +130,14 @@ module Guard
     end
 
     def run_rails_runner(code)
-      success = system("bin/rails", "runner", code)
-      trigger_vite_reload if success
-      success
+      system("bin/rails", "runner", code)
     end
 
     def trigger_vite_reload
       reload_file = File.join(Dir.pwd, "tmp", "vite-reload")
       FileUtils.mkdir_p(File.dirname(reload_file))
       FileUtils.touch(reload_file)
+
       UI.info "Triggered Vite reload"
     end
   end
