@@ -65,6 +65,94 @@ These colors support:
 - RGB/RGBA colors (e.g., `rgb(255, 0, 0)`)
 - CSS gradients (e.g., `linear-gradient(90deg, #FF0000, #0000FF)`)
 
+## Automated Asset Generation
+
+You can automatically generate all core assets from a single logo image using the `event:generate_assets` rake task. This is the fastest way to create consistent assets for a new event.
+
+### Prerequisites
+
+- **gum** - Interactive CLI tool (`brew install gum` on macOS)
+- **ImageMagick 7+** - Image processing (`brew install imagemagick` on macOS)
+- A logo image (PNG, SVG, or JPG with transparent background works best)
+- The event must already exist in the database
+
+The wizard will check for these dependencies and provide install instructions if missing.
+
+### Usage
+
+Run the interactive wizard:
+
+```bash
+bin/rails event:generate_assets
+```
+
+### Example Session
+
+```
+==================================================
+  Event Asset Generator
+==================================================
+
+Event slug (e.g., railsconf-2025): railsconf-2025
+  ✓ Found: RailsConf 2025
+Logo path: ~/Downloads/railsconf-logo.png
+  ✓ Found: 1024x1024 PNG
+Background color [#000000]: #CC342D
+  ✓ Background: #CC342D
+Text color [#FFFFFF - auto]:
+  ✓ Text color: #FFFFFF (auto-calculated)
+
+--------------------------------------------------
+Summary:
+  Event:      RailsConf 2025 (railsconf-2025)
+  Logo:       /Users/you/Downloads/railsconf-logo.png
+  Background: #CC342D
+  Text color: #FFFFFF
+
+Assets to generate:
+  - banner.webp (1300x350)
+  - card.webp (600x350)
+  - avatar.webp (256x256)
+  - featured.webp (615x350)
+  - poster.webp (600x350)
+
+Will update: data/railsconf/railsconf-2025/event.yml
+--------------------------------------------------
+
+Proceed with asset generation? [Y/n]: y
+```
+
+### What It Does
+
+1. **Generates all core image assets:**
+   - `avatar.webp` (256×256)
+   - `banner.webp` (1300×350)
+   - `card.webp` (600×350)
+   - `featured.webp` (615×350)
+   - `poster.webp` (600×350)
+
+2. **Updates `event.yml` with brand colors:**
+   - `banner_background`
+   - `featured_background`
+   - `featured_color`
+
+### Tips for Best Results
+
+- **Use a logo with transparent background** - The logo will be composited over the solid background color
+- **Use high-resolution source logos** - At least 1000px wide for best quality
+- **Square logos work best** - They scale well across all asset dimensions
+- **Choose contrasting colors** - If not specifying text color, the task auto-calculates white or black based on background luminance
+- **SVG logos produce the sharpest results** - They scale without quality loss
+
+### After Generation
+
+The generated assets are basic placeholders with centered logos. For events that need more elaborate designs:
+
+1. Use the generated assets as a starting point
+2. Edit them in your design tool (Sketch, Figma, etc.)
+3. Re-export as WebP at the same dimensions
+4. Replace the generated files
+
 ## Exporting Assets from Sketch
 
 If you're using the RubyEvents Sketch file, you can export assets using rake tasks:

@@ -371,6 +371,8 @@ GEM
       actionpack (>= 6.0.0, < 8.2)
     method_source (1.1.0)
     metrics (0.15.0)
+    mini_magick (5.3.1)
+      logger
     mini_mime (1.1.5)
     minisky (0.4.0)
       base64 (~> 0.1)
@@ -762,6 +764,7 @@ DEPENDENCIES
   listen (~> 3.5)
   marksmith
   meta-tags
+  mini_magick
   minisky (~> 0.4.0)
   minitest-difftastic (~> 0.2)
   mission_control-jobs
