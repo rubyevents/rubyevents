@@ -54,6 +54,9 @@ gem "thruster", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+# Image processing for event asset generation
+gem "mini_magick"
+
 # All sorts of useful information about every country packaged as convenient little country objects
 gem "countries"
 
