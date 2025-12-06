@@ -322,29 +322,15 @@
           <ul class="space-y-4">
             <% talk.additional_resources.each do |resource| %>
               <li class="flex items-start gap-3">
-                <% resource_type = resource["type"] || "link" %>
-                <% icon = case resource_type
-                   when "write-up", "blog", "article" then "pen-to-square"
-                   when "source-code", "code", "repo" then "code"
-                   when "github" then "github"
-                   when "documentation", "docs" then "book"
-                   when "slides", "presentation" then "presentation-screen"
-                   when "video" then "video"
-                   when "podcast", "audio" then "podcast"
-                   when "gem", "library" then "gem"
-                   when "transcript" then "file-lines"
-                   when "handout" then "file-pdf"
-                   when "notes" then "note-sticky"
-                   when "photos" then "images"
-                   else "link"
-                   end %>
-                <%= fa(icon, size: :sm, class: "fill-gray-500 mt-1 flex-shrink-0") %>
+                <%= fa(resource_icon(resource), size: :sm, class: "fill-gray-500 mt-1 flex-shrink-0") %>
+
                 <div class="flex flex-col">
                   <%= link_to resource["url"], target: "_blank", rel: "noopener noreferrer", class: "link link-primary" do %>
-                    <%= resource["title"].presence || resource["name"] %>
+                    <%= resource_display_title(resource) %>
                   <% end %>
+
                   <span class="text-xs text-gray-500">
-                    <%= resource["name"] %> · <%= URI.parse(resource["url"]).host rescue resource["url"] %>
+                    <%= resource["name"] %> · <%= resource_domain(resource) %>
                   </span>
                 </div>
               </li>
