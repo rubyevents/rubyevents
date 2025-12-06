@@ -53,13 +53,13 @@
         your CI and storing the reports artefacts.
       video_id: "lrug-2020-01-13-rubys-a-critic"
       video_provider: "not_published"
-    - id: "fred-cheung-lrug-january-2020"
+    - id: "frederick-cheung-lrug-january-2020"
       title: "Getting started with mruby"
       event_name: "LRUG January 2020"
       date: "2020-01-13"
       announced_at: "2019-12-22 21:48:00 +0100"
       speakers:
-        - Fred Cheung
+        - Frederick Cheung
       description: |-
         find out what [mruby](https://github.com/mruby/mruby) is, why you might
         want to use it and obstacles you might encounter along the way.
@@ -715,13 +715,13 @@
         its best features; followed by a short Q&A.
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2021/february/ayush-newatia-an-intro-to-bridgetown-a-static-site-generator-for-the-modern-jamstack-era-lrug-feb-2021.mp4"
-    - id: "fred-cheung-lrug-february-2021"
+    - id: "frederick-cheung-lrug-february-2021"
       title: "The Path(name) of least resistance"
       event_name: "LRUG February 2021"
       date: "2021-02-08"
       announced_at: "2021-01-24 21:30:00 +0000"
       speakers:
-        - Fred Cheung
+        - Frederick Cheung
       description: |-
         Ruby has many classes that deal with files, paths or directories, but
         one that often doesn't get enough credit is
@@ -1052,6 +1052,8 @@
         editor-specific plugins, as well as how Solargraph learns about your
         Ruby. I'll also talk about the challenges that Rails poses for such
         tooling and how solargraph-rails attempts to overcome them.
+
+        Write-up: [If The Shoe Fritz - A conversation between your editor and a language server](http://iftheshoefritz.com/lsp/intellisense/solargraph/2021/07/24/conversation-editor-lsp.html)
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2021/october/fritz-meissner-your-editor-language-server-protocol-and-solargraph-lrug-oct-2021.mp4"
       slides_url: "http://iftheshoefritz.com/lsp/intellisense/solargraph/lrug/2021/10/11/lrug-solargraph.html"
@@ -1328,13 +1330,13 @@
         and different approaches to fixing it.
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2022/february/speaker-marija-mandic-a-little-pessimism-never-killed-nobody-lrug-feb-2022.mp4"
-    - id: "pj-lrug-february-2022"
+    - id: "pj-johnstone-lrug-february-2022"
       title: "Metaprogramming I Do In My Side Projects That My Colleagues Won't Let Me Do In The Real App At Work :-("
       event_name: "LRUG February 2022"
       date: "2022-02-21"
       announced_at: "2022-01-13 21:30:00 +0000"
       speakers:
-        - PJ
+        - PJ Johnstone
       description: |-
         Metaprogramming is fun but, more importantly, makes you feel *really*
         clever. However, it's not always the best fit for codebases with multiple
@@ -1387,6 +1389,8 @@
         [some](https://buildpacks.io/docs/app-developer-guide/build-an-app/) [tricks](https://github.com/CGA1123/slugcmplr)
         to help you do just that by detaching building and releasing your application
         to production!
+
+        Write-up: [🚢 Ship faster with git-tree based caching](https://blog.bissy.io/posts/merge_to_deploy_in_a_minute/)
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2022/march/christian-gregg-running-full-builds-after-merging-ship-faster-with-git-tree-based-caching-lrug-mar-2022.mp4"
     - id: "eleanor-mchugh-lrug-march-2022"
@@ -1944,13 +1948,13 @@
   description: |-
     https://lrug.org/meetings/2023/march/
   talks:
-    - id: "ayush-lrug-march-2023"
+    - id: "ayush-newatia-lrug-march-2023"
       title: "Native apps are dead, long live native apps: Using Turbo Native to make hybrid apps that don’t suck."
       event_name: "LRUG March 2023"
       date: "2023-03-13"
       announced_at: "2023-02-18 10:13:00 +0000"
       speakers:
-        - Ayush
+        - Ayush Newatia
       description: |-
         You’ve heard it hundreds of times: Hybrid apps suck. That may have
         been true in the past, but things have changed significantly in the last decade.
@@ -1989,17 +1993,19 @@
   description: |-
     https://lrug.org/meetings/2023/april/
   talks:
-    - id: "alex-lrug-april-2023"
+    - id: "alex-chan-lrug-april-2023"
       title: "Making a working upwards assignment operator"
       event_name: "LRUG April 2023"
       date: "2023-04-17"
       announced_at: "2023-03-23 00:00:00 +0000"
       speakers:
-        - Alex
+        - Alex Chan
       description: |-
         Ruby has leftward assignment. It has rightward assignment. But what about upward assignment?
 
         In this talk, we’ll misuse Ruby’s internals to build an arrow operator that lets us assign upwards. We’ll see some powerful Ruby metaprogramming features that allow us to bend Ruby to our will – and we’ll talk about why it’s good to write code that’s just plain daft.
+
+        Write-up: [Upward assignment in Ruby](https://alexwlchan.net/2023/upward-assignment/)
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2023/april/alex-making-a-working-upwards-assignment-operator-lrug-apr-2023.mp4"
     - id: "stan-lo-lrug-april-2023"
@@ -2395,7 +2401,7 @@
       date: "2024-02-12"
       announced_at: "2024-01-14 22:51:00 +0000"
       speakers:
-        - fell sunderland
+        - Fell Sunderland
       description: |-
         I'd like to do a whistlestop tour of a few different gems I've written over
         the years, with the aim of talking about having fun whilst learning what
@@ -2618,7 +2624,7 @@
       date: "2024-07-08"
       announced_at: "2024-06-23 08:00:00 +0000"
       speakers:
-        - fell sunderland
+        - Fell Sunderland
       description: |-
         How does an experienced programmer solve problems? It's simpler (and more
         complicated) than you might think!
@@ -2651,13 +2657,13 @@
   description: |-
     https://lrug.org/meetings/2024/august/
   talks:
-    - id: "ayush-lrug-august-2024"
+    - id: "ayush-newatia-lrug-august-2024"
       title: "Turn Left for Bridgetown: An overview of a next-generation static(ish) site generator"
       event_name: "LRUG August 2024"
       date: "2024-08-12"
       announced_at: "2024-07-20 08:00:00 +0000"
       speakers:
-        - Ayush
+        - Ayush Newatia
       description: |-
         Bridgetown is a modern progressive site generator with Jekyll ancestry.
         Allow me to be your guide as I take you on a whistle-stop tour of its biggest
@@ -2842,7 +2848,7 @@
       date: "2025-02-10"
       announced_at: "2025-01-15 18:00:00 +0000"
       speakers:
-        - fell sunderland
+        - Fell Sunderland
       description: |-
         Why I don't use AI programming tools, and I don't think you should either.
       video_provider: "mp4"
