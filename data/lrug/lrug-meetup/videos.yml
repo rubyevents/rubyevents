@@ -312,7 +312,7 @@
         The source code is in a public Github repository details of which I will
         provide as part of my talk
       video_provider: "mp4"
-      video_id: "https://assets.lrug.org/videos/2020/may/peter-bell-comparing-the-speed-and-elegance-of-different-computer-languages-lrug-apr-2020.mp4"
+      video_id: "https://assets.lrug.org/videos/2020/may/peter-bell-comparing-the-speed-and-elegance-of-different-computer-languages-lrug-may-2020.mp4"
     - id: "sam-joseph-lrug-may-2020"
       title: "Debugging Ruby HTTP Library Surprises"
       event_name: "LRUG May 2020"
@@ -3155,8 +3155,8 @@
         execution system is secretly a DAG, and how the `stepper_motor`
         architecture is informed by VFX software instead of the imperative
         `ActiveJob` methods.
-      video_id: "lrug-2025-08-11-stepper-motor"
-      video_provider: "not_published"
+      video_provider: "mp4"
+      video_id: "https://assets.lrug.org/videos/2025/august/julik-tarkhanov-stepper-motor-effortless-long-running-workflows-for-rails-lrug-aug-2025.mp4"
     - id: "james-edwards-jones-lrug-august-2025"
       title: "No Browser Required: Dynamic OpenGraph Images with Rails and Rust"
       event_name: "LRUG August 2025"
@@ -3177,8 +3177,8 @@
         * Using the [Himg](https://github.com/Jamedjo/himg/) library
         * Server side request forgery and injection attacks
         * What OpenGraph images are and how they can help you go viral 🦋
-      video_id: "lrug-2025-08-11-no-browser-required"
-      video_provider: "not_published"
+      video_provider: "mp4"
+      video_id: "https://assets.lrug.org/videos/2025/august/james-edwards-jones-no-browser-required-dynamic-opengraph-images-with-rails-and-rust-lrug-aug-2025.mp4"
 - id: "lrug-september-2025"
   title: "LRUG September 2025"
   event_name: "LRUG September 2025"
@@ -3198,8 +3198,8 @@
         - Karl Lingiah
       description: |-
         As Ruby developers we all rely on the vast RubyGem ecosystem, but as gem users we're not necessarily aware of everything that goes into maintaining the gems that make up that ecosystem. When I became a developer advocate at Vonage, I went from gem user to gem maintainer overnight. In this talk I would like to share that journey, and some of the lessons I learned along the way.
-      video_id: "lrug-2025-09-15-inheriting-gems"
-      video_provider: "not_published"
+      video_provider: "mp4"
+      video_id: "https://assets.lrug.org/videos/2025/september/karl-lingiah-inheriting-gems-lrug-sep-2025.mp4"
     - id: "joel-chippindale-lrug-september-2025"
       title: "Get on the same side of the table"
       event_name: "LRUG September 2025"
@@ -3213,8 +3213,9 @@
         Does this situation sound familiar to you?
 
         In this talk, we will explore how to get unstuck, have more effective discussions with your colleagues, and increase your influence.
-      video_id: "lrug-2025-09-15-get-on-the-same-side-of-the-table"
-      video_provider: "not_published"
+      video_provider: "mp4"
+      video_id: "https://assets.lrug.org/videos/2025/september/joel-chippindale-get-on-the-same-side-of-the-table-lrug-sep-2025.mp4"
+      slides_url: "https://blog.mocoso.co.uk/assets/get-on-the-same-side-of-the-table/get-on-the-same-side-of-the-table-lrug-2025-09.pdf"
 - id: "lrug-october-2025"
   title: "LRUG October 2025"
   event_name: "LRUG October 2025"
@@ -3234,8 +3235,8 @@
         - Harry Lascelles
       description: |-
         An exploration into the world of Software Versioning, with an emphasis on the RubyGems ecosystem. This talk will cover extreme real-world examples from Rubyland and beyond, including code examples, footguns and award winners, as well as tips for developers navigating version management. It will get quite technical, so bring your regex hard hat.
-      video_id: "lrug-2025-10-13-extreme-versioning"
-      video_provider: "not_published"
+      video_provider: "mp4"
+      video_id: "https://assets.lrug.org/videos/2025/october/harry-lascelles-extreme-versioning-lrug-oct-2025.mp4"
     - id: "josh-bebbington-lrug-october-2025"
       title: "De-mystifying the GVL"
       event_name: "LRUG October 2025"
@@ -3245,5 +3246,81 @@
         - Josh Bebbington
       description: |-
         The Global VM Lock is one of Ruby’s more mysterious 'under the hood' features. This talk explores new ways to peer inside it, using Ruby's modern instrumentation to reveal how it actually performs work. I'll demonstrate how we've applied those learnings at Carwow, to optimise the performance and reliability of our Sidekiq workers.
-      video_id: "lrug-2025-10-13-de-mystifying-the-gvl"
+      video_provider: "mp4"
+      video_id: "https://assets.lrug.org/videos/2025/october/josh-bebbington-demystifying-the-gvl-lrug-oct-2025.mp4"
+- id: "lrug-november-2025"
+  title: "LRUG November 2025"
+  event_name: "LRUG November 2025"
+  date: "2025-11-10"
+  announced_at: "2025-10-16 18:00:00 +0000"
+  video_provider: "children"
+  video_id: "lrug-november-2025"
+  description: |-
+    https://lrug.org/meetings/2025/november/
+  talks:
+    - id: "ismael-celis-lrug-november-2025"
+      title: "Durable messaging and related patterns in Ruby, for fun and profit. But mostly just fun."
+      event_name: "LRUG November 2025"
+      date: "2025-11-10"
+      announced_at: "2025-10-16 18:00:00 +0000"
+      speakers:
+        - Ismael Celis
+      description: |-
+        I’ll explore how architecting Ruby apps around a durable message log enables different patterns, from asynchronous processing, to event sourcing and durable execution
+      video_provider: "mp4"
+      video_id: "https://assets.lrug.org/videos/2025/november/ismael-celis-durable-messaging-and-related-patterns-for-fun-and-profit-lrug-nov-2025.mp4"
+    - id: "james-smith-lrug-november-2025"
+      title: "How do you solve a problem like DHH?"
+      event_name: "LRUG November 2025"
+      date: "2025-11-10"
+      announced_at: "2025-10-16 18:00:00 +0000"
+      speakers:
+        - James Smith
+      description: |-
+        In September, DHH, the creator of Rails and community figurehead, wrote a factually incorrect post bemoaning the state of London these days, claiming that it’s no longer “native British”, and promoting far right agitator Tommy Robinson.
+
+        At a time when the far right is rising in the UK, is this the figurehead our community needs? Can we separate technology and political views? Should we?
+
+        This is less of a talk, and more of an opportunity for discussion - does something need to change, and if so, how? And if not, what does that mean for the Ruby and Rails communities?
+      video_provider: "mp4"
+      video_id: "https://assets.lrug.org/videos/2025/november/james-smith-how-do-you-solve-a-problem-like-dhh-lrug-nov-2025.mp4"
+- id: "lrug-december-2025"
+  title: "LRUG December 2025"
+  event_name: "LRUG December 2025"
+  date: "2025-12-08"
+  announced_at: "2025-11-19 21:00:00 +0000"
+  video_provider: "children"
+  video_id: "lrug-december-2025"
+  description: |-
+    https://lrug.org/meetings/2025/december/
+  talks:
+    - id: "eleanor-mchugh-lrug-december-2025"
+      title: "Implementing Software Machines in Ruby"
+      event_name: "LRUG December 2025"
+      date: "2025-12-08"
+      announced_at: "2025-11-19 21:00:00 +0000"
+      speakers:
+        - Eleanor McHugh
+      description: |-
+        This will be a quirky dive into the rudiments of virtual machine and emulator implementation.
+
+        When you're working with Ruby you’re relying on a software machine written by a small but dedicated team of virtual machine enthusiasts. And unless you’ve taken a course in programming language implementation you probably have only a loose idea of what this is, how it works, or how easy it is to write your own machines.
+
+        In this fast-paced introduction I’ll use code written in Ruby to explain the basic building-blocks with which we can model computing machines in software, covering as many of the main architectural features as possible in the time: stacks; heaps; dispatchers; clocks; registers; instruction sets.
+
+        Then I'll put them to a somewhat different use than you might expect.
+
+        This talk contains a lot of code (possibly including a smidgeon of gnarly C) but regardless of you current skill level it will reveal a little of the magic which makes tools like Ruby possible. The examples should also be sufficient to kickstart your own adventures in this fascinating field.
+      video_id: "lrug-2025-12-08-implementing-software-machines-in-ruby"
+      video_provider: "not_published"
+    - id: "yevhenii-kurtov-lrug-december-2025"
+      title: "Distributed Systems' Golden Ratio"
+      event_name: "LRUG December 2025"
+      date: "2025-12-08"
+      announced_at: "2025-11-19 21:00:00 +0000"
+      speakers:
+        - Yevhenii Kurtov
+      description: |-
+        We'll spend our time interactively solving a distributed systems design challenge that will gradually grow in complexity, taking participants on a journey to discover the golden rule of distributed systems design: think globally, act locally.
+      video_id: "lrug-2025-12-08-distributed-systems-golden-ration"
       video_provider: "not_published"
