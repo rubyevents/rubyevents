@@ -115,7 +115,7 @@ Rails.application.routes.draw do
       resources :involvements, only: [:index]
       resources :talks, only: [:index]
       resources :related_talks, only: [:index]
-      resources :events, only: [:index]
+      resources :events, only: [:index, :show]
       resources :videos, only: [:index]
       resources :sponsors, only: [:index]
       resources :cfp, only: [:index]
