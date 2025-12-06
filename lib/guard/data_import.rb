@@ -33,7 +33,7 @@ module Guard
     def import_for_path(path)
       UI.info "File changed: #{path}"
 
-      result = case path
+      case path
       when "data/speakers.yml"
         import_speakers
       when "data/topics.yml"
@@ -59,8 +59,6 @@ module Guard
 
         false
       end
-
-      result
     rescue => e
       UI.error "Error importing #{path}: #{e.message}"
       UI.error e.backtrace.first(5).join("\n")
