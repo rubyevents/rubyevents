@@ -142,6 +142,10 @@
     This talk is about my attempt to achieve this goal in a project to implement RTL VM instructions and JIT in MRI VM. The project can be found on https://github.com/vnmakarov/ruby.
 
     We will talk about the project motivation, goals, and approaches, and the current state of the project. Performance comparison with JRuby, Graal/Truffle Ruby, and OMR Ruby and future directions of the project will be given too.
+  additional_resources:
+    - name: "vnmakarov/ruby"
+      type: "repo"
+      url: "https://github.com/vnmakarov/ruby"
 
 - id: "martin-j-drst-rubykaigi-2017"
   title: "Regular Expressions Inside Out"
@@ -975,6 +979,10 @@
     http://rubykaigi.org/2017/presentations/tanaka_akr.html
 
     Ruby extension library is written in C. C is great because it is fast and easy to access low-level features of OS and CPU. However it is dangerous and error-prone: it is difficult to avoid failures such as integer overflow and buffer overrun. We explain a method to generate C functions verified using Coq proof-assistant with Coq plugins we developed. We can verify safety (absence of failures) and correctness (functions works as expected) in Coq. The generated functions can be used in Ruby extension library. This provides a way to develop trustful Ruby extension library. Supplement material: https://github.com/akr/coq-html-escape
+  additional_resources:
+    - name: "akr/coq-html-escape"
+      type: "repo"
+      url: "https://github.com/akr/coq-html-escape"
 
 - id: "masatoshi-seki-rubykaigi-2017"
   title: "How to write synchronization mechanisms for Fiber"

@@ -26,6 +26,10 @@
     #RubyonRails #Rails #Rails7 #Propshaft #Turbo #Strada #SolidCache #SolidQueue #Kamal #missioncontrol #opensource #RailsWorld
   video_provider: "youtube"
   video_id: "iqXjGiQ_D-A"
+  additional_resources:
+    - name: "rails/propshaft"
+      type: "repo"
+      url: "https://github.com/rails/propshaft"
 
 - id: "jay-ohms-rails-world-2023"
   title: "Strada: Bridging The Web and Native Worlds"
@@ -61,7 +65,7 @@
   description: |-
     A disk cache can hold much more data than a memory one. But is it fast enough?
 
-    At @37signals they built Solid Cache, a database backed ActiveSupport cache, to test this out. Running in production on hey.com, they now cache months' rather than days' of data. 
+    At @37signals they built Solid Cache, a database backed ActiveSupport cache, to test this out. Running in production on hey.com, they now cache months' rather than days' of data.
     \
     The result: emails are 40% faster to display and it costs less to run.
 
@@ -73,6 +77,10 @@
     #RailsWorld #RubyonRails #SolidCache #database #ActiveSupport
   video_provider: "youtube"
   video_id: "wYeVne3aRow"
+  additional_resources:
+    - name: "rails/solid_cache"
+      type: "repo"
+      url: "https://github.com/rails/solid_cache"
 
 - id: "jorge-manrubia-rails-world-2023"
   title: "Making a Difference with Turbo"
@@ -125,6 +133,12 @@
     Thank you Dell APEX for sponsoring the editing and post-production of these videos. Visit them at: https://dell.com/APEX
   video_provider: "youtube"
   video_id: "IR2demNrMwQ"
+  slides_url: "https://speakerdeck.com/kyfast/railsworld-2023-everything-we-learned-the-hard-way-implementing-activerecord-encryption"
+  additional_resources:
+    - name: "False-alert flags will appear in users security log due to a bug in 2FA recovery events"
+      type: "blog-post"
+      title: "False-alert flags will appear in users security log due to a bug in 2FA recovery events"
+      url: "https://github.blog/changelog/2022-08-18-false-alert-flags-will-appear-in-users-security-log-due-to-a-bug-in-2fa-recovery-events/"
 
 # Lunch
 
@@ -139,7 +153,7 @@
   track: "Track 1"
   slides_url: "https://speakerdeck.com/marcoroth/the-future-of-rails-as-a-full-stack-framework-powered-by-hotwire"
   description: |-
-    Hotwire has revolutionized the way we build interactive web applications using Ruby on Rails. In this talk, Marco Roth, the maintainer of Stimulus, StimulusReflex and CableReady, takes an in-depth look at the recent advancements in Hotwire and shares guidance on how to effectively utilize Stimulus, Turbo, and other related frameworks. 
+    Hotwire has revolutionized the way we build interactive web applications using Ruby on Rails. In this talk, Marco Roth, the maintainer of Stimulus, StimulusReflex and CableReady, takes an in-depth look at the recent advancements in Hotwire and shares guidance on how to effectively utilize Stimulus, Turbo, and other related frameworks.
 
     Slides available at: https://speakerdeck.com/marcoroth/the-future-of-rails-as-a-full-stack-framework-powered-by-hotwire
 
@@ -152,6 +166,13 @@
     #RailsWorld #RubyonRails #Hotwire #Turbo #Stimulus #Fullstack
   video_provider: "youtube"
   video_id: "iRjei4nj41o"
+    - name: "hotwire.io"
+      type: "website"
+      url: "https://hotwire.io"
+
+    - name: "marcoroth/hotwire.io"
+      type: "repo"
+      url: "https://github.com/marcoroth/hotwire.io"
 
 - id: "adrianna-chang-rails-world-2023"
   title: "Migrating Shopify's Core Rails Monolith to Trilogy"
@@ -165,7 +186,7 @@
   description: |-
     Trilogy is a client library for MySQL-compatible database servers. It was open sourced along with an Active Record adapter by GitHub this past year. With promises of improved performance, better portability and compatibility, and fewer dependencies, Shopify’s Rails Infrastructure team decided to migrate our core Rails monolith from Mysql2 to Trilogy.
 
-    @shopify Senior Software Developer Adrianna Chang explores why the Trilogy client was built and why Shopify wanted to adopt it. 
+    @shopify Senior Software Developer Adrianna Chang explores why the Trilogy client was built and why Shopify wanted to adopt it.
 
     Links:
     https://rubyonrails.org/
@@ -190,7 +211,7 @@
 
     Telos Labs Software Engineer Alicia Rojas covers exciting stuff such as: caching and providing an offline fallback, how to make your app installable, and performing offline CRUD actions with IndexedDB and Hotwire.
 
-    Note: Most code samples from this talk belong to a case study of an application conceived for rural people living in areas lacking stable internet access, such as farmers and agricultural technicians. 
+    Note: Most code samples from this talk belong to a case study of an application conceived for rural people living in areas lacking stable internet access, such as farmers and agricultural technicians.
 
     Links:
     https://rubyonrails.org/
@@ -210,11 +231,11 @@
   published_at: "2023-10-19"
   track: "Track 2"
   description: |-
-    @Intercominc Staff Engineer Miles McGuire shares the solution they created to ensure that they never “cross the streams” on customer data using ActiveRecord and Rails’ MemCacheStore, as well as the exciting knock-on benefits it offered for observability. 
+    @Intercominc Staff Engineer Miles McGuire shares the solution they created to ensure that they never “cross the streams” on customer data using ActiveRecord and Rails’ MemCacheStore, as well as the exciting knock-on benefits it offered for observability.
 
     Links:
     https://rubyonrails.org/
-    https://api.rubyonrails.org/classes/ActiveSupport/Cache/MemCacheStore.html 
+    https://api.rubyonrails.org/classes/ActiveSupport/Cache/MemCacheStore.html
 
     #RailsWorld #RubyonRails #Rails7 #security #datasecurity #observability #ActiveRecord
   video_provider: "youtube"
@@ -266,13 +287,17 @@
     Other links:
     https://rubyonrails.org/
     https://rubyonrails.org/community
-    https://github.com/rails 
+    https://github.com/rails
     https://hashref.com/
     https://github.com/fxn/zeitwerk
 
     #RailsWorld #RubyonRails #rails #Rails7 #opensource #oss #community #RailsCore #Zeitwerk #rubygem
   video_provider: "youtube"
   video_id: "YTMS1N7jI78"
+  additional_resources:
+    - name: "fxn/zeitwerk"
+      type: "repo"
+      url: "https://github.com/fxn/zeitwerk"
 
 - id: "julia-lpez-rails-world-2023"
   title: "Using Multiple Databases with Active Record"
@@ -293,8 +318,8 @@
 
     Links:
     https://rubyonrails.org/
-    https://guides.rubyonrails.org/active_record_basics.html 
-    https://guides.rubyonrails.org/active_record_multiple_databases.html 
+    https://guides.rubyonrails.org/active_record_basics.html
+    https://guides.rubyonrails.org/active_record_multiple_databases.html
 
     #RubyonRails #Rails #database #ActiveRecord #multipledatabases
   video_provider: "youtube"
@@ -310,7 +335,7 @@
   published_at: "2023-10-19"
   track: "Track 2"
   description: |-
-    Breno Gazzola, Co-Founder & CTO of FestaLab, discusses Propshaft, the heart of the new asset pipeline introduced in Rails 7. 
+    Breno Gazzola, Co-Founder & CTO of FestaLab, discusses Propshaft, the heart of the new asset pipeline introduced in Rails 7.
 
     Rails 7 brought with it an overhauled asset pipeline that delivered a default “no-Node” approach to front end and improved support for modern bundlers like esbuild. This is great for developers as we are constantly searching for ways to make the development process more pleasant and to deliver better user experiences.
 
@@ -328,6 +353,25 @@
     #RailsWorld #RubyonRails #rails #Rails7 #opensource #propshaft #asssetpipeline #Rubygem
   video_provider: "youtube"
   video_id: "yFgQco_ccgg"
+  additional_resources:
+    - name: "rails/propshaft"
+      type: "repo"
+      url: "https://github.com/rails/propshaft"
+
+    - name: "Upgrading Guide"
+      title: "Upgrading Guide"
+      type: "repo"
+      url: "https://github.com/rails/propshaft/blob/main/UPGRADING.md"
+
+    - name: "Introducing Propshaft"
+      title: "Introducing Propshaft"
+      type: "link"
+      url: "https://world.hey.com/dhh/introducing-propshaft-ee60f4f6"
+
+    - name: "Guide to Rails 7 and the Asset Pipeline"
+      title: "Guide to Rails 7 and the Asset Pipeline"
+      type: "link"
+      url: "https://discuss.rubyonrails.org/t/guide-to-rails-7-and-the-asset-pipeline/80851"
 
 - id: "eileen-m-uchitelle-rails-world-2023"
   title: "Keynote: The Magic of Rails"
@@ -340,7 +384,7 @@
   track: "Track 1"
   slides_url: "https://speakerdeck.com/eileencodes/rails-world-2023-day-1-closing-keynote-the-magic-of-rails"
   description: |-
-    Rails Core member and @shopify Senior Staff Software Engineer Eileen Uchitelle explores the magic of Rails in her keynote at Rails World. From taking a look at the philosophy behind the framework to exploring some of the common patterns that Rails uses to build agnostic and beautiful interfaces, Eileen helps you navigate the Rails codebase to better understand the patterns it uses to create the framework we all know and love. 
+    Rails Core member and @shopify Senior Staff Software Engineer Eileen Uchitelle explores the magic of Rails in her keynote at Rails World. From taking a look at the philosophy behind the framework to exploring some of the common patterns that Rails uses to build agnostic and beautiful interfaces, Eileen helps you navigate the Rails codebase to better understand the patterns it uses to create the framework we all know and love.
 
     But Rails is so much more than its design and architecture. Eileen also shares her motivation for working on the framework and why the community is so important to the long term success of Rails.
 
@@ -348,7 +392,7 @@
 
     Other links:
     https://rubyonrails.org/
-    https://github.com/rails 
+    https://github.com/rails
     https://rubyonrails.org/community
 
     #RailsWorld #RubyonRails #rails #Rails7 #opensource #oss #community #RailsCore
@@ -377,11 +421,11 @@
   date: "2023-10-06"
   track: "Track 1"
   description: |-
-    Ten of the current 12 Rails Core members sat down to answer questions submitted by the Rails World audience in Amsterdam, such as: How do they decide on which features to add? How should Rails evolve in the future? What does it take to join the Core team? 
+    Ten of the current 12 Rails Core members sat down to answer questions submitted by the Rails World audience in Amsterdam, such as: How do they decide on which features to add? How should Rails evolve in the future? What does it take to join the Core team?
 
     Rails Core members present were: Aaron Patterson, Carlos Antonio Da Silva, David Heinemeier Hansson, Eileen M. Uchitelle, Jean Boussier, Jeremy Daer, John Hawthorn, Matthew Draper, Rafael Mendonça França, and Xavier Noria.
 
-    Hosted by @Planetargon founder and CEO @RobbyRussell. 
+    Hosted by @Planetargon founder and CEO @RobbyRussell.
 
     Links:
     https://rubyonrails.org/community
@@ -417,7 +461,7 @@
 
     Links:
     https://rubyonrails.org/
-    https://rubyonrails.org/2023/10/5/Rails-7-1-0-has-been-released 
+    https://rubyonrails.org/2023/10/5/Rails-7-1-0-has-been-released
 
     #RailsWorld #RubyonRails #Rails7 #opensource #OSS #Rails #ActiveRecord #ActiveStorage #ActiveSupport
   video_provider: "youtube"
@@ -434,7 +478,7 @@
   track: "Track 2"
   slides_url: "https://blog.peterzhu.ca/assets/rails_world_2023_slides.pdf"
   description: |-
-    The Ruby garbage collector is a highly configurable component of Ruby. However, it’s a black box to most Rails developers. 
+    The Ruby garbage collector is a highly configurable component of Ruby. However, it’s a black box to most Rails developers.
 
     In this talk, @shopify Senior Developer & member of the Ruby Core team Peter Zhu shows you how Ruby's garbage collector works, ways to collect garbage collector metrics, how Shopify sped up their highest traffic app, Storefront Renderer, by 13%, and finally, introduces Autotuner, a new tool designed to help you tune the garbage collector of your Rails app.
 
@@ -450,6 +494,20 @@
     #RailsWorld #RubyonRails #rails #rubygarbagecollection #autotuner
   video_provider: "youtube"
   video_id: "IcN7yFTS8jY"
+  additional_resources:
+    - name: "shopify/autotuner"
+      type: "repo"
+      url: "https://github.com/shopify/autotuner"
+
+    - name: "Blog Post"
+      type: "blog"
+      title: "Garbage Collection in Ruby"
+      url: "https://blog.peterzhu.ca/notes-on-ruby-gc/"
+
+    - name: "Blog Post"
+      type: "blog"
+      title: "Adventures in Garbage Collection: Improving GC Performance in our Massive Monolith"
+      url: "https://shopify.engineering/adventures-in-garbage-collection"
 
 - id: "mike-dalessio-rails-world-2023"
   title: "Rails::HTML5: The Strange and Remarkable Three-Year Journey"
@@ -471,11 +529,15 @@
     Links:
     https://rubyonrails.org/
     https://github.com/rails/rails-html-sanitizer
-    https://api.rubyonrails.org/classes/ActionView/Helpers/SanitizeHelper.html 
+    https://api.rubyonrails.org/classes/ActionView/Helpers/SanitizeHelper.html
 
     #RailsWorld #RubyonRails #rails #Rails7 #opensource #security #HTML5 #nokogiri #libgumbo #actionview
   video_provider: "youtube"
   video_id: "USPLEASZ0Dc"
+  additional_resources:
+    - name: "rails/rails-html-sanitizer"
+      type: "repo"
+      url: "https://github.com/rails/rails-html-sanitizer"
 
 - id: "jenny-shen-rails-world-2023"
   title: "Demystifying the Ruby Package Ecosystem"
@@ -526,7 +588,7 @@
 
     Links:
     https://rubyonrails.org/
-    https://masilotti.com/ 
+    https://masilotti.com/
 
     #RailsWorld #RubyonRails #rails #turbo #turbonative #ios #swift #xcode
   video_provider: "youtube"
@@ -569,7 +631,7 @@
   track: "Track 1"
   slides_url: "https://speakerdeck.com/palkan/railsworld-2023-untangling-cables-and-demystifying-twisted-transistors"
   description: |-
-    More and more Rails applications adopt real-time features, and it’s not surprising - Action Cable and Hotwire brought development experience to the next level regarding dealing with WebSockets. You need zero knowledge of the underlying tech to start crafting a new masterpiece of web art. 
+    More and more Rails applications adopt real-time features, and it’s not surprising - Action Cable and Hotwire brought development experience to the next level regarding dealing with WebSockets. You need zero knowledge of the underlying tech to start crafting a new masterpiece of web art.
 
     However, you will need this knowledge later to deal with ever-sophisticated feature requirements and security and scalability concerns. @evil.martians Cable Engineer Vladimir Dementyev helps you understand Rails’ real-time component, Action Cable so you can work with it efficiently and confidently.
 
@@ -711,7 +773,7 @@
   published_at: "2023-10-18"
   track: "Track 1"
   description: |-
-    What would development be like if Rails had tight integration with Language Servers? Rails Core member and Shopify Senior Staff Engineer Aaron Patterson takes a look at how language servers work, how we can improve language server support in Rails, and how this will increase our productivity as Rails developers. 
+    What would development be like if Rails had tight integration with Language Servers? Rails Core member and Shopify Senior Staff Engineer Aaron Patterson takes a look at how language servers work, how we can improve language server support in Rails, and how this will increase our productivity as Rails developers.
 
     #RailsWorld #RubyonRails #Rails #languageserver #LSP #opensource
 

@@ -223,6 +223,10 @@
       thumbnail_xl: "https://secure.meetupstatic.com/photos/event/4/c/1/c/600_518599484.webp?w=750"
       description: |-
         Yannis opened the session with an introduction to [i18n-tasks](https://github.com/glebm/i18n-tasks), a vital gem for Rails developers dealing with internationalization. This tool simplifies managing translations by identifying missing or unused keys and generating translation files directly from the source code, ensuring that your app speaks every user's language fluently.
+      additional_resources:
+        - name: "glebm/i18n-tasks"
+          type: "repo"
+          url: "https://github.com/glebm/i18n-tasks"
 
     - title: "standard & danger"
       event_name: "Geneva.rb February 2024"
@@ -242,6 +246,14 @@
         Olivier shared a Gemfile structuring tip for enhancing team collaboration. By dividing the Gemfile, teams can have a shared dependency list plus individual `Gemfile.local` for personal tools.
 
         He spotlighted https://github.com/testdouble/standard, a RuboCop-based gem for consistent coding styles, and https://github.com/danger/danger, which automates code reviews by pre-screening pull requests. These gems streamline workflow and ensure code quality.
+      additional_resources:
+        - name: "testdouble/standard"
+          type: "repo"
+          url: "https://github.com/testdouble/standard"
+
+        - name: "danger/danger"
+          type: "repo"
+          url: "https://github.com/danger/danger"
 
     - title: "flipper & Stripe webhooks"
       event_name: "Geneva.rb February 2024"
@@ -261,6 +273,14 @@
         Ben's contribution focused on the https://github.com/jnunemaker/flipper gem, particularly its ability to manage feature flags, enabling developers to toggle features on and off in production. This approach allows for safer testing and incremental feature releases.
 
         He also shared insights into testing Stripe webhooks effectively within Rails apps, leveraging stripe test clocks (https://stripe.com/docs/billing/testing/test-clocks) for time manipulation during tests.
+      additional_resources:
+        - name: "jnunemaker/flipper"
+          type: "repo"
+          url: "https://github.com/jnunemaker/flipper"
+
+        - name: "Stripe Test Clocks"
+          type: "documentation"
+          url: "https://stripe.com/docs/billing/testing/test-clocks"
 
     - title: "strong_migrations, scenic & fx"
       event_name: "Geneva.rb February 2024"
@@ -280,6 +300,22 @@
         Jean-Charles focused on database tools. https://github.com/ankane/strong_migrations guards against dangerous migrations by detecting and preventing them. https://github.com/scenic-views/scenic and https://github.com/teoljungberg/fx help manage database views and functions, ensuring that database schema changes are seamless and safe.
 
         He also recommended the RailsConf talk "rails db:migrate:even_safer" (https://www.youtube.com/watch?v=uMcRCSiNzuc or https://www.rubyevents.org/talks/rails-db-migrate-even_safer) by Matt Duszynski for a dive into safe migration practices.
+      additional_resources:
+        - name: "ankane/strong_migrations"
+          type: "repo"
+          url: "https://github.com/ankane/strong_migrations"
+
+        - name: "scenic-views/scenic"
+          type: "repo"
+          url: "https://github.com/scenic-views/scenic"
+
+        - name: "teoljungberg/fx"
+          type: "repo"
+          url: "https://github.com/teoljungberg/fx"
+
+        - name: 'RailsConf talk "rails db:migrate:even_safer"'
+          type: "link"
+          url: "https://www.rubyevents.org/talks/rails-db-migrate-even_safer"
 
     - title: "pghero"
       event_name: "Geneva.rb February 2024"
@@ -297,6 +333,10 @@
       thumbnail_xl: "https://secure.meetupstatic.com/photos/event/4/c/1/c/600_518599484.webp?w=750"
       description: |-
         Alexis presented https://github.com/ankane/pghero, a comprehensive tool for PostgreSQL database monitoring. It shines a light on slow queries, suggests indexes, and provides a wealth of information on database performance, helping developers keep their databases efficient and responsive.
+      additional_resources:
+        - name: "ankane/pghero"
+          type: "repo"
+          url: "https://github.com/ankane/pghero"
 
 - id: "geneva-rb-march-2024-1"
   title: "Geneva.rb March 2024"
