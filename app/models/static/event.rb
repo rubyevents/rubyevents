@@ -148,23 +148,23 @@ module Static
       Time.at(0)
     end
 
+    def static_series
+      @static_series ||= Static::EventSeries.find_by_slug(series_slug)
+    end
+
     def import!
-      event_series = ::EventSeries.find_by(slug: series_slug)
-
-      raise "EventSeries '#{series_slug}' not found. Import series first." unless event_series
-
       event = ::Event.find_or_create_by(slug: slug)
 
       event.update!(
         name: title,
         date: attributes["date"] || published_at,
         date_precision: date_precision || "day",
-        series: event_series,
+        series: static_series.event_series_record,
         website: website,
-        country_code: event.static_metadata.country&.alpha2,
-        start_date: event.static_metadata.start_date,
-        end_date: event.static_metadata.end_date,
-        kind: event.static_metadata.kind
+        country_code: country&.alpha2,
+        start_date: start_date,
+        end_date: end_date,
+        kind: kind
       )
 
       event.sync_aliases_from_list(aliases) if aliases.present?

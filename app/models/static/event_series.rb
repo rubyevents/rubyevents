@@ -15,14 +15,14 @@ module Static
     end
 
     def slug
-      @slug ||= begin
-        return attributes["slug"] if attributes["slug"].present?
-
-        File.basename(File.dirname(__file_path))
-      end
+      @slug ||= File.basename(File.dirname(__file_path))
     end
 
-    def import!
+    def event_series_record
+      @event_series_record ||= ::EventSeries.find_by(slug: slug) || import_series!
+    end
+
+    def import_series!
       event_series = ::EventSeries.find_or_initialize_by(slug: slug)
 
       event_series.update!(
@@ -39,17 +39,17 @@ module Static
 
       event_series.sync_aliases_from_list(aliases) if aliases.present?
 
-      events.each(&:import!)
-
       event_series
+    end
+
+    def import!
+      import_series!
+      events.each(&:import!)
+      event_series_record
     end
 
     def events
       @events ||= Static::Event.all.select { |event| event.series_slug == slug }
-    end
-
-    def __file_path
-      attributes["__file_path"]
     end
   end
 end
