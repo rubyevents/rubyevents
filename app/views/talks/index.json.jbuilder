@@ -1,5 +1,4 @@
 json.talks @talks do |talk|
-  json.slug talk.slug
   json.title talk.title
   json.video_id talk.video_id
   json.video_provider talk.video_provider
@@ -10,15 +9,19 @@ json.talks @talks do |talk|
   json.url talk_url(talk)
   json.video_id talk.video_id
   json.video_provider talk.video_provider
+  json.slug talk.slug
+  json.static_id talk.static_id
 
   json.event do
     json.slug talk.event&.slug
     json.name talk.event&.name
+    json.url event_url(talk.event)
   end
 
   json.speakers talk.speakers do |speaker|
     json.slug speaker.slug
     json.name speaker.name
+    json.url profile_url(speaker)
   end
 end
 
