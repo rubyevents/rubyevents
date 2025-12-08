@@ -201,11 +201,6 @@ module Static
       return unless event.videos_file?
 
       event.videos_file.each do |talk_data|
-        if talk_data["title"].blank? || Static::IgnoredVideo.where(video_id: talk_data["video_id"]).exists?
-          puts "Ignored video: #{talk_data["raw_title"]}"
-          next
-        end
-
         talk = ::Talk.find_or_initialize_by(static_id: talk_data["id"])
         talk.update_from_yml_metadata!(event: event)
 

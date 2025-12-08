@@ -106,7 +106,7 @@ module Static
     end
 
     def import!(event: nil, parent_talk: nil)
-      if title.blank? || ignored?
+      if title.blank?
         puts "Ignored video: #{raw_title}"
         return nil
       end
@@ -127,10 +127,6 @@ module Static
     rescue ActiveRecord::RecordInvalid => e
       puts "Couldn't save: #{title} (#{id}), error: #{e.message}"
       nil
-    end
-
-    def ignored?
-      Static::IgnoredVideo.where(video_id: video_id).exists?
     end
 
     def find_event

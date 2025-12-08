@@ -38,8 +38,6 @@ module Guard
         import_speakers
       when "data/topics.yml"
         import_topics
-      when "data/videos_to_ignore.yml"
-        reload_ignored_videos
       when %r{^data/([^/]+)/series\.yml$}
         import_series($1)
       when %r{^data/([^/]+)/([^/]+)/event\.yml$}
@@ -74,11 +72,6 @@ module Guard
     def import_topics
       UI.info "Importing all topics..."
       run_rails_runner("Static::Topic.import_all!")
-    end
-
-    def reload_ignored_videos
-      UI.info "Reloading ignored videos list..."
-      run_rails_runner("Static::IgnoredVideo.reload")
     end
 
     def import_series(series_slug)
