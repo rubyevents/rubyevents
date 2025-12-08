@@ -20,7 +20,7 @@ def fetch_talks
     response = Net::HTTP.get(uri)
     parsed_response = JSON.parse(response)
 
-    talks.concat(parsed_response["talks"].map { |talk| talk.slice(static_id", "slug", "title", "video_id", "video_provider") })
+    talks.concat(parsed_response["talks"].map { |talk| talk.slice("static_id", "slug", "title", "video_id", "video_provider") })
     current_page += 1
     break if parsed_response.dig("pagination", "next_page").nil?
   end
