@@ -5,7 +5,7 @@ class Avo::Resources::User < Avo::BaseResource
     if id.is_a?(Array)
       (id.first.to_i == 0) ? query.where(slug: id) : query.where(id: id)
     else
-      (id.to_i == 0) ? query.find_by_slug(id) : query.find(id)
+      (id.to_i == 0) ? (query.find_by_slug_or_alias(id) || query.find_by_github_handle(id)) : query.find(id)
     end
   }
   self.search = {

@@ -48,6 +48,15 @@ class TalksControllerTest < ActionDispatch::IntegrationTest
   test "should redirect to talks for wrong slugs" do
     get talk_url("wrong-slug")
     assert_response :moved_permanently
+    assert_redirected_to talks_path
+  end
+
+  test "should redirect to correct talk slug when accessed via alias" do
+    @talk.aliases.create!(name: "Old Title", slug: "old-talk-slug")
+
+    get talk_url("old-talk-slug")
+    assert_response :moved_permanently
+    assert_redirected_to talk_path(@talk)
   end
 
   test "should get edit" do
@@ -138,8 +147,8 @@ class TalksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index with created_after" do
-    talk = Talk.create!(title: "test", description: "test", date: "2023-01-01", created_at: "2023-01-01", video_provider: "youtube")
-    talk_2 = Talk.create!(title: "test 2", description: "test", date: "2025-01-01", created_at: "2025-01-01", video_provider: "youtube")
+    talk = Talk.create!(title: "test", description: "test", date: "2023-01-01", created_at: "2023-01-01", video_provider: "youtube", static_id: "test-created-after-2023")
+    talk_2 = Talk.create!(title: "test 2", description: "test", date: "2025-01-01", created_at: "2025-01-01", video_provider: "youtube", static_id: "test-created-after-2025")
 
     get talks_url(created_after: "2024-01-01")
     assert_response :success

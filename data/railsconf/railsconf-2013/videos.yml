@@ -6,13 +6,14 @@
 
 # https://ericbrooke.blog/2013/04/30/ruby-on-rails-conference/
 ---
-- title: "Using Elasticsearch with Rails Apps"
+- id: "brian-gugliemetti-railsconf-2013"
+  title: "Using Elasticsearch with Rails Apps"
   raw_title: "Rails Conf 2013 Using Elasticsearch with Rails Apps by Brian Gugliemetti"
   speakers:
     - Brian Gugliemetti
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-24"
   description: |-
     Elasticsearch is a powerful text search engine that's easy to configure and to integrate into your Rails and Ruby applications. But it's more than just a general text search engine--elasticsearch stores data in JSON format allowing for faceting and complex searches. There are gems that integrate it with ActiveRecord, but it can also be used easily outside of ActiveRecord. Learn from the real-world application of elasticsearch for general text searches to specific catalog-type searches.
 
@@ -20,50 +21,54 @@
   video_provider: "youtube"
   video_id: "U-LrUN6jal8"
 
-- title: "Rails' Insecure Defaults"
+- id: "bryan-helmkamp-railsconf-2013"
+  title: "Rails' Insecure Defaults"
   raw_title: "Rails Conf 2013 Rails' Insecure Defaults by Bryan Helmkamp"
   speakers:
     - Bryan Helmkamp
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-19"
   description: |-
     Out of the box, Rails provides facilities for preventing attacks like SQL injection, cross-site scripting (XSS), cross-site request forgery (CSRF), and more. As a result, it's considered one of the most secure web application frameworks available.
     Digging deeper, however, you can find a number of places where Rails' default behavior is not as secure as it could be. This talk will focus on longstanding, known weak spots that create risks for your application and business if you are not aware of them.
   video_provider: "youtube"
   video_id: "4MCfEb0R7ow"
 
-- title: "Patterns of Basecamp's Application Architecture"
+- id: "david-heinemeier-hansson-railsconf-2013"
+  title: "Patterns of Basecamp's Application Architecture"
   raw_title: "Rails Conf 2013 Patterns of Basecamp's Application Architecture by David Heinemeier Hansson"
   speakers:
     - David Heinemeier Hansson
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-19"
   description: ""
   video_provider: "youtube"
   video_id: "yhseQP52yIY"
 
-- title: "Security is hard, but we can't go shopping"
+- id: "andr-arko-railsconf-2013"
+  title: "Security is hard, but we can't go shopping"
   raw_title: "Rails Conf 2013 Security is hard, but we can't go shopping by André Arko"
   speakers:
     - André Arko
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-19"
   description: |-
     The last few months have been pretty brutal for anyone who depends on Ruby libraries in production. Ruby is really popular now, and that's exciting! But it also means that we are now square in the crosshairs of security researchers, whether whitehat, blackhat, or some other hat. Only the Ruby and Rails core teams have meaningful experience with vulnerabilites so far. It won't last. Vulnerabilities are everywhere, and handling security issues responsibly is critical if we want Ruby (and Rubyists) to stay in high demand.
     Using Bundler's first CVE as a case study, I'll discuss responsible disclosure, as well as repsonsible ownership of your own code. How do you know if a bug is a security issue, and how do you report it without tipping off someone malicious? As a Rubyist, you probably have at least one library of your own. How do you handle security issues, and fix them without compromising apps running on the old code? Don't let your site get hacked, or worse yet, let your project allow someone else's site to get hacked! Learn from the hard-won wisdom of the security community so that we won't repeat the mistakes of others.
   video_provider: "youtube"
   video_id: "tV7IPygjseI"
 
-- title: "Nobody will Train You but You"
+- id: "zach-briggs-railsconf-2013"
+  title: "Nobody will Train You but You"
   raw_title: "Rails Conf 2013 Nobody will Train You but You by Zach Briggs"
   speakers:
     - Zach Briggs
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-19"
   description: |-
     Why do we all know a developer who has been pounding out unmaintainable code for a decade or more? Why do people "believe in TDD but I don't have time to write tests during crunch?" How is it that we have an entire industry based around rescuing teams from acutely awful Rails apps?
     It's because on the job experience is a poor teacher; plateauing as soon as the developer is able to ship code that meets requirements. Schools teach Computer Science which is only tangentially related to being a developer and most kata's are approached incorrectly, giving no value at best, and reinforcing poor practices at worst. On top of all this, our pairs (for the lucky ones who pair program) probably have not shown us anything new in months.
@@ -71,13 +76,14 @@
   video_provider: "youtube"
   video_id: "-0yajJLVbzw"
 
-- title: "How Shopify Scales Rails"
+- id: "john-duff-railsconf-2013"
+  title: "How Shopify Scales Rails"
   raw_title: "Rails Conf 2013 How Shopify Scales Rails by John Duff"
   speakers:
     - John Duff
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-19"
   description: |-
     Tobias Lutke wrote the first line of code for Shopify nearly 10 years ago to power his own Snowboard shop. Two years later Shopify launched to the public on a single webserver using Rails 0.13.1. Today Shopify powers over 40k online stores and processes up to half a million product sales per day across the platform. Over 30 people actively work on Shopify which makes it the longest developed and likely largest Rails code base out there.
     This is the story of how Shopify has evolved to handle its immense growth over the years. This is what getting big is all about: evolving to meet the needs of your customers. You don't start out with a system and infrastructure that can handle a billion dollar in GMV. You evolve to it. You evolve by adding caching layers, hardware, queuing systems and splitting your application to services.
@@ -85,7 +91,8 @@
   video_provider: "youtube"
   video_id: "xh4GPjCmmbY"
 
-- title: "Automation in Deployment on Hybrid Hosting and Private Cloud Environments"
+- id: "fletcher-nicol-railsconf-2013"
+  title: "Automation in Deployment on Hybrid Hosting and Private Cloud Environments"
   raw_title: "Rails Conf 2013 Automation in Deployment on Hybrid Hosting and Private Cloud Environments"
   speakers:
     - Fletcher Nicol # Host
@@ -96,44 +103,47 @@
     - Eric Lindvall
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-19"
   description: |-
     In a world of public and private clouds, API-driven load balancers, and bare metal servers there has never been more choice when building your next scalable killer application. As the complexity of your application's deployment environment increases, the economics of automation start to pay off. In this session we'll discuss the challenges facing complex application deployments, strategies to make development environments mirror production, and how you can manage architectural changes with your application over time. Automate all the things? Let's find out!
   video_provider: "youtube"
   video_id: "11eqsPfEbr8"
 
-- title: "The War For Talent: How To Succeed As an Employer or Engineer"
+- id: "allan-grant-railsconf-2013"
+  title: "The War For Talent: How To Succeed As an Employer or Engineer"
   raw_title: "Rails Conf 2013 The War For Talent: How To Succeed As an Employer or Engineer by Allan Grant"
   speakers:
     - Allan Grant
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-19"
   description: ""
   video_provider: "youtube"
   video_id: "9L_jiJddLPo"
 
-- title: "Monitoring the Health of Your App"
+- id: "carl-lerche-railsconf-2013"
+  title: "Monitoring the Health of Your App"
   raw_title: "Rails Conf 2013 Monitoring the Health of Your App by Carl Lerche and Yehuda Katz"
   speakers:
     - Carl Lerche
     - Yehuda Katz
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-19"
   description: |-
     Your app is your business, so keeping it healthy is important. Unfortunately, most of the tools available today are more like your doctor verifying the fact that you've had a heart attack—after it's happened.
     You can do better. In this session, you'll learn how to use metrics to be more proactive about monitoring your applications health, and to suss out the subtle but important warning signs that can help you prioritize developer time and improve the developer experience. We'll talk about how to instrument your code, what to measure, how to interpret the data, as well as how you can use the data to streamline your development process.
   video_provider: "youtube"
   video_id: "--uFArE8YUk"
 
-- title: "Real-Time Rails"
+- id: "brian-cardarella-railsconf-2013"
+  title: "Real-Time Rails"
   raw_title: "RailsConf 2013 Real-Time Rails by Brian Cardarella"
   speakers:
     - Brian Cardarella
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-17"
   description: |-
     The future is real time! With the Rails 4.0 Live Streaming API we finally have the ability to easily add real time functionality to our apps. Learn all about the live streaming API, how best to take advantage of this in the browser, and how to deploy a real-time ready Rails app. Get ready to open your apps to a whole new world of interaction and functionality. Topics we will cover:
     * Live Streaming API
@@ -145,50 +155,54 @@
   video_provider: "youtube"
   video_id: "fOI3EjsUEww"
 
-- title: "Ruby Libraries Important for Rails"
+- id: "michael-hartl-railsconf-2013"
+  title: "Ruby Libraries Important for Rails"
   raw_title: "Rails Conf 2013 Ruby Libraries Important for Rails by Michael Hartl"
   speakers:
     - Michael Hartl
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-23"
   description: |-
     This talk+workshop highlights some Ruby libraries that are particularly useful when developing Rails applications. In the talk portion, we'll give an overview of some specific classes and modules, and then in the workshop we'll break into groups to dive deeper into libraries of each participant's choice, with a focus on developing the skills needed to read and understand the Ruby documentation. Time and interest permitting, we'll incorporate test-driven development into our investigations.
   video_provider: "youtube"
   video_id: "noWORpSTQGE"
 
-- title: "Testing Complex Systems: Creating data and limiting scope"
+- id: "noel-rappin-railsconf-2013"
+  title: "Testing Complex Systems: Creating data and limiting scope"
   raw_title: "Rails Conf 2013 Testing Complex Systems: Creating data and limiting scope by Noel Rappin"
   speakers:
     - Noel Rappin
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-23"
   description: |-
     In this workshop, we'll focus on two specific problems that plague testing complex systems: how do I create useful test data, and how do I limit my test to only the part of the system that I want tested. We'll cover data creation tools like factories and fixtures. We will also talk about how to effectively use mock objects. And we'll do all that against some code that shows off potental testing problems.
   video_provider: "youtube"
   video_id: "RdTt9kA-O5Q"
 
-- title: "TDD Workshop: Mocking, Stubbing, and Faking External Services"
+- id: "harlow-ward-railsconf-2013"
+  title: "TDD Workshop: Mocking, Stubbing, and Faking External Services"
   raw_title: "Rails Conf 2013 TDD Workshop: Mocking, Stubbing, and Faking External Services"
   speakers:
     - Harlow Ward
     - Adarsh Pandit
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-23"
   description: ""
   video_provider: "youtube"
   video_id: "8368hGNIJMQ"
 
-- title: "TDD Workshop: Outward-in Development, Unit Tests, and Fixture Data"
+- id: "harlow-ward-railsconf-2013-tdd-workshop-outward-in-develo"
+  title: "TDD Workshop: Outward-in Development, Unit Tests, and Fixture Data"
   raw_title: "Rails Conf 2013 TDD Workshop: Outward-in Development, Unit Tests, and Fixture Data"
   speakers:
     - Harlow Ward
     - Adarsh Pandit
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-23"
   description: |-
     thoughtbot are creators of the open-sourced testing tools FactoryGirl and Shoulda Matchers.
     We recognize Test-Driven Development (TDD) can be difficult to practice as features increase in complexity. Testing is often skipped when developers feel uncomfortable with TDD or have not yet seen certain approaches in practice.
@@ -196,13 +210,14 @@
   video_provider: "youtube"
   video_id: "sj5TXzgZ1Sk"
 
-- title: "Postgres, the Best Tool You're Already Using"
+- id: "adam-sanderson-railsconf-2013"
+  title: "Postgres, the Best Tool You're Already Using"
   raw_title: "Rails Conf 2013 Postgres, the Best Tool You're Already Using by Adam Sanderson"
   speakers:
     - Adam Sanderson
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-23"
   description: |-
     Your fledgling social network for hedgehogs is starting to gain traction, but now new feature requests are pouring in. How you can you meet the demands of an ambitious product team within your existing stack? There's no time to waste, so we will look at how to leverage the venerable Postgres workhorse.
     We will look at some of Postgres' unique features that lend themselves to solving the problems Rails developers face when moving from v1 products to v2 and beyond. We will focus on SQL and ActiveRecord, and talk about pragmatic solutions to hairy problems. Get practical, hands-on advice about using Postgres with ActiveRecord to support tagging, model hierarchical data, store arbitrary metadata, and add full text search to your application.
@@ -210,13 +225,14 @@
   video_provider: "youtube"
   video_id: "YWj8ws6jc0g"
 
-- title: "Designing great APIs: Learning from Jony Ive, Orwell, and the Kano Model"
+- id: "jon-dahl-railsconf-2013"
+  title: "Designing great APIs: Learning from Jony Ive, Orwell, and the Kano Model"
   raw_title: "Rails Conf 2013 Designing great APIs: Learning from Jony Ive, Orwell, and the Kano Model"
   speakers:
     - Jon Dahl
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-23"
   description: |-
     By Jon Dahl
 
@@ -225,13 +241,14 @@
   video_provider: "youtube"
   video_id: "RfueDq8-Wwg"
 
-- title: "Introducing Brainstem, your companion for rich Rails APIs"
+- id: "andrew-cantino-railsconf-2013"
+  title: "Introducing Brainstem, your companion for rich Rails APIs"
   raw_title: "Rails Conf 2013 Introducing Brainstem, your companion for rich Rails APIs"
   speakers:
     - Andrew Cantino
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-23"
   description: |-
     Backbone applications.
     All of this is designed to reduce network requests and simplify development of HTML5 applications, especially mobile ones. With Backbone + Brainstem, loading a hierarchy of objects from your server can be reduced to one line of code and one network request.
@@ -239,25 +256,27 @@
   video_provider: "youtube"
   video_id: "MDNbcpHrVJk"
 
-- title: "Split Testing for Product Discovery"
+- id: "bryan-woods-railsconf-2013"
+  title: "Split Testing for Product Discovery"
   raw_title: "Rails Conf 2013 Split Testing for Product Discovery by Bryan Woods"
   speakers:
     - Bryan Woods
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-22"
   description: |-
     In this talk, we'll explore split testing as a way to not only increase revenue and conversion through simple, surface-level changes, but also to dig deeper in order to help guide a product's roadmap by discovering which features customers really want and how much they're willing to pay.
   video_provider: "youtube"
   video_id: "5hgNaSVDkEs"
 
-- title: "How to Write Documentation for People That Don't Read"
+- id: "kevin-burke-railsconf-2013"
+  title: "How to Write Documentation for People That Don't Read"
   raw_title: "Rails Conf 2013 How to Write Documentation for People That Don't Read"
   speakers:
     - Kevin Burke
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-22"
   description: |-
     Usability researchers have known for years that people browsing the Internet
     don't read things word by word - they scan pages for the content they want. Yet
@@ -274,13 +293,14 @@
   video_provider: "youtube"
   video_id: "cC67PzBgRYE"
 
-- title: "Delicious Controversy: Docs & Tests"
+- id: "thomas-meeks-railsconf-2013"
+  title: "Delicious Controversy: Docs & Tests"
   raw_title: "Rails Conf 2013 Delicious Controversy: Docs & Tests by Thomas Meeks"
   speakers:
     - Thomas Meeks
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-22"
   description: |-
     Self-documenting code is a pipe dream. TDD (or BDD) is not the panacea of testing. In the pursuit of test coverage we've forgotten what really matters: getting things done. Lets talk about putting documentation and testing into their proper place. Tools that ease maintenance, help other developers join a project, and reduce bugs.
     I'm going to go over lessons learned in writing, maintaining, and introducing new developers to 20,000 lines of code. Specifically, how we are testing, documenting, and refactoring our code to stay sane, make the team happier, and get more done.
@@ -288,13 +308,14 @@
   video_provider: "youtube"
   video_id: "9md-GTF_Th8"
 
-- title: "What Ruby Developers Can Learn From Go"
+- id: "lionel-barrow-railsconf-2013"
+  title: "What Ruby Developers Can Learn From Go"
   raw_title: "Rails Conf 2013 What Ruby Developers Can Learn From Go by Lionel Barrow"
   speakers:
     - Lionel Barrow
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-22"
   description: |-
     Go has rapidly built a reputation as a great language for web development. But as Rails developers, we already have a really, really great language for web development -- why should we be interested in Go?
     I'm convinced that every web developer would benefit from exposure to the Go approach to programming, which places a strong emphasis on up-front error handling and modular, namespaced libraries. Let's sit down and compare some code!
@@ -310,13 +331,14 @@
   video_provider: "youtube"
   video_id: "-zz-byus8DA"
 
-- title: "Sleeping with the enemy.."
+- id: "george-brocklehurst-railsconf-2013"
+  title: "Sleeping with the enemy.."
   raw_title: "Rails Conf 2013 Sleeping with the enemy.. by George Brocklehurst"
   speakers:
     - George Brocklehurst
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-22"
   description: |-
     In this session we'll go off the Rails and take a look at what our Pythonista cousins are doing with Django.
     I'll start with some live coding: recreating DHH's infamous 15 minute blog demo using Django and explaining the building blocks of a Django app along the way. I'll then take that app and use it to look at some design decisions Django makes, and how they compare to Rails. You'll see convention over configuration in places you didn't expect it, why Django doesn't need attr_accessible or strong parameters, and how the template method pattern could change your life.
@@ -325,39 +347,42 @@
   video_provider: "youtube"
   video_id: "K6sRwQuWNLg"
 
-- title: "Cache=Cash!"
+- id: "stefan-wintermeyer-railsconf-2013"
+  title: "Cache=Cash!"
   raw_title: "Rails Conf 2013 Cache=Cash! by Stefan Wintermeyer"
   speakers:
     - Stefan Wintermeyer
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-22"
   description: |-
     Snappiness is an important key for any successful webpage. Most companies try to achieve responsive webshops by scaling their hardware big time. But Rails in combination with Nginx, Memcached and Redis is the key to deliver webpages very fast with a minimal amount of hardware. This talk will start with the basics of DHH's russian doll idea but will raise the bar than quite a bit. How can we combine fragment caching, page caching and HTTP caching to deliver personalized webshop pages for logged in users? How much brain can be delegated to Redis or the Webbrowser? Harddrive space is cheap. So use it! You'll get to know how to plan your data structure and where to use Memcached vs. Redis. Include the cache in the beginning of your development and not in the end. To make things a bit more interesting everything is replayed on a Raspberry Pi to show how much difference intelligent caching can make on any hardware. Save big time and get more clients with a faster web application!
 
   video_provider: "youtube"
   video_id: "7uKxDVflXdI"
 
-- title: "Of Buyers And Renters and keeping a roof over our heads"
+- id: "sebastian-delmont-railsconf-2013"
+  title: "Of Buyers And Renters and keeping a roof over our heads"
   raw_title: "Rails Conf 2013 Of Buyers And Renters and keeping a roof over our heads by Sebastian Delmont"
   speakers:
     - Sebastian Delmont
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-22"
   description: |-
     What do home ownership and leveraged buyouts can teach us about how to use technical debt to our advantage? How can we sleep soundly at night when we have accumulated mountains and mountains of technical debt? When is good enough good enough and when are we just deceiving ourselves?
 
   video_provider: "youtube"
   video_id: "XakfJ2spb3w"
 
-- title: "Pry-- The Good Parts!"
+- id: "conrad-irwin-railsconf-2013"
+  title: "Pry-- The Good Parts!"
   raw_title: "Rails Conf 2013 Pry-- The Good Parts! by Conrad Irwin"
   speakers:
     - Conrad Irwin
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-22"
   description: |-
     Pry is the featureful development console for Ruby. From its humble roots as an irb replacement, Pry has grown into an indispensable tool for any Ruby or Rails programmer.
     Using some real-life examples, I'll explain how to use Pry effectively.
@@ -366,25 +391,27 @@
   video_provider: "youtube"
   video_id: "jDXsEzOHb2M"
 
-- title: "Data Storage: NoSQL Toasters and a Cloud of Kitchen Sinks"
+- id: "casey-rosenthal-railsconf-2013"
+  title: "Data Storage: NoSQL Toasters and a Cloud of Kitchen Sinks"
   raw_title: "Rails Conf 2013 Data Storage: NoSQL Toasters and a Cloud of Kitchen Sinks"
   speakers:
     - Casey Rosenthal
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-22"
   description: |-
     What is the best data storage option for your application? We have an abundance of conventional wisdom when it comes to building applications on top of a relational database in the Ruby world. Building an application on top of a NoSQL database is a different story. I will present a conceptual framework for understanding Access Patterns that jives with properties of databases, then review common NoSQL databases and propose considerations for choosing one over another. I will also review some uncommon NoSQL databases that address common use cases, and suggest that perhaps some of these should be used more often. Most importantly, I will describe the different state of mind that you should have when building applications on top of these NoSQL options, and provide visualization of non-relational concerns like: fault tolerance, availability, consistency, capacity planning, and horizontal vs vertical scaling. Whether or not you choose a NoSQL option for a future project, you won't look at data storage options in the same way after this presentation. ;-)
   video_provider: "youtube"
   video_id: "zw050fRE0ek"
 
-- title: "An Intervention for ActiveRecord"
+- id: "ernie-miller-railsconf-2013"
+  title: "An Intervention for ActiveRecord"
   raw_title: "Rails Conf 2013 An Intervention for ActiveRecord by Ernie Miller"
   speakers:
     - Ernie Miller
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-22"
   description: |-
     Let's be honest: ActiveRecord's got issues, and it's not going to deal with them on its own. It needs our help.
     Don't think so? Let's take a closer look together. We'll examine the myriad of perils and pitfalls that await newbie and veteran alike, ranging from intentionally inconsistent behavior to subtle oddities arising from implementation details.
@@ -393,13 +420,14 @@
   video_provider: "youtube"
   video_id: "yuh9COzp5vo"
 
-- title: "From Rails to the Web Server to the Browser"
+- id: "david-padilla-railsconf-2013"
+  title: "From Rails to the Web Server to the Browser"
   raw_title: "Rails Conf 2013 From Rails to the Web Server to the Browser by David Padilla"
   speakers:
     - David Padilla
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-22"
   description: |-
     Most of us know how to build beautiful web applications with Rails. With the help of templating tools like ERB and HAML our web apps create HTML documents, but, do you know exactly how those HTML documents end up in a browser?
     During this talk I will show you the bits that make it all happen. We will dissect the relevant code within Rails, Rack and the thin web server to discover exactly how the web server starts and listens to a TCP port, communicates with Rails and returns the HTML document that your browser parses.
@@ -409,14 +437,19 @@
   video_provider: "youtube"
   video_id: "A0M4BwYrYiA"
   slides_url: "https://speakerdeck.com/dabit/from-rails-to-the-webserver-to-the-browser"
+  additional_resources:
+    - name: "dabit/rails-server-browser"
+      type: "repo"
+      url: "https://github.com/dabit/rails-server-browser"
 
-- title: "The Magic Tricks of Testing"
+- id: "sandi-metz-railsconf-2013"
+  title: "The Magic Tricks of Testing"
   raw_title: "Rails Conf 2013 The Magic Tricks of Testing by Sandi Metz"
   speakers:
     - Sandi Metz
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-22"
   slides_url: "https://speakerdeck.com/skmetz/magic-tricks-of-testing-railsconf"
   description: |-
     Tests are supposed to save us money. How is it, then, that many times they become millstones around our necks, gradually morphing into fragile, breakable things that raise the cost of change?
@@ -425,13 +458,14 @@
   video_provider: "youtube"
   video_id: "URSWYvyc42M"
 
-- title: "Rails Vs. The Client Side"
+- id: "noel-rappin-railsconf-2013-rails-vs-the-client-side"
+  title: "Rails Vs. The Client Side"
   raw_title: "Rails Conf 2013 Rails Vs. The Client Side by Noel Rappin"
   speakers:
     - Noel Rappin
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-22"
   description: |-
     Two completely different ways have emerged for using Rails as the back end to a rich client-side JavaScript application.
     * The 37Signals "Russian Doll" approach, where the server generally returns HTML to the client. This approach uses aggressive caching and a little bit of JavaScript glue to keep the application fast.
@@ -441,51 +475,55 @@
   video_provider: "youtube"
   video_id: "qeI25OjHyDA"
 
-- title: "Rails is Just Ruby"
+- id: "jesse-wolgamott-railsconf-2013"
+  title: "Rails is Just Ruby"
   raw_title: "Rails Conf 2013 Rails is Just Ruby by Jesse Wolgamott"
   speakers:
     - Jesse Wolgamott
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-21"
   description: |-
     Rails: the result of magical incantations, voodoo, and wizardry? Or: a collection of patterns from the most awesomest language in the world (Ruby)? We'll show three different areas of Rails that seem to be the most magical: before_filters and callbacks, Procs, and inheritance. In the workshop, participants will create their own Ruby object implementing these magical powers.
   video_provider: "youtube"
   video_id: "Nqr_j4j26Uk"
 
-- title: "BDD and Acceptance Testing with RSpec & Capybara"
+- id: "brian-sam-bodden-railsconf-2013"
+  title: "BDD and Acceptance Testing with RSpec & Capybara"
   raw_title: "Rails Conf 2013 BDD and Acceptance Testing with RSpec & Capybara"
   speakers:
     - Brian Sam-Bodden
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-21"
   description: |-
     Behavior-Driven Development and Acceptance Testing are heavily intertwined and in many aspects are one and the same. Both focus on starting at the outer layers of your application by concentrating on what matter to users; behavior. In this session/workshop we'll talk about how testing can be used both for specifying your application yet to be develop expected behavior and as accurate, running documentation that can be used to validate your stakeholder's acceptance criteria. We'll talk about the different types of testing and do a few hands-on exercises to flesh out a Rails application with RSpec and Capybara.
   video_provider: "youtube"
   video_id: "BG_DDUD4M9E"
 
-- title: "Rails for Zombies: Parts 1 & 2"
+- id: "christopher-greene-railsconf-2013"
+  title: "Rails for Zombies: Parts 1 & 2"
   raw_title: "Rails Conf 2013 Rails for Zombies: Parts 1 & 2"
   speakers:
     - Christopher Greene
     - Aimee Simone
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-21"
   description: |-
     Workshop with Christopher Greene & Aimee Simone
   video_provider: "youtube"
   video_id: "4Vk4W767lak"
 
-- title: "How a Request Becomes a Response"
+- id: "christopher-greene-railsconf-2013-how-a-request-becomes-a-respon"
+  title: "How a Request Becomes a Response"
   raw_title: "Rails Conf 2013 How a Request Becomes a Response"
   speakers:
     - Christopher Greene
     - Aimee Simone
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-21"
   description: |-
     By Christopher Greene & Aimee Simone
 
@@ -495,13 +533,14 @@
   video_provider: "youtube"
   video_id: "Cj2VDSugHM8"
 
-- title: "Building Extractable Libraries in Rails"
+- id: "patrick-robertson-railsconf-2013"
+  title: "Building Extractable Libraries in Rails"
   raw_title: "Rails Conf 2013 Building Extractable Libraries in Rails by Patrick Robertson"
   speakers:
     - Patrick Robertson
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-20"
   description: |-
     The Ruby on Rails developer faces an interesting duality. Their inner Rubyist is driven by a sense of beauty and explores a wide range of ways to solve a problem. The inner Railser is driven by a strong set of conventions and is guided by the Rails Way™. The /lib directory is where these developers meet and end result is a junk drawer of awkward code.
     In this talk, I go over a few ways to keep this junk drawer problem from happening by adding some conventions I've created from building Rails in anger:
@@ -512,13 +551,14 @@
   video_provider: "youtube"
   video_id: "xXLijKrPMv4"
 
-- title: "Natural Language Processing with Ruby"
+- id: "brandon-black-railsconf-2013"
+  title: "Natural Language Processing with Ruby"
   raw_title: "Rails Conf 2013 Natural Language Processing with Ruby by Brandon Black"
   speakers:
     - Brandon Black
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-20"
   description: |-
     The field of natural language processing and the many topics encompassed within it (summarization, full-text search, sentiment analysis, content categorization, etc.) is one of fastest growing, most complex and most highly demanded knowledge sets in the software industry today.
     From spell checking in your SMS client to programmatically evaluating what your Twitter followers think of you, there is no shortage of real-world text processing and linguistic analysis problems all around us waiting to be solved. As Rubyists and software engineers, its important for us to know what tools related to NLP are available to us and how we can make use of them most effectively.
@@ -528,13 +568,14 @@
   video_provider: "youtube"
   video_id: "JznIgC5_h4M"
 
-- title: "Front-end Testing for Skeptics"
+- id: "luke-francl-railsconf-2013"
+  title: "Front-end Testing for Skeptics"
   raw_title: "Rails Conf 2013 Front-end Testing for Skeptics By Luke Francl"
   speakers:
     - Luke Francl
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-20"
   description: |-
     Paul Graham once quipped that "Web 2.0" really meant "JavaScript now works". Nearly ten years later, more and more functionality of our web applications is written in JavaScript. But for those of us who came of age when JavaScript was unreliable, it's been preferable to test the server-side, while leaving the UI a thin-as-possible shell. Testing the front-end was error prone and brittle.
     However, when you're delivering a JavaScript widget hundreds of thousands of times a day on diverse third party websites, it needs to work. So: we need to test it, and those tests need to be as painless as possible to write and maintain.
@@ -542,26 +583,28 @@
   video_provider: "youtube"
   video_id: "9GO7XGmv5gk"
 
-- title: "Testing HTTP APIs in Ruby"
+- id: "shai-rosenfeld-railsconf-2013"
+  title: "Testing HTTP APIs in Ruby"
   raw_title: "Rails Conf 2013 Testing HTTP APIs in Ruby by Shai Rosenfeld"
   speakers:
     - Shai Rosenfeld
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-19"
   description: |-
     Good integration tests are hard. There are many approaches for testing server/client HTTP libraries - all with various tradeoffs and problems that come up. Some are obvious, some are a little more tricky.
     I'll run through some approaches and problems I've come across developing server/client APIs, while developing these in a highly distributed systems setup at Engine Yard.
   video_provider: "youtube"
   video_id: "lTSl7IwbrvI"
 
-- title: "Maintainable Templates"
+- id: "brendan-loudermilk-railsconf-2013"
+  title: "Maintainable Templates"
   raw_title: "Rails Conf 2013 Maintainable Templates by Brendan Loudermilk"
   speakers:
     - Brendan Loudermilk
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-19"
   description: |-
     Unwieldy templates (a.k.a. views) are all too common in Rails apps, even among teams that otherwise craft high-quality code. Being brought into or having to maintain a project with poorly-crafted templates leads to extreme frustration and less than-adequite-velocity. At philosophie, we have started to use a few simple patterns that result in templates that are easier to maintain. By investing a small amount of time up-front learning and applying these patterns we have saved countless hours in the long run.
     Topics include:
@@ -572,38 +615,41 @@
   video_provider: "youtube"
   video_id: "elRlAjtaFsg"
 
-- title: "Changing the wheels on the bus at 80 mph: Upgrading to Rails 3 on an active master branch"
+- id: "andrew-bloomgarden-railsconf-2013"
+  title: "Changing the wheels on the bus at 80 mph: Upgrading to Rails 3 on an active master branch"
   raw_title: "Rails Conf 2013 Changing the wheels on the bus at 80 mph: Upgrading to Rails 3"
   speakers:
     - Andrew Bloomgarden
     - Julian Giuca
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-19"
   description: |-
     Long-running branches are painful, but upgrading to Rails 3 requires one if you can't stop development, right? Wrong! At New Relic, we worked on upgrading to Rails 3 on master while letting development continue in Rails 2. We patched Bundler, built a backwards-compatible boot sequence, and punched ActiveScaffold in the face. Other developers, meanwhile, released 1400 commits worth of work without noticing any changes. We'll talk about what we did, why we did it, and why we think this approach can help developers get over the hurdle into the Rails 3 promised land.
   video_provider: "youtube"
   video_id: "xi7z-vGNNGw"
 
-- title: "A Guide to Crafting Gems"
+- id: "pat-allan-railsconf-2013"
+  title: "A Guide to Crafting Gems"
   raw_title: "Rails Conf 2013 Crafting Gems by Pat Allan"
   speakers:
     - Pat Allan
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-06-03"
   description: |-
     You understand Ruby and Rails, and you've gotten the hang of using other peoples' gems - but what about writing your own? Gems underpin almost every piece of Ruby code we write - and so, being able to craft your own gems is not only incredibly useful, it provides an avenue for code reuse and open source sharing. During this session, Pat will first discuss the ecosystem around gems and the knowledge required to write your own, plus a few tools available to assist with this, and some approaches for how to structure gems that integrate with Rails itself. The workshop will then put this knowledge into practice by building our own gems from scratch.
   video_provider: "youtube"
   video_id: "Mmm1cVvPEYU"
 
-- title: "No Traffic, No Users, No Problem! - Usability Testing for New Apps"
+- id: "jim-jones-railsconf-2013"
+  title: "No Traffic, No Users, No Problem! - Usability Testing for New Apps"
   raw_title: "Rails Conf 2013 No Traffic, No Users, No Problem! - Usability Testing for New Apps"
   speakers:
     - Jim Jones
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-31"
   description: |-
     Building a web app consists of stressful choices. Should the signup button be red or blue? Does my site's sales pitch sound awkward? What will the user think about my site the first five seconds they visit?
     Using Rails and Amazon's Mechanical Turk service, I will show you how you can perform usability tests, A/B testing and gain valuable feedback on your site BEFORE launching your app to a single real user.
@@ -617,26 +663,28 @@
   video_provider: "youtube"
   video_id: "pCOuOxFRajQ"
 
-- title: "Object-Oriented Lessons for a Service-Oriented World"
+- id: "chris-kelly-railsconf-2013"
+  title: "Object-Oriented Lessons for a Service-Oriented World"
   raw_title: "Rails Conf 2013 Object-Oriented Lessons for a Service-Oriented World"
   speakers:
     - Chris Kelly
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-30"
   description: |-
     The dreams of developers working on monolithic Rails applications are frequently filled with sugar plums and service-oriented architectures--but like any kind of software design, SOA can easily become a tangled mess. Many of the same principles that guide our software design can guide our architecture design. We apply SOLID principles to applications to keep them loosely coupled, we design interfaces so we can send logical messages to our domain objects. We hide our databases behind abstractions because how we access our data shouldn't matter to how we consume it. Rarely, though, do we see the same practices applied to our services and APIs, leaving us with tightly coupled and difficult to extend service-oriented architectures. If you are facing the monorail to SOA challenge, consider looking at your services as objects and your APIs as messages. Service-oriented applications are complex, and the best way to fend off complexity is though object-oriented design.
   video_provider: "youtube"
   video_id: "sk2PXKsQNug"
 
-- title: "Incremental Design - A conversation with a designer and a developer"
+- id: "rebecca-miller-webster-railsconf-2013"
+  title: "Incremental Design - A conversation with a designer and a developer"
   raw_title: "Rails Conf 2013 Incremental Design - A conversation with a designer and a developer"
   speakers:
     - Rebecca Miller-Webster
     - Savannah Wolf
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-30"
   description: |-
     Developers: how many times have you had to completely rip out your hard earned code for a totally new site design?
     Designers: how many times has a re-design taken 4 times as long as the developer said it would and not looked good in the end?
@@ -649,13 +697,14 @@
   video_provider: "youtube"
   video_id: "t97ePwSk_wc"
 
-- title: "Humanity On Rails"
+- id: "daniel-azuma-railsconf-2013"
+  title: "Humanity On Rails"
   raw_title: "Rails Conf 2013 Humanity On Rails by Daniel Azuma"
   speakers:
     - Daniel Azuma
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-30"
   description: |-
     We hear the stories every so often. A study concludes that internet usage is making us "dumber", while another connects online activity to anxiety or depression. A respected journalist questions whether our advanced technology is really improving our lives. A mass movement of people deleting their Facebook or Twitter accounts sweeps through the community.
     As developers, we hear these stories, and we shrug. Luddites and fearmongers, we call them. But don't they have a point? Do we truly understand what technology is, and how it impacts our society, the way we think and what we value? An important conversation is taking place. As Rails developers, as professionals working on the cutting edge of consumer technology, we should be involved.
@@ -666,24 +715,26 @@
   video_id: "elxE-WBXs_k"
   slides_url: "https://speakerdeck.com/dazuma/humanity-on-rails"
 
-- title: "Closing Keynote: A ♭"
+- id: "aaron-patterson-railsconf-2013"
+  title: "Closing Keynote: A ♭"
   raw_title: "Rails Conf 2013 Closing Keynote by Aaron Patterson"
   speakers:
     - Aaron Patterson
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-29"
   description: ""
   video_provider: "youtube"
   video_id: "5kgUL_FfUZY"
 
-- title: "Hacking the academic experience"
+- id: "emily-stolfo-railsconf-2013"
+  title: "Hacking the academic experience"
   raw_title: "Rails Conf 2013 Hacking the academic experience by Emily Stolfo"
   speakers:
     - Emily Stolfo
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-29"
   description: |-
     Coming from a hacker background, I've continually been surprised by how frequently new grads lacked the skills needed, particularly in community learning. When I was asked to teach Ruby on Rails at Columbia University I observed that a significant number of the skills required to become successful professionals in the industry are acquired on the job and aren't being taught in school.
     This presentation will review:
@@ -693,26 +744,28 @@
   video_provider: "youtube"
   video_id: "a0teD9ynuTM"
 
-- title: "The Long Ball - Upgrading long lived Rails apps from 1.x-4.0"
+- id: "jesse-wolgamott-railsconf-2013-the-long-ball-upgrading-long-l"
+  title: "The Long Ball - Upgrading long lived Rails apps from 1.x-4.0"
   raw_title: "Rails Conf 2013 The Long Ball - Upgrading long lived Rails apps from 1.x-4.0"
   speakers:
     - Jesse Wolgamott
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-29"
   description: |-
     Explore tips to upgrade from each major version to the other, and how to efficiently tackle a 1.2 to 4.0 upgrade through two different case studies.
     The velocity of change for Rails versions has a side effect -- businesses hesitate to update to the latest version until their productivity drops and they're forced to update. What happens then? Let's explore a case study of a Rails app that followed this pattern.
   video_provider: "youtube"
   video_id: "97fpzfRGTcs"
 
-- title: "TDDing iOS Apps for fun and profit with RubyMotion"
+- id: "brian-sam-bodden-railsconf-2013-tdding-ios-apps-for-fun-and-pr"
+  title: "TDDing iOS Apps for fun and profit with RubyMotion"
   raw_title: "Rails Conf 2013 TDDing iOS Apps for fun and profit with RubyMotion"
   speakers:
     - Brian Sam-Bodden
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-29"
   description: |-
     As Ruby Developer I've had a pretty involved relationship with my Mac. I own iPads and iPhones since Apple started to make them. A few years back I told myself I was going to build apps for the Mac/iPhone/iPad but then reality sunk in when I started learning Objective-C and using XCode. The environment (and the language) felt like a trip back to 1995.
     If you are a Web developer used to working with dynamically-typed, lightweight languages, following agile practices like Test-Driven Development, and comfortable with a Unix Shell, then jumping into a development world with an ugly cousin of C++ and an IDE that looks like an F16 cockpit just doesn't seem appealing.
@@ -721,13 +774,14 @@
   video_provider: "youtube"
   video_id: "7v3_t5SK8DM"
 
-- title: "Datomic, from Ruby, from Rails"
+- id: "yoko-harada-railsconf-2013"
+  title: "Datomic, from Ruby, from Rails"
   raw_title: "Rails Conf 2013 Datomic, from Ruby, from Rails by Yoko Harada"
   speakers:
     - Yoko Harada
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-29"
   description: |-
     Datomic is a new database categorized as NewSQL and was created by Rich Hickey. Everybody knows this big name and thinks of Clojure. It is true Datomic fits well to Clojure programming. However, it is not only for Clojure people.
     Absolutely, Rubyists can use it. We have Diametric gem (https://github.com/relevance/diametric). Using Diametric, we can dive into Datomic from Ruby, from Rails.
@@ -735,27 +789,33 @@
     In my talk, I'll introduce Diametric gem and how to use it as well as why its API design is good for us. Also, I will cover how Ruby helped to integrate Datomic API in Diametric gem.
   video_provider: "youtube"
   video_id: "1E_n47ct280"
+  additional_resources:
+    - name: "relevance/diametric"
+      type: "repo"
+      url: "https://github.com/relevance/diametric"
 
-- title: "Dissecting Ruby with Ruby"
+- id: "richard-schneeman-railsconf-2013"
+  title: "Dissecting Ruby with Ruby"
   raw_title: "Rails Conf 2013 Dissecting Ruby with Ruby by Richard Schneeman"
   speakers:
     - Richard Schneeman
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-29"
   description: |-
     Underneath the beautiful veneer of our Ruby libraries lies a twisted tangle of writhing guts. Maybe you're curious how the pieces fit together or maybe you're tracking down a bug, either way it's easy to get lost in the blood and bile that ties our code together. In this talk you'll learn how to use simple and sharp Ruby tools to slice into large libraries with surgical precision. We'll do some live hacking on Rails on the stage and cover useful code probing techniques. Turn your impossible bugs into pull requests, and level up your programming skills by Dissecting Ruby with Ruby.
   video_provider: "youtube"
   video_id: "Zd2oUU4qDnY"
   slides_url: "https://speakerdeck.com/schneems/dissecting-ruby-with-ruby"
 
-- title: "How to Talk to Developers"
+- id: "ben-orenstein-railsconf-2013"
+  title: "How to Talk to Developers"
   raw_title: "Rails Conf 2013 How to Talk to Developers by Ben Orenstein"
   speakers:
     - Ben Orenstein
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-29"
   description: |-
     Nearly every developer will be asked to present to his or her peers at some point. Those that do it well will tend to have an outsized influence on their team, company, and community.
     This talk will demonstrate (mostly by example) the straightforward techniques for giving excellent presentations, from a veteran conference speaker and teacher.
@@ -770,13 +830,14 @@
   video_provider: "youtube"
   video_id: "l9JXH7JPjR4"
 
-- title: "Ruby Hero Awards 2013"
+- id: "gregg-pollack-railsconf-2013"
+  title: "Ruby Hero Awards 2013"
   raw_title: "Rails Conf 2013 Ruby Hero Awards"
   speakers:
     - Gregg Pollack # Host
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-29"
   description: |-
     We believe great work deserves recognition. The Ruby/Rails dev community is full of amazing contributors and unsung heroes who are busy producing educational content, developing plugins and gems, contributing to open-source projects, or putting on events to help developers learn and grow.
 
@@ -784,11 +845,12 @@
   video_provider: "youtube"
   video_id: "wfy_ctBaU2o"
 
-- title: "Lightning Talks"
+- id: "lightning-talks-railsconf-2013"
+  title: "Lightning Talks"
   raw_title: "Rails Conf 2013 Lightning Talks"
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-29"
   description: ""
   video_provider: "youtube"
   video_id: "4T24oUPPaFI"
@@ -798,6 +860,7 @@
       published_at: "TODO"
       start_cue: "TODO"
       end_cue: "TODO"
+      id: "nick-quaranto-lighting-talk-railsconf-2013"
       video_id: "nick-quaranto-lighting-talk-railsconf-2013"
       video_provider: "parent"
       speakers:
@@ -808,6 +871,7 @@
       published_at: "TODO"
       start_cue: "TODO"
       end_cue: "TODO"
+      id: "dr-nic-williams-lighting-talk-railsconf-2013"
       video_id: "dr-nic-williams-lighting-talk-railsconf-2013"
       video_provider: "parent"
       speakers:
@@ -818,6 +882,7 @@
       published_at: "TODO"
       start_cue: "TODO"
       end_cue: "TODO"
+      id: "chris-morris-lighting-talk-railsconf-2013"
       video_id: "chris-morris-lighting-talk-railsconf-2013"
       video_provider: "parent"
       speakers:
@@ -828,6 +893,7 @@
       published_at: "TODO"
       start_cue: "TODO"
       end_cue: "TODO"
+      id: "jon-mccartie-lighting-talk-railsconf-2013"
       video_id: "jon-mccartie-lighting-talk-railsconf-2013"
       video_provider: "parent"
       speakers:
@@ -838,6 +904,7 @@
       published_at: "TODO"
       start_cue: "TODO"
       end_cue: "TODO"
+      id: "bryan-helmkamp-lighting-talk-railsconf-2013"
       video_id: "bryan-helmkamp-lighting-talk-railsconf-2013"
       video_provider: "parent"
       speakers:
@@ -848,6 +915,7 @@
       published_at: "TODO"
       start_cue: "TODO"
       end_cue: "TODO"
+      id: "sandal-lighting-talk-railsconf-2013"
       video_id: "sandal-lighting-talk-railsconf-2013"
       video_provider: "parent"
       speakers:
@@ -858,6 +926,7 @@
       published_at: "TODO"
       start_cue: "TODO"
       end_cue: "TODO"
+      id: "miles-forrest-lighting-talk-railsconf-2013"
       video_id: "miles-forrest-lighting-talk-railsconf-2013"
       video_provider: "parent"
       speakers:
@@ -868,6 +937,7 @@
       published_at: "TODO"
       start_cue: "TODO"
       end_cue: "TODO"
+      id: "andrew-harvey-lighting-talk-railsconf-2013"
       video_id: "andrew-harvey-lighting-talk-railsconf-2013"
       video_provider: "parent"
       speakers:
@@ -878,6 +948,7 @@
       published_at: "TODO"
       start_cue: "TODO"
       end_cue: "TODO"
+      id: "benjamin-fleischer-lighting-talk-railsconf-2013"
       video_id: "benjamin-fleischer-lighting-talk-railsconf-2013"
       video_provider: "parent"
       speakers:
@@ -888,6 +959,7 @@
       published_at: "TODO"
       start_cue: "TODO"
       end_cue: "TODO"
+      id: "adam-cuppy-lighting-talk-railsconf-2013"
       video_id: "adam-cuppy-lighting-talk-railsconf-2013"
       video_provider: "parent"
       speakers:
@@ -898,6 +970,7 @@
       published_at: "TODO"
       start_cue: "TODO"
       end_cue: "TODO"
+      id: "hector-miguel-rodriguez-muniz-lighting-talk-railsconf-2013"
       video_id: "hector-miguel-rodriguez-muniz-lighting-talk-railsconf-2013"
       video_provider: "parent"
       speakers:
@@ -908,6 +981,7 @@
       published_at: "TODO"
       start_cue: "TODO"
       end_cue: "TODO"
+      id: "mario-chavez-lighting-talk-railsconf-2013"
       video_id: "mario-chavez-lighting-talk-railsconf-2013"
       video_provider: "parent"
       speakers:
@@ -918,6 +992,7 @@
       published_at: "TODO"
       start_cue: "TODO"
       end_cue: "TODO"
+      id: "mike-virata-stone-lighting-talk-railsconf-2013"
       video_id: "mike-virata-stone-lighting-talk-railsconf-2013"
       video_provider: "parent"
       speakers:
@@ -928,6 +1003,7 @@
       published_at: "TODO"
       start_cue: "TODO"
       end_cue: "TODO"
+      id: "rking-lighting-talk-railsconf-2013"
       video_id: "rking-lighting-talk-railsconf-2013"
       video_provider: "parent"
       speakers:
@@ -938,6 +1014,7 @@
       published_at: "TODO"
       start_cue: "TODO"
       end_cue: "TODO"
+      id: "nathan-ladd-lighting-talk-railsconf-2013"
       video_id: "nathan-ladd-lighting-talk-railsconf-2013"
       video_provider: "parent"
       speakers:
@@ -948,6 +1025,7 @@
       published_at: "TODO"
       start_cue: "TODO"
       end_cue: "TODO"
+      id: "dylan-lacey-lighting-talk-railsconf-2013"
       video_id: "dylan-lacey-lighting-talk-railsconf-2013"
       video_provider: "parent"
       speakers:
@@ -958,6 +1036,7 @@
       published_at: "TODO"
       start_cue: "TODO"
       end_cue: "TODO"
+      id: "jc-grubbs-lighting-talk-railsconf-2013"
       video_id: "jc-grubbs-lighting-talk-railsconf-2013"
       video_provider: "parent"
       speakers:
@@ -968,6 +1047,7 @@
       published_at: "TODO"
       start_cue: "TODO"
       end_cue: "TODO"
+      id: "dev-mynd-lighting-talk-railsconf-2013"
       video_id: "dev-mynd-lighting-talk-railsconf-2013"
       video_provider: "parent"
       speakers:
@@ -978,6 +1058,7 @@
       published_at: "TODO"
       start_cue: "TODO"
       end_cue: "TODO"
+      id: "jeremy-green-lighting-talk-railsconf-2013"
       video_id: "jeremy-green-lighting-talk-railsconf-2013"
       video_provider: "parent"
       speakers:
@@ -988,6 +1069,7 @@
       published_at: "TODO"
       start_cue: "TODO"
       end_cue: "TODO"
+      id: "ron-evans-lighting-talk-railsconf-2013"
       video_id: "ron-evans-lighting-talk-railsconf-2013"
       video_provider: "parent"
       speakers:
@@ -998,6 +1080,7 @@
       published_at: "TODO"
       start_cue: "TODO"
       end_cue: "TODO"
+      id: "eoin-coffey-lighting-talk-railsconf-2013"
       video_id: "eoin-coffey-lighting-talk-railsconf-2013"
       video_provider: "parent"
       speakers:
@@ -1008,6 +1091,7 @@
       published_at: "TODO"
       start_cue: "TODO"
       end_cue: "TODO"
+      id: "doug-smith-lighting-talk-railsconf-2013"
       video_id: "doug-smith-lighting-talk-railsconf-2013"
       video_provider: "parent"
       speakers:
@@ -1018,6 +1102,7 @@
       published_at: "TODO"
       start_cue: "TODO"
       end_cue: "TODO"
+      id: "andrew-cantino-lighting-talk-railsconf-2013"
       video_id: "andrew-cantino-lighting-talk-railsconf-2013"
       video_provider: "parent"
       speakers:
@@ -1028,6 +1113,7 @@
       published_at: "TODO"
       start_cue: "TODO"
       end_cue: "TODO"
+      id: "tanin-na-nakorn-lighting-talk-railsconf-2013"
       video_id: "tanin-na-nakorn-lighting-talk-railsconf-2013"
       video_provider: "parent"
       speakers:
@@ -1038,6 +1124,7 @@
       published_at: "TODO"
       start_cue: "TODO"
       end_cue: "TODO"
+      id: "philippe-creux-lighting-talk-railsconf-2013"
       video_id: "philippe-creux-lighting-talk-railsconf-2013"
       video_provider: "parent"
       speakers:
@@ -1048,6 +1135,7 @@
       published_at: "TODO"
       start_cue: "TODO"
       end_cue: "TODO"
+      id: "alex-sharp-lighting-talk-railsconf-2013"
       video_id: "alex-sharp-lighting-talk-railsconf-2013"
       video_provider: "parent"
       speakers:
@@ -1058,6 +1146,7 @@
       published_at: "TODO"
       start_cue: "TODO"
       end_cue: "TODO"
+      id: "beau-harrington-lighting-talk-railsconf-2013"
       video_id: "beau-harrington-lighting-talk-railsconf-2013"
       video_provider: "parent"
       speakers:
@@ -1068,6 +1157,7 @@
       published_at: "TODO"
       start_cue: "TODO"
       end_cue: "TODO"
+      id: "todo-lighting-talk-railsconf-2013-1"
       video_id: "todo-lighting-talk-railsconf-2013-1"
       video_provider: "parent"
       speakers:
@@ -1078,6 +1168,7 @@
       published_at: "TODO"
       start_cue: "TODO"
       end_cue: "TODO"
+      id: "todo-lighting-talk-railsconf-2013-2"
       video_id: "todo-lighting-talk-railsconf-2013-2"
       video_provider: "parent"
       speakers:
@@ -1088,6 +1179,7 @@
       published_at: "TODO"
       start_cue: "TODO"
       end_cue: "TODO"
+      id: "yoshiori-shoji-lighting-talk-railsconf-2013"
       video_id: "yoshiori-shoji-lighting-talk-railsconf-2013"
       video_provider: "parent"
       speakers:
@@ -1098,6 +1190,7 @@
       published_at: "TODO"
       start_cue: "TODO"
       end_cue: "TODO"
+      id: "winfred-nadeau-lighting-talk-railsconf-2013"
       video_id: "winfred-nadeau-lighting-talk-railsconf-2013"
       video_provider: "parent"
       speakers:
@@ -1108,6 +1201,7 @@
       published_at: "TODO"
       start_cue: "TODO"
       end_cue: "TODO"
+      id: "david-padilla-lighting-talk-railsconf-2013"
       video_id: "david-padilla-lighting-talk-railsconf-2013"
       video_provider: "parent"
       speakers:
@@ -1118,55 +1212,60 @@
       published_at: "TODO"
       start_cue: "TODO"
       end_cue: "TODO"
+      id: "gabe-scholz-lighting-talk-railsconf-2013"
       video_id: "gabe-scholz-lighting-talk-railsconf-2013"
       video_provider: "parent"
       speakers:
         - Gabe Scholz
 
-- title: "Simple and Elegant Rails Code with Functional Style"
+- id: "attila-domokos-railsconf-2013"
+  title: "Simple and Elegant Rails Code with Functional Style"
   raw_title: "Rails Conf 2013 Simple and Elegant Rails Code with Functional Style"
   speakers:
     - Attila Domokos
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-29"
   description: |-
     Do you have to look at Rails models with 2500 lines of code? Or 200 line methods loaded with iterators, conditionals and instance variables? Not only you, even the code author does not understand what's going on in there.
     I'll show you how you can craft simple and beautiful Rails application by adopting functional programming inspired ideas. Say goodbye to the mess you have by constructing tiny classes and functions that you can use to build up a complex system.
   video_provider: "youtube"
   video_id: "glU_I3Xiooc"
 
-- title: "Keynote: In a place far far away..."
+- id: "james-duncan-davidson-railsconf-2013"
+  title: "Keynote: In a place far far away..."
   raw_title: "Rails Conf 2013 Keynote by James Duncan Davidson"
   speakers:
     - James Duncan Davidson
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-28"
   description: ""
   video_provider: "youtube"
   video_id: "jOvWDlmufcw"
 
-- title: "Properly Factored MVC"
+- id: "katrina-owen-railsconf-2013"
+  title: "Properly Factored MVC"
   raw_title: "Rails Conf 2013 Properly Factored MVC in Rails Applications"
   speakers:
     - Katrina Owen
     - Jeff Casimir
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-25"
   description: |-
     Starting Rails applications is one thing, but how you apply the priciples of MVC as an application grows determine whether your application is modular and maintainable or a convoluted mess. In this session, we'll use an existing application to explore and practice some of the common mistakes, correct techniques, and concepts behind the techniques to improve your development patterns.
   video_provider: "youtube"
   video_id: "KaBrHBlMHBI"
 
-- title: "Configuration Management Patterns"
+- id: "beau-harrington-railsconf-2013"
+  title: "Configuration Management Patterns"
   raw_title: "Rails Conf 2013 Configuration Management Patterns by Beau Harrington"
   speakers:
     - Beau Harrington
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-25"
   description: |-
     As your simple Rails app grows into a larger system or set of systems, using simple constants and Yaml files for configuration may no longer suffice. The meaning of 'configuration' expands to include business logic alongside the customary hostnames and timeout intervals; the rate at which configuration changes are required increases; non-engineers begin to require the ability to make configuration changes themselves; different environments require different configurations. This presentation will examine several patterns that can be applied to handle these issues, keeping iteration team high and reducing the burden on your engineering team. We'll create and iterate on a simple game as a case study to illustrate the value of these principles in practice, and also look at a few open source projects that integrate some of these concepts.
     Topics:
@@ -1182,26 +1281,28 @@
   video_provider: "youtube"
   video_id: "MDeUgHHTiyg"
 
-- title: "Zero-downtime payment platforms"
+- id: "prem-sichanugrist-railsconf-2013"
+  title: "Zero-downtime payment platforms"
   raw_title: "Rails Conf 2013 Zero-downtime payment platforms by Prem Sichanugrist & Ryan Twomey"
   speakers:
     - Prem Sichanugrist
     - Ryan Twomey
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-25"
   description: |-
     When you're building a payment platform, you want to make sure that your system is always available to accept orders. However, the complexity of the platform introduces the potential for it to go down when any one of the moving parts fails. In this talk, I will show you the approaches that we've taken and the risks that we have to take to ensure that our platform will always be available for our customers. Even if you're not building a payment platform, these approaches can be applied to ensure a high availability for your platform or service as well.
   video_provider: "youtube"
   video_id: "uJ_38moGKGY"
 
-- title: "Services and Rails: The Sh*t They Don't Tell You"
+- id: "brian-morton-railsconf-2013"
+  title: "Services and Rails: The Sh*t They Don't Tell You"
   raw_title: "Rails Conf 2013 Services and Rails: The Sh*t They Don't Tell You by Brian Morton"
   speakers:
     - Brian Morton
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-25"
   description: |-
     Building services and integrating them into Rails is hard. We want smaller Rails apps and nicely encapsulated services, but services introduce complexity. If you go overboard in the beginning, you're doing extra work and getting some of it wrong. If you wait too long, you've got a mess.
     At Yammer, we constantly clean up the mess that worked well in the early days, but has become troublesome to maintain and scale. We pull things out of the core Rails app, stand them up on their own, and make sure they work well and are fast. With 20+ services, we've learned some lessons along the way. Services that seem clean in the beginning can turn into development environment nightmares. Temporary double-dispatching solutions turn into developer confusion. Monitoring one app turns into monitoring a suite of apps and handling failure between them.
@@ -1209,13 +1310,14 @@
   video_provider: "youtube"
   video_id: "o5u87SZ6S9M"
 
-- title: "Describing Your World with Seahorse"
+- id: "trevor-rowe-railsconf-2013"
+  title: "Describing Your World with Seahorse"
   raw_title: "Rails Conf 2013 Describing Your World with Seahorse by Trevor Rowe"
   speakers:
     - Trevor Rowe
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-25"
   description: |-
     So you've just added a suite of RESTful APIs to your web service. Now you need to generate documentation and build Ruby, Python, and JavaScript clients to consume those new APIs. With so many moving parts, how do you keep your service, documentation and clients in sync?
     We all know how to describe data using ActiveRecord models. Have you considered using a model to describe your service?
@@ -1224,38 +1326,41 @@
   video_provider: "youtube"
   video_id: "NFhL7RhwnFU"
 
-- title: "Your First Rails Pull Request"
+- id: "mark-mcspadden-railsconf-2013"
+  title: "Your First Rails Pull Request"
   raw_title: "Rails Conf 2013 Your First Rails Pull Request by Mark McSpadden"
   speakers:
     - Mark McSpadden
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-24"
   description: |-
     You have been doing this Rails thing for a while and you're starting to feel like it's time to give back. Great! Now what?
     In this session we'll walk through the technical aspects of getting started with contributing back to Rails as well as the non-technical tips, tricks, and considerations to keep in mind along the way.
   video_provider: "youtube"
   video_id: "UEB6H8jAzIg"
 
-- title: "Firefighting on Rails"
+- id: "ethan-vizitei-railsconf-2013"
+  title: "Firefighting on Rails"
   raw_title: "Rails Conf 2013 Firefighting on Rails by Ethan Vizitei"
   speakers:
     - Ethan Vizitei
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-24"
   description: |-
     It's always inspiring to me to hear about how the technology stack I'm familiar with has been used to solve interesting problems; this is one of the extreme versions of that experience. Over the last few years, Rails has been used to solve several of the logistical pain points of the third largest fire service organization in the state of Missouri, and in this talk we're going to look at how it happened. Along the way we'll look at some of the challenges of working with such an out-of-the-ordinary organization and how Rails fit into addressing some fairly unique requirements and constraints. This is one Rails-in-the-wild case study that you won't want to pass up.
   video_provider: "youtube"
   video_id: "ynLsBa0zqrU"
 
-- title: "Keeping the lights on: Application monitoring with Sensu and BatsD"
+- id: "aaron-pfeifer-railsconf-2013"
+  title: "Keeping the lights on: Application monitoring with Sensu and BatsD"
   raw_title: "Rails Conf 2013 Keeping the lights on: Application monitoring with Sensu and BatsD"
   speakers:
     - Aaron Pfeifer
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-24"
   description: |-
     The good news: you're quickly signing up new customers, you've scaled your Rails app to a growing cluster of 10+ servers, and the business is really starting to take off. Great! The bad news: Just 30m of failures is starting to be measured in hundreds or even thousands of dollars. Who's going to make sure the lights stay on when your app is starting to fall over? Or worse, what if your app is up, but sign-ups, payments, or some other critical function is broken?
 
@@ -1263,50 +1368,54 @@
   video_provider: "youtube"
   video_id: "b76GfS7x_j8"
 
-- title: "Flattening The Cloud Learning Curve Using Rails"
+- id: "michael-murphy-railsconf-2013"
+  title: "Flattening The Cloud Learning Curve Using Rails"
   raw_title: "Rails Conf 2013 Flattening The Cloud Learning Curve Using Rails by Michael Murphy"
   speakers:
     - Michael Murphy
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-24"
   description: |-
     We've all heard how great the cloud is - but no one likes learning a new proprietary API if they don't need to. In this session, I'll demonstrate how you can develop, test and deploy ROR apps faster to HP's public cloud based on OpenStack technology. If you are new to the cloud or if you're just a CLI commando, I'll run through HP's Ruby CLI, spin up cloud servers and attach block storage faster than you thought possible. And, for Ruby Fog fans, I'll show you the HP Ruby Fog extensions that let you easily provision and manage cloud servers and storage using your favorite environment.
   video_provider: "youtube"
   video_id: "PbBPOG--gqI"
 
-- title: "Forget Scaling: Focus on Performance"
+- id: "terence-lee-railsconf-2013"
+  title: "Forget Scaling: Focus on Performance"
   raw_title: "Rails Conf 2013 Forget Scaling: Focus on Performance by Terence Lee"
   speakers:
     - Terence Lee
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-24"
   description: |-
     Your customers care about how fast your application works, you should too.... At Heroku we see millions of apps deploy and we know what it takes to get serious performance out of your code and Rails. In this talk we'll cover backend tips and frontend tricks that will help your Rails app go faster than ever before.
   video_provider: "youtube"
   video_id: "e_2s3kN0ZSE"
 
-- title: "Engine Yard Cloud"
+- id: "edward-chiu-railsconf-2013"
+  title: "Engine Yard Cloud"
   raw_title: "Rails Conf 2013 Engine Yard Cloud by Edward Chiu & PJ Hagerty"
   speakers:
     - Edward Chiu
     - PJ Hagerty
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-24"
   description: |-
     New developments, interesting use cases and future plans. Edward will walk attendees through the dashboard and demonstrate the uses of new features such as Engine Yard Local. Whether you're a long-time Engine Yard user or just curious, this session will show you how to optimize your deployment experience.
   video_provider: "youtube"
   video_id: "Wq0gDAi3KEk"
 
-- title: "DevOps for the Rubyist Soul"
+- id: "john-downey-railsconf-2013"
+  title: "DevOps for the Rubyist Soul"
   raw_title: "Rails Conf 2013 DevOps for the Rubyist Soul by John Downey"
   speakers:
     - John Downey
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-24"
   description: |-
     Ruby developers have many great options for simply hosting their web applications. But what happens when your product outgrows Heroku? Managing your own servers can be an intimidating task for the average developer. This session will cover the lessons we've learned at Braintree from building and maintaining our infrastructure. It will cover how we leverage Ruby to automate and control all of our environments. Some specific topics we'll cover:
     * Orchestrating servers with capistrano
@@ -1317,26 +1426,28 @@
   video_provider: "youtube"
   video_id: "KmUq-SIFmgE"
 
-- title: "Creating Mountable Engines"
+- id: "patrick-peak-railsconf-2013"
+  title: "Creating Mountable Engines"
   raw_title: "Rails Conf 2013 Creating Mountable Engines by Patrick Peak"
   speakers:
     - Patrick Peak
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-24"
   description: |-
     With Rails 4.0 killing off the humble plugin, there is never a better time to learn how to create reusable code using Engines. Creating an engine can be as simple as adding a model, or a complex as an entire content management system. Using the Asset Pipeline, even javascript and css files can be packaged and shared, making projects cleaner and more maintainable than ever before.
     This talk will cover how developers can create their own engines, to add new controllers/models/views, rake tasks and/or generators. It will cover how engines can interact with Rails having their own initializers and middleware. Finally, based on our experiences converting BrowserCMS and its entire module ecosystem to work as mountable engines, this talk will cover how to make engines that are designed to work together, extend each other engine's behavior and make it easy for developers to upgrade when you release new versions.
   video_provider: "youtube"
   video_id: "s3NJ15Svq8U"
 
-- title: "You've got a Sinatra on your Rails"
+- id: "jos-valim-railsconf-2013"
+  title: "You've got a Sinatra on your Rails"
   raw_title: "Rails Conf 2013 You've got a Sinatra on your Rails by José Valim"
   speakers:
     - José Valim
   event_name: "RailsConf 2013"
   date: "2013-06-25"
-  published_at: "TODO"
+  published_at: "2013-05-19"
   description: |-
     One of the best ways to learn is to experiment with seemingly crazy ideas. When Rails 3 first came out, it became easier than ever to embed a Sinatra application inside your Rails application. But what if you wanted to implement parts of Sinatra in Rails?
     Have you ever wished your controllers had Sinatra style routes? Have you ever wondered if you could render a template in the same context as your controllers? What about one single-file Rails applications?

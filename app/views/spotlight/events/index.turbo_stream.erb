@@ -2,7 +2,7 @@
   <div class="flex items-center flex-wrap gap-2 py-4">
     <h2>Events</h2>
     <% if @events.size.positive? %>
-      <span class="text-sm text-gray-500">(<%= @events.size %> of <%= @events_count %>)</span>
+      <span class="text-sm text-gray-500">(<%= @events.size %><% if @events.size >= Spotlight::EventsController::LIMIT %>+<% end %> <%= "event".pluralize(@events.size) %>)</span>
       <%= link_to archive_events_path(s: search_query), class: "link text-sm text-gray-500", target: "_top" do %>
         see results
       <% end %>

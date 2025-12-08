@@ -27,6 +27,10 @@ class Events::SeriesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_event_series
     @event_series = EventSeries.includes(:events).find_by(slug: params[:slug])
-    redirect_to(root_path, status: :moved_permanently) unless @event_series
+    @event_series ||= EventSeries.find_by_slug_or_alias(params[:slug])
+
+    return redirect_to(root_path, status: :moved_permanently) unless @event_series
+
+    redirect_to series_path(@event_series), status: :moved_permanently if @event_series.slug != params[:slug]
   end
 end

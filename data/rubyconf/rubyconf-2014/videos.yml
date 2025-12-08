@@ -4,49 +4,53 @@
 # TODO: conference website
 # TODO: schedule website
 
-- title: "Sweaters as a Servive"
+- id: "amy-wibowo-rubyconf-2014"
+  title: "Sweaters as a Servive"
   raw_title: "RubyConf 2014 - Sweaters as a Servive by Amy Wibowo"
   speakers:
     - Amy Wibowo
   event_name: "RubyConf 2014"
   date: "2014-12-02"
-  published_at: "TODO"
+  published_at: "2014-12-02"
   description: |-
     In the 1980's, Nintendo had plans for a knitting add-on to the NES, with an interface that resembled Mariopaint, but with patterned sweaters as output. Sadly, this product never saw the light of day. Devastated on hearing this, a group of Airbnb engineers (who knew nothing about machine knitting) set out to hack a knitting machine from the 1980's to be computer-controlled. Learn about how we wrote our own yarn printer API in ruby and printed our first doge meme in yarn. And watch us as we send knit requests to our yarn server, and behold as it knits ugly sweaters from those images!
   video_provider: "youtube"
   video_id: "HKZ6nDEMpyc"
 
-- title: "The Social Coding Contract"
+- id: "justin-searls-rubyconf-2014"
+  title: "The Social Coding Contract"
   raw_title: "RubyConf 2014 - The Social Coding Contract by Justin Searls"
   speakers:
     - Justin Searls
   event_name: "RubyConf 2014"
   date: "2014-12-02"
-  published_at: "TODO"
+  published_at: "2014-12-02"
   description: |-
     Social coding revolutionized how we share useful code with others. RubyGems, Bundler, and Github made publishing and consuming code so convenient that our dependencies have become smaller and more numerous. Nowadays, most projects quickly resemble a Jenga tower, with layer upon layer of poorly understood single points of failure.
   video_provider: "youtube"
   video_id: "e_-qV8waPVM"
 
-- title: "Going The Distance"
+- id: "richard-schneeman-rubyconf-2014"
+  title: "Going The Distance"
   raw_title: "RubyConf 2014 - Going the Distance by Richard Schneeman"
   speakers:
     - Richard Schneeman
   event_name: "RubyConf 2014"
   date: "2014-12-02"
-  published_at: "TODO"
+  published_at: "2014-12-02"
   description: |-
     If you've ever misspelled a word while searching on Google, you've benefitted from decades of distance algorithm development. In this talk we'll break down some popular distance measurements and see how they can be implemented in Ruby. We'll look at real world applications with some live demos. It won't matter if you get your kicks "Hamming" it up, if you drink your coffee in a "Levenshtein", or if you're new to Ruby: this talk is Rated R, for "all Rubyists". You'll be guaranteed to walk away with O(n^n) expectations met.
   video_provider: "youtube"
   video_id: "PcINjHjIllk"
 
-- title: "Epic Intro Music: BLE Beacons and Ruby"
+- id: "christopher-sexton-rubyconf-2014"
+  title: "Epic Intro Music: BLE Beacons and Ruby"
   raw_title: "RubyConf 2014 - Epic Intro Music: BLE Beacons and Ruby by Christopher Sexton"
   speakers:
     - Christopher Sexton
   event_name: "RubyConf 2014"
   date: "2014-12-02"
-  published_at: "TODO"
+  published_at: "2014-12-02"
   description: |-
     Would you like to stroll into the office to your own dramatic theme music? We can arrive in style with an epic score. Learn how to use RubyMotion, a Raspberry Pi and iBeacon Technology to play the Imperial March when the CEO walks in.
 
@@ -56,37 +60,40 @@
   video_provider: "youtube"
   video_id: "teTpPCwdh7g"
 
-- title: "My Little C Extension: Lego Robots are Magic"
+- id: "brandon-hays-rubyconf-2014"
+  title: "My Little C Extension: Lego Robots are Magic"
   raw_title: "RubyConf 2014 - My Little C Extension: Lego Robots are Magic by Brandon Hays"
   speakers:
     - Brandon Hays
   event_name: "RubyConf 2014"
   date: "2014-12-02"
-  published_at: "TODO"
+  published_at: "2014-12-02"
   description: |-
     I didn't know squat about C or building extensions in Ruby. But I did want a Ruby-controlled Lego Mindstorms robot to get kids excited about Ruby. We'll dive into the basics of building C extensions, build a Ruby DSL to teach kids to drive cool Lego robots, and show off the amazing things you can do when you pull up Ruby's floorboards and look at the actually-not-too-scary C code underneath.
   video_provider: "youtube"
   video_id: "uOsKIyD_RCo"
 
-- title: "Eastward Ho! A Clear Path Through Ruby With OO"
+- id: "jim-gay-rubyconf-2014"
+  title: "Eastward Ho! A Clear Path Through Ruby With OO"
   raw_title: "RubyConf 2014 - Eastward Ho! A Clear Path Through Ruby With OO Jim Gay"
   speakers:
     - Jim Gay
   event_name: "RubyConf 2014"
   date: "2014-12-02"
-  published_at: "TODO"
+  published_at: "2014-12-02"
   description: |-
     Messy code often begins with a simple "if". Continuing down that path is a road to ruin, but there's a simple way to avoid it. East-oriented Code is an approach that helps you follow Tell, Don't Ask. It guides you away from Feature Envy and toward better encapsulation. See before and after code and walk through easy to repeat steps that will make your Ruby programs better and easier to maintain.
   video_provider: "youtube"
   video_id: "kXcrClJcfm8"
 
-- title: "A Lever for the Mind"
+- id: "tom-stuart-rubyconf-2014"
+  title: "A Lever for the Mind"
   raw_title: "RubyConf 2014 - A Lever for the Mind by Tom Stuart"
   speakers:
     - Tom Stuart
   event_name: "RubyConf 2014"
   date: "2014-12-02"
-  published_at: "TODO"
+  published_at: "2014-12-02"
   description: |-
     Our brains are great at social interaction and pattern matching, but terrible at reasoning about the complicated non-human systems which dominate our world. Abstraction is the adapter between the fearsome complexity of the universe and our simple primate minds; when the real world is too intricate for us to manipulate directly, abstraction gives us big friendly levers to pull instead.
 
@@ -94,13 +101,14 @@
   video_provider: "youtube"
   video_id: "tJkoHFjoMuk"
 
-- title: "The Quiet Programmer"
+- id: "mark-mcspadden-rubyconf-2014"
+  title: "The Quiet Programmer"
   raw_title: "RubyConf 2014 - The Quiet Programmer by Mark McSpadden"
   speakers:
     - Mark McSpadden
   event_name: "RubyConf 2014"
   date: "2014-12-02"
-  published_at: "TODO"
+  published_at: "2014-12-02"
   description: |-
     Hi, I'm [NAME] and I'm an introvert. But contrary to what you might think, it's not a problem and I am not working on it. In fact, I've embraced it.
 
@@ -108,13 +116,14 @@
   video_provider: "youtube"
   video_id: "iuZ-iAIw62E"
 
-- title: "Sauron: DIY Home Security with Ruby!"
+- id: "jonan-scheffler-rubyconf-2014"
+  title: "Sauron: DIY Home Security with Ruby!"
   raw_title: "RubyConf 2014 - Sauron: DIY Home Security with Ruby! by Jonan Scheffler"
   speakers:
     - Jonan Scheffler
   event_name: "RubyConf 2014"
   date: "2014-12-03"
-  published_at: "TODO"
+  published_at: "2014-12-03"
   description: |-
     This is the story of how I built an all-seeing eye with Ruby, and how I use it to defend the sanctity of my suburban home.
 
@@ -124,13 +133,14 @@
   video_provider: "youtube"
   video_id: "IIBM1Zxr66c"
 
-- title: "A Partial-Multiverse Model of Time Travel for Debugging"
+- id: "brock-wilcox-rubyconf-2014"
+  title: "A Partial-Multiverse Model of Time Travel for Debugging"
   raw_title: "RubyConf 2014 - A Partial-Multiverse Model of Time Travel for Debugging by Brock Wilcox"
   speakers:
     - Brock Wilcox
   event_name: "RubyConf 2014"
   date: "2014-12-03"
-  published_at: "TODO"
+  published_at: "2014-12-03"
   description: |-
     Ever type 'next' into your debugger and then realize you should have used 'step'? Or perhaps invoked a method that you wish you could take back? Regret no more! Just turn the clock back a few ticks and begin again! With only a few restrictions and side-effects we will learn how to construct and use a time machine.
 
@@ -138,61 +148,66 @@
   video_provider: "youtube"
   video_id: "EpYMRd1ZWDM"
 
-- title: "Roda: The Routing Tree Web Framework"
+- id: "jeremy-evans-rubyconf-2014"
+  title: "Roda: The Routing Tree Web Framework"
   raw_title: "RubyConf 2014 - Roda: The Routing Tree Web Framework by Jeremy Evans"
   speakers:
     - Jeremy Evans
   event_name: "RubyConf 2014"
   date: "2014-12-05"
-  published_at: "TODO"
+  published_at: "2014-12-05"
   description: |-
     Roda is a new Ruby web framework designed around the concept of a routing tree. Roda gives you the simplicity of Sinatra for simple cases, while being able to scale well to handle larger, complex cases. It provides performance very close to a pure Rack application, with a flexible plugin system powerful enough to handle almost any needs. Come learn about routing trees, how they make web development better, and how Roda adds a twist on the routing tree concept to avoid the scope pollution problem inherent in many other Ruby web frameworks.
   video_provider: "youtube"
   video_id: "W8zglFFFRMM"
 
-- title: "Q&A with Matz"
+- id: "evan-phoenix-rubyconf-2014"
+  title: "Q&A with Matz"
   raw_title: "RubyConf 2014 - Questions for Matz"
   speakers:
     - Evan Phoenix
     - Yukihiro "Matz" Matsumoto
   event_name: "RubyConf 2014"
   date: "2014-12-05"
-  published_at: "TODO"
-  description:
+  published_at: "2014-12-05"
+  description: ""
   video_provider: "youtube"
   video_id: "_zoG2i7pMxg"
 
-- title: "It's so quiet. Let's make music."
+- id: "loren-segal-rubyconf-2014"
+  title: "It's so quiet. Let's make music."
   raw_title: "RubyConf 2014 - It's so quiet. Let's make music. by Loren Segal"
   speakers:
     - Loren Segal
   event_name: "RubyConf 2014"
   date: "2014-12-05"
-  published_at: "TODO"
+  published_at: "2014-12-05"
   description: |-
     Ruby is used for a lot of things, but for some reason, only a few people are using it for music. In a language that is meant to make programming fun, the lack of such creative code is scary. Let's fix the current landscape by learning how to use the tools available in Ruby (and some not) to let those creative juices flow. We will be focusing on how to build sounds from the ground up (the powerful amplitude, and the majestic waveform), so you don't need any prior audio wizardry. Just bring yourself and a Ruby console and we just might create some beautiful music in a beautiful language.
   video_provider: "youtube"
   video_id: "oRt7rVlnPqk"
 
-- title: "Easy Rewrites With Ruby And Science!"
+- id: "jesse-toth-rubyconf-2014"
+  title: "Easy Rewrites With Ruby And Science!"
   raw_title: "RubyConf 2014 - Easy rewrites with ruby and science! by Jesse Toth"
   speakers:
     - Jesse Toth
   event_name: "RubyConf 2014"
   date: "2014-12-05"
-  published_at: "TODO"
+  published_at: "2014-12-05"
   description: |-
     Ruby makes it easy to prototype a new data model or codepath in your application and get it into production quickly to test it out. At GitHub, we've built on top of this concept with our open source dat-science gem, which helps measure and validate two codepaths at runtime. This talk will cover how we used this gem and its companion analysis gem to undertake (and complete!) a large-scale rewrite of a critical piece of our Rails app -- the permissions model -- live, side-by-side, and in production.
   video_provider: "youtube"
   video_id: "kgDqUHWVw4A"
 
-- title: "Build the Unified Logging Layer with Fluentd and Ruby"
+- id: "kiyoto-tamura-rubyconf-2014"
+  title: "Build the Unified Logging Layer with Fluentd and Ruby"
   raw_title: "RubyConf 2014 - Build the Unified Logging Layer with Fluentd and Ruby by Kiyoto Tamura"
   speakers:
     - Kiyoto Tamura
   event_name: "RubyConf 2014"
   date: "2014-12-05"
-  published_at: "TODO"
+  published_at: "2014-12-05"
   description: |-
     As software becomes less monolithic and more service-oriented, log collection becomes a real problem. How can we stop hacking together brittle log parsing scripts and start building a unified logging layer?
 
@@ -202,38 +217,41 @@
   video_provider: "youtube"
   video_id: "sIVGsQgMHIo"
 
-- title: "Chat Robots Next Level Tooling"
+- id: "ole-michaelis-rubyconf-2014"
+  title: "Chat Robots Next Level Tooling"
   raw_title: "RubyConf 2014 - Chat Robots Next Level Tooling by Ole Michaelis"
   speakers:
     - Ole Michaelis
   event_name: "RubyConf 2014"
   date: "2014-12-05"
-  published_at: "TODO"
+  published_at: "2014-12-05"
   description: |-
     Developers are lazy! So we are great in creating tooling for our daily work. But it has its weaknesses, we are creating a tons of scripts on our local maschine, sometimes we share them via git or other vcs systems. But all over all this tooling sucks when it comes to collaboration. We developers also love hanging out in chat rooms like campfire or jabber.
   video_provider: "youtube"
   video_id: "_XagO-YkD1Q"
 
-- title: "'Good Luck With That' : Tag Teaming Civic Data"
+- id: "liz-rush-rubyconf-2014"
+  title: "'Good Luck With That' : Tag Teaming Civic Data"
   raw_title: "RubyConf 2014 - 'Good Luck With That' : Tag Teaming Civic Data by Liz Rush & Hsing-Hui Hsu"
   speakers:
     - Liz Rush
     - Hsing-Hui Hsu
   event_name: "RubyConf 2014"
   date: "2014-12-16"
-  published_at: "TODO"
+  published_at: "2014-12-16"
   description: |-
     In this end-to-end discussion about the challenges with civic data, from no-documentation & incomplete government code to figuring out how to scale data-driven SOA, we'll show you how two Ruby newbies managed to create an awesomely useful parking app in just four weeks. For those new to coding, or experienced devs looking to work with civic data, we'll show you our roadmap as well as what we learned pairing as two junior developers just starting out in the big bad world of programming.
   video_provider: "youtube"
   video_id: "s-yjPnJwwiE"
 
-- title: "Ruby After Rails"
+- id: "ernie-miller-rubyconf-2014"
+  title: "Ruby After Rails"
   raw_title: "RubyConf 2014 - Ruby After Rails by Ernie Miller"
   speakers:
     - Ernie Miller
   event_name: "RubyConf 2014"
   date: "2014-12-16"
-  published_at: "TODO"
+  published_at: "2014-12-16"
   description: |-
     What happens to Ruby when Rails dies?
 
@@ -245,61 +263,66 @@
   video_provider: "youtube"
   video_id: "EgjJYkuV0Sc"
 
-- title: "Programming, Education, and the American Dream"
+- id: "liz-abinante-rubyconf-2014"
+  title: "Programming, Education, and the American Dream"
   raw_title: "RubyConf 2014 - Programming, Education, and the American Dream by Liz Abinante"
   speakers:
     - Liz Abinante
   event_name: "RubyConf 2014"
   date: "2014-12-16"
-  published_at: "TODO"
+  published_at: "2014-12-16"
   description: |-
     The learn to code movement has popularized the idea that coding is a skill everyone can and should learn. It's the American dream: learn the desirable skill and you'll succeed financially. Those who master the skill and achieve the goals are held up as prime examples of just how easy it was. But if it was that easy, why are there so few victors encouraging hoards of hopefuls? I'll discuss the history of the American Dream, how new programming education endeavors have repackaged it, and how the lack of awareness and analysis of this privileged rhetoric is damaging our culture and workforce.
   video_provider: "youtube"
   video_id: "_5zXjOEeRfE"
 
-- title: "Polishing Ruby"
+- id: "olivier-lacan-rubyconf-2014"
+  title: "Polishing Ruby"
   raw_title: "RubyConf 2014 - Polishing Ruby by Olivier Lacan"
   speakers:
     - Olivier Lacan
   event_name: "RubyConf 2014"
   date: "2014-12-16"
-  published_at: "TODO"
+  published_at: "2014-12-16"
   description: |-
     There are gems out there solving very common problems that could easily be contributed back to Ruby itself. Suggesting a new Ruby feature isn't as daunting as it sounds. As long as you're diligent, you too can push ruby forward.
   video_provider: "youtube"
   video_id: "lUDcC_HpRno"
 
-- title: "2 + Cats = 4 * Cute: How Math Works in Ruby"
+- id: "chris-hoffman-rubyconf-2014"
+  title: "2 + Cats = 4 * Cute: How Math Works in Ruby"
   raw_title: "RubyConf 2014 - 2 + Cats = 4 * Cute: How Math Works in Ruby by Chris Hoffman"
   speakers:
     - Chris Hoffman
   event_name: "RubyConf 2014"
   date: "2014-12-16"
-  published_at: "TODO"
+  published_at: "2014-12-16"
   description: |-
     Do you know how addition works in Ruby? It's simple right? You just add 2 and 2 and out pops 4. But what if you add 2 to cats? That makes no sense, but how does Ruby know it makes no sense? And what if you had a Really Good Business Reason for adding 2 and cats. To achieve the needed degree of cuteness, you're going to need to be positively cat-like yourself. In this talk you'll learn about the magic of the coerce method, and that can't be coerced into Fixnum isn't a warning, but a dare, and what you can do to make your coworkers, collaborators and future self regret it.
   video_provider: "youtube"
   video_id: "_GIPsLpYmGE"
 
-- title: "Building Your API for Longevity"
+- id: "mike-stowe-rubyconf-2014"
+  title: "Building Your API for Longevity"
   raw_title: "RubyConf 2014 - Building Your API for Longevity by Mike Stowe"
   speakers:
     - Mike Stowe
   event_name: "RubyConf 2014"
   date: "2014-12-18"
-  published_at: "TODO"
+  published_at: "2014-12-18"
   description: |-
     One of the greatest challenges to developing an API is ensuring that your API lasts. After all, you don't want to have to release and manage multiple versions of your API just because you weren't expecting users to use it a certain way, or because you didn't anticipate far enough down the roadmap. In this session we'll talk about the challenge of API Longevity, as well as ways to increase your API lifecycle including having a proper mindset, careful design, agile user experience and prototyping, best design practices including hypermedia, and the challenge of maintaining persistence.
   video_provider: "youtube"
   video_id: "8U7JoDfj3wM"
 
-- title: "Future-Proofing Your 3rd Party Integrations"
+- id: "jeffrey-matthias-rubyconf-2014"
+  title: "Future-Proofing Your 3rd Party Integrations"
   raw_title: "RubyConf 2014 - Future-Proofing Your 3rd Party Integrations by Jeffrey Matthias"
   speakers:
     - Jeffrey Matthias
   event_name: "RubyConf 2014"
   date: "2014-12-18"
-  published_at: "TODO"
+  published_at: "2014-12-18"
   description: |-
     It's 2015... your stakeholders have decided that PayPal is out and Stripe is in. Fortunately, you're a planner. You have all of your PayPal interactions isolated in an adapter gem and your interface is clearly defined, easy to re-implement and enforce. Rewriting your adapter isn't small, but it is surmountable and can be estimated accurately so it won't lead to surprises. You win.
 
@@ -307,37 +330,40 @@
   video_provider: "youtube"
   video_id: "LqZU2Q5nFRM"
 
-- title: "Testing Isn't Enough: Fighting Bugs with Hacks"
+- id: "paul-gross-rubyconf-2014"
+  title: "Testing Isn't Enough: Fighting Bugs with Hacks"
   raw_title: "RubyConf 2014 - Testing Isn't Enough: Fighting Bugs with Hacks by Paul Gross"
   speakers:
     - Paul Gross
   event_name: "RubyConf 2014"
   date: "2014-12-18"
-  published_at: "TODO"
+  published_at: "2014-12-18"
   description: |-
     Bugs and mess-ups are serious problems in software. Mistakes are inevitable - but the stakes can be high. If you're writing a hospital management system, they can cost lives. In a payments system, they can cost money. Since we can't eliminate bugs, this talk will cover strategies, hacks and monkey patches in Ruby to prevent bugs from leading to disaster. This isn't a traditional testing talk, but rather a thinking outside-of-the-box approach to busting bugs and building more robust software.
   video_provider: "youtube"
   video_id: "qBt7v5PKHvQ"
 
-- title: "Containerized Ruby Applications with Docker"
+- id: "laura-frank-rubyconf-2014"
+  title: "Containerized Ruby Applications with Docker"
   raw_title: "RubyConf 2014 - Containerized Ruby Applications with Docker by Laura Frank"
   speakers:
     - Laura Frank
   event_name: "RubyConf 2014"
   date: "2014-12-18"
-  published_at: "TODO"
+  published_at: "2014-12-18"
   description: |-
     Docker’s lightweight virtualization may supplant our hypervisor-backed VMs at some point in the future, and change the way that tomorrow's Ruby applications are architected, packaged and deployed. Using Docker, your Ruby applications will sit atop an excellent platform for packing, shipping and running low-overhead, isolated execution environments. You will get a brief intro to the Docker ecosystem, get to know the tools and processes needed to create containerized Ruby applications, and learn best practices for interacting with the Docker API from Ruby.
   video_provider: "youtube"
   video_id: "SGyLjrY3LJo"
 
-- title: "On The Outside Looking In"
+- id: "cindy-backman-rubyconf-2014"
+  title: "On The Outside Looking In"
   raw_title: "RubyConf 2014 - On The Outside Looking In by Cindy Backman"
   speakers:
     - Cindy Backman
   event_name: "RubyConf 2014"
   date: "2014-12-18"
-  published_at: "TODO"
+  published_at: "2014-12-18"
   description: |-
     The view of an outsider – What I have learned over the past 2 years from attending nearly 40 programming conferences on 3 different continents (with most of them being Ruby Conferences) and working on just under 1000 presentations.
 
@@ -350,13 +376,14 @@
   video_provider: "youtube"
   video_id: "W3TpckhNzuM"
 
-- title: "Affordances in Programming Languages"
+- id: "randy-coulman-rubyconf-2014"
+  title: "Affordances in Programming Languages"
   raw_title: "RubyConf 2014 - Affordances in Programming Languages by Randy Coulman"
   speakers:
     - Randy Coulman
   event_name: "RubyConf 2014"
   date: "2014-12-18"
-  published_at: "TODO"
+  published_at: "2014-12-18"
   description: |-
     A good design communicates the intended use of the object. In the physical world, this communication is accomplished by "affordances" as discussed by Donald Norman in "The Psychology of Everyday Things".
 
@@ -366,25 +393,27 @@
   video_provider: "youtube"
   video_id: "fjH1DCa56Co"
 
-- title: "Going Evergreen"
+- id: "kane-baccigalupi-rubyconf-2014"
+  title: "Going Evergreen"
   raw_title: "RubyConf 2014 - Going Evergreen by Kane Baccigalupi"
   speakers:
     - Kane Baccigalupi
   event_name: "RubyConf 2014"
   date: "2014-12-18"
-  published_at: "TODO"
+  published_at: "2014-12-18"
   description: |-
     Consultants divide projects between greenfield and brownfield projects, and talk about this evolution from green to brown as inevitable. It's not true. Large evolving software projects can stay easy to change, easy to grow, easy to reimagine throughout their long lives. This talk explores the code and social practices that make this kind of project succeed.
   video_provider: "youtube"
   video_id: "SziNSMP1xaM"
 
-- title: "Rapidly Mapping JSON/XML API Schemas in Ruby"
+- id: "adam-cuppy-rubyconf-2014"
+  title: "Rapidly Mapping JSON/XML API Schemas in Ruby"
   raw_title: "RubyConf 2014 - Rapidly Mapping JSON/XML API Schemas in Ruby by Adam Cuppy"
   speakers:
     - Adam Cuppy
   event_name: "RubyConf 2014"
   date: "2014-12-18"
-  published_at: "TODO"
+  published_at: "2014-12-18"
   description: |-
     Whether you are using a 3rd party or custom JSON API service, integration into an existing application can be time consuming: Where do you start? How can you build an object relational model that can adapt to changes in the schema?
 
@@ -392,13 +421,14 @@
   video_provider: "youtube"
   video_id: "1K0Pt0o9F7w"
 
-- title: "Incremental GC for Ruby interpreter"
+- id: "koichi-sasada-rubyconf-2014"
+  title: "Incremental GC for Ruby interpreter"
   raw_title: "RubyConf 2014 - Incremental GC for Ruby interpreter by Koichi Sasada"
   speakers:
     - Koichi Sasada
   event_name: "RubyConf 2014"
   date: "2014-12-19"
-  published_at: "TODO"
+  published_at: "2014-12-19"
   description: |-
     In this presentation, I will talk about incremental GC algorithm for Ruby interpreter.
 
@@ -408,13 +438,14 @@
   video_provider: "youtube"
   video_id: "4UO60ocw52w"
 
-- title: "6 Reasons Jubilee Could be a Rubyist's New Best Friend"
+- id: "forrest-chang-rubyconf-2014"
+  title: "6 Reasons Jubilee Could be a Rubyist's New Best Friend"
   raw_title: "RubyConf 2014 - 6 Reasons Jubilee Could be a Rubyist's New Best Friend by Forrest Chang"
   speakers:
     - Forrest Chang
   event_name: "RubyConf 2014"
   date: "2014-12-19"
-  published_at: "TODO"
+  published_at: "2014-12-19"
   description: |-
     Do you do web development in Ruby? Have you been forced to go to node or other technologies just for concurrency/websockets etc. Do miss your gems, and tire of functionality you have to implement from scratch? Do you hate javascript?
 
@@ -432,13 +463,14 @@
   video_provider: "youtube"
   video_id: "FFR0G89WXI8"
 
-- title: "Madame Sandi Tells Your Future"
+- id: "sandi-metz-rubyconf-2014"
+  title: "Madame Sandi Tells Your Future"
   raw_title: "RubyConf 2014 - Madam Sandi Tells Your Future by Sandi Metz"
   speakers:
     - Sandi Metz
   event_name: "RubyConf 2014"
   date: "2014-12-19"
-  published_at: "TODO"
+  published_at: "2014-12-19"
   slides_url: "https://speakerdeck.com/skmetz/madame-sandi-tells-your-future"
   description: |-
     Life's demands are such that it's easy to get lost in the day-to-day, trapped inside your own private world, expecting today to repeat endlessly and the future to remain a distant, untroubling land. The future is coming, however, whether you are ready or not, and when it does everything will change.
@@ -447,51 +479,55 @@
   video_provider: "youtube"
   video_id: "JOM5_V5jLAs"
 
-- title: "Writing mruby Debugger"
+- id: "yurie-yamane-rubyconf-2014"
+  title: "Writing mruby Debugger"
   raw_title: "RubyConf 2014 - Writing mruby Debugger by Yurie Yamane & Masayoshi Takahashi"
   speakers:
     - Yurie Yamane
     - Masayoshi Takahashi
   event_name: "RubyConf 2014"
   date: "2014-12-19"
-  published_at: "TODO"
+  published_at: "2014-12-19"
   description: |-
     mruby forum released mruby 1.0.0 in Feb. 2014. It's been stable to use. However, because mruby is used on small boards or in application programs, it's hard to debug mruby applications. When we develop mruby application, we should write not only Ruby code, but also C code. So we need to debug both codes. To make debugging mruby application easier, we are writing prototype of mruby debugger. Current mruby distribution has no debugger, but there are some useful API sets to implement own debugger. In this talk, we introduce their API and how to use them to write a debugger.
   video_provider: "youtube"
   video_id: "VXQYSa2jjLw"
 
-- title: "JRuby 9000"
+- id: "charles-nutter-rubyconf-2014"
+  title: "JRuby 9000"
   raw_title: "RubyConf 2014 - JRuby 9000 by Charles Nutter & Thomas Enebo"
   speakers:
     - Charles Nutter
     - Thomas E Enebo
   event_name: "RubyConf 2014"
   date: "2014-12-19"
-  published_at: "TODO"
+  published_at: "2014-12-19"
   description: |-
     JRuby 9000 is the largest update to the JRuby platform during its lifetime. We will support Ruby 2.1 (or perhaps 2.2) features, replace our execution pipeline with a new optimizing compiler, support true native IO and Process logic, and finally bring character transcoding in line with MRI. At the same time, people are building more and more amazing things with JRuby. In this talk, we'll unveil JRuby 9000 and talk about the future of JRuby and Ruby.
   video_provider: "youtube"
   video_id: "CJGVH1XTtSw"
 
-- title: "Opening Keynote: Feeding the Sharks"
+- id: "yukihiro-matz-matsumoto-rubyconf-2014"
+  title: "Opening Keynote: Feeding the Sharks"
   raw_title: "RubyConf 2014 - Opening Keynote"
   speakers:
     - Yukihiro "Matz" Matsumoto
   event_name: "RubyConf 2014"
   date: "2014-12-22"
-  published_at: "TODO"
+  published_at: "2014-12-22"
   description: |-
     By, Yukihiro "Matz" Matsumoto
   video_provider: "youtube"
   video_id: "85ct6jOvVPI"
 
-- title: "Norikra: SQL Stream Processing in Ruby"
+- id: "satoshi-moris-tagomori-rubyconf-2014"
+  title: "Norikra: SQL Stream Processing in Ruby"
   raw_title: "RubyConf 2014 - Norikra: SQL Stream Processing in Ruby by Tagomori Satoshi"
   speakers:
     - Satoshi "moris" Tagomori
   event_name: "RubyConf 2014"
   date: "2014-12-22"
-  published_at: "TODO"
+  published_at: "2014-12-22"
   description: |-
     Data streams (ex: logs) are becoming larger, while analytics in (semi-) real time is also becoming more important today. Moreover, there are many non-programmers who wants to write queries in this big data era.
 
@@ -499,13 +535,14 @@
   video_provider: "youtube"
   video_id: "5QsIMgGdw8w"
 
-- title: "Template Engines in Ruby"
+- id: "akira-matsuda-rubyconf-2014"
+  title: "Template Engines in Ruby"
   raw_title: "RubyConf 2014 - Template Engines in Ruby by Akira Matsuda"
   speakers:
     - Akira Matsuda
   event_name: "RubyConf 2014"
   date: "2014-12-22"
-  published_at: "TODO"
+  published_at: "2014-12-22"
   description: |-
     HTML template engine is one of the most important library to build a web application. But who actually knows how it works? Who can explain how the engine parses the given template and finally composes the HTML body?
 
@@ -513,13 +550,14 @@
   video_provider: "youtube"
   video_id: "ldDZggzePkk"
 
-- title: "Nobody Knows Nobu"
+- id: "zachary-scott-rubyconf-2014"
+  title: "Nobody Knows Nobu"
   raw_title: "RubyConf 2014 - Nobody Knows Nobu by Zachary Scott"
   speakers:
     - Zachary Scott
   event_name: "RubyConf 2014"
   date: "2014-12-22"
-  published_at: "TODO"
+  published_at: "2014-12-22"
   description: |-
     Nobuyoshi Nakada is the most prolific contributor to Ruby. He is the all time leader in commits to the CRuby source code. With over 10,000 commits, he leads second place by double the number of commits. Leading to his psuedonym "Patch Monster".
 
@@ -531,13 +569,14 @@
   video_provider: "youtube"
   video_id: "yqyIi0pwRO4"
 
-- title: "Ruby-red onions: Peeling Back Ruby's Layers in C Extensions"
+- id: "emily-stolfo-rubyconf-2014"
+  title: "Ruby-red onions: Peeling Back Ruby's Layers in C Extensions"
   raw_title: "RubyConf 2014 - Ruby-red onions: Peeling Back Ruby's Layers in C Extensions by Emily Stolfo"
   speakers:
     - Emily Stolfo
   event_name: "RubyConf 2014"
   date: "2014-12-22"
-  published_at: "TODO"
+  published_at: "2014-12-22"
   description: |-
     The fact that Ruby has different implementations is both strange and powerful. Writing an extension for the language can be a daunting task but there's no better way to get to the heart of what exactly Ruby objects are and the reason for some of the language's quirks.
 
@@ -545,11 +584,12 @@
   video_provider: "youtube"
   video_id: "8klc4R1TvoY"
 
-- title: "Lightning Talks"
+- id: "lightning-talks-rubyconf-2014"
+  title: "Lightning Talks"
   raw_title: "RubyConf 2014 - Lightning Talks by Many People"
   event_name: "RubyConf 2014"
   date: "2014-12-22"
-  published_at: "TODO"
+  published_at: "2014-12-22"
   description: ""
   video_provider: "youtube"
   video_id: "GnUyjPGu5MQ"
@@ -557,6 +597,7 @@
     - title: "Lightning Talk: Vektra"
       start_cue: "00:00:00"
       end_cue: "00:03:45"
+      id: "vektra-lighting-talk-rubyconf-2014"
       video_id: "vektra-lighting-talk-rubyconf-2014"
       video_provider: "parent"
       speakers:
@@ -565,6 +606,7 @@
     - title: "Lightning Talk: Claudio Baccigalupo"
       start_cue: "00:03:45"
       end_cue: "00:07:27"
+      id: "claudio-baccigalupo-lighting-talk-rubyconf-2014"
       video_id: "claudio-baccigalupo-lighting-talk-rubyconf-2014"
       video_provider: "parent"
       speakers:
@@ -573,6 +615,7 @@
     - title: "Lightning Talk: Richard Schneeman"
       start_cue: "00:07:27"
       end_cue: "00:11:58"
+      id: "richard-schneeman-lighting-talk-rubyconf-2014"
       video_id: "richard-schneeman-lighting-talk-rubyconf-2014"
       video_provider: "parent"
       speakers:
@@ -581,6 +624,7 @@
     - title: "Lightning Talk: Shannon Skipper"
       start_cue: "00:11:58"
       end_cue: "00:15:34"
+      id: "shannon-skipper-lighting-talk-rubyconf-2014"
       video_id: "shannon-skipper-lighting-talk-rubyconf-2014"
       video_provider: "parent"
       speakers:
@@ -589,6 +633,7 @@
     - title: "Lightning Talk: Sean Culver"
       start_cue: "00:15:34"
       end_cue: "00:20:36"
+      id: "sean-culver-lighting-talk-rubyconf-2014"
       video_id: "sean-culver-lighting-talk-rubyconf-2014"
       video_provider: "parent"
       speakers:
@@ -597,6 +642,7 @@
     - title: "Lightning Talk: Steven Talcott Smith"
       start_cue: "00:20:36"
       end_cue: "00:25:28"
+      id: "steven-talcott-smith-lighting-talk-rubyconf-2014"
       video_id: "steven-talcott-smith-lighting-talk-rubyconf-2014"
       video_provider: "parent"
       speakers:
@@ -605,6 +651,7 @@
     - title: "Lightning Talk: Brandon Rice"
       start_cue: "00:25:28"
       end_cue: "00:30:21"
+      id: "brandon-rice-lighting-talk-rubyconf-2014"
       video_id: "brandon-rice-lighting-talk-rubyconf-2014"
       video_provider: "parent"
       speakers:
@@ -613,6 +660,7 @@
     - title: "Lightning Talk: Alex"
       start_cue: "00:30:21"
       end_cue: "00:34:32"
+      id: "alex-lighting-talk-rubyconf-2014"
       video_id: "alex-lighting-talk-rubyconf-2014"
       video_provider: "parent"
       speakers:
@@ -621,6 +669,7 @@
     - title: "Lightning Talk: Phillip Ante"
       start_cue: "00:34:32"
       end_cue: "00:38:26"
+      id: "phillip-ante-lighting-talk-rubyconf-2014"
       video_id: "phillip-ante-lighting-talk-rubyconf-2014"
       video_provider: "parent"
       speakers:
@@ -629,6 +678,7 @@
     - title: "Lightning Talk: Jeramy Couts"
       start_cue: "00:38:26"
       end_cue: "00:42:32"
+      id: "jeramy-couts-lighting-talk-rubyconf-2014"
       video_id: "jeramy-couts-lighting-talk-rubyconf-2014"
       video_provider: "parent"
       speakers:
@@ -637,6 +687,7 @@
     - title: "Lightning Talk: Ray Hightower"
       start_cue: "00:42:32"
       end_cue: "00:46:33"
+      id: "ray-hightower-lighting-talk-rubyconf-2014"
       video_id: "ray-hightower-lighting-talk-rubyconf-2014"
       video_provider: "parent"
       speakers:
@@ -645,6 +696,7 @@
     - title: "Lightning Talk: Tim Schmelmer"
       start_cue: "00:46:33"
       end_cue: "00:53:05"
+      id: "tim-schmelmer-lighting-talk-rubyconf-2014"
       video_id: "tim-schmelmer-lighting-talk-rubyconf-2014"
       video_provider: "parent"
       speakers:
@@ -653,6 +705,7 @@
     - title: "Lightning Talk: Aaron Patterson"
       start_cue: "00:53:05"
       end_cue: "00:58:32"
+      id: "aaron-patterson-lighting-talk-rubyconf-2014"
       video_id: "aaron-patterson-lighting-talk-rubyconf-2014"
       video_provider: "parent"
       speakers:
@@ -661,6 +714,7 @@
     - title: "Lightning Talk: Bobby Matson"
       start_cue: "00:58:32"
       end_cue: "01:03:17"
+      id: "bobby-matson-lighting-talk-rubyconf-2014"
       video_id: "bobby-matson-lighting-talk-rubyconf-2014"
       video_provider: "parent"
       speakers:
@@ -669,6 +723,7 @@
     - title: "Lightning Talk: Jason Clark"
       start_cue: "01:03:17"
       end_cue: "01:08:25"
+      id: "jason-clark-lighting-talk-rubyconf-2014"
       video_id: "jason-clark-lighting-talk-rubyconf-2014"
       video_provider: "parent"
       speakers:
@@ -677,6 +732,7 @@
     - title: "Lightning Talk: Chris Sexton"
       start_cue: "01:08:25"
       end_cue: "01:10:52"
+      id: "chris-sexton-lighting-talk-rubyconf-2014"
       video_id: "chris-sexton-lighting-talk-rubyconf-2014"
       video_provider: "parent"
       speakers:
@@ -685,6 +741,7 @@
     - title: "Lightning Talk: Jonathan Slate"
       start_cue: "01:10:52"
       end_cue: "01:15:05"
+      id: "jonathan-slate-lighting-talk-rubyconf-2014"
       video_id: "jonathan-slate-lighting-talk-rubyconf-2014"
       video_provider: "parent"
       speakers:
@@ -693,6 +750,7 @@
     - title: "Lightning Talk: Amanda Wagener"
       start_cue: "01:15:05"
       end_cue: "01:20:44"
+      id: "amanda-wagener-lighting-talk-rubyconf-2014"
       video_id: "amanda-wagener-lighting-talk-rubyconf-2014"
       video_provider: "parent"
       speakers:
@@ -701,6 +759,7 @@
     - title: "Lightning Talk: Costi"
       start_cue: "01:20:44"
       end_cue: "01:27:03"
+      id: "costi-lighting-talk-rubyconf-2014"
       video_id: "costi-lighting-talk-rubyconf-2014"
       video_provider: "parent"
       speakers:
@@ -709,6 +768,7 @@
     - title: "Lightning Talk: Colin Kelley"
       start_cue: "01:27:03"
       end_cue: "01:32:01"
+      id: "colin-kelley-lighting-talk-rubyconf-2014"
       video_id: "colin-kelley-lighting-talk-rubyconf-2014"
       video_provider: "parent"
       speakers:
@@ -717,6 +777,7 @@
     - title: "Lightning Talk: Michael Hartl"
       start_cue: "01:32:01"
       end_cue: "01:36:42"
+      id: "michael-hartl-lighting-talk-rubyconf-2014"
       video_id: "michael-hartl-lighting-talk-rubyconf-2014"
       video_provider: "parent"
       speakers:
@@ -725,18 +786,20 @@
     - title: "Lightning Talk: Pamela Assogba"
       start_cue: "01:36:42"
       end_cue: "1:39:54"
+      id: "pamela-assogba-lighting-talk-rubyconf-2014"
       video_id: "pamela-assogba-lighting-talk-rubyconf-2014"
       video_provider: "parent"
       speakers:
         - Pamela Assogba
 
-- title: "Isomorphic App Development with Ruby and Volt"
+- id: "ryan-stout-rubyconf-2014"
+  title: "Isomorphic App Development with Ruby and Volt"
   raw_title: "RubyConf 2014 - Isomorphic App Development with Ruby and Volt by Ryan Stout"
   speakers:
     - Ryan Stout
   event_name: "RubyConf 2014"
   date: "2014-12-22"
-  published_at: "TODO"
+  published_at: "2014-12-22"
   description: |-
     As single page apps become common, more and more of our logic becomes duplicated between the front and back-end. We also spend more time writing API glue code to move data between each side. With isometric development you can remove the boilerplate of web development and the cognitive load of switching between languages.
 
@@ -744,26 +807,28 @@
   video_provider: "youtube"
   video_id: "7i6AL7Walc4"
 
-- title: "Enumerable for Fun & Profit"
+- id: "michael-hartl-rubyconf-2014"
+  title: "Enumerable for Fun & Profit"
   raw_title: "RubyConf 2014 - Enumerable for Fun & Profit"
   speakers:
     - Michael Hartl
   event_name: "RubyConf 2014"
   date: "2014-12-22"
-  published_at: "TODO"
+  published_at: "2014-12-22"
   description: |-
     By, Michael Hartl
     Let's peek under the hood of the the Enumerable module, a goldmine of examples of the power and flexibility of Ruby. Although some of Enumerable's methods are familiar from workhorse Ruby data structures such as Array and Hash, there are tons of hidden gems, including cycle, lazy, partition, and grep. Mastering the ins & outs of Enumerable will save you time, avoid bugs, and help you write clearer and more concise code. Join the author of the Ruby on Rails Tutorial on a journey through one of the most captivating and illuminating modules in Ruby's Standard Library.
   video_provider: "youtube"
   video_id: "y4V9qVTkj3c"
 
-- title: "Overcoming Our Obsession with Stringly-Typed Ruby"
+- id: "david-copeland-rubyconf-2014"
+  title: "Overcoming Our Obsession with Stringly-Typed Ruby"
   raw_title: "RubyConf 2014 - Overcoming Our Obsession with Stringly-Typed Ruby"
   speakers:
     - David Copeland
   event_name: "RubyConf 2014"
   date: "2014-12-22"
-  published_at: "TODO"
+  published_at: "2014-12-22"
   description: |-
     By, David Copeland
     We use Strings. A lot. We use them for pretty much everything that isn't a number (it's jokingly referred to as "stringly-typed").
@@ -772,13 +837,14 @@
   video_provider: "youtube"
   video_id: "7Obobjq8g_U"
 
-- title: "An Introduction to Spies in RSpec"
+- id: "sam-phippen-rubyconf-2014"
+  title: "An Introduction to Spies in RSpec"
   raw_title: "RubyConf 2014 - An Introduction to Spies in RSpec"
   speakers:
     - Sam Phippen
   event_name: "RubyConf 2014"
   date: "2014-12-22"
-  published_at: "TODO"
+  published_at: "2014-12-22"
   description: |-
     By, Sam Phippen
     Spies are a relatively new feature in RSpec. In this tutorial-style talk: we'll look at what spies are, how spies work in RSpec and how one can write better tests with spies. We'll work through some of examples of writing new tests with spies, improving old tests with spies and the reasons why spying is a useful tool for your testing practice.
@@ -787,26 +853,28 @@
   video_provider: "youtube"
   video_id: "kiHdUU73D14"
 
-- title: "TDD For Your Soul: Virtue and Software Engineering"
+- id: "abraham-sangha-rubyconf-2014"
+  title: "TDD For Your Soul: Virtue and Software Engineering"
   raw_title: "RubyConf 2014 - TDD For Your Soul: Virtue and Software Engineering"
   speakers:
     - Abraham Sangha
   event_name: "RubyConf 2014"
   date: "2014-12-22"
-  published_at: "TODO"
+  published_at: "2014-12-22"
   description: |-
     By, Abraham Sangha
     Software engineering pushes us to our limits, not only of cognition, but, perhaps surprisingly, of character. Using the cardinal virtues as a framework, we can see that developers need courage to learn, temperance to prioritize goals, a sense of justice by which to discern, and wisdom to act. By being honest about where we lack virtue, and implementing steps to develop character, we can perform TDD on ourselves. This process can help us grow not only as coders, but as human beings.
   video_provider: "youtube"
   video_id: "VxLkhCx2I1Q"
 
-- title: "Rsense Knows Your Code"
+- id: "eric-west-rubyconf-2014"
+  title: "Rsense Knows Your Code"
   raw_title: "RubyConf 2014 - Rsense Knows Your Code by Eric West"
   speakers:
     - Eric West
   event_name: "RubyConf 2014"
   date: "2014-12-22"
-  published_at: "TODO"
+  published_at: "2014-12-22"
   description: |-
     Rsense brings the kind of static analysis tooling to Ruby that programmers in other languages take for granted. The kind of tooling I kept hearing was impossible to implement for Ruby. Accurate type inference, code completion, definition finding, and eventually so much more. How about a real refactoring tool, or the ability to find whole classes of bugs without executing the code? This is where Rsense is headed.
 
@@ -814,13 +882,14 @@
   video_provider: "youtube"
   video_id: "HMcEEBR0yJY"
 
-- title: "A World Without Assignment"
+- id: "aja-hammerly-rubyconf-2014"
+  title: "A World Without Assignment"
   raw_title: "RubyConf 2014 - A World Without Assignment"
   speakers:
     - Aja Hammerly
   event_name: "RubyConf 2014"
   date: "2014-12-23"
-  published_at: "TODO"
+  published_at: "2014-12-23"
   description: |-
     By, Aja Hammerly
     In Ruby, assignment is our primary tool. By contrast, functional programming makes much less use of assignment and mutation. Instead techniques like function composition, recursion, and anonymous functions are used.
@@ -829,26 +898,28 @@
   video_provider: "youtube"
   video_id: "-7RR27bR0_E"
 
-- title: "Promises in Ruby"
+- id: "dinshaw-gobhai-rubyconf-2014"
+  title: "Promises in Ruby"
   raw_title: "RubyConf 2014 - Promises in Ruby"
   speakers:
     - Dinshaw Gobhai
   event_name: "RubyConf 2014"
   date: "2014-12-23"
-  published_at: "TODO"
+  published_at: "2014-12-23"
   description: |-
     By, Dinshaw Gobhai
     Sequential workflows are easy to write (top down), but hard to write well. State machine workflows start to feel hacky, when complex; presenter patterns can be very heavy. Promises are a beautiful way to define and execute progressive routines while allowing access to independent steps for things like logging, exception handling, and picking up where you left off.
   video_provider: "youtube"
   video_id: "hDd6DCDoOs8"
 
-- title: "Letting Concurrency Help You Today"
+- id: "richard-bishop-rubyconf-2014"
+  title: "Letting Concurrency Help You Today"
   raw_title: "RubyConf 2014 - Letting Concurrency Help You Today"
   speakers:
     - Richard Bishop
   event_name: "RubyConf 2014"
   date: "2014-12-23"
-  published_at: "TODO"
+  published_at: "2014-12-23"
   description: |-
     By, Richard Bishop
     Ruby has never been renowned for its performance. We choose to love Ruby for its more admirable traits, like simplicity and expressiveness. But it turns out that we can have the best of both worlds by kicking the single-threaded model to the curb and using tried and true concurrency abstractions.
@@ -857,13 +928,14 @@
   video_provider: "youtube"
   video_id: "F7dC3vTpE6I"
 
-- title: "Kids, Ruby, Fun!:  Introduction of the Smalruby and the Ruby Programming Shounendan"
+- id: "kouji-takao-rubyconf-2014"
+  title: "Kids, Ruby, Fun!:  Introduction of the Smalruby and the Ruby Programming Shounendan"
   raw_title: "RubyConf 2014 - Kids, Ruby, Fun!:... by Kouji Takao"
   speakers:
     - Kouji Takao
   event_name: "RubyConf 2014"
   date: "2014-12-23"
-  published_at: "TODO"
+  published_at: "2014-12-23"
   description: |-
     Kids, Ruby, Fun!:  Introduction of the Smalruby and the Ruby Programming Shounendan by Kouji Takao
 
@@ -871,13 +943,14 @@
   video_provider: "youtube"
   video_id: "c2P_8QURz1g"
 
-- title: "Scalable Deployments - How we Deploy Rails app to 100+ Hosts in a Minute"
+- id: "shota-fukumori-rubyconf-2014"
+  title: "Scalable Deployments - How we Deploy Rails app to 100+ Hosts in a Minute"
   raw_title: "RubyConf 2014 - Scalable Deployments... by Shota Fukumori"
   speakers:
     - Shota Fukumori
   event_name: "RubyConf 2014"
   date: "2014-12-23"
-  published_at: "TODO"
+  published_at: "2014-12-23"
   description: |-
     Scalable Deployments - How we Deploy Rails app to 100+ Hosts in a Minute by Shota Fukumori
 
@@ -889,26 +962,28 @@
   video_provider: "youtube"
   video_id: "Pta7Lr-eskc"
 
-- title: "Harnessing Other Languages To Make Ruby Better"
+- id: "brendon-mclean-rubyconf-2014"
+  title: "Harnessing Other Languages To Make Ruby Better"
   raw_title: "RubyConf 2014 - Harnessing other languages to make Ruby better"
   speakers:
     - Brendon McLean
   event_name: "RubyConf 2014"
   date: "2014-12-23"
-  published_at: "TODO"
+  published_at: "2014-12-23"
   description: |-
     By, Brendon McLean
     What do you do when your Ruby startup takes off and you realise that Ruby might not be best suited for everything? This talk covers our initial attempts to use Ruby as a data analytics platform, and how we ultimately ended up solving the problem using ideas from LISP and ActiveRecord scopes to bring the power and performance of data science languages to Ruby. We will also cover how Ruby can learn from other languages, and why Ruby is still our language of choice.
   video_provider: "youtube"
   video_id: "-wYAcuWQ0YQ"
 
-- title: "Ruby Changed My Life"
+- id: "johnnyt-rubyconf-2014"
+  title: "Ruby Changed My Life"
   raw_title: "RubyConf 2014 - Ruby Changed My Life"
   speakers:
     - JohnnyT
   event_name: "RubyConf 2014"
   date: "2014-12-23"
-  published_at: "TODO"
+  published_at: "2014-12-23"
   description: |-
     By, JohnnyT
     When I found Ruby several years ago, I had no idea how
@@ -924,13 +999,14 @@
   video_provider: "youtube"
   video_id: "SQUJ3PiY4h8"
 
-- title: "Rubyists, have a sip of Elixir!"
+- id: "benjamin-tan-wei-hao-rubyconf-2014"
+  title: "Rubyists, have a sip of Elixir!"
   raw_title: "RubyConf 2014 - Rubyists, have a sip of Elixir!"
   speakers:
     - Benjamin Tan Wei Hao
   event_name: "RubyConf 2014"
   date: "2014-12-23"
-  published_at: "TODO"
+  published_at: "2014-12-23"
   description: |-
     By, Benjamin Tan Wei Hao
 
@@ -942,13 +1018,14 @@
   video_provider: "youtube"
   video_id: "0Ui-Vy2wYwo"
 
-- title: "Learning from FP: Simulated Annealing in Haskell and Ruby"
+- id: "jess-szmajda-rubyconf-2014"
+  title: "Learning from FP: Simulated Annealing in Haskell and Ruby"
   raw_title: "RubyConf 2014 - Learning from FP: Simulated Annealing in Haskell and Ruby"
   speakers:
     - Jess Szmajda
   event_name: "RubyConf 2014"
   date: "2014-12-23"
-  published_at: "TODO"
+  published_at: "2014-12-23"
   description: |-
     By, Jess Szmajda
 
@@ -956,13 +1033,14 @@
   video_provider: "youtube"
   video_id: "GjyE3tKscSw"
 
-- title: "Stress Testing as a Culture"
+- id: "joo-moura-rubyconf-2014"
+  title: "Stress Testing as a Culture"
   raw_title: "RubyConf 2014 - Stress Testing as a Culture"
   speakers:
     - João Moura
   event_name: "RubyConf 2014"
   date: "2014-12-23"
-  published_at: "TODO"
+  published_at: "2014-12-23"
   description: |-
     By, João Moura
 
@@ -970,13 +1048,14 @@
   video_provider: "youtube"
   video_id: "b7jqwVxdtcY"
 
-- title: "Ruby Performance Secrets and How to Uncover Them"
+- id: "alexander-dymo-rubyconf-2014"
+  title: "Ruby Performance Secrets and How to Uncover Them"
   raw_title: "RubyConf 2014 - Ruby Performance Secrets and How to Uncover Them"
   speakers:
     - Alexander Dymo
   event_name: "RubyConf 2014"
   date: "2014-12-24"
-  published_at: "TODO"
+  published_at: "2014-12-24"
   description: |-
     By, Alexander Dymo
 
@@ -984,13 +1063,14 @@
   video_provider: "youtube"
   video_id: "lAI_uYQwh4s"
 
-- title: "Benchmarking Ruby"
+- id: "davy-stevenson-rubyconf-2014"
+  title: "Benchmarking Ruby"
   raw_title: "RubyConf 2014 - Benchmarking Ruby"
   speakers:
     - Davy Stevenson
   event_name: "RubyConf 2014"
   date: "2014-12-24"
-  published_at: "TODO"
+  published_at: "2014-12-24"
   description: |-
     By, Davy Stevenson
 
@@ -1000,13 +1080,14 @@
   video_provider: "youtube"
   video_id: "XlEZB3oilME"
 
-- title: "Real World Ruby Performance at Scale"
+- id: "aaron-quint-rubyconf-2014"
+  title: "Real World Ruby Performance at Scale"
   raw_title: "RubyConf 2014 - Real World Ruby Performance at Scale"
   speakers:
     - Aaron Quint
   event_name: "RubyConf 2014"
   date: "2014-12-24"
-  published_at: "TODO"
+  published_at: "2014-12-24"
   description: |-
     By, Aaron Quint
 
@@ -1014,13 +1095,14 @@
   video_provider: "youtube"
   video_id: "qlS3yr1oncQ"
 
-- title: "Strong Duck Type Driven Development"
+- id: "john-cinnamond-rubyconf-2014"
+  title: "Strong Duck Type Driven Development"
   raw_title: "RubyConf 2014 - Strong Duck Type Driven Development"
   speakers:
     - John Cinnamond
   event_name: "RubyConf 2014"
   date: "2014-12-24"
-  published_at: "TODO"
+  published_at: "2014-12-24"
   description: |-
     By, John Cinnamond
 
@@ -1030,13 +1112,14 @@
   video_provider: "youtube"
   video_id: "rMbx5FrqY4U"
 
-- title: "Deoptimizing Ruby"
+- id: "chris-seaton-rubyconf-2014"
+  title: "Deoptimizing Ruby"
   raw_title: "RubyConf 2014 - Deoptimizing Ruby"
   speakers:
     - Chris Seaton
   event_name: "RubyConf 2014"
   date: "2014-12-26"
-  published_at: "TODO"
+  published_at: "2014-12-26"
   description: |-
     By, Chris Seaton
 
@@ -1046,13 +1129,14 @@
   video_provider: "youtube"
   video_id: "z-YVygbDHLE"
 
-- title: "Ruby Idioms You're Not Using Yet"
+- id: "craig-buchek-rubyconf-2014"
+  title: "Ruby Idioms You're Not Using Yet"
   raw_title: "RubyConf 2014 - Ruby Idioms You're Not Using Yet"
   speakers:
     - Craig Buchek
   event_name: "RubyConf 2014"
   date: "2014-12-26"
-  published_at: "TODO"
+  published_at: "2014-12-26"
   description: |-
     By, Craig Buchek
 
@@ -1067,13 +1151,14 @@
   video_provider: "youtube"
   video_id: "hc_wtllfKtQ"
 
-- title: "Your Bright Metaprogramming Future: Mistakes You'll Make (and How to Fix Them)"
+- id: "betsy-haibel-rubyconf-2014"
+  title: "Your Bright Metaprogramming Future: Mistakes You'll Make (and How to Fix Them)"
   raw_title: "RubyConf 2014 - Your Bright Metaprogramming Future: Mistakes You'll Make (and How to Fix Them)"
   speakers:
     - Betsy Haibel
   event_name: "RubyConf 2014"
   date: "2014-12-26"
-  published_at: "TODO"
+  published_at: "2014-12-26"
   description: |-
     By, Betsy Haibel
 
@@ -1081,38 +1166,41 @@
   video_provider: "youtube"
   video_id: "7rN6ehNrtfc"
 
-- title: "5 Things I Wish Someone Had Told Me About Programming Before I Started"
+- id: "kerri-miller-rubyconf-2014"
+  title: "5 Things I Wish Someone Had Told Me About Programming Before I Started"
   raw_title: "RubyConf 2014 - 5 Things I Wish Someone Had Told Me About Programming Before I Started"
   speakers:
     - Kerri Miller
   event_name: "RubyConf 2014"
   date: "2014-12-29"
-  published_at: "TODO"
+  published_at: "2014-12-29"
   description: |-
     By, Kerri Miller
     There's more to being a successful developer than simply being great at programming. The gotchas that slow us down or trip us up are often outside of the code we write, manifesting instead in our process or how we work with our peers. Whether you're new to programming or a veteran of many projects, these 5 things can improve your code, your career, and your team, and is a refresher course on what goes into the day-to-day, reminding us to have some empathy for individuals new to our community.
   video_provider: "youtube"
   video_id: "bZOnbBJW3a8"
 
-- title: "Switch Up: How to Switch Careers to Become a Ruby Engineer"
+- id: "kinsey-ann-durham-rubyconf-2014"
+  title: "Switch Up: How to Switch Careers to Become a Ruby Engineer"
   raw_title: "RubyConf 2014 - Switch Up: How to Switch Careers to Become a Ruby Engineer"
   speakers:
     - Kinsey Ann Durham
   event_name: "RubyConf 2014"
   date: "2014-12-30"
-  published_at: "TODO"
+  published_at: "2014-12-30"
   description: |-
     By, Kinsey Ann Durham
   video_provider: "youtube"
   video_id: "nRm-qlxq3Rw"
 
-- title: "Polishing Ruby"
+- id: "oliver-lacan-rubyconf-2014"
+  title: "Polishing Ruby"
   raw_title: "RubyConf 2014 - Polishing Ruby by Oliver Lacan"
   speakers:
     - Oliver Lacan
   event_name: "RubyConf 2014"
   date: "2015-03-23"
-  published_at: "TODO"
+  published_at: "2015-03-23"
   description: |-
     There are gems out there solving very common problems that could easily be contributed back to Ruby itself. Suggesting a new Ruby feature isn't as daunting as it sounds. As long as you're diligent, you too can push ruby forward.
   video_provider: "youtube"

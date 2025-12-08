@@ -7,13 +7,14 @@
 
 # Break
 
-- title: "Maintaining Balance while Reducing Duplication: Part II"
+- id: "david-chelimsky-goruco-2012"
+  title: "Maintaining Balance while Reducing Duplication: Part II"
   raw_title: "Maintaining Balance while Reducing Duplication: Part II by David Chelimsky,"
   speakers:
     - David Chelimsky
   event_name: "GORUCO 2012"
   date: "2012-06-23"
-  published_at: "TODO"
+  published_at: "2012-07-01"
   description: |-
     This talk is a sequel to the talk David gave at RubyConf 2010, and will focus on refactorings that we rely on to reduce duplication, and their implications, both positive and negative.
   video_provider: "youtube"
@@ -21,13 +22,14 @@
 
 # Break
 
-- title: "The Front-End Future"
+- id: "francis-hwang-goruco-2012"
+  title: "The Front-End Future"
   raw_title: "The Front-End Future by Francis Hwang"
   speakers:
     - Francis Hwang
   event_name: "GORUCO 2012"
   date: "2012-06-23"
-  published_at: "TODO"
+  published_at: "2012-07-01"
   description: |-
     With the rise of Javascript MVC frameworks like Ember and Backbone, web programmers find themselves at a fork in the road. If they keep doing server-side web programming, they'll benefit from tried-and-true tools and techniques. If they jump into Javascript MVC, they may be able to offer a more responsive web experience, but at significant added development cost. Which should they choose?
 
@@ -38,49 +40,53 @@
 
 # Lunch
 
-- title: "Micro Talk: Organizing and Packaging Rich Javascript Apps with Ruby"
+- id: "luke-melia-goruco-2012"
+  title: "Micro Talk: Organizing and Packaging Rich Javascript Apps with Ruby"
   raw_title: "Organizing and Packaging Rich Javascript Apps with Ruby by Luke Melia"
   speakers:
     - Luke Melia
   event_name: "GORUCO 2012"
   date: "2012-06-23"
-  published_at: "TODO"
+  published_at: "2012-07-01"
   description: |-
     More and more developers are facing the challenge of organizing and deploying complex client-side Javascript apps. It turns out there are some excellent solutions to this problem bubbling up in the Ruby ecosystem. I am responsible for two complex Javascript applications at Yapp, and in this micro-talk, I will share a solid solution to this problem using open source Ruby projects.
   video_provider: "youtube"
   video_id: "swi_Pa5rQfk"
 
-- title: "Micro Talk: Your Face in 10 minutes... with MacRuby!"
+- id: "haris-amin-goruco-2012"
+  title: "Micro Talk: Your Face in 10 minutes... with MacRuby!"
   raw_title: "Your Face in 10 minutes... with Macruby! by Haris Amin,"
   speakers:
     - Haris Amin
   event_name: "GORUCO 2012"
   date: "2012-06-23"
-  published_at: "TODO"
+  published_at: "2012-07-01"
   description: |-
     In this talk we will build a face detection and recognition app all in Ruby with the power of MacRuby... in 10 minutes! The purpose of this talk is to demonstrate how one can take advantage of Apple API's and Ruby tools to quickly build powerful desktop applications.
   video_provider: "youtube"
   video_id: "Ahwb_PU5WxY"
 
-- title: "Micro Talk: High Perfmance Caching with Rails"
+- id: "matt-duncan-goruco-2012"
+  title: "Micro Talk: High Perfmance Caching with Rails"
   raw_title: "High Perfmance Caching with Rails by Matt Duncan,"
   speakers:
     - Matt Duncan
   event_name: "GORUCO 2012"
   date: "2012-06-23"
-  published_at: "TODO"
+  published_at: "2012-07-01"
   description: |-
     In this talk, I'll dig into how this type of caching allows us to cache far less data than traditional methods, invalidate fewer records, improve our cache hit rates, and scale to hundreds of thousands of memcache of requests per second with a 98% cache hit rate - all while showing users data differently based on perspective.
   video_provider: "youtube"
   video_id: "8A9t9nE4kkk"
 
-- title: "Micro Talk: Why Hashes Will Be Faster in Ruby 2.0"
+- id: "pat-shaughnessy-goruco-2012"
+  title: "Micro Talk: Why Hashes Will Be Faster in Ruby 2.0"
   raw_title: "Why Hashes Will Be Faster in Ruby 2.0 by Pat Shaughnessy,"
   speakers:
     - Pat Shaughnessy
   event_name: "GORUCO 2012"
   date: "2012-06-23"
-  published_at: "TODO"
+  published_at: "2012-07-01"
   description: |-
     In this micro talk, I'll review the basic theory behind hash functions and hash tables, show you the new internal data structures that Ruby 2.0 uses to save keys and values, and present some performance data that proves this optimization exists and how much time it will actually save you.
   video_provider: "youtube"
@@ -88,13 +94,14 @@
 
 # Break
 
-- title: "Sensible Testing"
+- id: "justin-leitgeb-goruco-2012"
+  title: "Sensible Testing"
   raw_title: "Goruco 2012 Sensible Testing by Justin Leitgeb,"
   speakers:
     - Justin Leitgeb
   event_name: "GORUCO 2012"
   date: "2012-06-23"
-  published_at: "TODO"
+  published_at: "2012-10-03"
   description: |-
     Most Ruby programmers spend significant time writing, maintaining and troubleshooting automated tests. While recent discussions in the Ruby community have focused on whether we're writing too few or too many tests, this talk looks at how we can write "sensible" tests that allow our applications to deliver the most possible value with the least amount of development time and effort.
   video_provider: "youtube"
@@ -108,37 +115,40 @@
 
 # Break
 
-- title: "Micro Talk: Building Developers Lessons Learned from Hungry Academy"
+- id: "jeff-casimir-goruco-2012"
+  title: "Micro Talk: Building Developers Lessons Learned from Hungry Academy"
   raw_title: "GoRuCo 2012 Building Developers Lessons Learned from Hungry Academy by Jeff Casimir"
   speakers:
     - Jeff Casimir
   event_name: "GORUCO 2012"
   date: "2012-06-23"
-  published_at: "TODO"
+  published_at: "2012-07-01"
   description: |-
     Here's the quick story of what's worked, what hasn't, and the lessons learned as we try to solve the developer shortage.
   video_provider: "youtube"
   video_id: "O4N9_3MVAcs"
 
-- title: "Micro Talk: From Zero to API Cache w Grape & MongoDB in 10 minutes"
+- id: "daniel-doubrovkine-goruco-2012"
+  title: "Micro Talk: From Zero to API Cache w Grape & MongoDB in 10 minutes"
   raw_title: "GoRuCo 2012 From Zero to API Cache w Grape & MongoDB in 10 minutes by Daniel Doubrovkine"
   speakers:
     - Daniel Doubrovkine
   event_name: "GORUCO 2012"
   date: "2012-06-23"
-  published_at: "TODO"
+  published_at: "2012-07-01"
   description: |-
     We'll take a Grape API from zero to cache in 10-minutes. This cookbook includes support for ETags, handling relational data, 304s, etc., based on several months of incremental development at Art.sy.
   video_provider: "youtube"
   video_id: "e9HLflRXMcA"
 
-- title: "Micro Talk: Maps want to be free!"
+- id: "sebastian-delmont-goruco-2012"
+  title: "Micro Talk: Maps want to be free!"
   raw_title: "GoRuCo 2012 Maps want to be free! by Sebastian Delmont,"
   speakers:
     - Sebastian Delmont
   event_name: "GORUCO 2012"
   date: "2012-06-23"
-  published_at: "TODO"
+  published_at: "2012-07-01"
   description: |-
     How to build your own online maps and free yourself from Google Maps limitations and fees.
   video_provider: "youtube"
@@ -146,13 +156,14 @@
 
 # Break
 
-- title: "Power Rake"
+- id: "jim-weirich-goruco-2012"
+  title: "Power Rake"
   raw_title: "Goruco 2012 Power Rake by Jim Weirich,"
   speakers:
     - Jim Weirich
   event_name: "GORUCO 2012"
   date: "2012-06-23"
-  published_at: "TODO"
+  published_at: "2012-07-01"
   description: |-
     In this talk we will cover the "hidden" features of Rake that are not typically used by the casual Rake user. We will learn about the convenience of file lists, dynamic generation of tasks, rule based file generation and more.
   video_provider: "youtube"

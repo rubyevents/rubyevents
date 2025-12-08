@@ -1,7 +1,8 @@
 ---
 # Website: https://rubyconf.org.au/2016
 
-- title: "Architecture Matters: An Appetizing Introduction to Trailblazer"
+- id: "trailblazer-rubyconf-au-2016-workshop-1"
+  title: "Architecture Matters: An Appetizing Introduction to Trailblazer"
   raw_title: "Architecture Matters: An Appetizing Introduction to Trailblazer by Nick Kirkwood and Nick Sutterer"
   speakers:
     - Nick Kirkwood
@@ -24,7 +25,8 @@
   video_provider: "not_recorded"
   video_id: "trailblazer-rubyconf-au-2016-workshop-1"
 
-- title: "Finding Developer Flow"
+- id: "developer-flow-rubyconf-au-2016-workshop-2"
+  title: "Finding Developer Flow"
   raw_title: "Finding Developer Flow by Richie Khoo and Dan Draper"
   speakers:
     - Richie Khoo
@@ -59,7 +61,8 @@
   video_provider: "not_recorded"
   video_id: "developer-flow-rubyconf-au-2016-workshop-2"
 
-- title: "Tasteful Go"
+- id: "tasteful-go-rubyconf-au-2016-workshop-3"
+  title: "Tasteful Go"
   raw_title: "Tasteful Go by Katrina Owen"
   speakers:
     - Katrina Owen
@@ -91,7 +94,8 @@
   video_provider: "not_recorded"
   video_id: "tasteful-go-rubyconf-au-2016-workshop-3"
 
-- title: "Rails Girls"
+- id: "rails-girls-rubyconf-au-2016-workshop-4"
+  title: "Rails Girls"
   raw_title: "Rails Girls"
   speakers:
     - TODO
@@ -110,7 +114,8 @@
   video_provider: "not_recorded"
   video_id: "rails-girls-rubyconf-au-2016-workshop-4"
 
-- title: "Rails Girls Next"
+- id: "rails-girls-next-rubyconf-au-2016-workshop-5"
+  title: "Rails Girls Next"
   raw_title: "Rails Girls Next"
   speakers:
     - TODO
@@ -128,37 +133,40 @@
   video_provider: "not_recorded"
   video_id: "rails-girls-next-rubyconf-au-2016-workshop-5"
 
-- title: "10 years 10 mistakes"
+- id: "jeff-casimir-rubyconf-au-2016"
+  title: "10 years 10 mistakes"
   raw_title: "10 years 10 mistakes by Jeff Casimir"
   speakers:
     - Jeff Casimir
   event_name: "RubyConf AU 2016"
   date: "2016-02-11"
-  published_at: "TODO"
+  published_at: "2017-01-31"
   description: |-
     Over the past 10 years I've started or run six different businesses. Along that way I made a lot of painful, painful mistakes. In this session we'll go through some great stories, figure out what went wrong, and the lessons learned to avoid making the same mistakes again. You can take these lessons I learned the hard way and apply them to your creative work as a consultant, startup, or even within a larger organisation. Worst case scenario, we get to laugh together about things that seemed like good ideas -- at the time.
   video_provider: "youtube"
   video_id: "DhqzMc_LXgQ"
 
-- title: "Learning Code Good"
+- id: "saron-yitbarek-rubyconf-au-2016"
+  title: "Learning Code Good"
   raw_title: "RubyConf AU 2016: Learning Code Good by Saron Yitbarek"
   speakers:
     - Saron Yitbarek
   event_name: "RubyConf AU 2016"
   date: "2016-02-11"
-  published_at: "TODO"
+  published_at: "2017-05-19"
   description: |-
     RubyConf AU 2016:
   video_provider: "youtube"
   video_id: "q4mPIctwZ-Q"
 
-- title: "Build and maintain large Ruby applications"
+- id: "enrico-teotti-rubyconf-au-2016"
+  title: "Build and maintain large Ruby applications"
   raw_title: "RubyConf AU 2016: Build and maintain large Ruby applications by Enrico Teotti"
   speakers:
     - Enrico Teotti
   event_name: "RubyConf AU 2016"
   date: "2016-02-11"
-  published_at: "TODO"
+  published_at: "2017-05-18"
   description: |-
     RubyConf AU 2016: This presentation will be about the challenges of building large Ruby web applications and how to maintain existing ones.
 
@@ -166,38 +174,41 @@
   video_provider: "youtube"
   video_id: "b1glMxMPscA"
 
-- title: "Code Review: Pitfalls and Good Practices"
+- id: "thong-kuah-rubyconf-au-2016"
+  title: "Code Review: Pitfalls and Good Practices"
   raw_title: "RubyConf AU 2016: Code Review: Pitfalls and Good Practices by Thong Kuah"
   speakers:
     - Thong Kuah
   event_name: "RubyConf AU 2016"
   date: "2016-02-11"
-  published_at: "TODO"
+  published_at: "2017-05-19"
   description: |-
     RubyConf AU 2016: Some of us have practiced code review as part of our software development process. But it is more than just a peer review of code written by another. I will attempt to summarise some of the good practices that worked for us to review code effectively and some of the common mistakes not to make when setting out a code review programme for your team.
   video_provider: "youtube"
   video_id: "akf0Mx72wgI"
 
-- title: "Pursuing the Strong, Not So Silent Type: A Haskell Story"
+- id: "katie-miller-rubyconf-au-2016"
+  title: "Pursuing the Strong, Not So Silent Type: A Haskell Story"
   raw_title: "RubyConf AU 2016: Pursuing the Strong, Not So Silent Type: A Haskell Story by Katie Miller"
   speakers:
     - Katie Miller
   event_name: "RubyConf AU 2016"
   date: "2016-02-11"
-  published_at: "TODO"
+  published_at: "2017-05-19"
   description: |-
     RubyConf AU 2016: In recent months Katie's Facebook team has completely replaced an in-house interpreted language, moving to a strong and statically typed Haskell DSL called Haxl. Dozens of Facebook developers have become functional programmers, using the open-source Haxl framework to battle spam at scale. This talk will explain how Haskell shines in this context, bust a few myths about the language, and highlight lessons Rubyists and Haskellers could learn from each other.
   video_provider: "youtube"
   video_id: "mLlVsX3p-oc"
 
-- title: "Debugging Diversity"
+- id: "dan-draper-rubyconf-au-2016"
+  title: "Debugging Diversity"
   raw_title: "RubyConf AU 2016: Debugging Diversity by Dan Draper & Catherine Jones"
   speakers:
     - Dan Draper
     - Catherine Jones
   event_name: "RubyConf AU 2016"
   date: "2016-02-11"
-  published_at: "TODO"
+  published_at: "2017-05-19"
   description: |-
     RubyConf AU 2016: Most of us who work in the tech space know that it is painfully lacking in diversity. But why is it the case? After all, the early pioneers of computer science were largely women and yet now only 6% of tech leaders are female. In Australia, the number of Aboriginal developers barely blips past 0%.
 
@@ -205,13 +216,14 @@
   video_provider: "youtube"
   video_id: "ZAC2mU24bH8"
 
-- title: "Event Sourcing, or Why ActiveRecord Must Die"
+- id: "sebastian-von-conrad-rubyconf-au-2016"
+  title: "Event Sourcing, or Why ActiveRecord Must Die"
   raw_title: "RubyConf AU 2016: Event Sourcing, or Why ActiveRecord Must Die by Sebastian von Conrad"
   speakers:
     - Sebastian von Conrad
   event_name: "RubyConf AU 2016"
   date: "2016-02-11"
-  published_at: "TODO"
+  published_at: "2017-05-19"
   description: |-
     RubyConf AU 2016: Much has been said about the dangers with ActiveRecord, but the advice is usually limited to avoiding callbacks or not building God models. We still use it because there hasn't been a viable alternative. It is not actually a trait unique to ActiveRecord that makes it dangerous, however--it's because it's an ORM, and all ORMs must die.
 
@@ -219,13 +231,14 @@
   video_provider: "youtube"
   video_id: "hiFqu1BTgsA"
 
-- title: "In-spec-tion"
+- id: "jon-rowe-rubyconf-au-2016"
+  title: "In-spec-tion"
   raw_title: "RubyConf AU 2016: In-spec-tion by Jon Rowe"
   speakers:
     - Jon Rowe
   event_name: "RubyConf AU 2016"
   date: "2016-02-11"
-  published_at: "TODO"
+  published_at: "2017-05-19"
   description: |-
     RubyConf AU 2016: Ever wondered what goes on inside RSpec? How the constituent parts of core mocks and expectations fit together? Or maybe you want to extend it to add a cool new feature.
 
@@ -235,7 +248,8 @@
   video_provider: "youtube"
   video_id: "-93B0tAVVbM"
 
-- title: "Taking Apart Ruby's Object Model"
+- id: "john-feminella-rubyconf-au-2016"
+  title: "Taking Apart Ruby's Object Model"
   raw_title: "Taking Apart Ruby's Object Model"
   speakers:
     - John Feminella
@@ -246,13 +260,14 @@
   video_provider: "not_recorded"
   video_id: "john-feminella-rubyconf-au-2016"
 
-- title: "Feedback Matters"
+- id: "elle-meredith-rubyconf-au-2016"
+  title: "Feedback Matters"
   raw_title: "RubyConf AU 2016: Feedback Matters by Elle Meredith"
   speakers:
     - Elle Meredith
   event_name: "RubyConf AU 2016"
   date: "2016-02-11"
-  published_at: "TODO"
+  published_at: "2017-05-19"
   description: |-
     RubyConf AU 2016: Feedback matters, whether positive or corrective. It's essential to creating a productive work environment. It shows attentiveness and signals appreciation for a job well done. It redirects undesirable behaviour to other productive alternatives.
 
@@ -262,13 +277,14 @@
   video_provider: "youtube"
   video_id: "vpSv1wS49yA"
 
-- title: "Burn Your Idiomatic Ruby"
+- id: "arne-brasseur-rubyconf-au-2016"
+  title: "Burn Your Idiomatic Ruby"
   raw_title: "RubyConf AU 2016: Burn Your Idiomatic Ruby by Arne Brasseur"
   speakers:
     - Arne Brasseur
   event_name: "RubyConf AU 2016"
   date: "2016-02-11"
-  published_at: "TODO"
+  published_at: "2017-05-19"
   description: |-
     RubyConf AU 2016: Ruby makes programmers happy because of its elegant style and readable code. Rubyists like code that looks "right". Clever hacks and obscure use of syntax are frowned upon, and code linters and metrics are used to enforce a clean and idiomatic style.
 
@@ -276,25 +292,27 @@
   video_provider: "youtube"
   video_id: "7gcbaNlqdLE"
 
-- title: "Winning in Production"
+- id: "dr-nic-williams-rubyconf-au-2016"
+  title: "Winning in Production"
   raw_title: "RubyConf AU 2016: Winning in Production by Dr. Nic Williams"
   speakers:
     - Dr. Nic Williams
   event_name: "RubyConf AU 2016"
   date: "2016-02-11"
-  published_at: "TODO"
+  published_at: "2017-05-19"
   description: |-
     RubyConf AU 2016:
   video_provider: "youtube"
   video_id: "1S4NV6F3d3Q"
 
-- title: "One Undo"
+- id: "katrina-owen-rubyconf-au-2016"
+  title: "One Undo"
   raw_title: "RubyConf AU 2016: One Undo by Katrina Owen"
   speakers:
     - Katrina Owen
   event_name: "RubyConf AU 2016"
   date: "2016-02-12"
-  published_at: "TODO"
+  published_at: "2017-05-19"
   description: |-
     RubyConf AU 2016: Refactoring sometimes devolves into an appalling mess. You're chasing a broken test suite, and every change just makes it worse. An even more insidious antipattern is the slow, perfectly controlled process culminating in dreadful design.
 
@@ -302,13 +320,14 @@
   video_provider: "youtube"
   video_id: "Uk-DMWVR1zc"
 
-- title: "Out of sight, out of mind? Helping teams thrive"
+- id: "allison-mcmillan-rubyconf-au-2016"
+  title: "Out of sight, out of mind? Helping teams thrive"
   raw_title: "RubyConf AU 2016: Out of sight, out of mind? Helping teams thrive by Allison McMillan"
   speakers:
     - Allison McMillan
   event_name: "RubyConf AU 2016"
   date: "2016-02-12"
-  published_at: "TODO"
+  published_at: "2017-05-19"
   description: |-
     RubyConf AU 2016: Out of sight, out of mind? Helping teams thrive when they’re permanently Out-Of-Office
 
@@ -316,13 +335,14 @@
   video_provider: "youtube"
   video_id: "bGGj7JFzPns"
 
-- title: "Refinements - the Worst Feature You Ever Loved"
+- id: "paolo-nusco-perrotta-rubyconf-au-2016"
+  title: "Refinements - the Worst Feature You Ever Loved"
   raw_title: "RubyConf AU 2016: Refinements - the Worst Feature You Ever Loved by Paolo Perrotta"
   speakers:
     - Paolo "Nusco" Perrotta
   event_name: "RubyConf AU 2016"
   date: "2016-02-12"
-  published_at: "TODO"
+  published_at: "2017-05-19"
   description: |-
     RubyConf AU 2016: Refinements are cool. They are the biggest new language feature in Ruby 2. They help you avoid some of Ruby's most dangerous pitfalls. They make your code cleaner and safer.
 
@@ -332,13 +352,14 @@
   video_provider: "youtube"
   video_id: "XvlGOokgSi4"
 
-- title: "Site Availability is for Everybody"
+- id: "stella-cotton-rubyconf-au-2016"
+  title: "Site Availability is for Everybody"
   raw_title: "RubyConf AU 2016: Site Availability is for Everybody by Stella Cotton"
   speakers:
     - Stella Cotton
   event_name: "RubyConf AU 2016"
   date: "2016-02-12"
-  published_at: "TODO"
+  published_at: "2017-05-19"
   description: |-
     RubyConf AU 2016: Your phone rings in the middle of the night and the site is down- do you know what to do? Don’t let a crisis catch you off guard! Practice your skills with load testing.
 
@@ -346,13 +367,14 @@
   video_provider: "youtube"
   video_id: "TPD3qiWsEV8"
 
-- title: "Explicit Tests Tell a Better Tale"
+- id: "tom-ridge-rubyconf-au-2016"
+  title: "Explicit Tests Tell a Better Tale"
   raw_title: "RubyConf AU 2016: Explicit Tests Tell a Better Tale by Tom Ridge"
   speakers:
     - Tom Ridge
   event_name: "RubyConf AU 2016"
   date: "2016-02-12"
-  published_at: "TODO"
+  published_at: "2017-05-19"
   description: |-
     RubyConf AU 2016: Red, Green, Refactor is a persistent mantra that is drilled into us from day one. As a developer new to Ruby, how do we know how to write the right kind of test? When should we refactor? What tricks and techniques can we use to improve our tests and recognise the feedback they give us to build well designed applications?
 
@@ -360,73 +382,79 @@
   video_provider: "youtube"
   video_id: "z5EctI4jATY"
 
-- title: "Diversity in Tech - It's About More than Just the Hiring Process"
+- id: "jess-rudder-rubyconf-au-2016"
+  title: "Diversity in Tech - It's About More than Just the Hiring Process"
   raw_title: "RubyConf AU 2016: Diversity in Tech - It's About More than Just the Hiring Process by Jess Rudder"
   speakers:
     - Jess Rudder
   event_name: "RubyConf AU 2016"
   date: "2016-02-12"
-  published_at: "TODO"
+  published_at: "2017-05-19"
   description: |-
     RubyConf AU 2016: Increasing diversity in tech seems as simple as hiring diverse programmers. However, statistics show that women and minorities leave tech at higher rates than the standard programmer. Learn what you can do to not only make your dev team an attractive option for diverse technical talent, but what you can do to make it a place that talent will stay for years to come.
   video_provider: "youtube"
   video_id: "CgDLI0Ounhg"
 
-- title: "Humane Development - Empathy"
+- id: "ernie-miller-rubyconf-au-2016"
+  title: "Humane Development - Empathy"
   raw_title: "RubyConf AU 2016: Humane Development - Empathy by Ernie Miller"
   speakers:
     - Ernie Miller
   event_name: "RubyConf AU 2016"
   date: "2016-02-12"
-  published_at: "TODO"
+  published_at: "2017-05-19"
   description: |-
     RubyConf AU 2016:
   video_provider: "youtube"
   video_id: "yeBpknHjyGo"
 
-- title: "Functional programming for rubyists"
+- id: "bianca-gibson-rubyconf-au-2016"
+  title: "Functional programming for rubyists"
   raw_title: "RubyConf AU 2016: Functional programming for rubyists by Bianca Gibson"
   speakers:
     - Bianca Gibson
   event_name: "RubyConf AU 2016"
   date: "2016-02-12"
-  published_at: "TODO"
+  published_at: "2017-05-19"
   description: |-
     RubyConf AU 2016: Rampant side effects. The shifting sands of mutable state beneath your feet. Mocks as far as the eye can see. Enter Functional Programming. Functional Programming helps you write clear, maintainable and testable code. This talk will cover the core principles of functional programming, how to apply them in ruby, the benefits they can offer, and how to introduce them to other developers.
   video_provider: "youtube"
   video_id: "wOgeMk8PCfE"
 
-- title: "Rails Performance Tips"
+- id: "richard-huang-rubyconf-au-2016"
+  title: "Rails Performance Tips"
   raw_title: "RubyConf AU 2016: Rails Performance Tips by Richard Huang"
   speakers:
     - Richard Huang
   event_name: "RubyConf AU 2016"
   date: "2016-02-12"
-  published_at: "TODO"
+  published_at: "2017-05-19"
   description: |-
     RubyConf AU 2016: Many developers are complaining that rails is slow, but most teams are not tuning performance at all or not properly, in this talk, you will learn how to monitor performance, how to find out performance issue and how to fix, I will also show you some tips that can dramatically improve your rails apps' performance.
   video_provider: "youtube"
   video_id: "2xu8MDNj0Dk"
 
-- title: "Security is hard, but we can't go shopping"
+- id: "andr-arko-rubyconf-au-2016"
+  title: "Security is hard, but we can't go shopping"
   raw_title: "RubyConf AU 2016: Security is hard, but we can't go shopping by Andre Arko"
   speakers:
     - André Arko
   event_name: "RubyConf AU 2016"
   date: "2016-02-12"
-  published_at: "TODO"
+  published_at: "2017-01-31"
   description: |-
     RubyConf AU 2016: Security is really important, and a lot of rubyists are unfamiliar with how it works, why it's important, how to explain it to bosses and managers, and most importantly, how to handle security vulnerabilities in code they use (or code they wrote). This talk is about why security is important, even though Matz is nice. It's also about what to do when vulnerabilities show up, since they always will.
   video_provider: "youtube"
   video_id: "w_Lwd3sGSbc"
 
-- title: "What If Shakespeare Wrote Ruby?"
+- id: "adam-cuppy-rubyconf-au-2016"
+  title: "What If Shakespeare Wrote Ruby?"
   raw_title: "RubyConf AU 2016: What If Shakespeare Wrote Ruby? by Adam Cuppy"
   speakers:
     - Adam Cuppy
   event_name: "RubyConf AU 2016"
   date: "2016-02-12"
-  published_at: "TODO"
+  published_at: "2017-05-19"
   description: |-
     RubyConf AU 2016: Did you know that Shakespeare wrote almost no direction into his plays? No fight direction. No staging. No notes to the songs. Of the 1700 words he created, there was no official dictionary. That’s right the author of some of the greatest literary works in history, which were filled with situational complexity, fight sequences and music, include NO documentation! How did he do it?
 
@@ -434,13 +462,14 @@
   video_provider: "youtube"
   video_id: "nEHLhiOLB0A"
 
-- title: "Ruby off the Rails: How the government broke the internet"
+- id: "senator-scott-ludlam-rubyconf-au-2016"
+  title: "Ruby off the Rails: How the government broke the internet"
   raw_title: "RubyConf AU 2016: Ruby off the Rails: How the government broke the internet by Senator Scott Ludlam"
   speakers:
     - Senator Scott Ludlam
   event_name: "RubyConf AU 2016"
   date: "2016-02-12"
-  published_at: "TODO"
+  published_at: "2017-05-19"
   description: |-
     RubyConf AU 2016:
   video_provider: "youtube"

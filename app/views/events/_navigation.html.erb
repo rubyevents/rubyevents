@@ -37,6 +37,15 @@
     <% end %>
   <% end %>
 
+  <% if event.conference? || event.venue.exist? %>
+    <%= active_link_to event_venue_path(event), class: class_names("tab", {"text-red-500" => !event.venue.exist?}), active_class: "tab-active", role: "tab" do %>
+      Venue
+      <% unless event.venue.exist? %>
+        <%= fa("question-circle", size: :xs, class: "ml-1 fill-red-500") %>
+      <% end %>
+    <% end %>
+  <% end %>
+
   <% if event.conference? || event.sponsors.exists? %>
     <%= active_link_to event_sponsors_path(event), class: class_names("tab", {"text-red-500" => !event.sponsors.any?}), active_class: "tab-active", role: "tab" do %>
       Sponsors

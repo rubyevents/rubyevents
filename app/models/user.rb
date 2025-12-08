@@ -2,6 +2,7 @@
 # == Schema Information
 #
 # Table name: users
+# Database name: primary
 #
 #  id                  :integer          not null, primary key
 #  admin               :boolean          default(FALSE), not null
