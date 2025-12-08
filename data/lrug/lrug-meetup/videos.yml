@@ -58,6 +58,10 @@
         your CI and storing the reports artefacts.
       video_id: "lrug-2020-01-13-rubys-a-critic"
       video_provider: "not_published"
+      additional_resources:
+        - name: "whitesmith/rubycritic"
+          type: "repo"
+          url: "https://github.com/whitesmith/rubycritic/"
     - id: "frederick-cheung-lrug-january-2020"
       title: "Getting started with mruby"
       event_name: "LRUG January 2020"
@@ -70,6 +74,10 @@
         want to use it and obstacles you might encounter along the way.
       video_id: "lrug-2020-01-13-getting-started-with-mruby"
       video_provider: "not_published"
+      additional_resources:
+        - name: "mruby/mruby"
+          type: "repo"
+          url: "https://github.com/mruby/mruby"
 - id: "lrug-february-2020"
   title: "LRUG February 2020"
   event_name: "LRUG February 2020"
@@ -420,6 +428,10 @@
         Consulting, and also an aspiring yardener.
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2020/july/jolyon-pawlyn-improved-security-for-password-authentication-lrug-jul-2020.mp4"
+      additional_resources:
+        - name: "jpawlyn/secure-user-accounts#secure-user-accounts"
+          type: "repo"
+          url: "https://github.com/jpawlyn/secure-user-accounts#secure-user-accounts"
     - id: "nicky-thompson-lrug-july-2020"
       title: "Perfect is the enemy of good"
       event_name: "LRUG July 2020"
@@ -544,7 +556,7 @@
           type: "link"
           title: "Building a Secure Signed JWT"
           url: "https://fusionauth.io/learn/expert-advice/tokens/building-a-secure-jwt"
-        - name: "Repository"
+        - name: "fusionauth/fusionauth-example-ruby-jwt"
           type: "repo"
           title: "Ruby JWT Examples"
           url: "https://github.com/fusionauth/fusionauth-example-ruby-jwt"
@@ -754,6 +766,10 @@
         joy to work with.
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2021/february/fred-cheung-the-pathname-of-least-resistance-lrug-feb-2021.mp4"
+      additional_resources:
+        - name: "ruby/pathname"
+          type: "repo"
+          url: "https://github.com/ruby/pathname"
     - id: "lorenzo-barasti-lrug-february-2021"
       title: "Are we parallel yet? A first look at Ruby Ractors"
       event_name: "LRUG February 2021"
@@ -1160,6 +1176,13 @@
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2021/november/christian-gregg-failing-better-with-load-shedding-and-deadline-propagation-across-services-lrug-nov-2021.mp4"
       slides_url: "https://github.com/lrug/lrug.org/files/7529520/presentation.pdf"
+      additional_resources:
+        - name: "CGA1123/loadshedding-experiment-ruby"
+          type: "repo"
+          url: "https://github.com/CGA1123/loadshedding-experiment-ruby"
+        - name: "CGA1123/shed"
+          type: "repo"
+          url: "https://github.com/CGA1123/shed"
     - id: "chris-parsons-lrug-november-2021"
       title: "Why Rails is still relevant for startups in 2021"
       event_name: "LRUG November 2021"
@@ -1488,6 +1511,13 @@
         the challenges and what pros and cons over the incumbent tools for Ruby.
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2022/april/panos-matsinopoulos-using-react-in-a-ruby-project-to-dynamically-generate-pdf-documents-lrug-apr-2022.mp4"
+      additional_resources:
+        - name: "prawnpdf/prawn"
+          type: "repo"
+          url: "https://github.com/prawnpdf/prawn"
+        - name: "pdfkit/pdfkit"
+          type: "repo"
+          url: "https://github.com/pdfkit/pdfkit"
     - id: "winston-ferguson-lrug-april-2022"
       title: "A parse parse pitch: using JSON and custom parsers to create efficient flexible data structures."
       event_name: "LRUG April 2022"
@@ -1526,6 +1556,10 @@
         driving adoption of internal open source at DfE.
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2022/may/duncan-brown-mining-a-gem-how-to-safely-discover-extract-and-share-useful-code-from-your-rails-app-lrug-may-2022.mp4"
+      additional_resources:
+        - name: "DFE-Digital/dfe-analytics"
+          type: "repo"
+          url: "https://github.com/DFE-Digital/dfe-analytics"
     - id: "leena-gupte-rosa-fox-lrug-may-2022"
       title: "[GOV.UK][]’s response to COVID-19"
       event_name: "LRUG May 2022"
@@ -1645,6 +1679,10 @@
         We will discuss some of the tradeoffs in its design, its architecture, the features that make it unique, as well as its limitations compared to other tools. We will also take a look at how the Ruby stack is laid out in memory and the role BPF plays in rbperf.
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2022/august/javier-honduvilla-coto-low-overhead-ruby-profiling-and-tracing-with-rbperf-lrug-aug-2022.mp4"
+      additional_resources:
+        - name: "javierhonduco/rbperf"
+          type: "repo"
+          url: "https://github.com/javierhonduco/rbperf/"
 - id: "lrug-september-2022"
   title: "LRUG September 2022"
   event_name: "LRUG September 2022"
@@ -1793,6 +1831,10 @@
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2022/november/stan-lo-ruby-debug-the-best-investment-for-your-productivity-lrug-nov-2022.mp4"
       slides_url: "https://github.com/st0012/slides/blob/main/2022-11-14-lrug/Ruby%20debugger%20-%20The%20best%20investment%20for%20your%20productivity%20-%20LRUG.pdf"
+      additional_resources:
+        - name: "ruby/debug"
+          type: "repo"
+          url: "https://github.com/ruby/debug"
     - id: "christian-bruckmayer-lrug-november-2022"
       title: "Keeping developers happy with a fast CI"
       event_name: "LRUG November 2022"
@@ -2214,6 +2256,10 @@
         architect, elaborate upon, and then support Rails applications.
       video_id: "lrug-2023-08-14-the-brick"
       video_provider: "not_published"
+      additional_resources:
+        - name: "lorint/brick"
+          type: "repo"
+          url: "https://github.com/lorint/brick"
 - id: "lrug-september-2023"
   title: "LRUG September 2023"
   event_name: "LRUG September 2023"
@@ -2434,6 +2480,10 @@
         paginatible...
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2024/february/jay-caines-gooby-data-pagination-for-jekyll-paginate-v2-lrug-feb-2024.mp4"
+      additional_resources:
+        - name: "sverrirs/jekyll-paginate-v2"
+          type: "repo"
+          url: "https://github.com/sverrirs/jekyll-paginate-v2"
     - id: "jonathan-james-lrug-february-2024"
       title: "Using devcontainers with Ruby"
       event_name: "LRUG February 2024"
@@ -2449,6 +2499,10 @@
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2024/february/jonathan-james-using-devcontainers-with-ruby-lrug-feb-2024.mp4"
       slides_url: "https://github.com/jonathanjames1729/talks/blob/main/2024-02-12-lrug/devcontainers.pdf"
+      additional_resources:
+        - name: "Documentation"
+          type: "documentation"
+          url: "https://code.visualstudio.com/docs/devcontainers/containers"
     - id: "katya-essina-sarah-o-grady-lrug-february-2024"
       title: "Contract testing between Ruby applications"
       event_name: "LRUG February 2024"
@@ -2481,6 +2535,16 @@
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2024/february/fell-sunderland-what-is-ruby-really-capable-of-lrug-feb-2024.mp4"
       slides_url: "https://docs.google.com/presentation/d/1GNzpKWO6aqqbfo4eOTixIL_r1GI08bFYWjyRhBOUmBk/edit?usp=sharing"
+      additional_resources:
+        - name: "AgentAntelope/aspectual"
+          type: "repo"
+          url: "https://github.com/AgentAntelope/aspectual"
+        - name: "AgentAntelope/cherry_pick"
+          type: "repo"
+          url: "https://github.com/AgentAntelope/cherry_pick"
+        - name: "AgentAntelope/overload"
+          type: "repo"
+          url: "https://github.com/AgentAntelope/overload"
     - id: "martin-tomov-lrug-february-2024"
       title: "Phlex for a happy developer!"
       event_name: "LRUG February 2024"
@@ -2721,6 +2785,10 @@
         methods lurking in your code.
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2024/july/joel-biffin-finding-unused-ruby-methods-lrug-jul-2024.mp4"
+      additional_resources:
+        - name: "joelbiffin/thanatos"
+          type: "repo"
+          url: "https://github.com/joelbiffin/thanatos"
 - id: "lrug-august-2024"
   title: "LRUG August 2024"
   event_name: "LRUG August 2024"
@@ -2764,8 +2832,8 @@
         - Rachel Bingham
         - Boaz Yehezkel
       description: |-
-        How we developed the B&W Rewards system. 
-        Starting from event storming with stakeholders and technical planning across squads to clear domain boundaries to  
+        How we developed the B&W Rewards system.
+        Starting from event storming with stakeholders and technical planning across squads to clear domain boundaries to
         how we used an event bus and agnostic accounting system to keep things clear, concise and extendable.
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2024/september/rachel-bingham-b-and-w-rewards-domains-events-and-ledgers-lrug-sep-2024.mp4"
@@ -3253,6 +3321,10 @@
         `ActiveJob` methods.
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2025/august/julik-tarkhanov-stepper-motor-effortless-long-running-workflows-for-rails-lrug-aug-2025.mp4"
+      additional_resources:
+        - name: "stepper-motor/stepper_motor"
+          type: "repo"
+          url: "https://github.com/stepper-motor/stepper_motor"
     - id: "james-edwards-jones-lrug-august-2025"
       title: "No Browser Required: Dynamic OpenGraph Images with Rails and Rust"
       event_name: "LRUG August 2025"
@@ -3275,6 +3347,10 @@
         * What OpenGraph images are and how they can help you go viral 🦋
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2025/august/james-edwards-jones-no-browser-required-dynamic-opengraph-images-with-rails-and-rust-lrug-aug-2025.mp4"
+      additional_resources:
+        - name: "Jamedjo/himg"
+          type: "repo"
+          url: "https://github.com/Jamedjo/himg"
 - id: "lrug-september-2025"
   title: "LRUG September 2025"
   event_name: "LRUG September 2025"
