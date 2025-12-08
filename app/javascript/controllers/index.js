@@ -10,11 +10,20 @@ application.register("auto-click", AutoClickController)
 import AutoSubmitController from "./auto_submit_controller"
 application.register("auto-submit", AutoSubmitController)
 
+import Bridge__ButtonController from "./bridge/button_controller"
+application.register("bridge--button", Bridge__ButtonController)
+
+import CopyToClipboardController from "./copy_to_clipboard_controller"
+application.register("copy-to-clipboard", CopyToClipboardController)
+
 import DropdownController from "./dropdown_controller"
 application.register("dropdown", DropdownController)
 
 import EventController from "./event_controller"
 application.register("event", EventController)
+
+import EventListController from "./event_list_controller"
+application.register("event-list", EventListController)
 
 import LazyLoadingController from "./lazy_loading_controller"
 application.register("lazy-loading", LazyLoadingController)
@@ -27,6 +36,9 @@ application.register("preserve-scroll", PreserveScrollController)
 
 import PronounsSelectController from "./pronouns_select_controller"
 application.register("pronouns-select", PronounsSelectController)
+
+import ScrollController from "./scroll_controller"
+application.register("scroll", ScrollController)
 
 import ScrollIntoViewController from "./scroll_into_view_controller"
 application.register("scroll-into-view", ScrollIntoViewController)
@@ -48,6 +60,9 @@ application.register("toggable", ToggableController)
 
 import TooltipController from "./tooltip_controller"
 application.register("tooltip", TooltipController)
+
+import TopBannerController from "./top_banner_controller"
+application.register("top-banner", TopBannerController)
 
 import TransitionController from "./transition_controller"
 application.register("transition", TransitionController)

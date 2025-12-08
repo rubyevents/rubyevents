@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+set -e  # Exit on error
+
+if [ -d "lrug.org" ]; then
+  cd lrug.org
+  git pull
+else
+  git clone https://github.com/lrug/lrug.org
+  cd lrug.org
+fi
+
+if command -v mise &> /dev/null; then
+  eval "$(mise activate bash)"
+fi
+
+bundle install
+bundle exec middleman build
+cp public/rubyevents-video-playlist.yml ../data/lrug/lrug-meetup/videos.yml
+cd ..
+yarn format:yml
+git add data/lrug/lrug-meetup/videos.yml
+git commit -m "Update LRUG Meetups"

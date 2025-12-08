@@ -1,6 +1,7 @@
 class TopicsController < ApplicationController
   include Pagy::Backend
   include WatchedTalks
+
   skip_before_action :authenticate_user!
   before_action :set_user_favorites, only: %i[show]
 
@@ -11,14 +12,17 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @topic = Topic.find_by!(slug: params[:slug])
+    @topic = Topic.find_by(slug: params[:slug])
+    return redirect_to(root_path, status: :moved_permanently) unless @topic
+
     @pagy, @talks = pagy_countless(
-      @topic.talks.includes(:speakers, event: :organisation, child_talks: :speakers).order(date: :desc),
+      @topic.talks.includes(:speakers, event: :series, child_talks: :speakers).order(date: :desc),
       gearbox_extra: true,
       gearbox_limit: [12, 24, 48, 96],
       overflow: :empty_page,
       page: page_number
     )
+    set_meta_tags(@topic)
   end
 
   def set_user_favorites

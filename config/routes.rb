@@ -6,24 +6,20 @@ Rails.application.routes.draw do
 
   # static pages
   get "uses", to: "page#uses"
+  get "/privacy", to: "page#privacy"
   get "/components", to: "page#components"
+  get "/about", to: "page#about"
+  get "/stickers", to: "page#stickers"
+  get "/contributors", to: "page#contributors"
+  get "/stamps", to: "stamps#index"
+  get "/pages/assets", to: "page#assets"
 
   # authentication
   get "/auth/failure", to: "sessions/omniauth#failure"
   get "/auth/:provider/callback", to: "sessions/omniauth#create"
   post "/auth/:provider/callback", to: "sessions/omniauth#create"
-  get "sign_in", to: "sessions#new"
-  post "sign_in", to: "sessions#create"
-  get "sign_up", to: "registrations#new"
-  post "sign_up", to: "registrations#create"
+  resources :sessions, only: [:new, :create, :destroy]
 
-  authenticate :admin do
-    mount MissionControl::Jobs::Engine, at: "/jobs"
-    mount Avo::Engine, at: Avo.configuration.root_path
-  end
-
-  resources :topics, param: :slug, only: [:index, :show]
-  resources :sessions, only: [:index, :show, :destroy]
   resource :password, only: [:edit, :update]
   namespace :identity do
     resource :email, only: [:edit, :update]
@@ -31,7 +27,31 @@ Rails.application.routes.draw do
     resource :password_reset, only: [:new, :edit, :create, :update]
   end
 
+  authenticate :admin do
+    mount MissionControl::Jobs::Engine, at: "/jobs"
+    mount Avo::Engine, at: Avo.configuration.root_path
+  end
+
+  resources :topics, param: :slug, only: [:index, :show]
+  resources :cfp, only: :index
+  resources :countries, param: :country, only: [:index, :show]
+
+  namespace :profiles do
+    resources :connect, only: [:index, :show]
+    resources :claims, only: [:create]
+    resources :enhance, only: [:update], param: :slug
+  end
+
   resources :contributions, only: [:index, :show], param: :step
+
+  resources :templates, only: [:new, :create] do
+    collection do
+      get :new_child
+      delete :delete_child
+      get :speakers_search
+      post :speakers_search_chips
+    end
+  end
 
   # resources
   namespace :analytics do
@@ -42,6 +62,7 @@ Rails.application.routes.draw do
       get :monthly_visits
       get :top_referrers
       get :top_landing_pages
+      get :yearly_conferences
       get :yearly_talks
       get :top_searches
     end
@@ -50,26 +71,72 @@ Rails.application.routes.draw do
   resources :talks, param: :slug, only: [:index, :show, :update, :edit] do
     scope module: :talks do
       resources :recommendations, only: [:index]
-      resource :watched_talk, only: [:create, :destroy]
+      resource :watched_talk, only: [:create, :destroy, :update]
       resource :slides, only: :show
     end
   end
 
-  resources :speakers, param: :slug, only: [:index, :show, :update, :edit]
+  resources :watched_talks, only: [:index, :destroy]
+
+  resources :speakers, param: :slug, only: [:index]
+  get "/speakers/:slug", to: redirect("/profiles/%{slug}", status: 301), as: :speaker
+
+  resources :profiles, param: :slug, only: [:show, :update, :edit] do
+    scope module: :profiles do
+      resources :talks, only: [:index]
+      resources :events, only: [:index]
+      resources :mutual_events, only: [:index]
+      resources :stamps, only: [:index]
+      resources :stickers, only: [:index]
+      resources :involvements, only: [:index]
+      resources :map, only: [:index]
+      resources :aliases, only: [:index]
+    end
+  end
   resources :events, param: :slug, only: [:index, :show, :update, :edit] do
+    resources :event_participations, only: [:create, :destroy]
+
     scope module: :events do
+      collection do
+        get "/past" => "past#index", :as => :past
+        get "/archive" => "archive#index", :as => :archive
+        get "/countries" => redirect("/countries")
+        get "/countries/:country" => redirect { |params, _| "/countries/#{params[:country]}" }
+        resources :cities, param: :city, only: [:index, :show]
+        resources :series, param: :slug, only: [:index, :show]
+      end
+
       resources :schedules, only: [:index], path: "/schedule" do
         get "/day/:date", action: :show, on: :collection, as: :day
       end
+      resource :venue, only: [:show]
       resources :speakers, only: [:index]
+      resources :participants, only: [:index]
+      resources :involvements, only: [:index]
       resources :talks, only: [:index]
+      resources :related_talks, only: [:index]
+      resources :events, only: [:index, :show]
+      resources :videos, only: [:index]
+      resources :sponsors, only: [:index]
+      resources :cfp, only: [:index]
+      resources :collectibles, only: [:index]
     end
   end
-  resources :organisations, param: :slug, only: [:index, :show]
 
-  namespace :speakers do
-    resources :enhance, only: [:update], param: :slug
+  resources :organizations, param: :slug, only: [:index, :show] do
+    resource :logos, only: [:show, :update], controller: "organizations/logos"
   end
+
+  namespace :sponsors do
+    resources :missing, only: [:index]
+  end
+
+  get "/sponsors", to: redirect("/organizations", status: 301)
+  get "/sponsors/:slug", to: redirect("/organizations/%{slug}", status: 301)
+  get "/sponsors/:slug/logos", to: redirect("/organizations/%{slug}/logos", status: 301)
+
+  get "/organisations", to: redirect("/events/series")
+  get "/organisations/:slug", to: redirect("/events/series/%{slug}")
 
   namespace "spotlight" do
     resources :talks, only: [:index]
@@ -78,6 +145,8 @@ Rails.application.routes.draw do
   end
 
   get "/featured" => "page#featured"
+
+  resources :recommendations, only: [:index]
 
   get "leaderboard", to: "leaderboard#index"
 
@@ -97,7 +166,21 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "page#home"
 
-  resources :watch_lists, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
+  resources :watch_lists, only: [:index, :new, :create, :show, :edit, :update, :destroy], path: "bookmarks" do
     resources :talks, only: [:create, :destroy], controller: "watch_list_talks"
+  end
+
+  namespace :hotwire do
+    namespace :native do
+      namespace :v1 do
+        get "home", to: "/page#home", defaults: {format: "json"}
+        namespace :android do
+          resource :path_configuration, only: :show
+        end
+        namespace :ios do
+          resource :path_configuration, only: :show
+        end
+      end
+    end
   end
 end

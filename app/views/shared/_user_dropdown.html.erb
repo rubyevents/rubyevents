@@ -1,24 +1,29 @@
 <%= ui_dropdown align: :end, content_classes: "mt-5 shadow-xl", id: "user_navbar_toggle" do |c| %>
-    <% c.with_toggle_open do %>
-      <%= heroicon "x-mark", size: :lg %>
-    <% end %>
+  <% c.with_toggle_open do %>
+    <%= fa("xmark", size: :md) %>
+  <% end %>
 
-    <% c.with_toggle_close do %>
-      <%= heroicon "bars-3", size: :lg %>
-    <% end %>
+  <% c.with_toggle_close do %>
+    <%= fa("bars", size: :md) %>
+  <% end %>
 
-    <% c.with_menu_item_link_to "Leaderboard", leaderboard_path %>
-    <% c.with_menu_item_link_to "Contribute", contributions_path %>
-    <% c.with_menu_item_link_to "Uses", uses_path %>
-    <% c.with_menu_item_link_to "Analytics", analytics_dashboards_path %>
-
-    <% if Current.user %>
+  <% c.with_menu_item_link_to "Leaderboard", leaderboard_path %>
+  <% c.with_menu_item_link_to "Contribute", contributions_path %>
+  <% c.with_menu_item_link_to "Event Assets", pages_assets_path %>
+  <% c.with_menu_item_link_to "Uses", uses_path %>
+  <% c.with_menu_item_link_to "Analytics", analytics_dashboards_path %>
+  <% c.with_menu_item_link_to "About", about_path %>
+  <% if Current.user %>
+    <% c.with_menu_item_divider %>
+    <% c.with_menu_item_link_to "My Ruby Events Profile", profile_path(Current.user) %>
+    <% if Current.user&.admin? %>
+      <% c.with_menu_item_link_to "Suggestions", admin_suggestions_path %>
+      <% c.with_menu_item_link_to t("admin"), avo_path %>
       <% c.with_menu_item_divider %>
-      <% c.with_menu_item_button_to t("sign_out"), Current.session, method: :delete, id: :sign_out %>
-
-      <% if Current.user&.admin? %>
-        <% c.with_menu_item_link_to "Suggestions", admin_suggestions_path %>
-        <% c.with_menu_item_link_to t("admin"), avo_path %>
-      <% end %>
     <% end %>
+    <% c.with_menu_item_button_to t("sign_out"),
+         Current.session,
+         method: :delete,
+         id: :sign_out %>
+  <% end %>
 <% end %>

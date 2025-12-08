@@ -22,6 +22,8 @@ proxy:
   hosts:
     - rubyvideo.dev
     - www.rubyvideo.dev
+    - rubyevents.org
+    - www.rubyevents.org
   # kamal-proxy connects to your container over port 80, use `app_port` to specify a different port.
   app_port: 80
 
@@ -41,6 +43,7 @@ builder:
     image: rubyvideo-build-cache
   secrets:
     - RAILS_MASTER_KEY
+  remote: ssh://root@5.75.232.156
 
 env:
   clear:
@@ -49,7 +52,6 @@ env:
     RAILS_ENV: production
   secret:
     - RAILS_MASTER_KEY
-    - MEILI_MASTER_KEY
 
 # Aliases are triggered with "bin/kamal <alias>". You can overwrite arguments on invocation:
 # "bin/kamal logs -r job" will tail logs from the first server in the job section.
@@ -64,20 +66,14 @@ volumes:
   - "storage:/rails/storage"
 
 accessories:
-  search:
-    image: getmeili/meilisearch:v1.10
-    host: 91.107.208.207
-    port: 7700
+  litestream:
+    roles: ["web"]
+    image: litestream/litestream
+    files: ["config/litestream.yml:/etc/litestream.yml"]
+    volumes: ["storage:/rails/storage"]
+    cmd: replicate
     env:
-      clear:
-        MEILI_HTTP_ADDR: rubyvideo-search:7700
-        MEILI_ENV: production
-        MEILI_DB_PATH: /rails/storage/meilisearch
-        MEILI_NO_ANALYTICS: true
-        MEILI_DUMP_DIR: /rails/storage/meilisearch/dumps
-        MEILI_MAX_INDEXING_MEMORY: 2Gb
-        MEILI_SNAPSHOT_DIR: /rails/storage/meilisearch/snapshots
       secret:
-        - MEILI_MASTER_KEY
-    volumes:
-      - "storage:/rails/storage"
+        - LITESTREAM_ENDPOINT
+        - LITESTREAM_ACCESS_KEY_ID
+        - LITESTREAM_SECRET_ACCESS_KEY

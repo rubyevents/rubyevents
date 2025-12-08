@@ -28,6 +28,7 @@ class Ui::ModalComponent < ApplicationComponent
     attributes[:data] = {
       controller: "modal",
       modal_open_value: open,
+      turbo_temporary: true,
       action: combined_action
     }.merge(attributes[:data] || {})
   end

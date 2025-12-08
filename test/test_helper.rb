@@ -10,6 +10,8 @@ VCR.configure do |c|
   c.hook_into :webmock
   c.ignore_localhost = true
   c.ignore_hosts "chromedriver.storage.googleapis.com", "googlechromelabs.github.io", "edgedl.me.gvt1.com"
+  c.filter_sensitive_data("<YOUTUBE_API_KEY>") { ENV["YOUTUBE_API_KEY"] }
+  c.filter_sensitive_data("<GITHUB_TOKEN>") { ENV["RUBYVIDEO_GITHUB_TOKEN"] }
   c.filter_sensitive_data("<OPENAI_API_KEY>") { ENV["OPENAI_ACCESS_TOKEN"] }
   c.filter_sensitive_data("<OPENAI_ORGANIZATION_ID>") { ENV["OPENAI_ORGANIZATION_ID"] }
 end
@@ -17,14 +19,9 @@ class ActiveSupport::TestCase
   include EventTrackingHelper
 
   setup do
-    # @@once ||= begin
-    #   MeiliSearch::Rails::Utilities.reindex_all_models
-    #   true
-    # end
-
-    Talk.rebuild_search_index
-    Speaker.rebuild_search_index
-    Speaker.reset_talks_counts
+    Talk.reindex_all
+    User.reindex_all
+    User.reset_talks_counts
   end
   # Run tests in parallel with specified workers
   parallelize(workers: :number_of_processors)
@@ -34,9 +31,7 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
   def sign_in_as(user)
-    post(sign_in_url, params: {email: user.email, password: "Secret1*3*5*"})
+    post(sessions_url, params: {email: user.email, password: "Secret1*3*5*"})
     user
   end
 end
-
-# MeiliSearch::Rails::Utilities.clear_all_indexes

@@ -46,4 +46,8 @@ export default class extends Controller {
   get elementToTransition () {
     return this.hasContentTarget ? this.contentTarget : this.element
   }
+
+  get isPreview () {
+    return document.documentElement.hasAttribute('data-turbo-preview')
+  }
 }

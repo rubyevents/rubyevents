@@ -1,0 +1,67 @@
+# rubocop:disable Layout/LineLength
+# == Schema Information
+#
+# Table name: event_series
+# Database name: primary
+#
+#  id                   :integer          not null, primary key
+#  description          :text             default(""), not null
+#  frequency            :integer          default("unknown"), not null, indexed
+#  kind                 :integer          default("conference"), not null, indexed
+#  language             :string           default(""), not null
+#  name                 :string           default(""), not null, indexed
+#  slug                 :string           default(""), not null, indexed
+#  twitter              :string           default(""), not null
+#  website              :string           default(""), not null
+#  youtube_channel_name :string           default("")
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  youtube_channel_id   :string           default("")
+#
+# Indexes
+#
+#  index_event_series_on_frequency  (frequency)
+#  index_event_series_on_kind       (kind)
+#  index_event_series_on_name       (name)
+#  index_event_series_on_slug       (slug)
+#
+# rubocop:enable Layout/LineLength
+
+railsconf:
+  name: RailsConf
+  description: RailsConf organized by Ruby central
+  website: https://railsconf.org/
+  kind: 1
+  frequency: 1
+  youtube_channel_id: UCWnPjmqvljcafA0z2U1fwKQ
+  youtube_channel_name: confreaks
+  slug: railsconf
+
+rubyconfth:
+  name: RubyConfTH
+  description: Ruby Rails Thailand
+  website: https://rubyconfth.com/
+  kind: 1
+  frequency: 1
+  youtube_channel_id: UCWnPjmqvljcsqsdafA0z2U1fwKQ
+  youtube_channel_name: rubyconfth
+  slug: railsconfth
+
+rails_world:
+  name: RailsWorld
+  description: Rails World
+  website: https://rubyonrails.org/world
+  kind: 1
+  frequency: 1
+  youtube_channel_id: UC9zbLaqReIdoFfzdUbh13Nw
+  youtube_channel_name: railsofficial
+  slug: rails-world
+  twitter: rails
+
+brightonruby:
+  name: Brighton Ruby
+  description: Brighton Ruby
+  website: https://brightonruby.com/
+  kind: 1
+  frequency: 1
+  slug: brightonruby

@@ -8,10 +8,10 @@ class SitemapsController < ApplicationController
   private
 
   def generate_sitemap_string
-    Rails.cache.fetch(["sitemap", Talk.all, Event.all, Speaker.all, Topic.approved], expires_in: 24.hours) do
+    Rails.cache.fetch(["sitemap", Talk.all, Event.all, User.speakers, Topic.approved], expires_in: 24.hours) do
       adapter = SitemapStringAdapter.new
 
-      SitemapGenerator::Sitemap.default_host = "https://www.rubyvideo.dev"
+      SitemapGenerator::Sitemap.default_host = "https://www.rubyevents.org"
 
       SitemapGenerator::Sitemap.create(adapter: adapter) do
         add talks_path, priority: 0.9, changefreq: "weekly"
@@ -22,8 +22,8 @@ class SitemapsController < ApplicationController
 
         add speakers_path, priority: 0.7, changefreq: "weekly"
 
-        Speaker.with_talks.canonical.pluck(:slug, :updated_at).each do |speaker_slug, updated_at|
-          add speaker_path(speaker_slug), priority: 0.9, lastmod: updated_at
+        User.speakers.canonical.pluck(:slug, :updated_at).each do |speaker_slug, updated_at|
+          add profile_path(speaker_slug), priority: 0.9, lastmod: updated_at
         end
 
         add events_path, priority: 0.7, changefreq: "weekly"

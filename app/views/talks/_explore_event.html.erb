@@ -1,4 +1,4 @@
-<%= link_to event_path(event), id: "explore-event", class: "card group bg-gray-100 border hover:bg-gray-200/50 transition-bg duration-300 ease-in-out w-full flex flex-row px-6 py-6 gap-8 mt-4 overflow-hidden", style: "background: #{event.featured_background}; color: #{event.featured_color}" do %>
+<%= link_to event_path(event), id: "explore-event", class: "rounded-xl group bg-gray-100 border hover:bg-gray-200/50 transition-bg duration-300 ease-in-out w-full flex flex-row px-6 py-6 gap-8 mt-4 overflow-hidden", style: "background: #{event.static_metadata.featured_background}; color: #{event.static_metadata.featured_color}", data: {turbo: {permanent: true}} do %>
   <div class="aspect-video hidden md:block">
     <%= image_tag image_path(event.featured_image_path), id: dom_id(event, "explore-card-image"), alt: "explore all talks recorded at #{event.name}", class: "h-24 aspect-video rounded-xl group-hover:scale-105 transition ease-in-out duration-300" %>
   </div>
@@ -17,22 +17,16 @@
     </span>
 
     <div class="avatar-group -space-x-3 rtl:space-x-reverse mt-4">
-      <% speakers_with_avatars = event.speakers.where.not(github: "").sample(8) %>
+      <% speakers_with_avatars = event.speakers.with_github.sample(8) %>
 
       <% speakers_with_avatars.each do |speaker| %>
-        <div class="avatar bg-white border-2">
-          <div class="w-8">
-            <img src="<%= speaker.avatar_url %>" loading="lazy">
-          </div>
-        </div>
+        <%= ui_avatar(speaker) %>
       <% end %>
 
       <% if event.speakers.size > speakers_with_avatars.size %>
-        <div class="avatar placeholder border-2">
-          <div class="bg-neutral text-neutral-content w-8">
-            <span>+<%= event.speakers.size - speakers_with_avatars.size %></span>
-          </div>
-        </div>
+        <%= ui_avatar(nil) do %>
+          <span>+<%= event.speakers.size - speakers_with_avatars.size %></span>
+        <% end %>
       <% end %>
     </div>
   </div>

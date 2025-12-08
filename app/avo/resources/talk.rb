@@ -30,12 +30,18 @@ class Avo::Resources::Talk < Avo::BaseResource
     end
     field :updated_at, as: :date, sortable: true
     field :slides_url, as: :text, hide_on: :index
-    field :summary, as: :markdown, hide_on: :index
+    field :summary, as: :easy_mde, hide_on: :index
     field :has_raw_transcript, name: "Raw Transcript", as: :boolean do
       record.raw_transcript.present?
     end
     field :has_enhanced_transcript, hide_on: :index, name: "Enhanced Transcript", as: :boolean do
       record.enhanced_transcript.present?
+    end
+    field :raw_transcript_length, name: "Raw Transcript length", as: :number do
+      record.raw_transcript&.to_text&.length
+    end
+    field :enhanced_transcript_length, name: "Enhanced Transcript length", as: :number do
+      record.enhanced_transcript&.to_text&.length
     end
     field :has_duration, name: "Duration", as: :boolean do
       record.duration_in_seconds.present?
@@ -66,8 +72,8 @@ class Avo::Resources::Talk < Avo::BaseResource
     field :thumbnail_md, as: :external_image, hide_on: :index
     field :thumbnail_lg, as: :external_image, hide_on: :index
     field :thumbnail_xl, as: :external_image, hide_on: :index
-    field :speaker_talks, as: :has_many, attach_scope: -> { query.order(name: :asc) }
-    field :speakers, as: :has_many, attach_scope: -> { query.order(name: :asc) }
+    # field :speaker_talks, as: :has_many, attach_scope: -> { query.order(name: :asc) }
+    field :speakers, as: :has_many
     field :raw_transcript, as: :textarea, hide_on: :index, format_using: -> { value&.to_text }, readonly: true
     field :enhanced_transcript, as: :textarea, hide_on: :index, format_using: -> { value&.to_text }, readonly: true
     # field :suggestions, as: :has_many

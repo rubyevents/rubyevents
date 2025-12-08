@@ -1,0 +1,14 @@
+<div class="container py-8 hotwire-native:py-3">
+  <div class="flex items-center justify-between w-full hotwire-native:hidden">
+    <h1 class="title shrink-0">
+      <%= title "Past Events" %>
+    </h1>
+
+    <div class="flex gap-4 whitespace-nowrap">
+      <%= link_to "Upcoming Events", events_path, class: "link text-right w-full" %>
+      <%= link_to "Archive", archive_events_path, class: "link text-right w-full" %>
+    </div>
+  </div>
+
+  <%= render partial: "events/featured_card_list", locals: {events: @events} %>
+</div>

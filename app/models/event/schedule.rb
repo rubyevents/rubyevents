@@ -1,4 +1,3 @@
-# -*- SkipSchemaAnnotations
 class Event::Schedule < ActiveRecord::AssociatedObject
   def file_path
     event.data_folder.join("schedule.yml")

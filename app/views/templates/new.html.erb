@@ -1,0 +1,298 @@
+<div class="container py-8">
+  <h1 class="text-3xl font-bold mb-6">YAML Template Generator</h1>
+  <p class="text-gray-600 mb-8">Generate YAML templates for adding new talks and events to the Ruby Events
+    database.</p>
+
+  <%= turbo_frame_tag @talk do %>
+    <%= form_with model: @talk do |form| %>
+
+      <div class="space-y-6">
+        <div class="card bg-base-100 shadow-sm">
+          <div class="card-body">
+            <h2 class="card-title text-lg mb-4">Required</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="form-control">
+                <%= form.label :title, "Title *", class: "label" %>
+                <%= form.text_field :title,
+                      class:
+                        class_names(
+                          "input input-bordered w-full",
+                          "input-error": @talk.errors[:title].any?
+                        ),
+                      placeholder: "e.g., Introducing Type Guard to Steep" %>
+                <% if @talk.errors[:title].any? %>
+                  <div class="label">
+                    <span class="label-text-alt text-error"><%= @talk.errors[:title].join(", ") %></span>
+                  </div>
+                <% end %>
+              </div>
+
+              <div class="form-control">
+                <%= form.label :event_name, "Event Name *", class: "label" %>
+                <%= form.text_field :event_name,
+                      class:
+                        class_names(
+                          "input input-bordered w-full",
+                          "input-error": @talk.errors[:event_name].any?
+                        ),
+                      placeholder: "e.g., RubyKaigi 2025" %>
+                <% if @talk.errors[:event_name].any? %>
+                  <div class="label">
+                    <span class="label-text-alt text-error"><%= @talk.errors[:event_name].join(", ") %></span>
+                  </div>
+                <% end %>
+              </div>
+
+              <div class="form-control">
+                <%= form.label :date, "Date *", class: "label" %>
+                <%= form.date_field :date,
+                      class:
+                        class_names(
+                          "input input-bordered w-full",
+                          "input-error": @talk.errors[:date].any?
+                        ) %>
+                <% if @talk.errors[:date].any? %>
+                  <div class="label">
+                    <span class="label-text-alt text-error"><%= @talk.errors[:date].join(", ") %></span>
+                  </div>
+                <% end %>
+              </div>
+
+              <div class="form-control">
+                <%= form.label :speakers, "Speakers", class: "label" %>
+                <%= form.combobox :speakers,
+                      speakers_search_templates_path,
+                      multiselect_chip_src: speakers_search_chips_templates_path,
+                      name_when_new: "template[speakers]",
+                      free_text: true,
+                      class: "w-full" %>
+              </div>
+            </div>
+
+            <div class="form-control">
+              <%= form.label :description, "Description", class: "label" %>
+              <%= form.text_area :description,
+                    class: "textarea textarea-bordered w-full",
+                    rows: 3,
+                    placeholder: "Talk or event description..." %>
+            </div>
+          </div>
+        </div>
+        <!-- Optional Fields - Collapsible -->
+        <div class="collapse collapse-arrow bg-base-100 shadow-sm">
+          <input type="checkbox" class="peer">
+          <div class="collapse-title text-lg font-medium">
+            Optional Fields
+          </div>
+          <div class="collapse-content">
+            <div class="space-y-4">
+              <div class="form-control">
+                <%= form.label :raw_title, "Raw Title", class: "label" %>
+                <%= form.text_field :raw_title,
+                      class: "input input-bordered w-full",
+                      placeholder:
+                        "e.g., [JA] Introducing Type Guard to Steep / Takeshi KOMIYA @tk0miya" %>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="form-control">
+                  <%= form.label :published_at, "Published At", class: "label" %>
+                  <%= form.date_field :published_at, class: "input input-bordered w-full" %>
+                </div>
+
+                <div class="form-control">
+                  <%= form.label :announced_at, "Announced At", class: "label" %>
+                  <%= form.date_field :announced_at, class: "input input-bordered w-full" %>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="form-control">
+                  <%= form.label :language, "Language", class: "label" %>
+                  <%= form.select :language,
+                        [
+                          %w[English english],
+                          %w[Japanese japanese],
+                          %w[Spanish spanish],
+                          %w[French french],
+                          %w[German german]
+                        ],
+                        {prompt: "Select language..."},
+                        {class: "select select-bordered w-full"} %>
+                </div>
+
+                <div class="form-control">
+                  <%= form.label :track, "Track/Room", class: "label" %>
+                  <%= form.text_field :track,
+                        class: "input input-bordered w-full",
+                        placeholder: "e.g., Main Stage, Room A" %>
+                </div>
+              </div>
+
+              <div class="form-control">
+                <%= form.label :slides_url, "Slides URL", class: "label" %>
+                <%= form.url_field :slides_url,
+                      class: "input input-bordered w-full",
+                      placeholder: "https://..." %>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="form-control">
+                  <%= form.label :thumbnail_xs, "Thumbnail XS", class: "label" %>
+                  <%= form.url_field :thumbnail_xs,
+                        class: "input input-bordered w-full",
+                        placeholder: "https://..." %>
+                </div>
+
+                <div class="form-control">
+                  <%= form.label :thumbnail_sm, "Thumbnail SM", class: "label" %>
+                  <%= form.url_field :thumbnail_sm,
+                        class: "input input-bordered w-full",
+                        placeholder: "https://..." %>
+                </div>
+
+                <div class="form-control">
+                  <%= form.label :thumbnail_md, "Thumbnail MD", class: "label" %>
+                  <%= form.url_field :thumbnail_md,
+                        class: "input input-bordered w-full",
+                        placeholder: "https://..." %>
+                </div>
+
+                <div class="form-control">
+                  <%= form.label :thumbnail_lg, "Thumbnail LG", class: "label" %>
+                  <%= form.url_field :thumbnail_lg,
+                        class: "input input-bordered w-full",
+                        placeholder: "https://..." %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Video Information - Collapsible -->
+        <div class="collapse collapse-arrow bg-base-100 shadow-sm">
+          <input type="checkbox" class="peer">
+          <div class="collapse-title text-lg font-medium">
+            Video Information
+          </div>
+          <div class="collapse-content">
+            <div class="space-y-4">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="form-control">
+                  <%= form.label :video_provider, "Video Provider", class: "label" %>
+                  <%= form.select :video_provider,
+                        ::Template::VIDEO_PROVIDERS.map { [it, it.squish.underscore] },
+                        {prompt: "Select provider..."},
+                        {class: "select select-bordered w-full"} %>
+                </div>
+
+                <div class="form-control">
+                  <%= form.label :video_id, "Video ID", class: "label" %>
+                  <%= form.text_field :video_id,
+                        class: "input input-bordered w-full",
+                        placeholder: "e.g., kp_jeGkUmhY" %>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="form-control">
+                  <%= form.label :start_cue, "Start Time", class: "label" %>
+                  <%= form.time_field :start_cue,
+                        class: "input input-bordered w-full",
+                        placeholder: "e.g., 02:00" %>
+                </div>
+
+                <div class="form-control">
+                  <%= form.label :end_cue, "End Time", class: "label" %>
+                  <%= form.time_field :end_cue,
+                        class: "input input-bordered w-full",
+                        placeholder: "e.g., 30:00" %>
+                </div>
+              </div>
+
+              <div class="form-control">
+                <label class="label cursor-pointer justify-start">
+                  <%= form.check_box :external_player, class: "checkbox mr-3" %>
+                  <span class="label-text">External Player</span>
+                </label>
+              </div>
+
+              <div class="form-control">
+                <%= form.label :external_player_url, "External Player URL", class: "label" %>
+                <%= form.url_field :external_player_url,
+                      class: "input input-bordered w-full",
+                      placeholder: "https://..." %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card bg-base-100 shadow-sm">
+          <div class="card-body">
+            <h2 class="card-title text-lg mb-4">Child Talks</h2>
+            <p class="text-sm text-gray-600 mb-4">Add individual talks if this is a meetup or multi-talk event.</p>
+
+            <div id="children" class="space-y-4 mb-4">
+              <% @talk.children.each do |child| %>
+                <% index = Time.current.to_i %>
+                <%= fields_for "template[children_attributes][]", child, index: index do |form| %>
+                  <%= render "talk_fields", form: form, index: index %>
+                <% end %>
+              <% end %>
+            </div>
+
+            <%= link_to "Add Talk",
+                  new_child_templates_path,
+                  data: {
+                    turbo_method: :get,
+                    turbo_stream: true
+                  },
+                  class: "btn btn-outline btn-lg w-full" %>
+          </div>
+        </div>
+
+        <div class="card bg-base-100 shadow-sm">
+          <div class="card-body">
+            <%= form.submit "Generate YAML", class: "btn btn-primary btn-lg w-full" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8">
+        <div class="card bg-base-100 shadow-sm">
+          <div class="card-body">
+            <h2 class="card-title text-xl mb-4">Generated YAML</h2>
+            <div class="bg-white rounded border p-4 min-h-[200px]">
+              <% if @yaml.present? %>
+                <div
+                  class="relative"
+                  data-controller="copy-to-clipboard"
+                  data-copy-to-clipboard-success-class="scale-95">
+                  <button
+                    class="
+                      btn btn-sm btn-outline absolute top-1 right-1 transition-transform duration-150
+                      ease-in-out
+                    "
+                    data-action="click->copy-to-clipboard#copy"
+                    data-copy-to-clipboard-target="button">
+                    Copy
+                  </button>
+                  <pre
+                    class="
+                      text-sm font-mono text-gray-800 whitespace-pre-wrap break-words
+                    "
+                    data-copy-to-clipboard-target="source"><%= @yaml %></pre>
+                </div>
+              <% else %>
+                <div class="text-sm font-mono text-gray-500">
+                  Fill out the form and click "Generate YAML" to see the output
+                  here.
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

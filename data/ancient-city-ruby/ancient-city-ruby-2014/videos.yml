@@ -8,48 +8,37 @@
 
 # Breakfast & Registration
 
-- title: "Leon's Allegory of the Cave"
-  raw_title: Leon Gersing - Leon's Allegory of the Cave - Ancient City Ruby 2014
+- id: "leon-gersing-ancient-city-ruby-2014"
+  title: "Leon's Allegory of the Cave"
+  raw_title: "Leon Gersing - Leon's Allegory of the Cave - Ancient City Ruby 2014"
   speakers:
     - Leon Gersing
-  event_name: Ancient City Ruby 2014
-  published_at: "2014-04-03"
-  description:
-    What is the role of the software developer in the modern world? We
-    are more educated now than during any time in recorded human history. We have
-    more access to tools and the ability to craft our own in order to better communicate
-    with one another; to see the world in all of its various forms, beautiful and
-    strange. All of this information, all of this knowledge and yet the quest for
-    truth, understanding and wisdom has become increasingly strained. We adopt the
-    ideologies and rituals of archetypes instead of masters and therein feel the hollowness
-    of the modern human condition. In this session, I will present to you the teachings
-    of my masters as I have come to understand them and the wisdom I've gained over
-    the years in my relentless pursuit for truth in the modern world. Our collective
-    existential ennui is distorting the very fabric of reality. Seeing the world as
-    it truly is can free our minds to the infinite possibilities that lie before us.
-    Can we be more than the context we are born into? Can we rise above the confining
-    binds of hierarchy, class, status and the distortions of those we choose to associate
-    ourselves? Let's take some time to remember who we are, where we are going and
-    discover, perhaps, why we are here.
-  video_provider: youtube
-  video_id: _oTEnczCS0s
+  event_name: "Ancient City Ruby 2014"
+  date: "2014-04-03"
+  published_at: "2014-05-08"
+  description: |-
+    What is the role of the software developer in the modern world? We are more educated now than during any time in recorded human history. We have more access to tools and the ability to craft our own in order to better communicate with one another; to see the world in all of its various forms, beautiful and strange. All of this information, all of this knowledge and yet the quest for truth, understanding and wisdom has become increasingly strained. We adopt the ideologies and rituals of archetypes instead of masters and therein feel the hollowness of the modern human condition. In this session, I will present to you the teachings of my masters as I have come to understand them and the wisdom I've gained over the years in my relentless pursuit for truth in the modern world. Our collective existential ennui is distorting the very fabric of reality. Seeing the world as it truly is can free our minds to the infinite possibilities that lie before us. Can we be more than the context we are born into? Can we rise above the confining binds of hierarchy, class, status and the distortions of those we choose to associate ourselves? Let's take some time to remember who we are, where we are going and discover, perhaps, why we are here.
+  video_provider: "youtube"
+  video_id: "_oTEnczCS0s"
 
 # Sponsor Lightning Talks
 
-- title: "Breaking Up (With) Your Test Suite"
-  raw_title: Justin Searls - Breaking Up (With) Your Test Suite - Ancient City Ruby 2014
+- id: "justin-searls-ancient-city-ruby-2014"
+  title: "Breaking Up (With) Your Test Suite"
+  raw_title: "Justin Searls - Breaking Up (With) Your Test Suite - Ancient City Ruby 2014"
   speakers:
     - Justin Searls
-  event_name: Ancient City Ruby 2014
-  published_at: "2014-04-03"
+  event_name: "Ancient City Ruby 2014"
+  date: "2014-04-03"
+  published_at: "2014-05-09"
   description: |-
     It's about time for the Ruby community to adopt a more mature and nuanced approach to testing.
 
     Gone are the days when "is it tested?" was a boolean question. It no longer makes sense for a single test suite to accomplish numerous objectives, because the design of our tests are so influenced by the benefit we hope to realize from them. What's less clear to most developers is the best approach to breaking a test suite up.
 
     This talk will introduce a testing architecture that's appropriate for the post-monolithic age of Ruby application development. We'll discuss why each test suite can provide at most one type of confidence and one type of feedback. I'll introduce a set of five narrow, focused types of test suites and explore how each of their roles can combine to provide all of the value that test automation can hope to offer. Together, we'll gain the ability to discuss the value of each test with much greater precision and subtlety.
-  video_provider: youtube
-  video_id: vkAfGHd7sZY
+  video_provider: "youtube"
+  video_id: "vkAfGHd7sZY"
 
 # Sponsor Lightning Talks
 
@@ -59,95 +48,84 @@
 
 # Lunch
 
-- title: "Overkill"
-  raw_title: Katrina Owen - Overkill - Ancient City Ruby 2014
+- id: "katrina-owen-ancient-city-ruby-2014"
+  title: "Overkill"
+  raw_title: "Katrina Owen - Overkill - Ancient City Ruby 2014"
   speakers:
     - Katrina Owen
-  event_name: Ancient City Ruby 2014
-  published_at: "2014-04-03"
+  event_name: "Ancient City Ruby 2014"
+  date: "2014-04-03"
+  published_at: "2014-05-09"
   description: |-
     When is it okay to build an orbital laser to destroy an ant-hill?
 
     Many cry "overkill" when design principles are applied to trivial problems. And for good reason: in the context of work, excessive embellishment gets us into trouble. Complexity costs us time and money.
 
     This talk explores how stepping outside of the realm of work and applying outrageous engineering practices to toy problems can deepen our understanding of the trade-offs that we make. Comically simple problems provide the perfect ground for developing actionable heuristics which can be applied to those monstrous complexities that we face in the real world.
-  video_provider: youtube
-  video_id: GTpZ0ffQrIE
+  video_provider: "youtube"
+  video_id: "GTpZ0ffQrIE"
 
 # Sponsor Lightning Talks
 
-- title: "Testing the Untestable"
-  raw_title: Richard Schneeman - Testing the Untestable - Ancient City Ruby 2014
+- id: "richard-schneeman-ancient-city-ruby-2014"
+  title: "Testing the Untestable"
+  raw_title: "Richard Schneeman - Testing the Untestable - Ancient City Ruby 2014"
   speakers:
     - Richard Schneeman
-  event_name: Ancient City Ruby 2014
-  published_at: "2014-04-03"
-  description:
-    "Good tests are isolated, they're repeatable, they're deterministic.
-    Good tests don't touch the network and are flexible when it comes to change.
-    Bad tests are all of the above and more. Bad tests are no tests at all: which
-    is where I found myself with a 5 year legacy codebase running in production and
-    touching millions of customers with minimal use-case documentation. We'll cover
-    this experience and several like it while digging into how to go from zero to
-    total test coverage as painlessly as possible. You will learn how to stay sane
-    in the face of insane testing conditions, and how to use these tests to deconstruct
-    a monolith app. When life gives you a big ball of mud, write a big ball of tests."
-  video_provider: youtube
-  video_id: MdtfcLJwOf0
+  event_name: "Ancient City Ruby 2014"
+  date: "2014-04-03"
+  published_at: "2014-05-09"
+  description: |-
+    Good tests are isolated, they're repeatable, they're deterministic. Good tests don't touch the network and are flexible when it comes to change. Bad tests are all of the above and more. Bad tests are no tests at all: which is where I found myself with a 5 year legacy codebase running in production and touching millions of customers with minimal use-case documentation. We'll cover this experience and several like it while digging into how to go from zero to total test coverage as painlessly as possible. You will learn how to stay sane in the face of insane testing conditions, and how to use these tests to deconstruct a monolith app. When life gives you a big ball of mud, write a big ball of tests.
+  video_provider: "youtube"
+  video_id: "MdtfcLJwOf0"
 
 # Sponsor Lightning Talks
 
 # Break
 
-- title: "Fast, Testable and SANE APIs"
-  raw_title: Ben Lovell - Fast, Testable and SANE APIs
+- id: "ben-lovell-ancient-city-ruby-2014"
+  title: "Fast, Testable and SANE APIs"
+  raw_title: "Ben Lovell - Fast, Testable and SANE APIs"
   speakers:
     - Ben Lovell
-  event_name: Ancient City Ruby 2014
-  published_at: "2014-04-03"
+  event_name: "Ancient City Ruby 2014"
+  date: "2014-04-03"
+  published_at: "2014-05-09"
   description: |-
     By now, we've all written JSON APIs in Rails. But how do you write fast, testable and sane APIs? I'll guide you through the trials of designing and building awesome, scalable APIs. We'll cover rails-api, activemodelserializers, and all the associated goodness that our ecosystem has to offer.
 
     I'll speak on the approaches to authentication, how to ensure we remain good REST/HTTP citizens and maybe if I have time I'll share some of my top secret beard grooming tips!
-  video_provider: youtube
-  video_id: dUPp4DhFLnY
+  video_provider: "youtube"
+  video_id: "dUPp4DhFLnY"
 
 ## Day 2 - 2014-04-04
 
 # Breakfast
 
-- title: "Ruby & You"
-  raw_title: Terence Lee - Ruby & You - Ancient City Ruby 2014
+- id: "terence-lee-ancient-city-ruby-2014"
+  title: "Ruby & You"
+  raw_title: "Terence Lee - Ruby & You - Ancient City Ruby 2014"
   speakers:
     - Terence Lee
-  event_name: Ancient City Ruby 2014
-  published_at: "2014-04-04"
-  description:
-    "On November 22, 2013, a devastating security exploit was publicized
-    to the Ruby community: Heap Overflow in Floating Point Parsing (CVE-2013-4164).
-    There was no fixes provided for Ruby 1.9.2. In fact, Ruby 1.9.2 has never had
-    a formal end of life announcement and at Heroku we realized this impacted our
-    ability to provide reliable runtime support. Not wanting to leave our customers
-    high and dry, Heroku released Ruby 1.8.7 and 1.9.2 security patches on our runtimes
-    and pushed to get them upstream. This process lead me to receive commit bit to
-    help maintain security fixes for 1.8.7 and 1.9.2. Over the last few months with
-    help from zzak, I've been figuring out how to work with ruby core as well as
-    proposing policy changes for more transparency. This talk, goes through the steps
-    and mistakes that I learned on how to interact with members of ruby core. We'll
-    remove the opacity around getting contributions upstreamed and how you can have
-    meaningful discussions with the implementers about the language we all know and
-    love. Help us make Ruby better."
-  video_provider: youtube
-  video_id: Vl5ASs3FtRw
+  event_name: "Ancient City Ruby 2014"
+  date: "2014-04-04"
+  published_at: "2015-02-12"
+  description: |-
+    On November 22, 2013, a devastating security exploit was publicized to the Ruby community: Heap Overflow in Floating Point Parsing (CVE-2013-4164). There was no fixes provided for Ruby 1.9.2. In fact, Ruby 1.9.2 has never had a formal end of life announcement and at Heroku we realized this impacted our ability to provide reliable runtime support. Not wanting to leave our customers high and dry, Heroku released Ruby 1.8.7 and 1.9.2 security patches on our runtimes and pushed to get them upstream. This process lead me to receive commit bit to help maintain security fixes for 1.8.7 and 1.9.2. Over the last few months with help from zzak, I've been figuring out how to work with ruby core as well as proposing policy changes for more transparency. This talk, goes through the steps and mistakes that I learned on how to interact with members of ruby core. We'll remove the opacity around getting contributions upstreamed and how you can have meaningful discussions with the implementers about the language we all know and love. Help us make Ruby better.
+  video_provider: "youtube"
+  video_id: "Vl5ASs3FtRw"
 
 # Lightning Talks
 
-- title: "Postgres Performance for Humans"
-  raw_title: Craig Kerstiens - Postgres Performance for Humans - Ancient City Ruby 2014
+- id: "craig-kerstiens-ancient-city-ruby-2014"
+  title: "Postgres Performance for Humans"
+  raw_title: "Craig Kerstiens - Postgres Performance for Humans - Ancient City Ruby 2014"
   speakers:
     - Craig Kerstiens
-  event_name: Ancient City Ruby 2014
-  published_at: "2014-04-04"
+  event_name: "Ancient City Ruby 2014"
+  date: "2014-04-04"
+  published_at: "2015-02-02"
   description: |-
     To many developers the database is a black box. You expect to be able to put data into your database, have it to stay there, and get it out when you query it... hopefully in a performant manner. When its not performant enough the two options are usually add some indexes or throw some hardware at it. We'll walk through a bit of a clearer guide of how you can understand how database is doing from a 30,000 foot perspective as well as analyze specific problematic queries and how to tune them. In particular we'll cover:
 
@@ -156,74 +134,75 @@
     * Explain Plans
     * Extensions
     * More
-  video_provider: youtube
-  video_id: occqUdd7t4E
+  video_provider: "youtube"
+  video_id: "occqUdd7t4E"
 
 # Lightning Talks
 
 # Break
 
-- title: "Introduction to Elixir for Rubyists"
-  raw_title: Josh Adams - Introduction to Elixir for Rubyists - Ancient City Ruby 2014
+- id: "josh-adams-ancient-city-ruby-2014"
+  title: "Introduction to Elixir for Rubyists"
+  raw_title: "Josh Adams - Introduction to Elixir for Rubyists - Ancient City Ruby 2014"
   speakers:
     - Josh Adams
-  event_name: Ancient City Ruby 2014
-  published_at: "2014-04-04"
-  description:
-    Elixir is a concurrency-oriented programming language built atop the
-    Erlang VM. Its syntax is very Ruby-influenced, and it takes some great features
-    from the Python world as well. In this talk, I'll provide a quick introduction
-    to the language. I'll provide just a quick overview of the language syntactically,
-    as well as cover some areas where it differs wildly from Ruby.
-  video_provider: youtube
-  video_id: rS5aeUi1sZs
+  event_name: "Ancient City Ruby 2014"
+  date: "2014-04-04"
+  published_at: "2015-02-02"
+  description: |-
+    Elixir is a concurrency-oriented programming language built atop the Erlang VM. Its syntax is very Ruby-influenced, and it takes some great features from the Python world as well. In this talk, I'll provide a quick introduction to the language. I'll provide just a quick overview of the language syntactically, as well as cover some areas where it differs wildly from Ruby.
+  video_provider: "youtube"
+  video_id: "rS5aeUi1sZs"
 
 # Lunch
 
-- title: "Oh, Oh, Oh, It's Magic!"
-  raw_title: Aaron Patterson - Oh, Oh, Oh, It's Magic! - Ancient City Ruby 2014
+- id: "aaron-patterson-ancient-city-ruby-2014"
+  title: "Oh, Oh, Oh, It's Magic!"
+  raw_title: "Aaron Patterson - Oh, Oh, Oh, It's Magic! - Ancient City Ruby 2014"
   speakers:
     - Aaron Patterson
-  event_name: Ancient City Ruby 2014
-  published_at: "2014-04-04"
-  description:
-    You know? Let's explore computer vision using Ruby and OpenCV! In this
-    talk, we will learn techniques for speeding up our code, fetching data from the
-    network, and doing image recognition, all in Ruby. Let's harness the power of
-    Sauron's Eye (my webcam) together!
-  video_provider: youtube
-  video_id: csN-NYFba0U
+  event_name: "Ancient City Ruby 2014"
+  date: "2014-04-04"
+  published_at: "2015-02-02"
+  description: |-
+    You know? Let's explore computer vision using Ruby and OpenCV! In this talk, we will learn techniques for speeding up our code, fetching data from the network, and doing image recognition, all in Ruby. Let's harness the power of Sauron's Eye (my webcam) together!
+  video_provider: "youtube"
+  video_id: "csN-NYFba0U"
 
 # Lightning Talks
 
-- title: "Hack Me If You Can"
-  raw_title: Konstantin Haase - Hack Me If You Can - Ancient City Ruby 2014
+- id: "konstantin-haase-ancient-city-ruby-2014"
+  title: "Hack Me If You Can"
+  raw_title: "Konstantin Haase - Hack Me If You Can - Ancient City Ruby 2014"
   speakers:
     - Konstantin Haase
-  event_name: Ancient City Ruby 2014
-  published_at: "2014-04-04"
+  event_name: "Ancient City Ruby 2014"
+  date: "2014-04-04"
+  published_at: "2015-02-02"
   description: |-
     Security is important. Yet, it's where a lot of web developers have little to no experience. We'll look at a whole range of opportunistic attack vectors that can be used against web applications, and how we can protect us against them.
 
     This talk will include one currently undisclosed attack (at the time of writing).
-  video_provider: youtube
-  video_id: u_Le8-WsSs8
+  video_provider: "youtube"
+  video_id: "u_Le8-WsSs8"
 
 # Sponsor Lightning Talks
 
 # Break
 
-- title: "Juggling Children... and Rubies"
-  raw_title: Evan Machnic - Juggling Children... and Rubies - Ancient City Ruby 2014
+- id: "evan-machnic-ancient-city-ruby-2014"
+  title: "Juggling Children... and Rubies"
+  raw_title: "Evan Machnic - Juggling Children... and Rubies - Ancient City Ruby 2014"
   speakers:
     - Evan Machnic
-  event_name: Ancient City Ruby 2014
-  published_at: "2014-04-04"
+  event_name: "Ancient City Ruby 2014"
+  date: "2014-04-04"
+  published_at: "2015-02-03"
   description: |-
     "DAD! I'm hungry."
     "DAD! Can you tie my shoes?"
     "HONEY! The baby needs a diaper change."
 
     How do you balance all the distractions with raising children and still be able to deliver at your job? As Ruby developers, it's something that many of us can relate to but few really talk openly about. I work full-time at Engine Yard, create videos for Code TV, and also maintain RailsInstaller. All of that needs to balance nicely with my family and this talk will explore some of the problems I've faced and how I address them.
-  video_provider: youtube
-  video_id: F62cJHu53xc
+  video_provider: "youtube"
+  video_id: "F62cJHu53xc"

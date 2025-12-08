@@ -1,0 +1,36 @@
+<% cache [user, events, Current.user] do %>
+  <% if events.any? %>
+    <div class="space-y-8">
+        <% if involvements_by_role.any? %>
+          <% involvements_by_role.each do |role, events| %>
+            <div>
+              <h3 class="text-lg font-semibold mb-4">
+                Involved as <%= role %>
+              </h3>
+              <div class="mb-6">
+                <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                  <% events = events.sort_by(&:start_date).reverse.uniq %>
+                  <%= cache events do %>
+                    <%= render partial: "events/card", collection: events, as: :event, cached: true %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <div class="text-center py-12">
+            <div class="mb-6">
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">No involvements yet</h3>
+              <p class="text-gray-600 mb-6 max-w-xl mx-auto">
+                <% if Current.user == user %>
+                  You don't have any event involvements recorded yet.
+                <% else %>
+                  <%= user.name %> doesn't have any event involvements recorded yet.
+                <% end %>
+              </p>
+            </div>
+          </div>
+        <% end %>
+    </div>
+  <% end %>
+<% end %>

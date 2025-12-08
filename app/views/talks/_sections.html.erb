@@ -2,11 +2,11 @@
   <div class="max-h-[220px] group-data-[expanded]:max-h-none overflow-y-hidden transition transition-all">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-2 md:gap-4 mb-3">
       <% talk.child_talks.order(:start_seconds).each_with_index do |child_talk, index| %>
-        <%= link_to child_talk, data: {turbo_frame: "talk"}, class: "p-2 border rounded group bg-white hover:bg-gray-100 data-[active]:border-blue-700/30 data-[active]:bg-blue-50 hover:data-[active]:bg-blue-100 data-[active]:text-blue-700", **({"data-active" => child_talk == talk}.select { |_, v| v }) do %>
+        <%= link_to child_talk, data: {turbo_frame: "talk"}, class: "p-2 border rounded group bg-white hover:bg-gray-100 data-[active]:border-blue-700/30 data-[active]:bg-blue-50 hover:data-[active]:bg-blue-100 data-[active]:text-blue-700", **{"data-active" => child_talk == talk}.select { |_, v| v } do %>
           <div class="flex justify-between">
             <div <% if child_talk == talk %> data-active <% end %> class="flex gap-3 text-gray-700 data-[active]:font-bold text-sm">
               <div class="flex aspect-video shrink-0 relative w-16 lg:w-24 xl:w-36">
-                <%= image_tag child_talk.thumbnail_sm, srcset: ["#{child_talk.thumbnail_sm} 2x"], id: dom_id(child_talk), class: "w-full h-auto aspect-video object-cover rounded", loading: :lazy %>
+                <%= image_tag child_talk.thumbnail_sm, srcset: ["#{child_talk.thumbnail_sm} 2x"], id: dom_id(child_talk), class: "w-full h-auto aspect-video object-cover rounded #{child_talk.thumbnail_classes}", loading: :lazy %>
               </div>
 
               <div class="flex flex-col gap-0.5 justify-center">

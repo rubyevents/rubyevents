@@ -3,8 +3,12 @@ class Events::SchedulesController < ApplicationController
   before_action :set_event, only: %i[index show]
 
   def index
-    @day = @days.first
+    unless @event.schedule.exist?
+      render :missing_schedule
+      return
+    end
 
+    @day = @days.first
     set_talks(@day)
   end
 
@@ -17,13 +21,17 @@ class Events::SchedulesController < ApplicationController
   private
 
   def set_event
-    @event = Event.includes(organisation: :events).find_by!(slug: params[:event_slug])
+    @event = Event.includes(series: :events).find_by(slug: params[:event_slug])
+    return redirect_to(root_path, status: :moved_permanently) unless @event
 
-    @days = @event.schedule.days
-    @tracks = @event.schedule.tracks
+    set_meta_tags(@event)
 
     redirect_to schedule_event_path(@event.canonical), status: :moved_permanently if @event.canonical.present?
-    redirect_to event_path(@event), notice: "Event doesn't have a schedule" unless @event.schedule.exist?
+
+    if @event.schedule.exist?
+      @days = @event.schedule.days
+      @tracks = @event.schedule.tracks
+    end
   end
 
   def set_talks(day)

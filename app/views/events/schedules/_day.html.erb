@@ -13,6 +13,7 @@
     <% day.dig("grid").each do |grid| %>
       <% start_time = grid["start_time"] %>
       <% end_time = grid["end_time"] %>
+      <% description = grid["description"] %>
       <% slots = grid["slots"] %>
       <% items = grid.fetch("items", []) %>
       <% colspan = (slots != max_cols) ? (max_cols / slots) : 1 %>
@@ -23,6 +24,14 @@
             <%= [start_time, end_time].uniq.join(" - ") %>
           </div>
         </div>
+
+        <% if description %>
+          <div class="border-b">
+            <div class="text-xs p-2">
+              <%= description %>
+            </div>
+          </div>
+        <% end %>
 
         <div class="grid grid-cols-<%= slots %> divide-x">
           <% slots.times do |i| %>
@@ -66,13 +75,7 @@
                   <div class="text-md font-bold"><%= talk.title %></div><br>
                   <div class="text-gray-500 group-hover:text-white inline-flex flex-wrap gap-2 justify-center">
                     <% talk.speakers.each do |speaker| %>
-
-                      <div class="avatar">
-                        <div class="w-10 rounded-full bg-white text-neutral-content outline outline-2 outline-white">
-                          <%= image_tag speaker.avatar_url(size: 48) %>
-                        </div>
-                      </div>
-
+                      <%= ui_avatar(speaker, outline: true, size: :sm) %>
                     <% end %>
                   </div>
 

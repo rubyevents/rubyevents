@@ -4,126 +4,143 @@
 # TODO: conference website
 # TODO: schedule website
 
-- title: "Cool, But... Why?"
-  raw_title: Cool, But... Why? - John Crepezzi - Rubyday 2020
+- id: "john-crepezzi-rubyday-2020"
+  title: "Cool, But... Why?"
+  raw_title: "Cool, But... Why? - John Crepezzi - Rubyday 2020"
   speakers:
     - John Crepezzi
-  event_name: rubyday 2020
-  published_at: "2020-09-16"
+  event_name: "rubyday 2020"
+  date: "2020-09-16"
+  published_at: "2021-04-02"
   description: |-
     If you work around Ruby long enough, you’ll learn that certain ideas are just taken as gospel. Don’t use for loops, avoid global state, use symbols pretty much wherever possible. This talk will go deep into the ‘why’ behind some commonly accepted advice on Ruby, dig into the internals, and what we find might just surprise you.
 
     rubyday 2020 - Virtual edition, September 16th 2020. https://2020.rubyday.it/
 
     Next edition: https://2021.rubyday.it/
-  video_provider: youtube
-  video_id: mQVZy132Y0Q
+  video_provider: "youtube"
+  video_id: "mQVZy132Y0Q"
 
-- title: "Less abstract! Expressing Ruby OOP in pictures"
-  raw_title: Less abstract! Expressing Ruby OOP in pictures - Ivan Nemytchenko - rubyday 2020
+- id: "ivan-nemytchenko-rubyday-2020"
+  title: "Less abstract! Expressing Ruby OOP in pictures"
+  raw_title: "Less abstract! Expressing Ruby OOP in pictures - Ivan Nemytchenko - rubyday 2020"
   speakers:
     - Ivan Nemytchenko
-  event_name: rubyday 2020
-  published_at: "2020-09-16"
-  description:
-    "Abstractions are both our blessing and our curse. Because of them,
-    we're so powerful. But also we so often fall into the trap of miscommunication
-    :( Abstract rules, operating with abstract terms, built on top of other abstract
-    ideas. Ugh... In this talk, we're going to build a visual language to make things
-    LESS ABSTRACT. \nI'll show you how it helps in: \n1. teaching others \n2. explaining
-    non-obvious concepts \n3. refactoring messy code 4. tracking codebase changes\n\nrubyday
-    2020 - Virtual edition, September 16th 2020. https://2020.rubyday.it/\n\nNext
-    edition: https://2021.rubyday.it/"
-  video_provider: youtube
-  video_id: BVH3Mk5eJUY
+  event_name: "rubyday 2020"
+  date: "2020-09-16"
+  published_at: "2021-04-01"
+  description: |-
+    Abstractions are both our blessing and our curse. Because of them, we're so powerful. But also we so often fall into the trap of miscommunication :( Abstract rules, operating with abstract terms, built on top of other abstract ideas. Ugh... In this talk, we're going to build a visual language to make things LESS ABSTRACT.
+    I'll show you how it helps in:
+    1. teaching others
+    2. explaining non-obvious concepts
+    3. refactoring messy code 4. tracking codebase changes
 
-- title: "Sequel: When ActiveRecord is not enough"
+    rubyday 2020 - Virtual edition, September 16th 2020. https://2020.rubyday.it/
+
+    Next edition: https://2021.rubyday.it/
+  video_provider: "youtube"
+  video_id: "BVH3Mk5eJUY"
+
+- id: "janko-marohnic-rubyday-2020"
+  title: "Sequel: When ActiveRecord is not enough"
   raw_title: "Sequel: When ActiveRecord is not enough - Janko Marohnić - Rubyday 2020"
   speakers:
     - Janko Marohnić
-  event_name: rubyday 2020
-  published_at: "2020-09-16"
+  event_name: "rubyday 2020"
+  date: "2020-09-16"
+  published_at: "2021-04-01"
   description: |-
     As Rails developers, using ActiveRecord as our database library is a given. As our application grows, we start noticing that some of our new requirements aren't exactly supported by the ActiveRecord API. So, we pull up our sleeves and write that raw SQL snippet, re-create some queries without models to get that extra performance gain, or work around that bug in the library, and move on. But gaining this technical debt isn't necessary if you're using a library that supports your advanced use cases. Enter Sequel, an alternative ORM for Ruby. In this talk we will show some advantages that Sequel has over Active Record, covering topics like the query API, building SQL expressions (Arel), connection pools, immutability and more.
 
     rubyday 2020 - Virtual edition, September 16th 2020. https://2020.rubyday.it/
 
     Next edition: https://2021.rubyday.it/
-  video_provider: youtube
-  video_id: 77Xmji1-urg
+  video_provider: "youtube"
+  video_id: "77Xmji1-urg"
 
-- title: "OSS - to be defined"
-  raw_title: OSS - to be defined - Floor Drees - Rubyday 2020
+- id: "floor-drees-rubyday-2020"
+  title: "OSS - to be defined"
+  raw_title: "OSS - to be defined - Floor Drees - Rubyday 2020"
   speakers:
     - Floor Drees
-  event_name: rubyday 2020
-  published_at: "2020-09-16"
+  event_name: "rubyday 2020"
+  date: "2020-09-16"
+  published_at: "2021-04-01"
   description: |-
     Enterprises have embraced Open Source software - but their grip is suffocating. Business critical software is plagued by vulnerabilities because of maintainer burnout. We're looking for more sustainable models, and regaining control over what our code can be used for - enter the Hippocratic License. GitHub taking down software that was vital infrastructure for opposition groups in Spain shows us that no one party (let alone company) should own access to open source software. The world runs on open source, how do we make sure it can do so sustainably and reliably?
 
     rubyday 2020 - Virtual edition, September 16th 2020. https://2020.rubyday.it/
 
     Next edition: https://2021.rubyday.it/
-  video_provider: youtube
-  video_id: WLull6UJOC0
+  video_provider: "youtube"
+  video_id: "WLull6UJOC0"
 
-- title: "Product metrics for developers"
-  raw_title: Product metrics for developers - Dmitry Salahutdinov - Rubyday 2020
+- id: "dmitry-salahutdinov-rubyday-2020"
+  title: "Product metrics for developers"
+  raw_title: "Product metrics for developers - Dmitry Salahutdinov - Rubyday 2020"
   speakers:
     - Dmitry Salahutdinov
-  event_name: rubyday 2020
-  published_at: "2020-09-16"
+  event_name: "rubyday 2020"
+  date: "2020-09-16"
+  published_at: "2021-04-01"
   description: |-
     Product metrics could be handy to analyze feature performance and get in-depth into business essence. But they are mostly out of the developer's scope. I am going to tell you why developers should use product analytics and how easy set it up in your project.
 
     rubyday 2020 - Virtual edition, September 16th 2020. https://2020.rubyday.it/
 
     Next edition: https://2021.rubyday.it/
-  video_provider: youtube
-  video_id: 4E1tEH4NTZU
+  video_provider: "youtube"
+  video_id: "4E1tEH4NTZU"
 
-- title: "Moving to GraphQL - the fuzzy parts"
-  raw_title: Moving to GraphQL - the fuzzy parts - Greg Kaczorek - Rubyday 2020
+- id: "greg-kaczorek-rubyday-2020"
+  title: "Moving to GraphQL - the fuzzy parts"
+  raw_title: "Moving to GraphQL - the fuzzy parts - Greg Kaczorek - Rubyday 2020"
   speakers:
     - Greg Kaczorek
-  event_name: rubyday 2020
-  published_at: "2020-09-16"
+  event_name: "rubyday 2020"
+  date: "2020-09-16"
+  published_at: "2021-04-02"
   description: |-
     We all know the good feeling that comes from starting a green field project and being able to use all the great new technology. But what if you have a 460k LOC monolith but you really feel that a new GraqhQL API is the way to go. Well, if you have good design, you can totally do it, and here's how. GraphQL is all the rage for good reason. It's geared towards solving the problems REST API's have when used by modern front-end apps. However, new technology often has a way of breaking apart when subjected to legacy projects. How easy is it to create a GraphQL API for a commercial project with 7 years of active development and 400k users? What difficulties might you encounter that blurbs and blog posts won't tell you about? I'll cover all that and more in this riveting tale of fun, sweat and tears (of joy).
 
     rubyday 2020 - Virtual edition, September 16th 2020. https://2020.rubyday.it/
 
     Next edition: https://2021.rubyday.it/
-  video_provider: youtube
-  video_id: gdM0IKfwKyM
+  video_provider: "youtube"
+  video_id: "gdM0IKfwKyM"
 
-- title: "Technically, a Talk"
-  raw_title: Technically, a Talk - Eileen Uchitelle - Rubyday 2020
+- id: "eileen-m-uchitelle-rubyday-2020"
+  title: "Technically, a Talk"
+  raw_title: "Technically, a Talk - Eileen Uchitelle - Rubyday 2020"
   speakers:
     - Eileen M. Uchitelle
-  event_name: rubyday 2020
-  published_at: "2020-09-16"
-  slides_url: https://speakerdeck.com/eileencodes/technically-a-talk-ruby-day-2020
+  event_name: "rubyday 2020"
+  date: "2020-09-16"
+  published_at: "2021-04-02"
+  slides_url: "https://speakerdeck.com/eileencodes/technically-a-talk-ruby-day-2020"
   description: |-
     Peer deep into Rails' database handling and you may find the code overly complex, hard to follow, and full of technical debt. On the surface you're right - it is complex, but that complexity represents the strong foundation that keeps your applications simple and focused on your product code. In this talk we'll look at how to use multiple databases, the beauty (and horror) of Rails connection management, and why we built this feature for you.
 
     rubyday 2020 - Virtual edition, September 16th 2020. https://2020.rubyday.it/
 
     Next edition: https://2021.rubyday.it/
-  video_provider: youtube
-  video_id: nRJ6iQGpeuI
+  video_provider: "youtube"
+  video_id: "nRJ6iQGpeuI"
 
-- title: Reduce Memory by Using More
-  raw_title: Reduce Memory by Using More - Aaron Patterson - Rubyday 2020
+- id: "aaron-patterson-rubyday-2020"
+  title: "Reduce Memory by Using More"
+  raw_title: "Reduce Memory by Using More - Aaron Patterson - Rubyday 2020"
   speakers:
     - Aaron Patterson
-  event_name: rubyday 2020
-  published_at: "2020-09-16"
+  event_name: "rubyday 2020"
+  date: "2020-09-16"
+  published_at: "2021-04-01"
   description: |-
     Most programmers don't need to think about allocating or deallocating memory, and they have the garbage collector to thank for that! In this presentation we'll discuss the latest developments in GC compaction as well as how the GC allocates and arranges memory internally. Once we understand this we'll explore a strange way Ruby is decreasing memory usage by allocating more memory. The GC manages memory so that you don't have to, but we're going to see how it's actually done!
 
     rubyday 2020 - Virtual edition, September 16th 2020. https://2020.rubyday.it/
 
     Next edition: https://2021.rubyday.it/
-  video_provider: youtube
-  video_id: tqkwM9kiro8
+  video_provider: "youtube"
+  video_id: "tqkwM9kiro8"

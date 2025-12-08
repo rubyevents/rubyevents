@@ -1,10 +1,12 @@
 module ViewComponentHelper
   UI_HELPERS = {
+    avatar: "Ui::AvatarComponent",
     badge: "Ui::BadgeComponent",
     button: "Ui::ButtonComponent",
     divider: "Ui::DividerComponent",
     dropdown: "Ui::DropdownComponent",
-    modal: "Ui::ModalComponent"
+    modal: "Ui::ModalComponent",
+    stamp: "Ui::StampComponent"
   }.freeze
 
   UI_HELPERS.each do |name, component|
@@ -13,8 +15,8 @@ module ViewComponentHelper
     end
   end
 
-  def ui_tooltip(text, &block)
-    tag.div data: {controller: "tooltip", tooltip_content_value: text} do
+  def ui_tooltip(text, **kwargs, &block)
+    tag.div data: {controller: "tooltip", tooltip_content_value: text}, **kwargs do
       yield
     end
   end

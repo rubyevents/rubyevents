@@ -2,7 +2,7 @@ default: &default
   database: cache
   size_estimate_samples: 100
   store_options:
-    max_age: <%= 30.days.to_i %>
+    max_age: <%= 60.days.to_i %>
     max_size: <%= 1.gigabytes %>
     namespace: <%= Rails.env %>
     expiry_method: :job

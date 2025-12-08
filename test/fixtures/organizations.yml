@@ -1,0 +1,39 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# == Schema Information
+#
+# Table name: organizations
+# Database name: primary
+#
+#  id              :integer          not null, primary key
+#  description     :text
+#  domain          :string
+#  kind            :integer          default("unknown"), not null, indexed
+#  logo_background :string           default("white")
+#  logo_url        :string
+#  logo_urls       :json
+#  main_location   :string
+#  name            :string
+#  slug            :string           indexed
+#  website         :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+# Indexes
+#
+#  index_organizations_on_kind  (kind)
+#  index_organizations_on_slug  (slug)
+#
+one:
+  name: MyString
+  website: MyString
+  description: MyText
+  slug: mystring
+  kind: unknown
+
+two:
+  name: Another String
+  website: MyString
+  description: MyText
+  slug: another-string
+  kind: unknown

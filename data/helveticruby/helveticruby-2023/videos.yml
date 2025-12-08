@@ -7,196 +7,187 @@
 # Website: https://helvetic-ruby.ch/2023/
 # Schedule: https://helvetic-ruby.ch/2023/schedule/
 
-- title: Profiling Ruby tests with Swiss precision
-  raw_title: Profiling Ruby tests with Swiss precision by Vladimir Dementyev
+- id: "vladimir-dementyev-helvetic-ruby-2023"
+  title: "Profiling Ruby tests with Swiss precision"
+  raw_title: "Profiling Ruby tests with Swiss precision by Vladimir Dementyev"
   speakers:
     - Vladimir Dementyev
-  event_name: Helvetic Ruby 2023
+  event_name: "Helvetic Ruby 2023"
   date: "2023-11-24"
-  published_at: "2023-12-01"
+  published_at: "2023-12-08"
   description: |-
     Tests occupy a significant amount of developers’ time. We write them, run locally, and wait for CI builds to complete—the latter can last from a cup of coffee to a good day nap. And unfortunately, such “naps” are pretty common in the Ruby and Rails world.
 
     Luckily, the reasons for slow tests vary greatly between codebases: misconfigured environment, test-unfriendly dependencies, and, of course, factories and database interactions in general.
 
     I like to demonstrate the tools and techniques to help you identify bottlenecks in test suites to help you stay awake.
-  video_provider: youtube
-  video_id: WNluKNQ1OFU
-  slides_url: https://speakerdeck.com/palkan/helvetic-ruby-2023-profiling-ruby-tests-with-swiss-precision
+  video_provider: "youtube"
+  video_id: "WNluKNQ1OFU"
+  slides_url: "https://speakerdeck.com/palkan/helvetic-ruby-2023-profiling-ruby-tests-with-swiss-precision"
 
-- title: A Sneak Peek into Ractors!
-  raw_title: A Sneak Peek into Ractors! by Abiodun Olowode
+- id: "abiodun-olowode-helvetic-ruby-2023"
+  title: "A Sneak Peek into Ractors!"
+  raw_title: "A Sneak Peek into Ractors! by Abiodun Olowode"
   speakers:
     - Abiodun Olowode
-  event_name: Helvetic Ruby 2023
+  event_name: "Helvetic Ruby 2023"
   date: "2023-11-24"
-  published_at: "2023-12-01"
-  description:
-    Are you tired of dealing with race conditions in your Ruby code? Introducing
-    Ractors - an experimental feature designed for parallel execution without thread-safety
-    concerns. But are they really as fast as threads? And are they worth the trouble?
-    In this talk, we'll explore the ins and outs of Ractors, shedding light on how
-    they work and helping you decide if they're right for your project
-  video_provider: youtube
-  video_id: GhPAMDdOnU0
+  published_at: "2023-12-08"
+  description: |-
+    Are you tired of dealing with race conditions in your Ruby code? Introducing Ractors - an experimental feature designed for parallel execution without thread-safety concerns. But are they really as fast as threads? And are they worth the trouble? In this talk, we'll explore the ins and outs of Ractors, shedding light on how they work and helping you decide if they're right for your project
+  video_provider: "youtube"
+  video_id: "GhPAMDdOnU0"
 
-- title: How to Keep your Database Happy
-  raw_title: How to Keep your Database Happy by Karen Jex
+- id: "karen-jex-helvetic-ruby-2023"
+  title: "How to Keep your Database Happy"
+  raw_title: "How to Keep your Database Happy by Karen Jex"
   speakers:
     - Karen Jex
-  event_name: Helvetic Ruby 2023
+  event_name: "Helvetic Ruby 2023"
   date: "2023-11-24"
-  published_at: "2023-12-01"
+  published_at: "2023-12-08"
   description: |-
     You don't want to spend too much time looking after your database; you've got better things to do with your time, but you do want your database to run smoothly and perform well. Fortunately, there are a few simple things that you can do to make sure your database ticks along nicely in the background.
     I've put together my top 5 tips, based on things that have been useful to me as a DBA. The focus will be on Postgres, but most of the tips are also relevant to other databases. These are things you can put in place, without too much effort, to make sure your database works well.
-  video_provider: youtube
-  video_id: y13fs-q4WGo
+  video_provider: "youtube"
+  video_id: "y13fs-q4WGo"
 
-- title: Postcards From An Early-Career Developer's First Months
-  raw_title: Postcards From An Early-Career Developer's First Months by Harriet Oughton
+- id: "harriet-oughton-helvetic-ruby-2023"
+  title: "Postcards From An Early-Career Developer's First Months"
+  raw_title: "Postcards From An Early-Career Developer's First Months by Harriet Oughton"
   speakers:
     - Harriet Oughton
-  event_name: Helvetic Ruby 2023
+  event_name: "Helvetic Ruby 2023"
   date: "2023-11-24"
-  published_at: "2023-12-01"
+  published_at: "2023-12-08"
   description: |-
     Postcards From An Early-Career Developer's First Months: Recognising the Struggles and the Joys.
 
     In the fast-paced learning environment of software development, it can be hard for more established developers to remember the experience of someone finding their feet in their first software role. This talk aims to remind most of us of the common things that new developers learn, grapple with and celebrate in the first few months on the job, and for the juniors themselves, to expose how common these struggles are (and hopefully provide some pointers along the way!).
-  video_provider: youtube
-  video_id: jNY4CViM76U
+  video_provider: "youtube"
+  video_id: "jNY4CViM76U"
 
 # Lunch
 
-- title: The Functional Alternative
-  raw_title: The Functional Alternative by Ju Liu
+- id: "ju-liu-helvetic-ruby-2023"
+  title: "The Functional Alternative"
+  raw_title: "The Functional Alternative by Ju Liu"
   speakers:
     - Ju Liu
-  event_name: Helvetic Ruby 2023
+  event_name: "Helvetic Ruby 2023"
   date: "2023-11-24"
-  published_at: "2023-12-06"
-  description:
-    We'll start with a simple Ruby Kata and solve it together, live, with
-    imperative programming. We'll then fix the many, many, many things we got wrong.
-    Then we'll solve the problem again using patterns from functional programming.
-    You'll leave this talk with a clear and concrete example of why functional programming
-    matters, why immutable code matters, and why it can help you writing bug-free
-    code. The next time you find yourself writing imperative code, you'll think about...
-    the functional alternative.
-  video_provider: youtube
-  video_id: Fm099cLXdV8
+  published_at: "2023-12-08"
+  description: |-
+    We'll start with a simple Ruby Kata and solve it together, live, with imperative programming. We'll then fix the many, many, many things we got wrong. Then we'll solve the problem again using patterns from functional programming. You'll leave this talk with a clear and concrete example of why functional programming matters, why immutable code matters, and why it can help you writing bug-free code. The next time you find yourself writing imperative code, you'll think about... the functional alternative.
+  video_provider: "youtube"
+  video_id: "Fm099cLXdV8"
 
-- title: "Lightning Talk: Five Minutes of a Random Stranger Talking About Creativity"
-  raw_title:
-    Five Minutes of a Random Stranger Talking About Creativity by Christina
-    Serra
+- id: "christina-serra-helvetic-ruby-2023"
+  title: "Lightning Talk: Five Minutes of a Random Stranger Talking About Creativity"
+  raw_title: "Five Minutes of a Random Stranger Talking About Creativity by Christina Serra"
   speakers:
     - Christina Serra
-  event_name: Helvetic Ruby 2023
+  event_name: "Helvetic Ruby 2023"
   date: "2023-11-24"
-  published_at: "2023-12-01"
+  published_at: "2023-12-08"
   description: |-
     Five Minutes of a Random Stranger Talking About Creativity (and why you should squeeze it into your life)
 
     A lightning talk from the Helvetic Ruby 2023 conference.
 
     "Creative people are just born that way", right? Contrary to this opinion, like so many other things humans do, this too is a learned behavior! Lucky for us, right? Kinda like how “Some people are just born to program”, right? It may be more a mix of early and continued cultivated exposure and time+interest than lucky genes. Cultivating our creative juices has its benefits! This is a short 5-minute reminder on the why and how you can be even more awesome and add creativity back into your life, to help improve mental health, capacity for problem solving and joy. Like exercise, but more fun.
-  video_provider: youtube
-  video_id: l1UG9lYDnNk
+  video_provider: "youtube"
+  video_id: "l1UG9lYDnNk"
 
-- title: "Lightning Talk: Sliced Ruby - Enforcing Module Boundaries with private_const and packwerk"
-  raw_title:
-    "Sliced Ruby: Enforcing module boundaries with private_const and packwerk
-    by Severin Ráz"
+- id: "severin-rz-helvetic-ruby-2023"
+  title: "Lightning Talk: Sliced Ruby - Enforcing Module Boundaries with private_const and packwerk"
+  raw_title: "Sliced Ruby: Enforcing module boundaries with private_const and packwerk by Severin Ráz"
   speakers:
     - Severin Ráz
-  event_name: Helvetic Ruby 2023
+  event_name: "Helvetic Ruby 2023"
   date: "2023-11-24"
-  published_at: "2023-12-01"
+  published_at: "2023-12-08"
   description: |-
     A lightning talk from the Helvetic Ruby 2023 conference.
 
     Ideas on how ruby can help you protect your architecture. I'll work through an example of tightly coupled classes where it's not apparent who calls who and who should be allowed to call who. This is refactored in a few steps towards a design where the ruby interpreter and the packwerk gem prevent certain errors alltogether.
-  video_provider: youtube
-  video_id: ZBoiu0yUrwI
+  video_provider: "youtube"
+  video_id: "ZBoiu0yUrwI"
 
-- title: "Lightning Talk: Conventionally-Typed Ruby"
-  raw_title: Conventionally-typed Ruby by Josua Schmid
+- id: "josua-schmid-helvetic-ruby-2023"
+  title: "Lightning Talk: Conventionally-Typed Ruby"
+  raw_title: "Conventionally-typed Ruby by Josua Schmid"
   speakers:
     - Josua Schmid
-  event_name: Helvetic Ruby 2023
+  event_name: "Helvetic Ruby 2023"
   date: "2023-11-24"
-  published_at: "2023-12-01"
+  published_at: "2023-12-08"
   description: |-
     A lightning talk from Helvetic Ruby 2023.
 
     Dynamically typed vs statically typed, come-on… Why can we not have the best of both worlds? I'd like to introduce the theoretical concept of a conventionally-typed Ruby.
-  video_provider: youtube
-  video_id: MIl1AFWoAXQ
+  video_provider: "youtube"
+  video_id: "MIl1AFWoAXQ"
 
-- title: "Lightning Talk: Ideas For Growing Our Ruby Community"
-  raw_title: Ideas for growing our Ruby community by Lucian Ghinda
+- id: "lucian-ghinda-helvetic-ruby-2023"
+  title: "Lightning Talk: Ideas For Growing Our Ruby Community"
+  raw_title: "Ideas for growing our Ruby community by Lucian Ghinda"
   speakers:
     - Lucian Ghinda
-  event_name: Helvetic Ruby 2023
+  event_name: "Helvetic Ruby 2023"
   date: "2023-11-24"
-  published_at: "2023-12-01"
-  description:
-    "A lightning talk from the Helvetic Ruby 2023 conference.\n\nI want
-    to touch on some points about bringing more people into our Ruby community. \n\nI
-    will talk more about what we can share online that could reach someone interested
-    in learning Ruby: type of articles, project ideas, developer experience, starting
-    kits, and some other points. \n\nThe purpose of this talk is to start a conversation
-    or to invite people to share more."
-  video_provider: youtube
-  video_id: qrXscRsObvo
+  published_at: "2023-12-08"
+  description: |-
+    A lightning talk from the Helvetic Ruby 2023 conference.
 
-- title: How To Bootstrap Your Software Startup
-  raw_title: How to bootstrap your software startup by Isabel Steiner
+    I want to touch on some points about bringing more people into our Ruby community. 
+
+    I will talk more about what we can share online that could reach someone interested in learning Ruby: type of articles, project ideas, developer experience, starting kits, and some other points. 
+
+    The purpose of this talk is to start a conversation or to invite people to share more.
+  video_provider: "youtube"
+  video_id: "qrXscRsObvo"
+
+- id: "isabel-steiner-helvetic-ruby-2023"
+  title: "How To Bootstrap Your Software Startup"
+  raw_title: "How to bootstrap your software startup by Isabel Steiner"
   speakers:
     - Isabel Steiner
-  event_name: Helvetic Ruby 2023
+  event_name: "Helvetic Ruby 2023"
   date: "2023-11-24"
-  published_at: "2023-12-01"
+  published_at: "2023-12-08"
   description: |-
     In 2022, a close friend and former co-worker and myself founded The Happy Lab GmbH and we only had one purpose for the company: A place where happy co-workers develop products to make users happy.
 
     In 6 months we went from exploring the problem space to come up with the first hypotheses a to a platform with recurring revenue by following the principles of lean startup and applying all the techniques and methods we have learned in our 15+ years in product management, engineering and leadership positions. In my talk, I will walk the audience through our bootstrapping steps and learnings.
-  video_provider: youtube
-  video_id: 20gPjHP5szQ
+  video_provider: "youtube"
+  video_id: "20gPjHP5szQ"
 
-- title: "A Rails Performance Guidebook: from 0 to 1B requests/day"
-  raw_title:
-    "A Rails performance guidebook: from 0 to 1B requests/day by Cristian
-    Planas and Anatoly Mikhaylov"
+- id: "cristian-planas-helvetic-ruby-2023"
+  title: "A Rails Performance Guidebook: from 0 to 1B requests/day"
+  raw_title: "A Rails performance guidebook: from 0 to 1B requests/day by Cristian Planas and Anatoly Mikhaylov"
   speakers:
     - Cristian Planas
     - Anatoly Mikhaylov
-  event_name: Helvetic Ruby 2023
+  event_name: "Helvetic Ruby 2023"
   date: "2023-11-24"
-  published_at: "2023-12-01"
+  published_at: "2023-12-08"
   description: |-
     Building a feature is not good enough anymore: all your work won't be of use if it's not performant enough. So how to improve performance? After all, performance is not an easy discipline to master: all slow applications are slow in their own way, meaning that there is no silver bullet for these kinds of problems.
 
     In this presentation, we will guide you across patterns, strategies, and little tricks to improve performance. We will do that by sharing real stories of our daily experience facing and solving real performance issues in an application that daily serves billions of requests per day.
-  video_provider: youtube
-  video_id: uDb71s9MtVk
+  video_provider: "youtube"
+  video_id: "uDb71s9MtVk"
 
-- title: Anatomy of a Sonic Pi Song
-  raw_title: Anatomy of a Sonic Pi Song by Raia
+- id: "raia-helvetic-ruby-2023"
+  title: "Anatomy of a Sonic Pi Song"
+  raw_title: "Anatomy of a Sonic Pi Song by Raia"
   speakers:
     - Raia
-  event_name: Helvetic Ruby 2023
+  event_name: "Helvetic Ruby 2023"
   date: "2023-11-24"
-  published_at: "2023-12-02"
-  description:
-    'Have you ever considered what makes a "good" song? Maybe it''s a sweet
-    melody, or the beat that keeps you pushing through to the end of a workout. Whatever
-    the use case, Ruby-based Sonic Pi can synthesize it. Raia guides participants
-    through coding a range of song components. Together, we''ll build a band of live
-    loops including: rhythm sections, melody, chord progressions and audio embellishments.
-    We''ll build a song that can be mixed and modified at will and in the process,
-    learn some key elements of what makes Sonic Pi "sing.”'
-  video_provider: youtube
-  video_id: A7owAl1Q6PQ
+  published_at: "2023-12-08"
+  description: |-
+    Have you ever considered what makes a "good" song? Maybe it's a sweet melody, or the beat that keeps you pushing through to the end of a workout. Whatever the use case, Ruby-based Sonic Pi can synthesize it. Raia guides participants through coding a range of song components. Together, we'll build a band of live loops including: rhythm sections, melody, chord progressions and audio embellishments. We'll build a song that can be mixed and modified at will and in the process, learn some key elements of what makes Sonic Pi "sing.”
+  video_provider: "youtube"
+  video_id: "A7owAl1Q6PQ"

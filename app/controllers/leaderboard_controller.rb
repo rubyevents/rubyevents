@@ -3,11 +3,12 @@ class LeaderboardController < ApplicationController
 
   def index
     @filter = params[:filter] || "all_time"
-    @ranked_speakers = Speaker.left_joins(:talks)
+    @ranked_speakers = User.speakers
+      .left_joins(:talks)
       .group(:id)
       .order("COUNT(talks.id) DESC")
-      .select("speakers.name, speakers.github, speakers.id, speakers.slug, speakers.updated_at, speakers.bsky_metadata, speakers.github_metadata, COUNT(talks.id) as talks_count")
-      .where("speakers.name is not 'TODO'")
+      .select("users.name, users.github_handle, users.id, users.slug, users.updated_at, users.bsky_metadata, users.github_metadata, COUNT(talks.id) as talks_count")
+      .where("users.name is not 'TODO'")
 
     if @filter == "last_12_months"
       @ranked_speakers = @ranked_speakers.where("talks.date >= ?", 12.months.ago.to_date)

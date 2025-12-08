@@ -1,17 +1,20 @@
 module Prompts
   class Base
+    MODEL = "gpt-5-mini"
+
     def to_params
       {
         model: model,
         response_format: response_format,
-        messages: messages
+        messages: messages,
+        service_tier: service_tier
       }
     end
 
     private
 
     def model
-      "gpt-4o-mini"
+      self.class::MODEL
     end
 
     def response_format
@@ -31,6 +34,10 @@ module Prompts
 
     def prompt
       raise NotImplementedError, "Subclass #{self.class.name} must implement #prompt"
+    end
+
+    def service_tier
+      "flex"
     end
   end
 end

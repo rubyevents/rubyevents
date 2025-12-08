@@ -2,10 +2,11 @@
 # == Schema Information
 #
 # Table name: topics
+# Database name: primary
 #
 #  id           :integer          not null, primary key
 #  description  :text
-#  name         :string           indexed
+#  name         :string           uniquely indexed
 #  published    :boolean          default(FALSE)
 #  slug         :string           default(""), not null, indexed
 #  status       :string           default("pending"), not null, indexed
@@ -29,7 +30,7 @@
 class Topic < ApplicationRecord
   include Sluggable
 
-  slug_from :name
+  configure_slug(attribute: :name, auto_suffix_on_collision: false)
 
   has_many :talk_topics
   has_many :talks, through: :talk_topics
@@ -79,6 +80,24 @@ class Topic < ApplicationRecord
 
   def primary_topic
     canonical || self
+  end
+
+  def to_meta_tags
+    {
+      title: name,
+      description: description,
+      og: {
+        title: name,
+        type: :website,
+        description: description,
+        site_name: "RubyEvents.org"
+      },
+      twitter: {
+        card: "summary",
+        title: name,
+        description: description
+      }
+    }
   end
 
   # enums state machine

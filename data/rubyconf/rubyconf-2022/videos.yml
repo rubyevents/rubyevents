@@ -1,480 +1,438 @@
 ---
 # TODO: talks running order
-# TODO: talk dates
+#
+# Website:  https://web.archive.org/web/20221130083932/https://rubyconf.org/
+# Schedule: https://web.archive.org/web/20221130083932/https://rubyconf.org/schedule
 
-# Website: https://web.archive.org/web/20231205111953/https://rubyconf.org/
-# Schedule: https://rubyconf-2023.sessionize.com/schedule
-
-- title: "From beginner to expert, and back again"
+- id: "michael-toppa-rubyconf-2022"
+  title: "From beginner to expert, and back again"
   raw_title: "RubyConf 2022: From beginner to expert, and back again by Michael Toppa"
   speakers:
     - Michael Toppa
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    '"In the beginner''s mind there are many possibilities, in the expert''s
-    mind there are few." - Shunryu Suzuki, from "Zen Mind, Beginner''s Mind" The Japanese
-    Zen term shoshin translates as “beginner’s mind” and refers to a paradox: the
-    more you know about a subject, the more likely you are to close your mind to further
-    learning. In contrast, the beginner’s state of mind is judgment free. It’s open,
-    curious, available, and present. We’ll draw on examples of these mindsets from
-    fields as varied as aviation and geology, and discover lessons we can apply to
-    the world of software development.'
-  video_provider: youtube
-  video_id: UcFBtBOo0dk
+  event_name: "RubyConf 2022"
+  date: "2022-11-30"
+  published_at: "2023-03-07"
+  description: |-
+    "In the beginner's mind there are many possibilities, in the expert's mind there are few." - Shunryu Suzuki, from "Zen Mind, Beginner's Mind" The Japanese Zen term shoshin translates as “beginner’s mind” and refers to a paradox: the more you know about a subject, the more likely you are to close your mind to further learning. In contrast, the beginner’s state of mind is judgment free. It’s open, curious, available, and present. We’ll draw on examples of these mindsets from fields as varied as aviation and geology, and discover lessons we can apply to the world of software development.
+  video_provider: "youtube"
+  video_id: "UcFBtBOo0dk"
 
-- title: "Change the Climate Before Changing the Weather"
+- id: "ben-greenberg-rubyconf-2022"
+  title: "Change the Climate Before Changing the Weather"
   raw_title: "RubyConf 2022: Change the Climate Before Changing the Weather by Ben Greenberg"
   speakers:
     - Ben Greenberg
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    Unless you're self-employed you work for a system. That system is comprised
-    of its own culture in decision making, inclusivity, and a lot more. As one person
-    in a system how can you make an impact on it? Sometimes you can’t change the weather,
-    but you can change the climate in your own room. You may even find that if you
-    change the temperature in enough rooms, surprisingly, you end up changing the
-    weather. In this talk, we’ll discuss a process of systems change that is ground
-    up, going from the micro to the macro. You’ll leave more empowered to start changing
-    the climate in your own workplace.
-  video_provider: youtube
-  video_id: OidmT2LhOdA
+  event_name: "RubyConf 2022"
+  date: "2022-11-30"
+  published_at: "2023-03-07"
+  description: |-
+    Unless you're self-employed you work for a system. That system is comprised of its own culture in decision making, inclusivity, and a lot more. As one person in a system how can you make an impact on it? Sometimes you can’t change the weather, but you can change the climate in your own room. You may even find that if you change the temperature in enough rooms, surprisingly, you end up changing the weather. In this talk, we’ll discuss a process of systems change that is ground up, going from the micro to the macro. You’ll leave more empowered to start changing the climate in your own workplace.
+  video_provider: "youtube"
+  video_id: "OidmT2LhOdA"
 
-- title: "Simulated Annealing: The Most Metal Algorithm Ever 🤘"
+- id: "chris-bloom-rubyconf-2022"
+  title: "Simulated Annealing: The Most Metal Algorithm Ever 🤘"
   raw_title: "RubyConf 2022: Simulated Annealing: The Most Metal Algorithm Ever 🤘 by Chris Bloom"
   speakers:
     - Chris Bloom
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    Simulated annealing is a fascinating algorithm that's designed to help
-    find a particular type of solution (near-optimal, aka "good enough") to a particular
-    type of problem (constrained optimization). It's inspired by the science of metallurgy,
-    and because it's grounded in a real-world process I find it incredibly approachable.
-    In this talk I'll explain in plain terms about what simulated annealing is, what
-    a constrained optimization problem is, why you might want a "good enough" solution,
-    and how we can use the Annealing gem to add simulated annealing to our Ruby apps.
-  video_provider: youtube
-  video_id: REMwU_dZ0ow
+  event_name: "RubyConf 2022"
+  date: "2022-12-01"
+  published_at: "2023-03-07"
+  description: |-
+    Simulated annealing is a fascinating algorithm that's designed to help find a particular type of solution (near-optimal, aka "good enough") to a particular type of problem (constrained optimization). It's inspired by the science of metallurgy, and because it's grounded in a real-world process I find it incredibly approachable. In this talk I'll explain in plain terms about what simulated annealing is, what a constrained optimization problem is, why you might want a "good enough" solution, and how we can use the Annealing gem to add simulated annealing to our Ruby apps.
+  video_provider: "youtube"
+  video_id: "REMwU_dZ0ow"
 
-- title: "Ruby Lambdas"
+- id: "keith-bennett-rubyconf-2022"
+  title: "Ruby Lambdas"
   raw_title: "RubyConf 2022: Ruby Lambdas by Keith Bennett"
   speakers:
     - Keith Bennett
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  slides_url: https://speakerdeck.com/keithrbennett/2022-rubyconf-ruby-lambdas
-  description:
-    Object Oriented Design is powerful for organizing software behavior,
-    but without the benefit of lambdas' code-as-data flexibility, it often fails to
-    reduce solutions to their simplest form. Although Ruby's Enumerable functionality
-    is widely appreciated, its lambdas generally are not. This presentation introduces
-    the developer to lambdas, and shows how they can be used to write software that
-    is cleaner, simpler, and more flexible. We'll go through lots of code fragments,
-    exploring diverse ways of exploiting their power and identifying reusable functional
-    design patterns along the way.
-  video_provider: youtube
-  video_id: lxSoqjJSd38
+  event_name: "RubyConf 2022"
+  date: "2022-12-01"
+  published_at: "2023-03-07"
+  slides_url: "https://speakerdeck.com/keithrbennett/2022-rubyconf-ruby-lambdas"
+  description: |-
+    Object Oriented Design is powerful for organizing software behavior, but without the benefit of lambdas' code-as-data flexibility, it often fails to reduce solutions to their simplest form. Although Ruby's Enumerable functionality is widely appreciated, its lambdas generally are not. This presentation introduces the developer to lambdas, and shows how they can be used to write software that is cleaner, simpler, and more flexible. We'll go through lots of code fragments, exploring diverse ways of exploiting their power and identifying reusable functional design patterns along the way.
+  video_provider: "youtube"
+  video_id: "lxSoqjJSd38"
 
-- title: "Building Native GUI Apps in Ruby"
+- id: "andy-maleh-rubyconf-2022"
+  title: "Building Native GUI Apps in Ruby"
   raw_title: "RubyConf 2022: Building Native GUI Apps in Ruby by Andy Maleh"
   speakers:
     - Andy Maleh
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    Ruby is an excellent choice for building desktop apps with a native
-    GUI (Graphical User Interface) that looks familiar on Mac, Windows, and Linux.
-    In fact, Ruby pushes the boundaries of developing such apps in brand new ways
-    not seen in web development by supporting very lightweight and declarative GUI
-    syntax including bidirectional data-binding, thanks to Glimmer DSL for LibUI,
-    a gem that won a Fukuoka Ruby 2022 Special Award. In this talk, I will cover concepts
-    like the GUI DSL, data-binding, custom controls, area graphics, drag & drop, MVC/MVP
-    pattern, and scaffolding, with sample demos.
-  video_provider: youtube
-  video_id: w3tOrHDbbFA
+  event_name: "RubyConf 2022"
+  date: "2022-12-01"
+  published_at: "2023-03-07"
+  description: |-
+    Ruby is an excellent choice for building desktop apps with a native GUI (Graphical User Interface) that looks familiar on Mac, Windows, and Linux. In fact, Ruby pushes the boundaries of developing such apps in brand new ways not seen in web development by supporting very lightweight and declarative GUI syntax including bidirectional data-binding, thanks to Glimmer DSL for LibUI, a gem that won a Fukuoka Ruby 2022 Special Award. In this talk, I will cover concepts like the GUI DSL, data-binding, custom controls, area graphics, drag & drop, MVC/MVP pattern, and scaffolding, with sample demos.
+  video_provider: "youtube"
+  video_id: "w3tOrHDbbFA"
 
-- title: "In Defense of Ruby Metaprogramming"
+- id: "noel-rappin-rubyconf-2022"
+  title: "In Defense of Ruby Metaprogramming"
   raw_title: "RubyConf 2022: In Defense of Ruby Metaprogramming By Noel Rappin"
   speakers:
     - Noel Rappin
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    If you’ve learned Ruby recently, you’ve likely been told to avoid using
-    Ruby’s metaprogramming features because they are “dangerous”. Here at RubyConf,
-    we laugh at danger. Or at least chuckle nervously at it. Ruby’s flexibility is
-    one of the features that makes Ruby powerful, and ignoring it limits what you
-    can do with the language. Plus, metaprogramming is fun. Let’s talk about when
-    it makes sense to metaprogram, what parts of Ruby to use, and how to do it safely.
-    You’ll leave with the tools to effectively metaprogram in your code.
-  video_provider: youtube
-  video_id: o1XvgJoH_tE
+  event_name: "RubyConf 2022"
+  date: "2022-12-01"
+  published_at: "2023-03-07"
+  description: |-
+    If you’ve learned Ruby recently, you’ve likely been told to avoid using Ruby’s metaprogramming features because they are “dangerous”. Here at RubyConf, we laugh at danger. Or at least chuckle nervously at it. Ruby’s flexibility is one of the features that makes Ruby powerful, and ignoring it limits what you can do with the language. Plus, metaprogramming is fun. Let’s talk about when it makes sense to metaprogram, what parts of Ruby to use, and how to do it safely. You’ll leave with the tools to effectively metaprogram in your code.
+  video_provider: "youtube"
+  video_id: "o1XvgJoH_tE"
 
-- title: "Pushing to master - adopting trunk based development"
+- id: "dylan-blakemore-rubyconf-2022"
+  title: "Pushing to master - adopting trunk based development"
   raw_title: "RubyConf 2022: Pushing to master - adopting trunk based development by Dylan Blakemore"
   speakers:
     - Dylan Blakemore
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    Trunk based development is a scary practice to adopt for engineers
-    used to git flow or github flow. But there is ample evidence to show that it leads
-    to higher quality code and faster delivery. So why are so many resistant to pushing
-    to master? In this talk, we'll go over why TBD can be scary, what challenges are
-    involved in pushing for team and company adoption, and how to overcome those challenges
-  video_provider: youtube
-  video_id: 1sKFkV19XAc
+  event_name: "RubyConf 2022"
+  date: "2022-11-29"
+  published_at: "2023-03-07"
+  description: |-
+    Trunk based development is a scary practice to adopt for engineers used to git flow or github flow. But there is ample evidence to show that it leads to higher quality code and faster delivery. So why are so many resistant to pushing to master? In this talk, we'll go over why TBD can be scary, what challenges are involved in pushing for team and company adoption, and how to overcome those challenges
+  video_provider: "youtube"
+  video_id: "1sKFkV19XAc"
 
-- title: "Improving the development experience with language servers"
+- id: "vinicius-stock-rubyconf-2022"
+  title: "Improving the development experience with language servers"
   raw_title: "RubyConf 2022: Improving the development experience with language servers by Vinicius Stock"
   speakers:
     - Vinicius Stock
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    "Providing a state of the art development experience greatly contributes
-    to Ruby’s goal of making developers happy. A complete set of editor features can
-    make a big difference in helping navigate and understand our Ruby code. Let’s
-    explore a modern way of enhancing editor functionality: the language server protocol
-    (LSP). What it is, how to implement it and how an LSP server like the Ruby LSP
-    can make writing Ruby even better."
-  video_provider: youtube
-  video_id: zxdb-xCcHdE
+  event_name: "RubyConf 2022"
+  date: "2022-11-29"
+  published_at: "2023-03-07"
+  description: |-
+    Providing a state of the art development experience greatly contributes to Ruby’s goal of making developers happy. A complete set of editor features can make a big difference in helping navigate and understand our Ruby code. Let’s explore a modern way of enhancing editor functionality: the language server protocol (LSP). What it is, how to implement it and how an LSP server like the Ruby LSP can make writing Ruby even better.
+  video_provider: "youtube"
+  video_id: "zxdb-xCcHdE"
 
-- title: "A Tale of Two Flamegraphs: Continuous Profiling in Ruby"
+- id: "ryan-perry-rubyconf-2022"
+  title: "A Tale of Two Flamegraphs: Continuous Profiling in Ruby"
   raw_title: "RubyConf 2022: A Tale of Two Flamegraphs: Continuous Profiling in Ruby by Ryan Perry"
   speakers:
     - Ryan Perry
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    "This talk will dive deep into the internals of one of the fastest
-    growing profiling gems: Pyroscope. Pyroscope is unique because it is actually
-    a ruby gem of another ruby gem written in rust; Pyroscope extends the popular
-    rbspy project as a foundation to not only collect profiling data, but also to
-    tag and analyze that data as well. You can think of Pyroscope as what you would
-    get if rbspy and speedscope had a baby. We’ll start with the internals and end
-    with an example of how two flamegraphs can be used to tell a story about your
-    applications performance."
-  video_provider: youtube
-  video_id: 8niNCkiF2Xo
+  event_name: "RubyConf 2022"
+  date: "2022-11-29"
+  published_at: "2023-03-07"
+  description: |-
+    This talk will dive deep into the internals of one of the fastest growing profiling gems: Pyroscope. Pyroscope is unique because it is actually a ruby gem of another ruby gem written in rust; Pyroscope extends the popular rbspy project as a foundation to not only collect profiling data, but also to tag and analyze that data as well. You can think of Pyroscope as what you would get if rbspy and speedscope had a baby. We’ll start with the internals and end with an example of how two flamegraphs can be used to tell a story about your applications performance.
+  video_provider: "youtube"
+  video_id: "8niNCkiF2Xo"
 
-- title: "Everything a Microservice: The Worst Possible Intro to dRuby"
+- id: "kevin-kuchta-rubyconf-2022"
+  title: "Everything a Microservice: The Worst Possible Intro to dRuby"
   raw_title: "RubyConf 2022: Everything a Microservice: The Worst Possible Intro to dRuby by Kevin Kuchta"
   speakers:
     - Kevin Kuchta
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    "Microservices are great, but I think we can all agree: we need more
-    of them and they should be micro-er. What's the logical limit here? What if every
-    object was remote in a language where everything's an object? Let's take a look
-    at dRuby, the distributed programming module you've never heard of, and use it
-    to achieve that deranged goal! You'll learn about a nifty little corner of the
-    standard library while we attempt to reach the illogical conclusion of today's
-    hottest architecture trend. Be warned: those sitting in the first few rows may
-    get poorly-marshaled data on them."
-  video_provider: youtube
-  video_id: nrJP9Qr2AXQ
+  event_name: "RubyConf 2022"
+  date: "2022-11-29"
+  published_at: "2023-03-07"
+  description: |-
+    Microservices are great, but I think we can all agree: we need more of them and they should be micro-er. What's the logical limit here? What if every object was remote in a language where everything's an object? Let's take a look at dRuby, the distributed programming module you've never heard of, and use it to achieve that deranged goal! You'll learn about a nifty little corner of the standard library while we attempt to reach the illogical conclusion of today's hottest architecture trend. Be warned: those sitting in the first few rows may get poorly-marshaled data on them.
+  video_provider: "youtube"
+  video_id: "nrJP9Qr2AXQ"
 
-- title: "1.5 is the Midpoint Between 0 and Infinity"
+- id: "peter-zhu-rubyconf-2022"
+  title: "1.5 is the Midpoint Between 0 and Infinity"
   raw_title: "RubyConf 2022: 1.5 is the Midpoint Between 0 and Infinity by Peter Zhu"
   speakers:
     - Peter Zhu
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    What’s the midpoint between 0 and infinity? Well, the answer differs
-    depending on whether you are asking a mathematician, philosopher, or a Ruby developer.
-    I’m not a mathematician or a philosopher, but I am a Ruby developer, so I can
-    tell you that 1.5 is the midpoint between 0 and infinity. In this talk, we'll
-    discuss the binary search algorithm, IEEE 754 floating-point numbers, and a clever
-    trick Ruby uses to perform binary search on floating-point ranges.
-  video_provider: youtube
-  video_id: RQsH54GK85M
+  event_name: "RubyConf 2022"
+  date: "2022-11-29"
+  published_at: "2023-03-07"
+  description: |-
+    What’s the midpoint between 0 and infinity? Well, the answer differs depending on whether you are asking a mathematician, philosopher, or a Ruby developer. I’m not a mathematician or a philosopher, but I am a Ruby developer, so I can tell you that 1.5 is the midpoint between 0 and infinity. In this talk, we'll discuss the binary search algorithm, IEEE 754 floating-point numbers, and a clever trick Ruby uses to perform binary search on floating-point ranges.
+  video_provider: "youtube"
+  video_id: "RQsH54GK85M"
 
-- title: "Using JRuby: What, When, How, and Why"
+- id: "charles-nutter-rubyconf-2022"
+  title: "Using JRuby: What, When, How, and Why"
   raw_title: "RubyConf 2022: Using JRuby: What, When, How, and Why by Charles Nutter"
   speakers:
     - Charles Nutter
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    "JRuby has just been updated for Ruby 3.1 support, bringing compatibility
-    up to date for the most widely-deployed alternative Ruby implementation! This
-    talk will teach you all about JRuby: what is it, when should you use it, how to
-    get started and why it matters. Learn why Ruby shops around the world choose JRuby
-    for world-class concurrency, GC, JIT, and cross-platform support."
-  video_provider: youtube
-  video_id: zLX9o_cEen4
+  event_name: "RubyConf 2022"
+  date: "2022-11-30"
+  published_at: "2023-03-07"
+  description: |-
+    JRuby has just been updated for Ruby 3.1 support, bringing compatibility up to date for the most widely-deployed alternative Ruby implementation! This talk will teach you all about JRuby: what is it, when should you use it, how to get started and why it matters. Learn why Ruby shops around the world choose JRuby for world-class concurrency, GC, JIT, and cross-platform support.
+  video_provider: "youtube"
+  video_id: "zLX9o_cEen4"
 
-- title: "Building a Commercial Game Engine using mRuby and SDL"
+- id: "amir-rajan-rubyconf-2022"
+  title: "Building a Commercial Game Engine using mRuby and SDL"
   raw_title: "RubyConf 2022: Building a Commercial Game Engine using mRuby and SDL by Amir Rajan"
   speakers:
     - Amir Rajan
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    What does it take to build a cross platform game engine in Ruby? How
-    do you render to the screen? How is the simulation and rendering pipeline orchestrated?
-    Why is Ruby a viable option is to begin with? These questions and more will be
-    answered by Amir. Be a part of this renaissance and see how Ruby can be used for
-    so much more than server side web development.
-  video_provider: youtube
-  video_id: YVcl1Oy6QFM
+  event_name: "RubyConf 2022"
+  date: "2022-11-30"
+  published_at: "2023-03-07"
+  description: |-
+    What does it take to build a cross platform game engine in Ruby? How do you render to the screen? How is the simulation and rendering pipeline orchestrated? Why is Ruby a viable option is to begin with? These questions and more will be answered by Amir. Be a part of this renaissance and see how Ruby can be used for so much more than server side web development.
+  video_provider: "youtube"
+  video_id: "YVcl1Oy6QFM"
 
-- title: "Writing Ruby, just not in English!"
+- id: "ratnadeep-deshmane-rubyconf-2022"
+  title: "Writing Ruby, just not in English!"
   raw_title: "RubyConf 2022: Writing Ruby, just not in English! by Ratnadeep Deshmane (rtdp)"
   speakers:
     - Ratnadeep Deshmane
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    My talk shows how to write Ruby in a non-English language and the benefits
-    of doing so. This will certainly be a great help for people who don’t speak English.
-    It also helps get a better programming perspective for seasoned developers who
-    don’t have English as their first language. I will also demo the tooling that
-    I have developed, using which one can quickly create a new spoken language variant
-    of Ruby and start programming in Spanish, Portuguese etc.
-  video_provider: youtube
-  video_id: g8PgM5WGyhQ
+  event_name: "RubyConf 2022"
+  date: "2022-11-30"
+  published_at: "2023-03-07"
+  description: |-
+    My talk shows how to write Ruby in a non-English language and the benefits of doing so. This will certainly be a great help for people who don’t speak English. It also helps get a better programming perspective for seasoned developers who don’t have English as their first language. I will also demo the tooling that I have developed, using which one can quickly create a new spoken language variant of Ruby and start programming in Spanish, Portuguese etc.
+  video_provider: "youtube"
+  video_id: "g8PgM5WGyhQ"
 
-- title: "This Old App"
+- id: "lori-m-olson-rubyconf-2022"
+  title: "This Old App"
   raw_title: "RubyConf 2022: This Old App by Lori M Olson"
   speakers:
     - Lori M Olson
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    What could renovating an old house have in common with upgrading an
-    old app? *Everything!* Let me show you how this old house renovation project proceeds,
-    from planning to scheduling, demolition to finishing, and how every stage directly
-    relates the lessons learned from app upgrades over the course of my career.
-  video_provider: youtube
+  event_name: "RubyConf 2022"
+  date: "2022-12-01"
+  published_at: "2023-03-07"
+  description: |-
+    What could renovating an old house have in common with upgrading an old app? *Everything!* Let me show you how this old house renovation project proceeds, from planning to scheduling, demolition to finishing, and how every stage directly relates the lessons learned from app upgrades over the course of my career.
+  video_provider: "youtube"
   video_id: "-q9b5wlXr0c"
 
-- title: "Never again without a contract: dry-validation"
+- id: "espartaco-palma-rubyconf-2022"
+  title: "Never again without a contract: dry-validation"
   raw_title: "RubyConf 2022: Never again without a contract: dry-validation by Espartaco Palma"
   speakers:
     - Espartaco Palma
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    "The same as you shouldn't work without a contract, our systems should
-    accept external inputs without one, a written, clear and enforceable one. Define
-    the structure & expected payload being aware of their schema, structure & types.
-    Using dry-schema or dry-validation this part is a matter of a few lines of codes
-    covering most of the cases you may find with the cherry-on-top: error handling
-    out-of-the-box and if this not enough with optional pattern matching for results."
-  video_provider: youtube
-  video_id: _lMw7guragc
+  event_name: "RubyConf 2022"
+  date: "2022-12-01"
+  published_at: "2023-03-07"
+  description: |-
+    The same as you shouldn't work without a contract, our systems should accept external inputs without one, a written, clear and enforceable one. Define the structure & expected payload being aware of their schema, structure & types. Using dry-schema or dry-validation this part is a matter of a few lines of codes covering most of the cases you may find with the cherry-on-top: error handling out-of-the-box and if this not enough with optional pattern matching for results.
+  video_provider: "youtube"
+  video_id: "_lMw7guragc"
 
-- title: "Boutique machine generated gems"
+- id: "cj-avilla-rubyconf-2022"
+  title: "Boutique machine generated gems"
   raw_title: "RubyConf 2022: Boutique machine generated gems by CJ Avilla"
   speakers:
     - CJ Avilla
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    What if writing boilerplate for Ruby gems were automated using familiar
-    UI building blocks? Many Rubyists are familiar with components for generating
-    clean HTML with higher-level frameworks. Unfortunately, many developers are unaware
-    they can generate clean Ruby code that is as beautiful as their UIs. This talk
-    will explore how we automatically created a generator to produce high-quality
-    ruby and docs for a popular gem. I'll show how to use this approach to keep gems
-    up-to-date with fast-moving APIs, release new versions frequently, and provide
-    an excellent developer experience.
-  video_provider: youtube
-  video_id: aV1obsuDmjU
+  event_name: "RubyConf 2022"
+  date: "2022-12-01"
+  published_at: "2023-03-07"
+  description: |-
+    What if writing boilerplate for Ruby gems were automated using familiar UI building blocks? Many Rubyists are familiar with components for generating clean HTML with higher-level frameworks. Unfortunately, many developers are unaware they can generate clean Ruby code that is as beautiful as their UIs. This talk will explore how we automatically created a generator to produce high-quality ruby and docs for a popular gem. I'll show how to use this approach to keep gems up-to-date with fast-moving APIs, release new versions frequently, and provide an excellent developer experience.
+  video_provider: "youtube"
+  video_id: "aV1obsuDmjU"
 
-- title: "The Power of 'No'"
+- id: "glenn-harmon-rubyconf-2022"
+  title: "The Power of 'No'"
   raw_title: "RubyConf 2022: The Power of 'No' by Glenn Harmon"
   speakers:
     - Glenn Harmon
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    Have you ever attended a meeting that you wish you hadn’t? Have you
-    ever been happy that plans were canceled because you never really wanted to go
-    in the first place? Saying no is hard and can be truly challenging when faced
-    with the prospect of feeling like maybe you’ll let someone down. Another reason
-    saying no is hard is the feeling or FOMO, or the Fear Of Missing Out. All of these
-    are even harder if you're a person of color. But is that 'Yes' worth your peace
-    of mind? This talk is about how knowing when to say no and how to do so.
-  video_provider: youtube
-  video_id: q9Eoo5i6hmk
+  event_name: "RubyConf 2022"
+  date: "2022-12-01"
+  published_at: "2023-03-07"
+  description: |-
+    Have you ever attended a meeting that you wish you hadn’t? Have you ever been happy that plans were canceled because you never really wanted to go in the first place? Saying no is hard and can be truly challenging when faced with the prospect of feeling like maybe you’ll let someone down. Another reason saying no is hard is the feeling or FOMO, or the Fear Of Missing Out. All of these are even harder if you're a person of color. But is that 'Yes' worth your peace of mind? This talk is about how knowing when to say no and how to do so.
+  video_provider: "youtube"
+  video_id: "q9Eoo5i6hmk"
 
-- title: "Lightning Talks"
+- id: "lightning-talks-rubyconf-2022"
+  title: "Lightning Talks"
   raw_title: "RubyConf 2022: Lightning Talks"
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
+  event_name: "RubyConf 2022"
+  date: "2022-11-30"
+  published_at: "2023-03-07"
   description: ""
-  video_provider: youtube
+  video_provider: "youtube"
   video_id: "-FM__GyT57Y"
   talks:
-    - title: "Lightning Talk: Olya Boiaryntseva" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
-      video_id: olya-boiaryntseva-lighting-talk-rubyconf-2022
-      video_provider: parent
+    - title: "Lightning Talk: Olya Boiaryntseva"
+      start_cue: "00:16"
+      end_cue: "05:21"
+      id: "olya-boiaryntseva-lighting-talk-rubyconf-2022"
+      video_id: "olya-boiaryntseva-lighting-talk-rubyconf-2022"
+      video_provider: "parent"
       speakers:
         - Olya Boiaryntseva
 
-    - title: "Lightning Talk: Jose Miguel Tomita Rodriguez" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
-      video_id: jose-miguel-tomita-rodriguez-lighting-talk-rubyconf-2022
-      video_provider: parent
+    - title: "Lightning Talk: Baking is Like Programming"
+      start_cue: "05:24"
+      end_cue: "11:27"
+      id: "jose-miguel-tomita-rodriguez-lighting-talk-rubyconf-2022"
+      video_id: "jose-miguel-tomita-rodriguez-lighting-talk-rubyconf-2022"
+      video_provider: "parent"
       speakers:
         - Jose Miguel Tomita Rodriguez
 
-    - title: "Lightning Talk: Tom Brown" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
-      video_id: tom-brown-lighting-talk-rubyconf-2022
-      video_provider: parent
+    - title: "Lightning Talk: Tom Brown"
+      start_cue: "11:29"
+      end_cue: "12:48"
+      id: "tom-brown-lighting-talk-rubyconf-2022"
+      video_id: "tom-brown-lighting-talk-rubyconf-2022"
+      video_provider: "parent"
       speakers:
         - Tom Brown
 
-    - title: "Lightning Talk: Adam Cuppy" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
-      video_id: adam-cuppy-lighting-talk-rubyconf-2022
-      video_provider: parent
+    - title: "Lightning Talk: Adam Cuppy"
+      start_cue: "12:51"
+      end_cue: "15:01"
+      id: "adam-cuppy-lighting-talk-rubyconf-2022"
+      video_id: "adam-cuppy-lighting-talk-rubyconf-2022"
+      video_provider: "parent"
       speakers:
         - Adam Cuppy
 
-    - title: "Lightning Talk: Richard Schneeman" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
-      video_id: richard-schneeman-lighting-talk-rubyconf-2022
-      video_provider: parent
+    - title: "Lightning Talk: How to Open Source"
+      start_cue: "15:02"
+      end_cue: "20:10"
+      id: "richard-schneeman-lighting-talk-rubyconf-2022"
+      video_id: "richard-schneeman-lighting-talk-rubyconf-2022"
+      video_provider: "parent"
       speakers:
         - Richard Schneeman
 
-    - title: "Lightning Talk: Bryce Simons" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
-      video_id: bryce-simons-lighting-talk-rubyconf-2022
-      video_provider: parent
+    - title: "Lightning Talk: Bryce Simons"
+      start_cue: "20:12"
+      end_cue: "24:20"
+      id: "bryce-simons-lighting-talk-rubyconf-2022"
+      video_id: "bryce-simons-lighting-talk-rubyconf-2022"
+      video_provider: "parent"
       speakers:
         - Bryce Simons
 
-    - title: "Lightning Talk: Jacob Daddario" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
-      video_id: jacob-daddario-lighting-talk-rubyconf-2022
-      video_provider: parent
+    - title: "Lightning Talk: Models and Multi-tenancy"
+      start_cue: "24:22"
+      end_cue: "29:27"
+      id: "jacob-daddario-lighting-talk-rubyconf-2022"
+      video_id: "jacob-daddario-lighting-talk-rubyconf-2022"
+      video_provider: "parent"
       speakers:
         - Jacob Daddario
 
-    - title: "Lightning Talk: Mike Eduard" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
-      video_id: mike-eduard-lighting-talk-rubyconf-2022
-      video_provider: parent
+    - title: "Lightning Talk: Mike Eduard"
+      start_cue: "29:29"
+      end_cue: "31:41"
+      id: "mike-eduard-lighting-talk-rubyconf-2022"
+      video_id: "mike-eduard-lighting-talk-rubyconf-2022"
+      video_provider: "parent"
       speakers:
         - Mike Eduard
 
-    - title: "Lightning Talk: Landon Gray" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
-      video_id: landon-gray-lighting-talk-rubyconf-2022
-      video_provider: parent
+    - title: "Lightning Talk: Why Contributing to Open Source is Easy"
+      start_cue: "31:50"
+      end_cue: "36:49"
+      id: "landon-gray-lighting-talk-rubyconf-2022"
+      video_id: "landon-gray-lighting-talk-rubyconf-2022"
+      video_provider: "parent"
       speakers:
         - Landon Gray
 
-    - title: "Lightning Talk: Jenner La Fave" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
-      video_id: jenner-la-fave-lighting-talk-rubyconf-2022
-      video_provider: parent
+    - title: "Lightning Talk: A Smarter Way to Build Circuits"
+      start_cue: "36:51"
+      end_cue: "41:13"
+      id: "jenner-la-fave-lighting-talk-rubyconf-2022"
+      video_id: "jenner-la-fave-lighting-talk-rubyconf-2022"
+      video_provider: "parent"
       speakers:
         - Jenner La Fave
 
-    - title: "Lightning Talk: Alexander Momchilov" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
-      video_id: alexander-momchilov-lighting-talk-rubyconf-2022
-      video_provider: parent
+    - title: "Lightning Talk: Don't abuse #reduce"
+      raw_title: "Don't abuse #reduce, A love letter to Enumerable"
+      start_cue: "41:16"
+      end_cue: "46:43"
+      thumbnail_cue: "41:22"
+      id: "alexander-momchilov-lighting-talk-rubyconf-2022"
+      video_id: "alexander-momchilov-lighting-talk-rubyconf-2022"
+      video_provider: "parent"
       speakers:
         - Alexander Momchilov
 
-    - title: "Lightning Talk: Andrew Gauger" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
-      video_id: andrew-gauger-lighting-talk-rubyconf-2022
-      video_provider: parent
+    - title: "Lightning Talk: Stack Overflow Embedded"
+      start_cue: "46:45"
+      end_cue: "49:10"
+      id: "andrew-gauger-lighting-talk-rubyconf-2022"
+      video_id: "andrew-gauger-lighting-talk-rubyconf-2022"
+      video_provider: "parent"
       speakers:
         - Andrew Gauger
 
-    - title: "Lightning Talk: Casey Watts" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
-      video_id: casey-watts-lighting-talk-rubyconf-2022
-      video_provider: parent
+    - title: "Lightning Talk: Tech Injury"
+      start_cue: "49:12"
+      end_cue: "54:29"
+      id: "casey-watts-lighting-talk-rubyconf-2022"
+      video_id: "casey-watts-lighting-talk-rubyconf-2022"
+      video_provider: "parent"
       speakers:
         - Casey Watts
 
-    - title: "Lightning Talk: Keith Bennett" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
-      video_id: keith-bennett-lighting-talk-rubyconf-2022
-      video_provider: parent
+    - title: "Lightning Talk: Keith Bennett"
+      start_cue: "54:30"
+      end_cue: "58:00"
+      id: "keith-bennett-lighting-talk-rubyconf-2022"
+      video_id: "keith-bennett-lighting-talk-rubyconf-2022"
+      video_provider: "parent"
       speakers:
         - Keith Bennett
 
-    - title: "Lightning Talk: Craig Buchek" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
-      video_id: craig-buchek-lighting-talk-rubyconf-2022
-      video_provider: parent
+    - title: "Lightning Talk: Craig Buchek"
+      start_cue: "58:02"
+      end_cue: "1:02:30"
+      id: "craig-buchek-lighting-talk-rubyconf-2022"
+      video_id: "craig-buchek-lighting-talk-rubyconf-2022"
+      video_provider: "parent"
       speakers:
         - Craig Buchek
 
-    - title: "Lightning Talk: James Reid-Smith" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
-      video_id: james-reid-smith-lighting-talk-rubyconf-2022
-      video_provider: parent
+    - title: "Lightning Talk: Failing Fast with Sorbet"
+      start_cue: "1:02:31"
+      end_cue: "1:07:15"
+      id: "james-reid-smith-lighting-talk-rubyconf-2022"
+      video_id: "james-reid-smith-lighting-talk-rubyconf-2022"
+      video_provider: "parent"
       speakers:
         - James Reid-Smith
 
-    - title: "Lightning Talk: Adam E. Hampton" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
-      video_id: adam-e-hampton-lighting-talk-rubyconf-2022
-      video_provider: parent
+    - title: "Lightning Talk: Asynchronous Messaging in Ruby"
+      start_cue: "1:07:18"
+      end_cue: "1:12:25"
+      id: "adam-e-hampton-lighting-talk-rubyconf-2022"
+      video_id: "adam-e-hampton-lighting-talk-rubyconf-2022"
+      video_provider: "parent"
       speakers:
         - Adam E. Hampton
 
-    - title: "Lightning Talk: Yasu Flores" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
-      video_id: yasu-flores-lighting-talk-rubyconf-2022
-      video_provider: parent
+    - title: "Lightning Talk: I defer too much to the internet"
+      start_cue: "1:12:28"
+      end_cue: "1:16:35"
+      id: "yasu-flores-lighting-talk-rubyconf-2022"
+      video_id: "yasu-flores-lighting-talk-rubyconf-2022"
+      video_provider: "parent"
       speakers:
         - Yasu Flores
 
-    - title: "Lightning Talk: Anas Alkhatib" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
-      video_id: anas-alkhatib-lighting-talk-rubyconf-2022
-      video_provider: parent
+    - title: "Lightning Talk: Weekly Cool Down"
+      start_cue: "1:16:37"
+      end_cue: "1:21:15"
+      id: "anas-alkhatib-lighting-talk-rubyconf-2022"
+      video_id: "anas-alkhatib-lighting-talk-rubyconf-2022"
+      video_provider: "parent"
       speakers:
         - Anas Alkhatib
 
-    - title: "Lightning Talk: Amanda Lundberg" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
-      video_id: amanda-lundberg-lighting-talk-rubyconf-2022
-      video_provider: parent
+    - title: "Lightning Talk: Captioners: How Do You Do That???"
+      start_cue: "1:21:18"
+      end_cue: "1:25:15"
+      id: "amanda-lundberg-lighting-talk-rubyconf-2022"
+      video_id: "amanda-lundberg-lighting-talk-rubyconf-2022"
+      video_provider: "parent"
       speakers:
         - Amanda Lundberg
 
-- title: "Ruby Central Panel"
+- id: "allison-mcmillan-rubyconf-2022"
+  title: "Ruby Central Panel"
   raw_title: "RubyConf 2022: Ruby Central Panel"
   speakers:
     - Allison McMillan
@@ -482,498 +440,395 @@
     - Neil McGovern
     - Marty Haught
     - Valerie Woolard
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
+  event_name: "RubyConf 2022"
+  date: "2022-12-01"
+  published_at: "2023-03-07"
   description: ""
-  video_provider: youtube
-  video_id: 0ItWcBK7pTk
+  video_provider: "youtube"
+  video_id: "0ItWcBK7pTk"
 
-- title: "Exit(ing) Through the YJIT"
+- id: "eileen-m-uchitelle-rubyconf-2022"
+  title: "Exit(ing) Through the YJIT"
   raw_title: "RubyConf 2022: Exit(ing) Through the YJIT by Eileen M Uchitelle"
   speakers:
     - Eileen M. Uchitelle
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    When optimizing code for the YJIT compiler it can be difficult to figure
-    out what code is exiting and why. While working on tracing exits in a Ruby codebase,
-    I found myself wishing we had a tool to reveal the exact line that was causing
-    exits to occur. We set to work on building that functionality into Ruby and now
-    we are able to see every side-exit and why. In this talk we’ll learn about side-exits
-    and how we built a tracer for them. We’ll explore the original implementation,
-    how we rewrote it in Rust, and lastly why it’s so important to always ask "can
-    I make what I built even better?"
-  video_provider: youtube
-  video_id: EZEEl61bWSw
+  event_name: "RubyConf 2022"
+  date: "2022-12-01"
+  published_at: "2023-03-07"
+  description: |-
+    When optimizing code for the YJIT compiler it can be difficult to figure out what code is exiting and why. While working on tracing exits in a Ruby codebase, I found myself wishing we had a tool to reveal the exact line that was causing exits to occur. We set to work on building that functionality into Ruby and now we are able to see every side-exit and why. In this talk we’ll learn about side-exits and how we built a tracer for them. We’ll explore the original implementation, how we rewrote it in Rust, and lastly why it’s so important to always ask "can I make what I built even better?"
+  video_provider: "youtube"
+  video_id: "EZEEl61bWSw"
 
-- title: "Crocheting & Coding: they're more similar than you think!"
+- id: "tori-machen-rubyconf-2022"
+  title: "Crocheting & Coding: they're more similar than you think!"
   raw_title: "RubyConf 2022: Crocheting & Coding: they're more similar than you think! by Tori Machen"
   speakers:
     - Tori Machen
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    Many of us have hobbies that we enjoy outside of our careers in tech.
-    For me, that is amigurumi, the art of crocheting stuffed creatures. What if I
-    told you that amigurumi is extremely similar to software development? Join me
-    in exploring the intersection between crocheting amigurumi and developing software.
-    We’ll look at the key similarities between these two crafts, and I’ll share how
-    crocheting has helped me become a better software developer. You’ll walk away
-    inspired to connect your own hobbies to your role in tech or find a new creative
-    hobby (like crochet)!
-  video_provider: youtube
-  video_id: GOnW_586TiU
+  event_name: "RubyConf 2022"
+  date: "2022-11-30"
+  published_at: "2023-03-07"
+  description: |-
+    Many of us have hobbies that we enjoy outside of our careers in tech. For me, that is amigurumi, the art of crocheting stuffed creatures. What if I told you that amigurumi is extremely similar to software development? Join me in exploring the intersection between crocheting amigurumi and developing software. We’ll look at the key similarities between these two crafts, and I’ll share how crocheting has helped me become a better software developer. You’ll walk away inspired to connect your own hobbies to your role in tech or find a new creative hobby (like crochet)!
+  video_provider: "youtube"
+  video_id: "GOnW_586TiU"
 
-- title: "Keynote: The Case Of The Vanished Variable - A Ruby Mystery Story"
+- id: "nadia-odunayo-rubyconf-2022"
+  title: "Keynote: The Case Of The Vanished Variable - A Ruby Mystery Story"
   raw_title: "RubyConf 2022: Keynote: The Case Of The Vanished Variable - A Ruby Mystery Story by Nadia Odunayo"
   speakers:
     - Nadia Odunayo
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    After a stressful couple of days at work, Deirdre Bug is looking forward
-    to a quiet evening in. But her plans are thwarted when the phone rings. “I know
-    I’m the last person you want to hear from…but...I need your help!” Follow Deirdre
-    as she embarks on an adventure that features a looming Demo Day with serious prize
-    money up for grabs, a trip inside the walls of one of the Ruby community’s most
-    revered institutions, and some broken code that appears to be much more simple
-    than meets the eye.
-  video_provider: youtube
-  video_id: HSgY9o4gIPE
+  event_name: "RubyConf 2022"
+  date: "2022-12-01"
+  published_at: "2023-03-07"
+  description: |-
+    After a stressful couple of days at work, Deirdre Bug is looking forward to a quiet evening in. But her plans are thwarted when the phone rings. “I know I’m the last person you want to hear from…but...I need your help!” Follow Deirdre as she embarks on an adventure that features a looming Demo Day with serious prize money up for grabs, a trip inside the walls of one of the Ruby community’s most revered institutions, and some broken code that appears to be much more simple than meets the eye.
+  video_provider: "youtube"
+  video_id: "HSgY9o4gIPE"
 
-- title: "Eclectics Unite: Leverage Your Diverse Background"
+- id: "sijia-wu-rubyconf-2022"
+  title: "Eclectics Unite: Leverage Your Diverse Background"
   raw_title: "RubyConf 2022: Eclectics Unite: Leverage Your Diverse Background by Sijia Wu"
   speakers:
     - Sijia Wu
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    In addition to writing Ruby for work, I am also an academic translator,
-    a snowboard instructor, and a drummer in a rock band. I am consistently amazed
-    and inspired by the similarities and connections between software development
-    and my seemingly unrelated experiences. What does translating science articles
-    teach me about effectively using coding resources? How is playing drums in a rehearsal
-    similar to test-driven development? How do I apply snowboard teaching principles
-    to pair programming? Join me as I share my own story and explore ways you can
-    leverage your diverse background.
-  video_provider: youtube
-  video_id: NGQzBjDWo-A
+  event_name: "RubyConf 2022"
+  date: "2022-11-30"
+  published_at: "2023-03-07"
+  description: |-
+    In addition to writing Ruby for work, I am also an academic translator, a snowboard instructor, and a drummer in a rock band. I am consistently amazed and inspired by the similarities and connections between software development and my seemingly unrelated experiences. What does translating science articles teach me about effectively using coding resources? How is playing drums in a rehearsal similar to test-driven development? How do I apply snowboard teaching principles to pair programming? Join me as I share my own story and explore ways you can leverage your diverse background.
+  video_provider: "youtube"
+  video_id: "NGQzBjDWo-A"
 
-- title: "Keynote: Lost in the Wilderness"
+- id: "suzan-bond-rubyconf-2022"
+  title: "Keynote: Lost in the Wilderness"
   raw_title: "RubyConf 2022: Keynote by Suzan Bond"
   speakers:
     - Suzan Bond
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    Suzan Bond is a former COO of Travis CI, leadership consultant and
-    executive coach. Her specialty is leaders at scaling startups. She's spent more
-    than 15 years in technology. Her education background includes psychology, organization
-    development, leadership and community organizing. Suzan facilitates workshops
-    and is host of LeadDev's Bookmarked series. She's spoken at numerous events, is
-    a contributor to Fast Company's Work Life section and writes the Suzan's Fieldnotes
-    newsletter.
-  video_provider: youtube
-  video_id: OqpBxSp-4FI
+  event_name: "RubyConf 2022"
+  date: "2022-11-29"
+  published_at: "2023-03-07"
+  description: |-
+    Suzan Bond is a former COO of Travis CI, leadership consultant and executive coach. Her specialty is leaders at scaling startups. She's spent more than 15 years in technology. Her education background includes psychology, organization development, leadership and community organizing. Suzan facilitates workshops and is host of LeadDev's Bookmarked series. She's spoken at numerous events, is a contributor to Fast Company's Work Life section and writes the Suzan's Fieldnotes newsletter.
+  video_provider: "youtube"
+  video_id: "OqpBxSp-4FI"
 
-- title: "How music works, using Ruby"
+- id: "thijs-cadier-rubyconf-2022"
+  title: "How music works, using Ruby"
   raw_title: "RubyConf 2022: How music works, using Ruby Thijs Cadier"
   speakers:
     - Thijs Cadier
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    'That strange phenomenon where air molecules bounce against each other
-    in a way that somehow comforts you, makes you cry, or makes you dance all night:
-    music. Since the advent of recorded audio, a musician doesn''t even need to be
-    present anymore for this to happen (which makes putting "I will always love you"
-    on repeat a little less awkward). Musicians and sound engineers have found many
-    ways of creating music, and making it sound good. Some of their methods have become
-    industry staples used on every recording released today. Let''s look at what they
-    do and reproduce some of their methods in Ruby!'
-  video_provider: youtube
-  video_id: RAtDPFsk3hc
+  event_name: "RubyConf 2022"
+  date: "2022-11-29"
+  published_at: "2023-03-07"
+  description: |-
+    That strange phenomenon where air molecules bounce against each other in a way that somehow comforts you, makes you cry, or makes you dance all night: music. Since the advent of recorded audio, a musician doesn't even need to be present anymore for this to happen (which makes putting "I will always love you" on repeat a little less awkward). Musicians and sound engineers have found many ways of creating music, and making it sound good. Some of their methods have become industry staples used on every recording released today. Let's look at what they do and reproduce some of their methods in Ruby!
+  video_provider: "youtube"
+  video_id: "RAtDPFsk3hc"
 
-- title: "The Magnitude 9.1 Meltdown at Fukushima"
+- id: "nickolas-means-rubyconf-2022"
+  title: "The Magnitude 9.1 Meltdown at Fukushima"
   raw_title: "RubyConf 2022: The Magnitude 9.1 Meltdown at Fukushima by Nickolas Means"
   speakers:
     - Nickolas Means
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    It was mid-afternoon on Friday, March 11, 2011 when the ground in Tōhoku
-    began to shake. At Fukushima Daiichi nuclear power plant, it seemed like the shaking
-    would never stop. Once it did, the reactors had automatically shut down, backup
-    power had come online, and the operators were well on their way to having everything
-    under control. And then the tsunami struck. They found themselves facing something
-    beyond any worse-case scenario they imagined, and their response is a study in
-    contrasts. We can learn a lot from the extremes they experienced about finding
-    happiness and satisfaction at work.
-  video_provider: youtube
-  video_id: RGS0jBMniag
+  event_name: "RubyConf 2022"
+  date: "2022-11-29"
+  published_at: "2023-03-07"
+  description: |-
+    It was mid-afternoon on Friday, March 11, 2011 when the ground in Tōhoku began to shake. At Fukushima Daiichi nuclear power plant, it seemed like the shaking would never stop. Once it did, the reactors had automatically shut down, backup power had come online, and the operators were well on their way to having everything under control. And then the tsunami struck. They found themselves facing something beyond any worse-case scenario they imagined, and their response is a study in contrasts. We can learn a lot from the extremes they experienced about finding happiness and satisfaction at work.
+  video_provider: "youtube"
+  video_id: "RGS0jBMniag"
 
-- title: "Don't @ me! Faster Instance Variables with Object Shapes"
+- id: "aaron-patterson-rubyconf-2022"
+  title: "Don't @ me! Faster Instance Variables with Object Shapes"
   raw_title: "RubyConf 2022: Don't @ me! Faster Instance Variables with Object Shapes by Aaron Patterson"
   speakers:
     - Aaron Patterson
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  slides_url: https://speakerdeck.com/tenderlove/dont-at-me-faster-instance-variables-with-object-shapes
-  description:
-    Instance variables are a popular feature of the Ruby programming language,
-    and many people enjoy using them. They are so popular that the Ruby core team
-    has done lots of work to speed them up. But we can do even better to speed them
-    up by using a technique called "Object Shapes". In this presentation we'll learn
-    about what object shapes are, how they are implemented, how how they can be used
-    to speed up getting and setting instance variables. We'll make sure to square
-    up Ruby instance variable implementation details so that you can become a more
-    well rounded developer!
-  video_provider: youtube
-  video_id: ZaHd5MDJRBw
+  event_name: "RubyConf 2022"
+  date: "2022-11-30"
+  published_at: "2023-03-07"
+  slides_url: "https://speakerdeck.com/tenderlove/dont-at-me-faster-instance-variables-with-object-shapes"
+  description: |-
+    Instance variables are a popular feature of the Ruby programming language, and many people enjoy using them. They are so popular that the Ruby core team has done lots of work to speed them up. But we can do even better to speed them up by using a technique called "Object Shapes". In this presentation we'll learn about what object shapes are, how they are implemented, how how they can be used to speed up getting and setting instance variables. We'll make sure to square up Ruby instance variable implementation details so that you can become a more well rounded developer!
+  video_provider: "youtube"
+  video_id: "ZaHd5MDJRBw"
 
-- title: "scip-ruby - A Ruby indexer built with Sorbet"
+- id: "varun-gandhi-rubyconf-2022"
+  title: "scip-ruby - A Ruby indexer built with Sorbet"
   raw_title: "RubyConf 2022: scip-ruby - A Ruby indexer built with Sorbet by Varun Gandhi"
   speakers:
     - Varun Gandhi
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    scip-ruby is an open source indexer that lets you browse Ruby code
-    online, with IDE functionality like “Go to definition” and “Find usages”. We originally
-    built scip-ruby to improve Ruby support in Sourcegraph, a code intelligence platform.
-    In this talk, you will learn how we built scip-ruby on top of Sorbet, a Ruby typechecker,
-    and how scip-ruby compares to IDEs and other online code navigation tools. Along
-    the way, we will discuss how quintessential ideas like layering code into a functional
-    core and an imperative shell apply to developer tools, and enable easier testing.
-  video_provider: youtube
-  video_id: cfceVH_1H3Q
+  event_name: "RubyConf 2022"
+  date: "2022-12-01"
+  published_at: "2023-03-07"
+  description: |-
+    scip-ruby is an open source indexer that lets you browse Ruby code online, with IDE functionality like “Go to definition” and “Find usages”. We originally built scip-ruby to improve Ruby support in Sourcegraph, a code intelligence platform. In this talk, you will learn how we built scip-ruby on top of Sorbet, a Ruby typechecker, and how scip-ruby compares to IDEs and other online code navigation tools. Along the way, we will discuss how quintessential ideas like layering code into a functional core and an imperative shell apply to developer tools, and enable easier testing.
+  video_provider: "youtube"
+  video_id: "cfceVH_1H3Q"
 
-- title: "Building an education savings platform, with Ruby!"
+- id: "tyler-ackerman-rubyconf-2022"
+  title: "Building an education savings platform, with Ruby!"
   raw_title: "RubyConf 2022: Building an education savings platform, with Ruby! by Tyler Ackerman"
   speakers:
     - Tyler Ackerman
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    "Wealthsimple Foundation is a Canadian charity working to enable a
-    brighter future for everyone in Canada through access to post-secondary education.
-    The Foundation is supported by Wealthsimple, which builds a variety of digital
-    financial tools trusted by over 2.5 million Canadians. In this talk we'll go
-    over: - How an organization supporting for-profit and non-profit activities is
-    structured (and the ethical considerations that can arise from that) - Responsibilities
-    of engineers working in a non-profit space - Opportunities and challenges of digital
-    products addressing systematic inequalities"
-  video_provider: youtube
-  video_id: cmZKu-kyyio
+  event_name: "RubyConf 2022"
+  date: "2022-11-29"
+  published_at: "2023-03-07"
+  description: |-
+    Wealthsimple Foundation is a Canadian charity working to enable a brighter future for everyone in Canada through access to post-secondary education. The Foundation is supported by Wealthsimple, which builds a variety of digital financial tools trusted by over 2.5 million Canadians. In this talk we'll go over: - How an organization supporting for-profit and non-profit activities is structured (and the ethical considerations that can arise from that) - Responsibilities of engineers working in a non-profit space - Opportunities and challenges of digital products addressing systematic inequalities
+  video_provider: "youtube"
+  video_id: "cmZKu-kyyio"
 
-- title: "Static typing with RBS in Ruby"
+- id: "gaurav-kumar-singh-rubyconf-2022"
+  title: "Static typing with RBS in Ruby"
   raw_title: "RubyConf 2022: Static typing with RBS in Ruby by Gaurav Kumar Singh"
   speakers:
     - Gaurav Kumar Singh
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    In this talk, we'll generally explore the static type eco system in
-    Ruby. Ruby has two main type checkers Sorbet and RBS. Sorbet was created by the
-    Stripe and RBS is supported by ruby. Sorbet is an annotation base type checking
-    system while RBS is a definition file-based type system. We'll add type annotation
-    for a popular gem using sorbet and RBS and then compare the differences between
-    the two systems. There is lot of interoperability announced between Sorbet and
-    RBS and we'll explore if it's practically possible to convert a sorbet annotated
-    project to RBS.
-  video_provider: youtube
-  video_id: iKJeKxf3Nck
+  event_name: "RubyConf 2022"
+  date: "2022-12-01"
+  published_at: "2023-03-07"
+  description: |-
+    In this talk, we'll generally explore the static type eco system in Ruby. Ruby has two main type checkers Sorbet and RBS. Sorbet was created by the Stripe and RBS is supported by ruby. Sorbet is an annotation base type checking system while RBS is a definition file-based type system. We'll add type annotation for a popular gem using sorbet and RBS and then compare the differences between the two systems. There is lot of interoperability announced between Sorbet and RBS and we'll explore if it's practically possible to convert a sorbet annotated project to RBS.
+  video_provider: "youtube"
+  video_id: "iKJeKxf3Nck"
 
-- title: "Helping Redistrict California with Ruby"
+- id: "jeremy-evans-rubyconf-2022"
+  title: "Helping Redistrict California with Ruby"
   raw_title: "RubyConf 2022: Helping Redistrict California with Ruby by Jeremy Evans"
   speakers:
     - Jeremy Evans
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    Every 10 years, after the federal census, California and most other
-    states redraw the lines of various electoral districts to attempt to ensure the
-    districts are fair and have roughly equal population. California uses a system
-    written in Ruby for citizens to apply to become redistricting commissioners, and
-    for review of the submitted applications. Come learn about redistricting and the
-    unique design of the California redistricting commissioner application system,
-    with 12 separate web server process types, isolated networks, 3-factor authentication,
-    and other security features.
-  video_provider: youtube
-  video_id: q5nke59IuAs
+  event_name: "RubyConf 2022"
+  date: "2022-11-29"
+  published_at: "2023-03-07"
+  description: |-
+    Every 10 years, after the federal census, California and most other states redraw the lines of various electoral districts to attempt to ensure the districts are fair and have roughly equal population. California uses a system written in Ruby for citizens to apply to become redistricting commissioners, and for review of the submitted applications. Come learn about redistricting and the unique design of the California redistricting commissioner application system, with 12 separate web server process types, isolated networks, 3-factor authentication, and other security features.
+  video_provider: "youtube"
+  video_id: "q5nke59IuAs"
 
-- title: "Solidarity not Charity and Collective Liberation"
+- id: "mae-beale-rubyconf-2022"
+  title: "Solidarity not Charity and Collective Liberation"
   raw_title: "RubyConf 2022: Solidarity not Charity and Collective Liberation by Mae Beale"
   speakers:
     - Mae Beale
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    Wondering how to get involved in supporting your communities? Hear
-    from someone who has spun up (and down) multiple volunteer and service projects.
-    May it spark your imagination -- and your heart -- to join or start helping out
-    both this wild world and yourself. New mutual aid groups formed around the world
-    in 2020. The tools were not ideal and the volume overwhelmed volunteers. A handful
-    of of tech folx built a fit-to-suit app to manage immediate needs and maximize
-    impact of partner mutual aid groups. Wins were achieved. Lessons were learned.
-    And the interconnectedness of all things was felt.
-  video_provider: youtube
-  video_id: saPZ0Jh3UU0
+  event_name: "RubyConf 2022"
+  date: "2022-11-29"
+  published_at: "2023-03-07"
+  description: |-
+    Wondering how to get involved in supporting your communities? Hear from someone who has spun up (and down) multiple volunteer and service projects. May it spark your imagination -- and your heart -- to join or start helping out both this wild world and yourself. New mutual aid groups formed around the world in 2020. The tools were not ideal and the volume overwhelmed volunteers. A handful of of tech folx built a fit-to-suit app to manage immediate needs and maximize impact of partner mutual aid groups. Wins were achieved. Lessons were learned. And the interconnectedness of all things was felt.
+  video_provider: "youtube"
+  video_id: "saPZ0Jh3UU0"
 
-- title: 'What does "high priority" mean? The secret to happy queues'
+- id: "daniel-magliola-rubyconf-2022"
+  title: 'What does "high priority" mean? The secret to happy queues'
   raw_title: 'RubyConf 2022: What does "high priority" mean? The secret to happy queues by Daniel Magliola'
   speakers:
     - Daniel Magliola
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    "Like most web applications, you run important jobs in the background.
-    And today, some of your urgent jobs are running late. Again. No matter how many
-    changes you make to how you enqueue and run your jobs, the problem keeps happening.
-    The good news is you're not alone. Most teams struggle with this problem, try
-    more or less the same solutions, and have roughly the same result. In the end,
-    it all boils down to one thing: keeping latency low. In this talk I will present
-    a latency-focused approach to managing your queues reliably, keeping your jobs
-    flowing and your users happy."
-  video_provider: youtube
-  video_id: w0Bl-5TDCC4
+  event_name: "RubyConf 2022"
+  date: "2022-11-30"
+  published_at: "2023-03-07"
+  description: |-
+    Like most web applications, you run important jobs in the background. And today, some of your urgent jobs are running late. Again. No matter how many changes you make to how you enqueue and run your jobs, the problem keeps happening. The good news is you're not alone. Most teams struggle with this problem, try more or less the same solutions, and have roughly the same result. In the end, it all boils down to one thing: keeping latency low. In this talk I will present a latency-focused approach to managing your queues reliably, keeping your jobs flowing and your users happy.
+  video_provider: "youtube"
+  video_id: "w0Bl-5TDCC4"
 
-- title: "RSpec: The Bad Parts"
+- id: "caleb-hearth-rubyconf-2022"
+  title: "RSpec: The Bad Parts"
   raw_title: "RubyConf 2022: RSpec: The Bad Parts by Caleb Hearth"
   speakers:
     - Caleb Hearth
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    "RSpec is good, but it’s even better with less of it. Looking at a
-    realistic example spec, we’ll learn why parts of RSpec like let, subject, shared_examples,
-    behaves like, and before can make your tests hard to read, difficult to navigate,
-    and more complex. We'll discuss when DRY is not worth the price and how we can
-    avoid repetition without using RSpec's built-in DSL methods. In the end, we'll
-    look at what's left. RSpec: The Good Parts."
-  video_provider: youtube
-  video_id: _UFE0t2Sgaw
+  event_name: "RubyConf 2022"
+  date: "2022-11-29"
+  published_at: "2023-03-07"
+  description: |-
+    RSpec is good, but it’s even better with less of it. Looking at a realistic example spec, we’ll learn why parts of RSpec like let, subject, shared_examples, behaves like, and before can make your tests hard to read, difficult to navigate, and more complex. We'll discuss when DRY is not worth the price and how we can avoid repetition without using RSpec's built-in DSL methods. In the end, we'll look at what's left. RSpec: The Good Parts.
+  video_provider: "youtube"
+  video_id: "_UFE0t2Sgaw"
 
-- title: "Data indexing with RGB (Ruby, Graphs and Bitmaps)"
+- id: "benji-lewis-rubyconf-2022"
+  title: "Data indexing with RGB (Ruby, Graphs and Bitmaps)"
   raw_title: "RubyConf 2022: Data indexing with RGB (Ruby, Graphs and Bitmaps) by Benji Lewis"
   speakers:
     - Benji Lewis
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    In this talk, we will go on a journey through Zappi’s data history
-    and how we are using Ruby, a graph database, and a bitmap store to build a unique
-    data engine. A journey that starts with the problem of a disconnected data set
-    and serialised data frames, and ends with the solution of an in-memory index.
-    We will explore how we used RedisGraph to model the relationships in our data,
-    connecting semantically equal nodes. Then delve into how a query layer was used
-    to index a bitmap store and, in turn, led to us being able to interrogate our
-    entire dataset orders of magnitude faster than before.
-  video_provider: youtube
-  video_id: FwBRoxrHaBU
+  event_name: "RubyConf 2022"
+  date: "2022-11-29"
+  published_at: "2023-03-07"
+  description: |-
+    In this talk, we will go on a journey through Zappi’s data history and how we are using Ruby, a graph database, and a bitmap store to build a unique data engine. A journey that starts with the problem of a disconnected data set and serialised data frames, and ends with the solution of an in-memory index. We will explore how we used RedisGraph to model the relationships in our data, connecting semantically equal nodes. Then delve into how a query layer was used to index a bitmap store and, in turn, led to us being able to interrogate our entire dataset orders of magnitude faster than before.
+  video_provider: "youtube"
+  video_id: "FwBRoxrHaBU"
 
-- title: "Bending Time with Crystal: 6 hours to 15 minutes"
+- id: "paul-hoffer-rubyconf-2022"
+  title: "Bending Time with Crystal: 6 hours to 15 minutes"
   raw_title: "RubyConf 2022: Bending Time with Crystal: 6 hours to 15 minutes by Paul Hoffer"
   speakers:
     - Paul Hoffer
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    In software, we often encounter problems that we accept as "just how
-    things are." But sometimes, that creates opportunities to identify creative, out
-    of the box solutions. One idea can be combining the power of Crystal with our
-    existing Ruby knowledge, to create effective tools with minimal learning curve
-    and cognitive overhead. I'll demonstrate how easily Ruby code can be ported to
-    Crystal, how it can benefit us, and how to identify these opportunities.
-  video_provider: youtube
-  video_id: 6MpXSrgBVww
+  event_name: "RubyConf 2022"
+  date: "2022-11-29"
+  published_at: "2023-03-07"
+  description: |-
+    In software, we often encounter problems that we accept as "just how things are." But sometimes, that creates opportunities to identify creative, out of the box solutions. One idea can be combining the power of Crystal with our existing Ruby knowledge, to create effective tools with minimal learning curve and cognitive overhead. I'll demonstrate how easily Ruby code can be ported to Crystal, how it can benefit us, and how to identify these opportunities.
+  video_provider: "youtube"
+  video_id: "6MpXSrgBVww"
 
-- title: "Splitting: the Crucial Optimization for Ruby Blocks"
+- id: "benoit-daloze-rubyconf-2022"
+  title: "Splitting: the Crucial Optimization for Ruby Blocks"
   raw_title: "RubyConf 2022: Splitting: the Crucial Optimization for Ruby Blocks by Benoit Daloze"
   speakers:
     - Benoit Daloze
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    Blocks are one of the most expressive parts of the Ruby syntax. Many
-    Ruby methods take a block. When a method is given different blocks, there is a
-    crucial optimization necessary to unlock the best performance. This optimization
-    dates back to the early days of research on dynamic languages, yet it seems only
-    a single Ruby implementation currently uses it. This optimization is called splitting
-    and what it does is using different copies of a method and specialize them to
-    the block given at different call sites. This enables compiling the method and
-    the block together for the best performance.
-  video_provider: youtube
-  video_id: PjUpcR5UPHI
+  event_name: "RubyConf 2022"
+  date: "2022-11-29"
+  published_at: "2023-03-07"
+  description: |-
+    Blocks are one of the most expressive parts of the Ruby syntax. Many Ruby methods take a block. When a method is given different blocks, there is a crucial optimization necessary to unlock the best performance. This optimization dates back to the early days of research on dynamic languages, yet it seems only a single Ruby implementation currently uses it. This optimization is called splitting and what it does is using different copies of a method and specialize them to the block given at different call sites. This enables compiling the method and the block together for the best performance.
+  video_provider: "youtube"
+  video_id: "PjUpcR5UPHI"
 
-- title: "Building Stream Processing Applications with Ruby & Meroxa"
+- id: "ali-hamidi-rubyconf-2022"
+  title: "Building Stream Processing Applications with Ruby & Meroxa"
   raw_title: "RubyConf 2022: Building Stream Processing Applications with Ruby & Meroxa by Ali Hamidi"
   speakers:
     - Ali Hamidi
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    As the world moves towards real-time there’s a growing demand for building
-    sophisticated stream processing applications. Traditionally building these apps
-    has involved spinning up separate task-specific tooling, learning new and unfamiliar
-    paradigms, as well as deploying and operating a constellation of complex services.
-    In this talk, we’ll take a look at how to use the Turbine framework (turbine.rb)
-    to build and deploy real-time stream processing applications using Ruby.
-  video_provider: youtube
-  video_id: 6bHZQy0Ti_c
+  event_name: "RubyConf 2022"
+  date: "2022-11-30"
+  published_at: "2023-03-07"
+  description: |-
+    As the world moves towards real-time there’s a growing demand for building sophisticated stream processing applications. Traditionally building these apps has involved spinning up separate task-specific tooling, learning new and unfamiliar paradigms, as well as deploying and operating a constellation of complex services. In this talk, we’ll take a look at how to use the Turbine framework (turbine.rb) to build and deploy real-time stream processing applications using Ruby.
+  video_provider: "youtube"
+  video_id: "6bHZQy0Ti_c"
 
-- title: "Boot the backlog: Optimizing your workflow for dev happiness"
+- id: "stacey-mcknight-rubyconf-2022"
+  title: "Boot the backlog: Optimizing your workflow for dev happiness"
   raw_title: "RubyConf 2022: Boot the backlog: Optimizing your workflow for dev happiness by Stacey McKnight"
   speakers:
     - Stacey McKnight
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    What would happen if your team dropped that standing Monday morning
-    refinement meeting? Chaos? We often follow work processes because they’re “the
-    way things are done”, but clunky, unexamined processes slow down even talented
-    teams. Never ending backlogs make it hard to feel like you’re making progress.
-    Frequent meetings break up focus. If something about the way we work doesn’t help
-    us move more quickly or effectively, it’s time to rethink it. Seeking a better
-    way to coordinate work across 3 continents, the Workforce.com dev team adopted
-    the Shape Up approach to project management. This talk explores the core elements
-    of that approach and ways to optimize developer happiness while delivering more
-    value for users.
-  video_provider: youtube
-  video_id: BB_GjUIA06c
+  event_name: "RubyConf 2022"
+  date: "2022-11-30"
+  published_at: "2023-03-07"
+  description: |-
+    What would happen if your team dropped that standing Monday morning refinement meeting? Chaos? We often follow work processes because they’re “the way things are done”, but clunky, unexamined processes slow down even talented teams. Never ending backlogs make it hard to feel like you’re making progress. Frequent meetings break up focus. If something about the way we work doesn’t help us move more quickly or effectively, it’s time to rethink it. Seeking a better way to coordinate work across 3 continents, the Workforce.com dev team adopted the Shape Up approach to project management. This talk explores the core elements of that approach and ways to optimize developer happiness while delivering more value for users.
+  video_provider: "youtube"
+  video_id: "BB_GjUIA06c"
 
-- title: "Business in the Front, Party in the Back (Office)"
+- id: "kevin-whinnery-rubyconf-2022"
+  title: "Business in the Front, Party in the Back (Office)"
   raw_title: "RubyConf 2022: Business in the Front, Party in the Back (Office) by Kevin Whinnery"
   speakers:
     - Kevin Whinnery
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    If you have ever built a web application, chances are that you have
-    also had to deal with "the back office" - the chores and one-off tasks required
-    to operate your software in production. Workflows that aren't user-facing, like
-    creating promo codes, moderating content, or running reports, are often a janky
-    combination of admin scripts and spreadsheets. Retool helps developers quickly
-    and easily solve these problems with software instead. In this session, we'll
-    show how to build a back office interface for a Ruby on Rails application using
-    Postgres and several common API services, so you can keep your focus on the business
-    in the front, and let Retool help throw the party in the back (office).
-  video_provider: youtube
-  video_id: GSBhVVWycvU
+  event_name: "RubyConf 2022"
+  date: "2022-11-30"
+  published_at: "2023-03-07"
+  description: |-
+    If you have ever built a web application, chances are that you have also had to deal with "the back office" - the chores and one-off tasks required to operate your software in production. Workflows that aren't user-facing, like creating promo codes, moderating content, or running reports, are often a janky combination of admin scripts and spreadsheets. Retool helps developers quickly and easily solve these problems with software instead. In this session, we'll show how to build a back office interface for a Ruby on Rails application using Postgres and several common API services, so you can keep your focus on the business in the front, and let Retool help throw the party in the back (office).
+  video_provider: "youtube"
+  video_id: "GSBhVVWycvU"
 
-- title: "Analyzing an analyzer - A dive into how RuboCop works"
+- id: "kyle-doliveira-rubyconf-2022"
+  title: "Analyzing an analyzer - A dive into how RuboCop works"
   raw_title: "RubyConf 2022: Analyzing an analyzer - A dive into how RuboCop works by Kyle d'Oliveira"
   speakers:
     - Kyle d'Oliveira
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    To help us with aspects like linting, security or style, many of us
-    have Rubocop analyzing our code. It's a very useful tool that is widely used,
-    easy to set up and configure. Rubocop can even automatically auto-correct your
-    source code as needed. How is this even possible? It turns out that Ruby is really
-    good at taking Ruby code as input and doing various things based on that input.
-    In this talk, I will go through some of the internals of Rubocop to show how it
-    analyzes and makes changes to your source code.
-  video_provider: youtube
-  video_id: pSCMgcttW4c
+  event_name: "RubyConf 2022"
+  date: "2022-11-29"
+  published_at: "2023-03-07"
+  description: |-
+    To help us with aspects like linting, security or style, many of us have Rubocop analyzing our code. It's a very useful tool that is widely used, easy to set up and configure. Rubocop can even automatically auto-correct your source code as needed. How is this even possible? It turns out that Ruby is really good at taking Ruby code as input and doing various things based on that input. In this talk, I will go through some of the internals of Rubocop to show how it analyzes and makes changes to your source code.
+  video_provider: "youtube"
+  video_id: "pSCMgcttW4c"
 
-- title: "Ruby Archaeology: Forgotten web frameworks"
+- id: "nick-schwaderer-rubyconf-2022"
+  title: "Ruby Archaeology: Forgotten web frameworks"
   raw_title: "RubyConf 2022: Ruby Archaeology: Forgotten web frameworks by Nick Schwaderer"
   speakers:
     - Nick Schwaderer
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    "In the 2000's everyone was writing a Ruby web framework **Today, it
-    seems, we are all too content to focus our energy on a small number of large Ruby
-    web projects**. What happened to our creative spirit? In this talk we focus on
-    Ruby web frameworks that have long gone by the wayside. I won't spoil them here,
-    but I can tell you what we won't be covering: \n* Sinatra \n* Hanami \n* roda
-    \n* merb \n\nWe will answer questions like: \n* Why are fewer people experimenting
-    with their own frameworks today? \n* What features, idioms and ideas are worth
-    exploring? \n* Are any of these frameworks worth reviving or copying?"
-  video_provider: youtube
-  video_id: oXHgNh6DcSI
+  event_name: "RubyConf 2022"
+  date: "2022-11-29"
+  published_at: "2023-03-07"
+  description: |-
+    In the 2000's everyone was writing a Ruby web framework **Today, it seems, we are all too content to focus our energy on a small number of large Ruby web projects**. What happened to our creative spirit? In this talk we focus on Ruby web frameworks that have long gone by the wayside. I won't spoil them here, but I can tell you what we won't be covering: 
+    * Sinatra 
+    * Hanami 
+    * roda 
+    * merb 
 
-- title: "Ruby's Core Gem"
+    We will answer questions like: 
+    * Why are fewer people experimenting with their own frameworks today? 
+    * What features, idioms and ideas are worth exploring? 
+    * Are any of these frameworks worth reviving or copying?
+  video_provider: "youtube"
+  video_id: "oXHgNh6DcSI"
+
+- id: "chris-seaton-rubyconf-2022"
+  title: "Ruby's Core Gem"
   raw_title: "RubyConf 2022: Ruby’s Core Gem by Chris Seaton"
   speakers:
     - Chris Seaton
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    Ruby has a core library that is part of the interpreter and always
-    available. It’s classes like String and Time. But what would it be like if we
-    re-implemented the core library, writing it in Ruby itself, and made it available
-    as a gem? Would it be faster or slower? Would it be easier to understand and debug?
-    What other benefits could there be? It was originally Rubinius that implemented
-    Ruby’s core in Ruby, and it has been taken up and maintained by the TruffleRuby
-    team.
-  video_provider: youtube
-  video_id: 8mqDIHer1G4
+  event_name: "RubyConf 2022"
+  date: "2022-11-29"
+  published_at: "2023-03-07"
+  description: |-
+    Ruby has a core library that is part of the interpreter and always available. It’s classes like String and Time. But what would it be like if we re-implemented the core library, writing it in Ruby itself, and made it available as a gem? Would it be faster or slower? Would it be easier to understand and debug? What other benefits could there be? It was originally Rubinius that implemented Ruby’s core in Ruby, and it has been taken up and maintained by the TruffleRuby team.
+  video_provider: "youtube"
+  video_id: "8mqDIHer1G4"
 
-- title: "I'm in love with Mermaid"
+- id: "carolyn-cole-rubyconf-2022"
+  title: "I'm in love with Mermaid"
   raw_title: "RubyConf 2022: I'm in love with Mermaid by Carolyn Cole"
   speakers:
     - Carolyn Cole
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    Everyone says that a picture is worth a thousand words... The issue
-    in the past is that those pictures have been hard to create let alone maintain.
-    Welcome Mermaid (https://mermaid-js.github.io/mermaid/#/)! Mermaid is a mark down
-    compatible graphing tool that allows you to add diagrams directly to your markdown
-    in github. I have been using it for a a year and just love it. I believe that
-    you will love it too once you join my session.
-  video_provider: youtube
-  video_id: iFXomx3QLM4
+  event_name: "RubyConf 2022"
+  date: "2022-11-29"
+  published_at: "2023-03-07"
+  description: |-
+    Everyone says that a picture is worth a thousand words... The issue in the past is that those pictures have been hard to create let alone maintain. Welcome Mermaid (https://mermaid-js.github.io/mermaid/#/)! Mermaid is a mark down compatible graphing tool that allows you to add diagrams directly to your markdown in github. I have been using it for a a year and just love it. I believe that you will love it too once you join my session.
+  video_provider: "youtube"
+  video_id: "iFXomx3QLM4"
 
-- title: "Discover Machine Learning in Ruby"
+- id: "justin-bowen-rubyconf-2022"
+  title: "Discover Machine Learning in Ruby"
   raw_title: "RubyConf 2022: Discover Machine Learning in Ruby by Justin Bowen"
   speakers:
     - Justin Bowen
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    We can use Ruby to do anything we as a community want. Today we’ll
-    explore the work of a hidden gem of a contributor in our community, Andrew Kane,
-    and their Ruby gems for Machine Learning. We will see how contemporary computer
-    vision neural networks can run with Ruby. Ruby is all about developer happiness.
-    Computer Vision is something that brings me great joy as it delivers satisfying
-    visual feedback and connects our code with the real world through images and videos
-    in a way that wasn’t accessible until the last decade or so.
-  video_provider: youtube
-  video_id: HPbizNgcyFk
+  event_name: "RubyConf 2022"
+  date: "2022-11-29"
+  published_at: "2023-03-07"
+  description: |-
+    We can use Ruby to do anything we as a community want. Today we’ll explore the work of a hidden gem of a contributor in our community, Andrew Kane, and their Ruby gems for Machine Learning. We will see how contemporary computer vision neural networks can run with Ruby. Ruby is all about developer happiness. Computer Vision is something that brings me great joy as it delivers satisfying visual feedback and connects our code with the real world through images and videos in a way that wasn’t accessible until the last decade or so.
+  video_provider: "youtube"
+  video_id: "HPbizNgcyFk"
 
-- title: "Staff Engineer: “Here be dragons”"
+- id: "alexandre-terrasa-rubyconf-2022"
+  title: "Staff Engineer: “Here be dragons”"
   raw_title: "RubyConf 2022: Staff Engineer: “Here be dragons” by Alexandre Terrasa"
   speakers:
     - Alexandre Terrasa
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    "“Here be dragons”: this is how uncharted areas of maps were marked
-    in medieval times. Today, while the journey to become a Senior Engineer is known
-    territory, being a Staff Engineer appears full of dragons. Together, let’s demystify
-    what leading beyond the management track really means."
-  video_provider: youtube
-  video_id: _7DOSoXICMo
+  event_name: "RubyConf 2022"
+  date: "2022-11-30"
+  published_at: "2023-03-07"
+  description: |-
+    “Here be dragons”: this is how uncharted areas of maps were marked in medieval times. Today, while the journey to become a Senior Engineer is known territory, being a Staff Engineer appears full of dragons. Together, let’s demystify what leading beyond the management track really means.
+  video_provider: "youtube"
+  video_id: "_7DOSoXICMo"
 
-- title: "Working Together: Pairing as Senior and Junior Developers"
+- id: "kelly-ryan-rubyconf-2022"
+  title: "Working Together: Pairing as Senior and Junior Developers"
   raw_title: "RubyConf 2022: Working Together: Pairing as Senior and Junior Developers by Kelly Ryan"
   speakers:
     - Kelly Ryan
-  event_name: RubyConf 2022
-  published_at: "2022-11-13"
-  description:
-    Pairing with a senior developer is a daily necessity for a programmer
-    just starting out. But how should you as a junior developer approach pairing to
-    get the most out of the interaction? How can you not only find a solution to a
-    current problem, but also build relationships and learn skills for future problems?
-    In this talk, you will learn best practices for getting the most out of time with
-    a mentor. I will recommend practical tips and positive habits, as well as ways
-    of thinking that can improve your experience pairing and help you become a better
-    developer.
-  video_provider: youtube
-  video_id: pvl1HPFqRdk
+  event_name: "RubyConf 2022"
+  date: "2022-11-30"
+  published_at: "2023-03-07"
+  description: |-
+    Pairing with a senior developer is a daily necessity for a programmer just starting out. But how should you as a junior developer approach pairing to get the most out of the interaction? How can you not only find a solution to a current problem, but also build relationships and learn skills for future problems? In this talk, you will learn best practices for getting the most out of time with a mentor. I will recommend practical tips and positive habits, as well as ways of thinking that can improve your experience pairing and help you become a better developer.
+  video_provider: "youtube"
+  video_id: "pvl1HPFqRdk"
+
+- id: "yukihiro-matz-matsumoto-rubyconf-2022"
+  title: "Performance does (not) Matter by Yukihiro Matsumoto (Matz)"
+  raw_title: "RubyConf 2022: Performance does (not) Matter by Yukihiro Matsumoto (Matz)"
+  speakers:
+    - Yukihiro "Matz" Matsumoto
+  event_name: "RubyConf 2022"
+  date: "2022-11-29"
+  published_at: "2023-02-06"
+  description: ""
+  video_provider: "youtube"
+  video_id: "knutsgHTrfQ"

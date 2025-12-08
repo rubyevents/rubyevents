@@ -1,1 +1,5 @@
-<video id="player" class="rounded-xl" data-video-player-target="player" src="<%= talk.provider_url %>"></video>
+<div data-video-player-target="playerWrapper">
+  <div class="picture-in-picture-container" style="view-transition-name: <%= dom_id(talk, :image) %>">
+    <video id="player" class="rounded-xl" data-video-player-target="player" src="<%= talk.provider_url %>"></video>
+  </div>
+</div>

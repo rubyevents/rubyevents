@@ -5,145 +5,148 @@
 
 # Website: https://blueridgeruby.com/2023
 
-- title: "Enough Coverage To Beat The Band. Meet Rubys Coverage Module"
+- id: "kevin-murphy-blue-ridge-ruby-2023"
+  title: "Enough Coverage To Beat The Band"
   raw_title: "BlueRidgeRuby 2023: Enough Coverage To Beat The Band. Meet Ruby's Coverage Module - Kevin Murphy"
   speakers:
     - Kevin Murphy
-  event_name: Blue Ridge Ruby 2023
-  published_at: "2024-01-01"
-  slides_url: https://speakerdeck.com/kevinmurphy/enough-coverage-to-beat-the-band
-  description:
-    "Using a band analogy, Kevin shares the value of Ruby's coverage module.
-    As Kevin states, \"This is not a talk about TEST COVERAGE. This is a talk about
-    the tool that you can use to measure things like test coverage.\"\n\n@BlueRidgeRuby
-    \n\nVisit him at kevinjmurphy.com/speaking/"
-  video_provider: youtube
-  video_id: H4pBjWOMr_Y
+  event_name: "Blue Ridge Ruby 2023"
+  date: "2023-06-08"
+  slides_url: "https://speakerdeck.com/kevinmurphy/enough-coverage-to-beat-the-band"
+  description: |-
+    The lights cut out. The crowd roars. It’s time. The band takes the stage. They’ve practiced the songs, particularly the covers. They’ve sound checked the coverage of the speakers. They know the lighting rig has the proper colored gels covering the lamps. They’re nervous, but they’ve got it all covered.
 
-- title: "Empathetic Pair Programming with Nonviolent Communication"
+    Similarly, code coverage can give you confidence before your app performs on production and also tell you how live code is used (or not used). We’ll cover how to leverage ruby’s different coverage measurement techniques in concert to assist your crew and delight your audience.
+  video_provider: "youtube"
+  video_id: "H4pBjWOMr_Y"
+  published_at: "2023-12-27"
+
+- id: "stephanie-minn-blue-ridge-ruby-2023"
+  title: "Empathetic Pair Programming with Nonviolent Communication"
   raw_title: "BlueRidgeRuby 2023: Empathetic Pair Programming with Nonviolent Communication - Stephanie Minn"
   speakers:
     - Stephanie Minn
-  event_name: Blue Ridge Ruby 2023
-  published_at: "2024-01-01"
-  description:
-    Stephanie leverages nonviolent communication protocols to teach us
-    how to be better communicators. Collaborating with a colleague, there are a range
-    of experiences and styles which can be pleasant or unpleasant. Nonviolent communication
-    helps us shed our assumptions, our judgments, and our claims in favor of authentic
-    communication.
-  video_provider: youtube
-  video_id: sVeKT36coAQ
+  event_name: "Blue Ridge Ruby 2023"
+  date: "2023-06-08"
+  description: |-
+    Pair programming is intimate. It’s the closest collaboration we do as software developers. When it goes well, it feels great! But when it doesn’t, you might be left feeling frustrated, discouraged, or withdrawn.
 
-- title: "Forecasting the Future: An Intro to Machine Learning with Ruby"
+    To navigate the vulnerability of sharing our keyboard and code, let’s learn about nonviolent communication (NVC), an established practice of deep listening to ourselves and others. We’ll cover real-life examples and how to apply the four tenets of NVC — observations, feelings, needs, and requests — to bring more joy and fulfillment the next time you pair.
+  video_provider: "youtube"
+  video_id: "sVeKT36coAQ"
+  published_at: "2023-12-30"
+
+- id: "landon-gray-blue-ridge-ruby-2023"
+  title: "Forecasting the Future: An Introduction to Machine Learning for Weather Prediction in Native Ruby"
   raw_title: "BlueRidgeRuby 2023: Forecasting the Future: An Intro to Machine Learning with Ruby - Landon Gray"
   speakers:
     - Landon Gray
-  event_name: Blue Ridge Ruby 2023
-  published_at: "2024-01-01"
-  description:
-    "Forecasting the Future: An Introduction to Machine Learning for Weather
-    Prediction in Native Ruby. Landon Gray @thedayisntgray asked \"Why aren't people
-    doing Machine Learning in Native Ruby?\" and decided to take action. This engaging
-    talk shares his ideas and thoughts and culminates in an ML project using Ruby
-    with Jupyter + iruby.\n\n@BlueRidgeRuby \n@thedayisntgray"
-  video_provider: youtube
-  video_id: 11yubbTx8Ow
+  event_name: "Blue Ridge Ruby 2023"
+  date: "2023-06-08"
+  description: |-
+    Have you ever considered building a machine learning model in Ruby? It may surprise you to learn that you can train, build, and deploy ML models in Ruby. But what are the benefits of using Ruby over other languages?
 
-- title: "RSpec: The Bad Parts"
+    One of the biggest advantages of using Ruby for machine learning is accessibility. You’re no longer limited to specific languages or tools when exploring AI and ML concepts. It’s time for Rubyists to dive into the world of machine learning!
+
+    In this talk, we’ll build a model that predicts the weather and explore the tools and libraries available for your own native Ruby Machine Learning projects.
+
+    Whether you’re a seasoned Rubyist or just starting out, don’t miss this opportunity to discover the possibilities of machine learning in Ruby.
+  video_provider: "youtube"
+  video_id: "11yubbTx8Ow"
+  published_at: "2023-12-27"
+
+- id: "caleb-hearth-blue-ridge-ruby-2023"
+  title: "RSpec: The Bad Parts"
   raw_title: "BlueRidgeRuby 2023: RSpec: The Bad Parts - Caleb Hearth"
   speakers:
     - Caleb Hearth
-  event_name: Blue Ridge Ruby 2023
+  event_name: "Blue Ridge Ruby 2023"
+  date: "2023-06-08"
+  description: |-
+    RSpec is good, but it’s even better with less of it. We’ll first look through a heavily obfuscated real-world example, learning why parts of RSpec like let, subject, before, shared_examples, and behaves like can make your tests hard to read, difficult to navigate, and more complex. We’ll discuss when DRY is not worth the price. Then we’ll refactor some real open source RSpec code from Mastodon. In the end, we’ll look at what’s left. RSpec: The Good Parts.
+  video_provider: "youtube"
+  video_id: "5lNwSpgMwH0"
   published_at: "2024-01-01"
-  description:
-    Reaching for convenient code reuse in test suites is tempting, but
-    it has its drawbacks as test suites grow organically into a spider web of complexity,
-    catching out everyone from new team members to a grizzled veterans. Caleb breaks
-    down some common RSpec patterns and how to avoid making your test suite too complex
-    to reason about and maintain going forward.
-  video_provider: youtube
-  video_id: 5lNwSpgMwH0
 
-- title: "Maintenance Matters: Maintaining Your Rails App and Your Sanity"
+- id: "annie-kiley-blue-ridge-ruby-2023"
+  title: "Maintenance Matters: Maintaining Your Rails App and Your Sanity"
   raw_title: "BlueRidgeRuby2023: Maintenance Matters: Maintaining Your Rails App and Your Sanity - Annie Kiley"
   speakers:
     - Annie Kiley
-  event_name: Blue Ridge Ruby 2023
+  event_name: "Blue Ridge Ruby 2023"
+  date: "2023-06-08"
+  description: |-
+    We all love shiny new tech and greenfield projects, but as software developers, we spend a lot of our time working with existing code. So let’s spend a few minutes talking about ways to improve the day-to-day developer experience of maintaining a Rails app. The examples and tools in this talk are specific to Ruby on Rails, but the ideas can apply to any stack. I will try to leave you with ten things that you can do tomorrow to make maintaining your application just a little easier.
+  video_provider: "youtube"
+  video_id: "hIV7RDpvTzQ"
   published_at: "2024-01-01"
-  description:
-    Considering maintainability matters - minute for minute, the time you
-    put into writing maintainable code and maintainable software is some of the best
-    time that you spend. Annie breaks down the importance of code review, linting
-    and other tools to ensure your software remains elegant to work with for years
-    to come.
-  video_provider: youtube
-  video_id: hIV7RDpvTzQ
 
-- title: "Making Ruby Fast(er)"
+- id: "kevin-menard-blue-ridge-ruby-2023"
+  title: "Making Ruby Fast(er)"
   raw_title: "BlueRidgeRuby2023: Making Ruby Fast(er) - Kevin Menard"
   speakers:
     - Kevin Menard
-  event_name: Blue Ridge Ruby 2023
+  event_name: "Blue Ridge Ruby 2023"
+  date: "2023-06-08"
+  description: |-
+    Ruby has always been a developer-friendly language, but that has often come at the expense of performance. The past several years have seen massive performance gains CRuby, JRuby, and TruffleRuby. Long-held assumptions about Ruby’s performance ceiling have been challenged and up-ended. In this talk, we’ll look at improvements in the virtual machine and the introduction of JIT compilers to better understand what’s making your Ruby code run fast(er).
+  video_provider: "youtube"
+  video_id: "s0NMy_PBxkk"
   published_at: "2024-01-01"
-  description:
-    Kevin Menard goes deep into the world of Ruby compilers, the under-the-hood
-    programs that make our high-level Ruby code work, but that many developers rarely
-    think about. As a consequence, Kevin argues we are missing out on some of the
-    more exciting developments in the language, especially when it comes to performance.
-  video_provider: youtube
-  video_id: s0NMy_PBxkk
 
-- title: "What's your type? Generating type signatures with Sorbet and Tapioca"
+- id: "emily-samp-blue-ridge-ruby-2023"
+  title: "What’s your type? Generating type signatures with Sorbet and Tapioca"
   raw_title: "BlueRidgeRuby2023: What's you type? Generating type signatures with Sorbet and Tapioca - Emily Samp"
   speakers:
     - Emily Samp
-  event_name: Blue Ridge Ruby 2023
-  published_at: "2024-01-01"
-  slides_url: https://drive.google.com/drive/folders/1Wv0i-WNrMaeInQma1H28i4pwHlb_lMHp?usp=sharing
-  description:
-    'Not a lot of Rubyists use type checking in their day-to-day work,
-    but Emily makes the case for "reflection": using Ruby to understand other Ruby
-    code, and the tools we can use to improve our workflows and bring more joy to
-    our coding.'
-  video_provider: youtube
-  video_id: TeMqO3lzfMI
+  event_name: "Blue Ridge Ruby 2023"
+  date: "2023-06-09"
+  slides_url: "https://drive.google.com/drive/folders/1Wv0i-WNrMaeInQma1H28i4pwHlb_lMHp?usp=sharing"
+  description: |-
+    You’ve likely heard of Sorbet, a gradual type checker for Ruby. Using Sorbet, developers can harness the flexibility and creativity of a dynamic language like Ruby, while also benefitting from the safety of typing.
 
-- title: "Digital Identity or: How I Learned to Stop Worrying and Love Web3"
+    However, in most apps, Sorbet will need some help type checking gem dependencies. This is the purpose of Tapioca, a gem that generates type signatures for other gems so they can be type checked by Sorbet.
+
+    But how does Tapioca accomplish this? In this talk, we’ll dive into the tools and techniques used by Tapioca to reflect on Ruby code, and even walk through the process of building a new feature in the Tapioca codebase!
+  video_provider: "youtube"
+  video_id: "TeMqO3lzfMI"
+  published_at: "2024-01-01"
+
+- id: "thomas-carr-blue-ridge-ruby-2023"
+  title: "Digital Identity or: How I Learned to Stop Worrying and Love Web3"
   raw_title: "BlueRidgeRuby 2023: Digital Identity or:How I Learned to Stop Worrying and Love Web3 - Thomas Mann"
   speakers:
-    - Thomas Mann
-  event_name: Blue Ridge Ruby 2023
-  published_at: "2024-01-01"
-  description:
-    Thomas Mann demystifies Web3 through a Ruby-flavored introduction to
-    the concepts around self-sovereign identity. Break through the hype and get value
-    from decentralized protocols, blockchain technologies, and token-based economics.
-  video_provider: youtube
-  video_id: YRmwQNmLbLQ
+    - Thomas Carr
+  event_name: "Blue Ridge Ruby 2023"
+  date: "2023-06-09"
+  description: |-
+    Rubyists love the web, and it’s usually the primary platform for our applications. We tend to be highly pragmatic developers, choosing boring, well-tested technologies over what’s new and hot on Hacker News. Nowhere is this more evident than web3. Tasked with finding real use-cases for the federal government using these “decentralized” protocols and technologies, I’m here to tell you that in our — mostly justified — dismissal of web3, we are missing out on a pivotal innovation for user experience across the web: portable, verifiable, & interoperable digital identity.
+  video_provider: "youtube"
+  video_id: "YRmwQNmLbLQ"
+  published_at: "2023-12-30"
 
-- title: "Go Pro with POROs"
+- id: "ifat-ribon-blue-ridge-ruby-2023"
+  title: "Go Pro with POROs"
   raw_title: "BlueRidgeRuby2023: Go Pro with POROs - Ifat Ribon"
   speakers:
     - Ifat Ribon
-  event_name: Blue Ridge Ruby 2023
+  event_name: "Blue Ridge Ruby 2023"
+  date: "2023-06-09"
+  description: |-
+    Plain Old Ruby Objects (POROs) are having a moment. Maybe you’ve heard a whisper in the corner about the jack-of-all trades Service Object, or a glimmering echo of advocacy for non-database-backed domain models? Think you’re using them right? Afraid you’re using them wrong? Then this is the talk for you! We’re going to explore the wonderful world of “convention plus choose-your-own configuration” of Rails codebases and the shining role of POROs (with their ride or dies, the Module). Come hear about the diversity of design patterns out in the wild so you too can confidently tell your coworkers “let’s just use a PORO for that”.
+  video_provider: "youtube"
+  video_id: "rvTOWaWwIkQ"
   published_at: "2024-01-01"
-  description:
-    Ifat explores several common Ruby design patterns and best practices,
-    and how they can make your code more encapsulated, clear and simple to work with.
-  video_provider: youtube
-  video_id: rvTOWaWwIkQ
 
-- title: "How Can I Move Forward When I Dont Know Where I Want To Go?"
+- id: "mo-oconnor-blue-ridge-ruby-2023"
+  title: "How can I move forward when I don’t know where I want to go?"
   raw_title: "BlueRidgeRuby2023: How Can I Move Forward When I Don't Know Where I Want To Go? - Mo O'Connor"
   speakers:
     - Mo O'Connor
-  event_name: Blue Ridge Ruby 2023
-  published_at: "2024-01-01"
-  description:
-    Does decision fatigue or decision paralysis have you overwhelmed when
-    asked "Where do you want to be in 3 years?". Enter Mo O'Connor. Whether you want
-    to be an individual contributor, a people manager, or a hybrid, Mo leverages her
-    experiences to share a process to help you map your career.
-  video_provider: youtube
-  video_id: 7naaDdkcNt0
+  event_name: "Blue Ridge Ruby 2023"
+  date: "2023-06-09"
+  description: |-
+    Many of us are driven towards professional development and the next level, but what happens when the next level could be more than one thing? It could mean a promotion from mid-level to senior-level, taking on leadership responsibilities, or moving to a people-management role. What if we’re not sure which direction we want to go? In this talk, I’ll discuss ways you can move forward even when you haven’t decided on the trajectory yet. You'll walk away with tools and tactics you can utilize to pave and navigate your own path forward.
+  video_provider: "youtube"
+  video_id: "7naaDdkcNt0"
+  published_at: "2023-12-30"

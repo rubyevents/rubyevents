@@ -1,0 +1,198 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.github.com/users/marcoroth
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github+json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 27 Aug 2025 06:28:34 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=60, s-maxage=60
+      Vary:
+      - Accept,Accept-Encoding, Accept, X-Requested-With
+      Etag:
+      - W/"72353cef35ce731c840751dfc2bb90b148226491dc37794c1b5a105b1a544a6d"
+      Last-Modified:
+      - Thu, 31 Jul 2025 00:01:14 GMT
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Github-Api-Version-Selected:
+      - '2022-11-28'
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
+        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
+        X-GitHub-Request-Id, Deprecation, Sunset
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      Server:
+      - github.com
+      Accept-Ranges:
+      - bytes
+      X-Ratelimit-Limit:
+      - '60'
+      X-Ratelimit-Remaining:
+      - '41'
+      X-Ratelimit-Reset:
+      - '1756278627'
+      X-Ratelimit-Resource:
+      - core
+      X-Ratelimit-Used:
+      - '19'
+      Content-Length:
+      - '1308'
+      X-Github-Request-Id:
+      - 8CEB:12AD:308CA60:2DDAC18:68AEA592
+    body:
+      encoding: ASCII-8BIT
+      string: '{"login":"marcoroth","id":6411752,"node_id":"MDQ6VXNlcjY0MTE3NTI=","avatar_url":"https://avatars.githubusercontent.com/u/6411752?v=4","gravatar_id":"","url":"https://api.github.com/users/marcoroth","html_url":"https://github.com/marcoroth","followers_url":"https://api.github.com/users/marcoroth/followers","following_url":"https://api.github.com/users/marcoroth/following{/other_user}","gists_url":"https://api.github.com/users/marcoroth/gists{/gist_id}","starred_url":"https://api.github.com/users/marcoroth/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/marcoroth/subscriptions","organizations_url":"https://api.github.com/users/marcoroth/orgs","repos_url":"https://api.github.com/users/marcoroth/repos","events_url":"https://api.github.com/users/marcoroth/events{/privacy}","received_events_url":"https://api.github.com/users/marcoroth/received_events","type":"User","user_view_type":"public","site_admin":false,"name":"Marco
+        Roth","company":null,"blog":"https://marcoroth.dev","location":"Basel, Switzerland","email":null,"hireable":true,"bio":"Rubyist,
+        Full-Stack Devloper and Open Source Contributor","twitter_username":"marcoroth_","public_repos":235,"public_gists":1,"followers":757,"following":1259,"created_at":"2014-01-15T17:12:11Z","updated_at":"2025-07-31T00:01:14Z"}'
+  recorded_at: Wed, 27 Aug 2025 06:28:34 GMT
+- request:
+    method: get
+    uri: https://api.github.com/users/marcoroth/social_accounts
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github+json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 27 Aug 2025 06:28:35 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=60, s-maxage=60
+      Vary:
+      - Accept,Accept-Encoding, Accept, X-Requested-With
+      Etag:
+      - W/"f08849f5816b536d0a1684db14dfa38b6caaa6fe37648fe70d4a1cd16cb6869b"
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Github-Api-Version-Selected:
+      - '2022-11-28'
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
+        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
+        X-GitHub-Request-Id, Deprecation, Sunset
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      Server:
+      - github.com
+      Accept-Ranges:
+      - bytes
+      X-Ratelimit-Limit:
+      - '60'
+      X-Ratelimit-Remaining:
+      - '40'
+      X-Ratelimit-Reset:
+      - '1756278627'
+      X-Ratelimit-Resource:
+      - core
+      X-Ratelimit-Used:
+      - '20'
+      Content-Length:
+      - '263'
+      X-Github-Request-Id:
+      - 8CEC:3B804F:1A660A8:19686CE:68AEA592
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"provider":"twitter","url":"https://twitter.com/marcoroth_"},{"provider":"mastodon","url":"https://ruby.social/@marcoroth"},{"provider":"bluesky","url":"https://bsky.app/profile/marcoroth.dev"},{"provider":"linkedin","url":"https://linkedin.com/in/marco-roth"}]'
+  recorded_at: Wed, 27 Aug 2025 06:28:35 GMT
+- request:
+    method: get
+    uri: https://api.bsky.app/xrpc/app.bsky.actor.getProfile?actor=marcoroth.dev
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.bsky.app
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Powered-By:
+      - Express
+      Access-Control-Allow-Origin:
+      - "*"
+      Atproto-Content-Labelers:
+      - did:plc:ar7c4by46qjdydhdevvrndac;redact
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"45c-2YZVFNvJPNAbbVzaGZ6VbgrCZF0"
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 27 Aug 2025 06:28:35 GMT
+      Keep-Alive:
+      - timeout=90
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=63072000
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJkaWQiOiJkaWQ6cGxjOmZ2YW1nYmxldWRzemFvMnVmdDNzeXN1YiIsImhhbmRsZSI6Im1hcmNvcm90aC5kZXYiLCJkaXNwbGF5TmFtZSI6Ik1hcmNvIFJvdGgiLCJhdmF0YXIiOiJodHRwczovL2Nkbi5ic2t5LmFwcC9pbWcvYXZhdGFyL3BsYWluL2RpZDpwbGM6ZnZhbWdibGV1ZHN6YW8ydWZ0M3N5c3ViL2JhZmtyZWlkZnB5c3A3cXprdHEzcjdjcTRqanZnZ2p4ZTRma2p6N3h5a3E2aWFoNmdpN3p4ZG9pZWNlQGpwZWciLCJhc3NvY2lhdGVkIjp7Imxpc3RzIjowLCJmZWVkZ2VucyI6MCwic3RhcnRlclBhY2tzIjowLCJsYWJlbGVyIjpmYWxzZSwiYWN0aXZpdHlTdWJzY3JpcHRpb24iOnsiYWxsb3dTdWJzY3JpcHRpb25zIjoiZm9sbG93ZXJzIn19LCJsYWJlbHMiOltdLCJjcmVhdGVkQXQiOiIyMDIzLTExLTExVDE2OjQ5OjQ5LjM1NloiLCJkZXNjcmlwdGlvbiI6IkZ1bGwtU3RhY2sgV2ViIERldmVsb3BlciDigKIgT1NTIENvbnRyaWJ1dG9yIOKAoiBFbGVjdHJvbmljIE11c2ljIEFkZGljdCDigKIgUnVieS9SYWlscywgSmF2YVNjcmlwdC9TdGltdWx1cywgQ3J5c3RhbCDigKIgSG90d2lyZSBDb250cmlidXRvcnMgVGVhbSDigKIgU3RpbXVsdXNSZWZsZXggQ29yZS5cclxuXG5XZWJzaXRlOiBtYXJjb3JvdGguZGV2XG5cbkJ1aWxkaW5nOiBydWJ5ZXZlbnRzLm9yZyB8IHJ1Ynljb25mZXJlbmNlcy5vcmcgfCBnZW0uc2ggfCBob3R3aXJlLmlvIiwiaW5kZXhlZEF0IjoiMjAyNS0wNy0xMVQwNzozNzowMC45MzJaIiwiYmFubmVyIjoiaHR0cHM6Ly9jZG4uYnNreS5hcHAvaW1nL2Jhbm5lci9wbGFpbi9kaWQ6cGxjOmZ2YW1nYmxldWRzemFvMnVmdDNzeXN1Yi9iYWZrcmVpZm5pY21pb3hobjZ5eGs1cWNncnFicnQ2NGxycWpoeHp0dWZlcGk2NjRndWJ4ZWc0Y3RlaUBqcGVnIiwiZm9sbG93ZXJzQ291bnQiOjE3ODQsImZvbGxvd3NDb3VudCI6MjYyLCJwb3N0c0NvdW50Ijo2MjUsInBpbm5lZFBvc3QiOnsiY2lkIjoiYmFmeXJlaWVucXFnNmdwY3Z5eWE3djc2d2VvY21vbTU1ZGo0Z2FvYXl4ZW1rcGZ1dmZ4dTR5czZlaG0iLCJ1cmkiOiJhdDovL2RpZDpwbGM6ZnZhbWdibGV1ZHN6YW8ydWZ0M3N5c3ViL2FwcC5ic2t5LmZlZWQucG9zdC8zbGx3Z3dxcHRmMjJsIn19
+  recorded_at: Wed, 27 Aug 2025 06:28:35 GMT
+recorded_with: VCR 6.3.1

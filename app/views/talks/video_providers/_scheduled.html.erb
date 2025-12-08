@@ -1,5 +1,5 @@
 <div class="relative w-full h-full block">
-  <%= image_tag talk.thumbnail_xl, class: "w-full h-full object-cover rounded-xl" %>
+  <%= image_tag talk.thumbnail_xl, class: "w-full h-full object-cover rounded-xl #{talk.thumbnail_classes}" %>
 
   <div class="absolute inset-0 text-center text-white bg-black/80 flex flex-col gap-3 justify-center items-center font-bold text-xl rounded-xl p-6">
     <span class="bg-black/30 p-4 rounded-full">
@@ -7,15 +7,15 @@
     </span>
 
     <% if talk.date.past? %>
-      This <%= talk.kind %> was
+      This <%= talk.formatted_kind %> was
     <% else %>
-      This <%= talk.kind %> is scheduled to be
+      This <%= talk.formatted_kind %> is scheduled to be
     <% end %>
 
     held at <%= talk.event.name %>
 
-    <% if talk.event.location && !talk.event.location.in?(["Earth", "online", "Online"]) %>
-      in <%= talk.event.location %>
+    <% if talk.location && !talk.location.in?(["Earth", "online", "Online"]) %>
+      in <%= talk.location %>
     <% end %>
 
     on <%= talk.formatted_date %>.

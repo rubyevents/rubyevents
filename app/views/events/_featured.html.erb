@@ -1,13 +1,13 @@
 <div
   class="w-full lg:h-92 p-4 lg:p-16 border rounded-[25px] lg:rounded-[50px] text-center lg:text-left"
   style="
-    color: <%= event.featured_color %>;
-    <% if event.featured_background.start_with?("data:") %>
-      background: url('<%= event.featured_background %>');
+    color: <%= event.static_metadata.featured_color %>;
+    <% if event.static_metadata.featured_background.start_with?("data:") %>
+      background: url('<%= event.static_metadata.featured_background %>');
       background-repeat: no-repeat;
       background-size: cover;
     <% else %>
-      background: <%= event.featured_background %>;
+      background: <%= event.static_metadata.featured_background %>;
     <% end %>
   ">
   <a href="<%= event_path(event) %>">
@@ -19,8 +19,12 @@
 
         <div class="flex flex-col gap-3 lg:h-48 lg:max-h-48 overflow-hidden items-center lg:items-start">
           <h1 class="text-inherit font-bold text-xl line-clamp-1 lg:line-clamp-2"><%= event.name %></h1>
-          <h2 class="text-inherit opacity-60 text-sm line-clamp-1"><%= event.location %> • <%= event.formatted_dates %></h2>
-          <h2 class="text-inherit font-medium text-sm line-clamp-3 hidden lg:block"><%= event.description %></h2>
+          <h2 class="text-inherit opacity-60 text-sm line-clamp-1"><%= event.static_metadata.location %> • <%= event.formatted_dates %></h2>
+          <h2 class="text-inherit font-medium text-sm line-clamp-3 hidden lg:block">
+            <%= event.description %>
+
+            <%= home_updated_text(event) %>
+          </h2>
         </div>
 
         <%= ui_button kind: :rounded, class: "btn-sm lg:btn-md my-4" do %>
@@ -39,22 +43,22 @@
             <% event.keynote_speakers.each do |keynote_speaker| %>
               <% shown_speakers << keynote_speaker %>
 
-              <div class="avatar bg-white">
-                <div class="w-12 lg:w-28 xl:w-40">
-                  <img src="<%= keynote_speaker.avatar_url %>" onerror="this.parentElement.parentElement.remove()" loading="lazy">
-                </div>
-              </div>
+              <%= ui_avatar(keynote_speaker, size: :lg, size_class: "w-12 lg:w-28 xl:w-40") %>
             <% end %>
 
             <% if event.keynote_speakers.none? %>
               <% speakers_with_avatars.first(4).each do |speaker| %>
                 <% shown_speakers << speaker %>
 
-                <div class="avatar bg-white">
-                  <div class="w-12 lg:w-28 xl:w-40">
-                    <img src="<%= speaker.avatar_url %>" loading="lazy">
-                  </div>
-                </div>
+                <%= ui_avatar(speaker, size: :lg, size_class: "w-12 lg:w-28 xl:w-40") %>
+              <% end %>
+
+              <% if speakers_with_avatars.none? %>
+                <% event.participants.first(4).each do |participant| %>
+                  <% shown_speakers << participant %>
+
+                  <%= ui_avatar(participant, size: :lg, size_class: "w-12 lg:w-28 xl:w-40") %>
+                <% end %>
               <% end %>
             <% end %>
           </div>
@@ -63,27 +67,28 @@
         <div class="mt-12">
           <div class="avatar-group -space-x-6 lg:-space-x-3 rtl:space-x-reverse">
             <% remaining_speakers = speakers_with_avatars - shown_speakers %>
+            <% remaining_participants = event.participants - shown_speakers %>
 
             <% if remaining_speakers.any? %>
               <% remaining_speakers.first(10).each do |speaker| %>
                 <% shown_speakers << speaker %>
 
-                <div class="avatar bg-white">
-                  <div class="w-8 xl:w-12">
-                    <img src="<%= speaker.avatar_url %>" loading="lazy">
-                  </div>
-                </div>
+                <%= ui_avatar(speaker) %>
+              <% end %>
+            <% elsif remaining_participants.any? %>
+              <% remaining_participants.first(10).each do |speaker| %>
+                <% shown_speakers << speaker %>
+
+                <%= ui_avatar(speaker) %>
               <% end %>
             <% end %>
 
             <% more_speakers_count = all_speakers.count - shown_speakers.count %>
 
             <% if more_speakers_count.positive? %>
-              <div class="avatar placeholder">
-                <div class="bg-neutral text-neutral-content w-8 xl:w-12">
-                  <span>+<%= more_speakers_count %></span>
-                </div>
-              </div>
+              <%= ui_avatar(nil, kind: :neutral) do %>
+                <span>+<%= more_speakers_count %></span>
+              <% end %>
             <% end %>
           </div>
         </div>

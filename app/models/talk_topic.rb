@@ -2,12 +2,13 @@
 # == Schema Information
 #
 # Table name: talk_topics
+# Database name: primary
 #
 #  id         :integer          not null, primary key
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  talk_id    :integer          not null, indexed, indexed => [topic_id]
-#  topic_id   :integer          not null, indexed, indexed => [talk_id]
+#  talk_id    :integer          not null, indexed, uniquely indexed => [topic_id]
+#  topic_id   :integer          not null, indexed, uniquely indexed => [talk_id]
 #
 # Indexes
 #

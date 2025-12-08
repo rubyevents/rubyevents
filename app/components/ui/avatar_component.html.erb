@@ -1,0 +1,14 @@
+<div class="avatar placeholder">
+  <div class="<%= size_class %> rounded-full <%= kind_class %> text-neutral-content <%= outline && "outline outline-2" %>">
+    <% if content %>
+      <%= content %>
+    <% else %>
+      <%= content_tag :span, class: [text_size, avatarable.custom_avatar? && "hidden"].select(&:itself) do %>
+        <%= avatarable.name.split(" ").map(&:first).join %>
+      <% end %>
+      <% if avatarable.custom_avatar? %>
+        <%= image_tag avatarable.avatar_url(size: image_size), loading: "lazy", onerror: "this.previousElementSibling.classList.remove('hidden'); this.remove()" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

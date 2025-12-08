@@ -1,7 +1,10 @@
-<div
-  class="image rounded-xl"
-  id="<%= dom_id(talk, :youtube) %>"
-  data-video-player-target="player"
-  data-youtube-id="<%= video_id %>">
-
+<div data-video-player-target="playerWrapper">
+  <div class="picture-in-picture-container" style="view-transition-name: <%= dom_id(talk, :image) %>">
+    <div
+      class="image rounded-xl"
+      id="<%= dom_id(talk, :youtube) %>"
+      data-video-player-target="player"
+      data-youtube-id="<%= video_id %>">
+    </div>
+  </div>
 </div>

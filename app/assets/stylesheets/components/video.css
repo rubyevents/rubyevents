@@ -17,9 +17,17 @@
   .v-bigPlay {
     opacity: 0.5 !important;
   }
-  
+
   .v-openInYouTube.v-controlButton svg {
     width: 65%;
     fill: var(--vlite-controlsColor);
+  }
+
+  /* Picture in picture styling */
+  .picture-in-picture .picture-in-picture-container {
+    @apply sm:fixed sm:bottom-4 sm:right-4 sm:z-10 sm:h-auto sm:w-full sm:max-w-sm sm:rounded-xl xl:max-w-lg;
+    .v-video {
+      @apply rounded-xl;
+    }
   }
 }

@@ -1,6 +1,6 @@
-module Youtube
-  class Playlists < Youtube::Client
-    DEFAULT_METADATA_PARSER = "Youtube::VideoMetadata"
+module YouTube
+  class Playlists < YouTube::Client
+    DEFAULT_METADATA_PARSER = "YouTube::VideoMetadata"
 
     def all(channel_id:, title_matcher: nil)
       items = all_items("/playlists", query: {channelId: channel_id, part: "snippet,contentDetails"}).map do |metadata|
@@ -19,7 +19,7 @@ module Youtube
           videos_count: metadata.contentDetails.itemCount,
           metadata_parser: DEFAULT_METADATA_PARSER,
           slug: metadata.snippet.title.parameterize,
-          banner_background: "#DC153C",
+          banner_background: "#081625",
           featured_background: "#000000",
           featured_color: "#FFFFFF"
         })

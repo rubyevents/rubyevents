@@ -1,6 +1,6 @@
-# RubyVideo.dev
+# RubyEvents.org (formerly RubyVideo.dev)
 
-[RubyVideo.dev](https://www.rubyvideo.dev), inspired by [pyvideo.org](https://pyvideo.org/), is designed to index all Ruby-related videos from conferences and meetups worldwide. At the time of writing, the project has about 4000 videos indexed from 175+ conferences and 2500+ speakers.
+[RubyEvents.org](https://www.rubyevents.org) (formerly RubyVideo.dev), inspired by [pyvideo.org](https://pyvideo.org/), is designed to index all Ruby-related events and videos from conferences and meetups around the world. At the time of writing, the project has 6000+ videos indexed from 200+ events and 3000+ speakers.
 
 Technically the project is built using the latest [Ruby](https://www.ruby-lang.org/) and [Rails](https://rubyonrails.org/) goodies such as [Hotwire](https://hotwired.dev/), [Solid Queue](https://github.com/rails/solid_queue), [Solid Cache](https://github.com/rails/solid_cache).
 
@@ -14,49 +14,55 @@ For compatible browsers it tries to demonstrate some of the possibilities of [Pa
 
 This project is open source, and contributions are greatly appreciated. One of the most direct ways to contribute at this time is by adding more content.
 
-We also have a page on the deployed site that has up-to-date information with the remaining known TODOs. Check out the ["Getting Started: Ways to Contribute" page on RubyVideo.dev](https://www.rubyvideo.dev/contributions) and feel free to start working on any of the remaining TODOs. Any help is greatly appreciated.
+We also have a page on the deployed site that has up-to-date information with the remaining known TODOs. Check out the ["Getting Started: Ways to Contribute" page on RubyEvents.org](https://www.rubyevents.org/contributions) and feel free to start working on any of the remaining TODOs. Any help is greatly appreciated.
 
-For more information on contributing conference data, please visit [this page](/docs/contributing.md).
+For more information on contributing:
+
+- Conference data: [Contributing Guide](/CONTRIBUTING.md)
+- Visual assets (logos, banners, etc.): [Adding Visual Assets Guide](/docs/ADDING_VISUAL_ASSETS.md)
+- Sponsor information: [Adding Sponsors Guide](/docs/ADDING_SPONSORS.md)
+
+You can view all event assets and their status at: https://rubyevents.org/pages/assets
 
 ## Getting Started
 
 We have tried to make the setup process as simple as possible so that in a few commands you can have the project with real data running locally.
 
+### Devcontainers
+
+In addition to the local development flow described below, we support [devcontainers](https://containers.dev).
+If you open this project in VS Code and you have the [dev containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) installed, it will prompt you and ask if you want to reopen in a dev contatiner.
+This will set up the dev environment for you in docker, and reopen your editor from within the context of the rails container, so you can run commands and work with the project as if it was local.
+All file changes will be present locally when you close the container.
+
+- Use `gh auth login` to auth with GitHub, so you can push commits from within the container.
+- Do not run `bin/setup`. It starts docker containers, and you're already in one.
+- After the container is set up, run `bin/dev` in the terminal to start the development server. The application will be forwarded to [localhost:3000](localhost:3000).
+- To run system tests, use `HEADLESS=true bin/rails test`. The HEADLESS=true environment variable ensures Chrome runs in headless mode, which is required in the container environment.
+
 ### Requirements
 
-- Ruby 3.3.6
-- Docker and docker-compose (for Meilisearch)
-- Node.js 20.11.0
-- Meilisearch 1.1
+- Ruby 3.4.7
+- Node.js 22.15.1
 
 ### Setup
 
-To prepare your database and seed content, run:
+To prepare your database and seed content via `docker-compose`, run:
 
 ```
+# Note: this requires docker daemon running on your machine.
 bin/setup
+```
+
+You can manually seed content by running:
+
+```
+bin/rails db:seed
 ```
 
 ### Environment Variables
 
 You can use the `.env.sample` file as a guide for the environment variables required for the project. However, there are currently no environment variables necessary for simple app exploration.
-
-### Meilisearch
-
-[Rubyvideo.dev](https://www.rubyvideo.dev) search uses Meilisearch as a search engine.
-
-To start the app, you need to have a Meilisearch service started. There is a Docker Compose available
-
-In a new terminal :
-
-```
-docker-compose up
-```
-
-Troubleshooting:
-
-- if no search results are returned, most probably the index is empty. You can reindex by running `Talk.reindex!` in the Rails console.
-- if they are no talks at all you need to run rails db:seed first
 
 ### Starting the Application
 
@@ -89,4 +95,4 @@ Thank you [Appsignal](https://appsignal.com/r/eeab047472) for providing the APM 
 
 ## License
 
-Rubyvideo.dev is open source and available under the MIT License. For more information, please see the [License](/LICENSE.md) file.
+RubyEvents.org is open source and available under the MIT License. For more information, please see the [License](/LICENSE.md) file.

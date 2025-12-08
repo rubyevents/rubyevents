@@ -1,9 +1,11 @@
-<footer>
+<footer class="hotwire-native:hidden">
   <div class="flex flex-col justify-center max-w-7xl mx-auto overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
     <div class="flex justify-center items-center flex-wrap gap-4 sm:gap-8" aria-label="Footer">
-      <%= link_to "Status", "https://status.rubyvideo.dev/", target: "_blank", class: "link" %>
-      <%= link_to "Open analytics", analytics_dashboards_path, class: "link" %>
+      <%= link_to "About", about_path, class: "link" %>
       <%= link_to "Uses", uses_path, class: "link" %>
+      <%= link_to "Event Assets", pages_assets_path, class: "link" %>
+      <%= link_to "Open analytics", analytics_dashboards_path, class: "link" %>
+      <%= link_to "Status", "https://status.rubyvideo.dev/", target: "_blank", class: "link" %>
     </div>
     <p class="mt-6 text-center text-neutral inline leading-relaxed">
       <%= footer_credits %>

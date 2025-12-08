@@ -1,138 +1,158 @@
 ---
 # Schedule: http://goruco.github.io/news/2013/agenda/
 
-- title: Asynchronous Service Oriented Design
-  raw_title: GoRuCo 2013 - Asynchronous Service Oriented Design by John Pignata
+- id: "john-pignata-goruco-2013"
+  title: "Asynchronous Service Oriented Design"
+  raw_title: "GoRuCo 2013 - Asynchronous Service Oriented Design by John Pignata"
   speakers:
     - John Pignata
-  event_name: GORUCO 2013
-  published_at: "2013-06-08"
+  event_name: "GORUCO 2013"
+  date: "2013-06-08"
+  published_at: "2013-07-02"
   description: |-
     Your monolithic application is getting unwieldy. Concerns are entangled, response time is getting sluggish, and changing anything in production requires deploying your entire system. Teams facing this challenge often have an "Introduce Services" chore in their backlog that inevitably sinks to the bottom of the list. Despite the realization that your monolithic application will sink under its own weight, you fear the inherent operational complexities of a service oriented system.
     The complexity of operating services results from the reality that your system will be only as strong as the weakest dependent service. Synchronous service requests require a round-trip request and response cycle in real-time. Your system's response time now might be only as fast as your slowest service and its uptime might be only as high as your weakest service. This potential brittleness is a high barrier to entry.
     The boundaries of our potential services are defined by their communication patterns. One path forward toward service oriented design is to first target the components of your system that communicate asynchronously. These interactions do not require a roundtrip response in real-time and instead rely on incoming messages. First focusing on services that can be addressed through delayed messages will allow us to begin to carve up our application while ensuring the operational integrity of our system.
     In this talk we'll look at using message passing patterns when designing our service oriented systems. We'll dig into an evolving feature from being some code sprinkled throughout the app folder in our Rails application to a standalone system that's independently scalable, testable, and deployable. We'll investigate the tactics we use to slice up our monolithic application, the operations and monitoring concerns it introduces, and look at several different messaging tools and protocols along the way.
 
-  video_provider: youtube
-  video_id: n8QUki5jhAM
+  video_provider: "youtube"
+  video_id: "n8QUki5jhAM"
 
-- title: To Know A Garbage Collector
-  raw_title: GoRuCo 2013 - To Know A Garbage Collector by Mike Bernstein
+- id: "mike-bernstein-goruco-2013"
+  title: "To Know A Garbage Collector"
+  raw_title: "GoRuCo 2013 - To Know A Garbage Collector by Mike Bernstein"
   speakers:
     - Mike Bernstein
-  event_name: GORUCO 2013
-  published_at: "2013-06-08"
+  event_name: "GORUCO 2013"
+  date: "2013-06-08"
+  published_at: "2013-07-02"
   description: |-
     It started as an obsession with making the web application used at my day job faster, and ended with trying to implement new Garbage Collection algorithms in a notoriously insane codebase. Garbage collection is an epic hack and a triumphant abstraction that supports various programming paradigms. As hardware and software changes, Garbage Collection's role also changes but remains equally important. I'll discuss my experiments with MRI Ruby, my investigations into other languages and the influence of their GC implementations, the history of the subject, and more.
 
-  video_provider: youtube
-  video_id: t8dj56h2gbg
+  video_provider: "youtube"
+  video_id: "t8dj56h2gbg"
 
 # Morning break
 
-- title: "Microtalk: Take a picture, it'll last longer"
+- id: "jd-harrington-goruco-2013"
+  title: "Microtalk: Take a picture, it'll last longer"
   raw_title: "GoRuCo 2013 - Microtalk: Take a picture, it'll last longer by JD Harrington"
   speakers:
     - JD Harrington
-  event_name: GORUCO 2013
-  published_at: "2013-06-08"
+  event_name: "GORUCO 2013"
+  date: "2013-06-08"
+  published_at: "2013-07-02"
   description: |-
     Cheap code branches permeate our daily workflow, but the code we write is only half the story. Introducing data model changes into production can challenge developers and ops people alike, but how do we deal with these issues in our experimental phase?
     In this talk, we'll discuss using features provided by modern filesystems like ZFS & Btrfs to branch databases along with code, letting developers experiment and ops people model complex environments, all from the comfort of our laptops.
 
-  video_provider: youtube
-  video_id: K66r3yZd2_I
+  video_provider: "youtube"
+  video_id: "K66r3yZd2_I"
 
-- title: "Microtalk: Motion in the Middle - RubyMotion as a Gateway to iOS Development"
+- id: "matthew-salerno-goruco-2013"
+  title: "Microtalk: Motion in the Middle - RubyMotion as a Gateway to iOS Development"
   raw_title: "GoRuCo 2013 - Microtalk: Motion in the Middle - RubyMotion as a Gateway to iOS development"
   speakers:
     - Matthew Salerno
-  event_name: GORUCO 2013
-  published_at: "2013-06-08"
+  event_name: "GORUCO 2013"
+  date: "2013-06-08"
+  published_at: "2013-07-03"
   description: |-
     By Matt Salerno
 
     In the past year or so, RubyMotion (RM) has gained its share of both adherents and skeptics. Some criticize RM for being too far removed from the underlying Cocoa frameworks, while others claim the toolchain isn't "Ruby" enough. While there is certainly merit to these conflicting objections, it is because of these supposed flaws, and not in spite of them, that RubyMotion is an excellent tool for producing iOS apps. By leveraging both the power of the Objective-C frameworks and the speed and expressiveness of Ruby (not to mention opening up the iOS ecosystem to the historically prolific open source Ruby community), RM has the potential to greatly expand the iOS developer base and change the mobile landscape for the better. In his talk, "Motion in the Middle," Matthew will discuss the ways in which RubyMotion enables elegant, Ruby-esque design while exposing enough of the iOS/Cocoa frameworks to allow for wide-ranging and highly extendable applications.
 
-  video_provider: youtube
-  video_id: MliQDCrTsNU
+  video_provider: "youtube"
+  video_id: "MliQDCrTsNU"
 
-- title: "Microtalk: Hacking the Academic Experience"
+- id: "emily-stolfo-goruco-2013"
+  title: "Microtalk: Hacking the Academic Experience"
   raw_title: "GoRuCo 2013 - Microtalk: Hacking the Academic Experience by Emily Stolfo"
   speakers:
     - Emily Stolfo
-  event_name: GORUCO 2013
-  published_at: "2013-06-08"
+  event_name: "GORUCO 2013"
+  date: "2013-06-08"
+  published_at: "2013-07-03"
   description: |-
     When I was asked to teach Ruby on Rails at Columbia University I observed that a significant number of the skills required to become a successful professional in the industry are acquired on the job and aren't being taught in school. Many of us professionals thrive on open source software and on sharing code, but academia is not always teaching this type of resourcefulness to students.
     This presentation will cover lessons learned from the experience teaching in my alma mater's CS program, how I developed a hacker-centric curriculum, and how we as hackers can fix this.
 
-  video_provider: youtube
-  video_id: wFlOhIWflRo
+  video_provider: "youtube"
+  video_id: "wFlOhIWflRo"
 
-- title: "Microtalk: Working with Rubyists"
+- id: "aaron-quint-goruco-2013"
+  title: "Microtalk: Working with Rubyists"
   raw_title: "GoRuCo 2013 Microtalk: Working with Rubyists by Aaron Quint"
   speakers:
     - Aaron Quint
-  event_name: GORUCO 2013
-  published_at: "2013-06-08"
+  event_name: "GORUCO 2013"
+  date: "2013-06-08"
+  published_at: "2013-07-03"
   description: |-
     Welcome to the trials and tribulations of managing a Ruby team. Let me introduce you to the characters, the challenges, the high stakes rat race. I'll share as fast as possible, what I've learned and what I failed at and why management shouldnt be an evil word.
 
-  video_provider: youtube
-  video_id: GPGm5PNzNIA
+  video_provider: "youtube"
+  video_id: "GPGm5PNzNIA"
 
 # Lunch
 
-- title: Putting off Persistence
-  raw_title: GoRuCo 2013 - Putting off Persistence by Lauren Voswinkel
+- id: "lauren-voswinkel-goruco-2013"
+  title: "Putting off Persistence"
+  raw_title: "GoRuCo 2013 - Putting off Persistence by Lauren Voswinkel"
   speakers:
     - Lauren Voswinkel
-  event_name: GORUCO 2013
-  published_at: "2013-06-08"
+  event_name: "GORUCO 2013"
+  date: "2013-06-08"
+  published_at: "2013-07-03"
   description: |-
     In Rails, we have a beautiful framework that can take us from a blank slate to a fully-functional app in little time. However, doing things "The Rails Way" has a lot of implicit dependencies, including persistence. Are you really equipped to make one of the largest decisions about your app before any of your code has even been written?
     By putting this decision off you can get a feel for your domain before ever committing anything to a db schema. This means fewer migrations and fewer db-related hacks. Also, these practices encourage encapsulation and interchangeability, which means you get the ability to choose which datastore is best for you. Not just on an application level, but on a per model level as well!
     During the talk we'll be walking through simple examples at different points in application lifecycle. These snapshots will address the biggest pain points of a persistence free process and leave you in a position to put off persistence in your own app development!
 
-  video_provider: youtube
-  video_id: Bjh_p-fBb9A
+  video_provider: "youtube"
+  video_id: "Bjh_p-fBb9A"
 
-- title: Krypt. Semper Pi.
-  raw_title: GoRuCo 2013 - Krypt. Semper Pi. by Martin Bosslet
+- id: "martin-bosslet-goruco-2013"
+  title: "Krypt. Semper Pi."
+  raw_title: "GoRuCo 2013 - Krypt. Semper Pi. by Martin Bosslet"
   speakers:
     - Martin Bosslet
-  event_name: GORUCO 2013
-  published_at: "2013-06-08"
+  event_name: "GORUCO 2013"
+  date: "2013-06-08"
+  published_at: "2013-07-03"
   description: |-
     Many people don't like Cryptography. Whenever he falls out of a bar, he carries this strong odor of ivory-towering, bikeshedding and plain, outright arrogance. He seems to be a loner and a smartass, rude, and it's hard to follow his boring, lengthy explanations. But once you get to know him better, it actually turns out that he's really a nice guy. Sure, a little bit paranoid, but his intentions are pure and just. He'll probably never be your buddy on Facebook ('cause he likely won't set up an account in the first place), but over time you will realize that it can be quite pleasant having him around.
     Krypt is the tool that tames him, and krypt is the tool that translates his sentences into plain, understandable Ruby. Gone are the times when you just couldn't figure out what parameters to use in order to please him, gone are the times when he would take your passwords and not stow them away safely because yet again he didn't fully understand what you were asking him to do. OK, this metaphor thing is getting a little old now. krypt makes using crypto fun and easy, and it works on all Rubies on all platforms (yep, Windows, too) - out of the box, no restrictions. It is about diversity - it allows you to choose from different providers that are best-suited for the particular task at hand.
     You'll get a whirlwind tour of how krypt is different than other crypto libraries and why. You'll find out about the finer pieces of its inner workings and you might take home a few tricks that evolved while developing the native extensions that sit at the very heart of krypt. With its recent integration into JRuby, you might already be using krypt with JRuby right now without even knowing. Learn about the details and how krypt is used to simulate OpenSSL features that were not available in JRuby before. Find out more about how it can help making Ruby a safer place. krypt tries to ultimately replace the OpenSSL extension in the Ruby standard library, and with our combined effort we could actually steer the story of Ruby cryptography towards a happy ending.
     Find out how!
 
-  video_provider: youtube
-  video_id: p7ap-GvnXYs
+  video_provider: "youtube"
+  video_id: "p7ap-GvnXYs"
 
 # Afternoon break
 
-- title: Deathmatch Bundler vs Rubygems.org
-  raw_title: GoRuCo 2013 - Deathmatch Bundler vs Rubygems.org by Andre Arko
+- id: "andre-arko-goruco-2013"
+  title: "Deathmatch Bundler vs Rubygems.org"
+  raw_title: "GoRuCo 2013 - Deathmatch Bundler vs Rubygems.org by Andre Arko"
   speakers:
     - Andre Arko
-  event_name: GORUCO 2013
-  published_at: "2013-06-08"
+  event_name: "GORUCO 2013"
+  date: "2013-06-08"
+  published_at: "2013-07-03"
   description: |-
     The story of the quest to make bundle install faster; in which Rubyists around the world inadvertently DDoS rubygems.org, witness its ignominious death, and vow to rebuild it from the ashes stronger than it was before. Then, a tour of the changes; why is Redis so much slower than Postgres? Marvel at the gorgeous metrics and graphs used to measure and optimize; gasp in delight as we track, live, exactly how many Heroku dynos are needed. Finally, a happy ending: today, the server responds to requests TWO ORDERS OF MAGNITUDE faster than it did before.
 
-  video_provider: youtube
-  video_id: 4_TqAMWbzfw
+  video_provider: "youtube"
+  video_id: "4_TqAMWbzfw"
 
-- title: "Microtalk: Building a Theme Engine w/ Ruby Mustache"
+- id: "kevin-sherus-goruco-2013"
+  title: "Microtalk: Building a Theme Engine w/ Ruby Mustache"
   raw_title: "GoRuCo 2013 - Microtalk: Building a Theme Engine w/ Ruby Mustache"
   speakers:
     - Kevin Sherus
-  event_name: GORUCO 2013
-  published_at: "2013-06-08"
+  event_name: "GORUCO 2013"
+  date: "2013-06-08"
+  published_at: "2013-07-03"
   description: |-
     By Kevin Sherus
 
@@ -140,15 +160,17 @@
     VHX themes are a blend of HTML, CSS, JavaScript and Mustache templates that are parsed by both Ruby and JavaScript. On the Ruby side, our theme engine can take advantage of server-side rendering, caching, and testability; with the JavaScript implementation we can add client-side rendering, live previewing, and enable an offline development environment for theme designers.
     We'll show off the code involved in VHX's theme engine, advanced code editor (with live previewing through the HTML5 postMessage API), a master/child inheritance system that allows themes to be forked, and piecing it all together in a beautiful, easy-to-use interface.
 
-  video_provider: youtube
-  video_id: Sh3hrETMPj8
+  video_provider: "youtube"
+  video_id: "Sh3hrETMPj8"
 
-- title: "Microtalk: A House of Cards - The Perils of Maintaining a 7-Year-Old Codebase"
-  raw_title: GoRuCo 2013 - Microtalk:A House of Cards - The Perils of Maintaining a 7-Year-Old Codebase
+- id: "julie-gill-goruco-2013"
+  title: "Microtalk: A House of Cards - The Perils of Maintaining a 7-Year-Old Codebase"
+  raw_title: "GoRuCo 2013 - Microtalk:A House of Cards - The Perils of Maintaining a 7-Year-Old Codebase"
   speakers:
     - Julie Gill
-  event_name: GORUCO 2013
-  published_at: "2013-06-08"
+  event_name: "GORUCO 2013"
+  date: "2013-06-08"
+  published_at: "2013-07-03"
   description: |-
     By Julie Gill
 
@@ -163,15 +185,17 @@
     day when you will break everything. The audience will hear from a developer who
     works with old code every day and get tips to make their future selves and successors
     less confused, more productive, and less unintentionally destructive.
-  video_provider: youtube
-  video_id: A56vxCYLpk4
+  video_provider: "youtube"
+  video_id: "A56vxCYLpk4"
 
-- title: "Microtalk: Nokogiri - History and Future"
+- id: "mike-dalessio-goruco-2013"
+  title: "Microtalk: Nokogiri - History and Future"
   raw_title: "GoRuCo 2013 - Microtalk: Nokogiri - History and Future by Mike Dalessio"
   speakers:
     - Mike Dalessio
-  event_name: GORUCO 2013
-  published_at: "2013-06-08"
+  event_name: "GORUCO 2013"
+  date: "2013-06-08"
+  published_at: "2013-07-03"
   description: |-
     Over the past few years, Nokogiri has slowly eclipsed older XML parsing libraries to garner nearly 10 million downloads from rubygems.org.
     But why another XML parsing library? Isn't it boring? And what does "nokogiri" mean in Japanese, anyway?
@@ -184,30 +208,34 @@
     Installation issues, and what we're doing to help
     Feature roadmap
 
-  video_provider: youtube
-  video_id: qkvEjZ-mGQA
+  video_provider: "youtube"
+  video_id: "qkvEjZ-mGQA"
 
-- title: "Microtalk: Usability Primer in 10 Minutes Flat"
+- id: "steve-berry-goruco-2013"
+  title: "Microtalk: Usability Primer in 10 Minutes Flat"
   raw_title: "GoRuCo 2013 - Microtalk: Usability Primer in 10 Minutes Flat by Steve Berry"
   speakers:
     - Steve Berry
-  event_name: GORUCO 2013
-  published_at: "2013-06-08"
+  event_name: "GORUCO 2013"
+  date: "2013-06-08"
+  published_at: "2013-07-03"
   description: |-
     In this talk we will go over usability heuristics for building better web experiences.
 
-  video_provider: youtube
-  video_id: 7ml8t6uw8ho
+  video_provider: "youtube"
+  video_id: "7ml8t6uw8ho"
 
-- title: Functional Programming and Ruby
-  raw_title: GoRuCo 2013 - Functional Programming and Ruby by Pat Shaughnessy
+- id: "pat-shaughnessy-goruco-2013"
+  title: "Functional Programming and Ruby"
+  raw_title: "GoRuCo 2013 - Functional Programming and Ruby by Pat Shaughnessy"
   speakers:
     - Pat Shaughnessy
-  event_name: GORUCO 2013
-  published_at: "2013-06-08"
+  event_name: "GORUCO 2013"
+  date: "2013-06-08"
+  published_at: "2013-07-03"
   description: |-
     While Ruby is object oriented and imperative, it does have some features that allow for functional programming. In this talk we'll compare Haskell, a functional programming language, with Ruby while exploring these common functional patterns: higher order functions, lazy evaluation, and memoization.
     Along the way we'll explore how Ruby works internally, find out whether it's a true functional language, and zoom in to take a close look at Ruby 2.0's implementation of the new "Enumerator::Lazy" feature.
 
-  video_provider: youtube
-  video_id: 5ZjwEPupybw
+  video_provider: "youtube"
+  video_id: "5ZjwEPupybw"

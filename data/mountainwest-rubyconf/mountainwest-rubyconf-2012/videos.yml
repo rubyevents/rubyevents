@@ -4,168 +4,175 @@
 # TODO: conference website
 # TODO: schedule website
 
-- title: "Schemaless SQL - The Best of Both Worlds"
-  raw_title: Schemaless SQL - The Best of Both Worlds
+- id: "will-leinweber-mountainwest-rubyconf-2012"
+  title: "Schemaless SQL - The Best of Both Worlds"
+  raw_title: "Schemaless SQL - The Best of Both Worlds"
   speakers:
     - Will Leinweber
-  event_name: MountainWest RubyConf 2012
-  published_at: "2012-09-18"
+  event_name: "MountainWest RubyConf 2012"
+  date: "2012-09-18"
+  published_at: "2012-09-17"
   description: |-
     Schemaless database are a joy to use because they make it easy to iterate on your app, especially early on. The relational model isn't always the best fit for evolving and messy data in the real world. And let's be honest—it's painful to persist rich domain models across millions of little tables. However as your data model stabilizes, the lack of well-defined schemas becomes painful. On the other hand, relational databases are proven, robust, and powerful. How are we supposed to pick one or the other? Simple: pick both.
 
     Recent advances in Postgres allow for a new hybrid approach. The hstore datatype brings key/value pairs to Postgres, and PLV8 embeds the super-fast V8 JavaScript engine into Postgres. These in turn make Postgres the best document database in the world. This talk will explore when and how to take advantage of them, and how we use these techniques at Heroku.
 
-  video_provider: youtube
-  video_id: r4lE4bxMJmk
+  video_provider: "youtube"
+  video_id: "r4lE4bxMJmk"
 
-- title: Hacking Education
-  raw_title: Hacking Education by Bracken Mosbacker
+- id: "bracken-mosbacker-mountainwest-rubyconf-2012"
+  title: "Hacking Education"
+  raw_title: "Hacking Education by Bracken Mosbacker"
   speakers:
     - Bracken Mosbacker
-  event_name: MountainWest RubyConf 2012
-  published_at: "2012-09-18"
-  description: |-
+  event_name: "MountainWest RubyConf 2012"
+  date: "2012-09-18"
+  published_at: "2012-09-16"
+  description: ""
+  video_provider: "youtube"
+  video_id: "zJVZpDFjGVk"
 
-  video_provider: youtube
-  video_id: zJVZpDFjGVk
-
-- title: "UXDD (User Experience Driven Development): Build For Your Users, Not Your Tests"
+- id: "ted-omeara-mountainwest-rubyconf-2012"
+  title: "UXDD (User Experience Driven Development): Build For Your Users, Not Your Tests"
   raw_title: "UXDD (User Experience Driven Development): Build for your users, not your tests"
   speakers:
     - Ted O'Meara
-  event_name: MountainWest RubyConf 2012
-  published_at: "2012-09-18"
+  event_name: "MountainWest RubyConf 2012"
+  date: "2012-09-18"
+  published_at: "2012-09-15"
   description: |-
     All too often programmers get into a productive rhythm where they receive their requirements, write tests aligned to those requirements, and then look for the green and red. While this process is proven to be highly effective, it can lead to developers missing the mark, as they aim for functional completeness and not the polish that an end user requires.
 
     We should start proposing breakpoints for developers to step away from their automated tests, and play with the features they are working on. It's too easy for developers to get caught up in their process and forget about the end user experience. In this presentation you will learn several techniques for developing for the user experience, even when you're buried in code.
 
-  video_provider: youtube
-  video_id: JaJdNh9MeG0
+  video_provider: "youtube"
+  video_id: "JaJdNh9MeG0"
 
-- title: Devops for Developers - Why You Want To Run Your Own Site, And How
-  raw_title: Devops for Developers - Why you want to run your own site, and how by Matthew Kocher
+- id: "matthew-kocher-mountainwest-rubyconf-2012"
+  title: "Devops for Developers - Why You Want To Run Your Own Site, And How"
+  raw_title: "Devops for Developers - Why you want to run your own site, and how by Matthew Kocher"
   speakers:
     - Matthew Kocher
-  event_name: MountainWest RubyConf 2012
-  published_at: "2012-09-18"
+  event_name: "MountainWest RubyConf 2012"
+  date: "2012-09-18"
+  published_at: "2012-09-15"
   description: |-
     Devops is a buzzword, but in reduction it means putting the people who are responsible for new features in charge of getting them out there. At Pivotal Labs we work with 30 startups at a time, and have seen what works well and what makes developers cringe and slows down progress. I'd like to convince every developer to start running the sites they work on, embrace change throughout their infrastructure, and give some tips for how to do it along the way.
 
-  video_provider: youtube
-  video_id: KMZYow3clsU
+  video_provider: "youtube"
+  video_id: "KMZYow3clsU"
 
-- title: "Does Pair Programming Have to Suck?"
-  raw_title: Does Pair Programming Have to Suck?
+- id: "angela-harms-mountainwest-rubyconf-2012"
+  title: "Does Pair Programming Have to Suck?"
+  raw_title: "Does Pair Programming Have to Suck?"
   speakers:
     - Angela Harms
-  event_name: MountainWest RubyConf 2012
-  published_at: "2012-09-18"
-  description:
-    On some teams pairing is the norm; developers enjoy the collaboration
-    & experience enhanced productivity. Others, though, work on teams where pairing
-    is shunned, avoided, or just faked. Why do some craftsmen thrive with pairing
-    while others want nothing to do with it? Why does coach- enforced pairing turn
-    into something dry, distracted, imbalanced & ineffective? Effective pairing can
-    increase creativity, energy, speed & quality. What factors make that possible?
-    Learn how to take action on your team to put an end to soul-sucking, miserable,
-    fake pair programming, and begin teaching your team to collaborate effectively
-    on code.
-  video_provider: youtube
-  video_id: FLcfN9IBxyc
+  event_name: "MountainWest RubyConf 2012"
+  date: "2012-09-18"
+  published_at: "2012-09-15"
+  description: |-
+    On some teams pairing is the norm; developers enjoy the collaboration & experience enhanced productivity. Others, though, work on teams where pairing is shunned, avoided, or just faked. Why do some craftsmen thrive with pairing while others want nothing to do with it? Why does coach- enforced pairing turn into something dry, distracted, imbalanced & ineffective? Effective pairing can increase creativity, energy, speed & quality. What factors make that possible? Learn how to take action on your team to put an end to soul-sucking, miserable, fake pair programming, and begin teaching your team to collaborate effectively on code.
+  video_provider: "youtube"
+  video_id: "FLcfN9IBxyc"
 
-- title: "Frustration Driven Development"
-  raw_title: Frustration Driven Development By Evan D. Light
+- id: "evan-d-light-mountainwest-rubyconf-2012"
+  title: "Frustration Driven Development"
+  raw_title: "Frustration Driven Development By Evan D. Light"
   speakers:
     - Evan D. Light
-  event_name: MountainWest RubyConf 2012
-  published_at: "2012-09-18"
+  event_name: "MountainWest RubyConf 2012"
+  date: "2012-09-18"
+  published_at: "2012-09-13"
   description: |-
     Everyone draws inspiration and motivation from different sources.
 
     For most, it's often frustration.
 
     We make life decisions, define new features, or refactor code when we get too annoyed by current circumstances. This is where I admit that I have a low tolerance for frustration. Having been frustrated a great deal during my career, I'm going to discuss several anti-patterns that I've seen in code and how to use the Dark Side of the Force (frustration, anger, and rage) to escape from them.
-  video_provider: youtube
-  video_id: 9oCjrlKXf4U
+  video_provider: "youtube"
+  video_id: "9oCjrlKXf4U"
 
-- title: "Continuous Deployment"
-  raw_title: Continuous Deployment
+- id: "matt-white-mountainwest-rubyconf-2012"
+  title: "Continuous Deployment"
+  raw_title: "Continuous Deployment"
   speakers:
     - Matt White
-  event_name: MountainWest RubyConf 2012
-  published_at: "2012-09-18"
-  description:
-    When you write code, how long is it before that code makes it to production?
-    Days? Weeks? Months? LONGER?!?! Deploying code to production multiple times a
-    day as automatically as possible will make all your dreams of green grassy meadows
-    filled with rainbows and prancing unicorns and ponies come true. Or at least one
-    or two of them.
-  video_provider: youtube
-  video_id: aYclrqk3gnU
+  event_name: "MountainWest RubyConf 2012"
+  date: "2012-09-18"
+  published_at: "2012-09-13"
+  description: |-
+    When you write code, how long is it before that code makes it to production? Days? Weeks? Months? LONGER?!?! Deploying code to production multiple times a day as automatically as possible will make all your dreams of green grassy meadows filled with rainbows and prancing unicorns and ponies come true. Or at least one or two of them.
+  video_provider: "youtube"
+  video_id: "aYclrqk3gnU"
 
-- title: "MiniTest: Write Awesome Tests"
+- id: "michael-ji-jackson-mountainwest-rubyconf-2012"
+  title: "MiniTest: Write Awesome Tests"
   raw_title: "MiniTest: Write Awesome Tests by Michael J.I. Jackson"
   speakers:
     - Michael J.I. Jackson
-  event_name: MountainWest RubyConf 2012
+  event_name: "MountainWest RubyConf 2012"
+  date: "2012-08-16"
   published_at: "2012-08-16"
-  description: |-
+  description: ""
+  video_provider: "youtube"
+  video_id: "6hBghQ-Ic_o"
 
-  video_provider: youtube
-  video_id: 6hBghQ-Ic_o
-
-- title: What's Wrong With Ruby's Object Model (And Why That's a Good Thing)
-  raw_title: What's Wrong With Ruby's Object Model (And Why That's a Good Thing) by David Brady
+- id: "david-brady-mountainwest-rubyconf-2012"
+  title: "What's Wrong With Ruby's Object Model (And Why That's a Good Thing)"
+  raw_title: "What's Wrong With Ruby's Object Model (And Why That's a Good Thing) by David Brady"
   speakers:
     - David Brady
-  event_name: MountainWest RubyConf 2012
+  event_name: "MountainWest RubyConf 2012"
+  date: "2012-08-16"
   published_at: "2012-08-16"
-  description: |-
+  description: ""
+  video_provider: "youtube"
+  video_id: "LmtcDFnOYj4"
 
-  video_provider: youtube
-  video_id: LmtcDFnOYj4
-
-- title: Keeping Your Code Strong
-  raw_title: Keeping your code strong by Jack Danger Canty
+- id: "jack-danger-canty-mountainwest-rubyconf-2012"
+  title: "Keeping Your Code Strong"
+  raw_title: "Keeping your code strong by Jack Danger Canty"
   speakers:
     - Jack Danger Canty
-  event_name: MountainWest RubyConf 2012
+  event_name: "MountainWest RubyConf 2012"
+  date: "2012-08-16"
   published_at: "2012-08-16"
-  description: |-
+  description: ""
+  video_provider: "youtube"
+  video_id: "7UP5aa4Zbmw"
 
-  video_provider: youtube
-  video_id: 7UP5aa4Zbmw
-
-- title: Business Intelligence with Ruby
-  raw_title: Business Intelligence with Ruby by Xavier Shay
+- id: "xavier-shay-mountainwest-rubyconf-2012"
+  title: "Business Intelligence with Ruby"
+  raw_title: "Business Intelligence with Ruby by Xavier Shay"
   speakers:
     - Xavier Shay
-  event_name: MountainWest RubyConf 2012
+  event_name: "MountainWest RubyConf 2012"
+  date: "2012-08-16"
   published_at: "2012-08-16"
-  description: |-
+  description: ""
+  video_provider: "youtube"
+  video_id: "iOxKY32pxB8"
 
-  video_provider: youtube
-  video_id: iOxKY32pxB8
-
-- title: Rack Middleware as a General Purpose Abstraction
-  raw_title: Rack Middleware as a General Purpose Abstraction by Mitchell Hashimoto
+- id: "mitchell-hashimoto-mountainwest-rubyconf-2012"
+  title: "Rack Middleware as a General Purpose Abstraction"
+  raw_title: "Rack Middleware as a General Purpose Abstraction by Mitchell Hashimoto"
   speakers:
     - Mitchell Hashimoto
-  event_name: MountainWest RubyConf 2012
-  published_at: "2012-08-16"
-  description: |-
+  event_name: "MountainWest RubyConf 2012"
+  date: "2012-08-16"
+  published_at: "2012-08-15"
+  description: ""
+  video_provider: "youtube"
+  video_id: "i6pyhq3ZvyI"
 
-  video_provider: youtube
-  video_id: i6pyhq3ZvyI
-
-- title: Prying Into Your App's Private Life
-  raw_title: Prying into your app's private life by Corey Woodcox
+- id: "corey-woodcox-mountainwest-rubyconf-2012"
+  title: "Prying Into Your App's Private Life"
+  raw_title: "Prying into your app's private life by Corey Woodcox"
   speakers:
     - Corey Woodcox
-  event_name: MountainWest RubyConf 2012
-  published_at: "2012-08-16"
-  description: |-
-
-  video_provider: youtube
-  video_id: 7-9oyOePKPE
+  event_name: "MountainWest RubyConf 2012"
+  date: "2012-08-16"
+  published_at: "2012-08-15"
+  description: ""
+  video_provider: "youtube"
+  video_id: "7-9oyOePKPE"

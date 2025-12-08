@@ -2,6 +2,7 @@
 # == Schema Information
 #
 # Table name: ahoy_visits
+# Database name: primary
 #
 #  id               :integer          not null, primary key
 #  app_version      :string
@@ -26,7 +27,7 @@
 #  utm_medium       :string
 #  utm_source       :string
 #  utm_term         :string
-#  visit_token      :string           indexed
+#  visit_token      :string           uniquely indexed
 #  visitor_token    :string
 #  user_id          :integer          indexed
 #
@@ -40,6 +41,7 @@ class Ahoy::Visit < ApplicationRecord
   self.table_name = "ahoy_visits"
 
   include Rollupable
+
   rollup_default_column :started_at
 
   has_many :events, class_name: "Ahoy::Event", dependent: :destroy

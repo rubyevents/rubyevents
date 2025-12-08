@@ -12,5 +12,10 @@
 
 # These inflection rules are supported but not enabled by default:
 ActiveSupport::Inflector.inflections(:en) do |inflect|
+  inflect.acronym "CFP"
   inflect.acronym "GitHub"
+  inflect.acronym "IOS"
+  inflect.acronym "LLM"
+  inflect.acronym "SQLite"
+  inflect.acronym "YouTube"
 end

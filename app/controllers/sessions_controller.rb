@@ -1,40 +1,30 @@
 class SessionsController < ApplicationController
   include RemoteModal
+
   respond_with_remote_modal only: [:new]
 
   skip_before_action :authenticate_user!, only: %i[new create]
 
-  before_action :set_session, only: :destroy
-
-  def index
-    @sessions = Current.user.sessions.order(created_at: :desc)
-  end
-
   def new
     @user = User.new
+    # Add connect_id or connect_to to state if present
+    @state = "connect_id:#{params[:connect_id]}" if params[:connect_id].present?
+    @state = "connect_to:#{params[:connect_to]}" if params[:connect_to].present?
   end
 
   def create
-    user = User.find_by(email: params[:email])
+    user = User.authenticate_by(params.permit(:email, :password))
 
-    if user&.authenticate(params[:password])
-      @session = user.sessions.create!
-      cookies.signed.permanent[:session_token] = {value: @session.id, httponly: true}
-
+    if user
+      sign_in user
       redirect_to root_path, notice: "Signed in successfully"
     else
-      redirect_to sign_in_path(email_hint: params[:email]), alert: "That email or password is incorrect"
+      redirect_to new_session_path(email_hint: params[:email]), alert: "That email or password is incorrect"
     end
   end
 
   def destroy
-    @session.destroy
-    redirect_to(root_path, notice: "That session has been logged out")
-  end
-
-  private
-
-  def set_session
-    @session = Current.user.sessions.find(params[:id])
+    Current.user.sessions.destroy_by(id: params[:id])
+    redirect_to root_path, notice: "That session has been logged out"
   end
 end

@@ -7,7 +7,7 @@
     <div class="flex items-start flex-wrap gap-8 sm:flex-nowrap w-full">
       <div class="w-full">
         <div id="schedule" class="min-w-full">
-          <div id="schedule-navigation" class="flex gap-4 justify-center">
+          <div id="schedule-navigation" class="flex gap-4 justify-center flex-wrap">
             <% days.each_with_index do |day, index| %>
               <% date_string = Date.parse(day.dig("date")).strftime("%A (%b %d, %Y)") %>
               <% kind = (day == current_day) ? :primary : :none %>
