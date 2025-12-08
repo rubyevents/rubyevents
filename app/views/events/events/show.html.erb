@@ -32,8 +32,7 @@
           </div>
           <div
             class="absolute inset-0 z-0 h-full w-full bg-[--featured-background] text-[--featured-color]"
-            style="--featured-background: <%= @talk.event.static_metadata.featured_background %>; --featured-color: <%= @talk.event.static_metadata.featured_color %>; transform-origin: 0% 0%; transform: none; opacity: 1;"
-          >
+            style="--featured-background: <%= @talk.event.static_metadata.featured_background %>; --featured-color: <%= @talk.event.static_metadata.featured_color %>; transform-origin: 0% 0%; transform: none; opacity: 1;">
             <div class="flex items-center justify-center relative aspect-image-mobile max-h-full w-full overflow-hidden sm:aspect-image-tablet md:aspect-image-desktop lg:aspect-image-desktop-lg xl:aspect-image-desktop-xl 2xl:aspect-image-desktop-2xl h-full ">
               <%= image_tag @talk.event.featured_image_path, class: "w-1/2" %>
             </div>
