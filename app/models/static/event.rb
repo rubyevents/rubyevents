@@ -97,7 +97,7 @@ module Static
     end
 
     def event_record
-      @event_record ||= ::Event.find_by(slug: slug)
+      @event_record ||= ::Event.find_by(slug: slug) || import!
     end
 
     def start_date
@@ -174,6 +174,7 @@ module Static
       import_cfps!(event)
       import_videos!(event)
       import_sponsors!(event)
+      import_involvements!(event)
 
       event
     end
@@ -264,6 +265,66 @@ module Static
 
             event.sponsors.find_or_create_by!(organization: s, event: event).update!(tier: tier["name"], badge: sponsor["badge"])
           end
+        end
+      end
+    end
+
+    def involvements_file_path
+      Rails.root.join("data", series_slug, slug, "involvements.yml")
+    end
+
+    def involvements_file?
+      involvements_file_path.exist?
+    end
+
+    def import_involvements!(event)
+      return unless involvements_file?
+
+      event.event_involvements.destroy_all
+
+      involvements = YAML.load_file(involvements_file_path)
+
+      involvements.each do |involvement_data|
+        role = involvement_data["name"]
+
+        Array.wrap(involvement_data["users"]).each_with_index do |user_name, index|
+          next if user_name.blank?
+
+          user = ::User.find_by_name_or_alias(user_name)
+
+          unless user
+            puts "Creating user: #{user_name}" unless Rails.env.test?
+            user = ::User.create!(name: user_name)
+          end
+
+          involvement = ::EventInvolvement.find_or_initialize_by(
+            event: event,
+            involvementable: user,
+            role: role
+          )
+          involvement.position = index
+          involvement.save!
+        end
+
+        user_count = involvement_data["users"]&.compact&.size || 0
+
+        Array.wrap(involvement_data["organisations"]).each_with_index do |org_name, index|
+          next if org_name.blank?
+
+          organization = ::Organization.find_by(name: org_name) || ::Organization.find_by(slug: org_name.parameterize)
+
+          unless organization
+            puts "Creating organization: #{org_name}" unless Rails.env.test?
+            organization = ::Organization.create!(name: org_name)
+          end
+
+          involvement = ::EventInvolvement.find_or_initialize_by(
+            event: event,
+            involvementable: organization,
+            role: role
+          )
+          involvement.position = user_count + index
+          involvement.save!
         end
       end
     end
