@@ -36,7 +36,7 @@ module RubyEvents
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
     #
-    config.autoload_lib(ignore: %w[assets tasks protobuf])
+    config.autoload_lib(ignore: %w[assets tasks protobuf guard])
 
     config.active_job.queue_adapter = :solid_queue
     config.solid_queue.connects_to = {database: {writing: :queue}}

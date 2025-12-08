@@ -10,6 +10,8 @@ VCR.configure do |c|
   c.hook_into :webmock
   c.ignore_localhost = true
   c.ignore_hosts "chromedriver.storage.googleapis.com", "googlechromelabs.github.io", "edgedl.me.gvt1.com"
+  c.filter_sensitive_data("<YOUTUBE_API_KEY>") { ENV["YOUTUBE_API_KEY"] }
+  c.filter_sensitive_data("<GITHUB_TOKEN>") { ENV["RUBYVIDEO_GITHUB_TOKEN"] }
   c.filter_sensitive_data("<OPENAI_API_KEY>") { ENV["OPENAI_ACCESS_TOKEN"] }
   c.filter_sensitive_data("<OPENAI_ORGANIZATION_ID>") { ENV["OPENAI_ORGANIZATION_ID"] }
 end

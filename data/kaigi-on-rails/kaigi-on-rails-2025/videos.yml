@@ -1,22 +1,716 @@
 # Website: https://kaigionrails.org/2025/
 # Videos: -
 ---
-- title: "Keynote by Kyosuke MOROHASHI"
+## Day 1 - 2025-09-26
+
+- title: "Keynote: dynamic!"
   speakers:
     - Kyosuke MOROHASHI
   event_name: "Kaigi on Rails 2025"
   date: "2025-09-26"
-  description: ""
+  published_at: "2025-11-25"
+  track: "Hall Red"
   language: "japanese"
-  video_provider: "scheduled"
-  video_id: "kyosuke-morohashi-kaigi-on-rails-2025"
+  video_provider: "youtube"
+  video_id: "5lrPgXlgYwM"
+  id: "moro-dynamic-kaigi-on-rails-2025"
+  slides_url: "https://speakerdeck.com/moro/dynamic"
+  description: ""
 
-- title: "Keynote by Samuel Williams"
+- title: "RailsのPostgreSQL 18対応"
+  speakers:
+    - Yasuo Honda
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-26"
+  published_at: "2025-11-25"
+  track: "Hall Red"
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "72jNwKNqG1o"
+  id: "yasuo-honda-kaigi-on-rails-2025"
+  description: |-
+    RailsはWebアプリケーションフレームワークとして、Active Recordやpg gemを通じてリレーショナルデータベースと密接に連携しています。
+    Rubyが年に1回リリースされるのと同様に、代表的なリレーショナルデータベースのひとつであるPostgreSQLも年に1回リリースされるため、
+    RailsではPostgreSQLの新機能や互換性の変更への対応が継続的に行われています。
+
+    本セッションでは、2025年にリリース予定のPostgreSQL 18対応に関するActive Recordとpg gemの変更について解説します。
+  slides_url: "https://speakerdeck.com/yahonda/railsnopostgresql-18dui-ying"
+
+- title: "高度なUI/UXこそHotwireで作ろう"
+  speakers:
+    - Naofumi Kagami
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-26"
+  published_at: "2025-11-25"
+  track: "Hall Blue"
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "B8u9iEEIpwo"
+  id: "naofumi-kagami-kaigi-on-rails-2025"
+  description: |-
+    簡単な画面ならHotwireで十分だけど、UI/UXが複雑なユーザ向け画面はReactが必要だと思っていませんか？
+
+    これは勘違いだと私は確信しています。
+
+    Hotwireは37signalsのBasecampやHeyで使われている他、日本の有名どころだとCookpadでも使用されています。ユーザ向けの複雑な画面において、Hotwireが十分に使えることはすでに立証済みです。
+
+    本セッションでは２つの角度からHotwireを深掘りします。
+
+    まずはEJSを使ってNext.js上でHotwireを動かし、同一UIを同一サーバ上でそれぞれ作成した上で、HotwireとNext.jsを直接比較します。意外かもしれませんが、実はHotwireの方が優れたUI/UXを作りやすいことをお見せし、その解説をします。
+
+    もう一つはHotwireの考え方の詳説です。
+    Hotwireを使えばJavaScriptを減らせると考えがちですが、高度なUI/UXを作るにはHotwire流のJavaScriptを理解する必要があります。本セッションではTurbo, Stimulusの責務を解説し、組み合わせ方を紹介します。加えて複雑なUI/UXを実現するために単一データフローやステートを活用したStimulus Controllerの設計方法をお見せします。最後にはステート管理ツール Zustandとの組み合わせ事例も紹介します。
+  slides_url: "https://speakerdeck.com/naofumi/uxkosohotwiredezuo-rou-kaigi-on-rails-2025"
+
+- title: "そのpreloadは必要？──見過ごされたpreloadが技術的負債として爆発した日"
+  speakers:
+    - Shuta Mugikura
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-26"
+  published_at: "2025-11-25"
+  track: "Hall Red"
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "Er27WWhhjFk"
+  id: "mugi-kaigi-on-rails-2025"
+  description: |-
+    ActiveRecordのpreloadはN+1対策の常套手段です。しかしその便利さの裏で、いつしか誰もが見直さなくなった事前読み込みは静かに負債となり、私たちのRailsアプリケーションを全社的な障害に追い込みました。
+    私が所属している会社のアプリケーションでは、とある1リクエストが450MB超のメモリを消費し、サーバーはOut Of Memoryで実行停止に。原因は、プロダクトの成長過程で「見過ごされてきた」過剰な事前読み込みでした。
+    本セッションでは、Railsアプリケーションをより多くのユーザにスケールさせる中で生じたこのような技術的負債に対し、なぜ気付けなかったのか、そしてそれにどのように戦っていったのかを実例を元にご紹介します。
+  slides_url: "https://speakerdeck.com/mugitti9/preload-memory-crash-fbece3e8-4fd7-48d8-abc0-6df528a05a2b"
+
+- title: "入門 FormObject"
+  speakers:
+    - Shu Oogawara
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-26"
+  published_at: "2025-11-25"
+  track: "Hall Blue"
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "9rGusPIx3C4"
+  id: "shu-oogawara-kaigi-on-rails-2025"
+  description: |-
+    FormObjectをどんなときに使うか、または使わないか、あなたは説明できますか？
+
+    FormObjectは"Rails Wayを延ばす方法"としてよく紹介されます。一方でその使いどきには複数のパターンがあるためシンプルな説明が難しく、いつ使うべきか混乱している初心者の方もいるのではないでしょうか。
+
+    この発表では、まずFormObjectのユースケースを整理します。そのうえでRails Wayのどんな点に限界があってFormObjectがどう解決しているかを示しながら「いつがFormObjectの使いどきか」を提示していきます。
+  slides_url: "https://speakerdeck.com/expajp/an-introduction-to-formobject"
+
+- title: "Railsアプリケーション開発者のためのブックガイド"
+  speakers:
+    - Masayoshi Takahashi
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-26"
+  published_at: "2025-11-25"
+  track: "Hall Red"
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "QmK8uMDRdGo"
+  id: "masayoshi-takahashi-kaigi-on-rails-2025"
+  description: |-
+    生成AIがRailsを含めたWeb開発についての詳しい情報を次々と吐き出してくれる現在、〈本〉を読む意味はどこにある（もっと言うと、まだ存在する）のでしょうか。
+    本発表ではRailsアプリケーションを日々開発されているみなさんが読まれると良さそうな書籍の紹介と合わせて、2025年現在における技術情報との付き合い方について改めて考えてみます。
+  slides_url: "https://speakerdeck.com/takahashim/a-guide-to-japanese-books-for-rails-application-developers"
+
+- title: "もう並列実行は怖くない"
+  speakers:
+    - katakyo
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-26"
+  published_at: "2025-11-25"
+  track: "Hall Blue"
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "51z4hPZXMdM"
+  id: "katakyo-kaigi-on-rails-2025"
+  description: |-
+    Ruby on Railsを使ったアプリケーションのサービス拡大により、大量データのバッチ処理をRakeタスクで書くという経験はみなさんにもあると思います。より高速化する上で並列処理というのはアプローチの一つとしてあると思いますが、 Rakeタスクの並列化で突如牙を剥くDBコネクションプール枯渇、そして気づかぬうちに忍び寄るデッドロックは多くの開発者を悩ませる根深い問題です。本セッションでは、取り扱う商品数が1000万点を超える弊社マイベストが実際に直面し、実際の案件、失敗例を元にActive Recordのコネクションプールとトランザクションの詳しい仕組みと、RAILS_MAX_THREADSやpoolサイズ、ロック取得順序がサービスにどのように影響するのかを説明します。ECS環境での具体的な設定例から、デッドロックを回避するコード戦略まで、試行錯誤とそこから得た実践的な知見やパラメータの設定方法など共有します。
+  slides_url: "https://speakerdeck.com/katakyo/moubing-lie-shi-xing-habu-kunai-konekusiyonku-ke-jie-xiao-notamenoshi-jian-de-ahuroti"
+
+- title: "全問正解率約3%: RubyKaigiで出題したやりがちな危険コード5選"
+  speakers:
+    - Yuta Nakashima
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-26"
+  published_at: "2025-11-25"
+  track: "Hall Red"
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "9G7wG3oArKM"
+  id: "yuta-nakashima-kaigi-on-rails-2025"
+  description: |-
+    Ruby on Railsは、ジュニアからシニアのエンジニアまで幅広く親しまれ、今日まで様々なコードが書かれています。
+    しかし、その「誰でも書きやすい」特性ゆえに、気づかぬうちに「バグ」「パフォーマンスリスク」「セキュリティリスク」を含むコードを書いてしまうことも少なくありません。
+
+    このセッションでは、実際の現場で遭遇した「バグ」「パフォーマンスリスク」「セキュリティリスク」につながる“やりがちな危険コード”を5つ厳選して紹介します。
+    特に、この内容と同じ問題を以前RubyKaigiのブースで出題し、実務に近いコードにも関わらず100名中全問正解がわずか3人という“正答率3%”だった問題の解説に相当します。
+
+    「なぜそれが危険なのか」「どう直せばいいのか」を、インシデントや失敗談を交えて分かりやすく解説します。
+
+    このセッションを聞けば、明日から“危険な落とし穴”を避けて、もっと安心・安全なRails開発ができるようになるはず！
+  slides_url: "https://speakerdeck.com/power3812/quan-wen-zheng-jie-lu-3-percent-rubykaigidechu-ti-sitayarigatina-wei-xian-kodo5xuan-kaigi-on-rais-2025"
+
+- title: "Web Componentsで実現する Hotwire"
+  speakers:
+    - Daichi KUDO
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-26"
+  published_at: "2025-11-25"
+  track: "Hall Blue"
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "nzpXMRd23y8"
+  id: "daichi-kudo-kaigi-on-rails-2025"
+  description: |-
+    Hotwire を使って開発したい。しかし現実には、フロントエンドフレームワークで構築された社内デザインシステムが既に存在しており、それらを使わずにゼロから作り直すには大きなコストがかかる。だから踏み切れない──そんな悩みを抱えるチームも多いのではないでしょうか。
+
+    本トークでは、Web 標準である Web Components を使い、Angular 製の UI コンポーネントを Rails + Hotwire のサービスに段階的に組み込む事例を紹介します。既存の資産を活かしつつ、Hotwire の開発もできる、いわば"いいとこ取り"の構成をどう実現したのか。Rails アプリケーションにおける Web Components の活用方法を共有します。
+  slides_url: "https://speakerdeck.com/da1chi/bridging-with-web-components"
+
+- title: "5 Years Fintech Rails Retrospective"
+  original_title: "5年間のFintech × Rails実践に学ぶ - 基本に忠実な運用で築く高信頼性システム"
+  speakers:
+    - Masato Ohba
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-26"
+  published_at: "2025-11-25"
+  track: "Hall Red"
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "JawbjKIhzoA"
+  id: "ohbarye-kaigi-on-rails-2025"
+  description: |-
+    金融サービスの開発といえば静的型付け言語による大規模エンタープライズアプリケーション...そんなイメージをお持ちの方も多いのではないでしょうか。しかし世界に目を向ければCoinbaseやStripeなど2010年代前半から急成長を遂げた金融サービスがRailsを採用しています。決済や残高管理を扱う金融サービスをRailsで5年間開発・運用した講演者の経験から言えるのは、特定の言語・フレームワークの利用ではなく"まっとうな運用"こそが求められる水準への近道だということです。
+
+    "まっとうな運用"とは監視・アラート・障害対応・パフォーマンス管理・ドキュメント化といった基本的な運用プラクティスを、妥協なく継続的に実践することです。本セッションでは1,000モデル超規模まで成長した金融サービスで実践してきた開発と運用の具体的手法を共有します。規制を考慮しつつ開発速度を維持するためのアーキテクチャやmodule設計といった「運用を見据えた開発上の工夫」を紹介し、そのうえで異常検知の仕組み・障害対応フロー・バッチドキュメンテーション・パフォーマンスモニタリング文化の醸成といった「運用面の工夫」を紹介します。
+
+    規制産業に従事する方々のみならず、Webサービスの品質向上や安定運用を目指すエンジニアが明日から使える実践的な知見と、サービスの将来を見据えた設計と運用の観点を提供します。
+  slides_url: "https://speakerdeck.com/ohbarye/5-years-fintech-rails-retrospective"
+
+- title: "あなたのWebサービスはAIに自動テストしてもらえる？"
+  speakers:
+    - Yusuke Iwaki
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-26"
+  published_at: "2025-11-25"
+  track: "Hall Blue"
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "cLV_vuqIZQE"
+  id: "yusuke-iwaki-kaigi-on-rails-2025"
+  description: |-
+    この1年で、生成AIが自然言語を解釈してブラウザを操作する、Browser UseやPlaywright MCPといった自動テストの仕組みが次々と登場しました。しかし、これらのツールは一体どのようにWebサイトを『見て』、私たちの指示を解釈しているのでしょうか？
+
+    本セッションでは、そのAIの『視点』の正体の1つであるアクセシビリティツリーに焦点を当てます。Playwright MCPのソースコードをベースに、自然言語の指示がどのように解釈され、どのUI要素が特定されるのか、その内部プロセスを見ていきます。また、実際にRailsのシステムテストで使用するCapybaraドライバを作って、Railsとのつなぎの部分についても解説していきます。
+
+    AI自動テストを単なる”魔法”で終わらせては面白くありません。エンジニアとしてその裏にある論理的な仕組みを理解し、生成AIがテストしやすいアプリケーションを自ら設計・実装するための基礎知識を身につけましょう。
+  slides_url: "https://speakerdeck.com/yusukeiwaki/anatanowebsabisuhaainizi-dong-tesutositemoraeru-akusesibiriteituridedu-mijie-ku-aino-shi-dian"
+
+- title: "2分台で1500examples完走！爆速CIを支える環境構築術"
+  speakers:
+    - Hayato OKUMOTO
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-26"
+  published_at: "2025-11-25"
+  track: "Hall Red"
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "j_KEXG5ncR8"
+  id: "hayato-okumoto-kaigi-on-rails-2025"
+  description: |-
+    CI/CD環境が高速であることは、開発物の信頼性を維持しながら高速に成果をユーザに届けることを可能にします。CI/CD環境が遅いと、失敗に気づくのも遅くなり修正サイクルはどんどん重くなっていきます。特に我々のプロダクトを提供しているライブイベント業界においては、イベント当日に万が一問題があれば、本番環境への即時修正対応が求められるため、CI/CDの速度は開発体験だけではなく、ビジネス価値にも直結しています。
+    本セッションでは、Railsアプリケーションのrspecを2分台で1500examples以上を完了させるために、並列実行による工夫を中心に、CI/CD実行環境の最適化をどのように試行錯誤したかを紹介します。
+  slides_url: "https://speakerdeck.com/falcon8823/2fen-tai-de1500exampleswan-zou-bao-su-ciwozhi-eruhuan-jing-gou-zhu-shu-kaigi-on-rails-2025"
+
+- title: "Kamalって便利？社内プロジェクト3つをKamal + AWSで運用した体験談"
+  speakers:
+    - yappu0
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-26"
+  published_at: "2025-11-25"
+  track: "Hall Blue"
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "3acQFnSHj5g"
+  id: "yappu0-kaigi-on-rails-2025"
+  description: |-
+    Rails8でデフォルトのデプロイツールとなったKamal。
+    Kamal便利！と言われますが、実際に本格運用している事例はまだ少なく、特に複数アプリの同居運用となると情報が皆無でした。
+    気になるけど実際どうなの？という方もたくさんいらっしゃると思います。
+
+    本セッションでは社内プロジェクト3つをKamal+AWSで運用した体験談から、Kamal運用の罠にハマりながらも、なんとか3つのアプリを安定稼働させるまでの知見をお話しします。
+
+    Kamalの特性を活かしたAWS構成やRDSとSQLiteの使い分けから、複数人開発時のデプロイ権限問題まで、リアルな運用現場での試行錯誤をもとに、小規模チームがKamalとAWSをどのように組み合わせると楽に低コストで開発・運用できるのかもお話しします。
+
+- title: "Railsによる人工的「設計」入門"
+  speakers:
+    - Yasuko Ohba
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-26"
+  published_at: "2025-11-25"
+  track: "Hall Red"
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "UxzJ6zH-HBo"
+  id: "yasuko-ohba-kaigi-on-rails-2025"
+  description: |-
+    「設計」ができるみなさんは、いつ、どうやって「設計」ができるようになったのでしょう？
+    "これが設計のやり方です" と教わって、それをなぞってできるようになりましたか？　私にはそういう経験はありません。経験を積むうちに、"自然と" できるようになりました。
+
+    ジュニアエンジニアの中には、まだ「設計」がよくわからないという方もいます。
+    「いきなりコードを書かないで、最初に設計すればいいんだよ！」
+    以前、私はこうアドバイスしていましたが、これではダメです。肝心の「設計」が何なのか、どうやればできるのかが分からないからです。
+    では、どうすれば？
+
+    AIの急速な進化の中、エンジニアとして生き残るには、設計スキルは当然の前提能力の一つといえるでしょう。「経験を詰めば、そのうち自然と設計できるようになるよ」と言って見守る時間がどれだけ残されているかわかりません。私たちには、人工的に「設計」を学んだり、教えたりする道筋が必要です。
+
+    本トークでは、「設計」に苦手感のある駆け出しエンジニアの方、そのようなエンジニアをサポートしたい先輩エンジニア、Railsのアーキテクチャの理解を確認したり広げたい方を対象に、次のようなことを話します。
+
+    ・「設計」とはなにか
+    ・一番最初に、完成したシステムを思い浮かべよう
+    ・デザインパーツを取捨選択して、仮ぎめする
+    ・Railsの代表的なデザインパーツたち
+  slides_url: "https://speakerdeck.com/nay3/kaigi-on-rails-2025-she-ji"
+
+- title: "GraphQL×Railsアプリのデータベース負荷分散 - 月間3,000万人利用サービスを無停止で"
+  speakers:
+    - Koya Masuda
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-26"
+  published_at: "2025-11-25"
+  track: "Hall Blue"
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "NKv5gQdXhTE"
+  id: "koya-masuda-kaigi-on-rails-2025"
+  description: |-
+    弊社のサービス「マイベスト」はテレビに取り上げられたことで、わずか1分間に40,000アクセスが発生し、データベースの処理がボトルネックとなりサービスダウンしました。これは予想を大きく上回るトラフィックで、DBをスケールアップしていても捌ききれないアクセス数でした。サービスのさらなる成長を見据えると、データベースのスケーラビリティは喫緊の課題です。
+
+    Railsは6.0以降では複数のデータベースを扱う仕組みとして、HTTP METHODによる自動的なロール切り替え機能を提供しています。しかし、GraphQLでは通信の大半がHTTP POSTで行われるため、この標準機能をそのまま利用することはできません。GraphQLがRDBMSやRailsと比較して新しい技術であるため、情報源が少なく、多くの開発者を悩ませています。
+
+    本セッションでは、月間3,000万人ユーザー/1.1億のGraphQLリクエストの負荷分散させた実際の取り組みを通じて、DBサーバーのCPU 利用率を67% → 17%に削減したプロセスを共有します。さらに、組織のリソース制約を踏まえた技術選定プロセスから実装、そして大規模サービスへの安全な導入戦略まで包括的に解説します。
+    参加者が自身のプロジェクトに適用可能な具体的なアプローチを得られるようなセッションになるはずです。
+  slides_url: "https://speakerdeck.com/koxya/graphqlxrailsapurinodetabesufu-he-fen-san-yue-jian-3000mo-ren-li-yong-sabisuwowu-ting-zhi-de-f33e3449-ce80-45ec-9d3b-cb0e426a4f0f"
+
+- title: "今改めてServiceクラスについて考える 〜あるRails開発者の10年〜"
+  speakers:
+    - Tomohiro Hashidate
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-26"
+  published_at: "2025-11-25"
+  track: "Hall Red"
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "fBNXy54CiDY"
+  id: "tomohiro-hashidate-kaigi-on-rails-2025"
+  description: |-
+    アプリケーション開発のテクニックも様変わりし、Rubyに段階的に型検査が追加されLSPを活用した開発が一般化しました。
+    更にAIコーディングエージェントの活用が急速なスピードで普及し、更なる変化の予兆が見て取れます。
+
+    そんな中でも、Railsの基本スタイルは変わらずにMVCであり、ベストプラクティスは大きく変わっていないと考えています。
+    かつてファットモデルを避けるため、Serviceクラスというプラクティスが試される様になりそれなりに使われている話も耳にします。
+    自分自身は現在、余程のことがない限りServiceクラスというものを使わない立場です。
+    今迄の経験を元に、アーキテクチャトレンドの変化、当時と今で異なる開発環境、何故Serviceクラスから距離を置く様になったのか、Serviceクラスって何が困るのか、そしてドメイン知識をアプリケーションで表現するとはどういうことなのか、ということについて改めて言語化して解説したいと思います。
+  slides_url: "https://speakerdeck.com/joker1007/jin-gai-meteservicekurasunituitekao-eru-arurailskai-fa-zhe-no10nian"
+
+- title: "Tackling Inevitable I/O Latency in Rails Apps with SSE and the async gem"
+  original_title: "避けられないI/O待ちに対処する: RailsアプリにおけるSSEとAsync gemの活用"
+  speakers:
+    - moznion
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-26"
+  published_at: "2025-11-25"
+  track: "Hall Blue"
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "CIan9qT2ISc"
+  id: "moznion-kaigi-on-rails-2025"
+  description: |-
+    実用的・商業的なRailsアプリケーションを開発・運用していると、I/Oの遅さがエンドユーザー体験を損ねる場面にしばしば直面します。
+
+    その原因について考えると、オンラインで実行されるDBの参照・集計・更新処理が単純に遅かったり、micro servicesによるコンポーネント間のAPI通信であったり、あるいは昨今ではAI (LLM) サービスとの繋ぎ込みによる推論待ちであったりと様々です。
+    こうしたI/O待ちは多くの場合最適化の余地が限られており「避けられない待ち時間」としてシステムに組み込まれがちです。
+
+    本セッションでは、RailsとLLMをインテグレーションした複数の機能開発により得られた知見をもとに、I/Oがどうしても遅いアプリ（つまり速くできる余地がほぼない状況）であってもSSE (server-sent events) とAsync gemを併用してエンドユーザーの体験を犠牲にしない、あるいは良くするための具体的なTipsと実践的手法を紹介します。
+    I/O負荷の高い処理や外部サービスとの連携機能をRailsで扱う（ことに興味のある）エンジニアを主な対象とし、明日から応用可能な非同期アーキテクチャの導入手法をお届けします。
+
+    またこれらに加えて、一連の活動を通じて行ったOSSへの貢献・フィードバック等についても共有できればと思います。
+  slides_url: "https://speakerdeck.com/moznion/o-latency-in-rails-apps-with-sse-and-the-async-gem"
+
+## Day 2 - 2025-09-27
+
+- title: "2重リクエスト完全攻略HANDBOOK"
+  speakers:
+    - Shohei Mitani
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-27"
+  published_at: "2025-11-25"
+  track: "Hall Red"
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "YdO4XevKpL4"
+  id: "shohei-mitani-kaigi-on-rails-2025"
+  description: |-
+    ユーザーが間違えて2回サブミットボタンを押したり、API連携している外部サービスがリトライで2回リクエストを送ってくるなどの「2重リクエスト問題」への対処法を紹介します。簡単な対策例を挙げると、1度目のリクエスト後にクライアントサイドでサブミットボタンを無効化する方法が挙げられます。ただし、これでは画面リロードに対処できなかったり、API連携で起こりうる2重リクエストの問題へは対処できません。様々な2重リクエストの発生要因に適切に対処するには、クライアントサイド、インフラレイヤ、アプリケーションレイヤのそれぞれで適切な防御策を講じる必要があります。
+
+    このトークでは、Idempotency-Keyやワンタイムトークン、レートリミットやロックでの対処など世の中で使われているテクニックを網羅的に説明し、あなたの開発するRailsアプリでも適切にデータ不整合を防ぎセキュアなAPIが開発できるように具体的なユースケースとともに紹介します。
+  slides_url: "https://speakerdeck.com/shoheimitani/double-request-handbook"
+
+- title: "ActiveRecord使いが知るべき世界：Java/Go/TypeScriptのORMアプローチ比較"
+  speakers:
+    - Tora Kouno # 河野裕隆
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-27"
+  published_at: "2025-11-25"
+  track: "Hall Blue"
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "mQRXxi_eAFY"
+  id: "tora-kouno-kaigi-on-rails-2025"
+  description: |-
+    Ruby on Rails開発に携わる多くの方にとって、データベースアクセスといえばActiveRecordが当たり前でしょう。
+    しかし、一歩外に目を向けると、ActiveRecordとは異なる設計思想やアプローチを持つORMが数多く存在します。
+    本セッションでは、Java (JPA, Doma2, MyBatis)、Go (sqlc)、TypeScript (Prisma)といった、Ruby以外の言語で広く使われている代表的なORMについて、ActiveRecordとの比較を交えながら解説します。
+
+    特に「クエリの書き方（DSL vs. SQL）」や「ORMの適用範囲（マイグレーションやスキーマ管理の有無）」といった観点に焦点を当て、それぞれのORMがどのような課題を解決し、どのようなトレードオフを伴うのかを深掘りします。ActiveRecordがいかに強力であるかを再認識するとともに、異なるパラダイムから得られる知見を通じて、今後のRails開発におけるデータアクセス層の設計や、より柔軟な技術選択のヒントを持ち帰っていただけるはずです。
+
+    [得られるもの]
+    ActiveRecordの設計思想や特徴を、異なるアプローチと比較することで深く理解できる
+    今後のプロジェクトにおけるデータアクセス層の設計や、技術選定の視野が広がるヒントを得られる
+
+- title: "小規模から中規模開発へ、構造化ログからはじめる信頼性の担保"
+  speakers:
+    - kakudooo
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-27"
+  published_at: "2025-11-25"
+  track: "Hall Red"
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "0le7e3OO4GM"
+  id: "kakudooo-kaigi-on-rails-2025"
+  description: |-
+    私の所属するプロジェクトでは、社内外に向けて複数のプロダクトを開発・運用しています。サービスの成長に伴い、不具合による損失が大きくなってきたことや連携する外部サービスや扱うシステムの増加により、監視や調査用途でのログ収集の重要性が高まりました。
+    当時5~6名のアプリケーションエンジニアで構成されるチームということもあり、インフラに関しても専任者をアサインする余裕もなく、私を含むアプリケーションエンジニアがインフラに関する業務を兼任するような体制でした。また、これまでも監視ツール(Datadog)にログが送信されていましたが、非構造化ログが出力されていたことや、ログの出力にあたっての方針はなく、収集したログを十分に活用することができていない状態でした。
+
+    そこで、サービスが中規模化するタイミングでまずログの構造化に着手し、各サーバープロセス（Rackサーバー、非同期ジョブ、Rakeタスク）単位でのロギングや監視ツールとの連携を整備しました。
+    結果、ログからエラーを検出してアラートを送信したり、障害発生から復旧までの時間の短縮、ログとトレースの紐づけによる可観測性の向上を達成することができました。
+    この発表では、小規模→中規模に差し掛かったサービスで、アプリケーションエンジニア起点でできるRailsのロギングと監視の仕組みづくりについて事例を交えて紹介します。
+  slides_url: "https://speakerdeck.com/kakudou3/xiao-gui-mo-karazhong-gui-mo-he-gou-zao-hua-rogukarahazimeruxin-lai-xing-nodan-bao"
+
+- title: "履歴 on Rails : Bitemporal Data Modelで実現する履歴管理"
+  speakers:
+    - Makoto Chiba
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-27"
+  published_at: "2025-11-25"
+  track: "Hall Blue"
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "xAxKNCBRVwQ"
+  id: "hypermkt-kaigi-on-rails-2025"
+  description: |-
+    引っ越しによる住所変更や、所属部署の異動など、時間と共に変化する情報を正確に扱う「履歴管理」は、業務系アプリケーションで重要なテーマです。
+
+    SmartHRでは、従業員情報という特にクリティカルな領域でこの課題に対し、「いつから有効か」と「いつ記録されたか」の2つの時間軸を持つBitemporal Data Modelを採用しています。このモデルは強力な反面、データ構造が複雑で、調査やデータ修正といった運用が困難になるという「ツラミ」も存在しました。
+
+    本セッションでは、この「履歴 on Rails」とも言える実践の中で、私たちがBitemporal Data Modelと運用課題にどのように向き合っているか、その具体的なアプローチや得られた知見を共有します。
+  slides_url: "https://speakerdeck.com/hypermkt/history-on-rails-with-bitemporal-data-model"
+
+- title: "Sidekiq その前に：Webアプリケーションにおける非同期ジョブ設計原則"
+  speakers:
+    - morihirok
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-27"
+  published_at: "2025-11-25"
+  track: "Hall Red"
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "ebNTM8NXCjo"
+  id: "morihirok-kaigi-on-rails-2025"
+  description: |-
+    非同期ジョブはWebアプリケーションにおいてメール送信や外部API連携、バッチ処理の分割などに活用され、ユーザー体験の向上やサーバー負荷の最適化に貢献します。しかしその一方で、非同期処理はシステムに複雑性をもたらし、原因の特定が困難なバグを発生させたり、デプロイフローに影響を与えてしまうなどといった問題も招きがちです。
+
+    非同期ジョブの設計には、「なぜ非同期にするのか」「ジョブの粒度はどれくらいか」「バッチや同期処理では代替できないか」といった判断とトレードオフの理解が欠かせません。本セッションでは、そうした意思決定に必要な設計観点やユースケースを、実務で得た知見をもとに整理して紹介します。
+
+    SidekiqやSolid Queueの使い方を学ぶ前に押さえておきたい、非同期ジョブの設計原則をお伝えします。
+    本セッションを通じて、非同期ジョブを安全かつスケーラブルに設計・運用するための判断基準と設計方針を持ち帰っていただければと思います。
+  slides_url: "https://speakerdeck.com/morihirok/sidekiq-sonoqian-ni-webapurikesiyonniokerufei-tong-qi-ziyobushe-ji-yuan-ze"
+
+- title: "階層構造を表現するデータ構造とリファクタリング"
+  speakers:
+    - Yuhi Sato
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-27"
+  published_at: "2025-11-25"
+  track: "Hall Blue"
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "t_uclOjONEs"
+  id: "yuhi-kaigi-on-rails-2025"
+  description: |-
+    私たちが日常的に利用するWebサービスには階層構造を利用した機能が数多く存在します。例えば、ECサイトの商品タグやクラウドストレージのフォルダなどです。では、開発において、こうした階層構造をRDBで表現する際、どのようなデータ構造を選択すべきでしょうか？
+
+    階層構造を表現するデータ構造を「なんとなく」で決めて実装してしまうと、N+1問題が大量に発生するといった課題に直面してしまうかもしれません。成長フェーズ、ワークロードの特性、そして要件に応じて適切なデータ構造を選択し、プロダクトの変化に応じたリファクタリングが重要です。
+
+    本セッションでは、各データ構造の特徴を詳しく解説するとともに、実際にプロダクトの階層化機能が直面したパフォーマンス課題を20倍高速化したリファクタリングについてご紹介します。セッションを通じて、参加者の階層構造を表現するデータ構造への理解を深めるとともに、既存の階層化機能の実装を見直すきっかけを提供します。
+  slides_url: "https://speakerdeck.com/yuhisatoxxx/jie-ceng-gou-zao-wobiao-xian-surudetagou-zao-torihuakutaringu-1nian-de10bei-cheng-chang-sitapurodakutonobian-hua-toke-ti"
+
+- title: "Railsアプリから何を切り出す？機能分離の判断基準"
+  speakers:
+    - yumu
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-27"
+  published_at: "2025-11-25"
+  track: "Hall Red"
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "-79CoXiN_ZI"
+  id: "yumu-kaigi-on-rails-2025"
+  description: |-
+    「この機能、切り出した方がいいのかな？」そんな迷いを抱えたことはありませんか？
+
+    大規模ECサイトのRailsアプリケーション開発に携わる中で、様々なアプローチで機能を分離してきた実例と共に、実践的な判断基準を整理してお伝えします。小規模チームだからこそ見えてきた、機能分離の光と影も正直にお話しします。
+
+    明日の設計MTGで「あ、あの判断基準使えそう！」と思ってもらえる、そんなセッションを目指します。
+  slides_url: "https://speakerdeck.com/yumu/railsapurikarahe-woqie-richu-su-ji-neng-fen-li-nopan-duan-ji-zhun-kaigi-on-rails-2025"
+
+- title: "Range on Rails ― 「多重範囲型」という新たな選択肢"
+  speakers:
+    - umeda-rizap # 梅田智大
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-27"
+  published_at: "2025-11-25"
+  track: "Hall Blue"
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "FjTkun7Sv78"
+  id: "umeda-rizap-kaigi-on-rails-2025"
+  description: |-
+    多重範囲型（multirange）を活用し、「複雑なロジックをシンプルにする方法」を紹介します。
+    さらに、ActiveRecordで多重範囲型を扱うためのノウハウを余すことなくお伝えします。
+
+    今年、自社で予約システムをゼロから開発し、どの時間帯でも柔軟に予約ができる、自由度の高い設計を実現しました。
+    予約が可能かどうかを判定するには、「すでに予約が入っている」「店舗が休業中」「マシンがメンテナンス中」「枠自体は空いていても、前後に余白がなく予約できない」など、さまざまな条件を考慮する必要があり、開発当初はコードも複雑でパフォーマンスも悪かったです。
+
+    そこで採用したのが、PostgreSQLの多重範囲型（multirange）です。
+    予約ができない様々な期間を「範囲の集合」であると捉え、予約を確認したい対象範囲との"差集合"を求めることで、コードは劇的にシンプルになり、パフォーマンスも飛躍的に改善しました。
+
+    多重範囲型が威力を発揮するケースは、予約システムに限りません。
+    「連続した値の集まり」を扱う処理全般において、「範囲」という数理的な発想をコードに持ち込むことで、複雑になりがちなロジックを驚くほどシンプルに表現できます。
+
+- title: "Introducing ReActionView: A new ActionView-Compatible ERB Engine"
+  speakers:
+    - Marco Roth
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-27"
+  published_at: "2025-11-25"
+  track: "Hall Red"
+  language: "english"
+  video_provider: "youtube"
+  video_id: "lPKBv0RJ8kQ"
+  id: "marco-roth-kaigi-on-rails-2025"
+  description: |-
+    This talk is the conclusion of a journey I’ve been sharing throughout 2025. At RubyKaigi, I introduced Herb: a new HTML-aware ERB parser and tooling ecosystem. At RailsConf, I released developer tools built on Herb, including a formatter, linter, and language server, alongside a vision for modernizing and improving the Rails view layer.
+
+    Now, I’ll continue with ReActionView: a new ERB engine built on Herb, fully compatible with `.html.erb` but with HTML validation, better error feedback, reactive updates, and built-in tooling.
+  slides_url: "https://speakerdeck.com/marcoroth/introducing-reactionview-a-new-actionview-compatible-erb-engine-at-kaigi-on-rails-2025-tokyo-japan"
+
+- title: "非同期処理実行基盤、Delayed脱出〜SolidQueue完全移行への旅路。"
+  speakers:
+    - Shohei Kobayashi
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-27"
+  published_at: "2025-11-25"
+  track: "Hall Blue"
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "e48h1Cfj0_8"
+  id: "shohei-kobayashi-kaigi-on-rails-2025"
+  description: |-
+    長年のDelayedによる非同期処理基盤の運用を経て決断した大規模な非同期ジョブ基盤移行プロジェクトの全貌をお話します。
+    このプロジェクトによりこれまで利用してきた非同期処理基盤から、Rails標準であるSolidQueueへの「完全移行」プロジェクトを半年にわたって行い、無事に成し遂げることができました。
+    計画〜移行〜運用開始まで決して平坦ではなく、様々な技術的・運用的な課題に直面しましたが、開発者とSRE両方の視点で見つけた具体的な解決策ととチーム連携の力で乗り越えてきました。
+    まず移行に至った背景と、SolidQueueを選定した理由を簡潔に振り返ります。続いて、以下の「HOW（どうやったか）」に焦点を当てて深掘りします。
+    今回お話する内容を参考にしていただければSolidQueue本番投入の敷居が低くなるはずです。この発表がSolidQueue導入するためのヒントになれば嬉しいです。
+  slides_url: "https://speakerdeck.com/srockstyle/fei-tong-qi-chu-li-shi-xing-ji-pan-delayedtuo-chu-solid-queuewan-quan-yi-xing-henolu-lu"
+
+- title: "非同期jobをtransaction内で呼ぶなよ！絶対に呼ぶなよ！"
+  speakers:
+    - Yuto Urushima
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-27"
+  published_at: "2025-11-25"
+  track: "Hall Red"
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "MWoilESDfWM"
+  id: "yuto-urushima-kaigi-on-rails-2025"
+  description: |-
+    Railsアプリケーションでは、ActiveRecordのtransaction内でperform_laterを呼び出すと、transactionのcommit前に非同期jobが実行され、DBの状態とジョブの実行タイミングがずれてエラーになることがあります。私たちのプロダクトでもこの問題に直面し、意図せぬエラーが発生するという事象がたまに発生するという状態に陥りました。再現性があまりなく、「たまに謎の非同期jobエラーが起こる」というデバッグもしづらい問題でした。
+
+    本セッションではこの問題の実例をもとに、どういった条件で再現するのか、どのような対策を取ったのかを紹介します。例えば、開発チーム内でコンセンサスを取った上での運用面で防ぐ工夫や、Rails7.2で新たに導入されたenqueue_after_transaction_commitオプションを使い、commit後にエンキューさせる方法などです。
+
+    「なぜかたまに非同期jobで謎のエラーが発生している」「うちも同様のことをやってるかも」「enqueue_after_transaction_commitオプションって実際にどうなの」と感じている方に向けて、明日から役立つ知識とチェックポイントをお届けします。
+
+- title: "Railsだからできる、例外業務に禍根を残さない設定設計パターン"
+  speakers:
+    - ei-ei-eiichi
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-27"
+  published_at: "2025-11-25"
+  track: "Hall Blue"
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "rCC7pdfz_1I"
+  id: "ei-ei-eiichi-kaigi-on-rails-2025"
+  description: |-
+    内製システム開発で頻発する「この顧客だけ」「この商品だけ」といった個別の例外要件。
+    安易に対応し続けるとコードは肥大化し、認知負荷と保守コストが増大。開発チームを混乱に巻き込みます。
+
+    では、私たちはこの“例外”駆動の複雑性と、どう向き合うべきなのでしょうか？
+
+    本セッションでは、増え続けるビジネスロジックをハードコーディングせず、「設定」として外部から管理可能にするアーキテクチャパターンを探求します。例外的な要件を柔軟に取り込む一方で、アプリケーションの持続可能性をどう維持するかがテーマです。
+
+    発表で扱うトピック
+    ビジネスロジックをコードから設定へ切り出す判断基準
+
+    設定がもたらす新たな複雑性と、それに対するUI/UX上の工夫
+
+    Railsで実践するための具体的な実装アプローチ
+
+    例外に強く、運用しやすく、拡張性のあるRailsアプリケーションを設計するための「引き出し」を、本セッションで持ち帰っていただければと思います。
+
+- title: "マンガアプリAPIと共存するWeb体験版の作り方 〜 コンテンツ保護技術を添えて"
+  speakers:
+    - baba
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-27"
+  published_at: "2025-11-25"
+  track: "Hall Red"
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "YM6ML8PDdi4"
+  id: "baba-kaigi-on-rails-2025"
+  description: |-
+    マンガアプリのWeb体験版開発事例を通じて、既存のバックエンドAPIと共存するWebサイト構築の事例を紹介します。この事業ではRailsベースのバックエンドAPIを使用してモバイルアプリにサービスを提供していますが、アプリをインストールせずにWebブラウザから一部のコンテンツを閲覧できる「Web体験版」の提供に挑戦しました。
+
+    主な課題は、①APIサーバーへの負荷分散、②API実装の二重管理の回避、③マンガコンテンツの不正利用防止でした。
+
+    これらの解決策として、APIレスポンスをS3上の静的JSONファイルとして保存し、CloudFront経由で配信することでサーバー負荷の分散と既存リソースの活用を実現しました。また「GridShuffle」という独自の画像難読化処理によるコンテンツ保護施策についても紹介します。
+
+    本発表では、クラウドインフラの構成方法やコンテンツ保護のための技術的工夫など、コミック事業特有の課題解決アプローチを共有します。アプリとWebサイトの効果的な共存戦略について実践的な知見を提供します。
+
+- title: "ドメイン指定Cookieとサービス間共有Redisで作る認証基盤サービス"
+  speakers:
+    - Shunsuke "Kokuyou" Mori # 黒曜
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-27"
+  published_at: "2025-11-25"
+  track: "Hall Blue"
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "W42Ke1v8icQ"
+  id: "kokuyouwind-kaigi-on-rails-2025"
+  description: |-
+    複数の自社サービスを展開する企業にとって、シングルサインオンやサービス間連携を実現するための認証基盤サービスはほぼ必須といえます。
+    このような認証基盤サービスを構築する際に課題となるのが、「どうやって認証基盤から他のサービスに認証状態を共有するか」です。
+
+    オープンな規格として OpenID Connect がありますが、これは主にサードパーティーへのID受け渡しを想定しており、ファーストパーティーのみで利用するうえでは煩雑になりがちです。
+    また各種 IDaaS の利用も検討できますが、コストや機能面での制約を踏まえて選定する必要があります。
+
+    本セッションでは簡易的な認証基盤サービスを実現するために、ドメイン指定Cookieとサービス間共有Redisを組み合わせる方法を紹介します。
+    これにはいくつかの制限があるものの、単独の Rails アプリケーションと仕組みがほぼ変わらないため単純で扱いやすく、セキュリティ面でもアタックサーフェスが少ないというメリットがあります。
+    弊社の認証基盤でこの方法を採用した事例をもとに、運用上の工夫やメリットとデメリットなどを紹介します。
+  slides_url: "https://slides.com/kokuyouwind/kaigi-on-rails-2025"
+
+- title: "Rails on SQLite: exciting new ways to cause outages"
+  speakers:
+    - André Arko
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-27"
+  published_at: "2025-11-25"
+  track: "Hall Red"
+  language: "english"
+  video_provider: "youtube"
+  video_id: "UN1_5TonU4I"
+  id: "andre-arko-kaigi-on-rails-2025"
+  description: |-
+    Between Litestack and the Rails 8 trifecta of Solid Cable, Solid Cache, and Solid Queue, it's easier than ever to spin up a Rails app that doesn't need a database service or a redid service or a storage service. Just as easy are several new ways to break your app or lose your data, especially on containerized hosting services. Learn how to simplify your stack while avoiding new ways things break.
+  slides_url: "https://speakerdeck.com/indirect/rails-on-sqlite-exciting-new-ways-to-cause-outages-36c8702d-e2ea-43bf-9fc6-a47a6caf7c84"
+
+- title: "A low-effort Rails workflow that combines “Complex Data Processing × Static Sites"
+  original_title: '複雑なデータ処理 × 静的サイト" を両立させる、楽をするRails運用'
+  speakers:
+    - Sunao Hogelog Komuro
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-27"
+  published_at: "2025-11-25"
+  track: "Hall Blue"
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "Y8kEAJFymXw"
+  id: "hogelog-kaigi-on-rails-2025"
+  description: |-
+    大量のデータをActiveRecordパターンのモデルに落とし込んで処理するのにRailsという道具は非常に強力です。
+    一方でメンテナンスの時間を多く割けない個人ウェブサービスの運用にRailsを使うのは「少し」体力が必要です。
+    そこで私はデータを処理して静的サイトを生成するRailsアプリケーションを作り、Railsの強力な力を用いながら、ウェブサイトそのものはランタイムなしの完全な静的サイトを個人で運営しています。
+
+    本発表では、Rails を使いたいが常時稼働サーバーを持ちたくない開発者、静的サイトジェネレータで処理させるにはデータ処理に限界を感じている人に、Railsを使った安心安全で継続可能なウェブサイト運用の話をお伝えします。
+  slides_url: "https://speakerdeck.com/hogelog/a-low-effort-rails-workflow-that-combines-complex-data-processing-x-static-sites"
+
+- title: "rails g authenticationから学ぶRails8.0時代の認証"
+  speakers:
+    - Shinichi Maeshima
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-27"
+  published_at: "2025-11-25"
+  track: "Hall Red"
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "MAoaqpCUZDM"
+  id: "shinichi-maeshima-kaigi-on-rails-2025"
+  description: |-
+    Rails8.0からrails g authentication(以降認証ジェネレータと呼びます)でユーザ認証用のコードを生成できるようになりました。昔からRailsが提供するヘルパメソッドを組み合わせることで簡単に認証機能を構築できましたが、認証ジェネレータの登場によってそれがさらに容易になります。一方現場ではdeviseをはじめとした各種gemを活用して認証機能を実装するのが長らく一般的なやり方でした。Rails8.0以降、この状況は変わっていくのでしょうか？
+
+    この発表では最初に2025年時点での認証機能を取り巻く状況について解説します。その後Rails8の認証ジェネレータが生成するコードをベースにして、Railsが提供しているヘルパメソッドとジェネレータの設計思想についてひとつずつ説明していきます。この発表を聞いたあと、みなさんは認証について一段理解度が増した状態になることでしょう。
+  slides_url: "https://speakerdeck.com/willnet/rails-g-authenticationkaraxue-hurails8-dot-0shi-dai-noren-zheng"
+
+- title: "「技術負債にならない・間違えない」権限管理の設計と実装"
+  speakers:
+    - Yusuke Ishimi
+  event_name: "Kaigi on Rails 2025"
+  date: "2025-09-27"
+  published_at: "2025-11-25"
+  track: "Hall Blue"
+  language: "japanese"
+  video_provider: "youtube"
+  video_id: "KjeYjkPpL44"
+  id: "yusuke-ishimi-kaigi-on-rails-2025"
+  description: |-
+    Webサービスの開発と運用に関わる方なら、権限管理の重要性については深く認識していることでしょう。運営アカウント、役割などの条件によって表示や操作を変えたい際に必要となります。権限は非常に繊細であり、1つの実装ミスがサービスや事業の大きな損失に繋がります。
+
+    しかし、条件をそのまま表現したadmin?のような簡易的な分岐による実装が多く見られます。そして、成長と共にadmin?やmanager?など権限の種類が増え、条件が複雑になり「レビュワーも条件を把握しきれない。」「実装を触るのが怖い。」「不具合の温床だ。」と技術負債になっているケースを多く目にしてきました。
+
+    このセッションでは、まず「なぜ権限管理は複雑になり、技術負債を生むのか」という根本原因を紐解きます。そして、その失敗から学んだ「実装・利用・理解、その全てで間違えない」というたった一つの原則に光を当てます。
+
+    私が辿り着いたのは、Rails Wayに沿ってModelとPolicyを1対1で対応させ「更に1つ軸を設ける」アプローチです。この設計によって、コードは驚くほど見通しが良くなり、エンジニア以外も誰が何をできるのかを正確に理解できるようになりました。
+
+    admin?を超えた先にある、明日からあなたのチームで実践できる「技術負債にならない・間違えない」権限管理の設計と実装。その全てをお伝えします。
+  slides_url: "https://speakerdeck.com/naro143/ji-shu-fu-zhai-ninaranaijian-wei-enai-quan-xian-guan-li-noshe-ji-toshi-zhuang"
+
+- title: "Keynote: Building and Deploying Interactive Rails Applications with Falcon"
   speakers:
     - Samuel Williams
   event_name: "Kaigi on Rails 2025"
   date: "2025-09-27"
-  description: ""
+  published_at: "2025-11-25"
+  track: "Hall Red"
   language: "english"
-  video_provider: "scheduled"
-  video_id: "samuel-williams-kaigi-on-rails-2025"
+  video_provider: "youtube"
+  video_id: "8-o1XR070g0"
+  id: "samuel-williams-kaigi-on-rails-2025"
+  slides_url: "https://speakerdeck.com/ioquatix/building-deploying-and-monitoring-ruby-web-applications-with-falcon-kaigi-on-rails-2025"
+  description: ""

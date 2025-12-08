@@ -4,6 +4,8 @@ class WatchedTalksControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = users(:one)
     @user_two = users(:two)
+    @watched_talk = watched_talks(:one)
+    @other_watched_talk = watched_talks(:two)
   end
 
   test "should show only current user's watched talks" do
@@ -18,15 +20,23 @@ class WatchedTalksControllerTest < ActionDispatch::IntegrationTest
     assert_equal user_watched_talk_ids.sort, talk_ids.sort
   end
 
-  test "should set user favorite talk ids from default watch list" do
+  test "should destroy watched talk for current user" do
     sign_in_as @user
 
-    get watched_talks_url
-    assert_response :success
+    delete watched_talk_path(@watched_talk)
 
-    expected_favorite_ids = @user.default_watch_list.talks.ids
-    actual_favorite_ids = assigns(:user_favorite_talks_ids)
+    assert_redirected_to watched_talks_path
 
-    assert_equal expected_favorite_ids.sort, actual_favorite_ids.sort
+    assert_not WatchedTalk.exists?(@watched_talk.id)
+  end
+
+  test "should destroy watched talk with turbo stream" do
+    sign_in_as @user
+
+    delete watched_talk_path(@watched_talk), headers: {"Accept" => "text/vnd.turbo-stream.html"}
+
+    assert_turbo_stream action: "remove", target: dom_id(@watched_talk.talk, :card_horizontal)
+
+    assert_not WatchedTalk.exists?(@watched_talk.id)
   end
 end

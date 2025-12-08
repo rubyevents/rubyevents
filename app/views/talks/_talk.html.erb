@@ -1,4 +1,4 @@
-<%# locals: (talk:, user_favorite_talks_ids:) -%>
+<%# locals: (talk:, user_favorite_talks_ids:) %>
 
 <% video_player_controller = talk.external_player ? nil : "video-player" %>
 
@@ -76,7 +76,7 @@
         <div class="py-4 text-xl font-bold">
           <span><%= talk.title %></span>
           <% if talk.original_title.present? %>
-            <div class="mb-2 text-xs text-gray-500">Original title: <%= talk.original_title %></div>
+            <div class="mb-2 text-xs text-gray-500">Original title (<%= talk.language %>): <%= talk.original_title %></div>
           <% end %>
 
         </div>
@@ -178,7 +178,7 @@
 
             <% talk.speakers.take(speaker_preview_count).each do |speaker| %>
               <%= content_tag :div, class: class_names("hidden xl:block" => more_speakers) do %>
-                <%= render partial: "talks/speaker", locals: {speaker: speaker} %>
+                <%= render partial: "users/card", locals: {user: speaker} %>
               <% end %>
             <% end %>
 
@@ -272,13 +272,13 @@
         </div>
       <% end %>
 
-      <input type="radio" name="talk_tabs" role="tab" class="tab" aria-label="Description" <%= "checked" if talk.summary.blank? %>>
+      <input type="radio" name="talk_tabs" role="tab" class="tab" aria-label="Description" <% if talk.summary.blank? %> checked <% end %>>
       <div role="tabpanel" class="tab-content !rounded-s-xl rounded-xl bg-base-200/50 p-6 mt-6 overflow-hidden">
         <article class="prose">
           <p>
             <b><%= talk.title %></b><br>
             <%= talk.speakers.map(&:name).to_sentence %>
-            <% if talk.event.static_metadata.location %> • <%= talk.event.static_metadata.location %><% end %>
+            <% if talk.location %> • <%= talk.location %><% end %>
             <% if language && language != "English" %> • <%= language %> <% end %> •
             <%= talk.formatted_kind %>
           </p>
@@ -287,8 +287,8 @@
             Date: <%= talk.formatted_date %><br>
 
             <span class="text-gray-400">
-              Published: <% if talk.published_at %><%= l(talk.published_at, default: "unknown") %><% elsif talk.published? %> unknown <% else %> not published <% end %><br>
-              Announced: <%= l(talk.announced_at, default: "unknown") %>
+              Published: <% if talk.published_at %><%= l(talk.published_at&.to_date, default: "unknown") %><% elsif talk.published? %> unknown <% else %> not published <% end %><br>
+              Announced: <%= l(talk.announced_at&.to_date, default: "unknown") %>
             </span>
           </p>
 
@@ -316,13 +316,36 @@
         </div>
       <% end %>
 
+      <% if talk.additional_resources.present? %>
+        <input type="radio" name="talk_tabs" role="tab" class="tab" aria-label="Resources">
+        <div role="tabpanel" class="tab-content !rounded-s-xl rounded-xl bg-base-200/50 p-6 mt-6 overflow-hidden">
+          <ul class="space-y-4">
+            <% talk.additional_resources.each do |resource| %>
+              <li class="flex items-start gap-3">
+                <%= fa(resource_icon(resource), size: :sm, class: "fill-gray-500 mt-1 flex-shrink-0") %>
+
+                <div class="flex flex-col">
+                  <%= link_to resource["url"], target: "_blank", rel: "noopener noreferrer", class: "link link-primary" do %>
+                    <%= resource_display_title(resource) %>
+                  <% end %>
+
+                  <span class="text-xs text-gray-500">
+                    <%= resource["name"] %> · <%= resource_domain(resource) %>
+                  </span>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
       <% if talk.speakers.length.positive? %>
         <input type="radio" name="talk_tabs" role="tab" class="tab" aria-label="<%= "Speaker".pluralize(talk.speakers.size) %>">
         <div role="tabpanel" class="tab-content !rounded-s-xl rounded-xl bg-base-200/50 p-6 mt-6 overflow-hidden">
           <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             <% talk.speakers.each do |speaker| %>
               <div class="duration-300 ease-in-out bg-gray-100 border rounded-lg hover:bg-gray-200/50 transition-bg">
-                <%= render partial: "talks/speaker", locals: {speaker: speaker} %>
+                <%= render partial: "users/card", locals: {user: speaker} %>
               </div>
             <% end %>
           </div>

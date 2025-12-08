@@ -3,7 +3,7 @@
   <div class="flex items-center flex-wrap gap-2 py-4">
     <h2>Talks</h2>
     <% if @talks.size.positive? %>
-      <span class="text-sm text-gray-500">(<%= @talks.size %> of <%= @talks_count %>)</span>
+      <span class="text-sm text-gray-500">(<%= @talks.size %><% if @talks.size >= Spotlight::TalksController::LIMIT %>+<% end %> <%= "talk".pluralize(@talks.size) %>)</span>
       <%= link_to talks_path(s: search_query), class: "link text-sm text-gray-500", target: "_top" do %>
         see results
       <% end %>

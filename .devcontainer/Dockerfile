@@ -1,4 +1,4 @@
-ARG RUBY_VERSION=3.4.5
+ARG RUBY_VERSION=3.4.7
 FROM docker.io/library/ruby:$RUBY_VERSION-slim
 
 # Rails app lives here
@@ -17,6 +17,7 @@ RUN apt-get update -qq && \
     pkg-config \
     python-is-python3 \
     sqlite3 \
+    chromium chromium-driver \
     && rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Copy application code
@@ -37,7 +38,7 @@ RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz
 # Install application gems
 RUN bundle install
 
-# Install node modules
+# Install JavaScript dependencies
 RUN yarn install
 
 # Default command

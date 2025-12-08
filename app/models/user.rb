@@ -2,6 +2,7 @@
 # == Schema Information
 #
 # Table name: users
+# Database name: primary
 #
 #  id                  :integer          not null, primary key
 #  admin               :boolean          default(FALSE), not null
@@ -9,9 +10,11 @@
 #  bsky                :string           default(""), not null
 #  bsky_metadata       :json             not null
 #  email               :string           indexed
-#  github_handle       :string           uniquely indexed
+#  github_handle       :string
 #  github_metadata     :json             not null
 #  linkedin            :string           default(""), not null
+#  location            :string           default("")
+#  marked_for_deletion :boolean          default(FALSE), not null, indexed
 #  mastodon            :string           default(""), not null
 #  name                :string           indexed
 #  password_digest     :string
@@ -30,11 +33,12 @@
 #
 # Indexes
 #
-#  index_users_on_canonical_id   (canonical_id)
-#  index_users_on_email          (email)
-#  index_users_on_github_handle  (github_handle) UNIQUE WHERE github_handle IS NOT NULL AND github_handle != ''
-#  index_users_on_name           (name)
-#  index_users_on_slug           (slug) UNIQUE WHERE slug IS NOT NULL AND slug != ''
+#  index_users_on_canonical_id         (canonical_id)
+#  index_users_on_email                (email)
+#  index_users_on_lower_github_handle  (lower(github_handle)) UNIQUE WHERE github_handle IS NOT NULL AND github_handle != ''
+#  index_users_on_marked_for_deletion  (marked_for_deletion)
+#  index_users_on_name                 (name)
+#  index_users_on_slug                 (slug) UNIQUE WHERE slug IS NOT NULL AND slug != ''
 #
 # rubocop:enable Layout/LineLength
 class User < ApplicationRecord
@@ -56,6 +60,12 @@ class User < ApplicationRecord
     Custom: :custom
   }.freeze
 
+  POSSESSIVE_PRONOUNS = {
+    "she_her" => "her",
+    "he_him" => "his",
+    "they_them" => "their"
+  }.freeze
+
   has_secure_password validations: false
 
   # Authentication and user-specific associations
@@ -71,7 +81,8 @@ class User < ApplicationRecord
   has_many :kept_talks, -> { joins(:user_talks).where(user_talks: {discarded_at: nil}).distinct },
     through: :user_talks, inverse_of: :speakers, class_name: "Talk", source: :talk
   has_many :events, -> { distinct }, through: :talks, inverse_of: :speakers
-  has_many :aliases, class_name: "User", foreign_key: "canonical_id"
+  has_many :canonical_aliases, class_name: "User", foreign_key: "canonical_id"
+  has_many :aliases, as: :aliasable, dependent: :destroy
   has_many :topics, through: :talks
 
   # Event participation associations
@@ -84,9 +95,17 @@ class User < ApplicationRecord
   has_many :visitor_events, -> { where(event_participations: {attended_as: :visitor}) },
     through: :event_participations, source: :event
 
+  has_many :event_involvements, as: :involvementable, dependent: :destroy
+  has_many :involved_events, through: :event_involvements, source: :event
+
   belongs_to :canonical, class_name: "User", optional: true
+  has_one :contributor, dependent: :nullify
 
   has_object :profiles
+  has_object :location_info
+  has_object :talk_recommender
+  has_object :watched_talk_seeder
+  has_object :speakerdeck_feed
 
   validates :email, format: {with: URI::MailTo::EMAIL_REGEXP}, allow_blank: true
   validates :github_handle, presence: true, uniqueness: true, allow_blank: true
@@ -133,6 +152,9 @@ class User < ApplicationRecord
     self.verified = false
   end
 
+  # Seed watched talks for new users in development
+  after_create :seed_development_watched_talks, if: -> { Rails.env.development? }
+
   # Speaker scopes
   scope :with_talks, -> { where.not(talks_count: 0) }
   scope :speakers, -> { where("talks_count > 0") }
@@ -140,6 +162,8 @@ class User < ApplicationRecord
   scope :without_github, -> { where(github_handle: [nil, ""]) }
   scope :canonical, -> { where(canonical_id: nil) }
   scope :not_canonical, -> { where.not(canonical_id: nil) }
+  scope :marked_for_deletion, -> { where(marked_for_deletion: true) }
+  scope :not_marked_for_deletion, -> { where(marked_for_deletion: false) }
 
   def self.normalize_github_handle(value)
     value
@@ -154,9 +178,34 @@ class User < ApplicationRecord
     end
   end
 
+  def self.find_by_github_handle(handle)
+    return nil if handle.blank?
+    where("lower(github_handle) = ?", handle.downcase).first
+  end
+
+  def self.find_by_name_or_alias(name)
+    return nil if name.blank?
+
+    user = find_by(name: name, marked_for_deletion: false)
+    return user if user
+
+    alias_record = Alias.find_by(aliasable_type: "User", name: name)
+    alias_record&.aliasable
+  end
+
+  def self.find_by_slug_or_alias(slug)
+    return nil if slug.blank?
+
+    user = find_by(slug: slug, marked_for_deletion: false)
+    return user if user
+
+    alias_record = Alias.find_by(aliasable_type: "User", slug: slug)
+    alias_record&.aliasable
+  end
+
   # User-specific methods
   def default_watch_list
-    @default_watch_list ||= watch_lists.first || watch_lists.create(name: "Favorites")
+    @default_watch_list ||= watch_lists.first || watch_lists.create(name: "Bookmarks")
   end
 
   def main_participation_to(event)
@@ -174,6 +223,14 @@ class User < ApplicationRecord
 
   def verified?
     connected_accounts.find { |account| account.provider == "github" }
+  end
+
+  def possessive_pronoun
+    POSSESSIVE_PRONOUNS[pronouns_type] || "their"
+  end
+
+  def contributor?
+    contributor.present?
   end
 
   def managed_by?(visiting_user)
@@ -259,19 +316,7 @@ class User < ApplicationRecord
   end
 
   def assign_canonical_speaker!(canonical_speaker:)
-    ActiveRecord::Base.transaction do
-      self.canonical = canonical_speaker
-      self.github_handle = nil
-      save!
-
-      user_talks.each do |user_talk|
-        UserTalk.create(talk: user_talk.talk, user: canonical_speaker)
-      end
-
-      # We need to destroy the remaining user_talks. They can be remaining given the unicity constraint
-      # on the user_talks table. The update above swallows the error if the user_talk duet exists already
-      UserTalk.where(user_id: id).destroy_all
-    end
+    assign_canonical_user!(canonical_user: canonical_speaker)
   end
 
   def primary_speaker
@@ -300,22 +345,63 @@ class User < ApplicationRecord
 
   def assign_canonical_user!(canonical_user:)
     ActiveRecord::Base.transaction do
-      self.canonical = canonical_user
-      self.github_handle = nil
-      save!
-
-      user_talks.each do |user_talk|
-        UserTalk.create(talk: user_talk.talk, user: canonical_user)
+      if name.present? && slug.present?
+        canonical_user.aliases.find_or_create_by!(name: name, slug: slug)
       end
 
-      # We need to destroy the remaining user_talks. They can be remaining given the unicity constraint
-      # on the user_talks table. The update above swallows the error if the user_talk duet exists already
-      UserTalk.where(user_id: id).destroy_all
+      user_talks.each do |user_talk|
+        duplicated = user_talk.dup
+        duplicated.user = canonical_user
+        duplicated.save
+      end
+
+      event_participations.each do |participation|
+        duplicated = participation.dup
+        duplicated.user = canonical_user
+        duplicated.save
+      end
+
+      event_involvements.each do |involvement|
+        duplicated = involvement.dup
+        duplicated.involvementable = canonical_user
+        duplicated.save
+      end
+
+      user_talks.destroy_all
+      event_participations.destroy_all
+      event_involvements.destroy_all
+
+      update_columns(
+        canonical_id: canonical_user.id,
+        github_handle: nil,
+        slug: "",
+        marked_for_deletion: true
+      )
     end
   end
 
   def set_slug
     self.slug = slug.presence || github_handle.presence&.downcase
     super
+  end
+
+  def speakerdeck_user_from_slides_url
+    handles = talks
+      .map(&:static_metadata).compact
+      .map(&:slides_url).compact
+      .select { |url| url.include?("speakerdeck.com") }
+      .map { |url| url.split("/")[3] }.uniq
+
+    (handles.count == 1) ? handles.first : nil
+  end
+
+  def to_param
+    github_handle.presence || slug
+  end
+
+  private
+
+  def seed_development_watched_talks
+    watched_talk_seeder.seed_development_data
   end
 end

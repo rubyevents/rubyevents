@@ -9,14 +9,26 @@
         <% if user.pronouns.present? && ["dont_specify", "not_specified"].exclude?(user.pronouns_type) %>
           <span class="text-sm content-center text-[#737373]">(<%= user.pronouns %>)</span>
         <% end %>
+
         <% if user.verified? %>
           <%= ui_tooltip "#{user.name} is a verified Rubyist" do %>
             <%= fa("badge-check", class: "fill-blue-500", size: :sm) %>
           <% end %>
         <% end %>
+
         <% if user.passports.any? %>
-          <%= ui_tooltip "#{user.name} claimed their Ruby Passport" do %>
-            <%= fa("passport", class: "fill-orange-800", size: :md) %>
+          <%= ui_tooltip "#{user.name} claimed #{user.possessive_pronoun} Ruby Passport" do %>
+            <%= fa("passport", class: "fill-orange-800") %>
+          <% end %>
+        <% end %>
+
+        <% if user.contributor? %>
+          <%= link_to contributors_path, class: "inline-flex items-center" do %>
+            <%= ui_tooltip "#{user.name} contributed to RubyEvents.org" do %>
+              <span class="flex items-center justify-center size-5 bg-green-500 rounded-full">
+                <span style="transform: scale(0.6);"><%= fa("code-pull-request", class: "fill-white") %></span>
+              </span>
+            <% end %>
           <% end %>
         <% end %>
       </h1>
@@ -25,13 +37,27 @@
     <p class="text-[#636B74] max-w-[700px]">
       <%= user.bio %>
     </p>
+
+    <% if user.location_info.present? %>
+      <p class="max-w-[700px] flex flex-row justify-center items-center gap-2">
+        <%= fa("location-dot", size: :xs, style: :regular) %>
+        <% if user.location_info.country.present? %>
+          <%= link_to user.location_info.to_s, user.location_info.link_path, class: "link" %>
+        <% else %>
+          <%= user.location_info.to_s %>
+        <% end %>
+      </p>
+    <% end %>
+
     <% if user.website.present? %>
-      <%= external_link_to user.website.gsub(%r{^https?://}, ""), user.website, class: "text-center" %>
+      <div class="link inline-flex items-center gap-2 flex-nowrap">
+        <%= fa("website-brands", size: :xs) %>
+        <%= external_link_to user.website.gsub(%r{^https?://}, ""), user.website, class: "link inline-flex items-center gap-2 flex-nowrap" %>
+      </div>
     <% end %>
 
     <div class="mt-2 flex justify-center lg:justify-start">
       <%= render "profiles/socials", user: user %>
-
     </div>
   </div>
 </div>

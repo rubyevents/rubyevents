@@ -4,60 +4,65 @@
 # TODO: conference website
 # TODO: schedule website
 
-- title: "Keynote: All the Things I Thought I Couldn't Do"
+- id: "eileen-m-uchitelle-railsconf-2021"
+  title: "Keynote: All the Things I Thought I Couldn't Do"
   raw_title: "RailsConf 2021: Keynote: Eileen Uchitelle - All the Things I Thought I Couldn't Do"
   speakers:
     - Eileen M. Uchitelle
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-27"
   description: ""
   video_provider: "youtube"
   video_id: "5bWE6GpN938"
 
-- title: "Game Show: Syntax Error"
+- id: "adam-cuppy-railsconf-2021"
+  title: "Game Show: Syntax Error"
   raw_title: "Game Show: Adam Cuppy - Syntax Error"
   speakers:
     - Adam Cuppy
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-27"
   description: ""
   video_provider: "youtube"
   video_id: "vD08qTNYO9c"
 
-- title: "Hiring is Not Hazing"
+- id: "aja-hammerly-railsconf-2021"
+  title: "Hiring is Not Hazing"
   raw_title: "RailsConf 2021: Hiring is Not Hazing - Aja Hammerly"
   speakers:
     - Aja Hammerly
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-27"
   slides_url: "https://thagomizer.com/files/HiringIsNotHazingForDevRelCon.pdf" # TODO: these might not be 100% right
   description: |-
     Tech hiring has a bad reputation for a reason - it's usually awful. But it doesn't have to be that way. In this talk, we'll dive into what is wrong with many current tech hiring practices and what you can do instead. You'll learn ways to effectively assess technical ability, what makes a great interview question, how to be more inclusive, the pros and cons of giving homework assignments, and much more. You'll leave with ideas to improve your interviews, and ways to influence your company to change their hiring practices.
   video_provider: "youtube"
   video_id: "ZzWRdAPjEgY"
 
-- title: "What Poetry Workshops Teach Us about Code Review"
+- id: "andrew-ek-railsconf-2021"
+  title: "What Poetry Workshops Teach Us about Code Review"
   raw_title: "RailsConf 2021: What Poetry Workshops Teach Us about Code Review - Andrew Ek"
   speakers:
     - Andrew Ek
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-27"
   description: |-
     Code review is ostensibly about ensuring quality code and preventing errors, bugs, and/or vulnerabilities from making their way to production systems. Code review, as practiced, is often top-down, didactic, and in many cases not particularly useful or effective. By looking at the creative writing workshop model (and strategies for teaching and providing feedback on writing), we can extract patterns that help us to have more effective, more efficient, and more enjoyable code reviews. Not only can we make our code better, we can also help our teams better understand the codebase and communicate better, and thus do more effective and enjoyable work (with perhaps better team cohesion).
   video_provider: "youtube"
   video_id: "AQg_XZ5b5HU"
 
-- title: "The Trail to Scale Without Fail: Rails?"
+- id: "ariel-caplan-railsconf-2021"
+  title: "The Trail to Scale Without Fail: Rails?"
   raw_title: "RailsConf 2021: The Trail to Scale Without Fail: Rails? - Ariel Caplan"
   speakers:
     - Ariel Caplan
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-27"
   description: |-
     Let's be blunt: Most web apps aren’t so computation-heavy and won't hit scaling issues.
 
@@ -72,13 +77,14 @@
   video_provider: "youtube"
   video_id: "4F8hOebREe4"
 
-- title: "Effective Data Synchronization between Rails Microservices"
+- id: "austin-story-railsconf-2021"
+  title: "Effective Data Synchronization between Rails Microservices"
   raw_title: "RailsConf 2021: Effective Data Synchronization between Rails Microservices - Austin Story"
   speakers:
     - Austin Story
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-27"
   description: |-
     Data consistency in a microservice architecture can be a challenge, especially when your team grows to include data producers from data engineers, analysts, and others.
 
@@ -88,13 +94,14 @@
   video_provider: "youtube"
   video_id: "1qrWYcdnrik"
 
-- title: "Self-Care on Rails"
+- id: "ben-greenberg-railsconf-2021"
+  title: "Self-Care on Rails"
   raw_title: "RailsConf 2021: Self-Care on Rails - Ben Greenberg"
   speakers:
     - Ben Greenberg
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-27"
   description: |-
     This past year has been one of the most challenging years in recent memory. The pandemic has taken a toll, including on children.
 
@@ -106,13 +113,14 @@
   video_provider: "youtube"
   video_id: "7uuRV17e8gg"
 
-- title: "Techniques for Uncertain Times"
+- id: "chelsea-troy-railsconf-2021"
+  title: "Techniques for Uncertain Times"
   raw_title: "RailsConf 2021: Debugging: Techniques for Uncertain Times - Chelsea Troy"
   speakers:
     - Chelsea Troy
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-27"
   description: |-
     When we learn to code, we focus on writing features while we understand what the code is doing. When we debug, we don’t understand what our code is doing. The less we understand, the less likely it is that our usual programming mindset—the one we use for feature development—can solve the problem.
 
@@ -122,25 +130,27 @@
   video_provider: "youtube"
   video_id: "yhogm8HAd3o"
 
-- title: "Realtime Apps with Hotwire & ActionMailbox"
+- id: "chris-oliver-railsconf-2021"
+  title: "Realtime Apps with Hotwire & ActionMailbox"
   raw_title: "RailsConf 2021: Realtime Apps with Hotwire & ActionMailbox - Chris Oliver"
   speakers:
     - Chris Oliver
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-27"
   description: |-
     Realtime Apps with Hotwire & ActionMailbox - Chris Oliver
   video_provider: "youtube"
   video_id: "ItB848u3QR0"
 
-- title: "Designing APIs: Less Data is More"
+- id: "damir-svrtan-railsconf-2021"
+  title: "Designing APIs: Less Data is More"
   raw_title: "RailsConf 2021: Designing APIs: Less Data is More - Damir Svrtan"
   speakers:
     - Damir Svrtan
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-27"
   description: |-
     Often developers design APIs that expose more than is needed - unnecessary fields, redundant relationships, and endpoints that no one asked for.
     These kinds of practices later on introduce communication overhead, extra maintenance costs, negative performance impacts, and waste time that could have been spent better otherwise.
@@ -148,59 +158,64 @@
   video_provider: "youtube"
   video_id: "GbKOajKO46Y"
 
-- title: "Lightning Talk: Should you create a new Rails app as API-only?"
+- id: "stefanni-brasil-railsconf-2021"
+  title: "Lightning Talk: Should you create a new Rails app as API-only?"
   raw_title: "RailsConf 2021: Lightning Talks: Steffani Brasil"
   speakers:
     - Stefanni Brasil
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-27"
   description: ""
   video_provider: "youtube"
   video_id: "H6MPMtf-Hd0"
 
-- title: "Keynote: Chatting with David"
+- id: "evan-phoenix-railsconf-2021"
+  title: "Keynote: Chatting with David"
   raw_title: "RailsConf 2021: Keynote: Chatting with David"
   speakers:
     - Evan Phoenix
     - David Heinemeier Hansson
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-27"
   description: ""
   video_provider: "youtube"
   video_id: "FzK0iHyQR0k"
 
-- title: "Keynote: Hardware/Software Co-design: The Coming Golden Age"
+- id: "bryan-cantrill-railsconf-2021"
+  title: "Keynote: Hardware/Software Co-design: The Coming Golden Age"
   raw_title: "RailsConf 2021_ Keynote: Bryan Cantrill - Hardware/Software Co-design: The Coming Golden Age"
   speakers:
     - Bryan Cantrill
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-27"
   description: ""
   video_provider: "youtube"
   video_id: "jSE9fXgiqig"
 
-- title: "Profiling to make your Rails app faster"
+- id: "gannon-mcgibbon-railsconf-2021"
+  title: "Profiling to make your Rails app faster"
   raw_title: "RailsConf 2021: Profiling to make your Rails app faster - Gannon McGibbon"
   speakers:
     - Gannon McGibbon
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     As you grow your Rails app, is it starting to slow down? Let’s talk about how to identify slow code, speed it up, and verify positive change within your application. In this talk, you’ll learn about rack-mini-profiler, benchmark/ips, and performance optimization best practices.
   video_provider: "youtube"
   video_id: "97d3f8r2qZ8"
 
-- title: "Why I'm Closing Your GitHub Issue"
+- id: "henning-koch-railsconf-2021"
+  title: "Why I'm Closing Your GitHub Issue"
   raw_title: "RailsConf 2021: Why I'm Closing Your GitHub Issue - Henning Koch"
   speakers:
     - Henning Koch
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     Do you feel panic when receiving a notification from your open-source project? Is a backlog of unanswered issues wearing you down?
 
@@ -210,13 +225,14 @@
   video_provider: "youtube"
   video_id: "veSRJUb8yuI"
 
-- title: "Hotwire Demystified"
+- id: "jamie-gaskins-railsconf-2021"
+  title: "Hotwire Demystified"
   raw_title: "RailsConf 2021: Hotwire Demystified - Jamie Gaskins"
   speakers:
     - Jamie Gaskins
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     DHH stunned the Rails world with his announcement of Hotwire from Basecamp. Even folks in the non-Rails web-development community took notice.
 
@@ -224,25 +240,27 @@
   video_provider: "youtube"
   video_id: "gllwoSoD5mk"
 
-- title: "Engineer in Diversity & Inclusion - Tangible Steps for Teams"
+- id: "jeannie-evans-railsconf-2021"
+  title: "Engineer in Diversity & Inclusion - Tangible Steps for Teams"
   raw_title: "RailsConf 2021: Engineer in Diversity & Inclusion - Tangible Steps for Teams - Jeannie Evans"
   speakers:
     - Jeannie Evans
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     When it comes to implementing Diversity, Equity, and Inclusion (“DEI”), where do software engineers fit in? The technology we build is used by diverse groups of people, so our role is to build platforms for that diversity. At this talk, you will learn why and how to make DEI a priority in your work with tangible steps, goals, and examples. While the scope of these topics can feel overwhelming, you will leave this talk empowered with the tools to attend your next standup or write that next line of code as a better community member, ally, and software engineer.
   video_provider: "youtube"
   video_id: "GRl5EWXM96o"
 
-- title: "A day in the life of a Ruby object"
+- id: "jemma-issroff-railsconf-2021"
+  title: "A day in the life of a Ruby object"
   raw_title: "RailsConf 2021: A Day in the Life of a Ruby Object - Jemma Issroff"
   speakers:
     - Jemma Issroff
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     Your code creates millions of Ruby objects every day, but do you actually know what happens to these objects?
 
@@ -252,61 +270,66 @@
   video_provider: "youtube"
   video_id: "NGOuPxqoPOs"
 
-- title: "Stimulating Events"
+- id: "jesse-spevack-railsconf-2021"
+  title: "Stimulating Events"
   raw_title: "RailsConf 2021: Stimulating Events - Jesse Spevack"
   speakers:
     - Jesse Spevack
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     Stimulus JS bills itself as a framework with modest ambitions that fits nicely into the Rails as "omakase" paradigm. At its core, Stimulus gives Rails developers a new set of low effort, high impact tools that can add much more than the sheen of modernization to an everyday Rails application. Join me as I live code three Stimulus JS examples that will help you save time, impress your friends, and win new clients and opportunities. This will be great for JS newbies and experts alike along with anyone interested in the potential schadenfreude that watching me live code will likely elicit.
   video_provider: "youtube"
   video_id: "XM9A53WUnN4"
 
-- title: "Strategic Storytelling"
+- id: "jessica-hilt-railsconf-2021"
+  title: "Strategic Storytelling"
   raw_title: "RailsConf 2021: Strategic Storytelling - Jessica Hilt"
   speakers:
     - Jessica Hilt
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     We come from a world of facts and metrics so obviously the people with the most data wins, right? Engineering comes from a place of logic but telling the story behind that information is how the best leaders get buy-in and support for their plans. In this talk, we'll examine the how and why of storytelling, develop a framework of putting an idea into a narrative, and what tools you’ll need to complement a good story. By the end, you’ll be able to break out a story whenever you need to generate excitement, find advocates, or more budget. Is there anything more irresistible than a good story?
   video_provider: "youtube"
   video_id: "rTEbYehXhdk"
 
-- title: "ViewComponents in the Real World"
+- id: "joel-hawksley-railsconf-2021"
+  title: "ViewComponents in the Real World"
   raw_title: "RailsConf 2021: ViewComponents in the Real World - Joel Hawksley"
   speakers:
     - Joel Hawksley
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     With the release of 6.1, Rails added support for rendering objects that respond to render_in, a feature extracted from the GitHub application. This change enabled the development of ViewComponent, a framework for building reusable, testable & encapsulated view components. In this talk, we’ll share what we’ve learned scaling to hundreds of ViewComponents in our application, open sourcing a library of ViewComponents, and nurturing a thriving community around the project, both internally and externally.
   video_provider: "youtube"
   video_id: "xabosHqjOlM"
 
-- title: "Beautiful reactive web UIs, Ruby and you"
+- id: "jonas-jabari-railsconf-2021"
+  title: "Beautiful reactive web UIs, Ruby and you"
   raw_title: "RailsConf 2021: Beautiful reactive web UIs, Ruby and you - Jonas Jabari"
   speakers:
     - Jonas Jabari
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     A lot of life changing things have happened in 2020. And I'm obviously speaking about Stimulus Reflex and Hotwire and how we as Rails devs are finally enabled to skip a lot of JS while implementing reactive web UIs. But what if I told you, there's room for even more developer happiness? Imagine crafting beautiful UIs in pure Ruby, utilizing a library reaching from simple UI components representing basic HTML tags over styled UI concepts based on Bootstrap to something like a collection, rendering reactive data sets. Beautiful, reactive web UIs implemented in pure Ruby are waiting for you!
   video_provider: "youtube"
   video_id: "VhIXLNIfk5s"
 
-- title: "Refactoring: A developer's guide to writing well"
+- id: "jordan-raine-railsconf-2021"
+  title: "Refactoring: A developer's guide to writing well"
   raw_title: "RailsConf 2021: Refactoring: A developer's guide to writing well - Jordan Raine"
   speakers:
     - Jordan Raine
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     As a developer, you're asked to write an awful lot: commit messages, code review, achitecture docs, pull request write-ups, and more. When you write, you have the power to teach and inspire your teammates—the reader—or leave them confused. Like refactoring, it's a skill that can elevate you as a developer but it is often ignored.
 
@@ -314,13 +337,14 @@
   video_provider: "youtube"
   video_id: "jfK5miM5ZMs"
 
-- title: '"Junior" Devs are the Solution to Many of Your Problems'
+- id: "josh-thompson-railsconf-2021"
+  title: '"Junior" Devs are the Solution to Many of Your Problems'
   raw_title: 'RailsConf 2021: "Junior" Devs are the Solution to Many of Your Problems - Josh Thompson'
   speakers:
     - Josh Thompson
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     Our industry telegraphs: "We don't want (or know how to handle) 'junior developers*'."
 
@@ -341,25 +365,27 @@
   video_provider: "youtube"
   video_id: "SQh-wqmuFxg"
 
-- title: "Exploring Real-time Computer Vision Using ActionCable"
+- id: "justin-bowen-railsconf-2021"
+  title: "Exploring Real-time Computer Vision Using ActionCable"
   raw_title: "RailsConf 2021: Exploring Real-time Computer Vision Using ActionCable - Justin Bowen"
   speakers:
     - Justin Bowen
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     Learn about combining Rails and Python for Computer Vision. We'll be analyzing images of cannabis plants in real-time and deriving insights from changes in leaf area & bud site areas. We'll explore when to use traditional statistical analysis versus ML approaches, as well as other ways CV has been deployed. We’ll cover integrating OpenCV with ActionCable & Sidekiq for broadcasting camera analysis to Rails and creating time-lapse style renderings with graphs. You will gain an understanding of what tools to use and where to start if you’re interested in using ML or CV with your Rails project!
   video_provider: "youtube"
   video_id: "VsTLXiv0H-g"
 
-- title: "Implicit to Explicit: Decoding Ruby's Magical Syntax"
+- id: "justin-gordon-railsconf-2021"
+  title: "Implicit to Explicit: Decoding Ruby's Magical Syntax"
   raw_title: "RailsConf 2021: Implicit to Explicit: Decoding Ruby's Magical Syntax - Justin Gordon"
   speakers:
     - Justin Gordon
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     Does a Rails model or config file seem like a magical syntax? Or can you read any Ruby code and understand it as the interpreter does?
 
@@ -371,50 +397,54 @@
   video_provider: "youtube"
   video_id: "9ubmyfEdlMs"
 
-- title: "The History of Making Mistakes"
+- id: "kerri-miller-railsconf-2021"
+  title: "The History of Making Mistakes"
   raw_title: "RailsConf 2021: The History of Making Mistakes - Kerri Miller"
   speakers:
     - Kerri Miller
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     We sometimes say “computers were a mistake”, as if clay tablets were any better. From the very beginning, humans have been screwing up, and it’s only gotten worse from there. Each time, though, we’ve learned something and moved forward. Sometimes we forget those lessons, so let’s look through the lens of software engineering at a few of these oopsie-daisies, and see the common point of failure - humans themselves.
   video_provider: "youtube"
   video_id: "ecUDTUihlPc"
 
-- title: "How to teach your code to describe its own architecture"
+- id: "kevin-gilpin-railsconf-2021"
+  title: "How to teach your code to describe its own architecture"
   raw_title: "RailsConf 2021: How to teach your code to describe its own architecture - Kevin Gilpin"
   speakers:
     - Kevin Gilpin
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     Architecture documents and diagrams are always out of date. Unfortunately, lack of accurate, up-to-date information about software architecture is really harmful to developer productivity and happiness. Historically, developers have overcome other frustrations by making code the “source of truth”, and then using the code as a foundation for automated tools and processes. In this talk, I will describe how to automatically generate docs and diagrams of code architecture, and discuss how to use to use this information to improve code understanding and code quality.
   video_provider: "youtube"
   video_id: "SZHFnRkAcU0"
 
-- title: "High availability by offloading work"
+- id: "kerstin-puschke-railsconf-2021"
+  title: "High availability by offloading work"
   raw_title: "RailsConf 2021: High availability by offloading work - Kerstin Puschke"
   speakers:
     - Kerstin Puschke
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     Unpredictable traffic spikes, slow requests to a third party, and time-consuming tasks like image processing shouldn’t degrade the user facing availability of an application. In this talk, you’ll learn about different approaches to maintain high availability by offloading work into the background: background jobs, message oriented middleware based on queues, and event logs like Kafka. I’ll explain their foundations and how they compare to each other, helping you to choose the right tool for the job.
   video_provider: "youtube"
   video_id: "AWe70zT2z_c"
 
-- title: "Engineering MBA: Be The Boss of Your Own Work"
+- id: "kevin-murphy-railsconf-2021"
+  title: "Engineering MBA: Be The Boss of Your Own Work"
   raw_title: "RailsConf 2021: Engineering MBA: Be The Boss of Your Own Work - Kevin Murphy"
   speakers:
     - Kevin Murphy
   event_name: "RailsConf 2021"
   slides_url: "https://speakerdeck.com/kevinmurphy/engineering-mba"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     Improve your work as a developer with an introduction to strategic planning, situational leadership, and process management. No balance sheets or income statements here; join me to learn the MBA skills valuable to developers without the opportunity costs of lost wages or additional student loans.
 
@@ -422,25 +452,27 @@
   video_provider: "youtube"
   video_id: "HMppLTUyewE"
 
-- title: "Who Are You? Delegation, Federation, Assertions and Claims"
+- id: "lyle-mullican-railsconf-2021"
+  title: "Who Are You? Delegation, Federation, Assertions and Claims"
   raw_title: "RailsConf 2021: ho Are You? Delegation, Federation, Assertions and Claims - Lyle Mullican"
   speakers:
     - Lyle Mullican
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     Identity management? Stick a username and (hashed) password in a database, and done! That's how many apps get started, at least. But what happens once you need single sign-on across multiple domains, or if you'd rather avoid the headache of managing those passwords to begin with? This session will cover protocols (and pitfalls) for delegating the responsibility of identity management to an outside source. We'll take a look at SAML, OAuth, and OpenID Connect, considering both the class of problems they solve, and some new ones they introduce!
   video_provider: "youtube"
   video_id: "oktaIPZqD0E"
 
-- title: "API Optimization Tale: Monitor, Fix and Deploy (on Friday)"
+- id: "maciek-rzasa-railsconf-2021"
+  title: "API Optimization Tale: Monitor, Fix and Deploy (on Friday)"
   raw_title: "RailsConf 2021: API Optimization Tale: Monitor, Fix and Deploy (on Friday) - Maciek Rzasa"
   speakers:
     - Maciek Rzasa
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     I saw a green build on a Friday afternoon. I knew I need to push it to production before the weekend. My gut told me it was a trap. I had already stayed late to revert a broken deploy. I knew the risk.
 
@@ -450,13 +482,14 @@
   video_provider: "youtube"
   video_id: "8DKo5jefJeM"
 
-- title: "Using Rails to communicate with the New York Stock Exchange"
+- id: "martin-jaime-railsconf-2021"
+  title: "Using Rails to communicate with the New York Stock Exchange"
   raw_title: "RailsConf 2021: Using Rails to communicate with the New York Stock Exchange - Martin Jaime"
   speakers:
     - Martin Jaime
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     This is a timely talk because of what happened with Gamestop/Robinhood, introducing a case of a high-frequency trading app like Robinhood, built on top of Rails, and how it proves it can scale, managing not only over a complex HTTP API but also communicating over an internal protocol TCP with one New York Stock Exchange server by making use of Remote Procedure Calls (RPC) with RabbitMQ to be able to manage transactional messages (orders).
 
@@ -464,13 +497,14 @@
   video_provider: "youtube"
   video_id: "sPLngvzOuqE"
 
-- title: "rails db:migrate:even_safer"
+- id: "matt-duszynski-railsconf-2021"
+  title: "rails db:migrate:even_safer"
   raw_title: "RailsConf 2021: rails db:migrate:even_safer - Matt Duszynski"
   speakers:
     - Matt Duszynski
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     It's been a few years, your Rails app is wildly successful, and your database is bigger than ever. With that, comes new challenges when making schema changes. You have types to change, constraints to add, and data to migrate... and even an entire table that needs to be replaced.
 
@@ -479,13 +513,14 @@
   video_provider: "youtube"
   video_id: "uMcRCSiNzuc"
 
-- title: "Rescue Mission Accomplished"
+- id: "mercedes-bernard-railsconf-2021"
+  title: "Rescue Mission Accomplished"
   raw_title: "RailsConf 2021: Rescue Mission Accomplished - Mercedes Bernard"
   speakers:
     - Mercedes Bernard
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     "Your mission, should you choose to accept it..." A stakeholder has brought you a failing project and wants you to save it.
 
@@ -493,50 +528,54 @@
   video_provider: "youtube"
   video_id: "_8BklZo-FC0"
 
-- title: "Writing design docs for wide audiences"
+- id: "michele-titolo-railsconf-2021"
+  title: "Writing design docs for wide audiences"
   raw_title: "RailsConf 2021: Writing design docs for wide audiences - Michele Titolo"
   speakers:
     - Michele Titolo
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     What would you do to convince a large audience, who has little context, to use your solution to a problem? One way is to write a design document, which helps scale technical communication and build alignment among stakeholders. The wider the scope of the problem, the more important alignment is. A design document achieves this by addressing three key questions: “what is the goal?”, “how will we achieve it?” and “why are we doing it this way?”. This talk will cover identifying your audience, effectively writing answers to these questions, and involving the right people at the right time.
   video_provider: "youtube"
   video_id: "TxBPuAzFkHE"
 
-- title: "How Reference Librarians Can Help Us Help Each Other"
+- id: "mike-calhoun-railsconf-2021"
+  title: "How Reference Librarians Can Help Us Help Each Other"
   raw_title: "RailsConf 2021: How Reference Librarians Can Help Us Help Each Other - Mike Calhoun"
   speakers:
     - Mike Calhoun
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     In 1883, The Boston Public Library began hiring librarians for reference services. Since then, a discipline has grown around personally meeting the needs of the public, as Library Science has evolved into Information Science. Yet, the goal of assisting with information needs remains the same. There is disciplinary overlap between programming and information science, but there are cultural differences that can be addressed. In other words, applying reference library practices to our teams can foster environments where barriers to asking for and providing help are broken down.
     Play
   video_provider: "youtube"
   video_id: "joZYMpoHrao"
 
-- title: "A Third Way For Open-Source Maintenance"
+- id: "nate-berkopec-railsconf-2021"
+  title: "A Third Way For Open-Source Maintenance"
   raw_title: "RailsConf 2021: A Third Way For Open-Source Maintenance - Nate Berkopec"
   speakers:
     - Nate Berkopec
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     Drawing on my experiences maintaining Puma and other open-source projects, both volunteer and for pay, I'd like to share what I think is a "third way" for sustainable open source, between the extremes of "everyone deserves to be paid" and "everyone's on their own". Instead of viewing maintainers as valuable resources, this third way posits that maintainers are blockers to a potentially-unlimited pool of contributors, and a maintainer's #1 job is encouraging contribution.
   video_provider: "youtube"
   video_id: "gvW0htMx_2o"
 
-- title: "Can I break this?: Writing resilient “save” methods"
+- id: "nathan-griffith-railsconf-2021"
+  title: "Can I break this?: Writing resilient “save” methods"
   raw_title: "RailsConf 2021: Can I break this?: Writing resilient “save” methods - Nathan Griffith"
   speakers:
     - Nathan Griffith
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     An alert hits your radar, leaving you and your team perplexed. An “update” action that had worked for years suddenly ... didn't. You dig in to find that a subtle race condition had been hiding in plain sight all along. How could this happen? And why now?
 
@@ -544,13 +583,14 @@
   video_provider: "youtube"
   video_id: "jbOM_tvWv3o"
 
-- title: "How to be a great developer without being a great coder"
+- id: "nicole-carpenter-railsconf-2021"
+  title: "How to be a great developer without being a great coder"
   raw_title: "RailsConf 2021: How to be a great developer without being a great coder - Nicole Carpenter"
   speakers:
     - Nicole Carpenter
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     Learning to code is an individual journey filled with highs and lows, but for some, the lows seem far more abundant. For some learning to code, and even for some professionals, it feels like we're struggling to tread water while our peers swim laps around us. Some developers take more time to build their technical skills, and that’s ok, as being a great developer is about far more than writing code.
 
@@ -558,36 +598,39 @@
   video_provider: "youtube"
   video_id: "U6DlbMuHgoQ"
 
-- title: "Keynote"
+- id: "aaron-patterson-railsconf-2021"
+  title: "Keynote"
   raw_title: "RailsConf 2021: Keynote: Aaron Patterson"
   speakers:
     - Aaron Patterson
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: ""
   video_provider: "youtube"
   video_id: "TNFljhcoHvQ"
 
-- title: "Missing Guide to Service Objects in Rails"
+- id: "riaz-virani-railsconf-2021"
+  title: "Missing Guide to Service Objects in Rails"
   raw_title: "RailsConf 2021: Missing Guide to Service Objects in Rails - Riaz Virani"
   speakers:
     - Riaz Virani
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     What happens with Rails ends and our custom business logic begins? Many of us begin writing "service objects", but what exactly is a service object? How do we break down logic within the service object? What happens when a step fails? In this talk, we'll go over some of the most common approaches to answering these questions. We'll survey options to handle errors, reuse code, organize our directories, and even OO vs functional patterns. There isn't a perfect pattern, but by the end, we'll be much more aware of the tradeoffs between them.
   video_provider: "youtube"
   video_id: "MCTwjE-vp2s"
 
-- title: "Accessibility is a Requirement"
+- id: "ryan-boone-railsconf-2021"
+  title: "Accessibility is a Requirement"
   raw_title: "RailsConf 2021: Accessibility is a Requirement - Ryan Boone"
   speakers:
     - Ryan Boone
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     Accessible web applications reach wider audiences, ensure businesses are in compliance with the law, and, most importantly, remove barriers for the one in seven worldwide living with a permanent disability. But limited time, lack of knowledge, and even good intentions get in the way of building them.
 
@@ -595,13 +638,14 @@
   video_provider: "youtube"
   video_id: "0r1rBNM3Wao"
 
-- title: "You are Your Own Worst Critic"
+- id: "ryan-brushett-railsconf-2021"
+  title: "You are Your Own Worst Critic"
   raw_title: "RailsConf 2021: You Are Your Own Worst Critic - Ryan Brushett"
   speakers:
     - Ryan Brushett
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     Advancing through one's career can be challenging. As we experience setbacks, impostor syndrome, and uncertainty at various points of our career, we may develop some habits which, when taken too far, could see us sabotaging our own progress. You are your own worst critic.
 
@@ -609,13 +653,14 @@
   video_provider: "youtube"
   video_id: "EHZzyVmOrGI"
 
-- title: "All you need to know to build Dynamic Forms (JS FREE)"
+- id: "santiago-bartesaghi-railsconf-2021"
+  title: "All you need to know to build Dynamic Forms (JS FREE)"
   raw_title: "RailsConf 2021: All you need to know to build Dynamic Forms (JS FREE) - Santiago Bartesaghi"
   speakers:
     - Santiago Bartesaghi
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     Working with forms is pretty common in web apps, but this time my team was requested to give support for dynamic forms created by admins in an admin panel and used in several places (real story). There are many ways to implement it, but our goal was to build it in a way that felt natural in Rails.
 
@@ -623,13 +668,14 @@
   video_provider: "youtube"
   video_id: "6WlFjFOuYGM"
 
-- title: "How To Get A Project Unstuck"
+- id: "sumana-harihareswara-railsconf-2021"
+  title: "How To Get A Project Unstuck"
   raw_title: "RailsConf 2021: How To Get A Project Unstuck - Sumana Harihareswara"
   speakers:
     - Sumana Harihareswara
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     When an open source project has gotten stuck, how do you get it unstuck? Especially if you aren't already its maintainer? My teams have done this with several projects. A new contributor, who's never worked on a project before, can be the catalyst that revives a project or gets a long-delayed release out the door. I'll share a few case studies, principles, & gotchas.
 
@@ -637,13 +683,14 @@
   video_provider: "youtube"
   video_id: "olqhg0aNfZc"
 
-- title: "Growing Software From Seed"
+- id: "sweta-sanghavi-railsconf-2021"
+  title: "Growing Software From Seed"
   raw_title: "RailsConf 2021: Growing Software From Seed - Sweta Sanghavi"
   speakers:
     - Sweta Sanghavi
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     Pam Pierce writes, “Look at your garden every day. Study a plant or a square foot of ground until you’ve learned something new". In debugging my own garden, the practice of daily observation has revealed signals previously overlooked. This practice has followed me to the work of tending to our growing application.
 
@@ -651,13 +698,14 @@
   video_provider: "youtube"
   video_id: "HiByvxqvH-8"
 
-- title: "Scaling Rails API to Write"
+- id: "takumasa-ochi-railsconf-2021"
+  title: "Scaling Rails API to Write"
   raw_title: "RailsConf 2021: Scaling Rails API to Write-Heavy Traffic - Takumasa Ochi"
   speakers:
     - Takumasa Ochi
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     Tens of millions of people can download and play the same game thanks to mobile app distribution platforms. Highly scalable and reliable API backends are critical to offering a good game experience. Notable characteristics here is not only the magnitude of the traffic but also the ratio of write traffic. How do you serve millions of database transactions per minute with Rails?
 
@@ -665,13 +713,14 @@
   video_provider: "youtube"
   video_id: "R6EkPSo_7PA"
 
-- title: "What is Developer Empathy?"
+- id: "tim-tyrrell-railsconf-2021"
+  title: "What is Developer Empathy?"
   raw_title: "RailsConf 2021: What is Developer Empathy? - Tim Tyrrell"
   speakers:
     - Tim Tyrrell
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     Dev teams should employ empathetic patterns of behavior at all levels from junior developer to architect. Organizations can create the safety and security necessary to obtain a high functioning team environment that values courageous feedback if they simply have the language and tools to do so. How can leadership provide a framework for equitable practices and empathetic systems that promotes learning fluency across the team?
 
@@ -679,13 +728,14 @@
   video_provider: "youtube"
   video_id: "PvoGihwh0Ao"
 
-- title: "The Curious Case of the Bad Clone"
+- id: "ufuk-kayserilioglu-railsconf-2021"
+  title: "The Curious Case of the Bad Clone"
   raw_title: "RailsConf 2021: The Curious Case of the Bad Clone - Ufuk Kayserilioglu"
   speakers:
     - Ufuk Kayserilioglu
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     On Sept 4th 2020, I got pinged on a revert PR to fix a 150% slowdown on the Shopify monolith. It was a two-line change reverting the addition of a Sorbet signature on a Shop method, implicating Sorbet as the suspect.
 
@@ -695,13 +745,14 @@
   video_provider: "youtube"
   video_id: "eTAXHmBSlxs"
 
-- title: "The Cost of Data"
+- id: "vaidehi-joshi-railsconf-2021"
+  title: "The Cost of Data"
   raw_title: "RailsConf 2021: The Cost of Data - Vaidehi Joshi"
   speakers:
     - Vaidehi Joshi
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     The internet grows every day. Every second, one of us is making calls to an API, uploading some images, or streaming the latest video content. But what is the cost of all this?
 
@@ -710,13 +761,14 @@
   video_provider: "youtube"
   video_id: "EfTZXvif9hg"
 
-- title: "Frontendless Rails frontend"
+- id: "vladimir-dementyev-railsconf-2021"
+  title: "Frontendless Rails frontend"
   raw_title: "RailsConf 2021: Frontendless Rails frontend - Vladimir Dementyev"
   speakers:
     - Vladimir Dementyev
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     Everything is cyclical, and web development is not an exception: ten years ago, we enjoyed developing Rails apps using HTML forms, a bit of AJAX, and jQuery—our productivity had no end! As interfaces gradually became more sophisticated, the "classic" approach began to give way to frontend frameworks, pushing Ruby into an API provider's role.
 
@@ -726,13 +778,14 @@
   video_provider: "youtube"
   video_id: "UylEOXuAmo0"
 
-- title: "What the fork()?"
+- id: "will-jordan-railsconf-2021"
+  title: "What the fork()?"
   raw_title: "RailsConf 2021: What the fork()? - Will Jordan"
   speakers:
     - Will Jordan
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     How does Spring boot your Rails app instantly, or Puma route requests across many processes? How can you fine-tune your app for memory efficiency, or simply run Ruby code in parallel? Find out with a deep dive on that staple Unix utensil, the fork() system call!
 
@@ -740,13 +793,14 @@
   video_provider: "youtube"
   video_id: "Cq3Vd4KIvFk"
 
-- title: "Talmudic Gems For Rails Developers"
+- id: "yechiel-kalmenson-railsconf-2021"
+  title: "Talmudic Gems For Rails Developers"
   raw_title: "RailsConf 2021: Talmudic Gems For Rails Developers - Yechiel Kalmenson"
   speakers:
     - Yechiel Kalmenson
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     Am I my colleague’s keeper? To what extent are we responsible for the consequences of our code?
 
@@ -758,25 +812,27 @@
   video_provider: "youtube"
   video_id: "7bPFm1CWaws"
 
-- title: "Turning DevOps Inside"
+- id: "darren-broemmer-railsconf-2021"
+  title: "Turning DevOps Inside"
   raw_title: "RailsConf 2021: Turning DevOps Inside-Out - Darren Broemmer"
   speakers:
     - Darren Broemmer
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     We often think of automation and deployment scripts when we discuss DevOps, however the true value is in reacting to how customers use your application and incorporating this feedback into your development lifecycle. In this talk, we will discuss how you can turning DevOps around to increase your feature velocity, including some Rails specific strategies and gems you can use to get things done faster.
   video_provider: "youtube"
   video_id: "sJ-Be85vCcc"
 
-- title: "New dev, old codebase: A series of mentorship stories"
+- id: "carmen-huidobro-railsconf-2021"
+  title: "New dev, old codebase: A series of mentorship stories"
   raw_title: "RailsConf 2021: New dev, old codebase: A series of mentorship stories - Ramón Huidobro"
   speakers:
     - Carmen Huidobro
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     Mentorship in software development carries a lot of responsibility, but plays an integral part in making tech communities as well as individuals thrive.
 
@@ -788,79 +844,86 @@
   video_provider: "youtube"
   video_id: "NcQqEurV4vo"
 
-- title: "Lightning Talks: Robson Port"
+- id: "robson-port-railsconf-2021"
+  title: "Lightning Talks: Robson Port"
   raw_title: "RailsConf 2021: Lightning Talks: Robson Port"
   speakers:
     - Robson Port
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: ""
   video_provider: "youtube"
   video_id: "LWa465inCxQ"
 
-- title: "Lightning Talk: Pair Programming and Mentorship"
+- id: "emily-harber-railsconf-2021"
+  title: "Lightning Talk: Pair Programming and Mentorship"
   raw_title: "RailsConf 2021: Lightning Talks: Emily Harber"
   speakers:
     - Emily Harber
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: ""
   video_provider: "youtube"
   video_id: "teyMgaqg-1M"
 
-- title: "Lightning Talk: Isolate Packages with Packwerk"
+- id: "dorian-marie-railsconf-2021"
+  title: "Lightning Talk: Isolate Packages with Packwerk"
   raw_title: "RailsConf 2021: Lightning Talks: Dorian Marie"
   speakers:
     - Dorian Marie
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: ""
   video_provider: "youtube"
   video_id: "lpfEnIsF1QM"
 
-- title: "Lightning Talk: Inertia.js for Rails"
+- id: "brandon-shar-railsconf-2021"
+  title: "Lightning Talk: Inertia.js for Rails"
   raw_title: "RailsConf 2021: Lightning Talks: Brandon Shar"
   speakers:
     - Brandon Shar
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: ""
   video_provider: "youtube"
   video_id: "-JT1RF-IhKs"
 
-- title: "Lightning Talk: Renewables + Rails: A Love Story"
+- id: "sarah-sausan-railsconf-2021"
+  title: "Lightning Talk: Renewables + Rails: A Love Story"
   raw_title: "RailsConf 2021: Lightning Talks: Sarah Sausan"
   speakers:
     - Sarah Sausan
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: ""
   video_provider: "youtube"
   video_id: "5LBzWDbLu1I"
 
-- title: "Lightning Talk: My Team's recent Gitastrophy - a PERFECT example!"
+- id: "lauren-billington-railsconf-2021"
+  title: "Lightning Talk: My Team's recent Gitastrophy - a PERFECT example!"
   raw_title: "RailsConf 2021: Lightning Talks: Lauren Billington"
   speakers:
     - Lauren Billington
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: ""
   video_provider: "youtube"
   video_id: "GOmTVqH-eZE"
 
-- title: "Serverless Rails: Understanding the pros and cons"
+- id: "daniel-azuma-railsconf-2021"
+  title: "Serverless Rails: Understanding the pros and cons"
   raw_title: "RailsConf 2021: Serverless Rails: Understanding the pros and cons - Daniel Azuma"
   speakers:
     - Daniel Azuma
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     Serverless is widely lauded as the ops-free future of deployment. Serverless is widely panned as a gimmick with little utility for the price. Who’s right? And what does it mean for my Rails app?
 
@@ -868,13 +931,14 @@
   video_provider: "youtube"
   video_id: "C3LMNdhVS2U"
 
-- title: "Make a Difference with Simple A/B Testing"
+- id: "danielle-gordon-railsconf-2021"
+  title: "Make a Difference with Simple A/B Testing"
   raw_title: "RailsConf 2021: Make a Difference with Simple A/B Testing - Danielle Gordon"
   speakers:
     - Danielle Gordon
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     There are a lot of myths around A/B testing. They’re difficult to implement, difficult to keep track of, difficult to remove, and the costs don’t seem to outweigh the benefits unless you’re at a large company. But A/B tests don’t have to be a daunting task. And let’s be honest, how can you say you’ve made positive changes in your app without them?
 
@@ -882,13 +946,14 @@
   video_provider: "youtube"
   video_id: "MnYmZKtj9Lc"
 
-- title: "Speed up your test suite by throwing computers at it"
+- id: "daniel-magliola-railsconf-2021"
+  title: "Speed up your test suite by throwing computers at it"
   raw_title: "RailsConf 2021: Speed up your test suite by throwing computers at it - Daniel Magliola"
   speakers:
     - Daniel Magliola
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     You've probably experienced this. CI times slowly creep up over time and now it takes 20, 30, 40 minutes to run your suite. Multi-hour runs are not uncommon.
 
@@ -898,13 +963,14 @@
   video_provider: "youtube"
   video_id: "ntTT64hK1no"
 
-- title: "The Power of Visual Narrative"
+- id: "denise-yu-railsconf-2021"
+  title: "The Power of Visual Narrative"
   raw_title: "RailsConf 2021: The Power of Visual Narrative - Denise Yu"
   speakers:
     - Denise Yu
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     As technologists, we spend a great deal of time trying to become better communicators. One secret to great communication is... to actually say less. And draw more!
 
@@ -912,13 +978,14 @@
   video_provider: "youtube"
   video_id: "a36JR0-rxz0"
 
-- title: "When words are more than just words: Don't BlackList us"
+- id: "espartaco-palma-railsconf-2021"
+  title: "When words are more than just words: Don't BlackList us"
   raw_title: "RailsConf 2021: When words are more than just words: Don't BlackList us - Espartaco Palma"
   speakers:
     - Espartaco Palma
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     ow we communicate words is important, the code, test and documentation needs to be part of the ongoing process to treat better our coworkers, be clear on what we do without the need of established words as "blacklist". Do you mean restricted? rejected? undesirable? think again.
 
@@ -928,13 +995,14 @@
   video_provider: "youtube"
   video_id: "nLGvYfeLMbM"
 
-- title: "How to A/B test with confidence"
+- id: "frederick-cheung-railsconf-2021"
+  title: "How to A/B test with confidence"
   raw_title: "RailsConf 2021: How to A/B test with confidence - Frederick Cheung"
   speakers:
     - Frederick Cheung
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     A/B tests should be a surefire way to make confident, data-driven decisions about all areas of your app - but it's really easy to make mistakes in their setup, implementation or analysis that can seriously skew results!
 
@@ -942,49 +1010,53 @@
   video_provider: "youtube"
   video_id: "IsgQ9RJ0rJE"
 
-- title: "The Rising Storm of Ethics in Open Source"
+- id: "coraline-ada-ehmke-railsconf-2021"
+  title: "The Rising Storm of Ethics in Open Source"
   raw_title: "RailsConf 2021: The Rising Storm of Ethics in Open Source - Coraline Ada Ehmke"
   speakers:
     - Coraline Ada Ehmke
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-27"
   description: |-
     The increased debate around ethical source threatens to divide the OSS community. In his book "The Structure of Scientific Revolutions", philosopher Thomas Kuhn posits that there are three possible solutions to a crisis like the one we're facing: procrastination, assimilation, or revolution. Which will we choose as we prepare for the hard work of reconciling ethics and open source?
   video_provider: "youtube"
   video_id: "CX3htKOeB14"
 
-- title: "Processing data at scale with Rails"
+- id: "corey-martin-railsconf-2021"
+  title: "Processing data at scale with Rails"
   raw_title: "RailsConf 2021: Processing data at scale with Rails - Corey Martin"
   speakers:
     - Corey Martin
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-27"
   description: |-
     More of us are building apps to make sense of massive amounts of data. From public datasets like lobbying records and insurance data, to shared resources like Wikipedia, to private data from IoT, there is no shortage of large datasets. This talk covers strategies for ingesting, transforming, and storing large amounts of data, starting with familiar tools and frameworks like ActiveRecord, Sidekiq, and Postgres. By turning a massive data job into successively smaller ones, you can turn a data firehose into something manageable.
   video_provider: "youtube"
   video_id: "8zTbcGDEDz4"
 
-- title: "Type Is Design: Fix Your UI with Better Typography and CSS"
+- id: "john-athayde-railsconf-2021"
+  title: "Type Is Design: Fix Your UI with Better Typography and CSS"
   raw_title: "RailsConf 2021: Type Is Design:Fix Your UI with Better Typography and CSS - John Athayde"
   speakers:
     - John Athayde
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-28"
   description: |-
     The written word is the medium through which most information exchanges hands in the tools we build. Digital letterforms can help or hinder the ability for people to communicate and understand. We'll work through some typographic principles and then apply them to the web with HTML and CSS for implementation. We'll look at some of the newer OpenType features and touch on the future of digital type, variable fonts, and more.
   video_provider: "youtube"
   video_id: "1Pe7oGIKkqc"
 
-- title: "10 Years In - The Realities of Running a Rails App Long Term"
+- id: "anthony-eden-railsconf-2021"
+  title: "10 Years In - The Realities of Running a Rails App Long Term"
   raw_title: "RailsConf 2021: 10 Years In - The Realities of Running a Rails App Long Term - Anthony Eden"
   speakers:
     - Anthony Eden
   event_name: "RailsConf 2021"
   date: "2021-04-12"
-  published_at: "TODO"
+  published_at: "2022-09-27"
   description: |-
     The first commit for the DNSimple application was performed in April 2010, when Ruby on Rails was on version 2.3. Today DNSimple still runs Ruby on Rails, version 6.0. The journey from of the DNSimple application to today's version is a study in iterative development. In this talk I will walk through the evolution of the DNSimple application as it has progressed in step with the development of Ruby on Rails. I'll go over what's changed, what's stayed the same, what worked, and where we went wrong.
   video_provider: "youtube"

@@ -10,6 +10,7 @@ class Events::SpeakersController < ApplicationController
       speaker_counts = speaker_ids.tally
 
       @speakers_with_counts = User
+        .includes(:connected_accounts)
         .where(id: speaker_counts.keys)
         .where("talks_count > 0")
         .map do |speaker|
@@ -24,7 +25,7 @@ class Events::SpeakersController < ApplicationController
   private
 
   def set_event
-    @event = Event.includes(:organisation, talks: :speakers).find_by(slug: params[:event_slug])
+    @event = Event.includes(:series, talks: {speakers: :connected_accounts}).find_by(slug: params[:event_slug])
     return redirect_to(root_path, status: :moved_permanently) unless @event
 
     set_meta_tags(@event)

@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby file: ".ruby-version"
 
 # Use main development branch of Rails from github
-gem "rails", github: "rails/rails", branch: "main"
+gem "rails", "8.1.1"
 
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
@@ -46,13 +46,16 @@ gem "tzinfo-data", platforms: %i[windows jruby]
 gem "bootsnap", require: false
 
 # Deploy this application anywhere as a Docker container [https://kamal-deploy.org]
-gem "kamal", require: false
+gem "kamal", "2.7.0", require: false
 
 # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
 gem "thruster", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
+
+# Image processing for event asset generation
+gem "mini_magick"
 
 # All sorts of useful information about every country packaged as convenient little country objects
 gem "countries"
@@ -74,15 +77,28 @@ gem "active_genie"
 
 # A single delightful Ruby way to work with AI.
 gem "ruby_llm"
+gem "ruby_llm-schema"
+
+# JSON Schema validator
+gem "json_schemer"
 
 # YouTube V3 API client.
 gem "yt"
+
+# Family of libraries that support various formats of XML "feeds".
+gem "rss", "~> 0.3.1"
+
+# Powerful and seamless HTML-aware ERB parsing and tooling.
+gem "herb", "~> 0.8"
+
+# An ActionView-compatible ERB engine with modern DX - re-imagined with Herb.
+gem "reactionview", "~> 0.1"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "bundler-audit", require: false
   gem "debug", platforms: %i[mri windows]
-  gem "byebug", "~> 11.1"
+  gem "byebug"
   gem "minitest-difftastic", "~> 0.2"
 end
 
@@ -103,6 +119,9 @@ group :development do
   # Use listen to watch files for changes [https://github.com/guard/listen]
   gem "listen", "~> 3.5"
 
+  # Guard for watching file changes and auto-importing [https://github.com/guard/guard]
+  gem "guard"
+
   gem "error_highlight", ">= 0.4.0", platforms: [:ruby]
   gem "ruby-lsp-rails", require: false
   gem "standardrb", "~> 1.0", require: false
@@ -120,7 +139,6 @@ group :test do
 end
 
 gem "pagy"
-gem "dockerfile-rails", ">= 1.2", group: :development
 
 # gem "activerecord-enhancedsqlite3-adapter"
 gem "solid_cache"
@@ -129,7 +147,7 @@ gem "mission_control-jobs"
 
 gem "ahoy_matey"
 gem "vite_rails"
-gem "meta-tags", "~> 2.18"
+gem "meta-tags"
 gem "groupdate"
 gem "appsignal"
 gem "chartkick", "~> 5.0"
@@ -173,9 +191,10 @@ gem "omniauth-github"
 # Provides a mitigation against CVE-2015-9284 [https://github.com/cookpad/omniauth-rails_csrf_protection]
 gem "omniauth-rails_csrf_protection"
 
-# silence Ruby 3.4 warnings
-gem "ostruct"
-
 gem "hotwire_combobox", "~> 0.4.0"
 
 gem "rails-i18n", "~> 8.0"
+
+# Ruby standards gems
+gem "openssl" # https://github.com/ruby/openssl/issues/949
+gem "ostruct"

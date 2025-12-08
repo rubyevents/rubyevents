@@ -1,6 +1,7 @@
 # == Schema Information
 #
 # Table name: rollups
+# Database name: primary
 #
 #  id         :integer          not null, primary key
 #  dimensions :json             not null, uniquely indexed => [name, interval, time]

@@ -2,7 +2,8 @@
 # Website: https://brightonruby.com/2016/
 # Schedule: https://brightonruby.com/2016/
 
-- title: "Security is Broken"
+- id: "eileen-security-is-broken-understanding-common-vulnerabilities"
+  title: "Security is Broken"
   raw_title: "Security is Broken"
   speakers:
     - Eileen M. Uchitelle
@@ -20,7 +21,8 @@
 
           Staff Engineer on the Ruby Architecture Team at GitHub and a member of the Rails Core team. She’s an avid contributor to open source focusing on the Ruby on Rails framework and its dependencies. Eileen is passionate about scalability, performance, and making open source communities more sustainable and welcoming.
 
-- title: "The Point of Objects"
+- id: "john-the-point-of-objects"
+  title: "The Point of Objects"
   raw_title: "The Point of Objects"
   speakers:
     - John Cinnamond
@@ -35,7 +37,8 @@
 
     In this talk we take some real world ruby code written in a procedural style and refactor it to an Object Oriented style. Along the way we’ll see how this changes the we think about programming, and how this gives us better tools for tackling the inevitable complexity that will creep into your project.
 
-- title: "What is Processor?"
+- id: "sam-what-is-processor"
+  title: "What is Processor?"
   raw_title: "What is Processor?"
   speakers:
     - Sam Phippen
@@ -50,7 +53,8 @@
 
     In this talk, you’ll learn a little more about what it means for Ruby to be an “interpreted” language, how a processor executes programs, and what magical tricks processor designers use to make our programs go faster with every generation. If you’ve ever written a Ruby program, and understand that a computer has a processor in it, this talk is probably for you.
 
-- title: "The Function of Bias"
+- id: "sara-the-function-of-bias"
+  title: "The Function of Bias"
   raw_title: "The Function of Bias"
   speakers:
     - Sara Simon
@@ -66,8 +70,13 @@
     It’s a talk about building something the right way under deadline. About humans who write algorithms that determine the news. It’s about bias and about the function it serves. About the privileges and perspectives that programmers bring to their code and about the privileges and perspectives that journalists bring to their stories.
 
     Prefer to read, rather than watch? [The Function of Bias](https://medium.com/@sarambsimon/the-function-of-bias-b92fc968fac1#.c5ch46ws3)
+  additional_resources:
+    - name: "Blog Post"
+      type: "blog"
+      url: "https://medium.com/@sarambsimon/the-function-of-bias-b92fc968fac1#.c5ch46ws3"
 
-- title: "Do-it-Yourself Testing"
+- id: "emily-do-it-yourself-testing"
+  title: "Do-it-Yourself Testing"
   raw_title: "Do-it-Yourself Testing"
   speakers:
     - Emily Stolfo
@@ -82,7 +91,8 @@
 
     Using these common tests and the Ruby driver’s test suite as examples, this talk shows you how they designed and built a custom testing framework and perhaps tempt you to do the same.
 
-- title: "Gameshow: Just a Ruby Minute"
+- id: "just-a-ruby-minute-2016"
+  title: "Gameshow: Just a Ruby Minute"
   raw_title: "Just a Ruby Minute"
   speakers:
     - Andrew Faraday
@@ -109,7 +119,8 @@
 
     \    "
 
-- title: "Lightning Talk: Five Minutes with Elixir"
+- id: "andy-five-minutes-with-elixir"
+  title: "Lightning Talk: Five Minutes with Elixir"
   raw_title: "Five Minutes with Elixir"
   speakers:
     - Andy Pike
@@ -126,7 +137,8 @@
 
     Contains mad rhymes.
 
-- title: "Lightning Talk: Craft & Cathedrals"
+- id: "jay-craft-and-cathedrals"
+  title: "Lightning Talk: Craft & Cathedrals"
   raw_title: "Craft & Cathedrals"
   speakers:
     - Jay Caines-Gooby
@@ -142,8 +154,13 @@
     Actually cathedrals are really big-balls of mud and that’s totally OK
 
     Prefer to read, rather than watch? [Craft & Cathedrals](https://medium.com/@jaygooby/craft-and-cathedrals-e97460216e29#.t178yk48m)
+  additional_resources:
+    - name: "Blog Post"
+      type: "blog"
+      url: "https://medium.com/@jaygooby/craft-and-cathedrals-e97460216e29#.t178yk48m"
 
-- title: "Lightning Talk: Five WTFs in Six LOCs"
+- id: "dot-5-wtfs-in-6-locs"
+  title: "Lightning Talk: Five WTFs in Six LOCs"
   raw_title: "Five WTFs in Six LOCs"
   speakers:
     - Dot Wingrove
@@ -161,7 +178,8 @@
 
           Co-organiser of @CodebarBrighton, studying maths with @OpenUniversity, humum to @morty_macgrove
 
-- title: "Lightning Talk: Puppies & Two Factor Authentication"
+- id: "phil-puppies-and-two-factor-auth"
+  title: "Lightning Talk: Puppies & Two Factor Authentication"
   raw_title: "Puppies & Two Factor Authentication"
   speakers:
     - Phil Nash
@@ -174,7 +192,8 @@
   description: |-
     Puppies need to be secure and safe, Phil shows you how you can get 2-factor authentication done in two minutes.
 
-- title: "Lightning Talk: The Heroku Flow"
+- id: "neil-the-heroku-flow"
+  title: "Lightning Talk: The Heroku Flow"
   raw_title: "The Heroku Flow"
   speakers:
     - Neil Middleton
@@ -187,7 +206,8 @@
   description: |-
     Over the last few years Heroku has developed and refined a process and set of tools called the ‘Heroku Flow’. This process aims to streamlined code development/deploy and review down to the very basics, opening up more time for you to worry about your code.
 
-- title: "Rails 5 Features You Haven’t Heard About"
+- id: "sean-rails-5-features-you-haven’t-heard-about"
+  title: "Rails 5 Features You Haven’t Heard About"
   raw_title: "Rails 5 Features You Haven’t Heard About"
   speakers:
     - Sean Griffin
@@ -202,7 +222,8 @@
 
     A deep look at several of the “minor” features of Rails 5. You won’t just learn about the features, but you’ll learn about why they were added, the reasoning behind them, and the difficulties of adding them from someone directly involved in many of them.
 
-- title: "Hubs & Spokes on Rails"
+- id: "patrick-hubs-and-spokes-on-rails"
+  title: "Hubs & Spokes on Rails"
   raw_title: "Hubs & Spokes on Rails"
   speakers:
     - Patrick McKenzie
@@ -218,7 +239,8 @@
 
           A recovering Japanese salaryman who ran a succession of small software companies. Currently working at Stripe, on Atlas to make it easier to start and scale companies worldwide.
 
-- title: "Mary Richards and the Delicate Art of YOLO"
+- id: "britni-mary-richards-and-the-delicate-art-of-yolo"
+  title: "Mary Richards and the Delicate Art of YOLO"
   raw_title: "Mary Richards and the Delicate Art of YOLO"
   speakers:
     - Britni Alexander
@@ -233,7 +255,8 @@
 
     In this talk we will discover some of the key attitudes learned from CAN DO attitude of The Mary Tyler Moore Show and practices which are instrumental in _any_ job search at _any_ stage.
 
-- title: "How We Make Software: A New Theory of Teams"
+- id: "sarah-how-we-make-software_-a-new-theory-of-teams"
+  title: "How We Make Software: A New Theory of Teams"
   raw_title: "How We Make Software: A New Theory of Teams"
   speakers:
     - Sarah Mei

@@ -10,19 +10,14 @@ class Sessions::OmniauthController < ApplicationController
       connect_to = (key == "connect_to") ? value : nil
     end
 
-    connected_account = ConnectedAccount.find_or_initialize_by(provider: omniauth.provider, username: omniauth_params[:username])
+    connected_account = ConnectedAccount.find_or_initialize_by(provider: omniauth.provider, username: omniauth_username&.downcase)
 
     if connected_account.new_record?
-      @user = User.find_or_initialize_by(github_handle: omniauth_params[:username]) do |user|
-        user.password = SecureRandom.base58
-        user.name = omniauth_params[:name]
-        user.slug = omniauth_params[:username]
-        user.email = omniauth_params[:email]
-        user.verified = true
-      end
+      @user = User.find_by_github_handle(omniauth_username)
+      @user ||= initialize_user
       connected_account.user = @user
       connected_account.access_token = token
-      connected_account.username = omniauth_params[:username]
+      connected_account.username = omniauth_username
       connected_account.save!
     else
       @user = connected_account.user
@@ -44,6 +39,7 @@ class Sessions::OmniauthController < ApplicationController
 
     if @user.persisted?
       @user.update(name: omniauth_params[:name]) if omniauth_params[:name].present?
+      @user.watched_talk_seeder.seed_development_data if Rails.env.development?
 
       sign_in @user
 
@@ -62,6 +58,20 @@ class Sessions::OmniauthController < ApplicationController
   end
 
   private
+
+  def omniauth_username
+    omniauth_params[:username]
+  end
+
+  def initialize_user
+    User.new(github_handle: omniauth_username) do |user|
+      user.password = SecureRandom.base58
+      user.name = omniauth_params[:name]
+      user.slug = omniauth_params[:username]
+      user.email = omniauth_params[:email]
+      user.verified = true
+    end
+  end
 
   def email
     if omniauth.provider == "developer"

@@ -1,6 +1,346 @@
-# TODO: Add talks and videos
-
+---
 # Website: https://rubyrussia.club/
 # Videos: https://www.youtube.com/playlist?list=PLiWUIs1hSNeOiwKkEcdRU7NvQr2IKaMBw
----
-[]
+
+- id: "claudio-baccigalupo-railsclub-2015"
+  title: "Rails 5: awesome features and breaking changes"
+  raw_title: "Claudio Baccigalipo. Rails 5: awesome features and breaking changes"
+  speakers:
+    - Claudio Baccigalupo
+  event_name: "RailsClub 2015"
+  published_at: "2015-11-23"
+  date: "2015-09-26"
+  description: |-
+    Each major release of Rails brings shiny new features and mild headaches for developers required to upgrade their applications and gems.
+
+    Rails API, ActionCable, Turbolinks 3 are only a few of the changes announced for Rails 5. How can programmers get ready for the future without breaking their legacy code?
+
+    In this talk, I will cover the improvements brought by Rails 5, explain the Core team's motivations behind each feature, and illustrate the upgrade process to smoothly transition gems and apps from Rails 4.2 to Rails 5.0.
+  video_provider: "youtube"
+  video_id: "GbtepoRfH60"
+  language: "English"
+
+- id: "bozhidar-batsov-railsclub-2015"
+  title: "Volt: Ruby web development recharged"
+  raw_title: "Bozhidar Batsov. Volt: Ruby web development recharged"
+  speakers:
+    - Bozhidar Batsov
+  event_name: "RailsClub 2015"
+  published_at: "2015-11-23"
+  date: "2015-09-26"
+  description: |-
+    Volt is a reactive web framework where your Ruby code runs both on the server and the client. Sounds crazy, right? Trust me, though, this is pretty amazing and will blow your minds.
+
+    Volt is probably the most exciting web framework in the land of Ruby since Rails. In this talk we'll go over the core ideas and principles of Volt, the advantages of Volt over traditional web apps and we'll play with a few basic examples. We'll wrap with a look towards Volt's bright future. Above all else - we'll have fun!
+  video_provider: "youtube"
+  video_id: "wDone3jQz0U"
+  language: "English"
+
+- id: "samat-galimov-railsclub-2015"
+  title: "Microservices and Elixir for Rails developers"
+  original_title: "Микросервисы и Elixir для Rails-разработчиков"
+  raw_title: "Самат Галимов и Борис Горячев. Микросервисы и Elixir для Rails-разработчиков"
+  speakers:
+    - Samat Galimov
+    - Boris Goryachev
+  event_name: "RailsClub 2015"
+  published_at: "2015-11-23"
+  date: "2015-09-26"
+  description: |-
+    Рассказ пойдет о том, как мы разделяем наше основное rails приложение и создаем микросервис-архитектуру. Как за год было написано более 10-ти проектов разных уровней сложности, и чем мы руководствовались, когда это затевали.
+
+    Для нас зачастую выбор языка/фреймворка под проект чуть ли не сложнее, чем написание самого проекта, и в докладе мы постараемся объяснить целесообразность того или иного выбора(заранее признаюсь - в некоторых местах мы славно напортачили).
+
+    Также расскажем о случаях, когда лучше заблаговременно сойти с рельс и как себя при этом обезопасить. В конце доклада мы постараемся убедить вас попробовать elixir - прекрасный молодой функциональный язык программирования. На десерт несколько примеров, где он стал для нас right tool for the job.
+  video_provider: "youtube"
+  video_id: "AG_QHHi01j4"
+  language: "Russian"
+
+- id: "sam-phippen-railsclub-2015"
+  title: "Mocking language"
+  raw_title: "Sam Phippen. Mocking language"
+  speakers:
+    - Sam Phippen
+  event_name: "RailsClub 2015"
+  published_at: "2015-11-23"
+  date: "2015-09-26"
+  description: |-
+    This talk is an investigation into the different kinds of ways we isolate objects from their collaborators. They all seem to provide similar capabilities but there is an underlying language that talks to us about different kinds of design smells that we might have in our applications.
+
+    This talk will cover the different kinds of test doubles that we use in our applications and what they indicate about the designs of our software.
+  video_provider: "youtube"
+  video_id: "9bWQfTG3Uzg"
+  language: "English"
+
+- id: "koichi-sasada-railsclub-2015"
+  title: "Performance in the details: a way to make faster Ruby"
+  raw_title: "Koichi Sasada. Performance in the details: a way to make faster Ruby"
+  speakers:
+    - Koichi Sasada
+  event_name: "RailsClub 2015"
+  published_at: "2015-11-23"
+  date: "2015-09-26"
+  description: |-
+    Heroku Matz team is working to improve quality of CRuby/MRI. Quality has several meanings, such as stability, low resource consumption, and of course speed. My main goal is to make faster Ruby.
+
+    However, we don't have one absolute solution to speed up Ruby interpreter. Instead of one solution, we introduce variety of techniques to improve Ruby's performance. In this talk, I will show you recent achievements by techniques in details.
+  video_provider: "youtube"
+  video_id: "JpiioISI_2I"
+  language: "English"
+
+- id: "andrey-deryabin-railsclub-2015"
+  title: "Microservices at Gett: launching new verticals and working under load"
+  original_title: "Микросервисы в Gett: открытие новых направлений и работа под нагрузкой"
+  raw_title: "Андрей Дерябин. Микросервисы в Gett: открытие новых направлений и работа под нагрузкой"
+  speakers:
+    - Andrey Deryabin
+  event_name: "RailsClub 2015"
+  published_at: "2015-11-23"
+  date: "2015-09-26"
+  description: |-
+    Gett (ранее известный как GetTaxi), популярнейший сервис для заказа такси, в этом году не только вырос по бизнес-показателям, но и открыл новые направления деятельности (вертикали) — например, доставку еды и проведение работ на дому. Чтобы отвечать требованиям бизнеса по росту, и особенно — для возможности строить новые вертикали на существующих мощностях, архитекторы Gett начали перевод сервиса на микросервисную архитектуру.
+
+    В этом Gett помогала команда марсиан под руководством Андрея. За короткий срок у Gett получилось перейти от монолитной архитектуре к использованию микросервисов — в боевом режиме, в четырех странах (США, Великобритания, Россия, Израиль). Это позволило существенно ускорить и упростить работу над разработкой новых направлений.
+
+    Вместо теоретических рассказов о том, как здорово использовать микросервисы и почему все якобы непременно должны это делать, Андрей сконцентрируется на практике и боевом опыте. В докладе он расскажет про сложности, с которыми пришлось столкнуться при разработке микросервисов и способами их решения — реализация взаимодействия сервисов (средствами REST API), версионирование состояния системы, логирование изменений (стратегия COW), распределенное конфигурирование (ZooKeeper), работа с shared-частями микросервисов, развертвывание (Chef) и тестирование. Отдельно Андрей подробно остановится на реализации паттерна Circuit Breaker для решения проблем в канале связи между сервисами.
+  video_provider: "youtube"
+  video_id: "XkKKW8BsICc"
+  language: "Russian"
+
+- id: "andrey-kumanyaev-railsclub-2015"
+  title: "Finding where and why your production app is slow"
+  original_title: "Ищем где и почему production приложение тормозит"
+  raw_title: "Андрей Куманяев. Ищем где и почему production приложение тормозит"
+  speakers:
+    - Andrey Kumanyaev
+  event_name: "RailsClub 2015"
+  published_at: "2015-11-23"
+  date: "2015-09-26"
+  description: |-
+    Многие из разработчиков мира Ruby on Rails знакомы с богатым набором инструментов для профилировали приложения в development среде. Зачастую, работа с этими инструментами заканчивается до/после выкатки фичи в production. Сначала все может работать хорошо и быстро, ну а дальше... как повезет.
+
+    В докладе я расскажу о том, как можно в production среде следить за показателями производительности приложений и отлавливать те самые кейсы, когда оно начинает вести себя не так, как хотелось бы.
+  video_provider: "youtube"
+  video_id: "P85K6U6M6mQ"
+  language: "Russian"
+
+- id: "egor-homakov-railsclub-2015"
+  title: "Authentication of the future"
+  original_title: "Аутенфикация будущего"
+  raw_title: "Егор Хомяков. Аутенфикация будущего"
+  speakers:
+    - Egor Homakov
+  event_name: "RailsClub 2015"
+  published_at: "2015-11-23"
+  date: "2015-09-26"
+  description: |-
+    Я расскажу про массу проблем современной аутенфикации по логинам и паролям, про минусы существующей "двух факторной аутенфикации" и про то как я пытаюсь это решить своим продуктом Труфактор.
+  video_provider: "youtube"
+  video_id: "tcl6gchsoxA"
+  language: "Russian"
+
+- id: "alexander-kirillov-railsclub-2015"
+  title: "Ruby Object Mapper: revolution"
+  raw_title: "Александр Кириллов. Ruby Object Mapper: revolution"
+  speakers:
+    - Alexander Kirillov
+  event_name: "RailsClub 2015"
+  published_at: "2015-11-23"
+  date: "2015-09-26"
+  description: |-
+    Ruby Object Mapper (ROM) - экспериментальная Ruby библиотека для реализации отображения «чистых» Ruby объектов, позволяющая без лишних ограничений использовать всю мощь выбранного хранилища данных.
+
+    ROM основан на нескольких концепциях, отличающихся от «нормальной» Ruby ORM. Я расскажу об этих концепциях, разберу особенности библиотеки и покажу как жить без Active Record.
+  video_provider: "youtube"
+  video_id: "NYsnTEcoq9Y"
+  language: "Russian"
+
+- id: "nikolai-ryzhikov-railsclub-2015"
+  title: "Functional programming for Rubyists"
+  original_title: "ФП для рубистов"
+  raw_title: "Николай Рыжиков. ФП для рубистов"
+  speakers:
+    - Nikolai Ryzhikov
+  event_name: "RailsClub 2015"
+  published_at: "2015-11-23"
+  date: "2015-09-26"
+  description: |-
+    Мульти-парадигменности не существует по определению! Ruby существенно объектно ориентированный и императивный язык, а значит он автоматически "наследует" все системные проблемы объектно-ориентированных и императивных языков: отсутствие теоретической основы, слабая модульность, сложная декомпозиция, плохая конкурентность. Многие ruby инженеры испытывают болезненные ощущения и фрустрацию, сталкиваясь с ними. Я поделюсь с вами своими мыслями о том, почему функциональная парадигма с подобными вопросами справляется лучше.
+  video_provider: "youtube"
+  video_id: "niuimUxGXAE"
+  language: "Russian"
+
+- id: "timofey-tsvetkov-railsclub-2015"
+  title: "Lambda and Kappa architectures in Ruby on Rails"
+  raw_title: "Тимофей Цветков. Lambda and Kappa architectures in Ruby on Rails"
+  speakers:
+    - Timofey Tsvetkov
+  event_name: "RailsClub 2015"
+  published_at: "2015-11-23"
+  date: "2015-09-26"
+  description: |-
+    Nowadays it's absolutely clear that data is one of the most valuable assets and thoughtful data analysis plays essential role in any company's success. Whether you run machine learning algorithms to build smarter and more user friendly applications or to build financial and marketing reports for stake holders, you need to perform data transformations and calculations. Such applications can't be designed in a classical Ruby on Rails way. Lambda and Kappa architectures are common patterns for building data processing applications.
+
+    Toptal is a constantly growing company and is on track for $100M in revenue in 2015. To archive this in Toptal, we're constantly improving our processes, KPIs and of course, our application. We're searching for pitfalls and places to improve by monitoring our processes and by analysing our data.
+
+    In this talk we will discuss main principles of Lambda and Kappa architectures and their implementations using Ruby on Rails based on Toptal's analytics team experience.
+  video_provider: "youtube"
+  video_id: "Kawe6Mtrz1w"
+  language: "English"
+
+- id: "kir-shatrov-railsclub-2015"
+  title: "Building RailsPerf, a toolkit to detect performance regressions in Ruby on Rails core"
+  raw_title: "Кирилл Шатров. Building RailsPerf, a toolkit to detect performance regressions in Ruby on Rails core"
+  speakers:
+    - Kir Shatrov
+  event_name: "RailsClub 2015"
+  published_at: "2015-11-23"
+  date: "2015-09-26"
+  description: |-
+    На примере бета-версий Rails 4.2 мы убедились, как часто в фреймворке Rails могут случаться регрессии производительности, и как легко они могут остаться незамеченными.
+
+    Проблема производительности и ее регрессий становится все более острой в Ruby-сообществе. Это подтолкнуло меня и других контрибьюторов Rails к разработке Rubybench, сервиса для поиска регрессий производительности в Ruby и Rails.
+
+    В своем докладе я рассмотрю регрессии производительности на примерах коммитов из Rails, расскажу о построении бенчмарков для Ruby приложений, и продемонстрирую Rubybench и его архитектуру.
+  video_provider: "youtube"
+  video_id: "xNgjEzLW4pA"
+  language: "Russian"
+
+- id: "semen-bagreev-railsclub-2015"
+  title: "Testing and 'software writer' a year later"
+  original_title: 'Тестирование и "software writer" год спустя'
+  raw_title: 'Семен Багреев. Тестирование и "software writer" год спустя'
+  speakers:
+    - Semen Bagreev
+  event_name: "RailsClub 2015"
+  published_at: "2015-11-23"
+  date: "2015-09-26"
+  description: |-
+    Год назад, во время открытия RailsConf 2014, David Heinemeier Hansson поделился с нами своими мыслями по поводу профессии инженера-­разработчика ПО (или "писателя ПО", по его версии) и по поводу TDD. Вкратце, DHH высказался довольно резко в сторону TDD, аргументируя это тем, что TDD ломает дизайн, делая его необоснованно сложным для понимания, давая при этом ложное чувство уверенности, основанное на выдуманных показателях (coverage, ratio, speed).
+
+    Я примерил роль "Писателя ПО". Следуя советам Дэвида, я старался тестировать всю систему, а не отдельные юниты, фокусируясь на интеграционных и "frontend" тестах. В процессе я столкнулся с непониманием некоторых коллег и бизнес лидеров. Мне пришлось развеять несколько мифов о тестировании, и я поделюсь этим опытом с другими разработчиками.
+
+    Кроме того, я узнал несколько трюков для ускорения тестов, освоил несколько новых инструментов для тестирования, которые и упомяну в своем докладе.
+  video_provider: "youtube"
+  video_id: "ppO59eP8W5E"
+  language: "Russian"
+
+- id: "anna-shcherbinina-railsclub-2015"
+  title: "Lightning Talk: Crystal"
+  raw_title: "Анна Щербинина. LT: Crystal."
+  speakers:
+    - Anna Shcherbinina
+  event_name: "RailsClub 2015"
+  published_at: "2015-11-24"
+  date: "2015-09-26"
+  description: |-
+    Crystal - компилируемый в нативный код язык. Как говорят сами разработчики, его синтаксис вдохновлен Ruby. Поэтому порог вождения для ruby разработчика не высок, и, действительно, глядя на код невольно возникает вопрос: это Crystal или Ruby?
+
+    Расскажу о реализации микросервиса на Crystal: сходстве и различи c Ruby, плюсах, минусах и использовании в production.
+  video_provider: "youtube"
+  video_id: "_dmo1p95QpI"
+  language: "Russian"
+
+- id: "nikolay-bienko-railsclub-2015"
+  title: "Lightning Talk: How to start diving into a large Rails project"
+  original_title: "Как начать погружение в большой проект на Rails"
+  raw_title: "Николай Биенко. LT: Как начать погружение в большой проект на Rails"
+  speakers:
+    - Nikolay Bienko
+  event_name: "RailsClub 2015"
+  published_at: "2015-12-02"
+  date: "2015-09-26"
+  description: |-
+    Во время разработки большую часть времени мы не пишем, а читаем код, поэтому необходимо уметь делать это эффективно, а это особенно сложно, когда вы еще не знакомы с проектом.
+
+    Я шаг за шагом расскажу как войти в проект максимально быстро и эффективно, куда нужно смотреть в первую очередь, какие выводы можно cделать на основе увиденного и какие инструменты могут быть полезны на каждом из этапов.
+  video_provider: "youtube"
+  video_id: "XLdZu6Khncc"
+  language: "Russian"
+
+- id: "kirill-gorin-railsclub-2015"
+  title: "Lightning Talk: Active Support Instrumentation"
+  raw_title: "Кирилл Горин. LT: Active Support Instrumentation"
+  speakers:
+    - Kirill Gorin
+  event_name: "RailsClub 2015"
+  published_at: "2015-12-02"
+  date: "2015-09-26"
+  description: |-
+    Все пользуются средствами мониторинга для Rails приложений, но не все знают, что они работают на основе встроенных в Rails инструментов. Active Support Instrumentation один из них. В этом докладе я расскажу как его использовать и как можно самому написать конкурента New Relic.
+  video_provider: "youtube"
+  video_id: "nIHxutrp6wE"
+  language: "Russian"
+
+- id: "anton-davydov-railsclub-2015"
+  title: "Lightning Talk: Sidekiq Under the Hood"
+  raw_title: "Антон Давыдов. LT: SIDEKIQ UNDER HOOD"
+  speakers:
+    - Anton Davydov
+  event_name: "RailsClub 2015"
+  published_at: "2015-12-02"
+  date: "2015-09-26"
+  description: |-
+    Все мы знаем про sidekiq. Кто-то больше, кто-то меньше, но все, кто его использовал, могут сказать, что это надежный и быстрый инструмент для обработки фоновых задач. Кроме всего прочего, для sidekiq невероятно просто создавать различные плагины и всячески расширять его функционал.
+
+    Но вы когда-нибудь заглядывали под его капот?
+
+    Во время своего выступления я расскажу про архитектуру sidekiq, какая магия происходит между клиентским вызовом джоба и его выполнением. Расскажу, как работает мой плагин, собирающий всю необходимую статистику, и как вы можете быстро добавить любой недостающий вам функционал.
+  video_provider: "youtube"
+  video_id: "t4QJ0kB9o9E"
+  language: "Russian"
+
+- id: "stanislav-german-railsclub-2015"
+  title: "Lightning Talk: Command Query Responsibility Segregation in Rails applications"
+  raw_title: "Станислав Герман. LT: Command Query Responsibility Segregation в Rails приложениях."
+  speakers:
+    - Stanislav German
+  event_name: "RailsClub 2015"
+  published_at: "2015-12-02"
+  date: "2015-09-26"
+  description: |-
+    CQRS - подход к разработке, когда изменяющие состояние системе cущности, commans, отделены от не меняющих состояние, query.
+
+    Такой подход нельзя назвать только лишь паттерном, так как он влияет и на архитектуру приложения.
+
+    В данном докладе мы рассмотрим каким образом достигается разделение команд и запросов. Какой уровень разделения необходим в каком случае. Рассмотрим на примерах как мы используем CQRS в продуктах Рамблера.
+  video_provider: "youtube"
+  video_id: "CbafCkThYts"
+  language: "Russian"
+
+- id: "vladimir-yartsev-railsclub-2015"
+  title: "Lightning Talk: Personal Heroku add-on with Docker"
+  raw_title: "Владимир Ярцев. LT: Personal Heroku add-on with Docker"
+  speakers:
+    - Vladimir Yartsev
+  event_name: "RailsClub 2015"
+  published_at: "2015-12-02"
+  date: "2015-09-26"
+  description: |-
+    В каталоге аддонов Heroku более 100 готовых микросервисов, но иногда подходящего аддона нет, а с Heroku уходить не хочется.
+
+    Одно из решений — Docker, который позволяет собрать микросервис, взяв за основу образ с Docker Hub. Вот только поддержка инфраструктуры микросервиса в этом случае ложится на плечи разработчика.
+
+    Я расскажу, как совместить удобство Heroku с гибкостью Docker, заставив микросервис вести себя как аддон Heroku.
+  video_provider: "youtube"
+  video_id: "mxL7KGr6Www"
+  language: "Russian"
+
+- id: "ivan-nemytchenko-railsclub-2015"
+  title: "How to stop being a Rails developer"
+  original_title: "Как перестать быть Rails-разработчиком"
+  raw_title: "Иван Немытченко. Как перестать быть Rails-разработчиком"
+  speakers:
+    - Ivan Nemytchenko
+  event_name: "RailsClub 2015"
+  published_at: "2016-01-26"
+  date: "2015-09-26"
+  description: |-
+    Долгое время мы думали, что мы другие. Что подход Rails настолько крут, что у нас нет целого класса проблем, с которыми возятся несчастные джависты.Но почему-то Rails-приложения с завидной регулярностью превращаются в неподдерживаемых монстров через полгода, а то и меньше. Выходит что мы не очень-то мы и другие :\Я поделюсь опытом переключения мозга из режима Rails-only-mode.
+
+    Как только перестаешь принимать на веру дефолтный способ организации кода в Rails, происходят замечательные вещи. В моем случае, новые роли объектов(Form objects, Services, Repositories) появились в коде естественным образом - как решения конкретных проблем, а не потому-что так завещал нам Мартин Фаулер. В итоге я получил гибкий(модульный, если хотите) код, который несложно поддерживать и модифицировать.
+
+    Коллеги, хватит перекладывать вину за бардак в коде на DHH! 2015 год - отличное время, чтобы стать кем-то большим, чем программист-на-фрэймворке.
+  video_provider: "youtube"
+  video_id: "0v-24qM6LNI"
+  language: "Russian"

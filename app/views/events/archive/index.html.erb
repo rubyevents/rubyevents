@@ -3,8 +3,9 @@
     <h1 class="title">
       <%= title "Events Archive" %>
       <span class="text-base text-gray-500">
-        (<%= pluralize(@events.includes(:organisation).where(organisation: {kind: "conference"}).count, "conference") %>,
-        <%= pluralize(@events.includes(:organisation).where(organisation: {kind: "meetup"}).count, "meetup") %>)
+        (<%= pluralize(@events.includes(:series).where(series: {kind: "conference"}).count, "conference") %>,
+        <%= pluralize(@events.includes(:series).where(series: {kind: "meetup"}).count, "meetup") %>,
+        <%= pluralize(@events.includes(:series).where(series: {kind: "retreat"}).count, "retreat") %>)
       </span>
     </h1>
 
@@ -39,9 +40,9 @@
   <% end %>
 
   <% if @events.any? %>
-    <% @events.group_by(&:organisation).each do |organisation, events| %>
-      <h2><%= link_to organisation.name, organisation %></h2>
-      <div id="<%= dom_id(organisation, "events") %>" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 lg:gap-x-12 gap-y-2 min-w-full pt-4 pb-8">
+    <% @events.group_by(&:series).each do |series, events| %>
+      <h2><%= link_to series.name, series_path(series) %></h2>
+      <div id="<%= dom_id(series, "events") %>" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 lg:gap-x-12 gap-y-2 min-w-full pt-4 pb-8">
         <%= render partial: "events/event", collection: events %>
       </div>
     <% end %>

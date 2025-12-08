@@ -1,5 +1,5 @@
 <%= form_with(model: user, url: profile_path(user)) do |form| %>
-  <div class="grid lg:grid-cols-2 gap-4">
+  <div class="grid lg:grid-cols-2 gap-4 mb-8">
     <div class="col-span-2">
       <%= form.label :bio %>
       <%= form.text_area :bio, rows: 4, class: "textarea textarea-bordered w-full" %>
@@ -8,6 +8,11 @@
     <div>
       <%= form.label :name %>
       <%= form.text_field :name, class: "input input-bordered w-full" %>
+    </div>
+
+    <div>
+      <%= form.label :location %>
+      <%= form.text_field :location, class: "input input-bordered w-full" %>
     </div>
 
     <div>

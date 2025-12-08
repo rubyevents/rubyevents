@@ -6,20 +6,19 @@ jobs:
   seed-production:
     name: Seed Production
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup SSH
-        uses: webfactory/ssh-agent@v0.7.0
+        uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          bundler: default
           bundler-cache: true
 
       - name: Run db:seed on Production

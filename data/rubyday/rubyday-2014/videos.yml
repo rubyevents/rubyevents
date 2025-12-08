@@ -4,43 +4,47 @@
 # TODO: conference website
 # TODO: schedule website
 
-- title: "Ruby's influence over the Elixir language"
+- id: "paolo-montrasio-rubyday-2014"
+  title: "Ruby's influence over the Elixir language"
   raw_title: "Ruby's influence over the Elixir language by Paolo Montrasio"
   speakers:
     - Paolo Montrasio
   event_name: "rubyday 2014"
   date: "2014-09-26"
-  published_at: "TODO"
+  published_at: "2014-10-23"
   description: |-
     Elixir is a functional language that runs over the Erlang virtual machine. Despite being Erlang inside, Elixir has a Ruby-like syntax, with do...end blocks and many intentional name collisions with Ruby's keywords and library methods. This makes it easier for Rubysts to pick it up than most other functional languages with arcane syntaxes. The talk will present elements of the Elixir language. We'll also look at the Phoenix web framework and how it was influenced by Ruby on Rails.
   video_provider: "youtube"
   video_id: "NzyqGrYyPjw"
 
-- title: "Streamline your development environment with Docker"
+- id: "giacomo-bagnoli-rubyday-2014"
+  title: "Streamline your development environment with Docker"
   raw_title: "Streamline your development environment with Docker by Giacomo Bagnoli"
   speakers:
     - Giacomo Bagnoli
   event_name: "rubyday 2014"
   date: "2014-09-26"
-  published_at: "TODO"
+  published_at: "2014-10-23"
   description: |-
     These days applications are getting more and more complex. It's becoming quite difficult to keep track of all the different components an application needs in order to function (a database, a message queueing system, a web server, a document store, a search engine, you name it.). How many times we heard 'it worked on my machine'?. In this talk we are going to explore Docker, what it is, how it works and how much it can benefit in keeping the development environment consistent. We are going to talk about Dockerfiles, best practices, tools like fig and vagrant, and finally show an example of how it applies to a ruby on rails application.
   video_provider: "youtube"
   video_id: "mY4iErRL4zc"
 
-- title: "The Design of Everyday Ruby"
+- id: "ju-liu-rubyday-2014"
+  title: "The Design of Everyday Ruby"
   raw_title: "The Design of Everyday Ruby by Ju Liu"
   speakers:
     - Ju Liu
   event_name: "rubyday 2014"
   date: "2014-09-26"
-  published_at: "TODO"
+  published_at: "2014-10-23"
   description: |-
     Everyday we read about DRY, YAGNI, TDD, SOLID, REST, SOA.. We are not only discussing about these concepts, but also we use them as canons to design, build and maintain our applications. In this talk, I want to explore the possible dangers in treating these concepts as sacred principles: in our everyday life, it pays off to treat these concepts as general guidelines, which can and should be challenged on a daily basis. In doing so, we can improve our understanding of these concepts and become better programmers.
   video_provider: "youtube"
   video_id: "PpBaJNIkoGA"
 
-- title: "Miele per le nostre API"
+- id: "fabrizio-monti-rubyday-2014"
+  title: "Miele per le nostre API"
   raw_title: "Miele per le nostre API by Fabrizio Monti, Matteo Piotto, and Federico Parodi"
   speakers:
     - Fabrizio Monti
@@ -48,93 +52,100 @@
     - Federico Parodi
   event_name: "rubyday 2014"
   date: "2014-09-26"
-  published_at: "TODO"
+  published_at: "2014-10-23"
   description: |-
     La proliferazione delle applicazioni mobile e di quelle web basate su javascript ci porta sempre più spesso a dover realizzare interfacce API. Ci sono tanti modi per farlo, e c'è il modo giusto. Illustreremo le best practice per la costruzione di un server API RESTful in RoR che lo rendano adatto ai nostri progetti, performante e manutenibile, vedendo insieme un esempio di loro implementazione.
   video_provider: "youtube"
   video_id: "qtJyc28ZcXE"
 
-- title: "Ruby over Rails"
+- id: "giuseppe-modarelli-rubyday-2014"
+  title: "Ruby over Rails"
   raw_title: "Ruby over Rails by Giuseppe Modarelli"
   speakers:
     - Giuseppe Modarelli
   event_name: "rubyday 2014"
   date: "2014-09-26"
-  published_at: "TODO"
+  published_at: "2014-10-23"
   description: |-
     Ruby has a powerful set of libs and tools that we don't use in our day to day jobs as ruby developers. The main reason for this is because we force logic where it should not be: the template. By refactoring a simple application I'll show you how to unlock the power of Ruby and how to write code that you will love to work with in the future.
   video_provider: "youtube"
   video_id: "LiyShndVLPo"
 
-- title: "Frontend: riorganizzare (di nuovo) il caos"
+- id: "matteo-papadopoulos-rubyday-2014"
+  title: "Frontend: riorganizzare (di nuovo) il caos"
   raw_title: "Frontend: riorganizzare (di nuovo) il caos by Matteo Papadopoulos and Stefano Verna"
   speakers:
     - Matteo Papadopoulos
     - Stefano Verna
   event_name: "rubyday 2014"
   date: "2014-09-26"
-  published_at: "TODO"
+  published_at: "2014-10-23"
   description: |-
     Una delle maggiori difficoltà da affrontare per lo sviluppo di un buon front-end, in un progetto web, è l'organizzazione dello stile, tanto apparentemente banale quanto complesso da tenere pulito, riusabile e comprensibile nel tempo." Questo era l'incipit del talk sui css modulari che realizzai a BetterSoftware nel 2012. Il tema è sempre maledettamente attuale e, con un po' più di esperienza, con una nuova organizzazione degli assets rails e la nascita di gemme e convenzioni tipo Sass, Slim, Guard, Grunt ecc, si sono aperte nuove interessanti possibilità che permettono agli sviluppatori di organizzare bene i layout, il markup, codice per unit test, moduli css, utilizzo di mixin e stili comprensibili e mantenibili nel tempo.
   video_provider: "youtube"
   video_id: "fUJOJY_yVXg"
 
-- title: "More fun, less pain: a strategy for writing maintainable Rails admin backends"
+- id: "stefano-verna-rubyday-2014"
+  title: "More fun, less pain: a strategy for writing maintainable Rails admin backends"
   raw_title: "More fun, less pain: a strategy for writing maintainable Rails admin backends by Stefano Verna"
   speakers:
     - Stefano Verna
   event_name: "rubyday 2014"
   date: "2014-09-26"
-  published_at: "TODO"
+  published_at: "2014-10-23"
   description: |-
     The Rails ecosystem features many full-fledged solutions to generate administrative interfaces (ActiveAdmin, RailsAdmin, you name it...). Although these tools come very handy to bootstrap a project quickly, they all obey the 80%-20% rule and tend to be very invasive (and incredibly painful to test). A time always comes when they start getting in the way, and all the cumulated saved time will be wasted to solve a single, trivial problem with ugly workarounds and EPIC FACEPALMS. This talk will walk through an alternative strategy for building administrative backends: we'll make use of well-known gems like Inherited Resources and Simple Form, the Rails 3.1+ template-inheritance feature and a mix of some good ol' OOP patterns to build an (arguably) more maintainable, testable and modular codebase, without sacrificing the super-DRY, declarative style ActiveAdmin and similar gems offer.
   video_provider: "youtube"
   video_id: "e9iabDiBHZU"
 
-- title: "Web server challenge"
+- id: "web-server-challenge-rubyday-2014"
+  title: "Web server challenge"
   raw_title: "Web server challenge by Filippo Gangi Dino and Alessandro Fazzi"
   speakers:
     - Filippo Gangi Dino
     - Alessandro Fazzi
   event_name: "rubyday 2014"
   date: "2014-09-26"
-  published_at: "TODO"
+  published_at: "2014-10-23"
   description: |-
     Il dilemma della scelta del miglior web server per le nostre applicazioni è ricorrente nell'esperienza di uno sviluppatore Ruby/RoR. Approfondiremo meglio le caratteristiche uniche, i punti di contatto, ma soprattutto le divergenze tra i principali software utilizzati. Cercheremo di fornire una bussola con cui orientarsi e poter davvero comprendere come soddisfare l'esigenza specifica di ogni progetto.
   video_provider: "youtube"
   video_id: "GEumX6mC4T4"
 
-- title: "Build the perfect web application with these 12 weird tricks"
+- id: "ole-michaelis-12-tricks-rubyday-2014"
+  title: "Build the perfect web application with these 12 weird tricks"
   raw_title: "Build the perfect web application with these 12 weird tricks by Ole Michaelis"
   speakers:
     - Ole Michaelis
   event_name: "rubyday 2014"
   date: "2014-09-26"
-  published_at: "TODO"
+  published_at: "2014-10-23"
   description: |-
     Thats the dream we all share. *Building the one perfect software.* But you know the answer already, you just have to admit it: **There is no perfect software.** But I've a few tips and tricks to do better: ‘The 12 Factor App’ is a manifesto written by Adam Wiggins (co-founder of heroku) describing the perfect (cloud ready) web app. But it’s way more than that. It should be the standard way of writing apps. Because it contains some tips and tricks how to build your webapp. For example only logging to stdout or that all configuration should be done via environment variables. It’s about building robust and scalable systems. If everyone followed these 12 simple principles, we could have shared tooling across programming languages borders. Image that one pre-build logging and metrics solution. The one and only way of configuring your project. The one way to run it, successfully.
   video_provider: "youtube"
   video_id: "kTrSHOJxeLw"
 
-- title: "Safety Nets: Learn to code with confidence"
+- id: "christophe-philemotte-rubyday-2014"
+  title: "Safety Nets: Learn to code with confidence"
   raw_title: "Safety Nets: Learn to code with confidence by Christophe Philemotte"
   speakers:
     - Christophe Philemotte
   event_name: "rubyday 2014"
   date: "2014-09-26"
-  published_at: "TODO"
+  published_at: "2014-10-23"
   description: |-
     Ruby gives you a great power. As the saying goes, "With great power there must also comes great responsibility!" It comes at a price. We cannot afford to blow off everything when shipping. That's why it's important to put in place different strategies to help us to catch errors asap, but also to avoid the cruft long term. Like a safety net, they allow you to go forward with more confidence.
   video_provider: "youtube"
   video_id: "cVTrY2qL-Hs"
 
-- title: "Service Oriented Architecture for robust and scalable systems"
+- id: "ole-michaelis-soa-rubyday-2014"
+  title: "Service Oriented Architecture for robust and scalable systems"
   raw_title: "Service Oriented Architecture for robust and scalable systems by Ole Michaelis"
   speakers:
     - Ole Michaelis
   event_name: "rubyday 2014"
   date: "2014-09-26"
-  published_at: "TODO"
+  published_at: "2014-10-23"
   description: |-
     Software Architecture is hard. And when your business grows, its getting even harder because scaling doesn’t come out the box and it’s not only the software which grows it’s also the team. So you have to find a way how to scale your software in a way that it stays easy maintainable for growing teams and scalable. I’d like to talk about Service Oriented Architecture in general and also share some experience and give some examples where SOA would save your ass and maybe places where SOA isn’t the best idea to implement.
   video_provider: "youtube"

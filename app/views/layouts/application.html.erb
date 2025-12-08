@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" <%= "data-hotwire-native-app" if hotwire_native_app? %>>
+<html lang="en" <% if hotwire_native_app? %> data-hotwire-native-app <% end %>>
   <head>
     <meta name="viewport" content="width=device-width,initial-scale=1<%= ",maximum-scale=1,user-scalable=0" if hotwire_native_app? %>">
 
@@ -35,7 +35,7 @@
     <%= yield :head %>
   </head>
 
-  <body data-controller="preserve-scroll">
+  <body data-controller="preserve-scroll" class="<%= yield(:body_class) %>">
     <div class="hotwire-native:hidden">
       <%= render "shared/navbar" %>
     </div>

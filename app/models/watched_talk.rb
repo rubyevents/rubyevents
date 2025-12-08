@@ -1,6 +1,7 @@
 # == Schema Information
 #
 # Table name: watched_talks
+# Database name: primary
 #
 #  id               :integer          not null, primary key
 #  progress_seconds :integer          default(0), not null

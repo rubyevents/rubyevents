@@ -1,4 +1,4 @@
-<%# locals: (talk:, user_favorite_talks_ids: [], favoritable: false, back_to: nil, back_to_title: nil, user_watched_talks: [], watched_talks: []) -%>
+<%# locals: (talk:, user_favorite_talks_ids: [], favoritable: false, back_to: nil, back_to_title: nil, user_watched_talks: [], watched_talks: [], show_remove_from_watched: false) %>
 
 <% language = Language.by_code(talk.language) %>
 <% watched_talk = watched_talks.find { |wt| wt.talk_id == talk.id } || user_watched_talks.find { |wt| wt.talk_id == talk.id } %>
@@ -195,7 +195,6 @@
                 ) %>
           <% end %>
         <% end %>
-
         <% if favoritable %>
           <div class="self-end hotwire-native:hidden">
             <% if default_watch_list %>
@@ -227,6 +226,15 @@
                       size: :sm
                     ) %>
               <% end %>
+            <% end %>
+          </div>
+        <% end %>
+
+        <% if show_remove_from_watched && watched_talk %>
+          <div class="self-end">
+            <%= button_to watched_talk_path(watched_talk), method: :delete,
+                  class: "btn btn-ghost btn-sm p-1" do %>
+              <%= fa("xmark", size: :sm, class: "text-gray-600 shrink-0") %>
             <% end %>
           </div>
         <% end %>
