@@ -1,6 +1,6 @@
 <main class="container">
   <div class="flex w-full flex-col overflow-hidden bg-[#333333] md:min-h-[calc(100dvh-80px)] rounded-xl" style="transform-origin: 0% 0%; transform: none;">
-    <div class="relative bg-[#333333] text-[--featured-color]" style="--featured-color: <%= @talk.event.featured_color %>;">
+    <div class="relative bg-[#333333] text-[--featured-color]" style="--featured-color: <%= @talk.event.static_metadata.featured_color %>;">
       <div class="relative md:h-[calc(100dvh-170px)] w-full md:aspect-video md:h-inherit">
         <div class="relative flex h-[calc(50dvh-170px)] md:h-[calc(100dvh-170px)] flex-col items-end justify-end pb-1 md:h-inherit">
           <div class="inset-x-0 bottom-44 z-20 flex w-full flex-col justify-between md:bottom-0 md:flex-row md:items-end md:p-10">
@@ -17,7 +17,7 @@
                   <div><%= @talk.date.strftime("%A, %b %d, %Y") %></div>
                 </div>
                 <div class="hidden font-mono text-sm-text-regular uppercase backdrop-blur-none md:flex">
-                  <div>from 18:00</div>
+                  <div>from xx:xx</div>
                 </div>
               </div>
               <h1 class="pb-3 text-inherit text-center text-4xl uppercase leading-[90%] md:-mb-5 md:-ml-1 md:pt-3 md:text-left md:text-9xl-heading">
@@ -32,7 +32,7 @@
           </div>
           <div
             class="absolute inset-0 z-0 h-full w-full bg-[--featured-background] text-[--featured-color]"
-            style="--featured-background: <%= @talk.event.featured_background %>; --featured-color: <%= @talk.event.featured_color %>; transform-origin: 0% 0%; transform: none; opacity: 1;"
+            style="--featured-background: <%= @talk.event.static_metadata.featured_background %>; --featured-color: <%= @talk.event.static_metadata.featured_color %>; transform-origin: 0% 0%; transform: none; opacity: 1;"
           >
             <div class="flex items-center justify-center relative aspect-image-mobile max-h-full w-full overflow-hidden sm:aspect-image-tablet md:aspect-image-desktop lg:aspect-image-desktop-lg xl:aspect-image-desktop-xl 2xl:aspect-image-desktop-2xl h-full ">
               <%= image_tag @talk.event.featured_image_path, class: "w-1/2" %>
@@ -72,7 +72,7 @@
                     <div class="mb-2">
                       <div class="flex flex-wrap items-center gap-3">
                         <div class="flex items-center">
-                          <%= link_to speaker do %>
+                          <%= link_to profile_path(speaker) do %>
                             <div class="flex w-full items-center gap-2">
                               <h3 class="flex-nowrap text-left text-2xl uppercase text-light-grey-500 md:text-5xl-text-semibold"><%= speaker.name %></h3>
                             </div>
