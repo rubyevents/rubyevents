@@ -15,7 +15,7 @@ json.talks @talks do |talk|
   json.event do
     json.slug talk.event&.slug
     json.name talk.event&.name
-    json.url event_url(talk.event)
+    json.url talk.event ? event_url(talk.event) : nil
   end
 
   json.speakers talk.speakers do |speaker|
