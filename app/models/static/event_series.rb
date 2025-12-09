@@ -27,7 +27,7 @@ module Static
 
       event_series.update!(
         name: name,
-        website: website,
+        website: website || "",
         twitter: twitter || "",
         youtube_channel_name: youtube_channel_name,
         kind: kind,

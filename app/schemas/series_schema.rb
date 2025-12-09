@@ -6,7 +6,7 @@ class SeriesSchema < RubyLLM::Schema
 
   string :kind,
     description: "Type of event series",
-    enum: ["conference", "meetup", "retreat", "hackathon", "event", "podcast", "online", "organisation"],
+    enum: ["conference", "meetup", "retreat", "hackathon", "event", "podcast", "online", "organisation", "workshop"],
     required: false
   string :frequency,
     description: "How often the event occurs",

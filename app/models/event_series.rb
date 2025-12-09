@@ -44,7 +44,7 @@ class EventSeries < ApplicationRecord
   validates :name, presence: true
 
   # enums
-  enum :kind, {conference: 0, meetup: 1, organisation: 2, retreat: 3, hackathon: 4, event: 5}
+  enum :kind, {conference: 0, meetup: 1, organisation: 2, retreat: 3, hackathon: 4, event: 5, workshop: 6}
   enum :frequency, {unknown: 0, yearly: 1, monthly: 2, biyearly: 3, quarterly: 4, irregular: 5}
 
   def self.find_by_name_or_alias(name)
