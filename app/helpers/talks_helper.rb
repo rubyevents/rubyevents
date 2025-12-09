@@ -28,6 +28,7 @@ module TalksHelper
     when "handout" then "file-pdf"
     when "notes" then "note-sticky"
     when "photos" then "images"
+    when "book" then "book"
     else "link"
     end
   end
