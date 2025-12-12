@@ -192,10 +192,14 @@ class Event < ApplicationRecord
   end
 
   def videos_file
+    return [] unless videos_file?
+
     YAML.load_file(videos_file_path)
   end
 
   def video_ids_in_running_order(child_talks: true)
+    return [] unless videos_file?
+
     if child_talks
       videos_file.flat_map { |talk|
         [talk.dig("id"), *talk["talks"]&.map { |child_talk|
