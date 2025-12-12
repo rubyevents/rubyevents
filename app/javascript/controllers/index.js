@@ -69,3 +69,6 @@ application.register("transition", TransitionController)
 
 import VideoPlayerController from "./video_player_controller"
 application.register("video-player", VideoPlayerController)
+
+import SearchController from "./search_controller"
+application.register("search", SearchController)
