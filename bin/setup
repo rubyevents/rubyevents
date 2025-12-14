@@ -49,7 +49,7 @@ FileUtils.chdir APP_ROOT do
   puts "\n use 'bin/dev' to start the Rails server, solid_queue and Vite"
 
   puts "\n== How to set up initial data =="
-  puts "\n use 'bin/rails db:seed' to set up initial data"
+  puts "\n use 'bin/rails seed:all' to set up initial data"
 
   unless ARGV.include?("--skip-server")
     puts "\n== Starting development server =="
