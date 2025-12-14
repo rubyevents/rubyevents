@@ -31,7 +31,7 @@ FileUtils.chdir APP_ROOT do
   # puts "\n== Configuring puma-dev =="
   # system "ln -nfs #{APP_ROOT} ~/.puma-dev/#{APP_NAME}"
   # system "curl -Is https://#{APP_NAME}.test/up | head -n 1"
-  unless File.exist?(".env")
+  unless File.exist?(".env") || !File.exist?(".env.sample") # env.sample is not found in Docker
     puts "\n== Copying .env.sample to .env =="
     FileUtils.cp ".env.sample", ".env"
   end
