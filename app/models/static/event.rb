@@ -15,6 +15,15 @@ module Static
         all.each(&:import!)
       end
 
+      def import_meetups!
+        all.select { |event| event.meetup? }.each(&:import!)
+      end
+
+      def import_recent!
+        import_cutoff = 6.months.ago
+        all.select { |event| event.end_date && event.end_date >= import_cutoff }.each(&:import!)
+      end
+
       def create(
         series_slug:,
         title:,

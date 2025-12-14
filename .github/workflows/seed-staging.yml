@@ -21,5 +21,5 @@ jobs:
         with:
           bundler-cache: true
 
-      - name: Run db:seed on Staging
-        run: bundle exec kamal app exec --reuse "bin/rails db:seed" -d staging
+      - name: Run seed:all on Staging
+        run: bundle exec kamal app exec --reuse "bin/rails seed:all" -d staging
