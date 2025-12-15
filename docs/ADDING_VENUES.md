@@ -1,4 +1,4 @@
-# Adding Conference Schedules to RubyEvents
+# Adding Conference Venues to RubyEvents
 
 This guide explains how to add venue information for conferences and events in the RubyEvents platform.
 
