@@ -22,7 +22,8 @@ data/
 │   ├── railsconf-2023/             # Event folder
 │   │   ├── event.yml               # Event metadata
 │   │   ├── videos.yml              # Talk data
-│   │   └── schedule.yml            # Optional schedule
+│   │   ├── schedule.yml            # Optional schedule
+│   │   └── venue.yml               # Optional venue
 │   └── railsconf-2024/
 │       ├── event.yml
 │       └── videos.yml
@@ -30,6 +31,14 @@ data/
     ├── series.yml
     └── ...
 ```
+
+The schema for each file is located in `/app/schemas`.
+There are additional instructions for adding optional files:
+
+- [schedules](docs/ADDING_SCHEDULES.md)
+- [sponsors](docs/ADDING_SPONSORS.md)
+- [venues](docs/ADDING_VENUES.md)
+- [visual assets](docs/ADDING_VISUAL_ASSETS.md)
 
 ## Adding a New Conference Series
 
