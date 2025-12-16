@@ -83,7 +83,7 @@ class EventAssetWizard
   def prompt_for_event
     all_slugs = Event.order(:slug).pluck(:slug)
 
-    gum_style("Missing an event? Run bin/rails seed:all to sync all from data/", foreground: "8")
+    gum_style("Missing an event? Run bin/rails db:seed:all to sync all from data/", foreground: "8")
     slug = gum_filter(all_slugs, header: "Select event:", placeholder: "Type to filter...")
 
     if slug.blank?

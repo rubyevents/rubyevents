@@ -22,7 +22,7 @@ class SeedTest < ActiveSupport::TestCase
 
     test "seed:all runs successfully" do
       assert_nothing_raised do
-        Rake::Task["seed:all"].invoke
+        Rake::Task["db:seed:all"].invoke
       end
 
       # ensure that all talks have a date
@@ -30,8 +30,8 @@ class SeedTest < ActiveSupport::TestCase
 
       # Ensuring idempotency
       assert_no_difference "Talk.maximum(:created_at)" do
-        Rake::Task["seed:all"].reenable
-        Rake::Task["seed:all"].invoke
+        Rake::Task["db:seed:all"].reenable
+        Rake::Task["db:seed:all"].invoke
       end
 
       static_video_ids = Static::Video.pluck(:video_id)

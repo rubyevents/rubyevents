@@ -58,7 +58,7 @@ This will seed the database with all speakers, meetups, the last 6 months of eve
 To load all historical data, run:
 
 ```
-bin/rails seed:all
+bin/rails db:seed:all
 ```
 
 ### Environment Variables
