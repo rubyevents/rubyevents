@@ -14,6 +14,105 @@ module Static
       def import_all!
         all.each(&:import!)
       end
+
+      def create(
+        series_slug:,
+        title:,
+        kind:,
+        id: nil,
+        slug: nil,
+        description: nil,
+        aliases: nil,
+        hybrid: nil,
+        status: nil,
+        last_edition: nil,
+        start_date: nil,
+        end_date: nil,
+        published_at: nil,
+        announced_on: nil,
+        year: nil,
+        date_precision: nil,
+        frequency: nil,
+        location: nil,
+        venue: nil,
+        channel_id: nil,
+        playlist: nil,
+        website: nil,
+        original_website: nil,
+        twitter: nil,
+        mastodon: nil,
+        github: nil,
+        meetup: nil,
+        luma: nil,
+        youtube: nil,
+        banner_background: nil,
+        featured_background: nil,
+        featured_color: nil
+      )
+        series = Static::EventSeries.find_by_slug(series_slug)
+        raise ArgumentError, "Event series '#{series_slug}' not found" unless series
+
+        slug ||= title.parameterize
+
+        series_dir = base_path.join(series_slug)
+        event_dir = series_dir.join(slug)
+        event_file = event_dir.join("event.yml")
+
+        if event_file.exist?
+          raise ArgumentError, "Event '#{slug}' already exists at #{event_file}"
+        end
+
+        data = {"title" => title, "kind" => kind}
+
+        data["id"] = id if id.present?
+        data["description"] = description if description.present?
+        data["aliases"] = Array(aliases) if aliases.present?
+        data["hybrid"] = hybrid unless hybrid.nil?
+        data["status"] = status if status.present?
+        data["last_edition"] = last_edition unless last_edition.nil?
+        data["start_date"] = start_date if start_date.present?
+        data["end_date"] = end_date if end_date.present?
+        data["published_at"] = published_at if published_at.present?
+        data["announced_on"] = announced_on if announced_on.present?
+        data["year"] = year if year.present?
+        data["date_precision"] = date_precision if date_precision.present?
+        data["frequency"] = frequency if frequency.present?
+        data["location"] = location if location.present?
+        data["venue"] = venue if venue.present?
+        data["channel_id"] = channel_id if channel_id.present?
+        data["playlist"] = playlist if playlist.present?
+        data["website"] = website if website.present?
+        data["original_website"] = original_website if original_website.present?
+        data["twitter"] = twitter if twitter.present?
+        data["mastodon"] = mastodon if mastodon.present?
+        data["github"] = github if github.present?
+        data["meetup"] = meetup if meetup.present?
+        data["luma"] = luma if luma.present?
+        data["youtube"] = youtube if youtube.present?
+        data["banner_background"] = banner_background if banner_background.present?
+        data["featured_background"] = featured_background if featured_background.present?
+        data["featured_color"] = featured_color if featured_color.present?
+
+        schema = JSON.parse(EventSchema.new.to_json_schema[:schema].to_json)
+        schemer = JSONSchemer.schema(schema)
+        errors = schemer.validate(data).to_a
+
+        if errors.any?
+          error_messages = errors.map { |e| "#{e["error"]} at #{e["data_pointer"]}" }
+          raise ArgumentError, "Validation failed: #{error_messages.join(", ")}"
+        end
+
+        FileUtils.mkdir_p(event_dir)
+        File.write(event_file, data.to_yaml)
+
+        videos_file = event_dir.join("videos.yml")
+        File.write(videos_file, "[]\n") unless videos_file.exist?
+
+        @slug_index = nil
+        unload!
+
+        find_by_slug(slug)
+      end
     end
 
     def featured?
