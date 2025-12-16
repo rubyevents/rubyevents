@@ -12,6 +12,10 @@ module Static
       def import_all!
         all.each(&:import!)
       end
+
+      def import_all_series!
+        all.each(&:import_series!)
+      end
     end
 
     def slug
