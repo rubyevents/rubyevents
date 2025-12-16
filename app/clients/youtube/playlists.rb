@@ -7,15 +7,16 @@ module YouTube
         year = metadata.snippet.title.match(/\d{4}/).to_s.presence || DateTime.parse(metadata.snippet.publishedAt).year
 
         OpenStruct.new({
-          id: metadata.id,
+          id: metadata.snippet.title.parameterize,
           title: metadata.snippet.title,
+          kind: "conference",
           location: "Earth",
           description: metadata.snippet.description,
           published_at: DateTime.parse(metadata.snippet.publishedAt).to_date.to_s,
           start_date: "#{year}-xx-xx",
           end_date: "#{year}-xx-xx",
           channel_id: metadata.snippet.channelId,
-          year: year,
+          year: year.to_i,
           videos_count: metadata.contentDetails.itemCount,
           metadata_parser: DEFAULT_METADATA_PARSER,
           slug: metadata.snippet.title.parameterize,
