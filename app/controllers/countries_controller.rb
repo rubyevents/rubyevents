@@ -1,59 +1,15 @@
 class CountriesController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[index show geojson]
+  skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
     @countries_by_continent = Event.all.map do |event|
       event.country
     end.uniq.group_by { |country| country&.continent || "Unknown" }.sort_by { |key, _value| key || "ZZ" }.to_h
-    @events_by_country = Event.all.sort_by do |event|
-      event.static_metadata&.home_sort_date || Time.at(0).to_date
-    end.reverse.group_by { |event| event.country || "Unknown" }.sort_by { |key, _value| (key.is_a?(String) ? key : key&.iso_short_name) || "ZZ" }.to_h
+    @events_by_country = Event.all.sort_by { |e| sort_date(e) }.reverse
+      .group_by { |e| e.country || "Unknown" }
+      .sort_by { |key, _| (key.is_a?(String) ? key : key&.iso_short_name) || "ZZ" }.to_h
     @users_by_country = calculate_users_by_country
-
-    events = Event.where.not(lng: nil, lat: nil)
-    @geojson = {
-      type: "FeatureCollection",
-      features: events.map do |event|
-        {
-          type: "Feature",
-          geometry: {
-            type: "Point",
-            coordinates: [event.lng, event.lat]
-          },
-          properties: {
-            name: event.name,
-            slug: event.slug,
-            url: event_url(event)
-          }
-        }
-      end
-    }
-  end
-
-  def geojson
-    events = Event.where.not(lng: nil, lat: nil)
-    geojson = {
-      type: "FeatureCollection",
-      features: events.map do |event|
-        {
-          type: "Feature",
-          geometry: {
-            type: "Point",
-            coordinates: [event.lng, event.lat]
-          },
-          properties: {
-            name: event.name,
-            slug: event.slug,
-            url: event_url(event),
-            avatar: view_context.asset_url(event.avatar_image_path)
-          }
-        }
-      end
-    }
-
-    respond_to do |format|
-      format.json { render json: geojson }
-    end
+    @event_map_markers = event_map_markers
   end
 
   def show
@@ -61,7 +17,7 @@ class CountriesController < ApplicationController
     if @country.present?
       @events = Event.includes(:series).all.select do |event|
         event.country == @country
-      end.sort_by { |event| event.static_metadata&.home_sort_date || Time.at(0).to_date }.reverse
+      end.sort_by { |e| sort_date(e) }.reverse
 
       @events_by_city = @events
         .select { |event| event.static_metadata&.location.present? }
@@ -77,6 +33,23 @@ class CountriesController < ApplicationController
   end
 
   private
+
+  def event_map_markers
+    Event.includes(:series).where.not(lng: nil, lat: nil)
+      .group_by { |e| e.coordinates }
+      .transform_values { it.sort_by { sort_date(it) }.reverse }
+      .map do |(lng, lat), events|
+      {
+        lng: lng,
+        lat: lat,
+        events: events.map { event_data(it) }
+      }
+    end
+  end
+
+  def sort_date(event) = event.static_metadata&.home_sort_date || Time.at(0)
+
+  def event_data(event) = {name: event.name, url: event_url(event), avatar: ActionController::Base.helpers.image_path(event.avatar_image_path)}
 
   def calculate_users_by_country
     users_by_country = {}

@@ -4,7 +4,7 @@ import 'maplibre-gl/dist/maplibre-gl.css'
 
 export default class extends Controller {
   static values = {
-    dataUrl: String
+    markers: String
   }
 
   connect () {
@@ -16,37 +16,22 @@ export default class extends Controller {
     })
 
     this.map.on('load', () => {
-      this.loadEvents()
+      this.#loadMarkers()
     })
   }
 
-  async loadEvents () {
-    const response = await fetch(this.dataUrlValue)
-    const geojson = await response.json()
-
+  #loadMarkers () {
     this.markers = []
+    const parser = new DOMParser()
+    const decoded = parser.parseFromString(this.markersValue, 'text/html').body
+      .textContent
+    const locations = JSON.parse(decoded)
 
-    geojson.features.forEach((feature) => {
-      const { name, url, avatar } = feature.properties
-      const [lng, lat] = feature.geometry.coordinates
+    locations.forEach(({ lng, lat, events }) => {
+      const el = this.#createMarkerElement(events)
+      const popup = this.#createPopup(events)
 
-      const el = document.createElement('div')
-      el.className = 'event-marker'
-      el.style.width = '32px'
-      el.style.height = '32px'
-      el.style.borderRadius = '50%'
-      el.style.backgroundSize = 'cover'
-      el.style.backgroundPosition = 'center'
-      el.style.backgroundImage = `url(${avatar})`
-      el.style.border = '2px solid white'
-      el.style.boxShadow = '0 2px 4px rgba(0,0,0,0.3)'
-      el.style.cursor = 'pointer'
-
-      const popup = new maplibregl.Popup({ offset: 20 }).setHTML(
-        `<a href="${url}" class="font-semibold hover:underline">${name}</a>`
-      )
-
-      const marker = new maplibregl.Marker({ element: el })
+      const marker = new maplibregl.Marker({ element: el, anchor: 'center' })
         .setLngLat([lng, lat])
         .setPopup(popup)
         .addTo(this.map)
@@ -59,5 +44,86 @@ export default class extends Controller {
     if (this.map) {
       this.map.remove()
     }
+  }
+
+  #createMarkerElement (events) {
+    return events.length === 1
+      ? this.#html`${this.#singleMarkerTemplate(events[0])}`
+      : this.#html`${this.#groupMarkerTemplate(events)}`
+  }
+
+  #createPopup (events) {
+    return new maplibregl.Popup({
+      offset: 25,
+      closeButton: false
+    }).setDOMContent(this.#html`${this.#popupTemplate(events)}`)
+  }
+
+  #html (strings, ...values) {
+    const template = document.createElement('template')
+    template.innerHTML = String.raw(strings, ...values).trim()
+    return template.content.firstElementChild
+  }
+
+  #singleMarkerTemplate (event) {
+    return `
+      <div class="event-marker cursor-pointer">
+        <div class="avatar">
+          <div class="w-8 rounded-full ring ring-base-100">
+            <img src="${event.avatar}" alt="${event.name}" />
+          </div>
+        </div>
+      </div>
+    `
+  }
+
+  #groupMarkerTemplate (events) {
+    const displayEvents = events.slice(0, 3)
+    const remaining = events.length - 3
+
+    return `
+      <div class="event-marker cursor-pointer">
+        <div class="avatar-group -space-x-4 rtl:space-x-reverse">
+          ${displayEvents
+        .map(
+          (event) => `
+            <div class="avatar">
+              <div class="w-6 rounded-full ring ring-base-100">
+                <img src="${event.avatar}" alt="${event.name}" />
+              </div>
+            </div>
+          `
+        )
+        .join('')}
+          ${remaining > 0
+        ? `
+            <div class="avatar placeholder">
+              <div class="bg-neutral text-neutral-content w-6 rounded-full ring ring-base-100">
+                <span class="text-xs">+${remaining}</span>
+              </div>
+            </div>
+          `
+        : ''
+      }
+        </div>
+      </div>
+    `
+  }
+
+  #popupTemplate (events) {
+    return `
+      <div class="flex flex-col max-h-48 overflow-y-auto pr-2 gap-2">
+        ${events
+        .map(
+          (event) => `
+          <a href="${event.url}" class="flex items-center gap-2 hover:underline">
+            <img src="${event.avatar}" alt="${event.name}" class="w-6 h-6 rounded-full" />
+            <span class="font-semibold">${event.name}</span>
+          </a>
+        `
+        )
+        .join('')}
+      </div>
+    `
   }
 }
