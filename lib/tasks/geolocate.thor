@@ -8,7 +8,7 @@ class Geolocate < Thor
   option :overwrite, type: :boolean, default: false, desc: "Overwrite existing coordinates"
   def files(*file_patterns)
     file_patterns = ["data/**/event.yml"] if file_patterns.empty?
-    
+
     files = file_patterns.flat_map { |pattern| Dir.glob(pattern) }.uniq
     if files.empty?
       puts "No files found matching patterns: #{file_patterns.join(", ")}"
@@ -74,9 +74,9 @@ class Geolocate < Thor
   end
 
   def process_event(event, overwrite)
-    location = event.static_metadata&.location
-    unless location.present?
-      puts "⚠ Skipping #{event.name}: No location in metadata"
+    coordinates = event.static_metadata&.coordinates
+    unless coordinates.present?
+      puts "⚠ Skipping #{event.name}: No coordinates in metadata"
       return
     end
 
@@ -85,12 +85,10 @@ class Geolocate < Thor
       return
     end
 
-    coordinates = geocode_location(location)
-
     if coordinates
       lng, lat = coordinates.split(",").map(&:to_f)
       event.update(lng: lng, lat: lat)
-      puts "✓ #{event.name} (#{location}) -> #{coordinates}"
+      puts "✓ #{event.name} -> #{coordinates}"
     else
       puts "✗ Failed to geocode #{event.name} (#{location})"
     end

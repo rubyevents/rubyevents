@@ -34,7 +34,9 @@ Rails.application.routes.draw do
 
   resources :topics, param: :slug, only: [:index, :show]
   resources :cfp, only: :index
-  resources :countries, param: :country, only: [:index, :show]
+  resources :countries, param: :country, only: [:index, :show] do
+    get :geojson, on: :collection
+  end
 
   namespace :profiles do
     resources :connect, only: [:index, :show]

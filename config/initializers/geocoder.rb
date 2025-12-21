@@ -2,7 +2,7 @@
 
 Geocoder.configure(
   lookup: :google,
-  api_key: ENV['GEOLOCATE_API_KEY'],
+  api_key: ENV["GEOLOCATE_API_KEY"],
   timeout: 5,
   use_https: true
 )

@@ -4,131 +4,58 @@ import 'maplibre-gl/dist/maplibre-gl.css'
 
 export default class extends Controller {
   static values = {
-    geojson: Object
+    dataUrl: String
   }
 
-  connect() {
+  connect () {
     this.map = new maplibregl.Map({
       container: this.element,
-      style: 'https://tiles.openfreemap.org/styles/liberty',
+      style: 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json',
       center: [0, 20],
       zoom: 1.5
     })
 
     this.map.on('load', () => {
-      this.map.addSource('events', {
-        type: 'geojson',
-        data: this.geojsonValue,
-        cluster: true,
-        clusterMaxZoom: 14,
-        clusterRadius: 50
-      })
-
-      this.map.addLayer({
-        id: 'clusters',
-        type: 'circle',
-        source: 'events',
-        filter: ['has', 'point_count'],
-        paint: {
-          'circle-color': [
-            'step',
-            ['get', 'point_count'],
-            '#51bbd6',
-            10,
-            '#f1f075',
-            30,
-            '#f28cb1'
-          ],
-          'circle-radius': [
-            'step',
-            ['get', 'point_count'],
-            20,
-            10,
-            30,
-            30,
-            40
-          ]
-        }
-      })
-
-      this.map.addLayer({
-        id: 'cluster-count',
-        type: 'symbol',
-        source: 'events',
-        filter: ['has', 'point_count'],
-        layout: {
-          'text-field': '{point_count_abbreviated}',
-          'text-size': 12
-        },
-        paint: {
-          'text-color': '#ffffff'
-        }
-      })
-
-      this.map.addLayer({
-        id: 'unclustered-point',
-        type: 'circle',
-        source: 'events',
-        filter: ['!', ['has', 'point_count']],
-        paint: {
-          'circle-color': '#11b4da',
-          'circle-radius': 8,
-          'circle-stroke-width': 2,
-          'circle-stroke-color': '#fff'
-        }
-      })
-
-      this.map.on('click', 'unclustered-point', (e) => {
-        const coordinates = e.features[0].geometry.coordinates.slice()
-        const { name, url } = e.features[0].properties
-
-        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-          coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360
-        }
-
-        new maplibregl.Popup()
-          .setLngLat(coordinates)
-          .setHTML(`<a href="${url}" class="font-semibold hover:underline">${name}</a>`)
-          .addTo(this.map)
-      })
-
-      this.map.on('mouseenter', 'unclustered-point', () => {
-        this.map.getCanvas().style.cursor = 'pointer'
-      })
-
-      this.map.on('mouseleave', 'unclustered-point', () => {
-        this.map.getCanvas().style.cursor = ''
-      })
-
-      this.map.on('click', 'clusters', (e) => {
-        const features = this.map.queryRenderedFeatures(e.point, {
-          layers: ['clusters']
-        })
-        const clusterId = features[0].properties.cluster_id
-        this.map.getSource('events').getClusterExpansionZoom(
-          clusterId,
-          (err, zoom) => {
-            if (err) return
-
-            this.map.easeTo({
-              center: features[0].geometry.coordinates,
-              zoom
-            })
-          }
-        )
-      })
-
-      this.map.on('mouseenter', 'clusters', () => {
-        this.map.getCanvas().style.cursor = 'pointer'
-      })
-
-      this.map.on('mouseleave', 'clusters', () => {
-        this.map.getCanvas().style.cursor = ''
-      })
+      this.loadEvents()
     })
   }
 
-  disconnect() {
+  async loadEvents () {
+    const response = await fetch(this.dataUrlValue)
+    const geojson = await response.json()
+
+    this.markers = []
+
+    geojson.features.forEach((feature) => {
+      const { name, url, avatar } = feature.properties
+      const [lng, lat] = feature.geometry.coordinates
+
+      const el = document.createElement('div')
+      el.className = 'event-marker'
+      el.style.width = '32px'
+      el.style.height = '32px'
+      el.style.borderRadius = '50%'
+      el.style.backgroundSize = 'cover'
+      el.style.backgroundPosition = 'center'
+      el.style.backgroundImage = `url(${avatar})`
+      el.style.border = '2px solid white'
+      el.style.boxShadow = '0 2px 4px rgba(0,0,0,0.3)'
+      el.style.cursor = 'pointer'
+
+      const popup = new maplibregl.Popup({ offset: 20 }).setHTML(
+        `<a href="${url}" class="font-semibold hover:underline">${name}</a>`
+      )
+
+      const marker = new maplibregl.Marker({ element: el })
+        .setLngLat([lng, lat])
+        .setPopup(popup)
+        .addTo(this.map)
+
+      this.markers.push(marker)
+    })
+  }
+
+  disconnect () {
     if (this.map) {
       this.map.remove()
     }

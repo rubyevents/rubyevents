@@ -13,7 +13,7 @@
     id="map"
     class="w-full h-96 mt-6 rounded-lg"
     data-controller="map"
-    data-map-geojson-value="<%= @geojson.to_json %>"
+    data-map-data-url-value="<%= geojson_countries_path(format: :json)  %>"
   ></div>
 
   <div class="mt-6">

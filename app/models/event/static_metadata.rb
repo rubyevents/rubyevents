@@ -84,6 +84,10 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
     static_repository&.location&.presence || "Earth"
   end
 
+  def coordinates
+    static_repository&.coordinates
+  end
+
   def country
     return nil if location.blank?
 
