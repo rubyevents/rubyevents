@@ -1,6 +1,7 @@
 # == Schema Information
 #
 # Table name: cfps
+# Database name: primary
 #
 #  id         :integer          not null, primary key
 #  close_date :date
@@ -29,7 +30,11 @@ class CFP < ApplicationRecord
     return false if closed?
     return false if future?
 
-    close_date.present?
+    open_ended? || close_date.present?
+  end
+
+  def open_ended?
+    close_date.blank?
   end
 
   def closed?

@@ -4,7 +4,7 @@ class TalkTest < ActiveSupport::TestCase
   include ActiveJob::TestHelper
 
   test "should handle empty transcript" do
-    talk = Talk.new(title: "Sample Talk", date: Date.today, talk_transcript_attributes: {raw_transcript: Transcript.new})
+    talk = Talk.new(title: "Sample Talk", date: Date.today, static_id: "test-sample-talk", talk_transcript_attributes: {raw_transcript: Transcript.new})
     assert talk.save
 
     loaded_talk = Talk.find(talk.id)
@@ -27,7 +27,7 @@ class TalkTest < ActiveSupport::TestCase
   end
 
   test "when the talk doesn't have any transcript yet" do
-    @talk = Talk.create!(title: "Express Your Ideas by Writing Your Own Gems", video_id: "Md90cwnmGc8", video_provider: "youtube", date: Date.today)
+    @talk = Talk.create!(title: "Express Your Ideas by Writing Your Own Gems", video_id: "Md90cwnmGc8", video_provider: "youtube", date: Date.today, static_id: "test-express-ideas-gems")
 
     VCR.use_cassette("youtube/transcript_not_available") do
       perform_enqueued_jobs do
@@ -57,8 +57,8 @@ class TalkTest < ActiveSupport::TestCase
     }
 
     kind_with_titles.each do |kind, titles|
-      titles.each do |title|
-        talk = Talk.new(title:, date: Date.today)
+      titles.each_with_index do |title, index|
+        talk = Talk.new(title:, date: Date.today, static_id: "test-kind-#{kind}-#{index}")
         talk.save!
 
         assert_equal [kind.to_s, title], [talk.kind, talk.title]
@@ -69,7 +69,7 @@ class TalkTest < ActiveSupport::TestCase
   end
 
   test "should not guess a kind if it's provided" do
-    talk = Talk.create!(title: "foo", kind: "panel", date: Date.today)
+    talk = Talk.create!(title: "foo", kind: "panel", date: Date.today, static_id: "test-panel-foo")
 
     assert_equal "panel", talk.kind
   end
@@ -79,7 +79,8 @@ class TalkTest < ActiveSupport::TestCase
       title: "Who Wants to be a Ruby Engineer?",
       video_provider: "mp4",
       video_id: "https://videos.brightonruby.com/videos/2024/drew-bragg-who-wants-to-be-a-ruby-engineer.mp4",
-      date: Date.today
+      date: Date.today,
+      static_id: "drew-bragg-who-wants-to-be-a-ruby-engineer"
     )
 
     assert_equal "gameshow", talk.kind
@@ -87,7 +88,7 @@ class TalkTest < ActiveSupport::TestCase
 
   test "transcript should default to raw_transcript" do
     raw_transcript = Transcript.new(cues: [Cue.new(start_time: 0, end_time: 1, text: "Hello")])
-    talk = Talk.new(title: "Sample Talk", date: Date.today, talk_transcript_attributes: {raw_transcript: raw_transcript})
+    talk = Talk.new(title: "Sample Talk", date: Date.today, static_id: "test-transcript-default", talk_transcript_attributes: {raw_transcript: raw_transcript})
     assert talk.save
 
     loaded_talk = Talk.find(talk.id)
@@ -170,6 +171,82 @@ class TalkTest < ActiveSupport::TestCase
     assert_equal "Hotwire Cookbook: Common Uses, Essential Patterns & Best Practices", @talk.title
   end
 
+  test "update_from_yml_metadata creates alias when slug changes" do
+    @talk = talks(:one)
+    original_title = @talk.title
+
+    old_slug = "old-legacy-slug"
+
+    @talk.update_columns(slug: old_slug)
+    @talk.update_from_yml_metadata!
+
+    assert_not_equal old_slug, @talk.slug
+    assert_equal "Hotwire Cookbook: Common Uses, Essential Patterns & Best Practices", @talk.title
+
+    alias_record = @talk.aliases.find_by(slug: old_slug)
+
+    assert_not_nil alias_record
+    assert_equal original_title, alias_record.name
+  end
+
+  test "update_from_yml_metadata does not create duplicate aliases" do
+    @talk = talks(:one)
+    old_slug = "old-legacy-slug"
+
+    @talk.aliases.create!(name: @talk.title, slug: old_slug)
+    @talk.update_columns(slug: old_slug)
+
+    assert_no_difference "@talk.aliases.count" do
+      @talk.update_from_yml_metadata!
+    end
+  end
+
+  test "find_by_slug_or_alias finds talk by slug" do
+    @talk = talks(:one)
+    found = Talk.find_by_slug_or_alias(@talk.slug)
+
+    assert_equal @talk, found
+  end
+
+  test "find_by_slug_or_alias finds talk by alias slug" do
+    @talk = talks(:one)
+    @talk.aliases.create!(name: "Old Title", slug: "old-talk-slug")
+
+    found = Talk.find_by_slug_or_alias("old-talk-slug")
+
+    assert_equal @talk, found
+  end
+
+  test "find_by_slug_or_alias returns nil for non-existent slug" do
+    found = Talk.find_by_slug_or_alias("non-existent-slug")
+
+    assert_nil found
+  end
+
+  test "find_by_slug_or_alias returns nil for blank slug" do
+    assert_nil Talk.find_by_slug_or_alias(nil)
+    assert_nil Talk.find_by_slug_or_alias("")
+  end
+
+  test "unused_slugs excludes slugs used as aliases by other talks" do
+    @talk = talks(:one)
+    other_talk = talks(:two)
+
+    candidate_slug = @talk.slug_candidates.first
+    other_talk.aliases.create!(name: "Some Title", slug: candidate_slug)
+
+    assert_not_includes @talk.unused_slugs, candidate_slug
+  end
+
+  test "unused_slugs allows talk to keep its own alias slug" do
+    @talk = talks(:one)
+
+    candidate_slug = @talk.slug_candidates.second
+    @talk.aliases.create!(name: "Old Title", slug: candidate_slug)
+
+    assert_includes @talk.unused_slugs, candidate_slug
+  end
+
   test "language is english by default" do
     assert_equal "en", Talk.new.language
   end
@@ -198,7 +275,7 @@ class TalkTest < ActiveSupport::TestCase
   end
 
   test "create a new talk with a nil language" do
-    talk = Talk.create!(title: "New title", language: nil, date: Date.today)
+    talk = Talk.create!(title: "New title", language: nil, date: Date.today, static_id: "test-new-title-nil-language")
     assert_equal "en", talk.language
     assert talk.valid?
   end
@@ -215,7 +292,7 @@ class TalkTest < ActiveSupport::TestCase
   end
 
   test "full text search creating and deleting a talk" do
-    talk = Talk.create!(title: "Full text seach with Sqlite", summary: "On using sqlite full text search with an ActiveRecord backed virtual table", date: Time.current)
+    talk = Talk.create!(title: "Full text seach with Sqlite", summary: "On using sqlite full text search with an ActiveRecord backed virtual table", date: Time.current, static_id: "kasper-timm-hansen-full-text-search-test")
     talk.users.create!(name: "Kasper Timm Hansen")
 
     assert_equal [talk], Talk.ft_search("sqlite full text search") # title

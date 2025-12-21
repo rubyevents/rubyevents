@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby file: ".ruby-version"
 
 # Use main development branch of Rails from github
-gem "rails", "8.1.0.rc1"
+gem "rails", "8.1.1"
 
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
@@ -46,13 +46,16 @@ gem "tzinfo-data", platforms: %i[windows jruby]
 gem "bootsnap", require: false
 
 # Deploy this application anywhere as a Docker container [https://kamal-deploy.org]
-gem "kamal", require: false
+gem "kamal", "2.7.0", require: false
 
 # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
 gem "thruster", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
+
+# Image processing for event asset generation
+gem "mini_magick"
 
 # All sorts of useful information about every country packaged as convenient little country objects
 gem "countries"
@@ -74,6 +77,10 @@ gem "active_genie"
 
 # A single delightful Ruby way to work with AI.
 gem "ruby_llm"
+gem "ruby_llm-schema"
+
+# JSON Schema validator
+gem "json_schemer"
 
 # YouTube V3 API client.
 gem "yt"
@@ -111,6 +118,9 @@ group :development do
 
   # Use listen to watch files for changes [https://github.com/guard/listen]
   gem "listen", "~> 3.5"
+
+  # Guard for watching file changes and auto-importing [https://github.com/guard/guard]
+  gem "guard"
 
   gem "error_highlight", ">= 0.4.0", platforms: [:ruby]
   gem "ruby-lsp-rails", require: false

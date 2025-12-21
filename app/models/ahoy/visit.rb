@@ -2,6 +2,7 @@
 # == Schema Information
 #
 # Table name: ahoy_visits
+# Database name: primary
 #
 #  id               :integer          not null, primary key
 #  app_version      :string

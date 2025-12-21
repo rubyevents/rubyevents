@@ -1,6 +1,7 @@
 # == Schema Information
 #
 # Table name: sponsors
+# Database name: primary
 #
 #  id              :integer          not null, primary key
 #  badge           :string

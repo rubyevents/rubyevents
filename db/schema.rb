@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_11_26_203734) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_06_194409) do
   create_table "ahoy_events", force: :cascade do |t|
     t.string "name"
     t.text "properties"
@@ -57,7 +57,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_26_203734) do
     t.string "aliasable_type", null: false
     t.datetime "created_at", null: false
     t.string "name", null: false
-    t.string "slug", null: false
+    t.string "slug"
     t.datetime "updated_at", null: false
     t.index ["aliasable_type", "aliasable_id"], name: "index_aliases_on_aliasable"
     t.index ["aliasable_type", "name"], name: "index_aliases_on_aliasable_type_and_name", unique: true
@@ -143,8 +143,8 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_26_203734) do
     t.string "twitter", default: "", null: false
     t.datetime "updated_at", null: false
     t.string "website", default: "", null: false
-    t.string "youtube_channel_id", default: "", null: false
-    t.string "youtube_channel_name", default: "", null: false
+    t.string "youtube_channel_id", default: ""
+    t.string "youtube_channel_name", default: ""
     t.index ["frequency"], name: "index_event_series_on_frequency"
     t.index ["kind"], name: "index_event_series_on_kind"
     t.index ["name"], name: "index_event_series_on_name"
@@ -314,6 +314,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_26_203734) do
   end
 
   create_table "talks", force: :cascade do |t|
+    t.json "additional_resources", default: [], null: false
     t.datetime "announced_at"
     t.datetime "created_at", null: false
     t.date "date"
@@ -333,6 +334,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_26_203734) do
     t.string "slides_url"
     t.string "slug", default: "", null: false
     t.integer "start_seconds"
+    t.string "static_id", null: false
     t.boolean "summarized_using_ai", default: true, null: false
     t.text "summary", default: "", null: false
     t.string "thumbnail_lg", default: "", null: false
@@ -350,6 +352,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_26_203734) do
     t.index ["kind"], name: "index_talks_on_kind"
     t.index ["parent_talk_id"], name: "index_talks_on_parent_talk_id"
     t.index ["slug"], name: "index_talks_on_slug"
+    t.index ["static_id"], name: "index_talks_on_static_id", unique: true
     t.index ["title"], name: "index_talks_on_title"
     t.index ["updated_at"], name: "index_talks_on_updated_at"
     t.index ["video_provider", "date"], name: "index_talks_on_video_provider_and_date"
@@ -477,6 +480,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_26_203734) do
   # Virtual tables defined in this database.
   # Note that virtual tables may not work with other database engines. Be careful if changing database.
   create_virtual_table "speakers_search_index", "fts5", ["name", "github", "tokenize = porter"]
-  create_virtual_table "talks_search_index", "fts5", ["title", "summary", "speaker_names", "tokenize = porter"]
+  create_virtual_table "talks_search_index", "fts5", ["title", "summary", "speaker_names", "event_names", "tokenize = porter"]
   create_virtual_table "users_search_index", "fts5", ["name", "github_handle", "tokenize = porter"]
 end

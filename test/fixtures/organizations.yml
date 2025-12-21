@@ -3,11 +3,12 @@
 # == Schema Information
 #
 # Table name: organizations
+# Database name: primary
 #
 #  id              :integer          not null, primary key
 #  description     :text
 #  domain          :string
-#  kind            :integer          default("company"), not null, indexed
+#  kind            :integer          default("unknown"), not null, indexed
 #  logo_background :string           default("white")
 #  logo_url        :string
 #  logo_urls       :json

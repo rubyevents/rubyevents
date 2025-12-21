@@ -1,7 +1,8 @@
 # Website: http://tropicalrb.com/
 # Videos: http://tropicalrb.com/en/videos/
 ---
-- title: "Keynote: See You On The Trail!"
+- id: "nick-sutterer-tropical-rb-2015"
+  title: "Keynote: See You On The Trail!"
   raw_title: "Keynote: See You On The Trail!"
   speakers:
     - Nick Sutterer
@@ -13,7 +14,8 @@
   language: "english"
   description: ""
 
-- title: "Maintaining a 5yo Ruby project"
+- id: "simone-carletti-tropical-rb-2015"
+  title: "Maintaining a 5yo Ruby project"
   raw_title: "Maintaining a 5yo Ruby project"
   speakers:
     - Simone Carletti
@@ -26,7 +28,8 @@
   description: |-
     Maintaining a young, small Ruby product is simple, but time passes and your code becomes harder to maintain day after day. This talk illustrates the development techniques, Ruby patterns and best practices we use at DNSimple to develop new features and ensure long-term maintainability of our codebase.
 
-- title: "Cryptography for Rails Developers"
+- id: "christopher-rigor-tropical-rb-2015"
+  title: "Cryptography for Rails Developers"
   raw_title: "Cryptography for Rails Developers"
   speakers:
     - Christopher Rigor
@@ -38,7 +41,8 @@
   description: |-
     You know HTTPS keeps your website secure but do you know how? Ruby just released a new version to address a vulnerability with SSL but do you know your app might still be vulnerable? Cryptography is a hard and huge topic and this talk will give you a great introduction. You don't need a background on cryptography, just an open mind! You will learn about the public key cryptography, SSL/TLS and Ruby tips that will make your app secure.
 
-- title: "Frontend Choices"
+- id: "alex-coles-tropical-rb-2015"
+  title: "Frontend Choices"
   raw_title: "Frontend Choices"
   speakers:
     - Alex Coles
@@ -50,7 +54,8 @@
   description: |-
     Rails was born in 2004, the time of the "Ajax revolution". With the help of a little bit of prototype, Scriptaculous and RJS, Rails made its mark in part because it facilitated creating beautiful and highly interactive web user interfaces in no time at all. Fast forward to 2013. Frameworks like Meteor and Hoodie are capturing increasing mindshare. Are we now in the decade of JavaScript? Is the "Rails Way" still relevant to the frontend?
 
-- title: "Writing Your Own DSL Using Ruby"
+- id: "ricardo-nacif-tropical-rb-2015"
+  title: "Writing Your Own DSL Using Ruby"
   raw_title: "Writing Your Own DSL Using Ruby"
   speakers:
     - Ricardo Nacif
@@ -62,7 +67,8 @@
   description: |-
     In this talk we'll go through some concepts on the Ruby language that will help us creating our own custom Domain Specific Language. It's a very hands-on talk. We'll play with dynamic classes, dynamic methods, blocks, procs and method chaining, but our main goal is to write (and learn how) our own Pizza Menu DSL.
 
-- title: "POROs to the Rescue"
+- id: "marcelo-de-polli-tropical-rb-2015"
+  title: "POROs to the Rescue"
   raw_title: "POROs to the Rescue"
   speakers:
     - Marcelo De Polli
@@ -74,7 +80,8 @@
   description: |-
     Being tasked with rescuing an ancient codebase and turning it into something workable and manageable is a predicament most of us have already found ourselves in. In the 10 years since we began using Ruby to write Web applications, a lot has changed concerning architectures and design patterns. How do you take your code in a time travel from the olden days to more current practices such as POROs, lean models, presenters and decorators? This talk will walk you through some easy practices that can make that trip less bumpy and allow you to survive to tell the story.
 
-- title: "Concurrent-Ruby: Ruby in the Concurrent World"
+- id: "lucas-allan-tropical-rb-2015"
+  title: "Concurrent-Ruby: Ruby in the Concurrent World"
   raw_title: "Concurrent-Ruby: Ruby in the Concurrent World"
   speakers:
     - Lucas Allan
@@ -86,7 +93,8 @@
   description: |-
     Rumor has it that you can't write concurrent programs in Ruby. People once believed that the world was flat and we all know how that turned out. Between the native threads introduced in MRI 1.9 and the JVM threading available to JRuby, Ruby is now a valid platform for concurrent applications. What we've been missing — until now — are the advanced concurrency tools available to other languages like Clojure, Scala, Erlang, and Go.
 
-- title: "Object Oriented Design, Rails and Why You Should Think Twice Before Leaving the Rails Way"
+- id: "rafael-franca-tropical-rb-2015"
+  title: "Object Oriented Design, Rails and Why You Should Think Twice Before Leaving the Rails Way"
   raw_title: "Object Oriented Design, Rails and Why You Should Think Twice Before Leaving the Rails Way"
   speakers:
     - Rafael França
@@ -100,7 +108,8 @@
 
     In this talk I will present some of these concepts and show the symptoms that they can cause in yours projects if applied incorrectly.
 
-- title: "25 Minutes of Semantic Web"
+- id: "yasodara-cordova-tropical-rb-2015"
+  title: "25 Minutes of Semantic Web"
   raw_title: "25 Minutes of Semantic Web"
   speakers:
     - Yasodara Córdova
@@ -112,7 +121,8 @@
   description: |-
     The promise is: you'll understand in 10 minutes why use Semantic Web. The following 15 minutes of the talk will be used to show 15 applications using the concepts of Semantic Web, one per minute :-)
 
-- title: "Panel: The Rails Way vs. Trailblazer"
+- id: "rafael-franca-carlos-antonio-celso-nanderson-nick-sutterer-tropical-rb-2015"
+  title: "Panel: The Rails Way vs. Trailblazer"
   raw_title: "Panel: The Rails Way vs. Trailblazer"
   speakers:
     - Rafael França
@@ -130,7 +140,8 @@
 
     In this panel both members from Rails core as well as the creator of Trailblazer are gonna discuss both approaches, their point of views, why they choose their way, and why they still can be friends.
 
-- title: "Keynote: Better Programmers"
+- id: "rodrigo-franco-tropical-rb-2015"
+  title: "Keynote: Better Programmers"
   raw_title: "Keynote: Better Programmers"
   speakers:
     - Rodrigo Franco
@@ -142,7 +153,8 @@
   language: "portuguese"
   description: ""
 
-- title: "On Memory"
+- id: "john-crepezzi-tropical-rb-2015"
+  title: "On Memory"
   raw_title: "On Memory"
   speakers:
     - John Crepezzi
@@ -154,7 +166,8 @@
   description: |-
     The fact that Ruby doesn't require developers to manage memory provides us a much less frustrating day-to-day. Still, there are scenarios where losing sight of the memory implications of our patterns and logic, will get us into trouble! In this talk, I'll go over common (and less common) memory pitfalls, how they work, and how to fix them.
 
-- title: "Building a Single Page App. One Page at a Time."
+- id: "netto-farah-tropical-rb-2015"
+  title: "Building a Single Page App. One Page at a Time."
   raw_title: "Building a Single Page App. One Page at a Time."
   speakers:
     - Netto Farah
@@ -166,7 +179,8 @@
   description: |-
     It may sound simple to build a single page app these days with so many tools such as AngularJs, Knockout, Backbone, etc. But very little is said about transforming an existing app into to a single page one.
 
-- title: "Clean Architecture"
+- id: "fabiano-beselga-tropical-rb-2015"
+  title: "Clean Architecture"
   raw_title: "Clean Architecture"
   speakers:
     - Fabiano Beselga
@@ -178,7 +192,8 @@
   description: |-
     Rails is an awesome framework to build something fast from scratch, but when the app starts to grow it becomes harder to maintain if you keep following only the folders that Rails's initial configuration provides. There are a lot of approaches to get around it, Uncle Bob's Clean Architecture that separates the logic of the app from the delivery mechanism and from the database.
 
-- title: "Contributing to Open Source: From the Beginning to Lessons Learned"
+- id: "carlos-antonio-tropical-rb-2015"
+  title: "Contributing to Open Source: From the Beginning to Lessons Learned"
   raw_title: "Contributing to Open Source: From the Beginning to Lessons Learned"
   speakers:
     - Carlos Antonio
@@ -190,7 +205,8 @@
   description: |-
     Many people have difficulties to do a first contribution to open source, while others try to keep actively contributing. They do not feel confident enough, wondering if are doing it right, if they are following "patterns", if they will make mistakes in public, and this list of questions just keeps growing. This talk will attend the problems I've faced in the last years contributing and maintaining open source projects. It will give tips on how to start and remain active in today's open source world, and preserve your sanity to avoid the burnout.
 
-- title: "Property Testing on Rails"
+- id: "andrew-rosa-tropical-rb-2015"
+  title: "Property Testing on Rails"
   raw_title: "Property Testing on Rails"
   speakers:
     - Andrew Rosa
@@ -202,7 +218,8 @@
   description: |-
     The Ruby community is known by its strong culture of testing, but this is not an excuse to refuse alternative approaches. One of these are Property Testing. In those tools we do not express examples, but the possible input formats; instead of specific outputs, characteristics that must remain true. In this way our tools are capable of exhaustively generate test cases and look for failures. In this talk we'll see how to create lean suites with wide coverage using Clojure's power to test a Rails application.
 
-- title: "MRuby: Change the Embedded Development Way"
+- id: "thiago-scalone-tropical-rb-2015"
+  title: "MRuby: Change the Embedded Development Way"
   raw_title: "MRuby: Change the Embedded Development Way"
   speakers:
     - Thiago Scalone
@@ -214,7 +231,8 @@
   description: |-
     MRuby (Minimalistc Ruby) is a new Ruby implementation made with resources saving in mind. MRuby is a perfect fit for embedded systems world and for limited responsibility applications. Let's understand the state of embedded system development today from the payment devices perspective. In the talk we'll learn how beautiful and useful MRuby is on a device-browser integration or in command line tool.
 
-- title: "Micro Problems!"
+- id: "marcos-matos-tropical-rb-2015"
+  title: "Micro Problems!"
   raw_title: "Micro Problems!"
   speakers:
     - Marcos Matos
@@ -226,7 +244,8 @@
   description: |-
     Micro services are trend. It's a magic cure for complex projects. The problem is in the details! Like every trend topic, the problems and complications around this style are not discussed, topics like performance, scalability, integration tests and infrastructure. At this anti-talk we are going to show the traps lurking around micro services' architecture and how to avoid them.
 
-- title: "Urban Legends: What You Code Makes You Who You Are"
+- id: "pj-hagerty-tropical-rb-2015"
+  title: "Urban Legends: What You Code Makes You Who You Are"
   raw_title: "Urban Legends: What You Code Makes You Who You Are"
   speakers:
     - PJ Hagerty
@@ -238,7 +257,8 @@
   description: |-
     If you were a carpenter, would your skills at building be more important than the tools you use to build? Skills, right? Tools are just a means to an end. So why do developers think the language they use defines the problems they solve?
 
-- title: "Keynote: The Soul of Software"
+- id: "avdi-grimm-tropical-rb-2015"
+  title: "Keynote: The Soul of Software"
   raw_title: "Keynote: The Soul of Software"
   speakers:
     - Avdi Grimm

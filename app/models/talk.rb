@@ -2,39 +2,42 @@
 # == Schema Information
 #
 # Table name: talks
+# Database name: primary
 #
-#  id                  :integer          not null, primary key
-#  announced_at        :datetime
-#  date                :date             indexed, indexed => [video_provider]
-#  description         :text             default(""), not null
-#  duration_in_seconds :integer
-#  end_seconds         :integer
-#  external_player     :boolean          default(FALSE), not null
-#  external_player_url :string           default(""), not null
-#  kind                :string           default("talk"), not null, indexed
-#  language            :string           default("en"), not null
-#  like_count          :integer          default(0)
-#  meta_talk           :boolean          default(FALSE), not null
-#  original_title      :string           default(""), not null
-#  published_at        :datetime
-#  slides_url          :string
-#  slug                :string           default(""), not null, indexed
-#  start_seconds       :integer
-#  summarized_using_ai :boolean          default(TRUE), not null
-#  summary             :text             default(""), not null
-#  thumbnail_lg        :string           default(""), not null
-#  thumbnail_md        :string           default(""), not null
-#  thumbnail_sm        :string           default(""), not null
-#  thumbnail_xl        :string           default(""), not null
-#  thumbnail_xs        :string           default(""), not null
-#  title               :string           default(""), not null, indexed
-#  video_provider      :string           default("youtube"), not null, indexed => [date]
-#  view_count          :integer          default(0)
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null, indexed
-#  event_id            :integer          indexed
-#  parent_talk_id      :integer          indexed
-#  video_id            :string           default(""), not null
+#  id                   :integer          not null, primary key
+#  additional_resources :json             not null
+#  announced_at         :datetime
+#  date                 :date             indexed, indexed => [video_provider]
+#  description          :text             default(""), not null
+#  duration_in_seconds  :integer
+#  end_seconds          :integer
+#  external_player      :boolean          default(FALSE), not null
+#  external_player_url  :string           default(""), not null
+#  kind                 :string           default("talk"), not null, indexed
+#  language             :string           default("en"), not null
+#  like_count           :integer          default(0)
+#  meta_talk            :boolean          default(FALSE), not null
+#  original_title       :string           default(""), not null
+#  published_at         :datetime
+#  slides_url           :string
+#  slug                 :string           default(""), not null, indexed
+#  start_seconds        :integer
+#  summarized_using_ai  :boolean          default(TRUE), not null
+#  summary              :text             default(""), not null
+#  thumbnail_lg         :string           default(""), not null
+#  thumbnail_md         :string           default(""), not null
+#  thumbnail_sm         :string           default(""), not null
+#  thumbnail_xl         :string           default(""), not null
+#  thumbnail_xs         :string           default(""), not null
+#  title                :string           default(""), not null, indexed
+#  video_provider       :string           default("youtube"), not null, indexed => [date]
+#  view_count           :integer          default(0)
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null, indexed
+#  event_id             :integer          indexed
+#  parent_talk_id       :integer          indexed
+#  static_id            :string           not null, uniquely indexed
+#  video_id             :string           default(""), not null
 #
 # Indexes
 #
@@ -43,6 +46,7 @@
 #  index_talks_on_kind                     (kind)
 #  index_talks_on_parent_talk_id           (parent_talk_id)
 #  index_talks_on_slug                     (slug)
+#  index_talks_on_static_id                (static_id) UNIQUE
 #  index_talks_on_title                    (title)
 #  index_talks_on_updated_at               (updated_at)
 #  index_talks_on_video_provider_and_date  (video_provider,date)
@@ -86,6 +90,8 @@ class Talk < ApplicationRecord
   has_many :watch_list_talks, dependent: :destroy
   has_many :watch_lists, through: :watch_list_talks
 
+  has_many :aliases, as: :aliasable, dependent: :destroy
+
   has_one :talk_transcript, class_name: "Talk::Transcript", dependent: :destroy
   accepts_nested_attributes_for :talk_transcript
   delegate :transcript, :raw_transcript, :enhanced_transcript, to: :talk_transcript, allow_nil: true
@@ -114,6 +120,8 @@ class Talk < ApplicationRecord
 
   # enums
   enum :video_provider, %w[youtube mp4 vimeo scheduled not_published not_recorded parent children].index_by(&:itself)
+
+  attribute :kind, :string
   enum :kind,
     %w[keynote talk lightning_talk panel workshop gameshow podcast q_and_a discussion fireside_chat
       interview award].index_by(&:itself)
@@ -133,6 +141,16 @@ class Talk < ApplicationRecord
       interview: "Interviewer/Interviewee",
       award: "Award Presenter/Winner"
     }
+  end
+
+  def self.find_by_slug_or_alias(slug)
+    return nil if slug.blank?
+
+    talk = find_by(slug: slug)
+    return talk if talk
+
+    alias_record = Alias.find_by(aliasable_type: "Talk", slug: slug)
+    alias_record&.aliasable
   end
 
   def formatted_kind
@@ -411,6 +429,20 @@ class Talk < ApplicationRecord
     speakers.pluck(:name).join(" ")
   end
 
+  def event_names
+    return "" unless event
+
+    names = [event.name]
+    names += event.slug_aliases.pluck(:name)
+
+    if event.series
+      names << event.series.name
+      names += event.series.aliases.pluck(:name)
+    end
+
+    names.compact.uniq.join(" ")
+  end
+
   def language_name
     Language.by_code(language)
   end
@@ -435,7 +467,10 @@ class Talk < ApplicationRecord
 
   def unused_slugs
     used_slugs = Talk.excluding(self).where(slug: slug_candidates).pluck(:slug)
-    slug_candidates - used_slugs
+    used_alias_slugs = Alias.where(aliasable_type: "Talk", slug: slug_candidates)
+      .where.not(aliasable_id: id)
+      .pluck(:slug)
+    slug_candidates - used_slugs - used_alias_slugs
   end
 
   def event_name
@@ -478,6 +513,7 @@ class Talk < ApplicationRecord
 
     assign_attributes(
       event: event,
+      static_id: static_metadata.id,
       title: static_metadata.title,
       original_title: static_metadata.original_title || "",
       description: static_metadata.description,
@@ -491,8 +527,9 @@ class Talk < ApplicationRecord
       thumbnail_xl: static_metadata["thumbnail_xl"] || "",
       language: static_metadata.language || Language::DEFAULT,
       slides_url: static_metadata.slides_url,
-      video_id: static_metadata.video_id || static_metadata.id,
-      video_provider: static_metadata.video_provider || :youtube,
+      additional_resources: static_metadata["additional_resources"] || [],
+      video_id: static_metadata.video_id,
+      video_provider: static_metadata.video_provider,
       external_player: static_metadata.external_player || false,
       external_player_url: static_metadata.external_player_url || "",
       meta_talk: static_metadata.meta_talk?,
@@ -508,19 +545,19 @@ class Talk < ApplicationRecord
         User.find_or_create_by(name: speaker_name.strip)
     }
 
-    self.slug = unused_slugs.first
+    new_slug = unused_slugs.first
+
+    if slug.present? && slug != new_slug
+      aliases.find_or_create_by!(name: title, slug: slug)
+    end
+
+    self.slug = new_slug
 
     save!
   end
 
   def static_metadata
-    @static_metadata ||= if video_provider == "parent"
-      Array.wrap(parent_talk&.static_metadata&.talks).find { |talk| talk.video_id == video_id || talk.id == video_id }
-    elsif (metadata = Static::Video.find_by(video_id: video_id) || Static::Video.find_by(id: video_id))
-      metadata
-    else
-      Static::Video.all.flat_map(&:talks).compact.find { |talk| talk.video_id == video_id || talk.id == video_id }
-    end
+    @static_metadata ||= Static::Video.find_by_static_id(static_id)
   end
 
   def suggestion_summary

@@ -65,6 +65,7 @@ class ProfilesController < ApplicationController
     end
 
     @stamps = Stamp.for_user(@user)
+    @aliases = Current.user&.admin? ? @user.aliases : []
 
     @back_path = speakers_path
   end

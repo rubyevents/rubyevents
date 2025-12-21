@@ -1,6 +1,7 @@
 # == Schema Information
 #
 # Table name: event_participations
+# Database name: primary
 #
 #  id          :integer          not null, primary key
 #  attended_as :string           not null, uniquely indexed => [user_id, event_id], indexed

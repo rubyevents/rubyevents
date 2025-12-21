@@ -17,7 +17,7 @@
         <% end %>
 
         <% if user.passports.any? %>
-          <%= ui_tooltip "#{user.name} claimed their Ruby Passport" do %>
+          <%= ui_tooltip "#{user.name} claimed #{user.possessive_pronoun} Ruby Passport" do %>
             <%= fa("passport", class: "fill-orange-800") %>
           <% end %>
         <% end %>

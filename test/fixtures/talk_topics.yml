@@ -2,6 +2,7 @@
 # == Schema Information
 #
 # Table name: talk_topics
+# Database name: primary
 #
 #  id         :integer          not null, primary key
 #  created_at :datetime         not null

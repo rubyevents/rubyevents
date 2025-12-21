@@ -90,6 +90,7 @@ Rails.application.routes.draw do
       resources :stickers, only: [:index]
       resources :involvements, only: [:index]
       resources :map, only: [:index]
+      resources :aliases, only: [:index]
     end
   end
   resources :events, param: :slug, only: %i[index show update edit] do
@@ -108,12 +109,13 @@ Rails.application.routes.draw do
       resources :schedules, only: [:index], path: '/schedule' do
         get '/day/:date', action: :show, on: :collection, as: :day
       end
+      resource :venue, only: [:show]
       resources :speakers, only: [:index]
       resources :participants, only: [:index]
       resources :involvements, only: [:index]
       resources :talks, only: [:index]
       resources :related_talks, only: [:index]
-      resources :events, only: [:index]
+      resources :events, only: [:index, :show]
       resources :videos, only: [:index]
       resources :sponsors, only: [:index]
       resources :cfp, only: [:index]

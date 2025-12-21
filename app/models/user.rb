@@ -2,6 +2,7 @@
 # == Schema Information
 #
 # Table name: users
+# Database name: primary
 #
 #  id                  :integer          not null, primary key
 #  admin               :boolean          default(FALSE), not null
@@ -57,6 +58,12 @@ class User < ApplicationRecord
     "she/her": :she_her,
     "he/him": :he_him,
     Custom: :custom
+  }.freeze
+
+  POSSESSIVE_PRONOUNS = {
+    "she_her" => "her",
+    "he_him" => "his",
+    "they_them" => "their"
   }.freeze
 
   has_secure_password validations: false
@@ -216,6 +223,10 @@ class User < ApplicationRecord
 
   def verified?
     connected_accounts.find { |account| account.provider == "github" }
+  end
+
+  def possessive_pronoun
+    POSSESSIVE_PRONOUNS[pronouns_type] || "their"
   end
 
   def contributor?
