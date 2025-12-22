@@ -263,10 +263,20 @@ module Static
         country_code: country&.alpha2,
         start_date: start_date,
         end_date: end_date,
-        latitude: (event.venue.exist? ? event.venue.latitude : coordinates&.dig("latitude")),
-        longitude: (event.venue.exist? ? event.venue.longitude : coordinates&.dig("longitude")),
         kind: kind
       )
+
+      if event.venue.exist?
+        event.update!(
+          latitude: event.venue.latitude,
+          longitude: event.venue.longitude
+        )
+      else
+        event.update!(
+          latitude: coordinates&.dig("latitude"),
+          longitude: coordinates&.dig("longitude")
+        )
+      end
 
       event.sync_aliases_from_list(aliases) if aliases.present?
 
