@@ -58,9 +58,7 @@ module Static
         event_dir = series_dir.join(slug)
         event_file = event_dir.join("event.yml")
 
-        if event_file.exist?
-          raise ArgumentError, "Event '#{slug}' already exists at #{event_file}"
-        end
+        raise ArgumentError, "Event '#{slug}' already exists at #{event_file}" if event_file.exist?
 
         data = {"title" => title, "kind" => kind}
 
@@ -120,21 +118,13 @@ module Static
     end
 
     def today?
-      if start_date.present?
-        return start_date.today?
-      end
+      return start_date.today? if start_date.present?
 
-      if end_date.present?
-        return end_date.today?
-      end
+      return end_date.today? if end_date.present?
 
-      if event_record.present? && event_record.start_date
-        return event_record.start_date.today?
-      end
+      return event_record.start_date.today? if event_record.present? && event_record.start_date
 
-      if event_record.present? && event_record.end_date
-        return event_record.end_date.today?
-      end
+      return event_record.end_date.today? if event_record.present? && event_record.end_date
 
       false
     end
@@ -142,13 +132,9 @@ module Static
     def within_next_days?
       period = 4.days
 
-      if end_date.present?
-        return ((end_date - period)..end_date).cover?(Date.today)
-      end
+      return ((end_date - period)..end_date).cover?(Date.today) if end_date.present?
 
-      if start_date.present?
-        return ((start_date - period)..start_date).cover?(Date.today)
-      end
+      return ((start_date - period)..start_date).cover?(Date.today) if start_date.present?
 
       if event_record.present? && event_record.start_date
         return ((event_record.start_date - period)..event_record.start_date).cover?(Date.today)
@@ -224,25 +210,15 @@ module Static
     end
 
     def home_sort_date
-      if published_date
-        return published_date
-      end
+      return published_date if published_date
 
-      if conference? && end_date.present?
-        return end_date
-      end
+      return end_date if conference? && end_date.present?
 
-      if meetup? && event_record.present?
-        return event_record.end_date
-      end
+      return event_record.end_date if meetup? && event_record.present?
 
-      if conference? && start_date.present?
-        return start_date
-      end
+      return start_date if conference? && start_date.present?
 
-      if event_record.present?
-        return event_record.start_date
-      end
+      return event_record.start_date if event_record.present?
 
       Time.at(0)
     end
@@ -256,6 +232,7 @@ module Static
 
       event.update!(
         name: title,
+        city: location.to_s.split(",").first&.strip,
         date: attributes["date"] || published_at,
         date_precision: date_precision || "day",
         series: static_series.event_series_record,
@@ -263,6 +240,8 @@ module Static
         country_code: country&.alpha2,
         start_date: start_date,
         end_date: end_date,
+        latitude: (event.venue.exist? ? event.venue.latitude : coordinates&.dig("latitude")),
+        longitude: (event.venue.exist? ? event.venue.longitude : coordinates&.dig("longitude")),
         kind: kind
       )
 
@@ -357,7 +336,8 @@ module Static
 
             s.save!
 
-            event.sponsors.find_or_create_by!(organization: s, event: event).update!(tier: tier["name"], badge: sponsor["badge"])
+            event.sponsors.find_or_create_by!(organization: s, event: event).update!(tier: tier["name"],
+              badge: sponsor["badge"])
           end
         end
       end
