@@ -55,10 +55,10 @@ module Static
               user = ::User.new(
                 name: speaker.name,
                 slug: slug,
-                twitter: speaker.twitter.presence,
-                github_handle: speaker.github.presence,
-                website: speaker.website.presence,
-                bio: speaker.bio.presence
+                twitter: speaker.twitter.to_s,
+                github_handle: speaker.github.to_s,
+                website: speaker.website.to_s,
+                bio: speaker.bio.to_s
               )
 
               user.save(validate: false)
