@@ -53,8 +53,6 @@ class Event < ApplicationRecord
   has_many :organizations, through: :sponsors
   belongs_to :canonical, class_name: "Event", optional: true
   has_many :aliases, class_name: "Event", foreign_key: "canonical_id"
-  belongs_to :canonical, class_name: "Event", optional: true
-  has_many :aliases, class_name: "Event", foreign_key: "canonical_id"
   has_many :slug_aliases, as: :aliasable, class_name: "Alias", dependent: :destroy
   has_many :cfps, dependent: :destroy
 
@@ -177,7 +175,7 @@ class Event < ApplicationRecord
     end
   end
 
-  def managed_by?(_user)
+  def managed_by?(user)
     Current.user&.admin?
   end
 
@@ -333,7 +331,7 @@ class Event < ApplicationRecord
   end
 
   def default_event_image_path
-    %w[events default].join("/")
+    ["events", "default"].join("/")
   end
 
   def default_event_series_image_path
@@ -399,9 +397,9 @@ class Event < ApplicationRecord
 
   def stamp_image_paths
     base = Rails.root.join("app", "assets", "images")
-    Dir.glob(base.join(event_image_path, "stamp*.webp")).map do |path|
+    Dir.glob(base.join(event_image_path, "stamp*.webp")).map { |path|
       Pathname.new(path).relative_path_from(base).to_s
-    end.sort
+    }.sort
   end
 
   def stamp_image_path
@@ -417,7 +415,7 @@ class Event < ApplicationRecord
   end
 
   def watchable_talks?
-    talks.where.not(video_provider: %w[scheduled not_published not_recorded]).exists?
+    talks.where.not(video_provider: ["scheduled", "not_published", "not_recorded"]).exists?
   end
 
   def featured_metadata?

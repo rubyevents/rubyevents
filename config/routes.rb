@@ -18,13 +18,13 @@ Rails.application.routes.draw do
   get "/auth/failure", to: "sessions/omniauth#failure"
   get "/auth/:provider/callback", to: "sessions/omniauth#create"
   post "/auth/:provider/callback", to: "sessions/omniauth#create"
-  resources :sessions, only: %i[new create destroy]
+  resources :sessions, only: [:new, :create, :destroy]
 
-  resource :password, only: %i[edit update]
+  resource :password, only: [:edit, :update]
   namespace :identity do
-    resource :email, only: %i[edit update]
-    resource :email_verification, only: %i[show create]
-    resource :password_reset, only: %i[new edit create update]
+    resource :email, only: [:edit, :update]
+    resource :email_verification, only: [:show, :create]
+    resource :password_reset, only: [:new, :edit, :create, :update]
   end
 
   authenticate :admin do
@@ -32,19 +32,19 @@ Rails.application.routes.draw do
     mount Avo::Engine, at: Avo.configuration.root_path
   end
 
-  resources :topics, param: :slug, only: %i[index show]
+  resources :topics, param: :slug, only: [:index, :show]
   resources :cfp, only: :index
-  resources :countries, param: :country, only: %i[index show]
+  resources :countries, param: :country, only: [:index, :show]
 
   namespace :profiles do
-    resources :connect, only: %i[index show]
+    resources :connect, only: [:index, :show]
     resources :claims, only: [:create]
     resources :enhance, only: [:update], param: :slug
   end
 
-  resources :contributions, only: %i[index show], param: :step
+  resources :contributions, only: [:index, :show], param: :step
 
-  resources :templates, only: %i[new create] do
+  resources :templates, only: [:new, :create] do
     collection do
       get :new_child
       delete :delete_child
@@ -68,20 +68,20 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :talks, param: :slug, only: %i[index show update edit] do
+  resources :talks, param: :slug, only: [:index, :show, :update, :edit] do
     scope module: :talks do
       resources :recommendations, only: [:index]
-      resource :watched_talk, only: %i[create destroy update]
+      resource :watched_talk, only: [:create, :destroy, :update]
       resource :slides, only: :show
     end
   end
 
-  resources :watched_talks, only: %i[index destroy]
+  resources :watched_talks, only: [:index, :destroy]
 
   resources :speakers, param: :slug, only: [:index]
-  get "/speakers/:slug", to: redirect("/profiles/%<slug>s", status: 301), as: :speaker
+  get "/speakers/:slug", to: redirect("/profiles/%{slug}", status: 301), as: :speaker
 
-  resources :profiles, param: :slug, only: %i[show update edit] do
+  resources :profiles, param: :slug, only: [:show, :update, :edit] do
     scope module: :profiles do
       resources :talks, only: [:index]
       resources :events, only: [:index]
@@ -93,8 +93,8 @@ Rails.application.routes.draw do
       resources :aliases, only: [:index]
     end
   end
-  resources :events, param: :slug, only: %i[index show update edit] do
-    resources :event_participations, only: %i[create destroy]
+  resources :events, param: :slug, only: [:index, :show, :update, :edit] do
+    resources :event_participations, only: [:create, :destroy]
 
     scope module: :events do
       collection do
@@ -102,8 +102,8 @@ Rails.application.routes.draw do
         get "/archive" => "archive#index", :as => :archive
         get "/countries" => redirect("/countries")
         get "/countries/:country" => redirect { |params, _| "/countries/#{params[:country]}" }
-        resources :cities, param: :city, only: %i[index show]
-        resources :series, param: :slug, only: %i[index show]
+        resources :cities, param: :city, only: [:index, :show]
+        resources :series, param: :slug, only: [:index, :show]
       end
 
       resources :schedules, only: [:index], path: "/schedule" do
@@ -123,8 +123,8 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :organizations, param: :slug, only: %i[index show] do
-    resource :logos, only: %i[show update], controller: "organizations/logos"
+  resources :organizations, param: :slug, only: [:index, :show] do
+    resource :logos, only: [:show, :update], controller: "organizations/logos"
   end
 
   namespace :sponsors do
@@ -132,11 +132,11 @@ Rails.application.routes.draw do
   end
 
   get "/sponsors", to: redirect("/organizations", status: 301)
-  get "/sponsors/:slug", to: redirect("/organizations/%<slug>s", status: 301)
-  get "/sponsors/:slug/logos", to: redirect("/organizations/%<slug>s/logos", status: 301)
+  get "/sponsors/:slug", to: redirect("/organizations/%{slug}", status: 301)
+  get "/sponsors/:slug/logos", to: redirect("/organizations/%{slug}/logos", status: 301)
 
   get "/organisations", to: redirect("/events/series")
-  get "/organisations/:slug", to: redirect("/events/series/%<slug>s")
+  get "/organisations/:slug", to: redirect("/events/series/%{slug}")
 
   namespace "spotlight" do
     resources :talks, only: [:index]
@@ -166,8 +166,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "page#home"
 
-  resources :watch_lists, only: %i[index new create show edit update destroy], path: "bookmarks" do
-    resources :talks, only: %i[create destroy], controller: "watch_list_talks"
+  resources :watch_lists, only: [:index, :new, :create, :show, :edit, :update, :destroy], path: "bookmarks" do
+    resources :talks, only: [:create, :destroy], controller: "watch_list_talks"
   end
 
   namespace :hotwire do

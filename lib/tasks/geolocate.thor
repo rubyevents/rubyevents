@@ -49,6 +49,23 @@ class Geolocate < Thor
       return
     end
 
+    # Prioritize venue.yml if it exists and has coordinates
+    venue_file = File.join(File.dirname(file_path), "venue.yml")
+    if File.exist?(venue_file)
+      venue_data = YAML.load_file(venue_file)
+      venue_coordinates = venue_data["coordinates"]
+      if venue_coordinates && venue_coordinates["latitude"] && venue_coordinates["longitude"]
+        if data["coordinates"] != venue_coordinates || overwrite
+          data["coordinates"] = venue_coordinates
+          File.write(file_path, YAML.dump(data))
+          puts "✓ #{file_path}: Updated from venue.yml -> #{venue_coordinates}"
+        else
+          puts "⚠ Skipping #{file_path}: Already has coordinates from venue"
+        end
+        return
+      end
+    end
+
     location = data["location"]
     unless location.present?
       puts "⚠ Skipping #{file_path}: No location field"
@@ -102,7 +119,7 @@ class Geolocate < Thor
     return nil if results.empty?
 
     result = results.first
-    {latitude: result.latitude, longitude: result.longitude}
+    {"latitude" => result.latitude, "longitude" => result.longitude}
   rescue => e
     puts "    Error: #{e.message}"
     nil
