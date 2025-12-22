@@ -13,8 +13,7 @@
     id="map"
     class="w-full h-96 mt-6 rounded-lg"
     data-controller="map"
-    data-map-markers-value="<%= @event_map_markers.to_json %>"
-  ></div>
+    data-map-markers-value="<%= @event_map_markers.to_json %>"></div>
 
   <div class="mt-6">
     <% @countries_by_continent.each do |continent, countries| %>
@@ -26,8 +25,7 @@
           class="
             grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 lg:gap-x-12 gap-y-2
             min-w-full pt-4 pb-8
-          "
-        >
+          ">
           <% countries.sort_by(&:iso_short_name).each do |country| %>
             <% events = @events_by_country[country] %>
             <% users_count = @users_by_country[country] || 0 %>
@@ -41,19 +39,19 @@
               <div class="flex gap-2">
                 <% if users_count > 0 %>
                   <%= ui_badge(
-                    "#{users_count} #{"Rubyist".pluralize(users_count)}",
-                    kind: :primary,
-                    outline: true,
-                    size: :lg,
-                  ) %>
+                        "#{users_count} #{"Rubyist".pluralize(users_count)}",
+                        kind: :primary,
+                        outline: true,
+                        size: :lg
+                      ) %>
                 <% end %>
                 <%= ui_badge(
-                  events.count,
-                  kind: :secondary,
-                  outline: true,
-                  size: :lg,
-                  class: "min-w-10",
-                ) %>
+                      events.count,
+                      kind: :secondary,
+                      outline: true,
+                      size: :lg,
+                      class: "min-w-10"
+                    ) %>
               </div>
             <% end %>
           <% end %>
