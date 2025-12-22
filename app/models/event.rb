@@ -10,8 +10,8 @@
 #  date_precision  :string           default("day"), not null
 #  end_date        :date
 #  kind            :string           default("event"), not null, indexed
-#  lat             :decimal(10, 7)
-#  lng             :decimal(10, 7)
+#  latitude        :decimal(10, 6)
+#  longitude       :decimal(10, 6)
 #  name            :string           default(""), not null, indexed
 #  slug            :string           default(""), not null, indexed
 #  start_date      :date
@@ -257,7 +257,7 @@ class Event < ApplicationRecord
   end
 
   def coordinates
-    [lng.to_f.round(2), lat.to_f.round(2)]
+    [longitude, latitude]
   end
 
   def country_name

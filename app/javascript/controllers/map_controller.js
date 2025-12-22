@@ -21,12 +21,12 @@ export default class extends Controller {
   }
 
   #loadMarkers () {
-    this.markersValue.forEach(({ lng, lat, events }) => {
+    this.markersValue.forEach(({ longitude, latitude, events }) => {
       const el = this.#createMarkerElement(events)
       const popup = this.#createPopup(events)
 
       new maplibregl.Marker({ element: el, anchor: 'center' })
-        .setLngLat([lng, lat])
+        .setLngLat([longitude, latitude])
         .setPopup(popup)
         .addTo(this.map)
     })

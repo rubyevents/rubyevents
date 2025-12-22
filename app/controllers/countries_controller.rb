@@ -35,13 +35,13 @@ class CountriesController < ApplicationController
   private
 
   def event_map_markers
-    Event.includes(:series).where.not(lng: nil, lat: nil)
-      .group_by { |e| e.coordinates }
+    Event.includes(:series).where.not(longitude: nil, latitude: nil)
+      .group_by(&:coordinates)
       .transform_values { it.sort_by { sort_date(it) }.reverse }
-      .map do |(lng, lat), events|
+      .map do |(longitude, latitude), events|
       {
-        lng: lng,
-        lat: lat,
+        longitude: longitude,
+        latitude: latitude,
         events: events.map { event_data(it) }
       }
     end

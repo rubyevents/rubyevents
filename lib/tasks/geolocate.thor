@@ -26,7 +26,7 @@ class Geolocate < Thor
     events_to_geocode = if options[:overwrite]
       Event.all
     else
-      Event.where(lng: nil).or(Event.where(lat: nil))
+      Event.where(longitude: nil).or(Event.where(latitude: nil))
     end
 
     if events_to_geocode.empty?
@@ -97,7 +97,7 @@ class Geolocate < Thor
       return
     end
 
-    if event.lng.present? && event.lat.present? && !overwrite
+    if event.longitude.present? && event.latitude.present? && !overwrite
       puts "⚠ Skipping #{event.name}: Already has coordinates"
       return
     end
@@ -105,7 +105,7 @@ class Geolocate < Thor
     if coordinates
       lat = coordinates["latitude"]
       lng = coordinates["longitude"]
-      event.update(lng: lng, lat: lat)
+      event.update(longitude: lng, latitude: lat)
       puts "✓ #{event.name} -> #{lat}, #{lng}"
     else
       puts "✗ Failed to geocode #{event.name}"
