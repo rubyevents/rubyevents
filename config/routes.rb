@@ -5,19 +5,19 @@ Rails.application.routes.draw do
   extend Authenticator
 
   # static pages
-  get 'uses', to: 'page#uses'
-  get '/privacy', to: 'page#privacy'
-  get '/components', to: 'page#components'
-  get '/about', to: 'page#about'
-  get '/stickers', to: 'page#stickers'
-  get '/contributors', to: 'page#contributors'
-  get '/stamps', to: 'stamps#index'
-  get '/pages/assets', to: 'page#assets'
+  get "uses", to: "page#uses"
+  get "/privacy", to: "page#privacy"
+  get "/components", to: "page#components"
+  get "/about", to: "page#about"
+  get "/stickers", to: "page#stickers"
+  get "/contributors", to: "page#contributors"
+  get "/stamps", to: "stamps#index"
+  get "/pages/assets", to: "page#assets"
 
   # authentication
-  get '/auth/failure', to: 'sessions/omniauth#failure'
-  get '/auth/:provider/callback', to: 'sessions/omniauth#create'
-  post '/auth/:provider/callback', to: 'sessions/omniauth#create'
+  get "/auth/failure", to: "sessions/omniauth#failure"
+  get "/auth/:provider/callback", to: "sessions/omniauth#create"
+  post "/auth/:provider/callback", to: "sessions/omniauth#create"
   resources :sessions, only: %i[new create destroy]
 
   resource :password, only: %i[edit update]
@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   end
 
   authenticate :admin do
-    mount MissionControl::Jobs::Engine, at: '/jobs'
+    mount MissionControl::Jobs::Engine, at: "/jobs"
     mount Avo::Engine, at: Avo.configuration.root_path
   end
 
@@ -79,7 +79,7 @@ Rails.application.routes.draw do
   resources :watched_talks, only: %i[index destroy]
 
   resources :speakers, param: :slug, only: [:index]
-  get '/speakers/:slug', to: redirect('/profiles/%<slug>s', status: 301), as: :speaker
+  get "/speakers/:slug", to: redirect("/profiles/%<slug>s", status: 301), as: :speaker
 
   resources :profiles, param: :slug, only: %i[show update edit] do
     scope module: :profiles do
@@ -98,16 +98,16 @@ Rails.application.routes.draw do
 
     scope module: :events do
       collection do
-        get '/past' => 'past#index', :as => :past
-        get '/archive' => 'archive#index', :as => :archive
-        get '/countries' => redirect('/countries')
-        get '/countries/:country' => redirect { |params, _| "/countries/#{params[:country]}" }
+        get "/past" => "past#index", :as => :past
+        get "/archive" => "archive#index", :as => :archive
+        get "/countries" => redirect("/countries")
+        get "/countries/:country" => redirect { |params, _| "/countries/#{params[:country]}" }
         resources :cities, param: :city, only: %i[index show]
         resources :series, param: :slug, only: %i[index show]
       end
 
-      resources :schedules, only: [:index], path: '/schedule' do
-        get '/day/:date', action: :show, on: :collection, as: :day
+      resources :schedules, only: [:index], path: "/schedule" do
+        get "/day/:date", action: :show, on: :collection, as: :day
       end
       resource :venue, only: [:show]
       resources :speakers, only: [:index]
@@ -124,56 +124,56 @@ Rails.application.routes.draw do
   end
 
   resources :organizations, param: :slug, only: %i[index show] do
-    resource :logos, only: %i[show update], controller: 'organizations/logos'
+    resource :logos, only: %i[show update], controller: "organizations/logos"
   end
 
   namespace :sponsors do
     resources :missing, only: [:index]
   end
 
-  get '/sponsors', to: redirect('/organizations', status: 301)
-  get '/sponsors/:slug', to: redirect('/organizations/%<slug>s', status: 301)
-  get '/sponsors/:slug/logos', to: redirect('/organizations/%<slug>s/logos', status: 301)
+  get "/sponsors", to: redirect("/organizations", status: 301)
+  get "/sponsors/:slug", to: redirect("/organizations/%<slug>s", status: 301)
+  get "/sponsors/:slug/logos", to: redirect("/organizations/%<slug>s/logos", status: 301)
 
-  get '/organisations', to: redirect('/events/series')
-  get '/organisations/:slug', to: redirect('/events/series/%<slug>s')
+  get "/organisations", to: redirect("/events/series")
+  get "/organisations/:slug", to: redirect("/events/series/%<slug>s")
 
-  namespace 'spotlight' do
+  namespace "spotlight" do
     resources :talks, only: [:index]
     resources :speakers, only: [:index]
     resources :events, only: [:index]
   end
 
-  get '/featured' => 'page#featured'
+  get "/featured" => "page#featured"
 
   resources :recommendations, only: [:index]
 
-  get 'leaderboard', to: 'leaderboard#index'
+  get "leaderboard", to: "leaderboard#index"
 
   # admin
   namespace :admin, if: -> { Current.user & admin? } do
     resources :suggestions, only: %i[index update destroy]
   end
 
-  get '/sitemap.xml', to: 'sitemaps#show', defaults: { format: 'xml' }
+  get "/sitemap.xml", to: "sitemaps#show", defaults: {format: "xml"}
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get 'up' => 'rails/health#show', :as => :rails_health_check
+  get "up" => "rails/health#show", :as => :rails_health_check
 
   # Defines the root path route ("/")
-  root 'page#home'
+  root "page#home"
 
-  resources :watch_lists, only: %i[index new create show edit update destroy], path: 'bookmarks' do
-    resources :talks, only: %i[create destroy], controller: 'watch_list_talks'
+  resources :watch_lists, only: %i[index new create show edit update destroy], path: "bookmarks" do
+    resources :talks, only: %i[create destroy], controller: "watch_list_talks"
   end
 
   namespace :hotwire do
     namespace :native do
       namespace :v1 do
-        get 'home', to: '/page#home', defaults: { format: 'json' }
+        get "home", to: "/page#home", defaults: {format: "json"}
         namespace :android do
           resource :path_configuration, only: :show
         end

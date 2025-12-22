@@ -7,11 +7,12 @@ class EventSchema < RubyLLM::Schema
   string :description, description: "Description of the event", required: false
   array :aliases, of: :string, description: "Alternative names for the event", required: false
 
-  string :kind, description: "Type of event", enum: ["conference", "meetup", "retreat", "hackathon", "event", "workshop"], required: true
+  string :kind, description: "Type of event",
+    enum: %w[conference meetup retreat hackathon event workshop], required: true
   boolean :hybrid, description: "Whether the event has both in-person and online attendance", required: false
   string :status,
     description: "Event status",
-    enum: ["cancelled", "postponed", "scheduled"],
+    enum: %w[cancelled postponed scheduled],
     required: false
   boolean :last_edition, description: "Whether this is the last edition of the event", required: false
 
@@ -22,7 +23,7 @@ class EventSchema < RubyLLM::Schema
   integer :year, description: "Year of the event", required: false
   string :date_precision,
     description: "Precision of the date (when exact dates are unknown)",
-    enum: ["year", "month", "day"],
+    enum: %w[year month day],
     required: false
   string :frequency, description: "How often the event occurs (for recurring meetups)", required: false
 
@@ -50,4 +51,9 @@ class EventSchema < RubyLLM::Schema
   string :featured_color,
     description: "CSS text color for featured cards",
     required: false
+
+  object :coordinates, description: "Geographic coordinates", required: false do
+    number :latitude, description: "Latitude coordinate"
+    number :longitude, description: "Longitude coordinate"
+  end
 end

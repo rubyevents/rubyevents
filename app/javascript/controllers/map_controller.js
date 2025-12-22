@@ -4,7 +4,7 @@ import 'maplibre-gl/dist/maplibre-gl.css'
 
 export default class extends Controller {
   static values = {
-    markers: String
+    markers: Array
   }
 
   connect () {
@@ -21,22 +21,14 @@ export default class extends Controller {
   }
 
   #loadMarkers () {
-    this.markers = []
-    const parser = new DOMParser()
-    const decoded = parser.parseFromString(this.markersValue, 'text/html').body
-      .textContent
-    const locations = JSON.parse(decoded)
-
-    locations.forEach(({ lng, lat, events }) => {
+    this.markersValue.forEach(({ lng, lat, events }) => {
       const el = this.#createMarkerElement(events)
       const popup = this.#createPopup(events)
 
-      const marker = new maplibregl.Marker({ element: el, anchor: 'center' })
+      new maplibregl.Marker({ element: el, anchor: 'center' })
         .setLngLat([lng, lat])
         .setPopup(popup)
         .addTo(this.map)
-
-      this.markers.push(marker)
     })
   }
 

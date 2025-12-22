@@ -74,9 +74,9 @@ class Geolocate < Thor
   end
 
   def process_event(event, overwrite)
-    coordinates = event.static_metadata&.coordinates
+    coordinates = event.venue.exist? ? event.venue.coordinates : event.static_metadata&.coordinates
     unless coordinates.present?
-      puts "⚠ Skipping #{event.name}: No coordinates in metadata"
+      puts "⚠ Skipping #{event.name}: No coordinates in venue or metadata"
       return
     end
 
@@ -86,11 +86,12 @@ class Geolocate < Thor
     end
 
     if coordinates
-      lng, lat = coordinates.split(",").map(&:to_f)
+      lat = coordinates["latitude"]
+      lng = coordinates["longitude"]
       event.update(lng: lng, lat: lat)
-      puts "✓ #{event.name} -> #{coordinates}"
+      puts "✓ #{event.name} -> #{lat}, #{lng}"
     else
-      puts "✗ Failed to geocode #{event.name} (#{location})"
+      puts "✗ Failed to geocode #{event.name}"
     end
   rescue => e
     puts "✗ Error processing #{event.name}: #{e.message}"
@@ -101,7 +102,7 @@ class Geolocate < Thor
     return nil if results.empty?
 
     result = results.first
-    "#{result.longitude},#{result.latitude}"
+    {latitude: result.latitude, longitude: result.longitude}
   rescue => e
     puts "    Error: #{e.message}"
     nil
