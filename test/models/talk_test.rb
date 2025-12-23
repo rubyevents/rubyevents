@@ -53,7 +53,8 @@ class TalkTest < ActiveSupport::TestCase
       discussion: ["Discussion: Something", "Discussion", "Fishbowl: Topic", "Fishbowl Discussion: Topic"],
       fireside_chat: ["Fireside Chat: Something", "Fireside Chat"],
       interview: ["Interview with Matz", "Interview: Something"],
-      award: ["Award: Something", "Award Show", "Ruby Heroes Awards", "Ruby Heroes Award", "Rails Luminary"]
+      award: ["Award: Something", "Award Show", "Ruby Heroes Awards", "Ruby Heroes Award", "Rails Luminary"],
+      demo: ["Demo: Something", "Demo of New Features", "Product Demo"]
     }
 
     kind_with_titles.each do |kind, titles|
