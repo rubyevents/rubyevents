@@ -23,8 +23,8 @@ class VideoSchema < RubyLLM::Schema
       string :date, required: false
       string :published_at, required: false
       string :announced_at, required: false
-      string :video_provider, required: false
-      string :video_id, required: false
+      string :video_provider, description: "Use 'parent' if there is one video", required: true
+      string :video_id, required: true
       string :language, required: false
       string :track, required: false
       string :location, description: "Location within the venue", required: false
