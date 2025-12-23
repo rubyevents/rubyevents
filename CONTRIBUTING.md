@@ -157,5 +157,5 @@ You can also add events manually without using the scripts:
 After adding or modifying data, seed the database to see your changes:
 
 ```bash
-bin/rails db:seed
+bin/rails db:seed:all
 ```

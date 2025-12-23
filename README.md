@@ -47,17 +47,18 @@ All file changes will be present locally when you close the container.
 
 ### Setup
 
-To prepare your database and seed content via `docker-compose`, run:
+To install dependencies and prepare the database run:
 
 ```
-# Note: this requires docker daemon running on your machine.
 bin/setup
 ```
 
-You can manually seed content by running:
+This will seed the database with all speakers, meetups, the last 6 months of events, and all future events.
+
+To load all historical data, run:
 
 ```
-bin/rails db:seed
+bin/rails db:seed:all
 ```
 
 ### Environment Variables

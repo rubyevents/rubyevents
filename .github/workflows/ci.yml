@@ -128,7 +128,7 @@ jobs:
           bin/rails db:schema:load
 
       - name: Run Seed Smoke Test
-        run: bin/rails test test/tasks/db_seed_test.rb
+        run: bin/rails test test/tasks/seed_test.rb
 
       - name: Verify all thumbnails for child talks are present
         run: bin/rails verify_thumbnails

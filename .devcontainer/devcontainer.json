@@ -15,14 +15,16 @@
     "ghcr.io/devcontainers/features/github-cli:1": {},
     "ghcr.io/devcontainers/features/sshd:1": {}
   },
-  "forwardPorts": [3000],
   "portsAttributes": {
     "3000": {
-      "label": "Rails Server",
+      "label": "Ruby Events Rails Server",
       "onAutoForward": "notify"
+    },
+    "3036": {
+      "label": "Vite Server",
+      "onAutoForward": "silent"
     }
   },
-  "postCreateCommand": "bin/rails db:prepare",
   "mounts": [
     "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached"
   ]
