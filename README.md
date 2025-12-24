@@ -42,7 +42,7 @@ All file changes will be present locally when you close the container.
 
 ### Requirements
 
-- Ruby 3.4.7
+- Ruby 3.4.8
 - Node.js 22.15.1
 
 ### Setup
