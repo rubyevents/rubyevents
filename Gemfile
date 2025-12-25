@@ -76,7 +76,7 @@ gem "cuprite"
 gem "active_genie"
 
 # A single delightful Ruby way to work with AI.
-gem "ruby_llm"
+gem "ruby_llm", "~> 1.9.1"
 gem "ruby_llm-schema"
 
 # JSON Schema validator
@@ -122,7 +122,6 @@ group :development do
   # Guard for watching file changes and auto-importing [https://github.com/guard/guard]
   gem "guard"
 
-  gem "error_highlight", ">= 0.4.0", platforms: [:ruby]
   gem "ruby-lsp-rails", require: false
   gem "standardrb", "~> 1.0", require: false
   gem "erb_lint", require: false
