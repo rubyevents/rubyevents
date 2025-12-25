@@ -281,15 +281,18 @@ yarn format:yml
 ## Submission Process
 
 1. Fork the RubyEvents repository
-2. Create your schedule file in the appropriate directory
-3. Test the file loads correctly
-4. Submit a pull request
+2. Setup your dev environment following the steps in [CONTRIBUTING](/CONTRIBUTING.md)
+3. Create your venue file in the appropriate directory
+4. Run `bin/rails db:seed` (or `bin/rails db:seed:all` if the event happened more than 6 months ago)
+5. Run `bin/lint`
+6. Run `bin/dev` and review the event on your dev server
+7. Submit a pull request
 
 ## Need Help?
 
-If you have questions about contributing schedules:
+If you have questions about contributing venues:
 - Open an issue on GitHub
-- Check existing schedule files for examples
+- Check existing venue files for examples
 - Reference this documentation
 
 Your contributions help make RubyEvents a comprehensive resource for the Ruby community!
