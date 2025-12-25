@@ -1,11 +1,17 @@
 <div class="container py-8 hotwire-native:py-3">
-  <h1 class="title hotwire-native:hidden">
+  <h1 class="title mb-4 hotwire-native:hidden">
     <%= title "Speakers" %>
     <% if params[:s].present? %>
       : search results for "<%= params[:s] %>"
     <% end %>
   </h1>
-  <div class="flex flex-wrap w-full justify-between py-8 hotwire-native:hidden gap-1">
+
+  <div class="mb-6 hotwire-native:hidden">
+    <%= form_with url: speakers_path, method: :get, data: {controller: "search"}, class: "flex items-center gap-2" do |f| %>
+      <%= f.text_field :s, value: params[:s], placeholder: "Search by name...", data: {action: "input->search#search", search_target: "input"}, class: "flex-1 border border-gray-300 rounded-md px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-light placeholder:text-gray-400" %>    <% end %>
+  </div>
+
+  <div class="flex flex-wrap w-full justify-between mt-2 mb-4 hotwire-native:hidden gap-1">
     <% ("a".."z").each do |letter| %>
       <%= link_to speakers_path(letter: letter), class: class_names("flex items-center justify-center w-10 text-gray-500 rounded hover:bg-brand-lighter border", "bg-brand-lighter": letter == params[:letter]) do %>
         <%= letter.upcase %>
@@ -17,12 +23,14 @@
       <% end %>
     <% end %>
   </div>
+
   <div id="speakers" class="hotwire-native:mt-3 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 lg:gap-x-12 gap-y-2 min-w-full">
     <%# we need special cache key for speakers because @speakers is paginated %>
     <% cache [@speakers.except(:order).pluck(:id, :updated_at).hash] do %>
       <%= render partial: "speakers/speaker", collection: @speakers, as: :speaker, cached: true %>
     <% end %>
   </div>
+
   <% if @pagy.next.present? %>
     <%= turbo_frame_tag :pagination,
           data: {
