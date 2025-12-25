@@ -4,7 +4,8 @@ This guide explains how to add schedule information for conferences and events i
 
 ## Overview
 
-Schedule data is stored in YAML files within the conference/event directories. Each conference can have its own schedule file that defines the timing structure and tracks for the event.
+Schedule data is stored in YAML files within the conference/event directories.
+Each conference can have its own schedule file that defines the timing structure and tracks for the event.
 
 The schedule works in conjunction with the conference's `videos.yml` file - talks are automatically mapped to empty time slots in chronological order. This means talks in `videos.yml` must be ordered according to their actual presentation sequence to display correctly in the schedule.
 
@@ -347,9 +348,12 @@ yarn format:yml
 ## Submission Process
 
 1. Fork the RubyEvents repository
-2. Create your schedule file in the appropriate directory
-3. Test the file loads correctly
-4. Submit a pull request
+2. Setup your dev environment following the steps in [CONTRIBUTING](/CONTRIBUTING.md)
+3. Create your schedule file in the appropriate directory
+4. Run `bin/rails db:seed` (or `bin/rails db:seed:all` if the event happened more than 6 months ago)
+5. Run `bin/lint`
+6. Run `bin/dev` and review the event on your dev server
+7. Submit a pull request
 
 ## Need Help?
 

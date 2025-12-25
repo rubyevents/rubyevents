@@ -172,10 +172,29 @@ Fill in the sponsor details for each tier:
         logo_url: https://conference.org/sponsors/company-logo.png
 ```
 
-### 6. Validate the YAML
+## Troubleshooting
 
-Ensure the YAML is properly formatted:
+### Common Issues
 
-```bash
-yarn format:yml
-```
+- **Invalid YAML syntax**: Check indentation (use spaces, not tabs)
+- **Missing required fields**: Ensure all required properties are present
+- **Old sponsor logos**: All sponsor logos listed in any sponsors file are associated with a sponsor, and the first logo stored is displayed
+
+## Submission Process
+
+1. Fork the RubyEvents repository
+2. Setup your dev environment following the steps in [CONTRIBUTING](/CONTRIBUTING.md)
+3. Create your sponsors file in the appropriate directory
+4. Run `bin/rails db:seed` (or `bin/rails db:seed:all` if the event happened more than 6 months ago)
+5. Run `bin/lint`
+6. Run `bin/dev` and review the event on your dev server
+7. Submit a pull request
+
+## Need Help?
+
+If you have questions about contributing sponsors:
+- Open an issue on GitHub
+- Check existing sponsors files for examples
+- Reference this documentation
+
+Your contributions help make RubyEvents a comprehensive resource for the Ruby community!
