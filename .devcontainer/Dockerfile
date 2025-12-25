@@ -1,4 +1,4 @@
-ARG RUBY_VERSION=3.4.8
+ARG RUBY_VERSION=4.0.0
 FROM docker.io/library/ruby:$RUBY_VERSION-slim
 
 # Rails app lives here
