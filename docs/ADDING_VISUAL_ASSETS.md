@@ -249,3 +249,20 @@ Visit https://rubyevents.org/pages/assets (or your local development server at h
 - Verify the color value in `event.yml`
 - Check the color format is valid CSS
 - Restart the server after changing `event.yml`
+
+## Submission Process
+
+1. Fork the RubyEvents repository
+2. Setup your dev environment following the steps in [CONTRIBUTING](/CONTRIBUTING.md)
+3. Create your assets in the appropriate directory
+4. Run `bin/dev` and review the event on your dev server
+5. Submit a pull request
+
+## Need Help?
+
+If you have questions about contributing assets:
+- Open an issue on GitHub
+- Check existing assets for examples
+- Reference this documentation
+
+Your contributions help make RubyEvents a comprehensive resource for the Ruby community!
