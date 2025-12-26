@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/gjtorikian/commonmarker.git
+  revision: e1e87e254ca5256ec6c926bffa604c6a08d51a5d
+  branch: bump-to-4
+  specs:
+    commonmarker (2.6.1)
+      rb_sys (~> 0.9)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -519,9 +527,12 @@ GEM
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
     rake (13.3.1)
+    rake-compiler-dock (1.10.0)
     rb-fsevent (0.11.2)
     rb-inotify (0.11.1)
       ffi (~> 1.0)
+    rb_sys (0.9.123)
+      rake-compiler-dock (= 1.10.0)
     rbs (3.9.5)
       logger
     rdoc (6.16.1)
@@ -714,6 +725,7 @@ DEPENDENCIES
   byebug
   capybara
   chartkick (~> 5.0)
+  commonmarker!
   countries
   country_select
   cuprite
