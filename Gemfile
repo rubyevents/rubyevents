@@ -176,7 +176,7 @@ gem "country_select"
 # admin
 gem "avo"
 gem "marksmith"
-gem "commonmarker"
+# gem "commonmarker", "~> 2.6"
 
 gem "frozen_record", "~> 0.27.2"
 gem "diffy"
