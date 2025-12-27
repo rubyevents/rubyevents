@@ -275,6 +275,18 @@ module Static
         kind: kind
       )
 
+      if event.venue.exist?
+        event.update!(
+          latitude: event.venue.latitude,
+          longitude: event.venue.longitude
+        )
+      else
+        event.update!(
+          latitude: coordinates&.dig("latitude"),
+          longitude: coordinates&.dig("longitude")
+        )
+      end
+
       event.sync_aliases_from_list(aliases) if aliases.present?
 
       puts event.slug unless Rails.env.test?

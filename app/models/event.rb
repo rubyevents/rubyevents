@@ -1,4 +1,3 @@
-# rubocop:disable Layout/LineLength
 # == Schema Information
 #
 # Table name: events
@@ -11,6 +10,8 @@
 #  date_precision  :string           default("day"), not null
 #  end_date        :date
 #  kind            :string           default("event"), not null, indexed
+#  latitude        :decimal(10, 6)
+#  longitude       :decimal(10, 6)
 #  name            :string           default(""), not null, indexed
 #  slug            :string           default(""), not null, indexed
 #  start_date      :date
@@ -34,7 +35,6 @@
 #  canonical_id     (canonical_id => events.id)
 #  event_series_id  (event_series_id => event_series.id)
 #
-# rubocop:enable Layout/LineLength
 class Event < ApplicationRecord
   include Suggestable
   include Sluggable
@@ -254,6 +254,10 @@ class Event < ApplicationRecord
     return nil if country_code.blank?
 
     ISO3166::Country.new(country_code)
+  end
+
+  def coordinates
+    [longitude, latitude]
   end
 
   def country_name
