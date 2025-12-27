@@ -605,7 +605,7 @@ class Talk < ApplicationRecord
       :award
     when /^(interview:|interview\ with).*/i
       :interview
-    when /^(demo:|demo\ ).*/i, /.*(demo)$/i
+    when /^(demo:|demo\ |Startup\ Demo:).*/i, /.*(demo)$/i
       :demo
     else
       :talk
