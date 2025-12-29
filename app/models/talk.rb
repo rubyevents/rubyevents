@@ -124,7 +124,7 @@ class Talk < ApplicationRecord
   attribute :kind, :string
   enum :kind,
     %w[keynote talk lightning_talk panel workshop gameshow podcast q_and_a discussion fireside_chat
-      interview award].index_by(&:itself)
+      interview award demo].index_by(&:itself)
 
   def self.speaker_role_titles
     {
@@ -139,7 +139,8 @@ class Talk < ApplicationRecord
       q_and_a: "Q&A Host/Participant",
       fireside_chat: "Fireside Chat Host/Participant",
       interview: "Interviewer/Interviewee",
-      award: "Award Presenter/Winner"
+      award: "Award Presenter/Winner",
+      demo: "Demo Speaker"
     }
   end
 
@@ -167,6 +168,7 @@ class Talk < ApplicationRecord
     when "fireside_chat" then "Fireside Chat"
     when "interview" then "Interview"
     when "award" then "Award"
+    when "demo" then "Demo"
     else raise "`#{kind}` not defined in `Talk#formatted_kind`"
     end
   end
@@ -603,6 +605,8 @@ class Talk < ApplicationRecord
       :award
     when /^(interview:|interview\ with).*/i
       :interview
+    when /^(demo:|demo\ |Startup\ Demo:).*/i, /.*(demo)$/i
+      :demo
     else
       :talk
     end

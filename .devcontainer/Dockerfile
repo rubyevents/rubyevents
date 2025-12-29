@@ -1,4 +1,4 @@
-ARG RUBY_VERSION=3.4.7
+ARG RUBY_VERSION=4.0.0
 FROM docker.io/library/ruby:$RUBY_VERSION-slim
 
 # Rails app lives here
@@ -10,6 +10,7 @@ RUN apt-get update -qq && \
     build-essential \
     curl \
     git \
+    imagemagick \
     libjemalloc2 \
     libvips \
     libyaml-dev \
@@ -20,11 +21,8 @@ RUN apt-get update -qq && \
     chromium chromium-driver \
     && rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
-# Copy application code
+# Copy all application code
 COPY . .
-
-# copy .env file if it doesn't exist
-# RUN "cp .env.sample .env"
 
 # Install JavaScript dependencies
 ARG NODE_VERSION=22.15.1
@@ -35,11 +33,8 @@ RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz
     npm install -g yarn@$YARN_VERSION && \
     rm -rf /tmp/node-build-master
 
-# Install application gems
-RUN bundle install
-
-# Install JavaScript dependencies
-RUN yarn install
+# Setup dependencies
+RUN bin/setup --skip-server
 
 # Default command
 CMD ["bin/dev"]

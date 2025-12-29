@@ -1769,42 +1769,75 @@
           type: "repo"
           url: "https://github.com/palladius/rails8-turbo-chat"
 
-- title: "Railshöck September 2025"
-  raw_title: "Railshöck September 2025"
-  event_name: "Railshöck September 2025"
+- title: "Mini Höck September 2025"
+  raw_title: "Mini Höck at openscript"
+  event_name: "Mini Höck September 2025"
   date: "2025-09-10"
   published_at: "TODO"
   video_id: "railshock-september-2025"
   id: "railshock-september-2025"
   video_provider: "children"
   description: |-
-    Date: Wednesday, September 10, 2025
-    Time: 6:30 PM to 8:30 PM CEST
-    Location: openscript, Europa-Strasse 30, Opfikon, Switzerland
-    Host: Josua Schmid
-    Capacity: Limited to 12 people
+    We've got a new host on the Railshöck parquet: openscript. Since they've got a cute little office, participation is limited to 12 people only.
 
-    Presentation: "Rails + inertia"
+    The program
+
+    * Intro by Robin Bühler
+    * Rails + Inertia.js by Diego Steiner
+    * 5' Intermezzo "Netzwerk SDS" by Christian Sedlmair
+    * Rails + Svelte on Rails by Christian Sedlmair
 
     Snacks and drinks are offered by openscript.
-    Participants are invited to propose additional talks.
 
     https://www.meetup.com/rubyonrails-ch/events/307191188
+  thumbnail_xs: "https://secure.meetupstatic.com/photos/event/4/1/3/3/highres_530116691.webp"
+  thumbnail_sm: "https://secure.meetupstatic.com/photos/event/4/1/3/3/highres_530116691.webp"
+  thumbnail_md: "https://secure.meetupstatic.com/photos/event/4/1/3/3/highres_530116691.webp"
+  thumbnail_lg: "https://secure.meetupstatic.com/photos/event/4/1/3/3/highres_530116691.webp"
+  thumbnail_xl: "https://secure.meetupstatic.com/photos/event/4/1/3/3/highres_530116691.webp"
   talks:
-    - title: "Rails + inertia"
-      raw_title: "Railshöck September 2025 - Rails + inertia"
-      event_name: "Railshöck September 2025"
+    - id: "robin-buehler-railshock-september-2025"
+      title: "Intro"
+      event_name: "Mini Höck September 2025"
       speakers:
-        - "TODO"
-      video_id: "rails-inertia-railshock-september-2025"
-      id: "rails-inertia-railshock-september-2025"
-      video_provider: "scheduled"
+        - Robin Bühler
+      video_id: "robin-buehler-railshock-september-2025"
+      video_provider: "not_recorded"
       date: "2025-09-10"
-      published_at: "TODO"
-      description: |-
-        Rails + inertia presentation
+      description: ""
 
-        https://www.meetup.com/rubyonrails-ch/events/307191188
+    - id: "diego-steiner-railshock-september-2025"
+      title: "Rails + Inertia.js"
+      raw_title: "Mini Höck September 2025 - Rails + Inertia.js"
+      event_name: "Mini Höck September 2025"
+      speakers:
+        - Diego Steiner
+      video_id: "diego-steiner-railshock-september-2025"
+      video_provider: "not_recorded"
+      date: "2025-09-10"
+      description: ""
+
+    - id: "christian-sedlmair-netzwerk-railshock-september-2025"
+      title: "Netzwerk SDS"
+      raw_title: "Mini Höck September 2025 - Netzwerk SDS"
+      event_name: "Mini Höck September 2025"
+      speakers:
+        - Christian Sedlmair
+      video_id: "christian-sedlmair-netzwerk-sds-railshock-september-2025"
+      video_provider: "not_recorded"
+      date: "2025-09-10"
+      description: ""
+
+    - id: "christian-sedlmair-svelte-railshock-september-2025"
+      title: "Rails + Svelte on Rails"
+      raw_title: "Mini Höck September 2025 - Rails + Svelte on Rails"
+      event_name: "Mini Höck September 2025"
+      speakers:
+        - Christian Sedlmair
+      video_id: "christian-sedlmair-svelte-railshock-september-2025"
+      video_provider: "not_recorded"
+      date: "2025-09-10"
+      description: ""
 
 - title: "Railshöck November 2025"
   raw_title: "Railshöck at Swisscom"
@@ -1815,15 +1848,133 @@
   id: "railshock-november-2025"
   video_provider: "children"
   description: |-
-    Save the date!
+    Hey everyone, this year's last Railshöck is hosted at Swisscom's. Three speakers committed to share their perspective on stage:
 
-    Date: Wednesday, November 12, 2025
-    Time: 6:30 PM to 8:30 PM CET
-    Location: Needs a location (Swisscom mentioned)
-    Host: Josua Schmid
+    * Rage Against the Malicious by Alexis Bernard is
+    about how to protect Rails applications against bots and brute force attacks without annoying humans, and why he thinks captchas are not the best solution.
 
-    Topics: Ruby, Ruby on Rails
-    Price: FREE
+    * Smart Queries for Dumb Models by Clemens Helm
+    about how complex data filtering in Rails often leads us down a rabbit hole of custom scopes, service objects, and Arel acrobatics. But what if we let the database do what it’s best at? In this talk, you’ll see how SQL views paired with plain ActiveRecord and Ransack can turn messy logic into elegant, powerful queries — without giving up the Rails way.
+
+    * Level Up Your Engineering Career with Mentorship, Pairing, and AI by Hana Harencarova
+    Feeling stuck in your technical growth? Don't learn alone. Discover how to tap into mentorship, pair programming, and AI to accelerate your skills. Whether you're early in career or going for senior roles, this session will equip you with strategies to get there faster and have fun in the process.
+
+    As always, snacks and drinks are sponsored by the host. So thanks to Swisscom!
 
     https://www.meetup.com/rubyonrails-ch/events/307805999
-  talks: []
+  talks:
+    - id: "alexis-bernard-railshock-november-2025"
+      title: "Rage Against the Malicious"
+      raw_title: "Railshöck November 2025 - Rage Against the Malicious"
+      event_name: "Railshöck November 2025"
+      speakers:
+        - Alexis Bernard
+      video_id: "alexis-bernard-railshock-november-2025"
+      video_provider: "not_recorded"
+      date: "2025-11-12"
+      description: |-
+        How to protect Rails applications against bots and brute force attacks without annoying humans, and why he thinks captchas are not the best solution.
+      additional_resources:
+        - name: "BaseSecrete/active_hashcash"
+          type: "repo"
+          url: "https://github.com/BaseSecrete/active_hashcash"
+
+    - id: "clemens-helm-railshock-november-2025"
+      title: "Smart Queries for Dumb Models"
+      raw_title: "Railshöck November 2025 - Smart Queries for Dumb Models"
+      event_name: "Railshöck November 2025"
+      speakers:
+        - Clemens Helm
+      video_id: "clemens-helm-railshock-november-2025"
+      video_provider: "not_recorded"
+      date: "2025-11-12"
+      description: |-
+        How complex data filtering in Rails often leads us down a rabbit hole of custom scopes, service objects, and Arel acrobatics. But what if we let the database do what it's best at? In this talk, you'll see how SQL views paired with plain ActiveRecord and Ransack can turn messy logic into elegant, powerful queries — without giving up the Rails way.
+      additional_resources:
+        - name: "clemenshelm/rubyshop"
+          type: "repo"
+          url: "https://github.com/clemenshelm/rubyshop"
+
+    - id: "hana-harencarova-railshock-november-2025"
+      title: "Level Up Your Engineering Career with Mentorship, Pairing, and AI"
+      raw_title: "Railshöck November 2025 - Level Up Your Engineering Career with Mentorship, Pairing, and AI"
+      event_name: "Railshöck November 2025"
+      speakers:
+        - Hana Harencarova
+      video_id: "hana-harencarova-railshock-november-2025"
+      video_provider: "not_recorded"
+      date: "2025-11-12"
+      slides_url: "https://docs.google.com/presentation/d/1cQJZFUUCekJ90yMNf3bvTbGWMGGi8pYutsJewtDFmP8/view"
+      description: |-
+        Feeling stuck in your technical growth? Don't learn alone. Discover how to tap into mentorship, pair programming, and AI to accelerate your skills. Whether you're early in career or going for senior roles, this session will equip you with strategies to get there faster and have fun in the process.
+
+- title: "Railshöck December 2025"
+  raw_title: "Railshöck at Renuo"
+  event_name: "Railshöck December 2025"
+  date: "2025-12-17"
+  published_at: "TODO"
+  video_id: "railshock-december-2025"
+  id: "railshock-december-2025"
+  video_provider: "children"
+  description: |-
+    Hi everyone
+
+    On a short notice I'll revise what I said before: THIS Railshöck will be the last one of this year… probably! fxn is travelling around, so I couldn't say no ☺️. It will be quite a prominent round!
+
+    So brace yourselves and behold expecting the following presentations:
+
+    Anchor Model by Sandro Kalbermatter is about a yet undescribed software design pattern
+    onlylogs by Alessandro Rodi is about the challenges of building a logs viewer as a Rails Engine
+    How Zeitwerk Works by Xavier Noria
+    As always, snacks and drinks are sponsored by the host. So thanks to Renuo! I hope to see you all there!
+
+    Cheers, Josua
+
+    https://www.meetup.com/rubyonrails-ch/events/312295522
+  thumbnail_xs: "https://secure.meetupstatic.com/photos/event/4/6/4/highres_531841124.webp"
+  thumbnail_sm: "https://secure.meetupstatic.com/photos/event/4/6/4/highres_531841124.webp"
+  thumbnail_md: "https://secure.meetupstatic.com/photos/event/4/6/4/highres_531841124.webp"
+  thumbnail_lg: "https://secure.meetupstatic.com/photos/event/4/6/4/highres_531841124.webp"
+  thumbnail_xl: "https://secure.meetupstatic.com/photos/event/4/6/4/highres_531841124.webp"
+  talks:
+    - id: "sandro-kalbermatter-railshock-december-2025"
+      title: "Anchor Model"
+      raw_title: "Railshöck December 2025 - Anchor Model"
+      event_name: "Railshöck December 2025"
+      speakers:
+        - Sandro Kalbermatter
+      video_id: "sandro-kalbermatter-railshock-december-2025"
+      video_provider: "not_recorded"
+      date: "2025-12-17"
+      slides_url: "https://drive.google.com/file/d/1ENiAY_MZkydYcdtJcnU6X-qqXT1NFVn8/view"
+      description: |-
+        About a yet undescribed software design pattern.
+      additional_resources:
+        - name: "kalsan/anchormodel"
+          type: "repo"
+          url: "https://github.com/kalsan/anchormodel"
+
+    - id: "alessandro-rodi-railshock-december-2025"
+      title: "onlylogs"
+      raw_title: "Railshöck December 2025 - onlylogs"
+      event_name: "Railshöck December 2025"
+      speakers:
+        - Alessandro Rodi
+      video_id: "alessandro-rodi-railshock-december-2025"
+      video_provider: "not_recorded"
+      date: "2025-12-17"
+      slides_url: "https://drive.google.com/file/d/1XS3wr6MrwDMR7BGVm-FTWH32qTfvOTgv/view"
+      description: |-
+        About the challenges of building a logs viewer as a Rails Engine.
+
+    - id: "xavier-noria-railshock-december-2025"
+      title: "How Zeitwerk Works"
+      raw_title: "Railshöck December 2025 - How Zeitwerk Works"
+      event_name: "Railshöck December 2025"
+      speakers:
+        - Xavier Noria
+      video_id: "xavier-noria-railshock-december-2025"
+      video_provider: "not_recorded"
+      date: "2025-12-17"
+      slides_url: "https://drive.google.com/file/d/1IaOJK2HeK44Hm5BpYv_q6w_9NRDSQB3q/view"
+      description: ""

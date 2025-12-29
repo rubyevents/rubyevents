@@ -9,6 +9,14 @@
 # `replicate` command.
 #
 # For more details, see: https://litestream.io/reference/config/
+
+# global settings
+sync-interval: 1m
+
+snapshot:
+  interval: 1h
+  retention: 360h # 15 days
+
 dbs:
   # production
   - path: /rails/storage/production_rubyvideo.sqlite3
@@ -19,7 +27,6 @@ dbs:
         path: storage/production_rubyvideo.sqlite3
         access-key-id: $LITESTREAM_ACCESS_KEY_ID
         secret-access-key: $LITESTREAM_SECRET_ACCESS_KEY
-        retention: 720h # 30 days
 
   # - path: storage/production_rubyvideo.sqlite3
   #   replicas:
@@ -51,4 +58,3 @@ dbs:
         path: storage/staging_rubyvideo.sqlite3
         access-key-id: $LITESTREAM_ACCESS_KEY_ID
         secret-access-key: $LITESTREAM_SECRET_ACCESS_KEY
-        retention: 720h # 30 days

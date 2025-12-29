@@ -177,7 +177,7 @@ maps:
 
 **postal_code must be a string, not a number**
 
-### 5. Add Additional Optional Location Details
+### 5. Add Optional Location Details
 
 #### Accessibility information
 ```yaml
@@ -210,8 +210,10 @@ spaces:
     floor:
     instructions:
 ```
+
 #### Additional Locations
-This is an array of additional event locations.
+This is an array of additional event locations such as afterparties or secondary venues.
+
 ```yaml
 locations:
   - name:
@@ -227,6 +229,7 @@ locations:
       google:
       apple:
 ```
+**Address here is a string, you cannot add nested values**
 
 #### Hotel information
 ```yaml

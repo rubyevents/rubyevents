@@ -10,6 +10,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `bin/dev` - Start Rails server, SolidQueue jobs, and Vite (for CSS/JS)
 - `bin/lint` - Run all formatters and linters (StandardRB, JS Standard, ERB lint, YAML prettier)
 - `bin/rails db:seed` - Seed database with conference data manually
+- `bin/rails db:seed:all` - Seed database with all conference data manually
 
 ### Testing
 
