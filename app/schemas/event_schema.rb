@@ -50,4 +50,9 @@ class EventSchema < RubyLLM::Schema
   string :featured_color,
     description: "CSS text color for featured cards",
     required: false
+
+  object :coordinates, description: "Geographic coordinates", required: false do
+    number :latitude, description: "Latitude coordinate"
+    number :longitude, description: "Longitude coordinate"
+  end
 end

@@ -2,15 +2,22 @@ class CountriesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
-    @countries_by_continent = Event.all.map { |event| event.country }.uniq.group_by { |country| country&.continent || "Unknown" }.sort_by { |key, _value| key || "ZZ" }.to_h
-    @events_by_country = Event.all.sort_by { |event| event.static_metadata&.home_sort_date || Time.at(0).to_date }.reverse.group_by { |event| event.country || "Unknown" }.sort_by { |key, value| (key.is_a?(String) ? key : key&.iso_short_name) || "ZZ" }.to_h
+    @countries_by_continent = Event.all.map do |event|
+      event.country
+    end.uniq.group_by { |country| country&.continent || "Unknown" }.sort_by { |key, _value| key || "ZZ" }.to_h
+    @events_by_country = Event.all.sort_by { |e| sort_date(e) }.reverse
+      .group_by { |e| e.country || "Unknown" }
+      .sort_by { |key, _| (key.is_a?(String) ? key : key&.iso_short_name) || "ZZ" }.to_h
     @users_by_country = calculate_users_by_country
+    @event_map_markers = event_map_markers
   end
 
   def show
     @country = Country.find(params[:country])
     if @country.present?
-      @events = Event.includes(:series).all.select { |event| event.country == @country }.sort_by { |event| event.static_metadata&.home_sort_date || Time.at(0).to_date }.reverse
+      @events = Event.includes(:series).all.select do |event|
+        event.country == @country
+      end.sort_by { |e| sort_date(e) }.reverse
 
       @events_by_city = @events
         .select { |event| event.static_metadata&.location.present? }
@@ -26,6 +33,23 @@ class CountriesController < ApplicationController
   end
 
   private
+
+  def event_map_markers
+    Event.includes(:series).where.not(longitude: nil, latitude: nil)
+      .group_by(&:coordinates)
+      .transform_values { it.sort_by { sort_date(it) }.reverse }
+      .map do |(longitude, latitude), events|
+      {
+        longitude: longitude,
+        latitude: latitude,
+        events: events.map { event_data(it) }
+      }
+    end
+  end
+
+  def sort_date(event) = event.static_metadata&.home_sort_date || Time.at(0)
+
+  def event_data(event) = {name: event.name, url: event_url(event), avatar: ActionController::Base.helpers.image_path(event.avatar_image_path)}
 
   def calculate_users_by_country
     users_by_country = {}

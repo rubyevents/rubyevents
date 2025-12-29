@@ -161,6 +161,8 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_06_194409) do
     t.date "end_date"
     t.integer "event_series_id", null: false
     t.string "kind", default: "event", null: false
+    t.decimal "latitude", precision: 10, scale: 6
+    t.decimal "longitude", precision: 10, scale: 6
     t.string "name", default: "", null: false
     t.string "slug", default: "", null: false
     t.date "start_date"

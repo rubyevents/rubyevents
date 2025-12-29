@@ -92,7 +92,7 @@ gem "rss", "~> 0.3.1"
 gem "herb", "~> 0.8"
 
 # An ActionView-compatible ERB engine with modern DX - re-imagined with Herb.
-gem "reactionview", "~> 0.1"
+gem "reactionview", "~> 0.2"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -197,3 +197,5 @@ gem "rails-i18n", "~> 8.0"
 # Ruby standards gems
 gem "openssl" # https://github.com/ruby/openssl/issues/949
 gem "ostruct"
+
+gem "geocoder"
