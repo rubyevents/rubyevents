@@ -282,8 +282,8 @@ module Static
         )
       else
         event.update!(
-          latitude: coordinates&.dig("latitude"),
-          longitude: coordinates&.dig("longitude")
+          latitude: coordinates.is_a?(Hash) ? coordinates.dig("latitude") : nil,
+          longitude: coordinates.is_a?(Hash) ? coordinates.dig("longitude") : nil
         )
       end
 
