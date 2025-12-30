@@ -19,7 +19,7 @@ class CountriesController < ApplicationController
     if @country.present?
       @events = Event.includes(:series).all.select do |event|
         event.country == @country
-      end.sort_by { |e| sort_date(e) }.reverse
+      end.sort_by { |e| event_sort_date(e) }.reverse
 
       @events_by_city = @events
         .select { |event| event.static_metadata&.location.present? }
