@@ -11,7 +11,7 @@
       <% end %>
 
       <div class="flex-col flex justify-center">
-        <h1 class="mb-2 text-black font-bold" style="view-transition-name: title"><%= @event_series.name %></h1>
+        <h1 class="mb-2 text-black font-bold"><%= @event_series.name %></h1>
         <h3 class="hidden md:block text-[#636B74]"><%= pluralize(@event_series.events.count, "event") %>
           <% if @event_series.youtube_channel_name.present? %>
             - @<%= @event_series.youtube_channel_name %>
