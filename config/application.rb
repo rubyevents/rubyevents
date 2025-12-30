@@ -14,6 +14,12 @@ require "action_view/railtie"
 require "action_cable/engine"
 require "rails/test_unit/railtie"
 
+if Gem::Version.new(Rails::VERSION::STRING) > Gem::Version.new("8.1.1")
+  raise Error, "Revisit if this hack is still needed when upgrading to the next Rails version"
+end
+ActiveSupport.deprecator.disallowed_behavior = :silence
+ActiveSupport.deprecator.disallowed_warnings = ["ActiveSupport::Configurable"]
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
