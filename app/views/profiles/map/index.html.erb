@@ -9,5 +9,5 @@
       involvements_by_role: @involvements_by_role,
       countries_with_events: @countries_with_events
     } do %>
-  <%= render partial: "profiles/map", locals: {countries_with_events: @countries_with_events} %>
+  <%= render partial: "profiles/map", locals: {countries_with_events: @countries_with_events, event_map_markers: @event_map_markers} %>
 <% end %>

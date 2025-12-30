@@ -103,12 +103,15 @@ export default class extends Controller {
   }
 
   #popupTemplate (events) {
+    const location = events[0]?.location
+
     return `
       <div class="flex flex-col max-h-48 overflow-y-auto pr-2 gap-2">
+        ${location ? `<div class="text-xs text-gray-500 font-medium">${location}</div>` : ''}
         ${events
         .map(
           (event) => `
-          <a href="${event.url}" class="flex items-center gap-2 hover:underline">
+          <a href="${event.url}" data-turbo-frame="_top" class="flex items-center gap-2 hover:underline">
             <img src="${event.avatar}" alt="${event.name}" class="w-6 h-6 rounded-full" />
             <span class="font-semibold">${event.name}</span>
           </a>
