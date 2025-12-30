@@ -1,11 +1,13 @@
 class CountriesController < ApplicationController
+  include EventMapMarkers
+
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
     @countries_by_continent = Event.all.map do |event|
       event.country
     end.uniq.group_by { |country| country&.continent || "Unknown" }.sort_by { |key, _value| key || "ZZ" }.to_h
-    @events_by_country = Event.all.sort_by { |e| sort_date(e) }.reverse
+    @events_by_country = Event.all.sort_by { |e| event_sort_date(e) }.reverse
       .group_by { |e| e.country || "Unknown" }
       .sort_by { |key, _| (key.is_a?(String) ? key : key&.iso_short_name) || "ZZ" }.to_h
     @users_by_country = calculate_users_by_country
@@ -33,23 +35,6 @@ class CountriesController < ApplicationController
   end
 
   private
-
-  def event_map_markers
-    Event.includes(:series).where.not(longitude: nil, latitude: nil)
-      .group_by(&:coordinates)
-      .transform_values { it.sort_by { sort_date(it) }.reverse }
-      .map do |(longitude, latitude), events|
-      {
-        longitude: longitude,
-        latitude: latitude,
-        events: events.map { event_data(it) }
-      }
-    end
-  end
-
-  def sort_date(event) = event.static_metadata&.home_sort_date || Time.at(0)
-
-  def event_data(event) = {name: event.name, url: event_url(event), avatar: ActionController::Base.helpers.image_path(event.avatar_image_path)}
 
   def calculate_users_by_country
     users_by_country = {}
