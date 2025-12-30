@@ -5,6 +5,8 @@
       <span class="text-base text-gray-500">
         (<%= pluralize(@events.includes(:series).where(series: {kind: "conference"}).count, "conference") %>,
         <%= pluralize(@events.includes(:series).where(series: {kind: "meetup"}).count, "meetup") %>,
+        <%= pluralize(@events.includes(:series).where(series: {kind: "hackathon"}).count, "hackathon") %>,
+        <%= pluralize(@events.includes(:series).where(series: {kind: "workshop"}).count, "workshop") %>,
         <%= pluralize(@events.includes(:series).where(series: {kind: "retreat"}).count, "retreat") %>)
       </span>
     </h1>
