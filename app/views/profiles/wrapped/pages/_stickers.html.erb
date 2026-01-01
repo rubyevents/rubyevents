@@ -9,9 +9,9 @@
           rotation = rand(-15..15)
           translate_x = rand(-10..10)
           translate_y = rand(-10..10)
-          scale = 90 + rand(0..20)
+          scale = rand(90..110)
         %>
-        <%= link_to sticker.event, class: "w-16 h-16 md:w-20 md:h-20 transition-transform hover:scale-110 hover:z-10", style: "transform: rotate(#{rotation}deg) translateX(#{translate_x}px) translateY(#{translate_y}px) scale(#{scale}%);", data: { turbo_frame: "_top" } do %>
+        <%= link_to sticker.event, class: "w-16 h-16 md:w-20 md:h-20 transition-transform hover:scale-110 hover:z-10", style: "transform: rotate(#{rotation}deg) translateX(#{translate_x}px) translateY(#{translate_y}px) scale(#{scale}%);", data: {turbo_frame: "_top"} do %>
           <%= image_tag sticker.asset_path, alt: sticker.name, class: "w-full h-full object-contain drop-shadow-lg" %>
         <% end %>
       <% end %>
@@ -20,5 +20,5 @@
 </div>
 
 <div class="text-center text-sm text-gray-500 mt-4">
-  <%= @stickers_earned.count %> sticker<%= @stickers_earned.count == 1 ? "" : "s" %> collected
+  <%= @stickers_earned.count %> sticker<%= (@stickers_earned.count == 1) ? "" : "s" %> collected
 </div>

@@ -20,7 +20,7 @@
           View Your <%= @year %> Wrapped
         <% end %>
       <% else %>
-        <%= link_to new_session_path(redirect_to: request.fullpath), data: { turbo_frame: "modal" }, class: "inline-flex items-center gap-2 px-8 py-4 bg-white text-red-700 font-bold rounded-full hover:bg-red-100 transition-colors text-lg shadow-lg" do %>
+        <%= link_to new_session_path(redirect_to: request.fullpath), data: {turbo_frame: "modal"}, class: "inline-flex items-center gap-2 px-8 py-4 bg-white text-red-700 font-bold rounded-full hover:bg-red-100 transition-colors text-lg shadow-lg" do %>
           Sign in to see your Wrapped
         <% end %>
       <% end %>
