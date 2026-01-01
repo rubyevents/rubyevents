@@ -1,11 +1,13 @@
 class Talk::Agents < ActiveRecord::AssociatedObject
   # Now that we use the tier flex option we add more retries as our request can be rejected if OpenAi is busy
-  performs retries: 10 do
+  performs retries: 2 do
     # this is to comply to the rate limit of openai 60 000 tokens per minute
     limits_concurrency to: 4, key: "openai_api", duration: 1.hour
   end
 
   performs def improve_transcript
+    return if talk.raw_transcript.blank?
+
     response = client.chat(
       parameters: Prompts::Talk::EnhanceTranscript.new(talk: talk).to_params,
       resource: talk,
@@ -51,6 +53,14 @@ class Talk::Agents < ActiveRecord::AssociatedObject
     talk.save!
 
     talk
+  end
+
+
+  performs def ingest
+    talk.fetch_and_update_raw_transcript! unless talk.raw_transcript.present?
+    talks.agents.improve_transcript unless talk.enhanced_transcript.present?
+    talks.agents.summarize unless talk.summary.present?
+    talks.agents.analyze_topics unless talk.topics.present?
   end
 
   private
