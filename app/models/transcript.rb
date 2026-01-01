@@ -45,6 +45,64 @@ class Transcript
   end
 
   class << self
+    def create_from_vtt(vtt_content)
+      transcript = Transcript.new
+      return transcript if vtt_content.blank?
+
+      # Remove WEBVTT header and any metadata lines
+      lines = vtt_content.lines.map(&:strip)
+
+      # Skip header lines (WEBVTT, Kind:, Language:, NOTE, etc.)
+      content_started = false
+      current_cue = nil
+      cue_lines = []
+
+      lines.each do |line|
+        # Skip empty lines at the beginning or between cues
+        if line.empty?
+          if current_cue && cue_lines.any?
+            text = cue_lines.join(" ").gsub(/<[^>]*>/, "").strip # Remove HTML tags
+            transcript.add_cue(Cue.new(start_time: current_cue[:start], end_time: current_cue[:end], text: text))
+            current_cue = nil
+            cue_lines = []
+          end
+          next
+        end
+
+        # Skip WEBVTT header and metadata
+        next if line.start_with?("WEBVTT")
+        next if line.start_with?("Kind:")
+        next if line.start_with?("Language:")
+        next if line.start_with?("NOTE")
+        next if line.match?(/^\d+$/) # Skip cue numbers
+
+        content_started = true
+
+        # Parse timestamp line (00:00:00.000 --> 00:00:05.000)
+        if line.include?("-->")
+          # Extract timestamps, ignoring any position/alignment info after
+          match = line.match(/(\d{2}:\d{2}:\d{2}[.,]\d{3})\s*-->\s*(\d{2}:\d{2}:\d{2}[.,]\d{3})/)
+          if match
+            current_cue = {
+              start: match[1].tr(",", "."),
+              end: match[2].tr(",", ".")
+            }
+          end
+        elsif current_cue
+          # This is a text line
+          cue_lines << line
+        end
+      end
+
+      # Add the last cue if present
+      if current_cue && cue_lines.any?
+        text = cue_lines.join(" ").gsub(/<[^>]*>/, "").strip
+        transcript.add_cue(Cue.new(start_time: current_cue[:start], end_time: current_cue[:end], text: text))
+      end
+
+      transcript
+    end
+
     def create_from_youtube_transcript(youtube_transcript)
       transcript = Transcript.new
       events = youtube_transcript.dig("actions", 0, "updateEngagementPanelAction", "content", "transcriptRenderer", "content", "transcriptSearchPanelRenderer", "body", "transcriptSegmentListRenderer", "initialSegments") || []
