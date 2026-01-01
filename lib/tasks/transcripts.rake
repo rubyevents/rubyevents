@@ -13,7 +13,7 @@ namespace :transcripts do
     puts "Found #{total_count} YouTube talks without transcripts"
 
     # Configurable delay between requests to avoid rate limiting
-    delay_seconds = ENV.fetch("TRANSCRIPT_DELAY", 3).to_i
+    delay_seconds = ENV.fetch("TRANSCRIPT_DELAY", 10).to_i
 
     talks.find_each.with_index do |talk, index|
       puts "\n[#{index + 1}/#{total_count}]"
@@ -35,7 +35,7 @@ class TranscriptExtractor
 
   attr_reader :talk, :delay
 
-  def initialize(talk, delay: 3)
+  def initialize(talk, delay: 10)
     @talk = talk
     @delay = delay
   end
