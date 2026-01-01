@@ -484,7 +484,9 @@ class Talk < ApplicationRecord
   def fetch_and_update_raw_transcript!
     youtube_transcript = YouTube::Transcript.get(video_id)
     transcript = talk_transcript || Talk::Transcript.new(talk: self)
-    transcript.update!(raw_transcript: ::Transcript.create_from_youtube_transcript(youtube_transcript)) if youtube_transcript.to_text.present?
+    if youtube_transcript.to_text.present?
+      transcript.update!(raw_transcript: ::Transcript.create_from_youtube_transcript(youtube_transcript))
+    end
   end
 
   def fetch_duration_from_youtube!
