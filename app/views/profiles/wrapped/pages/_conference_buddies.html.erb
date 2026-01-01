@@ -2,7 +2,7 @@
 <p class="text-gray-500 text-center mb-6">People you crossed paths with at events</p>
 
 <div class="space-y-4 flex-1">
-  <% @conference_buddies.first(6).each do |buddy| %>
+  <% conference_buddies.first(6).each do |buddy| %>
     <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
       <div class="w-12 h-12 rounded-full overflow-hidden bg-gray-200 flex-shrink-0">
         <%= image_tag buddy.user.avatar_url(size: 80), class: "w-full h-full object-cover", alt: buddy.user.name %>
@@ -26,8 +26,8 @@
   <% end %>
 </div>
 
-<% if @conference_buddies.count > 6 %>
+<% if conference_buddies.count > 6 %>
   <div class="mt-4 text-center text-sm text-gray-500">
-    + <%= @conference_buddies.count - 6 %> more buddies
+    + <%= conference_buddies.count - 6 %> more buddies
   </div>
 <% end %>

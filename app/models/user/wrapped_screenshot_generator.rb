@@ -154,10 +154,10 @@ class User::WrappedScreenshotGenerator
     }
   end
 
-  def render_partial(partial_name, assigns)
+  def render_partial(partial_name, locals)
     ApplicationController.render(
       partial: "profiles/wrapped/pages/#{partial_name}",
-      assigns: assigns
+      locals: locals
     )
   end
 

@@ -217,6 +217,8 @@ class Profiles::WrappedController < ApplicationController
       GenerateWrappedScreenshotJob.perform_later(@user)
     end
 
+    @wrapped_locals = wrapped_locals
+
     render layout: "wrapped"
   end
 
@@ -445,5 +447,63 @@ class Profiles::WrappedController < ApplicationController
     unless @user == Current.user || Current.user&.admin?
       redirect_to profile_path(@user), alert: "You can only change your own wrapped visibility"
     end
+  end
+
+  def wrapped_locals
+    {
+      user: @user,
+      year: @year,
+      is_owner: @is_owner,
+      total_talks_watched: @total_talks_watched,
+      total_watch_time_hours: @total_watch_time_hours,
+      total_watch_time_seconds: @total_watch_time_seconds,
+      events_attended_in_year: @events_attended_in_year,
+      talks_given_in_year: @talks_given_in_year,
+      countries_visited: @countries_visited,
+      top_topics: @top_topics,
+      top_speakers: @top_speakers,
+      favorite_speaker: @favorite_speaker,
+      top_events: @top_events,
+      countries_watched: @countries_watched,
+      languages_watched: @languages_watched,
+      monthly_breakdown: @monthly_breakdown,
+      weekday_breakdown: @weekday_breakdown,
+      most_active_month: @most_active_month,
+      most_active_weekday: @most_active_weekday,
+      talk_kinds: @talk_kinds,
+      bookmarks_in_year: @bookmarks_in_year,
+      events_as_speaker: @events_as_speaker,
+      events_as_visitor: @events_as_visitor,
+      total_views_on_talks: @total_views_on_talks,
+      total_likes_on_talks: @total_likes_on_talks,
+      total_speaking_minutes: @total_speaking_minutes,
+      talk_watchers_count: @talk_watchers_count,
+      top_talk_watchers: @top_talk_watchers,
+      country_stamps: @country_stamps,
+      event_stamps: @event_stamps,
+      achievement_stamps: @achievement_stamps,
+      stamps_earned: @stamps_earned,
+      stickers_earned: @stickers_earned,
+      event_map_markers: @event_map_markers,
+      conference_buddies: @conference_buddies,
+      watch_twin: @watch_twin,
+      personality: @personality,
+      speakers_discovered: @speakers_discovered,
+      events_discovered: @events_discovered,
+      completion_rate: @completion_rate,
+      longest_streak: @longest_streak,
+      ruby_friends_met: @ruby_friends_met,
+      is_contributor: @is_contributor,
+      contributor: @contributor,
+      has_passport: @has_passport,
+      passports: @passports,
+      involvements_in_year: @involvements_in_year,
+      involvements_by_role: @involvements_by_role,
+      share_url: @share_url,
+      first_watched: @first_watched,
+      last_watched: @last_watched,
+      longest_watched: @longest_watched,
+      shortest_watched: @shortest_watched
+    }
   end
 end

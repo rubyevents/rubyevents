@@ -1,9 +1,9 @@
 <h2 class="text-2xl font-bold mb-2 text-center">Events You Explored Talks From</h2>
 <p class="text-gray-500 text-center mb-6">Conferences that shared their knowledge with you</p>
 
-<% if @top_events.any? %>
+<% if top_events.any? %>
   <div class="rank-list flex-1">
-    <% @top_events.each do |event, count| %>
+    <% top_events.each do |event, count| %>
       <div class="rank-item">
         <div class="flex-1">
           <p class="font-semibold"><%= event.name %></p>
@@ -13,11 +13,11 @@
     <% end %>
   </div>
 
-  <% if @countries_watched.any? %>
+  <% if countries_watched.any? %>
     <div class="mt-auto pt-4">
       <p class="text-sm text-gray-500 mb-2">Countries explored through talks:</p>
       <div class="flex flex-wrap gap-2">
-        <% @countries_watched.first(8).each do |country| %>
+        <% countries_watched.first(8).each do |country| %>
           <span class="px-2 py-1 bg-red-50 text-red-700 rounded text-xs font-medium">
             <%= country.translations["en"] %>
           </span>

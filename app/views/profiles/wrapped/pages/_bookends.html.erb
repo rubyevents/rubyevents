@@ -1,16 +1,16 @@
-<h2 class="text-2xl font-bold mb-2 text-center">Bookends of <%= @year %></h2>
+<h2 class="text-2xl font-bold mb-2 text-center">Bookends of <%= year %></h2>
 <p class="text-gray-500 text-center mb-6">Where your watching journey started and ended</p>
 
 <div class="flex-1 space-y-6">
   <div>
     <p class="text-sm text-gray-500 mb-2">🎬 Your first watch of the year:</p>
     <div class="p-4 bg-green-50 border border-green-200 rounded-lg">
-      <p class="font-semibold"><%= @first_watched.talk.title.truncate(60) %></p>
+      <p class="font-semibold"><%= first_watched.talk.title.truncate(60) %></p>
       <p class="text-sm text-gray-600 mt-1">
-        by <%= @first_watched.talk.speakers.map(&:name).join(", ").truncate(40) %>
+        by <%= first_watched.talk.speakers.map(&:name).join(", ").truncate(40) %>
       </p>
       <p class="text-xs text-gray-400 mt-2">
-        <%= @first_watched.created_at.strftime("%B %d, %Y") %>
+        <%= first_watched.created_at.strftime("%B %d, %Y") %>
       </p>
     </div>
   </div>
@@ -18,12 +18,12 @@
   <div>
     <p class="text-sm text-gray-500 mb-2">🏁 Your last watch of the year:</p>
     <div class="p-4 bg-blue-50 border border-blue-200 rounded-lg">
-      <p class="font-semibold"><%= @last_watched.talk.title.truncate(60) %></p>
+      <p class="font-semibold"><%= last_watched.talk.title.truncate(60) %></p>
       <p class="text-sm text-gray-600 mt-1">
-        by <%= @last_watched.talk.speakers.map(&:name).join(", ").truncate(40) %>
+        by <%= last_watched.talk.speakers.map(&:name).join(", ").truncate(40) %>
       </p>
       <p class="text-xs text-gray-400 mt-2">
-        <%= @last_watched.created_at.strftime("%B %d, %Y") %>
+        <%= last_watched.created_at.strftime("%B %d, %Y") %>
       </p>
     </div>
   </div>

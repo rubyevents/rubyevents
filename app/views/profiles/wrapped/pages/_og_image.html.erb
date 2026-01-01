@@ -1,21 +1,21 @@
 <div class="flex-1 flex flex-col items-center justify-center">
   <div class="w-28 h-28 rounded-full border-4 border-white overflow-hidden bg-white/20 mb-3">
-    <% if @user.custom_avatar? %>
-      <%= image_tag @user.avatar_url(size: 140), class: "w-full h-full object-cover", alt: @user.name %>
+    <% if user.custom_avatar? %>
+      <%= image_tag user.avatar_url(size: 140), class: "w-full h-full object-cover", alt: user.name %>
     <% else %>
       <div class="w-full h-full flex items-center justify-center text-3xl font-bold">
-        <%= @user.name.first.upcase %>
+        <%= user.name.first.upcase %>
       </div>
     <% end %>
   </div>
-  <p class="font-bold text-3xl mb-8"><%= @user.name %></p>
+  <p class="font-bold text-3xl mb-8"><%= user.name %></p>
 
   <p class="text-xl text-red-200 mb-1">RubyEvents.org</p>
-  <h1 class="text-7xl font-black mb-1"><%= @year %></h1>
+  <h1 class="text-7xl font-black mb-1"><%= year %></h1>
   <p class="text-4xl font-bold">Wrapped</p>
 </div>
 
 <div class="mt-auto flex items-center justify-center gap-3">
   <%= image_tag "logo.png", class: "w-8 h-8", alt: "RubyEvents.org" %>
-  <p class="text-lg text-red-200">See <%= @user.name.split.first %>'s full Wrapped at <span class="text-white font-bold">RubyEvents.org/Wrapped</span></p>
+  <p class="text-lg text-red-200">See <%= user.name.split.first %>'s full Wrapped at <span class="text-white font-bold">RubyEvents.org/Wrapped</span></p>
 </div>

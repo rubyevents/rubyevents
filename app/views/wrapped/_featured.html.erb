@@ -31,7 +31,7 @@
           <div class="flex flex-col gap-6 items-center px-12">
             <div class="avatar-group -space-x-6 rtl:space-x-reverse">
               <% shown_users = [] %>
-              <% all_users = @wrapped_users.shuffle %>
+              <% all_users = users.shuffle %>
               <% users_with_avatars = all_users.select { |user| user.avatar_url.present? } %>
 
               <% users_with_avatars.first(4).each do |user| %>

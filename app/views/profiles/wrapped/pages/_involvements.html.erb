@@ -10,12 +10,12 @@
   </div>
 
   <div class="text-center mb-6">
-    <p class="text-5xl font-black text-purple-600 mb-2"><%= @involvements_in_year.count %></p>
-    <p class="text-gray-600"><%= "event".pluralize(@involvements_in_year.count) %> you helped with</p>
+    <p class="text-5xl font-black text-purple-600 mb-2"><%= involvements_in_year.count %></p>
+    <p class="text-gray-600"><%= "event".pluralize(involvements_in_year.count) %> you helped with</p>
   </div>
 
   <div class="w-full space-y-3">
-    <% @involvements_by_role.each do |role, involvements| %>
+    <% involvements_by_role.each do |role, involvements| %>
       <div class="bg-purple-50 rounded-xl p-4">
         <div class="flex items-center justify-between mb-2">
           <span class="font-semibold text-purple-700 capitalize"><%= role %></span>

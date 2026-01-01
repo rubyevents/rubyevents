@@ -3,35 +3,35 @@
 
 <div class="space-y-4 flex-1">
   <div class="stat-card">
-    <div class="stat-number"><%= @total_talks_watched %></div>
+    <div class="stat-number"><%= total_talks_watched %></div>
     <div class="stat-label">Talks Watched</div>
   </div>
 
   <div class="grid grid-cols-2 gap-4">
     <div class="stat-card">
-      <div class="stat-number text-2xl"><%= @total_watch_time_hours %></div>
+      <div class="stat-number text-2xl"><%= total_watch_time_hours %></div>
       <div class="stat-label">Hours of Content</div>
     </div>
     <div class="stat-card">
-      <div class="stat-number text-2xl"><%= @completion_rate %>%</div>
+      <div class="stat-number text-2xl"><%= completion_rate %>%</div>
       <div class="stat-label">Completion Rate</div>
     </div>
   </div>
 
   <div class="grid grid-cols-2 gap-4">
     <div class="stat-card">
-      <div class="stat-number text-2xl"><%= @speakers_discovered %></div>
+      <div class="stat-number text-2xl"><%= speakers_discovered %></div>
       <div class="stat-label">Speakers Discovered</div>
     </div>
     <div class="stat-card">
-      <div class="stat-number text-2xl"><%= @bookmarks_in_year %></div>
+      <div class="stat-number text-2xl"><%= bookmarks_in_year %></div>
       <div class="stat-label">Talks Bookmarked</div>
     </div>
   </div>
 </div>
 
-<% if @total_talks_watched > 0 %>
+<% if total_talks_watched > 0 %>
   <div class="mt-auto pt-4 text-center text-sm text-gray-500">
-    That's <%= (@total_watch_time_seconds / 60.0).round %> minutes of Ruby knowledge!
+    That's <%= (total_watch_time_seconds / 60.0).round %> minutes of Ruby knowledge!
   </div>
 <% end %>

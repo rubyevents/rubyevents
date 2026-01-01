@@ -1,40 +1,38 @@
 <h2 class="text-2xl font-bold mb-2 text-center">Events You Attended</h2>
 <p class="text-gray-500 text-center mb-6">Your in-person Ruby adventures</p>
 
-<% if @events_attended_in_year.any? %>
+<% if events_attended_in_year.any? %>
   <div class="grid grid-cols-2 gap-4 mb-6">
     <div class="stat-card">
-      <div class="stat-number text-2xl"><%= @events_attended_in_year.count %></div>
+      <div class="stat-number text-2xl"><%= events_attended_in_year.count %></div>
       <div class="stat-label">Events</div>
     </div>
     <div class="stat-card">
-      <div class="stat-number text-2xl"><%= @countries_visited.count %></div>
+      <div class="stat-number text-2xl"><%= countries_visited.count %></div>
       <div class="stat-label">Countries</div>
     </div>
   </div>
 
-  <% if @events_as_speaker.positive? || @events_as_visitor.positive? %>
+  <% if events_as_speaker.positive? || events_as_visitor.positive? %>
     <div class="mb-4">
       <p class="text-sm text-gray-500 mb-2">How you participated:</p>
       <div class="flex gap-4 flex-wrap">
-        <% if @events_as_speaker.positive? %>
+        <% if events_as_speaker.positive? %>
           <span class="px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm">
-            🎤 Speaker at <%= @events_as_speaker %>
+            🎤 Speaker at <%= events_as_speaker %>
           </span>
         <% end %>
-        <% if @events_as_visitor.positive? %>
+        <% if events_as_visitor.positive? %>
           <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">
-            👤 Attendee at <%= @events_as_visitor %>
+            👤 Attendee at <%= events_as_visitor %>
           </span>
         <% end %>
       </div>
     </div>
   <% end %>
 
-  <%
-    events_by_month = @events_attended_in_year.group_by { |e| e.start_date&.month }
-    month_names = %w[Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec]
-  %>
+  <% events_by_month = events_attended_in_year.group_by { |e| e.start_date&.month }
+     month_names = %w[Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec] %>
   <div class="flex-1">
     <div class="grid grid-cols-4 gap-2">
       <% (1..12).each do |month| %>

@@ -1,9 +1,9 @@
 <h2 class="text-2xl font-bold mb-2 text-center">Your Top Topics</h2>
 <p class="text-gray-500 text-center mb-6">The subjects that captured your interest</p>
 
-<% if @top_topics.any? %>
+<% if top_topics.any? %>
   <div class="rank-list flex-1">
-    <% @top_topics.each do |topic, count| %>
+    <% top_topics.each do |topic, count| %>
       <div class="rank-item">
         <div class="flex-1">
           <p class="font-semibold"><%= topic.name %></p>
@@ -15,7 +15,7 @@
 
   <div class="mt-auto pt-6 text-center">
     <p class="text-sm text-gray-500 mb-2">Your Ruby Personality</p>
-    <div class="personality-badge"><%= @personality %></div>
+    <div class="personality-badge"><%= personality %></div>
   </div>
 <% else %>
   <div class="flex-1 flex items-center justify-center">

@@ -1,125 +1,111 @@
 <%= turbo_frame_tag "wrapped-share" do %>
   <div class="flex-1 flex flex-col items-center justify-center">
-    <% if @is_owner %>
+    <% if is_owner %>
       <div class="w-full max-w-xs mb-6">
-        <div class="p-4 rounded-lg <%= @user.wrapped_public? ? 'bg-green-50 border border-green-200' : 'bg-gray-50 border border-gray-200' %>">
+        <div class="p-4 rounded-lg <%= user.wrapped_public? ? "bg-green-50 border border-green-200" : "bg-gray-50 border border-gray-200" %>">
           <div class="flex items-center justify-between">
             <div>
-              <p class="font-semibold <%= @user.wrapped_public? ? 'text-green-700' : 'text-gray-700' %>">
-                <%= @user.wrapped_public? ? '🌍 Public' : '🔒 Private' %>
+              <p class="font-semibold <%= user.wrapped_public? ? "text-green-700" : "text-gray-700" %>">
+                <%= user.wrapped_public? ? "🌍 Public" : "🔒 Private" %>
               </p>
               <p class="text-xs text-gray-500 mt-1">
-                <%= @user.wrapped_public? ? 'Anyone with the link can view' : 'Only you can see this' %>
+                <%= user.wrapped_public? ? "Anyone with the link can view" : "Only you can see this" %>
               </p>
             </div>
 
-            <%= button_to toggle_visibility_profile_wrapped_index_path(profile_slug: @user.to_param),
-                method: :post,
-                class: "px-4 py-2 rounded-lg text-sm font-medium transition #{@user.wrapped_public? ? 'bg-gray-200 text-gray-700 hover:bg-gray-300' : 'bg-green-600 text-white hover:bg-green-700'}",
-                data: { turbo_frame: "wrapped-share" } do %>
-              <%= @user.wrapped_public? ? 'Make Private' : 'Make Public' %>
+            <%= button_to toggle_visibility_profile_wrapped_index_path(profile_slug: user.to_param),
+                  method: :post,
+                  class: "px-4 py-2 rounded-lg text-sm font-medium transition #{user.wrapped_public? ? "bg-gray-200 text-gray-700 hover:bg-gray-300" : "bg-green-600 text-white hover:bg-green-700"}",
+                  data: {turbo_frame: "wrapped-share"} do %>
+              <%= user.wrapped_public? ? "Make Private" : "Make Public" %>
             <% end %>
           </div>
         </div>
       </div>
     <% end %>
 
-    <div class="space-y-3 w-full max-w-xs <%= @user.wrapped_public? ? '' : 'opacity-50 pointer-events-none' %>">
-      <%
-        share_lines = []
-        share_lines << "My #{@year} Ruby Events Wrapped 💎"
-        share_lines << ""
+    <div class="space-y-3 w-full max-w-xs <%= user.wrapped_public? ? "" : "opacity-50 pointer-events-none" %>">
+      <% stats_lines = [] %>
 
-        if @total_talks_watched.positive?
-          share_lines << "📺 #{@total_talks_watched} talks watched"
-        end
+      <% stats_lines << "📺 #{total_talks_watched} talks watched" if total_talks_watched.positive? %>
+      <% stats_lines << "🎪 #{events_attended_in_year.count} events attended" if events_attended_in_year.any? %>
+      <% stats_lines << "🎤 #{talks_given_in_year.count} talks given" if talks_given_in_year.any? %>
+      <% stats_lines << "🌍 #{countries_visited.count} #{(countries_visited.count == 1) ? "country" : "countries"} visited" if countries_visited.any? %>
 
-        if @events_attended_in_year.any?
-          share_lines << "🎪 #{@events_attended_in_year.count} events attended"
-        end
-
-        if @talks_given_in_year.any?
-          share_lines << "🎤 #{@talks_given_in_year.count} talks given"
-        end
-
-        if @countries_visited.any?
-          share_lines << "🌍 #{@countries_visited.count} #{@countries_visited.count == 1 ? 'country' : 'countries'} visited"
-        end
-
-        share_lines << ""
-        share_lines << "See my full Wrapped at #{@share_url}"
-
-        full_share_text = share_lines.join("\n")
-      %>
+      <% x_share_text = (["My #{year} @rubyevents_org Wrapped 💎", ""] + stats_lines + ["", share_url]).join("\n") %>
+      <% bluesky_share_text = (["My #{year} @rubyevents.org Wrapped 💎", ""] + stats_lines + ["", share_url]).join("\n") %>
+      <% mastodon_share_text = (["My #{year} @rubyevents@ruby.social Wrapped 💎", ""] + stats_lines + ["", share_url]).join("\n") %>
+      <% default_share_text = (["My #{year} RubyEvents.org Wrapped 💎", ""] + stats_lines + ["", share_url]).join("\n") %>
 
       <div class="group relative w-full">
         <div class="flex items-center justify-center gap-3 w-full p-3 bg-red-600 text-white rounded-lg cursor-pointer">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
           <span class="font-medium">Download Summary Card</span>
         </div>
+
         <div class="absolute inset-0 hidden group-hover:flex rounded-lg overflow-hidden">
-          <%= button_to generate_card_profile_wrapped_index_path(profile_slug: @user.to_param, orientation: :vertical),
-              method: :post,
-              data: { turbo: false },
-              form: { class: "flex-1 flex" },
-              class: "flex-1 flex items-center justify-center gap-2 bg-red-700 text-white hover:bg-red-800 transition cursor-pointer w-full" do %>
+          <%= button_to generate_card_profile_wrapped_index_path(profile_slug: user.to_param, orientation: :vertical),
+                method: :post,
+                data: {turbo: false},
+                form: {class: "flex-1 flex"},
+                class: "flex-1 flex items-center justify-center gap-2 bg-red-700 text-white hover:bg-red-800 transition cursor-pointer w-full" do %>
             <span class="font-medium text-sm">Vertical</span>
           <% end %>
-          <%= button_to generate_card_profile_wrapped_index_path(profile_slug: @user.to_param, orientation: :horizontal),
-              method: :post,
-              data: { turbo: false },
-              form: { class: "flex-1 flex border-l border-red-600" },
-              class: "flex-1 flex items-center justify-center gap-2 bg-red-700 text-white hover:bg-red-800 transition cursor-pointer w-full" do %>
+          <%= button_to generate_card_profile_wrapped_index_path(profile_slug: user.to_param, orientation: :horizontal),
+                method: :post,
+                data: {turbo: false},
+                form: {class: "flex-1 flex border-l border-red-600"},
+                class: "flex-1 flex items-center justify-center gap-2 bg-red-700 text-white hover:bg-red-800 transition cursor-pointer w-full" do %>
             <span class="font-medium text-sm">Horizontal</span>
           <% end %>
         </div>
       </div>
 
       <a
-        href="https://twitter.com/intent/tweet?text=<%= ERB::Util.url_encode(full_share_text) %>"
+        href="https://twitter.com/intent/tweet?text=<%= ERB::Util.url_encode(x_share_text) %>"
         target="_blank"
         rel="noopener noreferrer"
-        class="flex items-center justify-center gap-3 w-full p-3 bg-black text-white rounded-lg hover:bg-gray-800 transition"
-      >
-        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        class="flex items-center justify-center gap-3 w-full p-3 bg-black text-white rounded-lg hover:bg-gray-800 transition">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
         <span class="font-medium">Share on X</span>
       </a>
 
-      <a href="https://bsky.app/intent/compose?text=<%= ERB::Util.url_encode(full_share_text) %>"
+      <a href="https://bsky.app/intent/compose?text=<%= ERB::Util.url_encode(bluesky_share_text) %>"
          target="_blank"
          rel="noopener noreferrer"
          class="flex items-center justify-center gap-3 w-full p-3 bg-sky-500 text-white rounded-lg hover:bg-sky-600 transition">
-        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 600 530"><path d="m135.72 44.03c66.496 49.921 138.02 151.14 164.28 205.46 26.262-54.316 97.782-155.54 164.28-205.46 47.98-36.021 125.72-63.892 125.72 24.795 0 17.712-10.155 148.79-16.111 170.07-20.703 73.984-96.144 92.854-163.25 81.433 117.3 19.964 147.14 86.092 82.697 152.22-122.39 125.59-175.91-31.511-189.63-71.766-2.514-7.3797-3.6904-10.832-3.7077-7.8964-0.0174-2.9357-1.1937 0.51669-3.7077 7.8964-13.714 40.255-67.233 197.36-189.63 71.766-64.444-66.128-34.605-132.26 82.697-152.22-67.108 11.421-142.55-7.4491-163.25-81.433-5.9562-21.282-16.111-152.36-16.111-170.07 0-88.687 77.742-60.816 125.72-24.795z"/></svg>
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 600 530"><path d="m135.72 44.03c66.496 49.921 138.02 151.14 164.28 205.46 26.262-54.316 97.782-155.54 164.28-205.46 47.98-36.021 125.72-63.892 125.72 24.795 0 17.712-10.155 148.79-16.111 170.07-20.703 73.984-96.144 92.854-163.25 81.433 117.3 19.964 147.14 86.092 82.697 152.22-122.39 125.59-175.91-31.511-189.63-71.766-2.514-7.3797-3.6904-10.832-3.7077-7.8964-0.0174-2.9357-1.1937 0.51669-3.7077 7.8964-13.714 40.255-67.233 197.36-189.63 71.766-64.444-66.128-34.605-132.26 82.697-152.22-67.108 11.421-142.55-7.4491-163.25-81.433-5.9562-21.282-16.111-152.36-16.111-170.07 0-88.687 77.742-60.816 125.72-24.795z" /></svg>
         <span class="font-medium">Share on Bluesky</span>
       </a>
 
       <a
-        href="https://ruby.social/share?text=<%= ERB::Util.url_encode(full_share_text) %>"
+        href="https://ruby.social/share?text=<%= ERB::Util.url_encode(mastodon_share_text) %>"
         target="_blank"
         rel="noopener noreferrer"
-        class="flex items-center justify-center gap-3 w-full p-3 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 transition"
-      >
-        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546.376 0 .75 0 1.125-.01 1.57-.044 3.224-.124 4.768-.422.038-.008.077-.015.11-.024 2.435-.464 4.753-1.92 4.989-5.604.008-.145.03-1.52.03-1.67.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35-1.112 0-1.668.668-1.668 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12.696-.77 1.608-1.164 2.74-1.164 1.311 0 2.302.5 2.962 1.498l.638 1.06.638-1.06c.66-.999 1.65-1.498 2.96-1.498 1.13 0 2.043.395 2.74 1.164.675.77 1.012 1.81 1.012 3.12z"/></svg>
+        class="flex items-center justify-center gap-3 w-full p-3 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 transition">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546.376 0 .75 0 1.125-.01 1.57-.044 3.224-.124 4.768-.422.038-.008.077-.015.11-.024 2.435-.464 4.753-1.92 4.989-5.604.008-.145.03-1.52.03-1.67.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35-1.112 0-1.668.668-1.668 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12.696-.77 1.608-1.164 2.74-1.164 1.311 0 2.302.5 2.962 1.498l.638 1.06.638-1.06c.66-.999 1.65-1.498 2.96-1.498 1.13 0 2.043.395 2.74 1.164.675.77 1.012 1.81 1.012 3.12z" /></svg>
         <span class="font-medium">Share on Ruby.social</span>
       </a>
 
       <a
-        href="https://www.linkedin.com/sharing/share-offsite/?url=<%= ERB::Util.url_encode(@share_url) %>"
+        href="https://www.linkedin.com/sharing/share-offsite/?url=<%= ERB::Util.url_encode(share_url) %>"
         target="_blank"
         rel="noopener noreferrer"
-        class="flex items-center justify-center gap-3 w-full p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-      >
-        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        class="flex items-center justify-center gap-3 w-full p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></svg>
         <span class="font-medium">Share on LinkedIn</span>
       </a>
 
-      <button onclick="navigator.clipboard.writeText('<%= @share_url %>'); this.innerHTML = '✓ Copied!'; setTimeout(() => this.innerHTML = 'Copy Link', 2000)" class="flex items-center justify-center gap-3 w-full p-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-        <span class="font-medium">Copy Link</span>
-      </button>
+      <div data-controller="copy-to-clipboard" data-copy-to-clipboard-success-message-value="✓ Copied!" data-copy-to-clipboard-success-class="text-green-600">
+        <span data-copy-to-clipboard-target="source" class="hidden"><%= share_url %></span>
+        <button data-action="copy-to-clipboard#copy" class="flex items-center justify-center gap-3 w-full p-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+          <span class="font-medium" data-copy-to-clipboard-target="button">Copy Link</span>
+        </button>
+      </div>
     </div>
 
-    <% unless @user.wrapped_public? %>
+    <% unless user.wrapped_public? %>
       <p class="text-xs text-gray-500 mt-4 text-center">Make your Wrapped public to share it</p>
     <% end %>
   </div>

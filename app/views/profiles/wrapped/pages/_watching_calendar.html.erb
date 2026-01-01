@@ -1,11 +1,11 @@
 <h2 class="text-2xl font-bold mb-2 text-center">Your Watching Calendar</h2>
 <p class="text-gray-500 text-center mb-6">When you tuned in throughout the year</p>
 
-<% if @monthly_breakdown.any? %>
-  <% max_count = @monthly_breakdown.values.max || 1 %>
+<% if monthly_breakdown.any? %>
+  <% max_count = monthly_breakdown.values.max || 1 %>
   <div class="space-y-3 flex-1">
     <% (1..12).each do |month| %>
-      <% count = @monthly_breakdown[month] || 0 %>
+      <% count = monthly_breakdown[month] || 0 %>
       <% width = count.positive? ? (count.to_f / max_count * 100).round : 0 %>
       <div class="flex items-center gap-3">
         <span class="text-sm text-gray-500 w-8"><%= Date::ABBR_MONTHNAMES[month] %></span>
@@ -17,13 +17,13 @@
     <% end %>
   </div>
 
-  <% if @most_active_month %>
+  <% if most_active_month %>
     <div class="mt-6 pt-4 highlight-box">
       <p class="font-semibold text-red-700">
-        <%= Date::MONTHNAMES[@most_active_month] %> was your most active month!
+        <%= Date::MONTHNAMES[most_active_month] %> was your most active month!
       </p>
       <p class="text-sm text-gray-600">
-        You watched <%= @monthly_breakdown[@most_active_month] %> talks
+        You watched <%= monthly_breakdown[most_active_month] %> talks
       </p>
     </div>
   <% end %>
