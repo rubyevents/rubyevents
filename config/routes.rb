@@ -134,6 +134,11 @@ Rails.application.routes.draw do
 
   resources :organizations, param: :slug, only: [:index, :show] do
     resource :logos, only: [:show, :update], controller: "organizations/logos"
+    resources :wrapped, only: [:index], controller: "organizations/wrapped" do
+      collection do
+        get :og_image
+      end
+    end
   end
 
   namespace :sponsors do

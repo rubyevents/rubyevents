@@ -171,7 +171,121 @@ class User::WrappedScreenshotGenerator
 
     partial_html = partial_html.gsub(/src="[^"]*logo[^"]*\.png"/, "src=\"#{logo_data_uri}\"")
 
-    dimensions = DIMENSIONS[orientation]
+    if orientation == :horizontal
+      wrap_horizontal_html_document(partial_html)
+    else
+      wrap_vertical_html_document(partial_html)
+    end
+  end
+
+  def wrap_horizontal_html_document(partial_html)
+    dimensions = DIMENSIONS[:horizontal]
+    s = SCALE
+
+    <<~HTML
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset="utf-8">
+        <style>
+          * { margin: 0; padding: 0; box-sizing: border-box; }
+
+          html, body {
+            width: #{dimensions[:width]}px;
+            height: #{dimensions[:height]}px;
+            max-height: #{dimensions[:height]}px;
+          }
+
+          body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #991b1b 0%, #450a0a 50%, #081625 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+          }
+
+          .flex { display: flex; }
+          .flex-col { flex-direction: column; }
+          .flex-1 { flex: 1; min-height: 0; }
+          .items-center { align-items: center; }
+          .justify-center { justify-content: center; }
+          .text-center { text-align: center; }
+
+          .gap-3 { gap: #{0.75 * s}rem; }
+          .gap-4 { gap: #{1 * s}rem; }
+          .gap-6 { gap: #{1.5 * s}rem; }
+          .gap-12 { gap: #{3 * s}rem; }
+          .mb-6 { margin-bottom: #{1.5 * s}rem; }
+          .mt-1 { margin-top: #{0.25 * s}rem; }
+          .mt-2 { margin-top: #{0.5 * s}rem; }
+          .mt-4 { margin-top: #{1 * s}rem; }
+          .mt-auto { margin-top: auto; }
+          .p-3 { padding: #{0.75 * s}rem; }
+          .p-8 { padding: #{2 * s}rem; }
+          .p-12 { padding: #{3 * s}rem; }
+          .py-3 { padding-top: #{0.75 * s}rem; padding-bottom: #{0.75 * s}rem; }
+          .py-4 { padding-top: #{1 * s}rem; padding-bottom: #{1 * s}rem; }
+          .px-6 { padding-left: #{1.5 * s}rem; padding-right: #{1.5 * s}rem; }
+          .px-8 { padding-left: #{2 * s}rem; padding-right: #{2 * s}rem; }
+          .px-12 { padding-left: #{3 * s}rem; padding-right: #{3 * s}rem; }
+          .pt-8 { padding-top: #{2 * s}rem; }
+          .pb-4 { padding-bottom: #{1 * s}rem; }
+
+          .w-6 { width: #{1.5 * s}rem; }
+          .h-6 { height: #{1.5 * s}rem; }
+          .w-8 { width: #{2 * s}rem; }
+          .h-8 { height: #{2 * s}rem; }
+          .w-32 { width: #{8 * s}rem; }
+          .h-32 { height: #{8 * s}rem; }
+          .w-full { width: 100%; }
+          .h-full { height: 100%; }
+
+          .rounded-full { border-radius: 9999px; }
+          .rounded-2xl { border-radius: #{1 * s}rem; }
+          .rounded-3xl { border-radius: #{1.5 * s}rem; }
+          .overflow-hidden { overflow: hidden; }
+          .object-cover { object-fit: cover; }
+          .object-contain { object-fit: contain; }
+
+          .border-4 { border-width: #{4 * s}px; border-style: solid; }
+          .border-white { border-color: white; }
+          .border-white\\/20 { border-color: rgba(255,255,255,0.2); }
+
+          .bg-white { background: white; }
+          .bg-white\\/5 { background: rgba(255,255,255,0.05); }
+          .bg-white\\/10 { background: rgba(255,255,255,0.1); }
+          .bg-white\\/20 { background: rgba(255,255,255,0.2); }
+          .backdrop-blur { backdrop-filter: blur(10px); }
+
+          .grid { display: grid; }
+          .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+          .text-6xl { font-size: #{3.75 * s}rem; line-height: 1; }
+          .text-5xl { font-size: #{3 * s}rem; line-height: 1; }
+          .text-3xl { font-size: #{1.875 * s}rem; }
+          .text-lg { font-size: #{1.125 * s}rem; }
+          .text-sm { font-size: #{0.875 * s}rem; }
+          .font-black { font-weight: 900; }
+          .font-bold { font-weight: 700; }
+          .text-white { color: white; }
+          .text-red-200 { color: #FECACA; }
+          .text-red-300 { color: #FCA5A5; }
+          .text-red-300\\/60 { color: rgba(252,165,165,0.6); }
+          .text-red-300\\/80 { color: rgba(252,165,165,0.8); }
+
+          img { max-width: 100%; height: auto; }
+        </style>
+      </head>
+      <body>
+        #{partial_html}
+      </body>
+      </html>
+    HTML
+  end
+
+  def wrap_vertical_html_document(partial_html)
+    dimensions = DIMENSIONS[:vertical]
     s = SCALE
 
     <<~HTML
@@ -186,7 +300,7 @@ class User::WrappedScreenshotGenerator
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             width: #{dimensions[:width]}px;
             height: #{dimensions[:height]}px;
-            background: linear-gradient(135deg, #DC2626 0%, #991B1B 100%);
+            background: linear-gradient(135deg, #991b1b 0%, #450a0a 50%, #081625 100%);
             color: white;
             display: flex;
             flex-direction: column;
@@ -221,7 +335,9 @@ class User::WrappedScreenshotGenerator
           .mb-2 { margin-bottom: #{0.5 * s}rem; }
           .mb-3 { margin-bottom: #{0.75 * s}rem; }
           .mb-4 { margin-bottom: #{1 * s}rem; }
+          .mb-6 { margin-bottom: #{1.5 * s}rem; }
           .pt-2 { padding-top: #{0.5 * s}rem; }
+          .pt-4 { padding-top: #{1 * s}rem; }
           .pb-1 { padding-bottom: #{0.25 * s}rem; }
           .p-2 { padding: #{0.5 * s}rem; }
           .px-2 { padding-left: #{0.5 * s}rem; padding-right: #{0.5 * s}rem; }

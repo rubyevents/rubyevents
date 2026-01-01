@@ -13,11 +13,10 @@ class WrappedController < ApplicationController
       .where.not("LOWER(users.name) IN (?)", ["tbd", "todo", "tba", "speaker tbd", "speaker tba"])
       .order(updated_at: :desc)
       .limit(100)
-      .shuffle
-      .first(35)
+      .sample(35)
 
-    @talks_held = Talk.where(date: year_range).count
-    @talks_published = Talk.where(published_at: year_range).count
+    @talks_held = Talk.where(date: year_range).distinct.count
+    @talks_published = Talk.where(published_at: year_range).distinct.count
     @total_conferences = Event.where(start_date: year_range, kind: :conference).count
     @total_speakers = User.joins(:talks).where(talks: {date: year_range}).distinct.count
     @total_hours = (Talk.where(published_at: year_range).sum(:duration_in_seconds) / 3600.0).round
@@ -120,6 +119,14 @@ class WrappedController < ApplicationController
       .where(created_at: year_range)
       .count
 
+    @total_rubyists = User.count
+    @github_contributors = 83
+    @rubyist_countries = User
+      .where.not(location: [nil, ""])
+      .find_each
+      .filter_map { |user| user.location_info.country }
+      .uniq
+
     @monthly_visits = Rollup
       .where(time: year_range, interval: "month")
       .where(name: "ahoy_visits")
@@ -152,5 +159,13 @@ class WrappedController < ApplicationController
       .where("cfps.close_date IS NULL OR cfps.close_date >= ?", Date.new(next_year, 1, 1))
       .where("cfps.open_date IS NULL OR cfps.open_date <= ?", Date.new(next_year, 1, 1))
       .count
+
+    @top_organizations = Organization
+      .joins(:sponsors)
+      .joins("INNER JOIN events ON sponsors.event_id = events.id")
+      .where(events: {start_date: year_range})
+      .group("organizations.id")
+      .order(Arel.sql("COUNT(DISTINCT events.id) DESC"))
+      .limit(35)
   end
 end

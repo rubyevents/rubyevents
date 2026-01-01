@@ -1,3 +1,25 @@
+<% content_for :head do %>
+  <title><%= @user.name %>'s <%= @year %> Wrapped - RubyEvents.org</title>
+
+  <% og_stats = [] %>
+  <% og_stats << "#{@total_talks_watched} talks watched" if @total_talks_watched&.positive? %>
+  <% og_stats << "#{@events_attended_in_year&.count || 0} events attended" if @events_attended_in_year&.any? %>
+  <% og_stats << "#{@talks_given_in_year&.count || 0} talks given" if @talks_given_in_year&.any? %>
+  <% og_stats << "#{@countries_visited&.count || 0} countries visited" if @countries_visited&.any? %>
+  <% og_description = og_stats.any? ? "#{@user.name}'s #{@year}: #{og_stats.join(" · ")}. See the full Wrapped!" : "See #{@user.name}'s #{@year} Ruby Events Wrapped!" %>
+
+  <meta name="description" content="<%= og_description %>">
+  <meta property="og:title" content="<%= @user.name %>'s <%= @year %> Wrapped - RubyEvents.org">
+  <meta property="og:description" content="<%= og_description %>">
+  <meta property="og:image" content="<%= og_image_profile_wrapped_index_url(profile_slug: @user.to_param) %>">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="<%= profile_wrapped_index_url(profile_slug: @user.to_param) %>">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="<%= @user.name %>'s <%= @year %> Wrapped - RubyEvents.org">
+  <meta name="twitter:description" content="<%= og_description %>">
+  <meta name="twitter:image" content="<%= og_image_profile_wrapped_index_url(profile_slug: @user.to_param) %>">
+<% end %>
+
 <% pages = [] %>
 
 <% pages << {partial: "cover", cover: true} %>
@@ -27,6 +49,13 @@
 
 <div data-controller="wrapped-stories" data-action="keydown@window->wrapped-stories#handleKeydown">
   <div class="flex justify-center gap-3 mb-6 no-print">
+    <%= link_to wrapped_path, class: "px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-full text-sm font-medium transition flex items-center gap-2" do %>
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+      <%= @year %> Wrapped
+    <% end %>
+
     <button
       data-action="wrapped-stories#toggleMode"
       class="px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-full text-sm font-medium transition flex items-center gap-2">
@@ -35,13 +64,6 @@
       </svg>
       <span data-wrapped-stories-target="modeLabel">View as Stories</span>
     </button>
-
-    <%= link_to wrapped_path, class: "px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-full text-sm font-medium transition flex items-center gap-2" do %>
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-      </svg>
-      Community Wrappeds
-    <% end %>
 
     <% if !@is_owner && Current.user %>
       <%= link_to profile_wrapped_index_path(Current.user), class: "px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-full text-sm font-medium transition flex items-center gap-2" do %>

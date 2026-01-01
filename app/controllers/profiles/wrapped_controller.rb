@@ -260,11 +260,12 @@ class Profiles::WrappedController < ApplicationController
     @total_talks_watched = @watched_talks_in_year.count
     @events_attended_in_year = @user.participated_events.where(start_date: year_range)
     @talks_given_in_year = @user.kept_talks.where(date: year_range)
+    @countries_visited = @events_attended_in_year.map(&:country).compact.uniq
     @share_url = profile_wrapped_index_url(profile_slug: @user.to_param)
 
     respond_to do |format|
       format.html { redirect_to profile_wrapped_index_path(profile_slug: @user.slug) }
-      format.turbo_stream { render turbo_stream: turbo_stream.replace("wrapped-share", partial: "profiles/wrapped/share") }
+      format.turbo_stream { render turbo_stream: turbo_stream.replace("wrapped-share", partial: "profiles/wrapped/share", locals: wrapped_locals) }
     end
   end
 

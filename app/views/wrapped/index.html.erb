@@ -1,13 +1,25 @@
-<% content_for :title, "#{@year} Wrapped" %>
+<% content_for :head do %>
+  <title>RubyEvents.org <%= @year %> Wrapped</title>
+  <meta name="description" content="<%= @year %> in review: <%= number_with_delimiter(@talks_held) %> talks held, <%= number_with_delimiter(@total_conferences) %> conferences, <%= number_with_delimiter(@total_speakers) %> speakers. Explore the Ruby community's year!">
+  <meta property="og:title" content="RubyEvents.org <%= @year %> Wrapped">
+  <meta property="og:description" content="<%= @year %> in review: <%= number_with_delimiter(@talks_held) %> talks held, <%= number_with_delimiter(@total_conferences) %> conferences, <%= number_with_delimiter(@total_speakers) %> speakers. Explore the Ruby community's year!">
+  <meta property="og:image" content="<%= image_url("og/wrapped-2025.png") %>">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="<%= wrapped_url %>">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="RubyEvents.org <%= @year %> Wrapped">
+  <meta name="twitter:description" content="<%= @year %> in review: <%= number_with_delimiter(@talks_held) %> talks held, <%= number_with_delimiter(@total_conferences) %> conferences, <%= number_with_delimiter(@total_speakers) %> speakers.">
+  <meta name="twitter:image" content="<%= image_url("og/wrapped-2025.png") %>">
+<% end %>
 
-<div class="min-h-screen bg-[linear-gradient(to_bottom,#991b1b_0%,#081625_90%,#081625_100%)]">
+<div class="min-h-screen bg-[linear-gradient(to_bottom,#991b1b_0%,#450a0a_20%,#081625_60%,#081625_100%)]">
   <div class="max-w-4xl mx-auto px-4 py-12">
     <div class="text-center text-white mb-16">
-      <p class="text-lg text-red-300 mb-2">RubyEvents.org</p>
-      <h1 class="text-6xl font-black mb-4 text-white"><%= @year %></h1>
-      <p class="text-4xl font-bold mb-8 text-red-200">Wrapped</p>
+      <p class="text-red-300 text-lg" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">RubyEvents.org</p>
+      <h1 class="text-6xl font-black text-white mt-2" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;"><%= @year %></h1>
+      <p class="text-3xl font-bold text-red-200 mt-1" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">Wrapped</p>
 
-      <p class="text-xl text-red-100 mb-8 max-w-lg mx-auto">
+      <p class="text-xl text-red-100 mt-8 mb-8 max-w-lg mx-auto">
         Your year in Ruby events, talks watched, and community connections.
       </p>
 
@@ -62,7 +74,7 @@
         </div>
         <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center cursor-help" data-controller="tooltip" data-tooltip-content-value="Countries that hosted Ruby conferences or meetups in <%= @year %>">
           <p class="text-4xl font-black text-white"><%= number_with_delimiter(@countries_with_events.count) %></p>
-          <p class="text-red-200 text-sm mt-1">Countries</p>
+          <p class="text-red-200 text-sm mt-1">Event Countries</p>
         </div>
         <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center cursor-help" data-controller="tooltip" data-tooltip-content-value="Organizers, MCs, volunteers, and other people who helped run Ruby events in <%= @year %>">
           <p class="text-4xl font-black text-white"><%= number_with_delimiter(@people_involved) %></p>
@@ -89,16 +101,28 @@
         </div>
       </div>
 
-      <div class="grid grid-cols-3 gap-4 mb-8">
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
+        <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center cursor-help" data-controller="tooltip" data-tooltip-content-value="Total registered Rubyists on RubyEvents.org">
+          <p class="text-4xl font-black text-white"><%= number_with_delimiter(@total_rubyists) %></p>
+          <p class="text-red-200 text-sm mt-1">Rubyists</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center cursor-help" data-controller="tooltip" data-tooltip-content-value="Countries where Rubyists are from">
+          <p class="text-4xl font-black text-white"><%= number_with_delimiter(@rubyist_countries.count) %></p>
+          <p class="text-red-200 text-sm mt-1">Rubyist Countries</p>
+        </div>
         <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center cursor-help" data-controller="tooltip" data-tooltip-content-value="New users who signed up to RubyEvents.org in <%= @year %>">
           <p class="text-4xl font-black text-white"><%= number_with_delimiter(@new_users) %></p>
           <p class="text-red-200 text-sm mt-1">New Users</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center cursor-help" data-controller="tooltip" data-tooltip-content-value="Contributors to the RubyEvents.org codebase on GitHub">
+          <p class="text-4xl font-black text-white"><%= number_with_delimiter(@github_contributors) %></p>
+          <p class="text-red-200 text-sm mt-1">GitHub Contributors</p>
         </div>
         <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center cursor-help" data-controller="tooltip" data-tooltip-content-value="Unique visitor sessions to RubyEvents.org in <%= @year %>">
           <p class="text-4xl font-black text-white"><%= number_with_delimiter(@total_visits) %></p>
           <p class="text-red-200 text-sm mt-1">Visits</p>
         </div>
-        <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center cursor-help" data-controller="tooltip" data-tooltip-content-value="Total page views across all pages on RubyEvents.org in <%= @year %>">
+        <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center cursor-help col-span-2 md:col-span-1" data-controller="tooltip" data-tooltip-content-value="Total page views across all pages on RubyEvents.org in <%= @year %>">
           <p class="text-4xl font-black text-white"><%= number_with_delimiter(@total_page_views) %></p>
           <p class="text-red-200 text-sm mt-1">Page Views</p>
         </div>
@@ -281,6 +305,36 @@
             </div>
             <p class="text-center text-white text-sm mt-2 max-w-[80px] md:max-w-[96px] truncate mx-auto">
               <%= user.name.split.first %>
+            </p>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% if @top_organizations.any? %>
+      <div class="text-center mb-8 mt-16">
+        <h2 class="text-2xl font-bold text-white mb-2">Top Supporters</h2>
+        <p class="text-red-200">Organizations supporting the Ruby community — check out their Wrapped!</p>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-4">
+        <% @top_organizations.each do |organization| %>
+          <%= link_to organization_wrapped_index_path(organization_slug: organization.slug), class: "group" do %>
+            <div class="relative">
+              <div class="w-20 h-20 md:w-24 md:h-24 rounded-xl p-[3px] bg-gradient-to-tr from-red-400 via-red-500 to-[#081625] group-hover:scale-105 transition-transform">
+                <div class="w-full h-full rounded-xl p-[2px] bg-[#081625]">
+                  <div class="w-full h-full rounded-lg overflow-hidden bg-white flex items-center justify-center p-2">
+                    <% if organization.logo_url.present? %>
+                      <%= image_tag organization.logo_url, class: "w-full h-full object-contain", alt: organization.name %>
+                    <% else %>
+                      <span class="text-2xl font-bold text-gray-600"><%= organization.name.first.upcase %></span>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="text-center text-white text-sm mt-2 max-w-[80px] md:max-w-[96px] truncate mx-auto">
+              <%= organization.name %>
             </p>
           <% end %>
         <% end %>

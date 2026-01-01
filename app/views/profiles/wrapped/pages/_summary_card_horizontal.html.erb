@@ -1,66 +1,42 @@
-<div class="flex-1 flex items-center justify-center gap-12">
-  <div class="flex flex-col items-center justify-center">
-    <div class="w-24 h-24 rounded-full border-4 border-white overflow-hidden bg-white/20 mb-3">
+<div class="flex-1 flex gap-12 items-center px-12 pt-8 pb-4">
+  <div class="flex flex-col items-center">
+    <div class="w-32 h-32 rounded-full border-4 border-white overflow-hidden bg-white/20 mb-6">
       <% if user.custom_avatar? %>
-        <%= image_tag user.avatar_url(size: 120), class: "w-full h-full object-cover", alt: user.name %>
+        <%= image_tag user.avatar_url(size: 256), class: "w-full h-full object-cover", alt: user.name %>
       <% else %>
-        <div class="w-full h-full flex items-center justify-center text-3xl font-bold">
+        <div class="w-full h-full flex items-center justify-center text-5xl font-bold text-white">
           <%= user.name.first.upcase %>
         </div>
       <% end %>
     </div>
-    <p class="font-bold text-xl mb-1"><%= user.name %></p>
-    <p class="text-red-200 text-sm">RubyEvents.org <%= year %> Wrapped</p>
-
-    <% if personality.present? %>
-      <div class="personality-badge text-xs px-3 py-1 mt-3">
-        <%= personality %>
-      </div>
-    <% end %>
+    <p class="text-red-300 text-lg"><%= user.name %></p>
+    <h1 class="text-6xl font-black text-white mt-2"><%= year %></h1>
+    <p class="text-3xl font-bold text-red-200 mt-1">Wrapped</p>
+    <p class="text-red-300/80 text-sm mt-4">RubyEvents.org/Wrapped</p>
   </div>
 
-  <div class="flex flex-col justify-center gap-3">
-    <div class="grid grid-cols-2 gap-2">
-      <div class="text-center p-2 px-4 bg-white/10 rounded-lg">
-        <p class="text-2xl font-bold"><%= total_talks_watched %></p>
-        <p class="text-[10px] text-red-200">Talks Watched</p>
-      </div>
-      <div class="text-center p-2 px-4 bg-white/10 rounded-lg">
-        <p class="text-2xl font-bold"><%= total_watch_time_hours %>h</p>
-        <p class="text-[10px] text-red-200">Watch Time</p>
-      </div>
+  <div class="flex-1 grid grid-cols-2 gap-6">
+    <div class="bg-white/10 backdrop-blur rounded-2xl p-8 text-center">
+      <p class="text-6xl font-black text-white"><%= total_talks_watched %></p>
+      <p class="text-red-200 text-lg mt-2">Talks Watched</p>
     </div>
-
-    <div class="grid grid-cols-3 gap-2">
-      <div class="text-center p-2 px-4 bg-white/10 rounded-lg">
-        <p class="text-2xl font-bold"><%= events_attended_in_year.count %></p>
-        <p class="text-[10px] text-red-200">Events Attended</p>
-      </div>
-      <div class="text-center p-2 px-4 bg-white/10 rounded-lg">
-        <p class="text-2xl font-bold"><%= countries_visited.count %></p>
-        <p class="text-[10px] text-red-200">Countries Visited</p>
-      </div>
-      <% if talks_given_in_year.any? %>
-        <div class="text-center p-2 px-4 bg-white/20 rounded-lg">
-          <p class="text-2xl font-bold"><%= talks_given_in_year.count %></p>
-          <p class="text-[10px] text-red-200">Talks Given</p>
-        </div>
-      <% else %>
-        <div></div>
-      <% end %>
+    <div class="bg-white/10 backdrop-blur rounded-2xl p-8 text-center">
+      <p class="text-6xl font-black text-white"><%= total_watch_time_hours %>h</p>
+      <p class="text-red-200 text-lg mt-2">Watch Time</p>
     </div>
-
-    <% if top_topics.any? %>
-      <div class="flex flex-wrap gap-1">
-        <% top_topics.first(3).each do |topic, _| %>
-          <span class="px-2 py-1 bg-white/10 rounded text-xs"><%= topic.name %></span>
-        <% end %>
-      </div>
-    <% end %>
+    <div class="bg-white/10 backdrop-blur rounded-2xl p-8 text-center">
+      <p class="text-6xl font-black text-white"><%= events_attended_in_year.count %></p>
+      <p class="text-red-200 text-lg mt-2">Events Attended</p>
+    </div>
+    <div class="bg-white/10 backdrop-blur rounded-2xl p-8 text-center">
+      <p class="text-6xl font-black text-white"><%= countries_visited.count %></p>
+      <p class="text-red-200 text-lg mt-2">Countries Visited</p>
+    </div>
   </div>
 </div>
 
-<div class="mt-auto flex items-center justify-center gap-3">
+<div class="w-full bg-white/5 py-3 mt-4 flex items-center justify-center gap-3">
   <%= image_tag "logo.png", class: "w-6 h-6", alt: "RubyEvents.org" %>
-  <p class="text-sm text-red-200">See the full Wrapped at <span class="text-white font-bold">RubyEvents.org/Wrapped</span></p>
+  <span class="text-white font-bold text-lg">RubyEvents.org</span>
+  <span class="text-red-300/80 text-sm">On a mission to index all Ruby events</span>
 </div>
