@@ -1,5 +1,5 @@
 class Talk::Agents < ActiveRecord::AssociatedObject
-  # Now that we use the tier flex option we add more retries as our request can be rejected if OpenAi is busy
+  # Now that we use the tier flex option we perform limited retries as our request can be rejected if OpenAI is busy
   performs retries: 2 do
     # this is to comply to the rate limit of openai 60 000 tokens per minute
     limits_concurrency to: 4, key: "openai_api", duration: 1.hour
