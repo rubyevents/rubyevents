@@ -295,6 +295,7 @@ module Static
       import_videos!(event)
       import_sponsors!(event)
       import_involvements!(event)
+      import_transcripts!(event)
 
       event
     end
@@ -441,6 +442,45 @@ module Static
           involvement.position = user_count + index
           involvement.save!
         end
+      end
+    end
+
+    def transcripts_file_path
+      Rails.root.join("data", series_slug, slug, "transcripts.yml")
+    end
+
+    def transcripts_file?
+      transcripts_file_path.exist?
+    end
+
+    def import_transcripts!(event)
+      return unless transcripts_file?
+
+      transcripts = YAML.load_file(transcripts_file_path)
+      return if transcripts.blank?
+
+      transcripts.each do |transcript_data|
+        video_id = transcript_data["video_id"]
+        cues = transcript_data["cues"]
+
+        next if video_id.blank? || cues.blank?
+
+        talk = event.talks.find_by(video_id: video_id)
+        next unless talk
+
+        transcript = ::Transcript.new
+        cues.each do |cue_data|
+          transcript.add_cue(
+            Cue.new(
+              start_time: cue_data["start_time"],
+              end_time: cue_data["end_time"],
+              text: cue_data["text"]
+            )
+          )
+        end
+
+        transcript_record = talk.talk_transcript || ::Talk::Transcript.new(talk: talk)
+        transcript_record.update!(raw_transcript: transcript)
       end
     end
 
