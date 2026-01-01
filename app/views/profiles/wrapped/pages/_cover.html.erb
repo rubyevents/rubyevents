@@ -1,0 +1,33 @@
+<div class="mb-6">
+  <svg width="100" height="100" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2 25 L16 10 L64 10 L78 25 L40 70 Z"
+          fill="white"/>
+  </svg>
+</div>
+
+
+<div class="mt-4 mb-8">
+
+  <div class="w-24 h-24 mx-auto rounded-full border-4 border-white overflow-hidden bg-white/20">
+    <% if @user.custom_avatar? %>
+      <%= image_tag @user.avatar_url(size: 120), class: "w-full h-full object-cover", alt: @user.name %>
+    <% else %>
+      <div class="w-full h-full flex items-center justify-center text-3xl font-bold">
+        <%= @user.name.first.upcase %>
+      </div>
+    <% end %>
+  </div>
+
+  <p class="mt-4 font-bold text-xl mb-2"><%= @user.name %></p>
+
+</div>
+
+
+<p class="text-lg text-red-200 mb-2">RubyEvents.org</p>
+<h1 class="text-5xl font-black mb-2"><%= @year %></h1>
+<p class="text-3xl font-bold mb-2">Wrapped</p>
+
+<div class="mt-auto pt-8 flex flex-col items-center">
+  <%= image_tag "logo.png", class: "w-10 h-10 mb-2", alt: "RubyEvents.org" %>
+  <p class="text-sm text-red-200">Your Year in Ruby Events</p>
+</div>

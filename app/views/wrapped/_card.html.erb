@@ -1,0 +1,28 @@
+<section class="w-full">
+  <%= link_to wrapped_path, class: "block w-full p-6 lg:p-10 rounded-[10px] lg:rounded-[25px] bg-gradient-to-br from-red-600 to-red-800 text-white hover:from-red-700 hover:to-red-900 transition-all shadow-lg hover:shadow-xl" do %>
+    <div class="flex flex-col lg:flex-row items-center gap-6 lg:gap-10">
+      <div class="flex-shrink-0">
+        <div class="w-24 h-24 lg:w-32 lg:h-32 bg-white/10 rounded-2xl flex items-center justify-center">
+          <svg class="w-16 h-16 lg:w-20 lg:h-20 text-white" viewBox="0 0 80 80" fill="currentColor">
+            <path d="M2 25 L16 10 L64 10 L78 25 L40 70 Z"/>
+          </svg>
+        </div>
+      </div>
+      <div class="flex-1 text-center lg:text-left">
+        <p class="text-red-200 text-sm font-medium mb-1">RubyEvents.org</p>
+        <h2 class="text-3xl lg:text-4xl font-black mb-2">2025 Wrapped</h2>
+        <p class="text-red-100 text-base lg:text-lg max-w-xl">
+          Discover your year in Ruby events. See your watching stats, top speakers, events attended, and more!
+        </p>
+      </div>
+      <div class="flex-shrink-0">
+        <span class="inline-flex items-center gap-2 px-6 py-3 bg-white text-red-700 font-semibold rounded-full hover:bg-red-50 transition">
+          View Your 2025 Wrapped
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </span>
+      </div>
+    </div>
+  <% end %>
+</section>

@@ -27,6 +27,7 @@
 #  verified            :boolean          default(FALSE), not null
 #  watched_talks_count :integer          default(0), not null
 #  website             :string           default(""), not null
+#  wrapped_public      :boolean          default(FALSE), not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  canonical_id        :integer          indexed
@@ -67,6 +68,10 @@ class User < ApplicationRecord
   }.freeze
 
   has_secure_password validations: false
+
+  has_one_attached :wrapped_card
+  has_one_attached :wrapped_card_horizontal
+  has_one_attached :wrapped_og_image
 
   # Authentication and user-specific associations
   has_many :sessions, dependent: :destroy, inverse_of: :user

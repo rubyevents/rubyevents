@@ -1,0 +1,53 @@
+<h2 class="text-2xl font-bold mb-2 text-center">Your Speaker Journey</h2>
+<p class="text-gray-500 text-center mb-6">You shared your knowledge with the community!</p>
+
+<div class="grid grid-cols-2 gap-3 mb-6">
+  <div class="stat-card">
+    <div class="stat-number text-2xl"><%= @talks_given_in_year.count %></div>
+    <div class="stat-label">Talks Given</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-number text-2xl"><%= @total_speaking_minutes %>m</div>
+    <div class="stat-label">On Stage</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-number text-xl"><%= number_to_human(@total_views_on_talks, precision: 2, significant: false, format: "%n%u", units: {thousand: "K", million: "M"}) %></div>
+    <div class="stat-label">Views on YouTube</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-number text-2xl"><%= @talk_watchers_count %></div>
+    <div class="stat-label">Watchers on RubyEvents.org</div>
+  </div>
+</div>
+
+<% if @top_talk_watchers.any? %>
+  <div class="flex-1 flex flex-col justify-center">
+    <p class="text-sm font-semibold mb-4 text-center">Biggest Supporters</p>
+    <div class="flex justify-center gap-4">
+      <% @top_talk_watchers.each_with_index do |watcher, index| %>
+        <div class="text-center">
+          <div class="relative">
+            <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-red-500 mx-auto bg-gray-100">
+              <% if watcher.custom_avatar? %>
+                <%= image_tag watcher.avatar_url(size: 64), class: "w-full h-full object-cover", alt: watcher.name %>
+              <% else %>
+                <div class="w-full h-full flex items-center justify-center text-xl font-bold text-gray-600">
+                  <%= watcher.name.first.upcase %>
+                </div>
+              <% end %>
+            </div>
+            <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center text-white text-xs font-bold">
+              <%= index + 1 %>
+            </div>
+          </div>
+          <p class="text-xs mt-2 font-medium truncate max-w-[80px]"><%= watcher.name.split.first %></p>
+          <p class="text-[10px] text-gray-500"><%= watcher.watched_count %> talks</p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<div class="mt-auto pt-4 text-center">
+  <p class="text-sm text-gray-500">Thank you for sharing your knowledge! 🙏</p>
+</div>

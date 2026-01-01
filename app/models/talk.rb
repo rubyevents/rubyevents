@@ -118,6 +118,22 @@ class Talk < ApplicationRecord
 
   WATCHABLE_PROVIDERS = ["youtube", "mp4", "vimeo"]
 
+  KIND_LABELS = {
+    "keynote" => "Keynote",
+    "talk" => "Talk",
+    "lightning_talk" => "Lightning Talk",
+    "panel" => "Panel",
+    "workshop" => "Workshop",
+    "gameshow" => "Gameshow",
+    "podcast" => "Podcast",
+    "q_and_a" => "Q&A",
+    "discussion" => "Discussion",
+    "fireside_chat" => "Fireside Chat",
+    "interview" => "Interview",
+    "award" => "Award",
+    "demo" => "Demo"
+  }.freeze
+
   # enums
   enum :video_provider, %w[youtube mp4 vimeo scheduled not_published not_recorded parent children].index_by(&:itself)
 
@@ -155,22 +171,7 @@ class Talk < ApplicationRecord
   end
 
   def formatted_kind
-    case kind
-    when "keynote" then "Keynote"
-    when "talk" then "Talk"
-    when "lightning_talk" then "Lightning Talk"
-    when "panel" then "Panel"
-    when "workshop" then "Workshop"
-    when "gameshow" then "Gameshow"
-    when "podcast" then "Podcast"
-    when "q_and_a" then "Q&A"
-    when "discussion" then "Discussion"
-    when "fireside_chat" then "Fireside Chat"
-    when "interview" then "Interview"
-    when "award" then "Award"
-    when "demo" then "Demo"
-    else raise "`#{kind}` not defined in `Talk#formatted_kind`"
-    end
+    KIND_LABELS[kind] || raise("`#{kind}` not defined in `Talk::KIND_LABELS`")
   end
 
   # attributes
