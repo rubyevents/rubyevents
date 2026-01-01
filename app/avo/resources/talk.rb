@@ -80,10 +80,7 @@ class Avo::Resources::Talk < Avo::BaseResource
   end
 
   def actions
-    action Avo::Actions::Transcript
-    action Avo::Actions::EnhanceTranscript
-    action Avo::Actions::Summarize
-    action Avo::Actions::ExtractTopics
+    action Avo::Actions::TalkIngest
     action Avo::Actions::UpdateFromYml
     action Avo::Actions::TalkIndex
     action Avo::Actions::FetchDuration
