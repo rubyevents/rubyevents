@@ -57,9 +57,9 @@ class Talk::Agents < ActiveRecord::AssociatedObject
 
   performs def ingest
     talk.fetch_and_update_raw_transcript! unless talk.raw_transcript.present?
-    talks.agents.improve_transcript unless talk.enhanced_transcript.present?
-    talks.agents.summarize unless talk.summary.present?
-    talks.agents.analyze_topics unless talk.topics.present?
+    talk.agents.improve_transcript unless talk.enhanced_transcript.present?
+    talk.agents.summarize unless talk.summary.present?
+    talk.agents.analyze_topics unless talk.topics.present?
   end
 
   private
