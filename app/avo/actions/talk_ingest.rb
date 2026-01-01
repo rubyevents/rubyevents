@@ -6,6 +6,6 @@ class Avo::Actions::TalkIngest < Avo::BaseAction
       record.agents.ingest_later
     end
 
-    succeed "Ingesting the talk in the background"
+    succeed "Ingesting the talks in the background"
   end
 end
