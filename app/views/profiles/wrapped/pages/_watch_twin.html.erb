@@ -1,0 +1,16 @@
+<h2 class="text-2xl font-bold mb-2 text-center">Your Watch Twin</h2>
+<p class="text-gray-500 text-center mb-6">Someone with similar taste in talks</p>
+
+<div class="flex-1 flex flex-col items-center justify-center">
+  <div class="w-24 h-24 rounded-full overflow-hidden bg-gray-200 mb-4 ring-4 ring-red-200">
+    <%= image_tag watch_twin.user.avatar_url(size: 200), class: "w-full h-full object-cover", alt: watch_twin.user.name %>
+  </div>
+  <p class="text-xl font-bold"><%= watch_twin.user.name %></p>
+  <p class="text-gray-500 mt-2">watched <span class="font-semibold text-red-600"><%= watch_twin.shared_count %></span> of the same talks</p>
+  <p class="text-sm text-gray-400 mt-1"><%= watch_twin.percentage %>% overlap with your watched talks</p>
+
+  <div class="mt-6 p-4 bg-red-50 rounded-lg text-center">
+    <p class="text-2xl mb-2">👯</p>
+    <p class="text-sm text-gray-600">Great minds watch alike!</p>
+  </div>
+</div>

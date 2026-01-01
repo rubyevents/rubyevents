@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get "/stickers", to: "page#stickers"
   get "/contributors", to: "page#contributors"
   get "/stamps", to: "stamps#index"
+  get "/wrapped", to: "wrapped#index"
   get "/pages/assets", to: "page#assets"
 
   # authentication
@@ -91,6 +92,14 @@ Rails.application.routes.draw do
       resources :involvements, only: [:index]
       resources :map, only: [:index]
       resources :aliases, only: [:index]
+      resources :wrapped, only: [:index] do
+        collection do
+          get :card
+          get :og_image
+          post :toggle_visibility
+          post :generate_card
+        end
+      end
     end
   end
   resources :events, param: :slug, only: [:index, :show, :update, :edit] do
@@ -125,6 +134,11 @@ Rails.application.routes.draw do
 
   resources :organizations, param: :slug, only: [:index, :show] do
     resource :logos, only: [:show, :update], controller: "organizations/logos"
+    resources :wrapped, only: [:index], controller: "organizations/wrapped" do
+      collection do
+        get :og_image
+      end
+    end
   end
 
   namespace :sponsors do

@@ -1,0 +1,42 @@
+<div class="flex-1 flex gap-12 items-center px-12 pt-8 pb-4">
+  <div class="flex flex-col items-center">
+    <div class="w-32 h-32 rounded-full border-4 border-white overflow-hidden bg-white/20 mb-6">
+      <% if user.custom_avatar? %>
+        <%= image_tag user.avatar_url(size: 256), class: "w-full h-full object-cover", alt: user.name %>
+      <% else %>
+        <div class="w-full h-full flex items-center justify-center text-5xl font-bold text-white">
+          <%= user.name.first.upcase %>
+        </div>
+      <% end %>
+    </div>
+    <p class="text-red-300 text-lg"><%= user.name %></p>
+    <h1 class="text-6xl font-black text-white mt-2"><%= year %></h1>
+    <p class="text-3xl font-bold text-red-200 mt-1">Wrapped</p>
+    <p class="text-red-300/80 text-sm mt-4">RubyEvents.org/Wrapped</p>
+  </div>
+
+  <div class="flex-1 grid grid-cols-2 gap-6">
+    <div class="bg-white/10 backdrop-blur rounded-2xl p-8 text-center">
+      <p class="text-6xl font-black text-white"><%= total_talks_watched %></p>
+      <p class="text-red-200 text-lg mt-2">Talks Watched</p>
+    </div>
+    <div class="bg-white/10 backdrop-blur rounded-2xl p-8 text-center">
+      <p class="text-6xl font-black text-white"><%= total_watch_time_hours %>h</p>
+      <p class="text-red-200 text-lg mt-2">Watch Time</p>
+    </div>
+    <div class="bg-white/10 backdrop-blur rounded-2xl p-8 text-center">
+      <p class="text-6xl font-black text-white"><%= events_attended_in_year.count %></p>
+      <p class="text-red-200 text-lg mt-2">Events Attended</p>
+    </div>
+    <div class="bg-white/10 backdrop-blur rounded-2xl p-8 text-center">
+      <p class="text-6xl font-black text-white"><%= countries_visited.count %></p>
+      <p class="text-red-200 text-lg mt-2">Countries Visited</p>
+    </div>
+  </div>
+</div>
+
+<div class="w-full bg-white/5 py-3 mt-4 flex items-center justify-center gap-3">
+  <%= image_tag "logo.png", class: "w-6 h-6", alt: "RubyEvents.org" %>
+  <span class="text-white font-bold text-lg">RubyEvents.org</span>
+  <span class="text-red-300/80 text-sm">On a mission to index all Ruby events</span>
+</div>

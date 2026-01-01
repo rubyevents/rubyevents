@@ -1,0 +1,66 @@
+<div
+  class="w-full pt-4 lg:pt-6 pb-4 lg:pb-12 lg:min-h-[600px]"
+  style="
+    color: white;
+    background: #991b1b;
+  ">
+  <a href="<%= wrapped_path %>" class="block h-full">
+    <div class="container h-full">
+      <div class="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-6 lg:gap-12 items-center h-full">
+        <div class="flex flex-col gap-4">
+          <div class="flex justify-start mb-4">
+            <svg class="w-1/2 text-white center bg-white/10 rounded-2xl p-12" viewBox="0 0 80 80" fill="currentColor">
+              <path d="M2 25 L16 10 L64 10 L78 25 L40 70 Z" />
+            </svg>
+          </div>
+
+          <div class="flex flex-col gap-3 text-center lg:text-left">
+            <h1 class="text-inherit font-bold text-xl line-clamp-1 lg:line-clamp-2">RubyEvents.org 2025 Wrapped</h1>
+            <h2 class="text-inherit opacity-60 text-sm line-clamp-1">2025 Wrapped</h2>
+            <h2 class="text-inherit font-medium text-sm line-clamp-3 hidden lg:block">
+              Discover your watching stats, top users, events attended, and more. See how the Ruby community spent their year!<br><br>
+            </h2>
+          </div>
+
+          <%= ui_button kind: :rounded, class: "btn-sm lg:btn-md mx-auto lg:mx-0 mt-4" do %>
+            <span>View Your 2025 Wrapped</span>
+          <% end %>
+        </div>
+
+        <div class="hidden lg:flex flex-col justify-end items-end gap-6">
+          <div class="flex flex-col gap-6 items-center px-12">
+            <div class="avatar-group -space-x-6 rtl:space-x-reverse">
+              <% shown_users = [] %>
+              <% all_users = users.shuffle %>
+              <% users_with_avatars = all_users.select { |user| user.avatar_url.present? } %>
+
+              <% users_with_avatars.first(4).each do |user| %>
+                <% shown_users << user %>
+                <%= ui_avatar(user, size: :lg, size_class: "w-12 lg:w-28 xl:w-40") %>
+              <% end %>
+            </div>
+
+            <div class="avatar-group -space-x-6 lg:-space-x-3 rtl:space-x-reverse">
+              <% remaining_users = users_with_avatars - shown_users %>
+
+              <% if remaining_users.any? %>
+                <% remaining_users.first(10).each do |user| %>
+                  <% shown_users << user %>
+                  <%= ui_avatar(user) %>
+                <% end %>
+              <% end %>
+
+              <% more_users_count = all_users.count - shown_users.count %>
+
+              <% if more_users_count.positive? %>
+                <%= ui_avatar(nil, kind: :neutral) do %>
+                  <span>+<%= more_users_count %></span>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </a>
+</div>

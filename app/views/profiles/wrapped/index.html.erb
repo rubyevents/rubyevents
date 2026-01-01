@@ -1,0 +1,134 @@
+<% content_for :head do %>
+  <title><%= @user.name %>'s <%= @year %> Wrapped - RubyEvents.org</title>
+
+  <% og_stats = [] %>
+  <% og_stats << "#{@total_talks_watched} talks watched" if @total_talks_watched&.positive? %>
+  <% og_stats << "#{@events_attended_in_year&.count || 0} events attended" if @events_attended_in_year&.any? %>
+  <% og_stats << "#{@talks_given_in_year&.count || 0} talks given" if @talks_given_in_year&.any? %>
+  <% og_stats << "#{@countries_visited&.count || 0} countries visited" if @countries_visited&.any? %>
+  <% og_description = og_stats.any? ? "#{@user.name}'s #{@year}: #{og_stats.join(" · ")}. See the full Wrapped!" : "See #{@user.name}'s #{@year} Ruby Events Wrapped!" %>
+
+  <meta name="description" content="<%= og_description %>">
+  <meta property="og:title" content="<%= @user.name %>'s <%= @year %> Wrapped - RubyEvents.org">
+  <meta property="og:description" content="<%= og_description %>">
+  <meta property="og:image" content="<%= og_image_profile_wrapped_index_url(profile_slug: @user.to_param) %>">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="<%= profile_wrapped_index_url(profile_slug: @user.to_param) %>">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="<%= @user.name %>'s <%= @year %> Wrapped - RubyEvents.org">
+  <meta name="twitter:description" content="<%= og_description %>">
+  <meta name="twitter:image" content="<%= og_image_profile_wrapped_index_url(profile_slug: @user.to_param) %>">
+<% end %>
+
+<% pages = [] %>
+
+<% pages << {partial: "cover", cover: true} %>
+<% pages << {partial: "watching_journey"} %>
+<% pages << {partial: "top_topics"} %>
+<% pages << {partial: "top_speakers"} %>
+<% pages << {partial: "top_events"} %>
+<% pages << {partial: "watching_calendar"} %>
+<% pages << {partial: "content_mix"} %>
+<% pages << {partial: "events_attended"} %>
+
+<% pages << {partial: "event_map"} if @event_map_markers.any? %>
+<% pages << {partial: "conference_buddies"} if @conference_buddies.any? %>
+<% pages << {partial: "watch_twin"} if @watch_twin %>
+<% pages << {partial: "speaker_journey"} if @talks_given_in_year.any? %>
+<% pages << {partial: "speaking_calendar"} if @talks_given_in_year.any? %>
+<% pages << {partial: "involvements"} if @involvements_in_year.any? %>
+<% pages << {partial: "contributor"} if @is_contributor %>
+<% pages << {partial: "passport_holder"} if @has_passport %>
+<% pages << {partial: "stamps"} if @stamps_earned.any? %>
+<% pages << {partial: "stickers"} if @stickers_earned.any? %>
+<% pages << {partial: "bookends"} if @first_watched && @last_watched %>
+<% pages << {partial: "fun_facts"} %>
+<% pages << {partial: "languages"} if @languages_watched.any? && @languages_watched.size > 1 %>
+<% pages << {partial: "summary_card", cover: true} %>
+<% pages << {partial: "closing", cover: true} %>
+
+<div data-controller="wrapped-stories" data-action="keydown@window->wrapped-stories#handleKeydown">
+  <div class="flex justify-center gap-3 mb-6 no-print">
+    <%= link_to wrapped_path, class: "px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-full text-sm font-medium transition flex items-center gap-2" do %>
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+      <%= @year %> Wrapped
+    <% end %>
+
+    <button
+      data-action="wrapped-stories#toggleMode"
+      class="px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-full text-sm font-medium transition flex items-center gap-2">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+      <span data-wrapped-stories-target="modeLabel">View as Stories</span>
+    </button>
+
+    <% if !@is_owner && Current.user %>
+      <%= link_to profile_wrapped_index_path(Current.user), class: "px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-full text-sm font-medium transition flex items-center gap-2" do %>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+        </svg>
+        See Your Wrapped
+      <% end %>
+    <% end %>
+  </div>
+
+  <div data-wrapped-stories-target="scrollView">
+    <% pages.each do |page| %>
+      <div id="<%= page[:partial].dasherize %>" class="wrapped-page <%= "wrapped-cover" if page[:cover] %>">
+        <%= render "profiles/wrapped/pages/#{page[:partial]}", **@wrapped_locals %>
+      </div>
+    <% end %>
+
+    <% if @is_owner %>
+      <div class="wrapped-page">
+        <h2 class="text-2xl font-bold mb-2 text-center">Share Your Wrapped</h2>
+        <p class="text-gray-500 text-center mb-6">Let the Ruby community see your year!</p>
+        <%= render "profiles/wrapped/share", **@wrapped_locals %>
+      </div>
+    <% end %>
+  </div>
+
+  <div data-wrapped-stories-target="storiesView" class="hidden">
+    <div class="stories-container" data-wrapped-stories-target="container">
+      <div class="stories-progress">
+        <% pages.each do |page| %>
+          <div class="stories-progress-bar" data-wrapped-stories-target="progress"></div>
+        <% end %>
+
+        <% if @is_owner %>
+          <div class="stories-progress-bar" data-wrapped-stories-target="progress"></div>
+        <% end %>
+      </div>
+
+      <div class="stories-close" data-action="click->wrapped-stories#toggleMode">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </div>
+
+      <div class="stories-nav stories-nav-left" data-action="click->wrapped-stories#previous"></div>
+      <div class="stories-nav stories-nav-right" data-action="click->wrapped-stories#next"></div>
+
+      <div class="stories-content">
+        <% pages.each do |page| %>
+          <div class="stories-page <%= "stories-cover" if page[:cover] %>" data-wrapped-stories-target="page" data-page-name="<%= page[:partial].dasherize %>">
+            <%= render "profiles/wrapped/pages/#{page[:partial]}", **@wrapped_locals %>
+          </div>
+        <% end %>
+
+        <% if @is_owner %>
+          <div class="stories-page" data-wrapped-stories-target="page" data-page-name="share">
+            <h2 class="text-2xl font-bold mb-2 text-center">Share Your Wrapped</h2>
+            <p class="text-gray-500 text-center mb-6">Let the Ruby community see your year!</p>
+            <%= render "profiles/wrapped/share", **@wrapped_locals %>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="stories-counter" data-wrapped-stories-target="counter">1 / <%= pages.size + (@is_owner ? 1 : 0) %></div>
+    </div>
+  </div>
+</div>

@@ -21,6 +21,10 @@ export default class extends Controller {
   }
 
   #loadMarkers () {
+    if (this.markersValue.length === 0) return
+
+    const bounds = new maplibregl.LngLatBounds()
+
     this.markersValue.forEach(({ longitude, latitude, events }) => {
       const el = this.#createMarkerElement(events)
       const popup = this.#createPopup(events)
@@ -29,7 +33,19 @@ export default class extends Controller {
         .setLngLat([longitude, latitude])
         .setPopup(popup)
         .addTo(this.map)
+
+      bounds.extend([longitude, latitude])
     })
+
+    if (this.markersValue.length === 1) {
+      this.map.setCenter([this.markersValue[0].longitude, this.markersValue[0].latitude])
+      this.map.setZoom(5)
+    } else {
+      this.map.fitBounds(bounds, {
+        padding: 50,
+        maxZoom: 10
+      })
+    }
   }
 
   disconnect () {

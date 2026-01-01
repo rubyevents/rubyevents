@@ -44,6 +44,11 @@ class PageController < ApplicationController
       # .with_watchable_talks
       .in_order_of(:slug, playlist_slugs)
 
+    @wrapped_users = User.where(wrapped_public: true)
+      .where.not(github_handle: [nil, ""])
+      .order(Arel.sql("RANDOM()"))
+      .limit(15)
+
     respond_to do |format|
       format.html
       format.json {

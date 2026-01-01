@@ -32,6 +32,15 @@
           <% end %>
         <% end %>
       </h1>
+
+      <% if user.wrapped_public? %>
+        <%= link_to profile_wrapped_index_path(user), class: "inline-flex items-center gap-1.5 px-3 py-1 bg-gradient-to-r from-red-600 to-red-700 text-white text-sm font-medium rounded-full hover:from-red-700 hover:to-red-800 transition shadow-sm" do %>
+          <svg class="size-4" viewBox="0 0 80 80" fill="currentColor">
+            <path d="M2 25 L16 10 L64 10 L78 25 L40 70 Z" />
+          </svg>
+          <span>2025 Wrapped</span>
+        <% end %>
+      <% end %>
     </div>
 
     <p class="text-[#636B74] max-w-[700px]">

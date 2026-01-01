@@ -72,3 +72,6 @@ application.register("transition", TransitionController)
 
 import VideoPlayerController from "./video_player_controller"
 application.register("video-player", VideoPlayerController)
+
+import WrappedStoriesController from "./wrapped_stories_controller"
+application.register("wrapped-stories", WrappedStoriesController)

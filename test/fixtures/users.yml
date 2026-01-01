@@ -27,6 +27,7 @@
 #  verified            :boolean          default(FALSE), not null
 #  watched_talks_count :integer          default(0), not null
 #  website             :string           default(""), not null
+#  wrapped_public      :boolean          default(FALSE), not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  canonical_id        :integer          indexed
