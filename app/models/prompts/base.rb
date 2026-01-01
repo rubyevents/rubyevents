@@ -37,7 +37,7 @@ module Prompts
     end
 
     def service_tier
-      "flex"
+      "default"
     end
   end
 end
