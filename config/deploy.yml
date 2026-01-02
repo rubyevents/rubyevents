@@ -59,6 +59,7 @@ env:
 aliases:
   shell: app exec --interactive --reuse "bash"
   console: app exec --reuse -i "bin/rails console"
+  stats: server exec "docker stats --no-stream"
 
 # Use a persistent storage volume.
 #
