@@ -46,11 +46,13 @@
       <div class="flex-col flex justify-center break-all">
         <div class="flex items-center gap-3 mb-2">
           <h1 class="text-black font-bold"><%= title organization.name %></h1>
-          <%= link_to organization_wrapped_index_path(organization_slug: organization.slug), class: "inline-flex items-center gap-1.5 px-3 py-1 bg-gradient-to-r from-red-600 to-red-700 text-white text-sm font-medium rounded-full hover:from-red-700 hover:to-red-800 transition shadow-sm" do %>
-            <svg class="size-4" viewBox="0 0 80 80" fill="currentColor">
-              <path d="M2 25 L16 10 L64 10 L78 25 L40 70 Z" />
-            </svg>
-            <span>2025 Wrapped</span>
+          <% if organization.events.where(start_date: Date.new(2025, 1, 1)..Date.new(2025, 12, 31)).exists? %>
+            <%= link_to organization_wrapped_index_path(organization_slug: organization.slug), class: "inline-flex items-center gap-1.5 px-3 py-1 bg-gradient-to-r from-red-600 to-red-700 text-white text-sm font-medium rounded-full hover:from-red-700 hover:to-red-800 transition shadow-sm" do %>
+              <svg class="size-4" viewBox="0 0 80 80" fill="currentColor">
+                <path d="M2 25 L16 10 L64 10 L78 25 L40 70 Z" />
+              </svg>
+              <span>2025 Wrapped</span>
+            <% end %>
           <% end %>
         </div>
         <% if organization.main_location.present? %>
