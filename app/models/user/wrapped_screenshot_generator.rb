@@ -1,5 +1,4 @@
 require "ferrum"
-require "tempfile"
 
 class User::WrappedScreenshotGenerator
   YEAR = 2025
@@ -22,29 +21,17 @@ class User::WrappedScreenshotGenerator
     return nil unless html_content
 
     dimensions = DIMENSIONS[orientation]
-    html_file = Tempfile.new(["wrapped", ".html"])
-    html_file.write(html_content)
-    html_file.close
-
-    browser = Ferrum::Browser.new(
-      headless: true,
-      window_size: [dimensions[:width], dimensions[:height]],
-      timeout: 30,
-      browser_options: {
-        "no-sandbox": true,
-        "disable-gpu": true,
-        "disable-dev-shm-usage": true
-      }
-    )
+    browser = Ferrum::Browser.new(**browser_options(dimensions))
 
     begin
-      browser.go_to("file://#{html_file.path}")
+      # Use data URI to inject HTML directly (works with remote Chrome)
+      data_uri = "data:text/html;base64,#{Base64.strict_encode64(html_content)}"
+      browser.go_to(data_uri)
       sleep 1
       screenshot_data = browser.screenshot(format: :png, full: true)
       screenshot_data
     ensure
       browser.quit
-      html_file.unlink
     end
   rescue => e
     Rails.logger.error("WrappedScreenshotGenerator failed: #{e.message}")
@@ -408,6 +395,36 @@ class User::WrappedScreenshotGenerator
       </body>
       </html>
     HTML
+  end
+
+  def browser_options(dimensions)
+    options = {
+      headless: true,
+      window_size: [dimensions[:width], dimensions[:height]],
+      timeout: 30
+    }
+
+    if chrome_ws_url
+      # Connect to remote browserless Chrome service
+      options[:url] = chrome_ws_url
+    else
+      # Local Chrome with sandbox options
+      options[:browser_options] = {
+        "no-sandbox": true,
+        "disable-gpu": true,
+        "disable-dev-shm-usage": true
+      }
+    end
+
+    options
+  end
+
+  def chrome_ws_url
+    # In production, connect to the chrome accessory via Kamal's Docker network
+    # In development, use local Chrome (return nil)
+    return nil unless Rails.env.production?
+
+    "ws://rubyvideo-chrome:3000"
   end
 
   def determine_personality(top_topics)
