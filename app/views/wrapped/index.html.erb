@@ -93,7 +93,7 @@
           <p class="text-red-200 text-sm mt-1">Rubyists</p>
         </div>
         <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center cursor-help" data-controller="tooltip" data-tooltip-content-value="Countries where Rubyists are from">
-          <p class="text-4xl font-black text-white"><%= number_with_delimiter(@rubyist_countries.count) %></p>
+          <p class="text-4xl font-black text-white"><%= number_with_delimiter(@rubyist_countries) %></p>
           <p class="text-red-200 text-sm mt-1">Rubyist Countries</p>
         </div>
         <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center cursor-help" data-controller="tooltip" data-tooltip-content-value="New users who signed up to RubyEvents.org in <%= @year %>">
@@ -234,7 +234,7 @@
         </div>
       <% end %>
 
-      <% if @next_year_events.positive? || @next_year_talks.positive? || @open_cfps.positive? %>
+      <% if @next_year_conferences.positive? || @next_year_talks.positive? || @open_cfps.positive? %>
         <div class="bg-white/10 backdrop-blur rounded-xl p-8 mt-8 text-center">
           <p class="text-red-300 text-sm mb-2">Sneak Peek</p>
           <h3 class="text-3xl font-black text-white mb-4"><%= @next_year %></h3>
