@@ -12,7 +12,7 @@ servers:
   job:
     hosts:
       - 91.107.208.207
-    cmd: bin/jobs
+    cmd: bin/jobs --mode=async
 
 # Enable SSL auto certification via Let's Encrypt (and allow for multiple apps on one server).
 # If using something like Cloudflare, it is recommended to set encryption mode
