@@ -121,11 +121,17 @@ class WrappedController < ApplicationController
 
     @total_rubyists = User.count
     @github_contributors = 83
-    @rubyist_countries = User
-      .where.not(location: [nil, ""])
-      .find_each
-      .filter_map { |user| user.location_info.country }
-      .uniq
+
+    rubyist_country_codes = Rails.cache.fetch("wrapped:#{@year}:rubyist_country_codes", expires_in: 1.hour) do
+      User
+        .where.not(location: [nil, ""])
+        .distinct
+        .pluck(:location)
+        .filter_map { |location| find_country_from_location(location)&.alpha2 }
+        .uniq
+    end
+
+    @rubyist_countries = rubyist_country_codes.map { |code| ISO3166::Country.new(code) }
 
     @monthly_visits = Rollup
       .where(time: year_range, interval: "month")
@@ -167,5 +173,47 @@ class WrappedController < ApplicationController
       .group("organizations.id")
       .order(Arel.sql("COUNT(DISTINCT events.id) DESC"))
       .limit(35)
+
+    set_wrapped_meta_tags
+  end
+
+  private
+
+  def set_wrapped_meta_tags
+    title = "RubyEvents.org #{@year} Wrapped"
+    description = "#{@year} in review: #{ActionController::Base.helpers.number_with_delimiter(@talks_held)} talks held, #{ActionController::Base.helpers.number_with_delimiter(@total_conferences)} conferences, #{ActionController::Base.helpers.number_with_delimiter(@total_speakers)} speakers. Explore the Ruby community's year!"
+    image_url = view_context.image_url("og/wrapped-2025.png")
+
+    set_meta_tags(
+      title: title,
+      description: description,
+      og: {
+        title: title,
+        description: description,
+        image: image_url,
+        type: "website",
+        url: wrapped_url
+      },
+      twitter: {
+        title: title,
+        description: description,
+        image: image_url,
+        card: "summary_large_image"
+      }
+    )
+  end
+
+  def find_country_from_location(location_string)
+    return nil if location_string.blank?
+
+    country = Country.find(location_string)
+    return country if country.present?
+
+    location_string.split(",").each do |part|
+      country = Country.find(part.strip)
+      return country if country.present?
+    end
+
+    nil
   end
 end

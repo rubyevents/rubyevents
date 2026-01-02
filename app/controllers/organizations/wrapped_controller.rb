@@ -56,6 +56,8 @@ class Organizations::WrappedController < ApplicationController
 
     first_year = @organization.events.minimum(:start_date)&.year
     @years_supporting = first_year ? (@year - first_year + 1) : 1
+
+    set_wrapped_meta_tags
   end
 
   def og_image
@@ -73,6 +75,30 @@ class Organizations::WrappedController < ApplicationController
 
   def set_organization
     @organization = Organization.find_by!(slug: params[:organization_slug])
+  end
+
+  def set_wrapped_meta_tags
+    description = "See #{@organization.name}'s #{@year} Ruby Events Wrapped!"
+    title = "#{@organization.name}'s #{@year} Wrapped - RubyEvents.org"
+    image_url = og_image_organization_wrapped_index_url(organization_slug: @organization.slug)
+
+    set_meta_tags(
+      title: title,
+      description: description,
+      og: {
+        title: title,
+        description: description,
+        image: image_url,
+        type: "website",
+        url: @share_url
+      },
+      twitter: {
+        title: title,
+        description: description,
+        image: image_url,
+        card: "summary_large_image"
+      }
+    )
   end
 
   def ensure_card_generated

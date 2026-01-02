@@ -32,10 +32,11 @@
       <% stats_lines << "🎤 #{talks_given_in_year.count} talks given" if talks_given_in_year.any? %>
       <% stats_lines << "🌍 #{countries_visited.count} #{(countries_visited.count == 1) ? "country" : "countries"} visited" if countries_visited.any? %>
 
-      <% x_share_text = (["My #{year} @rubyevents_org Wrapped 💎", ""] + stats_lines + ["", share_url]).join("\n") %>
-      <% bluesky_share_text = (["My #{year} @rubyevents.org Wrapped 💎", ""] + stats_lines + ["", share_url]).join("\n") %>
-      <% mastodon_share_text = (["My #{year} @rubyevents@ruby.social Wrapped 💎", ""] + stats_lines + ["", share_url]).join("\n") %>
-      <% default_share_text = (["My #{year} RubyEvents.org Wrapped 💎", ""] + stats_lines + ["", share_url]).join("\n") %>
+      <% hashtags = "#ruby #rubyevents" %>
+      <% x_share_text = (["My #{year} @rubyevents_org Wrapped 💎", ""] + stats_lines + ["", share_url, "", hashtags]).join("\n") %>
+      <% bluesky_share_text = (["My #{year} @rubyevents.org Wrapped 💎", ""] + stats_lines + ["", share_url, "", hashtags]).join("\n") %>
+      <% mastodon_share_text = (["My #{year} @rubyevents@ruby.social Wrapped 💎", ""] + stats_lines + ["", share_url, "", hashtags]).join("\n") %>
+      <% default_share_text = (["My #{year} RubyEvents.org Wrapped 💎", ""] + stats_lines + ["", share_url, "", hashtags]).join("\n") %>
 
       <div class="group relative w-full">
         <div class="flex items-center justify-center gap-3 w-full p-3 bg-red-600 text-white rounded-lg cursor-pointer">

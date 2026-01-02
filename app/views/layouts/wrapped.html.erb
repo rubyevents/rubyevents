@@ -2,10 +2,10 @@
 <html lang="en">
   <head>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= content_for?(:head) ? yield(:head) : "" %>
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= display_meta_tags site: "" %>
 
     <%= vite_stylesheet_tag "application.css", media: "all" %>
     <%= vite_javascript_tag "application" %>

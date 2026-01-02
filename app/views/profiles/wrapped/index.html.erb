@@ -1,25 +1,3 @@
-<% content_for :head do %>
-  <title><%= @user.name %>'s <%= @year %> Wrapped - RubyEvents.org</title>
-
-  <% og_stats = [] %>
-  <% og_stats << "#{@total_talks_watched} talks watched" if @total_talks_watched&.positive? %>
-  <% og_stats << "#{@events_attended_in_year&.count || 0} events attended" if @events_attended_in_year&.any? %>
-  <% og_stats << "#{@talks_given_in_year&.count || 0} talks given" if @talks_given_in_year&.any? %>
-  <% og_stats << "#{@countries_visited&.count || 0} countries visited" if @countries_visited&.any? %>
-  <% og_description = og_stats.any? ? "#{@user.name}'s #{@year}: #{og_stats.join(" · ")}. See the full Wrapped!" : "See #{@user.name}'s #{@year} Ruby Events Wrapped!" %>
-
-  <meta name="description" content="<%= og_description %>">
-  <meta property="og:title" content="<%= @user.name %>'s <%= @year %> Wrapped - RubyEvents.org">
-  <meta property="og:description" content="<%= og_description %>">
-  <meta property="og:image" content="<%= og_image_profile_wrapped_index_url(profile_slug: @user.to_param) %>">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="<%= profile_wrapped_index_url(profile_slug: @user.to_param) %>">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="<%= @user.name %>'s <%= @year %> Wrapped - RubyEvents.org">
-  <meta name="twitter:description" content="<%= og_description %>">
-  <meta name="twitter:image" content="<%= og_image_profile_wrapped_index_url(profile_slug: @user.to_param) %>">
-<% end %>
-
 <% pages = [] %>
 
 <% pages << {partial: "cover", cover: true} %>

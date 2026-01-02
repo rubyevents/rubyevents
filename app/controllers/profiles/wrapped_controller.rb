@@ -84,10 +84,9 @@ class Profiles::WrappedController < ApplicationController
       .tally
       .sort_by { |_, count| -count }
 
-    @bookmarks_in_year = @user.watch_lists
-      .joins(:watch_list_talks)
-      .where(watch_list_talks: {created_at: year_range})
-      .distinct
+    @bookmarks_in_year = WatchListTalk
+      .joins(:watch_list)
+      .where(watch_lists: {user_id: @user.id})
       .count
 
     @events_attended_in_year = @user.participated_events
@@ -227,6 +226,8 @@ class Profiles::WrappedController < ApplicationController
 
     @wrapped_locals = wrapped_locals
 
+    set_wrapped_meta_tags
+
     render layout: "wrapped"
   end
 
@@ -308,6 +309,31 @@ class Profiles::WrappedController < ApplicationController
   end
 
   private
+
+  def set_wrapped_meta_tags
+    description = "See #{@user.name}'s #{@year} Ruby Events Wrapped!"
+    title = "#{@user.name}'s #{@year} Wrapped - RubyEvents.org"
+    image_url = og_image_profile_wrapped_index_url(profile_slug: @user.to_param)
+    page_url = profile_wrapped_index_url(profile_slug: @user.to_param)
+
+    set_meta_tags(
+      title: title,
+      description: description,
+      og: {
+        title: title,
+        description: description,
+        image: image_url,
+        type: "website",
+        url: page_url
+      },
+      twitter: {
+        title: title,
+        description: description,
+        image: image_url,
+        card: "summary_large_image"
+      }
+    )
+  end
 
   def calculate_longest_streak
     return 0 if @watched_talks_in_year.empty?
