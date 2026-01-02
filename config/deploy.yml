@@ -60,6 +60,7 @@ aliases:
   shell: app exec --interactive --reuse "bash"
   console: app exec --reuse -i "bin/rails console"
   stats: server exec "docker stats --no-stream"
+  seed_all: app exec "rake db:seed:all"
 
 # Use a persistent storage volume.
 #

@@ -78,11 +78,15 @@ class Organization::WrappedScreenshotGenerator
   end
 
   def chrome_ws_url
-    # In production, connect to the chrome accessory via Kamal's Docker network
-    # In development, use local Chrome (return nil)
-    return nil unless Rails.env.production?
+    # Use CHROME_WS_URL env var if set, otherwise derive from environment
+    # In development/test, use local Chrome (return nil)
+    return ENV["CHROME_WS_URL"] if ENV["CHROME_WS_URL"].present?
+    return nil if Rails.env.local?
 
-    "ws://rubyvideo-chrome:3000"
+    # Kamal names accessories as <service>-<accessory>
+    # Production: rubyvideo-chrome, Staging: rubyvideo_staging-chrome
+    service_name = Rails.env.staging? ? "rubyvideo_staging" : "rubyvideo"
+    "ws://#{service_name}-chrome:3000"
   end
 
   def render_card_html(locals)
