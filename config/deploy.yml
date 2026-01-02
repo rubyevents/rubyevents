@@ -59,6 +59,8 @@ env:
 aliases:
   shell: app exec --interactive --reuse "bash"
   console: app exec --reuse -i "bin/rails console"
+  stats: server exec "docker stats --no-stream"
+  seed_all: app exec "rake db:seed:all"
 
 # Use a persistent storage volume.
 #
@@ -77,3 +79,15 @@ accessories:
         - LITESTREAM_ENDPOINT
         - LITESTREAM_ACCESS_KEY_ID
         - LITESTREAM_SECRET_ACCESS_KEY
+
+  chrome:
+    roles: ["web", "job"]
+    image: browserless/chrome:latest
+    port: 3000
+    env:
+      clear:
+        CONNECTION_TIMEOUT: "60000"
+        MAX_CONCURRENT_SESSIONS: "5"
+    options:
+      memory: 1GB
+      cpus: 0.5
