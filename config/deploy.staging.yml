@@ -103,6 +103,18 @@ accessories:
         - LITESTREAM_ACCESS_KEY_ID
         - LITESTREAM_SECRET_ACCESS_KEY
 
+  chrome:
+    roles: ["web", "job"]
+    image: browserless/chrome:latest
+    port: 3000
+    env:
+      clear:
+        CONNECTION_TIMEOUT: "60000"
+        MAX_CONCURRENT_SESSIONS: "5"
+    options:
+      memory: 1GB
+      cpus: 0.5
+
   typesense:
     roles: ["web"]
     image: typesense/typesense:27.1

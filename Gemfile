@@ -144,7 +144,7 @@ gem "pagy"
 
 # gem "activerecord-enhancedsqlite3-adapter"
 gem "solid_cache"
-gem "solid_queue"
+gem "solid_queue", github: "joshleblanc/solid_queue", branch: "async-mode"
 gem "mission_control-jobs"
 
 gem "ahoy_matey"
