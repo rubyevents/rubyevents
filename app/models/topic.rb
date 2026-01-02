@@ -29,6 +29,7 @@
 # rubocop:enable Layout/LineLength
 class Topic < ApplicationRecord
   include Sluggable
+  include Topic::TypesenseSearchable
 
   configure_slug(attribute: :name, auto_suffix_on_collision: false)
 

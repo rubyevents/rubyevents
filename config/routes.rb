@@ -156,6 +156,11 @@ Rails.application.routes.draw do
     resources :talks, only: [:index]
     resources :speakers, only: [:index]
     resources :events, only: [:index]
+    resources :topics, only: [:index]
+    resources :series, only: [:index]
+    resources :organizations, only: [:index]
+    resources :locations, only: [:index]
+    resources :languages, only: [:index]
   end
 
   get "/featured" => "page#featured"

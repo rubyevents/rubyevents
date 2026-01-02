@@ -1,11 +1,10 @@
-
 <%= turbo_stream.update "talks_search_results", method: "morph" do %>
   <div class="flex items-center flex-wrap gap-2 py-4">
     <h2>Talks</h2>
     <% if @talks.size.positive? %>
-      <span class="text-sm text-gray-500">(<%= @talks.size %><% if @talks.size >= Spotlight::TalksController::LIMIT %>+<% end %> <%= "talk".pluralize(@talks.size) %>)</span>
+      <span class="text-sm text-gray-500">(<%= total_count %> <%= "talk".pluralize(total_count) %>)</span>
       <%= link_to talks_path(s: search_query), class: "link text-sm text-gray-500", target: "_top" do %>
-        see results
+        see all
       <% end %>
     <% end %>
   </div>

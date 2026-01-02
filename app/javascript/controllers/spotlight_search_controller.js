@@ -6,14 +6,19 @@ import { get } from '@rails/request.js'
 // Connects to data-controller="spotlight-search"
 export default class extends Controller {
   static targets = ['searchInput', 'form', 'searchResults', 'talksSearchResults',
-    'speakersSearchResults', 'eventsSearchResults', 'allSearchResults',
-    'searchQuery', 'loading', 'clear']
+    'speakersSearchResults', 'eventsSearchResults', 'topicsSearchResults', 'seriesSearchResults',
+    'organizationsSearchResults', 'locationsSearchResults', 'languagesSearchResults', 'allSearchResults', 'searchQuery', 'loading', 'clear']
 
   static debounces = ['search']
   static values = {
     urlSpotlightTalks: String,
     urlSpotlightSpeakers: String,
     urlSpotlightEvents: String,
+    urlSpotlightTopics: String,
+    urlSpotlightSeries: String,
+    urlSpotlightOrganizations: String,
+    urlSpotlightLocations: String,
+    urlSpotlightLanguages: String,
     mainResource: String
   }
 
@@ -77,6 +82,51 @@ export default class extends Controller {
       searchPromises.push(this.#handleSearch(this.urlSpotlightEventsValue, query, this.eventsAbortController))
     }
 
+    // search topics and abort previous requests
+    if (this.hasUrlSpotlightTopicsValue) {
+      if (this.topicsAbortController) {
+        this.topicsAbortController.abort()
+      }
+      this.topicsAbortController = new AbortController()
+      searchPromises.push(this.#handleSearch(this.urlSpotlightTopicsValue, query, this.topicsAbortController))
+    }
+
+    // search series and abort previous requests
+    if (this.hasUrlSpotlightSeriesValue) {
+      if (this.seriesAbortController) {
+        this.seriesAbortController.abort()
+      }
+      this.seriesAbortController = new AbortController()
+      searchPromises.push(this.#handleSearch(this.urlSpotlightSeriesValue, query, this.seriesAbortController))
+    }
+
+    // search organizations and abort previous requests
+    if (this.hasUrlSpotlightOrganizationsValue) {
+      if (this.organizationsAbortController) {
+        this.organizationsAbortController.abort()
+      }
+      this.organizationsAbortController = new AbortController()
+      searchPromises.push(this.#handleSearch(this.urlSpotlightOrganizationsValue, query, this.organizationsAbortController))
+    }
+
+    // search locations and abort previous requests
+    if (this.hasUrlSpotlightLocationsValue) {
+      if (this.locationsAbortController) {
+        this.locationsAbortController.abort()
+      }
+      this.locationsAbortController = new AbortController()
+      searchPromises.push(this.#handleSearch(this.urlSpotlightLocationsValue, query, this.locationsAbortController))
+    }
+
+    // search languages and abort previous requests
+    if (this.hasUrlSpotlightLanguagesValue) {
+      if (this.languagesAbortController) {
+        this.languagesAbortController.abort()
+      }
+      this.languagesAbortController = new AbortController()
+      searchPromises.push(this.#handleSearch(this.urlSpotlightLanguagesValue, query, this.languagesAbortController))
+    }
+
     try {
       await Promise.all(searchPromises)
     } finally {
@@ -138,9 +188,56 @@ export default class extends Controller {
     if (this.eventsAbortController) {
       this.eventsAbortController.abort()
     }
+
+    if (this.topicsAbortController) {
+      this.topicsAbortController.abort()
+    }
+
+    if (this.seriesAbortController) {
+      this.seriesAbortController.abort()
+    }
+
+    if (this.organizationsAbortController) {
+      this.organizationsAbortController.abort()
+    }
+
+    if (this.locationsAbortController) {
+      this.locationsAbortController.abort()
+    }
+
+    if (this.languagesAbortController) {
+      this.languagesAbortController.abort()
+    }
+
     this.talksSearchResultsTarget.innerHTML = ''
     this.speakersSearchResultsTarget.innerHTML = ''
     this.eventsSearchResultsTarget.innerHTML = ''
+
+    if (this.hasTopicsSearchResultsTarget) {
+      this.topicsSearchResultsTarget.innerHTML = ''
+      this.topicsSearchResultsTarget.classList.add('hidden')
+    }
+
+    if (this.hasSeriesSearchResultsTarget) {
+      this.seriesSearchResultsTarget.innerHTML = ''
+      this.seriesSearchResultsTarget.classList.add('hidden')
+    }
+
+    if (this.hasOrganizationsSearchResultsTarget) {
+      this.organizationsSearchResultsTarget.innerHTML = ''
+      this.organizationsSearchResultsTarget.classList.add('hidden')
+    }
+
+    if (this.hasLocationsSearchResultsTarget) {
+      this.locationsSearchResultsTarget.innerHTML = ''
+      this.locationsSearchResultsTarget.classList.add('hidden')
+    }
+
+    if (this.hasLanguagesSearchResultsTarget) {
+      this.languagesSearchResultsTarget.innerHTML = ''
+      this.languagesSearchResultsTarget.classList.add('hidden')
+    }
+
     this.allSearchResultsTarget.classList.add('hidden')
   }
 

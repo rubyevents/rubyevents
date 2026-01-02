@@ -1,0 +1,31 @@
+<%= turbo_stream.replace "locations_search_results" do %>
+  <div
+    id="locations_search_results"
+    class="<%= @locations.any? ? 'pb-4 border-b' : 'hidden' %>"
+    data-spotlight-search-target="locationsSearchResults">
+    <% if @locations.any? %>
+      <div class="flex items-center flex-wrap gap-2 py-2">
+        <span class="text-sm font-medium text-gray-600">Locations</span>
+        <span class="text-xs text-gray-400">(<%= total_count %>)</span>
+      </div>
+      <div class="flex flex-col gap-1">
+        <% @locations.each do |location| %>
+          <%= link_to location[:path], target: "_top", class: "flex items-center justify-between gap-4 py-2 px-2 rounded hover:bg-gray-100 group" do %>
+            <div class="flex items-center gap-3">
+              <span class="text-lg"><%= location[:emoji_flag] %></span>
+              <span class="font-medium"><%= location[:name] %></span>
+            </div>
+            <div class="flex items-center gap-4 text-sm text-gray-500">
+              <% if location[:type] == :city %>
+                <span><%= location[:country_name] %></span>
+              <% else %>
+                <span>Country</span>
+              <% end %>
+              <span class="text-xs">(<%= location[:event_count] %>)</span>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

@@ -47,6 +47,7 @@ class User < ApplicationRecord
   include Sluggable
   include Suggestable
   include User::Searchable
+  include User::TypesenseSearchable
 
   configure_slug(attribute: :name, auto_suffix_on_collision: true)
 
@@ -194,7 +195,7 @@ class User < ApplicationRecord
     user = find_by(name: name, marked_for_deletion: false)
     return user if user
 
-    alias_record = Alias.find_by(aliasable_type: "User", name: name)
+    alias_record = ::Alias.find_by(aliasable_type: "User", name: name)
     alias_record&.aliasable
   end
 
@@ -204,7 +205,7 @@ class User < ApplicationRecord
     user = find_by(slug: slug, marked_for_deletion: false)
     return user if user
 
-    alias_record = Alias.find_by(aliasable_type: "User", slug: slug)
+    alias_record = ::Alias.find_by(aliasable_type: "User", slug: slug)
     alias_record&.aliasable
   end
 

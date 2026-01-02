@@ -29,6 +29,7 @@
 class EventSeries < ApplicationRecord
   include Sluggable
   include Suggestable
+  include EventSeries::TypesenseSearchable
 
   include ActionView::Helpers::TextHelper
 

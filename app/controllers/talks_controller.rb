@@ -19,24 +19,37 @@ class TalksController < ApplicationController
 
   # GET /talks
   def index
-    @talks = Talk.includes(:speakers, event: :series, child_talks: :speakers)
-    @talks = @talks.ft_search(params[:s]).with_snippets if params[:s].present?
-    @talks = @talks.for_topic(params[:topic]) if params[:topic].present?
-    @talks = @talks.for_event(params[:event]) if params[:event].present?
-    @talks = @talks.for_speaker(params[:speaker]) if params[:speaker].present?
-    @talks = @talks.where(kind: talk_kind) if talk_kind.present?
-    @talks = @talks.where("created_at >= ?", created_after) if created_after
-    @talks = @talks.watchable if params[:status].blank? && params[:status] != "all"
-    @talks = @talks.scheduled if params[:status] == "scheduled"
+    if typesense_search?
+      typesense_options = {
+        per_page: pagy_params[:limit] || 20,
+        page: pagy_params[:page] || 1,
+        sort: typesense_sort_key
+      }
+      typesense_options[:topic_slug] = params[:topic] if params[:topic].present?
+      typesense_options[:event_slug] = params[:event] if params[:event].present?
+      typesense_options[:speaker_slug] = params[:speaker] if params[:speaker].present?
+      typesense_options[:kind] = talk_kind if talk_kind.present?
 
-    # Apply ordering (handles search ranking vs custom ordering)
-    if order_by_key == "ranked"
-      @talks = @talks.ranked
-    elsif order_by_key.present?
-      @talks = @talks.order(ORDER_BY_OPTIONS[order_by_key])
+      @pagy, @talks = Talk.typesense_search_talks(params[:s], typesense_options)
+    else
+      @talks = Talk.includes(:speakers, event: :series, child_talks: :speakers)
+      @talks = @talks.ft_search(params[:s]).with_snippets if params[:s].present?
+      @talks = @talks.for_topic(params[:topic]) if params[:topic].present?
+      @talks = @talks.for_event(params[:event]) if params[:event].present?
+      @talks = @talks.for_speaker(params[:speaker]) if params[:speaker].present?
+      @talks = @talks.where(kind: talk_kind) if talk_kind.present?
+      @talks = @talks.where("created_at >= ?", created_after) if created_after
+      @talks = @talks.watchable if params[:status].blank? && params[:status] != "all"
+      @talks = @talks.scheduled if params[:status] == "scheduled"
+
+      if order_by_key == "ranked"
+        @talks = @talks.ranked
+      elsif order_by_key.present?
+        @talks = @talks.order(ORDER_BY_OPTIONS[order_by_key])
+      end
+
+      @pagy, @talks = pagy(@talks, **pagy_params)
     end
-
-    @pagy, @talks = pagy(@talks, **pagy_params)
   end
 
   # GET /talks/1
@@ -120,5 +133,18 @@ class TalksController < ApplicationController
     return unless Current.user
 
     @user_favorite_talks_ids = Current.user.default_watch_list.talks.ids
+  end
+
+  def typesense_search?
+    params[:s].present? && Talk.respond_to?(:typesense_search_talks)
+  end
+
+  def typesense_sort_key
+    case order_by_key
+    when "date_desc" then "date"
+    when "date_asc" then "date_asc"
+    when "ranked" then "relevance"
+    else "relevance"
+    end
   end
 end

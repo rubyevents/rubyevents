@@ -50,8 +50,12 @@ env:
     WEB_CONCURRENCY: 2
     RAILS_MAX_THREADS: 3
     RAILS_ENV: production
+    TYPESENSE_HOST: rubyvideo-typesense
+    TYPESENSE_PORT: 8108
+    TYPESENSE_PROTOCOL: http
   secret:
     - RAILS_MASTER_KEY
+    - TYPESENSE_API_KEY
 
 # Aliases are triggered with "bin/kamal <alias>". You can overwrite arguments on invocation:
 # "bin/kamal logs -r job" will tail logs from the first server in the job section.
@@ -77,3 +81,14 @@ accessories:
         - LITESTREAM_ENDPOINT
         - LITESTREAM_ACCESS_KEY_ID
         - LITESTREAM_SECRET_ACCESS_KEY
+
+  typesense:
+    roles: ["web"]
+    image: typesense/typesense:27.1
+    port: "8108:8108"
+    volumes:
+      - "typesense-data:/data"
+    env:
+      secret:
+        - TYPESENSE_API_KEY
+    cmd: --data-dir /data --api-key=$TYPESENSE_API_KEY --enable-cors=true

@@ -94,6 +94,9 @@ gem "herb", "~> 0.8"
 # An ActionView-compatible ERB engine with modern DX - re-imagined with Herb.
 gem "reactionview", "~> 0.2"
 
+# Typesense search integration
+gem "typesense-rails"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "bundler-audit", require: false

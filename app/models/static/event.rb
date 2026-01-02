@@ -232,6 +232,13 @@ module Static
       Country.find(location.to_s.split(",").last&.strip)
     end
 
+    def city
+      return nil if location.blank?
+
+      parts = location.to_s.split(",").map(&:strip)
+      parts.first if parts.size >= 2
+    end
+
     def home_sort_date
       if published_date
         return published_date
@@ -270,6 +277,7 @@ module Static
         series: static_series.event_series_record,
         website: website,
         country_code: country&.alpha2,
+        city: city,
         start_date: start_date,
         end_date: end_date,
         kind: kind
