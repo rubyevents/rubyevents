@@ -1,3 +1,16 @@
+GIT
+  remote: https://github.com/joshleblanc/solid_queue.git
+  revision: f5881054ddc7096b18d086d0ec01620d4e1024d4
+  branch: async-mode
+  specs:
+    solid_queue (1.2.4)
+      activejob (>= 7.1)
+      activerecord (>= 7.1)
+      concurrent-ruby (>= 1.3.1)
+      fugit (~> 1.11)
+      railties (>= 7.1)
+      thor (>= 1.3.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -602,13 +615,6 @@ GEM
       activejob (>= 7.2)
       activerecord (>= 7.2)
       railties (>= 7.2)
-    solid_queue (1.2.4)
-      activejob (>= 7.1)
-      activerecord (>= 7.1)
-      concurrent-ruby (>= 1.3.1)
-      fugit (~> 1.11)
-      railties (>= 7.1)
-      thor (>= 1.3.1)
     sqlite3 (2.9.0)
       mini_portile2 (~> 2.8.0)
     sqlite3 (2.9.0-aarch64-linux-gnu)
@@ -774,7 +780,7 @@ DEPENDENCIES
   selenium-webdriver
   sitemap_generator (~> 6.3)
   solid_cache
-  solid_queue
+  solid_queue!
   sqlite3 (>= 2.1.0)
   stackprof
   standardrb (~> 1.0)
