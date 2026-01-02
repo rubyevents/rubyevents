@@ -120,7 +120,15 @@ class Profiles::WrappedController < ApplicationController
 
     @total_views_on_talks = @talks_given_in_year.sum(:view_count)
     @total_likes_on_talks = @talks_given_in_year.sum(:like_count)
-    @total_speaking_minutes = (@talks_given_in_year.sum(:duration_in_seconds) / 60.0).round
+
+    regular_duration = @talks_given_in_year.where.not(video_provider: "parent").sum(:duration_in_seconds)
+    subtalks_duration = @talks_given_in_year
+      .where(video_provider: "parent")
+      .where.not(start_seconds: nil)
+      .where.not(end_seconds: nil)
+      .sum("end_seconds - start_seconds")
+
+    @total_speaking_minutes = ((regular_duration + subtalks_duration) / 60.0).round
 
     if @talks_given_in_year.any?
       talk_ids = @talks_given_in_year.pluck(:id)
