@@ -382,6 +382,10 @@ class Event < ApplicationRecord
     event_image_or_default_for("poster.webp")
   end
 
+  def sort_date
+    start_date || end_date || Time.at(0)
+  end
+
   def stickers
     Sticker.for_event(self)
   end
