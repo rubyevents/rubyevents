@@ -3,7 +3,7 @@ import { useIntersection } from 'stimulus-use'
 import Vlitejs from 'vlitejs'
 import YouTube from 'vlitejs/providers/youtube.js'
 import Vimeo from 'vlitejs/providers/vimeo.js'
-import { patch } from '@rails/request.js'
+import { patch, post } from '@rails/request.js'
 
 Vlitejs.registerProvider('youtube', YouTube)
 Vlitejs.registerProvider('vimeo', Vimeo)
@@ -15,12 +15,15 @@ export default class extends Controller {
     provider: String,
     startSeconds: Number,
     endSeconds: Number,
+    durationSeconds: Number,
     watchedTalkPath: String,
     currentUserPresent: { default: false, type: Boolean },
-    progressSeconds: { default: 0, type: Number }
+    progressSeconds: { default: 0, type: Number },
+    watched: { default: false, type: Boolean },
+    autoMarked: { default: false, type: Boolean }
   }
 
-  static targets = ['player', 'playerWrapper']
+  static targets = ['player', 'playerWrapper', 'watchedOverlay', 'resumeOverlay', 'playOverlay']
   playbackRateOptions = [1, 1.25, 1.5, 1.75, 2]
 
   initialize () {
@@ -36,8 +39,52 @@ export default class extends Controller {
   init () {
     if (this.isPreview) return
     if (!this.hasPlayerTarget) return
+    if (this.watchedValue) return
+    if (this.hasResumeOverlayTarget || this.hasPlayOverlayTarget) return
 
     this.player = new Vlitejs(this.playerTarget, this.options)
+  }
+
+  dismissWatchedOverlay () {
+    this.showLoadingState(this.watchedOverlayTarget)
+    this.watchedValue = false
+    this.autoplay = true
+    this.player = new Vlitejs(this.playerTarget, this.options)
+  }
+
+  resumePlayback () {
+    this.showLoadingState(this.resumeOverlayTarget)
+    this.autoplay = true
+    this.player = new Vlitejs(this.playerTarget, this.options)
+  }
+
+  startPlayback () {
+    this.showLoadingState(this.playOverlayTarget)
+    this.autoplay = true
+    this.player = new Vlitejs(this.playerTarget, this.options)
+  }
+
+  showLoadingState (overlay) {
+    if (!overlay) return
+
+    const content = overlay.querySelector('.flex.flex-col')
+    if (content) {
+      content.innerHTML = `
+        <div class="p-4 bg-white/20 backdrop-blur-sm rounded-full">
+          <svg class="animate-spin h-8 w-8 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+        </div>
+        <div class="text-sm text-white/80">Loading...</div>
+      `
+    }
+  }
+
+  removeOverlays () {
+    if (this.hasWatchedOverlayTarget) this.watchedOverlayTarget.remove()
+    if (this.hasResumeOverlayTarget) this.resumeOverlayTarget.remove()
+    if (this.hasPlayOverlayTarget) this.playOverlayTarget.remove()
   }
 
   get options () {
@@ -132,6 +179,12 @@ export default class extends Controller {
     if (this.hasProgressSecondsValue && this.progressSecondsValue > 0) {
       this.player.seekTo(this.progressSecondsValue)
     }
+
+    if (this.autoplay) {
+      this.autoplay = false
+      this.player.play()
+      this.removeOverlays()
+    }
   }
 
   setupYouTubeEventLogging (player) {
@@ -187,6 +240,8 @@ export default class extends Controller {
     if (!this.hasWatchedTalkPathValue) return
     if (!this.currentUserPresentValue) return
 
+    this.checkAutoMark(progressSeconds)
+
     patch(this.watchedTalkPathValue, {
       body: {
         watched_talk: {
@@ -196,6 +251,42 @@ export default class extends Controller {
     }).catch(error => {
       console.error('Error updating watch progress:', error)
     })
+  }
+
+  checkAutoMark (progressSeconds) {
+    if (this.watchedValue || this.autoMarkedValue) return
+    if (!this.hasDurationSecondsValue || this.durationSecondsValue <= 0) return
+
+    const progressPercentage = (progressSeconds / this.durationSecondsValue) * 100
+
+    if (progressPercentage >= 80) {
+      this.autoMarkAsWatched()
+    }
+  }
+
+  async autoMarkAsWatched () {
+    if (this.autoMarkedValue) return
+
+    this.autoMarkedValue = true
+
+    try {
+      const response = await post(this.watchedTalkPathValue, {
+        body: {
+          watched_talk: {
+            watched_on: 'rubyevents',
+            progress_seconds: this.progressSecondsValue
+          }
+        },
+        responseKind: 'turbo-stream'
+      })
+
+      if (response.ok) {
+        this.watchedValue = true
+      }
+    } catch (error) {
+      console.error('Error auto-marking as watched:', error)
+      this.autoMarkedValue = false
+    }
   }
 
   createPlaybackRateSelect (options, player) {

@@ -428,6 +428,23 @@ class Talk < ApplicationRecord
     child_talks_speakers
   end
 
+  def feedback_allowed?
+    speakers.all?(&:feedback_enabled?)
+  end
+
+  def feedback_allowed_for?(user)
+    return false unless feedback_allowed?
+    return true if user.blank?
+
+    !speaker?(user)
+  end
+
+  def speaker?(user)
+    return false if user.blank?
+
+    speakers.exists?(id: user.id)
+  end
+
   def speaker_names
     speakers.pluck(:name).join(" ")
   end

@@ -14,8 +14,9 @@ class WatchedTalksControllerTest < ActionDispatch::IntegrationTest
     get watched_talks_url
     assert_response :success
 
-    talk_ids = assigns(:talks).map(&:id)
-    user_watched_talk_ids = @user.watched_talks.pluck(:talk_id)
+    watched_talks_by_date = assigns(:watched_talks_by_date)
+    talk_ids = watched_talks_by_date.values.flatten.map(&:talk_id)
+    user_watched_talk_ids = @user.watched_talks.watched.pluck(:talk_id)
 
     assert_equal user_watched_talk_ids.sort, talk_ids.sort
   end

@@ -1,0 +1,59 @@
+<div class="container py-8">
+  <div class="max-w-2xl mx-auto">
+    <h1 class="text-3xl font-bold mb-8">Settings</h1>
+
+    <%= form_with(model: Current.user, url: settings_path, method: :patch) do |form| %>
+      <div class="space-y-8">
+        <% if Current.user.talks_count > 0 %>
+          <div class="card bg-base-100 shadow-sm border">
+            <div class="card-body">
+              <h2 class="card-title text-lg">Speaker Settings</h2>
+              <p class="text-sm text-gray-500 mb-4">Settings for speakers who have given talks at Ruby events.</p>
+
+              <div class="form-control">
+                <label class="label cursor-pointer justify-start gap-4">
+                  <%= form.check_box :feedback_enabled, class: "toggle toggle-primary" %>
+                  <div>
+                    <span class="label-text font-medium">Allow feedback on your talks</span>
+                    <p class="text-sm text-gray-500">When enabled, viewers can share feedback about your talks (liked it, would recommend, beginner-friendly, etc.). The "Where did you watch?" option will still be available regardless.</p>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+        <% end %>
+
+        <div class="card bg-base-100 shadow-sm border">
+          <div class="card-body">
+            <h2 class="card-title text-lg">Privacy</h2>
+            <p class="text-sm text-gray-500 mb-4">Control what others can see on your profile.</p>
+
+            <div class="form-control">
+              <label class="label cursor-pointer justify-start gap-4">
+                <%= form.check_box :wrapped_public, class: "toggle toggle-primary" %>
+                <div>
+                  <span class="label-text font-medium">Make Wrapped public</span>
+                  <p class="text-sm text-gray-500">Allow others to view your year in review (Wrapped) on your profile.</p>
+                </div>
+              </label>
+            </div>
+
+            <div class="form-control opacity-50">
+              <label class="label cursor-not-allowed justify-start gap-4">
+                <input type="checkbox" class="toggle toggle-primary" disabled checked>
+                <div>
+                  <span class="label-text font-medium">Profile shows up in global search</span>
+                  <p class="text-sm text-gray-500">Allow your profile to appear in search results. <span class="italic">(Coming soon)</span></p>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex justify-end">
+          <%= ui_button "Save settings", type: :submit %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,3 @@
+<%= turbo_stream.update dom_id(@talk, :feedback_banner) do %>
+  <%= render partial: "talks/watched_talks/feedback_banner", locals: {talk: @talk, watched_talk: @watched_talk, form_open: @form_open} %>
+<% end %>

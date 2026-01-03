@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
 
   resource :password, only: [:edit, :update]
+  resource :settings, only: [:show, :update]
   namespace :identity do
     resource :email, only: [:edit, :update]
     resource :email_verification, only: [:show, :create]
@@ -72,7 +73,7 @@ Rails.application.routes.draw do
   resources :talks, param: :slug, only: [:index, :show, :update, :edit] do
     scope module: :talks do
       resources :recommendations, only: [:index]
-      resource :watched_talk, only: [:create, :destroy, :update]
+      resource :watched_talk, only: [:new, :create, :destroy, :update]
       resource :slides, only: :show
     end
   end

@@ -19,12 +19,12 @@ class User::TalkRecommendationsTest < ActiveSupport::TestCase
   end
 
   test "collaborative filtering finds similar users" do
-    @user.watched_talks.create!(talk: @talk1)
-    @user.watched_talks.create!(talk: @talk2)
+    @user.watched_talks.create!(talk: @talk1, watched: true)
+    @user.watched_talks.create!(talk: @talk2, watched: true)
 
-    @other_user.watched_talks.create!(talk: @talk1)
-    @other_user.watched_talks.create!(talk: @talk2)
-    @other_user.watched_talks.create!(talk: @talk3)
+    @other_user.watched_talks.create!(talk: @talk1, watched: true)
+    @other_user.watched_talks.create!(talk: @talk2, watched: true)
+    @other_user.watched_talks.create!(talk: @talk3, watched: true)
 
     recommendations = @user.talk_recommender.talks
 
@@ -36,7 +36,7 @@ class User::TalkRecommendationsTest < ActiveSupport::TestCase
     @talk1.topics << topic unless @talk1.topics.include?(topic)
     @talk2.topics << topic unless @talk2.topics.include?(topic)
 
-    @user.watched_talks.create!(talk: @talk1)
+    @user.watched_talks.create!(talk: @talk1, watched: true)
 
     recommendations = @user.talk_recommender.talks
 
@@ -44,12 +44,12 @@ class User::TalkRecommendationsTest < ActiveSupport::TestCase
   end
 
   test "filters out already watched talks" do
-    @user.watched_talks.create!(talk: @talk1)
-    @user.watched_talks.create!(talk: @talk2)
+    @user.watched_talks.create!(talk: @talk1, watched: true)
+    @user.watched_talks.create!(talk: @talk2, watched: true)
 
     recommendations = @user.talk_recommender.talks
 
-    watched_ids = @user.watched_talks.pluck(:talk_id)
+    watched_ids = @user.watched_talks.watched.pluck(:talk_id)
     recommended_ids = recommendations.map(&:id)
 
     assert_empty (watched_ids & recommended_ids), "Should not recommend already watched talks"
@@ -63,7 +63,7 @@ class User::TalkRecommendationsTest < ActiveSupport::TestCase
   end
 
   test "only recommends watchable talks" do
-    @user.watched_talks.create!(talk: @talk1)
+    @user.watched_talks.create!(talk: @talk1, watched: true)
 
     recommendations = @user.talk_recommender.talks
 
