@@ -4,7 +4,6 @@ This guide explains how to add a new event or event series to RubyEvents.
 
 If you are adding an event or event series that already has videos uploaded to YouTube, see the [ADDING_VIDEOS](/docs/ADDING_VIDEOS.md) guide instead.
 
-
 ## Adding a New Conference Series and Event
 
 ### Step 1 - Create the Series
@@ -23,24 +22,24 @@ name: My Conference
 website: https://myconference.org/
 twitter: myconference
 youtube_channel_name: myconference
-kind: conference  # conference, meetup, retreat, or hackathon
+kind: conference # conference, meetup, retreat, or hackathon
 frequency: yearly # yearly, monthly, quarterly, etc.
 language: english
 default_country_code: US
-youtube_channel_id: ""  # Will be filled by prepare_series.rb
-playlist_matcher: ""    # Optional text to filter playlists
+youtube_channel_id: "" # Will be filled by prepare_series.rb
+playlist_matcher: "" # Optional text to filter playlists
 ```
 
 ### Step 2 - Create the Event
 
 If you are backfilling an event that has already happened, and has video recordings on YouTube, you can use a script to automatically generate the event and videos file using the steps in [ADDING_VIDEOS](/docs/ADDING_VIDEOS.md).
 
-Otherwise create the event according the the following specification:
+Otherwise create the event according to the following specification:
 
 Create a new folder for your event instance.
 
 ```bash
-mkdir -p data/my-conference-2025
+mkdir -p data/my-conference/my-conference-2025
 ```
 
 Create `data/my-conference/my-conference-2025/event.yml`:
@@ -96,6 +95,7 @@ Once you've added your event, see our other guides on how to add additional info
 ## Need Help?
 
 If you have questions about contributing events:
+
 - Open an issue on GitHub
 - Check existing event files for examples
 - Reference this documentation
