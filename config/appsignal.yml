@@ -5,6 +5,9 @@ default:
   # Your app's name
   name: "RubyVideo"
 
+  # Enable host metrics for container monitoring
+  enable_host_metrics: true
+
   # Actions that should not be monitored by AppSignal
   ignore_actions:
     - Rails::HealthController#show
