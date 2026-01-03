@@ -9,11 +9,13 @@ Venue data is stored in YAML files within the conference/event directories. Each
 ## File Structure
 
 Schedules are stored in YAML files at:
+
 ```
 data/{series-name}/{event-name}/venue.yml
 ```
 
 For example:
+
 - [`data/sfruby/sfruby-2025/venue.yml`](https://github.com/rubyevents/rubyevents/blob/main/data/sfruby/sfruby-2025/venue.yml)
 - [`data/railsconf/railsconf-2025/venue.yml`](https://github.com/rubyevents/rubyevents/blob/main/data/railsconf/railsconf-2025/venue.yml)
 - [`data/xoruby/xoruby-atlanta-2025/venue.yml`](https://github.com/rubyevents/rubyevents/blob/main/data/xoruby/xoruby-atlanta-2025/venue.yml)
@@ -43,84 +45,100 @@ maps:
 
 ### Base Fields
 
-| Field | Required | Description |
-|-------|----------|-------------|
-| `name` | Yes | Name of the venue |
-| `description` | No | Description of the venue |
-| `instructions` | No | Instructions for getting to the venue |
+| Field          | Required | Description                           |
+| -------------- | -------- | ------------------------------------- |
+| `name`         | Yes      | Name of the venue                     |
+| `description`  | No       | Description of the venue              |
+| `instructions` | No       | Instructions for getting to the venue |
 
 ### Address Fields
 
-| Field | Required | Description |
-|-------|----------|-------------|
-| `street` | No | Street address |
-| `city` | No | City name |
-| `region` | No | State/Province/Region |
-| `postal_code` | No | Postal/ZIP code |
-| `country` | No | Country name |
-| `country_code` | No | ISO country code (e.g., 'US', 'CA') |
-| `display` | No | Full formatted address for display |
+| Field          | Required | Description                         |
+| -------------- | -------- | ----------------------------------- |
+| `street`       | No       | Street address                      |
+| `city`         | No       | City name                           |
+| `region`       | No       | State/Province/Region               |
+| `postal_code`  | No       | Postal/ZIP code                     |
+| `country`      | No       | Country name                        |
+| `country_code` | No       | ISO country code (e.g., 'US', 'CA') |
+| `display`      | No       | Full formatted address for display  |
 
 ### Coordinates Fields
 
-| Field | Required | Description |
-|-------|----------|-------------|
-| `latitude` | Yes* | Latitude coordinate |
-| `longitude` | Yes* | Longitude coordinate |
+| Field       | Required | Description          |
+| ----------- | -------- | -------------------- |
+| `latitude`  | Yes\*    | Latitude coordinate  |
+| `longitude` | Yes\*    | Longitude coordinate |
 
-*Required if `coordinates` section is included
+\*Required if `coordinates` section is included
 
 ### Maps Fields
 
-| Field | Required | Description |
-|-------|----------|-------------|
-| `google` | No | Google Maps URL |
-| `apple` | No | Apple Maps URL |
-| `openstreetmap` | No | OpenStreetMap URL |
+| Field           | Required | Description       |
+| --------------- | -------- | ----------------- |
+| `google`        | No       | Google Maps URL   |
+| `apple`         | No       | Apple Maps URL    |
+| `openstreetmap` | No       | OpenStreetMap URL |
 
 ### Room Fields
 
-| Field | Required | Description |
-|-------|----------|-------------|
-| `name` | Yes | Room name |
-| `floor` | No | Floor location |
-| `capacity` | No | Room capacity |
-| `instructions` | No | Instructions for finding the room |
+| Field          | Required | Description                       |
+| -------------- | -------- | --------------------------------- |
+| `name`         | Yes      | Room name                         |
+| `floor`        | No       | Floor location                    |
+| `capacity`     | No       | Room capacity                     |
+| `instructions` | No       | Instructions for finding the room |
 
 ### Accessibility Fields
 
-| Field | Required | Description |
-|-------|----------|-------------|
-| `wheelchair` | No | Wheelchair accessible (boolean) |
-| `elevators` | No | Elevators available (boolean) |
-| `accessible_restrooms` | No | Accessible restrooms available (boolean) |
-| `notes` | No | Additional accessibility notes |
+| Field                  | Required | Description                              |
+| ---------------------- | -------- | ---------------------------------------- |
+| `wheelchair`           | No       | Wheelchair accessible (boolean)          |
+| `elevators`            | No       | Elevators available (boolean)            |
+| `accessible_restrooms` | No       | Accessible restrooms available (boolean) |
+| `notes`                | No       | Additional accessibility notes           |
 
 ### Additional Location Fields
 
 You can add multiple additional locations for afterparties or events at other venues.
 
-| Field | Required | Description |
-|-------|----------|-------------|
-| `name` | Yes | Location name |
-| `kind` | No | Type of location (e.g., 'After Party') |
-| `description` | No | Location description |
-| `address` | No | Location address (simple string) |
-| `distance` | No | Distance from main venue |
-| `url` | No | Location website URL |
+| Field         | Required | Description                            |
+| ------------- | -------- | -------------------------------------- |
+| `name`        | Yes      | Location name                          |
+| `kind`        | No       | Type of location (e.g., 'After Party') |
+| `description` | No       | Location description                   |
+| `address`     | No       | Location address (simple string)       |
+| `distance`    | No       | Distance from main venue               |
+| `url`         | No       | Location website URL                   |
 
 **Coordinates and maps links can be added as well - see coordinates and maps fields for format**
 
 ### Hotel Fields
 
-| Field | Required | Description |
-|-------|----------|-------------|
-| `name` | Yes | Hotel name |
-| `kind` | No | Type of hotel (e.g., 'Speaker Hotel') |
-| `description` | No | Hotel description |
-| `address` | No | Hotel address |
-| `distance` | No | Distance from venue |
-| `url` | No | Hotel website URL |
+Sample template:
+
+```yaml
+hotels:
+  - name: ""
+    description: ""
+    address: ""
+    distance: ""
+    url: ""
+    coordinates:
+      latitude:
+      longitude:
+    maps:
+      google: ""
+```
+
+| Field         | Required | Description                           |
+| ------------- | -------- | ------------------------------------- |
+| `name`        | Yes      | Hotel name                            |
+| `kind`        | No       | Type of hotel (e.g., 'Speaker Hotel') |
+| `description` | No       | Hotel description                     |
+| `address`     | No       | Hotel address                         |
+| `distance`    | No       | Distance from venue                   |
+| `url`         | No       | Hotel website URL                     |
 
 **Coordinates and maps links can be added as well - see coordinates and maps fields for format**
 
@@ -145,6 +163,7 @@ touch data/{series-name}/{event}/venue.yml
 ### 3. Gather Venue Information
 
 Collect:
+
 - Event venue information
 - Event hotel information
 - Any additional locations information
@@ -180,6 +199,7 @@ maps:
 ### 5. Add Optional Location Details
 
 #### Accessibility information
+
 ```yaml
 accessibility:
   wheelchair:
@@ -189,6 +209,7 @@ accessibility:
 ```
 
 #### Nearby location details from the event organizers
+
 ```yaml
 nearby:
   public_transport:
@@ -196,6 +217,7 @@ nearby:
 ```
 
 #### Meeting rooms in the venue
+
 ```yaml
 rooms:
   - name:
@@ -203,7 +225,9 @@ rooms:
     capacity:
     instructions:
 ```
+
 #### Spaces in the venue
+
 ```yaml
 spaces:
   - name:
@@ -212,6 +236,7 @@ spaces:
 ```
 
 #### Additional Locations
+
 This is an array of additional event locations such as afterparties or secondary venues.
 
 ```yaml
@@ -229,9 +254,11 @@ locations:
       google:
       apple:
 ```
+
 **Address here is a string, you cannot add nested values**
 
 #### Hotel information
+
 ```yaml
 hotels:
   - name:
@@ -259,12 +286,14 @@ yarn format:yml
 ## Finding Schedule Information
 
 ### Official Sources
+
 1. **Conference website**: Look for "Venue" or "About" pages
 2. **Event platforms**: Check Sessionize, Eventbrite, or Luma event pages
 3. **Mobile apps**: Conference-specific mobile applications
 4. **Social media**: Official conference accounts may post venue
 
 ### Third-party Sources
+
 - Attendee blog posts with venue information
 - Video recordings showing venue information
 - Conference programs (PDF downloads)
@@ -291,6 +320,7 @@ yarn format:yml
 ## Need Help?
 
 If you have questions about contributing venues:
+
 - Open an issue on GitHub
 - Check existing venue files for examples
 - Reference this documentation
