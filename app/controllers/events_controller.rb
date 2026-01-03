@@ -12,6 +12,10 @@ class EventsController < ApplicationController
       .not_meetup
       .where(end_date: Date.today..)
       .order(start_date: :asc)
+    respond_to do |format|
+      format.html
+      format.rss
+    end
   end
 
   # GET /events/1
