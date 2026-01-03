@@ -73,6 +73,34 @@ The following command will start Rails, SolidQueue and Vite (for CSS and JS).
 bin/dev
 ```
 
+### Typesense (Optional)
+
+The application uses [Typesense](https://typesense.org/) for enhanced search functionality (spotlight search). Typesense is **optional** for local development. The app works without it, but search features will be limited.
+
+**Devcontainers / Docker Compose:** Typesense is already included and starts automatically.
+
+**Local development:** Run Typesense with Docker:
+
+```bash
+docker compose -f docker-compose.typesense.yml up -d
+```
+
+Once running, you can reindex the data:
+
+```bash
+bin/rails typesense:reindex
+```
+
+Useful Typesense commands:
+
+```bash
+bin/rails typesense:health    # Check if Typesense is running
+bin/rails typesense:stats     # Show index statistics
+bin/rails typesense:reindex   # Full reindex of all collections
+```
+
+The default API key for local development is `xyz`. For production, set `TYPESENSE_API_KEY` environment variable.
+
 ## Linter
 
 The CI performs these checks:
