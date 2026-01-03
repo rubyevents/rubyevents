@@ -35,11 +35,25 @@ class WatchedTalk < ApplicationRecord
   # These are designed to be constructive feedback for speakers
   FEEDBACK_QUESTIONS = {
     "liked" => {label: "Did you enjoy this talk?", icon: "heart"},
-    "would_recommend" => {label: "Would you recommend it to others?", icon: "thumbs-up"},
-    "beginner_friendly" => {label: "Good for early-career devs?", icon: "seedling"},
+    "would_recommend" => {label: "Would you recommend it to a friend?", icon: "thumbs-up"},
     "learned_something" => {label: "Did you learn something new?", icon: "lightbulb"},
     "clear_delivery" => {label: "Was it easy to follow?", icon: "comment-check"},
-    "inspiring" => {label: "Did it inspire you to learn more?", icon: "rocket"}
+    "inspiring" => {label: "Did it inspire you to learn more?", icon: "rocket"},
+    "slides_readable" => {label: "Were the slides easy to read?", icon: "presentation-screen"},
+    "content_relevant" => {label: "Was the content relevant to you?", icon: "bullseye-arrow"},
+    "speaker_engaging" => {label: "Was the speaker engaging?", icon: "microphone"}
+  }.freeze
+
+  EXPERIENCE_LEVELS = {
+    "beginner" => {label: "Beginner", icon: "seedling", description: "New to the topic"},
+    "intermediate" => {label: "Intermediate", icon: "code", description: "Some experience needed"},
+    "advanced" => {label: "Advanced", icon: "graduation-cap", description: "Deep knowledge required"}
+  }.freeze
+
+  CONTENT_FRESHNESS = {
+    "evergreen" => {label: "Evergreen", icon: "tree", description: "Timeless concepts"},
+    "evolving" => {label: "Evolving", icon: "leaf", description: "Core ideas persist, details change"},
+    "time_sensitive" => {label: "Time-Sensitive", icon: "clock", description: "Fast-moving topic or specific versions"}
   }.freeze
 
   FEELING_OPTIONS = {
@@ -59,7 +73,12 @@ class WatchedTalk < ApplicationRecord
   scope :watched, -> { where(watched: true) }
   scope :in_progress, -> { where(watched: false).where("progress_seconds > 0") }
 
-  store_accessor :feedback, *FEEDBACK_QUESTIONS.keys, :feeling
+  has_delegated_json :feedback,
+    **FEEDBACK_QUESTIONS.keys.to_h { |k| [k.to_sym, :boolean] },
+    feeling: :string,
+    experience_level: :string,
+    content_freshness: :string
+
   before_create :set_default_watched_at
 
   private
@@ -82,7 +101,9 @@ class WatchedTalk < ApplicationRecord
   end
 
   def has_rating_feedback?
-    feeling.present? || (feedback.present? && feedback.values.any?(&:present?))
+    feeling.present? ||
+      experience_level.present? ||
+      FEEDBACK_QUESTIONS.keys.any? { |key| send(key).present? }
   end
 
   def in_progress?

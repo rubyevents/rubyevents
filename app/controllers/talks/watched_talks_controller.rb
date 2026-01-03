@@ -37,7 +37,7 @@ class Talks::WatchedTalksController < ApplicationController
     @watched_talk = @talk.watched_talks.find_or_create_by!(user: Current.user)
 
     updates = watched_talk_params
-    is_feedback_update = updates.keys.any? { |k| k.in?(%w[feeling] + WatchedTalk::FEEDBACK_QUESTIONS.keys.map(&:to_s)) }
+    is_feedback_update = updates.keys.any? { |k| k.in?(%w[feeling experience_level content_freshness] + WatchedTalk::FEEDBACK_QUESTIONS.keys.map(&:to_s)) }
 
     if is_feedback_update
       updates = updates.merge(watched: true, feedback_shared_at: Time.current)
@@ -60,6 +60,8 @@ class Talks::WatchedTalksController < ApplicationController
       :watched_on,
       :watched_at,
       :feeling,
+      :experience_level,
+      :content_freshness,
       *WatchedTalk::FEEDBACK_QUESTIONS.keys
     )
   end

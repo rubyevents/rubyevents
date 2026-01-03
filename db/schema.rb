@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_03_134407) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_03_210603) do
   create_table "_litestream_lock", id: false, force: :cascade do |t|
     t.integer "id"
   end
@@ -433,7 +433,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_03_134407) do
     t.integer "canonical_id"
     t.datetime "created_at", null: false
     t.string "email"
-    t.boolean "feedback_enabled", default: true, null: false
     t.string "github_handle"
     t.json "github_metadata", default: {}, null: false
     t.string "linkedin", default: "", null: false
@@ -444,6 +443,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_03_134407) do
     t.string "password_digest"
     t.string "pronouns", default: "", null: false
     t.string "pronouns_type", default: "not_specified", null: false
+    t.json "settings", default: {}, null: false
     t.string "slug", default: "", null: false
     t.string "speakerdeck", default: "", null: false
     t.integer "talks_count", default: 0, null: false
@@ -452,7 +452,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_03_134407) do
     t.boolean "verified", default: false, null: false
     t.integer "watched_talks_count", default: 0, null: false
     t.string "website", default: "", null: false
-    t.boolean "wrapped_public", default: false, null: false
     t.index "lower(github_handle)", name: "index_users_on_lower_github_handle", unique: true, where: "github_handle IS NOT NULL AND github_handle != ''"
     t.index ["canonical_id"], name: "index_users_on_canonical_id"
     t.index ["email"], name: "index_users_on_email"

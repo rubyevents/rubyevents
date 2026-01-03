@@ -46,7 +46,7 @@ class WrappedController < ApplicationController
 
     # Leave this uncached, so users can make theirs public and see it on the /wrapped page immediately
     @public_users = User
-      .where(wrapped_public: true)
+      .with_public_wrapped
       .where.not("LOWER(users.name) IN (?)", ["tbd", "todo", "tba", "speaker tbd", "speaker tba"])
       .order(updated_at: :desc)
       .limit(100)
