@@ -9,8 +9,15 @@
       </div>
 
       <div class="flex-col flex justify-center relative overflow-hidden">
-        <div class="text-black group-hover:text-inherit font-bold text-xl"><%= event.name %></div>
-        <div class="text-[#636B74] group-hover:text-inherit"><%= event.formatted_dates %> • <%= event.static_metadata.location %></div>
+        <div class="text-black group-hover:text-inherit font-bold text-xl">
+          <%= event.name %>
+        </div>
+
+        <div class="text-[#636B74] group-hover:text-inherit">
+          <% if event.formatted_dates != "unknown" %><%= event.formatted_dates %> • <% end %>
+          <%= event.static_metadata.location %>
+        </div>
+
         <% event.cfps.each do |cfp| %>
           <div class="text-[#636B74] group-hover:text-inherit font-bold">
             <% if cfp.close_date.present? && (cfp.open_date.blank? || cfp.open_date.past?) %>
