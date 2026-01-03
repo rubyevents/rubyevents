@@ -3,8 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby file: ".ruby-version"
 
-# Use main development branch of Rails from github
-gem "rails", "8.1.1"
+# Use Rails edge
+gem "rails", github: "rails/rails"
 
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
@@ -174,8 +174,12 @@ gem "redcarpet", "~> 3.6"
 gem "country_select"
 
 # admin
-gem "avo"
-gem "marksmith"
+# TODO: remove once https://github.com/avo-hq/avo/pull/4120 is released
+gem "avo", github: "avo-hq/avo"
+
+# TODO: remove once https://github.com/avo-hq/marksmith/pull/127 is released
+gem "marksmith", github: "avo-hq/marksmith"
+
 # gem "commonmarker", "~> 2.6"
 
 gem "frozen_record", "~> 0.27.2"
