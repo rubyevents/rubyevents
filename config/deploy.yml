@@ -13,6 +13,9 @@ servers:
     options:
       memory: 2GB
       cpus: 2
+    env:
+      clear:
+        APPSIGNAL_HOSTNAME: rubyevents-web
 
   job:
     hosts:
@@ -21,6 +24,9 @@ servers:
     options:
       memory: 1GB
       cpus: 1
+    env:
+      clear:
+        APPSIGNAL_HOSTNAME: rubyevents-job
 
 # Enable SSL auto certification via Let's Encrypt (and allow for multiple apps on one server).
 # If using something like Cloudflare, it is recommended to set encryption mode
