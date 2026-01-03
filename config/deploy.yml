@@ -1,9 +1,9 @@
 <% require "dotenv"; Dotenv.load(".env") %>
 # Name of your application. Used to uniquely configure containers.
-service: rubyvideo
+service: rubyevents
 
 # Name of the container image.
-image: rubyvideo
+image: rubyevents
 
 # Deploy to these servers.
 servers:
@@ -34,8 +34,6 @@ servers:
 proxy:
   ssl: true
   hosts:
-    - rubyvideo.dev
-    - www.rubyvideo.dev
     - rubyevents.org
     - www.rubyevents.org
   # kamal-proxy connects to your container over port 80, use `app_port` to specify a different port.
@@ -57,6 +55,10 @@ builder:
     - RAILS_MASTER_KEY
   remote: ssh://root@5.75.232.156
   local: false
+
+# Credentials for your image host.
+registry:
+  server: "localhost:5555"
 
 env:
   clear:
