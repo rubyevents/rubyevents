@@ -81,92 +81,106 @@
 
         </div>
 
-        <div class="flex order-last gap-1 py-3 overflow-x-scroll overflow-y-visible text-xs grow lg:divide-y-0 xl:justify-end lg:overflow-x-hidden xl:order-none">
-          <% if Current.user&.admin? %>
-            <%= ui_button url: avo.resources_talk_path(talk), kind: :pill, target: "_blank" do %>
-              <%= fa :avocado, size: :xs, style: :solid %>
+        <div class="flex items-between justify-start py-3 text-xs grow lg:divide-y-0 w-full">
+          <div class="flex items-center justify-start gap-1 flex-grow">
+            <% if Current.user&.admin? %>
+              <%= ui_button url: avo.resources_talk_path(talk), kind: :pill, target: "_blank", class: "hidden md:flex" do %>
+                <%= fa :avocado, size: :xs, style: :solid %>
 
-              <span class="text-xs">Open in Avo</span>
+                <span class="text-xs">Open in Avo</span>
+              <% end %>
             <% end %>
-          <% end %>
 
-          <% if default_watch_list %>
-            <% if user_favorite_talks_ids.include?(talk.id) %>
-              <%= ui_tooltip "Add talk to your watch list" do %>
-                <%= ui_button url: watch_list_talk_path(default_watch_list, talk.id), method: :delete, kind: :pill do %>
-                  <%= fa("bookmark", size: :xs, style: :solid, class: "text-primary") %>
-                  <span class="text-xs">Bookmark</span>
+            <% if default_watch_list %>
+              <% if user_favorite_talks_ids.include?(talk.id) %>
+                <%= ui_tooltip "Add talk to your watch list" do %>
+                  <%= ui_button url: watch_list_talk_path(default_watch_list, talk.id), method: :delete, kind: :pill do %>
+                    <%= fa("bookmark", size: :xs, style: :solid, class: "text-primary") %>
+                    <span class="text-xs">Bookmark</span>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <%= ui_tooltip "Add talk to your watch list" do %>
+                  <%= ui_button url: watch_list_talks_path(default_watch_list, talk_id: talk.id), method: :post, kind: :pill do %>
+                    <%= fa("bookmark", size: :xs, style: :regular) %>
+                    <span class="text-xs">Bookmark</span>
+                  <% end %>
                 <% end %>
               <% end %>
             <% else %>
               <%= ui_tooltip "Add talk to your watch list" do %>
-                <%= ui_button url: watch_list_talks_path(default_watch_list, talk_id: talk.id), method: :post, kind: :pill do %>
+                <%= ui_button url: new_session_path(redirect_to: request.fullpath), data: {turbo_frame: "modal"}, kind: :pill do %>
                   <%= fa("bookmark", size: :xs, style: :regular) %>
                   <span class="text-xs">Bookmark</span>
                 <% end %>
               <% end %>
             <% end %>
-          <% else %>
-            <%= ui_tooltip "Add talk to your watch list" do %>
-              <%= ui_button url: new_session_path(redirect_to: request.fullpath), data: {turbo_frame: "modal"}, kind: :pill do %>
-                <%= fa("bookmark", size: :xs, style: :regular) %>
-                <span class="text-xs">Bookmark</span>
-              <% end %>
-            <% end %>
-          <% end %>
 
-          <% if talk.youtube? || talk.parent_talk&.youtube? %>
-            <%= ui_tooltip "Watch on YouTube" do %>
-              <%= ui_button url: talk.external_player_url, kind: :pill, target: "_blank", data: {action: "click->video-player#pause"} do %>
-                <%= fa("youtube-brands", size: :xs, style: :solid) %>
-                <span class="text-xs">Play on YouTube</span>
-              <% end %>
-            <% end %>
-          <% end %>
-
-          <% if talk.vimeo? || talk.parent_talk&.vimeo? %>
-            <%= ui_tooltip "Watch on Vimeo" do %>
-              <%= ui_button url: talk.external_player_url, kind: :pill, target: "_blank" do %>
-                <%= fa("vimeo-v-brands", size: :xs, style: :solid) %>
-                <span class="text-xs">Play on Vimeo</span>
-              <% end %>
-            <% end %>
-          <% end %>
-
-          <% if talk.static_metadata&.external_player_url.present? || talk.parent_talk&.static_metadata&.external_player_url.present? %>
-            <% player_url = talk.parent_talk&.static_metadata&.external_player_url || talk.static_metadata.external_player_url %>
-
-            <%= ui_tooltip "Watch on Website" do %>
-              <%= ui_button url: player_url, kind: :pill, target: "_blank", data: {action: "click->video-player#pause"} do %>
-                <%= fa("website-brands", size: :xs, style: :solid) %>
-                <span class="text-xs">Play on Website</span>
-              <% end %>
-            <% end %>
-          <% end %>
-
-          <% if signed_in? && !talk.scheduled? %>
-            <% if talk.watched? %>
-              <%= ui_tooltip "Mark talk as unwatched" do %>
-                <%= ui_button url: talk_watched_talk_path(talk), method: :delete, kind: :pill do %>
-                  <%= fa("circle-check", size: :xs, style: :solid, class: "fill-green-700") %>
-                  <span class="text-xs text-nowrap">Watched</span>
-                <% end %>
-              <% end %>
-            <% else %>
-              <%= ui_tooltip "Mark talk as watched" do %>
-                <%= ui_button url: talk_watched_talk_path(talk), method: :post, kind: :pill do %>
-                  <%= fa("circle", size: :xs, style: :regular) %>
-                  <span class="text-xs text-nowrap">Watched</span>
+            <% if talk.youtube? || talk.parent_talk&.youtube? %>
+              <%= ui_tooltip "Watch on YouTube" do %>
+                <%= ui_button url: talk.external_player_url, kind: :pill, target: "_blank", data: {action: "click->video-player#pause"} do %>
+                  <%= fa("youtube-brands", size: :xs, style: :solid) %>
+                  <span class="text-xs">Play on YouTube</span>
                 <% end %>
               <% end %>
             <% end %>
-          <% end %>
 
-          <%= ui_tooltip "You can suggest some modifications to this talk", class: "hotwire-native:hidden" do %>
-            <%= ui_button url: edit_talk_path(talk), kind: :pill, data: {turbo_frame: "modal"} do %>
-              <%= fa("pen", size: :xs, style: :solid) %>
-              <span class="text-xs">Edit</span>
+            <% if talk.vimeo? || talk.parent_talk&.vimeo? %>
+              <%= ui_tooltip "Watch on Vimeo" do %>
+                <%= ui_button url: talk.external_player_url, kind: :pill, target: "_blank" do %>
+                  <%= fa("vimeo-v-brands", size: :xs, style: :solid) %>
+                  <span class="text-xs">Play on Vimeo</span>
+                <% end %>
+              <% end %>
             <% end %>
+
+            <% if talk.static_metadata&.external_player_url.present? || talk.parent_talk&.static_metadata&.external_player_url.present? %>
+              <% player_url = talk.parent_talk&.static_metadata&.external_player_url || talk.static_metadata.external_player_url %>
+
+              <%= ui_tooltip "Watch on Website" do %>
+                <%= ui_button url: player_url, kind: :pill, target: "_blank", data: {action: "click->video-player#pause"} do %>
+                  <%= fa("website-brands", size: :xs, style: :solid) %>
+                  <span class="text-xs">Play on Website</span>
+                <% end %>
+              <% end %>
+            <% end %>
+
+            <% if signed_in? && !talk.scheduled? %>
+              <% if talk.watched? %>
+                <%= ui_tooltip "Mark talk as unwatched" do %>
+                  <%= ui_button url: talk_watched_talk_path(talk), method: :delete, kind: :pill do %>
+                    <%= fa("circle-check", size: :xs, style: :solid, class: "fill-green-700") %>
+                    <span class="text-xs text-nowrap">Watched</span>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <%= ui_tooltip "Mark talk as watched" do %>
+                  <%= ui_button url: talk_watched_talk_path(talk), method: :post, kind: :pill do %>
+                    <%= fa("circle", size: :xs, style: :regular) %>
+                    <span class="text-xs text-nowrap">Watched</span>
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% end %>
+
+            <%= ui_tooltip "You can suggest some modifications to this talk", class: "hotwire-native:hidden" do %>
+              <%= ui_button url: edit_talk_path(talk), kind: :pill, data: {turbo_frame: "modal"}, class: "hidden md:flex" do %>
+                <%= fa("pen", size: :xs, style: :solid) %>
+                <span class="text-xs">Edit</span>
+              <% end %>
+            <% end %>
+          </div>
+
+          <%= ui_dropdown align: :end, id: dom_id(talk, :dropdown), class: "flex md:hidden" do |c| %>
+            <% c.with_toggle_open do %>
+              <%= fa("ellipsis-vertical") %>
+            <% end %>
+
+            <% c.with_toggle_close do %>
+              <%= fa("ellipsis-vertical") %>
+            <% end %>
+            <% c.with_menu_item_link_to "Open in Avo", avo.resources_talk_path(talk), target: "_blank" %>
+            <% c.with_menu_item_link_to "Edit", edit_talk_path(talk), data: {turbo_frame: "modal"} %>
           <% end %>
         </div>
 

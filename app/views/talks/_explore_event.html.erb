@@ -19,8 +19,10 @@
     <div class="avatar-group -space-x-3 rtl:space-x-reverse mt-4">
       <% speakers_with_avatars = event.speakers.with_github.sample(8) %>
 
-      <% speakers_with_avatars.each do |speaker| %>
-        <%= ui_avatar(speaker) %>
+      <% speakers_with_avatars.each_with_index do |speaker, index| %>
+        <span class="<%= class_names("md:block", "hidden" => index > 5) %>">
+          <%= ui_avatar(speaker) %>
+        </span>
       <% end %>
 
       <% if event.speakers.size > speakers_with_avatars.size %>
