@@ -8,6 +8,10 @@ default:
   # Enable host metrics for container monitoring
   enable_host_metrics: true
 
+  # Set a static hostname to aggregate host metrics across deploys
+  # Without this, each container gets a unique hostname with the container ID
+  hostname: "rubyevents-vps"
+
   # Actions that should not be monitored by AppSignal
   ignore_actions:
     - Rails::HealthController#show
