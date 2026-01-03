@@ -17,7 +17,7 @@ We have tried to make the setup process as simple as possible so that in a few c
 ### Devcontainers
 
 In addition to the local development flow described below, we support [devcontainers](https://containers.dev) and [codespaces](https://github.com/features/codespaces).
-If you open this project in VS Code and you have the [dev containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) installed, it will prompt you and ask if you want to reopen in a dev contatiner.
+If you open this project in VS Code and you have the [dev containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) installed, it will prompt you and ask if you want to reopen in a dev container.
 This will set up the dev environment for you in docker, and reopen your editor from within the context of the rails container, so you can run commands and work with the project as if it was local.
 All file changes will be present locally when you close the container.
 
@@ -75,7 +75,7 @@ The CI performs these checks:
 
 Before committing your code you can run `bin/lint` to detect and potentially autocorrect lint errors and validate schemas.
 
-To follow Tailwind CSS's recommended order of classes, you can use [Prettier](https://prettier.io/) along with the [prettier-plugin-tailwindcss](https://github.com/tailwindlabs/prettier-plugin-tailwindcss), both of which are included as devDependencies. This formating is not yet enforced by the CI.
+To follow Tailwind CSS's recommended order of classes, you can use [Prettier](https://prettier.io/) along with the [prettier-plugin-tailwindcss](https://github.com/tailwindlabs/prettier-plugin-tailwindcss), both of which are included as devDependencies. This formatting is not yet enforced by the CI.
 
 ## Running the Database Seeds
 
@@ -128,11 +128,11 @@ Otherwise, you can [create the event or event series manually](docs/ADDING_EVENT
 
 There are additional guides for adding optional information:
 
-- [visual assets](docs/ADDING_VISUAL_ASSETS.md)
-- [videos](docs/ADDING_VIDEOS.md)
-- [schedules](docs/ADDING_SCHEDULES.md)
-- [sponsors](docs/ADDING_SPONSORS.md)
-- [venues](docs/ADDING_VENUES.md)
+- [visual assets](/docs/ADDING_VISUAL_ASSETS.md)
+- [videos](/docs/ADDING_VIDEOS.md)
+- [schedules](/docs/ADDING_SCHEDULES.md)
+- [sponsors](/docs/ADDING_SPONSORS.md)
+- [venues](/docs/ADDING_VENUES.md)
 
 If you have questions about contributing events:
 
