@@ -10,6 +10,7 @@
 #  bsky                :string           default(""), not null
 #  bsky_metadata       :json             not null
 #  email               :string           indexed
+#  feedback_enabled    :boolean          default(TRUE), not null
 #  github_handle       :string
 #  github_metadata     :json             not null
 #  linkedin            :string           default(""), not null

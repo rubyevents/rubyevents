@@ -1,0 +1,58 @@
+<%# locals: (talk:, watched_talk:) %>
+
+<% update_path = talk_watched_talk_path(talk) %>
+<% is_selected = ->(field, value) { watched_talk.send(field).to_s == value.to_s } %>
+
+<div class="space-y-6">
+  <div>
+    <label class="text-sm font-medium text-gray-700 mb-3 block">How did it make you feel?</label>
+
+    <div class="grid grid-cols-4 sm:grid-cols-8 gap-2">
+      <% WatchedTalk::FEELING_OPTIONS.each do |key, option| %>
+        <% selected = watched_talk.feeling == key %>
+
+        <%= button_to update_path, method: :patch, class: "contents", params: {watched_talk: {feeling: key}} do %>
+          <div class="flex flex-col items-center justify-center p-2 border-2 rounded-lg cursor-pointer transition-colors <%= selected ? option[:selected_class] : "bg-white hover:bg-gray-50" %>">
+            <%= fa(option[:emoji], size: :lg, class: "mb-1 #{"fill-white" if selected}") %>
+            <span class="text-xs text-center"><%= option[:label] %></span>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <hr class="my-4">
+
+  <div>
+    <label class="text-sm font-medium text-gray-700 mb-3 block">Feedback</label>
+
+    <div class="space-y-3">
+      <% WatchedTalk::FEEDBACK_QUESTIONS.each do |key, question| %>
+        <div class="flex items-center justify-between p-2 -mx-2 rounded-lg hover:bg-base-200 transition-colors">
+          <span class="text-sm flex items-center gap-2">
+            <%= fa(question[:icon], size: :sm, class: "text-gray-400") %>
+            <%= question[:label] %>
+          </span>
+
+          <div class="flex">
+            <% yes_selected = is_selected.call(key, true) %>
+            <% no_selected = is_selected.call(key, false) %>
+
+            <%= button_to update_path, method: :patch, class: "contents", params: {watched_talk: {key => true}} do %>
+              <div class="px-3 py-1 text-sm border rounded-l-lg cursor-pointer <%= yes_selected ? "bg-green-500 text-white border-green-500 hover:bg-green-600" : "bg-white hover:bg-green-100" %>">
+                Yes
+              </div>
+            <% end %>
+
+            <%= button_to update_path, method: :patch, class: "contents", params: {watched_talk: {key => false}} do %>
+              <div class="px-3 py-1 text-sm border rounded-r-lg cursor-pointer <%= no_selected ? "bg-red-500 text-white border-red-500 hover:bg-red-600" : "bg-white hover:bg-red-100" %>">
+                No
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+</div>

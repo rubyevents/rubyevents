@@ -1,6 +1,7 @@
 <%# locals: (talk:, user_favorite_talks_ids:) %>
 
-<% video_player_controller = talk.external_player ? nil : "video-player" %>
+<% current_user_watched_talk = talk.watched_talks.find { |wt| wt.user_id == Current.user&.id } %>
+<% is_watched = signed_in? && current_user_watched_talk&.watched? %>
 
 <% video_provider = case talk.video_provider
    when "mp4" then "mp4"
@@ -15,41 +16,17 @@
 <% video_id = (talk.video_provider == "parent") ? talk.parent_talk.video_id : talk.video_id %>
 
 <% language = Language.by_code(talk.language) %>
-<%= content_tag :div, id: dom_id(talk),
-      data: {
-        controller: video_player_controller,
-        video_player_poster_value: talk.thumbnail_xl,
-        video_player_provider_value: video_provider,
-        video_player_src_value: video_id,
-        video_player_start_seconds_value: talk.start_seconds,
-        video_player_end_seconds_value: talk.end_seconds,
-        video_player_watched_talk_path_value: talk_watched_talk_path(talk),
-        video_player_current_user_present_value: signed_in?,
-        video_player_progress_seconds_value: talk.watched_talks.select { |watched_talk| watched_talk.user_id == Current.user&.id }.min_by(&:created_at)&.progress_seconds || 0
-      } do %>
+<%= content_tag :div, id: dom_id(talk) do %>
 
-  <div class="relative overflow-hidden bg-gray-300 aspect-video banner-img card-horizontal-img rounded-xl outline outline-1 outline-gray-300" data-turbo-permanent="true">
-    <% if talk.external_player %>
-      <%= link_to talk.external_player_url, target: "_blank", class: "relative w-full h-full block" do %>
-        <%= image_tag talk.thumbnail_xl, class: "w-full h-full object-cover rounded-xl", style: "view-transition-name: #{dom_id(talk, :image)}" %>
+  <%= turbo_frame_tag dom_id(talk, :video_player) do %>
+    <%= render partial: "talks/video_player", locals: {talk: talk, current_user_watched_talk: current_user_watched_talk, is_watched: is_watched, video_provider: video_provider, video_id: video_id} %>
+  <% end %>
 
-        <div class="absolute inset-0 flex flex-col items-center justify-center gap-6 p-6 text-xl font-bold text-center text-white bg-black/80 rounded-xl">
-          This talk is available to watch on <%= URI.parse(talk.external_player_url).host %>
-
-          <%= ui_button do %>
-            <%= fa("play", size: :xs, class: "fill-white") %> <span>Watch <span class="hidden sm:inline-block"> on <%= URI.parse(talk.external_player_url).host %></span></span>
-          <% end %>
-        </div>
-      <% end %>
-
-    <% else %>
-      <% if video_provider.in?(["mp4", "youtube", "vimeo", "scheduled", "not_published", "not_recorded", "children"]) %>
-        <%= render partial: "talks/video_providers/#{video_provider}", locals: {talk: talk, video_provider: video_provider, video_id: video_id} %>
-      <% else %>
-        Provider <%= video_provider.inspect %> is not configured.
-      <% end %>
+  <%= turbo_frame_tag dom_id(talk, :feedback_banner) do %>
+    <% if is_watched %>
+      <%= render partial: "talks/watched_talks/feedback_banner", locals: {talk: talk, watched_talk: current_user_watched_talk} %>
     <% end %>
-  </div>
+  <% end %>
 
   <div class="flex flex-col">
     <% if talk.meta_talk? %>
@@ -144,21 +121,9 @@
             <% end %>
           <% end %>
 
-          <% if signed_in? && !talk.scheduled? %>
-            <% if talk.watched? %>
-              <%= ui_tooltip "Mark talk as unwatched" do %>
-                <%= ui_button url: talk_watched_talk_path(talk), method: :delete, kind: :pill do %>
-                  <%= fa("circle-check", size: :xs, style: :solid, class: "fill-green-700") %>
-                  <span class="text-xs text-nowrap">Watched</span>
-                <% end %>
-              <% end %>
-            <% else %>
-              <%= ui_tooltip "Mark talk as watched" do %>
-                <%= ui_button url: talk_watched_talk_path(talk), method: :post, kind: :pill do %>
-                  <%= fa("circle", size: :xs, style: :regular) %>
-                  <span class="text-xs text-nowrap">Watched</span>
-                <% end %>
-              <% end %>
+          <%= turbo_frame_tag dom_id(talk, :watched_button) do %>
+            <% if signed_in? %>
+              <%= render partial: "talks/watched_talks/button", locals: {talk: talk, is_watched: is_watched} %>
             <% end %>
           <% end %>
 
