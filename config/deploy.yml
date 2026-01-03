@@ -1,3 +1,4 @@
+<% require "dotenv"; Dotenv.load(".env") %>
 # Name of your application. Used to uniquely configure containers.
 service: rubyvideo
 
@@ -7,12 +8,19 @@ image: adrienpoly/rubyvideo
 # Deploy to these servers.
 servers:
   web:
-    - 91.107.208.207
+    hosts:
+      - 91.107.208.207
+    options:
+      memory: 2GB
+      cpus: 2
 
   job:
     hosts:
       - 91.107.208.207
     cmd: bin/jobs --mode=async
+    options:
+      memory: 1GB
+      cpus: 1
 
 # Enable SSL auto certification via Let's Encrypt (and allow for multiple apps on one server).
 # If using something like Cloudflare, it is recommended to set encryption mode
