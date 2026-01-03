@@ -133,7 +133,7 @@ class WrappedController < ApplicationController
 
   def set_wrapped_meta_tags
     title = "RubyEvents.org #{@year} Wrapped"
-    description = "#{@year} in review: #{ActionController::Base.helpers.number_with_delimiter(@talks_held)} talks held, #{ActionController::Base.helpers.number_with_delimiter(@total_conferences)} conferences, #{ActionController::Base.helpers.number_with_delimiter(@total_speakers)} speakers. Explore the Ruby community's year!"
+    description = "#{@year} in review. Explore the Ruby community's year!"
     image_url = view_context.image_url("og/wrapped-#{@year}.png")
 
     set_meta_tags(
