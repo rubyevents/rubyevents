@@ -1,4 +1,31 @@
 GIT
+  remote: https://github.com/avo-hq/avo.git
+  revision: 12bf1391f11f65d0991a87132c51c43424334857
+  specs:
+    avo (3.27.0)
+      actionview (>= 6.1)
+      active_link_to
+      activerecord (>= 6.1)
+      activesupport (>= 6.1)
+      addressable
+      avo-icons (>= 0.1.1)
+      docile
+      meta-tags
+      pagy (>= 7.0.0, < 43)
+      prop_initializer (>= 0.2.0)
+      turbo-rails (>= 2.0.0)
+      turbo_power (>= 0.6.0)
+      view_component (>= 3.7.0)
+      zeitwerk (>= 2.6.12)
+
+GIT
+  remote: https://github.com/avo-hq/marksmith.git
+  revision: 37867e0b6c41d3656fcb4278ddfea8dba50c7f3c
+  specs:
+    marksmith (0.4.8.pre)
+      activesupport
+
+GIT
   remote: https://github.com/joshleblanc/solid_queue.git
   revision: f5881054ddc7096b18d086d0ec01620d4e1024d4
   branch: async-mode
@@ -11,34 +38,33 @@ GIT
       railties (>= 7.1)
       thor (>= 1.3.1)
 
-GEM
-  remote: https://rubygems.org/
+GIT
+  remote: https://github.com/rails/rails.git
+  revision: debeab22780607f22b976d8608d26fc2b997e256
   specs:
-    action_text-trix (2.1.15)
-      railties
-    actioncable (8.1.1)
-      actionpack (= 8.1.1)
-      activesupport (= 8.1.1)
+    actioncable (8.2.0.alpha)
+      actionpack (= 8.2.0.alpha)
+      activesupport (= 8.2.0.alpha)
       nio4r (~> 2.0)
       websocket-driver (>= 0.6.1)
       zeitwerk (~> 2.6)
-    actionmailbox (8.1.1)
-      actionpack (= 8.1.1)
-      activejob (= 8.1.1)
-      activerecord (= 8.1.1)
-      activestorage (= 8.1.1)
-      activesupport (= 8.1.1)
+    actionmailbox (8.2.0.alpha)
+      actionpack (= 8.2.0.alpha)
+      activejob (= 8.2.0.alpha)
+      activerecord (= 8.2.0.alpha)
+      activestorage (= 8.2.0.alpha)
+      activesupport (= 8.2.0.alpha)
       mail (>= 2.8.0)
-    actionmailer (8.1.1)
-      actionpack (= 8.1.1)
-      actionview (= 8.1.1)
-      activejob (= 8.1.1)
-      activesupport (= 8.1.1)
+    actionmailer (8.2.0.alpha)
+      actionpack (= 8.2.0.alpha)
+      actionview (= 8.2.0.alpha)
+      activejob (= 8.2.0.alpha)
+      activesupport (= 8.2.0.alpha)
       mail (>= 2.8.0)
       rails-dom-testing (~> 2.2)
-    actionpack (8.1.1)
-      actionview (= 8.1.1)
-      activesupport (= 8.1.1)
+    actionpack (8.2.0.alpha)
+      actionview (= 8.2.0.alpha)
+      activesupport (= 8.2.0.alpha)
       nokogiri (>= 1.8.5)
       rack (>= 2.2.4)
       rack-session (>= 1.0.1)
@@ -46,45 +72,36 @@ GEM
       rails-dom-testing (~> 2.2)
       rails-html-sanitizer (~> 1.6)
       useragent (~> 0.16)
-    actiontext (8.1.1)
+    actiontext (8.2.0.alpha)
       action_text-trix (~> 2.1.15)
-      actionpack (= 8.1.1)
-      activerecord (= 8.1.1)
-      activestorage (= 8.1.1)
-      activesupport (= 8.1.1)
+      actionpack (= 8.2.0.alpha)
+      activerecord (= 8.2.0.alpha)
+      activestorage (= 8.2.0.alpha)
+      activesupport (= 8.2.0.alpha)
       globalid (>= 0.6.0)
       nokogiri (>= 1.8.5)
-    actionview (8.1.1)
-      activesupport (= 8.1.1)
+    actionview (8.2.0.alpha)
+      activesupport (= 8.2.0.alpha)
       builder (~> 3.1)
       erubi (~> 1.11)
       rails-dom-testing (~> 2.2)
       rails-html-sanitizer (~> 1.6)
-    active_genie (0.30.8)
-      async (~> 2.0)
-    active_job-performs (0.3.3)
-      activejob (>= 6.1)
-    active_link_to (1.0.5)
-      actionpack
-      addressable
-    active_record-associated_object (0.9.3)
-      activerecord (>= 6.1)
-    activejob (8.1.1)
-      activesupport (= 8.1.1)
+    activejob (8.2.0.alpha)
+      activesupport (= 8.2.0.alpha)
       globalid (>= 0.3.6)
-    activemodel (8.1.1)
-      activesupport (= 8.1.1)
-    activerecord (8.1.1)
-      activemodel (= 8.1.1)
-      activesupport (= 8.1.1)
+    activemodel (8.2.0.alpha)
+      activesupport (= 8.2.0.alpha)
+    activerecord (8.2.0.alpha)
+      activemodel (= 8.2.0.alpha)
+      activesupport (= 8.2.0.alpha)
       timeout (>= 0.4.0)
-    activestorage (8.1.1)
-      actionpack (= 8.1.1)
-      activejob (= 8.1.1)
-      activerecord (= 8.1.1)
-      activesupport (= 8.1.1)
+    activestorage (8.2.0.alpha)
+      actionpack (= 8.2.0.alpha)
+      activejob (= 8.2.0.alpha)
+      activerecord (= 8.2.0.alpha)
+      activesupport (= 8.2.0.alpha)
       marcel (~> 1.0)
-    activesupport (8.1.1)
+    activesupport (8.2.0.alpha)
       base64
       bigdecimal
       concurrent-ruby (~> 1.0, >= 1.3.1)
@@ -94,9 +111,48 @@ GEM
       json
       logger (>= 1.4.2)
       minitest (>= 5.1)
+      psych (>= 4)
       securerandom (>= 0.3)
       tzinfo (~> 2.0, >= 2.0.5)
       uri (>= 0.13.1)
+    rails (8.2.0.alpha)
+      actioncable (= 8.2.0.alpha)
+      actionmailbox (= 8.2.0.alpha)
+      actionmailer (= 8.2.0.alpha)
+      actionpack (= 8.2.0.alpha)
+      actiontext (= 8.2.0.alpha)
+      actionview (= 8.2.0.alpha)
+      activejob (= 8.2.0.alpha)
+      activemodel (= 8.2.0.alpha)
+      activerecord (= 8.2.0.alpha)
+      activestorage (= 8.2.0.alpha)
+      activesupport (= 8.2.0.alpha)
+      bundler (>= 1.15.0)
+      railties (= 8.2.0.alpha)
+    railties (8.2.0.alpha)
+      actionpack (= 8.2.0.alpha)
+      activesupport (= 8.2.0.alpha)
+      irb (~> 1.13)
+      rackup (>= 1.0.0)
+      rake (>= 12.2)
+      thor (~> 1.0, >= 1.2.2)
+      tsort (>= 0.2)
+      zeitwerk (~> 2.6)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    action_text-trix (2.1.15)
+      railties
+    active_genie (0.30.8)
+      async (~> 2.0)
+    active_job-performs (0.3.3)
+      activejob (>= 6.1)
+    active_link_to (1.0.5)
+      actionpack
+      addressable
+    active_record-associated_object (0.9.3)
+      activerecord (>= 6.1)
     addressable (2.8.8)
       public_suffix (>= 2.0.2, < 8.0)
     ahoy_matey (5.4.1)
@@ -117,21 +173,6 @@ GEM
       metrics (~> 0.12)
       traces (~> 0.18)
     authentication-zero (4.0.3)
-    avo (3.26.4)
-      actionview (>= 6.1)
-      active_link_to
-      activerecord (>= 6.1)
-      activesupport (>= 6.1)
-      addressable
-      avo-icons (>= 0.1.1)
-      docile
-      meta-tags
-      pagy (>= 7.0.0, < 43)
-      prop_initializer (>= 0.2.0)
-      turbo-rails (>= 2.0.0)
-      turbo_power (>= 0.6.0)
-      view_component (>= 3.7.0)
-      zeitwerk (>= 2.6.12)
     avo-icons (0.1.1)
       inline_svg
     base64 (0.3.0)
@@ -164,8 +205,8 @@ GEM
       xpath (~> 3.2)
     chartkick (5.2.1)
     coderay (1.1.3)
-    concurrent-ruby (1.3.5)
-    connection_pool (2.5.5)
+    concurrent-ruby (1.3.6)
+    connection_pool (3.0.2)
     console (1.34.2)
       fiber-annotation
       fiber-local (~> 1.1)
@@ -309,7 +350,7 @@ GEM
       csv
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
-    i18n (1.14.7)
+    i18n (1.14.8)
       concurrent-ruby (~> 1.0)
     importmap-rails (2.2.2)
       actionpack (>= 6.0.0)
@@ -318,9 +359,9 @@ GEM
     inline_svg (1.10.0)
       activesupport (>= 3.0)
       nokogiri (>= 1.6)
-    io-console (0.8.1)
+    io-console (0.8.2)
     io-event (1.14.2)
-    irb (1.15.3)
+    irb (1.16.0)
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
@@ -355,7 +396,7 @@ GEM
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     logger (1.7.0)
-    loofah (2.24.1)
+    loofah (2.25.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
     lumberjack (1.4.2)
@@ -366,8 +407,6 @@ GEM
       net-pop
       net-smtp
     marcel (1.1.0)
-    marksmith (0.4.7)
-      activesupport
     matrix (0.4.3)
     meta-tags (2.22.2)
       actionpack (>= 6.0.0, < 8.2)
@@ -379,7 +418,8 @@ GEM
     mini_portile2 (2.8.9)
     minisky (0.4.0)
       base64 (~> 0.1)
-    minitest (5.26.2)
+    minitest (6.0.1)
+      prism (~> 1.5)
     minitest-difftastic (0.2.1)
       difftastic (~> 0.6)
     mission_control-jobs (1.1.0)
@@ -415,8 +455,16 @@ GEM
       net-protocol
     net-ssh (7.3.0)
     nio4r (2.7.5)
-    nokogiri (1.18.10)
+    nokogiri (1.19.0)
       mini_portile2 (~> 2.8.2)
+      racc (~> 1.4)
+    nokogiri (1.19.0-aarch64-linux-gnu)
+      racc (~> 1.4)
+    nokogiri (1.19.0-arm64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.19.0-x86_64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.19.0-x86_64-linux-gnu)
       racc (~> 1.4)
     notiffany (0.1.3)
       nenv (~> 0.1)
@@ -471,7 +519,7 @@ GEM
     psych (5.3.1)
       date
       stringio
-    public_suffix (7.0.0)
+    public_suffix (7.0.1)
     puma (7.1.0)
       nio4r (~> 2.0)
     raabro (1.4.0)
@@ -490,22 +538,8 @@ GEM
       rack (>= 3.0.0)
     rack-test (2.2.0)
       rack (>= 1.3)
-    rackup (2.2.1)
+    rackup (2.3.1)
       rack (>= 3)
-    rails (8.1.1)
-      actioncable (= 8.1.1)
-      actionmailbox (= 8.1.1)
-      actionmailer (= 8.1.1)
-      actionpack (= 8.1.1)
-      actiontext (= 8.1.1)
-      actionview (= 8.1.1)
-      activejob (= 8.1.1)
-      activemodel (= 8.1.1)
-      activerecord (= 8.1.1)
-      activestorage (= 8.1.1)
-      activesupport (= 8.1.1)
-      bundler (>= 1.15.0)
-      railties (= 8.1.1)
     rails-controller-testing (1.0.5)
       actionpack (>= 5.0.1.rc1)
       actionview (>= 5.0.1.rc1)
@@ -524,15 +558,6 @@ GEM
       actionview (> 3.1)
       activesupport (> 3.1)
       railties (> 3.1)
-    railties (8.1.1)
-      actionpack (= 8.1.1)
-      activesupport (= 8.1.1)
-      irb (~> 1.13)
-      rackup (>= 1.0.0)
-      rake (>= 12.2)
-      thor (~> 1.0, >= 1.2.2)
-      tsort (>= 0.2)
-      zeitwerk (~> 2.6)
     rainbow (3.1.1)
     rake (13.3.1)
     rb-fsevent (0.11.2)
@@ -652,7 +677,7 @@ GEM
     thruster (0.1.16-arm64-darwin)
     thruster (0.1.16-x86_64-darwin)
     thruster (0.1.16-x86_64-linux)
-    timeout (0.4.4)
+    timeout (0.6.0)
     traces (0.18.2)
     tsort (0.2.0)
     turbo-rails (2.0.20)
@@ -720,7 +745,7 @@ DEPENDENCIES
   annotaterb
   appsignal
   authentication-zero
-  avo
+  avo!
   bcrypt (~> 3.1.7)
   bootsnap
   bundler-audit
@@ -751,7 +776,7 @@ DEPENDENCIES
   json_schemer
   kamal (= 2.7.0)
   listen (~> 3.5)
-  marksmith
+  marksmith!
   meta-tags
   mini_magick
   minisky (~> 0.4.0)
@@ -766,7 +791,7 @@ DEPENDENCIES
   propshaft
   puma
   rack-mini-profiler
-  rails (= 8.1.1)
+  rails!
   rails-controller-testing
   rails-i18n (~> 8.0)
   rails_autolink (~> 1.1)
