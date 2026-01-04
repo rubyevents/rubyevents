@@ -1,3 +1,5 @@
+<%# locals(user:, favorite_user:) %>
+
 <div id="<%= dom_id(user, :header_content) %>" class="flex flex-col lg:flex-row gap-8 items-center lg:justify-right text-center lg:text-left mb-6 lg:mb-0">
   <div class="relative w-fit">
     <%= ui_avatar(user, size_class: "size-24 md:size-36", size: :lg) %>
@@ -34,6 +36,19 @@
               <span class="flex items-center justify-center size-5 bg-green-500 rounded-full">
                 <span style="transform: scale(0.6);"><%= fa("code-pull-request", class: "fill-white") %></span>
               </span>
+            <% end %>
+          <% end %>
+        <% end %>
+        <% if Current.user && favorite_user.present? %>
+          <%= button_to favorite_user_path(favorite_user), method: :delete do %>
+            <%= ui_tooltip "Remove from your list of Favorite Rubyists" do %>
+              <%= fa("star", size: :sm, style: :solid, class: "fill-yellow-400") %>
+            <% end %>
+          <% end %>
+        <% elsif Current.user && Current.user != user %>
+          <%= ui_tooltip "Add to your list of Favorite Rubyists" do %>
+            <%= button_to favorite_users_path(favorite_user: {favorite_user_id: user.id}), method: :post do %>
+              <%= fa("star", size: :sm, style: :regular) %>
             <% end %>
           <% end %>
         <% end %>

@@ -1,5 +1,7 @@
+<%# locals(user:, favorite_user) %>
+
 <div class="block lg:flex gap-8 align-center justify-between" id="<%= dom_id(user, :header) %>">
-  <%= render "profiles/header_content", user: user %>
+  <%= render "profiles/header_content", user:, favorite_user: %>
 
   <div class="flex flex-col gap-2 items-start lg:max-w-[250px]">
     <%= render "profiles/actions", user: user %>

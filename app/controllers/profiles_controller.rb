@@ -1,8 +1,10 @@
 class ProfilesController < ApplicationController
   skip_before_action :authenticate_user!
   before_action :set_user, only: %i[show edit update]
+  before_action :set_favorite_user, only: %i[show]
   before_action :set_user_favorites, only: %i[show]
   before_action :set_mutual_events, only: %i[show]
+
   include Pagy::Backend
   include RemoteModal
   include WatchedTalks
@@ -117,6 +119,11 @@ class ProfilesController < ApplicationController
       :pronouns,
       :slug
     )
+  end
+
+  def set_favorite_user
+    return unless Current.user
+    @favorite_user = FavoriteUser.find_by(user: Current.user, favorite_user: @user)
   end
 
   def set_mutual_events

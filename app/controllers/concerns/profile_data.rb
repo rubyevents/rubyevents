@@ -4,6 +4,7 @@ module ProfileData
   included do
     skip_before_action :authenticate_user!
     before_action :set_user
+    before_action :set_favorite_user
     before_action :set_user_favorites
     before_action :set_mutual_events
     before_action :load_common_data
@@ -32,6 +33,10 @@ module ProfileData
 
     redirect_to speakers_path, status: :moved_permanently, notice: "User not found" if @user.blank?
     redirect_to profile_path(@user.canonical) if @user&.canonical.present?
+  end
+
+  def set_favorite_user
+    @favorite_user = FavoriteUser.find_by(user: Current.user, favorite_user: @user)
   end
 
   def set_mutual_events
