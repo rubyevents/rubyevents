@@ -1,3 +1,4 @@
+<% require "dotenv"; Dotenv.load(".env") %>
 # Name of your application. Used to uniquely configure containers.
 service: rubyvideo_staging
 
@@ -9,11 +10,17 @@ servers:
   web:
     hosts:
       - 138.199.198.123
+    options:
+      memory: 2GB
+      cpus: 2
 
   job:
     hosts:
       - 138.199.198.123
     cmd: bin/jobs
+    options:
+      memory: 1GB
+      cpus: 1
 
 # Enable SSL auto certification via Let's Encrypt and allow for multiple apps on a single web server.
 # Remove this section when using multiple web servers and ensure you terminate SSL at your load balancer.
