@@ -65,6 +65,9 @@ application.register("talks-filter", TalksFilterController)
 import TalksNavigationController from "./talks_navigation_controller"
 application.register("talks-navigation", TalksNavigationController)
 
+import TheaterModeController from "./theater_mode_controller"
+application.register("theater-mode", TheaterModeController)
+
 import ToggableController from "./toggable_controller"
 application.register("toggable", ToggableController)
 

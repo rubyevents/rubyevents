@@ -16,19 +16,40 @@
 <% video_id = (talk.video_provider == "parent") ? talk.parent_talk.video_id : talk.video_id %>
 
 <% language = Language.by_code(talk.language) %>
-<%= content_tag :div, id: dom_id(talk) do %>
+<%= content_tag :div, id: dom_id(talk), data: {controller: "theater-mode", action: "click->theater-mode#closeOnBackdrop"} do %>
 
-  <%= turbo_frame_tag dom_id(talk, :video_player) do %>
-    <%= render partial: "talks/video_player", locals: {talk: talk, current_user_watched_talk: current_user_watched_talk, is_watched: is_watched, video_provider: video_provider, video_id: video_id} %>
-  <% end %>
+  <div class="theater-mode-info">
+    <%= image_tag image_path(talk.event.avatar_image_path), class: "theater-mode-event-avatar", alt: talk.event.name %>
+    <div class="theater-mode-metadata">
+      <div class="theater-mode-title"><%= talk.title %></div>
+      <div class="theater-mode-speakers-event">
+        <span class="theater-mode-speakers"><%= talk.speakers.map(&:name).to_sentence %></span>
+        <span class="theater-mode-separator">•</span>
+        <span class="theater-mode-event"><%= talk.event.name %></span>
+        <span class="theater-mode-separator">•</span>
+        <span class="theater-mode-date"><%= talk.formatted_date %></span>
+      </div>
+    </div>
+    <button class="exit-btn" data-action="click->theater-mode#deactivate">
+      <%= fa("xmark", size: :sm, class: "fill-white mr-2") %> Exit
+    </button>
+  </div>
 
-  <div id="<%= dom_id(talk, :feedback_banner) %>">
+  <div data-theater-mode-target="player">
+    <%= turbo_frame_tag dom_id(talk, :video_player) do %>
+      <%= render partial: "talks/video_player", locals: {talk: talk, current_user_watched_talk: current_user_watched_talk, is_watched: is_watched, video_provider: video_provider, video_id: video_id} %>
+    <% end %>
+  </div>
+
+  <div class="theater-mode-exit-hint">Press ESC to exit • T to toggle</div>
+
+  <div data-theater-mode-target="content" id="<%= dom_id(talk, :feedback_banner) %>">
     <% if is_watched %>
       <%= render partial: "talks/watched_talks/feedback_banner", locals: {talk: talk, watched_talk: current_user_watched_talk} %>
     <% end %>
   </div>
 
-  <div class="flex flex-col">
+  <div class="flex flex-col" data-theater-mode-target="content">
     <% if talk.meta_talk? %>
       <div class="flex gap-1 px-3 py-3 my-3 badge badge-ghost hover:bg-gray-300">
         <%= fa("rectangle-history", size: :xs, class: "fill-gray-700 mr-2") %>
@@ -67,72 +88,6 @@
             <% end %>
           <% end %>
 
-          <% if default_watch_list %>
-            <% if user_favorite_talks_ids.include?(talk.id) %>
-              <%= ui_tooltip "Add talk to your watch list" do %>
-                <%= ui_button url: watch_list_talk_path(default_watch_list, talk.id), method: :delete, kind: :pill do %>
-                  <%= fa("bookmark", size: :xs, style: :solid, class: "text-primary") %>
-                  <span class="text-xs">Bookmark</span>
-                <% end %>
-              <% end %>
-            <% else %>
-              <%= ui_tooltip "Add talk to your watch list" do %>
-                <%= ui_button url: watch_list_talks_path(default_watch_list, talk_id: talk.id), method: :post, kind: :pill do %>
-                  <%= fa("bookmark", size: :xs, style: :regular) %>
-                  <span class="text-xs">Bookmark</span>
-                <% end %>
-              <% end %>
-            <% end %>
-          <% else %>
-            <%= ui_tooltip "Add talk to your watch list" do %>
-              <%= ui_button url: new_session_path(redirect_to: request.fullpath), data: {turbo_frame: "modal"}, kind: :pill do %>
-                <%= fa("bookmark", size: :xs, style: :regular) %>
-                <span class="text-xs">Bookmark</span>
-              <% end %>
-            <% end %>
-          <% end %>
-
-          <% if talk.youtube? || talk.parent_talk&.youtube? %>
-            <%= ui_tooltip "Watch on YouTube" do %>
-              <%= ui_button url: talk.external_player_url, kind: :pill, target: "_blank", data: {action: "click->video-player#pause"} do %>
-                <%= fa("youtube-brands", size: :xs, style: :solid) %>
-                <span class="text-xs">Play on YouTube</span>
-              <% end %>
-            <% end %>
-          <% end %>
-
-          <% if talk.vimeo? || talk.parent_talk&.vimeo? %>
-            <%= ui_tooltip "Watch on Vimeo" do %>
-              <%= ui_button url: talk.external_player_url, kind: :pill, target: "_blank" do %>
-                <%= fa("vimeo-v-brands", size: :xs, style: :solid) %>
-                <span class="text-xs">Play on Vimeo</span>
-              <% end %>
-            <% end %>
-          <% end %>
-
-          <% if talk.static_metadata&.external_player_url.present? || talk.parent_talk&.static_metadata&.external_player_url.present? %>
-            <% player_url = talk.parent_talk&.static_metadata&.external_player_url || talk.static_metadata.external_player_url %>
-
-            <%= ui_tooltip "Watch on Website" do %>
-              <%= ui_button url: player_url, kind: :pill, target: "_blank", data: {action: "click->video-player#pause"} do %>
-                <%= fa("website-brands", size: :xs, style: :solid) %>
-                <span class="text-xs">Play on Website</span>
-              <% end %>
-            <% end %>
-          <% end %>
-
-          <%= turbo_frame_tag dom_id(talk, :watched_button) do %>
-            <% if signed_in? %>
-              <%= render partial: "talks/watched_talks/button", locals: {talk: talk, is_watched: is_watched} %>
-            <% end %>
-          <% end %>
-
-          <%= ui_tooltip "You can suggest some modifications to this talk", class: "hotwire-native:hidden" do %>
-            <%= ui_button url: edit_talk_path(talk), kind: :pill, data: {turbo_frame: "modal"} do %>
-              <%= fa("pen", size: :xs, style: :solid) %>
-              <span class="text-xs">Edit</span>
-            <% end %>
-          <% end %>
         </div>
 
         <div class="flex justify-between w-full py-2">
