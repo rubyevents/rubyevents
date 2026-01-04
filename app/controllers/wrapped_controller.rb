@@ -31,7 +31,7 @@ class WrappedController < ApplicationController
         unique_sponsors: unique_sponsors,
         event_participations: EventParticipation.joins(:event).where(events: {start_date: @year_range}).count,
         people_involved: people_involved,
-        total_talks_watched: WatchedTalk.where(created_at: @year_range).count,
+        total_talks_watched: WatchedTalk.where(watched_at: @year_range).count,
         new_users: ConnectedAccount.github.where(created_at: @year_range).count,
         total_rubyists: User.count,
         rubyist_countries: rubyist_countries,
