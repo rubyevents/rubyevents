@@ -1,0 +1,37 @@
+<div class="container py-8">
+  <div class="flex items-center gap-2 title text-primary">
+    <h1 class="flex items-center gap-2">
+      <%= fa("gem", size: :md, class: "fill-primary") %>
+      Ruby Gems
+    </h1>
+  </div>
+
+  <p class="text-gray-600 mt-2 mb-6">
+    Browse Ruby gems featured in <%= pluralize(TopicGem.joins(:topic).sum("topics.talks_count"), "conference talk") %>.
+  </p>
+
+  <div class="flex flex-wrap w-full justify-between hotwire-native:hidden py-4 gap-1">
+    <% ("a".."z").each do |letter| %>
+      <%= link_to gems_path(letter: letter), class: class_names("flex items-center justify-center w-10 text-gray-500 rounded hover:bg-brand-lighter border", "bg-brand-lighter": letter == params[:letter]) do %>
+        <%= letter.upcase %>
+      <% end %>
+    <% end %>
+    <%= link_to gems_path, class: class_names("flex items-center justify-center w-10 text-gray-500 rounded hover:bg-brand-lighter border", "bg-brand-lighter": params[:letter].blank?) do %>
+      all
+    <% end %>
+  </div>
+
+  <div id="gems" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 min-w-full">
+    <% @gems.each do |topic_gem| %>
+      <%= render partial: "gem_card", locals: {topic_gem: topic_gem} %>
+    <% end %>
+  </div>
+
+  <% if @pagy.next.present? %>
+    <%= turbo_frame_tag :pagination,
+          data: {
+            controller: "lazy-loading",
+            lazy_loading_src_value: gems_path(letter: params[:letter], page: @pagy.next, format: :turbo_stream)
+          } %>
+  <% end %>
+</div>

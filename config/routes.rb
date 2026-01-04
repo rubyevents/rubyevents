@@ -38,6 +38,12 @@ Rails.application.routes.draw do
   resources :cfp, only: :index
   resources :countries, param: :country, only: [:index, :show]
 
+  resources :gems, param: :gem_name, only: [:index, :show] do
+    member do
+      get :talks
+    end
+  end
+
   namespace :profiles do
     resources :connect, only: [:index, :show]
     resources :claims, only: [:create]

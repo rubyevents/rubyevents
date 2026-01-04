@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.2].define(version: 2026_01_03_210603) do
+ActiveRecord::Schema[8.2].define(version: 2026_01_03_232440) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -390,6 +390,15 @@ ActiveRecord::Schema[8.2].define(version: 2026_01_03_210603) do
     t.index ["video_provider", "date"], name: "index_talks_on_video_provider_and_date"
   end
 
+  create_table "topic_gems", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "gem_name", null: false
+    t.integer "topic_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["topic_id", "gem_name"], name: "index_topic_gems_on_topic_id_and_gem_name", unique: true
+    t.index ["topic_id"], name: "index_topic_gems_on_topic_id"
+  end
+
   create_table "topics", force: :cascade do |t|
     t.integer "canonical_id"
     t.datetime "created_at", null: false
@@ -511,6 +520,7 @@ ActiveRecord::Schema[8.2].define(version: 2026_01_03_210603) do
   add_foreign_key "talk_transcripts", "talks"
   add_foreign_key "talks", "events"
   add_foreign_key "talks", "talks", column: "parent_talk_id"
+  add_foreign_key "topic_gems", "topics"
   add_foreign_key "topics", "topics", column: "canonical_id"
   add_foreign_key "user_talks", "talks"
   add_foreign_key "user_talks", "users"

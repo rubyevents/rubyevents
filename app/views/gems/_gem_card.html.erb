@@ -1,0 +1,43 @@
+<%= link_to gem_path(gem_name: topic_gem.gem_name), class: "flex flex-col gap-3 p-4 bg-base-100 rounded-lg border hover:border-primary hover:shadow-sm transition-all" do %>
+  <div class="flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <%= fa("gem", size: :sm, class: "fill-primary") %>
+      <code class="font-semibold text-lg font-mono"><%= topic_gem.gem_name %></code>
+    </div>
+    <% if topic_gem.version.present? %>
+      <span class="badge badge-sm badge-primary badge-outline">v<%= topic_gem.version %></span>
+    <% end %>
+  </div>
+
+  <% if topic_gem.summary.present? %>
+    <p class="text-sm text-gray-600 line-clamp-2"><%= topic_gem.summary %></p>
+  <% end %>
+
+  <div class="flex flex-wrap items-center gap-3 text-xs text-gray-500 mt-auto pt-1">
+    <div class="flex items-center gap-1">
+      <%= fa("video", size: :xs) %>
+      <span><%= pluralize(topic_gem.talks_count, "talk") %></span>
+    </div>
+
+    <% if topic_gem.downloads.present? %>
+      <div class="flex items-center gap-1">
+        <%= fa("download", size: :xs) %>
+        <span><%= number_to_human(topic_gem.downloads) %></span>
+      </div>
+    <% end %>
+
+    <% if topic_gem.license.present? %>
+      <div class="flex items-center gap-1">
+        <%= fa("scale-balanced", size: :xs) %>
+        <span><%= topic_gem.license %></span>
+      </div>
+    <% end %>
+
+    <% if topic_gem.github_repo.present? %>
+      <div class="flex items-center gap-1">
+        <%= fab("github", size: :xs) %>
+        <span><%= topic_gem.github_repo.split("/").last %></span>
+      </div>
+    <% end %>
+  </div>
+<% end %>
