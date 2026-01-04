@@ -1,31 +1,4 @@
 GIT
-  remote: https://github.com/avo-hq/avo.git
-  revision: 12bf1391f11f65d0991a87132c51c43424334857
-  specs:
-    avo (3.27.0)
-      actionview (>= 6.1)
-      active_link_to
-      activerecord (>= 6.1)
-      activesupport (>= 6.1)
-      addressable
-      avo-icons (>= 0.1.1)
-      docile
-      meta-tags
-      pagy (>= 7.0.0, < 43)
-      prop_initializer (>= 0.2.0)
-      turbo-rails (>= 2.0.0)
-      turbo_power (>= 0.6.0)
-      view_component (>= 3.7.0)
-      zeitwerk (>= 2.6.12)
-
-GIT
-  remote: https://github.com/avo-hq/marksmith.git
-  revision: 37867e0b6c41d3656fcb4278ddfea8dba50c7f3c
-  specs:
-    marksmith (0.4.8.pre)
-      activesupport
-
-GIT
   remote: https://github.com/joshleblanc/solid_queue.git
   revision: f5881054ddc7096b18d086d0ec01620d4e1024d4
   branch: async-mode
@@ -173,6 +146,21 @@ GEM
       metrics (~> 0.12)
       traces (~> 0.18)
     authentication-zero (4.0.3)
+    avo (3.27.0)
+      actionview (>= 6.1)
+      active_link_to
+      activerecord (>= 6.1)
+      activesupport (>= 6.1)
+      addressable
+      avo-icons (>= 0.1.1)
+      docile
+      meta-tags
+      pagy (>= 7.0.0, < 43)
+      prop_initializer (>= 0.2.0)
+      turbo-rails (>= 2.0.0)
+      turbo_power (>= 0.6.0)
+      view_component (>= 3.7.0)
+      zeitwerk (>= 2.6.12)
     avo-icons (0.1.1)
       inline_svg
     base64 (0.3.0)
@@ -408,6 +396,8 @@ GEM
       net-pop
       net-smtp
     marcel (1.1.0)
+    marksmith (0.4.7)
+      activesupport
     matrix (0.4.3)
     meta-tags (2.22.2)
       actionpack (>= 6.0.0, < 8.2)
@@ -746,7 +736,7 @@ DEPENDENCIES
   annotaterb
   appsignal
   authentication-zero
-  avo!
+  avo (~> 3.27)
   bcrypt (~> 3.1.7)
   bootsnap
   bundler-audit
@@ -778,7 +768,7 @@ DEPENDENCIES
   json_schemer
   kamal (= 2.7.0)
   listen (~> 3.5)
-  marksmith!
+  marksmith (~> 0.4)
   meta-tags
   mini_magick
   minisky (~> 0.4.0)
