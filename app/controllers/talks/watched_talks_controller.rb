@@ -35,20 +35,34 @@ class Talks::WatchedTalksController < ApplicationController
 
   def update
     @watched_talk = @talk.watched_talks.find_or_create_by!(user: Current.user)
+    @auto_marked = false
 
     updates = watched_talk_params
     is_feedback_update = updates.keys.any? { |k| k.in?(%w[feeling experience_level content_freshness] + WatchedTalk::FEEDBACK_QUESTIONS.keys.map(&:to_s)) }
+    is_watched_on_update = updates.key?(:watched_on)
 
     if is_feedback_update
       updates = updates.merge(watched: true, feedback_shared_at: Time.current)
     end
 
+    if !@watched_talk.watched? && should_auto_mark?(updates[:progress_seconds])
+      updates = updates.merge(watched: true, watched_on: "rubyevents")
+      @auto_marked = true
+    end
+
     @watched_talk.update!(updates)
     @form_open = is_feedback_update
+    @should_stream = @auto_marked || is_feedback_update || is_watched_on_update
 
     respond_to do |format|
       format.html { redirect_back fallback_location: @talk }
-      format.turbo_stream
+      format.turbo_stream do
+        if @should_stream
+          render :update
+        else
+          head :no_content
+        end
+      end
     end
   end
 
@@ -68,6 +82,14 @@ class Talks::WatchedTalksController < ApplicationController
 
   def set_talk
     @talk = Talk.includes(event: :series).find_by(slug: params[:talk_slug])
+  end
+
+  def should_auto_mark?(progress_seconds)
+    return false unless progress_seconds.present?
+    return false unless @talk.duration_in_seconds.to_i > 0
+
+    progress_percentage = (progress_seconds.to_f / @talk.duration_in_seconds) * 100
+    progress_percentage >= 90
   end
 
   def broadcast_update_to_event_talks
