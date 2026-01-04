@@ -108,22 +108,22 @@ gem "solid_queue", github: "joshleblanc/solid_queue", branch: "async-mode"
 # Operational controls for Active Job
 gem "mission_control-jobs"
 
-# Simple, powerful, first-party analytics for Rails
+# Simple, powerful, first-party analytics for Rails
 gem "ahoy_matey"
 
 # The simplest way to group temporal data
 gem "groupdate"
 
-# Create beautiful JavaScript charts with one line of Ruby
+# Create beautiful JavaScript charts with one line of Ruby
 gem "chartkick", "~> 5.0"
 
 # Use Vite in Rails and bring joy to your JavaScript experience
 gem "vite_rails"
 
-# Collection of SEO helpers for Ruby on Rails.
+# Collection of SEO helpers for Ruby on Rails.
 gem "meta-tags"
 
-# Logs performance and exception data from your app to appsignal.com
+# Logs performance and exception data from your app to appsignal.com
 gem "appsignal"
 
 # Autoload dotenv in Rails.
@@ -135,7 +135,7 @@ gem "rails_autolink", "~> 1.1"
 # Easily generate XML Sitemaps
 gem "sitemap_generator", "~> 6.3"
 
-# A framework for building reusable, testable & encapsulated view components
+# A framework for building reusable, testable & encapsulated view components
 gem "view_component"
 
 # Adds ActiveRecord-specific methods to Dry::Initializer
@@ -153,16 +153,16 @@ gem "active_job-performs", "~> 0.3.1"
 # Use the OpenAI API with Ruby!
 gem "ruby-openai"
 
-# Repairs broken JSON strings.
+# Repairs broken JSON strings.
 gem "json-repair", "~> 0.2.0"
 
 # Markdown that smells nice
 gem "redcarpet", "~> 3.6"
 
-# Country Select Plugin
+# Country Select Plugin
 gem "country_select"
 
-# Admin panel framework and Content Management System for Ruby on Rails.
+# Admin panel framework and Content Management System for Ruby on Rails.
 gem "avo", "~> 3.27"
 
 # Marksmith is a GitHub-style markdown editor for Ruby on Rails applications.
