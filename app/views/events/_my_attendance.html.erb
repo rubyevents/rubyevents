@@ -1,4 +1,4 @@
-<%# locals: (event:, days:, tracks:, talks:, in_person_talk_ids:, online_talk_ids:) %>
+<%# locals: (event:, days:, tracks:, talks:, in_person_talk_ids:, online_talk_ids:, feedback_talk_ids:) %>
 
 <% total_talks = talks.size %>
 <% attended_count = in_person_talk_ids.size %>
@@ -41,7 +41,8 @@
               tracks: tracks,
               talks: day_talks,
               in_person_talk_ids: in_person_talk_ids,
-              online_talk_ids: online_talk_ids %>
+              online_talk_ids: online_talk_ids,
+              feedback_talk_ids: feedback_talk_ids %>
 
         <% talk_offset += day_talk_count %>
       <% end %>
@@ -52,7 +53,8 @@
                 talk: talk,
                 track: nil,
                 attended_in_person: in_person_talk_ids.include?(talk.id),
-                watched_online: online_talk_ids.include?(talk.id) %>
+                watched_online: online_talk_ids.include?(talk.id),
+                has_feedback: feedback_talk_ids.include?(talk.id) %>
         <% end %>
       </div>
     <% end %>

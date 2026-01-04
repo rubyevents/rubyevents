@@ -36,9 +36,11 @@ class Events::AttendancesController < ApplicationController
       return
     end
 
-    watched_talks = Current.user.watched_talks.where(talk: @event.talks).pluck(:talk_id, :watched_on)
-    @user_in_person_talk_ids = watched_talks.select { |_, on| on == "in_person" }.map(&:first).to_set
-    @user_online_talk_ids = watched_talks.reject { |_, on| on == "in_person" }.map(&:first).to_set
+    user_watched_talks = Current.user.watched_talks.where(talk: @event.talks)
+    watched_talks_data = user_watched_talks.pluck(:talk_id, :watched_on)
+    @user_in_person_talk_ids = watched_talks_data.select { |_, on| on == "in_person" }.map(&:first).to_set
+    @user_online_talk_ids = watched_talks_data.reject { |_, on| on == "in_person" }.map(&:first).to_set
+    @user_feedback_talk_ids = user_watched_talks.select(&:has_rating_feedback?).map(&:talk_id).to_set
     @attendance_days = @event.schedule.exist? ? @event.schedule.days : []
     @attendance_tracks = @event.schedule.exist? ? @event.schedule.tracks : []
     @attendance_talks = @event.talks_in_running_order(child_talks: false).includes(:speakers).to_a

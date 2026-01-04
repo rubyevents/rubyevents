@@ -81,6 +81,7 @@ Rails.application.routes.draw do
       resources :recommendations, only: [:index]
       resource :watched_talk, only: [:new, :create, :destroy, :update] do
         post :toggle_attendance, on: :collection
+        post :toggle_online, on: :collection
       end
       resource :slides, only: :show
     end

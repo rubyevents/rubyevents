@@ -2,9 +2,9 @@
 
 <div class="container py-8">
   <div class="mb-6">
-    <%= link_to attendances_path, class: "link text-sm" do %>
-      <%= fa("arrow-left", size: :sm) %>
-      Back to My Attendances
+    <%= link_to attendances_path, class: "link text-sm inline-flex items-center gap-1" do %>
+      <%= fa("arrow-left", size: :xs) %>
+      <span>Back to My Attendances</span>
     <% end %>
   </div>
 
@@ -14,5 +14,6 @@
         tracks: @attendance_tracks,
         talks: @attendance_talks,
         in_person_talk_ids: @user_in_person_talk_ids,
-        online_talk_ids: @user_online_talk_ids %>
+        online_talk_ids: @user_online_talk_ids,
+        feedback_talk_ids: @user_feedback_talk_ids %>
 </div>

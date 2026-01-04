@@ -2,10 +2,12 @@
   <% track_name = @talk.static_metadata&.track %>
   <% tracks = @talk.event.schedule.exist? ? @talk.event.schedule.tracks : [] %>
   <% track = track_name && tracks.find { |t| t["name"] == track_name } %>
+  <% watched_talk = @talk.watched_talks.find_by(user: Current.user) %>
 
   <%= render "events/my_attendance_talk",
         talk: @talk,
         track: track,
         attended_in_person: @attended,
-        watched_online: false %>
+        watched_online: @watched_online,
+        has_feedback: watched_talk&.has_rating_feedback? || false %>
 <% end %>
