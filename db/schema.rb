@@ -209,6 +209,15 @@ ActiveRecord::Schema[8.2].define(version: 2026_01_06_232656) do
     t.index ["slug"], name: "index_events_on_slug"
   end
 
+  create_table "favorite_users", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "favorite_user_id", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["favorite_user_id"], name: "index_favorite_users_on_favorite_user_id"
+    t.index ["user_id"], name: "index_favorite_users_on_user_id"
+  end
+
   create_table "featured_cities", force: :cascade do |t|
     t.string "city", null: false
     t.string "country_code", null: false
@@ -539,6 +548,8 @@ ActiveRecord::Schema[8.2].define(version: 2026_01_06_232656) do
   add_foreign_key "event_participations", "users"
   add_foreign_key "events", "event_series"
   add_foreign_key "events", "events", column: "canonical_id"
+  add_foreign_key "favorite_users", "users"
+  add_foreign_key "favorite_users", "users", column: "favorite_user_id"
   add_foreign_key "password_reset_tokens", "users"
   add_foreign_key "sessions", "users"
   add_foreign_key "speakers", "speakers", column: "canonical_id"
