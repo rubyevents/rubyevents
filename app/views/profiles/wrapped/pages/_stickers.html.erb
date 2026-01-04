@@ -2,8 +2,8 @@
 <p class="text-gray-500 text-center mb-4">Event stickers from <%= year %></p>
 
 <div class="flex-1 w-full overflow-hidden rounded-2xl bg-gradient-to-b from-gray-300 via-gray-600 to-gray-600 p-[3px]">
-  <div class="w-full h-full overflow-hidden rounded-2xl bg-gradient-to-b from-gray-400 via-gray-500 to-gray-600 p-4">
-    <div class="grid grid-cols-3 gap-3 w-full h-full place-items-center">
+  <div class="w-full h-full overflow-hidden rounded-2xl bg-gradient-to-b from-gray-400 via-gray-500 to-gray-600 p-4 flex items-center justify-center">
+    <div class="grid grid-cols-3 gap-3 w-full place-items-center content-center">
       <% stickers_earned.shuffle.each do |sticker| %>
         <% rotation = rand(-15..15)
            translate_x = rand(-10..10)
