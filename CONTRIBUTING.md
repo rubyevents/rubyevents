@@ -93,6 +93,40 @@ However, if you're working on an older event, you can seed all events instead.
 bin/rails db:seed:all
 ```
 
+You can also seed one event series with a script.
+
+```bash
+rails runner scripts/import_event.rb blue-ridge-ruby
+```
+
+## Running Tests
+
+We use minitest for all our testing.
+
+Run the full test suite with:
+
+```bash
+rails test
+```
+
+Run just one test using:
+
+```bash
+rails test test/models/talk_test.rb
+```
+
+Run just one example using:
+
+```bash
+rails test test/models/talk_test.rb:6
+```
+
+## UI
+
+For the front-end, we use [Vite](https://vite.dev/), [Tailwind CSS](https://tailwindcss.com/) with [Daisyui](https://daisyui.com/) components, [Hotwire](https://hotwired.dev/), and [Stimulus](https://stimulus.hotwired.dev/).
+
+You can find existing RubyEvents components in our [component library](https://www.rubyevents.org/components).
+
 ## Contributing new events
 
 Discovering and documenting new Ruby events is an ongoing effort, and a fantastic way to get familiar with the codebase!
