@@ -190,6 +190,9 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  resources :favorite_users, only: [:index, :create, :destroy]
+
   resources :events, param: :slug, only: [:index, :show, :update, :edit] do
     resources :event_participations, only: [:create, :destroy]
 
