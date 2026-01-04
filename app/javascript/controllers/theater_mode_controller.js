@@ -1,4 +1,6 @@
 import { Controller } from '@hotwired/stimulus'
+import { IdleDetector } from '~/lib/player/idle_detector'
+import { KeyboardShortcuts } from '~/lib/player/keyboard_shortcuts'
 
 export default class extends Controller {
   static targets = ['player', 'content']
@@ -7,21 +9,28 @@ export default class extends Controller {
   }
 
   connect () {
-    this.handleKeydown = this.handleKeydown.bind(this)
-    this.handleMouseMove = this.handleMouseMove.bind(this)
-    this.handleMouseLeave = this.handleMouseLeave.bind(this)
-    document.addEventListener('keydown', this.handleKeydown)
+    this.idleDetector = new IdleDetector({
+      element: this.element,
+      idleDelay: 3000,
+      onIdle: () => this.hideTheaterControls(),
+      onActive: () => this.showTheaterControls(),
+      checkPlaying: () => true
+    })
 
-    this.idleTimeout = null
-    this.idleDelay = 3000
+    this.keyboardShortcuts = new KeyboardShortcuts({
+      bindings: {
+        Escape: () => this.activeValue && this.deactivate(),
+        t: () => this.toggle()
+      },
+      enabledCheck: () => true
+    })
+    this.keyboardShortcuts.start()
   }
 
   disconnect () {
-    document.removeEventListener('keydown', this.handleKeydown)
+    this.keyboardShortcuts?.stop()
+    this.idleDetector?.stop()
     this.deactivate()
-    if (this.idleTimeout) {
-      clearTimeout(this.idleTimeout)
-    }
   }
 
   toggle () {
@@ -37,11 +46,17 @@ export default class extends Controller {
   }
 
   activeValueChanged () {
+    if (!this.initialized) return
+
     if (this.activeValue) {
       this.enterTheaterMode()
     } else {
       this.exitTheaterMode()
     }
+  }
+
+  get initialized () {
+    return !!this.idleDetector
   }
 
   enterTheaterMode () {
@@ -56,8 +71,7 @@ export default class extends Controller {
       this.playerTarget.classList.add('theater-mode-player')
     }
 
-    this.element.addEventListener('mousemove', this.handleMouseMove)
-    this.element.addEventListener('mouseleave', this.handleMouseLeave)
+    this.idleDetector.start()
   }
 
   exitTheaterMode () {
@@ -73,36 +87,7 @@ export default class extends Controller {
       this.playerTarget.classList.remove('theater-mode-player')
     }
 
-    this.element.removeEventListener('mousemove', this.handleMouseMove)
-    this.element.removeEventListener('mouseleave', this.handleMouseLeave)
-
-    if (this.idleTimeout) {
-      clearTimeout(this.idleTimeout)
-      this.idleTimeout = null
-    }
-  }
-
-  handleMouseMove () {
-    this.showTheaterControls()
-    this.resetIdleTimer()
-  }
-
-  handleMouseLeave () {
-    if (this.idleTimeout) {
-      clearTimeout(this.idleTimeout)
-      this.idleTimeout = null
-    }
-    this.hideTheaterControls()
-  }
-
-  resetIdleTimer () {
-    if (this.idleTimeout) {
-      clearTimeout(this.idleTimeout)
-    }
-
-    this.idleTimeout = setTimeout(() => {
-      this.hideTheaterControls()
-    }, this.idleDelay)
+    this.idleDetector?.stop()
   }
 
   showTheaterControls () {
@@ -111,16 +96,6 @@ export default class extends Controller {
 
   hideTheaterControls () {
     this.element.classList.add('theater-mode-idle')
-  }
-
-  handleKeydown (event) {
-    if (event.key === 'Escape' && this.activeValue) {
-      this.deactivate()
-    }
-
-    if (event.key === 't' && !this.isTyping(event)) {
-      this.toggle()
-    }
   }
 
   closeOnBackdrop (event) {
@@ -133,13 +108,5 @@ export default class extends Controller {
     if (event.target === this.element) {
       this.deactivate()
     }
-  }
-
-  isTyping (event) {
-    const target = event.target
-    return target.tagName === 'INPUT' ||
-           target.tagName === 'TEXTAREA' ||
-           target.tagName === 'SELECT' ||
-           target.isContentEditable
   }
 }
