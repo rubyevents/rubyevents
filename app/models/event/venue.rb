@@ -110,4 +110,49 @@ class Event::Venue < ActiveRecord::AssociatedObject
   def locations
     file["locations"] || []
   end
+
+  def map_markers
+    markers = []
+
+    if latitude.present? && longitude.present?
+      markers << {
+        latitude: latitude,
+        longitude: longitude,
+        kind: "venue",
+        name: name,
+        address: display_address
+      }
+    end
+
+    hotels.each do |hotel|
+      coords = hotel["coordinates"]
+      next unless coords&.dig("latitude").present? && coords&.dig("longitude").present?
+
+      markers << {
+        latitude: coords["latitude"],
+        longitude: coords["longitude"],
+        kind: "hotel",
+        name: hotel["name"],
+        address: hotel["address"],
+        distance: hotel["distance"]
+      }
+    end
+
+    locations.each do |location|
+      coords = location["coordinates"]
+      next unless coords&.dig("latitude").present? && coords&.dig("longitude").present?
+
+      markers << {
+        latitude: coords["latitude"],
+        longitude: coords["longitude"],
+        kind: "location",
+        name: location["name"],
+        location_kind: location["kind"],
+        address: location["address"],
+        distance: location["distance"]
+      }
+    end
+
+    markers
+  end
 end

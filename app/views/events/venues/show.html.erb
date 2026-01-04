@@ -50,23 +50,19 @@
               </div>
             <% end %>
           </div>
-
-          <% if @venue.latitude.present? && @venue.longitude.present? %>
-            <div class="w-full md:w-96 h-64 rounded-lg overflow-hidden border">
-              <iframe
-                title="Map showing location of <%= @venue.name %>"
-                width="100%"
-                height="100%"
-                frameborder="0"
-                style="border:0"
-                referrerpolicy="no-referrer-when-downgrade"
-                src="https://www.openstreetmap.org/export/embed.html?bbox=<%= @venue.longitude - 0.01 %>,<%= @venue.latitude - 0.005 %>,<%= @venue.longitude + 0.01 %>,<%= @venue.latitude + 0.005 %>&layer=mapnik&marker=<%= @venue.latitude %>,<%= @venue.longitude %>"
-                allowfullscreen>
-              </iframe>
-            </div>
-          <% end %>
         </div>
       </section>
+
+      <% if @venue.map_markers.any? %>
+        <section class="bg-white rounded-lg border shadow-sm overflow-hidden">
+          <div
+            id="venue-map"
+            class="w-full h-[400px] md:h-[500px]"
+            data-controller="map"
+            data-map-mode-value="venue"
+            data-map-markers-value="<%= @venue.map_markers.to_json %>"></div>
+        </section>
+      <% end %>
 
       <% if @venue.rooms.any? %>
         <section class="bg-white rounded-lg border p-6 shadow-sm">
