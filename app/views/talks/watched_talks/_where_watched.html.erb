@@ -7,10 +7,10 @@
 
   <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 auto-rows-fr">
     <% WatchedTalk.watched_on_options_for(talk).each do |key, option| %>
-      <% selected = watched_talk.watched_on == key %>
+      <% selected = watched_talk&.watched_on == key %>
       <% watched_at = (key == "in_person" && talk.date) ? talk.date.to_date : nil %>
 
-      <%= button_to update_path, method: :patch, class: "contents", params: {watched_talk: {watched_on: key, watched_at: watched_at}.compact} do %>
+      <%= button_to update_path, method: :patch, class: "contents", data: {turbo_stream: true}, params: {watched_talk: {watched_on: selected ? nil : key, watched_at: watched_at}.compact} do %>
         <div class="flex flex-col items-center justify-center p-3 border-2 rounded-lg cursor-pointer transition-colors h-full <%= selected ? "border-red-500 bg-red-500 text-white hover:bg-red-600" : "bg-white hover:bg-gray-50" %>">
           <%= fa(option[:icon], size: :lg, class: class_names("mb-1", "fill-white": selected)) %>
           <span class="text-xs text-center leading-tight"><%= option[:label] %></span>

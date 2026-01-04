@@ -22,11 +22,11 @@
     <%= render partial: "talks/video_player", locals: {talk: talk, current_user_watched_talk: current_user_watched_talk, is_watched: is_watched, video_provider: video_provider, video_id: video_id} %>
   <% end %>
 
-  <%= turbo_frame_tag dom_id(talk, :feedback_banner) do %>
+  <div id="<%= dom_id(talk, :feedback_banner) %>">
     <% if is_watched %>
       <%= render partial: "talks/watched_talks/feedback_banner", locals: {talk: talk, watched_talk: current_user_watched_talk} %>
     <% end %>
-  <% end %>
+  </div>
 
   <div class="flex flex-col">
     <% if talk.meta_talk? %>

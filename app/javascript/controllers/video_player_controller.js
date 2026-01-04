@@ -3,7 +3,7 @@ import { useIntersection } from 'stimulus-use'
 import Vlitejs from 'vlitejs'
 import YouTube from 'vlitejs/providers/youtube.js'
 import Vimeo from 'vlitejs/providers/vimeo.js'
-import { patch, post } from '@rails/request.js'
+import { patch } from '@rails/request.js'
 
 Vlitejs.registerProvider('youtube', YouTube)
 Vlitejs.registerProvider('vimeo', Vimeo)
@@ -19,8 +19,7 @@ export default class extends Controller {
     watchedTalkPath: String,
     currentUserPresent: { default: false, type: Boolean },
     progressSeconds: { default: 0, type: Number },
-    watched: { default: false, type: Boolean },
-    autoMarked: { default: false, type: Boolean }
+    watched: { default: false, type: Boolean }
   }
 
   static targets = ['player', 'playerWrapper', 'watchedOverlay', 'resumeOverlay', 'playOverlay']
@@ -102,6 +101,8 @@ export default class extends Controller {
       providerOptions.autohide = 0
       // Show YT controls
       providerOptions.controls = 1
+      // Ensure not muted on autoplay (user clicked overlay, so gesture is present)
+      providerParams.mute = 0
       // Hide the Vlitejs controls
       controls = false
     }
@@ -164,11 +165,11 @@ export default class extends Controller {
 
     if (this.providerValue === 'vimeo') {
       player.instance.on('ended', () => {
-        this.stopProgressTracking()
+        this.handleVideoEnded()
       })
 
       player.instance.on('pause', () => {
-        this.stopProgressTracking()
+        this.handleVideoPaused()
       })
 
       player.instance.on('play', () => {
@@ -176,13 +177,18 @@ export default class extends Controller {
       })
     }
 
-    if (this.hasProgressSecondsValue && this.progressSecondsValue > 0) {
+    if (this.hasProgressSecondsValue && this.progressSecondsValue > 0 && !this.isFullyWatched()) {
       this.player.seekTo(this.progressSecondsValue)
     }
 
     if (this.autoplay) {
       this.autoplay = false
       this.player.play()
+
+      if (this.player.unMute) {
+        this.player.unMute()
+      }
+
       this.removeOverlays()
     }
   }
@@ -204,8 +210,10 @@ export default class extends Controller {
 
       if (event.data === YOUTUBE_STATES.PLAYING && this.currentUserPresentValue) {
         this.startProgressTracking()
-      } else if (event.data === YOUTUBE_STATES.PAUSED || event.data === YOUTUBE_STATES.ENDED) {
-        this.stopProgressTracking()
+      } else if (event.data === YOUTUBE_STATES.PAUSED) {
+        this.handleVideoPaused()
+      } else if (event.data === YOUTUBE_STATES.ENDED) {
+        this.handleVideoEnded()
       }
     })
   }
@@ -236,57 +244,43 @@ export default class extends Controller {
     }
   }
 
+  async handleVideoPaused () {
+    this.stopProgressTracking()
+
+    const currentTime = await this.getCurrentTime()
+    this.progressSecondsValue = Math.floor(currentTime)
+    this.updateWatchedProgress(this.progressSecondsValue)
+  }
+
+  async handleVideoEnded () {
+    this.stopProgressTracking()
+
+    if (this.hasDurationSecondsValue && this.durationSecondsValue > 0) {
+      this.progressSecondsValue = this.durationSecondsValue
+      this.updateWatchedProgress(this.durationSecondsValue)
+    }
+  }
+
+  isFullyWatched () {
+    if (!this.hasDurationSecondsValue || this.durationSecondsValue <= 0) return false
+
+    return this.progressSecondsValue >= this.durationSecondsValue - 5
+  }
+
   updateWatchedProgress (progressSeconds) {
     if (!this.hasWatchedTalkPathValue) return
     if (!this.currentUserPresentValue) return
-
-    this.checkAutoMark(progressSeconds)
 
     patch(this.watchedTalkPathValue, {
       body: {
         watched_talk: {
           progress_seconds: progressSeconds
         }
-      }
+      },
+      responseKind: 'turbo-stream'
     }).catch(error => {
       console.error('Error updating watch progress:', error)
     })
-  }
-
-  checkAutoMark (progressSeconds) {
-    if (this.watchedValue || this.autoMarkedValue) return
-    if (!this.hasDurationSecondsValue || this.durationSecondsValue <= 0) return
-
-    const progressPercentage = (progressSeconds / this.durationSecondsValue) * 100
-
-    if (progressPercentage >= 80) {
-      this.autoMarkAsWatched()
-    }
-  }
-
-  async autoMarkAsWatched () {
-    if (this.autoMarkedValue) return
-
-    this.autoMarkedValue = true
-
-    try {
-      const response = await post(this.watchedTalkPathValue, {
-        body: {
-          watched_talk: {
-            watched_on: 'rubyevents',
-            progress_seconds: this.progressSecondsValue
-          }
-        },
-        responseKind: 'turbo-stream'
-      })
-
-      if (response.ok) {
-        this.watchedValue = true
-      }
-    } catch (error) {
-      console.error('Error auto-marking as watched:', error)
-      this.autoMarkedValue = false
-    }
   }
 
   createPlaybackRateSelect (options, player) {
