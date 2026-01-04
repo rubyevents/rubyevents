@@ -20,6 +20,7 @@
 #  password_digest     :string
 #  pronouns            :string           default(""), not null
 #  pronouns_type       :string           default("not_specified"), not null
+#  settings            :json             not null
 #  slug                :string           default(""), not null, uniquely indexed
 #  speakerdeck         :string           default(""), not null
 #  talks_count         :integer          default(0), not null
@@ -27,7 +28,6 @@
 #  verified            :boolean          default(FALSE), not null
 #  watched_talks_count :integer          default(0), not null
 #  website             :string           default(""), not null
-#  wrapped_public      :boolean          default(FALSE), not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  canonical_id        :integer          indexed

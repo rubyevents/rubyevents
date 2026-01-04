@@ -1,0 +1,17 @@
+<%# locals: (talk:, is_watched:) %>
+
+<% if is_watched %>
+  <%= ui_tooltip "Mark talk as unwatched" do %>
+    <%= ui_button url: talk_watched_talk_path(talk), method: :delete, kind: :pill, data: {turbo_confirm: "Mark this talk as unwatched? Your feedback will be deleted."} do %>
+      <%= fa("circle-check", size: :xs, style: :solid, class: "fill-green-700") %>
+      <span class="text-xs text-nowrap">Watched</span>
+    <% end %>
+  <% end %>
+<% elsif talk.date.blank? || talk.date <= Date.current %>
+  <%= ui_tooltip "Mark talk as watched" do %>
+    <%= ui_button url: new_talk_watched_talk_path(talk), kind: :pill, data: {turbo_frame: "modal"} do %>
+      <%= fa("circle", size: :xs, style: :regular) %>
+      <span class="text-xs text-nowrap">Watched</span>
+    <% end %>
+  <% end %>
+<% end %>

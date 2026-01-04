@@ -20,6 +20,7 @@
 #  password_digest     :string
 #  pronouns            :string           default(""), not null
 #  pronouns_type       :string           default("not_specified"), not null
+#  settings            :json             not null
 #  slug                :string           default(""), not null, uniquely indexed
 #  speakerdeck         :string           default(""), not null
 #  talks_count         :integer          default(0), not null
@@ -27,7 +28,6 @@
 #  verified            :boolean          default(FALSE), not null
 #  watched_talks_count :integer          default(0), not null
 #  website             :string           default(""), not null
-#  wrapped_public      :boolean          default(FALSE), not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  canonical_id        :integer          indexed
@@ -49,6 +49,10 @@ class User < ApplicationRecord
   include User::Searchable
 
   configure_slug(attribute: :name, auto_suffix_on_collision: true)
+
+  has_delegated_json :settings,
+    feedback_enabled: true,
+    wrapped_public: false
 
   GITHUB_URL_PATTERN = %r{\A(https?://)?(www\.)?github\.com/}i
 
@@ -169,6 +173,8 @@ class User < ApplicationRecord
   scope :not_canonical, -> { where.not(canonical_id: nil) }
   scope :marked_for_deletion, -> { where(marked_for_deletion: true) }
   scope :not_marked_for_deletion, -> { where(marked_for_deletion: false) }
+  scope :with_public_wrapped, -> { where("json_extract(settings, '$.wrapped_public') = ?", true) }
+  scope :with_feedback_enabled, -> { where("json_extract(settings, '$.feedback_enabled') = ?", true) }
 
   def self.normalize_github_handle(value)
     value

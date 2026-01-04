@@ -1,13 +1,23 @@
 <%= render partial: "events/header", locals: {event: @event} %>
 
 <%= turbo_frame_tag dom_id(@event), data: {turbo_action: "advance", turbo_frame: "_top"} do %>
-  <div class="container py-8">
+  <div class="container py-8" data-controller="talks-filter">
     <%= render partial: "events/navigation", locals: {event: @event} %>
 
     <div class="flex items-start flex-wrap gap-8 sm:flex-nowrap w-full">
       <div class="w-full">
         <% if @talks.any? %>
-          <h2 class="mb-6">Talks (<%= @talks.size %>)</h2>
+          <div class="flex items-center justify-between mb-6 flex-wrap gap-4">
+            <h2>Talks (<%= @talks.size %>)</h2>
+
+            <% if Current.user %>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" class="checkbox checkbox-sm" data-action="change->talks-filter#toggle" data-talks-filter-target="toggle">
+                <span class="text-sm">Hide watched</span>
+                <span class="text-sm text-gray-500 hidden">(<span data-talks-filter-target="count">0</span> hidden)</span>
+              </label>
+            <% end %>
+          </div>
         <% end %>
 
         <div id="talks" class="min-w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 h-full">

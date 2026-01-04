@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.2].define(version: 2026_01_01_125732) do
+ActiveRecord::Schema[8.2].define(version: 2026_01_03_210603) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -307,6 +307,10 @@ ActiveRecord::Schema[8.2].define(version: 2026_01_01_125732) do
     t.index ["organization_id"], name: "index_sponsors_on_organization_id"
   end
 
+# Could not dump table "sqlite_stat1" because of following StandardError
+#   Unknown type '' for column 'idx'
+
+
   create_table "suggestions", force: :cascade do |t|
     t.integer "approved_by_id"
     t.text "content"
@@ -431,6 +435,7 @@ ActiveRecord::Schema[8.2].define(version: 2026_01_01_125732) do
     t.string "password_digest"
     t.string "pronouns", default: "", null: false
     t.string "pronouns_type", default: "not_specified", null: false
+    t.json "settings", default: {}, null: false
     t.string "slug", default: "", null: false
     t.string "speakerdeck", default: "", null: false
     t.integer "talks_count", default: 0, null: false
@@ -439,7 +444,6 @@ ActiveRecord::Schema[8.2].define(version: 2026_01_01_125732) do
     t.boolean "verified", default: false, null: false
     t.integer "watched_talks_count", default: 0, null: false
     t.string "website", default: "", null: false
-    t.boolean "wrapped_public", default: false, null: false
     t.index "lower(github_handle)", name: "index_users_on_lower_github_handle", unique: true, where: "github_handle IS NOT NULL AND github_handle != ''"
     t.index ["canonical_id"], name: "index_users_on_canonical_id"
     t.index ["email"], name: "index_users_on_email"
@@ -470,15 +474,22 @@ ActiveRecord::Schema[8.2].define(version: 2026_01_01_125732) do
 
   create_table "watched_talks", force: :cascade do |t|
     t.datetime "created_at", null: false
+    t.json "feedback", default: {}
+    t.datetime "feedback_shared_at"
     t.integer "progress_seconds", default: 0, null: false
     t.integer "talk_id", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
+    t.boolean "watched", default: false, null: false
+    t.datetime "watched_at", null: false
+    t.string "watched_on"
     t.index ["talk_id", "user_id"], name: "index_watched_talks_on_talk_id_and_user_id", unique: true
     t.index ["talk_id"], name: "index_watched_talks_on_talk_id"
     t.index ["user_id"], name: "index_watched_talks_on_user_id"
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cfps", "events"
   add_foreign_key "connected_accounts", "users"
   add_foreign_key "contributors", "users"

@@ -3,11 +3,18 @@ class WatchedTalksController < ApplicationController
   include WatchedTalks
 
   def index
-    @watched_talks = Current.user.watched_talks
+    @in_progress_talks = Current.user.watched_talks
+      .in_progress
       .includes(talk: [:speakers, {event: :series}, {child_talks: :speakers}])
-      .order(created_at: :desc)
+      .order(updated_at: :desc)
+      .limit(20)
 
-    @talks = @watched_talks.map(&:talk)
+    watched_talks = Current.user.watched_talks
+      .watched
+      .includes(talk: [:speakers, {event: :series}, {child_talks: :speakers}])
+      .order(watched_at: :desc)
+
+    @watched_talks_by_date = watched_talks.group_by { |wt| (wt.watched_at || wt.created_at).to_date }
     @user_favorite_talks_ids = Current.user.default_watch_list.talks.ids
   end
 

@@ -1,3 +1,5 @@
+<%# locals: (talk:, video_provider:, video_id:, is_watched: false) %>
+
 <div data-video-player-target="playerWrapper">
   <div class="picture-in-picture-container" style="view-transition-name: <%= dom_id(talk, :image) %>">
     <div
@@ -5,7 +7,7 @@
       id="<%= dom_id(talk, :vimeo) %>"
       data-video-player-target="player"
       data-vimeo-id="<%= video_id %>"
-      data-vimeo-start-time="<%= talk.start_seconds %>"
+      data-vimeo-start-time="<%= is_watched ? nil : talk.start_seconds %>"
       data-vimeo-end-time="<%= talk.end_seconds %>">
     </div>
   </div>

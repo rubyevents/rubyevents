@@ -15,7 +15,7 @@ class Talks::WatchedTalksControllerTest < ActionDispatch::IntegrationTest
 
     patch talk_watched_talk_path(@talk), params: {
       watched_talk: {progress_seconds: new_progress}
-    }
+    }, as: :turbo_stream
 
     assert_response :ok
     assert_equal new_progress, @watched_talk.reload.progress_seconds

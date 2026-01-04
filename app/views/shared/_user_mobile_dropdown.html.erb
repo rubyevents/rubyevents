@@ -42,6 +42,8 @@
 
   <% signed_in do %>
     <% c.with_menu_item_divider %>
+    <% c.with_menu_item_link_to "My Profile", profile_path(Current.user) %>
+    <% c.with_menu_item_link_to "Settings", settings_path %>
     <% c.with_menu_item_button_to t("sign_out"), Current.session, method: :delete, id: :sign_out %>
 
     <% if Current.user&.admin? %>
