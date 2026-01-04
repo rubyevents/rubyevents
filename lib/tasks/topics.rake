@@ -4,6 +4,7 @@ namespace :topics do
     require "json"
 
     limit = ENV.fetch("LIMIT", 50).to_i
+    offset = ENV.fetch("OFFSET", 0).to_i
     min_talks = ENV.fetch("MIN_TALKS", 3).to_i
 
     topics = Topic
@@ -13,6 +14,7 @@ namespace :topics do
       .where(topic_gems: {id: nil})
       .where("talks_count >= ?", min_talks)
       .order(talks_count: :desc)
+      .offset(offset)
       .limit(limit)
 
     if topics.empty?
@@ -20,7 +22,7 @@ namespace :topics do
       exit
     end
 
-    puts "Found #{topics.count} topics without gem mappings (min #{min_talks} talks)"
+    puts "Found #{topics.count} topics without gem mappings (min #{min_talks} talks, offset #{offset})"
     puts "Sending to LLM for suggestions...\n\n"
 
     prompt = Prompts::Topic::SuggestGems.new(topics: topics)
