@@ -8,7 +8,8 @@
       events_with_stickers: @events_with_stickers,
       involvements_by_role: @involvements_by_role,
       countries_with_events: @countries_with_events,
-      aliases: @aliases
+      aliases: @aliases,
+      favorite_user: @favorite_user
     } do %>
   <%= render partial: "profiles/aliases", locals: {user: @user, aliases: @aliases} %>
 <% end %>
