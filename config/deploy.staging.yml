@@ -11,7 +11,7 @@ servers:
     hosts:
       - 138.199.198.123
     options:
-      memory: 2GB
+      memory: 2.5GB
       cpus: 2
 
   job:
@@ -19,7 +19,7 @@ servers:
       - 138.199.198.123
     cmd: bin/jobs
     options:
-      memory: 1GB
+      memory: 1.5GB
       cpus: 1
 
 # Enable SSL auto certification via Let's Encrypt and allow for multiple apps on a single web server.

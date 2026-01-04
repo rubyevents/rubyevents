@@ -11,7 +11,7 @@ servers:
     hosts:
       - 91.107.208.207
     options:
-      memory: 2GB
+      memory: 2.5GB
       cpus: 2
     env:
       clear:
@@ -22,7 +22,7 @@ servers:
       - 91.107.208.207
     cmd: bin/jobs --mode=async
     options:
-      memory: 1GB
+      memory: 1.5GB
       cpus: 1
     env:
       clear:
