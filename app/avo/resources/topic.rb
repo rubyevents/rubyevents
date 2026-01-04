@@ -25,6 +25,7 @@ class Avo::Resources::Topic < Avo::BaseResource
     field :status, as: :status, loading_when: "pending", success_when: "approved", failed_when: "rejected", hide_on: :forms
     field :status, as: :select, enum: ::Topic.statuses, only_on: :forms
     field :talks, as: :has_many
+    field :topic_gems, as: :has_many
   end
 
   def actions

@@ -7,8 +7,20 @@
       <div><%= back_to_title %></div>
     </div>
   <% end %>
-  <div class="flex items-center gap-2 title text-primary hotwire-native:hidden">
-    <h1 class="mb-4"><%= @topic.name %></h1>
+  <div class="flex flex-col gap-4 hotwire-native:hidden">
+    <div class="flex items-center gap-3 title text-primary">
+      <h1><%= @topic.name %></h1>
+      <% if @topic.gem_info.gem? %>
+        <span class="badge badge-primary badge-outline gap-1">
+          <%= fa("gem", size: :xs) %>
+          Ruby Gem
+        </span>
+      <% end %>
+    </div>
+
+    <% if @topic.gem_info.gem? %>
+      <%= render "topics/gem_info", topic: @topic %>
+    <% end %>
   </div>
   <div
     id="topic-talks"
