@@ -4,7 +4,7 @@
 
 Technically the project is built using the latest [Ruby](https://www.ruby-lang.org/) and [Rails](https://rubyonrails.org/) goodies such as [Hotwire](https://hotwired.dev/), [SolidQueue](https://github.com/rails/solid_queue), [SolidCache](https://github.com/rails/solid_cache).
 
-For the front end part, we use [Vite](https://vite.dev/), [Tailwind CSS](https://tailwindcss.com/) with [Daisyui](https://daisyui.com/) components, and [Stimulus](https://stimulus.hotwire.dev/).
+For the front end part, we use [Vite](https://vite.dev/), [Tailwind CSS](https://tailwindcss.com/) with [Daisyui](https://daisyui.com/) components, and [Stimulus](https://stimulus.hotwired.dev/).
 
 It is deployed on a [Hetzner](https://hetzner.cloud/?ref=gyPLk7XJthjg) VPS with [Kamal](https://kamal-deploy.org/) using [SQLite](https://www.sqlite.org/) as the main database.
 
