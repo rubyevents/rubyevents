@@ -41,6 +41,15 @@
         <% end %>
       </div>
     <% end %>
+
+    <% event_is_past = event.end_date.present? && event.end_date < Date.today %>
+
+    <% if participation.present? && event_is_past && event.talks.any? %>
+      <%= link_to attendance_path(event_slug: event.slug), class: "btn btn-sm btn-outline w-full mt-2" do %>
+        <%= fa("clipboard-check", size: :sm) %>
+        <span class="text-nowrap">Manage My Attendance</span>
+      <% end %>
+    <% end %>
   <% else %>
     <%= ui_tooltip tooltip_text do %>
       <%= ui_button url: new_session_path(redirect_to: request.fullpath), outline: true, size: :sm, kind: :neutral, class: "w-full", data: {turbo_frame: "modal"} do %>

@@ -33,6 +33,29 @@ class Talks::WatchedTalksController < ApplicationController
     end
   end
 
+  def toggle_attendance
+    @watched_talk = @talk.watched_talks.find_by(user: Current.user)
+
+    if @watched_talk&.watched_on == "in_person"
+      @watched_talk.destroy!
+      @attended = false
+    else
+      @watched_talk&.destroy! # Remove existing non-in-person record if any
+      @talk.watched_talks.create!(
+        user: Current.user,
+        watched: true,
+        watched_on: "in_person",
+        watched_at: @talk.date
+      )
+      @attended = true
+    end
+
+    respond_to do |format|
+      format.html { redirect_back fallback_location: event_path(@talk.event) }
+      format.turbo_stream
+    end
+  end
+
   def update
     @watched_talk = @talk.watched_talks.find_or_create_by!(user: Current.user)
     @auto_marked = false

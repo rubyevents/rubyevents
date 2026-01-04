@@ -1,0 +1,60 @@
+<%# locals: (event:, days:, tracks:, talks:, in_person_talk_ids:, online_talk_ids:) %>
+
+<% total_talks = talks.size %>
+<% attended_count = in_person_talk_ids.size %>
+<% has_schedule = days.present? && days.any? %>
+
+<section id="my-attendance" class="bg-white rounded-lg border p-4 shadow-sm">
+  <div class="flex items-center justify-between mb-3">
+    <div>
+      <h2 class="text-lg font-bold text-primary">My Attendance</h2>
+      <p class="text-xs text-gray-500">Tap talks you attended in person</p>
+    </div>
+    <div id="attendance-counter" class="text-right">
+      <div class="text-xl font-bold text-primary"><%= attended_count %>/<%= total_talks %></div>
+      <div class="text-xs text-gray-500">in-person</div>
+    </div>
+  </div>
+
+  <div id="attendance-schedule">
+    <% if has_schedule %>
+      <% if days.size > 1 %>
+        <div id="attendance-navigation" class="flex gap-1 justify-center flex-wrap mb-2">
+          <% days.each_with_index do |day, index| %>
+            <% date_string = Date.parse(day.dig("date")).strftime("%a %d") %>
+            <a href="#attendance-day-<%= index %>" class="btn btn-xs btn-outline">
+              <%= day.dig("name") || date_string %>
+            </a>
+          <% end %>
+        </div>
+      <% end %>
+
+      <% talk_offset = 0 %>
+      <% days.each_with_index do |day, day_index| %>
+        <% day_talk_count = event.schedule.talk_offsets[day_index] %>
+        <% day_talks = talks.from(talk_offset).first(day_talk_count) %>
+
+        <%= render "events/my_attendance_day",
+              event: event,
+              day: day,
+              day_index: day_index,
+              tracks: tracks,
+              talks: day_talks,
+              in_person_talk_ids: in_person_talk_ids,
+              online_talk_ids: online_talk_ids %>
+
+        <% talk_offset += day_talk_count %>
+      <% end %>
+    <% else %>
+      <div class="grid gap-2">
+        <% talks.each do |talk| %>
+          <%= render "events/my_attendance_talk",
+                talk: talk,
+                track: nil,
+                attended_in_person: in_person_talk_ids.include?(talk.id),
+                watched_online: online_talk_ids.include?(talk.id) %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</section>

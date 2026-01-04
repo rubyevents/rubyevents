@@ -1,0 +1,11 @@
+<%= turbo_stream.replace dom_id(@talk, :attendance) do %>
+  <% track_name = @talk.static_metadata&.track %>
+  <% tracks = @talk.event.schedule.exist? ? @talk.event.schedule.tracks : [] %>
+  <% track = track_name && tracks.find { |t| t["name"] == track_name } %>
+
+  <%= render "events/my_attendance_talk",
+        talk: @talk,
+        track: track,
+        attended_in_person: @attended,
+        watched_online: false %>
+<% end %>

@@ -1,0 +1,18 @@
+<%= render partial: "events/header", locals: {event: @event, participation: @participation} %>
+
+<div class="container py-8">
+  <div class="mb-6">
+    <%= link_to attendances_path, class: "link text-sm" do %>
+      <%= fa("arrow-left", size: :sm) %>
+      Back to My Attendances
+    <% end %>
+  </div>
+
+  <%= render "events/my_attendance",
+        event: @event,
+        days: @attendance_days,
+        tracks: @attendance_tracks,
+        talks: @attendance_talks,
+        in_person_talk_ids: @user_in_person_talk_ids,
+        online_talk_ids: @user_online_talk_ids %>
+</div>

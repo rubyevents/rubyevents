@@ -1,0 +1,51 @@
+<%# locals: (talk:, track:, attended_in_person:, watched_online:) %>
+
+<%
+  if attended_in_person
+    bg_class = "bg-green-50 hover:bg-green-100"
+    text_class = "text-green-800"
+    confirm_message = nil
+  elsif watched_online
+    bg_class = "bg-blue-50 hover:bg-blue-100"
+    text_class = "text-blue-800"
+    confirm_message = "You've already watched this talk online. Mark it as attended in-person instead?"
+  else
+    bg_class = "bg-white hover:bg-gray-50"
+    text_class = "text-gray-900"
+    confirm_message = nil
+  end
+%>
+
+<%= turbo_frame_tag dom_id(talk, :attendance), style: "display: contents" do %>
+  <%= button_to toggle_attendance_talk_watched_talk_path(talk),
+        method: :post,
+        class: "group w-full h-full text-left p-1.5 transition-colors cursor-pointer #{bg_class}",
+        data: {turbo_frame: dom_id(talk, :attendance), turbo_confirm: confirm_message}.compact do %>
+    <div class="flex items-center gap-2">
+      <div class="shrink-0">
+        <% if attended_in_person %>
+          <%= fa("circle-check", size: :sm, style: :solid, class: "fill-green-600") %>
+        <% elsif watched_online %>
+          <%= fa("video", size: :sm, style: :solid, class: "fill-blue-600") %>
+        <% else %>
+          <%= fa("circle", size: :sm, style: :regular, class: "text-gray-300 group-hover:text-gray-400") %>
+        <% end %>
+      </div>
+
+      <div class="flex-1 min-w-0">
+        <div class="text-xs font-medium <%= text_class %> truncate">
+          <%= talk.title %>
+        </div>
+        <div class="text-xs text-gray-400 truncate">
+          <%= talk.speakers.map(&:name).join(", ") %>
+        </div>
+      </div>
+
+      <% if track %>
+        <span class="shrink-0 py-0.5 px-1.5 rounded text-[10px]" style="background: <%= track["color"] %>; color: <%= track["text_color"] %>">
+          <%= track["name"] %>
+        </span>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
