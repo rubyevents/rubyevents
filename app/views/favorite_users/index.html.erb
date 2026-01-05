@@ -1,9 +1,9 @@
-<div class="w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-  <% end %>
-
-  <div id="favorite_users" class="min-w-full">
+<div class="container">
+  <h2>
+    <%= fa("star", size: :sm, style: :solid, class: "fill-yellow-400 inline") %>
+    Favorite Rubyists
+  </h2>
+  <div id="favorite_users" class="min-w-full grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-2">
     <%= render @favorite_users %>
   </div>
 </div>

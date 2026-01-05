@@ -23,8 +23,8 @@
   <% signed_in do %>
     <% c.with_menu_item_divider %>
 
+    <% c.with_menu_item_link_to "Favorite Rubyists", favorite_users_path %>
     <% c.with_menu_item_link_to "For You", recommendations_path %>
-
     <% c.with_menu_item_link_to watched_talks_path do %>
       <div class="flex items-center gap-2">
         <span>Recently Watched</span>
