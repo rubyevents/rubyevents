@@ -159,6 +159,12 @@ jobs:
       - name: Expose GitHub Runtime for cache
         uses: crazy-max/ghaction-github-runtime@v3
 
+      - name: Setup SSH
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
