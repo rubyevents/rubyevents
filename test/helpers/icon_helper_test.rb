@@ -58,10 +58,10 @@ class IconHelperTest < ActionView::TestCase
     end
 
     assert_includes error.message, "Icon not found. Download from\n"
-    assert_includes error.message, "https://fontawesome.com/icons?q=nonexistent-icon"
+    assert_includes error.message, "https://fontawesome.com/search?q=nonexistent-icon"
     assert_includes error.message, "\nand save to\n"
     assert_includes error.message, "app/assets/images/icons/fontawesome/nonexistent-icon-solid.svg"
-    assert_includes error.message, "Or run the following curl command:\ncurl -o"
+    assert_includes error.message, "Or run the following curl command (only works for free icons, not Pro):\ncurl -f -o"
     assert_includes error.message, "https://raw.githubusercontent.com/FortAwesome/Font-Awesome/7.x/svgs-full/solid/nonexistent-icon.svg"
   end
 end

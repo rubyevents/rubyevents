@@ -33,11 +33,11 @@ module IconHelper
         if match
           icon_name, type, style = match.captures
           folder = type || style
-          search_url = "https://fontawesome.com/icons?q=#{CGI.escape(icon_name)}"
+          search_url = "https://fontawesome.com/search?q=#{CGI.escape(icon_name)}"
           github_url = "https://raw.githubusercontent.com/FortAwesome/Font-Awesome/7.x/svgs-full/#{folder}/#{icon_name}.svg"
-          curl_command = "curl -o #{full_path} \"#{github_url}\""
+          curl_command = "curl -f -o #{full_path} \"#{github_url}\""
 
-          raise ArgumentError, "Icon not found. Download from\n#{search_url}\nand save to\n#{full_path}\n\nOr run the following curl command:\n#{curl_command}"
+          raise ArgumentError, "Icon not found. Download from\n#{search_url}\nand save to\n#{full_path}\n\nOr run the following curl command (only works for free icons, not Pro):\n#{curl_command}"
         else
           raise ArgumentError, "Icon not found: #{path}"
         end
