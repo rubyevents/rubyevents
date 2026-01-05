@@ -1,5 +1,5 @@
 class Spotlight::EventsController < ApplicationController
-  include TypesenseSearch
+  include SpotlightSearch
 
   LIMIT = 15
 
@@ -7,14 +7,8 @@ class Spotlight::EventsController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
-    if search_query.present? && typesense_available?
-      pagy, @events = Event.typesense_search_events(search_query, per_page: LIMIT)
-      @total_count = pagy.count
-    elsif search_query.present?
-      @events = Event.includes(:series).canonical
-      @events = @events.ft_search(search_query)
-      @total_count = @events.except(:select).count
-      @events = @events.limit(LIMIT)
+    if search_query.present?
+      @events, @total_count = search_backend_class.search_events(search_query, limit: LIMIT)
     else
       @events = Event.includes(:series).canonical.past.order(start_date: :desc).limit(LIMIT)
       @total_count = nil

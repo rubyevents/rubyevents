@@ -3,17 +3,23 @@ module Static
     self.backend = Backends::ArrayBackend.new("topics.yml")
     self.base_path = Rails.root.join("data")
 
-    def self.import_all!
-      ::Topic.create_from_list(all.map(&:name), status: :approved)
+    SEARCH_INDEX_ON_IMPORT_DEFAULT = ENV.fetch("SEARCH_INDEX_ON_IMPORT", "true") == "true"
+
+    def self.import_all!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
+      topics = ::Topic.create_from_list(all.map(&:name), status: :approved)
+      topics.each { |topic| ::SearchBackend.index(topic) } if index
+      topics
     end
 
     def name
       item
     end
 
-    def import!
+    def import!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
       slug = name.parameterize
-      ::Topic.find_by(slug: slug)&.primary_topic || ::Topic.find_or_create_by(name: name, status: :approved)
+      topic = ::Topic.find_by(slug: slug)&.primary_topic || ::Topic.find_or_create_by(name: name, status: :approved)
+      ::SearchBackend.index(topic) if index
+      topic
     end
   end
 end

@@ -1,5 +1,5 @@
 class Spotlight::SpeakersController < ApplicationController
-  include TypesenseSearch
+  include SpotlightSearch
 
   LIMIT = 15
 
@@ -7,20 +7,13 @@ class Spotlight::SpeakersController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
-    if search_query.present? && typesense_available?
-      pagy, @speakers = User.typesense_search_speakers(search_query, per_page: LIMIT)
-      @total_count = pagy.count
-    elsif search_query.present?
-      @speakers = User.speakers.canonical
-      @speakers = @speakers.ft_search(search_query).with_snippets.ranked
-      @total_count = @speakers.except(:select).count
-      @speakers = @speakers.limit(LIMIT)
+    if search_query.present?
+      @speakers, @total_count = search_backend_class.search_speakers(search_query, limit: LIMIT)
     else
       @speakers = User.speakers.canonical
         .where.not("LOWER(name) IN (?)", %w[todo tbd tba])
         .order(talks_count: :desc)
         .limit(LIMIT)
-
       @total_count = nil
     end
 

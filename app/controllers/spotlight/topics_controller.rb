@@ -1,5 +1,5 @@
 class Spotlight::TopicsController < ApplicationController
-  include TypesenseSearch
+  include SpotlightSearch
 
   LIMIT = 10
 
@@ -7,14 +7,11 @@ class Spotlight::TopicsController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
-    if search_query.present? && typesense_available?
-      pagy, @topics = Topic.typesense_search_topics(search_query, per_page: LIMIT)
-      @total_count = pagy.count
+    if search_query.present?
+      @topics, @total_count = search_backend_class.search_topics(search_query, limit: LIMIT)
     else
-      @topics = Topic.approved.canonical.with_talks.order(talks_count: :desc)
-      @topics = @topics.where("name LIKE ?", "%#{search_query}%") if search_query.present?
-      @total_count = @topics.count
-      @topics = @topics.limit(LIMIT)
+      @topics = Topic.approved.canonical.with_talks.order(talks_count: :desc).limit(LIMIT)
+      @total_count = nil
     end
 
     respond_to do |format|

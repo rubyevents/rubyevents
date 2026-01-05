@@ -79,7 +79,7 @@ To follow Tailwind CSS's recommended order of classes, you can use [Prettier](ht
 
 ### Typesense (Optional)
 
-The application uses [Typesense](https://typesense.org/) for enhanced search functionality (spotlight search). Typesense is **optional** for local development. The app works without it, but search features will be limited.
+The application uses [Typesense](https://typesense.org/) for enhanced search functionality (spotlight search). Typesense is **optional** for local development. The app works without it, falling back to SQLite FTS5 for search.
 
 **Devcontainers / Docker Compose:** Typesense is already included and starts automatically.
 
@@ -92,18 +92,32 @@ docker compose -f docker-compose.typesense.yml up -d
 Once running, you can reindex the data:
 
 ```bash
-bin/rails typesense:reindex
+bin/rails search:reindex
 ```
 
-Useful Typesense commands:
+Useful search commands:
 
 ```bash
+bin/rails search:status       # Show status of all search backends
 bin/rails typesense:health    # Check if Typesense is running
-bin/rails typesense:stats     # Show index statistics
-bin/rails typesense:reindex   # Full reindex of all collections
+bin/rails typesense:stats     # Show Typesense index statistics
+bin/rails typesense:reindex   # Full reindex of Typesense collections
+bin/rails sqlite_fts:reindex  # Rebuild SQLite FTS indexes
 ```
 
-The default API key for local development is `xyz`. For production, set `TYPESENSE_API_KEY` environment variable.
+#### Environment Variables
+
+Configure Typesense via environment variables in your `.env` file:
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `TYPESENSE_HOST` | `localhost` | Typesense server host (use `xxx.a1.typesense.net` for Typesense Cloud) |
+| `TYPESENSE_PORT` | `8108` | Typesense server port (use `443` for Typesense Cloud) |
+| `TYPESENSE_PROTOCOL` | `http` | Protocol to use (use `https` for Typesense Cloud) |
+| `TYPESENSE_API_KEY` | `xyz` | Your Typesense API key |
+| `SEARCH_INDEX_ON_IMPORT` | `true` | Whether to update search indexes when importing data from YAML files. Set to `false` to skip indexing during imports (useful for bulk imports followed by a full reindex) |
+
+For local development with Docker, the defaults work out of the box. For production or Typesense Cloud, update these values accordingly.
 
 ## Running the Database Seeds
 

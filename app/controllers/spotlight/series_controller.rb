@@ -1,5 +1,5 @@
 class Spotlight::SeriesController < ApplicationController
-  include TypesenseSearch
+  include SpotlightSearch
 
   LIMIT = 8
 
@@ -7,14 +7,11 @@ class Spotlight::SeriesController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
-    if search_query.present? && typesense_available?
-      pagy, @series = EventSeries.typesense_search_series(search_query, per_page: LIMIT)
-      @total_count = pagy.count
+    if search_query.present?
+      @series, @total_count = search_backend_class.search_series(search_query, limit: LIMIT)
     else
-      @series = EventSeries.joins(:events).distinct.order(name: :asc)
-      @series = @series.where("event_series.name LIKE ?", "%#{search_query}%") if search_query.present?
-      @total_count = @series.count
-      @series = @series.limit(LIMIT)
+      @series = EventSeries.joins(:events).distinct.order(name: :asc).limit(LIMIT)
+      @total_count = nil
     end
 
     respond_to do |format|

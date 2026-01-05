@@ -3,7 +3,9 @@ module Static
     self.backend = Backends::FileBackend.new("speakers.yml")
     self.base_path = Rails.root.join("data")
 
-    def self.import_all!
+    SEARCH_INDEX_ON_IMPORT_DEFAULT = ENV.fetch("SEARCH_INDEX_ON_IMPORT", "true") == "true"
+
+    def self.import_all!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
       speakers = all.to_a
 
       github_handles = speakers.map(&:github).compact.reject(&:blank?).map(&:downcase)
@@ -73,10 +75,10 @@ module Static
         ::User.set_callback(:commit, :after, :reindex)
       end
 
-      ::User.where(id: imported_user_ids).find_each(&:reindex) if imported_user_ids.any?
+      ::User.where(id: imported_user_ids).find_each { |user| ::SearchBackend.index(user) } if imported_user_ids.any? && index
     end
 
-    def import!
+    def import!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
       user = ::User.find_by_github_handle(github) ||
         ::User.find_by(slug: slug) ||
         ::User.find_by_name_or_alias(name) ||
@@ -88,6 +90,8 @@ module Static
       user.website = website if website.present?
       user.bio = bio if bio.present?
       user.save!
+
+      ::SearchBackend.index(user) if index
 
       user
     rescue ActiveRecord::RecordInvalid => e

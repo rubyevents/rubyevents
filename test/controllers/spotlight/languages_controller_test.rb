@@ -1,6 +1,10 @@
 require "test_helper"
 
 class Spotlight::LanguagesControllerTest < ActionDispatch::IntegrationTest
+  setup do
+    Backends::SQLiteFTS.reset_cache!
+  end
+
   test "returns empty results when no query provided" do
     get spotlight_languages_path(format: :turbo_stream)
 
@@ -12,6 +16,7 @@ class Spotlight::LanguagesControllerTest < ActionDispatch::IntegrationTest
   test "returns matching languages when query matches language name" do
     talk = talks(:one)
     talk.update!(language: "ja")
+    Backends::SQLiteFTS.reset_cache!
 
     get spotlight_languages_path(format: :turbo_stream, s: "japan")
 
@@ -23,6 +28,7 @@ class Spotlight::LanguagesControllerTest < ActionDispatch::IntegrationTest
   test "returns matching languages when query matches language code" do
     talk = talks(:one)
     talk.update!(language: "ja")
+    Backends::SQLiteFTS.reset_cache!
 
     get spotlight_languages_path(format: :turbo_stream, s: "ja")
 

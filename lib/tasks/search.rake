@@ -1,5 +1,30 @@
 # frozen_string_literal: true
 
+namespace :search do
+  desc "Reindex all search backends"
+  task reindex: :environment do
+    puts "Starting search reindex..."
+    start_time = Time.current
+
+    SearchBackend.reindex_all
+
+    duration = Time.current - start_time
+    puts "\n🎉 Search reindex completed in #{duration.round(2)} seconds"
+  end
+
+  desc "Show search backend status"
+  task status: :environment do
+    puts "\n📊 Search Backend Status\n"
+
+    SearchBackend.backends.each do |name, backend|
+      status = backend.available? ? "✅ Available" : "❌ Unavailable"
+      puts "#{name}: #{status}"
+    end
+
+    puts "\nDefault backend: #{SearchBackend.default_backend.name}"
+  end
+end
+
 namespace :typesense do
   desc "Reindex all Typesense collections (zero-downtime using aliases)"
   task reindex: :environment do
@@ -29,7 +54,7 @@ namespace :typesense do
       count = Talk.watchable.count
       puts "\n📚 Reindexing #{count} Talks..."
       start = Time.current
-      Talk.reindex
+      Backends::Typesense::Indexer.reindex_talks
       puts "   ✅ Talks reindexed in #{(Time.current - start).round(2)}s"
     end
 
@@ -43,7 +68,7 @@ namespace :typesense do
       count = Event.canonical.count
       puts "\n📅 Reindexing #{count} Events..."
       start = Time.current
-      Event.reindex
+      Backends::Typesense::Indexer.reindex_events
       puts "   ✅ Events reindexed in #{(Time.current - start).round(2)}s"
     end
 
@@ -57,7 +82,7 @@ namespace :typesense do
       count = User.where("talks_count > 0").where(canonical_id: nil).count
       puts "\n👤 Reindexing #{count} Users..."
       start = Time.current
-      User.reindex
+      Backends::Typesense::Indexer.reindex_users
       puts "   ✅ Users reindexed in #{(Time.current - start).round(2)}s"
     end
 
@@ -71,7 +96,7 @@ namespace :typesense do
       count = Topic.approved.canonical.with_talks.count
       puts "\n🏷️  Reindexing #{count} Topics..."
       start = Time.current
-      Topic.reindex
+      Backends::Typesense::Indexer.reindex_topics
       puts "   ✅ Topics reindexed in #{(Time.current - start).round(2)}s"
     end
 
@@ -85,7 +110,7 @@ namespace :typesense do
       count = EventSeries.joins(:events).distinct.count
       puts "\n📺 Reindexing #{count} Event Series..."
       start = Time.current
-      EventSeries.reindex
+      Backends::Typesense::Indexer.reindex_series
       puts "   ✅ Event Series reindexed in #{(Time.current - start).round(2)}s"
     end
 
@@ -99,7 +124,7 @@ namespace :typesense do
       count = Organization.joins(:sponsors).distinct.count
       puts "\n🏢 Reindexing #{count} Organizations..."
       start = Time.current
-      Organization.reindex
+      Backends::Typesense::Indexer.reindex_organizations
       puts "   ✅ Organizations reindexed in #{(Time.current - start).round(2)}s"
     end
   end
@@ -127,12 +152,7 @@ namespace :typesense do
       next
     end
 
-    unless record.respond_to?(:typesense_index!)
-      puts "❌ Typesense not enabled for #{model_name}"
-      next
-    end
-
-    record.typesense_index!
+    Backends::Typesense::Indexer.index(record)
     puts "✅ Indexed #{model_name} ##{record.id}: #{record.try(:title) || record.try(:name)}"
   end
 
@@ -154,12 +174,7 @@ namespace :typesense do
       next
     end
 
-    unless record.respond_to?(:typesense_remove_from_index!)
-      puts "❌ Typesense not enabled for #{model_name}"
-      next
-    end
-
-    record.typesense_remove_from_index!
+    Backends::Typesense::Indexer.remove(record)
     puts "✅ Removed #{model_name} ##{record.id} from index"
   end
 
@@ -173,49 +188,25 @@ namespace :typesense do
     if Talk.respond_to?(:typesense_index!)
       talks = Talk.watchable.where("updated_at > ?", since)
       puts "\n📚 Indexing #{talks.count} talks..."
-      talks.find_each { |t|
-        begin
-          t.typesense_index!
-        rescue
-          nil
-        end
-      }
+      talks.find_each { |t| Backends::Typesense::Indexer.index(t) }
     end
 
     if Event.respond_to?(:typesense_index!)
       events = Event.canonical.where("updated_at > ?", since)
       puts "📅 Indexing #{events.count} events..."
-      events.find_each { |e|
-        begin
-          e.typesense_index!
-        rescue
-          nil
-        end
-      }
+      events.find_each { |e| Backends::Typesense::Indexer.index(e) }
     end
 
     if User.respond_to?(:typesense_index!)
       users = User.where("talks_count > 0").where(canonical_id: nil).where("updated_at > ?", since)
       puts "👤 Indexing #{users.count} users..."
-      users.find_each { |u|
-        begin
-          u.typesense_index!
-        rescue
-          nil
-        end
-      }
+      users.find_each { |u| Backends::Typesense::Indexer.index(u) }
     end
 
     if Topic.respond_to?(:typesense_index!)
       topics = Topic.approved.canonical.with_talks.where("updated_at > ?", since)
       puts "🏷️  Indexing #{topics.count} topics..."
-      topics.find_each { |t|
-        begin
-          t.typesense_index!
-        rescue
-          nil
-        end
-      }
+      topics.find_each { |t| Backends::Typesense::Indexer.index(t) }
     end
 
     puts "\n✅ Done!"
@@ -225,40 +216,11 @@ namespace :typesense do
   task clear: :environment do
     puts "Clearing all Typesense collections..."
 
-    if Talk.respond_to?(:clear_index!)
-      begin
-        Talk.clear_index!
-      rescue
-        nil
+    [Talk, Event, User, Topic].each do |model|
+      if model.respond_to?(:clear_index!)
+        model.clear_index! rescue nil
+        puts "   Cleared #{model.name} collection"
       end
-      puts "   Cleared Talk collection"
-    end
-
-    if Event.respond_to?(:clear_index!)
-      begin
-        Event.clear_index!
-      rescue
-        nil
-      end
-      puts "   Cleared Event collection"
-    end
-
-    if User.respond_to?(:clear_index!)
-      begin
-        User.clear_index!
-      rescue
-        nil
-      end
-      puts "   Cleared User collection"
-    end
-
-    if Topic.respond_to?(:clear_index!)
-      begin
-        Topic.clear_index!
-      rescue
-        nil
-      end
-      puts "   Cleared Topic collection"
     end
 
     puts "✅ All collections cleared!"
@@ -325,20 +287,12 @@ namespace :typesense do
   task health: :environment do
     puts "Testing Typesense connection..."
 
-    begin
-      client = Typesense::Client.new(Typesense.configuration)
-      health = client.health.retrieve
+    available = Backends::Typesense.available?
 
-      if health["ok"]
-        puts "✅ Typesense is healthy!"
-      else
-        puts "⚠️  Typesense is not healthy"
-      end
-
-      puts "   Status: #{health}"
-    rescue => e
-      puts "❌ Failed to connect to Typesense"
-      puts "   Error: #{e.message}"
+    if available
+      puts "✅ Typesense is healthy!"
+    else
+      puts "❌ Typesense is not available"
       puts ""
       puts "Make sure Typesense is running:"
       puts "   docker compose -f docker-compose.typesense.yml up -d"
@@ -350,87 +304,110 @@ namespace :typesense do
     query = args[:query] || "*"
     puts "Searching for: #{query}\n\n"
 
-    if Talk.respond_to?(:typesense_search_talks)
-      pagy, results = Talk.typesense_search_talks(query, per_page: 10)
-      puts "📚 Talks (#{pagy.count} found):"
-      if results.any?
-        results.first(5).each do |talk|
-          puts "   - #{talk.title}"
-          puts "     by #{talk.speaker_names} at #{talk.event_name}"
-        end
-      else
-        puts "   (no results)"
+    backend = Backends::Typesense
+
+    results, count = backend.search_talks(query, limit: 5)
+    puts "📚 Talks (#{count} found):"
+    if results.any?
+      results.each do |talk|
+        puts "   - #{talk.title}"
+        puts "     by #{talk.speaker_names} at #{talk.event_name}"
       end
+    else
+      puts "   (no results)"
     end
 
     puts ""
 
-    if User.respond_to?(:typesense_search_speakers)
-      pagy, results = User.typesense_search_speakers(query, per_page: 10)
-      puts "👤 Speakers (#{pagy.count} found):"
-      if results.any?
-        results.first(5).each do |user|
-          puts "   - #{user.name} (#{user.talks_count} talks)"
-        end
-      else
-        puts "   (no results)"
+    results, count = backend.search_speakers(query, limit: 5)
+    puts "👤 Speakers (#{count} found):"
+    if results.any?
+      results.each do |user|
+        puts "   - #{user.name} (#{user.talks_count} talks)"
       end
+    else
+      puts "   (no results)"
     end
 
     puts ""
 
-    if Event.respond_to?(:typesense_search_events)
-      pagy, results = Event.typesense_search_events(query, per_page: 10)
-      puts "📅 Events (#{pagy.count} found):"
-      if results.any?
-        results.first(5).each do |event|
-          puts "   - #{event.name} (#{event.talks_count} talks)"
-        end
-      else
-        puts "   (no results)"
+    results, count = backend.search_events(query, limit: 5)
+    puts "📅 Events (#{count} found):"
+    if results.any?
+      results.each do |event|
+        puts "   - #{event.name} (#{event.talks_count} talks)"
       end
+    else
+      puts "   (no results)"
     end
 
     puts ""
 
-    if Topic.respond_to?(:typesense_search_topics)
-      pagy, results = Topic.typesense_search_topics(query, per_page: 10)
-      puts "🏷️  Topics (#{pagy.count} found):"
-      if results.any?
-        results.first(5).each do |topic|
-          puts "   - #{topic.name} (#{topic.talks_count} talks)"
-        end
-      else
-        puts "   (no results)"
+    results, count = backend.search_topics(query, limit: 5)
+    puts "🏷️  Topics (#{count} found):"
+    if results.any?
+      results.each do |topic|
+        puts "   - #{topic.name} (#{topic.talks_count} talks)"
       end
+    else
+      puts "   (no results)"
     end
 
     puts ""
 
-    if EventSeries.respond_to?(:typesense_search_series)
-      pagy, results = EventSeries.typesense_search_series(query, per_page: 10)
-      puts "📺 Series (#{pagy.count} found):"
-      if results.any?
-        results.first(5).each do |series|
-          puts "   - #{series.name}"
-        end
-      else
-        puts "   (no results)"
+    results, count = backend.search_series(query, limit: 5)
+    puts "📺 Series (#{count} found):"
+    if results.any?
+      results.each do |series|
+        puts "   - #{series.name}"
       end
+    else
+      puts "   (no results)"
     end
 
     puts ""
 
-    if Organization.respond_to?(:typesense_search_organizations)
-      pagy, results = Organization.typesense_search_organizations(query, per_page: 10)
-      puts "🏢 Organizations (#{pagy.count} found):"
-      if results.any?
-        results.first(5).each do |org|
-          puts "   - #{org.name}"
-        end
-      else
-        puts "   (no results)"
+    results, count = backend.search_organizations(query, limit: 5)
+    puts "🏢 Organizations (#{count} found):"
+    if results.any?
+      results.each do |org|
+        puts "   - #{org.name}"
       end
+    else
+      puts "   (no results)"
+    end
+  end
+end
+
+namespace :sqlite_fts do
+  desc "Reindex all SQLite FTS indexes"
+  task reindex: :environment do
+    puts "Starting SQLite FTS reindex..."
+    start_time = Time.current
+
+    Backends::SQLiteFTS::Indexer.reindex_all
+
+    duration = Time.current - start_time
+    puts "\n🎉 SQLite FTS reindex completed in #{duration.round(2)} seconds"
+  end
+
+  namespace :reindex do
+    desc "Reindex Talks FTS index"
+    task talks: :environment do
+      count = Talk.watchable.count
+      puts "\n📚 Reindexing #{count} Talks..."
+      start = Time.current
+      Backends::SQLiteFTS::Indexer.reindex_talks
+      puts "   ✅ Talks reindexed in #{(Time.current - start).round(2)}s"
+    end
+
+    desc "Reindex Users FTS index"
+    task users: :environment do
+      count = User.speakers.canonical.count
+      puts "\n👤 Reindexing #{count} Users..."
+      start = Time.current
+      Backends::SQLiteFTS::Indexer.reindex_users
+      puts "   ✅ Users reindexed in #{(Time.current - start).round(2)}s"
     end
   end
 end

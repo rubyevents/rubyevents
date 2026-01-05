@@ -10,7 +10,8 @@
       </div>
       <div class="flex flex-col gap-1">
         <% @locations.each do |location| %>
-          <%= link_to location[:path], target: "_top", class: "flex items-center justify-between gap-4 py-2 px-2 rounded hover:bg-gray-100 group" do %>
+          <% path = location[:type] == :city ? city_path(location[:name].parameterize) : country_path(location[:country_code].downcase) %>
+          <%= link_to path, target: "_top", class: "flex items-center justify-between gap-4 py-2 px-2 rounded hover:bg-gray-100 group" do %>
             <div class="flex items-center gap-3">
               <span class="text-lg"><%= location[:emoji_flag] %></span>
               <span class="font-medium"><%= location[:name] %></span>

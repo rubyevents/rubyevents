@@ -3,18 +3,20 @@ module Static
     self.backend = Backends::MultiFileBackend.new("*/series.yml")
     self.base_path = Rails.root.join("data")
 
+    SEARCH_INDEX_ON_IMPORT_DEFAULT = ENV.fetch("SEARCH_INDEX_ON_IMPORT", "true") == "true"
+
     class << self
       def find_by_slug(slug)
         @slug_index ||= all.index_by(&:slug)
         @slug_index[slug]
       end
 
-      def import_all!
-        all.each(&:import!)
+      def import_all!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
+        all.each { |series| series.import!(index: index) }
       end
 
-      def import_all_series!
-        all.each(&:import_series!)
+      def import_all_series!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
+        all.each { |series| series.import_series!(index: index) }
       end
 
       def create(
@@ -102,7 +104,7 @@ module Static
       @event_series_record ||= ::EventSeries.find_by(slug: slug) || import_series!
     end
 
-    def import_series!
+    def import_series!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
       event_series = ::EventSeries.find_or_initialize_by(slug: slug)
 
       event_series.update!(
@@ -119,12 +121,14 @@ module Static
 
       event_series.sync_aliases_from_list(aliases) if aliases.present?
 
+      ::SearchBackend.index(event_series) if index
+
       event_series
     end
 
-    def import!
-      import_series!
-      events.each(&:import!)
+    def import!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
+      import_series!(index: index)
+      events.each { |event| event.import!(index: index) }
       event_series_record
     end
 

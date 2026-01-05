@@ -3,6 +3,8 @@ module Static
     self.backend = Backends::MultiFileBackend.new("**/**/videos.yml")
     self.base_path = Rails.root.join("data")
 
+    SEARCH_INDEX_ON_IMPORT_DEFAULT = ENV.fetch("SEARCH_INDEX_ON_IMPORT", "true") == "true"
+
     def self.child_talks
       @child_talks ||= Static::Video.all.flat_map(&:talks).compact
     end
@@ -27,8 +29,8 @@ module Static
       all_talks_map[id]
     end
 
-    def self.import_all!
-      all.each(&:import!)
+    def self.import_all!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
+      all.each { |video| video.import!(index: index) }
     end
 
     def raw_title
@@ -105,7 +107,7 @@ module Static
       attributes.key?("talks")
     end
 
-    def import!(event: nil, parent_talk: nil)
+    def import!(event: nil, parent_talk: nil, index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
       if title.blank?
         puts "Ignored video: #{raw_title}"
         return nil
@@ -119,8 +121,10 @@ module Static
       talk.parent_talk = parent_talk if parent_talk
       talk.update_from_yml_metadata!(event: event)
 
+      ::SearchBackend.index(talk) if index
+
       talks.each do |child_video|
-        child_video.import!(event: event, parent_talk: talk)
+        child_video.import!(event: event, parent_talk: talk, index: index)
       end
 
       talk

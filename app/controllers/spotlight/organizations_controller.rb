@@ -1,5 +1,5 @@
 class Spotlight::OrganizationsController < ApplicationController
-  include TypesenseSearch
+  include SpotlightSearch
 
   LIMIT = 8
 
@@ -7,14 +7,11 @@ class Spotlight::OrganizationsController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
-    if search_query.present? && typesense_available?
-      pagy, @organizations = Organization.typesense_search_organizations(search_query, per_page: LIMIT)
-      @total_count = pagy.count
+    if search_query.present?
+      @organizations, @total_count = search_backend_class.search_organizations(search_query, limit: LIMIT)
     else
-      @organizations = Organization.joins(:sponsors).distinct.order(name: :asc)
-      @organizations = @organizations.where("organizations.name LIKE ?", "%#{search_query}%") if search_query.present?
-      @total_count = @organizations.count
-      @organizations = @organizations.limit(LIMIT)
+      @organizations = Organization.joins(:sponsors).distinct.order(name: :asc).limit(LIMIT)
+      @total_count = nil
     end
 
     respond_to do |format|

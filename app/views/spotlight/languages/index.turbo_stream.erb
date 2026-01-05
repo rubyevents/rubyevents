@@ -10,7 +10,7 @@
       </div>
       <div class="flex flex-col gap-1">
         <% @languages.each do |language| %>
-          <%= link_to language[:path], target: "_top", class: "flex items-center justify-between gap-4 py-2 px-2 rounded hover:bg-gray-100 group" do %>
+          <%= link_to talks_path(language: language[:code]), target: "_top", class: "flex items-center justify-between gap-4 py-2 px-2 rounded hover:bg-gray-100 group" do %>
             <div class="flex items-center gap-3">
               <span class="text-lg"><%= language_to_emoji(language[:name]) %></span>
               <span class="font-medium"><%= language[:name] %></span>
