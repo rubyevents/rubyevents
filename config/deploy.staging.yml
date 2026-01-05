@@ -1,9 +1,9 @@
 <% require "dotenv"; Dotenv.load(".env") %>
 # Name of your application. Used to uniquely configure containers.
-service: rubyvideo_staging
+service: rubyevents_staging
 
 # Name of the container image.
-image: adrienpoly/rubyvideo_staging
+image: rubyevents_staging
 
 # Deploy to these servers.
 servers:
@@ -29,16 +29,13 @@ servers:
 proxy:
   ssl: true
   hosts:
-    - staging.rubyvideo.dev
     - staging.rubyevents.org
   # kamal-proxy connects to your container over port 80, use `app_port` to specify a different port.
   app_port: 80
 
 # Credentials for your image host.
 registry:
-  username: adrienpoly
-  password:
-    - KAMAL_REGISTRY_PASSWORD
+  server: "localhost:5555"
 
 env:
   clear:
@@ -73,11 +70,10 @@ builder:
   cache:
     type: gha
     options: mode=max
-    image: rubyvideo-staging-build-cache
+    image: rubyevents-staging-build-cache
   secrets:
     - RAILS_MASTER_KEY
   remote: ssh://root@138.199.198.123
-
   # # Build image via remote server (useful for faster amd64 builds on arm64 computers)
   # remote: ssh://docker@docker-builder-server
   #

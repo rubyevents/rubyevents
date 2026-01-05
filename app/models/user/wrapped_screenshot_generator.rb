@@ -426,8 +426,8 @@ class User::WrappedScreenshotGenerator
     return nil if Rails.env.local?
 
     # Kamal names accessories as <service>-<accessory>
-    # Production: rubyvideo-chrome, Staging: rubyvideo_staging-chrome
-    service_name = Rails.env.staging? ? "rubyvideo_staging" : "rubyvideo"
+    # Production: rubyevents-chrome, Staging: rubyevents_staging-chrome
+    service_name = Rails.env.staging? ? "rubyevents_staging" : "rubyevents"
     "ws://#{service_name}-chrome:3000"
   end
 
