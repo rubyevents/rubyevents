@@ -1,11 +1,10 @@
 <div id="<%= dom_id favorite_user %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">User:</strong>
-    <%= favorite_user.user_id %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Favorite user:</strong>
-    <%= favorite_user.favorite_user_id %>
-  </p>
+  <div class="border rounded-lg flex justify-between items-center bg-white hover:bg-gray-200 transition-bg duration-300 ease-in-out">
+    <%= render partial: "users/card", locals: {user: favorite_user.favorite_user} %>
+    <%= ui_tooltip "Remove from your list of Favorite Rubyists" do %>
+      <%= button_to favorite_user_path(favorite_user), method: :delete do %>
+        <%= fa("star", size: :sm, style: :solid, class: "fill-yellow-400 mx-5") %>
+      <% end %>
+    <% end %>
+  </div>
 </div>
