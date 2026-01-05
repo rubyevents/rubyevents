@@ -132,9 +132,9 @@ jobs:
 
       - name: Verify all thumbnails for child talks are present
         run: bin/rails verify_thumbnails
-  deploy:
-    needs: [lint, test, seed_smoke_test]
-    name: Deploy
+
+  build:
+    name: Build Docker Image
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
 
@@ -143,7 +143,7 @@ jobs:
       packages: write
       attestations: write
       id-token: write
-    timeout-minutes: 30
+    timeout-minutes: 20
 
     env:
       DOCKER_BUILDKIT: 1
@@ -159,6 +159,28 @@ jobs:
       - name: Expose GitHub Runtime for cache
         uses: crazy-max/ghaction-github-runtime@v3
 
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Build and push Docker image
+        run: bundle exec kamal build push
+        env:
+          KAMAL_RAILS_MASTER_KEY: ${{ secrets.KAMAL_RAILS_MASTER_KEY }}
+          KAMAL_REGISTRY_PASSWORD: ${{ secrets.KAMAL_REGISTRY_PASSWORD }}
+
+  deploy:
+    needs: [lint, test, seed_smoke_test, build]
+    name: Deploy
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
       - name: Setup SSH
         uses: webfactory/ssh-agent@v0.9.0
         with:
@@ -170,7 +192,7 @@ jobs:
           bundler-cache: true
 
       - name: Deploy with Kamal
-        run: bundle exec kamal deploy
+        run: bundle exec kamal deploy --skip-push
         env:
           KAMAL_RAILS_MASTER_KEY: ${{ secrets.KAMAL_RAILS_MASTER_KEY }}
           KAMAL_REGISTRY_PASSWORD: ${{ secrets.KAMAL_REGISTRY_PASSWORD }}
