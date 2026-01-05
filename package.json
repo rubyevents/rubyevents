@@ -28,7 +28,7 @@
     "lint:yml": "yarn prettier --check data/**/**/*.yml",
     "format": "standard --fix",
     "format:yml": "node yaml/enforce_strings.mjs && yarn run lint:yml --write",
-    "herb:lint": "herb-lint '**/*.html{+*,}.erb'"
+    "herb:lint": "herb-lint"
   },
   "packageManager": "yarn@1.22.19",
   "devDependencies": {
