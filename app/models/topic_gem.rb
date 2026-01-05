@@ -67,7 +67,7 @@ class TopicGem < ApplicationRecord
   end
 
   def owner_handles
-    owners&.map { |o| o["handle"] } || []
+    owners&.map { |o| o["handle"] }.compact || []
   end
 
   def owner_users
