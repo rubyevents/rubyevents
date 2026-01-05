@@ -1,16 +1,16 @@
-class Spotlight::EventsController < ApplicationController
+class Spotlight::SeriesController < ApplicationController
   include SpotlightSearch
 
-  LIMIT = 15
+  LIMIT = 8
 
   disable_analytics
   skip_before_action :authenticate_user!
 
   def index
     if search_query.present?
-      @events, @total_count = search_backend_class.search_events(search_query, limit: LIMIT)
+      @series, @total_count = search_backend_class.search_series(search_query, limit: LIMIT)
     else
-      @events = Event.includes(:series).canonical.past.order(start_date: :desc).limit(LIMIT)
+      @series = EventSeries.joins(:events).distinct.order(name: :asc).limit(LIMIT)
       @total_count = nil
     end
 
@@ -23,7 +23,7 @@ class Spotlight::EventsController < ApplicationController
 
   helper_method :search_query
   def search_query
-    params[:s]
+    params[:s].presence
   end
 
   helper_method :total_count

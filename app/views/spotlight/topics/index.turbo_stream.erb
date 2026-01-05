@@ -1,0 +1,21 @@
+<%= turbo_stream.replace "topics_search_results" do %>
+  <div
+    id="topics_search_results"
+    class="<%= @topics.any? ? 'pb-4 border-b' : 'hidden' %>"
+    data-spotlight-search-target="topicsSearchResults">
+    <% if @topics.any? %>
+      <div class="flex items-center flex-wrap gap-2 py-2">
+        <span class="text-sm font-medium text-gray-600">Topics</span>
+        <span class="text-xs text-gray-400">(<%= total_count %>)</span>
+      </div>
+      <div class="flex flex-wrap gap-2">
+        <% @topics.each do |topic| %>
+          <%= link_to topic_path(topic), target: "_top", class: "badge badge-ghost hover:bg-gray-200 px-3 py-3 text-sm gap-1" do %>
+            #<%= topic.name.parameterize %>
+            <span class="text-xs text-gray-400">(<%= topic.talks_count %>)</span>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
