@@ -79,7 +79,10 @@ Rails.application.routes.draw do
   resources :talks, param: :slug, only: [:index, :show, :update, :edit] do
     scope module: :talks do
       resources :recommendations, only: [:index]
-      resource :watched_talk, only: [:new, :create, :destroy, :update]
+      resource :watched_talk, only: [:new, :create, :destroy, :update] do
+        post :toggle_attendance, on: :collection
+        post :toggle_online, on: :collection
+      end
       resource :slides, only: :show
     end
   end
@@ -120,6 +123,7 @@ Rails.application.routes.draw do
         get "/countries/:country" => redirect { |params, _| "/countries/#{params[:country]}" }
         resources :cities, param: :city, only: [:index, :show]
         resources :series, param: :slug, only: [:index, :show]
+        resources :attendances, only: [:index, :show], param: :event_slug
       end
 
       resources :schedules, only: [:index], path: "/schedule" do
