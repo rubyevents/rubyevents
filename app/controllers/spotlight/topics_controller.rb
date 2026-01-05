@@ -1,11 +1,13 @@
 class Spotlight::TopicsController < ApplicationController
+  include TypesenseSearch
+
   LIMIT = 10
 
   disable_analytics
   skip_before_action :authenticate_user!
 
   def index
-    if search_query.present? && typesense_enabled?
+    if search_query.present? && typesense_available?
       pagy, @topics = Topic.typesense_search_topics(search_query, per_page: LIMIT)
       @total_count = pagy.count
     else
@@ -29,8 +31,4 @@ class Spotlight::TopicsController < ApplicationController
 
   helper_method :total_count
   attr_reader :total_count
-
-  def typesense_enabled?
-    Topic.respond_to?(:typesense_search_topics)
-  end
 end

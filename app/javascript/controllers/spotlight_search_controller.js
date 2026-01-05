@@ -7,7 +7,7 @@ import { get } from '@rails/request.js'
 export default class extends Controller {
   static targets = ['searchInput', 'form', 'searchResults', 'talksSearchResults',
     'speakersSearchResults', 'eventsSearchResults', 'topicsSearchResults', 'seriesSearchResults',
-    'organizationsSearchResults', 'locationsSearchResults', 'languagesSearchResults', 'allSearchResults', 'searchQuery', 'loading', 'clear']
+    'organizationsSearchResults', 'locationsSearchResults', 'languagesSearchResults', 'allSearchResults', 'searchQuery', 'loading', 'clear', 'searchBackendBadge', 'backendToggle', 'sqliteBadge', 'typesenseBadge']
 
   static debounces = ['search']
   static values = {
@@ -28,6 +28,8 @@ export default class extends Controller {
     this.dialog.addEventListener('modal:open', this.appear.bind(this))
     this.combobox = new Combobox(this.searchInputTarget, this.searchResultsTarget)
     this.combobox.start()
+    this.defaultsLoaded = false
+    this.#initBackendToggle()
   }
 
   connect () {}
@@ -44,8 +46,13 @@ export default class extends Controller {
 
     if (query.length === 0) {
       this.#clearResults()
+      this.#loadDefaults()
       this.#toggleClearing()
       return
+    }
+
+    if (this.defaultsAbortController) {
+      this.defaultsAbortController.abort()
     }
 
     this.allSearchResultsTarget.classList.remove('hidden')
@@ -150,26 +157,90 @@ export default class extends Controller {
   clear () {
     this.searchInputTarget.value = ''
     this.#clearResults()
+    this.#loadDefaults()
     this.#toggleClearing()
     this.searchInputTarget.focus()
+  }
+
+  setBackend (event) {
+    const backend = event.currentTarget.dataset.backend
+    this.searchBackend = backend
+
+    this.#updateBackendBadges(backend)
+    this.#clearResults()
+    this.#loadDefaults()
+
+    if (this.searchInputTarget.value.length > 0) {
+      this.search()
+    }
   }
 
   // callbacks
   appear () {
     this.searchInputTarget.focus()
+    this.#loadDefaults()
   }
 
   // private
+  async #loadDefaults () {
+    if (this.defaultsAbortController) {
+      this.defaultsAbortController.abort()
+    }
+
+    this.defaultsAbortController = new AbortController()
+    this.allSearchResultsTarget.classList.add('hidden')
+
+    const defaultPromises = []
+
+    if (this.hasUrlSpotlightTalksValue) {
+      defaultPromises.push(get(this.urlSpotlightTalksValue, {
+        responseKind: 'turbo-stream',
+        signal: this.defaultsAbortController.signal
+      }).catch(() => {}))
+    }
+
+    if (this.hasUrlSpotlightSpeakersValue) {
+      defaultPromises.push(get(this.urlSpotlightSpeakersValue, {
+        responseKind: 'turbo-stream',
+        signal: this.defaultsAbortController.signal
+      }).catch(() => {}))
+    }
+
+    if (this.hasUrlSpotlightEventsValue) {
+      defaultPromises.push(get(this.urlSpotlightEventsValue, {
+        responseKind: 'turbo-stream',
+        signal: this.defaultsAbortController.signal
+      }).catch(() => {}))
+    }
+
+    await Promise.all(defaultPromises)
+    this.defaultsLoaded = true
+  }
+
   #handleSearch (url, query, abortController) {
+    const params = { s: query }
+    if (this.searchBackend) {
+      params.search_backend = this.searchBackend
+    }
+
     return get(url, {
-      query: { s: query },
+      query: params,
       responseKind: 'turbo-stream',
       headers: {
         'Turbo-Frame': 'talks_search_results'
       },
       signal: abortController.signal
+    }).then(response => {
+      if (this.hasSearchBackendBadgeTarget) {
+        const backend = response.headers.get('X-Search-Backend')
+
+        if (backend === 'sqlite_fts') {
+          this.searchBackendBadgeTarget.classList.remove('hidden')
+        } else {
+          this.searchBackendBadgeTarget.classList.add('hidden')
+        }
+      }
     }).catch(error => {
-      // Ignore abort errors, but rethrow other errors
       if (error.name !== 'AbortError') {
         throw error
       }
@@ -177,6 +248,10 @@ export default class extends Controller {
   }
 
   #clearResults () {
+    if (this.defaultsAbortController) {
+      this.defaultsAbortController.abort()
+    }
+
     if (this.talksAbortController) {
       this.talksAbortController.abort()
     }
@@ -239,6 +314,10 @@ export default class extends Controller {
     }
 
     this.allSearchResultsTarget.classList.add('hidden')
+
+    if (this.hasSearchBackendBadgeTarget) {
+      this.searchBackendBadgeTarget.classList.add('hidden')
+    }
   }
 
   #toggleClearing () {
@@ -247,6 +326,29 @@ export default class extends Controller {
       this.clearTarget.classList.add('hidden')
     } else {
       this.clearTarget.classList.remove('hidden')
+    }
+  }
+
+  #initBackendToggle () {
+    if (!this.hasSqliteBadgeTarget) return
+
+    this.searchBackend = 'sqlite'
+    this.#updateBackendBadges(this.searchBackend)
+  }
+
+  #updateBackendBadges (backend) {
+    if (!this.hasSqliteBadgeTarget) return
+
+    if (backend === 'sqlite') {
+      this.sqliteBadgeTarget.classList.add('badge-warning')
+      this.sqliteBadgeTarget.classList.remove('badge-ghost')
+      this.typesenseBadgeTarget.classList.remove('badge-primary')
+      this.typesenseBadgeTarget.classList.add('badge-ghost')
+    } else {
+      this.typesenseBadgeTarget.classList.add('badge-primary')
+      this.typesenseBadgeTarget.classList.remove('badge-ghost')
+      this.sqliteBadgeTarget.classList.remove('badge-warning')
+      this.sqliteBadgeTarget.classList.add('badge-ghost')
     }
   }
 

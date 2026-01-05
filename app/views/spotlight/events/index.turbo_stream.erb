@@ -1,11 +1,16 @@
 <%= turbo_stream.update "events_search_results", method: "morph" do %>
   <div class="flex items-center flex-wrap gap-2 py-4">
-    <h2>Events</h2>
-    <% if @events.size.positive? %>
+    <h2><%= search_query.present? ? "Events" : "Latest Events" %></h2>
+    <% if @events.size.positive? && total_count.present? %>
       <span class="text-sm text-gray-500">(<%= total_count %> <%= "event".pluralize(total_count) %>)</span>
       <%= link_to archive_events_path(s: search_query), class: "link text-sm text-gray-500", target: "_top" do %>
         see all
       <% end %>
+    <% end %>
+    <% if Rails.env.development? && search_backend == :sqlite_fts %>
+      <span class="badge badge-xs badge-warning">SQLite FTS</span>
+    <% elsif Rails.env.development? && search_backend == :typesense %>
+      <span class="badge badge-xs badge-primary">Typesense</span>
     <% end %>
   </div>
 
@@ -14,6 +19,8 @@
       <%= render partial: "spotlight/events/event", collection: @events, as: :event %>
     <% end %>
 
-    <div class="hidden only:block">No events found for <strong><%= search_query %></strong></div>
+    <% if search_query.present? %>
+      <div class="hidden only:block">No events found for <strong><%= search_query %></strong></div>
+    <% end %>
   </div>
 <% end %>

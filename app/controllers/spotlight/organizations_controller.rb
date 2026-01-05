@@ -1,11 +1,13 @@
 class Spotlight::OrganizationsController < ApplicationController
+  include TypesenseSearch
+
   LIMIT = 8
 
   disable_analytics
   skip_before_action :authenticate_user!
 
   def index
-    if search_query.present? && typesense_enabled?
+    if search_query.present? && typesense_available?
       pagy, @organizations = Organization.typesense_search_organizations(search_query, per_page: LIMIT)
       @total_count = pagy.count
     else
@@ -29,8 +31,4 @@ class Spotlight::OrganizationsController < ApplicationController
 
   helper_method :total_count
   attr_reader :total_count
-
-  def typesense_enabled?
-    Organization.respond_to?(:typesense_search_organizations)
-  end
 end

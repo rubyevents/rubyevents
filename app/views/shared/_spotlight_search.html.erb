@@ -28,6 +28,12 @@
                 "spotlight-search#search keydown.enter->spotlight-search#navigate:stop",
               spotlight_search_target: "searchInput"
             } %>
+      <% if Rails.env.development? %>
+        <div class="flex items-center gap-1 absolute right-10 top-1/2 -translate-y-1/2" data-spotlight-search-target="backendToggle">
+          <span class="badge badge-xs cursor-pointer" data-action="click->spotlight-search#setBackend" data-backend="sqlite" data-spotlight-search-target="sqliteBadge">SQLite</span>
+          <span class="badge badge-xs cursor-pointer" data-action="click->spotlight-search#setBackend" data-backend="typesense" data-spotlight-search-target="typesenseBadge">Typesense</span>
+        </div>
+      <% end %>
       <%= fa(
             "xmark",
             size: :sm,
@@ -60,6 +66,9 @@
           for
           <strong class="text-base-content" data-spotlight-search-target="searchQuery"></strong></div>
         <kbd class="kbd kbd-sm text-base-content">⏎</kbd>
+        <% if Rails.env.development? %>
+          <span class="badge badge-xs badge-warning hidden" data-spotlight-search-target="searchBackendBadge">SQLite FTS</span>
+        <% end %>
       </div>
 
       <div
@@ -87,7 +96,7 @@
         class="pb-4 border-b hidden"
         data-spotlight-search-target="organizationsSearchResults"></div>
 
-      <div class="grid md:grid-cols-3 md:divide-x gap-4 md:gap-0 h-full overflow-hidden pt-4">
+      <div class="grid md:grid-cols-3 md:divide-x gap-4 md:gap-0 h-full overflow-hidden pt-4 border-t">
         <% resources.unshift(main_resource) %>
         <% resources.uniq.each_with_index do |resource, index| %>
           <% padding = {"0" => "md:pr-4", "1" => "md:px-4", "2" => "md:pl-4"}.dig(index.to_s) %>
