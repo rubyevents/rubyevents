@@ -42,7 +42,7 @@
 
     <% if maintainers.any? %>
       <div class="flex flex-col gap-2">
-        <span class="text-sm text-gray-500">Maintainers</span>
+        <span class="text-sm text-gray-500">Maintainers on RubyEvents.org</span>
         <div class="flex flex-wrap gap-3">
           <% maintainers.each do |user| %>
             <%= link_to profile_path(user), class: "flex items-center gap-2 hover:opacity-80", data: {turbo_frame: "_top"} do %>
