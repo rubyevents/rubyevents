@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.2].define(version: 2026_01_03_232440) do
+ActiveRecord::Schema[8.2].define(version: 2026_01_05_100000) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -76,6 +76,8 @@ ActiveRecord::Schema[8.2].define(version: 2026_01_03_232440) do
     t.string "utm_term"
     t.string "visit_token"
     t.string "visitor_token"
+    t.index ["ip"], name: "index_ahoy_visits_on_ip"
+    t.index ["started_at", "ip"], name: "index_ahoy_visits_on_started_at_and_ip"
     t.index ["user_id"], name: "index_ahoy_visits_on_user_id"
     t.index ["visit_token"], name: "index_ahoy_visits_on_visit_token", unique: true
   end
