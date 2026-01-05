@@ -14,14 +14,16 @@ linters:
   PartialInstanceVariable:
     enabled: true
     exclude:
-      - app/views/contributions/_events_without_videos.html.erb
-      - app/views/contributions/_speakers_without_github.html.erb
-      - app/views/contributions/_talks_without_slides.html.erb
-      - app/views/contributions/_events_without_location.html.erb
       - app/views/contributions/_events_without_dates.html.erb
-      - app/views/contributions/_talks_dates_out_of_bounds.html.erb
+      - app/views/contributions/_events_without_location.html.erb
+      - app/views/contributions/_events_without_videos.html.erb
       - app/views/contributions/_missing_videos_cue.html.erb
+      - app/views/contributions/_speakers_without_github.html.erb
+      - app/views/contributions/_talks_dates_out_of_bounds.html.erb
+      - app/views/contributions/_talks_without_slides.html.erb
+      - app/views/events/_my_attendance_day.html.erb
       - app/views/profiles/wrapped/_share.html.erb
+
   Rubocop:
     enabled: true
     rubocop_config:

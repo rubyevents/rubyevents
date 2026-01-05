@@ -3,46 +3,59 @@
 <% talk_count = 0 %>
 <% date_string = Date.parse(day.dig("date")).strftime("%a %b %d") %>
 <% day_string = day.dig("name") ? "#{day.dig("name")} - #{date_string}" : date_string %>
+<% unique_slot_counts = day.dig("grid").map { |grid| grid["slots"] }.uniq %>
 
 <div id="attendance-day-<%= day_index %>" class="mt-4">
   <h3 class="mb-2 text-center font-semibold text-sm text-gray-700"><%= day_string %></h3>
 
-  <% max_cols = day.dig("grid").map { |grid| grid["slots"] }.max %>
+  <style>
+    <% unique_slot_counts.each do |slot_count| %>
+      @media (min-width: 768px) {
+        #attendance-day-<%= day_index %> [data-slots="<%= slot_count %>"] {
+          grid-template-columns: repeat(<%= slot_count %>, minmax(0, 1fr));
+        }
+      }
+    <% end %>
+  </style>
 
   <div class="border rounded overflow-hidden divide-y">
     <% day.dig("grid").each do |grid| %>
       <% start_time = grid["start_time"] %>
+      <% end_time = grid["end_time"] %>
       <% slots = grid["slots"] %>
       <% items = grid.fetch("items", []) %>
 
-      <div class="flex">
-        <div class="w-14 shrink-0 bg-gray-50 text-xs p-1.5 text-gray-500 text-center flex items-center justify-center border-r">
-          <%= start_time %>
+      <div class="flex flex-col md:flex-row">
+        <div class="w-full md:w-14 shrink-0 bg-gray-50 text-xs p-1 md:p-1.5 text-gray-500 text-center flex items-center justify-center border-b md:border-b-0 md:border-r">
+          <span class="md:hidden"><%= start_time %><%= " - #{end_time}" if end_time %></span>
+          <span class="hidden md:inline"><%= start_time %></span>
         </div>
 
-        <div class="flex-1 grid grid-cols-<%= slots %> divide-x">
+        <div class="flex-1 grid grid-cols-1 md:divide-x" data-slots="<%= slots %>">
           <% slots.times do |i| %>
             <% talk = items.any? ? nil : talks[talk_count] %>
 
             <% if items.any? %>
               <% item = items[i] %>
-              <div class="bg-gray-50 text-gray-400 text-xs p-1.5 flex items-center justify-center">
+              <div class="bg-gray-50 text-gray-400 text-xs p-1.5 flex items-center justify-center border-b md:border-b-0 last:border-b-0">
                 <%= item.is_a?(String) ? item : item&.fetch("title", "-") %>
               </div>
             <% elsif talk %>
               <% talk_track = talk.static_metadata&.track %>
               <% track = talk_track && tracks.find { |t| t["name"] == talk_track } %>
 
-              <%= render "events/my_attendance_talk",
-                    talk: talk,
-                    track: track,
-                    attended_in_person: in_person_talk_ids.include?(talk.id),
-                    watched_online: online_talk_ids.include?(talk.id),
-                    has_feedback: feedback_talk_ids.include?(talk.id) %>
+              <div class="border-b md:border-b-0 last:border-b-0">
+                <%= render "events/my_attendance_talk",
+                      talk: talk,
+                      track: track,
+                      attended_in_person: in_person_talk_ids.include?(talk.id),
+                      watched_online: online_talk_ids.include?(talk.id),
+                      has_feedback: feedback_talk_ids.include?(talk.id) %>
+              </div>
 
               <% talk_count += 1 %>
             <% else %>
-              <div class="bg-gray-50 text-gray-400 text-xs p-1.5 flex items-center justify-center">-</div>
+              <div class="bg-gray-50 text-gray-400 text-xs p-1.5 flex items-center justify-center border-b md:border-b-0 last:border-b-0">-</div>
             <% end %>
           <% end %>
         </div>
