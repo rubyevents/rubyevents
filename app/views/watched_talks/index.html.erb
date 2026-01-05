@@ -4,18 +4,71 @@
       <%= title "Recently Watched Videos" %>
     </h1>
   </div>
-  <% if @talks.present? %>
-    <div id="talks" class="flex flex-col gap-2">
-      <%= render partial: "talks/card_horizontal",
-            collection: @talks,
-            as: :talk,
-            locals: {
-              user_watched_talks: user_watched_talks,
-              show_remove_from_watched: true,
-              tooltip: false
-            } %>
+
+  <% if @in_progress_talks.any? %>
+    <div class="flex flex-col gap-3 mb-6">
+      <h2 class="text-lg font-bold text-gray-900 flex items-center gap-2">
+        <%= fa("play", size: :sm) %>
+        Continue Watching
+      </h2>
+
+      <div class="relative" data-controller="scroll">
+        <div class="overflow-x-auto scroll-smooth snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+             data-scroll-target="container"
+             data-action="scroll->scroll#checkScroll">
+          <div class="flex pb-4 gap-4">
+            <% @in_progress_talks.each do |watched_talk| %>
+              <div class="flex-none w-64 snap-start" data-scroll-target="card">
+                <%= render partial: "talks/card_thumbnail",
+                      locals: {
+                        talk: watched_talk.talk,
+                        watched_talk: watched_talk,
+                        back_to: watched_talks_path,
+                        back_to_title: "Continue Watching"
+                      } %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white to-transparent pointer-events-none"
+             data-scroll-target="gradient"></div>
+      </div>
     </div>
-  <% else %>
+  <% end %>
+
+  <% if @watched_talks_by_date.present? %>
+    <div id="talks" class="flex flex-col gap-8">
+      <% @watched_talks_by_date.each do |date, watched_talks| %>
+        <div class="flex flex-col gap-3">
+          <h2 class="text-lg font-bold text-gray-900">
+            <% if date == Date.current %>
+              Today
+            <% elsif date == Date.current - 1 %>
+              Yesterday
+            <% else %>
+              <%= date.strftime("%B %-d, %Y") %>
+            <% end %>
+          </h2>
+
+          <div class="flex flex-col gap-2">
+            <% watched_talks.each do |watched_talk| %>
+              <%= render partial: "talks/card_horizontal",
+                    locals: {
+                      talk: watched_talk.talk,
+                      watched_talk: watched_talk,
+                      user_watched_talks: user_watched_talks,
+                      show_remove_from_watched: true,
+                      show_event_name: true,
+                      tooltip: false
+                    } %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if @in_progress_talks.empty? && @watched_talks_by_date.blank? %>
     <div class="text-center py-12">
       <div class="max-w-md mx-auto">
         <div class="text-6xl mb-4">📺</div>

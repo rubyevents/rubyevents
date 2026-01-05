@@ -3,8 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby file: ".ruby-version"
 
-# Use main development branch of Rails from github
-gem "rails", "8.1.1"
+# Use Rails edge
+gem "rails", github: "rails/rails"
 
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
@@ -77,6 +77,8 @@ gem "active_genie"
 
 # A single delightful Ruby way to work with AI.
 gem "ruby_llm", "~> 1.9.1"
+
+# A simple and clean Ruby DSL for creating JSON schemas.
 gem "ruby_llm-schema"
 
 # JSON Schema validator
@@ -94,6 +96,120 @@ gem "herb", "~> 0.8"
 # An ActionView-compatible ERB engine with modern DX - re-imagined with Herb.
 gem "reactionview", "~> 0.2"
 
+# Agnostic pagination in plain ruby.
+gem "pagy"
+
+# gem "activerecord-enhancedsqlite3-adapter"
+gem "solid_cache"
+
+# Database-backed Active Job backend.
+gem "solid_queue", github: "joshleblanc/solid_queue", branch: "async-mode"
+
+# Operational controls for Active Job
+gem "mission_control-jobs"
+
+# Simple, powerful, first-party analytics for Rails
+gem "ahoy_matey"
+
+# The simplest way to group temporal data
+gem "groupdate"
+
+# Create beautiful JavaScript charts with one line of Ruby
+gem "chartkick", "~> 5.0"
+
+# Use Vite in Rails and bring joy to your JavaScript experience
+gem "vite_rails"
+
+# Collection of SEO helpers for Ruby on Rails.
+gem "meta-tags"
+
+# Logs performance and exception data from your app to appsignal.com
+gem "appsignal"
+
+# Autoload dotenv in Rails.
+gem "dotenv-rails"
+
+# Automatic generation of html links in texts
+gem "rails_autolink", "~> 1.1"
+
+# Easily generate XML Sitemaps
+gem "sitemap_generator", "~> 6.3"
+
+# A framework for building reusable, testable & encapsulated view components
+gem "view_component"
+
+# Adds ActiveRecord-specific methods to Dry::Initializer
+gem "dry-initializer-rails"
+
+# Type system for Ruby supporting coercions, constraints and complex types
+gem "dry-types", "~> 1.7"
+
+# Protocol Buffers are Google's data interchange format.
+gem "google-protobuf", require: false
+
+# ActiveJob::Performs adds the `performs` macro to set up jobs by convention.
+gem "active_job-performs", "~> 0.3.1"
+
+# Use the OpenAI API with Ruby!
+gem "ruby-openai"
+
+# Repairs broken JSON strings.
+gem "json-repair", "~> 0.2.0"
+
+# Markdown that smells nice
+gem "redcarpet", "~> 3.6"
+
+# Country Select Plugin
+gem "country_select"
+
+# Admin panel framework and Content Management System for Ruby on Rails.
+gem "avo", "~> 3.27"
+
+# Marksmith is a GitHub-style markdown editor for Ruby on Rails applications.
+gem "marksmith", "~> 0.4"
+
+# A fast, safe, extensible parser for CommonMark. This wraps the comrak Rust crate.
+# gem "commonmarker", "~> 2.6"
+
+# ActiveRecord like interface to read only access and query static YAML files
+gem "frozen_record", "~> 0.27.2"
+
+# A convenient way to diff string in ruby
+gem "diffy"
+
+# ActiveRecord soft-deletes done right
+gem "discard"
+
+# Makes consuming restful web services dead easy.
+gem "httparty"
+
+# Use OmniAuth to support multi-provider authentication [https://github.com/omniauth/omniauth]
+gem "omniauth"
+
+# Official OmniAuth strategy for GitHub.
+gem "omniauth-github"
+
+# Provides a mitigation against CVE-2015-9284 [https://github.com/cookpad/omniauth-rails_csrf_protection]
+gem "omniauth-rails_csrf_protection"
+
+# An accessible autocomplete for Ruby on Rails apps using Hotwire.
+gem "hotwire_combobox", "~> 0.4.0"
+
+# Common locale data and translations for Rails i18n.
+gem "rails-i18n", "~> 8.0"
+
+# Ruby standards gems
+gem "openssl" # https://github.com/ruby/openssl/issues/949
+
+# Class to build custom data structures, similar to a Hash.
+gem "ostruct"
+
+# omplete geocoding solution for Ruby.
+gem "geocoder"
+
+# RubyGems.org API wrapper for gem information
+gem "gems"
+
 # Typesense search integration
 gem "typesense-rails"
 
@@ -106,7 +222,9 @@ group :development, :test do
 end
 
 group :development do
+  # A gem for generating annotations for Rails projects.
   gem "annotaterb"
+
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 
@@ -139,66 +257,3 @@ group :test do
   gem "vcr", "~> 6.1"
   gem "webmock"
 end
-
-gem "pagy"
-
-# gem "activerecord-enhancedsqlite3-adapter"
-gem "solid_cache"
-gem "solid_queue", github: "joshleblanc/solid_queue", branch: "async-mode"
-gem "mission_control-jobs"
-
-gem "ahoy_matey"
-gem "vite_rails"
-gem "meta-tags"
-gem "groupdate"
-gem "appsignal"
-gem "chartkick", "~> 5.0"
-gem "dotenv-rails"
-
-gem "rails_autolink", "~> 1.1"
-
-gem "sitemap_generator", "~> 6.3"
-
-gem "view_component"
-
-gem "dry-initializer-rails"
-
-gem "dry-types", "~> 1.7"
-
-gem "google-protobuf", require: false
-
-gem "active_job-performs", "~> 0.3.1"
-
-gem "ruby-openai"
-
-gem "json-repair", "~> 0.2.0"
-
-gem "redcarpet", "~> 3.6"
-gem "country_select"
-
-# admin
-gem "avo"
-gem "marksmith"
-# gem "commonmarker", "~> 2.6"
-
-gem "frozen_record", "~> 0.27.2"
-gem "diffy"
-gem "discard"
-
-gem "httparty"
-
-# Use OmniAuth to support multi-provider authentication [https://github.com/omniauth/omniauth]
-gem "omniauth"
-gem "omniauth-github"
-# Provides a mitigation against CVE-2015-9284 [https://github.com/cookpad/omniauth-rails_csrf_protection]
-gem "omniauth-rails_csrf_protection"
-
-gem "hotwire_combobox", "~> 0.4.0"
-
-gem "rails-i18n", "~> 8.0"
-
-# Ruby standards gems
-gem "openssl" # https://github.com/ruby/openssl/issues/949
-gem "ostruct"
-
-gem "geocoder"

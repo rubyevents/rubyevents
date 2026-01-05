@@ -31,7 +31,7 @@ class WrappedController < ApplicationController
         unique_sponsors: unique_sponsors,
         event_participations: EventParticipation.joins(:event).where(events: {start_date: @year_range}).count,
         people_involved: people_involved,
-        total_talks_watched: WatchedTalk.where(created_at: @year_range).count,
+        total_talks_watched: WatchedTalk.where(watched_at: @year_range).count,
         new_users: ConnectedAccount.github.where(created_at: @year_range).count,
         total_rubyists: User.count,
         rubyist_countries: rubyist_countries,
@@ -46,7 +46,7 @@ class WrappedController < ApplicationController
 
     # Leave this uncached, so users can make theirs public and see it on the /wrapped page immediately
     @public_users = User
-      .where(wrapped_public: true)
+      .with_public_wrapped
       .where.not("LOWER(users.name) IN (?)", ["tbd", "todo", "tba", "speaker tbd", "speaker tba"])
       .order(updated_at: :desc)
       .limit(100)
@@ -133,7 +133,7 @@ class WrappedController < ApplicationController
 
   def set_wrapped_meta_tags
     title = "RubyEvents.org #{@year} Wrapped"
-    description = "#{@year} in review: #{ActionController::Base.helpers.number_with_delimiter(@talks_held)} talks held, #{ActionController::Base.helpers.number_with_delimiter(@total_conferences)} conferences, #{ActionController::Base.helpers.number_with_delimiter(@total_speakers)} speakers. Explore the Ruby community's year!"
+    description = "#{@year} in review. Explore the Ruby community's year!"
     image_url = view_context.image_url("og/wrapped-#{@year}.png")
 
     set_meta_tags(

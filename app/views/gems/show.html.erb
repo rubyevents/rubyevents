@@ -1,0 +1,167 @@
+<div class="container flex flex-col w-full gap-4 my-8">
+  <%= link_to gems_path, class: "hotwire-native:hidden" do %>
+    <div class="flex items-center gap-2 title text-primary">
+      <%= fa("arrow-left-long", class: "transition-arrow fill-primary", size: :xs) %>
+      <div>Gems</div>
+    </div>
+  <% end %>
+
+  <div class="flex flex-col gap-4 hotwire-native:hidden">
+    <div class="flex flex-wrap items-center gap-3 title text-primary">
+      <h1 class="flex items-center gap-2">
+        <%= fa("gem", size: :md, class: "fill-primary") %>
+        <code class="font-mono"><%= @gem.gem_name %></code>
+      </h1>
+
+      <% if @gem.version.present? %>
+        <span class="badge badge-primary badge-outline">v<%= @gem.version %></span>
+      <% end %>
+    </div>
+
+    <div class="flex flex-col gap-4 p-5 bg-base-200 rounded-lg max-w-3xl">
+      <% if @gem.summary.present? %>
+        <p class="text-gray-700"><%= @gem.summary %></p>
+      <% end %>
+
+      <div class="flex flex-wrap items-center gap-4 text-sm text-gray-600">
+        <% if @gem.downloads.present? %>
+          <div class="flex items-center gap-1.5" title="Total downloads">
+            <%= fa("download", size: :xs) %>
+            <span><%= number_to_human(@gem.downloads) %> downloads</span>
+          </div>
+        <% end %>
+
+        <div class="flex items-center gap-1.5" title="Conference talks">
+          <%= fa("video", size: :xs) %>
+          <span><%= pluralize(@topic.talks_count, "talk") %></span>
+        </div>
+
+        <% if @gem.version_created_at.present? %>
+          <div class="flex items-center gap-1.5" title="Latest release">
+            <%= fa("calendar", size: :xs) %>
+            <span>Released <%= time_ago_in_words(@gem.version_created_at) %> ago</span>
+          </div>
+        <% end %>
+
+        <% if @gem.license.present? %>
+          <div class="flex items-center gap-1.5" title="License">
+            <%= fa("scale-balanced", size: :xs) %>
+            <span><%= @gem.license %></span>
+          </div>
+        <% end %>
+      </div>
+
+      <% if @gem.github_repo.present? %>
+        <div class="flex items-center gap-2 text-sm">
+          <%= fab("github", size: :sm) %>
+          <%= external_link_to @gem.github_repo, @gem.github_url, class: "link" %>
+        </div>
+      <% end %>
+
+      <div class="flex flex-wrap gap-2">
+        <%= external_link_to "RubyGems", @gem.rubygems_url, class: "btn btn-sm btn-outline" %>
+
+        <% if @gem.github_url.present? %>
+          <%= external_link_to "GitHub", @gem.github_url, class: "btn btn-sm btn-outline" %>
+        <% end %>
+
+        <% if @gem.documentation_url.present? %>
+          <%= external_link_to "Documentation", @gem.documentation_url, class: "btn btn-sm btn-outline" %>
+        <% end %>
+
+        <% if @gem.changelog_url.present? %>
+          <%= external_link_to "Changelog", @gem.changelog_url, class: "btn btn-sm btn-outline" %>
+        <% end %>
+
+        <% if @gem.bug_tracker_url.present? %>
+          <%= external_link_to "Issues", @gem.bug_tracker_url, class: "btn btn-sm btn-outline" %>
+        <% end %>
+
+        <% if @gem.homepage_url.present? && @gem.homepage_url != @gem.source_code_url && @gem.homepage_url != @gem.github_url %>
+          <%= external_link_to "Homepage", @gem.homepage_url, class: "btn btn-sm btn-outline" %>
+        <% end %>
+
+        <% if @gem.funding_url.present? %>
+          <%= external_link_to "Sponsor", @gem.funding_url, class: "btn btn-sm btn-outline" %>
+        <% end %>
+
+        <%= link_to topic_path(@topic), class: "btn btn-sm btn-primary btn-outline" do %>
+          View Topic: <%= @topic.name %>
+        <% end %>
+      </div>
+
+      <% if @gem.runtime_dependencies.any? %>
+        <details class="text-sm">
+          <summary class="cursor-pointer text-gray-600 hover:text-gray-800">
+            <%= pluralize(@gem.runtime_dependencies.size, "runtime dependency") %>
+          </summary>
+
+          <div class="mt-2 flex flex-wrap gap-1">
+            <% @gem.runtime_dependencies.each do |dep| %>
+              <span class="badge badge-ghost badge-sm"><%= dep["name"] %></span>
+            <% end %>
+          </div>
+        </details>
+      <% end %>
+    </div>
+  </div>
+
+  <% maintainers = @gem.maintainers %>
+
+  <% if maintainers.any? %>
+    <section class="flex flex-col w-full gap-4 mt-4">
+      <h2 class="text-xl font-semibold">Maintainers</h2>
+
+      <div class="flex flex-wrap gap-4">
+        <% maintainers.each do |user| %>
+          <%= link_to profile_path(user), class: "w-48 sm:w-64 flex relative bg-white rounded-xl border h-full hover:border-primary hover:shadow-sm transition-all", data: {turbo_frame: "_top"} do %>
+            <div class="card card-compact w-full pt-6">
+              <figure class="flex justify-center">
+                <%= ui_avatar(user, size_class: "w-32 sm:w-40", size: :lg) %>
+              </figure>
+
+              <div class="card-body items-center text-center pt-4 px-0 justify-center">
+                <h3 class="text-xl font-semibold text-slate-700"><%= user.name %></h3>
+                <div class="text-slate-600"><%= pluralize(user.talks_count, "talk") %></div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </section>
+  <% end %>
+
+  <div class="flex items-center justify-between mt-4">
+    <h2 class="text-xl font-semibold">Latest talks about <code class="font-mono bg-base-200 px-1.5 py-0.5 rounded text-lg"><%= @gem.gem_name %></code></h2>
+
+    <% if @topic.talks_count.to_i > 8 %>
+      <%= link_to talks_gem_path(gem_name: @gem.gem_name), class: "link text-primary flex items-center gap-1" do %>
+        View all <%= @topic.talks_count %> talks
+        <%= fa("arrow-right", size: :xs) %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div
+    id="gem-talks"
+    class="grid min-w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 gallery">
+    <%= render partial: "talks/card",
+          collection: @talks,
+          as: :talk,
+          locals: {
+            favoritable: true,
+            user_favorite_talks_ids: @user_favorite_talks_ids,
+            user_watched_talks: user_watched_talks,
+            back_to: gem_path(gem_name: @gem.gem_name),
+            back_to_title: @gem.gem_name
+          } %>
+  </div>
+
+  <% if @topic.talks_count.to_i > 8 %>
+    <div class="flex justify-center mt-4">
+      <%= link_to talks_gem_path(gem_name: @gem.gem_name), class: "btn btn-primary btn-outline" do %>
+        View all <%= @topic.talks_count %> talks about <code class="font-mono"><%= @gem.gem_name %></code>
+      <% end %>
+    </div>
+  <% end %>
+</div>

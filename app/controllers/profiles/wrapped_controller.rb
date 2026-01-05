@@ -14,8 +14,8 @@ class Profiles::WrappedController < ApplicationController
 
     @watched_talks_in_year = @user.watched_talks
       .includes(talk: [:event, :speakers, :approved_topics])
-      .where(created_at: year_range)
-      .order(created_at: :asc)
+      .where(watched_at: year_range)
+      .order(watched_at: :asc)
 
     @total_talks_watched = @watched_talks_in_year.count
     @total_watch_time_seconds = @watched_talks_in_year.sum(&:progress_seconds)
@@ -68,11 +68,11 @@ class Profiles::WrappedController < ApplicationController
       .map { |code, count| [Language.by_code(code) || code, count] }
 
     @monthly_breakdown = @watched_talks_in_year
-      .group_by { |wt| wt.created_at.month }
+      .group_by { |wt| wt.watched_at.month }
       .transform_values(&:count)
 
     @weekday_breakdown = @watched_talks_in_year
-      .group_by { |wt| wt.created_at.wday }
+      .group_by { |wt| wt.watched_at.wday }
       .transform_values(&:count)
 
     @most_active_month = @monthly_breakdown.max_by { |_, count| count }&.first
@@ -195,8 +195,8 @@ class Profiles::WrappedController < ApplicationController
       .uniq
       .count
 
-    completed_talks = @watched_talks_in_year.select { |wt| wt.progress_percentage >= 90 }
-    @completion_rate = @total_talks_watched.positive? ? ((completed_talks.count.to_f / @total_talks_watched) * 100).round : 0
+    completed_talks_count = @watched_talks_in_year.count(&:watched?)
+    @completion_rate = @total_talks_watched.positive? ? ((completed_talks_count.to_f / @total_talks_watched) * 100).round : 0
     @longest_streak = calculate_longest_streak
 
     @ruby_friends_met = User
@@ -235,7 +235,7 @@ class Profiles::WrappedController < ApplicationController
     @year = YEAR
     year_range = Date.new(@year, 1, 1)..Date.new(@year, 12, 31)
 
-    @watched_talks_in_year = @user.watched_talks.where(created_at: year_range)
+    @watched_talks_in_year = @user.watched_talks.where(watched_at: year_range)
     @total_talks_watched = @watched_talks_in_year.count
     @total_watch_time_seconds = @watched_talks_in_year.sum(&:progress_seconds)
     @total_watch_time_hours = (@total_watch_time_seconds / 3600.0).round(1)
@@ -265,7 +265,7 @@ class Profiles::WrappedController < ApplicationController
     @is_owner = true
     year_range = Date.new(@year, 1, 1)..Date.new(@year, 12, 31)
 
-    @watched_talks_in_year = @user.watched_talks.where(created_at: year_range)
+    @watched_talks_in_year = @user.watched_talks.where(watched_at: year_range)
     @total_talks_watched = @watched_talks_in_year.count
     @events_attended_in_year = @user.participated_events.where(start_date: year_range)
     @talks_given_in_year = @user.kept_talks.where(date: year_range)
@@ -338,7 +338,7 @@ class Profiles::WrappedController < ApplicationController
   def calculate_longest_streak
     return 0 if @watched_talks_in_year.empty?
 
-    watch_dates = @watched_talks_in_year.map { |wt| wt.created_at.to_date }.uniq.sort
+    watch_dates = @watched_talks_in_year.map { |wt| wt.watched_at.to_date }.uniq.sort
     return 1 if watch_dates.size == 1
 
     max_streak = 1
