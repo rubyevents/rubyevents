@@ -35,6 +35,7 @@ class Avo::Resources::Topic < Avo::BaseResource
     action Avo::Actions::ApproveTopic
     action Avo::Actions::RejectTopic
     action Avo::Actions::AssignCanonicalTopic
+    action Avo::Actions::FindTopicTalks
   end
 
   def filters

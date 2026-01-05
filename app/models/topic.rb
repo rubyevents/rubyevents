@@ -30,6 +30,7 @@
 class Topic < ApplicationRecord
   include Sluggable
 
+  has_object :agents
   has_object :gem_info
 
   configure_slug(attribute: :name, auto_suffix_on_collision: false)
