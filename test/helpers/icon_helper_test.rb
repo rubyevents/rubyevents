@@ -51,4 +51,17 @@ class IconHelperTest < ActionView::TestCase
     result = cached_inline_svg(@icon, data: {test: 'value"with"quotes'})
     assert_includes result, 'data-test="value&quot;with&quot;quotes"'
   end
+
+  test "raises helpful error with fontawesome search URL when icon not found" do
+    error = assert_raises(ArgumentError) do
+      cached_inline_svg("icons/fontawesome/nonexistent-icon-solid.svg")
+    end
+
+    assert_includes error.message, "Icon not found. Download from\n"
+    assert_includes error.message, "https://fontawesome.com/icons?q=nonexistent-icon"
+    assert_includes error.message, "\nand save to\n"
+    assert_includes error.message, "app/assets/images/icons/fontawesome/nonexistent-icon-solid.svg"
+    assert_includes error.message, "Or run the following curl command:\ncurl -o"
+    assert_includes error.message, "https://raw.githubusercontent.com/FortAwesome/Font-Awesome/7.x/svgs-full/solid/nonexistent-icon.svg"
+  end
 end
