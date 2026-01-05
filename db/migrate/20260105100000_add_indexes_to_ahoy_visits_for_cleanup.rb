@@ -12,4 +12,3 @@ class AddIndexesToAhoyVisitsForCleanup < ActiveRecord::Migration[8.0]
       if_not_exists: true
   end
 end
-
