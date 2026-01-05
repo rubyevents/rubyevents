@@ -3,14 +3,16 @@ module Static
     self.backend = Backends::MultiFileBackend.new("**/**/transcripts.yml")
     self.base_path = Rails.root.join("data")
 
+    SEARCH_INDEX_ON_IMPORT_DEFAULT = ENV.fetch("SEARCH_INDEX_ON_IMPORT", "true") == "true"
+
     class << self
       def find_by_video_id(video_id)
         @video_id_index ||= all.index_by { |t| t["video_id"] }
         @video_id_index[video_id]
       end
 
-      def import_all!
-        all.each(&:import!)
+      def import_all!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
+        all.each { |transcript| transcript.import!(index: index) }
       end
     end
 
@@ -36,12 +38,15 @@ module Static
       transcript
     end
 
-    def import!
+    def import!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
       talk = ::Talk.find_by(video_id: video_id)
       return unless talk
 
       transcript_record = talk.talk_transcript || ::Talk::Transcript.new(talk: talk)
       transcript_record.update!(raw_transcript: to_transcript)
+
+      Search::Backend.index(talk) if index
+
       transcript_record
     end
 

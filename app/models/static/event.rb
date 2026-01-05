@@ -5,23 +5,25 @@ module Static
     self.backend = Backends::MultiFileBackend.new("**/**/event.yml")
     self.base_path = Rails.root.join("data")
 
+    SEARCH_INDEX_ON_IMPORT_DEFAULT = ENV.fetch("SEARCH_INDEX_ON_IMPORT", "true") == "true"
+
     class << self
       def find_by_slug(slug)
         @slug_index ||= all.index_by(&:slug)
         @slug_index[slug]
       end
 
-      def import_all!
-        all.each(&:import!)
+      def import_all!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
+        all.each { |event| event.import!(index: index) }
       end
 
-      def import_meetups!
-        all.select { |event| event.meetup? }.each(&:import!)
+      def import_meetups!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
+        all.select { |event| event.meetup? }.each { |event| event.import!(index: index) }
       end
 
-      def import_recent!
+      def import_recent!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
         import_cutoff = 6.months.ago
-        all.select { |event| event.end_date && event.end_date >= import_cutoff }.each(&:import!)
+        all.select { |event| event.end_date && event.end_date >= import_cutoff }.each { |event| event.import!(index: index) }
       end
 
       def create(
@@ -232,6 +234,13 @@ module Static
       Country.find(location.to_s.split(",").last&.strip)
     end
 
+    def city
+      return nil if location.blank?
+
+      parts = location.to_s.split(",").map(&:strip)
+      parts.first if parts.size >= 2
+    end
+
     def home_sort_date
       if published_date
         return published_date
@@ -260,7 +269,7 @@ module Static
       @static_series ||= Static::EventSeries.find_by_slug(series_slug)
     end
 
-    def import!
+    def import!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
       event = ::Event.find_or_create_by(slug: slug)
 
       event.update!(
@@ -270,6 +279,7 @@ module Static
         series: static_series.event_series_record,
         website: website,
         country_code: country&.alpha2,
+        city: city,
         start_date: start_date,
         end_date: end_date,
         kind: kind
@@ -292,10 +302,12 @@ module Static
       puts event.slug unless Rails.env.test?
 
       import_cfps!(event)
-      import_videos!(event)
+      import_videos!(event, index: index)
       import_sponsors!(event)
       import_involvements!(event)
       import_transcripts!(event)
+
+      Search::Backend.index(event) if index
 
       event
     end
@@ -318,12 +330,13 @@ module Static
       end
     end
 
-    def import_videos!(event)
+    def import_videos!(event, index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
       return unless event.videos_file?
 
       event.videos_file.each do |talk_data|
         talk = ::Talk.find_or_initialize_by(static_id: talk_data["id"])
         talk.update_from_yml_metadata!(event: event)
+        Search::Backend.index(talk) if index
 
         child_talks = talk_data["talks"]
 
@@ -333,6 +346,7 @@ module Static
           child_talk = ::Talk.find_or_initialize_by(static_id: child_talk_data["id"])
           child_talk.parent_talk = talk
           child_talk.update_from_yml_metadata!(event: event)
+          Search::Backend.index(child_talk) if index
         end
       rescue ActiveRecord::RecordInvalid => e
         puts "Couldn't save: #{talk_data["title"]} (#{talk_data["id"]}), error: #{e.message}"

@@ -307,10 +307,6 @@ ActiveRecord::Schema[8.2].define(version: 2026_01_03_232440) do
     t.index ["organization_id"], name: "index_sponsors_on_organization_id"
   end
 
-# Could not dump table "sqlite_stat1" because of following StandardError
-#   Unknown type '' for column 'idx'
-
-
   create_table "suggestions", force: :cascade do |t|
     t.integer "approved_by_id"
     t.text "content"
