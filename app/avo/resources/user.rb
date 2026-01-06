@@ -3,7 +3,11 @@ class Avo::Resources::User < Avo::BaseResource
   self.includes = []
   self.find_record_method = -> {
     if id.is_a?(Array)
-      (id.first.to_i == 0) ? query.where(slug: id) : query.where(id: id)
+      if id.first.to_i == 0
+        query.where(slug: id).or(query.where(github_handle: id))
+      else
+        query.where(id: id)
+      end
     else
       (id.to_i == 0) ? (query.find_by_slug_or_alias(id) || query.find_by_github_handle(id)) : query.find(id)
     end
@@ -34,6 +38,13 @@ class Avo::Resources::User < Avo::BaseResource
     field :speakerdeck, as: :text, hide_on: :index
     field :pronouns, as: :text, hide_on: :index
     field :pronouns_type, as: :text, hide_on: :index
+    field :location, as: :text, hide_on: :index
+    field :city, as: :text, hide_on: :index, readonly: true
+    field :state, as: :text, hide_on: :index, readonly: true
+    field :country_code, as: :text, hide_on: :index, readonly: true
+    field :latitude, as: :number, hide_on: :index, readonly: true
+    field :longitude, as: :number, hide_on: :index, readonly: true
+    field :geocode_metadata, as: :code, hide_on: :index, readonly: true
     field :talks_count, as: :number, sortable: true
     field :canonical, as: :belongs_to, hide_on: [:index, :forms], searchable: true
 
@@ -53,10 +64,13 @@ class Avo::Resources::User < Avo::BaseResource
     filter Avo::Filters::GitHubHandle
     filter Avo::Filters::GitHubHandlePresence
     filter Avo::Filters::BioPresence
+    filter Avo::Filters::LocationPresence
+    filter Avo::Filters::GeocodedPresence
   end
 
   def actions
     action Avo::Actions::AssignCanonicalUser
     action Avo::Actions::UserFetchGitHub
+    action Avo::Actions::GeocodeUser
   end
 end

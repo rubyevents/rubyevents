@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.2].define(version: 2026_01_05_120000) do
+ActiveRecord::Schema[8.2].define(version: 2026_01_06_092124) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -430,12 +430,17 @@ ActiveRecord::Schema[8.2].define(version: 2026_01_05_120000) do
     t.string "bsky", default: "", null: false
     t.json "bsky_metadata", default: {}, null: false
     t.integer "canonical_id"
+    t.string "city"
+    t.string "country_code"
     t.datetime "created_at", null: false
     t.string "email"
+    t.json "geocode_metadata", default: {}, null: false
     t.string "github_handle"
     t.json "github_metadata", default: {}, null: false
+    t.decimal "latitude", precision: 10, scale: 6
     t.string "linkedin", default: "", null: false
     t.string "location", default: ""
+    t.decimal "longitude", precision: 10, scale: 6
     t.boolean "marked_for_deletion", default: false, null: false
     t.string "mastodon", default: "", null: false
     t.string "name"
@@ -445,6 +450,7 @@ ActiveRecord::Schema[8.2].define(version: 2026_01_05_120000) do
     t.json "settings", default: {}, null: false
     t.string "slug", default: "", null: false
     t.string "speakerdeck", default: "", null: false
+    t.string "state"
     t.integer "talks_count", default: 0, null: false
     t.string "twitter", default: "", null: false
     t.datetime "updated_at", null: false

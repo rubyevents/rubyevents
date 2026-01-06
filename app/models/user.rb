@@ -9,11 +9,16 @@
 #  bio                 :text             default(""), not null
 #  bsky                :string           default(""), not null
 #  bsky_metadata       :json             not null
+#  city                :string
+#  country_code        :string
 #  email               :string           indexed
+#  geocode_metadata    :json             not null
 #  github_handle       :string
 #  github_metadata     :json             not null
+#  latitude            :decimal(10, 6)
 #  linkedin            :string           default(""), not null
 #  location            :string           default("")
+#  longitude           :decimal(10, 6)
 #  marked_for_deletion :boolean          default(FALSE), not null, indexed
 #  mastodon            :string           default(""), not null
 #  name                :string           indexed
@@ -23,6 +28,7 @@
 #  settings            :json             not null
 #  slug                :string           default(""), not null, uniquely indexed
 #  speakerdeck         :string           default(""), not null
+#  state               :string
 #  talks_count         :integer          default(0), not null
 #  twitter             :string           default(""), not null
 #  verified            :boolean          default(FALSE), not null
@@ -116,6 +122,17 @@ class User < ApplicationRecord
   has_object :watched_talk_seeder
   has_object :speakerdeck_feed
 
+  geocoded_by :location do |user, results|
+    if (result = results.first)
+      user.latitude = result.latitude
+      user.longitude = result.longitude
+      user.city = result.city
+      user.state = result.state
+      user.country_code = result.country_code
+      user.geocode_metadata = result.data.merge("geocoded_at" => Time.current.iso8601)
+    end
+  end
+
   validates :email, format: {with: URI::MailTo::EMAIL_REGEXP}, allow_blank: true
   validates :github_handle, presence: true, uniqueness: true, allow_blank: true
   validates :canonical, exclusion: {in: ->(user) { [user] }, message: "can't be itself"}
@@ -163,6 +180,9 @@ class User < ApplicationRecord
 
   # Seed watched talks for new users in development
   after_create :seed_development_watched_talks, if: -> { Rails.env.development? }
+
+  # Geocode location when it changes
+  after_commit :geocode_later, if: :location_previously_changed?
 
   # Speaker scopes
   scope :with_talks, -> { where.not(talks_count: 0) }
@@ -226,6 +246,12 @@ class User < ApplicationRecord
   # Speaker-specific methods (adapted from Speaker model)
   def title
     name
+  end
+
+  def country
+    return nil if country_code.blank?
+
+    Country.find_by(country_code: country_code)
   end
 
   def canonical_slug
@@ -414,5 +440,9 @@ class User < ApplicationRecord
 
   def seed_development_watched_talks
     watched_talk_seeder.seed_development_data
+  end
+
+  def geocode_later
+    GeocodeUserJob.perform_later(self)
   end
 end

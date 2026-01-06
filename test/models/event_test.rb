@@ -156,4 +156,68 @@ class EventTest < ActiveSupport::TestCase
     results = Event.ft_search("RW Conference")
     assert_includes results, event
   end
+
+  test "country returns Country object when country_code present" do
+    event = Event.new(name: "Test Event", series: @series, country_code: "US")
+
+    assert_not_nil event.country
+    assert_equal "US", event.country.alpha2
+  end
+
+  test "country returns Country object for different country codes" do
+    event = Event.new(name: "Test Event", series: @series, country_code: "DE")
+
+    assert_not_nil event.country
+    assert_equal "DE", event.country.alpha2
+  end
+
+  test "country returns nil when country_code is blank" do
+    event = Event.new(name: "Test Event", series: @series, country_code: "")
+
+    assert_nil event.country
+  end
+
+  test "country returns nil when country_code is nil" do
+    event = Event.new(name: "Test Event", series: @series, country_code: nil)
+
+    assert_nil event.country
+  end
+
+  test "country_name returns English translation when country present" do
+    event = Event.new(name: "Test Event", series: @series, country_code: "DE")
+
+    assert_equal "Germany", event.country_name
+  end
+
+  test "country_name returns translation for US" do
+    event = Event.new(name: "Test Event", series: @series, country_code: "US")
+
+    assert_equal "United States", event.country_name
+  end
+
+  test "country_name returns nil when country_code is blank" do
+    event = Event.new(name: "Test Event", series: @series, country_code: "")
+
+    assert_nil event.country_name
+  end
+
+  test "country_name returns nil when country_code is nil" do
+    event = Event.new(name: "Test Event", series: @series, country_code: nil)
+
+    assert_nil event.country_name
+  end
+
+  test "country_path returns country path when country present" do
+    event = events(:rails_world_2023)
+    event.update!(country_code: "NL")
+
+    assert_equal "/countries/netherlands", event.country_path
+  end
+
+  test "country_path returns countries path when country not present" do
+    event = events(:rails_world_2023)
+    event.update!(country_code: nil)
+
+    assert_equal "/countries", event.country_path
+  end
 end

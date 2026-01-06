@@ -18,6 +18,10 @@ class Country
     country
   end
 
+  def self.find_by(country_code:)
+    ISO3166::Country.new(country_code)
+  end
+
   def self.all
     @all ||= ISO3166::Country.all.to_h { |country| [country.iso_short_name.parameterize, country] }
   end
