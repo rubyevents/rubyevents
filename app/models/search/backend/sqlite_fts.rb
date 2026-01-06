@@ -40,7 +40,7 @@ class Search::Backend::SQLiteFTS
     end
 
     def search_speakers(query, limit:)
-      speakers = User.speakers.canonical.ft_search(query).with_snippets.ranked
+      speakers = User.speakers.ft_search(query).with_snippets.ranked
       total_count = speakers.except(:select).count
 
       [speakers.limit(limit), total_count]
