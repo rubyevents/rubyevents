@@ -20,22 +20,19 @@
     <div class="flex justify-end items-center">
       <ul class="hidden lg:flex items-center gap-4 h-full">
 
-        <% signed_in do %>
-          <div class="flex items-center gap-2">
-            <ul class="desktop-menu">
-              <%= render "shared/navbar/link", link_title: "For You", path: recommendations_path %>
-              <%= render "shared/navbar/link", link_title: "Recently Watched", path: watched_talks_path %>
-              <%= render "shared/navbar/link", link_title: "Bookmarks", path: watch_lists_path %>
-            </ul>
-            <% if Current.user.default_watch_list.talks_count.positive? %>
-              <div class="badge badge-secondary"><%= Current.user.default_watch_list.talks_count %></div>
+        <div class="flex items-center gap-2">
+          <ul class="desktop-menu">
+            <% signed_in do %>
+              <%= ui_dropdown id: "library_navbar_toggle" do |lib_dropdown| %>
+                <span class="cursor-pointer">Library</span>
+                <% lib_dropdown.with_menu_item_link_to "For You", recommendations_path %>
+                <% lib_dropdown.with_menu_item_link_to "Recently Watched", watched_talks_path %>
+                <% lib_dropdown.with_menu_item_link_to "Bookmarks", watch_lists_path %>
+              <% end %>
             <% end %>
-          </div>
-        <% end %>
-
-        <% signed_out do %>
-          <%= render "shared/navbar/link", link_title: "Contribute", path: contributions_path %>
-        <% end %>
+            <%= render "shared/navbar/link", link_title: "Contribute", path: contributions_path %>
+          </ul>
+        </div>
 
         <%= render "shared/navbar/search_bar", id: "magnifying-glass" %>
 
