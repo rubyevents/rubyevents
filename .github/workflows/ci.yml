@@ -209,6 +209,7 @@ jobs:
         env:
           KAMAL_RAILS_MASTER_KEY: ${{ secrets.KAMAL_RAILS_MASTER_KEY }}
           KAMAL_REGISTRY_PASSWORD: ${{ secrets.KAMAL_REGISTRY_PASSWORD }}
+          GEOLOCATE_API_KEY: ${{ secrets.GEOLOCATE_API_KEY }}
 
       - name: Cleanup on cancellation
         if: always() && steps.deploy.conclusion == 'cancelled'
