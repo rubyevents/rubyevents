@@ -117,6 +117,7 @@ Rails.application.routes.draw do
 
     scope module: :events do
       collection do
+        get "/:year" => "years#index", :as => :year, :constraints => {year: /\d{4}/}
         get "/past" => "past#index", :as => :past
         get "/archive" => "archive#index", :as => :archive
         get "/countries" => redirect("/countries")
