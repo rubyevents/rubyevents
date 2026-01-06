@@ -241,7 +241,9 @@ module Static
       parts.first if parts.size >= 2
     end
 
-    def home_sort_date
+    def home_sort_date(event_record: nil)
+      event_record ||= self.event_record
+
       if published_date
         return published_date
       end
