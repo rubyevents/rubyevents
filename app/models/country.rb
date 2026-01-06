@@ -105,6 +105,10 @@ class Country
       UK_NATIONS.keys.map { |slug| UKNation.new(slug) }
     end
 
+    def valid_country_codes
+      @valid_country_codes ||= ISO3166::Country.codes
+    end
+
     def all_by_slug
       @all_by_slug ||= all.index_by(&:slug)
     end

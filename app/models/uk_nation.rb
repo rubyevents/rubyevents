@@ -33,7 +33,7 @@ class UKNation
   end
 
   def code
-    slug
+    "gb"
   end
 
   def to_param
