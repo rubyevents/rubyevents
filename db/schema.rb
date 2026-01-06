@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.2].define(version: 2026_01_05_100000) do
+ActiveRecord::Schema[8.2].define(version: 2026_01_05_120000) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -528,6 +528,6 @@ ActiveRecord::Schema[8.2].define(version: 2026_01_05_100000) do
   # Virtual tables defined in this database.
   # Note that virtual tables may not work with other database engines. Be careful if changing database.
   create_virtual_table "speakers_search_index", "fts5", ["name", "github", "tokenize = porter"]
-  create_virtual_table "talks_search_index", "fts5", ["title", "summary", "speaker_names", "event_names", "tokenize = porter"]
+  create_virtual_table "talks_search_index", "fts5", ["title", "summary", "speaker_names", "event_names", "video_provider UNINDEXED", "tokenize = porter"]
   create_virtual_table "users_search_index", "fts5", ["name", "github_handle", "tokenize = porter"]
 end

@@ -28,7 +28,12 @@ class Talk::Index < ApplicationRecord
   end
 
   def reindex
-    update! id: talk.id, title: talk.title, summary: talk.summary, speaker_names: talk.speaker_names, event_names: talk.event_names
+    update!(id: talk.id,
+      title: talk.title,
+      summary: talk.summary,
+      speaker_names: talk.speaker_names,
+      event_names: talk.event_names,
+      video_provider: talk.video_provider)
   end
 
   def self.remove_invalid_search_characters(query)
