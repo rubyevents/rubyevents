@@ -1,6 +1,3 @@
-<% main_resource =
-     request.path.split("/").last.presence_in(%w[talks speakers events topics]) || "talks" %>
-<% resources = %w[talks speakers events] %>
 <%= ui_modal position: :top, size: :full, close_button: false, data: {action: "keydown.meta+k@window->modal#open spotlight@window->modal#open"}, class: "spotlight" do %>
   <div
     id="spotlight-search"
@@ -14,7 +11,7 @@
     data-spotlight-search-url-spotlight-organizations-value="<%= spotlight_organizations_path %>"
     data-spotlight-search-url-spotlight-locations-value="<%= spotlight_locations_path %>"
     data-spotlight-search-url-spotlight-languages-value="<%= spotlight_languages_path %>"
-    data-spotlight-search-main-resource-value="<%= main_resource %>">
+    data-spotlight-search-main-resource-path-value="<%= spotlight_main_resource_path %>">
     <div class="flex items-center gap-2 rounded-lg bg-white px-2 relative shrink-0">
       <%= fa("magnifying-glass", size: :md, style: :regular) %>
       <%= tag.input type: "text",
@@ -62,7 +59,7 @@
         class="flex items-center gap-2 border-b pb-4 hidden"
         data-spotlight-search-target="allSearchResults">
         <div role="option">search
-          <%= main_resource %>
+          <%= spotlight_main_resource %>
           for
           <strong class="text-base-content" data-spotlight-search-target="searchQuery"></strong></div>
         <kbd class="kbd kbd-sm text-base-content">⏎</kbd>
@@ -97,8 +94,8 @@
         data-spotlight-search-target="organizationsSearchResults"></div>
 
       <div class="grid md:grid-cols-3 md:divide-x gap-4 md:gap-0 h-full overflow-hidden pt-4 border-t">
-        <% resources.unshift(main_resource) %>
-        <% resources.uniq.each_with_index do |resource, index| %>
+        <% spotlight_resources.unshift(spotlight_main_resource) %>
+        <% spotlight_resources.uniq.each_with_index do |resource, index| %>
           <% padding = {"0" => "md:pr-4", "1" => "md:px-4", "2" => "md:pl-4"}.dig(index.to_s) %>
           <div
             id="<%= resource %>_search_results"
