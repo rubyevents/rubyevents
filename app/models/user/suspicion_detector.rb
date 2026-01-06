@@ -3,6 +3,10 @@ class User::SuspicionDetector < ActiveRecord::AssociatedObject
   GITHUB_ACCOUNT_AGE_THRESHOLD = 6.months
 
   extension do
+    scope :verified, -> {
+      joins(:connected_accounts).where(connected_accounts: {provider: "github"}).distinct
+    }
+
     scope :with_github_account_older_than, ->(duration) {
       with_github.where("json_extract(github_metadata, '$.profile.created_at') < ?", duration.ago.iso8601)
     }
@@ -11,26 +15,35 @@ class User::SuspicionDetector < ActiveRecord::AssociatedObject
       with_github.where("json_extract(github_metadata, '$.profile.created_at') >= ?", duration.ago.iso8601)
     }
 
-    scope :suspicious, -> {
-      joins(:connected_accounts)
-        .where(connected_accounts: {provider: "github"})
-        .where(id: all.select(&:suspicious?).map(&:id))
-    }
+    scope :suspicion_cleared, -> { where.not(suspicion_cleared_at: nil) }
+    scope :suspicion_not_cleared, -> { where(suspicion_cleared_at: nil) }
+    scope :suspicion_marked, -> { where.not(suspicion_marked_at: nil) }
+    scope :suspicion_not_marked, -> { where(suspicion_marked_at: nil) }
+
+    scope :suspicious, -> { suspicion_marked.suspicion_not_cleared }
+    scope :not_suspicious, -> { suspicion_not_marked.or(suspicion_cleared) }
 
     def suspicious?
-      suspicion_detector.suspicious?
+      suspicion_marked_at.present? && suspicion_cleared_at.blank?
     end
 
-    def cleared?
-      cleared_at.present?
+    def suspicion_cleared?
+      suspicion_cleared_at.present?
     end
 
-    def clear!
-      update!(cleared_at: Time.current)
+    def mark_suspicious!
+      return false unless suspicion_detector.calculate_suspicious?
+
+      update_column(:suspicion_marked_at, Time.current)
+      true
     end
 
-    def unclear!
-      update!(cleared_at: nil)
+    def clear_suspicion!
+      update!(suspicion_cleared_at: Time.current, suspicion_marked_at: nil)
+    end
+
+    def unclear_suspicion!
+      update!(suspicion_cleared_at: nil)
     end
 
     def github_account_newer_than?(duration)
@@ -43,9 +56,9 @@ class User::SuspicionDetector < ActiveRecord::AssociatedObject
     end
   end
 
-  def suspicious?
+  def calculate_suspicious?
     return false unless user.verified?
-    return false if user.cleared?
+    return false if user.suspicion_cleared?
     return false if user.passports.any?
 
     signals.count(true) >= SIGNAL_THRESHOLD

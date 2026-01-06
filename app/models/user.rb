@@ -4,40 +4,41 @@
 # Table name: users
 # Database name: primary
 #
-#  id                  :integer          not null, primary key
-#  admin               :boolean          default(FALSE), not null
-#  bio                 :text             default(""), not null
-#  bsky                :string           default(""), not null
-#  bsky_metadata       :json             not null
-#  city                :string
-#  cleared_at          :datetime
-#  country_code        :string
-#  email               :string           indexed
-#  geocode_metadata    :json             not null
-#  github_handle       :string
-#  github_metadata     :json             not null
-#  latitude            :decimal(10, 6)
-#  linkedin            :string           default(""), not null
-#  location            :string           default("")
-#  longitude           :decimal(10, 6)
-#  marked_for_deletion :boolean          default(FALSE), not null, indexed
-#  mastodon            :string           default(""), not null
-#  name                :string           indexed
-#  password_digest     :string
-#  pronouns            :string           default(""), not null
-#  pronouns_type       :string           default("not_specified"), not null
-#  settings            :json             not null
-#  slug                :string           default(""), not null, uniquely indexed
-#  speakerdeck         :string           default(""), not null
-#  state               :string
-#  talks_count         :integer          default(0), not null
-#  twitter             :string           default(""), not null
-#  verified            :boolean          default(FALSE), not null
-#  watched_talks_count :integer          default(0), not null
-#  website             :string           default(""), not null
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
-#  canonical_id        :integer          indexed
+#  id                   :integer          not null, primary key
+#  admin                :boolean          default(FALSE), not null
+#  bio                  :text             default(""), not null
+#  bsky                 :string           default(""), not null
+#  bsky_metadata        :json             not null
+#  city                 :string
+#  country_code         :string
+#  email                :string           indexed
+#  geocode_metadata     :json             not null
+#  github_handle        :string
+#  github_metadata      :json             not null
+#  latitude             :decimal(10, 6)
+#  linkedin             :string           default(""), not null
+#  location             :string           default("")
+#  longitude            :decimal(10, 6)
+#  marked_for_deletion  :boolean          default(FALSE), not null, indexed
+#  mastodon             :string           default(""), not null
+#  name                 :string           indexed
+#  password_digest      :string
+#  pronouns             :string           default(""), not null
+#  pronouns_type        :string           default("not_specified"), not null
+#  settings             :json             not null
+#  slug                 :string           default(""), not null, uniquely indexed
+#  speakerdeck          :string           default(""), not null
+#  state                :string
+#  suspicion_cleared_at :datetime
+#  suspicion_marked_at  :datetime
+#  talks_count          :integer          default(0), not null
+#  twitter              :string           default(""), not null
+#  verified             :boolean          default(FALSE), not null
+#  watched_talks_count  :integer          default(0), not null
+#  website              :string           default(""), not null
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  canonical_id         :integer          indexed
 #
 # Indexes
 #
