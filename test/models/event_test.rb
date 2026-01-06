@@ -183,41 +183,57 @@ class EventTest < ActiveSupport::TestCase
     assert_nil event.country
   end
 
-  test "country_name returns English translation when country present" do
+  test "country.name returns English translation when country present" do
     event = Event.new(name: "Test Event", series: @series, country_code: "DE")
 
-    assert_equal "Germany", event.country_name
+    assert_equal "Germany", event.country.name
   end
 
-  test "country_name returns translation for US" do
+  test "country.name returns translation for US" do
     event = Event.new(name: "Test Event", series: @series, country_code: "US")
 
-    assert_equal "United States", event.country_name
+    assert_equal "United States", event.country.name
   end
 
-  test "country_name returns nil when country_code is blank" do
-    event = Event.new(name: "Test Event", series: @series, country_code: "")
-
-    assert_nil event.country_name
-  end
-
-  test "country_name returns nil when country_code is nil" do
-    event = Event.new(name: "Test Event", series: @series, country_code: nil)
-
-    assert_nil event.country_name
-  end
-
-  test "country_path returns country path when country present" do
+  test "country.path returns country path when country present" do
     event = events(:rails_world_2023)
     event.update!(country_code: "NL")
 
-    assert_equal "/countries/netherlands", event.country_path
+    assert_equal "/countries/netherlands", event.country.path
   end
 
-  test "country_path returns countries path when country not present" do
+  test "grouped_by_country returns countries with their events" do
+    event = events(:rails_world_2023)
+    event.update!(country_code: "NL")
+
+    result = Event.where(id: event.id).grouped_by_country
+
+    assert result.is_a?(Array)
+    assert_equal 1, result.size
+
+    country, events = result.first
+    assert_equal "NL", country.alpha2
+    assert_includes events, event
+  end
+
+  test "grouped_by_country sorts by country name" do
+    event1 = events(:rails_world_2023)
+    event1.update!(country_code: "NL")
+
+    event2 = Event.create!(name: "Test Event", country_code: "DE", series: @series)
+
+    result = Event.where(id: [event1.id, event2.id]).grouped_by_country
+
+    assert_equal "DE", result.first.first.alpha2  # Germany comes before Netherlands
+    assert_equal "NL", result.last.first.alpha2
+  end
+
+  test "grouped_by_country excludes events without country" do
     event = events(:rails_world_2023)
     event.update!(country_code: nil)
 
-    assert_equal "/countries", event.country_path
+    result = Event.where(id: event.id).grouped_by_country
+
+    assert_empty result
   end
 end

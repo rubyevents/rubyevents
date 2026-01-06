@@ -19,7 +19,7 @@
       <div class="flex flex-wrap gap-2">
         <% countries_watched.first(8).each do |country| %>
           <span class="px-2 py-1 bg-red-50 text-red-700 rounded text-xs font-medium">
-            <%= country.translations["en"] %>
+            <%= country.name %>
           </span>
         <% end %>
       </div>

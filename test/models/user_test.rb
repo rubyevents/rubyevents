@@ -324,7 +324,7 @@ class UserTest < ActiveSupport::TestCase
 
     assert_not_nil user.country
     assert_equal "US", user.country.alpha2
-    assert_equal "United States of America (the)", user.country.iso_short_name
+    assert_equal "United States", user.country.name
   end
 
   test "country returns Country object for different country codes" do
@@ -332,7 +332,7 @@ class UserTest < ActiveSupport::TestCase
 
     assert_not_nil user.country
     assert_equal "DE", user.country.alpha2
-    assert_equal "Germany", user.country.iso_short_name
+    assert_equal "Germany", user.country.name
   end
 
   test "country returns nil when country_code is blank" do

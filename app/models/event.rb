@@ -138,6 +138,13 @@ class Event < ApplicationRecord
     alias_record&.aliasable
   end
 
+  def self.grouped_by_country
+    all.group_by(&:country_code)
+      .map { |code, evts| [Country.find_by(country_code: code), evts] }
+      .reject { |country, _| country.nil? }
+      .sort_by { |country, _| country.name }
+  end
+
   def sync_aliases_from_list(alias_names)
     Array.wrap(alias_names).each do |alias_name|
       slug = alias_name.parameterize
@@ -256,30 +263,12 @@ class Event < ApplicationRecord
     Country.find_by(country_code: country_code)
   end
 
-  def country_name
-    return nil if country.blank?
-
-    country&.translations&.[]("en")
-  end
-
-  def country_path
-    return Router.countries_path if country_name.blank?
-
-    Router.country_path(country_name&.parameterize)
-  end
-
   def coordinates
     [longitude, latitude]
   end
 
   def held_in_sentence
-    return "" if country_name.blank?
-
-    if country_name.starts_with?("United")
-      %( held in the #{country_name})
-    else
-      %( held in #{country_name})
-    end
+    country&.held_in_sentence || ""
   end
 
   def description

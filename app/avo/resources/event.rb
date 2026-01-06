@@ -47,6 +47,6 @@ class Avo::Resources::Event < Avo::BaseResource
   end
 
   def country_options
-    ISO3166::Country.all.map { |country| [country.translations["en"], country.alpha2] }.sort_by { |country| country.first }
+    Country.select_options
   end
 end

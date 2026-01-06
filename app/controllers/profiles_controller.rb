@@ -46,10 +46,7 @@ class ProfilesController < ApplicationController
     @events_by_year = @events.group_by { |event| event.start_date&.year || "Unknown" }
 
     # Group events by country for the map tab
-    @countries_with_events = @events.group_by(&:country_code)
-      .map { |code, events| [ISO3166::Country.new(code), events] }
-      .reject { |country, _| country.nil? }
-      .sort_by { |country, _| country.translations["en"] }
+    @countries_with_events = @events.grouped_by_country
 
     @involved_events = @user.involved_events.includes(:series).distinct.order(start_date: :desc)
     event_involvements = @user.event_involvements.includes(:event).where(event: @involved_events)

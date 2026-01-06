@@ -143,12 +143,14 @@ class Stamp
     end
 
     def missing_for_events
-      event_countries = Event.all.map { |event| event.country }.compact.uniq
+      event_countries = Event.all.map(&:country).compact.uniq
       stamp_countries = all.select(&:has_country?).map(&:country).compact.uniq
+      gb_country = Country.find_by(country_code: "GB")
 
       event_countries.reject { |event_country|
-        stamp_countries.include?(event_country) || (event_country == ISO3166::Country.new("GB") && uk_subdivisions_covered?)
-      }.sort_by { |c| c.translations["en"] }
+        stamp_countries.any? { |sc| sc.alpha2 == event_country.alpha2 } ||
+          (event_country.alpha2 == gb_country&.alpha2 && uk_subdivisions_covered?)
+      }.sort_by(&:name)
     end
   end
 
@@ -199,12 +201,12 @@ class Stamp
   def self.create_stamp_from_code(stamp_code)
     stamp_upper = stamp_code.upcase
     file_path = "#{stamp_code}.webp"
-    country = ISO3166::Country.new(stamp_upper)
+    country = Country.find_by(country_code: stamp_upper)
 
     if country
       new(
         code: stamp_upper,
-        name: country.translations["en"],
+        name: country.name,
         file_path: file_path,
         country: country,
         has_country: true

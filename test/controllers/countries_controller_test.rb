@@ -91,4 +91,25 @@ class CountriesControllerTest < ActionDispatch::IntegrationTest
     assert_not_nil assigns(:events)
     assert_kind_of Array, assigns(:events)
   end
+
+  test "country_path helper works with Country instance via to_param" do
+    country = Country.find_by(country_code: "DE")
+
+    assert_equal "/countries/germany", country_path(country)
+  end
+
+  test "country_path helper works with multi-word country names" do
+    country = Country.find_by(country_code: "US")
+
+    assert_equal "/countries/united-states", country_path(country)
+  end
+
+  test "can navigate to country page using Country instance" do
+    country = Country.find_by(country_code: "US")
+
+    get country_path(country)
+
+    assert_response :success
+    assert_equal country.alpha2, assigns(:country).alpha2
+  end
 end
