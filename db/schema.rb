@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.2].define(version: 2026_01_06_141308) do
+ActiveRecord::Schema[8.2].define(version: 2026_01_06_221417) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -456,6 +456,7 @@ ActiveRecord::Schema[8.2].define(version: 2026_01_06_141308) do
     t.json "bsky_metadata", default: {}, null: false
     t.integer "canonical_id"
     t.string "city"
+    t.datetime "cleared_at"
     t.string "country_code"
     t.datetime "created_at", null: false
     t.string "email"

@@ -12,7 +12,12 @@ class ProfilesController < ApplicationController
   # GET /profiles/:slug
   def show
     load_profile_data_for_show
-    set_meta_tags(@user)
+
+    if @user.suspicious?
+      set_meta_tags(robots: "noindex, nofollow")
+    else
+      set_meta_tags(@user)
+    end
   end
 
   # GET /profiles/:slug/edit

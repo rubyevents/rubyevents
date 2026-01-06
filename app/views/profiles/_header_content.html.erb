@@ -4,8 +4,14 @@
   </div>
 
   <div class="flex-col flex gap-2 title justify-center items-center lg:items-start">
+    <% if user.suspicious? && Current.user&.admin? %>
+      <div class="bg-yellow-100 border border-yellow-400 text-yellow-800 px-4 py-2 rounded mb-2 text-sm">
+        This user has been flagged as suspicious.
+      </div>
+    <% end %>
+
     <div class="flex flex-col lg:flex-row items-center justify-center lg:justify-start text-black font-bold gap-2 flex-nowrap">
-      <h1 class="flex gap-2 items-center"><%= user.name %>
+      <h1 class="flex gap-2 items-center"><%= user.suspicious? ? truncate(user.name, length: 10) : user.name %>
         <% if user.pronouns.present? && ["dont_specify", "not_specified"].exclude?(user.pronouns_type) %>
           <span class="text-sm content-center text-[#737373]">(<%= user.pronouns %>)</span>
         <% end %>
@@ -43,9 +49,11 @@
       <% end %>
     </div>
 
-    <p class="text-[#636B74] max-w-[700px]">
-      <%= user.bio %>
-    </p>
+    <% if user.bio.present? && !user.suspicious? %>
+      <p class="text-[#636B74] max-w-[700px]">
+        <%= user.bio %>
+      </p>
+    <% end %>
 
     <% if user.location_info.present? %>
       <p class="max-w-[700px] flex flex-row justify-center items-center gap-2">
@@ -81,15 +89,17 @@
       </p>
     <% end %>
 
-    <% if user.website.present? %>
+    <% if user.website.present? && !user.suspicious? %>
       <div class="link inline-flex items-center gap-2 flex-nowrap">
         <%= fa("website-brands", size: :xs) %>
         <%= external_link_to user.website.gsub(%r{^https?://}, ""), user.website, class: "link inline-flex items-center gap-2 flex-nowrap" %>
       </div>
     <% end %>
 
-    <div class="mt-2 flex justify-center lg:justify-start">
-      <%= render "profiles/socials", user: user %>
-    </div>
+    <% unless user.suspicious? %>
+      <div class="mt-2 flex justify-center lg:justify-start">
+        <%= render "profiles/socials", user: user %>
+      </div>
+    <% end %>
   </div>
 </div>

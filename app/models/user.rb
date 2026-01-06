@@ -10,6 +10,7 @@
 #  bsky                :string           default(""), not null
 #  bsky_metadata       :json             not null
 #  city                :string
+#  cleared_at          :datetime
 #  country_code        :string
 #  email               :string           indexed
 #  geocode_metadata    :json             not null
@@ -196,6 +197,18 @@ class User < ApplicationRecord
   scope :with_public_wrapped, -> { where("json_extract(settings, '$.wrapped_public') = ?", true) }
   scope :with_feedback_enabled, -> { where("json_extract(settings, '$.feedback_enabled') = ?", true) }
 
+  scope :with_github_account_older_than, ->(duration) {
+    with_github.where("json_extract(github_metadata, '$.profile.created_at') < ?", duration.ago.iso8601)
+  }
+
+  scope :with_github_account_newer_than, ->(duration) {
+    with_github.where("json_extract(github_metadata, '$.profile.created_at') >= ?", duration.ago.iso8601)
+  }
+
+  scope :suspicious, -> {
+    joins(:connected_accounts).where(connected_accounts: {provider: "github"}).where(id: all.select(&:suspicious?).map(&:id))
+  }
+
   def self.normalize_github_handle(value)
     value
       .gsub(GITHUB_URL_PATTERN, "")
@@ -275,6 +288,60 @@ class User < ApplicationRecord
     return true if visiting_user.admin?
 
     self == visiting_user
+  end
+
+  def suspicious?
+    return false unless verified?
+    return false if cleared?
+    return false if passports.any?
+
+    signals = [
+      github_account_newer_than?(6.months),
+      talks_count.zero?,
+      watched_talks_count.zero?,
+      bio_contains_url?,
+      github_account_empty?
+    ].count(true)
+
+    signals >= 3
+  end
+
+  def cleared?
+    cleared_at.present?
+  end
+
+  def clear!
+    update!(cleared_at: Time.current)
+  end
+
+  def unclear!
+    update!(cleared_at: nil)
+  end
+
+  def github_account_newer_than?(duration)
+    return false if github_metadata.blank?
+
+    created_at = github_metadata.dig("profile", "created_at")
+    return false if created_at.blank?
+
+    Time.parse(created_at) > duration.ago
+  end
+
+  def github_account_empty?
+    return false if github_metadata.blank?
+
+    profile = github_metadata["profile"]
+    return false if profile.blank?
+
+    profile["public_repos"].to_i.zero? &&
+      profile["followers"].to_i.zero? &&
+      profile["following"].to_i.zero?
+  end
+
+  def bio_contains_url?
+    return false if bio.blank?
+
+    bio.match?(URI::DEFAULT_PARSER.make_regexp(%w[http https]))
   end
 
   def avatar_url(...)

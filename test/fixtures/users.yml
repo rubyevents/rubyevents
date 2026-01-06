@@ -10,6 +10,7 @@
 #  bsky                :string           default(""), not null
 #  bsky_metadata       :json             not null
 #  city                :string
+#  cleared_at          :datetime
 #  country_code        :string
 #  email               :string           indexed
 #  geocode_metadata    :json             not null
