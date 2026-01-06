@@ -28,9 +28,9 @@
         <h3 class="text-[#636B74]">
           <% if event.static_metadata.location.present? && event.country.present? %>
             <%= link_to event.static_metadata.location.gsub(", #{event.country.translations["en"]}", ""), city_path(event.static_metadata.location.parameterize), class: "link" %>,
-            <%= link_to event.country.translations["en"], event.country_url, class: "link" %>
+            <%= link_to event.country.translations["en"], event.country_path, class: "link" %>
           <% else %>
-            <%= link_to event.static_metadata.location, event.country_url, class: "link" %>
+            <%= link_to event.static_metadata.location, event.country_path, class: "link" %>
           <% end %>
           • <%= event.formatted_dates %>
         </h3>

@@ -1,6 +1,8 @@
 require "test_helper"
 
 class UserTest < ActiveSupport::TestCase
+  include ActiveJob::TestHelper
+
   test "can create a user with just a name" do
     user = User.create!(name: "John Doe")
     assert_equal "john-doe", user.slug
@@ -299,5 +301,49 @@ class UserTest < ActiveSupport::TestCase
 
     found_user = User.find_by_slug_or_alias(original_slug)
     assert_equal canonical_user.id, found_user.id
+  end
+
+  test "updating location enqueues geocoding job" do
+    user = User.create!(name: "Geo User", github_handle: "geo-user")
+
+    assert_enqueued_jobs 1 do
+      user.update!(location: "Berlin, Germany")
+    end
+  end
+
+  test "updating location does not enqueue job when location unchanged" do
+    user = User.create!(name: "Geo User 2", github_handle: "geo-user-2", location: "Berlin, Germany")
+
+    assert_no_enqueued_jobs do
+      user.update!(name: "New Name")
+    end
+  end
+
+  test "country returns Country object when country_code present" do
+    user = User.create!(name: "Test User", country_code: "US")
+
+    assert_not_nil user.country
+    assert_equal "US", user.country.alpha2
+    assert_equal "United States of America (the)", user.country.iso_short_name
+  end
+
+  test "country returns Country object for different country codes" do
+    user = User.create!(name: "Test User", country_code: "DE")
+
+    assert_not_nil user.country
+    assert_equal "DE", user.country.alpha2
+    assert_equal "Germany", user.country.iso_short_name
+  end
+
+  test "country returns nil when country_code is blank" do
+    user = User.create!(name: "Test User", country_code: "")
+
+    assert_nil user.country
+  end
+
+  test "country returns nil when country_code is nil" do
+    user = User.create!(name: "Test User", country_code: nil)
+
+    assert_nil user.country
   end
 end

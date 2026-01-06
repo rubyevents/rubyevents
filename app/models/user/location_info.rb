@@ -1,10 +1,34 @@
 class User::LocationInfo < ActiveRecord::AssociatedObject
   def country
-    @country ||= find_country_from_string(user.location)
+    @country ||= if user.country_code.present?
+      Country.find(user.country_code)
+    else
+      find_country_from_string(user.location)
+    end
   end
 
   def country_code
-    country&.alpha2
+    user.country_code.presence || country&.alpha2
+  end
+
+  def city
+    user.city
+  end
+
+  def state
+    user.state
+  end
+
+  def latitude
+    user.latitude
+  end
+
+  def longitude
+    user.longitude
+  end
+
+  def geocoded?
+    user.latitude.present? && user.longitude.present?
   end
 
   def country_name

@@ -204,7 +204,7 @@ gem "openssl" # https://github.com/ruby/openssl/issues/949
 # Class to build custom data structures, similar to a Hash.
 gem "ostruct"
 
-# omplete geocoding solution for Ruby.
+# Complete geocoding solution for Ruby.
 gem "geocoder"
 
 # RubyGems.org API wrapper for gem information

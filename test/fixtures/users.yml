@@ -9,11 +9,16 @@
 #  bio                 :text             default(""), not null
 #  bsky                :string           default(""), not null
 #  bsky_metadata       :json             not null
+#  city                :string
+#  country_code        :string
 #  email               :string           indexed
+#  geocode_metadata    :json             not null
 #  github_handle       :string
 #  github_metadata     :json             not null
+#  latitude            :decimal(10, 6)
 #  linkedin            :string           default(""), not null
 #  location            :string           default("")
+#  longitude           :decimal(10, 6)
 #  marked_for_deletion :boolean          default(FALSE), not null, indexed
 #  mastodon            :string           default(""), not null
 #  name                :string           indexed
@@ -23,6 +28,7 @@
 #  settings            :json             not null
 #  slug                :string           default(""), not null, uniquely indexed
 #  speakerdeck         :string           default(""), not null
+#  state               :string
 #  talks_count         :integer          default(0), not null
 #  twitter             :string           default(""), not null
 #  verified            :boolean          default(FALSE), not null

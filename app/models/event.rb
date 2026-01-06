@@ -253,23 +253,23 @@ class Event < ApplicationRecord
   def country
     return nil if country_code.blank?
 
-    ISO3166::Country.new(country_code)
+    Country.find_by(country_code: country_code)
+  end
+
+  def country_name
+    return nil if country.blank?
+
+    country&.translations&.[]("en")
+  end
+
+  def country_path
+    return Router.countries_path if country_name.blank?
+
+    Router.country_path(country_name&.parameterize)
   end
 
   def coordinates
     [longitude, latitude]
-  end
-
-  def country_name
-    return nil if country_code.blank?
-
-    ISO3166::Country.new(country_code)&.translations&.[]("en")
-  end
-
-  def country_url
-    Router.country_path(static_metadata.country&.translations&.[]("en")&.parameterize)
-  rescue
-    Router.countries_path
   end
 
   def held_in_sentence
