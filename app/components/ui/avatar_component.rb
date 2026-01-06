@@ -43,4 +43,12 @@ class Ui::AvatarComponent < ApplicationComponent
   def kind_class
     KIND_MAPPING[kind]
   end
+
+  def suspicious?
+    avatarable.respond_to?(:suspicious?) && avatarable.suspicious?
+  end
+
+  def show_custom_avatar?
+    avatarable.custom_avatar? && !suspicious?
+  end
 end
