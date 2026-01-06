@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   extend Authenticator
 
   # static pages
-  get "uses", to: "page#uses"
+  get "/uses", to: "page#uses"
   get "/privacy", to: "page#privacy"
   get "/components", to: "page#components"
   get "/about", to: "page#about"
@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get "/stamps", to: "stamps#index"
   get "/wrapped", to: "wrapped#index"
   get "/pages/assets", to: "page#assets"
+  get "/featured" => "page#featured"
 
   # authentication
   get "/auth/failure", to: "sessions/omniauth#failure"
@@ -36,7 +37,18 @@ Rails.application.routes.draw do
 
   resources :topics, param: :slug, only: [:index, :show]
   resources :cfp, only: :index
-  resources :countries, param: :country, only: [:index, :show]
+  resources :countries, param: :slug, only: [:index, :show]
+
+  get "/states", to: "states#index", as: :states
+  get "/states/:alpha2", to: "states#country_index", as: :country_states
+  get "/states/:alpha2/:slug", to: "states#show", as: :state
+
+  get "/cities", to: "cities#index", as: :cities
+  get "/cities/:alpha2/:state/:city", to: "cities#show_with_state", as: :city_with_state, constraints: {alpha2: /[a-z]{2}/i}
+  get "/cities/:alpha2/:city", to: "cities#show_by_country", as: :city_by_country, constraints: {alpha2: /[a-z]{2}/i}
+  get "/cities/:slug", to: "cities#show", as: :city
+
+  resources :featured_cities, only: [:create, :destroy], param: :slug
 
   resources :gems, param: :gem_name, only: [:index, :show] do
     member do
@@ -122,7 +134,8 @@ Rails.application.routes.draw do
         get "/archive" => "archive#index", :as => :archive
         get "/countries" => redirect("/countries")
         get "/countries/:country" => redirect { |params, _| "/countries/#{params[:country]}" }
-        resources :cities, param: :city, only: [:index, :show]
+        get "/cities", to: redirect("/cities", status: 301)
+        get "/cities/:city", to: redirect("/cities", status: 301)
         resources :series, param: :slug, only: [:index, :show]
         resources :attendances, only: [:index, :show], param: :event_slug
       end
@@ -174,8 +187,6 @@ Rails.application.routes.draw do
     resources :locations, only: [:index]
     resources :languages, only: [:index]
   end
-
-  get "/featured" => "page#featured"
 
   resources :recommendations, only: [:index]
 

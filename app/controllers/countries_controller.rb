@@ -4,46 +4,49 @@ class CountriesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
-    @countries_by_continent = Event.all.map do |event|
-      event.country
-    end.uniq.group_by { |country| country&.continent || "Unknown" }.sort_by { |key, _value| key || "ZZ" }.to_h
-    @events_by_country = Event.all.sort_by { |e| event_sort_date(e) }.reverse
-      .group_by { |e| e.country || "Unknown" }
-      .sort_by { |key, _| (key.is_a?(String) ? key : key&.name) || "ZZ" }.to_h
-    @users_by_country = calculate_users_by_country
+    @countries_by_continent = Event.distinct
+      .where.not(country_code: [nil, ""])
+      .pluck(:country_code)
+      .filter_map { |code| Country.find_by(country_code: code) }
+      .group_by(&:continent)
+      .sort_by { |continent, _| continent || "ZZ" }
+      .to_h
+
+    @events_by_country = Event.includes(:series)
+      .where.not(country_code: [nil, ""])
+      .grouped_by_country
+      .to_h
+
+    @users_by_country = User.geocoded
+      .group(:country_code)
+      .count
+      .transform_keys { |code| Country.find_by(country_code: code) }
+      .compact
+
     @event_map_markers = event_map_markers
   end
 
   def show
-    @country = Country.find(params[:country])
-    if @country.present?
-      @events = @country.events.includes(:series).sort_by { |e| event_sort_date(e) }.reverse
+    @country = Country.find(params[:slug])
 
-      @events_by_city = @events
-        .select { |event| event.static_metadata&.location.present? }
-        .group_by { |event| event.static_metadata&.location }
-        .sort_by { |city, _events| city }
-        .to_h
-
-      @users = @country.users.order(talks_count: :desc)
-      @stamps = @country.stamps
-    else
+    if @country.blank?
       head :not_found
-    end
-  end
-
-  private
-
-  def calculate_users_by_country
-    users_by_country = {}
-
-    User.where.not(location: [nil, ""]).find_each do |user|
-      if (country = user.location_info.country)
-        users_by_country[country] ||= Set.new
-        users_by_country[country] << user
-      end
+      return
     end
 
-    users_by_country.transform_values(&:size)
+    @events = @country.events.includes(:series).order(start_date: :desc)
+
+    @featured_cities = FeaturedCity.where(country_code: @country.alpha2).order(:name)
+    @featured_city_names = @featured_cities.pluck(:city).map(&:downcase).to_set
+
+    @events_by_city = @events
+      .select { |event| event.location.present? }
+      .reject { |event| @featured_city_names.include?(event.city&.downcase) }
+      .group_by(&:location)
+      .sort_by { |city, _events| city }
+      .to_h
+
+    @users = @country.users.geocoded.order(talks_count: :desc)
+    @stamps = @country.stamps
   end
 end

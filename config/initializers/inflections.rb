@@ -21,5 +21,6 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.acronym "SQL"
   inflect.acronym "SQLite"
   inflect.acronym "SQLiteFTS"
+  inflect.acronym "UK"
   inflect.acronym "YouTube"
 end

@@ -3,6 +3,7 @@ Static::EventSeries.import_all_series!
 Static::Event.import_recent!
 Static::Event.import_meetups!
 Static::Topic.import_all!
+Static::FeaturedCity.import_all!
 
 User.order(Arel.sql("RANDOM()")).limit(5).each do |user|
   user.watched_talk_seeder.seed_development_data

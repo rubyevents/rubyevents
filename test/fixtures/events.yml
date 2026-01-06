@@ -6,16 +6,18 @@
 #
 #  id              :integer          not null, primary key
 #  city            :string
-#  country_code    :string
+#  country_code    :string           indexed => [state]
 #  date            :date
 #  date_precision  :string           default("day"), not null
 #  end_date        :date
 #  kind            :string           default("event"), not null, indexed
 #  latitude        :decimal(10, 6)
+#  location        :string
 #  longitude       :decimal(10, 6)
 #  name            :string           default(""), not null, indexed
 #  slug            :string           default(""), not null, indexed
 #  start_date      :date
+#  state           :string           indexed => [country_code]
 #  talks_count     :integer          default(0), not null
 #  website         :string           default("")
 #  created_at      :datetime         not null
@@ -25,11 +27,12 @@
 #
 # Indexes
 #
-#  index_events_on_canonical_id     (canonical_id)
-#  index_events_on_event_series_id  (event_series_id)
-#  index_events_on_kind             (kind)
-#  index_events_on_name             (name)
-#  index_events_on_slug             (slug)
+#  index_events_on_canonical_id            (canonical_id)
+#  index_events_on_country_code_and_state  (country_code,state)
+#  index_events_on_event_series_id         (event_series_id)
+#  index_events_on_kind                    (kind)
+#  index_events_on_name                    (name)
+#  index_events_on_slug                    (slug)
 #
 # Foreign Keys
 #

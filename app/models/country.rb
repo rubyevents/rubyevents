@@ -1,4 +1,11 @@
 class Country
+  UK_NATIONS = {
+    "england" => {code: "ENG", name: "England"},
+    "scotland" => {code: "SCT", name: "Scotland"},
+    "wales" => {code: "WLS", name: "Wales"},
+    "northern-ireland" => {code: "NIR", name: "Northern Ireland"}
+  }.freeze
+
   attr_reader :record
 
   delegate :alpha2, :alpha3, :continent, :emoji_flag, :subdivisions, :iso_short_name, :common_name, :translations, to: :record
@@ -59,12 +66,21 @@ class Country
     end
   end
 
+  def uk_nation?
+    false
+  end
+
   class << self
     def find(term)
       term = term.to_s.tr("-", " ")
+      term_slug = term.parameterize
 
       return nil if term.blank?
       return nil if term.downcase.in?(%w[online earth unknown])
+
+      if UK_NATIONS.key?(term_slug)
+        return UKNation.new(term_slug)
+      end
 
       iso_record = find_iso_record(term)
       iso_record ? new(iso_record) : nil
@@ -79,6 +95,18 @@ class Country
 
     def all
       @all ||= ISO3166::Country.all.map { |iso_record| new(iso_record) }
+    end
+
+    def all_with_uk_nations
+      @all_with_uk_nations ||= all + uk_nations
+    end
+
+    def uk_nations
+      UK_NATIONS.keys.map { |slug| UKNation.new(slug) }
+    end
+
+    def valid_country_codes
+      @valid_country_codes ||= ISO3166::Country.codes
     end
 
     def all_by_slug
@@ -110,7 +138,7 @@ class Country
     def find_iso_record(term)
       return ISO3166::Country.new("US") if ISO3166::Country.new("US").subdivisions.key?(term)
 
-      return ISO3166::Country.new("GB") if term.in?(%w[UK Scotland])
+      return ISO3166::Country.new("GB") if term == "UK"
 
       ISO3166::Country.find_country_by_iso_short_name(term) ||
         ISO3166::Country.find_country_by_unofficial_names(term) ||

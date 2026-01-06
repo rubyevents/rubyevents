@@ -51,7 +51,7 @@ class UserGeocodingTest < ActiveSupport::TestCase
     user.save!
 
     assert_equal "San Francisco", user.city
-    assert_equal "California", user.state
+    assert_equal "CA", user.state
     assert_equal "US", user.country_code
     assert_in_delta 37.7749, user.latitude.to_f, 0.01
     assert_in_delta(-122.4194, user.longitude.to_f, 0.01)
@@ -142,7 +142,7 @@ class UserGeocodingTest < ActiveSupport::TestCase
     user.save!
 
     assert_equal "Berlin", user.city
-    assert_equal "Berlin", user.state
+    assert_equal "BE", user.state
     assert_equal "DE", user.country_code
     assert_in_delta 52.52, user.latitude.to_f, 0.01
     assert_in_delta 13.405, user.longitude.to_f, 0.01

@@ -130,7 +130,7 @@ class Stamp
     end
 
     def user_attended_online_event?(user)
-      user.participated_events.any? { |event| event.static_metadata&.location == "Online" }
+      user.participated_events.any? { |event| event.location == "Online" }
     end
 
     def grouped_by_continent

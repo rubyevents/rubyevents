@@ -468,7 +468,15 @@ class Talk < ApplicationRecord
   end
 
   def location
-    static_metadata.try(:location) || event.static_metadata.location
+    static_metadata.try(:location) || event.location
+  end
+
+  def location_info
+    if static_metadata.try(:location).present?
+      Talk::LocationInfo.new(static_metadata.location)
+    else
+      event.location_info
+    end
   end
 
   def slug_candidates

@@ -6,7 +6,7 @@
       <span class="fi fi-<%= @country.alpha2.downcase %> border rounded w-36 text-[80pt]"></span>
       <div class="flex-col flex justify-center">
         <h1 class="mb-2 text-black font-bold">
-          <%= title @country.name %>
+          <%= title "Ruby Community in #{@country.name}" %>
         </h1>
         <h3 class="hidden md:block text-[#636B74]">
           <% if @country.present? %>
@@ -32,8 +32,8 @@
       </div>
       <% if @users.any? %>
         <div class="grid min-w-full grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          <%= cache @users do %>
-            <%= render partial: "users/card", collection: @users, as: :user, cached: true %>
+          <% @users.each do |user| %>
+            <%= render partial: "users/card", locals: {user: user, content: [user.location_info.display_city, user.location_info.country&.name].compact.join(", ")} %>
           <% end %>
         </div>
       <% else %>
@@ -72,17 +72,38 @@
     </div>
   <% end %>
 
-  <% if @events_by_city.any? %>
+  <% if @featured_cities.any? || @events_by_city.any? %>
     <div id="cities" class="mt-12">
       <section class="flex flex-col w-full gap-4">
         <div class="flex items-center justify-between w-full">
           <h2 class="text-primary shrink-0">Cities</h2>
         </div>
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 lg:gap-x-12 gap-y-2 min-w-full">
-          <% @events_by_city.each do |city, events| %>
-            <%= link_to city_path(city.parameterize), id: "city-#{city.parameterize}", class: "event flex justify-between items-center" do %>
+          <% @featured_cities.each do |featured_city| %>
+            <% events_count = featured_city.events.count %>
+            <% users_count = featured_city.users.count %>
+            <%= link_to city_path(featured_city.slug), id: "city-#{featured_city.slug}", class: "event flex justify-between items-center" do %>
               <div class="flex items-center gap-2">
-                <span class="event-name"><%= city %></span>
+                <span class="event-name"><%= featured_city.name %></span>
+                <% if featured_city.state_code.present? %>
+                  <span class="text-gray-400 text-sm"><%= featured_city.state_code %></span>
+                <% end %>
+              </div>
+              <div class="flex gap-1">
+                <% if events_count > 0 %>
+                  <%= ui_badge(events_count, kind: :secondary, outline: true, size: :lg, class: "min-w-10") %>
+                <% end %>
+                <% if users_count > 0 %>
+                  <%= ui_badge("#{users_count} \u{1F464}", kind: :primary, outline: true, size: :lg, class: "min-w-10") %>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
+          <% @events_by_city.each do |location, events| %>
+            <% city_name = events.first.city || location.split(",").first %>
+            <%= link_to city_by_country_path(alpha2: @country.code, city: city_name.parameterize), id: "city-#{city_name.parameterize}", class: "event flex justify-between items-center" do %>
+              <div class="flex items-center gap-2">
+                <span class="event-name"><%= city_name %></span>
               </div>
               <%= ui_badge(events.count, kind: :secondary, outline: true, size: :lg, class: "min-w-10") %>
             <% end %>

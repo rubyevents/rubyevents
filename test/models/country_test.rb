@@ -76,11 +76,13 @@ class CountryTest < ActiveSupport::TestCase
     assert_equal "GB", country.alpha2
   end
 
-  test "find returns GB for Scotland" do
+  test "find returns UKNation for Scotland" do
     country = Country.find("Scotland")
 
     assert_not_nil country
-    assert_equal "GB", country.alpha2
+    assert_instance_of UKNation, country
+    assert_equal "GB-SCT", country.alpha2
+    assert_equal "Scotland", country.name
   end
 
   test "find handles hyphenated terms" do

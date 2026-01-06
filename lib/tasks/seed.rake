@@ -6,6 +6,7 @@ namespace :db do
       Static::EventSeries.import_all!
       Static::Event.import_all!
       Static::Topic.import_all!
+      Static::FeaturedCity.import_all!
 
       Rake::Task["backfill:speaker_participation"].invoke
       Rake::Task["backfill:event_involvements"].invoke

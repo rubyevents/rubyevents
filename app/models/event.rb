@@ -5,16 +5,18 @@
 #
 #  id              :integer          not null, primary key
 #  city            :string
-#  country_code    :string
+#  country_code    :string           indexed => [state]
 #  date            :date
 #  date_precision  :string           default("day"), not null
 #  end_date        :date
 #  kind            :string           default("event"), not null, indexed
 #  latitude        :decimal(10, 6)
+#  location        :string
 #  longitude       :decimal(10, 6)
 #  name            :string           default(""), not null, indexed
 #  slug            :string           default(""), not null, indexed
 #  start_date      :date
+#  state           :string           indexed => [country_code]
 #  talks_count     :integer          default(0), not null
 #  website         :string           default("")
 #  created_at      :datetime         not null
@@ -24,11 +26,12 @@
 #
 # Indexes
 #
-#  index_events_on_canonical_id     (canonical_id)
-#  index_events_on_event_series_id  (event_series_id)
-#  index_events_on_kind             (kind)
-#  index_events_on_name             (name)
-#  index_events_on_slug             (slug)
+#  index_events_on_canonical_id            (canonical_id)
+#  index_events_on_country_code_and_state  (country_code,state)
+#  index_events_on_event_series_id         (event_series_id)
+#  index_events_on_kind                    (kind)
+#  index_events_on_name                    (name)
+#  index_events_on_slug                    (slug)
 #
 # Foreign Keys
 #
@@ -40,6 +43,10 @@ class Event < ApplicationRecord
   include Sluggable
 
   configure_slug(attribute: :name, auto_suffix_on_collision: false)
+
+  geocoded_by :location
+
+  after_commit :geocode_later, if: :location_previously_changed?
 
   # associations
   belongs_to :series, class_name: "EventSeries", foreign_key: :event_series_id, strict_loading: false
@@ -77,6 +84,7 @@ class Event < ApplicationRecord
   has_object :sponsors_file
   has_object :cfp_file
   has_object :venue
+  has_object :location_info
 
   def talks_in_running_order(child_talks: true)
     talks.in_order_of(:static_id, video_ids_in_running_order(child_talks: child_talks))
@@ -85,8 +93,7 @@ class Event < ApplicationRecord
   # validations
   validates :name, presence: true
   validates :kind, presence: true
-  VALID_COUNTRY_CODES = ISO3166::Country.codes
-  validates :country_code, inclusion: {in: VALID_COUNTRY_CODES}, allow_nil: true
+  validates :country_code, inclusion: {in: Country.valid_country_codes}, allow_nil: true
   validates :canonical, exclusion: {in: ->(event) { [event] }, message: "can't be itself"}
   validates :date_precision, presence: true
 
@@ -263,8 +270,10 @@ class Event < ApplicationRecord
     Country.find_by(country_code: country_code)
   end
 
-  def coordinates
-    [longitude, latitude]
+  def state_object
+    return nil if state.blank? || country.blank?
+
+    State.find_by_code(state, country: country) || State.find_by_name(state, country: country)
   end
 
   def held_in_sentence
@@ -428,7 +437,7 @@ class Event < ApplicationRecord
       id: id,
       name: name,
       slug: slug,
-      location: static_metadata.location,
+      location: location,
       start_date: start_date&.to_s,
       end_date: end_date&.to_s,
       card_image_url: Router.image_path(card_image_path, host: "#{request.protocol}#{request.host}:#{request.port}"),
@@ -438,5 +447,33 @@ class Event < ApplicationRecord
       featured_color: static_metadata.featured_color,
       url: Router.event_url(self, host: "#{request.protocol}#{request.host}:#{request.port}")
     }
+  end
+
+  def geocode
+    if venue.exist? && venue.coordinates.present?
+      coords = venue.coordinates
+      self.latitude = coords["latitude"]
+      self.longitude = coords["longitude"]
+    end
+
+    return if location.blank?
+
+    results = Geocoder.search(location)
+    return unless (result = results.first)
+
+    self.latitude ||= result.latitude
+    self.longitude ||= result.longitude
+
+    self.city = result.city
+    self.state = result.state_code
+    self.country_code = result.country_code
+
+    result
+  end
+
+  private
+
+  def geocode_later
+    GeocodeEventJob.perform_later(self)
   end
 end

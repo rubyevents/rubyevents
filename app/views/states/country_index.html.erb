@@ -1,0 +1,43 @@
+<%= turbo_refreshes_with method: :morph, scroll: :preserve %>
+
+<div class="container py-8">
+  <div class="flex items-center justify-between w-full hotwire-native:hidden">
+    <h1 class="title">
+      <%= title "States in #{@country.name}" %>
+    </h1>
+
+    <div class="flex flex-col gap-3 place-items-center">
+      <%= ui_button "View all states", url: states_path, kind: :secondary, size: :sm, class: "w-full" %>
+      <%= ui_button "View #{@country.name}", url: country_path(@country), kind: :secondary, size: :sm, class: "w-full" %>
+    </div>
+  </div>
+
+  <p class="mt-3 md:mt-9 mb-6 text-[#636B74] max-w-[700px]">
+    Browse Ruby events and community members by state or territory in <%= @country.name %>.
+  </p>
+
+  <div class="mt-6">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 lg:gap-x-12 gap-y-2 min-w-full">
+      <% @states.each do |state| %>
+        <% event_count = state.events.count %>
+        <% user_count = state.users.count %>
+        <% next if event_count == 0 && user_count == 0 %>
+
+        <%= link_to state_path(alpha2: state.country.code, slug: state.slug), id: "state-#{state.slug}", class: "event flex justify-between items-center" do %>
+          <div class="flex items-center gap-2">
+            <span class="event-name"><%= state.name %></span>
+          </div>
+
+          <div class="flex gap-1">
+            <% if event_count > 0 %>
+              <%= ui_badge(event_count, kind: :secondary, outline: true, size: :lg, class: "min-w-10") %>
+            <% end %>
+            <% if user_count > 0 %>
+              <%= ui_badge("#{user_count} \u{1F464}", kind: :primary, outline: true, size: :lg, class: "min-w-10") %>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
