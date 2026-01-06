@@ -158,7 +158,7 @@ class TalksControllerTest < ActionDispatch::IntegrationTest
     assert assigns(:talks).all? { |talk| talk.created_at >= Date.parse("2024-01-01") }
   end
 
-  test "should get index with invalide created_after" do
+  test "should get index with invalid created_after" do
     get talks_url(created_after: "wrong-date")
     assert_response :success
     assert assigns(:talks).size.positive?

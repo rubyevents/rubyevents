@@ -19,6 +19,12 @@ module Talk::Searchable
         .order(combined_score: :asc)
     end
 
+    # Filter on FTS table directly for better performance with search
+    # This allows FTS5 to optimize the query when combined with MATCH
+    scope :ft_watchable, -> do
+      joins(:index).where("talks_search_index.video_provider IN (?)", Talk::WATCHABLE_PROVIDERS)
+    end
+
     after_save_commit :reindex
   end
 
