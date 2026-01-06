@@ -38,6 +38,8 @@ module Guard
         import_speakers
       when "data/topics.yml"
         import_topics
+      when "data/featured_cities.yml"
+        import_featured_cities
       when %r{^data/([^/]+)/series\.yml$}
         import_series($1)
       when %r{^data/([^/]+)/([^/]+)/event\.yml$}
@@ -72,6 +74,11 @@ module Guard
     def import_topics
       UI.info "Importing all topics..."
       run_rails_runner("Static::Topic.import_all!")
+    end
+
+    def import_featured_cities
+      UI.info "Importing all featured cities..."
+      run_rails_runner("Static::FeaturedCity.import_all!")
     end
 
     def import_series(series_slug)

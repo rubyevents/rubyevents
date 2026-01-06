@@ -115,10 +115,9 @@ class Geolocate < Thor
   end
 
   def geocode_location(location)
-    results = Geocoder.search(location)
-    return nil if results.empty?
+    result = Geocoder.search(location).first
+    return nil unless result
 
-    result = results.first
     {"latitude" => result.latitude, "longitude" => result.longitude}
   rescue => e
     puts "    Error: #{e.message}"

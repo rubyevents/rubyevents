@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.2].define(version: 2026_01_06_092124) do
+ActiveRecord::Schema[8.2].define(version: 2026_01_06_141308) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -192,18 +192,43 @@ ActiveRecord::Schema[8.2].define(version: 2026_01_06_092124) do
     t.integer "event_series_id", null: false
     t.string "kind", default: "event", null: false
     t.decimal "latitude", precision: 10, scale: 6
+    t.string "location"
     t.decimal "longitude", precision: 10, scale: 6
     t.string "name", default: "", null: false
     t.string "slug", default: "", null: false
     t.date "start_date"
+    t.string "state"
     t.integer "talks_count", default: 0, null: false
     t.datetime "updated_at", null: false
     t.string "website", default: ""
     t.index ["canonical_id"], name: "index_events_on_canonical_id"
+    t.index ["country_code", "state"], name: "index_events_on_country_code_and_state"
     t.index ["event_series_id"], name: "index_events_on_event_series_id"
     t.index ["kind"], name: "index_events_on_kind"
     t.index ["name"], name: "index_events_on_name"
     t.index ["slug"], name: "index_events_on_slug"
+  end
+
+  create_table "featured_cities", force: :cascade do |t|
+    t.string "city", null: false
+    t.string "country_code", null: false
+    t.datetime "created_at", null: false
+    t.decimal "latitude", precision: 10, scale: 6
+    t.decimal "longitude", precision: 10, scale: 6
+    t.string "name", null: false
+    t.string "slug", null: false
+    t.string "state_code"
+    t.datetime "updated_at", null: false
+    t.index ["country_code", "city"], name: "index_featured_cities_on_country_code_and_city"
+    t.index ["slug"], name: "index_featured_cities_on_slug", unique: true
+  end
+
+  create_table "geocode_results", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "query", null: false
+    t.text "response_body", null: false
+    t.datetime "updated_at", null: false
+    t.index ["query"], name: "index_geocode_results_on_query", unique: true
   end
 
   create_table "llm_requests", force: :cascade do |t|

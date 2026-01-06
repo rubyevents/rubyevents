@@ -127,7 +127,7 @@ class User < ApplicationRecord
       user.latitude = result.latitude
       user.longitude = result.longitude
       user.city = result.city
-      user.state = result.state
+      user.state = result.state_code
       user.country_code = result.country_code
       user.geocode_metadata = result.data.merge("geocoded_at" => Time.current.iso8601)
     end

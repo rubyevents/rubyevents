@@ -284,6 +284,7 @@ module Static
         website: website,
         country_code: country&.alpha2,
         city: city,
+        location: location,
         start_date: start_date,
         end_date: end_date,
         kind: kind

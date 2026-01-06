@@ -18,8 +18,8 @@
       </div>
       <div class="text-sm text-white/80">
         <%= talk.event.name %>
-        <% if talk.location && !talk.location.in?(["Earth", "online", "Online"]) %>
-          · <%= talk.location %>
+        <% if talk.location_info.present? && !talk.location.in?(["Earth", "online", "Online"]) %>
+          · <%= render "shared/location", location_info: talk.location_info, show_links: false %>
         <% end %>
         · <%= talk.formatted_date %>
       </div>

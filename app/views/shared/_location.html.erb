@@ -1,0 +1,38 @@
+<%# locals: (location_info:, show_links: true) %>
+
+<% if location_info.geocoded? %>
+  <% if location_info.city.present? && location_info.country.present? %>
+    <% if show_links %>
+      <% if location_info.state_path.present? && location_info.country.alpha2.in?(%w[US GB AU CA]) %>
+        <%= link_to location_info.city, location_info.city_path, class: "link" %>,
+        <%= link_to location_info.state_display_name, location_info.state_path, class: "link" %>,
+        <%= link_to location_info.country.name, location_info.country.path, class: "link" %>
+      <% else %>
+        <%= link_to location_info.display_city, location_info.city_path, class: "link" if location_info.display_city.present? %><%= "," if location_info.display_city.present? %>
+        <%= link_to location_info.country.name, location_info.country.path, class: "link" %>
+      <% end %>
+    <% else %>
+      <% if location_info.state_path.present? && location_info.country.alpha2.in?(%w[US GB AU CA]) %>
+        <%= location_info.city %>, <%= location_info.state_display_name %>, <%= location_info.country.name %>
+      <% else %>
+        <%= location_info.display_city %><%= "," if location_info.display_city.present? %>
+        <%= location_info.country.name %>
+      <% end %>
+    <% end %>
+
+  <% elsif location_info.country.present? %>
+    <% if show_links %>
+      <%= link_to location_info.country.name, location_info.country.path, class: "link" %>
+    <% else %>
+      <%= location_info.country.name %>
+    <% end %>
+
+  <% elsif location_info.city.present? %>
+    <%= location_info.city %>
+
+  <% elsif location_info.present? %>
+    <%= location_info.to_s %>
+  <% end %>
+<% elsif location_info.present? %>
+  <%= location_info.to_s %>
+<% end %>
