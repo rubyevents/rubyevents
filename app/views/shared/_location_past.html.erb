@@ -1,0 +1,84 @@
+<%# locals: (location:, events:, users:, event_map_markers:, geo_layers: [], nearby_users: []) %>
+
+<%= turbo_refreshes_with method: :morph, scroll: :preserve %>
+
+<% title "Past Events in #{location.name}" %>
+
+<%= render "shared/location_header",
+      name: location.name,
+      subtitle: location_subtitle(location),
+      flag_code: location.respond_to?(:alpha2) ? location.alpha2 : nil,
+      emoji: location.is_a?(Continent) ? location.emoji_flag : nil,
+      stats: "#{pluralize(events.count, "past event")} in #{location.name}",
+      location: location %>
+
+<%= render "shared/location_navigation",
+      location: location,
+      current_tab: "past",
+      show_cities: location.is_a?(Country),
+      show_countries: location.is_a?(Continent),
+      show_states: location.is_a?(Country) && State.supported_country?(location),
+      show_stamps: location.stamps.any? %>
+
+<div class="container py-8">
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div class="lg:col-span-2">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl font-bold text-gray-900">Past Events</h2>
+      </div>
+
+      <%= render "shared/month_grouped_events", events: events, empty_message: "No past events in #{location.name}." %>
+    </div>
+
+    <div class="lg:col-span-1">
+      <div class="space-y-8">
+        <% if geo_layers.any? || event_map_markers.any? || location.bounds.present? %>
+          <div
+            data-controller="map"
+            <% if geo_layers.any? %> data-map-layers-value="<%= geo_layers.to_json %>"<% end %>
+            <% if geo_layers.empty? %> data-map-markers-value="<%= event_map_markers.to_json %>"<% end %>
+            <% if location.bounds.present? %> data-map-bounds-value="<%= location.bounds.to_json %>"<% end %>>
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="font-bold text-gray-900">Past Events Map</h3>
+            </div>
+
+            <% if geo_layers.size > 1 %>
+              <div class="flex items-center gap-2 mb-4">
+                <%= render "shared/map_layer_controls", layers: geo_layers, selection: "radio", use_emoji: true %>
+              </div>
+            <% end %>
+
+            <div
+              id="sidebar-map"
+              class="w-full h-96 rounded-xl overflow-hidden border"
+              data-map-target="container"></div>
+          </div>
+        <% end %>
+
+        <%= render "shared/rubyists_preview",
+              users: users.limit(18),
+              title: "Rubyists in #{location.name}",
+              total_count: users.count,
+              view_all_path: location_users_path(location) %>
+
+        <% if nearby_users.present? && nearby_users.any? %>
+          <div>
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="font-bold text-gray-900">Rubyists near <%= location.name %></h3>
+
+              <%= ui_badge(nearby_users.count, kind: :secondary, outline: true, size: :sm) %>
+            </div>
+
+            <div class="flex flex-wrap gap-2">
+              <% nearby_users.first(18).each do |nearby| %>
+                <% user = nearby.is_a?(Hash) ? nearby[:user] : nearby %>
+
+                <%= render Ui::AvatarComponent.new(user, size: :md, hover_card: true) %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

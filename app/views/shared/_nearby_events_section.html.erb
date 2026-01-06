@@ -1,0 +1,61 @@
+<%# locals: (title:, nearby_events:, fallback_text: nil, fallback_path: nil, limit: 8) %>
+
+<div class="mb-12">
+  <div class="flex items-center justify-between mb-6">
+    <h2 class="text-xl font-bold text-gray-900"><%= title %></h2>
+  </div>
+
+  <% limited_events = nearby_events.first(limit) %>
+  <% events_by_date = limited_events.group_by { |n| n[:event].start_date&.to_date }.sort_by { |date, _| date || Date.new(9999) } %>
+
+  <% events_by_date.each do |date, date_nearby_events| %>
+    <div class="mb-8">
+      <div class="flex items-center gap-2 mb-4">
+        <span class="w-2 h-2 rounded-full bg-gray-400"></span>
+        <span class="text-lg font-semibold text-gray-800">
+          <% if date.present? %>
+            <%= date.strftime("%b %-d") %>
+            <span class="font-normal text-gray-500"><%= date.strftime("%A") %></span>
+          <% else %>
+            Date TBD
+          <% end %>
+        </span>
+      </div>
+
+      <div class="space-y-3 pl-4">
+        <% date_nearby_events.each do |nearby| %>
+          <% event = nearby[:event] %>
+
+          <%= link_to event_path(event), class: "block bg-white rounded-lg border p-4 hover:border-gray-400 transition-colors" do %>
+            <div class="flex gap-4 items-start">
+              <% if event.avatar_image_path %>
+                <div class="w-16 h-16 flex-shrink-0 rounded-lg overflow-hidden">
+                  <%= image_tag event.avatar_image_path, class: "w-full h-full object-cover" %>
+                </div>
+              <% end %>
+
+              <div class="flex-grow min-w-0">
+                <div class="font-semibold text-gray-900 truncate"><%= event.name %></div>
+
+                <div class="text-sm text-gray-600 mt-1">
+                  <span class="inline-flex items-center gap-1">
+                    <%= fa("map-marker-alt", size: :xs, class: "text-gray-400") %>
+                    <%= event.location %>
+
+                    <span class="text-gray-400">• <%= nearby[:distance_km] %> km away</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if fallback_path.present? && fallback_text.present? %>
+    <div class="mt-6 text-center">
+      <%= link_to fallback_text, fallback_path, class: "link text-sm" %>
+    </div>
+  <% end %>
+</div>

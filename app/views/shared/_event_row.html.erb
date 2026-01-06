@@ -1,0 +1,38 @@
+<%# locals: (event:) %>
+
+<%= link_to event_path(event),
+      class: "block bg-white rounded-lg border p-4 hover:border-gray-400 transition-colors",
+      data: {events_filter_target: "event", kind: event.kind} do %>
+  <div class="flex gap-4 items-start">
+    <% if event.avatar_image_path %>
+      <div class="w-16 h-16 flex-shrink-0 rounded-lg overflow-hidden">
+        <%= image_tag event.avatar_image_path, class: "w-full h-full object-cover" %>
+      </div>
+    <% end %>
+
+    <div class="flex-grow min-w-0">
+      <div class="font-semibold text-gray-900 truncate"><%= event.name %></div>
+
+      <div class="text-sm text-gray-600 mt-1">
+        <span class="inline-flex items-center gap-1">
+          <%= fa("map-marker-alt", size: :xs, class: "text-gray-400") %>
+          <% if event&.venue&.exist? %>
+            <%= event.venue.name %><% if event.location.present? %> • <% end %>
+          <% end %>
+
+          <%= event.location %>
+        </span>
+      </div>
+
+      <div class="text-sm text-gray-500 mt-1">
+        <%= event.formatted_dates %>
+      </div>
+    </div>
+
+    <% if event.participants.any? %>
+      <div class="flex-shrink-0">
+        <%= render Ui::AvatarGroupComponent.new(event.participants.to_a, max: 4, size: :md, overlap: "-space-x-3") %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

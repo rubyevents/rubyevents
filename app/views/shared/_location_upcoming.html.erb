@@ -1,0 +1,100 @@
+<%# locals: (location:, events:, users:, event_map_markers:, geo_layers: [], nearby_users: [], nearby_events: [], country_events: [], continent_events: []) %>
+
+<%= turbo_refreshes_with method: :morph, scroll: :preserve %>
+
+<% title "Upcoming Events in #{location.name}" %>
+
+<%= render "shared/location_header",
+      name: location.name,
+      subtitle: location_subtitle(location),
+      flag_code: location.respond_to?(:alpha2) ? location.alpha2 : nil,
+      emoji: location.is_a?(Continent) ? location.emoji_flag : nil,
+      stats: "#{pluralize(events.count, "upcoming event")} in #{location.name}",
+      location: location %>
+
+<%= render "shared/location_navigation",
+      location: location,
+      current_tab: "upcoming",
+      show_cities: false,
+      show_countries: location.is_a?(Continent),
+      show_stamps: location.stamps.any? %>
+
+<div class="container py-8">
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div class="lg:col-span-2">
+      <% if events.any? %>
+        <%= render "shared/date_grouped_events", events: events, empty_message: "No upcoming events." %>
+      <% elsif nearby_events.present? && nearby_events.any? %>
+        <%= render "shared/nearby_events_section", title: "Upcoming Events Nearby", nearby_events: nearby_events, limit: 12 %>
+      <% else %>
+        <div class="text-gray-500 py-8 text-center bg-gray-50 rounded-xl">
+          <p class="mb-2">No upcoming events in <%= location.name %> yet.</p>
+          <%= link_to "View past events →", location_past_path(location), class: "link text-sm" %>
+        </div>
+      <% end %>
+
+      <% if country_events.present? && country_events.any? %>
+        <div class="mt-12">
+          <%= render "shared/events_section", title: "More Events in #{location.respond_to?(:country) ? location.country.name : "the Country"}", events: country_events, limit: 8 %>
+        </div>
+      <% end %>
+
+      <% if continent_events.present? && continent_events.any? %>
+        <div class="mt-12">
+          <%= render "shared/events_section", title: "Events in the Region", events: continent_events, limit: 8 %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="lg:col-span-1">
+      <div class="space-y-8">
+        <% if geo_layers.any? || event_map_markers.any? || location.bounds.present? %>
+          <div
+            data-controller="map"
+            <% if geo_layers.any? %>
+              data-map-layers-value="<%= geo_layers.to_json %>"
+            <% end %>
+            <% if geo_layers.empty? %>
+              data-map-markers-value="<%= event_map_markers.to_json %>"
+            <% end %>
+            <% if location.bounds.present? %>
+              data-map-bounds-value="<%= location.bounds.to_json %>"
+            <% end %>>
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="font-bold text-gray-900">Upcoming Events Map</h3>
+            </div>
+
+            <% if geo_layers.size > 1 %>
+              <div class="flex items-center gap-2 mb-4">
+                <%= render "shared/map_layer_controls", layers: geo_layers, selection: "radio", use_emoji: true %>
+              </div>
+            <% end %>
+
+            <div
+              id="sidebar-map"
+              class="w-full h-96 rounded-xl overflow-hidden border"
+              data-map-target="container"></div>
+          </div>
+        <% end %>
+
+        <%= render "shared/rubyists_preview", users: users.limit(18), title: "Rubyists in #{location.name}", total_count: users.count, view_all_path: location_users_path(location) %>
+
+        <% if nearby_users.present? && nearby_users.any? %>
+          <div>
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="font-bold text-gray-900">Rubyists Nearby</h3>
+            </div>
+
+            <div class="flex flex-wrap gap-2">
+              <% nearby_users.first(18).each do |nearby| %>
+                <% user = nearby.is_a?(Hash) ? nearby[:user] : nearby %>
+
+                <%= render Ui::AvatarComponent.new(user, size: :md, hover_card: true) %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

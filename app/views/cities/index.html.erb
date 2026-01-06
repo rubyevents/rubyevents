@@ -21,11 +21,10 @@
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 lg:gap-x-12 gap-y-2 min-w-full pt-4 pb-8">
         <% cities.sort_by(&:name).each do |city| %>
-          <% link_url = city.featured? ? city_path(city.slug) : city.path %>
           <% link_class = "event flex justify-between items-center" %>
           <% link_class += " bg-green-50 rounded px-2 -mx-2" if city.featured? %>
 
-          <%= link_to link_url, id: "city-#{city.slug}", class: link_class do %>
+          <%= link_to city.path, id: "city-#{city.slug}", class: link_class do %>
             <div class="flex items-center gap-2">
               <span class="event-name"><%= city.name %></span>
 

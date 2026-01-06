@@ -1,0 +1,33 @@
+<%# locals: (events:, empty_message: "No events found.") %>
+
+<% if events.any? %>
+  <% events_by_date = events.group_by { |e| e.start_date&.to_date }.sort_by { |date, _| date || Date.new(9999) } %>
+
+  <% events_by_date.each do |date, date_events| %>
+    <div class="mb-8" data-events-filter-target="group">
+      <div class="flex items-center gap-2 mb-4">
+        <span class="w-2 h-2 rounded-full bg-gray-400"></span>
+
+        <span class="text-lg font-semibold text-gray-800">
+          <% if date.present? %>
+            <%= date.strftime("%b %-d") %>
+
+            <span class="font-normal text-gray-500"><%= date.strftime("%A") %></span>
+          <% else %>
+            Date TBD
+          <% end %>
+        </span>
+      </div>
+
+      <div class="space-y-3 pl-4">
+        <% date_events.each do |event| %>
+          <%= render "shared/event_row", event: event %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <div class="text-gray-500 py-8 text-center">
+    <%= empty_message %>
+  </div>
+<% end %>

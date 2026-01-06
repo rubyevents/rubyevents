@@ -1,0 +1,21 @@
+<%# locals: (users:, title:, view_all_path: nil, total_count: nil, users_path: nil) %>
+
+<div>
+  <div class="flex justify-between items-center mb-4">
+    <h3 class="font-bold text-gray-900"><%= title %></h3>
+
+    <% if view_all_path.present? %>
+      <%= link_to "View all", view_all_path, class: "link text-sm mt-3 inline-block" %>
+    <% end %>
+  </div>
+
+  <% if users.any? %>
+    <div class="flex flex-wrap gap-2">
+      <% users.first(24).each do |user| %>
+        <%= render Ui::AvatarComponent.new(user, size: :md, hover_card: true) %>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="text-gray-500 text-sm">No Rubyists found yet.</p>
+  <% end %>
+</div>

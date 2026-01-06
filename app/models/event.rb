@@ -125,6 +125,14 @@ class Event < ApplicationRecord
   scope :past, -> { where(end_date: ..Date.today).order(end_date: :desc) }
   scope :upcoming, -> { where(start_date: Date.today..).order(start_date: :asc) }
 
+  def upcoming?
+    start_date.present? && start_date >= Date.today
+  end
+
+  def past?
+    end_date.present? && end_date < Date.today
+  end
+
   def self.find_by_name_or_alias(name)
     return nil if name.blank?
 
