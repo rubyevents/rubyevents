@@ -18,7 +18,7 @@
           <%= event.static_metadata.location %>
         </div>
 
-        <% event.cfps.each do |cfp| %>
+        <% event.cfps.open.each do |cfp| %>
           <div class="text-[#636B74] group-hover:text-inherit font-bold">
             <% if cfp.close_date.present? && (cfp.open_date.blank? || cfp.open_date.past?) %>
               CFP closes on
