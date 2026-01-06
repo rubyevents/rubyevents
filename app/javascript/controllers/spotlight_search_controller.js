@@ -19,7 +19,7 @@ export default class extends Controller {
     urlSpotlightOrganizations: String,
     urlSpotlightLocations: String,
     urlSpotlightLanguages: String,
-    mainResource: String
+    mainResourcePath: String
   }
 
   // lifecycle
@@ -147,7 +147,7 @@ export default class extends Controller {
       this.selectedOption.click()
     } else {
       requestAnimationFrame(() => {
-        const url = new URL(`/${this.mainResourceValue}`, window.location.origin)
+        const url = new URL(this.mainResourcePathValue, window.location.origin)
         url.searchParams.set('s', this.searchInputTarget.value)
         window.location.href = url.toString()
       })
