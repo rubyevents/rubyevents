@@ -1,0 +1,21 @@
+<div class="mt-8 md:mt-12">
+  <div class="flex flex-col md:flex-row md:items-baseline justify-between gap-1 md:gap-0 mb-4 md:mb-6">
+    <h2 class="text-xl md:text-2xl font-bold text-gray-900">Sometime in <%= year %></h2>
+    <span class="text-xs md:text-sm text-gray-400"><%= events.count %> events with unconfirmed dates</span>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
+    <% events.each do |event| %>
+      <%= link_to event_path(event), class: "group flex items-center gap-3 md:gap-4 p-3 md:p-4 bg-white rounded-xl border border-gray-100 hover:border-gray-300 hover:shadow-sm transition-all" do %>
+        <div class="w-14 h-14 md:w-20 md:h-20 rounded-lg md:rounded-xl overflow-hidden ring-2 ring-gray-100 group-hover:ring-red-500 transition-all shadow-sm shrink-0">
+          <%= image_tag event.avatar_image_path, alt: event.name, class: "w-full h-full object-cover", loading: "lazy" %>
+        </div>
+
+        <div class="min-w-0">
+          <p class="font-semibold text-gray-900 group-hover:text-red-600 transition-colors truncate"><%= event.name %></p>
+          <p class="text-sm text-gray-500 truncate"><%= event.static_metadata.location %></p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
