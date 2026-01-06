@@ -15,4 +15,20 @@ module SpotlightHelper
       "topics" => topics_path
     }.fetch(spotlight_main_resource, spotlight_talks_path)
   end
+
+  def spotlight_search_backend
+    @spotlight_search_backend ||= Search::Backend.resolve.name
+  end
+
+  def spotlight_can_search_locations?
+    spotlight_search_backend != :sqlite_fts
+  end
+
+  def spotlight_can_search_languages?
+    spotlight_search_backend != :sqlite_fts
+  end
+
+  def spotlight_can_search_series?
+    spotlight_search_backend != :sqlite_fts
+  end
 end
