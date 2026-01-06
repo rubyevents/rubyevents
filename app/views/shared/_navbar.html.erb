@@ -22,14 +22,6 @@
 
         <div class="flex items-center gap-2">
           <ul class="desktop-menu">
-            <% signed_in do %>
-              <%= ui_dropdown id: "library_navbar_toggle" do |lib_dropdown| %>
-                <span class="cursor-pointer">Library</span>
-                <% lib_dropdown.with_menu_item_link_to "For You", recommendations_path %>
-                <% lib_dropdown.with_menu_item_link_to "Recently Watched", watched_talks_path %>
-                <% lib_dropdown.with_menu_item_link_to "Bookmarks", watch_lists_path %>
-              <% end %>
-            <% end %>
             <%= render "shared/navbar/link", link_title: "Contribute", path: contributions_path %>
           </ul>
         </div>
