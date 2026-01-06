@@ -27,7 +27,8 @@ class Avo::Resources::User < Avo::BaseResource
     field :github_handle, as: :text, link_to_record: true
     field :admin, as: :boolean
     field :marked_for_deletion, as: :boolean, hide_on: :index
-    field :cleared_at, as: :date_time, hide_on: :index
+    field :suspicion_marked_at, as: :date_time, hide_on: :index
+    field :suspicion_cleared_at, as: :date_time, hide_on: :index
 
     field :slug, as: :text, hide_on: :index
     field :bio, as: :textarea, hide_on: :index
