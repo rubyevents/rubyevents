@@ -20,7 +20,7 @@ module EventMapMarkers
   end
 
   def event_sort_date(event)
-    event.static_metadata&.home_sort_date || Time.at(0)
+    event.static_metadata&.home_sort_date(event_record: event) || Time.at(0)
   end
 
   def event_marker_data(event)

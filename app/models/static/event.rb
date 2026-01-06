@@ -241,7 +241,9 @@ module Static
       parts.first if parts.size >= 2
     end
 
-    def home_sort_date
+    def home_sort_date(event_record: nil)
+      event_record ||= self.event_record
+
       if published_date
         return published_date
       end
@@ -270,6 +272,8 @@ module Static
     end
 
     def import!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
+      return if Rails.env.test? && !ENV["SEED_SMOKE_TEST"] # this method slowdown a lot of the test suite
+
       event = ::Event.find_or_create_by(slug: slug)
 
       event.update!(

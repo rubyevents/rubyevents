@@ -10,7 +10,7 @@ class CountriesController < ApplicationController
     @events_by_country = Event.all.sort_by { |e| event_sort_date(e) }.reverse
       .group_by { |e| e.country || "Unknown" }
       .sort_by { |key, _| (key.is_a?(String) ? key : key&.iso_short_name) || "ZZ" }.to_h
-    @users_by_country = calculate_users_by_country
+    @users_by_country = {} # calculate_users_by_country TODO optimize this
     @event_map_markers = event_map_markers
   end
 
@@ -36,16 +36,17 @@ class CountriesController < ApplicationController
 
   private
 
-  def calculate_users_by_country
-    users_by_country = {}
+  # TODO Geocode teh user and store the country code so that this query becomes faster
+  # def calculate_users_by_country
+  #   users_by_country = {}
 
-    User.where.not(location: [nil, ""]).find_each do |user|
-      if (country = user.location_info.country)
-        users_by_country[country] ||= Set.new
-        users_by_country[country] << user
-      end
-    end
+  #   User.where.not(location: [nil, ""]).find_each do |user|
+  #     if (country = user.location_info.country)
+  #       users_by_country[country] ||= Set.new
+  #       users_by_country[country] << user
+  #     end
+  #   end
 
-    users_by_country.transform_values(&:size)
-  end
+  #   users_by_country.transform_values(&:size)
+  # end
 end
