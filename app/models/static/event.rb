@@ -272,6 +272,8 @@ module Static
     end
 
     def import!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
+      return if Rails.env.test? && !ENV["SEED_SMOKE_TEST"] # this method slowdown a lot of the test suite
+
       event = ::Event.find_or_create_by(slug: slug)
 
       event.update!(
