@@ -7,10 +7,10 @@
     data-spotlight-search-url-spotlight-speakers-value="<%= spotlight_speakers_path %>"
     data-spotlight-search-url-spotlight-events-value="<%= spotlight_events_path %>"
     data-spotlight-search-url-spotlight-topics-value="<%= spotlight_topics_path %>"
-    data-spotlight-search-url-spotlight-series-value="<%= spotlight_series_index_path %>"
+    data-spotlight-search-url-spotlight-series-value="<%= spotlight_can_search_series? ? spotlight_series_index_path : nil %>"
     data-spotlight-search-url-spotlight-organizations-value="<%= spotlight_organizations_path %>"
-    data-spotlight-search-url-spotlight-locations-value="<%= spotlight_locations_path %>"
-    data-spotlight-search-url-spotlight-languages-value="<%= spotlight_languages_path %>"
+    data-spotlight-search-url-spotlight-locations-value="<%= spotlight_can_search_locations? ? spotlight_locations_path : nil %>"
+    data-spotlight-search-url-spotlight-languages-value="<%= spotlight_can_search_languages? ? spotlight_languages_path : nil %>"
     data-spotlight-search-main-resource-path-value="<%= spotlight_main_resource_path %>">
     <div class="flex items-center gap-2 rounded-lg bg-white px-2 relative shrink-0">
       <%= fa("magnifying-glass", size: :md, style: :regular) %>
