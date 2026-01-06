@@ -72,8 +72,7 @@ class WrappedController < ApplicationController
     @events_by_attendees = events_by_attendees
 
     @countries_with_events = @wrapped_cached_data[:country_codes_with_events]
-      .map { |code| ISO3166::Country.new(code) }
-      .compact
+      .filter_map { |code| Country.find_by(country_code: code) }
 
     @most_watched_talks = Talk
       .where(slug: @wrapped_cached_data[:most_watched_talks_slugs])
