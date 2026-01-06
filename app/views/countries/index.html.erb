@@ -31,10 +31,10 @@
             <% users_count = @users_by_country[country] || 0 %>
             <% next if events.nil? %>
 
-            <%= link_to country_path(country.translations["en"].parameterize), id: "country-#{country.alpha2}", class: "event flex justify-between items-center" do %>
+            <%= link_to country_path(country.slug), id: "country-#{country.alpha2}", class: "event flex justify-between items-center" do %>
               <div class="flex items-center gap-2">
                 <span class="event-name"><%= country.emoji_flag %>
-                  <%= country.translations["en"] %></span>
+                  <%= country.name %></span>
               </div>
               <div class="flex gap-2">
                 <% if users_count > 0 %>

@@ -202,9 +202,9 @@
           <h3 class="text-lg font-bold text-white mb-4">🌍 Events Across the Globe</h3>
           <p class="text-red-200 mb-4"><%= @countries_with_events.count %> countries hosted Ruby events</p>
           <div class="flex flex-wrap gap-2">
-            <% @countries_with_events.sort_by { |c| c.translations["en"] }.each do |country| %>
-              <%= link_to country_path(country: country.alpha2.downcase), class: "inline-flex items-center gap-1 px-3 py-1 bg-white/10 rounded-full text-sm text-white hover:bg-white/20 transition" do %>
-                <%= country.emoji_flag %> <%= country.translations["en"] %>
+            <% @countries_with_events.sort_by(&:name).each do |country| %>
+              <%= link_to country.path, class: "inline-flex items-center gap-1 px-3 py-1 bg-white/10 rounded-full text-sm text-white hover:bg-white/20 transition" do %>
+                <%= country.emoji_flag %> <%= country.name %>
               <% end %>
             <% end %>
           </div>

@@ -26,7 +26,7 @@
           <div class="flex flex-wrap gap-2">
             <% @missing_stamp_countries.each do |country| %>
               <div class="badge badge-warning badge-outline">
-                <%= country.translations["en"] %> (<%= country.alpha2 %>)
+                <%= country.name %> (<%= country.alpha2 %>)
               </div>
             <% end %>
           </div>
@@ -80,7 +80,7 @@
                   <% if stamp.has_country? %>
                     <div class="card-actions mt-2">
                       <%= link_to "View Events",
-                            country_path(country: stamp.country.alpha2.downcase),
+                            stamp.country.path,
                             class: "btn btn-xs btn-primary" %>
                     </div>
                   <% end %>

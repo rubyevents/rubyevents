@@ -16,13 +16,13 @@ class User::LocationInfoTest < ActiveSupport::TestCase
   test "country returns Country object from geocoded country_code" do
     user = User.create!(name: "Test User", country_code: "US")
 
-    assert_equal "United States of America (the)", user.location_info.country_name
+    assert_equal "United States", user.location_info.country.name
   end
 
   test "country falls back to parsing location when not geocoded" do
     user = User.create!(name: "Test User", location: "Berlin, Germany")
 
-    assert_equal "Germany", user.location_info.country_name
+    assert_equal "Germany", user.location_info.country.name
   end
 
   test "city returns geocoded city" do

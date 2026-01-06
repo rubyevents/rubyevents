@@ -6,11 +6,11 @@
       <span class="fi fi-<%= @country.alpha2.downcase %> border rounded w-36 text-[80pt]"></span>
       <div class="flex-col flex justify-center">
         <h1 class="mb-2 text-black font-bold">
-          <%= title @country.translations["en"] %>
+          <%= title @country.name %>
         </h1>
         <h3 class="hidden md:block text-[#636B74]">
           <% if @country.present? %>
-            <%= @country.translations["en"] %>, <%= @country.continent %>
+            <%= @country.name %>, <%= @country.continent %>
           <% end %>
         </h3>
       </div>
@@ -22,13 +22,13 @@
   </div>
 
   <p class="mt-3 md:mt-9 mb-6 text-[#636B74] max-w-[700px]">
-    We have indexed <%= pluralize(@users.count, "Rubyist") %> and <%= pluralize(@events.count, "event") %> in <%= @country.translations["en"] %>.
+    We have indexed <%= pluralize(@users.count, "Rubyist") %> and <%= pluralize(@events.count, "event") %> in <%= @country.name %>.
   </p>
 
   <div id="rubyists" class="mt-12">
     <section class="flex flex-col w-full gap-4">
       <div class="flex items-center justify-between w-full">
-        <h2 class="text-primary shrink-0">Rubyists in <%= @country.translations["en"] %></h2>
+        <h2 class="text-primary shrink-0">Rubyists in <%= @country.name %></h2>
       </div>
       <% if @users.any? %>
         <div class="grid min-w-full grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -37,7 +37,7 @@
           <% end %>
         </div>
       <% else %>
-        <p class="text-[#636B74]">No Rubyists with location set to <%= @country.translations["en"] %> yet.</p>
+        <p class="text-[#636B74]">No Rubyists with location set to <%= @country.name %> yet.</p>
       <% end %>
     </section>
   </div>

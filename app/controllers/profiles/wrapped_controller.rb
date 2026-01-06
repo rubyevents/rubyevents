@@ -57,7 +57,7 @@ class Profiles::WrappedController < ApplicationController
       .map { |wt| wt.talk.event&.country }
       .compact
       .uniq
-      .sort_by { |c| c.translations["en"] }
+      .sort_by(&:name)
 
     @languages_watched = @watched_talks_in_year
       .map { |wt| wt.talk.language }
@@ -110,7 +110,7 @@ class Profiles::WrappedController < ApplicationController
       .map(&:country)
       .compact
       .uniq
-      .sort_by { |c| c.translations["en"] }
+      .sort_by(&:name)
 
     @talks_given_in_year = @user.kept_talks
       .includes(:event)

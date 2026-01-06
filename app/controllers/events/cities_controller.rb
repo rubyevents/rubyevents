@@ -13,13 +13,13 @@ class Events::CitiesController < ApplicationController
     @cities_by_country = @events_by_city.keys.group_by { |city|
       events = @events_by_city[city]
       country = events.first.country
-      country&.translations&.dig("en") || "Unknown"
+      country&.name || "Unknown"
     }.sort_by { |country, _cities| country }.to_h
 
     @clean_city_names = {}
     @events_by_city.each do |city, events|
       country = events.first.country
-      country_name = country&.translations&.dig("en")
+      country_name = country&.name
       clean_name = city
 
       if country_name && city.include?(", #{country_name}")
