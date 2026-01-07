@@ -221,6 +221,8 @@ class Talk < ApplicationRecord
   }
   scope :with_summary, -> { where("summary IS NOT NULL AND summary != ''") }
   scope :without_summary, -> { where("summary IS NULL OR summary = ''") }
+  scope :with_duration, -> { where.not(duration_in_seconds: nil) }
+  scope :without_duration, -> { where(duration_in_seconds: nil) }
   scope :without_topics, -> { where.missing(:talk_topics) }
   scope :with_topics, -> { joins(:talk_topics) }
   scope :with_speakers, -> { joins(:user_talks).distinct }
