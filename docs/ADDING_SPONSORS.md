@@ -167,9 +167,9 @@ Fill in the sponsor details for each tier:
 ```yaml
     sponsors:
       - name: "Company Name"
-        website: https://company.com
-        slug: CompanyName
-        logo_url: https://conference.org/sponsors/company-logo.png
+        website: "https://company.com"
+        slug: "CompanyName"
+        logo_url: "https://conference.org/sponsors/company-logo.png"
 ```
 
 ## Troubleshooting
