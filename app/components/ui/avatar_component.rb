@@ -88,10 +88,10 @@ class Ui::AvatarComponent < ApplicationComponent
   end
 
   def suspicious?
-    avatarable && avatarable.respond_to?(:suspicious?) && avatarable.suspicious?
+    avatarable&.respond_to?(:suspicious?) && avatarable.suspicious?
   end
 
   def show_custom_avatar?
-    avatarable && avatarable.custom_avatar? && !suspicious?
+    avatarable&.custom_avatar? && !suspicious?
   end
 end
