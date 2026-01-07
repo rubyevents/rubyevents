@@ -7,7 +7,7 @@ class LeaderboardController < ApplicationController
       .left_joins(:talks)
       .group(:id)
       .order("COUNT(talks.id) DESC")
-      .select("users.name, users.github_handle, users.id, users.slug, users.updated_at, users.bsky_metadata, users.github_metadata, COUNT(talks.id) as talks_count")
+      .select("users.*, COUNT(talks.id) as talks_count_in_range") 
       .where("users.name is not 'TODO'")
 
     if @filter == "last_12_months"

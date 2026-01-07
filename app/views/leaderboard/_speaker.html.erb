@@ -9,6 +9,6 @@
     <% end %>
   </td>
   <td style="view-transition-name: <%= dom_id(speaker, :Leaderboard_count) if speaker_counter < 10 %>">
-    <%= ui_badge(speaker.talks_count, kind: :secondary, outline: true, size: :lg, class: "min-w-10") %>
+    <%= ui_badge(speaker.talks_count_in_range, kind: :secondary, outline: true, size: :lg, class: "min-w-10") %>
   </td>
 </tr>
