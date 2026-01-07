@@ -1,6 +1,6 @@
-<%# locals: (title:, events:, view_all_path: nil, view_all_count: nil, empty_message: nil, fallback_text: nil, fallback_path: nil, limit: 5) %>
+<%# locals: (title:, events:, view_all_path: nil, view_all_count: nil, empty_message: nil, fallback_text: nil, fallback_path: nil, limit: 5, dimmed: false) %>
 
-<div class="mb-12">
+<div class="mb-12 <%= "opacity-60 hover:opacity-100 transition-opacity" if dimmed %>">
   <div class="flex items-center justify-between mb-6">
     <h2 class="text-xl font-bold text-gray-900"><%= title %></h2>
 

@@ -59,7 +59,8 @@
               nearby_events: upcoming_nearby_events,
               fallback_text: past_events.any? ? "View #{pluralize(past_events.count, "past event")} in #{location.name} →" : nil,
               fallback_path: past_events.any? ? location_past_path(location) : nil,
-              limit: 8 %>
+              limit: 8,
+              dimmed: true %>
 
       <% else %>
         <%= render "shared/events_section",
@@ -78,7 +79,8 @@
               view_all_path: country_upcoming_index_path(country),
               view_all_count: country_events.count,
               empty_message: "No upcoming events in #{country.name}.",
-              limit: 5 %>
+              limit: 5,
+              dimmed: true %>
       <% end %>
 
       <% if continent_events.present? && continent_events.any? && continent.present? %>
@@ -88,7 +90,8 @@
               view_all_path: continent_upcoming_index_path(continent),
               view_all_count: continent_events.count,
               empty_message: "No upcoming events in #{continent.name}.",
-              limit: 8 %>
+              limit: 8,
+              dimmed: true %>
       <% end %>
     </div>
 

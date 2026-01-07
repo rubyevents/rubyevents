@@ -1,21 +1,24 @@
-<%# locals: (title:, nearby_events:, fallback_text: nil, fallback_path: nil, limit: 8) %>
+<%# locals: (title:, nearby_events:, fallback_text: nil, fallback_path: nil, limit: 8, dimmed: false) %>
 
-<div class="mb-12">
+<div class="mb-12 <%= "opacity-60 hover:opacity-100 transition-opacity" if dimmed %>">
   <div class="flex items-center justify-between mb-6">
     <h2 class="text-xl font-bold text-gray-900"><%= title %></h2>
   </div>
 
   <% limited_events = nearby_events.first(limit) %>
-  <% events_by_date = limited_events.group_by { |n| n[:event].start_date&.to_date }.sort_by { |date, _| date || Date.new(9999) } %>
+  <% events_by_date = limited_events.group_by { |n| event_date_group_key(n[:event]) }.sort_by { |key, _| key || "zzz" } %>
 
-  <% events_by_date.each do |date, date_nearby_events| %>
+  <% events_by_date.each do |_, date_nearby_events| %>
+    <% first_event = date_nearby_events.first[:event] %>
     <div class="mb-8">
       <div class="flex items-center gap-2 mb-4">
         <span class="w-2 h-2 rounded-full bg-gray-400"></span>
         <span class="text-lg font-semibold text-gray-800">
-          <% if date.present? %>
-            <%= date.strftime("%b %-d") %>
-            <span class="font-normal text-gray-500"><%= date.strftime("%A") %></span>
+          <% if first_event.date_precision == "day" && first_event.start_date.present? %>
+            <%= first_event.start_date.strftime("%b %-d") %>
+            <span class="font-normal text-gray-500"><%= first_event.start_date.strftime("%A") %></span>
+          <% elsif first_event.start_date.present? %>
+            <%= event_date_display(first_event, day_name: false) %>
           <% else %>
             Date TBD
           <% end %>
