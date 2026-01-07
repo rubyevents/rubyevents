@@ -29,7 +29,6 @@ module EventsHelper
     end
   end
 
-
   def group_events_by_date(events)
     events.group_by { |e| event_date_group_key(e) }
       .sort_by { |key, _| key || "zzz" }
