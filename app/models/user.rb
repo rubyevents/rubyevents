@@ -262,7 +262,7 @@ class User < ApplicationRecord
   end
 
   def verified?
-    connected_accounts.find { |account| account.provider == "github" }
+    !suspicious? && connected_accounts.find { |account| account.provider == "github" }
   end
 
   def possessive_pronoun
