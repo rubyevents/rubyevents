@@ -46,6 +46,27 @@ class State
     User.where(country_code: country.alpha2, state: [code, name])
   end
 
+  def stamps
+    state_events = events.to_a
+    Stamp.all.select { |stamp| stamp.has_event? && state_events.include?(stamp.event) }
+  end
+
+  def alpha2
+    country.alpha2
+  end
+
+  def country_code
+    country.alpha2
+  end
+
+  def geocoded?
+    false
+  end
+
+  def bounds
+    nil
+  end
+
   class << self
     def supported_country?(country)
       return false if country.blank?

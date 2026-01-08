@@ -36,6 +36,10 @@ class UKNation
     "gb"
   end
 
+  def country_code
+    "GB"
+  end
+
   def to_param
     slug
   end
@@ -62,6 +66,10 @@ class UKNation
 
   def stamps
     []
+  end
+
+  def bounds
+    nil
   end
 
   def held_in_sentence

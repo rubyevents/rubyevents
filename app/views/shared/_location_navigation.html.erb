@@ -1,0 +1,45 @@
+<%# locals: (location:, current_tab: "overview", show_cities: true, show_countries: false, show_states: false, show_stamps: true) %>
+
+<div class="container">
+  <div role="tablist" class="tabs tabs-bordered mb-8 overflow-x-auto">
+    <%= link_to location_path(location), role: "tab", class: "tab whitespace-nowrap #{"tab-active" if current_tab == "overview"}" do %>
+      Overview
+    <% end %>
+
+    <%= link_to location_past_path(location), role: "tab", class: "tab whitespace-nowrap #{"tab-active" if current_tab == "past"}" do %>
+      Past Events
+    <% end %>
+
+    <%= link_to location_users_path(location), role: "tab", class: "tab whitespace-nowrap #{"tab-active" if current_tab == "users"}" do %>
+      Rubyists
+    <% end %>
+
+    <% if show_countries && location_countries_path(location).present? %>
+      <%= link_to location_countries_path(location), role: "tab", class: "tab whitespace-nowrap #{"tab-active" if current_tab == "countries"}" do %>
+        Countries
+      <% end %>
+    <% end %>
+
+    <% if show_states && location.is_a?(Country) && State.supported_country?(location) %>
+      <%= link_to country_states_path(alpha2: location.code), role: "tab", class: "tab whitespace-nowrap #{"tab-active" if current_tab == "states"}" do %>
+        States
+      <% end %>
+    <% end %>
+
+    <% if show_cities && location_cities_path(location).present? %>
+      <%= link_to location_cities_path(location), role: "tab", class: "tab whitespace-nowrap #{"tab-active" if current_tab == "cities"}" do %>
+        Cities
+      <% end %>
+    <% end %>
+
+    <% if show_stamps %>
+      <%= link_to location_stamps_path(location), role: "tab", class: "tab whitespace-nowrap #{"tab-active" if current_tab == "stamps"}" do %>
+        Stamps
+      <% end %>
+    <% end %>
+
+    <%= link_to location_map_path(location), role: "tab", class: "tab whitespace-nowrap #{"tab-active" if current_tab == "map"}" do %>
+      Map
+    <% end %>
+  </div>
+</div>

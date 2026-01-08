@@ -1,4 +1,6 @@
 class City
+  include Locatable
+
   attr_reader :name, :city, :slug, :country_code, :state_code, :latitude, :longitude
 
   class << self
@@ -8,6 +10,10 @@ class City
 
     def for_country(country_code)
       all.select { |city| city.country_code == country_code.upcase }
+    end
+
+    def for_state(state)
+      all.select { |city| city.country_code == state.country.alpha2 && city.state_code == state.code }
     end
 
     def featured_slugs
@@ -148,10 +154,12 @@ class City
   public
 
   def path
+    return Router.city_path(slug) if featured?
+
     if state_code.present? && state.present?
-      "/cities/#{country.code}/#{state.slug}/#{slug}"
+      Router.city_with_state_path(country.code, state.slug, slug)
     else
-      "/cities/#{country.code}/#{slug}"
+      Router.city_by_country_path(country.code, slug)
     end
   end
 
@@ -181,6 +189,7 @@ class City
   def geocode
     query = [city, state&.name, country&.name].compact.join(", ")
     result = Geocoder.search(query).first
+
     result ? [result.latitude, result.longitude] : nil
   end
 
@@ -204,6 +213,36 @@ class City
     end
   end
 
+  def alpha2
+    country_code
+  end
+
+  def continent
+    country&.continent
+  end
+
+  def bounds
+    return nil unless geocoded?
+
+    offset = 0.5
+
+    {
+      southwest: [longitude - offset, latitude - offset],
+      northeast: [longitude + offset, latitude + offset]
+    }
+  end
+
+  def stamps
+    @stamps ||= begin
+      event_stamps = events.flat_map { |event| Stamp.for_event(event) }
+      country_stamp = Stamp.for_country(country_code)
+      stamps = event_stamps
+      stamps << country_stamp if country_stamp
+
+      stamps.uniq { |s| s.code }
+    end
+  end
+
   def nearby_users(radius_km: 100, limit: 12, exclude_ids: [])
     return [] unless coordinates.present?
 
@@ -222,20 +261,21 @@ class City
       .sort_by { |u| u[:distance_km] }
   end
 
-  def nearby_events(radius_km: 250, limit: 12)
+  def nearby_events(radius_km: 250, limit: 12, exclude_ids: [])
     return [] unless coordinates.present?
 
-    Event.includes(:series)
-      .where.not(latitude: nil, longitude: nil)
-      .where.not(city: city)
-      .map do |event|
-        distance = Geocoder::Calculations.distance_between(
-          coordinates,
-          [event.latitude, event.longitude],
-          units: :km
-        )
-        {event: event, distance_km: distance.round} if distance <= radius_km
-      end
+    scope = Event.includes(:series, :participants).geocoded.where.not(city: city)
+    scope = scope.where.not(id: exclude_ids) if exclude_ids.any?
+
+    scope.map do |event|
+      distance = Geocoder::Calculations.distance_between(
+        coordinates,
+        [event.latitude, event.longitude],
+        units: :km
+      )
+
+      {event: event, distance_km: distance.round} if distance <= radius_km
+    end
       .compact
       .sort_by { |e| e[:event].start_date || Time.at(0).to_date }
       .last(limit)
@@ -261,11 +301,11 @@ class City
   private
 
   def find_coordinates_from_records
-    event = events.where.not(latitude: nil, longitude: nil).first
-    return [event.latitude, event.longitude] if event
+    event = events.geocoded.first
+    return event.to_coordinates if event
 
-    user = users.where.not(latitude: nil, longitude: nil).first
-    return [user.latitude, user.longitude] if user
+    user = users.geocoded.first
+    return user.to_coordinates if user
 
     nil
   end

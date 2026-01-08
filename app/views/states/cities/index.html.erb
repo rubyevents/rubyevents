@@ -1,0 +1,62 @@
+<%= turbo_refreshes_with method: :morph, scroll: :preserve %>
+
+<% title "Cities in #{@state.name}" %>
+
+<%= render "shared/location_header",
+      name: @state.name,
+      subtitle: "#{@state.name}, #{@country.name}",
+      flag_code: @country.alpha2,
+      stats: "#{pluralize(@cities.size, "city")} with Ruby events in #{@state.name}",
+      location: @state %>
+
+<%= render "shared/location_navigation", location: @state, current_tab: "cities", show_cities: true, show_stamps: true %>
+
+<div class="container py-8">
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+    <div class="flex items-center gap-3">
+      <h2 class="text-xl font-bold text-gray-900">Cities in <%= @state.name %></h2>
+      <%= ui_badge(@cities.size, kind: :secondary, outline: true) %>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <span class="text-sm text-gray-500">Sort:</span>
+
+      <%= link_to "Events", state_cities_path(state_alpha2: @country.code, state_slug: @state.slug, sort: "events"), class: "btn btn-sm #{(@sort == "events") ? "btn-primary" : "btn-ghost"}" %>
+      <%= link_to "A-Z", state_cities_path(state_alpha2: @country.code, state_slug: @state.slug, sort: "name"), class: "btn btn-sm #{(@sort == "name") ? "btn-primary" : "btn-ghost"}" %>
+    </div>
+  </div>
+
+  <% if @cities.any? %>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      <% @cities.each do |city| %>
+        <%= link_to city.path, class: "flex flex-col p-4 bg-white rounded-xl border hover:border-gray-400 transition-colors" do %>
+          <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center gap-2">
+              <span class="font-semibold text-gray-900"><%= city.name %></span>
+            </div>
+
+            <%= ui_badge(city.events_count, kind: :secondary, outline: true, size: :sm) %>
+          </div>
+
+          <div class="text-sm text-gray-500">
+            <%= pluralize(city.events_count, "event") %>
+          </div>
+
+          <% if city.events.any? %>
+            <div class="flex -space-x-2 mt-3">
+              <% city.events.first(4).each do |event| %>
+                <% if event.avatar_image_path %>
+                  <div class="w-8 h-8 rounded overflow-hidden ring-2 ring-white">
+                    <%= image_tag event.avatar_image_path, alt: event.name, class: "w-full h-full object-cover", loading: "lazy" %>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="text-gray-500 py-8 text-center">No cities with events found in <%= @state.name %> yet.</p>
+  <% end %>
+</div>

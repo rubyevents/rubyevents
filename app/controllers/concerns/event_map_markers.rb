@@ -25,7 +25,8 @@ module EventMapMarkers
       name: event.name,
       url: Router.event_path(event),
       avatar: Router.image_path(event.avatar_image_path),
-      location: event.location
+      location: event.location,
+      upcoming: event.start_date.present? && event.start_date >= Date.today
     }
   end
 end

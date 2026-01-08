@@ -1,4 +1,6 @@
 class Country
+  include Locatable
+
   UK_NATIONS = {
     "england" => {code: "ENG", name: "England"},
     "scotland" => {code: "SCT", name: "Scotland"},
@@ -28,6 +30,29 @@ class Country
 
   def code
     alpha2.downcase
+  end
+
+  def latitude
+    record.geo&.dig("latitude")
+  end
+
+  def longitude
+    record.geo&.dig("longitude")
+  end
+
+  def coordinates
+    return nil unless latitude && longitude
+    [longitude, latitude]
+  end
+
+  def bounds
+    geo_bounds = record.geo&.dig("bounds")
+    return nil unless geo_bounds
+
+    {
+      southwest: [geo_bounds.dig("southwest", "lng"), geo_bounds.dig("southwest", "lat")],
+      northeast: [geo_bounds.dig("northeast", "lng"), geo_bounds.dig("northeast", "lat")]
+    }
   end
 
   def to_param

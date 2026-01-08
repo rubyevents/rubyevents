@@ -32,7 +32,7 @@ class CountriesControllerTest < ActionDispatch::IntegrationTest
 
   test "should handle invalid country parameter" do
     get country_path("nonexistent-country")
-    assert_response :not_found
+    assert_redirected_to countries_path
   end
 
   test "should filter events and users by country on show page" do

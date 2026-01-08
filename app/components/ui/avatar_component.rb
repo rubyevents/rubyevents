@@ -9,7 +9,7 @@ class Ui::AvatarComponent < ApplicationComponent
     },
     md: {
       size_class: "w-12",
-      image_size: 48,
+      image_size: 96,
       text_size: "text-lg"
     },
     lg: {
@@ -29,6 +29,49 @@ class Ui::AvatarComponent < ApplicationComponent
   option :size_class, Dry::Types["coercible.string"], default: proc { SIZE_MAPPING[size][:size_class] }
   option :outline, type: Dry::Types["strict.bool"], default: proc { false }
   option :kind, Dry::Types["coercible.symbol"].enum(*KIND_MAPPING.keys), default: proc { :primary }
+  option :hover_card, type: Dry::Types["strict.bool"], default: proc { false }
+  option :linked, type: Dry::Types["strict.bool"], default: proc { false }
+
+  def show_hover_card?
+    hover_card && avatarable.is_a?(User)
+  end
+
+  def show_link?
+    linked && avatarable.present?
+  end
+
+  def link_path
+    return nil unless avatarable.present?
+
+    if avatarable.is_a?(User)
+      helpers.profile_path(avatarable)
+    elsif avatarable.respond_to?(:slug)
+      helpers.speaker_path(avatarable)
+    end
+  end
+
+  def avatar_classes
+    [
+      size_class,
+      "rounded-full",
+      kind_class,
+      "text-neutral-content",
+      (outline ? "outline outline-2" : nil)
+    ].compact.join(" ")
+  end
+
+  def initials
+    return "" unless avatarable&.name.present?
+    avatarable.name.split(" ").map(&:first).join
+  end
+
+  def has_custom_avatar?
+    avatarable&.respond_to?(:custom_avatar?) && avatarable.custom_avatar?
+  end
+
+  def avatar_url_for_size
+    avatarable.avatar_url(size: image_size)
+  end
 
   private
 
@@ -45,10 +88,10 @@ class Ui::AvatarComponent < ApplicationComponent
   end
 
   def suspicious?
-    avatarable.respond_to?(:suspicious?) && avatarable.suspicious?
+    avatarable&.respond_to?(:suspicious?) && avatarable.suspicious?
   end
 
   def show_custom_avatar?
-    avatarable.custom_avatar? && !suspicious?
+    avatarable&.custom_avatar? && !suspicious?
   end
 end

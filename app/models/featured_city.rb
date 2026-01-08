@@ -20,6 +20,8 @@
 #  index_featured_cities_on_slug                   (slug) UNIQUE
 #
 class FeaturedCity < ApplicationRecord
+  include Locatable
+
   validates :name, presence: true
   validates :slug, presence: true, uniqueness: true
   validates :city, presence: true
@@ -73,6 +75,35 @@ class FeaturedCity < ApplicationRecord
     end
   end
 
+  def alpha2
+    country_code
+  end
+
+  def continent
+    country&.continent
+  end
+
+  def bounds
+    return nil unless geocoded?
+
+    offset = 0.5
+
+    {
+      southwest: [longitude.to_f - offset, latitude.to_f - offset],
+      northeast: [longitude.to_f + offset, latitude.to_f + offset]
+    }
+  end
+
+  def stamps
+    @stamps ||= begin
+      event_stamps = events.flat_map { |event| Stamp.for_event(event) }
+      country_stamp = Stamp.for_country(country_code)
+      stamps = event_stamps
+      stamps << country_stamp if country_stamp
+      stamps.uniq { |s| s.code }
+    end
+  end
+
   def nearby_users(radius_km: 100, limit: 12, exclude_ids: [])
     return [] unless coordinates.present?
 
@@ -91,20 +122,23 @@ class FeaturedCity < ApplicationRecord
       .sort_by { |u| u[:distance_km] }
   end
 
-  def nearby_events(radius_km: 250, limit: 12)
+  def nearby_events(radius_km: 250, limit: 12, exclude_ids: [])
     return [] unless coordinates.present?
 
-    Event.includes(:series)
+    scope = Event.includes(:series, :participants)
       .where.not(latitude: nil, longitude: nil)
       .where.not(city: city)
-      .map do |event|
-        distance = Geocoder::Calculations.distance_between(
-          coordinates,
-          [event.latitude, event.longitude],
-          units: :km
-        )
-        {event: event, distance_km: distance.round} if distance <= radius_km
-      end
+
+    scope = scope.where.not(id: exclude_ids) if exclude_ids.any?
+
+    scope.map do |event|
+      distance = Geocoder::Calculations.distance_between(
+        coordinates,
+        [event.latitude, event.longitude],
+        units: :km
+      )
+      {event: event, distance_km: distance.round} if distance <= radius_km
+    end
       .compact
       .sort_by { |e| e[:event].start_date || Time.at(0).to_date }
       .last(limit)

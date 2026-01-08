@@ -1,0 +1,5 @@
+<%= turbo_frame_tag dom_id(@event, :hover_card) do %>
+  <div class="w-80 rounded-2xl overflow-hidden shadow-2xl">
+    <%= render "content", event: @event %>
+  </div>
+<% end %>

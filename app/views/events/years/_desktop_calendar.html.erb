@@ -34,13 +34,14 @@
             <% month_events.each do |event| %>
               <% featured_bg = event.static_metadata.featured_background.presence || "#1f2937" %>
 
-              <%= link_to event_path(event), class: "group/card relative z-10 hover:z-50" do %>
-                <div class="w-20 h-20 rounded-xl overflow-hidden ring-2 ring-gray-100 group-hover/card:ring-4 group-hover/card:ring-[--brand-color] transition-all duration-200 transform group-hover/card:scale-105 shadow-sm" style="--brand-color: <%= featured_bg %>;">
-                  <%= image_tag event.avatar_image_path, alt: event.name, class: "w-full h-full object-cover", loading: "lazy" %>
-                </div>
-
-                <%= render "events/years/event_hover_card", event: event %>
-              <% end %>
+              <div class="relative group/card" data-controller="hover-card" data-action="mouseenter->hover-card#reveal">
+                <%= link_to event_path(event) do %>
+                  <div class="w-20 h-20 rounded-xl overflow-hidden ring-2 ring-gray-100 group-hover/card:ring-4 group-hover/card:ring-[--brand-color] transition-all duration-200 transform group-hover/card:scale-105 shadow-sm" style="--brand-color: <%= featured_bg %>;">
+                    <%= image_tag event.avatar_image_path, alt: event.name, class: "w-full h-full object-cover", loading: "lazy" %>
+                  </div>
+                <% end %>
+                <%= render HoverCard::EventComponent.new(record: event) %>
+              </div>
             <% end %>
           </div>
         <% else %>

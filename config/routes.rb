@@ -37,16 +37,77 @@ Rails.application.routes.draw do
 
   resources :topics, param: :slug, only: [:index, :show]
   resources :cfp, only: :index
-  resources :countries, param: :slug, only: [:index, :show]
+
+  resources :continents, param: :continent, only: [:index, :show] do
+    scope module: :locations do
+      resources :upcoming, only: [:index]
+      resources :past, only: [:index]
+      resources :users, only: [:index]
+      resources :stamps, only: [:index]
+      resources :map, only: [:index]
+    end
+    resources :countries, only: [:index], module: :continents
+  end
+
+  resources :countries, param: :country, only: [:index, :show] do
+    scope module: :locations do
+      resources :upcoming, only: [:index]
+      resources :past, only: [:index]
+      resources :users, only: [:index]
+      resources :stamps, only: [:index]
+      resources :map, only: [:index]
+    end
+    resources :cities, only: [:index], module: :countries
+  end
 
   get "/states", to: "states#index", as: :states
   get "/states/:alpha2", to: "states#country_index", as: :country_states
-  get "/states/:alpha2/:slug", to: "states#show", as: :state
+  get "/states/:state_alpha2/:state_slug", to: "states#show", as: :state
+  scope "/states/:state_alpha2/:state_slug", as: :state do
+    scope module: :locations do
+      resources :upcoming, only: [:index]
+      resources :past, only: [:index]
+      resources :users, only: [:index]
+      resources :stamps, only: [:index]
+      resources :map, only: [:index]
+    end
+    resources :cities, only: [:index], module: :states
+  end
 
   get "/cities", to: "cities#index", as: :cities
-  get "/cities/:alpha2/:state/:city", to: "cities#show_with_state", as: :city_with_state, constraints: {alpha2: /[a-z]{2}/i}
+
   get "/cities/:alpha2/:city", to: "cities#show_by_country", as: :city_by_country, constraints: {alpha2: /[a-z]{2}/i}
+  scope "/cities/:alpha2/:city", as: :city_by_country, constraints: {alpha2: /[a-z]{2}/i} do
+    scope module: :locations do
+      resources :upcoming, only: [:index]
+      resources :past, only: [:index]
+      resources :users, only: [:index]
+      resources :stamps, only: [:index]
+      resources :map, only: [:index]
+    end
+  end
+
+  get "/cities/:alpha2/:state/:city", to: "cities#show_with_state", as: :city_with_state, constraints: {alpha2: /[a-z]{2}/i}
+  scope "/cities/:alpha2/:state/:city", as: :city_with_state, constraints: {alpha2: /[a-z]{2}/i} do
+    scope module: :locations do
+      resources :upcoming, only: [:index]
+      resources :past, only: [:index]
+      resources :users, only: [:index]
+      resources :stamps, only: [:index]
+      resources :map, only: [:index]
+    end
+  end
+
   get "/cities/:slug", to: "cities#show", as: :city
+  scope "/cities/:slug", as: :city do
+    scope module: :locations do
+      resources :upcoming, only: [:index]
+      resources :past, only: [:index]
+      resources :users, only: [:index]
+      resources :stamps, only: [:index]
+      resources :map, only: [:index]
+    end
+  end
 
   resources :featured_cities, only: [:create, :destroy], param: :slug
 
@@ -103,6 +164,11 @@ Rails.application.routes.draw do
 
   resources :speakers, param: :slug, only: [:index]
   get "/speakers/:slug", to: redirect("/profiles/%{slug}", status: 301), as: :speaker
+
+  namespace :hover_cards do
+    resources :users, only: [:show], param: :slug
+    resources :events, only: [:show], param: :slug
+  end
 
   resources :profiles, param: :slug, only: [:show, :update, :edit] do
     scope module: :profiles do

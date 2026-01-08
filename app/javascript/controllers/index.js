@@ -26,6 +26,9 @@ application.register("dropdown", DropdownController)
 import EventController from "./event_controller"
 application.register("event", EventController)
 
+import HoverCardController from "./hover_card_controller"
+application.register("hover-card", HoverCardController)
+
 import EventListController from "./event_list_controller"
 application.register("event-list", EventListController)
 
