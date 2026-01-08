@@ -169,7 +169,7 @@ gem "avo", "~> 3.27"
 gem "marksmith", "~> 0.4"
 
 # A fast, safe, extensible parser for CommonMark. This wraps the comrak Rust crate.
-# gem "commonmarker", "~> 2.6"
+gem "commonmarker", ">= 2.6.1"
 
 # ActiveRecord like interface to read only access and query static YAML files
 gem "frozen_record", "~> 0.27.2"
