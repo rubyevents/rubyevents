@@ -1,38 +1,46 @@
 import { Controller } from '@hotwired/stimulus'
+import { useWindowResize } from 'stimulus-use'
 
 // Connects to data-controller="hover-card"
 export default class extends Controller {
   static targets = ['card']
 
   connect () {
-    this.adjustPosition()
-    window.addEventListener('resize', this.adjustPosition.bind(this))
+    useWindowResize(this)
   }
 
-  disconnect () {
-    window.removeEventListener('resize', this.adjustPosition.bind(this))
+  reveal () {
+    if (!this.hasCardTarget) return
+    if (this.revealed) return
+
+    this.revealed = true
+    this.cardTarget.hidden = false
+    this.scheduleAdjustPosition()
+  }
+
+  windowResize () {
+    if (this.revealed) {
+      this.cardTarget.style.transform = ''
+      this.scheduleAdjustPosition()
+    }
+  }
+
+  scheduleAdjustPosition () {
+    requestAnimationFrame(() => this.adjustPosition())
   }
 
   adjustPosition () {
-    if (!this.hasCardTarget) return
-
-    const rect = this.element.getBoundingClientRect()
-    const cardWidth = this.cardTarget.offsetWidth
-    const halfCard = cardWidth / 2
-    const avatarCenter = rect.left + rect.width / 2
+    const card = this.cardTarget
+    const rect = card.getBoundingClientRect()
     const viewportWidth = window.innerWidth
+    const margin = 16
 
-    const spaceOnLeft = avatarCenter
-    const spaceOnRight = viewportWidth - avatarCenter
-
-    this.cardTarget.classList.remove('left-0', 'right-0', 'left-1/2', '-translate-x-1/2')
-
-    if (spaceOnLeft < halfCard) {
-      this.cardTarget.classList.add('left-0')
-    } else if (spaceOnRight < halfCard) {
-      this.cardTarget.classList.add('right-0')
-    } else {
-      this.cardTarget.classList.add('left-1/2', '-translate-x-1/2')
+    if (rect.left < margin) {
+      const offset = margin - rect.left
+      card.style.transform = `translateX(calc(-50% + ${offset}px))`
+    } else if (rect.right > viewportWidth - margin) {
+      const offset = rect.right - (viewportWidth - margin)
+      card.style.transform = `translateX(calc(-50% - ${offset}px))`
     }
   }
 }

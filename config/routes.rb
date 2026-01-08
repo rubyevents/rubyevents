@@ -165,6 +165,11 @@ Rails.application.routes.draw do
   resources :speakers, param: :slug, only: [:index]
   get "/speakers/:slug", to: redirect("/profiles/%{slug}", status: 301), as: :speaker
 
+  namespace :hover_cards do
+    resources :users, only: [:show], param: :slug
+    resources :events, only: [:show], param: :slug
+  end
+
   resources :profiles, param: :slug, only: [:show, :update, :edit] do
     scope module: :profiles do
       resources :talks, only: [:index]
