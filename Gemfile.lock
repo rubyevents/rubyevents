@@ -294,7 +294,11 @@ GEM
       concurrent-ruby (~> 1.1)
       webrick (~> 1.7)
       websocket-driver (~> 0.7)
-    ffi (1.17.2)
+    ffi (1.17.3)
+    ffi (1.17.3-aarch64-linux-gnu)
+    ffi (1.17.3-arm64-darwin)
+    ffi (1.17.3-x86_64-darwin)
+    ffi (1.17.3-x86_64-linux-gnu)
     fiber-annotation (0.2.0)
     fiber-local (1.1.0)
       fiber-storage
@@ -401,6 +405,7 @@ GEM
       net-imap
       net-pop
       net-smtp
+    mapkick-rb (0.2.0)
     marcel (1.1.0)
     marksmith (0.4.7)
       activesupport
@@ -778,6 +783,7 @@ DEPENDENCIES
   json_schemer
   kamal (= 2.7.0)
   listen (~> 3.5)
+  mapkick-rb (~> 0.2.0)
   marksmith
   meta-tags
   mini_magick

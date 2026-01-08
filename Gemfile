@@ -210,6 +210,9 @@ gem "geocoder"
 # RubyGems.org API wrapper for gem information
 gem "gems"
 
+# Create beautiful JavaScript maps with one line of Ruby
+gem "mapkick-rb", "~> 0.2.0"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "bundler-audit", require: false

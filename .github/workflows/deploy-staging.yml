@@ -32,6 +32,7 @@ jobs:
           KAMAL_REGISTRY_PASSWORD: ${{ secrets.KAMAL_REGISTRY_PASSWORD }}
           KAMAL_RAILS_MASTER_KEY: ${{ secrets.KAMAL_RAILS_MASTER_KEY }}
           GEOLOCATE_API_KEY: ${{ secrets.GEOLOCATE_API_KEY }}
+          MAPBOX_ACCESS_TOKEN: ${{ secrets.MAPBOX_ACCESS_TOKEN }}
         run: bundle exec kamal deploy -d staging
 
       - name: Cleanup on cancellation

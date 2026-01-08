@@ -67,6 +67,7 @@ env:
   secret:
     - RAILS_MASTER_KEY
     - GEOLOCATE_API_KEY
+    - MAPBOX_ACCESS_TOKEN
 
 # Aliases are triggered with "bin/kamal <alias>". You can overwrite arguments on invocation:
 # "bin/kamal logs -r job" will tail logs from the first server in the job section.
