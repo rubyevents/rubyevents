@@ -209,7 +209,7 @@ class Profiles::WrappedController < ApplicationController
 
     @is_contributor = @user.contributor?
     @contributor = @user.contributor
-    @has_passport = @user.passports.any?
+    @has_passport = @user.ruby_passport_claimed?
     @passports = @user.passports
 
     @involvements_in_year = @user.event_involvements

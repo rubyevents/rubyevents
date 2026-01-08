@@ -138,9 +138,9 @@ class Locations::BaseController < ApplicationController
 
   def location_users
     @location_users ||= if city? || state?
-      @location.users.geocoded.order(talks_count: :desc)
+      @location.users.geocoded.order(talks_count: :desc).preloaded
     else
-      @location.users.canonical.order(talks_count: :desc)
+      @location.users.canonical.order(talks_count: :desc).preloaded
     end
   end
 

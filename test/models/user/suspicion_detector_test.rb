@@ -406,7 +406,7 @@ class User::SuspicionDetectorTest < ActiveSupport::TestCase
     user.connected_accounts.create!(provider: "passport", uid: "ruby-passport-123")
 
     assert user.verified?
-    assert user.passports.any?
+    assert user.ruby_passport_claimed?
     assert_not user.suspicion_detector.calculate_suspicious?
   end
 end

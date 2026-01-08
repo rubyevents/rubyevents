@@ -59,7 +59,7 @@ class User::SuspicionDetector < ActiveRecord::AssociatedObject
   def calculate_suspicious?
     return false unless user.verified?
     return false if user.suspicion_cleared?
-    return false if user.passports.any?
+    return false if user.ruby_passport_claimed?
 
     signals.count(true) >= SIGNAL_THRESHOLD
   end

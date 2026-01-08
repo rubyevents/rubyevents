@@ -72,7 +72,7 @@ class Stamp
         stamps << contributor_stamp
       end
 
-      if user.passports.any? && passport_stamp
+      if user.ruby_passport_claimed? && passport_stamp
         stamps << passport_stamp
       end
 

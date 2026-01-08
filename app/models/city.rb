@@ -249,6 +249,7 @@ class City
     User.geocoded
       .near(coordinates, radius_km, units: :km)
       .where.not(id: exclude_ids)
+      .preloaded
       .limit(limit)
       .map do |user|
         distance = Geocoder::Calculations.distance_between(
