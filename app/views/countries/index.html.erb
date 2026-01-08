@@ -23,7 +23,7 @@
         <div
           id="events-<%= continent %>"
           class="
-            grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 lg:gap-x-12 gap-y-2
+            grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-x-8 lg:gap-x-12 gap-y-2
             min-w-full pt-4 pb-8
           ">
           <% countries.sort_by(&:iso_short_name).each do |country| %>
@@ -36,13 +36,14 @@
                 <span class="event-name"><%= country.emoji_flag %>
                   <%= country.name %></span>
               </div>
-              <div class="flex gap-2">
+              <div class="flex gap-2 items-center">
                 <% if users_count > 0 %>
                   <%= ui_badge(
                         "#{users_count} #{"Rubyist".pluralize(users_count)}",
                         kind: :primary,
                         outline: true,
-                        size: :lg
+                        size: :md,
+                        class: "whitespace-nowrap"
                       ) %>
                 <% end %>
                 <%= ui_badge(
