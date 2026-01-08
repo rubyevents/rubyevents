@@ -80,7 +80,14 @@ class Country
   end
 
   def stamps
-    Stamp.all.select { |stamp| stamp.has_country? && stamp.country&.alpha2 == alpha2 }
+    stamps = Stamp.all.select { |stamp| stamp.has_country? && stamp.country&.alpha2 == alpha2 }
+
+    if alpha2 == "GB"
+      uk_nation_stamps = Stamp.all.select { |stamp| stamp.has_country? && stamp.country.is_a?(UKNation) }
+      stamps = (stamps + uk_nation_stamps).uniq { |s| s.code }
+    end
+
+    stamps
   end
 
   def held_in_sentence

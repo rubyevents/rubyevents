@@ -87,6 +87,10 @@ class Event::Venue < ActiveRecord::AssociatedObject
     file["instructions"]
   end
 
+  def url
+    file["url"]
+  end
+
   def accessibility
     file["accessibility"] || {}
   end

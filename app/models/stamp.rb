@@ -52,13 +52,35 @@ class Stamp
       @online_stamp ||= all.find { |s| s.code == "ONLINE" }
     end
 
-    def for_country(country)
-      country_stamps.find { |s| s.code == country }
-    end
+    def for(country_code: nil, state_code: nil, events: nil)
+      if events
+        stamps = []
 
-    def for(events:)
-      event_countries = events.map { |event| event.country }.compact.uniq
-      all.select { |stamp| stamp.has_country? && event_countries.include?(stamp.country) }
+        events.each do |event|
+          next unless event.country
+
+          country_stamp = country_stamps.find { |s| s.code == event.country_code }
+          stamps << country_stamp if country_stamp
+
+          if event.country_code == "GB" && event.state.present?
+            uk_nation = UKNation.find_by_code(event.state)
+            stamps.concat(uk_nation.stamps) if uk_nation
+          end
+        end
+
+        return stamps.uniq { |s| s.code }
+      end
+
+      stamps = []
+      country_stamp = country_stamps.find { |s| s.code == country_code }
+      stamps << country_stamp if country_stamp
+
+      if country_code == "GB" && state_code.present?
+        uk_nation = UKNation.find_by_code(state_code)
+        stamps.concat(uk_nation.stamps) if uk_nation
+      end
+
+      stamps
     end
 
     def for_user(user)
@@ -202,6 +224,7 @@ class Stamp
     stamp_upper = stamp_code.upcase
     file_path = "#{stamp_code}.webp"
     country = Country.find_by(country_code: stamp_upper)
+    uk_nation = UKNation.find_by_code(stamp_upper) unless country
 
     if country
       new(
@@ -209,6 +232,14 @@ class Stamp
         name: country.name,
         file_path: file_path,
         country: country,
+        has_country: true
+      )
+    elsif uk_nation
+      new(
+        code: stamp_upper,
+        name: uk_nation.name,
+        file_path: file_path,
+        country: uk_nation,
         has_country: true
       )
     else
