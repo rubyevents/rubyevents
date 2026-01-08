@@ -263,6 +263,20 @@ Start with the basic structure:
   video_provider: "scheduled"
 ```
 
+#### Talks not in English
+
+For talks not in English, prefer English descriptions and titles if provided by the event.
+Otherwise, use the original language for the description.
+Translate the title to English, and store the title in its original language in original_title.
+
+```yaml
+- id: "name-talk-type-event-name-year"
+  title: "Talk title in English"
+  original_title: "Talk title in original language"
+  date: "2026-02-28"
+  description: "Description in original language"
+```
+
 ### 5. Verify Speakers Exist
 
 Check if the speaker exists in [speakers.yml](/data/speakers.yml).
