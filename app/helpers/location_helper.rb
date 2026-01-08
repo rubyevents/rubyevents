@@ -5,25 +5,10 @@ module LocationHelper
     location.path
   end
 
-  def location_upcoming_path(location)
-    case location
-    when Continent
-      continent_upcoming_index_path(location)
-    when Country, UKNation
-      country_upcoming_index_path(location)
-    when State
-      state_upcoming_index_path(state_alpha2: location.country.code, state_slug: location.slug)
-    when FeaturedCity
-      city_upcoming_index_path(location)
-    when City
-      city_upcoming_path_for(location)
-    else
-      "#upcoming"
-    end
-  end
-
   def location_past_path(location)
     case location
+    when OnlineLocation
+      online_past_index_path
     when Continent
       continent_past_index_path(location)
     when Country, UKNation
@@ -41,6 +26,8 @@ module LocationHelper
 
   def location_users_path(location)
     case location
+    when OnlineLocation
+      nil
     when Continent
       continent_users_path(location)
     when Country, UKNation
@@ -91,6 +78,8 @@ module LocationHelper
 
   def location_map_path(location)
     case location
+    when OnlineLocation
+      nil
     when Continent
       continent_map_index_path(location)
     when Country, UKNation
@@ -108,6 +97,8 @@ module LocationHelper
 
   def location_subtitle(location)
     case location
+    when OnlineLocation
+      "Virtual and remote events"
     when Continent
       location.name
     when Country, UKNation
@@ -122,18 +113,10 @@ module LocationHelper
   end
 
   def location_has_routes?(location)
-    location.is_a?(Continent) || location.is_a?(Country) || location.is_a?(UKNation) || location.is_a?(State) || location.is_a?(FeaturedCity) || location.is_a?(City)
+    location.is_a?(OnlineLocation) || location.is_a?(Continent) || location.is_a?(Country) || location.is_a?(UKNation) || location.is_a?(State) || location.is_a?(FeaturedCity) || location.is_a?(City)
   end
 
   private
-
-  def city_upcoming_path_for(city)
-    if city.state_code.present? && city.state.present?
-      city_with_state_upcoming_index_path(alpha2: city.country_code.downcase, state: city.state.slug, city: city.slug)
-    else
-      city_by_country_upcoming_index_path(alpha2: city.country_code.downcase, city: city.slug)
-    end
-  end
 
   def city_past_path_for(city)
     if city.state_code.present? && city.state.present?

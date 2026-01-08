@@ -18,7 +18,7 @@ class CountriesController < ApplicationController
       .grouped_by_country
       .to_h
 
-    @users_by_country = User.geocoded
+    @users_by_country = User.indexable.geocoded
       .group(:country_code)
       .count
       .transform_keys { |code| Country.find_by(country_code: code) }
@@ -47,7 +47,7 @@ class CountriesController < ApplicationController
       .sort_by { |city, _events| city }
       .to_h
 
-    @users = @country.users.geocoded.order(talks_count: :desc)
+    @users = @country.users.indexable.geocoded.order(talks_count: :desc)
     @stamps = @country.stamps
     @continent = Continent.find_by_name(@country.continent)
     @location = @country
@@ -92,7 +92,8 @@ class CountriesController < ApplicationController
 
     return [] unless avg_lat && avg_lng
 
-    User.where.not(country_code: country.alpha2)
+    User.indexable
+      .where.not(country_code: country.alpha2)
       .where.not(latitude: nil)
       .near([avg_lat, avg_lng], 500, units: :km)
       .limit(20)

@@ -20,4 +20,6 @@ Contributions are welcome!
 
 Thank you [AppSignal](https://appsignal.com/r/eeab047472) for providing the APM tool that helps us monitor the application.
 
+Thank you [Typesense](https://typesense.org/) for sponsoring our [Typesense Cloud](https://cloud.typesense.org/) instance that powers the search functionality.
+
 If you want to try Hetzner, you can use our [referral link](https://hetzner.cloud/?ref=gyPLk7XJthjg) to get a $20 credit.

@@ -42,7 +42,7 @@ class TalksController < ApplicationController
   private
 
   def search_backend
-    Search::Backend::SQLiteFTS
+    @search_backend ||= Search::Backend.resolve(params[:search_backend])
   end
 
   def search_options

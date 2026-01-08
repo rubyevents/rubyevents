@@ -306,7 +306,7 @@ class UserTest < ActiveSupport::TestCase
   test "updating location enqueues geocoding job" do
     user = User.create!(name: "Geo User", github_handle: "geo-user")
 
-    assert_enqueued_jobs 1 do
+    assert_enqueued_with(job: GeocodeUserJob) do
       user.update!(location: "Berlin, Germany")
     end
   end
@@ -314,7 +314,7 @@ class UserTest < ActiveSupport::TestCase
   test "updating location does not enqueue job when location unchanged" do
     user = User.create!(name: "Geo User 2", github_handle: "geo-user-2", location: "Berlin, Germany")
 
-    assert_no_enqueued_jobs do
+    assert_no_enqueued_jobs(only: GeocodeUserJob) do
       user.update!(name: "New Name")
     end
   end
@@ -345,5 +345,81 @@ class UserTest < ActiveSupport::TestCase
     user = User.create!(name: "Test User", country_code: nil)
 
     assert_nil user.country
+  end
+
+  test "searchable scope returns users with searchable setting enabled" do
+    searchable_user = User.create!(name: "Searchable User", github_handle: "searchable-user")
+    non_searchable_user = User.create!(name: "Non Searchable User", github_handle: "non-searchable-user")
+    non_searchable_user.update!(searchable: false)
+
+    assert_includes User.searchable, searchable_user
+    assert_not_includes User.searchable, non_searchable_user
+  end
+
+  test "indexable scope includes speakers regardless of searchable setting" do
+    speaker = User.create!(name: "Speaker User", github_handle: "speaker-indexable", talks_count: 5)
+    speaker.update!(searchable: false)
+
+    assert_includes User.indexable, speaker
+  end
+
+  test "indexable scope includes non-speakers with searchable enabled" do
+    user = User.create!(name: "Regular User", github_handle: "regular-indexable", talks_count: 0)
+
+    assert_includes User.indexable, user
+  end
+
+  test "indexable scope excludes non-speakers with searchable disabled" do
+    user = User.create!(name: "Hidden User", github_handle: "hidden-indexable", talks_count: 0)
+    user.update!(searchable: false)
+
+    assert_not_includes User.indexable, user
+  end
+
+  test "indexable scope excludes users marked for deletion" do
+    user = User.create!(name: "Deleted User", github_handle: "deleted-indexable", marked_for_deletion: true)
+
+    assert_not_includes User.indexable, user
+  end
+
+  test "indexable scope excludes non-canonical users" do
+    canonical = User.create!(name: "Canonical", github_handle: "canonical-indexable")
+    non_canonical = User.create!(name: "Non Canonical", github_handle: "non-canonical-indexable", canonical_id: canonical.id)
+
+    assert_includes User.indexable, canonical
+    assert_not_includes User.indexable, non_canonical
+  end
+
+  test "indexable? returns true for speakers regardless of searchable setting" do
+    speaker = User.create!(name: "Speaker", github_handle: "speaker-method", talks_count: 5)
+    speaker.update!(searchable: false)
+
+    assert speaker.indexable?
+  end
+
+  test "indexable? returns true for non-speakers with searchable enabled" do
+    user = User.create!(name: "Regular", github_handle: "regular-method", talks_count: 0)
+
+    assert user.indexable?
+  end
+
+  test "indexable? returns false for non-speakers with searchable disabled" do
+    user = User.create!(name: "Hidden", github_handle: "hidden-method", talks_count: 0)
+    user.update!(searchable: false)
+
+    assert_not user.indexable?
+  end
+
+  test "indexable? returns false for users marked for deletion" do
+    user = User.create!(name: "Deleted", github_handle: "deleted-method", marked_for_deletion: true)
+
+    assert_not user.indexable?
+  end
+
+  test "indexable? returns false for non-canonical users" do
+    canonical = User.create!(name: "Canonical", github_handle: "canonical-method")
+    non_canonical = User.create!(name: "Non Canonical", github_handle: "non-canonical-method", canonical_id: canonical.id)
+
+    assert_not non_canonical.indexable?
   end
 end

@@ -38,15 +38,27 @@
               </label>
             </div>
 
-            <div class="form-control opacity-50">
-              <label class="label cursor-not-allowed justify-start gap-4">
-                <input type="checkbox" class="toggle toggle-primary" disabled checked>
-                <div>
-                  <span class="label-text font-medium">Profile shows up in global search</span>
-                  <p class="text-sm text-gray-500">Allow your profile to appear in search results. <span class="italic">(Coming soon)</span></p>
-                </div>
-              </label>
-            </div>
+            <% if Current.user.talks_count > 0 %>
+              <div class="form-control opacity-50">
+                <label class="label cursor-not-allowed justify-start gap-4">
+                  <input type="checkbox" class="toggle toggle-primary" disabled checked>
+                  <div>
+                    <span class="label-text font-medium">Profile shows up in global search</span>
+                    <p class="text-sm text-gray-500">As a speaker, your profile is always searchable.</p>
+                  </div>
+                </label>
+              </div>
+            <% else %>
+              <div class="form-control">
+                <label class="label cursor-pointer justify-start gap-4">
+                  <%= form.check_box :searchable, class: "toggle toggle-primary" %>
+                  <div>
+                    <span class="label-text font-medium">Profile shows up in global search</span>
+                    <p class="text-sm text-gray-500">Allow your profile to appear in search results.</p>
+                  </div>
+                </label>
+              </div>
+            <% end %>
           </div>
         </div>
 

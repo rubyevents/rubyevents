@@ -61,8 +61,10 @@ class Talk < ApplicationRecord
   include Rollupable
   include Sluggable
   include Suggestable
-  include Searchable
   include Watchable
+
+  include Talk::SQLiteFTSSearchable
+  include Talk::TypesenseSearchable
 
   configure_slug(attribute: :title, auto_suffix_on_collision: true)
 
@@ -166,7 +168,7 @@ class Talk < ApplicationRecord
     talk = find_by(slug: slug)
     return talk if talk
 
-    alias_record = Alias.find_by(aliasable_type: "Talk", slug: slug)
+    alias_record = ::Alias.find_by(aliasable_type: "Talk", slug: slug)
     alias_record&.aliasable
   end
 
@@ -470,7 +472,7 @@ class Talk < ApplicationRecord
   end
 
   def location
-    static_metadata.try(:location) || event.location
+    static_metadata.try(:location) || event&.location
   end
 
   def location_info
@@ -497,7 +499,7 @@ class Talk < ApplicationRecord
 
   def unused_slugs
     used_slugs = Talk.excluding(self).where(slug: slug_candidates).pluck(:slug)
-    used_alias_slugs = Alias.where(aliasable_type: "Talk", slug: slug_candidates)
+    used_alias_slugs = ::Alias.where(aliasable_type: "Talk", slug: slug_candidates)
       .where.not(aliasable_id: id)
       .pluck(:slug)
     slug_candidates - used_slugs - used_alias_slugs

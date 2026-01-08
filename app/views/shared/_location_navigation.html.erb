@@ -10,8 +10,10 @@
       Past Events
     <% end %>
 
-    <%= link_to location_users_path(location), role: "tab", class: "tab whitespace-nowrap #{"tab-active" if current_tab == "users"}" do %>
-      Rubyists
+    <% if location_users_path(location).present? %>
+      <%= link_to location_users_path(location), role: "tab", class: "tab whitespace-nowrap #{"tab-active" if current_tab == "users"}" do %>
+        Rubyists
+      <% end %>
     <% end %>
 
     <% if show_countries && location_countries_path(location).present? %>
@@ -38,8 +40,10 @@
       <% end %>
     <% end %>
 
-    <%= link_to location_map_path(location), role: "tab", class: "tab whitespace-nowrap #{"tab-active" if current_tab == "map"}" do %>
-      Map
+    <% if location_map_path(location).present? %>
+      <%= link_to location_map_path(location), role: "tab", class: "tab whitespace-nowrap #{"tab-active" if current_tab == "map"}" do %>
+        Map
+      <% end %>
     <% end %>
   </div>
 </div>

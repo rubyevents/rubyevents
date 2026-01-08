@@ -287,8 +287,8 @@ class TalkTest < ActiveSupport::TestCase
     assert_equal [@talk], Talk.ft_search("Hotwire Cookbook: Common Uses, Essential Patterns")
     assert_equal [@talk], Talk.ft_search('Hotwire"') # with an escaped quote
 
-    @talk.index.destroy!
-    @talk.reload.reindex # Need to reload or we get a FrozenError from trying to update attributes on the destroyed index record.
+    @talk.fts_index.destroy!
+    @talk.reload.reindex_fts # Need to reload or we get a FrozenError from trying to update attributes on the destroyed index record.
     assert_equal [@talk], Talk.ft_search("Hotwire Cookbook")
   end
 

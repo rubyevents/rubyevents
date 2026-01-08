@@ -163,7 +163,7 @@ GEM
       zeitwerk (>= 2.6.12)
     avo-icons (0.1.1)
       inline_svg
-    base64 (0.3.0)
+    base64 (0.2.0)
     bcrypt (3.1.20)
     bcrypt_pbkdf (1.1.1)
     better_html (2.2.0)
@@ -690,6 +690,13 @@ GEM
       railties (>= 7.1.0)
     turbo_power (0.7.0)
       turbo-rails (>= 1.3.0)
+    typesense (4.1.0)
+      base64 (~> 0.2.0)
+      faraday (~> 2.8)
+      json (~> 2.9)
+    typesense-rails (1.0.0.rc4)
+      json (>= 1.5.1)
+      typesense (>= 0.13.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unaccent (0.4.0)
@@ -819,6 +826,8 @@ DEPENDENCIES
   standardrb (~> 1.0)
   thruster
   turbo-rails
+  typesense (~> 4.1)
+  typesense-rails (~> 1.0.0.rc4)
   tzinfo-data
   vcr (~> 6.1)
   view_component

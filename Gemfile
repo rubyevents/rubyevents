@@ -213,6 +213,12 @@ gem "gems"
 # Create beautiful JavaScript maps with one line of Ruby
 gem "mapkick-rb", "~> 0.2.0"
 
+# Typesense Ruby client
+gem "typesense", "~> 4.1"
+
+# Typesense integration to your favorite ORM
+gem "typesense-rails", "~> 1.0.0.rc4"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "bundler-audit", require: false

@@ -24,7 +24,7 @@ module Static
 
       imported_user_ids = []
 
-      ::User.skip_callback(:commit, :after, :reindex)
+      ::User.skip_callback(:commit, :after, :reindex_fts)
 
       begin
         ::User.transaction do

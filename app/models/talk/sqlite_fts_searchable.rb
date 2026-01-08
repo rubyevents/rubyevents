@@ -1,12 +1,14 @@
-module Talk::Searchable
+# frozen_string_literal: true
+
+module Talk::SQLiteFTSSearchable
   extend ActiveSupport::Concern
 
   DATE_WEIGHT = 0.000000001
 
   included do
-    has_one :index, foreign_key: :rowid, inverse_of: :talk, dependent: :destroy
+    has_one :fts_index, foreign_key: :rowid, inverse_of: :talk, dependent: :destroy, class_name: "Talk::Index"
 
-    scope :ft_search, ->(query) { select("talks.*").joins(:index).merge(Talk::Index.search(query)) }
+    scope :ft_search, ->(query) { select("talks.*").joins(:fts_index).merge(Talk::Index.search(query)) }
 
     scope :with_snippets, ->(**options) do
       select("talks.*").merge(Talk::Index.snippets(**options))
@@ -22,24 +24,21 @@ module Talk::Searchable
     # Filter on FTS table directly for better performance with search
     # This allows FTS5 to optimize the query when combined with MATCH
     scope :ft_watchable, -> do
-      joins(:index).where("talks_search_index.video_provider IN (?)", Talk::WATCHABLE_PROVIDERS)
+      joins(:fts_index).where("talks_search_index.video_provider IN (?)", Talk::WATCHABLE_PROVIDERS)
     end
 
-    after_save_commit :reindex
-  end
-
-  class_methods do
-    def reindex_all
-      includes(:index).find_each(&:reindex)
-    end
+    after_save_commit :reindex_fts
   end
 
   def title_with_snippet
     try(:title_snippet) || title
   end
 
-  def index
-    super || build_index
+  def fts_index
+    super || build_fts_index
   end
-  delegate :reindex, to: :index
+
+  def reindex_fts
+    fts_index.reindex
+  end
 end

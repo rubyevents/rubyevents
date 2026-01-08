@@ -11,7 +11,9 @@
     data-spotlight-search-url-spotlight-organizations-value="<%= spotlight_organizations_path %>"
     data-spotlight-search-url-spotlight-locations-value="<%= spotlight_can_search_locations? ? spotlight_locations_path : nil %>"
     data-spotlight-search-url-spotlight-languages-value="<%= spotlight_can_search_languages? ? spotlight_languages_path : nil %>"
-    data-spotlight-search-main-resource-path-value="<%= spotlight_main_resource_path %>">
+    data-spotlight-search-url-spotlight-kinds-value="<%= spotlight_kinds_path %>"
+    data-spotlight-search-main-resource-path-value="<%= spotlight_main_resource_path %>"
+    data-spotlight-search-default-backend-value="<%= Search::Backend.default_backend_key %>">
     <div class="flex items-center gap-2 rounded-lg bg-white px-2 relative shrink-0">
       <%= fa("magnifying-glass", size: :md, style: :regular) %>
       <%= tag.input type: "text",
@@ -25,10 +27,26 @@
                 "spotlight-search#search keydown.enter->spotlight-search#navigate:stop",
               spotlight_search_target: "searchInput"
             } %>
-      <% if Rails.env.development? && false %>
+      <% if Rails.env.development? %>
+        <% default_backend = Search::Backend.default_backend_key.to_s %>
+        <% available_backends = Search::Backend.available_backends %>
+        <% sqlite_available = available_backends.include?(:sqlite_fts) %>
+        <% typesense_available = available_backends.include?(:typesense) %>
         <div class="flex items-center gap-1 absolute right-10 top-1/2 -translate-y-1/2" data-spotlight-search-target="backendToggle">
-          <span class="badge badge-xs cursor-pointer" data-action="click->spotlight-search#setBackend" data-backend="sqlite" data-spotlight-search-target="sqliteBadge">SQLite</span>
-          <span class="badge badge-xs cursor-pointer" data-action="click->spotlight-search#setBackend" data-backend="typesense" data-spotlight-search-target="typesenseBadge">Typesense</span>
+          <%= tag.span "SQLite",
+                class: "badge badge-xs #{sqlite_available ? "cursor-pointer" : "opacity-40 cursor-not-allowed"} #{(default_backend == "sqlite_fts") ? "badge-warning" : "badge-ghost"}",
+                data: {
+                  action: sqlite_available ? "click->spotlight-search#setBackend" : nil,
+                  backend: sqlite_available ? "sqlite_fts" : nil,
+                  spotlight_search_target: "sqliteBadge"
+                } %>
+          <%= tag.span "Typesense",
+                class: "badge badge-xs #{typesense_available ? "cursor-pointer" : "opacity-40 cursor-not-allowed"} #{(default_backend == "typesense") ? "badge-primary" : "badge-ghost"}",
+                data: {
+                  action: typesense_available ? "click->spotlight-search#setBackend" : nil,
+                  backend: typesense_available ? "typesense" : nil,
+                  spotlight_search_target: "typesenseBadge"
+                } %>
         </div>
       <% end %>
       <%= fa(
@@ -72,6 +90,11 @@
         id="topics_search_results"
         class="pb-4 border-b hidden"
         data-spotlight-search-target="topicsSearchResults"></div>
+
+      <div
+        id="kinds_search_results"
+        class="pb-4 border-b hidden"
+        data-spotlight-search-target="kindsSearchResults"></div>
 
       <div
         id="locations_search_results"

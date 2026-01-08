@@ -12,11 +12,11 @@
         <% @languages.each do |language| %>
           <%= link_to talks_path(language: language[:code]), target: "_top", class: "flex items-center justify-between gap-4 py-2 px-2 rounded hover:bg-gray-100 group" do %>
             <div class="flex items-center gap-3">
-              <span class="text-lg"><%= language_to_emoji(language[:name]) %></span>
+              <span class="text-lg"><%= language[:emoji_flag] %></span>
               <span class="font-medium"><%= language[:name] %></span>
             </div>
             <div class="flex items-center gap-4 text-sm text-gray-500">
-              <span class="text-xs">(<%= language[:talk_count] %> talks)</span>
+              <span class="text-xs">(<%= pluralize(language[:talk_count], "talk") %>)</span>
             </div>
           <% end %>
         <% end %>

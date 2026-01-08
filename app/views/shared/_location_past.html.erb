@@ -1,15 +1,20 @@
-<%# locals: (location:, events:, users:, event_map_markers:, geo_layers: [], nearby_users: []) %>
+<%# locals: (location:, events:, users:, event_map_markers:, geo_layers: [], nearby_users: [], events_by_city: {}) %>
 
 <%= turbo_refreshes_with method: :morph, scroll: :preserve %>
 
-<% title "Past Events in #{location.name}" %>
+<% if location.is_a?(OnlineLocation) %>
+  <% title "Past Online Ruby Events" %>
+<% else %>
+  <% title "Past Events in #{location.name}" %>
+<% end %>
 
+<% flag_code = location.respond_to?(:alpha2) ? location.alpha2 : nil %>
 <%= render "shared/location_header",
       name: location.name,
       subtitle: location_subtitle(location),
-      flag_code: location.respond_to?(:alpha2) ? location.alpha2 : nil,
-      emoji: location.is_a?(Continent) ? location.emoji_flag : nil,
-      stats: "#{pluralize(events.count, "past event")} in #{location.name}",
+      flag_code: flag_code,
+      emoji: (flag_code.blank? && location.respond_to?(:emoji_flag)) ? location.emoji_flag : nil,
+      stats: location.is_a?(OnlineLocation) ? "#{pluralize(events.count, "past event")} online" : "#{pluralize(events.count, "past event")} in #{location.name}",
       location: location %>
 
 <%= render "shared/location_navigation",
@@ -31,63 +36,15 @@
     </div>
 
     <div class="lg:col-span-1">
-      <div class="space-y-8">
-        <% if geo_layers.any? || event_map_markers.any? || location.bounds.present? %>
-          <div
-            data-controller="map"
-            <% if geo_layers.any? %> data-map-layers-value="<%= geo_layers.to_json %>"<% end %>
-            <% if geo_layers.empty? %> data-map-markers-value="<%= event_map_markers.to_json %>"<% end %>
-            <% if location.bounds.present? %> data-map-bounds-value="<%= location.bounds.to_json %>"<% end %>>
-            <div class="flex items-center justify-between mb-4">
-              <h3 class="font-bold text-gray-900">Past Events Map</h3>
-            </div>
-
-            <% if geo_layers.size > 1 %>
-              <div class="flex items-center gap-2 mb-4">
-                <%= render "shared/map_layer_controls", layers: geo_layers, selection: "radio", use_emoji: true %>
-              </div>
-            <% end %>
-
-            <div
-              id="sidebar-map"
-              class="w-full h-96 rounded-xl overflow-hidden border"
-              data-map-target="container"></div>
-          </div>
-        <% end %>
-
-        <%= render "shared/rubyists_preview",
-              users: users.limit(24),
-              title: "Rubyists in #{location.name}",
-              total_count: users.count,
-              view_all_path: location_users_path(location) %>
-
-        <% if nearby_users.present? && nearby_users.any? %>
-          <div>
-            <div class="flex justify-between items-center mb-4">
-              <h3 class="font-bold text-gray-900">Rubyists near <%= location.name %></h3>
-
-              <%= ui_badge(nearby_users.count, kind: :secondary, outline: true, size: :sm) %>
-            </div>
-
-            <div class="grid grid-cols-[repeat(auto-fill,3rem)] gap-2 justify-between">
-              <% nearby_users.first(24).each do |nearby| %>
-                <% user = nearby.is_a?(Hash) ? nearby[:user] : nearby %>
-                <% distance_km = nearby.is_a?(Hash) ? nearby[:distance_km] : nil %>
-
-                <div class="relative group">
-                  <%= render Ui::AvatarComponent.new(user, size: :md, hover_card: true) %>
-
-                  <% if distance_km %>
-                    <div class="absolute -bottom-1 -right-1 bg-gray-700 text-white text-[10px] px-1 rounded-full leading-tight">
-                      <%= distance_km %>km
-                    </div>
-                  <% end %>
-                </div>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-      </div>
+      <%= render "shared/location_sidebar",
+            location: location,
+            users: users,
+            nearby_users: nearby_users,
+            cities: events_by_city,
+            show_cities: events_by_city.any?,
+            event_map_markers: event_map_markers,
+            geo_layers: geo_layers,
+            map_title: "Past Events Map" %>
     </div>
   </div>
 </div>

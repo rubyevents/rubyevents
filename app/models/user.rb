@@ -54,13 +54,16 @@ class User < ApplicationRecord
   include ActionView::RecordIdentifier
   include Sluggable
   include Suggestable
-  include User::Searchable
+
+  include User::SQLiteFTSSearchable
+  include User::TypesenseSearchable
 
   configure_slug(attribute: :name, auto_suffix_on_collision: true)
 
   has_delegated_json :settings,
     feedback_enabled: true,
-    wrapped_public: false
+    wrapped_public: false,
+    searchable: true
 
   GITHUB_URL_PATTERN = %r{\A(https?://)?(www\.)?github\.com/}i
 
@@ -198,6 +201,10 @@ class User < ApplicationRecord
   scope :not_marked_for_deletion, -> { where(marked_for_deletion: false) }
   scope :with_public_wrapped, -> { where("json_extract(settings, '$.wrapped_public') = ?", true) }
   scope :with_feedback_enabled, -> { where("json_extract(settings, '$.feedback_enabled') = ?", true) }
+  scope :searchable, -> { where("json_extract(settings, '$.searchable') = ?", true) }
+  scope :indexable, -> {
+    canonical.not_marked_for_deletion.where("talks_count > 0 OR json_extract(settings, '$.searchable') = ?", true)
+  }
   scope :with_location, -> { where.not(location: [nil, ""]) }
   scope :without_location, -> { where(location: [nil, ""]) }
   scope :preloaded, -> { includes(:connected_accounts) }
@@ -226,7 +233,7 @@ class User < ApplicationRecord
     user = find_by(name: name, marked_for_deletion: false)
     return user if user
 
-    alias_record = Alias.find_by(aliasable_type: "User", name: name)
+    alias_record = ::Alias.find_by(aliasable_type: "User", name: name)
     alias_record&.aliasable
   end
 
@@ -236,7 +243,7 @@ class User < ApplicationRecord
     user = find_by(slug: slug, marked_for_deletion: false)
     return user if user
 
-    alias_record = Alias.find_by(aliasable_type: "User", slug: slug)
+    alias_record = ::Alias.find_by(aliasable_type: "User", slug: slug)
     alias_record&.aliasable
   end
 
@@ -266,6 +273,13 @@ class User < ApplicationRecord
 
   def verified?
     !suspicious? && connected_accounts.any? { |account| account.provider == "github" }
+  end
+
+  def indexable?
+    return false if canonical_id.present? || marked_for_deletion?
+    return true if talks_count > 0 # speakers are always searchable
+
+    searchable?
   end
 
   def ruby_passport_claimed?

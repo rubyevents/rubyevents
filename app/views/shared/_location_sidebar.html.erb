@@ -1,7 +1,35 @@
-<%# locals: (location:, users:, nearby_users: [], nearby_events: [], cities: {}, countries: {}, show_cities: true, show_countries: false, event_map_markers: [], geo_layers: [], country_events: [], continent_events: [], state: nil, state_users: []) %>
+<%# locals: (location:, users:, nearby_users: [], nearby_events: [], cities: {}, countries: {}, show_cities: true, show_countries: false, event_map_markers: [], geo_layers: [], country_events: [], continent_events: [], state: nil, state_users: [], map_title: "Upcoming Events Map") %>
 
 <div class="space-y-8">
-  <% if geo_layers.any? || event_map_markers.any? || location.bounds.present? %>
+  <% if location.is_a?(OnlineLocation) %>
+    <div>
+      <h3 class="font-bold text-gray-900 mb-4">About Online Events</h3>
+      <p class="text-gray-600 text-sm">
+        Online events are virtual conferences, meetups, and workshops that you can attend from anywhere in the world.
+      </p>
+    </div>
+
+    <div>
+      <h3 class="font-bold text-gray-900 mb-4">Browse by Location</h3>
+
+      <div class="space-y-1">
+        <%= link_to continents_path, class: "flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors" do %>
+          <span class="text-xl">🌍</span>
+          <span class="text-gray-700">Continents</span>
+        <% end %>
+
+        <%= link_to countries_path, class: "flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors" do %>
+          <span class="text-xl">🏳️</span>
+          <span class="text-gray-700">Countries</span>
+        <% end %>
+
+        <%= link_to cities_path, class: "flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors" do %>
+          <span class="text-xl">🏙️</span>
+          <span class="text-gray-700">Cities</span>
+        <% end %>
+      </div>
+    </div>
+  <% elsif geo_layers.any? || event_map_markers.any? || location.bounds.present? %>
     <div
       data-controller="map"
       <% if geo_layers.any? %>
@@ -14,7 +42,7 @@
         data-map-bounds-value="<%= location.bounds.to_json %>"
       <% end %>>
       <div class="flex items-center justify-between mb-4">
-        <h3 class="font-bold text-gray-900">Upcoming Events Map</h3>
+        <h3 class="font-bold text-gray-900"><%= map_title %></h3>
       </div>
 
       <% if geo_layers.size >= 1 %>
@@ -30,11 +58,13 @@
     </div>
   <% end %>
 
-  <%= render "shared/rubyists_preview",
-        users: users.limit(24),
-        title: "Rubyists in #{location.name}",
-        total_count: users.count,
-        view_all_path: location_users_path(location) %>
+  <% unless location.is_a?(OnlineLocation) %>
+    <%= render "shared/rubyists_preview",
+          users: users.limit(24),
+          title: "Rubyists in #{location.name}",
+          total_count: users.count,
+          view_all_path: location_users_path(location) %>
+  <% end %>
 
   <% if nearby_users.present? && nearby_users.any? %>
     <div>
@@ -104,9 +134,9 @@
       <div class="flex justify-between items-center mb-4">
         <h3 class="font-bold text-gray-900">Cities</h3>
 
-        <% if cities.size > 12 %>
-          <%= link_to country_cities_path(location.slug), class: "link text-sm mt-3 inline-block" do %>
-            View all <%= cities.size %> cities
+        <% if location_cities_path(location).present? %>
+          <%= link_to location_cities_path(location), class: "link text-sm" do %>
+            View all
           <% end %>
         <% end %>
       </div>

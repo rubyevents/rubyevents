@@ -2,22 +2,40 @@
 
 module Search::Backend
   class << self
+    attr_writer :default_backend_key
+
     def backends
       @backends ||= {
-        sqlite_fts: Search::Backend::SQLiteFTS
+        sqlite_fts: Search::Backend::SQLiteFTS,
+        typesense: Search::Backend::Typesense
       }.freeze
+    end
+
+    def available_backends
+      backends.select { |_key, klass| klass.available? }.keys
     end
 
     def resolve(preferred = nil)
       if preferred && backends.key?(preferred.to_sym)
-        return backends[preferred.to_sym]
+        backend = backends[preferred.to_sym]
+        return backend if backend.available?
       end
 
       default_backend
     end
 
     def default_backend
-      Search::Backend::SQLiteFTS
+      resolve(default_backend_key)
+    end
+
+    def default_backend_key
+      return @default_backend_key if @default_backend_key
+
+      if Search::Backend::Typesense.available?
+        :typesense
+      else
+        :sqlite_fts
+      end
     end
 
     def index(record)

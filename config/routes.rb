@@ -40,7 +40,6 @@ Rails.application.routes.draw do
 
   resources :continents, param: :continent, only: [:index, :show] do
     scope module: :locations do
-      resources :upcoming, only: [:index]
       resources :past, only: [:index]
       resources :users, only: [:index]
       resources :stamps, only: [:index]
@@ -51,7 +50,6 @@ Rails.application.routes.draw do
 
   resources :countries, param: :country, only: [:index, :show] do
     scope module: :locations do
-      resources :upcoming, only: [:index]
       resources :past, only: [:index]
       resources :users, only: [:index]
       resources :stamps, only: [:index]
@@ -65,7 +63,6 @@ Rails.application.routes.draw do
   get "/states/:state_alpha2/:state_slug", to: "states#show", as: :state
   scope "/states/:state_alpha2/:state_slug", as: :state do
     scope module: :locations do
-      resources :upcoming, only: [:index]
       resources :past, only: [:index]
       resources :users, only: [:index]
       resources :stamps, only: [:index]
@@ -79,7 +76,6 @@ Rails.application.routes.draw do
   get "/cities/:alpha2/:city", to: "cities#show_by_country", as: :city_by_country, constraints: {alpha2: /[a-z]{2}/i}
   scope "/cities/:alpha2/:city", as: :city_by_country, constraints: {alpha2: /[a-z]{2}/i} do
     scope module: :locations do
-      resources :upcoming, only: [:index]
       resources :past, only: [:index]
       resources :users, only: [:index]
       resources :stamps, only: [:index]
@@ -90,7 +86,6 @@ Rails.application.routes.draw do
   get "/cities/:alpha2/:state/:city", to: "cities#show_with_state", as: :city_with_state, constraints: {alpha2: /[a-z]{2}/i}
   scope "/cities/:alpha2/:state/:city", as: :city_with_state, constraints: {alpha2: /[a-z]{2}/i} do
     scope module: :locations do
-      resources :upcoming, only: [:index]
       resources :past, only: [:index]
       resources :users, only: [:index]
       resources :stamps, only: [:index]
@@ -101,7 +96,6 @@ Rails.application.routes.draw do
   get "/cities/:slug", to: "cities#show", as: :city
   scope "/cities/:slug", as: :city do
     scope module: :locations do
-      resources :upcoming, only: [:index]
       resources :past, only: [:index]
       resources :users, only: [:index]
       resources :stamps, only: [:index]
@@ -110,6 +104,13 @@ Rails.application.routes.draw do
   end
 
   resources :featured_cities, only: [:create, :destroy], param: :slug
+
+  get "/locations/online", to: "online#show", as: :online
+  scope "/locations/online", as: :online, online: true do
+    scope module: :locations do
+      resources :past, only: [:index]
+    end
+  end
 
   resources :gems, param: :gem_name, only: [:index, :show] do
     member do
@@ -255,6 +256,7 @@ Rails.application.routes.draw do
     resources :organizations, only: [:index]
     resources :locations, only: [:index]
     resources :languages, only: [:index]
+    resources :kinds, only: [:index]
   end
 
   resources :recommendations, only: [:index]

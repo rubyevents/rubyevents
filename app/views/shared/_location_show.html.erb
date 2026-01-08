@@ -2,7 +2,11 @@
 
 <%= turbo_refreshes_with method: :morph, scroll: :preserve %>
 
-<% title "Ruby Community in #{location.name}" %>
+<% if location.is_a?(OnlineLocation) %>
+  <% title "Online Ruby Events" %>
+<% else %>
+  <% title "Ruby Community in #{location.name}" %>
+<% end %>
 
 <% upcoming_event_count = events.count(&:upcoming?) %>
 <% upcoming_nearby_count = nearby_events.count { |n| n[:event].upcoming? } %>
@@ -48,16 +52,12 @@
         <%= render "shared/events_section",
               title: "Upcoming Events",
               events: upcoming_events,
-              view_all_path: location_upcoming_path(location),
-              view_all_count: upcoming_events.count,
               empty_message: "No upcoming events." %>
 
       <% elsif upcoming_nearby_events.any? %>
         <%= render "shared/events_section",
               title: "Upcoming Events",
               events: upcoming_events,
-              view_all_path: location_upcoming_path(location),
-              view_all_count: upcoming_events.count,
               empty_message: "No upcoming events in #{location.name}.",
               fallback_text: past_events.any? ? "View #{pluralize(past_events.count, "past event")} in #{location.name} →" : nil,
               fallback_path: past_events.any? ? location_past_path(location) : nil %>
@@ -83,7 +83,7 @@
         <%= render "shared/events_section",
               title: "Upcoming Events in #{country.name}",
               events: country_events,
-              view_all_path: country_upcoming_index_path(country),
+              view_all_path: country_path(country),
               view_all_count: country_events.count,
               empty_message: "No upcoming events in #{country.name}.",
               dimmed: true %>
@@ -93,7 +93,7 @@
         <%= render "shared/events_section",
               title: "Upcoming Events in #{continent.name}",
               events: continent_events,
-              view_all_path: continent_upcoming_index_path(continent),
+              view_all_path: continent_path(continent),
               view_all_count: continent_events.count,
               empty_message: "No upcoming events in #{continent.name}.",
               limit: 8,

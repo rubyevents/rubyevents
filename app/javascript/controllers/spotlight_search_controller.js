@@ -7,7 +7,7 @@ import { get } from '@rails/request.js'
 export default class extends Controller {
   static targets = ['searchInput', 'form', 'searchResults', 'talksSearchResults',
     'speakersSearchResults', 'eventsSearchResults', 'topicsSearchResults', 'seriesSearchResults',
-    'organizationsSearchResults', 'locationsSearchResults', 'languagesSearchResults', 'allSearchResults', 'searchQuery', 'loading', 'clear', 'searchBackendBadge', 'backendToggle', 'sqliteBadge', 'typesenseBadge']
+    'organizationsSearchResults', 'locationsSearchResults', 'languagesSearchResults', 'kindsSearchResults', 'allSearchResults', 'searchQuery', 'loading', 'clear', 'searchBackendBadge', 'backendToggle', 'sqliteBadge', 'typesenseBadge']
 
   static debounces = ['search']
   static values = {
@@ -19,7 +19,9 @@ export default class extends Controller {
     urlSpotlightOrganizations: String,
     urlSpotlightLocations: String,
     urlSpotlightLanguages: String,
-    mainResourcePath: String
+    urlSpotlightKinds: String,
+    mainResourcePath: String,
+    defaultBackend: String
   }
 
   // lifecycle
@@ -132,6 +134,15 @@ export default class extends Controller {
       }
       this.languagesAbortController = new AbortController()
       searchPromises.push(this.#handleSearch(this.urlSpotlightLanguagesValue, query, this.languagesAbortController))
+    }
+
+    // search kinds and abort previous requests
+    if (this.hasUrlSpotlightKindsValue) {
+      if (this.kindsAbortController) {
+        this.kindsAbortController.abort()
+      }
+      this.kindsAbortController = new AbortController()
+      searchPromises.push(this.#handleSearch(this.urlSpotlightKindsValue, query, this.kindsAbortController))
     }
 
     try {
@@ -284,6 +295,10 @@ export default class extends Controller {
       this.languagesAbortController.abort()
     }
 
+    if (this.kindsAbortController) {
+      this.kindsAbortController.abort()
+    }
+
     this.talksSearchResultsTarget.innerHTML = ''
     this.speakersSearchResultsTarget.innerHTML = ''
     this.eventsSearchResultsTarget.innerHTML = ''
@@ -313,6 +328,11 @@ export default class extends Controller {
       this.languagesSearchResultsTarget.classList.add('hidden')
     }
 
+    if (this.hasKindsSearchResultsTarget) {
+      this.kindsSearchResultsTarget.innerHTML = ''
+      this.kindsSearchResultsTarget.classList.add('hidden')
+    }
+
     this.allSearchResultsTarget.classList.add('hidden')
 
     if (this.hasSearchBackendBadgeTarget) {
@@ -332,23 +352,27 @@ export default class extends Controller {
   #initBackendToggle () {
     if (!this.hasSqliteBadgeTarget) return
 
-    this.searchBackend = 'sqlite'
-    this.#updateBackendBadges(this.searchBackend)
+    this.searchBackend = this.defaultBackendValue || null
   }
 
   #updateBackendBadges (backend) {
     if (!this.hasSqliteBadgeTarget) return
 
-    if (backend === 'sqlite') {
+    if (backend === 'sqlite_fts') {
       this.sqliteBadgeTarget.classList.add('badge-warning')
       this.sqliteBadgeTarget.classList.remove('badge-ghost')
       this.typesenseBadgeTarget.classList.remove('badge-primary')
       this.typesenseBadgeTarget.classList.add('badge-ghost')
-    } else {
+    } else if (backend === 'typesense') {
       this.typesenseBadgeTarget.classList.add('badge-primary')
       this.typesenseBadgeTarget.classList.remove('badge-ghost')
       this.sqliteBadgeTarget.classList.remove('badge-warning')
       this.sqliteBadgeTarget.classList.add('badge-ghost')
+    } else {
+      this.sqliteBadgeTarget.classList.remove('badge-warning')
+      this.sqliteBadgeTarget.classList.add('badge-ghost')
+      this.typesenseBadgeTarget.classList.remove('badge-primary')
+      this.typesenseBadgeTarget.classList.add('badge-ghost')
     }
   }
 
