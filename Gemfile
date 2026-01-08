@@ -148,7 +148,7 @@ gem "dry-types", "~> 1.7"
 gem "google-protobuf", require: false
 
 # ActiveJob::Performs adds the `performs` macro to set up jobs by convention.
-gem "active_job-performs", "~> 0.3.1"
+gem "active_job-performs"
 
 # Use the OpenAI API with Ruby!
 gem "ruby-openai"
