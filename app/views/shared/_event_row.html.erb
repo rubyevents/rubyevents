@@ -1,11 +1,11 @@
 <%# locals: (event:) %>
 
 <%= link_to event_path(event),
-      class: "block bg-white rounded-lg border p-4 hover:border-gray-400 transition-colors",
+      class: "block bg-white rounded-lg border p-3 sm:p-4 hover:border-gray-400 transition-colors",
       data: {events_filter_target: "event", kind: event.kind} do %>
-  <div class="flex gap-4 items-start">
+  <div class="flex gap-3 sm:gap-4 items-start">
     <% if event.avatar_image_path %>
-      <div class="w-16 h-16 flex-shrink-0 rounded-lg overflow-hidden">
+      <div class="w-12 h-12 sm:w-16 sm:h-16 flex-shrink-0 rounded-lg overflow-hidden">
         <%= image_tag event.avatar_image_path, class: "w-full h-full object-cover" %>
       </div>
     <% end %>
@@ -13,24 +13,28 @@
     <div class="flex-grow min-w-0">
       <div class="font-semibold text-gray-900 truncate"><%= event.name %></div>
 
-      <div class="text-sm text-gray-600 mt-1">
-        <span class="inline-flex items-center gap-1">
-          <%= fa("map-marker-alt", size: :xs, class: "text-gray-400") %>
-          <% if event&.venue&.exist? %>
-            <%= event.venue.name %><% if event.location.present? %> • <% end %>
-          <% end %>
+      <% if event&.venue&.exist? %>
+        <div class="text-sm text-gray-600 mt-1 flex items-center gap-1 min-w-0">
+          <%= fa("city", size: :xs, class: "text-gray-400 flex-shrink-0") %>
+          <span class="truncate"><%= event.venue.name %></span>
+        </div>
+      <% end %>
 
-          <%= event.location %>
-        </span>
-      </div>
+      <% if event.location.present? %>
+        <div class="text-sm text-gray-600 mt-1 flex items-center gap-1 min-w-0">
+          <%= fa("map-marker-alt", size: :xs, class: "text-gray-400 flex-shrink-0") %>
+          <span class="truncate"><%= event.location %></span>
+        </div>
+      <% end %>
 
-      <div class="text-sm text-gray-500 mt-1">
-        <%= event.formatted_dates %>
+      <div class="text-sm text-gray-600 mt-1 flex items-center gap-1">
+        <%= fa("calendar", size: :xs, class: "text-gray-400 flex-shrink-0") %>
+        <span><%= event.formatted_dates %></span>
       </div>
     </div>
 
     <% if event.participants.any? %>
-      <div class="flex-shrink-0">
+      <div class="flex-shrink-0 hidden sm:block">
         <%= render Ui::AvatarGroupComponent.new(event.participants.to_a, max: 4, size: :md, overlap: "-space-x-3") %>
       </div>
     <% end %>
