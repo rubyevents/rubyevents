@@ -198,6 +198,9 @@ class User < ApplicationRecord
   scope :not_marked_for_deletion, -> { where(marked_for_deletion: false) }
   scope :with_public_wrapped, -> { where("json_extract(settings, '$.wrapped_public') = ?", true) }
   scope :with_feedback_enabled, -> { where("json_extract(settings, '$.feedback_enabled') = ?", true) }
+  scope :with_location, -> { where.not(location: [nil, ""]) }
+  scope :without_location, -> { where(location: [nil, ""]) }
+  scope :preloaded, -> { includes(:connected_accounts) }
 
   def self.normalize_github_handle(value)
     value
@@ -262,7 +265,11 @@ class User < ApplicationRecord
   end
 
   def verified?
-    !suspicious? && connected_accounts.find { |account| account.provider == "github" }
+    !suspicious? && connected_accounts.any? { |account| account.provider == "github" }
+  end
+
+  def ruby_passport_claimed?
+    connected_accounts.any? { |account| account.provider == "passport" }
   end
 
   def possessive_pronoun

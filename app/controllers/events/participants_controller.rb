@@ -3,7 +3,7 @@ class Events::ParticipantsController < ApplicationController
   before_action :set_event
 
   def index
-    @participants = @event.participants.includes(:connected_accounts).order(:name).distinct
+    @participants = @event.participants.preloaded.order(:name).distinct
     @participation = Current.user&.main_participation_to(@event)
   end
 

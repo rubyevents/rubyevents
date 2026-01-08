@@ -10,7 +10,7 @@ class Events::SpeakersController < ApplicationController
       speaker_counts = speaker_ids.tally
 
       @speakers_with_counts = User
-        .includes(:connected_accounts)
+        .preloaded
         .where(id: speaker_counts.keys)
         .where("talks_count > 0")
         .map do |speaker|

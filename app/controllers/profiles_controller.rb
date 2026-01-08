@@ -83,8 +83,8 @@ class ProfilesController < ApplicationController
   end
 
   def set_user
-    @user = User.includes(:talks, :passports).find_by_slug_or_alias(params[:slug])
-    @user = User.includes(:talks).find_by_github_handle(params[:slug]) unless @user.present?
+    @user = User.preloaded.includes(:talks).find_by_slug_or_alias(params[:slug])
+    @user = User.preloaded.includes(:talks).find_by_github_handle(params[:slug]) unless @user.present?
 
     if @user.blank?
       redirect_to speakers_path, status: :moved_permanently, notice: "User not found"

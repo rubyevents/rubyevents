@@ -10,7 +10,7 @@
           <%= fa("badge-check", class: "fill-blue-500", size: :xs) %>
         <% end %>
 
-        <% if user.passports.any? %>
+        <% if user.ruby_passport_claimed? %>
           <%= fa("passport", class: "fill-orange-800", size: :xs) %>
         <% end %>
       </div>

@@ -46,7 +46,7 @@ class EventParticipationsController < ApplicationController
   end
 
   def set_participants
-    @participants = @event.participants.includes(:connected_accounts).order(:name)
+    @participants = @event.participants.preloaded.order(:name)
   end
 
   def participation_params
