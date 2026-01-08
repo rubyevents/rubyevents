@@ -346,4 +346,77 @@ class UserTest < ActiveSupport::TestCase
 
     assert_nil user.country
   end
+
+  test "meta_description returns generic profile description for user with no talks" do
+    user = User.create!(name: "No Talks User", github_handle: "no-talks-user", talks_count: 0)
+
+    assert_equal "No Talks User's profile on RubyEvents.org", user.meta_description
+  end
+
+  test "meta_description returns fallback topic text for user with talks but no topics" do
+    user = User.create!(name: "Speaker No Topics", github_handle: "speaker-no-topics")
+    talk = talks(:one)
+
+    UserTalk.create!(user: user, talk: talk)
+    user.update_column(:talks_count, 1)
+
+    talk.talk_topics.destroy_all
+
+    expected = "Discover all the talks given by Speaker No Topics on subjects related to Ruby language and Ruby Frameworks such as Rails, Hanami and others."
+    assert_equal expected, user.meta_description
+  end
+
+  test "meta_description includes top topics for user with talks and topics" do
+    user = User.create!(name: "Speaker With Topics", github_handle: "speaker-with-topics")
+
+    talk1 = talks(:one)
+    talk2 = talks(:two)
+
+    UserTalk.create!(user: user, talk: talk1)
+    UserTalk.create!(user: user, talk: talk2)
+    user.update_column(:talks_count, 2)
+
+    topic_rails = Topic.create!(name: "Rails", slug: "rails", status: "approved")
+    topic_ruby = Topic.create!(name: "Ruby", slug: "ruby", status: "approved")
+
+    talk1.talk_topics.destroy_all
+    talk2.talk_topics.destroy_all
+
+    TalkTopic.create!(talk: talk1, topic: topic_rails)
+    TalkTopic.create!(talk: talk2, topic: topic_rails)
+    TalkTopic.create!(talk: talk1, topic: topic_ruby)
+
+    expected = "Discover all the talks given by Speaker With Topics on subjects related to Rails and Ruby."
+    assert_equal expected, user.meta_description
+  end
+
+  test "meta_description limits to top 3 topics by frequency" do
+    user = User.create!(name: "Prolific Speaker", github_handle: "prolific-speaker")
+
+    talk1 = talks(:one)
+    talk2 = talks(:two)
+
+    UserTalk.create!(user: user, talk: talk1)
+    UserTalk.create!(user: user, talk: talk2)
+    user.update_column(:talks_count, 2)
+
+    topic1 = Topic.create!(name: "Topic A", slug: "topic-a", status: "approved")
+    topic2 = Topic.create!(name: "Topic B", slug: "topic-b", status: "approved")
+    topic3 = Topic.create!(name: "Topic C", slug: "topic-c", status: "approved")
+    topic4 = Topic.create!(name: "Topic D", slug: "topic-d", status: "approved")
+
+    talk1.talk_topics.destroy_all
+    talk2.talk_topics.destroy_all
+
+    TalkTopic.create!(talk: talk1, topic: topic1)
+    TalkTopic.create!(talk: talk2, topic: topic1)
+    TalkTopic.create!(talk: talk1, topic: topic2)
+    TalkTopic.create!(talk: talk2, topic: topic2)
+    TalkTopic.create!(talk: talk1, topic: topic3)
+    TalkTopic.create!(talk: talk2, topic: topic3)
+    TalkTopic.create!(talk: talk1, topic: topic4)
+
+    expected = "Discover all the talks given by Prolific Speaker on subjects related to Topic A, Topic B, and Topic C."
+    assert_equal expected, user.meta_description
+  end
 end

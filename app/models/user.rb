@@ -357,9 +357,17 @@ class User < ApplicationRecord
   end
 
   def meta_description
-    <<~HEREDOC
-      Discover all the talks given by #{name} on subjects related to Ruby language or Ruby Frameworks such as Rails, Hanami and others
-    HEREDOC
+    return "#{name}'s profile on RubyEvents.org" if talks_count.zero?
+
+    top_topics = topics.group(:id).order(Arel.sql("COUNT(*) DESC"), :name).limit(3).pluck(:name)
+
+    topic_text = if top_topics.any?
+      top_topics.to_sentence
+    else
+      "Ruby language and Ruby Frameworks such as Rails, Hanami and others"
+    end
+
+    "Discover all the talks given by #{name} on subjects related to #{topic_text}."
   end
 
   def assign_canonical_speaker!(canonical_speaker:)
