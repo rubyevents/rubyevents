@@ -56,7 +56,7 @@
         <% end %>
 
         <%= render "shared/rubyists_preview",
-              users: users.limit(18),
+              users: users.limit(24),
               title: "Rubyists in #{location.name}",
               total_count: users.count,
               view_all_path: location_users_path(location) %>
@@ -69,11 +69,20 @@
               <%= ui_badge(nearby_users.count, kind: :secondary, outline: true, size: :sm) %>
             </div>
 
-            <div class="flex flex-wrap gap-2">
-              <% nearby_users.first(18).each do |nearby| %>
+            <div class="grid grid-cols-[repeat(auto-fill,3rem)] gap-2 justify-between">
+              <% nearby_users.first(24).each do |nearby| %>
                 <% user = nearby.is_a?(Hash) ? nearby[:user] : nearby %>
+                <% distance_km = nearby.is_a?(Hash) ? nearby[:distance_km] : nil %>
 
-                <%= render Ui::AvatarComponent.new(user, size: :md, hover_card: true) %>
+                <div class="relative group">
+                  <%= render Ui::AvatarComponent.new(user, size: :md, hover_card: true) %>
+
+                  <% if distance_km %>
+                    <div class="absolute -bottom-1 -right-1 bg-gray-700 text-white text-[10px] px-1 rounded-full leading-tight">
+                      <%= distance_km %>km
+                    </div>
+                  <% end %>
+                </div>
               <% end %>
             </div>
           </div>

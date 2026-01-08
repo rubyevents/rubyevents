@@ -264,7 +264,7 @@ class City
   def nearby_events(radius_km: 250, limit: 12, exclude_ids: [])
     return [] unless coordinates.present?
 
-    scope = Event.includes(:series).geocoded.where.not(city: city)
+    scope = Event.includes(:series, :participants).geocoded.where.not(city: city)
     scope = scope.where.not(id: exclude_ids) if exclude_ids.any?
 
     scope.map do |event|

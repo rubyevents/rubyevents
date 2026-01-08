@@ -28,14 +28,14 @@
   </div>
 
   <%= render "shared/rubyists_preview",
-        users: users.limit(18),
+        users: users.limit(24),
         title: "Rubyists in #{city_name}",
         total_count: users.count,
         view_all_path: nil %>
 
   <% if nearby_users.present? && nearby_users.any? %>
     <%= render "shared/rubyists_preview",
-          users: nearby_users.first(18),
+          users: nearby_users.first(24),
           title: "Rubyists near #{city_name}",
           total_count: nearby_users.count,
           view_all_path: nil %>

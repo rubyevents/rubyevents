@@ -142,7 +142,7 @@ class CitiesController < ApplicationController
       city_user_ids = @users.pluck(:id)
       nearby_user_ids = (@nearby_users || []).map { |n| n.is_a?(Hash) ? n[:user].id : n.id }
       exclude_ids = city_user_ids + nearby_user_ids
-      @state_users = @state.users.geocoded.where.not(id: exclude_ids).order(talks_count: :desc).limit(18)
+      @state_users = @state.users.geocoded.where.not(id: exclude_ids).order(talks_count: :desc).limit(24)
     end
 
     all_events_for_map = upcoming_events.select(&:geocoded?)

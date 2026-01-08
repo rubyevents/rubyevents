@@ -50,17 +50,17 @@
               events: upcoming_events,
               view_all_path: location_upcoming_path(location),
               view_all_count: upcoming_events.count,
-              empty_message: "No upcoming events.",
-              limit: 5 %>
+              empty_message: "No upcoming events." %>
 
       <% elsif upcoming_nearby_events.any? %>
-        <%= render "shared/nearby_events_section",
-              title: "Upcoming Events Nearby",
-              nearby_events: upcoming_nearby_events,
+        <%= render "shared/events_section",
+              title: "Upcoming Events",
+              events: upcoming_events,
+              view_all_path: location_upcoming_path(location),
+              view_all_count: upcoming_events.count,
+              empty_message: "No upcoming events in #{location.name}.",
               fallback_text: past_events.any? ? "View #{pluralize(past_events.count, "past event")} in #{location.name} →" : nil,
-              fallback_path: past_events.any? ? location_past_path(location) : nil,
-              limit: 8,
-              dimmed: true %>
+              fallback_path: past_events.any? ? location_past_path(location) : nil %>
 
       <% else %>
         <%= render "shared/events_section",
@@ -72,6 +72,13 @@
 
       <% end %>
 
+      <% if upcoming_nearby_events.any? %>
+        <%= render "shared/nearby_events_section",
+              title: "Upcoming Events Near #{location.name}",
+              nearby_events: upcoming_nearby_events,
+              dimmed: false %>
+      <% end %>
+
       <% if country_events.present? && country_events.any? && country.present? %>
         <%= render "shared/events_section",
               title: "Upcoming Events in #{country.name}",
@@ -79,7 +86,6 @@
               view_all_path: country_upcoming_index_path(country),
               view_all_count: country_events.count,
               empty_message: "No upcoming events in #{country.name}.",
-              limit: 5,
               dimmed: true %>
       <% end %>
 

@@ -10,7 +10,7 @@
   </div>
 
   <% if users.any? %>
-    <div class="flex flex-wrap gap-2">
+    <div class="grid grid-cols-[repeat(auto-fill,3rem)] gap-2 justify-between">
       <% users.first(24).each do |user| %>
         <%= render Ui::AvatarComponent.new(user, size: :md, hover_card: true) %>
       <% end %>

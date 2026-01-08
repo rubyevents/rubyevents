@@ -77,7 +77,7 @@
           </div>
         <% end %>
 
-        <%= render "shared/rubyists_preview", users: users.limit(18), title: "Rubyists in #{location.name}", total_count: users.count, view_all_path: location_users_path(location) %>
+        <%= render "shared/rubyists_preview", users: users.limit(24), title: "Rubyists in #{location.name}", total_count: users.count, view_all_path: location_users_path(location) %>
 
         <% if nearby_users.present? && nearby_users.any? %>
           <div>

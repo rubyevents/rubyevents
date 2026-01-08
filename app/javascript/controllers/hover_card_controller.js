@@ -1,12 +1,12 @@
 import { Controller } from '@hotwired/stimulus'
-import { useWindowResize } from 'stimulus-use'
+import { useResize } from 'stimulus-use'
 
 // Connects to data-controller="hover-card"
 export default class extends Controller {
   static targets = ['card']
 
   connect () {
-    useWindowResize(this)
+    useResize(this, { element: document.body })
   }
 
   reveal () {
@@ -18,7 +18,7 @@ export default class extends Controller {
     this.scheduleAdjustPosition()
   }
 
-  windowResize () {
+  resize () {
     if (this.revealed) {
       this.cardTarget.style.transform = ''
       this.scheduleAdjustPosition()

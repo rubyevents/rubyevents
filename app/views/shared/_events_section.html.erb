@@ -12,7 +12,7 @@
   <% if events.any? %>
     <%= render "shared/date_grouped_events", events: events.first(limit), empty_message: empty_message || "No events found." %>
   <% else %>
-    <div class="text-gray-500 py-8 text-center bg-gray-50 rounded-xl">
+    <div class="text-gray-500 py-8 text-center border-dashed border rounded-xl">
       <p class="mb-2"><%= empty_message || "No events yet." %></p>
 
       <% if fallback_path.present? && fallback_text.present? %>

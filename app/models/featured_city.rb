@@ -125,7 +125,7 @@ class FeaturedCity < ApplicationRecord
   def nearby_events(radius_km: 250, limit: 12, exclude_ids: [])
     return [] unless coordinates.present?
 
-    scope = Event.includes(:series)
+    scope = Event.includes(:series, :participants)
       .where.not(latitude: nil, longitude: nil)
       .where.not(city: city)
 

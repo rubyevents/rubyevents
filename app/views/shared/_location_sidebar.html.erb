@@ -46,8 +46,8 @@
         <% end %>
       </div>
 
-      <div class="flex flex-wrap gap-2">
-        <% nearby_users.first(18).each do |nearby| %>
+      <div class="grid grid-cols-[repeat(auto-fill,3rem)] gap-2 justify-between">
+        <% nearby_users.first(24).each do |nearby| %>
           <% user = nearby.is_a?(Hash) ? nearby[:user] : nearby %>
           <% distance_km = nearby.is_a?(Hash) ? nearby[:distance_km] : nil %>
 
@@ -66,21 +66,10 @@
   <% end %>
 
   <% if state.present? && state_users.present? && state_users.any? %>
-    <div>
-      <div class="flex justify-between items-center mb-4">
-        <h3 class="font-bold text-gray-900">Rubyists in <%= state.name %></h3>
-
-        <%= link_to state_users_path(state_alpha2: state.country.code, state_slug: state.slug), class: "link text-sm" do %>
-          View all
-        <% end %>
-      </div>
-
-      <div class="flex flex-wrap gap-2">
-        <% state_users.first(18).each do |user| %>
-          <%= render Ui::AvatarComponent.new(user, size: :md, hover_card: true) %>
-        <% end %>
-      </div>
-    </div>
+    <%= render "shared/rubyists_preview",
+          users: state_users.first(24),
+          title: "Rubyists in #{state.name}",
+          view_all_path: state_users_path(state_alpha2: state.country.code, state_slug: state.slug) %>
   <% end %>
 
   <% if show_countries && countries.present? && countries.any? %>
