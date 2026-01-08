@@ -4,6 +4,7 @@ class VenueSchema < RubyLLM::Schema
   string :name, description: "Name of the venue"
   string :description, description: "Description of the venue", required: false
   string :instructions, description: "Instructions for getting to the venue", required: false
+  string :url, description: "Venue website URL", required: false
 
   object :address, description: "Physical address of the venue", required: false do
     string :street, description: "Street address", required: false
