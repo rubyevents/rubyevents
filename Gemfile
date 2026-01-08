@@ -163,10 +163,10 @@ gem "redcarpet", "~> 3.6"
 gem "country_select"
 
 # Admin panel framework and Content Management System for Ruby on Rails.
-gem "avo", "~> 3.27"
+gem "avo"
 
 # Marksmith is a GitHub-style markdown editor for Ruby on Rails applications.
-gem "marksmith", "~> 0.4"
+gem "marksmith"
 
 # A fast, safe, extensible parser for CommonMark. This wraps the comrak Rust crate.
 gem "commonmarker", ">= 2.6.1"
