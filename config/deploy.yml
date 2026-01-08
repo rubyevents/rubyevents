@@ -11,8 +11,8 @@ servers:
     hosts:
       - 91.107.208.207
     options:
-      memory: 2.5GB
-      cpus: 2
+      memory: 4GB
+      cpus: 3
     env:
       clear:
         APPSIGNAL_HOSTNAME: rubyevents-web
@@ -58,10 +58,11 @@ builder:
   secrets:
     - RAILS_MASTER_KEY
   remote: ssh://root@5.75.232.156
+  local: false
 
 env:
   clear:
-    WEB_CONCURRENCY: 2
+    WEB_CONCURRENCY: 3
     RAILS_MAX_THREADS: 3
     RAILS_ENV: production
   secret:
