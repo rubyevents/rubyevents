@@ -488,18 +488,10 @@ module Static
       event.update!(event_involvements_attributes: event_involvements_attributes)
     end
 
-    def transcripts_file_path
-      Rails.root.join("data", series_slug, slug, "transcripts.yml")
-    end
-
-    def transcripts_file?
-      transcripts_file_path.exist?
-    end
-
     def import_transcripts!(event)
-      return unless transcripts_file?
+      return unless event.transcripts_file.exist?
 
-      transcripts = YAML.load_file(transcripts_file_path)
+      transcripts = event.transcripts_file.entries
       return if transcripts.blank?
 
       transcripts.each do |transcript_data|

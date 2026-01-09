@@ -86,6 +86,7 @@ class Event < ApplicationRecord
   has_object :sponsors_file
   has_object :cfp_file
   has_object :involvements_file
+  has_object :transcripts_file
   has_object :venue
   has_object :videos_file
   has_object :location_info
@@ -336,5 +337,4 @@ class Event < ApplicationRecord
       url: Router.event_url(self, host: "#{request.protocol}#{request.host}:#{request.port}")
     }
   end
-
 end
