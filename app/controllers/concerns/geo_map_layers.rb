@@ -178,6 +178,7 @@ module GeoMapLayers
         label: @continent.name,
         emoji: @continent.emoji_flag,
         markers: continent_markers,
+        bounds: @continent.bounds,
         visible: false,
         group: "geo"
       }
