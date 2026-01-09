@@ -7,6 +7,7 @@ class Event::Assets < ActiveRecord::AssociatedObject
     delegate :stickers, :sticker?, :stamp?, to: :assets
 
     def event_image_path = assets.base_path
+    def event_image_for(filename) = assets.image_path_if_exists(filename)
     def banner_image_path = assets.banner_path
     def card_image_path = assets.card_path
     def avatar_image_path = assets.avatar_path
