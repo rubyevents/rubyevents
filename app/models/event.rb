@@ -44,7 +44,16 @@ class Event < ApplicationRecord
 
   configure_slug(attribute: :name, auto_suffix_on_collision: false)
 
-  geocoded_by :location
+  geocoded_by :location do |event, results|
+    if (result = results.first)
+      event.latitude = result.latitude
+      event.longitude = result.longitude
+      event.city = result.city
+      event.state = result.state_code
+      event.country_code = result.country_code
+      event.geocode_metadata = result.data.merge("geocoded_at" => Time.current.iso8601)
+    end
+  end
 
   after_commit :geocode_later, if: :location_previously_changed?
 
