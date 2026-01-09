@@ -25,6 +25,9 @@ module Static
       imported_user_ids = []
 
       ::User.skip_callback(:commit, :after, :reindex)
+      ::Alias.skip_callback(:commit, :after, :reindex_aliasable)
+
+      existing_alias_names = Set.new(::Alias.where(aliasable_type: "User").pluck(:name))
 
       begin
         ::User.transaction do
@@ -66,6 +69,20 @@ module Static
               user.save(validate: false)
             end
 
+            Array(speaker.aliases).each do |alias_data|
+              next if alias_data.blank?
+
+              alias_name = alias_data["name"]
+              alias_slug = alias_data["slug"]
+
+              raise "No name provided for alias: #{alias_data.inspect} and user: #{user.inspect}" if alias_name.blank?
+              raise "No slug provided for alias: #{alias_data.inspect} and user: #{user.inspect}" if alias_slug.blank?
+
+              ::Alias.find_or_create_by!(aliasable: user, name: alias_name, slug: alias_slug)
+
+              existing_alias_names.add(alias_name)
+            end
+
             imported_user_ids << user.id
           rescue => e
             puts "Couldn't save: #{speaker.name} (#{speaker.github}), error: #{e.message}"
@@ -73,6 +90,7 @@ module Static
         end
       ensure
         ::User.set_callback(:commit, :after, :reindex)
+        ::Alias.set_callback(:commit, :after, :reindex_aliasable)
       end
 
       ::User.where(id: imported_user_ids).find_each { |user| Search::Backend.index(user) } if imported_user_ids.any? && index
@@ -90,6 +108,18 @@ module Static
       user.website = website if website.present?
       user.bio = bio if bio.present?
       user.save!
+
+      Array(aliases).each do |alias_data|
+        next if alias_data.blank?
+
+        alias_name = alias_data["name"]
+        alias_slug = alias_data["slug"]
+
+        raise "No name provided for alias: #{alias_data.inspect} and user: #{user.inspect}" if alias_name.blank?
+        raise "No slug provided for alias: #{alias_data.inspect} and user: #{user.inspect}" if alias_slug.blank?
+
+        ::Alias.find_or_create_by!(aliasable: user, name: alias_name, slug: alias_slug)
+      end
 
       Search::Backend.index(user) if index
 
