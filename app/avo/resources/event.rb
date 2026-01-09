@@ -42,6 +42,7 @@ class Avo::Resources::Event < Avo::BaseResource
 
   def actions
     action Avo::Actions::AssignCanonicalEvent
+    action Avo::Actions::GeocodeEvent
   end
 
   def filters
