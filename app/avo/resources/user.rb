@@ -48,7 +48,6 @@ class Avo::Resources::User < Avo::BaseResource
     field :longitude, as: :number, hide_on: :index, readonly: true
     field :geocode_metadata, as: :code, hide_on: :index, readonly: true
     field :talks_count, as: :number, sortable: true
-    field :canonical, as: :belongs_to, hide_on: [:index, :forms], searchable: true
 
     field :aliases, as: :has_many, hide_on: :index
     field :talks, as: :has_many, hide_on: :index
@@ -72,7 +71,6 @@ class Avo::Resources::User < Avo::BaseResource
   end
 
   def actions
-    action Avo::Actions::AssignCanonicalUser
     action Avo::Actions::UserFetchGitHub
     action Avo::Actions::GeocodeRecord
     action Avo::Actions::ClearUser
