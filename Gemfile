@@ -103,7 +103,7 @@ gem "pagy"
 gem "solid_cache"
 
 # Database-backed Active Job backend.
-gem "solid_queue", github: "joshleblanc/solid_queue", branch: "async-mode"
+gem "solid_queue"
 
 # Operational controls for Active Job
 gem "mission_control-jobs"
