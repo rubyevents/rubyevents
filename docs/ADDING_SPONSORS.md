@@ -172,6 +172,10 @@ Fill in the sponsor details for each tier:
         logo_url: "https://conference.org/sponsors/company-logo.png"
 ```
 
+Check for an existing sponsor in other sponsors files.
+Ensure the company names and slugs match.
+We prefer the sponsor names to be in English and use latin characheters if possible.
+
 ## Troubleshooting
 
 ### Common Issues

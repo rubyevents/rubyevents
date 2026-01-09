@@ -99,6 +99,10 @@ You can also seed one event series with a script.
 rails runner scripts/import_event.rb blue-ridge-ruby
 ```
 
+### Troubleshooting
+
+If you encounter a ** Process memory map: ** error, close the dev server, run seeds, and restart.
+
 ## Running Tests
 
 We use minitest for all our testing.
