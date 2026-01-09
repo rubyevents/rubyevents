@@ -1,20 +1,14 @@
 # -*- SkipSchemaAnnotations
 
 class Event::VideosFile < ActiveRecord::AssociatedObject
-  FILE_NAME = "videos.yml"
+  include YAMLFile
 
-  def file_path
-    event.data_folder.join(FILE_NAME)
-  end
+  yaml_file "videos.yml"
 
-  def exist?
-    file_path.exist?
-  end
-
-  def entries
-    return [] unless exist?
-
-    YAML.load_file(file_path) || []
+  extension do
+    def talks_in_running_order(child_talks: true)
+      talks.in_order_of(:static_id, videos_file.ids(child_talks: child_talks))
+    end
   end
 
   def ids(child_talks: true)

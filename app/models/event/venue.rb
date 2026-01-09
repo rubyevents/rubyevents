@@ -1,14 +1,18 @@
 class Event::Venue < ActiveRecord::AssociatedObject
-  def file_path
-    event.data_folder.join("venue.yml")
-  end
+  include YAMLFile
 
-  def exist?
-    file_path.exist?
-  end
+  yaml_file "venue.yml"
 
-  def file
-    @file ||= YAML.load_file(file_path)
+  extension do
+    def geocode
+      if venue.exist? && venue.coordinates.present?
+        coords = venue.coordinates
+        self.latitude = coords["latitude"]
+        self.longitude = coords["longitude"]
+      end
+
+      super
+    end
   end
 
   def name

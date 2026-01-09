@@ -89,10 +89,6 @@ class Event < ApplicationRecord
   has_object :videos_file
   has_object :location_info
 
-  def talks_in_running_order(child_talks: true)
-    talks.in_order_of(:static_id, videos_file.ids(child_talks: child_talks))
-  end
-
   # validations
   validates :name, presence: true
   validates :kind, presence: true
@@ -315,10 +311,6 @@ class Event < ApplicationRecord
     talks.where.not(video_provider: ["scheduled", "not_published", "not_recorded"]).exists?
   end
 
-  def featured_metadata?
-    static_metadata.featured_background?
-  end
-
   def featurable?
     featured_metadata? && watchable_talks?
   end
@@ -344,13 +336,4 @@ class Event < ApplicationRecord
     }
   end
 
-  def geocode
-    if venue.exist? && venue.coordinates.present?
-      coords = venue.coordinates
-      self.latitude = coords["latitude"]
-      self.longitude = coords["longitude"]
-    end
-
-    super
-  end
 end
