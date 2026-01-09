@@ -3,26 +3,27 @@
 # Table name: events
 # Database name: primary
 #
-#  id              :integer          not null, primary key
-#  city            :string
-#  country_code    :string           indexed => [state]
-#  date            :date
-#  date_precision  :string           default("day"), not null
-#  end_date        :date
-#  kind            :string           default("event"), not null, indexed
-#  latitude        :decimal(10, 6)
-#  location        :string
-#  longitude       :decimal(10, 6)
-#  name            :string           default(""), not null, indexed
-#  slug            :string           default(""), not null, indexed
-#  start_date      :date
-#  state           :string           indexed => [country_code]
-#  talks_count     :integer          default(0), not null
-#  website         :string           default("")
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  canonical_id    :integer          indexed
-#  event_series_id :integer          not null, indexed
+#  id               :integer          not null, primary key
+#  city             :string
+#  country_code     :string           indexed => [state]
+#  date             :date
+#  date_precision   :string           default("day"), not null
+#  end_date         :date
+#  geocode_metadata :json             not null
+#  kind             :string           default("event"), not null, indexed
+#  latitude         :decimal(10, 6)
+#  location         :string
+#  longitude        :decimal(10, 6)
+#  name             :string           default(""), not null, indexed
+#  slug             :string           default(""), not null, indexed
+#  start_date       :date
+#  state            :string           indexed => [country_code]
+#  talks_count      :integer          default(0), not null
+#  website          :string           default("")
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  canonical_id     :integer          indexed
+#  event_series_id  :integer          not null, indexed
 #
 # Indexes
 #
@@ -39,23 +40,11 @@
 #  event_series_id  (event_series_id => event_series.id)
 #
 class Event < ApplicationRecord
+  include Geocodeable
   include Suggestable
   include Sluggable
 
   configure_slug(attribute: :name, auto_suffix_on_collision: false)
-
-  geocoded_by :location do |event, results|
-    if (result = results.first)
-      event.latitude = result.latitude
-      event.longitude = result.longitude
-      event.city = result.city
-      event.state = result.state_code
-      event.country_code = result.country_code
-      event.geocode_metadata = result.data.merge("geocoded_at" => Time.current.iso8601)
-    end
-  end
-
-  after_commit :geocode_later, if: :location_previously_changed?
 
   # associations
   belongs_to :series, class_name: "EventSeries", foreign_key: :event_series_id, strict_loading: false
@@ -476,24 +465,6 @@ class Event < ApplicationRecord
       self.longitude = coords["longitude"]
     end
 
-    return if location.blank?
-
-    results = Geocoder.search(location)
-    return unless (result = results.first)
-
-    self.latitude ||= result.latitude
-    self.longitude ||= result.longitude
-
-    self.city = result.city
-    self.state = result.state_code
-    self.country_code = result.country_code
-
-    result
-  end
-
-  private
-
-  def geocode_later
-    GeocodeEventJob.perform_later(self)
+    super
   end
 end
