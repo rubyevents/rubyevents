@@ -22,7 +22,11 @@ class Avo::Resources::Event < Avo::BaseResource
     field :start_date, as: :date, hide_on: :index
     field :end_date, as: :date, hide_on: :index
     field :city, as: :text, hide_on: :index
+    field :state, as: :text, hide_on: :index
     field :country_code, as: :select, options: country_options, include_blank: true
+    field :latitude, as: :number, hide_on: :index
+    field :longitude, as: :number, hide_on: :index
+    field :geocode_metadata, as: :code, hide_on: :index
     field :kind, hide_on: :index
     field :slug, as: :text
     field :updated_at, as: :date, sortable: true
