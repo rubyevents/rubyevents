@@ -80,6 +80,7 @@ class Event < ApplicationRecord
 
   accepts_nested_attributes_for :event_involvements, allow_destroy: true, reject_if: :all_blank
 
+  has_object :assets
   has_object :schedule
   has_object :static_metadata
   has_object :sponsors_file
@@ -306,96 +307,8 @@ class Event < ApplicationRecord
     }
   end
 
-  def event_image_path
-    ["events", series.slug, slug].join("/")
-  end
-
-  def default_event_image_path
-    ["events", "default"].join("/")
-  end
-
-  def default_event_series_image_path
-    ["events", series.slug, "default"].join("/")
-  end
-
-  def event_image_or_default_for(filename)
-    event_path = [event_image_path, filename].join("/")
-    default_event_series_path = [default_event_series_image_path, filename].join("/")
-    default_path = [default_event_image_path, filename].join("/")
-
-    base = Rails.root.join("app", "assets", "images")
-
-    return event_path if (base / event_path).exist?
-    return default_event_series_path if (base / default_event_series_path).exist?
-
-    default_path
-  end
-
-  def event_image_for(filename)
-    event_path = [event_image_path, filename].join("/")
-
-    Rails.root.join("app", "assets", "images", event_image_path, filename).exist? ? event_path : nil
-  end
-
-  # banner - 1300x350
-  def banner_image_path
-    event_image_or_default_for("banner.webp")
-  end
-
-  # card - 600x350
-  def card_image_path
-    event_image_or_default_for("card.webp")
-  end
-
-  # avatar - 256x256
-  def avatar_image_path
-    event_image_or_default_for("avatar.webp")
-  end
-
-  # featured - 615x350
-  def featured_image_path
-    event_image_or_default_for("featured.webp")
-  end
-
-  # poster - 600x350
-  def poster_image_path
-    event_image_or_default_for("poster.webp")
-  end
-
   def sort_date
     start_date || end_date || Time.at(0)
-  end
-
-  def stickers
-    Sticker.for_event(self)
-  end
-
-  # sticker - 350x350
-  def sticker_image_paths
-    stickers.map(&:file_path)
-  end
-
-  def sticker_image_path
-    sticker_image_paths.first
-  end
-
-  def stamp_image_paths
-    base = Rails.root.join("app", "assets", "images")
-    Dir.glob(base.join(event_image_path, "stamp*.webp")).map { |path|
-      Pathname.new(path).relative_path_from(base).to_s
-    }.sort
-  end
-
-  def stamp_image_path
-    stamp_image_paths.first
-  end
-
-  def sticker?
-    sticker_image_paths.any?
-  end
-
-  def stamp?
-    stamp_image_paths.any?
   end
 
   def watchable_talks?
