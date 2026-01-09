@@ -39,10 +39,26 @@ class GeocoderCacheStore
   end
 end
 
-Geocoder.configure(
-  lookup: :google,
-  api_key: ENV["GEOLOCATE_API_KEY"],
-  timeout: 5,
-  use_https: true,
-  cache: GeocoderCacheStore.new
-)
+google_api_key = ENV["GEOLOCATE_API_KEY"]
+
+if google_api_key.present?
+  Geocoder.configure(
+    lookup: :google,
+    api_key: google_api_key,
+    timeout: 5,
+    use_https: true,
+    cache: GeocoderCacheStore.new
+  )
+elsif Rails.env.development?
+  git_name = `git config user.name 2>/dev/null`.strip.presence
+
+  raise "Nominatim requires contact info. Please set your git user.name" unless git_name
+
+  Geocoder.configure(
+    lookup: :nominatim,
+    timeout: 5,
+    use_https: true,
+    cache: GeocoderCacheStore.new,
+    http_headers: {"User-Agent" => git_name}
+  )
+end

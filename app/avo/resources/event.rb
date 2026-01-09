@@ -43,13 +43,15 @@ class Avo::Resources::Event < Avo::BaseResource
 
   def actions
     action Avo::Actions::AssignCanonicalEvent
-    action Avo::Actions::GeocodeEvent
+    action Avo::Actions::GeocodeRecord
   end
 
   def filters
     filter Avo::Filters::Name
     filter Avo::Filters::WithoutTalks
     filter Avo::Filters::Canonical
+    filter Avo::Filters::LocationPresence
+    filter Avo::Filters::GeocodedPresence
   end
 
   def country_options

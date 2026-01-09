@@ -52,6 +52,7 @@
 # rubocop:enable Layout/LineLength
 class User < ApplicationRecord
   include ActionView::RecordIdentifier
+  include Geocodeable
   include Sluggable
   include Suggestable
   include User::Searchable
@@ -125,17 +126,6 @@ class User < ApplicationRecord
   has_object :speakerdeck_feed
   has_object :suspicion_detector
 
-  geocoded_by :location do |user, results|
-    if (result = results.first)
-      user.latitude = result.latitude
-      user.longitude = result.longitude
-      user.city = result.city
-      user.state = result.state_code
-      user.country_code = result.country_code
-      user.geocode_metadata = result.data.merge("geocoded_at" => Time.current.iso8601)
-    end
-  end
-
   validates :email, format: {with: URI::MailTo::EMAIL_REGEXP}, allow_blank: true
   validates :github_handle, presence: true, uniqueness: true, allow_blank: true
   validates :canonical, exclusion: {in: ->(user) { [user] }, message: "can't be itself"}
@@ -183,9 +173,6 @@ class User < ApplicationRecord
 
   # Seed watched talks for new users in development
   after_create :seed_development_watched_talks, if: -> { Rails.env.development? }
-
-  # Geocode location when it changes
-  after_commit :geocode_later, if: :location_previously_changed?
 
   # Speaker scopes
   scope :with_talks, -> { where.not(talks_count: 0) }
@@ -458,9 +445,5 @@ class User < ApplicationRecord
 
   def seed_development_watched_talks
     watched_talk_seeder.seed_development_data
-  end
-
-  def geocode_later
-    GeocodeUserJob.perform_later(self)
   end
 end
