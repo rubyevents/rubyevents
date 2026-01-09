@@ -85,6 +85,7 @@ class Event < ApplicationRecord
   has_object :static_metadata
   has_object :sponsors_file
   has_object :cfp_file
+  has_object :involvements_file
   has_object :venue
   has_object :videos_file
   has_object :location_info

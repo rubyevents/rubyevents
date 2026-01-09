@@ -410,23 +410,15 @@ module Static
       end
     end
 
-    def involvements_file_path
-      Rails.root.join("data", series_slug, slug, "involvements.yml")
-    end
-
-    def involvements_file?
-      involvements_file_path.exist?
-    end
-
     def import_involvements!(event)
-      return unless involvements_file?
+      return unless event.involvements_file.exist?
 
       event_involvements = event.event_involvements
 
       # Mark existing involvements for destruction
       event_involvements_attributes = event_involvements.map { it.attributes.merge(_destroy: true) }
 
-      involvements = YAML.load_file(involvements_file_path)
+      involvements = event.involvements_file.entries
 
       involvements.each do |involvement_data|
         role = involvement_data["name"]
