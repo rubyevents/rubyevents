@@ -25,8 +25,15 @@
               </div>
             <% end %>
 
-            <% if @venue.maps.any? %>
+            <% if @venue.maps.any? || @venue.url.present? %>
               <div class="flex flex-wrap gap-2 mt-4">
+                <% if @venue.url.present? %>
+                  <%= link_to @venue.url, target: "_blank", rel: "noopener", class: "btn btn-sm btn-outline gap-2" do %>
+                    <%= fa("square-arrow-up-right", size: :sm, style: :solid) %>
+                    Website
+                  <% end %>
+                <% end %>
+
                 <% if @venue.google_maps_url.present? %>
                   <%= link_to @venue.google_maps_url, target: "_blank", rel: "noopener", class: "btn btn-sm btn-outline gap-2" do %>
                     <%= fa("map-location", size: :sm, style: :solid) %>
