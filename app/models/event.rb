@@ -73,11 +73,14 @@ class Event < ApplicationRecord
   has_many :visitor_participants, -> { where(event_participations: {attended_as: :visitor}) },
     through: :event_participations, source: :user
 
+  # Event involvement associations
   has_many :event_involvements, dependent: :destroy
   has_many :involved_users, -> { where(event_involvements: {involvementable_type: "User"}) },
     through: :event_involvements, source: :involvementable, source_type: "User"
   has_many :involved_event_series, -> { where(event_involvements: {involvementable_type: "EventSeries"}) },
     through: :event_involvements, source: :involvementable, source_type: "EventSeries"
+
+  accepts_nested_attributes_for :event_involvements, allow_destroy: true, reject_if: :all_blank
 
   has_object :schedule
   has_object :static_metadata
