@@ -85,10 +85,11 @@ class Event < ApplicationRecord
   has_object :sponsors_file
   has_object :cfp_file
   has_object :venue
+  has_object :videos_file
   has_object :location_info
 
   def talks_in_running_order(child_talks: true)
-    talks.in_order_of(:static_id, video_ids_in_running_order(child_talks: child_talks))
+    talks.in_order_of(:static_id, videos_file.ids(child_talks: child_talks))
   end
 
   # validations
@@ -204,34 +205,6 @@ class Event < ApplicationRecord
 
   def data_folder
     Rails.root.join("data", series.slug, slug)
-  end
-
-  def videos_file?
-    videos_file_path.exist?
-  end
-
-  def videos_file_path
-    data_folder.join("videos.yml")
-  end
-
-  def videos_file
-    return [] unless videos_file?
-
-    YAML.load_file(videos_file_path)
-  end
-
-  def video_ids_in_running_order(child_talks: true)
-    return [] unless videos_file?
-
-    if child_talks
-      videos_file.flat_map { |talk|
-        [talk.dig("id"), *talk["talks"]&.map { |child_talk|
-          child_talk.dig("id")
-        }]
-      }
-    else
-      videos_file.map { |talk| talk.dig("id") }
-    end
   end
 
   def suggestion_summary

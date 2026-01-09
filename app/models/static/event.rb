@@ -342,9 +342,9 @@ module Static
     end
 
     def import_videos!(event, index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
-      return unless event.videos_file?
+      return unless event.videos_file.exist?
 
-      event.videos_file.each do |talk_data|
+      event.videos_file.entries.each do |talk_data|
         talk = ::Talk.find_or_initialize_by(static_id: talk_data["id"])
         talk.update_from_yml_metadata!(event: event)
         Search::Backend.index(talk) if index
