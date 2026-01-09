@@ -21,6 +21,7 @@ class Avo::Resources::Event < Avo::BaseResource
     field :date_precision, as: :select, options: ::Event.date_precisions, hide_on: :index
     field :start_date, as: :date, hide_on: :index
     field :end_date, as: :date, hide_on: :index
+    field :location, as: :text, hide_on: :index
     field :city, as: :text, hide_on: :index
     field :state, as: :text, hide_on: :index
     field :country_code, as: :select, options: country_options, include_blank: true
