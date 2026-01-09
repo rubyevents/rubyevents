@@ -20,7 +20,6 @@ class Avo::Resources::Alias < Avo::BaseResource
       as: :text,
       hide_on: [:edit, :new],
       format_using: -> { view_context.link_to(value, value, target: "_blank") if value.present? } do
-
       Avo::Resources::Alias.aliasable_link(main_app, record)
     end
     field :created_at, as: :date_time, readonly: true
