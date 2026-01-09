@@ -12,7 +12,7 @@ class GeocodeRecordJob < ApplicationJob
     record.save!
   end
 
-  def self.geocode_concurrency_key(record)
+  def geocode_concurrency_key(record)
     if Geocoder.config.lookup == :nominatim
       "geocoding"
     else
