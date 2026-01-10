@@ -420,7 +420,6 @@ class UserTest < ActiveSupport::TestCase
     assert_equal expected, user.meta_description
   end
 
-
   test "searchable scope returns users with searchable setting enabled" do
     searchable_user = User.create!(name: "Searchable User", github_handle: "searchable-user")
     non_searchable_user = User.create!(name: "Non Searchable User", github_handle: "non-searchable-user")
