@@ -109,15 +109,32 @@ bin/rails sqlite_fts:reindex  # Rebuild SQLite FTS indexes
 
 Configure Typesense via environment variables in your `.env` file:
 
+**Local development (single node):**
+
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `TYPESENSE_HOST` | `localhost` | Typesense server host (use `xxx.a1.typesense.net` for Typesense Cloud) |
-| `TYPESENSE_PORT` | `8108` | Typesense server port (use `443` for Typesense Cloud) |
-| `TYPESENSE_PROTOCOL` | `http` | Protocol to use (use `https` for Typesense Cloud) |
+| `TYPESENSE_HOST` | `localhost` | Typesense server host |
+| `TYPESENSE_PORT` | `8108` | Typesense server port |
+| `TYPESENSE_PROTOCOL` | `http` | Protocol to use |
 | `TYPESENSE_API_KEY` | `xyz` | Your Typesense API key |
+
+**Typesense Cloud with Search Delivery Network (SDN):**
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `TYPESENSE_NODES` | - | Comma-separated list of node hosts (e.g., `xxx-1.a1.typesense.net,xxx-2.a1.typesense.net,xxx-3.a1.typesense.net`) |
+| `TYPESENSE_NEAREST_NODE` | - | SDN nearest node hostname (e.g., `xxx.a1.typesense.net`) |
+| `TYPESENSE_PORT` | `443` | Typesense server port |
+| `TYPESENSE_PROTOCOL` | `https` | Protocol to use |
+| `TYPESENSE_API_KEY` | - | Your Typesense Admin API key |
+
+**Other options:**
+
+| Variable | Default | Description |
+|----------|---------|-------------|
 | `SEARCH_INDEX_ON_IMPORT` | `true` | Whether to update search indexes when importing data from YAML files. Set to `false` to skip indexing during imports (useful for bulk imports followed by a full reindex) |
 
-For local development with Docker, the defaults work out of the box. For production or Typesense Cloud, update these values accordingly.
+For local development with Docker, the defaults work out of the box. For production with Typesense Cloud, set `TYPESENSE_NODES` and `TYPESENSE_NEAREST_NODE` to enable the SDN configuration.
 
 ## Running the Database Seeds
 

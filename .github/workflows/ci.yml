@@ -211,10 +211,9 @@ jobs:
           KAMAL_REGISTRY_PASSWORD: ${{ secrets.KAMAL_REGISTRY_PASSWORD }}
           GEOLOCATE_API_KEY: ${{ secrets.GEOLOCATE_API_KEY }}
           MAPBOX_ACCESS_TOKEN: ${{ secrets.MAPBOX_ACCESS_TOKEN }}
-          TYPESENSE_HOST: ${{ secrets.TYPESENSE_HOST }}
-          TYPESENSE_PORT: ${{ secrets.TYPESENSE_PORT }}
-          TYPESENSE_PROTOCOL: ${{ secrets.TYPESENSE_PROTOCOL }}
           TYPESENSE_API_KEY: ${{ secrets.TYPESENSE_API_KEY }}
+          TYPESENSE_NODES: ${{ secrets.TYPESENSE_NODES }}
+          TYPESENSE_NEAREST_NODE: ${{ secrets.TYPESENSE_NEAREST_NODE }}
 
       - name: Cleanup on cancellation
         if: always() && steps.deploy.conclusion == 'cancelled'
