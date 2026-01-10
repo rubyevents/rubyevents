@@ -1,6 +1,20 @@
 # frozen_string_literal: true
 
+require "uri"
+
 class Event::Tickets < ActiveRecord::AssociatedObject
+  PROVIDERS = {
+    "Tito" => ["ti.to", "tito.io"],
+    "Luma" => ["lu.ma", "luma.com"],
+    "Meetup" => ["meetup.com"],
+    "Connpass" => ["connpass.com"],
+    "Pretix" => ["pretix.eu"],
+    "Eventpop" => ["eventpop.me"],
+    "Eventbrite" => ["eventbrite.com", "eventbrite.co.uk"],
+    "TicketTailor" => ["tickettailor.com"],
+    "Sympla" => ["sympla.com.br"]
+  }.freeze
+
   extension do
     def tickets?
       tickets.exist?
@@ -33,37 +47,37 @@ class Event::Tickets < ActiveRecord::AssociatedObject
     return nil unless tito?
 
     match = url&.match(%r{(?:ti\.to|tito\.io)/(.+?)/?$})
-
     match&.captures&.first
   end
 
-  def provider_name
-    return "Tito" if tito?
-    return "Luma" if luma?
-    return "Meetup" if meetup?
-    return "Connpass" if url&.include?("connpass.com")
-    return "Pretix" if url&.include?("pretix")
-    return "Eventpop" if url&.include?("eventpop")
-    return "Eventbrite" if url&.include?("eventbrite")
-    return "TicketTailor" if url&.include?("tickettailor")
-    return "Sympla" if url&.include?("sympla.com")
+  def provider
+    @provider ||= ActiveSupport::StringInquirer.new(provider_name.to_s.downcase)
+  end
 
+  def provider_name
+    PROVIDERS.find { |_, domains| host_is?(*domains) }&.first
+  end
+
+  def tito? = provider.tito?
+  def luma? = provider.luma?
+  def meetup? = provider.meetup?
+
+  private
+
+  def ticket_url_host
+    return nil if url.blank?
+
+    URI.parse(url).host&.downcase
+  rescue URI::InvalidURIError
     nil
   end
 
-  def tito?
-    url&.match?(/ti\.to|tito\.io/)
-  end
+  def host_is?(*domains)
+    host = ticket_url_host&.delete_prefix("www.")
+    return false if host.nil?
 
-  def luma?
-    url&.match?(/lu\.ma|luma\.com/)
+    domains.any? { |domain| host == domain.downcase }
   end
-
-  def meetup?
-    url&.include?("meetup.com")
-  end
-
-  private
 
   def static_repository
     @static_repository ||= Static::Event.find_by_slug(event.slug)
