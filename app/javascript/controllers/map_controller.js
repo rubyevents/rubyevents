@@ -25,6 +25,7 @@ export default class extends Controller {
     this.layerVisibility = {}
     this.alwaysVisibleLayers = {}
     this.currentTimeFilter = 'all'
+    this.initialLoadComplete = false
 
     const mapContainer = this.hasContainerTarget ? this.containerTarget : this.element
 
@@ -57,6 +58,7 @@ export default class extends Controller {
     }
 
     this.#applyTimeFilter()
+    this.initialLoadComplete = true
   }
 
   toggleLayer (event) {
@@ -128,7 +130,8 @@ export default class extends Controller {
 
     this.#updateLayerBadgeCounts(layerFilteredCounts)
 
-    if (hasVisibleMarkers) {
+    const skipFitOnInit = !this.initialLoadComplete && this.hasBoundsValue
+    if (hasVisibleMarkers && !skipFitOnInit) {
       this.#fitToVisibleBounds(visibleBounds)
     }
   }
@@ -191,23 +194,15 @@ export default class extends Controller {
     this.#applyTimeFilter()
 
     const selectedLayer = this.layersValue.find((layer) => layer.id === selectedLayerId)
-    const selectedMarkers = this.markersByLayer[selectedLayerId] || []
 
-    const hasVisibleMarkers = selectedMarkers.some((marker) => {
-      const element = marker.getElement()
-      return element.style.display !== 'none'
-    })
-
-    if (!hasVisibleMarkers) {
-      if (selectedLayer?.cityPin) {
-        this.map.easeTo({
-          center: [selectedLayer.cityPin.longitude, selectedLayer.cityPin.latitude],
-          zoom: 10,
-          duration: 500
-        })
-      } else if (selectedLayer?.bounds) {
-        this.#fitToLayerBounds(selectedLayer.bounds)
-      }
+    if (selectedLayer?.bounds) {
+      this.#fitToLayerBounds(selectedLayer.bounds)
+    } else if (selectedLayer?.cityPin) {
+      this.map.easeTo({
+        center: [selectedLayer.cityPin.longitude, selectedLayer.cityPin.latitude],
+        zoom: 10,
+        duration: 500
+      })
     }
 
     const controls = event.target.closest('[data-map-target="controls"]')
@@ -350,6 +345,15 @@ export default class extends Controller {
   }
 
   #fitToBounds () {
+    // When we have layers, use the visible layer's bounds instead of top-level bounds
+    if (this.hasLayersValue && this.layersValue.length > 0) {
+      const visibleLayer = this.layersValue.find((l) => l.visible !== false && l.bounds)
+      if (visibleLayer?.bounds) {
+        this.#fitToLayerBounds(visibleLayer.bounds)
+        return
+      }
+    }
+
     if (!this.hasBoundsValue || !this.boundsValue.southwest || !this.boundsValue.northeast) return
 
     this.map.fitBounds(
