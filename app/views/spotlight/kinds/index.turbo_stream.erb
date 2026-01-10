@@ -1,0 +1,44 @@
+<%= turbo_stream.replace "kinds_search_results" do %>
+  <div
+    id="kinds_search_results"
+    class="<%= @kinds.any? ? 'pb-4 border-b' : 'hidden' %>"
+    data-spotlight-search-target="kindsSearchResults">
+
+    <% if @kinds.any? %>
+      <% talk_kinds = @kinds.select { |k| k[:category] == "talk" } %>
+      <% event_kinds = @kinds.select { |k| k[:category] == "event" } %>
+
+      <% if talk_kinds.any? %>
+        <div class="flex items-center flex-wrap gap-2 py-2">
+          <span class="text-sm font-medium text-gray-600">Talk Types</span>
+          <span class="text-xs text-gray-400">(<%= talk_kinds.size %>)</span>
+        </div>
+
+        <div class="flex flex-wrap gap-2 mb-3">
+          <% talk_kinds.each do |kind| %>
+            <%= link_to talks_path(kind: kind[:slug]), target: "_top", class: "badge badge-ghost hover:bg-gray-200 px-3 py-3 text-sm gap-2" do %>
+              <span><%= kind[:name] %></span>
+              <span class="text-xs text-gray-400">(<%= pluralize(kind[:count], "talk") %>)</span>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+
+      <% if event_kinds.any? %>
+        <div class="flex items-center flex-wrap gap-2 py-2">
+          <span class="text-sm font-medium text-gray-600">Event Types</span>
+          <span class="text-xs text-gray-400">(<%= event_kinds.size %>)</span>
+        </div>
+
+        <div class="flex flex-wrap gap-2">
+          <% event_kinds.each do |kind| %>
+            <%= link_to archive_events_path(kind: kind[:slug]), target: "_top", class: "badge badge-ghost hover:bg-gray-200 px-3 py-3 text-sm gap-2" do %>
+              <span><%= kind[:name] %></span>
+              <span class="text-xs text-gray-400">(<%= pluralize(kind[:count], "event") %>)</span>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

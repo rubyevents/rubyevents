@@ -55,13 +55,7 @@ class Search::Backend::SQLiteFTS
       def index_talk(talk)
         return unless talk.video_provider.in?(Talk::WATCHABLE_PROVIDERS)
 
-        Talk::Index.find_or_initialize_by(rowid: talk.id).tap do |index|
-          index.title = talk.title
-          index.summary = talk.summary
-          index.speaker_names = talk.speaker_names
-          index.event_names = talk.event_names
-          index.save!
-        end
+        talk.fts_index.reindex
       rescue ActiveRecord::RecordNotUnique
         # Already indexed
       end
@@ -73,11 +67,7 @@ class Search::Backend::SQLiteFTS
       def index_user(user)
         return unless user.canonical_id.nil? && user.talks_count.to_i > 0
 
-        User::Index.find_or_initialize_by(rowid: user.id).tap do |index|
-          index.name = user.name
-          index.github_handle = user.github_handle
-          index.save!
-        end
+        user.fts_index.reindex
       rescue ActiveRecord::RecordNotUnique
         # Already indexed
       end

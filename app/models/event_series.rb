@@ -29,6 +29,7 @@
 class EventSeries < ApplicationRecord
   include Sluggable
   include Suggestable
+  include EventSeries::TypesenseSearchable
 
   include ActionView::Helpers::TextHelper
 
@@ -53,7 +54,7 @@ class EventSeries < ApplicationRecord
     series = find_by(name: name)
     return series if series
 
-    alias_record = Alias.find_by(aliasable_type: "EventSeries", name: name)
+    alias_record = ::Alias.find_by(aliasable_type: "EventSeries", name: name)
     alias_record&.aliasable
   end
 
@@ -63,7 +64,7 @@ class EventSeries < ApplicationRecord
     series = find_by(slug: slug)
     return series if series
 
-    alias_record = Alias.find_by(aliasable_type: "EventSeries", slug: slug)
+    alias_record = ::Alias.find_by(aliasable_type: "EventSeries", slug: slug)
     alias_record&.aliasable
   end
 
@@ -79,8 +80,8 @@ class EventSeries < ApplicationRecord
       end
 
       # Check if alias exists globally for another EventSeries
-      existing_global = Alias.find_by(aliasable_type: "EventSeries", name: alias_name) ||
-        Alias.find_by(aliasable_type: "EventSeries", slug: slug)
+      existing_global = ::Alias.find_by(aliasable_type: "EventSeries", name: alias_name) ||
+        ::Alias.find_by(aliasable_type: "EventSeries", slug: slug)
       next if existing_global # Skip if it belongs to another series
 
       aliases.create!(name: alias_name, slug: slug)

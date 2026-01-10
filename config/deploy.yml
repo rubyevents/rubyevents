@@ -65,10 +65,15 @@ env:
     WEB_CONCURRENCY: 3
     RAILS_MAX_THREADS: 3
     RAILS_ENV: production
+    TYPESENSE_PORT: 443
+    TYPESENSE_PROTOCOL: https
   secret:
     - RAILS_MASTER_KEY
     - GEOLOCATE_API_KEY
     - MAPBOX_ACCESS_TOKEN
+    - TYPESENSE_API_KEY
+    - TYPESENSE_NODES
+    - TYPESENSE_NEAREST_NODE
 
 # Aliases are triggered with "bin/kamal <alias>". You can overwrite arguments on invocation:
 # "bin/kamal logs -r job" will tail logs from the first server in the job section.
@@ -108,3 +113,16 @@ accessories:
     options:
       memory: 1GB
       cpus: 0.5
+
+  typesense:
+    roles: ["web"]
+    image: typesense/typesense:27.1
+    port: "8108:8108"
+    volumes:
+      - "typesense-data:/data"
+    env:
+      clear:
+        TYPESENSE_DATA_DIR: /data
+        TYPESENSE_ENABLE_CORS: "true"
+      secret:
+        - TYPESENSE_API_KEY

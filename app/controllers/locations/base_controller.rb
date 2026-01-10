@@ -10,7 +10,9 @@ class Locations::BaseController < ApplicationController
   private
 
   def set_location
-    if params[:continent_continent].present?
+    if params[:online].present?
+      set_online
+    elsif params[:continent_continent].present?
       set_continent
     elsif params[:country_country].present?
       set_country
@@ -25,6 +27,10 @@ class Locations::BaseController < ApplicationController
     else
       redirect_to root_path
     end
+  end
+
+  def set_online
+    @location = OnlineLocation.instance
   end
 
   def set_continent
@@ -150,6 +156,23 @@ class Locations::BaseController < ApplicationController
     @nearby_users = @city.nearby_users(exclude_ids: location_users.pluck(:id))
   end
 
+  def load_events_by_city
+    return unless country? || state?
+
+    events = @location.events.includes(:series)
+
+    country_code = country? ? @location.alpha2 : @country&.alpha2
+    featured_cities = FeaturedCity.where(country_code: country_code)
+    featured_city_names = featured_cities.pluck(:city).map(&:downcase).to_set
+
+    @events_by_city = events
+      .select { |event| event.location.present? }
+      .reject { |event| featured_city_names.include?(event.city&.downcase) }
+      .group_by(&:location)
+      .sort_by { |city, _events| city }
+      .to_h
+  end
+
   def load_nearby_events
     return unless city? && @city.geocoded? && upcoming_events.empty?
 
@@ -177,6 +200,10 @@ class Locations::BaseController < ApplicationController
       .upcoming
   end
 
+  def online?
+    @location.is_a?(OnlineLocation)
+  end
+
   def city?
     @location.is_a?(FeaturedCity) || @location.is_a?(City)
   end
@@ -195,6 +222,7 @@ class Locations::BaseController < ApplicationController
 
   def location_view_prefix
     case @location
+    when OnlineLocation then "online"
     when Continent then "continents"
     when Country, UKNation then "countries"
     when State then "states"

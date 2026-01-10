@@ -43,6 +43,7 @@ class Event < ApplicationRecord
   include Geocodeable
   include Suggestable
   include Sluggable
+  include Event::TypesenseSearchable
 
   configure_slug(attribute: :name, auto_suffix_on_collision: false)
 
@@ -140,7 +141,7 @@ class Event < ApplicationRecord
     event = find_by(name: name)
     return event if event
 
-    alias_record = Alias.find_by(aliasable_type: "Event", name: name)
+    alias_record = ::Alias.find_by(aliasable_type: "Event", name: name)
     alias_record&.aliasable
   end
 
@@ -150,7 +151,7 @@ class Event < ApplicationRecord
     event = find_by(slug: slug)
     return event if event
 
-    alias_record = Alias.find_by(aliasable_type: "Event", slug: slug)
+    alias_record = ::Alias.find_by(aliasable_type: "Event", slug: slug)
     alias_record&.aliasable
   end
 
@@ -172,8 +173,8 @@ class Event < ApplicationRecord
         next
       end
 
-      existing_global = Alias.find_by(aliasable_type: "Event", name: alias_name)
-      existing_global ||= Alias.find_by(aliasable_type: "Event", slug: slug)
+      existing_global = ::Alias.find_by(aliasable_type: "Event", name: alias_name)
+      existing_global ||= ::Alias.find_by(aliasable_type: "Event", slug: slug)
 
       next if existing_global
 

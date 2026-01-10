@@ -25,6 +25,7 @@
 class Organization < ApplicationRecord
   include Sluggable
   include UrlNormalizable
+  include Organization::TypesenseSearchable
 
   configure_slug(attribute: :name, auto_suffix_on_collision: false)
 

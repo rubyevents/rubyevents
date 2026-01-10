@@ -10,7 +10,11 @@
 
     <div class="flex flex-col justify-center text-center lg:text-left flex-grow">
       <h1 class="mb-2 text-black font-bold text-3xl lg:text-4xl">
-        Ruby Community in <%= name %>
+        <% if location.is_a?(OnlineLocation) %>
+          Online Ruby Community
+        <% else %>
+          Ruby Community in <%= name %>
+        <% end %>
       </h1>
 
       <h3 class="text-[#636B74] text-lg">
@@ -100,6 +104,16 @@
                       data: {turbo_confirm: "Are you sure you want to unfeature #{location.name}?"} %>
               <% end %>
             </div>
+          <% end %>
+        <% when OnlineLocation %>
+          <%= link_to continents_path, class: "link flex items-center gap-1 justify-end" do %>
+            <%= fa("globe", size: :sm, class: "text-gray-400") %>
+            Browse by Location
+          <% end %>
+
+          <%= link_to cities_path, class: "link flex items-center gap-1 justify-end" do %>
+            <%= fa("city", size: :sm, class: "text-gray-400") %>
+            All Cities
           <% end %>
         <% end %>
       </div>

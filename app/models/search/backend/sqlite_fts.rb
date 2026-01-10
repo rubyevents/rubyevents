@@ -108,54 +108,27 @@ class Search::Backend::SQLiteFTS
     end
 
     def search_locations(query, limit:)
-      return [[], 0] if query.blank?
+      [[], 0]
+    end
 
-      results = []
-      query_downcase = query.downcase
+    def search_continents(query, limit:)
+      [[], 0]
+    end
 
-      countries_with_events.each do |country_code, event_count|
-        country = Country.find(country_code)
-        next unless country
+    def search_countries(query, limit:)
+      [[], 0]
+    end
 
-        country_name = country.common_name || country.iso_short_name
+    def search_states(query, limit:)
+      [[], 0]
+    end
 
-        if country_name.downcase.include?(query_downcase) ||
-            country_code.downcase.include?(query_downcase)
-          results << {
-            type: :country,
-            name: country_name,
-            country_code: country_code,
-            emoji_flag: country.emoji_flag,
-            event_count: event_count
-          }
-        end
-      end
+    def search_cities(query, limit:)
+      [[], 0]
+    end
 
-      cities_with_countries.each do |city, country_code, event_count|
-        country = Country.find(country_code)
-        country_name = country&.common_name || country&.iso_short_name || country_code
-
-        if city.downcase.include?(query_downcase)
-          results << {
-            type: :city,
-            name: city,
-            country_name: country_name,
-            country_code: country_code,
-            emoji_flag: country&.emoji_flag,
-            event_count: event_count
-          }
-        end
-      end
-
-      sorted = results.sort_by do |r|
-        name = r[:name]
-        exact_match = (name.downcase == query_downcase) ? 0 : 1
-        starts_with = name.downcase.start_with?(query_downcase) ? 0 : 1
-
-        [exact_match, starts_with, -r[:event_count]]
-      end.first(limit)
-
-      [sorted, sorted.size]
+    def search_kinds(query, limit:)
+      [[], 0]
     end
 
     def available?
@@ -172,8 +145,6 @@ class Search::Backend::SQLiteFTS
 
     def reset_cache!
       @languages_with_talks = nil
-      @countries_with_events = nil
-      @cities_with_countries = nil
     end
 
     private
@@ -201,20 +172,6 @@ class Search::Backend::SQLiteFTS
       @languages_with_talks ||= Talk.where.not(language: [nil, "", "en"])
         .group(:language)
         .count
-    end
-
-    def countries_with_events
-      @countries_with_events ||= Event.where.not(country_code: [nil, ""])
-        .group(:country_code)
-        .count
-    end
-
-    def cities_with_countries
-      @cities_with_countries ||= Event.where.not(city: [nil, ""])
-        .where.not(country_code: [nil, ""])
-        .group(:city, :country_code)
-        .count
-        .map { |(city, country_code), count| [city, country_code, count] }
     end
   end
 end

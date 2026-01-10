@@ -24,7 +24,9 @@ Please note that this project is released with a Contributor Code of Conduct. By
 
 ## Credits
 
-Thank you [Appsignal](https://appsignal.com/r/eeab047472) for providing the APM tool that helps us monitor the application.
+Thank you [AppSignal](https://appsignal.com/r/eeab047472) for providing the APM tool that helps us monitor the application.
+
+Thank you [Typesense](https://typesense.org/) for sponsoring our [Typesense Cloud](https://cloud.typesense.org/) instance that powers the search functionality.
 
 ## License
 

@@ -29,6 +29,7 @@
 # rubocop:enable Layout/LineLength
 class Topic < ApplicationRecord
   include Sluggable
+  include Topic::TypesenseSearchable
 
   has_object :agents
   has_object :gem_info

@@ -15,7 +15,7 @@ class ContinentsController < ApplicationController
       .transform_keys { |name| Continent.find_by_name(name) }
       .compact
 
-    @users_by_continent = User.geocoded
+    @users_by_continent = User.indexable.geocoded
       .group(:country_code)
       .count
       .group_by { |code, _| Country.find_by(country_code: code)&.continent }
@@ -44,7 +44,7 @@ class ContinentsController < ApplicationController
       .sort_by { |country, _| country&.name.to_s }
       .to_h
 
-    @users = @continent.users.geocoded.order(talks_count: :desc)
+    @users = @continent.users.indexable.geocoded.order(talks_count: :desc)
     @stamps = @continent.stamps
     @location = @continent
 

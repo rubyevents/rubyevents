@@ -46,7 +46,7 @@ class StatesController < ApplicationController
       .sort_by { |city, _events| city }
       .to_h
 
-    @users = @state.users.geocoded.order(talks_count: :desc)
+    @users = @state.users.indexable.geocoded.order(talks_count: :desc)
     @stamps = @state.stamps
 
     @country_events = Event.includes(:series)

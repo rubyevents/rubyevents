@@ -86,4 +86,60 @@ class Search::Backend::SQLiteFTSTest < ActiveSupport::TestCase
     assert_equal [], results
     assert_equal 0, count
   end
+
+  test "search_continents returns array and count" do
+    results, count = Search::Backend::SQLiteFTS.search_continents("europe", limit: 10)
+
+    assert_kind_of Array, results
+    assert_kind_of Integer, count
+  end
+
+  test "search_continents returns empty for blank query" do
+    results, count = Search::Backend::SQLiteFTS.search_continents("", limit: 10)
+
+    assert_equal [], results
+    assert_equal 0, count
+  end
+
+  test "search_countries returns array and count" do
+    results, count = Search::Backend::SQLiteFTS.search_countries("united", limit: 10)
+
+    assert_kind_of Array, results
+    assert_kind_of Integer, count
+  end
+
+  test "search_countries returns empty for blank query" do
+    results, count = Search::Backend::SQLiteFTS.search_countries("", limit: 10)
+
+    assert_equal [], results
+    assert_equal 0, count
+  end
+
+  test "search_states returns array and count" do
+    results, count = Search::Backend::SQLiteFTS.search_states("california", limit: 10)
+
+    assert_kind_of Array, results
+    assert_kind_of Integer, count
+  end
+
+  test "search_states returns empty for blank query" do
+    results, count = Search::Backend::SQLiteFTS.search_states("", limit: 10)
+
+    assert_equal [], results
+    assert_equal 0, count
+  end
+
+  test "search_cities returns array and count" do
+    results, count = Search::Backend::SQLiteFTS.search_cities("new york", limit: 10)
+
+    assert_kind_of Array, results
+    assert_kind_of Integer, count
+  end
+
+  test "search_cities returns empty for blank query" do
+    results, count = Search::Backend::SQLiteFTS.search_cities("", limit: 10)
+
+    assert_equal [], results
+    assert_equal 0, count
+  end
 end

@@ -1,0 +1,27 @@
+# Docker Compose configuration for local Typesense development
+# Run with: docker compose -f docker-compose.typesense.yml up -d
+
+services:
+  typesense:
+    image: typesense/typesense:27.1
+    container_name: rubyevents-typesense
+    restart: unless-stopped
+    ports:
+      - "8108:8108"
+    volumes:
+      - typesense-data:/data
+    environment:
+      - TYPESENSE_DATA_DIR=/data
+      - TYPESENSE_API_KEY=xyz
+      - TYPESENSE_ENABLE_CORS=true
+    command: ["--data-dir", "/data", "--api-key", "xyz", "--enable-cors", "true"]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8108/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  typesense-data:
+    driver: local

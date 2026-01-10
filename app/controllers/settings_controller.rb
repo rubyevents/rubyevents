@@ -15,6 +15,6 @@ class SettingsController < ApplicationController
   private
 
   def settings_params
-    params.require(:user).permit(:feedback_enabled, :wrapped_public)
+    params.require(:user).permit(:feedback_enabled, :wrapped_public, :searchable)
   end
 end

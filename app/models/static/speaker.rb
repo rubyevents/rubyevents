@@ -24,7 +24,7 @@ module Static
 
       imported_user_ids = []
 
-      ::User.skip_callback(:commit, :after, :reindex)
+      ::User.skip_callback(:commit, :after, :reindex_fts)
       ::Alias.skip_callback(:commit, :after, :reindex_aliasable)
 
       existing_alias_names = Set.new(::Alias.where(aliasable_type: "User").pluck(:name))
@@ -89,7 +89,7 @@ module Static
           end
         end
       ensure
-        ::User.set_callback(:commit, :after, :reindex)
+        ::User.set_callback(:commit, :after, :reindex_fts)
         ::Alias.set_callback(:commit, :after, :reindex_aliasable)
       end
 

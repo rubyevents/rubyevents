@@ -12,7 +12,7 @@
         <% @topics.each do |topic| %>
           <%= link_to topic_path(topic), target: "_top", class: "badge badge-ghost hover:bg-gray-200 px-3 py-3 text-sm gap-1" do %>
             #<%= topic.name.parameterize %>
-            <span class="text-xs text-gray-400">(<%= topic.talks_count %>)</span>
+            <span class="text-xs text-gray-400">(<%= pluralize(topic.talks_count, "talk") %>)</span>
           <% end %>
         <% end %>
       </div>
