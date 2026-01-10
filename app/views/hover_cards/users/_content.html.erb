@@ -32,7 +32,9 @@
       <% if user.location_info&.geocoded? %>
         <div class="flex items-center gap-1 text-xs text-gray-500 mt-1">
           <%= fa "location-dot", size: :xs, class: "text-gray-400" %>
-          <%= render "shared/location", location_info: user.location_info %>
+          <span>
+            <%= render "shared/location", location_info: user.location_info %>
+          </span>
         </div>
       <% elsif user.location.present? %>
         <div class="flex items-center gap-1 text-xs text-gray-500 mt-1">
