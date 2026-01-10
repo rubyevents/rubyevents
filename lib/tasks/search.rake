@@ -54,7 +54,7 @@ namespace :typesense do
         next
       end
 
-      count = Talk.watchable.count
+      count = Talk.count
       puts "\n📚 Reindexing #{count} Talks..."
       start = Time.current
       Search::Backend::Typesense::Indexer.reindex_talks
@@ -250,7 +250,7 @@ namespace :typesense do
     puts "Indexing records modified in the last #{hours} hours..."
 
     if Talk.respond_to?(:typesense_index!)
-      talks = Talk.watchable.where("updated_at > ?", since)
+      talks = Talk.where("updated_at > ?", since)
       puts "\n📚 Indexing #{talks.count} talks..."
       talks.find_each { |t| Search::Backend::Typesense::Indexer.index(t) }
     end
@@ -440,7 +440,7 @@ namespace :typesense do
 
       # Show DB counts for comparison
       puts "Database counts:"
-      puts "   Talks (watchable): #{Talk.watchable.count}"
+      puts "   Talks (all): #{Talk.count}"
       puts "   Events (canonical): #{Event.canonical.count}"
       puts "   Users (speakers): #{User.where("talks_count > 0").where(canonical_id: nil).count}"
       puts "   Topics (approved): #{Topic.approved.canonical.with_talks.count}"
@@ -585,7 +585,7 @@ namespace :sqlite_fts do
   namespace :reindex do
     desc "Reindex Talks FTS index"
     task talks: :environment do
-      count = Talk.watchable.count
+      count = Talk.count
       puts "\n📚 Reindexing #{count} Talks..."
       start = Time.current
       Search::Backend::SQLiteFTS::Indexer.reindex_talks
@@ -594,7 +594,7 @@ namespace :sqlite_fts do
 
     desc "Reindex Users FTS index"
     task users: :environment do
-      count = User.speakers.canonical.count
+      count = User.indexable.count
       puts "\n👤 Reindexing #{count} Users..."
       start = Time.current
       Search::Backend::SQLiteFTS::Indexer.reindex_users

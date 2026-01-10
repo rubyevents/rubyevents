@@ -40,7 +40,7 @@ class Search::Backend::SQLiteFTS
 
       def reindex_users
         User::Index.delete_all
-        User.speakers.canonical.find_each do |user|
+        User.indexable.find_each do |user|
           index_user(user)
         end
       end
