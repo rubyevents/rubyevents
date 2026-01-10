@@ -306,7 +306,7 @@ class UserTest < ActiveSupport::TestCase
   test "updating location enqueues geocoding job" do
     user = User.create!(name: "Geo User", github_handle: "geo-user")
 
-    assert_enqueued_with(job: GeocodeUserJob) do
+    assert_enqueued_with(job: GeocodeRecordJob) do
       user.update!(location: "Berlin, Germany")
     end
   end
@@ -314,7 +314,7 @@ class UserTest < ActiveSupport::TestCase
   test "updating location does not enqueue job when location unchanged" do
     user = User.create!(name: "Geo User 2", github_handle: "geo-user-2", location: "Berlin, Germany")
 
-    assert_no_enqueued_jobs(only: GeocodeUserJob) do
+    assert_no_enqueued_jobs(only: GeocodeRecordJob) do
       user.update!(name: "New Name")
     end
   end
