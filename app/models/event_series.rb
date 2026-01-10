@@ -92,6 +92,10 @@ class EventSeries < ApplicationRecord
     %(All #{name} #{kind.pluralize})
   end
 
+  def next_upcoming_event_with_tickets
+    events.upcoming.find(&:tickets?)
+  end
+
   def description
     start_year = events.minimum(:date)&.year
     end_year = events.maximum(:date)&.year
