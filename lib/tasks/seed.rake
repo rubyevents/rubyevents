@@ -21,5 +21,10 @@ namespace :db do
         puts "Skipping fetching contributors: #{e.message}"
       end
     end
+
+    desc "Seed all speakers"
+    task speakers: :environment do
+      Static::Speaker.import_all!
+    end
   end
 end
