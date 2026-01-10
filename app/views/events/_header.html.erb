@@ -36,6 +36,13 @@
     <div class="flex flex-col gap-2">
       <%= ui_button "View all #{event.series.name} events", url: series_path(event.series), kind: :secondary, size: :sm, class: "w-full" %>
       <%= render "events/participation_button", event: event, participation: participation %>
+      <%= render Tito::ButtonComponent.new(event: event) %>
+
+      <% if Current.user&.admin? %>
+        <%= ui_button url: avo.resources_event_path(event), target: :_blank, kind: :neutral, size: :sm, class: "w-full" do %>
+          Open in Avo
+        <% end %>
+      <% end %>
     </div>
   </div>
 

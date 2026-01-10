@@ -218,6 +218,8 @@
       <hr>
     <% end %>
 
+    <%= render Events::UpcomingEventBannerComponent.new(event: talk.event) %>
+
     <div role="tablist" class="mt-6 tabs tabs-bordered">
       <% if talk.summary.present? %>
         <input type="radio" name="talk_tabs" role="tab" class="tab" aria-label="Summary" checked>

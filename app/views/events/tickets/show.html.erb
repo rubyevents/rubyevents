@@ -1,0 +1,39 @@
+<%= render partial: "events/header", locals: {event: @event} %>
+
+<%= turbo_frame_tag dom_id(@event), data: {turbo_action: "advance", turbo_frame: "_top"} do %>
+  <div class="container py-8">
+    <%= render partial: "events/navigation", locals: {event: @event} %>
+
+    <div class="flex flex-col gap-8 mt-8">
+      <section class="bg-white rounded-lg border p-6 shadow-sm">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">Tickets</h2>
+
+        <% if @event.tickets.tito? %>
+          <p class="text-gray-600 mb-6">
+            Get your tickets for <%= @event.name %> below. Tickets are sold directly by the event organizer through <%= link_to "Tito", "https://ti.to", target: "_blank", rel: "noopener", class: "link" %>. RubyEvents is not responsible for ticket sales, refunds, or any issues related to your purchase.
+          </p>
+
+          <%= render Tito::WidgetComponent.new(event: @event, wrapper: false) %>
+
+          <p class="mt-6">
+            <%= link_to @event.tickets.url, target: "_blank", rel: "noopener", class: "btn btn-primary" do %>
+              Open on Tito
+              <%= fa("square-arrow-up-right", size: :xs, style: :solid, class: "ml-1") %>
+            <% end %>
+          </p>
+        <% else %>
+          <p class="text-gray-600 mb-6">
+            Tickets for <%= @event.name %> are sold directly by the event organizer<%= " via #{@event.tickets.provider_name}" if @event.tickets.provider_name %>. RubyEvents is not responsible for ticket sales, refunds, or any issues related to your purchase.
+          </p>
+
+          <p>
+            <%= link_to @event.tickets.url, target: "_blank", rel: "noopener", class: "btn btn-primary" do %>
+              Buy Tickets
+              <%= fa("square-arrow-up-right", size: :xs, style: :solid, class: "ml-1") %>
+            <% end %>
+          </p>
+        <% end %>
+      </section>
+    </div>
+  </div>
+<% end %>

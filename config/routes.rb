@@ -224,6 +224,7 @@ Rails.application.routes.draw do
       resources :sponsors, only: [:index]
       resources :cfp, only: [:index]
       resources :collectibles, only: [:index]
+      resource :tickets, only: [:show]
     end
   end
 
