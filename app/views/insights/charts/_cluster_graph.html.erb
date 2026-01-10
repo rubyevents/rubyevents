@@ -1,0 +1,34 @@
+<%= turbo_frame_tag frame_id do %>
+  <div
+    data-controller="insights--cluster-graph"
+    data-insights--cluster-graph-url-value="<%= url %>"
+    class="h-[600px] border border-base-300 rounded-lg relative">
+
+    <div class="absolute top-2 right-2 z-10 flex items-center gap-2">
+      <div class="join">
+        <input
+          type="text"
+          placeholder="Search..."
+          autocomplete="off"
+          class="input input-sm input-bordered join-item w-40"
+          data-insights--cluster-graph-target="search"
+          data-action="input->insights--cluster-graph#search keydown.escape->insights--cluster-graph#clearSearch">
+        <button
+          type="button"
+          class="btn btn-sm btn-ghost join-item"
+          data-action="click->insights--cluster-graph#clearSearch">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div data-insights--cluster-graph-target="results" class="flex items-center gap-1"></div>
+    </div>
+
+    <div data-insights--cluster-graph-target="graph" class="h-full w-full">
+      <div class="flex items-center justify-center h-full">
+        <span class="loading loading-spinner loading-lg"></span>
+      </div>
+    </div>
+  </div>
+<% end %>

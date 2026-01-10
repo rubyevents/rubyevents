@@ -1,0 +1,131 @@
+<%= render layout: "profiles/tab_layout", locals: {
+      user: @user,
+      topics: @topics,
+      talks: @talks,
+      events: @events,
+      mutual_events: @mutual_events,
+      stamps: @stamps,
+      events_with_stickers: @events_with_stickers,
+      involvements_by_role: @involvements_by_role,
+      countries_with_events: @countries_with_events,
+      favorite_user: @favorite_user,
+      aliases: @aliases
+    } do %>
+  <div class="space-y-8">
+    <% if @profile.nil? %>
+      <div class="alert alert-info">
+        <span>No talk data available to generate insights.</span>
+      </div>
+    <% else %>
+      <% if @summary.present? %>
+        <div class="card bg-gradient-to-br from-primary/10 to-secondary/10 shadow-lg border border-primary/20">
+          <div class="card-body">
+            <div class="flex items-start gap-3">
+              <span class="text-3xl">✨</span>
+              <div class="prose prose-sm max-w-none">
+                <p class="text-base-content/90 leading-relaxed whitespace-pre-line"><%= @summary %></p>
+              </div>
+            </div>
+            <div class="text-xs text-base-content/50 mt-2 text-right">AI-generated summary</div>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="stats stats-vertical lg:stats-horizontal shadow w-full bg-base-200">
+        <div class="stat">
+          <div class="stat-title">Total Talks</div>
+          <div class="stat-value"><%= @profile[:stats][:total_talks] %></div>
+        </div>
+        <div class="stat">
+          <div class="stat-title">Events</div>
+          <div class="stat-value"><%= @profile[:stats][:unique_events] %></div>
+        </div>
+        <div class="stat">
+          <div class="stat-title">Series</div>
+          <div class="stat-value"><%= @profile[:stats][:unique_series] %></div>
+        </div>
+        <div class="stat">
+          <div class="stat-title">Topics</div>
+          <div class="stat-value"><%= @profile[:stats][:unique_topics] %></div>
+        </div>
+        <div class="stat">
+          <div class="stat-title">Countries</div>
+          <div class="stat-value"><%= @profile[:stats][:countries_spoken_in] %></div>
+        </div>
+        <div class="stat">
+          <div class="stat-title">Years Active</div>
+          <div class="stat-value"><%= @profile[:stats][:years_active] %></div>
+          <% if @profile[:stats][:first_talk_year] && @profile[:stats][:last_talk_year] %>
+            <div class="stat-desc"><%= @profile[:stats][:first_talk_year] %> - <%= @profile[:stats][:last_talk_year] %></div>
+          <% end %>
+        </div>
+        <% if @profile[:stats][:avg_talk_duration] %>
+          <div class="stat">
+            <div class="stat-title">Avg Duration</div>
+            <div class="stat-value"><%= @profile[:stats][:avg_talk_duration] %></div>
+            <div class="stat-desc">minutes</div>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <% @profile[:categories].each do |key, category| %>
+          <% next if category[:label] == "Unknown" %>
+
+          <% category_labels = {title_pattern: "Talk Titles", circuit: "Conference Circuit", generation: "Speaker Generation", duration: "Talk Duration", collaboration: "Collaboration Style", seasonal: "Seasonal Pattern", loyalty: "Conference Loyalty", recycling: "Talk Originality", trend_timing: "Topic Timing", title_evolution: "Title Evolution", topic_evolution: "Topic Evolution", mentorship: "Mentorship Role", pioneer: "Event Pioneer", event_kind: "Event Preference", talk_format: "Talk Format", topic_breadth: "Topic Breadth", network_size: "Speaker Network", slide_sharing: "Slide Sharing", language: "Language", cadence: "Career Cadence", continents: "Geographic Reach", popularity: "Popularity", hallway_track: "Hallway Track"} %>
+
+          <% label = category_labels[key] || key.to_s.titleize %>
+
+          <div class="card bg-base-200 shadow-sm hover:shadow-md transition-shadow">
+            <div class="card-body p-4">
+              <div class="flex items-center gap-3">
+                <% if category[:icon] %>
+                  <span class="text-3xl"><%= category[:icon] %></span>
+                <% end %>
+                <div class="flex-1">
+                  <h3 class="font-bold text-lg"><%= category[:label] %></h3>
+                  <p class="text-sm text-base-content/70"><%= category[:description] %></p>
+                </div>
+              </div>
+              <div class="badge badge-ghost badge-sm mt-2"><%= label %></div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <% if @profile[:top_topics].any? %>
+        <div class="card bg-base-200 shadow-sm">
+          <div class="card-body">
+            <h3 class="card-title">Top Topics</h3>
+
+            <div class="flex flex-wrap gap-2">
+              <% @profile[:top_topics].each do |topic| %>
+                <%= link_to topic_path(topic[:slug]), class: "badge badge-lg badge-primary gap-2" do %>
+                  <%= topic[:name] %>
+                  <span class="badge badge-sm"><%= topic[:count] %></span>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+      <% if @talk_suggestions.present? %>
+        <div class="card bg-gradient-to-br from-secondary/10 to-accent/10 shadow-lg border border-secondary/20">
+          <div class="card-body">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="text-3xl">💡</span>
+              <h3 class="card-title">Talk Ideas for You</h3>
+            </div>
+
+            <div class="prose prose-sm max-w-none">
+              <div class="text-base-content/90 leading-relaxed whitespace-pre-line"><%= @talk_suggestions %></div>
+            </div>
+
+            <div class="text-xs text-base-content/50 mt-4 text-right">AI-generated suggestions based on your speaking history</div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

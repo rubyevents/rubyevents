@@ -1,0 +1,12 @@
+<%= turbo_frame_tag frame_id do %>
+  <div
+    data-controller="insights--lollipop"
+    data-insights--lollipop-url-value="<%= url %>"
+    data-insights--lollipop-label-key-value="<%= label_key %>"
+    data-insights--lollipop-value-key-value="<%= value_key %>"
+    class="h-96">
+    <div class="flex items-center justify-center h-full">
+      <span class="loading loading-spinner loading-lg"></span>
+    </div>
+  </div>
+<% end %>

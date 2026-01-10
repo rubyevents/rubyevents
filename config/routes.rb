@@ -150,6 +150,143 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :insights do
+    resource :dashboard, only: [:show]
+
+    resources :charts, only: [] do
+      collection do
+        get :conference_season
+        get :conference_calendar
+        get :events_timeline
+        get :speaker_debuts
+
+        get :talk_durations
+        get :talk_types
+        get :talk_languages
+        get :word_cloud
+
+        get :prolific_speakers
+        get :connected_speakers
+        get :speaker_countries
+        get :career_lengths
+
+        get :topic_relationships
+        get :speaker_network
+        get :speaker_communities
+        get :speaker_topics
+
+        get :series_longevity
+        get :events_by_country
+        get :topic_trends
+
+        get :title_linguists
+        get :circuit_travelers
+        get :temporal_twins
+        get :duration_dna
+        get :event_pioneers
+        get :topic_evolution
+        get :solo_ensemble
+        get :trend_timing
+        get :talk_recyclers
+        get :seasonal_speakers
+        get :conference_loyalty
+        get :mentorship_network
+        get :title_evolution
+        get :country_clusters
+        get :talk_affinities
+        get :event_buddies
+        get :watch_party
+      end
+    end
+
+    resources :events, only: [] do
+      collection do
+        get :timeline
+        get :by_kind
+        get :by_country
+      end
+    end
+
+    resources :speakers, only: [] do
+      collection do
+        get :prolific
+        get :co_attendance
+        get :topics
+        get :clusters
+        get :topic_network
+      end
+    end
+
+    resources :topics, only: [] do
+      collection do
+        get :relationships
+        get :trends
+      end
+    end
+
+    resources :maps, only: [] do
+      collection do
+        get :events
+        get :speakers
+      end
+    end
+
+    resources :talks, only: [] do
+      collection do
+        get :durations
+        get :kinds
+        get :languages
+        get :title_words
+        get :duration_trends
+        get :providers
+      end
+    end
+
+    resources :calendar, only: [] do
+      collection do
+        get :monthly_distribution
+        get :heatmap
+        get :speaker_debuts
+        get :first_time_speakers
+        get :day_of_week
+      end
+    end
+
+    resources :community, only: [] do
+      collection do
+        get :speaker_loyalty
+        get :most_connected
+        get :speaker_countries
+        get :international_events
+        get :career_lengths
+        get :series_longevity
+        get :topic_emergence
+      end
+    end
+
+    resources :experiments, only: [] do
+      collection do
+        get :title_linguists
+        get :circuit_travelers
+        get :temporal_twins
+        get :duration_dna
+        get :event_pioneers
+        get :topic_evolution
+        get :solo_ensemble
+        get :trend_timing
+        get :talk_recyclers
+        get :seasonal_speakers
+        get :conference_loyalty
+        get :mentorship_network
+        get :title_evolution
+        get :event_buddies
+        get :watch_party
+        get :country_clusters
+        get :talk_affinities
+      end
+    end
+  end
+
   resources :talks, param: :slug, only: [:index, :show, :update, :edit] do
     scope module: :talks do
       resources :recommendations, only: [:index]
@@ -181,6 +318,7 @@ Rails.application.routes.draw do
       resources :involvements, only: [:index]
       resources :map, only: [:index]
       resources :aliases, only: [:index]
+      resource :insights, only: [:show]
       resources :wrapped, only: [:index] do
         collection do
           get :card

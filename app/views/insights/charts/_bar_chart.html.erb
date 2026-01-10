@@ -1,0 +1,13 @@
+<%= turbo_frame_tag frame_id do %>
+  <div
+    data-controller="insights--bar-chart"
+    data-insights--bar-chart-url-value="<%= url %>"
+    data-insights--bar-chart-label-key-value="<%= label_key %>"
+    data-insights--bar-chart-value-key-value="<%= value_key %>"
+    <%= "data-insights--bar-chart-limit-value=#{limit}" if defined?(limit) && limit %>
+    class="h-72">
+    <div class="flex items-center justify-center h-full">
+      <span class="loading loading-spinner loading-lg"></span>
+    </div>
+  </div>
+<% end %>

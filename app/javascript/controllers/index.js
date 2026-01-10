@@ -88,3 +88,39 @@ application.register("watched-talk-form", WatchedTalkFormController)
 
 import WrappedStoriesController from "./wrapped_stories_controller"
 application.register("wrapped-stories", WrappedStoriesController)
+
+import Insights__TimelineController from "./insights/timeline_controller"
+application.register("insights--timeline", Insights__TimelineController)
+
+import Insights__DonutController from "./insights/donut_controller"
+application.register("insights--donut", Insights__DonutController)
+
+import Insights__BarChartController from "./insights/bar_chart_controller"
+application.register("insights--bar-chart", Insights__BarChartController)
+
+import Insights__ForceGraphController from "./insights/force_graph_controller"
+application.register("insights--force-graph", Insights__ForceGraphController)
+
+import Insights__BipartiteGraphController from "./insights/bipartite_graph_controller"
+application.register("insights--bipartite-graph", Insights__BipartiteGraphController)
+
+import Insights__StackedAreaController from "./insights/stacked_area_controller"
+application.register("insights--stacked-area", Insights__StackedAreaController)
+
+import Insights__WordCloudController from "./insights/word_cloud_controller"
+application.register("insights--word-cloud", Insights__WordCloudController)
+
+import Insights__HeatmapController from "./insights/heatmap_controller"
+application.register("insights--heatmap", Insights__HeatmapController)
+
+import Insights__RadialBarController from "./insights/radial_bar_controller"
+application.register("insights--radial-bar", Insights__RadialBarController)
+
+import Insights__LollipopController from "./insights/lollipop_controller"
+application.register("insights--lollipop", Insights__LollipopController)
+
+import Insights__LineChartController from "./insights/line_chart_controller"
+application.register("insights--line-chart", Insights__LineChartController)
+
+import Insights__ClusterGraphController from "./insights/cluster_graph_controller"
+application.register("insights--cluster-graph", Insights__ClusterGraphController)

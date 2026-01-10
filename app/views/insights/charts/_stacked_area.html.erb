@@ -1,0 +1,10 @@
+<%= turbo_frame_tag frame_id do %>
+  <div
+    data-controller="insights--stacked-area"
+    data-insights--stacked-area-url-value="<%= url %>"
+    class="h-96">
+    <div class="flex items-center justify-center h-full">
+      <span class="loading loading-spinner loading-lg"></span>
+    </div>
+  </div>
+<% end %>

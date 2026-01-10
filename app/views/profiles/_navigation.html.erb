@@ -29,6 +29,10 @@
     <%= active_link_to "Map", profile_map_index_path(user), class: "tab px-6", active_class: "tab-active", role: "tab" %>
   <% end %>
 
+  <% if talks.length.positive? %>
+    <%= active_link_to "Insights", profile_insights_path(user), class: "tab px-6", active_class: "tab-active", role: "tab" %>
+  <% end %>
+
   <% if Current.user&.admin? %>
     <%= active_link_to "Aliases (#{aliases.size})", profile_aliases_path(user), class: "tab px-6", active_class: "tab-active", role: "tab" %>
   <% end %>

@@ -1,0 +1,10 @@
+<%= turbo_frame_tag frame_id do %>
+  <div
+    data-controller="insights--radial-bar"
+    data-insights--radial-bar-url-value="<%= url %>"
+    class="h-80">
+    <div class="flex items-center justify-center h-full">
+      <span class="loading loading-spinner loading-lg"></span>
+    </div>
+  </div>
+<% end %>

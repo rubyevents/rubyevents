@@ -1,0 +1,12 @@
+<%= turbo_frame_tag frame_id do %>
+  <div
+    data-controller="insights--line-chart"
+    data-insights--line-chart-url-value="<%= url %>"
+    data-insights--line-chart-x-key-value="<%= x_key %>"
+    data-insights--line-chart-y-key-value="<%= y_key %>"
+    class="h-80">
+    <div class="flex items-center justify-center h-full">
+      <span class="loading loading-spinner loading-lg"></span>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,551 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold mb-2">Ruby Community Insights</h1>
+    <p class="text-base-content/70">Unique data visualizations of the Ruby conference ecosystem - insights only possible with structured data.</p>
+  </div>
+
+  <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
+    <div class="stat bg-base-200 rounded-box">
+      <div class="stat-title">Events</div>
+      <div class="stat-value text-primary"><%= number_with_delimiter(@stats[:total_events]) %></div>
+    </div>
+    <div class="stat bg-base-200 rounded-box">
+      <div class="stat-title">Talks</div>
+      <div class="stat-value text-secondary"><%= number_with_delimiter(@stats[:total_talks]) %></div>
+    </div>
+    <div class="stat bg-base-200 rounded-box">
+      <div class="stat-title">Speakers</div>
+      <div class="stat-value text-accent"><%= number_with_delimiter(@stats[:total_speakers]) %></div>
+    </div>
+    <div class="stat bg-base-200 rounded-box">
+      <div class="stat-title">Topics</div>
+      <div class="stat-value text-info"><%= number_with_delimiter(@stats[:total_topics]) %></div>
+    </div>
+    <div class="stat bg-base-200 rounded-box">
+      <div class="stat-title">Countries</div>
+      <div class="stat-value text-success"><%= number_with_delimiter(@stats[:total_countries]) %></div>
+    </div>
+  </div>
+
+  <h2 class="text-2xl font-bold mb-4 mt-8">When Does Ruby Happen?</h2>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+    <div class="card bg-base-100 shadow-xl">
+      <div class="card-body">
+        <h3 class="card-title">Conference Season</h3>
+        <p class="text-sm text-base-content/70 mb-4">Which months have the most Ruby events?</p>
+        <%= turbo_frame_tag "chart_conference_season", src: conference_season_insights_charts_path, loading: :lazy do %>
+          <div class="h-80 flex items-center justify-center">
+            <span class="loading loading-spinner loading-lg"></span>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="card bg-base-100 shadow-xl">
+      <div class="card-body">
+        <h3 class="card-title">Conference Calendar</h3>
+        <p class="text-sm text-base-content/70 mb-4">Events by month and year - see patterns emerge</p>
+        <%= turbo_frame_tag "chart_conference_calendar", src: conference_calendar_insights_charts_path, loading: :lazy do %>
+          <div class="h-80 flex items-center justify-center">
+            <span class="loading loading-spinner loading-lg"></span>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="card bg-base-100 shadow-xl">
+      <div class="card-body">
+        <h3 class="card-title">Ruby Events Over Time</h3>
+        <p class="text-sm text-base-content/70 mb-4">Growth of conferences and meetups by type</p>
+        <%= turbo_frame_tag "chart_events_timeline", src: events_timeline_insights_charts_path, loading: :lazy do %>
+          <div class="h-80 flex items-center justify-center">
+            <span class="loading loading-spinner loading-lg"></span>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="card bg-base-100 shadow-xl">
+      <div class="card-body">
+        <h3 class="card-title">New Speaker Debuts</h3>
+        <p class="text-sm text-base-content/70 mb-4">How many speakers give their first conference talk each year?</p>
+        <%= turbo_frame_tag "chart_speaker_debuts", src: speaker_debuts_insights_charts_path, loading: :lazy do %>
+          <div class="h-80 flex items-center justify-center">
+            <span class="loading loading-spinner loading-lg"></span>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="text-2xl font-bold mb-4 mt-8">Talk Insights</h2>
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+    <div class="card bg-base-100 shadow-xl">
+      <div class="card-body">
+        <h3 class="card-title">Talk Durations</h3>
+        <p class="text-sm text-base-content/70 mb-4">How long are conference talks?</p>
+        <%= turbo_frame_tag "chart_talk_durations", src: talk_durations_insights_charts_path, loading: :lazy do %>
+          <div class="h-72 flex items-center justify-center">
+            <span class="loading loading-spinner loading-lg"></span>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="card bg-base-100 shadow-xl">
+      <div class="card-body">
+        <h3 class="card-title">Talk Types</h3>
+        <p class="text-sm text-base-content/70 mb-4">Keynotes, lightning talks, workshops...</p>
+        <%= turbo_frame_tag "chart_talk_types", src: talk_types_insights_charts_path, loading: :lazy do %>
+          <div class="h-72 flex items-center justify-center">
+            <span class="loading loading-spinner loading-lg"></span>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="card bg-base-100 shadow-xl">
+      <div class="card-body">
+        <h3 class="card-title">Talk Languages</h3>
+        <p class="text-sm text-base-content/70 mb-4">What languages are talks given in?</p>
+        <%= turbo_frame_tag "chart_talk_languages", src: talk_languages_insights_charts_path, loading: :lazy do %>
+          <div class="h-72 flex items-center justify-center">
+            <span class="loading loading-spinner loading-lg"></span>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="card bg-base-100 shadow-xl mb-8">
+    <div class="card-body">
+      <h3 class="card-title">Talk Title Word Cloud</h3>
+      <p class="text-sm text-base-content/70 mb-4">The most common words in conference talk titles - what does the Ruby community talk about?</p>
+      <%= turbo_frame_tag "chart_word_cloud", src: word_cloud_insights_charts_path, loading: :lazy do %>
+        <div class="h-96 flex items-center justify-center">
+          <span class="loading loading-spinner loading-lg"></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <h2 class="text-2xl font-bold mb-4 mt-8">Speaker Insights</h2>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+    <div class="card bg-base-100 shadow-xl">
+      <div class="card-body">
+        <h3 class="card-title">Most Prolific Speakers</h3>
+        <p class="text-sm text-base-content/70 mb-4">Speakers with the most conference talks</p>
+        <%= turbo_frame_tag "chart_prolific_speakers", src: prolific_speakers_insights_charts_path, loading: :lazy do %>
+          <div class="h-96 flex items-center justify-center">
+            <span class="loading loading-spinner loading-lg"></span>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="card bg-base-100 shadow-xl">
+      <div class="card-body">
+        <h3 class="card-title">Most Connected Speakers</h3>
+        <p class="text-sm text-base-content/70 mb-4">Speakers who have shared events with the most unique co-speakers</p>
+        <%= turbo_frame_tag "chart_connected_speakers", src: connected_speakers_insights_charts_path, loading: :lazy do %>
+          <div class="h-96 flex items-center justify-center">
+            <span class="loading loading-spinner loading-lg"></span>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="card bg-base-100 shadow-xl">
+      <div class="card-body">
+        <h3 class="card-title">Speaker Countries</h3>
+        <p class="text-sm text-base-content/70 mb-4">Where do Ruby speakers come from?</p>
+        <%= turbo_frame_tag "chart_speaker_countries", src: speaker_countries_insights_charts_path, loading: :lazy do %>
+          <div class="h-96 flex items-center justify-center">
+            <span class="loading loading-spinner loading-lg"></span>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="card bg-base-100 shadow-xl">
+      <div class="card-body">
+        <h3 class="card-title">Longest Speaker Careers</h3>
+        <p class="text-sm text-base-content/70 mb-4">Years between first and most recent conference talk</p>
+        <%= turbo_frame_tag "chart_career_lengths", src: career_lengths_insights_charts_path, loading: :lazy do %>
+          <div class="h-96 flex items-center justify-center">
+            <span class="loading loading-spinner loading-lg"></span>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="text-2xl font-bold mb-4 mt-8">Networks & Relationships</h2>
+
+  <div class="card bg-base-100 shadow-xl mb-6">
+    <div class="card-body">
+      <h3 class="card-title">Topic Relationships</h3>
+      <p class="text-sm text-base-content/70 mb-4">
+        Topics that appear together in talks. Larger nodes = more talks. Drag nodes to explore connections.
+      </p>
+      <%= turbo_frame_tag "chart_topic_relationships", src: topic_relationships_insights_charts_path, loading: :lazy do %>
+        <div class="h-[600px] flex items-center justify-center">
+          <span class="loading loading-spinner loading-lg"></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="card bg-base-100 shadow-xl mb-6">
+    <div class="card-body">
+      <h3 class="card-title">Speaker Conference Network</h3>
+      <p class="text-sm text-base-content/70 mb-4">
+        Speakers connected by shared conference appearances. Lines = 2+ shared events.
+      </p>
+      <%= turbo_frame_tag "chart_speaker_network", src: speaker_network_insights_charts_path, loading: :lazy do %>
+        <div class="h-[600px] flex items-center justify-center">
+          <span class="loading loading-spinner loading-lg"></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="card bg-base-100 shadow-xl mb-6">
+    <div class="card-body">
+      <h3 class="card-title">Speaker Communities by Topic</h3>
+      <p class="text-sm text-base-content/70 mb-4">
+        Speakers grouped and colored by topic similarity. Common topics (like Ruby, Rails) are excluded
+        to reveal more specialized connections. Closer = more shared niche topics.
+      </p>
+      <%= turbo_frame_tag "chart_speaker_communities", src: speaker_communities_insights_charts_path, loading: :lazy do %>
+        <div class="h-[700px] flex items-center justify-center">
+          <span class="loading loading-spinner loading-lg"></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="card bg-base-100 shadow-xl mb-6">
+    <div class="card-body">
+      <h3 class="card-title">Speakers & Their Topics</h3>
+      <p class="text-sm text-base-content/70 mb-4">
+        Bipartite network: Purple = speakers, Blue = topics. Hover to highlight connections.
+      </p>
+
+      <%= turbo_frame_tag "chart_speaker_topics", src: speaker_topics_insights_charts_path, loading: :lazy do %>
+        <div class="h-[600px] flex items-center justify-center">
+          <span class="loading loading-spinner loading-lg"></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <h2 class="text-2xl font-bold mb-4 mt-8">Community & Longevity</h2>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+
+    <div class="card bg-base-100 shadow-xl">
+      <div class="card-body">
+        <h3 class="card-title">Longest-Running Series</h3>
+        <p class="text-sm text-base-content/70 mb-4">Conference series with the longest history</p>
+        <%= turbo_frame_tag "chart_series_longevity", src: series_longevity_insights_charts_path, loading: :lazy do %>
+          <div class="h-96 flex items-center justify-center">
+            <span class="loading loading-spinner loading-lg"></span>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="card bg-base-100 shadow-xl">
+      <div class="card-body">
+        <h3 class="card-title">Events by Country</h3>
+        <p class="text-sm text-base-content/70 mb-4">Where Ruby events happen around the world</p>
+        <%= turbo_frame_tag "chart_events_by_country", src: events_by_country_insights_charts_path, loading: :lazy do %>
+          <div class="h-96 flex items-center justify-center">
+            <span class="loading loading-spinner loading-lg"></span>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="card bg-base-100 shadow-xl mb-6">
+    <div class="card-body">
+      <h3 class="card-title">Topic Trends Over Time</h3>
+      <p class="text-sm text-base-content/70 mb-4">How popular topics have evolved - see the rise and fall of technologies</p>
+      <%= turbo_frame_tag "chart_topic_trends", src: topic_trends_insights_charts_path, loading: :lazy do %>
+        <div class="h-96 flex items-center justify-center">
+          <span class="loading loading-spinner loading-lg"></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <h2 class="text-2xl font-bold mb-4 mt-8">Unconventional Patterns</h2>
+  <p class="text-base-content/70 mb-6">Experimental visualizations that reveal hidden patterns by combining data in unexpected ways.</p>
+
+  <div class="card bg-base-100 shadow-xl mb-6">
+    <div class="card-body">
+      <h3 class="card-title">Talk Title Linguists</h3>
+      <p class="text-sm text-base-content/70 mb-4">
+        Speakers clustered by their talk naming style. Question Askers, Builders, Provocateurs, Journey Narrators...
+      </p>
+      <%= turbo_frame_tag "chart_title_linguists", src: title_linguists_insights_charts_path, loading: :lazy do %>
+        <div class="h-[600px] flex items-center justify-center">
+          <span class="loading loading-spinner loading-lg"></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="card bg-base-100 shadow-xl mb-6">
+    <div class="card-body">
+      <h3 class="card-title">Conference Circuit Travelers</h3>
+      <p class="text-sm text-base-content/70 mb-4">
+        Geographic speaking patterns. Global Nomads vs Regional Specialists vs "Europe ↔ North America" circuit riders.
+      </p>
+
+      <%= turbo_frame_tag "chart_circuit_travelers", src: circuit_travelers_insights_charts_path, loading: :lazy do %>
+        <div class="h-[600px] flex items-center justify-center">
+          <span class="loading loading-spinner loading-lg"></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="card bg-base-100 shadow-xl mb-6">
+    <div class="card-body">
+      <h3 class="card-title">Temporal Twins</h3>
+      <p class="text-sm text-base-content/70 mb-4">
+        "Conference Generations" - speakers who debuted in the same era AND speak at similar frequencies.
+        OGs, Early Rails Era, Modern Era, Pre-Pandemic, New Wave.
+      </p>
+
+      <%= turbo_frame_tag "chart_temporal_twins", src: temporal_twins_insights_charts_path, loading: :lazy do %>
+        <div class="h-[600px] flex items-center justify-center">
+          <span class="loading loading-spinner loading-lg"></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="card bg-base-100 shadow-xl mb-6">
+    <div class="card-body">
+      <h3 class="card-title">Duration DNA</h3>
+      <p class="text-sm text-base-content/70 mb-4">
+        Talk length patterns. Lightning Specialists, Deep Divers, Keynote Length speakers.
+        Plus consistency: Highly Consistent vs Wild Cards.
+      </p>
+
+      <%= turbo_frame_tag "chart_duration_dna", src: duration_dna_insights_charts_path, loading: :lazy do %>
+        <div class="h-[600px] flex items-center justify-center">
+          <span class="loading loading-spinner loading-lg"></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="card bg-base-100 shadow-xl mb-6">
+    <div class="card-body">
+      <h3 class="card-title">Event Pioneer Networks</h3>
+      <p class="text-sm text-base-content/70 mb-4">
+        Early adopters who spoke at the first edition of new conferences. Connected if they pioneered the same events.
+      </p>
+
+      <%= turbo_frame_tag "chart_event_pioneers", src: event_pioneers_insights_charts_path, loading: :lazy do %>
+        <div class="h-[600px] flex items-center justify-center">
+          <span class="loading loading-spinner loading-lg"></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="card bg-base-100 shadow-xl mb-6">
+    <div class="card-body">
+      <h3 class="card-title">Topic Evolution Paths</h3>
+      <p class="text-sm text-base-content/70 mb-4">
+        How speakers' topics evolved over their careers. Consistent Experts, Topic Shifters, Expanding Horizons, Focused Specialists.
+      </p>
+
+      <%= turbo_frame_tag "chart_topic_evolution", src: topic_evolution_insights_charts_path, loading: :lazy do %>
+        <div class="h-[600px] flex items-center justify-center">
+          <span class="loading loading-spinner loading-lg"></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="card bg-base-100 shadow-xl mb-6">
+    <div class="card-body">
+      <h3 class="card-title">Solo vs Ensemble</h3>
+      <p class="text-sm text-base-content/70 mb-4">
+        Presentation style: Solo Artists, Team Players, Dynamic Duos, Ensemble Cast.
+        Direct lines = have co-presented together.
+      </p>
+
+      <%= turbo_frame_tag "chart_solo_ensemble", src: solo_ensemble_insights_charts_path, loading: :lazy do %>
+        <div class="h-[600px] flex items-center justify-center">
+          <span class="loading loading-spinner loading-lg"></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="card bg-base-100 shadow-xl mb-6">
+    <div class="card-body">
+      <h3 class="card-title">Trend Setters vs Followers</h3>
+      <p class="text-sm text-base-content/70 mb-4">
+        Who talks about topics early vs late? Trend Setters, Early Majority, Late Majority, Classics Lovers.
+      </p>
+
+      <%= turbo_frame_tag "chart_trend_timing", src: trend_timing_insights_charts_path, loading: :lazy do %>
+        <div class="h-[600px] flex items-center justify-center">
+          <span class="loading loading-spinner loading-lg"></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="card bg-base-100 shadow-xl mb-6">
+    <div class="card-body">
+      <h3 class="card-title">Tour Speakers vs Always Fresh</h3>
+      <p class="text-sm text-base-content/70 mb-4">
+        Speakers who give similar talks at multiple conferences vs those with unique content each time.
+      </p>
+
+      <%= turbo_frame_tag "chart_talk_recyclers", src: talk_recyclers_insights_charts_path, loading: :lazy do %>
+        <div class="h-[600px] flex items-center justify-center">
+          <span class="loading loading-spinner loading-lg"></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="card bg-base-100 shadow-xl mb-6">
+    <div class="card-body">
+      <h3 class="card-title">Seasonal Speakers</h3>
+      <p class="text-sm text-base-content/70 mb-4">
+        Monthly speaking patterns. Spring Specialists, Fall Leaning, Year-Round Speakers.
+      </p>
+
+      <%= turbo_frame_tag "chart_seasonal_speakers", src: seasonal_speakers_insights_charts_path, loading: :lazy do %>
+        <div class="h-[600px] flex items-center justify-center">
+          <span class="loading loading-spinner loading-lg"></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="card bg-base-100 shadow-xl mb-6">
+    <div class="card-body">
+      <h3 class="card-title">Conference Loyalists</h3>
+      <p class="text-sm text-base-content/70 mb-4">
+        Speaking loyalty patterns. Exclusive, Loyal Regular, Conference Hopper, Multi-Loyalist, Explorer.
+      </p>
+
+      <%= turbo_frame_tag "chart_conference_loyalty", src: conference_loyalty_insights_charts_path, loading: :lazy do %>
+        <div class="h-[600px] flex items-center justify-center">
+          <span class="loading loading-spinner loading-lg"></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="card bg-base-100 shadow-xl mb-6">
+    <div class="card-body">
+      <h3 class="card-title">Mentorship Network</h3>
+      <p class="text-sm text-base-content/70 mb-4">
+        Speakers who co-present with first-time speakers. Super Mentors, Mentors, Mentee Graduates.
+      </p>
+
+      <%= turbo_frame_tag "chart_mentorship_network", src: mentorship_network_insights_charts_path, loading: :lazy do %>
+        <div class="h-[600px] flex items-center justify-center">
+          <span class="loading loading-spinner loading-lg"></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="card bg-base-100 shadow-xl mb-6">
+    <div class="card-body">
+      <h3 class="card-title">Title Length Evolution</h3>
+      <p class="text-sm text-base-content/70 mb-4">
+        Do talk titles get shorter or longer over a speaker's career? Getting Verbose, Getting Concise, Always Punchy.
+      </p>
+
+      <%= turbo_frame_tag "chart_title_evolution", src: title_evolution_insights_charts_path, loading: :lazy do %>
+        <div class="h-[600px] flex items-center justify-center">
+          <span class="loading loading-spinner loading-lg"></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="card bg-base-100 shadow-xl mb-6">
+    <div class="card-body">
+      <h3 class="card-title">Country Clusters</h3>
+      <p class="text-sm text-base-content/70 mb-4">
+        Speakers grouped by where they speak. Local Champions, World Travelers, Home Base + Trips, Regional Speakers.
+      </p>
+
+      <%= turbo_frame_tag "chart_country_clusters", src: country_clusters_insights_charts_path, loading: :lazy do %>
+        <div class="h-[600px] flex items-center justify-center">
+          <span class="loading loading-spinner loading-lg"></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="card bg-base-100 shadow-xl mb-6">
+    <div class="card-body">
+      <h3 class="card-title">Talk Style Affinities</h3>
+      <p class="text-sm text-base-content/70 mb-4">
+        Speakers with similar talk characteristics: duration + title length. Quick & Punchy, Extended & Detailed, etc.
+      </p>
+
+      <%= turbo_frame_tag "chart_talk_affinities", src: talk_affinities_insights_charts_path, loading: :lazy do %>
+        <div class="h-[600px] flex items-center justify-center">
+          <span class="loading loading-spinner loading-lg"></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <h2 class="text-2xl font-bold mb-4 mt-8">Community Behavior</h2>
+  <p class="text-base-content/70 mb-6">Patterns based on how users interact with events and talks on the platform.</p>
+
+  <div class="card bg-base-100 shadow-xl mb-6">
+    <div class="card-body">
+      <h3 class="card-title">Event Buddies</h3>
+      <p class="text-sm text-base-content/70 mb-4">
+        Users who attend the same events together. Connected by shared event attendance.
+        Speaker Only, Attendee Only, Mostly Speaker, Mixed.
+      </p>
+
+      <%= turbo_frame_tag "chart_event_buddies", src: event_buddies_insights_charts_path, loading: :lazy do %>
+        <div class="h-[600px] flex items-center justify-center">
+          <span class="loading loading-spinner loading-lg"></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="card bg-base-100 shadow-xl mb-6">
+    <div class="card-body">
+      <h3 class="card-title">Watch Party</h3>
+      <p class="text-sm text-base-content/70 mb-4">
+        Users who watch similar talks. Connected by shared viewing patterns and topic interests.
+        Event Explorers, Topic Curious, Topic Focused, Casual Viewers.
+      </p>
+
+      <%= turbo_frame_tag "chart_watch_party", src: watch_party_insights_charts_path, loading: :lazy do %>
+        <div class="h-[600px] flex items-center justify-center">
+          <span class="loading loading-spinner loading-lg"></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
