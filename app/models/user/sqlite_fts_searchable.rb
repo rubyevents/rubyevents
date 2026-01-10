@@ -30,6 +30,8 @@ module User::SQLiteFTSSearchable
   end
 
   def reindex_fts
+    return if Search::Backend.skip_indexing
+
     fts_index.reindex
   end
 end

@@ -23,8 +23,8 @@ class Alias < ApplicationRecord
   validates :name, presence: true, uniqueness: {scope: :aliasable_type}
   validate :slug_globally_unique_except_same_aliasable
 
-  after_save_commit :reindex_aliasable
-  after_destroy_commit :reindex_aliasable
+  after_save_commit :reindex
+  after_destroy_commit :reindex
 
   private
 
@@ -37,7 +37,9 @@ class Alias < ApplicationRecord
     errors.add(:slug, :taken) if conflicting.exists?
   end
 
-  def reindex_aliasable
-    aliasable.reindex if aliasable.respond_to?(:reindex)
+  def reindex
+    return if Search::Backend.skip_indexing
+
+    Search::Backend.index(aliasable)
   end
 end
