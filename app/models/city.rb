@@ -1,91 +1,58 @@
-class City
+# frozen_string_literal: true
+
+# == Schema Information
+#
+# Table name: cities
+# Database name: primary
+#
+#  id               :integer          not null, primary key
+#  country_code     :string           not null, indexed => [name, state_code]
+#  featured         :boolean          default(FALSE), not null, indexed
+#  geocode_metadata :json             not null
+#  latitude         :decimal(10, 6)
+#  longitude        :decimal(10, 6)
+#  name             :string           not null, indexed => [country_code, state_code]
+#  slug             :string           not null, uniquely indexed
+#  state_code       :string           indexed => [name, country_code]
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
+# Indexes
+#
+#  index_cities_on_featured                              (featured)
+#  index_cities_on_name_and_country_code_and_state_code  (name,country_code,state_code)
+#  index_cities_on_slug                                  (slug) UNIQUE
+#
+class City < ApplicationRecord
   include Locatable
+  include Sluggable
 
-  attr_reader :name, :city, :slug, :country_code, :state_code, :latitude, :longitude
+  configure_slug(attribute: :name, auto_suffix_on_collision: true)
 
-  class << self
-    def all
-      Rails.cache.fetch("cities/all", expires_in: 1.hour) { build_all }
-    end
+  query_constraints :name, :country_code, :state_code
 
-    def for_country(country_code)
-      all.select { |city| city.country_code == country_code.upcase }
-    end
-
-    def for_state(state)
-      all.select { |city| city.country_code == state.country.alpha2 && city.state_code == state.code }
-    end
-
-    def featured_slugs
-      @featured_slugs ||= FeaturedCity.pluck(:slug).to_set
-    end
-
-    def clear_cache!
-      Rails.cache.delete("cities/all")
-      @featured_slugs = nil
-    end
-
-    private
-
-    def build_all
-      cities = {}
-
-      Event.where.not(city: nil).where.not(country_code: nil).find_each do |event|
-        key = "#{event.city.parameterize}-#{event.country_code.downcase}"
-        next if cities[key]
-
-        cities[key] = {
-          name: event.city,
-          slug: event.city.parameterize,
-          state_code: event.state,
-          country_code: event.country_code,
-          latitude: event.latitude,
-          longitude: event.longitude
-        }
-      end
-
-      User.where.not(city: nil).where.not(country_code: nil).find_each do |user|
-        key = "#{user.city.parameterize}-#{user.country_code.downcase}"
-
-        if cities[key]
-          if cities[key][:latitude].nil? && user.latitude.present?
-            cities[key][:latitude] = user.latitude
-            cities[key][:longitude] = user.longitude
-          end
-        else
-          cities[key] = {
-            name: user.city,
-            slug: user.city.parameterize,
-            state_code: user.state,
-            country_code: user.country_code,
-            latitude: user.latitude,
-            longitude: user.longitude
-          }
-        end
-      end
-
-      cities.values.map do |data|
-        new(
-          name: data[:name],
-          slug: data[:slug],
-          country_code: data[:country_code],
-          state_code: data[:state_code],
-          latitude: data[:latitude],
-          longitude: data[:longitude]
-        )
-      end.sort_by { |c| -(c.events_count + c.users_count) }
+  geocoded_by :geocode_query do |record, results|
+    if (result = results.first)
+      record.latitude = result.latitude
+      record.longitude = result.longitude
+      record.geocode_metadata = result.data.merge("geocoded_at" => Time.current.iso8601)
+      record.name = result.city || record.name
     end
   end
 
-  def initialize(name:, slug:, country_code:, state_code: nil, latitude: nil, longitude: nil)
-    @slug = slug
-    @country_code = country_code
-    @state_code = state_code
-    @latitude = latitude
-    @longitude = longitude
-    @city = find_actual_city_name
-    @name = @city || name
-  end
+  has_many :events, primary_key: [:name, :country_code, :state_code], foreign_key: [:city, :country_code, :state_code], inverse_of: false
+  has_many :users, -> { indexable.geocoded }, class_name: "User", primary_key: [:name, :country_code, :state_code], foreign_key: [:city, :country_code, :state_code], inverse_of: false
+
+  before_validation :geocode, on: :create, if: -> { geocodeable? && !geocoded? }
+  before_validation :clear_unsupported_state_code
+
+  validates :name, presence: true, uniqueness: {scope: [:country_code, :state_code]}
+  validates :slug, presence: true, uniqueness: true
+  validates :country_code, presence: true
+
+  scope :featured, -> { where(featured: true) }
+  scope :for_country, ->(country_code) { where(country_code: country_code.upcase) }
+  scope :for_state, ->(state) { where(country_code: state.country.alpha2, state_code: state.code) }
 
   def country
     @country ||= Country.find_by(country_code: country_code)
@@ -97,112 +64,80 @@ class City
     @state ||= State.find_by_code(state_code, country: country)
   end
 
-  def events
-    @events ||= begin
-      matching_cities = find_matching_cities_from_events
-      scope = Event.where(city: matching_cities, country_code: country_code)
-      scope = scope.where(state: [state_code, state&.name].compact) if state_code.present?
-
-      scope
-    end
-  end
-
-  def users
-    @users ||= begin
-      matching_cities = find_matching_cities_from_users
-      scope = User.where(city: matching_cities, country_code: country_code)
-      scope = scope.where(state: [state_code, state&.name].compact) if state_code.present?
-
-      scope
-    end
-  end
-
-  private
-
-  def find_actual_city_name
-    event = base_event_scope.find { |event| event.city&.parameterize == slug }
-    return event.city if event
-
-    user = base_user_scope.find { |user| user.city&.parameterize == slug }
-    return user.city if user
-
-    slug.tr("-", " ").titleize
-  end
-
-  def find_matching_cities_from_events
-    base_event_scope.select { |e| e.city&.parameterize == slug }.map(&:city).uniq
-  end
-
-  def find_matching_cities_from_users
-    base_user_scope.select { |u| u.city&.parameterize == slug }.map(&:city).uniq
-  end
-
-  def base_event_scope
-    scope = Event.where(country_code: country_code).where.not(city: nil)
-    scope = scope.where(state: [state_code, State.find_by_code(state_code)&.name].compact) if state_code.present?
-
-    scope
-  end
-
-  def base_user_scope
-    scope = User.where(country_code: country_code).where.not(city: nil)
-    scope = scope.where(state: [state_code, State.find_by_code(state_code)&.name].compact) if state_code.present?
-
-    scope
-  end
-
-  public
-
   def path
-    return Router.city_path(slug) if featured?
-
-    if state_code.present? && state.present?
+    if featured?
+      Router.city_path(slug)
+    elsif state_code.present? && state.present?
       Router.city_with_state_path(country.code, state.slug, slug)
     else
       Router.city_by_country_path(country.code, slug)
     end
   end
 
+  def past_path
+    if featured?
+      Router.city_past_index_path(self)
+    elsif state_code.present? && state.present?
+      Router.city_with_state_past_index_path(alpha2: country.code, state: state.slug, city: slug)
+    else
+      Router.city_by_country_past_index_path(alpha2: country.code, city: slug)
+    end
+  end
+
+  def users_path
+    if featured?
+      Router.city_users_path(self)
+    elsif state_code.present? && state.present?
+      Router.city_with_state_users_path(alpha2: country.code, state: state.slug, city: slug)
+    else
+      Router.city_by_country_users_path(alpha2: country.code, city: slug)
+    end
+  end
+
+  def stamps_path
+    if featured?
+      Router.city_stamps_path(self)
+    elsif state_code.present? && state.present?
+      Router.city_with_state_stamps_path(alpha2: country.code, state: state.slug, city: slug)
+    else
+      Router.city_by_country_stamps_path(alpha2: country.code, city: slug)
+    end
+  end
+
+  def map_path
+    if featured?
+      Router.city_map_index_path(self)
+    elsif state_code.present? && state.present?
+      Router.city_with_state_map_index_path(alpha2: country.code, state: state.slug, city: slug)
+    else
+      Router.city_by_country_map_index_path(alpha2: country.code, city: slug)
+    end
+  end
+
+  def subtitle
+    location_string
+  end
+
+  def to_param
+    slug
+  end
+
   def geocoded?
     latitude.present? && longitude.present?
+  end
+
+  def geocodeable?
+    name.present? && country_code.present?
+  end
+
+  def geocode_query
+    [name, state&.name, country&.name].compact.join(", ")
   end
 
   def coordinates
     return nil unless geocoded?
 
     [latitude, longitude]
-  end
-
-  def feature!
-    coords = geocode
-
-    FeaturedCity.find_or_create_by!(slug: slug) do |featured|
-      featured.name = name
-      featured.city = city
-      featured.country_code = country_code
-      featured.state_code = state_code
-      featured.latitude = coords&.first
-      featured.longitude = coords&.last
-    end
-  end
-
-  def geocode
-    query = [city, state&.name, country&.name].compact.join(", ")
-    result = Geocoder.search(query).first
-
-    result ? [result.latitude, result.longitude] : nil
-  end
-
-  def featured?
-    self.class.featured_slugs.include?(slug)
-  end
-
-  def events_count
-    @events_count ||= events.count
-  end
-
-  def users_count
-    @users_count ||= users.count
   end
 
   def location_string
@@ -227,8 +162,8 @@ class City
     offset = 0.5
 
     {
-      southwest: [longitude - offset, latitude - offset],
-      northeast: [longitude + offset, latitude + offset]
+      southwest: [longitude.to_f - offset, latitude.to_f - offset],
+      northeast: [longitude.to_f + offset, latitude.to_f + offset]
     }
   end
 
@@ -247,7 +182,6 @@ class City
     User.geocoded
       .near(coordinates, radius_km, units: :km)
       .where.not(id: exclude_ids)
-      .preloaded
       .limit(limit)
       .map do |user|
         distance = Geocoder::Calculations.distance_between(
@@ -263,7 +197,10 @@ class City
   def nearby_events(radius_km: 250, limit: 12, exclude_ids: [])
     return [] unless coordinates.present?
 
-    scope = Event.includes(:series, :participants).geocoded.where.not(city: city)
+    scope = Event.includes(:series, :participants)
+      .where.not(latitude: nil, longitude: nil)
+      .where.not(city: name)
+
     scope = scope.where.not(id: exclude_ids) if exclude_ids.any?
 
     scope.map do |event|
@@ -272,7 +209,6 @@ class City
         [event.latitude, event.longitude],
         units: :km
       )
-
       {event: event, distance_km: distance.round} if distance <= radius_km
     end
       .compact
@@ -282,34 +218,60 @@ class City
   end
 
   def with_coordinates
-    return self if geocoded?
+    self
+  end
 
-    coords = find_coordinates_from_records
-    return self unless coords
+  def events_count
+    @events_count ||= events.count
+  end
 
-    City.new(
-      name: name,
-      slug: slug,
-      country_code: country_code,
-      state_code: state_code,
-      latitude: coords[0],
-      longitude: coords[1]
-    )
+  def users_count
+    @users_count ||= users.count
+  end
+
+  def feature!
+    update!(featured: true)
+  end
+
+  def unfeature!
+    update!(featured: false)
   end
 
   private
 
-  def find_coordinates_from_records
-    event = events.geocoded.first
-    return event.to_coordinates if event
-
-    user = users.geocoded.first
-    return user.to_coordinates if user
-
-    nil
+  def clear_unsupported_state_code
+    self.state_code = nil unless State.supported_country?(country)
   end
 
-  def geocode_coordinates
-    find_coordinates_from_records || geocode
+  class << self
+    def find_for(city:, country_code:, state_code: nil)
+      scope = where(name: city, country_code: country_code)
+      scope = scope.where(state_code: state_code) if state_code.present?
+      scope.first
+    end
+
+    def find_or_create_for(city:, country_code:, state_code: nil, latitude: nil, longitude: nil)
+      return nil if city.blank? || country_code.blank?
+
+      record = find_by(name: city, state_code: state_code, country_code: country_code)
+      return record if record
+
+      create(
+        name: city,
+        country_code: country_code.upcase,
+        state_code: state_code,
+        latitude: latitude,
+        longitude: longitude,
+        featured: false
+      )
+    end
+
+    def featured_slugs
+      @featured_slugs ||= featured.pluck(:slug).to_set
+    end
+
+    def clear_cache!
+      @featured_slugs = nil
+    end
   end
 end

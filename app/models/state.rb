@@ -18,8 +18,48 @@ class State
     code
   end
 
+  def display_name
+    if country.alpha2 == "GB"
+      name
+    else
+      abbreviation
+    end
+  end
+
   def path
-    "/states/#{country.code}/#{slug}"
+    if country.alpha2 == "GB"
+      Router.country_path(slug)
+    else
+      Router.state_path(country.code, slug)
+    end
+  end
+
+  def past_path
+    Router.state_past_index_path(state_alpha2: country.code, state_slug: slug)
+  end
+
+  def users_path
+    Router.state_users_path(state_alpha2: country.code, state_slug: slug)
+  end
+
+  def cities_path
+    Router.state_cities_path(state_alpha2: country.code, state_slug: slug)
+  end
+
+  def stamps_path
+    Router.state_stamps_path(state_alpha2: country.code, state_slug: slug)
+  end
+
+  def map_path
+    Router.state_map_index_path(state_alpha2: country.code, state_slug: slug)
+  end
+
+  def subtitle
+    "#{name}, #{country.name}"
+  end
+
+  def has_routes?
+    true
   end
 
   def to_param
@@ -39,11 +79,15 @@ class State
   end
 
   def events
-    Event.where(country_code: country.alpha2, state: [code, name])
+    Event.where(country_code: country.alpha2, state_code: [code, name])
   end
 
   def users
-    User.where(country_code: country.alpha2, state: [code, name])
+    User.indexable.geocoded.where(country_code: country.alpha2, state_code: [code, name])
+  end
+
+  def cities
+    City.for_state(self)
   end
 
   def stamps
@@ -67,6 +111,10 @@ class State
     nil
   end
 
+  def to_location
+    Location.new(state: code, country_code: country.alpha2)
+  end
+
   class << self
     def supported_country?(country)
       return false if country.blank?
@@ -82,7 +130,7 @@ class State
       term_upper = term.to_s.upcase
       term_downcase = term.to_s.downcase
 
-      all(country: country).find do |state|
+      for_country(country).find do |state|
         state.slug == term_slug ||
           state.code.upcase == term_upper ||
           state.name.downcase == term_downcase
@@ -99,11 +147,11 @@ class State
       return nil if code.blank?
 
       if country
-        all(country: country).find { |state| state.code.upcase == code.upcase }
+        for_country(country).find { |state| state.code.upcase == code.upcase }
       else
         SUPPORTED_COUNTRIES.each do |country_code|
           country = Country.find(country_code)
-          state = all(country: country).find { |s| s.code.upcase == code.upcase }
+          state = for_country(country).find { |s| s.code.upcase == code.upcase }
 
           return state if state
         end
@@ -115,11 +163,11 @@ class State
       return nil if name.blank?
 
       if country
-        all(country: country).find { |state| state.name.downcase == name.downcase }
+        for_country(country).find { |state| state.name.downcase == name.downcase }
       else
         SUPPORTED_COUNTRIES.each do |country_code|
           country = Country.find(country_code)
-          state = all(country: country).find { |s| s.name.downcase == name.downcase }
+          state = for_country(country).find { |s| s.name.downcase == name.downcase }
 
           return state if state
         end
@@ -127,7 +175,11 @@ class State
       end
     end
 
-    def all(country: nil)
+    def all
+      @all ||= SUPPORTED_COUNTRIES.flat_map { |code| for_country(Country.find(code)) }
+    end
+
+    def for_country(country)
       return [] if country.blank?
 
       case country.alpha2
@@ -198,7 +250,7 @@ class State
     end
 
     def select_options(country: nil)
-      all(country: country).map { |state| [state.name, state.code] }
+      for_country(country).map { |state| [state.name, state.code] }
     end
   end
 end

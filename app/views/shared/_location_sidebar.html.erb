@@ -1,4 +1,4 @@
-<%# locals: (location:, users:, nearby_users: [], nearby_events: [], cities: {}, countries: {}, show_cities: true, show_countries: false, event_map_markers: [], geo_layers: [], country_events: [], continent_events: [], state: nil, state_users: [], map_title: "Upcoming Events Map") %>
+<%# locals: (location:, users:, nearby_users: [], nearby_events: [], cities: [], countries: {}, show_cities: true, show_countries: false, event_map_markers: [], geo_layers: [], country_events: [], continent_events: [], state: nil, state_users: [], map_title: "Upcoming Events Map") %>
 
 <div class="space-y-8">
   <% if location.is_a?(OnlineLocation) %>
@@ -142,17 +142,13 @@
       </div>
 
       <div class="space-y-1">
-        <% cities.first(12).each do |city_name, events| %>
-          <% city = events.first.city || city_name.split(",").first %>
-          <% state = events.first.state %>
-          <% city_country_code = location.respond_to?(:country_code) ? location.country_code : location.alpha2 %>
-
-          <%= link_to city_by_country_path(alpha2: city_country_code, city: city.parameterize), class: "flex justify-between items-center py-0.5 rounded-lg hover:bg-gray-50 transition-colors" do %>
+        <% cities.first(12).each do |city| %>
+          <%= link_to city.path, class: "flex justify-between items-center py-0.5 rounded-lg hover:bg-gray-50 transition-colors" do %>
             <span class="text-gray-700">
-              <%= city %><% if state.present? %><span class="text-gray-400">, <%= state %></span><% end %>
+              <%= city.name %><% if city.state.present? %><span class="text-gray-400">, <%= city.state.code %></span><% end %>
             </span>
 
-            <%= ui_badge(events.count, kind: :secondary, outline: true, size: :sm) %>
+            <%= ui_badge(city.events_count, kind: :secondary, outline: true, size: :sm) %>
           <% end %>
         <% end %>
       </div>

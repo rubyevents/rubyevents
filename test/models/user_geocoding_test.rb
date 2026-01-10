@@ -2,8 +2,6 @@ require "test_helper"
 
 class UserGeocodingTest < ActiveSupport::TestCase
   setup do
-    Geocoder.configure(lookup: :test)
-
     Geocoder::Lookup::Test.add_stub(
       "San Francisco, CA", [
         {
@@ -41,7 +39,6 @@ class UserGeocodingTest < ActiveSupport::TestCase
 
   teardown do
     Geocoder::Lookup::Test.reset
-    Geocoder.configure(lookup: :google)
   end
 
   test "geocode with valid location" do
@@ -51,7 +48,7 @@ class UserGeocodingTest < ActiveSupport::TestCase
     user.save!
 
     assert_equal "San Francisco", user.city
-    assert_equal "CA", user.state
+    assert_equal "CA", user.state_code
     assert_equal "US", user.country_code
     assert_in_delta 37.7749, user.latitude.to_f, 0.01
     assert_in_delta(-122.4194, user.longitude.to_f, 0.01)
@@ -65,7 +62,7 @@ class UserGeocodingTest < ActiveSupport::TestCase
     user.geocode
 
     assert_nil user.city
-    assert_nil user.state
+    assert_nil user.state_code
     assert_nil user.country_code
     assert_nil user.latitude
     assert_nil user.longitude
@@ -142,7 +139,7 @@ class UserGeocodingTest < ActiveSupport::TestCase
     user.save!
 
     assert_equal "Berlin", user.city
-    assert_equal "BE", user.state
+    assert_equal "BE", user.state_code
     assert_equal "DE", user.country_code
     assert_in_delta 52.52, user.latitude.to_f, 0.01
     assert_in_delta 13.405, user.longitude.to_f, 0.01

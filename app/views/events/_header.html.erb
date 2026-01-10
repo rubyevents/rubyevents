@@ -26,7 +26,7 @@
       <div class="flex-col flex justify-center break-all">
         <h1 class="mb-2 text-black font-bold"><%= title event.name %></h1>
         <h3 class="text-[#636B74]">
-          <%= render "shared/location", location_info: event.location_info %>
+          <%= event.to_location.to_html %>
           • <%= event.formatted_dates %>
         </h3>
         <%= external_link_to event.website.gsub(%r{^https?://}, "").gsub(%r{/$}, ""), event.website %>

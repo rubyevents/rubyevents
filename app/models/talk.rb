@@ -475,11 +475,11 @@ class Talk < ApplicationRecord
     static_metadata.try(:location) || event&.location
   end
 
-  def location_info
-    if static_metadata.try(:location).present?
-      Talk::LocationInfo.new(static_metadata.location)
+  def to_location
+    @to_location ||= if static_metadata&.location.present?
+      Location.from_string(static_metadata.location)
     else
-      event.location_info
+      event&.to_location || Location.new
     end
   end
 

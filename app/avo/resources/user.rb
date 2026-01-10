@@ -42,7 +42,7 @@ class Avo::Resources::User < Avo::BaseResource
     field :pronouns_type, as: :text, hide_on: :index
     field :location, as: :text, hide_on: :index
     field :city, as: :text, hide_on: :index, readonly: true
-    field :state, as: :text, hide_on: :index, readonly: true
+    field :state_code, as: :text, hide_on: :index, readonly: true
     field :country_code, as: :text, hide_on: :index, readonly: true
     field :latitude, as: :number, hide_on: :index, readonly: true
     field :longitude, as: :number, hide_on: :index, readonly: true

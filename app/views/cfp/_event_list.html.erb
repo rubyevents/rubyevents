@@ -15,7 +15,7 @@
 
         <div class="text-[#636B74] group-hover:text-inherit">
           <% if event.formatted_dates != "unknown" %><%= event.formatted_dates %> • <% end %>
-          <%= render "shared/location", location_info: event.location_info, show_links: false %>
+          <%= event.to_location.to_html(show_links: false) %>
         </div>
 
         <% event.cfps.open.each do |cfp| %>

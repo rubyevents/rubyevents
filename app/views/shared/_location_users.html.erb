@@ -7,7 +7,7 @@
 <%= render "shared/location_header",
       name: location.name,
       subtitle: location_subtitle(location),
-      flag_code: location.respond_to?(:alpha2) ? location.alpha2 : nil,
+      flag_code: (location.respond_to?(:alpha2) && !location.is_a?(Continent)) ? location.alpha2 : nil,
       emoji: location.is_a?(Continent) ? location.emoji_flag : nil,
       stats: "#{pluralize(users.count, "Rubyist")} in #{location.name}",
       location: location %>

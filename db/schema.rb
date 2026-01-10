@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.2].define(version: 2026_01_09_152525) do
+ActiveRecord::Schema[8.2].define(version: 2026_01_10_201634) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -103,6 +103,22 @@ ActiveRecord::Schema[8.2].define(version: 2026_01_09_152525) do
     t.date "open_date"
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_cfps_on_event_id"
+  end
+
+  create_table "cities", force: :cascade do |t|
+    t.string "country_code", null: false
+    t.datetime "created_at", null: false
+    t.boolean "featured", default: false, null: false
+    t.json "geocode_metadata", default: {}, null: false
+    t.decimal "latitude", precision: 10, scale: 6
+    t.decimal "longitude", precision: 10, scale: 6
+    t.string "name", null: false
+    t.string "slug", null: false
+    t.string "state_code"
+    t.datetime "updated_at", null: false
+    t.index ["featured"], name: "index_cities_on_featured"
+    t.index ["name", "country_code", "state_code"], name: "index_cities_on_name_and_country_code_and_state_code"
+    t.index ["slug"], name: "index_cities_on_slug", unique: true
   end
 
   create_table "connected_accounts", force: :cascade do |t|
@@ -198,12 +214,12 @@ ActiveRecord::Schema[8.2].define(version: 2026_01_09_152525) do
     t.string "name", default: "", null: false
     t.string "slug", default: "", null: false
     t.date "start_date"
-    t.string "state"
+    t.string "state_code"
     t.integer "talks_count", default: 0, null: false
     t.datetime "updated_at", null: false
     t.string "website", default: ""
     t.index ["canonical_id"], name: "index_events_on_canonical_id"
-    t.index ["country_code", "state"], name: "index_events_on_country_code_and_state"
+    t.index ["country_code", "state_code"], name: "index_events_on_country_code_and_state_code"
     t.index ["event_series_id"], name: "index_events_on_event_series_id"
     t.index ["kind"], name: "index_events_on_kind"
     t.index ["name"], name: "index_events_on_name"
@@ -217,20 +233,6 @@ ActiveRecord::Schema[8.2].define(version: 2026_01_09_152525) do
     t.integer "user_id", null: false
     t.index ["favorite_user_id"], name: "index_favorite_users_on_favorite_user_id"
     t.index ["user_id"], name: "index_favorite_users_on_user_id"
-  end
-
-  create_table "featured_cities", force: :cascade do |t|
-    t.string "city", null: false
-    t.string "country_code", null: false
-    t.datetime "created_at", null: false
-    t.decimal "latitude", precision: 10, scale: 6
-    t.decimal "longitude", precision: 10, scale: 6
-    t.string "name", null: false
-    t.string "slug", null: false
-    t.string "state_code"
-    t.datetime "updated_at", null: false
-    t.index ["country_code", "city"], name: "index_featured_cities_on_country_code_and_city"
-    t.index ["slug"], name: "index_featured_cities_on_slug", unique: true
   end
 
   create_table "geocode_results", force: :cascade do |t|
@@ -485,7 +487,7 @@ ActiveRecord::Schema[8.2].define(version: 2026_01_09_152525) do
     t.json "settings", default: {}, null: false
     t.string "slug", default: "", null: false
     t.string "speakerdeck", default: "", null: false
-    t.string "state"
+    t.string "state_code"
     t.datetime "suspicion_cleared_at"
     t.datetime "suspicion_marked_at"
     t.integer "talks_count", default: 0, null: false

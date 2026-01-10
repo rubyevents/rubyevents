@@ -42,7 +42,27 @@ class Continent
   end
 
   def path
-    "/continents/#{slug}"
+    Router.continent_path(self)
+  end
+
+  def past_path
+    Router.continent_past_index_path(self)
+  end
+
+  def users_path
+    Router.continent_users_path(self)
+  end
+
+  def countries_path
+    Router.continent_countries_path(self)
+  end
+
+  def stamps_path
+    Router.continent_stamps_path(self)
+  end
+
+  def map_path
+    Router.continent_map_index_path(self)
   end
 
   def to_param
@@ -72,7 +92,7 @@ class Continent
   end
 
   def countries
-    Country.all.select { |country| country.continent == name }
+    @countries ||= Country.all.select { |country| country.continent_name == name }
   end
 
   def country_codes
@@ -84,7 +104,7 @@ class Continent
   end
 
   def users
-    User.where(country_code: country_codes)
+    User.indexable.geocoded.where(country_code: country_codes)
   end
 
   def stamps
@@ -129,6 +149,14 @@ class Continent
     def slugs
       CONTINENT_DATA.keys
     end
+
+    def africa = new("africa")
+    def antarctica = new("antarctica")
+    def asia = new("asia")
+    def australia = new("australia")
+    def europe = new("europe")
+    def north_america = new("north-america")
+    def south_america = new("south-america")
   end
 
   private

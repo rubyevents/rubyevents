@@ -102,6 +102,10 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
     static_repository&.last_edition || false
   end
 
+  def hybrid?
+    !!static_repository.try(:hybrid) || false
+  end
+
   private
 
   def static_repository

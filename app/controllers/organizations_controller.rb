@@ -32,7 +32,7 @@ class OrganizationsController < ApplicationController
     {
       total_events: @events.size,
       total_countries: @countries_with_events.size,
-      total_continents: @countries_with_events.map { |country, _| country.continent }.uniq.size,
+      total_continents: @countries_with_events.map { |country, _| country.continent_name }.uniq.size,
       total_series: @events.map(&:series).uniq.size,
       total_talks: @events.joins(:talks).size,
       years_active: @events_by_year.keys.reject { |y| y == "Unknown" }.sort,

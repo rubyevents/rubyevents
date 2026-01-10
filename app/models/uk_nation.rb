@@ -46,7 +46,35 @@ class UKNation
   end
 
   def path
-    "/countries/#{slug}"
+    Router.country_path(slug)
+  end
+
+  def past_path
+    Router.country_past_index_path(self)
+  end
+
+  def users_path
+    Router.country_users_path(self)
+  end
+
+  def cities_path
+    Router.country_cities_path(self)
+  end
+
+  def stamps_path
+    Router.country_stamps_path(self)
+  end
+
+  def map_path
+    Router.country_map_index_path(self)
+  end
+
+  def subtitle
+    "#{name}, #{continent}"
+  end
+
+  def has_routes?
+    true
   end
 
   def code
@@ -74,11 +102,11 @@ class UKNation
   end
 
   def events
-    Event.where(country_code: "GB", state: [state_code, nation_name])
+    Event.where(country_code: "GB", state_code: [state_code, nation_name])
   end
 
   def users
-    User.where(country_code: "GB", state: [state_code, nation_name])
+    User.indexable.geocoded.where(country_code: "GB", state_code: [state_code, nation_name])
   end
 
   def stamps
@@ -99,5 +127,9 @@ class UKNation
 
   def parent_country
     Country.find("GB")
+  end
+
+  def to_location
+    Location.new(state: state_code, country_code: "GB")
   end
 end
