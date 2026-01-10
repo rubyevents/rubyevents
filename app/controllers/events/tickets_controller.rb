@@ -3,10 +3,6 @@ class Events::TicketsController < ApplicationController
   before_action :set_event
 
   def show
-    unless @event.tickets?
-      redirect_to event_path(@event)
-      nil
-    end
   end
 
   private
@@ -18,5 +14,6 @@ class Events::TicketsController < ApplicationController
     set_meta_tags(@event)
 
     redirect_to event_tickets_path(@event.canonical), status: :moved_permanently if @event.canonical.present?
+    redirect_to event_path(@event) unless @event.tickets?
   end
 end
