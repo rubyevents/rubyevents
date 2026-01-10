@@ -80,7 +80,14 @@ class Country
   end
 
   def stamps
-    Stamp.all.select { |stamp| stamp.has_country? && stamp.country&.alpha2 == alpha2 }
+    stamps = Stamp.all.select { |stamp| stamp.has_country? && stamp.country&.alpha2 == alpha2 }
+
+    if alpha2 == "GB"
+      uk_nation_stamps = Stamp.all.select { |stamp| stamp.has_country? && stamp.country.is_a?(UKNation) }
+      stamps = (stamps + uk_nation_stamps).uniq { |s| s.code }
+    end
+
+    stamps
   end
 
   def held_in_sentence
@@ -161,13 +168,22 @@ class Country
     private
 
     def find_iso_record(term)
-      return ISO3166::Country.new("US") if ISO3166::Country.new("US").subdivisions.key?(term)
-
       return ISO3166::Country.new("GB") if term == "UK"
 
-      ISO3166::Country.find_country_by_iso_short_name(term) ||
+      if term.length == 2
+        country = ISO3166::Country.new(term.upcase)
+        return country if country&.alpha2
+      end
+
+      result = ISO3166::Country.find_country_by_iso_short_name(term) ||
         ISO3166::Country.find_country_by_unofficial_names(term) ||
         ISO3166::Country.search(term)
+
+      return result if result
+
+      return ISO3166::Country.new("US") if ISO3166::Country.new("US").subdivisions.key?(term)
+
+      nil
     end
   end
 end

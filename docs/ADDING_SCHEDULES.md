@@ -214,6 +214,10 @@ items:
 5. **Workshop Track** - Hands-on learning sessions
 6. **Beginner Track** - Introductory content
 
+### Schedules in other Languages
+
+We prefer the English translation of the schedule if provided, otherwise use the content provided by the organizers.
+
 ### Track Colors
 
 Choose colors that provide good contrast and visual distinction:

@@ -62,11 +62,19 @@ class CountryTest < ActiveSupport::TestCase
     assert_nil Country.find("Unknown")
   end
 
-  test "find returns US for US state abbreviations" do
-    country = Country.find("CA")
+  test "find returns US for US state abbreviations that don't conflict with country codes" do
+    country = Country.find("NY")
 
     assert_not_nil country
     assert_equal "US", country.alpha2
+  end
+
+  test "find prioritizes country codes over US state abbreviations" do
+    country = Country.find("CA")
+
+    assert_not_nil country
+    assert_equal "CA", country.alpha2
+    assert_equal "Canada", country.name
   end
 
   test "find returns GB for UK" do

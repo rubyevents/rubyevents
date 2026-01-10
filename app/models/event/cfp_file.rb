@@ -1,21 +1,9 @@
 # -*- SkipSchemaAnnotations
 
 class Event::CFPFile < ActiveRecord::AssociatedObject
-  FILE_NAME = "cfp.yml"
+  include YAMLFile
 
-  def file_path
-    event.data_folder.join(FILE_NAME)
-  end
-
-  def exist?
-    file_path.exist?
-  end
-
-  def entries
-    return [] unless exist?
-
-    YAML.load_file(file_path) || []
-  end
+  yaml_file "cfp.yml"
 
   def find_by_link(link)
     entries.find { |cfp| cfp["link"] == link }
@@ -40,6 +28,7 @@ class Event::CFPFile < ActiveRecord::AssociatedObject
       cfp["name"] = name if name.present?
       cfp["open_date"] = open_date if open_date.present?
       cfp["close_date"] = close_date if close_date.present?
+
       cfp
     end
 
@@ -56,10 +45,12 @@ class Event::CFPFile < ActiveRecord::AssociatedObject
 
   def build_entry(link:, open_date:, close_date:, name:)
     entry = {}
+
     entry["name"] = name if name.present?
     entry["link"] = link
     entry["open_date"] = open_date if open_date.present?
     entry["close_date"] = close_date if close_date.present?
+
     entry
   end
 end

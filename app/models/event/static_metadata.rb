@@ -1,4 +1,8 @@
 class Event::StaticMetadata < ActiveRecord::AssociatedObject
+  extension do
+    def featured_metadata? = static_metadata.featured_background?
+  end
+
   delegate :published_date, :home_sort_date, to: :static_repository, allow_nil: true
 
   def kind

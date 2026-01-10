@@ -127,10 +127,11 @@ class UKNationTest < ActiveSupport::TestCase
     assert nation.users.is_a?(ActiveRecord::Relation)
   end
 
-  test "stamps returns empty array" do
+  test "stamps" do
     nation = UKNation.new("scotland")
 
-    assert_equal [], nation.stamps
+    assert_equal 1, nation.stamps.length
+    assert_equal "GB-SCT", nation.stamps.first.code
   end
 
   test "held_in_sentence returns sentence with nation name" do

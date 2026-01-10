@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.2].define(version: 2026_01_06_232656) do
+ActiveRecord::Schema[8.2].define(version: 2026_01_09_152525) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -91,7 +91,7 @@ ActiveRecord::Schema[8.2].define(version: 2026_01_06_232656) do
     t.datetime "updated_at", null: false
     t.index ["aliasable_type", "aliasable_id"], name: "index_aliases_on_aliasable"
     t.index ["aliasable_type", "name"], name: "index_aliases_on_aliasable_type_and_name", unique: true
-    t.index ["aliasable_type", "slug"], name: "index_aliases_on_aliasable_type_and_slug", unique: true
+    t.index ["slug"], name: "index_aliases_on_slug"
   end
 
   create_table "cfps", force: :cascade do |t|
@@ -190,6 +190,7 @@ ActiveRecord::Schema[8.2].define(version: 2026_01_06_232656) do
     t.string "date_precision", default: "day", null: false
     t.date "end_date"
     t.integer "event_series_id", null: false
+    t.json "geocode_metadata", default: {}, null: false
     t.string "kind", default: "event", null: false
     t.decimal "latitude", precision: 10, scale: 6
     t.string "location"

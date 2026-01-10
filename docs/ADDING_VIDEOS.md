@@ -39,7 +39,7 @@ playlist_matcher: ""    # Optional text to filter playlists
 Then run this script to fetch the YouTube channel ID:
 
 ```bash
-rails runner scripts/prepare_series.rb my-conference
+bin/rails runner scripts/prepare_series.rb my-conference
 ```
 
 ### Step 2 - Create Events from YouTube Playlists
@@ -47,7 +47,7 @@ rails runner scripts/prepare_series.rb my-conference
 If your conference videos are organized as YouTube playlists (one playlist per event), run:
 
 ```bash
-rails runner scripts/create_events.rb my-conference
+bin/rails runner scripts/create_events.rb my-conference
 ```
 
 This will create `event.yml` files for each playlist found. The script skips events that already exist.
@@ -69,10 +69,10 @@ Once your events are set up, extract the video information:
 
 ```bash
 # Extract videos for all events in a series
-rails runner scripts/extract_videos.rb my-conference
+bin/rails runner scripts/extract_videos.rb my-conference
 
 # Or extract videos for a specific event
-rails runner scripts/extract_videos.rb my-conference my-conference-2024
+bin/rails runner scripts/extract_videos.rb my-conference my-conference-2024
 ```
 
 ### Step 4 - Review and Edit

@@ -1,18 +1,8 @@
 # -*- SkipSchemaAnnotations
 class Event::SponsorsFile < ActiveRecord::AssociatedObject
-  FILE_NAME = "sponsors.yml"
+  include YAMLFile
 
-  def file_path
-    event.data_folder.join(FILE_NAME)
-  end
-
-  def exist?
-    file_path.exist?
-  end
-
-  def file
-    YAML.load_file(file_path)
-  end
+  yaml_file "sponsors.yml"
 
   def tier_names
     tiers = file[:tiers] || file["tiers"] || []

@@ -8,6 +8,23 @@ class UKNation
     @nation_name = data[:name]
   end
 
+  def self.find_by_code(code)
+    return nil if code.blank?
+
+    code_upper = code.upcase
+
+    nation_code = if code_upper.start_with?("GB-")
+      code_upper.sub("GB-", "")
+    else
+      code_upper
+    end
+
+    slug = Country::UK_NATIONS.find { |_, data| data[:code] == nation_code }&.first
+    slug ||= Country::UK_NATIONS.find { |_, data| data[:name].upcase == nation_code }&.first
+
+    slug ? new(slug) : nil
+  end
+
   def name
     nation_name
   end
@@ -65,7 +82,7 @@ class UKNation
   end
 
   def stamps
-    []
+    Stamp.all.select { |stamp| stamp.code == alpha2 }
   end
 
   def bounds

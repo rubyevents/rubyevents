@@ -274,6 +274,20 @@ module Static
     def import!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
       return if Rails.env.test? && !ENV["SEED_SMOKE_TEST"] # this method slowdown a lot of the test suite
 
+      event = import_event!
+
+      import_cfps!(event)
+      import_videos!(event, index: index)
+      import_sponsors!(event)
+      import_involvements!(event)
+      import_transcripts!(event)
+
+      Search::Backend.index(event) if index
+
+      event
+    end
+
+    def import_event!
       event = ::Event.find_or_create_by(slug: slug)
 
       event.update!(
@@ -306,14 +320,6 @@ module Static
 
       puts event.slug unless Rails.env.test?
 
-      import_cfps!(event)
-      import_videos!(event, index: index)
-      import_sponsors!(event)
-      import_involvements!(event)
-      import_transcripts!(event)
-
-      Search::Backend.index(event) if index
-
       event
     end
 
@@ -336,9 +342,9 @@ module Static
     end
 
     def import_videos!(event, index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
-      return unless event.videos_file?
+      return unless event.videos_file.exist?
 
-      event.videos_file.each do |talk_data|
+      event.videos_file.entries.each do |talk_data|
         talk = ::Talk.find_or_initialize_by(static_id: talk_data["id"])
         talk.update_from_yml_metadata!(event: event)
         Search::Backend.index(talk) if index
@@ -404,20 +410,15 @@ module Static
       end
     end
 
-    def involvements_file_path
-      Rails.root.join("data", series_slug, slug, "involvements.yml")
-    end
-
-    def involvements_file?
-      involvements_file_path.exist?
-    end
-
     def import_involvements!(event)
-      return unless involvements_file?
+      return unless event.involvements_file.exist?
 
-      event.event_involvements.destroy_all
+      event_involvements = event.event_involvements
 
-      involvements = YAML.load_file(involvements_file_path)
+      # Mark existing involvements for destruction
+      event_involvements_attributes = event_involvements.map { it.attributes.merge(_destroy: true) }
+
+      involvements = event.involvements_file.entries
 
       involvements.each do |involvement_data|
         role = involvement_data["name"]
@@ -428,17 +429,28 @@ module Static
           user = ::User.find_by_name_or_alias(user_name)
 
           unless user
+            # raise "User '#{user_name}' not found in speakers.yml" if Rails.env.development?
             puts "Creating user: #{user_name}" unless Rails.env.test?
             user = ::User.create!(name: user_name)
           end
 
-          involvement = ::EventInvolvement.find_or_initialize_by(
-            event: event,
-            involvementable: user,
-            role: role
-          )
-          involvement.position = index
-          involvement.save!
+          # Get index if involvement already exists in the attributes array
+          attributes_index = event_involvements_attributes.index do |attrs|
+            attrs["role"] == role && attrs["involvementable_type"] == "User" &&
+              attrs["involvementable_id"] == user.id
+          end
+
+          if attributes_index.present?
+            # Replace the involvement attributes to avoid destroying it (update position if necessary)
+            event_involvements_attributes[attributes_index].update(position: index, _destroy: false)
+          else
+            # Add new involvement
+            event_involvements_attributes << {
+              role: role,
+              involvementable: user,
+              position: index
+            }
+          end
         end
 
         user_count = involvement_data["users"]&.compact&.size || 0
@@ -449,33 +461,37 @@ module Static
           organization = ::Organization.find_by(name: org_name) || ::Organization.find_by(slug: org_name.parameterize)
 
           unless organization
+            # raise "Organization '#{org_name}' not found" if Rails.env.development?
             puts "Creating organization: #{org_name}" unless Rails.env.test?
             organization = ::Organization.create!(name: org_name)
           end
 
-          involvement = ::EventInvolvement.find_or_initialize_by(
-            event: event,
-            involvementable: organization,
-            role: role
-          )
-          involvement.position = user_count + index
-          involvement.save!
+          # Get index if involvement already exists in the attributes array
+          attributes_index = event_involvements_attributes.index do |attrs|
+            attrs["role"] == role && attrs["involvementable_type"] == "Organization" &&
+              attrs["involvementable_id"] == organization.id
+          end
+
+          if attributes_index.present?
+            # Replace the involvement attributes to avoid destroying it (update position if necessary)
+            event_involvements_attributes[attributes_index].update(position: index + user_count, _destroy: false)
+          else
+            # Add new involvement
+            event_involvements_attributes << {
+              role: role,
+              involvementable: organization,
+              position: index + user_count
+            }
+          end
         end
       end
-    end
-
-    def transcripts_file_path
-      Rails.root.join("data", series_slug, slug, "transcripts.yml")
-    end
-
-    def transcripts_file?
-      transcripts_file_path.exist?
+      event.update!(event_involvements_attributes: event_involvements_attributes)
     end
 
     def import_transcripts!(event)
-      return unless transcripts_file?
+      return unless event.transcripts_file.exist?
 
-      transcripts = YAML.load_file(transcripts_file_path)
+      transcripts = event.transcripts_file.entries
       return if transcripts.blank?
 
       transcripts.each do |transcript_data|
