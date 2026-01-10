@@ -1,0 +1,18 @@
+<div class="flex-1 flex flex-col items-center justify-center">
+  <div class="mt-8 mb-6">
+    <img
+      src="https://github.com/<%= member[:username] %>.png?size=256"
+      alt="<%= member[:name] %>"
+      class="w-48 h-48 rounded-full border-4 border-white/50">
+  </div>
+
+  <h1 class="text-4xl font-black text-white mt-8 mb-6">Welcome to the RubyEvents.org Team!</h1>
+  <p class="text-3xl font-bold text-red-200 mb-2"><%= member[:name] %></p>
+  <p class="text-xl text-red-300/80">@<%= member[:username] %></p>
+</div>
+
+<div class="w-full bg-white/5 py-4 flex items-center justify-center gap-3">
+  <%= image_tag "logo.png", class: "w-8 h-8", alt: "RubyEvents.org" %>
+  <span class="text-white font-bold text-xl">RubyEvents.org</span>
+  <span class="text-red-300/80 text-lg">On a mission to index all Ruby events</span>
+</div>

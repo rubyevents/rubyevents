@@ -1,19 +1,22 @@
-<%
-  video_provider = case @talk.video_provider
-  when "mp4" then "mp4"
-  when "parent" then @talk.parent_talk.video_provider
-  else @talk.video_provider
-  end
-
-  video_provider = @talk.video_provider if @talk.parent_talk&.video_provider == "children"
-  video_id = (@talk.video_provider == "parent") ? @talk.parent_talk.video_id : @talk.video_id
-%>
-
 <%= turbo_stream.update "modal" do %>
 <% end %>
 
-<%= turbo_stream.update dom_id(@talk, :video_player) do %>
-  <%= render partial: "talks/video_player", locals: {talk: @talk, current_user_watched_talk: @watched_talk, is_watched: true, video_provider: video_provider, video_id: video_id} %>
+<% if @video_playing %>
+  <%= turbo_stream_action_tag :update_value, target: dom_id(@talk, :player_container), attribute: "data-video-player-watched-value", value: "true" %>
+<% else %>
+  <%
+    video_provider = case @talk.video_provider
+    when "mp4" then "mp4"
+    when "parent" then @talk.parent_talk.video_provider
+    else @talk.video_provider
+    end
+
+    video_provider = @talk.video_provider if @talk.parent_talk&.video_provider == "children"
+    video_id = (@talk.video_provider == "parent") ? @talk.parent_talk.video_id : @talk.video_id
+  %>
+  <%= turbo_stream.update dom_id(@talk, :video_player) do %>
+    <%= render partial: "talks/video_player", locals: {talk: @talk, current_user_watched_talk: @watched_talk, is_watched: true, video_provider: video_provider, video_id: video_id} %>
+  <% end %>
 <% end %>
 
 <%= turbo_stream.update dom_id(@talk, :feedback_banner) do %>
@@ -22,4 +25,16 @@
 
 <%= turbo_stream.update dom_id(@talk, :watched_button) do %>
   <%= render partial: "talks/watched_talks/button", locals: {talk: @talk, is_watched: true} %>
+<% end %>
+
+<%= turbo_stream.update dom_id(@talk, :player_actions) do %>
+  <%= render partial: "talks/player_action_buttons", locals: {talk: @talk, is_watched: true} %>
+<% end %>
+
+<%= turbo_stream.replace dom_id(@talk, :watched_control) do %>
+  <span id="<%= dom_id(@talk, :watched_control) %>" style="display: contents;">
+    <%= link_to talk_watched_talk_path(@talk), data: {turbo_method: :delete, turbo_confirm: "Mark as unwatched?"}, class: "custom-player-btn custom-player-btn-watched", "data-tooltip": "Mark as Unwatched" do %>
+      <%= fa("circle-check", size: :lg, style: :solid, class: "fill-green-400") %>
+    <% end %>
+  </span>
 <% end %>

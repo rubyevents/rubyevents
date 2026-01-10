@@ -1,0 +1,138 @@
+<%# locals: (talk:, is_watched:) %>
+<% is_bookmarked = signed_in? && default_watch_list&.talk_ids&.include?(talk.id) %>
+
+<%= image_tag "logo.png", class: "custom-player-logo", alt: "RubyEvents.org" %>
+
+<div class="custom-player-controls" data-video-player-target="customControls">
+  <div class="custom-player-top">
+    <%= image_tag image_path(talk.event.avatar_image_path), class: "custom-player-event-avatar", alt: talk.event.name %>
+    <div class="custom-player-metadata">
+      <div class="custom-player-title"><%= talk.title %></div>
+      <div class="custom-player-info">
+        <span class="custom-player-speakers"><%= talk.speakers.map(&:name).to_sentence %></span>
+        <span class="custom-player-separator">•</span>
+        <span class="custom-player-event"><%= talk.event.name %></span>
+        <span class="custom-player-separator">•</span>
+        <span class="custom-player-date"><%= talk.formatted_date %></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="custom-player-center" data-action="click->video-player#togglePlay">
+    <div class="custom-player-center-btn" data-video-player-target="centerPlayBtn">
+      <%= fa("play", size: "2xl", class: "fill-white ml-1") %>
+    </div>
+  </div>
+
+  <div class="custom-player-bottom">
+    <div class="custom-player-progress" data-video-player-target="progressContainer" data-action="mousedown->video-player#startDrag touchstart->video-player#startDrag mousemove->video-player#showSeekPreview mouseleave->video-player#hideSeekPreview">
+      <div class="custom-player-progress-buffer" data-video-player-target="progressBuffer"></div>
+      <div class="custom-player-progress-bar" data-video-player-target="progressBar"></div>
+      <div class="custom-player-progress-handle" data-video-player-target="progressHandle"></div>
+      <div class="custom-player-seek-tooltip" data-video-player-target="seekTooltip">0:00</div>
+    </div>
+
+    <div class="custom-player-controls-row">
+      <div class="custom-player-left">
+        <button class="custom-player-btn" data-action="click->video-player#togglePlay" data-video-player-target="playPauseBtn" data-tooltip="Play/Pause (Space)">
+          <%= fa("play", size: :lg, class: "fill-white") %>
+        </button>
+
+        <button class="custom-player-btn" data-action="click->video-player#skipBackward" data-tooltip="Rewind 10s (J)">
+          <%= fa("rotate-left", size: :lg, class: "fill-white") %>
+        </button>
+
+        <button class="custom-player-btn" data-action="click->video-player#skipForward" data-tooltip="Forward 10s (L)">
+          <%= fa("rotate-right", size: :lg, class: "fill-white") %>
+        </button>
+
+        <button class="custom-player-btn" data-action="click->video-player#toggleMute" data-video-player-target="muteBtn" data-tooltip="Mute (M)">
+          <%= fa("volume-high", size: :lg, class: "fill-white") %>
+        </button>
+
+        <div class="custom-player-time">
+          <span data-video-player-target="currentTime">0:00</span>
+          <span class="custom-player-time-separator">/</span>
+          <span data-video-player-target="totalTime"><%= talk.duration_in_seconds ? seconds_to_formatted_duration(talk.duration_in_seconds) : "0:00" %></span>
+        </div>
+      </div>
+
+      <div class="custom-player-right">
+        <% if signed_in? %>
+          <span id="<%= dom_id(talk, :bookmark_control) %>" style="display: contents;">
+            <% if is_bookmarked %>
+              <%= link_to watch_list_talk_path(default_watch_list, talk.id), data: {turbo_method: :delete}, class: "custom-player-btn", "data-tooltip": "Remove Bookmark" do %>
+                <%= fa("bookmark", size: :lg, style: :solid, class: "fill-white") %>
+              <% end %>
+            <% else %>
+              <%= link_to watch_list_talks_path(default_watch_list, talk_id: talk.id), data: {turbo_method: :post}, class: "custom-player-btn", "data-tooltip": "Bookmark" do %>
+                <%= fa("bookmark", size: :lg, style: :regular, class: "fill-white") %>
+              <% end %>
+            <% end %>
+          </span>
+
+          <span id="<%= dom_id(talk, :watched_control) %>" style="display: contents;">
+            <% if is_watched %>
+              <%= link_to talk_watched_talk_path(talk), data: {turbo_method: :delete, turbo_confirm: "Mark as unwatched?"}, class: "custom-player-btn custom-player-btn-watched", "data-tooltip": "Mark as Unwatched" do %>
+                <%= fa("circle-check", size: :lg, style: :solid, class: "fill-green-400") %>
+              <% end %>
+            <% elsif talk.date.blank? || talk.date <= Date.current %>
+              <%= link_to new_talk_watched_talk_path(talk), data: {turbo_frame: "modal"}, class: "custom-player-btn", "data-tooltip": "Mark as Watched" do %>
+                <%= fa("circle-check", size: :lg, style: :regular, class: "fill-white") %>
+              <% end %>
+            <% end %>
+          </span>
+        <% else %>
+          <%= link_to new_session_path(redirect_to: request.fullpath), data: {turbo_frame: "modal"}, class: "custom-player-btn", "data-tooltip": "Bookmark" do %>
+            <%= fa("bookmark", size: :lg, style: :regular, class: "fill-white") %>
+          <% end %>
+
+          <% if talk.date.blank? || talk.date <= Date.current %>
+            <%= link_to new_session_path(redirect_to: request.fullpath), data: {turbo_frame: "modal"}, class: "custom-player-btn", "data-tooltip": "Mark as Watched" do %>
+              <%= fa("circle-check", size: :lg, style: :regular, class: "fill-white") %>
+            <% end %>
+          <% end %>
+        <% end %>
+
+        <div class="custom-player-separator-vertical"></div>
+
+        <button class="custom-player-btn custom-player-speed-btn" data-action="click->video-player#cyclePlaybackRate" data-video-player-target="speedBtn" data-tooltip="Playback Speed">
+          1x
+        </button>
+
+        <% if talk.youtube? || talk.parent_talk&.youtube? %>
+          <button class="custom-player-btn" data-action="click->video-player#openOnExternalPlayer" data-external-url="<%= talk.external_player_url %>" data-tooltip="Watch on YouTube">
+            <%= fa("youtube-brands", size: :lg, style: :solid, class: "fill-white") %>
+          </button>
+        <% end %>
+
+        <% if talk.vimeo? || talk.parent_talk&.vimeo? %>
+          <button class="custom-player-btn" data-action="click->video-player#openOnExternalPlayer" data-external-url="<%= talk.external_player_url %>" data-tooltip="Watch on Vimeo">
+            <%= fa("vimeo-v-brands", size: :lg, style: :solid, class: "fill-white") %>
+          </button>
+        <% end %>
+
+        <% if talk.static_metadata&.external_player_url.present? || talk.parent_talk&.static_metadata&.external_player_url.present? %>
+          <% website_player_url = talk.parent_talk&.static_metadata&.external_player_url || talk.static_metadata.external_player_url %>
+          <button class="custom-player-btn" data-action="click->video-player#openOnExternalPlayer" data-external-url="<%= website_player_url %>" data-tooltip="Play on Website">
+            <%= fa("globe", size: :lg, class: "fill-white") %>
+          </button>
+        <% end %>
+
+        <% if talk.video_provider == "mp4" %>
+          <button class="custom-player-btn" data-action="click->video-player#togglePictureInPicture" data-tooltip="Picture-in-Picture (P)">
+            <%= fa("display", size: :lg, class: "fill-white") %>
+          </button>
+        <% end %>
+
+        <button class="custom-player-btn theater-mode-btn" data-action="click->theater-mode#toggle" data-tooltip="Theater Mode (T)">
+          <%= fa("rectangle-wide", size: :lg, class: "fill-white") %>
+        </button>
+
+        <button class="custom-player-btn" data-action="click->video-player#toggleFullscreen" data-video-player-target="fullscreenBtn" data-tooltip="Fullscreen (F)">
+          <%= fa("expand", size: :lg, class: "fill-white") %>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

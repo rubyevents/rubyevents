@@ -1,0 +1,16 @@
+<%= turbo_stream.replace dom_id(@talk, :bookmark_btn) do %>
+  <%= turbo_frame_tag dom_id(@talk, :bookmark_btn), style: "display: contents;" do %>
+    <%= button_to watch_list_talk_path(default_watch_list, @talk.id), method: :delete, class: "player-action-btn" do %>
+      <%= fa("bookmark", size: :sm, style: :solid, class: "fill-white") %>
+      <span>Bookmarked</span>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= turbo_stream.replace dom_id(@talk, :bookmark_control) do %>
+  <span id="<%= dom_id(@talk, :bookmark_control) %>" style="display: contents;">
+    <%= link_to watch_list_talk_path(default_watch_list, @talk.id), data: {turbo_method: :delete}, class: "custom-player-btn", "data-tooltip": "Remove Bookmark" do %>
+      <%= fa("bookmark", size: :lg, style: :solid, class: "fill-white") %>
+    <% end %>
+  </span>
+<% end %>

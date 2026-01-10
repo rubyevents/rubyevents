@@ -17,6 +17,7 @@ class Talks::WatchedTalksController < ApplicationController
     @watched_talk = @talk.watched_talks.find_or_initialize_by(user: Current.user)
     @watched_talk.assign_attributes(watched_talk_params.merge(watched: true))
     @watched_talk.save!
+    @video_playing = params[:video_playing] == "1"
 
     respond_to do |format|
       format.html { redirect_back fallback_location: @talk }

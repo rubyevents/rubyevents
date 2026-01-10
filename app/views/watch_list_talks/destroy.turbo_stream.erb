@@ -1,0 +1,16 @@
+<%= turbo_stream.replace dom_id(@talk, :bookmark_btn) do %>
+  <%= turbo_frame_tag dom_id(@talk, :bookmark_btn), style: "display: contents;" do %>
+    <%= button_to watch_list_talks_path(default_watch_list, talk_id: @talk.id), method: :post, class: "player-action-btn" do %>
+      <%= fa("bookmark", size: :sm, style: :regular, class: "fill-white") %>
+      <span>Bookmark</span>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= turbo_stream.replace dom_id(@talk, :bookmark_control) do %>
+  <span id="<%= dom_id(@talk, :bookmark_control) %>" style="display: contents;">
+    <%= link_to watch_list_talks_path(default_watch_list, talk_id: @talk.id), data: {turbo_method: :post}, class: "custom-player-btn", "data-tooltip": "Bookmark" do %>
+      <%= fa("bookmark", size: :lg, style: :regular, class: "fill-white") %>
+    <% end %>
+  </span>
+<% end %>
