@@ -10,7 +10,7 @@
 
   <div class="flex flex-wrap gap-3">
     <% talk_kinds.each do |kind, count| %>
-      <%= link_to talks_path(kind: kind, status: "all"), class: "btn btn-outline btn-sm gap-2 hover:btn-primary", data: { turbo_frame: "_top" } do %>
+      <%= link_to talks_path(kind: kind, status: "all"), class: "btn btn-outline btn-sm gap-2 hover:btn-primary", data: {turbo_frame: "_top"} do %>
         <%= Talk::KIND_LABELS[kind] || kind.titleize %>
 
         <span class="badge badge-ghost badge-sm"><%= count %></span>
