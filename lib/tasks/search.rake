@@ -142,16 +142,16 @@ module SearchTaskHelper
     puts "\n" + "=" * 60
     puts "Summary:"
     puts "-" * 60
-    puts "  📚 Talks:         %6d" % searches[:talks][1]
-    puts "  👤 Speakers:      %6d" % searches[:speakers][1]
-    puts "  📅 Events:        %6d" % searches[:events][1]
-    puts "  🏷️  Topics:        %6d" % searches[:topics][1]
-    puts "  🗓️ Series:        %6d" % searches[:series][1]
-    puts "  🏢 Organizations: %6d" % searches[:organizations][1]
-    puts "  🌍 Locations:     %6d" % (searches[:locations]&.dig(1) || 0) if searches[:locations]
-    puts "  🗣️ Languages:     %6d" % searches[:languages][1]
+    puts "  📚 Talks:          %6d" % searches[:talks][1]
+    puts "  👤 Speakers:       %6d" % searches[:speakers][1]
+    puts "  📅 Events:         %6d" % searches[:events][1]
+    puts "  🏷️ Topics:         %6d" % searches[:topics][1]
+    puts "  🗓️ Series:         %6d" % searches[:series][1]
+    puts "  🏢 Organizations:  %6d" % searches[:organizations][1]
+    puts "  🌍 Locations:      %6d" % (searches[:locations]&.dig(1) || 0) if searches[:locations]
+    puts "  🗣️ Languages:      %6d" % searches[:languages][1]
     puts "-" * 60
-    puts "  Total:            %6d" % total_results
+    puts "  Total:             %6d" % total_results
     puts "=" * 60
   end
 end
