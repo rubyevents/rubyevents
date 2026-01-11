@@ -1,0 +1,38 @@
+<%= turbo_refreshes_with method: :morph, scroll: :preserve %>
+
+<% title "Rubyists Map" %>
+
+<% total_markers = @geo_layers.sum { |l| l[:markers]&.sum { |m| m[:users]&.size || 0 } || 0 } %>
+
+<div class="container py-8">
+  <div class="flex flex-col gap-4 mb-6">
+    <div class="flex items-center justify-between">
+      <div>
+        <h1 class="text-2xl font-bold text-gray-900">Rubyists Map</h1>
+        <p class="text-gray-500"><%= pluralize(@user_count, "Rubyist") %> with location data</p>
+      </div>
+    </div>
+
+    <% if @geo_layers.size > 1 %>
+      <div class="flex items-center gap-2">
+        <span class="text-sm font-medium text-gray-600">Region:</span>
+
+        <%= render "shared/map_layer_controls", layers: @geo_layers, selection: "radio", use_emoji: true %>
+      </div>
+    <% end %>
+  </div>
+
+  <% if @geo_layers.any? %>
+    <div
+      data-controller="map"
+      data-map-layers-value="<%= @geo_layers.to_json %>"
+      data-map-mode-value="users">
+      <div
+        id="community-map"
+        class="w-full h-[600px] rounded-xl overflow-hidden border"
+        data-map-target="container"></div>
+    </div>
+  <% else %>
+    <p class="text-gray-500 py-8 text-center">No Rubyists with location data yet.</p>
+  <% end %>
+</div>

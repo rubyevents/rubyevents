@@ -88,6 +88,7 @@ export default class extends Controller {
     const filter = this.currentTimeFilter || 'all'
     const visibleBounds = new maplibregl.LngLatBounds()
     const layerFilteredCounts = {}
+    const isUsersMode = this.modeValue === 'users'
 
     let hasVisibleMarkers = false
 
@@ -102,20 +103,28 @@ export default class extends Controller {
         const markerData = this.markerDataMap.get(marker)
         if (!markerData) return
 
-        const filteredEvents = this.#filterEventsByTime(markerData.events, filter)
-        const isVisible = (layerVisible || alwaysVisible) && filteredEvents.length > 0
+        const items = isUsersMode
+          ? (markerData.users || [])
+          : this.#filterEventsByTime(markerData.events, filter)
 
-        layerFilteredCounts[layerId] += filteredEvents.length
+        const isVisible = (layerVisible || alwaysVisible) && items.length > 0
+
+        layerFilteredCounts[layerId] += items.length
 
         const element = marker.getElement()
         element.style.display = isVisible ? '' : 'none'
 
-        if (markerData.popup && filteredEvents.length > 0) {
-          markerData.popup.setDOMContent(this.#html`${this.#popupTemplate(filteredEvents)}`)
+        if (markerData.popup && items.length > 0) {
+          const popupContent = isUsersMode
+            ? this.#userPopupTemplate(items)
+            : this.#popupTemplate(items)
+          markerData.popup.setDOMContent(this.#html`${popupContent}`)
         }
 
         if (isVisible) {
-          const newElement = this.#createMarkerElement(filteredEvents)
+          const newElement = isUsersMode
+            ? this.#createUserMarkerElement(items)
+            : this.#createMarkerElement(items)
           element.innerHTML = newElement.innerHTML
 
           if (layerVisible) {
@@ -300,9 +309,17 @@ export default class extends Controller {
           .addTo(this.map)
       }
 
-      layer.markers.forEach(({ longitude, latitude, events }) => {
-        const element = this.#createMarkerElement(events)
-        const popup = this.#createPopup(events)
+      layer.markers.forEach((markerData) => {
+        const { longitude, latitude, events, users } = markerData
+        const items = this.modeValue === 'users' ? users : events
+
+        const element = this.modeValue === 'users'
+          ? this.#createUserMarkerElement(items)
+          : this.#createMarkerElement(items)
+
+        const popup = this.modeValue === 'users'
+          ? this.#createUserPopup(items)
+          : this.#createPopup(items)
 
         if (!visible && !alwaysVisible) {
           element.style.display = 'none'
@@ -314,7 +331,7 @@ export default class extends Controller {
           .addTo(this.map)
 
         this.markersByLayer[layerId].push(marker)
-        this.markerDataMap.set(marker, { events, longitude, latitude, popup })
+        this.markerDataMap.set(marker, { items, events, users, longitude, latitude, popup })
 
         if (visible) {
           visibleBounds.extend([longitude, latitude])
@@ -363,6 +380,8 @@ export default class extends Controller {
 
     if (this.modeValue === 'venue') {
       this.#loadVenueMarkers()
+    } else if (this.modeValue === 'users') {
+      this.#loadUserMarkers()
     } else {
       this.#loadEventMarkers()
     }
@@ -424,6 +443,40 @@ export default class extends Controller {
       this.map.fitBounds(bounds, {
         padding: 50,
         maxZoom: 15
+      })
+    }
+  }
+
+  #loadUserMarkers () {
+    const hasCenter = this.hasCenterValue && this.centerValue.length === 2
+    const hasZoom = this.hasZoomValue && this.zoomValue > 0
+    const hasBounds = this.hasBoundsValue && this.boundsValue.southwest && this.boundsValue.northeast
+
+    this.markersValue.forEach(({ longitude, latitude, users }) => {
+      const element = this.#createUserMarkerElement(users)
+      const popup = this.#createUserPopup(users)
+
+      new maplibregl.Marker({ element, anchor: 'center' })
+        .setLngLat([longitude, latitude])
+        .setPopup(popup)
+        .addTo(this.map)
+    })
+
+    if (hasBounds || (hasCenter && hasZoom)) return
+
+    const bounds = new maplibregl.LngLatBounds()
+
+    this.markersValue.forEach(({ longitude, latitude }) => {
+      bounds.extend([longitude, latitude])
+    })
+
+    if (this.markersValue.length === 1) {
+      this.map.setCenter([this.markersValue[0].longitude, this.markersValue[0].latitude])
+      this.map.setZoom(5)
+    } else {
+      this.map.fitBounds(bounds, {
+        padding: 50,
+        maxZoom: 10
       })
     }
   }
@@ -579,6 +632,85 @@ export default class extends Controller {
         <div class="font-semibold">${marker.name}</div>
         ${marker.address ? `<div class="text-sm text-gray-600">${marker.address}</div>` : ''}
         ${marker.distance ? `<div class="text-xs text-gray-500">${marker.distance}</div>` : ''}
+      </div>
+    `
+  }
+
+  #createUserMarkerElement (users) {
+    return users.length === 1
+      ? this.#html`${this.#singleUserMarkerTemplate(users[0])}`
+      : this.#html`${this.#groupUserMarkerTemplate(users)}`
+  }
+
+  #createUserPopup (users) {
+    return new maplibregl.Popup({
+      offset: 25,
+      closeButton: false
+    }).setDOMContent(this.#html`${this.#userPopupTemplate(users)}`)
+  }
+
+  #singleUserMarkerTemplate (user) {
+    return `
+      <div class="user-marker cursor-pointer">
+        <div class="avatar">
+          <div class="w-8 rounded-full ring ring-base-100 ${user.speaker ? 'ring-primary' : ''}">
+            <img src="${user.avatar}" alt="${user.name}" />
+          </div>
+        </div>
+      </div>
+    `
+  }
+
+  #groupUserMarkerTemplate (users) {
+    const displayUsers = users.slice(0, 3)
+    const remaining = users.length - 3
+
+    return `
+      <div class="user-marker cursor-pointer">
+        <div class="avatar-group -space-x-4 rtl:space-x-reverse">
+          ${displayUsers
+        .map(
+          (user) => `
+            <div class="avatar">
+              <div class="w-6 rounded-full ring ring-base-100">
+                <img src="${user.avatar}" alt="${user.name}" />
+              </div>
+            </div>
+          `
+        )
+        .join('')}
+          ${remaining > 0
+        ? `
+            <div class="avatar placeholder">
+              <div class="bg-neutral text-neutral-content w-6 rounded-full ring ring-base-100">
+                <span class="text-xs">+${remaining}</span>
+              </div>
+            </div>
+          `
+        : ''
+      }
+        </div>
+      </div>
+    `
+  }
+
+  #userPopupTemplate (users) {
+    const location = users[0]?.location
+
+    return `
+      <div class="flex flex-col max-h-48 overflow-y-auto pr-2 gap-2">
+        ${location ? `<div class="text-xs text-gray-500 font-medium">${location}</div>` : ''}
+        ${users
+        .map(
+          (user) => `
+          <a href="${user.url}" data-turbo-frame="_top" class="flex items-center gap-2 hover:underline">
+            <img src="${user.avatar}" alt="${user.name}" class="w-6 h-6 rounded-full" />
+            <span class="font-semibold">${user.name}</span>
+            ${user.speaker ? '<span class="badge badge-xs badge-primary">speaker</span>' : ''}
+          </a>
+        `
+        )
+        .join('')}
       </div>
     `
   }
