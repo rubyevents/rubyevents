@@ -46,6 +46,9 @@ class City < ApplicationRecord
   before_validation :geocode, on: :create, if: -> { geocodeable? && !geocoded? }
   before_validation :clear_unsupported_state_code
 
+  after_commit :index_in_search, on: [:create, :update]
+  after_commit :remove_from_search, on: :destroy
+
   validates :name, presence: true, uniqueness: {scope: [:country_code, :state_code]}
   validates :slug, presence: true, uniqueness: true
   validates :country_code, presence: true
@@ -273,5 +276,15 @@ class City < ApplicationRecord
     def clear_cache!
       @featured_slugs = nil
     end
+  end
+
+  private
+
+  def index_in_search
+    Search::Backend.index(self)
+  end
+
+  def remove_from_search
+    Search::Backend.remove(self)
   end
 end

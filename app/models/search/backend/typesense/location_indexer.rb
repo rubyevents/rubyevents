@@ -99,6 +99,27 @@ class Search::Backend::Typesense
       def index_cities = index_documents("cities", build_city_documents)
       def index_online = index_documents("online location", [build_online_document].compact)
 
+      def index_city(city)
+        ensure_collection!
+        document = build_city_document(city)
+        return unless document
+
+        collection.documents.upsert(document)
+        Rails.logger.info "Typesense: Indexed city #{city.name}"
+      rescue => e
+        Rails.logger.error "Typesense: Failed to index city #{city.name}: #{e.message}"
+      end
+
+      def remove_city(city)
+        document_id = "city_#{city.country_code}_#{city.slug}"
+        collection.documents[document_id].delete
+        Rails.logger.info "Typesense: Removed city #{city.name}"
+      rescue ::Typesense::Error::ObjectNotFound
+        # Already removed
+      rescue => e
+        Rails.logger.error "Typesense: Failed to remove city #{city.name}: #{e.message}"
+      end
+
       def index_documents(name, documents)
         return if documents.empty?
 
@@ -248,24 +269,26 @@ class Search::Backend::Typesense
       end
 
       def build_city_documents
-        City.all.map do |city|
-          country = city.country
-          country_name = country&.common_name || country&.iso_short_name || city.country_code
+        City.all.map { |city| build_city_document(city) }
+      end
 
-          {
-            id: "city_#{city.country_code}_#{city.slug}",
-            type: "city",
-            name: city.name,
-            slug: city.slug,
-            code: city.state_code,
-            country_code: city.country_code,
-            country_name: country_name,
-            emoji_flag: country&.emoji_flag,
-            event_count: city.events_count,
-            user_count: city.users_count,
-            coordinates: normalize_coordinates(city.coordinates)
-          }.compact
-        end
+      def build_city_document(city)
+        country = city.country
+        country_name = country&.common_name || country&.iso_short_name || city.country_code
+
+        {
+          id: "city_#{city.country_code}_#{city.slug}",
+          type: "city",
+          name: city.name,
+          slug: city.slug,
+          code: city.state_code,
+          country_code: city.country_code,
+          country_name: country_name,
+          emoji_flag: country&.emoji_flag,
+          event_count: city.events_count,
+          user_count: city.users_count,
+          coordinates: normalize_coordinates(city.coordinates)
+        }.compact
       end
 
       def normalize_coordinates(coords)
