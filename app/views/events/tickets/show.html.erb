@@ -11,6 +11,7 @@
         <p class="text-gray-600 mb-6">
           Tickets for <%= @event.name %> are sold directly by the event organizer<% if @event.tickets.provider_name %> via <%= link_to @event.tickets.provider_name, @event.tickets.url, target: "_blank", rel: "noopener", class: "link" %><% end %>.
           RubyEvents is not responsible for ticket sales, refunds, or any issues related to your purchase.
+          For more information, check out the <%= link_to "ticket details", @event.tickets.url, target: "_blank", rel: "noopener", class: "link" %><% if @event.website.present? %> or the <%= link_to "conference website", @event.website, target: "_blank", rel: "noopener", class: "link" %><% end %>.
         </p>
 
         <% if @event.tickets.tito? %>
