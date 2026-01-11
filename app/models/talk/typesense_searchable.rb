@@ -6,7 +6,7 @@ module Talk::TypesenseSearchable
   included do
     include ::Typesense
 
-    typesense enqueue: :trigger_typesense_job, if: :should_index? do
+    typesense enqueue: :trigger_typesense_job, if: :should_index?, disable_indexing: -> { Search::Backend.skip_indexing } do
       attributes :title, :description, :summary, :slug, :language, :kind
 
       attribute :date_timestamp do

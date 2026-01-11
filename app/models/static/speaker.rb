@@ -24,73 +24,65 @@ module Static
 
       imported_user_ids = []
 
-      ::User.skip_callback(:commit, :after, :reindex_fts)
-      ::Alias.skip_callback(:commit, :after, :reindex_aliasable)
-
       existing_alias_names = Set.new(::Alias.where(aliasable_type: "User").pluck(:name))
 
-      begin
-        ::User.transaction do
-          speakers.each do |speaker|
-            user = users_by_github[speaker.github&.downcase] ||
-              users_by_slug[speaker.slug] ||
-              users_by_name[speaker.name] ||
-              aliases_by_name[speaker.name]&.aliasable
+      ::User.transaction do
+        speakers.each do |speaker|
+          user = users_by_github[speaker.github&.downcase] ||
+            users_by_slug[speaker.slug] ||
+            users_by_name[speaker.name] ||
+            aliases_by_name[speaker.name]&.aliasable
 
-            if user
-              attrs = {name: speaker.name, updated_at: Time.current}
-              attrs[:twitter] = speaker.twitter if speaker.twitter.present?
-              attrs[:github_handle] = speaker.github if speaker.github.present?
-              attrs[:website] = speaker.website if speaker.website.present?
-              attrs[:bio] = speaker.bio if speaker.bio.present?
-              user.update_columns(attrs)
-            else
-              base_slug = speaker.slug.presence ||
-                speaker.github&.downcase ||
-                I18n.transliterate(speaker.name.downcase).parameterize
+          if user
+            attrs = {name: speaker.name, updated_at: Time.current}
+            attrs[:twitter] = speaker.twitter if speaker.twitter.present?
+            attrs[:github_handle] = speaker.github if speaker.github.present?
+            attrs[:website] = speaker.website if speaker.website.present?
+            attrs[:bio] = speaker.bio if speaker.bio.present?
+            user.update_columns(attrs)
+          else
+            base_slug = speaker.slug.presence ||
+              speaker.github&.downcase ||
+              I18n.transliterate(speaker.name.downcase).parameterize
 
-              slug = base_slug
-              slug = "#{base_slug}-#{SecureRandom.hex(4)}" if existing_slugs.include?(slug)
-              existing_slugs.add(slug)
+            slug = base_slug
+            slug = "#{base_slug}-#{SecureRandom.hex(4)}" if existing_slugs.include?(slug)
+            existing_slugs.add(slug)
 
-              if speaker.github.present?
-                existing_github_handles.add(speaker.github.downcase)
-              end
-
-              user = ::User.new(
-                name: speaker.name,
-                slug: slug,
-                twitter: speaker.twitter.to_s,
-                github_handle: speaker.github.to_s,
-                website: speaker.website.to_s,
-                bio: speaker.bio.to_s
-              )
-
-              user.save(validate: false)
+            if speaker.github.present?
+              existing_github_handles.add(speaker.github.downcase)
             end
 
-            Array(speaker.aliases).each do |alias_data|
-              next if alias_data.blank?
+            user = ::User.new(
+              name: speaker.name,
+              slug: slug,
+              twitter: speaker.twitter.to_s,
+              github_handle: speaker.github.to_s,
+              website: speaker.website.to_s,
+              bio: speaker.bio.to_s
+            )
 
-              alias_name = alias_data["name"]
-              alias_slug = alias_data["slug"]
-
-              raise "No name provided for alias: #{alias_data.inspect} and user: #{user.inspect}" if alias_name.blank?
-              raise "No slug provided for alias: #{alias_data.inspect} and user: #{user.inspect}" if alias_slug.blank?
-
-              ::Alias.find_or_create_by!(aliasable: user, name: alias_name, slug: alias_slug)
-
-              existing_alias_names.add(alias_name)
-            end
-
-            imported_user_ids << user.id
-          rescue => e
-            puts "Couldn't save: #{speaker.name} (#{speaker.github}), error: #{e.message}"
+            user.save(validate: false)
           end
+
+          Array(speaker.aliases).each do |alias_data|
+            next if alias_data.blank?
+
+            alias_name = alias_data["name"]
+            alias_slug = alias_data["slug"]
+
+            raise "No name provided for alias: #{alias_data.inspect} and user: #{user.inspect}" if alias_name.blank?
+            raise "No slug provided for alias: #{alias_data.inspect} and user: #{user.inspect}" if alias_slug.blank?
+
+            ::Alias.find_or_create_by!(aliasable: user, name: alias_name, slug: alias_slug)
+
+            existing_alias_names.add(alias_name)
+          end
+
+          imported_user_ids << user.id
+        rescue => e
+          puts "Couldn't save: #{speaker.name} (#{speaker.github}), error: #{e.message}"
         end
-      ensure
-        ::User.set_callback(:commit, :after, :reindex_fts)
-        ::Alias.set_callback(:commit, :after, :reindex_aliasable)
       end
 
       ::User.where(id: imported_user_ids).find_each { |user| Search::Backend.index(user) } if imported_user_ids.any? && index

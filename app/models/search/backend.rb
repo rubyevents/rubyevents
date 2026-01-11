@@ -1,8 +1,18 @@
 # frozen_string_literal: true
 
 module Search::Backend
+  mattr_accessor :skip_indexing, default: false
+
   class << self
     attr_writer :default_backend_key
+
+    def without_indexing(&block)
+      original = skip_indexing
+      self.skip_indexing = true
+      yield
+    ensure
+      self.skip_indexing = original
+    end
 
     def backends
       @backends ||= {
@@ -39,6 +49,8 @@ module Search::Backend
     end
 
     def index(record)
+      return if skip_indexing
+
       backends.each_value do |backend|
         backend.indexer.index(record) if backend.available?
       rescue => e
