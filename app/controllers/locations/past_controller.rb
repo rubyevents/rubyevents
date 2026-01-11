@@ -9,7 +9,7 @@ class Locations::PastController < Locations::BaseController
     @event_map_markers = event_map_markers(@events.geocoded)
 
     load_nearby_data if city?
-    load_events_by_city if country? || state?
+    load_cities if country? || state?
 
     @geo_layers = build_sidebar_geo_layers(@events)
 

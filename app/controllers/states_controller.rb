@@ -18,7 +18,7 @@ class StatesController < ApplicationController
       return
     end
 
-    @states = State.all(country: @country)
+    @states = @country.states
   end
 
   def show
@@ -36,22 +36,17 @@ class StatesController < ApplicationController
       return
     end
 
-    @continent = Continent.find_by_name(@country.continent)
+    @continent = @country.continent
 
     @events = @state.events.includes(:series).order(start_date: :desc)
+    @cities = @state.cities.order(:name)
 
-    @events_by_city = @events
-      .select { |event| event.city.present? }
-      .group_by(&:city)
-      .sort_by { |city, _events| city }
-      .to_h
-
-    @users = @state.users.indexable.geocoded.order(talks_count: :desc)
+    @users = @state.users
     @stamps = @state.stamps
 
     @country_events = Event.includes(:series)
       .where(country_code: @country.alpha2)
-      .where.not(state: [@state.code, @state.name])
+      .where.not(state_code: [@state.code, @state.name])
       .upcoming
       .limit(8)
 

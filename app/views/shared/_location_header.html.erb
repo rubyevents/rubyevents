@@ -37,7 +37,7 @@
             All Continents
           <% end %>
         <% when Country %>
-          <% continent = Continent.find_by_name(location.continent) %>
+          <% continent = location.continent %>
 
           <% if continent %>
             <%= link_to continent_path(continent), class: "link flex items-center gap-1 justify-end" do %>
@@ -74,7 +74,7 @@
             <%= fa("map", size: :sm, class: "text-gray-400") %>
             All States in <%= country.name %>
           <% end %>
-        <% when FeaturedCity, City %>
+        <% when City %>
           <% country = Country.find_by(country_code: location.country_code) %>
 
           <% if country %>

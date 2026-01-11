@@ -2,8 +2,6 @@ require "test_helper"
 
 class GeocodeRecordJobTest < ActiveJob::TestCase
   setup do
-    Geocoder.configure(lookup: :test)
-
     Geocoder::Lookup::Test.add_stub(
       "San Francisco, CA", [
         {
@@ -22,7 +20,6 @@ class GeocodeRecordJobTest < ActiveJob::TestCase
 
   teardown do
     Geocoder::Lookup::Test.reset
-    Geocoder.configure(lookup: :google)
   end
 
   test "geocodes user with valid location" do
@@ -32,7 +29,7 @@ class GeocodeRecordJobTest < ActiveJob::TestCase
 
     user.reload
     assert_equal "San Francisco", user.city
-    assert_equal "CA", user.state
+    assert_equal "CA", user.state_code
     assert_equal "US", user.country_code
     assert_in_delta 37.7749, user.latitude.to_f, 0.01
   end
@@ -49,7 +46,7 @@ class GeocodeRecordJobTest < ActiveJob::TestCase
 
     event.reload
     assert_equal "San Francisco", event.city
-    assert_equal "CA", event.state
+    assert_equal "CA", event.state_code
     assert_equal "US", event.country_code
   end
 

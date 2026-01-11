@@ -221,10 +221,17 @@ class CountryTest < ActiveSupport::TestCase
     assert_equal "DE", country.alpha2
   end
 
-  test "delegates continent to record" do
+  test "continent returns Continent instance" do
     country = Country.find_by(country_code: "DE")
 
-    assert_equal "Europe", country.continent
+    assert_kind_of Continent, country.continent
+    assert_equal "Europe", country.continent.name
+  end
+
+  test "continent_name returns continent name string" do
+    country = Country.find_by(country_code: "DE")
+
+    assert_equal "Europe", country.continent_name
   end
 
   test "delegates emoji_flag to record" do
@@ -280,16 +287,23 @@ class CountryTest < ActiveSupport::TestCase
     assert country.users.is_a?(ActiveRecord::Relation)
   end
 
-  test "users returns users matching country_code" do
+  test "users returns geocoded indexable users matching country_code" do
     country = Country.find_by(country_code: "US")
-    user = User.create!(name: "Test User", country_code: "US")
+    user = User.create!(name: "Test User", country_code: "US", latitude: 40.7128, longitude: -74.0060)
 
     assert_includes country.users, user
   end
 
   test "users does not include users from other countries" do
     country = Country.find_by(country_code: "US")
-    user = User.create!(name: "Test User", country_code: "DE")
+    user = User.create!(name: "Test User", country_code: "DE", latitude: 52.52, longitude: 13.405)
+
+    assert_not_includes country.users, user
+  end
+
+  test "users does not include non-geocoded users" do
+    country = Country.find_by(country_code: "US")
+    user = User.create!(name: "Test User", country_code: "US")
 
     assert_not_includes country.users, user
   end

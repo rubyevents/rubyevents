@@ -30,7 +30,7 @@ class Locations::UsersController < Locations::BaseController
     city_user_ids = @users.pluck(:id)
     nearby_user_ids = (@nearby_users || []).map { |n| n.is_a?(Hash) ? n[:user].id : n.id }
     exclude_ids = city_user_ids + nearby_user_ids
-    @state_users = @state.users.geocoded.preloaded.where.not(id: exclude_ids).order(talks_count: :desc)
+    @state_users = @state.users.geocoded.preloaded.where.not(id: exclude_ids)
   end
 
   def redirect_path_helper

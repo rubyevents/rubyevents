@@ -70,37 +70,10 @@
       </p>
     <% end %>
 
-    <% if user.location_info.present? %>
+    <% if user.to_location.present? %>
       <p class="max-w-[700px] flex flex-row justify-center items-center gap-2">
         <%= fa("location-dot", size: :xs, style: :regular) %>
-        <% if user.location_info.geocoded? %>
-          <% if State.supported_country?(user.location_info.country) && user.location_info.state.present? %>
-            <span>
-              <% if user.location_info.city.present? %>
-                <%= link_to user.location_info.city, user.location_info.city_path, class: "link" %>,
-              <% end %>
-
-              <% if user.location_info.state_path.present? %>
-                <%= link_to user.location_info.state_display_name, user.location_info.state_path, class: "link" %>,
-              <% else %>
-                <%= user.location_info.state_display_name %>,
-              <% end %>
-
-              <%= link_to user.location_info.country.name, country_path(user.location_info.country), class: "link" %>
-            </span>
-          <% elsif user.location_info.display_city.present? && user.location_info.country.present? %>
-            <span>
-              <%= link_to user.location_info.display_city, user.location_info.city_path, class: "link" -%>,
-              <%= link_to user.location_info.country.name, country_path(user.location_info.country), class: "link" %>
-            </span>
-          <% elsif user.location_info.country.present? %>
-            <%= link_to user.location_info.country.name, country_path(user.location_info.country), class: "link" %>
-          <% else %>
-            <%= user.location_info.to_s %>
-          <% end %>
-        <% else %>
-          <%= user.location_info.to_s %>
-        <% end %>
+        <span><%= user.to_location.to_html %></span>
       </p>
     <% end %>
 

@@ -2,7 +2,7 @@
 
 class States::CitiesController < States::BaseController
   def index
-    @cities = City.for_state(@state)
+    @cities = @state.cities
     @sort = params[:sort].presence || "events"
 
     @cities = case @sort

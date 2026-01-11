@@ -24,6 +24,30 @@ class OnlineLocation
     Router.online_past_index_path
   end
 
+  def users_path
+    nil
+  end
+
+  def cities_path
+    nil
+  end
+
+  def stamps_path
+    nil
+  end
+
+  def map_path
+    nil
+  end
+
+  def subtitle
+    "Virtual and remote events"
+  end
+
+  def has_routes?
+    true
+  end
+
   def events
     Event.not_geocoded.includes(:series)
   end
@@ -58,6 +82,10 @@ class OnlineLocation
 
   def bounds
     nil
+  end
+
+  def to_location
+    Location.online
   end
 
   class << self

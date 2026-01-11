@@ -22,7 +22,7 @@
           <span class="fi fi-<%= country.code %> text-4xl rounded"></span>
           <div>
             <h2 class="card-title text-lg"><%= country.name %></h2>
-            <p class="text-sm text-gray-500"><%= State.all(country: country).count %> states/territories</p>
+            <p class="text-sm text-gray-500"><%= country.states.count %> states/territories</p>
           </div>
         </div>
       <% end %>

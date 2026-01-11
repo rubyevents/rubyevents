@@ -124,11 +124,11 @@ module Talk::TypesenseSearchable
       end
 
       attribute :state do
-        event&.state
+        event&.state_code
       end
 
       attribute :state_name do
-        event&.state_object&.name
+        event&.state&.name
       end
 
       attribute :city do
@@ -136,7 +136,7 @@ module Talk::TypesenseSearchable
       end
 
       attribute :continent do
-        event&.country&.continent
+        event&.country&.continent_name
       end
 
       attribute :location do

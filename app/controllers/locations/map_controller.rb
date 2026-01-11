@@ -33,7 +33,7 @@ class Locations::MapController < Locations::BaseController
       build_country_geo_layers
     when State
       build_state_geo_layers
-    when City, FeaturedCity
+    when City
       build_city_geo_layers
     else
       raise "#{@location.class} unexpected"
@@ -221,7 +221,7 @@ class Locations::MapController < Locations::BaseController
 
     if @state.present? && @country.present? && State.supported_country?(@country)
       state_events = Event.includes(:series)
-        .where(country_code: @country.alpha2, state: @state.code)
+        .where(country_code: @country.alpha2, state_code: @state.code)
         .to_a
       state_markers = event_map_markers(state_events)
 
@@ -283,7 +283,7 @@ class Locations::MapController < Locations::BaseController
       country_code = @location.respond_to?(:alpha2) ? @location.alpha2 : @location.country_code
       base_scope.where(country_code: country_code)
     when State
-      base_scope.where(country_code: @country.alpha2, state: @state.code)
+      base_scope.where(country_code: @country.alpha2, state_code: @state.code)
     else # City
       base_scope.where(city: @city.name)
     end

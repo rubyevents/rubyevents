@@ -18,38 +18,19 @@ module LocationEvents
   end
 
   def country_upcoming_events(exclude_ids: [])
-    return [] unless location_country_code.present?
+    return [] unless @country.present?
 
-    Event.includes(:series)
-      .where(country_code: location_country_code)
-      .where.not(city: location_city_name)
-      .where.not(id: exclude_ids)
-      .upcoming
+    scope = @country.events.includes(:series).upcoming
+    scope = scope.where.not(city: @location.name) if @location.is_a?(City)
+    scope = scope.where.not(id: exclude_ids) if exclude_ids.any?
+    scope
   end
 
   def continent_upcoming_events(exclude_country_codes: [])
     return [] unless @continent.present?
 
-    continent_country_codes = @continent.countries.map(&:alpha2) - exclude_country_codes
+    country_codes = @continent.country_codes - exclude_country_codes
 
-    Event.includes(:series).where(country_code: continent_country_codes).upcoming
-  end
-
-  def location_country_code
-    case @location
-    when FeaturedCity, City
-      @location.country_code
-    when Country
-      @location.alpha2
-    end
-  end
-
-  def location_city_name
-    case @location
-    when FeaturedCity
-      @location.city
-    when City
-      @location.name
-    end
+    Event.includes(:series).where(country_code: country_codes).upcoming
   end
 end

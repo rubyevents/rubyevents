@@ -23,7 +23,7 @@ class Avo::Resources::Event < Avo::BaseResource
     field :end_date, as: :date, hide_on: :index
     field :location, as: :text, hide_on: :index
     field :city, as: :text, hide_on: :index
-    field :state, as: :text, hide_on: :index
+    field :state_code, as: :text, hide_on: :index
     field :country_code, as: :select, options: country_options, include_blank: true
     field :latitude, as: :number, hide_on: :index
     field :longitude, as: :number, hide_on: :index
