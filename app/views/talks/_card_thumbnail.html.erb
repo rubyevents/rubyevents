@@ -1,49 +1,61 @@
 <%# locals: (talk:, watched_talk: nil, back_to: nil, back_to_title: nil) %>
 
-<%= link_to talk_path(talk, back_to: back_to, back_to_title: back_to_title), class: "block aspect-video overflow-hidden relative group rounded-xl shadow-md transition-shadow", data: {turbo_frame: "_top"} do %>
-  <%= image_tag(
-        talk.thumbnail_lg,
-        srcset: ["#{talk.thumbnail_lg} 2x"],
-        loading: "lazy",
-        alt: talk.title,
-        class: class_names("w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-300", talk.thumbnail_classes)
-      ) %>
+<%= link_to talk_path(talk, back_to: back_to, back_to_title: back_to_title), class: "block group", data: {turbo_frame: "_top"} do %>
+  <div class="aspect-video overflow-hidden relative rounded-xl sm:shadow-md transition-shadow">
+    <%= image_tag(
+          talk.thumbnail_lg,
+          srcset: ["#{talk.thumbnail_lg} 2x"],
+          loading: "lazy",
+          alt: talk.title,
+          class: class_names("w-full h-full object-cover rounded-xl sm:group-hover:scale-105 transition-transform duration-300", talk.thumbnail_classes)
+        ) %>
 
-  <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent rounded-xl"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent rounded-xl hidden sm:block"></div>
 
-  <% if talk.duration_in_seconds.present? %>
-    <div class="absolute top-2 right-2 z-20 px-1.5 py-0.5 bg-black/70 backdrop-blur-sm rounded text-white text-xs font-medium">
-      <% if watched_talk&.in_progress? && watched_talk.progress_seconds.present? %>
-        <% remaining_seconds = talk.duration_in_seconds - watched_talk.progress_seconds %>
-        <% remaining_minutes = (remaining_seconds / 60.0).ceil %>
-        <%= remaining_minutes %> min left
-      <% else %>
-        <%= seconds_to_formatted_duration(talk.duration_in_seconds) %>
-      <% end %>
+    <% if talk.duration_in_seconds.present? %>
+      <div class="absolute top-2 right-2 z-20 px-1.5 py-0.5 bg-black/70 backdrop-blur-sm rounded text-white text-xs font-medium">
+        <% if watched_talk&.in_progress? && watched_talk.progress_seconds.present? %>
+          <% remaining_seconds = talk.duration_in_seconds - watched_talk.progress_seconds %>
+          <% remaining_minutes = (remaining_seconds / 60.0).ceil %>
+          <%= remaining_minutes %> min left
+        <% else %>
+          <%= seconds_to_formatted_duration(talk.duration_in_seconds) %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <div class="absolute inset-0 bottom-6 z-10 hidden sm:flex items-center justify-center opacity-0 sm:group-hover:opacity-100 transition-opacity duration-200">
+      <div class="p-2 bg-white/20 backdrop-blur-sm rounded-full sm:group-hover:bg-white/30 sm:group-hover:scale-110 transition-all duration-200">
+        <%= fa("play", size: :sm, class: "fill-white") %>
+      </div>
     </div>
-  <% end %>
 
-  <div class="absolute inset-0 bottom-6 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-    <div class="p-2 bg-white/20 backdrop-blur-sm rounded-full group-hover:bg-white/30 group-hover:scale-110 transition-all duration-200">
-      <%= fa("play", size: :sm, class: "fill-white") %>
+    <div class="absolute bottom-0 left-0 right-0 z-20 p-3 text-white hidden sm:block">
+      <div class="text-sm font-semibold line-clamp-1 leading-tight mb-1">
+        <%= talk.title %>
+      </div>
+
+      <div class="text-xs text-white/80 line-clamp-1">
+        <%= talk.speakers.map(&:name).to_sentence %><% if talk.event %> • <%= talk.event.name %><% end %>
+      </div>
     </div>
+
+    <% if watched_talk&.in_progress? %>
+      <div class="absolute bottom-0 left-0 right-0 z-30">
+        <div class="w-full h-1 bg-white/30">
+          <div class="h-1 bg-primary" style="width: <%= watched_talk.progress_percentage.to_s %>%"></div>
+        </div>
+      </div>
+    <% end %>
   </div>
 
-  <div class="absolute bottom-0 left-0 right-0 z-20 p-3 text-white">
-    <div class="text-sm font-semibold line-clamp-1 leading-tight mb-1">
+  <div class="mt-2 sm:hidden">
+    <div class="text-sm font-semibold line-clamp-2 leading-tight">
       <%= talk.title %>
     </div>
 
-    <div class="text-xs text-white/80 line-clamp-1">
+    <div class="text-xs text-base-content/70 line-clamp-1 mt-0.5">
       <%= talk.speakers.map(&:name).to_sentence %><% if talk.event %> • <%= talk.event.name %><% end %>
     </div>
   </div>
-
-  <% if watched_talk&.in_progress? %>
-    <div class="absolute bottom-0 left-0 right-0 z-30">
-      <div class="w-full h-1 bg-white/30">
-        <div class="h-1 bg-primary" style="width: <%= watched_talk.progress_percentage.to_s %>%"></div>
-      </div>
-    </div>
-  <% end %>
 <% end %>

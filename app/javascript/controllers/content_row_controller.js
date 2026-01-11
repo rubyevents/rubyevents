@@ -37,7 +37,7 @@ export default class extends Controller {
     }
 
     if (this.hasGradientTarget) {
-      this.gradientTarget.classList.toggle('hidden', isAtEnd)
+      this.gradientTarget.classList.toggle('sm:opacity-0', isAtEnd)
     }
   }
 

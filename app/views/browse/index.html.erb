@@ -1,6 +1,8 @@
 <%= turbo_refreshes_with method: :morph, scroll: :preserve %>
 
-<div class="container flex flex-col gap-8 my-8">
+<div class="container flex flex-col gap-8 my-8 hotwire-native:my-0 hotwire-native:mb-8">
+  <h1 class="title text-primary hotwire-native:hidden">Browse</h1>
+
   <% if @featured_events.any? %>
     <%= render "browse/featured_events", events: @featured_events %>
   <% end %>

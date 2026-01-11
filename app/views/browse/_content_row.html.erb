@@ -35,10 +35,10 @@
           style="-ms-overflow-style: none; scrollbar-width: none;"
           data-content-row-target="container"
           data-action="scroll->content-row#handleScroll">
-          <div class="flex gap-4 pb-2" data-content-row-target="track">
+          <div class="flex gap-4 sm:pb-2" data-content-row-target="track">
             <% talks.each do |talk| %>
               <% watched_talk = watched_talks.find { |wt| wt.talk_id == talk.id } if watched_talks.present? %>
-              <div class="snap-start shrink-0 w-[280px] sm:w-[300px] lg:w-[320px]">
+              <div class="snap-start shrink-0 w-[200px] sm:w-[300px] lg:w-[320px]">
                 <%= render "talks/card_thumbnail",
                       talk: talk,
                       watched_talk: watched_talk %>
@@ -55,7 +55,7 @@
         </button>
 
         <div
-          class="absolute right-0 top-0 bottom-2 w-64 pointer-events-none opacity-50"
+          class="absolute right-0 top-0 bottom-2 w-64 pointer-events-none opacity-0 sm:opacity-50 transition-opacity"
           style="background: linear-gradient(to left, var(--fallback-b1,oklch(var(--b1)/1)), transparent);"
           data-content-row-target="gradient"></div>
       </div>
