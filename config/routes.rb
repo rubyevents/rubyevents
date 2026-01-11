@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   get "/pages/assets", to: "page#assets"
   get "/featured" => "page#featured"
 
+  resources :browse, only: [:index, :show]
+
   # authentication
   get "/auth/failure", to: "sessions/omniauth#failure"
   get "/auth/:provider/callback", to: "sessions/omniauth#create"

@@ -23,3 +23,7 @@
 
 @import "bridge/components";
 @import "flag-icons/css/flag-icons.min.css";
+
+turbo-frame[id^="browse-"][complete] {
+  display: contents;
+}

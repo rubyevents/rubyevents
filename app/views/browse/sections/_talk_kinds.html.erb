@@ -1,0 +1,7 @@
+<%# locals: (talk_kinds:) %>
+
+<%= turbo_frame_tag "browse-talk-kinds" do %>
+  <% if talk_kinds&.any? %>
+    <%= render "browse/kind_row", talk_kinds: talk_kinds %>
+  <% end %>
+<% end %>
