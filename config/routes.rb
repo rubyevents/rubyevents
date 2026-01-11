@@ -30,9 +30,14 @@ Rails.application.routes.draw do
     resource :password_reset, only: [:new, :edit, :create, :update]
   end
 
-  authenticate :admin do
+  if Rails.env.development?
     mount MissionControl::Jobs::Engine, at: "/jobs"
     mount Avo::Engine, at: Avo.configuration.root_path
+  else
+    authenticate :admin do
+      mount MissionControl::Jobs::Engine, at: "/jobs"
+      mount Avo::Engine, at: Avo.configuration.root_path
+    end
   end
 
   resources :topics, param: :slug, only: [:index, :show]
