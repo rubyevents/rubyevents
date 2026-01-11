@@ -47,6 +47,9 @@ application.register("preserve-scroll", PreserveScrollController)
 import PronounsSelectController from "./pronouns_select_controller"
 application.register("pronouns-select", PronounsSelectController)
 
+import ContentRowController from "./content_row_controller"
+application.register("content-row", ContentRowController)
+
 import ScrollController from "./scroll_controller"
 application.register("scroll", ScrollController)
 
