@@ -466,6 +466,7 @@ class BrowseController < ApplicationController
       .joins(:watched_talks)
       .where("json_extract(watched_talks.feedback, '$.content_freshness') = ?", "evergreen")
       .group(:id)
+      .having("COUNT(watched_talks.id) >= 2")
       .order(Arel.sql("COUNT(watched_talks.id) DESC"))
       .limit(15)
   end
@@ -475,6 +476,7 @@ class BrowseController < ApplicationController
       .joins(:watched_talks)
       .where("json_extract(watched_talks.feedback, '$.experience_level') = ?", "beginner")
       .group(:id)
+      .having("COUNT(watched_talks.id) >= 2")
       .order(Arel.sql("COUNT(watched_talks.id) DESC"))
       .limit(15)
   end
@@ -484,6 +486,7 @@ class BrowseController < ApplicationController
       .joins(:watched_talks)
       .where("json_extract(watched_talks.feedback, '$.feeling') = ?", "mind_blown")
       .group(:id)
+      .having("COUNT(watched_talks.id) >= 2")
       .order(Arel.sql("COUNT(watched_talks.id) DESC"))
       .limit(15)
   end
@@ -494,6 +497,7 @@ class BrowseController < ApplicationController
       .where("json_extract(watched_talks.feedback, '$.feeling') IN (?, ?)", "inspired", "exciting")
       .or(Talk.watchable.joins(:watched_talks).where("json_extract(watched_talks.feedback, '$.inspiring') = ?", true))
       .group(:id)
+      .having("COUNT(watched_talks.id) >= 2")
       .order(Arel.sql("COUNT(watched_talks.id) DESC"))
       .limit(15)
   end
@@ -503,6 +507,7 @@ class BrowseController < ApplicationController
       .joins(:watched_talks)
       .where("json_extract(watched_talks.feedback, '$.liked') = ?", true)
       .group(:id)
+      .having("COUNT(watched_talks.id) >= 2")
       .order(Arel.sql("COUNT(watched_talks.id) DESC"))
       .limit(15)
   end
@@ -512,6 +517,7 @@ class BrowseController < ApplicationController
       .joins(:watched_talks)
       .where("json_extract(watched_talks.feedback, '$.would_recommend') = ?", true)
       .group(:id)
+      .having("COUNT(watched_talks.id) >= 2")
       .order(Arel.sql("COUNT(watched_talks.id) DESC"))
       .limit(15)
   end
