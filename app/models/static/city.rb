@@ -13,6 +13,7 @@ module Static
 
     def import!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
       city_record = ::City.find_or_initialize_by(slug: slug)
+      city_record ||= ::City.find_or_initialize_by(name: name, state_code: state_code, country_code: country_code)
 
       city_record.assign_attributes(
         name: name,
@@ -20,7 +21,8 @@ module Static
         country_code: country_code,
         latitude: latitude,
         longitude: longitude,
-        featured: true
+        featured: true,
+        slug: slug
       )
 
       city_record.save!
