@@ -41,6 +41,10 @@ class UKNation
     "Europe"
   end
 
+  def continent_name
+    continent
+  end
+
   def emoji_flag
     "\u{1F1EC}\u{1F1E7}"
   end
@@ -103,6 +107,10 @@ class UKNation
 
   def users
     User.indexable.geocoded.where(country_code: "GB", state_code: [state_code, nation_name])
+  end
+
+  def cities
+    City.where(country_code: "GB", state_code: state_code)
   end
 
   def stamps

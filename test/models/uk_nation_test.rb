@@ -53,6 +53,18 @@ class UKNationTest < ActiveSupport::TestCase
     assert_equal "Europe", nation.continent
   end
 
+  test "continent_name returns Europe" do
+    nation = UKNation.new("scotland")
+
+    assert_equal "Europe", nation.continent_name
+  end
+
+  test "cities returns ActiveRecord::Relation for GB cities in nation" do
+    nation = UKNation.new("england")
+
+    assert nation.cities.is_a?(ActiveRecord::Relation)
+  end
+
   test "emoji_flag returns GB flag" do
     nation = UKNation.new("scotland")
 
