@@ -41,6 +41,6 @@ module Talk::SQLiteFTSSearchable
   def reindex_fts
     return if Search::Backend.skip_indexing
 
-    fts_index.reindex_fts
+    fts_index.reindex
   end
 end
