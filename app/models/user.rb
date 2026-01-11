@@ -174,9 +174,6 @@ class User < ApplicationRecord
     self.verified = false
   end
 
-  # Seed watched talks for new users in development
-  after_create :seed_development_watched_talks, if: -> { Rails.env.development? }
-
   # Speaker scopes
   scope :with_talks, -> { where.not(talks_count: 0) }
   scope :speakers, -> { where("talks_count > 0") }
@@ -457,11 +454,5 @@ class User < ApplicationRecord
 
   def to_param
     github_handle.presence || slug
-  end
-
-  private
-
-  def seed_development_watched_talks
-    watched_talk_seeder.seed_development_data
   end
 end
