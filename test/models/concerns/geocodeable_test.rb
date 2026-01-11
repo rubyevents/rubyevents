@@ -2,8 +2,6 @@ require "test_helper"
 
 class GeocodeableTest < ActiveSupport::TestCase
   setup do
-    Geocoder.configure(lookup: :test)
-
     Geocoder::Lookup::Test.add_stub(
       "San Francisco, CA", [
         {
@@ -37,11 +35,32 @@ class GeocodeableTest < ActiveSupport::TestCase
     Geocoder::Lookup::Test.add_stub(
       "Unknown Location XYZ123", []
     )
+
+    Geocoder::Lookup::Test.add_stub(
+      "San Francisco, California, United States", [
+        {
+          "coordinates" => [37.7749, -122.4194],
+          "city" => "San Francisco",
+          "state_code" => "CA",
+          "country_code" => "US"
+        }
+      ]
+    )
+
+    Geocoder::Lookup::Test.add_stub(
+      "Berlin, Berlin, Germany", [
+        {
+          "coordinates" => [52.52, 13.405],
+          "city" => "Berlin",
+          "state_code" => "BE",
+          "country_code" => "DE"
+        }
+      ]
+    )
   end
 
   teardown do
     Geocoder::Lookup::Test.reset
-    Geocoder.configure(lookup: :google)
   end
 
   test "geocodeable? returns true when location is present" do
@@ -66,7 +85,7 @@ class GeocodeableTest < ActiveSupport::TestCase
       latitude: 37.7749,
       longitude: -122.4194,
       city: "San Francisco",
-      state: "CA",
+      state_code: "CA",
       country_code: "US",
       geocode_metadata: {"foo" => "bar"}
     )
@@ -76,7 +95,7 @@ class GeocodeableTest < ActiveSupport::TestCase
     assert_nil user.latitude
     assert_nil user.longitude
     assert_nil user.city
-    assert_nil user.state
+    assert_nil user.state_code
     assert_nil user.country_code
     assert_equal({}, user.geocode_metadata)
   end
@@ -88,14 +107,14 @@ class GeocodeableTest < ActiveSupport::TestCase
       latitude: 37.7749,
       longitude: -122.4194,
       city: "San Francisco",
-      state: "CA",
+      state_code: "CA",
       country_code: "US"
     )
 
     user.regeocode
 
     assert_equal "Berlin", user.city
-    assert_equal "BE", user.state
+    assert_equal "BE", user.state_code
     assert_equal "DE", user.country_code
     assert_in_delta 52.52, user.latitude.to_f, 0.01
     assert_in_delta 13.405, user.longitude.to_f, 0.01
@@ -107,11 +126,11 @@ class GeocodeableTest < ActiveSupport::TestCase
     user.regeocode
 
     assert_equal "San Francisco", user.city
-    assert_equal "CA", user.state
+    assert_equal "CA", user.state_code
     assert_equal "US", user.country_code
   end
 
-  test "geocode does not overwrite existing latitude" do
+  test "geocode overwrites existing latitude with new geocoded value" do
     user = User.create!(
       name: "Test User",
       location: "San Francisco, CA",
@@ -120,10 +139,10 @@ class GeocodeableTest < ActiveSupport::TestCase
 
     user.geocode
 
-    assert_in_delta 99.999, user.latitude.to_f, 0.001
+    assert_in_delta 37.7749, user.latitude.to_f, 0.01
   end
 
-  test "geocode does not overwrite existing longitude" do
+  test "geocode overwrites existing longitude with new geocoded value" do
     user = User.create!(
       name: "Test User",
       location: "San Francisco, CA",
@@ -132,7 +151,7 @@ class GeocodeableTest < ActiveSupport::TestCase
 
     user.geocode
 
-    assert_in_delta(-99.999, user.longitude.to_f, 0.001)
+    assert_in_delta(-122.4194, user.longitude.to_f, 0.01)
   end
 
   test "geocode fills in missing latitude when longitude is present" do

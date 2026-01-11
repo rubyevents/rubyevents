@@ -30,9 +30,13 @@ class PageController < ApplicationController
     @featured_organizations = Organization.joins(:sponsors).includes(:events).group("organizations.id").order("COUNT(sponsors.id) DESC").limit(10)
     @recommended_talks = Current.user.talk_recommender.talks(limit: 4) if Current.user
 
-    # Add featured events logic
-    playlist_slugs = Static::Event.where.not(featured_background: nil)
-      .select(&:featured?)
+    imported_slugs = Event.not_meetup.with_watchable_talks.pluck(:slug)
+    featurable_slugs = Static::Event.where.not(featured_background: nil).pluck(:slug)
+    slug_candidates = imported_slugs & featurable_slugs
+
+    featured_slugs = Static::Event.all
+      .select { |event| slug_candidates.include?(event.slug) }
+      .select(&:home_sort_date)
       .sort_by(&:home_sort_date)
       .reverse
       .take(15)
@@ -40,9 +44,8 @@ class PageController < ApplicationController
 
     @featured_events = Event.distinct
       .includes(:series, :keynote_speakers, :speakers)
-      .where(slug: playlist_slugs)
-      # .with_watchable_talks
-      .in_order_of(:slug, playlist_slugs)
+      .where(slug: featured_slugs)
+      .in_order_of(:slug, featured_slugs)
 
     @wrapped_users = User.with_public_wrapped
       .where.not(github_handle: [nil, ""])

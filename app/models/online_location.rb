@@ -5,7 +5,7 @@ class OnlineLocation
   include ActiveModel::Attributes
 
   def name
-    "Online"
+    "online"
   end
 
   def slug
@@ -22,6 +22,26 @@ class OnlineLocation
 
   def past_path
     Router.online_past_index_path
+  end
+
+  def users_path
+    nil
+  end
+
+  def cities_path
+    nil
+  end
+
+  def stamps_path
+    nil
+  end
+
+  def map_path
+    nil
+  end
+
+  def has_routes?
+    true
   end
 
   def events
@@ -58,6 +78,10 @@ class OnlineLocation
 
   def bounds
     nil
+  end
+
+  def to_location
+    Location.online
   end
 
   class << self

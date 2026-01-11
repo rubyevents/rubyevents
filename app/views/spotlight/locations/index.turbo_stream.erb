@@ -19,7 +19,7 @@
             when :country
               country_path(location[:slug])
             when :state
-              state_path(alpha2: location[:country_code].downcase, state: location[:slug])
+              state_path(state_alpha2: location[:country_code].downcase, state_slug: location[:slug])
             when :uk_nation
               uk_nation_path(location[:slug])
             when :city

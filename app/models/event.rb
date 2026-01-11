@@ -5,7 +5,7 @@
 #
 #  id               :integer          not null, primary key
 #  city             :string
-#  country_code     :string           indexed => [state]
+#  country_code     :string           indexed => [state_code]
 #  date             :date
 #  date_precision   :string           default("day"), not null
 #  end_date         :date
@@ -17,7 +17,7 @@
 #  name             :string           default(""), not null, indexed
 #  slug             :string           default(""), not null, indexed
 #  start_date       :date
-#  state            :string           indexed => [country_code]
+#  state_code       :string           indexed => [country_code]
 #  talks_count      :integer          default(0), not null
 #  website          :string           default("")
 #  created_at       :datetime         not null
@@ -27,12 +27,12 @@
 #
 # Indexes
 #
-#  index_events_on_canonical_id            (canonical_id)
-#  index_events_on_country_code_and_state  (country_code,state)
-#  index_events_on_event_series_id         (event_series_id)
-#  index_events_on_kind                    (kind)
-#  index_events_on_name                    (name)
-#  index_events_on_slug                    (slug)
+#  index_events_on_canonical_id                 (canonical_id)
+#  index_events_on_country_code_and_state_code  (country_code,state_code)
+#  index_events_on_event_series_id              (event_series_id)
+#  index_events_on_kind                         (kind)
+#  index_events_on_name                         (name)
+#  index_events_on_slug                         (slug)
 #
 # Foreign Keys
 #
@@ -45,6 +45,7 @@ class Event < ApplicationRecord
   include Sluggable
   include Event::TypesenseSearchable
 
+  geocodeable :location_and_country_code
   configure_slug(attribute: :name, auto_suffix_on_collision: false)
 
   # associations
@@ -84,13 +85,13 @@ class Event < ApplicationRecord
   has_object :assets
   has_object :schedule
   has_object :static_metadata
+  has_object :tickets
   has_object :sponsors_file
   has_object :cfp_file
   has_object :involvements_file
   has_object :transcripts_file
   has_object :venue
   has_object :videos_file
-  has_object :location_info
 
   # validations
   validates :name, presence: true
@@ -218,6 +219,16 @@ class Event < ApplicationRecord
     HEREDOC
   end
 
+  def location_and_country_code
+    default_country = series&.static_metadata&.default_country_code
+
+    [location, default_country].compact.join(", ")
+  end
+
+  def location_and_country_code_previously_changed?
+    location_previously_changed?
+  end
+
   def today?
     (start_date..end_date).cover?(Date.today)
   rescue => _e
@@ -246,21 +257,15 @@ class Event < ApplicationRecord
     end
   end
 
-  def country
-    return nil if country_code.blank?
-
-    Country.find_by(country_code: country_code)
-  end
-
-  def state_object
-    return nil if state.blank? || country.blank?
-
-    State.find_by_code(state, country: country) || State.find_by_name(state, country: country)
-  end
-
   def held_in_sentence
     country&.held_in_sentence || ""
   end
+
+  def to_location
+    @to_location ||= Location.from_record(self)
+  end
+
+  delegate :country, :state, :city_object, to: :to_location
 
   def description
     return @description if @description.present?

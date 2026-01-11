@@ -4,7 +4,7 @@
 
 <%= render "shared/location_header",
       name: @country.name,
-      subtitle: "#{@country.name}, #{@country.continent}",
+      subtitle: @country.to_location.to_text,
       flag_code: @country.alpha2,
       stats: "#{pluralize(@states.count { |s| s.events.any? || s.users.any? }, "state")} with Ruby activity in #{@country.name}",
       location: @country %>

@@ -5,13 +5,13 @@ class Event::Venue < ActiveRecord::AssociatedObject
 
   extension do
     def geocode
+      super
+
       if venue.exist? && venue.coordinates.present?
         coords = venue.coordinates
         self.latitude = coords["latitude"]
         self.longitude = coords["longitude"]
       end
-
-      super
     end
   end
 

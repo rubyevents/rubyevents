@@ -22,7 +22,7 @@
       <% end %>
     <% end %>
 
-    <% if show_states && location.is_a?(Country) && State.supported_country?(location) %>
+    <% if show_states && location.is_a?(Country) && location.states? %>
       <%= link_to country_states_path(alpha2: location.code), role: "tab", class: "tab whitespace-nowrap #{"tab-active" if current_tab == "states"}" do %>
         States
       <% end %>

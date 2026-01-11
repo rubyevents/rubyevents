@@ -13,7 +13,7 @@
 
         <div class="min-w-0">
           <p class="font-semibold text-gray-900 group-hover:text-red-600 transition-colors truncate"><%= event.name %></p>
-          <p class="text-sm text-gray-500 truncate"><%= render "shared/location", location_info: event.location_info, show_links: false %></p>
+          <p class="text-sm text-gray-500 truncate"><%= event.to_location.to_html(show_links: false) %></p>
         </div>
       <% end %>
     <% end %>

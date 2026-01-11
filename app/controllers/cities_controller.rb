@@ -9,7 +9,7 @@ class CitiesController < ApplicationController
   end
 
   def show
-    @city = FeaturedCity.find_by(slug: params[:slug])
+    @city = City.find_by(slug: params[:slug])
 
     if @city.blank?
       redirect_to cities_path
@@ -30,30 +30,14 @@ class CitiesController < ApplicationController
     @city_slug = params[:city]
     @city_name = @city_slug.tr("-", " ").titleize
 
-    @city = FeaturedCity.find_by(slug: @city_slug)
-    @city ||= FeaturedCity.find_for(city: @city_name, country_code: @country.alpha2)
+    @city = City.find_by(slug: @city_slug)
+    @city ||= City.find_for(city: @city_name, country_code: @country.alpha2)
 
     if @city.present?
       redirect_to city_path(@city.slug), status: :moved_permanently
-      return
-    end
-
-    @city = City.new(
-      name: @city_name,
-      slug: @city_slug,
-      country_code: @country.alpha2,
-      state_code: nil
-    )
-
-    if @city.events.empty? && @city.users.empty?
+    else
       redirect_to country_path(@country)
-      return
     end
-
-    set_city_coordinates
-
-    load_city_data
-    render :show
   end
 
   def show_with_state
@@ -74,42 +58,21 @@ class CitiesController < ApplicationController
     @city_slug = params[:city]
     @city_name = @city_slug.tr("-", " ").titleize
 
-    @city = FeaturedCity.find_by(slug: @city_slug)
-
-    @city ||= FeaturedCity.find_for(
-      city: @city_name,
-      country_code: @country.alpha2,
-      state_code: @state.code
-    )
+    @city = City.find_by(slug: @city_slug)
+    @city ||= City.find_for(city: @city_name, country_code: @country.alpha2, state_code: @state.code)
 
     if @city.present?
       redirect_to city_path(@city.slug), status: :moved_permanently
-      return
+    else
+      redirect_to state_path(state_alpha2: @country.code, state_slug: @state.slug)
     end
-
-    @city = City.new(
-      name: @city_name,
-      slug: @city_slug,
-      country_code: @country.alpha2,
-      state_code: @state.code
-    )
-
-    if @city.events.empty? && @city.users.empty?
-      redirect_to state_path(alpha2: @country.code, slug: @state.slug)
-      return
-    end
-
-    set_city_coordinates
-
-    load_city_data
-    render :show
   end
 
   private
 
   def load_city_data
     @events = @city.events.includes(:series).order(start_date: :desc)
-    @users = @city.users.indexable.geocoded.order(talks_count: :desc)
+    @users = @city.users
     @stamps = @city.stamps
 
     upcoming_events = @events.upcoming.to_a
@@ -124,12 +87,12 @@ class CitiesController < ApplicationController
 
     @country_events = Event.includes(:series)
       .where(country_code: @city.country_code)
-      .where.not(city: @city.city)
+      .where.not(city: @city.name)
       .where.not(id: exclude_ids)
       .upcoming
-    @country = Country.find_by(country_code: @city.country_code)
 
-    @continent = Continent.find_by_name(@country&.continent)
+    @country = @city.country
+    @continent = @country&.continent
 
     if @country_events.empty? && @continent.present?
       @continent_events = continent_upcoming_events(exclude_country_codes: [@city.country_code])
@@ -142,7 +105,7 @@ class CitiesController < ApplicationController
       city_user_ids = @users.pluck(:id)
       nearby_user_ids = (@nearby_users || []).map { |n| n.is_a?(Hash) ? n[:user].id : n.id }
       exclude_ids = city_user_ids + nearby_user_ids
-      @state_users = @state.users.indexable.geocoded.where.not(id: exclude_ids).order(talks_count: :desc).limit(24)
+      @state_users = @state.users.where.not(id: exclude_ids).limit(24)
     end
 
     all_events_for_map = upcoming_events.select(&:geocoded?)
@@ -167,9 +130,5 @@ class CitiesController < ApplicationController
     Event.includes(:series)
       .where(country_code: continent_country_codes)
       .upcoming
-  end
-
-  def set_city_coordinates
-    @city = @city.with_coordinates
   end
 end

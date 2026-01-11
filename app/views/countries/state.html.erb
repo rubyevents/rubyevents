@@ -33,7 +33,7 @@
 
         <div class="grid min-w-full grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           <% @users.each do |user| %>
-            <%= render partial: "users/card", locals: {user: user, content: [user.location_info.display_city, user.location_info.country&.name].compact.join(", ")} %>
+            <%= render partial: "users/card", locals: {user: user, content: user.to_location.to_text} %>
           <% end %>
         </div>
       </section>
@@ -58,7 +58,7 @@
     <% end %>
   <% end %>
 
-  <% if @events_by_city.any? %>
+  <% if @cities.any? %>
     <div id="cities" class="mt-12">
       <section class="flex flex-col w-full gap-4">
         <div class="flex items-center justify-between w-full">
@@ -66,13 +66,13 @@
         </div>
 
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 lg:gap-x-12 gap-y-2 min-w-full">
-          <% @events_by_city.each do |city_name, events| %>
-            <%= link_to city_with_state_path(alpha2: @country.code, state: @state.slug, city: city_name.parameterize), id: "city-#{city_name.parameterize}", class: "event flex justify-between items-center" do %>
+          <% @cities.each do |city| %>
+            <%= link_to city.path, id: "city-#{city.slug}", class: "event flex justify-between items-center" do %>
               <div class="flex items-center gap-2">
-                <span class="event-name"><%= city_name %></span>
+                <span class="event-name"><%= city.name %></span>
               </div>
 
-              <%= ui_badge(events.count, kind: :secondary, outline: true, size: :lg, class: "min-w-10") %>
+              <%= ui_badge(city.events_count, kind: :secondary, outline: true, size: :lg, class: "min-w-10") %>
             <% end %>
           <% end %>
         </div>

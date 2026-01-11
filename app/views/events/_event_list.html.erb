@@ -11,7 +11,7 @@
 
       <div class="flex-col flex justify-center relative overflow-hidden">
         <div class="text-black group-hover:text-inherit font-bold text-xl"><%= event.name %></div>
-        <div class="text-[#636B74] group-hover:text-inherit"><%= event.formatted_dates %> • <%= render "shared/location", location_info: event.location_info, show_links: false %></div>
+        <div class="text-[#636B74] group-hover:text-inherit"><%= event.formatted_dates %> • <%= event.to_location.to_html(show_links: false) %></div>
       </div>
 
       <div class="absolute hidden gap-2 md:flex right-2">

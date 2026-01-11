@@ -68,6 +68,10 @@
     <% end %>
   <% end %>
 
+  <% if event.tickets.available? %>
+    <%= active_link_to "Tickets", event_tickets_path(event), class: "tab", active_class: "tab-active", role: "tab" %>
+  <% end %>
+
   <% if event.stickers.any? || Stamp.for_event(event).any? %>
     <%= active_link_to "Collectibles", event_collectibles_path(event), class: "tab", active_class: "tab-active", role: "tab" %>
   <% end %>

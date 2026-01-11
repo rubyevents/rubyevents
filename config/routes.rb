@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   get "/pages/assets", to: "page#assets"
   get "/featured" => "page#featured"
 
+  resources :browse, only: [:index, :show]
+
   # authentication
   get "/auth/failure", to: "sessions/omniauth#failure"
   get "/auth/:provider/callback", to: "sessions/omniauth#create"
@@ -30,9 +32,14 @@ Rails.application.routes.draw do
     resource :password_reset, only: [:new, :edit, :create, :update]
   end
 
-  authenticate :admin do
+  if Rails.env.development?
     mount MissionControl::Jobs::Engine, at: "/jobs"
     mount Avo::Engine, at: Avo.configuration.root_path
+  else
+    authenticate :admin do
+      mount MissionControl::Jobs::Engine, at: "/jobs"
+      mount Avo::Engine, at: Avo.configuration.root_path
+    end
   end
 
   resources :topics, param: :slug, only: [:index, :show]
@@ -72,6 +79,7 @@ Rails.application.routes.draw do
   end
 
   get "/cities", to: "cities#index", as: :cities
+  get "/cities/tokyo", to: redirect("/states/jp/tokyo", status: 301)
 
   get "/cities/:alpha2/:city", to: "cities#show_by_country", as: :city_by_country, constraints: {alpha2: /[a-z]{2}/i}
   scope "/cities/:alpha2/:city", as: :city_by_country, constraints: {alpha2: /[a-z]{2}/i} do
@@ -362,6 +370,7 @@ Rails.application.routes.draw do
       resources :sponsors, only: [:index]
       resources :cfp, only: [:index]
       resources :collectibles, only: [:index]
+      resource :tickets, only: [:show]
     end
   end
 

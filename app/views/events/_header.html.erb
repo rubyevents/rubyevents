@@ -26,7 +26,7 @@
       <div class="flex-col flex justify-center break-all">
         <h1 class="mb-2 text-black font-bold"><%= title event.name %></h1>
         <h3 class="text-[#636B74]">
-          <%= render "shared/location", location_info: event.location_info %>
+          <%= event.to_location.to_html %>
           • <%= event.formatted_dates %>
         </h3>
         <%= external_link_to event.website.gsub(%r{^https?://}, "").gsub(%r{/$}, ""), event.website %>
@@ -36,6 +36,13 @@
     <div class="flex flex-col gap-2">
       <%= ui_button "View all #{event.series.name} events", url: series_path(event.series), kind: :secondary, size: :sm, class: "w-full" %>
       <%= render "events/participation_button", event: event, participation: participation %>
+      <%= render Tito::ButtonComponent.new(event: event) %>
+
+      <% if Current.user&.admin? %>
+        <%= ui_button url: avo.resources_event_path(event), target: :_blank, kind: :neutral, size: :sm, class: "w-full" do %>
+          Open in Avo
+        <% end %>
+      <% end %>
     </div>
   </div>
 

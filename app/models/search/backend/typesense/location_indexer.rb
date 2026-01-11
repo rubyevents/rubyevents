@@ -70,7 +70,7 @@ class Search::Backend::Typesense
       end
 
       def city_synonyms
-        Static::FeaturedCity.all.each_with_object({}) do |city, synonyms|
+        Static::City.all.each_with_object({}) do |city, synonyms|
           next if city.aliases.blank?
 
           all_names = [city.name.downcase, city.slug] + Array(city.aliases).map(&:downcase)
@@ -92,52 +92,39 @@ class Search::Backend::Typesense
         # Collection doesn't exist, nothing to delete
       end
 
-      def index_continents
-        documents = build_continent_documents
+      def index_continents = index_documents("continents", build_continent_documents)
+      def index_countries = index_documents("countries", build_country_documents)
+      def index_states = index_documents("states", build_state_documents)
+      def index_uk_nations = index_documents("UK nations", build_uk_nation_documents)
+      def index_cities = index_documents("cities", build_city_documents)
+      def index_online = index_documents("online location", [build_online_document].compact)
+
+      def index_city(city)
+        ensure_collection!
+        document = build_city_document(city)
+        return unless document
+
+        collection.documents.upsert(document)
+        Rails.logger.info "Typesense: Indexed city #{city.name}"
+      rescue => e
+        Rails.logger.error "Typesense: Failed to index city #{city.name}: #{e.message}"
+      end
+
+      def remove_city(city)
+        document_id = "city_#{city.country_code}_#{city.slug}"
+        collection.documents[document_id].delete
+        Rails.logger.info "Typesense: Removed city #{city.name}"
+      rescue ::Typesense::Error::ObjectNotFound
+        # Already removed
+      rescue => e
+        Rails.logger.error "Typesense: Failed to remove city #{city.name}: #{e.message}"
+      end
+
+      def index_documents(name, documents)
         return if documents.empty?
 
         collection.documents.import(documents, action: "upsert")
-        Rails.logger.info "Typesense: Indexed #{documents.size} continents"
-      end
-
-      def index_countries
-        documents = build_country_documents
-        return if documents.empty?
-
-        collection.documents.import(documents, action: "upsert")
-        Rails.logger.info "Typesense: Indexed #{documents.size} countries"
-      end
-
-      def index_states
-        documents = build_state_documents
-        return if documents.empty?
-
-        collection.documents.import(documents, action: "upsert")
-        Rails.logger.info "Typesense: Indexed #{documents.size} states"
-      end
-
-      def index_uk_nations
-        documents = build_uk_nation_documents
-        return if documents.empty?
-
-        collection.documents.import(documents, action: "upsert")
-        Rails.logger.info "Typesense: Indexed #{documents.size} UK nations"
-      end
-
-      def index_cities
-        documents = build_city_documents
-        return if documents.empty?
-
-        collection.documents.import(documents, action: "upsert")
-        Rails.logger.info "Typesense: Indexed #{documents.size} cities"
-      end
-
-      def index_online
-        document = build_online_document
-        return if document.nil?
-
-        collection.documents.import([document], action: "upsert")
-        Rails.logger.info "Typesense: Indexed online location"
+        Rails.logger.info "Typesense: Indexed #{documents.size} #{name}"
       end
 
       def search(query, type: nil, limit: 10)
@@ -184,7 +171,7 @@ class Search::Backend::Typesense
           country = Country.find_by(country_code: country_code)
           next unless country
 
-          continent = Continent.find_by_name(country.continent)
+          continent = country.continent
           next unless continent
 
           continent_counts[continent.slug] += event_count
@@ -220,7 +207,7 @@ class Search::Backend::Typesense
             slug: country.slug,
             code: country_code,
             country_code: country_code,
-            continent: country.continent,
+            continent: country.continent_name,
             emoji_flag: country.emoji_flag,
             event_count: event_count,
             coordinates: normalize_coordinates(country.respond_to?(:to_coordinates) ? country.to_coordinates : nil)
@@ -238,9 +225,11 @@ class Search::Backend::Typesense
           next unless country
           next if country_code == "GB" # UK nations handled separately
 
-          State.all(country: country).each do |state|
+          State.for_country(country).each do |state|
             event_count = event_counts[[country_code, state.code]] || 0
             user_count = user_counts[[country_code, state.code]] || 0
+
+            next if event_count.zero? && user_count.zero?
 
             documents << {
               id: "state_#{country_code}_#{state.code}",
@@ -262,69 +251,46 @@ class Search::Backend::Typesense
       end
 
       def build_uk_nation_documents
-        documents = []
-        uk_country = Country.find_by(country_code: "GB")
+        Country::UK_NATIONS.keys.map do |slug|
+          nation = UKNation.new(slug)
 
-        Country::UK_NATIONS.each do |slug, data|
-          UKNation.new(slug)
-
-          event_count = Event.where(country_code: "GB")
-            .where("city IN (?)", uk_nation_cities(data[:code]))
-            .count
-
-          user_count = User.indexable.where(country_code: "GB")
-            .where("city IN (?)", uk_nation_cities(data[:code]))
-            .count
-
-          documents << {
-            id: "uk_nation_#{data[:code]}",
+          {
+            id: "uk_nation_#{nation.state_code}",
             type: "uk_nation",
-            name: data[:name],
+            name: nation.name,
             slug: slug,
-            code: data[:code],
+            code: nation.state_code,
             country_code: "GB",
             country_name: "United Kingdom",
-            emoji_flag: uk_country&.emoji_flag || "🇬🇧",
-            event_count: event_count,
-            user_count: user_count,
-            coordinates: coordinates_for_uk_nation(data[:code])
+            emoji_flag: nation.emoji_flag,
+            event_count: nation.events.count,
+            user_count: nation.users.count,
+            coordinates: coordinates_for_location(nation.events)
           }.compact
         end
-
-        documents
-      end
-
-      def uk_nation_cities(nation_code)
-        # Map of major cities to UK nations
-        cities_by_nation = {
-          "ENG" => %w[London Birmingham Manchester Liverpool Leeds Sheffield Bristol Newcastle Nottingham Leicester Cambridge Oxford Bath Brighton Plymouth Reading],
-          "SCT" => %w[Edinburgh Glasgow Aberdeen Dundee Inverness Stirling Perth],
-          "WLS" => %w[Cardiff Swansea Newport Wrexham Barry],
-          "NIR" => %w[Belfast Derry Lisburn Newry Bangor]
-        }
-
-        cities_by_nation[nation_code] || []
       end
 
       def build_city_documents
-        City.all.map do |city|
-          country = city.country
-          country_name = country&.common_name || country&.iso_short_name || city.country_code
+        City.all.map { |city| build_city_document(city) }
+      end
 
-          {
-            id: "city_#{city.country_code}_#{city.slug}",
-            type: "city",
-            name: city.name,
-            slug: city.slug,
-            code: city.state_code,
-            country_code: city.country_code,
-            country_name: country_name,
-            emoji_flag: country&.emoji_flag,
-            event_count: city.events_count,
-            user_count: city.users_count,
-            coordinates: normalize_coordinates(city.coordinates)
-          }.compact
-        end
+      def build_city_document(city)
+        country = city.country
+        country_name = country&.common_name || country&.iso_short_name || city.country_code
+
+        {
+          id: "city_#{city.country_code}_#{city.slug}",
+          type: "city",
+          name: city.name,
+          slug: city.slug,
+          code: city.state_code,
+          country_code: city.country_code,
+          country_name: country_name,
+          emoji_flag: country&.emoji_flag,
+          event_count: city.events_count,
+          user_count: city.users_count,
+          coordinates: normalize_coordinates(city.coordinates)
+        }.compact
       end
 
       def normalize_coordinates(coords)
@@ -342,45 +308,28 @@ class Search::Backend::Typesense
 
       def states_with_events
         @states_with_events ||= Event
-          .where.not(state: [nil, ""])
+          .where.not(state_code: [nil, ""])
           .where.not(country_code: [nil, ""])
           .where(country_code: State::SUPPORTED_COUNTRIES)
-          .group(:country_code, :state)
+          .group(:country_code, :state_code)
           .count
-      end
-
-      def cities_with_countries
-        @cities_with_countries ||= Event.where.not(city: [nil, ""])
-          .where.not(country_code: [nil, ""])
-          .group(:city, :country_code)
-          .count
-          .map { |(city, country_code), count| [city, country_code, count] }
       end
 
       def states_with_users
-        @states_with_users ||= User.indexable
-          .where.not(state: [nil, ""])
+        @states_with_users ||= User.indexable.geocoded
+          .where.not(state_code: [nil, ""])
           .where.not(country_code: [nil, ""])
           .where(country_code: State::SUPPORTED_COUNTRIES)
-          .group(:country_code, :state)
+          .group(:country_code, :state_code)
           .count
       end
 
       def coordinates_for_state(country_code, state_code)
-        event = Event.where(country_code: country_code, state: state_code).geocoded.first
-        return normalize_coordinates(event.to_coordinates) if event
-
-        user = User.indexable.where(country_code: country_code, state: state_code).geocoded.first
-        return normalize_coordinates(user.to_coordinates) if user
-
-        nil
+        coordinates_for_location(Event.where(country_code: country_code, state_code: state_code))
       end
 
-      def coordinates_for_uk_nation(nation_code)
-        cities = uk_nation_cities(nation_code)
-        return nil if cities.empty?
-
-        event = Event.where(country_code: "GB", city: cities).geocoded.first
+      def coordinates_for_location(events_scope)
+        event = events_scope.geocoded.first
         return normalize_coordinates(event.to_coordinates) if event
 
         nil

@@ -28,7 +28,7 @@
 #  settings             :json             not null
 #  slug                 :string           default(""), not null, uniquely indexed
 #  speakerdeck          :string           default(""), not null
-#  state                :string
+#  state_code           :string
 #  suspicion_cleared_at :datetime
 #  suspicion_marked_at  :datetime
 #  talks_count          :integer          default(0), not null
@@ -59,6 +59,7 @@ class User < ApplicationRecord
   include User::SQLiteFTSSearchable
   include User::TypesenseSearchable
 
+  geocodeable :location
   configure_slug(attribute: :name, auto_suffix_on_collision: true)
 
   has_delegated_json :settings,
@@ -123,7 +124,6 @@ class User < ApplicationRecord
   has_one :contributor, dependent: :nullify
 
   has_object :profiles
-  has_object :location_info
   has_object :talk_recommender
   has_object :watched_talk_seeder
   has_object :speakerdeck_feed
@@ -173,9 +173,6 @@ class User < ApplicationRecord
   before_validation if: :email_changed?, on: :update do
     self.verified = false
   end
-
-  # Seed watched talks for new users in development
-  after_create :seed_development_watched_talks, if: -> { Rails.env.development? }
 
   # Speaker scopes
   scope :with_talks, -> { where.not(talks_count: 0) }
@@ -252,6 +249,10 @@ class User < ApplicationRecord
     return nil if country_code.blank?
 
     Country.find_by(country_code: country_code)
+  end
+
+  def to_location
+    @to_location ||= Location.from_record(self)
   end
 
   def canonical_slug
@@ -453,11 +454,5 @@ class User < ApplicationRecord
 
   def to_param
     github_handle.presence || slug
-  end
-
-  private
-
-  def seed_development_watched_talks
-    watched_talk_seeder.seed_development_data
   end
 end

@@ -12,7 +12,7 @@
     <input type="radio" name="map_view" role="tab" class="tab px-6 !rounded-lg" aria-label="List">
     <div role="tabpanel" class="tab-content mt-6">
       <div class="space-y-8">
-        <% countries_with_events.group_by { |country, _| country.continent }.sort_by(&:first).each do |continent, countries_group| %>
+        <% countries_with_events.group_by { |country, _| country.continent_name }.sort_by(&:first).each do |continent, countries_group| %>
           <div>
             <h3 class="text-lg font-semibold mb-4"><%= continent %></h3>
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">

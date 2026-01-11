@@ -1,0 +1,11 @@
+<%# locals: (event_rows:) %>
+
+<%= turbo_frame_tag "browse-event-rows" do %>
+  <% event_rows&.each do |row| %>
+    <%= render "browse/content_row",
+          title: "From #{row[:event].name}",
+          talks: row[:talks],
+          view_all_path: event_path(row[:event]),
+          data_section: "event-#{row[:event].slug}" %>
+  <% end %>
+<% end %>

@@ -52,7 +52,7 @@
 
         <% if Current.user && Current.user == user %>
           <div class="space-y-3">
-            <%= link_to events_path, class: "btn btn-primary" do %>
+            <%= link_to events_path, class: "btn btn-primary", data: {turbo_frame: "_top"} do %>
               <%= fa("magnifying-glass", style: :regular) %>
               Browse Events
             <% end %>

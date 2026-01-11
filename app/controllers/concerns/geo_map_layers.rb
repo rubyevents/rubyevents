@@ -7,180 +7,104 @@ module GeoMapLayers
 
   def build_sidebar_geo_layers(events, include_broader_scope: true)
     layers = []
+    city_pin = build_city_pin(@location)
 
-    location_markers = event_map_markers(events.to_a.select(&:geocoded?))
-
-    city_pin = nil
-
-    if @location.respond_to?(:geocoded?) && @location.geocoded?
-      city_pin = {
-        type: "city",
-        name: @location.name,
-        longitude: @location.longitude,
-        latitude: @location.latitude
-      }
-    end
-
-    layers << {
+    layers << build_layer(
       id: "geo-location",
       label: @location.name,
       emoji: "📍",
-      markers: location_markers,
+      events: events,
       bounds: @location.bounds,
-      cityPin: city_pin,
-      visible: false,
-      alwaysVisible: true,
-      group: "geo"
-    }
+      city_pin: city_pin,
+      always_visible: true
+    )
 
     return layers unless include_broader_scope
 
-    case @location
-    when FeaturedCity, City
-      add_city_broader_layers(layers, events)
-    when State
-      add_state_broader_layers(layers, events)
-    when Country, UKNation
-      add_country_broader_layers(layers, events)
-    end
+    add_broader_layers(layers, events)
+    set_first_visible_layer(layers)
 
+    layers
+  end
+
+  def add_broader_layers(layers, current_events)
+    case @location
+    when City
+      add_nearby_layer(layers, current_events)
+      add_state_layer(layers)
+      add_country_layer(layers)
+      add_continent_layer(layers)
+    when State
+      add_country_layer(layers)
+      add_continent_layer(layers)
+    when Country, UKNation
+      add_continent_layer(layers)
+    end
+  end
+
+  def add_nearby_layer(layers, city_events)
+    return unless @city.respond_to?(:nearby_events) && @city.geocoded?
+
+    nearby_event_data = @city.nearby_events(radius_km: 250, limit: 50, exclude_ids: city_events.map(&:id))
+    nearby_events_list = filter_events_by_time(nearby_event_data.map { |d| d[:event] })
+
+    maybe_add_layer(layers, id: "geo-nearby", label: "Nearby", emoji: "📍🔄", events: city_events + nearby_events_list)
+  end
+
+  def add_state_layer(layers)
+    return unless @state.present? && @country.present? && @country&.states?
+
+    maybe_add_layer(layers, id: "geo-state", label: @state.name, emoji: "🗺️", events: @state.events.includes(:series))
+  end
+
+  def add_country_layer(layers)
+    return unless @country.present?
+
+    maybe_add_layer(layers, id: "geo-country", label: @country.name, emoji: @country.emoji_flag, events: @country.events.includes(:series))
+  end
+
+  def add_continent_layer(layers)
+    return unless @continent.present?
+
+    maybe_add_layer(layers, id: "geo-continent", label: @continent.name, emoji: @continent.emoji_flag, events: @continent.events.includes(:series))
+  end
+
+  def maybe_add_layer(layers, id:, label:, emoji:, events:)
+    current_marker_count = layers.last&.dig(:markers)&.size || 0
+    markers = event_map_markers(filter_events_by_time(events.to_a).select(&:geocoded?))
+
+    return unless markers.any? && markers.size > current_marker_count
+
+    layers << build_layer(id: id, label: label, emoji: emoji, markers: markers)
+  end
+
+  def build_layer(id:, label:, emoji:, events: nil, markers: nil, bounds: nil, city_pin: nil, always_visible: false)
+    {
+      id: id,
+      label: label,
+      emoji: emoji,
+      markers: markers || event_map_markers(events.to_a.select(&:geocoded?)),
+      bounds: bounds,
+      cityPin: city_pin,
+      visible: false,
+      alwaysVisible: always_visible.presence,
+      group: "geo"
+    }.compact
+  end
+
+  def build_city_pin(location)
+    return unless location.respond_to?(:geocoded?) && location.geocoded?
+
+    {type: "city", name: location.name, longitude: location.longitude, latitude: location.latitude}
+  end
+
+  def set_first_visible_layer(layers)
     first_with_markers = layers.find { |l| l[:markers].any? }
 
     if first_with_markers
       first_with_markers[:visible] = true
     elsif layers.any?
       layers.first[:visible] = true
-    end
-
-    layers
-  end
-
-  def add_city_broader_layers(layers, city_events)
-    city_event_ids = city_events.map(&:id)
-    current_marker_count = layers.last&.dig(:markers)&.size || 0
-
-    if @city.respond_to?(:nearby_events) && @city.geocoded?
-      nearby_event_data = @city.nearby_events(radius_km: 250, limit: 50, exclude_ids: city_event_ids)
-      nearby_events_list = filter_events_by_time(nearby_event_data.map { |d| d[:event] })
-
-      city_plus_nearby = city_events + nearby_events_list
-      nearby_markers = event_map_markers(city_plus_nearby.select(&:geocoded?))
-
-      if nearby_markers.any? && nearby_markers.size > current_marker_count
-        layers << {
-          id: "geo-nearby",
-          label: "Nearby",
-          emoji: "📍🔄",
-          markers: nearby_markers,
-          visible: false,
-          group: "geo"
-        }
-
-        current_marker_count = nearby_markers.size
-      end
-    end
-
-    if @state.present? && @country.present? && State.supported_country?(@country)
-      state_events = filter_events_by_time(
-        Event.includes(:series)
-          .where(country_code: @country.alpha2, state: @state.code)
-          .to_a
-      )
-
-      state_markers = event_map_markers(state_events.select(&:geocoded?))
-
-      if state_markers.any? && state_markers.size > current_marker_count
-        layers << {
-          id: "geo-state",
-          label: @state.name,
-          emoji: "🗺️",
-          markers: state_markers,
-          visible: false,
-          group: "geo"
-        }
-
-        current_marker_count = state_markers.size
-      end
-    end
-
-    if @country.present?
-      country_events = filter_events_by_time(
-        Event.includes(:series)
-          .where(country_code: @country.alpha2)
-          .to_a
-      )
-
-      country_markers = event_map_markers(country_events.select(&:geocoded?))
-
-      if country_markers.any? && country_markers.size > current_marker_count
-        layers << {
-          id: "geo-country",
-          label: @country.name,
-          emoji: @country.emoji_flag,
-          markers: country_markers,
-          visible: false,
-          group: "geo"
-        }
-
-        current_marker_count = country_markers.size
-      end
-    end
-
-    add_continent_layer(layers, current_marker_count)
-  end
-
-  def add_state_broader_layers(layers, state_events)
-    current_marker_count = layers.last&.dig(:markers)&.size || 0
-
-    if @country.present?
-      country_events = filter_events_by_time(
-        Event.includes(:series)
-          .where(country_code: @country.alpha2)
-          .to_a
-      )
-
-      country_markers = event_map_markers(country_events.select(&:geocoded?))
-
-      if country_markers.any? && country_markers.size > current_marker_count
-        layers << {
-          id: "geo-country",
-          label: @country.name,
-          emoji: @country.emoji_flag,
-          markers: country_markers,
-          visible: false,
-          group: "geo"
-        }
-        current_marker_count = country_markers.size
-      end
-    end
-
-    add_continent_layer(layers, current_marker_count)
-  end
-
-  def add_country_broader_layers(layers, country_events)
-    current_marker_count = layers.last&.dig(:markers)&.size || 0
-
-    add_continent_layer(layers, current_marker_count)
-  end
-
-  def add_continent_layer(layers, current_marker_count)
-    return unless @continent.present?
-
-    continent_country_codes = @continent.countries.map(&:alpha2)
-    continent_events = filter_events_by_time(
-      Event.includes(:series).where(country_code: continent_country_codes).to_a
-    )
-    continent_markers = event_map_markers(continent_events.select(&:geocoded?))
-
-    if continent_markers.any? && continent_markers.size > current_marker_count
-      layers << {
-        id: "geo-continent",
-        label: @continent.name,
-        emoji: @continent.emoji_flag,
-        markers: continent_markers,
-        visible: false,
-        group: "geo"
-      }
     end
   end
 

@@ -10,7 +10,7 @@ class CountriesController < ApplicationController
       .pluck(:country_code)
       .filter_map { |code| Country.find_by(country_code: code) }
       .group_by(&:continent)
-      .sort_by { |continent, _| continent || "ZZ" }
+      .sort_by { |continent, _| continent&.name || "ZZ" }
       .to_h
 
     @events_by_country = Event.includes(:series)
@@ -36,20 +36,11 @@ class CountriesController < ApplicationController
     end
 
     @events = @country.events.includes(:series).order(start_date: :desc)
+    @cities = @country.cities.order(:name)
 
-    @featured_cities = FeaturedCity.where(country_code: @country.alpha2).order(:name)
-    @featured_city_names = @featured_cities.pluck(:city).map(&:downcase).to_set
-
-    @events_by_city = @events
-      .select { |event| event.location.present? }
-      .reject { |event| @featured_city_names.include?(event.city&.downcase) }
-      .group_by(&:location)
-      .sort_by { |city, _events| city }
-      .to_h
-
-    @users = @country.users.indexable.geocoded.order(talks_count: :desc)
+    @users = @country.users
     @stamps = @country.stamps
-    @continent = Continent.find_by_name(@country.continent)
+    @continent = @country.continent
     @location = @country
 
     upcoming_events = @events.upcoming.to_a

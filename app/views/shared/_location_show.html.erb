@@ -1,4 +1,4 @@
-<%# locals: (location:, events:, users:, stamps:, event_map_markers:, geo_layers: [], nearby_users: [], nearby_events: [], events_by_city: {}, events_by_country: {}, featured_cities: [], country_events: [], country: nil, state: nil, state_users: [], continent_events: [], continent: nil, emoji: nil) %>
+<%# locals: (location:, events:, users:, stamps:, event_map_markers:, geo_layers: [], nearby_users: [], nearby_events: [], cities: [], events_by_country: {}, country_events: [], country: nil, state: nil, state_users: [], continent_events: [], continent: nil, emoji: nil) %>
 
 <%= turbo_refreshes_with method: :morph, scroll: :preserve %>
 
@@ -27,19 +27,19 @@
 
 <%= render "shared/location_header",
       name: location.name,
-      subtitle: location_subtitle(location),
-      flag_code: location.respond_to?(:alpha2) ? location.alpha2 : nil,
-      emoji: emoji,
+      subtitle: location.to_location.to_text,
+      flag_code: (location.respond_to?(:alpha2) && !location.is_a?(Continent)) ? location.alpha2 : nil,
+      emoji: location.is_a?(Continent) ? location.emoji_flag : emoji,
       stats: stats_text,
       location: location %>
 
 <%= render "shared/location_navigation",
       location: location,
       current_tab: "overview",
-      show_cities: events_by_city.any? || featured_cities.any? || location.is_a?(State),
-      show_countries: events_by_country.any?,
-      show_states: location.is_a?(Country) && State.supported_country?(location),
-      show_stamps: stamps.any? %>
+      show_cities: location.is_a?(Country) || location.is_a?(UKNation) || location.is_a?(State),
+      show_countries: location.is_a?(Continent),
+      show_states: location.is_a?(Country) && location.states?,
+      show_stamps: location.stamps.any? %>
 
 <div class="container py-8">
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -107,9 +107,9 @@
             users: users,
             nearby_users: nearby_users,
             nearby_events: nearby_events,
-            cities: events_by_city,
+            cities: cities,
             countries: events_by_country,
-            show_cities: events_by_city.any?,
+            show_cities: cities.any?,
             show_countries: events_by_country.any?,
             event_map_markers: event_map_markers,
             geo_layers: geo_layers,

@@ -1,0 +1,12 @@
+<% content_for :head do %>
+  <script src="https://js.tito.io/v2" async></script>
+<% end %>
+
+<% if wrapper %>
+  <div class="mt-6 p-4 bg-gray-100 rounded-lg max-w-[700px]">
+    <h3 class="font-bold text-lg mb-2">Register</h3>
+    <tito-widget event="<%= event_slug %>"></tito-widget>
+  </div>
+<% else %>
+  <tito-widget event="<%= event_slug %>"></tito-widget>
+<% end %>

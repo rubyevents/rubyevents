@@ -10,7 +10,15 @@ class Country
 
   attr_reader :record
 
-  delegate :alpha2, :alpha3, :continent, :emoji_flag, :subdivisions, :iso_short_name, :common_name, :translations, to: :record
+  delegate :alpha2, :alpha3, :emoji_flag, :subdivisions, :iso_short_name, :common_name, :translations, to: :record
+
+  def continent_name
+    record.continent
+  end
+
+  def continent
+    @continent ||= Continent.find_by_name(continent_name)
+  end
 
   def initialize(record)
     @record = record
@@ -25,7 +33,31 @@ class Country
   end
 
   def path
-    "/countries/#{slug}"
+    Router.country_path(slug)
+  end
+
+  def past_path
+    Router.country_past_index_path(self)
+  end
+
+  def users_path
+    Router.country_users_path(self)
+  end
+
+  def cities_path
+    Router.country_cities_path(self)
+  end
+
+  def stamps_path
+    Router.country_stamps_path(self)
+  end
+
+  def map_path
+    Router.country_map_index_path(self)
+  end
+
+  def to_location
+    Location.new(country_code: alpha2, raw_location: "#{name}, #{continent_name}")
   end
 
   def code
@@ -76,7 +108,19 @@ class Country
   end
 
   def users
-    User.where(country_code: alpha2)
+    User.indexable.geocoded.where(country_code: alpha2)
+  end
+
+  def cities
+    City.where(country_code: alpha2)
+  end
+
+  def states
+    State.for_country(self)
+  end
+
+  def states?
+    subdivisions.any? && !alpha2.in?(State::EXCLUDED_COUNTRIES)
   end
 
   def stamps

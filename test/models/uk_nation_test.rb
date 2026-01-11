@@ -53,6 +53,18 @@ class UKNationTest < ActiveSupport::TestCase
     assert_equal "Europe", nation.continent
   end
 
+  test "continent_name returns Europe" do
+    nation = UKNation.new("scotland")
+
+    assert_equal "Europe", nation.continent_name
+  end
+
+  test "cities returns ActiveRecord::Relation for GB cities in nation" do
+    nation = UKNation.new("england")
+
+    assert nation.cities.is_a?(ActiveRecord::Relation)
+  end
+
   test "emoji_flag returns GB flag" do
     nation = UKNation.new("scotland")
 
@@ -145,5 +157,23 @@ class UKNationTest < ActiveSupport::TestCase
 
     assert_equal 4, nations.size
     assert_equal %w[England Northern\ Ireland Scotland Wales], nations.map(&:name).sort
+  end
+
+  test "to_location returns Location with nation and Europe" do
+    nation = UKNation.new("scotland")
+    location = nation.to_location
+
+    assert_kind_of Location, location
+    assert_equal "Scotland, United Kingdom", location.to_text
+  end
+
+  test "to_location for all UK nations includes Europe" do
+    Country::UK_NATIONS.keys.each do |slug|
+      nation = UKNation.new(slug)
+      location = nation.to_location
+
+      assert_includes location.to_text, ", United Kingdom", "Expected #{nation.name} to include United Kingdom"
+      assert_not_includes location.to_text, ", Europe", "Expected #{nation.name} to not include Europe"
+    end
   end
 end

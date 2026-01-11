@@ -6,7 +6,7 @@ module Talk::TypesenseSearchable
   included do
     include ::Typesense
 
-    typesense enqueue: :trigger_typesense_job, if: :should_index? do
+    typesense enqueue: :trigger_typesense_job, if: :should_index?, disable_indexing: -> { Search::Backend.skip_indexing } do
       attributes :title, :description, :summary, :slug, :language, :kind
 
       attribute :date_timestamp do
@@ -124,11 +124,11 @@ module Talk::TypesenseSearchable
       end
 
       attribute :state do
-        event&.state
+        event&.state_code
       end
 
       attribute :state_name do
-        event&.state_object&.name
+        event&.state&.name
       end
 
       attribute :city do
@@ -136,7 +136,7 @@ module Talk::TypesenseSearchable
       end
 
       attribute :continent do
-        event&.country&.continent
+        event&.country&.continent_name
       end
 
       attribute :location do

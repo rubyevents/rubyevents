@@ -1,4 +1,4 @@
-<%# locals: (location:, events:, users:, event_map_markers:, geo_layers: [], nearby_users: [], events_by_city: {}) %>
+<%# locals: (location:, events:, users:, event_map_markers:, geo_layers: [], nearby_users: [], cities: []) %>
 
 <%= turbo_refreshes_with method: :morph, scroll: :preserve %>
 
@@ -8,12 +8,11 @@
   <% title "Past Events in #{location.name}" %>
 <% end %>
 
-<% flag_code = location.respond_to?(:alpha2) ? location.alpha2 : nil %>
 <%= render "shared/location_header",
       name: location.name,
-      subtitle: location_subtitle(location),
-      flag_code: flag_code,
-      emoji: (flag_code.blank? && location.respond_to?(:emoji_flag)) ? location.emoji_flag : nil,
+      subtitle: location.to_location.to_text,
+      flag_code: (location.respond_to?(:alpha2) && !location.is_a?(Continent)) ? location.alpha2 : nil,
+      emoji: location.is_a?(Continent) ? location.emoji_flag : nil,
       stats: location.is_a?(OnlineLocation) ? "#{pluralize(events.count, "past event")} online" : "#{pluralize(events.count, "past event")} in #{location.name}",
       location: location %>
 
@@ -22,7 +21,7 @@
       current_tab: "past",
       show_cities: location.is_a?(Country),
       show_countries: location.is_a?(Continent),
-      show_states: location.is_a?(Country) && State.supported_country?(location),
+      show_states: location.is_a?(Country) && location.states?,
       show_stamps: location.stamps.any? %>
 
 <div class="container py-8">
@@ -40,8 +39,8 @@
             location: location,
             users: users,
             nearby_users: nearby_users,
-            cities: events_by_city,
-            show_cities: events_by_city.any?,
+            cities: cities,
+            show_cities: cities.any?,
             event_map_markers: event_map_markers,
             geo_layers: geo_layers,
             map_title: "Past Events Map" %>

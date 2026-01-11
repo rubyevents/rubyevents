@@ -6,7 +6,7 @@ module Event::TypesenseSearchable
   included do
     include ::Typesense
 
-    typesense enqueue: :trigger_typesense_job, if: :should_index? do
+    typesense enqueue: :trigger_typesense_job, if: :should_index?, disable_indexing: -> { Search::Backend.skip_indexing } do
       attributes :name, :slug, :kind, :website
 
       attribute :start_date_timestamp do

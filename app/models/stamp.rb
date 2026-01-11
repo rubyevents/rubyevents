@@ -62,8 +62,8 @@ class Stamp
           country_stamp = country_stamps.find { |s| s.code == event.country_code }
           stamps << country_stamp if country_stamp
 
-          if event.country_code == "GB" && event.state.present?
-            uk_nation = UKNation.find_by_code(event.state)
+          if event.country_code == "GB" && event.state_code.present?
+            uk_nation = UKNation.find_by_code(event.state_code)
             stamps.concat(uk_nation.stamps) if uk_nation
           end
         end
@@ -156,7 +156,7 @@ class Stamp
     end
 
     def grouped_by_continent
-      stamps_by_continent = all.select(&:has_country?).group_by { |stamp| stamp.country&.continent }
+      stamps_by_continent = all.select(&:has_country?).group_by { |stamp| stamp.country&.continent_name }
       custom_stamps = all.reject(&:has_country?).reject(&:has_event?)
 
       stamps_by_continent["Custom"] = custom_stamps if custom_stamps.any?

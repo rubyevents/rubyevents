@@ -3,8 +3,6 @@ require "ostruct"
 
 class EventGeocodingTest < ActiveSupport::TestCase
   setup do
-    Geocoder.configure(lookup: :test)
-
     Geocoder::Lookup::Test.add_stub(
       "San Francisco, CA", [
         {
@@ -35,12 +33,33 @@ class EventGeocodingTest < ActiveSupport::TestCase
       ]
     )
 
+    Geocoder::Lookup::Test.add_stub(
+      "San Francisco, California, United States", [
+        {
+          "coordinates" => [37.7749, -122.4194],
+          "city" => "San Francisco",
+          "state_code" => "CA",
+          "country_code" => "US"
+        }
+      ]
+    )
+
+    Geocoder::Lookup::Test.add_stub(
+      "Chicago, Illinois, United States", [
+        {
+          "coordinates" => [41.8781, -87.6298],
+          "city" => "Chicago",
+          "state_code" => "IL",
+          "country_code" => "US"
+        }
+      ]
+    )
+
     @series = event_series(:railsconf)
   end
 
   teardown do
     Geocoder::Lookup::Test.reset
-    Geocoder.configure(lookup: :google)
   end
 
   test "geocode with valid location" do
@@ -54,7 +73,7 @@ class EventGeocodingTest < ActiveSupport::TestCase
     event.save!
 
     assert_equal "San Francisco", event.city
-    assert_equal "CA", event.state
+    assert_equal "CA", event.state_code
     assert_equal "US", event.country_code
     assert_in_delta 37.7749, event.latitude.to_f, 0.01
     assert_in_delta(-122.4194, event.longitude.to_f, 0.01)
@@ -92,7 +111,7 @@ class EventGeocodingTest < ActiveSupport::TestCase
       latitude: 37.7749,
       longitude: -122.4194,
       city: "San Francisco",
-      state: "CA",
+      state_code: "CA",
       country_code: "US",
       geocode_metadata: {"foo" => "bar"}
     )
@@ -102,7 +121,7 @@ class EventGeocodingTest < ActiveSupport::TestCase
     assert_nil event.latitude
     assert_nil event.longitude
     assert_nil event.city
-    assert_nil event.state
+    assert_nil event.state_code
     assert_nil event.country_code
     assert_equal({}, event.geocode_metadata)
   end
@@ -115,14 +134,14 @@ class EventGeocodingTest < ActiveSupport::TestCase
       latitude: 37.7749,
       longitude: -122.4194,
       city: "San Francisco",
-      state: "CA",
+      state_code: "CA",
       country_code: "US"
     )
 
     event.regeocode
 
     assert_equal "Chicago", event.city
-    assert_equal "IL", event.state
+    assert_equal "IL", event.state_code
     assert_equal "US", event.country_code
     assert_in_delta 41.8781, event.latitude.to_f, 0.01
     assert_in_delta(-87.6298, event.longitude.to_f, 0.01)
@@ -182,7 +201,7 @@ class EventGeocodingTest < ActiveSupport::TestCase
     assert_in_delta(-74.0060, event.longitude.to_f, 0.01)
 
     assert_equal "San Francisco", event.city
-    assert_equal "CA", event.state
+    assert_equal "CA", event.state_code
     assert_equal "US", event.country_code
   end
 

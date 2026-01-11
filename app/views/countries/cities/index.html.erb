@@ -4,7 +4,7 @@
 
 <%= render "shared/location_header",
       name: @country.name,
-      subtitle: "#{@country.name}, #{@country.continent}",
+      subtitle: @country.to_location.to_text,
       flag_code: @country.alpha2,
       stats: "#{pluralize(@cities.size, "city")} with Ruby events in #{@country.name}",
       location: @country %>
@@ -13,7 +13,7 @@
       location: @country,
       current_tab: "cities",
       show_cities: true,
-      show_states: State.supported_country?(@country),
+      show_states: @country&.states?,
       show_stamps: true %>
 
 <div class="container py-8">

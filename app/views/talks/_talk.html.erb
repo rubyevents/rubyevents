@@ -206,7 +206,7 @@
 
       <h3 class="my-3 font-bold text-md">Sections in this recording</h3>
 
-      <%= render partial: "sections", locals: {talk: parent_talk} %>
+      <%= render partial: "talks/sections", locals: {talk: parent_talk} %>
 
       <br><hr>
     <% end %>
@@ -217,6 +217,8 @@
       </div>
       <hr>
     <% end %>
+
+    <%= render Events::UpcomingEventBannerComponent.new(event: talk.event) %>
 
     <div role="tablist" class="mt-6 tabs tabs-bordered">
       <% if talk.summary.present? %>
@@ -231,7 +233,7 @@
           <% end %>
 
           <h2><%= talk.title %></h2>
-          <%= talk.speakers.map(&:name).to_sentence %> • <%= talk.formatted_date %> • <%= render "shared/location", location_info: talk.location_info, show_links: false %> <% if language && language != "English" %> • <%= language %> <% end %> • <%= talk.formatted_kind %>
+          <%= talk.speakers.map(&:name).to_sentence %> • <%= talk.formatted_date %> • <%= talk.to_location.to_html(show_links: false) %> <% if language && language != "English" %> • <%= language %> <% end %> • <%= talk.formatted_kind %>
 
           <article class="mt-4 prose markdown"><%= markdown_to_html(talk.summary) %></article>
         </div>
@@ -243,7 +245,7 @@
           <p>
             <b><%= talk.title %></b><br>
             <%= talk.speakers.map(&:name).to_sentence %>
-            • <%= render "shared/location", location_info: talk.location_info, show_links: false %>
+            • <%= talk.to_location.to_html(show_links: false) %>
             <% if language && language != "English" %> • <%= language %> <% end %> •
             <%= talk.formatted_kind %>
           </p>

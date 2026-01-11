@@ -6,8 +6,8 @@
 
 <%= render "shared/location_header",
       name: location.name,
-      subtitle: location_subtitle(location),
-      flag_code: location.respond_to?(:alpha2) ? location.alpha2 : nil,
+      subtitle: location.to_location.to_text,
+      flag_code: (location.respond_to?(:alpha2) && !location.is_a?(Continent)) ? location.alpha2 : nil,
       emoji: location.is_a?(Continent) ? location.emoji_flag : nil,
       stats: "#{pluralize(users.count, "Rubyist")} in #{location.name}",
       location: location %>
@@ -17,7 +17,7 @@
       current_tab: "users",
       show_cities: location.is_a?(Country),
       show_countries: location.is_a?(Continent),
-      show_states: location.is_a?(Country) && State.supported_country?(location),
+      show_states: location.is_a?(Country) && location.states?,
       show_stamps: location.stamps.any? %>
 
 <div class="container py-8">

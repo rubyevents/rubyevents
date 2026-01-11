@@ -16,7 +16,7 @@ module Locatable
   end
 
   def city?
-    is_a?(City) || is_a?(FeaturedCity)
+    is_a?(City)
   end
 
   def state?
@@ -31,5 +31,13 @@ module Locatable
     return "Countries" if continent?
     return "Cities" if country? || state?
     nil
+  end
+
+  def to_location
+    @to_location ||= Location.from_record(self)
+  end
+
+  def has_routes?
+    true
   end
 end

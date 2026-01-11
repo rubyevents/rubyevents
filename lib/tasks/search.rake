@@ -1,5 +1,161 @@
 # frozen_string_literal: true
 
+module SearchTaskHelper
+  def self.perform_search(backend, query)
+    print "Searching for: #{query} "
+
+    searches = {}
+
+    searches[:talks] = backend.search_talks(query, limit: 5)
+    print "."
+
+    searches[:speakers] = backend.search_speakers(query, limit: 5)
+    print "."
+
+    searches[:events] = backend.search_events(query, limit: 5)
+    print "."
+
+    searches[:topics] = backend.search_topics(query, limit: 5)
+    print "."
+
+    searches[:series] = backend.search_series(query, limit: 5)
+    print "."
+
+    searches[:organizations] = backend.search_organizations(query, limit: 5)
+    print "."
+
+    if backend.respond_to?(:search_locations)
+      searches[:locations] = backend.search_locations(query, limit: 10)
+      print "."
+    end
+
+    searches[:languages] = backend.search_languages(query, limit: 10)
+    puts " done!\n\n"
+
+    searches
+  end
+
+  def self.print_results(searches, query, backend_name)
+    total_results = searches.values.sum { |_, count| count }
+
+    puts "=" * 60
+    puts "Search Results for: \"#{query}\" (#{backend_name})"
+    puts "Total: #{total_results} results across #{searches.size} collections"
+    puts "=" * 60
+
+    results, count = searches[:talks]
+    puts "\n📚 Talks (#{count} found):"
+
+    if results.any?
+      results.each do |talk|
+        puts "   - #{talk.title}"
+        puts "     by #{talk.speaker_names} at #{talk.event_name}"
+      end
+    else
+      puts "   (no results)"
+    end
+
+    results, count = searches[:speakers]
+    puts "\n👤 Speakers (#{count} found):"
+
+    if results.any?
+      results.each do |user|
+        puts "   - #{user.name} (#{user.talks_count} talks)"
+      end
+    else
+      puts "   (no results)"
+    end
+
+    results, count = searches[:events]
+    puts "\n📅 Events (#{count} found):"
+
+    if results.any?
+      results.each do |event|
+        puts "   - #{event.name} (#{event.talks_count} talks)"
+      end
+    else
+      puts "   (no results)"
+    end
+
+    results, count = searches[:topics]
+    puts "\n🏷️  Topics (#{count} found):"
+
+    if results.any?
+      results.each do |topic|
+        puts "   - #{topic.name} (#{topic.talks_count} talks)"
+      end
+    else
+      puts "   (no results)"
+    end
+
+    results, count = searches[:series]
+    puts "\n🗓️ Series (#{count} found):"
+
+    if results.any?
+      results.each do |series|
+        puts "   - #{series.name}"
+      end
+    else
+      puts "   (no results)"
+    end
+
+    results, count = searches[:organizations]
+    puts "\n🏢 Organizations (#{count} found):"
+
+    if results.any?
+      results.each do |org|
+        puts "   - #{org.name}"
+      end
+    else
+      puts "   (no results)"
+    end
+
+    if searches[:locations]
+      results, count = searches[:locations]
+      puts "\n🌍 Locations (#{count} found):"
+
+      if results.any?
+        results.each do |loc|
+          type_emoji = {continent: "🌍", country: "🏳️", state: "🗺️", city: "🏙️"}[loc[:type].to_sym] || "📍"
+          puts "   #{type_emoji} #{loc[:emoji_flag]} #{loc[:name]} (#{loc[:type]}, #{loc[:event_count]} events)"
+        end
+      else
+        puts "   (no results)"
+      end
+    end
+
+    results, count = searches[:languages]
+    puts "\n🗣️ Languages (#{count} found):"
+
+    if results.any?
+      results.each do |lang|
+        puts "   - #{lang[:name]} (#{lang[:code]}, #{lang[:talk_count]} talks)"
+      end
+    else
+      puts "   (no results)"
+    end
+
+    if backend_name == "SQLite FTS"
+      puts "\n⚠️  Note: Locations and Kinds search not supported in SQLite FTS"
+    end
+
+    puts "\n" + "=" * 60
+    puts "Summary:"
+    puts "-" * 60
+    puts "  📚 Talks:          %6d" % searches[:talks][1]
+    puts "  👤 Speakers:       %6d" % searches[:speakers][1]
+    puts "  📅 Events:         %6d" % searches[:events][1]
+    puts "  🏷️ Topics:         %6d" % searches[:topics][1]
+    puts "  🗓️ Series:         %6d" % searches[:series][1]
+    puts "  🏢 Organizations:  %6d" % searches[:organizations][1]
+    puts "  🌍 Locations:      %6d" % (searches[:locations]&.dig(1) || 0) if searches[:locations]
+    puts "  🗣️ Languages:      %6d" % searches[:languages][1]
+    puts "-" * 60
+    puts "  Total:             %6d" % total_results
+    puts "=" * 60
+  end
+end
+
 namespace :search do
   desc "Reindex all search backends"
   task reindex: :environment do
@@ -111,7 +267,7 @@ namespace :typesense do
       end
 
       count = EventSeries.joins(:events).distinct.count
-      puts "\n📺 Reindexing #{count} Event Series..."
+      puts "\n🗓️ Reindexing #{count} Event Series..."
       start = Time.current
       Search::Backend::Typesense::Indexer.reindex_series
       puts "   ✅ Event Series reindexed in #{(Time.current - start).round(2)}s"
@@ -438,7 +594,6 @@ namespace :typesense do
         puts ""
       end
 
-      # Show DB counts for comparison
       puts "Database counts:"
       puts "   Talks (all): #{Talk.count}"
       puts "   Events (canonical): #{Event.canonical.count}"
@@ -468,105 +623,9 @@ namespace :typesense do
   desc "Search across all collections (usage: rake typesense:search[query])"
   task :search, [:query] => :environment do |_t, args|
     query = args[:query] || "*"
-    puts "Searching for: #{query}\n\n"
-
     backend = Search::Backend::Typesense
-
-    results, count = backend.search_talks(query, limit: 5)
-    puts "📚 Talks (#{count} found):"
-    if results.any?
-      results.each do |talk|
-        puts "   - #{talk.title}"
-        puts "     by #{talk.speaker_names} at #{talk.event_name}"
-      end
-    else
-      puts "   (no results)"
-    end
-
-    puts ""
-
-    results, count = backend.search_speakers(query, limit: 5)
-    puts "👤 Speakers (#{count} found):"
-    if results.any?
-      results.each do |user|
-        puts "   - #{user.name} (#{user.talks_count} talks)"
-      end
-    else
-      puts "   (no results)"
-    end
-
-    puts ""
-
-    results, count = backend.search_events(query, limit: 5)
-    puts "📅 Events (#{count} found):"
-    if results.any?
-      results.each do |event|
-        puts "   - #{event.name} (#{event.talks_count} talks)"
-      end
-    else
-      puts "   (no results)"
-    end
-
-    puts ""
-
-    results, count = backend.search_topics(query, limit: 5)
-    puts "🏷️  Topics (#{count} found):"
-    if results.any?
-      results.each do |topic|
-        puts "   - #{topic.name} (#{topic.talks_count} talks)"
-      end
-    else
-      puts "   (no results)"
-    end
-
-    puts ""
-
-    results, count = backend.search_series(query, limit: 5)
-    puts "📺 Series (#{count} found):"
-    if results.any?
-      results.each do |series|
-        puts "   - #{series.name}"
-      end
-    else
-      puts "   (no results)"
-    end
-
-    puts ""
-
-    results, count = backend.search_organizations(query, limit: 5)
-    puts "🏢 Organizations (#{count} found):"
-    if results.any?
-      results.each do |org|
-        puts "   - #{org.name}"
-      end
-    else
-      puts "   (no results)"
-    end
-
-    puts ""
-
-    results, count = backend.search_locations(query, limit: 10)
-    puts "🌍 Locations (#{count} found):"
-    if results.any?
-      results.each do |loc|
-        type_emoji = {continent: "🌍", country: "🏳️", state: "🗺️", city: "🏙️"}[loc[:type].to_sym] || "📍"
-        puts "   #{type_emoji} #{loc[:emoji_flag]} #{loc[:name]} (#{loc[:type]}, #{loc[:event_count]} events)"
-      end
-    else
-      puts "   (no results)"
-    end
-
-    puts ""
-
-    results, count = backend.search_languages(query, limit: 10)
-    puts "🗣️ Languages (#{count} found):"
-    if results.any?
-      results.each do |lang|
-        puts "   - #{lang[:name]} (#{lang[:code]}, #{lang[:talk_count]} talks)"
-      end
-    else
-      puts "   (no results)"
-    end
+    searches = SearchTaskHelper.perform_search(backend, query)
+    SearchTaskHelper.print_results(searches, query, "Typesense")
   end
 end
 
@@ -600,5 +659,13 @@ namespace :sqlite_fts do
       Search::Backend::SQLiteFTS::Indexer.reindex_users
       puts "   ✅ Users reindexed in #{(Time.current - start).round(2)}s"
     end
+  end
+
+  desc "Search across all collections using SQLite FTS (usage: rake sqlite_fts:search[query])"
+  task :search, [:query] => :environment do |_t, args|
+    query = args[:query] || "*"
+    backend = Search::Backend::SQLiteFTS
+    searches = SearchTaskHelper.perform_search(backend, query)
+    SearchTaskHelper.print_results(searches, query, "SQLite FTS")
   end
 end
