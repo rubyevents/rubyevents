@@ -6,7 +6,7 @@
     <div class="card-body flex flex-col items-center justify-center min-h-[130px]">
         <div class="text-xl font-semibold text-center line-clamp-1"><%= event.name %></div>
         <div class="text-gray-500 text-center flex-grow flex flex-col items-center">
-          <%= event.to_location.to_html(show_links: false) %><br>
+          <span><%= event.to_location.to_html(show_links: false) %></span><br>
 
         <%= event.formatted_dates %>
 
