@@ -10,7 +10,7 @@ class Avo::Resources::City < Avo::BaseResource
     end
   }
   self.search = {
-    query: -> { query.where("name LIKE ? OR city LIKE ?", "%#{params[:q]}%", "%#{params[:q]}%") }
+    query: -> { query.where("name LIKE ?", "%#{params[:q]}%") }
   }
   self.external_link = -> {
     main_app.city_path(record)

@@ -219,7 +219,7 @@ class Locations::MapController < Locations::BaseController
       end
     end
 
-    if @state.present? && @country.present? && State.supported_country?(@country)
+    if @state.present? && @country.present? && @country&.states?
       state_events = Event.includes(:series)
         .where(country_code: @country.alpha2, state_code: @state.code)
         .to_a

@@ -47,7 +47,7 @@ class Location
   end
 
   def state
-    return nil unless State.supported_country?(country) && state_code.present?
+    return nil unless country&.states? && state_code.present?
 
     @state ||= State.find_by_code(state_code, country: country) || State.find_by_name(state_code, country: country)
   end
@@ -108,7 +108,7 @@ class Location
     base = city.presence&.strip
 
     return state_display_name if base.blank? && state
-    return base unless State.supported_country?(country) && state_code.present?
+    return base unless country&.states? && state_code.present?
     return state_display_name if base&.downcase == state_display_name&.downcase
 
     "#{base}, #{state_display_name}"
@@ -160,9 +160,10 @@ class Location
     return online_location.name if online?
 
     result = text_upto(upto)
-    result = "#{result} & online" if hybrid?
+    result = raw_location if result.blank? && raw_location.present?
+    result = "#{result} & online" if hybrid? && result.present?
 
-    result
+    result.to_s
   end
 
   private

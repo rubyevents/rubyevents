@@ -2,7 +2,7 @@ class Countries::CitiesController < Countries::BaseController
   def index
     @cities = City.for_country(@country.alpha2)
     @sort = params[:sort].presence || "events"
-    @show_states = State.supported_country?(@country)
+    @show_states = @country&.states?
 
     @cities = case @sort
     when "name"

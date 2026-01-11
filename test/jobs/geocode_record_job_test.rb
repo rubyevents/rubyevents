@@ -16,6 +16,17 @@ class GeocodeRecordJobTest < ActiveJob::TestCase
         }
       ]
     )
+
+    Geocoder::Lookup::Test.add_stub(
+      "San Francisco, California, United States", [
+        {
+          "coordinates" => [37.7749, -122.4194],
+          "city" => "San Francisco",
+          "state_code" => "CA",
+          "country_code" => "US"
+        }
+      ]
+    )
   end
 
   teardown do

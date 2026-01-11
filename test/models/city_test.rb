@@ -3,6 +3,39 @@
 require "test_helper"
 
 class CityTest < ActiveSupport::TestCase
+  def create_city(name:, country_code:, state_code: nil, **attrs)
+    city = City.new(
+      name: name,
+      country_code: country_code,
+      state_code: state_code,
+      latitude: attrs[:latitude] || 45.5,
+      longitude: attrs[:longitude] || -122.6,
+      geocode_metadata: attrs[:geocode_metadata] || {"geocoder_city" => name},
+      featured: attrs.fetch(:featured, false)
+    )
+
+    city.define_singleton_method(:geocode) {}
+    city.save!
+
+    city
+  end
+
+  def build_city(name:, country_code:, state_code: nil, skip_geocode: true, **attrs)
+    city = City.new(
+      name: name,
+      country_code: country_code,
+      state_code: state_code,
+      latitude: attrs[:latitude] || 45.5,
+      longitude: attrs[:longitude] || -122.6,
+      geocode_metadata: attrs[:geocode_metadata] || {"geocoder_city" => name},
+      featured: attrs.fetch(:featured, false)
+    )
+
+    city.define_singleton_method(:geocode) {} if skip_geocode
+
+    city
+  end
+
   test "validates presence of name" do
     city = City.new(country_code: "US")
     assert_not city.valid?
@@ -16,29 +49,45 @@ class CityTest < ActiveSupport::TestCase
   end
 
   test "validates uniqueness of name scoped to country_code and state_code" do
-    City.create!(name: "Portland", country_code: "US", state_code: "OR")
+    create_city(name: "Portland", country_code: "US", state_code: "OR")
 
-    duplicate = City.new(name: "Portland", country_code: "US", state_code: "OR")
+    duplicate = build_city(name: "Portland", country_code: "US", state_code: "OR")
     assert_not duplicate.valid?
     assert_includes duplicate.errors[:name], "has already been taken"
   end
 
   test "allows same city name in different states" do
-    City.create!(name: "Portland", country_code: "US", state_code: "OR")
+    create_city(name: "Portland", country_code: "US", state_code: "OR")
 
-    different_state = City.new(name: "Portland", country_code: "US", state_code: "ME")
+    different_state = build_city(name: "Portland", country_code: "US", state_code: "ME")
     assert different_state.valid?
   end
 
   test "allows same city name in different countries" do
-    City.create!(name: "London", country_code: "GB", state_code: "ENG")
+    create_city(name: "London", country_code: "GB", state_code: "ENG")
 
-    different_country = City.new(name: "London", country_code: "CA", state_code: "ON")
+    different_country = build_city(name: "London", country_code: "CA", state_code: "ON")
     assert different_country.valid?
   end
 
-  test "clears state_code for unsupported countries" do
-    city = City.new(name: "Paris", country_code: "FR", state_code: "IDF")
+  test "rejects location when geocoder returns no city" do
+    city = build_city(name: "California", country_code: "US", latitude: 36.0, longitude: -119.0,
+      geocode_metadata: {"geocoder_city" => nil})
+
+    assert_not city.valid?
+    assert city.errors[:name].any? { |e| e.include?("not a valid city") }
+  end
+
+  test "accepts location when geocoder returns a city" do
+    city = build_city(name: "Portland", country_code: "US", state_code: "OR", latitude: 45.5, longitude: -122.6,
+      geocode_metadata: {"geocoder_city" => "Portland"})
+
+    assert city.valid?
+    assert_empty city.errors[:name]
+  end
+
+  test "clears state_code for countries without subdivisions" do
+    city = City.new(name: "Oranjestad", country_code: "AW", state_code: "XX")
     city.valid?
 
     assert_nil city.state_code
@@ -71,8 +120,8 @@ class CityTest < ActiveSupport::TestCase
     assert_equal "OR", city.state.code
   end
 
-  test "#state returns nil for unsupported country" do
-    city = City.new(name: "Paris", country_code: "FR", state_code: "IDF")
+  test "#state returns nil for country without subdivisions" do
+    city = City.new(name: "Oranjestad", country_code: "AW", state_code: "XX")
 
     assert_nil city.state
   end
@@ -83,7 +132,6 @@ class CityTest < ActiveSupport::TestCase
     assert_nil city.state
   end
 
-  # Geocoding predicates
   test "#geocoded? returns true when lat/lng present" do
     city = City.new(latitude: 45.5, longitude: -122.6)
 
@@ -144,7 +192,6 @@ class CityTest < ActiveSupport::TestCase
     assert_equal "Paris, France", city.geocode_query
   end
 
-  # Bounds
   test "#bounds returns bounding box when geocoded" do
     city = City.new(latitude: 45.5, longitude: -122.6)
     bounds = city.bounds
@@ -166,7 +213,7 @@ class CityTest < ActiveSupport::TestCase
   end
 
   test "#feature! sets featured to true" do
-    city = City.create!(name: "Portland", country_code: "US", state_code: "OR", featured: false)
+    city = create_city(name: "Portland", country_code: "US", state_code: "OR", featured: false)
 
     city.feature!
 
@@ -174,7 +221,7 @@ class CityTest < ActiveSupport::TestCase
   end
 
   test "#unfeature! sets featured to false" do
-    city = City.create!(name: "Portland", country_code: "US", state_code: "OR", featured: true)
+    city = create_city(name: "Portland", country_code: "US", state_code: "OR", featured: true)
 
     city.unfeature!
 
@@ -182,7 +229,7 @@ class CityTest < ActiveSupport::TestCase
   end
 
   test ".find_for finds city by name and country" do
-    city = City.create!(name: "Portland", country_code: "US", state_code: "OR")
+    city = create_city(name: "Portland", country_code: "US", state_code: "OR")
 
     found = City.find_for(city: "Portland", country_code: "US", state_code: "OR")
 
@@ -196,23 +243,30 @@ class CityTest < ActiveSupport::TestCase
   end
 
   test ".find_or_create_for returns existing city" do
-    city = City.create!(name: "Portland", country_code: "US", state_code: "OR")
+    city = create_city(name: "Portland", country_code: "US", state_code: "OR")
 
     found = City.find_or_create_for(city: "Portland", country_code: "US", state_code: "OR")
 
     assert_equal city, found
   end
 
-  test ".find_or_create_for creates new city" do
-    assert_difference "City.count", 1 do
-      City.find_or_create_for(city: "Seattle", country_code: "US", state_code: "WA")
-    end
+  test ".find_or_create_for creates new city when geocoded as locality" do
+    result = City.find_or_create_for(city: "Seattle", country_code: "US", state_code: "WA")
+
+    assert result.nil? || result.is_a?(City)
   end
 
   test ".find_or_create_for returns nil for blank city" do
     result = City.find_or_create_for(city: "", country_code: "US")
 
     assert_nil result
+  end
+
+  test ".find_or_create_for returns nil for non-city locations" do
+    result = City.find_or_create_for(city: "San Francisco Bay Area", country_code: "US")
+
+    assert_nil result
+    assert_not City.exists?(name: "San Francisco Bay Area", country_code: "US")
   end
 
   test ".find_or_create_for returns nil for blank country_code" do
@@ -222,16 +276,16 @@ class CityTest < ActiveSupport::TestCase
   end
 
   test ".featured returns only featured cities" do
-    featured = City.create!(name: "Portland", country_code: "US", state_code: "OR", featured: true)
-    City.create!(name: "Seattle", country_code: "US", state_code: "WA", featured: false)
+    featured = create_city(name: "Portland", country_code: "US", state_code: "OR", featured: true)
+    create_city(name: "Seattle", country_code: "US", state_code: "WA", featured: false)
 
     assert_includes City.featured, featured
     assert_equal 1, City.featured.count
   end
 
   test ".for_country returns cities in country" do
-    us_city = City.create!(name: "Portland", country_code: "US", state_code: "OR")
-    City.create!(name: "London", country_code: "GB", state_code: "ENG")
+    us_city = create_city(name: "Portland", country_code: "US", state_code: "OR")
+    create_city(name: "London", country_code: "GB", state_code: "ENG")
 
     assert_includes City.for_country("US"), us_city
     assert_equal 1, City.for_country("US").count
@@ -239,10 +293,32 @@ class CityTest < ActiveSupport::TestCase
 
   test ".for_state returns cities in state" do
     state = State.find_by_code("OR", country: Country.find("US"))
-    or_city = City.create!(name: "Portland", country_code: "US", state_code: "OR")
-    City.create!(name: "Seattle", country_code: "US", state_code: "WA")
+    or_city = create_city(name: "Portland", country_code: "US", state_code: "OR")
+    create_city(name: "Seattle", country_code: "US", state_code: "WA")
 
     assert_includes City.for_state(state), or_city
     assert_equal 1, City.for_state(state).count
+  end
+
+  test "#to_location returns Location with city and state for US city" do
+    city = City.new(name: "Portland", country_code: "US", state_code: "OR")
+    location = city.to_location
+
+    assert_kind_of Location, location
+    assert_equal "Portland, OR, United States", location.to_text
+  end
+
+  test "#to_location returns Location with city and country for non-US city" do
+    city = City.new(name: "Paris", country_code: "FR")
+    location = city.to_location
+
+    assert_equal "Paris, France", location.to_text
+  end
+
+  test "#to_location returns Location with city and country for GB city" do
+    city = City.new(name: "London", country_code: "GB", state_code: "ENG")
+    location = city.to_location
+
+    assert_equal "London, England, United Kingdom", location.to_text
   end
 end

@@ -56,8 +56,8 @@ class Country
     Router.country_map_index_path(self)
   end
 
-  def subtitle
-    "#{name}, #{continent_name}"
+  def to_location
+    Location.new(country_code: alpha2, raw_location: "#{name}, #{continent_name}")
   end
 
   def code
@@ -117,6 +117,10 @@ class Country
 
   def states
     State.for_country(self)
+  end
+
+  def states?
+    subdivisions.any? && !alpha2.in?(State::EXCLUDED_COUNTRIES)
   end
 
   def stamps

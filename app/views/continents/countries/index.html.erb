@@ -4,7 +4,7 @@
 
 <%= render "shared/location_header",
       name: @continent.name,
-      subtitle: @continent.name,
+      subtitle: @continent.to_location.to_text,
       emoji: @continent.emoji_flag,
       stats: "#{pluralize(@countries.count, "country")} in #{@continent.name}",
       location: @continent %>

@@ -90,8 +90,8 @@ class LocationTest < ActiveSupport::TestCase
     assert_equal "ON", location.state.code
   end
 
-  test "#state returns nil for non-supported country" do
-    location = Location.new(city: "Paris", state_code: "Île-de-France", country_code: "FR")
+  test "#state returns nil for country without subdivisions" do
+    location = Location.new(city: "Oranjestad", state_code: "XX", country_code: "AW")
 
     assert_nil location.state
   end
@@ -126,8 +126,8 @@ class LocationTest < ActiveSupport::TestCase
     assert_equal "/countries/england", location.state_path
   end
 
-  test "#state_path returns nil for non-supported country" do
-    location = Location.new(state_code: "Île-de-France", country_code: "FR")
+  test "#state_path returns nil for country without subdivisions" do
+    location = Location.new(state_code: "XX", country_code: "AW")
 
     assert_nil location.state_path
   end
@@ -156,10 +156,10 @@ class LocationTest < ActiveSupport::TestCase
     assert_equal "England", location.state_display_name
   end
 
-  test "#state_display_name returns raw state for non-supported country" do
-    location = Location.new(state_code: "Île-de-France", country_code: "FR")
+  test "#state_display_name returns raw state for country without subdivisions" do
+    location = Location.new(state_code: "XX", country_code: "AW")
 
-    assert_equal "Île-de-France", location.state_display_name
+    assert_equal "XX", location.state_display_name
   end
 
   test "#display_city includes state for US location" do
@@ -188,11 +188,13 @@ class LocationTest < ActiveSupport::TestCase
 
   test "#has_state? returns true when state_path exists" do
     location = Location.new(state_code: "OR", country_code: "US")
+
     assert location.has_state?
   end
 
-  test "#has_state? returns false for non-supported country" do
-    location = Location.new(state_code: "Île-de-France", country_code: "FR")
+  test "#has_state? returns false for country without subdivisions" do
+    location = Location.new(state_code: "XX", country_code: "AW")
+
     refute location.has_state?
   end
 
@@ -389,8 +391,14 @@ class LocationTest < ActiveSupport::TestCase
     assert location.online?
   end
 
+  test "#to_text returns raw_location when nothing else is present" do
+    location = Location.new(raw_location: "Custom Location", city: "", country_code: "")
+
+    assert_equal "Custom Location", location.to_text
+  end
+
   test "#online? returns true for 'Online' location" do
-    location = Location.new(raw_location: "Online")
+    location = Location.new(raw_location: "online")
     assert location.online?
   end
 
@@ -410,7 +418,7 @@ class LocationTest < ActiveSupport::TestCase
   end
 
   test "#online? returns false for geocoded location" do
-    location = Location.new(raw_location: "Online", latitude: 45.5, longitude: -122.6)
+    location = Location.new(raw_location: "online", latitude: 45.5, longitude: -122.6)
     refute location.online?
   end
 
@@ -428,7 +436,7 @@ class LocationTest < ActiveSupport::TestCase
     location = Location.online
     html = location.to_html
 
-    assert_includes html, "Online"
+    assert_includes html, "online"
     assert_includes html, "<a"
     assert_includes html, "/online"
   end
@@ -437,7 +445,7 @@ class LocationTest < ActiveSupport::TestCase
     location = Location.online
     html = location.to_html(show_links: false)
 
-    assert_includes html, "Online"
+    assert_includes html, "online"
     refute_includes html, "<a"
   end
 
@@ -596,7 +604,7 @@ class LocationTest < ActiveSupport::TestCase
   test "#to_text returns Online for online location" do
     location = Location.online
 
-    assert_equal "Online", location.to_text
+    assert_equal "online", location.to_text
   end
 
   test "#to_text returns empty string for blank location" do
@@ -683,6 +691,158 @@ class LocationTest < ActiveSupport::TestCase
     location = Location.online
 
     refute location.hybrid?
-    assert_equal "Online", location.to_text
+    assert_equal "online", location.to_text
+  end
+
+  test "#to_text appends & online for hybrid US location with state" do
+    location = Location.new(
+      city: "Portland",
+      state_code: "OR",
+      country_code: "US",
+      hybrid: true
+    )
+
+    assert_equal "Portland, OR, United States & online", location.to_text
+  end
+
+  test "#to_text appends & online for hybrid GB location" do
+    location = Location.new(
+      city: "London",
+      state_code: "ENG",
+      country_code: "GB",
+      hybrid: true
+    )
+
+    assert_equal "London, England, United Kingdom & online", location.to_text
+  end
+
+  test "#to_text appends & online for hybrid country-only location" do
+    location = Location.new(
+      country_code: "JP",
+      hybrid: true
+    )
+
+    assert_equal "Japan & online", location.to_text
+  end
+
+  test "#to_html appends & online for hybrid US location" do
+    location = Location.new(
+      city: "Portland",
+      state_code: "OR",
+      country_code: "US",
+      latitude: 45.5,
+      longitude: -122.6,
+      hybrid: true
+    )
+    html = location.to_html
+
+    assert_includes html, "Portland"
+    assert_includes html, "OR"
+    assert_includes html, "United States"
+    assert_includes html, "& "
+    assert_includes html, "online"
+    assert_includes html, "/online"
+  end
+
+  test "#to_html with upto: :city for hybrid location" do
+    location = Location.new(
+      city: "Portland",
+      state_code: "OR",
+      country_code: "US",
+      latitude: 45.5,
+      longitude: -122.6,
+      hybrid: true
+    )
+    html = location.to_html(upto: :city)
+
+    assert_includes html, "Portland"
+    assert_includes html, "OR"
+    refute_includes html, "United States"
+    assert_includes html, "& "
+    assert_includes html, "online"
+  end
+
+  test "#to_html with upto: :continent for hybrid location" do
+    location = Location.new(
+      city: "Paris",
+      country_code: "FR",
+      latitude: 48.8,
+      longitude: 2.3,
+      hybrid: true
+    )
+    html = location.to_html(upto: :continent)
+
+    assert_includes html, "Paris"
+    assert_includes html, "France"
+    assert_includes html, "Europe"
+    assert_includes html, "& "
+    assert_includes html, "online"
+  end
+
+  test "hybrid with raw_location fallback" do
+    location = Location.new(
+      raw_location: "Custom Venue, City",
+      hybrid: true
+    )
+
+    assert_equal "Custom Venue, City & online", location.to_text
+  end
+
+  test "hybrid with non-geocoded raw_location renders as span" do
+    location = Location.new(
+      raw_location: "Conference Center",
+      hybrid: true
+    )
+    html = location.to_html
+
+    assert_includes html, "Conference Center"
+    assert_includes html, "<span"
+  end
+
+  test "hybrid with geocoded country renders country and online" do
+    location = Location.new(
+      country_code: "JP",
+      latitude: 35.6,
+      longitude: 139.7,
+      hybrid: true
+    )
+    html = location.to_html
+
+    assert_includes html, "Japan"
+    assert_includes html, "& "
+    assert_includes html, "online"
+  end
+
+  test "#from_record preserves hybrid from static_metadata" do
+    event = OpenStruct.new(
+      city: "Tokyo",
+      state_code: nil,
+      country_code: "JP",
+      latitude: 35.6,
+      longitude: 139.7,
+      location: "Tokyo, Japan",
+      static_metadata: OpenStruct.new(hybrid?: true)
+    )
+
+    location = Location.from_record(event)
+
+    assert location.hybrid?
+    assert_equal "Tokyo, Japan & online", location.to_text
+  end
+
+  test "#from_record defaults hybrid to false when no static_metadata" do
+    event = OpenStruct.new(
+      city: "Tokyo",
+      state_code: nil,
+      country_code: "JP",
+      latitude: 35.6,
+      longitude: 139.7,
+      location: "Tokyo, Japan"
+    )
+
+    location = Location.from_record(event)
+
+    refute location.hybrid?
+    assert_equal "Tokyo, Japan", location.to_text
   end
 end

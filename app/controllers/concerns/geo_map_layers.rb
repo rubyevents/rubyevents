@@ -52,7 +52,7 @@ module GeoMapLayers
   end
 
   def add_state_layer(layers)
-    return unless @state.present? && @country.present? && State.supported_country?(@country)
+    return unless @state.present? && @country.present? && @country&.states?
 
     maybe_add_layer(layers, id: "geo-state", label: @state.name, emoji: "🗺️", events: @state.events.includes(:series))
   end

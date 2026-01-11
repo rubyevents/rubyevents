@@ -123,6 +123,10 @@ class Continent
     slug.hash
   end
 
+  def to_location
+    Location.new(raw_location: name)
+  end
+
   class << self
     def all
       @all ||= CONTINENT_DATA.keys.map { |slug| new(slug) }

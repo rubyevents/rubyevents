@@ -37,10 +37,6 @@ module Locatable
     @to_location ||= Location.from_record(self)
   end
 
-  def subtitle
-    name
-  end
-
   def has_routes?
     true
   end

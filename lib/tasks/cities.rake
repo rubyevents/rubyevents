@@ -92,6 +92,40 @@ namespace :cities do
     puts "Done!"
   end
 
+  desc "Remove cities that are actually countries, states, or regions"
+  task cleanup: :environment do
+    puts "Finding invalid city names..."
+
+    invalid_cities = City.all.select do |city|
+      city.valid?
+      city.errors[:name].any?
+    end
+
+    if invalid_cities.empty?
+      puts "No invalid cities found."
+    else
+      puts "Found #{invalid_cities.size} invalid cities:"
+
+      invalid_cities.each do |city|
+        city.valid?
+        reasons = city.errors[:name].join(", ")
+        location = [city.name, city.state_code, city.country_code].compact.join(", ")
+        types = city.geocode_metadata&.dig("types")&.join(", ") || "unknown"
+
+        puts "  - #{location} (geocoded as: #{types}): #{reasons}"
+      end
+
+      print "\nDelete these cities? [y/N] "
+
+      if ENV["FORCE"] == "true" || $stdin.gets&.strip&.downcase == "y"
+        invalid_cities.each(&:destroy)
+        puts "Deleted #{invalid_cities.size} invalid cities."
+      else
+        puts "Aborted."
+      end
+    end
+  end
+
   desc "List cities with event and user counts"
   task stats: :environment do
     puts "City Statistics"

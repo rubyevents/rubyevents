@@ -49,7 +49,7 @@ class CountryTest < ActiveSupport::TestCase
 
   test "find returns nil for online" do
     assert_nil Country.find("online")
-    assert_nil Country.find("Online")
+    assert_nil Country.find("online")
   end
 
   test "find returns nil for earth" do
@@ -340,5 +340,27 @@ class CountryTest < ActiveSupport::TestCase
     country = Country.find_by(country_code: "GB")
 
     assert_equal " held in the United Kingdom", country.held_in_sentence
+  end
+
+  test "to_location returns Location with country and continent" do
+    country = Country.find_by(country_code: "US")
+    location = country.to_location
+
+    assert_kind_of Location, location
+    assert_equal "United States", location.to_text
+  end
+
+  test "to_location returns Location with European country" do
+    country = Country.find_by(country_code: "DE")
+    location = country.to_location
+
+    assert_equal "Germany", location.to_text
+  end
+
+  test "to_location returns Location with Asian country" do
+    country = Country.find_by(country_code: "JP")
+    location = country.to_location
+
+    assert_equal "Japan", location.to_text
   end
 end

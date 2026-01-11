@@ -229,6 +229,8 @@ class Search::Backend::Typesense
             event_count = event_counts[[country_code, state.code]] || 0
             user_count = user_counts[[country_code, state.code]] || 0
 
+            next if event_count.zero? && user_count.zero?
+
             documents << {
               id: "state_#{country_code}_#{state.code}",
               type: "state",

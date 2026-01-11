@@ -1,7 +1,7 @@
 ---
 - name: "Amsterdam"
   slug: "amsterdam"
-  state_code:
+  state_code: "NH"
   country_code: "NL"
   latitude: 52.3676
   longitude: 4.9041
@@ -20,7 +20,7 @@
 
 - name: "Auckland"
   slug: "auckland"
-  state_code:
+  state_code: "Auckland"
   country_code: "NZ"
   latitude: -36.8509
   longitude: 174.7645
@@ -39,7 +39,7 @@
 
 - name: "Bangkok"
   slug: "bangkok"
-  state_code:
+  state_code: "Bangkok"
   country_code: "TH"
   latitude: 13.7563
   longitude: 100.5018
@@ -48,7 +48,7 @@
 
 - name: "Basel"
   slug: "basel"
-  state_code:
+  state_code: "BS"
   country_code: "CH"
   latitude: 47.5596
   longitude: 7.5886
@@ -57,7 +57,7 @@
 
 - name: "Barcelona"
   slug: "barcelona"
-  state_code:
+  state_code: "CT"
   country_code: "ES"
   latitude: 41.3874
   longitude: 2.1686
@@ -67,7 +67,7 @@
 
 - name: "Berlin"
   slug: "berlin"
-  state_code:
+  state_code: "BE"
   country_code: "DE"
   latitude: 52.52
   longitude: 13.405
@@ -101,7 +101,7 @@
 
 - name: "Brussels"
   slug: "brussels"
-  state_code:
+  state_code: "BRU"
   country_code: "BE"
   latitude: 50.8260
   longitude: 4.3802
@@ -121,7 +121,7 @@
 
 - name: "Buenos Aires"
   slug: "buenos-aires"
-  state_code:
+  state_code: "Buenos Aires"
   country_code: "AR"
   latitude: -34.6037
   longitude: -58.3821
@@ -191,7 +191,7 @@
 
 - name: "Geneva"
   slug: "geneva"
-  state_code:
+  state_code: "GE"
   country_code: "CH"
   latitude: 46.2044
   longitude: 6.1432
@@ -202,7 +202,7 @@
 
 - name: "Helsinki"
   slug: "helsinki"
-  state_code:
+  state_code: "Uusimaa"
   country_code: "FI"
   latitude: 60.1699
   longitude: 24.9384
@@ -230,7 +230,7 @@
 
 - name: "Krakow"
   slug: "krakow"
-  state_code:
+  state_code: "Lesser Poland Voivodeship"
   country_code: "PL"
   latitude: 50.0647
   longitude: 19.9450
@@ -391,7 +391,7 @@
 
 - name: "Osaka"
   slug: "osaka"
-  state_code:
+  state_code: "Osaka"
   country_code: "JP"
   latitude: 34.6937
   longitude: 135.5023
@@ -516,7 +516,7 @@
 
 - name: "Taipei"
   slug: "taipei"
-  state_code:
+  state_code: "TPE"
   country_code: "TW"
   latitude: 25.0330
   longitude: 121.5654
@@ -525,12 +525,19 @@
 
 - name: "Tokyo"
   slug: "tokyo"
-  state_code:
+  state_code: "Tokyo"
   country_code: "JP"
   latitude: 35.6762
   longitude: 139.6503
   aliases:
     - tyo
+
+- name: "Shibuya"
+  slug: "shibuya"
+  state_code: "Tokyo"
+  country_code: "JP"
+  latitude: 35.6619707
+  longitude: 139.703795
 
 - name: "Toronto"
   slug: "toronto"

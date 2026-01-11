@@ -69,10 +69,6 @@ class UKNation
     Router.country_map_index_path(self)
   end
 
-  def subtitle
-    "#{name}, #{continent}"
-  end
-
   def has_routes?
     true
   end
@@ -130,6 +126,6 @@ class UKNation
   end
 
   def to_location
-    Location.new(state: state_code, country_code: "GB")
+    Location.new(state_code: state_code, country_code: "GB", raw_location: "#{name}, Europe")
   end
 end

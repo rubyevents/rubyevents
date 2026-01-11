@@ -5,7 +5,7 @@ class OnlineLocation
   include ActiveModel::Attributes
 
   def name
-    "Online"
+    "online"
   end
 
   def slug
@@ -38,10 +38,6 @@ class OnlineLocation
 
   def map_path
     nil
-  end
-
-  def subtitle
-    "Virtual and remote events"
   end
 
   def has_routes?

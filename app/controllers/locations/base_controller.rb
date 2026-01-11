@@ -63,7 +63,7 @@ class Locations::BaseController < ApplicationController
     @country = Country.find_by(country_code: @city.country_code)
     @continent = @country&.continent
 
-    if @city.state_code.present? && @country.present? && State.supported_country?(@country)
+    if @city.state_code.present? && @country.present? && @country&.states?
       @state = State.find(country: @country, term: @city.state_code)
     end
   end

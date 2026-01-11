@@ -29,10 +29,6 @@ module LocationHelper
     location.map_path
   end
 
-  def location_subtitle(location)
-    location.subtitle
-  end
-
   def location_has_routes?(location)
     location.has_routes?
   end

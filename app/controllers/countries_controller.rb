@@ -10,7 +10,7 @@ class CountriesController < ApplicationController
       .pluck(:country_code)
       .filter_map { |code| Country.find_by(country_code: code) }
       .group_by(&:continent)
-      .sort_by { |continent, _| continent || "ZZ" }
+      .sort_by { |continent, _| continent&.name || "ZZ" }
       .to_h
 
     @events_by_country = Event.includes(:series)

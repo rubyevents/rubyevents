@@ -76,13 +76,21 @@
           <% end %>
         <% when City %>
           <% country = Country.find_by(country_code: location.country_code) %>
+          <% state = location.state if country&.states? %>
 
-          <% if country %>
+          <% if state %>
+            <%= link_to state.path, class: "link flex items-center gap-1 justify-end" do %>
+              <%= fa("arrow-up", size: :sm, class: "text-gray-400") %>
+              <%= state.name %>
+            <% end %>
+          <% elsif country %>
             <%= link_to country_path(country), class: "link flex items-center gap-1 justify-end" do %>
               <%= fa("arrow-up", size: :sm, class: "text-gray-400") %>
               <%= country.name %>
             <% end %>
+          <% end %>
 
+          <% if country %>
             <%= link_to country_cities_path(country), class: "link flex items-center gap-1 justify-end" do %>
               <%= fa("city", size: :sm, class: "text-gray-400") %>
               All Cities in <%= country.name %>

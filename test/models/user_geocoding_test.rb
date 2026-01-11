@@ -35,6 +35,28 @@ class UserGeocodingTest < ActiveSupport::TestCase
     Geocoder::Lookup::Test.add_stub(
       "Unknown Location XYZ123", []
     )
+
+    Geocoder::Lookup::Test.add_stub(
+      "San Francisco, California, United States", [
+        {
+          "coordinates" => [37.7749, -122.4194],
+          "city" => "San Francisco",
+          "state_code" => "CA",
+          "country_code" => "US"
+        }
+      ]
+    )
+
+    Geocoder::Lookup::Test.add_stub(
+      "Berlin, Berlin, Germany", [
+        {
+          "coordinates" => [52.52, 13.405],
+          "city" => "Berlin",
+          "state_code" => "BE",
+          "country_code" => "DE"
+        }
+      ]
+    )
   end
 
   teardown do

@@ -1,13 +1,21 @@
 class State
-  SUPPORTED_COUNTRIES = %w[US GB AU CA].freeze
+  EXCLUDED_COUNTRIES = ["PL"]
+  SUPPORTED_COUNTRIES = (Country.all.select { |country| country.subdivisions.any? }.map(&:alpha2) - EXCLUDED_COUNTRIES).freeze
   UK_NATIONS = %w[ENG SCT WLS NIR].freeze
 
-  attr_reader :code, :name, :country
+  attr_reader :country, :record
 
-  def initialize(code:, name:, country:)
-    @code = code
-    @name = name
+  def initialize(country:, record:)
     @country = country
+    @record = record
+  end
+
+  def name
+    record.translations.dig(:en) || record.name
+  end
+
+  def code
+    record.code
   end
 
   def slug
@@ -19,7 +27,7 @@ class State
   end
 
   def display_name
-    if country.alpha2 == "GB"
+    if country.alpha2 == "GB" || code.match?(/^\d+$/)
       name
     else
       abbreviation
@@ -52,10 +60,6 @@ class State
 
   def map_path
     Router.state_map_index_path(state_alpha2: country.code, state_slug: slug)
-  end
-
-  def subtitle
-    "#{name}, #{country.name}"
   end
 
   def has_routes?
@@ -112,7 +116,7 @@ class State
   end
 
   def to_location
-    Location.new(state: code, country_code: country.alpha2)
+    Location.new(state_code: code, country_code: country_code, raw_location: "#{name}, #{country.name}")
   end
 
   class << self
@@ -182,71 +186,9 @@ class State
     def for_country(country)
       return [] if country.blank?
 
-      case country.alpha2
-      when "US"
-        us_states
-      when "GB"
-        uk_nations
-      when "AU"
-        au_states
-      when "CA"
-        ca_provinces
-      else
-        []
-      end
-    end
-
-    def us_states
-      @us_states ||= begin
-        us_country = Country.find("US")
-
-        ISO3166::Country.new("US").subdivisions.map do |code, data|
-          new(code: code, name: data["name"], country: us_country)
-        end.sort_by(&:name)
-      end
-    end
-
-    def us_state_abbreviations
-      @us_state_abbreviations ||= us_states.to_h { |state| [state.name, state.code] }
-    end
-
-    def uk_nations
-      @uk_nations ||= begin
-        uk_country = Country.find("GB")
-
-        ISO3166::Country.new("GB").subdivisions
-          .slice(*UK_NATIONS)
-          .map { |code, data| new(code: code, name: data["name"], country: uk_country) }
-          .sort_by(&:name)
-      end
-    end
-
-    def au_states
-      @au_states ||= begin
-        au_country = Country.find("AU")
-
-        ISO3166::Country.new("AU").subdivisions.map do |code, data|
-          new(code: code, name: data["name"], country: au_country)
-        end.sort_by(&:name)
-      end
-    end
-
-    def au_state_abbreviations
-      @au_state_abbreviations ||= au_states.to_h { |state| [state.name, state.code] }
-    end
-
-    def ca_provinces
-      @ca_provinces ||= begin
-        ca_country = Country.find("CA")
-
-        ISO3166::Country.new("CA").subdivisions.map do |code, data|
-          new(code: code, name: data["name"], country: ca_country)
-        end.sort_by(&:name)
-      end
-    end
-
-    def ca_province_abbreviations
-      @ca_province_abbreviations ||= ca_provinces.to_h { |state| [state.name, state.code] }
+      country.subdivisions.map { |_, record|
+        new(country: country, record: record)
+      }
     end
 
     def select_options(country: nil)

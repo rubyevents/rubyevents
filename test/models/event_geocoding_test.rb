@@ -33,6 +33,28 @@ class EventGeocodingTest < ActiveSupport::TestCase
       ]
     )
 
+    Geocoder::Lookup::Test.add_stub(
+      "San Francisco, California, United States", [
+        {
+          "coordinates" => [37.7749, -122.4194],
+          "city" => "San Francisco",
+          "state_code" => "CA",
+          "country_code" => "US"
+        }
+      ]
+    )
+
+    Geocoder::Lookup::Test.add_stub(
+      "Chicago, Illinois, United States", [
+        {
+          "coordinates" => [41.8781, -87.6298],
+          "city" => "Chicago",
+          "state_code" => "IL",
+          "country_code" => "US"
+        }
+      ]
+    )
+
     @series = event_series(:railsconf)
   end
 

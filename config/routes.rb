@@ -77,6 +77,7 @@ Rails.application.routes.draw do
   end
 
   get "/cities", to: "cities#index", as: :cities
+  get "/cities/tokyo", to: redirect("/states/jp/tokyo", status: 301)
 
   get "/cities/:alpha2/:city", to: "cities#show_by_country", as: :city_by_country, constraints: {alpha2: /[a-z]{2}/i}
   scope "/cities/:alpha2/:city", as: :city_by_country, constraints: {alpha2: /[a-z]{2}/i} do

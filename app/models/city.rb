@@ -35,15 +35,17 @@ class City < ApplicationRecord
     if (result = results.first)
       record.latitude = result.latitude
       record.longitude = result.longitude
-      record.geocode_metadata = result.data.merge("geocoded_at" => Time.current.iso8601)
-      record.name = result.city || record.name
+      record.geocode_metadata = result.data.merge(
+        "geocoded_at" => Time.current.iso8601,
+        "geocoder_city" => result.city
+      )
     end
   end
 
   has_many :events, primary_key: [:name, :country_code, :state_code], foreign_key: [:city, :country_code, :state_code], inverse_of: false
   has_many :users, -> { indexable.geocoded }, class_name: "User", primary_key: [:name, :country_code, :state_code], foreign_key: [:city, :country_code, :state_code], inverse_of: false
 
-  before_validation :geocode, on: :create, if: -> { geocodeable? && !geocoded? }
+  before_validation :geocode, on: :create, if: :needs_geocoding?
   before_validation :clear_unsupported_state_code
 
   after_commit :index_in_search, on: [:create, :update]
@@ -52,6 +54,7 @@ class City < ApplicationRecord
   validates :name, presence: true, uniqueness: {scope: [:country_code, :state_code]}
   validates :slug, presence: true, uniqueness: true
   validates :country_code, presence: true
+  validate :geocoded_as_city
 
   scope :featured, -> { where(featured: true) }
   scope :for_country, ->(country_code) { where(country_code: country_code.upcase) }
@@ -62,7 +65,7 @@ class City < ApplicationRecord
   end
 
   def state
-    return nil unless state_code.present? && State.supported_country?(country)
+    return nil unless state_code.present? && country&.states?
 
     @state ||= State.find_by_code(state_code, country: country)
   end
@@ -117,10 +120,6 @@ class City < ApplicationRecord
     end
   end
 
-  def subtitle
-    location_string
-  end
-
   def to_param
     slug
   end
@@ -130,7 +129,11 @@ class City < ApplicationRecord
   end
 
   def geocodeable?
-    name.present? && country_code.present?
+    name.present?
+  end
+
+  def needs_geocoding?
+    geocodeable? && !geocoded?
   end
 
   def geocode_query
@@ -149,6 +152,10 @@ class City < ApplicationRecord
     else
       "#{name}, #{country&.name}"
     end
+  end
+
+  def to_location
+    Location.new(city: name, state_code: state_code, country_code: country_code)
   end
 
   def alpha2
@@ -243,7 +250,17 @@ class City < ApplicationRecord
   private
 
   def clear_unsupported_state_code
-    self.state_code = nil unless State.supported_country?(country)
+    self.state_code = nil unless country&.states?
+  end
+
+  CITY_STATE_COUNTRIES = %w[HK SG MC VA].freeze
+
+  def geocoded_as_city
+    return if CITY_STATE_COUNTRIES.include?(country_code)
+    return if geocode_metadata.blank?
+    return if geocode_metadata["geocoder_city"].present?
+
+    errors.add(:name, "is not a valid city")
   end
 
   class << self
@@ -259,7 +276,7 @@ class City < ApplicationRecord
       record = find_by(name: city, state_code: state_code, country_code: country_code)
       return record if record
 
-      create(
+      new_record = new(
         name: city,
         country_code: country_code.upcase,
         state_code: state_code,
@@ -267,6 +284,8 @@ class City < ApplicationRecord
         longitude: longitude,
         featured: false
       )
+
+      new_record.save ? new_record : nil
     end
 
     def featured_slugs
