@@ -4,40 +4,41 @@
 # Table name: talks
 # Database name: primary
 #
-#  id                   :integer          not null, primary key
-#  additional_resources :json             not null
-#  announced_at         :datetime
-#  date                 :date             indexed, indexed => [video_provider]
-#  description          :text             default(""), not null
-#  duration_in_seconds  :integer
-#  end_seconds          :integer
-#  external_player      :boolean          default(FALSE), not null
-#  external_player_url  :string           default(""), not null
-#  kind                 :string           default("talk"), not null, indexed
-#  language             :string           default("en"), not null
-#  like_count           :integer          default(0)
-#  meta_talk            :boolean          default(FALSE), not null
-#  original_title       :string           default(""), not null
-#  published_at         :datetime
-#  slides_url           :string
-#  slug                 :string           default(""), not null, indexed
-#  start_seconds        :integer
-#  summarized_using_ai  :boolean          default(TRUE), not null
-#  summary              :text             default(""), not null
-#  thumbnail_lg         :string           default(""), not null
-#  thumbnail_md         :string           default(""), not null
-#  thumbnail_sm         :string           default(""), not null
-#  thumbnail_xl         :string           default(""), not null
-#  thumbnail_xs         :string           default(""), not null
-#  title                :string           default(""), not null, indexed
-#  video_provider       :string           default("youtube"), not null, indexed => [date]
-#  view_count           :integer          default(0)
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null, indexed
-#  event_id             :integer          indexed
-#  parent_talk_id       :integer          indexed
-#  static_id            :string           not null, uniquely indexed
-#  video_id             :string           default(""), not null
+#  id                           :integer          not null, primary key
+#  additional_resources         :json             not null
+#  announced_at                 :datetime
+#  date                         :date             indexed, indexed => [video_provider]
+#  description                  :text             default(""), not null
+#  duration_in_seconds          :integer
+#  end_seconds                  :integer
+#  external_player              :boolean          default(FALSE), not null
+#  external_player_url          :string           default(""), not null
+#  kind                         :string           default("talk"), not null, indexed
+#  language                     :string           default("en"), not null
+#  like_count                   :integer          default(0)
+#  meta_talk                    :boolean          default(FALSE), not null
+#  original_title               :string           default(""), not null
+#  published_at                 :datetime
+#  slides_url                   :string
+#  slug                         :string           default(""), not null, indexed
+#  start_seconds                :integer
+#  summarized_using_ai          :boolean          default(TRUE), not null
+#  summary                      :text             default(""), not null
+#  thumbnail_lg                 :string           default(""), not null
+#  thumbnail_md                 :string           default(""), not null
+#  thumbnail_sm                 :string           default(""), not null
+#  thumbnail_xl                 :string           default(""), not null
+#  thumbnail_xs                 :string           default(""), not null
+#  title                        :string           default(""), not null, indexed
+#  video_provider               :string           default("youtube"), not null, indexed => [date]
+#  view_count                   :integer          default(0)
+#  youtube_thumbnail_checked_at :datetime
+#  created_at                   :datetime         not null
+#  updated_at                   :datetime         not null, indexed
+#  event_id                     :integer          indexed
+#  parent_talk_id               :integer          indexed
+#  static_id                    :string           not null, uniquely indexed
+#  video_id                     :string           default(""), not null
 #
 # Indexes
 #
@@ -347,8 +348,7 @@ class Talk < ApplicationRecord
         thumbnail_xl: "maxresdefault"
       }
 
-      url = "https://i.ytimg.com/vi/#{video_id}/#{youtube[size]}.jpg"
-      return url unless default_thumbnail?(url)
+      return "https://i.ytimg.com/vi/#{video_id}/#{youtube[size]}.jpg"
     end
 
     if video_provider == "parent" && parent_talk.present?
@@ -360,18 +360,6 @@ class Talk < ApplicationRecord
     end
 
     fallback_thumbnail
-  end
-
-  def default_thumbnail?(thumbnail_url)
-    uri = URI.parse(thumbnail_url)
-    response = Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
-      http.request_head(uri.path)
-    end
-
-    response["Content-Length"].to_i < 5000
-  rescue => e
-    Rails.logger.error("Error validating default thumbnail: #{e.message}")
-    false
   end
 
   def external_player_utm_params

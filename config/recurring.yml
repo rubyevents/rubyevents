@@ -4,6 +4,9 @@ youtube_video_statistics_job:
 youtube_video_duration_job:
   class: Recurring::YouTubeVideoDurationJob
   schedule: every day at 3am
+youtube_thumbnail_validation_job:
+  class: Recurring::YouTubeThumbnailValidationJob
+  schedule: every week on sunday at 4am
 rollup_aggregate_analytics:
   class: Recurring::RollupJob
   schedule: every hour

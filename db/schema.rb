@@ -414,6 +414,7 @@ ActiveRecord::Schema[8.2].define(version: 2026_01_10_201634) do
     t.string "video_id", default: "", null: false
     t.string "video_provider", default: "", null: false
     t.integer "view_count", default: 0
+    t.datetime "youtube_thumbnail_checked_at"
     t.index ["date"], name: "index_talks_on_date"
     t.index ["event_id"], name: "index_talks_on_event_id"
     t.index ["kind"], name: "index_talks_on_kind"
