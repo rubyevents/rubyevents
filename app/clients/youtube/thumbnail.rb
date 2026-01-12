@@ -78,7 +78,7 @@ module YouTube
       (aspect_ratio - EXPECTED_ASPECT_RATIO).abs < ASPECT_RATIO_TOLERANCE
     rescue => e
       Rails.logger.error("Error checking aspect ratio for #{url}: #{e.message}")
-      true
+      false
     end
 
     private
