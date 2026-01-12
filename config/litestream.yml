@@ -11,7 +11,7 @@
 # For more details, see: https://litestream.io/reference/config/
 
 # global settings
-sync-interval: 1m
+sync-interval: 10m
 
 snapshot:
   interval: 1h
@@ -27,6 +27,8 @@ dbs:
         path: storage/production_rubyvideo.sqlite3
         access-key-id: $LITESTREAM_ACCESS_KEY_ID
         secret-access-key: $LITESTREAM_SECRET_ACCESS_KEY
+        retention: 24h # How long to keep WAL files on replica
+        retention-check-interval: 1h
 
   # - path: storage/production_rubyvideo.sqlite3
   #   replicas:
@@ -58,3 +60,5 @@ dbs:
         path: storage/staging_rubyvideo.sqlite3
         access-key-id: $LITESTREAM_ACCESS_KEY_ID
         secret-access-key: $LITESTREAM_SECRET_ACCESS_KEY
+        retention: 24h # How long to keep WAL files on replica
+        retention-check-interval: 1h
