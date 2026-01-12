@@ -38,11 +38,11 @@ class UKNation
   end
 
   def continent
-    "Europe"
+    @continent ||= Continent.europe
   end
 
   def continent_name
-    continent
+    continent.name
   end
 
   def emoji_flag
@@ -127,6 +127,10 @@ class UKNation
 
   def uk_nation?
     true
+  end
+
+  def states?
+    false
   end
 
   def parent_country

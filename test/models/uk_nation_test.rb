@@ -47,10 +47,11 @@ class UKNationTest < ActiveSupport::TestCase
     assert_equal "scotland", nation.to_param
   end
 
-  test "continent returns Europe" do
+  test "continent returns Continent object" do
     nation = UKNation.new("scotland")
 
-    assert_equal "Europe", nation.continent
+    assert_kind_of Continent, nation.continent
+    assert_equal "Europe", nation.continent.name
   end
 
   test "continent_name returns Europe" do
@@ -75,6 +76,12 @@ class UKNationTest < ActiveSupport::TestCase
     nation = UKNation.new("scotland")
 
     assert nation.uk_nation?
+  end
+
+  test "states? returns false" do
+    nation = UKNation.new("scotland")
+
+    refute nation.states?
   end
 
   test "parent_country returns GB Country" do
