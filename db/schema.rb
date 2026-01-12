@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.2].define(version: 2026_01_12_065507) do
+ActiveRecord::Schema[8.2].define(version: 2026_01_12_071922) do
+  create_table "_litestream_lock", id: false, force: :cascade do |t|
+    t.integer "id"
+  end
+
+  create_table "_litestream_seq", force: :cascade do |t|
+    t.integer "seq"
+  end
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -411,8 +419,10 @@ ActiveRecord::Schema[8.2].define(version: 2026_01_12_065507) do
     t.string "thumbnail_xs", default: "", null: false
     t.string "title", default: "", null: false
     t.datetime "updated_at", null: false
+    t.datetime "video_availability_checked_at"
     t.string "video_id", default: "", null: false
     t.string "video_provider", default: "", null: false
+    t.datetime "video_unavailable_at"
     t.integer "view_count", default: 0
     t.datetime "youtube_thumbnail_checked_at"
     t.index ["date"], name: "index_talks_on_date"

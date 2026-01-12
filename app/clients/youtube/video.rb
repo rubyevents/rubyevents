@@ -1,5 +1,16 @@
 module YouTube
   class Video < Client
+    def available?(video_id)
+      path = "/videos"
+      query = {
+        part: "status",
+        id: video_id
+      }
+
+      response = all_items(path, query: query)
+      response.present?
+    end
+
     def get_statistics(video_id)
       path = "/videos"
       query = {

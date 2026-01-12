@@ -57,6 +57,10 @@ class Avo::Resources::Talk < Avo::BaseResource
     field :year, as: :number, hide_on: :index
     field :video_id, as: :text, hide_on: :index
     field :video_provider, as: :text, hide_on: :index
+    field :video_available, name: "Video Available", as: :boolean do
+      record.video_available?
+    end
+    field :video_unavailable_at, as: :date_time, hide_on: :index
     field :external_player, as: :boolean, hide_on: :index
     field :date, as: :date, hide_on: :index
     field :like_count, as: :number, hide_on: :index
@@ -96,5 +100,6 @@ class Avo::Resources::Talk < Avo::BaseResource
     filter Avo::Filters::Slug
     filter Avo::Filters::Language
     filter Avo::Filters::VideoProvider
+    filter Avo::Filters::VideoAvailability
   end
 end

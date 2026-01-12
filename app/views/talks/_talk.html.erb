@@ -251,11 +251,18 @@
           </p>
 
           <p>
-            Date: <%= talk.formatted_date %><br>
+            Held on: <%= talk.formatted_date %><br>
 
             <span class="text-gray-400">
               Published: <% if talk.published_at %><%= l(talk.published_at&.to_date, default: "unknown") %><% elsif talk.published? %> unknown <% else %> not published <% end %><br>
-              Announced: <%= l(talk.announced_at&.to_date, default: "unknown") %>
+
+              <% if talk.video_unavailable? %>
+                Unavailable: <%= l(talk.video_unavailable_at.to_date) %><br>
+              <% end %>
+
+              <% if talk.announced_at.present? %>
+                Announced: <%= l(talk.announced_at&.to_date, default: "unknown") %><br>
+              <% end %>
             </span>
           </p>
 

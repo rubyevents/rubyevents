@@ -60,6 +60,17 @@
       </div>
     <% end %>
 
+    <% if talk.video_unavailable? %>
+      <div
+        class="
+          absolute top-0 right-0 z-20 flex gap-2 p-2 m-3 rounded-full bg-black/15
+          backdrop-blur-md
+        ">
+        <span class="items-center hidden ml-1 text-sm text-white lg:group-hover:flex">Unavailable</span>
+        <span><%= fa("video-slash", size: :sm, class: "fill-white") %></span>
+      </div>
+    <% end %>
+
     <% if talk.duration_in_seconds.present? || watched_talk&.watched? %>
       <div
         class="
@@ -122,7 +133,7 @@
       </div>
     <% end %>
 
-    <% if talk.published? && !watched_talk&.watched? %>
+    <% if talk.published? && !watched_talk&.watched? && talk.video_available? %>
       <div
         class="
           absolute inset-0 z-10 items-center justify-center hidden lg:group-hover:flex
