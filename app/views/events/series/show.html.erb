@@ -19,6 +19,17 @@
         </h3>
       </div>
     </div>
+
+    <% if Current.user&.admin? %>
+      <div class="flex flex-col gap-2">
+        <%= ui_button url: reimport_series_path(@event_series), method: :post, kind: :neutral, size: :sm, class: "w-full" do %>
+          Reimport Series
+        <% end %>
+        <%= ui_button url: avo.resources_event_series_path(@event_series), target: :_blank, kind: :neutral, size: :sm, class: "w-full" do %>
+          Open in Avo
+        <% end %>
+      </div>
+    <% end %>
   </div>
 
   <p class="mt-3 md:mt-9 mb-3 text-[#636B74] max-w-[700px]">

@@ -39,6 +39,10 @@
       <%= render Tito::ButtonComponent.new(event: event) %>
 
       <% if Current.user&.admin? %>
+        <%= ui_button url: reimport_event_path(event), method: :post, kind: :neutral, size: :sm, class: "w-full" do %>
+          Reimport Event
+        <% end %>
+
         <%= ui_button url: avo.resources_event_path(event), target: :_blank, kind: :neutral, size: :sm, class: "w-full" do %>
           Open in Avo
         <% end %>

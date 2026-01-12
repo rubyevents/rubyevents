@@ -204,6 +204,7 @@ Rails.application.routes.draw do
 
   resources :events, param: :slug, only: [:index, :show, :update, :edit] do
     resources :event_participations, only: [:create, :destroy]
+    post :reimport, on: :member
 
     scope module: :events do
       collection do
@@ -214,7 +215,9 @@ Rails.application.routes.draw do
         get "/countries/:country" => redirect { |params, _| "/countries/#{params[:country]}" }
         get "/cities", to: redirect("/cities", status: 301)
         get "/cities/:city", to: redirect("/cities", status: 301)
-        resources :series, param: :slug, only: [:index, :show]
+        resources :series, param: :slug, only: [:index, :show] do
+          post :reimport, on: :member
+        end
         resources :attendances, only: [:index, :show], param: :event_slug
       end
 

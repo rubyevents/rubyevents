@@ -3,8 +3,9 @@ class EventsController < ApplicationController
   include Pagy::Backend
 
   skip_before_action :authenticate_user!, only: %i[index show update]
-  before_action :set_event, only: %i[show edit update]
+  before_action :set_event, only: %i[show edit update reimport]
   before_action :set_user_favorites, only: %i[show]
+  before_action :require_admin!, only: %i[reimport]
 
   # GET /events
   def index
@@ -51,6 +52,18 @@ class EventsController < ApplicationController
     end
   end
 
+  # POST /events/:slug/reimport
+  def reimport
+    static_event = Static::Event.find_by_slug(@event.slug)
+
+    if static_event
+      static_event.import!
+      redirect_to event_path(@event), notice: "Event reimported successfully."
+    else
+      redirect_to event_path(@event), alert: "Static event not found."
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -74,5 +87,9 @@ class EventsController < ApplicationController
     return unless Current.user
 
     @user_favorite_talks_ids = Current.user.default_watch_list.talks.ids
+  end
+
+  def require_admin!
+    redirect_to event_path(@event), alert: "Not authorized" unless Current.user&.admin?
   end
 end
