@@ -143,6 +143,7 @@ Proceed with asset generation? [Y/n]: y
 - **Square logos work best** - They scale well across all asset dimensions
 - **Choose contrasting colors** - If not specifying text color, the task auto-calculates white or black based on background luminance
 - **SVG logos produce the sharpest results** - They scale without quality loss
+- **SVG logos sometimes don't work** - If imagemagick can't open it, try converting to PNG first.
 
 ### After Generation
 
