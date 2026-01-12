@@ -22,7 +22,14 @@ maps:
 hotels:
   - name: "DoubleTree by Hilton Hotel Portland"
     kind: "Speaker Hotel"
-    address: "1000 NE Multnomah St, Portland, OR 97232, USA"
+    address:
+      street: "1000 Northeast Multnomah Street"
+      city: "Portland"
+      region: "Oregon"
+      postal_code: "97232"
+      country: "United States"
+      country_code: "US"
+      display: "1000 NE Multnomah St, Portland, OR 97232, USA"
 
     coordinates:
       latitude: 45.53075990000001
@@ -33,7 +40,14 @@ hotels:
       apple: "https://maps.apple.com/?q=DoubleTree+by+Hilton+Hotel+Portland&ll=45.53075990000001,-122.6555863"
 
   - name: "Hotel Eastlund"
-    address: "1021 NE Grand Ave, Portland, OR 97232, USA"
+    address:
+      street: "1021 Northeast Grand Avenue"
+      city: "Portland"
+      region: "Oregon"
+      postal_code: "97232"
+      country: "United States"
+      country_code: "US"
+      display: "1021 NE Grand Ave, Portland, OR 97232, USA"
 
     coordinates:
       latitude: 45.5304118

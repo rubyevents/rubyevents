@@ -31,7 +31,14 @@ nearby:
 hotels:
   - name: "ibis Styles Bern City"
     kind: "Partner Hotel"
-    address: "Zieglerstrasse 66, 3007 Bern, Switzerland"
+    address:
+      street: "66 Zieglerstrasse"
+      city: "Bern"
+      region: "Bern"
+      postal_code: "3007"
+      country: "Switzerland"
+      country_code: "CH"
+      display: "Zieglerstrasse 66, 3007 Bern, Switzerland"
     description: |-
       Conference partner hotel with exclusive rates
     coordinates:

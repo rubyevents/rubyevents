@@ -141,7 +141,7 @@ class Event::Venue < ActiveRecord::AssociatedObject
         longitude: coords["longitude"],
         kind: "hotel",
         name: hotel["name"],
-        address: hotel["address"],
+        address: hotel.dig("address", "display"),
         distance: hotel["distance"]
       }
     end
@@ -156,7 +156,7 @@ class Event::Venue < ActiveRecord::AssociatedObject
         kind: "location",
         name: location["name"],
         location_kind: location["kind"],
-        address: location["address"],
+        address: location.dig("address", "display"),
         distance: location["distance"]
       }
     end

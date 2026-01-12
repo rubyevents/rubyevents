@@ -22,7 +22,14 @@ maps:
 hotels:
   - name: "The Hoxton, Lloyd"
     kind: "Speaker Hotel"
-    address: "Oostelijke Handelskade 34, 1019 BN Amsterdam, Netherlands"
+    address:
+      street: "34 Oostelijke Handelskade"
+      city: "Amsterdam"
+      region: "Noord-Holland"
+      postal_code: "1019 BN"
+      country: "Netherlands"
+      country_code: "NL"
+      display: "Oostelijke Handelskade 34, 1019 BN Amsterdam, Netherlands"
     description: |-
       Official speaker hotel for Rails World 2023
     distance: "15 min by tram from venue"

@@ -22,7 +22,14 @@ maps:
 hotels:
   - name: "W Toronto"
     kind: "Speaker Hotel"
-    address: "90 Bloor St E, Toronto ON M4W 1A7, Canada"
+    address:
+      street: "90 Bloor Street East"
+      city: "Toronto"
+      region: "Ontario"
+      postal_code: "M4W 1A7"
+      country: "Canada"
+      country_code: "CA"
+      display: "90 Bloor St E, Toronto, ON M4W 1A7, Canada"
     coordinates:
       latitude: 43.671344
       longitude: -79.384691

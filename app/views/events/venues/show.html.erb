@@ -173,8 +173,8 @@
                     <span class="badge badge-sm badge-primary shrink-0"><%= location["kind"] %></span>
                   <% end %>
                 </div>
-                <% if location["address"].present? %>
-                  <p class="text-sm text-gray-500 mt-1"><%= location["address"] %></p>
+                <% if location.dig("address", "display").present? %>
+                  <p class="text-sm text-gray-500 mt-1"><%= location.dig("address", "display") %></p>
                 <% end %>
                 <% if location["description"].present? %>
                   <p class="text-sm text-gray-600 mt-2"><%= location["description"] %></p>
@@ -220,8 +220,8 @@
                     <span class="badge badge-sm badge-outline shrink-0"><%= hotel["kind"] %></span>
                   <% end %>
                 </div>
-                <% if hotel["address"].present? %>
-                  <p class="text-sm text-gray-500 mt-1"><%= hotel["address"] %></p>
+                <% if hotel.dig("address", "display").present? %>
+                  <p class="text-sm text-gray-500 mt-1"><%= hotel.dig("address", "display") %></p>
                 <% end %>
                 <% if hotel["description"].present? %>
                   <p class="text-sm text-gray-600 mt-2"><%= hotel["description"] %></p>

@@ -22,7 +22,14 @@ maps:
 hotels:
   - name: "Detroit Marriott at the Renaissance Center"
     kind: "Conference Hotel"
-    address: "400 Renaissance Dr, Detroit, MI 48243, United States"
+    address:
+      street: "400 Renaissance Drive West"
+      city: "Detroit"
+      region: "Michigan"
+      postal_code: "48243"
+      country: "United States"
+      country_code: "US"
+      display: "400 Renaissance Dr, Detroit, MI 48243, United States"
     coordinates:
       latitude: 42.328581
       longitude: -83.040622

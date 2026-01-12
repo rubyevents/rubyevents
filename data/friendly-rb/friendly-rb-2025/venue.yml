@@ -22,7 +22,14 @@ maps:
 locations:
   - name: "Fire Club"
     kind: "Afterparty Location"
-    address: "Strada Zarafi 4, București 030091, Romania"
+    address:
+      street: "4 Strada Zarafi"
+      city: "București"
+      region: "București"
+      postal_code: "030167"
+      country: "Romania"
+      country_code: "RO"
+      display: "Strada Zarafi 4, București 030091, Romania"
     description: |-
       Official afterparty venue for Friendly.rb 2025
     coordinates:
@@ -33,7 +40,14 @@ locations:
 
   - name: "Ironic Taproom"
     kind: "Afterparty Location"
-    address: "Strada Domnița Anastasia 4, București 075100, Romania"
+    address:
+      street: "4 Strada Domnița Anastasia"
+      city: "București"
+      region: "București"
+      postal_code: "010403"
+      country: "Romania"
+      country_code: "RO"
+      display: "Strada Domnița Anastasia 4, București 075100, Romania"
     description: |-
       Popular spot where attendees hung out after the conference
     coordinates:
@@ -47,6 +61,14 @@ hotels:
     kind: "Recommended"
     description: |-
       Modern hotel in the Old Town, close to the venue
+    address:
+      street: "Strada Doamnei"
+      city: "București"
+      region: "București"
+      postal_code: "030052"
+      country: "Romania"
+      country_code: "RO"
+      display: "Strada Doamnei, București 030052, Romania"
     coordinates:
       latitude: 44.4332171
       longitude: 26.1015606

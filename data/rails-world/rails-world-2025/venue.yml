@@ -22,7 +22,14 @@ maps:
 hotels:
   - name: "Sir Adam Hotel"
     kind: "Speaker Hotel"
-    address: "Overhoeksplein 7, 1031 KS Amsterdam, Netherlands"
+    address:
+      street: "7 Overhoeksplein"
+      city: "Amsterdam"
+      region: "Noord-Holland"
+      postal_code: "1031 KS"
+      country: "Netherlands"
+      country_code: "NL"
+      display: "Overhoeksplein 7, 1031 KS Amsterdam, Netherlands"
     coordinates:
       latitude: 52.383836
       longitude: 4.902287

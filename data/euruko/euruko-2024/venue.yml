@@ -23,7 +23,13 @@ maps:
 hotels:
   - name: "Hotel Hills Sarajevo Congress & Termal Spa Resort"
     kind: "Speaker Hotel"
-    address: "Butmirska cesta 18, Ilidža, Sarajevo 71000, Bosnia & Herzegovina"
+    address:
+      street: "18 Butmirska cesta"
+      city: "Ilidža"
+      region: "Federacija Bosne i Hercegovine"
+      country: "Bosnia and Herzegovina"
+      country_code: "BA"
+      display: "Butmirska cesta 18, Ilidža, Sarajevo 71000, Bosnia & Herzegovina"
     description: |-
       Conference venue hotel
     coordinates:
@@ -34,7 +40,13 @@ hotels:
 
   - name: "Hollywood Hotel"
     kind: "Speaker Hotel"
-    address: "Dr. Mustafe Pintola 23, Ilidža 71210, Bosnia & Herzegovina"
+    address:
+      street: "23 Dr. Mustafe Pintola"
+      city: "Ilidža"
+      region: "Federacija Bosne i Hercegovine"
+      country: "Bosnia and Herzegovina"
+      country_code: "BA"
+      display: "Dr. Mustafe Pintola 23, Ilidža 71210, Bosnia & Herzegovina"
     coordinates:
       latitude: 43.8291098
       longitude: 18.3092244
