@@ -9,7 +9,9 @@ class Events::CFPController < ApplicationController
   private
 
   def set_event
-    @event = Event.includes(:organisation).find_by!(slug: params[:event_slug])
+    @event = Event.includes(:series).find_by(slug: params[:event_slug])
+    return redirect_to(root_path, status: :moved_permanently) unless @event
+
     redirect_to event_path(@event.canonical), status: :moved_permanently if @event.canonical.present?
   end
 end

@@ -2,6 +2,7 @@ class TalksController < ApplicationController
   include RemoteModal
   include Pagy::Backend
   include WatchedTalks
+
   skip_before_action :authenticate_user!
 
   respond_with_remote_modal only: [:edit]
@@ -9,32 +10,13 @@ class TalksController < ApplicationController
   before_action :set_talk, only: %i[show edit update]
   before_action :set_user_favorites, only: %i[index show]
 
-  ORDER_BY_OPTIONS = {
-    "date_desc" => "talks.date DESC",
-    "date_asc" => "talks.date ASC",
-    "created_at_desc" => "talks.created_at DESC",
-    "created_at_asc" => "talks.created_at ASC"
-  }.freeze
-
   # GET /talks
   def index
-    @talks = Talk.includes(:speakers, event: :organisation, child_talks: :speakers)
-    @talks = @talks.watchable unless params[:all].present?
-    @talks = @talks.ft_search(params[:s]).with_snippets if params[:s].present?
-    @talks = @talks.for_topic(params[:topic]) if params[:topic].present?
-    @talks = @talks.for_event(params[:event]) if params[:event].present?
-    @talks = @talks.for_speaker(params[:speaker]) if params[:speaker].present?
-    @talks = @talks.where(kind: talk_kind) if talk_kind.present?
-    @talks = @talks.where("created_at >= ?", created_after) if created_after
-
-    # Apply ordering (handles search ranking vs custom ordering)
-    if order_by_key == "ranked"
-      @talks = @talks.ranked
-    elsif order_by_key.present?
-      @talks = @talks.order(ORDER_BY_OPTIONS[order_by_key])
-    end
-
-    @pagy, @talks = pagy(@talks, **pagy_params)
+    @pagy, @talks = search_backend.search_talks_with_pagy(
+      params[:s],
+      pagy_backend: self,
+      **search_options
+    )
   end
 
   # GET /talks/1
@@ -59,13 +41,41 @@ class TalksController < ApplicationController
 
   private
 
+  def search_backend
+    @search_backend ||= Search::Backend.resolve(params[:search_backend])
+  end
+
+  def search_options
+    {
+      per_page: params[:limit]&.to_i || 20,
+      page: params[:page]&.to_i || 1,
+      sort: sort_key,
+      topic_slug: params[:topic],
+      event_slug: params[:event],
+      speaker_slug: params[:speaker],
+      kind: talk_kind,
+      language: params[:language],
+      created_after: created_after,
+      status: params[:status],
+      include_unwatchable: params[:status] == "all"
+    }.compact_blank
+  end
+
+  def sort_key
+    if params[:s].present? && !explicit_ordering_requested?
+      "relevance"
+    else
+      params[:order_by].presence || "date_desc"
+    end
+  end
+
   helper_method :order_by_key
   def order_by_key
     if params[:s].present? && !explicit_ordering_requested?
       return "ranked"
     end
 
-    params[:order_by].presence_in(ORDER_BY_OPTIONS.keys) || "date_desc"
+    params[:order_by].presence || "date_desc"
   end
 
   helper_method :filtered_search?
@@ -83,22 +93,18 @@ class TalksController < ApplicationController
     nil
   end
 
-  def pagy_params
-    {
-      limit: params[:limit]&.to_i,
-      page: params[:page]&.to_i
-    }.compact_blank
-  end
-
   def talk_kind
     @talk_kind ||= params[:kind].presence_in(Talk.kinds.keys)
   end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_talk
-    @talk = Talk.includes(:approved_topics, speakers: :user, event: :organisation).find_by(slug: params[:slug])
+    @talk = Talk.includes(:approved_topics, :speakers, event: :series, watched_talks: :user).find_by(slug: params[:slug])
+    @talk ||= Talk.find_by_slug_or_alias(params[:slug])
 
-    redirect_to talks_path, status: :moved_permanently if @talk.blank?
+    return redirect_to talks_path, status: :moved_permanently if @talk.blank?
+
+    redirect_to talk_path(@talk), status: :moved_permanently if @talk.slug != params[:slug]
   end
 
   # Only allow a list of trusted parameters through.
@@ -108,7 +114,7 @@ class TalksController < ApplicationController
 
   helper_method :search_params
   def search_params
-    params.permit(:s, :topic, :event, :speaker, :kind, :created_after, :all, :order_by)
+    params.permit(:s, :topic, :event, :speaker, :kind, :created_after, :all, :order_by, :status, :language)
   end
 
   def set_user_favorites

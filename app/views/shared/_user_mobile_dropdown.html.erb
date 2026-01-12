@@ -1,25 +1,43 @@
 <%= ui_dropdown align: :end, content_classes: "mt-5 shadow-xl min-w-32", id: "user_navbar_toggle" do |c| %>
   <% c.with_toggle_open do %>
-    <%= heroicon "x-mark", size: :lg %>
+    <%= fa("xmark", size: :lg) %>
   <% end %>
 
   <% c.with_toggle_close do %>
-    <%= heroicon "bars-3", size: :lg %>
+    <%= fa("bars", size: :lg) %>
   <% end %>
 
   <% c.with_menu_item_link_to "Home", root_path %>
+  <% c.with_menu_item_link_to "Videos", browse_index_path %>
   <% c.with_menu_item_link_to "Talks", talks_path %>
   <% c.with_menu_item_link_to "Speakers", speakers_path %>
-  <% c.with_menu_item_link_to "Sponsors", sponsors_path %>
+  <% c.with_menu_item_link_to "Organizations", organizations_path %>
   <% c.with_menu_item_link_to "Events", events_path %>
+  <% c.with_menu_item_link_to "CFPs", events_path %>
   <% c.with_menu_item_link_to "Topics", topics_path %>
-  <% c.with_menu_item_link_to "Contribute", contributions_path %>
+
+  <% c.with_menu_item_divider %>
+
   <% c.with_menu_item_link_to "Leaderboard", leaderboard_path %>
+  <% c.with_menu_item_link_to "Countries", countries_path %>
 
   <% signed_in do %>
+    <% c.with_menu_item_divider %>
+
+    <% c.with_menu_item_link_to "Favorite Rubyists", favorite_users_path %>
+    <% c.with_menu_item_link_to "For You", recommendations_path %>
+    <% c.with_menu_item_link_to watched_talks_path do %>
+      <div class="flex items-center gap-2">
+        <span>Recently Watched</span>
+        <% if Current.user.watched_talks_count.positive? %>
+          <div class="badge badge-secondary"><%= Current.user.watched_talks_count %></div>
+        <% end %>
+      </div>
+    <% end %>
+
     <% c.with_menu_item_link_to watch_lists_path do %>
       <div class="flex items-center gap-2">
-        <span>Watch List</span>
+        <span>Bookmarks</span>
         <% if Current.user.default_watch_list.talks_count.positive? %>
           <div class="badge badge-secondary"><%= Current.user.default_watch_list.talks_count %></div>
         <% end %>
@@ -27,14 +45,12 @@
     <% end %>
   <% end %>
 
-  <% c.with_menu_item_divider %>
-
-  <% c.with_menu_item_link_to "Use", uses_path %>
-  <% c.with_menu_item_link_to "Analytics", analytics_dashboards_path %>
-  <% c.with_menu_item_link_to "About", about_path %>
   <% signed_in do %>
     <% c.with_menu_item_divider %>
+    <% c.with_menu_item_link_to "My Profile", profile_path(Current.user) %>
+    <% c.with_menu_item_link_to "Settings", settings_path %>
     <% c.with_menu_item_button_to t("sign_out"), Current.session, method: :delete, id: :sign_out %>
+
     <% if Current.user&.admin? %>
       <% c.with_menu_item_link_to "Suggestions", admin_suggestions_path %>
       <% c.with_menu_item_link_to t("admin"), avo_path %>
@@ -43,6 +59,6 @@
 
   <% signed_out do %>
     <% c.with_menu_item_divider %>
-    <% c.with_menu_item_link_to "Sign in", sign_in_path, data: {turbo_frame: "modal"} %>
+    <% c.with_menu_item_link_to "Sign in", new_session_path(redirect_to: request.fullpath), data: {turbo_frame: "modal"} %>
   <% end %>
 <% end %>

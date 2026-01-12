@@ -1,0 +1,36 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# == Schema Information
+#
+# Table name: contributors
+# Database name: primary
+#
+#  id         :integer          not null, primary key
+#  avatar_url :string
+#  html_url   :string
+#  login      :string           not null, uniquely indexed
+#  name       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  user_id    :integer          indexed
+#
+# Indexes
+#
+#  index_contributors_on_login    (login) UNIQUE
+#  index_contributors_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  user_id  (user_id => users.id)
+#
+one:
+  login: user_one
+  name: MyString
+  avatar_url: MyString
+  html_url: MyString
+
+two:
+  login: user_two
+  name: MyString
+  avatar_url: MyString
+  html_url: MyString

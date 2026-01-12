@@ -2,47 +2,50 @@
 # == Schema Information
 #
 # Table name: events
+# Database name: primary
 #
-#  id              :integer          not null, primary key
-#  cfp_close_date  :date
-#  cfp_link        :string
-#  cfp_open_date   :date
-#  city            :string
-#  country_code    :string
-#  date            :date
-#  date_precision  :string           default("day"), not null
-#  end_date        :date
-#  kind            :string           default("event"), not null, indexed
-#  name            :string           default(""), not null, indexed
-#  slug            :string           default(""), not null, indexed
-#  start_date      :date
-#  talks_count     :integer          default(0), not null
-#  website         :string           default("")
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  canonical_id    :integer          indexed
-#  organisation_id :integer          not null, indexed
+#  id               :integer          not null, primary key
+#  city             :string
+#  country_code     :string           indexed => [state_code]
+#  date             :date
+#  date_precision   :string           default("day"), not null
+#  end_date         :date
+#  geocode_metadata :json             not null
+#  kind             :string           default("event"), not null, indexed
+#  latitude         :decimal(10, 6)
+#  location         :string
+#  longitude        :decimal(10, 6)
+#  name             :string           default(""), not null, indexed
+#  slug             :string           default(""), not null, indexed
+#  start_date       :date
+#  state_code       :string           indexed => [country_code]
+#  talks_count      :integer          default(0), not null
+#  website          :string           default("")
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  canonical_id     :integer          indexed
+#  event_series_id  :integer          not null, indexed
 #
 # Indexes
 #
-#  index_events_on_canonical_id     (canonical_id)
-#  index_events_on_kind             (kind)
-#  index_events_on_name             (name)
-#  index_events_on_organisation_id  (organisation_id)
-#  index_events_on_slug             (slug)
+#  index_events_on_canonical_id                 (canonical_id)
+#  index_events_on_country_code_and_state_code  (country_code,state_code)
+#  index_events_on_event_series_id              (event_series_id)
+#  index_events_on_kind                         (kind)
+#  index_events_on_name                         (name)
+#  index_events_on_slug                         (slug)
 #
 # Foreign Keys
 #
 #  canonical_id     (canonical_id => events.id)
-#  organisation_id  (organisation_id => organisations.id)
+#  event_series_id  (event_series_id => event_series.id)
 #
-# rubocop:enable Layout/LineLength
 
 railsconf_2017:
   date: 2017-05-01
   start_date: 2017-05-01
   end_date: 2017-05-01
-  organisation: railsconf
+  series: railsconf
   city: Phoenix
   kind: conference
   name: RailsConf 2017
@@ -52,7 +55,7 @@ rubyconfth_2022:
   date: 2022-05-01
   start_date: 2022-05-01
   end_date: 2022-05-01
-  organisation: rubyconfth
+  series: rubyconfth
   city: Bangkok
   kind: conference
   name: RubyConf TH 2022
@@ -62,7 +65,7 @@ rails_world_2023:
   date: 2023-10-26
   start_date: 2023-10-26
   end_date: 2023-10-26
-  organisation: rails_world
+  series: rails_world
   name: Rails World 2023
   kind: conference
   slug: rails-world-2023
@@ -71,7 +74,7 @@ tropical_rb_2024:
   date: 2024-04-04
   start_date: 2024-04-04
   end_date: 2024-04-04
-  organisation: rails_world
+  series: rails_world
   name: Tropical Ruby 2024
   kind: conference
   slug: tropical-rb-2024
@@ -80,29 +83,32 @@ brightonruby_2024:
   date: 2024-06-28
   start_date: 2024-06-28
   end_date: 2024-06-28
-  organisation: brightonruby
+  series: brightonruby
   name: Brighton Ruby 2024
   kind: conference
   slug: brightonruby-2024
 
 future_conference:
   date: <%= 3.weeks.from_now %>
-  organisation: rails_world
+  series: rails_world
   name: Future Conference
   kind: conference
   slug: future-conference
-  cfp_link: https://www.futureconference.com/cfp
-  cfp_open_date: <%= 1.week.from_now %>
-  cfp_close_date: <%= 2.weeks.from_now %>
 
 # Event specifically for testing sponsors missing page - should NEVER have sponsors added
 no_sponsors_event:
   date: 2025-03-15
   start_date: 2025-03-15
   end_date: 2025-03-15
-  organisation: brightonruby
+  series: brightonruby
   city: Brighton
   country_code: GB
   kind: conference
   name: Test Conference Without Sponsors
   slug: no_sponsors_event
+
+wnb_rb_meetup:
+  series: wnb_rb
+  kind: meetup
+  name: WNB.rb Meetup
+  slug: wnb-rb-meetup

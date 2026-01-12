@@ -143,7 +143,8 @@
 # TODO: missing event: https://www.meetup.com/rubyonrails-ch/events/231066966
 # TODO: missing event: https://www.meetup.com/rubyonrails-ch/events/233303155
 ---
-- title: "Railshöck September 2016"
+- id: "railshock-september-2016"
+  title: "Railshöck September 2016"
   raw_title: "Railshöck @Simplificator"
   event_name: "Railshöck September 2016"
   video_id: "railshock-september-2016"
@@ -172,6 +173,7 @@
       event_name: "Railshöck September 2016"
       speakers:
         - Dimiter Petrov
+      id: "dimiter-petrov-railshock-september-2016"
       video_id: "dimiter-petrov-railshock-september-2016"
       video_provider: "not_recorded"
       thumbnail_xs: "https://files.speakerdeck.com/presentations/654fc1a7e66f48b09910ef105eab254a/slide_0.jpg"
@@ -198,7 +200,8 @@
 
         We hope to see you there! As usual there will be drinks and food as well.
 
-- title: "Railshöck November 2016"
+- id: "railshock-november-2016"
+  title: "Railshöck November 2016"
   raw_title: "Entering Elixir and Phoenix"
   event_name: "Railshöck November 2016"
   date: "2016-11-09"
@@ -216,6 +219,7 @@
       event_name: "Railshöck November 2016"
       speakers:
         - TODO
+      id: "entering-elixir-and-phoenix-railshock-November-2016"
       video_id: "entering-elixir-and-phoenix-railshock-November-2016"
       video_provider: "not_recorded"
       date: "2016-11-09"
@@ -226,7 +230,8 @@
 
 ## 2017
 
-- title: "Railshöck February 2017"
+- id: "railshock-february-2017"
+  title: "Railshöck February 2017"
   raw_title: "Master21 - Switzerlands first coding bootcamp"
   event_name: "Railshöck February 2017"
   date: "2017-02-09"
@@ -248,6 +253,7 @@
       event_name: "Railshöck February 2017"
       speakers:
         - Rodrigo Haenggi
+      id: "rodrigo-haenggi-railshock-february-2017"
       video_id: "rodrigo-haenggi-railshock-february-2017"
       video_provider: "not_recorded"
       thumbnail_xs: "https://files.speakerdeck.com/presentations/d3c47d62d8ec49ad875933290569e1ce/slide_0.jpg"
@@ -266,7 +272,8 @@
 
         This Railshöck takes place at Impact Hub Zürich (location: Colab at Sihlquai 131, 8005 Zurich): The global community of entrepreneurial people prototyping the future of business. At Impact Hub, you can connect, collaborate, co-work and create great content in an inspiring environment.
 
-- title: "Railshöck March 2017"
+- id: "railshock-march-2017"
+  title: "Railshöck March 2017"
   raw_title: "Ruby on Rails 5.1"
   event_name: "Railshöck March 2017"
   date: "2017-03-29"
@@ -282,13 +289,16 @@
       event_name: "Railshöck March 2017"
       speakers:
         - Yves Senn
+      id: "yves-senn-railshck-march-2017"
       video_id: "_PPvjk3Fp7U"
+      published_at: "2017-04-03"
       video_provider: "youtube"
       date: "2017-03-29"
       description: |-
         Yves Senn will talk about the upcoming Rails Release 5.1 and give an overview about news and changes.
 
-- title: "Railshöck May 2017"
+- id: "railshock-may-2017"
+  title: "Railshöck May 2017"
   raw_title: "Ruby on Rails - Request/Response Cycle"
   event_name: "Railshöck May 2017"
   date: "2017-05-24"
@@ -304,13 +314,15 @@
       event_name: "Railshöck May 2017"
       speakers:
         - Thomas Arni
+      id: "thomas-arni-railshock-may-2017"
       video_id: "thomas-arni-railshock-may-2017"
       video_provider: "not_recorded"
       date: "2017-05-24"
       description: |-
         We are very happy to have Thomas Arni presenting his talk about Ruby on Rails - Request/Response Cycle.
 
-- title: "Railshöck June 2017"
+- id: "railshock-june-2017"
+  title: "Railshöck June 2017"
   raw_title: "Writing a Ruby Testing Framework from Scratch"
   event_name: "Railshöck June 2017"
   date: "2017-06-21"
@@ -333,7 +345,9 @@
       event_name: "Railshöck June 2017"
       speakers:
         - Dimiter Petrov
+      id: "dimiter-petrov-railshck-june-2017"
       video_id: "IuYNTGA0C4g"
+      published_at: "2017-06-22"
       video_provider: "youtube"
       date: "2017-06-21"
       description: |-
@@ -345,8 +359,18 @@
 
         Blog post: https://dimiterpetrov.com/blog/self-testing-test-library
         Source code: https://github.com/crackofdusk/raisin
+      additional_resources:
+        - name: "crackofdusk/raisin"
+          type: "repo"
+          url: "https://github.com/crackofdusk/raisin"
 
-- title: "Railshöck August 2017"
+        - name: "Blog Post"
+          title: "A Self-Testing Test Library"
+          type: "repo"
+          url: "https://dimiterpetrov.com/blog/self-testing-test-library"
+
+- id: "railshock-august-2017"
+  title: "Railshöck August 2017"
   raw_title: "Railshöck August 2017"
   event_name: "Railshöck August 2017"
   date: "2017-08-16"
@@ -374,6 +398,7 @@
       event_name: "Railshöck August 2017"
       speakers:
         - "Josua Schmid"
+      id: "josua-schmid-railshock-august-2017"
       video_id: "josua-schmid-railshock-august-2017"
       video_provider: "not_recorded"
       date: "2017-08-16"
@@ -386,6 +411,7 @@
       event_name: "Railshöck August 2017"
       speakers:
         - Richard Bützer
+      id: "richi-butzer-railshock-august-2017"
       video_id: "richi-butzer-railshock-august-2017"
       video_provider: "not_recorded"
       date: "2017-08-16"
@@ -398,6 +424,7 @@
       event_name: "Railshöck August 2017"
       speakers:
         - "Martin Cavoj"
+      id: "martin-cavoj-railshock-august-2017"
       video_id: "martin-cavoj-railshock-august-2017"
       video_provider: "not_recorded"
       date: "2017-08-16"
@@ -415,13 +442,15 @@
       event_name: "Railshöck August 2017"
       speakers:
         - "Denis Müller"
+      id: "denis-muller-railshock-august-2017"
       video_id: "denis-muller-railshock-august-2017"
       video_provider: "not_recorded"
       date: "2017-08-16"
       description: |-
         Denis Müller explains the risks of session replay attacks and provides strategies for protecting Rails applications against them.
 
-- title: "Railshöck September 2017"
+- id: "railshock-september-2017"
+  title: "Railshöck September 2017"
   raw_title: "Swift for Rubyists"
   event_name: "Railshöck September 2017"
   date: "2017-09-20"
@@ -437,6 +466,7 @@
       event_name: "Railshöck September 2017"
       speakers:
         - Andy Park
+      id: "andy-park-railshock-september-2017"
       video_id: "andy-park-railshock-september-2017"
       video_provider: "not_recorded"
       date: "2017-09-20"
@@ -445,7 +475,8 @@
 
 ## 2018
 
-- title: "Railshöck January 2018"
+- id: "railshock-january-2018"
+  title: "Railshöck January 2018"
   raw_title: "Railshöck January 2018"
   event_name: "Railshöck January 2018"
   date: "2018-01-31"
@@ -477,7 +508,9 @@
       event_name: "Railshöck January 2018"
       speakers:
         - "Alessandro Rodi"
+      id: "alessandro-rodi-railshck-january-2018"
       video_id: "I_GGYIWbmg0"
+      published_at: "2018-02-01"
       video_provider: "youtube"
       date: "2018-01-31"
       slides_url: "https://docs.google.com/presentation/d/1lnhiMF4JT9nPU3XGGSVfL_4jQKhoumd9YpYYNedFp04/edit"
@@ -489,6 +522,7 @@
       event_name: "Railshöck January 2018"
       speakers:
         - "Richard Bützer"
+      id: "richard-butzer-railshock-january-2018"
       video_id: "richard-butzer-railshock-january-2018"
       video_provider: "not_published"
       date: "2018-01-31"
@@ -501,6 +535,7 @@
       event_name: "Railshöck January 2018"
       speakers:
         - "Stéphane Bisinger"
+      id: "stephane-bisinger-railshock-january-2018"
       video_id: "stephane-bisinger-railshock-january-2018"
       video_provider: "not_published"
       date: "2018-01-31"
@@ -513,14 +548,17 @@
       event_name: "Railshöck January 2018"
       speakers:
         - "Denis Müller"
+      id: "denis-mller-railshck-january-2018"
       video_id: "z1bavd3TAAg"
+      published_at: "2018-02-01"
       video_provider: "youtube"
       date: "2018-01-31"
       slides_url: "https://docs.google.com/presentation/d/1y_qflnM9mVyyaV5SnJ-dJm7Jt1ZrNTBtmPfqksKcLCA/edit"
       description: |-
         Denis introduces GraphQL and demonstrates how it simplifies building flexible and efficient APIs in Rails.
 
-- title: "Railshöck June 2018"
+- id: "railshock-june-2018"
+  title: "Railshöck June 2018"
   raw_title: "Railshöck June 2018"
   event_name: "Railshöck June 2018"
   date: "2018-06-20"
@@ -557,7 +595,9 @@
       event_name: "Railshöck June 2018"
       speakers:
         - "Alessandro Rodi"
+      id: "alessandro-rodi-railshck-june-2018"
       video_id: "P5-SJnEf5TU"
+      published_at: "2018-06-21"
       video_provider: "youtube"
       date: "2018-06-20"
       description: |-
@@ -568,6 +608,7 @@
       event_name: "Railshöck June 2018"
       speakers:
         - "Martin Cavoj"
+      id: "martin-cavoj-railshock-june-2018"
       video_id: "martin-cavoj-railshock-june-2018"
       video_provider: "not_recorded"
       date: "2018-06-20"
@@ -579,6 +620,7 @@
       event_name: "Railshöck June 2018"
       speakers:
         - "Simon Huber"
+      id: "simon-huber-railshock-june-2018"
       video_id: "simon-huber-railshock-june-2018"
       video_provider: "not_recorded"
       date: "2018-06-20"
@@ -590,7 +632,9 @@
       event_name: "Railshöck June 2018"
       speakers:
         - "Lukas Bischof"
+      id: "lukas-bischof-railshck-june-2018"
       video_id: "nzeBhyru8u0"
+      published_at: "2018-06-21"
       video_provider: "youtube"
       date: "2018-06-20"
       thumbnail_xs: "https://secure.meetupstatic.com/photos/event/1/4/2/a/highres_478625162.webp"
@@ -603,7 +647,8 @@
 
 ## 2019
 
-- title: "Railshöck January 2019"
+- id: "railshock-january-2019"
+  title: "Railshöck January 2019"
   raw_title: "Parallel and Thread-Safe Ruby at High-Speed with TruffleRuby"
   event_name: "Railshöck January 2019"
   date: "2019-01-29"
@@ -621,7 +666,9 @@
       event_name: "Railshöck January 2019"
       speakers:
         - Benoit Daloze
+      id: "benoit-daloze-railshck-january-2019"
       video_id: "Ll0uVIHkFdo"
+      published_at: "2019-01-30"
       video_provider: "youtube"
       date: "2019-01-29"
       description: |-
@@ -629,7 +676,8 @@
 
         This talk starts with an introduction to show how TruffleRuby works and then shows a technique to make Array and Hash thread-safe while enabling parallel access, with no penalty on single-threaded performance. In short, we keep the most important thread-safety guarantees of the global lock while allowing Ruby to scale up to tens of cores!
 
-- title: "Railshöck April 2019"
+- id: "railshock-april-2019"
+  title: "Railshöck April 2019"
   raw_title: "Railshöck April 2019"
   event_name: "Railshöck April 2019"
   date: "2019-04-17"
@@ -650,6 +698,7 @@
       event_name: "Railshöck April 2019"
       speakers:
         - "Alessandro Rodi"
+      id: "alessandro-rodi-railshock-april-2019"
       video_id: "alessandro-rodi-railshock-april-2019"
       video_provider: "not_recorded"
       date: "2019-04-17"
@@ -667,6 +716,7 @@
       event_name: "Railshöck April 2019"
       speakers:
         - "Sebastian Pape"
+      id: "sebastian-pape-railshock-april-2019"
       video_id: "sebastian-pape-railshock-april-2019"
       video_provider: "not_recorded"
       date: "2019-04-17"
@@ -684,6 +734,7 @@
       event_name: "Railshöck April 2019"
       speakers:
         - "Samuel Steiner"
+      id: "samuel-steiner-railshock-april-2019"
       video_id: "samuel-steiner-railshock-april-2019"
       video_provider: "not_recorded"
       date: "2019-04-17"
@@ -701,6 +752,7 @@
       event_name: "Railshöck April 2019"
       speakers:
         - "Josua Schmid"
+      id: "josua-schmid-railshock-april-2019"
       video_id: "josua-schmid-railshock-april-2019"
       video_provider: "not_recorded"
       date: "2019-04-17"
@@ -714,8 +766,13 @@
         We'll examine together how one specific RSpec matcher came into existence and how it works in detail. Expect to see some software design patterns and application examples.
 
         Source code: https://github.com/renuo/railshoeck-rspec-include-matcher
+      additional_resources:
+        - name: "renuo/railshoeck-rspec-include-matcher"
+          type: "repo"
+          url: "https://github.com/renuo/railshoeck-rspec-include-matcher"
 
-- title: "Railshöck December 2019"
+- id: "railshock-december-2019"
+  title: "Railshöck December 2019"
   raw_title: "Icecast Stream Parsing"
   event_name: "Railshöck December 2019"
   date: "2019-12-04"
@@ -739,7 +796,9 @@
       event_name: "Railshöck December 2019"
       speakers:
         - Dimiter Petrov
+      id: "dimiter-petrov-railshck-december-2019"
       video_id: "V5X_J0hTkVY"
+      published_at: "2019-12-05"
       video_provider: "youtube"
       date: "2019-12-04"
       description: |-
@@ -755,7 +814,8 @@
 
 ## 2020
 
-- title: "Railshöck October 2020"
+- id: "railshock-october-2020"
+  title: "Railshöck October 2020"
   raw_title: "Railshöck October 2020"
   event_name: "Railshöck October 2020"
   date: "2020-10-07"
@@ -791,6 +851,7 @@
       speakers:
         - "Simon Huber"
         - "Simon Isler"
+      id: "simon-simon-railshock-october-2020"
       video_id: "simon-simon-railshock-october-2020"
       video_provider: "not_recorded"
       date: "2020-10-07"
@@ -808,6 +869,7 @@
       event_name: "Railshöck October 2020"
       speakers:
         - "Alessandro Rodi"
+      id: "alessandro-rodi-railshock-october-2020"
       video_id: "alessandro-rodi-railshock-october-2020"
       video_provider: "not_recorded"
       date: "2020-10-07"
@@ -825,6 +887,7 @@
       event_name: "Railshöck October 2020"
       speakers:
         - "Josua Schmid"
+      id: "josua-schmid-railshock-october-2020"
       video_id: "josua-schmid-railshock-october-2020"
       video_provider: "not_recorded"
       date: "2020-10-07"
@@ -842,6 +905,7 @@
       event_name: "Railshöck October 2020"
       speakers:
         - "Gregor Wassmann"
+      id: "gregor-wassmann-railshock-october-2020"
       video_id: "gregor-wassmann-railshock-october-2020"
       video_provider: "not_recorded"
       date: "2020-10-07"
@@ -855,10 +919,15 @@
         Gregor discusses moving away from Rails concerns in favor of modernizing software using decorators, drawing from his experience leading IT at Hoelzle.
 
         Source code: https://github.com/hoelzle/rails-meetup-2020
+      additional_resources:
+        - name: "hoelzle/rails-meetup-2020"
+          type: "repo"
+          url: "https://github.com/hoelzle/rails-meetup-2020"
 
 ## 2021
 
-- title: "Railshöck October 2021"
+- id: "railshock-october-2021"
+  title: "Railshöck October 2021"
   raw_title: "Railshöck October 2021"
   event_name: "Railshöck October 2021"
   video_id: "railshock-october-2021"
@@ -893,6 +962,7 @@
       event_name: "Railshöck October 2021"
       speakers:
         - "Josua Schmid"
+      id: "josua-schmid-railshock-october-2021"
       video_id: "josua-schmid-railshock-october-2021"
       video_provider: "not_recorded"
       date: "2021-10-06"
@@ -910,6 +980,7 @@
       event_name: "Railshöck October 2021"
       speakers:
         - "Gregor Wassmann"
+      id: "gregor-wassmann-modular-monolith-railshock-october-2021"
       video_id: "gregor-wassmann-modular-monolith-railshock-october-2021"
       video_provider: "not_recorded"
       date: "2021-10-06"
@@ -923,12 +994,17 @@
         Gregor Wassmann discusses the concept of modular monoliths with Rails Engines, contrasting it with majestic monolith architecture.
 
         Source code: https://github.com/hoelzle/rails-meetup-2021
+      additional_resources:
+        - name: "hoelzle/rails-meetup-2021"
+          type: "repo"
+          url: "https://github.com/hoelzle/rails-meetup-2021"
 
     - title: "Best of Both Worlds"
       raw_title: "Best of Both Worlds by Gregor Wassmann"
       event_name: "Railshöck October 2021"
       speakers:
         - "Gregor Wassmann"
+      id: "gregor-wassmann-best-of-both-worlds-railshock-october-2021"
       video_id: "gregor-wassmann-best-of-both-worlds-railshock-october-2021"
       video_provider: "not_recorded"
       date: "2021-10-06"
@@ -942,12 +1018,17 @@
         Gregor Wassmann demonstrates how to combine a Svelte SPA, Rails API, FactoryBot, RSpec, and a single CI/CD pipeline for a seamless development experience.
 
         Source code: https://github.com/hoelzle/rails-meetup-2021
+      additional_resources:
+        - name: "hoelzle/rails-meetup-2021"
+          type: "repo"
+          url: "https://github.com/hoelzle/rails-meetup-2021"
 
     - title: "Feeling Lucky with Crystal"
       raw_title: "Feeling Lucky with Crystal by Nick Flückiger"
       event_name: "Railshöck October 2021"
       speakers:
         - "Nick Flückiger"
+      id: "nick-fluckiger-railshock-october-2021"
       video_id: "nick-fluckiger-railshock-october-2021"
       video_provider: "not_recorded"
       date: "2021-10-06"
@@ -962,7 +1043,8 @@
 
 ## 2022
 
-- title: "Railshöck August 2022"
+- id: "railshock-august-2022"
+  title: "Railshöck August 2022"
   raw_title: "Railshöck August 2022"
   event_name: "Railshöck August 2022"
   video_id: "railshock-august-2022"
@@ -993,6 +1075,7 @@
         - Hana Harencarova
         - Mario Schüttel
         - Thomas Ritter
+      id: "ruby-monstas-team-railshock-august-2022"
       video_id: "ruby-monstas-team-railshock-august-2022"
       video_provider: "not_recorded"
       date: "2022-08-24"
@@ -1012,6 +1095,7 @@
       event_name: "Railshöck August 2022"
       speakers:
         - "Gregor Wassmann"
+      id: "gregor-wassmann-railshock-august-2022"
       video_id: "gregor-wassmann-railshock-august-2022"
       video_provider: "not_recorded"
       date: "2022-08-24"
@@ -1025,12 +1109,17 @@
         Gregor Wassmann of Hölzle introduces the Discriminable gem and demonstrates its usage and applications in Rails projects.
 
         GitHub: https://github.com/gregorw/discriminable
+      additional_resources:
+        - name: "gregorw/discriminable"
+          type: "repo"
+          url: "https://github.com/gregorw/discriminable"
 
     - title: "Dato::Rails - less Head, less Pain"
       raw_title: "A Gem for Headless DatoCMS by Alessandro Rodi"
       event_name: "Railshöck August 2022"
       speakers:
         - "Alessandro Rodi"
+      id: "alessandro-rodi-railshock-august-2022"
       video_id: "alessandro-rodi-railshock-august-2022"
       video_provider: "not_recorded"
       date: "2022-08-24"
@@ -1043,12 +1132,17 @@
         Alessandro Rodi of Renuo presents a gem tailored for integrating and managing content with the headless DatoCMS platform.
 
         Blog post: https://dev.to/coorasse/datocms-with-ruby-on-rails-3ae5
+      additional_resources:
+        - name: "Blog Post"
+          type: "blog"
+          url: "https://dev.to/coorasse/datocms-with-ruby-on-rails-3ae5"
 
     - title: "Tech Dive into Hitobito"
       raw_title: "Tech Aspects of Hitobito by Matthias Viehweger"
       event_name: "Railshöck August 2022"
       speakers:
         - "Matthias Viehweger"
+      id: "matthias-viehweger-railshock-august-2022"
       video_id: "matthias-viehweger-railshock-august-2022"
       video_provider: "not_recorded"
       date: "2022-08-24"
@@ -1063,7 +1157,8 @@
 
 ## 2023
 
-- title: "Railshöck May 2023"
+- id: "railshock-may-2023"
+  title: "Railshöck May 2023"
   raw_title: "Railshöck May 2023"
   event_name: "Railshöck May 2023"
   date: "2023-05-11"
@@ -1099,6 +1194,7 @@
       speakers:
         - "Robin Steiner"
         - "Pascal Zumkehr"
+      id: "robin-steiner-pascal-zumkehr-railshock-may-2023"
       video_id: "robin-steiner-pascal-zumkehr-railshock-may-2023"
       video_provider: "not_recorded"
       date: "2023-05-11"
@@ -1114,6 +1210,7 @@
       event_name: "Railshöck May 2023"
       speakers:
         - "Simon Huber"
+      id: "simon-huber-railshock-may-2023"
       video_id: "simon-huber-railshock-may-2023"
       video_provider: "not_recorded"
       date: "2023-05-11"
@@ -1126,12 +1223,17 @@
         This talk demonstrates how to use rswag in Rails, including tweaks to avoid common pitfalls.
 
         GitHub repo: https://github.com/sihu/rswag-getting-started
+      additional_resources:
+        - name: "sihu/rswag-getting-started"
+          type: "repo"
+          url: "https://github.com/sihu/rswag-getting-started"
 
     - title: "thoughtbot defaults with suspenders"
       raw_title: "thoughtbot Defaults with suspenders by Dimiter Petrov"
       event_name: "Railshöck May 2023"
       speakers:
         - "Dimiter Petrov"
+      id: "dimiter-petrov-railshock-may-2023"
       video_id: "dimiter-petrov-railshock-may-2023"
       video_provider: "not_recorded"
       date: "2023-05-11"
@@ -1145,10 +1247,15 @@
         A dive into the internals of the suspenders project. Suspenders uses Rails generators to quickly configure a Rails app in line with practices agreed and refined at thoughtbot.
 
         GitHub Repo: https://github.com/thoughtbot/suspenders
+      additional_resources:
+        - name: "thoughtbot/suspenders"
+          type: "repo"
+          url: "https://github.com/thoughtbot/suspenders"
 
 ## 2024
 
-- title: "Railshöck March 2024"
+- id: "railshöck-march-2024"
+  title: "Railshöck March 2024"
   raw_title: "Railshöck March 2024"
   event_name: "Railshöck March 2024"
   date: "2024-03-06"
@@ -1169,6 +1276,7 @@
       event_name: "Railshöck March 2024"
       speakers:
         - "Matthias Viehweger"
+      id: "matthias-viehweger-railshock-march-2024"
       video_id: "matthias-viehweger-railshock-march-2024"
       video_provider: "not_recorded"
       date: "2024-03-06"
@@ -1188,6 +1296,7 @@
       event_name: "Railshöck March 2024"
       speakers:
         - "Daniel Bengl"
+      id: "daniel-bengl-railshock-march-2024"
       video_id: "daniel-bengl-railshock-march-2024"
       video_provider: "not_recorded"
       date: "2024-03-06"
@@ -1203,12 +1312,17 @@
         GitHub repo: https://github.com/renuo/rails-offline-talk
 
         https://www.meetup.com/rubyonrails-ch/events/298503697
+      additional_resources:
+        - name: "renuo/rails-offline-talk"
+          type: "repo"
+          url: "https://github.com/renuo/rails-offline-talk"
 
     - title: "Rails and Database Transactions"
       raw_title: "Rails and Database Transactions by Emily Wangler (atpoint)"
       event_name: "Railshöck March 2024"
       speakers:
         - "Emily Wangler"
+      id: "emily-wangler-railshock-march-2024"
       video_id: "emily-wangler-railshock-march-2024"
       video_provider: "not_recorded"
       date: "2024-03-06"
@@ -1228,6 +1342,7 @@
       event_name: "Railshöck March 2024"
       speakers:
         - "Sandro Kalbermatter"
+      id: "sandro-kalbermatter-railshock-march-2024"
       video_id: "sandro-kalbermatter-railshock-march-2024"
       video_provider: "not_recorded"
       date: "2024-03-06"
@@ -1242,8 +1357,13 @@
         GitHub repo: https://github.com/kalsan/compony
 
         https://www.meetup.com/rubyonrails-ch/events/298503697
+      additional_resources:
+        - name: "kalsan/compony"
+          type: "repo"
+          url: "https://github.com/kalsan/compony"
 
-- title: "Railshöck July 2024"
+- id: "railshock-july-2024"
+  title: "Railshöck July 2024"
   raw_title: "Railshöck July 2024"
   event_name: "Railshöck July 2024"
   date: "2024-07-24"
@@ -1276,6 +1396,7 @@
       event_name: "Railshöck July 2024"
       speakers:
         - "Josua Schmid"
+      id: "josua-schmid-railshock-august-2024"
       video_id: "josua-schmid-railshock-august-2024"
       video_provider: "not_recorded"
       date: "2024-07-24"
@@ -1290,7 +1411,8 @@
 
         https://www.meetup.com/rubyonrails-ch/events/301480681
 
-- title: "Railshöck August 2024"
+- id: "railshock-august-2024"
+  title: "Railshöck August 2024"
   raw_title: "Railshöck August 2024"
   event_name: "Railshöck August 2024"
   date: "2024-08-21"
@@ -1311,6 +1433,7 @@
       event_name: "Railshöck August 2024"
       speakers:
         - "Marco Roth"
+      id: "marco-roth-railshock-august-2024"
       video_id: "marco-roth-railshock-august-2024"
       video_provider: "not_recorded"
       date: "2024-08-21"
@@ -1324,11 +1447,13 @@
         Drawing inspiration from the rapid advancements in JavaScript tooling, we explore the horizon of possibilities for Rails developers, including how advanced browser extensions and tools specifically designed for the Hotwire ecosystem can level up your developer experience.
 
         https://www.meetup.com/rubyonrails-ch/events/298503717
+
     - title: "Pragmatic Rails – rails_api_logger"
       raw_title: "Pragmatic Rails – rails_api_logger by Alessandro Rodi (Renuo)"
       event_name: "Railshöck August 2024"
       speakers:
         - "Alessandro Rodi"
+      id: "alessandro-rodi-rails-api-logger-railshock-august-2024"
       video_id: "alessandro-rodi-rails-api-logger-railshock-august-2024"
       video_provider: "not_recorded"
       date: "2024-08-21"
@@ -1344,12 +1469,17 @@
         GitHub Repo: https://github.com/renuo/rails_api_logger
 
         https://www.meetup.com/rubyonrails-ch/events/298503717
+      additional_resources:
+        - name: "renuo/rails_api_logger"
+          type: "repo"
+          url: "https://github.com/renuo/rails_api_logger"
 
     - title: "nochmal, the gem"
       raw_title: "nochmal, the gem by Matthias Viehweger (Puzzle)"
       event_name: "Railshöck August 2024"
       speakers:
         - "Matthias Viehweger"
+      id: "matthias-viehweger-nochmal-railshock-august-2024"
       video_id: "matthias-viehweger-nochmal-railshock-august-2024"
       video_provider: "not_recorded"
       slides_url: "https://github.com/kronn/puzzle-presentations/blob/main/nochmal.pdf"
@@ -1363,12 +1493,17 @@
         Preserving user-data becomes challenging when the infrastructure evolves differently than you anticipated. How to migrate over 100GiB of user-uploads across 40 applications without downtime or data-loss.
 
         GitHub Repo: https://github.com/puzzle/nochmal
+      additional_resources:
+        - name: "puzzle/nochmal"
+          type: "repo"
+          url: "https://github.com/puzzle/nochmal"
 
     - title: "Pragmatic Rails again - validation_errors"
       raw_title: "Pragmatic Rails again - validation_errors by Alessandro Rodi (Renuo)"
       event_name: "Railshöck August 2024"
       speakers:
         - "Alessandro Rodi"
+      id: "alessandro-rodi-validation-errors-railshock-august-2024"
       video_id: "alessandro-rodi-validation-errors-railshock-august-2024"
       video_provider: "not_recorded"
       date: "2024-08-21"
@@ -1382,12 +1517,17 @@
         Track ActiveRecord validation errors on your database.
 
         GitHub Repo: https://github.com/coorasse/validation_errors
+      additional_resources:
+        - name: "coorasse/validation_errors"
+          type: "repo"
+          url: "https://github.com/coorasse/validation_errors"
 
     - title: "News Crawler via Langchain.rb and Gemini APIs"
       raw_title: "News Crawler via Langchain.RB and Gemini APIs by Riccardo Carlesso (Google Cloud)"
       event_name: "Railshöck August 2024"
       speakers:
         - "Riccardo Carlesso"
+      id: "riccardo-carlesso-railshock-august-2024"
       video_id: "riccardo-carlesso-railshock-august-2024"
       video_provider: "not_recorded"
       date: "2024-08-21"
@@ -1404,7 +1544,8 @@
 
         It all gets more exciting thanks to Andrei's langchainrb gem.
 
-- title: "Railshöck November 2024"
+- id: "railshock-november-2024"
+  title: "Railshöck November 2024"
   raw_title: "Railshöck November 2024"
   event_name: "Railshöck November 2024"
   date: "2024-11-27"
@@ -1435,6 +1576,7 @@
       event_name: "Railshöck November 2024"
       speakers:
         - "Dimiter Petrov"
+      id: "dimiter-petrov-railshock-november-2024"
       video_id: "dimiter-petrov-railshock-november-2024"
       video_provider: "not_published"
       date: "2024-11-27"
@@ -1451,6 +1593,7 @@
       event_name: "Railshöck November 2024"
       speakers:
         - "Simon Isler"
+      id: "simon-isler-railshock-november-2024"
       video_id: "simon-isler-railshock-november-2024"
       video_provider: "not_published"
       slides_url: "https://github.com/renuo/postgres-null-bytes-talk/blob/main/presentation.pdf"
@@ -1464,12 +1607,17 @@
         https://github.com/renuo/postgres-null-bytes-talk
 
         https://www.meetup.com/rubyonrails-ch/events/301751612
+      additional_resources:
+        - name: "renuo/postgres-null-bytes-talk"
+          type: "repo"
+          url: "https://github.com/renuo/postgres-null-bytes-talk"
 
     - title: "Server Sent Events - Making it work with Rack Hijacking and Postgres Notifications"
       raw_title: "Railshöck November 2024 - Server Sent Events"
       event_name: "Railshöck November 2024"
       speakers:
         - "Patrik Sopran"
+      id: "patrik-sopran-railshock-november-2024"
       video_id: "patrik-sopran-railshock-november-2024"
       video_provider: "not_published"
       date: "2024-11-27"
@@ -1484,12 +1632,21 @@
         https://github.com/de-sopi/sse-rails-react-demo
 
         https://www.meetup.com/rubyonrails-ch/events/301751612
+      additional_resources:
+        - name: "de-sopi/rails-sse-manager"
+          type: "repo"
+          url: "https://github.com/de-sopi/rails-sse-manager"
+
+        - name: "de-sopi/sse-rails-react-demo"
+          type: "repo"
+          url: "https://github.com/de-sopi/sse-rails-react-demo"
 
     - title: "When Enums are not enough"
       raw_title: "Railshöck November 2024 - When Enums are not enough"
       event_name: "Railshöck November 2024"
       speakers:
         - "Sandro Kalbermatter"
+      id: "sandro-kalbermatter-railshock-november-2024"
       video_id: "sandro-kalbermatter-railshock-november-2024"
       video_provider: "not_published"
       date: "2024-11-27"
@@ -1502,10 +1659,15 @@
         https://github.com/kalsan/anchormodel
 
         https://www.meetup.com/rubyonrails-ch/events/301751612
+      additional_resources:
+        - name: "kalsan/anchormodel"
+          type: "repo"
+          url: "https://github.com/kalsan/anchormodel"
 
 ## 2025
 
-- title: "Railshöck June 2025"
+- id: "railshock-june-2025"
+  title: "Railshöck June 2025"
   raw_title: "Railshöck June 2025"
   event_name: "Railshöck June 2025"
   date: "2025-06-18"
@@ -1536,6 +1698,7 @@
       event_name: "Railshöck June 2025"
       speakers:
         - "Zeno Davatz"
+      id: "zeno-davatz-railshock-june-2025"
       video_id: "zeno-davatz-railshock-june-2025"
       video_provider: "not_recorded"
       date: "2025-06-18"
@@ -1552,6 +1715,7 @@
       event_name: "Railshöck June 2025"
       speakers:
         - "Marco Roth"
+      id: "marco-roth-railshock-june-2025"
       video_id: "marco-roth-railshock-june-2025"
       video_provider: "not_recorded"
       date: "2025-06-18"
@@ -1569,6 +1733,7 @@
       event_name: "Railshöck June 2025"
       speakers:
         - "Masaomi Hatakeyama"
+      id: "masaomi-hatakeyama-railshock-june-2025"
       video_id: "masaomi-hatakeyama-railshock-june-2025"
       video_provider: "not_recorded"
       date: "2025-06-18"
@@ -1585,6 +1750,7 @@
       event_name: "Railshöck June 2025"
       speakers:
         - "Riccardo Carlesso"
+      id: "ricardo-carlesso-railshock-june-2025"
       video_id: "ricardo-carlesso-railshock-june-2025"
       video_provider: "not_recorded"
       date: "2025-06-18"
@@ -1598,43 +1764,80 @@
         Repo: https://github.com/palladius/rails8-turbo-chat
 
         https://www.meetup.com/rubyonrails-ch/events/307626721
+      additional_resources:
+        - name: "palladius/rails8-turbo-chat"
+          type: "repo"
+          url: "https://github.com/palladius/rails8-turbo-chat"
 
-- title: "Railshöck September 2025"
-  raw_title: "Railshöck September 2025"
-  event_name: "Railshöck September 2025"
+- title: "Mini Höck September 2025"
+  raw_title: "Mini Höck at openscript"
+  event_name: "Mini Höck September 2025"
   date: "2025-09-10"
   published_at: "TODO"
   video_id: "railshock-september-2025"
   id: "railshock-september-2025"
   video_provider: "children"
   description: |-
-    Date: Wednesday, September 10, 2025
-    Time: 6:30 PM to 8:30 PM CEST
-    Location: openscript, Europa-Strasse 30, Opfikon, Switzerland
-    Host: Josua Schmid
-    Capacity: Limited to 12 people
+    We've got a new host on the Railshöck parquet: openscript. Since they've got a cute little office, participation is limited to 12 people only.
 
-    Presentation: "Rails + inertia"
+    The program
+
+    * Intro by Robin Bühler
+    * Rails + Inertia.js by Diego Steiner
+    * 5' Intermezzo "Netzwerk SDS" by Christian Sedlmair
+    * Rails + Svelte on Rails by Christian Sedlmair
 
     Snacks and drinks are offered by openscript.
-    Participants are invited to propose additional talks.
 
     https://www.meetup.com/rubyonrails-ch/events/307191188
+  thumbnail_xs: "https://secure.meetupstatic.com/photos/event/4/1/3/3/highres_530116691.webp"
+  thumbnail_sm: "https://secure.meetupstatic.com/photos/event/4/1/3/3/highres_530116691.webp"
+  thumbnail_md: "https://secure.meetupstatic.com/photos/event/4/1/3/3/highres_530116691.webp"
+  thumbnail_lg: "https://secure.meetupstatic.com/photos/event/4/1/3/3/highres_530116691.webp"
+  thumbnail_xl: "https://secure.meetupstatic.com/photos/event/4/1/3/3/highres_530116691.webp"
   talks:
-    - title: "Rails + inertia"
-      raw_title: "Railshöck September 2025 - Rails + inertia"
-      event_name: "Railshöck September 2025"
+    - id: "robin-buehler-railshock-september-2025"
+      title: "Intro"
+      event_name: "Mini Höck September 2025"
       speakers:
-        - "TODO"
-      video_id: "rails-inertia-railshock-september-2025"
-      id: "rails-inertia-railshock-september-2025"
-      video_provider: "scheduled"
+        - Robin Bühler
+      video_id: "robin-buehler-railshock-september-2025"
+      video_provider: "not_recorded"
       date: "2025-09-10"
-      published_at: "TODO"
-      description: |-
-        Rails + inertia presentation
+      description: ""
 
-        https://www.meetup.com/rubyonrails-ch/events/307191188
+    - id: "diego-steiner-railshock-september-2025"
+      title: "Rails + Inertia.js"
+      raw_title: "Mini Höck September 2025 - Rails + Inertia.js"
+      event_name: "Mini Höck September 2025"
+      speakers:
+        - Diego Steiner
+      video_id: "diego-steiner-railshock-september-2025"
+      video_provider: "not_recorded"
+      date: "2025-09-10"
+      description: ""
+
+    - id: "christian-sedlmair-netzwerk-railshock-september-2025"
+      title: "Netzwerk SDS"
+      raw_title: "Mini Höck September 2025 - Netzwerk SDS"
+      event_name: "Mini Höck September 2025"
+      speakers:
+        - Christian Sedlmair
+      video_id: "christian-sedlmair-netzwerk-sds-railshock-september-2025"
+      video_provider: "not_recorded"
+      date: "2025-09-10"
+      description: ""
+
+    - id: "christian-sedlmair-svelte-railshock-september-2025"
+      title: "Rails + Svelte on Rails"
+      raw_title: "Mini Höck September 2025 - Rails + Svelte on Rails"
+      event_name: "Mini Höck September 2025"
+      speakers:
+        - Christian Sedlmair
+      video_id: "christian-sedlmair-svelte-railshock-september-2025"
+      video_provider: "not_recorded"
+      date: "2025-09-10"
+      description: ""
 
 - title: "Railshöck November 2025"
   raw_title: "Railshöck at Swisscom"
@@ -1645,15 +1848,133 @@
   id: "railshock-november-2025"
   video_provider: "children"
   description: |-
-    Save the date!
+    Hey everyone, this year's last Railshöck is hosted at Swisscom's. Three speakers committed to share their perspective on stage:
 
-    Date: Wednesday, November 12, 2025
-    Time: 6:30 PM to 8:30 PM CET
-    Location: Needs a location (Swisscom mentioned)
-    Host: Josua Schmid
+    * Rage Against the Malicious by Alexis Bernard is
+    about how to protect Rails applications against bots and brute force attacks without annoying humans, and why he thinks captchas are not the best solution.
 
-    Topics: Ruby, Ruby on Rails
-    Price: FREE
+    * Smart Queries for Dumb Models by Clemens Helm
+    about how complex data filtering in Rails often leads us down a rabbit hole of custom scopes, service objects, and Arel acrobatics. But what if we let the database do what it’s best at? In this talk, you’ll see how SQL views paired with plain ActiveRecord and Ransack can turn messy logic into elegant, powerful queries — without giving up the Rails way.
+
+    * Level Up Your Engineering Career with Mentorship, Pairing, and AI by Hana Harencarova
+    Feeling stuck in your technical growth? Don't learn alone. Discover how to tap into mentorship, pair programming, and AI to accelerate your skills. Whether you're early in career or going for senior roles, this session will equip you with strategies to get there faster and have fun in the process.
+
+    As always, snacks and drinks are sponsored by the host. So thanks to Swisscom!
 
     https://www.meetup.com/rubyonrails-ch/events/307805999
-  talks: []
+  talks:
+    - id: "alexis-bernard-railshock-november-2025"
+      title: "Rage Against the Malicious"
+      raw_title: "Railshöck November 2025 - Rage Against the Malicious"
+      event_name: "Railshöck November 2025"
+      speakers:
+        - Alexis Bernard
+      video_id: "alexis-bernard-railshock-november-2025"
+      video_provider: "not_recorded"
+      date: "2025-11-12"
+      description: |-
+        How to protect Rails applications against bots and brute force attacks without annoying humans, and why he thinks captchas are not the best solution.
+      additional_resources:
+        - name: "BaseSecrete/active_hashcash"
+          type: "repo"
+          url: "https://github.com/BaseSecrete/active_hashcash"
+
+    - id: "clemens-helm-railshock-november-2025"
+      title: "Smart Queries for Dumb Models"
+      raw_title: "Railshöck November 2025 - Smart Queries for Dumb Models"
+      event_name: "Railshöck November 2025"
+      speakers:
+        - Clemens Helm
+      video_id: "clemens-helm-railshock-november-2025"
+      video_provider: "not_recorded"
+      date: "2025-11-12"
+      description: |-
+        How complex data filtering in Rails often leads us down a rabbit hole of custom scopes, service objects, and Arel acrobatics. But what if we let the database do what it's best at? In this talk, you'll see how SQL views paired with plain ActiveRecord and Ransack can turn messy logic into elegant, powerful queries — without giving up the Rails way.
+      additional_resources:
+        - name: "clemenshelm/rubyshop"
+          type: "repo"
+          url: "https://github.com/clemenshelm/rubyshop"
+
+    - id: "hana-harencarova-railshock-november-2025"
+      title: "Level Up Your Engineering Career with Mentorship, Pairing, and AI"
+      raw_title: "Railshöck November 2025 - Level Up Your Engineering Career with Mentorship, Pairing, and AI"
+      event_name: "Railshöck November 2025"
+      speakers:
+        - Hana Harencarova
+      video_id: "hana-harencarova-railshock-november-2025"
+      video_provider: "not_recorded"
+      date: "2025-11-12"
+      slides_url: "https://docs.google.com/presentation/d/1cQJZFUUCekJ90yMNf3bvTbGWMGGi8pYutsJewtDFmP8/view"
+      description: |-
+        Feeling stuck in your technical growth? Don't learn alone. Discover how to tap into mentorship, pair programming, and AI to accelerate your skills. Whether you're early in career or going for senior roles, this session will equip you with strategies to get there faster and have fun in the process.
+
+- title: "Railshöck December 2025"
+  raw_title: "Railshöck at Renuo"
+  event_name: "Railshöck December 2025"
+  date: "2025-12-17"
+  published_at: "TODO"
+  video_id: "railshock-december-2025"
+  id: "railshock-december-2025"
+  video_provider: "children"
+  description: |-
+    Hi everyone
+
+    On a short notice I'll revise what I said before: THIS Railshöck will be the last one of this year… probably! fxn is travelling around, so I couldn't say no ☺️. It will be quite a prominent round!
+
+    So brace yourselves and behold expecting the following presentations:
+
+    Anchor Model by Sandro Kalbermatter is about a yet undescribed software design pattern
+    onlylogs by Alessandro Rodi is about the challenges of building a logs viewer as a Rails Engine
+    How Zeitwerk Works by Xavier Noria
+    As always, snacks and drinks are sponsored by the host. So thanks to Renuo! I hope to see you all there!
+
+    Cheers, Josua
+
+    https://www.meetup.com/rubyonrails-ch/events/312295522
+  thumbnail_xs: "https://secure.meetupstatic.com/photos/event/4/6/4/highres_531841124.webp"
+  thumbnail_sm: "https://secure.meetupstatic.com/photos/event/4/6/4/highres_531841124.webp"
+  thumbnail_md: "https://secure.meetupstatic.com/photos/event/4/6/4/highres_531841124.webp"
+  thumbnail_lg: "https://secure.meetupstatic.com/photos/event/4/6/4/highres_531841124.webp"
+  thumbnail_xl: "https://secure.meetupstatic.com/photos/event/4/6/4/highres_531841124.webp"
+  talks:
+    - id: "sandro-kalbermatter-railshock-december-2025"
+      title: "Anchor Model"
+      raw_title: "Railshöck December 2025 - Anchor Model"
+      event_name: "Railshöck December 2025"
+      speakers:
+        - Sandro Kalbermatter
+      video_id: "sandro-kalbermatter-railshock-december-2025"
+      video_provider: "not_recorded"
+      date: "2025-12-17"
+      slides_url: "https://drive.google.com/file/d/1ENiAY_MZkydYcdtJcnU6X-qqXT1NFVn8/view"
+      description: |-
+        About a yet undescribed software design pattern.
+      additional_resources:
+        - name: "kalsan/anchormodel"
+          type: "repo"
+          url: "https://github.com/kalsan/anchormodel"
+
+    - id: "alessandro-rodi-railshock-december-2025"
+      title: "onlylogs"
+      raw_title: "Railshöck December 2025 - onlylogs"
+      event_name: "Railshöck December 2025"
+      speakers:
+        - Alessandro Rodi
+      video_id: "alessandro-rodi-railshock-december-2025"
+      video_provider: "not_recorded"
+      date: "2025-12-17"
+      slides_url: "https://drive.google.com/file/d/1XS3wr6MrwDMR7BGVm-FTWH32qTfvOTgv/view"
+      description: |-
+        About the challenges of building a logs viewer as a Rails Engine.
+
+    - id: "xavier-noria-railshock-december-2025"
+      title: "How Zeitwerk Works"
+      raw_title: "Railshöck December 2025 - How Zeitwerk Works"
+      event_name: "Railshöck December 2025"
+      speakers:
+        - Xavier Noria
+      video_id: "xavier-noria-railshock-december-2025"
+      video_provider: "not_recorded"
+      date: "2025-12-17"
+      slides_url: "https://drive.google.com/file/d/1IaOJK2HeK44Hm5BpYv_q6w_9NRDSQB3q/view"
+      description: ""

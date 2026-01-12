@@ -1,15 +1,15 @@
 class SessionsController < ApplicationController
   include RemoteModal
+
   respond_with_remote_modal only: [:new]
 
   skip_before_action :authenticate_user!, only: %i[new create]
 
-  def index
-    @sessions = Current.user.sessions.order(created_at: :desc)
-  end
-
   def new
     @user = User.new
+    # Add connect_id or connect_to to state if present
+    @state = "connect_id:#{params[:connect_id]}" if params[:connect_id].present?
+    @state = "connect_to:#{params[:connect_to]}" if params[:connect_to].present?
   end
 
   def create
@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
       sign_in user
       redirect_to root_path, notice: "Signed in successfully"
     else
-      redirect_to sign_in_path(email_hint: params[:email]), alert: "That email or password is incorrect"
+      redirect_to new_session_path(email_hint: params[:email]), alert: "That email or password is incorrect"
     end
   end
 

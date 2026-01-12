@@ -25,5 +25,16 @@ module YouTube
         assert_nil stats
       end
     end
+
+    test "should return duration for a valid video" do
+      video_id = "9LfmrkyP81M"
+
+      VCR.use_cassette("youtube_duration", match_requests_on: [:method]) do
+        stats = @client.duration(video_id)
+        assert_not_nil stats
+        assert stats.is_a?(Integer)
+        assert stats > 0
+      end
+    end
   end
 end

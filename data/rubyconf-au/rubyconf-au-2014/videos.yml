@@ -1,202 +1,104 @@
 ---
 # Website: https://rubyconf.org.au/2014
 
-# TODO: schedule website
-# TODO: talks running order
-# TODO: talks date
-
-- title: "Extreme Makeover - Rubygems Edition"
-  raw_title: "RubyConf AU 2014: Extreme Makeover - Rubygems Edition by André Arko"
+- id: "jon-rowe-rubyconf-au-2014-workshop-1"
+  title: "Testing Zero to Hero"
+  raw_title: "Testing Zero to Hero by Jon Rowe"
   speakers:
-    - André Arko
+    - Jon Rowe
   event_name: "RubyConf AU 2014"
   date: "2014-02-19"
-  published_at: "TODO"
+  published_at: "N/A"
+  announced_at: "TODO"
   description: |-
-    RubyConf AU 2014: http://www.rubyconf.org.au
+    So testing… How does it work?
 
-    Rubygems.org provides every Rubyist with an amazing service: all the libraries in the Ruby world. As amazing as that is, installing gems can be a time-consuming and even error-prone process. (Just ask the Travis guys.) In this talk, you'll learn about the recent dramatic changes in Rubygems and Bundler to improve speed and reliability by rewriting the Rubygems client/server architecture. I'll show how the new system caches more information, makes fewer requests, and takes less time to install gems. Finally, I'll cover how the changes allow worldwide mirrors of rubygems.org, improving things for Rubyists around the globe.
-    Why this talk?
-    This talk exists primarily as a "State of the Gem Ecosystem Address", to tell everyone how things are going, what we've been working on, and why they should care. It also tries to point out the benefits that every Rubyist gets from the Ruby ecosystem, while gently letting them know that those things don't happen for free. Hopefully, by providing that information, we can ask people to contribute time and effort to improving things for everyone and sound like we are leading by example, rather than demanding that someone step up to solve the problems for us, already.
-  video_provider: "youtube"
-  video_id: "_2y7fP69qO8"
+    What is a unit test? Why is that an integration test, should I even bother
+    with acceptance tests?
 
-- title: "Why I am excited about Ruby 2.1?"
-  raw_title: "RubyConf AU 2014: Why I am excited about Ruby 2.1? by Sam Saffron"
-  speakers:
-    - Sam Saffron
-  event_name: "RubyConf AU 2014"
-  date: "2014-02-19"
-  published_at: "TODO"
-  description: |-
-    RubyConf AU 2014: http://www.rubyconf.org.au
+    Let's work through the differences between the various types of testing,
+    look at differing strategies for tackling problems and how they can be
+    solved. Try doing things with TDD, try doing things building tests after.
 
-    Ruby 2.1 is about to be released, it will include a generational GC, performance improvements and a much improved platform for diagnostics and profiling.
-    In this talk I will cover many of the new profiling and instrumentation APIs introduced in Ruby 2.1, introduce you to the new GC and show you some cool tools you can build on top of this. I will cover memory profiling, GC instrumentation, the much improved stack sampling, memory profilers, flame graphs and more.
+    Let's use RSpec, TestUnit and MiniSpec to test different techniques and
+    perfect our tests. And we will look at how we can apply these to our real
+    world problems to make our lives easier and our software better!
+  video_provider: "not_recorded"
+  video_id: "jon-rowe-rubyconf-au-2014-workshop-1"
 
-    Sam posted the slides from his talk here: speakerdeck.com/samsaffron/why-ruby-2-dot-1-excites-me
-  video_provider: "youtube"
-  video_id: "kici_QRQbOM"
-
-- title: "Rescuing Ruby"
-  raw_title: "RubyConf AU 2014: Rescuing Ruby by Greg Brockman"
-  speakers:
-    - Greg Brockman
-  event_name: "RubyConf AU 2014"
-  date: "2014-02-19"
-  published_at: "TODO"
-  description: |-
-    RubyConf AU 2014: http://www.rubyconf.org.au
-  video_provider: "youtube"
-  video_id: "VeoYIE370XY"
-
-- title: "Building C Extensions in Ruby"
-  raw_title: "RubyConf AU 2014: Building C Extensions in Ruby by André Medeiros"
+- id: "andre-medeiros-rubyconf-au-2014-workshop-2"
+  title: "Building C Extensions in Ruby"
+  raw_title: "Building C Extensions in Ruby by André Medeiros"
   speakers:
     - André Medeiros
   event_name: "RubyConf AU 2014"
   date: "2014-02-19"
-  published_at: "TODO"
+  published_at: "N/A"
+  announced_at: "TODO"
   description: |-
-    RubyConf AU 2014: http://www.rubyconf.org.au
+    You will learn how amazingly simple it is to build high-performance
+    extensions that leverage existing C libraries.
 
-    From time to time, when building Ruby apps, you realise there are no libraries available for what you need. Even worse, Ruby doesn't quite perform as quickly as we would expect in certain areas. There are, however, a lot of high performance, mature technologies built in C that can easily be ported to be used with Ruby. By doing this, we get to keep using our favourite language, opening it to a plethora of applications that were not possible before, and still keep things snappy.
-    In this talk, I will walk you through the ins and outs of building Spyglass, an OpenCV binding for Ruby. I will also talk in detail about some gotchas (memory management, lack of threading), good practices (C objects as first class citizens, how to properly test extensions), why mkmf needs to be retired and some great examples of extensions you probably already use and should be looking at.
-  video_provider: "youtube"
-  video_id: "KZgovmyB8d8"
+    You’ll receive a basic notion of the C language, and then you will dive into
+    the various Ruby APIs that allow you to bridge C code to our favourite
+    language.
 
-- title: "MRI Magic Tricks"
-  raw_title: "RubyConf AU 2014: MRI Magic Tricks by Charlie Somerville"
+    We will also go through a heavy testing component that will help you ensure
+    that your extension works as intended, and remains as bulletproof as
+    possible.
+  video_provider: "not_recorded"
+  video_id: "andre-medeiros-rubyconf-au-2014-workshop-2"
+
+- id: "rails-girls-next-rubyconf-au-2014-workshop-3"
+  title: "Rails Girls Next"
+  raw_title: "Rails Girls Next"
   speakers:
-    - Charlie Somerville
+    - TODO
   event_name: "RubyConf AU 2014"
   date: "2014-02-19"
-  published_at: "TODO"
+  published_at: "N/A"
+  announced_at: "TODO"
   description: |-
-    RubyConf AU 2014: http://www.rubyconf.org.au
+    Take the next step in your coding journey!
 
-    Join me as we dive under the hood and take a rip-roaring tour of the internals of Ruby's canonical implementation.
-    This talk will have you hanging on the edge of your seat as we push the very limits of the Ruby language and take advantage of a few interesting bugs to do things you never thought were possible.
-    You'll laugh, you'll cry, and hopefully you'll come away from this talk with some fresh knowledge on just what makes Ruby tick.
-  video_provider: "youtube"
-  video_id: "3ROuTjbdkPk"
+    Join us and continue the learning you started at Rails Girls. Since you have
+    Ruby installed already, we can jump right in!
 
-- title: "Using Ruby to Automate Your Life"
-  raw_title: "RubyConf AU 2014: Using Ruby to Automate Your Life by Seth Vargo"
+    We've organised three mentor-led tutorials that will help you dive deeper
+    into the world of professional development with Ruby. Tutorials include a
+    look at some of Ruby's more advanced features and syntax, building a Sinatra
+    app and deploying it, test-driven development and more.
+
+    Lastly, you will gain a greater appreciation of development work procedures
+    by pairing up to solve coding challenges and using Git for version control.
+  video_provider: "not_recorded"
+  video_id: "rails-girls-next-rubyconf-au-2014-workshop-3"
+
+- id: "cameron-barrie-rubyconf-au-2014"
+  title: "What it is you really do?"
+  raw_title: "RubyConf AU 2014: What it is you really do? by Cameron Barrie"
   speakers:
-    - Seth Vargo
+    - Cameron Barrie
   event_name: "RubyConf AU 2014"
-  date: "2014-02-19"
-  published_at: "TODO"
+  date: "2014-02-20"
+  published_at: "2017-05-22"
   description: |-
     RubyConf AU 2014: http://www.rubyconf.org.au
 
-    You probably use Ruby everyday, so why not use Ruby to automate some common tasks? What if you could spin up an EC2 instance and have it automatically configure your web server, database, users, and more? What if you could effectively capture and replicate your production environments reliably and consistently? What if you could then give developers production-like environments as Virtual Machines, with no additional work? What if you could set up your new laptop with multiple Ruby versions, your favourite software, and even change the desktop background - from a single command? The good news is - you can!
-    Chef is a configuration management and automation tool that solves these problems and many more. In this talk, you'll learn common just how easy it is to capture your infrastructure in Chef. Save time and money by using Chef's Ruby DSL to "define" your laptop.
-    How many times have you bought a new laptop and realise just how much stuff you installed over the years? If you're using Chef, run a single command
+    Programming is hard, correct? Code, tests, design patterns, abstractions, deployments, are the things we do everyday and coding can be a craft; it takes skill, patience, perseverance and sometimes downright stubbornness, but what is the result of all that hard work? What are we striving to achieve?
+    As programmers we often talk at length about how to build things. Questions like, what is the right level of abstraction? what database should I use? where should I deploy? etc etc. Indeed there is complexity in the craft of programming and in answering those questions. By why do we ask them in the first place?
+    You build software, you've put in all that hard work, and now you've launched. Time to learn about what you really do for a living!
   video_provider: "youtube"
-  video_id: "R_qFzviMkGY"
+  video_id: "Yh3pLUu-cx0"
 
-- title: "How I Architected My Big Rails App For Success"
-  raw_title: "RubyConf AU 2014: How I Architected My Big Rails App For Success by Benjamin Smith"
-  speakers:
-    - Benjamin Smith
-  event_name: "RubyConf AU 2014"
-  date: "2014-02-19"
-  published_at: "TODO"
-  description: |-
-    RubyConf AU 2014: http://www.rubyconf.org.au
-
-    Rails is a great framework for creating web apps… for awhile. What do you do when your codebase grows large? How do you handle large teams of developers? When performance becomes an issue, how do you scale? Most importantly, how do you write code which can easily be refactored later?
-    This is a story of a real life project built from day 1 with all these questions in mind. Learn about the problems we solved and lessons we learned: how to partition your Rails app into distinct modular engines, how to speed up your test suite by only running code effected by your changes, how to add a layer on top of ActiveRecord to enforce loose coupling, and many other patterns that can be applied to your own Rails apps!
-
-    slides here: speakerdeck.com/benjaminleesmith/how-i-architected-my-big-rails-app-for-success-rubyconfau-2014
-  video_provider: "youtube"
-  video_id: "1gXmh528o84"
-
-- title: "Hacking Sidekiq for Fun and Profit"
-  raw_title: "RubyConf AU 2014: Hacking Sidekiq for Fun and Profit by Darcy Laycock"
-  speakers:
-    - Darcy Laycock
-  event_name: "RubyConf AU 2014"
-  date: "2014-02-19"
-  published_at: "TODO"
-  description: |-
-    RubyConf AU 2014: http://www.rubyconf.org.au
-
-    It's almost inevitable in any Ruby Project - you hit that stage where your logic starts getting more complex, you start doing more stuff that needs to happen but doesn't have to happen in the foreground - or you just want things to be faster.
-    You move your logic out into workers and do the work in the background.
-    This talk is going to be all about Sidekiq - a threaded background job implementation written in Ruby - and, in two parts: How you can use it and how you can bend it to your will.
-    Part 1: Intro to Sidekiq
-    The boring: a brief introduction to sidekiq, how it works - what it's advantages are. The stuff you need to know about it, why it's useful to consider - even if you're using CRuby / MRI.
-    Part 2: Hacking Sidekiq
-    The cooler part - once you know what Sidekiq is, I'm going to show how you can use Sidekiq in your product, how you can extend it and bend it to your will. I'll go into how it implements itself in ruby land and how it interacts with the Redis.
-    I'll show how you can use the existing middleware (and write your own) to add behaviour to your code, patterns we've found useful for implementing and testing workers as well as the even more interesting side - using Lua support in Redis to implement stuff in Sidekiq.
-    I want to encourage developers to look at extending their tool set to work better with not just ruby - to become comfortable with how they work internally (e.g. you should really learn how to love redis) and what you really need to be careful of (e.g. bugs that manifest when the site is under less load than usual - a real world example of going too far).
-    Finally, I'll end with an important question: Why not just use a proper message queue?
-  video_provider: "youtube"
-  video_id: "MimELPl9J9c"
-
-- title: "Continuous Deployment with Rails"
-  raw_title: "RubyConf AU 2014: Continuous Deployment with Rails by Sebastian von Conrad"
-  speakers:
-    - Sebastian von Conrad
-  event_name: "RubyConf AU 2014"
-  date: "2014-02-19"
-  published_at: "TODO"
-  description: |-
-    RubyConf AU 2014: http://www.rubyconf.org.au
-
-    Recently it has become common practise for development teams to deploy their code several times a day, as well as encouraging new developers to deploy on their first day at work.
-    In our talk, we will discuss how we use continuous deployment to push these practises to the extreme. Automatically deploying the master branch on new changes is an awesome way to improve your development process.
-    Automatically deploying master will fundamentally change how you work. Gone are the days of the epic pull request. You'll quickly find yourself writing smaller more manageable chunks of code, that overall have a great impact on the quality of the software you produce.
-    By the end of the talk you'll know how to change the GitHub merge pull request button into a deploy button - and have the confidence to do so.
-    Some things we'll go over in the talk:
-    How to setup your CI environment for deployments Why having fast tests are important How to use your Staging environment for testing deployments How to use feature flags to hide deployed features from some users Zero downtime deploys, even when there are database migrations Your new deploy button, AKA The GitHub merge pull request button What to do when deployment goes wrong
-  video_provider: "youtube"
-  video_id: "lcyp3MKYRhY"
-
-- title: "Becoming a Software Engineer"
-  raw_title: "RubyConf AU 2014: Becoming a Software Engineer by Kinsey Ann Durham"
-  speakers:
-    - Kinsey Ann Durham
-  event_name: "RubyConf AU 2014"
-  date: "2014-02-19"
-  published_at: "TODO"
-  description: |-
-    Becoming a Software Engineer: Insipring a New Generation of Developers
-    RubyConf AU 2014: http://www.rubyconf.org.au
-
-
-    In my wildest dreams, I never thought that I would become a software developer. I thought that I wasn't smart enough, that I needed a computer science degree and to have been writing code since I was young. But, the traditional path to becoming a developer is changing. This talk will focus on alternative and untraditional paths to becoming a developer such as programs like Railsbridge, mentorship and apprentice programs. These alternative paths ultimately foster a more diverse and inclusive community, which drives economic growth and produces more innovative solutions.
-    The objectives of the talk are:
-    to bring awareness to the educational alternatives to computer science degrees to encourage empathy when mentoring a beginner to get the audience to see a different perspective and embrace differences in the industry
-  video_provider: "youtube"
-  video_id: "mbBJWRZD5pQ"
-
-- title: "The Golden Age of the Internet"
-  raw_title: "RubyConf AU 2014: The Golden Age of the Internet by Pat Allan"
-  speakers:
-    - Pat Allan
-  event_name: "RubyConf AU 2014"
-  date: "2014-02-19"
-  published_at: "TODO"
-  description: |-
-    RubyConf AU 2014: http://www.rubyconf.org.au
-
-    Congratulations. The Internet is now the centre of civilisation as we know it, and we are the ones who shape the Internet. Our skills are in high demand, we are paid well, we find our work challenging, interesting, and even sometimes fulfilling. These are the glory days of our industry, and we should soak up every minute of it!
-    But with such great power comes a great deal of responsibility. Will we be looking back in the near future, wondering if we squandered our opportunities to shape the digital world accordingly?
-    There's no doubt that we value humanity, intelligence, and compassion. Let's take a look at the ways our industry can ensure these values are reflected not just in the people we are, but the way we work.
-  video_provider: "youtube"
-  video_id: "UAVtX0yKFSo"
-
-- title: "A Big Look at MiniTest"
+- id: "mark-bates-rubyconf-au-2014"
+  title: "A Big Look at MiniTest"
   raw_title: "RubyConf AU 2014: A Big Look at MiniTest by Mark Bates"
   speakers:
     - Mark Bates
   event_name: "RubyConf AU 2014"
-  date: "2014-02-19"
-  published_at: "TODO"
+  date: "2014-02-20"
+  published_at: "2017-05-22"
   description: |-
     RubyConf AU 2014: http://www.rubyconf.org.au
 
@@ -206,30 +108,55 @@
   video_provider: "youtube"
   video_id: "nbUYbzS7Vlg"
 
-- title: "Ansible - Your First Step Into Server Provisioning"
-  raw_title: "RubyConf AU 2014: Ansible - Your First Step Into Server Provisioning by Ben Turner"
+- id: "andr-arko-rubyconf-au-2014"
+  title: "Extreme Makeover - Rubygems Edition"
+  raw_title: "RubyConf AU 2014: Extreme Makeover - Rubygems Edition by André Arko"
   speakers:
-    - Ben Turner
+    - André Arko
   event_name: "RubyConf AU 2014"
-  date: "2014-02-19"
-  published_at: "TODO"
+  date: "2014-02-20"
+  published_at: "2017-05-22"
   description: |-
     RubyConf AU 2014: http://www.rubyconf.org.au
 
-    The ability to repeatably and automatically build your servers in code is essential for managing a modern Ruby application's server infrastructure.
-    Solutions such as Chef and Puppet are often used to solve this issue, but for some teams, this might be too costly to learn and implement effectively. Bridging the gap between these larger solutions and shell scripting is Ansible, a light footprint provisioning tool using SSH and YAML files to quickly define repeatable server creation and configuration steps.
-    This talk will cover:
-    introduce server provisioning at a high level explain how Ansible fits into that pattern describe simple Ansible commands and modules run through a basic playbook example, bringing these elements together summarise other functionality offered by Ansible
+    Rubygems.org provides every Rubyist with an amazing service: all the libraries in the Ruby world. As amazing as that is, installing gems can be a time-consuming and even error-prone process. (Just ask the Travis guys.) In this talk, you'll learn about the recent dramatic changes in Rubygems and Bundler to improve speed and reliability by rewriting the Rubygems client/server architecture. I'll show how the new system caches more information, makes fewer requests, and takes less time to install gems. Finally, I'll cover how the changes allow worldwide mirrors of rubygems.org, improving things for Rubyists around the globe.
+    Why this talk?
+    This talk exists primarily as a "State of the Gem Ecosystem Address", to tell everyone how things are going, what we've been working on, and why they should care. It also tries to point out the benefits that every Rubyist gets from the Ruby ecosystem, while gently letting them know that those things don't happen for free. Hopefully, by providing that information, we can ask people to contribute time and effort to improving things for everyone and sound like we are leading by example, rather than demanding that someone step up to solve the problems for us, already.
   video_provider: "youtube"
-  video_id: "KFn8isYw97g"
+  video_id: "_2y7fP69qO8"
 
-- title: "Teach Your Way To Better Code"
+- id: "nishant-modak-rubyconf-au-2014"
+  title: "Rack - A Framework to Roll Your Own"
+  raw_title: "Rack - A Framework to Roll Your Own by Nishant Modak"
+  speakers:
+    - Nishant Modak
+  event_name: "RubyConf AU 2014"
+  date: "2014-02-20"
+  published_at: "TODO"
+  description: |-
+    What is common between Rails, Sinatra and numerous other Ruby frameworks?
+
+    They are built on top of Rack or have Rack interfaces for allowing
+    application servers to connect to them.
+
+    A deep-dive of sorts on Rack and see what it takes to build a framework,
+    helping us understand these better and ultimately rolling our own.
+
+    Almost anyone doing a Ruby app ends up using Rack in one way or the other
+    without ever realising the magic and simplicity that it provides. This
+    session should help decoding that and provide ways on writing your own
+    frameworks.
+  video_provider: "not_recorded"
+  video_id: "nishant-modak-rubyconf-au-2014"
+
+- id: "felix-clack-rubyconf-au-2014"
+  title: "Teach Your Way To Better Code"
   raw_title: "RubyConf AU 2014: Teach Your Way To Better Code by Felix Clack"
   speakers:
     - Felix Clack
   event_name: "RubyConf AU 2014"
-  date: "2014-02-19"
-  published_at: "TODO"
+  date: "2014-02-20"
+  published_at: "2017-05-22"
   description: |-
     RubyConf AU 2014: http://www.rubyconf.org.au
 
@@ -239,27 +166,31 @@
   video_provider: "youtube"
   video_id: "oRGpWUPYiwk"
 
-- title: "Lightning Talks"
-  raw_title: "RubyConf AU 2014: Lightning Talks"
+- id: "hailey-somerville-rubyconf-au-2014"
+  title: "MRI Magic Tricks"
+  raw_title: "RubyConf AU 2014: MRI Magic Tricks by Hailey Somerville"
   speakers:
-    - TODO
+    - Hailey Somerville
   event_name: "RubyConf AU 2014"
-  date: "2014-02-19"
-  published_at: "TODO"
+  date: "2014-02-20"
+  published_at: "2017-05-22"
   description: |-
     RubyConf AU 2014: http://www.rubyconf.org.au
 
-    A whirlwind of great talks: 5 minutes each.
+    Join me as we dive under the hood and take a rip-roaring tour of the internals of Ruby's canonical implementation.
+    This talk will have you hanging on the edge of your seat as we push the very limits of the Ruby language and take advantage of a few interesting bugs to do things you never thought were possible.
+    You'll laugh, you'll cry, and hopefully you'll come away from this talk with some fresh knowledge on just what makes Ruby tick.
   video_provider: "youtube"
-  video_id: "YGe3Vn7lHyo"
+  video_id: "3ROuTjbdkPk"
 
-- title: "The Parental Programmer"
+- id: "amanda-wagener-rubyconf-au-2014"
+  title: "The Parental Programmer"
   raw_title: "RubyConf AU 2014: The Parental Programmer by Amanda Wagener"
   speakers:
     - Amanda Wagener
   event_name: "RubyConf AU 2014"
-  date: "2014-02-19"
-  published_at: "TODO"
+  date: "2014-02-20"
+  published_at: "2017-05-22"
   description: |-
     RubyConf AU 2014: http://www.rubyconf.org.au
 
@@ -269,13 +200,14 @@
   video_provider: "youtube"
   video_id: "yxWTCKsVymg"
 
-- title: "An Ode to 17 Databases in 39 minutes"
+- id: "toby-hede-rubyconf-au-2014"
+  title: "An Ode to 17 Databases in 39 minutes"
   raw_title: "RubyConf AU 2014: An Ode to 17 Databases in 39 minutes by Toby Hede"
   speakers:
     - Toby Hede
   event_name: "RubyConf AU 2014"
-  date: "2014-02-19"
-  published_at: "TODO"
+  date: "2014-02-20"
+  published_at: "2017-05-22"
   description: |-
     RubyConf AU 2014: http://www.rubyconf.org.au
 
@@ -295,13 +227,14 @@
   video_provider: "youtube"
   video_id: "j1unEPBMjRM"
 
-- title: "Rails Asset Pipeline: Defunct or Da Funk"
+- id: "samuel-cochran-rubyconf-au-2014"
+  title: "Rails Asset Pipeline: Defunct or Da Funk"
   raw_title: "RubyConf AU 2014: Rails Asset Pipeline: Defunct or Da Funk by Samuel Cochran"
   speakers:
     - Samuel Cochran
   event_name: "RubyConf AU 2014"
-  date: "2014-02-19"
-  published_at: "TODO"
+  date: "2014-02-20"
+  published_at: "2017-05-22"
   description: |-
     RubyConf AU 2014: http://www.rubyconf.org.au
 
@@ -313,41 +246,209 @@
   video_provider: "youtube"
   video_id: "J1WrRyrDk34"
 
-- title: "Outcome Oriented Security"
-  raw_title: "RubyConf AU 2014: Outcome Oriented Security by Eleanor Saitta"
+- id: "kinsey-ann-durham-rubyconf-au-2014"
+  title: "Becoming a Software Engineer"
+  raw_title: "RubyConf AU 2014: Becoming a Software Engineer by Kinsey Ann Durham"
   speakers:
-    - Eleanor Saitta
+    - Kinsey Ann Durham
   event_name: "RubyConf AU 2014"
-  date: "2014-02-19"
-  published_at: "TODO"
+  date: "2014-02-20"
+  published_at: "2017-05-22"
+  description: |-
+    Becoming a Software Engineer: Insipring a New Generation of Developers
+    RubyConf AU 2014: http://www.rubyconf.org.au
+
+
+    In my wildest dreams, I never thought that I would become a software developer. I thought that I wasn't smart enough, that I needed a computer science degree and to have been writing code since I was young. But, the traditional path to becoming a developer is changing. This talk will focus on alternative and untraditional paths to becoming a developer such as programs like Railsbridge, mentorship and apprentice programs. These alternative paths ultimately foster a more diverse and inclusive community, which drives economic growth and produces more innovative solutions.
+    The objectives of the talk are:
+    to bring awareness to the educational alternatives to computer science degrees to encourage empathy when mentoring a beginner to get the audience to see a different perspective and embrace differences in the industry
+  video_provider: "youtube"
+  video_id: "mbBJWRZD5pQ"
+
+- id: "arnab-deka-rubyconf-au-2014"
+  title: "Modern Concurrency Practices in Ruby"
+  raw_title: "RubyConf AU 2014: Modern Concurrency Practices in Ruby by Arnab Deka"
+  speakers:
+    - Arnab Deka
+  event_name: "RubyConf AU 2014"
+  date: "2014-02-20"
+  published_at: "2017-05-22"
+  description: |-
+    RubyConf AU 2014: http://www.rubyconf.org.au
+
+    He posted the slides from his talk here: slid.es/arnab_deka/modern-concurrency-practises-in-ruby
+
+    He posted the slides from his talk here: slid.es/arnab_deka/modern-concurrency-practises-in-ruby
+  video_provider: "youtube"
+  video_id: "Foq_F94E1Ho"
+
+- id: "benjamin-smith-rubyconf-au-2014"
+  title: "How I Architected My Big Rails App For Success"
+  raw_title: "RubyConf AU 2014: How I Architected My Big Rails App For Success by Benjamin Smith"
+  speakers:
+    - Benjamin Smith
+  event_name: "RubyConf AU 2014"
+  date: "2014-02-20"
+  published_at: "2017-05-22"
+  description: |-
+    RubyConf AU 2014: http://www.rubyconf.org.au
+
+    Rails is a great framework for creating web apps… for awhile. What do you do when your codebase grows large? How do you handle large teams of developers? When performance becomes an issue, how do you scale? Most importantly, how do you write code which can easily be refactored later?
+    This is a story of a real life project built from day 1 with all these questions in mind. Learn about the problems we solved and lessons we learned: how to partition your Rails app into distinct modular engines, how to speed up your test suite by only running code effected by your changes, how to add a layer on top of ActiveRecord to enforce loose coupling, and many other patterns that can be applied to your own Rails apps!
+
+    slides here: speakerdeck.com/benjaminleesmith/how-i-architected-my-big-rails-app-for-success-rubyconfau-2014
+  video_provider: "youtube"
+  video_id: "1gXmh528o84"
+
+- id: "sam-saffron-rubyconf-au-2014"
+  title: "Why I am excited about Ruby 2.1?"
+  raw_title: "RubyConf AU 2014: Why I am excited about Ruby 2.1? by Sam Saffron"
+  speakers:
+    - Sam Saffron
+  event_name: "RubyConf AU 2014"
+  date: "2014-02-20"
+  published_at: "2017-05-22"
+  description: |-
+    RubyConf AU 2014: http://www.rubyconf.org.au
+
+    Ruby 2.1 is about to be released, it will include a generational GC, performance improvements and a much improved platform for diagnostics and profiling.
+    In this talk I will cover many of the new profiling and instrumentation APIs introduced in Ruby 2.1, introduce you to the new GC and show you some cool tools you can build on top of this. I will cover memory profiling, GC instrumentation, the much improved stack sampling, memory profilers, flame graphs and more.
+
+    Sam posted the slides from his talk here: speakerdeck.com/samsaffron/why-ruby-2-dot-1-excites-me
+  video_provider: "youtube"
+  video_id: "kici_QRQbOM"
+
+- id: "pat-allan-rubyconf-au-2014"
+  title: "The Golden Age of the Internet"
+  raw_title: "RubyConf AU 2014: The Golden Age of the Internet by Pat Allan"
+  speakers:
+    - Pat Allan
+  event_name: "RubyConf AU 2014"
+  date: "2014-02-20"
+  published_at: "2017-05-22"
+  description: |-
+    RubyConf AU 2014: http://www.rubyconf.org.au
+
+    Congratulations. The Internet is now the centre of civilisation as we know it, and we are the ones who shape the Internet. Our skills are in high demand, we are paid well, we find our work challenging, interesting, and even sometimes fulfilling. These are the glory days of our industry, and we should soak up every minute of it!
+    But with such great power comes a great deal of responsibility. Will we be looking back in the near future, wondering if we squandered our opportunities to shape the digital world accordingly?
+    There's no doubt that we value humanity, intelligence, and compassion. Let's take a look at the ways our industry can ensure these values are reflected not just in the people we are, but the way we work.
+  video_provider: "youtube"
+  video_id: "UAVtX0yKFSo"
+
+- id: "greg-brockman-rubyconf-au-2014"
+  title: "Rescuing Ruby"
+  raw_title: "RubyConf AU 2014: Rescuing Ruby by Greg Brockman"
+  speakers:
+    - Greg Brockman
+  event_name: "RubyConf AU 2014"
+  date: "2014-02-21"
+  published_at: "2017-05-22"
   description: |-
     RubyConf AU 2014: http://www.rubyconf.org.au
   video_provider: "youtube"
-  video_id: "f4sVHdb4ik4"
+  video_id: "VeoYIE370XY"
 
-- title: "Tales of Interest"
-  raw_title: "RubyConf AU 2014: Tales of Interest by Jon Rowe"
+- id: "ben-turner-rubyconf-au-2014"
+  title: "Ansible - Your First Step Into Server Provisioning"
+  raw_title: "RubyConf AU 2014: Ansible - Your First Step Into Server Provisioning by Ben Turner"
   speakers:
-    - Jon Rowe
+    - Ben Turner
   event_name: "RubyConf AU 2014"
-  date: "2014-02-19"
-  published_at: "TODO"
+  date: "2014-02-21"
+  published_at: "2017-05-22"
   description: |-
     RubyConf AU 2014: http://www.rubyconf.org.au
 
-    So you want to be an open source contributor? Think you can handle supporting multiple rubies, tracking down weird bugs, stomaching all that the wider developer eco system can throw at you? Well good reader, I can tell you stories that will turn your stomach, and blind your eyes.
-    Let me take you on a journey deep into the depths of open source triage and follow the kind of madness that comes from tracking down bugs across differing versions of Ruby and VMs.
-    Finally let me entertain you with stories of the perils of dogfooding your testing framework, and throw in some stories about the kind of hackery you can commit with a bit of mischievousness.
+    The ability to repeatably and automatically build your servers in code is essential for managing a modern Ruby application's server infrastructure.
+    Solutions such as Chef and Puppet are often used to solve this issue, but for some teams, this might be too costly to learn and implement effectively. Bridging the gap between these larger solutions and shell scripting is Ansible, a light footprint provisioning tool using SSH and YAML files to quickly define repeatable server creation and configuration steps.
+    This talk will cover:
+    introduce server provisioning at a high level explain how Ansible fits into that pattern describe simple Ansible commands and modules run through a basic playbook example, bringing these elements together summarise other functionality offered by Ansible
   video_provider: "youtube"
-  video_id: "EC1dY-nKTYY"
+  video_id: "KFn8isYw97g"
 
-- title: "Real Developers Ship (a.k.a Tenets for Software Delivery)"
+- id: "zachary-scott-rubyconf-au-2014"
+  title: "Standing on the Shoulders of Giants"
+  raw_title: "RubyConf AU 2014: Standing on the Shoulders of Giants by Zachary Scott"
+  speakers:
+    - Zachary Scott
+  event_name: "RubyConf AU 2014"
+  date: "2014-02-21"
+  published_at: "2017-05-22"
+  description: |-
+    RubyConf AU 2014: http://www.rubyconf.org.au
+
+    We take for granted the wealth of knowledge and wisdom that goes into each library we use within our programs. Many of the them we use today are built on top of libraries that have existed much longer than most of us have been programming in Ruby.
+    Allow me to guide you through some of these unusual and mysterious libraries that are made available in every Ruby installation. I'm talking about the standard library, which has largely been apart of the Ruby ecosystem since before gems were available.
+    There's around ~70MB of code in every installation, and it's just waiting for those eager to explore and discover what the pioneers of Ruby have provided for us.
+  video_provider: "youtube"
+  video_id: "gNUy2ZULQcQ"
+
+- id: "andr-medeiros-rubyconf-au-2014"
+  title: "Building C Extensions in Ruby"
+  raw_title: "RubyConf AU 2014: Building C Extensions in Ruby by André Medeiros"
+  speakers:
+    - André Medeiros
+  event_name: "RubyConf AU 2014"
+  date: "2014-02-21"
+  published_at: "2017-05-22"
+  description: |-
+    RubyConf AU 2014: http://www.rubyconf.org.au
+
+    From time to time, when building Ruby apps, you realise there are no libraries available for what you need. Even worse, Ruby doesn't quite perform as quickly as we would expect in certain areas. There are, however, a lot of high performance, mature technologies built in C that can easily be ported to be used with Ruby. By doing this, we get to keep using our favourite language, opening it to a plethora of applications that were not possible before, and still keep things snappy.
+    In this talk, I will walk you through the ins and outs of building Spyglass, an OpenCV binding for Ruby. I will also talk in detail about some gotchas (memory management, lack of threading), good practices (C objects as first class citizens, how to properly test extensions), why mkmf needs to be retired and some great examples of extensions you probably already use and should be looking at.
+  video_provider: "youtube"
+  video_id: "KZgovmyB8d8"
+
+- id: "zach-holman-rubyconf-au-2014"
+  title: "RubyConf AU 2014: How Github (No Longer) Works"
+  raw_title: "RubyConf AU 2014: How Github (No Longer) Works by Zach Holman"
+  speakers:
+    - Zach Holman
+  event_name: "RubyConf AU 2014"
+  date: "2014-02-21"
+  published_at: "2017-05-22"
+  description: |-
+    RubyConf AU 2014: http://www.rubyconf.org.au
+
+    Too many startups do this thing where they build their reputation with all these great technical blog posts and fascinating public talks, and then they become a Real Company and suddenly decide they're too cool to be open and transparent. Maybe the lawyers get to them, or maybe all the cool ninja rockstars become managers.
+    In any case, I think that's stupid. I don't want GitHub to be one of those companies. I think the scaling problems we face — both technical and human — as we near five million users and 250 employees are super interesting to talk about and learn from.
+    A lot of my talks like How GitHub Uses GitHub to Build GitHub and posts like How GitHub Works are nifty, but they represent a snapshot of the company when we were 30-75 employees. We're 217 today, and things inevitably changed to grow the company to that scale.
+    This talk is a retrospective: it takes a closer look at specific things that we've said over the last few years, and then details the adjustments that were made as we've grown.
+  video_provider: "youtube"
+  video_id: "Jy__R9RFe7c"
+
+- id: "darcy-laycock-rubyconf-au-2014"
+  title: "Hacking Sidekiq for Fun and Profit"
+  raw_title: "RubyConf AU 2014: Hacking Sidekiq for Fun and Profit by Darcy Laycock"
+  speakers:
+    - Darcy Laycock
+  event_name: "RubyConf AU 2014"
+  date: "2014-02-21"
+  published_at: "2017-05-22"
+  description: |-
+    RubyConf AU 2014: http://www.rubyconf.org.au
+
+    It's almost inevitable in any Ruby Project - you hit that stage where your logic starts getting more complex, you start doing more stuff that needs to happen but doesn't have to happen in the foreground - or you just want things to be faster.
+    You move your logic out into workers and do the work in the background.
+    This talk is going to be all about Sidekiq - a threaded background job implementation written in Ruby - and, in two parts: How you can use it and how you can bend it to your will.
+    Part 1: Intro to Sidekiq
+    The boring: a brief introduction to sidekiq, how it works - what it's advantages are. The stuff you need to know about it, why it's useful to consider - even if you're using CRuby / MRI.
+    Part 2: Hacking Sidekiq
+    The cooler part - once you know what Sidekiq is, I'm going to show how you can use Sidekiq in your product, how you can extend it and bend it to your will. I'll go into how it implements itself in ruby land and how it interacts with the Redis.
+    I'll show how you can use the existing middleware (and write your own) to add behaviour to your code, patterns we've found useful for implementing and testing workers as well as the even more interesting side - using Lua support in Redis to implement stuff in Sidekiq.
+    I want to encourage developers to look at extending their tool set to work better with not just ruby - to become comfortable with how they work internally (e.g. you should really learn how to love redis) and what you really need to be careful of (e.g. bugs that manifest when the site is under less load than usual - a real world example of going too far).
+    Finally, I'll end with an important question: Why not just use a proper message queue?
+  video_provider: "youtube"
+  video_id: "MimELPl9J9c"
+
+- id: "sebastian-von-conrad-rubyconf-au-2014"
+  title: "Real Developers Ship (a.k.a Tenets for Software Delivery)"
   raw_title: "RubyConf AU 2014: Real Developers Ship (a.k.a Tenets for Software Delivery) by Sebastian von Conrad"
   speakers:
     - Sebastian von Conrad
   event_name: "RubyConf AU 2014"
-  date: "2014-02-19"
-  published_at: "TODO"
+  date: "2014-02-21"
+  published_at: "2017-05-22"
   description: |-
     RubyConf AU 2014: http://www.rubyconf.org.au
 
@@ -358,29 +459,29 @@
   video_provider: "youtube"
   video_id: "z7TbxlCTv3Y"
 
-- title: "Modern Concurrency Practices in Ruby"
-  raw_title: "RubyConf AU 2014: Modern Concurrency Practices in Ruby by Arnab Deka"
+- id: "todo-rubyconf-au-2014"
+  title: "Lightning Talks"
+  raw_title: "RubyConf AU 2014: Lightning Talks"
   speakers:
-    - Arnab Deka
+    - TODO
   event_name: "RubyConf AU 2014"
-  date: "2014-02-19"
-  published_at: "TODO"
+  date: "2014-02-21"
+  published_at: "2017-05-22"
   description: |-
     RubyConf AU 2014: http://www.rubyconf.org.au
 
-    He posted the slides from his talk here: slid.es/arnab_deka/modern-concurrency-practises-in-ruby
-
-    He posted the slides from his talk here: slid.es/arnab_deka/modern-concurrency-practises-in-ruby
+    A whirlwind of great talks: 5 minutes each.
   video_provider: "youtube"
-  video_id: "Foq_F94E1Ho"
+  video_id: "YGe3Vn7lHyo"
 
-- title: "State of JRuby 2014"
+- id: "hiro-asari-rubyconf-au-2014"
+  title: "State of JRuby 2014"
   raw_title: "RubyConf AU 2014: State of JRuby 2014 by Hiro Asari"
   speakers:
     - Hiro Asari
   event_name: "RubyConf AU 2014"
-  date: "2014-02-19"
-  published_at: "TODO"
+  date: "2014-02-21"
+  published_at: "2017-05-22"
   description: |-
     RubyConf AU 2014: http://www.rubyconf.org.au
 
@@ -392,45 +493,52 @@
   video_provider: "youtube"
   video_id: "QEuUQLl5I-Y"
 
-- title: "Standing on the Shoulders of Giants"
-  raw_title: "RubyConf AU 2014: Standing on the Shoulders of Giants by Zachary Scott"
+- id: "keith-pitt-rubyconf-au-2014"
+  title: "Continuous Deployment with Rails"
+  raw_title: "RubyConf AU 2014: Continuous Deployment with Rails by Keith Pitt & Mario Visic"
   speakers:
-    - Zachary Scott
+    - Keith Pitt
+    - Mario Visic
   event_name: "RubyConf AU 2014"
-  date: "2014-02-19"
-  published_at: "TODO"
+  date: "2014-02-21"
+  published_at: "2017-05-22"
   description: |-
     RubyConf AU 2014: http://www.rubyconf.org.au
 
-    We take for granted the wealth of knowledge and wisdom that goes into each library we use within our programs. Many of the them we use today are built on top of libraries that have existed much longer than most of us have been programming in Ruby.
-    Allow me to guide you through some of these unusual and mysterious libraries that are made available in every Ruby installation. I'm talking about the standard library, which has largely been apart of the Ruby ecosystem since before gems were available.
-    There's around ~70MB of code in every installation, and it's just waiting for those eager to explore and discover what the pioneers of Ruby have provided for us.
+    Recently it has become common practise for development teams to deploy their code several times a day, as well as encouraging new developers to deploy on their first day at work.
+    In our talk, we will discuss how we use continuous deployment to push these practises to the extreme. Automatically deploying the master branch on new changes is an awesome way to improve your development process.
+    Automatically deploying master will fundamentally change how you work. Gone are the days of the epic pull request. You'll quickly find yourself writing smaller more manageable chunks of code, that overall have a great impact on the quality of the software you produce.
+    By the end of the talk you'll know how to change the GitHub merge pull request button into a deploy button - and have the confidence to do so.
+    Some things we'll go over in the talk:
+    How to setup your CI environment for deployments Why having fast tests are important How to use your Staging environment for testing deployments How to use feature flags to hide deployed features from some users Zero downtime deploys, even when there are database migrations Your new deploy button, AKA The GitHub merge pull request button What to do when deployment goes wrong
   video_provider: "youtube"
-  video_id: "gNUy2ZULQcQ"
+  video_id: "lcyp3MKYRhY"
 
-- title: "What it is you really do?"
-  raw_title: "RubyConf AU 2014: What it is you really do? by Cameron Barrie"
+- id: "jon-rowe-rubyconf-au-2014"
+  title: "Tales of Interest"
+  raw_title: "RubyConf AU 2014: Tales of Interest by Jon Rowe"
   speakers:
-    - Cameron Barrie
+    - Jon Rowe
   event_name: "RubyConf AU 2014"
   date: "2014-02-19"
-  published_at: "TODO"
+  published_at: "2017-05-22"
   description: |-
     RubyConf AU 2014: http://www.rubyconf.org.au
 
-    Programming is hard, correct? Code, tests, design patterns, abstractions, deployments, are the things we do everyday and coding can be a craft; it takes skill, patience, perseverance and sometimes downright stubbornness, but what is the result of all that hard work? What are we striving to achieve?
-    As programmers we often talk at length about how to build things. Questions like, what is the right level of abstraction? what database should I use? where should I deploy? etc etc. Indeed there is complexity in the craft of programming and in answering those questions. By why do we ask them in the first place?
-    You build software, you've put in all that hard work, and now you've launched. Time to learn about what you really do for a living!
+    So you want to be an open source contributor? Think you can handle supporting multiple rubies, tracking down weird bugs, stomaching all that the wider developer eco system can throw at you? Well good reader, I can tell you stories that will turn your stomach, and blind your eyes.
+    Let me take you on a journey deep into the depths of open source triage and follow the kind of madness that comes from tracking down bugs across differing versions of Ruby and VMs.
+    Finally let me entertain you with stories of the perils of dogfooding your testing framework, and throw in some stories about the kind of hackery you can commit with a bit of mischievousness.
   video_provider: "youtube"
-  video_id: "Yh3pLUu-cx0"
+  video_id: "EC1dY-nKTYY"
 
-- title: "Learning from Smalltalk"
+- id: "sasha-gerrand-rubyconf-au-2014"
+  title: "Learning from Smalltalk"
   raw_title: "RubyConf AU 2014: Learning from Smalltalk by Sasha Gerrand"
   speakers:
     - Sasha Gerrand
   event_name: "RubyConf AU 2014"
-  date: "2014-02-19"
-  published_at: "TODO"
+  date: "2014-02-21"
+  published_at: "2017-05-22"
   description: |-
     RubyConf AU 2014: http://www.rubyconf.org.au
 
@@ -447,3 +555,33 @@
     Reflection
   video_provider: "youtube"
   video_id: "cBe-VnHMaUo"
+
+- id: "seth-vargo-rubyconf-au-2014"
+  title: "Using Ruby to Automate Your Life"
+  raw_title: "RubyConf AU 2014: Using Ruby to Automate Your Life by Seth Vargo"
+  speakers:
+    - Seth Vargo
+  event_name: "RubyConf AU 2014"
+  date: "2014-02-21"
+  published_at: "2017-05-22"
+  description: |-
+    RubyConf AU 2014: http://www.rubyconf.org.au
+
+    You probably use Ruby everyday, so why not use Ruby to automate some common tasks? What if you could spin up an EC2 instance and have it automatically configure your web server, database, users, and more? What if you could effectively capture and replicate your production environments reliably and consistently? What if you could then give developers production-like environments as Virtual Machines, with no additional work? What if you could set up your new laptop with multiple Ruby versions, your favourite software, and even change the desktop background - from a single command? The good news is - you can!
+    Chef is a configuration management and automation tool that solves these problems and many more. In this talk, you'll learn common just how easy it is to capture your infrastructure in Chef. Save time and money by using Chef's Ruby DSL to "define" your laptop.
+    How many times have you bought a new laptop and realise just how much stuff you installed over the years? If you're using Chef, run a single command
+  video_provider: "youtube"
+  video_id: "R_qFzviMkGY"
+
+- id: "eleanor-saitta-rubyconf-au-2014"
+  title: "Outcome Oriented Security"
+  raw_title: "RubyConf AU 2014: Outcome Oriented Security by Eleanor Saitta"
+  speakers:
+    - Eleanor Saitta
+  event_name: "RubyConf AU 2014"
+  date: "2014-02-21"
+  published_at: "2017-05-22"
+  description: |-
+    RubyConf AU 2014: http://www.rubyconf.org.au
+  video_provider: "youtube"
+  video_id: "f4sVHdb4ik4"

@@ -10,7 +10,7 @@ Sponsor data is stored in YAML files within the conference/event directories. Ea
 
 Sponsors are stored in YAML files at:
 ```
-data/{organization-name}/{event-name}/sponsors.yml
+data/{series-name}/{event-name}/sponsors.yml
 ```
 
 For example:
@@ -89,7 +89,7 @@ For example:
 
 | Field | Required | Description |
 |-------|----------|-------------|
-| `name` | Yes | Official company/organization name |
+| `name` | Yes | Official company name |
 | `website` | Yes | Full URL to sponsor's website |
 | `slug` | Yes | URL-safe identifier (no spaces or special characters) |
 | `logo_url` | Yes | Full URL to sponsor's logo image |
@@ -124,7 +124,7 @@ Some sponsors may have special designations indicated by the `badge` field:
 First, check if a sponsors file already exists:
 
 ```bash
-ls data/{organization}/{event}/sponsors.yml
+ls data/{series-name}/{event}/sponsors.yml
 ```
 
 ### 2. Create or Edit the Sponsors File
@@ -132,7 +132,7 @@ ls data/{organization}/{event}/sponsors.yml
 If the file doesn't exist, create it:
 
 ```bash
-touch data/{organization}/{event}/sponsors.yml
+touch data/{series-name}/{event}/sponsors.yml
 ```
 
 ### 3. Gather Sponsor Information
@@ -167,15 +167,38 @@ Fill in the sponsor details for each tier:
 ```yaml
     sponsors:
       - name: "Company Name"
-        website: https://company.com
-        slug: CompanyName
-        logo_url: https://conference.org/sponsors/company-logo.png
+        website: "https://company.com"
+        slug: "CompanyName"
+        logo_url: "https://conference.org/sponsors/company-logo.png"
 ```
 
-### 6. Validate the YAML
+Check for an existing sponsor in other sponsors files.
+Ensure the company names and slugs match.
+We prefer the sponsor names to be in English and use latin characheters if possible.
 
-Ensure the YAML is properly formatted:
+## Troubleshooting
 
-```bash
-yarn format:yml
-```
+### Common Issues
+
+- **Invalid YAML syntax**: Check indentation (use spaces, not tabs)
+- **Missing required fields**: Ensure all required properties are present
+- **Old sponsor logos**: All sponsor logos listed in any sponsors file are associated with a sponsor, and the first logo stored is displayed
+
+## Submission Process
+
+1. Fork the RubyEvents repository
+2. Setup your dev environment following the steps in [CONTRIBUTING](/CONTRIBUTING.md)
+3. Create your sponsors file in the appropriate directory
+4. Run `bin/rails db:seed` (or `bin/rails db:seed:all` if the event happened more than 6 months ago)
+5. Run `bin/lint`
+6. Run `bin/dev` and review the event on your dev server
+7. Submit a pull request
+
+## Need Help?
+
+If you have questions about contributing sponsors:
+- Open an issue on GitHub
+- Check existing sponsors files for examples
+- Reference this documentation
+
+Your contributions help make RubyEvents a comprehensive resource for the Ruby community!

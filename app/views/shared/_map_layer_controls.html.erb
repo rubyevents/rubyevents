@@ -1,0 +1,38 @@
+<%# locals: (layers:, selection: "checkbox", use_emoji: false) %>
+
+<div class="flex flex-wrap gap-2" data-map-target="controls">
+  <% layers.each do |layer| %>
+    <% display_label = (use_emoji && layer[:emoji].present?) ? layer[:emoji] : layer[:label] %>
+
+    <% if selection == "radio" %>
+      <label class="btn btn-sm <%= layer[:visible] ? "btn-primary text-primary-content" : "btn-ghost" %>" title="<%= layer[:label] %>">
+        <input
+          type="radio" name="map_layer" class="hidden"
+          data-action="change->map#selectLayer"
+          data-layer-id="<%= layer[:id] %>"
+          <% if layer[:visible] %> checked <% end %>>
+
+        <%= display_label %>
+
+        <span class="badge badge-sm ml-1 <%= layer[:visible] ? "bg-white text-primary" : "badge-ghost" %>">
+          <%= layer[:markers].count %>
+        </span>
+      </label>
+
+    <% else %>
+      <label class="btn btn-sm <%= layer[:visible] ? "btn-primary text-primary-content" : "btn-ghost" %>" title="<%= layer[:label] %>">
+        <input
+          type="checkbox" class="hidden"
+          data-action="change->map#toggleLayer"
+          data-layer-id="<%= layer[:id] %>"
+          <% if layer[:visible] %> checked <% end %>>
+
+        <%= display_label %>
+
+        <span class="badge badge-sm ml-1 <%= layer[:visible] ? "bg-white text-primary" : "badge-ghost" %>">
+          <%= layer[:markers].count %>
+        </span>
+      </label>
+    <% end %>
+  <% end %>
+</div>

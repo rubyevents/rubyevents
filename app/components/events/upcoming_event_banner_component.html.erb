@@ -1,0 +1,21 @@
+<a href="<%= helpers.event_tickets_path(upcoming_event) %>" class="rounded-xl group border hover:opacity-95 transition-opacity duration-300 ease-in-out w-full flex flex-row px-6 py-6 gap-8 mt-4 overflow-hidden" style="background: <%= background_style %>; color: <%= text_color %>;">
+  <div class="aspect-video hidden md:block">
+    <%= image_tag helpers.image_path(upcoming_event.featured_image_path), alt: upcoming_event.name, class: "h-24 aspect-video rounded-xl group-hover:scale-105 transition ease-in-out duration-300" %>
+  </div>
+
+  <div class="flex flex-col w-full flex-1 self-center">
+    <span class="text-lg font-semibold sm:text-md">
+      <%= upcoming_event.name %> is coming up!
+    </span>
+
+    <span class="opacity-80 text-sm mt-1">
+      <%= upcoming_event.location %> &bull; <%= upcoming_event.formatted_dates %>
+    </span>
+
+    <div class="mt-3">
+      <span class="btn btn-sm border-0" style="background: <%= text_color %>; color: <%= background_color %>;">
+        Get Tickets
+      </span>
+    </div>
+  </div>
+</a>

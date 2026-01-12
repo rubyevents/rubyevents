@@ -28,7 +28,12 @@ module YouTube
 
       response = all_items(path, query: query)
 
-      response&.first&.dig("contentDetails", "duration")
+      duration_str = response&.first&.dig("contentDetails", "duration")
+
+      return nil unless duration_str
+
+      # Convert ISO 8601 duration (PT1H1M17S) to seconds
+      ActiveSupport::Duration.parse(duration_str).to_i
     end
   end
 end

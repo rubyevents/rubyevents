@@ -14,7 +14,6 @@ You are working on RubyVideo, a modern Ruby on Rails 8 application that aggregat
 - Frontend: Vite + Tailwind CSS + daisyUI + Stimulus controllers
 - Background Jobs: Solid Queue
 - Caching: Solid Cache
-- Search: MeiliSearch for full-text search
 - Authentication: Custom session-based auth with GitHub OAuth
 - Admin: Avo admin panel
 - Deployment: Kamal on Hetzner VPS
@@ -81,7 +80,9 @@ class TalksController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def show
-    @talk = Talk.includes(:speakers, :topics).find_by!(slug: params[:slug])
+    @talk = Talk.includes(:speakers, :topics).find_by(slug: params[:slug])
+    return redirect_to(root_path, status: :moved_permanently) unless @talk
+
     @pagy, @related_talks = pagy(@talk.related_talks, limit: 6)
   end
 end
@@ -96,6 +97,8 @@ end
 - Route constraints use `Authenticator` module
 
 ### ViewComponent Architecture
+
+> **Detailed UI Component Rules**: See [viewcomponents.mdc](./viewcomponents.mdc) for comprehensive UI component guidelines.
 
 **Component Structure:**
 
@@ -189,12 +192,6 @@ config.solid_queue.connects_to = {database: {writing: :queue}}
 
 ### Search & Data
 
-**MeiliSearch Integration:**
-
-- Full-text search for `Talk` and `Speaker` models
-- Include `Searchable` concern in searchable models
-- Reindex in test setup: `Talk.reindex_all`
-
 **Data Structure:**
 
 - Conference data stored in YAML files under `data/`
@@ -262,7 +259,7 @@ end
 
 **Data Management:**
 
-- `bin/rails db:seed` - Seed database from YAML files
+- `bin/rails db:seed:all` - Seed database from YAML files
 - YAML files define conference structure and video metadata
 
 ### Deployment & Production

@@ -2,7 +2,7 @@ module Handlers
   class CustomRenderer < Redcarpet::Render::HTML
     # Override the link method to add target="_blank" and rel="noopener noreferrer"
     def link(link, title, content)
-      %(<a href="#{link}" target="_blank" rel="noopener noreferrer" #{title ? "title=\"#{title}\"" : ""}>#{content}</a>)
+      %(<a href="#{link}" target="_blank" rel="noopener noreferrer" #{"title=\"#{title}\"" if title}>#{content}</a>)
     end
   end
 

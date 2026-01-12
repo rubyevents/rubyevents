@@ -22,7 +22,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index and return events in the correct order" do
-    event_names = %i[brightonruby_2024 no_sponsors_event future_conference rails_world_2023 tropical_rb_2024 railsconf_2017 rubyconfth_2022].map { |event| events(event) }.map(&:name)
+    event_names = %i[brightonruby_2024 no_sponsors_event future_conference rails_world_2023 tropical_rb_2024 railsconf_2017 rubyconfth_2022 wnb_rb_meetup].map { |event| events(event) }.map(&:name)
 
     get archive_events_url
 
@@ -62,6 +62,20 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     get event_url(@event)
 
     assert_redirected_to event_url(canonical_event)
+  end
+
+  test "should redirect to root for wrong slugs" do
+    get event_url("wrong-slug")
+    assert_response :moved_permanently
+    assert_redirected_to root_path
+  end
+
+  test "should redirect to correct event slug when accessed via alias" do
+    @event.slug_aliases.create!(name: "Old Name", slug: "old-event-slug")
+
+    get event_url("old-event-slug")
+    assert_response :moved_permanently
+    assert_redirected_to event_path(@event)
   end
 
   test "should get edit" do

@@ -1,0 +1,130 @@
+<%# locals: (name:, subtitle:, flag_code: nil, emoji: nil, stats: nil, location: nil) %>
+
+<div class="container py-8">
+  <div class="flex flex-col lg:flex-row gap-6 lg:gap-8 items-center lg:items-start">
+    <% if emoji.present? %>
+      <span class="text-[80pt] lg:text-[100pt] leading-none flex-shrink-0"><%= emoji %></span>
+    <% elsif flag_code.present? %>
+      <span class="fi fi-<%= flag_code.to_s.downcase %> border rounded w-28 lg:w-36 text-[60pt] lg:text-[80pt] flex-shrink-0"></span>
+    <% end %>
+
+    <div class="flex flex-col justify-center text-center lg:text-left flex-grow">
+      <h1 class="mb-2 text-black font-bold text-3xl lg:text-4xl">
+        <% if location.is_a?(OnlineLocation) %>
+          Online Ruby Community
+        <% else %>
+          Ruby Community in <%= name %>
+        <% end %>
+      </h1>
+
+      <h3 class="text-[#636B74] text-lg">
+        <%= subtitle %>
+      </h3>
+
+      <% if stats.present? %>
+        <p class="mt-4 text-[#636B74]">
+          <%= stats %>
+        </p>
+      <% end %>
+    </div>
+
+    <% if location.present? %>
+      <div class="flex flex-col gap-2 text-sm text-right flex-shrink-0">
+        <% case location %>
+        <% when Continent %>
+          <%= link_to continents_path, class: "link flex items-center gap-1 justify-end" do %>
+            <%= fa("globe", size: :sm, class: "text-gray-400") %>
+            All Continents
+          <% end %>
+        <% when Country %>
+          <% continent = location.continent %>
+
+          <% if continent %>
+            <%= link_to continent_path(continent), class: "link flex items-center gap-1 justify-end" do %>
+              <%= fa("arrow-up", size: :sm, class: "text-gray-400") %>
+              <%= continent.name %>
+            <% end %>
+          <% end %>
+
+          <%= link_to countries_path, class: "link flex items-center gap-1 justify-end" do %>
+            <%= fa("globe", size: :sm, class: "text-gray-400") %>
+            All Countries
+          <% end %>
+        <% when UKNation %>
+          <% parent_country = location.parent_country %>
+
+          <%= link_to country_path(parent_country), class: "link flex items-center gap-1 justify-end" do %>
+            <%= fa("arrow-up", size: :sm, class: "text-gray-400") %>
+            <%= parent_country.name %>
+          <% end %>
+
+          <%= link_to countries_path, class: "link flex items-center gap-1 justify-end" do %>
+            <%= fa("globe", size: :sm, class: "text-gray-400") %>
+            All Countries
+          <% end %>
+        <% when State %>
+          <% country = location.country %>
+
+          <%= link_to country_path(country), class: "link flex items-center gap-1 justify-end" do %>
+            <%= fa("arrow-up", size: :sm, class: "text-gray-400") %>
+            <%= country.name %>
+          <% end %>
+
+          <%= link_to country_states_path(alpha2: country.code), class: "link flex items-center gap-1 justify-end" do %>
+            <%= fa("map", size: :sm, class: "text-gray-400") %>
+            All States in <%= country.name %>
+          <% end %>
+        <% when City %>
+          <% country = Country.find_by(country_code: location.country_code) %>
+          <% state = location.state if country&.states? %>
+
+          <% if state %>
+            <%= link_to state.path, class: "link flex items-center gap-1 justify-end" do %>
+              <%= fa("arrow-up", size: :sm, class: "text-gray-400") %>
+              <%= state.name %>
+            <% end %>
+          <% elsif country %>
+            <%= link_to country_path(country), class: "link flex items-center gap-1 justify-end" do %>
+              <%= fa("arrow-up", size: :sm, class: "text-gray-400") %>
+              <%= country.name %>
+            <% end %>
+          <% end %>
+
+          <% if country %>
+            <%= link_to country_cities_path(country), class: "link flex items-center gap-1 justify-end" do %>
+              <%= fa("city", size: :sm, class: "text-gray-400") %>
+              All Cities in <%= country.name %>
+            <% end %>
+          <% end %>
+
+          <% if Current.user&.admin? %>
+            <div class="mt-2 pt-2 border-t border-gray-200">
+              <% if location.is_a?(City) %>
+                <%= button_to "Feature this city",
+                      featured_cities_path(country_code: location.country_code, state_code: location.state_code, city_slug: location.slug),
+                      method: :post,
+                      class: "btn btn-primary btn-xs" %>
+              <% else %>
+                <%= button_to "Unfeature",
+                      featured_city_path(location.slug),
+                      method: :delete,
+                      class: "btn btn-secondary btn-xs",
+                      data: {turbo_confirm: "Are you sure you want to unfeature #{location.name}?"} %>
+              <% end %>
+            </div>
+          <% end %>
+        <% when OnlineLocation %>
+          <%= link_to continents_path, class: "link flex items-center gap-1 justify-end" do %>
+            <%= fa("globe", size: :sm, class: "text-gray-400") %>
+            Browse by Location
+          <% end %>
+
+          <%= link_to cities_path, class: "link flex items-center gap-1 justify-end" do %>
+            <%= fa("city", size: :sm, class: "text-gray-400") %>
+            All Cities
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

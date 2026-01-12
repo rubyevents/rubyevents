@@ -7,6 +7,10 @@ import { application } from "./application"
 import AutoClickController from "./auto-click_controller"
 application.register("auto-click", AutoClickController)
 
+import CollapsibleController from "./collapsible_controller"
+application.register("collapsible", CollapsibleController)
+application.register("collapsible-feedback", CollapsibleController)
+
 import AutoSubmitController from "./auto_submit_controller"
 application.register("auto-submit", AutoSubmitController)
 
@@ -22,11 +26,17 @@ application.register("dropdown", DropdownController)
 import EventController from "./event_controller"
 application.register("event", EventController)
 
+import HoverCardController from "./hover_card_controller"
+application.register("hover-card", HoverCardController)
+
 import EventListController from "./event_list_controller"
 application.register("event-list", EventListController)
 
 import LazyLoadingController from "./lazy_loading_controller"
 application.register("lazy-loading", LazyLoadingController)
+
+import MapController from "./map_controller"
+application.register("map", MapController)
 
 import ModalController from "./modal_controller"
 application.register("modal", ModalController)
@@ -36,6 +46,9 @@ application.register("preserve-scroll", PreserveScrollController)
 
 import PronounsSelectController from "./pronouns_select_controller"
 application.register("pronouns-select", PronounsSelectController)
+
+import ContentRowController from "./content_row_controller"
+application.register("content-row", ContentRowController)
 
 import ScrollController from "./scroll_controller"
 application.register("scroll", ScrollController)
@@ -51,6 +64,9 @@ application.register("spotlight-search", SpotlightSearchController)
 
 import TabsController from "./tabs_controller"
 application.register("tabs", TabsController)
+
+import TalksFilterController from "./talks_filter_controller"
+application.register("talks-filter", TalksFilterController)
 
 import TalksNavigationController from "./talks_navigation_controller"
 application.register("talks-navigation", TalksNavigationController)
@@ -69,3 +85,9 @@ application.register("transition", TransitionController)
 
 import VideoPlayerController from "./video_player_controller"
 application.register("video-player", VideoPlayerController)
+
+import WatchedTalkFormController from "./watched_talk_form_controller"
+application.register("watched-talk-form", WatchedTalkFormController)
+
+import WrappedStoriesController from "./wrapped_stories_controller"
+application.register("wrapped-stories", WrappedStoriesController)

@@ -16,56 +16,7 @@ This project is open source, and contributions are greatly appreciated. One of t
 
 We also have a page on the deployed site that has up-to-date information with the remaining known TODOs. Check out the ["Getting Started: Ways to Contribute" page on RubyEvents.org](https://www.rubyevents.org/contributions) and feel free to start working on any of the remaining TODOs. Any help is greatly appreciated.
 
-For more information on contributing conference data, please visit [this page](/docs/contributing.md).
-
-## Getting Started
-
-We have tried to make the setup process as simple as possible so that in a few commands you can have the project with real data running locally.
-
-### Requirements
-
-- Ruby 3.4.5
-- Node.js 22.15.1
-
-### Setup
-
-To prepare your database and seed content via `docker-compose`, run:
-
-```
-# Note: this requires docker daemon running on your machine.
-bin/setup
-```
-
-You can manually seed content by running:
-
-```
-bin/rails db:seed
-```
-
-### Environment Variables
-
-You can use the `.env.sample` file as a guide for the environment variables required for the project. However, there are currently no environment variables necessary for simple app exploration.
-
-### Starting the Application
-
-The following command will start Rails, SolidQueue and Vite (for CSS and JS).
-
-```
-bin/dev
-```
-
-## Linter
-
-The CI performs these checks:
-
-- erblint
-- standardrb
-- standard (js)
-- prettier (yaml)
-
-Before committing your code you can run `bin/lint` to detect and potentially autocorrect lint errors.
-
-To follow Tailwind CSS's recommended order of classes, you can use [Prettier](https://prettier.io/) along with the [prettier-plugin-tailwindcss](https://github.com/tailwindlabs/prettier-plugin-tailwindcss), both of which are included as devDependencies. This formating is not yet enforced by the CI.
+For more information on contributing, see the [Contributing Guide](/CONTRIBUTING.md).
 
 ## Code of Conduct
 
@@ -73,7 +24,9 @@ Please note that this project is released with a Contributor Code of Conduct. By
 
 ## Credits
 
-Thank you [Appsignal](https://appsignal.com/r/eeab047472) for providing the APM tool that helps us monitor the application.
+Thank you [AppSignal](https://appsignal.com/r/eeab047472) for providing the APM tool that helps us monitor the application.
+
+Thank you [Typesense](https://typesense.org/) for sponsoring our [Typesense Cloud](https://cloud.typesense.org/) instance that powers the search functionality.
 
 ## License
 

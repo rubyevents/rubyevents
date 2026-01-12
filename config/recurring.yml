@@ -1,6 +1,18 @@
 youtube_video_statistics_job:
   class: Recurring::YouTubeVideoStatisticsJob
   schedule: every day at 1am
+youtube_video_duration_job:
+  class: Recurring::YouTubeVideoDurationJob
+  schedule: every day at 3am
 rollup_aggregate_analytics:
   class: Recurring::RollupJob
   schedule: every hour
+fetch_contributors:
+  class: Recurring::FetchContributorsJob
+  schedule: every day at 2am
+clear_solid_queue_finished_jobs:
+  command: "SolidQueue::Job.clear_finished_in_batches(sleep_between_batches: 0.3)"
+  schedule: every hour at minute 12
+mark_suspicious_users:
+  class: Recurring::MarkSuspiciousUsersJob
+  schedule: every 6 hours

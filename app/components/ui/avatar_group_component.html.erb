@@ -1,0 +1,11 @@
+<div class="avatar-group <%= overlap %> rtl:space-x-reverse">
+  <% visible_avatarables.each do |avatarable| %>
+    <%= render Ui::AvatarComponent.new(avatarable, size: size, hover_card: hover_card, linked: linked) %>
+  <% end %>
+
+  <% if remaining_count > 0 %>
+    <%= render Ui::AvatarComponent.new(nil, size: size) do %>
+      <span>+<%= remaining_count %></span>
+    <% end %>
+  <% end %>
+</div>

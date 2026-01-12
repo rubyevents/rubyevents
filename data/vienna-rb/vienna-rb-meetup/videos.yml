@@ -3,7 +3,8 @@
 
 # 2024
 
-- title: "Vienna.rb December 2024"
+- id: "vienna-rb-december-2024"
+  title: "Vienna.rb December 2024"
   event_name: "Vienna.rb December 2024"
   date: "2024-12-05"
   announced_at: "TODO"
@@ -56,6 +57,7 @@
       published_at: "TODO"
       speakers:
         - Grzegorz Jakubiak
+      id: "grzegorz-jakubiak-vienna-rb-december-2024"
       video_id: "grzegorz-jakubiak-vienna-rb-december-2024"
       video_provider: "not_recorded"
       description: |-
@@ -67,6 +69,7 @@
       published_at: "TODO"
       speakers:
         - Thomas Leitner
+      id: "thomas-leitner-vienna-rb-december-2024"
       video_id: "thomas-leitner-vienna-rb-december-2024"
       video_provider: "not_recorded"
       description: |-
@@ -80,6 +83,7 @@
       published_at: "TODO"
       speakers:
         - Nicolas Dular
+      id: "nicolas-dular-vienna-rb-december-2024"
       video_id: "nicolas-dular-vienna-rb-december-2024"
       video_provider: "not_recorded"
       description: |-
@@ -87,7 +91,8 @@
 
 # 2025
 
-- title: "Vienna.rb March 2025"
+- id: "vienna-rb-march-2025"
+  title: "Vienna.rb March 2025"
   event_name: "Vienna.rb March 2025"
   date: "2025-03-06"
   announced_at: "2025-02-03"
@@ -202,6 +207,10 @@
         00:00 Start
         4:08 Demo
         7:13 Q&A
+      additional_resources:
+        - name: "ruby-ui/ruby_ui"
+          type: "repo"
+          url: "https://github.com/ruby-ui/ruby_ui"
 
     - title: "Jujutsu: Will it replace Git?"
       event_name: "Vienna.rb March 2025"
@@ -251,7 +260,8 @@
         00:51 Intro to logic programming
         14:48 Q&A
 
-- title: "Vienna.rb June 2025"
+- id: "vienna-rb-june-2025"
+  title: "Vienna.rb June 2025"
   event_name: "Vienna.rb June 2025"
   date: "2025-06-05"
   announced_at: "2025-05-09"
@@ -371,7 +381,8 @@
         3:22 Quiz Starts
         12:35 Results & Prizes
 
-- title: "Vienna.rb September 2025"
+- id: "vienna-rb-september-2025"
+  title: "Vienna.rb September 2025"
   event_name: "Vienna.rb September 2025"
   date: "2025-09-04"
   announced_at: "2025-08-07"
@@ -395,13 +406,13 @@
 
     🗣️ Clemens Helm
     ▶️ Smart Queries for Dumb Models
-    🗒️ Complex data filtering in Rails using SQL views and ActiveRecord
+    🗒️ Complex data filtering in Rails often leads us down a rabbit hole of custom scopes, service objects, and Arel acrobatics. But what if we let the database do what it’s best at? In this talk, you’ll see how SQL views paired with plain ActiveRecord and Ransack can turn messy logic into elegant, powerful queries — without giving up the Rails way.
 
     🗣️ Wolfgang Hotwagner
     ▶️ Know Your Weaknesses
-    🗒️ Integrating security into the development process from the start
-
+    🗒️  ‘We take care of security at the end of the project’ was the approach in the past. Today, software quality is improved by addressing security from the start. In this talk, I will demonstrate how to easily integrate security into your development process without expert knowledge, using an open-source Ruby application as an example.
     Location
+
     ~~~~~~~~
 
     Platogo Interactive Entertainment GmbH
@@ -423,24 +434,127 @@
       event_name: "Vienna.rb September 2025"
       date: "2025-09-04"
       announced_at: "2025-08-07"
-      published_at: "TODO"
+      published_at: "2025-09-21"
       speakers:
         - Clemens Helm
       id: "clemens-helm-vienna-rb-september-2025"
-      video_id: "clemens-helm-vienna-rb-september-2025"
-      video_provider: "scheduled"
+      video_id: "6LOl7L2zALY"
+      video_provider: "youtube"
       description: |-
-        Complex data filtering in Rails using SQL views and ActiveRecord
+        Due to a technical hickup, there are no slides for this talk :(
+
+        Clemens Helm is a seasoned Rails developer who believes good code is boring — in the best way. At railscraft.de, he helps teams modernize legacy Rails apps with clean architecture, sharp tools, and zero-nonsense pragmatism. In his talk, he discusses how to simplify your models by leveraging the power of the database using views and more.
+
+        Follow Vienna.rb on:
+          - https://www.meetup.com/vienna-rb
+          - https://x.com/vienna-rb
+          - https://bsky.app/profile/ruby.wien
 
     - title: "Know Your Weaknesses"
       event_name: "Vienna.rb September 2025"
       date: "2025-09-04"
       announced_at: "2025-08-07"
-      published_at: "TODO"
+      published_at: "2025-09-21"
       speakers:
         - Wolfgang Hotwagner
       id: "wolfgang-hotwagner-vienna-rb-september-2025"
-      video_id: "wolfgang-hotwagner-vienna-rb-september-2025"
-      video_provider: "scheduled"
+      video_id: "dKQJQ_Gn01U"
+      video_provider: "youtube"
       description: |-
-        Integrating security into the development process from the start
+        Wolfgang Hotwagner is a Linux and Information Security enthusiast from Vienna. On top of all that he's also an avid Rubyist! In his talk he demonstrates how to easily integrate security into your development process without expert knowledge, using an open-source Ruby application as an example.
+
+        Follow Vienna.rb on:
+          - https://www.meetup.com/vienna-rb
+          - https://x.com/vienna-rb
+          - https://bsky.app/profile/ruby.wien
+
+- id: "vienna-rb-december-2025"
+  title: "Vienna.rb December 2025"
+  event_name: "Vienna.rb December 2025"
+  date: "2025-12-03"
+  announced_at: "2025-11-04"
+  published_at: "2026-01-01"
+  video_provider: "children"
+  video_id: "vienna-rb-december-2025"
+  thumbnail_xs: "https://secure.meetupstatic.com/photos/event/1/d/9/d/highres_531127581.webp?w=750"
+  thumbnail_sm: "https://secure.meetupstatic.com/photos/event/1/d/9/d/highres_531127581.webp?w=750"
+  thumbnail_md: "https://secure.meetupstatic.com/photos/event/1/d/9/d/highres_531127581.webp?w=750"
+  thumbnail_lg: "https://secure.meetupstatic.com/photos/event/1/d/9/d/highres_531127581.webp?w=750"
+  thumbnail_xl: "https://secure.meetupstatic.com/photos/event/1/d/9/d/highres_531127581.webp?w=750"
+  description: |-
+    It's Christmas, it's time for Vienna.rb! 🎄 Are you interested in the Ruby language or Ruby on Rails? Join us. We have great talks, good vibes, and yummy snacks! 😋
+
+    Taking place on December 3rd, this meetup marks the one-year anniversary of this incarnation of Vienna.rb! To celebrate the occasion, we have something special in store for you.
+
+    We're proud to host two world-class speakers, coming to Vienna to give talks at Vienna.rb! Oh, and it's Christmas time, so we are going to have a little cookie exchange! See below for additional information 👇
+
+    Paweł Strzałkowski is the CTO of Visuality, and a full-stack developer since the 90s. He's the author of many articles showcasing a creative approach to using Rails, and a frequent speaker at conferences such as Rails World and the San Francisco Ruby Conference. He's currently excited about AI’s potential and cross-tech discoveries.
+
+    Rosa Gutiérrez is a principal programmer at 37Signals, whom you might know for her work on Solid Queue. She has spoken at conferences such as Rails World, RailsConf, and Tropical Ruby, among many others. She loves cities, mathematics, theoretical computer science, learning languages for humans and computers, puzzles & bicycles. Importantly, she's the human to Mochi 🐕
+
+    Cookie Exchange 🍪
+    ~~~~~~~~~~~~~~~~~~~~~~~
+
+    A cookie exchange is a fun and delicious way to share the joy of Christmas cookies with your fellow Rubyists. Just bring a batch of your favorite holiday cookies to share with others.
+
+    The cookie exchange is entirely voluntary! You're welcome to join, cookies or no cookies 🤗
+
+    Talks
+    ~~~~~~~~~~~~~~~~~~~~~~~
+
+    🗣️ Paweł Strzałkowski
+    ▶️ AI Interface in 5 Minutes - Model Context Protocol on Rails
+    🗒️ This talk delivers a low-risk, high-value AI strategy that applies to any Rails app, new or old. It proves the ecosystem's power to modernize existing assets in the AI era without the need for expensive rewrites. It teaches one of the key aspects of the modern AI tech stack, giving a competitive advantage.
+
+    🗣️ Rosa Gutiérrez
+    ▶️ Machines that talk about themselves
+    🗒️ We'll start with four symbols and a printing machine. From there, we'll explore how a mathematical crisis from the 1930s ended up shaping everything we do as programmers today. No math background needed, just your curiosity.
+
+    Location
+    ~~~~~~~~
+
+    Sentry Vienna
+    Jakov-Lind-Straße 5/4OG,
+    1020 Wien
+
+    Sponsors
+    ~~~~~~~~~
+
+    ⭐ Sentry
+
+    Sentry is more than just error monitoring software. They’re also performance monitoring software. Sentry's platform helps every developer diagnose, fix, and optimize the performance of their code. With Sentry, developers around the world save time, energy, and probably a few therapy sessions.
+
+    Sentry supports more than 100 coding languages, which obviously includes Ruby! They also integrate with a whole bunch of useful tools (and a few necessary evils), including but definitely not limited to GitHub, Slack, and Jira.
+
+    Huge thanks to Sentry for hosting and providing us with refreshments and snacks! 🙌
+
+    ~~~
+
+    ⭐ Looking to sponsor or give a talk?
+
+    We are looking for sponsors and speakers. If you are interested, contact us at organizers@ruby.wien!
+
+    https://www.meetup.com/vienna-rb/events/311836381
+  talks:
+    - title: "AI Interface in 5 Minutes - Model Context Protocol on Rails"
+      event_name: "Vienna.rb December 2025"
+      date: "2025-12-03"
+      announced_at: "2025-11-04"
+      speakers:
+        - Paweł Strzałkowski
+      id: "pawel-strzalkowski-vienna-rb-december-2025"
+      video_id: "pawel-strzalkowski-vienna-rb-december-2025"
+      video_provider: "not_recorded"
+      description: |-
+        This talk delivers a low-risk, high-value AI strategy that applies to any Rails app, new or old. It proves the ecosystem's power to modernize existing assets in the AI era without the need for expensive rewrites. It teaches one of the key aspects of the modern AI tech stack, giving a competitive advantage.
+    - title: "Machines That Talk About Themselves"
+      event_name: "Vienna.rb December 2025"
+      date: "2025-12-03"
+      announced_at: "2025-11-04"
+      speakers:
+        - Rosa Gutiérrez
+      id: "rosa-gutierrez-vienna-rb-december-2025"
+      video_id: "rosa-gutierrez-vienna-rb-december-2025"
+      video_provider: "not_recorded"
+      description: |-
+        We'll start with four symbols and a printing machine. From there, we'll explore how a mathematical crisis from the 1930s ended up shaping everything we do as programmers today. No math background needed, just your curiosity.

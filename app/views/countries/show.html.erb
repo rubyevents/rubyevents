@@ -1,0 +1,13 @@
+<%= render "shared/location_show",
+      location: @country,
+      events: @events,
+      users: @users,
+      stamps: @stamps,
+      event_map_markers: @event_map_markers || [],
+      geo_layers: @geo_layers || [],
+      nearby_users: @nearby_users || [],
+      cities: @cities || [],
+      country_events: @country_events || [],
+      country: @parent_country,
+      continent_events: @continent_events || [],
+      continent: @continent %>

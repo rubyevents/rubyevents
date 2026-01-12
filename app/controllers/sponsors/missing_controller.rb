@@ -3,12 +3,12 @@ class Sponsors::MissingController < ApplicationController
 
   # GET /sponsors/missing
   def index
-    @back_path = sponsors_path
-    @events_without_sponsors = Event.conference
-      .left_joins(:event_sponsors)
-      .where(event_sponsors: {id: nil})
+    @back_path = organizations_path
+    @events_without_sponsors = Event.not_meetup
+      .left_joins(:sponsors)
+      .where(sponsors: {id: nil})
       .past
-      .includes(:organisation)
+      .includes(:series)
       .order(start_date: :desc)
     @events_by_year = @events_without_sponsors.group_by { |event| event.start_date&.year || "Unknown" }
   end

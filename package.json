@@ -15,6 +15,7 @@
     "chart.js": "^4.3.0",
     "chartkick": "^5.0.1",
     "flag-icons": "^7.5.0",
+    "maplibre-gl": "^5.15.0",
     "rfs": "^10.0.0",
     "stimulus-use": "^0.52.0",
     "tippy.js": "^6.3.7",
@@ -26,10 +27,12 @@
     "lint": "standard",
     "lint:yml": "yarn prettier --check data/**/**/*.yml",
     "format": "standard --fix",
-    "format:yml": "node yaml/enforce_strings.mjs && yarn run lint:yml --write"
+    "format:yml": "node yaml/enforce_strings.mjs && yarn run lint:yml --write",
+    "herb:lint": "herb-lint"
   },
   "packageManager": "yarn@1.22.19",
   "devDependencies": {
+    "@herb-tools/linter": "^0.8.7",
     "autoprefixer": "^10.4.14",
     "daisyui": "^4.12.14",
     "postcss": "^8.4.38",
@@ -40,7 +43,7 @@
     "standard": "^17.1.0",
     "stimulus-vite-helpers": "^3.1.0",
     "tailwindcss": "^3.4.4",
-    "vite": "^6.3.4",
+    "vite": "^6.4.1",
     "vite-plugin-rails": "^0.5.0"
   },
   "standard": {

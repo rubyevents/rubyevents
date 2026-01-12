@@ -9,8 +9,8 @@ class Avo::Resources::TalkTranscript < Avo::BaseResource
   def fields
     field :id, as: :id
     field :talk, as: :belongs_to
-    field :raw_transcript, as: :textarea, hide_on: [:index]
-    field :enhanced_transcript, as: :textarea, hide_on: [:index]
+    field :raw_transcript, as: :textarea, hide_on: [:index], format_using: -> { value&.to_text }
+    field :enhanced_transcript, as: :textarea, hide_on: [:index], format_using: -> { value&.to_text }
     field :created_at, as: :date_time, sortable: true, hide_on: [:index]
     field :updated_at, as: :date_time, sortable: true
   end

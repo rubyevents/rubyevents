@@ -1,11 +1,12 @@
 ---
-- title: "Keynote: Reinventing Wheels of the Future"
+- id: "yukihiro-matz-matsumoto-rubyconf-2012"
+  title: "Keynote: Reinventing Wheels of the Future"
   raw_title: "Ruby Conf 12 Keynote: Reinventing Wheels of the Future by Yukihiro 'Matz' Matsumoto"
   speakers:
     - Yukihiro 'Matz' Matsumoto
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-07"
   description: |-
     In this Keynote 'Matz' talks about how diversity helps to create innovation.
 
@@ -13,13 +14,14 @@
   video_provider: "youtube"
   video_id: "hgs_fVfsduA"
 
-- title: "Ruby HTTP Clients Comparison"
+- id: "hiroshi-nakamura-rubyconf-2012"
+  title: "Ruby HTTP Clients Comparison"
   raw_title: "Ruby Conf 12 - Ruby HTTP Clients Comparison by Hiroshi Nakamura"
   speakers:
     - Hiroshi Nakamura
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-12-03"
   description: |-
     The simplicity of the Ruby bundled library net/http has produced number of derivation / substitution HTTP clients for Ruby. I, who is an author of a HTTP client, performed surveys of those HTTP clients in last several years. One unsurprising thing I found from it is that users can pick one-gem-for-all generic HTTP client and also can pick the best one for the specified purpose.
 
@@ -27,25 +29,27 @@
   video_provider: "youtube"
   video_id: "x6CeB75aMwc"
 
-- title: "Thinking in Objects"
+- id: "josh-susser-fixed-rubyconf-2012"
+  title: "Thinking in Objects"
   raw_title: "Ruby Conf 12 - Thinking in Objects by Josh Susser (Fixed)"
   speakers:
     - Josh Susser (Fixed)
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-12-02"
   description: |-
     Ruby is one of the best object-oriented languages around. Ubiquitous objects, duck-typing, mixins, expressive syntax with low ceremony, powerful reflection and metaprogramming. But Ruby has a mixed heritage that incorporates functional and procedural models along with OOP. This flexibility provides many options for how to solve problems, but it can also lead even experienced developers into a confusing mix of programming styles and hard-to-understand software designs. But what can we do to keep things simple and easy to understand? Alan Kay is often quoted as saying "Perspective is worth 80 IQ points." So let's get the right perspective on Ruby and look at it from the direction of objects and OOP. This talk examines the fundamental concepts of object-orientation, and presents a simple model for how to think about objects and object-oriented programming. Why are objects so useful? What makes object-oriented programs easy to write and maintain? What are the pitfalls of not keeping to the OOP model? And how many slides can it take to explain two sentences? We'll answer all these questions and more!
   video_provider: "youtube"
   video_id: "D52V2tbWdNQ"
 
-- title: "Refactoring from Good to Great"
+- id: "ben-orenstein-rubyconf-2012"
+  title: "Refactoring from Good to Great"
   raw_title: "Ruby Conf 12 - Refactoring from Good to Great by Ben Orenstein"
   speakers:
     - Ben Orenstein
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-12-02"
   description: |-
     See other deliveries of this presentation at:
 
@@ -64,13 +68,14 @@
   video_provider: "youtube"
   video_id: "L1G--mPscQM"
 
-- title: "Dissecting a Ruby Block"
+- id: "pat-saughnessy-rubyconf-2012"
+  title: "Dissecting a Ruby Block"
   raw_title: "Ruby Conf 12 - Dissecting a Ruby Block by Pat Saughnessy"
   speakers:
     - Pat Saughnessy
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-12-01"
   description: |-
     More than any other feature of the language, in my opinion blocks are what make using Ruby fun. But what is a block, exactly? What would I see if I could cut one open and look inside? During this talk we'll:
 
@@ -78,13 +83,14 @@
   video_provider: "youtube"
   video_id: "nQ1XYwzaqck"
 
-- title: "Building Data Driven Products with Ruby"
+- id: "ryan-weald-rubyconf-2012"
+  title: "Building Data Driven Products with Ruby"
   raw_title: "Ruby Conf 12 - Building Data Driven Products with Ruby by Ryan Weald"
   speakers:
     - Ryan Weald
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-12-01"
   description: |-
     Big data and data science have become hot topics in the developer community during the past year. This talk will show how ruby is used to build real data driven products at scale.
 
@@ -94,37 +100,40 @@
   video_provider: "youtube"
   video_id: "XIqRdB5HCYM"
 
-- title: "Machine Learning for Fun and Profit"
+- id: "chris-nelson-rubyconf-2012"
+  title: "Machine Learning for Fun and Profit"
   raw_title: "Ruby Conf 12 - Machine Learning for Fun and Profit by Chris Nelson"
   speakers:
     - Chris Nelson
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-28"
   description: |-
     TDD is a great way to test code, but have you ever wondered if there are ways to leverage the awesome power of computers and help us write better tests? Research in the field of formal verification has shown promising results with tools that analyze programs for logic errors and can even figure out what input values caused those failures. However, until now, none of that research was ever used with Ruby. This talk discusses RubyCorrect, a research project that attempts to apply verification techniques like "extended static checking" and "symbolic execution" to the world of Ruby programs. We look at how these techniques work and how they could potentially improve the kinds of program faults we can detect. Machines that write our tests? So crazy that it just might work!
   video_provider: "youtube"
   video_id: "snGGkCt4zQ0"
 
-- title: "Could a Machine ever write tests for our code"
+- id: "loren-segal-rubyconf-2012"
+  title: "Could a Machine ever write tests for our code"
   raw_title: "Ruby Conf 12 - Could a Machine ever write tests for our code by Loren Segal"
   speakers:
     - Loren Segal
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-28"
   description: |-
     TDD is a great way to test code, but have you ever wondered if there are ways to leverage the awesome power of computers and help us write better tests? Research in the field of formal verification has shown promising results with tools that analyze programs for logic errors and can even figure out what input values caused those failures. However, until now, none of that research was ever used with Ruby. This talk discusses RubyCorrect, a research project that attempts to apply verification techniques like "extended static checking" and "symbolic execution" to the world of Ruby programs. We look at how these techniques work and how they could potentially improve the kinds of program faults we can detect. Machines that write our tests? So crazy that it just might work!
   video_provider: "youtube"
   video_id: "AHAONhPchKA"
 
-- title: "Testing Should Be Fun"
+- id: "noel-rappin-rubyconf-2012"
+  title: "Testing Should Be Fun"
   raw_title: "Ruby Conf 12 - Testing Should Be Fun by Noel Rappin"
   speakers:
     - Noel Rappin
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-28"
   description: |-
     Kent Beck's first articles about Test-Driven Development. I don't think I'm alone in being drawn to TDD at first because it was fun. The quick and consistent feedback and the ability to turn complicated problems into a series of smaller problems to be solved made TDD development seem more like a game than work.
 
@@ -134,50 +143,54 @@
   video_provider: "youtube"
   video_id: "l07J_5luC3M"
 
-- title: "Intimate Chat with Matz"
+- id: "yukihiro-matz-matsumoto-rubyconf-2012-intimate-chat-with-matz"
+  title: "Intimate Chat with Matz"
   raw_title: "Ruby Conf 12 - Intimate Chat with Matz featuring Yukihiro 'Matz' Matsumoto with Evan Phoenix"
   speakers:
     - Yukihiro "Matz" Matsumoto
     - Evan Phoenix
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-28"
   description: |-
     We're doing the Matz Q and A differently this year. Submit your questions throughout the conferences and come see Evan and Matz discuss them!
   video_provider: "youtube"
   video_id: "B7vCuNaqT7k"
 
-- title: "Somone is Wrong"
+- id: "joseph-wilk-rubyconf-2012"
+  title: "Somone is Wrong"
   raw_title: "Ruby Conf 12 - Somone is Wrong by Joseph Wilk"
   speakers:
     - Joseph Wilk
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-28"
   description: |-
     Inspiration strikes you, you've done it. You have found the missing 7 letters from the MVC model. This changes everything. You start discussing it with your pair. 10 minutes later you somehow find yourself arguing if mocks are good or bad. Jettisoning your pair you gather all you're fellow colleagues for a quick discussion. Bracing yourself you unleash the full power of your words. 10 minutes later and somehow your idea has been lost and the discussion has devolved into discussing if mocks are good or bad. You're not quite sure what happend but you walk away realising you failed to convince your team or pair of this amazing concept. Maybe it was a bad idea, maybe it was the idea that would make everyones life better. Being able to convince and discuss your idea is the skill of Rhetoric. A tool no developer can live without.
   video_provider: "youtube"
   video_id: "UUIBANm8s2s"
 
-- title: "Service Oriented Architecture at Square"
+- id: "chris-hunt-rubyconf-2012"
+  title: "Service Oriented Architecture at Square"
   raw_title: "Ruby Conf 12 - Service Oriented Architecture at Square by Chris Hunt"
   speakers:
     - Chris Hunt
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-28"
   description: |-
     SOA is hard. Learn how Square is approaching this problem today with JRuby and where we hope to be in the future. We'll go from git init to cap deploy, covering Square's approach to testing and service isolation, dependency management, API documentation, code quality metrics, data seeding, schema versioning, logging, exception handling, security and password management, deployment and more.
   video_provider: "youtube"
   video_id: "6mesJxUVZyI"
 
-- title: "Abstracting Features Into Custom Reverse Proxies"
+- id: "nick-muerdter-rubyconf-2012"
+  title: "Abstracting Features Into Custom Reverse Proxies"
   raw_title: "Ruby Conf 12 - Abstracting Features Into Custom Reverse Proxies by Nick Muerdter"
   speakers:
     - Nick Muerdter
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-26"
   description: |-
     or Making Better Lemonade From Chaos
 
@@ -187,43 +200,47 @@
   video_provider: "youtube"
   video_id: "Vu2FOeAUZjw"
 
-- title: "Rapid Programming Language Prototypes with Ruby RACC"
+- id: "tom-lee-rubyconf-2012"
+  title: "Rapid Programming Language Prototypes with Ruby RACC"
   raw_title: "Ruby Conf 12 - Rapid Programming Language Prototypes with Ruby RACC by Tom Lee"
   speakers:
     - Tom Lee
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-25"
   description: |-
     Some people test in isolation, mocking everything except the class under test. We'll start with that idea, quickly examine the drawbacks, and ask how we might fix them without losing the benefits. This will send us on a trip through behavior vs. data, mutation vs. immutability, interface vs. data dependencies, how data shape affords parallelism, and what a system optimizing each of these for natural isolation might look like.
   video_provider: "youtube"
   video_id: "goQZps9vt3o"
 
-- title: "Boundaries"
+- id: "gary-bernhardt-rubyconf-2012"
+  title: "Boundaries"
   raw_title: "Ruby Conf 12 - Boundaries by Gary Bernhardt"
   speakers:
     - Gary Bernhardt
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-25"
   description: |-
     Some people test in isolation, mocking everything except the class under test. We'll start with that idea, quickly examine the drawbacks, and ask how we might fix them without losing the benefits. This will send us on a trip through behavior vs. data, mutation vs. immutability, interface vs. data dependencies, how data shape affords parallelism, and what a system optimizing each of these for natural isolation might look like.
   video_provider: "youtube"
   video_id: "yTkzNHF6rMs"
 
-- title: "Krypt the next level of Ruby Cryptogaphy"
+- id: "martin-bolet-rubyconf-2012"
+  title: "Krypt the next level of Ruby Cryptogaphy"
   raw_title: "Ruby Conf 12 - Krypt the next level of Ruby Cryptogaphy by Martin Boßlet"
   speakers:
     - Martin Boßlet
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-25"
   description: |-
     Last year it was an idea, more of it in our heads than on github. This year, krypt is reality, it's growing quickly and its goal is to become the successor of the OpenSSL extension. Learn about why we need a successor at all, about the evils of OpenSSL certificate validation and how krypt will improve all this, running without restrictions on any Ruby platform. I'd like to contribute to putting an end to "Ruby is slow" by showing you how krypt's ASN.1/DER parser runs even faster than native OpenSSL C code or native Java crypto libraries. You'll learn about how you can use krypt today and how you can extend it to suit your needs by plugging in different "providers". Even if you are not particularly interested in cryptography, you might still be interested in how krypt takes testing to a new level, setting out to become one of the best-tested cryptography libraries out there. You probably know about RSpec, code coverage tools for Ruby, C and Java code, and Valgrind for sorting out memory issues. But krypt takes it one step further by making random testing an integral part of its test suite. Fuzzers are not for bad guys only - we all can benefit from random testing, with any application that accepts external input. Let me show you how krypt has spawned FuzzBert, a simple and extensible random testing framework that allows you to set up an effective random testing suite in no time. Finally, in the attempt to run as much of krypt as possible in plain Ruby, let me show you binyo, which allows dealing effectively with binary IO and low-level byte manipulation in particular, in all Rubies. If you implement protocols on the bit & byte level, need to do bit-level, exact-width operations on raw bytes, then binyo is what you have been looking for - speed up your code without having to deal with any of the implications that are inherent to Strings.
   video_provider: "youtube"
   video_id: "U67JVwj9uT4"
 
-- title: "Ruby Conf 2012 mRuby meets iOS and RTOS"
+- id: "masayoshi-takahasi-rubyconf-2012"
+  title: "Ruby Conf 2012 mRuby meets iOS and RTOS"
   raw_title: "Ruby Conf 2012 mRuby meets iOS and RTOS by Masayoshi Takahasi, Yichiro MASUI, and Yurie Yamane"
   speakers:
     - Masayoshi Takahasi
@@ -231,7 +248,7 @@
     - and Yurie Yamane
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-24"
   description: |-
     We have hacked mruby on non-PC OS. At the RubyConf 2012, we will talk and share our experiences.
 
@@ -249,13 +266,14 @@
   video_provider: "youtube"
   video_id: "HuPOizo6pSE"
 
-- title: "Thinking in Objects"
+- id: "josh-susser-rubyconf-2012"
+  title: "Thinking in Objects"
   raw_title: "Ruby Conf 12 - Thinking in Objects by Josh Susser"
   speakers:
     - Josh Susser
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-18"
   description: |-
     Ruby is one of the best object-oriented languages around. Ubiquitous objects, duck-typing, mixins, expressive syntax with low ceremony, powerful reflection and metaprogramming. But Ruby has a mixed heritage that incorporates functional and procedural models along with OOP. This flexibility provides many options for how to solve problems, but it can also lead even experienced developers into a confusing mix of programming styles and hard-to-understand software designs. But what can we do to keep things simple and easy to understand?
 
@@ -263,25 +281,27 @@
   video_provider: "youtube"
   video_id: "A-Nk2j1i5p8"
 
-- title: "Simulating the World with Ruby"
+- id: "bryan-liles-rubyconf-2012"
+  title: "Simulating the World with Ruby"
   raw_title: "Ruby Conf 12 - Simulating the World with Ruby by Bryan Liles"
   speakers:
     - Bryan Liles
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-18"
   description: |-
     You want to model a world. That world has millions of people, who also interact with each other. How would you even start tackling this model in Ruby? I'd like to demonstrate one solution. In this talk, we'll explore this problem from inception. See how the process can evolve from the simple first model to a much more complicated interactive tool. This talk will cover topics such as getting Ruby to do more than one thing at once, sampling discrete probability distributions in constant time, and the perils of garbage collection and a few other suprises.
   video_provider: "youtube"
   video_id: "4vBrTEBlGnw"
 
-- title: "Interface Testing Creating a Diablo 3 bot using JRuby and Sikuli UI"
+- id: "rodrigo-franco-rubyconf-2012"
+  title: "Interface Testing Creating a Diablo 3 bot using JRuby and Sikuli UI"
   raw_title: "Ruby Conf 12 - Interface Testing Creating a Diablo 3 bot using JRuby and Sikuli UI by Rodrigo Franco"
   speakers:
     - Rodrigo Franco
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-18"
   description: |-
     Interface testing is boring. Making sure an image is always there when the page was loaded and also ensuring its positioned in the right place is really boring. A lot of bugs are not found because we don't have an easy way to find this little devils.
 
@@ -289,50 +309,54 @@
   video_provider: "youtube"
   video_id: "jLUwGNAHYIc"
 
-- title: "Game Development and Ruby"
+- id: "andrew-nordman-rubyconf-2012"
+  title: "Game Development and Ruby"
   raw_title: "Ruby Conf 12 - Game Development and Ruby by Andrew Nordman"
   speakers:
     - Andrew Nordman
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-18"
   description: |-
     Game development is a topic within Ruby that is generally viewed as a novelty, only for toy projects or as a primitive tool to learn Ruby. There remains, however, a wide area of mostly untapped potential for Ruby to be used in the larger area of game development. As game engines get more complex, higher level scripting languages are being introduced and integrated with lower level programming languages to create the modern games you see today.
   video_provider: "youtube"
   video_id: "H5_Kid3hpRs"
 
-- title: "RubyMotion for Faster/Client Server Development"
+- id: "tammer-saleh-rubyconf-2012"
+  title: "RubyMotion for Faster/Client Server Development"
   raw_title: "Ruby Conf 12 - RubyMotion for Faster/Client Server Development by Tammer Saleh and Randall Thomas"
   speakers:
     - Tammer Saleh
     - Randall Thomas
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-18"
   description: |-
     Tammer Saleh, cofounder of Thunderbolt Labs will take you through the process of writing a RubyMotion iOS application that interfaces seamlessly with a backend Rails API. He'll explore all of the modern iOS techniques through RubyMotion, while using Storyboards, Bundler, and pulling data from a JSON API. In the process, he'll discuss the merits and pitfalls of using RubyMotion, and when it is and isn't appropriate for your project.
   video_provider: "youtube"
   video_id: "HSC-ZEw6Mhc"
 
-- title: "Inside RubyMotion"
+- id: "rich-kilmer-rubyconf-2012"
+  title: "Inside RubyMotion"
   raw_title: "Ruby Conf 12 - Inside RubyMotion by Rich Kilmer"
   speakers:
     - Rich Kilmer
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-18"
   description: |-
     RubyMotion is a relatively new toolchain for iOS development using Ruby. With RubyMotion, developers can finally write full-fledged native iPhone or iPad apps in Ruby, the language you all know and love. In this session, we will cover how RubyMotion works, we will talk about its internals and what makes it unique, and we will show how easy it is to write an iOS app with it.
   video_provider: "youtube"
   video_id: "r4F4ZW8Go5o"
 
-- title: "Change your tools, change your outcome"
+- id: "dr-nic-williams-rubyconf-2012"
+  title: "Change your tools, change your outcome"
   raw_title: "Ruby Conf 12 - Change your tools, change your outcome by Dr. Nic Williams"
   speakers:
     - Dr. Nic Williams
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-18"
   description: |-
     When you type "cap deploy", "ey deploy", or "git push heroku master" your intent is to deploy your local application source to your running system on the Internet. That seems to be the point - you changed your code, and you want to Just Ship It. But what is your actual objective? Is it really to just "deploy app code changes"? Is this "app-centric" view and user experience satisfactory?
 
@@ -352,13 +376,14 @@
   video_provider: "youtube"
   video_id: "BLDZrMetifM"
 
-- title: "Grow Your Unix Beard Using Ruby"
+- id: "jesse-storimer-rubyconf-2012"
+  title: "Grow Your Unix Beard Using Ruby"
   raw_title: "Ruby Conf 12 - Grow Your Unix Beard Using Ruby by Jesse Storimer"
   speakers:
     - Jesse Storimer
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-18"
   description: |-
     Ruby, like Perl before it, has great support for systems programming and interfaces to common system calls. Unfortunately, this doesn't get talked about much in the Ruby community. In an age where alternative runtimes and threads are getting lots of attention many of the largest Rails deployments are running on single-threaded, blocking I/O, preforking web server called Unicorn.
 
@@ -368,13 +393,14 @@
   video_provider: "youtube"
   video_id: "2rAoasxZKGU"
 
-- title: "Allow me to reintroduce myself, my name is MagLev"
+- id: "jeese-cooke-rubyconf-2012"
+  title: "Allow me to reintroduce myself, my name is MagLev"
   raw_title: "Ruby Conf 12 - Allow me to reintroduce myself, my name is MagLev by Jeese Cooke"
   speakers:
     - Jeese Cooke
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-16"
   description: |-
     Remember when Avi Bryant spoke at RailsConf '07 about Ruby's future, and how it'd be slick if we could get to where Smalltalk was 30 years ago? Well, we kinda have, in some respects, with the 1.0 release of MagLev, a Ruby implementation running on a Smalltalk VM.
 
@@ -384,13 +410,14 @@
   video_provider: "youtube"
   video_id: "Wh0BHJ7fUoc"
 
-- title: "Making Security Priority Zero"
+- id: "rein-henrichs-rubyconf-2012"
+  title: "Making Security Priority Zero"
   raw_title: "Ruby Conf 12 - Making Security Priority Zero by Rein Henrichs"
   speakers:
     - Rein Henrichs
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-16"
   description: |-
     Is security a priority for your team? The recent compromises of LinkedIn, eharmony, Last.fm, and Sony (twenty times) show that it's not enough to make it "a priority": it needs to be priority zero.
 
@@ -406,86 +433,93 @@
   video_provider: "youtube"
   video_id: "dtG-7J1h7V8"
 
-- title: "DRb vs. RabbitMQ Showdown"
+- id: "davy-stevenson-rubyconf-2012"
+  title: "DRb vs. RabbitMQ Showdown"
   raw_title: "Ruby Conf 12 - DRb vs. RabbitMQ Showdown by Davy Stevenson"
   speakers:
     - Davy Stevenson
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-16"
   description: |-
     Our enterprise product has used DRb as a communication layer for a number of years now. With the growth in popularity of EventMachine, it is time for us to evaluate whether a switch is right. This talk will discuss our current DRb setup, our process for comparing DRb and EventMachine and our comparison results, the decision on whether to switch, and either our reasoning to stay with DRb or how the resulting switch to EventMachine was handled.
   video_provider: "youtube"
   video_id: "hhxEt5zAD3k"
 
-- title: "Asynchronous Processing for Fun and Profity"
+- id: "mike-perham-rubyconf-2012"
+  title: "Asynchronous Processing for Fun and Profity"
   raw_title: "Ruby Conf 12 - Asynchronous Processing for Fun and Profity by Mike Perham"
   speakers:
     - Mike Perham
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-16"
   description: |-
     Learn the gotchas and secrets to successful message processing. The naive approach is to just throw a message on a queue but there many different trade-offs which can make your life miserable if not accounted for when designing your application. This session will show you those gotchas and secrets.
   video_provider: "youtube"
   video_id: "RwUHcBg0i7Q"
 
-- title: "How to Build, Use, and Grow Internal Tools"
+- id: "keavy-mcminn-rubyconf-2012"
+  title: "How to Build, Use, and Grow Internal Tools"
   raw_title: "Ruby Conf 12 - How to Build, Use, and Grow Internal Tools by Keavy McMinn"
   speakers:
     - Keavy McMinn
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-13"
   description: |-
     Keavy is part of the internal tools team at Github. She will give an insight into some of the internal tools used at Github, and discuss the importance of building and using software that enables and supports your team, whether onsite or distributed, to be more productive, informed, motivated and happy.
   video_provider: "youtube"
   video_id: "WpL9wE_KKD0"
 
-- title: "Ruby Monitoring State of the Union"
+- id: "joseph-ruscio-rubyconf-2012"
+  title: "Ruby Monitoring State of the Union"
   raw_title: "Ruby Conf 12 - Ruby Monitoring State of the Union by Joseph Ruscio"
   speakers:
     - Joseph Ruscio
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-13"
   description: |-
     A survey of the current state-of-the-art projects available for runtime monitoring of production Ruby code, encompassing everything from cron jobs to web-servers. Provides the audience with an overview of best practices as well as highlighting the remaining gaps. Covers both instrumentation and visualization/analysis.
   video_provider: "youtube"
   video_id: "sp9OlDNAL9k"
 
-- title: "- Xiki: the Rubyfied Next-Generation Shell"
+- id: "craig-muth-rubyconf-2012"
+  title: "- Xiki: the Rubyfied Next-Generation Shell"
   raw_title: "Ruby Conf 12 - Xiki: the Rubyfied Next-Generation Shell by Craig Muth"
   speakers:
     - Craig Muth
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-12"
   description: |-
     The shell console hasn't changed in 40 years. Time for an update. Use Ruby to make commands that have menus, that you can navigate with the keyboard or your mouse. Type commands anywhere, not just at the bottom prompt. Control your rails apps, web browser, databases, and other tools. Type wiki elements like headings and bullet points. Xiki is implemented in ruby. Make new commands out of simple ruby classes.
   video_provider: "youtube"
   video_id: "QqOrQN0bxNE"
 
-- title: "The Celluloid Ecosystem"
+- id: "tony-arcieri-rubyconf-2012"
+  title: "The Celluloid Ecosystem"
   raw_title: "Ruby Conf 12 - The Celluloid Ecosystem by Tony Arcieri"
   speakers:
     - Tony Arcieri
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-12"
   description: |-
     Celluloid is a concurrent object framework for Ruby that takes the headache out of building multithreaded programs. However, it's also an ecosystem of subprojects including the Reel web server for WebSockets, Celluloid::IO for evented sockets, Celluloid::ZMQ for ZeroMQ sockets, and DCell for building distributed Ruby programs. This talk will examine all of these components and help you decide which ones to use in your multithreaded Ruby programs.
   video_provider: "youtube"
   video_id: "ZVU7yRoYb3o"
 
-- title: "Rails is a Follower"
+- id: "makoto-inoue-rubyconf-2012"
+  title: "Rails is a Follower"
   raw_title: "Ruby Conf 12 - Rails is a Follower by Makoto Inoue and Masatoshi Seki"
   speakers:
     - Makoto Inoue
     - Masatoshi Seki
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-12"
   description: |-
     "dRuby came long before Rails. It uses metaprogramming features for distributed programming. Proxy objects "automagically" delegate method calls to remote objects. ... dRuby is a good example of a very flexible system implemented by Ruby. In this sense, Rails is a follower." - Matz
 
@@ -495,37 +529,40 @@
   video_provider: "youtube"
   video_id: "kJsUgXsyfuQ"
 
-- title: "There and Back Again"
+- id: "joshua-ballanco-rubyconf-2012"
+  title: "There and Back Again"
   raw_title: "Ruby Conf 12 - There and Back Again by Joshua Ballanco"
   speakers:
     - Joshua Ballanco
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-12"
   description: |-
     Come hear a tale of how one programmer wanted to write a delegation library. Knowing that the wise elders have always stated "it's not true until you measure it", the programmer decided to benchmark the alternatives. But this was no ordinary benchmark. Down paths winding and mysterious, the programmer wielded his trusty "gdb" and became proficient with the weapon they call "libgmalloc". Finally, this sinister benchmark led the programmer straight into the dark heart of the Ruby Garbage Collector! But fear not...this tale has a happy ending.
   video_provider: "youtube"
   video_id: "JlfyDp53_nY"
 
-- title: "Ruby Vs. The World"
+- id: "matt-aimonetti-rubyconf-2012"
+  title: "Ruby Vs. The World"
   raw_title: "Ruby Conf 12 - Ruby Vs. The World by Matt Aimonetti"
   speakers:
     - Matt Aimonetti
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-11"
   description: |-
     Ruby is an awesome programming language, it's so pleasing you probably haven't seriously looked at other languages since you switched. The programming world is evolving fast, new languages are created daily, new trends are emerging. Let's take a few minutes to look at a few languages from a Ruby developer perspective.
   video_provider: "youtube"
   video_id: "V_k3q37Tieg"
 
-- title: "Building modular, scalable web apps? of CORS!"
+- id: "michael-bleigh-rubyconf-2012"
+  title: "Building modular, scalable web apps? of CORS!"
   raw_title: "Ruby Conf 12 - Building modular, scalable web apps? of CORS! by Michael Bleigh"
   speakers:
     - Michael Bleigh
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-11"
   description: |-
     Cross Origin Resource Sharing (CORS) gives browsers the long-desired ability to make AJAX requests cross-domain. Even better, this functionality is dead simple to implement in Ruby. But while the implementation of CORS is simple, the implications are not. In this session learn about:
 
@@ -533,13 +570,14 @@
   video_provider: "youtube"
   video_id: "VQA2yrpI7Xk"
 
-- title: "Your App is not a Black Box"
+- id: "josh-kalderimis-rubyconf-2012"
+  title: "Your App is not a Black Box"
   raw_title: "Ruby Conf 12 - Your App is not a Black Box by Josh Kalderimis"
   speakers:
     - Josh Kalderimis
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-11"
   description: |-
     This talk is part story, part code, and part mustache.
 
@@ -553,13 +591,14 @@
   video_provider: "youtube"
   video_id: "F9ZMMZqu3aI"
 
-- title: "Y Not- Adventures in Functional Programming"
+- id: "jim-weirich-rubyconf-2012"
+  title: "Y Not- Adventures in Functional Programming"
   raw_title: "Ruby Conf 12 - Y Not- Adventures in Functional Programming by Jim Weirich"
   speakers:
     - Jim Weirich
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-11"
   description: |-
     One of the deepest mysteries in the functional programming world is the Y-Combinator. Many have heard of it, but few have mastered its mysteries. Although fairly useless in real world software, understanding how the Y-Combinator works and why it is important gives the student an important insight into the nature of functional programming.
 
@@ -573,13 +612,14 @@
   video_provider: "youtube"
   video_id: "FITJMJjASUs"
 
-- title: "Arduino the Ruby Way"
+- id: "austin-vance-rubyconf-2012"
+  title: "Arduino the Ruby Way"
   raw_title: "Ruby Conf 12 - Arduino the Ruby Way by Austin Vance"
   speakers:
     - Austin Vance
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-09"
   description: |-
     What's the deal
     Writing software is great, websites, applications, and scripts are things we interact with every day. What about writing software that we can interact with in the physical world? From automated sprinkler systems that turn off when you pull into your drive way, to scoreboards at the company foosball table physical computing opens a door for the innovator inside every software engineer.
@@ -591,13 +631,14 @@
   video_provider: "youtube"
   video_id: "oUIor6GK-qA"
 
-- title: "Real Time Salami"
+- id: "aaron-patterson-rubyconf-2012"
+  title: "Real Time Salami"
   raw_title: "Ruby Conf 12 - Real Time Salami by Aaron Patteson"
   speakers:
     - Aaron Patterson
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-09"
   description: |-
     Do you like building real time systems? Do you like salami? Then you will enjoy this talk! We're going to learn the process for curing meats at home, along with integrating the meat curing process with real time systems and Rails 4. Challenges of meat curing, and Rails internals will be discussed.
 
@@ -605,25 +646,27 @@
   video_provider: "youtube"
   video_id: "axva-w-m9qg"
 
-- title: "Zero Downtime Deploys Made Easy"
+- id: "matt-duncan-rubyconf-2012"
+  title: "Zero Downtime Deploys Made Easy"
   raw_title: "Ruby Conf 12 - Zero Downtime Deploys Made Easy by Matt Duncan"
   speakers:
     - Matt Duncan
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-09"
   description: |-
     Every deploy introduces the risk of downtime because of changes which are not backwards compatible. At Yammer, we deploy our Rails codebase to hundreds of servers many times a week. In this talk, I'll discuss many of the strategies we use to mitigate downtime during deploys. This includes how we handle database changes as well as background workers and external services.
   video_provider: "youtube"
   video_id: "LT_gFFcLj9Q"
 
-- title: "Tokaido: Making Ruby Better on OS X"
+- id: "yehuda-katz-rubyconf-2012"
+  title: "Tokaido: Making Ruby Better on OS X"
   raw_title: "Ruby Conf 12 - Tokaido: Making Ruby Better on OS X by Yehuda Katz"
   speakers:
     - Yehuda Katz
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-09"
   description: |-
     Last summer, I worked on a project that aimed to improve the experience of working with Ruby on OSX. Tokaido is a multifaceted project: it involved creating a portable binary build, a UI for working with Ruby-based web projects in development mode, and helping gem authors distribute their gems as precompiled binaries.
 
@@ -633,14 +676,15 @@
   video_provider: "youtube"
   video_id: "4iv3Gk95-v0"
 
-- title: "Why JRuby Works"
+- id: "charles-nutter-rubyconf-2012"
+  title: "Why JRuby Works"
   raw_title: "Ruby Conf 12 - Why JRuby Works by Charles Nutter and Tom Enebo"
   speakers:
     - Charles Nutter
     - Tom Enebo
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-09"
   description: |-
     There's a lot to love about JRuby. It performs better than just about any other implementation. It has solid, reliable, parallel threading. Its extensions are managed code and won't segfault or interfere with threads or GC. And it gives Ruby access to anything that can run on a JVM, including code written in other languages.
 
@@ -650,13 +694,14 @@
   video_provider: "youtube"
   video_id: "wYFrGlSERto"
 
-- title: "Toward a Design for Ruby"
+- id: "brian-ford-rubyconf-2012"
+  title: "Toward a Design for Ruby"
   raw_title: "Ruby Conf 12 - Toward a Design for Ruby by Brian Ford"
   speakers:
     - Brian Ford
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-09"
   description: |-
     Ruby is an industrial programming language. In the past eight years, tens of millions of dollars, if not more, have been invested in Ruby itself, and in frameworks and libraries for the language. Many times that have been invested in companies that have been built around Ruby.
 
@@ -672,13 +717,14 @@
   video_provider: "youtube"
   video_id: "BagNfTbXn3w"
 
-- title: "Ruby 2.0 on Rails"
+- id: "akira-matsuda-rubyconf-2012"
+  title: "Ruby 2.0 on Rails"
   raw_title: "Ruby Conf 12 - Ruby 2.0 on Rails by Akira Matsuda"
   speakers:
     - Akira Matsuda
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-08"
   description: |-
     Ruby 2.0 is coming very soon. The specification is fixed, and the first stable release will be in production in several months.
 
@@ -692,25 +738,27 @@
   video_provider: "youtube"
   video_id: "RHcXC9ROjlw"
 
-- title: "Implementation Details of Ruby 2.0 VM"
+- id: "koichi-sasada-rubyconf-2012"
+  title: "Implementation Details of Ruby 2.0 VM"
   raw_title: "Ruby Conf 12 - Implementation Details of Ruby 2.0 VM by Koichi Sasada"
   speakers:
     - Koichi Sasada
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-11-08"
   description: |-
     As a member of Matz's team in Heroku, I'm working Ruby 2.0 to be released in next February. Ruby 2.0 doesn't have drastic changes in behavior except adding some new features. However, an internal of Ruby 2.0 VM is changing to improve performance! For example, we changed VM data structures and method invocation processes to achieve fast execution. In this presentation, I will introduce the internal changes and its performance.
   video_provider: "youtube"
   video_id: "lWIP4nsKIMU"
 
-- title: "Failure for Fun and Profit!"
+- id: "kerri-miller-rubyconf-2012"
+  title: "Failure for Fun and Profit!"
   raw_title: "Ruby Conf 12 - Failure for Fun and Profit! by Kerri Miller (Better Slides)"
   speakers:
     - Kerri Miller
   event_name: "RubyConf 2012"
   date: "2012-11-01" # TODO
-  published_at: "2013-03-19"
+  published_at: "2012-12-03"
   description: |-
     Do you actually know how deliberately acquire, sharpen, and retain a technical skill? In this talk, I'll discuss common strategies to enable you to be more focused, creative, and productive while learning, by using play, exploration, and ultimately failure. You'll leave knowing several "Experiential Learning" patterns and techniques that can help you turn failure into success.
 

@@ -3,7 +3,7 @@ import { useIntersection } from 'stimulus-use'
 import Vlitejs from 'vlitejs'
 import YouTube from 'vlitejs/providers/youtube.js'
 import Vimeo from 'vlitejs/providers/vimeo.js'
-import youtubeSvg from '../../assets/images/icons/fontawesome/youtube-brands-solid.svg?raw'
+import { patch } from '@rails/request.js'
 
 Vlitejs.registerProvider('youtube', YouTube)
 Vlitejs.registerProvider('vimeo', Vimeo)
@@ -14,10 +14,15 @@ export default class extends Controller {
     src: String,
     provider: String,
     startSeconds: Number,
-    endSeconds: Number
+    endSeconds: Number,
+    durationSeconds: Number,
+    watchedTalkPath: String,
+    currentUserPresent: { default: false, type: Boolean },
+    progressSeconds: { default: 0, type: Number },
+    watched: { default: false, type: Boolean }
   }
 
-  static targets = ['player', 'playerWrapper']
+  static targets = ['player', 'playerWrapper', 'watchedOverlay', 'resumeOverlay', 'playOverlay']
   playbackRateOptions = [1, 1.25, 1.5, 1.75, 2]
 
   initialize () {
@@ -33,14 +38,74 @@ export default class extends Controller {
   init () {
     if (this.isPreview) return
     if (!this.hasPlayerTarget) return
+    if (this.watchedValue) return
+    if (this.hasResumeOverlayTarget || this.hasPlayOverlayTarget) return
 
     this.player = new Vlitejs(this.playerTarget, this.options)
+  }
+
+  dismissWatchedOverlay () {
+    this.showLoadingState(this.watchedOverlayTarget)
+    this.watchedValue = false
+    this.autoplay = true
+    this.player = new Vlitejs(this.playerTarget, this.options)
+  }
+
+  resumePlayback () {
+    this.showLoadingState(this.resumeOverlayTarget)
+    this.autoplay = true
+    this.player = new Vlitejs(this.playerTarget, this.options)
+  }
+
+  startPlayback () {
+    this.showLoadingState(this.playOverlayTarget)
+    this.autoplay = true
+    this.player = new Vlitejs(this.playerTarget, this.options)
+  }
+
+  showLoadingState (overlay) {
+    if (!overlay) return
+
+    const content = overlay.querySelector('.flex.flex-col')
+    if (content) {
+      content.innerHTML = `
+        <div class="p-4 bg-white/20 backdrop-blur-sm rounded-full">
+          <svg class="animate-spin h-8 w-8 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+        </div>
+        <div class="text-sm text-white/80">Loading...</div>
+      `
+    }
+  }
+
+  removeOverlays () {
+    if (this.hasWatchedOverlayTarget) this.watchedOverlayTarget.remove()
+    if (this.hasResumeOverlayTarget) this.resumeOverlayTarget.remove()
+    if (this.hasPlayOverlayTarget) this.playOverlayTarget.remove()
   }
 
   get options () {
     const providerOptions = {}
     const providerParams = {}
+    // Youtube videos have their own controls, so we need to hide the Vlitejs controls
+    let controls = true
 
+    // Hide the Vlitejs controls if the video is a Youtube video
+    providerParams.controls = !controls
+
+    if (this.hasProviderValue && this.providerValue === 'youtube') {
+      // Set YT rel to 0 to show related videos from the respective channel
+      providerOptions.rel = 0
+      providerOptions.autohide = 0
+      // Show YT controls
+      providerOptions.controls = 1
+      // Ensure not muted on autoplay (user clicked overlay, so gesture is present)
+      providerParams.mute = 0
+      // Hide the Vlitejs controls
+      controls = false
+    }
     if (this.hasProviderValue && this.providerValue !== 'mp4') {
       providerOptions.provider = this.providerValue
     }
@@ -60,7 +125,7 @@ export default class extends Controller {
       options: {
         providerParams,
         poster: this.posterValue,
-        controls: true
+        controls
       },
       onReady: this.handlePlayerReady.bind(this)
     }
@@ -89,12 +154,133 @@ export default class extends Controller {
       const volumeButton = player.elements.container.querySelector('.v-volumeButton')
       const playbackRateSelect = this.createPlaybackRateSelect(this.playbackRateOptions, player)
       volumeButton.parentNode.insertBefore(playbackRateSelect, volumeButton.nextSibling)
-
-      if (this.providerValue === 'youtube') {
-        const openInYouTube = this.createOpenInYoutube()
-        volumeButton.parentNode.insertBefore(openInYouTube, volumeButton.previousSibling)
-      }
     }
+
+    if (this.providerValue === 'youtube') {
+      // The overlay is messing with the hover state of he player
+      player.elements.container.querySelector('.v-overlay').remove()
+
+      this.setupYouTubeEventLogging(player)
+    }
+
+    if (this.providerValue === 'vimeo') {
+      player.instance.on('ended', () => {
+        this.handleVideoEnded()
+      })
+
+      player.instance.on('pause', () => {
+        this.handleVideoPaused()
+      })
+
+      player.instance.on('play', () => {
+        this.startProgressTracking()
+      })
+    }
+
+    if (this.hasProgressSecondsValue && this.progressSecondsValue > 0 && !this.isFullyWatched()) {
+      this.player.seekTo(this.progressSecondsValue)
+    }
+
+    if (this.autoplay) {
+      this.autoplay = false
+      this.player.play()
+
+      if (this.player.unMute) {
+        this.player.unMute()
+      }
+
+      this.removeOverlays()
+    }
+  }
+
+  setupYouTubeEventLogging (player) {
+    if (!player.instance) {
+      console.log('YouTube API not available for event logging')
+      return
+    }
+
+    const ytPlayer = player.instance
+
+    ytPlayer.addEventListener('onStateChange', (event) => {
+      const YOUTUBE_STATES = {
+        ENDED: 0,
+        PLAYING: 1,
+        PAUSED: 2
+      }
+
+      if (event.data === YOUTUBE_STATES.PLAYING && this.currentUserPresentValue) {
+        this.startProgressTracking()
+      } else if (event.data === YOUTUBE_STATES.PAUSED) {
+        this.handleVideoPaused()
+      } else if (event.data === YOUTUBE_STATES.ENDED) {
+        this.handleVideoEnded()
+      }
+    })
+  }
+
+  async startProgressTracking () {
+    if (this.progressInterval) return
+    if (!this.currentUserPresentValue) return
+
+    const currentTime = await this.getCurrentTime()
+    this.progressSecondsValue = Math.floor(currentTime)
+
+    this.updateWatchedProgress(this.progressSecondsValue)
+
+    this.progressInterval = setInterval(async () => {
+      if (this.hasWatchedTalkPathValue) {
+        const currentTime = await this.getCurrentTime()
+        this.progressSecondsValue = Math.floor(currentTime)
+
+        this.updateWatchedProgress(this.progressSecondsValue)
+      }
+    }, 5000)
+  }
+
+  stopProgressTracking () {
+    if (this.progressInterval) {
+      clearInterval(this.progressInterval)
+      this.progressInterval = null
+    }
+  }
+
+  async handleVideoPaused () {
+    this.stopProgressTracking()
+
+    const currentTime = await this.getCurrentTime()
+    this.progressSecondsValue = Math.floor(currentTime)
+    this.updateWatchedProgress(this.progressSecondsValue)
+  }
+
+  async handleVideoEnded () {
+    this.stopProgressTracking()
+
+    if (this.hasDurationSecondsValue && this.durationSecondsValue > 0) {
+      this.progressSecondsValue = this.durationSecondsValue
+      this.updateWatchedProgress(this.durationSecondsValue)
+    }
+  }
+
+  isFullyWatched () {
+    if (!this.hasDurationSecondsValue || this.durationSecondsValue <= 0) return false
+
+    return this.progressSecondsValue >= this.durationSecondsValue - 5
+  }
+
+  updateWatchedProgress (progressSeconds) {
+    if (!this.hasWatchedTalkPathValue) return
+    if (!this.currentUserPresentValue) return
+
+    patch(this.watchedTalkPathValue, {
+      body: {
+        watched_talk: {
+          progress_seconds: progressSeconds
+        }
+      },
+      responseKind: 'turbo-stream'
+    }).catch(error => {
+      console.error('Error updating watch progress:', error)
+    })
   }
 
   createPlaybackRateSelect (options, player) {
@@ -130,17 +316,8 @@ export default class extends Controller {
     this.player.pause()
   }
 
-  createOpenInYoutube () {
-    const videoId = this.playerTarget.dataset.youtubeId
-
-    const anchorTag = document.createElement('a')
-    anchorTag.className = 'v-openInYouTube v-controlButton'
-    anchorTag.innerHTML = youtubeSvg
-    anchorTag.href = `https://www.youtube.com/watch?v=${videoId}`
-    anchorTag.target = '_blank'
-    anchorTag.dataset.action = 'click->video-player#pause'
-
-    return anchorTag
+  disconnect () {
+    this.stopProgressTracking()
   }
 
   #togglePictureInPicturePlayer (enabled) {
@@ -175,5 +352,14 @@ export default class extends Controller {
 
   get isPreview () {
     return document.documentElement.hasAttribute('data-turbo-preview')
+  }
+
+  async getCurrentTime () {
+    try {
+      return await this.player.instance.getCurrentTime()
+    } catch (error) {
+      console.error('Error getting current time:', error)
+      return 0
+    }
   }
 }

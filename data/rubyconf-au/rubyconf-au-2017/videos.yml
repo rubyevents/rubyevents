@@ -2,73 +2,14 @@
 # Website: https://rubyconf.org.au/2017
 # Schedule: https://rubyconf.org.au/2017/schedule
 
-# TODO: talks running order
-# TODO: talks date
-
-- title: "Defragging Ruby"
-  raw_title: "RubyConf AU 2017 - Defragging Ruby by Aaron Patterson"
-  speakers:
-    - Aaron Patterson
-  event_name: "RubyConf AU 2017"
-  date: "2017-02-09"
-  published_at: "TODO"
-  description: ""
-  video_provider: "youtube"
-  video_id: "nAEt36XNtAE"
-
-- title: "Writing a Gameboy Emulator in Ruby"
-  raw_title: "RubyConf AU 2017 - Writing a Gameboy emulator in Ruby, by Colby Swandale"
-  speakers:
-    - Colby Swandale
-  event_name: "RubyConf AU 2017"
-  date: "2017-02-09"
-  published_at: "TODO"
-  description: |-
-    http://www.rubyconf.org.au
-
-    Released in 1989 the Gameboy was the first handheld console of the Gameboy series to be released by Nintendo. It featured games such as Pokemon Red & Blue, Tetris, Super Mario Land and went on to sell 64 million units worldwide.
-
-    My talk will be discussing what components make up a Gameboy, such as the CPU, RAM, Graphics and Game Cartridge. How each component works individually and how they work together to let trainers catch em all. Then how to replicate the behavior of the Gameboy in code to eventually make an emulator.
-  video_provider: "youtube"
-  video_id: "WbO2FEpNPvQ"
-
-- title: "So You Want To Become a Software Engineer?"
-  raw_title: "RubyConf AU 2017 -  So you want to become a software engineer?, by Shana Moore"
-  speakers:
-    - Shana Moore
-  event_name: "RubyConf AU 2017"
-  date: "2017-02-09"
-  published_at: "TODO"
-  description: |-
-    http://www.rubyconf.org.au
-
-    This talk will be geared towards career changers, juniors, and those interested in becoming software engineers. It's a personal testimony of how I was able to change careers and become a software engineer without a technical degree.
-  video_provider: "youtube"
-  video_id: "v8kAD9XTFwU"
-
-- title: "Ruby, HTTP/2 and You"
-  raw_title: "RubyConf AU 2017 - Ruby, HTTP/2 and You, by Hiro Asari"
-  speakers:
-    - Hiro Asari
-  event_name: "RubyConf AU 2017"
-  date: "2017-02-09"
-  published_at: "TODO"
-  description: |-
-    http://www.rubyconf.org.au
-
-    HTTP/2 is here.
-
-    The first major revision since 1997 to Hypertext Transfer Protocol on which so much of the modern information transfer relies, HTTP/2 could have an enormous impact on the way we write applications.
-  video_provider: "youtube"
-  video_id: "_KFxWyJrzso"
-
-- title: "Reinvesting in Ruby"
+- id: "tim-riley-rubyconf-au-2017"
+  title: "Reinvesting in Ruby"
   raw_title: "RubyConf AU 2017 -  Reinvesting in Ruby, by Tim Riley"
   speakers:
     - Tim Riley
   event_name: "RubyConf AU 2017"
   date: "2017-02-09"
-  published_at: "TODO"
+  published_at: "2017-03-03"
   description: |-
     http://www.rubyconf.org.au
 
@@ -78,133 +19,63 @@
   video_provider: "youtube"
   video_id: "V8Sdg25eKlM"
 
-- title: "Actors in Ruby! Why Let Elixir Have All The Fun?"
-  raw_title: "RubyConf AU 2017 - Actors in Ruby! Why let Elixir have all the fun?, by Marcos Matos"
+- id: "shana-moore-rubyconf-au-2017"
+  title: "So You Want To Become a Software Engineer?"
+  raw_title: "RubyConf AU 2017 -  So you want to become a software engineer?, by Shana Moore"
   speakers:
-    - Marcos Matos
+    - Shana Moore
   event_name: "RubyConf AU 2017"
   date: "2017-02-09"
-  published_at: "TODO"
+  published_at: "2017-03-03"
   description: |-
     http://www.rubyconf.org.au
 
-    We all want to have performant concurrent code, but threads are such a pain. Who wants to deal with race conditions in their code?! In this talk we show a better way of doing concurrency, the Actor model. No, that’s not just for Erlang or Elixir, we can have it in Ruby too.
+    This talk will be geared towards career changers, juniors, and those interested in becoming software engineers. It's a personal testimony of how I was able to change careers and become a software engineer without a technical degree.
   video_provider: "youtube"
-  video_id: "wveC2bbFYgA"
+  video_id: "v8kAD9XTFwU"
 
-- title: "Functional Programming For The Anxious Developer"
-  raw_title: "RubyConf AU 2017 - Functional Programming For The Anxious Developer, by Julian Doherty"
+- id: "hiro-asari-rubyconf-au-2017"
+  title: "Ruby, HTTP/2 and You"
+  raw_title: "RubyConf AU 2017 - Ruby, HTTP/2 and You, by Hiro Asari"
   speakers:
-    - Julian Doherty
+    - Hiro Asari
   event_name: "RubyConf AU 2017"
   date: "2017-02-09"
-  published_at: "TODO"
+  published_at: "2017-03-03"
   description: |-
     http://www.rubyconf.org.au
 
-    Programming involves dealing with an overwhelming amount of complexity. The human brain can only deal with so much information to process before anxiety kicks in and your ability to proceed suffers. Functional programming provides tools to manage the combinatorial explosion of state and logic. Here we'll cover some practical uses of functional programming techniques in Ruby that can be directly applied to your everyday work.
-  video_provider: "youtube"
-  video_id: "3b1YhdP2fis"
+    HTTP/2 is here.
 
-- title: "You And Your Type[s] Aren't Welcome Here"
-  raw_title: "RubyConf AU 2017 - You and your type[s] aren't welcome here, by Andy Nicholson"
+    The first major revision since 1997 to Hypertext Transfer Protocol on which so much of the modern information transfer relies, HTTP/2 could have an enormous impact on the way we write applications.
+  video_provider: "youtube"
+  video_id: "_KFxWyJrzso"
+
+- id: "colby-swandale-rubyconf-au-2017"
+  title: "Writing a Gameboy Emulator in Ruby"
+  raw_title: "RubyConf AU 2017 - Writing a Gameboy emulator in Ruby, by Colby Swandale"
   speakers:
-    - Andy Nicholson
+    - Colby Swandale
   event_name: "RubyConf AU 2017"
   date: "2017-02-09"
-  published_at: "TODO"
+  published_at: "2017-03-03"
   description: |-
     http://www.rubyconf.org.au
 
-    Whenever the stereotypical Ruby developer hears the words "statically-typed", they have one of two responses:
+    Released in 1989 the Gameboy was the first handheld console of the Gameboy series to be released by Nintendo. It featured games such as Pokemon Red & Blue, Tetris, Super Mario Land and went on to sell 64 million units worldwide.
 
-    they have flash-backs to their C++/Java days they prepare their memorized Alan Kay / Kent Beck quotes for battle. Now that stronger typing is coming to Ruby, maybe we need to calm down a little.
-
-    This talk is not designed to persuade anyone to drop our beloved Ruby, but maybe we can learn some lessons from our stronger-typed friends to bring even greater happiness than before.
+    My talk will be discussing what components make up a Gameboy, such as the CPU, RAM, Graphics and Game Cartridge. How each component works individually and how they work together to let trainers catch em all. Then how to replicate the behavior of the Gameboy in code to eventually make an emulator.
   video_provider: "youtube"
-  video_id: "gzXjqfPydFo"
+  video_id: "WbO2FEpNPvQ"
 
-- title: "Functional in the Front, Rails in the Back: Give Your App An Elm Mullet"
-  raw_title: "RubyConf AU 2017 - Functional in the front: rails in the back... by Louis Simoneau & Rahul Trikha"
-  speakers:
-    - Louis Simoneau
-    - Rahul Trikha
-  event_name: "RubyConf AU 2017"
-  date: "2017-02-09"
-  published_at: "TODO"
-  description: |-
-    http://www.rubyconf.org.au
-
-    You want to keep up with new and exciting technologies, but rewriting your monolith in the language du jour is too daunting a task, and you're not sure a microservice split is right for you. Why not experiment with a purely functional, powerfully typed language in your existing Rails app? Elm is a new language that compiles to JavaScript and has lots of great mind-bending features. In this talk we'll look at the basics of Elm and how you can integrate it into an existing Rails app, even alongside your existing JavaScript code.
-  video_provider: "youtube"
-  video_id: "Bd6DTg1uNe0"
-
-- title: "VR Backend Rails vs. Serverless: Froth or Future?"
-  raw_title: "RubyConf AU 2017 - VR backend rails vs serverless: froth or future? Ram Ramakrishnan & Janet Brown"
-  speakers:
-    - Ram Ramakrishnan
-    - Janet Brown
-  event_name: "RubyConf AU 2017"
-  date: "2017-02-09"
-  published_at: "TODO"
-  description: |-
-    http://www.rubyconf.org.au
-
-    Serverless (via AWS Lambda), the new hotness, was definitely something we wanted to explore when developing the backend for our new Virtual Reality app. TLDR - despite expectations to the contrary we came back to Rails, specifically Rails 5 API mode. We'll walk you through our journey, what the different considerations were, what the different strengths of each platform are and how we reached our decision. We think it's essential that as Rails developers we have an understanding of Serverless, both as a replacement and as an augmentation to our skill-set and development environment.
-  video_provider: "youtube"
-  video_id: "E0wPImDxSt8"
-
-- title: "Impactful Refactors: Refactoring for Readability"
-  raw_title: "RubyConf AU 2017 - Impactful Refactors: Refactoring for Readability, by Kinsey Ann Durham"
-  speakers:
-    - Kinsey Ann Durham
-  event_name: "RubyConf AU 2017"
-  date: "2017-02-09"
-  published_at: "TODO"
-  description: |-
-    http://www.rubyconf.org.au
-
-    We have no problems justifying a refactoring effort when it improves performance or eliminates a code smell. What if I told you there's a way your refactoring could be even more impactful? One of the most costly and time-consuming things we do is on boarding. It takes an incredible amount of effort to bring a developer up to speed on a new codebase. In this talk, we’ll see real-world readability refactors, discuss how you can apply these techniques for the benefit of your current (and future) team members, and how we can continue to program with empathy and diversity in mind.
-  video_provider: "youtube"
-  video_id: "CHaKY8tTY6E"
-
-- title: "A Common Taxonomy of Bugs and How to Catch Them"
-  raw_title: "RubyConf AU 2017 - A Common Taxonomy of Bugs and How to Catch Them, by Kylie Stradley"
-  speakers:
-    - Kylie Stradley
-  event_name: "RubyConf AU 2017"
-  date: "2017-02-09"
-  published_at: "TODO"
-  description: |-
-    http://www.rubyconf.org.au
-
-    Catching software bugs is a mysterious magic, unknowable by science, and untouchable by process. Debugging skills are instinctual and come only from years of experience.
-
-    False! Programming bugs, like real bugs, can be organized into a deterministic taxonomy. At its base, consistent and successful debugging is pattern matching. Classifying bugs by their attributes and behaviors makes the seemingly impossible possible—codifying the elusive “programmer’s instincts” into a logical debugging process.
-  video_provider: "youtube"
-  video_id: "0J5OWi65rTI"
-
-- title: "Self Learning is a Marathon not a Sprint"
-  raw_title: "RubyConf AU 2017 - Self learning is a marathon not a sprint, by Elle Meredith"
-  speakers:
-    - Elle Meredith
-  event_name: "RubyConf AU 2017"
-  date: "2017-02-09"
-  published_at: "TODO"
-  description: |-
-    http://www.rubyconf.org.au
-
-    The web industry never stops evolving and changing. We have to keep on our toes and learn the new hot thing. Whether you have limited time because of family, or just started on your way, self-learning is challenging, difficult, and sometimes even overwhelming. This talk is my list of tips, techniques, and strategies I use when I self-learn. Hopefully, you can find one or two things here to keep you motivated, and on your way.
-  video_provider: "youtube"
-  video_id: "bU9QprllR3s"
-
-- title: "Open Source: Power and the Passion"
+- id: "pat-allan-rubyconf-au-2017"
+  title: "Open Source: Power and the Passion"
   raw_title: "RubyConf AU 2017 - Open Source: Power and the Passion, by Pat Allan"
   speakers:
     - Pat Allan
   event_name: "RubyConf AU 2017"
   date: "2017-02-09"
-  published_at: "TODO"
+  published_at: "2017-03-03"
   description: |-
     http://www.rubyconf.org.au
 
@@ -214,81 +85,82 @@
   video_provider: "youtube"
   video_id: "uIqcGzQO01k"
 
-- title: "Ruby: How a Language Affects its People"
-  raw_title: "RubyConf AU 2017 - Ruby: how a language affects its people, by Alex Coles"
+- id: "julian-doherty-rubyconf-au-2017"
+  title: "Functional Programming For The Anxious Developer"
+  raw_title: "RubyConf AU 2017 - Functional Programming For The Anxious Developer, by Julian Doherty"
   speakers:
-    - Alex Coles
+    - Julian Doherty
   event_name: "RubyConf AU 2017"
   date: "2017-02-09"
-  published_at: "TODO"
+  published_at: "2017-03-03"
   description: |-
     http://www.rubyconf.org.au
 
-    In human-to-human languages the same core ideas get shaped differently depending on the language in which they are spoken. What if every computational language engenders a set (or a subset) of culture and values, and as a consequence attracts and shapes a corresponding community? What are the values that entered into the language by way of its core committers and what are the values we identify with as a community. How can making these values explicit help us foster a better community?
+    Programming involves dealing with an overwhelming amount of complexity. The human brain can only deal with so much information to process before anxiety kicks in and your ability to proceed suffers. Functional programming provides tools to manage the combinatorial explosion of state and logic. Here we'll cover some practical uses of functional programming techniques in Ruby that can be directly applied to your everyday work.
   video_provider: "youtube"
-  video_id: "ybrsMpLA6u8"
+  video_id: "3b1YhdP2fis"
 
-- title: "Datacenter Fires and Other 'Minor' Disasters"
-  raw_title: "RubyConf AU 2017 - Datacenter Fires and Other 'Minor' Disasters, by Aja Hammerly"
+- id: "marcos-matos-rubyconf-au-2017"
+  title: "Actors in Ruby! Why Let Elixir Have All The Fun?"
+  raw_title: "RubyConf AU 2017 - Actors in Ruby! Why let Elixir have all the fun?, by Marcos Matos"
   speakers:
-    - Aja Hammerly
+    - Marcos Matos
   event_name: "RubyConf AU 2017"
   date: "2017-02-09"
-  published_at: "TODO"
+  published_at: "2017-03-03"
   description: |-
     http://www.rubyconf.org.au
 
-    Most of us have a “that day I broke the internet” story. Some are amusing and some are disastrous but all of these stories change how we operate going forward. I’ll share the amusing stories behind why I always take a database backup, why feature flags are important, the importance of automation, and how having a team with varied backgrounds can save the day. Along the way I’ll talk about a data center fire, deleting a production database, and accidentally setting up a DDOS attack against our own site. I hope that by learning from my mistakes you won’t have to make them yourself.
+    We all want to have performant concurrent code, but threads are such a pain. Who wants to deal with race conditions in their code?! In this talk we show a better way of doing concurrency, the Actor model. No, that’s not just for Erlang or Elixir, we can have it in Ruby too.
   video_provider: "youtube"
-  video_id: "WoTemqfZiHE"
+  video_id: "wveC2bbFYgA"
 
-- title: "Finding Translations, Localisation and Internationalisation"
-  raw_title: "RubyConf AU 2017 - Finding translations, localisation and internationalisation, by Valerie Woolard"
-  speakers:
-    - Valerie Woolard
-  event_name: "RubyConf AU 2017"
-  date: "2017-02-09"
-  published_at: "TODO"
-  description: |-
-    http://www.rubyconf.org.au
-
-    This talk will discuss localization and internationalization for Rails applications. We’ll discuss available tools as well as best practices for building apps for localization. We’ll also talk about the more human and subjective struggles of translating ideas and concepts for new audiences.
-  video_provider: "youtube"
-  video_id: "mN6lynGNzxs"
-
-- title: "The Little Server That Could"
-  raw_title: "RubyConf AU 2017 - The little server that could, by Stella Cotton"
-  speakers:
-    - Stella Cotton
-  event_name: "RubyConf AU 2017"
-  date: "2017-02-09"
-  published_at: "TODO"
-  description: |-
-    http://www.rubyconf.org.au
-
-    Have you ever wondered what dark magic happens when you start up your Ruby server? Let’s explore the mysteries of the web universe by writing a tiny web server in Ruby! Writing a web server lets you dig deeper into the Ruby Standard Library and the Rack interface. You’ll get friendlier with I/O, signal trapping, file handles, and threading. You’ll also explore dangers first hand that can be lurking inside your production code- like blocking web requests and shared state with concurrency.
-  video_provider: "youtube"
-  video_id: "Wh88DZyTiK8"
-
-- title: "The Power ⚡ and Responsibility 😓 of Unicode Adoption ✨"
+- id: "katie-mclaughlin-rubyconf-au-2017"
+  title: "The Power ⚡ and Responsibility 😓 of Unicode Adoption ✨"
   raw_title: "RubyConf AU 2017 - The Power ⚡️ and Responsibility 😓 of Unicode Adoption ✨, by Katie McLaughlin"
   speakers:
     - Katie McLaughlin
   event_name: "RubyConf AU 2017"
   date: "2017-02-09"
-  published_at: "TODO"
+  published_at: "2017-03-03"
   description: |-
     http://www.rubyconf.org.au
   video_provider: "youtube"
   video_id: "Acf14xTjnFA"
 
-- title: "Simple and Awesome Database Tricks"
+- id: "piotr-solnica-rubyconf-au-2017"
+  title: "Persistence Pays Off: A New Look At rom-rb"
+  raw_title: "RubyConf AU 2017 - Persistence pays off: a new look at rom-rb, by Piotr Solnica"
+  speakers:
+    - Piotr Solnica
+  event_name: "RubyConf AU 2017"
+  date: "2017-02-09"
+  published_at: "2017-03-03"
+  description: |-
+    http://www.rubyconf.org.au
+  video_provider: "youtube"
+  video_id: "9TBvWRgll64"
+
+- id: "aaron-patterson-rubyconf-au-2017"
+  title: "Defragging Ruby"
+  raw_title: "RubyConf AU 2017 - Defragging Ruby by Aaron Patterson"
+  speakers:
+    - Aaron Patterson
+  event_name: "RubyConf AU 2017"
+  date: "2017-02-09"
+  published_at: "2017-03-03"
+  description: ""
+  video_provider: "youtube"
+  video_id: "nAEt36XNtAE"
+
+- id: "barrett-clark-rubyconf-au-2017"
+  title: "Simple and Awesome Database Tricks"
   raw_title: "RubyConf AU 2017 - Simple and Awesome Database Tricks, By Barrett Clark"
   speakers:
     - Barrett Clark
   event_name: "RubyConf AU 2017"
   date: "2017-02-09"
-  published_at: "TODO"
+  published_at: "2017-03-03"
   description: |-
     http://www.rubyconf.org.au
 
@@ -296,40 +168,15 @@
   video_provider: "youtube"
   video_id: "N08NHsyaoKM"
 
-- title: "How Does Bundler Work, Anyway?"
-  raw_title: "RubyConf AU 2017 - How does Bundler work anyway?, by Andre Arko"
-  speakers:
-    - André Arko
-  event_name: "RubyConf AU 2017"
-  date: "2017-02-09"
-  published_at: "TODO"
-  description: |-
-    http://www.rubyconf.org.au
-
-    We all use Bundler at some point, and most of us use it every day. But what does it do, exactly? Why do we have to use bundle exec? What's the point of checking in the Gemfile.lock? Why can't we just gem install the gems we need? Join me for a walk through the reasons that Bundler exists, and a guide to what actually happens when you use it. Finally, we'll cover some Bundler "pro tips" that can improve your workflow when developing on multiple applications at once.
-  video_provider: "youtube"
-  video_id: "j2V-A8vvLP0"
-
-- title: "Persistence Pays Off: A New Look At rom-rb"
-  raw_title: "RubyConf AU 2017 - Persistence pays off: a new look at rom-rb, by Piotr Solnica"
-  speakers:
-    - Piotr Solnica
-  event_name: "RubyConf AU 2017"
-  date: "2017-02-09"
-  published_at: "TODO"
-  description: |-
-    http://www.rubyconf.org.au
-  video_provider: "youtube"
-  video_id: "9TBvWRgll64"
-
-- title: "Taking Refinery off the Rails"
+- id: "philip-arndt-rubyconf-au-2017"
+  title: "Taking Refinery off the Rails"
   raw_title: "RubyConf AU 2017 - Taking Refinery off the Rails, by Philip Arndt & Samuel Seay"
   speakers:
     - Philip Arndt
     - Samuel Seay
   event_name: "RubyConf AU 2017"
   date: "2017-02-09"
-  published_at: "TODO"
+  published_at: "2017-03-03"
   description: |-
     http://www.rubyconf.org.au
 
@@ -340,31 +187,213 @@
     We'll provide you with both gems and solid advice to allow you to refactor your own applications to take advantage of the solid and agile foundation provided by Hanami and dry-rb.
   video_provider: "youtube"
   video_id: "aVxJ0GyD3vw"
+  track: "Deep Dive"
 
-- title: "Performance Optimization in Ruby"
+- id: "ram-ramakrishnan-rubyconf-au-2017"
+  title: "VR Backend Rails vs. Serverless: Froth or Future?"
+  raw_title: "RubyConf AU 2017 - VR backend rails vs serverless: froth or future? Ram Ramakrishnan & Janet Brown"
+  speakers:
+    - Ram Ramakrishnan
+    - Janet Brown
+  event_name: "RubyConf AU 2017"
+  date: "2017-02-09"
+  published_at: "2017-03-03"
+  description: |-
+    http://www.rubyconf.org.au
+
+    Serverless (via AWS Lambda), the new hotness, was definitely something we wanted to explore when developing the backend for our new Virtual Reality app. TLDR - despite expectations to the contrary we came back to Rails, specifically Rails 5 API mode. We'll walk you through our journey, what the different considerations were, what the different strengths of each platform are and how we reached our decision. We think it's essential that as Rails developers we have an understanding of Serverless, both as a replacement and as an augmentation to our skill-set and development environment.
+  video_provider: "youtube"
+  video_id: "E0wPImDxSt8"
+
+- id: "andr-arko-rubyconf-au-2017"
+  title: "How Does Bundler Work, Anyway?"
+  raw_title: "RubyConf AU 2017 - How does Bundler work anyway?, by Andre Arko"
+  speakers:
+    - André Arko
+  event_name: "RubyConf AU 2017"
+  date: "2017-02-09"
+  published_at: "2017-03-03"
+  description: |-
+    http://www.rubyconf.org.au
+
+    We all use Bundler at some point, and most of us use it every day. But what does it do, exactly? Why do we have to use bundle exec? What's the point of checking in the Gemfile.lock? Why can't we just gem install the gems we need? Join me for a walk through the reasons that Bundler exists, and a guide to what actually happens when you use it. Finally, we'll cover some Bundler "pro tips" that can improve your workflow when developing on multiple applications at once.
+  video_provider: "youtube"
+  video_id: "j2V-A8vvLP0"
+  track: "Deep Dive"
+
+- id: "kinsey-ann-durham-rubyconf-au-2017"
+  title: "Impactful Refactors: Refactoring for Readability"
+  raw_title: "RubyConf AU 2017 - Impactful Refactors: Refactoring for Readability, by Kinsey Ann Durham"
+  speakers:
+    - Kinsey Ann Durham
+  event_name: "RubyConf AU 2017"
+  date: "2017-02-09"
+  published_at: "2017-03-03"
+  description: |-
+    http://www.rubyconf.org.au
+
+    We have no problems justifying a refactoring effort when it improves performance or eliminates a code smell. What if I told you there's a way your refactoring could be even more impactful? One of the most costly and time-consuming things we do is on boarding. It takes an incredible amount of effort to bring a developer up to speed on a new codebase. In this talk, we’ll see real-world readability refactors, discuss how you can apply these techniques for the benefit of your current (and future) team members, and how we can continue to program with empathy and diversity in mind.
+  video_provider: "youtube"
+  video_id: "CHaKY8tTY6E"
+
+- id: "valerie-woolard-rubyconf-au-2017"
+  title: "Finding Translations, Localisation and Internationalisation"
+  raw_title: "RubyConf AU 2017 - Finding translations, localisation and internationalisation, by Valerie Woolard"
+  speakers:
+    - Valerie Woolard
+  event_name: "RubyConf AU 2017"
+  date: "2017-02-09"
+  published_at: "2017-03-03"
+  description: |-
+    http://www.rubyconf.org.au
+
+    This talk will discuss localization and internationalization for Rails applications. We’ll discuss available tools as well as best practices for building apps for localization. We’ll also talk about the more human and subjective struggles of translating ideas and concepts for new audiences.
+  video_provider: "youtube"
+  video_id: "mN6lynGNzxs"
+  track: "Deep Dive"
+
+- id: "stella-cotton-rubyconf-au-2017"
+  title: "The Little Server That Could"
+  raw_title: "RubyConf AU 2017 - The little server that could, by Stella Cotton"
+  speakers:
+    - Stella Cotton
+  event_name: "RubyConf AU 2017"
+  date: "2017-02-09"
+  published_at: "2017-03-03"
+  description: |-
+    http://www.rubyconf.org.au
+
+    Have you ever wondered what dark magic happens when you start up your Ruby server? Let’s explore the mysteries of the web universe by writing a tiny web server in Ruby! Writing a web server lets you dig deeper into the Ruby Standard Library and the Rack interface. You’ll get friendlier with I/O, signal trapping, file handles, and threading. You’ll also explore dangers first hand that can be lurking inside your production code- like blocking web requests and shared state with concurrency.
+  video_provider: "youtube"
+  video_id: "Wh88DZyTiK8"
+
+- id: "louis-simoneau-rubyconf-au-2017"
+  title: "Functional in the Front, Rails in the Back: Give Your App An Elm Mullet"
+  raw_title: "RubyConf AU 2017 - Functional in the front: rails in the back... by Louis Simoneau & Rahul Trikha"
+  speakers:
+    - Louis Simoneau
+    - Rahul Trikha
+  event_name: "RubyConf AU 2017"
+  date: "2017-02-09"
+  published_at: "2017-03-03"
+  description: |-
+    http://www.rubyconf.org.au
+
+    You want to keep up with new and exciting technologies, but rewriting your monolith in the language du jour is too daunting a task, and you're not sure a microservice split is right for you. Why not experiment with a purely functional, powerfully typed language in your existing Rails app? Elm is a new language that compiles to JavaScript and has lots of great mind-bending features. In this talk we'll look at the basics of Elm and how you can integrate it into an existing Rails app, even alongside your existing JavaScript code.
+  video_provider: "youtube"
+  video_id: "Bd6DTg1uNe0"
+  track: "Deep Dive"
+
+- id: "elle-meredith-rubyconf-au-2017"
+  title: "Self Learning is a Marathon not a Sprint"
+  raw_title: "RubyConf AU 2017 - Self learning is a marathon not a sprint, by Elle Meredith"
+  speakers:
+    - Elle Meredith
+  event_name: "RubyConf AU 2017"
+  date: "2017-02-09"
+  published_at: "2017-03-03"
+  description: |-
+    http://www.rubyconf.org.au
+
+    The web industry never stops evolving and changing. We have to keep on our toes and learn the new hot thing. Whether you have limited time because of family, or just started on your way, self-learning is challenging, difficult, and sometimes even overwhelming. This talk is my list of tips, techniques, and strategies I use when I self-learn. Hopefully, you can find one or two things here to keep you motivated, and on your way.
+  video_provider: "youtube"
+  video_id: "bU9QprllR3s"
+
+- id: "andy-nicholson-rubyconf-au-2017"
+  title: "You And Your Type[s] Aren't Welcome Here"
+  raw_title: "RubyConf AU 2017 - You and your type[s] aren't welcome here, by Andy Nicholson"
+  speakers:
+    - Andy Nicholson
+  event_name: "RubyConf AU 2017"
+  date: "2017-02-09"
+  published_at: "2017-03-03"
+  description: |-
+    http://www.rubyconf.org.au
+
+    Whenever the stereotypical Ruby developer hears the words "statically-typed", they have one of two responses:
+
+    they have flash-backs to their C++/Java days they prepare their memorized Alan Kay / Kent Beck quotes for battle. Now that stronger typing is coming to Ruby, maybe we need to calm down a little.
+
+    This talk is not designed to persuade anyone to drop our beloved Ruby, but maybe we can learn some lessons from our stronger-typed friends to bring even greater happiness than before.
+  video_provider: "youtube"
+  video_id: "gzXjqfPydFo"
+  track: "Deep Dive"
+
+- id: "alex-coles-rubyconf-au-2017"
+  title: "Ruby: How a Language Affects its People"
+  raw_title: "RubyConf AU 2017 - Ruby: how a language affects its people, by Alex Coles"
+  speakers:
+    - Alex Coles
+  event_name: "RubyConf AU 2017"
+  date: "2017-02-09"
+  published_at: "2017-03-03"
+  description: |-
+    http://www.rubyconf.org.au
+
+    In human-to-human languages the same core ideas get shaped differently depending on the language in which they are spoken. What if every computational language engenders a set (or a subset) of culture and values, and as a consequence attracts and shapes a corresponding community? What are the values that entered into the language by way of its core committers and what are the values we identify with as a community. How can making these values explicit help us foster a better community?
+  video_provider: "youtube"
+  video_id: "ybrsMpLA6u8"
+
+- id: "prathmesh-ranaut-rubyconf-au-2017"
+  title: "Performance Optimization in Ruby"
   raw_title: "RubyConf AU 2017 - Performance Optimization in Ruby, by Prathmesh Ranaut"
   speakers:
     - Prathmesh Ranaut
   event_name: "RubyConf AU 2017"
   date: "2017-02-09"
-  published_at: "TODO"
+  published_at: "2017-03-03"
   description: |-
     http://www.rubyconf.org.au
 
     The talk will focus on techniques I used to increase the performance of a popular concurrency framework, Celluloid, by upto 3 times. I'll discuss the areas where the Ruby application takes a performance hit and provide solutions for them.
   video_provider: "youtube"
   video_id: "HHRTSpFGCGg"
+  track: "Deep Dive"
 
-- title: "Automation Run Rampant"
+- id: "kylie-stradley-rubyconf-au-2017"
+  title: "A Common Taxonomy of Bugs and How to Catch Them"
+  raw_title: "RubyConf AU 2017 - A Common Taxonomy of Bugs and How to Catch Them, by Kylie Stradley"
+  speakers:
+    - Kylie Stradley
+  event_name: "RubyConf AU 2017"
+  date: "2017-02-09"
+  published_at: "2017-03-03"
+  description: |-
+    http://www.rubyconf.org.au
+
+    Catching software bugs is a mysterious magic, unknowable by science, and untouchable by process. Debugging skills are instinctual and come only from years of experience.
+
+    False! Programming bugs, like real bugs, can be organized into a deterministic taxonomy. At its base, consistent and successful debugging is pattern matching. Classifying bugs by their attributes and behaviors makes the seemingly impossible possible—codifying the elusive “programmer’s instincts” into a logical debugging process.
+  video_provider: "youtube"
+  video_id: "0J5OWi65rTI"
+
+- id: "kate-deutscher-rubyconf-au-2017"
+  title: "Automation Run Rampant"
   raw_title: "RubyConf AU 2017 - Automation Run Rampant, by Kate Deutscher"
   speakers:
     - Kate Deutscher
   event_name: "RubyConf AU 2017"
   date: "2017-02-09"
-  published_at: "2017-07-05"
+  published_at: "2017-07-06"
   description: |-
     http://www.rubyconf.org.au
 
     With the rise of micro services and DevOps culture, engineers are finding themselves responsible for the all facets of a rapidly growing number of systems. Luckily for you, many of the processes managing these systems can be automated! But where do you begin? How do you know when something is ripe for automation? Is there such as thing as bad automation? And how do you take the first step?
   video_provider: "youtube"
   video_id: "vK6qbMnl1xQ"
+  track: "Deep Dive"
+
+- id: "aja-hammerly-rubyconf-au-2017"
+  title: "Datacenter Fires and Other 'Minor' Disasters"
+  raw_title: "RubyConf AU 2017 - Datacenter Fires and Other 'Minor' Disasters, by Aja Hammerly"
+  speakers:
+    - Aja Hammerly
+  event_name: "RubyConf AU 2017"
+  date: "2017-02-09"
+  published_at: "2017-03-03"
+  description: |-
+    http://www.rubyconf.org.au
+
+    Most of us have a “that day I broke the internet” story. Some are amusing and some are disastrous but all of these stories change how we operate going forward. I’ll share the amusing stories behind why I always take a database backup, why feature flags are important, the importance of automation, and how having a team with varied backgrounds can save the day. Along the way I’ll talk about a data center fire, deleting a production database, and accidentally setting up a DDOS attack against our own site. I hope that by learning from my mistakes you won’t have to make them yourself.
+  video_provider: "youtube"
+  video_id: "WoTemqfZiHE"

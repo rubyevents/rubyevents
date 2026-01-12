@@ -1,0 +1,842 @@
+---
+## Day 1
+
+- id: "opening-words-sfruby-2025"
+  title: "Opening Words"
+  raw_title: "Opening words: Irina Nazarova, Brittany Martin Springer. San Francisco Ruby Conference 2025."
+  speakers:
+    - Irina Nazarova
+    - Brittany Springer
+  event_name: "SF Ruby 2025"
+  date: "2025-11-19"
+  published_at: "2025-12-26"
+  description: |-
+    Irina opens the conference by sharing the idea behind it and recognizing those involved in organizing it. She then introduces the main stage MC, Brittany Martin Springer, a beloved member of the community known for her years of hosting the Ruby on Rails podcast.
+  track: "Main Stage"
+  video_provider: "youtube"
+  video_id: "Nhe8FXbN0p0"
+
+- id: "marco-roth-sfruby-2025"
+  title: "Keynote: Herb to ReActionView: A New Foundation for the View Layer"
+  raw_title: "Opening Keynote: Marco Roth, Herb to ReActionView. San Francisco Ruby Conference 2025."
+  speakers:
+    - Marco Roth
+  event_name: "SF Ruby 2025"
+  date: "2025-11-19"
+  published_at: "2025-12-26"
+  description: |-
+    At RubyKaigi, Marco introduced Herb, a new HTML-aware ERB parser and tooling ecosystem. At RailsConf, he released developer tools built on Herb, which included a formatter, linter, and language server. There, he also shared a vision for modernizing the Rails view layer. This talk concludes his 2025 journey on the topic.
+  track: "Main Stage"
+  video_provider: "youtube"
+  video_id: "L7WpwtqHn_g"
+  slides_url: "https://speakerdeck.com/marcoroth/herb-to-reactionview-a-new-foundation-for-the-view-layer"
+
+- id: "rachael-wright-munn-sfruby-2025"
+  title: "Play with your code"
+  raw_title: "Rachael Wright Munn, Play with your code. San Francisco Ruby Conference 2025"
+  speakers:
+    - Rachael Wright-Munn
+  event_name: "SF Ruby 2025"
+  date: "2025-11-19"
+  published_at: "2025-12-26"
+  description: |-
+    Why are programming games more fun than our day jobs? Rachael digs into this exact question and shares the lessons we can learn from those games, and how to bring them back into the developer experience. Spoiler: This talk mentions some rad programming games you should play!
+  track: "Main Stage"
+  video_provider: "youtube"
+  video_id: "ltYep_SOjNg"
+  slides_url: "https://docs.google.com/presentation/d/1MDyBkQ_Ifa2CJ8DxY_e56TpHqPcwUhKOgM_sInFXIG8"
+
+- id: "fito-von-zastrow-alan-ridlehoover-sfruby-2025"
+  title: "Derailing Our Application: How and Why We Are Decoupling Our Code from Rails"
+  raw_title: "Derailing Our Application: How and Why We Are Decoupling Our Code from Rails"
+  speakers:
+    - Fito von Zastrow
+    - Alan Ridlehoover
+  event_name: "SF Ruby 2025"
+  date: "2025-11-19"
+  published_at: "TODO"
+  description: |-
+    Successful Rails apps tend to become massive monoliths over time. Our's is no exception. Our team is over 1000 engineers. Our codebase is over 4 million lines of Ruby.
+
+    But, Rails doesn't tell you how to manage that many developers working on that large a codebase. So, we're encouraging modularization and boundaries within our codebase. Our approach is lightweight and actually producing results.
+
+    We're the right ones to talk about this because we're the one's issuing the guidance internally.
+  track: "Blackbox Theater"
+  video_provider: "scheduled"
+  video_id: "fito-von-zastrow-alan-ridlehoover-sfruby-2025"
+
+- id: "justin-bowen-sfruby-2025"
+  title: "Building Agents with Rails"
+  raw_title: "Building Agents with Rails"
+  speakers:
+    - Justin Bowen
+  event_name: "SF Ruby 2025"
+  date: "2025-11-19"
+  published_at: "TODO"
+  description: |-
+    Hands-on workshop for building AI agents using Rails framework and modern AI tools.
+  track: "Workshop Studio"
+  video_provider: "scheduled"
+  video_id: "justin-bowen-sfruby-2025"
+
+- id: "jp-camara-sfruby-2025"
+  title: "Real-time collaboration with Rails, AnyCable and Yjs"
+  raw_title: "JP Camara, Real-time collaboration with Rails, AnyCable and Yjs. San Francisco Ruby Conference 2025."
+  speakers:
+    - JP Camara
+  event_name: "SF Ruby 2025"
+  date: "2025-11-19"
+  published_at: "2025-12-26"
+  description: |-
+    Real-time collaboration is a powerful tool for web apps, but difficult to implement. Most Ruby developers lack CRDT exposure and collaborative software challenges like conflict resolution and distributed consistency. In this talk, JP shows how to leverage Rails while adding sophisticated collaborative features using AnyCable to boost ActionCable performance and Yjs to simplify collaborative editing.
+  track: "Main Stage"
+  video_provider: "youtube"
+  video_id: "J68QOBLEItY"
+
+- id: "brandon-weaver-sfruby-2025"
+  title: "Rails Expertise, Distilled: AI Agents That Get Your Monolith"
+  raw_title: "Rails Expertise, Distilled: AI Agents That Get Your Monolith"
+  speakers:
+    - Brandon Weaver
+  event_name: "SF Ruby 2025"
+  date: "2025-11-19"
+  published_at: "TODO"
+  description: |-
+    New developers face months of unproductive confusion when dropped into massive codebases they can't navigate or understand. What if they could get instant answers about how systems work, identify what code needs changing, and understand complex business logic without waiting for help? This talk demonstrates how Rails' built-in introspection transforms into expert AI tools that understand your specific codebase, making institutional knowledge accessible 24/7. Instead of 3-month ramp-ups, developers contribute meaningfully in days while the entire team stays productive.
+  track: "Blackbox Theater"
+  video_provider: "scheduled"
+  video_id: "brandon-weaver-sfruby-2025"
+
+- id: "adrian-marin-sfruby-2025"
+  title: "Master the Rails Asset Pipeline: Best Practices for Apps & Gems"
+  raw_title: "Adrian Marin, Master the Rails asset pipeline. San Francisco Ruby Conference 2025."
+  speakers:
+    - Adrian Marin
+  event_name: "SF Ruby 2025"
+  date: "2025-11-19"
+  published_at: "2025-12-26"
+  description: |-
+    Adrian shares his learnings and a plugin system for asset handling. This talk is based on his experience shipping his gem, Avo, which is used by hundreds of applications with varying asset pipeline configurations, as well as over four years of building applications, from the pre-Webpacker era all the way to importmaps, esbuild, and Vite.
+  track: "Main Stage"
+  video_provider: "youtube"
+  video_id: "AFpbFXPBs3w"
+
+- id: "ben-sheldon-sfruby-2025"
+  title: "Performance starts at boot"
+  raw_title: "Performance starts at boot"
+  speakers:
+    - Ben Sheldon
+  event_name: "SF Ruby 2025"
+  date: "2025-11-19"
+  published_at: "TODO"
+  description: |-
+    Everyone can better understand how their Ruby code performs, regardless of whether they're using Rails or Hanami or just scripting with Ruby. As applications grow, I frequently see inside-out application performance work ignored or unacceptably tolerated ("that's just the way it is [sigh]").
+  track: "Blackbox Theater"
+  video_provider: "scheduled"
+  video_id: "ben-sheldon-sfruby-2025"
+  slides_url: "https://speakerdeck.com/bensheldon/performance-starts-at-boot"
+
+- id: "takashi-kokubun-sfruby-2025"
+  title: "ZJIT: The Future of Ruby Performance"
+  raw_title: "Takashi Kokubun, ZJIT: The future of Ruby performance. San Francisco Ruby Conference 2025."
+  speakers:
+    - Takashi Kokubun
+  event_name: "SF Ruby 2025"
+  date: "2025-11-19"
+  published_at: "2025-12-26"
+  description: |-
+    Since Rails 7.2 enabled YJIT by default, it has been widely adopted by the Ruby community, delivering a 10-20% speedup in various production workloads. To enhance Ruby's speed further, the Ruby and Rails Infrastructure (R&RI) team at Shopify is developing ZJIT, the next generation of YJIT for Ruby 3.5. In this talk, Takashi dives into ZJIT and how it'll improve Ruby performance.
+  track: "Main Stage"
+  video_provider: "youtube"
+  video_id: "XSdBCKepWHM"
+  slides_url: "https://speakerdeck.com/k0kubun/san-francisco-ruby-conference-2025"
+
+- id: "tia-anderson-sfruby-2025"
+  title: "Peace, Love, and CRUD: Finding Calm in the Chaos—With Ruby, AI, and a Little Garden Magic"
+  raw_title: "Peace, Love, and CRUD: Finding Calm in the Chaos—With Ruby, AI, and a Little Garden Magic"
+  speakers:
+    - Tia Anderson
+  event_name: "SF Ruby 2025"
+  date: "2025-11-19"
+  published_at: "TODO"
+  description: |-
+    This talk matters because we are enduring death by a thousand quiet cuts. The world asks us to go faster while our spirits beg us to slow down. Emotional exhaustion has become the norm, but it doesn't have to be. I built Peace of Mind not just with Rails, but with urgency and heart. As a newer dev and RailsConf Scholar, I've lived the tension between burnout and beauty. Choosing peace...in our work, our lives, and our code creates ripples. It starts with one. One you. One me.
+  track: "Blackbox Theater"
+  video_provider: "scheduled"
+  video_id: "tia-anderson-sfruby-2025"
+
+- id: "inertia-rails-workshop-sfruby-2025"
+  title: "Inertia Rails Workshop"
+  raw_title: "Inertia Rails Workshop"
+  speakers:
+    - Brandon Shar
+    - Brian Knoles
+    - Svyatoslav Kryukov
+  event_name: "SF Ruby 2025"
+  date: "2025-11-19"
+  published_at: "TODO"
+  description: |-
+    Inertia.js solves a huge pain point for server side MVC frameworks: clean integration with rich client-side libraries like React, Vue, and Svelte. Inertia Rails allows both sides of this equation to shine. The Rails code looks almost exactly like vanilla Rails code (without the view layer), which keeps existing Rails teams productive. On the client, Inertia Rails takes away a lot of the headaches in gluing React and Rails together: session based auth, server side global state management, and Inertia form submissions make life much easier on teams.
+  track: "Workshop Studio"
+  video_provider: "scheduled"
+  video_id: "inertia-rails-workshop-sfruby-2025"
+
+- id: "jose-valim-sfruby-2025"
+  title: "Programming language evolution in the AI era"
+  raw_title: "José Valim, Programming language evolution in the AI era. San Francisco Ruby Conference 2025."
+  speakers:
+    - José Valim
+  event_name: "SF Ruby 2025"
+  date: "2025-11-19"
+  published_at: "2025-12-26"
+  description: |-
+    José Valim, author of the Elixir language, former core Rails team member, and now founder of Tidewave.ai, shares his pragmatic take on the role of AI in software development. In this talk, he explains how web frameworks and developer tools need to evolve to meet the expectations and demands of tomorrow.
+  track: "Main Stage"
+  video_provider: "youtube"
+  video_id: "ydkP8yB9ozg"
+
+- id: "pawel-strzalkowski-sfruby-2025"
+  title: "AI Interface in 5 Minutes - Model Context Protocol on Rails"
+  raw_title: "AI Interface in 5 Minutes - Model Context Protocol on Rails"
+  speakers:
+    - Paweł Strzałkowski
+  event_name: "SF Ruby 2025"
+  date: "2025-11-19"
+  published_at: "TODO"
+  description: |-
+    This talk delivers a low-risk, high-value AI strategy that applies to any Rails app, new or old. It proves the ecosystem's power to modernize existing assets in the AI era without the need for expensive rewrites. It teaches one of the key aspects of the modern AI tech stack, giving a competitive advantage.
+
+    I'm a CTO, a veteran Rails developer and a vetted conference speaker. My expertise on a similar topic is validated by my upcoming talks at Rails World and EuRuKo this year. I'm excited to bring this timely material to the US community
+  track: "Blackbox Theater"
+  video_provider: "scheduled"
+  video_id: "pawel-strzalkowski-sfruby-2025"
+
+- id: "dave-thomas-sfruby-2025"
+  title: "Start Writing Ruby (Stop Using Classes)"
+  raw_title: "Dave Thomas, Start writing Ruby (stop using classes). San Francisco Ruby Conference 2025."
+  speakers:
+    - Dave Thomas
+  event_name: "SF Ruby 2025"
+  date: "2025-11-19"
+  published_at: "2025-12-26"
+  description: |-
+    David Thomas is a legend of the Ruby community and the Agile software development movement, an author of numerous books on Ruby and Rails, and the founder of the Pragmatic Bookshelf. In this talk, he argues that we are writing Ruby code the wrong way. We use classes as the unit of design when we don't need them and shouldn't rely on them. We also treat design patterns as recipes, which makes them largely irrelevant. Finally, we create arcane project structures and convoluted deployment systems that we simply do not need.
+  track: "Main Stage"
+  video_provider: "youtube"
+  video_id: "sjuCiIdMe_4"
+
+- id: "enrique-carlos-mogollan-sfruby-2025"
+  title: "The MCP Fog Made Me Do It: A Ruby Inspector's Unexpected Journey"
+  raw_title: "The MCP Fog Made Me Do It: A Ruby Inspector's Unexpected Journey"
+  speakers:
+    - Enrique Mogollán
+  event_name: "SF Ruby 2025"
+  date: "2025-11-19"
+  published_at: "TODO"
+  description: |-
+    MCP is still pretty foggy for most developers, and Ruby shouldn't be left out of the AI tooling party. This story shows how a simple "let me figure this out" project can accidentally become something fun and interesting to share. I've been learning about MCP, from the official ruby SDK, and stumbled onto this idea of self-generating UI interfaces. If you've ever stared a new project and wondered "how do I even start?", this talk is one example from foggy confusion to sunshine moment of "holy smokes, I didn't know that was possible." Besides, Ruby deserves a seat at the AI table.
+  track: "Blackbox Theater"
+  video_provider: "scheduled"
+  video_id: "enrique-carlos-mogollan-sfruby-2025"
+
+- id: "stephan-hagemann-sf-ruby-2025"
+  title: "Pack It Up: Why Packwerk Can't Save Your Messy Rails App (But You Can)"
+  raw_title: "Stephan Hagemann, Pack it up. San Francisco Ruby Conference 2025."
+  speakers:
+    - Stephan Hagemann
+  event_name: "SF Ruby 2025"
+  date: "2025-11-19"
+  published_at: "2025-12-26"
+  description: |-
+    Packwerk promised modularity in a gem install, but good architecture does not come from 'bundle add.' Stephan from Gusto shares Packwerk's story and the deeper truths it reveals about software design, organizational habits, and how we sometimes ask our tools to do our growing for us. This is a call to arms, and a reminder of our love of the craft, for teams that want to scale Rails applications by scaling their understanding first.
+  track: "Main Stage"
+  video_provider: "youtube"
+  video_id: "py_vjWTmAwg"
+
+- id: "evgeny-li-sfruby-2025"
+  title: "Building Cloud Data Infrastructure with Ruby"
+  raw_title: "Building Cloud Data Infrastructure with Ruby"
+  speakers:
+    - Evgeny Li
+  event_name: "SF Ruby 2025"
+  date: "2025-11-19"
+  published_at: "TODO"
+  description: |-
+    Ruby isn't just for web development. Discover why Ruby is a great choice for building and automating modern cloud data infrastructure. Learn real-world lessons from BemiDB, a data analytics platform. You'll gain practical skills and be inspired to leverage Ruby for your next infrastructure project!
+  track: "Blackbox Theater"
+  video_provider: "scheduled"
+  video_id: "evgeny-li-sfruby-2025"
+  slides_url: "https://speakerdeck.com/exaspark/building-cloud-data-infrastructure-with-ruby-at-sf-ruby-2025-3d33b52c-d041-4225-b271-e719a0ddc12e"
+
+- id: "startup-demos-sfruby-2025-session-1"
+  title: "Startup Demos (Session 1)"
+  raw_title: "Startup Demos (Session 1)"
+  event_name: "SF Ruby 2025"
+  description: |-
+    Live demonstrations from innovative startups building with Ruby and Rails.
+  date: "2025-11-19"
+  track: "Main Stage"
+  kind: "demo"
+  video_provider: "children"
+  video_id: "startup-demos-sfruby-2025-session-1"
+  talks:
+    - id: "recognize-demo-sf-ruby-2025"
+      title: "Startup Demo: Recognize"
+      raw_title: "Ruby startup demo: Peter Philips, Recognize. San Francisco Ruby Conference 2025."
+      event_name: "SF Ruby 2025"
+      published_at: "2025-12-26"
+      description: |-
+        Ruby Startup Demo: https://recognizeapp.com/
+        High-impact, affordable, and easy to launch employee recognition and rewards program. Even for frontline teams across multiple locations.
+      video_provider: "youtube"
+      video_id: "Ou7CGuQUy6Q"
+      speakers:
+        - "Peter Philips"
+
+    - id: "stepful-demo-sf-ruby-2025"
+      title: "Startup Demo: Stepful"
+      raw_title: "Ruby startup demo: Wyatt Ades, Stepful. San Francisco Ruby Conference 2025."
+      event_name: "SF Ruby 2025"
+      published_at: "2025-12-26"
+      description: |-
+        Ruby Startup Demo: https://www.stepful.com/
+        A four-month, tech-driven online healthcare training program for entry-level roles, accessible to candidates with a high school diploma.
+      video_provider: "youtube"
+      video_id: "GoFbMl3TBmw"
+      speakers:
+        - "Wyatt Ades"
+
+    - id: "thatch-demo-sf-ruby-2025"
+      title: "Startup Demo: Thatch"
+      raw_title: "Ruby startup demo: Bart de Water, Thatch. San Francisco Ruby Conference 2025."
+      event_name: "SF Ruby 2025"
+      published_at: "2025-12-26"
+      description: |-
+        Ruby Startup Demo: https://thatch.com/
+        Thatch makes it easy to give your team great healthcare. You set a budget, and your employees spend it the way that works best for them.
+      video_provider: "youtube"
+      video_id: "7M4dzK9wY7I"
+      speakers:
+        - "Bart de Water"
+
+    - id: "angellist-demo-sf-ruby-2025"
+      title: "Startup Demo: AngelList"
+      raw_title: "Ruby startup demo: Chamod Gamage, AngelList. San Francisco Ruby Conference 2025."
+      event_name: "SF Ruby 2025"
+      published_at: "2025-12-26"
+      description: |-
+        Ruby Startup Demo: https://www.angellist.com/
+        AngelList builds software investors use to fund world-changing startups.
+      video_provider: "youtube"
+      video_id: "931PpANN8bs"
+      speakers:
+        - "Chamod Gamage"
+
+    - id: "planetscale-demo-sf-ruby-2025"
+      title: "Startup Demo: PlanetScale"
+      raw_title: "Ruby startup demo: Sam Lambert, PlanetScale. San Francisco Ruby Conference 2025."
+      event_name: "SF Ruby 2025"
+      published_at: "2025-12-26"
+      description: |-
+        Ruby Startup Demo: https://planetscale.com/
+        PlanetScale is the database platform for developers. It provides MySQL-compatible serverless database with built-in scaling, branching, and non-blocking schema changes.
+      video_provider: "youtube"
+      video_id: "WxdB4sg2eIM"
+      speakers:
+        - "Sam Lambert"
+
+- id: "carmine-paolino-sfruby-2025"
+  title: "Keynote: RubyLLM"
+  raw_title: "Keynote: Carmine Paolino, RubyLLM. San Francisco Ruby Conference 2025."
+  speakers:
+    - Carmine Paolino
+  event_name: "SF Ruby 2025"
+  date: "2025-11-19"
+  published_at: "2025-12-26"
+  description: |-
+    Carmine believes the merchants of complexity have sold the AI world a lie. They claim you need their frameworks, SDKs, and enterprise architectures. He argues that today's AI is mostly API calls, and when the challenge shifts from training models to building products, complexity becomes a liability and simplicity becomes everything. Rails proved that lesson before.
+
+    Meet Carmine Paolino and learn about the design decisions behind one of the most popular new Ruby open-source projects: RubyLLM.
+
+    "One API for every model, every vendor. One developer on one machine serving thousands. While Python developers debug their 14-line 'Hello World,' we're shipping. Ruby's time in AI isn't coming. It's here."
+  track: "Main Stage"
+  video_provider: "youtube"
+  video_id: "y535u1EWqAg"
+
+## Day 2
+
+- id: "obie-fernandez-sfruby-2025"
+  title: "Keynote: Ruby & AI conversation"
+  raw_title: "Ruby & AI conversation"
+  speakers:
+    - Obie Fernandez
+  event_name: "SF Ruby 2025"
+  date: "2025-11-20"
+  published_at: "TODO"
+  description: |-
+    A conversation about the intersection of Ruby and AI technologies, exploring opportunities and challenges.
+  track: "Main Stage"
+  video_provider: "scheduled"
+  video_id: "obie-fernandez-sfruby-2025"
+
+- id: "colleen-schnettler-sfruby-2025"
+  title: "From code to customers: technical marketing for people who'd rather be building"
+  raw_title: "Colleen Schnettler, From code to customers. San Francisco Ruby Conference 2025."
+  speakers:
+    - Colleen Schnettler
+  event_name: "SF Ruby 2025"
+  date: "2025-11-20"
+  published_at: "2025-12-26"
+  description: |-
+    Too many brilliant Rails developers build great products and then quit when customers don't appear. They're missing one skill: marketing.
+
+    Colleen wants to change that.
+
+    "The Rails renaissance is here, and I believe helping Rails builders become successful entrepreneurs is crucial for our community's future," she adds.
+  track: "Main Stage"
+  video_provider: "youtube"
+  video_id: "xP86mvtqEh0"
+
+- id: "andre-arko-sfruby-2025"
+  title: "Operating rails: what about after you deploy?"
+  raw_title: "Operating rails: what about after you deploy?"
+  speakers:
+    - André Arko
+  event_name: "SF Ruby 2025"
+  date: "2025-11-20"
+  published_at: "TODO"
+  description: |-
+    Running a web service requires you to do so many things that aren't included in any programming books or tutorials. We need more developers able to ship services that work, rather than expecting each developer to figure out the entire list by trial and error, one at a time, by themselves. Blog posts with individual tips about isolated problems don't cut it either, because no one is creating a field survey or a checklist of the overall process and making sure developers are aware of and ready for what they'll face in production.
+  track: "Blackbox Theater"
+  video_provider: "scheduled"
+  video_id: "andre-arko-sfruby-2025"
+  slides_url: "https://speakerdeck.com/indirect/operating-rails-what-about-after-you-deploy-1c7b6a98-c411-46e7-87fb-1b74a6398f9d"
+
+- id: "kasper-timm-hansen-sfruby-2025"
+  title: "Upskill Your Team by Diving into Rails itself & other Gems"
+  raw_title: "Upskill Your Team by Diving into Rails itself & other Gems"
+  speakers:
+    - Kasper Timm Hansen
+  event_name: "SF Ruby 2025"
+  date: "2025-11-20"
+  published_at: "TODO"
+  description: |-
+    There's a ton of untapped potential in Rails and other gem source for upskilling that teams aren't leveraging because they don't know how. And there's almost no content showing how.
+
+    This problem hurts Ruby open source, because teams don't know how to contribute or make gems (exposure to real open source code is the first step IMO).
+
+    I've given several Rails source deep-dive workshops over Zoom that 70+ people have attended. I've shown a live-demo of this on stage at RailsConf that attendees raved about.
+  track: "Workshop Studio"
+  video_provider: "scheduled"
+  video_id: "kasper-timm-hansen-sfruby-2025"
+
+- id: "jeremy-evans-sfruby-2025"
+  title: "The Thin CLIent Approach"
+  raw_title: "Jeremy Evans, The thin CLIent approach. San Francisco Ruby Conference 2025."
+  speakers:
+    - Jeremy Evans
+  event_name: "SF Ruby 2025"
+  date: "2025-11-20"
+  published_at: "2025-12-26"
+  description: |-
+    In this presentation, Jeremy Evans, author of Roda and Sequel, the book Polished Ruby Programming, and Principal Engineer at Ubicloud, shares a new approach to CLI development. Instead of parsing command-line arguments in the client, arguments are sent to an endpoint. He discusses the pros and cons of this approach, the development of a new argument-parsing library, cross-compiling CLI programs, and how this design enables using a CLI without installation by integrating it into a web application.
+  track: "Main Stage"
+  video_provider: "youtube"
+  video_id: "JmmtO8vChyA"
+  slides_url: "https://code.jeremyevans.net/presentations/sfruby2025/index.html"
+
+- id: "albert-pai-sf-ruby-2025"
+  title: "Fireside chat with the co-founder and CTO of bolt.new Albert Pai"
+  raw_title: "Fireside chat with the co-founder and CTO of bolt.new Albert Pai"
+  event_name: "SF Ruby 2025"
+  speakers:
+    - Albert Pai
+    - Irina Nazarova
+  date: "2025-11-20"
+  published_at: "TODO"
+  description: |-
+    Irina Nazarova sits down with Albert Pai, Co-founder and CTO of Bolt.new, to talk about building one of the fastest-growing startups in code generation—what worked, what didn't, and how Ruby and Rails shaped the path.
+  track: "Blackbox Theater"
+  video_provider: "scheduled"
+  video_id: "albert-pai-sf-ruby-2025"
+
+- id: "sarah-mei-sfruby-2025"
+  title: "The Role of Software Design in an AI World"
+  raw_title: "Sarah Mei, The role of software design in an AI world. San Francisco Ruby Conference 2025."
+  speakers:
+    - Sarah Mei
+  event_name: "SF Ruby 2025"
+  date: "2025-11-20"
+  published_at: "2025-12-26"
+  description: |-
+    Ruby developers, like all developers, are nervous about their worth in an AI-first world. This talk offers reason for optimism by sharing a perspective on using AI to enhance roles rather than replace them.
+
+    For over ten years, Sarah has spoken, written, and thought deeply about software design. Over the last six months, she has worked with code assistants to explore what they can do in real Rails codebases, not new projects or toy apps.
+  track: "Main Stage"
+  video_provider: "youtube"
+  video_id: "gTHmwQviVI8"
+
+- id: "sam-poder-sfruby-2025"
+  title: "How to open-source your Rails startup"
+  raw_title: "How to open-source your Rails startup"
+  speakers:
+    - Sam Poder
+  event_name: "SF Ruby 2025"
+  date: "2025-11-20"
+  published_at: "TODO"
+  description: |-
+    As Rails developers, we develop on the shoulders of giants. We can do what we can do because of the work of thousands of open source contributors; I want to encourage more developers to give back through open sourcing their work.
+
+    This also isn't a subject talked about often and having just taken a codebase from open to closed source, I can offer a unique perspective. I remember struggling with a lack of resources of the subject when we started the project. Hopefully this talk can make it easier for the next person who open sources their codebase.
+  track: "Blackbox Theater"
+  video_provider: "scheduled"
+  video_id: "sam-poder-sfruby-2025"
+
+- id: "mike-perham-sfruby-2025"
+  title: "Sidekiq: Open Source, Business and the Future"
+  raw_title: "Mike Perham, Sidekiq: Open source, business and the future. San Francisco Ruby Conference 2025."
+  speakers:
+    - Mike Perham
+  event_name: "SF Ruby 2025"
+  date: "2025-11-20"
+  published_at: "2025-12-26"
+  description: |-
+    Learn how to build a successful open source business model from the creator of the most popular background job infrastructure for Rails applications, and one of the most successful one-person businesses: Sidekiq Pro.
+  track: "Main Stage"
+  video_provider: "youtube"
+  video_id: "4H5V6gnG9Oo"
+
+- id: "tom-wheeler-sfruby-2025"
+  title: "Temporal Demo"
+  raw_title: "Temporal Demo"
+  speakers:
+    - Tom Wheeler
+  kind: "talk"
+  event_name: "SF Ruby 2025"
+  date: "2025-11-20"
+  published_at: "TODO"
+  description: |-
+    Alternating between software engineering and technical education roles, Tom Wheeler's career spans nearly 30 years in the financial, healthcare, defense, and tech industries. Prior to joining Temporal in 2022, he created training courses at Cloudera, developed aerospace engineering software at Object Computing, helped design and implement a distributed system for high-volume data processing at WebMD, and wrote some of the earliest web applications at brokerage firm A.G. Edwards.
+  track: "Blackbox Theater"
+  video_provider: "scheduled"
+  video_id: "tom-wheeler-sfruby-2025"
+
+- id: "noel-rappin-sfruby-2025"
+  title: "The Dynamic Ruby Toolkit"
+  raw_title: "The Dynamic Ruby Toolkit"
+  speakers:
+    - Noel Rappin
+  event_name: "SF Ruby 2025"
+  date: "2025-11-20"
+  published_at: "TODO"
+  description: |-
+    Ruby rewards thinking about types with a dynamic mindset instead of a static one. In this workshop, we'll show how use Ruby's dynamism to your advantage. From the humble comment to runtime type checking, from tests to debugging techniques, from data management to true object-oriented design, this workshop will give you the tools you need to bring out Ruby's full power.
+  track: "Workshop Studio"
+  video_provider: "scheduled"
+  video_id: "noel-rappin-sfruby-2025"
+
+- id: "eugene-kenny-sfruby-2025"
+  title: "Scaling Rails to two million MySQL requests per second"
+  raw_title: "Eugene Kenny, Scaling Rails to 2M MySQL requests per second. San Francisco Ruby Conference 2025."
+  speakers:
+    - Eugene Kenny
+  event_name: "SF Ruby 2025"
+  date: "2025-11-20"
+  published_at: "2025-12-26"
+  description: |-
+    Eugene shares the patterns and techniques Intercom's monolith used to go from 'rails new intercom' to comfortably scaling to over two million MySQL requests per second. From this talk, expect practical takeaways on replication, sharding, caching, connection routing, and upgrade strategy, along with the bumps and trade-offs encountered along the way.
+  track: "Main Stage"
+  video_provider: "youtube"
+  video_id: "Xc8OYnIci3E"
+
+- id: "startup-demos-sfruby-2025-session-2"
+  title: "Startup Demos (Session 2)"
+  raw_title: "Startup Demos (Session 2)"
+  kind: "demo"
+  description: |-
+    Live demonstrations from innovative startups building with Ruby and Rails.
+  date: "2025-11-20"
+  event_name: "SF Ruby 2025"
+  track: "Main Stage"
+  video_provider: "scheduled"
+  video_id: "startup-demos-sfruby-2025-session-2"
+  talks:
+    - id: "bolt-new-demo-sf-ruby-2025"
+      title: "Startup Demo: Bolt"
+      raw_title: "Ruby startup demo: Alex Kalderimis, Bolt. San Francisco Ruby Conference 2025"
+      event_name: "SF Ruby 2025"
+      published_at: "2025-12-26"
+      description: |-
+        Ruby Startup Demo: https://bolt.new/
+        Bolt is an AI-native browser tool for building and deploying full-stack web apps with zero code. Since its launch in 2024, it has reached $40M in ARR in just five months.
+      video_provider: "youtube"
+      video_id: "zXbAWkUueUM"
+      speakers:
+        - "Alex Kalderimis"
+
+    - id: "fin-by-intercom-demo-sf-ruby-2025"
+      title: "Startup Demo: Fin by Intercom"
+      raw_title: "Ruby startup demo: Ryan Sherlock, Fin by Intercom. San Francisco Ruby Conference 2025"
+      event_name: "SF Ruby 2025"
+      published_at: "2025-12-26"
+      description: |-
+        Ruby Startup Demo: https://fin.ai/
+        Fin is Intercom's AI support agent. It learns from your docs and policies while keeping your tone. Then, Fin can resolve customer questions with human-quality answers across chat, email, voice, and social.
+
+        Here, Ryan shows Fin's AI Engine, including: intent clarification, knowledge retrieval, and response validation to reduce hallucinations.
+      video_provider: "youtube"
+      video_id: "5MepvHfFXgk"
+      speakers:
+        - "Ryan Sherlock"
+
+    - id: "nexhealth-demo-sf-ruby-2025"
+      title: "Startup Demo: NexHealth"
+      raw_title: "Ruby startup demo: Matt Duszynski, NexHealth. San Francisco Ruby Conference 2025"
+      event_name: "SF Ruby 2025"
+      published_at: "2025-12-26"
+      description: |-
+        Ruby Startup Demo: https://www.nexhealth.com/
+        NexHealth is a healthcare unicorn accelerating innovation with a universal API powered by the Synchronizer. It is used by tens of thousands of practices across North America and by hundreds of startups.
+      video_provider: "youtube"
+      video_id: "21hf1Ue1o6I"
+      speakers:
+        - "Matt Duszynski"
+
+    - id: "simple-ai-demo-sf-ruby-2025"
+      title: "Startup Demo: SimpleAI"
+      raw_title: "Ruby startup demo: Zach Kamran, SimpleAI. San Francisco Ruby Conference 2025"
+      event_name: "SF Ruby 2025"
+      published_at: "2025-12-26"
+      description: |-
+        Ruby Startup Demo: https://www.usesimple.ai/
+        Simple AI is YC-backed and makes it easy to build and deploy enterprise-grade phone agents in days, not weeks. Iconic businesses use this tool for sales calls, customer support, leads qualification, and more.
+      video_provider: "youtube"
+      video_id: "Bl7Dq6aYidE"
+      speakers:
+        - "Zach Kamran"
+
+    - id: "sixfold-demo-sf-ruby-2025"
+      title: "Startup Demo: Sixfold"
+      raw_title: "Ruby startup demo: Brian Moseley, Sixfold. San Francisco Ruby Conference 2025"
+      event_name: "SF Ruby 2025"
+      published_at: "2025-12-26"
+      description: |-
+        Ruby Startup Demo: https://www.sixfold.ai/
+        This is an insurtech startup that uses generative AI to optimize insurance underwriting processes.
+      video_provider: "youtube"
+      video_id: "L91KPH6f_q8"
+      speakers:
+        - "Brian Moseley"
+
+- id: "startup-demos-sfruby-2025-session-3"
+  title: "Startup Demos (Session 3)"
+  raw_title: "Startup Demos (Session 3)"
+  event_name: "SF Ruby 2025"
+  description: |-
+    Live demonstrations from innovative startups building with Ruby and Rails.
+  date: "2025-11-20"
+  kind: "demo"
+  track: "Blackbox Theater"
+  video_provider: "scheduled"
+  video_id: "startup-demos-sfruby-2025-session-3"
+  talks:
+    - id: "accessgrid-demo-sf-ruby-2025"
+      title: "AccessGrid Demo"
+      event_name: "SF Ruby 2025"
+      video_id: "accessgrid-demo-sf-ruby-2025"
+      video_provider: "parent"
+      speakers:
+        - "Auston Bunsen"
+
+    - id: "suppli-demo-sf-ruby-2025"
+      title: "Suppli Demo"
+      event_name: "SF Ruby 2025"
+      video_id: "suppli-demo-sf-ruby-2025"
+      video_provider: "parent"
+      speakers:
+        - "David Paluy"
+
+    - id: "tend-cash-demo-sf-ruby-2025"
+      title: "Tend Cash Demo"
+      event_name: "SF Ruby 2025"
+      video_id: "tend-cash-demo-sf-ruby-2025"
+      video_provider: "parent"
+      speakers:
+        - "James Kerr"
+
+    - id: "spinel-demo-sf-ruby-2025"
+      title: "Spinel Demo"
+      event_name: "SF Ruby 2025"
+      video_id: "spinel-demo-sf-ruby-2025"
+      video_provider: "parent"
+      speakers:
+        - "André Arko"
+
+    - id: "cleary-demo-sf-ruby-2025"
+      title: "Cleary Demo"
+      event_name: "SF Ruby 2025"
+      video_id: "cleary-demo-sf-ruby-2025"
+      video_provider: "parent"
+      speakers:
+        - "Ryan O'Donnell"
+
+- id: "startup-demos-sfruby-2025-session-4"
+  title: "Startup Demos (Session 4)"
+  raw_title: "Startup Demos (Session 4)"
+  event_name: "SF Ruby 2025"
+  kind: "demo"
+  description: |-
+    Live demonstrations from innovative startups building with Ruby and Rails.
+  date: "2025-11-20"
+  track: "Main Stage"
+  video_provider: "children"
+  video_id: "startup-demos-sfruby-2025-session-4"
+  talks:
+    - id: "cactus-demo-sf-ruby-2025"
+      title: "Startup Demo: Cactus"
+      raw_title: "Ruby startup demo: Avinash Joshi, Cactus. San Francisco Ruby Conference 2025"
+      event_name: "SF Ruby 2025"
+      published_at: "2025-12-26"
+      description: |-
+        Ruby Startup Demo: https://oncactus.com/
+        Cactus is an AI-powered business assistant that answers, qualifies, and follows up with every lead around the clock. This way, you never miss a customer, call, or opportunity.
+      video_provider: "youtube"
+      video_id: "kdVAm_yzqpE"
+      speakers:
+        - "Avinash Joshi"
+
+    - id: "superconductor-demo-sf-ruby-2025"
+      title: "Startup Demo: Superconductor"
+      raw_title: "Ruby startup demo: Arjun Singh, Superconductor. San Francisco Ruby Conference 2025"
+      event_name: "SF Ruby 2025"
+      published_at: "2025-12-26"
+      description: |-
+        Ruby Startup Demo: https://www.superconductor.dev/
+        Superconductor lets you run multiple coding agents in parallel, each with a live browser preview on desktop or mobile. You can also launch multiple agents per ticket to boost your productivity.
+      video_provider: "youtube"
+      video_id: "P8myd01GxAA"
+      speakers:
+        - "Arjun Singh"
+
+    - id: "ai-squared-demo-sf-ruby-2025"
+      title: "Startup Demo: AI Squared / Multiwoven"
+      raw_title: "Ruby startup demo: Nagendra Dhanakeerthi, AI Squared/Multwoven. San Francisco Ruby Conference 2025"
+      event_name: "SF Ruby 2025"
+      published_at: "2025-12-26"
+      description: |-
+        Ruby Startup Demo: https://github.com/Multiwoven/multiwoven
+        Multiwoven by AI Squared is an open-source reverse ETL platform that activates warehouse data into SaaS apps. It offers one-click self-hosting, customizable connectors, and is built for modern data teams.
+      video_provider: "youtube"
+      video_id: "A3smrePJj4M"
+      speakers:
+        - "Nagendra Hassan Dhanakeerthi"
+
+    - id: "ubicloud-demo-sf-ruby-2025"
+      title: "Startup Demo: Ubicloud"
+      raw_title: "Ruby startup demo: Dan Farina, Ubicloud. San Francisco Ruby Conference 2025"
+      event_name: "SF Ruby 2025"
+      published_at: "2025-12-26"
+      description: |-
+        Ruby Startup Demo: https://www.ubicloud.com/
+        Ubicloud is an open source alternative to AWS that provides cloud services on bare metal providers, such as Hetzner, Leaseweb, or AWS Bare Metal.
+      video_provider: "youtube"
+      video_id: "rhmINL-nK5o"
+      speakers:
+        - "Daniel Farina"
+
+    - id: "finta-demo-sf-ruby-2025"
+      title: "Startup Demo: Finta"
+      raw_title: "Ruby startup demo: Andy Wang, Finta. San Francisco Ruby Conference 2025"
+      event_name: "SF Ruby 2025"
+      published_at: "2025-12-26"
+      description: |-
+        Ruby Startup Demo: https://www.finta.com/
+        Finta is the new default for startups to handle accounting and taxes. Within 10 minutes, you get automated bookkeeping, effortless tax filing, and real-time insights.
+      video_provider: "youtube"
+      video_id: "FDHtRONY4kk"
+      speakers:
+        - "Andy Wang"
+
+- id: "startup-demos-sfruby-2025-session-5"
+  title: "Startup Demos (Session 5)"
+  raw_title: "Startup Demos"
+  event_name: "SF Ruby 2025"
+  description: |-
+    Live demonstrations from innovative startups building with Ruby and Rails.
+  date: "2025-11-20"
+  track: "Blackbox Theater"
+  kind: "demo"
+  video_provider: "scheduled"
+  video_id: "startup-demos-sfruby-2025-session-5"
+  talks:
+    - id: "cora-computer-demo-sf-ruby-2025"
+      title: "Cora Computer Demo"
+      event_name: "SF Ruby 2025"
+      video_id: "cora-computer-demo-sf-ruby-2025"
+      video_provider: "parent"
+      speakers:
+        - "Kieran Klaassen"
+
+    - id: "terminalwire-demo-sf-ruby-2025"
+      title: "Terminalwire Demo"
+      event_name: "SF Ruby 2025"
+      video_id: "terminalwire-demo-sf-ruby-2025"
+      video_provider: "parent"
+      speakers:
+        - "Brad Gessler"
+
+    - id: "llamapress-demo-sf-ruby-2025"
+      title: "llamapress Demo"
+      event_name: "SF Ruby 2025"
+      video_id: "llamapress-demo-sf-ruby-2025"
+      video_provider: "parent"
+      speakers:
+        - "Kody Kendall"
+
+    - id: "chatwithwork-demo-sf-ruby-2025"
+      title: "Chatwithwork Demo"
+      event_name: "SF Ruby 2025"
+      video_id: "chatwithwork-demo-sf-ruby-2025"
+      video_provider: "parent"
+      speakers:
+        - "Carmine Paolino"
+
+    - id: "bemi-ai-demo-sf-ruby-2025"
+      title: "Bemi AI Demo"
+      event_name: "SF Ruby 2025"
+      video_id: "bemi-ai-demo-sf-ruby-2025"
+      video_provider: "parent"
+      speakers:
+        - "Evgeny Li"
+
+- id: "vladimir-dementyev-sfruby-2025"
+  title: "Keynote: Rails X"
+  raw_title: "Closing Keynote: Vladimir Dementyev, Rails X. San Francisco Ruby Conference 2025."
+  speakers:
+    - Vladimir Dementyev
+  event_name: "SF Ruby 2025"
+  date: "2025-11-20"
+  published_at: "2025-12-26"
+  description: |-
+    Vladimir shares a vision for the future of Rails, informed by surveys of Ruby developers and his work with Ruby startups. He inspires us to take part in building it!
+  track: "Main Stage"
+  video_provider: "youtube"
+  video_id: "hP4SkKH4IsA"
+  slides_url: "https://speakerdeck.com/palkan/sf-ruby-conf-2025-rails-x"
+
+- id: "closing-words-sfruby-2025"
+  title: "Closing Words"
+  raw_title: "Closing words: Irina Nazarova. San Francisco Ruby Conference 2025."
+  speakers:
+    - Irina Nazarova
+    - Vladimir Dementyev
+  event_name: "SF Ruby 2025"
+  date: "2025-11-20"
+  published_at: "2025-12-26"
+  description: |-
+    Irina closes the official Day 2 of the conference and invites everyone to share the Rails X cake and join Day 3 of community events, from an open-water swim to Alcatraz, to a bike ride, a 10K run, and a Hack Day at AngelList.
+
+    She thanks everyone who participated: attendees, sponsors, speakers, volunteers, organizers, students, and many Martians. She hopes that the connections made at the event will turn into friendships and collaborations, inspiration will turn into open source and products, and that, together with everything learned, they will help support new and upcoming Ruby startups and grow them into the big success stories of the years to come.
+  track: "Main Stage"
+  video_provider: "youtube"
+  video_id: "Fx-AgNTMIRU"

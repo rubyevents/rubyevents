@@ -1,12 +1,13 @@
 module Prompts
   class Base
-    MODEL = "gpt-4.1-nano"
+    MODEL = "gpt-5-mini"
 
     def to_params
       {
         model: model,
         response_format: response_format,
-        messages: messages
+        messages: messages,
+        service_tier: service_tier
       }
     end
 
@@ -33,6 +34,10 @@ module Prompts
 
     def prompt
       raise NotImplementedError, "Subclass #{self.class.name} must implement #prompt"
+    end
+
+    def service_tier
+      "default"
     end
   end
 end

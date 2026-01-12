@@ -1,10 +1,14 @@
 class Event::StaticMetadata < ActiveRecord::AssociatedObject
+  extension do
+    def featured_metadata? = static_metadata.featured_background?
+  end
+
   delegate :published_date, :home_sort_date, to: :static_repository, allow_nil: true
 
   def kind
     return static_repository.kind if static_repository&.kind
-    return "conference" if event.organisation&.conference?
-    return "meetup" if event.organisation&.meetup?
+    return "conference" if event.series&.conference?
+    return "meetup" if event.series&.meetup?
 
     "event"
   end
@@ -17,8 +21,16 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
     kind == "meetup"
   end
 
+  def retreat?
+    kind == "retreat"
+  end
+
+  def hackathon?
+    kind == "hackathon"
+  end
+
   def frequency
-    static_repository&.frequency || event.organisation.frequency
+    static_repository&.frequency || event.series.frequency
   end
 
   def start_date
@@ -54,26 +66,30 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
 
     "black"
   rescue => e
-    raise "No featured background found for #{event.name} :  #{e.message}" if Rails.env.local?
+    raise "No featured background found for #{event.name} :  #{e.message}. You might have to restart your Rails server." if Rails.env.local?
     "black"
   end
 
   def featured_color
     static_repository.featured_color.present? ? static_repository.featured_color : "white"
   rescue => e
-    raise "No featured color found for #{event.name} :  #{e.message}" if Rails.env.local?
+    raise "No featured color found for #{event.name} :  #{e.message}. You might have to restart your Rails server." if Rails.env.local?
     "white"
   end
 
   def banner_background
     static_repository.banner_background.present? ? static_repository.banner_background : "#081625"
   rescue => e
-    raise "No featured background found for #{event.name} :  #{e.message}" if Rails.env.local?
+    raise "No featured background found for #{event.name} :  #{e.message}. You might have to restart your Rails server." if Rails.env.local?
     "#081625"
   end
 
   def location
     static_repository&.location&.presence || "Earth"
+  end
+
+  def coordinates
+    static_repository&.coordinates
   end
 
   def country
@@ -86,9 +102,13 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
     static_repository&.last_edition || false
   end
 
+  def hybrid?
+    !!static_repository.try(:hybrid) || false
+  end
+
   private
 
   def static_repository
-    @static_repository ||= Static::Playlist.find_by(slug: event.slug)
+    @static_repository ||= Static::Event.find_by_slug(event.slug)
   end
 end

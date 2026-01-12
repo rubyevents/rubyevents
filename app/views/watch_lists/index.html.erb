@@ -1,13 +1,13 @@
 <%= turbo_refreshes_with method: :morph, scroll: :preserve %>
 
 <div class="container flex flex-col w-full gap-4 my-8">
-  <div class="flex justify-between items-center">
-    <h1 style="view-transition-name: title"><%= @watch_list.name %></h1>
-
+  <div class="flex justify-between items-center mb-6">
+    <h1><%= title @watch_list.name %></h1>
   </div>
+
   <%= turbo_frame_tag "watch_list_talks", target: "_top", src: watch_list_path(@watch_list) do %>
     <%= render partial: "watch_lists/watch_list",
           locals: {watch_list: @watch_list,
-                   watched_talks_ids: user_watched_talks_ids} %>
+                   user_watched_talks: user_watched_talks} %>
   <% end %>
 </div>

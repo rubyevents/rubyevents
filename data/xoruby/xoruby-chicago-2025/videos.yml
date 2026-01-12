@@ -1,36 +1,102 @@
 ---
-- title: "Talk by Peter Bhat Harkins"
-  raw_title: "Talk by Peter Bhat Harkins"
+- id: "scott-werner-xoruby-chicago-2025"
+  title: "We Were Voyagers. We Can Voyage Again!"
+  raw_title: "XO Ruby Chicago 2025 - We Were Voyagers. We Can Voyage Again! by Scott Werner"
   event_name: "XO Ruby Chicago 2025"
-  description: ""
-  speakers:
-    - Peter Bhat Harkins
-  date: "2025-09-06"
-  announced_at: "2025-07-29"
-  published_at: "TODO"
-  video_id: "peter-bhat-harkins-xoruby-chicago-2025"
-  video_provider: "scheduled"
+  description: |-
+    Do you remember Ruby's "Golden Age"? The era of why the lucky stiff, when frameworks like Camping and Sinatra felt like artistic expressions, and every week brought a new, delightful experiment. Ruby was the language of developer happiness, defined by a magical duality: rock-solid productivity on one hand, and playful, creative exploration on the other.
 
-- title: "Talk by Coraline Ada Ehmke"
-  raw_title: "Talk by Coraline Ada Ehmke"
-  event_name: "XO Ruby Chicago 2025"
-  description: ""
-  speakers:
-    - Coraline Ada Ehmke
-  date: "2025-09-06"
-  announced_at: "2025-07-29"
-  published_at: "TODO"
-  video_id: "coraline-ada-ehmke-xoruby-chicago-2025"
-  video_provider: "scheduled"
+    In our collective journey to maturity, building stable, mission-critical applications, has some of that original spark been lost? Have we become so focused on the practical that we've forgotten the "kind of silly"?
 
-- title: "Talk by Scott Werner"
-  raw_title: "Talk by Scott Werner"
-  event_name: "XO Ruby Chicago 2025"
-  description: ""
+    This talk argues that the rise of Generative AI isn't just a new wave of productivity tools; it's a chance to reclaim our heritage as voyagers. It's an opportunity to bring back the magic, the art, and the sheer fun of creation.
   speakers:
     - Scott Werner
   date: "2025-09-06"
   announced_at: "2025-07-29"
-  published_at: "TODO"
-  video_id: "scott-werner-xoruby-chicago-2025"
-  video_provider: "scheduled"
+  published_at: "2025-12-18"
+  video_id: "vSbC1sIl6qo"
+  video_provider: "youtube"
+
+- id: "erin-claudio-xoruby-chicago-2025"
+  title: "A Builder's Guide to Not-for-Profit Ruby on Rails"
+  raw_title: "XO Ruby Chicago 2025 - A Builder's Guide to Not-for-Profit Ruby on Rails by Erin Claudio"
+  event_name: "XO Ruby Chicago 2025"
+  description: |-
+    This talk explores how working with Ruby on Rails in the not-for-profit sector can provide meaningful technical challenges while fostering personal growth, purpose, and sustainability in a developer’s career. Through real-world examples and practical advice, it highlights the unique opportunities, skills, and impact that come from building technology for social good.
+  speakers:
+    - Erin Claudio
+  date: "2025-09-06"
+  announced_at: "2025-07-29"
+  published_at: "2025-12-18"
+  video_id: "zD-7bDnWYZg"
+  video_provider: "youtube"
+
+- id: "peter-bhat-harkins-xoruby-chicago-2025"
+  title: "Perfect is too expensive"
+  raw_title: "XO Ruby Chicago 2025 - Perfect is too expensive by Peter Bhat Harkins"
+  event_name: "XO Ruby Chicago 2025"
+  description: |-
+    Every nontrivial database has invalid data in it. Records that can't pass their validations, NULLs where background jobs silently failed, records that combine to impossible states, and even errors introduced when fixing other bugs. There's a missing tool from our toolboxes. (No, it's not SQL constraints). Come learn how to catch these bugs before your users do.
+  speakers:
+    - Peter Bhat Harkins
+  date: "2025-09-06"
+  announced_at: "2025-07-29"
+  published_at: "2025-12-18"
+  video_id: "BFUqj37_qqY"
+  video_provider: "youtube"
+
+- id: "yuri-bocharov-xoruby-chicago-2025"
+  title: "From fork() to Fibers: Concurrency in Ruby"
+  raw_title: "XO Ruby Chicago 2025 - Concurrency in Ruby: From fork() to Fiber by Yuri Bocharov"
+  event_name: "XO Ruby Chicago 2025"
+  description: |-
+    We often rely on concurrency in Ruby without really understanding how it works under the hood. In this talk, we’ll build a simple TCP server and iteratively improve it using processes, threads, and fibers, measuring along the way. By connecting these primitives to real-world servers like Puma, Falcon, and Unicorn, you’ll come away with a clearer grasp of how Ruby handles concurrency and the tradeoffs behind each approach.
+  speakers:
+    - Yuri Bocharov
+  date: "2025-09-06"
+  announced_at: "2025-07-29"
+  published_at: "2025-12-18"
+  video_id: "73H6z4CUUIs"
+  video_provider: "youtube"
+
+- id: "aji-slater-xoruby-chicago-2025"
+  title: "The TDD Treasure Map"
+  raw_title: "XO Ruby Chicago 2025 - The TDD Treasure Map by Aji Slater"
+  event_name: "XO Ruby Chicago 2025"
+  description: |-
+    We know testing is vital and makes refactoring painless. But how to set sail to that TDD treasure? Yarr, we need to test to get experience, but need experience to test. Let’s draw a map with simple strategies for identifying test cases and building a robust test suite. X marks the spot w/ TDD tools for newbies and seasoned pirates alike.
+  speakers:
+    - Christopher "Aji" Slater
+  date: "2025-09-06"
+  announced_at: "2025-07-29"
+  published_at: "2025-12-18"
+  video_id: "RAvaKii7V6A"
+  video_provider: "youtube"
+
+- id: "justin-herrick-xoruby-chicago-2025"
+  title: "A Tale at Any Scale"
+  raw_title: "XO Ruby Chicago 2025 - A Tale at Any Scale by Justin Herrick"
+  event_name: "XO Ruby Chicago 2025"
+  description: |-
+    What really sets a 5-year-old Rails codebase apart from one that's been evolving for over 14 years? What patterns emerge when you work in a codebase with over a million commits and more than a decade of continuous development? In this talk, we'll dive into a few of the lessons learned from working inside a very old and very large Rails codebase. We will talk about what works (and what doesn't) as both your team and your codebase grow, which best practices stand the test of time, and how even the massive codebases share common traits with projects of all sizes. Whether you're maintaining a startup app or contributing to a legacy system, you'll leave with new insights you can apply to your work.
+  speakers:
+    - Justin Herrick
+  date: "2025-09-06"
+  announced_at: "2025-07-29"
+  published_at: "2025-12-18"
+  video_id: "D0GBW_k_83c"
+  video_provider: "youtube"
+
+- id: "coraline-ada-ehmke-xoruby-chicago-2025"
+  title: "Dystopia: How We Got Here, and What We Can Do About It"
+  raw_title: "XO Ruby Chicao 2025 - Dystopia: How We Got Here, and What We Can Do About It by Coraline Ada Ehmke"
+  event_name: "XO Ruby Chicago 2025"
+  description: |-
+    We truly live in the worst timeline, but should it really have come as a surprise? Learn the history of our present technosocial nightmare, and find the inspiration to start building what comes after.
+  speakers:
+    - Coraline Ada Ehmke
+  date: "2025-09-06"
+  announced_at: "2025-07-29"
+  published_at: "2025-12-18"
+  video_id: "rUnJdjPOrAM"
+  video_provider: "youtube"

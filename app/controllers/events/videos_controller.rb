@@ -1,5 +1,6 @@
 class Events::VideosController < ApplicationController
   include WatchedTalks
+
   skip_before_action :authenticate_user!, only: %i[index]
   before_action :set_event, only: %i[index]
   before_action :set_user_favorites, only: %i[index]
@@ -12,7 +13,7 @@ class Events::VideosController < ApplicationController
   private
 
   def set_event
-    @event = Event.includes(:organisation, talks: :speakers).find_by(slug: params[:event_slug])
+    @event = Event.includes(:series, talks: :speakers).find_by(slug: params[:event_slug])
     set_meta_tags(@event)
   end
 

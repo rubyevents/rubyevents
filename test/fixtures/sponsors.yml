@@ -3,50 +3,42 @@
 # == Schema Information
 #
 # Table name: sponsors
+# Database name: primary
 #
 #  id              :integer          not null, primary key
-#  description     :text
-#  domain          :string
-#  logo_background :string           default("white")
-#  logo_url        :string
-#  logo_urls       :json
-#  main_location   :string
-#  name            :string
-#  slug            :string           indexed
-#  website         :string
+#  badge           :string
+#  tier            :string           uniquely indexed => [event_id, organization_id]
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  event_id        :integer          not null, indexed, uniquely indexed => [organization_id, tier]
+#  organization_id :integer          not null, uniquely indexed => [event_id, tier], indexed
 #
 # Indexes
 #
-#  index_sponsors_on_slug  (slug)
+#  index_sponsors_on_event_id                        (event_id)
+#  index_sponsors_on_event_organization_tier_unique  (event_id,organization_id,tier) UNIQUE
+#  index_sponsors_on_organization_id                 (organization_id)
 #
+# Foreign Keys
+#
+#  event_id         (event_id => events.id)
+#  organization_id  (organization_id => organizations.id)
+#
+
 one:
-  name: A Sponsor
-  website: https://sponsorone.com
-  description: A Sponsor is a sponsor
-  slug: sponsor-one
-  logo_url: https://sponsorone.com/logo.png
-  logo_background: white
-  domain: sponsorone.com
-  main_location: San Francisco, CA
+  tier: "gold"
+  badge: "Gold Sponsor"
+  event: railsconf_2017
+  organization: one
 
 two:
-  name: B Sponsor
-  website: https://sponsortwo.com
-  description: B Sponsor is a sponsor
-  slug: sponsor-two
-  logo_url: https://sponsortwo.com/logo.png
-  logo_background: white
-  domain: sponsortwo.com
-  main_location: New York, NY
+  tier: "silver"
+  badge: "Silver Sponsor"
+  event: railsconf_2017
+  organization: two
 
 three:
-  name: C Sponsor
-  website: https://sponsorthree.com
-  description: C Sponsor is a sponsor
-  slug: sponsor-three
-  logo_url: https://sponsorthree.com/logo.png
-  logo_background: white
-  domain: sponsorthree.com
-  main_location: London, UK
+  tier: "bronze"
+  badge: "Bronze Sponsor"
+  event: railsconf_2017
+  organization: three

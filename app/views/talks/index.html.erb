@@ -2,8 +2,13 @@
 
 <div class="container flex flex-col w-full gap-4 my-8 hotwire-native:my-0 hotwire-native:mb-8">
   <div class="flex items-end gap-2 title text-primary hotwire-native:mb-3">
-    <h1 class="title hotwire-native:hidden" style="view-transition-name: title">
-      <%= title "Videos of recent talks" %>
+    <h1 class="title hotwire-native:hidden">
+
+      <% if params[:status] == "scheduled" %>
+        <%= title "Scheduled Talks" %>
+      <% else %>
+        <%= title "Video Recordings of Talks" %>
+      <% end %>
 
       <% if params[:s].present? %>
         : search results for "<%= params[:s] %>"
@@ -11,29 +16,40 @@
     </h1>
   </div>
 
-  <div class="flex justify-end items-center gap-2 hotwire-native:hidden">
+  <div class="flex flex-col items-end justify-end gap-2 sm:items-center sm:flex-row hotwire-native:hidden">
     <% if filtered_search? %>
       <div class="text-sm">Results: <%= @pagy.count %></div>
     <% end %>
 
-    <div class="text-sm text-gray-500">Sort by:</div>
+    <div class="tabs tabs-boxed">
+      <%= link_to "All", talks_path(search_params.except(:status).merge(status: "all")),
+            class: "tab #{"tab-active" if params[:status] == "all"}" %>
+      <%= link_to "Published", talks_path(search_params.except(:status)),
+            class: "tab #{"tab-active" if params[:status].blank?}" %>
+      <%= link_to "Scheduled", talks_path(search_params.except(:status).merge(status: "scheduled")),
+            class: "tab #{"tab-active" if params[:status] == "scheduled"}" %>
+    </div>
+
     <div class="flex items-center gap-2">
-      <details class="dropdown dropdown-end">
-        <summary class="btn m-1 pl-0 bg-transparent hover:bg-transparent border-none shadow-none font-normal"><%= ordering_title %></summary>
-        <ul class="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-          <% if params[:s].present? %>
+      <div class="text-sm text-gray-500">Sort by:</div>
+      <div class="flex items-center gap-2">
+        <details class="dropdown dropdown-end">
+          <summary class="pl-0 m-1 font-normal bg-transparent border-none shadow-none btn hover:bg-transparent"><%= ordering_title %></summary>
+          <ul class="z-30 p-2 shadow menu dropdown-content bg-base-100 rounded-box w-52">
+            <% if params[:s].present? %>
+              <li>
+                <%= link_to "Relevance", {**search_params, order_by: "ranked"} %>
+              </li>
+            <% end %>
             <li>
-              <%= link_to "Relevance", {**search_params, order_by: "ranked"} %>
+              <%= link_to "Newest first", {**search_params, order_by: "date_desc"} %>
             </li>
-          <% end %>
-          <li>
-            <%= link_to "Newest first", {**search_params, order_by: "date_desc"} %>
-          </li>
-          <li>
-            <%= link_to "Oldest first", {**search_params, order_by: "date_asc"} %>
-          </li>
-        </ul>
-      </details>
+            <li>
+              <%= link_to "Oldest first", {**search_params, order_by: "date_asc"} %>
+            </li>
+          </ul>
+        </details>
+      </div>
     </div>
   </div>
   <%= turbo_frame_tag "talks", target: "_top" do %>
@@ -44,11 +60,11 @@
             locals: {
               favoritable: true,
               user_favorite_talks_ids: @user_favorite_talks_ids,
-              watched_talks_ids: user_watched_talks_ids,
+              user_watched_talks: user_watched_talks,
               back_to: back_to_from_request
             } %>
     </div>
-    <div class="flex mt-4 w-full">
+    <div class="flex w-full mt-4">
       <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
     </div>
   <% end %>

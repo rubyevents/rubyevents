@@ -2,6 +2,7 @@
 # == Schema Information
 #
 # Table name: connected_accounts
+# Database name: primary
 #
 #  id           :integer          not null, primary key
 #  access_token :string
@@ -30,4 +31,6 @@ class ConnectedAccount < ApplicationRecord
   encrypts :access_token
 
   normalizes :username, with: ->(value) { value.strip.downcase }
+
+  enum :provider, ["developer", "github", "passport"].index_by(&:itself)
 end

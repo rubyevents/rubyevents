@@ -1,145 +1,317 @@
 ---
-# TODO: talks running order
-# TODO: talk dates
-# TODO: conference website
-# TODO: schedule website
-
-- title: "Can We Still Innovate?"
-  raw_title: "RubyDay2016 - Piotr Solnica - Can We Still Innovate?"
-  speakers:
-    - Piotr Solnica
-  event_name: "rubyday 2016"
-  date: "2016-11-25"
-  published_at: "TODO"
-  description: ""
-  video_provider: "youtube"
-  video_id: "KMdvWzjLjlY"
-
-- title: "A Common Taxonomy Of Bugs And How To Squash Them"
-  raw_title: "RubyDay2016 - Kylie Stradley - A Common Taxonomy Of Bugs And How To Squash Them"
-  speakers:
-    - Kylie Stradley
-  event_name: "rubyday 2016"
-  date: "2016-11-25"
-  published_at: "TODO"
-  description: ""
-  video_provider: "youtube"
-  video_id: "S70Zo5bFZwU"
-
-- title: "Integration Tests Are Bogus"
-  raw_title: "RubyDay2016 - Piotr Szotkowski - Integration Tests Are Bogus"
-  speakers:
-    - Piotr Szotkowski
-  event_name: "rubyday 2016"
-  date: "2016-11-25"
-  published_at: "TODO"
-  video_provider: "youtube"
-  video_id: "EfX511HjwuM"
-  slides_url: "https://talks.chastell.net/rubyday-2016"
-  description: |-
-    The Ruby community embraced testing early, with many developers switching full-time to test-driven development (and, more importantly, test-driven design); discovering the domain of a given problem and the mechanics required to make objects interact painlessly by implementing a system from outside in are oftentimes eye-opening experiences.
-
-    Whether you like to write well-isolated (and fast!) unit tests or need to implement the outside of a system without having the inside nits-and-bolts in place beforehand there’s a plethora of stubbing and mocking libraries to choose from. Unfortunately, heavy mocking and stubbing comes with a cost: even with the most well-tested-in-isolation objects you can’t really say anything about their proper wirings without some integration and end-to-end tests – and writing the former is often not a very enjoyable experience.
-
-    This talk covers a new player on the Ruby testing scene: [Bogus](https://github.com/psyho/bogus), a library for stubbing, mocking and spying that goes the extra mile and verifies whether your fakes have any connection with reality – whether the faked methods exist on the actual object, whether they take the right number of arguments and even whether tests for a given class verify the behaviour that the class’s fakes pretend to have.
-
-    With Bogus quite a few of the [famously derided integration tests](http://www.infoq.com/presentations/integration-tests-scam) come for free; a change to a method’s name or its signature will make all of the related fakes complain, and all the missing pieces of a system written from outside in will present themselves ready to be implemented.
-
-- title: "Make Ruby Functional Again!"
-  raw_title: "RubyDay2016 - Devon Estes - Make Ruby Functional Again!"
-  speakers:
-    - Devon Estes
-  event_name: "rubyday 2016"
-  date: "2016-11-25"
-  published_at: "TODO"
-  description: ""
-  video_provider: "youtube"
-  video_id: "a7opGxpGw3k"
-
-- title: "Learning To Program Using Ruby"
-  raw_title: "RubyDay2016 - Marion Schleifer - Learning To Program Using Ruby"
-  speakers:
-    - Marion Schleifer
-  event_name: "rubyday 2016"
-  date: "2016-11-25"
-  published_at: "TODO"
-  description: ""
-  video_provider: "youtube"
-  video_id: "buuqM92Cw80"
-
-- title: "How Sprockets Works"
-  raw_title: "RubyDay2016 - Rafael Franca - How Sprockets Works"
-  speakers:
-    - Rafael Mendonça França
-  event_name: "rubyday 2016"
-  date: "2016-11-25"
-  published_at: "TODO"
-  description: ""
-  video_provider: "youtube"
-  video_id: "ANRfQrGeZRM"
-
-- title: "Refinements - The Worst Feature You Ever Loved"
-  raw_title: "RubyDay2016 - Paolo Perrotta - Refinements - The Worst Feature You Ever Loved"
-  speakers:
-    - Paolo "Nusco" Perrotta
-  event_name: "rubyday 2016"
-  date: "2016-11-25"
-  published_at: "TODO"
-  description: ""
-  video_provider: "youtube"
-  video_id: "bChCKrqrtqk"
-
-- title: "How Programming In Other Languages Made My Ruby Code Better"
-  raw_title: "RubyDay2016 - Simone Carletti - How Programming In Other Languages Made My Ruby Code Better"
-  speakers:
-    - Simone Carletti
-  event_name: "rubyday 2016"
-  date: "2016-11-25"
-  published_at: "TODO"
-  description: ""
-  video_provider: "youtube"
-  video_id: "p0DPNbnjkCw"
-
-- title: "Ruby Racing: Challenging Ruby Methods"
-  raw_title: "RubyDay2016 - Danielle Adams - Ruby Racing: Challenging Ruby Methods"
-  speakers:
-    - Danielle Adams
-  event_name: "rubyday 2016"
-  date: "2016-11-25"
-  published_at: "TODO"
-  description: ""
-  video_provider: "youtube"
-  video_id: "u9iQK4kBt-M"
-
-- title: "Lessons Learned While Building Hanami"
-  raw_title: "RubyDay2016 - Luca Guidi - Lessons Learned While Building Hanami"
-  speakers:
-    - Luca Guidi
-  event_name: "rubyday 2016"
-  date: "2016-11-25"
-  published_at: "TODO"
-  description: ""
-  video_provider: "youtube"
-  video_id: "0RyitUKfUFE"
-
-- title: "Structure and Chain your Poros"
-  raw_title: "RubyDay2016 - Benjamin Roth - Structure and Chain your Poros"
-  speakers:
-    - Benjamin Roth
-  event_name: "rubyday 2016"
-  date: "2016-11-25"
-  published_at: "TODO"
-  description: ""
-  video_provider: "youtube"
-  video_id: "sSQOBK9goLg"
-
-- title: "Little Snippets"
+- id: "xavier-noria-rubyday-2016"
+  title: "Little Snippets"
   raw_title: "RubyDay2016 - Xavier Noria - Little Snippets"
   speakers:
     - Xavier Noria
   event_name: "rubyday 2016"
   date: "2016-11-25"
-  published_at: "TODO"
-  description: ""
+  published_at: "2016-12-14"
+  kind: "keynote"
   video_provider: "youtube"
   video_id: "U39Ou_eBkr4"
+  description: |-
+    In this talk we are going to make a trip through idiomatic Ruby, concise code, readable code, exact code. Using selected real small snippets I have often found doing open source or consultancy, we are going to reflect about these concepts, how do they apply, and how subjective and social they are. A talk, indeed, with maybe more questions than answers.
+
+- id: "kylie-stradley-rubyday-2016"
+  title: "A Common Taxonomy Of Bugs And How To Squash Them"
+  raw_title: "RubyDay2016 - Kylie Stradley - A Common Taxonomy Of Bugs And How To Squash Them"
+  speakers:
+    - Kylie Stradley
+  event_name: "rubyday 2016"
+  date: "2016-11-25"
+  track: "Room 1"
+  published_at: "2016-12-14"
+  video_provider: "youtube"
+  video_id: "S70Zo5bFZwU"
+  description: |-
+    Did you really think you could make changes to the database by editing the schema file? Who are you, Amelia Bedelia?
+
+    The silly mistakes we all made when first learning Rails may be funny to us now, but we should remember how we felt at the time. New developers don't always realize senior developers were once beginners too and may assume they are the first and last developer to mix up when to use the rails and rake commands.
+
+    This talk, presented in a storybook style, will be a lighthearted examination of some of the common mistakes (and causes of those mistakes) made by beginner Rails developers.
+
+- id: "piotr-szotkowski-rubyday-2016"
+  title: "Integration Tests Are Bogus"
+  raw_title: "RubyDay2016 - Piotr Szotkowski - Integration Tests Are Bogus"
+  speakers:
+    - Piotr Szotkowski
+  event_name: "rubyday 2016"
+  date: "2016-11-25"
+  track: "Room 2"
+  published_at: "2016-12-14"
+  video_provider: "youtube"
+  video_id: "EfX511HjwuM"
+  slides_url: "https://talks.chastell.net/rubyday-2016"
+  description: |-
+    Heavy mocking and stubbing comes with a cost: you can't say anything about collaboration features of well-unit-tested objects without integration and end-to-end tests. This talk covers stubbing, mocking and spying that verifies whether the faked methods exist on the actual object, take the right number of arguments and whether tests for a given class verify the behaviour that the class's doubles pretend to have; with these facilities writing a system from outside in is demonstrably enjoyable.
+
+    Whether you like to write well-isolated (and fast!) unit tests or need to implement the outside of a system without having the inside nits-and-bolts in place beforehand there's a plethora of stubbing and mocking libraries to choose from. Unfortunately, heavy mocking and stubbing comes with a cost: even with the most well-tested-in-isolation objects you can't really say anything about their proper wirings without some integration and end-to-end tests – and writing the former is often not a very enjoyable experience.
+
+    This talk covers stubbing, mocking and spying that goes the extra mile and verifies whether your fakes have any connection with reality – whether the faked methods exist on the actual object, whether they take the right number of arguments and even whether tests for a given class verify the behaviour that the class's fakes pretend to have. Both RSpec verified doubles and Bogus's contract tests are covered; a change to a method's name or its signature will make all of the related fakes complain, all the missing pieces of a system written from outside in will present themselves ready to be implemented, and a subset of mocks and stubs of your choice will verify that their production counterparts work as assumed.
+
+    This talk presents integration tests and different types of test doubles (and which use when if you follow CQRS). It also shows how to use RSpec's verified doubles (with their pros and cons) and Bogus's fakes, including faking roles and verifying contract tests based on the fakes' configuration.
+
+- id: "devon-estes-rubyday-2016"
+  title: "Make Ruby Functional Again!"
+  raw_title: "RubyDay2016 - Devon Estes - Make Ruby Functional Again!"
+  speakers:
+    - Devon Estes
+  event_name: "rubyday 2016"
+  date: "2016-11-25"
+  track: "Room 1"
+  published_at: "2016-12-14"
+  video_provider: "youtube"
+  video_id: "a7opGxpGw3k"
+  description: |-
+    Functional programming is all the rage these days, and many Rubyists feel left out of all the fun. But don't despair - many of the great ideas that are coming out of the functional revolution are applicable to our Ruby code, too! In this talk we'll explore some of the ways we can make our Ruby code more functional (pun intended) without giving up any of the joys of object orientation. In this talk you'll see how using some functional programming concepts can make your Ruby code easier to test, easier to maintain, and easier to change!
+
+- id: "marion-schleifer-rubyday-2016"
+  title: "Learning To Program Using Ruby"
+  raw_title: "RubyDay2016 - Marion Schleifer - Learning To Program Using Ruby"
+  speakers:
+    - Marion Schleifer
+  event_name: "rubyday 2016"
+  date: "2016-11-25"
+  track: "Room 2"
+  published_at: "2016-12-14"
+  video_provider: "youtube"
+  video_id: "buuqM92Cw80"
+  description: |-
+    One and a half years ago, I decided to learn programming with zero knowledge about computers and programming languages, as my work experience and education were in an entirely different field. I then started learning Ruby in self-study and then in an internship. Now, I have my first full-time programming job in a company that works with Ruby. Also, I co-founded a free programming course for women, because I think the industry needs more female programmers. I want to talk to you about the up and downs with Ruby as the first programming language, as well as the strong need for more female developers. I absolutely love my new career as a Ruby programmer and I want to share my experience with you.
+
+- id: "rafael-mendona-frana-rubyday-2016"
+  title: "How Sprockets Works"
+  raw_title: "RubyDay2016 - Rafael Franca - How Sprockets Works"
+  speakers:
+    - Rafael Mendonça França
+  event_name: "rubyday 2016"
+  date: "2016-11-25"
+  track: "Room 1"
+  published_at: "2016-12-14"
+  video_provider: "youtube"
+  video_id: "ANRfQrGeZRM"
+  description: |-
+    Almost all applications have assets like CSS, JavaScript and others. That means the asset pipeline is an integral part of the Ruby on Rails framework. In this talk we'll show you how the asset pipeline works, and how you can take full advantage of the asset pipeline's features. Ever wondered how to convert an SVG to PNG automatically? Wanted to know what exactly happens to your CoffeeScript files? We'll explore that, and more.
+
+- id: "paolo-nusco-perrotta-rubyday-2016"
+  title: "Refinements - The Worst Feature You Ever Loved"
+  raw_title: "RubyDay2016 - Paolo Perrotta - Refinements - The Worst Feature You Ever Loved"
+  speakers:
+    - Paolo "Nusco" Perrotta
+  event_name: "rubyday 2016"
+  date: "2016-11-25"
+  track: "Room 2"
+  published_at: "2016-12-14"
+  video_provider: "youtube"
+  video_id: "bChCKrqrtqk"
+  description: |-
+    Refinements are cool. They are the biggest new language feature in Ruby 2. They help you avoid some of Ruby's most dangerous pitfalls.
+
+    They make your code cleaner and safer.
+
+    Oh, and some people really hate them.
+
+    Are Refinements the best idea since blocks and modules, or a terrible mistake? Decide for yourself. I'll tell you the good, the bad and the ugly about refinements. At the end of this speech, you'll understand the trade-offs of this controversial feature, and know what all the fuss is about.
+
+- id: "simone-carletti-rubyday-2016"
+  title: "How Programming In Other Languages Made My Ruby Code Better"
+  raw_title: "RubyDay2016 - Simone Carletti - How Programming In Other Languages Made My Ruby Code Better"
+  speakers:
+    - Simone Carletti
+  event_name: "rubyday 2016"
+  date: "2016-11-25"
+  track: "Room 1"
+  published_at: "2016-12-14"
+  video_provider: "youtube"
+  video_id: "p0DPNbnjkCw"
+  slides_url: "https://slidr.io/weppos/how-programming-in-other-languages-made-my-ruby-code-better-rubyday-2016"
+  description: |-
+    Learning new programming languages it's like approaching new cultures: it will largely enrich your knowledge and leverage your skills. New programming languages will not only made you a better software developer in general, but they will also help you to write better Ruby code. This talk will provide you real world examples of Ruby code evolution, using lessons learned from other languages.
+
+- id: "danielle-adams-rubyday-2016"
+  title: "Ruby Racing: Challenging Ruby Methods"
+  raw_title: "RubyDay2016 - Danielle Adams - Ruby Racing: Challenging Ruby Methods"
+  speakers:
+    - Danielle Adams
+  event_name: "rubyday 2016"
+  date: "2016-11-25"
+  track: "Room 2"
+  published_at: "2016-12-14"
+  video_provider: "youtube"
+  video_id: "u9iQK4kBt-M"
+  description: |-
+    Ruby is widely-used and prides itself on "simplicity and productivity". But what is happening under the hood of our favorite programming language? Are there better, faster, or stronger ways to implement these methods? I'm going to take a deep dive into testing and optimizing some of Ruby's most popularly convenient methods.
+
+- id: "luca-guidi-rubyday-2016"
+  title: "Lessons Learned While Building Hanami"
+  raw_title: "RubyDay2016 - Luca Guidi - Lessons Learned While Building Hanami"
+  speakers:
+    - Luca Guidi
+  event_name: "rubyday 2016"
+  date: "2016-11-25"
+  track: "Room 1"
+  published_at: "2016-12-14"
+  video_provider: "youtube"
+  video_id: "0RyitUKfUFE"
+  description: |-
+    Building an Open Source project is great.. except when it isn't. It's rewarding and frustrating, challenging and boring. It's an emotional rollercoaster, where you have to deal with people and expectations, innovation, copyrights, companies, communication and communities, fear, anger, mistakes, features and bugs, a day job, get almost broke, time management, and finally.. writing the code. This is the story of Hanami in the last four years: from a hack experiment to established software.
+
+- id: "benjamin-roth-rubyday-2016"
+  title: "Structure and Chain your Poros"
+  raw_title: "RubyDay2016 - Benjamin Roth - Structure and Chain your Poros"
+  speakers:
+    - Benjamin Roth
+  event_name: "rubyday 2016"
+  date: "2016-11-25"
+  track: "Room 2"
+  published_at: "2016-12-14"
+  video_provider: "youtube"
+  video_id: "sSQOBK9goLg"
+  description: |-
+    Design patterns vary. We learnt code was cool in controller then removed it from here in favor of fat models. Yet it was not the best approach either.
+
+    The Service Object pattern arised articulated around so called Poor Old Ruby Objects. While it encapsulate logic and make it easy to test fundamental questions remain: how do I know everything went well when I called the object? How to retrieve errors? How to rollback? What if I have object ls calling other objects?
+
+    I try to address these questions with examples and existing libraries.
+
+- id: "piotr-solnica-rubyday-2016"
+  title: "Can We Still Innovate?"
+  raw_title: "RubyDay2016 - Piotr Solnica - Can We Still Innovate?"
+  speakers:
+    - Piotr Solnica
+  event_name: "rubyday 2016"
+  date: "2016-11-25"
+  published_at: "2016-12-14"
+  kind: "keynote"
+  video_provider: "youtube"
+  video_id: "KMdvWzjLjlY"
+  description: |-
+    Rails revolutionized the way we build web apps - but that was 10 years ago. These days, it's not uncommon to hear dramatic statements like, “Rails is dead” or even, “Ruby is dead”. Even though such conclusions are far-fetched, it's a sign that some people have become tired of struggling with various problems that Rails doesn't address.
+
+    We're starting to see people leave Ruby - should you do the same? Or is there a place in the Ruby world where we can still innovate and prove that Ruby is a viable technological choice?
+
+    In this talk, I'll introduce you to the growing ecosystem of modern Ruby libraries and frameworks. Let's go beyond Rails and see that Ruby is doing just fine.
+
+- id: "martin-meyerhoff-rubyday-2016-setting-up-solidus"
+  title: "Setting up Solidus"
+  raw_title: "RubyDay2016 - Martin Meyerhoff - Setting up Solidus"
+  speakers:
+    - Martin Meyerhoff
+  event_name: "rubyday 2016"
+  date: "2016-11-26"
+  track: "Workshop 1"
+  published_at: "2016-11-26"
+  kind: "workshop"
+  video_provider: "not_recorded"
+  video_id: "martin-meyerhoff-rubyday-2016-setting-up-solidus"
+  description: |-
+    How do you go from Rails new to a deployable store? What steps are necessary to configure an ecommerce project such that taxes, shipping and payment work? This will be a hands-on workshop, at the end of which you should have a basic shop running.
+
+- id: "ivan-nemytchenko-rubyday-2016-how-to-stop-being-rails-developer"
+  title: "How to stop being Rails developer"
+  raw_title: "RubyDay2016 - Ivan Nemytchenko - How to stop being Rails developer"
+  speakers:
+    - Ivan Nemytchenko
+  event_name: "rubyday 2016"
+  date: "2016-11-26"
+  track: "Workshop 2"
+  published_at: "2016-11-26"
+  kind: "workshop"
+  video_provider: "not_recorded"
+  video_id: "ivan-nemytchenko-rubyday-2016-how-to-stop-being-rails-developer"
+  description: |-
+    There is ongoing discussion in Ruby Community whether we should be ok with Rails-way of development, or should we move to more modular Lotus/ROM-like ways?
+    While we keep thinking about it, we're still need to teach newcomers somehow. Rails is still dominating framework, therefore it is important to help newbies avoid our self-learners generation mistakes, like:
+
+    - bloated controllers/models
+    - OOP/SOLID principles ignorance
+    - doing testing wrong
+    - messing with layers of abstractions
+
+    I personally think that the best way to get motivation to learn how to do something properly is to feel the pain of doing it improperly. A year ago I was organising remote internship for junior ruby developers. The program was designed to give interns that feeling of pain :)
+    In this workshop I will share my recipes & principles, so you could apply them for your specifics & technologies stack.
+
+- id: "luca-guidi-rubyday-2016-hanami"
+  title: "Hanami"
+  raw_title: "RubyDay2016 - Luca Guidi - Hanami"
+  speakers:
+    - Luca Guidi
+  event_name: "rubyday 2016"
+  date: "2016-11-26"
+  track: "Workshop 3"
+  published_at: "2016-11-26"
+  kind: "workshop"
+  video_provider: "not_recorded"
+  video_id: "luca-guidi-rubyday-2016-hanami"
+  description: |-
+    Learn how to build a project with Hanami.
+
+- id: "ju-liu-rubyday-2016-running-ruby-on-raspberry-pi"
+  title: "Running Ruby on a Raspberry PI"
+  raw_title: "RubyDay2016 - Ju Liu - Running Ruby on a Raspberry PI"
+  speakers:
+    - Ju Liu
+  event_name: "rubyday 2016"
+  date: "2016-11-26"
+  published_at: "2016-11-26"
+  kind: "workshop"
+  video_provider: "not_recorded"
+  video_id: "ju-liu-rubyday-2016-running-ruby-on-raspberry-pi"
+  description: |-
+    Do you have a Raspberry PI laying around that you feel a little bit ashamed about? In this talk, we will overcome that shame and find out what we can build with it with the help of some amazing little sensors. We will create a mysterious application together from scratch, writing the code in Ruby. We will also be building the hardware circuit live on stage, so keep your fingers crossed!
+
+- id: "alexander-coles-rubyday-2016-taking-rails-beyond-asset-pipeline"
+  title: "Taking Rails beyond the asset pipeline"
+  raw_title: "RubyDay2016 - Alexander Coles - Taking Rails beyond the asset pipeline"
+  speakers:
+    - Alexander Coles
+  event_name: "rubyday 2016"
+  date: "2016-11-26"
+  track: "Workshop 1"
+  published_at: "2016-11-26"
+  kind: "workshop"
+  video_provider: "not_recorded"
+  video_id: "alexander-coles-rubyday-2016-taking-rails-beyond-asset-pipeline"
+  description: |-
+    The way we're building our front-ends has changed irrevocably. Clean architecture is now a prerequisite and no longer simply nice-to-have. Thanks to frameworks like Ember.js and Angular, We have entered into the era of front-end MVC.
+
+    When Rails came into being over ten years ago, it was ground-breaking. Rails developers shouldn't have to forgo innovation and use of upcoming technologies like ES6 and isomorphism. So how can Rails keep up?
+
+- id: "michele-franzin-andrea-reginato-rubyday-2016-fullstack-pm-survivor-guide"
+  title: "Fullstack|PM survivor guide"
+  raw_title: "RubyDay2016 - Michele Franzin e Andrea Reginato - Fullstack|PM survivor guide"
+  speakers:
+    - Michele Franzin
+    - Andrea Reginato
+  event_name: "rubyday 2016"
+  date: "2016-11-26"
+  track: "Workshop 2"
+  published_at: "2016-11-26"
+  kind: "workshop"
+  video_provider: "not_recorded"
+  video_id: "michele-franzin-andrea-reginato-rubyday-2016-fullstack-pm-survivor-guide"
+  description: |-
+    That every morning you wake Dev or PM does not matter: whatever you make web-apps | digital products | Mobile-apps | Web services | *AAS you have as many possibilities as when you are in a technology store.
+
+    Taking the right decisions is essential in order not to lose your sight and avoid unpleasant encounters.
+
+    Backend, Frontend, UI, Ops, UX, Data Storage: is this all you need to be a fullstack developer?
+
+    Starting from a collective refactor we want to discuss and act out together what it means to have a "FullStack Approach" and how this affects the choices we make (technologies, communication, architecture, costs, human aspects, projects, ...).
+
+    There's a chance to be contaminated through sharing experiences (ours & yours), sharing ideas, and maybe earning another point of view. If you already know everything or you feel too noob to participate, it is a good opportunity to make use of your skills in a more pragmatic way and take home a wider vision.
+
+- id: "nick-sutterer-rubyday-2016-architecture-matters-trailblazer-workshop"
+  title: "Architecture Matters! A Trailblazer Workshop"
+  raw_title: "RubyDay2016 - Nick Sutterer - Architecture Matters! A Trailblazer Workshop"
+  speakers:
+    - Nick Sutterer
+  event_name: "rubyday 2016"
+  date: "2016-11-26"
+  track: "Workshop 3"
+  published_at: "2016-11-26"
+  kind: "workshop"
+  description: ""
+  video_provider: "not_recorded"
+  video_id: "nick-sutterer-rubyday-2016-architecture-matters-trailblazer-workshop"

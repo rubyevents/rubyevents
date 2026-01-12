@@ -1,19 +1,33 @@
-<%= render partial: "events/header", locals: {event: @event} %>
+<%= render partial: "events/header", locals: {event: @event, participation: @participation} %>
 
 <%= turbo_frame_tag dom_id(@event), data: {turbo_action: "advance", turbo_frame: "_top"} do %>
   <div class="container py-8">
     <%= render partial: "events/navigation", locals: {event: @event} %>
 
+    <%= render Events::UpcomingEventBannerComponent.new(event: @event) %>
+
     <div class="flex flex-col gap-12 mt-8">
       <section class="bg-white rounded-lg border p-6 shadow-sm">
-        <div class="grid gap-6 items-center <%= (@event.start_date.present? && @event.start_date > Date.today || (@event.today? && !@event.meetup?)) ? "grid-cols-2 sm:grid-cols-4" : "grid-cols-3" %>">
+        <div class="grid gap-6 items-center <%= (@event.start_date.present? && @event.start_date > Date.today && @event.date_precision == "day" || (@event.today? && !@event.meetup?)) ? "grid-cols-2 sm:grid-cols-4" : "grid-cols-3" %>">
           <div class="text-center">
-            <div class="text-3xl font-bold text-primary mb-1"><%= @event.talks.count %></div>
-            <div class="text-sm font-medium text-gray-600">Talks</div>
+            <% if @event.retreat? %>
+              <% duration = (@event.end_date - @event.start_date).to_i %>
+
+              <div class="text-3xl font-bold text-primary mb-1"><%= duration %></div>
+              <div class="text-sm font-medium text-gray-600"><%= "Day".pluralize(duration) %></div>
+            <% else %>
+              <div class="text-3xl font-bold text-primary mb-1"><%= @event.talks.count %></div>
+              <div class="text-sm font-medium text-gray-600">Talks</div>
+            <% end %>
           </div>
           <div class="text-center">
-            <div class="text-3xl font-bold text-primary mb-1"><%= @event.speakers.count %></div>
-            <div class="text-sm font-medium text-gray-600">Speakers</div>
+            <% if @event.retreat? %>
+              <div class="text-3xl font-bold text-primary mb-1"><%= @event.participants.count %></div>
+              <div class="text-sm font-medium text-gray-600">Known Participants</div>
+            <% else %>
+              <div class="text-3xl font-bold text-primary mb-1"><%= @event.speakers.count %></div>
+              <div class="text-sm font-medium text-gray-600">Speakers</div>
+            <% end %>
           </div>
           <div class="text-center">
             <% if @event.meetup? %>
@@ -25,7 +39,7 @@
             <% end %>
           </div>
 
-          <% if @event.start_date.present? && @event.start_date > Date.today %>
+          <% if @event.start_date.present? && @event.start_date > Date.today && @event.date_precision == "day" %>
             <% days_until = (@event.start_date - Date.today).to_i %>
             <div class="text-center">
               <div class="flex justify-center gap-1 mb-2">
@@ -103,7 +117,7 @@
                   locals: {
                     favoritable: true,
                     user_favorite_talks_ids: @user_favorite_talks_ids,
-                    watched_talks_ids: user_watched_talks_ids,
+                    user_watched_talks: user_watched_talks,
                     back_to: event_path(@event),
                     back_to_title: @event.name
                   } %>
@@ -124,7 +138,7 @@
                   locals: {
                     favoritable: true,
                     user_favorite_talks_ids: @user_favorite_talks_ids,
-                    watched_talks_ids: user_watched_talks_ids,
+                    user_watched_talks: user_watched_talks,
                     back_to: event_path(@event),
                     back_to_title: @event.name
                   } %>
@@ -167,11 +181,11 @@
                  data-scroll-target="container"
                  data-action="scroll->scroll#checkScroll">
               <div class="flex pb-4 gap-4">
-                <% @sponsors.each do |event_sponsor| %>
+                <% @sponsors.each do |sponsor| %>
                   <div class="snap-start" data-scroll-target="card">
-                    <%= render partial: "sponsors/card", locals: {
-                          sponsor: event_sponsor.sponsor,
-                          event_sponsor: event_sponsor,
+                    <%= render partial: "organizations/card", locals: {
+                          organization: sponsor.organization,
+                          sponsor: sponsor,
                           turbo_frame: true,
                           hide_event_count: true
                         } %>
@@ -199,7 +213,7 @@
                 <li>• Check the event website or program</li>
                 <li>• Look for recordings or speaker information</li>
                 <li>• <a href="https://github.com/rubyevents/rubyevents/issues/new?title=<%= CGI.escape("#{@event.name} Content") %>&body=<%= CGI.escape("<!-- Your Content Here -->\n\nIssue opened from event page: #{event_url(@event)}") %>" class="underline hover:text-amber-900" target="_blank">Open an issue on GitHub</a></li>
-                <li>• <a href="https://github.com/rubyevents/rubyevents/blob/main/docs/contributing.md" class="underline hover:text-amber-900" target="_blank">Submit data via GitHub</a></li>
+                <li>• <a href="https://github.com/rubyevents/rubyevents/blob/main/CONTRIBUTING.md" class="underline hover:text-amber-900" target="_blank">Submit data via GitHub</a></li>
               </ul>
             </div>
           </div>

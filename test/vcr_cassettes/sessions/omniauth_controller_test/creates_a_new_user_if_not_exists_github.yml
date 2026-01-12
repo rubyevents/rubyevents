@@ -1,0 +1,153 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.github.com/users/rosa
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github+json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 04 Sep 2025 20:44:06 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=60, s-maxage=60
+      Vary:
+      - Accept,Accept-Encoding, Accept, X-Requested-With
+      Etag:
+      - W/"557215aefe6aa7b52f7f941daf7ff34b8581484dd3b163cde3401a7de0b5135e"
+      Last-Modified:
+      - Wed, 03 Sep 2025 12:43:41 GMT
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Github-Api-Version-Selected:
+      - '2022-11-28'
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
+        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
+        X-GitHub-Request-Id, Deprecation, Sunset
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      Server:
+      - github.com
+      Accept-Ranges:
+      - bytes
+      X-Ratelimit-Limit:
+      - '60'
+      X-Ratelimit-Remaining:
+      - '59'
+      X-Ratelimit-Reset:
+      - '1757022246'
+      X-Ratelimit-Resource:
+      - core
+      X-Ratelimit-Used:
+      - '1'
+      Content-Length:
+      - '1200'
+      X-Github-Request-Id:
+      - CB06:15E08C:2712EE:236A82:68B9FA16
+    body:
+      encoding: ASCII-8BIT
+      string: '{"login":"rosa","id":813033,"node_id":"MDQ6VXNlcjgxMzAzMw==","avatar_url":"https://avatars.githubusercontent.com/u/813033?v=4","gravatar_id":"","url":"https://api.github.com/users/rosa","html_url":"https://github.com/rosa","followers_url":"https://api.github.com/users/rosa/followers","following_url":"https://api.github.com/users/rosa/following{/other_user}","gists_url":"https://api.github.com/users/rosa/gists{/gist_id}","starred_url":"https://api.github.com/users/rosa/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/rosa/subscriptions","organizations_url":"https://api.github.com/users/rosa/orgs","repos_url":"https://api.github.com/users/rosa/repos","events_url":"https://api.github.com/users/rosa/events{/privacy}","received_events_url":"https://api.github.com/users/rosa/received_events","type":"User","user_view_type":"public","site_admin":false,"name":"Rosa
+        Gutierrez","company":"@37signals ","blog":"https://rosa.codes","location":"Madrid","email":null,"hireable":null,"bio":"Programming
+        at 37signals","twitter_username":null,"public_repos":20,"public_gists":3,"followers":667,"following":1,"created_at":"2011-05-26T21:10:32Z","updated_at":"2025-09-03T12:43:41Z"}'
+  recorded_at: Thu, 04 Sep 2025 20:44:06 GMT
+- request:
+    method: get
+    uri: https://api.github.com/users/rosa/social_accounts
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github+json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 04 Sep 2025 20:44:06 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=60, s-maxage=60
+      Vary:
+      - Accept,Accept-Encoding, Accept, X-Requested-With
+      Etag:
+      - W/"fcdfd3602cf2a3a5e00200fd6f7f351ffca9e99168b8be37c405883ab0071a17"
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Github-Api-Version-Selected:
+      - '2022-11-28'
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
+        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
+        X-GitHub-Request-Id, Deprecation, Sunset
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      Server:
+      - github.com
+      Accept-Ranges:
+      - bytes
+      X-Ratelimit-Limit:
+      - '60'
+      X-Ratelimit-Remaining:
+      - '58'
+      X-Ratelimit-Reset:
+      - '1757022246'
+      X-Ratelimit-Resource:
+      - core
+      X-Ratelimit-Used:
+      - '2'
+      Content-Length:
+      - '68'
+      X-Github-Request-Id:
+      - CB0B:C557F:2AFC05:26F053:68B9FA16
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"provider":"bluesky","url":"https://bsky.app/profile/rosa.codes"}]'
+  recorded_at: Thu, 04 Sep 2025 20:44:06 GMT
+recorded_with: VCR 6.3.1

@@ -40,6 +40,10 @@ export class Formatter {
       }
     })
 
+    if (document.errors.length > 0) {
+      console.log(document.errors)
+    }
+
     fs.writeFileSync(this.path, document.toString(options))
   }
 }

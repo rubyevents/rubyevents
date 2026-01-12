@@ -1,18 +1,32 @@
 <%= render partial: "events/header", locals: {event: @event} %>
 
 <%= turbo_frame_tag dom_id(@event), data: {turbo_action: "advance", turbo_frame: "_top"} do %>
-  <div class="container py-8">
+  <div class="container py-8" data-controller="talks-filter">
     <%= render partial: "events/navigation", locals: {event: @event} %>
 
     <div class="flex items-start flex-wrap gap-8 sm:flex-nowrap w-full">
       <div class="w-full">
+        <% if @talks.any? %>
+          <div class="flex items-center justify-between mb-6 flex-wrap gap-4">
+            <h2>Talks (<%= @talks.size %>)</h2>
+
+            <% if Current.user %>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" class="checkbox checkbox-sm" data-action="change->talks-filter#toggle" data-talks-filter-target="toggle">
+                <span class="text-sm">Hide watched</span>
+                <span class="text-sm text-gray-500 hidden">(<span data-talks-filter-target="count">0</span> hidden)</span>
+              </label>
+            <% end %>
+          </div>
+        <% end %>
+
         <div id="talks" class="min-w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 h-full">
           <%= render partial: "talks/card",
                 collection: @talks,
                 locals: {
                   favoritable: true,
                   user_favorite_talks_ids: @user_favorite_talks_ids,
-                  watched_talks_ids: user_watched_talks_ids,
+                  user_watched_talks: user_watched_talks,
                   back_to: back_to_from_request,
                   back_to_title: @event.name
                 },
@@ -33,7 +47,7 @@
                   <li>• Check if recordings are available online</li>
                   <li>• Look for talk abstracts and speaker information</li>
                   <li>• <a href="https://github.com/rubyevents/rubyevents/issues/new?title=<%= CGI.escape("#{@event.name} Recordings") %>&body=<%= CGI.escape("<!-- Your Content Here -->\n\nIssue opened from event page: #{event_url(@event)}") %>" class="underline hover:text-amber-900" target="_blank">Open an issue on GitHub</a> to report available recordings</li>
-                  <li>• <a href="https://github.com/rubyevents/rubyevents/blob/main/docs/contributing.md" class="underline hover:text-amber-900" target="_blank">Submit talk data via GitHub</a></li>
+                  <li>• <a href="https://github.com/rubyevents/rubyevents/blob/main/docs/ADDING_VIDEOS.md" class="underline hover:text-amber-900" target="_blank">Submit talk data via GitHub</a></li>
                 </ul>
               </div>
             </div>

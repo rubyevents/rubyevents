@@ -1,3 +1,5 @@
+<%= turbo_refreshes_with method: :morph, scroll: :preserve %>
+
 <div class="container my-8 w-full flex flex-col gap-4">
   <% back_path = params[:back_to].presence || talks_path %>
   <% back_to_title = params[:back_to_title].presence || "Talks" %>
@@ -5,17 +7,17 @@
   <div class="w-full flex">
     <div class="flex-grow">
       <div class="flex items-center justify-between w-full hotwire-native:hidden">
-        <%= link_to back_path do %>
+        <%= link_to sanitize(back_path) do %>
           <div class="flex items-center gap-2 title text-base text-primary mb-4">
-          <%= heroicon :arrow_long_left, class: "transition-arrow" %>
-          <div style="view-transition-name: title"><%= back_to_title %></div>
+            <%= fa("arrow-left-long", class: "transition-arrow fill-primary", size: :xs) %>
+            <div><%= back_to_title %></div>
           </div>
         <% end %>
       </div>
 
       <%= turbo_frame_tag "talk", target: "_top", data: {turbo_action: "advance"} do %>
         <% cache [@talk, Current.user].compact do %>
-          <%= render partial: "talks/talk", locals: {talk: @talk} %>
+          <%= render partial: "talks/talk", locals: {talk: @talk, user_favorite_talks_ids: @user_favorite_talks_ids} %>
         <% end %>
       <% end %>
 
@@ -25,7 +27,8 @@
     </div>
 
     <%= turbo_stream_from [@talk.event, :talks] %>
-    <div class="gap-4 w-96 flex-shrink-0 hidden lg:flex lg:flex-col px-4">
+
+    <div class="gap-4 w-96 flex-shrink-0 hidden lg:flex lg:flex-col px-4" data-turbo-permanent="true">
       <%= link_to @talk.event.name, event_path(@talk.event), class: "pl-2 mt-8 text-neutral text-base text-lg font-bold hover:underline" %>
       <%= turbo_frame_tag dom_id(@talk.event, :talks), src: event_related_talks_path(@talk.event, active_talk: @talk), loading: "lazy" %>
     </div>

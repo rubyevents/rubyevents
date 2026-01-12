@@ -1,0 +1,205 @@
+# Ruby talks at Non-Ruby events
+---
+- id: "nick-schwaderer-future-sync-2019"
+  title: "Preparing for a Natural Disaster Using Bots"
+  raw_title: "Preparing for a Natural Disaster Using Bots"
+  event_name: "Future Sync 2019"
+  date: "2019-06-15"
+  description: |-
+    Nick discusses the use of Bots when prepping for a natural disaster.
+  video_provider: "youtube"
+  video_id: "hSwtA-WmAcQ"
+  published_at: "2019-06-15"
+  speakers:
+    - Nick Schwaderer
+
+- id: "nick-schwaderer-software-cornwall-2019"
+  title: "Preparing for a Natural Disaster Using Bots"
+  raw_title: "Preparing for a Natural Disaster Using Bots"
+  event_name: "Software Cornwall 2019"
+  date: "2019-03-28"
+  description: |-
+    Nick discusses the use of Bots when prepping for a natural disaster.
+  video_provider: "youtube"
+  video_id: "WCRfOcYf6tI"
+  published_at: "2019-03-28"
+  speakers:
+    - Nick Schwaderer
+
+- id: "andrew-atkinson-posette-2024"
+  title: "SaaS on Rails on PostgreSQL"
+  raw_title: "SaaS on Rails on PostgreSQL"
+  event_name: "Posette 2024"
+  location: "online"
+  date: "2024-06-11"
+  description: |-
+    Video of a conference talk about Saas on Rails on PostgreSQL presented by Andrew Atkinson at POSETTE: An Event for Postgres 2024. In this talk attendees will learn how Ruby on Rails and PostgreSQL can be used to create scalable SaaS applications, focusing on schema and query design, and leveraging database capabilities. We’ll define SaaS concepts, B2B, B2C, and multi-tenancy. Although Rails doesn't natively support SaaS or multi-tenancy, solutions like Bullet Train and Jumpstart Rails can be used for common SaaS needs. Next we'll cover database designs from the Apartment and actsastenant gems which support multi-tenancy concepts, and connect their designs to Citus's row and schema sharding capabilities from version 12.0. We’ll also cover PostgreSQL's LIST partitioning and how to use it for efficient detachment of unneeded customer data. We'll cover the basics of leveraging Rails 6.1's Horizontal Sharding for database-per-tenant designs. Besides the benefits for each tool, limitations will be described so that attendees can make informed choices. Attendees will leave with a broad survey of building multi-tenant SaaS applications, having reviewed application level designs, database designs, to help them put these into action in their own applications.
+
+    Andrew is a Staff Software Engineer who specializes in building high performance web applications using PostgreSQL and Ruby on Rails.
+
+    Andrew wrote a book "High Performance PostgreSQL for Rails," published by Pragmatic Programmers in 2024. Andrew has spoken previously at RailsConf, Sin City Ruby, PGDay Chicago, PGConf NYC, and RubyConf Argentina.
+
+    Chapters:
+    00:00 - Intro
+    00:39 - Overview of the presentation
+    01:10 - Definition of terms
+    05:36 - Adding multi-tenancy to Rideshare application
+    12:55 - Scaling beyond a single PostgreSQL instance
+    14:27 - Multi-Tenancy and Sharding with Active Record
+    17:02 - Citus and Sharding
+    22:52 - Wrap Up and Advice
+  video_provider: "youtube"
+  video_id: "RwXJ4s2pw1A"
+  published_at: "2024-06-13"
+  speakers:
+    - Andrew Atkinson
+
+- id: "vladimir-dementyev-wasmcon-2024"
+  title: "Lightning Talk: From Server to Client: Ruby on Rails on WebAssembly"
+  raw_title: "Lightning Talk: From Server to Client: Ruby on Rails on WebAssembly - Vladimir Dementyev"
+  event_name: "WasmCon 2024"
+  location: "Salt Lake City, UT"
+  date: "2024-09-10"
+  description: |-
+    Ruby on Rails is a famous “batteries included” framework for the rapid development of web applications. Its full-stack promise comes in a server-oriented, or HTML-over-the-Wire flavor: a server oversees everything from database interactions to your application UI/UX. And whenever there is a server involved, the network and its unpredictability come into play. No matter how much you enjoy developing with Rails, it would be hard to achieve the same level of user experience as with client-side and especially local-first frameworks. And here comes Wasm. With the help of WebAssembly, we can do a radical shift—bring the Rails application right into your browser, and make it local-first! In my talk, I want to discuss the challenges of making a classic web framework Wasm compatible, the techniques we can use to run server-first applications in the browsers and what are the use cases.
+  video_provider: "youtube"
+  video_id: "z_iWZrC3rtQ"
+  published_at: "2024-11-18"
+  speakers:
+    - Vladimir Dementyev
+
+- id: "irina-nazarova-viteconf-2024"
+  title: "Using Vite Ruby"
+  raw_title: "Irina Nazarova | Using Vite Ruby | ViteConf 2024"
+  event_name: "ViteConf 2024"
+  location: "online"
+  date: "2024-10-03"
+  description: |-
+    Let's talk about the depth of the asset pipeline problem for the Ruby on Rails community and the role of Vite and Vite Ruby. I'm also sharing feedback and quotes from the teams using Vite Ruby: why they chose it and what's missing.
+
+    https://ViteConf.org hosted by https://StackBlitz.com
+  video_provider: "youtube"
+  video_id: "vIxQ6u9pHaw"
+  published_at: "2024-11-05"
+  slides_url: "https://speakerdeck.com/irinanazarova/using-vite-ruby-vite-conf-2024"
+  speakers:
+    - Irina Nazarova
+
+- id: "okura-masafumi-burikaigi-2024"
+  title: "Writing documentation can be fun with plugin system"
+  raw_title: "Writing documentation can be fun with plugin system"
+  event_name: "BuriKaigi 2024"
+  location: "Toyama, Japan"
+  date: "2024-07-27"
+  description: |-
+    https://burikaigi.dev/2024/speakers/004/
+    https://fortee.jp/burikaigi-2025/proposal/03ac7594-fce1-4dad-9dd0-c37649127f90
+  video_provider: "not_recorded"
+  video_id: "okura-masafumi-burikaigi-2024"
+  published_at: "2024-07-27"
+  slides_url: "https://speakerdeck.com/okuramasafumi/writing-documentation-can-be-fun-with-plugin-system"
+  speakers:
+    - OKURA Masafumi
+
+- id: "charles-nutter-carolina-code-conference-2023"
+  title: "Bringing Ruby to the JVM: Making the Impossible Possible"
+  raw_title: "Charles Nutter - Bringing Ruby to the JVM: Making the Impossible Possible // Carolina Code Conf 2023"
+  event_name: "Carolina Code Conference 2023"
+  location: "Greenville, SC"
+  date: "2023-08-19"
+  description: |-
+    Over the past 18 years, the JRuby team has worked to bring Ruby to the JVM, defying impossible challenges and building the most successful alternative Ruby implementation in the world. Today, JRuby is actively developed and deployed at thousands of Ruby and Java shops around the world... but how did we get here? This talk provides a retrospective of the JRuby project, with examples of modern JRuby usage along the way.
+
+    Presented on August 19, 2023 at the Carolina Code Conference in Greenville, SC
+
+    https://carolina.codes
+  video_provider: "youtube"
+  video_id: "pzm6I4liJlg"
+  published_at: "2023-09-04"
+  speakers:
+    - Charles Nutter
+
+- id: "https://push.cx/talks/kcdc2016/Rails-Database-Corruption-Peter-Bhat-Harkins-KCDC-2016.mp4"
+  title: "Rails Database Corruption"
+  raw_title: "Rails Database Corruption"
+  event_name: "Kansas City Developer Conference 2016"
+  date: "2016-06-22"
+  description: |-
+    Almost every Rails database contains records that won't pass their model validations, leading to "can't happen" bugs months or years later. This talk introduces a gem that detects unsafe practices and lurking corrupt data. Learn to recognize and prevent five six ways data becomes corrupt, and maybe replace ActiveRecord validations entirely.
+
+    https://push.cx/talks/kcdc2016
+  video_provider: "mp4"
+  video_id: "https://push.cx/talks/kcdc2016/Rails-Database-Corruption-Peter-Bhat-Harkins-KCDC-2016.mp4"
+  published_at: "2016-06-22"
+  slides_url: "https://push.cx/talks/kcdc2016/Rails%20Database%20Corruption%20-%20Peter%20Bhat%20Harkins.pdf"
+  speakers:
+    - Peter Bhat Harkins
+
+- id: "henning-koch-full-stack-hour-by-makandra"
+  title: "Fixing Flaky E2E Tests"
+  raw_title: "Fixing Flaky E2E Tests"
+  event_name: "Full Stack Hour by makandra"
+  location: "online"
+  date: "2023-12-07"
+  description: |-
+    Flaky tests can lead to unreliability in software development and negatively impact the quality of test results. In this video, we'll show you how to prevent flaky tests.
+  video_provider: "youtube"
+  video_id: "LaCwiFDm2Vs"
+  published_at: "2023-12-07"
+  speakers:
+    - Henning Koch
+
+- id: "jim-weirich-cincycocoadev-meetup-april-2013"
+  title: "RubyMotion"
+  raw_title: "April CincyCocoaDev - RubyMotion with Jim Weirich"
+  event_name: "CincyCocoaDev Meetup - April 2013"
+  location: "Cincinnati, OH"
+  date: "2013-04-18"
+  published_at: "2013-04-19"
+  description: |-
+    RubyMotion is a revolutionary toolchain for iOS. It lets you quickly develop and test native iOS applications for iPhone or iPad, all using the awesome Ruby language you know and love.
+
+    Bio: Jim Weirich first learned about computers when his college adviser suggested he take a computer science course: "It will be useful, and you might enjoy it." With those prophetic words, Jim has been developing now for over 25 years, working with everything from crunching rocket launch data on supercomputers to wiring up servos and LEDs on micro-controllers. Currently he loves working in Ruby and Rails as the Chief Scientist at New Context, but you can also find him strumming on his ukulele as time permits.
+
+    Repo: https://github.com/captproton/jim-weirich-rubymotion-intro
+
+    https://www.meetup.com/cincycocoadev/events/112048512/
+  video_provider: "youtube"
+  video_id: "z7E1zx9j31M"
+  speakers:
+    - Jim Weirich
+  additional_resources:
+    - name: "captproton/jim-weirich-rubymotion-intro"
+      type: "repo"
+      url: "https://github.com/captproton/jim-weirich-rubymotion-intro"
+
+- id: "ezra-zygmuntowicz-google-tech-talks"
+  title: "Merb, Rubinius and the Engine Yard Stack"
+  raw_title: "Merb, Rubinius and the Engine Yard Stack"
+  event_name: "Google Tech Talks"
+  date: "2008-10-20"
+  published_at: "2008-10-21"
+  description: |-
+    In this talk we will explore a few of the open source projects we work on here at Engine Yard. I will give a detailed overview of the Merb web framework and what it brings to the table. We will also discuss Rubinius, an alternate ruby VM based on SmallTalk 80 blue book that also uses LLVM for low level optimizations. We will also explore the 'stack' we are working on at EY which includes our own variant of Gentoo linux as well as a full stack of software dedicated to running ruby applications as efficiently as possible.
+
+    Merb, like Ruby on Rails is an MVC framework. Unlike Rails, Merb is ORM-agnostic, JavaScript library agnostic, and template language agnostic, preferring plugins that add in support for a particular feature rather than trying to produce a monolithic library with everything in the core. While trying to keep the core as minimal and clean as possible, this hasnt meant a sacrifice of features. Merb has a very comprehensive set of features, which are continually improving.
+
+    Rubinius is a project to develop the next generation virtual machine for the Ruby programming language, drawing on the best virtual machine research and technology of the last 30 years. It implements the core libraries in Ruby, making a system easily accessible for development and extension. Rubinius is also an excellent platform for experimenting with cutting-edge technology like software transactional memory.
+  video_provider: "youtube"
+  video_id: "TcMklv40YMY"
+  speakers:
+    - Ezra Zygmuntowicz
+
+- id: "irina-nazarova-open-core-summit-2023"
+  title: "Wildest Dreams of Making Profit on Open Source"
+  raw_title: "Irina Nazarova at the Open Core Summit 2023: Wildest Dreams of Making Profit on Open Source"
+  event_name: "Open Core Summit 2023"
+  location: "San Francisco, CA"
+  date: "2023-12-07"
+  published_at: "2024-01-03"
+  description: |-
+    Irina Nazarova, CEO at Evil Martians, gave a talk at the Open Core Summit in San Francisco on December 7, 2023. The topic is how to recognize and overcome the fundamental problem in the business of open source: the conflict between the open and the commercial mindsets.
+  video_provider: "youtube"
+  video_id: "tfQghAdUUtY"
+  speakers:
+    - Irina Nazarova

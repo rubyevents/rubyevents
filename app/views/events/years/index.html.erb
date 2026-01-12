@@ -1,0 +1,17 @@
+<div class="container py-6 md:py-12 hotwire-native:py-3">
+  <%= render partial: "header", locals: {
+        year: @year,
+        events: @events,
+        monthly_events: @monthly_events,
+        events_by_month: @events_by_month,
+        has_previous_year: @has_previous_year,
+        has_next_year: @has_next_year
+      } %>
+
+  <%= render partial: "mobile_calendar", locals: {events_by_month: @events_by_month, year: @year} %>
+  <%= render partial: "desktop_calendar", locals: {events_by_month: @events_by_month, year: @year} %>
+
+  <% if @yearly_events.any? %>
+    <%= render partial: "yearly_events", locals: {year: @year, events: @yearly_events} %>
+  <% end %>
+</div>

@@ -2,6 +2,7 @@
 # == Schema Information
 #
 # Table name: watch_list_talks
+# Database name: primary
 #
 #  id            :integer          not null, primary key
 #  created_at    :datetime         not null
@@ -24,6 +25,7 @@
 class WatchListTalk < ApplicationRecord
   belongs_to :watch_list, counter_cache: :talks_count
   belongs_to :talk
+  has_one :user, through: :watch_list, touch: true
 
   validates :watch_list_id, uniqueness: {scope: :talk_id}
 

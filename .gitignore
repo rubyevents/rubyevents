@@ -4,8 +4,9 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
-# Ignore bundler config.
+# Ignore bundler config and cache
 /.bundle
+vendor/bundle/
 
 # Ignore all logfiles and tempfiles.
 /log/*
@@ -50,10 +51,7 @@
 
 /data.ms*
 /data_tmp
-/data_preparation/**/*
-!/data_preparation/organisations.yml
 data/talks_slugs.yml
-
 
 /config/credentials/production.key
 /config/credentials/staging.key
@@ -71,9 +69,6 @@ node_modules
 # https://vitejs.dev/guide/env-and-mode.html#env-files
 *.local
 
-# Ignore meilisearch
-meilisearch
-
 # ignore doc folder
 doc/*
 
@@ -87,3 +82,5 @@ service_account.json
 
 .ssh-keys/
 
+# IDE files
+/.idea

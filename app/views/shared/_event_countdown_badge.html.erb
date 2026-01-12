@@ -1,4 +1,4 @@
-<% if event.start_date && event.static_metadata.date_precision == "day" %>
+<% if event.start_date && event.date_precision == "day" %>
   <% days = (event.start_date - Date.current).to_i %>
   <% today = (event.start_date..event.end_date).include?(Date.current) %>
 

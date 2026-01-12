@@ -1,0 +1,80 @@
+<div
+  class="w-full md:h-[198px] lg:h-[267px] xl:h-[336px] 2xl:h-[405px] justify-center align-center flex mt-3 border-t border-b hotwire-native:hidden"
+  style="
+    view-transition-name: hero;
+    <% if organization.organization_image_for("banner.webp") %>
+      background: url('<%= image_path(organization.banner_image_path) %>');
+      background-repeat: no-repeat;
+      background-size: cover;
+    <% else %>
+      background: linear-gradient(135deg, #3B82F6, #10B981, #60A5FA);
+    <% end %>
+  ">
+  <% if organization.organization_image_for("banner.webp") %>
+    <%= image_tag image_path(organization.banner_image_path), class: "w-full md:container object-cover" %>
+  <% end %>
+</div>
+
+<div class="container py-8">
+  <div class="block lg:flex gap-8 align-center justify-between">
+    <div class="flex flex-col lg:flex-row gap-8 items-center lg:justify-right text-center lg:text-left mb-6 lg:mb-0">
+      <% if organization.has_logo_image? %>
+        <div class="<%= organization.logo_background_class %> rounded-lg border <%= organization.logo_border_class %> size-24 md:size-36 p-2"
+             style="view-transition-name: avatar">
+          <%= image_tag organization.logo_image_path,
+                class: "w-full h-full object-contain",
+                alt: "#{organization.name} Logo",
+                loading: :lazy,
+                onerror: "this.style.display='none'; this.nextElementSibling.style.display='flex';" %>
+          <div class="w-full h-full bg-gray-100 items-center justify-center hidden">
+            <span class="text-4xl md:text-6xl font-bold text-gray-600"><%= organization.name.first %></span>
+          </div>
+        </div>
+      <% elsif organization.organization_image_for("avatar.webp") %>
+        <%= image_tag image_path(organization.avatar_image_path),
+              class: "rounded-lg border border-[#D9DFE3] size-24 md:size-36",
+              alt: "#{organization.name} Avatar",
+              style: "view-transition-name: avatar",
+              loading: :lazy %>
+      <% else %>
+        <div class="rounded-lg border border-[#D9DFE3] size-24 md:size-36 bg-gray-100 flex items-center justify-center"
+             style="view-transition-name: avatar">
+          <span class="text-4xl md:text-6xl font-bold text-gray-600"><%= organization.name.first %></span>
+        </div>
+      <% end %>
+
+      <div class="flex-col flex justify-center break-all">
+        <div class="flex items-center gap-3 mb-2">
+          <h1 class="text-black font-bold"><%= title organization.name %></h1>
+          <% if organization.events.where(start_date: Date.new(2025, 1, 1)..Date.new(2025, 12, 31)).exists? %>
+            <%= link_to organization_wrapped_index_path(organization_slug: organization.slug), class: "inline-flex items-center gap-1.5 px-3 py-1 bg-gradient-to-r from-red-600 to-red-700 text-white text-sm font-medium rounded-full hover:from-red-700 hover:to-red-800 transition shadow-sm" do %>
+              <svg class="size-4" viewBox="0 0 80 80" fill="currentColor">
+                <path d="M2 25 L16 10 L64 10 L78 25 L40 70 Z" />
+              </svg>
+              <span>2025 Wrapped</span>
+            <% end %>
+          <% end %>
+        </div>
+        <% if organization.main_location.present? %>
+          <h3 class="text-[#636B74]"><%= organization.main_location %></h3>
+        <% end %>
+        <% if organization.website.present? %>
+          <%= external_link_to organization.website.gsub(%r{^https?://}, "").gsub(%r{/$}, ""), organization.website %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-3 place-items-center">
+      <%= ui_button "Back to Organizations", url: organizations_path, kind: :secondary, size: :sm, class: "w-full" %>
+      <% if Current.user&.admin? && organization.logo_urls.present? %>
+        <%= ui_button "Manage Logos", url: organization_logos_path(organization), kind: :primary, size: :sm, class: "w-full" %>
+      <% end %>
+    </div>
+  </div>
+
+  <% if organization.description.present? %>
+    <p class="mt-6 text-[#636B74] max-w-[700px]">
+      <%= organization.description %>
+    </p>
+  <% end %>
+</div>

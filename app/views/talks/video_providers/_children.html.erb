@@ -1,3 +1,5 @@
+<%# locals: (talk:, video_provider:, video_id:, is_watched: false) %>
+
 <div class="relative w-full h-full block">
   <%= image_tag talk.thumbnail_xl, class: "w-full h-full object-cover rounded-xl #{talk.thumbnail_classes}" %>
 
@@ -6,6 +8,6 @@
       <%= talk.title %>
     </span>
 
-    <%= render partial: "sections", locals: {talk: talk} %>
+    <%= render partial: "talks/sections", locals: {talk: talk} %>
   </div>
 </div>

@@ -16,6 +16,6 @@
       <% end %>
     <% end %>
 
-    <a class="btn btn-primary mt-6" href="<%= @talk.slides_url %>" target="_blank">See Slides on <%= uri.host %></a>
+    <a class="btn btn-primary mt-6" href="<%= sanitize(@talk.slides_url) %>" target="_blank">See Slides on <%= uri.host %></a>
   <% end %>
 <% end %>

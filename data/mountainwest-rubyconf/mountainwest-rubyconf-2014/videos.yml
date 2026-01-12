@@ -3,26 +3,28 @@
 # TODO: talk date
 # TODO: schedule website
 
-- title: "Nerd Party, v3.1"
+- id: "ryan-davis-mountainwest-rubyconf-2014"
+  title: "Nerd Party, v3.1"
   raw_title: "MountainWest RubyConf 2014 - Nerd Party, v 3.1 by Ryan Davis"
   speakers:
     - Ryan Davis
   event_name: "MountainWest RubyConf 2014"
   date: "2014-03-17"
-  published_at: "TODO"
+  published_at: "2014-04-23"
   description: |-
     Founded in 2002, Seattle.rb is the first and oldest ruby group in the world. We've evolved a lot over the years and have found a balance that I think works very well for many, if not most, groups. Seattle.rb has also had a study group off-and-on for a few years. We've tackled doozies like SICP but also programmed games in Racket (scheme). I will share the recipe for our user group and study group as well as the trade-offs we've made over the years and what they meant to us.
 
   video_provider: "youtube"
   video_id: "AK-gVWh_vZ8"
 
-- title: "Generate Parsers! Prevent Exploits!"
+- id: "nick-howard-mountainwest-rubyconf-2014"
+  title: "Generate Parsers! Prevent Exploits!"
   raw_title: "MountainWest RubyConf 2014 - Generate Parsers! Prevent Exploits! by Nick Howard"
   speakers:
     - Nick Howard
   event_name: "MountainWest RubyConf 2014"
   date: "2014-03-17"
-  published_at: "TODO"
+  published_at: "2014-04-22"
   description: |-
     Exploits happen when attackers discover that your application is actually an interpreter for a weird programming language with operators like 'make admin', or 'consume all available memory'. Don't give them access to that kind of computational power! Stop them at the very boundaries of your application's input handling--the parser. By generating parsers tailored to the specific input formats of your app, you can prevent it from becoming a weird interpreter and make it harder to exploit.
     When you use a parser specific to your input format, it's not only more secure, it's better specified and definite. When you have a grammar for your inputs, you can give your API consumers better error messages and better documentation based on that grammar.
@@ -31,26 +33,28 @@
   video_provider: "youtube"
   video_id: "4EwuuSLr2Lk"
 
-- title: "Introduction to CRuby source code"
+- id: "andy-pliszka-mountainwest-rubyconf-2014"
+  title: "Introduction to CRuby source code"
   raw_title: "MountainWest RubyConf 2014 - Introduction to CRuby source code by Andy Pliszka"
   speakers:
     - Andy Pliszka
   event_name: "MountainWest RubyConf 2014"
   date: "2014-03-17"
-  published_at: "TODO"
+  published_at: "2014-04-22"
   description: |-
     Understanding of CRuby source code has profound effects on every Ruby developer. In my talk, I will show you how to build Ruby from source. I will explain how to install and configure your new Ruby build on Mac and Linux. I will walk you through CRuby source code and introduce you to a few of the most important CRuby files. I will show you how to hack CRuby and modify some of the fundament Ruby classes in C. I will demonstrate how to write complete Ruby classes in C. Finally, I will show you that CRuby code can run 100 times faster than Ruby code. I hope that this talk will inspire you to learn more about CRuby and hack it on your own.
 
   video_provider: "youtube"
   video_id: "9oH6sL2sKvw"
 
-- title: "New Ruby 2.1 Awesomeness: Pro Object Allocation Tracing"
+- id: "sam-rawlins-mountainwest-rubyconf-2014"
+  title: "New Ruby 2.1 Awesomeness: Pro Object Allocation Tracing"
   raw_title: "MountainWest RubyConf 2014 - New Ruby 2.1 Awesomeness: Pro Object Allocation Tracing"
   speakers:
     - Sam Rawlins
   event_name: "MountainWest RubyConf 2014"
   date: "2014-03-17"
-  published_at: "TODO"
+  published_at: "2014-04-22"
   description: |-
     By Sam Rawlins
 
@@ -61,13 +65,14 @@
   video_provider: "youtube"
   video_id: "ViUvz4FCDxg"
 
-- title: "The Other Junk Drawer: My Tests are a Mess"
+- id: "christopher-sexton-mountainwest-rubyconf-2014"
+  title: "The Other Junk Drawer: My Tests are a Mess"
   raw_title: "MountainWest RubyConf 2014 - The Other Junk Drawer: My Tests are a Mess"
   speakers:
     - Christopher Sexton
   event_name: "MountainWest RubyConf 2014"
   date: "2014-03-17"
-  published_at: "TODO"
+  published_at: "2014-04-22"
   description: |-
     By Christopher Sexton
 
@@ -77,13 +82,14 @@
   video_provider: "youtube"
   video_id: "ZoT5qrAUkT0"
 
-- title: "Re-thinking Regression Testing"
+- id: "mario-gonzalez-mountainwest-rubyconf-2014"
+  title: "Re-thinking Regression Testing"
   raw_title: "MountainWest RubyConf 2014 - Re-thinking Regression Testing by Mario Gonzalez"
   speakers:
     - Mario Gonzalez
   event_name: "MountainWest RubyConf 2014"
   date: "2014-03-17"
-  published_at: "TODO"
+  published_at: "2014-04-22"
   description: |-
     Regression testing is invaluable to knowing if changes to code have broken the software. However, it always seems to be the case that no matter how many tests you have in your regression buckets, bugs continue to happily creep in undetected. As a result, you are not sure if you can trust your tests anymore or your methodology, and you are ready to change that. I will present a powerful technique called mutation testing that will help make your tests capable of detecting future bugs. I will also give you a metric to assess the effectiveness of your tests in terms of regression, so that future changes in your software can be done with impunity.
     Audience will learn:
@@ -94,13 +100,14 @@
   video_provider: "youtube"
   video_id: "H8lBCI_TQ8E"
 
-- title: "Unpacking Technical Decisions"
+- id: "sarah-mei-mountainwest-rubyconf-2014"
+  title: "Unpacking Technical Decisions"
   raw_title: "MountainWest RubyConf 2014 - Unpacking Technical Decisions by Sarah Mei"
   speakers:
     - Sarah Mei
   event_name: "MountainWest RubyConf 2014"
   date: "2014-03-17"
-  published_at: "TODO"
+  published_at: "2014-04-22"
   description: |-
     As engineers working on a team, we all make technical decisions. What's the best way to implement this? Where should this function live? Is this library worth using? Some decisions, though, are larger, riskier and more important than that. But generally, they're also far less frequent.
     Right now, your team might be struggling to organize the client-side parts of your application. Ember? Angular? Backbone? Flip a coin? Uh...which one has the most...retweets? These choices don't need to be arbitrary or based on vague personal preference. Come learn a more useful and realistic approach that makes large-scale technical decisions less risky.
@@ -108,13 +115,14 @@
   video_provider: "youtube"
   video_id: "FzzL_QDKv0c"
 
-- title: "Big O in a Homemade Hash"
+- id: "nathan-long-mountainwest-rubyconf-2014"
+  title: "Big O in a Homemade Hash"
   raw_title: "MountainWest RubyConf 2014 - Big O in a Homemade Hash by Nathan Long"
   speakers:
     - Nathan Long
   event_name: "MountainWest RubyConf 2014"
   date: "2014-03-17"
-  published_at: "TODO"
+  published_at: "2014-04-22"
   description: |-
     Rubyists use hashes all the time. But could you build Ruby's Hash class from scratch?
     In this talk, I'll walk you through it. We'll learn what it takes to get the interface we want and maintain O(1) performance as it grows.
@@ -122,13 +130,14 @@
   video_provider: "youtube"
   video_id: "NMwyWBtSiGM"
 
-- title: "How to Prototype an Airport"
+- id: "barrett-clark-mountainwest-rubyconf-2014"
+  title: "How to Prototype an Airport"
   raw_title: "MountainWest RubyConf 2014 - How to Prototype an Airport by Barrett Clark"
   speakers:
     - Barrett Clark
   event_name: "MountainWest RubyConf 2014"
   date: "2014-03-17"
-  published_at: "TODO"
+  published_at: "2014-04-28"
   description: |-
     I transformed my office building into an airport using a combination of Ruby, Objective-C, and a number of hardware hacks. The goal was to prototype a better in-airport experience using a mixture of GPS and iBeacon technology to establish precise indoor geolocation.
     This talk will run down the various stages of the project, an overview of outdoor vs indoor location technologies, and how the iPhone (and Android) devices currently handle location. I'll also discuss how I built a robust Ruby backend, and how I hacked some hardware together to create iBeacons.
@@ -136,13 +145,14 @@
   video_provider: "youtube"
   video_id: "Pxp6ukQFFb8"
 
-- title: "Dont."
+- id: "ernie-miller-mountainwest-rubyconf-2014"
+  title: "Dont."
   raw_title: "MountainWest RubyConf 2014 - Dont. by Ernie Miller"
   speakers:
     - Ernie Miller
   event_name: "MountainWest RubyConf 2014"
   date: "2014-03-17"
-  published_at: "TODO"
+  published_at: "2014-04-22"
   description: |-
     We all know that intelligent species learn from mistakes, right?
     There's just one problem: Life is too short to make every possible mistake! Also, some mistakes are more costly than others. What's the ambitious learner to do? I'm glad you asked! I'm an expert at making mistakes, and I'm happy to share as many of them as I can possibly fit into a 45-minute time slot with you, my dear conference attendee!
@@ -151,13 +161,14 @@
   video_provider: "youtube"
   video_id: "7UT3pDD7XK8"
 
-- title: "Affordance in Programming Languages"
+- id: "randy-coulman-mountainwest-rubyconf-2014"
+  title: "Affordance in Programming Languages"
   raw_title: "MountainWest RubyConf 2014 - Affordance in Programming Languages by Randy Coulman"
   speakers:
     - Randy Coulman
   event_name: "MountainWest RubyConf 2014"
   date: "2014-03-17"
-  published_at: "TODO"
+  published_at: "2014-04-23"
   description: |-
     A good design communicates the intended use of an object. In the physical world, this communication is accomplished by "affordances", as discussed by Donald Norman in "The Psychology of Everyday Things".
     Programming languages also have affordances, and they influence the kinds of solutions we develop. The more languages we know, the more we "expand our design space" so that we can come up with better solutions to the problems we face every day.
@@ -165,13 +176,14 @@
   video_provider: "youtube"
   video_id: "aQu18GXl74Q"
 
-- title: "A World Without Assignment"
+- id: "aja-hammerly-mountainwest-rubyconf-2014"
+  title: "A World Without Assignment"
   raw_title: "MountainWest RubyConf 2014 - A World Without Assignment by Aja Hammerly"
   speakers:
     - Aja Hammerly
   event_name: "MountainWest RubyConf 2014"
   date: "2014-03-17"
-  published_at: "TODO"
+  published_at: "2014-04-23"
   description: |-
     In OO, assignment is one of our main tools. Most developers learn how to store values in variables shortly after learning "Hello World". By contrast, functional programming makes much less use of assignment and mutation. Instead techniques like function composition, recursion, and anonymous functions are used to produce the same results that OO programmers produce with side effects.
     Despite being object oriented, Ruby easily accommodates pure functional approaches. This talk will demonstrate how common programming tasks can be accomplished without assignment or mutation. Ruby and Scheme (a Lisp dialect) will be used for examples. I'll also discuss some of the great resources available for those interested in digging deeper into functional programming.
@@ -179,13 +191,14 @@
   video_provider: "youtube"
   video_id: "Qyn4NyeftUE"
 
-- title: "Five Machine Learning Techniques That You Can Use In Your Ruby Apps Today"
+- id: "benjamin-curtis-mountainwest-rubyconf-2014"
+  title: "Five Machine Learning Techniques That You Can Use In Your Ruby Apps Today"
   raw_title: "MountainWest RubyConf 2014 - Five machine learning techniques that...."
   speakers:
     - Benjamin Curtis
   event_name: "MountainWest RubyConf 2014"
   date: "2014-03-17"
-  published_at: "TODO"
+  published_at: "2014-04-23"
   description: |-
     Five machine learning techniques that you can use in your Ruby apps today By Benjamin Curtis
 
@@ -198,26 +211,28 @@
   video_provider: "youtube"
   video_id: "crziu7dk6Vw"
 
-- title: "Test Driven Neural Networks with Ruby"
+- id: "matthew-kirk-mountainwest-rubyconf-2014"
+  title: "Test Driven Neural Networks with Ruby"
   raw_title: "MountainWest RubyConf 2014 - Test Driven Neural Networks with Ruby by Matthew Kirk"
   speakers:
     - Matthew Kirk
   event_name: "MountainWest RubyConf 2014"
   date: "2014-03-17"
-  published_at: "TODO"
+  published_at: "2014-04-23"
   description: |-
     Neural networks are an excellent way of mapping past observations to a functional model. Many researchers have been able to build tools to recognize handwriting, or even jaundice detection. While Neural Networks are powerful they still are somewhat of a mystery to many. This talk aims to explain neural networks in a test driven way. We'll write tests first and go through how to build a neural network to determine what language a sentence is. By the end of this talk you'll know how to build neural networks with tests!
 
   video_provider: "youtube"
   video_id: "mWZ1SPgx80g"
 
-- title: "The Timeless Way of Building"
+- id: "john-athayde-mountainwest-rubyconf-2014"
+  title: "The Timeless Way of Building"
   raw_title: "MountainWest RubyConf 2014 - The Timeless Way of Building by John Athayde"
   speakers:
     - John Athayde
   event_name: "MountainWest RubyConf 2014"
   date: "2014-03-17"
-  published_at: "TODO"
+  published_at: "2014-04-23"
   description: |-
     "Design patterns" is a common phrase that is often spoken in the course of design and development of web applications. But it's genesis is not from programming, but Architecture. They come from a trio of books in the 1970s by Christopher Alexander, the most famous of which is the middle book: "A Pattern Language". The issue arises that Pattern Languages, much like spoken languages, are most effective when the speaker is fluent.
     We'll look at the origin of pattern languages and why they can be dangerous and even detrimental tools in the hands of the inexperienced designer and developer through examples of bad grammar and poor idiomatic choices(aka antipatterns), and perhaps some architecture as well.
@@ -225,13 +240,14 @@
   video_provider: "youtube"
   video_id: "DJJbIjlLmLM"
 
-- title: "But Really, You Should Learn Smalltalk"
+- id: "noel-rappin-mountainwest-rubyconf-2014"
+  title: "But Really, You Should Learn Smalltalk"
   raw_title: "MountainWest RubyConf 2014 - But Really, You Should Learn Smalltalk"
   speakers:
     - Noel Rappin
   event_name: "MountainWest RubyConf 2014"
   date: "2014-03-17"
-  published_at: "TODO"
+  published_at: "2014-04-28"
   description: |-
     By Noel Rappin
 
@@ -244,13 +260,14 @@
   video_provider: "youtube"
   video_id: "eGaKZBr0ga4"
 
-- title: "MagLev - From Download to Deploy"
+- id: "johnny-t-mountainwest-rubyconf-2014"
+  title: "MagLev - From Download to Deploy"
   raw_title: "MountainWest RubyConf 2014 - MagLev - From Download to Deploy by Johnny T"
   speakers:
     - Johnny T
   event_name: "MountainWest RubyConf 2014"
   date: "2014-03-17"
-  published_at: "TODO"
+  published_at: "2014-04-23"
   description: |-
     MagLev is a Ruby implementation built on top of a mature VM which offers native object persistence. Working with these live objects is awesome - but this image-based development is very different than traditional file-based development. MagLev uses both which has broad reaching effects - from design to deployment.
     In traditional applications, data and code are separate. Deployments involve pulling new code, updating or migrating the data-store, and restarting or reloading the application which creates a new runtime with this new code.
@@ -260,13 +277,14 @@
   video_provider: "youtube"
   video_id: "-sH2lSW2BGo"
 
-- title: "CRUD! The Consequences of Not Understanding How ActiveRecord Translates into MySQL"
+- id: "eileen-m-uchitelle-mountainwest-rubyconf-2014"
+  title: "CRUD! The Consequences of Not Understanding How ActiveRecord Translates into MySQL"
   raw_title: "MountainWest RubyConf 2014 - CRUD! The Consequences of Not Understanding How ActiveRecord ..."
   speakers:
     - Eileen M. Uchitelle
   event_name: "MountainWest RubyConf 2014"
   date: "2014-03-17"
-  published_at: "TODO"
+  published_at: "2014-04-23"
   description: |-
     By Eileen Uchitelle
 
@@ -275,13 +293,14 @@
   video_provider: "youtube"
   video_id: "lOpVcqiAIiI"
 
-- title: "Software Development Lessons from the Apollo Program"
+- id: "julian-simioni-mountainwest-rubyconf-2014"
+  title: "Software Development Lessons from the Apollo Program"
   raw_title: "MountainWest RubyConf 2014 - Software Development Lessons from the Apollo Program"
   speakers:
     - Julian Simioni
   event_name: "MountainWest RubyConf 2014"
   date: "2014-03-17"
-  published_at: "TODO"
+  published_at: "2014-04-23"
   description: |-
     By Julian Simioni
 
@@ -292,13 +311,14 @@
   video_provider: "youtube"
   video_id: "jYe2bF7tc2Q"
 
-- title: "A Magical Gathering"
+- id: "aaron-patterson-mountainwest-rubyconf-2014"
+  title: "A Magical Gathering"
   raw_title: "MountainWest RubyConf 2014 - A Magical Gathering by Aaron Patterson"
   speakers:
     - Aaron Patterson
   event_name: "MountainWest RubyConf 2014"
   date: "2014-03-17"
-  published_at: "TODO"
+  published_at: "2014-04-22"
   description: |-
     Let's roll up our sleeves, and learn about Ruby and OpenCV. Let there be coding. Let there be learning. But most of all, let this be the most magical of all gatherings. I've put on my robe and my wizard hat, now lets make magic happen!
 

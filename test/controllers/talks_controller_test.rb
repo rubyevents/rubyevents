@@ -48,6 +48,15 @@ class TalksControllerTest < ActionDispatch::IntegrationTest
   test "should redirect to talks for wrong slugs" do
     get talk_url("wrong-slug")
     assert_response :moved_permanently
+    assert_redirected_to talks_path
+  end
+
+  test "should redirect to correct talk slug when accessed via alias" do
+    @talk.aliases.create!(name: "Old Title", slug: "old-talk-slug")
+
+    get talk_url("old-talk-slug")
+    assert_response :moved_permanently
+    assert_redirected_to talk_path(@talk)
   end
 
   test "should get edit" do
@@ -83,10 +92,7 @@ class TalksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "owner can update directly the talk" do
-    user = User.create!(email: "test@example.com", password: "Secret1*3*5*", github_handle: @talk.speakers.first.github, verified: true)
-    assert user.persisted?
-    assert_equal user, @talk.speakers.first.user
-
+    user = @talk.users.first
     sign_in_as user
 
     patch talk_url(@talk), params: {talk: {summary: "new summary", description: "new description", slug: "new-slug", title: "new title", date: "2024-01-01"}}
@@ -141,8 +147,8 @@ class TalksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index with created_after" do
-    talk = Talk.create!(title: "test", description: "test", date: "2023-01-01", created_at: "2023-01-01", video_provider: "youtube")
-    talk_2 = Talk.create!(title: "test 2", description: "test", date: "2025-01-01", created_at: "2025-01-01", video_provider: "youtube")
+    talk = Talk.create!(title: "test", description: "test", date: "2023-01-01", created_at: "2023-01-01", video_provider: "youtube", static_id: "test-created-after-2023")
+    talk_2 = Talk.create!(title: "test 2", description: "test", date: "2025-01-01", created_at: "2025-01-01", video_provider: "youtube", static_id: "test-created-after-2025")
 
     get talks_url(created_after: "2024-01-01")
     assert_response :success
@@ -152,7 +158,7 @@ class TalksControllerTest < ActionDispatch::IntegrationTest
     assert assigns(:talks).all? { |talk| talk.created_at >= Date.parse("2024-01-01") }
   end
 
-  test "should get index with invalide created_after" do
+  test "should get index with invalid created_after" do
     get talks_url(created_after: "wrong-date")
     assert_response :success
     assert assigns(:talks).size.positive?
