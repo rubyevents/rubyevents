@@ -36,12 +36,23 @@ class DownloadSponsors
 
     # Heuristic: look for links with 'sponsor' in href or text, but not logo/image links
     sponsor_link = session.all("a[href]").find do |a|
-      href = a[:href].to_s.downcase
+      original_href = a[:href].to_s
+      href = original_href.downcase
       text = a.text.downcase
+
+      # Check if this is a fragment link by looking at the URI fragment
+      uri = URI.parse(original_href)
+      base_uri = URI.parse(url)
+
+      # A fragment link has a fragment and points to the same page (same host and path)
+      is_fragment = uri.fragment &&
+        uri.host == base_uri.host &&
+        (uri.path == "/" || uri.path == base_uri.path)
+
       # Must contain 'sponsor' and not be a fragment or empty
       (href.include?("sponsor") || text.include?("sponsor")) &&
-        !href.strip.empty? &&
-        !href.start_with?("#") &&
+        !original_href.strip.empty? &&
+        !is_fragment &&
         # Avoid links that are just logo images
         !a.first("img", minimum: 0)
     end
