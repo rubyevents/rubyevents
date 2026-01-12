@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.2].define(version: 2026_01_10_201634) do
+ActiveRecord::Schema[8.2].define(version: 2026_01_12_065507) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -414,6 +414,7 @@ ActiveRecord::Schema[8.2].define(version: 2026_01_10_201634) do
     t.string "video_id", default: "", null: false
     t.string "video_provider", default: "", null: false
     t.integer "view_count", default: 0
+    t.datetime "youtube_thumbnail_checked_at"
     t.index ["date"], name: "index_talks_on_date"
     t.index ["event_id"], name: "index_talks_on_event_id"
     t.index ["kind"], name: "index_talks_on_kind"
