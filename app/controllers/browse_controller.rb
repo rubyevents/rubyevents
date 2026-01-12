@@ -357,7 +357,7 @@ class BrowseController < ApplicationController
     return @language_rows = [] unless watched_languages.any?
 
     @language_rows = watched_languages.map do |lang_code|
-      language = Language.by_code(lang_code)
+      language_name = Language.by_code(lang_code)
       talks = Talk.watchable
         .where(language: lang_code)
         .where.not(id: watched_talk_ids)
@@ -369,7 +369,7 @@ class BrowseController < ApplicationController
 
       {
         language_code: lang_code,
-        language_name: language&.name || lang_code.upcase,
+        language_name: language_name || lang_code.upcase,
         talks: talks
       }
     end.compact
