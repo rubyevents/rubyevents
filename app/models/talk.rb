@@ -4,41 +4,43 @@
 # Table name: talks
 # Database name: primary
 #
-#  id                           :integer          not null, primary key
-#  additional_resources         :json             not null
-#  announced_at                 :datetime
-#  date                         :date             indexed, indexed => [video_provider]
-#  description                  :text             default(""), not null
-#  duration_in_seconds          :integer
-#  end_seconds                  :integer
-#  external_player              :boolean          default(FALSE), not null
-#  external_player_url          :string           default(""), not null
-#  kind                         :string           default("talk"), not null, indexed
-#  language                     :string           default("en"), not null
-#  like_count                   :integer          default(0)
-#  meta_talk                    :boolean          default(FALSE), not null
-#  original_title               :string           default(""), not null
-#  published_at                 :datetime
-#  slides_url                   :string
-#  slug                         :string           default(""), not null, indexed
-#  start_seconds                :integer
-#  summarized_using_ai          :boolean          default(TRUE), not null
-#  summary                      :text             default(""), not null
-#  thumbnail_lg                 :string           default(""), not null
-#  thumbnail_md                 :string           default(""), not null
-#  thumbnail_sm                 :string           default(""), not null
-#  thumbnail_xl                 :string           default(""), not null
-#  thumbnail_xs                 :string           default(""), not null
-#  title                        :string           default(""), not null, indexed
-#  video_provider               :string           default("youtube"), not null, indexed => [date]
-#  view_count                   :integer          default(0)
-#  youtube_thumbnail_checked_at :datetime
-#  created_at                   :datetime         not null
-#  updated_at                   :datetime         not null, indexed
-#  event_id                     :integer          indexed
-#  parent_talk_id               :integer          indexed
-#  static_id                    :string           not null, uniquely indexed
-#  video_id                     :string           default(""), not null
+#  id                            :integer          not null, primary key
+#  additional_resources          :json             not null
+#  announced_at                  :datetime
+#  date                          :date             indexed, indexed => [video_provider]
+#  description                   :text             default(""), not null
+#  duration_in_seconds           :integer
+#  end_seconds                   :integer
+#  external_player               :boolean          default(FALSE), not null
+#  external_player_url           :string           default(""), not null
+#  kind                          :string           default("talk"), not null, indexed
+#  language                      :string           default("en"), not null
+#  like_count                    :integer          default(0)
+#  meta_talk                     :boolean          default(FALSE), not null
+#  original_title                :string           default(""), not null
+#  published_at                  :datetime
+#  slides_url                    :string
+#  slug                          :string           default(""), not null, indexed
+#  start_seconds                 :integer
+#  summarized_using_ai           :boolean          default(TRUE), not null
+#  summary                       :text             default(""), not null
+#  thumbnail_lg                  :string           default(""), not null
+#  thumbnail_md                  :string           default(""), not null
+#  thumbnail_sm                  :string           default(""), not null
+#  thumbnail_xl                  :string           default(""), not null
+#  thumbnail_xs                  :string           default(""), not null
+#  title                         :string           default(""), not null, indexed
+#  video_availability_checked_at :datetime
+#  video_provider                :string           default("youtube"), not null, indexed => [date]
+#  video_unavailable_at          :datetime
+#  view_count                    :integer          default(0)
+#  youtube_thumbnail_checked_at  :datetime
+#  created_at                    :datetime         not null
+#  updated_at                    :datetime         not null, indexed
+#  event_id                      :integer          indexed
+#  parent_talk_id                :integer          indexed
+#  static_id                     :string           not null, uniquely indexed
+#  video_id                      :string           default(""), not null
 #
 # Indexes
 #
@@ -235,6 +237,8 @@ class Talk < ApplicationRecord
   scope :scheduled, -> { where(video_provider: "scheduled") }
   scope :watchable, -> { where(video_provider: WATCHABLE_PROVIDERS) }
   scope :youtube, -> { where(video_provider: "youtube") }
+  scope :video_available, -> { watchable.where(video_unavailable_at: nil) }
+  scope :video_unavailable, -> { watchable.where.not(video_unavailable_at: nil) }
   scope :upcoming, -> { where(date: Date.today...) }
   scope :today, -> { where(date: Date.today) }
   scope :past, -> { where(date: ...Date.today) }
@@ -248,6 +252,48 @@ class Talk < ApplicationRecord
 
   def published?
     video_provider.in?(WATCHABLE_PROVIDERS) || parent_talk&.published?
+  end
+
+  def video_available?
+    published? && video_unavailable_at.blank?
+  end
+
+  def video_unavailable?
+    published? && video_unavailable_at.present?
+  end
+
+  def check_video_availability!
+    return unless youtube?
+
+    available = YouTube::Video.new.available?(video_id)
+
+    if available
+      update_columns(video_unavailable_at: nil, video_availability_checked_at: Time.current)
+    else
+      update_columns(
+        video_unavailable_at: video_unavailable_at || Time.current,
+        video_availability_checked_at: Time.current
+      )
+    end
+
+    available
+  end
+
+  def validate_thumbnail!
+    return unless youtube?
+
+    thumbnail = YouTube::Thumbnail.new(video_id)
+    updates = {youtube_thumbnail_checked_at: Time.current}
+
+    if (xl_url = thumbnail.best_url_for(:thumbnail_xl))
+      updates[:thumbnail_xl] = xl_url
+    end
+
+    if (lg_url = thumbnail.best_url_for(:thumbnail_lg))
+      updates[:thumbnail_lg] = lg_url
+    end
+
+    update!(updates)
   end
 
   def to_meta_tags
@@ -339,7 +385,7 @@ class Talk < ApplicationRecord
       return "https://vumbnail.com/#{video_id}#{vimeo[size]}.jpg"
     end
 
-    if youtube?
+    if youtube? && video_available?
       youtube = {
         thumbnail_xs: "default",
         thumbnail_sm: "mqdefault",

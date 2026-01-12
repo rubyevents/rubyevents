@@ -7,6 +7,9 @@ youtube_video_duration_job:
 youtube_thumbnail_validation_job:
   class: Recurring::YouTubeThumbnailValidationJob
   schedule: every week on sunday at 4am
+youtube_video_availability_job:
+  class: Recurring::YouTubeVideoAvailabilityJob
+  schedule: every week on sunday at 5am
 rollup_aggregate_analytics:
   class: Recurring::RollupJob
   schedule: every hour

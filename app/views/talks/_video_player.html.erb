@@ -32,7 +32,9 @@
       <% end %>
 
     <% else %>
-      <% if video_provider.in?(["mp4", "youtube", "vimeo", "scheduled", "not_published", "not_recorded", "children"]) %>
+      <% if talk.video_unavailable? %>
+        <%= render partial: "talks/video_providers/video_unavailable", locals: {talk: talk, video_provider: video_provider, video_id: video_id, is_watched: is_watched} %>
+      <% elsif video_provider.in?(["mp4", "youtube", "vimeo", "scheduled", "not_published", "not_recorded", "children"]) %>
         <%= render partial: "talks/video_providers/#{video_provider}", locals: {talk: talk, video_provider: video_provider, video_id: video_id, is_watched: is_watched} %>
       <% else %>
         Provider <%= video_provider.inspect %> is not configured.
@@ -44,7 +46,7 @@
         <% end %>
       </div>
 
-      <% if current_user_watched_talk&.in_progress? && !is_watched %>
+      <% if current_user_watched_talk&.in_progress? && !is_watched && talk.video_available? %>
         <div class="absolute inset-0 cursor-pointer group/resume" data-video-player-target="resumeOverlay" data-action="click->video-player#resumePlayback">
           <%= image_tag talk.thumbnail_xl, class: "absolute inset-0 w-full h-full object-cover rounded-xl", style: "view-transition-name: #{dom_id(talk, :image)}" %>
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 rounded-xl"></div>
@@ -60,7 +62,7 @@
             </div>
           </div>
         </div>
-      <% elsif video_provider.in?(["mp4", "youtube", "vimeo"]) && !is_watched %>
+      <% elsif video_provider.in?(["mp4", "youtube", "vimeo"]) && !is_watched && talk.video_available? %>
         <div class="absolute inset-0 cursor-pointer group/play" data-video-player-target="playOverlay" data-action="click->video-player#startPlayback">
           <%= image_tag talk.thumbnail_xl, class: "absolute inset-0 w-full h-full object-cover rounded-xl", style: "view-transition-name: #{dom_id(talk, :image)}" %>
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 rounded-xl"></div>
