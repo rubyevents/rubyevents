@@ -7,7 +7,7 @@ namespace :backfill do
     error_count = 0
 
     Static::Event.all.each do |static_event|
-      next unless static_event.involvements_file?
+      next unless static_event.event_record.involvements_file.exist?
 
       events_processed += 1
       print "."
