@@ -40,10 +40,11 @@
 #  canonical_id     (canonical_id => events.id)
 #  event_series_id  (event_series_id => event_series.id)
 #
-# rubocop:enable Layout/LineLength
 
 railsconf_2017:
   date: 2017-05-01
+  start_date: 2017-05-01
+  end_date: 2017-05-01
   series: railsconf
   city: Phoenix
   kind: conference
@@ -52,6 +53,8 @@ railsconf_2017:
 
 rubyconfth_2022:
   date: 2022-05-01
+  start_date: 2022-05-01
+  end_date: 2022-05-01
   series: rubyconfth
   city: Bangkok
   kind: conference
@@ -60,6 +63,8 @@ rubyconfth_2022:
 
 rails_world_2023:
   date: 2023-10-26
+  start_date: 2023-10-26
+  end_date: 2023-10-26
   series: rails_world
   name: Rails World 2023
   kind: conference
@@ -67,6 +72,8 @@ rails_world_2023:
 
 tropical_rb_2024:
   date: 2024-04-04
+  start_date: 2024-04-04
+  end_date: 2024-04-04
   series: rails_world
   name: Tropical Ruby 2024
   kind: conference
@@ -74,6 +81,8 @@ tropical_rb_2024:
 
 brightonruby_2024:
   date: 2024-06-28
+  start_date: 2024-06-28
+  end_date: 2024-06-28
   series: brightonruby
   name: Brighton Ruby 2024
   kind: conference
@@ -85,6 +94,18 @@ future_conference:
   name: Future Conference
   kind: conference
   slug: future-conference
+
+# Event specifically for testing sponsors missing page - should NEVER have sponsors added
+no_sponsors_event:
+  date: 2025-03-15
+  start_date: 2025-03-15
+  end_date: 2025-03-15
+  series: brightonruby
+  city: Brighton
+  country_code: GB
+  kind: conference
+  name: Test Conference Without Sponsors
+  slug: no_sponsors_event
 
 wnb_rb_meetup:
   series: wnb_rb

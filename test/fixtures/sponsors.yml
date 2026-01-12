@@ -24,4 +24,21 @@
 #  event_id         (event_id => events.id)
 #  organization_id  (organization_id => organizations.id)
 #
-# Empty fixtures for now to avoid foreign key constraints during sponsor tests
+
+one:
+  tier: "gold"
+  badge: "Gold Sponsor"
+  event: railsconf_2017
+  organization: one
+
+two:
+  tier: "silver"
+  badge: "Silver Sponsor"
+  event: railsconf_2017
+  organization: two
+
+three:
+  tier: "bronze"
+  badge: "Bronze Sponsor"
+  event: railsconf_2017
+  organization: three
