@@ -1,57 +1,216 @@
-<main class="container">
-  <div class="w-full flex flex-col items-center pt-16 pb-12 text-center">
-    <h1 class="text-5xl font-bold tracking-tight text-slate-700">On a mission to index all Ruby conferences</h1>
-    <p class="mt-6 text-xl leading-8 text-slate-600 sm:max-w-md lg:max-w-none"> So far we have indexed <span class="font-semibold"><%= @talks_count %></span> talks of those from <span class="font-semibold"><%= @speakers_count %></span> speakers</p>
-  </div>
+<% title hotwire_native_app? ? "RubyEvents" : "RubyEvents.org - On a mission to index all Ruby events" %>
+<% content_for :body_class, "home-page" %>
 
-  <% playlist_slugs = Static::Playlist.where.not(featured_background: nil).sort_by(&:published_at).select(&:past?).reverse.take(15).map(&:slug) %>
-  <% events = Event.distinct.includes(:organisation).where(slug: playlist_slugs).where.associated(:talks).in_order_of(:slug, playlist_slugs) %>
+<% if @featured_events.any? %>
+  <% content_for :head do %>
+    <% if @wrapped_users.any? || Current.user %>
+      <meta name="theme-color" content="#991B1B" data-featured-theme-color>
+    <% else %>
+      <meta name="theme-color" content="<%= @featured_events.first.static_metadata.featured_background %>" data-featured-theme-color>
+    <% end %>
 
-  <% cache events do %>
-    <section class="splide" aria-label="Featured Events" data-controller="splide">
-      <div class="splide__track">
-        <ul class="splide__list">
-          <% events.each_with_index do |event, index| %>
-            <li class="splide__slide">
-              <div class="<%= "hidden" unless index == 0 %>">
-                <%= render partial: "events/featured", locals: {event: event} %>
+    <style>
+      <% if @wrapped_users.any? || Current.user %>
+        :root {
+          --featured-color: white;
+          --featured-background: #991B1B;
+        }
+      <% else %>
+        :root {
+          --featured-color: <%= @featured_events.first.static_metadata.featured_color %>;
+          --featured-background: <%= @featured_events.first.static_metadata.featured_background %>;
+        }
+      <% end %>
+
+      body.home-page .navbar {
+        background: var(--featured-background);
+      }
+
+      body.home-page .navbar .desktop-menu a,
+      body.home-page .navbar > .container a:not(.dropdown-content a) {
+        color: var(--featured-color);
+      }
+
+      body.home-page .navbar .dropdown-content a,
+      body.home-page .navbar .dropdown-content button {
+        color: #000 !important;
+      }
+
+      body.home-page .navbar .btn-primary {
+        background-color: white;
+        color: black !important;
+        border: 1px solid rgb(156 163 175 / var(--tw-border-opacity, 1));
+      }
+
+      body.home-page .navbar .btn-primary:hover {
+        background-color: rgba(255, 255, 255, 0.9);
+      }
+
+      body.home-page .navbar svg {
+        fill: var(--featured-color);
+      }
+
+      .splide__track, .splide__list {
+        background: transparent !important;
+      }
+      body.home-page .splide {
+        background: var(--featured-background);
+        padding-bottom: 3rem;
+        margin-bottom: 3rem !important;
+        border-bottom: 0.5px solid var(--featured-color);
+      }
+      body.home-page .featured-stats {
+        color: var(--featured-color);
+      }
+    </style>
+  <% end %>
+<% end %>
+
+<main class="hotwire-native:mt-6">
+  <% cache @featured_events do %>
+    <% if @featured_events.any? %>
+      <section class="splide w-full" aria-label="Featured Events" data-controller="splide">
+        <div class="featured-stats w-full pt-8">
+          <div class="container hotwire-native:hidden flex flex-col items-center text-center">
+            <h2 class="text-2xl font-bold tracking-tight mb-6">On a mission to index all Ruby events</h2>
+            <div class="flex flex-wrap gap-4 justify-center items-center text-sm">
+              <div class="flex flex-wrap justify-center items-center gap-2 mb-12 lg:mb-6">
+                <span class="opacity-80">We have indexed</span>
+                <%= link_to events_path, class: "inline-flex items-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm font-semibold border hover:bg-white/30 transition-colors", style: "border-color: color-mix(in srgb, var(--featured-color) 25%, transparent);" do %>
+                  <%= @events_count %> events
+                <% end %>
+
+                <span class="opacity-80">and</span>
+
+                <%= link_to talks_path, class: "inline-flex items-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm font-semibold border hover:bg-white/30 transition-colors", style: "border-color: color-mix(in srgb, var(--featured-color) 25%, transparent);" do %>
+                  <%= @talks_count %> talks
+                <% end %>
+
+                <span class="opacity-80">from</span>
+
+                <%= link_to speakers_path, class: "inline-flex items-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm font-semibold border hover:bg-white/30 transition-colors", style: "border-color: color-mix(in srgb, var(--featured-color) 25%, transparent);" do %>
+                  <%= @speakers_count %> speakers
+                <% end %>
               </div>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    </section>
+            </div>
+          </div>
+        </div>
+
+        <div class="splide__track">
+          <ul class="splide__list">
+            <% if @wrapped_users.any? || Current.user %>
+              <li
+                class="splide__slide"
+                data-featured-color="white"
+                data-featured-background="#991B1B">
+                <div>
+                  <%= render "wrapped/featured", users: @wrapped_users %>
+                </div>
+              </li>
+            <% end %>
+
+            <% @featured_events.each_with_index do |event, index| %>
+              <li
+                class="splide__slide"
+                data-featured-color="<%= event.static_metadata.featured_color %>"
+                data-featured-background="<%= event.static_metadata.featured_background %>">
+                <div class="<%= "hidden" if @wrapped_users.any? || Current.user || index != 0 %>">
+                  <%= render partial: "events/featured_home", locals: {event: event} %>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </section>
+    <% end %>
   <% end %>
 
-  <div class="flex flex-col gap-12 mt-12">
-    <section class="flex flex-col w-full gap-4">
-      <div class="flex items-center justify-between w-full">
-        <h2 class="text-primary shrink-0">Latest talks</h2>
-        <%= link_to "see all talks", talks_path, class: "link text-right w-full" %>
-      </div>
-      <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 md:[&>:nth-child(4)]:hidden lg:grid-cols-4 lg:[&>:nth-child(4)]:block">
-        <%= render partial: "talks/card", collection: @latest_talks, as: :talk, cached: true, locals: {back_to: root_path, back_to_title: "Home"} %>
-      </div>
-    </section>
+  <div class="container">
+    <div class="flex flex-col gap-12 mt-12">
+      <%# bring back once we don't feature it in the splide carousel %>
+      <%#= render partial: "wrapped/card" %>
 
-    <section class="flex flex-col w-full gap-4">
-      <div class="flex items-center justify-between w-full">
-        <h2 class="text-primary shrink-0">Active speakers</h2>
-        <%= link_to "see all speakers", speakers_path, class: "link text-right w-full" %>
-      </div>
-      <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 md:[&>:nth-child(4)]:hidden lg:grid-cols-4 lg:[&>:nth-child(4)]:block">
-        <%= render partial: "speakers/card", collection: @active_speakers, as: :speaker %>
-      </div>
-    </section>
+      <section class="flex flex-col w-full gap-4">
+        <div class="flex items-center justify-between w-full">
+          <h2 class="text-primary shrink-0">Latest talks</h2>
+          <%= link_to "see all talks", talks_path, class: "link text-right w-full" %>
+        </div>
 
-    <section class="flex flex-col w-full gap-4">
-      <div class="flex items-center justify-between w-full">
-        <h2 class="text-primary shrink-0">Latest events</h2>
-        <%= link_to "see all events", events_path, class: "link text-right w-full" %>
-      </div>
-      <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 md:[&>:nth-child(4)]:hidden lg:grid-cols-4 lg:[&>:nth-child(4)]:block">
-        <%= render partial: "events/card", collection: @latest_events, as: :event %>
-      </div>
-    </section>
+        <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 md:[&>:nth-child(4)]:hidden lg:grid-cols-4 lg:[&>:nth-child(4)]:block">
+          <%= render partial: "talks/card", collection: @latest_talks.first(4), as: :talk, cached: true, locals: {back_to: root_path, back_to_title: "Home"} %>
+        </div>
+      </section>
+
+      <section class="flex flex-col w-full gap-4">
+        <div class="flex items-center justify-between w-full">
+          <h2 class="text-primary shrink-0">Featured speakers</h2>
+          <%= link_to "see all speakers", speakers_path, class: "link text-right w-full" %>
+        </div>
+
+        <div class="relative" data-controller="scroll">
+          <div class="overflow-x-auto scroll-smooth snap-x snap-mandatory"
+               data-scroll-target="container"
+               data-action="scroll->scroll#checkScroll">
+            <div class="flex pb-4 gap-4">
+              <% @featured_speakers.each do |speaker| %>
+                <div class="snap-start" data-scroll-target="card">
+                  <%= render partial: "speakers/card", locals: {speaker: speaker} %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <div
+            class="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white to-transparent pointer-events-none"
+            data-scroll-target="gradient"></div>
+        </div>
+      </section>
+
+      <section class="flex flex-col w-full gap-4">
+        <div class="flex items-center justify-between w-full">
+          <h2 class="text-primary shrink-0">Latest events</h2>
+          <%= link_to "see all events", events_path, class: "link text-right w-full" %>
+        </div>
+        <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 md:[&>:nth-child(4)]:hidden lg:grid-cols-4 lg:[&>:nth-child(4)]:block">
+          <%= cache @latest_events do %>
+            <%= render partial: "events/card", collection: @latest_events, as: :event, cached: true %>
+          <% end %>
+        </div>
+      </section>
+
+      <% if @recommended_talks.present? %>
+        <section class="flex flex-col w-full gap-4">
+          <div class="flex items-center justify-between w-full">
+            <h2 class="text-primary shrink-0">Recommended for you</h2>
+            <%= link_to "see all recommendations", recommendations_path, class: "link text-right w-full" %>
+          </div>
+          <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 md:[&>:nth-child(4)]:hidden lg:grid-cols-4 lg:[&>:nth-child(4)]:block">
+            <%= render partial: "talks/card", collection: @recommended_talks, as: :talk, cached: true, locals: {back_to: root_path, back_to_title: "Home"} %>
+          </div>
+        </section>
+      <% end %>
+
+      <% if @featured_organizations.present? %>
+        <section class="flex flex-col w-full gap-4">
+          <div class="flex items-center justify-between w-full">
+            <h2 class="text-primary shrink-0">Featured organizations</h2>
+            <%= link_to "see all organizations", organizations_path, class: "link text-right w-full" %>
+          </div>
+
+          <div class="relative" data-controller="scroll">
+            <div class="overflow-x-auto scroll-smooth snap-x snap-mandatory" data-scroll-target="container" data-action="scroll->scroll#checkScroll">
+              <div class="flex pb-4 gap-4">
+                <% @featured_organizations.each do |organization| %>
+                  <div class="snap-start" data-scroll-target="card">
+                    <%= render partial: "organizations/card", locals: {organization: organization} %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white to-transparent pointer-events-none" data-scroll-target="gradient"></div>
+          </div>
+        </section>
+      <% end %>
+    </div>
   </div>
 </main>

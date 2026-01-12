@@ -1,0 +1,93 @@
+<%# locals(user:, favorite_user:) %>
+
+<div id="<%= dom_id(user, :header_content) %>" class="flex flex-col lg:flex-row gap-8 items-center lg:justify-right text-center lg:text-left mb-6 lg:mb-0">
+  <div class="relative w-fit">
+    <%= ui_avatar(user, size_class: "size-24 md:size-36", size: :lg) %>
+  </div>
+
+  <div class="flex-col flex gap-2 title justify-center items-center lg:items-start">
+    <% if user.suspicious? && Current.user&.admin? %>
+      <div class="bg-yellow-100 border border-yellow-400 text-yellow-800 px-4 py-2 rounded mb-2 text-sm">
+        This user has been flagged as suspicious.
+      </div>
+    <% end %>
+
+    <div class="flex flex-col lg:flex-row items-center justify-center lg:justify-start text-black font-bold gap-2 flex-nowrap">
+      <h1 class="flex gap-2 items-center"><%= user.suspicious? ? truncate(user.name, length: 10) : user.name %>
+        <% if user.pronouns.present? && ["dont_specify", "not_specified"].exclude?(user.pronouns_type) %>
+          <span class="text-sm content-center text-[#737373]">(<%= user.pronouns %>)</span>
+        <% end %>
+
+        <% if user.verified? %>
+          <%= ui_tooltip "#{user.name} is a verified Rubyist" do %>
+            <%= fa("badge-check", class: "fill-blue-500", size: :sm) %>
+          <% end %>
+        <% end %>
+
+        <% if user.ruby_passport_claimed? %>
+          <%= ui_tooltip "#{user.name} claimed #{user.possessive_pronoun} Ruby Passport" do %>
+            <%= fa("passport", class: "fill-orange-800") %>
+          <% end %>
+        <% end %>
+
+        <% if user.contributor? %>
+          <%= link_to contributors_path, class: "inline-flex items-center" do %>
+            <%= ui_tooltip "#{user.name} contributed to RubyEvents.org" do %>
+              <span class="flex items-center justify-center size-5 bg-green-500 rounded-full">
+                <span style="transform: scale(0.6);"><%= fa("code-pull-request", class: "fill-white") %></span>
+              </span>
+            <% end %>
+          <% end %>
+        <% end %>
+        <% if Current.user && favorite_user.present? %>
+          <%= button_to favorite_user_path(favorite_user), method: :delete do %>
+            <%= ui_tooltip "Remove from your list of Favorite Rubyists" do %>
+              <%= fa("star", size: :sm, style: :solid, class: "fill-yellow-400") %>
+            <% end %>
+          <% end %>
+        <% elsif Current.user && Current.user != user %>
+          <%= ui_tooltip "Add to your list of Favorite Rubyists" do %>
+            <%= button_to favorite_users_path(favorite_user: {favorite_user_id: user.id}), method: :post do %>
+              <%= fa("star", size: :sm, style: :regular) %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </h1>
+
+      <% if user.wrapped_public? %>
+        <%= link_to profile_wrapped_index_path(user), class: "inline-flex items-center gap-1.5 px-3 py-1 bg-gradient-to-r from-red-600 to-red-700 text-white text-sm font-medium rounded-full hover:from-red-700 hover:to-red-800 transition shadow-sm" do %>
+          <svg class="size-4" viewBox="0 0 80 80" fill="currentColor">
+            <path d="M2 25 L16 10 L64 10 L78 25 L40 70 Z" />
+          </svg>
+          <span>2025 Wrapped</span>
+        <% end %>
+      <% end %>
+    </div>
+
+    <% if user.bio.present? && !user.suspicious? %>
+      <p class="text-[#636B74] max-w-[700px]">
+        <%= user.bio %>
+      </p>
+    <% end %>
+
+    <% if user.to_location.present? %>
+      <p class="max-w-[700px] flex flex-row justify-center items-center gap-2">
+        <%= fa("location-dot", size: :xs, style: :regular) %>
+        <span><%= user.to_location.to_html %></span>
+      </p>
+    <% end %>
+
+    <% if user.website.present? && !user.suspicious? %>
+      <div class="link inline-flex items-center gap-2 flex-nowrap">
+        <%= fa("website-brands", size: :xs) %>
+        <%= external_link_to user.website.gsub(%r{^https?://}, ""), user.website, class: "link inline-flex items-center gap-2 flex-nowrap" %>
+      </div>
+    <% end %>
+
+    <% unless user.suspicious? %>
+      <div class="mt-2 flex justify-center lg:justify-start">
+        <%= render "profiles/socials", user: user %>
+      </div>
+    <% end %>
+  </div>
+</div>

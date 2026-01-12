@@ -2,44 +2,118 @@
 # == Schema Information
 #
 # Table name: users
+# Database name: primary
 #
-#  id              :integer          not null, primary key
-#  admin           :boolean          default(FALSE), not null
-#  email           :string           not null, indexed
-#  github_handle   :string           indexed
-#  name            :string
-#  password_digest :string           not null
-#  verified        :boolean          default(FALSE), not null
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
+#  id                   :integer          not null, primary key
+#  admin                :boolean          default(FALSE), not null
+#  bio                  :text             default(""), not null
+#  bsky                 :string           default(""), not null
+#  bsky_metadata        :json             not null
+#  city                 :string
+#  country_code         :string
+#  email                :string           indexed
+#  geocode_metadata     :json             not null
+#  github_handle        :string
+#  github_metadata      :json             not null
+#  latitude             :decimal(10, 6)
+#  linkedin             :string           default(""), not null
+#  location             :string           default("")
+#  longitude            :decimal(10, 6)
+#  marked_for_deletion  :boolean          default(FALSE), not null, indexed
+#  mastodon             :string           default(""), not null
+#  name                 :string           indexed
+#  password_digest      :string
+#  pronouns             :string           default(""), not null
+#  pronouns_type        :string           default("not_specified"), not null
+#  settings             :json             not null
+#  slug                 :string           default(""), not null, uniquely indexed
+#  speakerdeck          :string           default(""), not null
+#  state_code           :string
+#  suspicion_cleared_at :datetime
+#  suspicion_marked_at  :datetime
+#  talks_count          :integer          default(0), not null
+#  twitter              :string           default(""), not null
+#  verified             :boolean          default(FALSE), not null
+#  watched_talks_count  :integer          default(0), not null
+#  website              :string           default(""), not null
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  canonical_id         :integer          indexed
 #
 # Indexes
 #
-#  index_users_on_email          (email) UNIQUE
-#  index_users_on_github_handle  (github_handle) UNIQUE WHERE github_handle IS NOT NULL
+#  index_users_on_canonical_id         (canonical_id)
+#  index_users_on_email                (email)
+#  index_users_on_lower_github_handle  (lower(github_handle)) UNIQUE WHERE github_handle IS NOT NULL AND github_handle != ''
+#  index_users_on_marked_for_deletion  (marked_for_deletion)
+#  index_users_on_name                 (name)
+#  index_users_on_slug                 (slug) UNIQUE WHERE slug IS NOT NULL AND slug != ''
 #
 # rubocop:enable Layout/LineLength
 
 one:
-  email: one@rubyvideo.dev
+  email: one@rubyevents.org
+  name: One
+  twitter: one
+  github_handle: one
+  bio: "One"
+  website: https://one.com/
+  slug: one
   password_digest: <%= BCrypt::Password.create("Secret1*3*5*") %>
-  verified: true
+
+two:
+  email: two@rubyevents.org
+  name: Two
+  twitter: two
+  github_handle: two
+  bio: "Two"
+  website: https://two.com/
+  slug: two
+  password_digest: <%= BCrypt::Password.create("Secret1*3*5*") %>
+
+marco:
+  email: marcoroth@rubyevents.org
+  password_digest: <%= BCrypt::Password.create("Secret1*3*5*") %>
+  name: Marco Roth
+  twitter: marcoroth
+  github_handle: marcoroth
+  bio: "Marco"
+  website: https://marcoroth.dev
+  slug: marcoroth
+  talks_count: 2
+
+yaroslav:
+  email: yaroslav@rubyevents.org
+  password_digest: <%= BCrypt::Password.create("Secret1*3*5*") %>
+  name: Yaroslav Shmarov
+  twitter: yarotheslav
+  github_handle: yshmarov
+  bio: "Source code for My Ruby on Rails tutorials: @corsego"
+  website: https://superails.com/
+  slug: yaroslav-shmarov
 
 lazaro_nixon:
+  name: Lazaro Nixon
+  slug: lazaro-nixon
   email: lazaronixon@hotmail.com
   password_digest: <%= BCrypt::Password.create("Secret1*3*5*") %>
-  verified: true
 
 admin:
-  email: admin@rubyvideo.dev
+  name: Admin
+  slug: admin
+  email: admin@rubyevents.org
   password_digest: <%= BCrypt::Password.create("Secret1*3*5*") %>
-  verified: true
   admin: true
 
 developer_oauth:
+  name: Developer OAuth
+  slug: developer-oauth
   email: developer@example.com
   password_digest: <%= BCrypt::Password.create("password") %>
 
 github_user:
+  name: Github User
+  slug: github-user
+  github_handle: GitHub_user
   email: github_user@example.com
   password_digest: <%= BCrypt::Password.create("password") %>

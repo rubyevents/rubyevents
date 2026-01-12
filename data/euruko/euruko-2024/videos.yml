@@ -15,40 +15,43 @@
 #     - Carmen Huidobro
 #   description: Carmen will take on the role of our MC for the event.
 
-- title: "Opening Keynote: Zeitwerk: A Retrospective"
+- id: "xavier-noria-euruko-2024"
+  title: "Opening Keynote: Zeitwerk: A Retrospective"
   raw_title: "Opening Keynote: Zeitwerk: A Retrospective"
-  event_name: EuRuKo 2024
+  event_name: "EuRuKo 2024"
   date: "2024-09-11"
-  time: 10:00 - 10:50
-  track: Main Track
+  published_at: "2025-01-12"
+  time: "10:00 - 10:50"
+  track: "Main Track"
   speakers:
     - Xavier Noria
-  description:
-    Last month marked the 5th anniversary of Rails 6, the first Rails version
-    to ship with Zeitwerk. In this talk, we'll do a retrospective about the Zeitwerk
-    project. We are going to understand its motivations, technical details, milestones,
-    API design, and other topics.
-  video_id: xavier-noria-euruko-2024
-  video_provider: not_published
+  description: |-
+    Last month marked the 5th anniversary of Rails 6, the first Rails version to ship with Zeitwerk. In this talk, we'll do a retrospective about the Zeitwerk project. We are going to understand its motivations, technical details, milestones, API design, and other topics.
+  video_id: "sUhElM03QB4"
+  video_provider: "youtube"
 
-- title: A Decade of Rails Bug Fixes
-  raw_title: A Decade of Rails Bug Fixes
-  event_name: EuRuKo 2024
+- id: "jean-boussier-euruko-2024"
+  title: "A Decade of Rails Bug Fixes"
+  raw_title: "A Decade of Rails Bug Fixes"
+  event_name: "EuRuKo 2024"
   date: "2024-09-11"
-  time: 11:00 - 11:30
-  track: Main Track
+  published_at: "2025-01-12"
+  time: "11:00 - 11:30"
+  track: "Main Track"
   speakers:
     - Jean Boussier
   description: ""
-  video_id: jean-boussier-euruko-2024
-  video_provider: not_published
+  video_id: "VbIu0U9StGU"
+  video_provider: "youtube"
 
-- title: The Curse of Service Objects
-  raw_title: The Curse of Service Objects
-  event_name: EuRuKo 2024
+- id: "ivan-nemytchenko-euruko-2024"
+  title: "The Curse of Service Objects"
+  raw_title: "The Curse of Service Objects"
+  event_name: "EuRuKo 2024"
   date: "2024-09-11"
-  time: 11:00 - 11:30
-  track: Second Track
+  published_at: "2025-01-12"
+  time: "11:00 - 11:30"
+  track: "Second Track"
   speakers:
     - Ivan Nemytchenko
   description: |-
@@ -59,15 +62,17 @@
     In my talk I will analyze the idea of Service Objects from four different perspec- tives: 1. Idea of OOP 2. Practice (analysis of articles videos about Service Objects) 3. Philosophy (how it matches the ideas of Evans, Fowler and Martin) 4. Its effect on complexity distribution in dynamics (based on code of GitLab and Discourse)
 
     My goal is to shake your beliefs by exposing issues of the “pattern”, show where we took a wrong turn, and show how ideas of Service Layer (Fowler) and Domain Services (Evans) can be implemented in Rails without all the problems of commonly used pattern.
-  video_id: ivan-nemytchenko-euruko-2024
-  video_provider: not_published
+  video_id: "CPpcB_GPH2E"
+  video_provider: "youtube"
 
-- title: Benefits and challenges of introducing a strict Content Security Policy
-  raw_title: Benefits and challenges of introducing a strict Content Security Policy
-  event_name: EuRuKo 2024
+- id: "igor-morozov-euruko-2024"
+  title: "Benefits and challenges of introducing a strict Content Security Policy"
+  raw_title: "Benefits and challenges of introducing a strict Content Security Policy"
+  event_name: "EuRuKo 2024"
   date: "2024-09-11"
-  time: 11:00 - 11:30
-  track: Third Track
+  published_at: "2025-01-12"
+  time: "11:00 - 11:30"
+  track: "Third Track"
   speakers:
     - Igor Morozov
   description: |-
@@ -78,15 +83,23 @@
     However, introducing an extra level of security brings its own challenges and limitations. How do we decide on the level of security we want? How do we limit the impact on developers? How do we safely roll out the changes? HOW do we work with static pages? Lots of general questions and a lot of more specific ones.
 
     We'll talk about the principles and specifics of introducing CSP into existing systems. We'll tap into community wisdom and share ways to overcome technical challenges that people had to grind through, making our own experience as pain-free as possible.
-  video_id: igor-morozov-euruko-2024
-  video_provider: not_published
 
-- title: Simplify, Then Add Lightness
-  raw_title: Simplify, Then Add Lightness
-  event_name: EuRuKo 2024
+    GitHub Repo: https://github.com/Morozzzko/EuRuKo-CSP-Demo
+  video_id: "fA76Pny03u4"
+  video_provider: "youtube"
+  additional_resources:
+    - name: "Morozzzko/EuRuKo-CSP-Demo"
+      type: "repo"
+      url: "https://github.com/Morozzzko/EuRuKo-CSP-Demo"
+
+- id: "piotr-szotkowski-euruko-2024"
+  title: "Simplify, Then Add Lightness"
+  raw_title: "Simplify, Then Add Lightness"
+  event_name: "EuRuKo 2024"
   date: "2024-09-11"
-  time: 11:40 - 12:10
-  track: Main Track
+  published_at: "2025-01-12"
+  time: "11:40 - 12:10"
+  track: "Main Track"
   speakers:
     - Piotr Szotkowski
   description: |-
@@ -95,15 +108,18 @@
     Let's take a look at how simple modern stacks can be – from sending HTML snippets over WebSocket to operating job queues in SQLite. Full-stack development in Ruby means quicker turn-around and simpler deploys – and paired with a well-thought-out approach to keeping all the dependencies fresh, the maintenance part of our life can be both much easier and actually enjoyable.
 
     This talk covers the current shift in web development reality and the trend towards a (most welcome) simplification of the tools we work with. The experience with running multiple codebases (including the biggest Ruby monolith) on the most recent version of Ruby and Rails' main branch shows this, too, is actually doable.
-  video_id: piotr-szotkowski-euruko-2024
-  video_provider: not_published
+  video_id: "cfdxpPQ7KDE"
+  video_provider: "youtube"
+  slides_url: "https://talks.chastell.net/euruko-2024"
 
-- title: Building native Ruby extensions in Rust
-  raw_title: Building native Ruby extensions in Rust
-  event_name: EuRuKo 2024
+- id: "guilherme-carreiro-euruko-2024"
+  title: "Building native Ruby extensions in Rust"
+  raw_title: "Building native Ruby extensions in Rust"
+  event_name: "EuRuKo 2024"
   date: "2024-09-11"
-  time: 11:40 - 12:10
-  track: Second Track
+  published_at: "2025-01-12"
+  time: "11:40 - 12:10"
+  track: "Second Track"
   speakers:
     - Guilherme Carreiro
   description: |-
@@ -112,51 +128,51 @@
     Even when we face language boundaries, we no longer need to default to C. Extending our gems using the modern and fast tooling provided by the Rust ecosystem is easier than ever.
 
     In this talk, I will share my journey at Shopify in creating a Ruby gem with a Rust native extension, discuss the advantages, challenges, good practices, and how to avoid common pitfalls.
-  video_id: guilherme-carreiro-euruko-2024
-  video_provider: not_published
+  video_id: "2kM4me8QNHc"
+  video_provider: "youtube"
 
-- title: Ruby off Rails
-  raw_title: Ruby off Rails
-  event_name: EuRuKo 2024
+- id: "erica-weistrand-euruko-2024"
+  title: "Ruby off Rails"
+  raw_title: "Ruby off Rails"
+  event_name: "EuRuKo 2024"
   date: "2024-09-11"
-  time: 11:40 - 12:10
-  track: Third Track
+  published_at: "2025-01-12"
+  time: "11:40 - 12:10"
+  track: "Third Track"
   speakers:
     - Erica Weistrand
-  description:
-    In the Ruby landscape, Rails has become the primary approach for web
-    development and you get a lot of configuration and features for free when using
-    Rails. In this talk, we'll delve into the world of Rails, have a quick look at
-    Hanami and then discuss how we navigate the challenges of building web apps with
-    Sinatra at 84codes. We'll also share what we learned from Rails and Hanami and
-    how we tried to get the best out of all worlds by implementing some of those learnings
-    in our own web apps.
-  video_id: erica-weistrand-euruko-2024
-  video_provider: not_published
+  description: |-
+    In the Ruby landscape, Rails has become the primary approach for web development and you get a lot of configuration and features for free when using Rails. In this talk, we'll delve into the world of Rails, have a quick look at Hanami and then discuss how we navigate the challenges of building web apps with Sinatra at 84codes. We'll also share what we learned from Rails and Hanami and how we tried to get the best out of all worlds by implementing some of those learnings in our own web apps.
+  video_id: "TnqFTNcIZrs"
+  video_provider: "youtube"
 
-- title: Seven things I know after 25 years of development
-  raw_title: Seven things I know after 25 years of development
-  event_name: EuRuKo 2024
+- id: "victor-shepelev-euruko-2024"
+  title: "Seven things I know after 25 years of development"
+  raw_title: "Seven things I know after 25 years of development"
+  event_name: "EuRuKo 2024"
   date: "2024-09-11"
-  time: 12:20 - 13:00
-  track: Main Track
+  published_at: "2025-01-12"
+  time: "12:20 - 13:00"
+  track: "Main Track"
   speakers:
     - Victor Shepelev
-  description: |+
+  description: |
     Through years of career, every developer dedicated to their craft gathers their own set of beliefs, opinions, and habits. Some of them are just reinforcing the common wisdom, some might be quite peculiar; some become irrelevant with time, some only grow stronger; some are about big and important things, and some might be considered nitpicks.
 
     Let me share some of mine—without promising them to be universal or even extremely useful, but with a promise of interesting stories and choices behind them.
-  video_id: victor-shepelev-euruko-2024
-  video_provider: not_published
+  video_id: "r9EQjBPU474"
+  video_provider: "youtube"
 
 # LUNCH BREAK
 
-- title: On the benefits of slot scheduling
-  raw_title: On the benefits of slot scheduling
-  event_name: EuRuKo 2024
+- id: "julik-tarkhanov-euruko-2024"
+  title: "On the benefits of slot scheduling"
+  raw_title: "On the benefits of slot scheduling"
+  event_name: "EuRuKo 2024"
   date: "2024-09-11"
-  time: 14:00 - 14:30
-  track: Main Track
+  published_at: "2025-01-12"
+  time: "14:00 - 14:30"
+  track: "Main Track"
   speakers:
     - Julik Tarkhanov
   description: |-
@@ -167,30 +183,33 @@
     Slot scheduling tackles the problem differently. It computes a modulo over the workload owner ID (like the user ID) and then buckets the user into one of a fixed number of slots. This allows us to run an approximately even number of tasks at any given point in time, providing for a near-flat throughput. It is better for the shared services, better for the queue - as jobs get portioned into the job queue in smaller batches, and do not stick around for long - and better for autoscaling, as there is much less of it needed.
 
     We are also going to discuss a very viable strategy for designing systems like this - discrete simulations, which - when applied properly - can save hours of testing.
-  video_id: julik-tarkhanov-euruko-2024
-  video_provider: not_published
+  video_id: "q_EbeIaH0xw"
+  video_provider: "youtube"
 
-- title: Demystifying Debugger
-  raw_title: Demystifying Debugger
-  event_name: EuRuKo 2024
+- id: "dmitry-pogrebnoy-euruko-2024"
+  title: "Demystifying Debugger"
+  raw_title: "Demystifying Debugger"
+  event_name: "EuRuKo 2024"
   date: "2024-09-11"
-  time: 14:00 - 14:30
-  track: Second Track
+  published_at: "2025-01-12"
+  time: "14:00 - 14:30"
+  track: "Second Track"
   speakers:
     - Dmitry Pogrebnoy
   description: |-
     Know the tool you are using! Maximize your debugger knowledge with our in-depth talk! Gain vital insights of Byebug, debug gem and RubyMine Debugger. Uncover the secrets of Ruby debugger internals. This talk will equip you with advanced understanding of how ruby debuggers work and provide you useful insights of how RubyMine Debugger can accelerate your debugging process.
 
     Expert-led talk, “Demystifying Debugger”, offers a sophisticated exploration into the labyrinths of advanced debugging tools at the disposal of Ruby developers. Elevate your debugging from a routine task to an expert skill.
-  video_id: dmitry-pogrebnoy-euruko-2024
-  video_provider: not_published
+  video_id: "9jjQIrunl00"
+  video_provider: "youtube"
 
-- title: "Workshop: Bring your Ruby app in the Cloud"
+- id: "riccardo-carlesso-andrei-bondarev-euruko-2024"
+  title: "Workshop: Bring your Ruby app in the Cloud"
   raw_title: "Workshop: Bring your Ruby app in the Cloud"
-  event_name: EuRuKo 2024
+  event_name: "EuRuKo 2024"
   date: "2024-09-11"
-  time: 14:00 - 15:50
-  track: Third Track
+  time: "14:00 - 15:50"
+  track: "Third Track"
   speakers:
     - Riccardo Carlesso
     - Andrei Bondarev
@@ -202,15 +221,17 @@
     [60m] [Codelab] Using Ruby on Rails + PostgreSQL on Cloud Run. In this Lab, you will learn to take an existing Ruby on Rails application and deploy it to Google Cloud, instantiating a Database, dockerizing the app and running the dockerized app on Cloud run, and managing Secrets like a pro.
 
     [15m] Build an AI agent in 15 min Langchain.rb. In this Lab, you will learn how to build an AI agent utilizing the latest Function Calling functionality. You'll build your own functions/tools and program an assistant to interact with final user in an engaging conversation which calls smart functions under the hood (weather, news, stocks, DB, ..).
-  video_id: riccardo-carlesso-andrei-bondarev-euruko-2024
-  video_provider: not_published
+  video_id: "riccardo-carlesso-andrei-bondarev-euruko-2024"
+  video_provider: "not_recorded"
 
-- title: Optimising your database for analytics
-  raw_title: Optimising your database for analytics
-  event_name: EuRuKo 2024
+- id: "karen-jex-euruko-2024"
+  title: "Optimising your database for analytics"
+  raw_title: "Optimising your database for analytics"
+  event_name: "EuRuKo 2024"
   date: "2024-09-11"
-  time: 14:40 - 15:10
-  track: Main Track
+  published_at: "2025-01-12"
+  time: "14:40 - 15:10"
+  track: "Main Track"
   speakers:
     - Karen Jex
   description: |-
@@ -225,15 +246,17 @@
     We'll then look at a number of different strategies, tools and techniques that can prevent the two workloads from impacting each other. We will look at things such as architecture choices, configuration parameters, materialized views and external tools.
 
     The focus will be on PostgreSQL, but most of the concepts are relevant to other database systems.
-  video_id: karen-jex-euruko-2024
-  video_provider: not_published
+  video_id: "Vrf1emGGKVQ"
+  video_provider: "youtube"
 
-- title: "Mechanical sympathy, or: writing fast ruby programs"
+- id: "tim-kchele-euruko-2024"
+  title: "Mechanical sympathy, or: writing fast ruby programs"
   raw_title: "Mechanical sympathy, or: writing fast ruby programs"
-  event_name: EuRuKo 2024
+  event_name: "EuRuKo 2024"
   date: "2024-09-11"
-  time: 14:40 - 15:10
-  track: Second Track
+  published_at: "2025-01-12"
+  time: "14:40 - 15:10"
+  track: "Second Track"
   speakers:
     - Tim Kächele
   description: |-
@@ -242,19 +265,17 @@
     Ruby is a magical language and it's easy to forget that at the end of the day an actual CPU is running your program, but knowing a bit about CPUs and how they work can help you speed up your programs tremendously.
 
     In this talk we are going to look at the physical limits of modern computing and how we can apply this knowledge to write fast ruby programs.
-  video_id: tim-kachele-euruko-2024
-  video_provider: not_published
+  video_id: "wCOuJB6MEQo"
+  video_provider: "youtube"
 
-- title:
-    Patterns and solutions distilled from 10 years development and maintenance
-    of a big campus software ruby on rails application
-  raw_title:
-    Patterns and solutions distilled from 10 years development and maintenance
-    of a big campus software ruby on rails application
-  event_name: EuRuKo 2024
+- id: "igor-jancev-euruko-2024"
+  title: "Patterns and solutions distilled from 10 years development and maintenance of a big campus software ruby on rails application"
+  raw_title: "Patterns and solutions distilled from 10 years development and maintenance of a big campus software ruby on rails application"
+  event_name: "EuRuKo 2024"
   date: "2024-09-11"
-  time: 15:20 - 15:50
-  track: Main Track
+  published_at: "2025-01-12"
+  time: "15:20 - 15:50"
+  track: "Main Track"
   speakers:
     - Igor Jancev
   description: |-
@@ -263,15 +284,17 @@
     We all know Ruby and Rails are great tools for startups and fast development of new applications. But did you know that the campus software of the Technical University in Vienna is powered by a >380.000 LOC Ruby on Rails application that was started in 2011 and is actively developed and maintained by a small, dedicated team of Ruby developers ever since?
 
     A senior Ruby developer from this team shares patterns and solutions distilled from more than 10 years of his work on this project, for example how the team gradually migrated the Rails application from Rails 2.3 to Rails 6.1 and Hotwire Turbo, how a big amount of data is kept in sync between the rails applications and many other applications at the university, how to make big changes to the code base without upsetting all users, and much more.
-  video_id: igor-jancev-euruko-2024
-  video_provider: not_published
+  video_id: "XrsmP6FmDo0"
+  video_provider: "youtube"
 
-- title: Lessons From Escaping the Dependency Upgrade Maze
-  raw_title: Lessons From Escaping the Dependency Upgrade Maze
-  event_name: EuRuKo 2024
+- id: "marko-ilimkovi-euruko-2024"
+  title: "Lessons From Escaping the Dependency Upgrade Maze"
+  raw_title: "Lessons From Escaping the Dependency Upgrade Maze"
+  event_name: "EuRuKo 2024"
   date: "2024-09-11"
-  time: 15:20 - 15:50
-  track: Second Track
+  published_at: "2025-01-12"
+  time: "15:20 - 15:50"
+  track: "Second Track"
   speakers:
     - Marko Ćilimković
   description: |-
@@ -284,17 +307,19 @@
       * the fresh approach to updating dependencies that will help you stay ahead of the curve
       * what does one team have to do in order to keep a healthy app ecosystem
       * and how to pitch this investment to the clients.
-  video_id: marko-cilimkovic-euruko-2024
-  video_provider: not_published
+  video_id: "fxAcn6bnmT0"
+  video_provider: "youtube"
 
 # COFFEE BREAK
 
-- title: "Keynote: Evolution of real-time, AnyCable Pro and... me"
+- id: "irina-nazarova-euruko-2024"
+  title: "Keynote: Evolution of real-time, AnyCable Pro and... me"
   raw_title: "Keynote: Evolution of real-time and AnyCable Pro"
-  event_name: EuRuKo 2024
+  event_name: "EuRuKo 2024"
   date: "2024-09-11"
-  time: 16:30 - 17:20
-  track: Main Track
+  published_at: "2025-01-12"
+  time: "16:30 - 17:20"
+  track: "Main Track"
   speakers:
     - Irina Nazarova
   description: |-
@@ -311,16 +336,18 @@
     Observing the shift from GraphQL to Hotwire, from chat apps to collaborative tools, and to AI-powered voice applications.
 
     The talk will conclude with thoughts on the future of real-time applications and AnyCable.
-  slides_url: https://speakerdeck.com/irinanazarova/evolution-of-real-time-irina-nazarova-euruko-2024
-  video_id: irina-nazarova-euruko-2024
-  video_provider: not_published
+  slides_url: "https://speakerdeck.com/irinanazarova/evolution-of-real-time-irina-nazarova-euruko-2024"
+  video_id: "JLirKGbwTVw"
+  video_provider: "youtube"
 
-- title: "Fireside Chat: Open Source & Business"
-  raw_title: Irina's fireside chat with Bartosz Blimke, Adrian Marin José Valim
-  event_name: EuRuKo 2024
+- id: "irina-nazarova-euruko-2024-fireside-chat-open-source-busi"
+  title: "Fireside Chat: Open Source & Business"
+  raw_title: "Irina's fireside chat with Bartosz Blimke, Adrian Marin José Valim"
+  event_name: "EuRuKo 2024"
   date: "2024-09-11"
-  time: 17:30 - 18:30
-  track: Main Track
+  published_at: "2025-01-12"
+  time: "17:30 - 18:30"
+  track: "Main Track"
   speakers:
     - Irina Nazarova
     - Bartosz Blimke
@@ -330,8 +357,8 @@
     Irina will host a panel discussion on the topic of Open Source & Business.
 
     This session will close the second day of the conference.
-  video_id: a-sustainable-path-in-open-source-euruko-2024
-  video_provider: not_published
+  video_id: "Wi8qbd80-qg"
+  video_provider: "youtube"
 
 # NETWORKING & SPA / PUB CRAWLING
 
@@ -345,39 +372,45 @@
 #     - Carmen Huidobro
 #   description: ''
 
-- title: "Keynote: 20th years of YARV"
+- id: "koichi-sasada-euruko-2024"
+  title: "Keynote: 20th years of YARV"
   raw_title: "Keynote: 20th years of YARV"
-  event_name: EuRuKo 2024
+  event_name: "EuRuKo 2024"
   date: "2024-09-12"
-  time: 10:00 - 10:50
-  track: Main Track
+  published_at: "2025-01-12"
+  time: "10:00 - 10:50"
+  track: "Main Track"
   speakers:
     - Koichi Sasada
   description: |-
     YARV: Yet Another RubyVM was started in January 2004 to speed up the execution of Ruby, and YARV is still running in your Ruby today as the core of Ruby.
 
     In this presentation, I will look back on 20 years of YARV and describe the good and bad points of YARV.
-  video_id: koichi-sasada-euruko-2024
-  video_provider: not_published
+  video_id: "Z90ObH9zJCE"
+  video_provider: "youtube"
 
-- title: What you can do with Ruby on WebAssembly
-  raw_title: What you can do with Ruby on WebAssembly
-  event_name: EuRuKo 2024
+- id: "yuta-saito-euruko-2024"
+  title: "What you can do with Ruby on WebAssembly"
+  raw_title: "What you can do with Ruby on WebAssembly"
+  event_name: "EuRuKo 2024"
   date: "2024-09-12"
-  time: 11:00 - 11:30
-  track: Main Track
+  published_at: "2025-01-12"
+  time: "11:00 - 11:30"
+  track: "Main Track"
   speakers:
     - Yuta Saito
   description: ""
-  video_id: yuta-saito-euruko-2024
-  video_provider: not_published
+  video_id: "6i-7WRMEDi4"
+  video_provider: "youtube"
 
-- title: "Leveling Up Developer Tooling For The Modern Rails & Hotwire Era"
-  raw_title: Leveling Up Developer Tooling For The Modern Rails & Hotwire Era
-  event_name: EuRuKo 2024
+- id: "marco-roth-euruko-2024"
+  title: "Leveling Up Developer Tooling For The Modern Rails & Hotwire Era"
+  raw_title: "Leveling Up Developer Tooling For The Modern Rails & Hotwire Era"
+  event_name: "EuRuKo 2024"
   date: "2024-09-12"
-  time: 11:00 - 11:30
-  track: Second Track
+  published_at: "2025-01-12"
+  time: "11:00 - 11:30"
+  track: "Second Track"
   speakers:
     - Marco Roth
   description: |-
@@ -386,16 +419,16 @@
     This talk aims to illuminate the path toward enriching the Ruby on Rails ecosystem with advanced DX tools, focusing on the implementation of Language Server Protocols (LSP) for Stimulus and Turbo.
 
     Drawing inspiration from the rapid advancements in JavaScript tooling, we explore the horizon of possibilities for Rails developers, including how advanced browser extensions and tools specifically designed for the Hotwire ecosystem can level up your developer experience.
-  slides_url: https://speakerdeck.com/marcoroth/developer-tooling-for-the-modern-rails-and-hotwire-era-at-euruko-2024-sarajevo-bih
-  video_id: marco-roth-euruko-2024
-  video_provider: not_published
+  slides_url: "https://speakerdeck.com/marcoroth/developer-tooling-for-the-modern-rails-and-hotwire-era-at-euruko-2024-sarajevo-bih"
+  video_id: "xdS0FkDGF48"
+  video_provider: "youtube"
 
 - title: "Workshop: Embedded Ruby Revolution: A Hands-On Workshop with PicoRuby"
   raw_title: "Workshop: Embedded Ruby Revolution: A Hands-On Workshop with PicoRuby"
-  event_name: EuRuKo 2024
+  event_name: "EuRuKo 2024"
   date: "2024-09-12"
-  time: 11:00 - 13:00
-  track: Third Track
+  time: "11:00 - 13:00"
+  track: "Third Track"
   speakers:
     - Hitoshi Hasumi
   description: |-
@@ -404,27 +437,36 @@
     The workshop will cover essential topics such as setting up your development environment, writing your first PicoRuby script, and interacting with hardware components like LEDs, sensors, and small displays. We aim to demystify the process of embedded programming and show how Ruby's syntax and libraries can be extended to physical computing.
 
     This workshop is more than just learning; it's about joining a community of Ruby enthusiasts who are expanding the language's boundaries. Whether you aim to build smart home devices, or custom gadgets, or just gain a deeper understanding of how software can interact with hardware, this workshop will provide the knowledge, tools, and inspiration you need to start on that journey.
-  video_id: hitoshi-hasumi-euruko-2024
-  video_provider: not_published
+  id: "hitoshi-hasumi-euruko-2024"
+  video_id: "cFK_2FW7wRg"
+  published_at: "2025-06-02"
+  video_provider: "youtube"
 
 - title: "Concurrency in Ruby: Threads, Fibers, and Ractors Demistified"
   raw_title: "Concurrency in Ruby: Threads, Fibers, and Ractors Demistified"
-  event_name: EuRuKo 2024
+  event_name: "EuRuKo 2024"
   date: "2024-09-12"
-  time: 11:40 - 12:10
-  track: Main Track
+  published_at: "2025-02-23"
+  time: "11:40 - 12:10"
+  track: "Main Track"
   speakers:
     - Magesh S
-  description: ""
-  video_id: magesh-euruko-2024
-  video_provider: not_published
+  description: |-
+    Speed up your Ruby applications with the power of concurrency! Join us as we demystify threads, fibers, and Ractors, understanding their unique strengths, use cases, and impact on Ruby performance. Learn to tackle I/O bottlenecks and enable parallel execution, boosting your code’s speed.
 
-- title: "Rails 8 Frontend: 10 commandments and 7 deadly sins in 2025"
+    For a very long time, Ruby had limited options for concurrency, mainly relying on threads, which developers often dreaded. However, with the exciting updates introduced in Ruby 3.0, the fiber scheduler and Ractors provided a remarkable 3x performance boost. Despite these advancements, few have used these features in production. But now, we can confidently say that they are ready for use.
+  id: "magesh-s-euruko-2024"
+  video_id: "LVHiq_SbQOE"
+  video_provider: "youtube"
+
+- id: "yaroslav-shmarov-euruko-2024"
+  title: "Rails 8 Frontend: 10 commandments and 7 deadly sins in 2025"
   raw_title: "Rails 8 Frontend: 10 commandments and 7 deadly sins in 2025"
-  event_name: EuRuKo 2024
+  event_name: "EuRuKo 2024"
   date: "2024-09-12"
-  time: 11:40 - 12:10
-  track: Second Track
+  published_at: "2025-01-12"
+  time: "11:40 - 12:10"
+  track: "Second Track"
   speakers:
     - Yaroslav Shmarov
   description: |-
@@ -435,53 +477,59 @@
     Discover the ecosystem of Rails Frontend tools, like component and UI libraries (stimulus-component, stimulus-use, RailsUI, ZestUI, RapidRailsUI, PhlexUI), encapsulation frameworks (phlex, view components), frontend focused gems (Hotwire combobox, cocoon, lookbook)
 
     Discover some practical solutions to classic problems like multistep forms, styled select dropdowns, dynamic forms, responsive tables, nested forms, modals, sliders.
-  video_id: yaroslav-shmarov-euruko-2024
-  video_provider: not_published
+  video_id: "szcMRq8HCuo"
+  video_provider: "youtube"
 
-- title: Lightning Talks
-  raw_title: Lightning Talks
-  event_name: EuRuKo 2024
+- id: "lightning-talks-euruko-2024"
+  title: "Lightning Talks"
+  raw_title: "Lightning Talks"
+  event_name: "EuRuKo 2024"
   date: "2024-09-12"
-  time: 12:20 - 13:00
-  track: Main Track
+  time: "12:20 - 13:00"
+  track: "Main Track"
   speakers:
     - TODO
   description: ""
-  video_id: lightning-talks-euruko-2024
-  video_provider: not_published
+  video_id: "lightning-talks-euruko-2024"
+  video_provider: "not_recorded"
 
-- title: "Workshop: Introduction to Ruby on Rails"
+- id: "yaroslav-shmarov-workshop-euruko-2024"
+  title: "Workshop: Introduction to Ruby on Rails"
   raw_title: "Workshop: Introduction to Ruby on Rails"
-  event_name: EuRuKo 2024
+  event_name: "EuRuKo 2024"
   date: "2024-09-12"
-  time: 12:20 - 13:00
-  track: Second Track
+  time: "12:20 - 13:00"
+  track: "Second Track"
   speakers:
     - Yaroslav Shmarov
   description: ""
-  video_id: yaroslav-shmarov-workshop-euruko-2024
-  video_provider: not_published
+  video_id: "yaroslav-shmarov-workshop-euruko-2024"
+  video_provider: "not_recorded"
 
 # LUNCH BREAK
 
-- title: Lessons from a Rails Infrastructure Team
-  raw_title: Lessons from a Rails Infrastructure Team
-  event_name: EuRuKo 2024
+- id: "maple-ong-euruko-2024"
+  title: "Lessons from a Rails Infrastructure Team"
+  raw_title: "Lessons from a Rails Infrastructure Team"
+  event_name: "EuRuKo 2024"
   date: "2024-09-12"
-  time: 14:00 - 14:30
-  track: Main Track
+  published_at: "2025-01-12"
+  time: "14:00 - 14:30"
+  track: "Main Track"
   speakers:
     - Maple Ong
   description: ""
-  video_id: maple-ong-euruko-2024
-  video_provider: not_published
+  video_id: "wi3U-e1VTl4"
+  video_provider: "youtube"
 
-- title: "Let's give REST a rest: exploring the state of gRPC in Ruby"
+- id: "fernando-perales-euruko-2024"
+  title: "Let's give REST a rest: exploring the state of gRPC in Ruby"
   raw_title: "Let's give REST a rest: exploring the state of gRPC in Ruby"
-  event_name: EuRuKo 2024
+  event_name: "EuRuKo 2024"
   date: "2024-09-12"
-  time: 14:00 - 14:30
-  track: Second Track
+  published_at: "2025-01-12"
+  time: "14:00 - 14:30"
+  track: "Second Track"
   speakers:
     - Fernando Perales
   description: |-
@@ -490,27 +538,42 @@
     gRPC has been around for a while and, even though it's neither a replacement of REST nor a better option for building APIs, it is an alternative that can be useful in certain cases where we can benefit from lightweight messages, built-in code generation and high performance. In this talk I'll share the concepts, pros and cons, and use cases of gRPC with examples in Ruby.
 
     We'll start with a quick refresher on HTTP and REST. We'll move along with an introduction to gRPC/protobuf architecture and we will go through a demo on how to integrate gRPC in our Ruby applications and how to make it communicate with a Go service and we'll wrap up our session with some use cases where you may consider using gRPC instead of a REST API
-  video_id: fernando-perales-euruko-2024
-  video_provider: not_published
+  video_id: "CJTVey45isw"
+  video_provider: "youtube"
 
 - title: "Workshop: Testing: How to write fewer tests and cover more cases"
   raw_title: "Workshop: Testing: How to write fewer tests and cover more cases"
-  event_name: EuRuKo 2024
+  event_name: "EuRuKo 2024"
   date: "2024-09-12"
-  time: 14:00 - 15:50
-  track: Third Track
+  time: "14:00 - 15:50"
+  track: "Third Track"
   speakers:
     - Lucian Ghinda
-  description: ""
-  video_id: lucian-ghinda-workshop-euruko-2024
-  video_provider: not_published
+  description: |-
+    When learning Ruby or Ruby on Rails, you learn about RSpec or Minitest and how to use the library to write model, controller, or integration tests.
+    Yet you don’t learn much about testing: What is testing and how do you know that the tests you wrote will catch bugs?
+    How do you pick what to test?
 
-- title: Building Beautiful Views in Ruby with Phlex
-  raw_title: Building Beautiful Views in Ruby with Phlex
-  event_name: EuRuKo 2024
+    There are a lot of resources out there about how to write RSpec or Minitest and about speeding up test case execution, but there is little knowledge shared online about how to decide what to test and how to write a good test case in Ruby.
+    This workshop plans to close this knowledge gap by showing easy-to-use and practical test design techniques, all applied in Ruby and Ruby on Rails.
+
+    I will cover test design techniques that help you write the minimum number of tests that would cover the widest surface of your app.
+    You will learn about Decision Tables, Boundary Value Analysis, Equivalence Partitioning and more, all with Ruby code examples.
+    You will lean how to write the minimum amount of tests while trying to cover as much as possible the part that you are testing.
+    All are based on mathematically proven techniques.
+  id: "lucian-ghinda-workshop-euruko-2024"
+  video_id: "zqaj9eyUTb4"
+  published_at: "2025-06-01"
+  video_provider: "youtube"
+
+- id: "joel-drapper-euruko-2024"
+  title: "Building Beautiful Views in Ruby with Phlex"
+  raw_title: "Building Beautiful Views in Ruby with Phlex"
+  event_name: "EuRuKo 2024"
   date: "2024-09-12"
-  time: 14:40 - 15:10
-  track: Main Track
+  published_at: "2025-01-12"
+  time: "14:40 - 15:10"
+  track: "Main Track"
   speakers:
     - Joel Drapper
   description: |-
@@ -545,30 +608,33 @@
     We'll also learn about Selective Rendering and the kinds of things that become possible when the frontend can ask the backend to render specific elements.
 
     By the end of the talk, you'll be equipped with a set of patterns and best practices for building and maintaining component-based architectures in Ruby applications, and you'll have a solid foundation for using Phlex in your own projects, as well as a new perspective on what's possible with Ruby.
-  video_id: joel-drapper-euruko-2024
-  video_provider: not_published
+  video_id: "vlThDr3JJYw"
+  video_provider: "youtube"
 
-- title: Async Ruby
-  raw_title: Async Ruby
-  event_name: EuRuKo 2024
+- id: "bruno-sutic-euruko-2024"
+  title: "Async Ruby"
+  raw_title: "Async Ruby"
+  event_name: "EuRuKo 2024"
   date: "2024-09-12"
-  time: 14:40 - 15:10
-  track: Second Track
+  published_at: "2025-01-12"
+  time: "14:40 - 15:10"
+  track: "Second Track"
   speakers:
     - Bruno Sutic
   description: |-
     Async Ruby is an exciting and innovating part of Ruby. It's a new approach to concurrency best described as “threads with NONE of the downsides”. Async Ruby has mind-blowing capabilities, and is so good Matz invited the gem to the standard library.
 
     This talk is suitable for both beginners and experts, and is relevant for you if you're making web requests in Ruby. It will introduce you to some the most impressive Async features and explain its core concepts.
-  video_id: bruno-sutic-euruko-2024
-  video_provider: not_published
+  video_id: "QLy6w5Rgm8s"
+  video_provider: "youtube"
 
-- title: One does not simply... rebuild a product
-  raw_title: One does not simply... rebuild a product
-  event_name: EuRuKo 2024
+- title: "One does not simply... rebuild a product"
+  raw_title: "One does not simply... rebuild a product"
+  event_name: "EuRuKo 2024"
   date: "2024-09-12"
-  time: 15:20 - 15:50
-  track: Main Track
+  published_at: "2025-02-23"
+  time: "15:20 - 15:50"
+  track: "Main Track"
   speakers:
     - Prakriti Mateti
   description: |-
@@ -592,17 +658,18 @@
     * Lessons that could be useful for anyone thinking about rebuilding a product that's hampering speed and hindering your ability to innovate or deliver value to your customers.
 
     The rebuild is still in progress. I don't have all the answers (or any!). But we've already learned much - what to do, what not to do, and where the spiders are hiding.
-  video_id: prakriti-mateti-euruko-2024
-  video_provider: not_published
+  id: "prakriti-mateti-euruko-2024"
+  video_id: "cyLNRYJ7SGY"
+  video_provider: "youtube"
 
-- title: "Assembling the Future: crafting the missing pieces of the Ruby on Wasm puzzle"
-  raw_title:
-    "Assembling the Future: crafting the missing pieces of the Ruby on Wasm
-    puzzle"
-  event_name: EuRuKo 2024
+- id: "svyatoslav-kryukov-euruko-2024"
+  title: "Assembling the Future: crafting the missing pieces of the Ruby on Wasm puzzle"
+  raw_title: "Assembling the Future: crafting the missing pieces of the Ruby on Wasm puzzle"
+  event_name: "EuRuKo 2024"
   date: "2024-09-12"
-  time: 15:20 - 15:50
-  track: Second Track
+  published_at: "2025-01-12"
+  time: "15:20 - 15:50"
+  track: "Second Track"
   speakers:
     - Svyatoslav Kryukov
   description: |-
@@ -613,30 +680,48 @@
     Discover strategies for integrating Bundler for gem management, enabling Rack for web server interfacing, and leveraging Rake for automated tasks—all within the browser. We'll navigate the challenges of virtual file systems, dynamic gem loading, and network interactions through Ruby.wasm, offering insights into overcoming these hurdles.
 
     We'll shine a light on the critical gaps in the ecosystem and the essential components still needed to make running comprehensive Ruby tools in the browser—from a theoretical dream to a practical, everyday reality. Get ready for a journey that promises to expand your understanding of what's possible with Ruby.wasm, setting the stage for a future where the web is powered by Ruby's elegance and versatility. Buckle up!
-  slides_url: https://speakerdeck.com/skryukov/assembling-the-future-crafting-the-missing-pieces-of-the-ruby-on-wasm-puzzle
-  video_id: svyatoslav-kryukov-euruko-2024
-  video_provider: not_published
+  slides_url: "https://speakerdeck.com/skryukov/assembling-the-future-crafting-the-missing-pieces-of-the-ruby-on-wasm-puzzle"
+  video_id: "T_ci4BHBqF0"
+  video_provider: "youtube"
 
 # COFFEE BREAK
 
-- title: "Keynote: Livebook: where Web, AI, and Concurrency meet"
-  raw_title: "Keynote: Livebook: where Web, AI, and Concurrency meet"
-  event_name: EuRuKo 2024
+- id: "yukihiro-matz-matsumoto-euruko-2024"
+  title: "Podcast: Adrian & Yaro's Friendly Show with Yukihiro Matsumoto"
+  raw_title: "Adrian & Yaro's Friendly Show with Yukihiro Matsumoto"
+  event_name: "EuRuKo 2024"
   date: "2024-09-12"
-  time: 16:30 - 17:20
-  track: Main Track
+  published_at: "2025-01-12"
+  track: "Main Track"
+  speakers:
+    - Yukihiro "Matz" Matsumoto
+    - Yaroslav Shmarov
+    - Adrian Marin
+  description: |-
+    https://www.friendly.show/2278525
+  video_id: "mbtXNkXtung"
+  video_provider: "youtube"
+
+- id: "jose-valim-euruko-2024"
+  title: "Keynote: Livebook: where Web, AI, and Concurrency meet"
+  raw_title: "Keynote: Livebook: where Web, AI, and Concurrency meet"
+  event_name: "EuRuKo 2024"
+  date: "2024-09-12"
+  time: "16:30 - 17:20"
+  track: "Main Track"
   speakers:
     - José Valim
-  description:
-    While it has been more than a decade since I wrote my last line of
-    Ruby code, there are lessons the Ruby community taught me that I have never forgotten.
-    And the biggest of them is to always be open to new ideas. In this talk, I will
-    present Livebook, which borrows from Python, Erlang, JavaScript, and more, and
-    enables us to introspect systems at scale, build machine learning applications,
-    and run web applications, and much more within minutes. I hope I will inspire
-    the audience to explore new ideas within their daily tools.
-  video_id: jose-valim-euruko-2024
-  video_provider: not_published
+  description: |-
+    While it has been more than a decade since I wrote my last line of Ruby code, there are lessons the Ruby community taught me that I have never forgotten. And the biggest of them is to always be open to new ideas. In this talk, I will present Livebook, which borrows from Python, Erlang, JavaScript, and more, and enables us to introspect systems at scale, build machine learning applications, and run web applications, and much more within minutes. I hope I will inspire the audience to explore new ideas within their daily tools.
+  video_id: "jose-valim-euruko-2024"
+  video_provider: "not_recorded"
+  alternative_recordings:
+    - title: "Livebook & Elixir: Where AI, Web & Concurrency Meet"
+      event_name: "YOW. 2023"
+      date: "2023-12-08"
+      video_provider: "youtube"
+      video_id: "pas9WdWIBHs"
+      external_url: "https://yowcon.com/sydney-2023/sessions/2758/livebook-and-elixir-where-ai-web-and-concurrency-meet"
 
 # EURUKO PARTY & NETWORKING CHECK-IN
 
@@ -684,27 +769,31 @@
 #     - Carmen Huidobro
 #   description: ''
 
-- title: "Keynote: Love, Limerence, and Programming Languages"
+- id: "dave-thomas-euruko-2024"
+  title: "Keynote: Love, Limerence, and Programming Languages"
   raw_title: "Keynote: Love, Limerence, and Programming Languages"
-  event_name: EuRuKo 2024
+  event_name: "EuRuKo 2024"
   date: "2024-09-13"
-  time: 10:00 - 10:50
-  track: Main Track
+  published_at: "2025-01-12"
+  time: "10:00 - 10:50"
+  track: "Main Track"
   speakers:
     - Dave Thomas
   description: |-
     They say that a well-used tool takes on the shape of the hand that uses it. But the opposite also holds: the tools we use shape the way we think about and execute things. Often, we aren't even aware how much influence the tool has on us.
 
     This is a personal talk: I want to look back at the languages that changed me as a developer. Why was I attracted to them, why did I use them, and how did I benefit as a result. I also want to look forward, and offer some suggestions: things you might look for in a future coding partner. I even have some suggestions. Whether you swipe right is your choice.
-  video_id: dave-thomas-euruko-2024
-  video_provider: not_published
+  video_id: "imTop4ha1R4"
+  video_provider: "youtube"
 
-- title: How does Lrama make the Ruby parser grammar G.O.A.T.?
-  raw_title: How does Lrama make the Ruby parser grammar G.O.A.T.?
-  event_name: EuRuKo 2024
+- id: "yudai-takada-euruko-2024"
+  title: "How does Lrama make the Ruby parser grammar G.O.A.T.?"
+  raw_title: "How does Lrama make the Ruby parser grammar G.O.A.T.?"
+  event_name: "EuRuKo 2024"
   date: "2024-09-13"
-  time: 11:00 - 11:30
-  track: Main Track
+  published_at: "2025-01-12"
+  time: "11:00 - 11:30"
+  track: "Main Track"
   speakers:
     - Yudai Takada
   description: |-
@@ -713,16 +802,18 @@
     In Ruby 3.3, Lrama now generates Ruby parsers instead of GNU Bison, which generated the Ruby parser. In this talk, I'll show you why we are developing Lrama and how it improves the complex syntax definitions of Ruby.
 
     In particular, this talk will show you how the syntax definition file syntax in Ruby has been improved to be G.O.A.T. This talk also covers the basics of parsers and parser generators, as well as the current state of the Ruby parser. Therefore, I plan to make the talk easier to understand for an audience that doesn't know much about Ruby parsers.
-  slides_url: https://speakerdeck.com/ydah/how-does-lrama-make-the-ruby-parser-grammar-g-dot-o-a-dot-t
-  video_id: yudai-takada-euruko-2024
-  video_provider: not_published
+  slides_url: "https://speakerdeck.com/ydah/how-does-lrama-make-the-ruby-parser-grammar-g-dot-o-a-dot-t"
+  video_id: "7gGrNiufv54"
+  video_provider: "youtube"
 
-- title: Patterns of Application Development Using AI
-  raw_title: Patterns of Application Development Using AI
-  event_name: EuRuKo 2024
+- id: "obie-fernandez-euruko-2024"
+  title: "Patterns of Application Development Using AI"
+  raw_title: "Patterns of Application Development Using AI"
+  event_name: "EuRuKo 2024"
   date: "2024-09-13"
-  time: 11:00 - 11:30
-  track: Second Track
+  published_at: "2025-01-12"
+  time: "11:00 - 11:30"
+  track: "Second Track"
   speakers:
     - Obie Fernandez
   description: |-
@@ -731,15 +822,17 @@
     Taking advantage of AI components can transform an application developer's workflow into an incredibly potent force, capable of competing at an unprecedented scale. This presentation draws on practical real-world experience gained by the presenter over the last 12 months of developing Olympia.chat. We will explore practical approaches ranging from code generation to real-time data analysis and automated customer support. The emphasis is on new tools that let application developers focus more than ever on innovation and creativity.
 
     Attendees will leave with a roadmap for integrating AI tools and techniques into their projects, insights into the potential pitfalls and best practices, and inspiration to explore the boundaries of what a single developer or a small team can achieve with the right tools. The presenter is a well-known Ruby on Rails expert and his latest book, “Patterns of Application Development Using AI” is the definitive tome on the subject.
-  video_id: obie-fernandez-euruko-2024
-  video_provider: not_published
+  video_id: "2CpHmDbmqCI"
+  video_provider: "youtube"
 
-- title: How Ruby forged Crystal
-  raw_title: How Ruby forged Crystal
-  event_name: EuRuKo 2024
+- id: "rafael-pea-azar-euruko-2024"
+  title: "How Ruby forged Crystal"
+  raw_title: "How Ruby forged Crystal"
+  event_name: "EuRuKo 2024"
   date: "2024-09-13"
-  time: 11:00 - 11:30
-  track: Third Track
+  published_at: "2025-01-12"
+  time: "11:00 - 11:30"
+  track: "Third Track"
   speakers:
     - Rafael Peña-Azar
   description: |-
@@ -748,15 +841,17 @@
     In this talk, we will explore the fascinating journey from the conception of Crystal to its current state as an elegant and efficient programming language. Through concrete examples and detailed analysis, we will see how Ruby has influenced the creation and evolution of Crystal, from syntax to fundamental concepts.
 
     Things that will bring to the talk. + Brief overview of Crystal and its place in the programming language landscape. + Exploration of how key principles and features of Ruby have influenced the design of Crystal. + Comparison of the similarities and differences in syntax and semantics between Ruby and Crystal. + Analysis of how Ruby's design principles, such as readability and expres- siveness, have been integrated into Crystal. + Discussion on how Crystal has evolved and diverged from Ruby to meet its own needs and goals. + Practical examples of how Ruby has influenced problem-solving and feature implementation in Crystal. + Reflection on the future of Crystal and how Ruby's influence will continue to shape its development.
-  video_id: rafael-pena-azar-euruko-2024
-  video_provider: not_published
+  video_id: "f7_qc7CWKV8"
+  video_provider: "youtube"
 
-- title: "2,000 Engineers, 2 Million Lines of Code: The History of a Rails Monolith"
+- id: "cristian-planas-euruko-2024"
+  title: "2,000 Engineers, 2 Million Lines of Code: The History of a Rails Monolith"
   raw_title: "2000 engineers, 2 millions lines of code: the history of a Rails monolith"
-  event_name: EuRuKo 2024
+  event_name: "EuRuKo 2024"
   date: "2024-09-13"
-  time: 11:40 - 12:10
-  track: Main Track
+  published_at: "2025-01-12"
+  time: "11:40 - 12:10"
+  track: "Main Track"
   speakers:
     - Cristian Planas
     - Anatoly Mikhaylov
@@ -776,31 +871,35 @@
     * Choosing the right storage for the task: database-driven development
     * Collaborating with thousands of engineers around the world: creating a resilient development environment and release pipelines.
     * Keeping the lights on: our take on reliability and monitoring
-  video_id: cristian-planas-anatoly-mikhaylov-euruko-2024
-  video_provider: not_published
+  video_id: "2nmgfVqhfiw"
+  video_provider: "youtube"
 
-- title: Intro to AI Agents
-  raw_title: Build an AI agent in 15 min
-  event_name: EuRuKo 2024
+- id: "andrei-bondarev-euruko-2024"
+  title: "Intro to AI Agents"
+  raw_title: "Build an AI agent in 15 min"
+  event_name: "EuRuKo 2024"
   date: "2024-09-13"
-  time: 11:40 - 12:10
-  track: Second Track
+  published_at: "2025-01-12"
+  time: "11:40 - 12:10"
+  track: "Second Track"
   speakers:
     - Andrei Bondarev
   description: |-
     The author of Langchain.rb will walk you through current capabilities of LLMs and what can be built today. We will build a business process automation AI agent in Ruby and discuss the common pitfalls and misconceptions. We'll discuss what might be emerging as a new LLM-powered software stack.
 
     Generative AI has been taking the world by storm. The Coatue AI (Nov 2023) report is putting AI models at the centerpiece of all modern tech stacks going forward that Application Developers will be using to build on top of. It would not be controversial to say that the Ruby ecosystem lacks in its support and understanding of the AI, ML and DS landscape. If we'd like to stay relevant in the future, we need to start building the foundations now. We'll look at what Generative AI is, what kind of applications developers in other communities are building and how Ruby can be used to build similar applications today. We'll cover Retrieval Augmented Generation (RAG), vector embeddings and semantic search, prompt engineering, and what the state of art (SOTA) in evaluating LLM output looks like today. We will also cover AI Agents, semi-autonomous general purpose LLM-backed applications, and what they're capable of today. We'll make a case why Ruby is a great language to build these applications because on its strengths and its incredible ecosystem. After the slides, I'll walk the attendees through building an AI Agent in 15 min with Langchain.rb.
-  slides_url: https://speakerdeck.com/andreibondarev/euruko-2024-intro-to-ai-agents
-  video_id: andrei-bondarev-euruko-2024
-  video_provider: not_published
+  slides_url: "https://speakerdeck.com/andreibondarev/euruko-2024-intro-to-ai-agents"
+  video_id: "J6xgDUhAHTo"
+  video_provider: "youtube"
 
-- title: WebMock Unmocked
-  raw_title: WebMock Unmocked
-  event_name: EuRuKo 2024
+- id: "bartosz-blimke-euruko-2024"
+  title: "WebMock Unmocked"
+  raw_title: "WebMock Unmocked"
+  event_name: "EuRuKo 2024"
   date: "2024-09-13"
-  time: 11:40 - 12:10
-  track: Third Track
+  published_at: "2025-01-12"
+  time: "11:40 - 12:10"
+  track: "Third Track"
   speakers:
     - Bartosz Blimke
   description: |-
@@ -817,34 +916,38 @@
     Whether you're a seasoned Ruby developer or just starting out, this talk will give you a deeper appreciation for the tools you use daily. Celebrate WebMock's 15th anniversary and gain insights from the maintainer's perspective.
 
     Get ready to unmock the magic of WebMock and discover how it has been helping developers write better tests for the past 15 years!
-  video_id: bartosz-blimke-euruko-2024
-  video_provider: not_published
+  video_id: "CCbZOYKz5CE"
+  video_provider: "youtube"
 
 # CITY PITCHING
 
 # LUNCH BREAK
 
-- title: Using Ractors and Making Ractors Usable
-  raw_title: Using Ractors and Making Ractors Usable
-  event_name: EuRuKo 2024
+- id: "seong-heon-jung-euruko-2024"
+  title: "Using Ractors and Making Ractors Usable"
+  raw_title: "Using Ractors and Making Ractors Usable"
+  event_name: "EuRuKo 2024"
   date: "2024-09-13"
-  time: 14:00 - 14:30
-  track: Main Track
+  published_at: "2025-01-12"
+  time: "14:00 - 14:30"
+  track: "Main Track"
   speakers:
     - Seong-Heon Jung
   description: |-
     Enough Fibonacci functions! It's time for Ractors to work a real job. Join me in building a Rack server with Ractors. We'll solve real-world problems like worker pooling, async programming, and sharing global objects across Ractors (gasp). In the process, we'll discuss where Ractors need to go next.
 
     Ractor is an ambitious feature introduced with Ruby 3.0 enabling truly parallel execution on CRuby. Adoption of Ractors has been somewhat slow, however, because Ractors are not a drop-in replacement for previous concurrency abstractions. In fact, they require a different architecture altogether. In this talk, we'll walk through the process of building a project using Ractors through the example of a Ractor-based Rack-compatible web server. We'll look at using Ractors with - existing design patterns - novel design patterns - Ractor-unfriendly patterns. Simultaneously, we'll evaluate Ractors as a language feature; that is, examine its stability, reliability, and coherence with other concurrency abstractions like Fibers and Threads. The talk aims to lend insight into how you can use Ractors in your own, non-trivial project and leave with ideas on how you can contribute to the improvement of Ractors as a language feature.
-  video_id: seong-heon-jung-euruko-2024
-  video_provider: not_published
+  video_id: "PnaQay6aRDE"
+  video_provider: "youtube"
 
-- title: How to Break into Reading Open Source
-  raw_title: How to Break into Reading Open Source
-  event_name: EuRuKo 2024
+- id: "kasper-timm-hansen-euruko-2024"
+  title: "How to Break into Reading Open Source"
+  raw_title: "How to Break into Reading Open Source"
+  event_name: "EuRuKo 2024"
   date: "2024-09-13"
-  time: 14:00 - 14:30
-  track: Second Track
+  published_at: "2025-01-12"
+  time: "14:00 - 14:30"
+  track: "Second Track"
   speakers:
     - Kasper Timm Hansen
   description: |-
@@ -855,20 +958,16 @@
     My journey reading Open Source for the hell of it started back in 2013, when I set out to read all of Rails as a Google Summer of Code student.
 
     Join this session to see how I've grown my skills through reading and have the process demystified so you can too. You'll walk away knowing how to start breaking into even the gnarliest codebases.
-  video_id: kasper-timm-hansen-euruko-2024
-  video_provider: not_published
-  slides_url: https://speakerdeck.com/kaspth/how-to-break-into-reading-open-source
+  video_id: "5SISrSgaRCY"
+  video_provider: "youtube"
+  slides_url: "https://speakerdeck.com/kaspth/how-to-break-into-reading-open-source"
 
-- title:
-    "Workshop: SQLite on Rails: From rails new to 50k concurrent users and everything
-    in between"
-  raw_title:
-    "Workshop: SQLite on Rails: From rails new to 50k concurrent users and
-    everything in between"
-  event_name: EuRuKo 2024
+- title: "Workshop: SQLite on Rails: From rails new to 50k concurrent users and everything in between"
+  raw_title: "Workshop: SQLite on Rails: From rails new to 50k concurrent users and everything in between"
+  event_name: "EuRuKo 2024"
   date: "2024-09-13"
-  time: 14:00 - 15:50
-  track: Third Track
+  time: "14:00 - 15:50"
+  track: "Third Track"
   speakers:
     - Stephen Margheim
   description: |-
@@ -879,64 +978,63 @@
     This workshop is intended for Rails developers of all levels, though it will likely be most valuable to developers who have pre-existing experience with building and deploying a Rails application.
 
     The primary desired outcome is the developers feeling knowledgable and comfortable with the differences and details of running a SQLite on Rails application. Secondarily and relatedly, this workshop will provide a hands-on introduction to the emerging SQLite+Ruby/Rails ecosystem of tools.
-  video_id: stephen-margheim-euruko-2024
-  video_provider: not_published
+  id: "stephen-margheim-euruko-2024"
+  video_id: "BVOszNjCPOs"
+  published_at: "2025-02-23"
+  video_provider: "youtube"
 
-- title: A survey of recent RubyGems CVEs
-  raw_title: A survey of recent RubyGems CVEs
-  event_name: EuRuKo 2024
+- id: "samuel-giddins-euruko-2024"
+  title: "A survey of recent RubyGems CVEs"
+  raw_title: "A survey of recent RubyGems CVEs"
+  event_name: "EuRuKo 2024"
   date: "2024-09-13"
-  time: 14:40 - 15:10
-  track: Main Track
+  published_at: "2025-01-12"
+  time: "14:40 - 15:10"
+  track: "Main Track"
   speakers:
     - Samuel Giddins
   description: |-
     RubyGems, like any sufficiently-used piece of software, has its fair share of bugs. Being a package manager (and gem host), many of those bugs turn out to have security implications. Let's take a tour of recent RubyGems RubyGems.org vulnerabilities, and learn how we're keeping the ecosystem safe.
 
     Marshal, insufficient input validation, symlink traversal, oh my! Over the past couple of years, there's been a slow trickle of CVEs announced, covering both RubyGems RubyGems.org. Let's go on a quick tour of those vulnerabilities, covering their lifecycle from discovery to mitigation to announcement. We'll dive into some patterns that have started to emerge, and discuss the steps the RubyGems team is taking to keep the Ruby ecosystem secure in an increasingly adversarial world.
-  video_id: samuel-giddins-euruko-2024
-  video_provider: not_published
+  video_id: "T9VDTcrRi_M"
+  video_provider: "youtube"
 
-- title: Visualized multi-threaded simulators in Ruby
-  raw_title: Visualized multi-threaded simulators in Ruby
-  event_name: EuRuKo 2024
+- id: "jakub-godawa-euruko-2024"
+  title: "Visualized multi-threaded simulators in Ruby"
+  raw_title: "Visualized multi-threaded simulators in Ruby"
+  event_name: "EuRuKo 2024"
   date: "2024-09-13"
-  time: 14:40 - 15:10
-  track: Second Track
+  published_at: "2025-02-23"
+  time: "14:40 - 15:10"
+  track: "Second Track"
   speakers:
     - Jakub Godawa
-  description:
-    "We all do simulations in our heads, so why not make one in Ruby? Something
-    that we can observe, fast forward, or let it linger. Let's see how custom shared
-    timers, threads, queues, and mutexes work together, and how they can form a petrol
-    station with optimal cost and throughput.\n\nThe cars are coming to a station.
-    They want to get some fuel. They come at different times and they need to be served.
-    Just like web requests but this time we'll not do web development. This we do
-    at work. So for fun we want to build something that feels more alive. A small
-    closed system that we could fully control and derive further ideas from. This
-    is how we start thinking about simulators.\n\nThe main idea of a simulation is
-    that it happens in some programmable environment. First, we need to think about
-    how to control time. If every piece of the simulation, like a car or a station,
-    runs in its own thread, then how do we synchronize them? How to handle access
-    into shared resources? What data structures should we use?\n\nAlso, how do we
-    create a protocol for gathering results to help us make decisions? How do we write
-    a config file for a simulator engine that can spawn multiple scenarios in parallel?
-    And last but not least, how do we visualize a simulation?\n\nThis presentation
-    is a pure Ruby feast. We will operate on MRI and visualize the simulation in two
-    ways: with d3.js, and through ASCII art. See you there! \U0001F695"
-  video_id: jakub-godawa-euruko-2024
-  video_provider: not_published
+  description: |-
+    We all do simulations in our heads, so why not make one in Ruby? Something that we can observe, fast forward, or let it linger. Let's see how custom shared timers, threads, queues, and mutexes work together, and how they can form a petrol station with optimal cost and throughput.
 
-- title: "The Modern Rubyist: When and How to Use the Latest Features"
+    The cars are coming to a station. They want to get some fuel. They come at different times and they need to be served. Just like web requests but this time we'll not do web development. This we do at work. So for fun we want to build something that feels more alive. A small closed system that we could fully control and derive further ideas from. This is how we start thinking about simulators.
+
+    The main idea of a simulation is that it happens in some programmable environment. First, we need to think about how to control time. If every piece of the simulation, like a car or a station, runs in its own thread, then how do we synchronize them? How to handle access into shared resources? What data structures should we use?
+
+    Also, how do we create a protocol for gathering results to help us make decisions? How do we write a config file for a simulator engine that can spawn multiple scenarios in parallel? And last but not least, how do we visualize a simulation?
+
+    This presentation is a pure Ruby feast. We will operate on MRI and visualize the simulation in two ways: with d3.js, and through ASCII art. See you there! 🚕
+  video_id: "Qu_Wqe6wkLY"
+  video_provider: "youtube"
+
+- id: "lucian-ghinda-euruko-2024"
+  title: "The Modern Rubyist: When and How to Use the Latest Features"
   raw_title: "The Modern Rubyist: When and How to Use the Latest Features"
-  event_name: EuRuKo 2024
+  event_name: "EuRuKo 2024"
   date: "2024-09-13"
-  time: 15:20 - 15:50
-  track: Main Track
+  published_at: "2025-01-12"
+  time: "15:20 - 15:50"
+  track: "Main Track"
   speakers:
     - Lucian Ghinda
   description: |-
-    Explore how Ruby has evolved with features like numbered params, endless methods, and pattern matching. Let's embrace these changes to future-proof our code rather than sticking to old habits. You will learn how to use the new features, when to apply them, and when to avoid them.
+    Explore how Ruby has evolved with features like numbered params, endless methods, and pattern matching. Let’s embrace these changes to future-proof our code rather than sticking to old habits. You will learn how to use the new features, when to apply them, and when to avoid them.
 
     There are almost 5 years since we started seeing many new features and syntax being added to Ruby, and still, a huge part of the developers are not using it. We have become conservative and thus this is a protecting position and when we focus on protecting what we have, we close in and are not focused on evolving and the future. As Matz says in a talk, we need to push forward and adopt new features if we want to avoid the Boredom Trap, where existing developers are getting bored and moving out while new people are not coming in as the language does not evolve to offer new solutions to new problems.
 
@@ -947,17 +1045,17 @@
     The primary outcome of this talk is to show developers practical knowledge about the new features. They will not only understand what these features do but also when it is a good idea and a bad idea to apply them. It might be that everybody knows about these new features, but adopting them takes work to convince colleagues about the benefits and use cases where new features fit.
 
     In this talk, I will review a series of code snippets taken straight from production and see how they can be improved using the new Ruby features while extracting rules or guides about how and when to apply them.
-  video_id: lucian-ghinda-euruko-2024
-  video_provider: not_published
+  video_id: "8NFeASvuhiI"
+  video_provider: "youtube"
 
-- title: Squash Production Defects Quickly - The Power of Structured Logging in Rails
-  raw_title:
-    Squash Production Defects Quickly - The Power of Structured Logging in
-    Rails
-  event_name: EuRuKo 2024
+- id: "john-gallagher-euruko-2024"
+  title: "Squash Production Defects Quickly - The Power of Structured Logging in Rails"
+  raw_title: "Squash Production Defects Quickly - The Power of Structured Logging in Rails"
+  event_name: "EuRuKo 2024"
   date: "2024-09-13"
-  time: 15:20 - 15:50
-  track: Second Track
+  published_at: "2025-01-12"
+  time: "15:20 - 15:50"
+  track: "Second Track"
   speakers:
     - John Gallagher
   description: |-
@@ -968,34 +1066,38 @@
     Structured logging, as a cornerstone of observability, offers a more organized and query-able way to handle logs compared to traditional text-based logs. This session will guide you through the nuances of structured logging in Rails, demonstrating how it can be leveraged to gain better insights into your application's behavior.
 
     This talk will be a deep technical dive into how to make structured logging work with an existing Rails app.
-  video_id: john-gallagher-euruko-2024
-  video_provider: not_published
+  video_id: "b2LrEFVqLG4"
+  video_provider: "youtube"
 
 # CITY VOTING RESULTS & COFFEE
 
-- title: "Closing Keynote"
+- id: "yukihiro-matz-matsumoto-euruko-2024-closing-keynote-better-ruby"
+  title: "Closing Keynote: Better Ruby"
   raw_title: "Closing Keynote"
-  event_name: EuRuKo 2024
+  event_name: "EuRuKo 2024"
   date: "2024-09-13"
-  time: 16:30 - 17:20
-  track: Main Track
+  published_at: "2025-01-12"
+  time: "16:30 - 17:20"
+  track: "Main Track"
   speakers:
     - Yukihiro "Matz" Matsumoto
   description: ""
-  video_id: yukihiro-matz-matsumoto-euruko-2024
-  video_provider: not_published
+  video_id: "JYBGXSEijTg"
+  video_provider: "youtube"
 
-- title: "Panel: Dave's uninterrupted conversation with Matz & José Valim"
-  raw_title: Dave's uninterrupted conversation with Matz José Valim
-  event_name: EuRuKo 2024
+- id: "dave-thomas-euruko-2024-panel-daves-uninterrupted-conv"
+  title: "Panel: Dave's uninterrupted conversation with Matz & José Valim"
+  raw_title: "Dave's uninterrupted conversation with Matz José Valim"
+  event_name: "EuRuKo 2024"
   date: "2024-09-13"
-  time: 17:30 - ?
-  track: Main Track
+  published_at: "2025-01-12"
+  time: "17:30 - ?"
+  track: "Main Track"
   speakers:
     - Dave Thomas
     - Yukihiro "Matz" Matsumoto
     - José Valim
   description: ""
-  video_id: dave-thomas-yukihiro-matz-matsumoto-jose-valim-euruko-2024
-  video_provider: not_published
+  video_id: "nl1tYQjdYwY"
+  video_provider: "youtube"
 # EVENT CLOSING

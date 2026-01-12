@@ -4,7 +4,7 @@ class CreateSpeakerFullTextSearch < ActiveRecord::Migration[8.0]
       "name", "github", "tokenize = porter"
     ]
 
-    Speaker.rebuild_search_index
+    Speaker.reindex_all
   end
 
   def down

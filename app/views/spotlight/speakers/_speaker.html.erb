@@ -1,9 +1,6 @@
-<%= link_to speaker_path(speaker), target: "_top", id: dom_id(speaker), role: "option", class: "w-full flex items-center gap-4", style: "view-transition-name: #{dom_id(speaker, :search_result)}" do %>
+<%= link_to profile_path(speaker), target: "_top", id: dom_id(speaker), role: "option", class: "w-full flex items-center gap-4", style: "view-transition-name: #{dom_id(speaker, :search_result)}" do %>
   <div class="avatar placeholder">
-    <div class="w-8 rounded-full bg-gray-300">
-      <span class="hidden only:block text-primary"><%= speaker.name.split.map(&:first).then { |initials| [initials.first, initials.last].join }.upcase %></span>
-      <img src="<%= speaker.avatar_url %>" loading="lazy" alt="<%= speaker.name %>" height="200" width="200" onerror="this.remove()">
-    </div>
+    <%= ui_avatar(speaker, size: :sm) %>
   </div>
   <%= speaker.name %>
 <% end %>

@@ -1,0 +1,54 @@
+<%= turbo_refreshes_with method: :morph, scroll: :preserve %>
+
+<div class="container py-8">
+  <div class="flex items-center justify-between w-full hotwire-native:hidden">
+    <h1 class="title">
+      <%= title "All Cities" %>
+    </h1>
+
+    <div class="flex flex-col gap-3 place-items-center">
+      <%= ui_button "View all countries", url: countries_path, kind: :secondary, size: :sm %>
+    </div>
+  </div>
+
+  <p class="mt-3 md:mt-9 mb-6 text-[#636B74] max-w-[700px]">
+    Browse all cities with Ruby events or community members. <%= @cities.count %> cities found.
+  </p>
+
+  <div class="mt-6">
+    <% @cities.group_by { |c| c.country&.name || "Unknown" }.sort_by { |name, _| name }.each do |country_name, cities| %>
+      <h2 class="mt-8 first:mt-0 text-xl font-bold"><%= country_name %></h2>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 lg:gap-x-12 gap-y-2 min-w-full pt-4 pb-8">
+        <% cities.sort_by(&:name).each do |city| %>
+          <% link_class = "event flex justify-between items-center" %>
+          <% link_class += " bg-green-50 rounded px-2 -mx-2" if city.featured? %>
+
+          <%= link_to city.path, id: "city-#{city.slug}", class: link_class do %>
+            <div class="flex items-center gap-2">
+              <span class="event-name"><%= city.name %></span>
+
+              <% if city.state_code.present? %>
+                <span class="text-gray-400 text-sm"><%= city.state_code %></span>
+              <% end %>
+
+              <% if city.featured? %>
+                <span class="text-xs bg-green-100 text-green-800 px-1.5 py-0.5 rounded-full">Featured</span>
+              <% end %>
+            </div>
+
+            <div class="flex gap-1">
+              <% if city.events_count > 0 %>
+                <%= ui_badge(city.events_count, kind: :secondary, outline: true, size: :lg, class: "min-w-10") %>
+              <% end %>
+
+              <% if city.users_count > 0 %>
+                <%= ui_badge("#{city.users_count} \u{1F464}", kind: :primary, outline: true, size: :lg, class: "min-w-10") %>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

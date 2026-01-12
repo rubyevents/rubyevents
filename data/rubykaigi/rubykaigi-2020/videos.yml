@@ -4,32 +4,32 @@
 # TODO: conference website
 # TODO: schedule website
 
-- title: The State of Ruby 3 Typing
+- id: "soutaro-matsumoto-rubykaigi-2020-takeout"
+  title: "The State of Ruby 3 Typing"
   raw_title: "[EN] The State of Ruby 3 Typing / Soutaro Matsumoto @soutaro"
   speakers:
     - Soutaro Matsumoto
-  event_name: RubyKaigi 2020 Takeout
-  published_at: "2020-09-04"
-  video_provider: youtube
-  video_id: PvkpW1OEaP8
-  language: English
-  description:
-    Ruby 3 will ship with a new feature for type checking, RBS. It provides
-    a language to describe types of Ruby programs, the type declarations for standard
-    library classes, and a set of features to support using and developing type checkers.
-    In this talk, I will introduce the feature and how the Ruby programming will be
-    with RBS.
+  event_name: "RubyKaigi Takeout 2020"
+  date: "2020-09-04"
+  published_at: "2020-09-09"
+  video_provider: "youtube"
+  video_id: "PvkpW1OEaP8"
+  language: "English"
+  description: |-
+    Ruby 3 will ship with a new feature for type checking, RBS. It provides a language to describe types of Ruby programs, the type declarations for standard library classes, and a set of features to support using and developing type checkers. In this talk, I will introduce the feature and how the Ruby programming will be with RBS.
 
-- title: The whys and hows of transpiling Ruby
+- id: "vladimir-dementyev-rubykaigi-2020-takeout"
+  title: "The whys and hows of transpiling Ruby"
   raw_title: "[EN] The whys and hows of transpiling Ruby / Vladimir Dementyev @palkan_tula"
   speakers:
     - Vladimir Dementyev
-  event_name: RubyKaigi 2020 Takeout
-  published_at: "2020-09-04"
-  video_provider: youtube
-  video_id: zLInIisYlDo
-  language: English
-  slides_url: https://speakerdeck.com/palkan/rubykaigi-2020-the-whys-and-hows-of-transpiling-ruby
+  event_name: "RubyKaigi Takeout 2020"
+  date: "2020-09-04"
+  published_at: "2020-09-09"
+  video_provider: "youtube"
+  video_id: "zLInIisYlDo"
+  language: "English"
+  slides_url: "https://speakerdeck.com/palkan/rubykaigi-2020-the-whys-and-hows-of-transpiling-ruby"
   description: |-
     Transpiling is a source-to-source compiling. Why might we need it in Ruby? Compatibility and experiments.
 
@@ -37,277 +37,292 @@
 
     I want to discuss these problems and share the story of the Ruby transpiler — Ruby Next. A decent amount of Ruby hackery is guaranteed.
 
-- title: Reflecting on Ruby Reflection for Rendering RBIs
+- id: "ufuk-kayserilioglu-rubykaigi-2020-takeout"
+  title: "Reflecting on Ruby Reflection for Rendering RBIs"
   raw_title: "[EN] Reflecting on Ruby Reflection for Rendering RBIs / Ufuk Kayserilioglu @paracycle"
   speakers:
     - Ufuk Kayserilioglu
-  event_name: RubyKaigi 2020 Takeout
-  published_at: "2020-09-04"
-  video_provider: youtube
-  video_id: OJRQAn6BfpE
-  language: English
+  event_name: "RubyKaigi Takeout 2020"
+  date: "2020-09-04"
+  published_at: "2020-09-09"
+  video_provider: "youtube"
+  video_id: "OJRQAn6BfpE"
+  language: "English"
   description: |-
     As part of our adoption process of Sorbet at Shopify, we needed an automated way to teach Sorbet about our ~400 gem dependencies. We decided to tackle this problem by generating interface files (RBI) for each gem via runtime reflection.
 
     However, this turns out to not be as simple as it sounds; the flexible nature of Ruby allows gem authors to do many wild things that make this Hard. Come and hear about all the lessons that we learnt about runtime reflection in Ruby while building "tapioca".
 
-- title: Is it time run Ruby on Web via WebAssembly?
+- id: "elct9620-rubykaigi-2020-takeout"
+  title: "Is it time run Ruby on Web via WebAssembly?"
   raw_title: "[EN] Is it time run Ruby on Web via WebAssembly? / 蒼時弦也 @elct9620"
   speakers:
     - elct9620
-  event_name: RubyKaigi 2020 Takeout
-  published_at: "2020-09-04"
-  video_provider: youtube
-  video_id: PJLWoz6K7w4
-  language: English
-  description:
-    The W3C is starting to recommend to use WebAssembly, and we can compile
-    mruby to WebAssembly very easy in now day. But we have Opal and it works well,
-    we really need to use WebAssembly? Let me share my experience about trying to
-    add mruby to HTML5 game, and discuss the pros and cons when we use Ruby in WebAssembly
-    way in Web.
+  event_name: "RubyKaigi Takeout 2020"
+  date: "2020-09-04"
+  published_at: "2020-09-09"
+  video_provider: "youtube"
+  video_id: "PJLWoz6K7w4"
+  language: "English"
+  description: |-
+    The W3C is starting to recommend to use WebAssembly, and we can compile mruby to WebAssembly very easy in now day. But we have Opal and it works well, we really need to use WebAssembly? Let me share my experience about trying to add mruby to HTML5 game, and discuss the pros and cons when we use Ruby in WebAssembly way in Web.
 
-- title: "mruby machine: An Operating System for Microcontoller"
+- id: "hitoshi-hasumi-rubykaigi-2020-takeout"
+  title: "mruby machine: An Operating System for Microcontoller"
   raw_title: "[EN] mruby machine: An Operating System for Microcontoller / Hitoshi HASUMI @hasumikin"
   speakers:
     - Hitoshi HASUMI
-  event_name: RubyKaigi 2020 Takeout
-  published_at: "2020-09-04"
-  video_provider: youtube
-  video_id: kDOf_tZKlLU
-  language: English
+  event_name: "RubyKaigi Takeout 2020"
+  date: "2020-09-04"
+  published_at: "2020-09-09"
+  video_provider: "youtube"
+  video_id: "kDOf_tZKlLU"
+  language: "English"
   description: |-
     There are different approaches to make an operating system.
     I take an approach which takes advantage of mruby/c's VM then makes my own mruby compiler and shell program.
     Though my purpose is making an useful and effective development platform for microcontroller with Ruby, I will also share some universal knowledge on how to make an OS with you.
 
-- title: "Keyword Arguments: Past, Present, and Future"
+- id: "jeremy-evans-rubykaigi-2020-takeout"
+  title: "Keyword Arguments: Past, Present, and Future"
   raw_title: "[EN] Keyword Arguments: Past, Present, and Future / Jeremy Evans @jeremyevans0"
   speakers:
     - Jeremy Evans
-  event_name: RubyKaigi 2020 Takeout
-  published_at: "2020-09-04"
-  video_provider: youtube
-  video_id: rxJRrccXRfg
-  language: English
-  description:
-    Ruby 3 will separate keyword arguments from positional arguments, which
-    causes the biggest backwards compatibility issues in Ruby since Ruby 1.9. This
-    presentation will discuss the history of keyword arguments, how keyword arguments
-    are handled internally, how keyword arguments were separated from positional arguments
-    internally, and possible future improvements in the handling of keyword arguments.
+  event_name: "RubyKaigi Takeout 2020"
+  date: "2020-09-04"
+  published_at: "2020-09-09"
+  video_provider: "youtube"
+  video_id: "rxJRrccXRfg"
+  language: "English"
+  description: |-
+    Ruby 3 will separate keyword arguments from positional arguments, which causes the biggest backwards compatibility issues in Ruby since Ruby 1.9. This presentation will discuss the history of keyword arguments, how keyword arguments are handled internally, how keyword arguments were separated from positional arguments internally, and possible future improvements in the handling of keyword arguments.
 
-- title: "Live coding: Grepping Ruby code like a boss"
+- id: "jnatas-davi-paganini-rubykaigi-2020-takeout"
+  title: "Live coding: Grepping Ruby code like a boss"
   raw_title: "[EN] Live coding: Grepping Ruby code like a boss / Jônatas Davi Paganini @jonatas"
   speakers:
     - Jônatas Davi Paganini
-  event_name: RubyKaigi 2020 Takeout
-  published_at: "2020-09-04"
-  video_provider: youtube
-  video_id: YczrZQC9aP8
-  language: English
+  event_name: "RubyKaigi Takeout 2020"
+  date: "2020-09-04"
+  published_at: "2020-09-09"
+  video_provider: "youtube"
+  video_id: "YczrZQC9aP8"
+  language: "English"
   description: |-
     Our favorite language allows us to implement the same code in a few different ways. Because of that, it becomes tough to search and find the target code only with regular expressions.
     I'd like to present fast, a searching DSL that can help you build complex searches directly in the AST nodes as regexes does for plain strings.
     The presentation will be a live coding tour of how to use the tool and create your searching patterns.
     I'll also show how to manipulate the code in the target AST nodes, allowing us to refactor the source code in an automated way. I'll share a few funny stories about how I refactored thousands of files in a week.
 
-- title: Now is the time to create your own (m)Ruby computer
+- id: "katsuhiko-kageyama-rubykaigi-2020-takeout"
+  title: "Now is the time to create your own (m)Ruby computer"
   raw_title: "[EN] Now is the time to create your own (m)Ruby computer / Katsuhiko Kageyama @kishima"
   speakers:
     - Katsuhiko Kageyama
-  event_name: RubyKaigi 2020 Takeout
-  published_at: "2020-09-04"
-  video_provider: youtube
-  video_id: N24gfQJMXfs
-  language: English
+  event_name: "RubyKaigi Takeout 2020"
+  date: "2020-09-04"
+  published_at: "2020-09-09"
+  video_provider: "youtube"
+  video_id: "N24gfQJMXfs"
+  language: "English"
   description: |-
     Now is the time to create your own (m)Ruby computer
     mruby has been known as a good tool for supporting server applications and embedded softwares like an IoT application on a small CPU whose resource is limited. Now times are changing. mruby gets more power from recent micro processors. I believe now Ruby engineers can create their own computer as per their wish. Basic process and essential technique how to create an original (m)Ruby computer will be shown in the talk with a live demonstration of the computer.
 
-- title: Asynchronous Opal
+- id: "yoh-osaki-rubykaigi-2020-takeout"
+  title: "Asynchronous Opal"
   raw_title: "[JA] Asynchronous Opal / Yoh Osaki @youchan"
   speakers:
     - Yoh Osaki
-  event_name: RubyKaigi 2020 Takeout
-  published_at: "2020-09-04"
-  video_provider: youtube
-  video_id: yDUmMuPdSUA
-  language: Japanese
-  description:
-    Opal is a compiler convert from Ruby to JavaScript. JavaScript has
-    async/await syntax for asynchronous processing. But Opal hasn't implemented it
-    yet. The Opal community had been discussed mapping Fiber semantics to JavaScript
-    async/await. The conclusion was it is impossible to map coroutine such as Fiber
-    because async/await is just a syntax sugar that expresses nested callbacks into
-    flat statements. I'm going to talk about the idea I'm trying to incorporate easy-to-use
-    asynchronous processing into Opal.
+  event_name: "RubyKaigi Takeout 2020"
+  date: "2020-09-04"
+  published_at: "2020-09-09"
+  video_provider: "youtube"
+  video_id: "yDUmMuPdSUA"
+  language: "Japanese"
+  description: |-
+    Opal is a compiler convert from Ruby to JavaScript. JavaScript has async/await syntax for asynchronous processing. But Opal hasn't implemented it yet. The Opal community had been discussed mapping Fiber semantics to JavaScript async/await. The conclusion was it is impossible to map coroutine such as Fiber because async/await is just a syntax sugar that expresses nested callbacks into flat statements. I'm going to talk about the idea I'm trying to incorporate easy-to-use asynchronous processing into Opal.
 
-- title: Rinda in the real-world embedded systems
+- id: "masatoshi-seki-rubykaigi-2020-takeout"
+  title: "Rinda in the real-world embedded systems"
   raw_title: "[JA] Rinda in the real-world embedded systems / Masatoshi SEKI @m_seki"
   speakers:
     - Masatoshi SEKI
-  event_name: RubyKaigi 2020 Takeout
-  published_at: "2020-09-04"
-  video_provider: youtube
-  video_id: qwe6qmtxHbk
-  language: Japanese
-  description:
-    "Okayama Astrophysical Observatory Wide-Field Camera (OAOWFC), is an
-    autonomous wide-field near-infrared camera and has been in operation since 2015.
-    A distributed control system is operated via control software using Rinda. I report
-    the implementation of the robot telescope \U0001F916\U0001F52D."
+  event_name: "RubyKaigi Takeout 2020"
+  date: "2020-09-04"
+  published_at: "2020-09-09"
+  video_provider: "youtube"
+  video_id: "qwe6qmtxHbk"
+  language: "Japanese"
+  description: |-
+    Okayama Astrophysical Observatory Wide-Field Camera (OAOWFC), is an autonomous wide-field near-infrared camera and has been in operation since 2015. A distributed control system is operated via control software using Rinda. I report the implementation of the robot telescope 🤖🔭.
 
-- title: "mruby-rr: Time Traveling Debugger For mruby Using rr"
+- id: "lin-yu-hsiang-rubykaigi-2020-takeout"
+  title: "mruby-rr: Time Traveling Debugger For mruby Using rr"
   raw_title: "[EN] mruby-rr: Time Traveling Debugger For mruby Using rr / Lin Yu Hsiang @johnlinvc"
   speakers:
     - Lin Yu Hsiang
-  event_name: RubyKaigi 2020 Takeout
-  published_at: "2020-09-04"
-  video_provider: youtube
-  video_id: E5ifh9yZCKk
-  language: English
+  event_name: "RubyKaigi Takeout 2020"
+  date: "2020-09-04"
+  published_at: "2020-09-09"
+  video_provider: "youtube"
+  video_id: "E5ifh9yZCKk"
+  language: "English"
   description: |-
     Debugging bugs that don't happen every time is painful. It needs both technique and luck. When dealing with these, a mistyped continue command is irreversible and will take us a whole afternoon just to reproduce the issue again.
 
     mruby-rr comes to rescue! It's a Time Traveling Debugger for mruby that based on Mozilla's rr. mruby-rr supports record and replay of mruby program execution. We can record the tough bug using mruby-rr for just once. Afterwards we can playback the execution as many times as we want. mruby-rr can also do time traveling operations like reverse-next and evaluating expressions.
 
-- title: Developing your Dreamcast apps and games with mruby
+- id: "yuji-yokoo-rubykaigi-2020-takeout"
+  title: "Developing your Dreamcast apps and games with mruby"
   raw_title: "[EN] Developing your Dreamcast apps and games with mruby / Yuji Yokoo @yuji_yokoo"
   speakers:
     - Yuji Yokoo
-  event_name: RubyKaigi 2020 Takeout
-  published_at: "2020-09-04"
-  video_provider: youtube
-  video_id: oqBTlYUkGXk
-  language: English
+  event_name: "RubyKaigi Takeout 2020"
+  date: "2020-09-04"
+  published_at: "2020-09-09"
+  video_provider: "youtube"
+  video_id: "oqBTlYUkGXk"
+  language: "English"
   description: |-
     What would you make, if you can run your Ruby code on Dreamcast?
 
     Well, now you can! I have been working on my development setup for running mruby code on Dreamcast. I would like to show you what I have developed so far and how you can get started. I would also like to tell you why development on Dreamcast is a great idea and share a few things I learned along the way.
 
-- title: Don't @ me! Instance Variable Performance in Ruby
+- id: "aaron-patterson-rubykaigi-2020-takeout"
+  title: "Don't @ me! Instance Variable Performance in Ruby"
   raw_title: "[EN] Don't @ me! Instance Variable Performance in Ruby / Aaron Patterson @tenderlove"
   speakers:
     - Aaron Patterson
-  event_name: RubyKaigi 2020 Takeout
-  published_at: "2020-09-04"
-  video_provider: youtube
-  video_id: 4ysxA8DDplQ
-  language: English
+  event_name: "RubyKaigi Takeout 2020"
+  date: "2020-09-04"
+  published_at: "2020-09-09"
+  video_provider: "youtube"
+  video_id: "4ysxA8DDplQ"
+  language: "English"
   description: |-
     Japanese version: https://youtu.be/iDW93fAp2I8
 
 
     How do instance variables work? We've all used instance variables in our programs, but how do they actually work? In this presentation we'll look at how instance variables are implemented in Ruby. We'll start with a very strange benchmark, then dive in to Ruby internals to understand why the code behaves the way it does. Once we've figured out this strange behavior, we'll follow up with a patch to increase instance variable performance. Be prepared for a deep dive in to a weird area of Ruby, and remember: don't @ me!
 
-- title: Don't @ me! Instance Variable Performance in Ruby
+- id: "aaron-patterson-rubykaigi-2020-takeout-dont-me-instance-variable-perf"
+  title: "Don't @ me! Instance Variable Performance in Ruby"
   raw_title: "[JA] Don't @ me! Instance Variable Performance in Ruby / Aaron Patterson @tenderlove"
   speakers:
     - Aaron Patterson
-  event_name: RubyKaigi 2020 Takeout
-  published_at: "2020-09-04"
-  video_provider: youtube
-  video_id: iDW93fAp2I8
-  language: Japanese
+  event_name: "RubyKaigi Takeout 2020"
+  date: "2020-09-04"
+  published_at: "2020-09-09"
+  video_provider: "youtube"
+  video_id: "iDW93fAp2I8"
+  language: "Japanese"
   description: |-
     English version: https://youtu.be/4ysxA8DDplQ
 
 
     How do instance variables work? We've all used instance variables in our programs, but how do they actually work? In this presentation we'll look at how instance variables are implemented in Ruby. We'll start with a very strange benchmark, then dive in to Ruby internals to understand why the code behaves the way it does. Once we've figured out this strange behavior, we'll follow up with a patch to increase instance variable performance. Be prepared for a deep dive in to a weird area of Ruby, and remember: don't @ me!
 
-- title: Ruby to C Translator by AI
+- id: "hideki-miura-rubykaigi-2020-takeout"
+  title: "Ruby to C Translator by AI"
   raw_title: "[JA] Ruby to C Translator by AI / Hideki Miura @miura1729"
   speakers:
     - Hideki Miura
-  event_name: RubyKaigi 2020 Takeout
-  published_at: "2020-09-04"
-  video_provider: youtube
-  video_id: kr2RXLoiLNA
-  language: Japanese
-  description:
-    I am developing Ruby to C Translator "MMC". This uses AI (i.e. Abstract
-    Interpretation) for Type Profiling and Escape Analysis. MMC generates very efficient
-    C code by AI. For example , MMC gains about 50 times faster than CRuby for ao-bench
-    (faster than C version). I will presentation the technical detail of MMC especially
-    escape analysis.
+  event_name: "RubyKaigi Takeout 2020"
+  date: "2020-09-04"
+  published_at: "2020-09-09"
+  video_provider: "youtube"
+  video_id: "kr2RXLoiLNA"
+  language: "Japanese"
+  description: |-
+    I am developing Ruby to C Translator "MMC". This uses AI (i.e. Abstract Interpretation) for Type Profiling and Escape Analysis. MMC generates very efficient C code by AI. For example , MMC gains about 50 times faster than CRuby for ao-bench (faster than C version). I will presentation the technical detail of MMC especially escape analysis.
 
-- title: The Complex Nightmare of the Asian Cultural Area
+- id: "itoyanagi-sakura-rubykaigi-2020-takeout"
+  title: "The Complex Nightmare of the Asian Cultural Area"
   raw_title: "[EN] The Complex Nightmare of the Asian Cultural Area / ITOYANAGI Sakura @aycabta"
   speakers:
     - ITOYANAGI Sakura
-  event_name: RubyKaigi 2020 Takeout
-  published_at: "2020-09-04"
-  video_provider: youtube
-  video_id: s7Zc7VJMBv8
-  language: English
-  description:
-    There are many different cultures in Asia that seem odd to the rest
-    of the world. This session introduces the complexities of the current situation
-    and the various technologies that have been created to achieve their goals.
+  event_name: "RubyKaigi Takeout 2020"
+  date: "2020-09-04"
+  published_at: "2020-09-09"
+  video_provider: "youtube"
+  video_id: "s7Zc7VJMBv8"
+  language: "English"
+  description: |-
+    There are many different cultures in Asia that seem odd to the rest of the world. This session introduces the complexities of the current situation and the various technologies that have been created to achieve their goals.
 
-- title: Dependency Resolution with Standard Libraries
+- id: "hiroshi-shibata-rubykaigi-2020-takeout"
+  title: "Dependency Resolution with Standard Libraries"
   raw_title: "[JA] Dependency Resolution with Standard Libraries"
   speakers:
     - Hiroshi Shibata
-  event_name: RubyKaigi 2020 Takeout
-  published_at: "2020-09-04"
-  video_provider: youtube
-  video_id: wvayhyTEL_k
-  language: Japanese
+  event_name: "RubyKaigi Takeout 2020"
+  date: "2020-09-04"
+  published_at: "2020-09-09"
+  video_provider: "youtube"
+  video_id: "wvayhyTEL_k"
+  language: "Japanese"
   description: |-
     I maintain the RubyGems, Bundler and the standard libraries of the Ruby language. So, I have a plan to make all of the standard libraries to default gems at Ruby 3. In the past, I described the detail of default gems and bundled gems at RubyKaigi and the Ruby conferences in the world. But the users still confused the differences standard libraries and default/bundled gems.
 
     After releasing Ruby 3, We need to learn about the dependency is not only "Versioning" with default gems. It caused by the between library and library over the versioning. For that reason, I need to describe the motivation of "Promoting/Demoting the Default Gems or Bundle Gems" continuously. You will learn the resolution mechanism on RubyGems/Bundler and the standard libraries of the Ruby language with my talk.
 
-- title: "msgraph: Microsoft Graph API Client with Ruby"
+- id: "oda-hirohito-rubykaigi-2020-takeout"
+  title: "msgraph: Microsoft Graph API Client with Ruby"
   raw_title: "[JA] msgraph: Microsoft Graph API Client with Ruby / ODA Hirohito @jimlock"
   speakers:
     - ODA Hirohito
-  event_name: RubyKaigi 2020 Takeout
-  published_at: "2020-09-04"
-  video_provider: youtube
-  video_id: TrVhnrTPtoI
-  language: Japanese
+  event_name: "RubyKaigi Takeout 2020"
+  date: "2020-09-04"
+  published_at: "2020-09-09"
+  video_provider: "youtube"
+  video_id: "TrVhnrTPtoI"
+  language: "Japanese"
   description: |-
     msgraph is the unofficial Microsoft Graph API Client with Ruby. The official Microsoft Graph Client Library for Ruby is microsoft_graph. However, since its release on August 1, 2016, the preview version has been continued and has not been maintained. So, I created an API client that I can maintain on my own.
 
     In this talk, I will talk about why I created the unofficial API Client.
 
-- title: Magic is organizing chaos
+- id: "shugo-maeda-rubykaigi-2020-takeout"
+  title: "Magic is organizing chaos"
   raw_title: "[JA] Magic is organizing chaos / Shugo Maeda @shugomaeda"
   speakers:
     - Shugo Maeda
-  event_name: RubyKaigi 2020 Takeout
-  published_at: "2020-09-04"
-  video_provider: youtube
-  video_id: QKiQiK7gSHQ
-  language: Japanese
+  event_name: "RubyKaigi Takeout 2020"
+  date: "2020-09-04"
+  published_at: "2020-09-09"
+  video_provider: "youtube"
+  video_id: "QKiQiK7gSHQ"
+  language: "Japanese"
   description: |-
     The power of Law (e.g., type signatures, type checkers, type profilers) is growing toward Ruby 3. We need the power of Chaos for the Cosmic Balance.
 
     In this talk, I propose Proc#using to extend area where Refinements can be used.
 
-- title: "Keynote: Ruby 3 and Beyond"
+- id: "yukihiro-matz-matsumoto-rubykaigi-2020-takeout"
+  title: "Keynote: Ruby 3 and Beyond"
   raw_title: '[JA Keynote] Ruby3 and Beyond / Yukihiro "Matz" Matsumoto @yukihiro_matz'
   speakers:
     - Yukihiro "Matz" Matsumoto
-  event_name: RubyKaigi 2020 Takeout
-  published_at: "2020-09-04"
-  video_provider: youtube
-  video_id: wVrJZReHlM8
-  language: Japanese
+  event_name: "RubyKaigi Takeout 2020"
+  date: "2020-09-04"
+  published_at: "2020-09-09"
+  video_provider: "youtube"
+  video_id: "wVrJZReHlM8"
+  language: "Japanese"
   description: ""
 
-- title: Road to RuboCop 1.0
+- id: "koichi-ito-rubykaigi-2020-takeout"
+  title: "Road to RuboCop 1.0"
   raw_title: "[JA] Road to RuboCop 1.0 / Koichi ITO @koic"
   speakers:
     - Koichi ITO
-  event_name: RubyKaigi 2020 Takeout
-  published_at: "2020-09-04"
-  video_provider: youtube
-  video_id: jkY7J9k6mHs
-  language: Japanese
+  event_name: "RubyKaigi Takeout 2020"
+  date: "2020-09-04"
+  published_at: "2020-09-09"
+  video_provider: "youtube"
+  video_id: "jkY7J9k6mHs"
+  language: "Japanese"
   description: |-
     RuboCop 1.0 is coming soon.
 
@@ -315,153 +330,150 @@
 
     RuboCop 1.0 will provide the safest static analysis in the all‐time previous releases. The pragmatic meaning of them has emerged during the implementation process. This talk will help you ride on RuboCop 1.0.
 
-- title: Goodbye fat gem
+- id: "sutou-kouhei-rubykaigi-2020-takeout"
+  title: "Goodbye fat gem"
   raw_title: "[JA] Goodbye fat gem / Sutou Kouhei @ktou"
   speakers:
     - Sutou Kouhei
-  event_name: RubyKaigi 2020 Takeout
-  published_at: "2020-09-04"
-  video_provider: youtube
-  video_id: tGZiCqyMU_g
-  language: Japanese
-  description:
-    Fat gem mechanism is useful to install extension library without any
-    compiler. Fat gem mechanism is especially helpful for Windows rubyists because
-    Windows rubyists don't have compiler. But there are some downsides. For example,
-    fat gem users can't use Ruby 2.7 (the latest Ruby) until fat gem developers release
-    a new gem for Ruby 2.7. As of 2020, pros of fat gem mechanism is decreasing and
-    cons of it is increasing. This talk describes the details of pros and cons of
-    it then says thanks and goodbye to fat gem.
+  event_name: "RubyKaigi Takeout 2020"
+  date: "2020-09-04"
+  published_at: "2020-09-09"
+  video_provider: "youtube"
+  video_id: "tGZiCqyMU_g"
+  language: "Japanese"
+  description: |-
+    Fat gem mechanism is useful to install extension library without any compiler. Fat gem mechanism is especially helpful for Windows rubyists because Windows rubyists don't have compiler. But there are some downsides. For example, fat gem users can't use Ruby 2.7 (the latest Ruby) until fat gem developers release a new gem for Ruby 2.7. As of 2020, pros of fat gem mechanism is decreasing and cons of it is increasing. This talk describes the details of pros and cons of it then says thanks and goodbye to fat gem.
 
-- title: On sending methods
+- id: "urabe-shyouhei-rubykaigi-2020-takeout"
+  title: "On sending methods"
   raw_title: "[JA] On sending methods / Urabe, Shyouhei @shyouhei"
   speakers:
     - Urabe Shyouhei
-  event_name: RubyKaigi 2020 Takeout
-  published_at: "2020-09-04"
-  video_provider: youtube
-  video_id: IAkrGf9XJi0
-  language: Japanese
-  description:
-    As you have noticed 2.7 is faster than older ruby versions. One of
-    the main reason for this is my optimisation around method invocations. Let me
-    share what was suboptimal, and how was that fixed.
+  event_name: "RubyKaigi Takeout 2020"
+  date: "2020-09-04"
+  published_at: "2020-09-09"
+  video_provider: "youtube"
+  video_id: "IAkrGf9XJi0"
+  language: "Japanese"
+  description: |-
+    As you have noticed 2.7 is faster than older ruby versions. One of the main reason for this is my optimisation around method invocations. Let me share what was suboptimal, and how was that fixed.
 
-- title: "Type Profiler: a Progress Report of a Ruby 3 Type Analyzer"
+- id: "yusuke-endoh-rubykaigi-2020-takeout"
+  title: "Type Profiler: a Progress Report of a Ruby 3 Type Analyzer"
   raw_title: "[JA] Type Profiler: a Progress Report of a Ruby 3 Type Analyzer / Yusuke Endoh @mametter"
   speakers:
     - Yusuke Endoh
-  event_name: RubyKaigi 2020 Takeout
-  published_at: "2020-09-04"
-  video_provider: youtube
-  video_id: 6KcFdQWp8W0
-  language: Japanese
-  description:
-    Type Profiler is a type inference tool for plain Ruby code. It analyzes
-    Ruby code that has no type information and guesses a type of the modules and methods
-    in the code. The output will serve as a signature for external type checkers like
-    Sorbet and Steep. Since 2019, we have been developing the tool as one of the key
-    features for Ruby 3 static analysis, and now it works with some practical applications.
-    In this talk, we briefly explain what and how Type Profiler works, present a roadmap
-    and progress of the development, and discuss how useful it is for practical applications
-    with some demos.
+  event_name: "RubyKaigi Takeout 2020"
+  date: "2020-09-04"
+  published_at: "2020-09-09"
+  video_provider: "youtube"
+  video_id: "6KcFdQWp8W0"
+  language: "Japanese"
+  description: |-
+    Type Profiler is a type inference tool for plain Ruby code. It analyzes Ruby code that has no type information and guesses a type of the modules and methods in the code. The output will serve as a signature for external type checkers like Sorbet and Steep. Since 2019, we have been developing the tool as one of the key features for Ruby 3 static analysis, and now it works with some practical applications. In this talk, we briefly explain what and how Type Profiler works, present a roadmap and progress of the development, and discuss how useful it is for practical applications with some demos.
 
-- title: Ractor report
+- id: "koichi-sasada-rubykaigi-2020-takeout"
+  title: "Ractor report"
   raw_title: "[JA] Ractor report / Koichi Sasada @ko1"
   speakers:
     - Koichi Sasada
-  event_name: RubyKaigi 2020 Takeout
-  published_at: "2020-09-04"
-  video_provider: youtube
-  video_id: 40t8EPpnujg
-  language: Japanese
+  event_name: "RubyKaigi Takeout 2020"
+  date: "2020-09-04"
+  published_at: "2020-09-09"
+  video_provider: "youtube"
+  video_id: "40t8EPpnujg"
+  language: "Japanese"
   description: |-
     This talk will introduce Ractor, the concurrency system for Ruby 3 based on actual implementation.
 
     At RubyKaigi 2016, I proposed Guild (A proposal of new concurrency model for Ruby 3, http://rubykaigi.org/2016/presentations/ko1.html) and at RubyKaigi 2018, I introduced prototype of it (Guild Prototype - RubyKaigi 2018, https://rubykaigi.org/2018/presentations/ko1.html). For Ruby 3, we renamed Guild to Ractor and finished the first implementation. This talk will introduce Ractor API with current implementation.
 
-- title: Running Rack and Rails Faster with TruffleRuby
+- id: "benoit-daloze-rubykaigi-2020-takeout"
+  title: "Running Rack and Rails Faster with TruffleRuby"
   raw_title: "[EN] Running Rack and Rails Faster with TruffleRuby / Benoit Daloze @eregontp"
   speakers:
     - Benoit Daloze
-  event_name: RubyKaigi 2020 Takeout
-  published_at: "2020-09-04"
-  video_provider: youtube
-  video_id: 281YdMYRAsk
-  language: English
+  event_name: "RubyKaigi Takeout 2020"
+  date: "2020-09-04"
+  published_at: "2020-09-09"
+  video_provider: "youtube"
+  video_id: "281YdMYRAsk"
+  language: "English"
   description: |-
     Optimizing Rack and Rails applications with a just-in-time (JIT) compiler is a challenge. For example, MJIT does not speed up Rails currently. TruffleRuby tackles this challenge. We have been running the Rails Simpler Benchmarks with TruffleRuby and now achieve higher performance than any other Ruby implementation.
 
     In this talk we’ll show how we got there and what TruffleRuby optimizations are useful for Rack and Rails applications. TruffleRuby is getting ready to speed up your applications, will you try it?
 
-- title: "RubyMem: The Leaky Gems Database for Bundler"
+- id: "ernesto-tagwerker-rubykaigi-2020-takeout"
+  title: "RubyMem: The Leaky Gems Database for Bundler"
   raw_title: "[EN] RubyMem: The Leaky Gems Database for Bundler / Ernesto Tagwerker @etagwerker"
   speakers:
     - Ernesto Tagwerker
-  event_name: RubyKaigi 2020 Takeout
-  published_at: "2020-09-04"
-  slides_url: https://speakerdeck.com/etagwerker/rubymem-the-leaky-gems-database-for-bundler-at-ruby-kaigi-takeout-2020
-  video_provider: youtube
-  video_id: ghaA6LD5OEo
-  language: English
+  event_name: "RubyKaigi Takeout 2020"
+  date: "2020-09-04"
+  published_at: "2020-09-09"
+  slides_url: "https://speakerdeck.com/etagwerker/rubymem-the-leaky-gems-database-for-bundler-at-ruby-kaigi-takeout-2020"
+  video_provider: "youtube"
+  video_id: "ghaA6LD5OEo"
+  language: "English"
   description: |-
     Out of memory errors are quite tricky. Our first reaction is always the same: "It can't be my code, it must be one of my dependencies!" What if you could quickly check that with bundler?
 
     In this talk you will learn about memory leaks, out of memory errors, and leaky dependencies. You will learn how to use bundler-leak, a community-driven, open source tool that will make your life easier when debugging memory leaks.
 
-- title: Prettier Ruby
+- id: "kevin-newton-rubykaigi-2020-takeout"
+  title: "Prettier Ruby"
   raw_title: "[EN] Prettier Ruby / Kevin Deisz @kddeisz"
   speakers:
     - Kevin Newton
-  event_name: RubyKaigi 2020 Takeout
-  published_at: "2020-09-04"
-  video_provider: youtube
-  video_id: 3945FmGGHhw
-  language: English
+  event_name: "RubyKaigi Takeout 2020"
+  date: "2020-09-04"
+  published_at: "2020-09-09"
+  video_provider: "youtube"
+  video_id: "3945FmGGHhw"
+  language: "English"
   description: |-
     Prettier was created in 2017 and has since seen a meteoric rise within the JavaScript community. It differentiated itself from other code formatters and linters by supporting minimal configuration, eliminating the need for long discussions and arguments by enforcing an opinionated style on its users. That enforcement ended up resonating well, as it allowed developers to get back to work on the more important aspects of their job.
 
     Since then, it has expanded to support other languages and markup, including Ruby. The Ruby plugin is now in use in dozens of applications around the world, and better formatting is being worked on daily. This talk will give you a high-level overview of prettier and how to wield it in your project. It will also dive into the nitty gritty, showing how the plugin was made and how you can help contribute to its growth. You’ll come away with a better understanding of Ruby syntax, knowledge of a new tool and how it can be used to help your team.
 
-- title: Don't Wait For Me! Scalable Concurrency for Ruby 3!
+- id: "samuel-williams-rubykaigi-2020-takeout"
+  title: "Don't Wait For Me! Scalable Concurrency for Ruby 3!"
   raw_title: "[EN] Don't Wait For Me! Scalable Concurrency for Ruby 3! / Samuel Williams @ioquatix"
   speakers:
     - Samuel Williams
-  event_name: RubyKaigi 2020 Takeout
-  published_at: "2020-09-04"
-  video_provider: youtube
-  video_id: Y29SSOS4UOc
-  language: English
-  description:
-    We have proven that fibers are useful for building scalable systems.
-    In order to develop this further, we need to add hooks into the various Ruby VMs
-    so that we can improve the concurrency of existing code without changes. There
-    is an outstanding PR for this work, but additional effort is required to bring
-    this to completion and show its effectiveness in real world situations. We will
-    discuss the implementation of this PR, the implementation of the corresponding
-    Async Scheduler, and how they work together to improve the scalability of Ruby
-    applications.
+  event_name: "RubyKaigi Takeout 2020"
+  date: "2020-09-04"
+  published_at: "2020-09-09"
+  video_provider: "youtube"
+  video_id: "Y29SSOS4UOc"
+  language: "English"
+  description: |-
+    We have proven that fibers are useful for building scalable systems. In order to develop this further, we need to add hooks into the various Ruby VMs so that we can improve the concurrency of existing code without changes. There is an outstanding PR for this work, but additional effort is required to bring this to completion and show its effectiveness in real world situations. We will discuss the implementation of this PR, the implementation of the corresponding Async Scheduler, and how they work together to improve the scalability of Ruby applications.
 
-- title: Ruby Committers vs the World - Day 1
-  raw_title: Ruby committers vs the World - Day 1 (extended)
+- id: "ruby-committers-rubykaigi-2020-takeout"
+  title: "Ruby Committers vs the World - Day 1"
+  raw_title: "Ruby committers vs the World - Day 1 (extended)"
   speakers:
     - Ruby Committers # TODO: list each person
-  event_name: RubyKaigi 2020 Takeout
-  published_at: "2020-09-04"
-  video_provider: youtube
-  video_id: D-AK1x4vuRU
-  language:
-  description: https://rubykaigi.org/2020-takeout/presentations/rubylangorg.html#sep04
+  event_name: "RubyKaigi Takeout 2020"
+  date: "2020-09-04"
+  published_at: "2020-09-15"
+  video_provider: "youtube"
+  video_id: "D-AK1x4vuRU"
+  description: |-
+    https://rubykaigi.org/2020-takeout/presentations/rubylangorg.html#sep04
 
-- title: Ruby Committers vs the World - Day 2
-  raw_title: Ruby committers vs the World - Day 2
+- id: "ruby-committers-rubykaigi-2020-takeout-ruby-committers-vs-the-world-d"
+  title: "Ruby Committers vs the World - Day 2"
+  raw_title: "Ruby committers vs the World - Day 2"
   speakers:
     - Ruby Committers # TODO: list each person
-  event_name: RubyKaigi 2020 Takeout
-  published_at: "2020-09-04"
-  video_provider: youtube
-  video_id: 20VDvtpjGn0
-  language:
+  event_name: "RubyKaigi Takeout 2020"
+  date: "2020-09-04"
+  published_at: "2020-10-10"
+  video_provider: "youtube"
+  video_id: "20VDvtpjGn0"
   description: |-
     https://rubykaigi.org/2020-takeout/presentations/rubylangorg.html#sep05
 

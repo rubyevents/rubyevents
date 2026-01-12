@@ -4,29 +4,35 @@
   "dependencies": {
     "@appsignal/javascript": "^1.3.26",
     "@github/combobox-nav": "^3.0.1",
+    "@hotwired/hotwire-native-bridge": "^1.1.0",
     "@hotwired/stimulus": "^3.2.1",
     "@hotwired/turbo-rails": "^8.0.4",
+    "@josefarias/hotwire_combobox": "^0.4.0",
     "@rails/request.js": "^0.0.11",
     "@splidejs/splide": "^4.1.4",
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/typography": "^0.5.15",
     "chart.js": "^4.3.0",
     "chartkick": "^5.0.1",
-    "morphdom": "^2.7.0",
+    "flag-icons": "^7.5.0",
+    "maplibre-gl": "^5.15.0",
     "rfs": "^10.0.0",
     "stimulus-use": "^0.52.0",
     "tippy.js": "^6.3.7",
-    "vlitejs": "^6.0.3"
+    "vlitejs": "^7.3.2",
+    "yaml": "^2.7.1"
   },
   "scripts": {
     "build": "bin/vite build",
     "lint": "standard",
     "lint:yml": "yarn prettier --check data/**/**/*.yml",
     "format": "standard --fix",
-    "format:yml": "yarn run lint:yml --write"
+    "format:yml": "node yaml/enforce_strings.mjs && yarn run lint:yml --write",
+    "herb:lint": "herb-lint"
   },
   "packageManager": "yarn@1.22.19",
   "devDependencies": {
+    "@herb-tools/linter": "^0.8.7",
     "autoprefixer": "^10.4.14",
     "daisyui": "^4.12.14",
     "postcss": "^8.4.38",
@@ -37,7 +43,7 @@
     "standard": "^17.1.0",
     "stimulus-vite-helpers": "^3.1.0",
     "tailwindcss": "^3.4.4",
-    "vite": "^5.3.6",
+    "vite": "^6.4.1",
     "vite-plugin-rails": "^0.5.0"
   },
   "standard": {

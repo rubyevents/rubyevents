@@ -3,7 +3,7 @@
 namespace :update_video_statistics do
   desc "Update view_count and like_count in Talk table"
   task update: :environment do
-    client = Youtube::Video.new
+    client = YouTube::Video.new
 
     Talk.find_each do |talk|
       stats = client.get_statistics(talk.video_id)

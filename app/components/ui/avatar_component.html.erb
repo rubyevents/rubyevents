@@ -1,0 +1,29 @@
+<% avatar_markup = capture do %>
+  <div class="avatar placeholder">
+    <div class="<%= avatar_classes %>">
+      <% if content %>
+        <%= content %>
+      <% else %>
+        <span class="<%= text_size %> <%= "hidden" if show_custom_avatar? %>"><%= initials %></span>
+        <% if show_custom_avatar? %>
+          <%= image_tag avatar_url_for_size, loading: "lazy", onerror: "this.previousElementSibling.classList.remove('hidden'); this.remove()" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<% if show_hover_card? %>
+  <div class="relative group/card" data-controller="hover-card" data-action="mouseenter->hover-card#reveal">
+    <% if show_link? %>
+      <%= link_to link_path do %><%= avatar_markup %><% end %>
+    <% else %>
+      <%= avatar_markup %>
+    <% end %>
+    <%= render HoverCard::UserComponent.new(record: avatarable, avatar_size: size) %>
+  </div>
+<% elsif show_link? %>
+  <%= link_to link_path do %><%= avatar_markup %><% end %>
+<% else %>
+  <%= avatar_markup %>
+<% end %>

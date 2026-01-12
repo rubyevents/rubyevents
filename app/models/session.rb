@@ -2,6 +2,7 @@
 # == Schema Information
 #
 # Table name: sessions
+# Database name: primary
 #
 #  id         :integer          not null, primary key
 #  ip_address :string
@@ -25,5 +26,9 @@ class Session < ApplicationRecord
   before_create do
     self.user_agent = Current.user_agent
     self.ip_address = Current.ip_address
+  end
+
+  def sign_out_siblings!
+    user.sessions.without(self).delete_all
   end
 end

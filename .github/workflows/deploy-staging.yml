@@ -5,32 +5,36 @@ on: workflow_dispatch
 jobs:
   deploy-staging:
     name: Deploy to Staging
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
       DOCKER_BUILDKIT: 1
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
+
       - name: Set up Docker Buildx
-        id: buildx
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v3
+
       - name: Setup SSH
-        uses: webfactory/ssh-agent@v0.7.0
+        uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          bundler: default
           bundler-cache: true
+
       - name: Deploy to Staging
         env:
           VERSION: ${{ github.sha }}
           KAMAL_REGISTRY_PASSWORD: ${{ secrets.KAMAL_REGISTRY_PASSWORD }}
           KAMAL_RAILS_MASTER_KEY: ${{ secrets.KAMAL_RAILS_MASTER_KEY }}
-          MEILI_MASTER_KEY: ${{ secrets.MEILI_MASTER_KEY }}
+          GEOLOCATE_API_KEY: ${{ secrets.GEOLOCATE_API_KEY }}
+          MAPBOX_ACCESS_TOKEN: ${{ secrets.MAPBOX_ACCESS_TOKEN }}
         run: bundle exec kamal deploy -d staging
+
       - name: Cleanup on cancellation
         if: always() && steps.deploy.conclusion == 'cancelled'
         run: bundle exec kamal lock release

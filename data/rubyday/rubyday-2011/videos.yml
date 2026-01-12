@@ -1,0 +1,228 @@
+---
+# rubyday 2011 - Conference videos
+# Source: https://web.archive.org/web/20200809103350/http://2011.rubyday.it/agenda.html
+# Conference date: 2011-06-11
+
+- id: "rubyday-2011-giovanni-intini"
+  title: "Presentazione RubyDay.it, la storia della comunità Ruby in Italia"
+  raw_title: "RubyDay 2011 - Giovanni Intini - Presentazione RubyDay.it, la storia della comunità Ruby in Italia"
+  speakers:
+    - Giovanni Intini
+  event_name: "rubyday 2011"
+  date: "2011-06-11"
+  published_at: "2011-06-11"
+  description: |-
+    Opening presentation about rubyday.it and the history of the Ruby community in Italy.
+  video_provider: "not_recorded"
+  video_id: "rubyday-2011-giovanni-intini"
+  kind: "keynote"
+
+- id: "rubyday-2011-francesco-vollero"
+  title: "The Aeolus Project"
+  raw_title: "RubyDay 2011 - Francesco Vollero - The Aeolus Project"
+  speakers:
+    - Francesco Vollero
+  event_name: "rubyday 2011"
+  date: "2011-06-11"
+  track: "Track 1 (Ruby Mine)"
+  published_at: "2011-06-11"
+  description: |
+    Il mondo dei cloud provider è veramente vario e cresce ogni giorno di più il numero di provider che offrono questi servizi. La scelta è infinitamente varia, per rispondere alla necessità più disparate per l'utente medio. Aeolus Project nasce per offrire un sistema di gestione centralizzato dei diversi provider cloud per grandi società. Infatti questo progetto si propone come un sistema completo di gestione delle immagini di macchine virtuali, eseguirle nella loro infrastruttura interna (es. VMware vSphere, RHEV) e nello stesso tempo copiare/eseguire/gestire queste immagini virtuali in diversi cloud hosters (es. Amazon EC2, Rackspace, IBM Smart Business Cloud, Microsoft Azure, etc). Potrebbe apparire un'idiozia al primo sguardo ma è una opzione nel caso in cui, supponiamo, amazon ec2 va giù e possiamo avere la stessa istanza della macchina virtuale (diciamo) su Rackspace e continuare a lavorare da lì. Aeolus si occupa di tutto ciò che riguarda la conversione/trasferimento/etc automaticamente. Vi starete chiedendo, che ci azzecca questo con il Ruby day? Beh, ci azzecca molto, poiché molte parti di questo progetto sono in Ruby. Tipo? Uno dei componenti più importanti, deltacloud è scritto in Sinatra, parti della gestione delle code è scritto in Ruby e la nostra interfaccia UI è scritta in Rails.
+  video_provider: "not_recorded"
+  video_id: "rubyday-2011-francesco-vollero"
+  language: "Italian"
+
+- id: "rubyday-2011-gian-carlo-pace"
+  title: "Ruby on Rails survival guide of an aged Java developer"
+  raw_title: "RubyDay 2011 - Gian Carlo Pace - Ruby on Rails survival guide of an aged Java developer"
+  speakers:
+    - Gian Carlo Pace
+  event_name: "rubyday 2011"
+  date: "2011-06-11"
+  track: "Track 2 (Ruby Space)"
+  published_at: "2011-06-11"
+  description: |
+    Switching to ruby language and to the rails framework can be puzzling if you come from a deep java background knowledge. "How can I...? How do I...?" are the most common question during the ramp up period of the learning curve and there is a good chance to get lost in the big "cave of the gems". In this talk I'll try to explain the tips and tricks a java developer should know to avoid some common pitfalls and deliver his first rails project on time.
+  video_provider: "not_recorded"
+  video_id: "rubyday-2011-gian-carlo-pace"
+
+- id: "rubyday-2011-antonio-carpentieri"
+  title: "Varnish e caching di applicazioni Rails"
+  raw_title: "RubyDay 2011 - Antonio Carpentieri - Varnish e caching di applicazioni Rails"
+  speakers:
+    - Antonio Carpentieri
+  event_name: "rubyday 2011"
+  date: "2011-06-11"
+  track: "Track 1 (Ruby Mine)"
+  published_at: "2011-06-11"
+  description: |
+    "Varnish Cache is an open-source web application accelerator. You install it in front of any server that speaks HTTP and you can configure it to cache the contents." Come utilizzare e configurare Varnish davanti a Rails 2.3.x e Rails 3.0.x per far lavorare le tue macchine solo quando è necessario. Vedremo come evitare i più comuni pitfall ed ottenere un caching efficace, a partire dall' esperienza fatta nell'integrazione di Varnish su una applicazione web in Rails attualmente in produzione. Vedremo anche quali sono i risultati in termini di performance e carico sulle nostre macchine.
+  video_provider: "not_recorded"
+  video_id: "rubyday-2011-antonio-carpentieri"
+
+- id: "rubyday-2011-simone-damico"
+  title: "MacRuby"
+  raw_title: "RubyDay 2011 - Simone D'Amico - MacRuby"
+  speakers:
+    - Simone D'Amico
+  event_name: "rubyday 2011"
+  date: "2011-06-11"
+  track: "Track 2 (Ruby Space)"
+  published_at: "2011-06-11"
+  description: |
+    Introduzione e presentazione di MacRuby, implementazione di ruby 1.9 per Mac Os X. Si vedrà come, e con quali tecnologie, MacRuby s'integra in Cocoa, il framework di riferimento per lo sviluppo su piattaforma Apple. Si vedranno anche i requisiti e le procedure necessarie per pubblicare, ed eventualmente vendere, la propria applicazione ruby sull'App Store.
+  video_provider: "not_recorded"
+  video_id: "rubyday-2011-simone-damico"
+  language: "Italian"
+
+- id: "rubyday-2011-marco-borromeo"
+  title: "Analisi statica per un linguaggio dinamico"
+  raw_title: "RubyDay 2011 - Marco Borromeo - Analisi statica per un linguaggio dinamico"
+  speakers:
+    - Marco Borromeo
+  event_name: "rubyday 2011"
+  date: "2011-06-11"
+  track: "Track 1 (Ruby Mine)"
+  published_at: "2011-06-11"
+  description: |
+    Tutti sappiamo che Ruby è definito un linguaggio "dinamico", e accostarlo alla parola "statico" fa un pò impressione. Ma ci sono casi dove analizzare staticamente il nostro codice può far solo bene: l'analisi statica ci permette di identificare velocemente blocchi di codice ripetuti o molto simili tra loro, verificare la copertura dei tests, eventuali problemi sul design del codice, trovare files che cambiano spesso e misurare la complessità media del codice. Tenere costantemente monitorati questi dati durante lo sviluppo ci permette di prevenire situazioni dove diventa difficile mantenere il codice, fare bugfixing o introdurre nuove funzionalità. Durante il talk verranno esaminati i principali tool a disposizione per gestire l'analisi statica di codice Ruby, con esempi di refactoring di codice reale a partire dai dati emersi dalle analisi.
+  video_provider: "not_recorded"
+  video_id: "rubyday-2011-marco-borromeo"
+  language: "Italian"
+
+- id: "rubyday-2011-alessandro-cinelli-sandro-paganotti-alberto-barilla"
+  title: "Symfony2 and RoR3 friends for an hour"
+  raw_title: "RubyDay 2011 - Alessandro Cinelli, Sandro Paganotti, Alberto Barillà - Symfony2 and RoR3 friends for an hour"
+  speakers:
+    - Alessandro Cinelli
+    - Sandro Paganotti
+    - Alberto Barillà
+  event_name: "rubyday 2011"
+  date: "2011-06-11"
+  track: "Track 2 (Ruby Space)"
+  published_at: "2011-06-11"
+  description: |
+    Il talk è focalizzato sulla spiegazione delle princiapli differenze/similitudini fra questi due web framework mainstream. Adotteremo un approccio Top-Down parallelo nel quale gli aspetti di maggior importanza di entrambi i framework verranno descritti uno per uno a partire da quelli più infrastrutturali fino ad arrivare a quelli prevalentemente implementativi. Nella parte conclusiva dello speech ci focalizzeremo nel mostrare le filosofie dietro questi framework esponendo le feature più interessanti di entrambi i mondi. Tre speaker parteciperanno a questo speech. ognuno avrà un particolare ruolo: Alessandro, essendo PHP developer, si occuperà di approfondire glia spetti implementativi di syMfony2; Sandro è un hacker Ruby di vecchia data, che conosce e governa le technicalities del framework Rails; Alberto è il cialtrone (o più comunemente moderatore, nei circoli più mondani) che cercherà di fare da collante fra i due lati della forza.
+  video_provider: "not_recorded"
+  video_id: "rubyday-2011-alessandro-cinelli-sandro-paganotti-alberto-barilla"
+  language: "Italian"
+
+- id: "rubyday-2011-paolo-perrotta"
+  title: "A Metaprogramming Spell Book for Ruby and Rails"
+  raw_title: "RubyDay 2011 - Paolo Perrotta - A Metaprogramming Spell Book for Ruby and Rails"
+  speakers:
+    - Paolo Perrotta
+  event_name: "rubyday 2011"
+  date: "2011-06-11"
+  track: "Track 1 (Ruby Mine)"
+  published_at: "2011-06-11"
+  description: |
+    When I started to learn Ruby, I was awed by the code of experienced rubyists. That code was full of amazing magic tricks that I could barely understand. People called those tricks metaprogramming. With time, I found that metaprogramming sits right at the core of Ruby. To really understand Ruby, I had to understand all those scary tricks! Feeling like a sorcerer's apprentice, I set out to write a Spell Book of metaprogramming techniques. Once I'd finished the Spell Book, metaprogramming didn't seem like black magic anymore. Instead, it just felt like any other set of techniques. In this talk, I'll show you the content of my Spell Book, so that you don't have to go through the trouble of writing one yourself.
+  video_provider: "not_recorded"
+  video_id: "rubyday-2011-paolo-perrotta"
+
+- id: "rubyday-2011-andrea-schiavini"
+  title: "Webby: ASCII alchemy for quick website authoring"
+  raw_title: "RubyDay 2011 - Andrea Schiavini - Webby: ASCII alchemy for quick website authoring"
+  speakers:
+    - Andrea Schiavini
+  event_name: "rubyday 2011"
+  date: "2011-06-11"
+  track: "Track 2 (Ruby Space)"
+  published_at: "2011-06-11"
+  description: |
+    Webby allows to quickly manage a small website by combining the contents of a page with a layout to produce HTML. It supports different templating engines (ERB, Textile, Markdown, HAML, SASS), rake tasks to build the site and deploy it to a server, templates to quickly build resources like blog posts and much more. Introduzione a webby, installazione e dimostrazione del suo funzionamento per la creazione di un sito personale utilizzando haml e sass. Mostreremo anche come sia possibile usare i siti generati da Webby con Amazon S3. Opzionale: qualche accenno alla web typography con 960 GS.
+  video_provider: "not_recorded"
+  video_id: "rubyday-2011-andrea-schiavini"
+
+- id: "rubyday-2011-matteo-collina-daniele-bottillo"
+  title: "Progettare e sviluppare mobile web applications utilizzando Mockup, Sencha Touch e Sinatra"
+  raw_title: "RubyDay 2011 - Matteo Collina, Daniele Bottillo - Progettare e sviluppare mobile web applications utilizzando Mockup, Sencha Touch e Sinatra"
+  speakers:
+    - Matteo Collina
+    - Daniele Bottillo
+  event_name: "rubyday 2011"
+  date: "2011-06-11"
+  track: "Track 1 (Ruby Mine)"
+  published_at: "2011-06-11"
+  description: |
+    Mavigex è un'azienda giovane e dinamica che propone soluzioni mobili e interattive all' avanguardia. La presenza di molteplici piattaforme nel mercato degli smartphone ha portato a scegliere di sviluppare mobile applications con un approccio web-based: HTML5, CSS3 e il framework JavaScript Sencha Touch. Tra i vari linguaggi server-side, verrà mostrato come Ruby e il framework Sinatra siano la scelta che si integra meglio con questo approccio. Partendo da semplici mockup, durante la presentazione verrà illustrato il processo di sviluppo di queste mobile web applications mostrando la soluzione di un problema specifico, quale la fruizione di recensioni geolocalizzate. Verrà presentato il progetto dell'interazione tra l' applicazione e il suo backend, poi verranno illustrati brevemente i framework Sencha Touch e Sinatra. L'applicazione sviluppata verrà poi distribuita su un'infrastruttura di cloud computing.
+  video_provider: "not_recorded"
+  video_id: "rubyday-2011-matteo-collina-daniele-bottillo"
+  language: "Italian"
+
+- id: "rubyday-2011-luca-guidi"
+  title: "Minegems: Hosting privato di gemme"
+  raw_title: "RubyDay 2011 - Luca Guidi - Minegems: Hosting privato di gemme"
+  speakers:
+    - Luca Guidi
+  event_name: "rubyday 2011"
+  date: "2011-06-11"
+  track: "Track 2 (Ruby Space)"
+  published_at: "2011-06-11"
+  description: |
+    L'ecosistema Ruby si è notevolmente evoluto: RVM, Bundler ed un nuovo RubyGems.org hanno reso più agevole lavorare con le gemme. Sfortunatamente siamo ancora lontani dalla soluzione ideale: i deploy sono ancora troppo lenti, le gemme private sono distribuite tramite sistemi non standardizzati, i plugin Rails non possono essere facilmente distribuiti. In questo talk verrà spiegato come è stato sviluppato un servizio di hosting privato di gemme.
+  video_provider: "not_recorded"
+  video_id: "rubyday-2011-luca-guidi"
+  language: "Italian"
+
+- id: "rubyday-2011-simone-carletti"
+  title: "RSpec best practices"
+  raw_title: "RubyDay 2011 - Simone Carletti - RSpec best practices"
+  speakers:
+    - Simone Carletti
+  event_name: "rubyday 2011"
+  date: "2011-06-11"
+  track: "Track 1 (Ruby Mine)"
+  published_at: "2011-06-11"
+  description: |
+    Il testing è da sempre uno dei pilastri dello sviluppo in Ruby. Ruby è stato uno dei primi linguaggi ad avere un framework completo per lo unit testing direttamente all'interno della standard library. Tuttavia, questo non ha impedito la nascita di nuovi strumenti e librerie per il testing e continuous integration. Questo talk prende in esame RSpec, una delle alternative più mature e diffuse a Test::Unit, la libreria di testing distribuita nella Ruby Standard Library. RSpec è una libreria elegante e completa, in grado di combinare l'importanza di scrivere test "leggibili" con l'obiettivo fondamentale di riprodurre e validare al meglio l'efficacia del nostro programma. Vedremo come usare al meglio RSpec, quali sono i vantaggi rispetto a Test::Unit e come scrivere test in modo efficace ed efficiente. Non mancheranno accenni al testing in generale, altre librerie come Cucumber, Shoulda, Mocha, RR e all'uso di RSpec con Rails ed altri framework Ruby.
+  video_provider: "not_recorded"
+  video_id: "rubyday-2011-simone-carletti"
+  slides_url: "https://speakerdeck.com/simonecarletti/rubyday-2011-rspec-best-practices"
+  language: "Italian"
+
+- id: "rubyday-2011-luca-mearelli"
+  title: "To batch or not to batch"
+  raw_title: "RubyDay 2011 - Luca Mearelli - To batch or not to batch"
+  speakers:
+    - Luca Mearelli
+  event_name: "rubyday 2011"
+  date: "2011-06-11"
+  track: "Track 2 (Ruby Space)"
+  published_at: "2011-06-11"
+  description: |
+    Sviluppare un'applicazione web sembra essere diventato molto semplice da quando abbiamo framework come rails o sinatra, ma la realtà è un po' più complessa di quello che sembra :) Qualunque applicazione dovrà fare una o più di queste operazioni, o operazioni simili: mandare email, generare documenti o esportazioni dei dati, ridimensionare o trasformare foto, interrogare web service remoti. Tutte queste sono troppo lente e pesanti per essere eseguite nel normale ciclo di richiesta/risposta. Non potendo eseguire certe attività in poche frazioni di secondo, l'unica possibilità che abbiamo è farle al di fuori dell'applicazione, utilizzando un meccanismo di esecuzione asincrono. Quando l'applicazione si trova a dover eseguire un'attività "lenta", ne potrà lanciare l'esecuzione e potrà proseguire a rispondere all'utente senza doverne aspettare la conclusione. Nei casi in cui sia necessario utilizzare il risultato dell'operazione asincrona, si farà in modo che questi possano essere recuperati con facilità. Questo permette all'applicazione di rimanere rapida e reattiva alle richieste degli utenti e rende più facile farla scalare. Oltre alle operazioni "lente" richieste dagli utente, è spesso necessario eseguire attività di manutenzione programmata (ad esempio: la pulizia delle sessioni), vedremo dunque come alcuni strumenti permettono di programmare nel tempo le attività asincrone, indipendentemente dalle richieste degli utenti. Esistono varie possibilità e librerie che permettono di implementare un sistema del genere e durante il talk utilizzando vari esempi, parleremo soprattutto di code, workers, & co: Resque, Delayed_job. Ma anche di crontab: Craken, Whenever. Accennando infine ad altri approcci (attuali & storici): Beanstalkd and Stalker, BackgroundRb, SQS, Nanite.
+  video_provider: "not_recorded"
+  video_id: "rubyday-2011-luca-mearelli"
+  language: "Italian"
+
+- id: "rubyday-2011-sam-reghenzi"
+  title: "Continuous integration/deployment"
+  raw_title: "RubyDay 2011 - Sam Reghenzi - Continuous integration/deployment"
+  speakers:
+    - Sam Reghenzi
+  event_name: "rubyday 2011"
+  date: "2011-06-11"
+  track: "Track 1 (Ruby Mine)"
+  published_at: "2011-06-11"
+  description: |-
+    Continuous integration/deployment cos'è, perché è importante e come implementarlo per un progetto ruby/rails ottenendo molto con poco sforzo.
+  video_provider: "not_recorded"
+  video_id: "rubyday-2011-sam-reghenzi"
+  language: "Italian"
+
+- id: "rubyday-2011-matteo-vaccari"
+  title: "Solid design for Rails applications"
+  raw_title: "RubyDay 2011 - Matteo Vaccari - Solid design for Rails applications"
+  speakers:
+    - Matteo Vaccari
+  event_name: "rubyday 2011"
+  date: "2011-06-11"
+  track: "Track 2 (Ruby Space)"
+  published_at: "2011-06-11"
+  description: |
+    Le applicazioni Rails sono progettate secondo uno schema preciso: model, view, controller. Quando l'applicazione è giovane, i modelli le view e i controller sono di una chiarezza cristallina. Ma con l'andare del tempo, si aggiungono gli IF e le modifiche e l'originale chiarezza viene offuscata. Che fare quando la view, il modello o il controller diventano foreste impenetrabili? In questa presentazione vorrei mostrare alcune tecniche per riportare la semplicità in un'applicazione Rails, ritornando ad alcuni ben noti principi di programmazione a oggetti.
+  video_provider: "not_recorded"
+  video_id: "rubyday-2011-matteo-vaccari"
+  language: "Italian"

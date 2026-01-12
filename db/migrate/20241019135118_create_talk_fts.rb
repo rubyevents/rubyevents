@@ -5,7 +5,7 @@ class CreateTalkFts < ActiveRecord::Migration[7.2]
       "tokenize = porter"
     ]
 
-    Talk.rebuild_search_index
+    Talk.reindex_all
   end
 
   def down

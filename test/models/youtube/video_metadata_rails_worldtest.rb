@@ -16,13 +16,13 @@
 # rubocop:enable Layout/LineLength
 require "test_helper"
 
-class Youtube::VideoMetadataRailsWorldTest < ActiveSupport::TestCase
+class YouTube::VideoMetadataRailsWorldTest < ActiveSupport::TestCase
   test "remove the event name from the title and preserve the keynote mention" do
     metadata = OpenStruct.new({
       title: "Nikita Vasilevsky - Implementing Native Composite Primary Key Support in Rails 7.1 - Rails World '23",
       description: "RailsWorld 2023 lorem ipsum"
     })
-    results = Youtube::VideoMetadataRailsWorld.new(metadata: metadata, event_name: "Rails World 23")
+    results = YouTube::VideoMetadataRailsWorld.new(metadata: metadata, event_name: "Rails World 23")
     assert_equal results.cleaned.title, "Implementing Native Composite Primary Key Support in Rails 7.1"
     refute results.keynote?
   end

@@ -1,0 +1,100 @@
+<%# locals: (location:, layers: [], time_layers: [], geo_layers: [], online_events: []) %>
+
+<%= turbo_refreshes_with method: :morph, scroll: :preserve %>
+
+<% title "Events Map in #{location.name}" %>
+
+<% all_layers = layers.presence || geo_layers %>
+<% total_markers = geo_layers.sum { |l| l[:markers]&.count || 0 } %>
+<% has_city_pin = geo_layers.any? { |l| l[:cityPin].present? } %>
+
+<%= render "shared/location_header",
+      name: location.name,
+      subtitle: location.to_location.to_text,
+      flag_code: (location.respond_to?(:alpha2) && !location.is_a?(Continent)) ? location.alpha2 : nil,
+      emoji: location.is_a?(Continent) ? location.emoji_flag : nil,
+      stats: "#{pluralize(total_markers, "event")} on the map",
+      location: location %>
+
+<%= render "shared/location_navigation",
+      location: location,
+      current_tab: "map",
+      show_cities: location.is_a?(Country) || location.is_a?(UKNation),
+      show_countries: location.is_a?(Continent),
+      show_states: location.is_a?(Country) && location.states?,
+      show_stamps: location.stamps.any? %>
+
+<div class="container py-8">
+  <% if all_layers.any? || has_city_pin %>
+    <div
+      data-controller="map"
+      data-map-layers-value="<%= all_layers.to_json %>"
+      <% if location.bounds.present? %>
+        data-map-bounds-value="<%= location.bounds.to_json %>"
+      <% end %>>
+      <div class="flex flex-col gap-4 mb-6">
+        <div class="flex items-center justify-between">
+          <h2 class="text-xl font-bold text-gray-900">Events Map</h2>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <% if time_layers.size > 1 %>
+            <div class="flex items-center gap-2">
+              <span class="text-sm font-medium text-gray-600">Time:</span>
+
+              <%= render "shared/map_time_filter", options: time_layers %>
+            </div>
+          <% end %>
+
+          <% if geo_layers.size > 1 %>
+            <div class="flex items-center gap-2">
+              <span class="text-sm font-medium text-gray-600">Location:</span>
+
+              <%= render "shared/map_layer_controls", layers: geo_layers, selection: "radio", use_emoji: true %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div
+        id="location-map"
+        class="w-full h-[600px] rounded-xl overflow-hidden border"
+        data-map-target="container"></div>
+    </div>
+
+    <% if online_events.any? %>
+      <div class="mt-8">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="text-xl">🌐</span>
+          <h3 class="text-lg font-semibold text-gray-900">Upcoming Online Events</h3>
+          <span class="badge badge-ghost"><%= online_events.count %></span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <% online_events.each do |event| %>
+            <%= link_to event_path(event), class: "flex items-center gap-3 p-3 rounded-lg border hover:bg-gray-50 transition-colors" do %>
+              <div class="avatar">
+                <div class="w-10 h-10 rounded-full">
+                  <%= image_tag event.avatar_image_path, alt: event.name %>
+                </div>
+              </div>
+
+              <div class="flex-1 min-w-0">
+                <div class="font-medium text-gray-900 truncate"><%= event.name %></div>
+                <% if event.start_date %>
+                  <div class="text-sm text-gray-500"><%= event.start_date.strftime("%b %d, %Y") %></div>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-xl font-bold text-gray-900">Events Map</h2>
+    </div>
+
+    <p class="text-gray-500 py-8 text-center">No events with location data in <%= location.name %>.</p>
+  <% end %>
+</div>

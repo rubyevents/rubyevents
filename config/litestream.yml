@@ -1,0 +1,60 @@
+# This is the actual configuration file for litestream.
+#
+# You can either use the generated `config/initializers/litestream.rb`
+# file to configure the litestream-ruby gem, which will populate these
+# ENV variables when using the `rails litestream:replicate` command.
+#
+# Or, if you prefer, manually manage ENV variables and this configuration file.
+# In that case, simply ensure that the ENV variables are set before running the
+# `replicate` command.
+#
+# For more details, see: https://litestream.io/reference/config/
+
+# global settings
+sync-interval: 1m
+
+snapshot:
+  interval: 1h
+  retention: 360h # 15 days
+
+dbs:
+  # production
+  - path: /rails/storage/production_rubyvideo.sqlite3
+    replicas:
+      - type: s3
+        endpoint: $LITESTREAM_ENDPOINT
+        bucket: rubyvideo-production
+        path: storage/production_rubyvideo.sqlite3
+        access-key-id: $LITESTREAM_ACCESS_KEY_ID
+        secret-access-key: $LITESTREAM_SECRET_ACCESS_KEY
+
+  # - path: storage/production_rubyvideo.sqlite3
+  #   replicas:
+  #     - type: s3
+  #       bucket: $LITESTREAM_REPLICA_BUCKET
+  #       path: storage/production_rubyvideo.sqlite3
+  #       access-key-id: $LITESTREAM_ACCESS_KEY_ID
+  #       secret-access-key: $LITESTREAM_SECRET_ACCESS_KEY
+  # - path: storage/production_rubyvideo-cache.sqlite3
+  #   replicas:
+  #     - type: s3
+  #       bucket: $LITESTREAM_REPLICA_BUCKET
+  #       path: storage/production_rubyvideo-cache.sqlite3
+  #       access-key-id: $LITESTREAM_ACCESS_KEY_ID
+  #       secret-access-key: $LITESTREAM_SECRET_ACCESS_KEY
+  # - path: storage/production_rubyvideo-queue.sqlite3
+  #   replicas:
+  #     - type: s3
+  #       bucket: $LITESTREAM_REPLICA_BUCKET
+  #       path: storage/production_rubyvideo-queue.sqlite3
+  #       access-key-id: $LITESTREAM_ACCESS_KEY_ID
+  #       secret-access-key: $LITESTREAM_SECRET_ACCESS_KEY
+  # staging
+  - path: /rails/storage/staging_rubyvideo.sqlite3
+    replicas:
+      - type: s3
+        endpoint: $LITESTREAM_ENDPOINT
+        bucket: rubyvideo-staging
+        path: storage/staging_rubyvideo.sqlite3
+        access-key-id: $LITESTREAM_ACCESS_KEY_ID
+        secret-access-key: $LITESTREAM_SECRET_ACCESS_KEY

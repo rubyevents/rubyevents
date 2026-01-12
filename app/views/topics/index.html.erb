@@ -1,8 +1,16 @@
 <div class="container py-8">
-  <div class="flex items-center gap-2 title text-primary">
-    <h1 style="view-transition-name: title">Topics</h1>
+  <div class="flex items-center justify-between">
+    <div class="flex items-center gap-2 title text-primary">
+      <h1>Topics</h1>
+    </div>
+
+    <%= link_to gems_path, class: "btn btn-sm btn-outline btn-primary" do %>
+      <%= inline_svg_tag "icons/fontawesome/gem-solid.svg", class: "size-4" %>
+      View Gems
+    <% end %>
   </div>
-  <div class="flex flex-wrap w-full justify-between py-8 gap-1">
+
+  <div class="flex flex-wrap w-full justify-between hotwire-native:hidden py-8 gap-1">
     <% ("a".."z").each do |letter| %>
       <%= link_to topics_path(letter: letter), class: class_names("flex items-center justify-center w-10 text-gray-500 rounded hover:bg-brand-lighter border", "bg-brand-lighter": letter == params[:letter]) do %>
         <%= letter.upcase %>
@@ -12,11 +20,11 @@
         all
       <% end %>
   </div>
+
   <div id="topics" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 lg:gap-x-12 gap-y-2 min-w-full">
-    <% cache @topics do %>
-      <%= render partial: "topic", collection: @topics, as: :topic %>
-    <% end %>
+    <%= render partial: "topic", collection: @topics, as: :topic %>
   </div>
+
   <% if @pagy.next.present? %>
     <%= turbo_frame_tag :pagination,
           data: {

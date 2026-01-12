@@ -1,0 +1,29 @@
+<%= render partial: "events/header", locals: {event: @event} %>
+
+<%= turbo_frame_tag dom_id(@event), data: {turbo_action: "advance", turbo_frame: "_top"} do %>
+  <div class="container py-8">
+    <%= render partial: "events/navigation", locals: {event: @event} %>
+
+    <div class="w-full">
+      <div class="w-full flex flex-col gap-8" role="tablist" aria-orientation="vertical">
+        <% @event.talks_in_running_order.where(meta_talk: true).reverse.each do |talk| %>
+          <%= render "shared/meta_talk_card", meta_talk: talk %>
+        <% end %>
+
+        <% if @talks.empty? %>
+          <div class="flex justify-center border rounded" style="padding-top: 3rem; padding-bottom: 3rem; padding-right: 1rem; padding-left: 1rem">
+            <div class="text-center text-gray-600">
+              <p>
+                <b>No events found for this meetup.</b>
+              </p>
+              <p class="mt-2">
+                Feel free to contribute events and talks to this meetup if you know how to access the details.
+              </p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+<% end %>

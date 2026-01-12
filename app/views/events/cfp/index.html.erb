@@ -1,0 +1,128 @@
+<%= render partial: "events/header", locals: {event: @event} %>
+
+<%= turbo_frame_tag dom_id(@event), data: {turbo_action: "advance", turbo_frame: "_top"} do %>
+  <div class="container py-8">
+    <%= render partial: "events/navigation", locals: {event: @event} %>
+
+    <div class="flex flex-col gap-8 mt-8">
+      <% if @event.cfps.any? %>
+        <% @event.cfps.each do |cfp| %>
+          <section class="bg-white rounded-lg border p-8">
+            <div class="flex items-center gap-4 mb-6">
+              <div class="text-3xl leading-none">📝</div>
+              <div class="flex-1">
+                <div class="flex items-center gap-3 flex-wrap">
+                  <h2 class="text-2xl font-bold text-gray-900">
+                    <% if cfp.name.present? %>
+                      <%= cfp.name %>
+                    <% else %>
+                      Call for Proposals
+                    <% end %>
+                  </h2>
+                  <% if cfp.open? && cfp.open_ended? %>
+                    <span class="inline-block px-3 py-1 text-sm font-medium bg-green-100 text-green-800 rounded-full">
+                      Always Open
+                    </span>
+                  <% elsif cfp.open? %>
+                    <span class="inline-block px-3 py-1 text-sm font-medium bg-green-100 text-green-800 rounded-full">
+                      Open
+                    </span>
+                  <% elsif cfp.future? %>
+                    <span class="inline-block px-3 py-1 text-sm font-medium bg-blue-100 text-blue-800 rounded-full">
+                      Upcoming
+                    </span>
+                  <% elsif cfp.closed? %>
+                    <span class="inline-block px-3 py-1 text-sm font-medium bg-gray-100 text-gray-800 rounded-full">
+                      Closed
+                    </span>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid gap-6 md:grid-cols-2">
+              <% if cfp.open_date.present? %>
+                <div class="flex flex-col">
+                  <h3 class="font-semibold text-gray-700 mb-2">CFP Opens</h3>
+                  <div class="text-lg text-primary">
+                    <%= cfp.formatted_open_date %>
+                  </div>
+                  <% if cfp.future? && cfp.days_until_open %>
+                    <div class="text-sm text-blue-600 mt-1">
+                      Opens in <%= pluralize(cfp.days_until_open, "day") %>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
+
+              <% if cfp.close_date.present? %>
+                <div class="flex flex-col">
+                  <h3 class="font-semibold text-gray-700 mb-2">CFP Closes</h3>
+                  <div class="text-lg text-primary">
+                    <%= cfp.formatted_close_date %>
+                  </div>
+                  <% if cfp.open? && cfp.days_remaining %>
+                    <div class="text-sm text-green-600 mt-1">
+                      <%= pluralize(cfp.days_remaining, "day") %> remaining
+                    </div>
+                  <% elsif cfp.closed? && cfp.days_since_close %>
+                    <div class="text-sm text-gray-600 mt-1">
+                      Closed <%= pluralize(cfp.days_since_close, "day") %> ago
+                    </div>
+                  <% end %>
+                </div>
+              <% elsif cfp.open_ended? %>
+                <div class="flex flex-col">
+                  <h3 class="font-semibold text-gray-700 mb-2">CFP Closes</h3>
+                  <div class="text-lg text-green-600">
+                    No deadline
+                  </div>
+                  <div class="text-sm text-gray-600 mt-1">
+                    Proposals are accepted on a rolling basis
+                  </div>
+                </div>
+              <% end %>
+            </div>
+
+            <% if cfp.link.present? %>
+              <div class="mt-8">
+                <% if cfp.open? %>
+                  <%= link_to "Submit Your Talk Proposal",
+                        cfp.link,
+                        class: "inline-flex items-center px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-colors duration-200",
+                        target: "_blank",
+                        rel: "noopener" %>
+                <% else %>
+                  <%= link_to "See CFP Details",
+                        cfp.link,
+                        class: "inline-flex items-center px-6 py-3 bg-gray-600 text-white font-semibold rounded-lg hover:bg-gray-700 transition-colors duration-200",
+                        target: "_blank",
+                        rel: "noopener" %>
+                <% end %>
+              </div>
+            <% end %>
+          </section>
+        <% end %>
+      <% else %>
+        <div class="text-center py-12">
+          <div class="max-w-md mx-auto">
+            <div class="text-6xl mb-4">📝</div>
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">No CFP Information</h2>
+            <p class="text-gray-600 mb-6">
+              We don't have Call for Proposals information for <%= @event.name %> yet.
+            </p>
+            <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-left">
+              <h3 class="font-semibold text-amber-800 mb-2">How to contribute:</h3>
+              <ul class="text-sm text-amber-700 space-y-1">
+                <li>• Check the event website for CFP details</li>
+                <li>• Look for CFP announcements on social media</li>
+                <li>• <a href="https://github.com/rubyevents/rubyevents/issues/new?title=<%= CGI.escape("#{@event.name} CFP Information") %>&body=<%= CGI.escape("<!-- CFP Details Here -->\n\nIssue opened from event page: #{event_url(@event)}") %>" class="underline hover:text-amber-900" target="_blank">Open an issue on GitHub</a> to report CFP details</li>
+                <li>• <a href="https://github.com/rubyevents/rubyevents/blob/main/CONTRIBUTING.md" class="underline hover:text-amber-900" target="_blank">Submit CFP data via GitHub</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

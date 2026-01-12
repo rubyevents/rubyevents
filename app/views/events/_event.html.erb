@@ -1,6 +1,6 @@
 <%= link_to event_path(event), id: dom_id(event), class: "event flex justify-between items-center" do %>
   <div class="flex items-center gap-2">
-    <%= image_tag image_path(event.avatar_image_path), class: "size-8 rounded-full", loading: "lazy" %>
+    <%= image_tag image_path(event.avatar_image_path), style: "view-transition-name: #{dom_id(event, :logo)}", class: "size-8 rounded-full", loading: "lazy" %>
     <span class="event-name"><%= event.name %></span>
   </div>
   <%= ui_badge(event.talks_count, kind: :secondary, outline: true, size: :lg, class: "min-w-10") %>

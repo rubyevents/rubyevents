@@ -1,35 +1,15 @@
-<div class="container py-8">
-  <h1 class="title">
-    Events
-    <% if params[:s].present? %>
-      : search results for "<%= params[:s] %>"
-    <% end %>
+<div class="container py-8 hotwire-native:py-3">
+  <div class="flex items-center justify-between w-full hotwire-native:hidden">
+    <h1 class="title shrink-0">
+      <%= title "Upcoming Events" %>
+    </h1>
 
-    <span class="text-base text-gray-500">
-      (<%= pluralize(@events.includes(:organisation).where(organisation: {kind: "conference"}).count, "conference") %>,
-      <%= pluralize(@events.includes(:organisation).where(organisation: {kind: "meetup"}).count, "meetup") %>)
-    </span>
-  </h1>
-
-  <div class="flex flex-wrap w-full justify-between py-8 gap-1">
-    <% ("a".."z").each do |letter| %>
-      <%= link_to events_path(letter: letter), id: letter, class: class_names("flex items-center justify-center w-10 text-gray-500 rounded hover:bg-brand-lighter border", "bg-brand-lighter": letter == params[:letter]) do %>
-        <%= letter.upcase %>
-      <% end %>
-    <% end %>
-    <%= link_to events_path, class: class_names("flex items-center justify-center w-10 text-gray-500 rounded hover:bg-brand-lighter border", "bg-brand-lighter": params[:letter].blank?) do %>
-        all
-      <% end %>
+    <div class="flex gap-4 whitespace-nowrap">
+      <%= link_to "Past Events", past_events_path, class: "link text-right w-full" %>
+      <%= link_to "Archive", archive_events_path, class: "link text-right w-full" %>
+      <%= link_to "#{Date.today.year} Calendar", year_events_path(year: Date.today.year), class: "link text-right w-full" %>
+    </div>
   </div>
 
-  <% if @events.any? %>
-    <% @events.group_by(&:organisation).each do |organisation, events| %>
-      <h2><%= link_to organisation.name, organisation %></h2>
-      <div id="<%= dom_id(organisation, "events") %>" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 lg:gap-x-12 gap-y-2 min-w-full pt-4 pb-8">
-        <%= render events %>
-      </div>
-    <% end %>
-  <% else %>
-    <p>No events found</p>
-  <% end %>
+  <%= render partial: "events/featured_card_list", locals: {events: @events} %>
 </div>

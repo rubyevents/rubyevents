@@ -1,0 +1,37 @@
+<%# locals: (event:) %>
+<% featured_bg = event.static_metadata.featured_background.presence || "#1f2937" %>
+<% featured_color = event.static_metadata.featured_color.presence || "#ffffff" %>
+
+<div class="rounded-2xl overflow-hidden" style="background: <%= featured_bg %>; color: <%= featured_color %>;">
+  <div class="p-6 pb-0">
+    <div class="aspect-[615/350] overflow-hidden rounded-xl">
+      <%= image_tag event.featured_image_path, alt: event.name, class: "w-full h-full object-cover", loading: "lazy" %>
+    </div>
+  </div>
+
+  <div class="p-5 pt-4">
+    <div>
+      <p class="font-bold text-sm leading-tight line-clamp-2"><%= event.name %></p>
+      <p class="text-xs opacity-75 mt-1"><%= event.formatted_dates %></p>
+    </div>
+
+    <div class="mt-3 pt-3 border-t flex items-center justify-between" style="border-color: <%= featured_color %>20;">
+      <div class="flex items-center gap-1.5 text-xs min-w-0 flex-1">
+        <%= fa "location-dot", class: "text-[10px] shrink-0" %>
+        <span class="truncate"><%= event.to_location.to_html(show_links: false) %></span>
+      </div>
+
+      <% if event.keynote_speakers.any? %>
+        <div class="flex gap-1">
+          <% event.keynote_speakers.first(4).each do |speaker| %>
+            <% if speaker.github_handle.present? %>
+              <div class="w-6 h-6 rounded-full overflow-hidden ring-2 ring-current/20">
+                <%= image_tag "https://avatars.githubusercontent.com/#{speaker.github_handle}?s=48", alt: speaker.name, class: "w-full h-full object-cover", loading: "lazy" %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

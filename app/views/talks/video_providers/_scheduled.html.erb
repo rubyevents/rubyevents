@@ -1,17 +1,28 @@
+<%# locals: (talk:, video_provider:, video_id:, is_watched: false) %>
+
 <div class="relative w-full h-full block">
-  <%= image_tag talk.thumbnail_xl, class: "w-full h-full object-cover rounded-xl" %>
+  <%= image_tag talk.thumbnail_xl, class: "w-full h-full object-cover rounded-xl #{talk.thumbnail_classes}" %>
 
-  <div class="absolute inset-0 text-center text-white bg-black/80 flex flex-col gap-3 justify-center items-center font-bold text-xl rounded-xl p-6">
-    <span class="bg-black/30 p-4 rounded-full">
-      <%= fa("clock", size: :lg, class: "fill-white") %>
-    </span>
+  <div class="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center text-white bg-gradient-to-t from-black/80 via-black/50 to-black/30 rounded-xl">
+    <div class="p-4 bg-white/20 backdrop-blur-sm rounded-full">
+      <%= fa("clock", size: :xl, class: "fill-white") %>
+    </div>
 
-    This talk is scheduled to be held at <%= talk.event.name %>
-
-    <% if talk.event.location && !talk.event.location.in?(["Earth", "online", "Online"]) %>
-      in <%= talk.event.location %>
-    <% end %>
-
-    on <%= talk.formatted_date %>.
+    <div class="flex flex-col gap-1">
+      <div class="text-lg font-semibold">
+        <% if talk.date.past? %>
+          <%= talk.formatted_kind.capitalize %> was held
+        <% else %>
+          Scheduled
+        <% end %>
+      </div>
+      <div class="text-sm text-white/80">
+        <%= talk.event.name %>
+        <% if talk.to_location.present? && !talk.location.in?(["Earth", "online", "Online"]) %>
+          · <%= talk.to_location.to_html(show_links: false) %>
+        <% end %>
+        · <%= talk.formatted_date %>
+      </div>
+    </div>
   </div>
 </div>

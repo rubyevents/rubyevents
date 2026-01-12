@@ -1,0 +1,40 @@
+<h2 class="text-2xl font-bold mb-4">Avatar</h2>
+
+<% avatarable = User.speakers.first %>
+<div class="flex gap-16 w-full">
+  <div class="flex items-center justify-start gap-4 mb-8 flex-wrap">
+    <% [:primary, :neutral].each do |kind| %>
+      <div class="text-center">
+        <%= ui_avatar avatarable, kind: kind %><br>
+        <%= kind %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<p>Sizes</p>
+<div class="flex items-center justify-start gap-4 mt-4 mb-8 flex-wrap">
+  <% [:sm, :md, :lg].each do |size| %>
+    <div class="text-center">
+      <%= ui_avatar avatarable, size: size %><br>
+      <%= size %>
+    </div>
+  <% end %>
+</div>
+<p>Outline</p>
+<div class="flex items-center justify-start gap-4 mt-4 mb-8 flex-wrap bg-gray-500 p-2 w-80">
+  <% [true, false].each do |value| %>
+    <div class="text-center text-white">
+      <%= ui_avatar avatarable, outline: value %><br>
+      <%= value.to_s %>
+    </div>
+  <% end %>
+</div>
+<p>Custom size class</p>
+<div class="flex items-center justify-start gap-4 mt-4 mb-8 flex-wrap">
+  <% ["w-10", "w-20"].each do |size_class| %>
+    <div class="text-center">
+      <%= ui_avatar avatarable, size_class: size_class %><br>
+      <%= size_class %>
+    </div>
+  <% end %>
+</div>

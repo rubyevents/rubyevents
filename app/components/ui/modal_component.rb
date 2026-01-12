@@ -10,7 +10,9 @@ class Ui::ModalComponent < ApplicationComponent
 
   SIZE_MAPPING = {
     md: "",
-    lg: "!max-w-[800px]"
+    lg: "!max-w-[800px]",
+    xl: "!max-w-[1200px]",
+    full: "!max-w-[95vw] !w-[95vw] !max-h-[90vh]"
   }
 
   option :open, type: Dry::Types["strict.bool"], default: proc { false }

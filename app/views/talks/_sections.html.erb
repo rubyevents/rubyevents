@@ -1,0 +1,49 @@
+<div class="relative group border border-transparent" id="talkToggle">
+  <div class="max-h-[220px] group-data-[expanded]:max-h-none overflow-y-hidden transition transition-all">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-2 md:gap-4 mb-3">
+      <% talk.child_talks.order(:start_seconds).each_with_index do |child_talk, index| %>
+        <%= link_to child_talk, data: {turbo_frame: "talk"}, class: "p-2 border rounded group bg-white hover:bg-gray-100 data-[active]:border-blue-700/30 data-[active]:bg-blue-50 hover:data-[active]:bg-blue-100 data-[active]:text-blue-700", **{"data-active" => child_talk == talk}.select { |_, v| v } do %>
+          <div class="flex justify-between">
+            <div <% if child_talk == talk %> data-active <% end %> class="flex gap-3 text-gray-700 data-[active]:font-bold text-sm">
+              <div class="flex aspect-video shrink-0 relative w-16 lg:w-24 xl:w-36">
+                <%= image_tag child_talk.thumbnail_sm, srcset: ["#{child_talk.thumbnail_sm} 2x"], id: dom_id(child_talk), class: "w-full h-auto aspect-video object-cover rounded #{child_talk.thumbnail_classes}", loading: :lazy %>
+              </div>
+
+              <div class="flex flex-col gap-0.5 justify-center">
+                <div class="text-xs text-gray-500 mb-1 hidden xl:block">
+                  Section <%= index + 1 %>
+                </div>
+                <div class="text-sm font-bold">
+                  <%= child_talk.speakers.map(&:name).to_sentence %>
+                </div>
+                <div class="text-sm text-gray-500 line-clamp-2 data-[active]:text-blue-700" <% if child_talk == talk %> data-active <% end %>>
+                  <%= child_talk.title %>
+
+                  <% if child_talk.language_name != "English" %>
+                    <span data-controller="tooltip" data-tooltip-content-value="<%= child_talk.language_name %>">
+                      - <%= language_to_emoji(child_talk.language_name) %>
+                    </span>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-2 justify-right">
+              <% if child_talk.start_seconds %>
+                <div class="badge">
+                  <%= seconds_to_formatted_duration(child_talk.start_seconds) %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <% if talk.child_talks.size > 4 %>
+    <div class="absolute bottom-0 left-0 w-full h-36 bg-gradient-to-t from-base-100 to-transparent group-data-[expanded]:hidden flex justify-center items-end">
+      <button class="btn btn-sm btn-white shadow" onclick="talkToggle.toggleAttribute('data-expanded')">Show all <%= pluralize(talk.child_talks.size, "section") %></button>
+    </div>
+  <% end %>
+</div>

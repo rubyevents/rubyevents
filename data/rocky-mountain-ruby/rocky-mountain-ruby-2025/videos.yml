@@ -1,0 +1,453 @@
+# Website: https://rockymtnruby.dev
+---
+## Day 1
+
+- title: "Opening Remarks, Monday"
+  raw_title: "Rocky Mountain Ruby 2025 Opening Remarks with Spike and Bekki"
+  speakers:
+    - Spike Ilacqua
+    - Bekki Freeman
+  event_name: "Rocky Mountain Ruby 2025"
+  date: "2025-10-06"
+  published_at: "2025-10-22"
+  language: "en"
+  description: |-
+    Rocky Mountain Ruby 2025 Opening Remarks with Spike and Bekki
+  video_provider: "youtube"
+  video_id: "eK0YK5y4fOo"
+  id: "rocky-mountain-ruby-2025-opening-remarks-monday"
+
+- title: "Keynote: We Who Remember Magic"
+  raw_title: "Rocky Mountain Ruby 2025 - We Who Remember Magic by Brandon Weaver"
+  speakers:
+    - Brandon Weaver
+  event_name: "Rocky Mountain Ruby 2025"
+  date: "2025-10-06"
+  published_at: "2025-10-22"
+  language: "en"
+  description: |-
+    There was a time when Ruby felt like magic. It gave an entire generation of developers wings; tools to ship fast, dream big, and start companies from anywhere. It wasn't just code; it was a movement built on empathy, simplicity, and joy. Ruby taught us that developer happiness wasn't a luxury; it was a revolution.
+
+    Now, a new kind of magic is emerging: AI. It's promising, powerful, and most importantly it's perilous. As the world rushes to automate, optimize, and amplify, we in the Ruby community have a chance to pause and ask better questions—not just *can we*, but *should we*?
+
+    This talk isn't a demo reel. It's a conversation about responsibility, creativity, and care. About how we bring our whole selves to this moment, with wonder and with skepticism. We'll reflect on what AI means not just for our tools, but for our teams, our values, and the future we're quietly writing together.
+
+    Ruby taught us to be kind and to focus on people over technology, and that lesson is more important today than ever.
+  video_provider: "youtube"
+  video_id: "IQQtnttsI5A"
+  id: "brandon-weaver-rocky-mountain-ruby-2025-keynote"
+
+- title: "Learning Empathy From Pokémon Blue"
+  raw_title: "Rocky Mountain Ruby 2025 - Learning Empathy From Pokémon Blue by Tess Griffin"
+  speakers:
+    - Tess Griffin
+  event_name: "Rocky Mountain Ruby 2025"
+  date: "2025-10-06"
+  published_at: "2025-10-22"
+  language: "en"
+  description: |-
+    Have you ever looked at a bug and wondered why it actually happens? It's easy to chalk it up to sloppy coding, but that's almost never the case.
+
+    In this talk, we'll be dissecting an exploit from Pokémon Blue known as the "Missingno" glitch. We'll explore the details of each seemingly random bug behind this exploit, examining why these bugs occurred and what lessons we can apply to our Ruby code almost 30 years later.
+
+    If you've never played or even heard of Pokémon, that's ok! As long as you're interested in a deep dive into a fascinating set of bugs, this talk is for you.
+  video_provider: "youtube"
+  video_id: "rUDVsDJG088"
+  id: "tess-griffin-rocky-mountain-ruby-2025"
+
+- title: "Lessons from 5 years of UI architecture at GitHub"
+  raw_title: "Rocky Mountain Ruby 2025 - Lessons from 5 years of UI architecture at GitHub by Joel Hawksley"
+  speakers:
+    - Joel Hawksley
+  event_name: "Rocky Mountain Ruby 2025"
+  date: "2025-10-06"
+  published_at: "2025-10-23"
+  language: "en"
+  description: |-
+    A reflection on lessons from five years of UI architecture at GitHub, focusing on three lessons: native is the new baseline, design systems are victims of their own success, and frontend costs 10x backend.
+  video_provider: "youtube"
+  video_id: "4ck9ZUXwuio"
+  id: "joel-hawksley-rocky-mountain-ruby-2025"
+
+- title: "Sidekiq at Gusto: The Parts Where People's Jaw Drops"
+  raw_title: "Rocky Mountain Ruby 2025 - Sidekiq at Gusto: The Parts Where People's Jaw Drops by Phillip Campbell"
+  speakers:
+    - Phillip Campbell
+  event_name: "Rocky Mountain Ruby 2025"
+  date: "2025-10-06"
+  published_at: "2025-10-23"
+  language: "en"
+  description: |-
+    At Gusto, we run over 100 million Sidekiq jobs a day across a complex Rails ecosystem and every time I explain how it works, someone's jaw drops. This talk is a tour through the most surprising, "wait, seriously?" parts of how we scale background jobs to support 600+ engineers and millions of users.
+
+    We'll cover real patterns we've built around queue SLAs, autoscaling, Redis usage, job repair, and how we package Sidekiq infrastructure into gems used across all our apps. Along the way, I'll share the gotchas, hacks, and lessons learned from scaling async workloads way past the comfort zone.
+
+    Whether you're running Sidekiq at scale or just curious how far you can push it, this talk will leave you laughing, wincing, and maybe rethinking your retry settings.
+  video_provider: "youtube"
+  video_id: "aY_yKeZYzko"
+  id: "phillip-campbell-rocky-mountain-ruby-2025"
+
+- title: "Ruby on Rails is a Game Engine"
+  raw_title: "Rocky Mountain Ruby 2025 - Ruby on Rails is a Game Engine by Jonathan Woodard"
+  speakers:
+    - Jonathan Woodard
+  event_name: "Rocky Mountain Ruby 2025"
+  date: "2025-10-06"
+  published_at: "2025-10-23"
+  language: "en"
+  description: |-
+    Developing a turn-based web MMO using Ruby on Rails has led me through some outrageous corners of the framework's capabilities, plus required building a few fun hacks and some HTML tricks I've never seen anywhere else.
+
+    My game, Galactic Impact [https://www.galacticimpact.com], is styled on 90s "Space Empire 4X" games: "Master of Orion", "Pax Imperia", and their ilk. It invites Users to command a fleet of ships across a two-dimensional map of stars to explore, populate, and develop worlds, while engaging in diplomacy or hostilities with other players.
+
+    To power "game-like" user experience expectations, here are a few places I've left the beaten path of standard CRUD Apps, where Rails has cheerfully followed, often with very little hackery:
+    • Extensive use of dynamic svg, both as an ActionController return format, but also setting svg elements as StimulusJS controller targets (for an application-wide PickWhip…??)
+    • Storing YAML serialization of Units before and after 'combat' situations combined with Rails' built-in attribute dirty tracking to display after-action reports.
+    • Sidekiq 'batching' to manage game-turn resolution sequencing for game mechanics while also parallelizing for speed.
+    • A blend of integer and uuid PKs from Model to Model to distinguish and manage internal system objects v. Player-generated objects.
+    • The 'new hotness' tools applied in several ways: multiple turbo-streams in form/REST responses to make snappy UI changes as a player impacts game state; lazy turbo-frames inside details/summary blocks.
+    • PostGIS! Geometry-based DB for efficiently querying for ranges of Units on a 2d map.
+    • Many more… (modular "Behavior" mechanism! Polymorphic "user-feature unlocking"! Redis tricks to protect existing user state during update while not blocking new user signup!)
+
+    In this talk, we'll take a journey exploring how a series of game-oriented "Product Needs" led to each "Unexpected, but still Railsy, solution". Hopefully you'll leave with a newfound appreciation for Rails' flexibility, and if you've ever been interested in developing games, maybe it will inspire you to build with the tools you already know, instead of needing to learn another entire toolchain to bring something to life.
+  video_provider: "youtube"
+  video_id: "-HkSk1VhuSE"
+  id: "jonathan-woodard-rocky-mountain-ruby-2025"
+
+- title: "The Mutation Game: Cracking the Enigma of Mutation Testing"
+  raw_title: "Rocky Mountain Ruby 2025 - The Mutation Game: Cracking the Enigma of Mutation Testing by Tyler Lemburg"
+  speakers:
+    - Tyler Lemburg
+  event_name: "Rocky Mountain Ruby 2025"
+  date: "2025-10-06"
+  published_at: "2025-10-24"
+  language: "en"
+  description: |-
+    Can your application's Ruby code achieve complete perfection? If you join Professor X's School for Gifted Mutation Testers, it can get pretty dang close. Discover the Mystique of transforming your code in silly (and not-so-silly) ways, and seeing if this makes your tests fail. If your tests do fail, they are solid as a Colossus! If your tests passed, then you have discovered a Rogue mutant! But do not worry: I will teach you the ins and outs of squashing that mutant like a Blob and making your code stronger than Wolverine.
+
+    Storm into this session and learn what mutation testing is all about, see if it may be right for your Ruby codebase, and explore the tools that make it possible. We will use the `mutant` gem and delve into an example Ruby app and bring it to full mutation testing coverage through simplifying code and improving tests. Even if this technique is not right for your project, you will come away from this session with a deeper understanding of Ruby, code parsing, test-driven development, and writing clean, beautiful code.
+  video_provider: "youtube"
+  video_id: "sFgRNMt_VQM"
+  id: "tyler-lemburg-rocky-mountain-ruby-2025"
+
+- title: "Reading Rails: A Visual Walkthrough of the Source Code"
+  raw_title: "Rocky Mountain Ruby 2025 - Reading Rails: A Visual Walkthrough of the Source Code by Ratnadeep Deshmane"
+  speakers:
+    - Ratnadeep Deshmane
+  event_name: "Rocky Mountain Ruby 2025"
+  date: "2025-10-06"
+  published_at: "2025-10-24"
+  language: "en"
+  description: |-
+    Want to contribute to Rails or simply understand its internals without getting lost in the vast codebase? This talk, provides a guided tour into the Rails source code. We'll visually map key components (like Active Record, Action Pack) and explore how they are connected, offering practical starting points for navigating the code yourself. Learn how major framework pieces interact by looking at relevant source snippets (explained clearly, no deep dives required). Build a strong mental model, enhance your debugging skills, and gain the confidence to explore the Rails source. Aimed at Rails devs ready to look under the hood. Finally, we'll touch upon how modern AI assistants can supplement your exploration, helping to navigate and summarize complex sections of the Rails source code.
+  video_provider: "youtube"
+  video_id: "F7UB3zZGqbA"
+  id: "ratnadeep-deshmane-rocky-mountain-ruby-2025"
+
+- title: "We Were Voyagers. We Can Voyage Again!"
+  raw_title: "Rocky Mountain Ruby 2025 - We Were Voyagers. We Can Voyage Again! by Scott Werner"
+  speakers:
+    - Scott Werner
+  event_name: "Rocky Mountain Ruby 2025"
+  date: "2025-10-06"
+  published_at: "2025-10-24"
+  language: "en"
+  description: |-
+    Do you remember Ruby's "Golden Age"? The era of why the lucky stiff, when frameworks like Camping and Sinatra felt like artistic expressions, and every week brought a new, delightful experiment. Ruby was the language of developer happiness, defined by a magical duality: rock-solid productivity on one hand, and playful, creative exploration on the other.
+
+    In our collective journey to maturity, building stable, mission-critical applications, has some of that original spark been lost? Have we become so focused on the practical that we've forgotten the "kind of silly"?
+
+    This talk argues that the rise of Generative AI isn't just a new wave of productivity tools; it's a chance to reclaim our heritage as voyagers. It's an opportunity to bring back the magic, the art, and the sheer fun of creation.
+  video_provider: "youtube"
+  video_id: "0Wmaunyx3tQ"
+  id: "scott-werner-rocky-mountain-ruby-2025"
+
+## Day 2
+
+- title: "Opening Remarks, Tuesday"
+  raw_title: "Rocky Mountain Ruby 2025 - Opening Remarks, Tuesday with Bekki and Spike"
+  speakers:
+    - Bekki Freeman
+    - Spike Ilacqua
+  event_name: "Rocky Mountain Ruby 2025"
+  date: "2025-10-07"
+  published_at: "2025-10-25"
+  language: "en"
+  description: |-
+    Rocky Mountain Ruby 2025 Opening Remarks, Tuesday with Bekki and Spike
+  video_provider: "youtube"
+  video_id: "vAw19VzzhnY"
+  id: "rocky-mountain-ruby-2025-opening-remarks-tuesday"
+
+- title: "Learning How to Learn: A Framework for Lifelong Rubyists"
+  raw_title: "Rocky Mountain Ruby 2025 - Learning How to Learn: A Framework for Lifelong Rubyists by Jeff Cohen"
+  speakers:
+    - Jeff Cohen
+  event_name: "Rocky Mountain Ruby 2025"
+  date: "2025-10-07"
+  published_at: "2025-10-25"
+  language: "en"
+  description: |-
+    If you've ever felt overwhelmed by how much there is to learn in software—or frustrated that something just isn't clicking—this talk is for you. In 40 minutes, I'll share a practical framework for learning how to learn, developed through years of hands-on coding, mentoring, and formal teaching. You'll walk away with a set of ideas and practices to help you get better at getting better—no matter where you are in your career.
+
+    Software development is more than just coding: it's really about how to solve problems that appear in a variety of shapes and forms.
+
+    We'll start with a quick tour of 10 core learning principles, like "Context is Everything," "Spike to Learn, Build to Remember," and "The Spiral Staircase." These aren't buzzwords—they're mental models that help you tackle unfamiliar codebases, debug faster, and retain what you study. Think of it as a way to organize your learning, so you spend less time spinning your wheels and more time leveling up.
+
+    Then we'll dig into a few specific practices you can try right away—like "Tiny Steps" to reduce cognitive load and build confidence, or "Broken Code Puzzles" to sharpen your skills through play and failure. These techniques are lightweight but powerful, and they work whether you're self-teaching a new gem or mentoring someone else.
+
+    This won't be a lecture on neuroscience nor a random grab-bag of tips. It's a coherent framework of ideas and examples that will help you learn more efficiently, stay curious, and grow sustainably in a field that never stops changing. You'll leave with both high-level insight and concrete tools you can use immediately.
+
+    Especially at a time where AI clickbait can cause fear and uncertainty, this talk will instill confidence we remain in control of our own destiny as professional developers.
+  video_provider: "youtube"
+  video_id: "DIZvFMHr3dI"
+  id: "jeff-cohen-rocky-mountain-ruby-2025"
+
+- title: "Slicing and Dicing Through Complexity with Hanami"
+  raw_title: "Rocky Mountain Ruby 2025 - Slicing and Dicing Through Complexity with Hanami by Sean Collins"
+  speakers:
+    - Sean Collins
+  event_name: "Rocky Mountain Ruby 2025"
+  date: "2025-10-07"
+  published_at: "2025-10-25"
+  language: "en"
+  description: |-
+    As a Rails app grows, complexity tends to scatter across loosely defined layers, leaking through porous boundaries. Hanami 2 is a flexible Ruby framework that helps you organize complexity with clear, intentional boundaries. At the core of its philosophy is a first-class concept called slices: optional, modular boundaries that let you organize your application by feature, not just by layer. Your billing logic can live in its own world, completely isolated from onboarding or authentication, yet still integrate cleanly through explicit, well-defined interfaces. Slices can even be deployed independently, making them a strong fit for scaling both teams and infrastructure.
+
+    Hanami chops up the traditional MVC stack into small, single-purpose layers. Each action gets its own class to handle parameters and orchestration with the rest of your system. Views are plain Ruby objects that prepare data for rendering, cleanly separated from templates. And the persistence layer, powered by ROM, encourages immutability and composability through simple data structs and repositories which access and modify data through relations.
+
+    The result is a framework that feels lightweight but powerful: one that lets you spend your days writing Ruby, with clear straightforward APIs. Hanami doesn't dictate architecture, it gives you the freedom and tools to structure your application as you see fit. The modular monolith is not a myth: it's just that the framework for building modular Ruby apps is Hanami, not Rails. With Hanami, you spend less time bending Rails to your architecture, and more time writing focused, testable Ruby.
+  video_provider: "youtube"
+  video_id: "5-Ajpoq-5eE"
+  id: "sean-collins-rocky-mountain-ruby-2025"
+
+- title: "Learning to Code Without a Map: Mentorship and Entry Paths in the Post-Bootcamp Era"
+  raw_title: "Rocky Mountain Ruby 2025 - Learning to Code Without a Map: Mentorship and Entry Paths in the Post-Bootcamp Era by Erin Pintozzi"
+  speakers:
+    - Erin Pintozzi
+  event_name: "Rocky Mountain Ruby 2025"
+  date: "2025-10-07"
+  published_at: "2025-10-26"
+  language: "en"
+  description: |-
+    Bootcamps once offered a fast, accessible path into tech—especially for career changers, people from nontraditional backgrounds, and folks historically excluded from the industry. As the industry shifts and many programs close or scale back, the landscape for learning and mentorship is changing fast. So where does that leave aspiring developers, and the folks trying to support them?
+
+    In this talk, we'll explore how the loss of bootcamps is reshaping the journey into software development—especially for those who relied on them to break in—and what's emerging in their place. We'll look at the evolving entry paths, how mentorship is adapting without a structured pipeline, and how the Ruby community can step up to fill the gaps. Whether you're a hiring manager, an engineer (aspiring or otherwise!), or someone who loves to mentor, you'll walk away with a clearer picture of what's working, what's missing, and how we can all build more sustainable, inclusive pathways into tech—bootcamp or no bootcamp.
+  video_provider: "youtube"
+  video_id: "2XJX_vur37E"
+  id: "erin-pintozzi-rocky-mountain-ruby-2025"
+
+- title: "Thoughtful AI for the Rubyist"
+  raw_title: "Rocky Mountain Ruby 2025 - Thoughtful AI for the Rubyist by Christine Seeman"
+  speakers:
+    - Christine Seeman
+  event_name: "Rocky Mountain Ruby 2025"
+  date: "2025-10-07"
+  published_at: "2025-10-26"
+  language: "en"
+  description: |-
+    As a Rubyist, you like to put intention into your code for a clear, readable, and inviting result, just like our MINASWAN community…so how can we bring that to AI? How can we get that intention while leveraging AI tools to create our Ruby solutions? Let's have a frank discussion about what can and can't help us with our coding and how, in the end, we have a better solution that allows us to work faster without losing that special spark that Ruby can have. This talk will discuss AI coding tools and prompts with purpose. The AI solution isn't always idiomatic ruby, so you know better what works for your codebase than the robots.
+  video_provider: "youtube"
+  video_id: "hOdB4YGmp0s"
+  id: "christine-seeman-rocky-mountain-ruby-2025"
+
+- title: "Upgrading Rails: The Non-Technical Parts"
+  raw_title: "Rocky Mountain Ruby 2025 - Upgrading Rails: The Non-Technical Parts by Max VelDink"
+  speakers:
+    - Max VelDink
+  event_name: "Rocky Mountain Ruby 2025"
+  date: "2025-10-07"
+  published_at: "2025-10-26"
+  language: "en"
+  description: |-
+    Upgrading Rails is often viewed through a technical lens, focusing on version changes, migration paths, and code refactoring. Numerous talks, guides, and videos dive into this process. However, how do you navigate the organizational complexity of accomplishing the upgrade, from buy-in to review cycles? What about the soft skills aspect of inspiring a team to accomplish what seems like a Herculean effort? In this talk, we will explore the non-technical aspects of upgrading Rails that are vital for success.
+
+    We will discuss the importance of stakeholder communication, ensuring all team members understand the reasons for the upgrade and its benefits. You'll hear strategies for managing team expectations and fostering a culture of collaboration and combined ownership. You'll even hear how to be more direct and lay out reasonable timelines for accomplishing the upgrade in weeks, not months.
+
+    Join us to unpack the often-overlooked elements of upgrading Rails. You'll leave with actionable insights to tackle the upgrade process holistically, ensuring that both your codebase and your team are ready for the future.
+  video_provider: "youtube"
+  video_id: "YIBjSQ3FT-Y"
+  id: "max-veldink-rocky-mountain-ruby-2025"
+
+- title: "Operating Rails: what about after you deploy?"
+  raw_title: "Rocky Mountain Ruby 2025 - Operating Rails: what about after you deploy? by André Arko"
+  speakers:
+    - André Arko
+  event_name: "Rocky Mountain Ruby 2025"
+  date: "2025-10-07"
+  published_at: "2025-10-27"
+  language: "en"
+  description: |-
+    There are a million tutorials out there showing you how to build a blog in Rails (in just 15 minutes!) and how to deploy that Rails app to some cloud provider (in just 5 minutes!), but what about after that first half-hour? When the guide says "this tutorial of course isn't production ready", what actually is production-ready? Let's talk about operating Rails apps in production.
+
+    Running a web service requires you to do so many things that aren't included in any programming books or tutorials. We need more developers able to ship services that work, rather than expecting each developer to figure out the entire list by trial and error, one at a time, by themselves. This talk covers what you need for reliable services:
+    - what environments you should have, and how they work?
+    - how will you notice downtime or exceptions?
+    - how are you going to debug issues reported by users?
+    - for that matter, how are users going to report issues?
+    - how will you back up and restore your databases and files?
+    - are you ready to ship changes while preserving user data?
+    - even more important, how are you keeping user data secure?
+    - are you ready for hostile attention, with a plan for security incidents?
+    - preparing doesn't prevent downtime, but it can make the costs in time and reputation much smaller
+  video_provider: "youtube"
+  video_id: "WP2fWUBPGfI"
+  slides_url: "https://speakerdeck.com/indirect/operating-rails-what-about-after-you-deploy"
+  id: "andre-arko-rocky-mountain-ruby-2025"
+
+- title: "Lightning Talks"
+  raw_title: "Rocky Mountain Ruby 2025 - Lightning talks"
+  event_name: "Rocky Mountain Ruby 2025"
+  date: "2025-10-07"
+  published_at: "2025-10-27"
+  language: "en"
+  video_provider: "youtube"
+  video_id: "tn-xv7XssbM"
+  id: "rocky-mountain-ruby-2025-lightning-talks"
+  description: ""
+  talks:
+    - title: "Lightning Talk: Not Another AI Talk"
+      start_cue: "00:13"
+      end_cue: "04:04"
+      thumbnail_cue: "00:15"
+      date: "2025-10-07"
+      published_at: "2025-10-27"
+      video_provider: "parent"
+      video_id: "ted-tash-rocky-mountain-ruby-2025-lightning-talk"
+      id: "ted-tash-rocky-mountain-ruby-2025-lightning-talk"
+      language: "en"
+      speakers:
+        - Ted Tash
+
+    - title: "Lightning Talk: Your next Sr. Software Engineer works in support"
+      start_cue: "04:04"
+      end_cue: "08:05"
+      thumbnail_cue: "04:09"
+      date: "2025-10-07"
+      published_at: "2025-10-27"
+      video_provider: "parent"
+      video_id: "zack-mariscal-rocky-mountain-ruby-2025-lightning-talk"
+      id: "zack-mariscal-rocky-mountain-ruby-2025-lightning-talk"
+      language: "en"
+      speakers:
+        - Zack Mariscal
+
+    - title: "Lightning Talk: Know a Jujitsu"
+      start_cue: "08:05"
+      end_cue: "13:28"
+      thumbnail_cue: "08:11"
+      date: "2025-10-07"
+      published_at: "2025-10-27"
+      video_provider: "parent"
+      video_id: "nathan-witmer-rocky-mountain-ruby-2025-lightning-talk"
+      id: "nathan-witmer-rocky-mountain-ruby-2025-lightning-talk"
+      language: "en"
+      speakers:
+        - Nathan Witmer
+
+    - title: "Lightning Talk: Tidewave Web Demo"
+      start_cue: "13:28"
+      end_cue: "19:15"
+      thumbnail_cue: "13:43"
+      date: "2025-10-07"
+      published_at: "2025-10-27"
+      video_provider: "parent"
+      video_id: "don-barlow-rocky-mountain-ruby-2025-lightning-talk"
+      id: "don-barlow-rocky-mountain-ruby-2025-lightning-talk"
+      language: "en"
+      speakers:
+        - Don Barlow
+
+    - title: "Lightning Talk: rv - a ruby manager for the future"
+      start_cue: "19:15"
+      end_cue: "23:53"
+      thumbnail_cue: "19:20"
+      date: "2025-10-07"
+      published_at: "2025-10-27"
+      video_provider: "parent"
+      video_id: "andre-arko-rocky-mountain-ruby-2025-lightning-talk"
+      id: "andre-arko-rocky-mountain-ruby-2025-lightning-talk"
+      language: "en"
+      speakers:
+        - André Arko
+
+    - title: "Lightning Talk: Oh My Claude, What have I done"
+      start_cue: "23:53"
+      end_cue: "29:44"
+      thumbnail_cue: "23:57"
+      date: "2025-10-07"
+      published_at: "2025-10-27"
+      video_provider: "parent"
+      video_id: "travis-dockter-rocky-mountain-ruby-2025-lightning-talk"
+      id: "travis-dockter-rocky-mountain-ruby-2025-lightning-talk"
+      language: "en"
+      speakers:
+        - Travis Dockter
+
+    - title: "Lightning Talk: From Haskell to Ruby"
+      start_cue: "29:44"
+      end_cue: "35:06"
+      thumbnail_cue: "29:47"
+      date: "2025-10-07"
+      published_at: "2025-10-27"
+      video_provider: "parent"
+      video_id: "shawn-bachlet-rocky-mountain-ruby-2025-lightning-talk"
+      id: "shawn-bachlet-rocky-mountain-ruby-2025-lightning-talk"
+      language: "en"
+      speakers:
+        - Shawn Bachlet
+
+    - title: "Lightning Talk: The Other Side of Fear"
+      start_cue: "35:06"
+      end_cue: "39:53"
+      thumbnail_cue: "35:10"
+      date: "2025-10-07"
+      published_at: "2025-10-27"
+      video_provider: "parent"
+      video_id: "alan-ridlehoover-rocky-mountain-ruby-2025-lightning-talk"
+      id: "alan-ridlehoover-rocky-mountain-ruby-2025-lightning-talk"
+      language: "en"
+      speakers:
+        - Alan Ridlehoover
+
+    - title: "Lightning Talk: Temporal Ruby SDK"
+      start_cue: "39:53"
+      end_cue: "43:30"
+      thumbnail_cue: "40:12"
+      date: "2025-10-07"
+      published_at: "2025-10-27"
+      video_provider: "parent"
+      video_id: "jason-brown-rocky-mountain-ruby-2025-lightning-talk"
+      id: "jason-brown-rocky-mountain-ruby-2025-lightning-talk"
+      language: "en"
+      speakers:
+        - Jason Brown
+
+- title: "Keynote: Who Wants to be a Ruby Engineer?"
+  raw_title: "Rocky Mountain Ruby 2025 - Who Wants to be a Ruby Engineer? with Drew Bragg"
+  speakers:
+    - Drew Bragg
+  event_name: "Rocky Mountain Ruby 2025"
+  date: "2025-10-07"
+  published_at: "2025-10-27"
+  language: "en"
+  description: |-
+    Welcome to the Ruby game show where contestants try to guess the output of a small bit of Ruby code. Sound easy? Here's the challenge: the snippets come from some of the weirdest parts of the Ruby language.
+  video_provider: "youtube"
+  video_id: "IhKQ_BJ1x5Q"
+  id: "drew-bragg-rocky-mountain-ruby-2025-keynote"
+
+- title: "Closing Remarks"
+  raw_title: "Rocky Mountain Ruby 2025 - Closing Remarks with Spike and Bekki"
+  speakers:
+    - Spike Ilacqua
+    - Bekki Freeman
+  event_name: "Rocky Mountain Ruby 2025"
+  date: "2025-10-07"
+  published_at: "2025-10-27"
+  language: "en"
+  description: |-
+    Rocky Mountain Ruby 2025 Closing Remarks with Spike and Bekki
+  video_provider: "youtube"
+  video_id: "_Z-qo84zHOU"
+  id: "rocky-mountain-ruby-2025-closing-remarks"

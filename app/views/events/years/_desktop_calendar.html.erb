@@ -1,0 +1,55 @@
+<% current_month = (year == Date.today.year) ? Date.today.month : nil %>
+
+<div class="hidden md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-px bg-gray-200 rounded-2xl shadow-sm relative z-0">
+  <% (1..12).each do |month| %>
+    <% month_events = events_by_month[month] || [] %>
+    <% is_current_month = month == current_month %>
+
+    <% corner_classes = case month
+       when 1 then "rounded-tl-2xl md:rounded-tl-2xl"
+       when 2 then "md:rounded-tr-2xl lg:rounded-tr-none"
+       when 3 then "lg:rounded-tr-2xl xl:rounded-tr-none"
+       when 4 then "xl:rounded-tr-2xl"
+       when 9 then "xl:rounded-bl-2xl"
+       when 10 then "lg:rounded-bl-2xl xl:rounded-bl-none"
+       when 11 then "md:rounded-bl-2xl lg:rounded-bl-none"
+       when 12 then "rounded-br-2xl md:rounded-br-2xl"
+       else ""
+       end %>
+
+    <div class="<%= is_current_month ? "bg-red-50 ring-2 ring-inset ring-red-200" : "bg-white" %> p-6 relative <%= corner_classes %>">
+      <div class="flex items-baseline justify-between mb-5">
+        <h2 class="text-xl font-bold <%= is_current_month ? "text-red-600" : "text-gray-900" %>"><%= Date::MONTHNAMES[month] %></h2>
+
+        <% if month_events.any? %>
+          <span class="text-xs font-semibold px-2.5 py-1 rounded-full <%= is_current_month ? "bg-red-500 text-white" : "text-gray-500 bg-gray-100" %>">
+            <%= month_events.count %>
+          </span>
+        <% end %>
+      </div>
+
+      <div class="min-h-[180px]">
+        <% if month_events.any? %>
+          <div class="flex flex-wrap gap-3">
+            <% month_events.each do |event| %>
+              <% featured_bg = event.static_metadata.featured_background.presence || "#1f2937" %>
+
+              <div class="relative group/card" data-controller="hover-card" data-action="mouseenter->hover-card#reveal">
+                <%= link_to event_path(event) do %>
+                  <div class="w-20 h-20 rounded-xl overflow-hidden ring-2 ring-gray-100 group-hover/card:ring-4 group-hover/card:ring-[--brand-color] transition-all duration-200 transform group-hover/card:scale-105 shadow-sm" style="--brand-color: <%= featured_bg %>;">
+                    <%= image_tag event.avatar_image_path, alt: event.name, class: "w-full h-full object-cover", loading: "lazy" %>
+                  </div>
+                <% end %>
+                <%= render HoverCard::EventComponent.new(record: event) %>
+              </div>
+            <% end %>
+          </div>
+        <% else %>
+          <div class="flex items-center justify-center h-full">
+            <span class="text-gray-300 text-sm">—</span>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

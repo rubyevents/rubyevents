@@ -1,14 +1,17 @@
 const defaultTheme = require('daisyui/src/theming/themes.js')['[data-theme=light]']
 const defaultTailwindTheme = require('tailwindcss/defaultTheme')
+const plugin = require('tailwindcss/plugin')
 
 module.exports = {
   content: [
     './app/views/**/*.html.erb',
     './app/components/**/*',
     './app/helpers/**/*.rb',
+    './app/models/**/*.rb',
     './app/assets/stylesheets/**/*.css',
     './app/javascript/**/*.js',
-    './config/initializers/heroicon.rb'
+    './config/initializers/*.rb',
+    './data/**/**'
   ],
   theme: {
     container: {
@@ -72,7 +75,8 @@ module.exports = {
           'accent-content': '#ffffff',
           neutral: '#261B23',
           'neutral-content': '#ffffff',
-          'base-100': '#F8F9FA'
+          'base-100': '#F8F9FA',
+          '--animation-btn': 'none'
           // 'base-200': '#FFFFFF',
           // 'base-content': '#2F2F2F'
           // 'base-100': '#ffffff',
@@ -86,6 +90,10 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/typography'),
-    require('daisyui')
+    require('daisyui'),
+    plugin(function ({ addVariant }) {
+      addVariant('hotwire-native', 'html[data-hotwire-native-app] &')
+      addVariant('non-hotwire-native', 'html:not([data-hotwire-native-app]) &')
+    })
   ]
 }

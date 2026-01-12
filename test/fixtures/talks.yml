@@ -2,47 +2,54 @@
 # == Schema Information
 #
 # Table name: talks
+# Database name: primary
 #
-#  id                  :integer          not null, primary key
-#  date                :date             indexed
-#  description         :text             default(""), not null
-#  end_seconds         :integer
-#  enhanced_transcript :text             default(#<Transcript:0x000000012f650498 @cues=[]>), not null
-#  external_player     :boolean          default(FALSE), not null
-#  external_player_url :string           default(""), not null
-#  kind                :string           default("talk"), not null, indexed
-#  language            :string           default("en"), not null
-#  like_count          :integer
-#  meta_talk           :boolean          default(FALSE), not null
-#  raw_transcript      :text             default(#<Transcript:0x000000012f650588 @cues=[]>), not null
-#  slides_url          :string
-#  slug                :string           default(""), not null, indexed
-#  start_seconds       :integer
-#  summarized_using_ai :boolean          default(TRUE), not null
-#  summary             :text             default(""), not null
-#  thumbnail_lg        :string           default(""), not null
-#  thumbnail_md        :string           default(""), not null
-#  thumbnail_sm        :string           default(""), not null
-#  thumbnail_xl        :string           default(""), not null
-#  thumbnail_xs        :string           default(""), not null
-#  title               :string           default(""), not null, indexed
-#  video_provider      :string           default("youtube"), not null
-#  view_count          :integer
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null, indexed
-#  event_id            :integer          indexed
-#  parent_talk_id      :integer          indexed
-#  video_id            :string           default(""), not null
+#  id                   :integer          not null, primary key
+#  additional_resources :json             not null
+#  announced_at         :datetime
+#  date                 :date             indexed, indexed => [video_provider]
+#  description          :text             default(""), not null
+#  duration_in_seconds  :integer
+#  end_seconds          :integer
+#  external_player      :boolean          default(FALSE), not null
+#  external_player_url  :string           default(""), not null
+#  kind                 :string           default("talk"), not null, indexed
+#  language             :string           default("en"), not null
+#  like_count           :integer          default(0)
+#  meta_talk            :boolean          default(FALSE), not null
+#  original_title       :string           default(""), not null
+#  published_at         :datetime
+#  slides_url           :string
+#  slug                 :string           default(""), not null, indexed
+#  start_seconds        :integer
+#  summarized_using_ai  :boolean          default(TRUE), not null
+#  summary              :text             default(""), not null
+#  thumbnail_lg         :string           default(""), not null
+#  thumbnail_md         :string           default(""), not null
+#  thumbnail_sm         :string           default(""), not null
+#  thumbnail_xl         :string           default(""), not null
+#  thumbnail_xs         :string           default(""), not null
+#  title                :string           default(""), not null, indexed
+#  video_provider       :string           default("youtube"), not null, indexed => [date]
+#  view_count           :integer          default(0)
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null, indexed
+#  event_id             :integer          indexed
+#  parent_talk_id       :integer          indexed
+#  static_id            :string           not null, uniquely indexed
+#  video_id             :string           default(""), not null
 #
 # Indexes
 #
-#  index_talks_on_date            (date)
-#  index_talks_on_event_id        (event_id)
-#  index_talks_on_kind            (kind)
-#  index_talks_on_parent_talk_id  (parent_talk_id)
-#  index_talks_on_slug            (slug)
-#  index_talks_on_title           (title)
-#  index_talks_on_updated_at      (updated_at)
+#  index_talks_on_date                     (date)
+#  index_talks_on_event_id                 (event_id)
+#  index_talks_on_kind                     (kind)
+#  index_talks_on_parent_talk_id           (parent_talk_id)
+#  index_talks_on_slug                     (slug)
+#  index_talks_on_static_id                (static_id) UNIQUE
+#  index_talks_on_title                    (title)
+#  index_talks_on_updated_at               (updated_at)
+#  index_talks_on_video_provider_and_date  (video_provider,date)
 #
 # Foreign Keys
 #
@@ -65,15 +72,28 @@ one:
   slug: yaroslav-shmarov-hotwire-cookbook-common-uses-essential-patterns-best-practices-rails-world
   video_provider: youtube
   video_id: F75k4Oc6g9Q
-  raw_transcript: '[{"start_time": "00:00:15.280", "end_time": "00:00:21.320", "text": "so nice to be here with you thank you all for coming so uh my name is uh"}, {"start_time": "00:00:21.320", "end_time": "00:00:27.800", "text": "yaroslav I m from Ukraine you might know me from my blog or from my super Al"}, {"start_time": "00:00:27.800", "end_time": "00:00:34.399", "text": "YouTube channel where I post a lot of stuff about trby and especially about hot fire so I originate from Ukraine"}, {"start_time": "00:00:34.399", "end_time": "00:00:40.239", "text": "from the north of Ukraine so right now it is liberated so that is Kev Chernobyl"}, {"start_time": "00:00:40.239", "end_time": "00:00:45.920", "text": "and chern so I used to live 80 kmers away from Chernobyl great"}, {"start_time": "00:00:45.920", "end_time": "00:00:52.680", "text": "place yeah and uh that is my family s home so it got boned in one of the first"}, {"start_time": "00:00:52.680", "end_time": "00:01:00.000", "text": "days of war that is my godfather he went to defend Ukraine and uh I mean we are"}, {"start_time": "00:01:00.000", "end_time": "00:01:05.799", "text": "he has such a beautiful venue but there is the war going on and like just today"}, {"start_time": "00:01:05.799", "end_time": "00:01:13.159", "text": "the city of har was randomly boned by the Russians and there are many Ruby"}, {"start_time": "00:01:13.159", "end_time": "00:01:19.520", "text": "rails people from Ukraine some of them are actually fighting this is verok he contributed to Ruby and he is actually"}, {"start_time": "00:01:19.520", "end_time": "00:01:27.960", "text": "defending Ukraine right now but on a positive note I just recently became a father"}, {"start_time": "00:01:27.960", "end_time": "00:01:35.000", "text": "so yeah um it is uh just 2 and a half months ago in uh France and uh today we"}, {"start_time": "00:01:35.000", "end_time": "00:01:35.000", "text": "are going to talk about hot fire"}]'
   kind: "talk"
   event: rails_world_2023
+  date: "2023-10-05"
+  static_id: yaroslav-shmarov-rails-world-2023
 
 two:
   title: talk title 2
   description: talk descritpion 2
   slug: talk-title-2
   kind: "talk"
+  date: "2025-01-31"
+  video_provider: youtube
+  static_id: talk-title-2
+
+three:
+  title: talk title 3
+  description: talk descritpion 3
+  slug: talk-title-3
+  kind: "talk"
+  date: "2025-01-31"
+  video_provider: youtube
+  static_id: talk-title-3
 
 brightonruby_2024_one:
   title: Getting to Two Million Users as a One Woman Dev Team
@@ -83,3 +103,16 @@ brightonruby_2024_one:
   video_provider: mp4
   external_player: true
   event: brightonruby_2024
+  date: "2024-06-30"
+  static_id: nadia-odunayo-brightonruby-2024-fixture
+
+non_english_talk_one:
+  title: Non English Talk Title
+  original_title: Palestra não em inglês
+  description: Non English talk description
+  slug: non-english-talk-title
+  kind: "talk"
+  video_provider: mp4
+  external_player: true
+  date: "2025-05-20"
+  static_id: non-english-talk-title

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" <% if hotwire_native_app? %> data-hotwire-native-app <% end %>>
   <head>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1<%= ",maximum-scale=1,user-scalable=0" if hotwire_native_app? %>">
 
     <% if Rails.env.production? || Rails.env.staging? %>
       <link rel="canonical" href="<%= canonical_url %>">
@@ -14,14 +14,16 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= display_meta_tags site: "Ruby Video" %>
+    <%= display_meta_tags site: "" %>
 
     <%= vite_client_tag %>
+    <%= combobox_style_tag %>
     <%= vite_javascript_tag "application", media: "all", "data-turbo-track": "reload" %>
     <%= vite_stylesheet_tag "application.css", media: "all", "data-turbo-track": "reload" %>
 
-    <meta name="turbo-cache-control" content="no-cache">
-    <meta name="view-transition" content="same-origin">
+    <% unless hotwire_native_app? %>
+      <meta name="view-transition" content="same-origin">
+    <% end %>
 
     <%= favicon_link_tag "favicon/favicon.ico", rel: "icon", type: "image/x-icon" %>
     <%= favicon_link_tag "favicon/favicon-16x16.png", rel: "icon", sizes: "16x16", type: "image/png" %>
@@ -33,8 +35,10 @@
     <%= yield :head %>
   </head>
 
-  <body data-controller="preserve-scroll">
-    <%= render "shared/navbar" %>
+  <body data-controller="preserve-scroll" class="<%= yield(:body_class) %>">
+    <div class="hotwire-native:hidden">
+      <%= render "shared/navbar" %>
+    </div>
 
     <div class="min-h-screen">
       <%= yield %>

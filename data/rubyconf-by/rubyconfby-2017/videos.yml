@@ -1,0 +1,140 @@
+---
+- id: "aaron-patterson-rubyconfby-2017"
+  title: "Defragging Ruby"
+  raw_title: "Aaron Patterson - Defragging Ruby, RubyConfBY 2017"
+  speakers:
+    - Aaron Patterson
+  event_name: "RubyConfBY 2017"
+  date: "2017-04-02"
+  published_at: "2017-05-02"
+  description: |-
+    It's been said that programmers like garbage collectors, so lets take a look at Ruby's GC! In this talk we'll walk through how Ruby allocates objects, then talk about how we can optimize object layout and memory usage via compaction. Finally we'll take a look at how to actually build a compacting GC for Ruby as well as the interesting challenges that can be found within.
+  video_provider: "youtube"
+  video_id: "6U5QIxNOVoM"
+
+- id: "miha-rekar-rubyconfby-2017"
+  title: "What Are Flame Graphs and How to Read Them"
+  raw_title: "Miha Rekar - What Are Flame Graphs and How to Read Them, RubyConfBY 2017"
+  speakers:
+    - Miha Rekar
+  event_name: "RubyConfBY 2017"
+  date: "2017-04-02"
+  published_at: "2017-05-02"
+  description: |-
+    Do you struggle with a slow application? Is New Relic not giving you any valuable insight? Maybe it's always the same controller or maybe it's (what seems) completely random. How do you tackle that? [Flame Graphs](http://www.brendangregg.com/flamegraphs.html) are the answer. Let me teach you how to read flame graphs so you'll be able to find the slow spots of your app and fix them.
+  video_provider: "youtube"
+  video_id: "6uKZXIwd6M0"
+
+- id: "maxim-gordienok-rubyconfby-2017"
+  title: "Cook Data with CQRS and Event Sourcing and Don't Get Burned"
+  raw_title: "Maxim Gordienok - Cook Data with CQRS and Event Sourcing and Don't Get Burned, RubyConfBY 2017"
+  speakers:
+    - Maxim Gordienok
+  event_name: "RubyConfBY 2017"
+  date: "2017-04-02"
+  published_at: "2017-05-02"
+  description: |-
+    - Why you should know about CQRS and Event Sourcing 
+    - No more pain when working with various data sources 
+    - Data analysis and reports building with pleasure 
+    - Reliable data with Event Sourcing or how to rollback to fix errors
+  video_provider: "youtube"
+  video_id: "V-ZusRKtshQ"
+
+- id: "jan-krutisch-rubyconfby-2017"
+  title: "Let Humans Human and Computers Computer"
+  raw_title: "Jan Krutisch - Let Humans Human and Computers Computer, RubyConfBY 2017"
+  speakers:
+    - Jan Krutisch
+  event_name: "RubyConfBY 2017"
+  date: "2017-04-02"
+  published_at: "2017-05-02"
+  description: |-
+    Boring, repetitive tasks, are, if we like it or not, part of our daily routine as developers. We can try to automate them away as much as possible, but what exactly makes a good automation? By looking in detail at the grunt work of updating dependencies and how we’re automating it, we’ll see how we can make computers do what they do best and at the same time keep us humans in control.
+  video_provider: "youtube"
+  video_id: "ElwCE-6RfT8"
+
+- id: "ivan-shamatov-rubyconfby-2017"
+  title: "View Layer in Ruby Frameworks"
+  raw_title: "Ivan Shamatov - View Layer in Ruby Frameworks, RubyConfBY 2017"
+  speakers:
+    - Ivan Shamatov
+  event_name: "RubyConfBY 2017"
+  date: "2017-04-02"
+  published_at: "2017-05-02"
+  description: |-
+    Ok, we've got M-models: ApplicationRecord.new 
+    We've got C-controllers: ApplictionController.new 
+    And of course V-view: SWOOSH 
+    Ok, we have some magic here inside Rails, but what can we use to have real view layer. ERB? That's just templates.
+    I would like to make an overview of some solutions we already have.
+    * Arbre / RABL as DSL to render 
+    * Presenters / Serializers / Grape-entities for logicless view-templates
+    * Cells as View Component / Hanami-view / Dry-view with really similar approach of separation view-model from template.
+  video_provider: "youtube"
+  video_id: "LlJ4fgOeB30"
+
+- id: "charles-nutter-rubyconfby-2017"
+  title: "JRuby in 2017: Fast, Compatible, and Concurrent"
+  raw_title: "Charles Nutter - JRuby in 2017: Fast, Compatible, and Concurrent, RubyConfBY 2017"
+  speakers:
+    - "Charles Nutter"
+  event_name: "RubyConfBY 2017"
+  date: "2017-04-02"
+  published_at: "2017-05-02"
+  description: |-
+    The JRuby project began over 15 years ago, and in 2016 for the first time we caught up on compatibility. Now it's 2017 and we're pushing forward with aggressive optimizations and better support for concurrent programming. I'll show you how and why JRuby works so well and how you can start building or migrating apps to JRuby today. Is 2017 the year of JRuby? Let's find out!
+  video_provider: "youtube"
+  video_id: "Qeqdmicuc1U"
+
+- id: "bozhidar-batsov-rubyconfby-2017"
+  title: "Ruby 4.0: To Infinity and Beyond"
+  raw_title: "Bozhidar Batsov - Ruby 4.0: To Infinity and Beyond, RubyConfBY 2017"
+  speakers:
+    - "Bozhidar Batsov"
+  event_name: "RubyConfBY 2017"
+  date: "2017-04-02"
+  published_at: "2017-05-02"
+  description: |-
+    An exploration of the challenges that Ruby faces today, combined with ideas regarding how we can change things for the better. We'll talk about the language, its ecosystem and its community. While on this bold adventure we'll plot a course towards Ruby 4.0 - a mystical and magical Ruby release that would ensure Ruby's dominance to infinity and beyond! Oh, and did I mention we'll have a ton fun while doing so? We'll most certainly do!
+  video_provider: "youtube"
+  video_id: "Dg3iSZxhIwM"
+
+- id: "anna-shcherbinina-rubyconfby-2017"
+  title: "Scaling Issues with Monoliths, Microservices and Hybrids"
+  raw_title: "Anna Shcherbinina - Scaling Issues with Monoliths, Microservices and Hybrids, RubyConfBY 2017"
+  speakers:
+    - Anna Shcherbinina
+  event_name: "RubyConfBY 2017"
+  date: "2017-04-02"
+  published_at: "2017-05-02"
+  description: |-
+    It's cool when your application is able to cope with stress. Not good when it's costly to scale. It's really bad when application fails under capacity. We'll talk about microservices, monoliths and hybrids in perspective of scaling abilities. How to design scale into the solutions? Use horizontal scale, scale though services and partitioning. Want your app to support the load of success? - welcome!
+  video_provider: "youtube"
+  video_id: "iOSLPcRe8tk"
+
+- id: "andrei-savchenko-rubyconfby-2017"
+  title: "Alice & Bob Goes Wild"
+  raw_title: "Andrei Savchenko - Alice & Bob Goes Wild, RubyConfBY 2017"
+  speakers:
+    - Andrei Savchenko
+  event_name: "RubyConfBY 2017"
+  date: "2017-04-02"
+  published_at: "2017-05-02"
+  description: |-
+    Security tales for non-security people: how you can harden your apps for little to no cost and why you should care.
+  video_provider: "youtube"
+  video_id: "kzsJdVL5P-k"
+
+- id: "vladimir-dementyev-rubyconfby-2017"
+  title: "Run Test Run"
+  raw_title: "Vladimir Dementyev - Run Test Run, RubyConfBY 2017"
+  speakers:
+    - Vladimir Dementyev
+  event_name: "RubyConfBY 2017"
+  date: "2017-04-02"
+  published_at: "2017-05-02"
+  description: |-
+    Writing tests is a significant part of the development process, especially in Ruby and Rails community. But usually, we do not care too much about tests' code organization, optimization, conventions, etc. – all these lovely things we always do with our application code. Until we realize that our whole test suite or its parts take too much time to run (or even launch in case of Rails). I want to share some tips & tricks on how to make your tests run faster, look prettier and be maintainable.
+  video_provider: "youtube"
+  video_id: "q52n4p0wkIs"

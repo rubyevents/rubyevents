@@ -1,6 +1,8 @@
 module Prompts
   module Talk
     class Topics < Prompts::Base
+      MODEL = "gpt-5-mini"
+
       def initialize(talk:)
         @talk = talk
       end
@@ -34,12 +36,12 @@ module Prompts
 
           3. Read through the entire list of exisiting topics for other talks.
           <topics>
-            #{Topic.approved.pluck(:name).join(", ")}
+            #{::Topic.approved.pluck(:name).join(", ")}
           </topics>
 
           3 bis. Read through the entire list of topics that we have already rejected for other talks.
           <rejected_topics>
-            #{Topic.rejected.pluck(:name).join(", ")}
+            #{::Topic.rejected.pluck(:name).join(", ")}
           </rejected_topics>
 
           4. Pick 5 to 7 topics that would describe the talk best.

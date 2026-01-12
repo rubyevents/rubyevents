@@ -1,6 +1,7 @@
-<%# locals: (talk:) -%>
+<%# locals: (talk:, user_favorite_talks_ids:) %>
 
-<% video_player_controller = talk.external_player ? nil : "video-player" %>
+<% current_user_watched_talk = talk.watched_talks.find { |wt| wt.user_id == Current.user&.id } %>
+<% is_watched = signed_in? && current_user_watched_talk&.watched? %>
 
 <% video_provider = case talk.video_provider
    when "mp4" then "mp4"
@@ -8,45 +9,28 @@
    else talk.video_provider
    end %>
 
+<% if talk.parent_talk&.video_provider == "children" %>
+  <% video_provider = talk.video_provider %>
+<% end %>
+
 <% video_id = (talk.video_provider == "parent") ? talk.parent_talk.video_id : talk.video_id %>
 
 <% language = Language.by_code(talk.language) %>
-<%= content_tag :div, id: dom_id(talk),
-      data: {
-        controller: video_player_controller,
-        video_player_poster_value: talk.thumbnail_xl,
-        video_player_provider_value: video_provider,
-        video_player_src_value: video_id,
-        video_player_start_seconds_value: talk.start_seconds,
-        video_player_end_seconds_value: talk.end_seconds
-      } do %>
+<%= content_tag :div, id: dom_id(talk) do %>
 
-  <div class="aspect-video banner-img card-horizontal-img relative rounded-xl overflow-hidden outline outline-1 bg-gray-300 outline-gray-300" style="view-transition-name: <%= dom_id(talk, :image) %>">
-    <% if talk.external_player %>
-      <%= link_to talk.external_player_url, target: "_blank", class: "relative w-full h-full block" do %>
-        <%= image_tag talk.thumbnail_xl, class: "w-full h-full object-cover rounded-xl" %>
+  <%= turbo_frame_tag dom_id(talk, :video_player) do %>
+    <%= render partial: "talks/video_player", locals: {talk: talk, current_user_watched_talk: current_user_watched_talk, is_watched: is_watched, video_provider: video_provider, video_id: video_id} %>
+  <% end %>
 
-        <div class="absolute inset-0 text-center text-white bg-black/80 flex flex-col gap-6 justify-center items-center font-bold text-xl rounded-xl p-6">
-          This talk is available to watch on <%= URI.parse(talk.external_player_url).host %>
-
-          <%= ui_button do %>
-            <%= fa("play", size: :xs, class: "fill-white") %> <span>Watch <span class="hidden sm:inline-block"> on <%= URI.parse(talk.external_player_url).host %></span></span>
-          <% end %>
-        </div>
-      <% end %>
-
-    <% else %>
-      <% if video_provider.in?(["mp4", "youtube", "vimeo", "scheduled", "not_published", "not_recorded"]) %>
-        <%= render partial: "talks/video_providers/#{video_provider}", locals: {talk: talk, video_provider: video_provider, video_id: video_id} %>
-      <% else %>
-        Provider <%= video_provider.inspect %> is not configured.
-      <% end %>
+  <div id="<%= dom_id(talk, :feedback_banner) %>">
+    <% if is_watched %>
+      <%= render partial: "talks/watched_talks/feedback_banner", locals: {talk: talk, watched_talk: current_user_watched_talk} %>
     <% end %>
   </div>
 
-  <div class="py-4 flex flex-col gap-4">
+  <div class="flex flex-col">
     <% if talk.meta_talk? %>
-      <div class="badge badge-ghost hover:bg-gray-300 px-3 py-3 flex gap-1">
+      <div class="flex gap-1 px-3 py-3 my-3 badge badge-ghost hover:bg-gray-300">
         <%= fa("rectangle-history", size: :xs, class: "fill-gray-700 mr-2") %>
         <span class="text-gray-700">This video contains <%= pluralize(talk.child_talks.size, "individual talk") %></span>
       </div>
@@ -54,8 +38,8 @@
     <% end %>
 
     <% if talk.parent_talk.present? %>
-      <div>
-        <div class="text-gray-500 text-nowrap text-xs mb-2">Part of recording</div>
+      <div class="py-3">
+        <div class="mb-2 text-xs text-gray-500 text-nowrap">Part of recording</div>
         <%= link_to talk.parent_talk, class: "badge badge-ghost hover:bg-gray-300 px-4 py-4 text-sm" do %>
           <%= fa("rectangle-history", size: :xs, class: "fill-black mr-2") %>
           <%= talk.parent_talk.title %>
@@ -64,27 +48,64 @@
       <hr>
     <% end %>
 
-    <div class="flex flex-col gap-1">
-      <div class="flex justify-between">
-        <div class="font-bold text-xl">
+    <div class="flex flex-col w-full divide-y md:gap-1">
+      <div class="flex flex-wrap justify-between w-full divide-y">
+        <div class="py-4 text-xl font-bold">
           <span><%= talk.title %></span>
+          <% if talk.original_title.present? %>
+            <div class="mb-2 text-xs text-gray-500">Original title (<%= talk.language %>): <%= talk.original_title %></div>
+          <% end %>
+
         </div>
 
-        <div class="flex gap-1">
+        <div class="flex order-last gap-1 py-3 overflow-x-scroll overflow-y-visible text-xs grow lg:divide-y-0 xl:justify-end lg:overflow-x-hidden xl:order-none">
+          <% if Current.user&.admin? %>
+            <%= ui_button url: avo.resources_talk_path(talk), kind: :pill, target: "_blank" do %>
+              <%= fa :avocado, size: :xs, style: :solid %>
+
+              <span class="text-xs">Open in Avo</span>
+            <% end %>
+          <% end %>
+
+          <% if default_watch_list %>
+            <% if user_favorite_talks_ids.include?(talk.id) %>
+              <%= ui_tooltip "Add talk to your watch list" do %>
+                <%= ui_button url: watch_list_talk_path(default_watch_list, talk.id), method: :delete, kind: :pill do %>
+                  <%= fa("bookmark", size: :xs, style: :solid, class: "text-primary") %>
+                  <span class="text-xs">Bookmark</span>
+                <% end %>
+              <% end %>
+            <% else %>
+              <%= ui_tooltip "Add talk to your watch list" do %>
+                <%= ui_button url: watch_list_talks_path(default_watch_list, talk_id: talk.id), method: :post, kind: :pill do %>
+                  <%= fa("bookmark", size: :xs, style: :regular) %>
+                  <span class="text-xs">Bookmark</span>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% else %>
+            <%= ui_tooltip "Add talk to your watch list" do %>
+              <%= ui_button url: new_session_path(redirect_to: request.fullpath), data: {turbo_frame: "modal"}, kind: :pill do %>
+                <%= fa("bookmark", size: :xs, style: :regular) %>
+                <span class="text-xs">Bookmark</span>
+              <% end %>
+            <% end %>
+          <% end %>
+
           <% if talk.youtube? || talk.parent_talk&.youtube? %>
             <%= ui_tooltip "Watch on YouTube" do %>
               <%= ui_button url: talk.external_player_url, kind: :pill, target: "_blank", data: {action: "click->video-player#pause"} do %>
                 <%= fa("youtube-brands", size: :xs, style: :solid) %>
-                <span>Play on YouTube</span>
+                <span class="text-xs">Play on YouTube</span>
               <% end %>
             <% end %>
           <% end %>
 
           <% if talk.vimeo? || talk.parent_talk&.vimeo? %>
             <%= ui_tooltip "Watch on Vimeo" do %>
-              <%= ui_button url: "https://vimeo.com/video/#{talk.video_id}", kind: :pill, target: "_blank" do %>
+              <%= ui_button url: talk.external_player_url, kind: :pill, target: "_blank" do %>
                 <%= fa("vimeo-v-brands", size: :xs, style: :solid) %>
-                <span>Play on Vimeo</span>
+                <span class="text-xs">Play on Vimeo</span>
               <% end %>
             <% end %>
           <% end %>
@@ -92,208 +113,156 @@
           <% if talk.static_metadata&.external_player_url.present? || talk.parent_talk&.static_metadata&.external_player_url.present? %>
             <% player_url = talk.parent_talk&.static_metadata&.external_player_url || talk.static_metadata.external_player_url %>
 
-            <a class="tooltip tooltip-top" data-tip="Play on external player website" href="<%= player_url %>" target="_blank" data-action="click->video-player#pause">
-              <div class="flex gap-2 items-center rounded-full border bg-gray-100 hover:bg-gray-200/50 border-gray-200 font-regular px-3 py-1 text-sm cursor-pointer">
-                <span class="text-nowrap">Play on Website</span>
-              </div>
-            </a>
-          <% end %>
-
-          <% if signed_in? && !talk.scheduled? %>
-            <%= turbo_frame_tag dom_id(talk, :watched_talk) do %>
-              <% if talk.watched? %>
-                <div class="tooltip tooltip-top" data-tip="Mark talk as unwatched">
-                  <%= ui_button url: talk_watched_talk_path(talk), method: :delete, kind: :pill do %>
-                    <%= fa("circle-check", size: :xs, style: :solid, class: "fill-green-700") %>
-                    <span class="text-nowrap">Watched</span>
-                  <% end %>
-                </div>
-              <% else %>
-                <div class="tooltip tooltip-top" data-tip="Mark talk as watched">
-                  <%= ui_button url: talk_watched_talk_path(talk), method: :post, kind: :pill do %>
-                    <%= fa("circle", size: :xs, style: :regular) %>
-                    <span class="text-nowrap">Watched</span>
-                  <% end %>
-                </div>
+            <%= ui_tooltip "Watch on Website" do %>
+              <%= ui_button url: player_url, kind: :pill, target: "_blank", data: {action: "click->video-player#pause"} do %>
+                <%= fa("website-brands", size: :xs, style: :solid) %>
+                <span class="text-xs">Play on Website</span>
               <% end %>
             <% end %>
           <% end %>
 
-          <div class="tooltip tooltip-top" data-tip="You can suggest some modifications to this talk">
-            <%= ui_button url: edit_talk_path(talk), kind: :pill, data: {turbo_frame: "modal"} do %>
-              <%= fa("pen", size: :xs, style: :solid) %>
-              <span>Edit</span>
-            <% end %>
-          </div>
-        </div>
-      </div>
-
-      <div class="flex flex-wrap gap-2 justify-between">
-        <div class="flex flex-wrap">
-          <% speaker_size = 2 %>
-          <% more_speakers = talk.speakers.size > speaker_size %>
-          <% speaker_preview_count = more_speakers ? 1 : 2 %>
-
-          <% talk.speakers.take(speaker_preview_count).each do |speaker| %>
-            <%= content_tag :div, class: class_names("hidden xl:block" => more_speakers) do %>
-              <%= render partial: "talks/speaker", locals: {speaker: speaker} %>
+          <%= turbo_frame_tag dom_id(talk, :watched_button) do %>
+            <% if signed_in? %>
+              <%= render partial: "talks/watched_talks/button", locals: {talk: talk, is_watched: is_watched} %>
             <% end %>
           <% end %>
 
-          <% if more_speakers %>
-            <div class="flex flex-col gap-4 hover:bg-gray-200 transition-bg duration-300 ease-in-out p-2 px-4 rounded-lg cursor-pointer" class="tooltip tooltip-top tooltip-success" onclick="document.querySelector('[name=talk_tabs][aria-label=Speakers]').checked = true" data-tip="<%= talk.speakers.to_a.from(2).map(&:name).to_sentence %>">
-              <div class="flex items-center <% if !talk.meta_talk? %> gap-x-4 <% end %>">
-                <div class="avatar-group -space-x-6 rtl:space-x-reverse">
-                  <% talk.speakers.to_a.from(speaker_preview_count).each do |speaker| %>
-                    <div class="avatar placeholder border-none <% if talk.meta_talk? %>hidden <% end %>">
-                      <%= content_tag :div, class: "w-12 rounded-full bg-primary text-neutral-content" do %>
-                        <% if speaker.custom_avatar? %>
-                          <%= image_tag speaker.avatar_url(size: 48) %>
-                        <% else %>
-                          <span class="text-lg"><%= speaker.name.split(" ").map(&:first).join %></span>
+          <%= ui_tooltip "You can suggest some modifications to this talk", class: "hotwire-native:hidden" do %>
+            <%= ui_button url: edit_talk_path(talk), kind: :pill, data: {turbo_frame: "modal"} do %>
+              <%= fa("pen", size: :xs, style: :solid) %>
+              <span class="text-xs">Edit</span>
+            <% end %>
+          <% end %>
+        </div>
+
+        <div class="flex justify-between w-full py-2">
+          <div class="flex flex-wrap">
+            <% speaker_size = 2 %>
+            <% more_speakers = talk.speakers.size > speaker_size %>
+            <% speaker_preview_count = more_speakers ? 1 : 2 %>
+
+            <% talk.speakers.take(speaker_preview_count).each do |speaker| %>
+              <%= content_tag :div, class: class_names("hidden xl:block" => more_speakers) do %>
+                <%= render partial: "users/card", locals: {user: speaker} %>
+              <% end %>
+            <% end %>
+
+            <% if more_speakers %>
+              <div class="flex flex-col gap-4 px-4 duration-300 ease-in-out rounded-lg cursor-pointer hover:bg-gray-200 transition-bg md:p-2" onclick="document.querySelector('[name=talk_tabs][aria-label=Speakers]').checked = true" data-tip="<%= talk.speakers.to_a.from(2).map(&:name).to_sentence %>">
+                <div class="flex items-center <% if !talk.meta_talk? %> gap-x-4 <% end %>">
+                  <div class="-space-x-6 avatar-group rtl:space-x-reverse">
+                    <% talk.speakers.to_a.from(speaker_preview_count).each do |speaker| %>
+                      <div class="avatar placeholder border-none <% if talk.meta_talk? %>hidden <% end %>">
+                        <%= ui_avatar speaker %>
+                      </div>
+                    <% end %>
+                  </div>
+
+                  <div class="flex gap-4">
+                    <% if talk.meta_talk? %>
+                      <div class="border-none avatar placeholder">
+                        <%= content_tag :div, class: "w-12 rounded-full bg-primary text-neutral-content" do %>
+                          <span class="hidden text-lg xl:block">
+                            +<%= talk.speakers.size - 1 %>
+                          </span>
+
+                          <span class="block text-lg xl:hidden">
+                            +<%= talk.speakers.size %>
+                          </span>
                         <% end %>
-                      <% end %>
-                    </div>
-                  <% end %>
-                </div>
+                      </div>
+                    <% end %>
 
-                <div class="flex gap-4">
-                  <% if talk.meta_talk? %>
-                    <div class="avatar placeholder border-none">
-                      <%= content_tag :div, class: "w-12 rounded-full bg-primary text-neutral-content" do %>
-                        <span class="hidden xl:block text-lg">
-                          +<%= talk.speakers.size - 1 %>
-                        </span>
+                    <div class="flex flex-col justify-center">
+                      <div class="text-xs text-gray-500 line-clamp-1">
+                        See all speakers
+                      </div>
 
-                        <span class="block xl:hidden text-lg">
-                          +<%= talk.speakers.size %>
-                        </span>
-                      <% end %>
-                    </div>
-                  <% end %>
+                      <div class="hidden text-base font-bold xl:block line-clamp-1">
+                        <%= pluralize(talk.speakers.size - 1, "more speaker") %>
+                      </div>
 
-                  <div class="flex flex-col justify-center">
-                    <div class="text-xs text-gray-500 line-clamp-1">
-                      See all speakers
-                    </div>
-
-                    <div class="hidden xl:block font-bold text-base line-clamp-1">
-                      <%= pluralize(talk.speakers.size - 1, "more speaker") %>
-                    </div>
-
-                    <div class="block xl:hidden font-bold text-base line-clamp-1">
-                      See all <%= pluralize(talk.speakers.size, "speaker") %>
+                      <div class="block text-base font-bold xl:hidden line-clamp-1">
+                        See all <%= pluralize(talk.speakers.size, "speaker") %>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          <% end %>
-        </div>
+            <% end %>
+          </div>
 
-        <div class="hidden 2xl:block">
-          <%= render partial: "talks/event", locals: {event: talk.event, talk: talk, video_provider: talk.video_provider} %>
+          <div class="hidden 2xl:block">
+            <%= render partial: "talks/event", locals: {event: talk.event, talk: talk, video_provider: talk.video_provider} %>
+          </div>
         </div>
       </div>
     </div>
 
     <hr>
 
-    <% if talk.parent_talk.present? || talk.meta_talk? %>
+    <% if (talk.parent_talk.present? || talk.meta_talk?) && talk.video_provider != "children" %>
       <% parent_talk = talk.parent_talk || talk %>
 
-      <h3 class="font-bold text-md mt-3">Sections in this recording</h3>
+      <h3 class="my-3 font-bold text-md">Sections in this recording</h3>
 
-      <div class="relative group border border-transparent" id="talkToggle">
-        <div class="max-h-[220px] group-data-[expanded]:max-h-none overflow-y-hidden transition transition-all">
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-2 md:gap-4 mb-3">
-            <% parent_talk.child_talks.order(:start_seconds).each_with_index do |child_talk, index| %>
-              <%= link_to child_talk, data: {turbo_frame: "talk"}, class: "p-2 border rounded group bg-white hover:bg-gray-100 data-[active]:border-blue-700/30 data-[active]:bg-blue-50 hover:data-[active]:bg-blue-100 data-[active]:text-blue-700", **({"data-active" => child_talk == talk}.select { |_, v| v }) do %>
-                <div class="flex justify-between">
-                  <div <% if child_talk == talk %> data-active <% end %> class="flex gap-3 text-gray-700 data-[active]:font-bold text-sm">
-                    <div class="flex aspect-video shrink-0 relative w-16 lg:w-24 xl:w-36">
-                      <%= image_tag child_talk.thumbnail_sm, srcset: ["#{child_talk.thumbnail_sm} 2x"], id: dom_id(child_talk), class: "w-full h-auto aspect-video object-cover rounded", loading: :lazy %>
-                    </div>
+      <%= render partial: "talks/sections", locals: {talk: parent_talk} %>
 
-                    <div class="flex flex-col gap-0.5 justify-center">
-                      <div class="text-xs text-gray-500 mb-1 hidden xl:block">
-                        Section <%= index + 1 %>
-                      </div>
-                      <div class="text-sm font-bold">
-                        <%= child_talk.speakers.map(&:name).to_sentence %>
-                      </div>
-                      <div class="text-sm text-gray-500 line-clamp-2 data-[active]:text-blue-700" <% if child_talk == talk %> data-active <% end %>>
-                        <%= child_talk.title %>
-
-                        <% if child_talk.language_name != "English" %>
-                          <span data-controller="tooltip" data-tooltip-content-value="<%= child_talk.language_name %>">
-                            - <%= language_to_emoji(child_talk.language_name) %>
-                          </span>
-                        <% end %>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="flex flex-col gap-2 justify-right">
-                    <% if child_talk.start_seconds %>
-                      <div class="badge">
-                        <%= seconds_to_formatted_duration(child_talk.start_seconds) %>
-                      </div>
-                    <% end %>
-                  </div>
-                </div>
-              <% end %>
-            <% end %>
-          </div>
-
-          <br><hr>
-        </div>
-
-        <% if parent_talk.child_talks.size > 4 %>
-          <div class="absolute bottom-0 left-0 w-full h-36 bg-gradient-to-t from-base-100 to-transparent group-data-[expanded]:hidden flex justify-center items-end">
-            <button class="btn btn-sm btn-white shadow" onclick="talkToggle.toggleAttribute('data-expanded')">Show all <%= pluralize(parent_talk.child_talks.size, "section") %></button>
-          </div>
-        <% end %>
-      </div>
-
+      <br><hr>
     <% end %>
 
     <% if talk.approved_topics.any? %>
-      <%= render partial: "topics/badge_list", locals: {topics: talk.approved_topics, back_to_url: request.fullpath, back_to_title: talk.title} %>
+      <div class="py-4">
+        <%= render partial: "topics/badge_list", locals: {topics: talk.approved_topics, back_to_url: back_to_from_request, back_to_title: talk.title} %>
+      </div>
+      <hr>
     <% end %>
 
-    <div role="tablist" class="tabs tabs-bordered mt-6">
+    <%= render Events::UpcomingEventBannerComponent.new(event: talk.event) %>
+
+    <div role="tablist" class="mt-6 tabs tabs-bordered">
       <% if talk.summary.present? %>
         <input type="radio" name="talk_tabs" role="tab" class="tab" aria-label="Summary" checked>
         <div role="tabpanel" class="tab-content !rounded-s-xl rounded-xl bg-base-200/50 p-6 mt-6 overflow-hidden">
           <% if talk.summarized_using_ai? %>
             <div class="badge text-white bg-[linear-gradient(to_right,rgb(132,71,198),rgb(171,93,139))] px-3 py-3 mb-4">
-              <span class="tooltip tooltip-right flex" data-tip="This summary is auto-generated by an AI based on the transcript of the talk.">
-                <%= heroicon :sparkles, size: :xs, variant: :solid, class: "mr-2" %> Summarized using AI
+              <span class="flex tooltip tooltip-right" data-tip="This summary is auto-generated by an AI based on the transcript of the talk.">
+                <%= fa :sparkles, size: :xs, class: "mr-2 fill-white" %> Summarized using AI
               </span>
             </div>
           <% end %>
 
           <h2><%= talk.title %></h2>
-          <%= talk.speakers.map(&:name).to_sentence %> • <%= talk.formatted_date %> <% if talk.event.location %> • <%= talk.event.location %><% end %> <% if language && language != "English" %> • <%= language %> <% end %> • <%= talk.formatted_kind %>
+          <%= talk.speakers.map(&:name).to_sentence %> • <%= talk.formatted_date %> • <%= talk.to_location.to_html(show_links: false) %> <% if language && language != "English" %> • <%= language %> <% end %> • <%= talk.formatted_kind %>
 
           <article class="mt-4 prose markdown"><%= markdown_to_html(talk.summary) %></article>
         </div>
       <% end %>
 
-      <input type="radio" name="talk_tabs" role="tab" class="tab" aria-label="Description" <%= "checked" if talk.summary.blank? %>>
+      <input type="radio" name="talk_tabs" role="tab" class="tab" aria-label="Description" <% if talk.summary.blank? %> checked <% end %>>
       <div role="tabpanel" class="tab-content !rounded-s-xl rounded-xl bg-base-200/50 p-6 mt-6 overflow-hidden">
         <article class="prose">
           <p>
             <b><%= talk.title %></b><br>
-            <%= talk.speakers.map(&:name).to_sentence %> • <%= talk.formatted_date %> <% if talk.event.location %> • <%= talk.event.location %><% end %> <% if language && language != "English" %> • <%= language %> <% end %> • <%= talk.formatted_kind %>
+            <%= talk.speakers.map(&:name).to_sentence %>
+            • <%= talk.to_location.to_html(show_links: false) %>
+            <% if language && language != "English" %> • <%= language %> <% end %> •
+            <%= talk.formatted_kind %>
+          </p>
+
+          <p>
+            Date: <%= talk.formatted_date %><br>
+
+            <span class="text-gray-400">
+              Published: <% if talk.published_at %><%= l(talk.published_at&.to_date, default: "unknown") %><% elsif talk.published? %> unknown <% else %> not published <% end %><br>
+              Announced: <%= l(talk.announced_at&.to_date, default: "unknown") %>
+            </span>
           </p>
 
           <%= simple_format auto_link(talk.description, html: {target: "_blank", class: "link"}) %>
 
           <p class="flex">
             <span><%= talk.event_name %></span>
-            <span><%#= talk.event_edition %></span>
           </p>
         </article>
       </div>
@@ -309,22 +278,46 @@
         <input type="radio" name="talk_tabs" role="tab" class="tab" aria-label="Slides">
         <div role="tabpanel" class="tab-content !rounded-s-xl rounded-xl bg-base-200/50 p-6 mt-6 overflow-hidden">
           <%= turbo_frame_tag dom_id(talk, :slides), src: talk_slides_path(talk), loading: :lazy do %>
-            <div class="skeleton h-32 w-full rounded"></div>
+            <div class="w-full h-32 rounded skeleton"></div>
           <% end %>
         </div>
       <% end %>
 
-      <input type="radio" name="talk_tabs" role="tab" class="tab" aria-label="<%= "Speaker".pluralize(talk.speakers.size) %>">
-      <div role="tabpanel" class="tab-content !rounded-s-xl rounded-xl bg-base-200/50 p-6 mt-6 overflow-hidden">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <% talk.speakers.each do |speaker| %>
-            <div class="border bg-gray-100 rounded-lg hover:bg-gray-200/50 transition-bg duration-300 ease-in-out">
-              <%= render partial: "talks/speaker", locals: {speaker: speaker} %>
-            </div>
-          <% end %>
-        </div>
-      </div>
+      <% if talk.additional_resources.present? %>
+        <input type="radio" name="talk_tabs" role="tab" class="tab" aria-label="Resources">
+        <div role="tabpanel" class="tab-content !rounded-s-xl rounded-xl bg-base-200/50 p-6 mt-6 overflow-hidden">
+          <ul class="space-y-4">
+            <% talk.additional_resources.each do |resource| %>
+              <li class="flex items-start gap-3">
+                <%= fa(resource_icon(resource), size: :sm, class: "fill-gray-500 mt-1 flex-shrink-0") %>
 
+                <div class="flex flex-col">
+                  <%= link_to resource["url"], target: "_blank", rel: "noopener noreferrer", class: "link link-primary" do %>
+                    <%= resource_display_title(resource) %>
+                  <% end %>
+
+                  <span class="text-xs text-gray-500">
+                    <%= resource["name"] %> · <%= resource_domain(resource) %>
+                  </span>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <% if talk.speakers.length.positive? %>
+        <input type="radio" name="talk_tabs" role="tab" class="tab" aria-label="<%= "Speaker".pluralize(talk.speakers.size) %>">
+        <div role="tabpanel" class="tab-content !rounded-s-xl rounded-xl bg-base-200/50 p-6 mt-6 overflow-hidden">
+          <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <% talk.speakers.each do |speaker| %>
+              <div class="duration-300 ease-in-out bg-gray-100 border rounded-lg hover:bg-gray-200/50 transition-bg">
+                <%= render partial: "users/card", locals: {user: speaker} %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 <% end %>

@@ -1,0 +1,52 @@
+<header class="mb-8 md:mb-12">
+  <div class="flex items-center gap-2 text-gray-400 text-sm mb-4 md:mb-6 hotwire-native:hidden">
+    <%= link_to "Events", events_path, class: "hover:text-gray-900 transition-colors" %>
+
+    <span class="text-gray-300">/</span>
+    <span class="text-gray-600"><%= year %></span>
+  </div>
+
+  <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-6">
+    <div>
+      <h1 class="text-5xl md:text-8xl font-black text-gray-900 tracking-tight">
+        <%= title year.to_s %>
+      </h1>
+
+      <p class="text-gray-500 mt-1 md:mt-2 text-base md:text-lg">
+        Ruby Events Calender •
+
+        <span class="text-gray-400">
+          <%= events.count %> events
+
+          <% if monthly_events.any? %>
+            across <%= events_by_month.keys.count %> months
+          <% end %>
+        </span>
+      </p>
+    </div>
+
+    <nav class="flex flex-col items-end gap-2 hotwire-native:hidden">
+      <% if year != Date.today.year %>
+        <%= link_to year_events_path(year: Date.today.year), class: "px-3 md:px-4 py-1.5 rounded-full bg-red-500 text-white text-sm font-medium hover:bg-red-600 transition-all" do %>
+          Today
+        <% end %>
+      <% end %>
+
+      <div class="flex items-center gap-2">
+        <% if has_previous_year %>
+          <%= link_to year_events_path(year: year - 1), class: "flex items-center gap-2 px-3 md:px-4 py-2 rounded-full border border-gray-200 text-gray-500 hover:border-gray-900 hover:text-gray-900 transition-all text-sm md:text-base" do %>
+            <%= fa "arrow-left", class: "text-xs md:text-sm" %>
+            <span class="font-medium"><%= year - 1 %></span>
+          <% end %>
+        <% end %>
+
+        <% if has_next_year %>
+          <%= link_to year_events_path(year: year + 1), class: "flex items-center gap-2 px-3 md:px-4 py-2 rounded-full border border-gray-200 text-gray-500 hover:border-gray-900 hover:text-gray-900 transition-all text-sm md:text-base" do %>
+            <span class="font-medium"><%= year + 1 %></span>
+            <%= fa "arrow-right", class: "text-xs md:text-sm" %>
+          <% end %>
+        <% end %>
+      </div>
+    </nav>
+  </div>
+</header>

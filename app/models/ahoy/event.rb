@@ -2,6 +2,7 @@
 # == Schema Information
 #
 # Table name: ahoy_events
+# Database name: primary
 #
 #  id         :integer          not null, primary key
 #  name       :string           indexed => [time]
@@ -21,6 +22,9 @@ class Ahoy::Event < ApplicationRecord
   include Ahoy::QueryMethods
 
   self.table_name = "ahoy_events"
+  include Rollupable
+
+  rollup_default_column :time
 
   belongs_to :visit
   belongs_to :user, optional: true

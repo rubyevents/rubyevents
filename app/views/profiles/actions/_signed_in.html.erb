@@ -1,0 +1,14 @@
+<% if false %>
+  <!-- While merging the speaker and user models we disable the actions for now -->
+  <!-- TODO: Re-enable when the merge is complete and once the user profile is ready -->
+  <% if speaker.github_handle.blank? %>
+    <%= link_to edit_profile_path(speaker), class: "link link-accent link-ghost", data: {turbo_frame: "modal"} do %>
+      Help us improve the speaker profile by adding a GitHub handle
+    <% end %>
+  <% else %>
+    <%= ui_button url: edit_profile_path(speaker), kind: :neutral, size: :sm, data: {turbo_frame: "modal"} do %>
+      <%= fa :pen, size: :xs %>
+      <span>Suggest improvements</span>
+    <% end %>
+  <% end %>
+<% end %>

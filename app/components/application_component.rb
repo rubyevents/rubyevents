@@ -2,6 +2,7 @@
 
 class ApplicationComponent < ViewComponent::Base
   extend Dry::Initializer
+
   attr_accessor :attributes
   option :display, default: proc { true }
 

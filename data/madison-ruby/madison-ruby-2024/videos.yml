@@ -1,241 +1,285 @@
 ---
-# TODO: conference website
-# TODO: schedule website
-# TODO: running order
-# TODO: talk dates
+# Website: https://www.madisonruby.com
+# Schedule: https://www.madisonruby.com/schedule
 
-- title: "Keynote: Our Superpower"
+## Day 1
+
+- id: "madison-ruby-2024-saron-yitbarek"
+  title: "Keynote: Our Superpower"
   raw_title: "Madison Ruby 2024 - Our Superpower"
   speakers:
     - "Saron Yitbarek"
   video_id: "madison-ruby-2024-saron-yitbarek"
   video_provider: "not_recorded"
-  thumbnail_xs: https://pbs.twimg.com/media/GQTxm1AbwAApD3f?format=jpg&name=small # TODO: get rectangle version for speaker posters
-  thumbnail_sm: https://pbs.twimg.com/media/GQTxm1AbwAApD3f?format=jpg&name=small
-  thumbnail_md: https://pbs.twimg.com/media/GQTxm1AbwAApD3f?format=jpg
-  thumbnail_lg: https://pbs.twimg.com/media/GQTxm1AbwAApD3f?format=jpg&name=medium
-  thumbnail_xl: https://pbs.twimg.com/media/GQTxm1AbwAApD3f?format=jpg&name=medium
-  description: "A keynote reflecting on a decade in the Ruby community, emphasizing mentorship and the essence of being a Rubyist."
-  published_at: "2024-08-01"
+  thumbnail_xs: "https://pbs.twimg.com/media/GQTxm1AbwAApD3f?format=jpg&name=small" # TODO: get rectangle version for speaker posters
+  thumbnail_sm: "https://pbs.twimg.com/media/GQTxm1AbwAApD3f?format=jpg&name=small"
+  thumbnail_md: "https://pbs.twimg.com/media/GQTxm1AbwAApD3f?format=jpg"
+  thumbnail_lg: "https://pbs.twimg.com/media/GQTxm1AbwAApD3f?format=jpg&name=medium"
+  thumbnail_xl: "https://pbs.twimg.com/media/GQTxm1AbwAApD3f?format=jpg&name=medium"
+  thumbnail_classes: "object-bottom"
+  description: |-
+    A keynote reflecting on a decade in the Ruby community, emphasizing mentorship and the essence of being a Rubyist.
+  date: "2024-08-01"
 
-- title: "Dungeons and Developers: Uniting Experience Levels in Engine"
+- id: "madison-ruby-2024-chantelle-isaacs"
+  title: "Dungeons and Developers: Uniting Experience Levels in Engineering Teams"
   raw_title: "Madison Ruby 2024 - Dungeons and Developers: Uniting Experience Levels in Engine"
   speakers:
     - Chantelle Isaacs
   video_id: "madison-ruby-2024-chantelle-isaacs"
   video_provider: "not_recorded"
-  thumbnail_xs: https://pbs.twimg.com/media/GQ2izw3W8AAtsR_?format=jpg&name=small # TODO: get rectangle version for speaker posters
-  thumbnail_sm: https://pbs.twimg.com/media/GQ2izw3W8AAtsR_?format=jpg&name=small
-  thumbnail_md: https://pbs.twimg.com/media/GQ2izw3W8AAtsR_?format=jpg
-  thumbnail_lg: https://pbs.twimg.com/media/GQ2izw3W8AAtsR_?format=jpg&name=medium
-  thumbnail_xl: https://pbs.twimg.com/media/GQ2izw3W8AAtsR_?format=jpg&name=medium
-  published_at: "2024-08-01"
+  thumbnail_xs: "https://pbs.twimg.com/media/GQ2izw3W8AAtsR_?format=jpg&name=small" # TODO: get rectangle version for speaker posters
+  thumbnail_sm: "https://pbs.twimg.com/media/GQ2izw3W8AAtsR_?format=jpg&name=small"
+  thumbnail_md: "https://pbs.twimg.com/media/GQ2izw3W8AAtsR_?format=jpg"
+  thumbnail_lg: "https://pbs.twimg.com/media/GQ2izw3W8AAtsR_?format=jpg&name=medium"
+  thumbnail_xl: "https://pbs.twimg.com/media/GQ2izw3W8AAtsR_?format=jpg&name=medium"
+  thumbnail_classes: "object-bottom"
+  date: "2024-08-01"
   description: |-
     "Dungeons and Developers" is an exploration of team dynamics through the lens of Dungeons & Dragons. Discover how the roles and skills in D&D can enlighten the way we build and nurture diverse engineering teams. Whether you’re a manager constructing a formidable team (Constitution) or an individual seeking to self-assess and advance your career (Charisma), this talk will guide you in leveraging technical and transferable talents. Identify your developer archetype and complete a 'Developer Character Sheet' to highlight your abilities, proficiencies, and alignment in a fun, D&D-inspired format.
 
-- title: "Hacking Your Emotional Firewall"
-  raw_title: "Madison Ruby 2024 - Hacking Your Emotional Firewall"
-  speakers:
-    - "John Sawers"
-  video_id: "madison-ruby-2024-john-sawers"
-  video_provider: "not_recorded"
-  thumbnail_xs: https://pbs.twimg.com/media/GPkCjEpXwAANMDY?format=jpg&name=small # TODO: get rectangle version for speaker posters
-  thumbnail_sm: https://pbs.twimg.com/media/GPkCjEpXwAANMDY?format=jpg&name=small
-  thumbnail_md: https://pbs.twimg.com/media/GPkCjEpXwAANMDY?format=jpg
-  thumbnail_lg: https://pbs.twimg.com/media/GPkCjEpXwAANMDY?format=jpg&name=medium
-  thumbnail_xl: https://pbs.twimg.com/media/GPkCjEpXwAANMDY?format=jpg&name=medium
-  slides_url: https://speakerdeck.com/johnksawers/hacking-your-emotionhal-firewall-1-dot-0
-  description: |-
-    Firewalls are great, they filter out traffic you don't want from the internet. In this talk I'll take a look at what's inside us, at the connection between our body and mind, and imagine a firewall that sits in between. What if we could use the magic of TCP to find disconnected parts of ourselves and connect to them? We would end up experiencing greater wholeness and increased understanding of our minds, bodies, emotions, and motivations.
-  published_at: "2024-08-01"
-
-- title: "Architecture Big and Small"
-  raw_title: "Madison Ruby 2024 - Architecture Big and Small"
-  speakers:
-    - "Craig Buchek"
-  video_id: "madison-ruby-2024-craig-buchek"
-  video_provider: "not_recorded"
-  thumbnail_xs: https://pbs.twimg.com/media/GQxbWHBXMAEZfjS?format=jpg&name=small # TODO: get rectangle version for speaker posters
-  thumbnail_sm: https://pbs.twimg.com/media/GQxbWHBXMAEZfjS?format=jpg&name=small
-  thumbnail_md: https://pbs.twimg.com/media/GQxbWHBXMAEZfjS?format=jpg
-  thumbnail_lg: https://pbs.twimg.com/media/GQxbWHBXMAEZfjS?format=jpg&name=medium
-  thumbnail_xl: https://pbs.twimg.com/media/GQxbWHBXMAEZfjS?format=jpg&name=medium
-  description: "A comparative analysis of building architecture and software architecture, exploring patterns and considerations at various scales."
-  published_at: "2024-08-01"
-  slides_url: https://craigbuchek.com/arch
-
-- title: "Designing Resilient APIs: Balancing Stability & Flexibility"
-  raw_title: "Madison Ruby 2024 - Designing Resilient APIs: Balancing Stability & Flexibility"
-  speakers:
-    - "Mark Yoon"
-  video_id: "madison-ruby-2024-mark-yoon"
-  video_provider: "not_recorded"
-  thumbnail_xs: https://pbs.twimg.com/media/GP9OVajWoAAIB5C?format=jpg&name=small # TODO: get rectangle version for speaker posters
-  thumbnail_sm: https://pbs.twimg.com/media/GP9OVajWoAAIB5C?format=jpg&name=small
-  thumbnail_md: https://pbs.twimg.com/media/GP9OVajWoAAIB5C?format=jpg
-  thumbnail_lg: https://pbs.twimg.com/media/GP9OVajWoAAIB5C?format=jpg&name=medium
-  thumbnail_xl: https://pbs.twimg.com/media/GP9OVajWoAAIB5C?format=jpg&name=medium
-  slides_url: https://speakerdeck.com/markyoon/designing-resilient-apis-balancing-stability-and-flexibility
-  description: "Strategies for crafting robust APIs in Ruby tailored for mobile clients, focusing on stability, flexibility, and collaboration."
-  published_at: "2024-08-01"
-
-- title: "Lessons From The Sky"
-  raw_title: "Madison Ruby 2024 - Lessons From The Sky"
-  speakers:
-    - "Senem Soy"
-  video_id: "madison-ruby-2024-senem-soy"
-  video_provider: "not_recorded"
-  thumbnail_xs: https://pbs.twimg.com/media/GQsWhXrWcAATPmk?format=jpg&name=small # TODO: get rectangle version for speaker posters
-  thumbnail_sm: https://pbs.twimg.com/media/GQsWhXrWcAATPmk?format=jpg&name=small
-  thumbnail_md: https://pbs.twimg.com/media/GQsWhXrWcAATPmk?format=jpg
-  thumbnail_lg: https://pbs.twimg.com/media/GQsWhXrWcAATPmk?format=jpg&name=medium
-  thumbnail_xl: https://pbs.twimg.com/media/GQsWhXrWcAATPmk?format=jpg&name=medium
-  description: "Insights on how paragliding experiences can influence programming, focusing on handling fear and stress effectively."
-  published_at: "2024-08-01"
-
-- title: "Effective Discussions for Technical Decision-Making"
-  raw_title: "Madison Ruby 2024 - Effective Discussions for Technical Decision-Making"
-  speakers:
-    - Allison McMillan
-  video_id: "madison-ruby-2024-allison-mcmillan"
-  video_provider: "not_recorded"
-  thumbnail_xs: https://pbs.twimg.com/media/GSSUzTXXUAEU8ei?format=jpg&name=small # TODO: get rectangle version for speaker posters
-  thumbnail_sm: https://pbs.twimg.com/media/GSSUzTXXUAEU8ei?format=jpg&name=small
-  thumbnail_md: https://pbs.twimg.com/media/GSSUzTXXUAEU8ei?format=jpg
-  thumbnail_lg: https://pbs.twimg.com/media/GSSUzTXXUAEU8ei?format=jpg&name=medium
-  thumbnail_xl: https://pbs.twimg.com/media/GSSUzTXXUAEU8ei?format=jpg&name=medium
-  slides_url: https://speakerdeck.com/asheren/effective-discussions-for-technical-decision-making
-  description: "Whiteboards. Pairing. Spikes. These are the tools we use to have high-level technical conversations about ideas or approaches. How you conduct and lead these conversations involves articulating a vision and securing buy-in, while also valuing and integrating diverse perspectives and feedback from others. The goal is to foster an environment where ideas can be exchanged, discussed, enhanced, and decided on. You’ll walk away from this talk with some new approaches to get your technical ideas across and also solicit thoughts and opinions in ways that engage different points of view."
-  published_at: "2024-08-01"
-
-- title: "Mastering Query Performance With Active Record"
-  raw_title: "Madison Ruby 2024 - Mastering Query Performance With Active Record"
-  speakers:
-    - Andrew Atkinson
-  video_id: "madison-ruby-2024-andrew-atkinson"
-  video_provider: "not_recorded"
-  thumbnail_xs: https://pbs.twimg.com/media/GTXYaJkagAAYnDw?format=jpg&name=small
-  thumbnail_sm: https://pbs.twimg.com/media/GTXYaJkagAAYnDw?format=jpg&name=small
-  thumbnail_md: https://pbs.twimg.com/media/GTXYaJkagAAYnDw?format=jpg
-  thumbnail_lg: https://pbs.twimg.com/media/GTXYaJkagAAYnDw?format=jpg&name=medium
-  thumbnail_xl: https://pbs.twimg.com/media/GTXYaJkagAAYnDw?format=jpg&name=medium
-  description: |-
-    Attendees will learn fundamentals of good database query performance. With live demonstrations of app queries that aren't optimized, we’ll step through optimizations, query planning, and index design. A public Rails app will be used. Examples will move back and forth between Active Record and SQL using both a SQL client and the Rails Console. Audience members will be polled and questioned for suggestions to make the content more engaging. Attendees will leave with knowledge of fundamentals and real-world optimization tactics they can apply to their Active Record code and relational databases.
-
-    https://andyatkinson.com/blog/2024/08/13/madison-plus-ruby-conference-recap
-  published_at: "2024-08-01"
-
-- title: "Zen and the Art of Incremental Automation"
-  raw_title: "Madison Ruby 2024 - Zen and the Art of Incremental Automation"
-  speakers:
-    - Ajina Slater
-  video_id: "madison-ruby-2024-ajina-slater"
-  video_provider: "not_recorded"
-  thumbnail_xs: https://pbs.twimg.com/media/GQDALWXWsAEzSMi?format=jpg&name=small # TODO: get rectangle version for speaker posters
-  thumbnail_sm: https://pbs.twimg.com/media/GQDALWXWsAEzSMi?format=jpg&name=small
-  thumbnail_md: https://pbs.twimg.com/media/GQDALWXWsAEzSMi?format=jpg
-  thumbnail_lg: https://pbs.twimg.com/media/GQDALWXWsAEzSMi?format=jpg&name=medium
-  thumbnail_xl: https://pbs.twimg.com/media/GQDALWXWsAEzSMi?format=jpg&name=medium
-  description: "Automation doesn’t have to be all or nothing. Automating manual processes is a practice that one can employ via simple principles. Broad enough to be applied to a range of workflows, flexible enough to be tailored to an individual’s personal development routines; these principles are not in themselves complex, and can be performed regularly in the day to day of working in a codebase. Learn how to cultivate habits and a culture of incremental automation so even if the goal is not a full self-service suite of automated tools, your team can begin a journey away from friction and manual tasks."
-  published_at: "2024-08-01"
-
-- title: "Ruby on RAG: Building AI Use Cases for Fun and Profit"
-  raw_title: "Madison Ruby 2024 - Ruby on RAG: Building AI Use Cases for Fun and Profit"
-  speakers:
-    - "Landon Gray"
-  video_id: "madison-ruby-2024-landon-gray"
-  video_provider: "not_recorded"
-  thumbnail_xs: https://pbs.twimg.com/media/GSIFESPaUAkro38?format=jpg&name=small # TODO: get rectangle version for speaker posters
-  thumbnail_sm: https://pbs.twimg.com/media/GSIFESPaUAkro38?format=jpg&name=small
-  thumbnail_md: https://pbs.twimg.com/media/GSIFESPaUAkro38?format=jpg
-  thumbnail_lg: https://pbs.twimg.com/media/GSIFESPaUAkro38?format=jpg&name=medium
-  thumbnail_xl: https://pbs.twimg.com/media/GSIFESPaUAkro38?format=jpg&name=medium
-  slides_url: https://speakerdeck.com/thedayisntgray/ruby-on-rag-building-ai-use-cases-for-fun-and-profit
-  description: |-
-    This talk will cover what RAG is, how it works, and why we should be building RAG applications in Ruby and Rails. I'll share some code examples of what a toy RAG pipeline looks like in native Ruby and do a live demo of a simple RAG application. I'll also share a perspective as to why Ruby and Rails are great tools for building LLM applications and that the future languages for building such applications are whatever languages are most natural to you.
-  published_at: "2024-08-01"
-
-- title: "Going Postel"
+- id: "madison-ruby-2024-scott-werner"
+  title: "Going Postel"
   raw_title: "Madison Ruby 2024 - Going Postel"
   speakers:
     - "Scott Werner"
   video_id: "madison-ruby-2024-scott-werner"
   video_provider: "not_recorded"
-  thumbnail_xs: https://pbs.twimg.com/media/GPUzTZoXsAAhrpE?format=jpg&name=small # TODO: get rectangle version for speaker posters
-  thumbnail_sm: https://pbs.twimg.com/media/GPUzTZoXsAAhrpE?format=jpg&name=small
-  thumbnail_md: https://pbs.twimg.com/media/GPUzTZoXsAAhrpE?format=jpg
-  thumbnail_lg: https://pbs.twimg.com/media/GPUzTZoXsAAhrpE?format=jpg&name=medium
-  thumbnail_xl: https://pbs.twimg.com/media/GPUzTZoXsAAhrpE?format=jpg&name=medium
-  description: "A discussion on applying Postel’s Law to code generated from Large Language Models (LLMs) and Ruby's role in AI code generation."
-  published_at: "2024-08-01"
+  thumbnail_xs: "https://pbs.twimg.com/media/GPUzTZoXsAAhrpE?format=jpg&name=small" # TODO: get rectangle version for speaker posters
+  thumbnail_sm: "https://pbs.twimg.com/media/GPUzTZoXsAAhrpE?format=jpg&name=small"
+  thumbnail_md: "https://pbs.twimg.com/media/GPUzTZoXsAAhrpE?format=jpg"
+  thumbnail_lg: "https://pbs.twimg.com/media/GPUzTZoXsAAhrpE?format=jpg&name=medium"
+  thumbnail_xl: "https://pbs.twimg.com/media/GPUzTZoXsAAhrpE?format=jpg&name=medium"
+  thumbnail_classes: "object-bottom"
+  description: |-
+    A discussion on applying Postel’s Law to code generated from Large Language Models (LLMs) and Ruby's role in AI code generation.
+  date: "2024-08-01"
 
-- title: "Refactoring English"
-  raw_title: "Madison Ruby 2024 - Refactoring English"
+- id: "madison-ruby-2024-senem-soy"
+  title: "Lessons From The Sky"
+  raw_title: "Madison Ruby 2024 - Lessons From The Sky"
   speakers:
-    - Paolo "Nusco" Perrotta
-  video_id: "madison-ruby-2024-paolo-perrotta"
+    - "Senem Soy"
+  video_id: "madison-ruby-2024-senem-soy"
   video_provider: "not_recorded"
-  thumbnail_xs: https://pbs.twimg.com/media/GPZxoCAXoAQmjfV?format=jpg&name=small # TODO: get rectangle version for speaker posters
-  thumbnail_sm: https://pbs.twimg.com/media/GPZxoCAXoAQmjfV?format=jpg&name=small
-  thumbnail_md: https://pbs.twimg.com/media/GPZxoCAXoAQmjfV?format=jpg
-  thumbnail_lg: https://pbs.twimg.com/media/GPZxoCAXoAQmjfV?format=jpg&name=medium
-  thumbnail_xl: https://pbs.twimg.com/media/GPZxoCAXoAQmjfV?format=jpg&name=medium
-  description: "Techniques to enhance writing clarity for developers, drawing parallels between code refactoring and prose improvement."
-  published_at: "2024-08-02"
+  thumbnail_xs: "https://pbs.twimg.com/media/GQsWhXrWcAATPmk?format=jpg&name=small" # TODO: get rectangle version for speaker posters
+  thumbnail_sm: "https://pbs.twimg.com/media/GQsWhXrWcAATPmk?format=jpg&name=small"
+  thumbnail_md: "https://pbs.twimg.com/media/GQsWhXrWcAATPmk?format=jpg"
+  thumbnail_lg: "https://pbs.twimg.com/media/GQsWhXrWcAATPmk?format=jpg&name=medium"
+  thumbnail_xl: "https://pbs.twimg.com/media/GQsWhXrWcAATPmk?format=jpg&name=medium"
+  thumbnail_classes: "object-bottom"
+  description: |-
+    Insights on how paragliding experiences can influence programming, focusing on handling fear and stress effectively.
+  date: "2024-08-01"
 
-- title: "Developer Tooling For The Modern Rails & Hotwire Era"
-  raw_title: "Madison Ruby 2024 - Developer Tooling For The Modern Rails & Hotwire Era"
-  speakers:
-    - "Marco Roth"
-  video_id: "madison-ruby-2024-marco-roth"
-  video_provider: "not_recorded"
-  thumbnail_xs: https://files.speakerdeck.com/presentations/b954afca5cb34d2980aa6364a4dc6a99/slide_0.jpg
-  thumbnail_sm: https://files.speakerdeck.com/presentations/b954afca5cb34d2980aa6364a4dc6a99/slide_0.jpg
-  thumbnail_md: https://files.speakerdeck.com/presentations/b954afca5cb34d2980aa6364a4dc6a99/slide_0.jpg
-  thumbnail_lg: https://files.speakerdeck.com/presentations/b954afca5cb34d2980aa6364a4dc6a99/slide_0.jpg
-  thumbnail_xl: https://files.speakerdeck.com/presentations/b954afca5cb34d2980aa6364a4dc6a99/slide_0.jpg
-  description: "Exploration of advanced developer experience tools in the Rails ecosystem, including Language Server Protocols for Stimulus and Turbo."
-  published_at: "2024-08-02"
-  slides_url: https://speakerdeck.com/marcoroth/developer-tooling-for-the-modern-rails-and-hotwire-era-at-madison-ruby-2024
-
-- title: "How to Accessibility if You're Mostly Back-End"
-  raw_title: "Madison Ruby 2024 - How to Accessibility if You’re Mostly Back-End"
-  speakers:
-    - "Hilary Stohs-Krause"
-  video_id: "madison-ruby-2024-hilary-stohs-krause"
-  video_provider: "not_recorded"
-  thumbnail_xs: https://pbs.twimg.com/media/GPpn4_SWUAApz5S?format=jpg&name=small # TODO: get rectangle version for speaker posters
-  thumbnail_sm: https://pbs.twimg.com/media/GPpn4_SWUAApz5S?format=jpg&name=small
-  thumbnail_md: https://pbs.twimg.com/media/GPpn4_SWUAApz5S?format=jpg
-  thumbnail_lg: https://pbs.twimg.com/media/GPpn4_SWUAApz5S?format=jpg&name=medium
-  thumbnail_xl: https://pbs.twimg.com/media/GPpn4_SWUAApz5S?format=jpg&name=medium
-  description: "Guidance for back-end developers on impacting accessibility through APIs, specs, Ruby code, and documentation."
-  published_at: "2024-08-01"
-
-- title: "Visual Regression Testing with Storybook and Backstop"
+- id: "madison-ruby-2024-evan-keller"
+  title: "Visual Regression Testing with Storybook and Backstop"
   raw_title: "Madison Ruby 2024 - Visual Regression Testing with Storybook and Backstop"
   speakers:
     - "Evan Keller"
   video_id: "madison-ruby-2024-evan-keller"
   video_provider: "not_recorded"
-  thumbnail_xs: https://pbs.twimg.com/media/GPt0CssWMAAeS-a?format=jpg&name=small # TODO: get rectangle version for speaker posters
-  thumbnail_sm: https://pbs.twimg.com/media/GPt0CssWMAAeS-a?format=jpg&name=small
-  thumbnail_md: https://pbs.twimg.com/media/GPt0CssWMAAeS-a?format=jpg
-  thumbnail_lg: https://pbs.twimg.com/media/GPt0CssWMAAeS-a?format=jpg&name=medium
-  thumbnail_xl: https://pbs.twimg.com/media/GPt0CssWMAAeS-a?format=jpg&name=medium
-  description: "Essentials of visual regression testing using Storybook and Backstop, with practical advice for integration into development cycles."
-  published_at: "2024-08-01"
+  thumbnail_xs: "https://pbs.twimg.com/media/GPt0CssWMAAeS-a?format=jpg&name=small" # TODO: get rectangle version for speaker posters
+  thumbnail_sm: "https://pbs.twimg.com/media/GPt0CssWMAAeS-a?format=jpg&name=small"
+  thumbnail_md: "https://pbs.twimg.com/media/GPt0CssWMAAeS-a?format=jpg"
+  thumbnail_lg: "https://pbs.twimg.com/media/GPt0CssWMAAeS-a?format=jpg&name=medium"
+  thumbnail_xl: "https://pbs.twimg.com/media/GPt0CssWMAAeS-a?format=jpg&name=medium"
+  thumbnail_classes: "object-bottom"
+  description: |-
+    Essentials of visual regression testing using Storybook and Backstop, with practical advice for integration into development cycles.
+  date: "2024-08-01"
 
-- title: "Four Reasons Not to Care about Ethics in Open Source"
+- id: "madison-ruby-2024-craig-buchek"
+  title: "Architecture Big and Small"
+  raw_title: "Madison Ruby 2024 - Architecture Big and Small"
+  speakers:
+    - "Craig Buchek"
+  video_id: "madison-ruby-2024-craig-buchek"
+  video_provider: "not_recorded"
+  thumbnail_xs: "https://pbs.twimg.com/media/GQxbWHBXMAEZfjS?format=jpg&name=small" # TODO: get rectangle version for speaker posters
+  thumbnail_sm: "https://pbs.twimg.com/media/GQxbWHBXMAEZfjS?format=jpg&name=small"
+  thumbnail_md: "https://pbs.twimg.com/media/GQxbWHBXMAEZfjS?format=jpg"
+  thumbnail_lg: "https://pbs.twimg.com/media/GQxbWHBXMAEZfjS?format=jpg&name=medium"
+  thumbnail_xl: "https://pbs.twimg.com/media/GQxbWHBXMAEZfjS?format=jpg&name=medium"
+  thumbnail_classes: "object-bottom"
+  description: |-
+    A comparative analysis of building architecture and software architecture, exploring patterns and considerations at various scales.
+  date: "2024-08-01"
+  slides_url: "https://craigbuchek.com/arch"
+
+- id: "madison-ruby-2024-john-sawers"
+  title: "Hacking Your Emotional Firewall"
+  raw_title: "Madison Ruby 2024 - Hacking Your Emotional Firewall"
+  speakers:
+    - "John Sawers"
+  video_id: "madison-ruby-2024-john-sawers"
+  video_provider: "not_recorded"
+  thumbnail_xs: "https://pbs.twimg.com/media/GPkCjEpXwAANMDY?format=jpg&name=small" # TODO: get rectangle version for speaker posters
+  thumbnail_sm: "https://pbs.twimg.com/media/GPkCjEpXwAANMDY?format=jpg&name=small"
+  thumbnail_md: "https://pbs.twimg.com/media/GPkCjEpXwAANMDY?format=jpg"
+  thumbnail_lg: "https://pbs.twimg.com/media/GPkCjEpXwAANMDY?format=jpg&name=medium"
+  thumbnail_xl: "https://pbs.twimg.com/media/GPkCjEpXwAANMDY?format=jpg&name=medium"
+  slides_url: "https://speakerdeck.com/johnksawers/hacking-your-emotionhal-firewall-1-dot-0"
+  thumbnail_classes: "object-bottom"
+  description: |-
+    Firewalls are great, they filter out traffic you don't want from the internet. In this talk I'll take a look at what's inside us, at the connection between our body and mind, and imagine a firewall that sits in between. What if we could use the magic of TCP to find disconnected parts of ourselves and connect to them? We would end up experiencing greater wholeness and increased understanding of our minds, bodies, emotions, and motivations.
+  date: "2024-08-01"
+
+- id: "madison-ruby-2024-mark-yoon"
+  title: "Designing Resilient APIs: Balancing Stability & Flexibility"
+  raw_title: "Madison Ruby 2024 - Designing Resilient APIs: Balancing Stability & Flexibility"
+  speakers:
+    - "Mark Yoon"
+  video_id: "madison-ruby-2024-mark-yoon"
+  video_provider: "not_recorded"
+  thumbnail_xs: "https://pbs.twimg.com/media/GP9OVajWoAAIB5C?format=jpg&name=small" # TODO: get rectangle version for speaker posters
+  thumbnail_sm: "https://pbs.twimg.com/media/GP9OVajWoAAIB5C?format=jpg&name=small"
+  thumbnail_md: "https://pbs.twimg.com/media/GP9OVajWoAAIB5C?format=jpg"
+  thumbnail_lg: "https://pbs.twimg.com/media/GP9OVajWoAAIB5C?format=jpg&name=medium"
+  thumbnail_xl: "https://pbs.twimg.com/media/GP9OVajWoAAIB5C?format=jpg&name=medium"
+  slides_url: "https://speakerdeck.com/markyoon/designing-resilient-apis-balancing-stability-and-flexibility"
+  thumbnail_classes: "object-bottom"
+  description: |-
+    Strategies for crafting robust APIs in Ruby tailored for mobile clients, focusing on stability, flexibility, and collaboration.
+  date: "2024-08-01"
+
+## Day 2
+
+- id: "madison-ruby-2024-paolo-perrotta"
+  title: "Refactoring English"
+  raw_title: "Madison Ruby 2024 - Refactoring English"
+  speakers:
+    - Paolo "Nusco" Perrotta
+  video_id: "madison-ruby-2024-paolo-perrotta"
+  video_provider: "not_recorded"
+  thumbnail_xs: "https://pbs.twimg.com/media/GPZxoCAXoAQmjfV?format=jpg&name=small" # TODO: get rectangle version for speaker posters
+  thumbnail_sm: "https://pbs.twimg.com/media/GPZxoCAXoAQmjfV?format=jpg&name=small"
+  thumbnail_md: "https://pbs.twimg.com/media/GPZxoCAXoAQmjfV?format=jpg"
+  thumbnail_lg: "https://pbs.twimg.com/media/GPZxoCAXoAQmjfV?format=jpg&name=medium"
+  thumbnail_xl: "https://pbs.twimg.com/media/GPZxoCAXoAQmjfV?format=jpg&name=medium"
+  thumbnail_classes: "object-bottom"
+  description: |-
+    Techniques to enhance writing clarity for developers, drawing parallels between code refactoring and prose improvement.
+  date: "2024-08-02"
+
+- id: "madison-ruby-2024-andrew-atkinson"
+  title: "Mastering Query Performance With Active Record"
+  raw_title: "Madison Ruby 2024 - Mastering Query Performance With Active Record"
+  speakers:
+    - Andrew Atkinson
+  video_id: "madison-ruby-2024-andrew-atkinson"
+  video_provider: "not_recorded"
+  thumbnail_xs: "https://pbs.twimg.com/media/GTXYaJkagAAYnDw?format=jpg&name=small"
+  thumbnail_sm: "https://pbs.twimg.com/media/GTXYaJkagAAYnDw?format=jpg&name=small"
+  thumbnail_md: "https://pbs.twimg.com/media/GTXYaJkagAAYnDw?format=jpg"
+  thumbnail_lg: "https://pbs.twimg.com/media/GTXYaJkagAAYnDw?format=jpg&name=medium"
+  thumbnail_xl: "https://pbs.twimg.com/media/GTXYaJkagAAYnDw?format=jpg&name=medium"
+  description: |-
+    Attendees will learn fundamentals of good database query performance. With live demonstrations of app queries that aren't optimized, we’ll step through optimizations, query planning, and index design. A public Rails app will be used. Examples will move back and forth between Active Record and SQL using both a SQL client and the Rails Console. Audience members will be polled and questioned for suggestions to make the content more engaging. Attendees will leave with knowledge of fundamentals and real-world optimization tactics they can apply to their Active Record code and relational databases.
+
+    https://andyatkinson.com/blog/2024/08/13/madison-plus-ruby-conference-recap
+  date: "2024-08-02"
+
+- id: "madison-ruby-2024-allison-mcmillan"
+  title: "Effective Discussions for Technical Decision-Making"
+  raw_title: "Madison Ruby 2024 - Effective Discussions for Technical Decision-Making"
+  speakers:
+    - Allison McMillan
+  video_id: "madison-ruby-2024-allison-mcmillan"
+  video_provider: "not_recorded"
+  thumbnail_xs: "https://pbs.twimg.com/media/GSSUzTXXUAEU8ei?format=jpg&name=small" # TODO: get rectangle version for speaker posters
+  thumbnail_sm: "https://pbs.twimg.com/media/GSSUzTXXUAEU8ei?format=jpg&name=small"
+  thumbnail_md: "https://pbs.twimg.com/media/GSSUzTXXUAEU8ei?format=jpg"
+  thumbnail_lg: "https://pbs.twimg.com/media/GSSUzTXXUAEU8ei?format=jpg&name=medium"
+  thumbnail_xl: "https://pbs.twimg.com/media/GSSUzTXXUAEU8ei?format=jpg&name=medium"
+  thumbnail_classes: "object-bottom"
+  slides_url: "https://speakerdeck.com/asheren/effective-discussions-for-technical-decision-making"
+  description: |-
+    Whiteboards. Pairing. Spikes. These are the tools we use to have high-level technical conversations about ideas or approaches. How you conduct and lead these conversations involves articulating a vision and securing buy-in, while also valuing and integrating diverse perspectives and feedback from others. The goal is to foster an environment where ideas can be exchanged, discussed, enhanced, and decided on. You’ll walk away from this talk with some new approaches to get your technical ideas across and also solicit thoughts and opinions in ways that engage different points of view.
+  date: "2024-08-02"
+
+- id: "madison-ruby-2024-hilary-stohs-krause"
+  title: "How to Accessibility if You're Mostly Back-End"
+  raw_title: "Madison Ruby 2024 - How to Accessibility if You’re Mostly Back-End"
+  speakers:
+    - "Hilary Stohs-Krause"
+  video_id: "madison-ruby-2024-hilary-stohs-krause"
+  video_provider: "not_recorded"
+  thumbnail_xs: "https://pbs.twimg.com/media/GPpn4_SWUAApz5S?format=jpg&name=small" # TODO: get rectangle version for speaker posters
+  thumbnail_sm: "https://pbs.twimg.com/media/GPpn4_SWUAApz5S?format=jpg&name=small"
+  thumbnail_md: "https://pbs.twimg.com/media/GPpn4_SWUAApz5S?format=jpg"
+  thumbnail_lg: "https://pbs.twimg.com/media/GPpn4_SWUAApz5S?format=jpg&name=medium"
+  thumbnail_xl: "https://pbs.twimg.com/media/GPpn4_SWUAApz5S?format=jpg&name=medium"
+  thumbnail_classes: "object-bottom"
+  description: |-
+    Guidance for back-end developers on impacting accessibility through APIs, specs, Ruby code, and documentation.
+  date: "2024-08-02"
+
+- id: "madison-ruby-2024-marco-roth"
+  title: "Developer Tooling For The Modern Rails & Hotwire Era"
+  raw_title: "Madison Ruby 2024 - Developer Tooling For The Modern Rails & Hotwire Era"
+  speakers:
+    - "Marco Roth"
+  video_id: "madison-ruby-2024-marco-roth"
+  video_provider: "not_recorded"
+  thumbnail_xs: "https://files.speakerdeck.com/presentations/b954afca5cb34d2980aa6364a4dc6a99/slide_0.jpg"
+  thumbnail_sm: "https://files.speakerdeck.com/presentations/b954afca5cb34d2980aa6364a4dc6a99/slide_0.jpg"
+  thumbnail_md: "https://files.speakerdeck.com/presentations/b954afca5cb34d2980aa6364a4dc6a99/slide_0.jpg"
+  thumbnail_lg: "https://files.speakerdeck.com/presentations/b954afca5cb34d2980aa6364a4dc6a99/slide_0.jpg"
+  thumbnail_xl: "https://files.speakerdeck.com/presentations/b954afca5cb34d2980aa6364a4dc6a99/slide_0.jpg"
+  description: |-
+    Exploration of advanced developer experience tools in the Rails ecosystem, including Language Server Protocols for Stimulus and Turbo.
+  date: "2024-08-02"
+  slides_url: "https://speakerdeck.com/marcoroth/developer-tooling-for-the-modern-rails-and-hotwire-era-at-madison-ruby-2024"
+
+- id: "madison-ruby-2024-ajina-slater"
+  title: "Zen and the Art of Incremental Automation"
+  raw_title: "Madison Ruby 2024 - Zen and the Art of Incremental Automation"
+  speakers:
+    - Christopher "Aji" Slater
+  video_id: "madison-ruby-2024-ajina-slater"
+  video_provider: "not_recorded"
+  thumbnail_xs: "https://pbs.twimg.com/media/GQDALWXWsAEzSMi?format=jpg&name=small" # TODO: get rectangle version for speaker posters
+  thumbnail_sm: "https://pbs.twimg.com/media/GQDALWXWsAEzSMi?format=jpg&name=small"
+  thumbnail_md: "https://pbs.twimg.com/media/GQDALWXWsAEzSMi?format=jpg"
+  thumbnail_lg: "https://pbs.twimg.com/media/GQDALWXWsAEzSMi?format=jpg&name=medium"
+  thumbnail_xl: "https://pbs.twimg.com/media/GQDALWXWsAEzSMi?format=jpg&name=medium"
+  thumbnail_classes: "object-bottom"
+  description: |-
+    Automation doesn’t have to be all or nothing. Automating manual processes is a practice that one can employ via simple principles. Broad enough to be applied to a range of workflows, flexible enough to be tailored to an individual’s personal development routines; these principles are not in themselves complex, and can be performed regularly in the day to day of working in a codebase. Learn how to cultivate habits and a culture of incremental automation so even if the goal is not a full self-service suite of automated tools, your team can begin a journey away from friction and manual tasks.
+  date: "2024-08-02"
+
+- id: "madison-ruby-2024-landon-gray"
+  title: "Ruby on RAG: Building AI Use Cases for Fun and Profit"
+  raw_title: "Madison Ruby 2024 - Ruby on RAG: Building AI Use Cases for Fun and Profit"
+  speakers:
+    - "Landon Gray"
+  video_id: "madison-ruby-2024-landon-gray"
+  video_provider: "not_recorded"
+  thumbnail_xs: "https://pbs.twimg.com/media/GSIFESPaUAkro38?format=jpg&name=small" # TODO: get rectangle version for speaker posters
+  thumbnail_sm: "https://pbs.twimg.com/media/GSIFESPaUAkro38?format=jpg&name=small"
+  thumbnail_md: "https://pbs.twimg.com/media/GSIFESPaUAkro38?format=jpg"
+  thumbnail_lg: "https://pbs.twimg.com/media/GSIFESPaUAkro38?format=jpg&name=medium"
+  thumbnail_xl: "https://pbs.twimg.com/media/GSIFESPaUAkro38?format=jpg&name=medium"
+  thumbnail_classes: "object-bottom"
+  slides_url: "https://speakerdeck.com/thedayisntgray/ruby-on-rag-building-ai-use-cases-for-fun-and-profit"
+  description: |-
+    This talk will cover what RAG is, how it works, and why we should be building RAG applications in Ruby and Rails. I'll share some code examples of what a toy RAG pipeline looks like in native Ruby and do a live demo of a simple RAG application. I'll also share a perspective as to why Ruby and Rails are great tools for building LLM applications and that the future languages for building such applications are whatever languages are most natural to you.
+  date: "2024-08-02"
+
+- id: "madison-ruby-2024-coraline-ada-ehmke"
+  title: "Four Reasons Not to Care about Ethics in Open Source"
   raw_title: "Madison Ruby 2024 - Four Reasons Not to Care about Ethics in Open Source"
   speakers:
     - "Coraline Ada Ehmke"
   video_id: "madison-ruby-2024-coraline-ada-ehmke"
   video_provider: "not_recorded"
-  thumbnail_xs: https://pbs.twimg.com/media/GPze7qOWoAAt5T0?format=jpg&name=small # TODO: get rectangle version for speaker posters
-  thumbnail_sm: https://pbs.twimg.com/media/GPze7qOWoAAt5T0?format=jpg&name=small
-  thumbnail_md: https://pbs.twimg.com/media/GPze7qOWoAAt5T0?format=jpg
-  thumbnail_lg: https://pbs.twimg.com/media/GPze7qOWoAAt5T0?format=jpg&name=medium
-  thumbnail_xl: https://pbs.twimg.com/media/GPze7qOWoAAt5T0?format=jpg&name=medium
-  description: "A provocative discussion on the role of ethics in open source, challenging common perceptions and encouraging critical thought."
-  published_at: "2024-08-01"
+  thumbnail_xs: "https://pbs.twimg.com/media/GPze7qOWoAAt5T0?format=jpg&name=small" # TODO: get rectangle version for speaker posters
+  thumbnail_sm: "https://pbs.twimg.com/media/GPze7qOWoAAt5T0?format=jpg&name=small"
+  thumbnail_md: "https://pbs.twimg.com/media/GPze7qOWoAAt5T0?format=jpg"
+  thumbnail_lg: "https://pbs.twimg.com/media/GPze7qOWoAAt5T0?format=jpg&name=medium"
+  thumbnail_xl: "https://pbs.twimg.com/media/GPze7qOWoAAt5T0?format=jpg&name=medium"
+  thumbnail_classes: "object-bottom"
+  description: |-
+    A provocative discussion on the role of ethics in open source, challenging common perceptions and encouraging critical thought.
+  date: "2024-08-02"

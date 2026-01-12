@@ -1,0 +1,9 @@
+<%= turbo_refreshes_with method: :morph, scroll: :preserve %>
+
+<div class="container py-8">
+  <div class="max-w-2xl mx-auto">
+    <h1 class="text-3xl font-bold mb-8">Edit Profile</h1>
+
+    <%= render "form", user: @user %>
+  </div>
+</div>

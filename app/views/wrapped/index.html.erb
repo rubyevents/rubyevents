@@ -1,0 +1,334 @@
+<div class="min-h-screen bg-[linear-gradient(to_bottom,#991b1b_0%,#450a0a_20%,#081625_60%,#081625_100%)]">
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <div class="text-center text-white mb-16">
+      <p class="text-red-300 text-lg" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">RubyEvents.org</p>
+      <h1 class="text-6xl font-black text-white mt-2" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;"><%= @year %></h1>
+      <p class="text-3xl font-bold text-red-200 mt-1" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">Wrapped</p>
+
+      <p class="text-xl text-red-100 mt-8 mb-8 max-w-lg mx-auto">
+        Your year in Ruby events, talks watched, and community connections.
+      </p>
+
+      <% if Current.user %>
+        <%= link_to profile_wrapped_index_path(profile_slug: Current.user.to_param), class: "inline-flex items-center gap-2 px-8 py-4 bg-white text-red-700 font-bold rounded-full hover:bg-red-100 transition-colors text-lg shadow-lg" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          View Your <%= @year %> Wrapped
+        <% end %>
+      <% else %>
+        <%= link_to new_session_path(redirect_to: request.fullpath), data: {turbo_frame: "modal"}, class: "inline-flex items-center gap-2 px-8 py-4 bg-white text-red-700 font-bold rounded-full hover:bg-red-100 transition-colors text-lg shadow-lg" do %>
+          Sign in to see your Wrapped
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="mb-16">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl font-bold text-white mb-2">Platform Stats</h2>
+        <p class="text-red-200">The Ruby community in <%= @year %></p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center cursor-help" data-controller="tooltip" data-tooltip-content-value="Talks that took place at Ruby conferences and meetups in <%= @year %>">
+          <p class="text-4xl font-black text-white"><%= number_with_delimiter(@talks_held) %></p>
+          <p class="text-red-200 text-sm mt-1">Talks Held</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center cursor-help" data-controller="tooltip" data-tooltip-content-value="Talk recordings published in <%= @year %>">
+          <p class="text-4xl font-black text-white"><%= number_with_delimiter(@talks_published) %></p>
+          <p class="text-red-200 text-sm mt-1">Talks Published</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center cursor-help" data-controller="tooltip" data-tooltip-content-value="Ruby conferences that took place in <%= @year %>">
+          <p class="text-4xl font-black text-white"><%= number_with_delimiter(@total_conferences) %></p>
+          <p class="text-red-200 text-sm mt-1">Conferences</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center cursor-help" data-controller="tooltip" data-tooltip-content-value="Unique speakers who gave talks at Ruby events in <%= @year %>">
+          <p class="text-4xl font-black text-white"><%= number_with_delimiter(@total_speakers) %></p>
+          <p class="text-red-200 text-sm mt-1">Speakers</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center cursor-help" data-controller="tooltip" data-tooltip-content-value="Talks from <%= @year %> that have slide decks linked on RubyEvents.org">
+          <p class="text-4xl font-black text-white"><%= number_with_delimiter(@talks_with_slides) %></p>
+          <p class="text-red-200 text-sm mt-1">Slide Decks</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center cursor-help" data-controller="tooltip" data-tooltip-content-value="Total hours of talk recordings published in <%= @year %> available to watch on RubyEvents.org">
+          <p class="text-4xl font-black text-white"><%= number_with_delimiter(@total_hours) %></p>
+          <p class="text-red-200 text-sm mt-1">Hours to Watch</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center cursor-help" data-controller="tooltip" data-tooltip-content-value="Countries that hosted Ruby conferences or meetups in <%= @year %>">
+          <p class="text-4xl font-black text-white"><%= number_with_delimiter(@countries_with_events.count) %></p>
+          <p class="text-red-200 text-sm mt-1">Event Countries</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center cursor-help" data-controller="tooltip" data-tooltip-content-value="Organizers, MCs, volunteers, and other people who helped run Ruby events in <%= @year %>">
+          <p class="text-4xl font-black text-white"><%= number_with_delimiter(@people_involved) %></p>
+          <p class="text-red-200 text-sm mt-1">People Involved</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center cursor-help" data-controller="tooltip" data-tooltip-content-value="Organizations that sponsored Ruby conferences in <%= @year %>">
+          <p class="text-4xl font-black text-white"><%= number_with_delimiter(@unique_sponsors) %></p>
+          <p class="text-red-200 text-sm mt-1">Unique Sponsors</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center cursor-help" data-controller="tooltip" data-tooltip-content-value="Ruby Passports connected to RubyEvents.org accounts in <%= @year %>">
+          <p class="text-4xl font-black text-white"><%= number_with_delimiter(@passports_issued) %></p>
+          <p class="text-red-200 text-sm mt-1">Ruby Passports Linked</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center cursor-help" data-controller="tooltip" data-tooltip-content-value="Users who marked their attendance at events on RubyEvents.org in <%= @year %>">
+          <p class="text-4xl font-black text-white"><%= number_with_delimiter(@event_participations) %></p>
+          <p class="text-red-200 text-sm mt-1">Event Check-ins</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center cursor-help" data-controller="tooltip" data-tooltip-content-value="Total number of talks watched by users on RubyEvents.org in <%= @year %>">
+          <p class="text-4xl font-black text-white"><%= number_with_delimiter(@total_talks_watched) %></p>
+          <p class="text-red-200 text-sm mt-1">Talks Watched</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
+        <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center cursor-help" data-controller="tooltip" data-tooltip-content-value="Total registered Rubyists on RubyEvents.org">
+          <p class="text-4xl font-black text-white"><%= number_with_delimiter(@total_rubyists) %></p>
+          <p class="text-red-200 text-sm mt-1">Rubyists</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center cursor-help" data-controller="tooltip" data-tooltip-content-value="Countries where Rubyists are from">
+          <p class="text-4xl font-black text-white"><%= number_with_delimiter(@rubyist_countries) %></p>
+          <p class="text-red-200 text-sm mt-1">Rubyist Countries</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center cursor-help" data-controller="tooltip" data-tooltip-content-value="New users who signed up to RubyEvents.org in <%= @year %>">
+          <p class="text-4xl font-black text-white"><%= number_with_delimiter(@new_users) %></p>
+          <p class="text-red-200 text-sm mt-1">New Users</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center cursor-help" data-controller="tooltip" data-tooltip-content-value="Contributors to the RubyEvents.org codebase on GitHub">
+          <p class="text-4xl font-black text-white"><%= number_with_delimiter(@github_contributors) %></p>
+          <p class="text-red-200 text-sm mt-1">GitHub Contributors</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center cursor-help" data-controller="tooltip" data-tooltip-content-value="Unique visitor sessions to RubyEvents.org in <%= @year %>">
+          <p class="text-4xl font-black text-white"><%= number_with_delimiter(@total_visits) %></p>
+          <p class="text-red-200 text-sm mt-1">Visits</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center cursor-help" data-controller="tooltip" data-tooltip-content-value="Total page views across all pages on RubyEvents.org in <%= @year %>">
+          <p class="text-4xl font-black text-white"><%= number_with_delimiter(@total_page_views) %></p>
+          <p class="text-red-200 text-sm mt-1">Page Views</p>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <% if @top_topics.any? %>
+          <div class="bg-white/10 backdrop-blur rounded-xl p-6">
+            <h3 class="text-lg font-bold text-white mb-4">🔥 Most Popular Topics</h3>
+            <div class="space-y-3">
+              <% @top_topics.each_with_index do |topic, index| %>
+                <%= link_to topic_path(topic), class: "flex items-center gap-3 text-white hover:text-red-200 transition" do %>
+                  <span class="text-2xl font-bold text-red-400"><%= index + 1 %></span>
+                  <span class="font-medium"><%= topic.name %></span>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+
+        <% if @most_watched_events.any? %>
+          <div class="bg-white/10 backdrop-blur rounded-xl p-6">
+            <h3 class="text-lg font-bold text-white mb-4">👀 Most Watched Events</h3>
+            <div class="space-y-3">
+              <% @most_watched_events.each_with_index do |event, index| %>
+                <%= link_to event_path(event), class: "flex items-center gap-3 text-white hover:text-red-200 transition" do %>
+                  <span class="text-2xl font-bold text-red-400"><%= index + 1 %></span>
+                  <span class="font-medium truncate"><%= event.name %></span>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+
+        <% if @events_by_sessions.any? %>
+          <div class="bg-white/10 backdrop-blur rounded-xl p-6">
+            <h3 class="text-lg font-bold text-white mb-4">🎪 Most Sessions</h3>
+            <div class="space-y-3">
+              <% @events_by_sessions.each_with_index do |event, index| %>
+                <%= link_to event_path(event), class: "flex items-center gap-3 text-white hover:text-red-200 transition" do %>
+                  <span class="text-2xl font-bold text-red-400"><%= index + 1 %></span>
+                  <span class="font-medium truncate"><%= event.name %></span>
+                  <span class="text-red-300 text-sm"><%= event.talks_count %></span>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+
+        <% if @events_by_attendees.any? %>
+          <div class="bg-white/10 backdrop-blur rounded-xl p-6">
+            <h3 class="text-lg font-bold text-white mb-4">🙋 Most Registered Attendees</h3>
+            <div class="space-y-3">
+              <% @events_by_attendees.each_with_index do |event, index| %>
+                <%= link_to event_path(event), class: "flex items-center gap-3 text-white hover:text-red-200 transition" do %>
+                  <span class="text-2xl font-bold text-red-400"><%= index + 1 %></span>
+                  <span class="font-medium truncate"><%= event.name %></span>
+                  <span class="text-red-300 text-sm"><%= event.attendees_count %></span>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <% if @most_watched_talks.any? %>
+        <div class="bg-white/10 backdrop-blur rounded-xl p-6 mt-6">
+          <h3 class="text-lg font-bold text-white mb-4">👀 Most Watched Talks on RubyEvents.org</h3>
+          <div class="space-y-4">
+            <% @most_watched_talks.each_with_index do |talk, index| %>
+              <%= link_to talk_path(talk), class: "flex items-start gap-4 text-white hover:text-red-200 transition group" do %>
+                <span class="text-2xl font-bold text-red-400 shrink-0"><%= index + 1 %></span>
+                <div class="min-w-0">
+                  <p class="font-medium group-hover:underline truncate"><%= talk.title %></p>
+                  <p class="text-sm text-red-300 truncate">
+                    <%= talk.speakers.map(&:name).join(", ") %>
+                    <% if talk.event.present? %>
+                      <span class="text-red-400">•</span>
+                      <%= talk.event.name %>
+                    <% end %>
+                  </p>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
+      <% if @countries_with_events.any? %>
+        <div class="bg-white/10 backdrop-blur rounded-xl p-6 mt-6">
+          <h3 class="text-lg font-bold text-white mb-4">🌍 Events Across the Globe</h3>
+          <p class="text-red-200 mb-4"><%= @countries_with_events.count %> countries hosted Ruby events</p>
+          <div class="flex flex-wrap gap-2">
+            <% @countries_with_events.sort_by(&:name).each do |country| %>
+              <%= link_to country.path, class: "inline-flex items-center gap-1 px-3 py-1 bg-white/10 rounded-full text-sm text-white hover:bg-white/20 transition" do %>
+                <%= country.emoji_flag %> <%= country.name %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
+      <% if @languages.any? %>
+        <div class="bg-white/10 backdrop-blur rounded-xl p-6 mt-6">
+          <h3 class="text-lg font-bold text-white mb-4">🗣️ Talk Languages</h3>
+          <p class="text-red-200 mb-4">Languages spoken at Ruby conferences this year</p>
+          <div class="flex flex-wrap gap-3">
+            <% @languages.each do |language, count| %>
+              <span class="inline-flex items-center gap-2 px-3 py-1 bg-white/10 rounded-full text-sm text-white">
+                <%= language.respond_to?(:name) ? language.name : language %>
+                <span class="text-red-300"><%= count %></span>
+              </span>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
+      <% if @new_speakers.positive? %>
+        <div class="text-center mt-8">
+          <p class="text-red-200">
+            🎤 <span class="text-white font-bold"><%= number_with_delimiter(@new_speakers) %></span> speakers gave their first conference talk
+          </p>
+        </div>
+      <% end %>
+
+      <% if @next_year_conferences.positive? || @next_year_talks.positive? || @open_cfps.positive? %>
+        <div class="bg-white/10 backdrop-blur rounded-xl p-8 mt-8 text-center">
+          <p class="text-red-300 text-sm mb-2">Sneak Peek</p>
+          <h3 class="text-3xl font-black text-white mb-4"><%= @next_year %></h3>
+          <div class="flex justify-center gap-8">
+            <% if @next_year_conferences.positive? %>
+              <div>
+                <p class="text-3xl font-bold text-white"><%= @next_year_conferences %></p>
+                <p class="text-red-200 text-sm">Conferences</p>
+              </div>
+            <% end %>
+            <% if @next_year_talks.positive? %>
+              <div>
+                <p class="text-3xl font-bold text-white"><%= @next_year_talks %></p>
+                <p class="text-red-200 text-sm">Talks Scheduled</p>
+              </div>
+            <% end %>
+            <% if @open_cfps.positive? %>
+              <div>
+                <p class="text-3xl font-bold text-white"><%= @open_cfps %></p>
+                <p class="text-red-200 text-sm">Open CFPs</p>
+              </div>
+            <% end %>
+          </div>
+          <%= link_to events_path(year: @next_year), class: "inline-block mt-6 px-6 py-2 bg-white/20 text-white rounded-full hover:bg-white/30 transition text-sm" do %>
+            View <%= @next_year %> Events →
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <% if @public_users.any? %>
+      <div class="text-center mb-8">
+        <h2 class="text-2xl font-bold text-white mb-2">Community Wrappeds</h2>
+        <p class="text-red-200">See what others experienced this year</p>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-4">
+        <% @public_users.each do |user| %>
+          <%= link_to profile_wrapped_index_path(profile_slug: user.to_param), class: "group" do %>
+            <div class="relative">
+              <div class="w-20 h-20 md:w-24 md:h-24 rounded-full p-[3px] bg-gradient-to-tr from-red-400 via-red-500 to-[#081625] group-hover:scale-105 transition-transform">
+                <div class="w-full h-full rounded-full p-[2px] bg-[#081625]">
+                  <div class="w-full h-full rounded-full overflow-hidden bg-gray-100">
+                    <% if user.custom_avatar? %>
+                      <%= image_tag user.avatar_url(size: 96), class: "w-full h-full object-cover", alt: user.name %>
+                    <% else %>
+                      <div class="w-full h-full flex items-center justify-center text-2xl font-bold text-gray-600 bg-gray-200">
+                        <%= user.name.first.upcase %>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="text-center text-white text-sm mt-2 max-w-[80px] md:max-w-[96px] truncate mx-auto">
+              <%= user.name.split.first %>
+            </p>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% if @top_organizations.any? %>
+      <div class="text-center mb-8 mt-16">
+        <h2 class="text-2xl font-bold text-white mb-2">Top Supporters</h2>
+        <p class="text-red-200">Organizations supporting the Ruby community — check out their Wrapped!</p>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-4">
+        <% @top_organizations.each do |organization| %>
+          <%= link_to organization_wrapped_index_path(organization_slug: organization.slug), class: "group" do %>
+            <div class="relative">
+              <div class="w-20 h-20 md:w-24 md:h-24 rounded-xl p-[3px] bg-gradient-to-tr from-red-400 via-red-500 to-[#081625] group-hover:scale-105 transition-transform">
+                <div class="w-full h-full rounded-xl p-[2px] bg-[#081625]">
+                  <div class="w-full h-full rounded-lg overflow-hidden bg-white flex items-center justify-center p-2">
+                    <% if organization.logo_url.present? %>
+                      <%= image_tag organization.logo_url, class: "w-full h-full object-contain", alt: organization.name %>
+                    <% else %>
+                      <span class="text-2xl font-bold text-gray-600"><%= organization.name.first.upcase %></span>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="text-center text-white text-sm mt-2 max-w-[80px] md:max-w-[96px] truncate mx-auto">
+              <%= organization.name %>
+            </p>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <div class="text-center mt-16 text-red-200 text-sm">
+      <p>Share your year with the Ruby community</p>
+    </div>
+  </div>
+</div>

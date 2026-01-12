@@ -77,7 +77,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 10 Dec 2024 22:11:43 GMT
+      - Sat, 04 Jan 2025 22:05:13 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -89,7 +89,136 @@ http_interactions:
       Openai-Organization:
       - user-cnr3hw7frpcuxb74nqkxv0ci
       Openai-Processing-Ms:
-      - '7386'
+      - '2758'
+      Openai-Version:
+      - '2020-10-01'
+      X-Ratelimit-Limit-Requests:
+      - '5000'
+      X-Ratelimit-Limit-Tokens:
+      - '4000000'
+      X-Ratelimit-Remaining-Requests:
+      - '4999'
+      X-Ratelimit-Remaining-Tokens:
+      - '3999008'
+      X-Ratelimit-Reset-Requests:
+      - 12ms
+      X-Ratelimit-Reset-Tokens:
+      - 14ms
+      X-Request-Id:
+      - req_92d07cd36ef07130e64daa0636193255
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=1W0G0Rn4HrcTx6lL4LUar4sWtOsBZi6s_6NtUqQqsnk-1736028313-1.0.1.1-qYeFKEfIYfCumCuZCL6Gk6L3z5pBpmjqNTOl46kqwU6g603URVB5KZJXZkNvyp.rwaq2ZjZ4EroBND1f9cbhpQ;
+        path=/; expires=Sat, 04-Jan-25 22:35:13 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=E111y0rBSbIatglJUbEDzp31Yb30yAscGteVqR6UAiE-1736028313711-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      X-Content-Type-Options:
+      - nosniff
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8fce874aadce48cd-LHR
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        ewogICJpZCI6ICJjaGF0Y21wbC1BbTZZWW1WYnRtM01vUUtCQWJTeHNwTGpRT09tUiIsCiAgIm9iamVjdCI6ICJjaGF0LmNvbXBsZXRpb24iLAogICJjcmVhdGVkIjogMTczNjAyODMxMCwKICAibW9kZWwiOiAiZ3B0LTRvLW1pbmktMjAyNC0wNy0xOCIsCiAgImNob2ljZXMiOiBbCiAgICB7CiAgICAgICJpbmRleCI6IDAsCiAgICAgICJtZXNzYWdlIjogewogICAgICAgICJyb2xlIjogImFzc2lzdGFudCIsCiAgICAgICAgImNvbnRlbnQiOiAie1widHJhbnNjcmlwdFwiOlt7XCJzdGFydF90aW1lXCI6XCIwMDowMDoxNS4yODBcIixcImVuZF90aW1lXCI6XCIwMDowMDozNC4zOTlcIixcInRleHRcIjpcIlNvIG5pY2UgdG8gYmUgaGVyZSB3aXRoIHlvdS4gVGhhbmsgeW91IGFsbCBmb3IgY29taW5nLiBNeSBuYW1lIGlzIFlhcm9zbGF2LCBhbmQgSSdtIGZyb20gVWtyYWluZS4gWW91IG1pZ2h0IGtub3cgbWUgZnJvbSBteSBibG9nIG9yIGZyb20gbXkgU3VwZXIgQWwgWW91VHViZSBjaGFubmVsLCB3aGVyZSBJIHBvc3QgYSBsb3Qgb2YgY29udGVudCBhYm91dCBSdWJ5LCBhbmQgZXNwZWNpYWxseSBhYm91dCBIb3R3aXJlLiBJIG9yaWdpbmF0ZSBmcm9tIHRoZSBub3J0aCBvZiBVa3JhaW5lLCBzcGVjaWZpY2FsbHkgZnJvbSBhIHRvd24gdGhhdCBpcyBub3cgbGliZXJhdGVkLCBuZWFyIEt5aXYgYW5kIENoZXJub2J5bC4gSSB1c2VkIHRvIGxpdmUgYWJvdXQgODAga2lsb21ldGVycyBhd2F5IGZyb20gQ2hlcm5vYnlsLlwifSx7XCJzdGFydF90aW1lXCI6XCIwMDowMDozNC4zOTlcIixcImVuZF90aW1lXCI6XCIwMDowMToxMy4xNTlcIixcInRleHRcIjpcIlRoYXQgcGxhY2UgaG9sZHMgYSBsb3Qgb2YgbWVtb3JpZXMgZm9yIG1lLCBhcyBpdCB3YXMgbXkgZmFtaWx5J3MgaG9tZS4gVW5mb3J0dW5hdGVseSwgaXQgd2FzIGRlc3Ryb3llZCBpbiB0aGUgZWFybHkgZGF5cyBvZiB0aGUgd2FyLiBNeSBnb2RmYXRoZXIgd2VudCB0byBkZWZlbmQgVWtyYWluZS4gSXQncyBhIGJlYXV0aWZ1bCB2ZW51ZSwgYnV0IGFtaWRzdCB0aGUgYmVhdXR5LCB0aGVyZSdzIGEgd2FyIGdvaW5nIG9uLiBKdXN0IHRvZGF5LCB0aGUgY2l0eSBvZiBLaGFya2l2IHdhcyByYW5kb21seSBib21iZWQgYnkgdGhlIFJ1c3NpYW5zLCBhbmQgbWFueSBSdWJ5IG9uIFJhaWxzIGRldmVsb3BlcnMgZnJvbSBVa3JhaW5lIGFyZSBhZmZlY3RlZOKAlHNvbWUgb2YgdGhlbSBhcmUgZXZlbiBmaWdodGluZy5cIn0se1wic3RhcnRfdGltZVwiOlwiMDA6MDE6MTMuMTU5XCIsXCJlbmRfdGltZVwiOlwiMDA6MDE6MzUuMDAwXCIsXCJ0ZXh0XCI6XCJPbmUgb2YgdGhlbSBpcyBWZXJvaywgd2hvIGNvbnRyaWJ1dGVkIHRvIFJ1YnkgYW5kIGlzIGN1cnJlbnRseSBkZWZlbmRpbmcgVWtyYWluZS4gT24gYSBtb3JlIHBvc2l0aXZlIG5vdGUsIEkgcmVjZW50bHkgYmVjYW1lIGEgZmF0aGVyIGp1c3QgdHdvIGFuZCBhIGhhbGYgbW9udGhzIGFnbyBpbiBGcmFuY2UuIFRvZGF5LCB3ZSdyZSBnb2luZyB0byB0YWxrIGFib3V0IEhvdHdpcmUuXCJ9XX0iLAogICAgICAgICJyZWZ1c2FsIjogbnVsbAogICAgICB9LAogICAgICAibG9ncHJvYnMiOiBudWxsLAogICAgICAiZmluaXNoX3JlYXNvbiI6ICJzdG9wIgogICAgfQogIF0sCiAgInVzYWdlIjogewogICAgInByb21wdF90b2tlbnMiOiAxMDg4LAogICAgImNvbXBsZXRpb25fdG9rZW5zIjogMzE1LAogICAgInRvdGFsX3Rva2VucyI6IDE0MDMsCiAgICAicHJvbXB0X3Rva2Vuc19kZXRhaWxzIjogewogICAgICAiY2FjaGVkX3Rva2VucyI6IDAsCiAgICAgICJhdWRpb190b2tlbnMiOiAwCiAgICB9LAogICAgImNvbXBsZXRpb25fdG9rZW5zX2RldGFpbHMiOiB7CiAgICAgICJyZWFzb25pbmdfdG9rZW5zIjogMCwKICAgICAgImF1ZGlvX3Rva2VucyI6IDAsCiAgICAgICJhY2NlcHRlZF9wcmVkaWN0aW9uX3Rva2VucyI6IDAsCiAgICAgICJyZWplY3RlZF9wcmVkaWN0aW9uX3Rva2VucyI6IDAKICAgIH0KICB9LAogICJzeXN0ZW1fZmluZ2VycHJpbnQiOiAiZnBfMGFhOGQzZTIwYiIKfQo=
+  recorded_at: Sat, 04 Jan 2025 22:05:13 GMT
+- request:
+    method: post
+    uri: https://api.openai.com/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"model":"gpt-4o-mini","response_format":{"type":"json_schema","json_schema":{"name":"talk_transcript","schema":{"type":"object","properties":{"transcript":{"type":"array","items":{"type":"object","properties":{"start_time":{"type":"string"},"end_time":{"type":"string"},"text":{"type":"string"}}}}},"required":["transcript"],"additionalProperties":false}}},"messages":[{"role":"system","content":"You
+        are a helpful assistant skilled in processing and summarizing transcripts."},{"role":"user","content":"You
+        are tasked with improving and formatting a raw VTT transcript. Your goal is
+        to correct and enhance the text, organize it into paragraphs, and format it
+        into a specific JSON structure. Follow these instructions carefully to complete
+        the task.\n\nFirst, here is the metadata for the transcript:\n  - title: Hotwire
+        Cookbook: Common Uses, Essential Patterns \u0026 Best Practices\n  - description:
+        @SupeRails creator and Rails mentor Yaroslav Shmarov shares how some of the
+        most common frontend problems can be solved with Hotwire.\n\nHe covers:\n-
+        Pagination, search and filtering, modals, live updates, dynamic forms, inline
+        editing, drag \u0026 drop, live previews, lazy loading \u0026 more\n- How
+        to achieve more by combining tools (Frames + Streams, StimulusJS, RequestJS,
+        Kredis \u0026 more)\n- What are the limits of Hotwire?\n- How to write readable
+        and maintainable Hotwire code\n- Bad practices\n\n  - speaker name: Yaroslav
+        Shmarov\n  - event name: Rails World 2023\n\nNow, let''s process the raw VTT
+        transcript. Here''s what you need to do:\n\n1. Read through the entire raw
+        transcript carefully.\n\n2. Correct any spelling, grammar, or punctuation
+        errors you find in the text.\n\n3. Improve the overall readability and coherence
+        of the text without changing its meaning.\n\n4. Group related sentences into
+        paragraphs. Each paragraph should contain a complete thought or topic.\n\n5.
+        For each paragraph, use the start time of its first sentence as the paragraph''s
+        start time, and the end time of its last sentence as the paragraph''s end
+        time.\n\n6. Format the improved transcript into a JSON structure using this
+        schema:\n{\"transcript\": [{start_time: \"00:00:00\", end_time: \"00:00:05\",
+        text: \"Hello, world!\"},...]}\n\nHere is the raw VTT transcript to process:\n\n\u003craw_transcript\u003e\nWEBVTT\n\n1\n00:00:15.280
+        --\u003e 00:00:21.320\nso nice to be here with you thank you all for coming
+        so uh my name is uh\n\n2\n00:00:21.320 --\u003e 00:00:27.800\nyaroslav I m
+        from Ukraine you might know me from my blog or from my super Al\n\n3\n00:00:27.800
+        --\u003e 00:00:34.399\nYouTube channel where I post a lot of stuff about trby
+        and especially about hot fire so I originate from Ukraine\n\n4\n00:00:34.399
+        --\u003e 00:00:40.239\nfrom the north of Ukraine so right now it is liberated
+        so that is Kev Chernobyl\n\n5\n00:00:40.239 --\u003e 00:00:45.920\nand chern
+        so I used to live 80 kmers away from Chernobyl great\n\n6\n00:00:45.920 --\u003e
+        00:00:52.680\nplace yeah and uh that is my family s home so it got boned in
+        one of the first\n\n7\n00:00:52.680 --\u003e 00:01:00.000\ndays of war that
+        is my godfather he went to defend Ukraine and uh I mean we are\n\n8\n00:01:00.000
+        --\u003e 00:01:05.799\nhe has such a beautiful venue but there is the war
+        going on and like just today\n\n9\n00:01:05.799 --\u003e 00:01:13.159\nthe
+        city of har was randomly boned by the Russians and there are many Ruby\n\n10\n00:01:13.159
+        --\u003e 00:01:19.520\nrails people from Ukraine some of them are actually
+        fighting this is verok he contributed to Ruby and he is actually\n\n11\n00:01:19.520
+        --\u003e 00:01:27.960\ndefending Ukraine right now but on a positive note
+        I just recently became a father\n\n12\n00:01:27.960 --\u003e 00:01:35.000\nso
+        yeah um it is uh just 2 and a half months ago in uh France and uh today we\n\n13\n00:01:35.000
+        --\u003e 00:01:35.000\nare going to talk about hot fire\n\n\n\u003c/raw_transcript\u003e\n\nTo
+        complete this task, follow these steps:\n\n1. Read through the entire raw
+        transcript.\n2. Make necessary corrections to spelling, grammar, and punctuation.\n3.
+        Improve the text for clarity and coherence.\n4. Group related sentences into
+        paragraphs.\n5. Determine the start and end times for each paragraph.\n6.
+        Format the improved transcript into the specified JSON structure.\n\nRemember
+        to preserve the original meaning of the content while making improvements.
+        Ensure that each JSON object in the array represents a paragraph with its
+        corresponding start time, end time, and improved text.\n"}]}'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <OPENAI_API_KEY>
+      Openai-Organization:
+      - "<OPENAI_ORGANIZATION_ID>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 04 Jan 2025 22:05:18 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Expose-Headers:
+      - X-Request-ID
+      Openai-Organization:
+      - user-cnr3hw7frpcuxb74nqkxv0ci
+      Openai-Processing-Ms:
+      - '4380'
       Openai-Version:
       - '2020-10-01'
       X-Ratelimit-Limit-Requests:
@@ -105,28 +234,190 @@ http_interactions:
       X-Ratelimit-Reset-Tokens:
       - 14ms
       X-Request-Id:
-      - req_8f5274a0c6a2f4d3d47b3c0733fb3102
+      - req_c84e253ff5103c23c984296ddc43a416
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Cf-Cache-Status:
       - DYNAMIC
       Set-Cookie:
-      - __cf_bm=9wob2ciHZX1V0PBE9vh_LZ98iLUSCmACJxS9D1hrQqE-1733868703-1.0.1.1-_N.DgKxASITvhMw2SnyaPkKwo9yqhVHBGp7fClHd5ON.on8ustLIhaI0hUZD0bs_YNO6mH4TaA1gl23lg_REng;
-        path=/; expires=Tue, 10-Dec-24 22:41:43 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=4Imddd5FW7DL20GBf58TQC953ITLU.jICRkVwDmGqmM-1736028318-1.0.1.1-QL1WwP8AYgPEdRX.hRJxEBn3.RaoIl6n8zsL_l3mR1iISgVWyIMxnObJeU7L5xEIxhtMD5OgF.hDIbMTF7geNA;
+        path=/; expires=Sat, 04-Jan-25 22:35:18 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=THURvJBPiSeeqPiqbzEOzL60KxwRfdA14lNUIjBeu6o-1733868703483-0.0.1.1-604800000;
+      - _cfuvid=KVw4UlGAoWN9KYPImoZ1TdWrQDhxNFL9Onom3Gzhius-1736028318498-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       X-Content-Type-Options:
       - nosniff
       Server:
       - cloudflare
       Cf-Ray:
-      - 8f009254db9cd0b7-CDG
+      - 8fce8761ef2d3864-LHR
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        ewogICJpZCI6ICJjaGF0Y21wbC1BZDJrNGtaQVV4UmRpSVhkM3RGb0lXaVNPQzFadyIsCiAgIm9iamVjdCI6ICJjaGF0LmNvbXBsZXRpb24iLAogICJjcmVhdGVkIjogMTczMzg2ODY5NiwKICAibW9kZWwiOiAiZ3B0LTRvLW1pbmktMjAyNC0wNy0xOCIsCiAgImNob2ljZXMiOiBbCiAgICB7CiAgICAgICJpbmRleCI6IDAsCiAgICAgICJtZXNzYWdlIjogewogICAgICAgICJyb2xlIjogImFzc2lzdGFudCIsCiAgICAgICAgImNvbnRlbnQiOiAie1widHJhbnNjcmlwdFwiOlt7XCJzdGFydF90aW1lXCI6XCIwMDowMDoxNS4yODBcIixcImVuZF90aW1lXCI6XCIwMDowMDoyNy44MDBcIixcInRleHRcIjpcIkl0IGlzIHNvIG5pY2UgdG8gYmUgaGVyZSB3aXRoIHlvdS4gVGhhbmsgeW91IGFsbCBmb3IgY29taW5nLiBNeSBuYW1lIGlzIFlhcm9zbGF2LCBhbmQgSeKAmW0gZnJvbSBVa3JhaW5lLiBZb3UgbWlnaHQga25vdyBtZSBmcm9tIG15IGJsb2cgb3IgbXkgU3VwZXJhbCBZb3VUdWJlIGNoYW5uZWwsIHdoZXJlIEkgcG9zdCBhIGxvdCBvZiBjb250ZW50IGFib3V0IFJ1YnkgYW5kIGVzcGVjaWFsbHkgYWJvdXQgSG90d2lyZS5cIn0se1wic3RhcnRfdGltZVwiOlwiMDA6MDA6MjcuODAwXCIsXCJlbmRfdGltZVwiOlwiMDA6MDA6NDAuMjM5XCIsXCJ0ZXh0XCI6XCJJIG9yaWdpbmF0ZSBmcm9tIHRoZSBub3J0aCBvZiBVa3JhaW5lLCBhbmQgSeKAmW0gcGxlYXNlZCB0byBzaGFyZSB0aGF0IG15IGhvbWV0b3duIGlzIG5vdyBsaWJlcmF0ZWQuIFRoaXMgYXJlYSBpbmNsdWRlcyBLeWl2IGFuZCBDaGVybm9ieWwsIHdoaWNoIGlzIGFwcHJveGltYXRlbHkgODAga2lsb21ldGVycyBhd2F5IGZyb20gd2hlcmUgSSBsaXZlZC5cIn0se1wic3RhcnRfdGltZVwiOlwiMDA6MDA6NDAuMjM5XCIsXCJlbmRfdGltZVwiOlwiMDA6MDE6MDAuMDAwXCIsXCJ0ZXh0XCI6XCJNeSBmYW1pbHkncyBob21lIHdhcyBkZXN0cm95ZWQgaW4gb25lIG9mIHRoZSBmaXJzdCBkYXlzIG9mIHRoZSB3YXIuIE15IGdvZGZhdGhlciB3ZW50IHRvIGRlZmVuZCBVa3JhaW5lLiBJdCdzIGEgYmVhdXRpZnVsIHZlbnVlLCBidXQgc2FkbHksIHRoZXJlJ3MgYSB3YXIgaGFwcGVuaW5nLiBKdXN0IHRvZGF5LCB0aGUgY2l0eSBvZiBLaGFya2l2IHdhcyByYW5kb21seSBib21iZWQgYnkgUnVzc2lhbiBmb3JjZXMuXCJ9LHtcInN0YXJ0X3RpbWVcIjpcIjAwOjAxOjAwLjAwMFwiLFwiZW5kX3RpbWVcIjpcIjAwOjAxOjE5LjUyMFwiLFwidGV4dFwiOlwiTWFueSBSdWJ5IG9uIFJhaWxzIGRldmVsb3BlcnMgZnJvbSBVa3JhaW5lIGFyZSBjdXJyZW50bHkgaW52b2x2ZWQgaW4gZmlnaHRpbmcuIE9uZSBvZiB0aGVtLCBWZXJvaywgaGFzIGNvbnRyaWJ1dGVkIHRvIFJ1YnkgYW5kIGlzIGFjdHVhbGx5IGRlZmVuZGluZyBVa3JhaW5lIHJpZ2h0IG5vdy5cIn0se1wic3RhcnRfdGltZVwiOlwiMDA6MDE6MTkuNTIwXCIsXCJlbmRfdGltZVwiOlwiMDA6MDE6MzUuMDAwXCIsXCJ0ZXh0XCI6XCJPbiBhIHBvc2l0aXZlIG5vdGUsIEkgd2FudCB0byBzaGFyZSB0aGF0IEkgcmVjZW50bHkgYmVjYW1lIGEgZmF0aGVyIGp1c3QgdHdvIGFuZCBhIGhhbGYgbW9udGhzIGFnbyBpbiBGcmFuY2UuIFRvZGF5LCB3ZSBhcmUgZ29pbmcgdG8gdGFsayBhYm91dCBIb3R3aXJlLlwifV19IiwKICAgICAgICAicmVmdXNhbCI6IG51bGwKICAgICAgfSwKICAgICAgImxvZ3Byb2JzIjogbnVsbCwKICAgICAgImZpbmlzaF9yZWFzb24iOiAic3RvcCIKICAgIH0KICBdLAogICJ1c2FnZSI6IHsKICAgICJwcm9tcHRfdG9rZW5zIjogMTA4OCwKICAgICJjb21wbGV0aW9uX3Rva2VucyI6IDM1MywKICAgICJ0b3RhbF90b2tlbnMiOiAxNDQxLAogICAgInByb21wdF90b2tlbnNfZGV0YWlscyI6IHsKICAgICAgImNhY2hlZF90b2tlbnMiOiAwLAogICAgICAiYXVkaW9fdG9rZW5zIjogMAogICAgfSwKICAgICJjb21wbGV0aW9uX3Rva2Vuc19kZXRhaWxzIjogewogICAgICAicmVhc29uaW5nX3Rva2VucyI6IDAsCiAgICAgICJhdWRpb190b2tlbnMiOiAwLAogICAgICAiYWNjZXB0ZWRfcHJlZGljdGlvbl90b2tlbnMiOiAwLAogICAgICAicmVqZWN0ZWRfcHJlZGljdGlvbl90b2tlbnMiOiAwCiAgICB9CiAgfSwKICAic3lzdGVtX2ZpbmdlcnByaW50IjogImZwX2JiYTNjOGU3MGIiCn0K
-  recorded_at: Tue, 10 Dec 2024 22:11:43 GMT
+        ewogICJpZCI6ICJjaGF0Y21wbC1BbTZZY3htRTVQYUxLUmhSTEVYQXNudDRHMDBlNiIsCiAgIm9iamVjdCI6ICJjaGF0LmNvbXBsZXRpb24iLAogICJjcmVhdGVkIjogMTczNjAyODMxNCwKICAibW9kZWwiOiAiZ3B0LTRvLW1pbmktMjAyNC0wNy0xOCIsCiAgImNob2ljZXMiOiBbCiAgICB7CiAgICAgICJpbmRleCI6IDAsCiAgICAgICJtZXNzYWdlIjogewogICAgICAgICJyb2xlIjogImFzc2lzdGFudCIsCiAgICAgICAgImNvbnRlbnQiOiAie1widHJhbnNjcmlwdFwiOlt7XCJzdGFydF90aW1lXCI6XCIwMDowMDoxNS4yODBcIixcImVuZF90aW1lXCI6XCIwMDowMDoyMS4zMjBcIixcInRleHRcIjpcIkhlbGxvLCBldmVyeW9uZSEgSXQncyBncmVhdCB0byBiZSBoZXJlIHdpdGggeW91IHRvZGF5LCBhbmQgSSB3YW50IHRvIHRoYW5rIHlvdSBhbGwgZm9yIGNvbWluZy4gTXkgbmFtZSBpcyBZYXJvc2xhdiwgYW5kIEnigJltIGZyb20gVWtyYWluZS5cIn0se1wic3RhcnRfdGltZVwiOlwiMDA6MDA6MjEuMzIwXCIsXCJlbmRfdGltZVwiOlwiMDA6MDA6MzQuMzk5XCIsXCJ0ZXh0XCI6XCJZb3UgbWF5IGtub3cgbWUgZnJvbSBteSBibG9nIG9yIG15IFlvdVR1YmUgY2hhbm5lbCwgd2hlcmUgSSBzaGFyZSBhIGxvdCBvZiBjb250ZW50IGFib3V0IFJ1YnkgYW5kIHNwZWNpZmljYWxseSBhYm91dCBIb3R3aXJlLlwifSx7XCJzdGFydF90aW1lXCI6XCIwMDowMDozNC4zOTlcIixcImVuZF90aW1lXCI6XCIwMDowMDo0NS45MjBcIixcInRleHRcIjpcIkkgb3JpZ2luYWxseSBjb21lIGZyb20gbm9ydGhlcm4gVWtyYWluZSwgc3BlY2lmaWNhbGx5IGZyb20gYSBwbGFjZSBjbG9zZSB0byBDaGVybm9ieWwsIHdoaWNoIGlzIG5vdyBsaWJlcmF0ZWQuIEl04oCZcyBhYm91dCA4MCBraWxvbWV0ZXJzIGF3YXkgZnJvbSBDaGVybm9ieWwuXCJ9LHtcInN0YXJ0X3RpbWVcIjpcIjAwOjAwOjQ1LjkyMFwiLFwiZW5kX3RpbWVcIjpcIjAwOjAxOjAwLjAwMFwiLFwidGV4dFwiOlwiVW5mb3J0dW5hdGVseSwgbXkgZmFtaWx5J3MgaG9tZSB3YXMgZGVzdHJveWVkIGR1cmluZyB0aGUgZWFybHkgZGF5cyBvZiB0aGUgd2FyLiBNeSBnb2RmYXRoZXIgd2VudCB0byBkZWZlbmQgVWtyYWluZS5cIn0se1wic3RhcnRfdGltZVwiOlwiMDA6MDE6MDAuMDAwXCIsXCJlbmRfdGltZVwiOlwiMDA6MDE6MTMuMTU5XCIsXCJ0ZXh0XCI6XCJJdOKAmXMgYSBiZWF1dGlmdWwgdmVudWUsIGJ1dCB0aGUgd2FyIGNvbnRpbnVlcyB0byBpbXBhY3QgdXMgZ3JlYXRseS4gSnVzdCB0b2RheSwgdGhlIGNpdHkgb2YgS2hhcmtpdiB3YXMgcmFuZG9tbHkgYm9tYmVkIGJ5IFJ1c3NpYW4gZm9yY2VzLlwifSx7XCJzdGFydF90aW1lXCI6XCIwMDowMToxMy4xNTlcIixcImVuZF90aW1lXCI6XCIwMDowMToyNy45NjBcIixcInRleHRcIjpcIlRoZXJlIGFyZSBtYW55IFJ1Ynkgb24gUmFpbHMgZGV2ZWxvcGVycyBmcm9tIFVrcmFpbmUsIGFuZCBzb21lIGFyZSBhY3R1YWxseSBmaWdodGluZyBmb3Igb3VyIGNvdW50cnkuIEZvciBpbnN0YW5jZSwgdGhlcmXigJlzIFZlcm9rLCB3aG8gaGFzIGNvbnRyaWJ1dGVkIHRvIFJ1YnkgYW5kIGlzIGN1cnJlbnRseSBkZWZlbmRpbmcgVWtyYWluZS5cIn0se1wic3RhcnRfdGltZVwiOlwiMDA6MDE6MjcuOTYwXCIsXCJlbmRfdGltZVwiOlwiMDA6MDE6MzUuMDAwXCIsXCJ0ZXh0XCI6XCJPbiBhIHBvc2l0aXZlIG5vdGUsIEkgcmVjZW50bHkgYmVjYW1lIGEgZmF0aGVyIGp1c3QgdHdvIGFuZCBhIGhhbGYgbW9udGhzIGFnbyBpbiBGcmFuY2UuIFRvZGF5LCB3ZSBhcmUgZ29pbmcgdG8gdGFsayBhYm91dCBIb3R3aXJlLlwifV19IiwKICAgICAgICAicmVmdXNhbCI6IG51bGwKICAgICAgfSwKICAgICAgImxvZ3Byb2JzIjogbnVsbCwKICAgICAgImZpbmlzaF9yZWFzb24iOiAic3RvcCIKICAgIH0KICBdLAogICJ1c2FnZSI6IHsKICAgICJwcm9tcHRfdG9rZW5zIjogMTA4OCwKICAgICJjb21wbGV0aW9uX3Rva2VucyI6IDQwNCwKICAgICJ0b3RhbF90b2tlbnMiOiAxNDkyLAogICAgInByb21wdF90b2tlbnNfZGV0YWlscyI6IHsKICAgICAgImNhY2hlZF90b2tlbnMiOiAwLAogICAgICAiYXVkaW9fdG9rZW5zIjogMAogICAgfSwKICAgICJjb21wbGV0aW9uX3Rva2Vuc19kZXRhaWxzIjogewogICAgICAicmVhc29uaW5nX3Rva2VucyI6IDAsCiAgICAgICJhdWRpb190b2tlbnMiOiAwLAogICAgICAiYWNjZXB0ZWRfcHJlZGljdGlvbl90b2tlbnMiOiAwLAogICAgICAicmVqZWN0ZWRfcHJlZGljdGlvbl90b2tlbnMiOiAwCiAgICB9CiAgfSwKICAic3lzdGVtX2ZpbmdlcnByaW50IjogImZwXzBhYThkM2UyMGIiCn0K
+  recorded_at: Sat, 04 Jan 2025 22:05:18 GMT
+- request:
+    method: post
+    uri: https://api.openai.com/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"model":"gpt-4o-mini","response_format":{"type":"json_schema","json_schema":{"name":"talk_transcript","schema":{"type":"object","properties":{"transcript":{"type":"array","items":{"type":"object","properties":{"start_time":{"type":"string"},"end_time":{"type":"string"},"text":{"type":"string"}}}}},"required":["transcript"],"additionalProperties":false}}},"messages":[{"role":"system","content":"You
+        are a helpful assistant skilled in processing and summarizing transcripts."},{"role":"user","content":"You
+        are tasked with improving and formatting a raw VTT transcript. Your goal is
+        to correct and enhance the text, organize it into paragraphs, and format it
+        into a specific JSON structure. Follow these instructions carefully to complete
+        the task.\n\nFirst, here is the metadata for the transcript:\n  - title: Hotwire
+        Cookbook: Common Uses, Essential Patterns \u0026 Best Practices\n  - description:
+        @SupeRails creator and Rails mentor Yaroslav Shmarov shares how some of the
+        most common frontend problems can be solved with Hotwire.\n\nHe covers:\n-
+        Pagination, search and filtering, modals, live updates, dynamic forms, inline
+        editing, drag \u0026 drop, live previews, lazy loading \u0026 more\n- How
+        to achieve more by combining tools (Frames + Streams, StimulusJS, RequestJS,
+        Kredis \u0026 more)\n- What are the limits of Hotwire?\n- How to write readable
+        and maintainable Hotwire code\n- Bad practices\n\n  - speaker name: Yaroslav
+        Shmarov\n  - event name: Rails World 2023\n\nNow, let''s process the raw VTT
+        transcript. Here''s what you need to do:\n\n1. Read through the entire raw
+        transcript carefully.\n\n2. Correct any spelling, grammar, or punctuation
+        errors you find in the text.\n\n3. Improve the overall readability and coherence
+        of the text without changing its meaning.\n\n4. Group related sentences into
+        paragraphs. Each paragraph should contain a complete thought or topic.\n\n5.
+        For each paragraph, use the start time of its first sentence as the paragraph''s
+        start time, and the end time of its last sentence as the paragraph''s end
+        time.\n\n6. Format the improved transcript into a JSON structure using this
+        schema:\n{\"transcript\": [{start_time: \"00:00:00\", end_time: \"00:00:05\",
+        text: \"Hello, world!\"},...]}\n\nHere is the raw VTT transcript to process:\n\n\u003craw_transcript\u003e\nWEBVTT\n\n1\n00:00:15.280
+        --\u003e 00:00:21.320\nso nice to be here with you thank you all for coming
+        so uh my name is uh\n\n2\n00:00:21.320 --\u003e 00:00:27.800\nyaroslav I m
+        from Ukraine you might know me from my blog or from my super Al\n\n3\n00:00:27.800
+        --\u003e 00:00:34.399\nYouTube channel where I post a lot of stuff about trby
+        and especially about hot fire so I originate from Ukraine\n\n4\n00:00:34.399
+        --\u003e 00:00:40.239\nfrom the north of Ukraine so right now it is liberated
+        so that is Kev Chernobyl\n\n5\n00:00:40.239 --\u003e 00:00:45.920\nand chern
+        so I used to live 80 kmers away from Chernobyl great\n\n6\n00:00:45.920 --\u003e
+        00:00:52.680\nplace yeah and uh that is my family s home so it got boned in
+        one of the first\n\n7\n00:00:52.680 --\u003e 00:01:00.000\ndays of war that
+        is my godfather he went to defend Ukraine and uh I mean we are\n\n8\n00:01:00.000
+        --\u003e 00:01:05.799\nhe has such a beautiful venue but there is the war
+        going on and like just today\n\n9\n00:01:05.799 --\u003e 00:01:13.159\nthe
+        city of har was randomly boned by the Russians and there are many Ruby\n\n10\n00:01:13.159
+        --\u003e 00:01:19.520\nrails people from Ukraine some of them are actually
+        fighting this is verok he contributed to Ruby and he is actually\n\n11\n00:01:19.520
+        --\u003e 00:01:27.960\ndefending Ukraine right now but on a positive note
+        I just recently became a father\n\n12\n00:01:27.960 --\u003e 00:01:35.000\nso
+        yeah um it is uh just 2 and a half months ago in uh France and uh today we\n\n13\n00:01:35.000
+        --\u003e 00:01:35.000\nare going to talk about hot fire\n\n\n\u003c/raw_transcript\u003e\n\nTo
+        complete this task, follow these steps:\n\n1. Read through the entire raw
+        transcript.\n2. Make necessary corrections to spelling, grammar, and punctuation.\n3.
+        Improve the text for clarity and coherence.\n4. Group related sentences into
+        paragraphs.\n5. Determine the start and end times for each paragraph.\n6.
+        Format the improved transcript into the specified JSON structure.\n\nRemember
+        to preserve the original meaning of the content while making improvements.
+        Ensure that each JSON object in the array represents a paragraph with its
+        corresponding start time, end time, and improved text.\n"}]}'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <OPENAI_API_KEY>
+      Openai-Organization:
+      - "<OPENAI_ORGANIZATION_ID>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 04 Jan 2025 22:05:22 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Expose-Headers:
+      - X-Request-ID
+      Openai-Organization:
+      - user-cnr3hw7frpcuxb74nqkxv0ci
+      Openai-Processing-Ms:
+      - '4009'
+      Openai-Version:
+      - '2020-10-01'
+      X-Ratelimit-Limit-Requests:
+      - '5000'
+      X-Ratelimit-Limit-Tokens:
+      - '4000000'
+      X-Ratelimit-Remaining-Requests:
+      - '4999'
+      X-Ratelimit-Remaining-Tokens:
+      - '3999008'
+      X-Ratelimit-Reset-Requests:
+      - 12ms
+      X-Ratelimit-Reset-Tokens:
+      - 14ms
+      X-Request-Id:
+      - req_b0731f2ee1de331d44258d856bda6106
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=VMF6sHLfH63iWUBUDWPsI60F3t7JA5c9nSykAoHbDok-1736028322-1.0.1.1-DtV30ouOjKAoQH7UlC2GIoPVooXPmYCQd_ZkscgyVzqYxjyMXgSdrpNk54Pyk7qzMXaxH8iSswfe2ZB8_4nYCg;
+        path=/; expires=Sat, 04-Jan-25 22:35:22 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=Y9dXTw3nljsvnBWRFeJnPBFe_ZOzDdsQS2rYzDKwl8w-1736028322903-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      X-Content-Type-Options:
+      - nosniff
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8fce877fa999bebc-LHR
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "id": "chatcmpl-Am6Ygz2uAoMLjV2r19fZSDNJ4wUhF",
+          "object": "chat.completion",
+          "created": 1736028318,
+          "model": "gpt-4o-mini-2024-07-18",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "{\"transcript\":[{\"start_time\":\"00:00:15.280\",\"end_time\":\"00:00:21.320\",\"text\":\"So nice to be here with you! Thank you all for coming. My name is Yaroslav, and I'm from Ukraine. You might know me from my blog or from my Super Al YouTube channel, where I post a lot of content about Ruby, especially about Hotwire.\"},{\"start_time\":\"00:00:21.320\",\"end_time\":\"00:00:34.399\",\"text\":\"I originate from northern Ukraine, near Kyiv and Chernobyl. Fortunately, the area I come from has been liberated, but it is close to where I used to live, just 80 kilometers away from Chernobyl. It is a great place.\"},{\"start_time\":\"00:00:34.399\",\"end_time\":\"00:01:00.000\",\"text\":\"This is my family's home, which was burned in the early days of the war. My godfather went to defend Ukraine, and it has been challenging with the ongoing conflict. Just today, the city of Kharkiv was randomly bombed by the Russians. There are many Ruby on Rails developers from Ukraine, and some of them are actually fighting.\"},{\"start_time\":\"00:01:00.000\",\"end_time\":\"00:01:19.520\",\"text\":\"For instance, this is Verok, who has contributed to Ruby and is currently defending our country. On a more positive note, I recently became a father just two and a half months ago while in France. Today, we are going to talk about Hotwire.\"}]}",
+                "refusal": null
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 1088,
+            "completion_tokens": 338,
+            "total_tokens": 1426,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "system_fingerprint": "fp_0aa8d3e20b"
+        }
+  recorded_at: Sat, 04 Jan 2025 22:05:22 GMT
 recorded_with: VCR 6.3.1

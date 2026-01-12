@@ -1,0 +1,1040 @@
+---
+- id: "zachary-scott-kaigi-on-rails-2023"
+  title: "準備中"
+  raw_title: "準備中 / zzak - Kaigi on Rails 2023"
+  speakers:
+    - Zachary Scott
+  event_name: "Kaigi on Rails 2023"
+  date: "2023-10-27"
+  published_at: "2023-11-03"
+  language: "english"
+  description: |-
+    https://kaigionrails.org/2023/talks/zzak/
+
+    【発表者】
+    zzak
+    GitHub https://github.com/zzak
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "oFXCqRuvgds"
+
+- id: "makicamel-kaigi-on-rails-2023"
+  title: "Rails アプリの 5,000 件の N+1 問題と戦っている話"
+  raw_title: "Rails アプリの 5,000 件の N+1 問題と戦っている話 / makicamel - Kaigi on Rails 2023"
+  speakers:
+    - makicamel
+  event_name: "Kaigi on Rails 2023"
+  date: "2023-10-27"
+  published_at: "2023-11-03"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2023/talks/makicamel/
+
+    【発表概要】
+    話者の勤める会社のとある歴史あるリポジトリでは CI で約 5,000 件の N+1 問題が検知されていました。 N+1 問題はパフォーマンス劣化の代表的な要因のひとつです。 Rails にはこれを解決する includes というメソッドがあり、これを警告する Bullet という gem があります。 Bullet の警告箇所に includes を差し込めばよさそうですが、5,000 件の手修正は億劫なので実行時に N+1 クエリ発行箇所に includes を差し込む gem を作りました。
+
+    しかし現実のアプリケーションは複雑で、単純に includes すればよいというものではありません。 例えば以下のコードは alias が重複しエラーになります。
+
+    Play.joins(:actors).includes(actors: :company).joins('INNER JOIN companies force index(primary) ON companies.id = actors.company_id').load
+
+    エラーにならなくとも不要な includes はパフォーマンス劣化を招きます。 こうした意図しない変更を避けて includes を差し込む必要があります。
+
+    本セッションでは作った gem の解説と、この gem による修正をリリースする話をします。
+
+
+    【発表者】
+    makicamel
+    GitHub https://github.com/makicamel
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "LGtKlF2Nb9A"
+
+- id: "ikuma-tadokoro-kaigi-on-rails-2023"
+  title: "HTTPリクエストを手で書いて学ぶ ファイルアップロードの仕組み"
+  raw_title: "HTTPリクエストを手で書いて学ぶ ファイルアップロードの仕組み / ikuma-t - Kaigi on Rails 2023"
+  speakers:
+    - Ikuma Tadokoro
+  event_name: "Kaigi on Rails 2023"
+  date: "2023-10-27"
+  published_at: "2023-11-03"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2023/talks/ikuma-t/
+
+    【発表概要】
+    ファイルアップロードはWebアプリケーションにおいて基本的な機能です。Railsでプログラミングの学習を始めた場合、フォームヘルパーを設置してparamsからデータを取得する処理を書けば、あるいはActiveStorageを使えばファイルアップロード処理は簡単に作れるでしょう。
+
+    一方でその間を流れるHTTPリクエストを正しく理解できているでしょうか？
+
+    恥ずかしながらエンジニアになりたての頃、私はそれを理解せずに使っていました。既存のRailsアプリのためのデバッグで実際のリクエストを確認する際や、HTMLではなくJavaScriptでファイルアップロードを行う際に手間取ってしまうなど、「ファイルアップロード」という機能の単位でしか自分の書いた処理を理解できていませんでした。
+
+    ファイルアップロードの方法について、言語やフレームワーク、送り手側/受け手側の差異はあれど、基礎となる部分はいずれもHTTPリクエストです。とはいえファイルアップロードを行うためのリクエストにもいくつかの方法があります。
+
+    この発表ではファイルアップロード時に発行されるHTTPリクエストを、仕様を読み解きながら自分の手で組み立てていくことでその全体像を理解していきます。
+
+
+    【発表者】
+    ikuma-t
+    GitHub https://github.com/IkumaTadokoro
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "zUuaLufXY00"
+
+- id: "mizuki-asada-kaigi-on-rails-2023"
+  title: "生きた Rails アプリケーションへの delegated types の導入"
+  raw_title: "生きた Rails アプリケーションへの delegated types の導入 / mozamimy  - Kaigi on Rails 2023"
+  speakers:
+    - Mizuki Asada
+  event_name: "Kaigi on Rails 2023"
+  date: "2023-10-27"
+  published_at: "2023-11-03"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2023/talks/mozamimy/
+
+    【発表概要】
+    Rails では、あるモデルの属性を別のモデルに引き継ぐ、つまり継承を実現するための仕組みがいくつか用意されています。
+
+    そのひとつである STI は比較的古くから存在しているアプローチで、利便性と引き換えに課せられるデメリットも大きいとされています。いっぽう Rails 6.1 で実装された delegated types は、STI を利用した際に負うデメリットのいくつかを解消できるアプローチとなっています。
+
+    delegated types の基本的な利用方法やサンプルコードを使った例は API ドキュメントやその他記事で読めますが、生きている Rails アプリケーションにおいて、設計初期ではなく、ある程度開発が進んでから導入したという事例について気になる方も多いのではないでしょうか。初めて delegated types を知った方にとってもそのような情報は有用なはずです。
+
+    このセッションでは、hako-console という社内向け Rails アプリケーションで、デプロイ履歴のモデリングに delegated types を導入し、既存テーブルの移行方法や得られた知見、便利さはもちろん、メリットだけではなく落とし穴についても共有します。
+
+
+    【発表者】
+    mozamimy 
+    GitHub https://github.com/mozamimy
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "c9k1OCLhkmQ"
+
+- id: "k0i-kaigi-on-rails-2023"
+  title: "Async Gem で始める ruby 非同期プログラミング"
+  raw_title: "Async Gem で始める ruby 非同期プログラミング / k0i - Kaigi on Rails 2023"
+  speakers:
+    - k0i
+  event_name: "Kaigi on Rails 2023"
+  date: "2023-10-27"
+  published_at: "2023-11-03"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2023/talks/k0i/
+
+    【発表概要】
+    ruby 1.9 から追加された Fiber ですが、ruby 3.0 で大きな機能追加がありました。 本セッションではFiberとは一体何であり、何を解決するための機能なのかについて言及します。 その後FiberSchedulerの実装であるAsync Gemを実際に見ていき、同Gemを用いた非同期プログラミングについてデモを行い、 パフォーマンス面やRuby On Railsにおける採用上の課題について言及します。
+
+
+    【発表者】
+    k0i
+    GitHub https://github.com/k0i
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "9jh5X0R_COs"
+
+- id: "shinichi-maeshima-kaigi-on-rails-2023"
+  title: "Exceptional Rails"
+  raw_title: "Exceptional Rails / Shinichi Maeshima - Kaigi on Rails 2023"
+  speakers:
+    - Shinichi Maeshima
+  event_name: "Kaigi on Rails 2023"
+  date: "2023-10-27"
+  published_at: "2023-11-03"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2023/talks/willnet/
+
+    【発表概要】
+    堅牢なRailsアプリケーションを書くのは難しいことです。実装時に想定していなかった事象が起きてもそれをうまくハンドリングして不整合がないようにアプリケーションを動かし続けなければなりません。そして、想定していない事象があったときにはそれに素早く気づき、アプリケーションの実装を変更する必要があります。
+
+    想定していなかった事象が起きたときのユーザに対する表示の仕方も大事です。エラーページもアプリケーションを構成するひとつの要素でありユーザ体験に影響します。エラーページを表示するところでエラーが発生して用意しているエラーページが表示できなかった、というのはよくある事ですができるだけ避けたいところです。
+
+    この発表では、Railsにおける「想定していない事象」とどのように付き合っていくと良いのかの指針を示します。また、Railsがエラーページを表示する仕組みと、それを利用した安定したエラーページをどうやって作るのかについても紹介します。
+
+
+    【発表者】
+    Shinichi Maeshima
+    GitHub https://github.com/willnet
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "zcT5GufiQ-0"
+
+- id: "kubo-ayumu-kaigi-on-rails-2023"
+  title: "やさしいActiveRecordのDB接続のしくみ"
+  raw_title: "やさしいActiveRecordのDB接続のしくみ / kubo - Kaigi on Rails 2023"
+  speakers:
+    - Kubo Ayumu
+  event_name: "Kaigi on Rails 2023"
+  date: "2023-10-27"
+  published_at: "2023-11-03"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2023/talks/kubo/
+
+    【発表概要】
+    私たちはdatabase.ymlに必要情報を記述し、適当なモデルのfind/whereメソッドを使うだけで、いつの間にかDB接続の確立がなされて、ほしいデータがいつでも簡単に取得できるようになっています。 さて、ActiveRecord内部ではどのような処理を以て、この簡単さを実現しているのでしょうか？普段あまり着目しない部分ですので、ブラックボックス化してる方も少なくないと思います。 そこで、本セッションではMySQLへの接続確立するまでのActiveRecord内部の動きについて紹介します。 具体的には、接続に関する各クラスの役割（active_record/connection_handler等）を適宜紹介しつつ、実際にfindメソッドをデバッグ実行した際のスタックトレースを通して、接続確立までのActiveRecordの内部処理の全容を持ち帰っていただきます。
+
+
+    【発表者】
+    kubo
+    GitHub https://github.com/boro1234
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "VZd21UsrSoU"
+
+- id: "ta1kt0me-kaigi-on-rails-2023"
+  title: "Update Billion Records"
+  raw_title: "Update Billion Records / ta1kt0me - Kaigi on Rails 2023"
+  speakers:
+    - ta1kt0me
+  event_name: "Kaigi on Rails 2023"
+  date: "2023-10-27"
+  published_at: "2023-11-03"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2023/talks/ta1kt0me/
+
+    【発表概要】
+    改善の繰り返しはデータモデルに多様な変化をもたらします。サービスの成長にあわせてユーザーアクセスやデータ量が増えていくと、当初は比較的行いやすかたったデータモデルの変更作業の難易度は徐々に上がっていきます。そして気付いた時には気軽に向き合えないほど大きな問題を抱える状況に陥ることもあります。
+
+    私たちが運営するTimeTreeというカレンダーアプリの開発でも、ニーズに合わせてデータモデルへの変更を頻繁に行っています。その一環として実施した数十億レコードを保有するテーブルに対するデータマイグレーションのアプローチを紹介します。
+
+
+    【発表者】
+    ta1kt0me
+    GitHub https://github.com/ta1kt0me
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "GjJZR5rhTOM"
+
+- id: "fu-ga-kaigi-on-rails-2023"
+  title: "初めてのパフォーマンス改善〜君たちはどう計測す(はか)るか〜"
+  raw_title: "初めてのパフォーマンス改善〜君たちはどう計測す(はか)るか〜 / Fu-ga - Kaigi on Rails 2023"
+  speakers:
+    - Fu-ga
+  event_name: "Kaigi on Rails 2023"
+  date: "2023-10-27"
+  published_at: "2023-11-03"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2023/talks/fugakkbn/
+
+    【発表概要】
+    エンジニアになって数ヶ月のころ、アプリケーション全体のパフォーマンス改善を任されることになりました。エンジニアとしての経験が浅い私は「パフォーマンス改善といってもどこをどうやって改善していけばいいのだろうか」と途方に暮れました。 そんな私が半年以上を掛けてパフォーマンス問題の把握の仕方、ボトルネックの特定方法、クエリ改善を続けてきた結果わかるようになったこと、できるようになったことを実例を交えてお話しします。 「明日からクエリ改善やって！」と急に言われても臆することなく対応できるような話をしたいと思います。
+
+
+    【発表者】
+    Fu-ga
+    GitHub https://github.com/fugakkbn
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "VMQewASPTrI"
+
+- id: "morohashi-kyosuke-kaigi-on-rails-2023"
+  title: "Simplicity on Rails - RDB, REST and Ruby"
+  raw_title: "Simplicity on Rails - RDB, REST and Ruby / MOROHASHI Kyosuke - Kaigi on Rails 2023"
+  speakers:
+    - MOROHASHI Kyosuke
+  event_name: "Kaigi on Rails 2023"
+  date: "2023-10-27"
+  published_at: "2023-11-03"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2023/talks/moro/
+
+    【発表概要】
+    実世界のRailsアプリケーションをシンプルに保つための方法を、Railsが提供する機能群をもとに考察します。
+
+    実世界の、特に仕事で開発するRailsアプリへの要求は様々のものがあり、Railsの豊富な機能群をもっても日々苦労して開発しているかと思います。 そんな中でも、Railsが得意とするような設計に落とし込むことで、複雑な要求をシンプルな実装で実現できると感じています。
+
+    本講演では、Railsが提供する機能のうち、「REST」「RDB」「Ruby」という要素を軸に、実世界の要求をシンプルに実装するための考え方を紹介します。
+
+
+    【発表者】
+    MOROHASHI Kyosuke
+    GitHub https://github.com/moro
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "3qcsNg52aEI"
+
+- id: "alpaca-tc-kaigi-on-rails-2023"
+  title: "TracePointを活用してモデル名変更の負債解消をした話"
+  raw_title: "TracePointを活用してモデル名変更の負債解消をした話  / alpaca-tc - Kaigi on Rails 2023"
+  speakers:
+    - alpaca-tc
+  event_name: "Kaigi on Rails 2023"
+  date: "2023-10-27"
+  published_at: "2023-11-03"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2023/talks/alpaca-tc/
+
+    【発表概要】
+    誰もが開発時に直面する「技術的負債」。 あなたもRailsの世界でこの大敵との戦いで手をこまねいていませんか？ 特にRubyのような動的言語では、一見シンプルな置換作業でも予期しない障壁が待ち受けています。
+
+    私たちのチームは、命名規則の誤りから生じたモデル名の技術的負債と向き合い、60,000行以上の変更を成功させました。 その成功のカギとなったのは「TracePoint」。 さまざまなイベント(メソッド呼び出しなど)をトレースすることができるRubyの強力な標準ライブラリでした。
+
+    このセッションでは、TracePointの基本的な使い方や、さらには技術的負債の解消のノウハウを実例とともに紹介します。 この機会に、巨大な技術的負債との戦いに悩むあなたの手札にTracePointという武器を加えてみませんか。
+
+
+
+    【発表者】
+    alpaca-tc
+    GitHub https://github.com/alpaca-tc
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "bi56PRhG7tk"
+
+- id: "ginkouno-kaigi-on-rails-2023"
+  title: "技術的負債の借り換え on Ruby and Rails update"
+  raw_title: "技術的負債の借り換え on Ruby and Rails update / ginkouno - Kaigi on Rails 2023"
+  speakers:
+    - ginkouno
+  event_name: "Kaigi on Rails 2023"
+  date: "2023-10-27"
+  published_at: "2023-11-03"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2023/talks/ginkouno/
+
+    【発表概要】
+    RubyやRailsのupdateにおけるノウハウは、信頼のおける記事がいくつか流通しており、日々助けられております。 その中の手順として「まず、gemを最新にする」と記載されていますが、そのgem updateに関する記事の分量はあまり多くありません。 それは各gemによって事情が異なったり、また日々gemのupdateを欠かさない体制である状況においては難易度が低かったりなど、様々な事情があると思われます。 では、普段gemのupdateが何らかの理由でできず、RubyやRailsのEOLに追い立てられ、慌ててgemのupdateを一気にしようとした場合、何が起こるのか。 その時に私が仲間とともに行った判断や対処の例を共有し、皆様の意見をお伺いしたいと思います。
+
+
+    【発表者】
+    ginkouno
+    GitHub https://github.com/ginkouno
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "DWW5JimA84U"
+
+- id: "lnit-kaigi-on-rails-2023"
+  title: "Turbolinksアレルギー患者に捧げるTurbo & Stimulusでの時短実装術 by lni_T"
+  raw_title: "Turbolinksアレルギー患者に捧げるTurbo & Stimulusでの時短実装術  / lni_T / ルニ - Kaigi on Rails 2023"
+  speakers:
+    - lnit
+  event_name: "Kaigi on Rails 2023"
+  date: "2023-10-27"
+  published_at: "2023-11-03"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2023/talks/lni_T/
+
+    【発表概要】
+    皆様、Railsのフロントエンドツール「Hotwire」は使っていますか？ Rails 7からはデフォルトで採用されており、「Turbo」や「Stimulus」といったライブラリが利用できます。
+
+    ですが、利用者があまり多くなかった「Turbolinks」のイメージに影響されて、利用を避けている方は居ませんか？
+
+    このトークでは、実際のバックエンドリプレイス案件において、 Turbo & Stimulusを採用することで開発工数を大幅に削減できた事例、および実装方法についてご紹介します。
+
+
+    【発表者】
+    lni_T / ルニ
+    GitHub https://github.com/lnit
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "8Rdxv7kk7-Y"
+
+- id: "gogutan-kaigi-on-rails-2023"
+  title: "seeds.rbを書かずに開発環境データを整備する"
+  raw_title: "seeds.rbを書かずに開発環境データを整備する / gogutan - Kaigi on Rails 2023"
+  speakers:
+    - gogutan
+  event_name: "Kaigi on Rails 2023"
+  date: "2023-10-27"
+  published_at: "2023-11-03"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2023/talks/gogutan/
+
+    【発表概要】
+    開発環境の初期データは、チーム全体の開発効率に関わる重要なデータです。しかし、seedファイルの記述に手間がかかるためメンテナンスが適切に行われなかったり、各エンジニアがローカルに独自のデータを持っているようなことはないでしょうか。 弊社ではこの問題を解決するため「ローカルのデータからCSVを出力してseedとして利用する」手法を導入しました。これはseedファイルを直接編集するのではなく、実際にローカルでアプリを操作して必要なデータを整備した後、スクリプトを実行して全テーブルのCSVを出力する手法で、「今この瞬間のローカルデータを、スナップショットのようにseed化したい！」という怠惰な願望を叶えるものです。 今回のトークでは、この手法の概要、導入にあたって直面した問題と解決アプローチ、及び導入前後のseedデータにおける質や量の比較についてお話しします。
+
+
+    【発表者】
+    gogutan
+    GitHub https://github.com/gogutan
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "GG6d2-BPQ5w"
+
+- id: "haruka-oguchi-kaigi-on-rails-2023"
+  title: "定数参照のトラップとそれを回避するために行う2つのこと"
+  raw_title: "定数参照のトラップとそれを回避するために行う2つのこと / Haruka Oguchi - Kaigi on Rails 2023"
+  speakers:
+    - Haruka Oguchi
+  event_name: "Kaigi on Rails 2023"
+  date: "2023-10-27"
+  published_at: "2023-11-03"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2023/talks/hogucc/
+
+    【発表概要】
+    Rubyの定数を参照する際、それが本当に意図した定数を参照しているかはコードを動かしてみるまではわかりません。
+
+    先頭に::をつけてすべての定数参照をトップレベルから強制するのがよいでしょうか？ 私はコードの書き方の強制よりも、コードを書いた時点でそれがどの定数を参照していて、トップレベルから検索したときに一致する定数の候補を出す機能が欲しくなり、エディタ上でそれらを表示してくれるgemを作ってみることにしました。 書き方の強制は影響範囲が広く、意図した定数参照をしていないことに気づくのが遅れた、という課題を解決するにはこの方法で十分と考えたからです。
+
+    この発表では、Railsのアプリケーションで定数が読み込まれる仕組みや定数探索の順番をお話しした上で、実装し(た|ている)gemの紹介をしたいと思います。
+
+
+    【発表者】
+    Haruka Oguchi
+    GitHub https://github.com/hogucc
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "DprMyMethws"
+
+- id: "masataka-kuwabara-kaigi-on-rails-2023"
+  title: "Active Record クエリクイズ"
+  raw_title: "Active Record クエリクイズ / Masataka Pocke Kuwabara - Kaigi on Rails 2023"
+  speakers:
+    - Masataka Kuwabara
+  event_name: "Kaigi on Rails 2023"
+  date: "2023-10-27"
+  published_at: "2023-11-03"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2023/talks/pocke/
+
+    【発表概要】
+    Active Record は便利なライブラリです。一方で、時としてどのようなクエリが発行されるのか分からなくなることもあるでしょう。 そんなちょっとむずかしい、Active Record が発行するクエリをクイズ形式で学びます。
+
+    このトークを聞いて、コードを見たらなんとなく発行されるクエリが見えるようになる力を手に入れましょう！
+
+
+    【発表者】
+    Masataka Pocke Kuwabara
+    GitHub https://github.com/pocke
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "f4yuWOXlGCo"
+
+- id: "andrey-novikov-kaigi-on-rails-2023"
+  title: "Rails Executor: フレームワークとあなたのコードとの境"
+  raw_title: "Rails Executor: フレームワークとあなたのコードとの境 / Andrey NOVIKOV - Kaigi on Rails 2023"
+  speakers:
+    - Andrey NOVIKOV
+  event_name: "Kaigi on Rails 2023"
+  date: "2023-10-27"
+  published_at: "2023-11-03"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2023/talks/Envek/
+
+    【発表概要】
+    Railsがリクエストとバックグラウンドジョブの間にキャッシュとリソースをどのようにクリーンアップするか？ そして、リロード対象のコードをどうやって決定するかをご存知でしょうか?
+
+    これはあまり知られていないRailsの内部詳細です。通常のアプリケーション開発者であれば、決して気づくことはなくて、知る必要もありません。しかし、アプリケーションのコードをコールバックなどで呼び出すジェムを作成する場合、その知識は不可欠なことになります。
+
+
+    【発表者】
+    Andrey NOVIKOV
+    GitHub https://github.com/Envek
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "ihlJu3wPJ5Q"
+
+- id: "yuki-kurihara-kaigi-on-rails-2023"
+  title: "Railsの型ファイル自動生成における課題と解決"
+  raw_title: "Railsの型ファイル自動生成における課題と解決 / Yuki Kurihara - Kaigi on Rails 2023"
+  speakers:
+    - Yuki Kurihara
+  event_name: "Kaigi on Rails 2023"
+  date: "2023-10-28"
+  published_at: "2023-11-03"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2023/talks/ksss/
+
+    【発表概要】
+    「Railsアプリケーションで型をあつかいたい。」これはコミュニティーにおいて未だベストプラクティスが見つかっていない、模索中の課題です。
+
+    ある程度の主要な情報は生成方法が見つかっているでしょう。
+
+    しかしながらコーナーケースはどうでしょうか？ Railsのプラグインgemを使っている場合は？ 個々のプロダクトの事情に合わせたカスタマイズ方法は？ 既存の資産を活かす方法は？
+
+    本セッションでは、これらの問題を解決する方法として、orthoses-railsを提案します。 orthoses-railsを使うことで、最初の導入、アプリケーションコードの解析、実行時解析とは何か、カスタマイズ方法や、独自のRailsプラグイン拡張であっても型を自動生成する方法など、実践的な課題に対する解決方法を提案します。
+
+
+    【発表者】
+    Yuki Kurihara
+    GitHub https://github.com/ksss
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "zbVmxcqQBck"
+
+- id: "zuckey-kaigi-on-rails-2023"
+  title: "事業の試行錯誤を支える、コードを捨てやすくしてシステムをシンプルに保つ設計と工夫"
+  raw_title: "事業の試行錯誤を支える、コードを捨てやすくしてシステムをシンプルに保つ設計と工夫  / zuckey - Kaigi on Rails 2023"
+  speakers:
+    - zuckey
+  event_name: "Kaigi on Rails 2023"
+  date: "2023-10-28"
+  published_at: "2023-11-03"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2023/talks/zuckey/
+
+    【発表概要】
+    サービスを運用していく過程で、事業の状況や取り巻く社会環境に応じて提供する機能や課金体系などを変える（ピボットする）必要に迫られることが多いです。 特にBtoBのサービスでは、少ない顧客企業と長期的な取り組みになることが多く、1社ごとの取引金額の大きくなりがちです。 それゆえに、特殊なケースに対応するためにシステムを作り込むという選択を選ばざるを得ないケースもあります。 過度な作り込みによって、システムの柔軟性は損なわれ、事業はピボットしづらくなります。 本トークでは、書いたコードを捨てやすくしてシステムをシンプルに保つための設計と、捨てる意思決定を後押しするための工夫についてお話します。 システムをシンプルにすることにより、作り込みをしつつも試行錯誤のスピード感を維持します。そういった動きをするためのRailsアプリケーションの設計を具体例を交えて紹介します。 また、開発者がコードや機能を削除したいと主張しても、工数をかけて作ったものを削除する意思決定をするのは難しいものです。 コード、機能の削除を進めるためにプロダクトのステークホルダーをうまく巻き込んだ議論をするためのTipsを紹介します。 本トークを通じて、急激に変化する社会の中でも柔軟に対応するプロダクトを作るために、Webアプリケーション開発者が普段から準備できることについて知ることができます。
+
+
+    【発表者】
+    zuckey
+    GitHub https://github.com/zuckeyM-17
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "0DndjNCJHUI"
+
+- id: "shogo-terai-kaigi-on-rails-2023"
+  title: "Fat Modelを解消するためのCQRSアーキテクチャ"
+  raw_title: "Fat Modelを解消するためのCQRSアーキテクチャ / Shogo Terai - Kaigi on Rails 2023"
+  speakers:
+    - Shogo Terai
+  event_name: "Kaigi on Rails 2023"
+  date: "2023-10-28"
+  published_at: "2023-11-03"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2023/talks/krpk1900/
+
+    【発表概要】
+    私が現在開発している比較的規模が大きなRailsアプリケーションでは、CQRS(Command and Query Responsibility Segregation)アーキテクチャを取り入れることによって、Fat ModelやFat Controller問題を解決し、ソースコードの見通しが良い状態を保つことができています。
+
+    本セッションでは、RailsアプリケーションでCQRSアーキテクチャを採用している事例として、私たちが導入しているUseCase・Query・Commandの役割と、Model・Controllerを含めた各層の関係を紹介します。
+
+
+    【発表者】
+    Shogo Terai
+    GitHub https://github.com/krpk1900
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "H_45FlMS6Kc"
+
+- id: "hiro-tateyama-kaigi-on-rails-2023"
+  title: "返金処理を通して学ぶ、カード決済電文の沼バトル"
+  raw_title: "返金処理を通して学ぶ、カード決済電文の沼バトル / hirotea - Kaigi on Rails 2023"
+  speakers:
+    - Hiro Tateyama
+  event_name: "Kaigi on Rails 2023"
+  date: "2023-10-28"
+  published_at: "2023-11-03"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2023/talks/hirotea/
+
+    【発表概要】
+    ECサイトでクレジットカード決済を行い、注文をキャンセルした経験はありますか？しばらくすると返金処理が行われ、カード会社からの請求がキャンセルされます。しかし、カード会社がどのようにして返金処理を行っているのか、気になったことはありませんか？
+
+    カード会社は、決済時と返金手続き時にお店から発行される電文をもとに決済・返金処理を行いますが、実はかなり混沌とした世界であったりします。
+
+    登壇者は、プリペイドカード発行会社で新規機能開発時にこの返金処理の沼にハマり、そのケアに苦労しました。 このセッションでは、決済電文をプリペイドカード発行会社（イシュアー）がどのように処理し、ユーザーの残高を変動させているのかに触れた後、登壇者が苦労した返金処理に関するケアについてカジュアルにお話しします。普段カード事業に携わることがなければ知ることができない、そして気にも留めないお話をみなさまに提供する予定です。
+
+
+    【発表者】
+    hirotea
+    GitHub https://github.com/hiro-teaaa
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "UwI41FIGP6E"
+
+- id: "yusuke-iwaki-kaigi-on-rails-2023"
+  title: "E2E testing on Rails 2023"
+  raw_title: "E2E testing on Rails 2023 / Yusuke Iwaki - Kaigi on Rails 2023"
+  speakers:
+    - Yusuke Iwaki
+  event_name: "Kaigi on Rails 2023"
+  date: "2023-10-28"
+  published_at: "2023-11-03"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2023/talks/YusukeIwaki/
+
+    【発表概要】
+    Rails 5.2でシステムテストが導入されて以来、Capybaraを使用したE2Eテストを書くことはとても容易になりましたが、実際にシステムテストをCIで運用すると「時々なぜか落ちるテスト」との戦いです。いっぽう世の中を見渡すと、CypressやPlaywrightといったNode.jsベースのテストランナーが成熟してきており、Flakyなテストに打ち克つための工夫が多くされています。この発表ではRailsのアプリケーション資産はそのままに、Node.jsベースのテストランナーを導入する方法を紹介し、その中の仕組みを詳しく説明します。
+
+
+    【発表者】
+    Yusuke Iwaki
+    GitHub https://github.com/YusukeIwaki
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "Ntimew78syU"
+
+- id: "shohei-mitani-kaigi-on-rails-2023"
+  title: "32個のPRでリリースした依存度の高いコアなモデルの安全な弄り方"
+  raw_title: "32個のPRでリリースした依存度の高いコアなモデルの安全な弄り方 / Shohei Mitani - Kaigi on Rails 2023"
+  speakers:
+    - Shohei Mitani
+  event_name: "Kaigi on Rails 2023"
+  date: "2023-10-28"
+  published_at: "2023-11-03"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2023/talks/ShoheiMitani/
+
+    【発表概要】
+    新しく機能を設計する際、将来的な仕様変更の可能性を踏まえて拡張性を持たせたり、簡単に変更ができるように工夫することは、経験を積んできたエンジニアにとって常に意識しているポイントかと思います。 しかし、時として思わぬ方向に機能のニーズが変化したり、予想外の事業領域へのチャレンジによって当初には意図してない形に設計を大きく変更せざるを得ないケースも生じます。
+
+     ・このテーブルを変更しないといけないけど参照箇所が多くて触りにくい...
+     ・新しくカラムを追加したいけどデータ量が多いからオンラインして良いのか不安...??
+     ・この仕様ってこれから先どう変わっていくんだろ... 拡張性とか考えなくてもいいかな...??
+
+    サービスが大きくなるほど既に動いている機能を障害なく変更していくことは難しくなりますし、変化の多い事業環境でどこまで拡張性や柔軟性を持たせるかの見極めは困難です。
+
+    このセッションでは、実際の事例に基づいてサービスのコアとなるモデルの仕様を大きく変え、テーブルの定義変更やモデルの機能拡張をしたお話をします。多くのモデルに依存していたり、Read/Writeが多いモデルをダウンタイムなしで変更していくための手順の決め方や具体的なテクニック、便利なgemなどについて紹介します。また、私たちのチームが将来像を考慮しながら設計する時に意識しているポイントについても紹介します。
+
+
+    【発表者】
+    Shohei Mitani
+    GitHub https://github.com/ShoheiMitani
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "M-E69IrKfps"
+
+- id: "naoto-yamaji-kaigi-on-rails-2023"
+  title: "テーブル分割で実現するdeviseの責務の分離と柔軟な削除機構"
+  raw_title: "テーブル分割で実現するdeviseの責務の分離と柔軟な削除機構 / Naoto - Kaigi on Rails 2023"
+  speakers:
+    - Naoto Yamaji
+  event_name: "Kaigi on Rails 2023"
+  date: "2023-10-28"
+  published_at: "2023-11-03"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2023/talks/naoto/
+
+    【発表概要】
+    deviseを使用してデフォルトの設定で認証機構を構築すると、ユーザーに関する多種多様な情報が一つのテーブルに集約されます。 これはモデルクラスの責務の増加につながり、拡張性の担保の難しさを招き、ひいてはセキュリティ面に多少の問題が発生することになると考えました。
+
+    この問題に対して、責務ごとにテーブルの分割を行うことで改善を試みる方法を提案します。 また関連して、「ユーザーの削除と関連情報の保持」というよく発生する課題について、テーブル分割でどのように対応していくかについても説明します。
+
+
+    【発表者】
+    Naoto
+    GitHub https://github.com/NaotoCoding
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "I29wMW2IepQ"
+
+- id: "imadoki-kaigi-on-rails-2023"
+  title: "Multiple Databasesを用いて2つのRailsプロジェクトを統合する"
+  raw_title: "Multiple Databasesを用いて2つのRailsプロジェクトを統合する / imadoki - Kaigi on Rails 2023"
+  speakers:
+    - imadoki
+  event_name: "Kaigi on Rails 2023"
+  date: "2023-10-28"
+  published_at: "2023-11-03"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2023/talks/imadoki/
+
+    【発表概要】
+    マンガサービスpixivコミックに姉妹サイトであるpixivノベルの機能の統合を進めている話をします。
+
+    pixivノベルは元々pixivコミックをクローンして作成されたという経緯もあり、この2つのサービスは非常によく似ています。また、一貫して同じチームが開発し、マンガ・小説それぞれの作品種別の違いを意識しつつ、同じ目的を持った機能を双方に実装してきました。 今後は読者がマンガ・小説に拘らず両方の作品を楽しめるよう、両サービスの良さを生かしながら、より多くのユーザーにコンテンツを提供し、作品を広めるため、この2つのサービスを統合していく予定です。
+
+    統合はpixivコミック側にpixivノベルの機能を移植していく形で実装されており、pixivコミックのAPIサーバーからRailsのMultiple Databases機能を用いてpixivノベルが使用するDBを直接参照することで実現する方針です。2つのRailsサービスを稼働しながら1つのRailsサービスに統合していくための開発の進め方や気にしたポイントについて話したいと思っています。
+
+
+    【発表者】
+    imadoki
+    GitHub https://github.com/imadoki
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "-tnFsqssKpg"
+
+- id: "yasuko-ohba-kaigi-on-rails-2023"
+  title: "Hotwire的な設計を追求して「Web紙芝居」に行き着いた話"
+  raw_title: "Hotwire的な設計を追求して「Web紙芝居」に行き着いた話 / Yasuko Ohba (nay3) - Kaigi on Rails 2023"
+  speakers:
+    - Yasuko Ohba
+  event_name: "Kaigi on Rails 2023"
+  date: "2023-10-28"
+  published_at: "2023-11-03"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2023/talks/nay3/
+
+    【発表概要】
+    私は昨年3月以降、Rails7でHotwireを活用して複数のアプリケーションを開発してきました。Hotwireは、SPAのような動きをRailsだけで実現できる良い道具だと思っています。開発体制やコードをコンパクトに保てる利点があります。
+
+    ただ、SPAではなくHotwireでやろうと決めるためには、Hotwireでどこまでできるのか？ Hotwireでできないことはあるのか？ が気になってくる点でしょう。この点について、今では私は以下のように感じています。
+
+    ・やりたいことは大体なんでも Hotwire で実現できる
+    ・最終的に実現できる機能の差よりも、どういう考え方で作るかにSPAとHotwireの大きな違いがある
+
+    SPAとHotwireでは、アプリを構成するための物の考え方が大きく異なります。Hotwireを縦横無尽に使い倒すためには、Hotwire的な考え方で作る必要があるのです。この、Hotwire的な考え方＝設計指針に私は「Web紙芝居」という名前をつけました。本トークでは、この「Web紙芝居」的な設計指針に行き着いた経緯や、指針の内容についてご紹介します。
+
+
+    【発表者】
+    Yasuko Ohba (nay3)
+    GitHub https://github.com/nay
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "xfjBsbT1L_M"
+
+- id: "masato-ohba-kaigi-on-rails-2023"
+  title: "管理機能アーキテクチャパターンの考察と実践"
+  raw_title: "管理機能アーキテクチャパターンの考察と実践 / ohbarye - Kaigi on Rails 2023"
+  speakers:
+    - Masato Ohba
+  event_name: "Kaigi on Rails 2023"
+  date: "2023-10-28"
+  published_at: "2023-11-03"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2023/talks/ohbarye/
+
+    【発表概要】
+    Webサービスの開発・運用に携わる者なら、管理機能の重要性について深く認識していることでしょう。ユーザーアカウント管理、システム設定、トラブルシューティング、レポート機能など、管理機能はサービスを安全かつ効率的に運用するための不可欠なツールです。
+
+    しかし、新規事業やスタートアップではユーザーに迅速に価値を提供し、ビジネスを軌道に乗せることが最優先されます。その結果、管理機能の開発は後回しになり、対ユーザー向けの機能を先にリリースして運用を始めてから管理機能を追加する、という開発ロードマップが多く見られます。このようなケースはままあるものの、管理機能追加の際に選ばれるアーキテクチャパターンについては十分に語られていないと感じています。
+
+    このセッションでは、単なるgem選定を超えて、管理画面や管理機能を後から追加する際のアーキテクチャパターンを深堀りします。それぞれの選択肢のメリットとデメリットを比較し、選択の視点を提供します。また、私が運用しているRailsアプリケーションでの管理機能設計の選択とその理由に加え、運用から得られた知見―特に監視やプロセス管理などのトピック―にも焦点を当てます。このセッションを通じて、管理機能設計と運用に対する理解と視野が広がれば幸いです。
+
+
+    【発表者】
+    ohbarye
+    GitHub https://github.com/ohbarye
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "bmKUvx1g_1A"
+
+- id: "shunsuke-kokuyou-mori-kaigi-on-rails-2023"
+  title: "APMをちゃんと使おうとしたら、いつのまにか独自gemを作っていた話"
+  raw_title: "APMをちゃんと使おうとしたら、いつのまにか独自gemを作っていた話 / kokuyouwind - Kaigi on Rails 2023"
+  speakers:
+    - Shunsuke "Kokuyou" Mori
+  event_name: "Kaigi on Rails 2023"
+  date: "2023-10-28"
+  published_at: "2023-11-03"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2023/talks/kokuyouwind/
+
+    【発表概要】
+    Active Recordは必要な処理が簡単に書ける一方で、N+1クエリやスロークエリなどパフォーマンスの問題が発生しやすい一面も持っています。 特にデータ量に依存する問題では、本番環境でしか再現しない問題も珍しくありません。APMツールを使うことで、こうしたパフォーマンスの追跡や原因の調査を行いやすくなります。 しかし、APMツールの導入自体は比較的簡単なものの、うまく活用するのは意外と難しいものです。「APMを導入しただけで放置してしまっている」という方も多いのではないでしょうか？
+
+    弊社ではAPMとしてDatadogを導入し、定期的な状況の確認とパフォーマンスチューニングに役立てています。 本セッションでは弊社でAPMをどのように使っているかを紹介し、より使いやすくするために独自のgemを作った話をします。
+
+
+    【発表者】
+    kokuyouwind
+    GitHub https://github.com/kokuyouwind
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "hlnorJ64UPY"
+
+- id: "takuya-mukohira-kaigi-on-rails-2023"
+  title: "自分の道具を自作してつくる喜びを体感しよう、Railsで。 〜4年続いたPodcastを実例に〜 by Takuya Mukohira"
+  raw_title: "自分の道具を自作してつくる喜びを体感しよう、Railsで。 〜4年続いたPodcastを実例に〜 / Takuya Mukohira / mktakuya - Kaigi on Rails 2023"
+  speakers:
+    - Takuya Mukohira
+  event_name: "Kaigi on Rails 2023"
+  date: "2023-10-28"
+  published_at: "2023-11-03"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2023/talks/mktakuya/
+
+    【発表概要】
+    学生時代からの友人たちとPodcast配信をはじめて4年。様々なゲストをお迎えしたり、3年連続の毎週更新を達成したりしながら、先日は第200回の節目を迎えることが出来ました。
+
+    数年に一度流行し、始める人が増えては意外と継続が大変で更新が途絶えてしまいがちなPodcast。続けることが出来た理由のひとつに、Webサイトや配信システム・CMSなど「自分の道具を自分でつくり改善し続けていたこと」があると思っています。
+
+    このトークでは、「業務外でもコードを書きたいけどつくりたいものがない」という状態だった私が、サイドプロジェクトで使う道具を自分でつくり改善することを通じて、楽しみながら技術的な成長とつくる喜びを得られたという経験談をします。
+
+    使える時間が限られている趣味やサイドプロジェクトとかけ合わせてのものづくりにこそ、Ruby on Railsとそのエコシステムがもたらす高い生産性がピッタリです。
+
+    トークを聞いたみなさんが、「自分もRailsでなにか作ってみよう！」と思い、つくる喜びを体感する一歩を踏み出していただければ幸いです。
+
+
+    【発表者】
+    Takuya Mukohira / mktakuya
+    GitHub https://github.com/mktakuya
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "diOkwNl1WrU"
+
+- id: "miyuki-tomiyama-kaigi-on-rails-2023"
+  title: "ペアプロしようぜ 〜3人で登壇!? 楽しくて速いペアプロ/モブプロ開発〜"
+  raw_title: "ペアプロしようぜ 〜3人で登壇!? 楽しくて速いペアプロ/モブプロ開発〜 / eatplaynap トミー & masuyama13 & あんすと - Kaigi on Rails 2023"
+  speakers:
+    - Miyuki Tomiyama
+    - H Masuyama
+    - Makoto Onoue
+  event_name: "Kaigi on Rails 2023"
+  date: "2023-10-28"
+  published_at: "2023-11-03"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2023/talks/tebiki/
+
+    【発表概要】
+    私たちが伝えたいのは、開発の速度を劇的に向上させ、開発に伴うストレスを激減させ、開発を楽しいものにする方法です。私たちのチームでは、昨年8月にペア/モブプロを本格的に導入し、ほぼ全ての開発をペア/モブプロで行うことで、平均リードタイムを24時間以内に保ち、継続的に速いリリースが行えるようになりました。ペア/モブプロの導入によって、どのような点がどれくらい向上したかを具体的なデータでお伝えするとともに、私たちが普段どのようにモブプロを行っているかを、実際のライブコーディングの様子からお伝えしたいと思います。
+
+
+    【発表者】
+    eatplaynap トミー
+    GitHub https://github.com/eatplaynap
+
+    masuyama13
+    GitHub https://github.com/masuyama13
+
+    あんすと
+    GitHub https://github.com/unstoppa61e
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "jlNSdXycpz8"
+
+- id: "knr-kaigi-on-rails-2023"
+  title: "数十億のレコードを持つ5年目サービスの設計と障害解決"
+  raw_title: "数十億のレコードを持つ5年目サービスの設計と障害解決 / KNR - Kaigi on Rails 2023"
+  speakers:
+    - KNR
+  event_name: "Kaigi on Rails 2023"
+  date: "2023-10-28"
+  published_at: "2023-11-03"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2023/talks/knr/
+
+    【発表概要】
+    アプリケーション運用において、時間が経つにつれて各種データも蓄積されていきパフォーマンスが劣化していくことがあります。
+
+    Palcyは今年で5周年を迎えたスマホアプリでそのバックエンドに蓄積されたデータもテーブルによっては数十億オーダーに乗っており安易な機能実装がはばかられます。この発表ではそうしたデータとどう向き合い、運用や機能の実装を続けてきたか発表します。
+
+
+    【発表者】
+    KNR
+    GitHub https://github.com/knr07
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "ygZFq3UxWdg"
+
+- id: "tora-kouno-kaigi-on-rails-2023"
+  title: "Railsアプリにパスワードレス認証を導入した知見"
+  raw_title: "Railsアプリにパスワードレス認証を導入した知見  / 河野裕隆 - Kaigi on Rails 2023"
+  speakers:
+    - Tora Kouno
+  event_name: "Kaigi on Rails 2023"
+  date: "2023-10-28"
+  published_at: "2023-11-03"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2023/talks/tora-kouno/
+
+    【発表概要】
+    ## 話すこと
+
+    Railsで作られたアプリにPasskey（パスワードレス認証）を導入した際の実装方法、注意点を共有します。
+
+    セキュリティ対策はアプリケーション開発を行う上で非常に重要な観点となっています。 特にログイン機構はあらゆるアプリケーションに実装され、UXを高めるとともにセキュアなサイトを作る上で非常に大切な要素です。 弊社が開発/運用している「クリエイティア」でPasskeyによるログインを導入したため、その際に得た知見をお話します。
+
+    ## 想定する対象者
+
+    ・Passkeyについて知りたい方
+    ・RailsアプリでPasskeyを導入したい方
+    ・ログインのUXを改善したい方
+
+    ## このセッションでわかるようになること（目次）
+
+    ・Passkeyとはなにか
+    ・Passkeyのメリット
+    ・Passkeyの導入経緯
+    ・実装方法
+    ・実装上の注意点（ハマりポイント）
+
+    ## Passkeyとは
+
+    端末に保存された指紋や顔、あるいはPINコードを利用して認証するものです。 ユーザーのメリットとして、サイトごとにパスワード（パスフレーズ）を管理する必要がなく、 安全性と利便性を両立できる認証方式です。
+
+    ## クリエイティアとは
+
+    クリエイターとファンを結ぶ月額会員制ファンクラブプラットフォームです。
+
+
+    【発表者】
+    河野裕隆
+    GitHub https://github.com/tora-kouno
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "Yj8NV2S0ydQ"
+
+- id: "sampo-kuokkanen-kaigi-on-rails-2023"
+  title: "ActiveSupport::CurrentAttributes: すっごく便利なのに嫌われ者？！"
+  raw_title: "ActiveSupport::CurrentAttributes: すっごく便利なのに嫌われ者？！ / Sampo Kuokkanen - Kaigi on Rails 2023"
+  speakers:
+    - Sampo Kuokkanen
+  event_name: "Kaigi on Rails 2023"
+  date: "2023-10-28"
+  published_at: "2023-11-03"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2023/talks/sampokuokkanen/
+
+    【発表概要】
+    ActiveSupport::CurrentAttributesを嫌う人がいますが、ものすごく便利、というのは言わざるを得ないです。 みんな大好きなグローバル変数を安全にリクエストの中で使える！本当に便利な優れものです。
+
+    なんで嫌われているのかについて話して、注意点など、これまでにあったセキュリティ欠陥（Pumaとrailsの組み合わせで、情報が漏洩されていたものがありまして。。。）の話などをして、みんなでActiveSupport::CurrentAttributesを使おう！とまではいかなくても、本当に使わないといけない時があれば一つの選択肢としてありますよ、ということを伝えたいです。
+
+
+    【発表者】
+    Sampo Kuokkanen
+    GitHub https://github.com/sampokuokkanen
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "9jYnRm1SjgU"
+
+- id: "duck-falcon-kaigi-on-rails-2023"
+  title: "コードカバレッジ計測ツールを導入したらテストを書くのが楽しくなった話"
+  raw_title: "コードカバレッジ計測ツールを導入したらテストを書くのが楽しくなった話 / duck-falcon - Kaigi on Rails 2023"
+  speakers:
+    - duck-falcon
+  event_name: "Kaigi on Rails 2023"
+  date: "2023-10-28"
+  published_at: "2023-11-03"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2023/talks/duck/
+
+    【発表概要】
+    レガシーなコードに対してテストを書くというのは挑戦であり、しばしば時間とリソース(それと精神力)を多く必要とします。 どうすればチーム全体で楽しく、効率的にこの問題に取り組むことができるのでしょうか？
+
+    本セッションでは、まずコードカバレッジの基本的な概念を説明します。 C0, C1, C2カバレッジの違いや、なぜ100％のカバレッジを追求するべきでないのか、その理由について簡単に説明します。
+
+    そして、コードカバレッジツール： SimpleCovの導入を通して、 実際のプロジェクトでテストを書く負荷を最小限にし、 チームメンバーがテストコーディングを楽しむことができる環境を整えた方法を紹介します。 また、新規開発の品質向上にもいい影響を与えた話も合わせて行います。
+
+
+    【発表者】
+    duck-falcon
+    GitHub https://github.com/duck-falcon
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "54sOl5qQMK0"
+
+- id: "takaharu-yamamoto-kaigi-on-rails-2023"
+  title: "Hotwireを使って管理画面を簡単にプチSPA化する"
+  raw_title: "Hotwireを使って管理画面を簡単にプチSPA化する / yamataka22 - Kaigi on Rails 2023"
+  speakers:
+    - Takaharu Yamamoto
+  event_name: "Kaigi on Rails 2023"
+  date: "2023-10-28"
+  published_at: "2023-11-03"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2023/talks/yamataka/
+
+    【発表概要】
+    Rails7が公開されてから1年半近くが経ち、Hotwireの導入によって、フロント周りはそれまでのRails開発と大きく変わりました。しかしながら、まだHotwireの実績や情報量が少ないなどの理由で、積極的に使うことを見送る場合も多いのではないでしょうか。このままでは、Rails4のTurbolinksの扱いと同じように「まず無効化する」がデフォルトになりえないかと懸念しています。
+
+    私自身、当初はHotwireの勘所がわからず、作りづらさを感じてだいぶ辛かったのですが、慣れてきた昨今では、Rails6以前よりも使い勝手の良いシステムを素早く導入することができていると実感しています。
+
+    そこで今回は、Hotwireを使って管理画面や社内向けシステムを簡単にプチSPA化する実践的な手法を紹介いたします。なお、ここで言う「プチSPA化」とは、具体的には、CRUDにおける #new, #edit, #show をモーダル表示することを指します。
+
+    Hotwire入門というよりも、StimulusとTurboを組み合わせてHTML片に動きをつける具体的方法を共有することで、皆様のHotwire開発ライフを少しでも後押しできたら幸いです。
+
+
+    【発表者】
+    yamataka22
+    GitHub https://github.com/yamataka22
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "HXoH93yMwPM"
+
+- id: "jean-boussier-kaigi-on-rails-2023"
+  title: "A Decade of Rails Bug Fixes"
+  raw_title: "A Decade of Rails Bug Fixes / byroot - Kaigi on Rails 2023"
+  speakers:
+    - Jean Boussier
+  event_name: "Kaigi on Rails 2023"
+  date: "2023-10-28"
+  published_at: "2023-11-03"
+  language: "english"
+  description: |-
+    https://kaigionrails.org/2023/talks/byroot/
+
+    【発表概要】
+    In this talk we'll go over two Rails bugs I fixed 10 years appart. For both I will detail how the bug was found, how I debugged it and how I finally fixed it. I will as well reflect back on what I learned in the process. If you are a begginer you may learn some debugging techniques, if you are more confirmed you may enjoy the war stories and learn some gritty details about Ruby and Rails internals.
+
+
+    【発表者】
+    byroot
+    GitHub https://github.com/byroot
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "foODcPk_JW8"

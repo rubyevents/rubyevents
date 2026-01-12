@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: talk_transcripts
+# Database name: primary
+#
+#  id                  :integer          not null, primary key
+#  enhanced_transcript :text
+#  raw_transcript      :text
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  talk_id             :integer          not null, indexed
+#
+# Indexes
+#
+#  index_talk_transcripts_on_talk_id  (talk_id)
+#
+# Foreign Keys
+#
+#  talk_id  (talk_id => talks.id)
+#
+one:
+  talk: one
+  raw_transcript: '[{"start_time": "00:00:15.280", "end_time": "00:00:21.320", "text": "so nice to be here with you thank you all for coming so uh my name is uh"}, {"start_time": "00:00:21.320", "end_time": "00:00:27.800", "text": "yaroslav I m from Ukraine you might know me from my blog or from my super Al"}, {"start_time": "00:00:27.800", "end_time": "00:00:34.399", "text": "YouTube channel where I post a lot of stuff about trby and especially about hot fire so I originate from Ukraine"}, {"start_time": "00:00:34.399", "end_time": "00:00:40.239", "text": "from the north of Ukraine so right now it is liberated so that is Kev Chernobyl"}, {"start_time": "00:00:40.239", "end_time": "00:00:45.920", "text": "and chern so I used to live 80 kmers away from Chernobyl great"}, {"start_time": "00:00:45.920", "end_time": "00:00:52.680", "text": "place yeah and uh that is my family s home so it got boned in one of the first"}, {"start_time": "00:00:52.680", "end_time": "00:01:00.000", "text": "days of war that is my godfather he went to defend Ukraine and uh I mean we are"}, {"start_time": "00:01:00.000", "end_time": "00:01:05.799", "text": "he has such a beautiful venue but there is the war going on and like just today"}, {"start_time": "00:01:05.799", "end_time": "00:01:13.159", "text": "the city of har was randomly boned by the Russians and there are many Ruby"}, {"start_time": "00:01:13.159", "end_time": "00:01:19.520", "text": "rails people from Ukraine some of them are actually fighting this is verok he contributed to Ruby and he is actually"}, {"start_time": "00:01:19.520", "end_time": "00:01:27.960", "text": "defending Ukraine right now but on a positive note I just recently became a father"}, {"start_time": "00:01:27.960", "end_time": "00:01:35.000", "text": "so yeah um it is uh just 2 and a half months ago in uh France and uh today we"}, {"start_time": "00:01:35.000", "end_time": "00:01:35.000", "text": "are going to talk about hot fire"}]'

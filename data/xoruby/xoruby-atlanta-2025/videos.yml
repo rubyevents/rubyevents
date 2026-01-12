@@ -1,0 +1,113 @@
+---
+- id: "alex-yarotsky-xoruby-atlanta-2025"
+  title: "Scaling PostgreSQL Beyond Query Optimization"
+  event_name: "XO Ruby Atlanta 2025"
+  description: |-
+    As Rails apps grow, Postgres often becomes a silent bottleneck—not because of bad queries, but because default behaviors no longer hold up. This talk covers the practical side of scaling Postgres when query tuning alone isn’t enough. We’ll dig into memory tuning, how autovacuum can quietly fall behind, what to watch for in index and bloat maintenance, and when HOT updates make a difference. The focus is on techniques that are commonly overlooked but have a measurable impact in production. If your database feels like it’s fighting you, this talk will show you how to fight back.
+  speakers:
+    - Alex Yarotsky
+  date: "2025-09-13"
+  announced_at: "2025-07-29"
+  raw_title: "XORuby Atlanta 2025 - Scaling PostgreSQL Beyond Query Optimization by Alex Yarotsky"
+  published_at: "2025-12-31"
+  video_provider: "youtube"
+  video_id: "OltlmEtKejM"
+
+- id: "rachael-wright-munn-xoruby-atlanta-2025"
+  title: "Play with your code"
+  event_name: "XO Ruby Atlanta 2025"
+  description: |-
+    Why are programming games more fun than our day jobs? We're going to dig into this exact question and see what lessons we can learn from them, and how we can bring it back to our developer experience. Also, we're going to talk about some rad programming games you should play!
+  speakers:
+    - Rachael Wright-Munn
+  date: "2025-09-13"
+  announced_at: "2025-07-29"
+  raw_title: "XO Ruby Atlanta 2025 - Play with your code by Rachael Wright Munn"
+  published_at: "2025-12-31"
+  video_provider: "youtube"
+  video_id: "A4-J6R_uu98"
+
+- id: "katya-sarmiento-xoruby-atlanta-2025"
+  title: "The Disability Dilemma"
+  event_name: "XO Ruby Atlanta 2025"
+  description: |-
+    Through interactive exercises, we’ll explore the often unseen challenges people face and how they shape the way we work and build products. You’ll leave with a deeper understanding of how small shifts in awareness can spark lasting change.
+  speakers:
+    - Katya Sarmiento
+  date: "2025-09-13"
+  announced_at: "2025-07-29"
+  raw_title: "XO Ruby Atlanta 2025 - The Disability Dilemma by Katya Sarmiento"
+  published_at: "2025-12-31"
+  video_provider: "youtube"
+  video_id: "Hzwf1JPDzP0"
+
+- id: "thomas-cannon-xoruby-atlanta-2025"
+  title: "Empty Pipeline, Empty Future"
+  event_name: "XO Ruby Atlanta 2025"
+  description: |-
+    We've created a beautiful, fun language; but we need more juniors, stat! Let's talk about the benefits juniors bring, and the things you can do this month to help fix the pipeline problem.
+  speakers:
+    - Thomas Cannon
+  date: "2025-09-13"
+  announced_at: "2025-07-29"
+  raw_title: "XO Ruby Atlanta 2025 - Empty Pipeline, Empty Future by Thomas Cannon"
+  published_at: "2025-12-31"
+  video_provider: "youtube"
+  video_id: "R2a_Hnv43TY"
+
+- id: "igor-aleksandrov-xoruby-atlanta-2025"
+  title: "Overreacting – from React to Hotwire"
+  event_name: "XO Ruby Atlanta 2025"
+  description: |-
+    We built SafariPortal as a React SPA in 2020 when it made perfect sense – Hotwire didn’t exist, and we needed complex travel itinerary building. Fast-forward to 2023: we’re staring down an ambitious roadmap to transform our simple builder into a full travel CRM, and React’s ceremony is killing us. Redux boilerplate for every state change, frontend-backend coordination overhead, AI tools amplifying complexity instead of productivity. Meanwhile, our Hotwire experiments show one Rails developer shipping what used to take a specialized frontend-backend duo plus project management theater.
+    So we did something radical: we kept our React app running and started building new features in Rails. No big-bang rewrites, no developer trauma, just pragmatic coexistence while we proved Hotwire’s value. The results? 50% faster feature delivery, 93% smaller bundles, and team productivity through the roof. This isn’t about React being terrible or Rails being perfect – it’s about recognizing when you’ve outgrown your tools and having the courage to choose simplicity over complexity. I’ll share our complete hybrid migration strategy, real code patterns, honest gotchas, and a decision framework for when this approach makes sense for your team.
+  speakers:
+    - Igor Aleksandrov
+  date: "2025-09-13"
+  announced_at: "2025-07-29"
+  raw_title: "XO Ruby Atlanta 2025 - Overreacting—From React to Hotwire by Igor Aleksandrov"
+  published_at: "2025-12-31"
+  video_provider: "youtube"
+  video_id: "DuZP9sBAeIo"
+
+- id: "jeremy-smith-xoruby-atlanta-2025"
+  title: "Refactoring Volatile Views into Cohesive Components"
+  event_name: "XO Ruby Atlanta 2025"
+  description: |-
+    It's easy for models to grow unwieldy, accumulating methods, attributes, and responsibilities. But views can be even worse. Let's refactor the mess into clean, cohesive components with ViewComponent.
+  speakers:
+    - Jeremy Smith
+  date: "2025-09-13"
+  announced_at: "2025-07-29"
+  raw_title: "XO Ruby Atlanta 2025 -  Refactoring Volatile Views into Cohesive Components by Jeremy Smith"
+  published_at: "2025-12-31"
+  video_provider: "youtube"
+  video_id: "Q2CjuVaAFC8"
+
+- id: "javier-zon-xoruby-atlanta-2025"
+  title: "From Expensive Queries to Smart Caching: A DBA’s Guide for Rails"
+  event_name: "XO Ruby Atlanta 2025"
+  description: |-
+    If you’ve ever watched your Rails app drive up the MySQL bill, you know the pain. In this session, we’ll look at how ProxySQL and ReadySet can help, from query routing to smart caching and show how a little DBA magic can make your apps faster while keeping costs under control.
+  speakers:
+    - Javier Zon
+  date: "2025-09-13"
+  announced_at: "2025-09-08"
+  raw_title: "XO Ruby Atlanta 2025, From Expensive Queries to Smart Caching: A DBA’s Guide for Rails by Javier Zon"
+  published_at: "2025-12-31"
+  video_provider: "youtube"
+  video_id: "oqx0el3RCz0"
+
+- id: "kylie-stradley-xoruby-atlanta-2025"
+  title: "SAST and Sensibility: A Rubyist’s Guide to Static Analysis Security Testing"
+  event_name: "XO Ruby Atlanta 2025"
+  description: |-
+    You may already use tools like RuboCop or Brakeman, but are you getting the most out of static analysis? Ruby’s dynamic nature and metaprogramming invite creative security exploits and make SAST tricky. This talk explores how to choose the right tool, balancing sense and sensibility.
+  speakers:
+    - Kylie Stradley
+  date: "2025-09-13"
+  announced_at: "2025-09-08"
+  raw_title: "XO Ruby Atlanta 2025 - SAST and Sensibility: A Rubyist’s Guide to Static... by Kylie Stradley"
+  published_at: "2025-12-31"
+  video_provider: "youtube"
+  video_id: "g354RNbB9ag"

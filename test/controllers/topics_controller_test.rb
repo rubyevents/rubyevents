@@ -22,6 +22,14 @@ class TopicsControllerTest < ActionDispatch::IntegrationTest
     assert_select "##{dom_id(@topic2)}", 0
   end
 
+  test "should get index with invalid page number" do
+    get topics_url(page: "'")
+    assert_response :success
+    assert_select "h1", "Topics"
+    assert_select "##{dom_id(@topic1)} > span", "1"
+    assert_select "##{dom_id(@topic2)}", 0
+  end
+
   test "should get show" do
     get topic_url(@topic1)
     assert_response :success

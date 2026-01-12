@@ -3,40 +3,38 @@ class Analytics::DashboardsController < ApplicationController
   before_action :admin_required, only: %i[top_referrers top_landing_pages top_searches]
 
   def daily_visits
-    @daily_visits = Rails.cache.fetch("daily_visits", expires_at: Time.current.end_of_day) do
-      Ahoy::Visit.where("date(started_at) BETWEEN ? AND ?", 60.days.ago.to_date, Date.yesterday).group_by_day(:started_at).count
-    end
+    @daily_visits = Rollup.where(time: 60.days.ago.to_date..Date.yesterday.end_of_day).series("ahoy_visits", interval: :day)
   end
 
   def daily_page_views
-    @daily_page_views = Rails.cache.fetch("daily_page_views", expires_at: Time.current.end_of_day) do
-      Ahoy::Event.where("date(time) BETWEEN ? AND ?", 60.days.ago.to_date, Date.yesterday).group_by_day(:time).count
-    end
+    @daily_page_views = Rollup.where(time: 60.days.ago.to_date..Date.yesterday.end_of_day).series("ahoy_events", interval: :day)
   end
 
   def monthly_visits
-    @monthly_visits = Rails.cache.fetch("monthly_visits", expires_at: Time.current.end_of_day) do
-      Ahoy::Visit.where("date(started_at) BETWEEN ? AND ?", 12.months.ago.to_date.beginning_of_month, Date.yesterday).group_by_month(:started_at).count
-    end
+    @monthly_visits = Rollup.where(time: 12.months.ago.to_date.beginning_of_month..Date.yesterday.end_of_day).series("ahoy_visits", interval: :month)
   end
 
   def monthly_page_views
-    @monthly_page_views = Rails.cache.fetch("monthly_page_views", expires_at: Time.current.end_of_day) do
-      Ahoy::Event.where("date(time) BETWEEN ? AND ?", 12.months.ago.to_date.beginning_of_month, Date.yesterday).group_by_month(:time).count
-    end
+    @monthly_page_views = Rollup.where(time: 12.months.ago.to_date.beginning_of_month..Date.yesterday.end_of_day).series("ahoy_events", interval: :month)
+  end
+
+  def yearly_conferences
+    # 1. Might be inefficient, but it's a first step. Note that Rollup class doesn't seem to contain
+    #   conferences at the moment. To optimize this code, we probably want to add yearly info to the Rollup class.
+    # 2. Note that some years are integers and some are strings. We should probably convert them all to either format in import.
+    #   (to reproduce, remove the `.to_s` in the map below)
+    @yearly_conferences = Event.all.select(&:conference?).select { |event| event.start_date.present? || event.static_metadata.year.present? }.group_by { |event| event.start_date&.year || event.static_metadata.year.to_i }.map { |year, events| [year.to_s, events.count] }.sort
   end
 
   def yearly_talks
-    @yearly_talks = Rails.cache.fetch(["yearly_talks", Talk.all]) do
-      Talk.group_by_year(:date).count.map { |date, count| [date.year, count] }
-    end
+    @yearly_talks = Rollup.series("talks", interval: :year).map { |date, count| [date.year.to_s, count] }.sort
   end
 
   def top_referrers
-    @top_referrers = Rails.cache.fetch("top_referrers_2", expires_at: Time.current + 2.seconds) do
+    @top_referrers = Rails.cache.fetch("top_referrers", expires_at: Time.current.end_of_day) do
       Ahoy::Visit
         .where("date(started_at) BETWEEN ? AND ?", 60.days.ago.to_date, Date.yesterday)
-        .where.not(referring_domain: [nil, "", "rubyvideo.dev", "www.rubyvideo.dev"])
+        .where.not(referring_domain: [nil, "", "rubyvideo.dev", "www.rubyvideo.dev", "rubyevents.org", "www.rubyevents.org"])
         .group(:referring_domain)
         .order(Arel.sql("COUNT(*) DESC"))
         .limit(10)
