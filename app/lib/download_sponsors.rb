@@ -6,7 +6,13 @@ require "capybara/cuprite"
 class DownloadSponsors
   def initialize
     Capybara.register_driver(:cuprite_scraper) do |app|
-      Capybara::Cuprite::Driver.new(app, window_size: [1200, 800], timeout: 20)
+      Capybara::Cuprite::Driver.new(
+        app,
+        window_size: [1200, 800],
+        timeout: 30,
+        process_timeout: 30,
+        headless: true
+      )
     end
     @session = Capybara::Session.new(:cuprite_scraper)
   end
