@@ -268,11 +268,16 @@ class Talk < ApplicationRecord
     available = YouTube::Video.new.available?(video_id)
 
     if available
-      update_columns(video_unavailable_at: nil, video_availability_checked_at: Time.current)
+      update_columns(
+        video_unavailable_at: nil,
+        video_availability_checked_at: Time.current,
+        updated_at: Time.current
+      )
     else
       update_columns(
         video_unavailable_at: video_unavailable_at || Time.current,
-        video_availability_checked_at: Time.current
+        video_availability_checked_at: Time.current,
+        updated_at: Time.current
       )
     end
 
