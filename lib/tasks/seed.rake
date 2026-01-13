@@ -23,6 +23,21 @@ namespace :db do
       Search::Backend.reindex_all
     end
 
+    desc "Seed one event series by passing the event series slug - db:seed:event_series[rubyconf]"
+    task :event_series, [:slug] => :environment do |task, args|
+      event = Static::EventSeries.find_by_slug(args[:slug])
+      if event
+        event.import!
+      else
+        puts "Event Series with slug '#{args[:slug]}' not found."
+      end
+    end
+
+    desc "Seed all events without series - will error on new event series"
+    task events: :environment do
+      Static::Event.import_all!
+    end
+
     desc "Seed all speakers"
     task speakers: :environment do
       Static::Speaker.import_all!
