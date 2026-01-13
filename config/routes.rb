@@ -308,4 +308,21 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  namespace :api, defaults: {format: "json"} do
+    namespace :v1 do
+      namespace :embed do
+        match "*path", to: "base#preflight", via: :options
+
+        resources :talks, only: [:index, :show], param: :slug
+        resources :speakers, only: [:index, :show], param: :slug
+        resources :profiles, only: [:index, :show], param: :slug
+        resources :stickers, only: [:show], param: :slug
+        resources :stamps, only: [:show], param: :slug
+        resources :events, only: [:index, :show], param: :slug do
+          get :participants, on: :member
+        end
+      end
+    end
+  end
 end

@@ -347,7 +347,7 @@ class Talk < ApplicationRecord
   end
 
   def fallback_thumbnail
-    "/assets/#{Rails.application.assets.load_path.find("events/default/poster.webp").digested_path}"
+    Router.image_path("events/default/poster.webp")
   end
 
   def thumbnail_url(size:, request:)
@@ -364,13 +364,13 @@ class Talk < ApplicationRecord
     if self[size].present?
       return self[size] if self[size].start_with?("https://")
 
-      if (asset = Rails.application.assets.load_path.find(self[size]))
-        return "/assets/#{asset.digested_path}"
+      if Rails.application.assets.load_path.find(self[size])
+        return Router.image_path(self[size])
       end
     end
 
-    if (asset = Rails.application.assets.load_path.find("thumbnails/#{video_id}.webp"))
-      return "/assets/#{asset.digested_path}"
+    if Rails.application.assets.load_path.find("thumbnails/#{video_id}.webp")
+      return Router.image_path("thumbnails/#{video_id}.webp")
     end
 
     if vimeo?
@@ -401,8 +401,8 @@ class Talk < ApplicationRecord
       return parent_talk.thumbnail(size)
     end
 
-    if event && (asset = Rails.application.assets.load_path.find(event.poster_image_path))
-      return "/assets/#{asset.digested_path}"
+    if event && Rails.application.assets.load_path.find(event.poster_image_path)
+      return Router.image_path(event.poster_image_path)
     end
 
     fallback_thumbnail

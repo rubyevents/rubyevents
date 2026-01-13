@@ -17,6 +17,18 @@ class Event::Assets < ActiveRecord::AssociatedObject
     def sticker_image_path = assets.sticker_path
     def stamp_image_paths = assets.stamp_paths
     def stamp_image_path = assets.stamp_path
+
+    def avatar_url
+      return nil unless avatar_image_path
+
+      Router.image_url(avatar_image_path)
+    end
+
+    def banner_url
+      return nil unless banner_image_path
+
+      Router.image_url(banner_image_path)
+    end
   end
 
   def base_path
