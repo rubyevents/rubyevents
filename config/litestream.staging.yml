@@ -18,13 +18,12 @@ snapshot:
   retention: 360h # 15 days
 
 dbs:
-  # production
-  - path: /rails/storage/production_rubyvideo.sqlite3
+  - path: /rails/storage/staging_rubyvideo.sqlite3
     replicas:
       - type: s3
         endpoint: $LITESTREAM_ENDPOINT
-        bucket: rubyevents-production
-        path: storage/production_rubyvideo.sqlite3
+        bucket: rubyevents-staging
+        path: storage/staging_rubyvideo.sqlite3
         access-key-id: $LITESTREAM_ACCESS_KEY_ID
         secret-access-key: $LITESTREAM_SECRET_ACCESS_KEY
         retention: 24h # How long to keep WAL files on replica

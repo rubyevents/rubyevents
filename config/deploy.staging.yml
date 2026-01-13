@@ -102,7 +102,7 @@ accessories:
   litestream:
     roles: ["web"]
     image: litestream/litestream
-    files: ["config/litestream.yml:/etc/litestream.yml"]
+    files: ["config/litestream.staging.yml:/etc/litestream.yml"]
     volumes: ["storage:/rails/storage"]
     cmd: replicate
     env:
