@@ -21,7 +21,7 @@
             when :state
               state_path(state_alpha2: location[:country_code].downcase, state_slug: location[:slug])
             when :uk_nation
-              uk_nation_path(location[:slug])
+              country_path(location[:slug])
             when :city
               city_by_country_path(alpha2: location[:country_code].downcase, city: location[:slug])
             end
