@@ -323,11 +323,7 @@ module Static
 
         event.sync_aliases_from_list(aliases) if aliases.present?
       rescue ActiveRecord::RecordInvalid => e
-        puts <<~HEREDOC
-          \e[31m----------
-          Couldn't save event #{title} (#{slug}): #{e.message}
-          ----------\e[0m
-        HEREDOC
+        puts "::error::Couldn't save event #{title} (#{slug}): #{e.message}"
         raise e
       end
 
