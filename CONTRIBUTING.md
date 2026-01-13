@@ -161,19 +161,24 @@ bin/rails db:seed:event_series[blue-ridge-ruby]
 ```
 
 You can also seed one event series with a script.
+This will let you search and select the series.
 
 ```bash
 rails runner scripts/import_event.rb blue-ridge-ruby
+# Search for a series
+rails runner scripts/import_event.rb
 ```
 
-Import all events (but not the series or any other data).
-This one is good for if you're updating a lot of events at once and backfilling data.
+Import all events and event data (but not the series or anything else).
+This one is good if you're updating a lot of events at once and backfilling data.
+For example, adding coordinates, venues, involvements, sponsors, etc.
+It will error if there's a new series (or old one because you haven't run `db:seed:all` yet).
 
 ```bash
-bin/rails db:seed:event_series[blue-ridge-ruby]
+bin/rails db:seed:events
 ```
 
-Import all speakers. Great for testing profile update changes.
+Import all speakers. Great for testing profile changes.
 
 ```bash
 bin/rails db:seed:speakers
