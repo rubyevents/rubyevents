@@ -174,6 +174,8 @@ class User < ApplicationRecord
     self.verified = false
   end
 
+  after_save :create_alias_for_previous_name, if: :saved_change_to_name?
+
   # Speaker scopes
   scope :with_talks, -> { where.not(talks_count: 0) }
   scope :speakers, -> { where("talks_count > 0") }
@@ -440,6 +442,19 @@ class User < ApplicationRecord
   def set_slug
     self.slug = slug.presence || github_handle.presence&.downcase
     super
+  end
+
+  def create_alias_for_previous_name
+    previous_name, _current_name = saved_change_to_name
+
+    return if previous_name.blank?
+    return if connected_accounts.github.none?
+
+    previous_slug = previous_name.parameterize
+
+    return if aliases.exists?(name: previous_name)
+
+    aliases.create(name: previous_name, slug: previous_slug)
   end
 
   def speakerdeck_user_from_slides_url
