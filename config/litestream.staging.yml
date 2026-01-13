@@ -11,11 +11,11 @@
 # For more details, see: https://litestream.io/reference/config/
 
 # global settings
-sync-interval: 10m
+sync-interval: 60m
 
 snapshot:
   interval: 24h
-  retention: 360h # 15 days
+  retention: 24h # 1 day
 
 dbs:
   - path: /rails/storage/staging_rubyvideo.sqlite3
