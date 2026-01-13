@@ -210,6 +210,12 @@ gem "geocoder"
 # RubyGems.org API wrapper for gem information
 gem "gems"
 
+# A glamorous CLI toolkit for Ruby
+gem "gum", "~> 0.3.1"
+
+# Image processing for Active Storage variants
+gem "image_processing", "~> 1.2"
+
 # Create beautiful JavaScript maps with one line of Ruby
 gem "mapkick-rb", "~> 0.2.0"
 
@@ -218,9 +224,6 @@ gem "typesense", "~> 4.1"
 
 # Typesense integration to your favorite ORM
 gem "typesense-rails", "~> 1.0.0.rc4"
-
-# A tool for glamorous scripts.
-gem "gum", "~> 0.3.1"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

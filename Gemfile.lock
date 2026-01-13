@@ -357,6 +357,9 @@ GEM
       multi_xml (>= 0.5.2)
     i18n (1.14.8)
       concurrent-ruby (~> 1.0)
+    image_processing (1.14.0)
+      mini_magick (>= 4.9.5, < 6)
+      ruby-vips (>= 2.0.17, < 3)
     importmap-rails (2.2.2)
       actionpack (>= 6.0.0)
       activesupport (>= 6.0.0)
@@ -619,6 +622,9 @@ GEM
       faraday (>= 1)
       faraday-multipart (>= 1)
     ruby-progressbar (1.13.0)
+    ruby-vips (2.3.0)
+      ffi (~> 1.12)
+      logger
     ruby_llm (1.9.1)
       base64
       event_stream_parser (~> 1)
@@ -791,6 +797,7 @@ DEPENDENCIES
   herb (~> 0.8)
   hotwire_combobox (~> 0.4.0)
   httparty
+  image_processing (~> 1.2)
   iso-639
   jbuilder
   json-repair (~> 0.2.0)
