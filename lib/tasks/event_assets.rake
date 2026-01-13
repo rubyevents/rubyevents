@@ -1,5 +1,6 @@
 require "mini_magick"
 require "fileutils"
+require "gum"
 
 namespace :event do
   desc "Generate event assets from a logo and background color (interactive wizard)"
@@ -20,7 +21,7 @@ class EventAssetWizard
 
     print_summary(event, logo_path, background_color, text_color)
 
-    return unless gum_confirm("Proceed with asset generation?")
+    return unless Gum.confirm("Proceed with asset generation?")
 
     generator = EventAssetGenerator.new(
       event: event,
@@ -31,26 +32,13 @@ class EventAssetWizard
 
     generate_with_spinner(generator)
 
-    gum_style("✓ Asset generation complete!", border: "rounded", foreground: "2", padding: "0 1")
+    puts Gum.style("✓ Asset generation complete!", border: "rounded", foreground: "2", padding: "0 1")
   end
 
   private
 
   def check_dependencies!
-    check_gum_installed!
     check_imagemagick_installed!
-  end
-
-  def check_gum_installed!
-    unless system("which gum > /dev/null 2>&1")
-      puts "Error: gum is required for this wizard"
-      puts ""
-      puts "Install with:"
-      puts "  brew install gum"
-      puts ""
-      puts "Or see: https://github.com/charmbracelet/gum"
-      exit 1
-    end
   end
 
   def check_imagemagick_installed!
@@ -77,52 +65,68 @@ class EventAssetWizard
   end
 
   def print_header
-    system("gum style --border rounded --padding '0 2' --margin '1 0' --border-foreground 5 'Event Asset Generator'")
+    puts Gum.style("Event Asset Generator", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
   end
 
   def prompt_for_event
     all_slugs = Event.order(:slug).pluck(:slug)
 
-    gum_style("Missing an event? Run bin/rails db:seed:all to sync all from data/", foreground: "8")
-    slug = gum_filter(all_slugs, header: "Select event:", placeholder: "Type to filter...")
+    puts Gum.style("Missing an event? Run bin/rails db:seed:all to sync all from data/", foreground: "8")
+    slug = Gum.filter(all_slugs, header: "Select event:", placeholder: "Type to filter...")
 
     if slug.blank?
-      gum_style("No event selected", foreground: "1")
-      return prompt_for_event
+      puts Gum.style("No event selected", foreground: "1")
+      if Gum.confirm("Try again?")
+        return prompt_for_event
+      else
+        exit 1
+      end
     end
 
     event = Event.find_by(slug: slug)
 
-    gum_style("✓ #{event.name}", foreground: "2")
+    puts Gum.style("✓ #{event.name}", foreground: "2")
     event
   end
 
   def prompt_for_logo
-    gum_style("Select logo file (ESC to enter path manually):", foreground: "6")
-    path = `gum file --height 15`.chomp
+    puts Gum.style("Select logo file (ESC to enter path manually):", foreground: "6")
+    path = Gum.file(height: 15)
 
     if path.blank?
-      path = gum_input("Enter logo path:", placeholder: "~/Downloads/logo.png")
+      path = Gum.input(header: "Enter logo path:", placeholder: "~/Downloads/logo.png")
 
       if path.blank?
-        gum_style("No file selected", foreground: "1")
-        return prompt_for_logo
+        puts Gum.style("No file selected", foreground: "1")
+        if Gum.confirm("Try again?")
+          return prompt_for_logo
+        else
+          exit 1
+        end
       end
     end
 
     expanded_path = File.expand_path(path)
 
     unless File.exist?(expanded_path)
-      gum_style("File not found: #{expanded_path}", foreground: "1")
-      return prompt_for_logo
+      puts Gum.style("File not found: #{expanded_path}", foreground: "1")
+      if Gum.confirm("Try again?")
+        return prompt_for_logo
+      else
+        exit 1
+      end
     end
 
     begin
       image = MiniMagick::Image.open(expanded_path)
-      gum_style("✓ #{File.basename(path)} (#{image.width}x#{image.height} #{image.type})", foreground: "2")
+      puts Gum.style("✓ #{File.basename(path)} (#{image.width}x#{image.height} #{image.type})", foreground: "2")
     rescue => e
-      gum_style("Invalid image: #{e.message}", foreground: "1")
-      return prompt_for_logo
+      puts Gum.style("Invalid image: #{e.message}", foreground: "1")
+      if Gum.confirm("Try again?")
+        return prompt_for_logo
+      else
+        exit 1
+      end
     end
 
     expanded_path
@@ -136,38 +140,38 @@ class EventAssetWizard
     end
     default ||= "#000000"
 
-    color = gum_input("Background color:", placeholder: default, value: default)
+    color = Gum.input(header: "Background color:", placeholder: default, value: default)
     color = default if color.blank?
     color = "##{color}" unless color.start_with?("#")
 
     unless valid_hex_color?(color)
-      gum_style("Invalid hex color. Use format like #CC342D", foreground: "1")
+      Gum.style("Invalid hex color. Use format like #CC342D", foreground: "1")
       return prompt_for_background_color(event)
     end
 
-    gum_style("✓ Background: #{color}", foreground: "2")
+    Gum.style("✓ Background: #{color}", foreground: "2")
     color
   end
 
   def prompt_for_text_color(background_color)
     auto_color = calculate_text_color(background_color)
 
-    choice = gum_choose(["Auto (#{auto_color})", "Custom"])
+    choice = Gum.choose(["Auto (#{auto_color})", "Custom"])
 
     if choice.start_with?("Auto")
-      gum_style("✓ Text color: #{auto_color} (auto)", foreground: "2")
+      Gum.style("✓ Text color: #{auto_color} (auto)", foreground: "2")
       return auto_color
     end
 
-    color = gum_input("Text color:", placeholder: "#FFFFFF")
+    color = Gum.input(header: "Text color:", placeholder: "#FFFFFF")
     color = "##{color}" unless color.start_with?("#")
 
     unless valid_hex_color?(color)
-      gum_style("Invalid hex color", foreground: "1")
+      Gum.style("Invalid hex color", foreground: "1")
       return prompt_for_text_color(background_color)
     end
 
-    gum_style("✓ Text color: #{color}", foreground: "2")
+    Gum.style("✓ Text color: #{color}", foreground: "2")
     color
   end
 
@@ -186,7 +190,7 @@ class EventAssetWizard
       Output: #{event.data_folder}
     SUMMARY
 
-    system("gum style --border rounded --padding '0 1' --margin '1 0' --border-foreground 6 '#{summary.gsub("'", "\\'")}'")
+    puts Gum.style(summary.gsub("'", "\\'"), border: "rounded", padding: "0 1", margin: "1 0", border_foreground: "6")
   end
 
   def generate_with_spinner(generator)
@@ -195,38 +199,14 @@ class EventAssetWizard
     generator.ensure_output_dir!
 
     EventAssetGenerator::ASSETS.each do |name, dimensions|
-      system("gum spin --spinner dot --title 'Generating #{name}.webp...' -- sleep 0.1")
-      generator.generate_asset(name, dimensions[:width], dimensions[:height])
+      Gum.spin("Generating #{name}.webp...", spinner: "dot") do
+        generator.generate_asset(name, dimensions[:width], dimensions[:height])
+      end
     end
 
-    system("gum spin --spinner dot --title 'Updating event.yml...' -- sleep 0.1")
-    generator.update_event_yml
-  end
-
-  def gum_input(prompt, placeholder: "", value: "")
-    `gum input --header "#{prompt}" --placeholder "#{placeholder}" --value "#{value}"`.chomp
-  end
-
-  def gum_choose(options)
-    `echo "#{options.join("\n")}" | gum choose`.chomp
-  end
-
-  def gum_filter(options, header: "", placeholder: "")
-    `echo "#{options.join("\n")}" | gum filter --header "#{header}" --placeholder "#{placeholder}" --height 15`.chomp
-  end
-
-  def gum_confirm(message)
-    system("gum confirm '#{message}'")
-  end
-
-  def gum_style(text, border: nil, foreground: nil, padding: nil)
-    cmd = ["gum", "style"]
-    cmd += ["--border", border] if border
-    cmd += ["--foreground", foreground] if foreground
-    cmd += ["--padding", padding] if padding
-    cmd << text.to_s
-
-    system(*cmd)
+    Gum.spin("Updating event.yml...", spinner: "dot") do
+      generator.update_event_yml
+    end
   end
 
   def valid_hex_color?(color)
