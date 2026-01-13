@@ -495,4 +495,63 @@ class UserTest < ActiveSupport::TestCase
 
     assert_not non_canonical.indexable?
   end
+
+  test "creates alias when verified user changes name" do
+    user = User.create!(name: "Original Name", github_handle: "alias-test-user")
+    user.connected_accounts.create!(provider: "github", uid: "12345")
+
+    user.update!(name: "New Name")
+
+    assert_equal 1, user.aliases.count
+    alias_record = user.aliases.first
+    assert_equal "Original Name", alias_record.name
+    assert_equal "original-name", alias_record.slug
+  end
+
+  test "does not create alias when user without connected account changes name" do
+    user = User.create!(name: "Original Name", github_handle: "no-account-alias-test")
+
+    user.update!(name: "New Name")
+
+    assert_equal 0, user.aliases.count
+  end
+
+  test "does not create duplicate alias when name changes back" do
+    user = User.create!(name: "Original Name", github_handle: "duplicate-alias-test")
+    user.connected_accounts.create!(provider: "github", uid: "67890")
+
+    user.update!(name: "New Name")
+    user.update!(name: "Another Name")
+    user.update!(name: "Original Name")
+    user.update!(name: "Original Name")
+
+    assert_equal 3, user.aliases.count
+    assert user.aliases.exists?(name: "Original Name")
+    assert user.aliases.exists?(name: "New Name")
+    assert user.aliases.exists?(name: "Another Name")
+
+    user.update!(name: "New Name")
+    assert_equal 3, user.aliases.count
+  end
+
+  test "does not create alias when name is blank" do
+    user = User.create!(name: "Has Name", github_handle: "blank-name-alias-test")
+    user.connected_accounts.create!(provider: "github", uid: "11111")
+
+    user.update_columns(name: "")
+    user.reload
+    user.update!(name: "New Name")
+
+    assert_not user.aliases.exists?(name: "")
+  end
+
+  test "find_by_name_or_alias finds user by previous name after rename" do
+    user = User.create!(name: "Speaker Original", github_handle: "speaker-rename-test")
+    user.connected_accounts.create!(provider: "github", uid: "22222")
+
+    user.update!(name: "Speaker New Name")
+
+    found_user = User.find_by_name_or_alias("Speaker Original")
+    assert_equal user.id, found_user.id
+  end
 end

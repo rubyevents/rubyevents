@@ -68,6 +68,7 @@ class Avo::Resources::User < Avo::BaseResource
     filter Avo::Filters::LocationPresence
     filter Avo::Filters::GeocodedPresence
     filter Avo::Filters::Suspicious
+    filter Avo::Filters::HasDuplicate
   end
 
   def actions
