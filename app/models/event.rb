@@ -8,6 +8,7 @@
 #  country_code     :string           indexed => [state_code]
 #  date             :date
 #  date_precision   :string           default("day"), not null
+#  description      :string
 #  end_date         :date
 #  geocode_metadata :json             not null
 #  kind             :string           default("event"), not null, indexed
@@ -99,6 +100,7 @@ class Event < ApplicationRecord
   validates :country_code, inclusion: {in: Country.valid_country_codes}, allow_nil: true
   validates :canonical, exclusion: {in: ->(event) { [event] }, message: "can't be itself"}
   validates :date_precision, presence: true
+  validates :description, length: {maximum: 350}, allow_blank: true
 
   # scopes
   scope :without_talks, -> { where.missing(:talks) }
@@ -268,13 +270,16 @@ class Event < ApplicationRecord
   delegate :country, :state, :city_object, to: :to_location
 
   def description
-    return @description if @description.present?
+    if super&.present?
+      super
+    else
+      event_summary_description
+    end
+  end
 
+  def event_summary_description
     event_name = series.organisation? ? name : series.name
-
-    @description = <<~DESCRIPTION
-      #{event_name} is a #{static_metadata.frequency} #{kind}#{held_in_sentence}#{talks_text}#{keynote_speakers_text}.
-    DESCRIPTION
+    "#{event_name} is a #{static_metadata.frequency} #{kind}#{held_in_sentence}#{talks_text}#{keynote_speakers_text}."
   end
 
   def keynote_speakers_text
@@ -288,7 +293,7 @@ class Event < ApplicationRecord
   def to_meta_tags
     {
       title: name,
-      description: description,
+      description: event_summary_description,
       og: {
         title: name,
         type: :website,
@@ -296,14 +301,14 @@ class Event < ApplicationRecord
           _: Router.image_path(card_image_path),
           alt: name
         },
-        description: description,
+        description: event_summary_description,
         site_name: "RubyEvents.org"
       },
       twitter: {
         card: "summary_large_image",
         site: "@rubyevents_org",
         title: name,
-        description: description,
+        description: event_summary_description,
         image: {
           src: Router.image_path(card_image_path)
         }
