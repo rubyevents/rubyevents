@@ -139,23 +139,44 @@ For local development with Docker, the defaults work out of the box. For product
 ## Running the Database Seeds
 
 After adding or modifying data, seed the database to see your changes.
+If you are running the dev server, Guard will attempt to import for you on modification.
+But if you are not running the dev server, or run into issues - use the seeds.
 
-We have two seedfiles, one will run the last 6 months of events, all future events, and all meetups.
+This will seed the last 6 months of conferences, and all future events and meetups.
 
 ```bash
 bin/rails db:seed
 ```
 
-However, if you're working on an older event, you can seed all events instead.
+This will seed all data and is what we use in production.
 
 ```bash
 bin/rails db:seed:all
+```
+
+Import one event series and all included events.
+
+```bash
+bin/rails db:seed:event_series[blue-ridge-ruby]
 ```
 
 You can also seed one event series with a script.
 
 ```bash
 rails runner scripts/import_event.rb blue-ridge-ruby
+```
+
+Import all events (but not the series or any other data).
+This one is good for if you're updating a lot of events at once and backfilling data.
+
+```bash
+bin/rails db:seed:event_series[blue-ridge-ruby]
+```
+
+Import all speakers. Great for testing profile update changes.
+
+```bash
+bin/rails db:seed:speakers
 ```
 
 ### Troubleshooting
