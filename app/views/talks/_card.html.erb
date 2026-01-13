@@ -15,7 +15,7 @@
     <div class="absolute w-[calc(100%-10px)] ml-[5px] bg-gray-500 rounded-xl -mt-2">&nbsp;</div>
   <% end %>
 
-  <%= link_to talk_path(talk, back_to: back_to, back_to_title: back_to_title), class: "flex aspect-video overflow-hidden relative group", data: {action: "mouseover->preserve-scroll#updateLinkBackToWithScrollPosition", turbo_frame: "_top"} do %>
+  <%= link_to talk_path(talk, back_to: back_to, back_to_title: back_to_title), class: "flex aspect-video overflow-hidden relative group", data: {turbo_frame: "_top"} do %>
     <% if language && language != "English" %>
       <div
         class="
@@ -164,7 +164,7 @@
   <div class="flex flex-row items-start justify-between gap-2 card-body">
     <div class="flex flex-col items-start justify-between w-full h-full gap-2">
       <div class="flex items-start justify-between w-full gap-2">
-        <%= link_to talk_path(talk, back_to: back_to, back_to_title: back_to_title), data: {action: "mouseover->preserve-scroll#updateLinkBackToWithScrollPosition", turbo_frame: "_top"} do %>
+        <%= link_to talk_path(talk, back_to: back_to, back_to_title: back_to_title), data: {turbo_frame: "_top"} do %>
           <%= content_tag :h2, class: "text-sm font-sans font-medium" do %>
             <%= sanitize(talk.title_with_snippet, tags: ["mark"]) %>
           <% end %>

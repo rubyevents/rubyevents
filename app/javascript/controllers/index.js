@@ -41,9 +41,6 @@ application.register("map", MapController)
 import ModalController from "./modal_controller"
 application.register("modal", ModalController)
 
-import PreserveScrollController from "./preserve_scroll_controller"
-application.register("preserve-scroll", PreserveScrollController)
-
 import PronounsSelectController from "./pronouns_select_controller"
 application.register("pronouns-select", PronounsSelectController)
 
