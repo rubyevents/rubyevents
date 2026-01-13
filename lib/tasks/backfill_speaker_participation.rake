@@ -77,6 +77,6 @@ namespace :backfill do
     puts
     puts "Total processed: #{processed_count}"
     puts Gum.style("✓ New participations created: #{created_count}", foreground: "2")
-    puts Gum.style("#{error_count > 0 ? "❌" : "✓"} Errors: #{error_count}", foreground: error_count > 0 ? "1" : "2")
+    puts Gum.style("#{(error_count > 0) ? "❌" : "✓"} Errors: #{error_count}", foreground: (error_count > 0) ? "1" : "2")
   end
 end
