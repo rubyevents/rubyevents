@@ -128,6 +128,7 @@ class User < ApplicationRecord
   has_object :watched_talk_seeder
   has_object :speakerdeck_feed
   has_object :suspicion_detector
+  has_object :duplicate_detector
 
   validates :email, format: {with: URI::MailTo::EMAIL_REGEXP}, allow_blank: true
   validates :github_handle, presence: true, uniqueness: true, allow_blank: true
