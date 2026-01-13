@@ -3,11 +3,11 @@ namespace :db do
     desc "Seed all contributions, event, speaker, and more data"
     task all: :environment do
       Search::Backend.without_indexing do
+        Static::City.import_all!
         Static::Speaker.import_all!
         Static::EventSeries.import_all!
         Static::Event.import_all!
         Static::Topic.import_all!
-        Static::City.import_all!
       end
 
       Search::Backend.reindex_all
