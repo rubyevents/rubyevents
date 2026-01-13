@@ -207,7 +207,7 @@ namespace :validate do
     if has_duplicates
       puts Gum.style(report, foreground: "1")
       puts
-      puts Gum.style("To fix: Make sure the name in speakers.yml matches what is references in the videos.yml files.", foreground: "3")
+      puts Gum.style("To fix: Make sure the name in speakers.yml matches the reference in the videos.yml files.", foreground: "3")
       puts
     else
       puts Gum.style("✓ No unresolved speaker duplicates found", foreground: "2")
