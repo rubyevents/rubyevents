@@ -11,16 +11,16 @@ servers:
     hosts:
       - 138.199.198.123
     options:
-      memory: 2.5GB
-      cpus: 2
+      memory: 1GB
+      cpus: 1
 
   job:
     hosts:
       - 138.199.198.123
     cmd: bin/jobs
     options:
-      memory: 1.5GB
-      cpus: 1
+      memory: 1GB
+      cpus: 0.5
 
 # Enable SSL auto certification via Let's Encrypt and allow for multiple apps on a single web server.
 # Remove this section when using multiple web servers and ensure you terminate SSL at your load balancer.
@@ -29,7 +29,6 @@ servers:
 proxy:
   ssl: true
   hosts:
-    - staging.rubyvideo.dev
     - staging.rubyevents.org
   # kamal-proxy connects to your container over port 80, use `app_port` to specify a different port.
   app_port: 80
@@ -81,7 +80,8 @@ builder:
     image: rubyvideo-staging-build-cache
   secrets:
     - RAILS_MASTER_KEY
-  remote: ssh://root@138.199.198.123
+  remote: false
+  local: true
 
   # # Build image via remote server (useful for faster amd64 builds on arm64 computers)
   # remote: ssh://docker@docker-builder-server

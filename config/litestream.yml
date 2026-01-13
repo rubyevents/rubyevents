@@ -14,7 +14,7 @@
 sync-interval: 10m
 
 snapshot:
-  interval: 1h
+  interval: 24h
   retention: 360h # 15 days
 
 dbs:
@@ -23,7 +23,7 @@ dbs:
     replicas:
       - type: s3
         endpoint: $LITESTREAM_ENDPOINT
-        bucket: rubyvideo-production
+        bucket: rubyevents-production
         path: storage/production_rubyvideo.sqlite3
         access-key-id: $LITESTREAM_ACCESS_KEY_ID
         secret-access-key: $LITESTREAM_SECRET_ACCESS_KEY
@@ -56,7 +56,7 @@ dbs:
     replicas:
       - type: s3
         endpoint: $LITESTREAM_ENDPOINT
-        bucket: rubyvideo-staging
+        bucket: rubyevents-staging
         path: storage/staging_rubyvideo.sqlite3
         access-key-id: $LITESTREAM_ACCESS_KEY_ID
         secret-access-key: $LITESTREAM_SECRET_ACCESS_KEY
