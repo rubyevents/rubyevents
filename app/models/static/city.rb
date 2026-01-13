@@ -25,7 +25,12 @@ module Static
         slug: slug
       )
 
-      city_record.save!
+      begin
+        city_record.save!
+      rescue ActiveRecord::RecordInvalid => e
+        Rails.logger.error("Failed to import city #{name} (#{slug}): #{e.message}")
+        raise e
+      end
 
       Search::Backend.index(city_record) if index
 
