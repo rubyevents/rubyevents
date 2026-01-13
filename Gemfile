@@ -219,6 +219,9 @@ gem "typesense", "~> 4.1"
 # Typesense integration to your favorite ORM
 gem "typesense-rails", "~> 1.0.0.rc4"
 
+# A tool for glamorous scripts.
+gem "gum", "~> 0.3.1"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "bundler-audit", require: false
@@ -263,5 +266,3 @@ group :test do
   gem "vcr", "~> 6.1"
   gem "webmock"
 end
-
-gem "gum", "~> 0.3.0"

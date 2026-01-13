@@ -206,6 +206,10 @@ module Static
       end
     end
 
+    def imported?
+      ::Event.exists?(slug: slug)
+    end
+
     def event_record
       @event_record ||= ::Event.find_by(slug: slug) || import!
     end
@@ -342,6 +346,7 @@ module Static
     end
 
     def import_videos!(event, index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
+      return unless imported?
       return unless event.videos_file.exist?
 
       event.videos_file.entries.each do |talk_data|
@@ -365,6 +370,7 @@ module Static
     end
 
     def import_sponsors!(event)
+      return unless imported?
       return unless event.sponsors_file.exist?
 
       require "public_suffix"
@@ -411,6 +417,7 @@ module Static
     end
 
     def import_involvements!(event)
+      return unless imported?
       return unless event.involvements_file.exist?
 
       event_involvements = event.event_involvements
@@ -489,6 +496,7 @@ module Static
     end
 
     def import_transcripts!(event)
+      return unless imported?
       return unless event.transcripts_file.exist?
 
       transcripts = event.transcripts_file.entries

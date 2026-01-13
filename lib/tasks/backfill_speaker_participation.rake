@@ -1,7 +1,21 @@
 namespace :backfill do
+  require "gum"
+
+  def render_progress_bar(current, total, width: 40)
+    return if total.zero?
+
+    percentage = (current.to_f / total * 100).round(1)
+    filled = (current.to_f / total * width).round
+    empty = width - filled
+
+    bar = "█" * filled + "░" * empty
+    "\r\e[K#{bar} #{percentage}% (#{current}/#{total})"
+  end
+
   desc "Backfill EventParticipation records for existing speakers"
   task speaker_participation: :environment do
-    puts "Starting backfill of speaker participation records..."
+    puts Gum.style("Backfilling speaker participation records", border: "rounded", padding: "0 2", border_foreground: "5")
+    puts
 
     # Query all UserTalk records with discarded_at: nil
     user_talks = UserTalk.includes(:user, talk: :event).where(discarded_at: nil)
@@ -11,6 +25,7 @@ namespace :backfill do
     error_count = 0
 
     puts "Found #{total_count} user-talk relationships to process"
+    puts
 
     # Process in batches
     user_talks.find_in_batches(batch_size: 1000) do |batch|
@@ -36,26 +51,32 @@ namespace :backfill do
           if participation.persisted?
             created_count += 1 if participation.previously_new_record?
           else
-            puts "Failed to create participation for user #{user.id} at event #{event.id}: #{participation.errors.full_messages.join(", ")}"
+            print "\r\e[K"
+            puts Gum.style("❌ Failed: user #{user.id} at event #{event.id}: #{participation.errors.full_messages.join(", ")}", foreground: "1")
             error_count += 1
           end
         rescue => e
-          puts "Error processing user_talk #{user_talk.id}: #{e.message}"
+          print "\r\e[K"
+          puts Gum.style("❌ Error processing user_talk #{user_talk.id}: #{e.message}", foreground: "1")
           error_count += 1
         end
 
         processed_count += 1
-
-        # Progress reporting every 100 records
-        if processed_count % 100 == 0
-          puts "Processed #{processed_count}/#{total_count} records (#{(processed_count.to_f / total_count * 100).round(1)}%)"
-        end
+        print render_progress_bar(processed_count, total_count)
       end
     end
 
-    puts "\nBackfill completed!"
+    puts "\n"
+
+    if error_count > 0
+      puts Gum.style("Backfill completed with errors", border: "rounded", padding: "0 2", foreground: "3", border_foreground: "3")
+    else
+      puts Gum.style("Backfill completed!", border: "rounded", padding: "0 2", foreground: "2", border_foreground: "2")
+    end
+
+    puts
     puts "Total processed: #{processed_count}"
-    puts "New participations created: #{created_count}"
-    puts "Errors: #{error_count}"
+    puts Gum.style("✓ New participations created: #{created_count}", foreground: "2")
+    puts Gum.style("#{error_count > 0 ? "❌" : "✓"} Errors: #{error_count}", foreground: error_count > 0 ? "1" : "2")
   end
 end
