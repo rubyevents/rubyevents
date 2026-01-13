@@ -113,6 +113,24 @@ GIT
       zeitwerk (~> 2.6)
 
 GEM
+  remote: https://packager.dev/avo-hq/
+  specs:
+    avo-dashboards (3.28.0)
+      avo (= 3.28.0)
+      turbo-rails
+      view_component (>= 3.7.0)
+      zeitwerk (>= 2.6.12)
+    avo-menu (3.28.0)
+      avo (= 3.28.0)
+      docile
+      zeitwerk (>= 2.6.12)
+    avo-pro (3.28.0)
+      avo (= 3.28.0)
+      avo-dashboards (= 3.28.0)
+      avo-menu (= 3.28.0)
+      zeitwerk (>= 2.6.12)
+
+GEM
   remote: https://rubygems.org/
   specs:
     action_text-trix (2.1.15)
@@ -764,6 +782,7 @@ DEPENDENCIES
   appsignal
   authentication-zero
   avo
+  avo-pro!
   bcrypt (~> 3.1.7)
   bootsnap
   bundler-audit

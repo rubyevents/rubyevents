@@ -1,0 +1,46 @@
+<% unavailable_talks = Talk.video_unavailable.includes(:event).order(video_unavailable_at: :desc).limit(50) %>
+
+<div class="p-4 overflow-y-auto h-full">
+  <% if unavailable_talks.empty? %>
+    <p class="text-gray-500 text-center py-8">No unavailable videos found.</p>
+  <% else %>
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead>
+        <tr>
+          <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Talk</th>
+          <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Event</th>
+          <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Unavailable Since</th>
+          <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200">
+        <% unavailable_talks.each do |talk| %>
+          <tr>
+            <td class="px-3 py-2 text-sm">
+              <%= link_to talk.title.truncate(40), avo.resources_talk_path(talk), class: "text-blue-600 hover:underline", data: { turbo_frame: "_top" } %>
+              <% if talk.video_provider.present? %>
+                <br><span class="text-gray-400 text-xs"><%= talk.video_provider %></span>
+              <% end %>
+            </td>
+            <td class="px-3 py-2 text-sm text-gray-600">
+              <% if talk.event %>
+                <%= link_to talk.event.name.truncate(25), avo.resources_event_path(talk.event), class: "text-blue-600 hover:underline", data: { turbo_frame: "_top" } %>
+              <% else %>
+                <span class="text-gray-400">-</span>
+              <% end %>
+            </td>
+            <td class="px-3 py-2 text-sm text-gray-500">
+              <%= time_ago_in_words(talk.video_unavailable_at) %> ago
+            </td>
+            <td class="px-3 py-2 text-sm space-x-2">
+              <% if talk.video_id.present? %>
+                <%= link_to "YouTube", "https://youtube.com/watch?v=#{talk.video_id}", target: "_blank", class: "text-blue-600 hover:underline text-xs", data: { turbo_frame: "_top" } %>
+              <% end %>
+              <%= link_to "Edit", avo.resources_talk_path(talk), class: "text-blue-600 hover:underline text-xs", data: { turbo_frame: "_top" } %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>
