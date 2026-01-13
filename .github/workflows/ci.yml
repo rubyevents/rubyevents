@@ -137,6 +137,9 @@ jobs:
       - name: Verify all thumbnails for child talks are present
         run: bin/rails verify_thumbnails
 
+      - name: Validate no duplicated speakers in database
+        run: bin/rails validate:speaker_duplicates
+
   build:
     name: Build Docker Image
     runs-on: ubuntu-latest

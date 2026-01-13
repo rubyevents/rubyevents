@@ -311,8 +311,10 @@ namespace :validate do
       results << true
     end
 
-    puts Gum.style("Validating speaker duplicates", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_speaker_duplicates
+    if Rails.env.development?
+      puts Gum.style("Validating speaker duplicates", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+      results << validate_speaker_duplicates
+    end
 
     puts
     if results.all?
