@@ -22,4 +22,4 @@ jobs:
           bundler-cache: true
 
       - name: Run db:seed:all on Production
-        run: bundle exec kamal app exec --reuse "GITHUB_ACTIONS=\"true\" bin/rails db:seed:all"
+        run: bundle exec kamal app exec --reuse "bin/rails db:seed:all"

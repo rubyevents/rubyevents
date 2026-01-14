@@ -3,6 +3,7 @@ namespace :speakerdeck do
 
   def render_progress_bar(current, total, width: 40)
     return if total.zero?
+    return unless $stdin.tty?
 
     percentage = (current.to_f / total * 100).round(1)
     filled = (current.to_f / total * width).round
@@ -37,7 +38,7 @@ namespace :speakerdeck do
         end
 
         processed += 1
-        print render_progress_bar(processed, total_count) unless ENV["GITHUB_ACTIONS"] == "true"
+        print render_progress_bar(processed, total_count)
       end
     end
 
