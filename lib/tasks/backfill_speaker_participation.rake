@@ -62,7 +62,7 @@ namespace :backfill do
         end
 
         processed_count += 1
-        print render_progress_bar(processed_count, total_count) unless ENV["GITHUB_ACTIONS"]
+        print render_progress_bar(processed_count, total_count) unless ENV["GITHUB_ACTIONS"] == "true"
       end
     end
 
