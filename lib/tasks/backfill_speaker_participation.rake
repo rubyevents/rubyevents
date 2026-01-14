@@ -17,6 +17,7 @@ namespace :backfill do
   task speaker_participation: :environment do
     puts Gum.style("Backfilling speaker participation records", border: "rounded", padding: "0 2", border_foreground: "5")
     puts
+    puts "In speaker participation GITHUB_ACTIONS = #{ENV["GITHUB_ACTIONS"]}"
 
     # Query all UserTalk records with discarded_at: nil
     user_talks = UserTalk.includes(:user, talk: :event).where(discarded_at: nil)
