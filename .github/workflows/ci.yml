@@ -44,7 +44,7 @@ jobs:
             rubocop-${{ runner.os }}-${{ env.RUBY_VERSION }}-${{ env.DEPENDENCIES_HASH }}-
 
       - name: StandardRB Check
-        run: bundle exec standardrb
+        run: bundle exec standardrb --format github --format "Standard::Formatter"
 
       - name: StandardJS Check
         run: yarn lint
