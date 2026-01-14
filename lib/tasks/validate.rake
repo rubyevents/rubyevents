@@ -81,7 +81,10 @@ namespace :validate do
       puts
       invalid_files.each do |file|
         puts Gum.style("❌ #{file[:path]}", foreground: "1")
-        file[:errors].first(10).each { |e| puts "   #{e["error"]} at #{e["data_pointer"]}" }
+        file[:errors].first(10).each do |e|
+          gh_action_anotation = (ENV["GITHUB_ACTIONS"] == "true") ? "::error file=#{file[:path]}::" : "::error::"
+          puts " #{gh_action_anotation} #{e["error"]} at #{e["data_pointer"]}"
+        end
         puts "   ... and #{file[:errors].count - 10} more errors" if file[:errors].count > 10
         puts
       end
