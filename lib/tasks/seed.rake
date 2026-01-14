@@ -3,7 +3,6 @@ namespace :db do
     desc "Seed all contributions, event, speaker, and more data"
     task all: :environment do
       Search::Backend.without_indexing do
-        puts "GITHUB_ACTIONS = #{ENV["GITHUB_ACTIONS"]}"
         puts "Importing Cities..."
         Static::City.import_all!
 

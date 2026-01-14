@@ -2,7 +2,7 @@ namespace :backfill do
   require "gum"
 
   def render_progress_bar(current, total, width: 40)
-    return if ENV["GITHUB_ACTIONS"] == "true"
+    return unless $stdin.tty?
     return if total.zero?
 
     percentage = (current.to_f / total * 100).round(1)
@@ -17,7 +17,6 @@ namespace :backfill do
   task speaker_participation: :environment do
     puts Gum.style("Backfilling speaker participation records", border: "rounded", padding: "0 2", border_foreground: "5")
     puts
-    puts "In speaker participation GITHUB_ACTIONS = #{ENV["GITHUB_ACTIONS"]}"
 
     # Query all UserTalk records with discarded_at: nil
     user_talks = UserTalk.includes(:user, talk: :event).where(discarded_at: nil)
@@ -64,7 +63,7 @@ namespace :backfill do
         end
 
         processed_count += 1
-        print render_progress_bar(processed_count, total_count) unless ENV["GITHUB_ACTIONS"] == "true"
+        print render_progress_bar(processed_count, total_count)
       end
     end
 
