@@ -310,7 +310,7 @@ module Static
 
       if event.venue.exist?
         event.update!(
-          latitude:  event.venue.latitude,
+          latitude: event.venue.latitude,
           longitude: event.venue.longitude
         )
       else
@@ -322,15 +322,9 @@ module Static
 
       event.sync_aliases_from_list(aliases) if aliases.present?
 
-      puts  event.slug unless Rails.env.test?
+      puts event.slug unless Rails.env.test?
 
       event
-
-
-
-
-
-
     rescue ActiveRecord::RecordInvalid => e
       error_location = ActiveSupport::BacktraceCleaner.new.clean_locations(e.backtrace_locations).first
       puts "::error file=#{error_location&.path},line=#{error_location&.lineno}::#{e.record.class} (#{e.record&.to_param}) - #{e.detailed_message}"
