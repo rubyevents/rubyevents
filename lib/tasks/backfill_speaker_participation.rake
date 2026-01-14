@@ -2,6 +2,7 @@ namespace :backfill do
   require "gum"
 
   def render_progress_bar(current, total, width: 40)
+    return if ENV["GITHUB_ACTIONS"] == "true"
     return if total.zero?
 
     percentage = (current.to_f / total * 100).round(1)

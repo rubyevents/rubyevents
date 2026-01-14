@@ -6,92 +6,26 @@ module Static
     SEARCH_INDEX_ON_IMPORT_DEFAULT = ENV.fetch("SEARCH_INDEX_ON_IMPORT", "true") == "true"
 
     def self.import_all!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
+      imported_users = []
       speakers = all.to_a
 
-      github_handles = speakers.map(&:github).compact.reject(&:blank?).map(&:downcase)
-      users_by_github = ::User.where("lower(github_handle) IN (?)", github_handles).index_by { |u| u.github_handle&.downcase }
-
-      slugs = speakers.map(&:slug).compact.reject(&:blank?)
-      users_by_slug = ::User.where(slug: slugs).index_by(&:slug)
-
-      names = speakers.map(&:name).compact.reject(&:blank?)
-      users_by_name = ::User.where(name: names, marked_for_deletion: false).index_by(&:name)
-
-      aliases_by_name = Alias.where(aliasable_type: "User", name: names).includes(:aliasable).index_by(&:name)
-
-      existing_slugs = Set.new(::User.pluck(:slug).compact)
-      existing_github_handles = Set.new(::User.where.not(github_handle: [nil, ""]).pluck(:github_handle).map(&:downcase))
-
-      imported_user_ids = []
-
-      existing_alias_names = Set.new(::Alias.where(aliasable_type: "User").pluck(:name))
+      puts "Importing #{speakers.count} speakers..."
 
       ::User.transaction do
         speakers.each do |speaker|
-          user = users_by_github[speaker.github&.downcase] ||
-            users_by_slug[speaker.slug] ||
-            users_by_name[speaker.name] ||
-            aliases_by_name[speaker.name]&.aliasable
-
-          if user
-            attrs = {name: speaker.name, updated_at: Time.current}
-            attrs[:twitter] = speaker.twitter if speaker.twitter.present?
-            attrs[:github_handle] = speaker.github if speaker.github.present?
-            attrs[:website] = speaker.website if speaker.website.present?
-            attrs[:bio] = speaker.bio if speaker.bio.present?
-            user.update_columns(attrs)
-          else
-            base_slug = speaker.slug.presence ||
-              speaker.github&.downcase ||
-              I18n.transliterate(speaker.name.downcase).parameterize
-
-            slug = base_slug
-            slug = "#{base_slug}-#{SecureRandom.hex(4)}" if existing_slugs.include?(slug)
-            existing_slugs.add(slug)
-
-            if speaker.github.present?
-              existing_github_handles.add(speaker.github.downcase)
-            end
-
-            user = ::User.new(
-              name: speaker.name,
-              slug: slug,
-              twitter: speaker.twitter.to_s,
-              github_handle: speaker.github.to_s,
-              website: speaker.website.to_s,
-              bio: speaker.bio.to_s
-            )
-
-            user.save(validate: false)
-          end
-
-          Array(speaker.aliases).each do |alias_data|
-            next if alias_data.blank?
-
-            alias_name = alias_data["name"]
-            alias_slug = alias_data["slug"]
-
-            raise "No name provided for alias: #{alias_data.inspect} and user: #{user.inspect}" if alias_name.blank?
-            raise "No slug provided for alias: #{alias_data.inspect} and user: #{user.inspect}" if alias_slug.blank?
-
-            ::Alias.find_or_create_by!(aliasable: user, name: alias_name, slug: alias_slug)
-
-            existing_alias_names.add(alias_name)
-          end
-
-          imported_user_ids << user.id
-        rescue => e
-          puts "Couldn't save: #{speaker.name} (#{speaker.github}), error: #{e.message}"
+          user = speaker.import!(index: false)
+          imported_users << user if user
         end
       end
 
-      ::User.where(id: imported_user_ids).find_each { |user| Search::Backend.index(user) } if imported_user_ids.any? && index
+      imported_users.each { |user| Search::Backend.index(user) } if imported_users.any? && index
     end
 
     def import!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
       user = ::User.find_by_github_handle(github) ||
         ::User.find_by(slug: slug) ||
         ::User.find_by_name_or_alias(name) ||
+        ::User.find_by(slug: name.parameterize) ||
         ::User.new
 
       user.name = name
