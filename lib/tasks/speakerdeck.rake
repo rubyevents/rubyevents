@@ -37,7 +37,7 @@ namespace :speakerdeck do
         end
 
         processed += 1
-        print render_progress_bar(processed, total_count) unless ENV["GITHUB_ACTIONS"]
+        print render_progress_bar(processed, total_count) unless ENV["GITHUB_ACTIONS"] == "true"
       end
     end
 
