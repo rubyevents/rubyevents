@@ -3,7 +3,7 @@ class PageController < ApplicationController
 
   def home
     home_page_cached_data = Rails.cache.fetch("home_page_content", expires_in: 1.hour) do
-      latest_talks = Talk.watchable.with_speakers.order(date: :desc).limit(10)
+      latest_talks = Talk.watchable.with_speakers.order(published_at: :desc).limit(10)
       {
         talks_count: Talk.count,
         speakers_count: User.speakers.count,
