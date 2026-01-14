@@ -2,18 +2,18 @@ namespace :db do
   namespace :seed do
     desc "Seed all contributions, event, speaker, and more data"
     task all: :environment do
-      Search::Backend.without_indexing do
-        Static::City.import_all!
-        Static::Speaker.import_all!
-        Static::EventSeries.import_all!
-        Static::Topic.import_all!
+      puts "Importing Cities..."
+      Static::City.import_all!
+      puts "Importing Speakers..."
+      Static::Speaker.import_all!
+      puts "Importing Event Series and Events..."
+      Static::EventSeries.import_all!
+      puts "Importing Topics..."
+      Static::Topic.import_all!
 
-        Rake::Task["backfill:speaker_participation"].invoke
-        Rake::Task["backfill:event_involvements"].invoke
-        Rake::Task["speakerdeck:set_usernames_from_slides_url"].invoke
-      end
-
-      Search::Backend.reindex_all
+      Rake::Task["backfill:speaker_participation"].invoke
+      Rake::Task["backfill:event_involvements"].invoke
+      Rake::Task["speakerdeck:set_usernames_from_slides_url"].invoke
     end
 
     desc "Seed one event series by passing the event series slug - db:seed:event_series[rubyconf]"
