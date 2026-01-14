@@ -32,7 +32,8 @@ namespace :validate do
       puts
       invalid_files.each do |file|
         puts Gum.style("❌ #{file[:path]}", foreground: "1")
-        file[:errors].each { |e| puts "   #{e["error"]} at #{e["data_pointer"]}" }
+        gh_action_anotation = (ENV["GITHUB_ACTIONS"] == "true") ? "::error file=#{file[:path]}::" : "::error::"
+        file[:errors].each { |e| puts "#{gh_action_anotation} #{e["error"]} at #{e["data_pointer"]}" }
         puts
       end
     end
