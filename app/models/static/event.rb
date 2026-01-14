@@ -294,42 +294,41 @@ module Static
     def import_event!
       event = ::Event.find_or_create_by(slug: slug)
 
-      begin
+      event.update!(
+        name: title,
+        date: attributes["date"] || published_at,
+        date_precision: date_precision || "day",
+        series: static_series.event_series_record,
+        website: website,
+        country_code: country&.alpha2,
+        city: city,
+        location: location,
+        start_date: start_date,
+        end_date: end_date,
+        kind: kind
+      )
+
+      if event.venue.exist?
         event.update!(
-          name: title,
-          date: attributes["date"] || published_at,
-          date_precision: date_precision || "day",
-          series: static_series.event_series_record,
-          website: website,
-          country_code: country&.alpha2,
-          city: city,
-          location: location,
-          start_date: start_date,
-          end_date: end_date,
-          kind: kind
+          latitude: event.venue.latitude,
+          longitude: event.venue.longitude
         )
-
-        if event.venue.exist?
-          event.update!(
-            latitude: event.venue.latitude,
-            longitude: event.venue.longitude
-          )
-        else
-          event.update!(
-            latitude: coordinates.is_a?(Hash) ? coordinates.dig("latitude") : nil,
-            longitude: coordinates.is_a?(Hash) ? coordinates.dig("longitude") : nil
-          )
-        end
-
-        event.sync_aliases_from_list(aliases) if aliases.present?
-      rescue ActiveRecord::RecordInvalid => e
-        puts "::error::Couldn't save event #{title} (#{slug}): #{e.message}"
-        raise e
+      else
+        event.update!(
+          latitude: coordinates.is_a?(Hash) ? coordinates.dig("latitude") : nil,
+          longitude: coordinates.is_a?(Hash) ? coordinates.dig("longitude") : nil
+        )
       end
+
+      event.sync_aliases_from_list(aliases) if aliases.present?
 
       puts event.slug unless Rails.env.test?
 
       event
+    rescue ActiveRecord::RecordInvalid => e
+      error_location = ActiveSupport::BacktraceCleaner.new.clean_locations(e.backtrace_locations).first
+      puts "::error file=#{error_location&.path},line=#{error_location&.lineno}::#{e.record.class} (#{e.record&.to_param}) - #{e.detailed_message}"
+      raise e
     end
 
     def import_cfps!(event)
