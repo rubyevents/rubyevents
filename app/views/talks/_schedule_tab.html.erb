@@ -1,0 +1,219 @@
+<%# locals: (talk:, event:) %>
+
+<% schedule = event.schedule %>
+<% days = schedule.days %>
+<% tracks = schedule.tracks %>
+<% all_talks = event.talks_in_running_order(child_talks: false).includes(:speakers).to_a %>
+<% current_track = talk.static_metadata&.track %>
+
+<% current_index = all_talks.index { |t| t.id == talk.id } %>
+
+<% if current_track.present? %>
+  <% same_track_talks = all_talks.select { |t| t.static_metadata&.track == current_track } %>
+  <% track_index = same_track_talks.index { |t| t.id == talk.id } %>
+  <% prev_talk = (track_index && track_index > 0) ? same_track_talks[track_index - 1] : nil %>
+  <% next_talk = track_index ? same_track_talks[track_index + 1] : nil %>
+<% else %>
+  <% prev_talk = (current_index && current_index > 0) ? all_talks[current_index - 1] : nil %>
+  <% next_talk = current_index ? all_talks[current_index + 1] : nil %>
+<% end %>
+
+<% track_info = current_track.present? ? tracks.find { |t| t["name"] == current_track } : nil %>
+<% prev_label = current_track.present? ? "Previous in #{current_track}" : "Previous" %>
+<% next_label = current_track.present? ? "Next in #{current_track}" : "Next" %>
+
+<% time_slot_talks = {} %>
+<% slot_talk_index = 0 %>
+
+<% days.each do |day| %>
+  <% day.dig("grid").each do |grid| %>
+    <% next if grid.fetch("items", []).any? %>
+
+    <% time_key = "#{day.dig("date")}-#{grid["start_time"]}" %>
+    <% time_slot_talks[time_key] ||= { start_time: grid["start_time"], end_time: grid["end_time"], talks: [] } %>
+
+    <% grid["slots"].times do %>
+      <% time_slot_talks[time_key][:talks] << all_talks[slot_talk_index] if all_talks[slot_talk_index] %>
+      <% slot_talk_index += 1 %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<% find_time_for_talk = ->(t) {
+  return nil unless t
+  slot = time_slot_talks.find { |_, s| s[:talks].any? { |st| st&.id == t.id } }
+  slot ? [slot[1][:start_time], slot[1][:end_time]].uniq.join(" - ") : nil
+} %>
+
+<% prev_time = find_time_for_talk.call(prev_talk) %>
+<% current_time = find_time_for_talk.call(talk) %>
+<% next_time = find_time_for_talk.call(next_talk) %>
+
+<% parallel_talks = [] %>
+<% current_slot_time = nil %>
+
+<% if current_track.present? %>
+  <% current_time_slot = time_slot_talks.find { |_, slot| slot[:talks].any? { |t| t&.id == talk.id } } %>
+
+  <% if current_time_slot %>
+    <% parallel_talks = current_time_slot[1][:talks].reject { |t| t.nil? || t.id == talk.id } %>
+    <% current_slot_time = [current_time_slot[1][:start_time], current_time_slot[1][:end_time]].uniq.join(" - ") %>
+  <% end %>
+<% end %>
+
+<% if track_info %>
+  <div class="mb-4">
+    <span class="px-3 py-1 rounded text-sm font-medium" style="background: <%= track_info["color"] %>; color: <%= track_info["text_color"] %>">
+      <%= current_track %>
+    </span>
+  </div>
+<% end %>
+
+<div class="flex flex-col sm:flex-row items-stretch gap-2 mb-6 min-w-0">
+  <div class="flex-1 min-w-0">
+    <% if prev_talk %>
+      <%= link_to talk_path(prev_talk), class: "flex flex-col h-full p-3 rounded border bg-white hover:bg-gray-50 transition-colors" do %>
+        <span class="text-xs text-gray-400 mb-1 truncate"><%= fa("arrow-left", size: :xs, class: "fill-gray-400 inline mr-1") %> <%= prev_label %></span>
+        <span class="font-medium text-sm line-clamp-2"><%= prev_talk.title %></span>
+        <span class="text-xs text-gray-500 mt-1 truncate"><%= prev_talk.speakers.map(&:name).join(", ") %></span>
+
+        <% if prev_time %>
+          <span class="text-xs text-gray-400 mt-1"><%= prev_time %></span>
+        <% end %>
+      <% end %>
+    <% else %>
+      <div class="flex flex-col h-full p-3 rounded border border-dashed bg-white text-gray-400">
+        <span class="text-xs mb-1 truncate"><%= prev_label %></span>
+        <span class="text-sm">No previous session</span>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="flex-1 min-w-0">
+    <div class="flex flex-col h-full p-3 rounded bg-primary text-white">
+      <span class="text-xs text-white/70 mb-1">Now Playing</span>
+      <span class="font-medium text-sm line-clamp-2"><%= talk.title %></span>
+      <span class="text-xs text-white/70 mt-1 truncate"><%= talk.speakers.map(&:name).join(", ") %></span>
+
+      <% if current_time %>
+        <span class="text-xs text-white/70 mt-1"><%= current_time %></span>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="flex-1 min-w-0">
+    <% if next_talk %>
+      <%= link_to talk_path(next_talk), class: "flex flex-col h-full p-3 rounded border bg-white hover:bg-gray-50 transition-colors" do %>
+        <span class="text-xs text-gray-400 mb-1 truncate"><%= next_label %> <%= fa("arrow-right", size: :xs, class: "fill-gray-400 inline ml-1") %></span>
+        <span class="font-medium text-sm line-clamp-2"><%= next_talk.title %></span>
+        <span class="text-xs text-gray-500 mt-1 truncate"><%= next_talk.speakers.map(&:name).join(", ") %></span>
+
+        <% if next_time %>
+          <span class="text-xs text-gray-400 mt-1"><%= next_time %></span>
+        <% end %>
+      <% end %>
+    <% else %>
+      <div class="flex flex-col h-full p-3 rounded border border-dashed bg-white text-gray-400">
+        <span class="text-xs mb-1 truncate"><%= next_label %></span>
+        <span class="text-sm">No next session</span>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<% if parallel_talks.any? %>
+  <div class="mb-6">
+    <h4 class="text-sm font-medium text-gray-600 mb-3">Other parallel sessions at <%= current_slot_time %></h4>
+
+    <div class="flex flex-col sm:flex-row gap-2">
+      <% parallel_talks.each do |parallel_talk| %>
+        <% parallel_track = parallel_talk.static_metadata&.track %>
+        <% parallel_track_info = parallel_track && tracks.find { |t| t["name"] == parallel_track } %>
+
+        <%= link_to talk_path(parallel_talk), class: "flex-1 flex flex-col p-3 rounded border bg-white hover:bg-gray-50 transition-colors min-w-0" do %>
+          <% if parallel_track_info %>
+            <span class="text-xs px-2 py-0.5 rounded self-start mb-2" style="background: <%= parallel_track_info["color"] %>; color: <%= parallel_track_info["text_color"] %>">
+              <%= parallel_track %>
+            </span>
+          <% end %>
+
+          <span class="font-medium text-sm line-clamp-2"><%= parallel_talk.title %></span>
+          <span class="text-xs text-gray-500 mt-1 truncate"><%= parallel_talk.speakers.map(&:name).join(", ") %></span>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<hr class="mb-6">
+
+<h3 class="font-bold text-lg mb-4">Full Schedule</h3>
+
+<div class="flex flex-col gap-6">
+  <% talk_index = 0 %>
+
+  <% days.each_with_index do |day, day_index| %>
+    <% date = Date.parse(day.dig("date")) %>
+    <% date_string = date.strftime("%A, %b %d") %>
+
+    <div>
+      <h4 class="font-semibold mb-3"><%= day.dig("name") %> - <%= date_string %></h4>
+
+      <div class="flex flex-col gap-2">
+        <% day.dig("grid").each do |grid| %>
+          <% start_time = grid["start_time"] %>
+          <% end_time = grid["end_time"] %>
+          <% slots = grid["slots"] %>
+          <% items = grid.fetch("items", []) %>
+
+          <% if items.any? %>
+            <div class="flex items-center gap-3 py-2 px-3 bg-gray-100 rounded text-sm text-gray-600">
+              <span class="text-xs text-gray-400 w-24 flex-shrink-0"><%= [start_time, end_time].uniq.join(" - ") %></span>
+              <span><%= items.first.is_a?(String) ? items.first : items.first&.fetch("title", "") %></span>
+            </div>
+          <% else %>
+            <% slots.times do |slot_index| %>
+              <% schedule_talk = all_talks[talk_index] %>
+              <% is_current = schedule_talk&.id == talk.id %>
+              <% talk_track = schedule_talk&.static_metadata&.track %>
+              <% track = talk_track && tracks.find { |t| t["name"] == talk_track } %>
+
+              <% if schedule_talk %>
+                <% link_classes = class_names("flex items-center gap-3 py-2 px-3 rounded text-sm transition-colors", "bg-primary text-white" => is_current, "bg-white border hover:bg-gray-50" => !is_current) %>
+                <% time_classes = is_current ? "text-white/70" : "text-gray-400" %>
+                <% speaker_classes = is_current ? "text-white/70" : "text-gray-500" %>
+
+                <%= link_to talk_path(schedule_talk), class: link_classes do %>
+                  <span class="text-xs w-20 flex-shrink-0 <%= time_classes %>">
+                    <%= [start_time, end_time].uniq.join(" - ") %>
+                  </span>
+
+                  <div class="w-16 h-9 flex-shrink-0 rounded overflow-hidden">
+                    <%= image_tag schedule_talk.thumbnail_sm, class: "w-full h-full object-cover #{schedule_talk.thumbnail_classes}", loading: :lazy, alt: "" %>
+                  </div>
+
+                  <div class="flex-grow min-w-0">
+                    <div class="font-medium truncate"><%= schedule_talk.title %></div>
+
+                    <div class="text-xs <%= speaker_classes %> truncate">
+                      <%= schedule_talk.speakers.map(&:name).join(", ") %>
+                    </div>
+                  </div>
+
+                  <% if track && talk_track %>
+                    <span class="text-xs px-2 py-0.5 rounded flex-shrink-0 min-w-[100px] text-center" style="background: <%= track["color"] %>; color: <%= track["text_color"] %>">
+                      <%= talk_track %>
+                    </span>
+                  <% end %>
+
+                <% end %>
+
+                <% talk_index += 1 %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

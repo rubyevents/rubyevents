@@ -1,0 +1,90 @@
+<%# locals: (talk:) %>
+
+<div class="flex flex-col gap-6 overflow-hidden min-w-0">
+  <% talk.speakers.each do |speaker| %>
+    <div class="rounded-lg overflow-hidden min-w-0">
+      <div class="flex items-start gap-4">
+        <%= link_to profile_path(speaker), class: "flex-shrink-0" do %>
+          <%= ui_avatar speaker, size: :md, size_class: "w-16" %>
+        <% end %>
+
+        <div class="flex-grow min-w-0">
+          <div class="flex items-center gap-2 flex-wrap">
+            <%= link_to profile_path(speaker), class: "text-xl font-bold hover:underline" do %>
+              <%= speaker.name %>
+            <% end %>
+
+            <% if speaker.pronouns.present? %>
+              <span class="text-sm text-gray-500">(<%= speaker.pronouns %>)</span>
+            <% end %>
+          </div>
+
+          <div class="flex items-center gap-3 text-sm text-gray-500 mt-1">
+            <% if speaker.location.present? %>
+              <span><%= speaker.location %></span>
+            <% end %>
+
+            <div class="flex gap-2">
+              <% if speaker.github_handle.present? %>
+                <%= link_to "https://github.com/#{speaker.github_handle}", target: "_blank", class: "text-gray-400 hover:text-gray-600" do %>
+                  <%= fa("github-brands", size: :sm, class: "fill-current") %>
+                <% end %>
+              <% end %>
+
+              <% if speaker.twitter.present? %>
+                <%= link_to "https://twitter.com/#{speaker.twitter}", target: "_blank", class: "text-gray-400 hover:text-gray-600" do %>
+                  <%= fa("x-twitter-brands", size: :sm, class: "fill-current") %>
+                <% end %>
+              <% end %>
+
+              <% if speaker.bsky.present? %>
+                <%= link_to "https://bsky.app/profile/#{speaker.bsky}", target: "_blank", class: "text-gray-400 hover:text-gray-600" do %>
+                  <%= fa("bluesky-brands", size: :sm, class: "fill-current") %>
+                <% end %>
+              <% end %>
+
+              <% if speaker.website.present? %>
+                <%= link_to speaker.website, target: "_blank", class: "text-gray-400 hover:text-gray-600" do %>
+                  <%= fa("globe", size: :sm, class: "fill-current") %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <%= link_to profile_path(speaker), class: "text-sm text-primary hover:underline flex-shrink-0" do %>
+          View Profile
+        <% end %>
+      </div>
+
+      <% if speaker.bio.present? %>
+        <p class="text-sm text-gray-600 mt-4 mb-3 line-clamp-2"><%= speaker.bio %></p>
+      <% end %>
+
+      <% other_talks = speaker.kept_talks.watchable.where.not(id: talk.id).includes(:event, :speakers).order(date: :desc).limit(8) %>
+      <% total_other_talks = speaker.kept_talks.watchable.where.not(id: talk.id).count %>
+
+      <% if other_talks.any? %>
+        <div class="pt-3 border-t overflow-hidden min-w-0">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-sm font-medium text-gray-600">
+              More from <%= speaker.name %> (<%= total_other_talks %>)
+            </span>
+
+            <% if total_other_talks > 8 %>
+              <%= link_to "View all", profile_talks_path(speaker), class: "text-sm text-primary hover:underline" %>
+            <% end %>
+          </div>
+
+          <div class="flex gap-3 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-2" style="contain: inline-size;">
+            <% other_talks.each do |other_talk| %>
+              <div class="snap-start flex-none w-[180px] sm:w-[220px]">
+                <%= render "talks/card_thumbnail", talk: other_talk, exclude_speaker: speaker %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

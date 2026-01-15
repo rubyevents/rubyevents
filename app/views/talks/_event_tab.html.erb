@@ -1,0 +1,55 @@
+<%# locals: (event:) %>
+
+<div class="flex flex-col gap-6">
+  <div class="flex items-start gap-4">
+    <%= image_tag image_path(event.avatar_image_path), class: "rounded-full border border-gray-200 size-16 flex-shrink-0", alt: event.name.to_s, loading: :lazy %>
+
+    <div class="flex-grow">
+      <%= link_to event_path(event), class: "text-xl font-bold hover:underline" do %>
+        <%= event.name %>
+      <% end %>
+
+      <div class="text-sm text-gray-500 mt-1">
+        <%= event.to_location.to_html %> · <%= event.formatted_dates %>
+      </div>
+
+      <% if event.website.present? %>
+        <div class="mt-2">
+          <%= external_link_to event.website.gsub(%r{^https?://}, "").gsub(%r{/$}, ""), event.website, class: "text-sm" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <% if event.description.present? %>
+    <div class="prose prose-sm max-w-none">
+      <%= simple_format event.description %>
+    </div>
+  <% end %>
+
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+    <div class="bg-white border rounded-lg p-4 text-center">
+      <div class="text-2xl font-bold text-primary"><%= event.talks.count %></div>
+      <div class="text-sm text-gray-500">Talks</div>
+    </div>
+
+    <div class="bg-white border rounded-lg p-4 text-center">
+      <div class="text-2xl font-bold text-primary"><%= event.speakers.count %></div>
+      <div class="text-sm text-gray-500">Speakers</div>
+    </div>
+
+    <% if event.start_date && event.end_date %>
+      <div class="bg-white border rounded-lg p-4 text-center">
+        <div class="text-2xl font-bold text-primary"><%= (event.end_date - event.start_date).to_i + 1 %></div>
+        <div class="text-sm text-gray-500">Days</div>
+      </div>
+    <% end %>
+
+    <% if event.series %>
+      <div class="bg-white border rounded-lg p-4 text-center">
+        <div class="text-2xl font-bold text-primary"><%= event.series.events.count %></div>
+        <div class="text-sm text-gray-500">Editions</div>
+      </div>
+    <% end %>
+  </div>
+</div>
