@@ -1,9 +1,10 @@
 class ProfilesController < ApplicationController
   skip_before_action :authenticate_user!
-  before_action :set_user, only: %i[show edit update]
+  before_action :set_user, only: %i[show edit update reindex]
   before_action :set_favorite_user, only: %i[show]
   before_action :set_user_favorites, only: %i[show]
   before_action :set_mutual_events, only: %i[show]
+  before_action :require_admin!, only: %i[reindex]
 
   include Pagy::Backend
   include RemoteModal
@@ -37,7 +38,19 @@ class ProfilesController < ApplicationController
     end
   end
 
+  # POST /profiles/:slug/reindex
+  def reindex
+    Search::Backend.index(@user)
+    @user.talks.find_each { |talk| Search::Backend.index(talk) }
+
+    redirect_to profile_path(@user), notice: "Profile reindexed successfully."
+  end
+
   private
+
+  def require_admin!
+    redirect_to profile_path(@user), alert: "Not authorized" unless Current.user&.admin?
+  end
 
   def load_profile_data_for_show
     @talks = @user.kept_talks.includes(:speakers, event: :series, child_talks: :speakers).order(date: :desc)

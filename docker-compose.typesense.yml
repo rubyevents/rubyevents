@@ -3,7 +3,7 @@
 
 services:
   typesense:
-    image: typesense/typesense:27.1
+    image: typesense/typesense:29.0
     container_name: rubyevents-typesense
     restart: unless-stopped
     ports:

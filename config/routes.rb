@@ -180,6 +180,8 @@ Rails.application.routes.draw do
   end
 
   resources :profiles, param: :slug, only: [:show, :update, :edit] do
+    post :reindex, on: :member
+
     scope module: :profiles do
       resources :talks, only: [:index]
       resources :events, only: [:index]
@@ -204,7 +206,9 @@ Rails.application.routes.draw do
 
   resources :events, param: :slug, only: [:index, :show, :update, :edit] do
     resources :event_participations, only: [:create, :destroy]
+
     post :reimport, on: :member
+    post :reindex, on: :member
 
     scope module: :events do
       collection do
@@ -217,6 +221,7 @@ Rails.application.routes.draw do
         get "/cities/:city", to: redirect("/cities", status: 301)
         resources :series, param: :slug, only: [:index, :show] do
           post :reimport, on: :member
+          post :reindex, on: :member
         end
         resources :attendances, only: [:index, :show], param: :event_slug
       end

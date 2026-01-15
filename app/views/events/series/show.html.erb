@@ -21,12 +21,22 @@
     </div>
 
     <% if Current.user&.admin? %>
-      <div class="flex flex-col gap-2">
-        <%= ui_button url: reimport_series_path(@event_series), method: :post, kind: :neutral, size: :sm, class: "w-full" do %>
-          Reimport Series
+      <div class="flex items-center gap-2 mt-4 pt-4 border-t border-gray-200">
+        <span class="text-xs text-gray-400 uppercase tracking-wide">Admin</span>
+        <%= ui_tooltip "Reimport Series" do %>
+          <%= ui_button url: reimport_series_path(@event_series), method: :post, kind: :neutral, size: :sm do %>
+            <%= fa "download", size: :sm %>
+          <% end %>
         <% end %>
-        <%= ui_button url: avo.resources_event_series_path(@event_series), target: :_blank, kind: :neutral, size: :sm, class: "w-full" do %>
-          Open in Avo
+        <%= ui_tooltip "Reindex Series" do %>
+          <%= ui_button url: reindex_series_path(@event_series), method: :post, kind: :neutral, size: :sm do %>
+            <%= fa "arrows-rotate", size: :sm %>
+          <% end %>
+        <% end %>
+        <%= ui_tooltip "Open in Avo" do %>
+          <%= ui_button url: avo.resources_event_series_path(@event_series), target: :_blank, kind: :neutral, size: :sm do %>
+            <%= fa :avocado, size: :sm %>
+          <% end %>
         <% end %>
       </div>
     <% end %>
