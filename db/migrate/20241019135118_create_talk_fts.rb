@@ -1,4 +1,4 @@
-class CreateTalkFts < ActiveRecord::Migration[7.2]
+class CreateTalkFTS < ActiveRecord::Migration[7.2]
   def up
     create_virtual_table :talks_search_index, :fts5, [
       "title", "summary", "speaker_names",
