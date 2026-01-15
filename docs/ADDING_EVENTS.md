@@ -48,10 +48,15 @@ Create `data/my-conference/my-conference-2025/event.yml`:
 ---
 id: "my-conference-2025"
 title: "My Conference 2025"
+kind: "conference"
 location: "Earth"
 description: "My Conference is a yearly conference held on Earth and features 20 talks from various speakers, including keynotes by Speaker One and Speaker Two."
-year: "2025"
-slug: "my-conference-2025"
+year: 2026
+start_date: "2026-05-30"
+end_date: "2026-05-30"
+coordinates:
+  latitude: 35.36688868108189
+  longitude: 136.46675799457
 ```
 
 The full schema for an event is available in [EventSchema](app/schemas/event_schema.rb).
