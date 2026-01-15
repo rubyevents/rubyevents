@@ -30,7 +30,7 @@
     <% next if grid.fetch("items", []).any? %>
 
     <% time_key = "#{day.dig("date")}-#{grid["start_time"]}" %>
-    <% time_slot_talks[time_key] ||= { start_time: grid["start_time"], end_time: grid["end_time"], talks: [] } %>
+    <% time_slot_talks[time_key] ||= {start_time: grid["start_time"], end_time: grid["end_time"], talks: []} %>
 
     <% grid["slots"].times do %>
       <% time_slot_talks[time_key][:talks] << all_talks[slot_talk_index] if all_talks[slot_talk_index] %>
@@ -40,10 +40,10 @@
 <% end %>
 
 <% find_time_for_talk = ->(t) {
-  return nil unless t
-  slot = time_slot_talks.find { |_, s| s[:talks].any? { |st| st&.id == t.id } }
-  slot ? [slot[1][:start_time], slot[1][:end_time]].uniq.join(" - ") : nil
-} %>
+     return nil unless t
+     slot = time_slot_talks.find { |_, s| s[:talks].any? { |st| st&.id == t.id } }
+     slot ? [slot[1][:start_time], slot[1][:end_time]].uniq.join(" - ") : nil
+   } %>
 
 <% prev_time = find_time_for_talk.call(prev_talk) %>
 <% current_time = find_time_for_talk.call(talk) %>
