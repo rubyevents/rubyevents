@@ -17,17 +17,22 @@
         video_player_watched_value: is_watched
       } do %>
 
-  <div class="relative overflow-hidden bg-gray-300 aspect-video banner-img card-horizontal-img rounded-xl outline outline-1 outline-gray-300">
+  <div class="relative overflow-hidden bg-gray-300 aspect-video banner-img card-horizontal-img rounded-xl outline outline-1 outline-gray-300 custom-player-wrapper" data-video-player-target="playerWrapper">
     <% if talk.external_player %>
-      <%= link_to talk.external_player_url, target: "_blank", class: "relative w-full h-full block" do %>
-        <%= image_tag talk.thumbnail_xl, class: "w-full h-full object-cover rounded-xl", style: "view-transition-name: #{dom_id(talk, :image)}" %>
+      <%= link_to talk.external_player_url, target: "_blank", class: "absolute inset-0 cursor-pointer group/external" do %>
+        <%= image_tag talk.thumbnail_xl, class: "absolute inset-0 w-full h-full object-cover rounded-xl opacity-60", style: "view-transition-name: #{dom_id(talk, :image)}" %>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 rounded-xl"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent rounded-xl opacity-0 group-hover/external:opacity-100 transition-opacity duration-300"></div>
 
-        <div class="absolute inset-0 flex flex-col items-center justify-center gap-6 p-6 text-xl font-bold text-center text-white bg-black/80 rounded-xl">
-          This talk is available to watch on <%= URI.parse(talk.external_player_url).host %>
+        <div class="player-overlay-content">
+          <div class="p-4 bg-white/20 backdrop-blur-sm rounded-full group-hover/external:bg-white/30 group-hover/external:scale-105 transition-all duration-300">
+            <%= fa("arrow-up-right-from-square", size: :xl, class: "fill-white") %>
+          </div>
 
-          <%= ui_button do %>
-            <%= fa("play", size: :xs, class: "fill-white") %> <span>Watch <span class="hidden sm:inline-block"> on <%= URI.parse(talk.external_player_url).host %></span></span>
-          <% end %>
+          <div class="flex flex-col gap-1">
+            <div class="text-lg font-semibold">Watch on <%= URI.parse(talk.external_player_url).host %></div>
+            <div class="text-sm text-white/80">This talk is hosted externally</div>
+          </div>
         </div>
       <% end %>
 
@@ -48,10 +53,10 @@
 
       <% if current_user_watched_talk&.in_progress? && !is_watched && talk.video_available? %>
         <div class="absolute inset-0 cursor-pointer group/resume" data-video-player-target="resumeOverlay" data-action="click->video-player#resumePlayback">
-          <%= image_tag talk.thumbnail_xl, class: "absolute inset-0 w-full h-full object-cover rounded-xl", style: "view-transition-name: #{dom_id(talk, :image)}" %>
+          <%= image_tag talk.thumbnail_xl, class: "absolute inset-0 w-full h-full object-cover rounded-xl opacity-60", style: "view-transition-name: #{dom_id(talk, :image)}" %>
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 rounded-xl"></div>
           <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent rounded-xl opacity-0 group-hover/resume:opacity-100 transition-opacity duration-300"></div>
-          <div class="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center text-white">
+          <div class="player-overlay-content">
             <div class="p-4 bg-white/20 backdrop-blur-sm rounded-full group-hover/resume:bg-white/30 group-hover/resume:scale-105 transition-all duration-300">
               <%= fa("play", size: :xl, class: "fill-white ml-1") %>
             </div>
@@ -61,13 +66,15 @@
               <div class="text-sm text-white/80"><%= seconds_to_formatted_duration(current_user_watched_talk.progress_seconds) %> / <%= seconds_to_formatted_duration(talk.duration_in_seconds) %></div>
             </div>
           </div>
+
+          <%= render partial: "talks/player_action_buttons", locals: {talk: talk, is_watched: is_watched} %>
         </div>
       <% elsif video_provider.in?(["mp4", "youtube", "vimeo"]) && !is_watched && talk.video_available? %>
         <div class="absolute inset-0 cursor-pointer group/play" data-video-player-target="playOverlay" data-action="click->video-player#startPlayback">
-          <%= image_tag talk.thumbnail_xl, class: "absolute inset-0 w-full h-full object-cover rounded-xl", style: "view-transition-name: #{dom_id(talk, :image)}" %>
+          <%= image_tag talk.thumbnail_xl, class: "absolute inset-0 w-full h-full object-cover rounded-xl opacity-60", style: "view-transition-name: #{dom_id(talk, :image)}" %>
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 rounded-xl"></div>
           <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent rounded-xl opacity-0 group-hover/play:opacity-100 transition-opacity duration-300"></div>
-          <div class="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center text-white">
+          <div class="player-overlay-content">
             <div class="p-4 bg-white/20 backdrop-blur-sm rounded-full group-hover/play:bg-white/30 group-hover/play:scale-105 transition-all duration-300">
               <%= fa("play", size: :xl, class: "fill-white ml-1") %>
             </div>
@@ -79,7 +86,14 @@
               <% end %>
             </div>
           </div>
+
+          <%= render partial: "talks/player_action_buttons", locals: {talk: talk, is_watched: is_watched} %>
         </div>
+      <% end %>
+
+      <%# Custom player controls - shown for all watchable providers %>
+      <% if video_provider.in?(["mp4", "youtube", "vimeo"]) %>
+        <%= render partial: "talks/custom_player_controls", locals: {talk: talk, is_watched: is_watched} %>
       <% end %>
     <% end %>
   </div>

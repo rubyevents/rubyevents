@@ -19,3 +19,17 @@
 <%= turbo_stream.update dom_id(@talk, :watched_button) do %>
   <%= render partial: "talks/watched_talks/button", locals: {talk: @talk, is_watched: false} %>
 <% end %>
+
+<%= turbo_stream.update dom_id(@talk, :player_actions) do %>
+  <%= render partial: "talks/player_action_buttons", locals: {talk: @talk, is_watched: false} %>
+<% end %>
+
+<%= turbo_stream.replace dom_id(@talk, :watched_control) do %>
+  <span id="<%= dom_id(@talk, :watched_control) %>" style="display: contents;">
+    <% if @talk.date.blank? || @talk.date <= Date.current %>
+      <%= link_to new_talk_watched_talk_path(@talk), data: {turbo_frame: "modal"}, class: "custom-player-btn", "data-tooltip": "Mark as Watched" do %>
+        <%= fa("circle-check", size: :lg, style: :regular, class: "fill-white") %>
+      <% end %>
+    <% end %>
+  </span>
+<% end %>

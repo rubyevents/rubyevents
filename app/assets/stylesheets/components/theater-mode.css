@@ -1,0 +1,211 @@
+body.theater-mode {
+  overflow: hidden;
+  background-color: black;
+}
+
+body.theater-mode .navbar,
+body.theater-mode .footer,
+body.theater-mode .breadcrumbs {
+  display: none !important;
+}
+
+.theater-mode-active {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+}
+
+.theater-mode-hidden {
+  display: none !important;
+}
+
+.theater-mode-player {
+  width: 100%;
+  height: 100%;
+  max-width: 100vw;
+  max-height: 100vh;
+  cursor: default;
+  pointer-events: auto;
+}
+
+.theater-mode-player * {
+  pointer-events: auto;
+}
+
+.theater-mode-player .aspect-video {
+  max-height: 100vh;
+  height: 100vh;
+  width: 100vw;
+  max-width: 100vw;
+  border-radius: 0 !important;
+  outline: none !important;
+}
+
+.theater-mode-player .custom-player-wrapper {
+  border-radius: 0 !important;
+}
+
+.theater-mode-player iframe,
+.theater-mode-player video {
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: 100vw !important;
+  max-height: 100vh !important;
+}
+
+.theater-mode-active .custom-player-controls {
+  display: flex;
+  opacity: 1;
+}
+
+.theater-mode-active .custom-player-top {
+  display: none !important;
+}
+
+.theater-mode-active .custom-player-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.theater-mode-active .theater-mode-btn {
+  display: none !important;
+}
+
+.custom-player-controls .theater-mode-btn {
+  display: flex !important;
+  transition: background 0.2s ease;
+}
+
+.custom-player-controls .theater-mode-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.theater-mode-info {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  right: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 10000;
+}
+
+.theater-mode-event-avatar {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.theater-mode-active:hover .theater-mode-info,
+.theater-mode-active:not(.theater-mode-idle) .theater-mode-info {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.theater-mode-active.theater-mode-idle .theater-mode-info {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.theater-mode-metadata {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.theater-mode-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.theater-mode-speakers-event {
+  font-size: 0.875rem;
+  opacity: 0.8;
+}
+
+.theater-mode-speakers {
+  font-weight: 500;
+}
+
+.theater-mode-separator {
+  margin: 0 0.5rem;
+  opacity: 0.6;
+}
+
+.theater-mode-event {
+  opacity: 0.9;
+}
+
+.theater-mode-info .exit-btn {
+  padding: 0.5rem 1rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  color: white;
+  border: none;
+  font-size: 0.875rem;
+}
+
+.theater-mode-info .exit-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.theater-mode-exit-hint {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.875rem;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 10000;
+}
+
+.theater-mode-active:hover .theater-mode-exit-hint,
+.theater-mode-active:not(.theater-mode-idle) .theater-mode-exit-hint {
+  opacity: 1;
+}
+
+.theater-mode-active.theater-mode-idle .theater-mode-exit-hint {
+  opacity: 0;
+}
+
+.theater-mode-active.theater-mode-idle {
+  cursor: none;
+}
+
+.theater-mode-active.theater-mode-idle .theater-mode-player {
+  cursor: none;
+}
+
+.theater-mode-active.theater-mode-idle .custom-player-controls {
+  opacity: 0;
+}
+
+.theater-mode-active.theater-mode-idle .custom-player-logo {
+  opacity: 0;
+}

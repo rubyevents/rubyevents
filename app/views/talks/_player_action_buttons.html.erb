@@ -1,0 +1,47 @@
+<%# locals: (talk:, is_watched: false, show_watched_button: true) %>
+<% is_bookmarked = signed_in? && default_watch_list&.talk_ids&.include?(talk.id) %>
+<% can_mark_watched = show_watched_button && (talk.date.blank? || talk.date <= Date.current) %>
+
+<div class="player-action-buttons" id="<%= dom_id(talk, :player_actions) %>">
+  <% if signed_in? %>
+    <%= turbo_frame_tag dom_id(talk, :bookmark_btn), style: "display: contents;" do %>
+      <% if is_bookmarked %>
+        <%= button_to watch_list_talk_path(default_watch_list, talk.id), method: :delete, class: "player-action-btn" do %>
+          <%= fa("bookmark", size: :sm, style: :solid, class: "fill-white") %>
+          <span>Bookmarked</span>
+        <% end %>
+      <% else %>
+        <%= button_to watch_list_talks_path(default_watch_list, talk_id: talk.id), method: :post, class: "player-action-btn" do %>
+          <%= fa("bookmark", size: :sm, style: :regular, class: "fill-white") %>
+          <span>Bookmark</span>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <span id="<%= dom_id(talk, :watched_btn) %>" style="display: contents;">
+      <% if is_watched %>
+        <%= button_to talk_watched_talk_path(talk), method: :delete, class: "player-action-btn player-action-btn-watched", form: {data: {turbo_confirm: "Mark as unwatched?"}} do %>
+          <%= fa("circle-check", size: :sm, style: :solid, class: "fill-green-400") %>
+          <span>Watched</span>
+        <% end %>
+      <% elsif can_mark_watched %>
+        <%= link_to new_talk_watched_talk_path(talk), data: {turbo_frame: "modal"}, class: "player-action-btn" do %>
+          <%= fa("circle-check", size: :sm, style: :regular, class: "fill-white") %>
+          <span>Mark as Watched</span>
+        <% end %>
+      <% end %>
+    </span>
+  <% else %>
+    <%= link_to new_session_path(redirect_to: request.fullpath), data: {turbo_frame: "modal"}, class: "player-action-btn" do %>
+      <%= fa("bookmark", size: :sm, style: :regular, class: "fill-white") %>
+      <span>Bookmark</span>
+    <% end %>
+
+    <% if can_mark_watched %>
+      <%= link_to new_session_path(redirect_to: request.fullpath), data: {turbo_frame: "modal"}, class: "player-action-btn" do %>
+        <%= fa("circle-check", size: :sm, style: :regular, class: "fill-white") %>
+        <span>Mark as Watched</span>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

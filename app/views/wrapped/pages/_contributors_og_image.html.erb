@@ -1,0 +1,20 @@
+<div class="flex-1 flex flex-col items-center justify-center">
+  <p class="text-red-300 text-xl mb-2">RubyEvents.org <%= year %> Wrapped</p>
+  <h1 class="text-5xl font-black text-white mb-8">Thank You, Contributors!</h1>
+
+  <div class="flex flex-wrap justify-center gap-2 max-w-5xl px-8">
+    <% contributors.each do |contributor| %>
+      <img
+        src="https://github.com/<%= contributor[:username] %>.png?size=80"
+        alt="<%= contributor[:name] %>"
+        class="w-14 h-14 rounded-full border-2 border-white/30"
+        title="<%= contributor[:name] %>">
+    <% end %>
+  </div>
+</div>
+
+<div class="w-full bg-white/5 py-4 flex items-center justify-center gap-3">
+  <%= image_tag "logo.png", class: "w-8 h-8", alt: "RubyEvents.org" %>
+  <span class="text-white font-bold text-xl">RubyEvents.org</span>
+  <span class="text-red-300/80 text-lg"><%= contributors.size %> contributors on GitHub</span>
+</div>
