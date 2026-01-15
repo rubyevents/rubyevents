@@ -72,10 +72,10 @@
 <div class="flex flex-col sm:flex-row items-stretch gap-2 mb-6 min-w-0">
   <div class="flex-1 min-w-0">
     <% if prev_talk %>
-      <%= link_to talk_path(prev_talk), class: "flex flex-col h-full p-3 rounded border bg-white hover:bg-gray-50 transition-colors" do %>
+      <%= link_to talk_path(prev_talk), class: "flex flex-col h-full p-3 rounded border bg-white hover:bg-gray-50 transition-colors overflow-hidden" do %>
         <span class="text-xs text-gray-400 mb-1 truncate"><%= fa("arrow-left", size: :xs, class: "fill-gray-400 inline mr-1") %> <%= prev_label %></span>
         <span class="font-medium text-sm line-clamp-2"><%= prev_talk.title %></span>
-        <span class="text-xs text-gray-500 mt-1 truncate"><%= prev_talk.speakers.map(&:name).join(", ") %></span>
+        <span class="text-xs text-gray-500 mt-1 truncate block w-full"><%= prev_talk.speakers.map(&:name).join(", ") %></span>
 
         <% if prev_time %>
           <span class="text-xs text-gray-400 mt-1"><%= prev_time %></span>
@@ -90,10 +90,10 @@
   </div>
 
   <div class="flex-1 min-w-0">
-    <div class="flex flex-col h-full p-3 rounded bg-primary text-white">
+    <div class="flex flex-col h-full p-3 rounded bg-primary text-white overflow-hidden">
       <span class="text-xs text-white/70 mb-1">Now Playing</span>
       <span class="font-medium text-sm line-clamp-2"><%= talk.title %></span>
-      <span class="text-xs text-white/70 mt-1 truncate"><%= talk.speakers.map(&:name).join(", ") %></span>
+      <span class="text-xs text-white/70 mt-1 truncate block w-full"><%= talk.speakers.map(&:name).join(", ") %></span>
 
       <% if current_time %>
         <span class="text-xs text-white/70 mt-1"><%= current_time %></span>
@@ -103,10 +103,10 @@
 
   <div class="flex-1 min-w-0">
     <% if next_talk %>
-      <%= link_to talk_path(next_talk), class: "flex flex-col h-full p-3 rounded border bg-white hover:bg-gray-50 transition-colors" do %>
+      <%= link_to talk_path(next_talk), class: "flex flex-col h-full p-3 rounded border bg-white hover:bg-gray-50 transition-colors overflow-hidden" do %>
         <span class="text-xs text-gray-400 mb-1 truncate"><%= next_label %> <%= fa("arrow-right", size: :xs, class: "fill-gray-400 inline ml-1") %></span>
         <span class="font-medium text-sm line-clamp-2"><%= next_talk.title %></span>
-        <span class="text-xs text-gray-500 mt-1 truncate"><%= next_talk.speakers.map(&:name).join(", ") %></span>
+        <span class="text-xs text-gray-500 mt-1 truncate block w-full"><%= next_talk.speakers.map(&:name).join(", ") %></span>
 
         <% if next_time %>
           <span class="text-xs text-gray-400 mt-1"><%= next_time %></span>
@@ -130,7 +130,7 @@
         <% parallel_track = parallel_talk.static_metadata&.track %>
         <% parallel_track_info = parallel_track && tracks.find { |t| t["name"] == parallel_track } %>
 
-        <%= link_to talk_path(parallel_talk), class: "flex-1 flex flex-col p-3 rounded border bg-white hover:bg-gray-50 transition-colors min-w-0" do %>
+        <%= link_to talk_path(parallel_talk), class: "flex-1 flex flex-col p-3 rounded border bg-white hover:bg-gray-50 transition-colors min-w-0 overflow-hidden" do %>
           <% if parallel_track_info %>
             <span class="text-xs px-2 py-0.5 rounded self-start mb-2" style="background: <%= parallel_track_info["color"] %>; color: <%= parallel_track_info["text_color"] %>">
               <%= parallel_track %>
@@ -138,7 +138,7 @@
           <% end %>
 
           <span class="font-medium text-sm line-clamp-2"><%= parallel_talk.title %></span>
-          <span class="text-xs text-gray-500 mt-1 truncate"><%= parallel_talk.speakers.map(&:name).join(", ") %></span>
+          <span class="text-xs text-gray-500 mt-1 truncate block w-full"><%= parallel_talk.speakers.map(&:name).join(", ") %></span>
         <% end %>
       <% end %>
     </div>
@@ -184,7 +184,7 @@
                 <% speaker_classes = is_current ? "text-white/70" : "text-gray-500" %>
 
                 <%= link_to talk_path(schedule_talk), class: link_classes do %>
-                  <span class="text-xs w-20 flex-shrink-0 <%= time_classes %>">
+                  <span class="text-xs w-20 flex-shrink-0 hidden sm:inline <%= time_classes %>">
                     <%= [start_time, end_time].uniq.join(" - ") %>
                   </span>
 
@@ -193,10 +193,10 @@
                   </div>
 
                   <div class="flex-grow min-w-0">
-                    <div class="font-medium truncate"><%= schedule_talk.title %></div>
+                    <div class="font-medium truncate"><%= schedule_talk.title.truncate(100) %></div>
 
-                    <div class="text-xs <%= speaker_classes %> truncate">
-                      <%= schedule_talk.speakers.map(&:name).join(", ") %>
+                    <div class="text-xs <%= speaker_classes %> truncate overflow-hidden flex max-w-full">
+                      <%= schedule_talk.speakers.map(&:name).join(", ").truncate(120) %>
                     </div>
                   </div>
 
