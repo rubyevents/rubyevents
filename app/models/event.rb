@@ -279,7 +279,7 @@ class Event < ApplicationRecord
 
   def event_summary_description
     event_name = series&.organisation? ? name : series&.name
-    "#{event_name} is a #{static_metadata.frequency} #{kind}#{held_in_sentence}#{talks_text}#{keynote_speakers_text}."
+    "#{event_name} is a #{static_metadata&.frequency} #{kind}#{held_in_sentence}#{talks_text}#{keynote_speakers_text}."
   end
 
   def keynote_speakers_text
