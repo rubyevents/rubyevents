@@ -1,0 +1,15 @@
+<%# locals: (talk:, similar_talks:) %>
+
+<div class="flex flex-col gap-4 overflow-hidden min-w-0">
+  <p class="text-sm text-gray-600">
+    Talks that share similar topics
+  </p>
+
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+    <% similar_talks.each do |similar_talk| %>
+      <div class="min-w-0">
+        <%= render "talks/card_thumbnail", talk: similar_talk %>
+      </div>
+    <% end %>
+  </div>
+</div>

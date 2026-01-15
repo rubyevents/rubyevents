@@ -331,6 +331,16 @@
           <%= render partial: "talks/schedule_tab", locals: {talk: talk, event: talk.event} %>
         </div>
       <% end %>
+
+      <% similar_talks = talk.similar_recommender.talks %>
+
+      <% if similar_talks.any? %>
+        <input type="radio" name="talk_tabs" role="tab" class="tab" aria-label="Similar Talks">
+
+        <div role="tabpanel" class="tab-content !rounded-s-xl rounded-xl bg-base-200/50 p-6 mt-6 overflow-hidden max-w-full min-w-0">
+          <%= render partial: "talks/similar_talks_tab", locals: {talk: talk, similar_talks: similar_talks} %>
+        </div>
+      <% end %>
     </div>
   </div>
 <% end %>

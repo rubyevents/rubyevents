@@ -105,6 +105,7 @@ class Talk < ApplicationRecord
   has_object :agents
   has_object :downloader
   has_object :thumbnails
+  has_object :similar_recommender
 
   # validations
   validates :title, presence: true
