@@ -337,6 +337,7 @@ class Event < ApplicationRecord
       id: id,
       name: name,
       slug: slug,
+      description: description,
       location: location,
       start_date: start_date&.to_s,
       end_date: end_date&.to_s,
