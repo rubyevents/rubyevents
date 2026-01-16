@@ -4,6 +4,8 @@
 
 <% if location.is_a?(OnlineLocation) %>
   <% title "Past Online Ruby Events" %>
+<% elsif location.is_a?(CoordinateLocation) %>
+  <% title "Past Events near #{location.name}" %>
 <% else %>
   <% title "Past Events in #{location.name}" %>
 <% end %>

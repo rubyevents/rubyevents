@@ -120,6 +120,18 @@ Rails.application.routes.draw do
     end
   end
 
+  get "/locations/search", to: "coordinates#index", as: :locations_search
+
+  get "/locations/@:coordinates", to: "coordinates#show", as: :coordinates,
+    constraints: {coordinates: /[-\d.]+,[-\d.]+/}
+  scope "/locations/@:coordinates", as: :coordinates, constraints: {coordinates: /[-\d.]+,[-\d.]+/} do
+    scope module: :locations do
+      resources :past, only: [:index]
+      resources :users, only: [:index]
+      resources :map, only: [:index]
+    end
+  end
+
   resources :gems, param: :gem_name, only: [:index, :show] do
     member do
       get :talks

@@ -4,6 +4,8 @@
 
 <% if location.is_a?(OnlineLocation) %>
   <% title "Online Ruby Events" %>
+<% elsif location.is_a?(CoordinateLocation) %>
+  <% title "Ruby Community near #{location.name}" %>
 <% else %>
   <% title "Ruby Community in #{location.name}" %>
 <% end %>

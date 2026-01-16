@@ -12,6 +12,8 @@ class Locations::BaseController < ApplicationController
   def set_location
     if params[:online].present?
       set_online
+    elsif params[:coordinates].present?
+      set_coordinates
     elsif params[:continent_continent].present?
       set_continent
     elsif params[:country_country].present?
@@ -31,6 +33,14 @@ class Locations::BaseController < ApplicationController
 
   def set_online
     @location = OnlineLocation.instance
+  end
+
+  def set_coordinates
+    @location = CoordinateLocation.from_param(params[:coordinates])
+    redirect_to(root_path) and return unless @location.present?
+
+    @country = @location.country
+    @continent = @location.continent
   end
 
   def set_continent
@@ -143,7 +153,7 @@ class Locations::BaseController < ApplicationController
   end
 
   def location_users
-    @location_users ||= if city? || state?
+    @location_users ||= if city? || state? || coordinate?
       @location.users.geocoded.preloaded
     else
       @location.users.canonical.preloaded
@@ -151,9 +161,11 @@ class Locations::BaseController < ApplicationController
   end
 
   def load_nearby_data
-    return unless city? && @city.geocoded?
-
-    @nearby_users = @city.nearby_users(exclude_ids: location_users.pluck(:id))
+    if coordinate?
+      @nearby_users = @location.nearby_users(exclude_ids: location_users.pluck(:id))
+    elsif city? && @city.geocoded?
+      @nearby_users = @city.nearby_users(exclude_ids: location_users.pluck(:id))
+    end
   end
 
   def load_cities
@@ -167,10 +179,13 @@ class Locations::BaseController < ApplicationController
   end
 
   def load_nearby_events
-    return unless city? && @city.geocoded? && upcoming_events.empty?
-
-    @nearby_events = @city.nearby_events(exclude_ids: [])
-      .select { |n| n[:event].upcoming? }
+    if coordinate? && upcoming_events.empty?
+      @nearby_events = @location.nearby_events(exclude_ids: [])
+        .select { |n| n[:event].upcoming? }
+    elsif city? && @city.geocoded? && upcoming_events.empty?
+      @nearby_events = @city.nearby_events(exclude_ids: [])
+        .select { |n| n[:event].upcoming? }
+    end
   end
 
   def country_upcoming_events(exclude_ids: [])
@@ -197,6 +212,10 @@ class Locations::BaseController < ApplicationController
     @location.is_a?(OnlineLocation)
   end
 
+  def coordinate?
+    @location.is_a?(CoordinateLocation)
+  end
+
   def city?
     @location.is_a?(City)
   end
@@ -216,6 +235,7 @@ class Locations::BaseController < ApplicationController
   def location_view_prefix
     case @location
     when OnlineLocation then "online"
+    when CoordinateLocation then "coordinates"
     when Continent then "continents"
     when Country, UKNation then "countries"
     when State then "states"
