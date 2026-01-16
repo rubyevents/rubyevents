@@ -35,6 +35,8 @@ class Locations::MapController < Locations::BaseController
       build_state_geo_layers
     when City
       build_city_geo_layers
+    when CoordinateLocation
+      build_coordinate_geo_layers
     else
       raise "#{@location.class} unexpected"
     end
@@ -273,6 +275,86 @@ class Locations::MapController < Locations::BaseController
     layers
   end
 
+  def build_coordinate_geo_layers
+    layers = []
+
+    coordinate_events = location_events.to_a
+    coordinate_markers = event_map_markers(coordinate_events)
+    coordinate_pin = nil
+
+    if @location.geocoded?
+      coordinate_pin = {
+        type: "coordinate",
+        name: @location.name,
+        longitude: @location.longitude,
+        latitude: @location.latitude
+      }
+    end
+
+    layers << {
+      id: "geo-coordinate",
+      label: @location.name,
+      emoji: "📍",
+      markers: coordinate_markers,
+      cityPin: coordinate_pin,
+      alwaysVisible: true,
+      visible: false,
+      group: "geo"
+    }
+
+    nearby_event_data = @location.nearby_events(radius_km: 250, limit: 50, exclude_ids: coordinate_events.map(&:id))
+    nearby_events_list = nearby_event_data.map { |d| d[:event] }
+
+    coordinate_plus_nearby = coordinate_events + nearby_events_list
+    nearby_markers = event_map_markers(coordinate_plus_nearby)
+
+    if nearby_markers.any? && nearby_markers.size > coordinate_markers.size
+      layers << {
+        id: "geo-nearby",
+        label: "Nearby",
+        emoji: "📍🔄",
+        markers: nearby_markers,
+        visible: false,
+        group: "geo"
+      }
+    end
+
+    if @country.present?
+      country_events = Event.includes(:series).where(country_code: @country.alpha2).to_a
+      country_markers = event_map_markers(country_events)
+
+      if country_markers.any? && country_markers.size > (layers.last&.dig(:markers)&.size || 0)
+        layers << {
+          id: "geo-country",
+          label: @country.name,
+          emoji: @country.emoji_flag,
+          markers: country_markers,
+          visible: false,
+          group: "geo"
+        }
+      end
+    end
+
+    if @continent.present?
+      continent_country_codes = @continent.countries.map(&:alpha2)
+      continent_events = Event.includes(:series).where(country_code: continent_country_codes).to_a
+      continent_markers = event_map_markers(continent_events)
+
+      if continent_markers.any? && continent_markers.size > (layers.last&.dig(:markers)&.size || 0)
+        layers << {
+          id: "geo-continent",
+          label: @continent.name,
+          emoji: @continent.emoji_flag,
+          markers: continent_markers,
+          visible: false,
+          group: "geo"
+        }
+      end
+    end
+
+    layers
+  end
+
   def fetch_online_events
     base_scope = Event.includes(:series).not_geocoded.upcoming
 
@@ -284,6 +366,8 @@ class Locations::MapController < Locations::BaseController
       base_scope.where(country_code: country_code)
     when State
       base_scope.where(country_code: @country.alpha2, state_code: @state.code)
+    when CoordinateLocation
+      base_scope.none
     else # City
       base_scope.where(city: @city.name)
     end

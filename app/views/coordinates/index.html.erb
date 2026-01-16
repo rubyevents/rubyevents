@@ -1,0 +1,66 @@
+<%= turbo_refreshes_with method: :morph, scroll: :preserve %>
+
+<% title "Explore Ruby Communities" %>
+
+<div class="container py-16">
+  <div class="max-w-2xl mx-auto text-center">
+    <h1 class="text-4xl font-bold text-gray-900 mb-4">
+      Explore Ruby Communities
+    </h1>
+
+    <p class="text-lg text-gray-600 mb-12">
+      Find Ruby events and Rubyists near any location in the world
+    </p>
+
+    <div class="space-y-6" data-controller="geolocation">
+      <%= form_tag locations_search_path, method: :get, class: "flex gap-2" do %>
+        <div class="flex-1">
+          <%= text_field_tag :q, params[:q], placeholder: "Search for a city, address, or place...", class: "input input-bordered w-full h-10", autofocus: true, autocomplete: "off" %>
+        </div>
+
+        <%= submit_tag "Search", class: "btn btn-primary" %>
+      <% end %>
+
+      <div class="divider">OR</div>
+
+      <button
+        type="button"
+        class="btn btn-outline btn-lg gap-2"
+        data-action="click->geolocation#locate"
+        data-geolocation-target="button">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+        </svg>
+        <span data-geolocation-target="text">Use My Location</span>
+      </button>
+
+      <p class="text-sm text-gray-500" data-geolocation-target="status"></p>
+    </div>
+
+    <div class="mt-16">
+      <h2 class="text-xl font-semibold text-gray-900 mb-6">Or browse by</h2>
+
+      <div class="flex flex-wrap justify-center gap-4">
+        <%= link_to continents_path, class: "btn btn-ghost gap-2" do %>
+          <span class="text-xl">🌍</span>
+          Continents
+        <% end %>
+
+        <%= link_to countries_path, class: "btn btn-ghost gap-2" do %>
+          <span class="text-xl">🏳️</span>
+          Countries
+        <% end %>
+
+        <%= link_to cities_path, class: "btn btn-ghost gap-2" do %>
+          <span class="text-xl">🏙️</span>
+          Cities
+        <% end %>
+
+        <%= link_to online_path, class: "btn btn-ghost gap-2" do %>
+          <span class="text-xl">🌐</span>
+          Online
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
