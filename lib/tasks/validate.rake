@@ -99,6 +99,12 @@ namespace :validate do
     invalid_files.empty?
   end
 
+  desc "Validate all cfp.yml files against CFPSchema"
+  task cfps: :environment do
+    success = validate_array_files("data/**/cfp.yml", CFPSchema, "cfp.yml")
+    exit 1 unless success
+  end
+
   desc "Validate all event.yml files against EventSchema"
   task events: :environment do
     success = validate_files("data/**/event.yml", EventSchema, "event.yml") do |data, errors|
@@ -244,6 +250,9 @@ namespace :validate do
 
     puts Gum.style("Validating series.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_files("data/*/series.yml", SeriesSchema, "series.yml")
+
+    puts Gum.style("Validating cfp.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+    results << validate_array_files("data/*/cfp.yml", CFPSchema, "cfp.yml")
 
     puts Gum.style("Validating venue.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_files("data/**/venue.yml", VenueSchema, "venue.yml")
