@@ -61,6 +61,8 @@ coordinates:
 
 The full schema for an event is available in [EventSchema](app/schemas/event_schema.rb).
 
+> For events in another language, the title should be the English title, and the title in the original language should be an alias.
+
 ### Step 3 - Add Visual Assets
 
 Add visual assets (logos, banners, stickers, etc), using the [Adding Visual Assets Guide](docs/ADDING_VISUAL_ASSETS.md).
