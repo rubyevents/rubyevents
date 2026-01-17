@@ -1,6 +1,225 @@
-# TODO: Add talks and videos
-
-# Website:
-# Videos: -
 ---
-[]
+# Website: https://web.archive.org/web/20130731100639/http://www.baruco.org/
+# Videos: https://www.youtube.com/@BarucoOrg
+
+- id: "yukihiro-matz-matsumoto-baruco-2013"
+  title: "Changing Your World"
+  raw_title: "Baruco 2013 Keynote: Changing Your World, by Yukihiro Matz"
+  speakers:
+    - Yukihiro "Matz" Matsumoto
+  event_name: "Barcelona Ruby Conf 2013"
+  date: "2013-09-14"
+  published_at: "2013-10-15"
+  description: |-
+    Unlike past generations, we can reach out and change the world, due to the Internet and open source. But first of all, you can change your world, the small world inside of you. And that change will lead to the great success to change the whole world! I will explain what has happened in the history of the Ruby development, and what was crucial to its success.
+  video_provider: "youtube"
+  video_id: "6vdum5aXew8"
+  kind: "keynote"
+
+- id: "vicent-marti-baruco-2013"
+  title: "Once Upon a Time, Ruby"
+  raw_title: "Baruco 2013: Once Upon a Time, Ruby, by Vicent Martí"
+  speakers:
+    - Vicent Marti
+  event_name: "Barcelona Ruby Conf 2013"
+  date: "2013-09-14"
+  published_at: "2013-10-16"
+  description: |-
+    This is a scary story about scary Ruby internals -- told as a fairy tale, but with a rather gloomy ending. There's a lot going on under the hood in MRI, YARV and Rubinius. The C and C++ layer that interacts with the OS is a tangly mess full of tricky bugs and arcane issues; the kind of issues that don't raise exceptions, but kill whole processes and make them bleed rainbows. The kind of issues that only show up when you deploy massive Ruby systems at a large scale. This is a talk about how we discover, tackle and fix these fundamental flaws in the Ruby VM at GitHub, one of the largest Ruby deployments in the world. Ruby internals are hard. This fairy tale may not have a happy ending.
+  video_provider: "youtube"
+  video_id: "_BZHOfWusW4"
+
+- id: "sandi-metz-baruco-2013"
+  title: "Rules"
+  raw_title: "Baruco 2013: Rules, by Sandi Metz"
+  speakers:
+    - Sandi Metz
+  event_name: "Barcelona Ruby Conf 2013"
+  date: "2013-09-14"
+  published_at: "2013-10-20"
+  description: |-
+    We're iconoclasts who reject arbitrary constraints yet long for understandable, predictable, changeable applications. We want code that follows rules yet we refuse to let rules to get in our way. We're deeply attached to the little rules that help get things done (No trailing whitespace! Indent using two spaces!) and despise the big, complicated ones that impose one-size-fits-all straitjackets on otherwise sane programming problems. This talk proposes 5 'little' rules for writing object-oriented code. These rules are determinedly simple yet produce code that experts love and novices can be trusted to change; they fill the space between anarchy and order with practical, common sense. The rules guide without impeding, help without hindering and constrain without binding, and let you create applications that are easy to change and fun to work their whole life long.
+  video_provider: "youtube"
+  video_id: "npOGOmkxuio"
+
+- id: "katrina-owen-baruco-2013"
+  title: "Here Be Dragons"
+  raw_title: "Baruco 2013: Here Be Dragons, by Katrina Owen"
+  speakers:
+    - Katrina Owen
+  event_name: "Barcelona Ruby Conf 2013"
+  date: "2013-09-14"
+  published_at: "2013-11-07"
+  description: |-
+    It's not your fault. Code rots. We don't hold entropy against you, but we expect you to give a damn. This story is about code that brings new meaning to the word 'legacy'. The accidental discovery of this body of code provoked a moral crisis. I wanted to pretend I hadn't seen it, yet I couldn't justify tiptoeing quietly away. This talk examines the dilemmas we face when balancing our choices today with their cost tomorrow. It's not your fault. Even so, it is your responsibility.
+  video_provider: "youtube"
+  video_id: "HsWLrSof-ns"
+
+- id: "aaron-patterson-baruco-2013"
+  title: "Yak Shaving is Best Shaving"
+  raw_title: "Baruco 2013: Yak Shaving is Best Shaving, by Aaron Patterson"
+  speakers:
+    - Aaron Patterson
+  event_name: "Barcelona Ruby Conf 2013"
+  date: "2013-09-14"
+  published_at: "2013-10-28"
+  description: |-
+    Many developers try to avoid yak shaving. In this talk we will attempt to explore the joys of shaving a yak. We'll explore new features of Active Record, along with techniques for performance improvements. All which were realized through the journey of software development, rather than the goal. Yak shaving can get hairy, but with enough mousse, we can tame any mane.
+  video_provider: "youtube"
+  video_id: "nY_Pl2x7Fgs"
+
+- id: "charles-nutter-baruco-2013"
+  title: "The Future of JRuby"
+  raw_title: "Baruco 2013: The Future of JRuby, by Charles Nutter"
+  speakers:
+    - Charles Nutter
+  event_name: "Barcelona Ruby Conf 2013"
+  date: "2013-09-14"
+  published_at: "2013-10-31"
+  description: |-
+    Over the past six years, JRuby has gone from a wobbly 1.0 release to being the alternative implementation of choice for high performance, horizontal scaling, big data, and wide ranging deployment. We've steadily improved JRuby's runtime while catching up with MRI 1.9 and 2.0 features. Now we're looking toward the future with an upcoming rework of JRuby. What will it bring? How will we boost performance? What will we add to the Ruby platform to make concurrency commonplace and painless? This talk will summarize our plans for JRuby 9000 and open a dialog on what Ruby needs to survive long term.
+  video_provider: "youtube"
+  video_id: "8ZEAwWLwmfQ"
+
+- id: "avdi-grimm-baruco-2013"
+  title: "You Gotta Try This"
+  raw_title: "Baruco 2013: You Gotta Try This, by Avdi Grimm"
+  speakers:
+    - Avdi Grimm
+  event_name: "Barcelona Ruby Conf 2013"
+  date: "2013-09-14"
+  published_at: "2013-10-24"
+  description: |-
+    A talk about metaprogramming, coding for fun, and the joy of sharing.
+  video_provider: "youtube"
+  video_id: "ZhINjILA5yw"
+
+- id: "paolo-perrotta-baruco-2013"
+  title: "Hunters and Gatherers"
+  raw_title: "Baruco 2013: Hunters and Gatherers, by Paolo Perrotta"
+  speakers:
+    - Paolo Perrotta
+  event_name: "Barcelona Ruby Conf 2013"
+  date: "2013-09-14"
+  published_at: "2013-10-28"
+  description: |-
+    Let's open the day talking about programming languages, the progress of science, and a few things that didn't go quite as planned in the last half-millennium - from the Problem of Longitude to the resurrection of LISP, passing by debuggers and type systems. At the end of it all, one question: are you a hunter or a gatherer?
+  video_provider: "youtube"
+  video_id: "ahh-QkttjuM"
+
+- id: "corey-haines-baruco-2013"
+  title: "Design Patterns And The Proper Cultivation Thereof"
+  raw_title: "Baruco 2013: Design Patterns And The Proper Cultivation Thereof, by Corey Haines"
+  speakers:
+    - Corey Haines
+  event_name: "Barcelona Ruby Conf 2013"
+  date: "2013-09-14"
+  published_at: "2013-10-25"
+  description: |-
+    Design Patterns often are discussed with a negative tone. We laugh at Java developers and their heavy classes with the patterns encoded in the name. After all, who wants to try to understand the AbstractBaseClassFactoryManager? But don't most Ruby developers spend their time in a framework that glorifies a select few patterns to the point where the idea of writing code outside these patterns is considered heretical? On the other hand, Evolutionary Design says we are supposed to let the design come out over time, listening to the feedback we get from the combination of tests and refactoring, planning as little ahead as possible. What's a developer to do? Ideally, Design Patterns are used as communication, not construction, as description, not prescription. In this talk, we'll discuss using patterns as a goal, as guides when iterating and evolving our system's design.
+  video_provider: "youtube"
+  video_id: "vqN3TQgsXzI"
+
+- id: "richard-schneeman-baruco-2013"
+  title: "Millions of Apps: What we've Learned"
+  raw_title: "Baruco 2013: Millions of Apps: What we've Learned, by Richard Shneeman"
+  speakers:
+    - Richard Schneeman
+  event_name: "Barcelona Ruby Conf 2013"
+  date: "2013-09-14"
+  published_at: "2013-10-23"
+  description: |-
+    It is all about the things that Heroku has seen people doing with their apps, the good, bad, and the ugly. I focus on ways you can make your app better: easier to maintain, more secure, and less painful to develop on.
+  video_provider: "youtube"
+  video_id: "gIdB9Yw2gXc"
+
+- id: "bryan-helmkamp-baruco-2013"
+  title: "Building a Culture of Quality"
+  raw_title: "Baruco 2013: Building a Culture of Quality, by Bryan Helmkamp"
+  speakers:
+    - Bryan Helmkamp
+  event_name: "Barcelona Ruby Conf 2013"
+  date: "2013-09-14"
+  published_at: "2013-10-31"
+  description: |-
+    Time and time again, skilled developers with good intentions set out into the green field of their new Rails app. Alas, as days turn to weeks, weeks to months and months to years, they find themselves with an ever increasing maintenance burden. Adding new features in a well-designed way starts to feel like an exercise in futility, so they resort to liberal use of conditionals to avoid breaking existing code. This leads to more complexity, and on the cycle goes. It doesn't need to be like this. There's no silver bullet that will save your project from this fate, but by practicing a holistic approach to code quality you can stave off the maintenance monsters and keep your app's code feeling fresh and clean. This talk will look at low ceremony, common sense approaches to taking control of the quality of your codebase. You'll leave with an expanded toolbox of techniques to build a culture of quality within your organization.
+  video_provider: "youtube"
+  video_id: "Jsi1YTkXwxA"
+
+- id: "brian-sam-bodden-baruco-2013"
+  title: "iOS Games with RubyMotion"
+  raw_title: "Baruco 2013: iOS Games with RubyMotion, by Brian Sam Bodden"
+  speakers:
+    - Brian Sam-Bodden
+  event_name: "Barcelona Ruby Conf 2013"
+  date: "2013-09-14"
+  published_at: "2013-11-03"
+  description: |-
+    As Ruby Developer I've had a pretty involved relationship with my Mac. I own iPads and iPhones since Apple started to make them. A few years back I told myself I was going to build apps for the Mac/iPhone/iPad but then reality sunk in when I started learning Objective-C and using it in XCode. The environment (and the language) felt like a trip back to 1995. If you are a Web developer used to working with dynamically-typed, lightweight languages, following agile practices like Test-Driven Development, and comfortable with a Unix Shell, then jumping into a development world with an ugly cousin of C++ and an IDE that looks like an F16 cockpit just doesn't seem appealing. Luckily for us there is an alternative in RubyMotion, a Ruby-based toolchain for iOS that brings a Ruby on Rails style of development to the world of iOS application development. In this talk I will quickly introduce you to RubyMotion and jump right in into the world of game development for iOS using your favorite language; Ruby!
+  video_provider: "youtube"
+  video_id: "h6PfXWpANeI"
+
+- id: "matt-wynne-baruco-2013"
+  title: "Treating objects like people"
+  raw_title: "Baruco 2013: Treating objects like people, by Matt Wynne"
+  speakers:
+    - Matt Wynne
+  event_name: "Barcelona Ruby Conf 2013"
+  date: "2013-09-15"
+  published_at: "2013-10-20"
+  description: |-
+    We all know it's wrong to treat people like objects. Have you ever considered what happens when you design your objects to be treated the same way? In this talk Matt explores the intersection between psychology and OO design. You'll leave with some food for thought about how to model the interactions between your objects, as well as how to relate to the people around you.
+  video_provider: "youtube"
+  video_id: "lMCsQ_Mg3tI"
+
+- id: "jeremy-walker-baruco-2013"
+  title: "Refactoring Your Productivity"
+  raw_title: "Baruco 2013: Refactoring Your Productivity, by Jeremy Walker"
+  speakers:
+    - Jeremy Walker
+  event_name: "Barcelona Ruby Conf 2013"
+  date: "2013-09-15"
+  published_at: "2013-10-22"
+  description: |-
+    This talk explores how to get the most out of the hours behind a keyboard. It looks at what motivates us, how to avoid distractions, be happy, and generally be more productive, specifically in the world of Ruby. It looks at how to refactor the most important system you'll ever use - yourself. It's a non-technical and laugh-out-loud type of talk, but it contains lots of valuable thought-provoking information and practical ideas to make you a better developer. It aims to leave you feeling motivated and better equipped to become excellent at what you do, and to enjoy doing so.
+  video_provider: "youtube"
+  video_id: "utO5d56LA0s"
+
+- id: "david-chelimsky-baruco-2013"
+  title: "A Rubyist in Clojure-land"
+  raw_title: "Baruco 2013: A Rubyist in Clojure-land, by David Chelimsky"
+  speakers:
+    - David Chelimsky
+  event_name: "Barcelona Ruby Conf 2013"
+  date: "2013-09-15"
+  published_at: "2013-11-05"
+  description: |-
+    After working with Ruby for several years, I joined a project team focused on Clojure, which provided an opportunity to look at programming through a new lens. In this talk I'll share some of the challenges I faced, new lessons I learned, and old lessons that were reinforced.
+  video_provider: "youtube"
+  video_id: "PbeCeM344z8"
+
+- id: "chris-kelly-baruco-2013"
+  title: "Rabbit Hole: Garbage Collection and Ruby's Future"
+  raw_title: "Baruco 2013: Rabbit Hole: Garbage Collection and Ruby's Future, by Chris Kelly"
+  speakers:
+    - Chris Kelly
+  event_name: "Barcelona Ruby Conf 2013"
+  date: "2013-09-15"
+  published_at: "2013-10-17"
+  description: |-
+    Despite its reputation for being slow, MRI is still the most widely installed implementation of Ruby. Do you know how MRI got that reputation? Do you know what goes into executing Ruby on MRI? And more importantly, should today's Ruby be saddled with that reputation still? We're going to take a walk through the C internals from Foo.new through garbage collection in Ruby's MRI. We'll examine the idioms and optimizations in the C source and leave you feeling comfortable to explore the code yourself. At the end of the rb_newobj() rabbit hole is a whole world of garbage collection. Major changes have been made in MRI's garbage collector from Ruby 1.8 through 2.0: changes intended to make Ruby more performant, changes intended to capitalize on MRI's roots in UNIX. From mark-and-sweep to copy-on-write and bitmap marking, we'll see what the future of Ruby performance might look like by peering through the window of the garbage collector.
+  video_provider: "youtube"
+  video_id: "R8ifdjbFETo"
+
+- id: "reginald-braithwaite-baruco-2013"
+  title: "What Developing With Ruby Can Teach Us About Developing Ruby"
+  raw_title: "Baruco 2013: What Developing With Ruby Can Teach Us About Developing Ruby, by Reg Braithwaite"
+  speakers:
+    - Reginald Braithwaite
+  event_name: "Barcelona Ruby Conf 2013"
+  date: "2013-09-15"
+  published_at: "2013-11-06"
+  description: |-
+    When visualizing the future of a programming language, we look to the features and paradigms from other programming languages. In this talk, I will look towards a much more important source of ideas for the future of Ruby: The tools and practices the Ruby community is already using to develop successful Ruby projects.
+  video_provider: "youtube"
+  video_id: "WWKN-fjn4E4"
