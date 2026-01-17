@@ -42,6 +42,7 @@ class City < ApplicationRecord
     end
   end
 
+  has_many :aliases, as: :aliasable, dependent: :destroy, primary_key: :id
   has_many :events, primary_key: [:name, :country_code, :state_code], foreign_key: [:city, :country_code, :state_code], inverse_of: false
   has_many :users, -> { indexable.geocoded }, class_name: "User", primary_key: [:name, :country_code, :state_code], foreign_key: [:city, :country_code, :state_code], inverse_of: false
 
@@ -247,6 +248,32 @@ class City < ApplicationRecord
     update!(featured: false)
   end
 
+  def sync_aliases_from_list(alias_names)
+    Array.wrap(alias_names).each do |alias_name|
+      slug = alias_name.parameterize
+
+      existing_own = ::Alias.find_by(aliasable_type: "City", aliasable_id: id, name: alias_name) ||
+        ::Alias.find_by(aliasable_type: "City", aliasable_id: id, slug: slug)
+      if existing_own
+        existing_own.update(name: alias_name) if existing_own.name != alias_name
+        next
+      end
+
+      existing_global = ::Alias.find_by(aliasable_type: "City", name: alias_name) || ::Alias.find_by(aliasable_type: "City", slug: slug)
+
+      next if existing_global
+
+      ::Alias.insert({
+        aliasable_type: "City",
+        aliasable_id: id,
+        name: alias_name,
+        slug: slug,
+        created_at: Time.current,
+        updated_at: Time.current
+      })
+    end
+  end
+
   private
 
   def clear_unsupported_state_code
@@ -267,13 +294,18 @@ class City < ApplicationRecord
     def find_for(city:, country_code:, state_code: nil)
       scope = where(name: city, country_code: country_code)
       scope = scope.where(state_code: state_code) if state_code.present?
-      scope.first
+      scope.first || find_by_alias(city, country_code: country_code)
     end
 
     def find_or_create_for(city:, country_code:, state_code: nil, latitude: nil, longitude: nil)
       return nil if city.blank? || country_code.blank?
 
       record = find_by(name: city, state_code: state_code, country_code: country_code)
+
+      return record if record
+
+      record = find_by_alias(city, country_code: country_code)
+
       return record if record
 
       new_record = new(
@@ -286,6 +318,23 @@ class City < ApplicationRecord
       )
 
       new_record.save ? new_record : nil
+    end
+
+    def find_by_alias(name, country_code:)
+      return nil if name.blank? || country_code.blank?
+
+      city_alias = ::Alias
+        .where(aliasable_type: "City")
+        .where("LOWER(name) = ? OR slug = ?", name.downcase, name.parameterize)
+        .first
+
+      return nil unless city_alias
+
+      city = find_by(id: city_alias.aliasable_id)
+
+      return city if city&.country_code&.upcase == country_code.upcase
+
+      nil
     end
 
     def featured_slugs
