@@ -9,6 +9,7 @@
 #  country_code     :string           indexed => [state_code]
 #  date             :date
 #  date_precision   :string           default("day"), not null
+#  description      :string
 #  end_date         :date
 #  geocode_metadata :json             not null
 #  kind             :string           default("event"), not null, indexed
