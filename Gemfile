@@ -52,7 +52,7 @@ gem "kamal", "2.7.0", require: false
 gem "thruster", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 1.2"
 
 # Image processing for event asset generation
 gem "mini_magick"
@@ -212,9 +212,6 @@ gem "gems"
 
 # A glamorous CLI toolkit for Ruby
 gem "gum", "~> 0.3.1"
-
-# Image processing for Active Storage variants
-gem "image_processing", "~> 1.2"
 
 # Create beautiful JavaScript maps with one line of Ruby
 gem "mapkick-rb", "~> 0.2.0"
