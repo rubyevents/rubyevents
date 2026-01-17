@@ -1,10 +1,10 @@
-require "rails/generators"
+# frozen_string_literal: true
 
-class CfpGenerator < Rails::Generators::Base
+require "generators/event_base"
+
+class CfpGenerator < Generators::EventBase
   source_root File.expand_path("templates", __dir__)
 
-  class_option :event_series, type: :string, desc: "Event series folder name", required: true, group: "Fields"
-  class_option :event, type: :string, desc: "Event folder name", required: true, aliases: ["-e"], group: "Fields"
   class_option :name, type: :string, desc: "CFP name", default: "Call for Proposals", group: "Fields"
   class_option :link, type: :string, desc: "CFP link", default: "", group: "Fields"
   class_option :open_date, type: :string, desc: "CFP open date (YYYY-MM-DD)", default: "2026-01-01", group: "Fields"
