@@ -3,8 +3,22 @@
     <div class="text-6xl mb-4">👥</div>
     <h2 class="text-2xl font-bold text-gray-900 mb-4">No Favorite Rubyists Yet</h2>
     <p class="text-gray-600 mb-6">
-      Don't waste time! Mark your favorite Rubyists now!
+      Below a list of speakers recommended for you.
     </p>
   </div>
 </div>
 
+<div id="favorite_users" class="min-w-full grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-2">
+<% recommendations.each do |recommended_user| %>
+  <div id="<%= dom_id recommended_user %>">
+    <div class="border rounded-lg flex justify-between items-center bg-white hover:bg-gray-200 transition-bg duration-300 ease-in-out">
+      <%= render partial: "users/card", locals: {user: recommended_user} %>
+      <%= ui_tooltip "Add to your Favorite Rubyists" do %>
+        <%= button_to favorite_users_path(favorite_user: {favorite_user_id: recommended_user.id}), method: :post do %>
+          <%= fa("star", size: :sm, style: :regular, class: "fill-yellow-400 mx-5") %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+</div>

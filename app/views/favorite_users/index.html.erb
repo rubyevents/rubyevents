@@ -4,7 +4,7 @@
     Favorite Rubyists
   </h2>
   <% if @favorite_users.empty? %>
-    <%= render 'favorite_users/no_favorites' %>
+    <%= render partial: "favorite_users/no_favorites", locals: {recommendations: @recommendations} %>
   <% else %>
     <div id="favorite_users" class="min-w-full grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-2">
       <%= render @favorite_users %>
