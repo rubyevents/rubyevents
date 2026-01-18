@@ -1,6 +1,230 @@
-# TODO: Add talks and videos
-
-# Website: http://www.baruco.org/
-# Videos: -
+# Website: https://web.archive.org/web/20150712013812/http://www.fullstackfest.com/?from_baruco
+# Videos: https://www.youtube.com/playlist?list=PLe9psSNJBf77PgzYZ2yId2RfUkd9_lMMr
 ---
-[]
+- id: "yukihiro-matz-matsumoto-barcelona-ruby-conf-2015"
+  title: "Ruby 3.0"
+  raw_title: "Full Stack Fest 2015: Ruby 3.0, by Yukihiro Matsumoto"
+  speakers:
+    - Yukihiro "Matz" Matsumoto
+  event_name: "Barcelona Ruby Conf 2015 (Full Stack Fest 2015)"
+  date: "2015-09-01"
+  published_at: "2015-09-22"
+  description: ""
+  video_provider: "youtube"
+  video_id: "48iKjUcENRE"
+  kind: "keynote"
+
+- id: "davy-stevenson-barcelona-ruby-conf-2015"
+  title: "Orders of Magnitude"
+  raw_title: "Full Stack Fest 2015: Orders of Magnitude, by Davy Stevenson"
+  speakers:
+    - Davy Stevenson
+  event_name: "Barcelona Ruby Conf 2015 (Full Stack Fest 2015)"
+  date: "2015-09-01"
+  published_at: "2015-09-23"
+  description: |-
+    Up until the 17th century, the world was mostly limited to what we could see with the naked eye. Our understanding of things much smaller and much larger than us was limited. In the past 400 years our worldview has increased enormously, which has led to the advent of technology, space exploration, computers and the internet. However, our brains are ill equipped to handle dealing with numbers at these scales, and attempt to trick us at every turn.
+
+    Software engineers deal with computers every day, and thus we are subject to both incredibly tiny and massively large numbers all the time. Learn about how your brain is fooling you when you are dealing with issues of latency, scalability, and algorithm optimization, so that you can become a better programmer.
+  video_provider: "youtube"
+  video_id: "_YyzLKhjpiI"
+
+- id: "bryan-liles-barcelona-ruby-conf-2015"
+  title: "Running Ruby Apps"
+  raw_title: "Full Stack Fest 2015: Running Ruby Apps, by Bryan Liles"
+  speakers:
+    - Bryan Liles
+  event_name: "Barcelona Ruby Conf 2015 (Full Stack Fest 2015)"
+  date: "2015-09-01"
+  published_at: "2015-09-24"
+  description: |-
+    Let's have a discussion about running ruby apps. After you've written your app, how does it run in production. How do you know it is running properly? Are there other ways to run your apps? Getting your apps running and giving you meaningful metrics is just as important as writing them.
+  video_provider: "youtube"
+  video_id: "xytTA4dKaP0"
+
+- id: "eileen-uchitelle-barcelona-ruby-conf-2015"
+  title: "How to Performance"
+  raw_title: "Full Stack Fest 2015: How to Performance, by Eileen Uchitelle"
+  speakers:
+    - Eileen Uchitelle
+  event_name: "Barcelona Ruby Conf 2015 (Full Stack Fest 2015)"
+  date: "2015-09-01"
+  published_at: "2015-09-25"
+  description: |-
+    Understanding performance output can feel like reading tea leaves. It makes sense to a few people, but many of us are left in the dark; overwhelmed and frustrated by the data. On top of that there are a ton of performance tools to choose from; StackProf, RubyProf, AllocationTracer. Where do you even start?
+
+    While working on speeding up integration tests in Rails source, I learned that the key to improving performance of Ruby code is having a baseline, not relying on one profiler and understanding the advantages and limitations of your tools. By utilizing these methods integration test are now 3 times faster than they were in Rails 4.2.0, with more improvements being made every day.
+
+    In this talk we will not only look at how to read performance output, but when and how to use the right profilers for the job. We'll discuss a variety of methods and techniques for benchmarking and profiling so you can get the most out of each performance tool.
+  video_provider: "youtube"
+  video_id: "HbLPLdLvnVo"
+
+- id: "aaron-patterson-barcelona-ruby-conf-2015"
+  title: "Request and Response"
+  raw_title: "Full Stack Fest 2015: Request and Response, by Aaron Patterson"
+  speakers:
+    - Aaron Patterson
+  event_name: "Barcelona Ruby Conf 2015 (Full Stack Fest 2015)"
+  date: "2015-09-02"
+  published_at: "2015-09-28"
+  description: |-
+    What goes in to a request and response in a Rails application? Where does the application get its data, and how does that data get to the client when you are done? In this talk we'll look at the request and response lifecycle in Rails. We'll start with how a request and response are serviced today, then move on to more exciting topics like adding HTTP2 support and what that means for developing Rails applications.
+  video_provider: "youtube"
+  video_id: "1EeWXojdqvU"
+
+- id: "sandi-metz-barcelona-ruby-conf-2015"
+  title: "Nothing is Something"
+  raw_title: "Full Stack Fest 2015: Nothing is Something, by Sandi Metz"
+  speakers:
+    - Sandi Metz
+  event_name: "Barcelona Ruby Conf 2015 (Full Stack Fest 2015)"
+  date: "2015-09-02"
+  published_at: "2015-09-30"
+  description: |-
+    Our code is full of hidden assumptions, things that seem like nothing, secrets that we did not name and thus cannot see. These secrets represent missing concepts and this talk shows you how to expose these concepts with code that is easy to understand, change and extend. Being explicit about ideas will make your code simpler, your apps clearer and your life better. Even very small ideas matter. Everything, even nothing, is something.
+  video_provider: "youtube"
+  video_id: "9mLK_8hKii8"
+
+- id: "aaron-quint-barcelona-ruby-conf-2015"
+  title: "Beyond JSON: Improving inter-app communication"
+  raw_title: "Full Stack Fest 2015: Beyond JSON: Improving inter-app communication, by Aaron Quint"
+  speakers:
+    - Aaron Quint
+  event_name: "Barcelona Ruby Conf 2015 (Full Stack Fest 2015)"
+  date: "2015-09-02"
+  published_at: "2015-09-29"
+  description: |-
+    Regardless of where you stand on the debate between monoliths and microservices, the fact is that its never really one or the other. As your applications grow they often need to start communicating with other applications and services. Because we're often building for the web, we usually think of web protocols first (HTTP/JSON) when designing communication, but this might not be the best option for high throughput, high availability services.
+
+    I'll walk through some of the large number of options we have here including Protocol Buffers, Custom TCP Framing, and HTTP/2 and outline some of the pros and cons of each. I'll also walk through how we used some of these newer tools to build a high performance communication layer that's being used in production systems for almost 2 years.
+
+    You might walk away still using JSON and HTTP , but I hope that you have a better understanding of the tradeoffs you're making.
+  video_provider: "youtube"
+  video_id: "WnUccA7us4A"
+
+- id: "rin-raeuber-barcelona-ruby-conf-2015"
+  title: "Skynet for Beginners"
+  raw_title: "Full Stack Fest 2015:  Skynet for Beginners, by Rin Raeuber"
+  speakers:
+    - Rin Raeuber
+  event_name: "Barcelona Ruby Conf 2015 (Full Stack Fest 2015)"
+  date: "2015-09-02"
+  published_at: "2015-10-01"
+  description: |-
+    According to common knowledge Skynet went online on August 4, 1997. Suprisingly, we haven't heard anything from it since. Maybe because it's still struggling with the color of that dress. Or maybe because it was written in Excel VBA.
+
+    Either way, how about we apply some of those fancy sounding artificial intelligence techniques to the game problem of writing a twitter bot?
+
+    This talk will introduce you to artificial neural networks in an accessible and fun way.
+
+    Disclaimer: Might contain traces of code. Self-Awareness not included.
+  video_provider: "youtube"
+  video_id: "KlDMZyEwRzk"
+
+- id: "yehuda-katz-barcelona-ruby-conf-2015"
+  title: "Rewriting a Ruby C Extension in Rust"
+  raw_title: "Full Stack Fest 2015: Rewriting a Ruby C Extension in Rust, by Yehuda Katz"
+  speakers:
+    - Yehuda Katz
+  event_name: "Barcelona Ruby Conf 2015 (Full Stack Fest 2015)"
+  date: "2015-09-02"
+  published_at: "2015-10-02"
+  description: ""
+  video_provider: "youtube"
+  video_id: "2BdJeSC4FFI"
+
+- id: "nell-shamrell-barcelona-ruby-conf-2015"
+  title: "First Do No Harm: Surgical Refactoring"
+  raw_title: "Full Stack Fest 2015: First Do No Harm: Surgical Refactoring, by Nell Shamrell"
+  speakers:
+    - Nell Shamrell
+  event_name: "Barcelona Ruby Conf 2015 (Full Stack Fest 2015)"
+  date: "2015-09-02"
+  published_at: "2015-10-05"
+  description: |-
+    When a developer comes into an existing code base the urge to refactor can be overwhelming. However, legacy code bases - even those created and maintained with the best intentions - often resemble living organisms more than modular machines. Rather than simply taking out a module and replacing it with a better one, we have to surgically slice intricately connected sections of a code base apart and precisely tie each one off to prevent it from bleeding into another section. We also have to operate with the fear that a change in one part of a system may adversely affect other parts or even kill a critical piece of our application or infrastructure. This talk will teach you how to recognize the difference between necessary and cosmetic refactoring and how to assess and evaluate the risks of each. You will also walk away knowing how to develop safeguards and bypasses to minimize potential harm before, during, and after a refactor, as well as how to recognize the point of no return when rolling back a refactoring is riskier than keeping it in production. Maintaining a code base means you must constantly juggle the wish to improve it through refactoring and the potential side effects of changing a functional and often critical code base - you will walk away from this talk with clear techniques to help you find and maintain this balance.
+  video_provider: "youtube"
+  video_id: "9ZY3t9BnMeQ"
+
+- id: "ernie-miller-barcelona-ruby-conf-2015"
+  title: "How to Build a Skyscraper"
+  raw_title: "Full Stack Fest 2015: How to Build a Skyscraper, by Ernie Miller"
+  speakers:
+    - Ernie Miller
+  event_name: "Barcelona Ruby Conf 2015 (Full Stack Fest 2015)"
+  date: "2015-09-02"
+  published_at: "2015-10-06"
+  description: |-
+    Since 1884, humans have been building skyscrapers. This means that we had 6 decades of skyscraper-building experience before we started building software (depending on your definition of "software"). Maybe there are some lessons we can learn from past experience?
+
+    This talk won't make you an expert skyscraper-builder, but you might just come away with a different perspective on how you build software.
+  video_provider: "youtube"
+  video_id: "7MeBuDLbF98"
+
+- id: "piotr-solnica-barcelona-ruby-conf-2015"
+  title: "Blending Functional and OO Programming in Ruby"
+  raw_title: "Full Stack Fest 2015: Blending Functional and OO Programming in Ruby, by Piotr Solnica"
+  speakers:
+    - Piotr Solnica
+  event_name: "Barcelona Ruby Conf 2015 (Full Stack Fest 2015)"
+  date: "2015-09-02"
+  published_at: "2015-10-07"
+  description: |-
+    Functional programming is being revitalized thanks to languages like Clojure, Haskell and Elixir. Even though Ruby is an object-oriented language there are many beautiful concepts in functional programming that we can borrow and successfully apply in our Ruby code.
+
+    In this talk I'll show you how I mix FP with OO. I'll introduce you to functional objects, explain the beauty of Proc-like behavior, the power of call method and explain why immutability matters.
+  video_provider: "youtube"
+  video_id: "rMxurF4oqsc"
+
+- id: "corey-haines-barcelona-ruby-conf-2015"
+  title: "Fun with Lambdas!"
+  raw_title: "Full Stack Fest 2015: Fun with Lambdas!, by Corey Haines"
+  speakers:
+    - Corey Haines
+  event_name: "Barcelona Ruby Conf 2015 (Full Stack Fest 2015)"
+  date: "2015-09-02"
+  published_at: "2015-10-08"
+  description: |-
+    You've probably heard about the lambda calculus, building up our computing structures from just the treasured lambda. But how much have you played with it? In this talk, armed only with Vim and the CLI, we'll explore some interesting topics in building up our world with just the lambda and the thought process while doing it. While you probably don't want to program day-to-day at this level, it definitely can help with how you think about your regular programming. This talk consists almost entirely of live coding. FUN TIMES!
+  video_provider: "youtube"
+  video_id: "gULkBpl3e7c"
+
+- id: "john-cinnamond-barcelona-ruby-conf-2015"
+  title: "Extreme Object-Oriented Ruby"
+  raw_title: "Full Stack Fest 2015: Extreme Object-Oriented Ruby, by John Cinnamond"
+  speakers:
+    - John Cinnamond
+  event_name: "Barcelona Ruby Conf 2015 (Full Stack Fest 2015)"
+  date: "2015-09-02"
+  published_at: "2015-10-13"
+  description: |-
+    I recently saw the talk 'Nothing is Something' by Sandi Metz and something caught my eye - the idea that Ruby doesn't need the 'if' keyword. This got me thinking: what else could we remove from the language without making it less powerful? In this talk I take this idea and push it to breaking point. Along the way we'll learn a lot about expressiveness, the limits of computation, the nature of programming and why we shouldn't try to create pure OO languages.
+  video_provider: "youtube"
+  video_id: "FDs-sSxo2iY"
+
+- id: "lauren-scott-barcelona-ruby-conf-2015"
+  title: "Shall I Compare Thee to a Line of Code?"
+  raw_title: "Full Stack Fest 2015: Shall I Compare Thee to a Line of Code?, by Lauren Scott"
+  speakers:
+    - Lauren Scott
+  event_name: "Barcelona Ruby Conf 2015 (Full Stack Fest 2015)"
+  date: "2015-09-02"
+  published_at: "2015-10-14"
+  description: |-
+    Ever wish that your peers called your code a "work of art"? What is it that artful programmers know that makes their work transcend functionality and become something that has value in its essence? There's a lot that we can learn from the arts, particularly from art forms that share our linguistic building blocks. Because as all programmers and poets know, writing is easy—it's writing the good stuff that's hard.
+
+    So what can we take from the study of poetry that would illuminate our own paths as developers? In this talk, I'll go through some poetic principles that clarify ideas about software development, both in the way we write our code and the way we grow as creators and teammates. We'll explore the way poets learn to shape their craft and see what we can steal to help our code level up from functioning to poetic.
+  video_provider: "youtube"
+  video_id: "KvFRf8aDrrU"
+
+- id: "liz-abinante-barcelona-ruby-conf-2015"
+  title: "Why I Ruby"
+  raw_title: "Full Stack Fest 2015: Why I Ruby, by Liz Abinante"
+  speakers:
+    - Liz Abinante
+  event_name: "Barcelona Ruby Conf 2015 (Full Stack Fest 2015)"
+  date: "2015-09-02"
+  published_at: "2015-10-15"
+  description: ""
+  video_provider: "youtube"
+  video_id: "l0YcugodNoE"
