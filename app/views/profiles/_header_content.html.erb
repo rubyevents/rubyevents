@@ -39,20 +39,7 @@
             <% end %>
           <% end %>
         <% end %>
-
-        <% if Current.user && favorite_user.present? %>
-          <%= button_to favorite_user_path(favorite_user), method: :delete do %>
-            <%= ui_tooltip "Remove from your list of Favorite Rubyists" do %>
-              <%= fa("star", size: :sm, style: :solid, class: "fill-yellow-400") %>
-            <% end %>
-          <% end %>
-        <% elsif Current.user && Current.user != user %>
-          <%= ui_tooltip "Add to your list of Favorite Rubyists" do %>
-            <%= button_to favorite_users_path(favorite_user: {favorite_user_id: user.id}), method: :post do %>
-              <%= fa("star", size: :sm, style: :regular) %>
-            <% end %>
-          <% end %>
-        <% end %>
+        <%= render "favorite_users/favorite_user", favorite_user: favorite_user %>
       </h1>
 
       <% if user.wrapped_public? %>
