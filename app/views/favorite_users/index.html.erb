@@ -3,7 +3,11 @@
     <%= fa("star", size: :sm, style: :solid, class: "fill-yellow-400 inline") %>
     Favorite Rubyists
   </h2>
-  <div id="favorite_users" class="min-w-full grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-2">
-    <%= render @favorite_users %>
-  </div>
+  <% if @favorite_users.empty? %>
+    <%= render partial: "favorite_users/no_favorites", locals: {recommendations: @recommendations} %>
+  <% else %>
+    <div id="favorite_users" class="min-w-full grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-2">
+      <%= render @favorite_users %>
+    </div>
+  <% end %>
 </div>

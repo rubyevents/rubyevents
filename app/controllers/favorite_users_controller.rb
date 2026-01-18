@@ -4,6 +4,7 @@ class FavoriteUsersController < ApplicationController
   # GET /favorite_users or /favorite_users.json
   def index
     @favorite_users = FavoriteUser.where(user: Current.user).includes(:favorite_user).order(favorite_user: {name: :asc})
+    @recommendations = FavoriteUser.recommendations_for(Current.user) if @favorite_users.empty?
   end
 
   # POST /favorite_users or /favorite_users.json
