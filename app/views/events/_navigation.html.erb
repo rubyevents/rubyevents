@@ -76,5 +76,7 @@
     <%= active_link_to "Collectibles", event_collectibles_path(event), class: "tab", active_class: "tab-active", role: "tab" %>
   <% end %>
 
-  <%= active_link_to "TODOs", event_todos_path(event), class: "tab", active_class: "tab-active", role: "tab" %>
+  <% if event.todos.any? %>
+    <%= active_link_to "TODOs", event_todos_path(event), class: "tab", active_class: "tab-active", role: "tab" %>
+  <% end %>
 </div>

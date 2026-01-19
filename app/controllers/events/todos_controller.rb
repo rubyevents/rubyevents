@@ -4,6 +4,8 @@ class Events::TodosController < ApplicationController
 
   def index
     @todos = @event.todos
+
+    redirect_to event_path(@event), status: :moved_permanently if @todos.empty?
   end
 
   private
