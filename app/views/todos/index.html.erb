@@ -29,9 +29,9 @@
   </div>
 
   <% if @view == "by_type" %>
-    <%= render "by_type" %>
+    <%= render partial: "by_type", locals: { todos_by_type: @todos_by_type } %>
   <% else %>
-    <%= render "by_event" %>
+    <%= render partial: "by_event", locals: { series_with_todos: @series_with_todos } %>
   <% end %>
 
   <div class="mt-6">

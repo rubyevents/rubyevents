@@ -145,7 +145,7 @@ Rails.application.routes.draw do
   end
 
   resources :contributions, only: [:index, :show], param: :step
-  resources :todos, only: [:index]
+  resources :todos, only: [:index], path: "data/todos"
 
   resources :templates, only: [:new, :create] do
     collection do
