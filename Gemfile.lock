@@ -319,6 +319,8 @@ GEM
     google-protobuf (4.33.1)
       bigdecimal
       rake (>= 13)
+    grepfruit (3.2.1)
+      dry-cli (~> 1.1)
     groupdate (6.7.0)
       activesupport (>= 7.1)
     guard (2.19.1)
@@ -757,7 +759,6 @@ PLATFORMS
   aarch64-linux
   arm64-darwin
   arm64-linux
-  ruby
   x86_64-darwin
   x86_64-linux
 
@@ -791,6 +792,7 @@ DEPENDENCIES
   gems
   geocoder
   google-protobuf
+  grepfruit
   groupdate
   guard
   gum (~> 0.3.1)

@@ -75,4 +75,6 @@
   <% if event.stickers.any? || Stamp.for_event(event).any? %>
     <%= active_link_to "Collectibles", event_collectibles_path(event), class: "tab", active_class: "tab-active", role: "tab" %>
   <% end %>
+
+  <%= active_link_to "TODOs", event_todos_path(event), class: "tab", active_class: "tab-active", role: "tab" %>
 </div>

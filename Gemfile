@@ -213,6 +213,9 @@ gem "gems"
 # A glamorous CLI toolkit for Ruby
 gem "gum", "~> 0.3.1"
 
+# Regex pattern searching in files
+gem "grepfruit"
+
 # Create beautiful JavaScript maps with one line of Ruby
 gem "mapkick-rb", "~> 0.2.0"
 

@@ -1,0 +1,40 @@
+<div class="container py-8">
+  <h1 class="text-2xl font-bold mb-2">Data TODOs</h1>
+  <p class="text-base-content/70 mb-4">
+    These are items in our data files that need attention. Want to help? Check out our
+    <%= link_to "contribution guide", contributions_path, class: "link link-primary" %>.
+  </p>
+
+  <div class="flex flex-wrap items-center gap-4 mb-6">
+    <div class="stats shadow">
+      <div class="stat py-2 px-4">
+        <div class="stat-title text-xs">Total TODOs</div>
+        <div class="stat-value text-lg text-primary"><%= number_with_delimiter(@todos.size) %></div>
+      </div>
+
+      <div class="stat py-2 px-4">
+        <div class="stat-title text-xs">Files with TODOs</div>
+        <div class="stat-value text-lg text-secondary"><%= number_with_delimiter(@todos.map(&:file).uniq.size) %></div>
+      </div>
+    </div>
+
+    <div class="join">
+      <%= link_to todos_path(view: "by_type"), class: "join-item btn btn-sm #{"btn-active" if @view == "by_type"}" do %>
+        By Type
+      <% end %>
+      <%= link_to todos_path(view: "by_event"), class: "join-item btn btn-sm #{"btn-active" if @view == "by_event"}" do %>
+        By Series
+      <% end %>
+    </div>
+  </div>
+
+  <% if @view == "by_type" %>
+    <%= render "by_type" %>
+  <% else %>
+    <%= render "by_event" %>
+  <% end %>
+
+  <div class="mt-6">
+    <%== pagy_nav(@pagy) %>
+  </div>
+</div>

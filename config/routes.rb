@@ -145,6 +145,7 @@ Rails.application.routes.draw do
   end
 
   resources :contributions, only: [:index, :show], param: :step
+  resources :todos, only: [:index]
 
   resources :templates, only: [:new, :create] do
     collection do
@@ -253,6 +254,7 @@ Rails.application.routes.draw do
       resources :cfp, only: [:index]
       resources :collectibles, only: [:index]
       resource :tickets, only: [:show]
+      resources :todos, only: [:index]
     end
   end
 

@@ -21,6 +21,8 @@ class Events::SeriesController < ApplicationController
         Date.today
       end
     }.reverse
+
+    @todos = @event_series.todos
   end
 
   # POST /events/series/:slug/reimport
