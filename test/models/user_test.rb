@@ -556,7 +556,17 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "belongs to city record" do
-    user = User.create!(name: "Amsterdam User", github_handle: "amsterdam-user", city: "Amsterdam", country_code: "NL", state_code: "")
+    user = User.create!(
+      name: "Amsterdam User",
+      github_handle: "amsterdam-user",
+      city: "Amsterdam",
+      country_code: "NL",
+      state_code: "",
+      latitude: 52.3676,
+      longitude: 4.9041,
+      geocode_metadata: {"geocoder_city" => "Amsterdam"}
+    )
     assert_equal "Amsterdam", user.city_record.name
+    assert user.city_record.users.include?(user)
   end
 end
