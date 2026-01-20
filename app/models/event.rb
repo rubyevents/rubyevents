@@ -62,6 +62,7 @@ class Event < ApplicationRecord
   has_many :aliases, class_name: "Event", foreign_key: "canonical_id"
   has_many :slug_aliases, as: :aliasable, class_name: "Alias", dependent: :destroy
   has_many :cfps, dependent: :destroy
+  belongs_to :city_record, class_name: "City", optional: true, foreign_key: [:city, :country_code, :state_code], primary_key: [:name, :country_code, :state_code]
 
   # Event participation associations
   has_many :event_participations, dependent: :destroy
