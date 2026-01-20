@@ -554,4 +554,9 @@ class UserTest < ActiveSupport::TestCase
     found_user = User.find_by_name_or_alias("Speaker Original")
     assert_equal user.id, found_user.id
   end
+
+  test "belongs to city record" do
+    user = User.create!(name: "Amsterdam User", github_handle: "amsterdam-user", city: "Amsterdam", country_code: "NL", state_code: "")
+    assert_equal "Amsterdam", user.city_record.name
+  end
 end

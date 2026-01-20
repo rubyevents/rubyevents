@@ -239,14 +239,6 @@ class EventTest < ActiveSupport::TestCase
 
   test "belongs to city" do
     event = events(:rails_world_2023)
-    City.create(
-      name: "Amsterdam",
-      country_code: "NL",
-      state_code: "",
-      latitude: 52.3676,
-      longitude: 4.9041,
-      geocode_metadata: {"geocoder_city" => "Amsterdam"}
-    )
 
     assert_equal "Amsterdam", event.city_record.name
   end

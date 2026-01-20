@@ -121,6 +121,8 @@ class User < ApplicationRecord
   has_many :involved_events, through: :event_involvements, source: :event
 
   belongs_to :canonical, class_name: "User", optional: true
+  belongs_to :city_record, class_name: "City", optional: true, inverse_of: false,
+    foreign_key: [:city, :country_code, :state_code], primary_key: [:name, :country_code, :state_code]
   has_one :contributor, dependent: :nullify
 
   has_object :profiles
