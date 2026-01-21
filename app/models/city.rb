@@ -29,8 +29,6 @@ class City < ApplicationRecord
 
   configure_slug(attribute: :name, auto_suffix_on_collision: true)
 
-  query_constraints :name, :country_code, :state_code
-
   geocoded_by :geocode_query do |record, results|
     if (result = results.first)
       record.latitude = result.latitude

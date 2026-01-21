@@ -236,4 +236,11 @@ class EventTest < ActiveSupport::TestCase
 
     assert_empty result
   end
+
+  test "belongs to city" do
+    event = events(:rails_world_2023)
+
+    assert_equal "Amsterdam", event.city_record.name
+    assert event.city_record.events.include?(event)
+  end
 end
