@@ -10,7 +10,15 @@ class Search::Backend::SQLiteFTS
       talks = talks.for_speaker(options[:speaker_slug]) if options[:speaker_slug].present?
       talks = talks.where(kind: options[:kind]) if options[:kind].present?
       talks = talks.where(language: options[:language]) if options[:language].present?
-      talks = talks.ft_watchable unless options[:include_unwatchable]
+
+      case options[:status]
+      when "scheduled"
+        talks = talks.scheduled
+      when "all"
+        # Show all talks
+      else
+        talks = talks.ft_watchable unless options[:include_unwatchable]
+      end
 
       total_count = talks.except(:select).count
 
@@ -26,8 +34,15 @@ class Search::Backend::SQLiteFTS
       talks = talks.where(kind: options[:kind]) if options[:kind].present?
       talks = talks.where(language: options[:language]) if options[:language].present?
       talks = talks.where("created_at >= ?", options[:created_after]) if options[:created_after].present?
-      talks = talks.ft_watchable unless options[:include_unwatchable]
-      talks = talks.scheduled if options[:status] == "scheduled"
+
+      case options[:status]
+      when "scheduled"
+        talks = talks.scheduled
+      when "all"
+        # Show all talks
+      else
+        talks = talks.ft_watchable unless options[:include_unwatchable]
+      end
 
       talks = apply_sort(talks, query, options[:sort])
 
