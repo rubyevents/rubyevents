@@ -19,7 +19,7 @@ module Api
           events = events.limit(params[:limit]&.to_i || 20)
 
           if params[:slugs_only] == "true"
-            render json: { slugs: events.pluck(:slug) }
+            render json: {slugs: events.pluck(:slug)}
           else
             render json: {
               events: events.map { |event| event_summary_json(event) }

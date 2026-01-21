@@ -32,11 +32,13 @@ module Api
             image_url: stamp_image_url(stamp),
             has_country: stamp.has_country?,
             has_event: stamp.has_event?,
-            country: stamp.has_country? && stamp.country ? {
-              name: stamp.country.respond_to?(:name) ? stamp.country.name : stamp.country.to_s,
-              code: stamp.code
-            } : nil,
-            event: stamp.has_event? && stamp.event ? {
+            country: if stamp.has_country? && stamp.country
+                       {
+                         name: stamp.country.respond_to?(:name) ? stamp.country.name : stamp.country.to_s,
+                         code: stamp.code
+                       }
+                     end,
+            event: (stamp.has_event? && stamp.event) ? {
               name: stamp.event.name,
               slug: stamp.event.slug
             } : nil

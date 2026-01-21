@@ -10,7 +10,7 @@ module Api
             .limit(params[:limit]&.to_i || 20)
             .pluck(:slug)
 
-          render json: { slugs: slugs }
+          render json: {slugs: slugs}
         end
 
         def show
