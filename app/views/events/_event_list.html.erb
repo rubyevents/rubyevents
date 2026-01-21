@@ -1,25 +1,33 @@
-<div id="event-list" class="relative group border border-transparent md:hover:border-gray-200 rounded-xl flex flex-col gap-2 md:h-[75vh] md:overflow-scroll">
-  <% events.each do |event| %>
-    <%= link_to event, class: "event-item flex gap-4 group p-2 hover:bg-gray-200 rounded-md", data: {action: "mouseover->event-list#reveal", event_list_target: "item", event_id: event.slug} do %>
-      <div class="flex flex-col lg:flex-row gap-8 items-center lg:justify-right text-center lg:text-left flex-shrink-0">
-        <%= image_tag image_path(event.avatar_image_path),
-              class: "rounded-xl border border-[#D9DFE3] size-16",
-              alt: event.name.to_s,
-              style: "view-transition-name: #{dom_id(event, :logo)}",
-              loading: :lazy %>
-      </div>
+<div class="relative group">
+  <div class="absolute md:hidden top-0 left-0 w-full h-24 bg-gradient-to-b from-base-100 to-transparent pointer-events-none rounded-t-xl z-10"
+       data-event-list-target="topGradient"></div>
+  <div id="event-list"
+       class="border border-transparent md:hover:border-gray-200 rounded-xl flex flex-col gap-2 md:h-[75vh] md:overflow-scroll"
+       data-event-list-target="list"
+       data-action="scroll->event-list#updateGradients">
+    <% events.each do |event| %>
+      <%= link_to event, class: "event-item flex gap-4 group p-2 hover:bg-gray-200 rounded-md relative", data: {action: "mouseover->event-list#reveal", event_list_target: "item", event_id: event.slug} do %>
+        <div class="flex flex-col lg:flex-row gap-8 items-center lg:justify-right text-center lg:text-left flex-shrink-0">
+          <%= image_tag image_path(event.avatar_image_path),
+                class: "rounded-xl border border-[#D9DFE3] size-16",
+                alt: event.name.to_s,
+                style: "view-transition-name: #{dom_id(event, :logo)}",
+                loading: :lazy %>
+        </div>
 
-      <div class="flex-col flex justify-center relative overflow-hidden">
-        <div class="text-black group-hover:text-inherit font-bold text-xl"><%= event.name %></div>
-        <div class="text-[#636B74] group-hover:text-inherit"><%= event.formatted_dates %> • <%= event.to_location.to_html(show_links: false) %></div>
-      </div>
+        <div class="flex-col flex justify-center relative overflow-hidden">
+          <div class="text-black group-hover:text-inherit font-bold text-xl"><%= event.name %></div>
+          <div class="text-[#636B74] group-hover:text-inherit"><%= event.formatted_dates %> • <%= event.to_location.to_html(show_links: false) %></div>
+        </div>
 
-      <div class="absolute hidden gap-2 md:flex right-2">
-        <%= render "shared/cfp_countdown_badge", event: event %>
-        <%= render "shared/event_countdown_badge", event: event %>
-      </div>
+        <div class="absolute hidden gap-2 md:flex right-2">
+          <%= render "shared/cfp_countdown_badge", event: event %>
+          <%= render "shared/event_countdown_badge", event: event %>
+        </div>
 
+      <% end %>
     <% end %>
-  <% end %>
-  <div class="absolute hidden md:block bottom-0 left-0 w-full h-64 bg-gradient-to-t from-base-100 to-transparent pointer-events-none md:group-hover:hidden"></div>
+  </div>
+  <div class="absolute md:block bottom-0 left-0 w-full h-64 bg-gradient-to-t from-base-100 to-transparent pointer-events-none rounded-b-xl"
+       data-event-list-target="bottomGradient"></div>
 </div>

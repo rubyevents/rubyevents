@@ -29,6 +29,7 @@
 class EventSeries < ApplicationRecord
   include Sluggable
   include Suggestable
+  include Todoable
   include EventSeries::TypesenseSearchable
 
   include ActionView::Helpers::TextHelper
@@ -142,5 +143,15 @@ class EventSeries < ApplicationRecord
         }
       }
     }
+  end
+
+  private
+
+  def todos_data_path
+    Rails.root.join("data", slug)
+  end
+
+  def todos_file_prefix
+    slug
   end
 end

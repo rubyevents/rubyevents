@@ -1,0 +1,9 @@
+Description:
+    Generate a CFP for an event in an event series.
+
+Example:
+    bin/rails generate cfp --event-series=rubyconf --event=rubyconf-2026
+
+    This will create:
+        A CFP file in the correct directory for the event series and event.
+        The file will be pre-populated with a template for the CFP.

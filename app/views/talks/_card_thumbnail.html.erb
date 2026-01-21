@@ -1,4 +1,13 @@
-<%# locals: (talk:, watched_talk: nil, back_to: nil, back_to_title: nil) %>
+<%# locals: (talk:, watched_talk: nil, back_to: nil, back_to_title: nil, exclude_speaker: nil) %>
+
+<% other_speakers = exclude_speaker ? talk.speakers.reject { |s| s.id == exclude_speaker.id } : [] %>
+<% speaker_text = if exclude_speaker && other_speakers.any?
+     "with #{other_speakers.map(&:name).to_sentence}"
+   elsif exclude_speaker
+     nil
+   else
+     talk.speakers.map(&:name).to_sentence.presence
+   end %>
 
 <%= link_to talk_path(talk, back_to: back_to, back_to_title: back_to_title), class: "block group", data: {turbo_frame: "_top"} do %>
   <div class="aspect-video overflow-hidden relative rounded-xl sm:shadow-md transition-shadow">
@@ -36,7 +45,7 @@
       </div>
 
       <div class="text-xs text-white/80 line-clamp-1">
-        <%= talk.speakers.map(&:name).to_sentence %><% if talk.event %> • <%= talk.event.name %><% end %>
+        <% if speaker_text %><%= speaker_text %> • <% end %><%= talk.event&.name %>
       </div>
     </div>
 
@@ -55,7 +64,7 @@
     </div>
 
     <div class="text-xs text-base-content/70 line-clamp-1 mt-0.5">
-      <%= talk.speakers.map(&:name).to_sentence %><% if talk.event %> • <%= talk.event.name %><% end %>
+      <% if speaker_text %><%= speaker_text %> • <% end %><%= talk.event&.name %>
     </div>
   </div>
 <% end %>

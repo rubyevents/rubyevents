@@ -52,7 +52,7 @@ gem "kamal", "2.7.0", require: false
 gem "thruster", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 1.2"
 
 # Image processing for event asset generation
 gem "mini_magick"
@@ -210,6 +210,12 @@ gem "geocoder"
 # RubyGems.org API wrapper for gem information
 gem "gems"
 
+# A glamorous CLI toolkit for Ruby
+gem "gum", "~> 0.3.1"
+
+# Regex pattern searching in files
+gem "grepfruit"
+
 # Create beautiful JavaScript maps with one line of Ruby
 gem "mapkick-rb", "~> 0.2.0"
 
@@ -263,5 +269,3 @@ group :test do
   gem "vcr", "~> 6.1"
   gem "webmock"
 end
-
-gem "gum", "~> 0.3.0"

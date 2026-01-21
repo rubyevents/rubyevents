@@ -3,9 +3,9 @@ class EventsController < ApplicationController
   include Pagy::Backend
 
   skip_before_action :authenticate_user!, only: %i[index show update]
-  before_action :set_event, only: %i[show edit update reimport]
+  before_action :set_event, only: %i[show edit update reimport reindex]
   before_action :set_user_favorites, only: %i[show]
-  before_action :require_admin!, only: %i[reimport]
+  before_action :require_admin!, only: %i[reimport reindex]
 
   # GET /events
   def index
@@ -62,6 +62,16 @@ class EventsController < ApplicationController
     else
       redirect_to event_path(@event), alert: "Static event not found."
     end
+  end
+
+  # POST /events/:slug/reindex
+  def reindex
+    Search::Backend.index(@event)
+
+    @event.talks.find_each { |talk| Search::Backend.index(talk) }
+    @event.speakers.find_each { |speaker| Search::Backend.index(speaker) }
+
+    redirect_to event_path(@event), notice: "Event reindexed successfully."
   end
 
   private

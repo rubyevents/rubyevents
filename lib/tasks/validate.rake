@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 namespace :validate do
+  require "gum"
   require "json_schemer"
   require "yaml"
 
@@ -27,15 +28,22 @@ namespace :validate do
     end
 
     if invalid_files.any?
-      puts "Invalid #{file_type} files (#{invalid_files.count}):\n\n"
+      puts Gum.style("Invalid #{file_type} files (#{invalid_files.count}):", foreground: "1")
+      puts
       invalid_files.each do |file|
-        puts "❌ #{file[:path]}:"
-        file[:errors].each { |e| puts "   #{e["error"]} at #{e["data_pointer"]}" }
+        puts Gum.style("❌ #{file[:path]}", foreground: "1")
+        gh_action_anotation = (ENV["GITHUB_ACTIONS"] == "true") ? "::error file=data/#{file[:path]},line=1::" : "::error::"
+        file[:errors].each { |e| puts "#{gh_action_anotation} #{e["error"]} at #{e["data_pointer"]}" }
         puts
       end
     end
 
-    puts "#{file_type}: #{valid_count} valid, #{invalid_files.count} invalid out of #{files.count} files"
+    if invalid_files.any?
+      puts Gum.style("#{file_type}: #{valid_count} valid, #{invalid_files.count} invalid out of #{files.count} files", foreground: "1")
+    else
+      puts Gum.style("#{file_type}: #{valid_count} valid out of #{files.count} files", foreground: "2")
+    end
+
     invalid_files.empty?
   end
 
@@ -69,17 +77,32 @@ namespace :validate do
     end
 
     if invalid_files.any?
-      puts "Invalid #{file_type} files (#{invalid_files.count}):\n\n"
+      puts Gum.style("Invalid #{file_type} files (#{invalid_files.count}):", foreground: "1")
+      puts
       invalid_files.each do |file|
-        puts "❌ #{file[:path]}:"
-        file[:errors].first(10).each { |e| puts "   #{e["error"]} at #{e["data_pointer"]}" }
+        puts Gum.style("❌ #{file[:path]}", foreground: "1")
+        file[:errors].first(10).each do |e|
+          gh_action_annotation = (ENV["GITHUB_ACTIONS"] == "true") ? "::error file=data/#{file[:path]},line=1::" : "::error::"
+          puts " #{gh_action_annotation} #{e["error"]} at #{e["data_pointer"]}"
+        end
         puts "   ... and #{file[:errors].count - 10} more errors" if file[:errors].count > 10
         puts
       end
     end
 
-    puts "#{file_type}: #{valid_count} valid, #{invalid_files.count} invalid out of #{files.count} files"
+    if invalid_files.any?
+      puts Gum.style("#{file_type}: #{valid_count} valid, #{invalid_files.count} invalid out of #{files.count} files", foreground: "1")
+    else
+      puts Gum.style("#{file_type}: #{valid_count} valid out of #{files.count} files", foreground: "2")
+    end
+
     invalid_files.empty?
+  end
+
+  desc "Validate all cfp.yml files against CFPSchema"
+  task cfps: :environment do
+    success = validate_array_files("data/**/cfp.yml", CFPSchema, "cfp.yml")
+    exit 1 unless success
   end
 
   desc "Validate all event.yml files against EventSchema"
@@ -137,17 +160,18 @@ namespace :validate do
     duplicates = all_ids.tally.select { |_id, count| count > 1 }
 
     if duplicates.any?
-      puts "Duplicate video ids found (#{duplicates.count}):\n\n"
+      puts Gum.style("Duplicate video ids found (#{duplicates.count}):", foreground: "1")
+      puts
 
       duplicates.each do |id, count|
-        puts "❌ #{id} (#{count} occurrences)"
+        puts Gum.style("❌ #{id} (#{count} occurrences)", foreground: "1")
       end
 
       puts
 
       exit 1
     else
-      puts "All video ids are unique"
+      puts Gum.style("✓ All video ids are unique", foreground: "2")
     end
   end
 
@@ -168,27 +192,191 @@ namespace :validate do
     end
 
     if missing_published_at.any?
-      puts "YouTube videos missing published_at date (#{missing_published_at.count}):\n\n"
+      puts Gum.style("YouTube videos missing published_at date (#{missing_published_at.count}):", foreground: "1")
+      puts
 
       missing_published_at.each do |video|
-        puts "❌ #{video.id} (#{video.title})"
+        puts Gum.style("❌ #{video.id} (#{video.title})", foreground: "1")
       end
 
       puts
 
       exit 1
     else
-      puts "All YouTube videos have a published_at date"
+      puts Gum.style("✓ All YouTube videos have a published_at date", foreground: "2")
     end
   end
+
+  def validate_speaker_duplicates
+    report = Gum.spin("Checking for speaker duplicates...", spinner: "dot") do
+      User::DuplicateDetector.report
+    end
+
+    has_duplicates = report != "No duplicates found."
+
+    if has_duplicates
+      puts Gum.style(report, foreground: "1")
+      puts
+      puts Gum.style("To fix: Make sure the name in speakers.yml matches the reference in the videos.yml files.", foreground: "3")
+      puts
+    else
+      puts Gum.style("✓ No unresolved speaker duplicates found", foreground: "2")
+    end
+
+    !has_duplicates
+  end
+
+  desc "Validate that there are no unresolved speaker duplicates"
+  task speaker_duplicates: :environment do
+    exit 1 unless validate_speaker_duplicates
+  end
+
+  def build_city_alias_lookup
+    alias_to_canonical = {}
+
+    Static::City.all.each do |city|
+      Array(city.aliases).each do |alias_name|
+        alias_to_canonical[alias_name.downcase] = city.name
+      end
+    end
+
+    alias_to_canonical
+  end
+
+  def validate_event_city_names
+    alias_to_canonical = build_city_alias_lookup
+    files = Dir.glob(Rails.root.join("data/**/event.yml"))
+    issues = []
+
+    files.each do |file|
+      data = YAML.load_file(file)
+      location = data["location"]
+
+      next if location.blank?
+
+      city_part = location.split(",").first&.strip
+
+      next if city_part.blank?
+
+      canonical = alias_to_canonical[city_part.downcase]
+
+      if canonical && canonical.downcase != city_part.downcase
+        relative_path = file.sub("#{Rails.root}/data/", "")
+
+        issues << {
+          path: relative_path,
+          field: "location",
+          current: city_part,
+          canonical: canonical,
+          value: location
+        }
+      end
+    end
+
+    if issues.any?
+      puts Gum.style("Events using city aliases instead of canonical names (#{issues.count}):", foreground: "1")
+      puts
+
+      issues.each do |issue|
+        puts Gum.style("❌ #{issue[:path]}", foreground: "1")
+        puts "   #{issue[:field]}: \"#{issue[:value]}\""
+        puts "   Should use \"#{issue[:canonical]}\" instead of \"#{issue[:current]}\""
+        puts
+      end
+
+      false
+    else
+      puts Gum.style("✓ All events use canonical city names", foreground: "2")
+
+      true
+    end
+  end
+
+  def check_city_alias(city_name, field, path, alias_to_canonical, issues)
+    return if city_name.blank?
+
+    canonical = alias_to_canonical[city_name.downcase]
+
+    if canonical && canonical.downcase != city_name.downcase
+      issues << {
+        path: path,
+        field: field,
+        current: city_name,
+        canonical: canonical,
+        value: city_name
+      }
+    end
+  end
+
+  desc "Validate that event locations use canonical city names (not aliases)"
+  task event_city_names: :environment do
+    exit 1 unless validate_event_city_names
+  end
+
+  def validate_video_city_names
+    alias_to_canonical = build_city_alias_lookup
+    files = Dir.glob(Rails.root.join("data/**/videos.yml"))
+    issues = []
+
+    files.each do |file|
+      data = YAML.load_file(file)
+      relative_path = file.sub("#{Rails.root}/data/", "")
+
+      Array(data).each_with_index do |video, index|
+        location = video["location"]
+
+        next if location.blank?
+
+        city_part = location.split(",").first&.strip
+
+        next if city_part.blank?
+        next if city_part.downcase == "online" || city_part.downcase == "remote"
+
+        canonical = alias_to_canonical[city_part.downcase]
+
+        if canonical && canonical.downcase != city_part.downcase
+          video_id = video["video_id"] || video["id"] || "index #{index}"
+
+          issues << {
+            path: relative_path,
+            field: "videos[#{video_id}].location",
+            current: city_part,
+            canonical: canonical,
+            value: location
+          }
+        end
+      end
+    end
+
+    if issues.any?
+      puts Gum.style("Videos using city aliases instead of canonical names (#{issues.count}):", foreground: "1")
+      puts
+      issues.each do |issue|
+        puts Gum.style("❌ #{issue[:path]}", foreground: "1")
+        puts "   #{issue[:field]}: \"#{issue[:value]}\""
+        puts "   Should use \"#{issue[:canonical]}\" instead of \"#{issue[:current]}\""
+        puts
+      end
+      false
+    else
+      puts Gum.style("✓ All videos use canonical city names", foreground: "2")
+      true
+    end
+  end
+
+  desc "Validate that video locations use canonical city names (not aliases)"
+  task video_city_names: :environment do
+    exit 1 unless validate_video_city_names
+  end
+
+  desc "Validate all city-related data"
+  task cities: [:event_city_names, :video_city_names]
 
   desc "Validate all YAML files"
   task all: :environment do
     results = []
 
-    puts "=" * 60
-    puts "Validating event.yml files..."
-    puts "=" * 60
+    puts Gum.style("Validating event.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_files("data/**/event.yml", EventSchema, "event.yml") do |data, errors|
       is_meetup = data["kind"] == "meetup"
       unless is_meetup
@@ -201,29 +389,22 @@ namespace :validate do
       end
     end
 
-    puts "\n" + "=" * 60
-    puts "Validating series.yml files..."
-    puts "=" * 60
+    puts Gum.style("Validating series.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_files("data/*/series.yml", SeriesSchema, "series.yml")
 
-    puts "\n" + "=" * 60
-    puts "Validating venue.yml files..."
-    puts "=" * 60
+    puts Gum.style("Validating cfp.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+    results << validate_array_files("data/*/cfp.yml", CFPSchema, "cfp.yml")
+
+    puts Gum.style("Validating venue.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_files("data/**/venue.yml", VenueSchema, "venue.yml")
 
-    puts "\n" + "=" * 60
-    puts "Validating videos.yml files..."
-    puts "=" * 60
+    puts Gum.style("Validating videos.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_array_files("data/**/videos.yml", VideoSchema, "videos.yml")
 
-    puts "\n" + "=" * 60
-    puts "Validating schedule.yml files..."
-    puts "=" * 60
+    puts Gum.style("Validating schedule.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_files("data/**/schedule.yml", ScheduleSchema, "schedule.yml")
 
-    puts "\n" + "=" * 60
-    puts "Validating unique video ids..."
-    puts "=" * 60
+    puts Gum.style("Validating unique video ids", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
 
     all_ids = []
 
@@ -235,24 +416,23 @@ namespace :validate do
     duplicates = all_ids.tally.select { |_id, count| count > 1 }
 
     if duplicates.any?
-      puts "Duplicate video ids found (#{duplicates.count}):\n\n"
+      puts Gum.style("Duplicate video ids found (#{duplicates.count}):", foreground: "1")
+      puts
 
       duplicates.each do |id, count|
-        puts "❌ #{id} (#{count} occurrences)"
+        puts Gum.style("❌ #{id} (#{count} occurrences)", foreground: "1")
       end
 
       puts
 
       results << false
     else
-      puts "All video ids are unique"
+      puts Gum.style("✓ All video ids are unique", foreground: "2")
 
       results << true
     end
 
-    puts "\n" + "=" * 60
-    puts "Validating YouTube videos have published_at..."
-    puts "=" * 60
+    puts Gum.style("Validating YouTube videos have published_at", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
 
     missing_published_at = []
 
@@ -269,24 +449,39 @@ namespace :validate do
     end
 
     if missing_published_at.any?
-      puts "YouTube videos missing published_at date (#{missing_published_at.count}):\n\n"
+      puts Gum.style("YouTube videos missing published_at date (#{missing_published_at.count}):", foreground: "1")
+      puts
 
       missing_published_at.each do |video|
-        puts "❌ #{video.id} (#{video.title})"
+        puts Gum.style("❌ #{video.id} (#{video.title})", foreground: "1")
       end
 
       puts
 
       results << false
     else
-      puts "All YouTube videos have a published_at date"
+      puts Gum.style("✓ All YouTube videos have a published_at date", foreground: "2")
 
       results << true
     end
 
-    puts "\n" + "=" * 60
-    puts "Overall: #{results.all? ? "All validations passed!" : "Some validations failed"}"
-    puts "=" * 60
+    if Rails.env.development?
+      puts Gum.style("Validating speaker duplicates", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+      results << validate_speaker_duplicates
+    end
+
+    puts Gum.style("Validating event city names", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+    results << validate_event_city_names
+
+    puts Gum.style("Validating video city names", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+    results << validate_video_city_names
+
+    puts
+    if results.all?
+      puts Gum.style("All validations passed!", border: "rounded", padding: "0 2", foreground: "2", border_foreground: "2")
+    else
+      puts Gum.style("Some validations failed", border: "rounded", padding: "0 2", foreground: "1", border_foreground: "1")
+    end
 
     exit 1 unless results.all?
   end

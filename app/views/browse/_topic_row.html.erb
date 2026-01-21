@@ -18,7 +18,7 @@
     <% topics.each do |topic| %>
       <%= link_to topic_path(topic), class: "btn btn-outline btn-sm gap-2 hover:btn-primary", data: {turbo_frame: "_top"} do %>
         <% if topic.topic_gems.any? %>
-          <%= fa("gem", size: :xs) %>
+          <%= fa("gem", size: :xs, class: "fill-primary") %>
         <% end %>
 
         <%= topic.name %>

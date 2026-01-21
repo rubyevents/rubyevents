@@ -2,8 +2,8 @@ class Events::SeriesController < ApplicationController
   include Pagy::Backend
 
   skip_before_action :authenticate_user!, only: %i[index show]
-  before_action :set_event_series, only: %i[show reimport]
-  before_action :require_admin!, only: %i[reimport]
+  before_action :set_event_series, only: %i[show reimport reindex]
+  before_action :require_admin!, only: %i[reimport reindex]
 
   # GET /events/series
   def index
@@ -21,6 +21,8 @@ class Events::SeriesController < ApplicationController
         Date.today
       end
     }.reverse
+
+    @todos = @event_series.todos
   end
 
   # POST /events/series/:slug/reimport
@@ -33,6 +35,19 @@ class Events::SeriesController < ApplicationController
     else
       redirect_to series_path(@event_series), alert: "Static event series not found."
     end
+  end
+
+  # POST /events/series/:slug/reindex
+  def reindex
+    Search::Backend.index(@event_series)
+
+    @event_series.events.find_each do |event|
+      Search::Backend.index(event)
+
+      event.talks.find_each { |talk| Search::Backend.index(talk) }
+    end
+
+    redirect_to series_path(@event_series), notice: "Event series reindexed successfully."
   end
 
   private

@@ -34,8 +34,8 @@ If there are two instances of a user in speakers.yml, we create two users.
   - Create an alias in speakers.yml if the duplicated name is likely to be used again.
 - Update all talks to use the name of the de-duped speaker.
 - After merge:
+  - In the admin, delete the old user.
   - Run the seeds on production
-  - In the admin, after confirming talks are transferred, delete the old user.
 
 ## Two different GitHub profiles
 

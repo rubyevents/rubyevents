@@ -28,11 +28,22 @@ module ProfileData
   private
 
   def set_user
-    @user = User.includes(:talks, :passports).find_by(slug: params[:profile_slug])
+    @user = User.includes(:talks, :passports).find_by_slug_or_alias(params[:profile_slug])
     @user = User.includes(:talks).find_by_github_handle(params[:profile_slug]) unless @user.present?
 
-    redirect_to speakers_path, status: :moved_permanently, notice: "User not found" if @user.blank?
-    redirect_to profile_path(@user.canonical) if @user&.canonical.present?
+    if @user.blank?
+      redirect_to speakers_path, status: :moved_permanently, notice: "User not found"
+      return
+    end
+
+    if @user.canonical.present?
+      redirect_to profile_path(@user.canonical), status: :moved_permanently
+      return
+    end
+
+    if params[:profile_slug] != @user.to_param
+      redirect_to polymorphic_path([:profile, controller_name.to_sym], profile_slug: @user.to_param), status: :moved_permanently
+    end
   end
 
   def set_favorite_user

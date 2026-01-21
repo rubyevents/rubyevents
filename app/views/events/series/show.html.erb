@@ -21,12 +21,22 @@
     </div>
 
     <% if Current.user&.admin? %>
-      <div class="flex flex-col gap-2">
-        <%= ui_button url: reimport_series_path(@event_series), method: :post, kind: :neutral, size: :sm, class: "w-full" do %>
-          Reimport Series
+      <div class="flex items-center gap-2 mt-4 pt-4 border-t border-gray-200">
+        <span class="text-xs text-gray-400 uppercase tracking-wide">Admin</span>
+        <%= ui_tooltip "Reimport Series" do %>
+          <%= ui_button url: reimport_series_path(@event_series), method: :post, kind: :neutral, size: :sm do %>
+            <%= fa "download", size: :sm %>
+          <% end %>
         <% end %>
-        <%= ui_button url: avo.resources_event_series_path(@event_series), target: :_blank, kind: :neutral, size: :sm, class: "w-full" do %>
-          Open in Avo
+        <%= ui_tooltip "Reindex Series" do %>
+          <%= ui_button url: reindex_series_path(@event_series), method: :post, kind: :neutral, size: :sm do %>
+            <%= fa "arrows-rotate", size: :sm %>
+          <% end %>
+        <% end %>
+        <%= ui_tooltip "Open in Avo" do %>
+          <%= ui_button url: avo.resources_event_series_path(@event_series), target: :_blank, kind: :neutral, size: :sm do %>
+            <%= fa :avocado, size: :sm %>
+          <% end %>
         <% end %>
       </div>
     <% end %>
@@ -59,6 +69,46 @@
           <%= cache @events do %>
             <%= render partial: "events/card", collection: @events, as: :event, cached: true %>
           <% end %>
+        </div>
+      </section>
+    </div>
+  <% end %>
+
+  <% if @todos.any? %>
+    <div id="todos" class="mt-12">
+      <section class="flex flex-col w-full gap-4">
+        <div class="flex items-center justify-between w-full">
+          <h2 class="text-primary shrink-0">TODOs</h2>
+          <span class="badge badge-primary"><%= @todos.size %></span>
+        </div>
+        <div class="card bg-base-200">
+          <div class="card-body p-4">
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <th>Location</th>
+                  <th>Content</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @todos.first(20).each do |todo| %>
+                  <tr>
+                    <td class="font-mono text-xs">
+                      <%= link_to todo.url, target: "_blank", class: "link link-primary" do %>
+                        <%= todo.file.split("/").last(2).join("/") %>:<%= todo.line %>
+                      <% end %>
+                    </td>
+                    <td><code class="text-xs break-all"><%= todo.content %></code></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+            <% if @todos.size > 20 %>
+              <p class="text-sm text-base-content/70 mt-2">
+                ... and <%= @todos.size - 20 %> more. <%= link_to "View all TODOs", todos_path(view: "by_event"), class: "link link-primary" %>
+              </p>
+            <% end %>
+          </div>
         </div>
       </section>
     </div>

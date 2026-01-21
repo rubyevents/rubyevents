@@ -32,7 +32,7 @@ If the ruby version is updated, or you start running into issues, feel free to t
 
 #### Requirements
 
-- Ruby 4.0.0
+- Ruby 4.0.1
 - Node.js 22.15.1
 
 #### Setup
@@ -81,12 +81,18 @@ To follow Tailwind CSS's recommended order of classes, you can use [Prettier](ht
 
 The application uses [Typesense](https://typesense.org/) for enhanced search functionality (spotlight search). Typesense is **optional** for local development. The app works without it, falling back to SQLite FTS5 for search.
 
-**Devcontainers / Docker Compose:** Typesense is already included and starts automatically.
+**Devcontainers / Docker Compose:** Typesense is included and starts automatically.
 
 **Local development:** Run Typesense with Docker:
 
 ```bash
 docker compose -f docker-compose.typesense.yml up -d
+```
+
+Check the status of the search backends and if you can connect.
+
+```bash
+bundle exec rake search:status
 ```
 
 Once running, you can reindex the data:
@@ -139,23 +145,49 @@ For local development with Docker, the defaults work out of the box. For product
 ## Running the Database Seeds
 
 After adding or modifying data, seed the database to see your changes.
+If you are running the dev server, Guard will attempt to import for you on modification.
+But if you are not running the dev server, or run into issues - use the seeds.
 
-We have two seedfiles, one will run the last 6 months of events, all future events, and all meetups.
+This will seed the last 6 months of conferences, and all future events and meetups.
 
 ```bash
 bin/rails db:seed
 ```
 
-However, if you're working on an older event, you can seed all events instead.
+This will seed all data and is what we use in production.
 
 ```bash
 bin/rails db:seed:all
 ```
 
+Import one event series and all included events.
+
+```bash
+bin/rails db:seed:event_series[blue-ridge-ruby]
+```
+
 You can also seed one event series with a script.
+This will let you search and select the series.
 
 ```bash
 rails runner scripts/import_event.rb blue-ridge-ruby
+# Search for a series
+rails runner scripts/import_event.rb
+```
+
+Import all events and event data (but not the series or anything else).
+This one is good if you're updating a lot of events at once and backfilling data.
+For example, adding coordinates, venues, involvements, sponsors, etc.
+It will error if there's a new series (or old one because you haven't run `db:seed:all` yet).
+
+```bash
+bin/rails db:seed:events
+```
+
+Import all speakers. Great for testing profile changes.
+
+```bash
+bin/rails db:seed:speakers
 ```
 
 ### Troubleshooting
@@ -189,6 +221,22 @@ rails test test/models/talk_test.rb:6
 For the front-end, we use [Vite](https://vite.dev/), [Tailwind CSS](https://tailwindcss.com/) with [Daisyui](https://daisyui.com/) components, [Hotwire](https://hotwired.dev/), and [Stimulus](https://stimulus.hotwired.dev/).
 
 You can find existing RubyEvents components in our [component library](https://www.rubyevents.org/components).
+
+## Queue
+
+We use SolidQueue!
+
+Open the rails console and run the following to clear the queue.
+
+```
+SolidQueue::Queue.new("default").clear
+```
+
+Get a count of enqueued jobs.
+
+```
+SolidQueue::Queue.new("default").size
+```
 
 ## Contributing new events
 

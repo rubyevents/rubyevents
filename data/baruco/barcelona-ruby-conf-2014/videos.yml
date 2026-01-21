@@ -1,6 +1,209 @@
-# TODO: Add talks and videos
-
-# Website: http://web.archive.org/web/20141219035936/http://www.baruco.org/
-# Videos: http://confreaks.tv/events/baruco2014
+# Website: https://web.archive.org/web/20141219035936/http://www.baruco.org/
+# Videos: https://www.youtube.com/watch?v=Q47FOiwXDh8&list=PLe9psSNJBf75BNEHA41k8SkGsssIF6A97
 ---
-[]
+- id: "yukihiro-matz-matsumoto-baruco-2014"
+  title: "mRuby: AltRuby"
+  raw_title: "Yukihiro 'Matz' Matsumoto - mRuby: AltRuby - BaRuCo 2014"
+  speakers:
+    - Yukihiro "Matz" Matsumoto
+  event_name: "Barcelona Ruby Conf 2014"
+  date: "2014-09-12"
+  published_at: "2014-09-28"
+  description: ""
+  video_provider: "youtube"
+  video_id: "5FLrKg-b6o8"
+  kind: "keynote"
+
+- id: "tom-stuart-refactoring-ruby-with-monads-baruco-2014"
+  title: "Refactoring Ruby with Monads"
+  raw_title: "Tom Stuart - Refactoring Ruby with Monads - BaRuCo 2014"
+  speakers:
+    - Tom Stuart
+  event_name: "Barcelona Ruby Conf 2014"
+  date: "2014-09-12"
+  published_at: "2014-10-01"
+  description: |-
+    Monads are in danger of becoming a bit of a joke: for every person who raves about them, there's another person asking what in the world they are, and a third person writing a confusing tutorial about them. With their technical-sounding name and forbidding reputation, monads can seem like a complex, abstract idea that's only relevant to mathematicians and Haskell programmers. Forget all that! In this pragmatic talk we'll roll up our sleeves and get stuck into refactoring some awkward Ruby code, using the good parts of monads to tackle the problems we encounter along the way. We'll see how the straightforward design pattern underlying monads can help us to make our code simpler, clearer and more reusable by uncovering its hidden structure, and we'll all leave with a shared understanding of what monads actually are and why people won't shut up about them.
+  video_provider: "youtube"
+  video_id: "J1jYlPtkrqQ"
+
+- id: "jeremy-walker-baruco-2014"
+  title: "The Monorail"
+  raw_title: "Jeremy Walker - The Monorail - BaRuCo 2014"
+  speakers:
+    - Jeremy Walker
+  event_name: "Barcelona Ruby Conf 2014"
+  date: "2014-09-12"
+  published_at: "2014-10-22"
+  description: ""
+  video_provider: "youtube"
+  video_id: "ZM3-Gl5DVgM"
+
+- id: "evan-phoenix-baruco-2014"
+  title: "Services, Services, Everywhere"
+  raw_title: "Evan Phoenix - Services, Services, Everywhere - BaRuCo 2014"
+  speakers:
+    - Evan Phoenix
+  event_name: "Barcelona Ruby Conf 2014"
+  date: "2014-09-12"
+  published_at: "2014-10-02"
+  description: |-
+    "Wrote more services!" they say. Agreeing with them is only the first step of a long journey. How should you write them? How should you deploy them? How should you monitor them? 30 minutes isn't enough solve all your problems, but we'll look at the big picture of how you can build a modern application as a set of services.
+  video_provider: "youtube"
+  video_id: "msxQqvPFTXE"
+
+- id: "julian-cheal-baruco-2014"
+  title: "Dancing with Robots"
+  raw_title: "Julian Cheal - Dancing with Robots - BaRuCo 2014"
+  speakers:
+    - Julian Cheal
+  event_name: "Barcelona Ruby Conf 2014"
+  date: "2014-09-12"
+  published_at: "2014-10-09"
+  description: |-
+    Web apps are great and everything, but imagine using Ruby to fly drones and make them dance to the sounds of dubstep! Or to control disco lights and other robots! Sounds fun, right? In this talk, we will not only explore how we can write code to make this possible, but it will also be full of exciting, interactive (and possibly dangerous ;) ) demos!
+  video_provider: "youtube"
+  video_id: "xt7l5bUWIA8"
+
+- id: "erik-michaels-ober-baruco-2014"
+  title: "Writing Fast Ruby"
+  raw_title: "Erik Michaels-Ober - Writing Fast Ruby - BaRuCo 2014"
+  speakers:
+    - Erik Michaels-Ober
+  event_name: "Barcelona Ruby Conf 2014"
+  date: "2014-09-12"
+  published_at: "2014-10-14"
+  description: |-
+    Performance is one of the most important features of any application. Research has shown that every 100 milliseconds decrease in speed can reduce sales by 1 percent. Ruby is not known as a fast language but there are things we can do to optimize the performance of our Ruby code. This talk will show how to properly benchmark your Ruby code and discuss various techniques for making code faster and more memory efficient.
+  video_provider: "youtube"
+  video_id: "fGFM_UrSp70"
+
+- id: "jose-tomas-albornoz-baruco-2014"
+  title: "How I Built My Own Twitch-Plays-Pokémon"
+  raw_title: "José Tomás Albornoz - How I built my own Twitch-Plays-Pokémon - BaRuCo 2014"
+  speakers:
+    - José Tomás Albornoz
+  event_name: "Barcelona Ruby Conf 2014"
+  date: "2014-09-12"
+  published_at: "2014-10-12"
+  description: |-
+    February 14th, 2014. 10 pm CET.: While pretty much everyone with a partner is having some quality "Valentine's Day" time, a very interesting social experiment is growing: Twitch Plays Pokémon. A massive Pokémon gaming session where literally dozens of thousands of people play the same match of game at the same time is not something you see every day. The hacker lightbulb lit immediately: I need to make my own, and I need to do it with Ruby.
+  video_provider: "youtube"
+  video_id: "wuvDeUHhzts"
+
+- id: "emily-stolfo-baruco-2014"
+  title: "Release Responsibly"
+  raw_title: "Emily Stolfo - Release Responsibly - BaRuCo 2014"
+  speakers:
+    - Emily Stolfo
+  event_name: "Barcelona Ruby Conf 2014"
+  date: "2014-09-12"
+  published_at: "2014-10-17"
+  description: |-
+    The Ruby community is notorious for favoring innovation over stability. The reality is that software usually has other dependencies not able to keep up with our pace. So how can we keep our code backwards compatible? Releasing responsibly is critical, whether you maintain an open source library, your company's codebase, or a personal project. On the MongoDB driver team, we recognize that it's easier to upgrade a driver than to upgrade a database. Our code must therefore hide all the gory details of backwards compatibility and continue to expose the simplest possible API version-to-version. I'll talk about some best practices we follow to make sure our users never have unexpected API inconsistencies, regardless of the underlying database version.
+  video_provider: "youtube"
+  video_id: "OUgqej5SC_M"
+
+- id: "ryan-levick-baruco-2014"
+  title: "A Dangerous Game: Safety in Ruby"
+  raw_title: "Ryan Levick - A Dangerous Game: Safety in Ruby - BaRuCo 2014"
+  speakers:
+    - Ryan Levick
+  event_name: "Barcelona Ruby Conf 2014"
+  date: "2014-09-13"
+  published_at: "2014-10-13"
+  description: |-
+    Ruby is an awesome language. It allows us to tell the computer what we want it to do in beautiful, poetic ways that other programming languages simply cannot. While programs in other languages like Java or C++ mostly read like microwave oven manuals, Ruby often leaps out of our text editors as if it were elegantly crafted prose. But Ruby isn't perfect. It has its bad parts. When it comes to, for example, concurrency or guaranteeing correctness, Ruby often times feels less than ideal. But who's doing it better? In this talk we'll explore some of Ruby's shortcomings by examining other languages that handle these problems extremely well. We'll then discuss how Ruby can benefit from an understanding of these shortcomings and the languages that do these things better.
+  video_provider: "youtube"
+  video_id: "mDPJD_0_T_k"
+
+- id: "piotr-szotkowski-baruco-2014"
+  title: "Standard Library: Uncommon Uses"
+  raw_title: "Piotr Szotkowski - Standard Library: Uncommon Uses - BaRuCo 2014"
+  speakers:
+    - Piotr Szotkowski
+  event_name: "Barcelona Ruby Conf 2014"
+  date: "2014-09-13"
+  published_at: "2014-10-15"
+  description: |-
+    There are tonnes of little- or virtually unknown libraries in Ruby's stdlib, and they found their way there for a reason. Much like revisiting Enumerable's method list times and again makes you a better Ruby programmer, so does looking into its standard library – not only because there are things you didn't know existed, but also because the way they're implemented is often quite enlightening. This talk shows some of the useful, clever and tricky uses of Ruby's standard library – like PStore, GServer, Abbrev, DRb and IPAddr – that do not require the installation of any gems and can be used in any environment hosting a Ruby implementation. Did you ever want to write your own server, do some distributed computing, don't worry about persistence? It's all there; come and see for yourself!
+  video_provider: "youtube"
+  video_id: "JjOCj-J5K9I"
+
+- id: "brian-shirai-baruco-2014"
+  title: "Types as Premature Optimization"
+  raw_title: "Brian Shirai - Types as Premature Optimization - BaRuCo 2014"
+  speakers:
+    - Brian Shirai
+  event_name: "Barcelona Ruby Conf 2014"
+  date: "2014-09-13"
+  published_at: "2014-09-30"
+  description: |-
+    As programmers, when are we designing the software and when are we building it? What is the separation between these activities? Does it matter? What if we used two different languages: one to experiment with the basic structure of the program and one to build the software that is deployed? Consider these questions in the context of other creative activities. No buildings are built with clay; they are built with materials like steel, bricks, concrete blocks, or concrete and rebar. These materials are rigid and largely inflexible, properties that make them difficult to work with but are essential for the integrity and safety of the buildings. On the other hand, clay is a preeminent modeling material. It holds its shape but is easily malleable when experimenting with structure and relationships. In Ruby, we often use IRB to experiment with code or explore an API. We experiment with relationships and structure in our code. We make the software do something and that helps us better understand what we're trying to do. We write tests and code and iterate. Ruby's malleability makes it a preeminent clay for experimenting and learning, for designing the software. But what about building the software? What provides the rigidity we need for integrity and safety? Can a single language be both our clay and our steel and concrete?
+  video_provider: "youtube"
+  video_id: "bF9x6L_77FU"
+
+- id: "jason-clark-baruco-2014"
+  title: "Spelunking in Ruby"
+  raw_title: "Jason Clark - Spelunking in Ruby - BaRuCo 2014"
+  speakers:
+    - Jason Clark
+  event_name: "Barcelona Ruby Conf 2014"
+  date: "2014-09-13"
+  published_at: "2014-10-08"
+  description: |-
+    We've all heard, "With good tests, you don't need a debugger." But faced with unfamiliar or poorly covered code, tests can fall short. Debugging tools are indispensable for taking that next step, and the Ruby ecosystem provides many options to help. This talk showcases a wide variety of techniques for digging into that daunting application or gem. Starting from the humble puts statement, we'll dive through the various platform-specific Ruby debuggers, eventually peeking into the murky depths of gdb and the Ruby VM itself. Jam packed with shortcuts, techniques, and gotchas, you'll be plumbing the depths of your code in no time.
+  video_provider: "youtube"
+  video_id: "hYtUODuxy9c"
+
+- id: "pat-shaughnessy-baruco-2014"
+  title: "Twenty Thousand Leagues Under ActiveRecord"
+  raw_title: "Pat Shaughnessy - Twenty Thousand Leagues Under ActiveRecord - BaRuCo 2014"
+  speakers:
+    - Pat Shaughnessy
+  event_name: "Barcelona Ruby Conf 2014"
+  date: "2014-09-13"
+  published_at: "2014-09-29"
+  description: |-
+    We all know ActiveRecord allows you to perform complex SQL queries using simple, elegant Ruby code. It's like magic, a useful magic we all use everyday in our Rails apps. But how does it actually work? We'll find out by first exploring the shallow waters just under ActiveRecord: What is relational algebra? How does the Arel gem generate SQL strings from Ruby objects? Later, we'll dive into much deeper waters - all the way inside the PostgreSQL database! We'll discover what does Postgres does with our SQL strings, where our data is actually located, and how Postgres finds what we want. Join me and learn exactly how your Rails app gets the data it needs. Like the strange places and creatures Jules Verne described in his underwater adventure, we'll discover fascinating data structures and computer science algorithms you never knew you were using.
+  video_provider: "youtube"
+  video_id: "rnLnRPZZ1Q4"
+
+- id: "leon-gersing-baruco-2014"
+  title: "Keep Software Weird"
+  raw_title: "Leon Gersing - Keep Software Weird - BaRuCo 2014"
+  speakers:
+    - Leon Gersing
+  event_name: "Barcelona Ruby Conf 2014"
+  date: "2014-09-13"
+  published_at: "2014-10-05"
+  description: |-
+    How much code coverage does it take it ship a minimal viable product? How many Scrum Certifications does it take to make your team agile? How many languages learned make a journeyman a master? In software, there is an expressed desire to be taken seriously as craftspeople. To this end, we've introduced process, metrics and quantifiable boundaries as goal posts to hold up to those who may not understand what is involved in shipping quality software. As this practice becomes normal, developers are faced with an ever-expanding landscape of techniques, practices and pressure from thought leaders to take extra course work or certifications to validate the assertion that you are, in fact, a software developer. While some may see this as a necessary evolution of our field, I see it as an albatross around the neck of the creative developer looking to explore the depths of what is possible. While the safety of a well worn path may provide solace to the uninitiated, I find dogmatic implementation oppressive and exclusionary to those interested in exploring alternative approaches to solving problems with technology. Join me in an exploration of what I believe makes us unique as a subculture in this business world; examples of how we came to be by challenging the established idioms of the past in order to move forward into something exciting and new. To be our best we must be willing to dive into the unknown, to loose the binds of convention and explore the vast expanse of the unfamiliar. We must dare to be wrong, to be new, to be foolish, to be amazing and keep software weird.
+  video_provider: "youtube"
+  video_id: "5HRgfxDtaPI"
+
+- id: "matt-aimonetti-baruco-2014"
+  title: "Go Auth Urself"
+  raw_title: "Matt Aimonetti - Go Auth Urself - BaRuCo 2014"
+  speakers:
+    - Matt Aimonetti
+  event_name: "Barcelona Ruby Conf 2014"
+  date: "2014-09-13"
+  published_at: "2014-10-07"
+  description: |-
+    Extending your Rails app with some Go, Scala, Elixir or node.js sound interesting to you? The first challenge to get there is to safely share the session between your apps. Crypto is hard… but that won't prevent us from looking into how Rails sessions work and how to share them across programming languages.
+  video_provider: "youtube"
+  video_id: "vC5xR5CgThM"
+
+- id: "tom-stuart-smalltalk-lisp-bash-baruco-2014"
+  title: "Smalltalk, Lisp, Bash: Three Interesting Languages"
+  raw_title: "Tom Stuart - Smalltalk, Lisp, Bash: Three Interesting Languages - BaRuCo 2014"
+  speakers:
+    - Tom Stuart
+  event_name: "Barcelona Ruby Conf 2014"
+  date: "2014-09-13"
+  published_at: "2014-10-07"
+  description: |-
+    In this talk, we take a brief tour of three languages which influenced the design of Ruby. We'll see how each of them has an extremely minimal specification, requiring the programmer to grasp only one or two concepts to understand the whole language. We'll see how this same characteristic allows us to implement our own control flow structures, and perhaps explore how we might pull off the same tricks in Ruby, which incorporates the basic concepts of all three languages.
+  video_provider: "youtube"
+  video_id: "Cix0SYZ7CMo"

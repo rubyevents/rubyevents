@@ -1,6 +1,213 @@
-# TODO: Add talks and videos
-
-# Website:
-# Videos: -
+# Website: https://web.archive.org/web/20120608025841/http://baruco.org/
+# Videos: https://www.youtube.com/watch?v=npOGOmkxuio&list=PLe9psSNJBf75GtwxHQzESHqSUgsS0Pv_N
 ---
-[]
+- id: "scott-chacon-baruco-2012"
+  title: "Back to First Principles"
+  raw_title: "Scott Chacon - Back to First Principles - BaRuCo 2012"
+  speakers:
+    - Scott Chacon
+  event_name: "Barcelona Ruby Conf 2012"
+  date: "2012-09-08"
+  published_at: "2020-12-02"
+  description: |-
+    Nearly everything in business is changing thanks to the new availability of high speed internet to nearly everyone on the planet. Everything you know about business is probably based on knowledge that is no longer applicable. People like you have made it possible to upend nearly every business lesson learned and ingrained over the past several hundred years. At this time, with these tools and this global network available to us, we have the power and opportunity to go back to first principles and re-imagine nearly everything - from product all the way to the workplace.
+  video_provider: "youtube"
+  video_id: "zXWxc4NFu6E"
+  kind: "keynote"
+
+- id: "zed-a-shaw-baruco-2012"
+  title: "The Top 10 Ways to Scam the Modern American Programmer"
+  raw_title: "Zed A. Shaw - The Top 10 Ways to Scam the Modern American Programmer - BaRuCo 2012"
+  speakers:
+    - Zed A. Shaw
+  event_name: "Barcelona Ruby Conf 2012"
+  date: "2012-09-08"
+  published_at: "2020-12-02"
+  description: |-
+    Do you want to be successful in the world of startups and Information Technologies? Then come listen to Zed tell you the 10 best ways to scam, rip off, fool, and influence today's American programmer. While focusing on the American variety of coder, these tactics are sure to work on people from all over the world with only minor modifications.
+  video_provider: "youtube"
+  video_id: "Q47FOiwXDh8"
+  kind: "keynote"
+
+- id: "paolo-perrotta-baruco-2012"
+  title: "A Short History of Software Engineering, and Other Ideas That Didn't Work"
+  raw_title: "Paolo Perrotta - A Short History of Software Engineering - BaRuCo 2012"
+  speakers:
+    - Paolo Perrotta
+  event_name: "Barcelona Ruby Conf 2012"
+  date: "2012-09-08"
+  published_at: "2020-12-02"
+  description: |-
+    Building software is a young discipline, but it already has a fascinating history. For a young rubyist, it's easy to forget where we all come from, and why we do software the way we do today. Let a slightly-less-young rubyist tell you the story of software engineering - a story of big problems, brilliant solutions and miserable failures.
+  video_provider: "youtube"
+  video_id: "CnquVcxvAl0"
+
+- id: "xavier-noria-baruco-2012"
+  title: "Constant Autoloading in Ruby on Rails"
+  raw_title: "Xavier Noria - Constant Autoloading in Ruby on Rails - BaRuCo 2012"
+  speakers:
+    - Xavier Noria
+  event_name: "Barcelona Ruby Conf 2012"
+  date: "2012-09-08"
+  published_at: "2020-12-02"
+  description: |-
+    Ruby on Rails lets users largely forget about explicit requires. Active Support provides constant autoloading to Ruby on Rails applications, and leverages this feature to also offer automatic code reloading in development mode. In this talk we study how these nifty hacks work under the hood.
+  video_provider: "youtube"
+  video_id: "sDCIUHKUbiM"
+
+- id: "gary-bernhardt-baruco-2012"
+  title: "Deconstructing the Framework"
+  raw_title: "Gary Bernhardt - Deconstructing the Framework - BaRuCo 2012"
+  speakers:
+    - Gary Bernhardt
+  event_name: "Barcelona Ruby Conf 2012"
+  date: "2012-09-08"
+  published_at: "2020-12-03"
+  description: |-
+    Rails gives us M, V, C, routes, and helpers. Some people add observers and concerns, among others. We've standardized on presenters. Service objects are gaining popularity. Uncle Bob wants you to add interactors, request models, response models, and entities. That's a lot of stuff! Let's step back: ideally, how do all of these things fit together? Does it make sense to have so many different components? How do different web frameworks project these onto actual components? Most importantly: how does this explain the tangled mess in Rails controllers and how we might fix it?
+  video_provider: "youtube"
+  video_id: "57lwoBpfrgk"
+
+- id: "brian-ford-baruco-2012"
+  title: "Grand Unification Theory: Writing and Running Code"
+  raw_title: "Brian Ford - Grand Unification Theory: Writing and Running Code - BaRuCo 2012"
+  speakers:
+    - Brian Ford
+  event_name: "Barcelona Ruby Conf 2012"
+  date: "2012-09-08"
+  published_at: "2020-12-03"
+  description: |-
+    Whether you are using a statically typed or dynamically typed language, there is typically a rigid separation between writing code and running code. Smalltalk environments focused on running code where writing code was actually a function of the running program. However, this approach was usually implemented using a snapshot of a running process that makes sharing code and managing changes over time quite difficult. What if we could blur the separation between writing code and running code? This could empower us to use information about how our program is running in production while adding new features or maintaining existing code. What if we could combine data from test runs, a coworker's activities, and running production applications while writing code? Such a feature could enable powerful code analysis and auditing tools. This talk will take a tour of these possibilities on the Rubinius dynamic language environment.
+  video_provider: "youtube"
+  video_id: "V5o-6bE5FM0"
+
+- id: "josh-kalderimis-baruco-2012"
+  title: "It's Not How Good Your App Is, It's How Good You Want It to Be"
+  raw_title: "Josh Kalderimis - It's Not How Good Your App Is, It's How Good You Want It to Be - BaRuCo 2012"
+  speakers:
+    - Josh Kalderimis
+  event_name: "Barcelona Ruby Conf 2012"
+  date: "2012-09-08"
+  published_at: "2020-12-02"
+  description: |-
+    This talk is part story, part code, and part mustache. Travis CI is a distributed continuous integration system running over 7,000 tests daily. For us to get a true insight into what is going on behind the scenes we have had to come a long way by integrating and building both tools and libraries so that Travis and its many parts are not just a black box of information. Reading logs and using NewRelic is not new, but far from enough, especially when it comes to apps which are composed of many smaller apps, like Travis. How do you track and visualize requests being processed by multiple services? How do you silence verbose logs while not losing the core of the message? And how do you aggregate, visualize and share metrics? A lot of how we track, manage, and visualize what is going on in Travis has been created as a set of internal tools and by using a range of awesome services, but core to a lot of this is ActiveSupport Notifications and Travis Instrumentation. This session will give insight to how Travis is composed and connected, as well as shedding light on how simple it can be to gain more visibility into even a complex, distributed system like Travis, as well as your applications too.
+  video_provider: "youtube"
+  video_id: "_Wz5GlyxyFw"
+
+- id: "anthony-eden-baruco-2012"
+  title: "Life Beyond HTTP"
+  raw_title: "Anthony Eden - Life Beyond HTTP - BaRuCo 2012"
+  speakers:
+    - Anthony Eden
+  event_name: "Barcelona Ruby Conf 2012"
+  date: "2012-09-08"
+  published_at: "2020-12-02"
+  description: |-
+    Attention all rubyists, there is a world of protocols for you to experience beyond HTTP. In this talk I'll introduce you to some of them, including the one I'm most passionate about: DNS. I'll provide you with some examples of how to use existing libraries to talk various protocols using Ruby and maybe even get into some low-level bit slinging. We'll have a grand old time geeking out and in the end you might just find a protocol that you can fall in love with other than HTTP.
+  video_provider: "youtube"
+  video_id: "8b0MyL3xunw"
+
+- id: "konstantin-haase-baruco-2012"
+  title: "Message in a Bottle"
+  raw_title: "Konstantin Haase - Message in a Bottle - BaRuCo 2012"
+  speakers:
+    - Konstantin Haase
+  event_name: "Barcelona Ruby Conf 2012"
+  date: "2012-09-09"
+  published_at: "2020-12-02"
+  description: |-
+    What does really happen when we call a method? How do the different Ruby implementations actually figure out what code to execute? What plumbing is going on under the hood to get a speedy dispatch? In this talk we will have a look at the internals of the the major Ruby implementations, focusing on their dispatch. From look-up tables and call site caches, to inlining and what on earth is invokedynamic? Fear not, all will be explained!
+  video_provider: "youtube"
+  video_id: "UDTYs195BHM"
+
+- id: "fred-george-baruco-2012"
+  title: "Micro-Service Architecture"
+  raw_title: "Fred George - Micro-Service Architecture - BaRuCo 2012"
+  speakers:
+    - Fred George
+  event_name: "Barcelona Ruby Conf 2012"
+  date: "2012-09-09"
+  published_at: "2020-12-03"
+  description: |-
+    SOA, service-oriented architectures, burst on the scene in the new millennium as the latest technology to support application growth. In concert with the Web, SOA ushered in new paradigms for structuring enterprise applications. At the Forward Internet Group in London, we are implementing SOA in unusual ways. Rather than a few, business-related services being implemented per the original vision, we have developed systems made of myriads of very small, usually short-lived services. In this workshop, we will start by exploring the evolution of SOA implementations by the speaker. In particular, lessons learned from each implementation will be discussed, and re-application of these lessons on the next implementation. Challenges (and even failures) will be explicitly identified. We will arrive at a model of the current systems: An environment of very small services that are loosely coupled into a complex system. We explore the demise of acceptance tests in this complex environment, and the clever replacement of business metrics in their stead. Finally, we will conclude with the surprising programmer development process impacts of this architecture. Indeed, bedrock principles of Agile have been rendered unnecessary, something that equally surprised us.
+  video_provider: "youtube"
+  video_id: "mK2rqaEjVq4"
+
+- id: "michal-taszycki-baruco-2012"
+  title: "Programming Workout"
+  raw_title: "Michal Taszycki - Programming Workout - BaRuCo 2012"
+  speakers:
+    - Michał Taszycki
+  event_name: "Barcelona Ruby Conf 2012"
+  date: "2012-09-09"
+  published_at: "2020-12-02"
+  description: |-
+    Our tools are becoming ever more efficient... Command line tools are becoming obsolete... Programmers today don't need to touch-type... Using the mouse to copy and paste is perfectly fine... You can always look up those design patterns on the web... Your IDE can do many things for you, so why do you even need to think? Can you feel it? Can you feel that this is TRUE? Then stop being UNPROFESSIONAL and think again! In this talk, I'm going to convince you that learning seemingly obsolete skills can have huge impact on your productivity. I will show you how these skills and other seemingly unimportant factors can impact your career. I will help you find ways to improve these skills in order to become a better programmer. I will also show you tools that can facilitate this process. In other words, I will show you how programmers WORK OUT. You will either leave this talk with a strong resolution to level up, or curl up in your comfort zone with your lovely mouse and IDE.
+  video_provider: "youtube"
+  video_id: "sqIz261GBw4"
+
+- id: "dirkjan-bussink-baruco-2012"
+  title: "Rubinius - Tales from the Trenches of Developing a Ruby Implementation"
+  raw_title: "Dirkjan Bussink - Rubinius: Tales from the Trenches - BaRuCo 2012"
+  speakers:
+    - Dirkjan Bussink
+  event_name: "Barcelona Ruby Conf 2012"
+  date: "2012-09-09"
+  published_at: "2020-12-02"
+  description: |-
+    Programming is hard, so writing a programming language is hard too. If you think that your users are good at finding and creating weird edge cases, just wait until programmers are using your code. I'll be discussing some of the dumbest, unexpected, trickiest and weirded cases that we've encountered when implementing Rubinius. No shaming people here, some of the most interesting ones were us (ok, me) being stupid.
+  video_provider: "youtube"
+  video_id: "Qb2h04K0pgw"
+
+- id: "tammer-saleh-randall-thomas-baruco-2012"
+  title: "RubyMotion for Faster Client/Server Development"
+  raw_title: "Tammer Saleh & Randall Thomas - RubyMotion for Faster Client/Server Development - BaRuCo 2012"
+  speakers:
+    - Tammer Saleh
+    - Randall Thomas
+  event_name: "Barcelona Ruby Conf 2012"
+  date: "2012-09-09"
+  published_at: "2020-12-02"
+  description: |-
+    The founders of Thunderbolt Labs will take you through the process of writing a RubyMotion iOS application that interfaces seamlessly with a backend Rails API. They'll explore all of the modern iOS techniques through RubyMotion, while using Storyboards, Bundler, and pulling data from a JSON API. In the process, they'll discuss the merits and pitfalls of using RubyMotion, and when it is and isn't appropriate for your project.
+  video_provider: "youtube"
+  video_id: "_anf8D8SFVY"
+
+- id: "elise-huard-baruco-2012"
+  title: "Tracing Your Way Through Ruby"
+  raw_title: "Elise Huard - Tracing Your Way Through Ruby - BaRuCo 2012"
+  speakers:
+    - Elise Huard
+  event_name: "Barcelona Ruby Conf 2012"
+  date: "2012-09-09"
+  published_at: "2020-12-02"
+  description: |-
+    When a ruby program gets awfully slow and you don't know why, or you have a segfault out of the blue, or your memory usage is strangely high, it's time to open other drawers of the toolbox. This talk presents an overview of the most interesting tools which allow us to have an insight in what's happening in ruby when we run a program. To name but a few: perftools.rb, dtrace, instruments, and debugging the ruby code itself. Standing on the shoulders of giant: it works.
+  video_provider: "youtube"
+  video_id: "XPLRELNaPwM"
+
+- id: "alex-koppel-baruco-2012"
+  title: "Uniformity Ain't All Bad: Getting Consistent Behavior Across Your API"
+  raw_title: "Alex Koppel - Uniformity Ain't All Bad - BaRuCo 2012"
+  speakers:
+    - Alex Koppel
+  event_name: "Barcelona Ruby Conf 2012"
+  date: "2012-09-09"
+  published_at: "2020-12-02"
+  description: |-
+    We all love API-based applications. By letting the server focus on data handling and leaving presentation to the clients, you can create remarkably flexible applications across a variety of platforms. Best of all, you can even open your app to your fellow developers. The more clients you add, though, the more varied the requests and needs of your users become, and the more important -- and difficult -- it is to keep everything consistent. In this talk, I'll review approaches you can take to easily and maintainably standardize... * What data you fetch: letting clients manage limits, filters, sorting, etc. for all their queries -- very useful when different clients have different needs, for instance mobile v. desktop. * How you present that data: allowing control over the level of response detail and other options, as well as handling response formats, exceptions, etc. in a standard way. * How you secure your data: making sure that you don't accidentally send clients data they're not allowed to view -- an additional centralized layer on top of your other security. We'll review plenty of code samples, along with advantages and disadvantages of each approach.
+  video_provider: "youtube"
+  video_id: "mBbtNhWCsNs"
+
+- id: "zach-holman-baruco-2012"
+  title: "Unsucking Your Team's Development Environment"
+  raw_title: "Zach Holman - Unsucking Your Team's Development Environment - BaRuCo 2012"
+  speakers:
+    - Zach Holman
+  event_name: "Barcelona Ruby Conf 2012"
+  date: "2012-09-09"
+  published_at: "2020-12-02"
+  description: |-
+    Success can bring many glamorous changes to your company: hiring more employees, getting free coffee, and giving everyone a private jet filled with cash and endangered African predatory cats. Success can lead to less-glamorous problems, though. As you grow, your team's development environment becomes really important. How long does it take to clone, set up, and boot your apps? Can your employees still be productive on an aging codebase? How can you automate CI, hooks, and other setup for new projects? Is any of this fun anymore? GitHub ran into these problems as we expanded our team tremendously over the last two years. Let's look at some of the ways we've improved our employees' development environments.
+  video_provider: "youtube"
+  video_id: "H3AdJWueSZM"

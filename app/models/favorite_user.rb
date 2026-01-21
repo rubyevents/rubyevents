@@ -24,4 +24,12 @@ class FavoriteUser < ApplicationRecord
   belongs_to :favorite_user, class_name: "User"
 
   validates :user, comparison: {other_than: :favorite_user}
+
+  def self.recommendations_for(user)
+    user
+      .watched_talks
+      .includes(talk: :speakers)
+      .limit(6)
+      .flat_map { |wt| wt.talk.speakers }
+  end
 end

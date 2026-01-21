@@ -52,13 +52,22 @@ if google_api_key.present?
 elsif Rails.env.development?
   git_name = `git config user.name 2>/dev/null`.strip.presence
 
-  raise "Nominatim requires contact info. Please set your git user.name" unless git_name
+  # Fallback to a generic name if git user.name is not set
+  # which is common when first building a devcontainer
+  anonymous_user = "RubyEvents DevWithNoGitNameConfigured" if git_name.blank?
+
+  # Nominatim usage policy requires a valid User-Agent identifying the application
+  # and a way to contact the application maintainer
+  # https://operations.osmfoundation.org/policies/nominatim/
+
+  # Please set your git user.name or modify the anonymous_user string above
+  Rails.logger.error "Nominatim requires contact info. Please set your git user.name."
 
   Geocoder.configure(
     lookup: :nominatim,
     timeout: 5,
     use_https: true,
     cache: GeocoderCacheStore.new,
-    http_headers: {"User-Agent" => git_name}
+    http_headers: {"User-Agent" => git_name || anonymous_user}
   )
 end

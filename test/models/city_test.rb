@@ -321,4 +321,73 @@ class CityTest < ActiveSupport::TestCase
 
     assert_equal "London, England, United Kingdom", location.to_text
   end
+
+  test "#sync_aliases_from_list creates aliases" do
+    city = create_city(name: "Zürich", country_code: "CH", state_code: "ZH")
+
+    city.sync_aliases_from_list(["zurich", "zrh"])
+
+    city_aliases = Alias.where(aliasable_type: "City", aliasable_id: city.id)
+
+    assert_equal 2, city_aliases.count
+    assert city_aliases.exists?(name: "zurich")
+    assert city_aliases.exists?(name: "zrh")
+  end
+
+  test "#sync_aliases_from_list does not create duplicate aliases" do
+    city = create_city(name: "Zürich", country_code: "CH", state_code: "ZH")
+
+    city.sync_aliases_from_list(["zurich"])
+    city.sync_aliases_from_list(["zurich", "zrh"])
+
+    city_aliases = Alias.where(aliasable_type: "City", aliasable_id: city.id)
+
+    assert_equal 2, city_aliases.count
+  end
+
+  test ".find_by_alias finds city by alias name" do
+    city = create_city(name: "Zürich", country_code: "CH", state_code: "ZH")
+    city.sync_aliases_from_list(["zurich", "zrh"])
+
+    found = City.find_by_alias("zurich", country_code: "CH")
+
+    assert_equal city, found
+  end
+
+  test ".find_by_alias finds city by alias name case-insensitively" do
+    city = create_city(name: "Zürich", country_code: "CH", state_code: "ZH")
+    city.sync_aliases_from_list(["zurich"])
+
+    found = City.find_by_alias("ZURICH", country_code: "CH")
+
+    assert_equal city, found
+  end
+
+  test ".find_by_alias returns nil for wrong country" do
+    city = create_city(name: "Zürich", country_code: "CH", state_code: "ZH")
+    city.sync_aliases_from_list(["zurich"])
+
+    found = City.find_by_alias("zurich", country_code: "DE")
+
+    assert_nil found
+  end
+
+  test ".find_for finds city by alias" do
+    city = create_city(name: "Zürich", country_code: "CH", state_code: "ZH")
+    city.sync_aliases_from_list(["zurich"])
+
+    found = City.find_for(city: "zurich", country_code: "CH")
+
+    assert_equal city, found
+  end
+
+  test ".find_or_create_for returns existing city when searching by alias" do
+    city = create_city(name: "Zürich", country_code: "CH", state_code: "ZH")
+    city.sync_aliases_from_list(["zurich"])
+
+    found = City.find_or_create_for(city: "Zurich", country_code: "CH")
+
+    assert_equal city, found
+    assert_equal 1, City.where(country_code: "CH").count
+  end
 end

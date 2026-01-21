@@ -14,8 +14,8 @@
 sync-interval: 10m
 
 snapshot:
-  interval: 1h
-  retention: 360h # 15 days
+  interval: 24h
+  retention: 72h # 3 days
 
 dbs:
   # production
@@ -23,41 +23,8 @@ dbs:
     replicas:
       - type: s3
         endpoint: $LITESTREAM_ENDPOINT
-        bucket: rubyvideo-production
+        bucket: rubyevents-production
         path: storage/production_rubyvideo.sqlite3
-        access-key-id: $LITESTREAM_ACCESS_KEY_ID
-        secret-access-key: $LITESTREAM_SECRET_ACCESS_KEY
-        retention: 24h # How long to keep WAL files on replica
-        retention-check-interval: 1h
-
-  # - path: storage/production_rubyvideo.sqlite3
-  #   replicas:
-  #     - type: s3
-  #       bucket: $LITESTREAM_REPLICA_BUCKET
-  #       path: storage/production_rubyvideo.sqlite3
-  #       access-key-id: $LITESTREAM_ACCESS_KEY_ID
-  #       secret-access-key: $LITESTREAM_SECRET_ACCESS_KEY
-  # - path: storage/production_rubyvideo-cache.sqlite3
-  #   replicas:
-  #     - type: s3
-  #       bucket: $LITESTREAM_REPLICA_BUCKET
-  #       path: storage/production_rubyvideo-cache.sqlite3
-  #       access-key-id: $LITESTREAM_ACCESS_KEY_ID
-  #       secret-access-key: $LITESTREAM_SECRET_ACCESS_KEY
-  # - path: storage/production_rubyvideo-queue.sqlite3
-  #   replicas:
-  #     - type: s3
-  #       bucket: $LITESTREAM_REPLICA_BUCKET
-  #       path: storage/production_rubyvideo-queue.sqlite3
-  #       access-key-id: $LITESTREAM_ACCESS_KEY_ID
-  #       secret-access-key: $LITESTREAM_SECRET_ACCESS_KEY
-  # staging
-  - path: /rails/storage/staging_rubyvideo.sqlite3
-    replicas:
-      - type: s3
-        endpoint: $LITESTREAM_ENDPOINT
-        bucket: rubyvideo-staging
-        path: storage/staging_rubyvideo.sqlite3
         access-key-id: $LITESTREAM_ACCESS_KEY_ID
         secret-access-key: $LITESTREAM_SECRET_ACCESS_KEY
         retention: 24h # How long to keep WAL files on replica
