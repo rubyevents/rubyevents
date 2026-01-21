@@ -32,6 +32,9 @@ application.register("hover-card", HoverCardController)
 import EventListController from "./event_list_controller"
 application.register("event-list", EventListController)
 
+import EventsViewSwitcherController from "./events_view_switcher_controller"
+application.register("events-view-switcher", EventsViewSwitcherController)
+
 import GeolocationController from "./geolocation_controller"
 application.register("geolocation", GeolocationController)
 
