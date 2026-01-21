@@ -233,11 +233,11 @@ class City < ApplicationRecord
   end
 
   def events_count
-    @events_count ||= events.count
+    @events_count ||= events.size
   end
 
   def users_count
-    @users_count ||= users.count
+    @users_count ||= users.size
   end
 
   def feature!
