@@ -43,6 +43,7 @@ class Event < ApplicationRecord
   include Geocodeable
   include Suggestable
   include Sluggable
+  include Todoable
   include Event::TypesenseSearchable
 
   geocodeable :location_and_country_code
@@ -342,5 +343,15 @@ class Event < ApplicationRecord
       featured_color: static_metadata.featured_color,
       url: Router.event_url(self, host: "#{request.protocol}#{request.host}:#{request.port}")
     }
+  end
+
+  private
+
+  def todos_data_path
+    Rails.root.join("data", series.slug, slug)
+  end
+
+  def todos_file_prefix
+    "#{series.slug}/#{slug}"
   end
 end
