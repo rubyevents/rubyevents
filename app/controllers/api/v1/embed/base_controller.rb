@@ -59,6 +59,14 @@ module Api
         rescue
           nil
         end
+
+        def event_banner_url(event)
+          return nil unless event&.banner_image_path
+
+          Router.image_path(event.banner_image_path, host: request.base_url)
+        rescue
+          nil
+        end
       end
     end
   end

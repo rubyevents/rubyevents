@@ -39,15 +39,16 @@ module Api
             website: user.website,
             upcoming_events_count: upcoming_events_scope.count,
             upcoming_events: upcoming_events.map { |participation|
+              event = participation.event
               {
-                name: participation.event.name,
-                slug: participation.event.slug,
-                date: participation.event.start_date&.iso8601,
-                end_date: participation.event.end_date&.iso8601,
-                location: participation.event.location,
+                name: event.name,
+                slug: event.slug,
+                date: event.start_date&.iso8601,
+                end_date: event.end_date&.iso8601,
+                location: event.location,
                 attended_as: participation.attended_as,
-                avatar_url: participation.event.avatar_url,
-                featured_background: participation.event.static_metadata&.featured_background
+                avatar_url: event_avatar_url(event),
+                featured_background: event.static_metadata&.featured_background
               }
             }
           }

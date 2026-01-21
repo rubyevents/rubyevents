@@ -46,8 +46,8 @@ module Api
             kind: event.kind,
             website: event.website,
             url: Router.event_url(event, host: request.base_url),
-            avatar_url: event.avatar_url,
-            banner_url: event.banner_url,
+            avatar_url: event_avatar_url(event),
+            banner_url: event_banner_url(event),
             featured_background: event.static_metadata&.featured_background,
             featured_color: event.static_metadata&.featured_color,
             talks_count: event.talks_count,
@@ -115,8 +115,8 @@ module Api
             start_date: event.start_date&.iso8601,
             end_date: event.end_date&.iso8601,
             url: Router.event_url(event, host: request.base_url),
-            avatar_url: event.avatar_url,
-            banner_url: event.banner_url,
+            avatar_url: event_avatar_url(event),
+            banner_url: event_banner_url(event),
             featured_background: event.static_metadata&.featured_background,
             featured_color: event.static_metadata&.featured_color
           }

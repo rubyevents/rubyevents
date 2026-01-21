@@ -14,9 +14,12 @@ module Api
         end
 
         def show
-          speaker = User.with_talks.find_by_slug_or_alias(params[:slug])
-          speaker ||= User.with_talks.find_by_github_handle(params[:slug])
-          raise ActiveRecord::RecordNotFound, "Speaker not found" unless speaker
+          speaker = User.includes(:talks).find_by_slug_or_alias(params[:slug])
+          speaker = User.includes(:talks).find_by_github_handle(params[:slug]) unless speaker.present?
+
+          unless speaker.present?
+            return render json: {error: "Not found"}, status: :not_found
+          end
 
           render json: {
             name: speaker.name,
@@ -44,7 +47,7 @@ module Api
                 slug: event.slug,
                 date: event.start_date&.iso8601,
                 location: event.location,
-                avatar_url: event.avatar_url,
+                avatar_url: event_avatar_url(event),
                 featured_background: event.static_metadata&.featured_background
               }
             }

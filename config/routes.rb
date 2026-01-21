@@ -336,6 +336,7 @@ Rails.application.routes.draw do
         resources :talks, only: [:index, :show], param: :slug
         resources :speakers, only: [:index, :show], param: :slug
         resources :profiles, only: [:index, :show], param: :slug
+        resources :topics, only: [:show], param: :slug
         resources :stickers, only: [:show], param: :slug
         resources :stamps, only: [:show], param: :slug
         resources :events, only: [:index, :show], param: :slug do
