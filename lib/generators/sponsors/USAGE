@@ -1,0 +1,12 @@
+Description:
+    Generate a sponsors.yml file for an event series and event.
+    Provide sponsor names and tiers as arguments in the format "Name:Tier".
+    The first tier listed will be considered the highest tier.
+
+Example:
+    bin/rails generate sponsors typesense:Platinum AppSignal:Gold JetRockets:Gold
+      "Planet Argon:Silver" --event-series tropicalrb --event tropical-on-rails-2026
+
+    This will create:
+        /data/tropicalrb/tropical-on-rails-2026/sponsors.yml
+    with the sponsors organized into tiers accordingly.

@@ -23,13 +23,13 @@ All permitted fields are defined in [CFPSchema.](/app/schemas/cfp_schema.rb)
 
 Generate a CFP using the CfpGenerator!
 
-```
+```bash
 bin/rails g cfp --event-series=blue-ridge-ruby --event=blue-ridge-ruby-2026 --name="Call for Proposals" --link=https://blueridgeruby.com/cfp --start-date=2025-12-15 --end-date=2026-02-03
 ```
 
 Check the usage instructions using help.
 
-```
+```bash
 bin/rails g cfp --help
 ```
 
