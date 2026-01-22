@@ -1,3 +1,26 @@
+# == Schema Information
+#
+# Table name: cities
+# Database name: primary
+#
+#  id               :integer          not null, primary key
+#  country_code     :string           not null, indexed => [name, state_code]
+#  featured         :boolean          default(FALSE), not null, indexed
+#  geocode_metadata :json             not null
+#  latitude         :decimal(10, 6)
+#  longitude        :decimal(10, 6)
+#  name             :string           not null, indexed => [country_code, state_code]
+#  slug             :string           not null, uniquely indexed
+#  state_code       :string           indexed => [name, country_code]
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
+# Indexes
+#
+#  index_cities_on_featured                              (featured)
+#  index_cities_on_name_and_country_code_and_state_code  (name,country_code,state_code)
+#  index_cities_on_slug                                  (slug) UNIQUE
+#
 amsterdam:
   name: "Amsterdam"
   slug: "amsterdam"
