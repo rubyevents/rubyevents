@@ -1,11 +1,15 @@
 <% content_for :head do %>
-  <%= auto_discovery_link_tag :rss, feed_announcements_url(format: :rss), title: "RubyEvents.org Announcements" %>
+  <% if @current_tag.present? %>
+    <%= auto_discovery_link_tag :rss, feed_announcements_url(format: :rss, tag: @current_tag), title: "RubyEvents.org Announcements - #{@current_tag}" %>
+  <% else %>
+    <%= auto_discovery_link_tag :rss, feed_announcements_url(format: :rss), title: "RubyEvents.org Announcements" %>
+  <% end %>
 <% end %>
 
 <div class="container py-8">
   <div class="flex items-center justify-between mb-8">
     <h1 class="title text-primary">Announcements</h1>
-    <%= link_to feed_announcements_path(format: :rss), class: "btn btn-ghost btn-sm gap-2", title: "RSS Feed", target: "_blank" do %>
+    <%= link_to feed_announcements_path(format: :rss, tag: @current_tag.presence), class: "btn btn-ghost btn-sm gap-2", title: "RSS Feed", target: "_blank" do %>
       <%= inline_svg_tag "icons/fontawesome/rss-solid.svg", class: "size-4" %>
     <% end %>
   </div>

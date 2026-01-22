@@ -25,7 +25,10 @@ class AnnouncementsController < ApplicationController
   end
 
   def feed
-    @announcements = Announcement.published.first(20)
+    @current_tag = params[:tag]
+    announcements = Announcement.published
+    announcements = announcements.by_tag(@current_tag) if @current_tag.present?
+    @announcements = announcements.first(20)
 
     respond_to do |format|
       format.rss { render layout: false }
