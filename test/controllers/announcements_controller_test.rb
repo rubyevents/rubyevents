@@ -18,4 +18,10 @@ class AnnouncementsControllerTest < ActionDispatch::IntegrationTest
     get announcement_path("nonexistent-slug")
     assert_response :not_found
   end
+
+  test "feed returns RSS" do
+    get feed_announcements_path(format: :rss)
+    assert_response :success
+    assert_equal "application/rss+xml; charset=utf-8", response.content_type
+  end
 end

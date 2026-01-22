@@ -21,6 +21,14 @@ class AnnouncementsController < ApplicationController
     )
   end
 
+  def feed
+    @announcements = Announcement.published.first(20)
+
+    respond_to do |format|
+      format.rss { render layout: false }
+    end
+  end
+
   private
 
   def page_number
