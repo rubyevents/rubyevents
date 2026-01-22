@@ -7,7 +7,7 @@ instructions: "Instructions for getting to the venue - Optional"
 url: "Venue website url - Optional"
 
 address:
-  street: "<%= @geocoded_address.address %>"
+  street: "<%= @geocoded_address.street_address %>"
   city: "<%= @geocoded_address.city %>"
   region: "<%= @geocoded_address.state %>"
   postal_code: "<%= @geocoded_address.postal_code %>"
