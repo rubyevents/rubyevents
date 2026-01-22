@@ -1,0 +1,60 @@
+<div class="container py-8">
+  <div class="flex items-center justify-between mb-8">
+    <h1 class="title text-primary">Announcements</h1>
+  </div>
+
+  <div class="flex flex-col gap-8">
+    <% @announcements.each do |announcement| %>
+      <article class="card bg-base-100 shadow-sm border border-base-200">
+        <div class="card-body">
+          <div class="flex flex-col gap-2">
+            <div class="flex items-center gap-2 text-sm text-gray-500">
+              <time datetime="<%= announcement.date.iso8601 %>"><%= announcement.formatted_date %></time>
+              <% if announcement.author_user %>
+                <span>•</span>
+                <%= link_to profile_path(announcement.author_user), class: "hover:underline" do %>
+                  @<%= announcement.author %>
+                <% end %>
+              <% elsif announcement.author.present? %>
+                <span>•</span>
+                <span><%= announcement.author %></span>
+              <% end %>
+            </div>
+
+            <h2 class="card-title">
+              <%= link_to announcement.title, announcement_path(announcement), class: "hover:underline" %>
+            </h2>
+
+            <% if announcement.excerpt.present? %>
+              <p class="text-gray-600"><%= announcement.excerpt %></p>
+            <% end %>
+
+            <% if announcement.tags.any? %>
+              <div class="flex flex-wrap gap-2 mt-2">
+                <% announcement.tags.each do |tag| %>
+                  <span class="badge badge-ghost hover:bg-gray-300 px-2 py-3 text-xs"><%= tag %></span>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="card-actions justify-end mt-4">
+            <%= link_to "Read more →", announcement_path(announcement), class: "text-primary hover:underline" %>
+          </div>
+        </div>
+      </article>
+    <% end %>
+  </div>
+
+  <% if @announcements.empty? %>
+    <div class="text-center py-12 text-gray-500">
+      No announcements yet.
+    </div>
+  <% end %>
+
+  <% if @pagy.pages > 1 %>
+    <div class="flex w-full mt-8 justify-center">
+      <%== pagy_nav(@pagy) %>
+    </div>
+  <% end %>
+</div>
