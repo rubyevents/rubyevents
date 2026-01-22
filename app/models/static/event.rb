@@ -379,6 +379,7 @@ module Static
 
       require "public_suffix"
 
+      organisation_ids = []
       event.sponsors_file.file.each do |sponsors|
         sponsors["tiers"].each do |tier|
           tier["sponsors"].each do |sponsor|
@@ -414,10 +415,13 @@ module Static
 
             s.save!
 
+            organisation_ids << s.id
+
             event.sponsors.find_or_create_by!(organization: s, event: event).update!(tier: tier["name"], badge: sponsor["badge"])
           end
         end
       end
+      event.sponsors.where.not(organization_id: organisation_ids).destroy_all
     end
 
     def import_involvements!(event)
