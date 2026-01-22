@@ -1,6 +1,29 @@
 class Announcement
   CONTENT_PATH = Rails.root.join("content", "announcements")
 
+  # Collection class for chainable filtering
+  class Collection < Array
+    def published
+      Collection.new(select(&:published?))
+    end
+
+    def by_tag(tag)
+      Collection.new(select { |a| a.tags.map(&:downcase).include?(tag.downcase) })
+    end
+
+    def all_tags
+      flat_map(&:tags).uniq.sort
+    end
+
+    def find_by_slug(slug)
+      find { |a| a.slug == slug }
+    end
+
+    def find_by_slug!(slug)
+      find_by_slug(slug) || raise(ActiveRecord::RecordNotFound, "Announcement not found: #{slug}")
+    end
+  end
+
   attr_reader :title, :slug, :date, :author, :published, :excerpt, :tags, :featured_image, :content, :file_path
 
   def initialize(attributes = {})
@@ -24,15 +47,15 @@ class Announcement
     end
 
     def published
-      all.select(&:published?)
+      all.published
     end
 
     def by_tag(tag)
-      all.select { |a| a.tags.map(&:downcase).include?(tag.downcase) }
+      all.by_tag(tag)
     end
 
     def all_tags
-      all.flat_map(&:tags).uniq.sort
+      all.all_tags
     end
 
     def find_by_slug(slug)
@@ -51,11 +74,13 @@ class Announcement
     private
 
     def load_all
-      return [] unless CONTENT_PATH.exist?
+      return Collection.new unless CONTENT_PATH.exist?
 
-      Dir.glob(CONTENT_PATH.join("*.md")).map do |file_path|
+      announcements = Dir.glob(CONTENT_PATH.join("*.md")).map do |file_path|
         parse_file(file_path)
       end.compact.sort_by(&:date).reverse
+
+      Collection.new(announcements)
     end
 
     def parse_file(file_path)
