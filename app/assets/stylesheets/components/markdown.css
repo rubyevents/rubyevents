@@ -28,10 +28,119 @@
 
     ol {
       @apply mb-4;
+      li {
+        @apply ml-6 list-decimal;
+      }
     }
 
     a {
       @apply text-primary;
+    }
+
+    /* Tables */
+    table {
+      @apply w-full border-collapse mb-4;
+    }
+
+    th,
+    td {
+      @apply border border-base-300 px-4 py-2 text-left;
+    }
+
+    th {
+      @apply bg-base-200 font-semibold;
+    }
+
+    tr:nth-child(even) {
+      @apply bg-base-200/50;
+    }
+
+    /* Code blocks - override prose styles */
+    pre {
+      @apply rounded-lg p-4 mb-4 overflow-x-auto text-sm;
+      color: #24292e !important;
+    }
+
+    pre.highlight {
+      @apply bg-[#f6f8fa] border border-base-300;
+    }
+
+    pre code {
+      @apply text-sm;
+      color: inherit !important;
+      background: transparent !important;
+    }
+
+    /* Inline code */
+    :not(pre) > code {
+      @apply bg-base-200 px-1.5 py-0.5 rounded text-sm;
+      color: #24292e !important;
+    }
+
+    /* Rouge syntax highlighting - GitHub-like theme */
+    .highlight {
+      .c,
+      .c1,
+      .cm {
+        color: #6a737d;
+        font-style: italic;
+      } /* Comments */
+      .k,
+      .kd,
+      .kn,
+      .kp,
+      .kr,
+      .kt {
+        color: #d73a49;
+      } /* Keywords */
+      .s,
+      .s1,
+      .s2,
+      .sb,
+      .sc,
+      .sd,
+      .se,
+      .sh,
+      .si,
+      .sx {
+        color: #032f62;
+      } /* Strings */
+      .n,
+      .na,
+      .nb,
+      .nc,
+      .nd,
+      .ne,
+      .nf,
+      .ni,
+      .nl,
+      .nn,
+      .no,
+      .nt,
+      .nv {
+        color: #6f42c1;
+      } /* Names */
+      .mi,
+      .mf,
+      .mh,
+      .mo,
+      .il {
+        color: #005cc5;
+      } /* Numbers */
+      .o,
+      .ow {
+        color: #d73a49;
+      } /* Operators */
+      .p {
+        color: #24292e;
+      } /* Punctuation */
+      .cp {
+        color: #d73a49;
+      } /* Preprocessor */
+      .err {
+        color: #b31d28;
+        background-color: #ffeef0;
+      } /* Errors */
     }
   }
 }
