@@ -33,7 +33,9 @@
         <% if @announcement.tags.any? %>
           <div class="flex flex-wrap gap-2 mt-4">
             <% @announcement.tags.each do |tag| %>
-              <span class="badge badge-outline"><%= tag %></span>
+              <%= link_to announcements_path(tag: tag), class: "badge badge-outline hover:badge-primary transition-colors" do %>
+                <%= tag %>
+              <% end %>
             <% end %>
           </div>
         <% end %>

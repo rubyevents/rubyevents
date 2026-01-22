@@ -5,6 +5,12 @@ class AnnouncementsController < ApplicationController
 
   def index
     announcements = can_view_draft_articles? ? Announcement.all : Announcement.published
+    @current_tag = params[:tag]
+
+    if @current_tag.present?
+      announcements = announcements.select { |a| a.tags.map(&:downcase).include?(@current_tag.downcase) }
+    end
+
     @pagy, @announcements = pagy_array(announcements, limit: 10, page: page_number)
   end
 

@@ -27,6 +27,14 @@ class Announcement
       all.select(&:published?)
     end
 
+    def by_tag(tag)
+      all.select { |a| a.tags.map(&:downcase).include?(tag.downcase) }
+    end
+
+    def all_tags
+      all.flat_map(&:tags).uniq.sort
+    end
+
     def find_by_slug(slug)
       all.find { |a| a.slug == slug }
     end
