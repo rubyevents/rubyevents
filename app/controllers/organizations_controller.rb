@@ -70,7 +70,7 @@ class OrganizationsController < ApplicationController
   end
 
   def set_organization
-    @organization = Organization.find_by(slug: params[:slug])
+    @organization = Organization.find_by_slug_or_alias(params[:slug])
 
     redirect_to organizations_path, status: :moved_permanently, notice: "Organization not found" if @organization.blank?
   end
