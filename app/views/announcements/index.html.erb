@@ -44,6 +44,9 @@
                 <span>•</span>
                 <span><%= announcement.author %></span>
               <% end %>
+              <% if !announcement.published? %>
+                <span class="badge badge-warning">Draft</span>
+              <% end %>
             </div>
 
             <h2 class="card-title">

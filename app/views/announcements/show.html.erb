@@ -28,6 +28,9 @@
           <% elsif @announcement.author.present? %>
             <div>By <%= @announcement.author %></div>
           <% end %>
+          <% if !@announcement.published? %>
+            <span class="badge badge-warning">Draft</span>
+          <% end %>
         </div>
 
         <% if @announcement.tags.any? %>
