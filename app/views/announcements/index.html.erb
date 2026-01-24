@@ -34,7 +34,7 @@
         <div class="card-body">
           <div class="flex flex-col gap-2">
             <div class="flex items-center gap-2 text-sm text-gray-500">
-              <time datetime="<%= announcement.date.iso8601 %>"><%= announcement.formatted_date %></time>
+              <time datetime="<%= announcement.date.iso8601 %>"><%= I18n.l(announcement.date, default: "") %></time>
               <% if announcement.author_user %>
                 <span>•</span>
                 <%= link_to profile_path(announcement.author_user), class: "hover:underline" do %>
