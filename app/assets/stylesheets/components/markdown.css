@@ -57,12 +57,12 @@
 
     /* Code blocks - override prose styles */
     pre {
-      @apply rounded-lg p-4 mb-4 overflow-x-auto text-sm;
+      @apply rounded-sm p-4 mb-4 overflow-x-auto text-base bg-base-200;
       color: #24292e !important;
     }
 
     pre.highlight {
-      @apply bg-[#f6f8fa] border border-base-300;
+      @apply bg-base-200;
     }
 
     pre code {
