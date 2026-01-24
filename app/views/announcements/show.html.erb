@@ -1,5 +1,5 @@
 <% content_for :head do %>
-  <script type="module" src="https://www.rubyevents.org/embed.js"></script>
+  <!-- TODO ADD Rubyevents webcomponents script here -->
 <% end %>
 
 <div class="container my-8">
@@ -13,7 +13,7 @@
         <h1 class="text-4xl font-bold text-primary mb-4"><%= @announcement.title %></h1>
 
         <div class="flex flex-wrap items-center gap-4 text-gray-500">
-          <time datetime="<%= @announcement.date.iso8601 %>"><%= @announcement.formatted_date %></time>
+          <time datetime="<%= @announcement.date.iso8601 %>"><%= I18n.l(@announcement.date, default: "") %></time>
 
           <% if @announcement.author_user %>
             <div class="flex items-center gap-2">
