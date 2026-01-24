@@ -3,7 +3,7 @@ title: "Introducing Web Components for RubyEvents.org"
 slug: introducing-web-components
 date: 2026-01-21
 author: marcoroth
-published: true
+published: false
 excerpt: "Speakers and organizers can now embed parts of RubyEvents.org on their own websites using simple web components. Display talks, speakers, events, and more with just a single HTML tag!"
 tags:
   - feature
