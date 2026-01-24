@@ -43,8 +43,7 @@ class AnnouncementsController < ApplicationController
   end
 
   def can_view_draft_articles?
-    Current.user&.admin? || params[:preview] == "true"
-    # Current.user&.admin? || Rails.env.development? || params[:preview] == "true"
+    Current.user&.admin? || Rails.env.development? || params[:preview] == "true"
   end
 
   helper_method :permitted_params
