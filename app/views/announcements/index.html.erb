@@ -10,7 +10,7 @@
   <div class="flex items-center justify-between mb-8">
     <h1 class="title text-primary">Announcements</h1>
     <%= link_to feed_announcements_path(format: :rss, tag: @current_tag.presence), class: "btn btn-ghost btn-sm gap-2", title: "RSS Feed", target: "_blank" do %>
-      <%= inline_svg_tag "icons/fontawesome/rss-solid.svg", class: "size-4" %>
+      <%= fa("rss", size: :sm) %>
     <% end %>
   </div>
 
@@ -19,10 +19,8 @@
       <span class="text-gray-500">Filtered by:</span>
       <span class="badge badge-primary gap-1">
         <%= @current_tag %>
-        <%= link_to announcements_path(**permitted_params), class: "ml-1" do %>
-          <svg xmlns="http://www.w3.org/2000/svg" class="size-3" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
-          </svg>
+        <%= link_to announcements_path(**permitted_params) do %>
+          <%= fa("xmark", size: :xs, class: "fill-white") %>
         <% end %>
       </span>
     </div>
