@@ -25,6 +25,9 @@ class Todo < Data.define(:file, :line, :column, :content)
         content: match[:content]
       )
     end
+  rescue
+    # Ignore errors we don't want to raise if the directory is not found
+    []
   end
 
   def url
