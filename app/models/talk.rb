@@ -565,7 +565,8 @@ class Talk < ApplicationRecord
   end
 
   def fetch_and_update_raw_transcript!
-    youtube_transcript = YouTube::Transcript.get(video_id)
+    transcript_client = YoutubeRb::Transcript::YouTubeTranscriptApi.new
+    youtube_transcript = transcript_client.fetch(video_id)
     transcript = talk_transcript || Talk::Transcript.new(talk: self)
 
     if youtube_transcript.present?
