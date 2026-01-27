@@ -1,4 +1,8 @@
-class SponsorsGenerator < Rails::Generators::Base
+# frozen_string_literal: true
+
+require "generators/event_base"
+
+class SponsorsGenerator < Generators::EventBase
   source_root File.expand_path("templates", __dir__)
 
   class_option :event_series, type: :string, desc: "Event series folder name", required: true, group: "Fields"

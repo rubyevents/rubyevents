@@ -4,11 +4,12 @@ This guide explains how to add venue information for conferences and events in t
 
 ## Overview
 
-Venue data is stored in YAML files within the conference/event directories. Each conference can have its own venue file that describes the event venue, hotel information, and any secondary locations.
+Venue data is stored in YAML files within the conference/event directories.
+Each conference can have its own venue file that describes the event venue, hotel information, and any secondary locations.
 
 ## File Structure
 
-Schedules are stored in YAML files at:
+Venues are stored in YAML files at:
 
 ```
 data/{series-name}/{event-name}/venue.yml
@@ -20,127 +21,42 @@ For example:
 - [`data/railsconf/railsconf-2025/venue.yml`](https://github.com/rubyevents/rubyevents/blob/main/data/railsconf/railsconf-2025/venue.yml)
 - [`data/xoruby/xoruby-atlanta-2025/venue.yml`](https://github.com/rubyevents/rubyevents/blob/main/data/xoruby/xoruby-atlanta-2025/venue.yml)
 
-## YAML Structure
+All permitted fields are defined in [VenueSchema.](/app/schemas/venue_schema.rb)
 
-### Basic Structure
+## Generation
 
-```yaml
-name: "Limelight Theate"
-address:
-  street: "349 Decatur St. SE Suite L"
-  city: "Atlanta"
-  region: "GA"
-  postal_code: "30312"
-  country: "United States"
-  country_code: "US"
-  display: "349 Decatur St. SE Suite L, Atlanta, GA 30312"
-coordinates:
-  latitude: 33.75000945024761
-  longitude: -84.37730055582303
-maps:
-  google: "https://maps.app.goo.gl/dBHgXXzjypc2XWNi7"
+Generate a venue.yml using the [VenueGenerator](/lib/generators/venue/venue_generator.rb)!
+
+```bash
+bin/rails g venue --event-series=tiny-ruby-conf --event=tiny-ruby-conf-2026 --name="Korjaamo Kino cinema" --address "Töölönkatu 51 A-B, 00250 Helsinki"
 ```
 
-## Field Descriptions
+> [!IMPORTANT]
+> The generator uses Geolocator to geocode the address, and fetch coordinates.
+> For more accurate results, set your GEOLOCATE_API_KEY in [.env](/.env) to a google api key.
+> Otherwise nominatim and open street map will be used for geolocation.
 
-### Base Fields
+There are multiple optional sections in the venue information, including locations, hotels, rooms, spaces, accessbility, and nearby.
 
-| Field          | Required | Description                           |
-| -------------- | -------- | ------------------------------------- |
-| `name`         | Yes      | Name of the venue                     |
-| `description`  | No       | Description of the venue              |
-| `instructions` | No       | Instructions for getting to the venue |
+To include or exclude these sections, pass flags to the generator.
 
-### Address Fields
+This includes all sections:
 
-| Field          | Required | Description                         |
-| -------------- | -------- | ----------------------------------- |
-| `street`       | No       | Street address                      |
-| `city`         | No       | City name                           |
-| `region`       | No       | State/Province/Region               |
-| `postal_code`  | No       | Postal/ZIP code                     |
-| `country`      | No       | Country name                        |
-| `country_code` | No       | ISO country code (e.g., 'US', 'CA') |
-| `display`      | No       | Full formatted address for display  |
-
-### Coordinates Fields
-
-| Field       | Required | Description          |
-| ----------- | -------- | -------------------- |
-| `latitude`  | Yes\*    | Latitude coordinate  |
-| `longitude` | Yes\*    | Longitude coordinate |
-
-\*Required if `coordinates` section is included
-
-### Maps Fields
-
-| Field           | Required | Description       |
-| --------------- | -------- | ----------------- |
-| `google`        | No       | Google Maps URL   |
-| `apple`         | No       | Apple Maps URL    |
-| `openstreetmap` | No       | OpenStreetMap URL |
-
-### Room Fields
-
-| Field          | Required | Description                       |
-| -------------- | -------- | --------------------------------- |
-| `name`         | Yes      | Room name                         |
-| `floor`        | No       | Floor location                    |
-| `capacity`     | No       | Room capacity                     |
-| `instructions` | No       | Instructions for finding the room |
-
-### Accessibility Fields
-
-| Field                  | Required | Description                              |
-| ---------------------- | -------- | ---------------------------------------- |
-| `wheelchair`           | No       | Wheelchair accessible (boolean)          |
-| `elevators`            | No       | Elevators available (boolean)            |
-| `accessible_restrooms` | No       | Accessible restrooms available (boolean) |
-| `notes`                | No       | Additional accessibility notes           |
-
-### Additional Location Fields
-
-You can add multiple additional locations for afterparties or events at other venues.
-
-| Field         | Required | Description                            |
-| ------------- | -------- | -------------------------------------- |
-| `name`        | Yes      | Location name                          |
-| `kind`        | No       | Type of location (e.g., 'After Party') |
-| `description` | No       | Location description                   |
-| `address`     | No       | Location address (simple string)       |
-| `distance`    | No       | Distance from main venue               |
-| `url`         | No       | Location website URL                   |
-
-**Coordinates and maps links can be added as well - see coordinates and maps fields for format**
-
-### Hotel Fields
-
-Sample template:
-
-```yaml
-hotels:
-  - name: ""
-    description: ""
-    address: ""
-    distance: ""
-    url: ""
-    coordinates:
-      latitude:
-      longitude:
-    maps:
-      google: ""
+```bash
+bin/rails g venue --event-series=tiny-ruby-conf --event=tiny-ruby-conf-2026 --name="Korjaamo Kino cinema" --address "Töölönkatu 51 A-B, 00250 Helsinki" --accessbility --hotels --nearby --locations --rooms --spaces
 ```
 
-| Field         | Required | Description                           |
-| ------------- | -------- | ------------------------------------- |
-| `name`        | Yes      | Hotel name                            |
-| `kind`        | No       | Type of hotel (e.g., 'Speaker Hotel') |
-| `description` | No       | Hotel description                     |
-| `address`     | No       | Hotel address                         |
-| `distance`    | No       | Distance from venue                   |
-| `url`         | No       | Hotel website URL                     |
+This includes only primary venue information:
 
-**Coordinates and maps links can be added as well - see coordinates and maps fields for format**
+```bash
+bin/rails g venue --event-series=tiny-ruby-conf --event=tiny-ruby-conf-2026 --name="Korjaamo Kino cinema" --address "Töölönkatu 51 A-B, 00250 Helsinki" --no-accessbility --no-hotels --no-nearby --no-locations --no-rooms --no-spaces
+```
+
+Check the usage instructions using `--help`.
+
+```bash
+bin/rails g venue --help
+```
 
 ## Step-by-Step Guide
 
@@ -157,7 +73,7 @@ ls data/{series-name}/{event}/venue.yml
 If the file doesn't exist, create it:
 
 ```bash
-touch data/{series-name}/{event}/venue.yml
+bin/rails g venue --event-series=tiny-ruby-conf --event=tiny-ruby-conf-2026 --name="Korjaamo Kino cinema" --address "Töölönkatu 51 A-B, 00250 Helsinki"
 ```
 
 ### 3. Gather Venue Information
@@ -170,31 +86,7 @@ Collect:
 
 ### 4. Structure the YAML
 
-Start with the basic structure and add any relevant location information:
-
-```yaml
----
-name:
-description:
-instructions:
-address:
-  street:
-  city:
-  region:
-  postal_code:
-  country:
-  country_code:
-  display:
-coordinates:
-  latitude:
-  longitude:
-maps:
-  google:
-  apple:
-  openstreetmap:
-```
-
-**postal_code must be a string, not a number**
+Fill in the template with all relevant information, delete any extraneous fields.
 
 ### 5. Add Optional Location Details
 
@@ -255,8 +147,6 @@ locations:
       apple:
 ```
 
-**Address here is a string, you cannot add nested values**
-
 #### Hotel information
 
 ```yaml
@@ -275,13 +165,32 @@ hotels:
       apple:
 ```
 
-### 6. Validate the YAML
+### 6. Format your yaml
 
-Ensure the YAML is properly formatted:
+Run the linter to automatically format and verify all required properties are present.
 
 ```bash
-yarn format:yml
+bin/lint
 ```
+
+### 5. Run seeds to load data
+
+Run the event series seed to load data.
+
+```bash
+bundle exec rake db:seed:event_series[event-series-slug]
+```
+
+### 6. Review on your dev server
+
+Start the dev server and review the event.
+
+```bash
+bin/dev
+```
+
+> [!IMPORTANT]
+> Verify the address is correct in the venue map, and all links go to the correct venue.
 
 ## Finding Schedule Information
 
@@ -306,14 +215,15 @@ yarn format:yml
 - **Invalid YAML syntax**: Check indentation (use spaces, not tabs)
 - **Missing required fields**: Ensure all required properties are present
 - **Stringify postal_code**: postal_code must be a string
+- **No newlines in address**: Ensure there are no newlines in the address
 
 ## Submission Process
 
 1. Fork the RubyEvents repository
 2. Setup your dev environment following the steps in [CONTRIBUTING](/CONTRIBUTING.md)
 3. Create your venue file in the appropriate directory
-4. Run `bin/rails db:seed` (or `bin/rails db:seed:all` if the event happened more than 6 months ago)
-5. Run `bin/lint`
+4. Run `bin/lint`
+5. Run `bin/rails db:seed` (or `bin/rails db:seed:all` if the event happened more than 6 months ago)
 6. Run `bin/dev` and review the event on your dev server
 7. Submit a pull request
 
