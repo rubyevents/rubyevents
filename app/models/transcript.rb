@@ -105,12 +105,11 @@ class Transcript
 
     def create_from_youtube_transcript(youtube_transcript)
       transcript = Transcript.new
-      events = youtube_transcript.dig("actions", 0, "updateEngagementPanelAction", "content", "transcriptRenderer", "content", "transcriptSearchPanelRenderer", "body", "transcriptSegmentListRenderer", "initialSegments") || []
-      events.each do |event|
-        segment = event["transcriptSegmentRenderer"]
-        start_time = format_time(segment["startMs"].to_i)
-        end_time = format_time(segment["endMs"].to_i)
-        text = segment.dig("snippet", "runs")&.map { |run| run["text"] }&.join || ""
+      snippets = youtube_transcript.snippets || []
+      snippets.each do |snippet|
+        start_time = (snippet.start * 1000).to_i
+        end_time = ((snippet.start + snippet.duration) * 1000).to_i
+        text = snippet.text
         transcript.add_cue(Cue.new(start_time: start_time, end_time: end_time, text: text))
       end
       transcript

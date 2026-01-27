@@ -144,8 +144,8 @@ gem "dry-initializer-rails"
 # Type system for Ruby supporting coercions, constraints and complex types
 gem "dry-types", "~> 1.7"
 
-# Protocol Buffers are Google's data interchange format.
-gem "google-protobuf", require: false
+# YouTube transcript unofficial API client.
+gem "youtube-transcript-rb"
 
 # ActiveJob::Performs adds the `performs` macro to set up jobs by convention.
 gem "active_job-performs"

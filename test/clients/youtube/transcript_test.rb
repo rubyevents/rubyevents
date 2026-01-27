@@ -2,14 +2,14 @@ require "test_helper"
 
 class YouTube::TranscriptTest < ActiveSupport::TestCase
   def setup
-    @client = YouTube::Transcript.new
+    @client = YoutubeRb::Transcript::YouTubeTranscriptApi.new
   end
 
-  test "fetch the trasncript from a video in vtt format" do
+  test "fetch the transcript from a video in vtt format" do
     video_id = "9LfmrkyP81M"
 
     VCR.use_cassette("youtube_video_transcript", match_requests_on: [:method]) do
-      transcript = @client.get(video_id)
+      transcript = @client.fetch(video_id)
       assert_not_nil transcript
 
       transcript = Transcript.create_from_youtube_transcript(transcript)
