@@ -98,7 +98,7 @@
 
         <div class="splide__track">
           <ul class="splide__list">
-            <% if @wrapped_users.any? || Current.user %>
+            <% if false && (@wrapped_users.any? || Current.user) %>
               <li
                 class="splide__slide"
                 data-featured-color="white"
@@ -127,8 +127,7 @@
 
   <div class="container">
     <div class="flex flex-col gap-12 mt-12">
-      <%# bring back once we don't feature it in the splide carousel %>
-      <%#= render partial: "wrapped/card" %>
+      <%= render partial: "wrapped/card" %>
 
       <section class="flex flex-col w-full gap-4">
         <div class="flex items-center justify-between w-full">
