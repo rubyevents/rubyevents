@@ -3,14 +3,14 @@
 
 <% if @featured_events.any? %>
   <% content_for :head do %>
-    <% if @wrapped_users.any? || Current.user %>
+    <% if @wrapped_active %>
       <meta name="theme-color" content="#991B1B" data-featured-theme-color>
     <% else %>
       <meta name="theme-color" content="<%= @featured_events.first.static_metadata.featured_background %>" data-featured-theme-color>
     <% end %>
 
     <style>
-      <% if @wrapped_users.any? || Current.user %>
+      <% if @wrapped_active %>
         :root {
           --featured-color: white;
           --featured-background: #991B1B;
@@ -98,7 +98,7 @@
 
         <div class="splide__track">
           <ul class="splide__list">
-            <% if false && (@wrapped_users.any? || Current.user) %>
+            <% if @wrapped_active %>
               <li
                 class="splide__slide"
                 data-featured-color="white"
