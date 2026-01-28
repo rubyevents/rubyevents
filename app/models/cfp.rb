@@ -63,7 +63,8 @@ class CFP < ApplicationRecord
     return nil if close_date.blank?
     return nil if closed?
 
-    (close_date - Date.today.in_time_zone).to_i
+    diff_in_seconds = (close_date - Date.today.in_time_zone).to_i
+    (diff_in_seconds / 1.day).round
   end
 
   def days_until_open
@@ -71,7 +72,8 @@ class CFP < ApplicationRecord
     return nil if open?
     return nil if past?
 
-    (open_date - Date.today.in_time_zone).to_i
+    diff_in_seconds = (open_date - Date.today.in_time_zone).to_i
+    (diff_in_seconds / 1.day).round
   end
 
   def days_since_close
@@ -79,7 +81,9 @@ class CFP < ApplicationRecord
     return nil if future?
     return nil if open?
 
-    (Date.current.in_time_zone - close_date).to_i
+    diff_in_seconds = (DateTime.current.in_time_zone - close_date).to_i
+
+    (diff_in_seconds / 1.day).round
   end
 
   def present?
