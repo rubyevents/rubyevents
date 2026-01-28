@@ -164,6 +164,7 @@ gem "country_select"
 
 # Admin panel framework and Content Management System for Ruby on Rails.
 gem "avo"
+gem "avo-pro", source: "https://packager.dev/avo-hq/"
 
 # Marksmith is a GitHub-style markdown editor for Ruby on Rails applications.
 gem "marksmith"
