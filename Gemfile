@@ -159,6 +159,9 @@ gem "json-repair", "~> 0.2.0"
 # Markdown that smells nice
 gem "redcarpet", "~> 3.6"
 
+# Syntax highlighting
+gem "rouge", "~> 4.4"
+
 # Country Select Plugin
 gem "country_select"
 
