@@ -149,6 +149,6 @@ Display a user's stickers on a MacBook-style laptop lid.
 
 ## What's Next?
 
-We're just getting started! We'd love to hear your feedback and ideas for new components or features. Feel free to open an issue on [GitHub](https://github.com/adrienpoly/rubyvideo) or reach out to us on social media.
+We're just getting started! We'd love to hear your feedback and ideas for new components or features. Feel free to open an issue on [GitHub](https://github.com/rubyevents/rubyevents) or reach out to us on social media.
 
 Happy embedding! 🎉
