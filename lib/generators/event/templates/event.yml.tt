@@ -1,0 +1,22 @@
+# docs/ADDING_EVENTS.md
+---
+id: "<%= options[:event] %>"
+title: "<%= options[:name] %>"
+kind: "<%= options[:kind] %>"
+description: "<%= options[:description] %>"
+start_date: "<%= options[:start_date] %>"
+end_date: "<%= options[:end_date] %>"
+year: <%= @year %>
+tickets_url: "<%= options[:tickets_url] %>"
+website: "<%= options[:website] %>"
+<%- if options[:last_edition] -%>
+last_edition: true
+<%- end -%>
+location: "<%= @location %>"
+coordinates:
+<%- if options[:online] -%>
+  false
+<%- else -%>
+  latitude: <%= @geocoded_address.latitude %>
+  longitude: <%= @geocoded_address.longitude %>
+<%- end -%>
