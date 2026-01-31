@@ -2,7 +2,7 @@ class PageController < ApplicationController
   skip_before_action :authenticate_user!
 
   def home
-    home_page_cached_data = Rails.cache.fetch("home_page_content", expires_in: 1.hour) do
+    home_page_cached_data = Rails.cache.fetch(["home_page_content", I18n.locale], expires_in: 1.hour) do
       latest_talks = Talk.watchable.with_speakers.order(published_at: :desc).limit(10)
       {
         talks_count: Talk.count,
