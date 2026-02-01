@@ -51,6 +51,15 @@
 #
 # rubocop:enable Layout/LineLength
 
+zero_talks:
+  email: zero_talks_user@rubyevents.org
+  name: Zero Talks
+  twitter: zero_talks
+  github_handle: zero_talks
+  bio: "Zero Talks"
+  slug: zero_talks
+  password_digest: <%= BCrypt::Password.create("Secret1*3*5*") %>
+
 one:
   email: one@rubyevents.org
   name: One
@@ -71,6 +80,14 @@ two:
   slug: two
   password_digest: <%= BCrypt::Password.create("Secret1*3*5*") %>
 
+chael:
+  email: chaelcodes@rubyevents.org
+  password_digest: <%= BCrypt::Password.create("Secret1*3*5*") %>
+  name: Rachael Wright-Munn
+  github_handle: chaelcodes
+  slug: rachael-wright-munn
+  talks_count: 5
+
 marco:
   email: marcoroth@rubyevents.org
   password_digest: <%= BCrypt::Password.create("Secret1*3*5*") %>
@@ -80,7 +97,7 @@ marco:
   bio: "Marco"
   website: https://marcoroth.dev
   slug: marcoroth
-  talks_count: 2
+  talks_count: 42
 
 yaroslav:
   email: yaroslav@rubyevents.org

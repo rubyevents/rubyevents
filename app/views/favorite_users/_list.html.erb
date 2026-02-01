@@ -1,0 +1,9 @@
+<%# locals:(favorite_users:) %>
+
+<div class="min-w-full grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-2">
+  <% favorite_users.each do |favorite_user| %>
+    <div class="border rounded-lg flex justify-between items-center bg-white hover:bg-gray-200 transition-bg duration-300 ease-in-out">
+      <%= render partial: "users/card", locals: {user: favorite_user.favorite_user, favorite_user: favorite_user} %>
+    </div>
+  <% end %>
+</div>
