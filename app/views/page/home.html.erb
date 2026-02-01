@@ -1,4 +1,4 @@
-<% title hotwire_native_app? ? "RubyEvents" : "RubyEvents.org - On a mission to index all Ruby events" %>
+<% title hotwire_native_app? ? t("home.title") : t("home.title_full") %>
 <% content_for :body_class, "home-page" %>
 
 <% if @featured_events.any? %>
@@ -67,29 +67,29 @@
 <% end %>
 
 <main class="hotwire-native:mt-6">
-  <% cache @featured_events do %>
+  <% cache [@featured_events, I18n.locale] do %>
     <% if @featured_events.any? %>
       <section class="splide w-full" aria-label="Featured Events" data-controller="splide">
         <div class="featured-stats w-full pt-8">
           <div class="container hotwire-native:hidden flex flex-col items-center text-center">
-            <h2 class="text-2xl font-bold tracking-tight mb-6">On a mission to index all Ruby events</h2>
+            <h2 class="text-2xl font-bold tracking-tight mb-6"><%= t("home.mission") %></h2>
             <div class="flex flex-wrap gap-4 justify-center items-center text-sm">
               <div class="flex flex-wrap justify-center items-center gap-2 mb-12 lg:mb-6">
-                <span class="opacity-80">We have indexed</span>
+                <span class="opacity-80"><%= t("home.indexed_prefix") %></span>
                 <%= link_to events_path, class: "inline-flex items-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm font-semibold border hover:bg-white/30 transition-colors", style: "border-color: color-mix(in srgb, var(--featured-color) 25%, transparent);" do %>
-                  <%= @events_count %> events
+                  <%= @events_count %> <%= t("home.events") %>
                 <% end %>
 
-                <span class="opacity-80">and</span>
+                <span class="opacity-80"><%= t("home.and") %></span>
 
                 <%= link_to talks_path, class: "inline-flex items-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm font-semibold border hover:bg-white/30 transition-colors", style: "border-color: color-mix(in srgb, var(--featured-color) 25%, transparent);" do %>
-                  <%= @talks_count %> talks
+                  <%= @talks_count %> <%= t("home.talks") %>
                 <% end %>
 
-                <span class="opacity-80">from</span>
+                <span class="opacity-80"><%= t("home.from") %></span>
 
                 <%= link_to speakers_path, class: "inline-flex items-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm font-semibold border hover:bg-white/30 transition-colors", style: "border-color: color-mix(in srgb, var(--featured-color) 25%, transparent);" do %>
-                  <%= @speakers_count %> speakers
+                  <%= @speakers_count %> <%= t("home.speakers") %>
                 <% end %>
               </div>
             </div>
@@ -131,19 +131,19 @@
 
       <section class="flex flex-col w-full gap-4">
         <div class="flex items-center justify-between w-full">
-          <h2 class="text-primary shrink-0">Latest talks</h2>
-          <%= link_to "see all talks", talks_path, class: "link text-right w-full" %>
+          <h2 class="text-primary shrink-0"><%= t("home.latest_talks") %></h2>
+          <%= link_to t("home.see_all_talks"), talks_path, class: "link text-right w-full" %>
         </div>
 
         <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 md:[&>:nth-child(4)]:hidden lg:grid-cols-4 lg:[&>:nth-child(4)]:block">
-          <%= render partial: "talks/card", collection: @latest_talks.first(4), as: :talk, cached: true, locals: {back_to: root_path, back_to_title: "Home"} %>
+          <%= render partial: "talks/card", collection: @latest_talks.first(4), as: :talk, cached: ->(talk) { [talk, I18n.locale] }, locals: {back_to: root_path, back_to_title: t("navbar.home")} %>
         </div>
       </section>
 
       <section class="flex flex-col w-full gap-4">
         <div class="flex items-center justify-between w-full">
-          <h2 class="text-primary shrink-0">Featured speakers</h2>
-          <%= link_to "see all speakers", speakers_path, class: "link text-right w-full" %>
+          <h2 class="text-primary shrink-0"><%= t("home.featured_speakers") %></h2>
+          <%= link_to t("home.see_all_speakers"), speakers_path, class: "link text-right w-full" %>
         </div>
 
         <div class="relative" data-controller="scroll">
@@ -166,12 +166,12 @@
 
       <section class="flex flex-col w-full gap-4">
         <div class="flex items-center justify-between w-full">
-          <h2 class="text-primary shrink-0">Latest events</h2>
-          <%= link_to "see all events", events_path, class: "link text-right w-full" %>
+          <h2 class="text-primary shrink-0"><%= t("home.latest_events") %></h2>
+          <%= link_to t("home.see_all_events"), events_path, class: "link text-right w-full" %>
         </div>
         <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 md:[&>:nth-child(4)]:hidden lg:grid-cols-4 lg:[&>:nth-child(4)]:block">
-          <%= cache @latest_events do %>
-            <%= render partial: "events/card", collection: @latest_events, as: :event, cached: true %>
+          <%= cache [@latest_events, I18n.locale] do %>
+            <%= render partial: "events/card", collection: @latest_events, as: :event, cached: ->(event) { [event, I18n.locale] } %>
           <% end %>
         </div>
       </section>
@@ -179,11 +179,11 @@
       <% if @recommended_talks.present? %>
         <section class="flex flex-col w-full gap-4">
           <div class="flex items-center justify-between w-full">
-            <h2 class="text-primary shrink-0">Recommended for you</h2>
-            <%= link_to "see all recommendations", recommendations_path, class: "link text-right w-full" %>
+            <h2 class="text-primary shrink-0"><%= t("home.recommended_for_you") %></h2>
+            <%= link_to t("home.see_all_recommendations"), recommendations_path, class: "link text-right w-full" %>
           </div>
           <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 md:[&>:nth-child(4)]:hidden lg:grid-cols-4 lg:[&>:nth-child(4)]:block">
-            <%= render partial: "talks/card", collection: @recommended_talks, as: :talk, cached: true, locals: {back_to: root_path, back_to_title: "Home"} %>
+            <%= render partial: "talks/card", collection: @recommended_talks, as: :talk, cached: ->(talk) { [talk, I18n.locale] }, locals: {back_to: root_path, back_to_title: t("navbar.home")} %>
           </div>
         </section>
       <% end %>
@@ -191,8 +191,8 @@
       <% if @featured_organizations.present? %>
         <section class="flex flex-col w-full gap-4">
           <div class="flex items-center justify-between w-full">
-            <h2 class="text-primary shrink-0">Featured organizations</h2>
-            <%= link_to "see all organizations", organizations_path, class: "link text-right w-full" %>
+            <h2 class="text-primary shrink-0"><%= t("home.featured_organizations") %></h2>
+            <%= link_to t("home.see_all_organizations"), organizations_path, class: "link text-right w-full" %>
           </div>
 
           <div class="relative" data-controller="scroll">
