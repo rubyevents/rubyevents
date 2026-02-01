@@ -10,12 +10,7 @@ tags:
 featured_image:
 ---
 
-RubyEvents.org now has an announcement system to share news and updates with the Ruby community. This platform serves two purposes:
-
-1. **Platform updates** - The RubyEvents.org team will announce new features, newly added conference content, and improvements to the platform
-2. **Community contributions** - Share Ruby event-related news, conference announcements, CFP deadlines, speaker spotlights, and other community updates by submitting a pull request
-
-It is a file-based system, making it easy for anyone to contribute. Simply create a markdown file in the `content/announcements` directory and submit a pull request.
+RubyEvents.org now includes an announcement system to share platform updates and curated community news. You'll see updates about new features and content additions, alongside monthly round-ups of upcoming CFPs and conference announcements.
 
 ## Documentation
 
