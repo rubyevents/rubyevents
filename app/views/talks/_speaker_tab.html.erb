@@ -17,6 +17,11 @@
             <% if speaker.pronouns.present? %>
               <span class="text-sm text-gray-500">(<%= speaker.pronouns %>)</span>
             <% end %>
+
+            <% favorite_user = Current.user ? speaker.favorited_by.find_or_initialize_by(user: Current.user) : nil %>
+            <% if favorite_user %>
+              <%= render partial: "favorite_users/favorite_user", locals: {favorite_user: favorite_user} %>
+            <% end %>
           </div>
 
           <div class="flex items-center gap-3 text-sm text-gray-500 mt-1">

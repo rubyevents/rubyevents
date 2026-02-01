@@ -123,6 +123,11 @@ class User < ApplicationRecord
   # Favorite user associations
   has_many :favorite_users, dependent: :destroy, inverse_of: :user
   has_many :favorited_by, class_name: "FavoriteUser", foreign_key: "favorite_user_id", inverse_of: :favorite_user
+  scope :includes_favorited_by_user, ->(user) {
+    left_joins(:favorited_by).where(favorited_by: {user_id: [user.id, nil]})
+      .includes(favorited_by: :mutual_favorite_user)
+      .left_joins(:favorite_users).where(favorite_users: {favorite_user_id: [user.id, nil]})
+  }
 
   belongs_to :canonical, class_name: "User", optional: true
   belongs_to :city_record, class_name: "City", optional: true, inverse_of: false,

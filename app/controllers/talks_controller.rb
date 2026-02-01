@@ -104,7 +104,9 @@ class TalksController < ApplicationController
 
     return redirect_to talks_path, status: :moved_permanently if @talk.blank?
 
-    redirect_to talk_path(@talk), status: :moved_permanently if @talk.slug != params[:slug]
+    return redirect_to talk_path(@talk), status: :moved_permanently if @talk.slug != params[:slug]
+    @speakers = @talk.speakers.preloaded
+    @speakers = @speakers.includes_favorited_by_user(Current.user) if Current.user
   end
 
   # Only allow a list of trusted parameters through.
