@@ -4,7 +4,7 @@ class OrganizationsController < ApplicationController
 
   # GET /organizations
   def index
-    @organizations = Organization.includes(:events).order(:name)
+    @organizations = Organization.includes(:events).order("LOWER(name)")
     @organizations = @organizations.where("lower(name) LIKE ?", "#{params[:letter].downcase}%") if params[:letter].present?
     @featured_organizations = Organization.joins(:sponsors).group("organizations.id").order("COUNT(sponsors.id) DESC").limit(25).includes(:events)
   end
