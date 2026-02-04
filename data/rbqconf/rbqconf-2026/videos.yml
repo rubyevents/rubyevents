@@ -59,7 +59,8 @@
   event_name: "RBQConf 2026"
   date: "2026-03-26"
   announced_at: "2026-01-22"
-  description: ""
+  description: |-
+    You wrap your code in a transaction, add validations, and ship it. Everything works perfectly in development and passes all tests... until two requests arrive at the same time in production. This talk explores the database concurrency problems most Rails apps silently ignore: check-then-act races, lost updates in nested associations, and the deadlocks that follow. We'll examine how default isolation levels provide less protection than you think, why API calls inside transactions amplify these issues, and how coordination primitives like row locks and named locks can protect your data. Through real production failures and live demonstrations of race conditions, you'll learn practical patterns to handle concurrent access safely.
   video_provider: "scheduled"
   video_id: "yarik-rbqconf-2026"
   speakers:
@@ -70,7 +71,8 @@
   event_name: "RBQConf 2026"
   date: "2026-03-26"
   announced_at: "2026-01-23"
-  description: ""
+  description: |-
+    You’ve seen the buzzwords Observability, SRE, SLOs, traces, metrics, logs, and profiling, but what do they really mean, and why is everyone talking about them? In this session, we’ll cut through the noise and dive into what observability actually looks like in the real world. You’ll discover how these tools and practices can transform the way you and your team build, operate, and troubleshoot Ruby applications. Expect clear explanations, actionable insights, and a fresh perspective on why observability isn’t just a trend - it’s a superpower waiting to be unlocked.
   video_provider: "scheduled"
   video_id: "ariel-valentin-rbqconf-2026"
   speakers:
@@ -81,7 +83,8 @@
   event_name: "RBQConf 2026"
   date: "2026-03-26"
   announced_at: "2026-01-23"
-  description: ""
+  description: |-
+    What really happens when Ruby sees a regular expression like /abc/? While many of us use regular expressions regularly, we don’t necessarily think much about how they really work. In this talk we’ll trace a regular expression through Ruby’s internals, from parsing the pattern into a syntax tree, to compiling into bytecode, to executing that bytecode on a small virtual machine. You’ll come away with a deeper understanding and appreciation for Ruby’s regular expression engine, and hopefully an increased confidence in working with regular expressions in Ruby.
   video_provider: "scheduled"
   video_id: "daniel-colson-rbqconf-2026"
   speakers:
