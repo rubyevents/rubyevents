@@ -7,28 +7,28 @@
     <%= fa("bars", size: :lg) %>
   <% end %>
 
-  <% c.with_menu_item_link_to "Home", root_path %>
-  <% c.with_menu_item_link_to "Videos", browse_index_path %>
-  <% c.with_menu_item_link_to "Talks", talks_path %>
-  <% c.with_menu_item_link_to "Speakers", speakers_path %>
-  <% c.with_menu_item_link_to "Organizations", organizations_path %>
-  <% c.with_menu_item_link_to "Events", events_path %>
-  <% c.with_menu_item_link_to "CFPs", events_path %>
-  <% c.with_menu_item_link_to "Topics", topics_path %>
+  <% c.with_menu_item_link_to t("navbar.home"), root_path %>
+  <% c.with_menu_item_link_to t("navbar.videos"), browse_index_path %>
+  <% c.with_menu_item_link_to t("navbar.talks"), talks_path %>
+  <% c.with_menu_item_link_to t("navbar.speakers"), speakers_path %>
+  <% c.with_menu_item_link_to t("navbar.organizations"), organizations_path %>
+  <% c.with_menu_item_link_to t("navbar.events"), events_path %>
+  <% c.with_menu_item_link_to t("navbar.cfps"), cfp_index_path %>
+  <% c.with_menu_item_link_to t("navbar.topics"), topics_path %>
 
   <% c.with_menu_item_divider %>
 
-  <% c.with_menu_item_link_to "Leaderboard", leaderboard_path %>
-  <% c.with_menu_item_link_to "Countries", countries_path %>
+  <% c.with_menu_item_link_to t("navbar.leaderboard"), leaderboard_path %>
+  <% c.with_menu_item_link_to t("navbar.countries"), countries_path %>
 
   <% signed_in do %>
     <% c.with_menu_item_divider %>
 
-    <% c.with_menu_item_link_to "Favorite Rubyists", favorite_users_path %>
-    <% c.with_menu_item_link_to "For You", recommendations_path %>
+    <% c.with_menu_item_link_to t("navbar.favorite_rubyists"), favorite_users_path %>
+    <% c.with_menu_item_link_to t("navbar.for_you"), recommendations_path %>
     <% c.with_menu_item_link_to watched_talks_path do %>
       <div class="flex items-center gap-2">
-        <span>Recently Watched</span>
+        <span><%= t("navbar.recently_watched") %></span>
         <% if Current.user.watched_talks_count.positive? %>
           <div class="badge badge-secondary"><%= Current.user.watched_talks_count %></div>
         <% end %>
@@ -37,7 +37,7 @@
 
     <% c.with_menu_item_link_to watch_lists_path do %>
       <div class="flex items-center gap-2">
-        <span>Bookmarks</span>
+        <span><%= t("navbar.bookmarks") %></span>
         <% if Current.user.default_watch_list.talks_count.positive? %>
           <div class="badge badge-secondary"><%= Current.user.default_watch_list.talks_count %></div>
         <% end %>
@@ -47,18 +47,18 @@
 
   <% signed_in do %>
     <% c.with_menu_item_divider %>
-    <% c.with_menu_item_link_to "My Profile", profile_path(Current.user) %>
-    <% c.with_menu_item_link_to "Settings", settings_path %>
-    <% c.with_menu_item_button_to t("sign_out"), Current.session, method: :delete, id: :sign_out %>
+    <% c.with_menu_item_link_to t("navbar.my_profile"), profile_path(Current.user) %>
+    <% c.with_menu_item_link_to t("navbar.settings"), settings_path %>
+    <% c.with_menu_item_button_to t("navbar.sign_out"), Current.session, method: :delete, id: :sign_out %>
 
     <% if Current.user&.admin? %>
-      <% c.with_menu_item_link_to "Suggestions", admin_suggestions_path %>
-      <% c.with_menu_item_link_to t("admin"), avo_path %>
+      <% c.with_menu_item_link_to t("navbar.suggestions"), admin_suggestions_path %>
+      <% c.with_menu_item_link_to t("navbar.admin"), avo_path %>
     <% end %>
   <% end %>
 
   <% signed_out do %>
     <% c.with_menu_item_divider %>
-    <% c.with_menu_item_link_to "Sign in", new_session_path(redirect_to: request.fullpath), data: {turbo_frame: "modal"} %>
+    <% c.with_menu_item_link_to t("navbar.sign_in"), new_session_path(redirect_to: request.fullpath), data: {turbo_frame: "modal"} %>
   <% end %>
 <% end %>

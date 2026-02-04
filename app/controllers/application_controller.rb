@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   include Authenticable
   include Metadata
   include Analytics
+  include Localizable
 
   prepend_before_action :redirect_to_ruby_events
 

@@ -1,0 +1,16 @@
+<%= ui_dropdown align: :end, content_classes: "mt-5 shadow-xl min-w-28", id: "language_selector" do |c| %>
+  <% c.with_toggle_open do %>
+    <span class="text-lg"><%= current_locale_flag %></span>
+  <% end %>
+
+  <% c.with_toggle_close do %>
+    <span class="text-lg"><%= current_locale_flag %></span>
+  <% end %>
+
+  <% c.with_menu_item_link_to(locale_switch_url("en")) do %>
+    <span class="text-lg mr-2">🇺🇸</span> English
+  <% end %>
+  <% c.with_menu_item_link_to(locale_switch_url("ja")) do %>
+    <span class="text-lg mr-2">🇯🇵</span> 日本語
+  <% end %>
+<% end %>
