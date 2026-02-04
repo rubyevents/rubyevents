@@ -33,7 +33,7 @@
           absolute top-0 right-0 z-20 flex gap-2 p-2 m-3 rounded-full bg-black/15
           backdrop-blur-md
         ">
-        <span class="items-center hidden ml-1 text-sm text-white lg:group-hover:flex">Scheduled</span>
+        <span class="items-center hidden ml-1 text-sm text-white lg:group-hover:flex"><%= t("talks.card.scheduled") %></span>
         <span><%= fa("clock", size: :sm, class: "fill-white") %></span>
       </div>
     <% end %>
@@ -44,7 +44,7 @@
           absolute top-0 right-0 z-20 flex gap-2 p-2 m-3 rounded-full bg-black/15
           backdrop-blur-md
         ">
-        <span class="items-center hidden ml-1 text-sm text-white lg:group-hover:flex">Not published</span>
+        <span class="items-center hidden ml-1 text-sm text-white lg:group-hover:flex"><%= t("talks.card.not_published") %></span>
         <span><%= fa("upload", size: :sm, class: "fill-white") %></span>
       </div>
     <% end %>
@@ -55,7 +55,7 @@
           absolute top-0 right-0 z-20 flex gap-2 p-2 m-3 rounded-full bg-black/15
           backdrop-blur-md
         ">
-        <span class="items-center hidden ml-1 text-sm text-white lg:group-hover:flex">Not recorded</span>
+        <span class="items-center hidden ml-1 text-sm text-white lg:group-hover:flex"><%= t("talks.card.not_recorded") %></span>
         <span><%= fa("video-slash", size: :sm, class: "fill-white") %></span>
       </div>
     <% end %>
@@ -66,7 +66,7 @@
           absolute top-0 right-0 z-20 flex gap-2 p-2 m-3 rounded-full bg-black/15
           backdrop-blur-md
         ">
-        <span class="items-center hidden ml-1 text-sm text-white lg:group-hover:flex">Unavailable</span>
+        <span class="items-center hidden ml-1 text-sm text-white lg:group-hover:flex"><%= t("talks.card.unavailable") %></span>
         <span><%= fa("video-slash", size: :sm, class: "fill-white") %></span>
       </div>
     <% end %>
@@ -98,7 +98,7 @@
             items-center hidden gap-1 ml-1 text-xs font-normal text-white
             lg:group-hover:inline-flex line-clamp-1
           ">
-          <span class="text-nowrap">Part of</span>
+          <span class="text-nowrap"><%= t("talks.card.part_of") %></span>
           <span class="text-gray-300 line-clamp-1"><%= talk.parent_talk.title %></span>
         </span>
       </div>
@@ -120,7 +120,7 @@
           flex gap-2 absolute bottom-0 right-0 z-20 m-3 px-1.5 py-1 bg-black
           backdrop-blur-md rounded-md text-white text-xs font-normal
         ">
-        <span>contains
+        <span><%= t("talks.card.contains") %>
           <%= pluralize(talk.child_talks.size, "talk") %></span>
       </div>
     <% end %>
@@ -152,7 +152,7 @@
           height: 174,
           width: 310,
           loading: "lazy",
-          alt: "talk by #{talk.speakers.map(&:name).join(", ")}: #{talk.title}",
+          alt: t("talks.card.alt_text", speakers: talk.speakers.map(&:name).join(", "), title: talk.title),
           style: "view-transition-name: #{dom_id(talk, :image)}",
           class: class_names(
             "w-full object-cover skeleton rounded-t-xl border-b",
@@ -206,7 +206,7 @@
         </div>
 
         <% if talk.slides_url.present? %>
-          <%= ui_tooltip "Slides available" do %>
+          <%= ui_tooltip t("talks.card.slides_available") do %>
             <%= fa(
                   "presentation-screen",
                   style: :regular,
@@ -254,7 +254,7 @@
           <div class="self-end">
             <%= button_to watched_talk_path(watched_talk), method: :delete,
                   class: "btn btn-ghost btn-sm p-1",
-                  data: {turbo_confirm: "Mark this talk as unwatched? Your feedback will be deleted."} do %>
+                  data: {turbo_confirm: t("talks.card.mark_unwatched_confirm")} do %>
               <%= fa("xmark", size: :sm, class: "text-gray-600 shrink-0") %>
             <% end %>
           </div>
