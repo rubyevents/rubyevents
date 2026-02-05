@@ -1,0 +1,30 @@
+<%
+  events_with_unavailable = Talk.video_unavailable
+    .joins(:event)
+    .group("events.id", "events.name")
+    .order(Arel.sql("COUNT(*) DESC"))
+    .limit(10)
+    .pluck("events.id", "events.name", Arel.sql("COUNT(*)"))
+%>
+
+<div class="p-4 overflow-y-auto h-full">
+  <% if events_with_unavailable.empty? %>
+    <p class="text-gray-500 text-center py-4">No events with unavailable videos.</p>
+  <% else %>
+    <div class="space-y-2">
+      <% events_with_unavailable.each do |event_id, event_name, count| %>
+        <div class="flex items-center justify-between py-1">
+          <%= link_to event_name.truncate(30), avo.resources_event_path(event_id), class: "text-sm text-blue-600 hover:underline truncate flex-1", data: { turbo_frame: "_top" } %>
+          <span class="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">
+            <%= count %>
+          </span>
+        </div>
+      <% end %>
+    </div>
+    <div class="mt-4 pt-4 border-t border-gray-200">
+      <p class="text-xs text-gray-500">
+        Showing top 10 events with most unavailable videos
+      </p>
+    </div>
+  <% end %>
+</div>
