@@ -29,7 +29,7 @@ class Country
   end
 
   def slug
-    name.parameterize
+    name.unicode_normalize(:nfkd).gsub(/\p{Mn}/, "").parameterize
   end
 
   def path
@@ -149,7 +149,7 @@ class Country
   class << self
     def find(term)
       term = term.to_s.tr("-", " ")
-      term_slug = term.parameterize
+      term_slug = term.unicode_normalize(:nfkd).gsub(/\p{Mn}/, "").parameterize
 
       return nil if term.blank?
       return nil if term.downcase.in?(%w[online earth unknown])
