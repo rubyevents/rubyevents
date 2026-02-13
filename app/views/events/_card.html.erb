@@ -1,7 +1,7 @@
 <%# locals: (event:, participation: nil) %>
 
 <%= link_to event_path(event), class: "flex w-full", data: {turbo_frame: "_top"} do %>
-  <div class="card card-compact bg-white border w-full">
+  <div class="card card-compact bg-white border w-full <%= "cancelled" if event.static_metadata.cancelled? %>">
     <%= image_tag image_path(event.card_image_path), class: "w-full object-cover rounded-t-xl border-b", alt: event.name, width: 300, height: 175 %>
     <div class="card-body flex flex-col items-center justify-center min-h-[130px]">
       <div class="text-xl font-semibold text-center line-clamp-1"><%= event.name %></div>

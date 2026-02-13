@@ -106,6 +106,10 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
     !!static_repository.try(:hybrid) || false
   end
 
+  def cancelled?
+    static_repository&.status == "cancelled"
+  end
+
   private
 
   def static_repository
