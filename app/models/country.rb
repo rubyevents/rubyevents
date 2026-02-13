@@ -29,7 +29,7 @@ class Country
   end
 
   def slug
-    name.parameterize
+    name.unicode_normalize(:nfkd).parameterize
   end
 
   def path
@@ -159,7 +159,14 @@ class Country
       end
 
       iso_record = find_iso_record(term)
-      iso_record ? new(iso_record) : nil
+      return new(iso_record) if iso_record
+
+      # Fallback: match against country name slugs and diacritics-stripped slugs
+      match = all.find { |country|
+        country.slug == term_slug ||
+          country.name.unicode_normalize(:nfkd).gsub(/\p{Mn}/, "").parameterize == term_slug
+      }
+      match ? new(match.record) : nil
     end
 
     def find_by(country_code:)
