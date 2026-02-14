@@ -9,8 +9,8 @@ class EventGenerator < Generators::EventBase
   class_option :kind, type: :string, enum: Event.kinds.keys, desc: "Event kind (e.g. conference, meetup, workshop)", default: "conference", group: "Fields"
   class_option :start_date, type: :string, desc: "Start date (YYYY-MM-DD)", default: "2026-01-01", group: "Fields"
   class_option :end_date, type: :string, desc: "End date (YYYY-MM-DD)", default: "2026-12-31", group: "Fields"
-  class_option :tickets_url, type: :string, desc: "URL to purchase tickets (e.g., Tito, Eventbrite, Luma)", default: "TODO: https://www.todo.example.com/tickets", group: "Fields"
-  class_option :website, type: :string, desc: "Event website URL", default: "TODO: https://www.todo.example.com", group: "Fields"
+  class_option :tickets_url, type: :string, desc: "URL to purchase tickets (e.g., Tito, Eventbrite, Luma)", default: "https://www.TODO.example.com/tickets", group: "Fields"
+  class_option :website, type: :string, desc: "Event website URL", default: "https://www.TODO.example.com", group: "Fields"
   class_option :last_edition, type: :boolean, desc: "Is this the last edition?", default: false, group: "Fields"
   # Location Details
   class_option :online, type: :boolean, desc: "Is this an online-only event?", default: false, group: "Fields"

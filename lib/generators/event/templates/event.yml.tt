@@ -3,7 +3,8 @@
 id: "<%= options[:event] %>"
 title: "<%= options[:name] %>"
 kind: "<%= options[:kind] %>"
-description: "<%= options[:description] %>"
+description: |-
+  <%= options[:description] %>
 start_date: "<%= options[:start_date] %>"
 end_date: "<%= options[:end_date] %>"
 year: <%= @year %>
