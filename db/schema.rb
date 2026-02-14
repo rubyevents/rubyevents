@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.2].define(version: 2026_01_12_071922) do
+ActiveRecord::Schema[8.2].define(version: 2026_01_18_175214) do
   create_table "_litestream_lock", id: false, force: :cascade do |t|
     t.integer "id"
   end
@@ -103,12 +103,12 @@ ActiveRecord::Schema[8.2].define(version: 2026_01_12_071922) do
   end
 
   create_table "cfps", force: :cascade do |t|
-    t.date "close_date"
+    t.datetime "close_date"
     t.datetime "created_at", null: false
     t.integer "event_id", null: false
     t.string "link"
     t.string "name"
-    t.date "open_date"
+    t.datetime "open_date"
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_cfps_on_event_id"
   end
@@ -208,6 +208,7 @@ ActiveRecord::Schema[8.2].define(version: 2026_01_12_071922) do
   create_table "events", force: :cascade do |t|
     t.integer "canonical_id"
     t.string "city"
+    t.date "close_date"
     t.string "country_code"
     t.datetime "created_at", null: false
     t.date "date"
@@ -220,6 +221,7 @@ ActiveRecord::Schema[8.2].define(version: 2026_01_12_071922) do
     t.string "location"
     t.decimal "longitude", precision: 10, scale: 6
     t.string "name", default: "", null: false
+    t.date "open_date"
     t.string "slug", default: "", null: false
     t.date "start_date"
     t.string "state_code"
