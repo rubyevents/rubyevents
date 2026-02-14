@@ -32,5 +32,25 @@ module Generators
         longitude: 0.0
       )
     end
+
+    def template_content(source, &block)
+      source = File.expand_path(find_in_source_paths(source.to_s))
+      context = instance_eval("binding", __FILE__, __LINE__)
+      capturable_erb = CapturableERB.new(::File.binread(source), trim_mode: "-", eoutvar: "@output_buffer")
+      content = capturable_erb.tap do |erb|
+        erb.filename = source
+      end.result(context)
+      content = yield(content) if block
+      content
+    end
+  end
+end
+
+class CapturableERB < ERB
+  def set_eoutvar(compiler, eoutvar = "_erbout")
+    compiler.put_cmd = "#{eoutvar}.concat"
+    compiler.insert_cmd = "#{eoutvar}.concat"
+    compiler.pre_cmd = ["#{eoutvar} = ''.dup"]
+    compiler.post_cmd = [eoutvar]
   end
 end

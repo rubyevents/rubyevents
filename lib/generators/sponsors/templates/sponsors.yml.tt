@@ -8,12 +8,11 @@
       sponsors:
         <%- sponsors.each do |sponsor| -%>
         - name: "<%= sponsor[:name] %>"
-          website: ""
+          website: "https://TODO.sponsor.com"
           slug: "<%= sponsor[:slug] %>"
-          logo_url: ""
+          logo_url: "https://TODO.example.com/sponsor.png"
           <%- if sponsor[:badge] -%>
           badge: "<%= sponsor[:badge] %>"
           <%- end -%>
         <%- end -%>
-
 <%- end -%>
