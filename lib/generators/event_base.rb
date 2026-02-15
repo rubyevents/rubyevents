@@ -9,6 +9,10 @@ module Generators
 
     private
 
+    def destination_path(path)
+      File.join(destination_root, path)
+    end
+
     def geocode_address(name:, address:)
       if address != "123 TODO St, City, State, ZIP, Country" || name != "TODO Venue name"
         # Combine venue name and address for better accuracy

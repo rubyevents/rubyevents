@@ -1,0 +1,12 @@
+
+- id: "<%= @talk_id %>"
+  title: "<%= options[:title] %>"
+  description: |-
+    <%= options[:description] %>
+  date: "<%= @date %>"
+  speakers:
+  <%- options[:speaker].each do |speaker| -%>
+    - <%= speaker %>
+  <%- end -%>
+  video_provider: "scheduled"
+  video_id: "<%= @talk_id %>"
