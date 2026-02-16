@@ -1,9 +1,9 @@
 Description:
-    This generator creates a new video entry in videos.yml for an unpublished talk.
-    It will create the file if one does not exist, and update a talk if the id matches.
+  This generator creates a new video entry in videos.yml for an unpublished talk.
+  It will create the file if one does not exist, and update a talk if the id matches.
 
-Example:
-    bin/rails generate talk --event-series blue-ridge-ruby --event blue-ridge-ruby-2026 --title "Your first open-source contribution" --speaker "Rachael Wright-Munn" --description ""
+Example: |
+  bin/rails generate talk --event-series blue-ridge-ruby --event blue-ridge-ruby-2026 --title "Your first open-source contribution" --speaker "Rachael Wright-Munn" --description ""
 
-    This will create:
-        data/event-series/event-name/videos.yml
+  This will create:
+      data/event-series/event-name/videos.yml
