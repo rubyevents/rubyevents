@@ -19,7 +19,7 @@ class TalkGenerator < Generators::EventBase
 
   def add_talk_to_file
     videos_file_path = File.join("data", options[:event_series], options[:event], "videos.yml")
-    template "videos.yml.tt", videos_file_path unless File.exist? videos_file_path
+    template "videos.yml.tt", videos_file_path unless File.exist?(destination_path(videos_file_path))
 
     if File.read(destination_path(videos_file_path)).match?(/- id: "#{@talk_id}"/)
       match_one_talk = /\n- id: "#{@talk_id}"[\s\S]*video_id: "#{@talk_id}"/

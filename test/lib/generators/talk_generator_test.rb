@@ -39,7 +39,7 @@ class TalkGeneratorTest < Rails::Generators::TestCase
   end
 
   test "append to videos.yml if called with a different details" do
-    run_generator ["--event-series", "rubyconf", "--event", "2024", "--title", "Keynote: Jane Doe", "--speaker", "Jane Doe"]
+    run_generator ["--event-series", "rubyconf", "--event", "2024", "--title", "Keynote: Jane Doe", "--speaker", "Jane Doe", "--kind", "keynote"]
     run_generator ["--event-series", "rubyconf", "--event", "2024", "--title", "RubyEvents is great", "--speaker", "Rachael Wright-Munn", "Marco Roth"]
 
     assert_file "data/rubyconf/2024/videos.yml" do |content|
