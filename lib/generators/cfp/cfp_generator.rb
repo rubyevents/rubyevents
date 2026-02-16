@@ -20,10 +20,4 @@ class CfpGenerator < Generators::EventBase
       append_to_file cfp_file, template_content("cfp.yml.tt")
     end
   end
-
-  private
-
-  def destination_path(path)
-    File.join(destination_root, path)
-  end
 end
