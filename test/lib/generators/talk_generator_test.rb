@@ -14,41 +14,44 @@ class TalkGeneratorTest < Rails::Generators::TestCase
     end
   end
 
-  test "creates talks.yml with valid yaml" do
+  test "creates videos.yml with valid yaml" do
     run_generator ["--event-series", "rubyconf", "--event", "2024"]
 
     assert_file "data/rubyconf/2024/videos.yml" do |content|
       assert_match(/\S/, content)
     end
 
-    talk_file_path = File.join(destination_root, "data/rubyconf/2024/videos.yml")
-    validate_talk_file(talk_file_path)
+    videos_file_path = File.join(destination_root, "data/rubyconf/2024/videos.yml")
+    validate_talk_file(videos_file_path)
   end
 
-  test "update talks.yml if called twice" do
+  test "update videos.yml if called twice" do
     run_generator ["--event-series", "rubyconf", "--event", "2024", "--title", "Keynote: Jane Doe", "--speaker", "Jane Doe"]
     run_generator ["--event-series", "rubyconf", "--event", "2024", "--title", "Keynote: Talks about Talks", "--speaker", "Jane Doe"]
 
     assert_file "data/rubyconf/2024/videos.yml" do |content|
-      assert_match(%r{title: "Keynote: Jane Doe"}, content)
-      assert_no_match(%r{title: "Keynote: Talks about Talks"}, content)
+      assert_no_match(%r{title: "Keynote: Jane Doe"}, content)
+      assert_match(%r{title: "Keynote: Talks about Talks"}, content)
     end
 
-    talk_file_path = File.join(destination_root, "data/rubyconf/2024/videos.yml")
-    validate_talk_file(talk_file_path)
+    videos_file_path = File.join(destination_root, "data/rubyconf/2024/videos.yml")
+    validate_talk_file(videos_file_path)
   end
 
-  test "append to talks.yml if called with a different details" do
+  test "append to videos.yml if called with a different details" do
     run_generator ["--event-series", "rubyconf", "--event", "2024", "--title", "Keynote: Jane Doe", "--speaker", "Jane Doe"]
-    run_generator ["--event-series", "rubyconf", "--event", "2024", "--title", "RubyEvents is great", "--speaker", "Rachael Wright-Munn"]
+    run_generator ["--event-series", "rubyconf", "--event", "2024", "--title", "RubyEvents is great", "--speaker", "Rachael Wright-Munn", "Marco Roth"]
 
     assert_file "data/rubyconf/2024/videos.yml" do |content|
-      assert_match(/Keynote/, content)
-      assert_match(/Talk TWO/, content)
+      assert_match(/Keynote: Jane Doe/, content)
+      assert_match(/RubyEvents is great/, content)
+      assert_match(/Jane Doe/, content)
+      assert_match(/Rachael Wright-Munn/, content)
+      assert_match(/Marco Roth/, content)
     end
 
-    talk_file_path = File.join(destination_root, "data/rubyconf/2024/videos.yml")
-    validate_talk_file(talk_file_path)
+    videos_file_path = File.join(destination_root, "data/rubyconf/2024/videos.yml")
+    validate_talk_file(videos_file_path)
   end
 
   def validate_talk_file(path)
@@ -62,6 +65,6 @@ class TalkGeneratorTest < Rails::Generators::TestCase
       errors.append(errs) unless errs.empty?
     end
 
-    assert_empty errors, "Talks YAML does not conform to schema: #{errors.join(", ")}"
+    assert_empty errors, "Videos YAML does not conform to schema: #{errors.join(", ")}"
   end
 end

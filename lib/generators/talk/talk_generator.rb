@@ -22,7 +22,7 @@ class TalkGenerator < Generators::EventBase
     template "videos.yml.tt", videos_file_path unless File.exist? videos_file_path
 
     if File.read(destination_path(videos_file_path)).match?(/- id: "#{@talk_id}"/)
-      match_one_talk = /\n- id: "#{@talk_id}"[^😉]*video_id: "#{@talk_id}"/
+      match_one_talk = /\n- id: "#{@talk_id}"[\s\S]*video_id: "#{@talk_id}"/
       gsub_file videos_file_path, match_one_talk, template_content("talk.yml.tt")
     else
       append_to_file videos_file_path, template_content("talk.yml.tt")
