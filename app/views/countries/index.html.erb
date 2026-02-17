@@ -18,7 +18,7 @@
   <div class="mt-6">
     <% @countries_by_continent.each do |continent, countries| %>
       <% if countries.any? %>
-        <h2 class="mt-3"><%= continent.name %></h2>
+        <h2 class="mt-3"><%= link_to continent.name, continent_path(continent), class: "hover:underline" %></h2>
 
         <div
           id="events-<%= continent.name %>"
