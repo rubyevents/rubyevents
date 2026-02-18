@@ -11,31 +11,31 @@ class CFPGeneratorTest < Rails::Generators::TestCase
 
   test "generator runs without errors" do
     assert_nothing_raised do
-      run_generator ["--event-series", "rubyconf", "--event", "2024"]
+      run_generator ["--event-series", "rubyconf", "--event", "2021"]
     end
   end
 
   test "creates cfp.yml with valid yaml" do
-    run_generator ["--event-series", "rubyconf", "--event", "2024"]
+    run_generator ["--event-series", "rubyconf", "--event", "2022"]
 
-    assert_file "data/rubyconf/2024/cfp.yml" do |content|
+    assert_file "data/rubyconf/2022/cfp.yml" do |content|
       assert_match(/\S/, content) # Verify file has content
     end
 
-    cfp_file_path = File.join(destination_root, "data/rubyconf/2024/cfp.yml")
+    cfp_file_path = File.join(destination_root, "data/rubyconf/2022/cfp.yml")
     validate_cfp_file(cfp_file_path)
   end
 
   test "update cfp.yml if called twice" do
-    run_generator ["--event-series", "rubyconf", "--event", "2024"]
-    run_generator ["--event-series", "rubyconf", "--event", "2024", "--name", "Call for Proposals", "--link", "https://example.com/cfp"]
+    run_generator ["--event-series", "rubyconf", "--event", "2023"]
+    run_generator ["--event-series", "rubyconf", "--event", "2023", "--name", "Call for Proposals", "--link", "https://example.com/cfp"]
 
-    assert_file "data/rubyconf/2024/cfp.yml" do |content|
+    assert_file "data/rubyconf/2023/cfp.yml" do |content|
       assert_match(%r{https://example.com/cfp}, content)
       assert_no_match(%r{https://TODO.example.com/cfp}, content)
     end
 
-    cfp_file_path = File.join(destination_root, "data/rubyconf/2024/cfp.yml")
+    cfp_file_path = File.join(destination_root, "data/rubyconf/2023/cfp.yml")
     validate_cfp_file(cfp_file_path)
   end
 
