@@ -20,29 +20,29 @@ class EventGeneratorTest < Rails::Generators::TestCase
   end
 
   test "creates venue.yml" do
-    run_generator ["--event-series", "rubyconf", "--event", "2024", "--name", "RubyConf 2024", "--venue-name", "RubyConf 2024 Venue", "--venue-address", "123 Main St, Test City"]
-    assert_file "data/rubyconf/2024/venue.yml" do |content|
-      assert_match(/RubyConf 2024 Venue/, content)
+    run_generator ["--event-series", "rubyconf", "--event", "2025", "--name", "RubyConf 2025", "--venue-name", "RubyConf 2025 Venue", "--venue-address", "123 Main St, Test City"]
+    assert_file "data/rubyconf/2025/venue.yml" do |content|
+      assert_match(/RubyConf 2025 Venue/, content)
       assert_match(/123 Main St/, content)
     end
   end
 
   test "event.yml passes schema validation" do
-    run_generator ["--event-series", "rubyconf", "--event", "2024", "--name", "RubyConf 2024"]
+    run_generator ["--event-series", "rubyconf", "--event", "2026", "--name", "RubyConf 2026"]
 
-    validate_event_schema File.join(destination_root, "data/rubyconf/2024/event.yml")
+    validate_event_schema File.join(destination_root, "data/rubyconf/2026/event.yml")
   end
 
   test "event with all flags passes schema validation" do
-    run_generator ["--event-series", "rubyconf", "--event", "2024", "--name", "RubyConf 2024", "--kind", "retreat", "--hybrid", "--last-edition"]
+    run_generator ["--event-series", "rubyconf", "--event", "2027", "--name", "RubyConf 2027", "--kind", "retreat", "--hybrid", "--last-edition"]
 
-    validate_event_schema File.join(destination_root, "data/rubyconf/2024/event.yml")
+    validate_event_schema File.join(destination_root, "data/rubyconf/2027/event.yml")
   end
 
   test "event with all flags off passes schema validation" do
-    run_generator ["--event-series", "rubyconf", "--event", "2024", "--name", "RubyConf 2024", "--no-hybrid", "--no-last-edition"]
+    run_generator ["--event-series", "rubyconf", "--event", "2028", "--name", "RubyConf 2028", "--no-hybrid", "--no-last-edition"]
 
-    validate_event_schema File.join(destination_root, "data/rubyconf/2024/event.yml")
+    validate_event_schema File.join(destination_root, "data/rubyconf/2028/event.yml")
   end
 
   def validate_event_schema(file_path)
