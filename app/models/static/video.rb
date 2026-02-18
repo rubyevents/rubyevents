@@ -4,7 +4,7 @@ module Static
     self.base_path = Rails.root.join("data")
 
     SEARCH_INDEX_ON_IMPORT_DEFAULT = ENV.fetch("SEARCH_INDEX_ON_IMPORT", "true") == "true"
-
+    
     def self.child_talks
       @child_talks ||= Static::Video.all.flat_map(&:talks).compact
     end
@@ -27,6 +27,10 @@ module Static
 
     def self.find_by_static_id(id)
       all_talks_map[id]
+    end
+
+    def self.where_event_slug(event_slug)
+      all.select { |video| video.__file_path&.include?("/#{event_slug}/") }
     end
 
     def self.import_all!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
