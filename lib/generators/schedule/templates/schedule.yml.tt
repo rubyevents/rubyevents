@@ -1,0 +1,47 @@
+# docs/ADDING_SCHEDULES.md
+---
+days:
+<%- @days.each.with_index do |day, index| -%>
+  - name: "Day <%= index + 1 %>"
+    date: "<%= day %>"
+    grid:
+    <%- if index.zero? -%>
+      # Time slots for unrecorded events (not in videos.yml) 
+      # Items replaces the talk
+    <%- end -%>
+      - start_time: "<%= @day_start.strftime("%H:%M") %>"
+        end_time: "<%= (@day_start + 1.hour).strftime("%H:%M") %>"
+        slots: 1
+        items:
+          - Breakfast<%= " & Registration" if index.zero? %>
+    <%- if index.zero? -%>
+      # Time slots for talks/sessions - NO "items" field
+      # These are automatically filled from videos.yml in order
+    <%- end -%>
+    <%- end_time = @talks_per_half_day.times.inject((@day_start + 1.hour)) do |start_time, _| -%>
+      - start_time: "<%= start_time.strftime("%H:%M") %>"
+        end_time: "<%= (start_time + options[:talk_duration].minutes).strftime("%H:%M") %>"
+        slots: <%= options[:slots] %>
+      <%- start_time + options[:talk_duration].minutes + options[:break_duration].minutes -%>
+    <%- end -%>
+      - start_time: "<%= end_time.strftime("%H:%M") %>"
+        end_time: "<%= (end_time + 1.hour).strftime("%H:%M") %>"
+        slots: 1
+        items:
+          - Lunch
+    <%- end_time = @talks_per_half_day.times.inject((end_time + 1.hour)) do |start_time, _| -%>
+      - start_time: "<%= start_time.strftime("%H:%M") %>"
+        end_time: "<%= (start_time + options[:talk_duration].minutes).strftime("%H:%M") %>"
+        slots: <%= options[:slots] %>
+      <%- start_time + options[:talk_duration].minutes + options[:break_duration].minutes -%>
+    <%- end -%>
+    <%- if index.zero? -%>
+      # You can optionally include a description for unrecorded events
+    <%- end -%>
+      - start_time: "<%= end_time.strftime("%H:%M") %>"
+        end_time: "<%= (end_time + 1.hour).strftime("%H:%M") %>"
+        slots: 1
+        items:
+          - title: "Closing Party"
+            description: "Join us for drinks and networking!"
+<%- end -%>
