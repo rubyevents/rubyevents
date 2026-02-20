@@ -49,6 +49,15 @@ Pass multiple speakers per talk in by passing multiple names to the argument.
 bin/rails generate talk --event-series blue-ridge-ruby --event blue-ridge-ruby-2026 --title "RubyEvents is great!" --speaker "Marco Roth" "Rachael Wright-Munn"
 ```
 
+Update a talk by calling the generator again with new paramaters.
+It will attempt to match based on the id.
+The id can be manually passed, but we prefer that it does not change after generation, so it does not update if passed.
+All values from the existing talk must be included.
+
+```bash
+bin/rails generate talk --event-series blue-ridge-ruby --event blue-ridge-ruby-2026 --id "marco-roth-rachael-wright-munn-blue-ridge-ruby-2026" --title "RubyEvents is great!" --speaker "Rachael Wright-Munn" --description "Learn why RubyEvents is great and how to contribute!"
+```
+
 ### 3. Gather Talk Information
 
 For each talk, collect:
