@@ -3,7 +3,13 @@
   title: "<%= options[:title] %>"
   description: |-
     <%= options[:description] %>
+<%- if options[:kind] -%>
+  kind: "<%= options[:kind] %>"
+<%- end -%>
   date: "<%= @date %>"
+<%- if options[:announced_at] -%>
+  announced_at: "<%= options[:announced_at] %>"
+<%- end -%>
   speakers:
   <%- options[:speaker].each do |speaker| -%>
     - <%= speaker %>
