@@ -56,6 +56,10 @@ If there is no tier, it will default to "Sponsors".
 bin/rails g sponsors typesense:Platinum AppSignal:Gold JetRockets:Gold "Planet Argon:Silver" --event-series tropicalrb --event tropical-on-rails-2026
 ```
 
+If you are adding a new sponsor to an existing file, you can list all the sponsors as arguments and then use the merge tool when there's a conflict.
+It'll feel very similar to resolving merge conflicts in git, but for different versions of the generated file.
+Expect improvements to the generator for changes soon!
+
 Check the usage instructions using help.
 
 ```bash

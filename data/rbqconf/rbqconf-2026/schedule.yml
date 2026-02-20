@@ -1,0 +1,130 @@
+# docs/ADDING_SCHEDULES.md
+---
+days:
+  - name: "Day 1"
+    date: "2026-03-26"
+    grid:
+      # Time slots for unrecorded events (not in videos.yml)
+      # Items replaces the talk
+      - start_time: "08:00"
+        end_time: "08:55"
+        slots: 1
+        items:
+          - Breakfast & Registration
+      # Time slots for talks/sessions - NO "items" field
+      # These are automatically filled from videos.yml in order
+      - start_time: "08:55"
+        end_time: "09:15"
+        slots: 1
+      - start_time: "09:20"
+        end_time: "10:00"
+        slots: 1
+      - start_time: "10:05"
+        end_time: "10:35"
+        slots: 1
+      - start_time: "10:35"
+        end_time: "11:05"
+        slots: 1
+        items:
+          - Morning Stretch
+      - start_time: "11:05"
+        end_time: "11:35"
+        slots: 1
+      - start_time: "11:40"
+        end_time: "12:10"
+        slots: 1
+      - start_time: "12:10"
+        end_time: "13:40"
+        slots: 1
+        items:
+          - Lunch
+      - start_time: "13:40"
+        end_time: "14:05"
+        slots: 1
+        items:
+          - Burnt Ends (Various Artists)
+      - start_time: "14:10"
+        end_time: "14:40"
+        slots: 1
+      - start_time: "14:45"
+        end_time: "15:15"
+        slots: 1
+      - start_time: "15:15"
+        end_time: "15:45"
+        slots: 1
+        items:
+          - Afternoon Stretch
+      - start_time: "15:45"
+        end_time: "16:15"
+        slots: 1
+      - start_time: "16:20"
+        end_time: "16:50"
+        slots: 1
+      - start_time: "16:50"
+        end_time: "17:00"
+        slots: 1
+      - start_time: "17:30"
+        end_time: "20:30"
+        slots: 1
+        items:
+          - title: "Happy Hour @ Higbies"
+            description: |-
+              sponsored by GitButler - across from Capital Factory
+  - name: "Day 2"
+    date: "2026-03-27"
+    grid:
+      - start_time: "08:00"
+        end_time: "08:55"
+        slots: 1
+        items:
+          - Breakfast & Registration
+      - start_time: "08:55"
+        end_time: "09:05"
+        slots: 1
+      - start_time: "09:05"
+        end_time: "09:35"
+        slots: 1
+      - start_time: "09:40"
+        end_time: "10:10"
+        slots: 1
+      - start_time: "10:15"
+        end_time: "10:45"
+        slots: 1
+      - start_time: "10:45"
+        end_time: "11:15"
+        slots: 1
+        items:
+          - Morning Stretch
+      - start_time: "11:15"
+        end_time: "11:45"
+        slots: 1
+      - start_time: "11:50"
+        end_time: "12:20"
+        slots: 1
+      - start_time: "12:20"
+        end_time: "13:50"
+        slots: 1
+        items:
+          - Lunch
+      - start_time: "13:50"
+        end_time: "14:15"
+        slots: 1
+        items:
+          - Burnt Ends (Various Artists)
+      - start_time: "14:20"
+        end_time: "14:50"
+        slots: 1
+      - start_time: "14:50"
+        end_time: "15:20"
+        slots: 1
+        items:
+          - Afternoon Stretch
+      - start_time: "15:20"
+        end_time: "15:50"
+        slots: 1
+      - start_time: "15:55"
+        end_time: "16:35"
+        slots: 1
+      - start_time: "16:40"
+        end_time: "17:00"
+        slots: 1
