@@ -25,7 +25,9 @@ class ContributionsController < ApplicationController
 
     # Missing events
 
-    conference_names = Event.all.pluck(:name)
+    event_names = Event.all.pluck(:name)
+    event_alias_names = Alias.where(aliasable_type: "Event").pluck(:name)
+    conference_names = (event_names + event_alias_names).to_set
     @upstream_conferences = begin
       RubyConferences::Client.new.conferences_cached.reverse
     rescue
