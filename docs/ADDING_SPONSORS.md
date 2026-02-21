@@ -53,7 +53,7 @@ Pass multiple sponsors at once, and list the sponsor tier.
 If there is no tier, it will default to "Sponsors".
 
 ```bash
-bin/rails g sponsors typesense:Platinum AppSignal:Gold JetRockets:Gold "Planet Argon:Silver" --event-series tropicalrb --event tropical-on-rails-2026
+bin/rails g sponsors typesense|Platinum AppSignal|Gold JetRockets|Gold "Planet Argon|Silver" --event-series tropicalrb --event tropical-on-rails-2026
 ```
 
 If you are adding a new sponsor to an existing file, you can list all the sponsors as arguments and then use the merge tool when there's a conflict.
