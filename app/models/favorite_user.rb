@@ -28,6 +28,10 @@ class FavoriteUser < ApplicationRecord
 
   has_one :mutual_favorite_user, class_name: "FavoriteUser", primary_key: [:user_id, :favorite_user_id], foreign_key: [:favorite_user_id, :user_id]
 
+  def ruby_friend?
+    persisted? && mutual_favorite_user&.persisted?
+  end
+
   # Suggest favorite users based on talks the user has watched
   # No check for existing favorite users
   def self.recommendations_for(user)
