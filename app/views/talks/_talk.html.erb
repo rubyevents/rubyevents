@@ -143,8 +143,7 @@
 
             <% speakers.take(speaker_preview_count).each do |speaker| %>
               <%= content_tag :div, class: class_names("hidden xl:block" => more_speakers) do %>
-                <% favorite_user = Current.user ? speaker.favorited_by.find_or_initialize_by(user: Current.user) : nil %>
-                <%= render partial: "users/card", locals: {user: speaker, favorite_user: favorite_user} %>
+                <%= render partial: "users/card", locals: {user: speaker, favorite_user: @favorite_users[speaker.id]} %>
               <% end %>
             <% end %>
 
