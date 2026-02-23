@@ -33,6 +33,7 @@ class Events::ParticipantsController < ApplicationController
 
   def set_event
     @event = Event.includes(:event_participations).find_by(slug: params[:event_slug])
+    set_meta_tags(@event)
     redirect_to root_path, status: :moved_permanently unless @event
   end
 end
