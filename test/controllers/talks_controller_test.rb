@@ -42,6 +42,10 @@ class TalksControllerTest < ActionDispatch::IntegrationTest
 
   test "should show talk" do
     get talk_url(@talk)
+    assert_selector "h1", text: @talk.title
+    assert_selector "p", text: @talk.description
+    assert_selector "a", text: @talk.event.name
+    assert_selector "a", text: @talk.speakers.first.name
     assert_response :success
   end
 

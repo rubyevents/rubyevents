@@ -1,4 +1,4 @@
-<%# locals: (talk:, speakers:, user_favorite_talks_ids:) %>
+<%# locals: (talk:, speakers:, user_favorite_talks_ids:, favorite_users:) %>
 
 <% current_user_watched_talk = talk.watched_talks.find { |wt| wt.user_id == Current.user&.id } %>
 <% is_watched = signed_in? && current_user_watched_talk&.watched? %>
@@ -143,7 +143,7 @@
 
             <% speakers.take(speaker_preview_count).each do |speaker| %>
               <%= content_tag :div, class: class_names("hidden xl:block" => more_speakers) do %>
-                <%= render partial: "users/card", locals: {user: speaker, favorite_user: @favorite_users[speaker.id]} %>
+                <%= render partial: "users/card", locals: {user: speaker, favorite_user: favorite_users[speaker.id]} %>
               <% end %>
             <% end %>
 
