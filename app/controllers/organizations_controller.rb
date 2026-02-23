@@ -17,7 +17,9 @@ class OrganizationsController < ApplicationController
 
     @countries_with_events = @events.grouped_by_country
 
-    involvements = @organization.event_involvements.includes(:event).order(:position)
+    involvements = @organization.event_involvements.joins(:event).order(
+      Arel.sql("COALESCE(events.start_date, events.created_at) ASC")
+    )
     @involvements_by_role = involvements.group_by(&:role)
     @involved_events = @organization.involved_events.includes(:series).distinct.order(start_date: :desc)
 
