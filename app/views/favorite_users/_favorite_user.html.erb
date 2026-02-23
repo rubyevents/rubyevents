@@ -14,7 +14,7 @@
             <%= fa("star", size: :sm, style: :solid, class: "fill-yellow-400") %>
           <% end %>
       <% end %>
-    <% elsif favorite_user.valid? %>
+    <% elsif favorite_user.favorite_user_id != Current.user.id %>
       <%= ui_tooltip "Add to your list of Favorite Rubyists" do %>
           <%= button_to favorite_users_path, method: :post, params: {favorite_user: {favorite_user_id: favorite_user.favorite_user_id}}, form_class: "mt-1" do %>
             <%= fa("star", size: :sm, style: :regular, class: "hover:fill-yellow-400") %>

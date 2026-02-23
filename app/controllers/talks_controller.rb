@@ -1,4 +1,5 @@
 class TalksController < ApplicationController
+  include FavoriteUsers
   include RemoteModal
   include Pagy::Backend
   include WatchedTalks
@@ -8,6 +9,7 @@ class TalksController < ApplicationController
   respond_with_remote_modal only: [:edit]
 
   before_action :set_talk, only: %i[show edit update]
+  before_action :set_favorite_users, only: %i[show]
   before_action :set_user_favorites, only: %i[index show]
 
   # GET /talks
@@ -106,7 +108,6 @@ class TalksController < ApplicationController
 
     return redirect_to talk_path(@talk), status: :moved_permanently if @talk.slug != params[:slug]
     @speakers = @talk.speakers.preloaded
-    @speakers = @speakers.includes_favorited_by_user(Current.user) if Current.user
   end
 
   # Only allow a list of trusted parameters through.
