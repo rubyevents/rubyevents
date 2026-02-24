@@ -6,6 +6,7 @@ class Events::ParticipantsController < ApplicationController
   before_action :set_favorite_users, only: %i[index]
 
   def index
+    set_meta_tags(@event)
     participants = @event.participants.preloaded.order(:name).distinct
     if Current.user
       @participants = {
