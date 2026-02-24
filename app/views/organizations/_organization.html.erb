@@ -26,5 +26,9 @@
     <span class="line-clamp-1"><%= organization.name %></span>
   </div>
 
-  <%= ui_badge(organization.events.size, kind: :secondary, outline: true, size: :lg, class: "min-w-10") %>
+  <%= ui_badge(kind: :secondary, outline: true, size: :lg, class: "min-w-10") do %>
+    <span class="text-error"><%= organization.event_involvements.size %></span>
+    <span class="mx-1 opacity-30">|</span>
+    <span><%= organization.events.size %></span>
+  <% end %>
 <% end %>
