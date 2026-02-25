@@ -30,7 +30,7 @@ class Organization < ApplicationRecord
   configure_slug(attribute: :name, auto_suffix_on_collision: false)
 
   # enums
-  enum :kind, {unknown: 0, company: 1, community: 2, foundation: 3, non_profit: 4}
+  enum :kind, {unknown: 0, company: 1, community: 2, foundation: 3, non_profit: 4, organisation: 5}
 
   # attachments
   has_one_attached :wrapped_card_horizontal
