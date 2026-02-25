@@ -1,0 +1,37 @@
+<% suspicious_users = User.suspicious.to_a %>
+signals = {
+    "New GitHub Account" => suspicious_users.count { |u| u.suspicion_detector.github_account_new? },
+    "No Talks" => suspicious_users.count { |u| u.suspicion_detector.no_talks? },
+    "No Watched Talks" => suspicious_users.count { |u| u.suspicion_detector.no_watched_talks? },
+    "Bio Contains URL" => suspicious_users.count { |u| u.suspicion_detector.bio_contains_url? },
+    "Empty GitHub Profile" => suspicious_users.count { |u| u.suspicion_detector.github_account_empty? }
+  }
+%>
+
+<div class="p-4">
+  <% if suspicious_users.empty? %>
+    <p class="text-gray-500 text-center py-4">No suspicious users to analyze.</p>
+  <% else %>
+    <div class="space-y-3">
+      <% signals.each do |signal_name, count| %>
+        <div class="flex items-center justify-between">
+          <span class="text-sm text-gray-700"><%= signal_name %></span>
+          <div class="flex items-center">
+            <div class="w-32 bg-gray-200 rounded-full h-2 mr-2">
+              <% percentage = suspicious_users.any? ? (count.to_f / suspicious_users.count * 100) : 0 %>
+              <div class="bg-red-500 h-2 rounded-full" style="width: <%= percentage %>%"></div>
+            </div>
+            <span class="text-sm font-medium text-gray-900 w-12 text-right"><%= count %></span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="mt-4 pt-4 border-t border-gray-200">
+      <p class="text-xs text-gray-500">
+        Total suspicious users: <strong><%= suspicious_users.count %></strong>
+        <br>
+        Threshold: 3+ signals required
+      </p>
+    </div>
+  <% end %>
+</div>
