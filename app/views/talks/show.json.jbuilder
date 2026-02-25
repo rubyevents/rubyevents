@@ -1,6 +1,7 @@
 json.talk do
   json.slug @talk.slug
   json.title @talk.title
+  json.original_title @talk.original_title
   json.description @talk.description
   json.summary @talk.summary
   json.date @talk.date
@@ -16,24 +17,22 @@ json.talk do
       json.start_date @talk.event.start_date
       json.end_date @talk.event.end_date
 
-      if @talk.event.organisation.present?
-        json.organisation do
-          json.id @talk.event.organisation.id
-          json.name @talk.event.organisation.name
-          json.slug @talk.event.organisation.slug
+      if @talk.event.series.present?
+        json.series do
+          json.id @talk.event.series.id
+          json.name @talk.event.series.name
+          json.slug @talk.event.series.slug
         end
       end
     end
   end
 
-  json.speakers @talk.speakers do |speaker|
-    json.id speaker.id
-    json.name speaker.name
-    json.slug speaker.slug
-    if speaker.user.present?
-      json.bio speaker.user.bio
-      json.avatar_url speaker.user.avatar_url
-    end
+  json.speakers @talk.speakers do |user|
+    json.id user.id
+    json.name user.name
+    json.slug user.slug
+    json.bio user.bio
+    json.avatar_url user.avatar_url
   end
 
   json.topics @talk.approved_topics do |topic|

@@ -1,19 +1,106 @@
 ---
-[]
 # http://2007.goruco.com/agenda/
 
-# Missing Talk: Jay Phillips - Adhearsion
+- id: "adhearsion-GORUCO-2007"
+  title: "Adhearsion"
+  raw_title: "Adhearsion"
+  speakers:
+    - Jay Phillips
+  event_name: "GORUCO 2007"
+  date: "2007-04-21"
+  description: |-
+    Adhearsion is a relatively new Ruby-based metaprogramming framework primarily for VoIP engineering with the popular, open-source PBX Asterisk. Adhearsion effectively takes over Asterisk’s internal instructions and replaces them with its own Ruby DSL which does the job orders of magnitude better. I’ll be speaking about how Adhearsion makes Ruby programmers overnight VoIP programming experts with the extreme ease and development efficiency it brings to the table. This presentation will focus on the Ruby aspects of Adhearsion and show how powerful Asterisk can become with Adhearsion calling its shots—specifically with VoIP integration into a Rails app, writing pure-Ruby dial plans, integrating your VoIP app with a database (something seldom done, believe it or not), how VoIP functionality can be exchanged (another thing seldom ever done), using Adhearsion’s internals over DRb, etc.
 
-# Missing Talk: Nick Sieger - JRuby: Ready for Prime Time
+    Jay Phillips is a passionate hacker and open source evangelist turned entrepreneur. Jay is the mind behind Adhearsion, a new open-source meta-programming framework bringing people, businesses, and technologies closer together than ever. With his company Codemecca LLC, Jay helps companies achieve newfound value in their VoIP deployments by tapping Adhearsion’s many strengths.
+  video_provider: "not_published"
+  video_id: "adhearsion-GORUCO-2007"
 
-# Missing Talk: Jeremy McAnally - Going Camping
+- id: "jruby-ready-for-prime-time-GORUCO-2007"
+  title: "JRuby: Ready for Prime Time"
+  raw_title: "JRuby: Ready for Prime Time"
+  speakers:
+    - Nick Sieger
+  event_name: "GORUCO 2007"
+  date: "2007-04-21"
+  description: |-
+    JRuby development has been advancing at a blistering pace over the past year, closing in on its goal of being a mature, stable alternate implementation of the Ruby language. Performance gaps with C Ruby are narrowing each week; Rails runs with 90%+ of Rails core tests passing; Java versions of popular C-extension packages such as Mongrel and Hpricot have appeared, showing that JRuby is a viable platform for Ruby applications.
+
+    In this talk I'll present an up-to-date status on JRuby, discuss implementation pros and cons compared to C Ruby (e.g., native threading), and demonstrate an application or two that hit JRuby’s sweet spot, including deploying Rails to a Java application server.
+
+    Nick Sieger is a member of the JRuby core team since December 2006, and has been programming Ruby for two years and Java for too many. In addition to JRuby contributions, he has written some miscellaneous Ruby bits to for using RSpec with Autotest and generating XML reports of test/spec runs, among others. He maintains a blog on mostly-Ruby and JRuby-related topics at http://blog.nicksieger.com/.
+  video_provider: "not_published"
+  video_id: "jruby-ready-for-prime-time-GORUCO-2007"
+
+- id: "going-camping-GORUCO-2007"
+  title: "Going Camping"
+  raw_title: "Going Camping"
+  speakers:
+    - Jeremy McAnally
+  event_name: "GORUCO 2007"
+  date: "2007-04-21"
+  description: |-
+    This talk will go over the basics of using Camping, why the lucky stiff’s web development framework, when and why to use Camping as opposed to Rails or something else, and do its best to correlate all the knowledge that Rails developers have built up to its corollary in Camping.
+
+    Jeremy McAnally is a Ruby developer and author, living in Knoxville, TN. He wrote Mr. Neighborly’s Humble Little Ruby Book and is currently working on Ruby in Practice for Manning Publications. He is working on the official Rails documentation project and is the author of dcov, the Rdoc documentation coverage testing tool.
+  video_provider: "not_published"
+  video_id: "going-camping-GORUCO-2007"
 
 # Lunch
 
-# Lightning Talks
+- id: "lightning-talks-GORUCO-2007"
+  title: "Lightning Talks"
+  raw_title: "Lightning Talks"
+  speakers:
+    - TODO
+  event_name: "GORUCO 2007"
+  date: "2007-04-21"
+  description: ""
+  video_provider: "not_recorded"
+  video_id: "lightning-talks-GORUCO-2007"
 
-# Missing Talk: Paul Dix - Categorizing Documents in Ruby
+- id: "categorizing-documents-in-ruby-GORUCO-2007"
+  title: "Categorizing Documents in Ruby"
+  raw_title: "Categorizing Documents in Ruby"
+  speakers:
+    - Paul Dix
+  event_name: "GORUCO 2007"
+  date: "2007-04-21"
+  description: |-
+    Text classification is the task of selecting a class or category for a document or block of text. The canonical example of this is the use of the Naive Bayes classifier for identifying spam vs. non-spam email. Classifiers can also be used for language identification, categorizing news articles or blog posts, detecting trackback spam, comment spam, wiki spam, and more. In my talk I will cover the basics of document classification while focusing on the various tools available in Ruby for each aspect of classification.
 
-# Missing Talk: Trotter Cashion - Contexts, Mocks and Stubs. Oh My!
+    Paul Dix is a computer science student at Columbia University in New York City. Before going back to school in 2005, Paul worked at McAfee as a developer. He has been attending the nyc.rb meetings since October of 2005. Text classification is a subset of Paul’s interests in natural language processing, machine learning, and information retrieval. Last summer he worked as a consultant with EastMedia developing web applications in Ruby on Rails. Paul also attended RailsConf last June and codes in Ruby every chance he gets.
+  video_provider: "not_published"
+  video_id: "categorizing-documents-in-ruby-GORUCO-2007"
 
-# Missing Talk: Jay Fields - Business Natural Language Ruby Systems
+- id: "contexts-mocks-and-stubs-oh-my-GORUCO-2007"
+  title: "Contexts, Mocks and Stubs. Oh My!"
+  raw_title: "Contexts, Mocks and Stubs. Oh My!"
+  speakers:
+    - Trotter Cashion
+  event_name: "GORUCO 2007"
+  date: "2007-04-21"
+  description: |-
+    My talk will cover the benefits of using contexts, mocks, and stubs in unit tests. These three concepts are in heavy use by RSpec users, but seem to have minimal adoption by the bulk of Ruby developers. In addition, many developers do not even realize that contexts are an option within TestUnit. This talk will serve to enlighten these developers by showing them how to make contexts, mocks, and stubs work for them. I will explain how contexts can be used to bring organization to large test classes by organizing tests into related groups of object state. In addition, I will explain how to use mocks and stubs to easily test hard to test components, while cautioning against the dangers of going overboard.
+
+    Trotter Cashion has been using Ruby for almost the past two years. At EastMedia, he worked on pip.verisignlabs.com, the first OpenID server in Rails. In addition, he worked on the cms for nyjets.com. He is now employed as an Application Developer at motionbox.com, a Rails based video sharing site. He is currently writing a Short Cut (e-book) for Addison Wesley about Refactoring and REST.
+  video_provider: "not_published"
+  video_id: "contexts-mocks-and-stubs-oh-my-GORUCO-2007"
+
+- id: "business-natural-language-ruby-systems-GORUCO-2007"
+  title: "Business Natural Language Ruby Systems"
+  raw_title: "Business Natural Language Ruby Systems"
+  speakers:
+    - Jay Fields
+  event_name: "GORUCO 2007"
+  date: "2007-04-21"
+  description: |-
+    A Business Natural Language is a Domain Specific Language where subject matter experts use natural language to represent business logic. For example, a marketing executive for an airline could specify point award descriptions as: “award 1 point for each mile flown where the total flight length is greater than 500 miles”
+
+    The above example reads as specification; however, the code is also executable. By providing a language that subject matter experts are comfortable working with several benefits are achieved, the two largest being:
+
+    * The business may change it's rules without intervention of a programmer
+    * Programmers no longer need to spend their time trying to represent the logic of a business in lower level languages and can focus on other more interesting tasks
+
+    Jay Fields is a software developer at ThoughtWorks. He is a early adopter who is consistantly looking for new exciting technologies. His most recent work has been in the Domain Specific Language space where he delivered applications that empowered subject matter experts to write the business rules of the applications.
+  video_provider: "not_published"
+  video_id: "business-natural-language-ruby-systems-GORUCO-2007"

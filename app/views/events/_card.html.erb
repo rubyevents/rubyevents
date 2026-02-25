@@ -1,18 +1,24 @@
-<%= link_to event_path(event), class: "flex w-full" do %>
-  <div class="card card-compact bg-white border w-full">
+<%# locals: (event:, participation: nil) %>
+
+<%= link_to event_path(event), class: "flex w-full", data: {turbo_frame: "_top"} do %>
+  <div class="card card-compact bg-white border w-full <%= "cancelled" if event.static_metadata.cancelled? %>">
     <%= image_tag image_path(event.card_image_path), class: "w-full object-cover rounded-t-xl border-b", alt: event.name, width: 300, height: 175 %>
-    <div class="card-body flex flex-col items-center justify-center">
-        <div class="text-xl font-semibold text-center line-clamp-1"><%= event.name %></div>
-        <div class="text-gray-500">
-          <% if event.location && event.location != "Earth" %>
-            <%= event.location %> •
-          <% end %>
+    <div class="card-body flex flex-col items-center justify-center min-h-[130px]">
+      <div class="text-xl font-semibold text-center line-clamp-1"><%= event.name %></div>
+      <div class="text-gray-500 flex flex-col text-center items-center">
+        <span><%= event.to_location.to_html(show_links: false) %></span>
+        <span class="mt-1"><%= event.formatted_dates %></span>
 
-        <%= event.formatted_dates %>
-      </div>
+        <% if participation.present? %>
+          <%= ui_badge(participation.attended_as.humanize, size: :sm, class: "mt-2 bg-blue-700 border-blue-700") %>
+        <% end %>
 
-      <div class="text-gray-600">
-        <%= pluralize(event.talks_count, "talk") %>
+        <% if event.static_metadata.last_edition? %>
+          <div class="flex items-center justify-center mt-2 text-gray-400">
+            <%= fa "box-archive", size: :xs, style: :regular, class: "fill-gray-400" %>
+            <span class="text-sm mt-0.5 ml-1">Final Edition</span>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

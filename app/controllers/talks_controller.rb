@@ -1,25 +1,24 @@
 class TalksController < ApplicationController
+  include FavoriteUsers
   include RemoteModal
   include Pagy::Backend
   include WatchedTalks
+
   skip_before_action :authenticate_user!
 
   respond_with_remote_modal only: [:edit]
 
   before_action :set_talk, only: %i[show edit update]
+  before_action :set_favorite_users, only: %i[show]
   before_action :set_user_favorites, only: %i[index show]
 
   # GET /talks
   def index
-    @talks = Talk.includes(:speakers, event: :organisation, child_talks: :speakers)
-    @talks = @talks.watchable unless params[:all].present?
-    @talks = @talks.ft_search(params[:s]).with_snippets.ranked if params[:s].present?
-    @talks = @talks.for_topic(params[:topic]) if params[:topic].present?
-    @talks = @talks.for_event(params[:event]) if params[:event].present?
-    @talks = @talks.for_speaker(params[:speaker]) if params[:speaker].present?
-    @talks = @talks.where(kind: talk_kind) if talk_kind.present?
-    @talks = @talks.order(order_by) if order_by
-    @pagy, @talks = pagy(@talks, items: 20, page: params[:page]&.to_i || 1)
+    @pagy, @talks = search_backend.search_talks_with_pagy(
+      params[:s],
+      pagy_backend: self,
+      **search_options
+    )
   end
 
   # GET /talks/1
@@ -44,20 +43,56 @@ class TalksController < ApplicationController
 
   private
 
-  def order_by
-    # when searching, don't order by date as the search results are already ordered by relevance
-    # unless the user explicitly asks for it
-    return if params[:s].present? && params[:order_by].blank?
-    order_by_options = {
-      "date_desc" => "talks.date DESC",
-      "date_asc" => "talks.date ASC"
-    }
+  def search_backend
+    @search_backend ||= Search::Backend.resolve(params[:search_backend])
+  end
 
-    @order_by ||= begin
-      order = params[:order_by].presence_in(order_by_options.keys) || "date_desc"
+  def search_options
+    {
+      per_page: params[:limit]&.to_i || 20,
+      page: params[:page]&.to_i || 1,
+      sort: sort_key,
+      topic_slug: params[:topic],
+      event_slug: params[:event],
+      speaker_slug: params[:speaker],
+      kind: talk_kind,
+      language: params[:language],
+      created_after: created_after,
+      status: params[:status],
+      include_unwatchable: params[:status] == "all"
+    }.compact_blank
+  end
 
-      order_by_options[order]
+  def sort_key
+    if params[:s].present? && !explicit_ordering_requested?
+      "relevance"
+    else
+      params[:order_by].presence || "date_desc"
     end
+  end
+
+  helper_method :order_by_key
+  def order_by_key
+    if params[:s].present? && !explicit_ordering_requested?
+      return "ranked"
+    end
+
+    params[:order_by].presence || "date_desc"
+  end
+
+  helper_method :filtered_search?
+  def filtered_search?
+    params[:s].present?
+  end
+
+  def explicit_ordering_requested?
+    params[:order_by].present? && params[:order_by] != "ranked"
+  end
+
+  def created_after
+    Date.parse(params[:created_after]) if params[:created_after].present?
+  rescue ArgumentError
+    nil
   end
 
   def talk_kind
@@ -66,14 +101,23 @@ class TalksController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_talk
-    @talk = Talk.includes(:approved_topics, speakers: :user, event: :organisation).find_by(slug: params[:slug])
+    @talk = Talk.includes(:approved_topics, :speakers, event: :series, watched_talks: :user).find_by(slug: params[:slug])
+    @talk ||= Talk.find_by_slug_or_alias(params[:slug])
 
-    redirect_to talks_path, status: :moved_permanently if @talk.blank?
+    return redirect_to talks_path, status: :moved_permanently if @talk.blank?
+
+    return redirect_to talk_path(@talk), status: :moved_permanently if @talk.slug != params[:slug]
+    @speakers = @talk.speakers.preloaded
   end
 
   # Only allow a list of trusted parameters through.
   def talk_params
     params.require(:talk).permit(:title, :description, :summarized_using_ai, :summary, :date, :slides_url)
+  end
+
+  helper_method :search_params
+  def search_params
+    params.permit(:s, :topic, :event, :speaker, :kind, :created_after, :all, :order_by, :status, :language)
   end
 
   def set_user_favorites

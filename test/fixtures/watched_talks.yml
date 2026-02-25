@@ -3,12 +3,19 @@
 # == Schema Information
 #
 # Table name: watched_talks
+# Database name: primary
 #
-#  id         :integer          not null, primary key
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  talk_id    :integer          not null, indexed, indexed => [user_id]
-#  user_id    :integer          not null, indexed => [talk_id], indexed
+#  id                 :integer          not null, primary key
+#  feedback           :json
+#  feedback_shared_at :datetime
+#  progress_seconds   :integer          default(0), not null
+#  watched            :boolean          default(FALSE), not null
+#  watched_at         :datetime         not null
+#  watched_on         :string
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  talk_id            :integer          not null, indexed, uniquely indexed => [user_id]
+#  user_id            :integer          not null, uniquely indexed => [talk_id], indexed
 #
 # Indexes
 #
@@ -16,6 +23,17 @@
 #  index_watched_talks_on_talk_id_and_user_id  (talk_id,user_id) UNIQUE
 #  index_watched_talks_on_user_id              (user_id)
 #
+
 one:
   user: one
   talk: one
+  progress_seconds: 0
+  watched_at: <%= Time.current %>
+  watched: true
+
+two:
+  user: two
+  talk: two
+  progress_seconds: 150
+  watched_at: <%= Time.current %>
+  watched: true

@@ -1,0 +1,56 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# == Schema Information
+#
+# Table name: organizations
+# Database name: primary
+#
+#  id              :integer          not null, primary key
+#  description     :text
+#  domain          :string
+#  kind            :integer          default("unknown"), not null, indexed
+#  logo_background :string           default("white")
+#  logo_url        :string
+#  logo_urls       :json
+#  main_location   :string
+#  name            :string
+#  slug            :string           indexed
+#  website         :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+# Indexes
+#
+#  index_organizations_on_kind  (kind)
+#  index_organizations_on_slug  (slug)
+#
+
+one:
+  name: A Sponsor
+  website: https://sponsorone.com
+  description: A Sponsor is a sponsor
+  slug: sponsor-one
+  logo_url: https://sponsorone.com/logo.png
+  logo_background: white
+  domain: sponsorone.com
+  main_location: San Francisco, CA
+
+two:
+  name: B Sponsor
+  website: https://sponsortwo.com
+  description: B Sponsor is a sponsor
+  slug: sponsor-two
+  logo_url: https://sponsortwo.com/logo.png
+  logo_background: white
+  domain: sponsortwo.com
+  main_location: New York, NY
+
+three:
+  name: C Sponsor
+  website: https://sponsorthree.com
+  description: C Sponsor is a sponsor
+  slug: sponsor-three
+  logo_url: https://sponsorthree.com/logo.png
+  logo_background: white
+  domain: sponsorthree.com
+  main_location: London, UK

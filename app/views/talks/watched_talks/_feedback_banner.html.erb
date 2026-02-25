@@ -1,0 +1,44 @@
+<%# locals: (talk:, watched_talk:, form_open: false) %>
+
+<% has_rating_feedback = watched_talk&.has_rating_feedback? %>
+<% feedback_allowed = talk.feedback_allowed_for?(Current.user) %>
+<% has_watched_on = watched_talk&.watched_on.present? %>
+
+<div class="mt-4 p-4 bg-base-200/50 rounded-xl" data-controller="collapsible collapsible-feedback" data-collapsible-open-value="<%= !has_watched_on %>" data-collapsible-feedback-open-value="<%= form_open %>">
+  <div class="flex items-center justify-between flex-wrap gap-2">
+    <div class="flex items-center gap-2">
+      <%= fa("circle-check", size: :sm, style: :solid, class: "text-green-600") %>
+      <span class="font-medium"><% if watched_talk&.watched_on == "another_version" %>You watched another version of this talk!<% elsif watched_talk&.watched_on == "in_person" %>You watched this talk in-person<% if watched_talk&.watched_at %> on <%= watched_talk.watched_at.strftime("%B %-d, %Y") %><% end %>!<% else %>You watched this talk<% if watched_talk&.watched_on.present? && watched_talk.watched_on != "other" %> on <%= WatchedTalk::WATCHED_ON_OPTIONS.dig(watched_talk.watched_on, :label) || watched_talk.watched_on.titleize %><% end %><% if watched_talk&.watched_at %> on <%= watched_talk.watched_at.strftime("%B %-d, %Y") %><% end %>!<% end %></span>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <% if has_watched_on %>
+        <button type="button" class="btn btn-sm bg-white border border-gray-300 hover:bg-gray-100" data-action="click->collapsible#toggle click->collapsible-feedback#close" data-collapsible-target="trigger">
+          <%= fa("pen-to-square", size: :xs, class: "mr-1") %>
+          Change
+        </button>
+      <% end %>
+
+      <% if feedback_allowed %>
+        <button type="button" class="btn btn-sm btn-primary" data-action="click->collapsible#close click->collapsible-feedback#toggle" data-collapsible-feedback-target="trigger">
+          <%= fa("star", size: :xs, class: "mr-1") %>
+          <%= has_rating_feedback ? "Update Feedback" : "Share Feedback" %>
+        </button>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="mt-4 <%= has_watched_on ? "hidden" : "" %>" data-collapsible-target="content">
+    <%= turbo_frame_tag dom_id(talk, :where_watched) do %>
+      <%= render partial: "talks/watched_talks/where_watched", locals: {talk: talk, watched_talk: watched_talk} %>
+    <% end %>
+  </div>
+
+  <% if feedback_allowed %>
+    <div class="mt-4 <%= form_open ? "" : "hidden" %>" data-collapsible-feedback-target="content">
+      <%= turbo_frame_tag dom_id(talk, :feedback_form) do %>
+        <%= render partial: "talks/watched_talks/feedback_questions", locals: {talk: talk, watched_talk: watched_talk} %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

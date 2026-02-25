@@ -10,10 +10,12 @@
              {}
            end %>
 
-        <%= sanitize oembed_json.dig("html"), tags: ["iframe"], attributes: ["id", "class", "src", "width", "height", "style", "frameborder", "allowtransparency", "allowfullscreen"] %>
+        <div class="responsive-iframe-container">
+          <%= sanitize oembed_json.dig("html"), tags: ["iframe"], attributes: ["id", "class", "src", "width", "height", "style", "frameborder", "allowtransparency", "allowfullscreen"] %>
+        </div>
       <% end %>
     <% end %>
 
-    <a class="btn btn-primary mt-6" href="<%= @talk.slides_url %>" target="_blank">See Slides on <%= uri.host %></a>
+    <a class="btn btn-primary mt-6" href="<%= sanitize(@talk.slides_url) %>" target="_blank">See Slides on <%= uri.host %></a>
   <% end %>
 <% end %>

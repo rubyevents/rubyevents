@@ -2,7 +2,7 @@ require "test_helper"
 
 class Spotlight::EventsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @organisation = organisations(:railsconf)
+    @series = event_series(:railsconf)
     @event = events(:railsconf_2017)
   end
 
@@ -19,13 +19,12 @@ class Spotlight::EventsControllerTest < ActionDispatch::IntegrationTest
     assert_equal @event.id, assigns(:events).first.id
   end
 
-  test "should limit results to 5 talks" do
-    6.times { |i| Event.create!(name: "Event #{i}", organisation: @organisation) }
+  test "should limit events results" do
+    20.times { |i| Event.create!(name: "Event #{i}", series: @series, end_date: 1.month.ago) }
 
     get spotlight_events_url(format: :turbo_stream)
     assert_response :success
-    assert_equal 5, assigns(:events).size
-    assert_equal Event.all.count, assigns(:events_count)
+    assert_equal 15, assigns(:events).size
   end
 
   test "should not track analytics" do

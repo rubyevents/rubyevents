@@ -1,0 +1,64 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# == Schema Information
+#
+# Table name: user_talks
+# Database name: primary
+#
+#  id           :integer          not null, primary key
+#  discarded_at :datetime
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  talk_id      :integer          not null, indexed, uniquely indexed => [user_id]
+#  user_id      :integer          not null, indexed, uniquely indexed => [talk_id]
+#
+# Indexes
+#
+#  index_user_talks_on_talk_id              (talk_id)
+#  index_user_talks_on_user_id              (user_id)
+#  index_user_talks_on_user_id_and_talk_id  (user_id,talk_id) UNIQUE
+#
+# Foreign Keys
+#
+#  talk_id  (talk_id => talks.id)
+#  user_id  (user_id => users.id)
+#
+one:
+  user: yaroslav
+  talk: one
+
+two:
+  user: two
+  talk: two
+
+marco_talk_one:
+  user: marco
+  talk: two
+
+marco_talk_two:
+  user: marco
+  talk: three
+
+yaroslav_lightning_talk:
+  user: yaroslav
+  talk: lightning_talk
+
+marco_lightning_talk:
+  user: marco
+  talk: lightning_talk
+
+chael_lightning_talk:
+  user: chael
+  talk: lightning_talk
+
+one_lightning_talk:
+  user: one
+  talk: lightning_talk
+
+two_lightning_talk:
+  user: two
+  talk: lightning_talk
+
+lazaro_nixon_lightning_talk:
+  user: lazaro_nixon
+  talk: lightning_talk

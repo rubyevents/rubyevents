@@ -1,0 +1,8 @@
+<%# locals: (talks:) %>
+
+<%= render "browse/content_row",
+      title: "Quick Watches",
+      subtitle: "Under 15 minutes",
+      talks: talks,
+      view_all_path: talks_path(kind: "lightning_talk"),
+      data_section: "quick-watches" %>

@@ -2,10 +2,11 @@
 # == Schema Information
 #
 # Table name: topics
+# Database name: primary
 #
 #  id           :integer          not null, primary key
 #  description  :text
-#  name         :string           indexed
+#  name         :string           uniquely indexed
 #  published    :boolean          default(FALSE)
 #  slug         :string           default(""), not null, indexed
 #  status       :string           default("pending"), not null, indexed
@@ -28,11 +29,16 @@
 # rubocop:enable Layout/LineLength
 class Topic < ApplicationRecord
   include Sluggable
+  include Topic::TypesenseSearchable
 
-  slug_from :name
+  has_object :agents
+  has_object :gem_info
+
+  configure_slug(attribute: :name, auto_suffix_on_collision: false)
 
   has_many :talk_topics
   has_many :talks, through: :talk_topics
+  has_many :topic_gems, dependent: :destroy
   belongs_to :canonical, class_name: "Topic", optional: true
   has_many :aliases, class_name: "Topic", foreign_key: "canonical_id"
 
@@ -57,7 +63,7 @@ class Topic < ApplicationRecord
   def self.create_from_list(topics, status: :pending)
     topics.map { |topic|
       slug = topic.parameterize
-      Topic.find_by(slug: slug)&.primary_topic || Topic.find_or_create_by(name: topic, status: status)
+      Topic.find_by(slug: slug)&.primary_topic || Topic.find_or_create_by(name: topic.squish) { |t| t.status = status }
     }.uniq
   end
 
@@ -79,6 +85,24 @@ class Topic < ApplicationRecord
 
   def primary_topic
     canonical || self
+  end
+
+  def to_meta_tags
+    {
+      title: name,
+      description: description,
+      og: {
+        title: name,
+        type: :website,
+        description: description,
+        site_name: "RubyEvents.org"
+      },
+      twitter: {
+        card: "summary",
+        title: name,
+        description: description
+      }
+    }
   end
 
   # enums state machine

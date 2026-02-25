@@ -1,0 +1,89 @@
+<div class="container py-8">
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-primary mb-2">My Attendances</h1>
+    <p class="text-gray-600">Track which talks you attended in-person at events you participated in.</p>
+  </div>
+
+  <% if @events.empty? %>
+    <div class="text-center py-12 bg-white rounded-lg border">
+      <div class="text-6xl mb-4">🎟️</div>
+      <h2 class="text-xl font-bold text-gray-900 mb-2">No Past Events</h2>
+      <p class="text-gray-600 mb-6">
+        You haven't participated in any past events yet. Mark your attendance at events to start tracking your conference history.
+      </p>
+      <%= link_to "Browse Events", events_path, class: "btn btn-primary" %>
+    </div>
+  <% else %>
+    <div class="space-y-8">
+      <% @events_by_year.each do |year, events| %>
+        <section>
+          <h2 class="text-xl font-bold text-gray-700 mb-4 border-b pb-2"><%= year %></h2>
+
+          <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <% events.each do |event| %>
+              <% stats = @attendance_stats[event.id] || {in_person: 0, online: 0} %>
+              <% total_talks = event.talks.count %>
+              <% watched_total = stats[:in_person] + stats[:online] %>
+              <% unwatched = [total_talks - watched_total, 0].max %>
+
+              <div class="bg-white rounded-lg border shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                <div class="h-24 flex items-center justify-center overflow-hidden" style="<% if event.static_metadata.banner_background.start_with?('data:') %>background: url('<%= event.static_metadata.banner_background %>'); background-repeat: no-repeat; background-size: cover;<% else %>background: <%= event.static_metadata.banner_background %>;<% end %>">
+                  <%= image_tag image_path(event.banner_image_path), class: "h-full w-full object-cover" %>
+                </div>
+
+                <div class="p-4">
+                  <h3 class="font-bold text-lg mb-1">
+                    <%= link_to event.name, event_path(event), class: "hover:text-primary" %>
+                  </h3>
+                  <p class="text-sm text-gray-500 mb-3">
+                    <%= event.formatted_dates %>
+                  </p>
+
+                  <div class="flex items-center gap-4 text-sm mb-4">
+                    <div class="flex items-center gap-1">
+                      <%= fa("user-check", size: :sm, class: "fill-green-600") %>
+                      <span class="text-green-700 font-medium"><%= stats[:in_person] %></span>
+                      <span class="text-gray-500">in-person</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <%= fa("video", size: :sm, class: "fill-blue-600") %>
+                      <span class="text-blue-700 font-medium"><%= stats[:online] %></span>
+                      <span class="text-gray-500">online</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <%= fa("circle", size: :sm, style: :regular, class: "text-gray-400") %>
+                      <span class="text-gray-500"><%= unwatched %></span>
+                      <span class="text-gray-400">left</span>
+                    </div>
+                  </div>
+
+                  <% if total_talks > 0 %>
+                    <div class="w-full bg-gray-200 rounded-full h-2 mb-3">
+                      <% in_person_percent = (stats[:in_person].to_f / total_talks * 100).round %>
+                      <% online_percent = (stats[:online].to_f / total_talks * 100).round %>
+                      <div class="flex h-2 rounded-full overflow-hidden">
+                        <div class="bg-green-500" style="width: <%= in_person_percent %>%"></div>
+                        <div class="bg-blue-500" style="width: <%= online_percent %>%"></div>
+                      </div>
+                    </div>
+                  <% end %>
+
+                  <% if event.talks.any? %>
+                    <%= link_to attendance_path(event_slug: event.slug), class: "btn btn-sm btn-outline w-full" do %>
+                      <%= fa("pen-to-square", size: :sm) %>
+                      Manage Attendance
+                    <% end %>
+                  <% else %>
+                    <div class="text-xs text-gray-400 text-center py-2">
+                      No talks available
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </section>
+      <% end %>
+    </div>
+  <% end %>
+</div>

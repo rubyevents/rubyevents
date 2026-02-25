@@ -42,12 +42,24 @@ class TalksControllerTest < ActionDispatch::IntegrationTest
 
   test "should show talk" do
     get talk_url(@talk)
+    assert_select "div", /#{@talk.title}/
+    assert_select "div", /#{@talk.event.name}/
+    assert_select "div", /#{@talk.speakers.first.name}/
     assert_response :success
   end
 
   test "should redirect to talks for wrong slugs" do
     get talk_url("wrong-slug")
     assert_response :moved_permanently
+    assert_redirected_to talks_path
+  end
+
+  test "should redirect to correct talk slug when accessed via alias" do
+    @talk.aliases.create!(name: "Old Title", slug: "old-talk-slug")
+
+    get talk_url("old-talk-slug")
+    assert_response :moved_permanently
+    assert_redirected_to talk_path(@talk)
   end
 
   test "should get edit" do
@@ -79,14 +91,11 @@ class TalksControllerTest < ActionDispatch::IntegrationTest
     assert_equal "2024-01-01", @talk.date.to_s
 
     # some attributes cannot be changed
-    assert_not_equal "new slug", @talk.slug
+    assert_not_equal "new-slug", @talk.slug
   end
 
   test "owner can update directly the talk" do
-    user = User.create!(email: "test@example.com", password: "Secret1*3*5*", github_handle: @talk.speakers.first.github, verified: true)
-    assert user.persisted?
-    assert_equal user, @talk.speakers.first.user
-
+    user = @talk.users.first
     sign_in_as user
 
     patch talk_url(@talk), params: {talk: {summary: "new summary", description: "new description", slug: "new-slug", title: "new title", date: "2024-01-01"}}
@@ -99,7 +108,7 @@ class TalksControllerTest < ActionDispatch::IntegrationTest
     assert_equal "2024-01-01", @talk.date.to_s
 
     # some attributes cannot be changed
-    assert_not_equal "new slug", @talk.slug
+    assert_not_equal "new-slug", @talk.slug
   end
 
   test "should show topics" do
@@ -117,7 +126,19 @@ class TalksControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     json_response = JSON.parse(response.body)
-    assert_equal @talk.slug, json_response["talks"].first["slug"]
+    talk = Talk.watchable.order(date: :desc).first
+
+    assert_equal talk.slug, json_response["talks"].first["slug"]
+  end
+
+  test "should get index as JSON with a custom per_page" do
+    assert Talk.watchable.count > 2
+    get talks_url(format: :json, limit: 2)
+    assert_response :success
+
+    json_response = JSON.parse(response.body)
+
+    assert_equal 2, json_response["talks"].size
   end
 
   test "should get show as JSON" do
@@ -126,5 +147,23 @@ class TalksControllerTest < ActionDispatch::IntegrationTest
 
     json_response = JSON.parse(response.body)
     assert_equal @talk.slug, json_response["talk"]["slug"]
+  end
+
+  test "should get index with created_after" do
+    talk = Talk.create!(title: "test", description: "test", date: "2023-01-01", created_at: "2023-01-01", video_provider: "youtube", static_id: "test-created-after-2023")
+    talk_2 = Talk.create!(title: "test 2", description: "test", date: "2025-01-01", created_at: "2025-01-01", video_provider: "youtube", static_id: "test-created-after-2025")
+
+    get talks_url(created_after: "2024-01-01")
+    assert_response :success
+    assert assigns(:talks).size.positive?
+    refute assigns(:talks).ids.include?(talk.id)
+    assert assigns(:talks).ids.include?(talk_2.id)
+    assert assigns(:talks).all? { |talk| talk.created_at >= Date.parse("2024-01-01") }
+  end
+
+  test "should get index with invalid created_after" do
+    get talks_url(created_after: "wrong-date")
+    assert_response :success
+    assert assigns(:talks).size.positive?
   end
 end

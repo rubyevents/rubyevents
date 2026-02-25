@@ -1,0 +1,39 @@
+<div id="<%= dom_id(user, :socials) %>">
+  <div id="socials" class="flex items-center gap-2">
+    <% if user.github_handle.present? %>
+      <%= ui_button url: "https://www.github.com/#{user.github_handle}", kind: :circle, size: :sm, target: "_blank", class: "hover:bg-black hover:fill-white border-base-200" do %>
+        <%= fab("github", size: :md) %>
+      <% end %>
+    <% end %>
+
+    <% if user.twitter.present? %>
+      <%= ui_button url: "https://www.x.com/#{user.twitter}", kind: :circle, size: :sm, target: "_blank", class: "hover:bg-black hover:fill-white border-base-200" do %>
+        <%= fab("x-twitter", size: :md) %>
+      <% end %>
+    <% end %>
+
+    <% if user.bsky.present? %>
+      <%= ui_button url: "https://bsky.app/profile/#{user.bsky}", kind: :circle, size: :sm, target: "_blank", class: "hover:bg-[#0085FF] hover:fill-white border-base-200" do %>
+        <%= fab("bluesky", size: :md) %>
+      <% end %>
+    <% end %>
+
+    <% if user.mastodon.present? %>
+      <%= ui_button url: user.mastodon, kind: :circle, size: :sm, target: "_blank", class: "hover:bg-[#6364FF] hover:fill-white border-base-200", data: {tip: user.mastodon} do %>
+        <%= fab("mastodon", size: :md) %>
+      <% end %>
+    <% end %>
+
+    <% if user.linkedin.present? %>
+      <%= ui_button url: "https://www.linkedin.com/in/#{user.linkedin}", kind: :circle, size: :sm, target: "_blank", class: "hover:bg-[#0A66C2] hover:fill-white border-base-200", data: {tip: user.linkedin} do %>
+        <%= fab("linkedin", size: :md) %>
+      <% end %>
+    <% end %>
+
+    <% if user.speakerdeck.present? %>
+      <%= ui_button url: "https://speakerdeck.com/#{user.speakerdeck}", kind: :circle, size: :sm, target: "_blank", class: "hover:bg-[#009287] hover:fill-white border-base-200", data: {tip: user.speakerdeck} do %>
+        <%= fab("speaker-deck", size: :md) %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

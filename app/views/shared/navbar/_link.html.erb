@@ -1,6 +1,6 @@
 <% active = current_page?(path) %>
 
-<%= content_tag :li, class: class_names("pt-1 whitespace-nowrap", active: active) do %>
+<%= content_tag :li, class: class_names("whitespace-nowrap", active: active) do %>
   <%= link_to link_title, path %>
   <%= content_tag :div, "" %>
 <% end %>

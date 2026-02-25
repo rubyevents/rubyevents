@@ -1,0 +1,17 @@
+<div class="container flex flex-col w-full gap-4 my-8 hotwire-native:my-0 hotwire-native:mb-8">
+  <div class="block md:flex items-center justify-between gap-2">
+    <h1 class="title hotwire-native:hidden">
+      <%= title "Open Call for Proposals" %>
+    </h1>
+
+    <div class="tabs tabs-boxed mt-4 md:mt-0">
+      <%= link_to "All", cfp_index_path(kind: "all"), class: "tab #{"tab-active" if params[:kind].blank? || params[:kind] == "all"}" %>
+      <%= link_to "Conferences", cfp_index_path(kind: "conference"), class: "tab #{"tab-active" if params[:kind] == "conference"}" %>
+      <%= link_to "Meetups", cfp_index_path(kind: "meetup"), class: "tab #{"tab-active" if params[:kind] == "meetup"}" %>
+    </div>
+  </div>
+
+  <div class="mt-6 block md:grid gap-8 overflow-scroll">
+    <%= render partial: "cfp/event_list", locals: {events: @events} %>
+  </div>
+</div>

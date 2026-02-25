@@ -1,3 +1,4 @@
+<% require "dotenv"; Dotenv.load(".env") %>
 # Name of your application. Used to uniquely configure containers.
 service: rubyvideo_staging
 
@@ -8,28 +9,27 @@ image: adrienpoly/rubyvideo_staging
 servers:
   web:
     hosts:
-      - 5.75.232.156
+      - 138.199.198.123
     options:
+      memory: 1GB
       cpus: 1
-      memory: 0.5g
-      memory-swap: 2g
 
   job:
     hosts:
-      - 5.75.232.156
-    options:
-      cpus: 0.2
-      memory: 0.5g
-      memory-swap: 2g
+      - 138.199.198.123
     cmd: bin/jobs
+    options:
+      memory: 1GB
+      cpus: 0.5
 
-# Enable SSL auto certification via Let's Encrypt (and allow for multiple apps on one server).
-# If using something like Cloudflare, it is recommended to set encryption mode
-# in Cloudflare's SSL/TLS setting to "Full" to enable end-to-end encryption.
+# Enable SSL auto certification via Let's Encrypt and allow for multiple apps on a single web server.
+# Remove this section when using multiple web servers and ensure you terminate SSL at your load balancer.
+#
+# Note: If using Cloudflare, set encryption mode in SSL/TLS setting to "Full" to enable CF-to-app encryption.
 proxy:
   ssl: true
   hosts:
-    - staging.rubyvideo.dev
+    - staging.rubyevents.org
   # kamal-proxy connects to your container over port 80, use `app_port` to specify a different port.
   app_port: 80
 
@@ -39,46 +39,99 @@ registry:
   password:
     - KAMAL_REGISTRY_PASSWORD
 
-# Configure builder setup.
+env:
+  clear:
+    WEB_CONCURRENCY: 1
+    RAILS_MAX_THREADS: 3
+    RAILS_ENV: staging
+    TYPESENSE_HOST: rubyvideo_staging-typesense
+    TYPESENSE_PORT: 8108
+    TYPESENSE_PROTOCOL: http
+  secret:
+    - RAILS_MASTER_KEY
+    - MAPBOX_ACCESS_TOKEN
+    - TYPESENSE_API_KEY
+
+# Aliases are triggered with "bin/kamal <alias>". You can overwrite arguments on invocation:
+# "bin/kamal logs -r job" will tail logs from the first server in the job section.
+aliases:
+  console: app exec --interactive --reuse "bin/rails console"
+  shell: app exec --interactive --reuse "bash"
+  logs: app logs -f
+  dbc: app exec --interactive --reuse "bin/rails dbconsole"
+
+# Use a persistent storage volume for sqlite database files and local Active Storage files.
+# Recommended to change this to a mounted volume path that is backed up off server.
+volumes:
+  - "storage:/rails/storage"
+
+# Bridge fingerprinted assets, like JS and CSS, between versions to avoid
+# hitting 404 on in-flight requests. Combines all files from new and old
+# version inside the asset_path.
+asset_path: /rails/public/assets
+
+# Configure the image builder.
 builder:
   arch:
-    - arm64
+    - amd64
   cache:
     type: gha
     options: mode=max
     image: rubyvideo-staging-build-cache
   secrets:
     - RAILS_MASTER_KEY
+  remote: false
+  local: true
 
-env:
-  clear:
-    WEB_CONCURRENCY: 1
-    RAILS_MAX_THREADS: 3
-    RAILS_ENV: staging
-  secret:
-    - RAILS_MASTER_KEY
-    - MEILI_MASTER_KEY
+  # # Build image via remote server (useful for faster amd64 builds on arm64 computers)
+  # remote: ssh://docker@docker-builder-server
+  #
+  # # Pass arguments and secrets to the Docker build process
+  # args:
+  #   RUBY_VERSION: ruby-3.3.4
+  # secrets:
+  #   - GITHUB_TOKEN
+  #   - RAILS_MASTER_KEY
+# Use a different ssh user than root
+# ssh:
+#   user: app
 
-# Use a persistent storage volume.
-#
-volumes:
-  - "storage:/rails/storage"
-
+# Use accessory services (secrets come from .kamal/secrets).
+# accessories:
 accessories:
-  search:
-    image: getmeili/meilisearch:v1.10
-    host: 5.75.232.156
-    port: 7700
+  litestream:
+    roles: ["web"]
+    image: litestream/litestream
+    files: ["config/litestream.staging.yml:/etc/litestream.yml"]
+    volumes: ["storage:/rails/storage"]
+    cmd: replicate
+    env:
+      secret:
+        - LITESTREAM_ENDPOINT
+        - LITESTREAM_ACCESS_KEY_ID
+        - LITESTREAM_SECRET_ACCESS_KEY
+
+  chrome:
+    roles: ["web", "job"]
+    image: browserless/chrome:latest
+    port: 3000
     env:
       clear:
-        MEILI_HTTP_ADDR: rubyvideo_staging-search:7700
-        MEILI_ENV: production
-        MEILI_DB_PATH: /rails/storage/meilisearch
-        MEILI_NO_ANALYTICS: true
-        MEILI_DUMP_DIR: /rails/storage/meilisearch/dumps
-        MEILI_MAX_INDEXING_MEMORY: 2Gb
-        MEILI_SNAPSHOT_DIR: /rails/storage/meilisearch/snapshots
-      secret:
-        - MEILI_MASTER_KEY
+        CONNECTION_TIMEOUT: "60000"
+        MAX_CONCURRENT_SESSIONS: "5"
+    options:
+      memory: 1GB
+      cpus: 0.5
+
+  typesense:
+    roles: ["web"]
+    image: typesense/typesense:27.1
+    port: "8108:8108"
     volumes:
-      - "storage:/rails/storage"
+      - "typesense-data:/data"
+    env:
+      clear:
+        TYPESENSE_DATA_DIR: /data
+        TYPESENSE_ENABLE_CORS: "true"
+      secret:
+        - TYPESENSE_API_KEY

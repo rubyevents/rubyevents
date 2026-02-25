@@ -24,18 +24,23 @@ module ApplicationHelper
   end
 
   def footer_credits
+    maintainers = [
+      link_to("@adrienpoly", "https://www.rubyevents.org/profiles/adrienpoly", class: "link", alt: "Adrien Poly"),
+      link_to("@chaelcodes", "https://www.rubyevents.org/profiles/chaelcodes", class: "link", alt: "Rachael Wright-Munn"),
+      link_to("@marcoroth", "https://www.rubyevents.org/profiles/marcoroth", class: "link", alt: "Marco Roth")
+    ].shuffle.join(", ")
+
     output = ["Made with"]
-    output << heroicon(:heart, variant: :solid, size: :sm, class: "text-primary inline")
+    output << fa(:heart, size: :sm, class: "fill-red-700 inline")
     output << "for the Ruby community by"
-    output << link_to("@adrienpoly", "https://www.adrienpoly.com", target: "_blank", class: "link", alt: "Adrien Poly Ruby on Rails developer / CTO")
-    output << "and wonderful"
-    output << link_to("contributors", "https://github.com/adrienpoly/rubyvideo/graphs/contributors", target: "_blank", class: "link")
+    output << "#{maintainers}, and wonderful"
+    output << link_to("contributors", contributors_path, class: "link")
     output << "using an"
     output << link_to("edge stack.", uses_path, class: "link")
     sanitize(output.join(" "), tags: %w[a span svg path], attributes: %w[href target class alt d xmlns viewBox fill])
   end
 
   def canonical_url
-    content_for?(:canonical_url) ? content_for(:canonical_url) : "https://www.rubyvideo.dev#{request.path}"
+    content_for?(:canonical_url) ? content_for(:canonical_url) : "https://www.rubyevents.org#{request.path}"
   end
 end

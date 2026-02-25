@@ -1,0 +1,90 @@
+# Schedule: https://regional.rubykaigi.org/tokyo12/schedule/
+---
+days:
+  - name: "Day 1"
+    date: "2025-01-18"
+    grid:
+      - start_time: "10:30"
+        end_time: "11:00"
+        slots: 1
+        items:
+          - Door Open
+
+      - start_time: "11:00"
+        end_time: "11:10"
+        slots: 1
+        items:
+          - Opening
+
+      - start_time: "11:10"
+        end_time: "11:50"
+        slots: 1
+        # Keynote: John Hawthorn
+
+      - start_time: "11:50"
+        end_time: "13:10"
+        slots: 1
+        items:
+          - Lunch
+
+      - start_time: "13:10"
+        end_time: "13:35"
+        slots: 2
+        # 2 parallel talks (4F Hall & 3F Gallery)
+
+      - start_time: "13:35"
+        end_time: "14:00"
+        slots: 2
+        # 2 parallel talks (4F Hall & 3F Gallery)
+
+      - start_time: "14:00"
+        end_time: "14:30"
+        slots: 2
+        # 2 parallel talks (4F Hall & 3F Gallery)
+
+      - start_time: "14:30"
+        end_time: "15:00"
+        slots: 1
+        items:
+          - Long Break
+
+      - start_time: "15:00"
+        end_time: "15:25"
+        slots: 2
+        # 2 parallel talks (4F Hall & 3F Gallery)
+
+      - start_time: "15:25"
+        end_time: "15:50"
+        slots: 2
+        # 2 parallel talks (4F Hall & 3F Gallery)
+
+      - start_time: "15:50"
+        end_time: "16:30"
+        slots: 1
+        # Regional.rb and the Tokyo Metropolis
+
+      - start_time: "16:30"
+        end_time: "16:50"
+        slots: 1
+        items:
+          - Long Break
+
+      - start_time: "16:50"
+        end_time: "17:50"
+        slots: 1
+        # Keynote: Kohei Suzuki
+
+      - start_time: "17:50"
+        end_time: "18:00"
+        slots: 1
+        items:
+          - Closing
+
+tracks:
+  - name: "4F Hall"
+    color: "#CC0000"
+    text_color: "#FFFFFF"
+
+  - name: "3F Gallery"
+    color: "#0066CC"
+    text_color: "#FFFFFF"

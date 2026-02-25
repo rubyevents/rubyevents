@@ -1,26 +1,29 @@
 ---
-# TODO: talk running order
+# TODO: talks running order
 # TODO: conference website
 # TODO: schedule website
 # TODO: talk dates
 
-- title: "Keynote: People the Missing Ingredient"
+- id: "joe-obrien-la-rubyconf-2012"
+  title: "Keynote: People the Missing Ingredient"
   raw_title: "Keynote: People the Missing Ingredient by Joe O'Brien"
   speakers:
     - Joe O'Brien
-  event_name: LA RubyConf 2012
-  published_at: "2012-02-04"
-  description: |-
+  event_name: "LA RubyConf 2012"
+  date: "2012-02-04"
+  published_at: "2012-03-14"
+  description: ""
+  video_provider: "youtube"
+  video_id: "tVmZHqf7yPE"
 
-  video_provider: youtube
-  video_id: tVmZHqf7yPE
-
-- title: Metric Driven Development with Ruby on Rails
-  raw_title: Metric Driven Development with Ruby on Rails by Jeff Casimir
+- id: "jeff-casimir-la-rubyconf-2012"
+  title: "Metric Driven Development with Ruby on Rails"
+  raw_title: "Metric Driven Development with Ruby on Rails by Jeff Casimir"
   speakers:
     - Jeff Casimir
-  event_name: LA RubyConf 2012
-  published_at: "2012-02-04"
+  event_name: "LA RubyConf 2012"
+  date: "2012-02-04"
+  published_at: "2012-04-18"
   description: |-
     "Ruby can't scale."
 
@@ -30,145 +33,151 @@
 
     Find CPU-intensive hotspots Measure memory and object allocation Monitor query count and duration Isolate data-store bottlenecks This is not about info-porn. It's about finding the 1% of your code that, through optimization, can dramatically improve performance.
 
-  video_provider: youtube
-  video_id: _Iqb9n9O7a0
+  video_provider: "youtube"
+  video_id: "_Iqb9n9O7a0"
 
-- title: Rack Middleware as a General Purpose Abstraction
-  raw_title: Rack Middleware as a General Purpose Abstraction by John Bender
+- id: "john-bender-la-rubyconf-2012"
+  title: "Rack Middleware as a General Purpose Abstraction"
+  raw_title: "Rack Middleware as a General Purpose Abstraction by John Bender"
   speakers:
     - John Bender
-  event_name: LA RubyConf 2012
-  published_at: "2012-02-04"
+  event_name: "LA RubyConf 2012"
+  date: "2012-02-04"
+  published_at: "2012-04-20"
   description: |-
     We've all seen the monolithic Rails model, pages and pages of methods all dumped into one class. Inevitably someone starts moving things around just to feel better about the loc count without making any real difference. How can we reify actions on an object and simplify our classes?
 
     In this talk we'll examine Rack middleware as a general purpose method of object composition, see examples of it at work in Vagrant, and use these ideas to simplify an existing application.
 
-  video_provider: youtube
-  video_id: fcNaiP5tea0
+  video_provider: "youtube"
+  video_id: "fcNaiP5tea0"
 
-- title: How to Scale a Ruby Webservice
-  raw_title: How to scale a Ruby webservice by Jeremie Castagna
+- id: "jeremie-castagna-la-rubyconf-2012"
+  title: "How to Scale a Ruby Webservice"
+  raw_title: "How to scale a Ruby webservice by Jeremie Castagna"
   speakers:
     - Jeremie Castagna
-  event_name: LA RubyConf 2012
-  published_at: "2012-02-04"
+  event_name: "LA RubyConf 2012"
+  date: "2012-02-04"
+  published_at: "2012-04-19"
   description: |-
     In the wide world of web service development, Ruby is rarely the first pick as a platform to build on. Slowness and scalability are usually the reasons given to go with Java or something less friendly. However, language is rarely the bottleneck in a web application. Using a service at ATTi as an example, we'll look at how most service applications can be built and scaled in Ruby, and how to avoid common pitfalls.
 
-  video_provider: youtube
-  video_id: nfvD9UBh3XM
+  video_provider: "youtube"
+  video_id: "nfvD9UBh3XM"
 
-- title: Kill! Kill! Die! Die! Load Testing With A Vengeance
-  raw_title: Kill! Kill! Die! Die! Load Testing With A Vengeance by Dan Yoder and Carlo Flores
+- id: "dan-yoder-la-rubyconf-2012"
+  title: "Kill! Kill! Die! Die! Load Testing With A Vengeance"
+  raw_title: "Kill! Kill! Die! Die! Load Testing With A Vengeance by Dan Yoder and Carlo Flores"
   speakers:
     - Dan Yoder
     - Carlo Flores
-  event_name: LA RubyConf 2012
-  published_at: "2012-02-04"
+  event_name: "LA RubyConf 2012"
+  date: "2012-02-04"
+  published_at: "2012-04-19"
   description: |-
     We've all seen load tests of a single "hello world" HTTP server using tools like ab or httperf. But what about load testing for real world Web applications and testing architectures that go beyond a few processes on a single machine? What about testing elastic "on-demand" architectures that add capacity as load grows? How does testing in the cloud affect your results? At what point does bandwidth become a bottleneck instead of CPU or memory? And what are we really measuring? What is the difference between connections and request per second? And how do those ultimately relate to infrastructure cost, which is the real bottom line?
 
-  video_provider: youtube
-  video_id: TPOWB-PAWxA
+  video_provider: "youtube"
+  video_id: "TPOWB-PAWxA"
 
-- title: Maintainable Ruby on Rails
-  raw_title: LA Ruby Conf 2012 Maintainable Ruby on Rails by Steven Baker
+- id: "steven-baker-la-rubyconf-2012"
+  title: "Maintainable Ruby on Rails"
+  raw_title: "LA Ruby Conf 2012 Maintainable Ruby on Rails by Steven Baker"
   speakers:
     - Steven Baker
-  event_name: LA RubyConf 2012
-  published_at: "2012-02-04"
+  event_name: "LA RubyConf 2012"
+  date: "2012-02-04"
+  published_at: "2012-04-20"
   description: |-
     As we enter a decade of applications developed with Ruby on Rails, many teams are starting to feel growing pains relating to design decisions that were made in the past. Development slows down, and morale declines. Fresh competitors without the cruft of legacy code slowing them down easily deliver new features.
 
     This change of speed is not a natural part of the growth of a software project, but a common symptom of the design decisions made, and techniques practiced, to develop the software in the first place.
 
     In this talk you will learn how to identify common (and not so common) issues that teams face as their applications age. You will learn about principles of software design, techniques, and practices to solve these problems. You will also gain valuable knowledge about how to make your software more maintainable and extensible to ensure you don't run into these problems in the future.
-  video_provider: youtube
-  video_id: S9PY-qZKXww
+  video_provider: "youtube"
+  video_id: "S9PY-qZKXww"
 
-- title: Designing Hypermedia APIs
-  raw_title: LA Ruby Conf 2012 Designing Hypermedia APIs by Steve Klabnik
+- id: "steve-klabnik-la-rubyconf-2012"
+  title: "Designing Hypermedia APIs"
+  raw_title: "LA Ruby Conf 2012 Designing Hypermedia APIs by Steve Klabnik"
   speakers:
     - Steve Klabnik
-  event_name: LA RubyConf 2012
-  published_at: "2012-02-04"
+  event_name: "LA RubyConf 2012"
+  date: "2012-02-04"
+  published_at: "2012-04-20"
   description: |-
     Rails did a lot to bring REST to developers, but its conception leaves the REST devotee feeling a bit empty. "Where's the hypermedia?" she says. "REST isn't RPC," he may cry. "WTF??!?!" you may think. "I have it right there! resources :posts ! What more is there? RPC? Huh?"
 
     In this talk, Steve will explain how to design your APIs so that they truly embrace the web and HTTP. Just as there's an impedance mismatch between our databases, our ORMs, and our models, there's an equal mismatch between our applications, our APIs, and our clients. Pros and cons of this approach will be discussed, as well as why we aren't building things this way yet.
-  video_provider: youtube
-  video_id: x5ezCxo5sM4
+  video_provider: "youtube"
+  video_id: "x5ezCxo5sM4"
 
-- title: Quit Your Job. Srsly.
-  raw_title: LA Ruby Conf 2012 - Quit Your Job. Srsly.  by Shane Becker
+- id: "shane-becker-la-rubyconf-2012"
+  title: "Quit Your Job. Srsly."
+  raw_title: "LA Ruby Conf 2012 - Quit Your Job. Srsly.  by Shane Becker"
   speakers:
     - Shane Becker
-  event_name: LA RubyConf 2012
-  published_at: "2012-02-04"
+  event_name: "LA RubyConf 2012"
+  date: "2012-02-04"
+  published_at: "2012-04-20"
   description: |-
     "The best minds of my generation are thinking about how to make people click ads." â€" Jeff Hammerbacher http://buswk.co/eCdfFp We can rewrite Jeff's quote like this: "The best programmers of my generation are working on solutions to problems that do not matter." The crux of it is you are better than your job. You have a greater potential than your job is realizing. You can do more than you think. You are worth more than your job is paying you. You can make the world a better place. You don't have to be limited to building mobile/geo-based/social/ad-driven/gamification-influence/fully-buzzword-compliant bullshit to get people to buy things they don't need while giving up more privacy to corporations and becoming less happy in the process. You're better than that. Quit your job. Build your dreams. Change the world. Srsly.
 
-  video_provider: youtube
-  video_id: 0CMjiIqhvdQ
+  video_provider: "youtube"
+  video_id: "0CMjiIqhvdQ"
 
-- title: "Time to Move Away from Ruby"
-  raw_title: Time to Move Away from Ruby  Matt Aimonetti
+- id: "matt-aimonetti-la-rubyconf-2012"
+  title: "Time to Move Away from Ruby"
+  raw_title: "Time to Move Away from Ruby  Matt Aimonetti"
   speakers:
     - Matt Aimonetti
-  event_name: LA RubyConf 2012
-  published_at: "2012-02-04"
-  description:
-    "Let's be honest, Ruby became mainstream a few years back and it isn't
-    the cool underground programming language it once was. It's quite likely that
-    your cousin's boyfriend who's \"into computers\"\x9D knows what Ruby on Rails
-    is. There are hundreds of books, conferences, training and meetups for Rubyists.
-    Recruiters fight to hire whoever knows how to generate a scaffolded Rails app.
-    But now cool kids can't stop talking about node.js, CoffeeScript, Clojure, Haskell
-    and pushing code to the UI layer. What does it mean for the new, existing and
-    prospecting Ruby developers? Is it time to jump ship and move on to something
-    else?"
-  video_provider: youtube
-  video_id: foOPsKQOQyw
+  event_name: "LA RubyConf 2012"
+  date: "2012-02-04"
+  published_at: "2012-04-25"
+  description: |-
+    Let's be honest, Ruby became mainstream a few years back and it isn't the cool underground programming language it once was. It's quite likely that your cousin's boyfriend who's "into computers" knows what Ruby on Rails is. There are hundreds of books, conferences, training and meetups for Rubyists. Recruiters fight to hire whoever knows how to generate a scaffolded Rails app. But now cool kids can't stop talking about node.js, CoffeeScript, Clojure, Haskell and pushing code to the UI layer. What does it mean for the new, existing and prospecting Ruby developers? Is it time to jump ship and move on to something else?
+  video_provider: "youtube"
+  video_id: "foOPsKQOQyw"
 
-- title: "Rails Sustainable Productivity"
-  raw_title: LA Ruby Conf 2012 Rails Sustainable Productivity  Xavier Shay
+- id: "xavier-shay-la-rubyconf-2012"
+  title: "Rails Sustainable Productivity"
+  raw_title: "LA Ruby Conf 2012 Rails Sustainable Productivity  Xavier Shay"
   speakers:
     - Xavier Shay
-  event_name: LA RubyConf 2012
-  published_at: "2012-02-04"
+  event_name: "LA RubyConf 2012"
+  date: "2012-02-04"
+  published_at: "2012-04-25"
   description: |-
     I've been writing Rails for near on five years, and there are some things that really grind my goat. Rails is great, but there are so many things we get wrong, both as a framework and a community. In particular, for applications that have grown beyond an initial prototype (if you earn a salary writing Rails, this is probably you), many Rails Best Practices are actively harmful to creating solid, robust, and enjoyable applications. I'll talk about testing, data modelling, code organisation, build systems, and more, drawing from a large pool of things I have seen done wrong and also personally failed at over the last half decade. Of course I'll be providing suggestions for fixing things, also.
 
     It's more of a freight train, see.
-  video_provider: youtube
-  video_id: 84ewfGEojsw
+  video_provider: "youtube"
+  video_id: "84ewfGEojsw"
 
-- title: Great Developers Steal
-  raw_title: LA Ruby Conf 2012 Great Developers Steal by Ben Scofield
+- id: "ben-scofield-la-rubyconf-2012"
+  title: "Great Developers Steal"
+  raw_title: "LA Ruby Conf 2012 Great Developers Steal by Ben Scofield"
   speakers:
     - Ben Scofield
-  event_name: LA RubyConf 2012
-  published_at: "2012-02-04"
-  description:
-    If you take a look at software today, you'll see more smart people
-    building things than there ever have been before. The problem? They're all working
-    in different languages, on different platforms, with different concepts. To take
-    advantage of the full breadth of work that's being done, we need to stay on top
-    of things happening in other communities, and we need to bring good ideas back
-    to Ruby. In this session, we'll look at how to identify great code and concepts,
-    and how to bring them back to our community.
-  video_provider: youtube
-  video_id: QPY0uETQA-c
+  event_name: "LA RubyConf 2012"
+  date: "2012-02-04"
+  published_at: "2012-04-25"
+  description: |-
+    If you take a look at software today, you'll see more smart people building things than there ever have been before. The problem? They're all working in different languages, on different platforms, with different concepts. To take advantage of the full breadth of work that's being done, we need to stay on top of things happening in other communities, and we need to bring good ideas back to Ruby. In this session, we'll look at how to identify great code and concepts, and how to bring them back to our community.
+  video_provider: "youtube"
+  video_id: "QPY0uETQA-c"
 
-- title: "Managing Success: We made it, now we're screwed."
+- id: "mike-moore-la-rubyconf-2012"
+  title: "Managing Success: We made it, now we're screwed."
   raw_title: "Managing Success: We made it, now we're screwed. by Mike Moore"
   speakers:
     - Mike Moore
-  event_name: LA RubyConf 2012
-  published_at: "2012-02-04"
+  event_name: "LA RubyConf 2012"
+  date: "2012-02-04"
+  published_at: "2012-04-19"
   description: |-
     Life as a startup, whether a bootstrapped company or an experimental project within an enterprise, is hard. You have to struggle to earn success. Lean, pivots, minimal viable products, and other buzzwords all steps along this journey. The struggle makes the eventual success that much sweeter. But it can also lead to suboptimal code, confusing logic, and general friction to getting things done.
 
-  video_provider: youtube
-  video_id: VAex3QIrUB8
+  video_provider: "youtube"
+  video_id: "VAex3QIrUB8"

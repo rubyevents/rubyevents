@@ -6,6 +6,6 @@ class Avo::Filters::TalkEvent < Avo::Filters::SelectFilter
   end
 
   def options
-    Event.all.map { |event| [event.id, event.name] }.to_h
+    Event.all.map { |event| [event.id, event.name] }.sort_by { |_, name| name }.to_h
   end
 end

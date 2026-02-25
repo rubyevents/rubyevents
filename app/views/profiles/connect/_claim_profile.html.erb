@@ -1,0 +1,62 @@
+<div class="flex flex-col items-center justify-center text-center space-y-8 py-12 px-6">
+  <!-- Icon -->
+  <div class="text-4xl">
+    🎉 🎉 🎉
+    <%#= fa "user-plus", variant: :solid, class: "w-10 h-10 text-primary" %>
+  </div>
+
+  <!-- Heading -->
+  <div class="space-y-6">
+    <h2 class="text-2xl font-bold text-base-content">
+      Passsport <span class="text-primary"><%= connect_id.upcase %></span> is available to Claim!
+    </h2>
+    <p class="text-base-content/70 max-w-md">
+      <% if Current.user %>
+        This Ruby passport is waiting for you! Claim it and start building your Ruby community presence.
+      <% else %>
+        This Ruby passport is waiting for you! Sign in with your GitHub account to claim it and start building your Ruby community presence.
+      <% end %>
+    </p>
+  </div>
+
+  <!-- Features list -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md text-sm">
+    <div class="flex items-center space-x-2 text-base-content/80">
+      <%= fa :calendar, variant: :solid, class: "w-5 h-5 text-success flex-shrink-0" %>
+      <span>Track your conferences</span>
+    </div>
+    <div class="flex items-center space-x-2 text-base-content/80">
+      <%= fa :heart, variant: :solid, class: "w-5 h-5 text-success flex-shrink-0" %>
+      <span>Collect memories</span>
+    </div>
+    <div class="flex items-center space-x-2 text-base-content/80">
+      <%= fa :users, variant: :solid, class: "w-5 h-5 text-success flex-shrink-0" %>
+      <span>Join the community</span>
+    </div>
+    <div class="flex items-center space-x-2 text-base-content/80">
+      <%= fa :"share-nodes", variant: :solid, class: "w-5 h-5 text-success flex-shrink-0" %>
+      <span>Share your experiences</span>
+    </div>
+  </div>
+
+  <!-- CTA Button -->
+  <div class="pt-4">
+    <% if Current.user %>
+      <%= ui_button url: profiles_claims_path(id: params[:id]), kind: :primary, size: :lg, class: "px-8 shadow-lg", data: {turbo_method: :post} do %>
+        <%= fa "arrow-right", variant: :solid, class: "w-5 h-5 mr-2" %>
+        Claim my Passport
+      <% end %>
+    <% else %>
+      <%= ui_button url: new_session_path(connect_id: params[:id]), kind: :primary, size: :lg, class: "px-8 shadow-lg", data: {turbo_frame: "modal"} do %>
+        <%= fa "arrow-right", variant: :solid, class: "w-5 h-5 mr-2" %>
+        Claim my Passport
+      <% end %>
+    <% end %>
+  </div>
+
+  <!-- Trust indicator -->
+  <div class="text-xs text-base-content/50 flex items-center space-x-1">
+    <%= fa "shield-check", variant: :solid, class: "w-4 h-4" %>
+    <span>Secure GitHub authentication</span>
+  </div>
+</div>

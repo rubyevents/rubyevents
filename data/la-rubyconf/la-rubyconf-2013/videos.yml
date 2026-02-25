@@ -1,154 +1,178 @@
 ---
-# TODO: talk running order
+# TODO: talks running order
 # TODO: conference website
 # TODO: schedule website
 # TODO: talk dates
 
-- title: "Keynote: The Signal"
-  raw_title: LA Ruby Conference 2013 Keynote by Ron Evans
+- id: "ron-evans-la-rubyconf-2013"
+  title: "Keynote: The Signal"
+  raw_title: "LA Ruby Conference 2013 Keynote by Ron Evans"
   speakers:
     - Ron Evans
-  event_name: LA RubyConf 2013
-  published_at: "2013-02-23"
+  event_name: "LA RubyConf 2013"
+  date: "2013-02-23"
+  published_at: "2013-04-13"
   description: |-
     Visit http://artoo.io for more details of the framework Ron presents in this talk!
 
-  video_provider: youtube
-  video_id: ciSs9x_Ogls
+  video_provider: "youtube"
+  video_id: "ciSs9x_Ogls"
 
-- title: "People who liked this talk also liked ... Building Recommendation Systems Using Ruby"
-  raw_title: LA Ruby Conference 2013 People who liked this talk also liked ... Building Recommendation...
+- id: "ryan-weald-la-rubyconf-2013"
+  title: "People who liked this talk also liked ... Building Recommendation Systems Using Ruby"
+  raw_title: "LA Ruby Conference 2013 People who liked this talk also liked ... Building Recommendation..."
   speakers:
     - Ryan Weald
-  event_name: LA RubyConf 2013
-  published_at: "2013-02-23"
+  event_name: "LA RubyConf 2013"
+  date: "2013-02-23"
+  published_at: "2013-04-14"
   description: |-
     Title: People who liked this talk also liked ... Building Recommendation Systems Using Ruby
     Presented by: Ryan Weald
 
     From Amazon, to Spotify, to thermostats, recommendation systems are everywhere. The ability to provide recommendations for your users is becoming a crucial feature for modern applications. In this talk I'll show you how you can use Ruby to build recommendation systems for your users. You don't need a PhD to build a simple recommendation engine -- all you need is Ruby. Together we'll dive into the dark arts of machine learning and you'll discover that writing a basic recommendation engine is not as hard as you might have imagined. Using Ruby I'll teach you some of the common algorithms used in recommender systems, such as: Collaborative Filtering, K-Nearest Neighbor, and Pearson Correlation Coefficient. At the end of the talk you should be on your way to writing your own basic recommendation system in Ruby.
 
-  video_provider: youtube
-  video_id: fh1y1BUTJxE
+  video_provider: "youtube"
+  video_id: "fh1y1BUTJxE"
 
-- title: It's not your test framework, it's you
-  raw_title: LA Ruby Conference 2013 It's not your test framework, it's you by Robbie Clutton, Matt Parker
+- id: "robbie-clutton-la-rubyconf-2013"
+  title: "It's not your test framework, it's you"
+  raw_title: "LA Ruby Conference 2013 It's not your test framework, it's you by Robbie Clutton, Matt Parker"
   speakers:
     - Robbie Clutton
     - Matt Parker
-  event_name: LA RubyConf 2013
-  published_at: "2013-02-23"
+  event_name: "LA RubyConf 2013"
+  date: "2013-02-23"
+  published_at: "2013-04-14"
   description: |-
     The BDD hype cycle is over. Recently, there's been a lot of backlash against popular BDD libraries like Cucumber. Some developers blame their test frameworks for brittle test suites and long build times. Others go so far as to claim that acceptance testing is simply not sustainable, period. In this talk, we'll do some root cause analysis of this phenomenon with shocking results - it's not the test framework, it's not the methodology, it's you. You've abused your test framework, you've cargo-culted the methodology, and now you're feeling the pain. We'll show you a way out of the mess you've made. We'll discuss the main problems BDD was intended to solve. We'll show you how to groom your test suite into journey, functional, integration, and unit tests in order to address build times. We'll teach how to mitigate against brittleness and flickers, and how to let your tests reveal the intent of the application and actually become the executable documentation we've been waiting for.
 
-  video_provider: youtube
-  video_id: j7An19XQwBg
+  video_provider: "youtube"
+  video_id: "j7An19XQwBg"
 
-- title: "LA Ruby Conference 2013 Backbone.js, Jasmine and Rails: The Lust Story"
+- id: "austin-fonacier-la-rubyconf-2013"
+  title: "LA Ruby Conference 2013 Backbone.js, Jasmine and Rails: The Lust Story"
   raw_title: "LA Ruby Conference 2013 Backbone.js, Jasmine and Rails: The Lust Story by Austin Fonacier"
   speakers:
     - Austin Fonacier
-  event_name: LA RubyConf 2013
-  published_at: "2013-02-23"
+  event_name: "LA RubyConf 2013"
+  date: "2013-02-23"
+  published_at: "2013-04-14"
   description: |-
     I want to present on why, where, and when backbone would be beneficial to use. We went through the whole motion on our rails project and I want to share in detail how we came about utilizing backbone on our project and hopefully you can too! In the end, implementing Backbone and jasmine led to a cleaner, more organized and better tested code base.
 
-  video_provider: youtube
-  video_id: kzVHz60gRJM
+  video_provider: "youtube"
+  video_id: "kzVHz60gRJM"
 
-- title: Python for Ruby Programmers
-  raw_title: LA Ruby Conference 2013 Python for Ruby Programmers by Mike Leone
+- id: "mike-leone-la-rubyconf-2013"
+  title: "Python for Ruby Programmers"
+  raw_title: "LA Ruby Conference 2013 Python for Ruby Programmers by Mike Leone"
   speakers:
     - Mike Leone
-  event_name: LA RubyConf 2013
-  published_at: "2013-02-23"
+  event_name: "LA RubyConf 2013"
+  date: "2013-02-23"
+  published_at: "2013-04-14"
   description: |-
     You've probably heard of Python, the _other_ popular, dynamic, multi-paradigm programming language. It occupies much of the same space as Ruby, has many similar language features, and the syntax even looks pretty similar. But what are the specific strengths and weaknesses of Python when compared to Ruby? What use cases are conducive to one language versus the other? In this talk, we look at some of the differences in language design, exploring how they affect application development and maintenance. Later, we look at some specific scenarios and show how the strengths of each language apply.
 
-  video_provider: youtube
-  video_id: maSlTKMzR3Q
+  video_provider: "youtube"
+  video_id: "maSlTKMzR3Q"
 
-- title: Where is my Scalable API?
-  raw_title: LA Ruby Conference 2013 Where is my scalable API? by Juan Pablo Genovese
+- id: "juan-pablo-genovese-la-rubyconf-2013"
+  title: "Where is my Scalable API?"
+  raw_title: "LA Ruby Conference 2013 Where is my scalable API? by Juan Pablo Genovese"
   speakers:
     - Juan Pablo Genovese
-  event_name: LA RubyConf 2013
-  published_at: "2013-02-23"
+  event_name: "LA RubyConf 2013"
+  date: "2013-02-23"
+  published_at: "2013-04-14"
   description: |-
     You have a good ol' Rails application that provides an API. That app is gaining momentum and getting tons of new users every day. You need to double the servers to accommodate the infrastructure to the demand. Then, you get the bill from your cloud service provider and... THE HORROR!! Is big enough to make you cry. Well, here comes Goliath. A very tiny, well designed and FAST non-blocking IO server that will put a big smile in your face, since you're going to need much less money to serve the same (or more!) requests per second. A real case scenario, a social gaming application for mobile devices, will serve as guide to show you how good it is and how much progress can you make with just a little bit of work. From development tools and gems to deployment strategies, balancing and more, we'll show you how a resource consuming Rails API turns into a nimble and fast Goliath API. The real time Internet is calling, and Goliath will hurry to make you more real time than ever.
 
-  video_provider: youtube
-  video_id: dcU7_LUme_M
+  video_provider: "youtube"
+  video_id: "dcU7_LUme_M"
 
-- title: Refactoring Fat Models with Patterns
-  raw_title: LA Ruby Conference 2013 Refactoring Fat Models with Patterns by Bryan Helmkamp
+- id: "bryan-helmkamp-la-rubyconf-2013"
+  title: "Refactoring Fat Models with Patterns"
+  raw_title: "LA Ruby Conference 2013 Refactoring Fat Models with Patterns by Bryan Helmkamp"
   speakers:
     - Bryan Helmkamp
-  event_name: LA RubyConf 2013
-  published_at: "2013-02-23"
+  event_name: "LA RubyConf 2013"
+  date: "2013-02-23"
+  published_at: "2013-04-14"
   description: |-
     "Fat models" cause maintenance issues in large apps. Only incrementally better than cluttering controllers with domain logic, they usually represent a failure to apply the Single Responsibility Principle (SRP). "Anything related to what a user does" is not a single responsibility. Early on, SRP is easier to apply. ActiveRecord classes handle persistence, associations and not much else. But bit-by-bit, they grow. Objects that are inherently responsible for persistence become the de facto owner of all business logic as well. And a year or two later you have a User class with over 500 lines of code, and hundreds of methods in it's public interface. Callback hell ensues. This talk will explore patterns to smoothly deal with increasing intrinsic complexity (read: features!) of your application. Transform fat models into a coordinated set of small, encapsulated objects working together in a veritable symphony.
 
-  video_provider: youtube
-  video_id: 5yX6ADjyqyE
+  video_provider: "youtube"
+  video_id: "5yX6ADjyqyE"
 
-- title: It's not your test framework, it's you
-  raw_title: LA Ruby Conference 2013 It's not your test framework, it's you by Robbie Clutton, Matt Parker
+- id: "robbie-clutton-la-rubyconf-2013-its-not-your-test-framework-it"
+  title: "It's not your test framework, it's you"
+  raw_title: "LA Ruby Conference 2013 It's not your test framework, it's you by Robbie Clutton, Matt Parker"
   speakers:
     - Robbie Clutton
     - Matt Parker
-  event_name: LA RubyConf 2013
-  published_at: "2013-02-23"
+  event_name: "LA RubyConf 2013"
+  date: "2013-02-23"
+  published_at: "2013-04-11"
   description: |-
     The BDD hype cycle is over. Recently, there's been a lot of backlash against popular BDD libraries like Cucumber. Some developers blame their test frameworks for brittle test suites and long build times. Others go so far as to claim that acceptance testing is simply not sustainable, period. In this talk, we'll do some root cause analysis of this phenomenon with shocking results - it's not the test framework, it's not the methodology, it's you. You've abused your test framework, you've cargo-culted the methodology, and now you're feeling the pain. We'll show you a way out of the mess you've made. We'll discuss the main problems BDD was intended to solve. We'll show you how to groom your test suite into journey, functional, integration, and unit tests in order to address build times. We'll teach how to mitigate against brittleness and flickers, and how to let your tests reveal the intent of the application and actually become the executable documentation we've been waiting for.
 
-  video_provider: youtube
-  video_id: TRulBSydsDc
+  video_provider: "youtube"
+  video_id: "TRulBSydsDc"
 
-- title: Why I like JRuby (and you should too)
-  raw_title: LA Ruby Conference 2013 Why I like JRuby (and you should too) by Fiona Tay
+- id: "fiona-tay-la-rubyconf-2013"
+  title: "Why I like JRuby (and you should too)"
+  raw_title: "LA Ruby Conference 2013 Why I like JRuby (and you should too) by Fiona Tay"
   speakers:
     - Fiona Tay
-  event_name: LA RubyConf 2013
-  published_at: "2013-02-23"
+  event_name: "LA RubyConf 2013"
+  date: "2013-02-23"
+  published_at: "2013-04-14"
   description: |-
     If MRI is a potato peeler that does one thing very well, JRUby is the Swiss Army Knife that offers developers a multitude of tools. JRuby opens doors that MRI has closed, being highly performant and offers access to Java libraries. From the perspective of a former MRI'er, I'll discuss concrete examples of how to realize the benefits of the JRuby stack, drawing examples from my work on an open-source JRuby on Rails app.
 
-  video_provider: youtube
-  video_id: rY9oJaWu3Bg
+  video_provider: "youtube"
+  video_id: "rY9oJaWu3Bg"
 
-- title: "Backbone.js, Jasmine and Rails: The Lust Story"
+- id: "austin-fonacier-la-rubyconf-2013-backbonejs-jasmine-and-rails-t"
+  title: "Backbone.js, Jasmine and Rails: The Lust Story"
   raw_title: "LA Ruby Conference 2013 Backbone.js, Jasmine and Rails: The Lust Story by Austin Fonacier"
   speakers:
     - Austin Fonacier
-  event_name: LA RubyConf 2013
-  published_at: "2013-02-23"
+  event_name: "LA RubyConf 2013"
+  date: "2013-02-23"
+  published_at: "2013-04-10"
   description: |-
     I want to present on why, where, and when backbone would be beneficial to use. We went through the whole motion on our rails project and I want to share in detail how we came about utilizing backbone on our project and hopefully you can too! In the end, implementing Backbone and jasmine led to a cleaner, more organized and better tested code base.
 
-  video_provider: youtube
-  video_id: 8BdYFMqtlSc
+  video_provider: "youtube"
+  video_id: "8BdYFMqtlSc"
 
-- title: Python for Ruby Programmers
-  raw_title: LA Ruby Conference 2013 Python for Ruby Programmers by Mike Leone
+- id: "mike-leone-la-rubyconf-2013-python-for-ruby-programmers"
+  title: "Python for Ruby Programmers"
+  raw_title: "LA Ruby Conference 2013 Python for Ruby Programmers by Mike Leone"
   speakers:
     - Mike Leone
-  event_name: LA RubyConf 2013
-  published_at: "2013-02-23"
+  event_name: "LA RubyConf 2013"
+  date: "2013-02-23"
+  published_at: "2013-04-10"
   description: |-
     You've probably heard of Python, the _other_ popular, dynamic, multi-paradigm programming language. It occupies much of the same space as Ruby, has many similar language features, and the syntax even looks pretty similar. But what are the specific strengths and weaknesses of Python when compared to Ruby? What use cases are conducive to one language versus the other? In this talk, we look at some of the differences in language design, exploring how they affect application development and maintenance. Later, we look at some specific scenarios and show how the strengths of each language apply.
 
-  video_provider: youtube
-  video_id: PvMDPYSlki4
+  video_provider: "youtube"
+  video_id: "PvMDPYSlki4"
 
-- title: Impressive Ruby Productivity with Vim and Tmux
-  raw_title: LA Ruby Conference 2013 Impressive Ruby Productivity with Vim and Tmux by Chris Hunt
+- id: "chris-hunt-la-rubyconf-2013"
+  title: "Impressive Ruby Productivity with Vim and Tmux"
+  raw_title: "LA Ruby Conference 2013 Impressive Ruby Productivity with Vim and Tmux by Chris Hunt"
   speakers:
     - Chris Hunt
-  event_name: LA RubyConf 2013
-  published_at: "2013-02-23"
+  event_name: "LA RubyConf 2013"
+  date: "2013-02-23"
+  published_at: "2013-04-15"
   description: |-
     Impress your friends, scare your enemies, and boost your productivity 800% with this live demonstration of vim and tmux. You will learn how to build custom IDEs for each of your projects, navigate quickly between files, write and run tests, view and compare git history, create pull requests, publish gists, format and refactor your code with macros, remote pair program, and more, all without leaving the terminal. Come prepared to learn and ask questions; this is serious business.
 
-  video_provider: youtube
-  video_id: gB-JSh1EVME
+  video_provider: "youtube"
+  video_id: "gB-JSh1EVME"

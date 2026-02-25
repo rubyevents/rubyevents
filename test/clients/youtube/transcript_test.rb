@@ -1,8 +1,8 @@
 require "test_helper"
 
-class Youtube::TranscriptTest < ActiveSupport::TestCase
+class YouTube::TranscriptTest < ActiveSupport::TestCase
   def setup
-    @client = Youtube::Transcript.new
+    @client = YouTube::Transcript.new
   end
 
   test "fetch the trasncript from a video in vtt format" do

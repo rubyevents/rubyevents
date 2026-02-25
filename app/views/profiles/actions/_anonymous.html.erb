@@ -1,0 +1,30 @@
+<% if user.github_handle.blank? %>
+  <!-- While merging the speaker and user models we disable the actions for now -->
+  <!-- TODO: Re-enable when the merge is complete and once the user profile is ready -->
+  <%= link_to edit_profile_path(user), class: "link link-accent link-ghost", data: {turbo_frame: "modal"} do %>
+    Help us improve the speaker profile by adding a GitHub handle
+  <% end %>
+<% else %>
+  <% if !user.verified? %>
+    <div class="flex flex-col gap-4 hotwire-native:hidden">
+      <div class="content text-sm">
+        <span>
+          Are you <strong><%= user.name %></strong>?
+
+          <%= link_to new_session_path(redirect_to: request.fullpath), class: "link link-neutral font-light", data: {turbo_frame: "modal"} do %>
+            Claim your profile to manage and edit content.
+          <% end %>
+        </span>
+      </div>
+
+      <% if false %>
+        <!-- While merging the speaker and user models we disable the actions for now -->
+        <!-- TODO: Re-enable when the merge is complete and once the user profile is ready -->
+        <%= ui_button url: edit_profile_path(user), kind: :neutral, size: :sm, data: {turbo_frame: "modal"} do %>
+          <%= fa :pen, size: :xs %>
+          <span>Suggest improvements</span>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

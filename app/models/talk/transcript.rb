@@ -1,6 +1,7 @@
 # == Schema Information
 #
 # Table name: talk_transcripts
+# Database name: primary
 #
 #  id                  :integer          not null, primary key
 #  enhanced_transcript :text
@@ -18,10 +19,12 @@
 #  talk_id  (talk_id => talks.id)
 #
 class Talk::Transcript < ApplicationRecord
-  belongs_to :talk
+  belongs_to :talk, touch: true
 
   serialize :enhanced_transcript, coder: TranscriptSerializer
   serialize :raw_transcript, coder: TranscriptSerializer
+
+  scope :empty, -> { where("raw_transcript IS NULL OR raw_transcript = '[]'") }
 
   def transcript
     enhanced_transcript.presence || raw_transcript

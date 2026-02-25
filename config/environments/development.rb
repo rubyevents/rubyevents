@@ -35,6 +35,13 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
+  # Enable serving of images with full URLs
+  config.asset_host = "http://localhost:3000"
+  # Enable serving of images, stylesheets, and JavaScripts from an asset server.
+  config.asset_host = lambda { |source, request = nil|
+    request&.host&.include?("localhost") ? "http://localhost:3000" : "#{request&.protocol}#{request&.host_with_port}"
+  }
+
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
@@ -59,6 +66,9 @@ Rails.application.configure do
   # Highlight code that enqueued background job in logs.
   config.active_job.verbose_enqueue_logs = true
 
+  # Suppress logger output for asset requests.
+  config.assets.quiet = true
+
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 
@@ -76,9 +86,14 @@ Rails.application.configure do
 
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
+  # View local server when hosted by GitHub Codespaces.
+  config.hosts << /^[a-zA-Z0-9-]+-\d{4}\.app\.github\.dev$/
+
   # https://vite-ruby.netlify.app/guide/troubleshooting.html#safari-does-not-reflect-css-and-js-changes-in-development
   # https://bugs.webkit.org/show_bug.cgi?id=193533
   config.action_view.preload_links_header = false
+
+  config.solid_queue.logger = ActiveSupport::Logger.new($stdout)
 
   if ENV["PROFILE"]
     config.cache_classes = true

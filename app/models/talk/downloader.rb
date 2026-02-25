@@ -1,6 +1,8 @@
-# -*- SkipSchemaAnnotations
-
 class Talk::Downloader < ActiveRecord::AssociatedObject
+  def bin
+    ENV.fetch("YTDLP_BIN", "yt-dlp")
+  end
+
   def download_path
     Rails.root / "tmp" / "videos" / talk.video_provider / "#{talk.video_id}.mp4"
   end
@@ -28,6 +30,6 @@ class Talk::Downloader < ActiveRecord::AssociatedObject
 
     puts "#{talk.video_id} downloading..."
 
-    Command.run(%(yt-dlp --output "#{download_path}" --format "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4]" "#{talk.provider_url}"))
+    Command.run(%(#{bin} --output "#{download_path}" --format "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4]" "#{talk.provider_url}"))
   end
 end

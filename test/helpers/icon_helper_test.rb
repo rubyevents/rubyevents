@@ -52,23 +52,16 @@ class IconHelperTest < ActionView::TestCase
     assert_includes result, 'data-test="value&quot;with&quot;quotes"'
   end
 
-  test "heroicon" do
-    result = heroicon("magnifying-glass", size: :md)
-    assert_includes result, 'viewBox="0 0 24 24"'
-    assert_includes result, 'class="h-6 w-6"'
-    assert_includes result, 'aria-hidden="true"'
-    assert_not_includes result, ' hidden="true"'
+  test "raises helpful error with fontawesome search URL when icon not found" do
+    error = assert_raises(ArgumentError) do
+      cached_inline_svg("icons/fontawesome/nonexistent-icon-solid.svg")
+    end
 
-    # Verify SVG structure
-    doc = Nokogiri::HTML.fragment(result)
-    svg = doc.at_css("svg")
-
-    assert_not_nil svg, "Should be a valid SVG element"
-    assert_equal "svg", svg.name
-    assert_not_nil svg.at_css("path"), "SVG should contain a path element"
-
-    # Verify proper closing of tags
-    assert result.include?("</svg>"), "SVG should have a closing tag"
-    assert_match(/<svg[^>]*>.*<\/svg>/m, result, "SVG should be properly closed")
+    assert_includes error.message, "Icon not found. Download from\n"
+    assert_includes error.message, "https://fontawesome.com/search?q=nonexistent-icon"
+    assert_includes error.message, "\nand save to\n"
+    assert_includes error.message, "app/assets/images/icons/fontawesome/nonexistent-icon-solid.svg"
+    assert_includes error.message, "Or run the following curl command (only works for free icons, not Pro):\ncurl -f -o"
+    assert_includes error.message, "https://raw.githubusercontent.com/FortAwesome/Font-Awesome/7.x/svgs-full/solid/nonexistent-icon.svg"
   end
 end

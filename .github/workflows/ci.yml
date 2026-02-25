@@ -8,33 +8,43 @@ on:
 
 concurrency:
   group: ci-${{ github.ref }}
-  cancel-in-progress: true # Add this line to explicitly enable cancellation
+  cancel-in-progress: true
 
 jobs:
   lint:
     runs-on: ubuntu-latest
     env:
       RAILS_ENV: test
+      RUBOCOP_CACHE_ROOT: tmp/rubocop
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          bundler: default
           bundler-cache: true
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version-file: ".node-version"
           cache: yarn
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
+      - name: Prepare RuboCop cache
+        uses: actions/cache@v4
+        env:
+          DEPENDENCIES_HASH: ${{ hashFiles('**/.rubocop.yml', 'Gemfile.lock') }}
+        with:
+          path: ${{ env.RUBOCOP_CACHE_ROOT }}
+          key: rubocop-${{ runner.os }}-${{ env.RUBY_VERSION }}-${{ env.DEPENDENCIES_HASH }}-${{ github.ref_name == github.event.repository.default_branch && github.run_id || 'default' }}
+          restore-keys: |
+            rubocop-${{ runner.os }}-${{ env.RUBY_VERSION }}-${{ env.DEPENDENCIES_HASH }}-
+
       - name: StandardRB Check
-        run: bundle exec standardrb
+        run: bundle exec standardrb --format github --format "Standard::Formatter"
 
       - name: StandardJS Check
         run: yarn lint
@@ -42,33 +52,41 @@ jobs:
       - name: Lint YAML data files
         run: yarn lint:yml
 
+      - name: Validate YAML data schemas
+        run: bin/rails validate:all
+
       - name: erb-lint Check
-        run: bundle exec erblint --lint-all
+        run: bundle exec erb_lint --lint-all
+
+      - name: Herb Linter Check
+        run: npx @herb-tools/linter
+
+      - name: Herb Analyze (parse/compile)
+        run: bundle exec herb analyze app/
 
   test:
     runs-on: ubuntu-latest
     env:
       RAILS_ENV: test
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
+
+      - name: Install ImageMagick
+        run: sudo apt-get update && sudo apt-get install -y imagemagick
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          bundler: default
           bundler-cache: true
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version-file: ".node-version"
           cache: yarn
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
-
-      - name: Meilisearch setup with Docker
-        run: docker run -d -p 7700:7700 getmeili/meilisearch:v1.1 meilisearch --no-analytics
 
       - name: Build assets
         run: bin/vite build --clear --mode=test
@@ -83,33 +101,27 @@ jobs:
           bin/rails test
           bin/rails test:system
 
-      # - name: Smoke test database seeds
-      #   run: sudo bin/rails db:reset
   seed_smoke_test:
     runs-on: ubuntu-latest
     env:
       RAILS_ENV: test
       SEED_SMOKE_TEST: true
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          bundler: default
           bundler-cache: true
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version-file: ".node-version"
           cache: yarn
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
-
-      - name: Meilisearch setup with Docker
-        run: docker run -d -p 7700:7700 getmeili/meilisearch:v1.1 meilisearch --no-analytics
 
       - name: Build assets
         run: bin/vite build --clear --mode=test
@@ -120,14 +132,16 @@ jobs:
           bin/rails db:schema:load
 
       - name: Run Seed Smoke Test
-        run: bin/rails test test/tasks/db_seed_test.rb
+        run: bin/rails test test/tasks/seed_test.rb
 
       - name: Verify all thumbnails for child talks are present
         run: bin/rails verify_thumbnails
-  deploy:
-    needs: [lint, test, seed_smoke_test]
-    name: Deploy
-    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+
+      - name: Validate no duplicated speakers in database
+        run: bin/rails validate:speaker_duplicates
+
+  build:
+    name: Build Docker Image
     runs-on: ubuntu-latest
 
     permissions:
@@ -135,7 +149,7 @@ jobs:
       packages: write
       attestations: write
       id-token: write
-    timeout-minutes: 60
+    timeout-minutes: 20
 
     env:
       DOCKER_BUILDKIT: 1
@@ -143,7 +157,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Docker Buildx for cache
         uses: docker/setup-buildx-action@v3
@@ -152,22 +166,60 @@ jobs:
         uses: crazy-max/ghaction-github-runtime@v3
 
       - name: Setup SSH
-        uses: webfactory/ssh-agent@v0.7.0
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          bundler: default
+          bundler-cache: true
+
+      - name: Build Docker image (PR)
+        if: ${{ github.event_name == 'pull_request' }}
+        run: docker build .
+        env:
+          DOCKER_BUILDKIT: 1
+
+      - name: Build and push Docker image
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        run: bundle exec kamal build push
+        env:
+          KAMAL_RAILS_MASTER_KEY: ${{ secrets.KAMAL_RAILS_MASTER_KEY }}
+          KAMAL_REGISTRY_PASSWORD: ${{ secrets.KAMAL_REGISTRY_PASSWORD }}
+
+  deploy:
+    needs: [lint, test, seed_smoke_test, build]
+    name: Deploy
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
           bundler-cache: true
 
       - name: Deploy with Kamal
-        run: bundle exec kamal deploy
+        run: bundle exec kamal deploy --skip-push
         env:
           KAMAL_RAILS_MASTER_KEY: ${{ secrets.KAMAL_RAILS_MASTER_KEY }}
-          MEILI_MASTER_KEY: ${{ secrets.MEILI_MASTER_KEY }}
           KAMAL_REGISTRY_PASSWORD: ${{ secrets.KAMAL_REGISTRY_PASSWORD }}
+          GEOLOCATE_API_KEY: ${{ secrets.GEOLOCATE_API_KEY }}
+          MAPBOX_ACCESS_TOKEN: ${{ secrets.MAPBOX_ACCESS_TOKEN }}
+          TYPESENSE_API_KEY: ${{ secrets.TYPESENSE_API_KEY }}
+          TYPESENSE_NODES: ${{ secrets.TYPESENSE_NODES }}
+          TYPESENSE_NEAREST_NODE: ${{ secrets.TYPESENSE_NEAREST_NODE }}
 
       - name: Cleanup on cancellation
         if: always() && steps.deploy.conclusion == 'cancelled'

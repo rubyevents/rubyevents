@@ -1,0 +1,20 @@
+<%# locals: (talk:) %>
+
+<div class="absolute inset-0 cursor-pointer group/watched" data-video-player-target="watchedOverlay" data-action="click->video-player#dismissWatchedOverlay">
+  <%= image_tag talk.thumbnail_xl, class: "absolute inset-0 w-full h-full object-cover rounded-xl opacity-60", style: "view-transition-name: #{dom_id(talk, :image)}" %>
+  <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 rounded-xl"></div>
+  <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent rounded-xl opacity-0 group-hover/watched:opacity-100 transition-opacity duration-300"></div>
+  <div class="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center text-white">
+    <div class="p-4 bg-white/20 backdrop-blur-sm rounded-full group-hover/watched:bg-white/30 group-hover/watched:scale-105 transition-all duration-300">
+      <%= fa("rotate-right", size: :xl, class: "fill-white") %>
+    </div>
+
+    <div class="flex flex-col gap-1">
+      <div class="text-lg font-semibold">Watch Again</div>
+      <div class="text-sm text-white/80 flex items-center justify-center gap-1">
+        <%= fa("circle-check", size: :xs, style: :solid, class: "fill-green-400") %>
+        Watched
+      </div>
+    </div>
+  </div>
+</div>

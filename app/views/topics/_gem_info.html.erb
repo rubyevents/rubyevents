@@ -1,0 +1,106 @@
+<% topic.topic_gems.each do |topic_gem| %>
+  <div class="flex flex-col gap-4 p-5 bg-base-200 rounded-lg max-w-3xl">
+    <div class="flex flex-wrap items-center justify-between gap-2">
+      <%= link_to gem_path(gem_name: topic_gem.gem_name), class: "flex items-center gap-2 hover:opacity-80" do %>
+        <%= fa("gem", size: :md, class: "fill-primary") %>
+        <code class="font-bold text-lg font-mono"><%= topic_gem.gem_name %></code>
+
+        <% if topic_gem.version.present? %>
+          <span class="badge badge-primary badge-outline">v<%= topic_gem.version %></span>
+        <% end %>
+      <% end %>
+    </div>
+
+    <% if topic_gem.summary.present? %>
+      <p class="text-gray-700"><%= topic_gem.summary %></p>
+    <% end %>
+
+    <div class="flex flex-wrap items-center gap-4 text-sm text-gray-600">
+      <% if topic_gem.downloads.present? %>
+        <div class="flex items-center gap-1.5" title="Total downloads">
+          <%= fa("download", size: :xs) %>
+          <span><%= number_to_human(topic_gem.downloads) %> downloads</span>
+        </div>
+      <% end %>
+
+      <% if topic_gem.version_created_at.present? %>
+        <div class="flex items-center gap-1.5" title="Latest release">
+          <%= fa("calendar", size: :xs) %>
+          <span>Released <%= time_ago_in_words(topic_gem.version_created_at) %> ago</span>
+        </div>
+      <% end %>
+
+      <% if topic_gem.license.present? %>
+        <div class="flex items-center gap-1.5" title="License">
+          <%= fa("scale-balanced", size: :xs) %>
+          <span><%= topic_gem.license %></span>
+        </div>
+      <% end %>
+    </div>
+
+    <% maintainers = topic_gem.maintainers %>
+
+    <% if maintainers.any? %>
+      <div class="flex flex-col gap-2">
+        <span class="text-sm text-gray-500">Authors on RubyEvents.org</span>
+        <div class="flex flex-wrap gap-3">
+          <% maintainers.each do |user| %>
+            <%= link_to profile_path(user), class: "flex items-center gap-2 hover:opacity-80", data: {turbo_frame: "_top"} do %>
+              <%= ui_avatar(user, size: :sm) %>
+              <span class="text-sm font-medium"><%= user.name %></span>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <% if topic_gem.github_repo.present? %>
+      <div class="flex items-center gap-2 text-sm">
+        <%= fab("github", size: :sm) %>
+        <%= external_link_to topic_gem.github_repo, topic_gem.github_url, class: "link" %>
+      </div>
+    <% end %>
+
+    <div class="flex flex-wrap gap-2">
+      <%= external_link_to "RubyGems", topic_gem.rubygems_url, class: "btn btn-sm btn-outline" %>
+
+      <% if topic_gem.github_url.present? %>
+        <%= external_link_to "GitHub", topic_gem.github_url, class: "btn btn-sm btn-outline" %>
+      <% end %>
+
+      <% if topic_gem.documentation_url.present? %>
+        <%= external_link_to "Documentation", topic_gem.documentation_url, class: "btn btn-sm btn-outline" %>
+      <% end %>
+
+      <% if topic_gem.changelog_url.present? %>
+        <%= external_link_to "Changelog", topic_gem.changelog_url, class: "btn btn-sm btn-outline" %>
+      <% end %>
+
+      <% if topic_gem.bug_tracker_url.present? %>
+        <%= external_link_to "Issues", topic_gem.bug_tracker_url, class: "btn btn-sm btn-outline" %>
+      <% end %>
+
+      <% if topic_gem.homepage_url.present? && topic_gem.homepage_url != topic_gem.source_code_url && topic_gem.homepage_url != topic_gem.github_url %>
+        <%= external_link_to "Homepage", topic_gem.homepage_url, class: "btn btn-sm btn-outline" %>
+      <% end %>
+
+      <% if topic_gem.funding_url.present? %>
+        <%= external_link_to "Sponsor", topic_gem.funding_url, class: "btn btn-sm btn-outline" %>
+      <% end %>
+    </div>
+
+    <% if topic_gem.runtime_dependencies.any? %>
+      <details class="text-sm">
+        <summary class="cursor-pointer text-gray-600 hover:text-gray-800">
+          <%= pluralize(topic_gem.runtime_dependencies.size, "runtime dependency") %>
+        </summary>
+
+        <div class="mt-2 flex flex-wrap gap-1">
+          <% topic_gem.runtime_dependencies.each do |dep| %>
+            <span class="badge badge-ghost badge-sm"><%= dep["name"] %></span>
+          <% end %>
+        </div>
+      </details>
+    <% end %>
+  </div>
+<% end %>

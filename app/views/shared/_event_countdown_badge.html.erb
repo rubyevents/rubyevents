@@ -1,0 +1,25 @@
+<% if event.start_date && event.date_precision == "day" %>
+  <% days = (event.start_date - Date.current).to_i %>
+  <% today = (event.start_date..event.end_date).include?(Date.current) %>
+
+  <% if days == 0 || today %>
+    <div class="flex flex-col justify-center">
+      <div class="self-end w-16 h-16 bg-[#636B74] text-white rounded-xl flex flex-col items-center justify-center text-xs leading-none">
+        <div class="text-[12px]">Today</div>
+      </div>
+    </div>
+  <% elsif days == 1 %>
+    <div class="flex flex-col justify-center">
+      <div class="self-end w-16 h-16 bg-[#636B74] text-white rounded-xl flex flex-col items-center justify-center text-xs leading-none">
+        <div class="text-[12px]">Tomorrow</div>
+      </div>
+    </div>
+  <% elsif days >= 0 %>
+    <div class="flex flex-col justify-center">
+      <div class="self-end w-16 h-16 bg-[#636B74] text-white rounded-xl flex flex-col items-center justify-center text-xs leading-none">
+        <div class="text-lg font-bold"><%= days %></div>
+        <div class="mt-1 text-[13px]"><%= "day".pluralize(days) %></div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

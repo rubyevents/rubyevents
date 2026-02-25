@@ -1,0 +1,746 @@
+---
+- id: "yasuo-honda-kaigi-on-rails-2022"
+  title: "あなたとRails"
+  raw_title: "あなたとRails / Yasuo Honda"
+  speakers:
+    - Yasuo Honda
+  event_name: "Kaigi on Rails 2022"
+  date: "2022-10-21"
+  published_at: "2022-10-30"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2022/talks/yahonda/
+
+    Railsのメンテナンスポリシーをありのままに理解し、Railsアプリケーションのアップグレードを通じた、Railsへのコントリビューションの可能性をお話しします。
+
+    資料 https://speakerdeck.com/yahonda/anatatorails
+
+    発表者
+    Yasuo Honda
+    GitHub https://github.com/yahonda
+    Twitter https://twitter.com/yahonda
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "q2CG9A677U8"
+  slides_url: "https://speakerdeck.com/yahonda/anatatorails"
+
+- id: "daisuke-aritomo-osyoyu-kaigi-on-rails-2022"
+  title: "お隣さんの API のデータを Rails らしく、しなやかに扱う"
+  raw_title: "お隣さんの API のデータを Rails らしく、しなやかに扱う / Daisuke Aritomo (@osyoyu)"
+  speakers:
+    - Daisuke Aritomo (@osyoyu)
+  event_name: "Kaigi on Rails 2022"
+  date: "2022-10-21"
+  published_at: "2022-10-30"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2022/talks/osyoyu/
+
+    ますます深まるマイクロサービス時代、APIを通じて取得するデータはドメインの周縁部に留まりません。コアな部分、たとえば「ユーザーの名前」ですら他サービスに問い合わせないと分からない、ということも普通になってきました。
+
+    しかし、Rails にはこれをうまく扱うための「解」はありません。Faraday をインストールし、取得用の Repository クラスを作ってみたり、取得したデータを Hash で渡してみたり、あるいはモデルっぽいクラスにマッピングしてみたり、という「あるある」はあるにせよ、です。
+
+    多くのデータを提供する多くのサービスと接続するアプリを例にとって、API 越しのデータを ActiveRecord の如きしなやかさで扱うための way を探求します。JOIN できないモデルや、ループ内でのリクエストとは別れのときです。
+
+    資料 https://speakerdeck.com/osyoyu/handling-next-door-api-data-in-rails
+
+    発表者
+    Daisuke Aritomo (@osyoyu)
+    GitHub https://github.com/osyoyu
+    Twitter https://twitter.com/osyoyu
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "PanUMkPLu3M"
+  slides_url: "https://speakerdeck.com/osyoyu/handling-next-door-api-data-in-rails"
+
+- id: "shunsuke-yamada-kaigi-on-rails-2022"
+  title: "RBSとSteepで始める型のあるRails開発とその運用"
+  raw_title: "RBSとSteepで始める型のあるRails開発とその運用 / Shunsuke Yamada"
+  speakers:
+    - Shunsuke Yamada
+  event_name: "Kaigi on Rails 2022"
+  date: "2022-10-21"
+  published_at: "2022-10-30"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2022/talks/yamashun/
+
+    Ruby3で静的型解析がサポートされてしばらく経ちましたが、周辺ツールやエコシステムが発展途上であることや導入事例などの情報が少ないなどの理由で、Railsを使ったアプリケーションへ導入してみたいけど見送るという場合も多いのではないでしょうか。
+    導入にあたっては、RBSを書いて型チェックや入力補完を動かすだけではなく、書いたRBSを修正していく必要があります。そのメンテナンスコストが未知数であることもプロダクトへの導入を躊躇する理由だと思います。
+
+    本セッションでは、静的型解析を導入したRailsアプリケーションで、どのようなルールでRBSを運用しているかやメンテナンスコストを下げるための工夫、発生した課題などについての事例を紹介していきます。
+
+    資料 https://speakerdeck.com/yamashun/rbstosteepdeshi-meruxing-noarurailskai-fa-tosonoyun-yong
+
+    発表者
+    Shunsuke Yamada
+    GitHub https://github.com/yamashun
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "VbXDuYA1sXE"
+  slides_url: "https://speakerdeck.com/yamashun/rbstosteepdeshi-meruxing-noarurailskai-fa-tosonoyun-yong"
+
+- id: "haruka-oguchi-kaigi-on-rails-2022"
+  title: "システム開発を支えるメタプログラミングの技術"
+  raw_title: "システム開発を支えるメタプログラミングの技術 / Haruka Oguchi"
+  speakers:
+    - Haruka Oguchi
+  event_name: "Kaigi on Rails 2022"
+  date: "2022-10-21"
+  published_at: "2022-10-30"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2022/talks/hogucc/
+
+    Rubyのメタプログラミングはその強力さゆえ、初級者からするといつ使ったらいいかわからない、と思われがちな技法ではないでしょうか。
+    しかし、時にはメタプログラミングについての知識が無いと読めないコードと出会うことがあります。
+    メソッド名で検索したけどヒットしない、なのにメソッドが呼び出せるのはなぜ？といった疑問を持ったことはありませんか？
+    この発表では初級者から中級者の方向けに、Rails本体や著名なgem、オープンソースのRailsアプリでどのようにメタプログラミングの技法が使われているのかコードを読みながらご紹介できればと思っています。
+
+    資料 https://speakerdeck.com/hogucc/kaigionrails-2022
+
+    発表者
+    Haruka Oguchi
+    GitHub https://github.com/hogucc
+    Twitter https://twitter.com/hogucc
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "3r0NzOdIldw"
+  slides_url: "https://speakerdeck.com/hogucc/kaigionrails-2022"
+
+- id: "shohei-mitani-kaigi-on-rails-2022"
+  title: "7つの入金外部サービスと連携して分かった実践的な”状態管理”設計パターン3選"
+  raw_title: "7つの入金外部サービスと連携して分かった実践的な”状態管理”設計パターン3選 / Shohei Mitani"
+  speakers:
+    - Shohei Mitani
+  event_name: "Kaigi on Rails 2022"
+  date: "2022-10-21"
+  published_at: "2022-10-30"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2022/talks/shohei1913/
+
+    決済・配送・eKYCなど、実装コストがかかる複雑な機能開発では、一部にSaaSを利用することあります。SaaSを利用する際には、自社側と相手側の両方でデータ状態を持ち、適切に同期することで処理を進めます。自社DB内だけにデータが存在する場合と比べて、複数システム間でのデータ管理は難易度がぐっと上がります。皆様の中でも、複数システム間でデータ不整合が起きたり、APIのリクエスト数とレコード数の不一致などの問題に直面したことがある方はいらっしゃるのではないでしょうか？
+
+    私が開発している家計簿プリカ B/43でも入出金にSaaSを利用しています。特にサービスの特性上、幅広い入金手段に対応することがUX向上に繋がるため、これまで7種類の入金手段に対応してきました。それぞれの手段で細部が異なるため、テーブル設計やコントローラーの作りは違うものの、大きく分けると「リアルタイム同期型」、「予約型」、「完全非同期型」の3つに分類することができます。
+
+    決済・入出金といった機能はお金を扱う性質上、一つの実装ミスによるデータ不整合がユーザーの損失に直結するため、細心の注意を払いながら実装しています。このセッションでは、可能な限り安全なシステムを構築するためのTIPSとして、パターン毎に必要なテーブル設計上の要件、バリデーションの実装方法、不整合に対する監視・リカバリの仕組みについて紹介します。
+
+    資料 https://speakerdeck.com/shoheimitani/7tunoru-jin-wai-bu-sabisutolian-xi-sitefen-katutashi-jian-de-na-zhuang-tai-guan-li-she-ji-patan3xuan
+
+    発表者
+    Shohei Mitani
+    Twitter https://twitter.com/shohei1913
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "dn2FsnZq1_g"
+  slides_url: "https://speakerdeck.com/shoheimitani/7tunoru-jin-wai-bu-sabisutolian-xi-sitefen-katutashi-jian-de-na-zhuang-tai-guan-li-she-ji-patan3xuan"
+
+- id: "natsuko-nadoyama-kaigi-on-rails-2022"
+  title: "森羅万象に「いいね」するためのデータ構造"
+  raw_title: "森羅万象に「いいね」するためのデータ構造 / Natsuko Nadoyama"
+  speakers:
+    - Natsuko Nadoyama
+  event_name: "Kaigi on Rails 2022"
+  date: "2022-10-21"
+  published_at: "2022-10-30"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2022/talks/pndcat/
+
+    サービス開発をしていると「いいね」の実装に対面することは多いでしょう。例えば EC サービスの場合、商品へのいいね、クチコミへのいいね、ブランドへのいいねなど、いろいろな対象に「いいね」をするケースが考えられます。さらには、ログインユーザーの「いいね」と、非ログインユーザーの「いいね」を作ることもあるかもしれません。
+
+    しかし、あらゆるものに「いいね」できるシステムを作るのは容易ならざることです。普通に実装するだけでは関連するコードは肥大化し、データベースのテーブルもどんどん増えていくばかりです。
+
+    似ているけど少し違う「いいね」を実装するにあたって、失敗してしまったデータ設計、そこにあった悩みや苦しみ、それらを解決していくリファクタリングの道すじを説明します。
+
+    資料 https://speakerdeck.com/pndcat/sen-luo-mo-xiang-ni-iine-surutamenodetagou-zao
+
+    発表者
+    Natsuko Nadoyama
+    Twitter https://twitter.com/pndcat
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "WLGCJGDIEJo"
+  slides_url: "https://speakerdeck.com/pndcat/sen-luo-mo-xiang-ni-iine-surutamenodetagou-zao"
+
+- id: "keita-urashima-kaigi-on-rails-2022"
+  title: "大量塩基配列登録申請システムができるまで"
+  raw_title: "大量塩基配列登録申請システムができるまで / Keita Urashima"
+  speakers:
+    - Keita Urashima
+  event_name: "Kaigi on Rails 2022"
+  date: "2022-10-21"
+  published_at: "2022-10-30"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2022/talks/ursm/
+
+    今日の生命科学研究には塩基配列データというものが欠かせません。これは生物の遺伝情報を特定のルールに従って表現したもので、ATTAAAGGTT... のような見た目をしています。
+
+    塩基配列データは科学の公共財であり、目的や国籍に関わらず誰でも利用できることが望ましいと考えられます。そのため日米欧の研究機関は連携して国際塩基配列データベースの共同運用をしています。この取り組みを INSDC (International Nucleotide Sequence Database Collaboration) と言います。
+
+    INSDC の一員として塩基配列データベースの構築・運用を行っている日本の組織が DDBJ (DNA Data Bank of Japan) センターです。国内の研究者は DDBJ センターに塩基配列データを提出することで世界中の研究者に自身の成果を共有できます。
+
+    さて、簡単に「データを提出する」と書きましたが、そのデータが例えば 10GB ある場合はどうしたらいいでしょうか。アップロードしてもらうだけなら何とかなるかもしれませんが、パースした結果をその場でユーザに提示したいとなったらどうでしょうか。今回はそんな Web システムの開発を請け負った話をします。
+
+    資料 https://speakerdeck.com/ursm/da-liang-yan-ji-pei-lie-deng-lu-shen-qing-sisutemugadekirumade
+
+    発表者
+    Keita Urashima
+    GitHub https://github.com/ursm
+    Twitter https://twitter.com/ursm
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "ZezjGxI5qM0"
+  slides_url: "https://speakerdeck.com/ursm/da-liang-yan-ji-pei-lie-deng-lu-shen-qing-sisutemugadekirumade"
+
+- id: "masatoshi-moritsuka-kaigi-on-rails-2022"
+  title: "実例で学ぶRailsアプリケーションデバッグ入門 〜ログインできちゃってました編〜"
+  raw_title: "実例で学ぶRailsアプリケーションデバッグ入門 〜ログインできちゃってました編〜 / Masatoshi Moritsuka"
+  speakers:
+    - Masatoshi Moritsuka
+  event_name: "Kaigi on Rails 2022"
+  date: "2022-10-21"
+  published_at: "2022-10-30"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2022/talks/sanfrecce_osaka/
+
+    Webアプリケーションに限らず実際の開発ではコードを書く時間よりもコードを読んだりデバッグしたりしている時間のほうが長いです
+    実務ではアプリケーションコード自体に加え多数のgemも絡み、さらにそのgemの中にはRailsも含めてメタプログラミングを多用してくるものもあり非常に複雑なソースコードを読み解いていかなければなりません
+    今回は弊社で実際にあった「サービスを退会したアカウントが退会後もログインできてサービスを利用できてしまっていた」という事例を通して、Railsアプリケーションを開発していく上で役立つデバッグやコードリーディングのテクニックを紹介していきます
+
+    資料 https://speakerdeck.com/sanfrecce_osaka/rails-application-debug-introduction
+
+    発表者
+    Masatoshi Moritsuka
+    GitHub https://github.com/sanfrecce-osaka
+    Twitter https://twitter.com/sanfrecce_osaka
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "XUNz2C5O0qg"
+  slides_url: "https://speakerdeck.com/sanfrecce_osaka/rails-application-debug-introduction"
+
+- id: "daisuke-fujimura-kaigi-on-rails-2022"
+  title: "既存Railsアプリ攻略法 - CTOが見ること・やること・考えること"
+  raw_title: "既存Railsアプリ攻略法 - CTOが見ること・やること・考えること / Daisuke Fujimura"
+  speakers:
+    - Daisuke Fujimura
+  event_name: "Kaigi on Rails 2022"
+  date: "2022-10-21"
+  published_at: "2022-10-30"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2022/talks/fujimura/
+
+    Railsで仕事をしていると、rails new するより既存のアプリケーションを触ることのほうが多いですよね。私も昨年、新しく自分が働いている会社に加わったプロダクトのRailsアプリケーションを触り改善するという仕事をしました。
+
+    そんなとき、一人のRailsエンジニアとして、また現在勤めているCTOという経営幹部として、どんな観点で何を見て、何を目指してどんなことをしているのか、を具体的にお話しすることで、みなさんが新たに既存のRailsリポジトリと出会うときに何をするとよいか？というベストプラクティスめいたものを提示できればと思います。
+
+    何をするにも目指すことは「プロダクト開発のアジリティが向上して、スムーズにお客さんに価値を提供し続けられること」なのですが、やることは多岐に渡ります。コードフォーマットの修正からリリース体制の開演、ほとんど使われていない機能の削除など本当にいろいろです。それぞれ、何が課題なのか？改善したいことは何か？具体的に何をしたのか？をお話しします。
+
+    また、既存のRailsアプリケーションとの付き合い方のベストプラクティスを提案するなかで、CTOがRailsエンジニアとして仕事をするときに何を考えているのか？という観点の紹介をスパイスとして散りばめようと思っています。ここも楽しんでいただけれたら幸いです。
+
+    資料 https://speakerdeck.com/fujimura/kaigi-on-rails-2022-ji-cun-railsapurigong-lue-fa-ctogajian-rukotoyarukotokao-erukoto
+
+    発表者
+    Daisuke Fujimura
+    GitHub https://github.com/fujimura
+    Twitter https://twitter.com/ffu_
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "VupPYilamMQ"
+  slides_url: "https://speakerdeck.com/fujimura/kaigi-on-rails-2022-ji-cun-railsapurigong-lue-fa-ctogajian-rukotoyarukotokao-erukoto"
+
+- id: "shia-kaigi-on-rails-2022"
+  title: "差分ベースで効率的にテストを実行してみる"
+  raw_title: "差分ベースで効率的にテストを実行してみる / Shia"
+  speakers:
+    - Shia
+  event_name: "Kaigi on Rails 2022"
+  date: "2022-10-21"
+  published_at: "2022-10-30"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2022/talks/riseshia/
+
+    テストは大事！テストがあれば安心！ということでテストをバリバリ書いていったn年後。
+    テストが重くなり、不要に Factory に紐付いてるすべてのアソシエーションを憎むようになったり、統合テストなんて無駄！という気持ちになったことはないですか？
+    この発表では CI を通っているコードを動的分析し、追加・変更されたファイルから実行すべきテストを計算し効率的にテストを実行する手法を試した結果と長所・短所などを解説します。
+
+    資料 https://speakerdeck.com/riseshia/chai-fen-besudexiao-lu-de-nitesutowoshi-xing-sitemiru
+
+    発表者
+    Shia
+    GitHub https://github.com/riseshia
+    Twitter https://twitter.com/riseshia
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "rSpe3k5WK0g"
+  slides_url: "https://speakerdeck.com/riseshia/chai-fen-besudexiao-lu-de-nitesutowoshi-xing-sitemiru"
+
+- id: "tomohiro-suwa-kaigi-on-rails-2022"
+  title: "3rd Party API on Rails"
+  raw_title: "3rd Party API on Rails / Tomohiro Suwa"
+  speakers:
+    - Tomohiro Suwa
+  event_name: "Kaigi on Rails 2022"
+  date: "2022-10-21"
+  published_at: "2022-10-30"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2022/talks/tsuwatch/
+
+    ファッションコーディネートアプリ「WEAR」はサービス内だけではなく、さまざまなサービスとのコーディネート画像の連携を通じて、より多くのユーザーにファッションの楽しさをお届けできるよう取り組んでいます。それを実現するために「WEAR」はサードパーティに提供するAPIをRuby on Railsで構築しました。サードパーティのAPIを利用することは多くても、提供することやどのように実現しているのか、どのような課題が発生したのかなど、リアルな情報をお伝えできればと思います
+
+    資料 https://speakerdeck.com/tsuwatch/3rd-party-api-on-rails
+
+    発表者
+    Tomohiro Suwa
+    GitHub https://github.com/tsuwatch
+    Twitter https://twitter.com/tsuwatch
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "qTuF_SFUFwk"
+  slides_url: "https://speakerdeck.com/tsuwatch/3rd-party-api-on-rails"
+
+- id: "masato-ohba-kaigi-on-rails-2022"
+  title: "Balance Security and Usability in the Field of 3D Secure"
+  raw_title: "Balance Security and Usability in the Field of 3D Secure / Masato Ohba"
+  speakers:
+    - Masato Ohba
+  event_name: "Kaigi on Rails 2022"
+  date: "2022-10-21"
+  published_at: "2022-10-30"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2022/talks/ohbarye/
+
+    ECサイトでクレジットカード決済を行う際にパスワードによる認証を求められたことはありませんか。
+
+    この仕組みは3Dセキュアと呼ばれる本人認証サービスであり、カードの盗用やなりすましなどの不正利用の防止に寄与しています。遡ると20年近い歴史がある3Dセキュアの本人認証ではパスワードによる知識認証が主流でしたが、近年はOTPを用いた所有物認証や指紋等による生体認証といった利便性の高い認証方法も導入されています。
+
+    一般的なWebサービスにおける認証と3Dセキュアの認証には類似点が多々ありますが、大きな違いもあります。VisaやMastercard等の持つ巨大な分散システムと連携して本人認証を行うこと、取引の金額や様々な情報をもとにリスクを判定して認証を省略するアプローチがあることです。特に後者の「セキュリティとユーザーの利便性を両立させる余地がある」というのは面白いポイントです。
+
+    このセッションでは登壇者が開発・運用を通じて知った3Dセキュアの裏側を覗き、「不正利用との戦い」とも言われるクレジットカードの歴史と創意工夫の一端に触れてみます。カード事業に携わることがなければ知ることがないであろう領域ですが、そこで活用されている技術は馴染み深いネットワークやセキュリティの応用であり、Webアプリケーション開発者にとって地続きの世界であることを実感いただけると思います。
+
+    資料 https://speakerdeck.com/ohbarye/balance-security-and-usability-in-the-field-of-3d-secure
+
+    発表者
+    Masato Ohba
+    GitHub https://github.com/ohbarye
+    Twitter https://twitter.com/ohbarye
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "K3BWiXqXuwI"
+  slides_url: "https://speakerdeck.com/ohbarye/balance-security-and-usability-in-the-field-of-3d-secure"
+
+- id: "makicamel-kaigi-on-rails-2022"
+  title: "歴史あるプロジェクトのとある技術的負債を隙間プロジェクトの 210 PullRequests で倒しきった話"
+  raw_title: "歴史あるプロジェクトのとある技術的負債を隙間プロジェクトの 210 PullRequests で倒しきった話 / makicamel"
+  speakers:
+    - makicamel
+  event_name: "Kaigi on Rails 2022"
+  date: "2022-10-21"
+  published_at: "2022-10-30"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2022/talks/makicamel/
+
+    技術的負債は事業の成長にあわせ、借り入れられ、返されます。歴史あるプロジェクトでは大なり小なり抱えているのではないでしょうか。
+    話者の勤める会社でも、開発初〜中期に取り入れられた独自フレームワークが技術的負債となっていました。
+    隙間プロジェクトとして負債を返し続けること約 11 ヶ月 210 PullRequests、ついに返しきりました。
+
+    本トークでは巨大な負債解消への取り組み方、変更リスクとコストを下げた方法についてお話します。
+    技術的負債と戦う人の一助に、あるいは戦いたい人の後押しになれば幸いです。
+
+    資料 https://speakerdeck.com/makicamel/how-to-say-goodbye-to-technical-debt
+
+    発表者
+    makicamel
+    GitHub https://github.com/makicamel
+    Twitter https://twitter.com/makicamel
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "moYVIwHYcnE"
+  slides_url: "https://speakerdeck.com/makicamel/how-to-say-goodbye-to-technical-debt"
+
+- id: "fu-ga-kaigi-on-rails-2022"
+  title: '入社数ヶ月の newbie が稼働7年超のRailsプロジェクトに"型"を導入して見えた世界'
+  raw_title: '入社数ヶ月の newbie が稼働7年超のRailsプロジェクトに"型"を導入して見えた世界 / Fu-ga'
+  speakers:
+    - Fu-ga
+  event_name: "Kaigi on Rails 2022"
+  date: "2022-10-22"
+  published_at: "2022-10-30"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2022/talks/fugakkbn/
+
+    私は数ヶ月前に異業種からWEBエンジニアにキャリアチェンジしたばかりの、いわゆる newbie です。
+    にも関わらず、サービスインから7年以上稼働している Rails アプリケーションに RBS, Steep を使用して型導入を主体的に進めています。
+
+    まだ完全に導入が完了しているわけではありませんが、現段階での私の結論は「newbie こそ型を書こう！」です。
+
+    型を書くことで得られるのは、「型を導入した」という事実のみに留まりません。多くの newbie が最初に苦労するであろうプロジェクトへの理解を後押ししますし、OSS へのコントリビューションをしたいけど何をしたらいいかわからない、という悩みをも解決します。
+    私自身の経験を通じて見えるようになった世界をお話しします。
+
+    また、この発表は newbie のみに向けたお話ではありません。大規模プロジェクトへの型導入は一筋縄ではいきませんが、相応のメリットがあります。
+    型を導入して享受できる恩恵は何か、どのように進めるのか、導入にあたっての障壁はどんなものか…。Rails における型の現状についても知っていただけたらと思います。
+
+    資料 https://speakerdeck.com/fugakkbn/ru-she-shu-keyue-nonewbiega-jia-dong-7nian-chao-nopuroziekutoni-xing-wodao-ru-sitejian-etashi-jie
+
+    発表者
+    Fu-ga
+    GitHub https://github.com/fugakkbn
+    Twitter https://twitter.com/fugakkbn
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "6QjrKkK-4pY"
+  slides_url: "https://speakerdeck.com/fugakkbn/ru-she-shu-keyue-nonewbiega-jia-dong-7nian-chao-nopuroziekutoni-xing-wodao-ru-sitejian-etashi-jie"
+
+- id: "hirotaka-miyagi-kaigi-on-rails-2022"
+  title: "sassc-railsを利用している我々は、Sassの@importの非推奨化をどのように乗り越えていくか"
+  raw_title: "sassc-railsを利用している我々は、Sassの@importの非推奨化をどのように乗り越えていくか / Hirotaka Miyagi"
+  speakers:
+    - Hirotaka Miyagi
+  event_name: "Kaigi on Rails 2022"
+  date: "2022-10-22"
+  published_at: "2022-10-30"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2022/talks/mh4gf/
+
+    RailsプロジェクトでSassを利用する際、今まではsassc-rails gemと@importを利用してアセットパイプラインに乗せていたプロジェクトが多いのではないでしょうか。
+    しかし、Sassの@import構文と、sassc-railsが内部的に利用しているSassコンパイラであるLibSassはdeprecatedになってしまいます。代替手段として@use構文に乗り換えていく必要がありますが、LibSassでは@use構文を使うことはできません。@useが使えるDart実装のDartSassに移行する必要があります。
+
+    このセッションでは、LibSass / DartSassなどの関連知識と、Rails7でRailsチームから提案されている複数のアセット管理方法も絡めて紹介し、技術選定や導入時の罠・QA方法まで含めて、@importから@useに移行していくための実践方法を紹介します。
+
+    資料 https://speakerdeck.com/mh4gf/sassc-railswoli-yong-siteiruwo-ha-sassno-at-importnofei-tui-jiang-hua-wodonoyounicheng-riyue-eteikuka
+
+    発表者
+    Hirotaka Miyagi
+    GitHub https://github.com/mh4gf
+    Twitter https://twitter.com/mh4gf
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "9J-V_p9A9PI"
+  slides_url: "https://speakerdeck.com/mh4gf/sassc-railswoli-yong-siteiruwo-ha-sassno-at-importnofei-tui-jiang-hua-wodonoyounicheng-riyue-eteikuka"
+
+- id: "kei-shiratsuchi-kaigi-on-rails-2022"
+  title: "実践 Rails アソシエーションリファクタリング"
+  raw_title: "実践 Rails アソシエーションリファクタリング / Kei Shiratsuchi"
+  speakers:
+    - Kei Shiratsuchi
+  event_name: "Kaigi on Rails 2022"
+  date: "2022-10-22"
+  published_at: "2022-10-30"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2022/talks/kei-s/
+
+    設計当初は妥当だと思っていたActiveRecordの関連付け（アソシエーション）、サービスが成長していくにつれて再設計・リファクタリングしたくなっていませんか？
+    当初は単純な has_many で良かったけど、中間モデルを導入した方がより良い設計になるのに...
+    ポリモーフィック関連がアンチパターンなのは知っているけど、どうやって直していったら...
+    そんなことを考えている間にもサービスは成長を続け、レコード数は日々増大し、開発も活発で利用箇所を網羅するのも一苦労...躊躇してしまうのは当然です。
+
+    このセッションでは、私が実際にRailsのアソシエーションをリファクタリングしている中で得た、様々なプラクティスをご紹介します。
+    メンテナンスタイムなしでリファクタリングを進めるためのステップ、リレーションの利用箇所を徹底的に洗い出すハックなど、実践的な知見をお伝えします。
+
+    資料 https://speakerdeck.com/kei_s/rails-association-refactoring-in-practice
+
+    発表者
+    Kei Shiratsuchi
+    GitHub https://github.com/kei-s
+    Twitter https://twitter.com/kei_s
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "Rfni8PMizJc"
+  slides_url: "https://speakerdeck.com/kei_s/rails-association-refactoring-in-practice"
+
+- id: "andrey-novikov-kaigi-on-rails-2022"
+  title: "ルビイストの目で見たPostgreSQLのデータ型"
+  raw_title: "ルビイストの目で見たPostgreSQLのデータ型 / Andrey NOVIKOV"
+  speakers:
+    - Andrey Novikov
+  event_name: "Kaigi on Rails 2022"
+  date: "2022-10-22"
+  published_at: "2022-10-30"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2022/talks/Envek/
+
+    最近10年間に、PostgreSQLはRubyコミュニティに最も人気のあるデータベース管理システムになりました。PostgreSQLには多数の機能やデータ型があります。Ruby標準ライブラリにも多くのデータ型のクラスがあって、Railsはさらに複数のデータ型を加えています
+    その際、あるデータ型はRubyとPostgreSQLの両方に含まれていますが、そのデータ型は本当に同一のものでしょうか？また、PostgreSQLとRubyの間でデータを移動するとき、どんな問題が発生する可能性があるのでしょうか？両方のシステムにある機能を比べながら、どうすればRubyのデータ型もPostgreSQLのデータ型も１００％に使えるようにできるかを、私はこの発表でお話ししたいと思います。
+
+    ※ イベント当日に時間の都合上カットした内容が含まれています
+
+    資料 https://envek.github.io/kaigionrails-postgresql-as-seen-by-rubyists/
+
+    発表者
+    Andrey Novikov
+    GitHub https://github.com/Envek
+    Twitter https://twitter.com/Envek
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "bwoNv_tAMkI"
+
+- id: "hiroya-shimamoto-kaigi-on-rails-2022"
+  title: "モノリシックRailsアプリケーションをモジュラモノリスへ移行しているnoteの事例"
+  raw_title: "モノリシックRailsアプリケーションをモジュラモノリスへ移行しているnoteの事例 / Hiroya Shimamoto"
+  speakers:
+    - Hiroya Shimamoto
+  event_name: "Kaigi on Rails 2022"
+  date: "2022-10-22"
+  published_at: "2022-10-30"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2022/talks/shshimamo/
+
+    私たちのサービス(note)のバックエンドは、Model 数が 800 以上と比較的大規模なモノリシックRailsアプリケーションで構成されています。
+    また関わるエンジニアの人数も40名程度のため、開発効率の低下、バグの増加といった課題が顕在化してきました。
+
+    このような課題に対しマイクロサービスアーキテクチャを検討しましたが、アーキテクチャ検討の前にまずはドメイン分割を進める必要があると考えました。
+    そこで Packwerk という Shopify が開発した gem を導入することにしました。
+
+    Packwerk は、モジュラーモノリス化を支援してくれる gem です。
+    設定したディレクトリをモジュールとみなし、モジュール間の依存関係を静的解析で検出してくれます。
+    モジュール化は基本的にはファイル移動だけなので、ドメイン分割を段階的に進めることができ、やり直しも容易にできます。
+
+    これらの特徴は、「機能開発と並行して進めたい」「試行錯誤しながら段階的に進めたい」という私たちの要望を満たしてくれるものでした。
+
+    今回の発表では、Packwerk の基本機能や導入方法のご紹介、実際に導入して見え始めた効果や、今後の課題などをお話しできればと思っています。
+
+    資料 https://speakerdeck.com/shshimamo/monorisitukurailsapurikesiyonwo-moziyuramonorisuheyi-xing-siteiru-notenoshi-li
+
+    発表者
+    Hiroya Shimamoto
+    GitHub https://github.com/shshimamo
+    Twitter https://twitter.com/shshimamo
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "-8R5bMbxgOM"
+  slides_url: "https://speakerdeck.com/shshimamo/monorisitukurailsapurikesiyonwo-moziyuramonorisuheyi-xing-siteiru-notenoshi-li"
+
+- id: "osyo-kaigi-on-rails-2022"
+  title: "ActiveRecord::Relation ってなに？"
+  raw_title: "ActiveRecord::Relation ってなに？ / osyo"
+  speakers:
+    - osyo
+  event_name: "Kaigi on Rails 2022"
+  date: "2022-10-22"
+  published_at: "2022-10-30"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2022/talks/osyo/
+
+    皆さんは User.where(active: true).order(:age) の結果がなにを返すかご存知ですか。
+    User の配列が出力されるから配列が返ってくる？いいえ、違います。
+    普段なにげなく使っている ActiveRecord ですがこのセッションでは実際に内部でどのように動作しているのかを少し覗いてみましょう。
+    User.where(active: true).order(:age) がなにを返すのか、またどのようにして ActiveRecord が SQL 文を生成しているのかをライブコーディングを交えながら解説します。
+    普段 Rails を使っている人がもう1歩進んだ Rails の知識を一緒に学んで行きましょう。
+
+    資料 https://www.docswell.com/s/pink_bangbi/K88ELK-2022-10-22-133810
+
+    発表者
+    osyo
+    GitHub https://github.com/osyo-manga
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "gxaB96E-_GQ"
+
+- id: "sunao-hogelog-komuro-kaigi-on-rails-2022"
+  title: "十年ものアプリのセッションストレージをクッキーからRedisに移行するときに気にしたこと、それでも起きてしまったこと"
+  raw_title: "十年ものアプリのセッションストレージをクッキーからRedisに移行するときに気にしたこと、それでも起きてしまったこと / hogelog"
+  speakers:
+    - Sunao Hogelog Komuro
+  event_name: "Kaigi on Rails 2022"
+  date: "2022-10-22"
+  published_at: "2022-10-30"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2022/talks/hogelog/
+
+    rails new したばかりのアプリケーションのセッションストレージはなんでしょう。そう、特別なテンプレートを使わない限り CookieStore です。
+    Rails のデフォルト設定ですし追加インフラも不要で利用も容易なため採用しているアプリケーションも多いでしょう。
+
+    しかしセキュリティのベストプラクティスによると、セッションストレージをサーバサイドに寄せるよう推奨されることも多いです。さてそこでセッションストレージをクッキーから切り替えるとしましょう。
+
+    アプリケーションがリリース前だったら？ ストレージ切り替えを実装するだけですね。
+    リリース済みだがセッションのリセットが許容されるなら？ ストレージを切り替えてデプロイするだけですね。
+    アプリケーションはリリース済みだし、セッションを維持したままストレージを切り替えたいときは？ この場合なにをどうしていくべきか、Rails によるレールは敷かれていません。
+
+    私達は運用10年目となる1000万オーダーのセッションを持つ Rails アプリケーションのセッションストレージを、セッションを維持したまま Cookie から Redis (MemoryDB) に移行しました。
+    セッションストレージの移行をどんな方法で進めたか、どんな実装をしたか、どんなことを気にしていたか、それでも起きたトラブルや移行した結果についてお話しします。
+
+    資料 https://speakerdeck.com/hogelog/kaigi-on-rails-2022-talk-hogelog
+
+    発表者
+    hogelog
+    GitHub https://github.com/hogelog
+    Twitter https://twitter.com/hogelog
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "hKUm6i4j1hI"
+  slides_url: "https://speakerdeck.com/hogelog/kaigi-on-rails-2022-talk-hogelog"
+
+- id: "yuki-akamatsu-kaigi-on-rails-2022"
+  title: "今年できたチームの生産性を向上させたプラクティスの紹介"
+  raw_title: "今年できたチームの生産性を向上させたプラクティスの紹介 / Yuki Akamatsu"
+  speakers:
+    - Yuki Akamatsu
+  event_name: "Kaigi on Rails 2022"
+  date: "2022-10-22"
+  published_at: "2022-10-30"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2022/talks/ukstudio/
+
+    このトークでは今年あたらしく結成された開発チームがシンプルなプラクティスによってチームの技術ナレッジを底上げし、生産性を向上させることができたことについて話します。
+
+    私達の開発チームはバックエンド、モバイルあわせて10人を越える程度のチームで一般的なWeb開発のチームとしては大きくも小さくもない規模だと思います。とはいえチームとしては新しく、特にバックエンドエンジニアは今年配属された新卒や、数年以上の経験があるシニアが混在し、また自分達が開発するアプリケーションに関する知識も人によってバラつきがある状態で、チームのアウトプットがなかなか安定しない状態でした。
+
+    日々の開発の中でふりかえりを継続的に行ない、特に効果的だったプラクティスについて紹介します。またプラクティスの内容だけでなく、導入にあたってうまくいかなかったことなども紹介し、この発表を聞いた参加者がよりスムーズに自分達の開発チームに適用できる情報を提供します。
+
+    資料 https://speakerdeck.com/ukstudio/kaigi-on-rails-2022
+
+    発表者
+    Yuki Akamatsu
+    GitHub https://github.com/ukstudio
+    Twitter https://twitter.com/ukstudio
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "_L_sxSgzQP4"
+  slides_url: "https://speakerdeck.com/ukstudio/kaigi-on-rails-2022"
+
+- title: "Test code concepts to keep in mind for now with Rails"
+  original_title: "とりあえず抑えておきたい、Railsでの「テストの内容」の考えかた"
+  raw_title: "とりあえず抑えておきたい、Railsでの「テストの内容」の考えかた / しんくう"
+  speakers:
+    - shinkufencer
+  event_name: "Kaigi on Rails 2022"
+  date: "2022-10-22"
+  published_at: "2022-10-30"
+  language: "japanese"
+  id: "test-code-concepts-to-keep-in-mind-for-now-with-rails"
+  slug: "test-code-concepts-to-keep-in-mind-for-now-with-rails"
+  description: |-
+    https://kaigionrails.org/2022/talks/shinkufencer/
+
+    RSpecなどでテストコードを書くとき、ある程度書き方や書く対象に関しては理解できています。しかしながらテストコードで書くべき内容に関してはどこまで書いて良いかわからなくなるタイミングがあります。この発表ではテストコードを書く上で抑えておきたいテストで扱うべき「内容」に関してざっとご紹介できればと思っています。
+
+    資料 https://speakerdeck.com/shinkufencer/test-code-concepts-to-keep-in-mind-for-now-with-rails
+
+    発表者
+    しんくう
+    GitHub https://github.com/shinkufencer
+    Twitter https://twitter.com/shinkufencer
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "F3tV6xGb1Vc"
+  slides_url: "https://speakerdeck.com/shinkufencer/test-code-concepts-to-keep-in-mind-for-now-with-rails"
+
+- id: "ikuma-t-kaigi-on-rails-2022"
+  title: "自分だけの小さなSelenium「Olenium」を作って始める、ブラウザ自動化技術の理論と実践"
+  raw_title: "自分だけの小さなSelenium「Olenium」を作って始める、ブラウザ自動化技術の理論と実践 / ikuma-t"
+  speakers:
+    - ikuma-t
+  event_name: "Kaigi on Rails 2022"
+  date: "2022-10-22"
+  published_at: "2022-10-30"
+  language: "japanese"
+  description: |-
+    https://kaigionrails.org/2022/talks/ikumatdkr/
+
+    E2Eテストの実行にはブラウザの自動化が必要不可欠ですが、アプリケーションコード内で完結するユニットテストやインテグレーションテストとは違って、ブラウザ自動化を利用したテストは登場人物や設定が多いです。そのためテストが実行できるようになっても、正直なところその詳細をいまいち理解しておらず、ブラウザ自動化は私にとって技術というより魔法でした。
+
+    今年業務未経験から学習を始めて晴れてWebエンジニアになることができました。職業プログラマとなったことは、Web技術の中核であるブラウザを自分がどう動かしているのかを理解していないことへのコンプレックスを強めると同時に、ブラウザ自動化技術への関心を高めるきっかけとなりました。
+
+    「誰かが作ったフレームワークで動くものはできるようになったけど、その先を理解できるようになりたい」
+    「プログラマとして技術を扱っていく以上、魔法で済ませるのではなく自分で使いこなせるようになりたい」
+
+    この発表では普段SeleniumやPlayWrightがいい感じに隠蔽してくれているブラウザ自動化の仕組みを、各仕様のドキュメントとシンプルなcurlコマンド等で読み解いていき、最終的に「Olenium」「OlayWright」というRubyを使ったオレオレ簡易実装につなげることで、その全体像を理解していきます。
+
+    資料 https://speakerdeck.com/ikumatadokoro/zi-fen-dakenoxiao-sanaselenium-olenium-wozuo-tuteshi-meru-burauzazi-dong-hua-ji-shu-noli-lun-toshi-jian
+
+    発表者
+    ikuma-t
+    GitHub https://github.com/IkumaTadokoro
+    Twitter https://twitter.com/ikumatdkr
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "q2wESM38i6M"
+  slides_url: "https://speakerdeck.com/ikumatadokoro/zi-fen-dakenoxiao-sanaselenium-olenium-wozuo-tuteshi-meru-burauzazi-dong-hua-ji-shu-noli-lun-toshi-jian"
+- id: "nate-berkopec-kaigi-on-rails-2022"
+  title: "All About Queueing In Rails Applications"
+  raw_title: "All About Queueing In Rails Applications / Nate Berkopec"
+  speakers:
+    - Nate Berkopec
+  event_name: "Kaigi on Rails 2022"
+  date: "2022-10-22"
+  published_at: "2022-10-30"
+  language: "english"
+  description: |-
+    https://kaigionrails.org/2022/talks/nateberkopec/
+
+    What's a queue? What's it for? And why do Rails apps have so many? Let's take a look at three of the most important queues in any Rails application, how to manage them, and how to design them for efficiency and ease of use. We'll talk about how requests queue for our web servers, how to manage unruly lists of Sidekiq queues, and how queueing for the GVL determines the optimal thread count for Puma and Sidekiq.
+
+    資料 https://speakerdeck.com/nateberkopec/kaigi-on-rails
+
+    発表者
+    Nate Berkopec
+    GitHub https://github.com/nateberkopec
+    Twitter https://twitter.com/nateberkopec
+
+    Kaigi on Railsは、初学者から上級者までが楽しめるWeb系の技術カンファレンスです。
+    https://kaigionrails.org/
+  video_provider: "youtube"
+  video_id: "22dNif8d7uI"
+  slides_url: "https://speakerdeck.com/nateberkopec/kaigi-on-rails"

@@ -1,36 +1,129 @@
-<% main_resource = request.path.split("/").last.presence_in(%w[talks speakers events]) || "talks" %>
-<% resources = %w[talks speakers events] %>
-
-<%= ui_modal position: :top, close_button: false, data: {action: "keydown.meta+k@window->modal#open spotlight@window->modal#open"}, class: "spotlight"  do %>
-  <div id="spotlight-search"
-       data-controller="spotlight-search"
-       data-spotlight-search-url-spotlight-talks-value="<%= spotlight_talks_path %>"
-       data-spotlight-search-url-spotlight-speakers-value="<%= spotlight_speakers_path %>"
-       data-spotlight-search-url-spotlight-events-value="<%= spotlight_events_path %>"
-       data-spotlight-search-main-resource-value="<%= main_resource %>">
-      <div class="flex items-center gap-2 rounded-lg bg-white px-2 relative">
-        <%= heroicon("magnifying-glass", size: :md) %>
-        <%= tag.input type: "text",
-              name: "query",
-              autofocus: true,
-              autocomplete: "off",
-              class: "w-full p-2 outline-none",
-              data: {action: "spotlight-search#search keydown.enter->spotlight-search#navigate:stop", spotlight_search_target: "searchInput"} %>
-        <%= heroicon("x-mark", size: :sm, class: "absolute right-2 top-1/2 -translate-y-1/2 hidden cursor-pointer", data: {action: "click->spotlight-search#clear", spotlight_search_target: "clear"}) %>
-        <%= heroicon("arrow-path", size: :sm, class: "absolute right-2 top-0 bottom-0 my-auto animate-spin hidden text-gray-600", data: {spotlight_search_target: "loading"}) %>
-      </div>
-
-    <div role="listbox" data-spotlight-search-target="searchResults" aria-live="polite">
-      <div class="flex items-center gap-2 mt-4 border-b pb-4 hidden" data-spotlight-search-target="allSearchResults">
-        <div role="option">search <%= main_resource %> for <strong class="text-base-content" data-spotlight-search-target="searchQuery"></strong></div>
+<%= ui_modal position: :top, size: :full, close_button: false, data: {action: "keydown.meta+k@window->modal#open spotlight@window->modal#open"}, class: "spotlight" do %>
+  <div
+    id="spotlight-search"
+    class="flex flex-col h-full"
+    data-controller="spotlight-search"
+    data-spotlight-search-url-spotlight-talks-value="<%= spotlight_talks_path %>"
+    data-spotlight-search-url-spotlight-speakers-value="<%= spotlight_speakers_path %>"
+    data-spotlight-search-url-spotlight-events-value="<%= spotlight_events_path %>"
+    data-spotlight-search-url-spotlight-topics-value="<%= spotlight_topics_path %>"
+    data-spotlight-search-url-spotlight-series-value="<%= spotlight_can_search_series? ? spotlight_series_index_path : nil %>"
+    data-spotlight-search-url-spotlight-organizations-value="<%= spotlight_organizations_path %>"
+    data-spotlight-search-url-spotlight-locations-value="<%= spotlight_can_search_locations? ? spotlight_locations_path : nil %>"
+    data-spotlight-search-url-spotlight-languages-value="<%= spotlight_can_search_languages? ? spotlight_languages_path : nil %>"
+    data-spotlight-search-url-spotlight-kinds-value="<%= spotlight_kinds_path %>"
+    data-spotlight-search-main-resource-path-value="<%= spotlight_main_resource_path %>"
+    data-spotlight-search-default-backend-value="<%= Search::Backend.default_backend_key %>">
+    <div class="flex items-center gap-2 rounded-lg bg-white px-2 relative shrink-0">
+      <%= fa("magnifying-glass", size: :md, style: :regular) %>
+      <%= tag.input type: "text",
+            name: "query",
+            autofocus: true,
+            autocomplete: "off",
+            placeholder: "Search talks, speakers, events, topics, locations...",
+            class: "w-full p-3 outline-none text-lg",
+            data: {
+              action:
+                "spotlight-search#search keydown.enter->spotlight-search#navigate:stop",
+              spotlight_search_target: "searchInput"
+            } %>
+      <% if Rails.env.development? %>
+        <% default_backend = Search::Backend.default_backend_key.to_s %>
+        <% available_backends = Search::Backend.available_backends %>
+        <% sqlite_available = available_backends.include?(:sqlite_fts) %>
+        <% typesense_available = available_backends.include?(:typesense) %>
+        <div class="flex items-center gap-1 absolute right-10 top-1/2 -translate-y-1/2" data-spotlight-search-target="backendToggle">
+          <%= tag.span "SQLite",
+                class: "badge badge-xs #{sqlite_available ? "cursor-pointer" : "opacity-40 cursor-not-allowed"} #{(default_backend == "sqlite_fts") ? "badge-warning" : "badge-ghost"}",
+                data: {
+                  action: sqlite_available ? "click->spotlight-search#setBackend" : nil,
+                  backend: sqlite_available ? "sqlite_fts" : nil,
+                  spotlight_search_target: "sqliteBadge"
+                } %>
+          <%= tag.span "Typesense",
+                class: "badge badge-xs #{typesense_available ? "cursor-pointer" : "opacity-40 cursor-not-allowed"} #{(default_backend == "typesense") ? "badge-primary" : "badge-ghost"}",
+                data: {
+                  action: typesense_available ? "click->spotlight-search#setBackend" : nil,
+                  backend: typesense_available ? "typesense" : nil,
+                  spotlight_search_target: "typesenseBadge"
+                } %>
+        </div>
+      <% end %>
+      <%= fa(
+            "xmark",
+            size: :sm,
+            class: "absolute right-2 top-1/2 -translate-y-1/2 hidden cursor-pointer",
+            data: {
+              action: "click->spotlight-search#clear",
+              spotlight_search_target: "clear"
+            }
+          ) %>
+      <%= fa(
+            "rotate",
+            size: :sm,
+            class:
+              "absolute right-2 top-0 bottom-0 my-auto animate-spin hidden text-gray-600",
+            data: {
+              spotlight_search_target: "loading"
+            }
+          ) %>
+    </div>
+    <div
+      role="listbox"
+      class="flex-1 overflow-hidden mt-4"
+      data-spotlight-search-target="searchResults"
+      aria-live="polite">
+      <div
+        class="flex items-center gap-2 border-b pb-4 hidden"
+        data-spotlight-search-target="allSearchResults">
+        <div role="option">search
+          <%= spotlight_main_resource %>
+          for
+          <strong class="text-base-content" data-spotlight-search-target="searchQuery"></strong></div>
         <kbd class="kbd kbd-sm text-base-content">⏎</kbd>
+        <% if Rails.env.development? %>
+          <span class="badge badge-xs badge-warning hidden" data-spotlight-search-target="searchBackendBadge">SQLite FTS</span>
+        <% end %>
       </div>
 
-      <div class="grid md:grid-cols-3 divide-x">
-        <% resources.unshift(main_resource) %>
-        <% resources.uniq.each_with_index do |resource, index| %>
-          <% padding = {"0" => "pr-4", "1" => "px-4", "2" => "pl-4"}.dig(index.to_s) %>
-          <div id="<%= resource %>_search_results" class="<%= padding %>" data-spotlight-search-target="<%= resource %>SearchResults"></div>
+      <div
+        id="topics_search_results"
+        class="pb-4 border-b hidden"
+        data-spotlight-search-target="topicsSearchResults"></div>
+
+      <div
+        id="kinds_search_results"
+        class="pb-4 border-b hidden"
+        data-spotlight-search-target="kindsSearchResults"></div>
+
+      <div
+        id="locations_search_results"
+        class="pb-4 border-b hidden"
+        data-spotlight-search-target="locationsSearchResults"></div>
+
+      <div
+        id="languages_search_results"
+        class="pb-4 border-b hidden"
+        data-spotlight-search-target="languagesSearchResults"></div>
+
+      <div
+        id="series_search_results"
+        class="pb-4 border-b hidden"
+        data-spotlight-search-target="seriesSearchResults"></div>
+
+      <div
+        id="organizations_search_results"
+        class="pb-4 border-b hidden"
+        data-spotlight-search-target="organizationsSearchResults"></div>
+
+      <div class="grid md:grid-cols-3 md:divide-x gap-4 md:gap-0 h-full overflow-hidden pt-4 border-t">
+        <% spotlight_resources.unshift(spotlight_main_resource) %>
+        <% spotlight_resources.uniq.each_with_index do |resource, index| %>
+          <% padding = {"0" => "md:pr-4", "1" => "md:px-4", "2" => "md:pl-4"}.dig(index.to_s) %>
+          <div
+            id="<%= resource %>_search_results"
+            class="<%= padding %> overflow-y-auto"
+            data-spotlight-search-target="<%= resource %>SearchResults"></div>
         <% end %>
       </div>
     </div>

@@ -1,0 +1,254 @@
+# Website: https://regional.rubykaigi.org/kansai08/
+# Schedule: https://regional.rubykaigi.org/kansai08/schedule
+---
+### Pre-Party - 2025-06-27
+
+- title: "Rubyでやりたい駆動開発"
+  speakers:
+    - Miyuki Koshiba
+  event_name: "Kansai RubyKaigi 08"
+  date: "2025-06-27"
+  language: "japanese"
+  slides_url: "https://speakerdeck.com/chobishiba/ruby-driven-development"
+  description: |-
+    気づけば「Rubyでやってみたい」と考えていた——そんな経験、Rubyistならあるのではないでしょうか。
+    私にとってそれは、クリエイティブコーディングや電子工作でした。最初に触れたときは別の言語でしたが、「Rubyでできたらもっと楽しいのに」と思わずにはいられなかったのです。
+    この発表では、そんな「Rubyでやりたい」という衝動からはじまり、試行錯誤の末に作品を形にした過程を紹介します。
+
+    完成した作品は短いコードで動いていますが、そこに至るまでの道のりには、紆余曲折ありました。挫折しかけたこともありましたが、やっぱり「Rubyでやりたい」この一心で乗り越えられました。だからこそRubyで動かせた時の喜びは大きなものでした。
+
+    紹介するのは、プログラムの動きが感じられるインタラクティブな作品や、LEDマトリクスを使った表現など。「何か作りたいけど、何から始めればいいかわからない」という人が、自分の“好き”を入り口にチャレンジしてみるヒントになるかもしれません。
+    聞いてくださったみなさんが、自分だけの世界をRubyで創るきっかけになれば嬉しいです。
+
+    https://regional.rubykaigi.org/kansai08/presentations/chobishiba
+  video_provider: "scheduled"
+  video_id: "miyuki-koshiba-kansai-rubykaigi-08"
+  id: "miyuki-koshiba-kansai-rubykaigi-08"
+
+- title: "RubyGem開発で鍛えるソフトウェア設計力"
+  speakers:
+    - joker1007
+  event_name: "Kansai RubyKaigi 08"
+  date: "2025-06-27"
+  language: "japanese"
+  description: |-
+    より良いシステムより良いソフトウェアを開発するためには、目的を明確にしそれを実現する構造を思い描く力、つまり設計力というものが必要になります。
+
+    その力の源泉となるのは、要点を捉え言語化する力、そしてユースケースを想像する力、抽象と具体を行き来する力、などが挙げられます。
+
+    こういった力を育てるには日頃の経験の積み重ねが必要ですが、その中でもRubyGemを開発することで得られる経験にスポットを当て、設計力を鍛える上で自分にとって重要だと感じている考え方を紹介します。
+
+    また、実際にRubyGemを開発する上での取っ掛かりが得られる様に、世の中に存在するGemのパターンを分類し、自分がどういう発想の元で作ってきたかを紹介することで、この発表を聞いた人が、RubyGemの開発とOSS活動をより身近に感じられる様な話にしたいと考えています。
+
+    https://regional.rubykaigi.org/kansai08/presentations/joker1007
+  video_provider: "scheduled"
+  video_id: "joker1007-kansai-rubykaigi-08"
+  id: "joker1007-kansai-rubykaigi-08"
+
+- title: "ruby.wasmで多人数リアルタイム通信ゲームを作ろう"
+  speakers:
+    - lni_T
+  event_name: "Kansai RubyKaigi 08"
+  date: "2025-06-27"
+  language: "japanese"
+  description: |-
+    Rubyはバージョン3.2.0にてWebAssemblyがサポートされ、ブラウザやCDNエッジ等、WebAssemblyが動作する環境でRuby(ruby.wasm)が動作するようになりました。
+
+    これにより、以前は別言語での実装が必要だった機能においても、Rubyコードで実装することが可能となりました。
+
+    そんなruby.wasmに、WebSocketの力が加わると、もっと楽しいものが作り出せるのではないでしょうか。
+
+    今回のトークは「ruby.wasmでのリアルタイム通信」をメインテーマに、ruby.wasm on Browser 環境での開発を始める方法の紹介と、実際に開発したアプリの解説を行います。
+
+    https://regional.rubykaigi.org/kansai08/presentations/lnit
+  video_provider: "scheduled"
+  video_id: "lni_T-kansai-rubykaigi-08"
+  id: "lni_T-kansai-rubykaigi-08"
+
+- title: "ruby.DJ on Ruby Ver.0.1"
+  speakers:
+    - Masaya Kudo
+  event_name: "Kansai RubyKaigi 08"
+  date: "2025-06-27"
+  language: "japanese"
+  description: |-
+    2025年4月末よりRubyでDJソフトウェアの開発に着手し始めました。
+    PoC(Proof of Concept)版のデモ実演、工夫したポイントや技術的な課題、今後の展望をご紹介します。
+
+    私はエンジニア歴15年、DJ歴16年という二足の草鞋を履き続けています。DJはPCで回しており、Serato ITCHというDJソフトウェアを愛用し続けています。
+    RubyKaigi 2025にてRubyで音を鳴らすことをテーマにした発表が多く刺激を受け、DJソフトウェアの開発にチャレンジする決意をしました。
+
+    PoC版は、Ruby(gtk4)で実装したアプリケーションUIから、Rustで実装したオーディオエンジンをFFIで呼び出す構成で開発を試しています。2トラックでのWavファイルの再生、およびクロスフェードで曲を繋ぐ様子をデモでお届けする予定です。
+
+    https://regional.rubykaigi.org/kansai08/presentations/msykd/
+  video_provider: "scheduled"
+  video_id: "masaya-kudo-kansai-rubykaigi-08"
+  id: "masaya-kudo-kansai-rubykaigi-08"
+
+### Day 1 - 2025-06-28
+
+- title: "Keynote: Witchcraft for Memory"
+  speakers:
+    - Masataka Kuwabara
+  event_name: "Kansai RubyKaigi 08"
+  date: "2025-06-28"
+  video_provider: "scheduled"
+  video_id: "masataka-kuwabara-kansai-rubykaigi-08"
+  id: "masataka-kuwabara-kansai-rubykaigi-08"
+  language: "japanese"
+  description: |-
+    https://regional.rubykaigi.org/kansai08/presentations/pocke
+
+- title: "『富岳』と研究者をRubyでつなぐ：シミュレーション管理ツールOACIS"
+  speakers:
+    - Yohsuke Murase
+  event_name: "Kansai RubyKaigi 08"
+  date: "2025-06-28"
+  video_provider: "scheduled"
+  video_id: "yohsuke-murase-kansai-rubykaigi-08"
+  id: "yohsuke-murase-kansai-rubykaigi-08"
+  language: "japanese"
+  description: |-
+    スーパーコンピュータ「富岳」のような高性能計算機を使った科学技術計算では、大量のシミュレーションジョブを管理する必要があります。ところが、最先端の研究現場であっても、ジョブ投入や結果整理などの作業は意外
+
+    https://regional.rubykaigi.org/kansai08/presentations/yohm
+
+- title: "『1ヶ月でWebサービスを作る会』で出会った rails new、そして今に至る rails new"
+  speakers:
+    - kiryuanzu
+  event_name: "Kansai RubyKaigi 08"
+  date: "2025-06-28"
+  video_provider: "scheduled"
+  video_id: "kiryuanzu-kansai-rubykaigi-08"
+  id: "kiryuanzu-kansai-rubykaigi-08"
+  language: "japanese"
+  description: |-
+    https://regional.rubykaigi.org/kansai08/presentations/kiryuanzu
+
+- title: "mrubyとmicro-ROSが繋ぐロボットの世界"
+  speakers:
+    - Katsuhiko Kageyama
+  event_name: "Kansai RubyKaigi 08"
+  date: "2025-06-28"
+  video_provider: "scheduled"
+  video_id: "kishima-kansai-rubykaigi-08"
+  id: "kishima-kansai-rubykaigi-08"
+  language: "japanese"
+  description: |-
+    PicoRubyやMicroRubyの登場によってRubyでも物理的なデバイスをコントロールすることに注目が集まっている昨今、最近仕事でロボットを扱っている私は、ロボットもその仲間に加えることはできないかと考えるようになりました。
+
+    ロボットの制御の世界では、ROS（Robot Operating System）とよばれるOSSのフレームワークが広く使われています。通常はLinuxが前提となるROSなのですが、組み込みデバイス上でも動くmicro-ROSというものが存在します。
+
+    micro-ROSは、Cでの開発が前提となる環境ですが、それをRuby（mruby）で書けたらきっと楽しく開発できるだろうと思い、mrubyでmicro-ROSが使える環境を実装したいと考えています。
+
+    本発表では、そのプロトタイプの実装内容と技術的な課題、そして実際にロボット制御のデモの動画を紹介します。
+
+    https://regional.rubykaigi.org/kansai08/presentations/kishima
+
+- title: "ふだんのWEB技術スタックだけでアート作品を作ってみる"
+  speakers:
+    - Akira Yagi
+  event_name: "Kansai RubyKaigi 08"
+  date: "2025-06-28"
+  video_provider: "scheduled"
+  video_id: "akira888-kansai-rubykaigi-08"
+  id: "akira888-kansai-rubykaigi-08"
+  language: "japanese"
+  description: |-
+    超絶技巧プログラミングやCreative Codingも楽しいけれど、普段の業務で書かれているロジックをうまく使ってあげるだけでも面白いことはいくらでもできます。すこしのひらめきとお手元の技術スタックを組み合わせれば、おやっと思わせるアート作品を作ることだってさほど難しくはありません。
+
+    またものづくりのためのコードも、課題解決のためのコードも本質的には同じものです。日々の業務スキルを活かし、磨き、学ぶことができます。今回はRails, Hotwire, HTML, CSSという馴染のある技術を用いて作成した、時計をモチーフにしたシンプルな動きが魅力的なアート作品を題材に、趣味のコーディングの楽しさやメリットなどについてのお話や、ちょっと踏み込んでWASMなどのWEBサーバーと異なる実行環境で実装したらどうなるかという実例をお見せしたいと思います。
+
+    https://regional.rubykaigi.org/kansai08/presentations/akira888
+
+- title: "Rubyと💪を作り込む - PicoRubyとマイコンでの自作トレーニング計測装置を用いたワークアウトの理想と現実"
+  speakers:
+    - Toshiaki "bash" KOSHIBA
+  event_name: "Kansai RubyKaigi 08"
+  date: "2025-06-28"
+  video_provider: "scheduled"
+  video_id: "bash-kansai-rubykaigi-08"
+  id: "bash-kansai-rubykaigi-08"
+  language: "japanese"
+  description: |-
+    ウェイトトレーニングと Ruby の意外な共通点、それは「計測と改善の継続」です。本セッションではESP32を搭載したマイコンのATOM Matrix上で動くPicoRubyで開発した計測機構による、Velocity Based Training(VBT)に基づく重量設定のためのトレーニングの挙上速度・挙上加速度という客観的データをリアルタイムに計測・分析するシステムの開発ストーリーを共有します。
+
+    この分野では歴史的に「限界まで挙げる」的な主観的指標がもっぱら用いられてきました。ただそのような指標はコンディションや感覚の影響も大きく、適切な負荷設定には高度な勘と経験が必要でした。近年はセンサーの発展により「0.4m/秒で動く」的な動作を扱うことができるようになり、速度と重さの相関関係をもとにした的確な負荷設定が可能になり、スポーツ現場への適用が進んでいます。
+
+    しかしその装置は個人レベルで気軽に手に取れる状況にはありません。そこでRuby の柔軟性とマイコンの手軽さを組み合わせることで、高価な専用機器なしでもVBTは実現可能と考え、この開発過程と、そこから得られた知見を紹介します。
+
+    筋肉もRubyも計測して改善してこそ継続した強化が行えます。Rubyをたのしむ心と、健康寿命を支えるキーとなる筋肉作り。全くかけ離れた活動にみえますが、実は同じように高めることができるのです。
+
+    https://regional.rubykaigi.org/kansai08/presentations/bash
+
+- title: "分散オブジェクトで遊ぼう！〜dRubyで作るマルチプレイヤー迷路ゲーム〜"
+  speakers:
+    - yumu
+  event_name: "Kansai RubyKaigi 08"
+  date: "2025-06-28"
+  video_provider: "scheduled"
+  video_id: "yumu-kansai-rubykaigi-08"
+  id: "yumu-kansai-rubykaigi-08"
+  language: "japanese"
+  description: |-
+    Ruby専用の分散オブジェクトシステムであるdRubyを使って、ブラウザで遊べる協力型マルチプレイヤー迷路ゲームを作りました！
+
+    このゲームでは、様々な役割を持つプレイヤーが力を合わせて迷路を攻略します。dRubyとWebSocketを組み合わせたリアルタイム通信や、マルチスレッドを使った効率的な処理など、Rubyならではの書きやすさと読みやすさを活かした実装のポイントをご紹介します。
+
+    たとえば、以下のようなシンプルなコードだけで、複数プレイヤーが同時に遊べるゲームの基盤が作れてしまいます。
+
+    # サーバー側
+    DRb.start_service('druby://localhost:8787', GameServer.new)
+
+    # クライアント側
+    game = DRbObject.new_with_uri('druby://localhost:8787')
+    game.join(player_id)
+
+    このゲームを通してRubyの魅力を再発見し、分散オブジェクトプログラミングの可能性を一緒に体験しましょう！
+
+    https://regional.rubykaigi.org/kansai08/presentations/yumu
+
+- title: "Rubyで世界を作ってみる話"
+  speakers:
+    - Akira Matsuda
+  event_name: "Kansai RubyKaigi 08"
+  date: "2025-06-28"
+  video_provider: "scheduled"
+  video_id: "akira-matsuda-kansai-rubykaigi-08"
+  id: "akira-matsuda-kansai-rubykaigi-08"
+  language: "japanese"
+  description: |-
+    オブジェクト指向プログラミング(OOP)を初めて学んだ時、OOPなら全てを表現できる！と教わったものです。たとえば、動物という抽象クラスを継承した犬クラスと猫クラスがあって、どっちも`鳴く`メソッドを呼ぶとポリモーフィックに"ワン"とか"ニャー"とか鳴かせれるんですよ！みたいな？確かに世界は全てオブジェクトでできてる気がするし、それらのデータと振る舞いとしてうまいことモデリングすれば作れないものはない！……気がしてきます。
+    実際、リンネ先生があらゆる生物をツリー構造で分類してみたところ、この体系は数百年経っても破綻せずに使い続けられてるわけです。つまり、生物は全てRubyのclassで表現できますよね。真無盲腸目ハリネズミ科とネズミ目ヤマアラシ科の生物はツリー上では全く違うところに居るのにめちゃ似てるじゃん？っていう疑問も、平行進化の過程で獲得した「トゲトゲ」moduleをincludeしてやれば、ほらでき上がり！
+    なんか界隈では近年OOPオワコン説みたいなのが聞かれますが、みんな窮屈なフレームワークに縛られすぎて、あるいはお仕事の業務アプリがプログラミングの全てだと思い込んでしまって、Rubyの表現力を過小評価してませんか？そこで、今日は初心に帰って素直に世界の全てを実装し直してみようと思います。とりあえず出発点は、このへんから始めてみましょうか。
+
+    class Atom
+    end
+
+    https://regional.rubykaigi.org/kansai08/presentations/amatsuda
+
+- title: "Panel: Regional.rb and the Kyoto City関西地域.rb"
+  speakers:
+    - Kansai.rb Organizers
+  event_name: "Kansai RubyKaigi 08"
+  date: "2025-06-28"
+  video_provider: "scheduled"
+  video_id: "kansairb-kansai-rubykaigi-08"
+  id: "kansairb-kansai-rubykaigi-08"
+  language: "japanese"
+  description: |-
+    関西の地域.rbのオーガナイザーが関西Ruby会議に集結！
+
+    https://regional.rubykaigi.org/kansai08/presentations/kansairb
+
+- title: "Keynote: Rubyを使った10年の個人開発でやってきたこと"
+  speakers:
+    - Koji Shimba
+  event_name: "Kansai RubyKaigi 08"
+  date: "2025-06-28"
+  video_provider: "scheduled"
+  video_id: "koji-shimba-kansai-rubykaigi-08"
+  id: "koji-shimba-kansai-rubykaigi-08"
+  language: "japanese"
+  description: |-
+    https://regional.rubykaigi.org/kansai08/presentations/shimbaco

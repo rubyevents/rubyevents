@@ -1,6 +1,6 @@
 require "protobuf/message_type"
 
-module Youtube
+module YouTube
   class Transcript
     attr_reader :response
 

@@ -1,16 +1,7 @@
-# -*- SkipSchemaAnnotations
 class Event::Schedule < ActiveRecord::AssociatedObject
-  def file_path
-    event.data_folder.join("schedule.yml")
-  end
+  include YAMLFile
 
-  def exist?
-    file_path.exist?
-  end
-
-  def file
-    YAML.load_file(file_path)
-  end
+  yaml_file "schedule.yml"
 
   def days
     file.fetch("days", [])

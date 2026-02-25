@@ -30,4 +30,8 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  date:
+    formats:
+      default: "%B %d, %Y"
+      medium: "%b %d, %Y"
+      month_day: "%B %d"

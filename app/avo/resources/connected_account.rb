@@ -20,10 +20,15 @@ class Avo::Resources::ConnectedAccount < Avo::BaseResource
     field :uid, as: :text
     field :provider, as: :text, sortable: true
     field :username, as: :text, sortable: true
+    field :user, as: :belongs_to, sortable: true
     field :user_id, as: :text, sortable: true, hide_on: [:index]
     field :access_token, as: :text, hide_on: [:index]
     field :expires_at, as: :date_time, hide_on: [:index]
     field :created_at, as: :date_time, hide_on: [:index]
     field :updated_at, as: :date_time, hide_on: [:index]
+  end
+
+  def filters
+    filter Avo::Filters::Provider
   end
 end

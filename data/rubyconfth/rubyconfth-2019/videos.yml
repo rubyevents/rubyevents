@@ -1,83 +1,109 @@
----
-# TODO: conference website
-
 # Day 1
-
-- title: "Keynote: Quest of the Rubyist"
-  raw_title: RubyConf TH 2019 - Opening Keynote by Tim Riley
+---
+- id: "tim-riley-rubyconf-th-2019"
+  title: "Opening Keynote: Quest of the Rubyist"
+  raw_title: "RubyConf TH 2019 - Opening Keynote by Tim Riley"
   speakers:
     - Tim Riley
-  event_name: RubyConf TH 2019
-  published_at: "2019-09-06"
+  event_name: "RubyConf TH 2019"
+  date: "2019-09-06"
+  published_at: "2019-10-14"
   description: ""
-  video_provider: youtube
-  video_id: B26rbJfRoZo
+  video_provider: "youtube"
+  video_id: "B26rbJfRoZo"
+  kind: "keynote"
 
-- title: Beyond REST in Rails
-  raw_title: RubyConf TH 2019 - Beyond REST in Rails by Vipul Am
+- id: "vipul-a-m-rubyconf-th-2019"
+  title: "Beyond REST in Rails"
+  raw_title: "RubyConf TH 2019 - Beyond REST in Rails by Vipul Am"
   speakers:
     - Vipul A M
-  event_name: RubyConf TH 2019
-  published_at: "2019-09-06"
+  event_name: "RubyConf TH 2019"
+  date: "2019-09-06"
+  published_at: "2019-10-14"
   description: |-
     GraphQL is changing how data is being served in Ruby and Rails products from GitHub to KickStarter.
 
     This talk is based on experiences from moving away from Rails REST routing to GraphQL Ruby in production Applications.
 
     Lets explore features like Introspection and others in GraphQL Ruby/Rails.
-  video_provider: youtube
-  video_id: bES0zXqYfMQ
+  video_provider: "youtube"
+  video_id: "bES0zXqYfMQ"
 
-- title: Pattern Matching In Ruby 2.7
-  raw_title: RubyConf TH 2019 - Pattern Matching In Ruby 2.7 by Tae Noppakun Wongsrinoppakun
+- id: "tae-noppakun-wongsrinoppakun-rubyconf-th-2019"
+  title: "Pattern Matching In Ruby 2.7"
+  raw_title: "RubyConf TH 2019 - Pattern Matching In Ruby 2.7 by Tae Noppakun Wongsrinoppakun"
   speakers:
     - Tae Noppakun Wongsrinoppakun
-  event_name: RubyConf TH 2019
-  published_at: "2019-09-06"
-  description:
-    Pattern Matching is an upcoming Ruby 2.7 feature. As an elixir enthusiast
-    and a professional Rubyist, I installed Ruby 2.7 and tried out the feature. I
-    would like to show to pattern matching is implemented in Ruby, it’s potential
-    and what could be improved.
-  video_provider: youtube
-  video_id: 4etn_CAldy4
+  event_name: "RubyConf TH 2019"
+  date: "2019-09-06"
+  published_at: "2019-10-14"
+  description: |-
+    Pattern Matching is an upcoming Ruby 2.7 feature. As an elixir enthusiast and a professional Rubyist, I installed Ruby 2.7 and tried out the feature. I would like to show to pattern matching is implemented in Ruby, it’s potential and what could be improved.
+  video_provider: "youtube"
+  video_id: "4etn_CAldy4"
 
-- title: Charty - Visualize Real-world Data with Ruby
-  raw_title: RubyConf TH 2019 - Charty - Visualize Real-world Data with Ruby by Kazuma Furuhashi
+- id: "kazuma-furuhashi-rubyconf-th-2019"
+  title: "Charty - Visualize Real-world Data with Ruby"
+  raw_title: "RubyConf TH 2019 - Charty - Visualize Real-world Data with Ruby by Kazuma Furuhashi"
   speakers:
     - Kazuma Furuhashi
-  event_name: RubyConf TH 2019
-  published_at: "2019-09-06"
-  description:
-    Kazuma is a Programmer and the Creator of a visualization library named
-    Charty. A member of Asakusa.rb and Red Data Tools. Working at Speee Inc. His talk
-    is about his visualization library called "Charty".
-  video_provider: youtube
-  video_id: GcxlNOewz18
+  event_name: "RubyConf TH 2019"
+  date: "2019-09-06"
+  published_at: "2019-10-15"
+  description: |-
+    Kazuma is a Programmer and the Creator of a visualization library named Charty. A member of Asakusa.rb and Red Data Tools. Working at Speee Inc. His talk is about his visualization library called "Charty".
+  video_provider: "youtube"
+  video_id: "GcxlNOewz18"
 
-# Missing Video: How to collaborate and keep healthy culture in a full-remote company Jarka Košanová
+- id: "jarka-kosanova-rubyconf-th-2019"
+  title: "How to Collaborate and Keep Healthy Culture in a Full-Remote Company"
+  speakers:
+    - Jarka Košanová
+  event_name: "RubyConf TH 2019"
+  date: "2019-09-06"
+  published_at: "2019-10-15"
+  description: |-
+    How do we make remote work possible? How do we communicate and what challenges do we face? Is it easy to keep a healthy work-life balance? How do we socialize and meet?
 
-- title: Data Science in Ruby? Is it possible? Is it Fast? Should we use it?
-  raw_title: RubyConf TH 2019 - Data Science in Ruby? Is it possible? Is it Fast? ... by Rodrigo Urubatan
+    Jarka has been working for Gitlab for 2 and 1/2 years and has seen the company grow from 200 to 700 employees. She'll show you that it's possible!
+  video_provider: "youtube"
+  video_id: "4kmFsHcaLfE"
+
+- id: "rodrigo-urubatan-rubyconf-th-2019"
+  title: "Data Science in Ruby? Is it possible? Is it Fast? Should we use it?"
+  raw_title: "RubyConf TH 2019 - Data Science in Ruby? Is it possible? Is it Fast? ... by Rodrigo Urubatan"
   speakers:
     - Rodrigo Urubatan
-  event_name: RubyConf TH 2019
-  published_at: "2019-09-06"
+  event_name: "RubyConf TH 2019"
+  date: "2019-09-06"
+  published_at: "2019-10-14"
   description: |-
     In this talk we’ll review the state of the tools for data science in Ruby!
 
     Python is the “crown jewel” of the data science languages today, but many of us work mostly with Ruby for the business applications, and it is important to use the best tool for each job.
-  video_provider: youtube
-  video_id: nxubUjsqJYM
+  video_provider: "youtube"
+  video_id: "nxubUjsqJYM"
 
-# Missing Video: It is correct but is it fast? - Piotr Murach
-
-- title: The Developer Who Wanted To Refactor The Moon
-  raw_title: RubyConf TH 2019 - The developer who wanted to refactor the moon by Enrique Mogollan
+- id: "piotr-murach-rubyconf-th-2019"
+  title: "It Is Correct but Is It Fast?"
   speakers:
-    - Enrique Mogollan
-  event_name: RubyConf TH 2019
-  published_at: "2019-09-06"
+    - Piotr Murach
+  event_name: "RubyConf TH 2019"
+  date: "2019-09-06"
+  description: |-
+    This talk from RubyConf TH 2019 did not have a published recording, but is included here so the schedule matches the full program.
+  video_provider: "not_recorded"
+  video_id: "piotr-murach-rubyconf-th-2019"
+
+- id: "enrique-mogolln-rubyconf-th-2019"
+  title: "The Developer Who Wanted To Refactor The Moon"
+  raw_title: "RubyConf TH 2019 - The developer who wanted to refactor the moon by Enrique Mogollan"
+  speakers:
+    - Enrique Mogollán
+  event_name: "RubyConf TH 2019"
+  date: "2019-09-06"
+  published_at: "2019-10-15"
   description: |-
     Once upon a time, in a country far away, there was a developer that wanted to refactor the moon. The moon of course is written in Ruby.
     At first, this developer was unable to find a way to do it but it was helped by the 3 wise Developers of the country:
@@ -86,29 +112,30 @@
     the Object Oriented General, who works on the largest and fastest growing Ruby on Rails Application in the country.
     the Functional Mathematician, who has written the most elegant and beautiful poems that are functions that solve real life problems.
     This is a refactoring talk that showcases the flexibility of Ruby as a Programming Language.
-  video_provider: youtube
-  video_id: nJRGf1_JEUA
+  video_provider: "youtube"
+  video_id: "nJRGf1_JEUA"
 
-- title: How to Get to Zero Unhandled Exceptions in Production
-  raw_title: RubyConf TH 2019 - How to get to zero unhandled exceptions in production by Radoslav Stankov
+- id: "radoslav-stankov-rubyconf-th-2019"
+  title: "How to Get to Zero Unhandled Exceptions in Production"
+  raw_title: "RubyConf TH 2019 - How to get to zero unhandled exceptions in production by Radoslav Stankov"
   speakers:
     - Radoslav Stankov
-  event_name: RubyConf TH 2019
-  published_at: "2019-09-06"
-  description:
-    In the talk, I’m going to explain how to categorize exceptions and
-    their level of impact. Present use cases and code samples of common problems in
-    a Rails application. How to make sure your background workers run without issues
-    and how to debug exceptions.
-  video_provider: youtube
-  video_id: btUnSR-NGV0
+  event_name: "RubyConf TH 2019"
+  date: "2019-09-06"
+  published_at: "2019-10-14"
+  description: |-
+    In the talk, I’m going to explain how to categorize exceptions and their level of impact. Present use cases and code samples of common problems in a Rails application. How to make sure your background workers run without issues and how to debug exceptions.
+  video_provider: "youtube"
+  video_id: "btUnSR-NGV0"
 
-- title: Guide to Discourage your Boss from Migrating into Kubernetes
-  raw_title: RubyConf TH 2019 - Guide to Discourage your Boss from Migrating into Kubernetes by Giovanni Sakti
+- id: "giovanni-sakti-rubyconf-th-2019"
+  title: "Guide to Discourage your Boss from Migrating into Kubernetes"
+  raw_title: "RubyConf TH 2019 - Guide to Discourage your Boss from Migrating into Kubernetes by Giovanni Sakti"
   speakers:
     - Giovanni Sakti
-  event_name: RubyConf TH 2019
-  published_at: "2019-09-06"
+  event_name: "RubyConf TH 2019"
+  date: "2019-09-06"
+  published_at: "2019-10-15"
   description: |-
     Practical Guide to Discourage your Boss from Migrating into Kubernetes by Giovanni Sakti.
 
@@ -117,17 +144,37 @@
     For those who are still using more ‘traditional’ approach, such as VM-based deployment, Kubernetes can be very daunting because there are tons of new concepts being introduced. And because of the buzz around it, sometimes we feel the urge to use it even though it might not be appropriate for our use case.
 
     Therefore in this talk, I want to convince you that it is not necessary to use Kubernetes, unless proven otherwise :)
-  video_provider: youtube
-  video_id: ZrF4mb5Hgt0
+  video_provider: "youtube"
+  video_id: "ZrF4mb5Hgt0"
 
-# Missing Video: How we use service objects to make our apps clean, composable, maintainable, and testable. - Gabriel Fortuna
+- id: "gabriel-fortuna-rubyconf-th-2019"
+  title: "How We Use Service Objects to Make Our Apps Clean, Composable, Maintainable, and Testable"
+  speakers:
+    - Gabriel Fortuna
+  event_name: "RubyConf TH 2019"
+  date: "2019-09-06"
+  published_at: "2019-10-15"
+  description: |-
+    How we use service objects to make our apps clean, composable, maintainable, and testable by Gabriel Fortuna.
 
-- title: "Closing Keynote: Scalable Applications with JRuby"
-  raw_title: RubyConf TH 2019 - Keynote talk by Charles Nutter - Scalable Applications with JRuby
+    Wouldn't it be great if you could keep the maintainability of your app high even as it grew in complexity? Wouldn't it feel wonderful to know that all your app functionality is fully tested, and that those tests are fast? How amazing would it be to start finally treating your app like a set of lego bricks?
+
+    Using service objects can get you a very long way there. They're not a silver bullet by any stretch of the imagination, but in my experience, they have been the number one thing alongside TDD that has really elevated my skill level.
+
+    Not all service object toolchains are created equal, and there are downsides, trade-offs, benefits, and useful shortcuts to be gained depending on the kind you reach for. I've battle tested a bunch of them, and this talk will include pointers for helping you decide what's right for you, for when you start using these tools in your own software projects.
+
+    Join me as I walk through the learnings to be had from using this software development technique, and how I've matured my thinking on this topic to make me an extremely effective developer that ships robust working code.
+  video_provider: "youtube"
+  video_id: "omCsnwAzDy4"
+
+- id: "charles-nutter-rubyconf-th-2019"
+  title: "Closing Keynote: Scalable Applications with JRuby"
+  raw_title: "RubyConf TH 2019 - Keynote talk by Charles Nutter - Scalable Applications with JRuby"
   speakers:
     - Charles Nutter
-  event_name: RubyConf TH 2019
-  published_at: "2019-09-06"
+  event_name: "RubyConf TH 2019"
+  date: "2019-09-06"
+  published_at: "2019-10-15"
   description: |-
     Scalable Applications with JRuby by Charles Nutter.mp4
 
@@ -140,33 +187,45 @@
     Things to know about scaling JRuby, including tuning flags and deployment patterns.
     Future plans for maintaining Ruby and Rails compatibility.
     A call-to-action for anyone who’d like to help keep JRuby moving forward.
-  video_provider: youtube
-  video_id: V_I-A6LRxGw
+  video_provider: "youtube"
+  video_id: "V_I-A6LRxGw"
+  kind: "keynote"
 
 # Day 2
 
-# Missing Video: Opening Keynote: The Life-Changing Magic of Tidying Up ActiveRecord Allocations - Richard Schneeman
+- id: "richard-schneeman-rubyconf-th-2019"
+  title: "Opening Keynote: The Life-Changing Magic of Tidying Up ActiveRecord Allocations"
+  speakers:
+    - Richard Schneeman
+  event_name: "RubyConf TH 2019"
+  date: "2019-09-07"
+  description: |-
+    Opening keynote from RubyConf TH 2019 without an available recording, included here for schedule completeness.
+  video_provider: "not_recorded"
+  video_id: "richard-schneeman-rubyconf-th-2019"
+  kind: "keynote"
 
-- title: Events. Events. Events!
-  raw_title: RubyConf TH 2019 - Events. Events. Events! by Anton Davydov.mp4
+- id: "anton-davydov-rubyconf-th-2019"
+  title: "Events. Events. Events!"
+  raw_title: "RubyConf TH 2019 - Events. Events. Events! by Anton Davydov.mp4"
   speakers:
     - Anton Davydov
-  event_name: RubyConf TH 2019
-  published_at: "2019-09-07"
-  description:
-    We build different systems and usually think about the current state
-    of our application. Usually, it’s data from our DBs. But what will happen if we
-    start thing about the list of events which can help us calculate a state of the
-    application for any time?
-  video_provider: youtube
-  video_id: jTNDhogZKQA
+  event_name: "RubyConf TH 2019"
+  date: "2019-09-07"
+  published_at: "2019-10-14"
+  description: |-
+    We build different systems and usually think about the current state of our application. Usually, it’s data from our DBs. But what will happen if we start thing about the list of events which can help us calculate a state of the application for any time?
+  video_provider: "youtube"
+  video_id: "jTNDhogZKQA"
 
-- title: "Debug Hard: Ruby String Library Methods and Underlying C Implementations"
+- id: "vishal-chandnani-rubyconf-th-2019"
+  title: "Debug Hard: Ruby String Library Methods and Underlying C Implementations"
   raw_title: "RubyConf TH 2019 - Debug Hard: Ruby String Library Methods and Underlying C ... by Vishal Chandnani"
   speakers:
     - Vishal Chandnani
-  event_name: RubyConf TH 2019
-  published_at: "2019-09-07"
+  event_name: "RubyConf TH 2019"
+  date: "2019-09-07"
+  published_at: "2019-10-15"
   description: |-
     Debug Hard: Ruby String Library Methods and Underlying C Implementations by Vishal Chandnani
 
@@ -189,59 +248,112 @@
 
     6. Bottom Line
     This talk aims to improve confidence in understanding bugs and/or unexpected results in the current application language (e.g. Ruby) as well as the underlying (e.g. C) implementations. I hope to inspire the Ruby community to explore the internals of Ruby strings and provide recommendations for further exploration.
-  video_provider: youtube
-  video_id: C_LHpELWK4g
+  video_provider: "youtube"
+  video_id: "C_LHpELWK4g"
 
-# Missing Video: Security Issues on Your Ruby Code - Harley Davidson Karel
+- id: "harley-davidson-karel-rubyconf-th-2019"
+  title: "Security Issues on Your Ruby Code"
+  speakers:
+    - Harley Davidson Karel
+  event_name: "RubyConf TH 2019"
+  date: "2019-09-07"
+  description: |-
+    This talk from RubyConf TH 2019 did not have a published recording, but is included here so the schedule matches the full program.
+  video_provider: "not_recorded"
+  video_id: "harley-davidson-karel-rubyconf-th-2019"
 
-- title: Metaprogramming DSLs for managing complexity at scale
-  raw_title: RubyConf TH 2019 - Metaprogramming DSLs for managing complexity at scale by Melvrick Goh
+- id: "melvrick-goh-rubyconf-th-2019"
+  title: "Metaprogramming DSLs for managing complexity at scale"
+  raw_title: "RubyConf TH 2019 - Metaprogramming DSLs for managing complexity at scale by Melvrick Goh"
   speakers:
     - Melvrick Goh
-  event_name: RubyConf TH 2019
-  published_at: "2019-09-07"
+  event_name: "RubyConf TH 2019"
+  date: "2019-09-07"
+  published_at: "2019-10-15"
   description: |-
     Our product TransferConnect facilitates loyalty transfers (points) between over 100+ banks & airlines’ systems. Our major challenge here was how to quickly & flexibly cater to varied systems, both legacy and new.
 
     Here’s our story of how we designed a DSL which enabled our engineers (including new joiners & interns) to jump in and easily develop & maintain our integrations. This is also about our teething pains & learning journey towards the mature version of the DSL we had.
 
     This session is best useful to you haven’t employed metaprogramming extensively. If you’re well versed in it, you may be keen to see how we’ve designed to enable easy maintainability. Fret not, this has been made easy to digest for the everyday engineer.
-  video_provider: youtube
-  video_id: VNt5eVOlyFo
+  video_provider: "youtube"
+  video_id: "VNt5eVOlyFo"
 
-# Missing Video: Go-ing a long way with Rails - Shweta Kale
+- id: "shweta-kale-rubyconf-th-2019"
+  title: "Go-ing a Long Way with Rails"
+  speakers:
+    - Shweta Kale
+  event_name: "RubyConf TH 2019"
+  date: "2019-09-07"
+  description: |-
+    This talk from RubyConf TH 2019 did not have a published recording, but is included here so the schedule matches the full program.
+  video_provider: "not_recorded"
+  video_id: "shweta-kale-rubyconf-th-2019"
 
-# Missing Video: Handling file uploads for a modern developer - Janko Marohnić
+- id: "janko-marohnic-rubyconf-th-2019"
+  title: "Handling File Uploads for a Modern Developer"
+  speakers:
+    - Janko Marohnić
+  event_name: "RubyConf TH 2019"
+  date: "2019-09-07"
+  description: |-
+    This talk will introduce the Shrine gem and go over some of the modern best practices for handling file attachments. We will cover topics such as image processing (“Is ImageMagick always the best option?”), asynchronous file uploads (“Which JavaScript solution should I choose?”), and handling large uploads (“How do I help users that have a flaky internet connection?”).
+  video_provider: "youtube"
+  video_id: "XbCAOFr4oNM"
+  published_at: "2019-10-16"
 
-- title: Start your own engineering apprenticeship program
-  raw_title: RubyConf TH 2019 - Start your own engineering apprenticeship program by  Elle Meredith
+- id: "elle-meredith-rubyconf-th-2019"
+  title: "Start your own engineering apprenticeship program"
+  raw_title: "RubyConf TH 2019 - Start your own engineering apprenticeship program by  Elle Meredith"
   speakers:
     - Elle Meredith
-  event_name: RubyConf TH 2019
-  published_at: "2019-09-07"
+  event_name: "RubyConf TH 2019"
+  date: "2019-09-07"
+  published_at: "2019-10-16"
   description: |-
     With a surge of over 1.3 million technology sector jobs by 2020, companies will continue to struggle filling these roles because of a widening skills gap. Technology companies survive by their ability to hire and retain fantastic employees. With software engineers that means delivering an environment that offers autonomy, opportunities for learning, and values craft. Technology companies employ people who can learn, who love it, and those inspired to keep doing it – “life-long learners”. But, how do you foster that in emerging developers? Such that they have sufficient foundational knowledge to build a meaningful career, and that they are provided the tools to continue to bridge knowledge gaps in our ever-changing industry.
 
     An apprenticeship program helps all your engineers understand your technology platform, culture, and shared vocabulary, so they can meaningfully contribute earlier and better. Learn how to develop and implement a robust apprenticeship program that creates a solid and continuous pipeline of talent that will grow your business. This talk is about learning, how to get started, keep motivated, self-assess, and other useful patterns.
-  video_provider: youtube
-  video_id: pwoWEpEWAvo
+  video_provider: "youtube"
+  video_id: "pwoWEpEWAvo"
 
-# Missing Video: Smaller is always better - Phil Nash
+- id: "phil-nash-rubyconf-th-2019"
+  title: "Smaller Is Always Better"
+  speakers:
+    - Phil Nash
+  event_name: "RubyConf TH 2019"
+  date: "2019-09-07"
+  description: |-
+    This talk from RubyConf TH 2019 did not have a published recording, but is included here so the schedule matches the full program.
+  video_provider: "not_recorded"
+  video_id: "phil-nash-rubyconf-th-2019"
 
-- title: Dirty Magic for Resilient API Dependencies
-  raw_title: RubyConf TH 2019 - Dirty Magic for Resilient API Dependencies by Sergey Dolganov
+- id: "sergey-dolganov-rubyconf-th-2019"
+  title: "Dirty Magic for Resilient API Dependencies"
+  raw_title: "RubyConf TH 2019 - Dirty Magic for Resilient API Dependencies by Sergey Dolganov"
   speakers:
     - Sergey Dolganov
-  event_name: RubyConf TH 2019
-  published_at: "2019-09-07"
-  description:
-    "Imagine that you want to build a system which depends on external
-    service, e.g., logistics, payments or notifications service. These systems have
-    its life-cycle which you have to be in sync with. Sergey will share how to treat
-    issues you could face, using the examples of DHL, UPS, Zoho, eBay integrations.
-    \n\nSergey is an experienced Software Developer interested in building a strong
-    and sustainable community around OSS and likes to discuss different ways to profile,
-    debug and optimize applications. He also loves dogs and is a drummer and musician."
-  video_provider: youtube
-  video_id: k0U1ZLSzMrk
-# Missing Video: Closing Keynote - Saron Yitbarek
+  event_name: "RubyConf TH 2019"
+  date: "2019-09-07"
+  published_at: "2019-10-15"
+  description: |-
+    Imagine that you want to build a system which depends on external service, e.g., logistics, payments or notifications service. These systems have its life-cycle which you have to be in sync with. Sergey will share how to treat issues you could face, using the examples of DHL, UPS, Zoho, eBay integrations. 
+
+    Sergey is an experienced Software Developer interested in building a strong and sustainable community around OSS and likes to discuss different ways to profile, debug and optimize applications. He also loves dogs and is a drummer and musician.
+  video_provider: "youtube"
+  video_id: "k0U1ZLSzMrk"
+
+- id: "saron-yitbarek-rubyconf-th-2019"
+  title: "Closing Keynote: The Magical Living Room: how to build authentic and engaged communities"
+  speakers:
+    - Saron Yitbarek
+  event_name: "RubyConf TH 2019"
+  date: "2019-09-07"
+  published_at: "2019-10-15"
+  description: |-
+    Saron is the CEO and founder of CodeNewbie, the most supportive community of programmers and people learning to code. She's also a developer, speaker, and podcaster.
+
+    In the closing keynote for RubyConf TH 2019 in Bangkok, Saron talked about "The Magical Living Room: how to build authentic and engaged communities".
+  video_provider: "youtube"
+  video_id: "0zwyIfE0R9A"
+  kind: "keynote"

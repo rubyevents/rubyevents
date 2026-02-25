@@ -1,26 +1,30 @@
----
 # TODO: talks running order
 # TODO: talk dates
 
 # Website: https://web.archive.org/web/20141221191737/http://www.railsconf.com/
 # Schedule: https://web.archive.org/web/20141221191737/http://www.railsconf.com/program
 
-- title: "Keynote: Writing Software"
+# https://ericbrooke.blog/2014/04/29/railsconf-2014/
+---
+- id: "david-heinemeier-hansson-railsconf-2014"
+  title: "Keynote: Writing Software"
   raw_title: "RailsConf 2014 - Keynote: Writing Software by David Heinemeier Hansson"
   speakers:
     - David Heinemeier Hansson
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-05"
   published_at: "2014-05-05"
-  description: |-
+  description: ""
+  video_provider: "youtube"
+  video_id: "9LfmrkyP81M"
 
-  video_provider: youtube
-  video_id: 9LfmrkyP81M
-
-- title: Concerns, Decorators, Presenters, Service Objects, Helpers, Help Me Decide!
-  raw_title: RailsConf 2014 - Concerns, Decorators, Presenters, Service Objects, Helpers, Help Me Decide!
+- id: "justin-gordon-railsconf-2014"
+  title: "Concerns, Decorators, Presenters, Service Objects, Helpers, Help Me Decide!"
+  raw_title: "RailsConf 2014 - Concerns, Decorators, Presenters, Service Objects, Helpers, Help Me Decide!"
   speakers:
     - Justin Gordon
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-05"
   published_at: "2014-05-05"
   description: |-
     By Justin Gordon
@@ -29,29 +33,33 @@
 
     Justin, aka @railsonmaui, is freelance Rails programmer and the technical evangelist for RubyMine. Passionately writing software since 1985, and focusing on Rails since 2011, he has a popular technical blog at http://www.railsonmaui.com. Degrees include a BA, Harvard and a MBA, UC Berkeley.
 
-  video_provider: youtube
-  video_id: bHpVdOzrvkE
+  video_provider: "youtube"
+  video_id: "bHpVdOzrvkE"
 
-- title: "Demystifying Data Science: A Live Tutorial"
+- id: "todd-schneider-railsconf-2014"
+  title: "Demystifying Data Science: A Live Tutorial"
   raw_title: "RailsConf 2014 - Demystifying Data Science: A Live Tutorial by Todd Schneider"
   speakers:
     - Todd Schneider
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-05"
   published_at: "2014-05-05"
   description: |-
     To get a grip on what "data science" really is, we'll work through a real text mining problem live on stage. Our mission? Trace the evolution of popular words and phrases in RailsConf talk abstracts over the years! We'll cover all aspects of the problem, from gathering and cleaning our data, to performing analysis and creating a compelling visualization of our results. People often overlook Ruby as a choice for scientific computing, but the Rails ecosystem is surprisingly suited to the problem.
 
     Originally a "math guy", Todd spent six years working for a hedge fund building models to value mortgage-backed securities before a fortuitous foray into web programming got him tangled up with Rap Genius. His recent Rails work includes Rap Stats, Wedding Crunchers, and Gambletron 2000.
 
-  video_provider: youtube
-  video_id: 2ZDCxwB29Bg
+  video_provider: "youtube"
+  video_id: "2ZDCxwB29Bg"
 
-- title: Empowering Rich Internet Applications (RIAs) with Accessibility
-  raw_title: RailsConf 2014 - Empowering Rich Internet Applications (RIAs) with Accessibility
+- id: "nitin-dhaware-railsconf-2014"
+  title: "Empowering Rich Internet Applications (RIAs) with Accessibility"
+  raw_title: "RailsConf 2014 - Empowering Rich Internet Applications (RIAs) with Accessibility"
   speakers:
     - Nitin Dhaware
     - Nerkar Dnyaneshwar
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-05"
   published_at: "2014-05-05"
   description: |-
     By Nitin Dhaware and Nerkar Dnyaneshwar
@@ -61,28 +69,32 @@
     Nitin is a Rails programmer working at Techvision - a team of MAD (Motivated and Dedicated) people and a company run by him and his visually challenged mates. They are based in India and love programming. Web accessibility is their expertise and passion. Do visit their website (http://techvision.net.in).
 
     Gyani is a Java/J2EE professional and Ruby/Rails newbie. Having worked as a Technical Specialist in IT industry for more than 9 years, 9 months back he decided to join Techvision -- a small start-up run by visually challenged Rubyists. Currently he is playing the role of Technical Mentor cum facilitator for the Techvision team and helping Techvision grow in all the domains, one among them is Accessibility which is their niche.
-  video_provider: youtube
-  video_id: c2AKsQki7H0
+  video_provider: "youtube"
+  video_id: "c2AKsQki7H0"
 
-- title: Mutation Testing with Mutant
-  raw_title: RailsConf 2014 - Mutation Testing with Mutant by Erik Michaels-Ober
+- id: "erik-michaels-ober-railsconf-2014"
+  title: "Mutation Testing with Mutant"
+  raw_title: "RailsConf 2014 - Mutation Testing with Mutant by Erik Michaels-Ober"
   speakers:
     - Erik Michaels-Ober
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-05"
   published_at: "2014-05-05"
   description: |-
     Tests are a good tool to verify your code but how do you verify your tests? Mutation testing is a technique to evaluate the quality of your tests by programmatically mutating (i.e. making a series of small modifications to) your code and ensuring that the tests no longer pass. This talk will attempt to demonstrate the value of mutation testing and show you how to use Mutant to improve the quality of your tests and your code.
 
     Erik Michaels-Ober is a programmer.
 
-  video_provider: youtube
-  video_id: WccaOMuf01Y
+  video_provider: "youtube"
+  video_id: "WccaOMuf01Y"
 
-- title: "Rack-AMQP: Ditch HTTP Inside SOA!"
+- id: "jess-szmajda-railsconf-2014"
+  title: "Rack-AMQP: Ditch HTTP Inside SOA!"
   raw_title: "RailsConf 2014 - Rack-AMQP: Ditch HTTP Inside SOA! by Jess Szmajda"
   speakers:
     - Jess Szmajda
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-06"
   published_at: "2014-05-06"
   description: |-
     We're comfortable with HTTP, but using it for communication in your SOA isn't simple. You need load balancers, URL discovery, SSL, and there's a cost to set up and tear down that HTTP window.
@@ -93,15 +105,17 @@
 
     Josh is the host of the Ruby Hangout, an online Ruby meetup. Josh also coorganizes DCRUG and is the CTO at Optoro, a Washington, DC startup in the reverse logistics industry. Josh has been developing web applications with HTTP for 16 years and thinks that SOAs should think differently.
 
-  video_provider: youtube
-  video_id: cINCWpn-LQM
+  video_provider: "youtube"
+  video_id: "cINCWpn-LQM"
 
-- title: Keith and Mario's Guide to Continuous Deployment with Rails
-  raw_title: RailsConf 2014 - Keith and Mario's Guide to Continuous Deployment with Rails
+- id: "keith-pitt-railsconf-2014"
+  title: "Keith and Mario's Guide to Continuous Deployment with Rails"
+  raw_title: "RailsConf 2014 - Keith and Mario's Guide to Continuous Deployment with Rails"
   speakers:
     - Keith Pitt
     - Mario Visic
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-06"
   published_at: "2014-05-06"
   description: |-
     By Keith Pitt and Mario Visic
@@ -120,14 +134,16 @@
 
     In his spare time he enjoys eating different types of cheeses.
 
-  video_provider: youtube
-  video_id: DazHGyb7Gqg
+  video_provider: "youtube"
+  video_id: "DazHGyb7Gqg"
 
-- title: "Where did the OO go? Views Should be Objects Too!"
-  raw_title: RailsConf 2014 - Where did the OO go? Views Should be Objects Too!
+- id: "andrew-warner-railsconf-2014"
+  title: "Where did the OO go? Views Should be Objects Too!"
+  raw_title: "RailsConf 2014 - Where did the OO go? Views Should be Objects Too!"
   speakers:
     - Andrew Warner
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-06"
   published_at: "2014-05-06"
   description: |-
     By Andrew Warner
@@ -138,14 +154,16 @@
 
     Andrew Warner studied CS and Psychology at Wesleyan. He has worked at companies large and small and with tech stacks ranging from Java/Spring to Ruby on Rails. He is currently a developer at Rap Genius, where he helps build and scale a Rails backend so that all of text can be annotated.
 
-  video_provider: youtube
-  video_id: WAN_P1m76GQ
+  video_provider: "youtube"
+  video_id: "WAN_P1m76GQ"
 
-- title: Supercharge Your Workers with Storm
-  raw_title: RailsConf 2014 - Supercharge Your Workers with Storm by Carl Lerche
+- id: "carl-lerche-railsconf-2014"
+  title: "Supercharge Your Workers with Storm"
+  raw_title: "RailsConf 2014 - Supercharge Your Workers with Storm by Carl Lerche"
   speakers:
     - Carl Lerche
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-06"
   published_at: "2014-05-06"
   description: |-
     If you have ever needed to scale background jobs, you might have noticed that using the database to share information between tasks incurs a serious performance penalty. Trying to process large amounts of data in real-time using the database for coordination will quickly bring your servers to their knees.
@@ -154,28 +172,32 @@
 
     Carl is currently working at Tilde, a small company he co-founded, where he spends most of his day hacking on Skylight and drinking too much coffee. In the past, he has worked on a number of ruby open source projects, such as Bundler and Ruby on Rails.
 
-  video_provider: youtube
-  video_id: qjZnezdSKnw
+  video_provider: "youtube"
+  video_id: "qjZnezdSKnw"
 
-- title: Modeling on the Right Side of the Brain
-  raw_title: RailsConf 2014 - Modeling on the Right Side of the Brain by Nicholas Henry
+- id: "nicholas-henry-railsconf-2014"
+  title: "Modeling on the Right Side of the Brain"
+  raw_title: "RailsConf 2014 - Modeling on the Right Side of the Brain by Nicholas Henry"
   speakers:
     - Nicholas Henry
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-07"
   published_at: "2014-05-07"
   description: |-
     Since your first web application, you have struggled with identifying domain objects. Assigning business rules and services appears to be a talent that only other developers are born with. Fear not! Object Modeling is a learnable, teachable skill. This talk demonstrates the five essential skills you need for modeling objects and their responsibilities. Think beyond ActiveRecord and your database, and learn how color and patterns will help you explain, maintain and extend your application.
 
     Nicholas Henry is an independent Rails developer and object modeling enthusiast. Passionate about developer education, he is an active teacher at Rails Bridge workshops in his home town. Originally from New Zealand, he is now living and coding in Montreal, Canada.
 
-  video_provider: youtube
-  video_id: ABIvpz50cKU
+  video_provider: "youtube"
+  video_id: "ABIvpz50cKU"
 
-- title: Let Me Code
-  raw_title: RailsConf 2014 - Let Me Code by Liana Leahy
+- id: "liana-leahy-railsconf-2014"
+  title: "Let Me Code"
+  raw_title: "RailsConf 2014 - Let Me Code by Liana Leahy"
   speakers:
     - Liana Leahy
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-07"
   published_at: "2014-05-07"
   description: |-
     LYRICS:
@@ -254,15 +276,17 @@
     Let the nerds rage on
     The trolls never bothered me anyway
 
-  video_provider: youtube
-  video_id: kRUS8Zvg3sg
+  video_provider: "youtube"
+  video_id: "kRUS8Zvg3sg"
 
-- title: Domain Driven Design and Hexagonal Architecture with Rails
-  raw_title: RailsConf 2014 - Domain Driven Design and Hexagonal Architecture with Rails
+- id: "eric-roberts-railsconf-2014"
+  title: "Domain Driven Design and Hexagonal Architecture with Rails"
+  raw_title: "RailsConf 2014 - Domain Driven Design and Hexagonal Architecture with Rails"
   speakers:
     - Eric Roberts
     - Declan Whelan
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-07"
   published_at: "2014-05-07"
   description: |-
     By Eric Roberts and Declan Whelan
@@ -273,14 +297,16 @@
 
     Eric Roberts is a software developer at Boltmade and co-founder at 20Skaters. He is enthusiastic about creating maintainable software.
 
-  video_provider: youtube
-  video_id: _rbF97T4480
+  video_provider: "youtube"
+  video_id: "_rbF97T4480"
 
-- title: Lightning Fast Deployment of Your Rails-backed JavaScript app
-  raw_title: RailsConf 2014 - Lightning Fast Deployment of Your Rails-backed JavaScript app
+- id: "luke-melia-railsconf-2014"
+  title: "Lightning Fast Deployment of Your Rails-backed JavaScript app"
+  raw_title: "RailsConf 2014 - Lightning Fast Deployment of Your Rails-backed JavaScript app"
   speakers:
     - Luke Melia
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-07"
   published_at: "2014-05-07"
   description: |-
     By Luke Melia
@@ -289,14 +315,16 @@
 
     Luke Melia is Co-founder & CTO of Yapp & Yapp Labs. Luke discovered Ruby in 2005, is an active member of NYC.rb, co-organized the first GoRuCo, and was a co-author of Manning's "Ruby in Practice". He contributes regularly to Ember.js and organizes the Ember.js NYC Meetup .
 
-  video_provider: youtube
-  video_id: QZVYP3cPcWQ
+  video_provider: "youtube"
+  video_id: "QZVYP3cPcWQ"
 
-- title: "Advanced aRel: When ActiveRecord Just Isn't Enough"
+- id: "cameron-dutro-railsconf-2014"
+  title: "Advanced aRel: When ActiveRecord Just Isn't Enough"
   raw_title: "RailsConf 2014 -Advanced aRel: When ActiveRecord Just Isn't Enough"
   speakers:
     - Cameron Dutro
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-07"
   published_at: "2014-05-07"
   description: |-
     By Cameron Dutro
@@ -305,14 +333,16 @@
 
     Cameron Dutro works on Twitter's International Engineering team, primarily on the Twitter Translation Center, a large Rails application. He's been building stuff in Ruby for the past three years, including the TwitterCLDR internationalization library, and loving every minute of it.
 
-  video_provider: youtube
-  video_id: ShPAxNcLm3o
+  video_provider: "youtube"
+  video_id: "ShPAxNcLm3o"
 
-- title: What is REST? Why is it Part of the Rails Way?
-  raw_title: RailsConf 2014 - What is REST? Why is it Part of the Rails Way?
+- id: "javier-ramirez-railsconf-2014"
+  title: "What is REST? Why is it Part of the Rails Way?"
+  raw_title: "RailsConf 2014 - What is REST? Why is it Part of the Rails Way?"
   speakers:
     - Javier Ramirez
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-08"
   published_at: "2014-05-08"
   description: |-
     By Javier Ramirez
@@ -325,14 +355,16 @@
 
     Founder of https://teowaki.com where we try to make developers happier by helping them share technical information, best practices, gossip and lifehacks with their developer friends.
 
-  video_provider: youtube
-  video_id: HTi-UIHNouE
+  video_provider: "youtube"
+  video_id: "HTi-UIHNouE"
 
-- title: Too Big to Fail
-  raw_title: RailsConf 2014 - Too Big to Fail by Chris Maddox
+- id: "chris-maddox-railsconf-2014"
+  title: "Too Big to Fail"
+  raw_title: "RailsConf 2014 - Too Big to Fail by Chris Maddox"
   speakers:
     - Chris Maddox
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-08"
   published_at: "2014-05-08"
   description: |-
     It's 5am and a multi-million dollar process fails halfway through. Hours of nightmarish, manual brain surgery later, enough is enough.
@@ -343,14 +375,16 @@
 
     Typist, Philosopher at ZenPayroll. Humanist with a penchant for dystopian novels, St. George gin enthusiast, and wearer of colorful pants.
 
-  video_provider: youtube
-  video_id: MOTpwIwQMTI
+  video_provider: "youtube"
+  video_id: "MOTpwIwQMTI"
 
-- title: Deploying Rails is Easier Than it Looks
-  raw_title: RailsConf 2014 - Deploying Rails is Easier Than it Looks by Ben Dixon
+- id: "ben-dixon-railsconf-2014"
+  title: "Deploying Rails is Easier Than it Looks"
+  raw_title: "RailsConf 2014 - Deploying Rails is Easier Than it Looks by Ben Dixon"
   speakers:
     - Ben Dixon
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-08"
   published_at: "2014-05-08"
   description: |-
     Heroku makes it quick and easy to get your app up and running without worrying about "server stuff". But that server stuff is a lot simpler than it seems and once you know it, can make your projects more flexible (and save a lot of money!).
@@ -359,39 +393,44 @@
 
     Rails Developer, author of 'Reliably Deploying Rails Applications'. Avid indoor climber. Believer in "Small Steps Taken Quickly".
 
-  video_provider: youtube
-  video_id: hTofBnxyBUU
+  video_provider: "youtube"
+  video_id: "hTofBnxyBUU"
 
-- title: "Keynote: 10 Years!"
+- id: "yehuda-katz-railsconf-2014"
+  title: "Keynote: 10 Years!"
   raw_title: "RailsConf 2014 - Keynote: 10 Years! by Yehuda Katz"
   speakers:
     - Yehuda Katz
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-08"
   published_at: "2014-05-08"
-  description: |-
+  description: ""
+  video_provider: "youtube"
+  video_id: "9naDS3r4MbY"
 
-  video_provider: youtube
-  video_id: 9naDS3r4MbY
-
-- title: Reading Code Good
-  raw_title: RailsConf 2014 - Reading Code Good by Saron Yitbarek
+- id: "saron-yitbarek-railsconf-2014"
+  title: "Reading Code Good"
+  raw_title: "RailsConf 2014 - Reading Code Good by Saron Yitbarek"
   speakers:
     - Saron Yitbarek
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-08"
   published_at: "2014-05-08"
   description: |-
     As a new programmer, everyone tells you to build. But just as important is reading. Reading code is a powerful exercise - dissecting the source code of gems and libraries used in Rails offers the opportunity to examine patterns and design choices, while building confidence in new developers. But good code reading isn't as simple as scanning the source. The concrete guidelines outlined in this talk can maximize the benefits of your future code reading sessions and help you grow as a developer.
 
     Hacker-in-Residence at the New York Tech Meetup. Graduate of the Flatiron School.
 
-  video_provider: youtube
-  video_id: mW_xKGUKLpk
+  video_provider: "youtube"
+  video_id: "mW_xKGUKLpk"
 
-- title: Ruby on Rails Hacking Guide
-  raw_title: RailsConf 2014 - Ruby on Rails Hacking Guide by Akira Matsuda
+- id: "akira-matsuda-railsconf-2014"
+  title: "Ruby on Rails Hacking Guide"
+  raw_title: "RailsConf 2014 - Ruby on Rails Hacking Guide by Akira Matsuda"
   speakers:
     - Akira Matsuda
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-08"
   published_at: "2014-05-08"
   description: |-
     Rails is a platform to serve your Ruby applications, and yet is a very well crafted open-source product written in the language that composes your apps. So, if you're curious to know how things work underneath your app, you can read everything!
@@ -404,14 +443,16 @@
 
     Rails committer, Ruby committer, Haml committer, creator of widely used Rails plugins such as Kaminari, activedecorator, actionargs, html5validators, erd, databaserewinder, etc. Founder of "Asakusa.rb", the most active Ruby community in Japan.
 
-  video_provider: youtube
-  video_id: iACG4Dn_51w
+  video_provider: "youtube"
+  video_id: "iACG4Dn_51w"
 
-- title: Web Applications with Ruby (not Rails)
-  raw_title: RailsConf 2014 - Web Applications with Ruby (not Rails) by David Padilla
+- id: "david-padilla-railsconf-2014"
+  title: "Web Applications with Ruby (not Rails)"
+  raw_title: "RailsConf 2014 - Web Applications with Ruby (not Rails) by David Padilla"
   speakers:
     - David Padilla
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-08"
   published_at: "2014-05-08"
   description: |-
     Whenever you say that you're building a web application with Ruby, its almost implied that you will be using Rails to do so.
@@ -424,53 +465,60 @@
 
     Through his career, he has been devoted to promoting the Ruby on Rails community in Mexico through rails.mx and the organization of the only Ruby conference in the area: Magma Conf.
 
-  video_provider: youtube
-  video_id: TqiuMn1acV8
+  video_provider: "youtube"
+  video_id: "TqiuMn1acV8"
 
-- title: Technical Onboarding, Training, and Mentoring
-  raw_title: RailsConf 2014 - Technical Onboarding, Training, and Mentoring by Kate Heddleston
+- id: "kate-heddleston-railsconf-2014"
+  title: "Technical Onboarding, Training, and Mentoring"
+  raw_title: "RailsConf 2014 - Technical Onboarding, Training, and Mentoring by Kate Heddleston"
   speakers:
     - Kate Heddleston
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-09"
   published_at: "2014-05-09"
   description: |-
     With the increase of code academies training new engineers there is an increase in junior engineers on the market. A lot of companies are hesitant to hire too many young engineers because they lack sufficient resources to train them. This is a talk about how to make junior engineers into independent and productive members of your engineering team faster and cheaper by outlining a plan for how to onboard engineers effectively based on data and anecdotes gathered from companies in San Francisco.
 
     I am a web applications developer from the bay area who builds full-stack web applications. I got my MSCS at Stanford but did my undergrad degree in Communication. I am active in the community with organizations like Hackbright Academy, PyLadies, and Girl Geek Dinners.
 
-  video_provider: youtube
-  video_id: Lpg4jRSH7EE
+  video_provider: "youtube"
+  video_id: "Lpg4jRSH7EE"
 
-- title: Surviving the Big Rewrite
-  raw_title: RailsConf 2014 - Surviving the Big Rewrite by Bradly Feeley
+- id: "bradly-feeley-railsconf-2014"
+  title: "Surviving the Big Rewrite"
+  raw_title: "RailsConf 2014 - Surviving the Big Rewrite by Bradly Feeley"
   speakers:
     - Bradly Feeley
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-09"
   published_at: "2014-05-09"
-  description: |-
+  description: ""
+  video_provider: "youtube"
+  video_id: "LRXaN0Wdl4U"
 
-  video_provider: youtube
-  video_id: LRXaN0Wdl4U
-
-- title: Artisans and Apprentices
-  raw_title: RailsConf 2014 - Artisans and Apprentices by Coraline Ada Ehmke
+- id: "coraline-ada-ehmke-railsconf-2014"
+  title: "Artisans and Apprentices"
+  raw_title: "RailsConf 2014 - Artisans and Apprentices by Coraline Ada Ehmke"
   speakers:
     - Coraline Ada Ehmke
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-09"
   published_at: "2014-05-09"
   description: |-
     Inspired by the medieval guild-and-apprentice system, the increasing popularity of bootcamps and apprenticeship programs in software development has great promise but may also bring with it some serious negative side effects. Let's explore the benefits of applying 12th century best practices to the challenge of preparing a new generation of developers, and discuss ways to avoid the mistakes of the past: technologically conservative monocultures comprising and serving a privileged few.
 
     Coraline Ada Ehmke is a speaker, author, teacher, open source advocate and technologist with 20 years of experience in developing apps for the web. As a co-founder of LGBTech.org and founder of OpenSourceForWomen.org, she works diligently to promote diversity and inclusivity in the tech industry. Her current interests include small-application ecosystems, services and APIs, business intelligence, machine learning, and predictive analytics.
 
-  video_provider: youtube
-  video_id: 96cqqEfGSFg
+  video_provider: "youtube"
+  video_id: "96cqqEfGSFg"
 
-- title: Building kick-ass internal education programs (for large and small budgets)
-  raw_title: RailsConf 2014 - Building kick-ass internal education programs (for large and small budgets)
+- id: "chuck-lauer-vose-railsconf-2014"
+  title: "Building kick-ass internal education programs (for large and small budgets)"
+  raw_title: "RailsConf 2014 - Building kick-ass internal education programs (for large and small budgets)"
   speakers:
     - Chuck Lauer Vose
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-09"
   published_at: "2014-05-09"
   description: |-
     By Chuck Lauer Vose
@@ -481,57 +529,68 @@
 
     Chuck has been programming for the last 10 years, but recently switched full-time to a lifelong passion of teaching and education. Formerly he founded the Portland Code School, and now he's working with New Relic to build an incredible internal education program for incredible engineers.
 
-  video_provider: youtube
-  video_id: LPZmNfhPPOs
+  video_provider: "youtube"
+  video_id: "LPZmNfhPPOs"
 
-- title: "Middleman: the Missing View in the Rails API Stack"
+- id: "brad-gessler-railsconf-2014"
+  title: "Middleman: the Missing View in the Rails API Stack"
   raw_title: "RailsConf 2014 - Middleman: the Missing View in the Rails API Stack"
   speakers:
     - Brad Gessler
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-13"
   published_at: "2014-05-13"
   description: |-
     By Brad Gessler
 
-  video_provider: youtube
+  video_provider: "youtube"
   video_id: "-q_oUyEHiEw"
 
-- title: Tricks That Rails Didn't Tell You About
-  raw_title: RailsConf 2014 - Tricks That Rails Didn't Tell You About by Carlos Antonio da Silva
+- id: "carlos-antonio-da-silva-railsconf-2014"
+  title: "Tricks That Rails Didn't Tell You About"
+  raw_title: "RailsConf 2014 - Tricks That Rails Didn't Tell You About by Carlos Antonio da Silva"
   speakers:
     - Carlos Antonio da Silva
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-13"
   published_at: "2014-05-13"
   description: |-
     Rails allows us to write very concise code hiding a lot of the complexity. However, it's common to face situations that require us to write more complex code on our own, and sometimes we forget a little about what Rails can do for us. We are going through some Rails features that people might not be aware of, talking about Active Record queries, custom template handlers, routing niceties, view helpers and more, to learn how these tricks can help simplifying complex code on our apps.
 
     Carlos (@cantoniodasilva) hacks beautiful code at Plataformatec, a consultancy firm based in Brazil, and is member of the Rails Core Team. He enjoys writing about a variety of subjects at the company's blog, and helping maintaining open source projects like Simple Form and Devise.
 
-  video_provider: youtube
-  video_id: YKm0v_weFZs
+  video_provider: "youtube"
+  video_id: "YKm0v_weFZs"
 
-- title: "Panel: Teaching the Next Great Developers"
+- id: "noel-rappin-railsconf-2014"
+  title: "Panel: Teaching the Next Great Developers"
   raw_title: "RailsConf 2014 - Panel: Teaching the Next Great Developers by Noel Rappin"
   speakers:
     - Noel Rappin
-    - Dave Hoover
     - Jeff Casimir
+    - Bree Thomas
+    - Jen Meyers
+    - Liz Abinante
+    - Kathryn Exline
     - Ben Orenstein
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-13"
   published_at: "2014-05-13"
   description: |-
     This is a panel discussion featuring Dave Hoover, co-founder of DevBootcamp Chicago, Jeff Casimir of Jumpstart Labs, and Ben Orenstein of Thoughtbot about how best to bring new developers into the field, and what kind of knowledge they will need to be successful. What can we, as a community, do to improve our management of new developers? What can new developers do to give themselves the best chance of success?
 
     Noel Rappin is a Senior Developer and Table XI's Agile Coach. Noel has authored multiple technical books, including "Rails Test Prescriptions" and "Master Space and Time With JavaScript."
 
-  video_provider: youtube
-  video_id: dYkFnxUzc0I
+  video_provider: "youtube"
+  video_id: "dYkFnxUzc0I"
 
-- title: Biggish Data With Rails and Postgresql
-  raw_title: RailsConf 2014 - Biggish Data With Rails and Postgresql by Starr Horne
+- id: "starr-horne-railsconf-2014"
+  title: "Biggish Data With Rails and Postgresql"
+  raw_title: "RailsConf 2014 - Biggish Data With Rails and Postgresql by Starr Horne"
   speakers:
     - Starr Horne
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-13"
   published_at: "2014-05-13"
   description: |-
     Once your database hits a few hundred million rows normal ActiveRecord conventions don't work so well.
@@ -542,28 +601,32 @@
 
     Starr likes building things that make people happy, usually with Ruby and Javascript. (He once built a bookshelf, but it was crooked and made noone happy.) He's the cofounder of Honeybadger.io. He lives in Guadalajara, Mexico and speaks very bad Spanish.
 
-  video_provider: youtube
-  video_id: 40xq1jXM7GY
+  video_provider: "youtube"
+  video_id: "40xq1jXM7GY"
 
-- title: What the Cache?!
-  raw_title: RailsConf 2014 - What the Cache?! by Simon Kröger
+- id: "simon-krger-railsconf-2014"
+  title: "What the Cache?!"
+  raw_title: "RailsConf 2014 - What the Cache?! by Simon Kröger"
   speakers:
     - Simon Kröger
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-13"
   published_at: "2014-05-13"
   description: |-
     ".. and then cache the hell out of it!" This is usually how the talk ends when it comes to rails performance tips, but in reality it is where the fun starts. This talk goes way beyond Rails.cache, it explores layered caches, discusses the CPU cost of marshaling, the latency even Memcache adds and how to dodge the unavoidable stampedes that invalidating your caches will cause. This is the tale of how to survive half a billion requests per day with Rails and MySQL (hint: don't query it).
 
     Simon took his experience from 12 years of freelancing for various companies around the globe and working with a very diverse set of technologies to build his dream team at SponsorPay and work with the language he loves - Ruby.
 
-  video_provider: youtube
-  video_id: atr8qv7wzPM
+  video_provider: "youtube"
+  video_id: "atr8qv7wzPM"
 
-- title: Refactoring Towards Component-based Rails Architectures
-  raw_title: RailsConf 2014 - Refactoring Towards Component-based Rails Architectures
+- id: "stephan-hagemann-railsconf-2014"
+  title: "Refactoring Towards Component-based Rails Architectures"
+  raw_title: "RailsConf 2014 - Refactoring Towards Component-based Rails Architectures"
   speakers:
     - Stephan Hagemann
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-14"
   published_at: "2014-05-14"
   description: |-
     By Stephan Hagemann
@@ -572,67 +635,76 @@
 
     For his day job Stephan is a Pivot - developing software at Pivotal Labs. With every project he especially enjoys the continuous search for doing the right thing, and doing that right. Outside of that he enjoys more work: on his old house or his rock climbing skills.
 
-  video_provider: youtube
-  video_id: MIhlAiMc7tU
+  video_provider: "youtube"
+  video_id: "MIhlAiMc7tU"
 
-- title: Rails as an SOA Client
-  raw_title: RailsConf 2014 - Rails as an SOA Client by Pete Hodgson
+- id: "pete-hodgson-railsconf-2014"
+  title: "Rails as an SOA Client"
+  raw_title: "RailsConf 2014 - Rails as an SOA Client by Pete Hodgson"
   speakers:
     - Pete Hodgson
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-14"
   published_at: "2014-05-14"
   description: |-
     Our monolithic apps are evolving into ecosystems of connected services. It's becoming quite common for Rails apps to be working mainly as clients to other services. In this talk we'll cover tools and techniques for a happy and productive existence when your Rails app is acting as a front end to other services.
 
     Pete Hodgson is a lead consultant with ThoughtWorks. He helps teams get more awesome by delivering quality maintainable software at a sustainable pace, using agile practices like test-driven design, pairing and continuous delivery.
 
-  video_provider: youtube
-  video_id: CzF3g_JM1YQ
+  video_provider: "youtube"
+  video_id: "CzF3g_JM1YQ"
 
-- title: Service Oriented Authenication
-  raw_title: RailsConf 2014 - Service Oriented Authenication by Jeremy Green
+- id: "jeremy-green-railsconf-2014"
+  title: "Service Oriented Authenication"
+  raw_title: "RailsConf 2014 - Service Oriented Authenication by Jeremy Green"
   speakers:
     - Jeremy Green
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-14"
   published_at: "2014-05-14"
   description: |-
     Getting started with authentication in SOA environments can seem like a daunting subject, but it doesn't need to be difficult. This talk will cover everything you need to know to get started building your own SOA systems. We'll look at the details of building a centralized authentication service and allowing other apps to delegate their authentication needs to the service.
 
     Jeremy is a full stack engineer who has been creating web apps for over 15 years. He's an organizer of the OkcRuby developer group and an active open source contributor. You might also find him drumming, shooting photos, or brewing.
 
-  video_provider: youtube
-  video_id: L1B_HpCW8bs
+  video_provider: "youtube"
+  video_id: "L1B_HpCW8bs"
 
-- title: Authorization in a Service-Oriented Environment
-  raw_title: RailsConf 2014 - Authorization in a Service-Oriented Environment by Alan Cohen
+- id: "alan-cohen-railsconf-2014"
+  title: "Authorization in a Service-Oriented Environment"
+  raw_title: "RailsConf 2014 - Authorization in a Service-Oriented Environment by Alan Cohen"
   speakers:
     - Alan Cohen
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-14"
   published_at: "2014-05-14"
   description: |-
     In a SOA environment users can interact with multiple parts of your system, and the rules for authorization become dispersed across applications. The task of maintaining rules becomes complex. The challenge compounds further in a heterogeneous environment, with services built in different languages. In this talk, I focus on the topic of authorization, specifically how we can scale and grow our services with confidence. I'll walk through a new framework we've developed to approach this problem.
 
     Alan Cohen is a Software Engineer at Climate Corporation working on the Insurance product back-end and other core pieces of their risk management platform.
 
-  video_provider: youtube
-  video_id: 6tQTwmIgclE
+  video_provider: "youtube"
+  video_id: "6tQTwmIgclE"
 
-- title: Ruby Heroes Awards 2014
-  raw_title: RailsConf 2014 - Ruby Heroes
+- id: "gregg-pollack-railsconf-2014"
+  title: "Ruby Heroes Awards 2014"
+  raw_title: "RailsConf 2014 - Ruby Heroes"
   speakers:
     - Gregg Pollack
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-14"
   published_at: "2014-05-14"
-  description: |-
+  description: ""
+  video_provider: "youtube"
+  video_id: "qoc21UvC3p4"
 
-  video_provider: youtube
-  video_id: qoc21UvC3p4
-
-- title: Designing the APIs for an Internal Set of Services
-  raw_title: RailsConf 2014 - Designing the APIs for an Internal Set of Services by Alberto Leal
+- id: "alberto-leal-railsconf-2014"
+  title: "Designing the APIs for an Internal Set of Services"
+  raw_title: "RailsConf 2014 - Designing the APIs for an Internal Set of Services by Alberto Leal"
   speakers:
     - Alberto Leal
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-16"
   published_at: "2014-05-16"
   description: |-
     By Alberto Leal
@@ -645,27 +717,31 @@
 
     From skateboarder to runner, photographer to full stack developer, Alberto loves writing beautiful code at Globo.com, Brazil, the internet branch of the largest mass media group in South America. He works in an environment of micro services, with lots of Ruby, Rails, Python, Tornado Web Server, Nginx, Javascript and Java.
 
-  video_provider: youtube
-  video_id: LuyAuXwA4rY
+  video_provider: "youtube"
+  video_id: "LuyAuXwA4rY"
 
-- title: Humor in The Code
-  raw_title: RailsConf 2014 - Humor in The Code by Baratunde Thurston
+- id: "baratunde-thurston-railsconf-2014"
+  title: "Humor in The Code"
+  raw_title: "RailsConf 2014 - Humor in The Code by Baratunde Thurston"
   speakers:
     - Baratunde Thurston
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-16"
   published_at: "2014-05-16"
   description: |-
     Humor In The Code The Future Of Everything Humbly Stated
 
-  video_provider: youtube
-  video_id: Oax1R1S6LI4
+  video_provider: "youtube"
+  video_id: "Oax1R1S6LI4"
 
-- title: Build The API First
-  raw_title: RailsConf 2014 - Build The API First by Rosie Hoyem and Sonja Hall
+- id: "rosie-hoyem-railsconf-2014"
+  title: "Build The API First"
+  raw_title: "RailsConf 2014 - Build The API First by Rosie Hoyem and Sonja Hall"
   speakers:
     - Rosie Hoyem
     - Sonja Hall
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-16"
   published_at: "2014-05-16"
   description: |-
     By Rosie Hoyem and Sonja Hall
@@ -676,14 +752,16 @@
 
     Sonja is a U.S. Fulbright Scholar and recent graduate of the Flatiron School in NYC who is a developer at Venga in Washington, D.C. Inspired by design and the great outdoors, you can find her commuting on her road bike or hanging out with dogs when not mastering the art of Rails.
 
-  video_provider: youtube
-  video_id: xlZ1A-d5x5U
+  video_provider: "youtube"
+  video_id: "xlZ1A-d5x5U"
 
-- title: Debugger Driven Developement with Pry
-  raw_title: RailsConf 2014 - Debugger Driven Developement with Pry by Joel Turnbull
+- id: "joel-turnbull-railsconf-2014"
+  title: "Debugger Driven Developement with Pry"
+  raw_title: "RailsConf 2014 - Debugger Driven Developement with Pry by Joel Turnbull"
   speakers:
     - Joel Turnbull
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-16"
   published_at: "2014-05-16"
   description: |-
     When our tests fail all we get is output in a terminal. Testing is core to the culture of Ruby, and the tools are sophisticated, but something big is missing from the workflow. Namely, a powerful debugger.
@@ -692,14 +770,16 @@
 
     Joel Turnbull is a Code Designer at Gaslight. He's been a staple in the Cincinnati development community for over 10 years. This is his first presentation at a Rails Conf.
 
-  video_provider: youtube
-  video_id: 4hfMUP5iTq8
+  video_provider: "youtube"
+  video_id: "4hfMUP5iTq8"
 
-- title: Eliminating Inconsistent Test Failures
-  raw_title: RailsConf 2014 - Eliminating Inconsistent Test Failures by Austin Putman
+- id: "austin-putman-railsconf-2014"
+  title: "Eliminating Inconsistent Test Failures"
+  raw_title: "RailsConf 2014 - Eliminating Inconsistent Test Failures by Austin Putman"
   speakers:
     - Austin Putman
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-16"
   published_at: "2014-05-16"
   description: |-
     Does your test suite fail randomly now and then? Maybe your cucumbers are a little flakey. Maybe you're busy and just kick off the build again... and again. If you've had a week or two where the build just won't pass, you know how fragile a TDD culture is. Keep yours healthy, or start bringing it back to par today. Why do tests fail randomly? How do we hunt down the causes? We'll review known sources of "randomness", with extra focus on test pollution and integration suites.
@@ -708,14 +788,16 @@
 
     I was a founding partner and lead dev in a tech cooperative for nonprofits, and a team anchor for Pivotal Labs, training and collaborating with earth's best agile engineers.
 
-  video_provider: youtube
-  video_id: Z6Xk5JWVrcA
+  video_provider: "youtube"
+  video_id: "Z6Xk5JWVrcA"
 
-- title: Effectively Testing Services
-  raw_title: RailsConf 2014 - Effectively Testing Services by Neal Kemp
+- id: "neal-kemp-railsconf-2014"
+  title: "Effectively Testing Services"
+  raw_title: "RailsConf 2014 - Effectively Testing Services by Neal Kemp"
   speakers:
     - Neal Kemp
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-16"
   published_at: "2014-05-16"
   description: |-
     Our Ruby world is becoming increasingly service oriented. Even in trivial applications, we often glue on multiple services ranging from Twitter to AWS. Services can, however, be confusing to test.
@@ -726,14 +808,16 @@
 
     I am an independent consultant who slings Ruby code for a variety of clients. In the past, I have worked as a developer at thoughtbot and ZURB. I was developing on the web back when marquees were cool.
 
-  video_provider: youtube
-  video_id: sMWthvdWS-w
+  video_provider: "youtube"
+  video_id: "sMWthvdWS-w"
 
-- title: "Front-End: Fun, Not Frustration"
+- id: "roy-tomeij-railsconf-2014"
+  title: "Front-End: Fun, Not Frustration"
   raw_title: "RailsConf 2014 - Front-End: Fun, Not Frustration by Roy Tomeij"
   speakers:
     - Roy Tomeij
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-16"
   published_at: "2014-05-16"
   description: |-
     Writing front-end code can be frustrating. That sidebar won't stay on the left, no matter how much CSS you throw at it. The logo looks ugly on your smartphone, but after fixing it, it's broken in browser X. And why encode video in four different formats for that HTML5 player (Flash was so much easier)?!
@@ -742,14 +826,16 @@
 
     Roy Tomeij (@roy) is co-founder of AppSignal in Amsterdam. He has been writing front-end code for Rails since early 2005. He previously co-founded 80beans, one of the earliest and well known Ruby consultancies in Europe. Critically acclaimed banjo player.
 
-  video_provider: youtube
-  video_id: Ljl_7wRVrPo
+  video_provider: "youtube"
+  video_id: "Ljl_7wRVrPo"
 
-- title: "Elements of Design: A Developer's Primer"
+- id: "jenn-scheer-railsconf-2014"
+  title: "Elements of Design: A Developer's Primer"
   raw_title: "RailsConf 2014 - Elements of Design: A Developer's Primer by Jenn Scheer"
   speakers:
     - Jenn Scheer
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-16"
   published_at: "2014-05-16"
   description: |-
     "Oh, don't ask me, I'm a terrible designer." That's something I've heard from Rails developers ever since I started working with them. But it's never true. It's just that most Rails devs don't have the scaffolding (no, not that scaffolding) around which to structure their designs.
@@ -758,14 +844,16 @@
 
     Jenn Scheer is a designer & developer who began designing for web but was frustrated with the inability to build it herself. She's taught design at General Assembly, to students who were clearly arming themselves for the web. She is currently at Rap Genius, helping users annotate the world.
 
-  video_provider: youtube
-  video_id: fN1MTmJeLew
+  video_provider: "youtube"
+  video_id: "fN1MTmJeLew"
 
-- title: "Sketchnothing: Creative Notes for Technical Content"
+- id: "jessica-eldredge-railsconf-2014"
+  title: "Sketchnothing: Creative Notes for Technical Content"
   raw_title: "RailsConf 2014 - Sketchnothing: Creative Notes for Technical Content by Jessica Eldredge"
   speakers:
     - Jessica Eldredge
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-16"
   published_at: "2014-05-16"
   description: |-
     By Jessica Eldredge
@@ -774,14 +862,16 @@
 
     I am a web designer and front end developer at Shopify. I love UX and web development, Sass, and riding my refactor tractor through views and CSS. I love talking about comic books, wine, cats, and how cold it is in Canada. You can often find me with my nose buried in a sketchbook at conferences.
 
-  video_provider: youtube
-  video_id: VJq-5EHN7J4
+  video_provider: "youtube"
+  video_id: "VJq-5EHN7J4"
 
-- title: "How They Work Better Together: Lean UX, Agile Development and User-Centered Design"
+- id: "john-athayde-railsconf-2014"
+  title: "How They Work Better Together: Lean UX, Agile Development and User-Centered Design"
   raw_title: "RailsConf 2014 - How They Work Better Together: Lean UX, Agile Development and User-Centered Design"
   speakers:
     - John Athayde
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-16"
   published_at: "2014-05-16"
   description: |-
     How They Work Better Together: Lean UX, Agile Development and User-Centered Design by John Athayde
@@ -790,28 +880,32 @@
 
     John Athayde is a designer and developer who spends a lot of time fighting bad coding practices in the Rails view layer. He is currently the VP of Design for CargoSense, a logistics product company. Prior to this he was the Lead for UI/UX and Front-end Development--Internal Apps at LivingSocial.
 
-  video_provider: youtube
-  video_id: zdwnogUMtc4
+  video_provider: "youtube"
+  video_id: "zdwnogUMtc4"
 
-- title: Discovering User Interactions
-  raw_title: RailsConf 2014 - Discovering User Interactions by Cameron Daigle
+- id: "cameron-daigle-railsconf-2014"
+  title: "Discovering User Interactions"
+  raw_title: "RailsConf 2014 - Discovering User Interactions by Cameron Daigle"
   speakers:
     - Cameron Daigle
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-16"
   published_at: "2014-05-16"
   description: |-
     There's no magic mojo that helps a designer notice bad design; there's no secret compendium of design mysteries that developers just don't have access to. Good interaction design is about keeping your senses honed -- noticing the little things and respecting user intuition. In this talk I won't be showing code -- I'll be breaking down the usability of the world around you, and preaching the virtues of interaction awareness. Trust me: you'll never look at a microwave the same way again.
 
     Cameron Daigle is a senior designer/consultant/purveyor-of-common-sense at Hashrocket. He works with Ruby and iOS, and has been building for the web since long before that -- but through it all has maintained a deep and steadfast love for beautiful user experiences.
 
-  video_provider: youtube
-  video_id: Rf0NhjMAVoY
+  video_provider: "youtube"
+  video_id: "Rf0NhjMAVoY"
 
-- title: The Power of M
-  raw_title: RailsConf 2014 - The Power of M by Charles Lowell
+- id: "charles-lowell-railsconf-2014"
+  title: "The Power of M"
+  raw_title: "RailsConf 2014 - The Power of M by Charles Lowell"
   speakers:
     - Charles Lowell
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-16"
   published_at: "2014-05-16"
   description: |-
     Client-side MVC is a different beast from the one we're used to in Rails. On the client, more than anywhere else, the M is the key to creating powerful user experiences.
@@ -824,14 +918,16 @@
 
     A founder at The Frontside, he is also the creator of several open source projects that bridge together the worlds of Ruby and JavaScript including The Ruby Racer and The Ruby Rhino.
 
-  video_provider: youtube
-  video_id: gD2HRyPHjUc
+  video_provider: "youtube"
+  video_id: "gD2HRyPHjUc"
 
-- title: "I Have Pair Programmed for 27,000 Hours: Ask Me Anything!"
-  raw_title: RailsConf 2014 - I've Pair Programmed for 27,000 Hours. Ask Me Anythings! by Joe moore
+- id: "joe-moore-railsconf-2014"
+  title: "I Have Pair Programmed for 27,000 Hours: Ask Me Anything!"
+  raw_title: "RailsConf 2014 - I've Pair Programmed for 27,000 Hours. Ask Me Anythings! by Joe moore"
   speakers:
     - Joe Moore
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-16"
   published_at: "2014-05-16"
   description: |-
     By Joe Moore
@@ -844,14 +940,16 @@
 
     Joe began writing software in the late '90s, soon joining eXtreme Programming pioneer Evant in 2000. He joined Pivotal Labs in 2005 as a founding member of their Rails consulting practice. Joe remote pairs full time for Pivotal and blogs at http://remotepairprogramming.com. His Ward Number is 1.
 
-  video_provider: youtube
-  video_id: 156LdcEjfhs
+  video_provider: "youtube"
+  video_id: "156LdcEjfhs"
 
-- title: "Bring Fun Back to JS: Step-by-Step Refactoring Toward Ember"
+- id: "brandon-hays-railsconf-2014"
+  title: "Bring Fun Back to JS: Step-by-Step Refactoring Toward Ember"
   raw_title: "RailsConf 2014 - Bring Fun Back to JS: Step-by-Step Refactoring Toward Ember by Brandon Hays"
   speakers:
     - Brandon Hays
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-16"
   published_at: "2014-05-16"
   description: |-
     By Brandon Hays
@@ -862,28 +960,32 @@
 
     Brandon left the world of marketing to find that creating software made him happy. Brandon lives in Austin, TX, where he helps run The Frontside, a Rails and Ember.js consultancy. Brandon's lifelong mission is to hug every developer.
 
-  video_provider: youtube
-  video_id: VMmaKj8hCR4
+  video_provider: "youtube"
+  video_id: "VMmaKj8hCR4"
 
-- title: The "Rails of JavaScript" Won't be a Framework
-  raw_title: RailsConf 2014 - The "Rails of JavaScript" Won't be a Framework by Justin Searls
+- id: "justin-searls-railsconf-2014"
+  title: 'The "Rails of JavaScript" Won''t be a Framework'
+  raw_title: 'RailsConf 2014 - The "Rails of JavaScript" Won''t be a Framework by Justin Searls'
   speakers:
     - Justin Searls
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-16"
   published_at: "2014-05-16"
   description: |-
     Last year, DHH said "good frameworks are extractions, not inventions." The success of Rails lets us forget its roots as an extraction from an HTML-based UI. The failure of Rails has been its perception as "best web framework ever" instead of "best web framework for apps like Basecamp". Given that, it's clear why Rails makes writing a UI in HTML a joy but does few favors for JavaScript-heavy apps. Joy can be had in JavaScript, and we'll show how with Lineman.js & tools extracted to help find it!
 
     Justin Searls has two professional passions: writing great software and sharing what he's learned in order to help others write even greater software. He and his team at Test Double have the pleasure of living out both passions every day, working closely with clients to find simple solutions to complex problems.
 
-  video_provider: youtube
-  video_id: Ylrm-mWALGI
+  video_provider: "youtube"
+  video_id: "Ylrm-mWALGI"
 
-- title: An Iterative Approach to Service Oriented Architecture
-  raw_title: RailsConf 2014 - An Iterative Approach to Service Oriented Architecture by Eric Saxby
+- id: "eric-saxby-railsconf-2014"
+  title: "An Iterative Approach to Service Oriented Architecture"
+  raw_title: "RailsConf 2014 - An Iterative Approach to Service Oriented Architecture by Eric Saxby"
   speakers:
     - Eric Saxby
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-16"
   published_at: "2014-05-16"
   description: |-
     By Eric Saxby
@@ -892,14 +994,16 @@
 
     It took a while for Eric to come around to programming, trying a few other careers first. Now he focuses on the intersection of code and process, using buzzwords such as TDD, agile and devops to describe his ham-fisted hammering on keyboards. He finds it most interesting when code fails, and why.
 
-  video_provider: youtube
-  video_id: 886iF1tNLZ4
+  video_provider: "youtube"
+  video_id: "886iF1tNLZ4"
 
-- title: "Improve Performance Quick and Cheap: Optimize Memory and Upgrade to Ruby 2.1"
+- id: "alexander-dymo-railsconf-2014"
+  title: "Improve Performance Quick and Cheap: Optimize Memory and Upgrade to Ruby 2.1"
   raw_title: "RailsConf 2014 - Improve Performance Quick and Cheap: Optimize Memory and Upgrade to Ruby 2.1"
   speakers:
     - Alexander Dymo
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-16"
   published_at: "2014-05-16"
   description: |-
     By Alexander Dymo
@@ -910,14 +1014,16 @@
 
     Alexander is an entrepreneur, Y Combinator alum and free software developer. He has 9 years of experience of Rails application development and performance optimization. Alexander contributed performance-related patches and optimizations to both Ruby and Rails. His website and blog: www.alexdymo.com.
 
-  video_provider: youtube
-  video_id: pZ_BcEcFGj0
+  video_provider: "youtube"
+  video_id: "pZ_BcEcFGj0"
 
-- title: "Cognitive Shortcuts: Models, Visualizations, Metaphors, and Other Lies"
+- id: "sam-livingston-gray-railsconf-2014"
+  title: "Cognitive Shortcuts: Models, Visualizations, Metaphors, and Other Lies"
   raw_title: "RailsConf 2014 - Cognitive Shortcuts: Models, Visualizations, Metaphors, and Other Lies"
   speakers:
     - Sam Livingston-Gray
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-16"
   published_at: "2014-05-16"
   description: |-
     By Sam Livingston-Gray
@@ -936,109 +1042,124 @@
 
         YMMV
 
-  video_provider: youtube
-  video_id: __qEkyJipX0
+  video_provider: "youtube"
+  video_id: "__qEkyJipX0"
 
-- title: How to be a Boss Without the B-S
-  raw_title: RailsConf 2014 - How to be a Boss Without the B-S by Jessie Link
+- id: "jessie-link-railsconf-2014"
+  title: "How to be a Boss Without the B-S"
+  raw_title: "RailsConf 2014 - How to be a Boss Without the B-S by Jessie Link"
   speakers:
     - Jessie Link
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-16"
   published_at: "2014-05-16"
   description: |-
     I think a lot of developers secretly harbor the desire to start their own company, but don't realize that running a business means a lot more than just cutting great code all day long. Others may be at a point in their career where they feel stalled out and might want to see if management is right for them. Moving from a software role to a management role doesn't mean you have to sacrifice all your technical/coding skills, but it does mean you need to cultivate some new ones.
 
     Jessie is the Director of Engineering at Lookingglass Cyber Solutions. She enjoys mentoring young developers and is an active coach and participant with RailsGirls. Though she mostly spends her day herding cats, on occasion her devs let her into the code repo to do some damage.
 
-  video_provider: youtube
-  video_id: 10_6gWK6t18
+  video_provider: "youtube"
+  video_id: "10_6gWK6t18"
 
-- title: Closing Keynote
-  raw_title: RailsConf 2014 - Closing Keynote by Aaron Patterson
+- id: "aaron-patterson-railsconf-2014"
+  title: "Closing Keynote"
+  raw_title: "RailsConf 2014 - Closing Keynote by Aaron Patterson"
   speakers:
     - Aaron Patterson
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-16"
   published_at: "2014-05-16"
-  description: |-
+  description: ""
+  video_provider: "youtube"
+  video_id: "BTTygyxuGj8"
 
-  video_provider: youtube
-  video_id: BTTygyxuGj8
-
-- title: Distributed Request Tracing
-  raw_title: RailsConf 2014 - Distributed Request Tracing by Kenny Hoxworth
+- id: "kenny-hoxworth-railsconf-2014"
+  title: "Distributed Request Tracing"
+  raw_title: "RailsConf 2014 - Distributed Request Tracing by Kenny Hoxworth"
   speakers:
     - Kenny Hoxworth
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-16"
   published_at: "2014-05-16"
   description: |-
     Twilio's distributed architecture makes manually tracking down a communication bottleneck or failure almost impossible. By utilizing a distributed tracing system, Twilio can follow any request through each service layer and each host. In this talk, we will demonstrate how a Rails application can gain the same insights by instrumenting a multi-tier application and investigate tracing integration into a larger distributed ecosystem.
 
     Kenny Hoxworth is a software engineer at Twilio dedicated to the reliable delivery of messaging communication. He previously co-founded a cyber-security company in Baltimore, Maryland, where he helped design and build the company's Rails flagship application and backend technology stack.
 
-  video_provider: youtube
-  video_id: L9HiJrR2RQY
+  video_provider: "youtube"
+  video_id: "L9HiJrR2RQY"
 
-- title: How to be a Better Junior Developer
-  raw_title: RailsConf 2014 - How to be a Better Junior Developer by Katherine Wu
+- id: "katherine-wu-railsconf-2014"
+  title: "How to be a Better Junior Developer"
+  raw_title: "RailsConf 2014 - How to be a Better Junior Developer by Katherine Wu"
   speakers:
     - Katherine Wu
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-20"
   published_at: "2014-05-20"
   description: |-
     Are you from a non-C.S. background? What about someone you mentor? Many junior devs' top focus is building technical knowledge. However, they already have other skills that can help them in their roles immediately! Some of these include helping their team focus on the right tasks and working well with stakeholders like PM and support. This talk will discuss the non-technical contributions junior devs can make now and how their senior dev mentors can help them ramp up more quickly as a result.
 
     I studied Biology in college and was all set to attend medical school and fulfill my mother's dream of my becoming a doctor. Instead, I got a job at Google in tech support. After five years at Google, I took a sabbatical to attend Hackbright Academy. Now I'm a junior developer at New Relic.
 
-  video_provider: youtube
-  video_id: GJW46x27W1w
+  video_provider: "youtube"
+  video_id: "GJW46x27W1w"
 
-- title: Building an OSS-Centric Company (and Why You Want To)
-  raw_title: RailsConf 2014 - Building an OSS-Centric Company (and Why You Want To) by Leah Silber
+- id: "leah-silber-railsconf-2014"
+  title: "Building an OSS-Centric Company (and Why You Want To)"
+  raw_title: "RailsConf 2014 - Building an OSS-Centric Company (and Why You Want To) by Leah Silber"
   speakers:
     - Leah Silber
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-20"
   published_at: "2014-05-20"
   description: |-
     Open source is the bread and butter of the community; it also makes us happy, but can it sustain a company? Execu-types will happily leech off OSS without contributing back, but there's a better way! In this talk I'll walk through how you can build an OSS-centric company. How to fund it, run it, and use it to build your project and community. Whether you're looking to build a new company around open source, or simply integrate more OSS-love into your existing business, this talk is for you.
 
     Leah is an all-around OSS advocate, & Co-founder of Tilde, a successful OSS-centric business. She's a member of the Ember Core Team, and works on annual events like GoGaRuCo, EmberConf and RailsConf. She's spent years supporting OSS projects however she could, all while maintaining real paying jobs.
 
-  video_provider: youtube
-  video_id: zD26LvYbfms
+  video_provider: "youtube"
+  video_id: "zD26LvYbfms"
 
-- title: Saving the World (Literally) with Ruby on Rails
-  raw_title: RailsConf 2014 - Saving the World (Literally) with Ruby on Rails by Sean Marcia
+- id: "sean-marcia-railsconf-2014"
+  title: "Saving the World (Literally) with Ruby on Rails"
+  raw_title: "RailsConf 2014 - Saving the World (Literally) with Ruby on Rails by Sean Marcia"
   speakers:
     - Sean Marcia
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-20"
   published_at: "2014-05-20"
   description: |-
     Two thirds of honeybee hives have died out in Virginia. Is it possible for us to devise a way of monitoring beehives in remote locations to find the cause? Enter a raspberry pi + rails. Using a combination of this robust hardware and software solution, we were able to successfully track, monitor and provide real time reporting on the well-being of hives from across the county. Find out how we used ruby, rails, solar panels and other libraries to provide insight into this problem.
 
     Sean is rubyist who works at George Mason University and he has the extreme pleasure of being one of the founders/organizers of the best meetup group out there, Arlington Ruby.
 
-  video_provider: youtube
-  video_id: J8i3mKJyjbQ
+  video_provider: "youtube"
+  video_id: "J8i3mKJyjbQ"
 
-- title: You are Not an Impostor
-  raw_title: RailsConf 2014 - You are Not an Impostor by Nickolas Means
+- id: "nickolas-means-railsconf-2014"
+  title: "You are Not an Impostor"
+  raw_title: "RailsConf 2014 - You are Not an Impostor by Nickolas Means"
   speakers:
     - Nickolas Means
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-20"
   published_at: "2014-05-20"
   description: |-
     Despite the attention that impostor syndrome has gotten in the Ruby community recently, so many amazing developers still hide in fear of being discovered as frauds. These developers chalk their achievements up to everything except their own talent and don't believe they deserve their success. I know, because I've struggled with impostor syndrome my whole career. In this talk, I'll show you what makes impostor syndrome so powerful and how you can break free from the grip it has on your life.
 
     Nickolas Means is a software engineer at WellMatch Health and spends his days remote pairing from Austin, TX. He's an advocate for all things pairing, and thinks vulnerability and egolessness are the two most important virtues in software development.
 
-  video_provider: youtube
-  video_id: l_Vqp1dPuPo
+  video_provider: "youtube"
+  video_id: "l_Vqp1dPuPo"
 
-- title: Make an Event of It
-  raw_title: RailsConf 2014 - Make an Event of It by Jason Clark
+- id: "jason-clark-railsconf-2014"
+  title: "Make an Event of It"
+  raw_title: "RailsConf 2014 - Make an Event of It by Jason Clark"
   speakers:
     - Jason Clark
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-21"
   published_at: "2014-05-21"
   description: |-
     Are your controllers jumbled with seemingly unrelated steps? Does testing any bit of application logic require fixtures and setup helpers a mile long?
@@ -1049,14 +1170,16 @@
 
     I fell in love with programming watching my dad work in Clipper and dBase III (no, really). That obsession continues today. My current language crushes are Ruby and Haskell, and I work for New Relic on the Ruby Agent. When not at work, I enjoy cycling, homebrewing, and hanging out with my family.
 
-  video_provider: youtube
-  video_id: dgUhP606F9w
+  video_provider: "youtube"
+  video_id: "dgUhP606F9w"
 
-- title: Real-time Rails with Sync
-  raw_title: RailsConf 2014 - Real-time Rails with Sync by Mike Moore
+- id: "mike-moore-railsconf-2014"
+  title: "Real-time Rails with Sync"
+  raw_title: "RailsConf 2014 - Real-time Rails with Sync by Mike Moore"
   speakers:
     - Mike Moore
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-21"
   published_at: "2014-05-21"
   description: |-
     Cutting-edge web interfaces surprise and delight users with their interactivity. Can we somehow enable this next-generation user experience with our current rails templates and not rewriting our presentation layer in JavaScript?
@@ -1065,14 +1188,16 @@
 
     Mike Moore believes software is written for humans first and computers second. He is a living breathing person with many quirks and interests.
 
-  video_provider: youtube
-  video_id: L1YcCNcWUMs
+  video_provider: "youtube"
+  video_id: "L1YcCNcWUMs"
 
-- title: "Looking Backward: Ten Years on Rails"
+- id: "luke-francl-railsconf-2014"
+  title: "Looking Backward: Ten Years on Rails"
   raw_title: "RailsConf 2014 - Looking Backward: Ten Years on Rails by Luke Francl"
   speakers:
     - Luke Francl
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-21"
   published_at: "2014-05-21"
   description: |-
     In Edward Bellamy's utopian novel "Looking Backward", a man from the 1890s awakens after 100 years and sees the wonders of the new age. What would a programmer from 2004 think if they woke up in 2014's web development utopia?
@@ -1081,54 +1206,61 @@
 
     Luke Francl is a developer at Swiftype, which provides search engines as a service. His career has focused on web application development using a variety of technologies, including Tcl (seriously). He has been working with Ruby on Rails professionally since 2006.
 
-  video_provider: youtube
-  video_id: VnhVkzop1_w
+  video_provider: "youtube"
+  video_id: "VnhVkzop1_w"
 
-- title: "Workshop: Simplifying Code - Monster to Elegant in Less Than 5 steps"
+- id: "tute-costa-railsconf-2014"
+  title: "Workshop: Simplifying Code - Monster to Elegant in Less Than 5 steps"
   raw_title: "RailsConf 2014 - Workshop - Simplifying Code: Monster to Elegant in Less Than 5 steps by Tute Costa"
   speakers:
     - Tute Costa
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-21"
   published_at: "2014-05-21"
   description: |-
     In this workshop we'll learn how to transform complex, highly coupled code into a simpler, more readable and maintainable shape. We'll target known software anomalies with Refactoring Patterns‎, following steps with a confined scope, assuring that we stay distant from "changed everything" commits while achieving quick design improvements.
 
     We'll talk different solutions for Fat Models, God Objects, long method chains, NoMethodError on nils, long methods, bad naming and cold coffee.
 
-  video_provider: youtube
-  video_id: ozWzehOEeuI
+  video_provider: "youtube"
+  video_id: "ozWzehOEeuI"
 
-- title: "Workshop: Ruby Coding Dojo"
-  raw_title: RailsConf 2014 - Workshop - Ruby Coding Dojo by Carlos Souza and David Rogers
+- id: "carlos-souza-railsconf-2014"
+  title: "Workshop: Ruby Coding Dojo"
+  raw_title: "RailsConf 2014 - Workshop - Ruby Coding Dojo by Carlos Souza and David Rogers"
   speakers:
     - Carlos Souza
     - David Rogers
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-21"
   published_at: "2014-05-21"
   description: |-
     The ultimate goal of the Coding Dojo is to share knowledge and improve the technical and social skills required in software development. This is a hands on Coding Dojo using Ruby as the language of choice. Participants will pair program with each other trying to solve a simple problem.
 
-  video_provider: youtube
-  video_id: d-Yc7XpELRg
+  video_provider: "youtube"
+  video_id: "d-Yc7XpELRg"
 
-- title: How to Build a Smart Profiler for Rails
-  raw_title: RailsConf 2014 - How to Build a Smart Profiler for Rails by Tom Dale and Yehuda Katz
+- id: "tom-dale-railsconf-2014"
+  title: "How to Build a Smart Profiler for Rails"
+  raw_title: "RailsConf 2014 - How to Build a Smart Profiler for Rails by Tom Dale and Yehuda Katz"
   speakers:
     - Tom Dale
     - Yehuda Katz
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-21"
   published_at: "2014-05-21"
-  description: |-
+  description: ""
+  video_provider: "youtube"
+  video_id: "pYaCcA07adI"
 
-  video_provider: youtube
-  video_id: pYaCcA07adI
-
-- title: Culture of Continue Delivery
-  raw_title: RailsConf 2014 - Culture of Continue Delivery by Leena S N and Vaidy Bala
+- id: "leena-s-n-railsconf-2014"
+  title: "Culture of Continue Delivery"
+  raw_title: "RailsConf 2014 - Culture of Continue Delivery by Leena S N and Vaidy Bala"
   speakers:
     - Leena S N
     - Vaidy Bala
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-21"
   published_at: "2014-05-21"
   description: |-
     The first principle written in the Agile Manifesto reads: "Our highest priority is to satisfy the customer through early and continuous delivery of valuable software". But how do we do that? This talk focuses on a key part of Continuous Delivery [CD] i.e. "culture of collaboration", and tips and tricks for building the same. We'll also touch upon important CD practices such as Feature Toggles, Automated tests and Automated build & deployment scripts.
@@ -1137,57 +1269,65 @@
 
     Vaidy is the founder and CEO @Multunus, Bangalore. His interests include lean startups, continuous delivery, great workplaces and entrepreneurship. He's also a geek, dad & husband.
 
-  video_provider: youtube
-  video_id: cuRyW0FfBiM
+  video_provider: "youtube"
+  video_id: "cuRyW0FfBiM"
 
-- title: Writing Small Code
-  raw_title: RailsConf 2014 - Writing Small Code by Mark Menard
+- id: "mark-menard-railsconf-2014"
+  title: "Writing Small Code"
+  raw_title: "RailsConf 2014 - Writing Small Code by Mark Menard"
   speakers:
     - Mark Menard
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-21"
   published_at: "2014-05-21"
   description: |-
     Writing small classes is hard. You know you should, but how? It's so much easier to write a large class. In this talk we'll build up a set of small classes starting from nothing using a set of directed refactorings applied as we build, all while keeping our tests green. We'll identify abstractions yearning to be free of their big class cages. In the process we'll also see how basic patterns such as composition, delegation and dependency inversion emerge from using small objects.
 
     Mark Menard is president of Enable Labs, a consulting firm, in Troy, NY specializing in large scale web and mobile app dev. Mark talks about Ruby and coding at conferences and user groups. Mark also gets his hands dirty doing construction work from time-to-time, and is a happy husband and father.
 
-  video_provider: youtube
-  video_id: Y2dllXkUlu8
+  video_provider: "youtube"
+  video_id: "Y2dllXkUlu8"
 
-- title: All the Little Things
-  raw_title: RailsConf 2014 - All the Little Things by Sandi Metz
+- id: "sandi-metz-railsconf-2014"
+  title: "All the Little Things"
+  raw_title: "RailsConf 2014 - All the Little Things by Sandi Metz"
   speakers:
     - Sandi Metz
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-21"
   published_at: "2014-05-21"
-  slides_url: https://speakerdeck.com/skmetz/all-the-little-things-railsconf
+  slides_url: "https://speakerdeck.com/skmetz/all-the-little-things-railsconf"
   description: |-
     Theory tells us to build applications out of small, interchangeable objects but reality often supplies the exact opposite. Many apps contain huge classes of long methods and hair-raising conditionals; they're hard to understand, difficult to reuse and costly to change. This talk takes an ugly section of conditional code and converts it into a few simple objects. It bridges the gap between OO theory and practice and teaches straightforward strategies that all can use to improve their code.
 
     Sandi Metz, author of "Practical Object-Oriented Design in Ruby", believes in simple code and straightforward explanations. She prefers working software, practical solutions and lengthy bicycle trips (not necessarily in that order) and consults and teaches on all things OOP.
 
-  video_provider: youtube
-  video_id: 8bZh5LMaSmE
+  video_provider: "youtube"
+  video_id: "8bZh5LMaSmE"
 
-- title: Ultra Light and Maintainable Rails Wizards
-  raw_title: RailsConf 2014 - Ultra Light and Maintainable Rails Wizards by Andy Maleh
+- id: "andy-maleh-railsconf-2014"
+  title: "Ultra Light and Maintainable Rails Wizards"
+  raw_title: "RailsConf 2014 - Ultra Light and Maintainable Rails Wizards by Andy Maleh"
   speakers:
     - Andy Maleh
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-21"
   published_at: "2014-05-21"
   description: |-
     Wizards have been common in web applications since the dawn of the Internet, with the most popular example being the Shopping Cart, yet many struggle with writing wizard code effectively, resulting in a huge untraceable rat's nest of copy/paste code. In fact, many implementations violate REST and include Fat Controllers as well as overly complicated wizard-step management, data, session, and validation code. This talk covers a better way that yields Ultra Light and Maintainable Rails Wizards!
 
     Andy Maleh leads at Big Astronaut by embracing agile practices and software craftsmanship while perfecting software products. He helped Groupon develop their 33M-user-website by working on user subscription and personalization features. Andy likes to drum, snowboard, and longboard in his free time.
 
-  video_provider: youtube
-  video_id: muyfoiKHMMA
+  video_provider: "youtube"
+  video_id: "muyfoiKHMMA"
 
-- title: "Rack::Attack: Protect your app with this one weird gem!"
+- id: "aaron-suggs-railsconf-2014"
+  title: "Rack::Attack: Protect your app with this one weird gem!"
   raw_title: "RailsConf 2014 - Rack::Attack: Protect your app with this one weird gem! by Aaron Suggs"
   speakers:
     - Aaron Suggs
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-21"
   published_at: "2014-05-21"
   description: |-
     Mature apps face problems with abusive requests like misbehaving users, malicious hackers, and naive scrapers. Too often they drain developer productivity and happiness.
@@ -1200,26 +1340,29 @@
 
     He enjoys writing code that makes developers' lives easier, especially while wearing his grizzly bear coat.
 
-  video_provider: youtube
-  video_id: m1UwxsZD6sw
+  video_provider: "youtube"
+  video_id: "m1UwxsZD6sw"
 
-- title: "Heroku 2014: A Year in Review"
+- id: "terence-lee-railsconf-2014"
+  title: "Heroku 2014: A Year in Review"
   raw_title: "RailsConf 2014 - Heroku 2014: A Year in Review by Terence Lee & Richard Schneeman"
   speakers:
     - Terence Lee
     - Richard Schneeman
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-22"
   published_at: "2014-05-22"
-  description: |-
+  description: ""
+  video_provider: "youtube"
+  video_id: "pu-ZWR8UISc"
 
-  video_provider: youtube
-  video_id: pu-ZWR8UISc
-
-- title: Software Development Lessons from the Apollo Program
-  raw_title: RailsConf 2014 - Software Development Lessons from the Apollo Program by Julian Simioni
+- id: "julian-simioni-railsconf-2014"
+  title: "Software Development Lessons from the Apollo Program"
+  raw_title: "RailsConf 2014 - Software Development Lessons from the Apollo Program by Julian Simioni"
   speakers:
     - Julian Simioni
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-22"
   published_at: "2014-05-22"
   description: |-
     In 1961, MIT was awarded the contract for a guidance system to fly to the moon, the first for the entire Apollo Program. Software was not mentioned. Six years later, the project had 400 engineers writing code.
@@ -1230,26 +1373,29 @@
 
     Julian Simioni is a software developer at 42floors in San Francisco, CA. When not working tirelessly to bring technology to the world of commercial real estate, he can be found riding his bicycle, flying planes, and eating spaghetti.
 
-  video_provider: youtube
-  video_id: hrsT9wmPVoo
+  video_provider: "youtube"
+  video_id: "hrsT9wmPVoo"
 
-- title: Engine Yard's New and Improved Cloud Platform
-  raw_title: RailsConf 2014 - Engine Yard's New and Improved Cloud Platform by Edward Chiu & Will Luongo
+- id: "edward-chiu-railsconf-2014"
+  title: "Engine Yard's New and Improved Cloud Platform"
+  raw_title: "RailsConf 2014 - Engine Yard's New and Improved Cloud Platform by Edward Chiu & Will Luongo"
   speakers:
     - Edward Chiu
     - Will Luongo
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-22"
   published_at: "2014-05-22"
-  description: |-
+  description: ""
+  video_provider: "youtube"
+  video_id: "kNM4cnF4vrw"
 
-  video_provider: youtube
-  video_id: kNM4cnF4vrw
-
-- title: An Ode to 17 Databases in 33 Minutes
-  raw_title: RailsConf 2014 - An Ode to 17 Databases in 33 Minutes by Toby Hede
+- id: "toby-hede-railsconf-2014"
+  title: "An Ode to 17 Databases in 33 Minutes"
+  raw_title: "RailsConf 2014 - An Ode to 17 Databases in 33 Minutes by Toby Hede"
   speakers:
     - Toby Hede
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-22"
   published_at: "2014-05-22"
   description: |-
     A detailed, deep-diving, in-the-deep-end and occasionally humorous whirlwind introduction and analysis of a suite of modern (and sometimes delightfully archaic) database technologies. How they work, why they work, and when you might want them to work in your Rails application.
@@ -1270,24 +1416,27 @@
 
     Toby's hobbies include collecting programming languages and databases, playing the drums, cutting code and pondering the nature of existence.
 
-  video_provider: youtube
-  video_id: lzwAJxIESNU
+  video_provider: "youtube"
+  video_id: "lzwAJxIESNU"
 
-- title: Secrets of a World Memory Champion
-  raw_title: RailsConf 2014 - Secrets of a World Memory Champion by Chris Hunt
+- id: "chris-hunt-railsconf-2014"
+  title: "Secrets of a World Memory Champion"
+  raw_title: "RailsConf 2014 - Secrets of a World Memory Champion by Chris Hunt"
   speakers:
     - Chris Hunt
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-22"
   published_at: "2014-05-22"
   description: |-
     You don't have a bad memory, you were just never taught how to use it. We are going to practice several powerful memory techniques that have been perfected by memory contest champions over the last hundred years. By the end of this talk, you will know how to quickly memorize a foreign language, driving directions, phone conversations, the entire Chuck Norris filmography, your friend's credit card number, a shuffled deck of playing cards, and the name of every person you meet at RailsConf.
 
     Chris Hunt works for GitHub from a standing desk in Portland, Oregon. Prior to GitHub, Chris worked on Rails applications for Square, Apple, Department of Defense, and his very critical mother. You can find him on Twitter as @chrishunt
 
-  video_provider: youtube
-  video_id: OfTryhTC8wY
+  video_provider: "youtube"
+  video_id: "OfTryhTC8wY"
 
-- title: "Panel Discussion: The Future of Rails Jobs"
+- id: "obie-fernandez-railsconf-2014"
+  title: "Panel Discussion: The Future of Rails Jobs"
   raw_title: "RailsConf 2014 - Panel Discussion: The Future of Rails Jobs"
   speakers:
     - Obie Fernandez
@@ -1295,7 +1444,8 @@
     - Allan Grant
     - Chad Pytel
     - Corey Haines
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-22"
   published_at: "2014-05-22"
   description: |-
 
@@ -1303,28 +1453,32 @@
     - Allan Gran
     - ad Pytel and Corey Haines
 
-  video_provider: youtube
-  video_id: g3pM6bVPZsQ
+  video_provider: "youtube"
+  video_id: "g3pM6bVPZsQ"
 
-- title: "Workshop: Teamwork Ain't Always Easy"
-  raw_title: RailsConf 2014 - Workshop - Teamwork Ain't Always Easy by Michael Norton
+- id: "michael-norton-railsconf-2014"
+  title: "Workshop: Teamwork Ain't Always Easy"
+  raw_title: "RailsConf 2014 - Workshop - Teamwork Ain't Always Easy by Michael Norton"
   speakers:
     - Michael Norton
-  event_name: RailsConf 2014
-  published_at: "2014-05-22"
+  event_name: "RailsConf 2014"
+  date: "2014-05-22"
+  published_at: "2014-05-23"
   description: |-
     Teamwork ain't always easy. From meetings where everybody has something to say but nothing gets done to poor decisions being made because the most senior or most forceful team member won the argument; sometimes you long for the days of high-walled cubicles and lone ranger coding. Long no more.
 
     In this workshop, you will learn a few simple techniques that drastically improve a team's ability to work together toward common goals with less conflict and more genuine collaboration.
 
-  video_provider: youtube
-  video_id: l4eujsVPvtI
+  video_provider: "youtube"
+  video_id: "l4eujsVPvtI"
 
-- title: "Class Reloading in Ruby on Rails: The Whole Story"
+- id: "xavier-noria-railsconf-2014"
+  title: "Class Reloading in Ruby on Rails: The Whole Story"
   raw_title: "RailsConf 2014 - Class Reloading in Ruby on Rails: The Whole Story by Xavier Noria"
   speakers:
     - Xavier Noria
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-22"
   published_at: "2014-05-22"
   description: |-
     Ruby on Rails applications do not need to require the files that define their classes and modules. In development mode, code changes take effect without restarting the server. How's that possible? This talk explains how this works in depth.
@@ -1333,16 +1487,18 @@
 
     Xavier Noria is an everlasting student and father of the most wonderful girl. An independent Ruby on Rails consultant from Barcelona, Xavier is a member of the Ruby on Rails core team, Ruby Hero 2010, and proud author of Rails Contributors.
 
-  video_provider: youtube
-  video_id: 4sIU8PxJEEk
+  video_provider: "youtube"
+  video_id: "4sIU8PxJEEk"
 
-- title: Tales from the Crypt
-  raw_title: RailsConf 2014 - Tales from the Crypt by Aaron Bedra, Justin Collins and Matt Konda
+- id: "aaron-bedra-railsconf-2014"
+  title: "Tales from the Crypt"
+  raw_title: "RailsConf 2014 - Tales from the Crypt by Aaron Bedra, Justin Collins and Matt Konda"
   speakers:
     - Aaron Bedra
     - Justin Collins
     - Matt Konda
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-22"
   published_at: "2014-05-22"
   description: |-
     In this talk, three Rails security specialists will take a journey through a terrifying Rails application to illustrate common security problems we have seen in the real world. The discussion will include how to identify, fix, and prevent the issues with an emphasis on practical advice. Along the way we will share our experiences and perspectives concerning securely implementing applications. We hope it is a bit scary, and yet fun ... like a horror movie!
@@ -1353,12 +1509,14 @@
 
     Matt is a veteran agile software developer with a focus on security. His mission is to empower developers to build code more securely through training, secure agile process adoption (Security in SDLC) and technical solutions. He enjoys soccer, reading and spending time with family.
 
-  video_provider: youtube
-  video_id: zZtDOX9kXRU
+  video_provider: "youtube"
+  video_id: "zZtDOX9kXRU"
 
-- title: Lightning Talks (Day 1)
-  raw_title: RailsConf 2014 - Lightning Talks by Many People
-  event_name: RailsConf 2014
+- id: "lightning-talks-day-1-railsconf-2014"
+  title: "Lightning Talks (Day 1)"
+  raw_title: "RailsConf 2014 - Lightning Talks by Many People"
+  event_name: "RailsConf 2014"
+  date: "2014-05-23"
   published_at: "2014-05-23"
   description: |-
     Sean Marcia
@@ -1375,7 +1533,7 @@
     00:40:32 - Mark Lorenz & Mike Gee
     00:44:28 - Trever yarrish
     00:49:34 - Mike Bourgeous
-    00:54:15 - Gostavo Robles
+    00:54:15 - Gustavo Robles
     00:57:16 - Hector Bustillos
     01:02:00 - Victor Velazquez
     01:06:03 - Kay Rhodes
@@ -1385,38 +1543,42 @@
     01:25:37 - Mike Virata-Stone
     01:30:36 - Kiyoto Tamura
     01:35:41 - David Padilla
-  video_provider: youtube
-  video_id: o1qbP7RxPOw
+  video_provider: "youtube"
+  video_id: "o1qbP7RxPOw"
   talks:
     - title: "Lightning Talk: Sean Marcia" # TODO: missing talk title
       start_cue: "00:01:24"
       end_cue: "00:05:00"
-      video_id: sean-marcia-lighting-talk-railsconf-2014
-      video_provider: parent
+      id: "sean-marcia-lighting-talk-railsconf-2014"
+      video_id: "sean-marcia-lighting-talk-railsconf-2014"
+      video_provider: "parent"
       speakers:
         - Sean Marcia
 
     - title: "Lightning Talk: Josh" # TODO: missing talk title
       start_cue: "00:05:00"
       end_cue: "00:08:52"
-      video_id: josh-lighting-talk-railsconf-2014
-      video_provider: parent
+      id: "josh-lighting-talk-railsconf-2014"
+      video_id: "josh-lighting-talk-railsconf-2014"
+      video_provider: "parent"
       speakers:
         - Josh # TODO: missing last name
 
     - title: "Lightning Talk: Sachin Shintre" # TODO: missing talk title
       start_cue: "00:08:52"
       end_cue: "00:12:00"
-      video_id: sachin-shintre-lighting-talk-railsconf-2014
-      video_provider: parent
+      id: "sachin-shintre-lighting-talk-railsconf-2014"
+      video_id: "sachin-shintre-lighting-talk-railsconf-2014"
+      video_provider: "parent"
       speakers:
         - Sachin Shintre
 
     - title: "Lightning Talk: Gyani & Siddhant Chothe" # TODO: missing talk title
       start_cue: "00:12:00"
       end_cue: "00:17:26"
-      video_id: gyani-siddhant-chothe-lighting-talk-railsconf-2014
-      video_provider: parent
+      id: "gyani-siddhant-chothe-lighting-talk-railsconf-2014"
+      video_id: "gyani-siddhant-chothe-lighting-talk-railsconf-2014"
+      video_provider: "parent"
       speakers:
         - Gyani
         - Siddhant Chothe
@@ -1424,64 +1586,72 @@
     - title: "Lightning Talk: Andrew Nordman" # TODO: missing talk title
       start_cue: "00:17:26"
       end_cue: "00:21:47"
-      video_id: andrew-nordman-lighting-talk-railsconf-2014
-      video_provider: parent
+      id: "andrew-nordman-lighting-talk-railsconf-2014"
+      video_id: "andrew-nordman-lighting-talk-railsconf-2014"
+      video_provider: "parent"
       speakers:
         - Andrew Nordman
 
     - title: "Lightning Talk: Justin Love" # TODO: missing talk title
       start_cue: "00:21:47"
       end_cue: "00:25:58"
-      video_id: justin-love-lighting-talk-railsconf-2014
-      video_provider: parent
+      id: "justin-love-lighting-talk-railsconf-2014"
+      video_id: "justin-love-lighting-talk-railsconf-2014"
+      video_provider: "parent"
       speakers:
         - Justin Love
 
     - title: "Lightning Talk: Matthew Nielsen" # TODO: missing talk title
       start_cue: "00:25:58"
       end_cue: "00:29:34"
-      video_id: matthew-nielsen-lighting-talk-railsconf-2014
-      video_provider: parent
+      id: "matthew-nielsen-lighting-talk-railsconf-2014"
+      video_id: "matthew-nielsen-lighting-talk-railsconf-2014"
+      video_provider: "parent"
       speakers:
         - Matthew Nielsen
 
     - title: "Lightning Talk: Andrew Cantino" # TODO: missing talk title
       start_cue: "00:29:34"
       end_cue: "00:34:18"
-      video_id: andrew-cantino-lighting-talk-railsconf-2014
-      video_provider: parent
+      id: "andrew-cantino-lighting-talk-railsconf-2014"
+      video_id: "andrew-cantino-lighting-talk-railsconf-2014"
+      video_provider: "parent"
       speakers:
         - Andrew Cantino
 
     - title: "Lightning Talk: Yehuda Katz" # TODO: missing talk title
       start_cue: "00:34:18"
       end_cue: "00:37:29"
-      video_id: yehuda-katz-lighting-talk-railsconf-2014
-      video_provider: parent
+      id: "yehuda-katz-lighting-talk-railsconf-2014"
+      video_id: "yehuda-katz-lighting-talk-railsconf-2014"
+      video_provider: "parent"
       speakers:
         - Yehuda Katz
 
     - title: "Lightning Talk: Ryan Alyea" # TODO: missing talk title
       start_cue: "00:37:29"
       end_cue: "00:40:32"
-      video_id: ryan-alyea-lighting-talk-railsconf-2014
-      video_provider: parent
+      id: "ryan-alyea-lighting-talk-railsconf-2014"
+      video_id: "ryan-alyea-lighting-talk-railsconf-2014"
+      video_provider: "parent"
       speakers:
         - Ryan Alyea
 
     - title: "Lightning Talk: Adam Cuppy" # TODO: missing talk title
       start_cue: "00:40:32"
       end_cue: "00:44:28"
-      video_id: adam-cuppy-lighting-talk-railsconf-2014
-      video_provider: parent
+      id: "adam-cuppy-lighting-talk-railsconf-2014"
+      video_id: "adam-cuppy-lighting-talk-railsconf-2014"
+      video_provider: "parent"
       speakers:
         - Adam Cuppy
 
     - title: "Lightning Talk: Mark Lorenz & Mike Gee" # TODO: missing talk title
       start_cue: "00:44:28"
       end_cue: "00:49:34"
-      video_id: mark-lorenz-mike-gee-lighting-talk-railsconf-2014
-      video_provider: parent
+      id: "mark-lorenz-mike-gee-lighting-talk-railsconf-2014"
+      video_id: "mark-lorenz-mike-gee-lighting-talk-railsconf-2014"
+      video_provider: "parent"
       speakers:
         - Mark Lorenz
         - Mike Gee
@@ -1489,104 +1659,118 @@
     - title: "Lightning Talk: Trever Yarrish" # TODO: missing talk title
       start_cue: "00:49:34"
       end_cue: "00:54:15"
-      video_id: trever-yarrish-lighting-talk-railsconf-2014
-      video_provider: parent
+      id: "trever-yarrish-lighting-talk-railsconf-2014"
+      video_id: "trever-yarrish-lighting-talk-railsconf-2014"
+      video_provider: "parent"
       speakers:
         - Trever Yarrish
 
     - title: "Lightning Talk: Mike Bourgeous" # TODO: missing talk title
       start_cue: "00:54:15"
       end_cue: "00:57:16"
-      video_id: mike-bourgeous-lighting-talk-railsconf-2014
-      video_provider: parent
+      id: "mike-bourgeous-lighting-talk-railsconf-2014"
+      video_id: "mike-bourgeous-lighting-talk-railsconf-2014"
+      video_provider: "parent"
       speakers:
         - Mike Bourgeous
 
-    - title: "Lightning Talk: Gostavo Robles" # TODO: missing talk title
+    - title: "Lightning Talk: Gustavo Robles" # TODO: missing talk title
       start_cue: "00:57:16"
       end_cue: "01:02:00"
-      video_id: gostavo-robles-lighting-talk-railsconf-2014
-      video_provider: parent
+      id: "gostavo-robles-lighting-talk-railsconf-2014"
+      video_id: "gostavo-robles-lighting-talk-railsconf-2014"
+      video_provider: "parent"
       speakers:
-        - Gostavo Robles
+        - Gustavo Robles
 
     - title: "Lightning Talk: Hector Bustillos" # TODO: missing talk title
       start_cue: "01:02:00"
       end_cue: "01:06:03"
-      video_id: hector-bustillos-lighting-talk-railsconf-2014
-      video_provider: parent
+      id: "hector-bustillos-lighting-talk-railsconf-2014"
+      video_id: "hector-bustillos-lighting-talk-railsconf-2014"
+      video_provider: "parent"
       speakers:
         - Hector Bustillos
 
     - title: "Lightning Talk: Victor Velazquez" # TODO: missing talk title
       start_cue: "01:06:03"
       end_cue: "01:10:31"
-      video_id: victor-velazquez-lighting-talk-railsconf-2014
-      video_provider: parent
+      id: "victor-velazquez-lighting-talk-railsconf-2014"
+      video_id: "victor-velazquez-lighting-talk-railsconf-2014"
+      video_provider: "parent"
       speakers:
         - Victor Velazquez
 
     - title: "Lightning Talk: Kay Rhodes" # TODO: missing talk title
       start_cue: "01:10:31"
       end_cue: "01:15:50"
-      video_id: kay-rhodes-lighting-talk-railsconf-2014
-      video_provider: parent
+      id: "kay-rhodes-lighting-talk-railsconf-2014"
+      video_id: "kay-rhodes-lighting-talk-railsconf-2014"
+      video_provider: "parent"
       speakers:
         - Kay Rhodes
 
     - title: "Lightning Talk: Kevin Fallon" # TODO: missing talk title
       start_cue: "01:15:50"
       end_cue: "01:20:53"
-      video_id: kevin-fallon-lighting-talk-railsconf-2014
-      video_provider: parent
+      id: "kevin-fallon-lighting-talk-railsconf-2014"
+      video_id: "kevin-fallon-lighting-talk-railsconf-2014"
+      video_provider: "parent"
       speakers:
         - Kevin Fallon
 
     - title: "Lightning Talk: Andrew Vit" # TODO: missing talk title
       start_cue: "01:20:53"
       end_cue: "01:25:37"
-      video_id: andrew-vit-lighting-talk-railsconf-2014
-      video_provider: parent
+      id: "andrew-vit-lighting-talk-railsconf-2014"
+      video_id: "andrew-vit-lighting-talk-railsconf-2014"
+      video_provider: "parent"
       speakers:
         - Andrew Vit
 
     - title: "Lightning Talk: Brian Garside" # TODO: missing talk title
       start_cue: "01:25:37"
       end_cue: "01:30:36"
-      video_id: brian-garside-lighting-talk-railsconf-2014
-      video_provider: parent
+      id: "brian-garside-lighting-talk-railsconf-2014"
+      video_id: "brian-garside-lighting-talk-railsconf-2014"
+      video_provider: "parent"
       speakers:
         - Brian Garside
 
     - title: "Lightning Talk: Mike Virata-Stone" # TODO: missing talk title
       start_cue: "01:30:36"
       end_cue: "01:35:41"
-      video_id: mike-virata-stone-lighting-talk-railsconf-2014
-      video_provider: parent
+      id: "mike-virata-stone-lighting-talk-railsconf-2014"
+      video_id: "mike-virata-stone-lighting-talk-railsconf-2014"
+      video_provider: "parent"
       speakers:
         - Mike Virata-Stone
 
     - title: "Lightning Talk: Kiyoto Tamura" # TODO: missing talk title
       start_cue: "01:35:41"
       end_cue: "01:40:00"
-      video_id: kiyoto-tamura-lighting-talk-railsconf-2014
-      video_provider: parent
+      id: "kiyoto-tamura-lighting-talk-railsconf-2014"
+      video_id: "kiyoto-tamura-lighting-talk-railsconf-2014"
+      video_provider: "parent"
       speakers:
         - Kiyoto Tamura
 
     - title: "Lightning Talk: David Padilla" # TODO: missing talk title
       start_cue: "01:40:00"
       end_cue: "TODO"
-      video_id: david-padilla-lighting-talk-railsconf-2014
-      video_provider: parent
+      id: "david-padilla-lighting-talk-railsconf-2014"
+      video_id: "david-padilla-lighting-talk-railsconf-2014"
+      video_provider: "parent"
       speakers:
         - David Padilla
 
-- title: "Curmudgeon: An Opinionated Framework"
+- id: "ernie-miller-railsconf-2014"
+  title: "Curmudgeon: An Opinionated Framework"
   raw_title: "RailsConf 2014 - Curmudgeon: An Opinionated Framework by Ernie Miller"
   speakers:
     - Ernie Miller
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-23"
   published_at: "2014-05-23"
   description: |-
     Rails has opinions about how we should organize code, interact with a database, write tests, format URLs... just about everything. These conventions, the wisdom goes, free us up to focus on the specifics of our application. "Convention over configuration" becomes our mantra as development hurtles forward with startling speed.
@@ -1597,15 +1781,17 @@
 
     Ernie's been writing code since he was 6 years old, but only getting paid to do so for the past 16 years or so. Sometimes he still can't believe people actually pay us to have this much fun.
 
-  video_provider: youtube
-  video_id: uDLtgjx5_Ss
+  video_provider: "youtube"
+  video_id: "uDLtgjx5_Ss"
 
-- title: You'll Never Believe Which Web Framework Powers Upworthy
-  raw_title: RailsConf 2014 - You'll Never Believe Which Web Framework Powers Upworthy
+- id: "luigi-montanez-railsconf-2014"
+  title: "You'll Never Believe Which Web Framework Powers Upworthy"
+  raw_title: "RailsConf 2014 - You'll Never Believe Which Web Framework Powers Upworthy"
   speakers:
     - Luigi Montanez
     - Ryan Resella
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-26"
   published_at: "2014-05-26"
   description: |-
     By Luigi Montanez & Ryan Resella
@@ -1616,12 +1802,14 @@
 
     Ryan is a Senior Engineer at Upworthy. In 2012 Ryan was an Engineer on the Technology Team at Obama For America that helped re-elect the President of the United States. Prior to OFA, Ryan was a 2011 Inaugural Code for America Fellow and then went on to become Technical Lead at Code for America.
 
-  video_provider: youtube
-  video_id: r56wJMk8QCg
+  video_provider: "youtube"
+  video_id: "r56wJMk8QCg"
 
-- title: Lightning Talks (Living Social)
-  raw_title: RailsConf 2014 - Living Social Lightning Talks
-  event_name: RailsConf 2014
+- id: "lightning-talks-living-social-railsconf-2014"
+  title: "Lightning Talks (Living Social)"
+  raw_title: "RailsConf 2014 - Living Social Lightning Talks"
+  event_name: "RailsConf 2014"
+  date: "2014-05-26"
   published_at: "2014-05-26"
   description: |-
     By
@@ -1632,147 +1820,168 @@
     Nick Sieger
     Rodrigo Franco
 
-  video_provider: youtube
-  video_id: pFhPEguxqSI
+  video_provider: "youtube"
+  video_id: "pFhPEguxqSI"
   talks:
     - title: "Lightning Talk: Ed Weng"
       start_cue: "TODO"
       end_cue: "TODO"
-      video_id: ed-weng-lighting-talk-railsconf-2014
-      video_provider: parent
+      id: "ed-weng-lighting-talk-railsconf-2014"
+      video_id: "ed-weng-lighting-talk-railsconf-2014"
+      video_provider: "parent"
       speakers:
         - Ed Weng
 
     - title: "Lightning Talk: Dan Meyer"
       start_cue: "TODO"
       end_cue: "TODO"
-      video_id: dan-meyer-lighting-talk-railsconf-2014
-      video_provider: parent
+      id: "dan-meyer-lighting-talk-railsconf-2014"
+      video_id: "dan-meyer-lighting-talk-railsconf-2014"
+      video_provider: "parent"
       speakers:
         - Dan Meyer
 
     - title: "Lightning Talk: Tyler Montgomery"
       start_cue: "TODO"
       end_cue: "TODO"
-      video_id: tyler-montgomery-lighting-talk-railsconf-2014
-      video_provider: parent
+      id: "tyler-montgomery-lighting-talk-railsconf-2014"
+      video_id: "tyler-montgomery-lighting-talk-railsconf-2014"
+      video_provider: "parent"
       speakers:
         - Tyler Montgomery
 
     - title: "Lightning Talk: Nick Sieger"
       start_cue: "TODO"
       end_cue: "TODO"
-      video_id: nick-sieger-lighting-talk-railsconf-2014
-      video_provider: parent
+      id: "nick-sieger-lighting-talk-railsconf-2014"
+      video_id: "nick-sieger-lighting-talk-railsconf-2014"
+      video_provider: "parent"
       speakers:
         - Nick Sieger
 
     - title: "Lightning Talk: Rodrigo Franco"
       start_cue: "TODO"
       end_cue: "TODO"
-      video_id: rodrigo-franco-lighting-talk-railsconf-2014
-      video_provider: parent
+      id: "rodrigo-franco-lighting-talk-railsconf-2014"
+      video_id: "rodrigo-franco-lighting-talk-railsconf-2014"
+      video_provider: "parent"
       speakers:
         - Rodrigo Franco
 
-- title: Get More Hands on Your Keyboard
-  raw_title: RailsConf 2014 - Get More Hands on Your Keyboard by Manik Juneja
+- id: "manik-juneja-railsconf-2014"
+  title: "Get More Hands on Your Keyboard"
+  raw_title: "RailsConf 2014 - Get More Hands on Your Keyboard by Manik Juneja"
   speakers:
     - Manik Juneja
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-26"
   published_at: "2014-05-26"
   description: |-
     VinSol has been developing on Ruby on Rails since November 2005. Over the years we have created hundreds of great products for the world's best known brands and most innovative start-ups. Whether you are a Solo Developer, a Development Shop, an Agency or a Company of any size - VinSol has something to offer for everyone - Augment your team, Incubate your team or get your product developed by us. Manik will be talking about all our offerings, including our super successful Partnership Program for the Busy Developer.
 
-  video_provider: youtube
-  video_id: DndoNihAzv8
+  video_provider: "youtube"
+  video_id: "DndoNihAzv8"
 
-- title: WebRTC Change Communications Forever
-  raw_title: RailsConf 2014 - WebRTC Change Communications Forever by Greg Baugues
+- id: "greg-baugues-railsconf-2014"
+  title: "WebRTC Change Communications Forever"
+  raw_title: "RailsConf 2014 - WebRTC Change Communications Forever by Greg Baugues"
   speakers:
     - Greg Baugues
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-26"
   published_at: "2014-05-26"
   description: |-
     WebRTC (Real Time Communications) is revolutionizing the way we handle voice, video and data communication by providing native peer-to-peer communication inside the browser. In this talk we'll discuss: - History: How has WebRTC evolved since it's birth just three years ago? - Applications: How are developers using WebRTC beyond video conferencing? (Such as a peer distributed CDN and "bittorrent in the browser"). - Getting Started: What is the WebRTC Hello World?
 
-  video_provider: youtube
-  video_id: ImCJxCb3RFg
+  video_provider: "youtube"
+  video_id: "ImCJxCb3RFg"
 
-- title: "Workshop: Applications First, Frameworks Second - Better Systems through Design"
+- id: "adam-hawkins-railsconf-2014"
+  title: "Workshop: Applications First, Frameworks Second - Better Systems through Design"
   raw_title: "RailsConf 2014 - Workshop - Applications First, Frameworks Second: Better Systems through Design"
   speakers:
     - Adam Hawkins
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-26"
   published_at: "2014-05-26"
   description: |-
     By Adam Hawkins
 
     Rails applications come together quickly in the beginning. Drop all these gems in and voila! Overtime test slow down and the productivity is gone. Have you ever questioned why? The framework was used incorrectly. Rails is not your application. It's a delivery mechanism. This talk is about leveraging different design patterns, roles, and boundaries to implement the business logic before even thinking about rails new.
 
-  video_provider: youtube
-  video_id: 6JD0VzPIYAg
+  video_provider: "youtube"
+  video_id: "6JD0VzPIYAg"
 
-- title: Service Extraction at Groupon Scale
-  raw_title: RailsConf 2014 - Service Extraction at Groupon Scale by Jason Sisk & Abhishek Pillai
+- id: "jason-sisk-railsconf-2014"
+  title: "Service Extraction at Groupon Scale"
+  raw_title: "RailsConf 2014 - Service Extraction at Groupon Scale by Jason Sisk & Abhishek Pillai"
   speakers:
     - Jason Sisk
     - Abhishek Pillai
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-26"
   published_at: "2014-05-26"
   description: |-
     You've probably heard it over and over that extracting services from Rails monoliths is tricky business. But we're here to assure you—it's even trickier when you've got 40+ million active global customers and development teams distributed across the world. So to help illustrate the work that goes into that process, two Groupon engineers are here to talk about the lessons they've learned along the way.
 
-  video_provider: youtube
-  video_id: 13SV7MjJugo
+  video_provider: "youtube"
+  video_id: "13SV7MjJugo"
 
-- title: Using Software Analytics to Help Make Better Business Decisions
-  raw_title: RailsConf 2014 -  Using Software Analytics to Help Make Better Business Decisions
+- id: "shiv-kumar-railsconf-2014"
+  title: "Using Software Analytics to Help Make Better Business Decisions"
+  raw_title: "RailsConf 2014 -  Using Software Analytics to Help Make Better Business Decisions"
   speakers:
     - Shiv Kumar
     - Vince Foley
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-26"
   published_at: "2014-05-26"
   description: |-
     By Shiv Kumar and Vince Foley
 
     Join New Relic and learn how to make sense of the millions of metrics your software generates. Take a tour of New Relic's extensive product suite and learn how to monitor your software from the front end to the back. Come see how we collect and analyze business metrics in seconds so you can make better data-driven decisions.
 
-  video_provider: youtube
-  video_id: KdmuHgpHJVE
+  video_provider: "youtube"
+  video_id: "KdmuHgpHJVE"
 
-- title: "Workshop: Machine Learning For Fun and Profit"
-  raw_title: RailsConf 2014 - Workshop - Machine Learning For Fun and Profit by John Paul Ahenfelter
+- id: "john-paul-ashenfelter-railsconf-2014"
+  title: "Workshop: Machine Learning For Fun and Profit"
+  raw_title: "RailsConf 2014 - Workshop - Machine Learning For Fun and Profit by John Paul Ashenfelter"
   speakers:
-    - John Paul Ahenfelter
-  event_name: RailsConf 2014
+    - John Paul Ashenfelter
+  event_name: "RailsConf 2014"
+  date: "2014-05-26"
   published_at: "2014-05-26"
   description: |-
     Your Rails app is full of data that can (and should!) be turned into useful information with some simple machine learning technqiues. We'll look at basic techniques that are both immediately applicable and the foundation for more advanced analysis -- starting with your Users table.
 
     We will cover the basics of assigning users to categories, segmenting users by behavior, and simple recommendation algorithms. Come as a Rails dev, leave a data scientist.
 
-  video_provider: youtube
-  video_id: E6CjE0M20jk
+  video_provider: "youtube"
+  video_id: "E6CjE0M20jk"
 
-- title: "Workshop: All Aboard The Elixir Express!"
-  raw_title: RailsConf 2014 - Workshop - All Aboard The Elixir Express! by Chris McCord
+- id: "chris-mccord-railsconf-2014"
+  title: "Workshop: All Aboard The Elixir Express!"
+  raw_title: "RailsConf 2014 - Workshop - All Aboard The Elixir Express! by Chris McCord"
   speakers:
     - Chris McCord
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-26"
   published_at: "2014-05-26"
   description: |-
     Elixir provides the joy and productivity of Ruby with the concurrency and fault-tolerance of Erlang. Together, we'll take a guided tour through the language, going from the very basics to macros and distributed programming. Along the way, we'll see how Elixir embraces concurrency and how we can construct self-healing programs that restart automatically on failure. Attendees should leave with a great head-start into Elixir, some minor language envy, and a strong desire to continue exploration.
 
-  video_provider: youtube
-  video_id: 5kYmOyJjGDM
+  video_provider: "youtube"
+  video_id: "5kYmOyJjGDM"
 
-- title: "Workshop: Test Drive a Browser Game With JavaScript"
-  raw_title: RailsConf 2014 - Workshop - Test Drive a Browser Game With JavaScript
+- id: "zach-briggs-railsconf-2014"
+  title: "Workshop: Test Drive a Browser Game With JavaScript"
+  raw_title: "RailsConf 2014 - Workshop - Test Drive a Browser Game With JavaScript"
   speakers:
     - Zach Briggs
     - Todd Kaufman
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-27"
   published_at: "2014-05-27"
   description: |-
     By Zach Briggs and Todd Kaufman
@@ -1781,26 +1990,30 @@
 
     Technologies used will include Jasmine, Lineman, Rails, and Angular; but they do not define the workshop. Skills earned here are applicable to any Web project.
 
-  video_provider: youtube
-  video_id: GzChuWBfA_w
+  video_provider: "youtube"
+  video_id: "GzChuWBfA_w"
 
-- title: "Workshop: Taming Chaotic Specs - RSpec Design Patterns"
+- id: "adam-cuppy-railsconf-2014"
+  title: "Workshop: Taming Chaotic Specs - RSpec Design Patterns"
   raw_title: "RailsConf 2014 - Workshop - Taming Chaotic Specs: RSpec Design Patterns by Adam Cuppy"
   speakers:
     - Adam Cuppy
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-27"
   published_at: "2014-05-27"
   description: |-
     Don't you hate when testing takes 3x as long because your specs are hard to understand? Or when testing conditional permutation leads to a ton of duplication? Following a few simple patterns, you can easily take a bloated spec and make it readable, DRY and simple to extend. This workshop is a refactor kata. We will take a bloated sample spec and refactor it to something manageable, readable and concise.
 
-  video_provider: youtube
-  video_id: d2gL6CYaYwQ
+  video_provider: "youtube"
+  video_id: "d2gL6CYaYwQ"
 
-- title: Unreasonable Estimates and Improbable Goals
-  raw_title: RailsConf 2014 - Unreasonable Estimates and Improbable Goals by Adam Sanderson
+- id: "adam-sanderson-railsconf-2014"
+  title: "Unreasonable Estimates and Improbable Goals"
+  raw_title: "RailsConf 2014 - Unreasonable Estimates and Improbable Goals by Adam Sanderson"
   speakers:
     - Adam Sanderson
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-27"
   published_at: "2014-05-27"
   description: |-
     Your job doesn't start when your fingers touch the keyboard. It starts when someone utters the words: "How hard would it be?"
@@ -1811,31 +2024,35 @@
 
     I'm a full stack Rails developer at LiquidPlanner, and have been writing software that helps people get work done for the past dozen years. You'll find me running, walking, biking and eating about town.
 
-  video_provider: youtube
-  video_id: h6Q2dQZ6GlY
+  video_provider: "youtube"
+  video_id: "h6Q2dQZ6GlY"
 
-- title: Branding for Open Source Success
-  raw_title: RailsConf 2014 - Branding for Open Source Success by Bree Thomas
+- id: "bree-thomas-railsconf-2014"
+  title: "Branding for Open Source Success"
+  raw_title: "RailsConf 2014 - Branding for Open Source Success by Bree Thomas"
   speakers:
     - Bree Thomas
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-05-27"
   published_at: "2014-05-27"
   description: |-
     If you build it, they might come. We all want our open source projects to be widely adopted, but competition in the open source landscape is fierce. Reaching levels of notoriety and adoption akin to the likes of Linux, Rails, or WordPress is increasingly challenging amongst today's volume of seemingly never-ending options. How do you differentiate in a way that is meaningful? It's really about building a 'who', not just a 'what'.
 
     Bree Thomas (@BreeThomas33) is a Developer at iTriage, and a recent graduate of gSchool by Jumpstartlab. She has a background in Brand Strategy/Marketing and blogs about experiences in both development and marketing at: http://www.nooblife.com/ and http://www.thebratblog.com/.
 
-  video_provider: youtube
-  video_id: ZxHiXIJTaxE
+  video_provider: "youtube"
+  video_id: "ZxHiXIJTaxE"
 
-- title: "Keynote: What Happens to Everyone, When Everyone Learns to Code?"
+- id: "farrah-bostic-railsconf-2014"
+  title: "Keynote: What Happens to Everyone, When Everyone Learns to Code?"
   raw_title: "Rails Conf 2014 - Keynote: What Happens to Everyone, When Everyone Learns to Code?"
   speakers:
     - Farrah Bostic
-  event_name: RailsConf 2014
+  event_name: "RailsConf 2014"
+  date: "2014-07-28"
   published_at: "2014-07-28"
   description: |-
     By Farrah Bostic
 
-  video_provider: youtube
-  video_id: sgoYBNj5xk0
+  video_provider: "youtube"
+  video_id: "sgoYBNj5xk0"

@@ -1,0 +1,50 @@
+<%= turbo_refreshes_with method: :morph, scroll: :preserve %>
+
+<% title "States in #{@country.name}" %>
+
+<%= render "shared/location_header",
+      name: @country.name,
+      subtitle: @country.to_location.to_text,
+      flag_code: @country.alpha2,
+      stats: "#{pluralize(@states.count { |s| s.events.any? || s.users.any? }, "state")} with Ruby activity in #{@country.name}",
+      location: @country %>
+
+<%= render "shared/location_navigation", location: @country, current_tab: "states", show_cities: true, show_states: true, show_stamps: @country.stamps.any? %>
+
+<div class="container py-8">
+  <div class="flex items-center justify-between mb-6">
+    <h2 class="text-xl font-bold text-gray-900">States in <%= @country.name %></h2>
+    <%= ui_badge(@states.count { |s| s.events.any? || s.users.any? }, kind: :secondary, outline: true) %>
+  </div>
+
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+    <% @states.each do |state| %>
+      <% event_count = state.events.count %>
+      <% user_count = state.users.count %>
+
+      <% next if event_count == 0 && user_count == 0 %>
+
+      <%= link_to state_path(state_alpha2: state.country.code, state_slug: state.slug), class: "flex flex-col p-4 bg-white rounded-xl border hover:border-gray-400 transition-colors" do %>
+        <div class="flex items-center justify-between mb-2">
+          <span class="font-semibold text-gray-900"><%= state.name %></span>
+        </div>
+
+        <div class="flex gap-4 text-sm text-gray-500">
+          <% if event_count > 0 %>
+            <span class="flex items-center gap-1">
+              <%= fa("calendar", size: :xs, class: "text-gray-400") %>
+              <%= pluralize(event_count, "event") %>
+            </span>
+          <% end %>
+
+          <% if user_count > 0 %>
+            <span class="flex items-center gap-1">
+              <%= fa("users", size: :xs, class: "text-gray-400") %>
+              <%= pluralize(user_count, "Rubyist") %>
+            </span>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

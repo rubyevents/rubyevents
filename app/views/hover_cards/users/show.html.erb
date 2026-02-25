@@ -1,0 +1,5 @@
+<%= turbo_frame_tag dom_id(@user, :hover_card) do %>
+  <div class="w-80 rounded-2xl shadow-2xl bg-white border border-gray-200">
+    <%= render "content", user: @user, avatar_size: @avatar_size %>
+  </div>
+<% end %>

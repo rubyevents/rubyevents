@@ -1,0 +1,145 @@
+---
+- id: "stefan-wintermeyer-rubyconfby-2018"
+  title: "Better WebPerformance with Rails 5.2"
+  raw_title: 'RubyConfBY 2018: Stefan Wintermeyer "Better WebPerformance with Rails 5.2"'
+  speakers:
+    - Stefan Wintermeyer
+  event_name: "RubyConfBY 2018"
+  date: "2018-04-21"
+  published_at: "2018-05-08"
+  description: |-
+    Speed is paramount for the success of a website (key for a good conversion rate and SEO). Unfortunately Webperformance is not a strong suite of a vanilla Rails application.
+
+    Let's optimize an example Ruby on Rails 5.2 web shop application and analyze before/after times. I'll show the audience where it makes sense to spend time to optimize and where not. Use the new 5.2 goodies!
+
+    Side effect: By making your Rails app faster you'll save server costs.
+  video_provider: "youtube"
+  video_id: "R-0QXFqoQzM"
+
+- id: "bozhidar-batsov-rubyconfby-2018"
+  title: "All about RuboCop"
+  raw_title: 'RubyConfBY 2018: Bozhidar Batsov "All about RuboCop"'
+  speakers:
+    - Bozhidar Batsov
+  event_name: "RubyConfBY 2018"
+  date: "2018-04-21"
+  published_at: "2018-05-08"
+  description: |-
+    In this talk we'll go over everything you need to know about RuboCop - a powerful Ruby static code analyzer that makes it easy for you to enforce a consistent code style throughout your Ruby projects.
+
+    We'll begin by examining the events that lead to the creation of RuboCop, its early days and its evolution, effective RuboCop usage and some of its cool but little-known features. Then we'll continue with a brief look into RuboCop's internals and show you how easy it is to extend its functionality.
+
+    We'll wrap the talk with a glimpse inside RuboCop's future and discuss some of the challenges the project faces and some of the work that remains to be done, before RuboCop finally reaches the coveted 1.0 version.
+  video_provider: "youtube"
+  video_id: "7u8nL9ABv2E"
+
+- id: "anna-shcherbinina-rubyconfby-2018"
+  title: "Docker + GPU. Not about mining"
+  raw_title: 'RubyConfBY 2018: Anna Shcherbinina "Docker + GPU. Not about mining"'
+  speakers:
+    - Anna Shcherbinina
+  event_name: "RubyConfBY 2018"
+  date: "2018-04-21"
+  published_at: "2018-05-08"
+  description: |-
+    Just before Christmas we launched a new body-measurement feature for our shapify.me project. A person goes into the 3D booth, gets scanned, and the body-measurements are calculated with the 3D scan data. We couldn't avoid using a GPU with these calculations.
+
+    How to install this branch of processing into our elegant scaling pipeline? When you're dealing with 3D scans you should remember two things: it's expensive and time-consuming. By the way, its workload fluctuates throughout the days. The easiest solution for us was to use Docker.
+
+    This speech is not about mining, but the most helpful articles for us were ones such as "Building your own mining farm". That's because we use quite a similar infrastructure.
+    GPU, Docker, scaling. What we achieved, where we failed, and what it became of it in the end is all included in my speech.
+  video_provider: "youtube"
+  video_id: "MuZr_R0p3AE"
+
+- id: "benjamin-roth-rubyconfby-2018"
+  title: "ACID's extasy"
+  raw_title: 'RubyConfBY 2018: Benjamin Roth "ACID''s extasy"'
+  speakers:
+    - Benjamin Roth
+  event_name: "RubyConfBY 2018"
+  date: "2018-04-21"
+  published_at: "2018-05-08"
+  description: |-
+    Whenever things can get wrong and you need a way to go back to a consistent state, ACID (and service objects) gets your back. We will explore some patterns to go back on your feet even if you have to orchestrate many database writes and even third party: queues, api calls.
+  video_provider: "youtube"
+  video_id: "t9NJdHM8dsQ"
+
+- id: "margo-urey-rubyconfby-2018"
+  title: "Better Developer Relations Start with the Interview"
+  raw_title: 'RubyConfBY 2018: Margo Urey "Better Developer Relations Start with the Interview"'
+  speakers:
+    - Margo Urey
+  event_name: "RubyConfBY 2018"
+  date: "2018-04-21"
+  published_at: "2018-05-08"
+  description: |-
+    The importance of soft skills for successful developer teams cannot be overestimated.
+
+    First impressions set the tone for developer relations and the interview is where you make that first impression.
+
+    Here are a few ways companies got it right and got it wrong; and how you can take control to start things off on the right foot.
+  video_provider: "youtube"
+  video_id: "7AbPvP--PDY"
+
+- id: "maxim-gordienok-rubyconfby-2018"
+  title: 'Is there life on "Ruby on Machine Learning" planet?'
+  raw_title: 'RubyConfBY 2018: Maxim Gordienok "Is there life on "Ruby on Machine Learning" planet?"'
+  speakers:
+    - Maxim Gordienok
+  event_name: "RubyConfBY 2018"
+  date: "2018-04-21"
+  published_at: "2018-05-08"
+  description: |-
+    Making tired on developing "new-Snapchat-with" or "app-like-Airbnb-but" or doing something like "ok, I will copy that from that project, add design and go to production" sounds familiar to you? Was ruby worth it to learn and use it for all these years? Let's see what more can ruby do for you!
+
+    We will start with top level overview about options you have today (they will make your life is a developer challenging), then will go down to real world case(-s) and, hopefully, will make something working together. I want to present my experience and will guide you on what can ruby do with machine learning, so often called AI today.
+  video_provider: "youtube"
+  video_id: "VN0M5hVGKX0"
+
+- id: "mikhail-bortnyk-rubyconfby-2018"
+  title: "Ruby JIT Compilation"
+  raw_title: 'RubyConfBY 2018: Mikhail Bortnyk "Ruby JIT Compilation"'
+  speakers:
+    - Mikhail Bortnyk
+  event_name: "RubyConfBY 2018"
+  date: "2018-04-21"
+  published_at: "2018-05-08"
+  description: |-
+    Reviewing just-in-time compilation as a possible future way to speed up Ruby 3.0, comparisons of implementations and different benchmarking ways.
+
+    I will tell a little about JIT theory and a lot about existing implementations (starting from JRuby+Truffle, ending up with MJIT and LLRB).
+
+    Warning: a lot of graphs, benchmarks, LLVM, JVM and Ruby source code.
+  video_provider: "youtube"
+  video_id: "OYsJ7lElSKI"
+
+- id: "sergey-dolganov-rubyconfby-2018"
+  title: "Make External API Dependency Great Again (API Contract Testing)"
+  raw_title: 'RubyConfBY 2018: Sergey Dolganov "Make External API Dependency Great Again (API Contract Testing)"'
+  speakers:
+    - Sergey Dolganov
+  event_name: "RubyConfBY 2018"
+  date: "2018-04-21"
+  published_at: "2018-05-08"
+  description: |-
+    Nowadays, unit tests are an essential part of our development process. While we are proud we have 100% test coverage; it does not mean that our code behaves as expected, notably when we deal with external APIs.
+
+    I'm working on the eBaymag project which mostly built around various API interactions: eBay API, Google Translate API, DHL API and so on.
+    I solve different sophisticated problems based on unexpected API behavior on my daily basis.
+
+    So I want to introduce a contract-based testing framework that aims to get rid of unexpected behavior of your app. I'll share the tools and approaches that will minimize the risks of being dependent on some external system API.
+  video_provider: "youtube"
+  video_id: "uLCcm3B09ZM"
+
+- id: "nick-sutterer-rubyconfby-2018"
+  title: "Super Ain't Super - How my Programming Style Changed"
+  raw_title: 'RubyConfBY 2018: Nick Sutterer "Super Ain''t Super – How my Programming Style Changed"'
+  speakers:
+    - Nick Sutterer
+  event_name: "RubyConfBY 2018"
+  date: "2018-04-21"
+  published_at: "2018-06-13"
+  description: |-
+    A blazing fast voyage through the jungle of object-oriented programming, onwards to functional discipline, up to my rediscovery of an ancient, long-lost art: Enterprise software!
+  video_provider: "youtube"
+  video_id: "T_3t3nBwC7M"

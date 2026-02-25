@@ -1,14 +1,17 @@
 ---
 # TODO: talks running order
 # TODO: talk dates
-# TODO: conference website
 # TODO: schedule website
 
-- title: "Test Driven Development: A Love Story"
+# Website: https://web.archive.org/web/20130305234849/http://www.ancientcityruby.com/
+
+- id: "nell-shamrell-ancient-city-ruby-2013"
+  title: "Test Driven Development: A Love Story"
   raw_title: "Nell Shamrell - Test Driven Development: A Love Story - Ancient City Ruby 2013"
   speakers:
     - Nell Shamrell
-  event_name: Ancient City Ruby 2013
+  event_name: "Ancient City Ruby 2013"
+  date: "2013-04-04"
   published_at: "2013-06-24"
   description: |-
     Practicing Test Driven Development (TDD) is like falling in love. It may first seem like all your development problems will disappear. However, it's not all unicorns and rainbows. You have to work at it, and keep working at it, for the rest of your development life. It is hard, and it's natural to question whether the value is worth the effort.
@@ -18,107 +21,99 @@
     This talk will answer the "why" by sharing my experience of passing through the five stages of grief (denial, anger, bargaining, depression, and acceptance) as I learned TDD, and how acceptance grew to love.
 
     You will walk away from the talk with techniques for maintaining and strengthening your relationship with TDD. Test frameworks and languages may come and go, but the fundamentals and value of TDD remain.
-  video_provider: youtube
-  video_id: nBtO1UOK9Hs
+  video_provider: "youtube"
+  video_id: "nBtO1UOK9Hs"
 
-- title: "Insight, Intuition and Programming"
-  raw_title: Russ Olsen - Insight, Intuition and Programming - Ancient City Ruby 2013
+- id: "russ-olsen-ancient-city-ruby-2013"
+  title: "Insight, Intuition and Programming"
+  raw_title: "Russ Olsen - Insight, Intuition and Programming - Ancient City Ruby 2013"
   speakers:
     - Russ Olsen
-  event_name: Ancient City Ruby 2013
+  event_name: "Ancient City Ruby 2013"
+  date: "2013-04-04"
   published_at: "2013-06-24"
-  description:
-    "We programmers tend to think of ourselves as concrete, logical thinkers.
-    We work from step 1 to step 2 through to step N. So we say. But real life is not
-    like that: One minute you have no idea how the new design will come together and
-    the next, well, there it is. One minute you haven't a clue as to why the program
-    is doing that and the next it is all just obvious. And we have all seen code that
-    is wonderful or horrible in some indescribable way."
-  video_provider: youtube
-  video_id: rQp1CFJxgs0
+  description: |-
+    We programmers tend to think of ourselves as concrete, logical thinkers. We work from step 1 to step 2 through to step N. So we say. But real life is not like that: One minute you have no idea how the new design will come together and the next, well, there it is. One minute you haven't a clue as to why the program is doing that and the next it is all just obvious. And we have all seen code that is wonderful or horrible in some indescribable way.
+  video_provider: "youtube"
+  video_id: "rQp1CFJxgs0"
 
-- title: "Impressive Ruby Productivity with Vim and Tmux"
-  raw_title: Chris Hunt - Impressive Ruby Productivity with Vim and Tmux - Ancient City Ruby 2013
+- id: "chris-hunt-ancient-city-ruby-2013"
+  title: "Impressive Ruby Productivity with Vim and Tmux"
+  raw_title: "Chris Hunt - Impressive Ruby Productivity with Vim and Tmux - Ancient City Ruby 2013"
   speakers:
     - Chris Hunt
-  event_name: Ancient City Ruby 2013
+  event_name: "Ancient City Ruby 2013"
+  date: "2013-04-04"
   published_at: "2013-06-25"
-  description:
-    Impress your friends, scare your enemies, and boost your productivity
-    by 800% with this live demonstration of Vim and Tmux. You will learn how to build
-    custom IDEs for each of your projects, navigate quickly between files, write and
-    run tests, view and compare git history, create pull requests, publish gists,
-    format and refactor your code with macros, remote pair program, and more, all
-    without leaving the terminal. Come prepared to learn and ask questions; this is
-    serious business.
-  video_provider: youtube
-  video_id: 9jzWDr24UHQ
+  description: |-
+    Impress your friends, scare your enemies, and boost your productivity by 800% with this live demonstration of Vim and Tmux. You will learn how to build custom IDEs for each of your projects, navigate quickly between files, write and run tests, view and compare git history, create pull requests, publish gists, format and refactor your code with macros, remote pair program, and more, all without leaving the terminal. Come prepared to learn and ask questions; this is serious business.
+  video_provider: "youtube"
+  video_id: "9jzWDr24UHQ"
 
-- title: "Distributed Patterns in Ruby"
-  raw_title: Eric Redmond - Distributed Patterns in Ruby - Ancient City Ruby 2013
+- id: "eric-redmond-ancient-city-ruby-2013"
+  title: "Distributed Patterns in Ruby"
+  raw_title: "Eric Redmond - Distributed Patterns in Ruby - Ancient City Ruby 2013"
   speakers:
     - Eric Redmond
-  event_name: Ancient City Ruby 2013
+  event_name: "Ancient City Ruby 2013"
+  date: "2013-04-04"
   published_at: "2013-06-25"
-  description:
-    "Scalability today is no longer a question of which programming language
-    you use, or (largely) which web architecture you choose. Instead, scalability
-    is a matter of how you handle two things: data distribution and message passing.
-    This talk is over a few ways of solving both: distributed data structures and
-    messaging patterns."
-  video_provider: youtube
-  video_id: Adu_dbcnUHA
+  description: |-
+    Scalability today is no longer a question of which programming language you use, or (largely) which web architecture you choose. Instead, scalability is a matter of how you handle two things: data distribution and message passing. This talk is over a few ways of solving both: distributed data structures and messaging patterns.
+  video_provider: "youtube"
+  video_id: "Adu_dbcnUHA"
 
-- title: "How to Fail at Background Jobs"
-  raw_title: Jacob Burkhart - How to Fail at Background Jobs - Ancient City Ruby 2013
+- id: "jacob-burkhart-ancient-city-ruby-2013"
+  title: "How to Fail at Background Jobs"
+  raw_title: "Jacob Burkhart - How to Fail at Background Jobs - Ancient City Ruby 2013"
   speakers:
     - Jacob Burkhart
-  event_name: Ancient City Ruby 2013
+  event_name: "Ancient City Ruby 2013"
+  date: "2013-04-04"
   published_at: "2013-06-26"
-  description:
-    From DRB, XMPP, and AMQP to Resque and Rails 4. Running a background
-    worker process is a tool I've reached for often, and while the underlying tools
-    may change, the same problems seem to crop up in every one. A failed request serves
-    your fancy custom 500 error page, but what about a failed job? Is there such a
-    thing as a "reliable" queuing system that will never lose OR double process any
-    jobs? Are we talking about "simple" asynchronous method calls on models or should
-    we build "pure" workers with only the knowledge of a single task? What does "idempotent"
-    mean again? Please allow me to enliven the debates.
-  video_provider: youtube
-  video_id: dkFwNEFr9cg
+  description: |-
+    From DRB, XMPP, and AMQP to Resque and Rails 4. Running a background worker process is a tool I've reached for often, and while the underlying tools may change, the same problems seem to crop up in every one. A failed request serves your fancy custom 500 error page, but what about a failed job? Is there such a thing as a "reliable" queuing system that will never lose OR double process any jobs? Are we talking about "simple" asynchronous method calls on models or should we build "pure" workers with only the knowledge of a single task? What does "idempotent" mean again? Please allow me to enliven the debates.
+  video_provider: "youtube"
+  video_id: "dkFwNEFr9cg"
 
-- title: "Building a mocking library"
-  raw_title: Andy Lindeman - Building a mocking library - Ancient City Ruby 2013
+- id: "andy-lindeman-ancient-city-ruby-2013"
+  title: "Building a mocking library"
+  raw_title: "Andy Lindeman - Building a mocking library - Ancient City Ruby 2013"
   speakers:
     - Andy Lindeman
-  event_name: Ancient City Ruby 2013
+  event_name: "Ancient City Ruby 2013"
+  date: "2013-04-04"
   published_at: "2013-06-27"
   description: |-
     This talk is not about testing, nor is it really about mocking. However, analyzing a mock object library is a great way to showcase advanced Ruby topics. Have you ever wondered exactly how a mock object library does what it does? You can understand it!
 
     This talk uses a simplified mock object library as the basis for delving into topics such as metaprogramming and the Ruby object model. The goal is to increase the knowledge of these topics in the Ruby community. With this know--how, you will be better suited to build from and contribute to common Ruby tools that use them.
-  video_provider: youtube
-  video_id: 2aYdtS7FZJA
+  video_provider: "youtube"
+  video_id: "2aYdtS7FZJA"
 
-- title: "This is Your Brain on Software"
-  raw_title: Paolo Perrotta - This is Your Brain on Software - Ancient City Ruby 2013
+- id: "paolo-nusco-perrotta-ancient-city-ruby-2013"
+  title: "This is Your Brain on Software"
+  raw_title: "Paolo Perrotta - This is Your Brain on Software - Ancient City Ruby 2013"
   speakers:
     - Paolo "Nusco" Perrotta
-  event_name: Ancient City Ruby 2013
+  event_name: "Ancient City Ruby 2013"
+  date: "2013-04-04"
   published_at: "2013-06-27"
   description: |-
     Developers are rational thinkers who take objective decisions. Yeah, sure. If that is the case, how can we disagree on so many things?
 
     Examples are all around. Why do Rubyists and Java developers despise each others' designs? Why do people try hard to fit static typing and distributed environments? Why do Windows programmers loathe the command line? Let me try answering these questions, with a few hints from cognitive psychology.
-  video_provider: youtube
-  video_id: v9Gkq9-dnlU
+  video_provider: "youtube"
+  video_id: "v9Gkq9-dnlU"
 
-- title: "Live Coding with Ben"
-  raw_title: Ben Orenstein - Live Coding with Ben - Ancient City Ruby 2013
+- id: "ben-orenstein-ancient-city-ruby-2013"
+  title: "Live Coding with Ben"
+  raw_title: "Ben Orenstein - Live Coding with Ben - Ancient City Ruby 2013"
   speakers:
     - Ben Orenstein
-  event_name: Ancient City Ruby 2013
-  published_at: "2013-07-02"
+  event_name: "Ancient City Ruby 2013"
+  date: "2013-04-04"
+  published_at: "2013-07-01"
   description: |-
     Ben believes that the best way for programmers to learn is to watch each other work. We'll leave slides behind and focus instead on the greater information density achieved through live coding. We'll discuss the strengths and weaknesses of real code, and refactor it right onstage. As we do so, we'll bump into lots of meaty topics:
     -  Potential downfalls of the 'extract module' refactoring (aka ActiveSupport::Concern).
@@ -128,50 +123,49 @@
     -  Whether the Law of Demeter should be followed religiously, and what it means if that's hard to do.
     -  Why fast tests are usually good tests, and vice versa.
     -  Audience participation is strongly encouraged, as is stealing the speaker's Vim tricks for your own use.
-  video_provider: youtube
-  video_id: C0H-LyZy9Ko
+  video_provider: "youtube"
+  video_id: "C0H-LyZy9Ko"
 
-- title: "The Magic Tricks of Testing"
-  raw_title: Sandi Metz - Magic Tricks of Testing - Ancient City Ruby 2013
+- id: "sandi-metz-ancient-city-ruby-2013"
+  title: "The Magic Tricks of Testing"
+  raw_title: "Sandi Metz - Magic Tricks of Testing - Ancient City Ruby 2013"
   speakers:
     - Sandi Metz
-  event_name: Ancient City Ruby 2013
+  event_name: "Ancient City Ruby 2013"
+  date: "2013-04-04"
   published_at: "2013-07-02"
-  slides_url: https://speakerdeck.com/skmetz/magic-tricks-of-testing-ancientcityruby
+  slides_url: "https://speakerdeck.com/skmetz/magic-tricks-of-testing-ancientcityruby"
   description: |-
     Tests are supposed to save us money. How is it, then, that many times they become millstones around our necks, gradually morphing into fragile, breakable things that raise the cost of change?
 
     We write too many tests and we test the wrong kinds of things. This talk strips away the veil and offers simple, practical guidelines for choosing what to test and how to test it. Finding the right testing balance isn't magic, it's a magic trick; come and learn the secret of writing stable tests that protect your application at the lowest possible cost.
-  video_provider: youtube
-  video_id: qPfQM4w4I04
+  video_provider: "youtube"
+  video_id: "qPfQM4w4I04"
 
-- title: "Pairing is Caring"
-  raw_title: Avdi Grimm - Pairing is Caring - Ancient City Ruby 2013
+- id: "avdi-grimm-ancient-city-ruby-2013"
+  title: "Pairing is Caring"
+  raw_title: "Avdi Grimm - Pairing is Caring - Ancient City Ruby 2013"
   speakers:
     - Avdi Grimm
-  event_name: Ancient City Ruby 2013
-  published_at: "2013-07-02"
-  description:
-    In the second half of 2012 I "quit my job" as a traditional Ruby/Rails
-    consultant in order to become a consulting pair programmer. After spending hundreds
-    of hours pairing with dozens of developers from around the world, I'd like to
-    share some of my observations. We'll talk about the mechanics of ad-hoc remote
-    pair-programming, but more importantly about why I think widespread pairing is
-    important to maintaining the health of the Ruby community. Whether you work solo
-    or you pair regularly, you should leave this talk empowered and excited to broaden
-    your pair-programming horizons.
-  video_provider: youtube
-  video_id: zCzc5W7vHQg
+  event_name: "Ancient City Ruby 2013"
+  date: "2013-04-04"
+  published_at: "2013-07-08"
+  description: |-
+    In the second half of 2012 I "quit my job" as a traditional Ruby/Rails consultant in order to become a consulting pair programmer. After spending hundreds of hours pairing with dozens of developers from around the world, I'd like to share some of my observations. We'll talk about the mechanics of ad-hoc remote pair-programming, but more importantly about why I think widespread pairing is important to maintaining the health of the Ruby community. Whether you work solo or you pair regularly, you should leave this talk empowered and excited to broaden your pair-programming horizons.
+  video_provider: "youtube"
+  video_id: "zCzc5W7vHQg"
 
-- title: "Hacking with Gems"
-  raw_title: Ben Smith - Hacking with Gems - Ancient City Ruby 2013
+- id: "ben-smith-ancient-city-ruby-2013"
+  title: "Hacking with Gems"
+  raw_title: "Ben Smith - Hacking with Gems - Ancient City Ruby 2013"
   speakers:
     - Ben Smith
-  event_name: Ancient City Ruby 2013
-  published_at: "2013-07-02"
+  event_name: "Ancient City Ruby 2013"
+  date: "2013-04-04"
+  published_at: "2013-07-03"
   description: |-
     What's the worst that could happen if your app has a dependency on a malicious gem? How easy would it be to write a gem that could compromise a box?
 
     Much of the Ruby community blindly trusts our gems. This talk will make you second--guess that trust, and show you how to vet gems that you do choose to use.
-  video_provider: youtube
-  video_id: UksbZx4ph8E
+  video_provider: "youtube"
+  video_id: "UksbZx4ph8E"

@@ -25,6 +25,24 @@ module IconHelper
 
     IconHelper.svg_cache[cache_key] ||= begin
       full_path = Rails.root.join("app", "assets", "images", path)
+
+      unless File.exist?(full_path)
+        basename = File.basename(path, ".svg")
+        match = basename.match(/^(.+?)(?:-(brands))?-(solid|regular|light)$/)
+
+        if match
+          icon_name, type, style = match.captures
+          folder = type || style
+          search_url = "https://fontawesome.com/search?q=#{CGI.escape(icon_name)}"
+          github_url = "https://raw.githubusercontent.com/FortAwesome/Font-Awesome/7.x/svgs-full/#{folder}/#{icon_name}.svg"
+          curl_command = "curl -f -o #{full_path} \"#{github_url}\""
+
+          raise ArgumentError, "Icon not found. Download from\n#{search_url}\nand save to\n#{full_path}\n\nOr run the following curl command (only works for free icons, not Pro):\n#{curl_command}"
+        else
+          raise ArgumentError, "Icon not found: #{path}"
+        end
+      end
+
       svg_content = File.read(full_path)
 
       if options.present?
@@ -45,12 +63,6 @@ module IconHelper
 
       svg_content.html_safe
     end
-  end
-
-  def heroicon(icon_name, size: :md, variant: :outline, **options)
-    classes = class_names(SIZE_CLASSES[size], options[:class])
-    path = "icons/heroicons/#{variant}/#{icon_name.to_s.tr("_", "-")}.svg"
-    cached_inline_svg(path, class: classes, **options.except(:class))
   end
 
   def fontawesome(icon_name, size: :md, type: nil, style: :solid, **options)
