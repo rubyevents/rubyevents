@@ -148,6 +148,9 @@ unless defined?(Avo::Dashboards::BaseDashboard)
         def self.method_missing(...)
         end
 
+        def self.respond_to_missing?(...)
+        end
+
         def initialize
           raise "Cannot initialize #{self.class.name} without avo-pro gem: https://docs.avohq.io/3.0/gem-server-authentication.html#bundle-without-paid-gems"
         end
@@ -164,6 +167,9 @@ unless defined?(Avo::Cards::PartialCard)
         def self.method_missing(...)
         end
 
+        def self.respond_to_missing?(...)
+        end
+
         def initialize
           raise "Cannot initialize #{self.class.name} without avo-pro gem: https://docs.avohq.io/3.0/gem-server-authentication.html#bundle-without-paid-gems"
         end
@@ -178,6 +184,9 @@ unless defined?(Avo::Cards::MetricCard)
     module Cards
       class MetricCard
         def self.method_missing(...)
+        end
+
+        def self.respond_to_missing?(...)
         end
 
         def initialize
