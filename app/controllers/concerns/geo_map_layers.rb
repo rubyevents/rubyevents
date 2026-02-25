@@ -60,22 +60,22 @@ module GeoMapLayers
   def add_country_layer(layers)
     return unless @country.present?
 
-    maybe_add_layer(layers, id: "geo-country", label: @country.name, emoji: @country.emoji_flag, events: @country.events.includes(:series))
+    maybe_add_layer(layers, id: "geo-country", label: @country.name, emoji: @country.emoji_flag, bounds: @country.bounds, events: @country.events.includes(:series))
   end
 
   def add_continent_layer(layers)
     return unless @continent.present?
 
-    maybe_add_layer(layers, id: "geo-continent", label: @continent.name, emoji: @continent.emoji_flag, events: @continent.events.includes(:series))
+    maybe_add_layer(layers, id: "geo-continent", label: @continent.name, emoji: @continent.emoji_flag, bounds: @continent.bounds, events: @continent.events.includes(:series))
   end
 
-  def maybe_add_layer(layers, id:, label:, emoji:, events:)
+  def maybe_add_layer(layers, id:, label:, emoji:, events:, bounds: nil)
     current_marker_count = layers.last&.dig(:markers)&.size || 0
     markers = event_map_markers(filter_events_by_time(events.to_a).select(&:geocoded?))
 
     return unless markers.any? && markers.size > current_marker_count
 
-    layers << build_layer(id: id, label: label, emoji: emoji, markers: markers)
+    layers << build_layer(id: id, label: label, emoji: emoji, markers: markers, bounds: bounds)
   end
 
   def build_layer(id:, label:, emoji:, events: nil, markers: nil, bounds: nil, city_pin: nil, always_visible: false)

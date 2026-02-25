@@ -5,7 +5,7 @@
   <% back_to_title = params[:back_to_title].presence || "Talks" %>
 
   <div class="w-full flex">
-    <div class="flex-grow">
+    <div class="flex-grow min-w-0 overflow-hidden">
       <div class="flex items-center justify-between w-full hotwire-native:hidden">
         <%= link_to sanitize(back_path) do %>
           <div class="flex items-center gap-2 title text-base text-primary mb-4">
@@ -17,7 +17,7 @@
 
       <%= turbo_frame_tag "talk", target: "_top", data: {turbo_action: "advance"} do %>
         <% cache [@talk, Current.user].compact do %>
-          <%= render partial: "talks/talk", locals: {talk: @talk, user_favorite_talks_ids: @user_favorite_talks_ids} %>
+          <%= render partial: "talks/talk", locals: {talk: @talk, speakers: @speakers, user_favorite_talks_ids: @user_favorite_talks_ids, favorite_users: @favorite_users} %>
         <% end %>
       <% end %>
 

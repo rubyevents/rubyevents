@@ -43,6 +43,7 @@ class Event < ApplicationRecord
   include Geocodeable
   include Suggestable
   include Sluggable
+  include Todoable
   include Event::TypesenseSearchable
 
   geocodeable :location_and_country_code
@@ -62,6 +63,7 @@ class Event < ApplicationRecord
   has_many :aliases, class_name: "Event", foreign_key: "canonical_id"
   has_many :slug_aliases, as: :aliasable, class_name: "Alias", dependent: :destroy
   has_many :cfps, dependent: :destroy
+  belongs_to :city_record, class_name: "City", optional: true, foreign_key: [:city, :country_code, :state_code], primary_key: [:name, :country_code, :state_code]
 
   # Event participation associations
   has_many :event_participations, dependent: :destroy
@@ -342,5 +344,15 @@ class Event < ApplicationRecord
       featured_color: static_metadata.featured_color,
       url: Router.event_url(self, host: "#{request.protocol}#{request.host}:#{request.port}")
     }
+  end
+
+  private
+
+  def todos_data_path
+    Rails.root.join("data", series.slug, slug)
+  end
+
+  def todos_file_prefix
+    "#{series.slug}/#{slug}"
   end
 end

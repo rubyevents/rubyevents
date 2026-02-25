@@ -3,6 +3,7 @@
 <% video_player_controller = talk.external_player ? nil : "video-player" %>
 
 <%= content_tag :div, id: dom_id(talk, :player_container),
+      class: "w-full max-w-full",
       data: {
         controller: video_player_controller,
         video_player_poster_value: talk.thumbnail_xl,
@@ -17,7 +18,7 @@
         video_player_watched_value: is_watched
       } do %>
 
-  <div class="relative overflow-hidden bg-gray-300 aspect-video banner-img card-horizontal-img rounded-xl outline outline-1 outline-gray-300">
+  <div class="relative overflow-hidden bg-gray-300 aspect-video banner-img card-horizontal-img rounded-xl outline outline-1 outline-gray-300 w-full max-w-full">
     <% if talk.external_player %>
       <%= link_to talk.external_player_url, target: "_blank", class: "relative w-full h-full block" do %>
         <%= image_tag talk.thumbnail_xl, class: "w-full h-full object-cover rounded-xl", style: "view-transition-name: #{dom_id(talk, :image)}" %>

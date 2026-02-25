@@ -2,7 +2,7 @@
   <div role="tablist" class="tabs tabs-boxed bg-base-100 mt-2">
     <input type="radio" name="talk_kinds" role="tab" class="tab px-6 !rounded-lg" aria-label="All" <% if talks.size.positive? %> checked <% end %>>
     <div role="tabpanel" class="tab-content mt-6">
-      <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 md:[&>:nth-child(4)]:hidden lg:grid-cols-4 lg:[&>:nth-child(4)]:block">
+      <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         <%= render partial: "talks/card",
               collection: talks,
               as: :talk,
@@ -19,7 +19,7 @@
       <input type="radio" name="talk_kinds" role="tab" class="tab px-6 !rounded-lg" aria-label="<%= talks.first.formatted_kind.pluralize %> (<%= talks.size %>)">
 
       <div role="tabpanel" class="tab-content mt-6">
-        <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 md:[&>:nth-child(4)]:hidden lg:grid-cols-4 lg:[&>:nth-child(4)]:block">
+        <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           <%= render partial: "talks/card",
                 collection: talks,
                 as: :talk,

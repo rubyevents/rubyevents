@@ -44,7 +44,7 @@ jobs:
             rubocop-${{ runner.os }}-${{ env.RUBY_VERSION }}-${{ env.DEPENDENCIES_HASH }}-
 
       - name: StandardRB Check
-        run: bundle exec standardrb
+        run: bundle exec standardrb --format github --format "Standard::Formatter"
 
       - name: StandardJS Check
         run: yarn lint
@@ -136,6 +136,9 @@ jobs:
 
       - name: Verify all thumbnails for child talks are present
         run: bin/rails verify_thumbnails
+
+      - name: Validate no duplicated speakers in database
+        run: bin/rails validate:speaker_duplicates
 
   build:
     name: Build Docker Image

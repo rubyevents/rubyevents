@@ -12,8 +12,10 @@ module Static
     end
 
     def import!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
-      city_record = ::City.find_or_initialize_by(slug: slug)
-      city_record ||= ::City.find_or_initialize_by(name: name, state_code: state_code, country_code: country_code)
+      city_record = ::City.find_by(slug: slug)
+      city_record ||= ::City.find_by(name: name, state_code: state_code, country_code: country_code)
+      city_record ||= find_by_yaml_aliases
+      city_record ||= ::City.new
 
       city_record.assign_attributes(
         name: name,
@@ -32,9 +34,29 @@ module Static
         raise e
       end
 
+      city_record.sync_aliases_from_list(aliases) if aliases.present?
+
       Search::Backend.index(city_record) if index
 
       city_record
+    end
+
+    private
+
+    def find_by_yaml_aliases
+      return nil if aliases.blank?
+
+      aliases.each do |alias_name|
+        city = ::City.where(country_code: country_code).where("LOWER(name) = ?", alias_name.downcase).first
+
+        return city if city
+
+        city = ::City.find_by_alias(alias_name, country_code: country_code)
+
+        return city if city
+      end
+
+      nil
     end
   end
 end

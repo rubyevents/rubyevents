@@ -2,7 +2,11 @@
 
 <%= turbo_refreshes_with method: :morph, scroll: :preserve %>
 
-<% title "Events Map in #{location.name}" %>
+<% if location.is_a?(CoordinateLocation) %>
+  <% title "Events Map near #{location.name}" %>
+<% else %>
+  <% title "Events Map in #{location.name}" %>
+<% end %>
 
 <% all_layers = layers.presence || geo_layers %>
 <% total_markers = geo_layers.sum { |l| l[:markers]&.count || 0 } %>

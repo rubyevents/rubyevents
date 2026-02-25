@@ -23,13 +23,13 @@
             style: "view-transition-name: #{dom_id(event, :logo)}",
             loading: :lazy %>
 
-      <div class="flex-col flex justify-center break-all">
+      <div class="flex-col flex justify-center">
         <h1 class="mb-2 text-black font-bold"><%= title event.name %></h1>
         <h3 class="text-[#636B74]">
           <%= event.to_location.to_html %>
           • <%= event.formatted_dates %>
         </h3>
-        <%= external_link_to event.website.gsub(%r{^https?://}, "").gsub(%r{/$}, ""), event.website %>
+        <%= external_link_to event.website.gsub(%r{^https?://}, "").gsub(%r{/$}, ""), event.website, class: "break-all" %>
       </div>
     </div>
 
@@ -39,13 +39,24 @@
       <%= render Tito::ButtonComponent.new(event: event) %>
 
       <% if Current.user&.admin? %>
-        <%= ui_button url: reimport_event_path(event), method: :post, kind: :neutral, size: :sm, class: "w-full" do %>
-          Reimport Event
-        <% end %>
-
-        <%= ui_button url: avo.resources_event_path(event), target: :_blank, kind: :neutral, size: :sm, class: "w-full" do %>
-          Open in Avo
-        <% end %>
+        <div class="flex items-center gap-2 mt-4 pt-4 border-t border-gray-200">
+          <span class="text-xs text-gray-400 uppercase tracking-wide">Admin</span>
+          <%= ui_tooltip "Reimport Event" do %>
+            <%= ui_button url: reimport_event_path(event), method: :post, kind: :neutral, size: :sm do %>
+              <%= fa "download", size: :sm %>
+            <% end %>
+          <% end %>
+          <%= ui_tooltip "Reindex Event" do %>
+            <%= ui_button url: reindex_event_path(event), method: :post, kind: :neutral, size: :sm do %>
+              <%= fa "arrows-rotate", size: :sm %>
+            <% end %>
+          <% end %>
+          <%= ui_tooltip "Open in Avo" do %>
+            <%= ui_button url: avo.resources_event_path(event), target: :_blank, kind: :neutral, size: :sm do %>
+              <%= fa :avocado, size: :sm %>
+            <% end %>
+          <% end %>
+        </div>
       <% end %>
     </div>
   </div>

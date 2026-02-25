@@ -5,7 +5,7 @@ class CitiesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show show_by_country show_with_state]
 
   def index
-    @cities = City.all
+    @cities = City.includes(:users, :events).all
   end
 
   def show

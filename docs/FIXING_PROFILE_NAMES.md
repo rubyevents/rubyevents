@@ -15,7 +15,7 @@ Fixing speaker/profile names is a pretty common occurance, and we have a few dif
 In this example, we set up two aliases for Matz.
 All future talks with Matz or Yukihiro 'Matz' Matsumoto will redirect to Yukihiro "Matz" Matsumoto.
 
-```
+```yaml
 - name: "Yukihiro \"Matz\" Matsumoto"
   github: "matz"
   slug: "yukihiro-matz-matsumoto"
@@ -28,30 +28,30 @@ All future talks with Matz or Yukihiro 'Matz' Matsumoto will redirect to Yukihir
 
 ## Duplicate names in speakers.yml
 
-If there are two instances of a user in speakers.yml, we create two users.
+If there are two instances of a user in `speakers.yml`, we create two users.
 
-- De-dupe the /data/speakers.yml - there should be one speaker with a name and GitHub handle.
-  - Create an alias in speakers.yml if the duplicated name is likely to be used again.
+- De-dupe the `/data/speakers.yml` - there should be one speaker with a name and GitHub handle.
+  - Create an alias in `speakers.yml` if the duplicated name is likely to be used again.
 - Update all talks to use the name of the de-duped speaker.
 - After merge:
+  - In the admin, delete the old user.
   - Run the seeds on production
-  - In the admin, after confirming talks are transferred, delete the old user.
 
 ## Two different GitHub profiles
 
-- Pick one canonical GitHub profile and put it in speakers.yml
+- Pick one canonical GitHub profile and put it in `speakers.yml`
   - Add an alias for the old GitHub profile so it redirects to the new one
 - Remove the other speaker
 - All talks should reference the name from that profile
 
 ## Missing GitHub profile on Speaker - Signed up as user
 
-- Update /data/speakers.yml with the GitHub handle
+- Update `/data/speakers.yml` with the GitHub handle
 - Run `bundle exec rake db:seed` to ensure there are no duplicates
 - Run seeds again in production
 
 ## Updating your name
 
-- Update the name in speakers.yml
-- Update all references in the videos.yml and involvements.yml to the new name
+- Update the name in `speakers.yml`
+- Update all references in the `videos.yml` and `involvements.yml` to the new name
 - Create an alias from the old name to redirect to the new name

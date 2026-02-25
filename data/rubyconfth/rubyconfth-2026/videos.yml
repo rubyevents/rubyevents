@@ -5,51 +5,67 @@
   date: "2026-01-31"
   description: ""
   event_name: "RubyConf TH 2026"
-  published_at: "TODO"
   speakers:
-    - Roland Lopez
+    - Bill Sendewicz
   slug: "opening-address-bangkok-rb-rubyconf-th-2026"
   video_id: "opening-address-bangkok-rb"
-  video_provider: "scheduled"
+  video_provider: "not_recorded"
 
 - id: "irina-nazarova-rubyconfth-2026"
-  title: "Keynote by Irina Nazarova"
-  raw_title: "RubyConfTH 2026 - Keynote by Irina Nazarova"
+  title: "Opening Keynote: Startups on Rails in 2026"
+  raw_title: "RubyConfTH 2026 - Opening Keynote: Startups on Rails in 2026"
   speakers:
     - Irina Nazarova
   event_name: "RubyConf TH 2026"
   date: "2026-01-31"
-  published_at: "TODO"
+  published_at: "2026-02-20"
   description: ""
   slug: "irina-nazarova-rubyconfth-2026"
-  video_provider: "scheduled"
-  video_id: "irina-nazarova-rubyconfth-2026"
+  video_provider: "youtube"
+  video_id: "8Ak3NbvtS7w"
+  slides_url: "https://sfruby.com/rubyconfth/"
 
 - id: "15-years-of-rails-with-domain-driven-design-lessons-learnt"
-  title: "15 years of Rails with Domain Driven Design - lessons learnt"
-  raw_title: "RubyConfTH 2026 - 15 years of Rails with Domain Driven Design - lessons learnt"
+  title: "15 Years of Rails With Domain Driven Design - Lessons Learnt"
+  raw_title: "RubyConfTH 2026 - 15 Years of Rails With Domain Driven Design - Lessons Learnt"
   speakers:
     - Andrzej Krzywda
   event_name: "RubyConf TH 2026"
   date: "2026-01-31"
-  published_at: "TODO"
-  description: ""
+  published_at: "2026-02-20"
+  description: |-
+    This talk presents what is the current problem with Rails apps from AI agents perspective. The lack of modularity in Rails apps make agents confused - the context is too big for them. The solution is making a big number of small modules with well defined interfaces.
+
+    Domain Driven Design (DDD) is a technique which, together with event-driven and CQRS results in smaller modules.
+
+    The app I am presenting has 50 small modules, composed via commands and events.
+
+    I am also presenting an algorithm which helps reducing the size of ActiveRecord models - by gradually moving their responsibilities to read models and aggregates.
+
+    Look at this repo to see the modularity mentioned - https://github.com/RailsEventStore/ecommerce
   slug: "15-years-of-rails-with-domain-driven-design-lessons-learnt-rubyconf-th-2026"
-  video_provider: "scheduled"
-  video_id: "15-years-of-rails-with-domain-driven-design-lessons-learnt"
+  video_provider: "youtube"
+  video_id: "g5hcMxAs4cU"
+  slides_url: "https://speakerdeck.com/andrzejkrzywda/15-years-with-rails-and-ddd-ai-edition"
+  additional_resources:
+    - name: "RailsEventStore/ecommerce"
+      type: "repo"
+      url: "https://github.com/RailsEventStore/ecommerce"
 
 - id: "dont-rewrite-your-framework"
-  title: "Don't rewrite your framework"
-  raw_title: "RubyConfTH 2026 - Don't rewrite your framework"
+  title: "Don't Rewrite Your Framework"
+  raw_title: "RubyConfTH 2026 - Don't Rewrite Your Framework"
   speakers:
-    - Vinicius Alonso
+    - Vinícius Alonso
   event_name: "RubyConf TH 2026"
   date: "2026-01-31"
-  published_at: "TODO"
-  description: ""
+  published_at: "2026-02-20"
+  description: |-
+    Have you ever seen someone rewriting the framework during a code review? After some time studying the Ruby on Rails documentation and doing some research on Reddit, I found some interesting features that are often not known by developers.
   slug: "dont-rewrite-your-framework-rubyconf-th-2026"
-  video_provider: "scheduled"
-  video_id: "dont-rewrite-your-framework"
+  video_provider: "youtube"
+  video_id: "jVnGiOhNdOA"
+  slides_url: "https://speakerdeck.com/viniciusalonso/dont-rewrite-your-framework-rubyconfth"
 
 - id: "solid-golden-hammer"
   title: "SOLID Golden Hammer"
@@ -58,11 +74,12 @@
     - Arkadiy Zabazhanov
   event_name: "RubyConf TH 2026"
   date: "2026-01-31"
-  published_at: "TODO"
+  published_at: "2026-02-20"
   description: ""
   slug: "solid-golden-hammer-rubyconf-th-2026"
-  video_provider: "scheduled"
-  video_id: "solid-golden-hammer"
+  video_provider: "youtube"
+  video_id: "HF6MWLwdSnk"
+  slides_url: "https://docs.google.com/presentation/d/147vcrJoi9Osthg7NpodmQ0hjDo_6MCn3BCZJ7Iq8IdM/edit?usp=sharing"
 
 - id: "breaking-rules-to-ship-products-a-beginners-rails-journey"
   title: "Breaking Rules to Ship Products: A Beginner's Rails Journey"
@@ -71,128 +88,145 @@
     - Onur Ozer
   event_name: "RubyConf TH 2026"
   date: "2026-01-31"
-  published_at: "TODO"
-  description: ""
+  published_at: "2026-02-20"
+  description: |-
+    After a long career in marketing, this is my personal story of learning Ruby and Rails with the goal of building SaaS businesses, and the lessons I had to learn along the way.
   slug: "breaking-rules-to-ship-products-a-beginners-rails-journey-rubyconf-th-2026"
-  video_provider: "scheduled"
-  video_id: "breaking-rules-to-ship-products-a-beginners-rails-journey"
+  video_provider: "youtube"
+  video_id: "WFVokjTblC0"
+  slides_url: "https://speakerdeck.com/onurozer/breaking-rules-to-ship-products-a-beginners-rails-journey"
 
 - id: "operating-rails-what-about-after-you-deploy"
-  title: "operating rails: what about after you deploy?"
-  raw_title: "RubyConfTH 2026 - operating rails: what about after you deploy?"
+  title: "Operating Rails: What About After You Deploy?"
+  raw_title: "RubyConfTH 2026 - Operating Rails: What About After You Deploy?"
   speakers:
     - André Arko
   event_name: "RubyConf TH 2026"
   date: "2026-01-31"
-  published_at: "TODO"
-  description: ""
+  published_at: "2026-02-20"
+  description: |-
+    There are a million tutorials out there showing you how to build a blog in Rails (in just 15 minutes!) and how to deploy that Rails app to some cloud provider (in just 5 minutes!), but what about after that first half-hour? When the guide says "this tutorial of course isn't production ready", what actually is production-ready? Let's talk about operating Rails apps in production.
   slug: "operating-rails-what-about-after-you-deploy-rubyconf-th-2026"
-  video_provider: "scheduled"
-  video_id: "operating-rails-what-about-after-you-deploy"
+  video_provider: "youtube"
+  video_id: "Zo7xVGZCSEA"
+  slides_url: "https://speakerdeck.com/indirect/operating-rails-what-about-after-you-deploy-df2100d4-10b0-4ac5-a15b-97c53da10832"
 
 - id: "if-you-didnt-record-it-it-didnt-happen-practical-observability-for-rails"
-  title: "If You Didn't Record It, It Didn't Happen: Practical Observability for Rails"
-  raw_title: "RubyConfTH 2026 - If You Didn't Record It, It Didn't Happen: Practical Observability for Rails"
+  title: "If You Didn't Record It It Didn't Happen: Practical Observability for Rails"
+  raw_title: "RubyConfTH 2026 - If You Didn't Record It It Didn't Happen: Practical Observability for Rails"
   speakers:
     - Aaron Cruz
   event_name: "RubyConf TH 2026"
   date: "2026-01-31"
-  published_at: "TODO"
-  description: ""
+  published_at: "2026-02-20"
+  description: |-
+    Your Rails app is in production. A user says it's slow. Another says a feature just broke. You need answers fast. This talk shows how to make your app observable: capturing metrics, logs, and traces, then feeding them into open source monitoring tools. You'll see what's worth recording, how to avoid drowning in noise, and how to set alerts that lead straight to the cause. Walk away ready to see inside your app when it matters most and fix problems before everything is on fire.
   slug: "if-you-didnt-record-it-it-didnt-happen-practical-observability-for-rails-rubyconf-th-2026"
-  video_provider: "scheduled"
-  video_id: "if-you-didnt-record-it-it-didnt-happen-practical-observability-for-rails"
+  video_provider: "youtube"
+  video_id: "u-cIr4MKWtQ"
+  slides_url: "https://speakerdeck.com/pferdefleisch/if-you-didnt-record-it-it-didnt-happen-practical-observability-for-rails"
 
 - id: "ruby-in-the-8-bit-world-a-small-mruby-vm-for-the-zilog-z80"
-  title: "Ruby in the 8 bit world - a small mruby VM for the Zilog Z80"
-  raw_title: "RubyConfTH 2026 - Ruby in the 8 bit world - a small mruby VM for the Zilog Z80"
+  title: "Ruby in the 8 Bit World - A Small mruby VM for the Zilog Z80"
+  raw_title: "RubyConfTH 2026 - Ruby in the 8 Bit World - A Small mruby VM for the Zilog Z80"
   speakers:
     - Yuji Yokoo
   event_name: "RubyConf TH 2026"
   date: "2026-01-31"
-  published_at: "TODO"
+  published_at: "2026-02-20"
   description: ""
   slug: "ruby-in-the-8-bit-world-a-small-mruby-vm-for-the-zilog-z80-rubyconf-th-2026"
-  video_provider: "scheduled"
-  video_id: "ruby-in-the-8-bit-world-a-small-mruby-vm-for-the-zilog-z80"
+  video_provider: "youtube"
+  video_id: "T3b86TLK9zk"
+  additional_resources:
+    - name: "yujiyokoo/mrubyz"
+      type: "repo"
+      url: "https://codeberg.org/yujiyokoo/mrubyz"
 
 - id: "marco-roth-rubyconfth-2026"
-  title: "Keynote by Marco Roth"
-  raw_title: "RubyConfTH 2026 - Keynote by Marco Roth"
+  title: "Closing Keynote: Herb to ReActionView: A New Foundation for the View Layer"
+  raw_title: "RubyConfTH 2026 - Closing Keynote: Herb to ReActionView: A New Foundation for the View Layer"
   speakers:
     - Marco Roth
   event_name: "RubyConf TH 2026"
   date: "2026-01-31"
-  published_at: "TODO"
-  description: ""
+  published_at: "2026-02-20"
+  description: |-
+    This keynote is an overview of how Herb came to be, what Herb can do for you today, and what the future with ReActionView might look like and how Herb could enable it.
   slug: "marco-roth-rubyconfth-2026"
-  video_provider: "scheduled"
-  video_id: "marco-roth-rubyconfth-2026"
+  video_provider: "youtube"
+  video_id: "rZT9ex3w9bI"
+  slides_url: "https://speakerdeck.com/marcoroth/herb-to-reactionview-a-new-foundation-for-the-view-layer-at-rubyconf-th-2026-bangkok-thailand"
 
 - id: "ridhwana-khan-rubyconfth-2026"
-  title: "Keynote by Ridhwana Khan"
-  raw_title: "RubyConfTH 2026 - Keynote by Ridhwana Khan"
+  title: "Opening Keynote: The Architecture of Understanding: Building Clarity in Complex Ruby Systems"
+  raw_title: "RubyConfTH 2026 - Opening Keynote: The Architecture of Understanding: Building Clarity in Complex Ruby Systems"
   speakers:
     - Ridhwana Khan
   event_name: "RubyConf TH 2026"
   date: "2026-02-01"
-  published_at: "TODO"
+  published_at: "2026-02-20"
   description: ""
   slug: "ridhwana-khan-rubyconfth-2026"
-  video_provider: "scheduled"
-  video_id: "ridhwana-khan-rubyconfth-2026"
+  video_provider: "youtube"
+  video_id: "Op5GunxvRKU"
+  slides_url: "https://www.slideshare.net/slideshow/the-architecture-of-understanding-how-to-build-clarity-in-complex-ruby-systems/286094300"
 
 - id: "building-a-rails-engine-from-scratch-lessons-from-active-storage-dashboard"
-  title: "Building a Rails Engine from Scratch: Lessons from Active Storage Dashboard"
-  raw_title: "RubyConfTH 2026 - Building a Rails Engine from Scratch: Lessons from Active Storage Dashboard"
+  title: "Building a Rails Engine From Scratch: Lessons From Active Storage Dashboard"
+  raw_title: "RubyConfTH 2026 - Building a Rails Engine From Scratch: Lessons From Active Storage Dashboard"
   speakers:
     - Giovanni Panasiti
   event_name: "RubyConf TH 2026"
   date: "2026-02-01"
-  published_at: "TODO"
+  published_at: "2026-02-20"
   description: ""
   slug: "building-a-rails-engine-from-scratch-lessons-from-active-storage-dashboard-rubyconf-th-2026"
-  video_provider: "scheduled"
-  video_id: "building-a-rails-engine-from-scratch-lessons-from-active-storage-dashboard"
+  video_provider: "youtube"
+  video_id: "BM5jbduE52Y"
+  slides_url: "https://drive.google.com/file/d/1rfbrNXawFuwtzri7ZN4xwXj-FbxteDZ-/view?usp=sharing"
 
-- id: "ethical-ai-push-forward-turning-one-off-originals-into-infinite-prints"
-  title: "Ethical AI Push Forward: Turning One-Off Originals into Infinite Prints"
-  raw_title: "RubyConfTH 2026 - Ethical AI Push Forward: Turning One-Off Originals into Infinite Prints"
+- id: "making-canvas-prints-from-artwork-photos-pipeline-constraints-upscaling-models"
+  title: "Making Canvas Prints From Artwork Photos: Pipeline Constraints & Upscaling Models"
+  raw_title: "RubyConfTH 2026 - Making Canvas Prints From Artwork Photos: Pipeline Constraints & Upscaling Models"
   speakers:
     - Alex Timofeev
   event_name: "RubyConf TH 2026"
   date: "2026-02-01"
-  published_at: "TODO"
+  published_at: "2026-02-20"
   description: ""
-  slug: "ethical-ai-push-forward-turning-one-off-originals-into-infinite-prints-rubyconf-th-2026"
-  video_provider: "scheduled"
-  video_id: "ethical-ai-push-forward-turning-one-off-originals-into-infinite-prints"
+  slug: "making-canvas-prints-from-artwork-photos-pipeline-constraints-upscaling-models-rubyconf-th-2026"
+  video_provider: "youtube"
+  video_id: "dAhSOlcgIaU"
+  slides_url: "https://speakerdeck.com/querystring/making-canvas-prints-from-artwork-photos-pipeline-constraints-and-upscaling-models"
 
 - id: "cell-based-architecture-with-ruby-on-rails"
-  title: "Cell-based Architecture with Ruby on Rails"
-  raw_title: "RubyConfTH 2026 - Cell-based Architecture with Ruby on Rails"
+  title: "Cell-Based Architecture With Ruby on Rails"
+  raw_title: "RubyConfTH 2026 - Cell-Based Architecture With Ruby on Rails"
   speakers:
     - Roonglit Chareonsupkul
   event_name: "RubyConf TH 2026"
   date: "2026-02-01"
-  published_at: "TODO"
+  published_at: "2026-02-20"
   description: ""
   slug: "cell-based-architecture-with-ruby-on-rails-rubyconf-th-2026"
-  video_provider: "scheduled"
-  video_id: "cell-based-architecture-with-ruby-on-rails"
+  video_provider: "youtube"
+  video_id: "vySzceQGhiw"
+  slides_url: "https://drive.google.com/file/d/1wHZbt0jXLVBLRgm_t28lAk05RiEcRqIe/view"
 
 - id: "metaprogramming-isnt-real-it-cant-hurt-you"
-  title: "Metaprogramming isn't real, it can't hurt you"
-  raw_title: "RubyConfTH 2026 - Metaprogramming isn't real, it can't hurt you"
+  title: "Metaprogramming Isn't Real, It Can't Hurt You"
+  raw_title: "RubyConfTH 2026 - Metaprogramming Isn't Real, It Can't Hurt You"
   speakers:
-    - OKURA Masafumi
+    - Masafumi Okura
   event_name: "RubyConf TH 2026"
   date: "2026-02-01"
-  published_at: "TODO"
+  published_at: "2026-02-20"
   description: ""
   slug: "metaprogramming-isnt-real-it-cant-hurt-you-rubyconf-th-2026"
-  video_provider: "scheduled"
-  video_id: "metaprogramming-isnt-real-it-cant-hurt-you"
+  video_provider: "youtube"
+  video_id: "-n9Rj8nO74o"
+  slides_url: "https://speakerdeck.com/okuramasafumi/metaprogramming-isnt-real-it-cant-hurt-you"
 
 - id: "from-9-to-5-to-pull-requests-sustainable-open-source-contribution"
   title: "From 9-to-5 to Pull Requests: Sustainable Open Source Contribution"
@@ -201,11 +235,12 @@
     - Joshua Young
   event_name: "RubyConf TH 2026"
   date: "2026-02-01"
-  published_at: "TODO"
+  published_at: "2026-02-20"
   description: ""
   slug: "from-9-to-5-to-pull-requests-sustainable-open-source-contribution-rubyconf-th-2026"
-  video_provider: "scheduled"
-  video_id: "from-9-to-5-to-pull-requests-sustainable-open-source-contribution"
+  video_provider: "youtube"
+  video_id: "KUrnmarNkVQ"
+  slides_url: "https://drive.google.com/file/d/1oG2DvCz35YAhojwaFgSBFQYkJLdeIXG4/view?usp=sharing"
 
 - id: "simulation-testing-for-background-jobs"
   title: "Simulation Testing for Background Jobs"
@@ -214,34 +249,36 @@
     - Stephen Margheim
   event_name: "RubyConf TH 2026"
   date: "2026-02-01"
-  published_at: "TODO"
+  published_at: "2026-02-20"
   description: ""
   slug: "simulation-testing-for-background-jobs-rubyconf-th-2026"
-  video_provider: "scheduled"
-  video_id: "simulation-testing-for-background-jobs"
+  video_provider: "youtube"
+  video_id: "CacDguC_l0s"
 
-- id: ""
-  title: "What software engineers can learn from the Chernobyl disaster"
-  raw_title: "RubyConfTH 2026 - What software engineers can learn from the Chernobyl disaster"
+- id: "what-software-engineers-can-learn-from-the-chernobyl-disaster"
+  title: "What Software Engineers Can Learn From the Chernobyl Disaster"
+  raw_title: "RubyConfTH 2026 - What Software Engineers Can Learn From the Chernobyl Disaster"
   speakers:
     - Frederick Cheung
   event_name: "RubyConf TH 2026"
   date: "2026-02-01"
-  published_at: "TODO"
+  published_at: "2026-02-20"
   description: ""
   slug: "what-software-engineers-can-learn-from-the-chernobyl-disaster-rubyconf-th-2026"
-  video_provider: "scheduled"
-  video_id: "what-software-engineers-can-learn-from-the-chernobyl-disaster"
+  video_provider: "youtube"
+  video_id: "BHc8kWh8_AY"
+  slides_url: "https://drive.google.com/file/d/1_nzOoetrErKKxTPD-i1yUa6kTSeXpfwv/view"
 
 - id: "carmine-paolino-rubyconfth-2026"
-  title: "Keynote by Carmine Paolino"
-  raw_title: "RubyConfTH 2026 - Keynote by Carmine Paolino"
+  title: "Closing Keynote: Ruby Is the Best Language for Building AI Web Apps"
+  raw_title: "RubyConfTH 2026 - Closing Keynote: Ruby Is the Best Language for Building AI Web Apps"
   speakers:
     - Carmine Paolino
   event_name: "RubyConf TH 2026"
   date: "2026-02-01"
-  published_at: "TODO"
+  published_at: "2026-02-20"
   description: ""
   slug: "carmine-paolino-rubyconfth-2026"
-  video_provider: "scheduled"
-  video_id: "carmine-paolino-rubyconfth-2026"
+  video_provider: "youtube"
+  video_id: "fAHif8MNCfw"
+  slides_url: "https://talks.paolino.me/rubyconfth-2026"

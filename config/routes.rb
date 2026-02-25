@@ -16,6 +16,13 @@ Rails.application.routes.draw do
   get "/pages/assets", to: "page#assets"
   get "/featured" => "page#featured"
 
+  # announcements/blog
+  resources :announcements, only: [:index, :show], param: :slug do
+    collection do
+      get :feed, defaults: {format: :rss}
+    end
+  end
+
   resources :browse, only: [:index, :show]
 
   # authentication
@@ -122,6 +129,18 @@ Rails.application.routes.draw do
     end
   end
 
+  get "/locations/search", to: "coordinates#index", as: :locations_search
+
+  get "/locations/@:coordinates", to: "coordinates#show", as: :coordinates,
+    constraints: {coordinates: /[-\d.]+,[-\d.]+/}
+  scope "/locations/@:coordinates", as: :coordinates, constraints: {coordinates: /[-\d.]+,[-\d.]+/} do
+    scope module: :locations do
+      resources :past, only: [:index]
+      resources :users, only: [:index]
+      resources :map, only: [:index]
+    end
+  end
+
   resources :gems, param: :gem_name, only: [:index, :show] do
     member do
       get :talks
@@ -135,6 +154,7 @@ Rails.application.routes.draw do
   end
 
   resources :contributions, only: [:index, :show], param: :step
+  resources :todos, only: [:index], path: "data/todos"
 
   resources :templates, only: [:new, :create] do
     collection do
@@ -182,6 +202,8 @@ Rails.application.routes.draw do
   end
 
   resources :profiles, param: :slug, only: [:show, :update, :edit] do
+    post :reindex, on: :member
+
     scope module: :profiles do
       resources :talks, only: [:index]
       resources :events, only: [:index]
@@ -206,7 +228,9 @@ Rails.application.routes.draw do
 
   resources :events, param: :slug, only: [:index, :show, :update, :edit] do
     resources :event_participations, only: [:create, :destroy]
+
     post :reimport, on: :member
+    post :reindex, on: :member
 
     scope module: :events do
       collection do
@@ -219,6 +243,7 @@ Rails.application.routes.draw do
         get "/cities/:city", to: redirect("/cities", status: 301)
         resources :series, param: :slug, only: [:index, :show] do
           post :reimport, on: :member
+          post :reindex, on: :member
         end
         resources :attendances, only: [:index, :show], param: :event_slug
       end
@@ -238,6 +263,7 @@ Rails.application.routes.draw do
       resources :cfp, only: [:index]
       resources :collectibles, only: [:index]
       resource :tickets, only: [:show]
+      resources :todos, only: [:index]
     end
   end
 
@@ -306,6 +332,24 @@ Rails.application.routes.draw do
         end
         namespace :ios do
           resource :path_configuration, only: :show
+        end
+      end
+    end
+  end
+
+  namespace :api, defaults: {format: "json"} do
+    namespace :v1 do
+      namespace :embed do
+        match "*path", to: "base#preflight", via: :options
+
+        resources :talks, only: [:index, :show], param: :slug
+        resources :speakers, only: [:index, :show], param: :slug
+        resources :profiles, only: [:index, :show], param: :slug
+        resources :topics, only: [:show], param: :slug
+        resources :stickers, only: [:show], param: :slug
+        resources :stamps, only: [:show], param: :slug
+        resources :events, only: [:index, :show], param: :slug do
+          get :participants, on: :member
         end
       end
     end

@@ -206,6 +206,10 @@ module Static
       end
     end
 
+    def imported?
+      ::Event.exists?(slug: slug)
+    end
+
     def event_record
       @event_record ||= ::Event.find_by(slug: slug) || import!
     end
@@ -321,6 +325,10 @@ module Static
       puts event.slug unless Rails.env.test?
 
       event
+    rescue ActiveRecord::RecordInvalid => e
+      error_location = ActiveSupport::BacktraceCleaner.new.clean_locations(e.backtrace_locations).first
+      puts "::error file=#{error_location&.path},line=#{error_location&.lineno}::#{e.record.class} (#{e.record&.to_param}) - #{e.detailed_message}"
+      raise e
     end
 
     def import_cfps!(event)
@@ -342,6 +350,7 @@ module Static
     end
 
     def import_videos!(event, index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
+      return unless imported?
       return unless event.videos_file.exist?
 
       event.videos_file.entries.each do |talk_data|
@@ -365,10 +374,12 @@ module Static
     end
 
     def import_sponsors!(event)
+      return unless imported?
       return unless event.sponsors_file.exist?
 
       require "public_suffix"
 
+      organisation_ids = []
       event.sponsors_file.file.each do |sponsors|
         sponsors["tiers"].each do |tier|
           tier["sponsors"].each do |sponsor|
@@ -388,7 +399,7 @@ module Static
               end
             end
 
-            s ||= ::Organization.find_by(name: sponsor["name"]) || ::Organization.find_by(slug: sponsor["slug"]&.downcase)
+            s ||= ::Organization.find_by_name_or_alias(sponsor["name"]) || ::Organization.find_by_slug_or_alias(sponsor["slug"]&.downcase)
             s ||= ::Organization.find_or_initialize_by(name: sponsor["name"])
 
             s.update(
@@ -400,17 +411,21 @@ module Static
             s.add_logo_url(sponsor["logo_url"]) if sponsor["logo_url"].present?
             s.logo_url = sponsor["logo_url"] if sponsor["logo_url"].present? && s.logo_url.blank?
 
-            s = ::Organization.find_by(slug: s.slug) || ::Organization.find_by(name: s.name) unless s.persisted?
+            s = ::Organization.find_by_slug_or_alias(s.slug) || ::Organization.find_by_name_or_alias(s.name) unless s.persisted?
 
             s.save!
+
+            organisation_ids << s.id
 
             event.sponsors.find_or_create_by!(organization: s, event: event).update!(tier: tier["name"], badge: sponsor["badge"])
           end
         end
       end
+      event.sponsors.where.not(organization_id: organisation_ids).destroy_all
     end
 
     def import_involvements!(event)
+      return unless imported?
       return unless event.involvements_file.exist?
 
       event_involvements = event.event_involvements
@@ -458,7 +473,7 @@ module Static
         Array.wrap(involvement_data["organisations"]).each_with_index do |org_name, index|
           next if org_name.blank?
 
-          organization = ::Organization.find_by(name: org_name) || ::Organization.find_by(slug: org_name.parameterize)
+          organization = ::Organization.find_by_name_or_alias(org_name) || ::Organization.find_by_slug_or_alias(org_name.parameterize)
 
           unless organization
             # raise "Organization '#{org_name}' not found" if Rails.env.development?
@@ -489,6 +504,7 @@ module Static
     end
 
     def import_transcripts!(event)
+      return unless imported?
       return unless event.transcripts_file.exist?
 
       transcripts = event.transcripts_file.entries

@@ -12,6 +12,10 @@ class Avo::Resources::Organization < Avo::BaseResource
     end
   }
 
+  self.search = {
+    query: -> { query.where("lower(name) LIKE ?", "%#{params[:q]&.downcase}%") }
+  }
+
   def fields
     field :id, as: :id
     field :name, as: :text

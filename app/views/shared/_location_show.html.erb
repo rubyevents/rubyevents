@@ -4,6 +4,8 @@
 
 <% if location.is_a?(OnlineLocation) %>
   <% title "Online Ruby Events" %>
+<% elsif location.is_a?(CoordinateLocation) %>
+  <% title "Ruby Community near #{location.name}" %>
 <% else %>
   <% title "Ruby Community in #{location.name}" %>
 <% end %>
@@ -52,6 +54,7 @@
         <%= render "shared/events_section",
               title: "Upcoming Events",
               events: upcoming_events,
+              limit: upcoming_events.size,
               empty_message: "No upcoming events." %>
 
       <% elsif upcoming_nearby_events.any? %>

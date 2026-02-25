@@ -334,6 +334,15 @@ module Talk::TypesenseSearchable
       filters << "city:=#{options[:city]}" if options[:city].present?
       filters << "continent:=#{options[:continent]}" if options[:continent].present?
 
+      case options[:status]
+      when "scheduled"
+        filters << "video_provider:=scheduled"
+      when "all"
+        # Show all talks
+      else
+        filters << "video_provider:=[youtube,mp4,vimeo]" unless options[:include_unwatchable]
+      end
+
       search_options[:filter_by] = filters.join(" && ") if filters.any?
 
       sort_options = {

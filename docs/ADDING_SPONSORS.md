@@ -17,83 +17,7 @@ For example:
 - [`data/rubykaigi/rubykaigi-2025/sponsors.yml`](https://github.com/rubyevents/rubyevents/blob/main/data/rubykaigi/rubykaigi-2025/sponsors.yml)
 - [`data/railsconf/railsconf-2025/sponsors.yml`](https://github.com/rubyevents/rubyevents/blob/main/data/railsconf/railsconf-2025/sponsors.yml)
 
-## YAML Structure
-
-### Basic Structure
-
-```yaml
----
-- tiers:
-    - name: "Tier Name"
-      description: "Description of this sponsorship tier"
-      level: 1  # Lower numbers = higher priority tiers
-      sponsors:
-        - name: "Company Name"
-          website: https://example.com
-          slug: CompanyName
-          logo_url: https://example.com/logo.png
-          badge: "Optional Badge Text"  # Optional: Special sponsor designation
-```
-
-### Complete Example
-
-```yaml
----
-- tiers:
-    - name: Platinum Sponsors
-      description: "Premium sponsors supporting the conference"
-      level: 1
-      sponsors:
-        - name: "Example Corp"
-          website: https://example.com
-          slug: ExampleCorp
-          logo_url: https://conference.org/images/sponsors/example.png
-          badge: "Keynote Sponsor"
-
-        - name: "Tech Company Inc."
-          website: https://techcompany.com
-          slug: TechCompanyInc
-          logo_url: https://conference.org/images/sponsors/tech.png
-
-    - name: Gold Sponsors
-      description: "Gold tier sponsors"
-      level: 2
-      sponsors:
-        - name: "StartupCo"
-          website: https://startup.co
-          slug: StartupCo
-          logo_url: https://conference.org/images/sponsors/startup.png
-
-    - name: Silver Sponsors
-      description: "Silver tier sponsors"
-      level: 3
-      sponsors:
-        - name: "Local Business LLC"
-          website: https://localbiz.com
-          slug: LocalBusinessLLC
-          logo_url: https://conference.org/images/sponsors/local.png
-```
-
-## Field Descriptions
-
-### Tier Fields
-
-| Field | Required | Description |
-|-------|----------|-------------|
-| `name` | Yes | Display name of the sponsor tier (e.g., "Platinum Sponsors", "Gold Sponsors") |
-| `description` | No | Optional description of the tier |
-| `level` | Yes | Numeric priority level (0 = highest priority, displayed first) |
-| `sponsors` | Yes | Array of sponsor objects in this tier |
-
-### Sponsor Fields
-
-| Field | Required | Description |
-|-------|----------|-------------|
-| `name` | Yes | Official company name |
-| `website` | Yes | Full URL to sponsor's website |
-| `slug` | Yes | URL-safe identifier (no spaces or special characters) |
-| `logo_url` | Yes | Full URL to sponsor's logo image |
-| `badge` | No | Special designation text (e.g., "Video Sponsor", "Lunch Sponsor") additional to the sponsor tier |
+All permitted fields are defined in [SponsorSchema.](/app/schemas/sponsor_schema.rb)
 
 ## Common Sponsor Tiers
 
@@ -117,6 +41,31 @@ Some sponsors may have special designations indicated by the `badge` field:
 - **Activity sponsors**: "Workshop Sponsor", "Hackathon Sponsor"
 - **Support sponsors**: "Scholarship Sponsor", "Diversity Sponsor"
 
+## Generation
+
+Generate a sponsors.yml in the correct folder using the SponsorsGenerator!
+
+```bash
+bin/rails g sponsors --event-series tropicalrb --event tropical-on-rails-2026
+```
+
+Pass multiple sponsors at once, and list the sponsor tier.
+If there is no tier, it will default to "Sponsors".
+
+```bash
+bin/rails g sponsors typesense:Platinum AppSignal:Gold JetRockets:Gold "Planet Argon:Silver" --event-series tropicalrb --event tropical-on-rails-2026
+```
+
+If you are adding a new sponsor to an existing file, you can list all the sponsors as arguments and then use the merge tool when there's a conflict.
+It'll feel very similar to resolving merge conflicts in git, but for different versions of the generated file.
+Expect improvements to the generator for changes soon!
+
+Check the usage instructions using help.
+
+```bash
+bin/rails g sponsors --help
+```
+
 ## Step-by-Step Guide
 
 ### 1. Check for Existing Sponsors File
@@ -132,7 +81,7 @@ ls data/{series-name}/{event}/sponsors.yml
 If the file doesn't exist, create it:
 
 ```bash
-touch data/{series-name}/{event}/sponsors.yml
+bin/rails g sponsors --event-series tropicalrb --event tropical-on-rails-2026
 ```
 
 ### 3. Gather Sponsor Information
@@ -146,35 +95,43 @@ For each sponsor, collect:
 
 ### 4. Structure the YAML
 
-Start with the basic structure and add tiers in order of importance (lowest level number first):
+Fill in the logo_url (from the event website) and website for each sponsor.
 
-```yaml
----
-- tiers:
-    - name: "Highest Tier"
-      level: 1
-      sponsors: []
-
-    - name: "Next Tier"
-      level: 2
-      sponsors: []
-```
-
-### 5. Add Sponsors to Each Tier
-
-Fill in the sponsor details for each tier:
-
-```yaml
-    sponsors:
-      - name: "Company Name"
-        website: "https://company.com"
-        slug: "CompanyName"
-        logo_url: "https://conference.org/sponsors/company-logo.png"
+```yml
+- name: "AppSignal"
+  website: "https://www.appsignal.com/?utm_source=tropicalrb"
+  slug: "Appsignal"
+  logo_url: "https://framerusercontent.com/images/Ej8aWi209QFR5YrNB6Rl1aN8RqY.png"
 ```
 
 Check for an existing sponsor in other sponsors files.
 Ensure the company names and slugs match.
-We prefer the sponsor names to be in English and use latin characheters if possible.
+We prefer the sponsor names to be in English and use latin characters if possible.
+A badge field can be added for special sponsor designations eg. "Wifi Sponsor"
+
+### 5. Format your yaml
+
+Run the linter to automatically format and verify all required properties are present.
+
+```bash
+bin/lint
+```
+
+### 5. Run seeds to load data
+
+Run the event series seed to load data.
+
+```bash
+bundle exec rake db:seed:event_series[event-series-slug]
+```
+
+### 6. Review on your dev server
+
+Start the dev server and review the event.
+
+```bash
+bin/dev
+```
 
 ## Troubleshooting
 
@@ -189,8 +146,8 @@ We prefer the sponsor names to be in English and use latin characheters if possi
 1. Fork the RubyEvents repository
 2. Setup your dev environment following the steps in [CONTRIBUTING](/CONTRIBUTING.md)
 3. Create your sponsors file in the appropriate directory
-4. Run `bin/rails db:seed` (or `bin/rails db:seed:all` if the event happened more than 6 months ago)
-5. Run `bin/lint`
+4. Run `bin/lint`
+5. Run `bin/rails db:seed` (or `bin/rails db:seed:all` if the event happened more than 6 months ago)
 6. Run `bin/dev` and review the event on your dev server
 7. Submit a pull request
 

@@ -4,7 +4,7 @@ class OrganizationsController < ApplicationController
 
   # GET /organizations
   def index
-    @organizations = Organization.includes(:events).order(:name)
+    @organizations = Organization.includes(:events).order("LOWER(name)")
     @organizations = @organizations.where("lower(name) LIKE ?", "#{params[:letter].downcase}%") if params[:letter].present?
     @featured_organizations = Organization.joins(:sponsors).group("organizations.id").order("COUNT(sponsors.id) DESC").limit(25).includes(:events)
   end
@@ -17,7 +17,9 @@ class OrganizationsController < ApplicationController
 
     @countries_with_events = @events.grouped_by_country
 
-    involvements = @organization.event_involvements.includes(:event).order(:position)
+    involvements = @organization.event_involvements.joins(:event).order(
+      Arel.sql("COALESCE(events.start_date, events.created_at) ASC")
+    )
     @involvements_by_role = involvements.group_by(&:role)
     @involved_events = @organization.involved_events.includes(:series).distinct.order(start_date: :desc)
 
@@ -70,7 +72,7 @@ class OrganizationsController < ApplicationController
   end
 
   def set_organization
-    @organization = Organization.find_by(slug: params[:slug])
+    @organization = Organization.find_by_slug_or_alias(params[:slug])
 
     redirect_to organizations_path, status: :moved_permanently, notice: "Organization not found" if @organization.blank?
   end

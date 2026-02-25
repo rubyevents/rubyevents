@@ -42,7 +42,7 @@ module ProfileData
     end
 
     if params[:profile_slug] != @user.to_param
-      redirect_to polymorphic_path([:profile, controller_name], profile_slug: @user.to_param), status: :moved_permanently
+      redirect_to polymorphic_path([:profile, controller_name.to_sym], profile_slug: @user.to_param), status: :moved_permanently
     end
   end
 

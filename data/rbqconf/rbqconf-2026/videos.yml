@@ -1,22 +1,247 @@
 ---
+- id: "opening-remarks-rbqconf-2026"
+  title: "Opening Remarks"
+  event_name: "RBQConf 2026"
+  date: "2026-03-26"
+  description: |-
+    TODO
+  speakers:
+    - TODO
+  video_provider: "scheduled"
+  video_id: "opening-remarks-rbqconf-2026"
+
 - id: "kinsey-durham-grace-rbqconf-2025"
   title: "Keynote: Kinsey Durham Grace"
   event_name: "RBQConf 2026"
   date: "2026-03-26"
   announced_at: "2025-12-24"
-  description: ""
+  description: |-
+    TODO
   video_provider: "scheduled"
   video_id: "kinsey-durham-grace-rbqconf-2025"
   speakers:
     - "Kinsey Durham Grace"
 
+- id: "daniel-colson-rbqconf-2026"
+  title: "Regex as Easy as /(abc)?/"
+  event_name: "RBQConf 2026"
+  date: "2026-03-26"
+  announced_at: "2026-01-23"
+  description: |-
+    What really happens when Ruby sees a regular expression like /abc/? While many of us use regular expressions regularly, we don’t necessarily think much about how they really work. In this talk we’ll trace a regular expression through Ruby’s internals, from parsing the pattern into a syntax tree, to compiling into bytecode, to executing that bytecode on a small virtual machine. You’ll come away with a deeper understanding and appreciation for Ruby’s regular expression engine, and hopefully an increased confidence in working with regular expressions in Ruby.
+  speakers:
+    - "Daniel Colson"
+  video_provider: "scheduled"
+  video_id: "daniel-colson-rbqconf-2026"
+
+- id: "alex-yarotsky-rbqconf-2026"
+  title: "A Hands-On Guide to Postgres Partitioning for Rails Developers"
+  event_name: "RBQConf 2026"
+  date: "2026-03-26"
+  announced_at: "2026-01-21"
+  description: |-
+    Partitioning is one of the most powerful features in Postgres, but most Rails developers never use it because it feels confusing, risky, or too "enterprise." In this talk, we will walk through a hands-on and practical approach to table partitioning that you can actually use in a real Rails application.
+
+    We will start with the problems that usually appear as your tables grow, such as slow queries, long autovacuum runs, and painful migrations. From there, we will explore how partitioning works, when it is the right choice, and how to apply it step by step without downtime or major rewrites. You will see examples of how to route inserts, how to manage old partitions, and how to keep your database healthy as data grows.
+
+    If you have ever wondered whether partitioning is worth the effort, this talk will give you the confidence and clear instructions to do it safely.
+  speakers:
+    - "Alex Yarotsky"
+  video_provider: "scheduled"
+  video_id: "alex-yarotsky-rbqconf-2026"
+
+- id: "szymon-fiedler-rbqconf-2026"
+  title: "Would Your Tests Catch This Bug? A Mutation Testing Story"
+  event_name: "RBQConf 2026"
+  date: "2026-03-26"
+  announced_at: "2026-01-24"
+  description: |-
+    Your tests pass, but do they actually test anything? With AI agents now writing tests, mutation testing becomes critical. Learn how Mutant exposes gaps in your test coverage by introducing bugs. If tests still pass, you've found a blind spot. Real code. Real mutations. Real insights.
+  speakers:
+    - "Szymon Fiedler"
+  video_provider: "scheduled"
+  video_id: "szymon-fiedler-rbqconf-2026"
+
+- id: "amir-rajan-rbqconf-2026"
+  title: "Building a Cross Platform Game Engine with Ruby: Deep Dive"
+  event_name: "RBQConf 2026"
+  date: "2026-03-26"
+  announced_at: "2026-01-25"
+  description: |-
+    DragonRuby Game Toolkit is a cross-platform commercial game engine that exports to Web, Steam, Mobile, and Console. We'll take a deep dive into DragonRuby's C internals and see what it takes to build a zero-dependency game engine powered by libSDL with Ruby as the scripting layer.
+  speakers:
+    - "Amir Rajan"
+  video_provider: "scheduled"
+  video_id: "amir-rajan-rbqconf-2026"
+
+- id: "yatish-mehta-rbqconf-2026"
+  title: "Scaling Rails Authorization for Enterprise"
+  event_name: "RBQConf 2026"
+  date: "2026-03-26"
+  announced_at: "2026-01-24"
+  description: |-
+    Most Rails applications begin with a simple "user.admin?" style check for authorization. As they grow, they often adopt libraries like Pundit or CanCanCan. More complex enterprise systems, however, call for a stronger approach.
+  speakers:
+    - "Yatish Mehta"
+  video_provider: "scheduled"
+  video_id: "yatish-mehta-rbqconf-2026"
+
+- id: "ariel-valentin-rbqconf-2026"
+  title: "Practical Observability for Ruby"
+  event_name: "RBQConf 2026"
+  date: "2026-03-26"
+  announced_at: "2026-01-23"
+  description: |-
+    You’ve seen the buzzwords Observability, SRE, SLOs, traces, metrics, logs, and profiling, but what do they really mean, and why is everyone talking about them? In this session, we’ll cut through the noise and dive into what observability actually looks like in the real world. You’ll discover how these tools and practices can transform the way you and your team build, operate, and troubleshoot Ruby applications. Expect clear explanations, actionable insights, and a fresh perspective on why observability isn’t just a trend - it’s a superpower waiting to be unlocked.
+  speakers:
+    - "Ariel Valentin"
+  video_provider: "scheduled"
+  video_id: "ariel-valentin-rbqconf-2026"
+
+- id: "yarik-rbqconf-2026"
+  title: "Two Requests, One Record: Concurrency in Rails"
+  event_name: "RBQConf 2026"
+  date: "2026-03-26"
+  announced_at: "2026-01-22"
+  description: |-
+    You wrap your code in a transaction, add validations, and ship it. Everything works perfectly in development and passes all tests... until two requests arrive at the same time in production. This talk explores the database concurrency problems most Rails apps silently ignore: check-then-act races, lost updates in nested associations, and the deadlocks that follow. We'll examine how default isolation levels provide less protection than you think, why API calls inside transactions amplify these issues, and how coordination primitives like row locks and named locks can protect your data. Through real production failures and live demonstrations of race conditions, you'll learn practical patterns to handle concurrent access safely.
+  speakers:
+    - "Yarik"
+  video_provider: "scheduled"
+  video_id: "yarik-rbqconf-2026"
+
+- id: "day-one-notes-rbqconf-2026"
+  title: "Day One Notes"
+  event_name: "RBQConf 2026"
+  date: "2026-03-26"
+  description: |-
+    TODO
+  speakers:
+    - TODO
+  video_provider: "scheduled"
+  video_id: "day-one-notes-rbqconf-2026"
+
+- id: "day-two-notes-rbqconf-2026"
+  title: "Day Two Notes"
+  event_name: "RBQConf 2026"
+  date: "2026-03-27"
+  description: |-
+    TODO
+  speakers:
+    - TODO
+  video_provider: "scheduled"
+  video_id: "day-two-notes-rbqconf-2026"
+
+- id: "bart-de-water-rbqconf-2026"
+  title: "How to quit your job (and come back later)"
+  event_name: "RBQConf 2026"
+  date: "2026-03-27"
+  announced_at: "2026-01-25"
+  description: |-
+    Your background job ran for six hours, processed 2 million records, then died 94% of the way through a deploy. Sound familiar?
+
+    Retries with exponential backoff don't help when your job was aborted, not failed. The Ruby ecosystem has evolved multiple answers to this problem: Shopify's job-iteration and Rails 8.1's new Active Job continuations. Outside of pure-Ruby solutions, Temporal brings a workflow-based approach.
+
+    This talk surveys the 2026 landscape of resilient background job options in Ruby. We'll dig into the history, compare the tradeoffs between iteration-based, step-based, and workflow-based approaches, and explore when you need to graduate from "resilient jobs" to "orchestrated workflows." You'll leave with a framework for choosing the right tool for your workload.
+  speakers:
+    - "Bart de Water"
+  video_provider: "scheduled"
+  video_id: "bart-de-water-rbqconf-2026"
+
+- id: "pj-hagerty-rbqconf-2026"
+  title: "Why Git Still Matters"
+  event_name: "RBQConf 2026"
+  date: "2026-03-27"
+  announced_at: "2026-01-21"
+  description: |-
+    With more and more tools abstracting from a developers workflows, understanding how git visualization tools help - not simply using it - is more important than ever. In this article, we take a look at the history of git workflows, the basics of git, and the renaissance of understanding version control in a world gone mad for "vibe coding"
+  speakers:
+    - "PJ Hagerty"
+  video_provider: "scheduled"
+  video_id: "pj-hagerty-rbqconf-2026"
+
+- id: "tom-brown-rbqconf-2026"
+  title: "Webfinger Reverse Discovery"
+  date: "2026-03-27"
+  description: |-
+    The fediverse is a welcome alternative to billionaire owned social networks. We know that design decisions have tradeoffs and, on the fediverse, people should consider the possibility of being put into the unenviable position of losing their presence because their server suddenly disappears. This is not common but losing your identifier and data can be a real pain if it happens. In the spirit of the indieweb, one way to mitigate this threat is owning your own domain. Mastodon, the most popular fediverse software, and other fediverse applications interoperate with remote servers with users who have identifiers whose domain is different than the server they reside on through Webfinger Reverse Discovery. In this talk, lessons learned from 2 years of dogfooding a ruby fediverse application will be shared.
+  speakers:
+    - Tom Brown
+  video_provider: "scheduled"
+  video_id: "tom-brown-rbqconf-2026"
+
+- id: "meghan-gutshall-rbqconf-2026"
+  title: "Revealing Rails Magic with Enums"
+  event_name: "RBQConf 2026"
+  date: "2026-03-27"
+  announced_at: "2026-01-25"
+  description: |-
+    "Rails magic" is a term many people use to describe the ease with which Rails helps you go from zero to working app so quickly. However, like all other frameworks, there's no magic to be found – only code!
+
+    In this talk, you'll get a peek behind the curtain as we break down the ActiveRecord Enums module. First, you'll learn what it is, how/when to use it, and some cool tricks it provides. Then, we'll examine the codebase together and unravel the mystery behind the magic. Rails developers of all skill levels will come away from this talk with new-found knowledge on how to traverse a codebase and gain a better understanding of the ActiveRecord Enums module.
+  speakers:
+    - "Meghan Gutshall"
+  video_provider: "scheduled"
+  video_id: "meghan-gutshall-rbqconf-2026"
+
+- id: "chris-gratigny-rbqconf-2026"
+  title: "Lessons Learned from my first AI implementation"
+  event_name: "RBQConf 2026"
+  date: "2026-03-27"
+  announced_at: "2026-01-25"
+  description: |-
+    This talk shares lessons from my initial journey building AI functionality into a Ruby on Rails application. I'll show the evolution of the system, starting with a direct integration using the Anthropic API before transitioning to a using the RubyLLM gem and the niceness it provides. I have the unique experience of building an AI tool in an organization where accuracy is paramount, and have learned how to dial the temperature to get just what we need.
+
+    A key take-a-way should be how prompt versioning can work with a prompt being changed 100+ times during experimentation. I'll demonstrate the power of tool calls (function calling) not just for executing actions, but as a critical pattern for structuring reliable, machine-readable AI responses. Attendees will leave with practical, code-level advice for moving beyond simple text generation to building robust, production-ready AI features in a Rails environment.
+  speakers:
+    - "Chris Gratigny"
+  video_provider: "scheduled"
+  video_id: "chris-gratigny-rbqconf-2026"
+
+- id: "charles-oliver-nutter-rbqconf-2026"
+  title: "Expand Your Ruby with JRuby"
+  event_name: "RBQConf 2026"
+  date: "2026-03-27"
+  announced_at: "2026-01-21"
+  description: |-
+    JRuby more than Ruby for JVM! Optimize your code, max out cores, deploy single-file apps, build portable GUIs and more. It's fun and easy with JRuby!
+  speakers:
+    - "Charles Oliver Nutter"
+  video_provider: "scheduled"
+  video_id: "charles-oliver-nutter-rbqconf-2026"
+
+- id: "cristian-planas-rbqconf-2026"
+  title: "The Three Villains of Rails Scalability — and How to Defeat Them"
+  event_name: "RBQConf 2026"
+  date: "2026-03-27"
+  announced_at: "2026-01-24"
+  description: |-
+    Teams often hit scaling walls with Rails and assume the framework is the problem. In reality, growth failures usually come from three structural traps that only appear once traction arrives. The difference between startups that stall and companies that reach planetary scale lies in how they confront them.
+
+    In this talk, Cristian Planas (former startup founder/CTO, former Group Tech Lead for performance at Zendesk, and author of "Rails Scales! Practical Techniques for Performance and Growth") reveals the three villains that silently limit your app's ability to scale. He will show how they surfaced in his own startup, why naive fixes make them worse, and what the companies operating Rails at planetary scale do differently. You'll leave with a mental model and a set of tools to defeat them before they defeat you.
+  video_provider: "scheduled"
+  video_id: "cristian-planas-rbqconf-2026"
+  speakers:
+    - "Cristian Planas"
+
 - id: "nickolas-means-rbqconf-2025"
   title: "Keynote: Nickolas Means"
   event_name: "RBQConf 2026"
-  date: "2026-03-26"
+  date: "2026-03-27"
   announced_at: "2025-12-24"
-  description: ""
-  video_provider: "scheduled"
-  video_id: "nickolas-means-rbqconf-2025"
+  description: |-
+    TODO
   speakers:
     - "Nickolas Means"
+  video_provider: "scheduled"
+  video_id: "nickolas-means-rbqconf-2025"
+
+- id: "closing-remarks-rbqconf-2026"
+  title: "Closing Remarks"
+  date: "2026-03-27"
+  description: |-
+    TODO
+  speakers:
+    - TODO
+  video_provider: "scheduled"
+  video_id: "closing-remarks-rbqconf-2026"

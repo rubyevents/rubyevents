@@ -12,6 +12,8 @@
       <h1 class="mb-2 text-black font-bold text-3xl lg:text-4xl">
         <% if location.is_a?(OnlineLocation) %>
           Online Ruby Community
+        <% elsif location.is_a?(CoordinateLocation) %>
+          Ruby Community near <%= name %>
         <% else %>
           Ruby Community in <%= name %>
         <% end %>
@@ -114,6 +116,24 @@
             </div>
           <% end %>
         <% when OnlineLocation %>
+          <%= link_to continents_path, class: "link flex items-center gap-1 justify-end" do %>
+            <%= fa("globe", size: :sm, class: "text-gray-400") %>
+            Browse by Location
+          <% end %>
+
+          <%= link_to cities_path, class: "link flex items-center gap-1 justify-end" do %>
+            <%= fa("city", size: :sm, class: "text-gray-400") %>
+            All Cities
+          <% end %>
+        <% when CoordinateLocation %>
+          <% country = location.country %>
+          <% if country %>
+            <%= link_to country_path(country), class: "link flex items-center gap-1 justify-end" do %>
+              <%= fa("arrow-up", size: :sm, class: "text-gray-400") %>
+              <%= country.name %>
+            <% end %>
+          <% end %>
+
           <%= link_to continents_path, class: "link flex items-center gap-1 justify-end" do %>
             <%= fa("globe", size: :sm, class: "text-gray-400") %>
             Browse by Location

@@ -38,7 +38,7 @@
       <% if geo_layers.empty? %>
         data-map-markers-value="<%= event_map_markers.to_json %>"
       <% end %>
-      <% if geo_layers.empty? && location.bounds.present? %>
+      <% if location.bounds.present? %>
         data-map-bounds-value="<%= location.bounds.to_json %>"
       <% end %>>
       <div class="flex items-center justify-between mb-4">

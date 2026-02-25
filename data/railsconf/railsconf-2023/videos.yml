@@ -121,11 +121,11 @@
   speakers:
     - Daniel Huss
   description: |-
-    Legacy code. Did you just shiver with dread? 
+    Legacy code. Did you just shiver with dread?
 
-    We know it when we see it, but we don't know how it got there, or why it looks like... this. 
+    We know it when we see it, but we don't know how it got there, or why it looks like... this.
 
-    What if we could change our relationship with legacy code, and shed the weight the name brings with it? What if legacy code disappeared? 
+    What if we could change our relationship with legacy code, and shed the weight the name brings with it? What if legacy code disappeared?
 
     Throw away everything you've ever learned, embrace the mindset of Eternal Onboarding, and watch as our problems with "Legacy Code" melt away.
   date: "2023-07-10"
@@ -163,7 +163,7 @@
   speakers:
     - Justin Daniel
   description: |-
-    The pain is familiar to long-time developers of enterprise Rails applications. Database queries through ActiveRecord are an essential part of our application. And making these queries performant, dynamic, and readable is hard. 
+    The pain is familiar to long-time developers of enterprise Rails applications. Database queries through ActiveRecord are an essential part of our application. And making these queries performant, dynamic, and readable is hard.
 
     We can solve the above problems. With the right abstractions we can write code that composes queries that are performant, dynamic, and readable. Our approach uses a domain specific language built on top of ActiveRecord that you can adapt to your own application. We do not need a whole new library or framework. We just need query objects and builders.
   date: "2023-07-10"
@@ -260,7 +260,7 @@
   speakers:
     - Shayon Mukherjee
   description: |-
-    Being part of gnarly production outages isn’t uncommon. In this talk, I will share short entertaining stories about a few head scratching production outages we faced and how we used efficient and simple PostgreSQL features in Rails to build scalable solutions. 
+    Being part of gnarly production outages isn’t uncommon. In this talk, I will share short entertaining stories about a few head scratching production outages we faced and how we used efficient and simple PostgreSQL features in Rails to build scalable solutions.
 
     I will also discuss how and when to use certain PostgreSQL concepts in Rails, such as optimistic and pessimistic locking, using real-life examples that power core customer features.
 
@@ -276,11 +276,11 @@
   speakers:
     - Juan Pablo Balarini
   description: |-
-    Faster and cheaper websites: integrating next-gen images in your Rails apps by JP Balarini 
+    Faster and cheaper websites: integrating next-gen images in your Rails apps by JP Balarini
 
     Did you know loading images accounts for nearly 50% of your website’s total load time? Also, every additional second of load time results in a 5% decrease in conversion rates, which directly impacts your business. What if I told you there’s a simple way to decrease loading time?
 
-    This talk will explore the latest and most effective options for web images that significantly reduce website size without compromising quality. We’ll discuss how using next-gen images can significantly impact website loading times, user conversion, and SEO. 
+    This talk will explore the latest and most effective options for web images that significantly reduce website size without compromising quality. We’ll discuss how using next-gen images can significantly impact website loading times, user conversion, and SEO.
 
     We’ll also go through the different challenges that I faced while integrating next-gen images into a Rails project and how I solved them. A new gem will be presented that streamlines the process of using WebP images with Ruby on Rails.
   date: "2023-07-10"
@@ -294,13 +294,13 @@
   speakers:
     - Christopher "Aji" Slater
   description: |-
-    Hi. Have you been writing Rails API-mode json backends for React front ends for the last few years? Me too. 
+    Hi. Have you been writing Rails API-mode json backends for React front ends for the last few years? Me too.
 
-    Have you been daydreaming about the days when you could just write a view template and render some html server-side? Me too. 
+    Have you been daydreaming about the days when you could just write a view template and render some html server-side? Me too.
 
-    Have you been wondering if it's possible to have rich, snappy UIs with only Rails, and very little js? Me too. 
+    Have you been wondering if it's possible to have rich, snappy UIs with only Rails, and very little js? Me too.
 
-    Are you now working on a fully Hotwire and Turbo app, having to re-learn everything you've grown comfortable with in front-end development? Me.. huh? no? 
+    Are you now working on a fully Hotwire and Turbo app, having to re-learn everything you've grown comfortable with in front-end development? Me.. huh? no?
 
     Well come along and I'll show you how I re-implemented my conception of the client side with Rails' Hotwire view layer.
   date: "2023-07-10"
@@ -333,7 +333,7 @@
   description: |-
     Building a world class engineering organization — learning from cave paintings and horsey land art by Shane Becker
 
-    Human built things survive for a Very Long Time™ by one of two ways: materials or maintenance. 
+    Human built things survive for a Very Long Time™ by one of two ways: materials or maintenance.
 
     What we can learn from Stonehenge, Lascaux cave paintings, Brewarrina Aboriginal Fish Traps, the White Horse of Uffington, Iranian windmills, and Japanese Shinto shrines?
 
@@ -464,7 +464,7 @@
   speakers:
     - Braulio Martinez
   description: |-
-    Nowadays, passwords are still our most common authentication method. However, they are not secure enough and have terrible UX. 
+    Nowadays, passwords are still our most common authentication method. However, they are not secure enough and have terrible UX.
 
     Therefore, big industry players in the FIDO Alliance like Google, Mozilla, Apple, Amazon (among others) collaborated together to find a solution. WebAuthn was born and eventually became a W3C standard enabling users to authenticate on the web using public-key cryptography together with biometrics.
 
@@ -492,7 +492,7 @@
   speakers:
     - Maple Ong
   description: |-
-    Tired of upgrading to the latest Ruby version every new year? Just have the latest Ruby version already running! Ruby head is the latest commit to the main branch of Ruby on Github. It’s dangerous to run our Rails app on Ruby head, but we can run Ruby head on application tests. 
+    Tired of upgrading to the latest Ruby version every new year? Just have the latest Ruby version already running! Ruby head is the latest commit to the main branch of Ruby on Github. It’s dangerous to run our Rails app on Ruby head, but we can run Ruby head on application tests.
 
     We'll build Ruby head on a Docker image and run it with tests on Buildkite. Along the way, we'll learn about using Docker, jemalloc (an an alternate malloc implementation) and why it's important to your team and the Ruby community to do this work.
   date: "2023-07-10"
@@ -520,7 +520,7 @@
   speakers:
     - Vincent Rolea
   description: |-
-    Memory leaks do not come by often in modern Rails applications. But when they do, the road to a fix can be tortuous: it often requires extensive knowledge of memory management in Ruby, experience on profiling tools as well as properly setup application monitoring. 
+    Memory leaks do not come by often in modern Rails applications. But when they do, the road to a fix can be tortuous: it often requires extensive knowledge of memory management in Ruby, experience on profiling tools as well as properly setup application monitoring.
 
     As a developer working on Product, one does not always have the bandwidth to learn about the subject, and setup custom tools: project deadlines could be nearing, or your expertise needed on a shiny new project that just came in.  In this talk, I’ll walk you through a real memory leak issue we encountered on one of our background worker, and how we fixed it with no custom tooling using simple technics.
   date: "2023-07-10"
@@ -586,88 +586,116 @@
 - id: "lightning-talks-railsconf-2023"
   title: "Lightning Talks"
   raw_title: "RailsConf 2023 - Lightning Talks"
-  description: |-
-    A lightning talk is a short presentation (up to 5 mins) on your chosen topic.
-  date: "2023-07-10"
+  date: "2023-04-26"
+  event_name: "RailsConf 2023"
   published_at: "2023-07-14"
   video_provider: "youtube"
   video_id: "k55B4ydueGE"
+  description: |-
+    A lightning talk is a short presentation (up to 5 mins) on your chosen topic.
   talks:
-    - title: "Lightning Talk: Michelle Yuen" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
+    - title: "Lightning Talk: Let's Do Some Research in < 5 mins (That's some lightning fast science): An Intro to the Zooniverse"
+      event_name: "RailsConf 2023"
+      date: "2023-04-26"
+      start_cue: "01:21"
+      end_cue: "05:29"
+      thumbnail_cue: "01:26"
       id: "michelle-yuen-lighting-talk-railsconf-2023"
       video_id: "michelle-yuen-lighting-talk-railsconf-2023"
       video_provider: "parent"
       speakers:
         - Michelle Yuen
 
-    - title: "Lightning Talk: Katya Sarmiento" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
+    - title: "Lightning Talk: Katya Sarmiento" # No talk title
+      event_name: "RailsConf 2023"
+      date: "2023-04-26"
+      start_cue: "05:29"
+      end_cue: "10:41"
+      thumbnail_cue: "08:45"
       id: "katya-sarmiento-lighting-talk-railsconf-2023"
       video_id: "katya-sarmiento-lighting-talk-railsconf-2023"
       video_provider: "parent"
       speakers:
         - Katya Sarmiento
 
-    - title: "Lightning Talk: Tim Carey" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
+    - title: "Lightning Talk: Tim Carey" # No official title. Topic: "How I Supercharged My Career With My Prior Experience Being An Auto Mechanic"
+      event_name: "RailsConf 2023"
+      date: "2023-04-26"
+      start_cue: "10:41"
+      end_cue: "14:09"
+      thumbnail_cue: "10:46"
       id: "tim-carey-lighting-talk-railsconf-2023"
       video_id: "tim-carey-lighting-talk-railsconf-2023"
       video_provider: "parent"
       speakers:
         - Tim Carey
 
-    - title: "Lightning Talk: Dominic Lizarraga" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
+    - title: "Lightning Talk: Traversing the depths of Gem source code"
+      event_name: "RailsConf 2023"
+      date: "2023-04-26"
+      start_cue: "14:09"
+      end_cue: "18:39"
+      thumbnail_cue: "14:20"
       id: "dominic-lizarraga-lighting-talk-railsconf-2023"
       video_id: "dominic-lizarraga-lighting-talk-railsconf-2023"
       video_provider: "parent"
       speakers:
         - Dominic Lizarraga
 
-    - title: "Lightning Talk: Kaylah Rose Mitchell" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
+    - title: "Lightning Talk: Kaylah Rose Mitchell" # No official title. Topic: Data Minimization & Data Privacy
+      event_name: "RailsConf 2023"
+      date: "2023-04-26"
+      start_cue: "18:39"
+      end_cue: "21:14"
+      thumbnail_cue: "18:44"
       id: "kaylah-rose-mitchell-lighting-talk-railsconf-2023"
       video_id: "kaylah-rose-mitchell-lighting-talk-railsconf-2023"
       video_provider: "parent"
       speakers:
         - Kaylah Rose Mitchell
 
-    - title: "Lightning Talk: Angela Choi" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
+    - title: "Lightning Talk: Secure Passwords"
+      event_name: "RailsConf 2023"
+      date: "2023-04-26"
+      start_cue: "21:14"
+      end_cue: "24:45"
+      thumbnail_cue: "21:19"
       id: "angela-choi-lighting-talk-railsconf-2023"
       video_id: "angela-choi-lighting-talk-railsconf-2023"
       video_provider: "parent"
       speakers:
         - Angela Choi
 
-    - title: "Lightning Talk: Greta Parks" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
+    - title: "Lightning Talk: Cellist to GitHub Software Developer"
+      event_name: "RailsConf 2023"
+      date: "2023-04-26"
+      start_cue: "24:45"
+      end_cue: "29:10"
+      thumbnail_cue: "24:49"
       id: "greta-parks-lighting-talk-railsconf-2023"
       video_id: "greta-parks-lighting-talk-railsconf-2023"
       video_provider: "parent"
       speakers:
         - Greta Parks
 
-    - title: "Lightning Talk: Rock Davenport" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
+    - title: "Lightning Talk: Rock Davenport" # No official title. Topic: Resilience
+      event_name: "RailsConf 2023"
+      date: "2023-04-26"
+      start_cue: "29:10"
+      end_cue: "33:07"
+      thumbnail_cue: "29:15"
       id: "rock-davenport-lighting-talk-railsconf-2023"
       video_id: "rock-davenport-lighting-talk-railsconf-2023"
       video_provider: "parent"
       speakers:
         - Rock Davenport
 
-    - title: "Lightning Talk: Mia Szinek" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
+    - title: "Lightning Talk: 5-Minute Survival Guide... for Parents with Wanderlust"
+      event_name: "RailsConf 2023"
+      date: "2023-04-26"
+      start_cue: "33:07"
+      end_cue: "38:19"
+      thumbnail_cue: "33:12"
       id: "mia-szinek-lighting-talk-railsconf-2023"
       video_id: "mia-szinek-lighting-talk-railsconf-2023"
       video_provider: "parent"
@@ -675,90 +703,120 @@
         - Mia Szinek
         - Peter Szinek
 
-    - title: "Lightning Talk: Kiwi" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
+    - title: "Lightning Talk: Qiwei Lin" # No official title. Topic: "How To Solve A Rubik's Cube"
+      event_name: "RailsConf 2023"
+      date: "2023-04-26"
+      start_cue: "38:19"
+      end_cue: "43:24"
+      thumbnail_cue: "38:57"
       id: "kiwi-lighting-talk-railsconf-2023"
       video_id: "kiwi-lighting-talk-railsconf-2023"
       video_provider: "parent"
       speakers:
-        - TODO # TODO Kiwi? https://cln.sh/ldhyPdB1
+        - Qiwei Lin
 
-    - title: "Lightning Talk: Jack Permenter" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
+    - title: "Lightning Talk: Jack Permenter" # No official title. Topic: Historical Determinism
+      event_name: "RailsConf 2023"
+      date: "2023-04-26"
+      start_cue: "43:24"
+      end_cue: "48:27"
+      thumbnail_cue: "43:29"
       id: "jack-permenter-lighting-talk-railsconf-2023"
       video_id: "jack-permenter-lighting-talk-railsconf-2023"
       video_provider: "parent"
       speakers:
         - Jack Permenter
 
-    - title: "Lightning Talk: Rachael Wright-Munn" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
+    - title: "Lightning Talk: Main Quests & Side Quests"
+      event_name: "RailsConf 2023"
+      date: "2023-04-26"
+      start_cue: "48:27"
+      end_cue: "53:27"
+      thumbnail_cue: "48:32"
       id: "rachael-wright-munn-lighting-talk-railsconf-2023"
       video_id: "rachael-wright-munn-lighting-talk-railsconf-2023"
       video_provider: "parent"
       speakers:
         - Rachael Wright-Munn
 
-    - title: "Lightning Talk: Jonan Scheffler" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
+    - title: "Lightning Talk: Jonan Scheffler" # No official title. Topic: Decentralization
+      event_name: "RailsConf 2023"
+      date: "2023-04-26"
+      start_cue: "53:27"
+      end_cue: "57:42"
+      thumbnail_cue: "53:28"
       id: "jonan-scheffler-lighting-talk-railsconf-2023"
       video_id: "jonan-scheffler-lighting-talk-railsconf-2023"
       video_provider: "parent"
       speakers:
         - Jonan Scheffler
 
-    - title: "Lightning Talk: Naofumi Kagami" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
+    - title: "Lightning Talk: Many to Many: Love your Join Tables"
+      event_name: "RailsConf 2023"
+      date: "2023-04-26"
+      start_cue: "57:42"
+      end_cue: "1:02:43"
+      thumbnail_cue: "57:47"
       id: "naofumi-kagami-lighting-talk-railsconf-2023"
       video_id: "naofumi-kagami-lighting-talk-railsconf-2023"
       video_provider: "parent"
       speakers:
         - Naofumi Kagami
 
-    - title: "Lightning Talk: Samantha Holstine" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
+    - title: "Lightning Talk: What is OpenTelemetry (and why should you implement traces in your Rails app)?"
+      event_name: "RailsConf 2023"
+      date: "2023-04-26"
+      start_cue: "1:02:43"
+      end_cue: "1:07:45"
+      thumbnail_cue: "1:02:48"
       id: "samantha-holstine-lighting-talk-railsconf-2023"
       video_id: "samantha-holstine-lighting-talk-railsconf-2023"
       video_provider: "parent"
       speakers:
         - Samantha Holstine
 
-    - title: "Lightning Talk: Max Wofford" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
+    - title: "Lightning Talk: Financial app on Rails: For fun and nonprofit!"
+      event_name: "RailsConf 2023"
+      date: "2023-04-26"
+      start_cue: "1:07:45"
+      end_cue: "1:12:53"
+      thumbnail_cue: "1:07:49"
       id: "max-wofford-lighting-talk-railsconf-2023"
       video_id: "max-wofford-lighting-talk-railsconf-2023"
       video_provider: "parent"
       speakers:
         - Max Wofford
 
-    - title: "Lightning Talk: Gary Tou" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
+    - title: "Lightning Talk: A Crash Course in Crashing Ruby"
+      event_name: "RailsConf 2023"
+      date: "2023-04-26"
+      start_cue: "1:12:53"
+      end_cue: "1:16:16"
+      thumbnail_cue: "1:12:58"
       id: "gary-tou-lighting-talk-railsconf-2023"
       video_id: "gary-tou-lighting-talk-railsconf-2023"
       video_provider: "parent"
       speakers:
         - Gary Tou
 
-    - title: "Lightning Talk: Caleb Denio" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
+    - title: "Lightning Talk: Caleb Denio" # No official title.
+      event_name: "RailsConf 2023"
+      date: "2023-04-26"
+      start_cue: "1:16:16"
+      end_cue: "1:19:32"
+      thumbnail_cue: "1:17:25"
       id: "caleb-denio-lighting-talk-railsconf-2023"
       video_id: "caleb-denio-lighting-talk-railsconf-2023"
       video_provider: "parent"
       speakers:
         - Caleb Denio
 
-    - title: "Lightning Talk: Obie Fernandez" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
+    - title: "Lightning Talk: MagmaChat"
+      event_name: "RailsConf 2023"
+      date: "2023-04-26"
+      start_cue: "1:19:32"
+      end_cue: "1:24:22"
+      thumbnail_cue: "1:19:37"
       id: "obie-fernandez-lighting-talk-railsconf-2023"
       video_id: "obie-fernandez-lighting-talk-railsconf-2023"
       video_provider: "parent"
@@ -766,54 +824,72 @@
         - Obie Fernandez
         - Peter Szinek
 
-    - title: "Lightning Talk: Mason Meirs" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
+    - title: "Lightning Talk: mruby on the Arduino Uno (Kinda janky)"
+      event_name: "RailsConf 2023"
+      date: "2023-04-26"
+      start_cue: "1:24:22"
+      end_cue: "1:29:27"
+      thumbnail_cue: "1:24:27"
       id: "mason-meirs-lighting-talk-railsconf-2023"
       video_id: "mason-meirs-lighting-talk-railsconf-2023"
       video_provider: "parent"
       speakers:
         - Mason Meirs
 
-    - title: "Lightning Talk: Joshua Paine" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
+    - title: "Lightning Talk: activerecord-summarize: For dashboards and reports"
+      event_name: "RailsConf 2023"
+      date: "2023-04-26"
+      start_cue: "1:29:27"
+      end_cue: "1:33:58"
+      thumbnail_cue: "1:29:32"
       id: "joshua-paine-lighting-talk-railsconf-2023"
       video_id: "joshua-paine-lighting-talk-railsconf-2023"
       video_provider: "parent"
       speakers:
         - Joshua Paine
 
-    - title: "Lightning Talk: Eric Saupe" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
+    - title: "Lightning Talk: Using Your Software Skills to Make a Difference: Helping Non-Profit Organizations with Custom Software"
+      event_name: "RailsConf 2023"
+      date: "2023-04-26"
+      start_cue: "1:33:58"
+      end_cue: "1:38:40"
+      thumbnail_cue: "1:33:59"
       id: "eric-saupe-lighting-talk-railsconf-2023"
       video_id: "eric-saupe-lighting-talk-railsconf-2023"
       video_provider: "parent"
       speakers:
         - Eric Saupe
 
-    - title: "Lightning Talk: Josh Nichols" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
+    - title: "Lightning Talk: Flamegraphs"
+      event_name: "RailsConf 2023"
+      date: "2023-04-26"
+      start_cue: "1:38:40"
+      end_cue: "1:43:52"
+      thumbnail_cue: "1:38:45"
       id: "josh-nichols-lighting-talk-railsconf-2023"
       video_id: "josh-nichols-lighting-talk-railsconf-2023"
       video_provider: "parent"
       speakers:
         - Josh Nichols
 
-    - title: "Lightning Talk: Amanda Lundberg" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
+    - title: "Lightning Talk: Captioners: How DO You DO That???"
+      event_name: "RailsConf 2023"
+      date: "2023-04-26"
+      start_cue: "1:43:52"
+      end_cue: "1:47:54"
+      thumbnail_cue: "1:43:57"
       id: "amanda-lundberg-lighting-talk-railsconf-2023"
       video_id: "amanda-lundberg-lighting-talk-railsconf-2023"
       video_provider: "parent"
       speakers:
         - Amanda Lundberg
 
-    - title: "Lightning Talk: Vagmi Mudumbai" # TODO: missing talk title
-      start_cue: "TODO"
-      end_cue: "TODO"
+    - title: "Lightning Talk: Vagmi Mudumbai" # No official title. Topic: Rust and Ruby
+      event_name: "RailsConf 2023"
+      date: "2023-04-26"
+      start_cue: "1:47:54"
+      end_cue: "1:52:13"
+      thumbnail_cue: "1:47:59"
       id: "vagmi-mudumbai-lighting-talk-railsconf-2023"
       video_id: "vagmi-mudumbai-lighting-talk-railsconf-2023"
       video_provider: "parent"
@@ -903,7 +979,7 @@
   speakers:
     - Thomas Countz
   description: |-
-    Debugging is one of the most powerful and necessary tools in a developer's toolkit, and what better way to hone our Rails debugging skills than by using real-world examples from the Rails codebase itself? 
+    Debugging is one of the most powerful and necessary tools in a developer's toolkit, and what better way to hone our Rails debugging skills than by using real-world examples from the Rails codebase itself?
 
     In this talk, we'll explore how using merged PRs from the Rails codebase can help improve your debugging skills, increase your familiarity with the framework, and build your confidence in navigating complex issues. By leveraging the wealth of knowledge and experience within the Rails community, you'll come away from this talk with a newfound appreciation for the power of collaboration and the importance of community-driven development.
   date: "2023-07-10"
@@ -1018,7 +1094,7 @@
   speakers:
     - Hilary Stohs-Krause
   description: |-
-    How We Implemented Internal Salary Transparency (And Why It Matters) by 
+    How We Implemented Internal Salary Transparency (And Why It Matters) by
     Hilary Stohs-Krause
 
     Money can be a prickly topic in the workplace, but data shows it’s a conversation that many employees actively want started. Salary transparency increases trust and job satisfaction, but getting there is easier said than done. Here’s how we took the plunge, and what we learned along the way.
@@ -1078,7 +1154,7 @@
   description: |-
     "Mentorship (ˈmɛntɔːˌʃɪp) Noun. a period during which a person receives guidance from a mentor." Yeah, it seems clear enough.
 
-    More and more, teams rely on mentorship to raise the skills of their under-experienced people. But mentorship is not a catch-all solution and has its risks. Without training, poorly structured mentorship can hurt the culture and stifle growth more than help. 
+    More and more, teams rely on mentorship to raise the skills of their under-experienced people. But mentorship is not a catch-all solution and has its risks. Without training, poorly structured mentorship can hurt the culture and stifle growth more than help.
 
     So, we need a model—a system. A process to lean into that makes it a helpful tool and not a blunt hammer. This talk will cover the three stages of integrating a mentorship program and how to help a hesitant team.
   date: "2023-07-10"

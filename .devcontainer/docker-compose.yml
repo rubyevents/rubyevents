@@ -4,13 +4,41 @@ services:
       context: ..
       dockerfile: .devcontainer/Dockerfile
     command: sleep infinity
+    depends_on:
+      - typesense
     environment:
       - RAILS_ENV=development
       - NODE_ENV=development
+      - TYPESENSE_HOST=typesense
+      - TYPESENSE_PORT=8108
     ports:
       - "3000:3000"
     volumes:
       - ..:/rails:cached # Mounts the local project directory
-      - /rails/node_modules # Prevents overwriting node_modules
+      - node_modules:/rails/node_modules # Prevents overwriting node_modules so yarn install works correctly
     stdin_open: true
     tty: true
+
+  typesense:
+    image: typesense/typesense:29.0
+    container_name: rubyevents-typesense
+    restart: unless-stopped
+    ports:
+      - "8108:8108"
+    volumes:
+      - typesense-data:/data
+    environment:
+      - TYPESENSE_DATA_DIR=/data
+      - TYPESENSE_ENABLE_CORS=true
+    command: ["--data-dir", "/data", "--api-key", "xyz", "--enable-cors", "true"]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8108/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  node_modules:
+  typesense-data:
+    driver: local
