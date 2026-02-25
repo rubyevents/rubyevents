@@ -17,13 +17,13 @@
         <% duplicates.each do |(user1, user2)| %>
           <tr>
             <td class="px-3 py-2 text-sm">
-              <%= link_to user1.name, avo.resources_user_path(user1), class: "text-blue-600 hover:underline", data: { turbo_frame: "_top" } %>
+              <%= link_to user1.name, avo.resources_user_path(user1), class: "text-blue-600 hover:underline", data: {turbo_frame: "_top"} %>
               <% if user1.github_handle.present? %>
                 <span class="text-gray-400 text-xs">(<%= user1.github_handle %>)</span>
               <% end %>
             </td>
             <td class="px-3 py-2 text-sm">
-              <%= link_to user2.name, avo.resources_user_path(user2), class: "text-blue-600 hover:underline", data: { turbo_frame: "_top" } %>
+              <%= link_to user2.name, avo.resources_user_path(user2), class: "text-blue-600 hover:underline", data: {turbo_frame: "_top"} %>
               <% if user2.github_handle.present? %>
                 <span class="text-gray-400 text-xs">(<%= user2.github_handle %>)</span>
               <% end %>

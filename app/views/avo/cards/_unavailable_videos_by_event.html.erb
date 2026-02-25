@@ -1,5 +1,4 @@
-<%
-  events_with_unavailable = Talk.video_unavailable
+events_with_unavailable = Talk.video_unavailable
     .joins(:event)
     .group("events.id", "events.name")
     .order(Arel.sql("COUNT(*) DESC"))
@@ -14,7 +13,7 @@
     <div class="space-y-2">
       <% events_with_unavailable.each do |event_id, event_name, count| %>
         <div class="flex items-center justify-between py-1">
-          <%= link_to event_name.truncate(30), avo.resources_event_path(event_id), class: "text-sm text-blue-600 hover:underline truncate flex-1", data: { turbo_frame: "_top" } %>
+          <%= link_to event_name.truncate(30), avo.resources_event_path(event_id), class: "text-sm text-blue-600 hover:underline truncate flex-1", data: {turbo_frame: "_top"} %>
           <span class="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">
             <%= count %>
           </span>

@@ -1,6 +1,5 @@
 <% suspicious_users = User.suspicious.to_a %>
-<%
-  signals = {
+signals = {
     "New GitHub Account" => suspicious_users.count { |u| u.suspicion_detector.github_account_new? },
     "No Talks" => suspicious_users.count { |u| u.suspicion_detector.no_talks? },
     "No Watched Talks" => suspicious_users.count { |u| u.suspicion_detector.no_watched_talks? },
