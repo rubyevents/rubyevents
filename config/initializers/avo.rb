@@ -136,7 +136,54 @@ Avo.configure do |config|
   # }
 end
 
-# configuration/initializers/avo.rb
 Rails.configuration.to_prepare do
   Avo::ApplicationController.include Appsignal::AdminNamespace
+end
+
+# https://docs.avohq.io/3.0/gem-server-authentication.html#bundle-without-paid-gems
+unless defined?(Avo::Dashboards::BaseDashboard)
+  module Avo
+    module Dashboards
+      class BaseDashboard
+        def self.method_missing(...)
+        end
+
+        def initialize
+          raise "Cannot initialize #{self.class.name} without avo-pro gem: https://docs.avohq.io/3.0/gem-server-authentication.html#bundle-without-paid-gems"
+        end
+      end
+    end
+  end
+end
+
+# https://docs.avohq.io/3.0/gem-server-authentication.html#bundle-without-paid-gems
+unless defined?(Avo::Cards::PartialCard)
+  module Avo
+    module Cards
+      class PartialCard
+        def self.method_missing(...)
+        end
+
+        def initialize
+          raise "Cannot initialize #{self.class.name} without avo-pro gem: https://docs.avohq.io/3.0/gem-server-authentication.html#bundle-without-paid-gems"
+        end
+      end
+    end
+  end
+end
+
+# https://docs.avohq.io/3.0/gem-server-authentication.html#bundle-without-paid-gems
+unless defined?(Avo::Cards::MetricCard)
+  module Avo
+    module Cards
+      class MetricCard
+        def self.method_missing(...)
+        end
+
+        def initialize
+          raise "Cannot initialize #{self.class.name} without avo-pro gem: https://docs.avohq.io/3.0/gem-server-authentication.html#bundle-without-paid-gems"
+        end
+      end
+    end
+  end
 end
