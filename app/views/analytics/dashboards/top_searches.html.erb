@@ -1,0 +1,4 @@
+<%= turbo_frame_tag "top_searches" do %>
+  <h2 class="text-center mb-4">Top searches</h2>
+  <%= bar_chart @top_searches, id: :top_searches_chart %>
+<% end %>

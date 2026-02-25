@@ -1,136 +1,162 @@
 ---
 # Website: https://rubyconf.org.au/2015
 
-# TODO: schedule website
-# TODO: talks running order
-# TODO: talks date
-
-- title: Securing your App and the History of Guerilla Warfare
-  raw_title: "RubyConf AU 2015: Securing your App and the History of Guerilla Warfare by Scott Feinberg"
+- id: "paolo-perrotta-rubyconf-au-2015-workshop-1"
+  title: "Crash Into Ruby - From the basics to metaprogramming"
+  raw_title: "Crash Into Ruby - From the basics to metaprogramming presented by Paolo Perrotta"
   speakers:
-    - Scott Feinberg
-  event_name: RubyConf AU 2015
-  published_at: "2015-02-04"
+    - Paolo Perrotta
+  event_name: "RubyConf AU 2015"
+  date: "2015-02-04"
+  published_at: "N/A"
   description: |-
-    RubyConf AU 2015: http://www.rubyconf.org.au
+    This is a one-day crash-course for Ruby beginners and intermediates. It will
+    take you all the way through from basic Ruby coding, to the secrets of the
+    object model, and up to advanced metaprogramming techniques. Whether you're
+    a Java developer, a Python guru, or a JavaScript wizard, this workshop will
+    show you what's the big deal about Ruby, why people love it so much, and why
+    idiomatic Ruby code looks... different.
+  video_provider: "not_recorded"
+  video_id: "paolo-perrotta-rubyconf-au-2015-workshop-1"
 
-    It's a battle in the trenches everyday working in financial services keeping our users protected, making sure that hackers aren't breaking in and diverting funds or using our system as a laundering machine.
-
-    We'll journey through some lesser known attack vectors hackers can use to break into systems and best practices to both detect and prevent attacks. What are some easy ways to fight these in your app? How do you know if you're safe?
-  video_provider: youtube
-  video_id: 8ikjuuL8Qrg
-
-- title: Consider Static Typing
-  raw_title: "RubyConf AU 2015: Consider Static Typing by Tom Stuart"
+- id: "jon-rowe-rubyconf-au-2015-workshop-2"
+  title: "RSpec++"
+  raw_title: "RSpec++ presented by Jon Rowe"
   speakers:
-    - Tom Stuart
-  event_name: RubyConf AU 2015
-  published_at: "2015-02-04"
+    - Jon Rowe
+  event_name: "RubyConf AU 2015"
+  date: "2015-02-04"
+  published_at: "N/A"
   description: |-
-    RubyConf AU 2015: http://www.rubyconf.org.au
+    You've been using RSpec for a while, you know how to write tests, but you're
+    not sure you're getting the most from it. Let's spend some time working with
+    the more advanced features, take a look at the new stuff from RSpec 3 and
+    talk about making tests faster. If you use Rails, learn how to use RSpec
+    without rspec-rails and experience the power that brings.
+  video_provider: "not_recorded"
+  video_id: "jon-rowe-rubyconf-au-2015-workshop-2"
 
-    Matz announced in his RubyConf 2014 keynote that Ruby 3.0 might have a static type system. What does that really mean? How should we feel about it? Will Ruby 3.0 still be Ruby? In this talk I’ll unpack what Matz said and make some educated guesses about what it means for the future of Ruby.
-  video_provider: youtube
-  video_id: efzHrOxzrNE
+- id: "christophe-philemotte-rubyconf-au-2015-workshop-3"
+  title: "Static Analysis Driven Refactoring"
+  raw_title: "Static Analysis Driven Refactoring presented by Christophe Philemotte"
+  speakers:
+    - Christophe Philemotte
+  event_name: "RubyConf AU 2015"
+  date: "2015-02-04"
+  published_at: "N/A"
+  description: |-
+    We'll illustrate how we can use static analysis tools to drive the
+    refactoring of a Rails app. First, we'll quickly introduce static analysis,
+    its benefits and complimentarity with other practices. We'll present each
+    tools, how to understand them, and how they can drive the refactoring on a
+    real big open source project. We'll show how to automate their run and
+    integrate it in your workflow. Finally, if we get the time, we'll do the
+    same on projects of the audience.
+  video_provider: "not_recorded"
+  video_id: "christophe-philemotte-rubyconf-au-2015-workshop-3"
 
-- title: Sideprojects and Startups
+- id: "collis-taeed-rubyconf-au-2015"
+  title: "Sideprojects and Startups"
   raw_title: "RubyConf AU 2015: Sideprojects and Startups by Collis Ta'eed"
   speakers:
     - Collis Ta'eed
-  event_name: RubyConf AU 2015
-  published_at: "2015-02-04"
-  description: "RubyConf AU 2015: http://www.rubyconf.org.au"
-  video_provider: youtube
-  video_id: lwWEc4PhmJI
-
-- title: Feeling like a better developer (AKA overcoming impostor syndrome)
-  raw_title: "RubyConf AU 2015: Feeling like a better developer (AKA overcoming impostor syndrome) by Joss Paling"
-  speakers:
-    - Joss Paling
-  event_name: RubyConf AU 2015
-  published_at: "2015-02-04"
+  event_name: "RubyConf AU 2015"
+  date: "2015-02-05"
+  published_at: "2017-05-20"
   description: |-
     RubyConf AU 2015: http://www.rubyconf.org.au
+  video_provider: "youtube"
+  video_id: "lwWEc4PhmJI"
 
-    This isn't a talk about becoming a better developer - you may be less in need of that than you think! This is a talk about feeling like a better developer. It's a talk about overcoming doubts that will hold you back both personally and professionally. It's a talk about feeling confident with your own ability, while working in one of the most complex, fast-paced, and ever-changing industries in the world.
-  video_provider: youtube
-  video_id: cWZM_KgOFD4
-
-- title: Principles of Play
+- id: "linda-liukas-rubyconf-au-2015"
+  title: "Principles of Play"
   raw_title: "RubyConf AU 2015: Principles of Play by Linda Liukas"
   speakers:
     - Linda Liukas
-  event_name: RubyConf AU 2015
-  published_at: "2015-02-04"
-  description: "RubyConf AU 2015: http://www.rubyconf.org.au"
-  video_provider: youtube
-  video_id: KMBiP6VIlig
-
-- title: Programming as Performance
-  raw_title: "RubyConf AU 2015: Programming as Performance by Joseph Wilk"
-  speakers:
-    - Joseph Wilk
-  event_name: RubyConf AU 2015
-  published_at: "2015-02-04"
-  description: "RubyConf AU 2015: http://www.rubyconf.org.au"
-  video_provider: youtube
-  video_id: _z8FQdIbpJo
-
-- title: "Pre-factoring: Getting it (Closer to) Right the First Time"
-  raw_title: "RubyConf AU 2015: Pre-factoring: Getting it (Closer to) Right the First Time by Coraline Ada Ehmke"
-  speakers:
-    - Coraline Ada Ehmke
-  event_name: RubyConf AU 2015
-  published_at: "2015-02-04"
+  event_name: "RubyConf AU 2015"
+  date: "2015-02-05"
+  published_at: "2017-05-20"
   description: |-
     RubyConf AU 2015: http://www.rubyconf.org.au
+  video_provider: "youtube"
+  video_id: "KMBiP6VIlig"
 
-    Mention the word architecture and you're sure to hear criticism about the difference between waterfall and agile processes. Spending time on extensibility? You ain't gonna need it, they say. Worried about speed? Cries of premature optimization ensue. But that MVP you're building is going to form the core of a business solution that will presumably last for years. Short-sightedly painting yourself into a corner is not a good way to start it off. But it doesn't have to be a choice between cowboy coding and analysis paralysis. We can take a step back and explore ways to budget for basic architecture, plan for the future, lay the foundations for growth, and avoid becoming riddled with technical debt.
-  video_provider: youtube
-  video_id: U6ejBh80gxg
-
-- title: What is a Rubyist?
-  raw_title: "RubyConf AU 2015: What is a Rubyist? by Steve Klabnik"
-  speakers:
-    - Steve Klabnik
-  event_name: RubyConf AU 2015
-  published_at: "2015-02-04"
-  description: "RubyConf AU 2015: http://www.rubyconf.org.au"
-  video_provider: youtube
-  video_id: ImfGkWQ9zBQ
-
-- title: Saving the World (Literally) with Ruby
-  raw_title: "RubyConf AU 2015: Saving the World (Literally) with Ruby by Sean Marcia"
-  speakers:
-    - Sean Marcia
-  event_name: RubyConf AU 2015
-  published_at: "2015-02-04"
-  description: |-
-    RubyConf AU 2015: http://www.rubyconf.org.au
-
-    Two thirds of honeybee hives have died out in Virginia. Is it possible for us to devise a way of monitoring beehives in remote locations to find the cause? Enter a raspberry pi + rails. Using a combination of this robust hardware and software solution, we were able to successfully track, monitor and provide real time reporting on the well-being of hives from across the county. Find out how we used ruby, rails, solar panels and other libraries to provide insight into this problem.
-  video_provider: youtube
-  video_id: nDYh7cdGqFc
-
-- title: Loving Legacy Code
+- id: "keith-pitty-rubyconf-au-2015"
+  title: "Loving Legacy Code"
   raw_title: "RubyConf AU 2015: Loving Legacy Code by Keith Pitty"
   speakers:
     - Keith Pitty
-  event_name: RubyConf AU 2015
-  published_at: "2015-02-04"
+  event_name: "RubyConf AU 2015"
+  date: "2015-02-05"
+  published_at: "2017-05-20"
   description: |-
     RubyConf AU 2015: http://www.rubyconf.org.au
 
     February 2015 marks the tenth anniversary of DHH sharing commit rights to Rails. Doubtless there is now much legacy Rails code. Why do developers typically hate legacy code? What characteristics of a Rails application earn it the right to be classified as "legacy"? Whilst these should not be difficult to answer, perhaps there are more important and challenging questions that we ought to consider. How can we learn to love legacy code so that it, in turn, becomes more loveable? What practical steps can we take to tame a legacy codebase so that it becomes more of a pleasure to work with?
-  video_provider: youtube
+  video_provider: "youtube"
   video_id: "-PdHrg43sCc"
 
-- title: DevOps Without The "Ops" – A Fallacy? A Dream? Or Both?
+- id: "lauren-voswinkel-rubyconf-au-2015"
+  title: "Nitty Gritty Service Building"
+  raw_title: "RubyConf AU 2015: Nitty Gritty Service Building by Lauren Voswinkel"
+  speakers:
+    - Lauren Voswinkel
+  event_name: "RubyConf AU 2015"
+  date: "2015-02-05"
+  published_at: "2017-05-20"
+  description: |-
+    RubyConf AU 2015: http://www.rubyconf.org.au
+
+    You've learned about Service Oriented Architecture. You want to use it. You know the benefits to testing speeds, to team velocity, and page load (why do in sequence what can be done in parallel?). Problem is, you're tearing your hair out trying to figure out how to actually pull those services out of your monorail.
+
+    This isn't about the metrics to determine what should be pulled out into a service. This talk isn't even about optimizing the service you pull out. This talk is a step-by-step approach about how to successfully pull a service out of an existing app and optimizing its performance.
+  video_provider: "youtube"
+  video_id: "1lmMlIQuE6Q"
+
+- id: "tom-stuart-rubyconf-au-2015"
+  title: "Consider Static Typing"
+  raw_title: "RubyConf AU 2015: Consider Static Typing by Tom Stuart"
+  speakers:
+    - Tom Stuart
+  event_name: "RubyConf AU 2015"
+  date: "2015-02-05"
+  published_at: "2017-05-20"
+  description: |-
+    RubyConf AU 2015: http://www.rubyconf.org.au
+
+    Matz announced in his RubyConf 2014 keynote that Ruby 3.0 might have a static type system. What does that really mean? How should we feel about it? Will Ruby 3.0 still be Ruby? In this talk I’ll unpack what Matz said and make some educated guesses about what it means for the future of Ruby.
+  video_provider: "youtube"
+  video_id: "efzHrOxzrNE"
+  slides_url: "https://speakerdeck.com/tomstuart/consider-static-typing"
+  thumbnail_xs: "https://img.youtube.com/vi/efzHrOxzrNE/default.jpg"
+  thumbnail_sm: "https://img.youtube.com/vi/efzHrOxzrNE/mqdefault.jpg"
+  thumbnail_md: "https://img.youtube.com/vi/efzHrOxzrNE/mqdefault.jpg"
+  thumbnail_lg: "https://img.youtube.com/vi/efzHrOxzrNE/hqdefault.jpg"
+  thumbnail_xl: "https://img.youtube.com/vi/efzHrOxzrNE/hqdefault.jpg"
+
+- id: "sean-marcia-rubyconf-au-2015"
+  title: "Saving the World (Literally) with Ruby"
+  raw_title: "RubyConf AU 2015: Saving the World (Literally) with Ruby by Sean Marcia"
+  speakers:
+    - Sean Marcia
+  event_name: "RubyConf AU 2015"
+  date: "2015-02-05"
+  published_at: "2017-05-20"
+  description: |-
+    RubyConf AU 2015: http://www.rubyconf.org.au
+
+    Two thirds of honeybee hives have died out in Virginia. Is it possible for us to devise a way of monitoring beehives in remote locations to find the cause? Enter a raspberry pi + rails. Using a combination of this robust hardware and software solution, we were able to successfully track, monitor and provide real time reporting on the well-being of hives from across the county. Find out how we used ruby, rails, solar panels and other libraries to provide insight into this problem.
+  video_provider: "youtube"
+  video_id: "nDYh7cdGqFc"
+
+- id: "konstantin-gredeskoul-rubyconf-au-2015"
+  title: 'DevOps Without The "Ops" – A Fallacy? A Dream? Or Both?'
   raw_title: 'RubyConf AU 2015: DevOps Without The "Ops" – A Fallacy? A Dream? Or Both? by Konstantin Gredeskoul'
   speakers:
     - Konstantin Gredeskoul
-  event_name: RubyConf AU 2015
-  published_at: "2015-02-04"
+  event_name: "RubyConf AU 2015"
+  date: "2015-02-05"
+  published_at: "2017-05-20"
   description: |-
     RubyConf AU 2015: http://www.rubyconf.org.au
 
@@ -141,139 +167,152 @@
     Unimpressed? Now try doing the above altogether without the Ops team, while growing your traffic 100x in 6 months and deploying 5-6 times a day!
 
     It could be a dream, but luckily it's a reality that could be yours.
-  video_provider: youtube
-  video_id: fd9i0GAzZI8
+  video_provider: "youtube"
+  video_id: "fd9i0GAzZI8"
 
-- title: Service Oriented Disasters
-  raw_title: "RubyConf AU 2015: Service Oriented Disasters by Rachel Myers"
-  speakers:
-    - Rachel Myers
-  event_name: RubyConf AU 2015
-  published_at: "2015-02-04"
-  description: |-
-    RubyConf AU 2015: http://www.rubyconf.org.au
-
-    Starting with the assumptions that, first, we’re all building and maintaining complex applications, because Rails has made that relatively easy, and, second, that application complexity isn’t limited to Rails, this talk walks through a few practical case studies of identifying (or misidentifying) modern application complexity. We’ll delve into my personal anti-pattern goldmine for examples of yesterday’s architecture trend becoming today’s legacy headache, and also look at examples of creative, workable solutions to application complexity!
-  video_provider: youtube
-  video_id: e02h_cTeuVM
-
-- title: Towards a Higher-Level Language
-  raw_title: "RubyConf AU 2015: Towards a Higher-Level Language by Erik Michaels-Ober"
-  speakers:
-    - Erik Michaels-Ober
-  event_name: RubyConf AU 2015
-  published_at: "2015-02-04"
-  description: |-
-    RubyConf AU 2015: http://www.rubyconf.org.au
-
-    Over time, programming languages have allowed programmers to work at higher and higher levels of abstraction. Very little code is written in machine language or assembly language anymore.
-
-    Despite this long-term trend, most programming languages that have emerged over the past 5 years (e.g. Go, Rust, Swift) are lower-level than Ruby. Arguably, Ruby is the highest-level language in wide use today, despite being over 20 years old.
-
-    This talk will explore the possibilities of a new language that would operate at an even higher level of abstraction, making programming even simpler.
-  video_provider: youtube
-  video_id: cjPybeAeKDQ
-
-- title: Sweaters as a Service
+- id: "amy-wibowo-rubyconf-au-2015"
+  title: "Sweaters as a Service"
   raw_title: "RubyConf AU 2015: Sweaters as a Service by Amy Wibowo"
   speakers:
     - Amy Wibowo
-  event_name: RubyConf AU 2015
-  published_at: "2015-02-04"
+  event_name: "RubyConf AU 2015"
+  date: "2015-02-05"
+  published_at: "2017-05-20"
   description: |-
     RubyConf AU 2015: http://www.rubyconf.org.au
 
     In the 1980's, Nintendo had plans for making a knitting add-on to the NES, with an interface that resembled Mariopaint, but with patterned mittens, sweaters, and scarves as output. Sadly, this product never saw the light of day. Devastated upon hearing this and dreaming about what could have been, a group of engineers (who knew nothing about machine knitting) set out to hack a knitting machine from the 1980's to be computer-controlled, using a tutorial from adafruit as a starting point.
-  video_provider: youtube
-  video_id: 5Er--usI5gw
+  video_provider: "youtube"
+  video_id: "5Er--usI5gw"
 
-- title: Fields & Fences
-  raw_title: "RubyConf AU 2015: Fields & Fences by Sarah Mei"
+- id: "coraline-ada-ehmke-rubyconf-au-2015"
+  title: "Pre-factoring: Getting it (Closer to) Right the First Time"
+  raw_title: "RubyConf AU 2015: Pre-factoring: Getting it (Closer to) Right the First Time by Coraline Ada Ehmke"
   speakers:
-    - Sarah Mei
-  event_name: RubyConf AU 2015
-  published_at: "2015-02-04"
-  description: "RubyConf AU 2015: http://www.rubyconf.org.au"
-  video_provider: youtube
-  video_id: HFk1vnJMXpc
-
-- title: Understanding Despair
-  raw_title: "RubyConf AU 2015: Understanding Despair by John Dalton"
-  speakers:
-    - John Dalton
-  event_name: RubyConf AU 2015
-  published_at: "2015-02-04"
+    - Coraline Ada Ehmke
+  event_name: "RubyConf AU 2015"
+  date: "2015-02-05"
+  published_at: "2017-05-20"
   description: |-
     RubyConf AU 2015: http://www.rubyconf.org.au
 
-    Depression is a topic that many people avoid talking about, but one that touches everyone's lives. In the developer community in particular many people are affected by depression and mental illness, yet it can be difficult to understand what people are going through or how to help. I want to show you how I came to understand what it means to have clinical depression, and the single most important thing we can do about it.
-  video_provider: youtube
-  video_id: nvl9muoYPaY
+    Mention the word architecture and you're sure to hear criticism about the difference between waterfall and agile processes. Spending time on extensibility? You ain't gonna need it, they say. Worried about speed? Cries of premature optimization ensue. But that MVP you're building is going to form the core of a business solution that will presumably last for years. Short-sightedly painting yourself into a corner is not a good way to start it off. But it doesn't have to be a choice between cowboy coding and analysis paralysis. We can take a step back and explore ways to budget for basic architecture, plan for the future, lay the foundations for growth, and avoid becoming riddled with technical debt.
+  video_provider: "youtube"
+  video_id: "U6ejBh80gxg"
 
-- title: Nitty Gritty Service Building
-  raw_title: "RubyConf AU 2015: Nitty Gritty Service Building by Lauren Voswinkel"
+- id: "john-barton-rubyconf-au-2015"
+  title: "On Second Acts"
+  raw_title: "RubyConf AU 2015: On Second Acts by John Barton"
   speakers:
-    - Lauren Voswinkel
-  event_name: RubyConf AU 2015
-  published_at: "2015-02-04"
+    - John Barton
+  event_name: "RubyConf AU 2015"
+  date: "2015-02-05"
+  published_at: "2017-05-20"
   description: |-
     RubyConf AU 2015: http://www.rubyconf.org.au
 
-    You've learned about Service Oriented Architecture. You want to use it. You know the benefits to testing speeds, to team velocity, and page load (why do in sequence what can be done in parallel?). Problem is, you're tearing your hair out trying to figure out how to actually pull those services out of your monorail.
+    Australia's had a vibrant nation wide Ruby community for a good 7 years now. We're definitely well into the second act of our story arc, but what does that mean? Where do we want the community to go from here? Is there something special about the Ruby & Rails platform and community that can give us a unique third act?
+  video_provider: "youtube"
+  video_id: "lVG1SV8wWxs"
 
-    This isn't about the metrics to determine what should be pulled out into a service. This talk isn't even about optimizing the service you pull out. This talk is a step-by-step approach about how to successfully pull a service out of an existing app and optimizing its performance.
-  video_provider: youtube
-  video_id: 1lmMlIQuE6Q
+- id: "steve-klabnik-rubyconf-au-2015"
+  title: "What is a Rubyist?"
+  raw_title: "RubyConf AU 2015: What is a Rubyist? by Steve Klabnik"
+  speakers:
+    - Steve Klabnik
+  event_name: "RubyConf AU 2015"
+  date: "2015-02-06"
+  published_at: "2017-05-20"
+  description: |-
+    RubyConf AU 2015: http://www.rubyconf.org.au
+  video_provider: "youtube"
+  video_id: "ImfGkWQ9zBQ"
 
-- title: Rewriting Code and Culture
+- id: "joss-paling-rubyconf-au-2015"
+  title: "Feeling like a better developer (AKA overcoming impostor syndrome)"
+  raw_title: "RubyConf AU 2015: Feeling like a better developer (AKA overcoming impostor syndrome) by Joss Paling"
+  speakers:
+    - Joss Paling
+  event_name: "RubyConf AU 2015"
+  date: "2015-02-06"
+  published_at: "2017-05-20"
+  description: |-
+    RubyConf AU 2015: http://www.rubyconf.org.au
+
+    This isn't a talk about becoming a better developer - you may be less in need of that than you think! This is a talk about feeling like a better developer. It's a talk about overcoming doubts that will hold you back both personally and professionally. It's a talk about feeling confident with your own ability, while working in one of the most complex, fast-paced, and ever-changing industries in the world.
+  video_provider: "youtube"
+  video_id: "cWZM_KgOFD4"
+
+- id: "sabrina-leandro-rubyconf-au-2015"
+  title: "Rewriting Code and Culture"
   raw_title: "RubyConf AU 2015: Rewriting Code and Culture by Sabrina Leandro"
   speakers:
     - Sabrina Leandro
-  event_name: RubyConf AU 2015
-  published_at: "2015-02-04"
+  event_name: "RubyConf AU 2015"
+  date: "2015-02-06"
+  published_at: "2017-05-20"
   description: |-
     RubyConf AU 2015: http://www.rubyconf.org.au
 
     This is the story of a company that survived a much needed transformation of its product and codebase, but most importantly, of its culture. There's no real prescription for being agile. It's about the journey a team takes to discover how to best work together and deliver great products.
 
     In this presentation, I'll share a candid view of a team trying to overcome a slow product development process. How we refactored our way out of badly coupled code, moved to continuous deployment, and greatly improved our approach to product and software development.
-  video_provider: youtube
-  video_id: 787v6BcloJg
+  video_provider: "youtube"
+  video_id: "787v6BcloJg"
 
-- title: On Second Acts
-  raw_title: "RubyConf AU 2015: On Second Acts by John Barton"
+- id: "scott-feinberg-rubyconf-au-2015"
+  title: "Securing your App and the History of Guerilla Warfare"
+  raw_title: "RubyConf AU 2015: Securing your App and the History of Guerilla Warfare by Scott Feinberg"
   speakers:
-    - John Barton
-  event_name: RubyConf AU 2015
-  published_at: "2015-02-04"
+    - Scott Feinberg
+  event_name: "RubyConf AU 2015"
+  date: "2015-02-06"
+  published_at: "2017-05-20"
   description: |-
     RubyConf AU 2015: http://www.rubyconf.org.au
 
-    Australia's had a vibrant nation wide Ruby community for a good 7 years now. We're definitely well into the second act of our story arc, but what does that mean? Where do we want the community to go from here? Is there something special about the Ruby & Rails platform and community that can give us a unique third act?
-  video_provider: youtube
-  video_id: lVG1SV8wWxs
+    It's a battle in the trenches everyday working in financial services keeping our users protected, making sure that hackers aren't breaking in and diverting funds or using our system as a laundering machine.
 
-- title: Succeeding with Open Source
-  raw_title: "RubyConf AU 2015: Succeeding with Open Source by Philip Arndt"
+    We'll journey through some lesser known attack vectors hackers can use to break into systems and best practices to both detect and prevent attacks. What are some easy ways to fight these in your app? How do you know if you're safe?
+  video_provider: "youtube"
+  video_id: "8ikjuuL8Qrg"
+
+- id: "rachel-myers-rubyconf-au-2015"
+  title: "Service Oriented Disasters"
+  raw_title: "RubyConf AU 2015: Service Oriented Disasters by Rachel Myers"
   speakers:
-    - Philip Arndt
-  event_name: RubyConf AU 2015
-  published_at: "2015-02-04"
+    - Rachel Myers
+  event_name: "RubyConf AU 2015"
+  date: "2015-02-06"
+  published_at: "2017-05-20"
   description: |-
     RubyConf AU 2015: http://www.rubyconf.org.au
 
-    Open source is at the heart of the Ruby community and there's great value in contributing. I found this out after becoming a maintainer of one of the most popular Ruby gems. Open source helped me dramatically raise my coding abilities, reputation, and salary - all while meeting people from around the globe.
+    Starting with the assumptions that, first, we’re all building and maintaining complex applications, because Rails has made that relatively easy, and, second, that application complexity isn’t limited to Rails, this talk walks through a few practical case studies of identifying (or misidentifying) modern application complexity. We’ll delve into my personal anti-pattern goldmine for examples of yesterday’s architecture trend becoming today’s legacy headache, and also look at examples of creative, workable solutions to application complexity!
+  video_provider: "youtube"
+  video_id: "e02h_cTeuVM"
 
-    You'll learn how to get started and maintain a high velocity open source codebase + tips for effective communication with collaborators. Whether you're new to Ruby or sitting on a quarter of a million rubygems downloads, you'll walk away with a clear path to open source success.
-  video_provider: youtube
-  video_id: 8i5c3RXa3g8
+- id: "joseph-wilk-rubyconf-au-2015"
+  title: "Programming as Performance"
+  raw_title: "RubyConf AU 2015: Programming as Performance by Joseph Wilk"
+  speakers:
+    - Joseph Wilk
+  event_name: "RubyConf AU 2015"
+  date: "2015-02-06"
+  published_at: "2017-05-20"
+  description: |-
+    RubyConf AU 2015: http://www.rubyconf.org.au
+  video_provider: "youtube"
+  video_id: "_z8FQdIbpJo"
 
-- title: A Case for Use Cases
+- id: "shevaun-coker-rubyconf-au-2015"
+  title: "A Case for Use Cases"
   raw_title: "RubyConf AU 2015: A Case for Use Cases by Shevaun Coker"
   speakers:
     - Shevaun Coker
-  event_name: RubyConf AU 2015
-  published_at: "2015-02-04"
+  event_name: "RubyConf AU 2015"
+  date: "2015-02-06"
+  published_at: "2017-05-20"
   description: |-
     RubyConf AU 2015: http://www.rubyconf.org.au
 
@@ -282,5 +321,69 @@
     If you cut your teeth on RoR, at some point you've probably shuffled domain logic from views to controllers to models to POROs in pursuit of Separation of Concerns.
 
     Now it's time to introduce Use Cases as a contextual, well-defined interface between your Rails controllers and your domain entities. Walk through real examples and learn how these nifty little classes reveal your user stories while hiding implementation detail.
-  video_provider: youtube
-  video_id: atFN0rReJfA
+  video_provider: "youtube"
+  video_id: "atFN0rReJfA"
+
+- id: "sarah-mei-rubyconf-au-2015"
+  title: "Fields & Fences"
+  raw_title: "RubyConf AU 2015: Fields & Fences by Sarah Mei"
+  speakers:
+    - Sarah Mei
+  event_name: "RubyConf AU 2015"
+  date: "2015-02-06"
+  published_at: "2017-05-20"
+  description: |-
+    RubyConf AU 2015: http://www.rubyconf.org.au
+  video_provider: "youtube"
+  video_id: "HFk1vnJMXpc"
+
+- id: "john-dalton-rubyconf-au-2015"
+  title: "Understanding Despair"
+  raw_title: "RubyConf AU 2015: Understanding Despair by John Dalton"
+  speakers:
+    - John Dalton
+  event_name: "RubyConf AU 2015"
+  date: "2015-02-06"
+  published_at: "2017-05-20"
+  description: |-
+    RubyConf AU 2015: http://www.rubyconf.org.au
+
+    Depression is a topic that many people avoid talking about, but one that touches everyone's lives. In the developer community in particular many people are affected by depression and mental illness, yet it can be difficult to understand what people are going through or how to help. I want to show you how I came to understand what it means to have clinical depression, and the single most important thing we can do about it.
+  video_provider: "youtube"
+  video_id: "nvl9muoYPaY"
+
+- id: "philip-arndt-rubyconf-au-2015"
+  title: "Succeeding with Open Source"
+  raw_title: "RubyConf AU 2015: Succeeding with Open Source by Philip Arndt"
+  speakers:
+    - Philip Arndt
+  event_name: "RubyConf AU 2015"
+  date: "2015-02-06"
+  published_at: "2017-05-20"
+  description: |-
+    RubyConf AU 2015: http://www.rubyconf.org.au
+
+    Open source is at the heart of the Ruby community and there's great value in contributing. I found this out after becoming a maintainer of one of the most popular Ruby gems. Open source helped me dramatically raise my coding abilities, reputation, and salary - all while meeting people from around the globe.
+
+    You'll learn how to get started and maintain a high velocity open source codebase + tips for effective communication with collaborators. Whether you're new to Ruby or sitting on a quarter of a million rubygems downloads, you'll walk away with a clear path to open source success.
+  video_provider: "youtube"
+  video_id: "8i5c3RXa3g8"
+
+- id: "erik-michaels-ober-rubyconf-au-2015"
+  title: "Towards a Higher-Level Language"
+  raw_title: "RubyConf AU 2015: Towards a Higher-Level Language by Erik Michaels-Ober"
+  speakers:
+    - Erik Michaels-Ober
+  event_name: "RubyConf AU 2015"
+  date: "2015-02-06"
+  published_at: "2017-05-20"
+  description: |-
+    RubyConf AU 2015: http://www.rubyconf.org.au
+
+    Over time, programming languages have allowed programmers to work at higher and higher levels of abstraction. Very little code is written in machine language or assembly language anymore.
+
+    Despite this long-term trend, most programming languages that have emerged over the past 5 years (e.g. Go, Rust, Swift) are lower-level than Ruby. Arguably, Ruby is the highest-level language in wide use today, despite being over 20 years old.
+
+    This talk will explore the possibilities of a new language that would operate at an even higher level of abstraction, making programming even simpler.
+  video_provider: "youtube"
+  video_id: "cjPybeAeKDQ"

@@ -1,0 +1,14 @@
+@layer components {
+  /* https://github.com/saadeghi/daisyui/issues/2988 */
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .tab {
+    order: 0;
+  }
+  .tab-content {
+    order: 1;
+    width: 100%;
+  }
+}

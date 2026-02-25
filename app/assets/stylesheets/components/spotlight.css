@@ -1,0 +1,9 @@
+@layer components {
+  .modal-box.spotlight {
+    @apply max-w-full;
+  }
+
+  [role="option"][aria-selected="true"] {
+    @apply font-bold;
+  }
+}

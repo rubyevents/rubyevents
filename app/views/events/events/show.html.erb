@@ -1,0 +1,171 @@
+<main class="container">
+  <div class="flex w-full flex-col overflow-hidden bg-[#333333] md:min-h-[calc(100dvh-80px)] rounded-xl" style="transform-origin: 0% 0%; transform: none;">
+    <div class="relative bg-[#333333] text-[--featured-color]" style="--featured-color: <%= @talk.event.static_metadata.featured_color %>;">
+      <div class="relative md:h-[calc(100dvh-170px)] w-full md:aspect-video md:h-inherit">
+        <div class="relative flex h-[calc(50dvh-170px)] md:h-[calc(100dvh-170px)] flex-col items-end justify-end pb-1 md:h-inherit">
+          <div class="inset-x-0 bottom-44 z-20 flex w-full flex-col justify-between md:bottom-0 md:flex-row md:items-end md:p-10">
+            <div class="w-full flex-col md:w-1/2 md:max-w-[80%]">
+              <div class="flex justify-center gap-2 pb-4 md:justify-between">
+                <div class="md:flex items-center gap-3 md:gap-2">
+                  <div class="flex flex-wrap gap-2">
+                    <div class="w-fit rounded bg-white/20 p-1 font-mono text-inherit text-sm-uppercases uppercase leading-[100%] backdrop-blur-md md:text-2xs-uppercases">
+                      <div><%= @talk.formatted_kind %></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="hidden font-mono text-inherit text-sm-text-regular uppercase backdrop-blur-none md:flex">
+                  <div><%= @talk.date.strftime("%A, %b %d, %Y") %></div>
+                </div>
+                <div class="hidden font-mono text-sm-text-regular uppercase backdrop-blur-none md:flex">
+                  <div>from xx:xx</div>
+                </div>
+              </div>
+              <h1 class="pb-3 text-inherit text-center text-4xl uppercase leading-[90%] md:-mb-5 md:-ml-1 md:pt-3 md:text-left md:text-9xl-heading">
+                <span><%= @talk.title %></span>
+              </h1>
+            </div>
+            <div class="relative z-40 hidden w-[217px] flex-col gap-1 md:flex">
+              <a target="_blank" class="btn btn-secondary w-full font-mono text-sm-uppercases uppercase backdrop-blur-md md:text-xs-uppercases" href="<%= event_path(@talk.event) %>">
+                Sign up
+              </a>
+            </div>
+          </div>
+          <div
+            class="absolute inset-0 z-0 h-full w-full bg-[--featured-background] text-[--featured-color]"
+            style="--featured-background: <%= @talk.event.static_metadata.featured_background %>; --featured-color: <%= @talk.event.static_metadata.featured_color %>; transform-origin: 0% 0%; transform: none; opacity: 1;">
+            <div class="flex items-center justify-center relative aspect-image-mobile max-h-full w-full overflow-hidden sm:aspect-image-tablet md:aspect-image-desktop lg:aspect-image-desktop-lg xl:aspect-image-desktop-xl 2xl:aspect-image-desktop-2xl h-full ">
+              <%= image_tag @talk.event.featured_image_path, class: "w-1/2" %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="z-40 w-full overflow-hidden bg-[#333333] py-12 text-white md:mx-auto md:pt-10">
+        <div>
+          <div class="relative flex gap-0 px-5 pt-0 md:gap-[10%] md:px-10 flex-col-reverse md:flex-row-reverse md:justify-between">
+            <div class="flex flex-col gap-3 ">
+              <p class="font-mono text-[#D9D9D9] text-[.625rem] uppercase">Description</p>
+
+              <div class="relative group" id="descToggle">
+                <article id="descContent" class="max-w-[788px] text-[1.5rem] text-[#D9D9D9] prose max-h-[450px] group-data-[expanded]:max-h-none overflow-y-hidden">
+                  <%= simple_format auto_link(@talk.description, html: {target: "_blank", class: "link"}) %>
+                </article>
+                <div id="descExpandControls" class="desc-expand-controls">
+                  <div class="absolute bottom-0 left-0 w-full h-56 bg-gradient-to-t from-[#333333]/90 to-transparent group-data-[expanded]:hidden flex justify-center items-end pointer-events-none"></div>
+                  <button type="button" class="btn btn-sm btn-white shadow absolute bottom-4 left-1/2 -translate-x-1/2 group-data-[expanded]:hidden z-20" onclick="descToggle.toggleAttribute('data-expanded')">
+                    Show more
+                  </button>
+                  <button type="button" class="btn btn-sm btn-white shadow absolute bottom-4 left-1/2 -translate-x-1/2 hidden group-data-[expanded]:flex z-20" onclick="descToggle.toggleAttribute('data-expanded')">
+                    Show less
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex gap-7 md:flex-col">
+              <div class="mb-10 flex flex-col md:mb-0">
+                <p class="font-mono text-[#D9D9D9] text-[.625rem] uppercase"><%= "Speaker".pluralize(@talk.speakers.count) %></p>
+
+                <div class="my-6">
+                  <% @talk.speakers.each do |speaker| %>
+                    <div class="mb-2">
+                      <div class="flex flex-wrap items-center gap-3">
+                        <div class="flex items-center">
+                          <%= link_to profile_path(speaker) do %>
+                            <div class="flex w-full items-center gap-2">
+                              <h3 class="flex-nowrap text-left text-2xl uppercase text-light-grey-500 md:text-5xl-text-semibold"><%= speaker.name %></h3>
+                            </div>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+
+                <p class="mt-6 font-mono text-[#D9D9D9] text-[.625rem] uppercase">Details</p>
+
+                <p class="mt-3">
+                  Date:
+                  <% if @talk.date %>
+                    <%= @talk.formatted_date %>
+                  <% else %>
+                    unknown<% end %><br>
+
+                  <span class="text-gray-400">
+                    Published:
+                    <% if @talk.published_at %>
+                      <%= @talk.published_at.strftime("%B %d, %Y") %>
+                    <% elsif @talk.published? %>
+                      unknown
+                    <% else %>
+                      not published
+                    <% end %>
+                    <br>
+
+                    Announced:
+                    <% if @talk.announced_at %>
+                      <%= @talk.announced_at.strftime("%B %d, %Y") %>
+                    <% else %>
+                      unknown
+                    <% end %>
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <% if @talk.child_talks.any? %>
+            <div class="mx-auto mt-5 px-5 md:my-16 md:px-10">
+              <p class="mt-12 font-mono text-[#D9D9D9] text-[.625rem] uppercase"><%= "Talk".pluralize(@talk.child_talks.count) %></p>
+
+              <div class="mt-3 flex flex-col gap-4 divide">
+                <% @talk.child_talks.each do |talk| %>
+                  <%= link_to talk, class: "flex justify-between p-2 gap-4 bg-[#131313] hover:opacity-85" do %>
+                    <div class="flex gap-6">
+                      <div class="min-w-[150px] w-[150px]">
+                        <%= image_tag talk.thumbnail_lg, class: "rounded" %>
+                      </div>
+
+                      <div class="flex flex-col justify-center">
+                        <div class="text-ellipsis line-clamp-1 overflow-hidden"><%= talk.title %></div>
+                        <div class="text-[#d9d9d9]"><%= talk.speakers.map(&:name).to_sentence %></div>
+                      </div>
+                    </div>
+
+                    <div class="flex items-center p-2">
+                      <% talk.speakers.each do |speaker| %>
+                        <div class="flex items-center gap-1">
+                          <div class="avatar placeholder">
+                            <div class="w-14 h-14 rounded-full bg-primary text-neutral-content">
+                              <% if speaker.custom_avatar? %>
+                                <%= image_tag speaker.avatar_url(size: 48) %>
+                              <% else %>
+                                <span class="text-md"><%= speaker.name.split(" ").map(&:first).join %></span>
+                              <% end %>
+                            </div>
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  document.addEventListener('turbo:load', function() {
+    var content = document.getElementById('descContent');
+    var controls = document.getElementById('descExpandControls');
+    if (content && controls) {
+      if (content.scrollHeight <= 450) {
+        controls.style.display = 'none';
+      }
+    }
+  });
+</script>

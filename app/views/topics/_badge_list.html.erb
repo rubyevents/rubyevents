@@ -1,0 +1,18 @@
+<% limit ||= 8 %>
+<% more_topics = topics.to_a.from(limit) %>
+
+<div class="flex flex-wrap gap-2" data-controller="toggable" data-toggable-hide-text-value="show less topics">
+  <%= render partial: "topics/badge", collection: topics.first(limit), as: :topic, locals: {back_to_url: back_to_url, back_to_title: back_to_title} %>
+
+  <% more_topics.each do |topic| %>
+    <span class="hidden" data-toggable-target="toggable">
+      <%= render partial: "topics/badge", locals: {topic: topic, back_to_url: back_to_url, back_to_title: back_to_title} %>
+    </span>
+  <% end %>
+
+  <% if more_topics.any? %>
+    <button type="button" data-action="click->toggable#toggle">
+      <div class="badge badge-ghost hover:bg-gray-300 px-2 py-3 text-xs" data-toggable-target="toggle"><%= more_topics.count %> more</div>
+    </button>
+  <% end %>
+</div>

@@ -1,0 +1,17 @@
+<%= link_to talk_path(talk), target: "_top", id: dom_id(talk), role: "option", class: "w-full flex items-center gap-4", style: "view-transition-name: #{dom_id(talk, :search_result)}" do %>
+  <div class="hidden md:flex aspect-video shrink-0 relative w-20">
+    <%= image_tag talk.thumbnail_sm, srcset: ["#{talk.thumbnail_sm} 2x"], id: dom_id(talk), class: "w-full h-auto object-cover border rounded skeleton", loading: :lazy, height: 180, width: 320 %>
+  </div>
+
+  <div class="flex flex-col gap-1 text-sm">
+    <%= content_tag :div, class: "" do %>
+      <%= content_tag :div, talk.title, class: "font-regular line-clamp-2" %>
+    <% end %>
+
+    <div class="flex items-start gap-2 font-light">
+      <div class="line-clamp-1 text-gray-500">
+        <%= talk.speakers.map(&:name).to_sentence %>
+      </div>
+    </div>
+  </div>
+<% end %>

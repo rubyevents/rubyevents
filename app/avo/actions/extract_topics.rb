@@ -3,7 +3,7 @@ class Avo::Actions::ExtractTopics < Avo::BaseAction
 
   def handle(query:, fields:, current_user:, resource:, **args)
     query.each do |talk|
-      AnalyzeTalkTopicsJob.perform_later(talk)
+      talk.agents.analyze_topics_later
     end
   end
 end

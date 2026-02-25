@@ -1,145 +1,158 @@
 ---
-# TODO: talks running order
-# TODO: talk dates
-# TODO: conference website
-# TODO: schedule website
+# Website: https://web.archive.org/web/20140701152258/http://larubyconf.com/
+# Schedule: https://web.archive.org/web/20140921155306/http://larubyconf.com/schedule
 
-- title: Go For The Rubyist
-  raw_title: LA Ruby Conf 2014 - Go for the Rubyist by Mark Bates
+## Day 1 - Workshop - Thursday, February 6, 2014
+
+# TODO: Missing Workshop: Mike Moore - Rails Testing
+# TODO: Missing Workshop: Matthew Boston, Justin Searls - Real-world JavaScript Testing
+# TODO: Missing Workshop: Mark Menard - Introduction to Ruby and Ruby on Rails
+
+## Day 2 - Workshop - Friday, February 7, 2014
+
+# TODO: Missing Workshop: Mike Moore - Rails Testing Workshop (Day 2)
+# TODO: Missing Workshop: Mark Menard - Build Small Things
+
+## Day 3 - Conference - Saturday, February 8, 2014
+
+# Welcome and Introduction (Coby Randquist, JR Fent)
+
+- id: "sebastian-sogamoso-la-rubyconf-2014"
+  title: "SOLID Principles Through Tests"
+  raw_title: "LA Ruby Conf 2014 - SOLID principles through tests by Sebastian Sogamoso"
   speakers:
-    - Mark Bates
-  event_name: LA RubyConf 2014
-  published_at: "2020-01-24"
+    - Sebastian Sogamoso
+  event_name: "LA RubyConf 2014"
+  date: "2014-02-08"
+  published_at: "2014-04-11"
   description: |-
-    Why are so many Rubyists buzzing about Go? This hot new language that grew out of Google just a few years ago is taking the world by storm and is generating a lot of buzz in the Ruby community. In this talk we'll look at the highlights of Go and try and figure out what the hype is all about, and we'll do with a keen Rubyist eye. We'll also look at where it would make sense in our Ruby/Rails projects to extend them with this highly concurrent, and performant language. What do you say my fellow Rubyists; are you up for the challenge of learning something a bit different?
+    We care about writing quality code, we have read the definition of SOLID principles several times and we know how important they are for writing good OO code, but are we really following those principles? Is there a pragmatic way of following them in our day to day jobs or are they just some principles a few computer scientists wrote? Fortunately there is, SOLID principles are not just good ideas , they are intended to help us write better code, enjoy our jobs more and be happy programmers. But, where should we start? We should start where we always do. By writing tests, yes, for real. As Kent Beck says "TDD doesn't drive good design. TDD gives you immediate feedback about what is likely to be bad design", so we need to go a step further. In this talk we will see how writing tests is not just *doing TDD* is about having good test coverage, it's also about driving our code towards good design, one that follows SOLID principles.
 
-    Help us caption & translate this video!
+  video_provider: "youtube"
+  video_id: "_4j0Bh-Qtrc"
 
-    http://amara.org/v/FG2v/
-  video_provider: youtube
-  video_id: Ukqa5gSE0ig
-
-- title: "I Have Pair Programmed for 27,000 Hours: Ask Me Anything!"
+- id: "joe-moore-la-rubyconf-2014"
+  title: "I Have Pair Programmed for 27,000 Hours: Ask Me Anything!"
   raw_title: "LA Ruby Conf 2014 - I Have Pair Programmed for 27,000 Hours: Ask Me Anything!"
   speakers:
     - Joe Moore
-  event_name: LA RubyConf 2014
-  published_at: "2020-01-24"
+  event_name: "LA RubyConf 2014"
+  date: "2014-02-08"
+  published_at: "2014-04-11"
   description: |-
     By Joe Moore
 
     Let's do this thing. What is pair programming? Won't software projects take twice as long or cost twice as much with pair programming? Do I pair with the same person every day? Who owns the code? How do performance reviews work? Do we pair on *everything?* What do I do if my pair goes home sick? What do I do if I can't stand my pair? What if my pair smells bad? What if my pair smells GOOD?! I've given presentations at many conferences, Meetups, and companies on topics ranging from Agile team management to Android messaging frameworks. My presentations inevitably grind to a halt once I mention that I pair program: I'm peppered with questions! I'll answer any and all questions about pair programming and remote pair programming, from the profound to the silly. I have no doubt that we will fill the allotted time with sage advice, educational anecdotes, and your own stories about pair programming.
 
-    Help us caption & translate this video!
+  video_provider: "youtube"
+  video_id: "rIcUXcyC6BA"
 
-    http://amara.org/v/FG3b/
-  video_provider: youtube
-  video_id: rIcUXcyC6BA
+# Break
 
-- title: Introduction to CRuby Source Code
-  raw_title: LA Ruby Conf 2014 - Introduction to CRuby source code by Andy Pliszka
+- id: "andy-pliszka-la-rubyconf-2014"
+  title: "Introduction to CRuby Source Code"
+  raw_title: "LA Ruby Conf 2014 - Introduction to CRuby source code by Andy Pliszka"
   speakers:
     - Andy Pliszka
-  event_name: LA RubyConf 2014
-  published_at: "2020-01-24"
+  event_name: "LA RubyConf 2014"
+  date: "2014-02-08"
+  published_at: "2014-04-11"
   description: |-
     Understanding of CRuby source code has profound effects on every Ruby developer. In my talk, I will show you how to build Ruby from source. I will explain how to install and configure your new Ruby build on Mac and Linux. I will walk you through CRuby source code and introduce you to a few of the most important CRuby files. I will show you how to hack CRuby and modify some of the fundament Ruby classes in C. I will demonstrate how to write complete Ruby classes in C. Finally, I will show you that CRuby code can run 100 times faster than Ruby code. I hope that this talk will inspire you to learn more about CRuby and hack it on your own.
 
-    Help us caption & translate this video!
+  video_provider: "youtube"
+  video_id: "Chk9c8EwrCA"
 
-    http://amara.org/v/FG2o/
-  video_provider: youtube
-  video_id: Chk9c8EwrCA
-
-- title: As Easy As Rails
-  raw_title: LA Ruby Conf 2014 - As easy as Rails by Justin Searls
+- id: "justin-searls-la-rubyconf-2014"
+  title: "As Easy As Rails"
+  raw_title: "LA Ruby Conf 2014 - As easy as Rails by Justin Searls"
   speakers:
     - Justin Searls
-  event_name: LA RubyConf 2014
-  published_at: "2020-01-24"
+  event_name: "LA RubyConf 2014"
+  date: "2014-02-08"
+  published_at: "2014-04-12"
   description: |-
     Rails came to prominence because it makes web development easy. So easy, in fact, that we're afraid to ask if Rails might be the wrong choice for our web application. Because before Rails, web development was so much more painful and difficult. It turns out that Rails is an awful choice for at least one type of web application: fat-client JavaScript user interfaces. We've been slow to admit this because it's hard to deny the comfort and convenience of the Rails ecosystem. But viewed more broadly, the Ruby ecosystem's client-side tooling has been completely outflanked in the past two years by the tremendous community focus on Node.js and Grunt. In this talk, we'll discuss why building single page apps with Rails isn't as easy as we might assume. We'll uncover the dangers of tangling our front-end UI with our backend-services in a single repository. Finally, I'll demonstrate some of the amazing things that development tools are capable of when JavaScript is treated as a first-class language and when (just like in Rails) we strive to make developers' work easier.
 
-    Help us caption & translate this video!
+  video_provider: "youtube"
+  video_id: "LiajWwszsc0"
 
-    http://amara.org/v/FG2q/
-  video_provider: youtube
-  video_id: LiajWwszsc0
+# Lunch
 
-- title: Refactoring Your Team For Fun and Profit
-  raw_title: LA Ruby Conf 2014 - Refactoring Your Team For Fun and Profit by Aaron Harpole
+- id: "aaron-harpole-la-rubyconf-2014"
+  title: "Refactoring Your Team For Fun and Profit"
+  raw_title: "LA Ruby Conf 2014 - Refactoring Your Team For Fun and Profit by Aaron Harpole"
   speakers:
     - Aaron Harpole
-  event_name: LA RubyConf 2014
-  published_at: "2020-01-24"
+  event_name: "LA RubyConf 2014"
+  date: "2014-02-08"
+  published_at: "2014-04-12"
   description: |-
     As Rubyists, we see the value in refactoring. When Fullscreen started experiencing serious growth and our team started to grow with it, the excitement and glamour of being a successful startup quickly wore off as a far-reaching engineering initiative began looking insurmountable. In this talk, I will discuss how applying software development best practices to how we ran our team turned it into one that runs at scale, shipping new things more frequently than ever before with less stress than ever.
 
-    Help us caption & translate this video!
+  video_provider: "youtube"
+  video_id: "lg9EdYyiIeg"
 
-    http://amara.org/v/FG2r/
-  video_provider: youtube
-  video_id: lg9EdYyiIeg
-
-- title: Write Small Things
-  raw_title: LA Ruby Conf 2014 - Write Small Things by Mark Menard
+- id: "mark-menard-la-rubyconf-2014"
+  title: "Write Small Things"
+  raw_title: "LA Ruby Conf 2014 - Write Small Things by Mark Menard"
   speakers:
     - Mark Menard
-  event_name: LA RubyConf 2014
-  published_at: "2020-01-24"
+  event_name: "LA RubyConf 2014"
+  date: "2014-02-08"
+  published_at: "2014-04-12"
   description: |-
     "I didn't have time to write a short letter, so I wrote a long one instead." -Mark Twain Writing small classes is hard. You know you should, but how do you actually do it? It's so much easier to write a large class. In this talk we'll build up a set of small classes starting from nothing using a set of directed refactorings applied as we build. All while keeping our classes small. We'll identify abstractions yearning to be free of their big object cages. In the process we'll also see how basic patterns such as composition, delegation and dependency injection emerge from using small objects. We'll even write some tests too.
 
-    Help us caption & translate this video!
+  video_provider: "youtube"
+  video_id: "A0aZLDaGozM"
 
-    http://amara.org/v/FG2s/
-  video_provider: youtube
-  video_id: A0aZLDaGozM
+# Break
 
-- title: Addressing Sexism To Build A Better Ruby Community
-  raw_title: LA Ruby Conf 2014 - Addressing sexism to build a better Ruby community
+- id: "hannah-howard-la-rubyconf-2014"
+  title: "Addressing Sexism To Build A Better Ruby Community"
+  raw_title: "LA Ruby Conf 2014 - Addressing sexism to build a better Ruby community"
   speakers:
     - Hannah Howard
     - Evan Dorn
-  event_name: LA RubyConf 2014
-  published_at: "2020-01-24"
+  event_name: "LA RubyConf 2014"
+  date: "2014-02-08"
+  published_at: "2014-04-12"
   description: |-
     By Hannah Howard and Evan Dorn
 
     Despite programs like RailsBridge and RailsGirls, gender disparities remain a persistent problem in technology. In the last year the coding community has been rocked by several incidents of shockingly overt sexism. The topic is uncomfortable for everyone, and attempts to address it often create new unpleasant conflicts. We will discuss the experiences of women in our community, and address the understandable (but often unhelpful) reactions men have to the issues. We will offer practical strategies and tools to address these issues and create a healthier community. Co-presentation by Evan Dorn and Hannah Howard of Logical Reality Design, Inc.
 
-    Help us caption & translate this video!
+  video_provider: "youtube"
+  video_id: "xxqIw_oL-Go"
 
-    http://amara.org/v/FG2t/
-  video_provider: youtube
-  video_id: xxqIw_oL-Go
-
-- title: Writing Games with Ruby
-  raw_title: LA Ruby Conf 2014 - Writing Games with Ruby by Mike Moore
+- id: "mike-moore-la-rubyconf-2014"
+  title: "Writing Games with Ruby"
+  raw_title: "LA Ruby Conf 2014 - Writing Games with Ruby by Mike Moore"
   speakers:
     - Mike Moore
-  event_name: LA RubyConf 2014
-  published_at: "2020-01-24"
+  event_name: "LA RubyConf 2014"
+  date: "2014-02-08"
+  published_at: "2014-04-12"
   description: |-
     Creating games is crazy fun and dirt simple with Ruby. You will leave this session with a working game; no previous game development experience necessary. We will introduce basic concepts of game programming and show how to implement them using the Gosu library. This includes the game loop, sprites, animation, camera movement and hit detection. We will build a complete game, so you might want to bring your notebook and follow along.
 
-    Help us caption & translate this video!
+  video_provider: "youtube"
+  video_id: "jJhbpY70miE"
 
-    http://amara.org/v/FG2u/
-  video_provider: youtube
-  video_id: jJhbpY70miE
+# Break
 
-- title: SOLID Principles Through Tests
-  raw_title: LA Ruby Conf 2014 - SOLID principles through tests by Sebastian Sogamoso
+- id: "mark-bates-la-rubyconf-2014"
+  title: "Go For The Rubyist"
+  raw_title: "LA Ruby Conf 2014 - Go for the Rubyist by Mark Bates"
   speakers:
-    - Sebastian Sogamoso
-  event_name: LA RubyConf 2014
-  published_at: "2020-01-24"
+    - Mark Bates
+  event_name: "LA RubyConf 2014"
+  date: "2014-02-08"
+  published_at: "2014-04-12"
   description: |-
-    We care about writing quality code, we have read the definition of SOLID principles several times and we know how important they are for writing good OO code, but are we really following those principles? Is there a pragmatic way of following them in our day to day jobs or are they just some principles a few computer scientists wrote? Fortunately there is, SOLID principles are not just good ideas , they are intended to help us write better code, enjoy our jobs more and be happy programmers. But, where should we start? We should start where we always do. By writing tests, yes, for real. As Kent Beck says "TDD doesn't drive good design. TDD gives you immediate feedback about what is likely to be bad design", so we need to go a step further. In this talk we will see how writing tests is not just *doing TDD* is about having good test coverage, it's also about driving our code towards good design, one that follows SOLID principles.
+    Why are so many Rubyists buzzing about Go? This hot new language that grew out of Google just a few years ago is taking the world by storm and is generating a lot of buzz in the Ruby community. In this talk we'll look at the highlights of Go and try and figure out what the hype is all about, and we'll do with a keen Rubyist eye. We'll also look at where it would make sense in our Ruby/Rails projects to extend them with this highly concurrent, and performant language. What do you say my fellow Rubyists; are you up for the challenge of learning something a bit different?
 
-    Help us caption & translate this video!
-
-    http://amara.org/v/FG3a/
-  video_provider: youtube
-  video_id: _4j0Bh-Qtrc
+  video_provider: "youtube"
+  video_id: "Ukqa5gSE0ig"
+# Closing remarks (JR Fent, Coby Randquist)

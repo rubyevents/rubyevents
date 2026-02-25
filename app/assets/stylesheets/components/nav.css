@@ -6,13 +6,13 @@
     title {
       @apply m-0 inline-block;
       div {
-        @apply invisible border-b-2 border-solid border-white;
+        @apply invisible h-0.5 bg-primary;
       }
       &.active {
         @apply relative;
         & > div {
           view-transition-name: navbar-active;
-          @apply visible absolute bottom-0 w-full;
+          @apply visible absolute bottom-0 w-full font-bold;
         }
       }
     }

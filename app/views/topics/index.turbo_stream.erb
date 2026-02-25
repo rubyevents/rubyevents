@@ -1,0 +1,15 @@
+<%= turbo_stream.append "topics" do %>
+  <% cache @topics do %>
+    <%= render partial: "topic", collection: @topics, as: :topic %>
+  <% end %>
+<% end %>
+
+<% if @pagy.next.present? %>
+  <%= turbo_stream.replace "pagination" do %>
+    <%= turbo_frame_tag :pagination,
+                        data: {
+                          controller: "lazy-loading",
+                          lazy_loading_src_value: topics_path(letter: params[:letter], s: params[:s], page: @pagy.next, format: :turbo_stream)
+                        } %>
+  <% end %>
+<% end %>

@@ -1,0 +1,21 @@
+<%= turbo_frame_tag dom_id(@talk, :slides) do %>
+  <% if @talk.slides_url.present? %>
+    <% uri = URI(@talk.slides_url) %>
+    <% cache [@talk.slides_url] do %>
+      <% if ["speakerdeck.com", "www.speakerdeck.com"].include?(uri.host) %>
+        <% oembed_url = URI("https://speakerdeck.com/oembed.json?url=#{@talk.slides_url}") %>
+        <% oembed_json = begin
+             JSON.parse(Net::HTTP.get(oembed_url))
+           rescue
+             {}
+           end %>
+
+        <div class="responsive-iframe-container">
+          <%= sanitize oembed_json.dig("html"), tags: ["iframe"], attributes: ["id", "class", "src", "width", "height", "style", "frameborder", "allowtransparency", "allowfullscreen"] %>
+        </div>
+      <% end %>
+    <% end %>
+
+    <a class="btn btn-primary mt-6" href="<%= sanitize(@talk.slides_url) %>" target="_blank">See Slides on <%= uri.host %></a>
+  <% end %>
+<% end %>

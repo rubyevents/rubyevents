@@ -1,197 +1,271 @@
 ---
-# TODO: talks running order
-# TODO: talk dates
-# TODO: conference website
-# TODO: schedule website
+# Website: https://balticruby.org/archive/2024
+# Schedule: https://balticruby.org/archive/2024/mainstage
 
-- title: Ruby off Rails
-  raw_title: '"Ruby off Rails"'
+## Day 1 - 13.06
+
+# Door Opening
+
+# Opening Notes
+
+- id: "yukihiro-matz-matsumoto-baltic-ruby-2024"
+  title: "Keynote: Second System Syndrome"
+  raw_title: '"Second system syndrome"'
   speakers:
-    - Erica Weistrand
-  event_name: BalticRuby 2024
-  published_at: "2024-07-22"
-  description:
-    In this talk we'll delve into the web frameworks Rails, Hanami and
-    Sinatra and we'll explain how we try to combine the best out of the frameworks
-    to create web apps at 84codes.
-  video_provider: youtube
-  video_id: auRaa-iyrTM
+    - Yukihiro "Matz" Matsumoto
+  event_name: "Baltic Ruby 2024"
+  date: "2024-06-13"
+  description: |-
+    Keynote.
+  video_provider: "youtube"
+  video_id: "B0kLnbXEO50"
+  published_at: "2024-07-25"
 
-- title: Building native Ruby extensions in Rust
-  raw_title: '"Building native Ruby extensions in Rust"'
-  speakers:
-    - Guilherme Carreiro
-  event_name: BalticRuby 2024
-  published_at: "2024-07-22"
-  description:
-    When we occasionally reach the limits of Ruby and need the power of
-    native extensions, we no longer have to default to C. It's easier than ever to
-    build production-ready Rust native extensions, bringing the best of both ecosystems
-    together!
-  video_provider: youtube
-  video_id: "-tM3Npsb2wE"
-
-- title: "Pokedex Chronicles: Part 1 - Database Normalisation, Part 2 - Indexes Strike Back"
-  raw_title: '"Pokedex Chronicles: part 1 - database normalisation,part 2 - indexes strike back"'
-  speakers:
-    - Mateusz Woźniczka
-  event_name: BalticRuby 2024
-  published_at: "2024-07-22"
-  description:
-    Step into the world of database mastery with our Pokedex adventure!
-    Embark on a journey to unravel the secrets of normalization and indexing, enhancing
-    data integrity, efficiency and performance along the way!
-  video_provider: youtube
-  video_id: xa9ixrLU7X4
-
-- title: "2000 engineers, 2 millions lines of code: the history of a Rails monolith"
+- id: "cristian-planas-baltic-ruby-2024"
+  title: "2,000 Engineers, 2 Million Lines of Code: The History of a Rails Monolith"
   raw_title: '"2000 engineers, 2 millions lines of code: the history of a Rails monolith"'
   speakers:
     - Cristian Planas
     - Anatoly Mikhaylov
-  event_name: BalticRuby 2024
-  published_at: "2024-07-22"
-  description:
-    How to scale an application and a team to manage a global business?
-    This presentation summarizes 10 years of experience in a company that has succeeded
-    by keeping Rails in its core.
-  video_provider: youtube
-  video_id: LaoeB5nYOnI
+  event_name: "Baltic Ruby 2024"
+  date: "2024-06-13"
+  description: |-
+    How to scale an application and a team to manage a global business? This presentation summarizes 10 years of experience in a company that has succeeded by keeping Rails in its core.
+  video_provider: "youtube"
+  video_id: "LaoeB5nYOnI"
+  published_at: "2024-07-25"
 
-- title: What does high priority mean? The secret to happy queues
-  raw_title: '"What does "high priority" mean? The secret to happy queues"'
-  speakers:
-    - Daniel Magliola
-  event_name: BalticRuby 2024
-  published_at: "2024-07-22"
-  description:
-    In this talk, I will present a latency-focused approach to managing
-    your queues reliably, keeping your jobs flowing and your users happy.
-  video_provider: youtube
-  video_id: U80H3bagJDk
-
-- title: Refactoring Volatile Views into Cohesive Components
-  raw_title: '"Refactoring Volatile Views into Cohesive Components"'
-  speakers:
-    - Jeremy Smith
-  event_name: BalticRuby 2024
-  published_at: "2024-07-22"
-  slides_url: https://speakerdeck.com/jeremysmithco/refactoring-volatile-views-into-cohesive-components
-  description:
-    It's easy for models to grow unwieldy, accumulating methods, attributes,
-    and responsibilities. But views can be even worse. Let's refactor the mess into
-    clean, cohesive components with ViewComponent.
-  video_provider: youtube
-  video_id: 6tPz5_iXK38
-
-- title: Easy threading with JRuby, is it?
+- id: "janis-baiza-baltic-ruby-2024"
+  title: "Easy threading with JRuby, is it?"
   raw_title: '"Easy threading with JRuby, is it?"'
   speakers:
     - Janis Baiza
-  event_name: BalticRuby 2024
-  published_at: "2024-07-22"
-  description:
-    Threading is a known issue with MRI due to Global Interpreter Lock.
-    As JRuby uses Java native threads, in theory, this should be easier and much more
-    effective in JRuby. But is it really so?
-  video_provider: youtube
-  video_id: IjRmrwT9dWY
-
-- title: Going back to the BASICs
-  raw_title: '"Going back to the BASICs"'
-  speakers:
-    - Jan Krutisch
-  event_name: BalticRuby 2024
-  published_at: "2024-07-22"
-  description:
-    BASIC was once the most important programming language on home computers.
-    Let's re-implement it in Ruby, learn some history on how computers worked back
-    then and a few tricks along the way.
-  video_provider: youtube
-  video_id: UEoE87WBLac
-
-- title: Stories in Open Source
-  raw_title: '"Stories in Open Source"'
-  speakers:
-    - Tobias Pfeiffer
-  event_name: BalticRuby 2024
+  event_name: "Baltic Ruby 2024"
+  date: "2024-06-13"
+  description: |-
+    Threading is a known issue with MRI due to Global Interpreter Lock. As JRuby uses Java native threads, in theory, this should be easier and much more effective in JRuby. But is it really so?
+  video_provider: "youtube"
+  video_id: "IjRmrwT9dWY"
   published_at: "2024-07-25"
-  description:
-    Walk with me through some stories that I experienced in Open Source,
-    the friends made and the lessons learned along the way. Let it help you make your
-    own Open Source contributions!
-  video_provider: youtube
-  video_id: C5ZwxCV_-qk
 
-- title: Mathematical Programming in Ruby
+# Lunch
+
+- id: "erica-weistrand-baltic-ruby-2024"
+  title: "Ruby off Rails"
+  raw_title: '"Ruby off Rails"'
+  speakers:
+    - Erica Weistrand
+  event_name: "Baltic Ruby 2024"
+  date: "2024-06-13"
+  description: |-
+    In this talk we'll delve into the web frameworks Rails, Hanami and Sinatra and we'll explain how we try to combine the best out of the frameworks to create web apps at 84codes.
+  video_provider: "youtube"
+  video_id: "auRaa-iyrTM"
+  published_at: "2024-07-25"
+
+- id: "mateusz-woniczka-baltic-ruby-2024"
+  title: "Pokedex Chronicles: Part 1 - Database Normalisation, Part 2 - Indexes Strike Back"
+  raw_title: '"Pokedex Chronicles: part 1 - database normalisation,part 2 - indexes strike back"'
+  speakers:
+    - Mateusz Woźniczka
+  event_name: "Baltic Ruby 2024"
+  date: "2024-06-13"
+  description: |-
+    Step into the world of database mastery with our Pokedex adventure! Embark on a journey to unravel the secrets of normalization and indexing, enhancing data integrity, efficiency and performance along the way!
+  video_provider: "youtube"
+  video_id: "xa9ixrLU7X4"
+  published_at: "2024-07-25"
+
+- id: "tomasz-jozwik-baltic-ruby-2024"
+  title: "Mathematical Programming in Ruby"
   raw_title: '"Mathematical Programming in Ruby"'
   speakers:
     - Tomasz Jóźwik
-  event_name: BalticRuby 2024
+  event_name: "Baltic Ruby 2024"
+  date: "2024-06-13"
+  description: |-
+    When using math programming, we can achieve optimal solutions for complex problems by defining them with math equations. We'll try to use this approach in Ruby to solve a real-life problem.
+  video_provider: "youtube"
+  video_id: "rKkvr0wQb2k"
   published_at: "2024-07-25"
-  description:
-    When using math programming, we can achieve optimal solutions for complex
-    problems by defining them with math equations. We'll try to use this approach
-    in Ruby to solve a real-life problem.
-  video_provider: youtube
-  video_id: rKkvr0wQb2k
 
-- title: Solid SQLite Apps on Rails
+- id: "stephen-margheim-baltic-ruby-2024"
+  title: "Solid SQLite Apps on Rails"
   raw_title: '"Solid SQLite Apps on Rails"'
   speakers:
     - Stephen Margheim
-  event_name: BalticRuby 2024
+  event_name: "Baltic Ruby 2024"
+  date: "2024-06-13"
+  slides_url: "https://speakerdeck.com/fractaledmind/solid-sqlite-apps-on-rails"
+  description: |-
+    Join me to learn how to pair the enhancements to Rails’ SQLite adapter with the suite of Solid libraries to create resilient, high-performance production apps.
+  video_provider: "youtube"
+  video_id: "_F02oXFSfX8"
   published_at: "2024-07-25"
-  slides_url: https://speakerdeck.com/fractaledmind/solid-sqlite-apps-on-rails
-  description:
-    Join me to learn how to pair the enhancements to Rails’ SQLite adapter
-    with the suite of Solid libraries to create resilient, high-performance production
-    apps.
-  video_provider: youtube
-  video_id: _F02oXFSfX8
 
-- title: "Keynote: What it takes to keep Ruby gems a thing"
+# Opening Party
+
+# Wrapping Up
+
+## DAY 2 - 14.06
+
+# DOOR OPENING
+
+# ORG NOTES
+
+- id: "samuel-giddins-baltic-ruby-2024"
+  title: "Keynote: What it takes to keep Ruby gems a thing"
   raw_title: '"What it takes to keep Ruby gems a thing"'
   speakers:
     - Samuel Giddins
-  event_name: BalticRuby 2024
+  event_name: "Baltic Ruby 2024"
+  date: "2024-06-14"
+  description: |-
+    Keynote.
+  video_provider: "youtube"
+  video_id: "W21O4i1znLE"
   published_at: "2024-07-25"
-  description: Keynote.
-  video_provider: youtube
-  video_id: W21O4i1znLE
 
-- title: How to get to zero unhandled exceptions in production
+- id: "jan-krutisch-baltic-ruby-2024"
+  title: "Going back to the BASICs"
+  raw_title: '"Going back to the BASICs"'
+  speakers:
+    - Jan Krutisch
+  event_name: "Baltic Ruby 2024"
+  date: "2024-06-14"
+  description: |-
+    BASIC was once the most important programming language on home computers. Let's re-implement it in Ruby, learn some history on how computers worked back then and a few tricks along the way.
+  video_provider: "youtube"
+  video_id: "UEoE87WBLac"
+  published_at: "2024-07-25"
+
+- id: "guilherme-carreiro-baltic-ruby-2024"
+  title: "Building native Ruby extensions in Rust"
+  raw_title: '"Building native Ruby extensions in Rust"'
+  speakers:
+    - Guilherme Carreiro
+  event_name: "Baltic Ruby 2024"
+  date: "2024-06-14"
+  description: |-
+    When we occasionally reach the limits of Ruby and need the power of native extensions, we no longer have to default to C. It's easier than ever to build production-ready Rust native extensions, bringing the best of both ecosystems together!
+  video_provider: "youtube"
+  video_id: "-tM3Npsb2wE"
+  published_at: "2024-07-25"
+
+# LUNCH
+
+# OSS EXPO CAMPFIRE SESSIONS
+
+# WRAPPING UP
+
+## Day 3 - 15.06
+
+# DOOR OPENING
+
+# ORG NOTES
+
+- id: "panel-baltic-region-communities-baltic-ruby-2024"
+  title: 'Panel: Baltic Region Communities - "Renaissance or Die"'
+  raw_title: 'PANEL DISCUSSION OF BALTIC REGION COMMUNITIES "Renaissance or Die"'
+  speakers:
+    - James Bell
+    - Chris Mckenzie
+    - Aurora Nockert
+    - Mariusz Kozieł
+    - Janis Baiza
+    - Jan Krutisch
+    - Yukihiro "Matz" Matsumoto
+  event_name: "Baltic Ruby 2024"
+  date: "2024-06-15"
+  description: ""
+  video_provider: "not_recorded"
+  video_id: "panel-baltic-region-communities-baltic-ruby-2024"
+
+- id: "radoslav-stankov-baltic-ruby-2024"
+  title: "How to get to zero unhandled exceptions in production"
   raw_title: '"How to get to zero unhandled exceptions in production"'
   speakers:
     - Radoslav Stankov
-  event_name: BalticRuby 2024
+  event_name: "Baltic Ruby 2024"
+  date: "2024-06-15"
+  description: |-
+    Exceptions in production seem like something unavoidable. But does it have to be? I don't think so. If you have the right process and tooling, you can avoid them.
+  video_provider: "youtube"
+  video_id: "4iQHtPrf8wI"
   published_at: "2024-07-25"
-  description:
-    Exceptions in production seem like something unavoidable. But does
-    it have to be? I don't think so. If you have the right process and tooling, you
-    can avoid them.
-  video_provider: youtube
-  video_id: 4iQHtPrf8wI
 
-- title: How to build an exchange
+- id: "tim-kchele-baltic-ruby-2024"
+  title: "How to build an exchange"
   raw_title: '"How to build an exchange"'
   speakers:
     - Tim Kächele
-  event_name: BalticRuby 2024
+  event_name: "Baltic Ruby 2024"
+  date: "2024-06-15"
+  description: |-
+    They say working in finance is boring, but is it really? Let's learn how to build an exchange system in Ruby and solve interesting computer science problems along the way.
+  video_provider: "youtube"
+  video_id: "mZzIJ4QpQck"
   published_at: "2024-07-25"
-  description:
-    They say working in finance is boring, but is it really? Let's learn
-    how to build an exchange system in Ruby and solve interesting computer science
-    problems along the way.
-  video_provider: youtube
-  video_id: mZzIJ4QpQck
 
-- title: "Keynote: Second system syndrome"
-  raw_title: '"Second system syndrome"'
+# Lunch
+
+- id: "daniel-magliola-baltic-ruby-2024"
+  title: "What does high priority mean? The secret to happy queues"
+  raw_title: '"What does "high priority" mean? The secret to happy queues"'
+  speakers:
+    - Daniel Magliola
+  event_name: "Baltic Ruby 2024"
+  date: "2024-06-15"
+  description: |-
+    In this talk, I will present a latency-focused approach to managing your queues reliably, keeping your jobs flowing and your users happy.
+  video_provider: "youtube"
+  video_id: "U80H3bagJDk"
+  published_at: "2024-07-25"
+
+- id: "jeremy-smith-baltic-ruby-2024"
+  title: "Refactoring Volatile Views into Cohesive Components"
+  raw_title: '"Refactoring Volatile Views into Cohesive Components"'
+  speakers:
+    - Jeremy Smith
+  event_name: "Baltic Ruby 2024"
+  date: "2024-06-15"
+  slides_url: "https://speakerdeck.com/jeremysmithco/refactoring-volatile-views-into-cohesive-components"
+  description: |-
+    It's easy for models to grow unwieldy, accumulating methods, attributes, and responsibilities. But views can be even worse. Let's refactor the mess into clean, cohesive components with ViewComponent.
+  video_provider: "youtube"
+  video_id: "6tPz5_iXK38"
+  published_at: "2024-07-25"
+
+- id: "tobias-pfeiffer-baltic-ruby-2024"
+  title: "Stories in Open Source"
+  raw_title: '"Stories in Open Source"'
+  speakers:
+    - Tobias Pfeiffer
+  event_name: "Baltic Ruby 2024"
+  date: "2024-06-15"
+  description: |-
+    Walk with me through some stories that I experienced in Open Source, the friends made and the lessons learned along the way. Let it help you make your own Open Source contributions!
+  video_provider: "youtube"
+  video_id: "C5ZwxCV_-qk"
+  published_at: "2024-07-25"
+
+# Closing Notes
+
+# Wrapping Up
+
+## Extras
+
+- id: "yukihiro-matz-matsumoto-baltic-ruby-2024-interview-with-matz"
+  title: "Interview with Matz"
+  raw_title: "Interview with Yukihiro Matz Matsumoto at Baltic Ruby"
   speakers:
     - Yukihiro "Matz" Matsumoto
-  event_name: BalticRuby 2024
-  published_at: "2024-07-25"
-  description: Keynote.
-  video_provider: youtube
-  video_id: B0kLnbXEO50
+    - Sergy Sergyenko
+  event_name: "Baltic Ruby 2024"
+  kind: "interview"
+  date: "2024-06-15"
+  published_at: "2024-11-22"
+  description: |-
+    An interview with Yukihiro Matsumoto about Ruby, the community, his profession, and personal life, which he gave at the Baltic Ruby conference in Malmö in 2024.
+  video_provider: "youtube"
+  video_id: "iwDJ6zmuI_w"

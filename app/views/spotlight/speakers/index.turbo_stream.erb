@@ -1,0 +1,26 @@
+<%= turbo_stream.update "speakers_search_results", method: "morph" do %>
+  <div class="flex items-center flex-wrap gap-2 py-4">
+    <h2><%= search_query.present? ? "Speakers" : "Top Speakers" %></h2>
+    <% if @speakers.size.positive? && total_count.present? %>
+      <span class="text-sm text-gray-500">(<%= total_count %> <%= "speaker".pluralize(total_count) %>)</span>
+      <%= link_to speakers_path(s: search_query), class: "link text-sm text-gray-500", target: "_top" do %>
+        see all
+      <% end %>
+    <% end %>
+    <% if Rails.env.development? && search_backend == :sqlite_fts %>
+      <span class="badge badge-xs badge-warning">SQLite FTS</span>
+    <% elsif Rails.env.development? && search_backend == :typesense %>
+      <span class="badge badge-xs badge-primary">Typesense</span>
+    <% end %>
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <% cache @speakers do %>
+      <%= render partial: "spotlight/speakers/speaker", collection: @speakers, as: :speaker %>
+    <% end %>
+
+    <% if search_query.present? %>
+      <div class="hidden only:block">No speakers found for <strong><%= search_query %></strong></div>
+    <% end %>
+  </div>
+<% end %>

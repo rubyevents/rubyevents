@@ -1,0 +1,154 @@
+---
+- title: "Speeding Up Class#new"
+  raw_title: "[EN] Speeding Up Class#new - Aaron Patterson"
+  speakers:
+    - Aaron Patterson
+  event_name: "Ruby Community Conference Winter Edition 2025"
+  date: "2025-02-28"
+  published_at: "2025-03-17"
+  announced_at: "2024-11-26"
+  id: "aaron-patterson-ruby-community–conference-winter–edition-2025"
+  video_provider: "youtube"
+  video_id: "H7jOJfA7MHk"
+  description: |-
+    Many Ruby developers like to initialize new objects, so let's take a dive into Ruby object initialization! What makes initializing an object slow? Can we use Ruby to speed it up? In this talk, we will examine the internals of the `Class#new` method, explore the trade-offs between Ruby and C method calls, and experiment with a Ruby implementation of `Class#new`. Additionally, we will discuss strategies for speeding up Ruby method calls, such as inline caches, while also considering the drawbacks of moving from C to Ruby.
+
+- title: "Solid Queue Internals, Externals and All the Things in Between"
+  raw_title: "[EN] Solid Queue Internals, Externals and All the Things in Between - Rosa Gutierrez"
+  speakers:
+    - Rosa Gutiérrez
+  event_name: "Ruby Community Conference Winter Edition 2025"
+  date: "2025-02-28"
+  published_at: "2025-03-17"
+  announced_at: "2024-11-20"
+  description: |-
+    We’ve used Resque and Redis to run background jobs in multiple apps for many years at 37signals. However, performance, reliability, and our own apps’ idiosyncrasies led us to use a lot of different gems, some developed by us, some forked or patched to address our struggles. After multiple war stories with background jobs, looking at our increasingly complex setup, we wanted something we could use out-of-the-box without having to port our collection of hacks to every new app and with fewer moving pieces. After exploring existing alternatives, we decided to build our own and aim to make it the default for Rails 8.
+
+    In this talk, I’ll present Solid Queue, explain some of the problems we had over the years, how we designed Solid Queue to address them, and all the Fun™ we had doing that.
+  video_provider: "youtube"
+  video_id: "AMoM0uIR3uU"
+  id: "rosa-gutierrez-ruby-community–conference-winter–edition-2025"
+
+- title: "The Joy of Creativity in the Age of AI"
+  raw_title: "[EN] The Joy of Creativity in the Age of AI - Paweł Strzałkowski"
+  speakers:
+    - Paweł Strzałkowski
+  event_name: "Ruby Community Conference Winter Edition 2025"
+  date: "2025-02-28"
+  published_at: "2025-03-17"
+  announced_at: "2024-12-23"
+  description: |-
+    We'll explore how Ruby can unlock new avenues of creativity in the age of AI and cross-technology innovation. By leveraging Ruby's simplicity and adaptability, we can seamlessly integrate cutting-edge solutions like speech recognition and generation, or image analysis and creation. We can also incorporate advanced techniques like vector search into our projects with minimal effort. Let's rediscover the joy of building beyond traditional boundaries and position the Ruby community at the forefront of technological invention and creativity.
+  id: "the-joy-of-creativity-in-the-age-of-ai-ruby-community–conference-winter–edition-2025"
+  video_provider: "youtube"
+  video_id: "SFLHBYLgJdI"
+
+- title: "From Legacy to Latest: How Zendesk Upgraded a Monolith to Rails 8.0 Overnight"
+  raw_title: "[EN] From Legacy to Latest: How Zendesk Upgraded a Monolith to Rails 8.0 Overnight - Thomas Countz"
+  speakers:
+    - Thomas Countz
+  event_name: "Ruby Community Conference Winter Edition 2025"
+  date: "2025-02-28"
+  published_at: "2025-03-17"
+  announced_at: "2025-01-28 10:59:00 UTC"
+  description: |-
+    The Ruby Platform Core Team at Zendesk supports hundreds of Ruby services, internal gems, and a few massive monoliths. In this talk, the team will share how they upgraded one of their biggest monoliths to Rails 8.0 just 14 hours after it was released, covering the tools and processes that made it happen. Topics include dual booting in production, testing daily against Rails' main branch, tracking gem dependencies, and using production profiling to keep performance in check.
+
+    Thomas is part of Zendesk's Ruby Platform Core team, focusing on infrastructure support for Ruby and Rails across the organization. In his free time, he enjoys working on hardware projects, playing board games, and hiking in the forest with his husband. His career is guided by three core principles: to create, to learn, and to share.
+  id: "from-legacy-to-latest-ruby-community–conference-winter–edition-2025"
+  video_provider: "youtube"
+  video_id: "kgVgcNtN5mc"
+
+- id: "workshop-building-live-kanban-board-ruby-community–conference-winter–edition-2025"
+  title: "Workshop: Building a Live Kanban Board Application With Hotwire and Rails"
+  raw_title: "Building a Live Kanban Board Application With Hotwire and Rails"
+  speakers:
+    - Michał Łęcicki
+    - Piotr Witek
+  event_name: "Ruby Community Conference Winter Edition 2025"
+  date: "2025-02-28"
+  description: |-
+    We will build a fully functional Kanban board application with Rails and Hotwire. During the workshops, you will learn the basics of Hotwire, including Turbo Drive, Frames, Turbo Streams, and Stimulus controllers. We will also show how to design backend-frontend communication for dynamic, modern applications with Rails.
+
+    The workshop includes short theoretical introductions, practical examples, and tasks. We will progressively enhance the application with Hotwire.
+
+    This workshop is ideal for those familiar with Hotwire but haven't built a serious app yet. If you're new to Hotwire, don't worry; we'll explain the theory before each task and inspire you to use Hotwire's benefits whenever possible!
+  video_provider: "not_recorded"
+  video_id: "workshop-building-live-kanban-board-ruby-community–conference-winter–edition-2025"
+
+- id: "workshop-deploy-with-kamal-2-ruby-community–conference-winter–edition-2025"
+  title: "Workshop: Deploy with Kamal 2"
+  raw_title: "Deploy with Kamal 2: A Hands-On Workshop"
+  speakers:
+    - Cezary Kłos
+    - Kaja Witek
+  event_name: "Ruby Community Conference Winter Edition 2025"
+  date: "2025-02-28"
+  description: |-
+    We will start the workshop by creating a new Rails 8 application using the “solid” stack and deploying it to a real cloud server. Next, we will explore the scenario of adding Kamal to an existing Rails 7.2 project. We will initialize and configure Kamal. Then, thanks to the new Kamal-proxy, we will deploy it alongside the first application. Following this, we will deploy a staging environment to mirror production settings.
+
+    To ensure you gain practical experience, we will intentionally break our deployment, providing you with hands-on experience in debugging and recovering from not-so-obvious scenarios.
+
+    Whether you’re new to containerized deployments or an experienced developer looking to streamline your workflow, this workshop will equip you with the essential skills to deploy and manage your web apps with confidence. On each step we will guide you trough the process and explain the Kamal’s inner-workings.
+
+    You’ll leave with a deeper understanding of Kamal and the ability to handle deployment challenges effectively! 💪
+  video_provider: "not_recorded"
+  video_id: "workshop-deploy-with-kamal-2-ruby-community–conference-winter–edition-2025"
+
+- id: "workshop-taming-the-beast-ruby-community–conference-winter–edition-2025"
+  title: "Workshop: Taming The Beast: TDD, Service Objects, and dry.rb for Complex Business Logic"
+  raw_title: "Taming The Beast: TDD, Service Objects, and dry.rb for Complex Business Logic"
+  speakers:
+    - Oskar Lakner
+  event_name: "Ruby Community Conference Winter Edition 2025"
+  date: "2025-02-28"
+  description: ""
+  video_provider: "not_recorded"
+  video_id: "workshop-taming-the-beast-ruby-community–conference-winter–edition-2025"
+
+- id: "workshop-fix-bugs-20x-faster-ruby-community–conference-winter–edition-2025"
+  title: "Workshop: Fix Bugs 20x Faster: From Zero To Incident Superhero"
+  raw_title: "Fix Bugs 20x Faster: From Zero To Incident Superhero"
+  speakers:
+    - John Gallagher
+  event_name: "Ruby Community Conference Winter Edition 2025"
+  date: "2025-02-28"
+  description: ""
+  video_provider: "not_recorded"
+  video_id: "workshop-fix-bugs-20x-faster-ruby-community–conference-winter–edition-2025"
+
+- id: "workshop-image-vector-search-ruby-community–conference-winter–edition-2025"
+  title: "Workshop: Image Vector Search"
+  raw_title: "Image Vector Search"
+  speakers:
+    - Chris Hasiński
+  event_name: "Ruby Community Conference Winter Edition 2025"
+  date: "2025-02-28"
+  description: ""
+  video_provider: "not_recorded"
+  video_id: "workshop-image-vector-search-ruby-community–conference-winter–edition-2025"
+
+- id: "workshop-updating-to-modern-gem-development-in-2025-ruby-community–conference-winter–edition-2025"
+  title: "Workshop: Updating to Modern Gem Development in 2025"
+  raw_title: "Updating to Modern Gem Development in 2025"
+  speakers:
+    - Samuel Giddins
+  event_name: "Ruby Community Conference Winter Edition 2025"
+  date: "2025-02-28"
+  description: |-
+    Let's take the default bundle gem scaffold and transform it into the ideal development setup for 2025, including automated testing on CI, automated pushes to rubygems.org, and type checking right in your editor.
+  video_provider: "not_recorded"
+  video_id: "workshop-updating-to-modern-gem-development-in-2025-ruby-community–conference-winter–edition-2025"
+
+- id: "workshop-postgresql-performance-for-ruby-developers-ruby-community–conference-winter–edition-2025"
+  title: "Workshop: PostgreSQL Performance for Ruby Developers: Deep Dive into Database Performance & TimescaleDB"
+  raw_title: "PostgreSQL Performance for Ruby Developers: Deep Dive into Database Performance & TimescaleDB"
+  speakers:
+    - Jônatas Paganini
+  event_name: "Ruby Community Conference Winter Edition 2025"
+  date: "2025-02-28"
+  announced_at: "2025-01-30 10:58:00 UTC"
+  description: |-
+    Join our hands-on workshop to explore PostgreSQL internals, query optimization, and time-series data with TimescaleDB. Learn how to debug queries with EXPLAIN ANALYZE, optimize transactions for high-concurrency apps, and fine-tune database performance. A must-attend for Ruby developers working with PostgreSQL!
+  video_provider: "not_recorded"
+  video_id: "workshop-postgresql-performance-for-ruby-developers-ruby-community–conference-winter–edition-2025"

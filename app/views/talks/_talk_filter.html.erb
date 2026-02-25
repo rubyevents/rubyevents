@@ -5,13 +5,13 @@
 <% talks_by_kind = talks.group_by(&:kind) %>
 
 <% if talks_by_language.length >= 2 || talks_by_kind.length >= 2 %>
-  <div class="mb-6" data-controller="talks-filter" data-talks-filter-active-class="<%= active_classes %>">
+  <div class="mb-6" data-controller="talks-filter-pill" data-talks-filter-pill-active-class="<%= active_classes %>">
     <div class="flex divide-x">
       <% if talks_by_kind.length >= 2 %>
         <div class="flex gap-2 mb-3 pr-6 justify-center">
           <% talks_by_kind.each do |kind, talks| %>
-            <div data-action="click->talks-filter#selectKind" data-talks-filter-target="button" class="<%= classes %>" data-kind-value="<%= kind %>">
-              <%= kind.humanize.pluralize %>
+            <div data-action="click->talks-filter-pill#selectKind" data-talks-filter-pill-target="button" class="<%= classes %>" data-kind-value="<%= kind %>">
+              <%= Talk::KIND_LABELS[kind] %>
               <span class="count count-kind count-language-all">(<%= talks.length %>)</span>
 
               <% talks_by_language.each do |language, talks| %>
@@ -25,7 +25,7 @@
       <% if talks_by_language.length >= 2 %>
         <div class="flex gap-2 mb-3 px-6 justiy-center">
           <% talks_by_language.each do |language, talks| %>
-            <div data-action="click->talks-filter#selectLanguage" data-talks-filter-target="button" class="<%= classes %>" data-language-value="<%= language %>">
+            <div data-action="click->talks-filter-pill#selectLanguage" data-talks-filter-pill-target="button" class="<%= classes %>" data-language-value="<%= language %>">
               <%= Language.by_code(language) %>
               <span class="count count-language count-kind-all">(<%= talks.length %>)</span>
 
@@ -38,7 +38,7 @@
       <% end %>
     </div>
 
-    <div class="hidden" data-talks-filter-target="none">
+    <div class="hidden" data-talks-filter-pill-target="none">
       <div class="w-full border bg-white text-gray-500 flex justify-center content-center font-medium text-lg rounded-lg py-10 mt-6">
         No videos matched your filters.
       </div>

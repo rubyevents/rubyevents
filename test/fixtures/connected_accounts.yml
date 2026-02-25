@@ -2,16 +2,27 @@
 # == Schema Information
 #
 # Table name: connected_accounts
+# Database name: primary
 #
 #  id           :integer          not null, primary key
-#  uid          :string
-#  provider     :string
-#  username     :string
-#  user_id      :integer          not null
 #  access_token :string
 #  expires_at   :datetime
+#  provider     :string           uniquely indexed => [uid], uniquely indexed => [username]
+#  uid          :string           uniquely indexed => [provider]
+#  username     :string           uniquely indexed => [provider]
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  user_id      :integer          not null, indexed
+#
+# Indexes
+#
+#  index_connected_accounts_on_provider_and_uid       (provider,uid) UNIQUE
+#  index_connected_accounts_on_provider_and_username  (provider,username) UNIQUE
+#  index_connected_accounts_on_user_id                (user_id)
+#
+# Foreign Keys
+#
+#  user_id  (user_id => users.id)
 #
 # rubocop:enable Layout/LineLength
 
@@ -26,3 +37,4 @@ github_connected_account:
   uid: "789012"
   user: github_user
   access_token: "789012"
+  username: "github_user"

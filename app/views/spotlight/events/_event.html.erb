@@ -1,0 +1,6 @@
+<%= link_to event_path(event), target: "_top", id: dom_id(event), role: "option", class: "w-full flex items-center gap-4", style: "view-transition-name: #{dom_id(event, :search_result)}" do %>
+  <div class="flex items-center gap-2">
+    <%= image_tag image_path(event.avatar_image_path), class: "size-8 rounded-full skeleton", loading: "lazy", height: 200, width: 200 %>
+    <span class="event-name"><%= event.name %></span>
+  </div>
+<% end %>

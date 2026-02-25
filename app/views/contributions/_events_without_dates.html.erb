@@ -1,0 +1,21 @@
+<%= turbo_frame_tag "events_without_dates" do %>
+  <h2 class="mb-4">Events without conference dates (<%= @events_without_dates_count %>)</h2>
+
+  <article class="prose mb-6">This section lists events that are missing conference dates. Adding conference dates allows us to show when this event took place, so we could show them in a calendar or similar.</article>
+
+  <div id="events-without-dates" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 min-w-full mb-6">
+    <% @events_without_dates.each do |file_path, events| %>
+      <%= link_to "https://github.com/rubyevents/rubyevents/edit/main/#{file_path}", id: "event-#{file_path}", class: "hover:bg-gray-100 p-4 rounded-lg border bg-white", target: :_blank do %>
+        <div class="flex flex-col">
+          <h3 class="line-clamp-1"><pre>Data File: <%= file_path %></pre></h3>
+
+          <b class="mt-4 mb-2">Events missing dates:</b>
+
+          <% events.each do |event| %>
+            <span><%= event.title %></span>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

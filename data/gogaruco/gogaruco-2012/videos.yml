@@ -5,27 +5,31 @@
 
 # https://web.archive.org/web/20141116234933/http://2012.gogaruco.com/
 
-- title: Cargo Cult Web Performance Optimization
-  raw_title: GoGaRuCo 2012 - Cargo Cult Web Performance Optimization
+- id: "ilya-grigorik-gogaruco-2012"
+  title: "Cargo Cult Web Performance Optimization"
+  raw_title: "GoGaRuCo 2012 - Cargo Cult Web Performance Optimization"
   speakers:
     - Ilya Grigorik
-  event_name: GoGaRuCo 2012
-  published_at: "2012-09-14"
+  event_name: "GoGaRuCo 2012"
+  date: "2012-09-14"
+  published_at: "2015-07-14"
   description: |-
     Cargo Cult Web Performance Optimization by: Ilya Grigorik
 
     Put your CSS at the top, JavaScript at the bottom, domain shard all the things, and so on! But why? Do these rules even make sense?
 
     The modern browser is not the black box it used to be. We can peek inside and see how it really works—we have the source code for WebKit, Chromium, and Firefox! In this talk we'll disassemble the basic architecture of WebKit / Chromium and see how it all comes together: from receiving the HTML bytes on the wire, to constructing the DOM, fetching the resources, performing the layout, and finally painting the pixels to the screen. Armed with this knowledge, we can then dismantle some of the web performance myths found in most every "performance top 10" list, and see how we can build better and faster web apps, regardless of the framework you're using.
-  video_provider: youtube
-  video_id: LrDtQLsKqxY
+  video_provider: "youtube"
+  video_id: "LrDtQLsKqxY"
 
-- title: "RubyMotion: Rubyizing iOS Development"
+- id: "amit-kumar-gogaruco-2012"
+  title: "RubyMotion: Rubyizing iOS Development"
   raw_title: "GoGaRuCo 2012 - RubyMotion: Rubyizing iOS development"
   speakers:
     - Amit Kumar
-  event_name: GoGaRuCo 2012
-  published_at: "2012-09-14"
+  event_name: "GoGaRuCo 2012"
+  date: "2012-09-14"
+  published_at: "2015-07-14"
   description: |-
     RubyMotion: Rubyizing iOS development by: Amit Kumar
 
@@ -42,76 +46,131 @@
     Outlets and Actions
     XCode integration - is it possible?
     Releasing to AppStore
-  video_provider: youtube
-  video_id: 7v3LhtNZEcM
+  video_provider: "youtube"
+  video_id: "7v3LhtNZEcM"
 
-- title: Grasping Complexity with Both Hands
-  raw_title: GoGaRuCo 2012 - Grasping Complexity with Both Hands
+- id: "glenn-vanderburg-gogaruco-2012"
+  title: "Grasping Complexity with Both Hands"
+  raw_title: "GoGaRuCo 2012 - Grasping Complexity with Both Hands"
   speakers:
     - Glenn Vanderburg
-  event_name: GoGaRuCo 2012
-  published_at: "2012-09-14"
-  description: "Grasping Complexity with Both Hands by:  Glenn Vanderburg"
-  video_provider: youtube
-  video_id: QziXZM8tKAM
+  event_name: "GoGaRuCo 2012"
+  date: "2012-09-14"
+  published_at: "2015-07-14"
+  description: |-
+    Grasping Complexity with Both Hands by:  Glenn Vanderburg
+  video_provider: "youtube"
+  video_id: "QziXZM8tKAM"
 
-- title: "Three Mini-Talks"
-  raw_title: GoGaRuco 2012 - Three Mini-talks
-  speakers:
-    - Sarah Mei
-    - Tony Arcieri
-    - Chris Eppstein
-  event_name: GoGaRuCo 2012
-  published_at: "2012-09-14"
+- id: "three-mini-talks-gogaruco-2012"
+  title: "Three Mini-talks"
+  raw_title: "GoGaRuCo 2012 - Three Mini-talks"
+  event_name: "GoGaRuCo 2012"
+  date: "2012-09-14"
+  published_at: "2015-07-14"
   description: |-
     Three Mini-talks by: Sarah Mei, Tony Arcieri, and Chris Eppstein
 
     One session, three talks.
+  video_provider: "youtube"
+  video_id: "fK5llwBYBRg"
+  talks:
+    - title: "Three Mini-talks Intro"
+      event_name: "GoGaRuCo 2012"
+      date: "2012-09-14"
+      published_at: "2015-07-14"
+      start_cue: "00:00"
+      end_cue: "00:42"
+      id: "three-mini-talks-intro-gogaruco-2012"
+      video_id: "three-mini-talks-intro-gogaruco-2012"
+      video_provider: "parent"
+      speakers:
+        - TODO
 
-    Tony Arcieri – A Crash Course on Celluloid: This talk will provide a quick overview of how to use Celluloid, covering the basics of how to add Celluloid to your program and begin leveraging its concurrent features.
+    - title: "Mini Talk: A Crash Course on Celluloid"
+      event_name: "GoGaRuCo 2012"
+      date: "2012-09-14"
+      published_at: "2015-07-14"
+      start_cue: "00:42"
+      end_cue: "09:40"
+      id: "tony-arcieri-lightning-talk-gogaruco-2012"
+      video_id: "tony-arcieri-lightning-talk-gogaruco-2012"
+      video_provider: "parent"
+      speakers:
+        - Tony Arcieri
+      description: |-
+        This talk will provide a quick overview of how to use Celluloid, covering the basics of how to add Celluloid to your program and begin leveraging its concurrent features.
 
-    Chris Eppstein – Naiveté: Stepping outside your comfort zone.
+    - title: "Mini Talk: Naiveté"
+      event_name: "GoGaRuCo 2012"
+      date: "2012-09-14"
+      published_at: "2015-07-14"
+      start_cue: "09:40"
+      end_cue: "19:24"
+      id: "chris-eppstein-lightning-talk-gogaruco-2012"
+      video_id: "chris-eppstein-lightning-talk-gogaruco-2012"
+      video_provider: "parent"
+      speakers:
+        - Chris Eppstein
+      description: |-
+        Stepping outside your comfort zone.
 
-    Sarah Mei – MRI Internals: How does a language become a language? We'll take a peek into the internals of the MRI, and explore how it came to be.
-  video_provider: youtube
-  video_id: fK5llwBYBRg
+    - title: "Mini Talk: MRI Internals"
+      event_name: "GoGaRuCo 2012"
+      date: "2012-09-14"
+      published_at: "2015-07-14"
+      start_cue: "19:24"
+      end_cue: "30:40"
+      id: "sarah-mei-lightning-talk-gogaruco-2012"
+      video_id: "sarah-mei-lightning-talk-gogaruco-2012"
+      video_provider: "parent"
+      speakers:
+        - Sarah Mei
+      description: |-
+        How does a language become a language? We'll take a peek into the internals of the MRI, and explore how it came to be.
 
-- title: "Cruft and Technical Debt: A Long View"
+- id: "yehuda-katz-gogaruco-2012"
+  title: "Cruft and Technical Debt: A Long View"
   raw_title: "GoGaRuCo 2012 - Cruft and Technical Debt: A Long View"
   speakers:
     - Yehuda Katz
-  event_name: GoGaRuCo 2012
-  published_at: "2012-09-14"
+  event_name: "GoGaRuCo 2012"
+  date: "2012-09-14"
+  published_at: "2015-07-14"
   description: |-
     Cruft and Technical Debt: A Long View by: Yehuda Katz
 
     Cruft is inevitable. Whether you're working around a bug in Internet Explorer, Heroku or Ruby 1.8, our libraries and applications quickly diverge from the platonic ideal of software. In the short-term, there's no point in fretting. Rather than an indication of a development process gone awry, the technical debt merely reflects the messy reality of the surrounding ecosystem that our code lives in.
 
     For projects that last for years, though, this can lead to a resistance to re-evaluating the original assumptions that introduced the cruft to begin with. In this talk, I will give some examples of good and bad attempts to deal with this issue in the world of open source, and make some suggestions for how you can make your projects, both open-source and proprietary, more able to cope with the slow but steady long-term shifts that surround our projects.
-  video_provider: youtube
-  video_id: sojGI6hxU6U
+  video_provider: "youtube"
+  video_id: "sojGI6hxU6U"
 
-- title: Schemas For The Real World
-  raw_title: GoGaRuco 2012 - Schemas for the Real World
+- id: "carina-c-zona-gogaruco-2012"
+  title: "Schemas For The Real World"
+  raw_title: "GoGaRuco 2012 - Schemas for the Real World"
   speakers:
     - Carina C. Zona
-  event_name: GoGaRuCo 2012
-  published_at: "2012-09-14"
+  event_name: "GoGaRuCo 2012"
+  date: "2012-09-14"
+  published_at: "2015-07-14"
   description: |-
     Schemas for the Real World by: Carina C. Zona
 
     App development, especially for social, challenges us to evaluate how to code for the complexity of modern life. Examples include the growing range of labels people ascribe to their important relationships, sexual orientation, and gender. Users are giving push-back to questions that carry ill-fitted assumptions or constrain their responses.
 
     Facebook, Google+, and developers in many other industries are grappling with these issues. The most resilient approaches will arise from an app's own foundations. We'll look at schemas' influence on product scope, UX, and analytics. Then we'll check out a range of approaches for bringing modern realities into any app's schema, views, and logic.
-  video_provider: youtube
-  video_id: j0e8h5s248Y
+  video_provider: "youtube"
+  video_id: "j0e8h5s248Y"
 
-- title: "Services, Scale, Backgrounding and WTF is going on here?!??!"
-  raw_title: GoGaRuCo 2012 - Services, Scale, Backgrounding and WTF is going on here?!??!
+- id: "david-copeland-gogaruco-2012"
+  title: "Services, Scale, Backgrounding and WTF is going on here?!??!"
+  raw_title: "GoGaRuCo 2012 - Services, Scale, Backgrounding and WTF is going on here?!??!"
   speakers:
     - David Copeland
-  event_name: GoGaRuCo 2012
-  published_at: "2012-09-14"
+  event_name: "GoGaRuCo 2012"
+  date: "2012-09-14"
+  published_at: "2015-07-14"
   description: |-
     Services, Scale, Backgrounding and WTF is going on here?!??! by: David Copeland
 
@@ -120,49 +179,59 @@
     Designing services from the start can be tricky, but there is guidance out there. Extracting services can be even trickier, and whenever there's a message queue or job processing system, it becomes very difficult to truly understand the order in which things happen in your system. If you're lucky, you've got alerting when things go wrong, but even then, what do you do about it?
 
     This talk will go through an increasingly frustrating set of circumstances that I've seen on a regular basis at LivingSocial as we extracted code from a monolithic app into a set of services. I'll then show the solutions to these issues that make our payment processing system more or less bullet-proof, and generalize these lessons into what you can do when extracting and designing services.
-  video_provider: youtube
-  video_id: swgub0239Y0
+  video_provider: "youtube"
+  video_id: "swgub0239Y0"
 
-- title: Deploy, Scale and Sleep at Night with JRuby
-  raw_title: GoGaRuCo 2012 - Deploy, Scale and Sleep at Night with JRuby
+- id: "joe-kutner-gogaruco-2012"
+  title: "Deploy, Scale and Sleep at Night with JRuby"
+  raw_title: "GoGaRuCo 2012 - Deploy, Scale and Sleep at Night with JRuby"
   speakers:
     - Joe Kutner
-  event_name: GoGaRuCo 2012
-  published_at: "2012-09-14"
-  description: "Deploy, Scale and Sleep at Night with JRuby by: Joe Kutner"
-  video_provider: youtube
-  video_id: P5mjivt2Zkw
+  event_name: "GoGaRuCo 2012"
+  date: "2012-09-14"
+  published_at: "2015-07-14"
+  description: |-
+    Deploy, Scale and Sleep at Night with JRuby by: Joe Kutner
+  video_provider: "youtube"
+  video_id: "P5mjivt2Zkw"
 
-- title: Code To Joy
-  raw_title: GoGaRuCo 2012 - Code to Joy
+- id: "avdi-grimm-gogaruco-2012"
+  title: "Code To Joy"
+  raw_title: "GoGaRuCo 2012 - Code to Joy"
   speakers:
     - Avdi Grimm
-  event_name: GoGaRuCo 2012
-  published_at: "2012-09-14"
+  event_name: "GoGaRuCo 2012"
+  date: "2012-09-14"
+  published_at: "2015-07-14"
   description: |-
     Code to Joy by: Avdi Grimm
 
     I got into Ruby because writing it made me happy, and after all these years it still finds ways to make me grin. Join me for a random walk through the Ruby language and standard library, stopping in to visit some of my favorite tools, hacks and implementation patterns. Some you may know. Others may be more obscure. My goal: to rekindle in you the joy of code, to inspire you to share that joy with your peers and with the next generation of developers, and most importantly, to bring a smile to your face!
-  video_provider: youtube
-  video_id: IS0H3jXb9iI
+  video_provider: "youtube"
+  video_id: "IS0H3jXb9iI"
 
-- title: Why Is A Math Proof Like A Unit Test?
-  raw_title: GoGaRuCo 2012 - Why Is A Math Proof Like A Unit Test?
+- id: "daniela-wellisz-gogaruco-2012"
+  title: "Why Is A Math Proof Like A Unit Test?"
+  raw_title: "GoGaRuCo 2012 - Why Is A Math Proof Like A Unit Test?"
   speakers:
     - Daniela Wellisz
-  event_name: GoGaRuCo 2012
-  published_at: "2012-09-14"
-  description: "Why Is A Math Proof Like A Unit Test? by: Daniela Wellisz"
-  video_provider: youtube
-  video_id: RZUKxYfvtVo
+  event_name: "GoGaRuCo 2012"
+  date: "2012-09-14"
+  published_at: "2015-07-14"
+  description: |-
+    Why Is A Math Proof Like A Unit Test? by: Daniela Wellisz
+  video_provider: "youtube"
+  video_id: "RZUKxYfvtVo"
 
-- title: Go Ahead, Make a Mess
-  raw_title: GoGaRuCo 2012 - Go Ahead, Make a Mess
+- id: "sandi-metz-gogaruco-2012"
+  title: "Go Ahead, Make a Mess"
+  raw_title: "GoGaRuCo 2012 - Go Ahead, Make a Mess"
   speakers:
     - Sandi Metz
-  event_name: GoGaRuCo 2012
-  published_at: "2012-09-14"
-  slides_url: https://speakerdeck.com/skmetz/go-ahead-make-a-mess
+  event_name: "GoGaRuCo 2012"
+  date: "2012-09-14"
+  published_at: "2015-07-14"
+  slides_url: "https://speakerdeck.com/skmetz/go-ahead-make-a-mess"
   description: |-
     Go Ahead, Make a Mess by: Sandi Metz
 
@@ -171,15 +240,17 @@
     What you can do, however, is use the techniques of object-oriented design (OOD) to make your messes manageable. OOD is good at messes. It understands their origins, predicts their courses, and foresees their outcomes. It shines a light down the dusty nooks and crannies of your app, showing you what to do and what to avoid.
 
     This talk shows you how to use OOD to create the best kinds of messes, those that let you get software out the door today without regretting your actions tomorrow.
-  video_provider: youtube
-  video_id: xi3DClfGuqQ
+  video_provider: "youtube"
+  video_id: "xi3DClfGuqQ"
 
-- title: Modern Cryptography
-  raw_title: GoGaRuCo 2012 - Modern Cryptography
+- id: "john-downey-gogaruco-2012"
+  title: "Modern Cryptography"
+  raw_title: "GoGaRuCo 2012 - Modern Cryptography"
   speakers:
     - John Downey
-  event_name: GoGaRuCo 2012
-  published_at: "2012-09-14"
+  event_name: "GoGaRuCo 2012"
+  date: "2012-09-14"
+  published_at: "2015-07-14"
   description: |-
     Modern Cryptography by: John Downey
 
@@ -191,28 +262,33 @@
     Secure password storage
     Subtle flaws that can leave you insecure
     Why you should use TLS/SSL and GPG instead
-  video_provider: youtube
-  video_id: W-0CIVd7mTI
+  video_provider: "youtube"
+  video_id: "W-0CIVd7mTI"
 
-- title: High Performance Ruby
-  raw_title: GoGaRuCo 2012 - High Performance Ruby
+- id: "charles-nutter-gogaruco-2012"
+  title: "High Performance Ruby"
+  raw_title: "GoGaRuCo 2012 - High Performance Ruby"
   speakers:
     - Charles Nutter
-  event_name: GoGaRuCo 2012
-  published_at: "2012-09-14"
-  description: "High Performance Ruby by:  Charles Nutter"
-  video_provider: youtube
-  video_id: 3vzOSpcr4yk
+  event_name: "GoGaRuCo 2012"
+  date: "2012-09-14"
+  published_at: "2015-07-14"
+  description: |-
+    High Performance Ruby by:  Charles Nutter
+  video_provider: "youtube"
+  video_id: "3vzOSpcr4yk"
 
-- title: Mega Rails
-  raw_title: GoGaRuCo 2012 - Mega Rails
+- id: "jack-danger-canty-gogaruco-2012"
+  title: "Mega Rails"
+  raw_title: "GoGaRuCo 2012 - Mega Rails"
   speakers:
     - Jack Danger Canty
-  event_name: GoGaRuCo 2012
-  published_at: "2012-09-14"
+  event_name: "GoGaRuCo 2012"
+  date: "2012-09-14"
+  published_at: "2015-07-14"
   description: |-
     Mega Rails by: Jack Danger Canty
 
     Square manages big data, high uptime, secure payment info and large teams in an agile Rails environment. It's hard. Our system has outgrown the patterns of a young Rails app and some of what used to help has started to hurt. It's painful to have your email templates in the same project as your API backend. It's agonizing to use your main datastore for analytics, and it hurts to throw code into ./lib or require unnecessary gems. This talk is about how we've turned individual Rails pieces into separate services and scaled our codebase, data, and integration testing practices to support multiple big teams efficiently.
-  video_provider: youtube
-  video_id: WDD_WoXAnQ4
+  video_provider: "youtube"
+  video_id: "WDD_WoXAnQ4"

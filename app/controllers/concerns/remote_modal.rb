@@ -1,9 +1,10 @@
 module RemoteModal
   extend ActiveSupport::Concern
-  include Turbo::ForceFrameResponse
+  include Turbo::ForceResponse
 
   included do
     layout :define_layout
+    helper_method :modal_options
   end
 
   class_methods do
@@ -17,6 +18,14 @@ module RemoteModal
 
   def enable_remote_modal
     @remote_modal = true
+  end
+
+  def modal_options
+    @modal_options ||= {}
+  end
+
+  def set_modal_options(options)
+    @modal_options = options
   end
 
   def define_layout

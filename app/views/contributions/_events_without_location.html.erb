@@ -1,0 +1,21 @@
+<%= turbo_frame_tag "events_without_location" do %>
+  <h2 class="mb-4">Events without locations (<%= @events_without_location_count %>)</h2>
+
+  <article class="prose mb-6">This section lists events that are missing location information. By adding a location, we can show in which city/country this event took place.</article>
+
+  <div id="events-without-locations" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 min-w-full mb-6">
+    <% @events_without_location.each do |file_path, events| %>
+      <%= link_to "https://github.com/rubyevents/rubyevents/edit/main/#{file_path}", id: "event-#{file_path}", class: "hover:bg-gray-100 p-4 rounded-lg border bg-white", target: :_blank do %>
+        <div class="flex flex-col">
+          <h3 class="line-clamp-1"><pre>Data File: <%= file_path %></pre></h3>
+
+          <b class="mt-4 mb-2">Events missing locations:</b>
+
+          <% events.each do |event| %>
+            <span><%= event.title %></span>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

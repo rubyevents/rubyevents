@@ -4,49 +4,57 @@
 # TODO: conference website
 # TODO: schedule website
 
-- title: "Opening Announcements"
-  raw_title: RubyConf 2020 - Opening Announcements
+- id: "allison-mcmillan-rubyconf-2020"
+  title: "Opening Announcements"
+  raw_title: "RubyConf 2020 - Opening Announcements"
   speakers:
     - Allison McMillan
     - Barrett Clark
-  event_name: RubyConf 2020
+  event_name: "RubyConf 2020"
+  date: "2020-12-18"
   published_at: "2020-12-18"
   description: ""
-  video_provider: youtube
-  video_id: FTWKackp1Js
+  video_provider: "youtube"
+  video_id: "FTWKackp1Js"
 
-- title: "Keynote: Ruby 3 and Beyond"
-  raw_title: Keynote by Matz
+- id: "yukihiro-matz-matsumoto-rubyconf-2020"
+  title: "Keynote: Ruby 3 and Beyond"
+  raw_title: "Keynote by Matz"
   speakers:
     - Yukihiro "Matz" Matsumoto
-  event_name: RubyConf 2020
+  event_name: "RubyConf 2020"
+  date: "2020-12-18"
   published_at: "2020-12-18"
   description: |-
     Keynote by Yukihiro Matsumoto
 
     The creator of Ruby, Matz works for the Ruby Association to improve everything Ruby.
-  video_provider: youtube
-  video_id: JojpqfaPhjI
+  video_provider: "youtube"
+  video_id: "JojpqfaPhjI"
 
-- title: "Automatic GC Compaction in MRI"
-  raw_title: Automatic GC Compaction in MRI - Aaron Patterson
+- id: "aaron-patterson-rubyconf-2020"
+  title: "Automatic GC Compaction in MRI"
+  raw_title: "Automatic GC Compaction in MRI - Aaron Patterson"
   speakers:
     - Aaron Patterson
-  event_name: RubyConf 2020
+  event_name: "RubyConf 2020"
+  date: "2020-12-18"
   published_at: "2020-12-18"
   description: |-
     Ruby 2.7 introduced GC compaction, a way to reduce memory memory usage in your application. Unfortunately the compaction process is completely manual, requiring developers to determine the best time to compact their heap. This talk is about making the compaction process automatic and the challenges in doing so. We'll discuss various implementation techniques including read barriers and running the GC concurrently with the main program. This talk will have read barriers, but it won't have watch barriers, so come watch the talk!
 
     Aaron Patterson
     Aaron is a full time Ruby developer working at Shopify, whose interests include: Keyboards, Cats, and Code. Aaron is known online as tenderlove, but he also answers by "Aaron".
-  video_provider: youtube
-  video_id: 28BBjKfUpTc
+  video_provider: "youtube"
+  video_id: "28BBjKfUpTc"
 
-- title: "Tales of the Autistic Developer: The Expert"
+- id: "brandon-weaver-rubyconf-2020"
+  title: "Tales of the Autistic Developer: The Expert"
   raw_title: "Tales of the Autistic Developer: The Expert - Brandon Weaver"
   speakers:
     - Brandon Weaver
-  event_name: RubyConf 2020
+  event_name: "RubyConf 2020"
+  date: "2020-12-18"
   published_at: "2020-12-18"
   description: |-
     Expertise is a strange concept, and very hard to quantify at that. It's a state in which you exceed in a given field and can stand as an authority, a wellspring of knowledge and an inspiration to others in that field.
@@ -58,14 +66,16 @@
 
     Brandon Weaver
     Brandon is a Ruby Architect at Square working on the Frameworks team, defining standards for Ruby across the company. He's an artist who turned programmer who had a crazy idea to teach programming with cartoon lemurs and whimsy. He's also autistic, and would love to talk to you about your own experiences.
-  video_provider: youtube
-  video_id: rEeCeJv_H28
+  video_provider: "youtube"
+  video_id: "rEeCeJv_H28"
 
-- title: "The Humble Hash"
-  raw_title: The Humble Hash - Ariel Caplan
+- id: "ariel-caplan-rubyconf-2020"
+  title: "The Humble Hash"
+  raw_title: "The Humble Hash - Ariel Caplan"
   speakers:
     - Ariel Caplan
-  event_name: RubyConf 2020
+  event_name: "RubyConf 2020"
+  date: "2020-12-18"
   published_at: "2020-12-18"
   description: |-
     Hashes seem simple. Set a key to a corresponding value, retrieve the value by key. What else is there to know?
@@ -81,15 +91,17 @@
     Ariel works at Cloudinary, developing new features on a Ruby app serving billions of image and video requests daily.
 
     He also enjoys finding, sharing, and learning new ways to see the tools we work with every day, and hopes this talk will help you do just that!
-  video_provider: youtube
-  video_id: jAn3c6O2OZo
+  video_provider: "youtube"
+  video_id: "jAn3c6O2OZo"
 
-- title: "Enough Coverage To Beat The Band"
-  raw_title: Enough Coverage To Beat The Band - Kevin Murphy
+- id: "kevin-murphy-rubyconf-2020"
+  title: "Enough Coverage To Beat The Band"
+  raw_title: "Enough Coverage To Beat The Band - Kevin Murphy"
   speakers:
     - Kevin Murphy
-  event_name: RubyConf 2020
-  slides_url: https://speakerdeck.com/kevinmurphy/enough-coverage-to-beat-the-band
+  event_name: "RubyConf 2020"
+  slides_url: "https://speakerdeck.com/kevinmurphy/enough-coverage-to-beat-the-band"
+  date: "2020-12-18"
   published_at: "2020-12-18"
   description: |-
     The lights cut out. The crowd roars. It’s time. The band takes the stage. They’ve practiced the songs, particularly the covers. They’ve sound checked the coverage of the speakers. They know the lighting rig has the proper colored gels covering the lamps. They’re nervous, but they’ve got it all covered.
@@ -99,28 +111,32 @@
 
     Kevin Murphy
     Kevin lives near Boston, where he is a Software Developer at The Gnar Company. He’s doing the best he can to cope with a year of concerts that could have been.
-  video_provider: youtube
-  video_id: EyLO0EEm3BQ
+  video_provider: "youtube"
+  video_id: "EyLO0EEm3BQ"
 
-- title: "Tracking COVID 19 with Ruby"
-  raw_title: Tracking COVID 19 with Ruby  - Olivier Lacan
+- id: "olivier-lacan-rubyconf-2020"
+  title: "Tracking COVID 19 with Ruby"
+  raw_title: "Tracking COVID 19 with Ruby  - Olivier Lacan"
   speakers:
     - Olivier Lacan
-  event_name: RubyConf 2020
+  event_name: "RubyConf 2020"
+  date: "2020-12-18"
   published_at: "2020-12-18"
   description: |-
     Programmers are not epidemiologists, but epidemiologists have never needed programmers more. Not for our viral opinions but for our ability to retrieve large data sets and make them understandable through expressive code. As the pandemic was silently taking hold in the United States in early 2020, I used simple web and Ruby tools to gather invaluable data from often obscure state data sources in order to understand the extent of the pandemic in my area. I never expected this would lead me to become a contributor to the pirate CDC.
 
     Olivier Lacan
     Olivier likes to use computers to help people. He maintained Code School for many years and now builds tools to support exciting new learning modalities at Pluralsight. He created those Shields.io badges that plaster your open source READMEs and tried to make those same projects more accessible with Keep a Changelog. Recently, he contributed to the COVID Tracking Project at The Atlantic and focused on uncovering pandemic data for the state of Florida.
-  video_provider: youtube
-  video_id: lRUq3ZJHXKE
+  video_provider: "youtube"
+  video_id: "lRUq3ZJHXKE"
 
-- title: "The State of Ruby 3 Typing"
-  raw_title: The State of Ruby 3 Typing - Soutaro Matsumoto
+- id: "soutaro-matsumoto-rubyconf-2020"
+  title: "The State of Ruby 3 Typing"
+  raw_title: "The State of Ruby 3 Typing - Soutaro Matsumoto"
   speakers:
     - Soutaro Matsumoto
-  event_name: RubyConf 2020
+  event_name: "RubyConf 2020"
+  date: "2020-12-18"
   published_at: "2020-12-18"
   description: |-
     This talk is about the new feature of Ruby 3 for static type checking. The Ruby committer team had a plan to provide an optional static type checker for Ruby 3, but it is changed. Ruby 3 won't ship with a static type checker, but it will provide a feature called RBS to support type checker developments. In this talk, I will explain what RBS is, how the gem helps type tools developments, and what to do to get your gems ready for RBS.
@@ -128,51 +144,46 @@
 
     Soutaro Matsumoto
     Soutaro is a lead Ruby engineer at Square working on Steep, RBS, and static typing. He is a core Ruby committer working with Matz and other core committers on the RBS specification that will ship with Ruby 3.
-  video_provider: youtube
-  video_id: xnwGPQghmo4
+  video_provider: "youtube"
+  video_id: "xnwGPQghmo4"
 
-- title: "Keynote"
-  raw_title: Keynote - Ryann Richardson
+- id: "ryann-richardson-rubyconf-2020"
+  title: "Keynote"
+  raw_title: "Keynote - Ryann Richardson"
   speakers:
     - Ryann Richardson
-  event_name: RubyConf 2020
+  event_name: "RubyConf 2020"
+  date: "2020-12-18"
   published_at: "2020-12-18"
-  description:
-    In 2018, Ryann Richardson made history, becoming the 50th Anniversary
-    Miss Black America. Before that, the tech marketer-turned-founder and Diversity
-    & Inclusion advocate spent 10 years building brands and culture for companies
-    spanning early-stage start-ups (Victor) to billion-dollar "unicorns" (Uber) to
-    the Fortune 500 (T-Mobile/Deutsche Telekom). Her work earned her a spot as the
-    youngest honoree on Savoy Magazine’s list of Most Influential Black Executives
-    in Corporate America and set her on the path to discovering her unique purpose
-    as a champion for underrepresented voices. Now, in her second act as a founder,
-    her company Ellington Lafayette Co. is building a new type of tech incubator,
-    focusing exclusively on start-ups that drive social equity for women and communities
-    of color. Ryann travels the US as a Keynote Speaker giving talks “Authenticity
-    and Assimilation”, “Taking Up Space as Women and POC” and “The Politics of Race,
-    Beauty, and Power.”
-  video_provider: youtube
-  video_id: db0Sw5iV5jM
+  description: |-
+    In 2018, Ryann Richardson made history, becoming the 50th Anniversary Miss Black America. Before that, the tech marketer-turned-founder and Diversity & Inclusion advocate spent 10 years building brands and culture for companies spanning early-stage start-ups (Victor) to billion-dollar "unicorns" (Uber) to the Fortune 500 (T-Mobile/Deutsche Telekom). Her work earned her a spot as the youngest honoree on Savoy Magazine’s list of Most Influential Black Executives in Corporate America and set her on the path to discovering her unique purpose as a champion for underrepresented voices. Now, in her second act as a founder, her company Ellington Lafayette Co. is building a new type of tech incubator, focusing exclusively on start-ups that drive social equity for women and communities of color. Ryann travels the US as a Keynote Speaker giving talks “Authenticity and Assimilation”, “Taking Up Space as Women and POC” and “The Politics of Race, Beauty, and Power.”
+  video_provider: "youtube"
+  video_id: "db0Sw5iV5jM"
 
-- title: "Keynote: If you can move it, it isn't broken"
-  raw_title: Keynote - Kerri Miller
+- id: "kerri-miller-rubyconf-2020"
+  title: "Keynote: If you can move it, it isn't broken"
+  raw_title: "Keynote - Kerri Miller"
   speakers:
     - Kerri Miller
-  event_name: RubyConf 2020
+  event_name: "RubyConf 2020"
+  date: "2020-12-18"
   published_at: "2020-12-18"
   description: |-
     Kerri Miller is a Software Developer and Team Lead based in the Pacific Northwest. She has worked at enterprise companies, international ad agencies, boutique consultancies, start-ups, mentors and teaches students. She currently is a Senior Backend Engineer at Gitlab, and also works for Ruby Together on RubyGems.org and Bundler.
 
     While that is all factually true, it doesn't actually describe an actual person. Kerri has an insatiable curiosity, having worked as a lighting designer, marionette puppeteer, sous chef, and farm hand. She attended college to study performance production, was once a semi-professional poker player, has strong opinions about keycaps, knows some sweet yoyo tricks, and enjoys melting hot glass with a blowtorch to create beads, cane, and murrini. Asked to describe herself in two words, she thought a bit and replied "lackwit gadabout."
-  video_provider: youtube
-  video_id: TLRyAYSOWcc
+  video_provider: "youtube"
+  video_id: "TLRyAYSOWcc"
 
-- title: "The Bug that Forced Me to Understand Memory Compaction"
-  raw_title: The Bug that Forced Me to Understand Memory Compaction - Emily Giurleo
+- id: "emily-giurleo-rubyconf-2020"
+  title: "The Bug that Forced Me to Understand Memory Compaction"
+  raw_title: "The Bug that Forced Me to Understand Memory Compaction - Emily Giurleo"
   speakers:
     - Emily Giurleo
-  event_name: RubyConf 2020
+  event_name: "RubyConf 2020"
+  date: "2020-12-18"
   published_at: "2020-12-18"
+  slides_url: "https://docs.google.com/presentation/d/1VmJyyM9dY5clrlCj8hkzkQY8DYZYM-HGYIBl5JAhUhU/edit#slide=id.p"
   description: |-
     Did you know that Ruby 2.7 introduces a new method for manual memory compaction?
 
@@ -184,28 +195,32 @@
 
     Emily Giurleo
     Emily Giurleo is a software engineer and avid Rubyist. This December, she'll start working at Numero, where she'll help build the next generation of campaign finance tools. In her spare time, she enjoys creating tech for good causes, reading fantasy novels, and hanging out with her pets.
-  video_provider: youtube
-  video_id: GlpZPv1bp4g
+  video_provider: "youtube"
+  video_id: "GlpZPv1bp4g"
 
-- title: "Ractor Demonstration"
-  raw_title: Ractor Demonstration - Koichi Sasada
+- id: "koichi-sasada-rubyconf-2020"
+  title: "Ractor Demonstration"
+  raw_title: "Ractor Demonstration - Koichi Sasada"
   speakers:
     - Koichi Sasada
-  event_name: RubyConf 2020
+  event_name: "RubyConf 2020"
+  date: "2020-12-18"
   published_at: "2020-12-18"
   description: |-
     Ruby 3 will have a new feature Ractor, an abstraction for thread-safe concurrent/parallel execution. Because most of objects are not shared with multiple Ractors, Ruby programmer can enjoy parallel programming without some kind of difficult thread-safety issues. However, to keep objects isolation, Ractor introduces some limitation for the languages. For example, you can not use global variables on a multi Ractor program. This presentation will introduce about Ractor briefly and show the powers of Ractor and its limitations with interactive demonstration.
 
     Koichi Sasada
     Koichi Sasada is a programmer, mainly developing Ruby interpreter (CRuby/MRI). He received Ph.D (Information Science and Technology) from the University of Tokyo, 2007. He became a faculty of University of Tokyo (Assistant associate 2006-2008, Assistant professor 2008-2012). After the 13 years life in university, he had joined a member of Matz's team in Heroku, Inc. Now he is a member of Cookpad Inc (engineer). He is also a director of Ruby Association.
-  video_provider: youtube
-  video_id: 0kM7yFM6Dao
+  video_provider: "youtube"
+  video_id: "0kM7yFM6Dao"
 
-- title: "The Minaswan::Interview"
-  raw_title: The Minaswan::Interview - Jesse Spevack
+- id: "jesse-spevack-rubyconf-2020"
+  title: "The Minaswan::Interview"
+  raw_title: "The Minaswan::Interview - Jesse Spevack"
   speakers:
     - Jesse Spevack
-  event_name: RubyConf 2020
+  event_name: "RubyConf 2020"
+  date: "2020-12-18"
   published_at: "2020-12-18"
   description: |-
     White-boarding is not nice. An unpaid take home project is not nice. We decided to apply the Ruby community motto "Matz is nice and so we are nice," to our technical interview process. Come learn what changes we made, how we enlisted support of other rubyists and non-rubyists alike, and how you can too.
@@ -213,14 +228,16 @@
 
     Jesse Spevack
     I am a senior platform engineer at Ibotta, a cash back for shopping mobile app. Before getting into the tech world, I worked in public K-12 education for 11 years. I transitioned from education into technology by way of the Turing School of Software Design, a Denver based code school with a Ruby-centric curriculum.
-  video_provider: youtube
-  video_id: c4K-ORZmrGk
+  video_provider: "youtube"
+  video_id: "c4K-ORZmrGk"
 
-- title: "Automation Engineering with Serverless Compute"
-  raw_title: Automation Engineering with Serverless Compute - Kevin Lesht
+- id: "kevin-lesht-rubyconf-2020"
+  title: "Automation Engineering with Serverless Compute"
+  raw_title: "Automation Engineering with Serverless Compute - Kevin Lesht"
   speakers:
     - Kevin Lesht
-  event_name: RubyConf 2020
+  event_name: "RubyConf 2020"
+  date: "2020-12-18"
   published_at: "2020-12-18"
   description: |-
     Have you ever wanted to automate a tedious process? Like, relaying omelette photos straight from your phone to an omelette blog? This talk is for you! Learn how to leverage Ruby within serverless functions to handle everything from machine learning based object detection through event triggers, and static site generation!
@@ -230,28 +247,29 @@
 
     Kevin Lesht
     Kevin is a Senior Software Engineer working out of Chicago, Illinois, for Home Chef, a meal kit delivery company. He is the host of the Day as a Dev podcast, where he interviews developers from all walks of life, to offer students and those interested in tech, a practical look at life in the industry. Previously, he co-founded ZeroSleep Designs, a digital design agency, and worked with dozens of clients to bring their ideas online. He's passionate about getting others excited about tech!
-  video_provider: youtube
-  video_id: upf8Niku9MI
+  video_provider: "youtube"
+  video_id: "upf8Niku9MI"
 
-- title: "Keynote"
-  raw_title: Keynote - Kent Beck
+- id: "kent-beck-rubyconf-2020"
+  title: "Keynote"
+  raw_title: "Keynote - Kent Beck"
   speakers:
     - Kent Beck
-  event_name: RubyConf 2020
+  event_name: "RubyConf 2020"
+  date: "2020-12-18"
   published_at: "2020-12-18"
-  description:
-    Kent helps geeks feel safe in the world. In Kent's career he has constantly
-    challenged software engineering dogma, promoting ideas like patterns, test-driven
-    development, and Extreme Programming. Currently Fellow at Gusto, he is the author
-    of a half dozen books.
-  video_provider: youtube
-  video_id: UIyMs7xV6eo
+  description: |-
+    Kent helps geeks feel safe in the world. In Kent's career he has constantly challenged software engineering dogma, promoting ideas like patterns, test-driven development, and Extreme Programming. Currently Fellow at Gusto, he is the author of a half dozen books.
+  video_provider: "youtube"
+  video_id: "UIyMs7xV6eo"
 
-- title: "Screaming Zombies and Other Tales: Race Condition Woes"
+- id: "joshua-larson-rubyconf-2020"
+  title: "Screaming Zombies and Other Tales: Race Condition Woes"
   raw_title: "Screaming Zombies and Other Tales: Race Condition Woes - Joshua Larson"
   speakers:
     - Joshua Larson
-  event_name: RubyConf 2020
+  event_name: "RubyConf 2020"
+  date: "2020-12-18"
   published_at: "2020-12-18"
   description: |-
     What is the sound of a zombie screaming?
@@ -265,14 +283,16 @@
 
     Josh Larson
     Josh is a full-time programmer, part-time human, whose interests include weird programming, physics, math, and trying to make software reliably be better. When he’s not writing code or equations, he’s probably biking somewhere or watching something on HBO.
-  video_provider: youtube
-  video_id: p6Jz5cE4OkA
+  video_provider: "youtube"
+  video_id: "p6Jz5cE4OkA"
 
-- title: "Upgrading GitHub to Ruby 2.7"
-  raw_title: Upgrading GitHub to Ruby 2.7 - Eileen Uchitelle
+- id: "eileen-m-uchitelle-rubyconf-2020"
+  title: "Upgrading GitHub to Ruby 2.7"
+  raw_title: "Upgrading GitHub to Ruby 2.7 - Eileen Uchitelle"
   speakers:
     - Eileen M. Uchitelle
-  event_name: RubyConf 2020
+  event_name: "RubyConf 2020"
+  date: "2020-12-18"
   published_at: "2020-12-18"
   description: |-
     It's no secret that the upgrade to Ruby 2.7 is difficult — fixing the keyword argument, URI, and other deprecation warnings can feel overwhelming, tedious, and never ending. We experienced this first-hand at GitHub; we fixed over 11k+ warnings, sent patches to 15+ gems, upgraded 30+ gems, and replaced abandoned gems. In this talk we’ll look at our custom monkey patch for capturing warnings, how we divided work among teams, and the keys to a successful Ruby 2.7 upgrade. We’ll explore why upgrading is important and take a dive into Ruby 2.7’s notable performance improvements.
@@ -280,14 +300,16 @@
 
     Eileen M. Uchitelle
     Eileen Uchitelle is a Staff Software Engineer on the Ruby Architecture Team at GitHub and a member of the Rails Core team. She's an avid contributor to open source focusing on the Ruby on Rails framework and its dependencies. Eileen is passionate about scalability, performance, and making open source communities more sustainable and welcoming.
-  video_provider: youtube
-  video_id: OrPT7h2hsok
+  video_provider: "youtube"
+  video_id: "OrPT7h2hsok"
 
-- title: "Coaching through Coding"
-  raw_title: Coaching through Coding - Mercedes Bernard
+- id: "mercedes-bernard-rubyconf-2020"
+  title: "Coaching through Coding"
+  raw_title: "Coaching through Coding - Mercedes Bernard"
   speakers:
     - Mercedes Bernard
-  event_name: RubyConf 2020
+  event_name: "RubyConf 2020"
+  date: "2020-12-18"
   published_at: "2020-12-18"
   description: |-
     When we use the words "coaching" or "mentorship," we tend to picture one-on-one conversations with someone we respect where there are questions asked and advice given. But restricting our vision of mentorship to this type of interaction is extremely limiting!
@@ -297,37 +319,37 @@
 
     Mercedes Bernard
     Mercedes Bernard is a Principal software engineer and engineering manager with Tandem, a digital consultancy in Chicago. She's also the founder of Dev Together, a mentorship community in Chi for those starting their dev careers. Outside of work, she likes to unplug and enjoys spinning yarn and crocheting.
-  video_provider: youtube
-  video_id: E0j-nXdnIp4
+  video_provider: "youtube"
+  video_id: "E0j-nXdnIp4"
 
-- title: "How Prime Numbers Keep the Internet Secure"
-  raw_title: How Prime Numbers Keep the Internet Secure - Sun-Li Beatteay
+- id: "sun-li-beatteay-rubyconf-2020"
+  title: "How Prime Numbers Keep the Internet Secure"
+  raw_title: "How Prime Numbers Keep the Internet Secure - Sun-Li Beatteay"
   speakers:
     - Sun-Li Beatteay
-  event_name: RubyConf 2020
+  event_name: "RubyConf 2020"
+  date: "2020-12-18"
   published_at: "2020-12-18"
-  description:
-    "You may not know it, but you use prime numbers every day. They play
-    a major role in internet security in the form of encryption.\n\nIn this talk,
-    you will learn the inner workings of how the internet uses prime numbers to keep
-    your data private as it travels over the wire. We will cover topics such as symmetric
-    and asymmetric encryption, and why prime numbers are just so damn hard to crack.
-    By the end, you will understand how to encrypt and decrypt data yourself with
-    just the Ruby standard library.\n\nSo come join me as we demystify HTTPS using
-    code, color theory, and only a pinch of math \U0001F913.\n\n\nSun-Li Beatteay\nSunny
-    is a software engineer and Rubyist at DigitalOcean where he works on building
-    managed storage products. He has been using Ruby since he started learning to
-    program in 2016. Like Ruby, he's passionate about encapsulating complicated concepts
-    in simple language. When he's not breaking production, he can be found trying
-    to figure out how to pipe all his troubles into /dev/null."
-  video_provider: youtube
-  video_id: f_Qan-eNT-g
+  description: |-
+    You may not know it, but you use prime numbers every day. They play a major role in internet security in the form of encryption.
 
-- title: "Mach 2.0 at Scale"
-  raw_title: Mach 2.0 at Scale - Nickolas Means
+    In this talk, you will learn the inner workings of how the internet uses prime numbers to keep your data private as it travels over the wire. We will cover topics such as symmetric and asymmetric encryption, and why prime numbers are just so damn hard to crack. By the end, you will understand how to encrypt and decrypt data yourself with just the Ruby standard library.
+
+    So come join me as we demystify HTTPS using code, color theory, and only a pinch of math 🤓.
+
+
+    Sun-Li Beatteay
+    Sunny is a software engineer and Rubyist at DigitalOcean where he works on building managed storage products. He has been using Ruby since he started learning to program in 2016. Like Ruby, he's passionate about encapsulating complicated concepts in simple language. When he's not breaking production, he can be found trying to figure out how to pipe all his troubles into /dev/null.
+  video_provider: "youtube"
+  video_id: "f_Qan-eNT-g"
+
+- id: "nickolas-means-rubyconf-2020"
+  title: "Mach 2.0 at Scale"
+  raw_title: "Mach 2.0 at Scale - Nickolas Means"
   speakers:
     - Nickolas Means
-  event_name: RubyConf 2020
+  event_name: "RubyConf 2020"
+  date: "2020-12-18"
   published_at: "2020-12-18"
   description: |-
     When Chuck Yeager broke the sound barrier for the first time, he set off a race around the world to do the same thing with a plane full of paying passengers. The US, Russia, UK, and France all wanted a piece of the inevitable fortune to be made building aircraft to cross oceans faster than sound itself.
@@ -337,14 +359,16 @@
 
     Nickolas Means
     Nickolas Means loves nothing more than a story of engineering triumph (except maybe a story of engineering disaster). When he's not stuck in a Wikipedia loop reading about plane crashes, he spends his days as a Director of Engineering at GitHub. He works remotely from Austin, TX, and spends most of his spare time hanging out with his wife and kids, going for a run, or trying to brew the perfect cup of coffee.
-  video_provider: youtube
-  video_id: uFURynXi5bk
+  video_provider: "youtube"
+  video_id: "uFURynXi5bk"
 
-- title: "The Future Should Be Uneven"
-  raw_title: The Future Should Be Uneven - H. Waterhouse
+- id: "h-waterhouse-rubyconf-2020"
+  title: "The Future Should Be Uneven"
+  raw_title: "The Future Should Be Uneven - H. Waterhouse"
   speakers:
     - H. Waterhouse
-  event_name: RubyConf 2020
+  event_name: "RubyConf 2020"
+  date: "2020-12-18"
   published_at: "2020-12-18"
   description: |-
     "The future is here, it's just unevenly distributed" is something we say about why people on instant connection devices walk past people sleeping on sidewalks.
@@ -356,56 +380,59 @@
 
     H. Waterhouse
     Heidi is a developer advocate with LaunchDarkly. She delights in working at the intersection of usability, risk reduction, and cutting-edge technology. One of her favorite hobbies is talking to developers about things they already knew but had never thought of that way before. She sews all her conference dresses so that she's sure there is a pocket for the mic.
-  video_provider: youtube
-  video_id: E3alWkOAjV8
+  video_provider: "youtube"
+  video_id: "E3alWkOAjV8"
 
-- title: "Keynote: 5 Rules for Building the Future"
-  raw_title: Keynote - Aniyia Williams
+- id: "aniyia-williams-rubyconf-2020"
+  title: "Keynote: 5 Rules for Building the Future"
+  raw_title: "Keynote - Aniyia Williams"
   speakers:
     - Aniyia Williams
-  event_name: RubyConf 2020
+  event_name: "RubyConf 2020"
+  date: "2020-12-18"
   published_at: "2020-12-18"
-  description:
-    Aniyia Williams is a creator, inventor, and tech changemaker. She serves
-    as Executive Director of Black & Brown Founders, which provides vital resources
-    to Black and Latinx entrepreneurs building tech companies with limited capital.
-    She is also co-founder of Zebras Unite, an entrepreneur-led movement focused on
-    creating a more ethical and sustainable start-up ecosystem.
-  video_provider: youtube
-  video_id: Pa8L8fqq-Dg
+  description: |-
+    Aniyia Williams is a creator, inventor, and tech changemaker. She serves as Executive Director of Black & Brown Founders, which provides vital resources to Black and Latinx entrepreneurs building tech companies with limited capital. She is also co-founder of Zebras Unite, an entrepreneur-led movement focused on creating a more ethical and sustainable start-up ecosystem.
+  video_provider: "youtube"
+  video_id: "Pa8L8fqq-Dg"
 
-- title: "Q&A With Matz"
-  raw_title: Q&A With Matz - Yukihiro Matsumoto & Evan Phoenix
+- id: "yukihiro-matz-matsumoto-rubyconf-2020-qa-with-matz"
+  title: "Q&A With Matz"
+  raw_title: "Q&A With Matz - Yukihiro Matsumoto & Evan Phoenix"
   speakers:
     - Yukihiro "Matz" Matsumoto
     - Evan Phoenix
-  event_name: RubyConf 2020
+  event_name: "RubyConf 2020"
+  date: "2020-12-18"
   published_at: "2020-12-18"
-  description:
-    Matz and Evan discuss topics around his Keynote and other developments
-    within the Ruby language and community.
-  video_provider: youtube
-  video_id: c3Uv0jbCjcs
+  description: |-
+    Matz and Evan discuss topics around his Keynote and other developments within the Ruby language and community.
+  video_provider: "youtube"
+  video_id: "c3Uv0jbCjcs"
 
-- title: "Conference Closing"
-  raw_title: RubyConf 2020 - Conference Closing
+- id: "allison-mcmillan-rubyconf-2020-conference-closing"
+  title: "Conference Closing"
+  raw_title: "RubyConf 2020 - Conference Closing"
   speakers:
     - Allison McMillan
     - Barrett Clark
     - Adam Cuppy
-  event_name: RubyConf 2020
+  event_name: "RubyConf 2020"
+  date: "2020-12-18"
   published_at: "2020-12-18"
   description: ""
-  video_provider: youtube
-  video_id: EFR03PDZiIc
+  video_provider: "youtube"
+  video_id: "EFR03PDZiIc"
 
-- title: "Closing Day 2"
-  raw_title: RubyConf 2020 - Closing Day 2
+- id: "allison-mcmillan-rubyconf-2020-closing-day-2"
+  title: "Closing Day 2"
+  raw_title: "RubyConf 2020 - Closing Day 2"
   speakers:
     - Allison McMillan
     - Barrett Clark
-  event_name: RubyConf 2020
+  event_name: "RubyConf 2020"
+  date: "2020-12-18"
   published_at: "2020-12-18"
   description: ""
-  video_provider: youtube
-  video_id: 5-r23sXhj1o
+  video_provider: "youtube"
+  video_id: "5-r23sXhj1o"

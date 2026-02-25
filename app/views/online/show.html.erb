@@ -1,0 +1,69 @@
+<%= turbo_refreshes_with method: :morph, scroll: :preserve %>
+
+<% title "Online Ruby Events" %>
+
+<%= render "shared/location_header",
+      name: @location.name,
+      subtitle: @location.to_location.to_text,
+      emoji: @location.emoji_flag,
+      stats: "#{pluralize(@events.count, "upcoming event")} online",
+      location: @location %>
+
+<div class="container">
+  <div role="tablist" class="tabs tabs-bordered mb-8 overflow-x-auto">
+    <%= link_to online_path, role: "tab", class: "tab whitespace-nowrap tab-active" do %>
+      Overview
+    <% end %>
+
+    <%= link_to online_past_index_path, role: "tab", class: "tab whitespace-nowrap" do %>
+      Past Events
+    <% end %>
+  </div>
+</div>
+
+<div class="container py-8">
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div class="lg:col-span-2">
+      <% if @events.any? %>
+        <%= render "shared/date_grouped_events", events: @events, empty_message: "No upcoming online events." %>
+      <% else %>
+        <div class="text-gray-500 py-8 text-center bg-gray-50 rounded-xl">
+          <p class="mb-2">No upcoming online events scheduled.</p>
+          <%= link_to "View past events →", online_past_index_path, class: "link text-sm" %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="lg:col-span-1">
+      <div class="space-y-8">
+        <div>
+          <h3 class="font-bold text-gray-900 mb-4">About Online Events</h3>
+          <p class="text-gray-600 text-sm">
+            Online events are virtual conferences, meetups, and workshops that you can attend from anywhere in the world.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="font-bold text-gray-900 mb-4">Browse by Location</h3>
+
+          <div class="space-y-1">
+            <%= link_to continents_path, class: "flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors" do %>
+              <span class="text-xl">🌍</span>
+              <span class="text-gray-700">Continents</span>
+            <% end %>
+
+            <%= link_to countries_path, class: "flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors" do %>
+              <span class="text-xl">🏳️</span>
+              <span class="text-gray-700">Countries</span>
+            <% end %>
+
+            <%= link_to cities_path, class: "flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors" do %>
+              <span class="text-xl">🏙️</span>
+              <span class="text-gray-700">Cities</span>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

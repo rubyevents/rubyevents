@@ -9,12 +9,15 @@ bundle exec standardrb --fix
 
 # Check Ruby code formatting
 echo "Checking JS code formatting..."
-yarn standard --fix
+yarn format
 
 # Check erb file formatting
 echo "Checking erb file formatting..."
-bundle exec erblint --lint-all --autocorrect
+bundle exec erb_lint --lint-all --autocorrect
 
 # Check YAML file formatting
 echo "Checking YAML file formatting in data/ ..."
-yarn prettier --write data/**/**/*.yml
+yarn format:yml
+
+echo "Validating Schema of files in data/ ..."
+bin/rails validate:all

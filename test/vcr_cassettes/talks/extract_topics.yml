@@ -5,7 +5,9 @@ http_interactions:
     uri: https://api.openai.com/v1/chat/completions
     body:
       encoding: UTF-8
-      string: '{"model":"gpt-4o-mini","response_format":{"type":"json_object"},"messages":[{"role":"system","content":"You
+      string: '{"model":"gpt-4o-mini","response_format":{"type":"json_schema","json_schema":{"name":"talk_topics","schema":{"type":"object","strict":true,"properties":{"topics":{"type":"array","description":"A
+        list of topics related to the ","items":{"type":"string","description":"A
+        single topic."}}},"required":["topics"],"additionalProperties":false}}},"messages":[{"role":"system","content":"You
         are a helpful assistant skilled in assigned a list of predefined topics to
         a transcript."},{"role":"user","content":"You are tasked with figuring out
         of the list of provided topics matches a transcript based on the transcript
@@ -18,9 +20,11 @@ http_interactions:
         drop, live previews, lazy loading \u0026 more\n- How to achieve more by combining
         tools (Frames + Streams, StimulusJS, RequestJS, Kredis \u0026 more)\n- What
         are the limits of Hotwire?\n- How to write readable and maintainable Hotwire
-        code\n- Bad practices\n\n  - speaker name: \n  - event name: \n\u003c/metadata\u003e\n\n2.
-        Next, carefully read through the entire transcript:\n\u003ctranscript\u003e\nso
-        nice to be here with you thank you all for coming so uh my name is uh\n\nyaroslav
+        code\n- Bad practices\n\n  - speaker name: Yaroslav Shmarov\n  - event name:
+        Rails World 2023\n\u003c/metadata\u003e\n\n2. Next, carefully read through
+        the entire transcript:\nNote: The transcript is not perfect, it''s a transcription
+        of the video, so it might have some errors.\n\u003ctranscript\u003e\nso nice
+        to be here with you thank you all for coming so uh my name is uh\n\nyaroslav
         I m from Ukraine you might know me from my blog or from my super Al\n\nYouTube
         channel where I post a lot of stuff about trby and especially about hot fire
         so I originate from Ukraine\n\nfrom the north of Ukraine so right now it is
@@ -34,62 +38,34 @@ http_interactions:
         he is actually\n\ndefending Ukraine right now but on a positive note I just
         recently became a father\n\nso yeah um it is uh just 2 and a half months ago
         in uh France and uh today we\n\nare going to talk about hot fire\n\u003c/transcript\u003e\n\n3.
-        Read through the entire list of exisiting topics for other talks.\n\u003ctopics\u003e\n  Career
-        Development, Test Coverage, Engineering Culture, Naming, Camping, Licensing,
-        Hotwire, Regex, Internals, Performance, Privacy, Ruby Implementations, IDE,
-        Code Quality, Monolith, Machine Learning, Teamwork, LLM, JavaScript, Security,
-        Rails at Scale, RJIT, Duck Typing, Phlex, Real-time applications, Databases,
-        Data Processing, Crystal, Hanami, Business, CLI, AI, Automation, Sonic Pi,
-        Parallelism, Design Patterns, Logging, mruby, Elm, Turbo, Type Checking, Frontend,
-        Editor, Web Server, JWT, Music, MJIT, ActionView, OOP, Flaky Tests, Interview,
-        ActionCable, Startups, Servers, TruffleRuby, Background jobs, Version Control,
-        Typing, Computer Vision, YJIT, Hybrid Apps, git, Containers, Profiling, Views,
-        REST API, PostgreSQL, Android, ORM, iOS, Data Integrity, Mocking, Memory Managment,
-        Pair Programming, MySQL, Rails Upgrades, Refactoring, MVP, HTTP API, Personal
-        Development, Usability, Remote Work, Teams, Keynote, ActiveRecord, Developer
-        Tooling, Stimulus, Offline, Robot, HTML, DevOps, Teaching, Localization, Sidekiq,
-        Team Building, Types, JIT, React, why the lucky stiff, Junior devs, Debugging,
-        YARV, Assembly, Static Typing, Concurrency, Organizational Skills, Community,
-        Workshop, Rails Engine, Kafka, Encryption, SQL, Ethics, Client-side rendering,
-        Microcontroller, Live Coding, Microservices, Leadership, Game Shows, System
-        Programming, DX, Tips \u0026 Tricks, Test Framework, Blogging, Vue.js, Compiling,
-        Rust, Software Architecture, Event Sourcing, Syntax, Sorbet, Panel, Database
-        Sharding, People Skills, Virtual Machine, Bootstrapping, Legacy Applications,
-        Ruby VM, Awards, Pricing, ActiveSupport, Linters, Parsing, TDD, UI, Transpilation,
-        Encoding, Tailwind CSS, Testing, Productivity, Arel, Algorithms, Native Apps,
-        Project Planning, Lightning Talks, Websockets, Business Logic, LSP, Functional
-        Programming, Deployment, Diversity \u0026 Inclusion, Caching, gRPC, Multitenancy,
-        Job Interviewing, Distributed Systems, ActionMailer, Swift, Passwords, Mental
-        Health, Writing, Q\u0026A, Mentorship, Podcasts, GraphQL, Components, Observability,
-        Ruby on Rails, dry-rb, Threads, MFA/2FA, JVM, Fibers, DSL, Domain Driven Design,
-        PWA, Docker, ActiveStorage, Documentation, Translation, Scaling, Server-side
-        rendering, Indie Developer, Geocoding, Rubygems, Timezones, Native Extensions,
-        CRuby, Ractors, Go, Open Source, Shoes.rb, SQLite, JRuby, CSS, Communication,
-        Error Handling, A/B Testing, ActiveJob, Authorization, ViewComponent, UI Design,
-        Trailblazer, Success Stories, CI, Hacking, SPA, REST, CI/CD, Service Objects,
-        Rack, Inspiration, Accessability, Authentication, Sinatra, Turbo Native, Games,
-        Code Golfing\n\u003c/topics\u003e\n\n4. Pick 5 to 7 topics that would describe
-        best the talk.\n   You can pick any topic from the list of exisiting topics
-        or create a new one.\n   if you create a new topic, please ensure that it
-        is relevant to the content of the transcript and match the recommended topics
-        kind.\n    - Ruby framework names (examples: Rails, Sinatra, Hanami, Ruby
-        on Rails ...)\n    - Ruby gem names\n    - Design patterns names (examples:
+        Read through the entire list of exisiting topics for other talks.\n\u003ctopics\u003e\n  ActiveRecord,
+        ActiveSupport, Topic 1\n\u003c/topics\u003e\n\n3 bis. Read through the entire
+        list of topics that we have already rejected for other talks.\n\u003crejected_topics\u003e\n  Rejected\n\u003c/rejected_topics\u003e\n\n4.
+        Pick 5 to 7 topics that would describe the talk best.\n  You can pick any
+        topic from the list of exisiting topics or create a new one.\n\n  If you create
+        a new topic, please ensure that it is relevant to the content of the transcript
+        and match the recommended topics kind.\n  Also for new topics please ensure
+        they are not a synonym of an existing topic.\n    - Make sure it fits the
+        overall theme of this website, it''s a website for Ruby related videos, so
+        it should have something to do with Ruby, Web, Programming, Teams, People
+        or Tech.\n    - Ruby framework names (examples: Rails, Sinatra, Hanami, Ruby
+        on Rails, ...)\n    - Ruby gem names\n    - Design patterns names (examples:
         MVC, MVP, Singleton, Observer, Strategy, Command, Decorator, Composite, Facade,
-        Proxy, Mediator, Memento, Observer, State, Template Method, Visitor)\n    -
+        Proxy, Mediator, Memento, Observer, State, Template Method, Visitor, ...)\n    -
         Database names (examples: PostgreSQL, MySQL, MongoDB, Redis, Elasticsearch,
-        Cassandra, CouchDB, Sqlite)\n    - front end frameworks names (examples: React,
-        Vue, Angular, Ember, Svelte, Stimulus, Preact, Hyperapp, Inferno, Solid, Mithril,
-        Riot, Polymer, Web Components, Hotwire, Turbo, StimulusReflex, Strada ...)\n    -
-        front end CSS libraries and framework names (examples: Tailwind, Bootstrap,
-        Bulma, Material UI, Foundation)\n    - front end JavaScript libraries names
-        (examples: jQuery, D3, Chart.js, Lodash, Moment.js)\n  topics are typically
-        one or two words long, with some exceptions such as \"Ruby on Rails\"\n\n5.
-        Format your topics you picked as a JSON object with the following schema:\n  {\n    \"topics\":
-        [\"topic1\", \"topic2\", \"topic3\"]\n  }\n\n6. Ensure that your summary is:\n  -
-        relevant to the content of the transcript and match the recommended topics
-        kind\n  - Free of personal opinions or external information not present in
-        the provided content\n\n7. Output your JSON object containing the list of
-        topics in the JSON format.\n"}]}'
+        Cassandra, CouchDB, SQLite, ...)\n    - front end frameworks names (examples:
+        React, Vue, Angular, Ember, Svelte, Stimulus, Preact, Hyperapp, Inferno, Solid,
+        Mithril, Riot, Polymer, Web Components, Hotwire, Turbo, StimulusReflex, Strada
+        ...)\n    - front end CSS libraries and framework names (examples: Tailwind,
+        Bootstrap, Bulma, Material UI, Foundation, ...)\n    - front end JavaScript
+        libraries names (examples: jQuery, D3, Chart.js, Lodash, Moment.js, ...)\n\n  Topics
+        are typically one or two words long, with some exceptions such as \"Ruby on
+        Rails\"\n\n5. Format your topics you picked as a JSON object with the following
+        schema:\n  {\n    \"topics\": [\"topic1\", \"topic2\", \"topic3\"]\n  }\n\n6.
+        Ensure that your summary is:\n  - relevant to the content of the transcript
+        and match the recommended topics kind\n  - Free of personal opinions or external
+        information not present in the provided content\n\n7. Output your JSON object
+        containing the list of topics in the JSON format.\n"}]}'
     headers:
       Content-Type:
       - application/json
@@ -109,65 +85,67 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 14 Aug 2024 21:47:56 GMT
+      - Wed, 11 Dec 2024 06:38:25 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
+      Access-Control-Expose-Headers:
+      - X-Request-ID
       Openai-Organization:
       - user-cnr3hw7frpcuxb74nqkxv0ci
       Openai-Processing-Ms:
-      - '776'
+      - '926'
       Openai-Version:
       - '2020-10-01'
-      Strict-Transport-Security:
-      - max-age=15552000; includeSubDomains; preload
       X-Ratelimit-Limit-Requests:
-      - '10000'
+      - '5000'
       X-Ratelimit-Limit-Tokens:
-      - '200000'
+      - '4000000'
       X-Ratelimit-Remaining-Requests:
-      - '9999'
+      - '4999'
       X-Ratelimit-Remaining-Tokens:
-      - '198390'
+      - '3998893'
       X-Ratelimit-Reset-Requests:
-      - 8.64s
+      - 12ms
       X-Ratelimit-Reset-Tokens:
-      - 483ms
+      - 16ms
       X-Request-Id:
-      - req_cfbb7fbd532292d570f70f346bdee397
+      - req_fb495483882657f426d87ed755410795
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
       Cf-Cache-Status:
       - DYNAMIC
       Set-Cookie:
-      - __cf_bm=18LbhyA6pNoY.uhnkJnCJkK59bcLjtUc0piGgB34Z.Y-1723672076-1.0.1.1-bWkr5SwBfd5OOcQ1KSd0RoBPFzQBLhENoCent8mNDCF.luxYabVFKMYa1UO092XsYFMToYyaTaDSw2ZdziXKgg;
-        path=/; expires=Wed, 14-Aug-24 22:17:56 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=yXrEXHm9cbYwiX6oqLKJwS06QV7EJsOACW35AhOUZAI-1733899105-1.0.1.1-polXcWhn4TpwkWora3bcpUggI_XK8lNcRNmMwa2SqvOmdoMvoQ9Pk_EALNPC5J938QUD5akO0n3voZQSUYdsFQ;
+        path=/; expires=Wed, 11-Dec-24 07:08:25 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=O2K4yN.M3M.X2UMULUcxXVi_olqkjGbpfmvB8nXvxJ8-1723672076376-0.0.1.1-604800000;
+      - _cfuvid=u2uD7q9qBtds7VKvREvCIQFKo8aX3uLEDB.jC8I.t.g-1733899105145-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       X-Content-Type-Options:
       - nosniff
       Server:
       - cloudflare
       Cf-Ray:
-      - 8b3425669a96cc40-MAD
+      - 8f0378b79d417006-CDG
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
       string: |
         {
-          "id": "chatcmpl-9wG8RDAXJa1tWuZbv08fRFH8C91s2",
+          "id": "chatcmpl-AdAeWrJ95XzyeA1WUHEmIftd39TAM",
           "object": "chat.completion",
-          "created": 1723672075,
+          "created": 1733899104,
           "model": "gpt-4o-mini-2024-07-18",
           "choices": [
             {
               "index": 0,
               "message": {
                 "role": "assistant",
-                "content": "{\n  \"topics\": [\"Hotwire\", \"Ruby on Rails\", \"Stimulus\", \"Frontend\", \"Live updates\", \"Dynamic forms\", \"Best Practices\"]\n}",
+                "content": "{\"topics\":[\"Hotwire\",\"Ruby on Rails\",\"Frontend Development\",\"StimulusJS\",\"Dynamic Forms\",\"Live Updates\",\"Web Development\"]}",
                 "refusal": null
               },
               "logprobs": null,
@@ -175,11 +153,21 @@ http_interactions:
             }
           ],
           "usage": {
-            "prompt_tokens": 1532,
-            "completion_tokens": 34,
-            "total_tokens": 1566
+            "prompt_tokens": 1081,
+            "completion_tokens": 27,
+            "total_tokens": 1108,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
           },
-          "system_fingerprint": "fp_48196bc67a"
+          "system_fingerprint": "fp_bba3c8e70b"
         }
-  recorded_at: Wed, 14 Aug 2024 21:47:56 GMT
-recorded_with: VCR 6.2.0
+  recorded_at: Wed, 11 Dec 2024 06:38:25 GMT
+recorded_with: VCR 6.3.1

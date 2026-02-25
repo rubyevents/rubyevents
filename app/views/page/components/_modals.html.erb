@@ -1,0 +1,22 @@
+<h2 class="text-2xl font-bold">Modal</h2>
+<div class="flex items-center justify-start gap-8 py-8">
+  <%= ui_button "Top position", "#", kind: :pill, data: {toggle: "modal", target: "modal-top"} %>
+  <%= ui_modal position: :top, id: "modal-top" do %>
+    Modal with a top position
+  <% end %>
+
+  <%= ui_button "Bottom position", "#", kind: :pill, data: {toggle: "modal", target: "modal-bottom"} %>
+  <%= ui_modal position: :bottom, id: "modal-bottom" do %>
+    Modal with a bottom position
+  <% end %>
+
+  <%= ui_button "Middle position", "#", kind: :pill, data: {toggle: "modal", target: "modal-middle"} %>
+  <%= ui_modal position: :middle, id: "modal-middle" do %>
+    Modal with a middle position
+  <% end %>
+
+  <%= ui_button "Responsive position", "#", kind: :pill, data: {toggle: "modal", target: "modal-responsive"} %>
+  <%= ui_modal position: :responsive, id: "modal-responsive" do %>
+    Modal with a responsive position
+  <% end %>
+</div>

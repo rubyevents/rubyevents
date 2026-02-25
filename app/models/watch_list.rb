@@ -2,14 +2,19 @@
 # == Schema Information
 #
 # Table name: watch_lists
+# Database name: primary
 #
 #  id          :integer          not null, primary key
-#  user_id     :integer          not null
-#  name        :string           not null
 #  description :text
+#  name        :string           not null
+#  talks_count :integer          default(0)
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  talks_count :integer          default(0)
+#  user_id     :integer          not null, indexed
+#
+# Indexes
+#
+#  index_watch_lists_on_user_id  (user_id)
 #
 # rubocop:enable Layout/LineLength
 class WatchList < ApplicationRecord

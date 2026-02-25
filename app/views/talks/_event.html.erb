@@ -1,3 +1,5 @@
+<% video_provider ||= nil %>
+
 <%= link_to event, class: "flex flex-col gap-4 hover:bg-gray-200 transition-bg duration-300 ease-in-out p-2 px-4 rounded-lg items-center" do %>
   <div class="flex items-center gap-4">
     <div class="avatar placeholder">
@@ -12,7 +14,13 @@
 
     <div>
       <div class="text-xs text-gray-500 line-clamp-1">
-        Recorded at
+        <% if video_provider == "scheduled" && event.date&.future? %>
+          Scheduled for
+        <% elsif video_provider == "not_recorded" || (video_provider == "scheduled" && event.date&.past?) %>
+          Held at
+        <% else %>
+          Recorded at
+        <% end %>
       </div>
 
       <div class="font-semibold text-base line-clamp-1 flex items-center gap-1">

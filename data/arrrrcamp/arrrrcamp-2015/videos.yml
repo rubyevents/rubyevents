@@ -6,242 +6,332 @@
 
 # Dorrs & Registration
 
-- title: Extremely Defensive Coding
-  raw_title: ArrrrCamp 2015 - Extremely Defensive Coding by Sam Phippen
+- id: "sam-phippen-arrrrcamp-2015"
+  title: "Extremely Defensive Coding"
+  raw_title: "ArrrrCamp 2015 - Extremely Defensive Coding by Sam Phippen"
   speakers:
     - Sam Phippen
-  event_name: ArrrrCamp 2015
-  published_at: "2015-10-01"
+  event_name: "ArrrrCamp 2015"
+  date: "2015-10-01"
   description: |-
     Defensive programming is one of those abstract ideas that seems great. We all want to use these ideas to ensure the long-term maintainability of our codebases. It is, however, often unclear what we should be defending against and what form those defenses should take. We can find places where defensive patterns could be added by looking at the edge cases that occur in our system. Where it seems appropriate, we can then apply ideas and patterns from defensive programming. In this talk we'll look at some of the extremely defensive patterns that have been driven out in RSpec throughout the years. We'll look at building Ruby that works accross a wide range of interpreters and versions (including 1.8.7!). We'll investigate how you can write code that defends against objects that redefine methods like send, method and is_a?. We'll also see how the behaviour of prepend can occasionally confuse even the most mature source bases. You should come to this talk if you want to learn about inheritence and method resolution in Ruby, defensive programming techniques and cross interpreter Ruby patterns.
 
-    Help us caption & translate this video!
+  video_provider: "youtube"
+  video_id: "gr45bkXv-JQ"
+  published_at: "2015-12-03"
 
-    http://amara.org/v/H4Ob/
-  video_provider: youtube
-  video_id: gr45bkXv-JQ
-
-- title: "How to stay alive even when others go down: Writing and testing resilient applications in Ruby"
-  raw_title: ArrrrCamp 2015 - How to stay alive even when others go down:...
+- id: "florian-weingarten-arrrrcamp-2015"
+  title: "How to stay alive even when others go down: Writing and testing resilient applications in Ruby"
+  raw_title: "ArrrrCamp 2015 - How to stay alive even when others go down:..."
   speakers:
     - Florian Weingarten
-  event_name: ArrrrCamp 2015
-  published_at: "2015-10-01"
-  description:
-    "By Florian Weingarten \nYour application probably communicates with
-    other services, whether it's a database, a key/value store, or a third-party API:
-    you are performing \"external calls\". But do you know how your application behaves
-    when one of those external services is behaving unexpected, is unreachable, or
-    sometimes even worse, experiences high latency? This is something that you want
-    to find out during testing, not in production, since it can easily lead to a series
-    of cascading failures that will seriously affect your capacity or can even take
-    your application down. Shopify operates one of the largest Ruby on Rails deployments
-    in the world. We serve about 300k requests per minute on a boring day, integrating
-    with countless external services. Focussing on Resiliency has been one of the
-    most impactful improvements that we made in terms of uptime in the last year.
-    In this talk, I will share some lessons learnt and we will walk through a series
-    of ideas and tools that can help you make your application more stable and more
-    resilient to the failure of external services, an issue that is often neglected
-    until it's too late. More importantly, we will talk about how you can write meaningful
-    and realistic integration tests and set up \"chaos testing environments\" to gain
-    confidence in your application's resiliency."
-  video_provider: youtube
-  video_id: mTIO9fj1UIc
+  event_name: "ArrrrCamp 2015"
+  date: "2015-10-01"
+  description: |-
+    By Florian Weingarten 
+    Your application probably communicates with other services, whether it's a database, a key/value store, or a third-party API: you are performing "external calls". But do you know how your application behaves when one of those external services is behaving unexpected, is unreachable, or sometimes even worse, experiences high latency? This is something that you want to find out during testing, not in production, since it can easily lead to a series of cascading failures that will seriously affect your capacity or can even take your application down. Shopify operates one of the largest Ruby on Rails deployments in the world. We serve about 300k requests per minute on a boring day, integrating with countless external services. Focussing on Resiliency has been one of the most impactful improvements that we made in terms of uptime in the last year. In this talk, I will share some lessons learnt and we will walk through a series of ideas and tools that can help you make your application more stable and more resilient to the failure of external services, an issue that is often neglected until it's too late. More importantly, we will talk about how you can write meaningful and realistic integration tests and set up "chaos testing environments" to gain confidence in your application's resiliency.
+  video_provider: "youtube"
+  video_id: "mTIO9fj1UIc"
+  published_at: "2015-12-03"
 
-- title: Developing Ruby Applications with Docker
-  raw_title: ArrrrCamp 2015 - Developing Ruby Applications with Docker by  Laura Frank
+- id: "laura-frank-arrrrcamp-2015"
+  title: "Developing Ruby Applications with Docker"
+  raw_title: "ArrrrCamp 2015 - Developing Ruby Applications with Docker by  Laura Frank"
   speakers:
     - Laura Frank
-  event_name: ArrrrCamp 2015
-  published_at: "2015-10-01"
+  event_name: "ArrrrCamp 2015"
+  date: "2015-10-01"
   description: |-
     Docker’s lightweight virtualization may supplant our hypervisor-backed VMs at some point in the future, and change the way that tomorrow's Ruby applications are architected, packaged and deployed. Using Docker, your applications will sit atop an excellent platform for packing, shipping and running low-overhead, isolated execution environments. You will get a brief intro to the Docker ecosystem, get to know the tools and processes needed to create containerized applications, and learn best practices for interacting with the Docker API and CLI.
 
-    Help us caption & translate this video!
-
-    http://amara.org/v/H4Of/
-  video_provider: youtube
-  video_id: hiiPMgZbzcA
+  video_provider: "youtube"
+  video_id: "hiiPMgZbzcA"
+  published_at: "2015-12-03"
 
 # Lunch
 
-- title: "Peeking into Ruby: Tracing Running Code"
+- id: "jason-clark-arrrrcamp-2015"
+  title: "Peeking into Ruby: Tracing Running Code"
   raw_title: "ArrrrCamp 2015 - Peeking into Ruby: Tracing Running Code by Jason Clark"
   speakers:
     - Jason Clark
-  event_name: ArrrrCamp 2015
-  published_at: "2015-10-01"
+  event_name: "ArrrrCamp 2015"
+  date: "2015-10-01"
   description: |-
     Your Ruby app is in production, but something isn't quite right. It worked locally, it passed CI... yet the running app is acting up. Sounds familiar? You're in luck! Multiple tools exist for grappling with a running Ruby app. This talk will introduce a variety of tools and techniques for peeking into what your Ruby app is doing.
 
-    Help us caption & translate this video!
+  video_provider: "youtube"
+  video_id: "SBtJ7da_rA8"
+  published_at: "2015-12-03"
 
-    http://amara.org/v/H4Oe/
-  video_provider: youtube
-  video_id: SBtJ7da_rA8
-
-- title: "Ruby keyword args and the options hash, from the parser to the virtual machine"
-  raw_title: ArrrrCamp 2015 - Ruby keyword args and the options hash, from the parser to the virtual machine
+- id: "tienne-barri-arrrrcamp-2015"
+  title: "Ruby keyword args and the options hash, from the parser to the virtual machine"
+  raw_title: "ArrrrCamp 2015 - Ruby keyword args and the options hash, from the parser to the virtual machine"
   speakers:
     - Étienne Barrié
-  event_name: ArrrrCamp 2015
-  published_at: "2015-10-01"
+  event_name: "ArrrrCamp 2015"
+  date: "2015-10-01"
   description: |-
     By Étienne Barrié
     Ruby has slowly but surely added support for keyword arguments. Starting from the implicit braces for a hash at the end of an argument list, it has grown up to required keyword arguments in 2.1. This talk will try to convince you that keyword arguments are a lie and don't even exist, and why you should use them anyway.
 
-    Help us caption & translate this video!
+  video_provider: "youtube"
+  video_id: "e4t9dts_07g"
+  published_at: "2015-12-03"
 
-    http://amara.org/v/H4Od/
-  video_provider: youtube
-  video_id: e4t9dts_07g
-
-- title: Lightning Talks (Day 1)
-  raw_title: ArrrrCamp 2015 - Day 1 LIGHTNING TALKS
-  speakers:
-    - Yves Hanoulle # Walking (00:20)
-    - Michel Grootjans # Code Bashing in the Enterprise / How Teenagers Force Us To Have Technology That Scales (06:48)
-    - Phil Nash # WebRTC with Twilio (12:30)
-    - Christophe Philemotte # Ruby Belgium (18:24)
-  event_name: ArrrrCamp 2015
-  published_at: "2015-10-02"
+- id: "lightning-talks-day-1-arrrrcamp-2015"
+  title: "Lightning Talks (Day 1)"
+  raw_title: "ArrrrCamp 2015 - Day 1 LIGHTNING TALKS"
+  event_name: "ArrrrCamp 2015"
+  date: "2015-10-01"
   description: ""
-  video_provider: youtube
-  video_id: 3r2bJ5OYQ1o
+  video_provider: "youtube"
+  video_id: "3r2bJ5OYQ1o"
+  published_at: "2015-12-04"
+  talks:
+    - title: "Lighting Talk: Walking"
+      event_name: "ArrrrCamp 2015"
+      date: "2015-10-01"
+      start_cue: "00:20"
+      end_cue: "06:48"
+      id: "yves-hanoulle-walking-arrrrcamp-2015"
+      video_id: "yves-hanoulle-walking-arrrrcamp-2015"
+      video_provider: "parent"
+      speakers:
+        - Yves Hanoulle
 
-- title: Consequences of an Insightful Algorithm
-  raw_title: ArrrrCamp 2015 - Consequences of an Insightful Algorithm by Carina C. Zona
+    - title: "Lighting Talk: Code Bashing in the Enterprise / How Teenagers Force Us To Have Technology That Scales"
+      event_name: "ArrrrCamp 2015"
+      date: "2015-10-01"
+      start_cue: "06:48"
+      end_cue: "12:30"
+      id: "michel-grootjans-lightning-talk-arrrrcamp-2015"
+      video_id: "michel-grootjans-lightning-talk-arrrrcamp-2015"
+      video_provider: "parent"
+      speakers:
+        - Michel Grootjans
+
+    - title: "Lighting Talk: WebRTC with Twilio"
+      event_name: "ArrrrCamp 2015"
+      date: "2015-10-01"
+      start_cue: "12:30"
+      end_cue: "18:24"
+      id: "phil-nash-webrtc-with-twilio-arrrrcamp-2015"
+      video_id: "phil-nash-webrtc-with-twilio-arrrrcamp-2015"
+      video_provider: "parent"
+      speakers:
+        - Phil Nash
+
+    - title: "Lighting Talk: Ruby Belgium"
+      event_name: "ArrrrCamp 2015"
+      date: "2015-10-01"
+      start_cue: "18:24"
+      end_cue: "24:23"
+      id: "christophe-philemotte-ruby-belgium-arrrrcamp-2015"
+      video_id: "christophe-philemotte-ruby-belgium-arrrrcamp-2015"
+      video_provider: "parent"
+      speakers:
+        - Christophe Philemotte
+
+- id: "carina-c-zona-arrrrcamp-2015"
+  title: "Consequences of an Insightful Algorithm"
+  raw_title: "ArrrrCamp 2015 - Consequences of an Insightful Algorithm by Carina C. Zona"
   speakers:
     - Carina C. Zona
-  event_name: ArrrrCamp 2015
-  published_at: "2015-10-01"
+  event_name: "ArrrrCamp 2015"
+  date: "2015-10-01"
   description: |-
     We have ethical responsibilities when coding. We're able to extract remarkably precise intuitions about an individual. But do we have a right to know what they didn't consent to share, even when they willingly shared the data that leads us there? A major retailer's data-driven marketing accidentially revealed to a teen's family that she was pregnant. Eek. What are our obligations to people who did not expect themselves to be so intimately known without sharing directly? How do we mitigate against unintended outcomes? For instance, a social network algorithm accidentally triggering painful memories for families grieving their child's death. We design software for humans. Balancing human needs and business specs can be tough. It's crucial that we learn how to build in systematic empathy. In this talk, we'll delve into specific examples of uncritical programming, and painful results from using insightful data in ways that were benignly intended. You'll learn ways we can integrate practices for examining how our code might harm individuals. We'll look at how to flip the paradigm, netting consequences that can be better for everyone.
 
-    Help us caption & translate this video!
-
-    http://amara.org/v/H4Oc/
-  video_provider: youtube
-  video_id: roSxrWNgwgc
+  video_provider: "youtube"
+  video_id: "roSxrWNgwgc"
+  published_at: "2015-12-03"
 
 ## Day 2 - Friday
 
 # Doors & Registration
 
-- title: API by Design
-  raw_title: ArrrrCamp 2015 - API by Design by Wesley Beary
+- id: "wesley-beary-arrrrcamp-2015"
+  title: "API by Design"
+  raw_title: "ArrrrCamp 2015 - API by Design by Wesley Beary"
   speakers:
     - Wesley Beary
-  event_name: ArrrrCamp 2015
-  published_at: "2015-10-02"
-  description:
-    In a world of pervasive connectivity, APIs are more important than
-    ever before. We can learn much from the rich history of APIs, but even more promise
-    lies ahead of us. Difficult hardly begins to describe API development, but drawing
-    from other disciplines provides a clearer path to superior APIs. Building and
-    evolving the Heroku APIs has been full of epic wins, tragic fails and ongoing
-    struggles. Learn about our journey and join our community to discuss, document,
-    and build tools to realize the promise of a brighter API future.
-  video_provider: youtube
-  video_id: xTYz7TDs5hA
+  event_name: "ArrrrCamp 2015"
+  date: "2015-10-02"
+  description: |-
+    In a world of pervasive connectivity, APIs are more important than ever before. We can learn much from the rich history of APIs, but even more promise lies ahead of us. Difficult hardly begins to describe API development, but drawing from other disciplines provides a clearer path to superior APIs. Building and evolving the Heroku APIs has been full of epic wins, tragic fails and ongoing struggles. Learn about our journey and join our community to discuss, document, and build tools to realize the promise of a brighter API future.
+  video_provider: "youtube"
+  video_id: "xTYz7TDs5hA"
+  published_at: "2015-12-04"
 
-- title: Opening up to Change
-  raw_title: ArrrrCamp 2015 - Opening up to change by Andy Pike
+- id: "andy-pike-arrrrcamp-2015"
+  title: "Opening up to Change"
+  raw_title: "ArrrrCamp 2015 - Opening up to change by Andy Pike"
   speakers:
     - Andy Pike
-  event_name: ArrrrCamp 2015
-  published_at: "2015-10-02"
+  event_name: "ArrrrCamp 2015"
+  date: "2015-10-02"
   description: |-
     The one constant in software is change. Your code will need to change and adapt over time. We should try to write code that is easy to change in the future. If possible, change without having to edit existing code. This talk is all about the O in SOLID: the Open-Closed principle. I'll explain what the Open-Closed principle is, why this is important and how to structure and refactor code to make it "open for extension but closed for modification". In this talk I'll show you, by example, how to make your code more changeable. In fact, so changeable that you will be able to extend what your program does and how it behaves without modifying a single line of existing code. Starting with a real world example that is painful to extend, I’ll refactor it over many iterations until it truly is Open-Closed. I'll show techniques, trade-offs and some gotchas from real world experience which will help you write more flexible programs in the future. If you’ve never heard of the Open-Closed principle or are unsure how to put it into practice then this talk is for you. I would love to help open the door of this technique and give you the ability to alter your system in a painless way by opening it up to change.
 
-    Help us caption & translate this video!
+  video_provider: "youtube"
+  video_id: "ECCaFvFDfJQ"
+  published_at: "2015-12-04"
 
-    http://amara.org/v/H498/
-  video_provider: youtube
-  video_id: ECCaFvFDfJQ
-
-- title: Developers, Start Designing!
-  raw_title: ArrrrCamp 2015 - Developers, start designing! by Alexandra Leisse
+- id: "alexandra-leisse-arrrrcamp-2015"
+  title: "Developers, Start Designing!"
+  raw_title: "ArrrrCamp 2015 - Developers, start designing! by Alexandra Leisse"
   speakers:
     - Alexandra Leisse
-  event_name: ArrrrCamp 2015
-  published_at: "2015-10-02"
+  event_name: "ArrrrCamp 2015"
+  date: "2015-10-02"
   description: |-
     We designers have been told for ages to learn how to program because we needed to know the technology. On the other hand, very few developers bother doing the same with design. This usually leads to worse results than necessary, and robs us of the opportunity to play on the same team. This presentation is meant to contribute to the much needed discussion about how developers and designers can work together to achieve excellence without losing their minds. Attendees should leave the room afterwards with a certain insight in how ignorance hinders best outcomes and how they personally can improve the situation.
 
-    Help us caption & translate this video!
-
-    http://amara.org/v/H497/
-  video_provider: youtube
-  video_id: 7EWvYZpU4pM
+  video_provider: "youtube"
+  video_id: "7EWvYZpU4pM"
+  published_at: "2015-12-04"
 
 # Lunch
 
-- title: Game Development - The Ruby Way
-  raw_title: ArrrrCamp 2015 - Game Development - The Ruby way by Jain Rishi
+- id: "jain-rishi-arrrrcamp-2015"
+  title: "Game Development - The Ruby Way"
+  raw_title: "ArrrrCamp 2015 - Game Development - The Ruby way by Jain Rishi"
   speakers:
     - Jain Rishi
-  event_name: ArrrrCamp 2015
-  published_at: "2015-10-02"
+  event_name: "ArrrrCamp 2015"
+  date: "2015-10-02"
   description: |-
     Playing games is fun, but building one is even more fun! Add Ruby to the game development mix and it just cannot get more awesome. Gosu is the rock star library which is used for 2D game development. But you’ll need to know more than just your rubies to built a game. Rishi promises to show some cool examples built entirely using Ruby.
 
-    Help us caption & translate this video!
+  video_provider: "youtube"
+  video_id: "BqXU2JwMGBE"
+  published_at: "2015-12-04"
 
-    http://amara.org/v/H496/
-  video_provider: youtube
-  video_id: BqXU2JwMGBE
-
-- title: "Decouple All The Things: Asynchronous Messaging Keeps It Simple"
+- id: "kerstin-puschke-arrrrcamp-2015"
+  title: "Decouple All The Things: Asynchronous Messaging Keeps It Simple"
   raw_title: "ArrrrCamp 2015 - Decouple all the things: Asynchronous messaging keeps it simple by Kerstin Puschke"
   speakers:
     - Kerstin Puschke
-  event_name: ArrrrCamp 2015
-  published_at: "2015-10-02"
+  event_name: "ArrrrCamp 2015"
+  date: "2015-10-02"
   description: |-
     If a customer changes their address, it's often not enough to update their master data record. E.g. the component processing customer orders might have to learn about the update in order to ship to the correct address. In a distributed architecture, you have to spread information about a master data update to several client apps. You can do this via REST, but if a client app is temporarily down or too busy to accept requests, it's going to miss the information. Adding a new client app requires changes to the master app. Asynchronous messaging helps to avoid such a tight coupling of components. And it offers much more than a simple action trigger: parallelizing computing-heavy tasks, load testing, or migrating existing components to new services are some of the possibilities explored in this talk. You're going to learn how to get started with asynchronous messaging from within Ruby, and how it helps you to keep your codebase clean and your overall system stable as well as maintainable.
 
-    Help us caption & translate this video!
-
-    http://amara.org/v/H495/
-  video_provider: youtube
-  video_id: G4_AnaVsBh0
+  video_provider: "youtube"
+  video_id: "G4_AnaVsBh0"
+  published_at: "2015-12-04"
 
 # Cocktail Break
 
-- title: Lightning Talks (Day 2)
-  raw_title: ArrrrCamp 2015 LIGHTNING TALKS Day2
-  speakers:
-    - Sebastian Gräßl # Ruby Open Source Software - ROSSConf - (00:08)
-    - Pieterjan Muller # KampAdmin.be - CoderDojo (05:04)
-    - Sonja Heinen # Ruby Issues Newsletter (10:04)
-    - Anika Simir # How To Write Music in Ruby (14:12)
-    - Christophe Philemotte # Ruby TracePoint (20:33)
-    - Joren De Groof # RubyCamp BE (24:13)
-    - Sebastian Eichner # God, Toilets And Ruby (28:45)
-    - Jason Clark # Shoes 4 (34:26)
-  event_name: ArrrrCamp 2015
-  published_at: "2015-10-02"
-  description: |-
-    Help us caption & translate this video!
+- id: "lightning-talks-day-2-arrrrcamp-2015"
+  title: "Lightning Talks (Day 2)"
+  raw_title: "ArrrrCamp 2015 LIGHTNING TALKS Day2"
+  event_name: "ArrrrCamp 2015"
+  date: "2015-10-02"
+  description: ""
+  video_provider: "youtube"
+  video_id: "WtoTlfJAIAc"
+  published_at: "2015-12-04"
+  talks:
+    - title: "Lightning Talk: Ruby Open Source Software - ROSSConf"
+      event_name: "ArrrrCamp 2015"
+      date: "2015-10-02"
+      start_cue: "00:08"
+      end_cue: "05:04"
+      id: "sebastian-graessl-rossconf-arrrrcamp-2015"
+      video_id: "sebastian-graessl-rossconf-arrrrcamp-2015"
+      video_provider: "parent"
+      speakers:
+        - Sebastian Gräßl
 
-    http://amara.org/v/H494/
-  video_provider: youtube
-  video_id: WtoTlfJAIAc
+    - title: "Lightning Talk: KampAdmin.be - CoderDojo"
+      event_name: "ArrrrCamp 2015"
+      date: "2015-10-02"
+      start_cue: "05:04"
+      end_cue: "10:04"
+      id: "pieterjan-muller-kampadmin-arrrrcamp-2015"
+      video_id: "pieterjan-muller-kampadmin-arrrrcamp-2015"
+      video_provider: "parent"
+      speakers:
+        - Pieterjan Muller
 
-- title: "Stop Building Services, Episode 1: The Phantom Menace"
-  raw_title:
-    "ArrrrCamp 2015 - Stop Building Services, Episode 1: The Phantom Menace
-    by Rachel Myers"
+    - title: "Lightning Talk: Ruby Issues Newsletter"
+      event_name: "ArrrrCamp 2015"
+      date: "2015-10-02"
+      start_cue: "10:04"
+      end_cue: "14:22"
+      id: "sonja-heinen-ruby-issues-arrrrcamp-2015"
+      video_id: "sonja-heinen-ruby-issues-arrrrcamp-2015"
+      video_provider: "parent"
+      speakers:
+        - Sonja Heinen
+
+    - title: "Lightning Talk: How To Write Music in Ruby"
+      event_name: "ArrrrCamp 2015"
+      date: "2015-10-02"
+      start_cue: "14:22"
+      end_cue: "20:33"
+      id: "anika-simir-music-ruby-arrrrcamp-2015"
+      video_id: "anika-simir-music-ruby-arrrrcamp-2015"
+      video_provider: "parent"
+      speakers:
+        - Anika Simir
+
+    - title: "Lightning Talk: Ruby TracePoint"
+      event_name: "ArrrrCamp 2015"
+      date: "2015-10-02"
+      start_cue: "20:33"
+      end_cue: "24:13"
+      id: "christophe-philemotte-tracepoint-arrrrcamp-2015"
+      video_id: "christophe-philemotte-tracepoint-arrrrcamp-2015"
+      video_provider: "parent"
+      speakers:
+        - Christophe Philemotte
+
+    - title: "Lightning Talk: RubyCamp BE"
+      event_name: "ArrrrCamp 2015"
+      date: "2015-10-02"
+      start_cue: "24:13"
+      end_cue: "28:45"
+      id: "joren-de-groof-rubycamp-arrrrcamp-2015"
+      video_id: "joren-de-groof-rubycamp-arrrrcamp-2015"
+      video_provider: "parent"
+      speakers:
+        - Joren De Groof
+
+    - title: "Lightning Talk: God, Toilets And Ruby"
+      event_name: "ArrrrCamp 2015"
+      date: "2015-10-02"
+      start_cue: "28:45"
+      end_cue: "34:26"
+      id: "sebastian-eichner-god-toilets-ruby-arrrrcamp-2015"
+      video_id: "sebastian-eichner-god-toilets-ruby-arrrrcamp-2015"
+      video_provider: "parent"
+      speakers:
+        - Sebastian Eichner
+
+    - title: "Lightning Talk: Shoes 4"
+      event_name: "ArrrrCamp 2015"
+      date: "2015-10-02"
+      start_cue: "34:26"
+      end_cue: "39:50"
+      id: "jason-clark-shoes-4-arrrrcamp-2015"
+      video_id: "jason-clark-shoes-4-arrrrcamp-2015"
+      video_provider: "parent"
+      speakers:
+        - Jason Clark
+
+- id: "rachel-myers-arrrrcamp-2015"
+  title: "Stop Building Services, Episode 1: The Phantom Menace"
+  raw_title: "ArrrrCamp 2015 - Stop Building Services, Episode 1: The Phantom Menace by Rachel Myers"
   speakers:
     - Rachel Myers
-  event_name: ArrrrCamp 2015
-  published_at: "2015-10-02"
+  event_name: "ArrrrCamp 2015"
+  date: "2015-10-02"
   description: |-
     This talk runs through examples of services creating more brittle systems with worse failure cases. Building on those failure scenarios, I draw out guidelines for if, when, and how to consider Service Oriented Architecture. Software architecture is informed both by principles of software design and principles of operability; for lots of us, there are new skills to learn there. Also, set to music, this talk becomes a cool remake of StarWars, Episode 1.
 
-    Help us caption & translate this video!
-
-    http://amara.org/v/H4aN/
-  video_provider: youtube
-  video_id: qiC9OAculcc
+  video_provider: "youtube"
+  video_id: "qiC9OAculcc"
+  published_at: "2015-12-04"

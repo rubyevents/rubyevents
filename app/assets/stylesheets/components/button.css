@@ -1,0 +1,42 @@
+@layer components {
+  .btn {
+    @apply fill-current;
+  }
+
+  .btn:not(.btn-sm) {
+    height: 2.5rem;
+    min-height: 2.5rem;
+  }
+
+  .btn-rounded {
+    @apply btn-outline rounded-full border border-gray-400 bg-white hover:border-gray-500 hover:bg-gray-100 hover:text-base-content/80;
+  }
+
+  .btn-circle {
+    @apply btn-rounded;
+    @apply h-10 w-10;
+  }
+
+  /* for the toolbar buttons */
+  .btn.btn-pill {
+    @apply btn-rounded btn-outline;
+    @apply flex-nowrap whitespace-nowrap;
+
+    /* for the watched button */
+    &.active {
+      @apply border-primary bg-primary text-primary-content;
+    }
+
+    &.btn-sm {
+      @apply text-sm font-normal;
+    }
+  }
+
+  .btn.btn-secondary {
+    @apply whitespace-nowrap border-primary bg-white fill-primary text-primary hover:bg-gray-100 hover:text-primary/90;
+  }
+
+  .btn.btn-neutral {
+    @apply bg-white hover:fill-neutral/80 hover:text-neutral/80;
+  }
+}

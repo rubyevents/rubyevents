@@ -1,0 +1,15 @@
+<div class="bg-black rounded-2xl">
+  <div class="flex w-full items-center justify-center bg-black p-2 lg:p-12">
+    <div class="mx-auto w-full overflow-hidden rounded-[40px] bg-gradient-to-b from-gray-300 via-gray-600 to-gray-600 p-[4px]">
+      <div class="back flex overflow-hidden aspect-[16/11] w-full items-center justify-center rounded-[40px] bg-gradient-to-b from-gray-400 via-gray-500 to-gray-600">
+        <div class="grid grid-cols-3 gap-[5vw] w-full h-full p-12">
+          <% events.shuffle.flat_map(&:stickers).each do |sticker| %>
+            <%= link_to sticker.event, class: "max-w-[10vw]", style: "transform: rotate(#{(-20...20).to_a.sample}deg) translateY(#{(0...5).to_a.sample}vw) translateX(#{(0...5).to_a.sample}vh) scale(#{100 + (-10...10).to_a.sample}%)", data: {turbo_frame: "_top"} do %>
+              <%= image_tag sticker.asset_path, class: "transition transition-transform hover:scale-105" %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

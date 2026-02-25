@@ -5,77 +5,89 @@
 # Website: https://web.archive.org/web/20181103192434/http://rubyconf.org/
 # Schedule: https://web.archive.org/web/20181103192434/http://rubyconf.org/schedule
 
-- title: "The GraphQL Way: A new path for JSON APIs"
+- id: "nick-quaranto-railsconf-2018"
+  title: "The GraphQL Way: A new path for JSON APIs"
   raw_title: "RailsConf 2018: The GraphQL Way: A new path for JSON APIs by Nick Quaranto"
   speakers:
     - Nick Quaranto
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-15"
-  slides_url: https://speakerdeck.com/qrush/the-graphql-way-a-new-path-for-json-apis
+  slides_url: "https://speakerdeck.com/qrush/the-graphql-way-a-new-path-for-json-apis"
   description: |-
     RailsConf 2018: The GraphQL Way: A new path for JSON APIs by Nick Quaranto
 
     Have you written JSON APIs in Rails a few times? Even if you’re escaped implementing a “render: :json” call, some day soon you’ll need to get JSON data out to a native client or your front-end framework. Your Rails apps might change, but the pitfalls for JSON APIs stay the same: They’re hard to discover, difficult to change from the client side, and documenting them is a pain. For your next app, or your current one, let’s consider GraphQL. I'll show you how to implement it in your app and offer real-world advice from making it work in an existing Rails app.
-  video_provider: youtube
-  video_id: QHoddukdqf0
+  video_provider: "youtube"
+  video_id: "QHoddukdqf0"
 
-- title: "Candy on Rails: Polymorphism & Rails 5"
+- id: "michael-cain-railsconf-2018"
+  title: "Candy on Rails: Polymorphism & Rails 5"
   raw_title: "RailsConf 2018: Candy on Rails: Polymorphism & Rails 5 by Michael Cain"
   speakers:
     - Michael Cain
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-15"
   description: |-
     RailsConf 2018: Candy on Rails: Polymorphism & Rails 5 by Michael Cain
 
     Polymorphism is a mainstay of the Ruby on Rails stack, affording us a lean, concise way of relating objects in a dynamic way. Using a candy shop application, this presentation will pragmatically explain and demonstrate polymorphism and its benefits/usefulness in Rails.
-  video_provider: youtube
-  video_id: CD_ye_9lvEM
+  video_provider: "youtube"
+  video_id: "CD_ye_9lvEM"
 
-- title: "Why We Never Get to Web Accessibility 102"
+- id: "liz-certa-railsconf-2018"
+  title: "Why We Never Get to Web Accessibility 102"
   raw_title: "RailsConf 2018: Why We Never Get to Web Accessibility 102 by Liz Certa"
   speakers:
     - Liz Certa
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-15"
   description: |-
     RailsConf 2018: Why We Never Get to Web Accessibility 102 by Liz Certa
 
     Creating truly 100% accessible websites often requires specialized knowledge of the ins and outs of screen reader settings, browser defaults and HTML quirks, yet most of us still need to google how to turn on a screen reader. We attend "Web Accessibility 101" seminars and workshops over and over but very few of us end up with the kind of specialized knowledge necessary to make truly accessible websites. In this talk, we'll discuss why this is, and how we can eventually get to accessibility 102.
-  video_provider: youtube
-  video_id: gE8S4cUJFUo
+  video_provider: "youtube"
+  video_id: "gE8S4cUJFUo"
 
-- title: "Dropping Into B-Trees"
+- id: "david-mcdonald-railsconf-2018"
+  title: "Dropping Into B-Trees"
   raw_title: "RailsConf 2018: Dropping Into B-Trees by David McDonald"
   speakers:
     - David McDonald
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-15"
   description: |-
     RailsConf 2018: Dropping Into B-Trees by David McDonald
 
     Understanding indexes is key to demystifying database performance, and will have huge impact on one's ability to plan, contribute, and troubleshoot as one progresses in their career. Having said all that: many engineers still don’t really know what indexes ARE. Most simply know what indexes can DO. This presentation takes a look at the most commonly used index for any RDBMS: the B-tree. We will pull apart the data structure, discuss how it works, and briefly touch on some of the algorithms they use. With this baseline established, we will revisit a few common assumptions about indexes.
-  video_provider: youtube
-  video_id: 17XecHy9Pzg
+  video_provider: "youtube"
+  video_id: "17XecHy9Pzg"
 
-- title: "Continuous Deployments and Data Sovereignty: A Case Study"
+- id: "mike-calhoun-railsconf-2018"
+  title: "Continuous Deployments and Data Sovereignty: A Case Study"
   raw_title: "RailsConf 2018: Continuous Deployments and Data Sovereignty: A Case Study by Mike Calhoun"
   speakers:
     - Mike Calhoun
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-15"
   description: |-
     RailsConf 2018: Continuous Deployments and Data Sovereignty: A Case Study by Mike Calhoun
 
     In any production rails application’s simplest form, there is one version of the app deployed to a single host or cloud provider of your choice, but what if there were laws and regulations in place that required your application to be replicated and maintained within the geographical boundaries of other countries. This is a requirement of countries that have data sovereignty laws and a regular hurdle to overcome when dealing with sensitive data such as protected health information. This talk provides a case study of how we devised an automatic deployment strategy to deploy to multiple countries.
-  video_provider: youtube
-  video_id: K27AZ-_PH0A
+  video_provider: "youtube"
+  video_id: "K27AZ-_PH0A"
 
-- title: "The Doctor Is In: Using checkups to find bugs in production"
+- id: "ryan-laughlin-railsconf-2018"
+  title: "The Doctor Is In: Using checkups to find bugs in production"
   raw_title: "RailsConf 2018: The Doctor Is In: Using checkups to find bugs in production by Ryan Laughlin"
   speakers:
     - Ryan Laughlin
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-15"
   description: |-
     RailsConf 2018: The Doctor Is In: Using checkups to find bugs in production by Ryan Laughlin
@@ -83,25 +95,30 @@
     A good test suite can help you catch errors in development, but how do you know if your code starts misbehaving in production?
 
     In this talk, we’ll learn about checkups: a powerful and flexible way to ensure that your code continues to work as intended after you deploy. Through real-world examples, we’ll see how adding a simple suite of checkups to your app can help you detect unforeseen issues, including tricky problems like race conditions and data corruption. We’ll even look at how checkups can mitigate much larger disasters in real-time. Come give your app’s health a boost!
-  video_provider: youtube
-  video_id: gEAlhKaK2I4
+  video_provider: "youtube"
+  video_id: "gEAlhKaK2I4"
 
-- title: "Opening Keynote: FIXME"
+- id: "david-heinemeier-hansson-railsconf-2018"
+  title: "Opening Keynote: FIXME"
   raw_title: "RailsConf 2018: Opening Keynote: FIXME by David Heinemeier Hansson"
   speakers:
     - David Heinemeier Hansson
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-15"
-  description: "RailsConf 2018: Opening Keynote: FIXME by David Heinemeier Hansson"
-  video_provider: youtube
-  video_id: zKyv-IGvgGE
+  description: |-
+    RailsConf 2018: Opening Keynote: FIXME by David Heinemeier Hansson
+  video_provider: "youtube"
+  video_id: "zKyv-IGvgGE"
 
-- title: "Devly, a multi-service development environment"
+- id: "eric-hodel-railsconf-2018"
+  title: "Devly, a multi-service development environment"
   raw_title: "RailsConf 2018: Devly, a multi-service development environment by Eric Hodel & Ezekiel Templin"
   speakers:
     - Eric Hodel
     - Ezekiel Templin
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-15"
   description: |-
     RailsConf 2018: Devly, a multi-service development environment by Eric Hodel & Ezekiel Templin
@@ -112,14 +129,16 @@
     As our company has grown, we tried many approaches to user-friendly, shared development environments and learned what works and what doesn't. We incorporated what we learned into a tool called devly. Devly is used to develop products at Fastly that span many services written in different languages.
 
     We learned that the design of our tools must be guided by how teams work and communicate. To respond to these needs, Devly allows self-service, control, and safety so that developers can focus on their work.
-  video_provider: youtube
-  video_id: Zfv30fSpHBI
+  video_provider: "youtube"
+  video_id: "Zfv30fSpHBI"
 
-- title: "Operating Rails in Kubernetes"
+- id: "kir-shatrov-railsconf-2018"
+  title: "Operating Rails in Kubernetes"
   raw_title: "RailsConf 2018: Operating Rails in Kubernetes by Kir Shatrov"
   speakers:
     - Kir Shatrov
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-15"
   description: |-
     RailsConf 2018: Operating Rails in Kubernetes by Kir Shatrov
@@ -127,14 +146,16 @@
     Moving from operations powered by scripts like Capistrano to containers orchestrated by Kubernetes requires a shift in practices. We'll talk about things beyond "Getting started with Kubernetes" guides, and cover such aspects of operations as gradual deployments, capacity planning, job workers and their safety, and how cloud environments like Kubernetes drastically change how we solve them.
 
     This presentation is about the lessons we learned while migrating hundreds of Rails apps within the organization to Kubernetes.
-  video_provider: youtube
-  video_id: KKtS0QD5ERM
+  video_provider: "youtube"
+  video_id: "KKtS0QD5ERM"
 
-- title: "Turbo Boosting Real-world Applications"
+- id: "akira-matsuda-railsconf-2018"
+  title: "Turbo Boosting Real-world Applications"
   raw_title: "RailsConf 2018: Turbo Boosting Real-world Applications by Akira Matsuda"
   speakers:
     - Akira Matsuda
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-15"
   description: |-
     RailsConf 2018: Turbo Boosting Real-world Applications by Akira Matsuda
@@ -146,27 +167,31 @@
     Tuning Ruby processes
     Finding slow parts inside Rails, and significantly improving them
     Fixing existing slow libraries, or crafting ultimately performant alternatives
-  video_provider: youtube
-  video_id: y-wqo6LiqMo
+  video_provider: "youtube"
+  video_id: "y-wqo6LiqMo"
 
-- title: "Access Denied: the missing guide to authorization in Rails"
+- id: "vladimir-dementyev-railsconf-2018"
+  title: "Access Denied: the missing guide to authorization in Rails"
   raw_title: "RailsConf 2018: Access Denied: the missing guide to authorization in Rails by Vladimir Dementyev"
   speakers:
     - Vladimir Dementyev
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-15"
   description: |-
     RailsConf 2018: Access Denied: the missing guide to authorization in Rails by Vladimir Dementyev
 
     Rails brings us a lot of useful tools out-of-the-box, but there are missing parts too. For example, for such essential tasks as authorization we are on our own. Even if we choose a trending OSS solution, we still have to care about the way to keep our code maintainable, efficient, and, of course, bug-less. Working on Rails projects, I've noticed some common patterns in designing access systems as well as useful code techniques I'd like to share with you in this talk.
-  video_provider: youtube
-  video_id: NVwx0DARDis
+  video_provider: "youtube"
+  video_id: "NVwx0DARDis"
 
-- title: "Booleans are Easy - True or False?"
+- id: "craig-buchek-railsconf-2018"
+  title: "Booleans are Easy - True or False?"
   raw_title: "RailsConf 2018: Booleans are Easy - True or False? by Craig Buchek"
   speakers:
     - Craig Buchek
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-15"
   description: |-
     RailsConf 2018: Booleans are Easy - True or False? by Craig Buchek
@@ -174,14 +199,16 @@
     Booleans are pretty simple — they're either true or false. But that doesn't mean that they're always easy to use, or that they're always the right choice when they appear to be the obvious choice.
 
     We'll cover several anti-patterns in the use of booleans. We'll discuss why they're problematic, and explore some better alternatives.
-  video_provider: youtube
-  video_id: PkXTIfVN-3E
+  video_provider: "youtube"
+  video_id: "PkXTIfVN-3E"
 
-- title: "Automating Empathy: Test Your Docs with Swagger and Apivore"
+- id: "ariel-caplan-railsconf-2018"
+  title: "Automating Empathy: Test Your Docs with Swagger and Apivore"
   raw_title: "RailsConf 2018: Automating Empathy: Test Your Docs with Swagger and Apivore by Ariel Caplan"
   speakers:
     - Ariel Caplan
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-16"
   description: |-
     RailsConf 2018: Automating Empathy: Test Your Docs with Swagger and Apivore by Ariel Caplan
@@ -193,28 +220,32 @@
     What if we could programmatically verify that our API documentation was accurate? What if this helped us build more intuitive APIs by putting our users first? What if documentation came first, and helped us write our code?
 
     With Swagger and Apivore as our weapons of choice, we'll write documentation that will make your APIs better, your clients more satisfied, and you happier.
-  video_provider: youtube
-  video_id: lqPZdvg49GU
+  video_provider: "youtube"
+  video_id: "lqPZdvg49GU"
 
-- title: "Testing in Production"
+- id: "aja-hammerly-railsconf-2018"
+  title: "Testing in Production"
   raw_title: "RailsConf 2018: Testing in Production by Aja Hammerly"
   speakers:
     - Aja Hammerly
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-16"
-  slides_url: https://thagomizer.com/files/TestingInProd.pdf
+  slides_url: "https://thagomizer.com/files/TestingInProd.pdf"
   description: |-
     RailsConf 2018: Testing in Production by Aja Hammerly
 
     Test All the F***ing Time is one of the values of the Ruby community. But how many of us test in production in addition to running our test suites as part of CI? This talk will discuss a variety of approaches to testing in prod including canaries, blue-green deployment, beta and A/B tests, and general functional tests. I'll share a few times these techniques have found bugs before our users did and how you can use them today with your Rails Application.
-  video_provider: youtube
-  video_id: BZeylB8XCxg
+  video_provider: "youtube"
+  video_id: "BZeylB8XCxg"
 
-- title: "Who Destroyed Three Mile Island?"
+- id: "nickolas-means-railsconf-2018"
+  title: "Who Destroyed Three Mile Island?"
   raw_title: "RailsConf 2018: Who Destroyed Three Mile Island? by Nickolas Means"
   speakers:
     - Nickolas Means
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-16"
   description: |-
     RailsConf 2018: Who Destroyed Three Mile Island? by Nickolas Means
@@ -222,14 +253,16 @@
     On March 28, 1979 at exactly 4:00am, control rods flew into the reactor core of Three Mile Island Unit #2. A fault in the cooling system had tripped the reactor. At 4:02, the emergency cooling system automatically kicked in as reactor temperature continued to climb. At 4:04, one of the operators switched the emergency cooling system off, dooming the reactor to partial meltdown. Why?
 
     Let’s let the incredibly complex failure at Three Mile Island teach us how to dig into our own incidents. We'll learn how the ideas behind just culture can help us learn from our mistakes and build stronger teams.
-  video_provider: youtube
-  video_id: YBRiffheLXE
+  video_provider: "youtube"
+  video_id: "YBRiffheLXE"
 
-- title: "Debugging Rails Itself"
+- id: "sean-griffin-railsconf-2018"
+  title: "Debugging Rails Itself"
   raw_title: "RailsConf 2018: Debugging Rails Itself by Sean Griffin"
   speakers:
     - Sean Griffin
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-16"
   description: |-
     RailsConf 2018: Debugging Rails Itself by Sean Griffin
@@ -237,53 +270,61 @@
     Tracking down bugs can be hard. Tracking down bugs in a codebase touched by 5000 people is even harder. Making heads or tails of an inheritance-happy codebase like Rails can be a nightmare. How do you find where the bug in save is when save is overridden by 15 different modules?!
 
     In this talk, we'll look at the process that goes into fixing a bug in Rails itself. You'll learn about every step from the initial report to when the fix is eventually committed. You'll learn how to navigate Rails' internals, and how to find the source of the problem -- even if you've never committed to Rails.
-  video_provider: youtube
-  video_id: IKOLEKxMRa0
+  video_provider: "youtube"
+  video_id: "IKOLEKxMRa0"
 
-- title: "Down The Rabbit Hole: An Adventure in Legacy Code"
+- id: "loren-crawford-railsconf-2018"
+  title: "Down The Rabbit Hole: An Adventure in Legacy Code"
   raw_title: "RailsConf 2018: Down The Rabbit Hole: An Adventure in Legacy Code by Loren Crawford"
   speakers:
     - Loren Crawford
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-16"
   description: |-
     RailsConf 2018: Down The Rabbit Hole: An Adventure in Legacy Code by Loren Crawford
 
     Legacy code is unpredictable and difficult to understand. Most of us will work with legacy code, so it’s important for us to understand its major pain points and their underlying causes. You’ ll come away from this talk with practical strategies to help you understand, improve, and even love legacy code.
-  video_provider: youtube
-  video_id: Dm2LdXLFrxw
+  video_provider: "youtube"
+  video_id: "Dm2LdXLFrxw"
 
-- title: "The Life and Death of a Rails App"
+- id: "olivier-lacan-railsconf-2018"
+  title: "The Life and Death of a Rails App"
   raw_title: "RailsConf 2018: The Life and Death of a Rails App by Olivier Lacan"
   speakers:
     - Olivier Lacan
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-16"
   description: |-
     RailsConf 2018: The Life and Death of a Rails App by Olivier Lacan
 
     Now that it has become a mature web development framework, Rails is no longer the exclusive realm of burgeoning startups. Healthy small and large businesses have grown with Rails for years. Shrinking and dying companies too. In this talk we'll look at how Rails and its ecosystem of libraries and services can support both newborn and aging apps, and when it struggles to do so.
-  video_provider: youtube
-  video_id: zrR181LhOv4
+  video_provider: "youtube"
+  video_id: "zrR181LhOv4"
 
-- title: "Webpacking for the Journey Ahead"
+- id: "taylor-jones-railsconf-2018"
+  title: "Webpacking for the Journey Ahead"
   raw_title: "RailsConf 2018: Webpacking for the Journey Ahead by Taylor Jones"
   speakers:
     - Taylor Jones
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-16"
   description: |-
     RailsConf 2018: Webpacking for the Journey Ahead by Taylor Jones
 
     Webpack integration landed in Rails 5.1 to a bit of excitement and confusion. On one hand, folks who had been using Javascript frameworks like Angular and React now have a clearer way to tie in their client-side application into the asset pipeline. Yet, why would we want to do this? What’s the purpose of adding Webpack to Rails, and what’s the advantage of utilizing it? How does this affect javascript frameworks that aren’t Webpack friendly? In this talk, we’ll explore these ideas as well as the future of client side integrations into Rails.
-  video_provider: youtube
-  video_id: NeZ9aAH1Lp4
+  video_provider: "youtube"
+  video_id: "NeZ9aAH1Lp4"
 
-- title: "Stating the Obvious"
+- id: "ernie-miller-railsconf-2018"
+  title: "Stating the Obvious"
   raw_title: "RailsConf 2018: Stating the Obvious by Ernie Miller"
   speakers:
     - Ernie Miller
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-16"
   description: |-
     RailsConf 2018: Stating the Obvious by Ernie Miller
@@ -291,37 +332,44 @@
     Throughout much of this conference you're going to hear people state obvious things. Sometimes, they'll even tell you that they think what they're saying is obvious. Why are they saying them at all, then?
 
     It's obvious there must be more to the story, so let's examine what we mean by "obvious". You'll leave this talk encouraged and ready to apply what you've learned to better empathize with others. Through application, you'll see growth in both your professional and personal life.
-  video_provider: youtube
-  video_id: 3P8McQwe1Rg
+  video_provider: "youtube"
+  video_id: "3P8McQwe1Rg"
 
-- title: "Keynote: Rails Doesn't Scale"
+- id: "mark-imbriaco-railsconf-2018"
+  title: "Keynote: Rails Doesn't Scale"
   raw_title: "RailsConf 2018: Keynote: Rails Doesn't Scale by Mark Imbriaco"
   speakers:
     - Mark Imbriaco
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-16"
-  description: "RailsConf 2018: Keynote: Rails Doesn't Scale by Mark Imbriaco"
-  video_provider: youtube
-  video_id: G2MdBtXonew
+  description: |-
+    RailsConf 2018: Keynote: Rails Doesn't Scale by Mark Imbriaco
+  video_provider: "youtube"
+  video_id: "G2MdBtXonew"
 
-- title: "Using Databases to pull your applications weight"
+- id: "harisankar-p-s-railsconf-2018"
+  title: "Using Databases to pull your applications weight"
   raw_title: "RailsConf 2018: Using Databases to pull your applications weight by Harisankar P S"
   speakers:
     - Harisankar P S
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-16"
   description: |-
     RailsConf 2018: Using Databases to pull your applications weight by Harisankar P S
 
     Most Rails applications out there in the world deal with the manipulation and presentation of data. So the speed of our application is proportional to how fast we can work with data. Rails is good with presenting data. And our Database is the one who is good at processing data. But we sometimes make the mistake of just using the database as a file cabinet, and using ruby to process. The database is built for crunching data and returning to us the results that we need. This talk is about how to optimize your database so as to speed up your existing Rails application.
-  video_provider: youtube
-  video_id: 3hYlghzakow
+  video_provider: "youtube"
+  video_id: "3hYlghzakow"
 
-- title: "The Intelligence of Instinct"
+- id: "emily-freeman-railsconf-2018"
+  title: "The Intelligence of Instinct"
   raw_title: "RailsConf 2018: The Intelligence of Instinct by Emily Freeman"
   speakers:
     - Emily Freeman
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-16"
   description: |-
     RailsConf 2018: The Intelligence of Instinct by Emily Freeman
@@ -331,14 +379,16 @@
     Fear is not a gut feeling. Fear is your brain delivering critical information derived from countless cues that have added up to one conclusion. Stop. Get out. Run.
 
     But sometimes fear isn’t life or death. Often, it’s code smell. It’s a bad feeling before a deploy. This talk will explore fear, instinct and denial. We’ll focus on our two brains — what Daniel Kahneman describes as System 1 and System 2. And we’ll look at how we can start to view “feelings” as pre-incident indicators.
-  video_provider: youtube
-  video_id: l0JtgRiaS4M
+  video_provider: "youtube"
+  video_id: "l0JtgRiaS4M"
 
-- title: "Don't Settle for Poor Names (or for Poor Design)"
+- id: "alistair-mckinnell-railsconf-2018"
+  title: "Don't Settle for Poor Names (or for Poor Design)"
   raw_title: "RailsConf 2018: Don't Settle for Poor Names (or for Poor Design) by Alistair McKinnell"
   speakers:
     - Alistair McKinnell
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-16"
   description: |-
     RailsConf 2018: Don't Settle for Poor Names (or for Poor Design) by Alistair McKinnell
@@ -350,27 +400,31 @@
     It turns out that improving names is deeply connected to improving design. And vice-versa. You will see and experience this deep connection as we explore a real world example.
 
     By the end of this talk, you will have learned a process to get you started with improving names and improving design—a process simple enough for you to teach others.
-  video_provider: youtube
-  video_id: j5o-lUF_nJs
+  video_provider: "youtube"
+  video_id: "j5o-lUF_nJs"
 
-- title: "How We Made Our App So Fast it Went Viral in Japan"
+- id: "ben-halpern-railsconf-2018"
+  title: "How We Made Our App So Fast it Went Viral in Japan"
   raw_title: "RailsConf 2018: How We Made Our App So Fast it Went Viral in Japan by Ben Halpern"
   speakers:
     - Ben Halpern
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-16"
   description: |-
     RailsConf 2018: How We Made Our App So Fast it Went Viral in Japan by Ben Halpern
 
     We put a lot of effort into web speed for our website dev.to. One day in November we woke to our greatest traffic day ever, and the source was Japanese Dev-Twitter catching wind of just how fast a site could be. American websites don't typically give so much care to global performance, but it pays off if you do. In this talk I will describe how we think about performance.
-  video_provider: youtube
-  video_id: Afy7H04X9Us
+  video_provider: "youtube"
+  video_id: "Afy7H04X9Us"
 
-- title: "Keeping Moms Around for the Long Term"
+- id: "tess-griffin-railsconf-2018"
+  title: "Keeping Moms Around for the Long Term"
   raw_title: "RailsConf 2018: Keeping Moms Around for the Long Term by Tess Griffin"
   speakers:
     - Tess Griffin
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-17"
   description: |-
     RailsConf 2018: Keeping Moms Around for the Long Term by Tess Griffin
@@ -378,14 +432,16 @@
     Being a mom is awesome! You finally get to be the one to post a million cute pictures of your adorable baby. It is also one of most challenging and hard things a woman can go through, especially if they're in software.
 
     In this talk you'll hear stories from women in the programming community, struggles they have gone through, and why many of them left their jobs after or during maternity leave (including me). If you want to help your mom friends stick around and feel included, or if you are from a company who wants to support the growth of your mom employees, then this talk is for you.
-  video_provider: youtube
-  video_id: tX1SuRZ6zpk
+  video_provider: "youtube"
+  video_id: "tX1SuRZ6zpk"
 
-- title: "Empathy through Acting"
+- id: "roy-tomeij-railsconf-2018"
+  title: "Empathy through Acting"
   raw_title: "RailsConf 2018: Empathy through Acting by Roy Tomeij"
   speakers:
     - Roy Tomeij
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-17"
   description: |-
     RailsConf 2018: Empathy through Acting by Roy Tomeij
@@ -393,44 +449,48 @@
     Individuals can only advance when they know they are valued, listened to, and understood. Without having lived the same life as them, it's often hard to understand why people do what they do. It requires empathy, and practicing empathy can be tough when someone differs greatly from you, personally or professionally. But, being empathetic can be learned, for instance through method acting.
 
     Let's talk about the fascinating acting techniques of Stanislavski, Strasberg, Adler & Meisner, and learn how you too can employ the Method to better understand (and work with) the people in your life.
-  video_provider: youtube
-  video_id: tZFeIk1-zOw
+  video_provider: "youtube"
+  video_id: "tZFeIk1-zOw"
 
-- title: "Lessons in Ethical Development I Learned From Star Wars"
+- id: "jameson-hampton-railsconf-2018"
+  title: "Lessons in Ethical Development I Learned From Star Wars"
   raw_title: "RailsConf 2018: Lessons in Ethical Development I Learned From Star Wars by Jameson Hampton"
   speakers:
     - Jameson Hampton
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-17"
   description: |-
     RailsConf 2018: Lessons in Ethical Development I Learned From Star Wars by Jameson Hampton
 
     Star Wars fans may have been excited about 2016’s release of Rogue One because of the courageous new rebel characters it introduced, but it also provided a lot more insight into the Empire's Corp of Engineers and how they ended up building the Death Star. As developers, we have a responsibility to think about the ethical implications of our work and how it might be used. This session will discuss ways of deciding for yourself what kinds of projects you are or aren't comfortable working and tips for self-accountability in your career - through the lens of characters we know and love from Star Wars.
-  video_provider: youtube
-  video_id: XcgJeeCpK4s
+  video_provider: "youtube"
+  video_id: "XcgJeeCpK4s"
 
-- title: "Blitzbuilding product with Rails - a crypto journey"
+- id: "yi-ting-xdite-cheng-railsconf-2018"
+  title: "Blitzbuilding product with Rails - a crypto journey"
   raw_title: 'RailsConf 2018: Blitzbuilding product with Rails - a crypto journey by YiTing "Xdite" Cheng'
   speakers:
-    - YiTing "Xdite" Cheng
-  event_name: RailsConf 2018
+    - Yi-Ting "Xdite" Cheng
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-17"
   description: |-
-    RailsConf 2018: Blitzbuilding product with Rails - a crypto journey by YiTing "Xdite" Cheng
-
     OTCBTC, a cryptocurrency exchange founded in Oct 2017, was developed with Rails. It grows rapidly and has reached hundreds million of dollars of GMV and millions of pageviews within only two months after being launched.And quickly become the largest OTC exchange in Asia. Its ICO had successfully raised the amount equivalent to series B funding.
 
     In this talk, Xdite will share how she and her team members struggled through the rapid growth of OTCBTC, the future opportunity in blockchain industry, and the challenge in developing such level of project.
 
     This is a sponsored talk by OTCBTC.
-  video_provider: youtube
-  video_id: onX_0ngn3G4
+  video_provider: "youtube"
+  video_id: "onX_0ngn3G4"
 
-- title: "Encrypted Credentials on Rails 5.2: Secrets to Success"
+- id: "christopher-rigor-railsconf-2018"
+  title: "Encrypted Credentials on Rails 5.2: Secrets to Success"
   raw_title: "RailsConf 2018: Encrypted Credentials on Rails 5.2: Secrets to Success by Christopher Rigor"
   speakers:
     - Christopher Rigor
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-17"
   description: |-
     RailsConf 2018: Encrypted Credentials on Rails 5.2: Secrets to Success by Christopher Rigor
@@ -440,27 +500,31 @@
     This talk will reveal the secrets to success in using Credentials and EncryptedConfiguration, the API it uses internally.
 
     This is a sponsored talk by Engine Yard.
-  video_provider: youtube
-  video_id: fS92ZDfLhng
+  video_provider: "youtube"
+  video_id: "fS92ZDfLhng"
 
-- title: "Scaling the Software Artisan"
+- id: "coraline-ada-ehmke-railsconf-2018"
+  title: "Scaling the Software Artisan"
   raw_title: "RailsConf 2018: Scaling the Software Artisan by Coraline Ada Ehmke"
   speakers:
     - Coraline Ada Ehmke
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-17"
   description: |-
     RailsConf 2018: Scaling the Software Artisan by Coraline Ada Ehmke
 
     In the late 1700s the discovery of the principle of interchangeable parts shifted the demand for the expertise of artisans from production to design and invention. This shift transformed Western civilization and opened the way for the industrial revolution. We face a similar opportunity now as one generation of software developers reaches its professional peak and a new wave of developers enter the field. This talk will trace the historical evolution of the artisan and explore how understanding this history can help us to maximize and multiply the impact of senior software developers.
-  video_provider: youtube
-  video_id: tHxssXfymOE
+  video_provider: "youtube"
+  video_id: "tHxssXfymOE"
 
-- title: "All Onboard: Cruising on the Mentorship"
+- id: "gretchen-ziegler-railsconf-2018"
+  title: "All Onboard: Cruising on the Mentorship"
   raw_title: "RailsConf 2018: All Onboard: Cruising on the Mentorship by Gretchen Ziegler"
   speakers:
     - Gretchen Ziegler
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-17"
   description: |-
     RailsConf 2018: All Onboard: Cruising on the Mentorship by Gretchen Ziegler
@@ -468,31 +532,31 @@
     Last summer, two high school juniors with very little coding experience joined Vitals as software engineering interns. Over the course of six weeks, they attempted to level up their programming skills while also learning the Vitals domain. They struggled through obstacles and experienced thrilling code highs, and ultimately emerged as more confident developers.
 
     Using their story as a guide, this talk will explore practical ways of structuring mentoring and onboarding processes. Whether your next hires are newbies or seasoned pros, you’ll walk away with strategies to help them code confidently.
-  video_provider: youtube
-  video_id: S7cYJumzuL4
+  video_provider: "youtube"
+  video_id: "S7cYJumzuL4"
 
-- title: "Pairing: a guide to fruitful collaboration 🍓🍑🍐"
+- id: "andr-arko-railsconf-2018"
+  title: "Pairing: a guide to fruitful collaboration 🍓🍑🍐"
   raw_title: "RailsConf 2018: Pairing: a guide to fruitful collaboration 🍓🍑🍐 by André Arko"
   speakers:
     - André Arko
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-17"
-  description:
-    "RailsConf 2018: Pairing: a guide to fruitful collaboration 🍓🍑🍐
-    by André Arko\n\nDespite general consensus that pairing is good, the desire to
-    pair doesn’t come with instructions. Come to this talk to learn how to pair with
-    someone more experienced, how (and why) to pair with your peers, and how to pair
-    productively with someone less experienced. (Hint: productivity isn’t about the
-    speed of new features.) Pairing is a fantastic tool for your professional toolbox:
-    let’s design, refine, and refactor, together."
-  video_provider: youtube
-  video_id: km7uGUEd4fk
+  description: |-
+    RailsConf 2018: Pairing: a guide to fruitful collaboration 🍓🍑🍐 by André Arko
 
-- title: "Mechanically Confident"
+    Despite general consensus that pairing is good, the desire to pair doesn’t come with instructions. Come to this talk to learn how to pair with someone more experienced, how (and why) to pair with your peers, and how to pair productively with someone less experienced. (Hint: productivity isn’t about the speed of new features.) Pairing is a fantastic tool for your professional toolbox: let’s design, refine, and refactor, together.
+  video_provider: "youtube"
+  video_id: "km7uGUEd4fk"
+
+- id: "adam-cuppy-railsconf-2018"
+  title: "Mechanically Confident"
   raw_title: "RailsConf 2018: Mechanically Confident by Adam Cuppy"
   speakers:
     - Adam Cuppy
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-17"
   description: |-
     RailsConf 2018: Mechanically Confident by Adam Cuppy
@@ -502,14 +566,16 @@
     There's a thread amongst all peak performers and skilled practitioners: specific habits, routines, and processes that wrap uncertainty and create confidence. Oscar-winning actors rehearse, pro-drivers do laps, chefs prep.
 
     This talk will help you recognize and design habits, routines, and practices that embed confidence into the body.
-  video_provider: youtube
-  video_id: 6xnealmhEnM
+  video_provider: "youtube"
+  video_id: "6xnealmhEnM"
 
-- title: "The Practical Guide to Building an Apprenticeship"
+- id: "max-tiu-railsconf-2018"
+  title: "The Practical Guide to Building an Apprenticeship"
   raw_title: "RailsConf 2018: The Practical Guide to Building an Apprenticeship by Max Tiu"
   speakers:
     - Max Tiu
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-17"
   description: |-
     RailsConf 2018: The Practical Guide to Building an Apprenticeship by Max Tiu
@@ -517,59 +583,63 @@
     Currently, our industry has a surplus of bright junior developers, but a lack of open junior positions. Building a developer apprenticeship in your organization is a great way to provide a haven for these talented devs, while simultaneously making your team more productive and easing the pain of hiring.
 
     In this talk, you'll learn from the mistakes I've made and wins I've had in creating an apprenticeship. From pitching the idea to growing your apprentices, you'll gain a step-by-step guide to successfully building your own apprenticeship program.
-  video_provider: youtube
-  video_id: 5sVg7DtZ0zk
+  video_provider: "youtube"
+  video_id: "5sVg7DtZ0zk"
 
-- title: "So You’ve Got Yourself a Kafka: Event-Powered Rails Services"
+- id: "stella-cotton-railsconf-2018"
+  title: "So You’ve Got Yourself a Kafka: Event-Powered Rails Services"
   raw_title: "RailsConf 2018: So You’ve Got Yourself a Kafka: Event-Powered Rails Services by Stella Cotton"
   speakers:
     - Stella Cotton
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-17"
   description: |-
     RailsConf 2018: So You’ve Got Yourself a Kafka: Event-Powered Rails Services by Stella Cotton
 
     It’s easier than ever to integrate a distributed commit log system like Kafka into your stack. But once you have it, what do you do with it? Come learn the basics about Kafka and event-driven systems and how you can use them to power your Rails services. We’ll also venture beyond the theoretical to talk about practical considerations and unusual operational challenges that your event-driven Rails services might face, like monitoring, queue processing, and scaling slow consumers.
-  video_provider: youtube
-  video_id: Rzl4O1oaVy8
+  video_provider: "youtube"
+  video_id: "Rzl4O1oaVy8"
 
-- title: "Some Funny Things Happened on The Way to A Service Ecosystem"
+- id: "chris-hoffman-railsconf-2018"
+  title: "Some Funny Things Happened on The Way to A Service Ecosystem"
   raw_title: "RailsConf 2018: Some Funny Things Happened on The Way to A Service Ecosystem by Chris Hoffman"
   speakers:
     - Chris Hoffman
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-17"
   description: |-
     RailsConf 2018: Some Funny Things Happened on The Way to A Service Ecosystem by Chris Hoffman
 
     So this one time we ran Rails services over AMQP (instead of HTTP). You may be thinking “Why? Was that their first mistake?” It was not. From handling shared models poorly to deploying & operating services with inadequate tooling, we've made...so many mistakes. I'm glad we did; they helped us grow. We have patterns & practices for everything we’ve seen so far, from API contracts to distributed consensus protocols. Over this talk’s 40 minutes, you'll learn things it took us 3 years to grasp. Whether you have a monolith or pine for when you did, you'll be more prepared and better armed than we were.
-  video_provider: youtube
-  video_id: WtZUVzDGkTM
+  video_provider: "youtube"
+  video_id: "WtZUVzDGkTM"
 
-- title: "Broken APIs Break Trust: Tips for Creating and Updating APIs"
+- id: "alex-wood-railsconf-2018"
+  title: "Broken APIs Break Trust: Tips for Creating and Updating APIs"
   raw_title: "RailsConf 2018: Broken APIs Break Trust: Tips for Creating and Updating APIs by Alex Wood"
   speakers:
     - Alex Wood
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-17"
-  description:
-    "RailsConf 2018: Broken APIs Break Trust: Tips for Creating and Updating
-    APIs by Alex Wood \n\nFor many of us, APIs and their client libraries are the
-    face of our applications to the world. We need to innovate with new features,
-    but breaking changes are toxic to customer trust.\n\nIn this session you will
-    pick-up concrete design patterns that you can use and anti-patterns that you can
-    recognize so that your service API or library can continue to grow without breaking
-    the world. Using real APIs and open source libraries as a case study, we’ll look
-    at actual examples of specific strategies that you can employ to keep your API
-    backwards compatible without painting yourself into a corner."
-  video_provider: youtube
-  video_id: 4McL54Pd2Cs
+  description: |-
+    RailsConf 2018: Broken APIs Break Trust: Tips for Creating and Updating APIs by Alex Wood 
 
-- title: "Warden: the building block behind Devise"
+    For many of us, APIs and their client libraries are the face of our applications to the world. We need to innovate with new features, but breaking changes are toxic to customer trust.
+
+    In this session you will pick-up concrete design patterns that you can use and anti-patterns that you can recognize so that your service API or library can continue to grow without breaking the world. Using real APIs and open source libraries as a case study, we’ll look at actual examples of specific strategies that you can employ to keep your API backwards compatible without painting yourself into a corner.
+  video_provider: "youtube"
+  video_id: "4McL54Pd2Cs"
+
+- id: "leonardo-tegon-railsconf-2018"
+  title: "Warden: the building block behind Devise"
   raw_title: "RailsConf 2018: Warden: the building block behind Devise by Leonardo Tegon"
   speakers:
     - Leonardo Tegon
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-17"
   description: |-
     RailsConf 2018: Warden: the building block behind Devise by Leonardo Tegon
@@ -577,14 +647,16 @@
     Authentication is one of the most common features of web applications, so it makes sense to have libraries that provide solutions for this problem. You've probably heard of or maybe used Devise: all you have to do is add it to your Gemfile and run a generator, and you have a robust authentication system.
 
     Behind the scenes, Devise uses Warden to handle authentication. In this talk, I'll explain what Warden is, why it's useful and how Devise takes advantage of it to build the most popular authentication gem for Rails.
-  video_provider: youtube
-  video_id: QBJ3G40fxHg
+  video_provider: "youtube"
+  video_id: "QBJ3G40fxHg"
 
-- title: "Building a Collaborative Text Editor"
+- id: "justin-weiss-railsconf-2018"
+  title: "Building a Collaborative Text Editor"
   raw_title: "RailsConf 2018: Building a Collaborative Text Editor by Justin Weiss"
   speakers:
     - Justin Weiss
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-17"
   description: |-
     RailsConf 2018: Building a Collaborative Text Editor by Justin Weiss
@@ -594,43 +666,46 @@
     Google-Docs-style collaboration used to be nice to have. Now, it's expected. Companies like Quip and Coda have based their business on real-time collaboration features. Atom and Sublime Text have collaborative editing plugins. Even Confluence now supports collaborative editing!
 
     In this talk, you'll learn how to build a great collaborative experience, based on solid fundamental ideas.
-  video_provider: youtube
-  video_id: lmjMC2FRF-A
+  video_provider: "youtube"
+  video_id: "lmjMC2FRF-A"
 
-- title: "Ten Years of Rails Tutorials"
+- id: "michael-hartl-railsconf-2018"
+  title: "Ten Years of Rails Tutorials"
   raw_title: "RailsConf 2018: Ten Years of Rails Tutorials by Michael Hartl"
   speakers:
     - Michael Hartl
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-17"
-  description:
-    "RailsConf 2018: Ten Years of Rails Tutorials by Michael Hartl \n\nCome
-    see how Rails has evolved over the years through the lens of introductory Rails
-    tutorials. Marvel at Rails pre-REST, survive the merger with Merb, feel the joy
-    & pain of the then-new asset pipeline, and watch testing techniques grow, evolve,
-    and simplify. Leave with a deeper appreciation for where Rails came from and where
-    it is today."
-  video_provider: youtube
-  video_id: MBL2jRL9crI
+  description: |-
+    RailsConf 2018: Ten Years of Rails Tutorials by Michael Hartl 
 
-- title: "The Evolution of Rails Security"
+    Come see how Rails has evolved over the years through the lens of introductory Rails tutorials. Marvel at Rails pre-REST, survive the merger with Merb, feel the joy & pain of the then-new asset pipeline, and watch testing techniques grow, evolve, and simplify. Leave with a deeper appreciation for where Rails came from and where it is today.
+  video_provider: "youtube"
+  video_id: "MBL2jRL9crI"
+
+- id: "justin-collins-railsconf-2018"
+  title: "The Evolution of Rails Security"
   raw_title: "RailsConf 2018: The Evolution of Rails Security by Justin Collins"
   speakers:
     - Justin Collins
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-17"
   description: |-
     RailsConf 2018: The Evolution of Rails Security by Justin Collins
 
     Rails has a reputation for being secure by default, but how deserved is that reputation? Let's take a look back at some of the low points in Rails security history: from the first Rails CVE, to the controversial GitHub mass assignment, the 2013 Rails apocalypse, and more recent remote code execution issues. Then we'll cheer ourselves up with the many cool security features Rails has added over the years! We'll cover auto-escaping, strong parameters, default security headers, secret storage, and less well-known features like per-form CSRF tokens and upcoming Content Security Policy support.
-  video_provider: youtube
-  video_id: Btrmc1wO3pc
+  video_provider: "youtube"
+  video_id: "Btrmc1wO3pc"
 
-- title: "The Code-Free Developer Interview"
+- id: "pete-holiday-railsconf-2018"
+  title: "The Code-Free Developer Interview"
   raw_title: "RailsConf 2018: The Code-Free Developer Interview by Pete Holiday"
   speakers:
     - Pete Holiday
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-17"
   description: |-
     RailsConf 2018: The Code-Free Developer Interview by Pete Holiday
@@ -638,80 +713,91 @@
     When it comes to evaluating candidates for software engineering roles, it's hard to keep up with the latest and greatest techniques. We know logic puzzles don't work. Writing pseudocode on a white board is so tired and cliche at this point that companies brag about not doing that. Teams have resorted to what seems like an obvious choice at first blush: just have the candidate write some code. This new trend may have some unintended consequences, though.
 
     In this talk, you'll learn how to design an interview process which allows you to evaluate candidates without making them code for you.
-  video_provider: youtube
-  video_id: O3XRE0HvzJ8
+  video_provider: "youtube"
+  video_id: "O3XRE0HvzJ8"
 
-- title: "Harry the Hedgehog Learns You A Communication"
+- id: "laura-mosher-railsconf-2018"
+  title: "Harry the Hedgehog Learns You A Communication"
   raw_title: "RailsConf 2018: Harry the Hedgehog Learns You A Communication by Laura Mosher"
   speakers:
     - Laura Mosher
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-17"
   description: |-
     RailsConf 2018: Harry the Hedgehog Learns You A Communication by Laura Mosher
 
     We know how to communicate — we do it on a daily basis, so why spend time perfecting something you feel you already know how to do? Well, what you say and how you say it impacts how you are understood and how others perceive you. In written communication, a single missing comma can wildly change the meaning of what you said. In this talk, we'll walk through 5 tips that improve how you communicate. Using real world examples, we'll show how common these pitfalls are and how to overcome them. You'll leave armed with the ability to positively impact your relationships through how you communicate.
-  video_provider: youtube
-  video_id: uT1ovJqIjt4
+  video_provider: "youtube"
+  video_id: "uT1ovJqIjt4"
 
-- title: "Draw a Crowd"
+- id: "brittany-martin-railsconf-2018"
+  title: "Draw a Crowd"
   raw_title: "RailsConf 2018: Draw a Crowd by Brittany Martin"
   speakers:
     - Brittany Martin
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-17"
   description: |-
     RailsConf 2018: Draw a Crowd by Brittany Martin
 
     Contextual Camouflage is an open-source gallery art installation built in RoR that guides visitors to anonymously report mental health disorders that affect themselves or their relationships. After users submit a disorder, they have the option to include anecdotes and demographic data for intervention researchers. The data is molded into an interactive real-time display using ActionCable. Come see how code can double as art and an educational tool.
-  video_provider: youtube
-  video_id: S9z-qRPdBac
+  video_provider: "youtube"
+  video_id: "S9z-qRPdBac"
 
-- title: "Ales on Rails: Making a Smarter Brewery with Ruby"
+- id: "ben-shippee-railsconf-2018"
+  title: "Ales on Rails: Making a Smarter Brewery with Ruby"
   raw_title: "RailsConf 2018: Ales on Rails: Making a Smarter Brewery with Ruby by Ben Shippee"
   speakers:
     - Ben Shippee
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-17"
   description: |-
     RailsConf 2018: Ales on Rails: Making a Smarter Brewery with Ruby by Ben Shippee
 
     Rails is a great framework to empower people to work smarter, not harder. I'll be sharing the evolution of technology in a Pittsburgh brewery, from a simple MVP to a production application. This talk will explore how Ruby and Rails was leveraged to help manage brewery data, control aspects of the taproom environment, and automate the tedious parts of the job to a few clicks.
-  video_provider: youtube
-  video_id: f7pHXYw7Z1Q
+  video_provider: "youtube"
+  video_id: "f7pHXYw7Z1Q"
 
-- title: "Human Powered Rails: Automated Crowdsourcing In Your RoR App"
+- id: "andy-glass-railsconf-2018"
+  title: "Human Powered Rails: Automated Crowdsourcing In Your RoR App"
   raw_title: "RailsConf 2018: Human Powered Rails: Automated Crowdsourcing In Your RoR App by Andy Glass"
   speakers:
     - Andy Glass
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-17"
   description: |-
     RailsConf 2018: Human Powered Rails: Automated Crowdsourcing In Your RoR App by Andy Glass
 
     Machine learning and AI are all the rage, but there’s often no replacement for real human input. This talk will explore how to automate the integration of human-work directly into a RoR app, by enabling background workers to request and retrieve data from actual human workers. The secret is Amazon Mechanical Turk, a crowdsourcing marketplace connecting ‘requesters’ who post tasks with ‘workers’ who complete them. Attendees will learn how to automate the completion of human tasks (e.g. price research, image tagging, sentiment analysis, etc) with impressive speed, accuracy and scalability.
-  video_provider: youtube
-  video_id: ZF4862NLzfA
+  video_provider: "youtube"
+  video_id: "ZF4862NLzfA"
 
-- title: "Keynote: The Future of Rails 6: Scalable by Default"
+- id: "eileen-m-uchitelle-railsconf-2018"
+  title: "Keynote: The Future of Rails 6: Scalable by Default"
   raw_title: "RailsConf 2018: Keynote: The Future of Rails 6: Scalable by Default by Eileen Uchitelle"
   speakers:
     - Eileen M. Uchitelle
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-17"
-  slides_url: https://speakerdeck.com/eileencodes/railsconf-2018-the-future-of-rails-6-scalable-by-default
-  description:
-    "RailsConf 2018: Keynote: The Future of Rails 6: Scalable by Default
-    by Eileen M. Uchitelle"
-  video_provider: youtube
-  video_id: 8evXWvM4oXM
+  slides_url: "https://speakerdeck.com/eileencodes/railsconf-2018-the-future-of-rails-6-scalable-by-default"
+  description: |-
+    RailsConf 2018: Keynote: The Future of Rails 6: Scalable by Default by Eileen M. Uchitelle
+  video_provider: "youtube"
+  video_id: "8evXWvM4oXM"
 
-- title: "Running a Business, Demystified"
+- id: "todd-kaufman-railsconf-2018"
+  title: "Running a Business, Demystified"
   raw_title: "RailsConf 2018: Running a Business, Demystified by Todd Kaufman & Justin Searls"
   speakers:
     - Todd Kaufman
     - Justin Searls
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-18"
   description: |-
     Running a Business, Demystified by Todd Kaufman
@@ -719,14 +805,16 @@
     Building a business is both mysterious and hard. We can't do much to make it easier, but after 6 years running Test Double, we can make it less mysterious. This talk is a slow-motion Q & A: submit a question to http://testdouble.com/business and we'll build a slide deck that gives as many practical (and colorful) answers we can fit in a 45 minute session.
 
     This talk is for anyone whose interest in starting a software company has ever been held back by fear, uncertainty or doubt. It assumes no knowledge of business jargon and will strive to explain each financial concept covered.
-  video_provider: youtube
-  video_id: kJEN5Dt2kKU
+  video_provider: "youtube"
+  video_id: "kJEN5Dt2kKU"
 
-- title: "What's in a price? How to price your products and services"
+- id: "michael-herold-railsconf-2018"
+  title: "What's in a price? How to price your products and services"
   raw_title: "RailsConf 2018: What's in a price? How to price your products and services by Michael Herold"
   speakers:
     - Michael Herold
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-18"
   description: |-
     What's in a price? How to price your products and services by Michael Herold
@@ -734,14 +822,16 @@
     So you have something new to sell: maybe your first book or a hip new SaaS. How do you decide the price? How do you know you're not overpricing? Or underpricing? Why, oh why, did you ever think to sell something?!
 
     Instead of choosing a number by looking inward at your costs, you can use what programmers use best: an abstraction! You'll learn a model for picking the right price for your product and what that price communicates so you can confidently price your next great invention. You'll leave with an actionable list of next steps for pricing your future projects.
-  video_provider: youtube
-  video_id: DldgNBbH9aU
+  video_provider: "youtube"
+  video_id: "DldgNBbH9aU"
 
-- title: "Reporting Live from the Ramp of Death"
+- id: "thijs-cadier-railsconf-2018"
+  title: "Reporting Live from the Ramp of Death"
   raw_title: "RailsConf 2018: Reporting Live from the Ramp of Death by Thijs Cadier"
   speakers:
     - Thijs Cadier
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-18"
   description: |-
     Reporting Live from the Ramp of Death by Thijs Cadier
@@ -749,63 +839,74 @@
     Lying on the beach and enjoying the 4-hour work week: who wouldn't like the recurring revenue stream of a SaaS business? It's why many start building a SaaS company "on the side", only to find out they don't make enough money to buy a latte and fall back to getting paid by the hour. They're stuck on the long, slow Ramp of Death.
 
     Coming to you live from the trenches of running an organically growing SaaS for five years, this is an honest –and sometimes brutal– story of perseverance, sacrifice and reward. Find out how to overcome the ramp, and why it isn't as bad as you might think.
-  video_provider: youtube
-  video_id: 5_ZhUCMxQ8M
+  video_provider: "youtube"
+  video_id: "5_ZhUCMxQ8M"
 
-- title: "Taking the Pain Out of Support Engineering"
+- id: "cecy-correa-railsconf-2018"
+  title: "Taking the Pain Out of Support Engineering"
   raw_title: "RailsConf 2018: Taking the Pain Out of Support Engineering by Cecy Correa"
   speakers:
     - Cecy Correa
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-18"
   description: |-
     Taking the Pain Out of Support Engineering by Cecy Correa
 
     Production support is not a priority. No one on the team wants to work on support cards. Being on-call is a pain. Does this ring a bell? We've all been there! There is a better way to handle Support Engineering for your product. A way that will level up your team, and create positive support experiences for your customers. Drawing on 3+ years of Support Engineering at two different companies, I will share successful Support patterns and tools you can start using today to improve your product support.
-  video_provider: youtube
-  video_id: RvkM17lFxpA
+  video_provider: "youtube"
+  video_id: "RvkM17lFxpA"
 
-- title: "Leveling Up a Heroic Team"
+- id: "aly-fulton-railsconf-2018"
+  title: "Leveling Up a Heroic Team"
   raw_title: "RailsConf 2018:  Leveling Up a Heroic Team by Aly Fulton"
   speakers:
     - Aly Fulton
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-18"
   description: |-
     Leveling Up a Heroic Team by Aly Fulton
 
     Your application is a dragon and here’s how we’re going to form a successful raiding party to come out victorious (with minimal casualties!). When entering the field of web development, I discovered that the parallels of building a strong multiplayer gaming community and optimizing companies for success were undeniable. Your quest, should you choose to accept it, is to listen to these parallels and use the lessons to strengthen your biggest asset-–your team–-to build a better company and a better web.
-  video_provider: youtube
-  video_id: mpnNiTuVSyw
+  video_provider: "youtube"
+  video_id: "mpnNiTuVSyw"
 
-- title: "Old-school Javascript in Rails"
+- id: "graham-conzett-railsconf-2018"
+  title: "Old-school Javascript in Rails"
   raw_title: "RailsConf 2018: Old-school Javascript in Rails by Graham Conzett"
   speakers:
     - Graham Conzett
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-18"
   description: |-
     Old-school Javascript in Rails by Graham Conzett
 
     Sometimes vanilla Javascript and Rails out-of-the box UJS is good enough, especially when it comes to building things like admin panels and other types of content management. We'll discuss strategies for building rich user interfaces using minimal vanilla Javascript that leverages as much of Rails UJS as we can.
-  video_provider: youtube
-  video_id: lh5qfV2iP80
+  video_provider: "youtube"
+  video_id: "lh5qfV2iP80"
 
-- title: "Keynote: Livable Code"
+- id: "sarah-mei-railsconf-2018"
+  title: "Keynote: Livable Code"
   raw_title: "RailsConf 2018: Keynote - Livable Code by Sarah Mei"
   speakers:
     - Sarah Mei
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-18"
-  description: Keynote - Livable Code by Sarah Mei
-  video_provider: youtube
-  video_id: lI77oMKr5EY
+  description: |-
+    Keynote - Livable Code by Sarah Mei
+  video_provider: "youtube"
+  video_id: "lI77oMKr5EY"
 
-- title: "Quick and easy browser testing using RSpec and Rails 5.1"
+- id: "sam-phippen-railsconf-2018"
+  title: "Quick and easy browser testing using RSpec and Rails 5.1"
   raw_title: "RailsConf 2018:  Quick and easy browser testing using RSpec and Rails 5.1 by Sam Phippen"
   speakers:
     - Sam Phippen
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-18"
   description: |-
     Quick and easy browser testing using RSpec and Rails 5.1 by Sam Phippen
@@ -813,40 +914,46 @@
     Traditionally doing a full stack test of a Rails app with RSpec has been problematic. The browser wouldn't automate, capybara configuration would be a nightmare, and cleaning up your DB was difficult. In Rails 5.1 the new 'system test' type was added to address this. With modern RSpec and Rails, testing every part of your stack including Javascript from a browser is now a breeze.
 
     In this talk, you'll learn about the new system specs in RSpec, how to set them up, and what benefits they provide. If you want to improve your RSpec suite with full stack testing this talk is for you!
-  video_provider: youtube
-  video_id: JD-28Oi7fxI
+  video_provider: "youtube"
+  video_id: "JD-28Oi7fxI"
 
-- title: "Build A Blog in 15 (more like 30) Minutes: Webpacker Edition"
+- id: "sasha-grodzins-railsconf-2018"
+  title: "Build A Blog in 15 (more like 30) Minutes: Webpacker Edition"
   raw_title: "RailsConf 2018: Build A Blog in 15 (more like 30) Minutes: Webpacker Edition by Sasha Grodzins"
   speakers:
     - Sasha Grodzins
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-18"
   description: |-
     Build A Blog in 15 (more like 30) Minutes: Webpacker Edition by Sasha Grodzins
 
     An ode to DHH's classic, let's build a blog with a Rails backend using a graphQL API and a React frontend. Through this live-coding session, you will learn how to set up an isomorphic app, the basic concepts of each library, and at the end have a fully functioning blog application! Follow along on your computer or clone the repo.
-  video_provider: youtube
-  video_id: f-qY37JIdg0
+  video_provider: "youtube"
+  video_id: "f-qY37JIdg0"
 
-- title: "6 degrees of JavaScript on Rails"
+- id: "michael-crismali-railsconf-2018"
+  title: "6 degrees of JavaScript on Rails"
   raw_title: "RailsConf 2018: 6 degrees of JavaScript on Rails by Michael Crismali"
   speakers:
     - Michael Crismali
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-18"
   description: |-
     6 degrees of JavaScript on Rails by Michael Crismali
 
     How much JavaScript you include in your Rails application can feel like a choice between basically none or a full JavaScript single page application backed by a Rails API. When you have a team of people whose confidence with JavaScript is all over the place, this can feel like an impossible choice. Fortunately, there are many options in the middle that can allow those with less JavaScript confidence to stretch and grow while those with more confidence can build UI components with fewer constraints.
-  video_provider: youtube
-  video_id: hXdJU2lpfsE
+  video_provider: "youtube"
+  video_id: "hXdJU2lpfsE"
 
-- title: "Look Before You Import: A Webpack Survival Guide"
+- id: "ross-kaffenberger-railsconf-2018"
+  title: "Look Before You Import: A Webpack Survival Guide"
   raw_title: "RailsConf 2018: Look Before You Import: A Webpack Survival Guide by Ross Kaffenberger"
   speakers:
     - Ross Kaffenberger
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-18"
   description: |-
     Look Before You Import: A Webpack Survival Guide by Ross Kaffenberger
@@ -856,25 +963,30 @@
     Moving from Webpack basics to using it in production means understanding how it works. We'll demystify how Webpack bundles assets for the browser, how it differs from the Rails asset pipeline, and highlight common challenges that may occur coming from Sprockets.
 
     This is the talk we would have wanted to see before recently adopting Webpack in our own Rails app.
-  video_provider: youtube
-  video_id: fKOq5_2qj54
+  video_provider: "youtube"
+  video_id: "fKOq5_2qj54"
 
-- title: "Closing Keynote"
+- id: "aaron-patterson-railsconf-2018"
+  title: "Closing Keynote"
   raw_title: "RailsConf 2018: Closing Keynote by Aaron Patterson"
   speakers:
     - Aaron Patterson
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-18"
-  slides_url: https://speakerdeck.com/tenderlove/railsconf-2018-keynote
-  description: Closing Keynote by Aaron Patterson
-  video_provider: youtube
-  video_id: cBFuZivrdT0
+  slides_url: "https://speakerdeck.com/tenderlove/railsconf-2018-keynote"
+  description: |-
+    Closing Keynote by Aaron Patterson
+  video_provider: "youtube"
+  video_id: "cBFuZivrdT0"
 
-- title: "Putting Rails in a corner: Understanding database isolation"
+- id: "emil-ong-railsconf-2018"
+  title: "Putting Rails in a corner: Understanding database isolation"
   raw_title: "RailsConf 2018: Putting Rails in a corner: Understanding database isolation by Emil Ong"
   speakers:
     - Emil Ong
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-18"
   description: |-
     Putting Rails in a corner: Understanding database isolation by Emil Ong
@@ -882,14 +994,16 @@
     If you've ever had inconsistent data show up in your app even though you wrapped the relevant code in a transaction, you're not alone! Database isolation levels might be the solution...
 
     This talk will discuss what database isolation levels are, how to set them in Rails applications, and Rails-specific situations where not choosing the right isolation level can lead to faulty behavior. We'll also talk about how testing code that sets isolation levels requires special care and what to expect to see when monitoring your apps.
-  video_provider: youtube
-  video_id: qwmviS2g1lA
+  video_provider: "youtube"
+  video_id: "qwmviS2g1lA"
 
-- title: "Ten years of Rails upgrades"
+- id: "jordan-raine-railsconf-2018"
+  title: "Ten years of Rails upgrades"
   raw_title: "RailsConf 2018: Ten years of Rails upgrades by Jordan Raine"
   speakers:
     - Jordan Raine
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-18"
   description: |-
     Ten years of Rails upgrades by Jordan Raine
@@ -897,27 +1011,31 @@
     Upgrading Rails can go from easy-to-hard quickly. If you've struggled to upgrade to a new version of Rails, you're not alone. And yet, with useful deprecation warnings and extensive beta periods, Rails has never made it easier to upgrade. So what makes it hard?
 
     By looking at the past ten years of Rails upgrades at Clio (and other notable apps), let's see what we can learn. Gain insight into the tradeoffs between different timelines and approaches and learn practical ways to keep your app up-to-date.
-  video_provider: youtube
-  video_id: 6aCfc0DkSFo
+  video_provider: "youtube"
+  video_id: "6aCfc0DkSFo"
 
-- title: "Stop Testing, Start Storytelling"
+- id: "mike-schutte-railsconf-2018"
+  title: "Stop Testing, Start Storytelling"
   raw_title: "RailsConf 2018: Stop Testing, Start Storytelling by Mike Schutte"
   speakers:
     - Mike Schutte
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-18"
   description: |-
     Stop Testing, Start Storytelling by Mike Schutte
 
     Stop trying to be a computer; you're a human! You know what humans are good at? Storytelling. Stop trying to write tests just to get a green test suite, and start telling rich, descriptive stories. Once you have a good story, then you can worry about the implementation details (wait, is testing a form of abstraction and encapsulation?!). In this talk, we look at writing tests as simply telling stories to the test suite. By telling stories about the application (methods, controllers, features, &c.) the suite holds the storyteller accountable for making those stories become, and stay, true.
-  video_provider: youtube
+  video_provider: "youtube"
   video_id: "-vTZzOssR7A"
 
-- title: "Deploying any Rails application to any cloud in minutes"
+- id: "khash-sajadi-railsconf-2018"
+  title: "Deploying any Rails application to any cloud in minutes"
   raw_title: "RailsConf 2018: Deploying any Rails application to any cloud in minutes by Khash Sajadi"
   speakers:
     - Khash Sajadi
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-18"
   description: |-
     Deploying any Rails application to any cloud in minutes by Khash Sajadi
@@ -925,14 +1043,16 @@
     Let us show you the easiest way to build, deploy and manage any Rails application on any cloud provider and under your own cloud account. We will also show you how to scale your databases, setup database replication and add off-site backups to your databases with extreme simplicity. Find out how to spend less time configuring boxes, and more time developing great web apps!
 
     This is a sponsored talk by Cloud 66.
-  video_provider: youtube
-  video_id: DOmTzBRcFT8
+  video_provider: "youtube"
+  video_id: "DOmTzBRcFT8"
 
-- title: "Engineering Engineering: More than the sum of our parts"
+- id: "vietor-davis-railsconf-2018"
+  title: "Engineering Engineering: More than the sum of our parts"
   raw_title: "RailsConf 2018: Engineering Engineering: More than the sum of our parts by Vietor Davis"
   speakers:
     - Vietor Davis
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-18"
   description: |-
     Engineering Engineering: More than the sum of our parts by Vietor Davis
@@ -940,40 +1060,46 @@
     Applying the tried and true answers of “It depends.”, “Maybe?”, and “It works for me, what if you try …” to our engineering organizations themselves turns out to work better than trying to find the One True Way. We all know that every engineering project is full of trade-offs, caveats, surprising complexities, and hidden depths; so it should be no surprise that we, the engineers who build such systems, are at least as complicated.
 
     This is a sponsored talk by Procore.
-  video_provider: youtube
-  video_id: 7vTtOoCiKao
+  video_provider: "youtube"
+  video_id: "7vTtOoCiKao"
 
-- title: "Minitest 6: test feistier!"
+- id: "ryan-davis-railsconf-2018"
+  title: "Minitest 6: test feistier!"
   raw_title: "RailsConf 2018: Minitest 6: test feistier! by Ryan Davis"
   speakers:
     - Ryan Davis
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-18"
   description: |-
     Minitest 6: test feistier! by Ryan Davis
 
     Minitest 5 ships with ruby and is the standard test framework for rails. It already provides a traditional unit test framework, spec DSL, mocks, stubs, test randomization, parallelization, machine agnostic benchmarking, and tons of assertions all in under 2kloc. So what would Minitest 6 do differently? Hopefully to the end user, not much will change, and yet it will be worlds apart from Minitest 5. Come see how you can massively speed up your rails test runs and improve your testing practices by upgrading your test framework.
-  video_provider: youtube
-  video_id: l-ZNxvFo4lw
+  video_provider: "youtube"
+  video_id: "l-ZNxvFo4lw"
 
-- title: "An Atypical 'Performance' Talk"
+- id: "chris-arcand-railsconf-2018"
+  title: "An Atypical 'Performance' Talk"
   raw_title: "RailsConf 2018: An Atypical 'Performance' Talk by Chris Arcand"
   speakers:
     - Chris Arcand
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-18"
   description: |-
     An Atypical 'Performance' Talk by Chris Arcand
 
     A mixture of a talk on programming and a live classical music recital. Listen to a former-orchestral-clarinetist-turned-developer talk about parallelisms between music performance and programming - such as complexity, imposter syndrome, and true concentration - with live performances throughout!
-  video_provider: youtube
-  video_id: 0Lllf9OjO4k
+  video_provider: "youtube"
+  video_id: "0Lllf9OjO4k"
 
-- title: "Giving your Heroku App highly-available PostgreSQL"
+- id: "jake-varghese-railsconf-2018"
+  title: "Giving your Heroku App highly-available PostgreSQL"
   raw_title: "RailsConf 2018: Giving your Heroku App highly-available PostgreSQL by Jake Varghese"
   speakers:
     - Jake Varghese
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-18"
   description: |-
     Giving your Heroku App highly-available PostgreSQL by Jake Varghese
@@ -981,14 +1107,16 @@
     As you’re building out your app, you know how important it is to have your database up at all times. You need your PostgreSQL database to be HA. Jake from Compose is going to show you how to migrate your data to a HA PG service in less than 20 minutes.
 
     This is a sponsored talk by Compose, an IBM company
-  video_provider: youtube
-  video_id: GJK5CimW0Kw
+  video_provider: "youtube"
+  video_id: "GJK5CimW0Kw"
 
-- title: "“API?” – How LendingHome Approaches “Legacy” Technologies"
+- id: "sam-aarons-railsconf-2018"
+  title: "“API?” – How LendingHome Approaches “Legacy” Technologies"
   raw_title: "RailsConf 2018: “API?” – How LendingHome Approaches “Legacy” Technologies by Sam Aarons"
   speakers:
     - Sam Aarons
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-18"
   description: |-
     “API?” – How LendingHome Approaches “Legacy” Technologies by Sam Aarons
@@ -998,27 +1126,31 @@
     This talk will dive into the solutions we’ve built that abstract away some of these concepts and how we provide clean interfaces for these services to the rest of the organization. If you’ve ever wanted to learn how modern companies interface with the old, this is the talk for you.
 
     This is a sponsored talk by LendingHome.
-  video_provider: youtube
-  video_id: sKGoWVykxa0
+  video_provider: "youtube"
+  video_id: "sKGoWVykxa0"
 
-- title: "Re-graphing The Mental Model of The Rails Router"
+- id: "vaidehi-joshi-railsconf-2018"
+  title: "Re-graphing The Mental Model of The Rails Router"
   raw_title: "RailsConf 2018: Re-graphing The Mental Model of The Rails Router by Vaidehi Joshi"
   speakers:
     - Vaidehi Joshi
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-18"
   description: |-
     Re-graphing The Mental Model of The Rails Router by Vaidehi Joshi
 
     Rails is incredibly powerful because of its abstractions. For years, developers have been able to hit the ground running and be productive without having to know the in's and out's of the core computer science concepts that fuel this framework. But just because something is hidden away doesn't mean that it's not worth knowing! In this talk, we'll unpack the CS fundamentals that are used in the Rails router. Together, we'll demystify the graph data structure that lies under the hood of the router in order to understand how a simple structure allows for routing to actually work in a Rails app.
-  video_provider: youtube
-  video_id: lEC-QoZeBkM
+  video_provider: "youtube"
+  video_id: "lEC-QoZeBkM"
 
-- title: "Inside Active Storage: a code review of Rails' new framework"
+- id: "claudio-baccigalupo-railsconf-2018"
+  title: "Inside Active Storage: a code review of Rails' new framework"
   raw_title: "RailsConf 2018: Inside Active Storage: a code review of Rails' new framework by Claudio Baccigalupo"
   speakers:
     - Claudio Baccigalupo
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-18"
   description: |-
     Inside Active Storage: a code review of Rails' new framework by Claudio Baccigalupo
@@ -1028,131 +1160,307 @@
     In this talk, we will analyze its internal code, learning how it integrates with Active Record and Action Pack to supply amazing features out of the box, from image previews to cloud storage.
 
     We will review its class architecture and delve into the implementation of several Active Storage methods, such as has_one_attached and upload. On the way, we will better understand some Ruby patterns frequently used within Rails: meta-programming, macros, auto-loading, initializers, class attributes.
-  video_provider: youtube
+  video_provider: "youtube"
   video_id: "-_w4uqoVSpw"
 
-- title: "Engine Yard"
+- id: "shawn-herman-railsconf-2018"
+  title: "Engine Yard"
   raw_title: "RailsConf 2018: Engine Yard - Shawn Herman"
   speakers:
     - Shawn Herman
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-18"
   description: ""
-  video_provider: youtube
-  video_id: 42fRu7C1qWU
+  video_provider: "youtube"
+  video_id: "42fRu7C1qWU"
 
-- title: "GitHub and Rails - 10 Years Together"
+- id: "tal-safran-railsconf-2018"
+  title: "GitHub and Rails - 10 Years Together"
   raw_title: "RailsConf 2018: GitHub - Tal Safran"
   speakers:
     - Tal Safran
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-18"
   description: ""
-  video_provider: youtube
-  video_id: 0we4EHpMCMM
+  video_provider: "youtube"
+  video_id: "0we4EHpMCMM"
 
-- title: "What's going on in the crypto world?"
+- id: "yiting-xdite-cheng-railsconf-2018"
+  title: "What's going on in the crypto world?"
   raw_title: 'RailsConf 2018: OTCBTC - Yiting "Xdite" Cheng'
   speakers:
-    - Yiting "Xdite" Cheng
-  event_name: RailsConf 2018
+    - Yi-Ting Cheng
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-18"
   description: ""
-  video_provider: youtube
-  video_id: hZ2-Vsq8ZCU
+  video_provider: "youtube"
+  video_id: "hZ2-Vsq8ZCU"
 
-- title: "Up And Down Again: A Migration's Tale"
+- id: "derek-prior-railsconf-2018"
+  title: "Up And Down Again: A Migration's Tale"
   raw_title: "RailsConf 2018: Up And Down Again: A Migration's Tale by Derek Prior"
   speakers:
     - Derek Prior
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-18"
-  description:
-    "Up And Down Again: A Migration's Tale by Derek Prior \n\nYou run rake
-    db:migrate and rake db:schema:load regularly, but what do they actually do? How
-    does rake db:rollback automatically reverse migrations and why can't it reverse
-    all of them? How can you teach these tasks new tricks to support additional database
-    constructs?\n\nWe'll answer all of this and more as we explore the world of schema
-    management in Rails. You will leave this talk with a deep understanding of how
-    Rails manages schema, a better idea of its pitfalls, and ready to bend it to your
-    will."
-  video_provider: youtube
-  video_id: _wR4NIQNmOI
+  description: |-
+    Up And Down Again: A Migration's Tale by Derek Prior 
 
-- title: "Lightning Talks"
+    You run rake db:migrate and rake db:schema:load regularly, but what do they actually do? How does rake db:rollback automatically reverse migrations and why can't it reverse all of them? How can you teach these tasks new tricks to support additional database constructs?
+
+    We'll answer all of this and more as we explore the world of schema management in Rails. You will leave this talk with a deep understanding of how Rails manages schema, a better idea of its pitfalls, and ready to bend it to your will.
+  video_provider: "youtube"
+  video_id: "_wR4NIQNmOI"
+
+- id: "lightning-talks-railsconf-2018"
+  title: "Lightning Talks"
   raw_title: "RailsConf 2018: Lightning Talks"
-  speakers:
-    # - Teck # TODO: missing last name
-    # - Mike # TODO: missing last name
-    - Claudio Baccigalupo
-    # - Fiona # TODO: missing last name
-    - Nynne Just Christoffersen
-    - Jacklyn Ma
-    - Jingyi Chen
-    - Jamie Gaskins
-    - Samay Sharma
-    - Lee Richmond
-    - Raimond Garcia
-    # - Chris # TODO: missing last name
-    - Chris Lawrence
-    - Andrew Louis
-    - Thomas McGoey-Smith
-    - Heidi Waterhouse
-    - Adam Cuppy
-    - Barret Clark
-    - Brittany Alexander
-    - Jordan Byron
-    - Mike Wheeler
-    - Kenny Browne
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-18"
-  description:
-    "00:00:00 - Teck & Mike \n00:01:00 - Claudio Baccigalupo - LA Ruby
-    https://www.meetup.com/laruby/\n00:01:31 - Fiona?\n00:06:06 - Nynne Just Christoffersen
-    \n00:07:59 - Jacklyn Ma(Jackie)\n00:09:36 - Jingyi Chen\n00:14:51 - @jamie_gaskins
-    - front-end web apps in Ruby (Opal) http://clearwaterrb.org/\n00:19:41 - Samay
-    Sharma \n00:24:38 - Lee Richmond - JSONAPI Suite alternative to GraphQL https://jsonapi-suite.github.io/jsonapi_suite/\n00:29:38
-    - Raimond Garcia - Free software for citizen participation http://consulproject.org/en/\n00:35:08
-    - Chris - Ruby for Good https://rubyforgood.org/2018\n00:39:28 - Chris Lawrence
-    - Why Is Chunky So We Are Chunky http://wicswac.org/\n00:44:45 - Andrew Louis
-    - Memex https://hyfen.net/memex/\n00:51:14 - Thomas McGoey-Smith - sqlite as a
-    reference datastore\n00:55:20 - Heidi Waterhouse \n01:00:59 - Adam Cuppy \n01:04:12
-    - Barret Clark & Brittany Alexander \n01:08:19 - Jordan Byron \n01:10:41 - Mike
-    Wheeler \n01:14:24 - Kenny Browne"
-  video_provider: youtube
-  video_id: Ld414EypQzg
+  description: ""
+  video_provider: "youtube"
+  video_id: "Ld414EypQzg"
+  talks:
+    - title: "Lightning Talk: Teck & Mike"
+      start_cue: "00:00:00"
+      end_cue: "00:01:00"
+      id: "teck-mike-lighting-talk-railsconf-2018"
+      video_id: "teck-mike-lighting-talk-railsconf-2018"
+      video_provider: "parent"
+      speakers:
+        - Teck # TODO: missing last name
+        - Mike # TODO: missing last name
 
-- title: "Upgrading Rails at Scale"
+    - title: "Lightning Talk: LA Ruby Meetup"
+      start_cue: "00:01:00"
+      end_cue: "00:01:31"
+      id: "claudio-baccigalupo-lighting-talk-railsconf-2018"
+      video_id: "claudio-baccigalupo-lighting-talk-railsconf-2018"
+      video_provider: "parent"
+      speakers:
+        - Claudio Baccigalupo
+      slides_url: "https://www.meetup.com/laruby/"
+
+    - title: "Lightning Talk: Fiona"
+      start_cue: "00:01:31"
+      end_cue: "00:06:06"
+      id: "fiona-lighting-talk-railsconf-2018"
+      video_id: "fiona-lighting-talk-railsconf-2018"
+      video_provider: "parent"
+      speakers:
+        - Fiona # TODO: missing last name
+
+    - title: "Lightning Talk: Nynne Just Christoffersen"
+      start_cue: "00:06:06"
+      end_cue: "00:07:59"
+      id: "nynne-just-christoffersen-lighting-talk-railsconf-2018"
+      video_id: "nynne-just-christoffersen-lighting-talk-railsconf-2018"
+      video_provider: "parent"
+      speakers:
+        - Nynne Just Christoffersen
+
+    - title: "Lightning Talk: Jacklyn Ma"
+      start_cue: "00:07:59"
+      end_cue: "00:09:36"
+      id: "jacklyn-ma-lighting-talk-railsconf-2018"
+      video_id: "jacklyn-ma-lighting-talk-railsconf-2018"
+      video_provider: "parent"
+      speakers:
+        - Jacklyn Ma
+
+    - title: "Lightning Talk: Jingyi Chen"
+      start_cue: "00:09:36"
+      end_cue: "00:14:51"
+      id: "jingyi-chen-lighting-talk-railsconf-2018"
+      video_id: "jingyi-chen-lighting-talk-railsconf-2018"
+      video_provider: "parent"
+      speakers:
+        - Jingyi Chen
+
+    - title: "Lightning Talk: Front-end web apps in Ruby (Opal)"
+      start_cue: "00:14:51"
+      end_cue: "00:19:41"
+      id: "jamie-gaskins-lighting-talk-railsconf-2018"
+      video_id: "jamie-gaskins-lighting-talk-railsconf-2018"
+      video_provider: "parent"
+      speakers:
+        - Jamie Gaskins
+      slides_url: "http://clearwaterrb.org/"
+
+    - title: "Lightning Talk: Samay Sharma"
+      start_cue: "00:19:41"
+      end_cue: "00:24:38"
+      id: "samay-sharma-lighting-talk-railsconf-2018"
+      video_id: "samay-sharma-lighting-talk-railsconf-2018"
+      video_provider: "parent"
+      speakers:
+        - Samay Sharma
+
+    - title: "Lightning Talk: JSONAPI Suite alternative to GraphQL"
+      start_cue: "00:24:38"
+      end_cue: "00:29:38"
+      id: "lee-richmond-lighting-talk-railsconf-2018"
+      video_id: "lee-richmond-lighting-talk-railsconf-2018"
+      video_provider: "parent"
+      speakers:
+        - Lee Richmond
+      description: |-
+        https://jsonapi-suite.github.io/jsonapi_suite/
+
+    - title: "Lightning Talk: Free software for citizen participation"
+      start_cue: "00:29:38"
+      end_cue: "00:35:08"
+      id: "raimond-garcia-lighting-talk-railsconf-2018"
+      video_id: "raimond-garcia-lighting-talk-railsconf-2018"
+      video_provider: "parent"
+      speakers:
+        - Raimond Garcia
+      description: |-
+        http://consulproject.org/en/
+
+    - title: "Lightning Talk: Ruby for Good 2018"
+      start_cue: "00:35:08"
+      end_cue: "00:39:28"
+      id: "chris-lighting-talk-railsconf-2018"
+      video_id: "chris-lighting-talk-railsconf-2018"
+      video_provider: "parent"
+      speakers:
+        - Chris # TODO: missing last name
+      description: |-
+        https://rubyforgood.org/2018
+
+    - title: "Lightning Talk: Chris Lawrence - Why Is Chunky So We Are Chunky"
+      start_cue: "00:39:28"
+      end_cue: "00:44:45"
+      id: "chris-lawrence-lighting-talk-railsconf-2018"
+      video_id: "chris-lawrence-lighting-talk-railsconf-2018"
+      video_provider: "parent"
+      speakers:
+        - Chris Lawrence
+      description: |-
+        http://wicswac.org/
+
+    - title: "Lightning Talk: Memex"
+      start_cue: "00:44:45"
+      end_cue: "00:51:14"
+      id: "andrew-louis-lighting-talk-railsconf-2018"
+      video_id: "andrew-louis-lighting-talk-railsconf-2018"
+      video_provider: "parent"
+      speakers:
+        - Andrew Louis
+      description: |-
+        https://hyfen.net/memex/
+
+    - title: "Lightning Talk: sqlite as a reference datastore"
+      start_cue: "00:51:14"
+      end_cue: "00:55:20"
+      id: "thomas-mcgoey-smith-lighting-talk-railsconf-2018"
+      video_id: "thomas-mcgoey-smith-lighting-talk-railsconf-2018"
+      video_provider: "parent"
+      speakers:
+        - Thomas McGoey-Smith
+
+    - title: "Lightning Talk: Heidi Waterhouse"
+      start_cue: "00:55:20"
+      end_cue: "01:00:59"
+      id: "heidi-waterhouse-lighting-talk-railsconf-2018"
+      video_id: "heidi-waterhouse-lighting-talk-railsconf-2018"
+      video_provider: "parent"
+      speakers:
+        - Heidi Waterhouse
+
+    - title: "Lightning Talk: Adam Cuppy"
+      start_cue: "01:00:59"
+      end_cue: "01:04:12"
+      id: "adam-cuppy-lighting-talk-railsconf-2018"
+      video_id: "adam-cuppy-lighting-talk-railsconf-2018"
+      video_provider: "parent"
+      speakers:
+        - Adam Cuppy
+
+    - title: "Lightning Talk: Rails Camp South 2018"
+      start_cue: "01:04:12"
+      end_cue: "01:08:19"
+      id: "barret-clark-brittany-alexander-lighting-talk-railsconf-2018"
+      video_id: "barret-clark-brittany-alexander-lighting-talk-railsconf-2018"
+      video_provider: "parent"
+      description: |-
+        https://us-south.rails.camp/
+
+        May 7-9, 2018 - Dahlonaga, GA - @railscampsouth
+      speakers:
+        - Barret Clark
+        - Brittany Alexander
+
+    - title: "Lightning Talk: Jordan Byron"
+      start_cue: "01:08:19"
+      end_cue: "01:10:41"
+      id: "jordan-byron-lighting-talk-railsconf-2018"
+      video_id: "jordan-byron-lighting-talk-railsconf-2018"
+      video_provider: "parent"
+      speakers:
+        - Jordan Byron
+
+    - title: "Lightning Talk: Mike Wheeler"
+      start_cue: "01:10:41"
+      end_cue: "01:14:24"
+      id: "mike-wheeler-lighting-talk-railsconf-2018"
+      video_id: "mike-wheeler-lighting-talk-railsconf-2018"
+      video_provider: "parent"
+      speakers:
+        - Mike Wheeler
+
+    - title: "Lightning Talk: Kenny Browne"
+      start_cue: "01:14:24"
+      end_cue: "01:19:42"
+      id: "kenny-browne-lighting-talk-railsconf-2018"
+      video_id: "kenny-browne-lighting-talk-railsconf-2018"
+      video_provider: "parent"
+      speakers:
+        - Kenny Browne
+
+- id: "edouard-chin-railsconf-2018"
+  title: "Upgrading Rails at Scale"
   raw_title: "RailsConf 2018: Upgrading Rails at Scale by Edouard Chin"
   speakers:
     - Edouard Chin
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-19"
   description: |-
     Upgrading Rails at Scale by Edouard Chin
 
     Upgrading Rails at Shopify has always been a tedious and slow process. One full upgrade cycle was taking as much time as it takes to release a new Rails version. Having a full time dedicated team working solely on upgrading our platform wasn’t the solution but instead a proper process and toolkit. In this talk I’d like to share the different techniques and strategies that allowed to perform our smoothest and fastest Rails upgrade ever.
-  video_provider: youtube
-  video_id: N2B5V4ozc6k
+  video_provider: "youtube"
+  video_id: "N2B5V4ozc6k"
 
-- title: "Postgres 10, Performance, and You"
+- id: "gabe-enslein-railsconf-2018"
+  title: "Postgres 10, Performance, and You"
   raw_title: "RailsConf 2018: Postgres 10, Performance, and You by Gabe Enslein"
   speakers:
     - Gabe Enslein
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-19"
   description: |-
     Postgres 10, Performance, and You by Gabe Enslein
 
     Postgres 10 is out this year, with a whole host of features you won't want to miss. Join the Heroku data team as we take a deep dive into parallel queries, native json
-  video_provider: youtube
-  video_id: 8gXdLAM6B1w
+  video_provider: "youtube"
+  video_id: "8gXdLAM6B1w"
 
-- title: "Hot Swapping Our Rails Front End In Secret - A Rebrand Story"
+- id: "chris-lopresto-railsconf-2018"
+  title: "Hot Swapping Our Rails Front End In Secret - A Rebrand Story"
   raw_title: "RailsConf 2018: Hot Swapping Our Rails Front End In Secret - A Rebrand Story by Chris LoPresto"
   speakers:
     - Chris LoPresto
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-19"
   description: |-
     Hot Swapping Our Rails Front End In Secret - A Rebrand Story by Chris LoPresto
@@ -1164,40 +1472,46 @@
     We shipped a lot of code extremely quickly yet managed to elevate code quality and capabilities in the process.
 
     Constraint breeds creativity.
-  video_provider: youtube
-  video_id: Egumr5KiTNI
+  video_provider: "youtube"
+  video_id: "Egumr5KiTNI"
 
-- title: "Actionable Tactics for Leveling Up Junior Devs"
+- id: "sumeet-jain-railsconf-2018"
+  title: "Actionable Tactics for Leveling Up Junior Devs"
   raw_title: "RailsConf 2018: Actionable Tactics for Leveling Up Junior Devs by Sumeet Jain"
   speakers:
     - Sumeet Jain
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-19"
   description: |-
     Actionable Tactics for Leveling Up Junior Devs by Sumeet Jain
 
     We are told that junior developers are a secret weapon, but this alleged "competitive advantage" is so elusive! Typical advice about evolving talent can be broad, un-relatable, and impractical. Aren't there any specific and actionable tactics that teams can employ for leveling up new devs? (Yes, there are!)
-  video_provider: youtube
-  video_id: K0vxOBIyhF0
+  video_provider: "youtube"
+  video_id: "K0vxOBIyhF0"
 
-- title: "Your first contribution (and beyond)"
+- id: "dinah-shi-railsconf-2018"
+  title: "Your first contribution (and beyond)"
   raw_title: "RailsConf 2018: Your first contribution (and beyond) by Dinah Shi"
   speakers:
     - Dinah Shi
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-19"
   description: |-
     Your first contribution (and beyond) by Dinah Shi
 
     Do you keep telling yourself you want to get into open source? Have you been thinking about contributing to Rails? Don’t know where to get started? Right here! Come learn about how to find an interesting issue to work on, set up your dev environment, and ask for help when you get stuck. We’ll also talk about what happens after the first patch and where to go from there.
-  video_provider: youtube
-  video_id: SUD9rj0rRxg
+  video_provider: "youtube"
+  video_id: "SUD9rj0rRxg"
 
-- title: "Ruby: A Family History"
+- id: "geoffrey-litt-railsconf-2018"
+  title: "Ruby: A Family History"
   raw_title: "RailsConf 2018: Ruby: A Family History by Geoffrey Litt"
   speakers:
     - Geoffrey Litt
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-19"
   description: |-
     Ruby: A Family History by Geoffrey Litt
@@ -1205,14 +1519,16 @@
     Rails is made possible by Ruby’s unique combination of deep dynamism and pragmatic elegance. In turn, Ruby inherited many of its core ideas from older languages including Lisp, Smalltalk, and Perl.
 
     In this talk, we’ll take a tour of these languages and their myriad influences on Ruby, to better understand the foundations of our tools, improve our ability to use them to their full potential, and imagine how they might be further improved.
-  video_provider: youtube
-  video_id: ELMbK8aHo7w
+  video_provider: "youtube"
+  video_id: "ELMbK8aHo7w"
 
-- title: "Five Sharding Data Models and Which is Right"
+- id: "craig-kerstiens-railsconf-2018"
+  title: "Five Sharding Data Models and Which is Right"
   raw_title: "RailsConf 2018: Five Sharding Data Models and Which is Right by Craig Kerstiens"
   speakers:
     - Craig Kerstiens
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-19"
   description: |-
     Five Sharding Data Models and Which is Right by Craig Kerstiens
@@ -1220,29 +1536,33 @@
     Sharding is a heated topic and many who have tried it have come away with a bad taste in their mouth. But it's also well proven that sharding your database is the true way to scale the data layer. From Instagram to Google to Salesforce, with large-enough data and with sufficiently demanding performance requirements, you need to shard in order to scale out. Using the lens of the Postgres open source database, I'll walk you through things to keep in mind to be successful with sharding, and which data model is the right approach for you.
 
     This is a sponsored talk by Citus Data.
-  video_provider: youtube
-  video_id: RO6lIW5KQkw
+  video_provider: "youtube"
+  video_id: "RO6lIW5KQkw"
 
-- title: "Using Skylight to Solve Real-World Performance Problems"
+- id: "yehuda-katz-railsconf-2018"
+  title: "Using Skylight to Solve Real-World Performance Problems"
   raw_title: "RailsConf 2018: Using Skylight to Solve Real-World Performance Problems by Yehuda, Godfrey & Krystan"
   speakers:
     - Yehuda Katz
     - Godfrey Chan
-    - Krystan Huffmenne
-  event_name: RailsConf 2018
+    - Krystan HuffMenne
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-19"
   description: |-
-    Using Skylight to Solve Real-World Performance Problems by Yehuda Katz, Godfrey Chan & Krystan Huffmenne
+    Using Skylight to Solve Real-World Performance Problems by Yehuda Katz, Godfrey Chan & Krystan HuffMenne
 
     This is a sponsored talk by Skylight
-  video_provider: youtube
-  video_id: QlMqObmQCrI
+  video_provider: "youtube"
+  video_id: "QlMqObmQCrI"
 
-- title: "Containerizing Rails: Techniques, Pitfalls, & Best Practices"
+- id: "daniel-azuma-railsconf-2018"
+  title: "Containerizing Rails: Techniques, Pitfalls, & Best Practices"
   raw_title: "RailsConf 2018: Containerizing Rails: Techniques, Pitfalls, & Best Practices by Daniel Azuma"
   speakers:
     - Daniel Azuma
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-19"
   description: |-
     Techniques, Pitfalls, & Best Practices by Daniel Azuma
@@ -1250,27 +1570,31 @@
     Ready to containerize your Rails application? Then this session is for you. We'll walk through the process of deploying a nontrivial Rails app to Kubernetes, focusing on effective container design. You'll learn techniques and best practices for constructing images and orchestrating your deployment, and you'll come away understanding how to optimize the performance, flexibility, and security of your containerized application.
 
     This is a sponsored talk by Google Cloud Platform.
-  video_provider: youtube
-  video_id: kG2vxYn547E
+  video_provider: "youtube"
+  video_id: "kG2vxYn547E"
 
-- title: "Here's to history: programming through archaeology"
+- id: "eleanor-kiefel-haggerty-railsconf-2018"
+  title: "Here's to history: programming through archaeology"
   raw_title: "RailsConf 2018: Here's to history: programming through archaeology by Eleanor Kiefel Haggerty"
   speakers:
     - Eleanor Kiefel Haggerty
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-22"
   description: |-
     RailsConf 2018: Here's to history: programming through archaeology by Eleanor Kiefel Haggerty
 
     Does your git log output resemble an archaeological site from 500BC? Ransacked by Persians with some Spartan conflict? When we code and commit, our decisions, for better or worse, are preserved. As though in an archaeological record. Thanks to the archaeological record we can understand entire human cultures, but how much do we understand about the decisions developers are making today? Applying the same practices archaeologists utilise can help us understand the decisions developers are making in 2018.
-  video_provider: youtube
-  video_id: zXas0xT5JGA
+  video_provider: "youtube"
+  video_id: "zXas0xT5JGA"
 
-- title: "Knobs, buttons & switches: Operating your application at scale"
+- id: "amy-unger-railsconf-2018"
+  title: "Knobs, buttons & switches: Operating your application at scale"
   raw_title: "RailsConf 2018: Knobs, buttons & switches: Operating your application at scale by Amy Unger"
   speakers:
     - Amy Unger
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-05-22"
   description: |-
     RailsConf 2018:Knobs, buttons & switches: Operating your application at scale by Amy Unger
@@ -1280,14 +1604,16 @@
     Every app comes under stress, whether it's from downstream failures to unmaintainable high load to a spike in intensive requests. We'll cover code patterns you can use to change the behavior of your application on the fly to gracefully fail.
 
     You’ll walk away from this talk with tools you can have on hand to ensure you remain in control even when your application is under stress.
-  video_provider: youtube
-  video_id: KjfYoHxmCmI
+  video_provider: "youtube"
+  video_id: "KjfYoHxmCmI"
 
-- title: "Here’s to the crazy ones"
+- id: "james-adam-railsconf-2018"
+  title: "Here’s to the crazy ones"
   raw_title: "RailsConf 2018: Here’s to the crazy ones by James Adam"
   speakers:
     - James Adam
-  event_name: RailsConf 2018
+  event_name: "RailsConf 2018"
+  date: "2018-04-17"
   published_at: "2018-06-06"
   description: |-
     RailsConf 2018: Here’s to the crazy ones by James Adam
@@ -1297,5 +1623,5 @@
     I’d like rewind time by more than ten years, to tell you about one particular crazy idea that almost everyone hated, until it quietly became one of the core architectural components of Rails.
 
     At the same time, we’ll meet the crazy ones, the misfits, the rebels and the trouble makers that ended up shaping Rails as we know it… and maybe, just maybe, we will realise that we can be one of them too.
-  video_provider: youtube
-  video_id: h3xe-Rf4A6k
+  video_provider: "youtube"
+  video_id: "h3xe-Rf4A6k"

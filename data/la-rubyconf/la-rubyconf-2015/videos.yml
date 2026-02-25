@@ -1,138 +1,163 @@
 ---
-# TODO: talks running order
-# TODO: talk dates
-# TODO: conference website
-# TODO: schedule website
+# Website: https://web.archive.org/web/20150928124321/https://larubyconf.com
+# Schedule: https://web.archive.org/web/20150928124321/https://larubyconf.com/schedules
 
-- title: "Build to Last: How to design rails apps to avoid a rewrite in 5 years"
-  raw_title: LA RubyConf 2015- Build to Last... by Mike Moore
+## Day 1 - October 10, 2015
+
+# Registration
+
+# Welcome and Introduction
+
+- id: "mike-moore-la-rubyconf-2015"
+  title: "Build to Last: How to design rails apps to avoid a rewrite in 5 years"
+  raw_title: "LA RubyConf 2015- Build to Last... by Mike Moore"
   speakers:
     - Mike Moore
-  event_name: LA RubyConf 2015
-  published_at: "2015-10-29"
-  description: "Build to Last: How to design rails apps to avoid a rewrite in 5 years"
-  video_provider: youtube
-  video_id: 8YUed3l2BZY
-
-- title: Mind of a Hacker
-  raw_title: LA RubyConf 2015- Mind of a Hacker by Ryan Davis
-  speakers:
-    - Ryan Davis
-  event_name: LA RubyConf 2015
+  event_name: "LA RubyConf 2015"
+  date: "2014-10-10"
   published_at: "2015-10-29"
   description: |-
-    Mind of a Hacker
+    Build to Last: How to design rails apps to avoid a rewrite in 5 years
+  video_provider: "youtube"
+  video_id: "8YUed3l2BZY"
 
-    Help us caption & translate this video!
+# Break
 
-    http://amara.org/v/HTA0/
-  video_provider: youtube
-  video_id: vcsKFsxAIOE
-
-- title: Botany with Bytes
-  raw_title: LA RubyConf 2015- Botany with Bytes by Lito Nicolai
-  speakers:
-    - Lito Nicolai
-  event_name: LA RubyConf 2015
-  published_at: "2015-10-29"
-  description: |-
-    Botany with Bytes
-
-    Plants are tiny computers. As they grow, the sprouts are computing from first principles how to be a plant. We’ll see how they do it! This talk uses Ruby and the ‘graphics’ gem to build models of all kinds of plants, from algae blooms to juniper branches. We’ll touch on rewriting systems, formal grammars, and Alan Turing’s contributions to botany. We’ll look at the shapes of euphorbia, artichoke, and oregon grape, and how these come from plants’ love of sunlight and greedy desire for growth. By the end, we'll have a series of great visual metaphors for fundamental computer science concepts!
-
-    Help us caption & translate this video!
-
-    http://amara.org/v/HTA1/
-  video_provider: youtube
-  video_id: OzkZJTp9jNI
-
-- title: "Hacking Development Culture: Treating Developers As People"
-  raw_title: "LA RubyConf 2015- Hacking Development Culture: Treating Developers As People by Austin Fonacier"
-  speakers:
-    - Austin Fonacier
-  event_name: LA RubyConf 2015
-  published_at: "2015-10-29"
-  description: |-
-    Hacking Development Culture: Treating Developers As People
-
-    I work at a growing company where the main "money-making" app was a monolithic and upgraded over time from a Ruby on Rails 1 codebase. Working in a fast moving startup where stopping for six months to rewrite is NOT an option. The development culture at the time revolved around simply passing QA and getting features out the door. On top of that, finding seasoned Rails developers to help mend the codebase are rare and hard to hire. All or any of this sound familiar? This is our story of how I balanced and satisfied management's requirements of getting new features out the door but at the same time shaping a rag tag group of developers and turned us into a well oiled machine where now code-quality, code reviews, pair programming, and test driven development are part of the development culture.
-
-    Help us caption & translate this video!
-
-    http://amara.org/v/HTA2/
-  video_provider: youtube
-  video_id: z5zll50fRJA
-
-- title: Stupid Ideas For Many Computers
-  raw_title: LA RubyConf 2015- Stupid Ideas For Many Computers by Aja Hammerly
-  speakers:
-    - Aja Hammerly
-  event_name: LA RubyConf 2015
-  published_at: "2015-10-29"
-  slides_url: https://thagomizer.com/files/Stupid_LaRubyConf15.pdf
-  description: |-
-    Stupid Ideas For Many Computers
-
-    There are plenty of useful things you can do with Ruby and a bunch of servers. This talk isn't about useful things. This talk will show off asinine, amusing, and useless things you can do with Ruby and access to cloud computing. Sentiment analysis based on emoji? Why not? Hacky performance testing frameworks? Definitely! Multiplayer infinite battleship? Maybe? The world's most inefficient logic puzzle solver? Awesome! If you are interested in having some fun and laughing at reasonable code for unreasonable problems this talk is for you.
-
-    Help us caption & translate this video!
-
-    http://amara.org/v/HTA3/
-  video_provider: youtube
-  video_id: wqkWKrNW68A
-
-- title: Data Migrations with MagLev
-  raw_title: LA RubyConf 2015- Data Migrations with MagLev by JohnnyT
-  speakers:
-    - JohnnyT
-  event_name: LA RubyConf 2015
-  published_at: "2015-10-29"
-  description: |-
-    Data Migrations with MagLev
-
-    MagLev is a Ruby implementation built on top of a VM which offers native object persistence - you are able to persist plain Ruby objects (including procs and lambdas) and then see and use them from any other connected VM. We are now using MagLev in production and have already learned some good lessons on working with and migrating these committed objects long term. Come and hear about recent MagLev updates and and appreciate the following quote on another level:  I always knew that one day Smalltalk would replace Java. I just didn't know it would be called Ruby. -- Kent Beck
-  video_provider: youtube
-  video_id: 32gjrn3LPFQ
-
-- title: Learn Enough Tutorial Writing to Be Dangerous
-  raw_title: LA RubyConf 2015- Learn Enough Tutorial Writing to Be Dangerous by Michael Hartl
-  speakers:
-    - Michael Hartl
-  event_name: LA RubyConf 2015
-  published_at: "2015-10-29"
-  description: |-
-    Learn Enough Tutorial Writing to Be Dangerous
-
-    This talk discusses some time-tested techniques for producing effective tutorials, focusing on telling stories via long-form technical narrative. Topics include motivation & structure, the process of successive refinement (including the "comb-over principle"), and tricks of the trade for using neurological hacks and navigating large text files. The audience will leave with a stronger grasp of how to make tutorials that keep a reader's interest while instructing gracefully and effectively.
-  video_provider: youtube
-  video_id: TpmoxsYeap0
-
-- title: Practical Unix for Ruby & Rails
-  raw_title: LA RubyConf 2015- Practical Unix for Ruby & Rails by Ylan Segal
+- id: "ylan-segal-la-rubyconf-2015"
+  title: "Practical Unix for Ruby & Rails"
+  raw_title: "LA RubyConf 2015- Practical Unix for Ruby & Rails by Ylan Segal"
   speakers:
     - Ylan Segal
-  event_name: LA RubyConf 2015
+  event_name: "LA RubyConf 2015"
+  date: "2014-10-10"
   published_at: "2015-10-29"
   description: |-
     Practical Unix for Ruby & Rails
 
     The Unix command-line interface is much more than a way to generate and run Rails migrations. It offers a myriad of tools that make it easy to work with text files, large and small. It is the original embodiment of the 'build small things' philosophy. Experience a boost in productivity by using the powerful tools already at your disposal.
-  video_provider: youtube
-  video_id: yptv5R5koeI
+  video_provider: "youtube"
+  video_id: "yptv5R5koeI"
 
-- title: What If Shakespeare Wrote Ruby?
-  raw_title: LA RubyConf 2015- What If Shakespeare Wrote Ruby by Adam Cuppy
+# Break
+
+- id: "michael-hartl-la-rubyconf-2015"
+  title: "Learn Enough Tutorial Writing to Be Dangerous"
+  raw_title: "LA RubyConf 2015- Learn Enough Tutorial Writing to Be Dangerous by Michael Hartl"
+  speakers:
+    - Michael Hartl
+  event_name: "LA RubyConf 2015"
+  date: "2014-10-10"
+  published_at: "2015-10-29"
+  description: |-
+    Learn Enough Tutorial Writing to Be Dangerous
+
+    This talk discusses some time-tested techniques for producing effective tutorials, focusing on telling stories via long-form technical narrative. Topics include motivation & structure, the process of successive refinement (including the "comb-over principle"), and tricks of the trade for using neurological hacks and navigating large text files. The audience will leave with a stronger grasp of how to make tutorials that keep a reader's interest while instructing gracefully and effectively.
+  video_provider: "youtube"
+  video_id: "TpmoxsYeap0"
+
+# Break
+
+- id: "adam-cuppy-la-rubyconf-2015"
+  title: "What If Shakespeare Wrote Ruby?"
+  raw_title: "LA RubyConf 2015- What If Shakespeare Wrote Ruby by Adam Cuppy"
   speakers:
     - Adam Cuppy
-  event_name: LA RubyConf 2015
+  event_name: "LA RubyConf 2015"
+  date: "2014-10-10"
   published_at: "2015-10-29"
   description: |-
     What If Shakespeare Wrote Ruby
 
     Did you know that Shakespeare wrote almost no direction into his plays? No fight direction. No staging. No notes to the songs. Of the 1700 words he created, there was no official dictionary. That’s right the author of some of the greatest literary works in history, which were filled with situational complexity, fight sequences and music, include NO documentation! How did he do it? In this talk, we're going "thee and thou." I'm going to give you a crash course in how: Shakespeare writes software.
 
-    Help us caption & translate this video!
+  video_provider: "youtube"
+  video_id: "nyx6YF4XSpE"
 
-    http://amara.org/v/HTAZ/
-  video_provider: youtube
-  video_id: nyx6YF4XSpE
+# Lunch
+
+- id: "johnnyt-la-rubyconf-2015"
+  title: "Data Migrations with MagLev"
+  raw_title: "LA RubyConf 2015- Data Migrations with MagLev by JohnnyT"
+  speakers:
+    - JohnnyT
+  event_name: "LA RubyConf 2015"
+  date: "2014-10-10"
+  published_at: "2015-10-29"
+  description: |-
+    Data Migrations with MagLev
+
+    MagLev is a Ruby implementation built on top of a VM which offers native object persistence - you are able to persist plain Ruby objects (including procs and lambdas) and then see and use them from any other connected VM. We are now using MagLev in production and have already learned some good lessons on working with and migrating these committed objects long term. Come and hear about recent MagLev updates and and appreciate the following quote on another level:  I always knew that one day Smalltalk would replace Java. I just didn't know it would be called Ruby. -- Kent Beck
+  video_provider: "youtube"
+  video_id: "32gjrn3LPFQ"
+
+# Break
+
+- id: "aja-hammerly-la-rubyconf-2015"
+  title: "Stupid Ideas For Many Computers"
+  raw_title: "LA RubyConf 2015- Stupid Ideas For Many Computers by Aja Hammerly"
+  speakers:
+    - Aja Hammerly
+  event_name: "LA RubyConf 2015"
+  date: "2014-10-10"
+  published_at: "2015-10-29"
+  slides_url: "https://thagomizer.com/files/Stupid_LaRubyConf15.pdf"
+  description: |-
+    Stupid Ideas For Many Computers
+
+    There are plenty of useful things you can do with Ruby and a bunch of servers. This talk isn't about useful things. This talk will show off asinine, amusing, and useless things you can do with Ruby and access to cloud computing. Sentiment analysis based on emoji? Why not? Hacky performance testing frameworks? Definitely! Multiplayer infinite battleship? Maybe? The world's most inefficient logic puzzle solver? Awesome! If you are interested in having some fun and laughing at reasonable code for unreasonable problems this talk is for you.
+
+  video_provider: "youtube"
+  video_id: "wqkWKrNW68A"
+
+# Break
+
+- id: "austin-fonacier-la-rubyconf-2015"
+  title: "Hacking Development Culture: Treating Developers As People"
+  raw_title: "LA RubyConf 2015- Hacking Development Culture: Treating Developers As People by Austin Fonacier"
+  speakers:
+    - Austin Fonacier
+  event_name: "LA RubyConf 2015"
+  date: "2014-10-10"
+  published_at: "2015-10-29"
+  description: |-
+    Hacking Development Culture: Treating Developers As People
+
+    I work at a growing company where the main "money-making" app was a monolithic and upgraded over time from a Ruby on Rails 1 codebase. Working in a fast moving startup where stopping for six months to rewrite is NOT an option. The development culture at the time revolved around simply passing QA and getting features out the door. On top of that, finding seasoned Rails developers to help mend the codebase are rare and hard to hire. All or any of this sound familiar? This is our story of how I balanced and satisfied management's requirements of getting new features out the door but at the same time shaping a rag tag group of developers and turned us into a well oiled machine where now code-quality, code reviews, pair programming, and test driven development are part of the development culture.
+
+  video_provider: "youtube"
+  video_id: "z5zll50fRJA"
+
+# Break
+
+- id: "lito-nicolai-la-rubyconf-2015"
+  title: "Botany with Bytes"
+  raw_title: "LA RubyConf 2015- Botany with Bytes by Lito Nicolai"
+  speakers:
+    - Lito Nicolai
+  event_name: "LA RubyConf 2015"
+  date: "2014-10-10"
+  published_at: "2015-10-29"
+  description: |-
+    Botany with Bytes
+
+    Plants are tiny computers. As they grow, the sprouts are computing from first principles how to be a plant. We’ll see how they do it! This talk uses Ruby and the ‘graphics’ gem to build models of all kinds of plants, from algae blooms to juniper branches. We’ll touch on rewriting systems, formal grammars, and Alan Turing’s contributions to botany. We’ll look at the shapes of euphorbia, artichoke, and oregon grape, and how these come from plants’ love of sunlight and greedy desire for growth. By the end, we'll have a series of great visual metaphors for fundamental computer science concepts!
+
+  video_provider: "youtube"
+  video_id: "OzkZJTp9jNI"
+
+# Break
+
+- id: "ryan-davis-la-rubyconf-2015"
+  title: "Mind of a Hacker"
+  raw_title: "LA RubyConf 2015- Mind of a Hacker by Ryan Davis"
+  speakers:
+    - Ryan Davis
+  event_name: "LA RubyConf 2015"
+  date: "2014-10-10"
+  published_at: "2015-10-29"
+  description: |-
+    Mind of a Hacker
+
+  video_provider: "youtube"
+  video_id: "vcsKFsxAIOE"
+# Closing Notes

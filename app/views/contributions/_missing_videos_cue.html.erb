@@ -1,0 +1,25 @@
+<%= turbo_frame_tag "missing_videos_cue" do %>
+  <h2 class="mb-4">Missing Video Cues (<%= @missing_videos_cue_count %>)</h2>
+
+  <article class="prose mb-6">
+    This section highlights talks that have child talks but are missing video cues. You can help by adding video cues to these talks so we can let users play the the talk from the exact time it starts.
+  </article>
+
+  <div id="talks-dates-out-of-bounds" class="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4 min-w-full mb-6">
+    <% @missing_videos_cue.each do |event, talks| %>
+      <%= content_tag :div, id: dom_id(event), class: "p-4 rounded-lg border bg-white", target: :_blank do %>
+        <article class="prose">
+          <h3 class="line-clamp-1">Event: <%= event.name %></h3>
+
+          <b class="mt-4 mb-2">Recording doesn't have cues for it's child talks:</b>
+
+          <ul>
+            <% talks.each do |talk| %>
+              <li><%= link_to talk.title, talk %> (<%= link_to pluralize(talk.child_talks.size, "talk"), talk %>) [<%= link_to "Data File", "https://github.com/rubyevents/rubyevents/edit/main/#{talk.static_metadata.__file_path}", target: :_blank %>]</li>
+            <% end %>
+          </ul>
+        </article>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

@@ -2,16 +2,29 @@
 # == Schema Information
 #
 # Table name: suggestions
+# Database name: primary
 #
 #  id               :integer          not null, primary key
 #  content          :text
-#  status           :integer          default("pending"), not null
-#  suggestable_type :string           not null
-#  suggestable_id   :integer          not null
+#  status           :integer          default("pending"), not null, indexed
+#  suggestable_type :string           not null, indexed => [suggestable_id]
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
-#  approved_by_id   :integer
-#  suggested_by_id  :integer
+#  approved_by_id   :integer          indexed
+#  suggestable_id   :integer          not null, indexed => [suggestable_type]
+#  suggested_by_id  :integer          indexed
+#
+# Indexes
+#
+#  index_suggestions_on_approved_by_id   (approved_by_id)
+#  index_suggestions_on_status           (status)
+#  index_suggestions_on_suggestable      (suggestable_type,suggestable_id)
+#  index_suggestions_on_suggested_by_id  (suggested_by_id)
+#
+# Foreign Keys
+#
+#  approved_by_id   (approved_by_id => users.id)
+#  suggested_by_id  (suggested_by_id => users.id)
 #
 # rubocop:enable Layout/LineLength
 class Suggestion < ApplicationRecord

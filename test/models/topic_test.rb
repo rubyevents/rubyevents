@@ -1,20 +1,3 @@
-# rubocop:disable Layout/LineLength
-# == Schema Information
-#
-# Table name: topics
-#
-#  id           :integer          not null, primary key
-#  name         :string
-#  description  :text
-#  published    :boolean          default(FALSE)
-#  slug         :string           not null
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  status       :string           default("pending"), not null
-#  canonical_id :integer
-#  talks_count  :integer
-#
-# rubocop:enable Layout/LineLength
 require "test_helper"
 
 class TopicTest < ActiveSupport::TestCase

@@ -1,0 +1,134 @@
+<div
+  id="child_<%= index %>"
+  class="card bg-base-100 border border-gray-200 mb-4">
+  <div class="card-body p-4">
+    <div class="flex justify-between items-center mb-4">
+      <h4 class="font-semibold">Talk</h4>
+      <%= link_to "Remove",
+            delete_child_templates_path(index: index),
+            data: {
+              turbo_method: :delete
+            },
+            class: "btn btn-outline btn-error btn-xs" %>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="form-control">
+        <%= form.label :title, "Title *", class: "label" %>
+        <%= form.text_field :title,
+              class:
+                class_names(
+                  "input input-bordered w-full",
+                  "input-error": form.object.errors[:title].any?
+                ),
+              placeholder: "e.g., Introducing Type Guard to Steep" %>
+        <% if form.object.errors[:title].any? %>
+          <div class="label">
+            <span class="label-text-alt text-error"><%= form.object.errors[:title].join(", ") %></span>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="form-control">
+        <%= form.label :event_name, "Event Name *", class: "label" %>
+        <%= form.text_field :event_name,
+              class:
+                class_names(
+                  "input input-bordered w-full",
+                  "input-error": form.object.errors[:event_name].any?
+                ),
+              placeholder: "e.g., RubyKaigi 2025" %>
+        <% if form.object.errors[:event_name].any? %>
+          <div class="label">
+            <span class="label-text-alt text-error"><%= form.object.errors[:event_name].join(", ") %></span>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="form-control">
+        <%= form.label :speakers, "Speakers", class: "label" %>
+        <!-- Using combobox tag here because form.combobox doesn't generate the right ID for some reason -->
+        <%= combobox_tag "template[children_attributes][#{index}][speakers]",
+              async_src: speakers_search_templates_path,
+              multiselect_chip_src: speakers_search_chips_templates_path,
+              name_when_new: "template[children_attributes][#{index}][speakers]",
+              free_text: true,
+              placeholder: "Search or add speakers..." %>
+      </div>
+
+      <div class="form-control">
+        <%= form.label :date, "Date", class: "label" %>
+        <%= form.date_field :date,
+              class:
+                class_names(
+                  "input input-bordered w-full",
+                  "input-error": form.object.errors[:date].any?
+                ) %>
+        <% if form.object.errors[:date].any? %>
+          <div class="label">
+            <span class="label-text-alt text-error"><%= form.object.errors[:date].join(", ") %></span>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="form-control">
+        <%= form.label :published_at, "Published At", class: "label" %>
+        <%= form.date_field :published_at,
+              class:
+                class_names(
+                  "input input-bordered w-full",
+                  "input-error": form.object.errors[:published_at].any?
+                ) %>
+        <% if form.object.errors[:published_at].any? %>
+          <div class="label">
+            <span class="label-text-alt text-error"><%= form.object.errors[:published_at].join(", ") %></span>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="form-control mt-4">
+        <%= form.label :slides_url, "Slides URL", class: "label" %>
+        <%= form.url_field :slides_url,
+              class: "input input-bordered w-full",
+              placeholder: "https://..." %>
+      </div>
+
+      <div class="form-control">
+        <%= form.label :video_provider, "Video Provider", class: "label" %>
+        <%= form.select :video_provider,
+              ::Template::VIDEO_PROVIDERS.map { [it, it.squish.underscore] },
+              {prompt: "Select provider..."},
+              {class: "select select-bordered w-full"} %>
+      </div>
+
+      <div class="form-control">
+        <%= form.label :video_id, "Video ID", class: "label" %>
+        <%= form.text_field :video_id,
+              class: "input input-bordered w-full",
+              placeholder: "e.g., kp_jeGkUmhY" %>
+      </div>
+
+      <div class="form-control">
+        <%= form.label :start_cue, "Start Time", class: "label" %>
+        <%= form.time_field :start_cue,
+              class: "input input-bordered w-full",
+              placeholder: "e.g., 02:00" %>
+      </div>
+
+      <div class="form-control">
+        <%= form.label :end_cue, "End Time", class: "label" %>
+        <%= form.time_field :end_cue,
+              class: "input input-bordered w-full",
+              placeholder: "e.g., 30:00" %>
+      </div>
+    </div>
+
+    <div class="form-control mt-4">
+      <%= form.label :description, "Description", class: "label" %>
+      <%= form.text_area :description,
+            class: "textarea textarea-bordered w-full",
+            rows: 3,
+            placeholder: "Talk or event description..." %>
+    </div>
+  </div>
+</div>

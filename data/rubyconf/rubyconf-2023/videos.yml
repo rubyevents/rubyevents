@@ -4,140 +4,176 @@
 # TODO: conference website
 # TODO: schedule website
 
-- title: "Keynote: Lessons from the Past"
+- id: "yukihiro-matz-matsumoto-rubyconf-2023"
+  title: "Keynote: Lessons from the Past"
   raw_title: 'RubyConf 2023 - Keynote by Yukihiro "Matz" Matsumoto'
   speakers:
     - Yukihiro "Matz" Matsumoto
-  event_name: RubyConf 2023
-  published_at: "2023-12-19"
-  description: In this pre-recorded presentation, Matz shares insights into Ruby and answers questions submitted by the Ruby community.
-  video_provider: youtube
-  video_id: Dxy9UBoZjTQ
+  event_name: "RubyConf 2023"
+  date: "2023-12-19"
+  published_at: "2024-01-01"
+  description: |-
+    In this pre-recorded presentation, Matz shares insights into Ruby and answers questions submitted by the Ruby community.
+  video_provider: "youtube"
+  video_id: "Dxy9UBoZjTQ"
 
-- title: Which Time Is It?
+- id: "jol-quenneville-rubyconf-2023"
+  title: "Which Time Is It?"
   raw_title: "RubyConf 2023 - Which Time Is It? by Joël Quenneville"
   speakers:
     - Joël Quenneville
-  event_name: RubyConf 2023
-  published_at: "2023-12-19"
-  slides_url: https://speakerdeck.com/joelq/which-time-is-it
+  event_name: "RubyConf 2023"
+  date: "2023-12-19"
+  published_at: "2024-01-01"
+  slides_url: "https://speakerdeck.com/joelq/which-time-is-it"
   description: |-
     Can you add two time values together? Yes. No. Not so fast!
 
     Reset your clocks and join me on a graphical tour of time itself. You'll discover how "time" is more than a single thing, build intuition around what different operations mean, and get a sense of when some operations are nonsensical. You'll leave with a better mental model for thinking about time and avoiding subtle time-related bugs in your own code.
-  video_provider: youtube
-  video_id: 54Hs2E7zsQg
+  video_provider: "youtube"
+  video_id: "54Hs2E7zsQg"
 
-- title: Finding a needle in the haystack - Debugging performance issues
+- id: "puneet-khushwani-rubyconf-2023"
+  title: "Finding a needle in the haystack - Debugging performance issues"
   raw_title: "RubyConf 2023 - Finding a needle in the haystack - Debugging performance issues by Puneet Khushwani"
   speakers:
     - Puneet Khushwani
-  event_name: RubyConf 2023
-  published_at: "2023-12-19"
+  event_name: "RubyConf 2023"
+  date: "2023-12-19"
+  published_at: "2024-01-01"
   description: |-
     What should a developer do if suddenly one day they get assigned to debug a Sev1 performance issue?
 
     From our experience, sometimes finding the problem itself is very difficult and thus takes a lot of time. In this talk we will talk about some profilers which one can use to get visibility into what’s happening while executing code. These profilers may not always give us the exact root-cause but will always be able to give us directions to debug further.
 
     To also make things more relatable, as a case-study, we would be using a real problem which our team dealt with recently while upgrading the Ruby version of one of the largest monolith Rails application.
-  video_provider: youtube
-  video_id: EMiuLfBWx1I
+  video_provider: "youtube"
+  video_id: "EMiuLfBWx1I"
 
-- title: Popping Into CRuby
+- id: "jemma-issroff-rubyconf-2023"
+  title: "Popping Into CRuby"
   raw_title: "RubyConf 2023 - Popping Into CRuby by Jemma Issroff"
   speakers:
     - Jemma Issroff
-  event_name: RubyConf 2023
-  published_at: "2023-12-19"
-  description: Ever wondered why a line of Ruby code with no side effects has no performance impact? This talk will explain the concept of "popped" instruction sequences, demystifying how CRuby works behind the scenes to avoid running unnecessary code. We'll delve into parsing, compiling, abstract syntax trees, and instruction sequence. You’ll leave this talk with a deeper understanding of Ruby's inner workings and why they matter.
-  video_provider: youtube
-  video_id: 8R78YHyQ9ko
+  event_name: "RubyConf 2023"
+  date: "2023-12-19"
+  published_at: "2024-01-01"
+  description: |-
+    Ever wondered why a line of Ruby code with no side effects has no performance impact? This talk will explain the concept of "popped" instruction sequences, demystifying how CRuby works behind the scenes to avoid running unnecessary code. We'll delve into parsing, compiling, abstract syntax trees, and instruction sequence. You’ll leave this talk with a deeper understanding of Ruby's inner workings and why they matter.
+  video_provider: "youtube"
+  video_id: "8R78YHyQ9ko"
 
-- title: Get your Data prod ready, Fast, with Ruby Polars!
+- id: "paul-reece-rubyconf-2023"
+  title: "Get your Data prod ready, Fast, with Ruby Polars!"
   raw_title: "RubyConf 2023 - Get your Data prod ready, Fast, with Ruby Polars! by Paul Reece"
   speakers:
     - Paul Reece
-  event_name: RubyConf 2023
-  published_at: "2023-12-19"
-  description: Imagine you receive a CSV of data that has over 500,000 rows and 100 columns. Data is randomly missing in some places, some of the column names are wrong, and you have mixed Data types in some of the columns.  Correcting and cleaning that data by hand could take hours. Fear not! There is a better and faster way.  We will look into using Ruby Polars, a gem written in Rust with a Ruby API, to wrangle and clean tabular data to get it prod ready. By learning some basic operations used in Polars you can greatly expedite the import process of CSV files and API Data. Whether your goal is to use the Data in an existing application or use it in a Ruby AI/Machine learning project(since cleaning Data is a vital first step in this process), this talk will get you well on your way!
-  video_provider: youtube
-  video_id: QjTLx7po1jY
+  event_name: "RubyConf 2023"
+  date: "2023-12-19"
+  published_at: "2024-01-01"
+  description: |-
+    Imagine you receive a CSV of data that has over 500,000 rows and 100 columns. Data is randomly missing in some places, some of the column names are wrong, and you have mixed Data types in some of the columns.  Correcting and cleaning that data by hand could take hours. Fear not! There is a better and faster way.  We will look into using Ruby Polars, a gem written in Rust with a Ruby API, to wrangle and clean tabular data to get it prod ready. By learning some basic operations used in Polars you can greatly expedite the import process of CSV files and API Data. Whether your goal is to use the Data in an existing application or use it in a Ruby AI/Machine learning project(since cleaning Data is a vital first step in this process), this talk will get you well on your way!
+  video_provider: "youtube"
+  video_id: "QjTLx7po1jY"
 
-- title: State of the RubyGems
+- id: "samuel-giddins-rubyconf-2023"
+  title: "State of the RubyGems"
   raw_title: "RubyConf 2023 - State of the RubyGems by Samuel Giddins"
   speakers:
     - Samuel Giddins
-  event_name: RubyConf 2023
-  published_at: "2023-12-19"
-  description: Part history, part state of the union, and part roadmap for community feedback, this talk will cover how Ruby Central came to have an open source team, what we have been doing for the last 8.5 years, highlights from our work in 2023, and a deep dive into the ideas that we would like to get onto our road map. If you want to know more about Ruby Central, RubyGems, or project planning in long-running open source projects, this is the talk for you.
-  video_provider: youtube
-  video_id: wV9JpikPM9g
+  event_name: "RubyConf 2023"
+  date: "2023-12-19"
+  published_at: "2024-01-01"
+  description: |-
+    Part history, part state of the union, and part roadmap for community feedback, this talk will cover how Ruby Central came to have an open source team, what we have been doing for the last 8.5 years, highlights from our work in 2023, and a deep dive into the ideas that we would like to get onto our road map. If you want to know more about Ruby Central, RubyGems, or project planning in long-running open source projects, this is the talk for you.
+  video_provider: "youtube"
+  video_id: "wV9JpikPM9g"
 
-- title: Rooftop Ruby podcast
+- id: "collin-donnell-rubyconf-2023"
+  title: "Rooftop Ruby podcast"
   raw_title: "RubyConf 2023 - Rooftop Ruby podcast by Collin Donnell"
   speakers:
     - Collin Donnell
     - Joel Drapper
     - Roman Turner
     - Catherine Ricafort McCreary
-  event_name: RubyConf 2023
-  published_at: "2023-12-19"
-  description: Live - Rooftop Ruby podcast
-  video_provider: youtube
-  video_id: _RSLyjYeNTU
+  event_name: "RubyConf 2023"
+  date: "2023-12-19"
+  published_at: "2024-01-01"
+  description: |-
+    Live - Rooftop Ruby podcast
+  video_provider: "youtube"
+  video_id: "_RSLyjYeNTU"
 
-- title: Re-interpreting Data
+- id: "murray-steele-rubyconf-2023"
+  title: "Re-interpreting Data"
   raw_title: "RubyConf 2023 - Re-interpreting Data by Murray Steele"
   speakers:
     - Murray Steele
-  event_name: RubyConf 2023
-  published_at: "2023-12-19"
+  event_name: "RubyConf 2023"
+  date: "2023-12-19"
+  published_at: "2024-01-01"
   description: |-
     A talk about turning data into other data. Not particularly useful data, but imagine if you could listen to a jpeg, or see what an executable file looked like, or turn a zip file into an orchestral score?
 
     Some time ago I stumbled across the header description for WAV files and wondered: what if I took a file and calculated the appropriate WAV file header for it, could I hear my data? Turns out, yes, you can. You probably don’t want to, but you can! In this talk we’ll explore how it works for WAV files, BMP files and MIDI files. Along the way we’ll learn a lot about using ruby to manipulate raw bytes and bits of data, but also we’ll hear a README file, view an executable, and listen to the ruby interpreter itself!
-  video_provider: youtube
-  video_id: 0MrgQ7TzRUc
+  video_provider: "youtube"
+  video_id: "0MrgQ7TzRUc"
 
-- title: The Future of Understanding Ruby Code
+- id: "kevin-newton-rubyconf-2023"
+  title: "The Future of Understanding Ruby Code"
   raw_title: "RubyConf 2023 - The Future of Understanding Ruby Code by Kevin Newton"
   speakers:
     - Kevin Newton
-  event_name: RubyConf 2023
-  published_at: "2023-12-19"
-  description: For decades, the Ruby community has been fractured in the way that it parses and understands Ruby code. After countless tools have been developed and person-hours have been invested, we still don't have a common language for understanding Ruby code. No longer! Starting in Ruby 3.3, we will have a single API for parsing and understanding Ruby code. This talk will cover the history of how we got here, what is getting built today, and what you can expect from this exciting future.
-  video_provider: youtube
-  video_id: F9X5uJO9PV8
+  event_name: "RubyConf 2023"
+  date: "2023-12-19"
+  published_at: "2024-01-01"
+  description: |-
+    For decades, the Ruby community has been fractured in the way that it parses and understands Ruby code. After countless tools have been developed and person-hours have been invested, we still don't have a common language for understanding Ruby code. No longer! Starting in Ruby 3.3, we will have a single API for parsing and understanding Ruby code. This talk will cover the history of how we got here, what is getting built today, and what you can expect from this exciting future.
+  video_provider: "youtube"
+  video_id: "F9X5uJO9PV8"
 
-- title: Demystifying the Ruby package ecosystem
+- id: "jenny-shen-rubyconf-2023"
+  title: "Demystifying the Ruby package ecosystem"
   raw_title: "RubyConf 2023 - Demystifying the Ruby package ecosystem by Jenny Shen"
   speakers:
     - Jenny Shen
-  event_name: RubyConf 2023
-  published_at: "2023-12-19"
-  description: "A Ruby application is built on a foundation of its gems. But how does a gem get from the package repository to running in your project? RubyGems and Bundler does an excellent job in removing the complexities of gem resolution and installation so developers can focus on building great software. Let’s do a deep dive on how these tools seamlessly manage the dependencies you need to get your project off the ground!\n\nIn this talk, we’ll be taking a look at the inner workings of the Ruby package ecosystem. This includes:\n- The processes involved in installing gems from a Gemfile \n- Insights into debugging gems within a Rails application\n- Ensuring you're selecting the right gems to avoid security risks"
-  video_provider: youtube
-  video_id: fkfCXFxJW08
+  event_name: "RubyConf 2023"
+  date: "2023-12-19"
+  published_at: "2024-01-01"
+  description: |-
+    A Ruby application is built on a foundation of its gems. But how does a gem get from the package repository to running in your project? RubyGems and Bundler does an excellent job in removing the complexities of gem resolution and installation so developers can focus on building great software. Let’s do a deep dive on how these tools seamlessly manage the dependencies you need to get your project off the ground!
 
-- title: The Unbreakable Code Whose Breaking Won WWII
+    In this talk, we’ll be taking a look at the inner workings of the Ruby package ecosystem. This includes:
+    - The processes involved in installing gems from a Gemfile
+    - Insights into debugging gems within a Rails application
+    - Ensuring you're selecting the right gems to avoid security risks
+  video_provider: "youtube"
+  video_id: "fkfCXFxJW08"
+
+- id: "christopher-aji-slater-rubyconf-2023"
+  title: "The Unbreakable Code Whose Breaking Won WWII"
   raw_title: "RubyConf 2023 - The Unbreakable Code Whose Breaking Won WWII by Aji Slater"
   speakers:
-    - Aji Slater
-  event_name: RubyConf 2023
-  published_at: "2023-12-19"
+    - Christopher "Aji" Slater
+  event_name: "RubyConf 2023"
+  date: "2023-12-19"
+  published_at: "2024-01-01"
   description: |-
     After the last carrier pigeon but before digital encryption algorithms, there was the Enigma machine. An ingenious piece of pre-atomic age technology encoded German military secrets during World War II, baffling code-breakers with mere physical rotors, and switches, without elliptic curves or private keys.
 
     Delve into object-oriented programming and bring the Enigma machine back to life with an emulator built in Ruby. Unravel the secrets of this nigh-unbreakable cipher device, witness OO principles unlock its mysteries, discover the power and versatility of the patterns we use as developers and how they mirror the Enigma's inner workings.
-  video_provider: youtube
-  video_id: soB5h2t2HO4
+  video_provider: "youtube"
+  video_id: "soB5h2t2HO4"
 
-- title: Livin’ La Vida Hanami
+- id: "tim-riley-rubyconf-2023"
+  title: "Livin’ La Vida Hanami"
   raw_title: "RubyConf 2023 - Livin’ La Vida Hanami by Tim Riley"
   speakers:
     - Tim Riley
-  event_name: RubyConf 2023
-  published_at: "2023-12-20"
+  event_name: "RubyConf 2023"
+  date: "2023-12-20"
+  published_at: "2024-01-01"
   description: |-
     Upside, inside out, Hanami 2.0 is out!
 
@@ -146,114 +182,342 @@
     Together we’ll take a first look at Hanami, then build our very own app, and discover how Hanami apps can remain a joy to develop even as they grow.
 
     Once you’ve had a taste of it you’ll never be the same!
-  video_provider: youtube
-  video_id: L35MPfmtJZM
+  video_provider: "youtube"
+  video_id: "L35MPfmtJZM"
 
-- title: "Keynote: Making Empathy Actionable"
+- id: "sharon-steed-rubyconf-2023"
+  title: "Keynote: Making Empathy Actionable"
   raw_title: "RubyConf 2023 - Keynote by Sharon Steed"
   speakers:
     - Sharon Steed
-  event_name: RubyConf 2023
-  published_at: "2023-12-20"
-  description: Sharon Steed is the founder of Communilogue, an empathy consultancy that teaches audiences how to make empathy actionable so individuals can better connect with their coworkers; companies can better understand their consumers; and everyone can bring more humanity into the office.
-  video_provider: youtube
-  video_id: wkOh5yCLX60
+  event_name: "RubyConf 2023"
+  date: "2023-12-20"
+  published_at: "2024-01-01"
+  description: |-
+    Sharon Steed is the founder of Communilogue, an empathy consultancy that teaches audiences how to make empathy actionable so individuals can better connect with their coworkers; companies can better understand their consumers; and everyone can bring more humanity into the office.
+  video_provider: "youtube"
+  video_id: "wkOh5yCLX60"
 
-- title: "Keynote: Our superpower"
+- id: "saron-yitbarek-rubyconf-2023"
+  title: "Keynote: Our superpower"
   raw_title: "RubyConf 2023 - Keynote by Saron Yitbarek"
   speakers:
     - Saron Yitbarek
-  event_name: RubyConf 2023
-  published_at: "2023-12-20"
-  description: Saron Yitbarek shares stories and lessons she's learned from years of helping new developers transition into tech careers and building developer communities.
-  video_provider: youtube
-  video_id: 07gTTE4NPZk
+  event_name: "RubyConf 2023"
+  date: "2023-12-20"
+  published_at: "2024-01-01"
+  description: |-
+    Saron Yitbarek shares stories and lessons she's learned from years of helping new developers transition into tech careers and building developer communities.
+  video_provider: "youtube"
+  video_id: "07gTTE4NPZk"
 
-- title: "Ruby on Rack: The Magic Between Request and Response"
+- id: "meagan-waller-rubyconf-2023"
+  title: "Ruby on Rack: The Magic Between Request and Response"
   raw_title: "RubyConf 2023 - Ruby on Rack: The Magic Between Request and Response by Meagan Waller"
   speakers:
     - Meagan Waller
-  event_name: RubyConf 2023
-  published_at: "2023-12-20"
-  description: Are you ready to embark on an expedition into the core of Ruby web applications? Well, get ready, because it's time to delve into  web development with Rack—the powerhouse that fuels popular Ruby web frameworks like Rails and Sinatra. In this captivating talk, we'll plunge deep into the inner workings of Rack, the unsung hero of web development. We'll uncover its secrets, bask in its versatility, and summon the magic of custom Rack middleware—where session management, authentication, and caching reside. For developers at all levels, this talk offers practical insights and fresh perspectives. Equip yourself with the prowess to wield Rack's middleware magic, making your development journey more efficient and enjoyable.
-  video_provider: youtube
-  video_id: cJ7V9Mg1vzc
+  event_name: "RubyConf 2023"
+  date: "2023-12-20"
+  published_at: "2024-01-01"
+  description: |-
+    Are you ready to embark on an expedition into the core of Ruby web applications? Well, get ready, because it's time to delve into  web development with Rack—the powerhouse that fuels popular Ruby web frameworks like Rails and Sinatra. In this captivating talk, we'll plunge deep into the inner workings of Rack, the unsung hero of web development. We'll uncover its secrets, bask in its versatility, and summon the magic of custom Rack middleware—where session management, authentication, and caching reside. For developers at all levels, this talk offers practical insights and fresh perspectives. Equip yourself with the prowess to wield Rack's middleware magic, making your development journey more efficient and enjoyable.
+  video_provider: "youtube"
+  video_id: "cJ7V9Mg1vzc"
 
-- title: The Second Oldest Bug
+- id: "jeremy-evans-rubyconf-2023"
+  title: "The Second Oldest Bug"
   raw_title: "RubyConf 2023 - The Second Oldest Bug by Jeremy Evans"
   speakers:
     - Jeremy Evans
-  event_name: RubyConf 2023
-  published_at: "2023-12-20"
-  description: Historically, calling a method with a very large number of arguments resulted in a core dump. In Ruby 1.9, this was improved to instead raise SystemStackError.  In Ruby 2.2, the issue was fixed for methods defined in Ruby.  However, in Ruby 3.2, this is still an issue for methods defined in C.  This issue was reported as a bug over 12 years ago, and was the second oldest open bug in Ruby's bug tracker.  Come learn about stacks, heaps, argument handling during method dispatch, and how we fixed this bug in Ruby 3.3.
-  video_provider: youtube
-  video_id: cIKYxSLCyX0
+  event_name: "RubyConf 2023"
+  date: "2023-12-20"
+  published_at: "2024-01-01"
+  description: |-
+    Historically, calling a method with a very large number of arguments resulted in a core dump. In Ruby 1.9, this was improved to instead raise SystemStackError.  In Ruby 2.2, the issue was fixed for methods defined in Ruby.  However, in Ruby 3.2, this is still an issue for methods defined in C.  This issue was reported as a bug over 12 years ago, and was the second oldest open bug in Ruby's bug tracker.  Come learn about stacks, heaps, argument handling during method dispatch, and how we fixed this bug in Ruby 3.3.
+  video_provider: "youtube"
+  video_id: "cIKYxSLCyX0"
 
-- title: Wrapping Rust in Ruby
+- id: "garen-torikian-rubyconf-2023"
+  title: "Wrapping Rust in Ruby"
   raw_title: "RubyConf 2023 - Wrapping Rust in Ruby by Garen Torikian"
   speakers:
     - Garen Torikian
-  event_name: RubyConf 2023
-  published_at: "2023-12-20"
-  description: "Ruby is slow. Despite improvements over the years, the language will never be as fast as a compiled language. To compensate for this, whenever Ruby developers need to run performance critical code, it's not uncommon for them to interoperate with a library written in C. Dozens of well known gems, such as Nokogiri and Bcrypt, already do this. But with C comes other problems: how can we ensure that our low-level code is safe from memory leaks and other security vulnerabilities? In this talk, I'll introduce the oxidize-rb project, which is a suite of open source tools which makes it possible to call Rust libraries from within Ruby. I'll also demonstrate how simple it is to incorporate Rust code (including Cargo dependencies) into a Ruby gem."
-  video_provider: youtube
-  video_id: l7TPj7dRHso
+  event_name: "RubyConf 2023"
+  date: "2023-12-20"
+  published_at: "2024-01-01"
+  description: |-
+    Ruby is slow. Despite improvements over the years, the language will never be as fast as a compiled language. To compensate for this, whenever Ruby developers need to run performance critical code, it's not uncommon for them to interoperate with a library written in C. Dozens of well known gems, such as Nokogiri and Bcrypt, already do this. But with C comes other problems: how can we ensure that our low-level code is safe from memory leaks and other security vulnerabilities? In this talk, I'll introduce the oxidize-rb project, which is a suite of open source tools which makes it possible to call Rust libraries from within Ruby. I'll also demonstrate how simple it is to incorporate Rust code (including Cargo dependencies) into a Ruby gem.
+  video_provider: "youtube"
+  video_id: "l7TPj7dRHso"
 
-- title: "The Secret Ingredient: How To Understand and Resolve Just About Any Flaky Test"
+- id: "alan-ridlehoover-rubyconf-2023"
+  title: "The Secret Ingredient: How To Understand and Resolve Just About Any Flaky Test"
   raw_title: "RubyConf 2023 - The Secret Ingredient: How To Understand and Resolve Just... by Alan Ridlehoover"
   speakers:
     - Alan Ridlehoover
-  event_name: RubyConf 2023
-  published_at: "2023-12-20"
+  event_name: "RubyConf 2023"
+  date: "2023-12-20"
+  published_at: "2024-01-01"
   description: |-
     The Secret Ingredient: How To Understand and Resolve Just About Any Flaky Test by Alan Ridlehoover
 
     Flaky tests are an inscrutable bane. Hard to understand. Annoying. And, so frustrating! My personal nemesis is Daylight Saving Time. I can’t tell you how many times I’ve tripped over it. Let’s just say I was well into the “shame on me” part of that relationship, until I discovered the secret ingredient that nearly all flaky tests have in common. Turns out they only seem inscrutable. It really is possible to understand and resolve just about any flaky test.
-  video_provider: youtube
-  video_id: De3-v54jrQo
+  video_provider: "youtube"
+  video_id: "De3-v54jrQo"
 
-- title: "How Programs Learn, and What Happens After They're Built"
+- id: "phil-crissman-rubyconf-2023"
+  title: "How Programs Learn, and What Happens After They're Built"
   raw_title: "RubyConf 2023 - How Programs Learn, and What Happens After They're Built by Phil Crissman"
   speakers:
     - Phil Crissman
-  event_name: RubyConf 2023
-  published_at: "2023-12-20"
+  event_name: "RubyConf 2023"
+  date: "2023-12-20"
+  published_at: "2024-01-01"
   description: |-
     In 1994, Stewart Brand published a book called "How Buildings Learn, and What Happens After They're Built". As well as a fascinating account of architecture and the history of various buildings and building styles, some ideas from this book were inspirational to the famous "Big Ball of Mud" paper, by Brian Foote and Joseph Yoder.
 
     Can we learn anything about building software systems from the observations in Brand's book and the Big Ball of Mud paper? Spoiler alert: yes, I think so! Let's talk about them.
-  video_provider: youtube
-  video_id: F_RvmYZAMJw
+  video_provider: "youtube"
+  video_id: "F_RvmYZAMJw"
 
-- title: Lightning Talks
+- id: "lightning-talks-rubyconf-2023"
+  title: "Lightning Talks"
   raw_title: "RubyConf 2023 - Lightning Talks"
-  speakers:
-    - Anna Lopukhina
-    - Salomón Charabati
-    - Jade Stewart
-    - Amanda Vikdal
-    - Jarrod Reyes
-    - Eli Barreto
-    - Seong-Heon Jung
-    - Joshua Maurer
-    - Eric Halverson
-    - Fito von Zastrow
-    - Paul Lemus
-    - Gary Tou
-    - Sergey Sergyenko
-    - Mike Toppa
-    - Heather Roulston
-    - Ryan Erickson
-    - Nicolas Barone
-    - Victoria Guido
-    - Daniel Azuma
-    - Xiujiao Gao
-    - Wayne E. Seguin
-    - Rachael Wright-Munn
-    - Guyren Howe
-    - Brandon Weaver
-  event_name: RubyConf 2023
-  published_at: "2023-12-20"
-  description: Lightning talks are short presentation (up to 5 mins) delivered by different people in a single session. Conference attendees are welcome to sign up near Check In during the conference.
-  video_provider: youtube
-  video_id: JreuXFz8MpE
+  description: |-
+    Lightning talks are short presentation (up to 5 mins) delivered by different people in a single session. Conference attendees are welcome to sign up near Check In during the conference.
+  date: "2023-12-20"
+  published_at: "2024-01-01"
+  video_provider: "youtube"
+  video_id: "JreuXFz8MpE"
+  talks:
+    - title: "Lightning Talks Intro"
+      start_cue: "00:17"
+      end_cue: "01:06"
+      thumbnail_cue: "00:39"
+      id: "lighting-talk-intro-rubyconf-2023"
+      video_id: "lighting-talk-intro-rubyconf-2023"
+      video_provider: "parent"
+      speakers:
+        - Erik Guzman
+
+    - title: "Lightning Talk: Metaprogramming in Ruby - or how to reduce boilerplate code using RM"
+      start_cue: "01:06"
+      end_cue: "06:08"
+      id: "anna-lopukhina-lighting-talk-rubyconf-2023"
+      video_id: "anna-lopukhina-lighting-talk-rubyconf-2023"
+      video_provider: "parent"
+      speakers:
+        - Anna Lopukhina
+
+    - title: "Lightning Talk: Contributing to a gem I love & The power of Community"
+      start_cue: "06:08"
+      end_cue: "08:47"
+      id: "salomon-charabati-lighting-talk-rubyconf-2023"
+      video_id: "salomon-charabati-lighting-talk-rubyconf-2023"
+      video_provider: "parent"
+      speakers:
+        - Salomón Charabati
+
+    - title: "Lightning Talk: Briding the gap between technology and creativity"
+      start_cue: "08:47"
+      end_cue: "13:18"
+      id: "jade-stewart-lighting-talk-rubyconf-2023"
+      video_id: "jade-stewart-lighting-talk-rubyconf-2023"
+      video_provider: "parent"
+      speakers:
+        - Jade Stewart
+
+    - title: "Lightning Talk: How to Debug Your Body: A Rubyists Guide to Wellness & Self-Care"
+      start_cue: "13:18"
+      end_cue: "17:25"
+      id: "amanda-vikdal-lighting-talk-rubyconf-2023"
+      video_id: "amanda-vikdal-lighting-talk-rubyconf-2023"
+      video_provider: "parent"
+      speakers:
+        - Amanda Vikdal
+
+    - title: "Lightning Talk: Simple Scripts with Ruby - Automate boring tasks to sparkjoy"
+      start_cue: "17:25"
+      end_cue: "21:45"
+      id: "jarrod-reyes-lighting-talk-rubyconf-2023"
+      video_id: "jarrod-reyes-lighting-talk-rubyconf-2023"
+      video_provider: "parent"
+      speakers:
+        - Jarrod Reyes
+
+    - title: "Lightning Talk: Fear is the Way"
+      start_cue: "21:45"
+      end_cue: "25:41"
+      id: "eli-barreto-lighting-talk-rubyconf-2023"
+      video_id: "eli-barreto-lighting-talk-rubyconf-2023"
+      video_provider: "parent"
+      speakers:
+        - Eli Barreto
+
+    - title: "Lightning Talk: Imagining a Fully Ruby Frontend with RERB"
+      start_cue: "25:41"
+      end_cue: "30:47"
+      id: "seong-heon-jung-lighting-talk-rubyconf-2023"
+      video_id: "seong-heon-jung-lighting-talk-rubyconf-2023"
+      video_provider: "parent"
+      speakers:
+        - Seong-Heon Jung
+
+    - title: "Lightning Talk: Resilience Under Fire - Sticking With The Job Search Especially When It's Hard"
+      start_cue: "30:47"
+      end_cue: "35:21"
+      id: "joshua-maurer-lighting-talk-rubyconf-2023"
+      video_id: "joshua-maurer-lighting-talk-rubyconf-2023"
+      video_provider: "parent"
+      speakers:
+        - Joshua Maurer
+
+    - title: "Lightning Talk: Intro to PEDAC - A Problem Solving Approach Using Ruby"
+      start_cue: "35:21"
+      end_cue: "40:20"
+      id: "eric-halverson-lighting-talk-rubyconf-2023"
+      video_id: "eric-halverson-lighting-talk-rubyconf-2023"
+      video_provider: "parent"
+      speakers:
+        - Eric Halverson
+
+    - title: "Lightning Talk: Module Mixins - A Kautionary Tale"
+      start_cue: "40:20"
+      end_cue: "45:10"
+      id: "fito-von-zastrow-lighting-talk-rubyconf-2023"
+      video_id: "fito-von-zastrow-lighting-talk-rubyconf-2023"
+      video_provider: "parent"
+      speakers:
+        - Fito von Zastrow
+
+    - title: "Lightning Talk: What is noira? & why we're designing for junior devs"
+      start_cue: "45:10"
+      end_cue: "50:10"
+      thumbnail_cue: "45:11"
+      id: "paul-lemus-lighting-talk-rubyconf-2023"
+      video_id: "paul-lemus-lighting-talk-rubyconf-2023"
+      video_provider: "parent"
+      speakers:
+        - Paul Lemus
+
+    - title: "Lightning Talk: Experimenting in Production"
+      start_cue: "50:10"
+      end_cue: "53:56"
+      id: "gary-tou-lighting-talk-rubyconf-2023"
+      video_id: "gary-tou-lighting-talk-rubyconf-2023"
+      video_provider: "parent"
+      description: |-
+        Gems: `scientist` + `lab_tech`
+      speakers:
+        - Gary Tou
+
+    - title: "Lightning Talk: Ruby Conferences + Baltic Ruby"
+      start_cue: "53:56"
+      end_cue: "58:25"
+      id: "sergey-sergyenko-lighting-talk-rubyconf-2023"
+      video_id: "sergey-sergyenko-lighting-talk-rubyconf-2023"
+      video_provider: "parent"
+      speakers:
+        - Sergy Sergyenko
+
+    - title: "Lightning Talk: Making online identity verification less awful"
+      start_cue: "58:25"
+      end_cue: "01:03:29"
+      id: "mike-toppa-lighting-talk-rubyconf-2023"
+      video_id: "mike-toppa-lighting-talk-rubyconf-2023"
+      video_provider: "parent"
+      speakers:
+        - Mike Toppa
+
+    - title: "Lightning Talk: The Opportunity of Failure"
+      start_cue: "01:03:29"
+      end_cue: "01:07:06"
+      id: "heather-roulston-lighting-talk-rubyconf-2023"
+      video_id: "heather-roulston-lighting-talk-rubyconf-2023"
+      video_provider: "parent"
+      speakers:
+        - Heather Roulston
+
+    - title: "Lightning Talk: Grind Your Engineering Org to a Halt With This One Simple Trick - or: A Cautionary Tale on Depdency Management"
+      start_cue: "01:07:06"
+      end_cue: "01:11:05"
+      id: "ryan-erickson-lighting-talk-rubyconf-2023"
+      video_id: "ryan-erickson-lighting-talk-rubyconf-2023"
+      video_provider: "parent"
+      speakers:
+        - Ryan Erickson
+
+    - title: "Lightning Talk: Good Bad Quick Code - or: When You're In A Rush, How to Not Hate Yourself Later"
+      start_cue: "01:11:05"
+      end_cue: "01:16:05"
+      id: "nicholas-barone-lighting-talk-rubyconf-2023"
+      video_id: "nicholas-barone-lighting-talk-rubyconf-2023"
+      video_provider: "parent"
+      speakers:
+        - Nicholas Barone
+
+    - title: "Lightning Talk: Getting good - At being bad a things"
+      start_cue: "01:16:05"
+      end_cue: "01:20:17"
+      thumbnail_cue: "01:16:06"
+      id: "victoria-guido-lighting-talk-rubyconf-2023"
+      video_id: "victoria-guido-lighting-talk-rubyconf-2023"
+      video_provider: "parent"
+      speakers:
+        - Victoria Guido
+
+    - title: "Lightning Talk: My Campervan"
+      start_cue: "01:20:17"
+      end_cue: "01:25:13"
+      thumbnail_cue: "01:20:37"
+      id: "daniel-azuma-lighting-talk-rubyconf-2023"
+      video_id: "daniel-azuma-lighting-talk-rubyconf-2023"
+      video_provider: "parent"
+      speakers:
+        - Daniel Azuma
+
+    - title: "Lightning Talk: Let's Talk About Numbers"
+      start_cue: "01:25:13"
+      end_cue: "01:28:55"
+      id: "xiujiao-gao-lighting-talk-rubyconf-2023"
+      video_id: "xiujiao-gao-lighting-talk-rubyconf-2023"
+      video_provider: "parent"
+      speakers:
+        - Xiujiao Gao
+
+    - title: "Lightning Talk: Reflections & Ruminations"
+      start_cue: "01:28:55"
+      end_cue: "01:35:18"
+      id: "wayne-e-seguin-lighting-talk-rubyconf-2023"
+      video_id: "wayne-e-seguin-lighting-talk-rubyconf-2023"
+      video_provider: "parent"
+      speakers:
+        - Wayne E. Seguin
+
+    - title: "Lightning Talk: You Should Livestream"
+      start_cue: "01:35:18"
+      end_cue: "01:40:22"
+      thumbnail_cue: "01:35:20"
+      id: "rachael-wright-munn-lighting-talk-rubyconf-2023"
+      video_id: "rachael-wright-munn-lighting-talk-rubyconf-2023"
+      video_provider: "parent"
+      speakers:
+        - Rachael Wright-Munn
+
+    - title: "Lightning Talk: Frest - APIs should be actually good."
+      start_cue: "01:40:22"
+      end_cue: "01:45:38"
+      id: "guyren-howe-lighting-talk-rubyconf-2023"
+      video_id: "guyren-howe-lighting-talk-rubyconf-2023"
+      video_provider: "parent"
+      speakers:
+        - Guyren Howe
+
+    - title: "Lightning Talk: The Night Before Code Freeze"
+      start_cue: "01:45:38"
+      end_cue: "01:48:09"
+      id: "brandon-weaver-lighting-talk-rubyconf-2023"
+      video_id: "brandon-weaver-lighting-talk-rubyconf-2023"
+      video_provider: "parent"
+      speakers:
+        - Brandon Weaver

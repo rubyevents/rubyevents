@@ -1,0 +1,264 @@
+---
+- id: "andy-maleh-montrealrb-meetup-july-2022"
+  title: "How I Built My Code Editor in Ruby"
+  raw_title: "How I Built My Code Editor in Ruby by Andy Maleh (Montreal.rb Ruby Talk 2022/07)"
+  speakers:
+    - Andy Maleh
+  event_name: "Montreal.rb Meetup July 2022"
+  date: "2022-07-06"
+  published_at: "2022-07-09"
+  slides_url: "https://www.slideshare.net/AndyMaleh/how-i-built-my-code-editor-in-ruby"
+  description: |-
+    Gladiator is a code editor that was built completely in Ruby. It supports syntax highlighting for over 30 programming languages, split pane, file name lookup, a variety of keyboard shortcuts, undo/redo, find and replace, line jumping, monitoring external file system changes, ignoring uneditable files, expanding to fill the screen, running Ruby code, remembering the last open files, and multi-project support. In fact, I have been using Gladiator for all my code editing needs since May of 2020.
+
+    In this talk, I will present Gladiator's features, and then dig into the implementation of every feature in Ruby, covering things like the Model-View-Controller and Model-View-Presenter architectural patterns, how to build custom widgets, how to implement file editing commands, and how to support undo/redo.
+
+    Attendees should walk out of this talk with rudimentary knowledge of how to build a code editor in Ruby.
+
+    Related links:
+
+    Gladiator: https://github.com/AndyObtiva/glimmer-cs-gladiator
+    Glimmer DSL for SWT: https://github.com/AndyObtiva/glimmer-dsl-swt
+    Glimmer Process: https://github.com/AndyObtiva/glimmer/blob/master/PROCESS.md
+  video_provider: "youtube"
+  video_id: "PdH1GtEMJi8"
+  additional_resources:
+    - name: "Gladiator"
+      type: "repo"
+      url: "https://github.com/AndyObtiva/glimmer-cs-gladiator"
+
+    - name: "Glimmer DSL for SWT"
+      type: "repo"
+      url: "https://github.com/AndyObtiva/glimmer-dsl-swt"
+
+    - name: "Glimmer Process"
+      type: "repo"
+      url: "https://github.com/AndyObtiva/glimmer/blob/master/PROCESS.md"
+
+- id: "andy-maleh-montrealrb-meetup-october-2022"
+  title: "Glimmer DSL for SWT Ruby Desktop Development GUI Framework"
+  raw_title: "Glimmer DSL for SWT Ruby Desktop Development GUI Framework by Andy Maleh (Montreal.rb Talk 2022/10)"
+  speakers:
+    - Andy Maleh
+  event_name: "Montreal.rb Meetup October 2022"
+  date: "2022-10-05"
+  published_at: "2022-10-10"
+  slides_url: "https://docs.google.com/presentation/d/e/2PACX-1vQPN1MXcnIMcY5ptEp6EgNTiwouSE_3gneaFbZB6Sq-cKlSBQX17kari2LrXvSMtapSSm_Ws-dHcdo_/pub?start=false&loop=false&delayms=60000"
+  description: |-
+    Resources:
+    - Project: https://github.com/AndyObtiva/glimmer-dsl-swt
+    - GitHub: https://github.com/AndyObtiva
+    - Blog: https://andymaleh.blogspot.com
+    - Twitter: https://twitter.com/AndyObtiva
+
+  video_provider: "youtube"
+  video_id: "oIHzdwfQDoQ"
+  additional_resources:
+    - name: "AndyObtiva/glimmer-dsl-swt"
+      type: "repo"
+      url: "https://github.com/AndyObtiva/glimmer-dsl-swt"
+
+- id: "andy-maleh-montrealrb-meetup-april-2023"
+  title: "Rails Already Supports View Components!"
+  raw_title: "Rails Already Supports View Components! by Andy Maleh (Montreal.rb Ruby Talk 2023/04)"
+  speakers:
+    - Andy Maleh
+  event_name: "Montreal.rb Meetup April 2023"
+  date: "2023-04-05"
+  published_at: "2023-08-18"
+  slides_url: "https://docs.google.com/presentation/d/e/2PACX-1vQowSZBS309iZ7NMKl7HJrv-_hNea2_UAsk6nJmUrrpQ-R8FAE-azg7AMZARm4roDEsIKF3n3YpX0rK/pub?start=false&loop=false&delayms=60000"
+  description: |-
+    There are several view component Ruby gems out there that were created and used by Rails developers in order to decompose application views into view components. Little did they know, Rails already supports view components!!! This talk will explain the various ways Rails already supports view components out of the box. And as part of that, it will demonstrate that the built-in Rails view component options are simpler, more Rails-idiomatic, and more conformant to the MVC pattern (Model-View-Controller). As such, they offer higher maintainability and productivity by avoiding the big great evil of Over-Engineering and NIH-Syndrome (Not Invented Here).
+  video_provider: "youtube"
+  video_id: "9aT_ATtends"
+
+- id: "miller-levert-montrealrb-meetup-may-2023"
+  title: "Integrating with REST APIs using Microsoft Kiota"
+  raw_title: "Integrating with REST APIs using Microsoft Kiota by Miller & Levert (Montreal.rb Ruby Talk 2023/05)"
+  speakers:
+    - Miller Levert
+  event_name: "Montreal.rb Meetup May 2023"
+  date: "2023-05-03"
+  published_at: "2023-05-04"
+  description: |-
+    Montreal.rb Ruby Talk 2023/05 - Integrating with REST APIs using Microsoft Kiota - Darrel Miller, Microsoft Graph API Architect, Microsoft & Sébastien Levert, Senior Product Manager, Microsoft
+
+    Your application integration with 3rd party APIs can be difficult if your application platform does not offer SDKs for calling the APIs. Implementation of authentication, authorization, serialization, and exception handling for calling APIs adds a lot of work and risk to your project. Join us for a session filled with demos that showcase how to generate your own personalized SDK client for a complete OpenAPI spec in multiple programming languages with the help of Microsoft Kiota. By using your new personalized client that is generated by Kiota, all the complex aspects of calling APIs get handled for you automatically so that you could concentrate on what really counts: creating value for your end users.
+  video_provider: "youtube"
+  video_id: "bCox68tBVMw"
+
+- id: "andy-maleh-montrealrb-meetup-july-2023"
+  title: "Import Spreadsheets in Ruby on Rails with Flatfile.com"
+  raw_title: "Import Spreadsheets in Ruby on Rails with Flatfile.com by Andy Maleh (Montreal.rb Ruby Talk 2023/07)"
+  speakers:
+    - Andy Maleh
+  event_name: "Montreal.rb Meetup July 2023"
+  date: "2023-07-05"
+  published_at: "2023-07-06"
+  slides_url: "https://docs.google.com/presentation/d/e/2PACX-1vSjaB33oBW6z0NUD3GYqv1KPoX9gwHSiJSXZAbEbnSls0xftX2HmCcICmihhiBVkU-YbrB_NyUF4xvK/pub?start=false&loop=false&delayms=60000"
+  description: |-
+    Software systems require input in order to compute data and produce output. And, one of the ways to provide input to a software system is by uploading a flat file that contains information about various entities (e.g customers or products) in the form of a spreadsheet, following the CSV or XLSX format.
+
+    In order for a software system to properly accept a spreadsheet file as input and effectively process it into output, it usually needs to map spreadsheet columns to entity attributes to store the data in a database. And, often, there is a requirement to validate the data before accepting it (e.g. ensure a column value is within a certain range), and to apply transformations to the data before storing on records in the database. That is in addition to performance, security, usability, and reliability non-functional requirements that ensure that a user could upload a spreadsheet quickly enough while seeing progress indicators in a user-friendly experience and getting their data processed and transformed in the backend without any data loss.
+
+    Enter Flatfile.com! A SAAS product (Software As A Service) that automates the handling of all the concerns and requirements mentioned above and more in a Ruby on Rails web application.
+
+    This talk will provide a brief overview of the Flatfile.com SAAS product features while demonstrating a real world example of using it in a Ruby on Rails web application.
+  video_provider: "youtube"
+  video_id: "Du2crnz2PLg"
+
+- id: "andy-maleh-montrealrb-meetup-september-2023"
+  title: "Intro to Ruby in the Browser"
+  raw_title: "Intro to Ruby in the Browser by Andy Maleh (Montreal.rb Ruby Talk 2023/09)"
+  speakers:
+    - Andy Maleh
+  event_name: "Montreal.rb Meetup September 2023"
+  date: "2023-09-06"
+  published_at: "2023-09-07"
+  slides_url: "https://docs.google.com/presentation/d/e/2PACX-1vRWAklgMdwrRPWDi1Y2wpG3ajENBNVCMpmM3NL4HevMM3bv4gbTy8osTHxz_wRudkvf4iQIs1m-y4nM/pub?start=false&loop=false&delayms=3000"
+  description: |-
+    Matz mentioned in his RubyConf 2022 keynote speech that in the future of Ruby, maybe we could start replacing JavaScript with Ruby in the browser. Especially given that today, we have new options like Ruby WASM and Opal Ruby (Fukuoka Ruby 2023 Winner: https://opalrb.com/blog/2023/03/30/opal-won-fukuoka-ruby-award-for-outstanding-performance/ ), as demonstrated by the TryRuby Playground on Ruby's home page. Using them will achieve the ultimate dream of being able to write Ruby code on both the frontend and backend, resulting in great software engineering benefits such as better code maintainability and higher productivity. That said, how do we get started with Ruby in the browser in a Rails app? What are the trade-offs compared to using JavaScript? How do we make frontend Ruby talk to backend Ruby while reusing some of its Ruby code? This talk will help Ruby on Rails software engineers get started with Ruby in the browser while providing demos along the way via an actual Rails app.
+  video_provider: "youtube"
+  video_id: "4AdcfbI6A4c"
+
+- id: "parham-ashraf-montrealrb-meetup-october-2023"
+  title: "Elevate Your RoR Views w/ ViewComponent & Lookbook"
+  raw_title: "Elevate Your RoR Views w/ ViewComponent & Lookbook by Parham Ashraf (Montreal.rb Ruby Talk 2023/10)"
+  speakers:
+    - Parham Ashraf
+  event_name: "Montreal.rb Meetup October 2023"
+  date: "2023-10-04"
+  published_at: "2023-11-03"
+  slides_url: "https://docs.google.com/presentation/d/e/2PACX-1vT7VOxx52eP14BSz8YO5vFGUfMyKaa0mWMFrn_vzx239YalKZPuhKkFGAJCzWGXemiEfLYLN5pn6k94/pub?start=false&loop=false&delayms=60000"
+  description: |-
+    In the ever-evolving landscape of web development, providing a seamless user experience is paramount. Ruby on Rails has been a steadfast choice for building web applications, but as our applications grow in complexity, so do our views and the challenges associated with them. In this presentation, we'll explore two powerful tools that can significantly improve your Rails views: ViewComponent and Lookbook. By the end of this session, you'll be well-equipped to incorporate ViewComponent and Lookbook into your Rails projects, leveraging generators, slots, collections, and visual design to create more efficient, modular, and visually appealing web applications.
+  video_provider: "youtube"
+  video_id: "vyO07H8chUE"
+
+- id: "michel-jamati-montrealrb-meetup-november-2023"
+  title: "Anatomy of a Payment"
+  raw_title: "Anatomy of a Payment by Michel Jamati (Montreal.rb Ruby Talk 2023/11)"
+  speakers:
+    - Michel Jamati
+  event_name: "Montreal.rb Meetup November 2023"
+  date: "2023-11-01"
+  published_at: "2023-11-08"
+  slides_url: "https://docs.google.com/presentation/d/e/2PACX-1vRbkntSxjQa_vZvVl5lvnkLbHvkObHZ_CJq_jVflq1I0w_zi7X5D0lSSPvTqYotszuSELzKzt83dK23/pub?start=false&loop=false&delayms=3000"
+  description: |-
+    This talk will provide an overview of the business payment world. Attendees will become familiar with the actors and economics of the payment ecosystem, learn about the major regulations in the payment space that need to be complied with, and understand the Lexop approach to navigating these different challenges. Ruby on Rails examples will be demonstrated along the way to illustrate various types of payments that can be made with different payment processors.
+  video_provider: "youtube"
+  video_id: "tbkVH0q3Vik"
+
+- id: "andrei-bondarev-montrealrb-meetup-december-2023"
+  title: "Building LLM powered Applications"
+  raw_title: "Building LLM powered Applications by Andrei Bondarev (Montreal.rb Ruby Talk 2023/12)"
+  speakers:
+    - Andrei Bondarev
+  event_name: "Montreal.rb Meetup December 2023"
+  date: "2023-12-06"
+  published_at: "2023-12-09"
+  description: |-
+    Montreal.rb Ruby Talk 2023/12 - Building LLM powered Applications - Andrei Bondarev - Solutions Architect / Owner at Source Labs LLC
+
+    The 2023 breakthroughs in Generative AI (Artificial Intelligence) have been taking the software development world by storm. We'll take a look at a few components of what is quickly becoming the modern stack for building LLM (Large Language Model) powered applications. Andrei will build a case for Ruby in the emerging AI trend, and show how some of the AI capabilities can be leveraged today!
+  video_provider: "youtube"
+  video_id: "KQlgWT6y5QY"
+
+- id: "jean-sebastien-boulanger-montrealrb-meetup-january-2024"
+  title: "Building an AI Medical Scribe in Ruby"
+  raw_title: "Building an AI Medical Scribe in Ruby by Jean-Sebastien Boulanger (Montreal.rb Ruby Talk 2024/01)"
+  speakers:
+    - Jean-Sebastien Boulanger
+  event_name: "Montreal.rb Meetup January 2024"
+  date: "2024-01-10"
+  published_at: "2024-01-12"
+  description: |-
+    Montreal.rb Ruby Talk 2024/01 - Building an AI Medical Scribe in Ruby - Jean-Sebastien Boulanger - CTO of Circle Medical
+
+    In this talk, I'll share insights from our experience creating an AI medical scribe using Ruby at Circle Medical (https://www.circlemedical.com/), a hybrid primary care provider seeing over 50,000 patients monthly. We leveraged Large Language Models (LLMs) to create a scribe to enhance clinical documentation and save doctors' time.
+  video_provider: "youtube"
+  video_id: "BJwILlX0svw"
+
+- id: "andy-maleh-montrealrb-meetup-march-2024"
+  title: "Frontend Ruby with Glimmer DSL for Web"
+  raw_title: "Frontend Ruby with Glimmer DSL for Web by Andy Maleh (Montreal.rb Ruby Talk 2024/03)"
+  speakers:
+    - Andy Maleh
+  event_name: "Montreal.rb Meetup March 2024"
+  date: "2024-03-06"
+  published_at: "2024-03-07"
+  slides_url: "https://docs.google.com/presentation/d/e/2PACX-1vQVihtMktOEJ-AJWb1a-uyJfpyn7q92xstcx7QLIUOFONzG5TmKD7_2hSLdwijgw-l6LdK6OLbQPP61/pub?start=false&loop=false&delayms=60000"
+  description: |-
+    Montreal.rb Ruby Talk 2024/03 - Frontend Ruby with Glimmer DSL for Web - Andy Maleh - Senior Software Engineer at Lexop
+
+    GitHub: https://github.com/AndyObtiva/glimmer-dsl-web
+
+    Rubyists would rather leverage the productivity, readability, and maintainability benefits of Ruby in Frontend Web Development than JavaScript to cut down development cost and time by half compared to using popular yet inferior JavaScript frameworks with bloated JavaScript code as per Matz's suggestion in his RubyConf 2022 keynote speech to replace JavaScript with Ruby. Fortunately, this is possible in 2024!
+
+    This talk is a continuation of the previous Montreal.rb talk "Intro to Ruby in the Browser", which ended by promising a new way in the future for developing Web Frontends that would completely revolutionize the way we think about and do Frontend Development using Ruby instead of JavaScript. The future is now!!! The simplest, most intuitive, most straight-forward, and most productive Frontend Framework in existence is here! It is an open-source Ruby gem called Glimmer DSL for Web.
+
+    Think of Glimmer DSL for Web as the Rails of Frontend Frameworks. With it, you can finally live in Rubyland in both the Frontend and Backend on the Web! That opens up the door to ideas like rendering Frontend Components in the Backend as Server Components in the future, eliminating the conflict between ERB and JS frontend rendering technologies by leveraging highly readable, maintainable, and productive Ruby code isomorphically.
+
+  video_provider: "youtube"
+  video_id: "rIZ-ILUv9ME"
+  additional_resources:
+    - name: "AndyObtiva/glimmer-dsl-web"
+      type: "repo"
+      url: "https://github.com/AndyObtiva/glimmer-dsl-web"
+
+- id: "jrme-parent-lvesque-montrealrb-meetup-april-2024"
+  title: "React Server Components... in Rails?"
+  raw_title: "React Server Components... in Rails? by Jérôme Parent-Lévesque (Montreal.rb Ruby Talk 2024/04)"
+  speakers:
+    - Jérôme Parent-Lévesque
+  event_name: "Montreal.rb Meetup April 2024"
+  date: "2024-04-03"
+  published_at: "2024-04-15"
+  slides_url: "https://docs.google.com/presentation/d/1zikF4SZL7M9yXl-r_ANuY6lDMSOuR5IYqWqdqu7Z3DA/edit#slide=id.p"
+  description: |-
+    Montreal.rb Ruby Talk 2024/04 - React Server Components... in Rails? - Jérôme Parent-Lévesque - Engineering Lead at Potloc
+
+    React Server Components are the next milestone in the React core team's initiative to ease web development (and are the hot new thing!). They aim to greatly improve the user experience by lowering the number of roundtrips necessary between the client and server and by streaming data as soon as it becomes available. However, they are currently only usable in the Next.js framework with a Node backend... But couldn't we mimic what this backend does in Rails and leverage this to modernize React development in Rails?
+
+    In this talk we will explain some of the inner workings of React Server Components, their benefits and how they can be implemented in any backend.
+  video_provider: "youtube"
+  video_id: "SekchVgLuuo"
+
+- id: "helmer-davila-montrealrb-meetup-may-2024"
+  title: "Hotwire Turbo in Rails: Drive, Frames and Streams"
+  raw_title: "Hotwire Turbo in Rails: Drive, Frames and Streams by Helmer Davila (Montreal.rb Ruby Talk 2024/05)"
+  speakers:
+    - Helmer Davila
+  event_name: "Montreal.rb Meetup May 2024"
+  date: "2024-05-01"
+  published_at: "2024-10-13"
+  description: |-
+    Montreal.rb Ruby Talk 2024/05 - Hotwire Turbo in Rails: Drive, Frames and Streams - Helmer Davila - Senior Software Developer
+
+    In this talk, we will be exploring Hotwire Turbo in Rails, focusing specifically on Drive, Frames, and Streams. We will dive deep into how Hotwire Turbo enhances the speed and performance of Rails applications, providing users with a smoother and more interactive experience. We will also shed light on the concepts of Drive, Frames, and Streams, discussing their roles and how they contribute to the overall functionality of a Rails application. Whether you're a seasoned Rails developer or just getting started, this talk will offer valuable insights into optimizing your applications with Hotwire Turbo.
+  video_provider: "youtube"
+  video_id: "rmsBVsZUHzI"
+
+- id: "david-cornu-montrealrb-meetup-october-2024"
+  title: "Tame Complex Queries with Database Views"
+  raw_title: "Tame Complex Queries with Database Views by David Cornu  (Montreal.rb Ruby Talk 2024/10)"
+  speakers:
+    - David Cornu
+  event_name: "Montreal.rb Meetup October 2024"
+  date: "2024-10-02"
+  published_at: "2024-10-03"
+  slides_url: "https://davidcornu.github.io/views-demo/"
+  description: |-
+    Montreal.rb Ruby Talk 2024/10 - Tame Complex Queries with Database Views by David Cornu - David Cornu - Staff Developer at Patch.io
+
+    PostgreSQL views are a useful tool to make query logic reusable and maintainable. This talk will cover their pros and cons, a couple of real-world use cases, and how to use them in Rails apps using the Scenic gem.
+
+    GitHub Repo: https://github.com/davidcornu/views-demo
+  video_provider: "youtube"
+  video_id: "gdrscLBNvDo"
+  additional_resources:
+    - name: "davidcornu/views-demo"
+      type: "repo"
+      url: "https://github.com/davidcornu/views-demo"
+# TODO: Missing event: https://www.meetup.com/montrealrb/events/303804858
+# TODO: Missing event: https://www.meetup.com/montrealrb/events/304095501

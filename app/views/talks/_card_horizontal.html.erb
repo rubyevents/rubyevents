@@ -1,28 +1,88 @@
-<%# locals: (talk:, current_talk: nil, compact: false) -%>
+<%# locals: (talk:, current_talk: nil, compact: false, turbo_frame: nil, user_watched_talks:, watched_talk: nil, tag: :a, tooltip: true, show_remove_from_watched: false, show_event_name: false) %>
 
 <% active = talk == current_talk %>
-<%= link_to talk_path(talk), class: class_names("w-full flex items-center gap-4 p-2 rounded-lg hover:bg-gray-200", "bg-gray-200": active),
-      id: dom_id(talk, :card_horizontal),
-      data: {talk_horizontal_card: true, scroll_into_view_target: (active ? "active" : nil)} do %>
-  <div class="flex aspect-video shrink-0 relative w-20">
-    <%= image_tag talk.thumbnail_sm, srcset: ["#{talk.thumbnail_sm} 2x"], id: dom_id(talk), class: "w-full h-auto object-cover border rounded", loading: :lazy %>
+<% watched_talk ||= user_watched_talks.find { |wt| wt.talk_id == talk.id } %>
 
-    <% if active %>
-      <div class="absolute inset-0 bg-black/50 flex justify-center items-center rounded">
-        <%= fa("play", size: :sm, class: "fill-white") %>
+<% not_recorded = talk.not_recorded? || talk.parent_talk&.not_recorded? %>
+<% not_published = talk.not_published? || talk.parent_talk&.not_published? %>
+<% scheduled = talk.scheduled? || talk.parent_talk&.scheduled? %>
+
+<%= content_tag(
+      tag,
+      href: talk_path(talk),
+      class: class_names("w-full flex items-center gap-4 p-2 rounded-lg hover:bg-gray-200 group", active: active, watched: watched_talk&.watched?, not_recorded: not_recorded, scheduled: scheduled, not_published: not_published),
+      id: dom_id(talk, :card_horizontal),
+      data: {
+        talk_horizontal_card: true,
+        scroll_into_view_target: (active ? "active" : nil),
+        talks_navigation_target: "card",
+        action: "talks-navigation#setActive",
+        turbo_frame: turbo_frame,
+        controller: tooltip ? "tooltip" : nil,
+        tooltip_content_value: talk.title
+      }
+    ) do %>
+
+  <div class="flex aspect-video shrink-0 relative w-20">
+    <%= image_tag talk.thumbnail_sm, srcset: ["#{talk.thumbnail_sm} 2x"], id: dom_id(talk), class: "w-full h-auto aspect-video object-cover border rounded #{talk.thumbnail_classes}", loading: :lazy %>
+
+    <div class="absolute inset-0 bg-black/50 justify-center items-center rounded hidden group-[.active]:flex">
+      <%= fa("play", size: :sm, class: "fill-white") %>
+    </div>
+
+    <div class="absolute inset-0 bg-black/50 justify-center items-center rounded hidden group-[.watched]:flex group-[.active]:hidden">
+      <%= fa("circle-check", size: :sm, class: "fill-white") %>
+    </div>
+
+    <div class="absolute inset-0 bg-black/50 justify-center items-center rounded hidden group-[.not\_recorded]:flex group-[.watched]:hidden group-[.active]:hidden">
+      <%= fa("video-slash", size: :sm, class: "fill-white") %>
+    </div>
+
+    <div class="absolute inset-0 bg-black/50 justify-center items-center rounded hidden group-[.not\_published]:flex group-[.watched]:hidden group-[.active]:hidden">
+      <%= fa("upload", size: :sm, class: "fill-white") %>
+    </div>
+
+    <div class="absolute inset-0 bg-black/50 justify-center items-center rounded hidden group-[.scheduled]:flex group-[.active]:hidden">
+      <%= fa("clock", size: :sm, class: "fill-white") %>
+    </div>
+
+    <% if watched_talk&.in_progress? %>
+      <div class="absolute bottom-0 left-0 right-0 z-10">
+        <div class="w-full h-1 bg-white/40">
+          <div class="h-1 bg-primary" style="width: <%= watched_talk.progress_percentage.to_s %>%"></div>
+        </div>
       </div>
     <% end %>
   </div>
 
-  <div class="flex flex-col gap-1 text-sm">
-    <%= content_tag :div, class: "" do %>
+  <div class="flex flex-col gap-1 text-sm flex-grow">
+    <%= content_tag :div do %>
       <%= content_tag :div, talk.title, class: "font-regular line-clamp-1" %>
     <% end %>
 
     <div class="flex items-start gap-2 font-light">
       <div class="line-clamp-1 text-gray-500">
-        <%= talk.speakers.map(&:name).to_sentence %>
+        <%= talk.speakers.map(&:name).to_sentence %><% if show_event_name && talk.event %> • <%= talk.event.name %><% end %>
       </div>
     </div>
   </div>
+
+  <% if show_remove_from_watched && watched_talk&.watched? %>
+    <div class="flex items-center gap-1 shrink-0">
+      <%= button_to new_talk_watched_talk_path(talk),
+            method: :get,
+            form: {data: {turbo_frame: "modal"}},
+            form_class: "contents",
+            class: "btn btn-ghost btn-sm p-1" do %>
+        <%= fa("star", size: :sm, class: "text-gray-600 shrink-0") %>
+      <% end %>
+      <%= button_to watched_talk_path(watched_talk),
+            method: :delete,
+            form_class: "contents",
+            class: "btn btn-ghost btn-sm p-1",
+            data: {turbo_confirm: "Mark this talk as unwatched? Your feedback will be deleted."} do %>
+        <%= fa("xmark", size: :sm, class: "text-gray-600 shrink-0") %>
+      <% end %>
+    </div>
+  <% end %>
 <% end %>

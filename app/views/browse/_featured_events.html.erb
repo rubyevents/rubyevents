@@ -1,0 +1,35 @@
+<%# locals: (events:) %>
+
+<section class="mb-4 hidden md:block">
+  <h2 class="text-xl font-bold mb-4">Recently Published</h2>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+    <% events.each do |event| %>
+      <%= link_to event_path(event), class: "group relative rounded-xl overflow-hidden aspect-[3/2]" do %>
+        <div class="absolute inset-0" style="background: <%= event.static_metadata&.featured_background || "linear-gradient(135deg, #667eea 0%, #764ba2 100%)" %>;"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+
+        <div class="absolute inset-x-0 top-0 p-4 pt-8 flex items-center justify-center">
+          <%= image_tag event.featured_image_path, alt: event.name, class: "max-h-16 object-contain", loading: "lazy" %>
+        </div>
+
+        <div class="absolute inset-x-0 bottom-0 p-4 flex flex-col items-center">
+          <h3 class="font-bold text-white text-lg leading-tight text-center group-hover:underline line-clamp-1">
+            <%= event.name %>
+          </h3>
+
+          <p class="text-white/80 text-sm mt-1"><%= event.location %></p>
+
+          <p class="text-white/60 text-xs mt-1">
+            <%= event.talks_count %> talks
+
+            <% if (published_date = event.static_metadata&.published_date) %>
+              <span class="mx-1">&middot;</span>
+              <%= time_ago_in_words(published_date) %> ago
+            <% end %>
+          </p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</section>

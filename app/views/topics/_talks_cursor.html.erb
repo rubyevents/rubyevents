@@ -1,0 +1,10 @@
+<% manual = (pagy.page % 3 == 0) %>
+<% controller = manual ? "" : "auto-click" %>
+
+<div class="<%= class_names("flex justify-center", invisible: !manual) %>" id="talks-cursor">
+  <% if pagy.next %>
+    <%= link_to "Load more", topic_path(topic, page: pagy.next),
+          class: "btn btn-primary",
+          data: {turbo_stream: true, controller: controller} %>
+  <% end %>
+</div>

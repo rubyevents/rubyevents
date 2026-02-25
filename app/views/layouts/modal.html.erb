@@ -1,5 +1,5 @@
 <%= turbo_frame_tag "modal" do %>
-  <%= ui_modal open: true, position: :responsive do %>
+  <%= ui_modal open: true, position: :responsive, **modal_options do %>
     <%= yield %>
   <% end %>
 <% end %>

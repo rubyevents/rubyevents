@@ -1,5 +1,5 @@
-module Youtube
-  class PlaylistItems < Youtube::Client
+module YouTube
+  class PlaylistItems < YouTube::Client
     def all(playlist_id:)
       all_items("/playlistItems", query: {playlistId: playlist_id, part: "snippet,contentDetails"}).map do |metadata|
         OpenStruct.new({
@@ -15,7 +15,7 @@ module Youtube
           thumbnail_md: metadata.snippet.thumbnails.high&.url,
           thumbnail_lg: metadata.snippet.thumbnails.standard&.url,
           thumbnail_xl: metadata.snippet.thumbnails.maxres&.url,
-          video_provider: :youtube,
+          video_provider: "youtube",
           video_id: metadata.contentDetails.videoId
         })
       end

@@ -1,0 +1,93 @@
+<%# locals: (event:, participation: nil) %>
+<div
+  class="w-full md:h-[198px] lg:h-[267px] xl:h-[336px] 2xl:h-[405px] justify-center align-center flex mt-3 border-t border-b hotwire-native:hidden"
+  style="
+    view-transition-name: hero;
+    <% if event.static_metadata.banner_background.start_with?("data:") %>
+      background: url('<%= event.static_metadata.banner_background %>');
+      background-repeat: no-repeat;
+      background-size: cover;
+    <% else %>
+      background: <%= event.static_metadata.banner_background %>;
+    <% end %>
+  ">
+  <%= image_tag image_path(@event.banner_image_path), class: "w-full md:container" %>
+</div>
+
+<div class="container py-8">
+  <div class="block lg:flex gap-8 align-center justify-between">
+    <div class="flex flex-col lg:flex-row gap-8 items-center lg:justify-right text-center lg:text-left mb-6 lg:mb-0">
+      <%= image_tag image_path(event.avatar_image_path),
+            class: "rounded-full border border-[#D9DFE3] size-24 md:size-36",
+            alt: event.name.to_s,
+            style: "view-transition-name: #{dom_id(event, :logo)}",
+            loading: :lazy %>
+
+      <div class="flex-col flex justify-center">
+        <h1 class="mb-2 text-black font-bold"><%= title event.name %></h1>
+        <h3 class="text-[#636B74]">
+          <%= event.to_location.to_html %>
+          • <%= event.formatted_dates %>
+        </h3>
+        <%= external_link_to event.website.gsub(%r{^https?://}, "").gsub(%r{/$}, ""), event.website, class: "break-all" %>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-2">
+      <%= ui_button "View all #{event.series.name} events", url: series_path(event.series), kind: :secondary, size: :sm, class: "w-full" %>
+      <%= render "events/participation_button", event: event, participation: participation %>
+      <%= render Tito::ButtonComponent.new(event: event) %>
+
+      <% if Current.user&.admin? %>
+        <div class="flex items-center gap-2 mt-4 pt-4 border-t border-gray-200">
+          <span class="text-xs text-gray-400 uppercase tracking-wide">Admin</span>
+          <%= ui_tooltip "Reimport Event" do %>
+            <%= ui_button url: reimport_event_path(event), method: :post, kind: :neutral, size: :sm do %>
+              <%= fa "download", size: :sm %>
+            <% end %>
+          <% end %>
+          <%= ui_tooltip "Reindex Event" do %>
+            <%= ui_button url: reindex_event_path(event), method: :post, kind: :neutral, size: :sm do %>
+              <%= fa "arrows-rotate", size: :sm %>
+            <% end %>
+          <% end %>
+          <%= ui_tooltip "Open in Avo" do %>
+            <%= ui_button url: avo.resources_event_path(event), target: :_blank, kind: :neutral, size: :sm do %>
+              <%= fa :avocado, size: :sm %>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <p class="mt-6 text-[#636B74] max-w-[700px]">
+    <%= event.description %>
+  </p>
+
+  <% event.cfps.each do |cfp| %>
+    <% if event.start_date && event.start_date > Date.today %>
+      <div class="mt-6 p-4 bg-gray-100 rounded-lg max-w-[700px]">
+        <h3 class="font-bold text-lg mb-2"><%= cfp.name.presence || "Call for Proposals" %></h3>
+
+        <p class="text-[#636B74] mb-3">
+          <% if cfp.future? %>
+            The CFP opens on <%= cfp.formatted_open_date %><% if cfp.close_date.present? %> and closes on <%= cfp.formatted_close_date %><% end %>.
+          <% elsif cfp.open? %>
+            The CFP is currently open and closes on <%= cfp.formatted_close_date %>.
+          <% elsif cfp.closed? %>
+            The CFP closed on <%= cfp.formatted_close_date %>.
+          <% else %>
+            Call for Proposals information is available.
+          <% end %>
+        </p>
+
+        <% if cfp.close_date.blank? || cfp.open? %>
+          <%= external_link_to "Submit your proposal", cfp.link, class: "btn btn-primary btn-sm" %>
+        <% else %>
+          <%= external_link_to "View CFP details", cfp.link, class: "btn btn-secondary btn-sm" %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

@@ -2,4 +2,11 @@
   label {
     @apply font-semibold;
   }
+
+  /* because setting --rounded-btn to 1.9rem makes also all input field fully rounded  */
+  /* we override this behaviour */
+  .input,
+  .textarea {
+    @apply rounded-lg border border-gray-200 bg-white;
+  }
 }

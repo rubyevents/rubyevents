@@ -1,0 +1,9 @@
+Description:
+    Generates a venue.yml file for a specific event in an event series.
+
+Example:
+    bin/rails generate venue --event-series=SERIES_SLUG --event=EVENT_SLUG
+
+This will create:
+    /data/SERIES_SLUG/EVENT_SLUG/venue.yml
+    The file will be pre-populated with a venue template for editing.

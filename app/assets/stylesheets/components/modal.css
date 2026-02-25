@@ -1,0 +1,11 @@
+@layer components {
+  .modal-box {
+    @apply bg-white;
+  }
+
+  .modal-top.spotlight {
+    .modal-box {
+      @apply absolute left-0 right-0 top-4 mx-4 w-auto rounded-lg lg:top-8 lg:mx-8;
+    }
+  }
+}

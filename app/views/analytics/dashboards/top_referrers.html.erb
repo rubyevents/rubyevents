@@ -1,0 +1,4 @@
+<%= turbo_frame_tag "top_referrers" do %>
+  <h2 class="text-center mb-4">Top referrers</h2>
+  <%= bar_chart @top_referrers, id: :top_referrers_chart %>
+<% end %>

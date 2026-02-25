@@ -1,0 +1,92 @@
+<%# locals: (event:) %>
+
+<div
+  class="w-full pt-4 lg:pt-6 pb-4 lg:pb-12 lg:min-h-[600px]"
+  style="
+    color: <%= event.static_metadata.featured_color %>;
+    <% if event.static_metadata.featured_background.start_with?("data:") %>
+      background: url('<%= event.static_metadata.featured_background %>');
+      background-repeat: no-repeat;
+      background-size: cover;
+    <% else %>
+      background: <%= event.static_metadata.featured_background %>;
+    <% end %>
+  ">
+  <a href="<%= event_path(event) %>" class="block h-full">
+    <div class="container h-full">
+      <div class="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-6 lg:gap-12 items-center h-full">
+        <div class="flex flex-col gap-4">
+          <div class="flex justify-center lg:justify-start mb-4">
+            <%= image_tag event.featured_image_path, class: "w-1/2 lg:w-full", loading: "lazy", alt: event.name %>
+          </div>
+
+          <div class="flex flex-col gap-3 text-center lg:text-left">
+            <h1 class="text-inherit font-bold text-xl line-clamp-1 lg:line-clamp-2"><%= event.name %></h1>
+            <h2 class="text-inherit opacity-60 text-sm line-clamp-1"><%= event.to_location.to_html(show_links: false) %> • <%= event.formatted_dates %></h2>
+            <h2 class="text-inherit font-medium text-sm line-clamp-3 hidden lg:block">
+              <%= event.description %>
+            </h2>
+          </div>
+
+          <%= ui_button kind: :rounded, class: "btn-sm lg:btn-md mx-auto lg:mx-0 mt-4" do %>
+            <span><%= (event.talks_count > 0) ? "Explore #{pluralize(event.talks_count, "Talk")}" : "Explore Event" %></span>
+          <% end %>
+        </div>
+
+        <div class="hidden lg:flex flex-col justify-end items-end gap-6">
+          <div class="flex flex-col gap-6 items-center px-12">
+            <div class="avatar-group -space-x-6 rtl:space-x-reverse">
+              <% shown_speakers = [] %>
+              <% all_speakers = event.speakers.to_a %>
+              <% speakers_with_avatars = all_speakers.select { |speaker| speaker.avatar_url.present? }.sort_by(&:avatar_rank) %>
+
+              <% event.keynote_speakers.each do |keynote_speaker| %>
+                <% shown_speakers << keynote_speaker %>
+                <%= ui_avatar(keynote_speaker, size: :lg, size_class: "w-12 lg:w-28 xl:w-40") %>
+              <% end %>
+
+              <% if event.keynote_speakers.none? %>
+                <% speakers_with_avatars.first(4).each do |speaker| %>
+                  <% shown_speakers << speaker %>
+                  <%= ui_avatar(speaker, size: :lg, size_class: "w-12 lg:w-28 xl:w-40") %>
+                <% end %>
+
+                <% if speakers_with_avatars.none? %>
+                  <% event.participants.first(4).each do |participant| %>
+                    <% shown_speakers << participant %>
+                    <%= ui_avatar(participant, size: :lg, size_class: "w-12 lg:w-28 xl:w-40") %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </div>
+
+            <div class="avatar-group -space-x-6 lg:-space-x-3 rtl:space-x-reverse">
+              <% remaining_speakers = speakers_with_avatars - shown_speakers %>
+              <% remaining_participants = event.participants - shown_speakers %>
+
+              <% if remaining_speakers.any? %>
+                <% remaining_speakers.first(10).each do |speaker| %>
+                  <% shown_speakers << speaker %>
+                  <%= ui_avatar(speaker) %>
+                <% end %>
+              <% elsif remaining_participants.any? %>
+                <% remaining_participants.first(10).each do |speaker| %>
+                  <% shown_speakers << speaker %>
+                  <%= ui_avatar(speaker) %>
+                <% end %>
+              <% end %>
+
+              <% more_speakers_count = all_speakers.count - shown_speakers.count %>
+
+              <% if more_speakers_count.positive? %>
+                <%= ui_avatar(nil, kind: :neutral) do %>
+                  <span>+<%= more_speakers_count %></span>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </a>
+</div>

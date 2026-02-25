@@ -1,16 +1,11 @@
-<%= link_to speaker_path(speaker), class: "flex w-full relative" do %>
-  <div class="card card-compact card-side shadow-xl h-full w-full">
-    <figure>
-      <%= image_tag speaker.github_avatar_url(size: 250),
-            alt: "picture profile of #{speaker.name}",
-            class: "w-40 lg:w-full shrink-0 h-full",
-            loading: "lazy",
-            width: 250,
-            height: 250 %>
+<%= link_to profile_path(speaker), class: "w-48 sm:w-64 flex relative bg-white rounded-xl border h-full", data: {turbo_frame: "_top"} do %>
+  <div class="card card-compact w-full pt-6">
+    <figure class="flex justify-center">
+      <%= ui_avatar(speaker, size_class: "w-32 sm:w-40", size: :lg) %>
     </figure>
-    <div class="card-body flex flex-col items-center justify-center">
-      <div class="text-xl font-semibold text-center"><%= speaker.name %></div>
-      <div class="link"><%= speaker.talks_count %> talks</div>
+    <div class="card-body items-center text-center pt-4 px-0 justify-center">
+      <h3 class="text-xl font-semibold text-slate-700"><%= speaker.name %></h3>
+      <div class="text-slate-600"><%= pluralize(speaker.talks_count, "talk") %></div>
     </div>
   </div>
 <% end %>

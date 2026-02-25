@@ -1,6 +1,6 @@
 @layer components {
   .banner-img .v-vlite {
-    --vlite-controlsColor: #dc143c;
+    --vlite-controlsColor: #ffffff;
     --vlite-controlsOpacity: 1;
     --vlite-controlBarBackground: linear-gradient(0deg, #000 -50%, #fff);
   }
@@ -14,7 +14,22 @@
     display: none !important;
   }
 
-  .v-bigPlay {
-    opacity: 0.5 !important;
+  .v-bigPlay,
+  .v-overlay,
+  .v-poster {
+    display: none !important;
+  }
+
+  .v-openInYouTube.v-controlButton svg {
+    width: 65%;
+    fill: var(--vlite-controlsColor);
+  }
+
+  /* Picture in picture styling */
+  .picture-in-picture .picture-in-picture-container {
+    @apply sm:fixed sm:bottom-4 sm:right-4 sm:z-10 sm:h-auto sm:w-full sm:max-w-sm sm:rounded-xl xl:max-w-lg;
+    .v-video {
+      @apply rounded-xl;
+    }
   }
 }

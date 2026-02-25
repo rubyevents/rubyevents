@@ -23,13 +23,12 @@ module Authenticable
   private
 
   def authenticate_user!
-    redirect_to sign_in_path unless Current.user
+    redirect_to new_session_path unless Current.user
   end
 
   def set_current_request_details
     Current.user_agent = request.user_agent
     Current.ip_address = request.ip
-    Current.session = Session.find_by_id(cookies.signed[:session_token])
-    # if cookies.signed[:session_token]
+    Current.session = Session.find_by_id(cookies.signed[:session_token]) if cookies.signed[:session_token]
   end
 end

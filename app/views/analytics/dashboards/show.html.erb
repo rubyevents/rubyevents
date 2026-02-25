@@ -7,10 +7,47 @@
   <h1 class="text-center mb-8">Open analytics</h1>
 
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-    <%= turbo_frame_tag "daily_visits", src: daily_visits_analytics_dashboards_path, lazy: true %>
-    <%= turbo_frame_tag "daily_page_views", src: daily_page_views_analytics_dashboards_path, lazy: true %>
-    <%= turbo_frame_tag "monthly_visits", src: monthly_visits_analytics_dashboards_path, lazy: true %>
-    <%= turbo_frame_tag "monthly_page_views", src: monthly_page_views_analytics_dashboards_path, lazy: true %>
-    <%= turbo_frame_tag "yearly_talks", src: yearly_talks_analytics_dashboards_path, lazy: true %>
+    <%= turbo_frame_tag "daily_visits", src: daily_visits_analytics_dashboards_path, lazy: true do %>
+      <h2 class="text-center mb-4">Daily visits</h2>
+      <div class="bg-gray-300 rounded-lg animate-pulse h-[300px]"></div>
+    <% end %>
+    <%= turbo_frame_tag "daily_page_views", src: daily_page_views_analytics_dashboards_path, lazy: true do %>
+      <h2 class="text-center mb-4">Daily page views</h2>
+      <div class="bg-gray-300 rounded-lg animate-pulse h-[300px]"></div>
+    <% end %>
+    <%= turbo_frame_tag "monthly_visits", src: monthly_visits_analytics_dashboards_path, lazy: true do %>
+      <h2 class="text-center mb-4">Monthly visits</h2>
+      <div class="bg-gray-300 rounded-lg animate-pulse h-[300px]"></div>
+    <% end %>
+    <%= turbo_frame_tag "monthly_page_views", src: monthly_page_views_analytics_dashboards_path, lazy: true do %>
+      <h2 class="text-center mb-4">Monthly page views</h2>
+      <div class="bg-gray-300 rounded-lg animate-pulse h-[300px]"></div>
+    <% end %>
+
+    <%# TODO convert those metrics to Rollup to re enable them %>
+    <% if Current.user&.admin? && false %>
+      <%= turbo_frame_tag "top_referrers", src: top_referrers_analytics_dashboards_path, lazy: true do %>
+        <h2 class="text-center mb-4">Top referrers</h2>
+        <div class="bg-gray-300 rounded-lg animate-pulse h-[300px]"></div>
+      <% end %>
+      <%= turbo_frame_tag "top_landing_pages", src: top_landing_pages_analytics_dashboards_path, lazy: true do %>
+        <h2 class="text-center mb-4">Top landing pages</h2>
+        <div class="bg-gray-300 rounded-lg animate-pulse h-[300px]"></div>
+      <% end %>
+      <%= turbo_frame_tag "top_searches", src: top_searches_analytics_dashboards_path, lazy: true do %>
+        <h2 class="text-center mb-4">Top searches</h2>
+        <div class="bg-gray-300 rounded-lg animate-pulse h-[300px]"></div>
+      <% end %>
+    <% end %>
+
+    <%= turbo_frame_tag "yearly_talks", src: yearly_talks_analytics_dashboards_path, lazy: true do %>
+      <h2 class="text-center mb-4">Yearly talks</h2>
+      <div class="bg-gray-300 rounded-lg animate-pulse h-[300px]"></div>
+    <% end %>
+
+    <%= turbo_frame_tag "yearly_conferences", src: yearly_conferences_analytics_dashboards_path, lazy: true do %>
+      <h2 class="text-center mb-4">Yearly Conferencess</h2>
+      <div class="bg-gray-300 rounded-lg animate-pulse h-[300px]"></div>
+    <% end %>
   </div>
 </div>

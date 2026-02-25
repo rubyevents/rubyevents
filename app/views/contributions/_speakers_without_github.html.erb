@@ -1,0 +1,26 @@
+<%= turbo_frame_tag "speakers_without_github" do %>
+  <h2 class="mb-4">Speakers without GitHub handles (<%= @speakers_without_github_count %>)</h2>
+
+  <article class="prose mb-6">These speakers are currently missing a GitHub handle. By adding a GitHub handle to their profile, we can enhance their speaker profiles with an avatar and automatically retrieve additional information.</article>
+
+  <div id="speakers" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 min-w-full mb-6">
+    <% @speakers_without_github.each do |speaker| %>
+      <%= content_tag :div, id: dom_id(speaker), class: "flex justify-between p-4 rounded-lg border bg-white" do %>
+        <span><%= link_to speaker.name, edit_profile_path(speaker), class: "underline link", data: {turbo_frame: "modal"} %></span>
+        <span>
+          <%= link_to "https://github.com/search?q=#{speaker.name}&type=users", target: "_blank", class: "underline link" do %>
+            <%= fa("magnifying-glass", style: :regular) %>
+          <% end %>
+        </span>
+      <% end %>
+    <% end %>
+
+    <% remaining_speakers_count = (@speakers_without_github_count - @speakers_without_github.count) %>
+
+    <% if remaining_speakers_count.positive? %>
+      <div class="flex items-center hover:bg-gray-100 p-4 rounded-lg border bg-white">
+        <span>and <%= remaining_speakers_count %> more</span>
+      </div>
+    <% end %>
+  </div>
+<% end %>

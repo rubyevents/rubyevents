@@ -1,0 +1,31 @@
+# This is the actual configuration file for litestream.
+#
+# You can either use the generated `config/initializers/litestream.rb`
+# file to configure the litestream-ruby gem, which will populate these
+# ENV variables when using the `rails litestream:replicate` command.
+#
+# Or, if you prefer, manually manage ENV variables and this configuration file.
+# In that case, simply ensure that the ENV variables are set before running the
+# `replicate` command.
+#
+# For more details, see: https://litestream.io/reference/config/
+
+# global settings
+sync-interval: 10m
+
+snapshot:
+  interval: 24h
+  retention: 72h # 3 days
+
+dbs:
+  # production
+  - path: /rails/storage/production_rubyvideo.sqlite3
+    replicas:
+      - type: s3
+        endpoint: $LITESTREAM_ENDPOINT
+        bucket: rubyevents-production
+        path: storage/production_rubyvideo.sqlite3
+        access-key-id: $LITESTREAM_ACCESS_KEY_ID
+        secret-access-key: $LITESTREAM_SECRET_ACCESS_KEY
+        retention: 24h # How long to keep WAL files on replica
+        retention-check-interval: 1h

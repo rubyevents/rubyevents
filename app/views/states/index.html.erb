@@ -1,0 +1,31 @@
+<%= turbo_refreshes_with method: :morph, scroll: :preserve %>
+
+<div class="container py-8">
+  <div class="flex items-center justify-between w-full hotwire-native:hidden">
+    <h1 class="title">
+      <%= title "States & Territories" %>
+    </h1>
+
+    <div class="flex flex-col gap-3 place-items-center">
+      <%= ui_button "View all countries", url: countries_path, kind: :secondary, size: :sm, class: "w-full" %>
+    </div>
+  </div>
+
+  <p class="mt-3 md:mt-9 mb-6 text-[#636B74] max-w-[700px]">
+    Browse Ruby events and community members by state or territory.
+  </p>
+
+  <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <% @countries_with_states.each do |country| %>
+      <%= link_to country_states_path(alpha2: country.code), class: "card bg-white border hover:shadow-md transition-shadow" do %>
+        <div class="card-body flex-row items-center gap-4">
+          <span class="fi fi-<%= country.code %> text-4xl rounded"></span>
+          <div>
+            <h2 class="card-title text-lg"><%= country.name %></h2>
+            <p class="text-sm text-gray-500"><%= country.states.count %> states/territories</p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

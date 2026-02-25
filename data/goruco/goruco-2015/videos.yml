@@ -1,206 +1,226 @@
 ---
 # http://2015.goruco.com/#schedule
 
-- title: "Keynote: Playing Games in the Clouds"
+- id: "nadia-odunayo-goruco-2015"
+  title: "Keynote: Playing Games in the Clouds"
   raw_title: "GORUCO 2015: Nadia Odunayo: Keynote Playing games in the clouds"
   speakers:
     - Nadia Odunayo
-  event_name: GORUCO 2015
-  published_at: "2015-06-20"
+  event_name: "GORUCO 2015"
+  date: "2015-06-20"
+  published_at: "2015-07-03"
   description: |-
     @nodunayo
 
     What does haggling at a garage sale have to do with load balancing in distributed systems? How does bidding in an art auction relate to cloud service orchestration? Familiarity with the ideas and technologies involved in cloud computing is becoming ever more important for developers. This talk will demonstrate how you can use game theory - the study of strategic decision making - to design more efficient, and innovative, distributed systems.
      "Talk given at GORUCO 2015: http://goruco.com"
-  video_provider: youtube
-  video_id: aHJEzIzhbf8
+  video_provider: "youtube"
+  video_id: "aHJEzIzhbf8"
 
 # Micro Break
 
-- title: How to Performance
+- id: "eileen-m-uchitelle-goruco-2015"
+  title: "How to Performance"
   raw_title: "GORUCO 2015: Eileen Uchitelle: How to Performance"
   speakers:
     - Eileen M. Uchitelle
-  event_name: GORUCO 2015
-  published_at: "2015-06-20"
+  event_name: "GORUCO 2015"
+  date: "2015-06-20"
+  published_at: "2015-07-03"
   description: |-
     @eileencodes
 
     Understanding performance output can feel like reading tea leaves. It makes sense to a few people, but many of us are left in the dark; overwhelmed and frustrated by the data. On top of that there are a ton of performance tools to choose from; StackProf, RubyProf, AllocationTracer. Where do you even start? While working on speeding up integration tests in Rails source, I learned that the key to improving the performance of Ruby code is having a baseline, not relying on one profiler and understanding the advantages and limitations of your tools. By utilizing these methods, integration tests are now 3 times faster than they were in Rails 4.2.0, with more improvements being made every day. In this talk we will not only look at how to read performance output, but when and how to use the right profilers for the job. We'll discuss a variety of methods and techniques for benchmarking and profiling so you can get the most out of any performance tool.
 
      Talk given at GORUCO 2015: http://goruco.com
-  video_provider: youtube
-  video_id: oT74HLvDo_A
+  video_provider: "youtube"
+  video_id: "oT74HLvDo_A"
 
 # Morning Tea
 
-- title: Home Automation with the Amazon Echo and Ruby
+- id: "zachary-feldman-goruco-2015"
+  title: "Home Automation with the Amazon Echo and Ruby"
   raw_title: "GORUCO 2015: Zachary Feldman: Home Automation with the Amazon Echo and Ruby"
   speakers:
     - Zachary Feldman
-  event_name: GORUCO 2015
-  published_at: "2015-06-20"
-  description:
-    "@zachfeldman\nThe Amazon Echo recently debuted and made a big splash
-    with its incredibly accurate voice recognition, capable of hearing and transliterating
-    commands from 20-30 feet away. Home automation enthusiasts and hackers alike wondered
-    if it would be possible to intercept commands from the device and trigger custom
-    actions. While device traffic is encrypted, the device pushes commands to a history
-    page in a web application. Using Watir WebDriver, which normally is used for feature
-    testing, we've created a proxy that can be run on a Raspberry Pi as well as a
-    modular Ruby framework based on Sinatra to run custom commands, allowing us to
-    control the Hue wireless lighting system, Nest, and even request an Uber!\n \nTalk
-    given at GORUCO 2015: http://goruco.com"
-  video_provider: youtube
-  video_id: u1guHGWD1TU
+  event_name: "GORUCO 2015"
+  date: "2015-06-20"
+  published_at: "2015-07-03"
+  description: |-
+    @zachfeldman
+    The Amazon Echo recently debuted and made a big splash with its incredibly accurate voice recognition, capable of hearing and transliterating commands from 20-30 feet away. Home automation enthusiasts and hackers alike wondered if it would be possible to intercept commands from the device and trigger custom actions. While device traffic is encrypted, the device pushes commands to a history page in a web application. Using Watir WebDriver, which normally is used for feature testing, we've created a proxy that can be run on a Raspberry Pi as well as a modular Ruby framework based on Sinatra to run custom commands, allowing us to control the Hue wireless lighting system, Nest, and even request an Uber!
+    \
+    Talk given at GORUCO 2015: http://goruco.com
+  video_provider: "youtube"
+  video_id: "u1guHGWD1TU"
 
 # Micro Break
 
-- title: Great Caching Disasters!
+- id: "lisa-van-gelder-goruco-2015"
+  title: "Great Caching Disasters!"
   raw_title: "GORUCO 2015: Lisa van Gelder: Great Caching Disasters!"
   speakers:
     - Lisa van Gelder
-  event_name: GORUCO 2015
-  published_at: "2015-06-20"
+  event_name: "GORUCO 2015"
+  date: "2015-06-20"
+  published_at: "2015-07-03"
   description: |-
     @techbint
     Whenever something has gone seriously wrong for me in production caching has been at the root of it. Live Q&A with Julian Assange almost brought the site down? Caching fail. Servers can't cope with traffic about a new woolly rat? Caching fail. Half the site is showing sorry pages? Caching fail. This talk will use these disasters to explain why the simplest caching is always the best.
 
      Talk given at GORUCO 2015: http://goruco.com
-  video_provider: youtube
-  video_id: tLS2z8ndDak
+  video_provider: "youtube"
+  video_id: "tLS2z8ndDak"
 
-- title: Sweaters as a service
+- id: "amy-wibowo-goruco-2015"
+  title: "Sweaters as a service"
   raw_title: "GORUCO 2015: Amy Wibowo: Sweaters as a service"
   speakers:
     - Amy Wibowo
-  event_name: GORUCO 2015
-  published_at: "2015-06-20"
+  event_name: "GORUCO 2015"
+  date: "2015-06-20"
+  published_at: "2015-07-03"
   description: |-
     @sailorhg
     In the 1980's, Nintendo had plans for making a knitting add-on to the NES, with an interface that resembled Mariopaint, but with patterned mittens, sweaters, and scarves as output. Sadly, this product never saw the light of day. Devastated upon hearing this and dreaming about what could have been, a group of engineers (who knew nothing about machine knitting) set out to hack a knitting machine from the 1980's to be computer-controlled, using a tutorial from adafruit as a starting point. Hear about our struggles and triumphs, which ranged from learning to replace knitting machine needles and conduct basic repairs, to emulating a floppy drive and hacking together a custom cable cable to send our own patterns to the machine, to writing our own yarn printer API in ruby/sinatra and printing our first doge meme in yarn. And watch us (LIVE!) as we send images and knit requests to our yarn server, and behold as it knits ugly sweaters from those images!
 
      Talk given at GORUCO 2015: http://goruco.com
-  video_provider: youtube
-  video_id: Z16dVnewZVs
+  video_provider: "youtube"
+  video_id: "Z16dVnewZVs"
 
-- title: "Rails 5, Turbolinks 3, and the future of View-Over-the-Wire"
+- id: "nate-berkopec-goruco-2015"
+  title: "Rails 5, Turbolinks 3, and the future of View-Over-the-Wire"
   raw_title: "GORUCO 2015: Nate Berkopec: Rails 5, Turbolinks 3, and the future of View-Over-the-Wire"
   speakers:
     - Nate Berkopec
-  event_name: GORUCO 2015
-  published_at: "2015-06-20"
+  event_name: "GORUCO 2015"
+  date: "2015-06-20"
+  published_at: "2015-07-03"
   description: |-
     @nateberkopec
     With Rails 5, Turbolinks is getting a nice upgrade, with new features like partial replacement and a progress bar with a public API. This talk will demonstrate how Rails 5 Turbolinks can achieve sub-100ms UI response times, and demonstrate some tools to help you get there.
 
      Talk given at GORUCO 2015: http://goruco.com
-  video_provider: youtube
-  video_id: eBccDerJPJE
+  video_provider: "youtube"
+  video_id: "eBccDerJPJE"
 
 # Lunch
 
-- title: "Dropping down to The Metal™"
+- id: "godfrey-chan-goruco-2015"
+  title: "Dropping down to The Metal™"
   raw_title: "GORUCO 2015: Godfrey Chan: Dropping down to The Metal™"
   speakers:
     - Godfrey Chan
-  event_name: GORUCO 2015
-  published_at: "2015-06-20"
+  event_name: "GORUCO 2015"
+  date: "2015-06-20"
+  published_at: "2015-07-03"
   description: |-
     @chancancode
     As much as we love Ruby, when you need to be really close to the metal, you have no choice but to use JavaScript. This is why I developed the javascript gem to help you harness the raw power of your machines. In this talk, we will examine the Ruby tricks and black magic hidden behind this ludicrous invention. Along the way, we will learn about how Ruby internally deal with variable lookups, method calls, scoping and bindings. Together, we will push the limits of the Ruby language, taking it to places Matz never ever envisioned!
 
      Talk given at GORUCO 2015: http://goruco.com
-  video_provider: youtube
-  video_id: 90OytTY-xMo
+  video_provider: "youtube"
+  video_id: "90OytTY-xMo"
 
 # Micro break
 
-- title: Event Sourcing
+- id: "bryan-reinero-goruco-2015"
+  title: "Event Sourcing"
   raw_title: "GORUCO 2015: Bryan Reinero: Event sourcing"
   speakers:
     - Bryan Reinero
-  event_name: GORUCO 2015
-  published_at: "2015-06-20"
+  event_name: "GORUCO 2015"
+  date: "2015-06-20"
+  published_at: "2015-07-03"
   description: |-
     @blimpyacht
     Event Sourcing is powerful way to think about domain objects and transaction processing. Rather than persisting an object in it's current state, event sourcing instead writes an immutable log of deltas (domain events) to the database. from this set of events, an object's state is derived, at any point in the past, simply by replaying the event history sequentially. Event sourcing is a deceptively radical idea which challenges our contemporary notions about transaction processing, while also being a mature pattern with a long history. This talk will take a look at how event processing is used across a spectrum of use cases, including database engines and financial systems, to Google Docs hacks.
 
      Talk given at GORUCO 2015: http://goruco.com
-  video_provider: youtube
-  video_id: dOlTRl8gJIs
+  video_provider: "youtube"
+  video_id: "dOlTRl8gJIs"
 
-- title: Un-Artificial Intelligence
+- id: "melinda-seckington-goruco-2015"
+  title: "Un-Artificial Intelligence"
   raw_title: "GORUCO 2015: Melinda Seckington: Un-Artificial Intelligence"
   speakers:
     - Melinda Seckington
-  event_name: GORUCO 2015
-  published_at: "2015-06-20"
+  event_name: "GORUCO 2015"
+  date: "2015-06-20"
+  published_at: "2015-07-02"
   description: |-
     @mseckington
 
     HAL, Skynet, KITT… we've always been intrigued by artificial intelligence, but have you ever stopped to considered the un-artificial? Most developers are familiar with the basics of AI: how do you make a computer, an algorithm, a system learn something? How do you model real world problems in such a way that an artificial mind can process them? What most don't realize though is that the same principles can be applied to people. This talk looks at some of the theories behind how machines learn versus how people learn, and maps it to real life examples of how specifically our users learn their way around interfaces and how designers and developers apply learning methodologies in their day-to-day actions.
 
     Talk given at GORUCO 2015: http://goruco.com
-  video_provider: youtube
-  video_id: 7Y1Bv2BJDLs
+  video_provider: "youtube"
+  video_id: "7Y1Bv2BJDLs"
 
-- title: Common Pitfalls of Junior Developers
+- id: "rachel-warbelow-goruco-2015"
+  title: "Common Pitfalls of Junior Developers"
   raw_title: "GORUCO 2015: Rachel Warbelow: Common pitfalls of junior developers"
   speakers:
     - Rachel Warbelow
-  event_name: GORUCO 2015
-  published_at: "2015-06-20"
+  event_name: "GORUCO 2015"
+  date: "2015-06-20"
+  published_at: "2015-07-03"
   description: |-
     @rwarbelow
     The learning curve to becoming a great developer is incredibly steep, especially when starting with no background knowledge. And it's not a smooth ride, either - trying to learn tools, concepts, syntax, and best practices simultaneously will inevitably result in hiccups along the way. As a DevBootcamp alumnus, Rachel knows what it's like to go from zero to developer in a very short time frame and the challenges that journey can present. Now as an instructor at the Turing School of Software and Design, she draws on her years of experience in the classroom to employ strategies that allow her students just the right balance between hand-holding and struggling. In this talk, Rachel will share tips to help people who are just getting started with programming overcome common struggles while also sharing proven teaching techniques that will help more experienced developers become effective mentors.
 
      Talk given at GORUCO 2015: http://goruco.com
-  video_provider: youtube
-  video_id: tYOx8mA5p2c
+  video_provider: "youtube"
+  video_id: "tYOx8mA5p2c"
 
 # Afternoon Tea
 
-- title: Building and Testing Resilient Applications
+- id: "simon-eskildsen-goruco-2015"
+  title: "Building and Testing Resilient Applications"
   raw_title: "GORUCO 2015: Simon Eskildsen: Building and testing resilient applications"
   speakers:
     - Simon Eskildsen
-  event_name: GORUCO 2015
-  published_at: "2015-06-20"
+  event_name: "GORUCO 2015"
+  date: "2015-06-20"
+  published_at: "2015-07-03"
   description: |-
     @Sirupsen
     Drives fail, databases crash, fibers get cut and unindexed queries hit production. Do you know how your application reacts to those events? Are they covered by tests? What about the failures you haven't even thought of? To avoid cascading failures applications must adopt general patterns to defend against misbehaving dependencies, including themselves. This talk covers the resiliency techniques Shopify has successfully put into production at scale, and how we write tests to ensure we don't reintroduce single points of failure. You'll walk away from this talk equipped with the tools to make your applications resilient and to better sleep at night.
 
      Talk given at GORUCO 2015: http://goruco.com
-  video_provider: youtube
-  video_id: ev0KpoACieo
+  video_provider: "youtube"
+  video_id: "ev0KpoACieo"
 
 # Break
 
-- title: "Closing Keynote: Code Required"
+- id: "aaron-patterson-goruco-2015"
+  title: "Closing Keynote: Code Required"
   raw_title: "GORUCO 2015: Aaron Patterson: Closing Keynote"
   speakers:
     - Aaron Patterson
-  event_name: GORUCO 2015
-  published_at: "2015-06-20"
+  event_name: "GORUCO 2015"
+  date: "2015-06-20"
+  published_at: "2015-07-03"
   description: |-
     @tenderlove
 
      Talk given at GORUCO 2015: http://goruco.com
-  video_provider: youtube
-  video_id: kwkbrOwLsZY
+  video_provider: "youtube"
+  video_id: "kwkbrOwLsZY"
 
 ## Not on the schedule
 
-- title: Of Mice and Metrics
+- id: "kara-bernert-goruco-2015"
+  title: "Of Mice and Metrics"
   raw_title: "GORUCO 2015: Kara Bernert: Of Mice and Metrics"
   speakers:
     - Kara Bernert
-  event_name: GORUCO 2015
-  published_at: "2015-06-20"
+  event_name: "GORUCO 2015"
+  date: "2015-06-20"
+  published_at: "2015-07-03"
   description: |-
     @_beavz
 
      Talk given at GORUCO 2015: http://goruco.com
-  video_provider: youtube
-  video_id: j5ePxpIyLa0
+  video_provider: "youtube"
+  video_id: "j5ePxpIyLa0"

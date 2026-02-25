@@ -1,0 +1,23 @@
+<h2 class="text-2xl font-bold">Dropdown</h2>
+<div class="flex items-center justify-start gap-8 py-8">
+  <%= ui_dropdown id: "dropdown" do |c| %>
+    Dropdown
+    <% c.with_menu_item_link_to "link", "#" %>
+    <% c.with_menu_item_divider %>
+    <% c.with_menu_item_button_to "button", "#" %>
+  <% end %>
+
+  <%= ui_dropdown id: "dropdown" do |c| %>
+    <% c.with_toggle_open do %>
+      <%= fa("xmark", size: :lg) %>
+    <% end %>
+
+    <% c.with_toggle_close do %>
+      <%= fa("bars", size: :lg) %>
+    <% end %>
+
+    <% c.with_menu_item_link_to "link", "#" %>
+    <% c.with_menu_item_divider %>
+    <% c.with_menu_item_button_to "button", "#" %>
+  <% end %>
+</div>

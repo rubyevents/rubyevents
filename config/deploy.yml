@@ -1,3 +1,4 @@
+<% require "dotenv"; Dotenv.load(".env") %>
 # Name of your application. Used to uniquely configure containers.
 service: rubyvideo
 
@@ -7,30 +8,42 @@ image: adrienpoly/rubyvideo
 # Deploy to these servers.
 servers:
   web:
-    - 91.107.208.207
+    hosts:
+      - 91.107.208.207
+    options:
+      memory: 4GB
+      cpus: 3
+    env:
+      clear:
+        APPSIGNAL_HOSTNAME: rubyevents-web
+
   job:
     hosts:
       - 91.107.208.207
-    cmd: bin/jobs
+    cmd: bin/jobs --mode=async
+    options:
+      memory: 1GB
+      cpus: 1
+    env:
+      clear:
+        APPSIGNAL_HOSTNAME: rubyevents-job
 
 # Enable SSL auto certification via Let's Encrypt (and allow for multiple apps on one server).
 # If using something like Cloudflare, it is recommended to set encryption mode
 # in Cloudflare's SSL/TLS setting to "Full" to enable end-to-end encryption.
 proxy:
-  ssl: true # TODO: enable SSL
+  ssl: true
   hosts:
     - rubyvideo.dev
     - www.rubyvideo.dev
+    - rubyevents.org
+    - www.rubyevents.org
   # kamal-proxy connects to your container over port 80, use `app_port` to specify a different port.
   app_port: 80
 
 # Credentials for your image host.
 registry:
-  # Specify the registry server, if you're not using Docker Hub
-  # server: registry.digitalocean.com / ghcr.io / ...
   username: adrienpoly
-
-  # Always use an access token rather than real password (pulled from .kamal/secrets).
   password:
     - KAMAL_REGISTRY_PASSWORD
 
@@ -39,86 +52,77 @@ builder:
   arch:
     - arm64
   cache:
-    type: registry
-    image: adrienpoly/rubyvideo-build-cache
+    type: gha
     options: mode=max
-#
+    image: rubyvideo-build-cache
+  secrets:
+    - RAILS_MASTER_KEY
+  remote: ssh://root@5.75.232.156
+  local: false
+
 env:
   clear:
-    RUBY_YJIT_ENABLE: 1
-    RAILS_SERVE_STATIC_FILES: true
-    WEB_CONCURRENCY: 2
+    WEB_CONCURRENCY: 3
     RAILS_MAX_THREADS: 3
     RAILS_ENV: production
+    TYPESENSE_PORT: 443
+    TYPESENSE_PROTOCOL: https
   secret:
     - RAILS_MASTER_KEY
-    - MEILI_MASTER_KEY
+    - GEOLOCATE_API_KEY
+    - MAPBOX_ACCESS_TOKEN
+    - TYPESENSE_API_KEY
+    - TYPESENSE_NODES
+    - TYPESENSE_NEAREST_NODE
+
 # Aliases are triggered with "bin/kamal <alias>". You can overwrite arguments on invocation:
 # "bin/kamal logs -r job" will tail logs from the first server in the job section.
 #
-# aliases:
-#   shell: app exec --interactive --reuse "bash"
-
-# Use a different ssh user than root
-#
-# ssh:
-#   user: app
+aliases:
+  shell: app exec --interactive --reuse "bash"
+  console: app exec --reuse -i "bin/rails console"
+  stats: server exec "docker stats --no-stream"
+  seed_all: app exec "rake db:seed:all"
 
 # Use a persistent storage volume.
 #
 volumes:
   - "storage:/rails/storage"
-# Bridge fingerprinted assets, like JS and CSS, between versions to avoid
-# hitting 404 on in-flight requests. Combines all files from new and old
-# version inside the asset_path.
-#
-# asset_path: /app/public/assets
-
-# Configure rolling deploys by setting a wait time between batches of restarts.
-#
-# boot:
-#   limit: 10 # Can also specify as a percentage of total hosts, such as "25%"
-#   wait: 2
-
-# Use accessory services (secrets come from .kamal/secrets).
-#
-# accessories:
-#   db:
-#     image: mysql:8.0
-#     host: 192.168.0.2
-#     port: 3306
-#     env:
-#       clear:
-#         MYSQL_ROOT_HOST: '%'
-#       secret:
-#         - MYSQL_ROOT_PASSWORD
-#     files:
-#       - config/mysql/production.cnf:/etc/mysql/my.cnf
-#       - db/production.sql:/docker-entrypoint-initdb.d/setup.sql
-#     directories:
-#       - data:/var/lib/mysql
-#   redis:
-#     image: redis:7.0
-#     host: 192.168.0.2
-#     port: 6379
-#     directories:
-#       - data:/data
 
 accessories:
-  search:
-    image: getmeili/meilisearch:v1.10
-    host: 91.107.208.207
-    port: 7700
+  litestream:
+    roles: ["web"]
+    image: litestream/litestream
+    files: ["config/litestream.yml:/etc/litestream.yml"]
+    volumes: ["storage:/rails/storage"]
+    cmd: replicate
+    env:
+      secret:
+        - LITESTREAM_ENDPOINT
+        - LITESTREAM_ACCESS_KEY_ID
+        - LITESTREAM_SECRET_ACCESS_KEY
+
+  chrome:
+    roles: ["web", "job"]
+    image: browserless/chrome:latest
+    port: 3000
     env:
       clear:
-        MEILI_HTTP_ADDR: rubyvideo-search:7700
-        MEILI_ENV: production
-        MEILI_DB_PATH: /rails/storage/meilisearch
-        MEILI_NO_ANALYTICS: true
-        MEILI_DUMP_DIR: /rails/storage/meilisearch/dumps
-        MEILI_MAX_INDEXING_MEMORY: 2Gb
-        MEILI_SNAPSHOT_DIR: /rails/storage/meilisearch/snapshots
-      secret:
-        - MEILI_MASTER_KEY
+        CONNECTION_TIMEOUT: "60000"
+        MAX_CONCURRENT_SESSIONS: "5"
+    options:
+      memory: 1GB
+      cpus: 0.5
+
+  typesense:
+    roles: ["web"]
+    image: typesense/typesense:27.1
+    port: "8108:8108"
     volumes:
-      - "storage:/rails/storage"
+      - "typesense-data:/data"
+    env:
+      clear:
+        TYPESENSE_DATA_DIR: /data
+        TYPESENSE_ENABLE_CORS: "true"
+      secret:
+        - TYPESENSE_API_KEY

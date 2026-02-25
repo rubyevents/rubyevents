@@ -1,0 +1,6 @@
+<%= link_to profile_path(speaker), target: "_top", id: dom_id(speaker), role: "option", class: "w-full flex items-center gap-4", style: "view-transition-name: #{dom_id(speaker, :search_result)}" do %>
+  <div class="avatar placeholder">
+    <%= ui_avatar(speaker, size: :sm) %>
+  </div>
+  <%= speaker.name %>
+<% end %>

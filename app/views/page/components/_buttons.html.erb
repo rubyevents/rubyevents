@@ -1,0 +1,70 @@
+<h2 class="text-2xl font-bold mb-4">Button</h2>
+<div class="flex gap-16 w-full">
+  <div class="flex items-center justify-start gap-4 mb-8 flex-wrap">
+    <% [:primary, :secondary, :neutral, :rounded, :ghost, :link].each do |kind| %>
+      <%= ui_button kind.to_s.capitalize, kind: kind %>
+    <% end %>
+  </div>
+  <div class="flex justify-center">
+    <div class="flex flex-col gap-4 w-36">
+      <p>Example</p>
+      <%= ui_button "Preview", kind: :neutral %>
+      <%= ui_button "Edit", kind: :secondary %>
+      <%= ui_button "Save", kind: :primary %>
+      <%= ui_button "Cancel", kind: :ghost %>
+    </div>
+  </div>
+</div>
+<p>small versions</p>
+<div class="flex items-center justify-start gap-4 mt-4 mb-8 flex-wrap">
+  <% [:primary, :secondary, :neutral, :rounded, :ghost, :link].each do |kind| %>
+    <%= ui_button kind.to_s.capitalize, kind: kind, size: :sm %>
+  <% end %>
+</div>
+<p>Pill buttons for toolbars</p>
+<div class="flex items-center justify-start gap-4 mt-4 mb-8 flex-wrap">
+  <%= ui_button kind: :pill do %>
+    <%= fa("pencil", size: :sm) %>
+    <span>Edit</span>
+  <% end %>
+  <%= ui_button kind: :pill do %>
+    <%= fa("share-nodes", size: :sm) %>
+    <span>Share</span>
+  <% end %>
+  <%= ui_button kind: :pill do %>
+    <%= fa("trash-can", size: :sm) %>
+    <span>Delete</span>
+  <% end %>
+  <%= ui_button kind: :pill do %>
+    <%= fa("link", size: :sm) %>
+    <span>Link</span>
+  <% end %>
+  <%= ui_button kind: :pill do %>
+    <%= fa("bookmark", style: :regular, size: :sm) %>
+    <span>Bookmark</span>
+  <% end %>
+  <%= ui_button kind: :pill do %>
+    <%= fa("bookmark", style: :solid, class: "text-primary", size: :sm) %>
+    <span>Bookmark</span>
+  <% end %>
+  <%= ui_button kind: :pill do %>
+    <%= fa("circle", size: :sm, style: :regular) %>
+    <span class="text-nowrap">Watched</span>
+  <% end %>
+  <%= ui_button kind: :pill do %>
+    <%= fa("circle-check", size: :sm, style: :solid, class: "fill-green-700") %>
+    <span class="text-nowrap">Watched</span>
+  <% end %>
+</div>
+<p>Pill buttons for filters</p>
+<div class="flex items-center justify-start gap-4 mt-4 mb-8 flex-wrap">
+  <%= ui_button kind: :pill, class: "active" do %>
+    <span>Portuguese (5)</span>
+  <% end %>
+  <%= ui_button kind: :pill do %>
+    <span>English (10)</span>
+  <% end %>
+  <%= ui_button kind: :pill do %>
+    <span>French (2)</span>
+  <% end %>
+</div>

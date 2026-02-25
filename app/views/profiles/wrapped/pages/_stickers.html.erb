@@ -1,0 +1,22 @@
+<h2 class="text-2xl font-bold mb-2 text-center">Stickers Collected</h2>
+<p class="text-gray-500 text-center mb-4">Event stickers from <%= year %></p>
+
+<div class="flex-1 w-full overflow-hidden rounded-2xl bg-gradient-to-b from-gray-300 via-gray-600 to-gray-600 p-[3px]">
+  <div class="w-full h-full overflow-hidden rounded-2xl bg-gradient-to-b from-gray-400 via-gray-500 to-gray-600 p-4 flex items-center justify-center">
+    <div class="grid grid-cols-3 gap-3 w-full place-items-center content-center">
+      <% stickers_earned.shuffle.each do |sticker| %>
+        <% rotation = rand(-15..15)
+           translate_x = rand(-10..10)
+           translate_y = rand(-10..10)
+           scale = rand(90..110) %>
+        <%= link_to sticker.event, class: "w-16 h-16 md:w-20 md:h-20 transition-transform hover:scale-110 hover:z-10", style: "transform: rotate(#{rotation}deg) translateX(#{translate_x}px) translateY(#{translate_y}px) scale(#{scale}%);", data: {turbo_frame: "_top"} do %>
+          <%= image_tag sticker.asset_path, alt: sticker.name, class: "w-full h-full object-contain drop-shadow-lg" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="text-center text-sm text-gray-500 mt-4">
+  <%= stickers_earned.count %> sticker<%= (stickers_earned.count == 1) ? "" : "s" %> collected
+</div>

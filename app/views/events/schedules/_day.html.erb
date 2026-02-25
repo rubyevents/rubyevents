@@ -1,0 +1,97 @@
+<% talk_count ||= 0 %>
+<% date_string = Date.parse(day.dig("date")).strftime("%A (%b %d, %Y)") %>
+<% day_string = "#{day.dig("name")} - #{date_string}" %>
+
+<div class="mt-6">
+  <h1 class="mb-6 text-center"><%= day_string %></h1>
+
+  <% date = day.dig("date") %>
+  <% max_cols = day.dig("grid").map { |grid| grid["slots"] }.max %>
+  <% multi_track = max_cols > 1 %>
+
+  <div class="text-center">
+    <% day.dig("grid").each do |grid| %>
+      <% start_time = grid["start_time"] %>
+      <% end_time = grid["end_time"] %>
+      <% description = grid["description"] %>
+      <% slots = grid["slots"] %>
+      <% items = grid.fetch("items", []) %>
+      <% colspan = (slots != max_cols) ? (max_cols / slots) : 1 %>
+
+      <div class="mt-6 border bg-white rounded">
+        <div class="border-b">
+          <div class="text-xs p-2" colspan="<%= max_cols %>">
+            <%= [start_time, end_time].uniq.join(" - ") %>
+          </div>
+        </div>
+
+        <% if description %>
+          <div class="border-b">
+            <div class="text-xs p-2">
+              <%= description %>
+            </div>
+          </div>
+        <% end %>
+
+        <div class="grid grid-cols-<%= slots %> divide-x">
+          <% slots.times do |i| %>
+            <% talk = items.any? ? nil : talks[talk_count] %>
+            <% talk_tag = items.any? ? :div : :a %>
+            <% href_attrs = talk ? {href: talk_path(talk, back_to: day_event_schedules_path(event, date), back_to_title: "Schedule: #{day_string}")} : {href: "#"} %>
+            <% css_classes = token_list("group bg-white text-black text-xs p-3 content-center", "hover:bg-primary hover:text-white" => items.none?) %>
+
+            <%= content_tag talk_tag, **href_attrs, class: css_classes, data: {turbo_frame: "_top"} do %>
+              <% if items.any? %>
+                <% item = items[i] %>
+
+                <div class="w-full flex flex-col text-left items-center">
+                  <% if item.is_a?(String) %>
+                    <span class="text-center"><%= item %></span>
+                  <% else %>
+                    <b class="text-center"><%= item&.fetch("title").presence || "no title" %></b>
+                    <div class="prose text-sm mt-3">
+                      <%= markdown_to_html(item&.fetch("description").presence || "-") %>
+                    </div>
+                  <% end %>
+                </div>
+              <% elsif talk %>
+                <% talk_track = talk.static_metadata&.track %>
+                <% track = talk_track && tracks.find { |track| track["name"] == talk_track } %>
+
+                <% if track && talk_track %>
+                  <span class="py-1 px-2 mb-4 rounded flex-inline justify-center" style="background: <%= track["color"] %>; color: <%= track["text_color"] %>">
+                    <%= talk_track %>
+                  </span>
+
+                  <% if multi_track %>
+                    <div class="h-4">&nbsp;</div>
+                  <% end %>
+                <% elsif slots == max_cols && multi_track %>
+                  <span class="py-1 px-2 mb-4">&nbsp;</span>
+                  <div class="h-4">&nbsp;</div>
+                <% end %>
+
+                <div class="flex-col">
+                  <div class="text-md font-bold"><%= talk.title %></div><br>
+                  <div class="text-gray-500 group-hover:text-white inline-flex flex-wrap gap-2 justify-center">
+                    <% talk.speakers.each do |speaker| %>
+                      <%= ui_avatar(speaker, outline: true, size: :sm) %>
+                    <% end %>
+                  </div>
+
+                  <div class="text-gray-500 group-hover:text-white mt-2">
+                    <%= talk.speakers.map(&:name).join(", ") %>
+                  </div>
+                </div>
+
+                <% talk_count += 1 %>
+              <% else %>
+                No talk found
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,4 @@
+<%= turbo_frame_tag "top_landing_pages" do %>
+  <h2 class="text-center mb-4">Top landing pages</h2>
+  <%= bar_chart @top_landing_pages, id: :top_landing_pages_chart %>
+<% end %>

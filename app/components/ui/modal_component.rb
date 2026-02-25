@@ -8,13 +8,30 @@ class Ui::ModalComponent < ApplicationComponent
     responsive: "modal-bottom sm:modal-middle"
   }
 
+  SIZE_MAPPING = {
+    md: "",
+    lg: "!max-w-[800px]",
+    xl: "!max-w-[1200px]",
+    full: "!max-w-[95vw] !w-[95vw] !max-h-[90vh]"
+  }
+
   option :open, type: Dry::Types["strict.bool"], default: proc { false }
+  option :close_button, type: Dry::Types["strict.bool"], default: proc { true }
   option :position, type: Dry::Types["coercible.symbol"].enum(*POSITION_MAPPING.keys), optional: true, default: proc { :responsive }
+  option :size, type: Dry::Types["coercible.symbol"].enum(*SIZE_MAPPING.keys), optional: true, default: proc { :md }
 
   private
 
   def before_render
-    attributes[:data] = {controller: "modal", modal_open_value: open, action: "keydow->modal#close"}
+    default_action = "keydown.esc->modal#close"
+    custom_action = attributes[:data]&.delete(:action)
+    combined_action = [default_action, custom_action].compact.join(" ")
+
+    attributes[:data] = {
+      controller: "modal",
+      modal_open_value: open,
+      action: combined_action
+    }.merge(attributes[:data] || {})
   end
 
   def classes
@@ -28,7 +45,11 @@ class Ui::ModalComponent < ApplicationComponent
     )
   end
 
+  def size_class
+    SIZE_MAPPING[size]
+  end
+
   def content_classes
-    class_names("dropdown-content menu menu-smp-2 mt-4 w-max z-[1] rounded-lg shadow-2xl bg-white text-neutral", attributes.delete(:content_classes))
+    class_names("dropdown-content menu menu-sm p-2 mt-4 w-max z-[1] rounded-lg shadow-2xl bg-white text-neutral", attributes.delete(:content_classes))
   end
 end

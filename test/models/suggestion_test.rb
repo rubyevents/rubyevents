@@ -1,19 +1,3 @@
-# rubocop:disable Layout/LineLength
-# == Schema Information
-#
-# Table name: suggestions
-#
-#  id               :integer          not null, primary key
-#  content          :text
-#  status           :integer          default("pending"), not null
-#  suggestable_type :string           not null
-#  suggestable_id   :integer          not null
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  approved_by_id   :integer
-#  suggested_by_id  :integer
-#
-# rubocop:enable Layout/LineLength
 require "test_helper"
 
 class SuggestionTest < ActiveSupport::TestCase

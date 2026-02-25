@@ -1,3 +1,4 @@
-web: bin/rails server -p 3000
+web: bin/rails server -b 0.0.0.0
 vite: bin/vite dev
 jobs: bin/jobs
+guard: bundle exec guard --no-interactions

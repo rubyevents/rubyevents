@@ -1,0 +1,127 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.openai.com/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"model":"gpt-4o-mini","response_format":{"type":"json_schema","json_schema":{"strict":true,"name":"talk_summary","schema":{"type":"object","additionalProperties":false,"required":["summary","keywords"],"properties":{"summary":{"type":"string"},"keywords":{"type":"array","items":{"type":"string"}}}}}},"messages":[{"role":"system","content":"You
+        are a helpful assistant skilled in processing and summarizing transcripts."},{"role":"user","content":"You
+        are tasked with creating a summary of a video based on its transcript and
+        metadata. Follow these steps carefully:\n\n1. First, review the metadata of
+        the video:\n\u003cmetadata\u003e\n  - title: Hotwire Cookbook: Common Uses,
+        Essential Patterns \u0026 Best Practices\n  - description: @SupeRails creator
+        and Rails mentor Yaroslav Shmarov shares how some of the most common frontend
+        problems can be solved with Hotwire.\n\nHe covers:\n- Pagination, search and
+        filtering, modals, live updates, dynamic forms, inline editing, drag \u0026
+        drop, live previews, lazy loading \u0026 more\n- How to achieve more by combining
+        tools (Frames + Streams, StimulusJS, RequestJS, Kredis \u0026 more)\n- What
+        are the limits of Hotwire?\n- How to write readable and maintainable Hotwire
+        code\n- Bad practices\n\n  - speaker name: Yaroslav Shmarov\n  - event name:
+        Rails World 2023\n\u003c/metadata\u003e\n\n2. Next, carefully read through
+        the entire transcript:\n\u003ctranscript\u003e\nso nice to be here with you
+        thank you all for coming so uh my name is uh\n\nyaroslav I m from Ukraine
+        you might know me from my blog or from my super Al\n\nYouTube channel where
+        I post a lot of stuff about trby and especially about hot fire so I originate
+        from Ukraine\n\nfrom the north of Ukraine so right now it is liberated so
+        that is Kev Chernobyl\n\nand chern so I used to live 80 kmers away from Chernobyl
+        great\n\nplace yeah and uh that is my family s home so it got boned in one
+        of the first\n\ndays of war that is my godfather he went to defend Ukraine
+        and uh I mean we are\n\nhe has such a beautiful venue but there is the war
+        going on and like just today\n\nthe city of har was randomly boned by the
+        Russians and there are many Ruby\n\nrails people from Ukraine some of them
+        are actually fighting this is verok he contributed to Ruby and he is actually\n\ndefending
+        Ukraine right now but on a positive note I just recently became a father\n\nso
+        yeah um it is uh just 2 and a half months ago in uh France and uh today we\n\nare
+        going to talk about hot fire\n\u003c/transcript\u003e\n\n3. To summarize the
+        video:\n  a) Identify the main topic or theme of the video.\n  b) Determine
+        the key points discussed throughout the video.\n  c) Note any significant
+        examples, case studies, or anecdotes used to illustrate points.\n  d) Capture
+        any important conclusions or takeaways presented.\n  e) Keep in mind the context
+        provided by the metadata (title, description, speaker(s), and event).\n\n4.
+        Create a summary that:\n  - Introduces the main topic\n  - Outlines the key
+        points in a logical order\n  - Includes relevant examples or illustrations
+        if they are crucial to understanding the content\n  - Concludes with the main
+        takeaways or conclusions from the video\n  - Is between 400-500 words in length\n  -
+        format it using markdown\n  - use bullets for the key points\n\n5. exctract
+        keywords\n  - create a list of keywords to describe this video\n  - 5 to 10
+        keywords\n  - mostly teachnical keywords\n\n6. Format your summary as a JSON
+        object with the following schema:\n  {\n    \"summary\": \"Your summary text
+        here\",\n    \"keywords\": [\"keyword1\", \"keyword2\", \"keyword3\"]\n  }\n\n7.
+        Ensure that your summary is:\n  - Objective and factual, based solely on the
+        content of the transcript and metadata\n  - Written in clear, concise language\n  -
+        Free of personal opinions or external information not present in the provided
+        content\n\n8. Output your JSON object containing the summary, ensuring it
+        is properly formatted and enclosed in \u003canswer\u003e tags.\n"}]}'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <OPENAI_API_KEY>
+      Openai-Organization:
+      - "<OPENAI_ORGANIZATION_ID>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 10 Dec 2024 22:25:29 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Expose-Headers:
+      - X-Request-ID
+      Openai-Organization:
+      - user-cnr3hw7frpcuxb74nqkxv0ci
+      Openai-Processing-Ms:
+      - '5621'
+      Openai-Version:
+      - '2020-10-01'
+      X-Ratelimit-Limit-Requests:
+      - '5000'
+      X-Ratelimit-Limit-Tokens:
+      - '4000000'
+      X-Ratelimit-Remaining-Requests:
+      - '4999'
+      X-Ratelimit-Remaining-Tokens:
+      - '3999115'
+      X-Ratelimit-Reset-Requests:
+      - 12ms
+      X-Ratelimit-Reset-Tokens:
+      - 13ms
+      X-Request-Id:
+      - req_9fc4276dfe35665ee44f6bb25642cd26
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=barhuO2M6x5OuDPuQNG.TJR9FyBIzSRcO.1aRdwZ4jc-1733869529-1.0.1.1-9DhjsOINEgLpZB.jAruLlrLjCUhbnN_ghu1lAG9De9N0qYZaU..go5hb77MYFNY2M9FW96R5rT90a46.h2rHqA;
+        path=/; expires=Tue, 10-Dec-24 22:55:29 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=jfs9Sc0z01Gv5MN2YGs4SJszIFni6neFMGqFFSrpLts-1733869529388-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      X-Content-Type-Options:
+      - nosniff
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8f00a689bab29e67-CDG
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        ewogICJpZCI6ICJjaGF0Y21wbC1BZDJ4UFVadUt5VEZyTkFDZ3lxYnJ5RVBGdFJHNyIsCiAgIm9iamVjdCI6ICJjaGF0LmNvbXBsZXRpb24iLAogICJjcmVhdGVkIjogMTczMzg2OTUyMywKICAibW9kZWwiOiAiZ3B0LTRvLW1pbmktMjAyNC0wNy0xOCIsCiAgImNob2ljZXMiOiBbCiAgICB7CiAgICAgICJpbmRleCI6IDAsCiAgICAgICJtZXNzYWdlIjogewogICAgICAgICJyb2xlIjogImFzc2lzdGFudCIsCiAgICAgICAgImNvbnRlbnQiOiAie1wic3VtbWFyeVwiOlwiSW4gdGhpcyB2aWRlbyB0aXRsZWQgXFxcIkhvdHdpcmUgQ29va2Jvb2s6IENvbW1vbiBVc2VzLCBFc3NlbnRpYWwgUGF0dGVybnMgJiBCZXN0IFByYWN0aWNlcyxcXFwiIFlhcm9zbGF2IFNobWFyb3YsIGEgUmFpbHMgbWVudG9yLCBkaXNjdXNzZXMgdmFyaW91cyBhcHBsaWNhdGlvbnMgb2YgSG90d2lyZSB0byByZXNvbHZlIGNvbW1vbiBmcm9udC1lbmQgY2hhbGxlbmdlcy4gSGUgYmVnaW5zIGJ5IHByb3ZpZGluZyBhIGJyaWVmIGludHJvZHVjdGlvbiBhYm91dCBoaW1zZWxmIGFuZCBzaGFyaW5nIHNvbWUgcGVyc29uYWwgYW5lY2RvdGVzIHJlZ2FyZGluZyB0aGUgb25nb2luZyB3YXIgaW4gVWtyYWluZSwgd2hpbGUgYWxzbyBjZWxlYnJhdGluZyBhIHJlY2VudCBwZXJzb25hbCBtaWxlc3RvbmUgb2YgYmVjb21pbmcgYSBmYXRoZXIuIFxcblxcblRoZSBtYWluIGNvbnRlbnQgb2YgdGhlIHByZXNlbnRhdGlvbiBpcyBmb2N1c2VkIG9uIGhvdyBIb3R3aXJlIGNhbiBiZSB1dGlsaXplZCBlZmZlY3RpdmVseSBieSBkZXZlbG9wZXJzLiBLZXkgcG9pbnRzIGRpc2N1c3NlZCBpbmNsdWRlOlxcblxcbi0gKipDb21tb24gVXNlIENhc2VzIGZvciBIb3R3aXJlOioqIFNobWFyb3YgaGlnaGxpZ2h0cyBzZXZlcmFsIHNjZW5hcmlvcyB3aGVyZSBIb3R3aXJlIGV4Y2Vscywgc3VjaCBhcyBwYWdpbmF0aW9uLCBzZWFyY2ggYW5kIGZpbHRlcmluZywgbW9kYWxzLCBsaXZlIHVwZGF0ZXMsIGR5bmFtaWMgZm9ybXMsIGlubGluZSBlZGl0aW5nLCBkcmFnICYgZHJvcCBjYXBhYmlsaXRpZXMsIGxpdmUgcHJldmlld3MsIGFuZCBsYXp5IGxvYWRpbmcuXFxuLSAqKkNvbWJpbmluZyBUb29scyBmb3IgRW5oYW5jZWQgRnVuY3Rpb25hbGl0eToqKiBIZSBleHBsYWlucyBob3cgZGV2ZWxvcGVycyBjYW4gZ2FpbiBpbXByb3ZlZCByZXN1bHRzIGJ5IGNvbWJpbmluZyBkaWZmZXJlbnQgdG9vbHMgbGlrZSBGcmFtZXMgYW5kIFN0cmVhbXMsIFN0aW11bHVzSlMsIFJlcXVlc3RKUywgYW5kIEtyZWRpcywgdGh1cyBvcHRpbWl6aW5nIHRoZSBhcHBsaWNhdGlvbuKAmXMgcGVyZm9ybWFuY2UgYW5kIHVzZXIgZXhwZXJpZW5jZS5cXG4tICoqVW5kZXJzdGFuZGluZyB0aGUgTGltaXRzIG9mIEhvdHdpcmU6KiogU2htYXJvdiBvdXRsaW5lcyBzb21lIGxpbWl0YXRpb25zIHRvIGJlIGF3YXJlIG9mIHdoZW4gd29ya2luZyB3aXRoIEhvdHdpcmUsIGFkdmlzaW5nIGRldmVsb3BlcnMgb24gcG90ZW50aWFsIHBpdGZhbGxzLlxcbi0gKipCZXN0IFByYWN0aWNlcyBmb3IgUmVhZGFibGUgYW5kIE1haW50YWluYWJsZSBDb2RlOioqIEhlIHNoYXJlcyBpbnNpZ2h0cyBvbiBob3cgdG8gbWFpbnRhaW4gY29kZSB0aGF0IGlzIG5vdCBvbmx5IGZ1bmN0aW9uYWwgYnV0IGFsc28gZWFzeSB0byByZWFkIGFuZCB1bmRlcnN0YW5kLCBlbXBoYXNpemluZyB0aGUgaW1wb3J0YW5jZSBvZiBjbGFyaXR5IGluIHByb2dyYW1taW5nLlxcbi0gKipDb21tb24gQmFkIFByYWN0aWNlcyB0byBBdm9pZDoqKiBUaGUgZGlzY3Vzc2lvbiBhbHNvIGRlbHZlcyBpbnRvIHZhcmlvdXMgcHJhY3RpY2VzIHRoYXQgY291bGQgbGVhZCB0byBpc3N1ZXMgaW4gY29kaW5nIHdpdGggSG90d2lyZSwgcmVpbmZvcmNpbmcgdGhlIGltcG9ydGFuY2Ugb2YgZm9sbG93aW5nIGVzdGFibGlzaGVkIHBhdHRlcm5zLlxcblxcblRoZSB0YWxrIGNvbmNsdWRlcyB3aXRoIGVtcGhhc2lzIG9uIHRoZSBrZXkgdGFrZWF3YXlzLCBpbmNsdWRpbmcgdGhlIGltcG9ydGFuY2Ugb2YganVkaWNpb3VzbHkgY2hvb3NpbmcgdGhlIHJpZ2h0IHRvb2xzIGFuZCBtZXRob2RzIHRvIGFkZHJlc3MgZnJvbnQtZW5kIGNoYWxsZW5nZXMgd2hpbGUgYWxzbyB3cml0aW5nIG1haW50YWluYWJsZSBjb2RlLiBUaGlzIHByZXNlbnRhdGlvbiBpcyBwYXJ0aWN1bGFybHkgYmVuZWZpY2lhbCBmb3IgZGV2ZWxvcGVycyBsb29raW5nIHRvIGVuaGFuY2UgdGhlaXIgdW5kZXJzdGFuZGluZyBhbmQgYXBwbGljYXRpb24gb2YgSG90d2lyZSBpbiByZWFsLXdvcmxkIHNjZW5hcmlvcy5cIixcImtleXdvcmRzXCI6W1wiSG90d2lyZVwiLFwiUmFpbHNcIixcIllhcm9zbGF2IFNobWFyb3ZcIixcImZyb250ZW5kIGRldmVsb3BtZW50XCIsXCJwYWdpbmF0aW9uXCIsXCJsaXZlIHVwZGF0ZXNcIixcImR5bmFtaWMgZm9ybXNcIixcImJlc3QgcHJhY3RpY2VzXCIsXCJTdGltdWx1c0pTXCIsXCJSZXF1ZXN0SlNcIl19IiwKICAgICAgICAicmVmdXNhbCI6IG51bGwKICAgICAgfSwKICAgICAgImxvZ3Byb2JzIjogbnVsbCwKICAgICAgImZpbmlzaF9yZWFzb24iOiAic3RvcCIKICAgIH0KICBdLAogICJ1c2FnZSI6IHsKICAgICJwcm9tcHRfdG9rZW5zIjogODQ5LAogICAgImNvbXBsZXRpb25fdG9rZW5zIjogNDE0LAogICAgInRvdGFsX3Rva2VucyI6IDEyNjMsCiAgICAicHJvbXB0X3Rva2Vuc19kZXRhaWxzIjogewogICAgICAiY2FjaGVkX3Rva2VucyI6IDAsCiAgICAgICJhdWRpb190b2tlbnMiOiAwCiAgICB9LAogICAgImNvbXBsZXRpb25fdG9rZW5zX2RldGFpbHMiOiB7CiAgICAgICJyZWFzb25pbmdfdG9rZW5zIjogMCwKICAgICAgImF1ZGlvX3Rva2VucyI6IDAsCiAgICAgICJhY2NlcHRlZF9wcmVkaWN0aW9uX3Rva2VucyI6IDAsCiAgICAgICJyZWplY3RlZF9wcmVkaWN0aW9uX3Rva2VucyI6IDAKICAgIH0KICB9LAogICJzeXN0ZW1fZmluZ2VycHJpbnQiOiAiZnBfYmJhM2M4ZTcwYiIKfQo=
+  recorded_at: Tue, 10 Dec 2024 22:25:29 GMT
+recorded_with: VCR 6.3.1

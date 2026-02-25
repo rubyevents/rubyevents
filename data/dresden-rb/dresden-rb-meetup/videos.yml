@@ -1,0 +1,180 @@
+---
+# Website: https://dresdenrb.onruby.de
+
+# 2024
+
+- id: "dresden-rb-meetup-november-2024"
+  title: "Dresden.rb meetup November 2024"
+  event_name: "Dresden.rb meetup November 2024"
+  date: "2024-11-28"
+  video_provider: "children"
+  video_id: "dresden-rb-meetup-november-2024"
+  description: |-
+    Die neue Ruby User Group in Dresden richtet sich an alle Interessierten, die sich für die Programmiersprache Ruby und deren vielfältige Anwendungen begeistern. Am 28.11.2024 um 19:00 findet das erste Meetup statt.
+
+    Ziel ist der Austausch von Wissen, Erfahrungen und Ideen durch regelmäßige Treffen, Vorträge und evtl. kleinere Workshops. Mitglieder können voneinander lernen, kreative Projekte vorstellen und die neuesten Trends der Community diskutieren. Ein paar Snacks und Getränke gibt es auch, und jeder ist herzlich willkommen!
+
+    The new Ruby User Group in Dresden is aimed at anyone interested in the Ruby programming language. The first meetup will take place on 28.11.2024 at 19:00. We want to exchange knowledge, experiences and ideas through regular meetings, lectures and possibly smaller workshops. Members can learn from each other, present creative projects and discuss the latest trends in the community. There are also a few snacks and drinks, and everyone is welcome!
+
+    https://dresdenrb.onruby.de/events/dresden-rb-meetup-november-2024-980
+  talks:
+    - title: "Solid Queue in practice"
+      event_name: "Dresden.rb meetup November 2024"
+      date: "2024-11-28"
+      video_provider: "not_recorded"
+      id: "dresden-rb-meetup-november-2024-solid-queue-in-practice"
+      video_id: "dresden-rb-meetup-november-2024-solid-queue-in-practice"
+      description: |-
+        An introduction to Solid Queue in Rails 8.
+      speakers:
+        - Johannes Balk
+
+    - title: "Docker Swarm - What is it? How to set it up and use it?"
+      event_name: "Dresden.rb meetup November 2024"
+      date: "2024-11-28"
+      video_provider: "not_recorded"
+      id: "dresden-rb-meetup-november-2024-docker-swarm"
+      video_id: "dresden-rb-meetup-november-2024-docker-swarm"
+      description: |-
+        I'll tell you all a little story about swarm.
+      speakers:
+        - Ben Rexin
+
+# 2025
+
+- id: "dresden-rb-meetup-march-2025"
+  title: "Dresden.rb meetup March 2025"
+  event_name: "Dresden.rb meetup March 2025"
+  date: "2025-03-06"
+  video_provider: "children"
+  video_id: "dresden-rb-meetup-march-2025"
+  description: |-
+    The new Ruby User Group in Dresden welcomes everyone with an interest in the Ruby programming language. Our second meetup will take place on March 6, 2025, at 19:00.
+
+    We aim to foster knowledge exchange, share experiences, and spark new ideas through regular meetups, talks, and occasional hands-on workshops. Members can learn from one another, showcase creative projects, and discuss the latest trends in the Ruby community. Plus, there will be pizza and drinks—everyone is welcome!
+
+    https://dresdenrb.onruby.de/events/dresden-rb-meetup-march-2025-1079
+  talks:
+    - title: "Tackling increasing complexity in growing Ruby on Rails projects"
+      event_name: "Dresden.rb meetup March 2025"
+      date: "2025-03-06"
+      video_provider: "not_recorded"
+      id: "dresden-rb-meetup-march-2025-tackling-complexity-in-rails"
+      video_id: "dresden-rb-meetup-march-2025-tackling-complexity-in-rails"
+      description: |-
+        Ruby on Rails is a framework designed for straightforward web development with MVC architecture. This talk is about problems with increasing complexity in growing projects and different approaches in software architecture to tackle these problems.
+      speakers:
+        - Steve Reinke
+
+- id: "dresden-rb-meetup-may-2025"
+  title: "Dresden.rb meetup May 2025"
+  event_name: "Dresden.rb meetup May 2025"
+  date: "2025-05-22"
+  video_provider: "children"
+  video_id: "dresden-rb-meetup-may-2025"
+  description: |-
+    The new Ruby User Group in Dresden welcomes everyone with an interest in the Ruby programming language. Our third meetup will take place on May 22 2025, at 19:00.
+
+    We aim to foster knowledge exchange, share experiences, and spark new ideas through regular meetups, talks, and occasional hands-on workshops. Members can learn from one another, showcase creative projects, and discuss the latest trends in the Ruby community.
+
+    https://dresdenrb.onruby.de/events/dresden-rb-meetup-may-2025-1475
+  talks:
+    - title: "Kamal - Deploy web apps anywhere"
+      event_name: "Dresden.rb meetup May 2025"
+      date: "2025-05-21"
+      video_provider: "not_recorded"
+      id: "dresden-rb-meetup-may-2025-kamal"
+      video_id: "dresden-rb-meetup-may-2025-kamal"
+      description: |-
+        Short intro to kamal including a live demo.
+
+        What will be covered:
+
+        * What is kamal
+        * Kamals concept
+        * What features are there
+        * Demo of build and deploy
+      speakers:
+        - Benjamin Deutscher
+    - title: "Jarbler: Pack a Ruby application into an executable jar file."
+      event_name: "Dresden.rb meetup May 2025"
+      date: "2025-05-21"
+      video_provider: "not_recorded"
+      id: "dresden-rb-meetup-may-2025-jarbler"
+      video_id: "dresden-rb-meetup-may-2025-jarbler"
+      slides_url: "https://speakerdeck.com/rammpeter/jarbler-run-a-ruby-application-as-java-jar-file"
+      description: |-
+        Jarbler is a solution that packages Ruby applications in a jar file so that they can be executed on the target environment without a Ruby runtime environment under Java.
+
+        https://github.com/rammpeter/jarbler
+
+        The main motivation for the function in principle is to be able to run Ruby applications without Ruby being installed on the target system. This is particularly important for frequently used apps where the various runtime environments in Linux, Windows or Mac OS are not known beforehand. Java is a lower hurdle than Ruby. The driver for Development of this tool was that the actual standard tool “Warbler” was only poorly maintained in the JRuby cosmos and was no longer usable with the current JRuby versions.
+
+        Jarbler can be used as a standalone gem, may one day migrate to JRuby as a standard tool.
+      speakers:
+        - Peter Ramm
+      additional_resources:
+        - name: "rammpeter/jarbler"
+          type: "repo"
+          url: "https://github.com/rammpeter/jarbler"
+
+- id: "dresden-rb-meetup-august-2025"
+  title: "Dresden.rb meetup August 2025"
+  event_name: "Dresden.rb meetup August 2025"
+  date: "2025-08-21"
+  video_provider: "children"
+  video_id: "dresden-rb-meetup-august-2025"
+  description: |-
+    The new Ruby User Group in Dresden welcomes everyone with an interest in the Ruby programming language. Our fourth meetup will take place on August 21, 2025, at 19:00.
+
+    We aim to foster knowledge exchange, share experiences, and spark new ideas through regular meetups, talks, and occasional hands-on workshops. Members can learn from one another, showcase creative projects, and discuss the latest trends in the Ruby community. Plus, there will be pizza and drinks—everyone is welcome!
+
+    https://dresdenrb.onruby.de/events/dresden-rb-meetup-august-2025-1772
+  talks:
+    - title: "Automatische Generierung von Ruby-Quellcodedokumentation mit lokal laufenden LLMs (German)"
+      event_name: "Dresden.rb meetup August 2025"
+      date: "2025-08-21"
+      language: "german"
+      video_provider: "not_recorded"
+      id: "dresden-rb-meetup-august-2025-llm-generated-documentation"
+      video_id: "dresden-rb-meetup-august-2025-llm-generated-documentation"
+      description: |-
+        Automatische Generierung von Ruby-Quellcodedokumentation mit lokal laufenden LLMs (via Ollama), inklusive Qualitätsbewertung. (German)
+      speakers:
+        - Hadi Al Qawas
+    - title: "No Browser Required: Dynamic OpenGraph Images with Rails and Rust"
+      event_name: "Dresden.rb meetup August 2025"
+      date: "2025-08-21"
+      video_provider: "not_recorded"
+      id: "dresden-rb-meetup-august-2025-himg"
+      video_id: "dresden-rb-meetup-august-2025-himg"
+      description: |-
+        How would you convert a <div> to a PNG? A technical deep dive into how Himg generates images from HTML without using a browser.
+
+        We'll cover a mix of technical detail like parsing and rendering, practical code like calling Rust from Ruby, and business tricks like using OpenGraph images to make your links less boring to help you go viral 🦋
+      speakers:
+        - Jamed EdJo
+
+- id: "dresden-rb-meetup-november-2025"
+  title: "Dresden.rb meetup November 2025"
+  event_name: "Dresden.rb meetup November 2025"
+  date: "2025-11-06"
+  video_provider: "children"
+  video_id: "dresden-rb-meetup-november-2025"
+  description: |-
+    The new Ruby User Group in Dresden welcomes everyone with an interest in the Ruby programming language. Our fifth meetup will take place on November 06, 2025, at 19:00.
+
+    We aim to foster knowledge exchange, share experiences, and spark new ideas through regular meetups, talks, and occasional hands-on workshops. Members can learn from one another, showcase creative projects, and discuss the latest trends in the Ruby community. Plus, there will be snacks and drinks—everyone is welcome!
+
+    https://dresdenrb.onruby.de/events/dresden-rb-meetup-november-2025-1970
+  talks:
+    - title: "Give me a BEAM long enough and I will move the world - An introduction to the Elixir programming language"
+      event_name: "Dresden.rb meetup November 2025"
+      date: "2025-11-06"
+      video_provider: "not_recorded"
+      id: "dresden-rb-meetup-november-2025-elixir"
+      video_id: "dresden-rb-meetup-november-2025-elixir"
+      description: |-
+        An introduction to the Elixir programming language, its advantages, and when to use it, with particular reference to concurrency and parallelism.
+      speakers:
+        - Felix Stüber

@@ -1,0 +1,43 @@
+<% duplicates = User::DuplicateDetector.find_all_reversed_name_duplicates %>
+
+<div class="p-4 overflow-y-auto h-full">
+  <% if duplicates.empty? %>
+    <p class="text-gray-500 text-center py-8">No reversed name duplicates found.</p>
+  <% else %>
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead>
+        <tr>
+          <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">User 1</th>
+          <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">User 2</th>
+          <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Talks</th>
+          <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200">
+        <% duplicates.each do |(user1, user2)| %>
+          <tr>
+            <td class="px-3 py-2 text-sm">
+              <%= link_to user1.name, avo.resources_user_path(user1), class: "text-blue-600 hover:underline", data: {turbo_frame: "_top"} %>
+              <% if user1.github_handle.present? %>
+                <span class="text-gray-400 text-xs">(<%= user1.github_handle %>)</span>
+              <% end %>
+            </td>
+            <td class="px-3 py-2 text-sm">
+              <%= link_to user2.name, avo.resources_user_path(user2), class: "text-blue-600 hover:underline", data: {turbo_frame: "_top"} %>
+              <% if user2.github_handle.present? %>
+                <span class="text-gray-400 text-xs">(<%= user2.github_handle %>)</span>
+              <% end %>
+            </td>
+            <td class="px-3 py-2 text-sm text-gray-600">
+              <%= user1.talks_count %> / <%= user2.talks_count %>
+            </td>
+            <td class="px-3 py-2 text-sm space-x-2">
+              <%= link_to "View 1", avo.resources_user_path(user1), class: "text-blue-600 hover:underline text-xs", target: "_blank" %>
+              <%= link_to "View 2", avo.resources_user_path(user2), class: "text-blue-600 hover:underline text-xs", target: "_blank" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>

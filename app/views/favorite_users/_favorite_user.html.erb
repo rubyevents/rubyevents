@@ -1,0 +1,25 @@
+<%# locals: (favorite_user:) %>
+
+<% if Current.user && favorite_user %>
+  <div id="<%= dom_id favorite_user %>">
+    <% if favorite_user.persisted? && favorite_user.mutual_favorite_user&.persisted? %>
+      <%= ui_tooltip "Remove from your list of Ruby Friends" do %>
+          <%= button_to favorite_user_path(favorite_user), method: :delete, form_class: "mt-1" do %>
+            <%= fa("star", size: :sm, style: :solid, class: "fill-red-600") %>
+          <% end %>
+      <% end %>
+    <% elsif favorite_user.persisted? %>
+      <%= ui_tooltip "Remove from your list of Favorite Rubyists" do %>
+          <%= button_to favorite_user_path(favorite_user), method: :delete, form_class: "mt-1" do %>
+            <%= fa("star", size: :sm, style: :solid, class: "fill-yellow-400") %>
+          <% end %>
+      <% end %>
+    <% elsif favorite_user.favorite_user_id != Current.user.id %>
+      <%= ui_tooltip "Add to your list of Favorite Rubyists" do %>
+          <%= button_to favorite_users_path, method: :post, params: {favorite_user: {favorite_user_id: favorite_user.favorite_user_id}}, form_class: "mt-1" do %>
+            <%= fa("star", size: :sm, style: :regular, class: "hover:fill-yellow-400") %>
+          <% end %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

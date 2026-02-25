@@ -2,16 +2,15 @@
 
 class Ui::ButtonComponent < ApplicationComponent
   KIND_MAPPING = {
-    neutral: "btn-neutral",
     primary: "btn-primary",
     secondary: "btn-secondary",
-    accent: "btn-accent",
-    info: "btn-info",
-    success: "btn-success",
-    warning: "btn-warning",
-    error: "btn-error",
+    neutral: "btn-neutral btn-outline",
+    rounded: "btn btn-rounded",
+    pill: "btn btn-pill btn-sm",
+    circle: "btn btn-circle",
     ghost: "btn-ghost",
-    link: "btn-link"
+    link: "btn-link",
+    none: ""
   }
 
   SIZE_MAPPING = {

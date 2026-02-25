@@ -1,0 +1,7 @@
+html[data-bridge-platform] {
+  user-select: none;
+}
+
+[data-bridge-components~="button"] [data-controller~="bridge--button"] {
+  display: none;
+}

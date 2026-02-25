@@ -1,0 +1,241 @@
+
+<div class="container py-8">
+  <h1 class="title">
+    <span class="title">Getting Started: Ways to Contribute</span>
+  </h1>
+
+  <div role="tablist" class="tabs tabs-bordered mt-6">
+    <input type="radio" name="contribution-tabs" role="tab" class="tab" aria-label="Introduction" checked style="width: 125px">
+    <div role="tabpanel" class="tab-content py-6">
+      <%= render "contributions/introduction" %>
+    </div>
+
+    <input type="radio" name="contribution-tabs" role="tab" class="tab" aria-label="Speakers without GitHub handles" style="width: 300px">
+    <div role="tabpanel" class="tab-content py-6">
+      <%= turbo_frame_tag "speakers_without_github", src: contribution_path(:speakers_without_github), loading: :lazy %>
+    </div>
+
+    <input type="radio" name="contribution-tabs" role="tab" class="tab" aria-label="Talks without slides" style="width: 225px">
+    <div role="tabpanel" class="tab-content py-6">
+      <%= turbo_frame_tag "talks_without_slides", src: contribution_path(:talks_without_slides), loading: :lazy %>
+    </div>
+
+    <input type="radio" name="contribution-tabs" role="tab" class="tab" aria-label="Events without videos" style="width: 225px">
+    <div role="tabpanel" class="tab-content py-6">
+      <%= turbo_frame_tag "events_without_videos", src: contribution_path(:events_without_videos), loading: :lazy %>
+    </div>
+
+    <input type="radio" name="contribution-tabs" role="tab" class="tab" aria-label="Events without locations" style="width: 225px">
+    <div role="tabpanel" class="tab-content py-6">
+      <%= turbo_frame_tag "events_without_location", src: contribution_path(:events_without_location), loading: :lazy %>
+    </div>
+
+    <input type="radio" name="contribution-tabs" role="tab" class="tab" aria-label="Events without conference dates" style="width: 300px">
+    <div role="tabpanel" class="tab-content py-6">
+      <%= turbo_frame_tag "events_without_dates", src: contribution_path(:events_without_dates), loading: :lazy %>
+    </div>
+
+    <input type="radio" name="contribution-tabs" role="tab" class="tab" aria-label="Review Talk Dates" style="width: 200px">
+    <div role="tabpanel" class="tab-content py-6">
+      <%= turbo_frame_tag "talks_dates_out_of_bounds", src: contribution_path(:talks_dates_out_of_bounds), loading: :lazy %>
+    </div>
+
+    <input type="radio" name="contribution-tabs" role="tab" class="tab" aria-label="Missing Video Cues" style="width: 200px">
+    <div role="tabpanel" class="tab-content py-6">
+      <%= turbo_frame_tag "missing_videos_cue", src: contribution_path(:missing_videos_cue), loading: :lazy %>
+    </div>
+
+    <input type="radio" name="contribution-tabs" role="tab" class="tab" aria-label="Overdue scheduled talks (<%= @overdue_scheduled_talks_count %>)" style="width: 250px">
+    <div role="tabpanel" class="tab-content py-6">
+      <div>
+        <h2 class="mb-4">Overdue scheduled talks (<%= @overdue_scheduled_talks_count %>)</h2>
+
+        <article class="prose mb-6">
+          These talks were scheduled and have been held now. If you have any information about these talks, please update the status.<br><br>
+
+          If the scheduled talk was recorded and the recording is already available, you can change the <code>video_provider</code> from <code>scheduled</code> to <code>youtube</code> (or any other video provider we support) and provide the <code>video_id</code> so we can embed it.<br><br>
+
+          If the scheduled talk was recorded but the recording is not available yet, you can change the <code>video_provider</code> from <code>scheduled</code> to <code>not_published</code>.<br><br>
+
+          If the scheduled talk was not recorded, you can change the <code>video_provider</code> from <code>scheduled</code> to <code>not_recorded</code>.<br><br>
+
+          In either case, you can provide the <code>slides_url</code> so we can at least show the slides for the talk.
+        </article>
+
+        <div id="overdue-scheduled-talks" class="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4 min-w-full mb-6">
+          <% @overdue_scheduled_talks.group_by(&:event).each do |event, talks| %>
+            <%= content_tag :div, id: dom_id(event), class: "p-4 rounded-lg border bg-white", target: :_blank do %>
+              <article class="prose">
+                <h3 class="line-clamp-1">Event: <%= event.name %></h3>
+
+                <ul>
+                  <% talks.each do |talk| %>
+                    <li><%= link_to talk.title, "https://github.com/rubyevents/rubyevents/edit/main/#{talk.static_metadata.__file_path}", target: "_blank" if talk.static_metadata %> (<%= link_to talk.date.to_fs(:long), talk %>, <%= time_ago_in_words(talk.date) %> ago)</li>
+                  <% end %>
+                </ul>
+              </article>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <input type="radio" name="contribution-tabs" role="tab" class="tab" aria-label="Talks without speakers (<%= @talks_without_speakers_count %>)" style="width: 225px">
+    <div role="tabpanel" class="tab-content py-6">
+      <div>
+        <h2 class="mb-4">Talks without speakers (<%= @talks_without_speakers_count %>)</h2>
+
+        <article class="prose mb-6">
+          These talks currently don't have speakers assigned.
+        </article>
+
+        <div id="talks-without-speakers" class="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4 min-w-full mb-6">
+
+          <% @talks_without_speakers.group_by(&:event).sort_by { |_event, talks| talks.minimum(:date) }.each do |event, talks| %>
+            <%= content_tag :div, id: dom_id(event), class: "p-4 rounded-lg border bg-white", target: :_blank do %>
+              <article>
+                <div class="prose">
+                  <h3 class="line-clamp-1">Event: <%= event.name %></h3>
+                </div>
+
+                <h3 class="line-clamp-1 mt-3 mb-6"><pre>Data File: <%= talks.first.static_metadata&.__file_path.inspect %></pre></h3>
+
+                <div class="prose">
+                  <ul>
+                    <% talks.each do |talk| %>
+                      <li><%= link_to talk.title, "https://github.com/rubyevents/rubyevents/edit/main/#{talk.static_metadata.__file_path}", target: "_blank" if talk.static_metadata %> (<%= link_to talk.date.to_fs(:long), talk %>)</li>
+                    <% end %>
+                  </ul>
+                </div>
+              </article>
+            <% end %>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+
+    <input type="radio" name="contribution-tabs" role="tab" class="tab" aria-label="Not published talks (<%= @not_published_talks_count %>)" style="width: 200px">
+    <div role="tabpanel" class="tab-content py-6">
+      <div>
+        <h2 class="mb-4">Not published talks (<%= @not_published_talks_count %>)</h2>
+
+        <article class="prose mb-6">
+          These talks have been held, were recorded, but have not been published yet. Or maybe they are already published but haven't been added to rubyevents.org yet.<br><br>
+
+          If the talk recording is available, you can change the <code>video_provider</code> from <code>not_published</code> to <code>youtube</code> (or any other video provider we support) and provide the <code>video_id</code> so we can embed it.<br><br>
+
+          If available, you can also provide the <code>slides_url</code> so we can show the slides next to the talk.
+        </article>
+
+        <div id="not-published-talks" class="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4 min-w-full mb-6">
+          <% @not_published_talks.group_by(&:event).sort_by { |_event, talks| talks.minimum(:date) }.each do |event, talks| %>
+            <%= content_tag :div, id: dom_id(event), class: "p-4 rounded-lg border bg-white", target: :_blank do %>
+              <article class="prose">
+                <h3 class="line-clamp-1">Event: <%= event.name %></h3>
+
+                <ul>
+                  <% talks.each do |talk| %>
+                    <li><%= link_to talk.title, "https://github.com/rubyevents/rubyevents/edit/main/#{talk.static_metadata.__file_path}", target: "_blank" if talk.static_metadata %> (<%= link_to talk.date.to_fs(:long), talk %>, <%= time_ago_in_words(talk.date) %> ago)</li>
+                  <% end %>
+                </ul>
+              </article>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <input type="radio" name="contribution-tabs" role="tab" class="tab" aria-label="Add missing events (<%= @conferences_to_index %>)" style="width: 225px">
+    <div role="tabpanel" class="tab-content py-6">
+      <div>
+        <h2 class="mb-4">Add missing events (<%= @conferences_to_index %>)</h2>
+
+        <article class="prose mb-6">
+          <p>If you know of an event that's not yet on rubyevents.org, please feel free to add it. This includes events in the future, events with unrecorded talks, or events with talks not yet uploaded online.</p>
+
+          <p>We are checking against <a href="https://rubyconferences.org" target="_blank">rubyconferences.org</a> to identify missing events. Below, we will list conferences with video links first, followed by those without a video link.</p>
+
+          <p>If you would like to contribute data for any of the events listed below, please refer to <a href="https://github.com/rubyevents/rubyevents/blob/main/docs/ADDING_EVENTS.md" target="_blank">this guide</a> to add the event to the site.</p>
+        </article>
+
+        <h3 class="font-bold mb-3">Conferences from RubyConferences.org we already indexed</h3>
+
+        <article class="prose mb-6">
+          <p>We already indexed <%= pluralize(@already_index_conferences, "conference") %> out of the <%= pluralize(@upstream_conferences.count, "conference") %> listed on RubyConferences.org.</p>
+
+          <p>There are <%= pluralize(@conferences_to_index, "more conference") %> from RubyConferences.org to be added to rubyevents.org.</p>
+        </article>
+
+        <h3 class="font-bold mb-3">Conferences from RubyConferences.org with a video link (<%= pluralize(@with_video_link.count, "event") %>)</h3>
+        <div id="missing-conferences-with-link" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 min-w-full mb-6">
+          <% @with_video_link.each do |event| %>
+            <%= link_to event["video_link"], id: "#{event["name"]}-pending", class: "hover:bg-gray-100 p-4 rounded-lg border bg-white", target: :_blank do %>
+              <div class="flex flex-col">
+                <h3 class="line-clamp-1 font-semibold"><%= event["name"] %></h3>
+
+                Videos: <%= URI.parse(event["video_link"]).host %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+
+        <h3 class="font-bold mb-3">Conferences from RubyConferences.org without a video link (<%= pluralize(@without_video_link.count, "event") %>)</h3>
+        <div id="missing-conferences-without-link" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 min-w-full mb-6">
+          <% @without_video_link.each do |event| %>
+            <%= link_to event["url"], id: "#{event["name"]}-pending", class: "hover:bg-gray-100 p-4 rounded-lg border bg-white", target: :_blank do %>
+              <div class="flex flex-col">
+                <h3 class="line-clamp-1 font-semibold"><%= event["name"] %></h3>
+
+                <% if event["url"].present? %>
+                  Website: <%= URI.parse(event["url"]).host %>
+                <% else %>
+                  Website: -
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <input type="radio" name="contribution-tabs" role="tab" class="tab" aria-label="Events without schedule (<%= @conferences_with_missing_schedule_count %>)" style="width: 250px">
+    <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
+      <div>
+        <h2 class="mb-4">Events without schedule (<%= @conferences_with_missing_schedule_count %>)</h2>
+
+        <article class="prose mb-6">
+          <p>These events are missing schedule information. If you have access to the schedule, please consider adding it to the event page by adding a <code>schedule.yml</code> to the data folder.</p>
+        </article>
+
+        <div id="events-without-schedule" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 min-w-full mb-6">
+          <% @conferences_with_missing_schedule.each do |series, events| %>
+            <%= content_tag :div, id: dom_id(series, "without-schedule"), class: "p-4 rounded-lg border bg-white", target: :_blank do %>
+              <div class="flex flex-col">
+                <h3 class="line-clamp-1"><p>Event Series: <%= link_to series.name, series_path(series), class: "hover:underline" %></p></h3>
+
+                <b class="mt-4 mb-2">Events without schedule:</b>
+
+                <% events.each do |event| %>
+                  <span><%= link_to event.name, event, class: "hover:underline" %></span>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <input type="radio" name="contribution-tabs" role="tab" class="tab" aria-label="Event Assets" style="width: 250px">
+    <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
+      <div>
+        <h2 class="mb-4">Event Assets</h2>
+
+        <article class="prose mb-6">
+          <p>We have a dedicated page for reviewing event assets like logos, posters, cards, and other event assets that need to be added or updated.</p>
+          <p>Please visit the <%= link_to "Event Assets Page", pages_assets_path, class: "underline" %> to see the list of events and their assets.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>

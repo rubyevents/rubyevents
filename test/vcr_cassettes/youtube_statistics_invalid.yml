@@ -1,56 +1,56 @@
 ---
 http_interactions:
-- request:
-    method: get
-    uri: https://youtube.googleapis.com/youtube/v3/videos?id=invalid_video_id&key=AIzaSyCsHNWxDeHnVOjgX3qg-lUNwcM_E8gUREo&maxResults=50&part=statistics
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Content-Type:
-      - application/json; charset=UTF-8
-      Vary:
-      - Origin
-      - Referer
-      - X-Origin
-      Date:
-      - Mon, 26 Jun 2023 21:14:19 GMT
-      Server:
-      - scaffolding on HTTPServer2
-      Cache-Control:
-      - private
-      X-Xss-Protection:
-      - '0'
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Content-Type-Options:
-      - nosniff
-      Alt-Svc:
-      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
-      Transfer-Encoding:
-      - chunked
-    body:
-      encoding: ASCII-8BIT
-      string: |
-        {
-          "kind": "youtube#videoListResponse",
-          "etag": "YIUPVpqNjppyCWOZfL-19bLb7uk",
-          "items": [],
-          "pageInfo": {
-            "totalResults": 0,
-            "resultsPerPage": 0
+  - request:
+      method: get
+      uri: https://youtube.googleapis.com/youtube/v3/videos?id=invalid_video_id&key=REDACTED_YOUTUBE_API_KEY&maxResults=50&part=statistics
+      body:
+        encoding: US-ASCII
+        string: ""
+      headers:
+        Accept-Encoding:
+          - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+        Accept:
+          - "*/*"
+        User-Agent:
+          - Ruby
+    response:
+      status:
+        code: 200
+        message: OK
+      headers:
+        Content-Type:
+          - application/json; charset=UTF-8
+        Vary:
+          - Origin
+          - Referer
+          - X-Origin
+        Date:
+          - Mon, 26 Jun 2023 21:14:19 GMT
+        Server:
+          - scaffolding on HTTPServer2
+        Cache-Control:
+          - private
+        X-Xss-Protection:
+          - "0"
+        X-Frame-Options:
+          - SAMEORIGIN
+        X-Content-Type-Options:
+          - nosniff
+        Alt-Svc:
+          - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+        Transfer-Encoding:
+          - chunked
+      body:
+        encoding: ASCII-8BIT
+        string: |
+          {
+            "kind": "youtube#videoListResponse",
+            "etag": "YIUPVpqNjppyCWOZfL-19bLb7uk",
+            "items": [],
+            "pageInfo": {
+              "totalResults": 0,
+              "resultsPerPage": 0
+            }
           }
-        }
-  recorded_at: Mon, 26 Jun 2023 21:14:18 GMT
+    recorded_at: Mon, 26 Jun 2023 21:14:18 GMT
 recorded_with: VCR 6.1.0

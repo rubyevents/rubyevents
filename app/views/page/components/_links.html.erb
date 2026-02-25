@@ -1,0 +1,8 @@
+<h2 class="text-2xl font-bold">Links</h2>
+<div class="flex items-center justify-start gap-8 py-8">
+  <%= external_link_to "www.ruby-lang.org", "https://www.ruby-lang.org/" %>
+
+  <%= external_link_to "https://www.ruby-lang.org/" do %>
+    with block
+  <% end %>
+</div>

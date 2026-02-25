@@ -1,0 +1,24 @@
+<%= render partial: "events/header", locals: {event: event} %>
+
+<%= turbo_frame_tag dom_id(event), data: {turbo_action: "advance", turbo_frame: "_top"} do %>
+  <div class="container py-8">
+    <%= render partial: "events/navigation", locals: {event: event} %>
+
+    <div class="flex items-start flex-wrap gap-8 sm:flex-nowrap w-full">
+      <div class="w-full">
+        <div id="schedule" class="min-w-full">
+          <div id="schedule-navigation" class="flex gap-4 justify-center flex-wrap">
+            <% days.each_with_index do |day, index| %>
+              <% date_string = Date.parse(day.dig("date")).strftime("%A (%b %d, %Y)") %>
+              <% kind = (day == current_day) ? :primary : :none %>
+
+              <%= ui_button date_string, url: day_event_schedules_path(event, day.dig("date")), kind: kind, size: :sm, role: :button %>
+            <% end %>
+          </div>
+
+          <%= render partial: "day", locals: {event: event, day: current_day, tracks: tracks, talks: talks} %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

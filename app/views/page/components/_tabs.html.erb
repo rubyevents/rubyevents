@@ -1,0 +1,21 @@
+<h2 class="text-2xl font-bold">Tabs</h2>
+<div class="flex flex-col items-start justify-start gap-8 py-8">
+  <div>Todo (this is a WIP of the tab component, just the Daisy UI markup and a Stimulus controller)</div>
+
+  <div role="tablist" class="tabs tabs-bordered" data-controller="tabs">
+    <div role="tab" class="tab tab-active" style="view-transition-name: tab-1;" aria-label="Tab 1" data-action="click->tabs#showPanel">Tab 1</div>
+    <div role="tabpanel" class="tab-content py-4" style="view-transition-name: tab-content-1;">
+      Tab content 1
+    </div>
+
+    <div role="tab" class="tab" style="view-transition-name: tab-2;" aria-label="Tab 2" data-action="click->tabs#showPanel">Tab 2</div>
+    <div role="tabpanel" class="tab-content py-4" style="view-transition-name: tab-content-2;">
+      Tab content 2
+    </div>
+
+    <div role="tab" class="tab" style="view-transition-name: tab-3;" aria-label="Tab 3" data-action="click->tabs#showPanel">Tab 3</div>
+    <div role="tabpanel" class="tab-content py-4" style="view-transition-name: tab-content-3;">
+      Tab content 3
+    </div>
+  </div>
+</div>

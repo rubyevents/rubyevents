@@ -1,0 +1,118 @@
+<%# locals: (location:, users:, nearby_users: [], state: nil, state_users: [], country: nil, country_users: []) %>
+
+<%= turbo_refreshes_with method: :morph, scroll: :preserve %>
+
+<% if location.is_a?(CoordinateLocation) %>
+  <% title "Rubyists near #{location.name}" %>
+<% else %>
+  <% title "Rubyists in #{location.name}" %>
+<% end %>
+
+<% location_preposition = location.is_a?(CoordinateLocation) ? "near" : "in" %>
+<% stats_count = location.is_a?(CoordinateLocation) ? nearby_users.count : users.count %>
+<%= render "shared/location_header",
+      name: location.name,
+      subtitle: location.to_location.to_text,
+      flag_code: (location.respond_to?(:alpha2) && !location.is_a?(Continent)) ? location.alpha2 : nil,
+      emoji: location.is_a?(Continent) ? location.emoji_flag : nil,
+      stats: "#{pluralize(stats_count, "Rubyist")} #{location_preposition} #{location.name}",
+      location: location %>
+
+<%= render "shared/location_navigation",
+      location: location,
+      current_tab: "users",
+      show_cities: location.is_a?(Country),
+      show_countries: location.is_a?(Continent),
+      show_states: location.is_a?(Country) && location.states?,
+      show_stamps: location.stamps.any? %>
+
+<div class="container py-8">
+  <% if location.is_a?(CoordinateLocation) %>
+    <%# For coordinates, show nearby users with distances as the primary section %>
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-xl font-bold text-gray-900">Rubyists near <%= location.name %></h2>
+      <%= ui_badge(nearby_users.count, kind: :secondary, outline: true) %>
+    </div>
+
+    <% if nearby_users.any? %>
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <% nearby_users.each do |nearby| %>
+          <% user = nearby.is_a?(Hash) ? nearby[:user] : nearby %>
+          <% distance_km = nearby.is_a?(Hash) ? nearby[:distance_km] : nil %>
+          <% location_text = user.location.presence || user.city %>
+          <% content_text = distance_km ? "#{location_text} • #{distance_km} km" : location_text %>
+
+          <%= render partial: "users/card", locals: {user: user, content: content_text} %>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="text-gray-500 py-8 text-center">No Rubyists near <%= location.name %> yet.</p>
+    <% end %>
+
+    <% if country.present? && country_users.present? && country_users.any? %>
+      <div class="mt-12">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-xl font-bold text-gray-900">Rubyists in <%= country.name %></h2>
+          <%= ui_badge(country_users.count, kind: :secondary, outline: true) %>
+        </div>
+
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          <% country_users.each do |user| %>
+            <%= render partial: "users/card", locals: {user: user, content: user.location.presence || user.city} %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <%# For other location types, show standard layout %>
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-xl font-bold text-gray-900">Rubyists in <%= location.name %></h2>
+      <%= ui_badge(users.count, kind: :secondary, outline: true) %>
+    </div>
+
+    <% if users.any? %>
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <% users.each do |user| %>
+          <%= render partial: "users/card", locals: {user: user, content: user.location.presence || user.city} %>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="text-gray-500 py-8 text-center">No Rubyists in <%= location.name %> yet.</p>
+    <% end %>
+
+    <% if nearby_users.present? && nearby_users.any? %>
+      <div class="mt-12">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-xl font-bold text-gray-900">Rubyists near <%= location.name %></h2>
+          <%= ui_badge(nearby_users.count, kind: :secondary, outline: true) %>
+        </div>
+
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          <% nearby_users.each do |nearby| %>
+            <% user = nearby.is_a?(Hash) ? nearby[:user] : nearby %>
+            <% distance_km = nearby.is_a?(Hash) ? nearby[:distance_km] : nil %>
+            <% location_text = user.location.presence || user.city %>
+            <% content_text = distance_km ? "#{location_text} • #{distance_km} km" : location_text %>
+
+            <%= render partial: "users/card", locals: {user: user, content: content_text} %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <% if state.present? && state_users.present? && state_users.any? %>
+      <div class="mt-12">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-xl font-bold text-gray-900">Rubyists in <%= state.name %></h2>
+          <%= ui_badge(state_users.count, kind: :secondary, outline: true) %>
+        </div>
+
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          <% state_users.each do |user| %>
+            <%= render partial: "users/card", locals: {user: user, content: user.location.presence || user.city} %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

@@ -1,0 +1,88 @@
+<h2 class="text-2xl font-bold mb-2 text-center">Fun Facts</h2>
+<p class="text-gray-500 text-center mb-6">Some interesting tidbits about your year</p>
+
+<div class="space-y-4 flex-1">
+  <% if longest_streak.positive? %>
+    <div class="p-4 bg-orange-50 border border-orange-200 rounded-lg">
+      <div class="flex items-center gap-3">
+        <span class="text-2xl">🔥</span>
+        <div>
+          <p class="font-semibold text-orange-700"><%= longest_streak %> Day Streak</p>
+          <p class="text-sm text-gray-600">Your longest watching streak</p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <% if most_active_weekday %>
+    <div class="p-4 bg-purple-50 border border-purple-200 rounded-lg">
+      <div class="flex items-center gap-3">
+        <span class="text-2xl">📅</span>
+        <div>
+          <p class="font-semibold text-purple-700"><%= Date::DAYNAMES[most_active_weekday] %>s</p>
+          <p class="text-sm text-gray-600">Your favorite day to watch talks</p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <% if most_active_month %>
+    <div class="p-4 bg-teal-50 border border-teal-200 rounded-lg">
+      <div class="flex items-center gap-3">
+        <span class="text-2xl">📆</span>
+        <div>
+          <p class="font-semibold text-teal-700"><%= Date::MONTHNAMES[most_active_month] %></p>
+          <p class="text-sm text-gray-600">Your most active watching month</p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <% if longest_watched && longest_watched.talk.duration.present? %>
+    <div class="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+      <div class="flex items-center gap-3">
+        <span class="text-2xl">⏱️</span>
+        <div>
+          <p class="font-semibold text-blue-700">Longest Talk: <%= longest_watched.talk.formatted_duration %></p>
+          <p class="text-sm text-gray-600 truncate"><%= longest_watched.talk.title.truncate(35) %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <% if shortest_watched && shortest_watched != longest_watched && shortest_watched.talk.duration.present? %>
+    <div class="p-4 bg-green-50 border border-green-200 rounded-lg">
+      <div class="flex items-center gap-3">
+        <span class="text-2xl">⚡</span>
+        <div>
+          <p class="font-semibold text-green-700">Shortest Talk: <%= shortest_watched.talk.formatted_duration %></p>
+          <p class="text-sm text-gray-600 truncate"><%= shortest_watched.talk.title.truncate(35) %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <% if events_discovered.positive? %>
+    <div class="p-4 bg-pink-50 border border-pink-200 rounded-lg">
+      <div class="flex items-center gap-3">
+        <span class="text-2xl">🌍</span>
+        <div>
+          <p class="font-semibold text-pink-700"><%= events_discovered %> Events Discovered</p>
+          <p class="text-sm text-gray-600">Different conferences you explored</p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <% if ruby_friends_met.positive? %>
+    <div class="p-4 bg-red-50 border border-red-200 rounded-lg">
+      <div class="flex items-center gap-3">
+        <span class="text-2xl">👋</span>
+        <div>
+          <p class="font-semibold text-red-700"><%= ruby_friends_met %> Ruby Friends</p>
+          <p class="text-sm text-gray-600">Crossed paths with <%= ruby_friends_met %> Rubyists from RubyEvents.org</p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
