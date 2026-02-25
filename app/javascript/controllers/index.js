@@ -74,6 +74,9 @@ application.register("tabs", TabsController)
 import TalksFilterController from "./talks_filter_controller"
 application.register("talks-filter", TalksFilterController)
 
+import TalksFilterPillController from "./talks_filter_pill_controller"
+application.register("talks-filter-pill", TalksFilterPillController)
+
 import TalksNavigationController from "./talks_navigation_controller"
 application.register("talks-navigation", TalksNavigationController)
 

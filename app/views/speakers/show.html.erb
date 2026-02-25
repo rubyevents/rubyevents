@@ -1,0 +1,48 @@
+<%= turbo_refreshes_with method: :morph, scroll: :preserve %>
+
+<div class="container py-8">
+  <div class="flex items-start flex-wrap sm:flex-nowrap gap-8 w-full">
+    <div class="w-full sm:w-1/3">
+      <h1 class="mb-4 flex gap-2" style="view-transition-name: title">
+        <%= @speaker.name %>
+
+        <% if @speaker.pronouns.present? && ["dont_specify", "not_specified"].exclude?(@speaker.pronouns_type) %>
+          <span class="text-sm content-center text-[#737373]">(<%= @speaker.pronouns %>)</span>
+        <% end %>
+      </h1>
+
+      <% if @speaker.github.present? %>
+        <div class="relative w-fit">
+          <%= image_tag @speaker.github_avatar_url(size: 200),
+                class: "rounded-full mb-4",
+                height: 200,
+                width: 200,
+                alt: "GitHub picture profile of #{@speaker.github}",
+                loading: :lazy %>
+
+          <% if @speaker.verified? %>
+            <div class="absolute right-0 top-0 badge badge-accent">Verified</div>
+          <% end %>
+        </div>
+      <% end %>
+      <%= render "speakers/about", speaker: @speaker %>
+      <%= render "speakers/actions", speaker: @speaker %>
+    </div>
+
+    <div class="w-full">
+      <div id="talks" class="min-w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 h-full sm:p-4">
+        <%= render partial: "talks/card",
+              collection: @talks,
+              as: :talk,
+              locals: {
+                favoritable: true,
+                user_favorite_talks_ids: @user_favorite_talks_ids,
+                back_to: request.fullpath,
+                back_to_title: @speaker.name
+              } %>
+      </div>
+    </div>
+  </div>
+
+  <%= turbo_stream_from @speaker %>
+</div>
