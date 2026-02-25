@@ -1,3 +1,13 @@
+# Ignore avo-pro directories when the gem isn't loaded
+# https://docs.avohq.io/3.0/gem-server-authentication.html#bundle-without-paid-gems
+unless defined?(Avo::Cards::BaseCard)
+  Rails.autoloaders.main.ignore(Rails.root.join("app/avo/cards"))
+end
+
+unless defined?(Avo::Dashboards::BaseDashboard)
+  Rails.autoloaders.main.ignore(Rails.root.join("app/avo/dashboards"))
+end
+
 # For more information regarding these settings check out our docs https://docs.avohq.io
 # The values disaplayed here are the default ones. Uncomment and change them to fit your needs.
 Avo.configure do |config|
@@ -138,61 +148,4 @@ end
 
 Rails.configuration.to_prepare do
   Avo::ApplicationController.include Appsignal::AdminNamespace
-end
-
-# https://docs.avohq.io/3.0/gem-server-authentication.html#bundle-without-paid-gems
-unless defined?(Avo::Dashboards::BaseDashboard)
-  module Avo
-    module Dashboards
-      class BaseDashboard
-        def self.method_missing(...)
-        end
-
-        def self.respond_to_missing?(...)
-        end
-
-        def initialize
-          raise "Cannot initialize #{self.class.name} without avo-pro gem: https://docs.avohq.io/3.0/gem-server-authentication.html#bundle-without-paid-gems"
-        end
-      end
-    end
-  end
-end
-
-# https://docs.avohq.io/3.0/gem-server-authentication.html#bundle-without-paid-gems
-unless defined?(Avo::Cards::PartialCard)
-  module Avo
-    module Cards
-      class PartialCard
-        def self.method_missing(...)
-        end
-
-        def self.respond_to_missing?(...)
-        end
-
-        def initialize
-          raise "Cannot initialize #{self.class.name} without avo-pro gem: https://docs.avohq.io/3.0/gem-server-authentication.html#bundle-without-paid-gems"
-        end
-      end
-    end
-  end
-end
-
-# https://docs.avohq.io/3.0/gem-server-authentication.html#bundle-without-paid-gems
-unless defined?(Avo::Cards::MetricCard)
-  module Avo
-    module Cards
-      class MetricCard
-        def self.method_missing(...)
-        end
-
-        def self.respond_to_missing?(...)
-        end
-
-        def initialize
-          raise "Cannot initialize #{self.class.name} without avo-pro gem: https://docs.avohq.io/3.0/gem-server-authentication.html#bundle-without-paid-gems"
-        end
-      end
-    end
-  end
 end
