@@ -1,10 +1,7 @@
----
-# TODO: conference website
-
 # Day 1
-
+---
 - id: "tim-riley-rubyconf-th-2019"
-  title: "Keynote: Quest of the Rubyist"
+  title: "Opening Keynote: Quest of the Rubyist"
   raw_title: "RubyConf TH 2019 - Opening Keynote by Tim Riley"
   speakers:
     - Tim Riley
@@ -14,6 +11,7 @@
   description: ""
   video_provider: "youtube"
   video_id: "B26rbJfRoZo"
+  kind: "keynote"
 
 - id: "vipul-a-m-rubyconf-th-2019"
   title: "Beyond REST in Rails"
@@ -58,7 +56,19 @@
   video_provider: "youtube"
   video_id: "GcxlNOewz18"
 
-# Missing Video: How to collaborate and keep healthy culture in a full-remote company Jarka Košanová
+- id: "jarka-kosanova-rubyconf-th-2019"
+  title: "How to Collaborate and Keep Healthy Culture in a Full-Remote Company"
+  speakers:
+    - Jarka Košanová
+  event_name: "RubyConf TH 2019"
+  date: "2019-09-06"
+  published_at: "2019-10-15"
+  description: |-
+    How do we make remote work possible? How do we communicate and what challenges do we face? Is it easy to keep a healthy work-life balance? How do we socialize and meet?
+
+    Jarka has been working for Gitlab for 2 and 1/2 years and has seen the company grow from 200 to 700 employees. She'll show you that it's possible!
+  video_provider: "youtube"
+  video_id: "4kmFsHcaLfE"
 
 - id: "rodrigo-urubatan-rubyconf-th-2019"
   title: "Data Science in Ruby? Is it possible? Is it Fast? Should we use it?"
@@ -75,7 +85,16 @@
   video_provider: "youtube"
   video_id: "nxubUjsqJYM"
 
-# Missing Video: It is correct but is it fast? - Piotr Murach
+- id: "piotr-murach-rubyconf-th-2019"
+  title: "It Is Correct but Is It Fast?"
+  speakers:
+    - Piotr Murach
+  event_name: "RubyConf TH 2019"
+  date: "2019-09-06"
+  description: |-
+    This talk from RubyConf TH 2019 did not have a published recording, but is included here so the schedule matches the full program.
+  video_provider: "not_recorded"
+  video_id: "piotr-murach-rubyconf-th-2019"
 
 - id: "enrique-mogolln-rubyconf-th-2019"
   title: "The Developer Who Wanted To Refactor The Moon"
@@ -128,7 +147,25 @@
   video_provider: "youtube"
   video_id: "ZrF4mb5Hgt0"
 
-# Missing Video: How we use service objects to make our apps clean, composable, maintainable, and testable. - Gabriel Fortuna
+- id: "gabriel-fortuna-rubyconf-th-2019"
+  title: "How We Use Service Objects to Make Our Apps Clean, Composable, Maintainable, and Testable"
+  speakers:
+    - Gabriel Fortuna
+  event_name: "RubyConf TH 2019"
+  date: "2019-09-06"
+  published_at: "2019-10-15"
+  description: |-
+    How we use service objects to make our apps clean, composable, maintainable, and testable by Gabriel Fortuna.
+
+    Wouldn't it be great if you could keep the maintainability of your app high even as it grew in complexity? Wouldn't it feel wonderful to know that all your app functionality is fully tested, and that those tests are fast? How amazing would it be to start finally treating your app like a set of lego bricks?
+
+    Using service objects can get you a very long way there. They're not a silver bullet by any stretch of the imagination, but in my experience, they have been the number one thing alongside TDD that has really elevated my skill level.
+
+    Not all service object toolchains are created equal, and there are downsides, trade-offs, benefits, and useful shortcuts to be gained depending on the kind you reach for. I've battle tested a bunch of them, and this talk will include pointers for helping you decide what's right for you, for when you start using these tools in your own software projects.
+
+    Join me as I walk through the learnings to be had from using this software development technique, and how I've matured my thinking on this topic to make me an extremely effective developer that ships robust working code.
+  video_provider: "youtube"
+  video_id: "omCsnwAzDy4"
 
 - id: "charles-nutter-rubyconf-th-2019"
   title: "Closing Keynote: Scalable Applications with JRuby"
@@ -152,10 +189,21 @@
     A call-to-action for anyone who’d like to help keep JRuby moving forward.
   video_provider: "youtube"
   video_id: "V_I-A6LRxGw"
+  kind: "keynote"
 
 # Day 2
 
-# Missing Video: Opening Keynote: The Life-Changing Magic of Tidying Up ActiveRecord Allocations - Richard Schneeman
+- id: "richard-schneeman-rubyconf-th-2019"
+  title: "Opening Keynote: The Life-Changing Magic of Tidying Up ActiveRecord Allocations"
+  speakers:
+    - Richard Schneeman
+  event_name: "RubyConf TH 2019"
+  date: "2019-09-07"
+  description: |-
+    Opening keynote from RubyConf TH 2019 without an available recording, included here for schedule completeness.
+  video_provider: "not_recorded"
+  video_id: "richard-schneeman-rubyconf-th-2019"
+  kind: "keynote"
 
 - id: "anton-davydov-rubyconf-th-2019"
   title: "Events. Events. Events!"
@@ -203,7 +251,16 @@
   video_provider: "youtube"
   video_id: "C_LHpELWK4g"
 
-# Missing Video: Security Issues on Your Ruby Code - Harley Davidson Karel
+- id: "harley-davidson-karel-rubyconf-th-2019"
+  title: "Security Issues on Your Ruby Code"
+  speakers:
+    - Harley Davidson Karel
+  event_name: "RubyConf TH 2019"
+  date: "2019-09-07"
+  description: |-
+    This talk from RubyConf TH 2019 did not have a published recording, but is included here so the schedule matches the full program.
+  video_provider: "not_recorded"
+  video_id: "harley-davidson-karel-rubyconf-th-2019"
 
 - id: "melvrick-goh-rubyconf-th-2019"
   title: "Metaprogramming DSLs for managing complexity at scale"
@@ -222,9 +279,28 @@
   video_provider: "youtube"
   video_id: "VNt5eVOlyFo"
 
-# Missing Video: Go-ing a long way with Rails - Shweta Kale
+- id: "shweta-kale-rubyconf-th-2019"
+  title: "Go-ing a Long Way with Rails"
+  speakers:
+    - Shweta Kale
+  event_name: "RubyConf TH 2019"
+  date: "2019-09-07"
+  description: |-
+    This talk from RubyConf TH 2019 did not have a published recording, but is included here so the schedule matches the full program.
+  video_provider: "not_recorded"
+  video_id: "shweta-kale-rubyconf-th-2019"
 
-# Missing Video: Handling file uploads for a modern developer - Janko Marohnić
+- id: "janko-marohnic-rubyconf-th-2019"
+  title: "Handling File Uploads for a Modern Developer"
+  speakers:
+    - Janko Marohnić
+  event_name: "RubyConf TH 2019"
+  date: "2019-09-07"
+  description: |-
+    This talk will introduce the Shrine gem and go over some of the modern best practices for handling file attachments. We will cover topics such as image processing (“Is ImageMagick always the best option?”), asynchronous file uploads (“Which JavaScript solution should I choose?”), and handling large uploads (“How do I help users that have a flaky internet connection?”).
+  video_provider: "youtube"
+  video_id: "XbCAOFr4oNM"
+  published_at: "2019-10-16"
 
 - id: "elle-meredith-rubyconf-th-2019"
   title: "Start your own engineering apprenticeship program"
@@ -241,7 +317,16 @@
   video_provider: "youtube"
   video_id: "pwoWEpEWAvo"
 
-# Missing Video: Smaller is always better - Phil Nash
+- id: "phil-nash-rubyconf-th-2019"
+  title: "Smaller Is Always Better"
+  speakers:
+    - Phil Nash
+  event_name: "RubyConf TH 2019"
+  date: "2019-09-07"
+  description: |-
+    This talk from RubyConf TH 2019 did not have a published recording, but is included here so the schedule matches the full program.
+  video_provider: "not_recorded"
+  video_id: "phil-nash-rubyconf-th-2019"
 
 - id: "sergey-dolganov-rubyconf-th-2019"
   title: "Dirty Magic for Resilient API Dependencies"
@@ -257,4 +342,18 @@
     Sergey is an experienced Software Developer interested in building a strong and sustainable community around OSS and likes to discuss different ways to profile, debug and optimize applications. He also loves dogs and is a drummer and musician.
   video_provider: "youtube"
   video_id: "k0U1ZLSzMrk"
-# Missing Video: Closing Keynote - Saron Yitbarek
+
+- id: "saron-yitbarek-rubyconf-th-2019"
+  title: "Closing Keynote: The Magical Living Room: how to build authentic and engaged communities"
+  speakers:
+    - Saron Yitbarek
+  event_name: "RubyConf TH 2019"
+  date: "2019-09-07"
+  published_at: "2019-10-15"
+  description: |-
+    Saron is the CEO and founder of CodeNewbie, the most supportive community of programmers and people learning to code. She's also a developer, speaker, and podcaster.
+
+    In the closing keynote for RubyConf TH 2019 in Bangkok, Saron talked about "The Magical Living Room: how to build authentic and engaged communities".
+  video_provider: "youtube"
+  video_id: "0zwyIfE0R9A"
+  kind: "keynote"

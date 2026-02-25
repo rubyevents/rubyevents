@@ -120,6 +120,10 @@ class User < ApplicationRecord
   has_many :event_involvements, as: :involvementable, dependent: :destroy
   has_many :involved_events, through: :event_involvements, source: :event
 
+  # Favorite user associations
+  has_many :favorite_users, dependent: :destroy, inverse_of: :user
+  has_many :favorited_by, class_name: "FavoriteUser", foreign_key: "favorite_user_id", inverse_of: :favorite_user
+
   belongs_to :canonical, class_name: "User", optional: true
   belongs_to :city_record, class_name: "City", optional: true, inverse_of: false,
     foreign_key: [:city, :country_code, :state_code], primary_key: [:name, :country_code, :state_code]

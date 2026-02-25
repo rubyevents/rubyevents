@@ -23,13 +23,13 @@
             style: "view-transition-name: #{dom_id(event, :logo)}",
             loading: :lazy %>
 
-      <div class="flex-col flex justify-center break-all">
+      <div class="flex-col flex justify-center">
         <h1 class="mb-2 text-black font-bold"><%= title event.name %></h1>
         <h3 class="text-[#636B74]">
           <%= event.to_location.to_html %>
           • <%= event.formatted_dates %>
         </h3>
-        <%= external_link_to event.website.gsub(%r{^https?://}, "").gsub(%r{/$}, ""), event.website %>
+        <%= external_link_to event.website.gsub(%r{^https?://}, "").gsub(%r{/$}, ""), event.website, class: "break-all" %>
       </div>
     </div>
 

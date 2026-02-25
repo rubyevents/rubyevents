@@ -159,6 +159,9 @@ gem "json-repair", "~> 0.2.0"
 # Markdown that smells nice
 gem "redcarpet", "~> 3.6"
 
+# Syntax highlighting
+gem "rouge", "~> 4.4"
+
 # Country Select Plugin
 gem "country_select"
 
@@ -205,7 +208,7 @@ gem "openssl" # https://github.com/ruby/openssl/issues/949
 gem "ostruct"
 
 # Complete geocoding solution for Ruby.
-gem "geocoder"
+gem "geocoder", github: "alexreisner/geocoder" # Use latest geocoder with Nominatim improvements until next release
 
 # RubyGems.org API wrapper for gem information
 gem "gems"

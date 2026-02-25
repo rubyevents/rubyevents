@@ -24,7 +24,7 @@ All permitted fields are defined in [CFPSchema.](/app/schemas/cfp_schema.rb)
 Generate a CFP using the CfpGenerator!
 
 ```bash
-bin/rails g cfp --event-series=blue-ridge-ruby --event=blue-ridge-ruby-2026 --name="Call for Proposals" --link=https://blueridgeruby.com/cfp --start-date=2025-12-15 --end-date=2026-02-03
+bin/rails g cfp --event-series=blue-ridge-ruby --event=blue-ridge-ruby-2026 --name="Call for Proposals" --link=https://blueridgeruby.com/cfp --open-date=2025-12-15 -close-date=2026-02-03
 ```
 
 Check the usage instructions using help.
@@ -34,7 +34,16 @@ bin/rails g cfp --help
 ```
 
 This will create a cfp.yml with a single CFP in it.
-If you need to add additional CFPs for start-up demos or lightning talks, add another cfp using the same format to the array.
+
+If you need to add additional CFPs for start-up demos or lightning talks, run the generator again.
+
+```bash
+bin/rails g cfp --event-series rubyconf --event rubyconf-2026 --name "Ruby Runway: Pitch Competition" --link https://rubycentral.teamtailor.com/jobs/6963879-rubyconf-pitch-competition-the-ruby-runway --close-date "2026-02-28"
+```
+
+This will add a second CFP using the same format as the first.
+
+If you run the generator a second time with the same name as the CFP, it will update the existing CFP.
 
 ## Step-by-Step Guide
 

@@ -29,6 +29,7 @@ class PageController < ApplicationController
     @featured_speakers = User.where(id: home_page_cached_data[:featured_speaker_ids]).sample(10)
     @featured_organizations = Organization.joins(:sponsors).includes(:events).group("organizations.id").order("COUNT(sponsors.id) DESC").limit(10)
     @recommended_talks = Current.user.talk_recommender.talks(limit: 4) if Current.user
+    @wrapped_active = false && (@wrapped_users.any? || Current.user)
 
     imported_slugs = Event.not_meetup.with_watchable_talks.pluck(:slug)
     featurable_slugs = Static::Event.where.not(featured_background: nil).pluck(:slug)

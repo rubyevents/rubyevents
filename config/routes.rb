@@ -16,6 +16,13 @@ Rails.application.routes.draw do
   get "/pages/assets", to: "page#assets"
   get "/featured" => "page#featured"
 
+  # announcements/blog
+  resources :announcements, only: [:index, :show], param: :slug do
+    collection do
+      get :feed, defaults: {format: :rss}
+    end
+  end
+
   resources :browse, only: [:index, :show]
 
   # authentication

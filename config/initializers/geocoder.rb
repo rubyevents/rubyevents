@@ -41,7 +41,7 @@ end
 
 google_api_key = ENV["GEOLOCATE_API_KEY"]
 
-if google_api_key.present?
+if google_api_key.present? && google_api_key != "YOUR_GEOLOCATE_API"
   Geocoder.configure(
     lookup: :google,
     api_key: google_api_key,
