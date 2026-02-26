@@ -13,6 +13,13 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     assert_select "##{dom_id(@event)}", 1
   end
 
+  test "should get rss feed for index" do
+    get events_url(format: :rss)
+    assert_response :success
+    assert_select "channel"
+    assert_select "title", "Events"
+  end
+
   test "should get index with search results" do
     get archive_events_url(s: "rails")
     assert_response :success
