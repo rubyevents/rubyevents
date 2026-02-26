@@ -35,4 +35,10 @@ class PageControllerTest < ActionDispatch::IntegrationTest
     assert_select "meta[name='twitter:card'][content=summary_large_image]"
     assert_select "meta[name='twitter:image'][content=?]", expected_logo_url
   end
+
+  test "home page should render featured events" do
+    get root_path
+    assert_response :success
+    assert_select "h2", text: "Latest talks"
+  end
 end
