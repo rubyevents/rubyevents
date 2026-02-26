@@ -4,6 +4,9 @@
 Rails.application.routes.draw do
   extend Authenticator
 
+  # image proxy
+  get "image_proxy/github_avatar/:id", to: "image_proxy#github_avatar", as: :github_avatar_proxy
+
   # static pages
   get "/uses", to: "page#uses"
   get "/privacy", to: "page#privacy"

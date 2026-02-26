@@ -320,11 +320,7 @@ class User < ApplicationRecord
   def github_avatar_url(size: 200)
     return nil if github_handle.blank?
 
-    metadata_avatar_url = github_metadata.dig("profile", "avatar_url")
-
-    return "#{metadata_avatar_url}&size=#{size}" if metadata_avatar_url.present?
-
-    "https://github.com/#{github_handle}.png?size=#{size}"
+    Router.github_avatar_proxy_path(id:, size: size)
   end
 
   def fallback_avatar_url(size: 200)
