@@ -23,99 +23,31 @@ For example:
 - [`data/rubyconf/rubyconf-2024/schedule.yml`](https://github.com/rubyevents/rubyevents/blob/main/data/rubyconf/rubyconf-2024/schedule.yml)
 - [`data/brightonruby/brightonruby-2024/schedule.yml`](https://github.com/rubyevents/rubyevents/blob/main/data/brightonruby/brightonruby-2024/schedule.yml)
 
-## YAML Structure
+The [ScheduleSchema](app/schemas/schedule_schema.rb) defines all valid attributes.
 
-### Basic Structure
+## Generating a schedule
 
-```yaml
-# Schedule: https://conference.com/schedule
-# Optional: Embed: https://sessionize.com/api/v2/eventid/view/GridSmart
+Use the generator to build a basic schedule with talks, breakfast, lunch, and closing party.
 
-days:
-  - name: "Day 1"
-    date: "YYYY-MM-DD"
-    grid:
-      # Time slots for talks/sessions - NO "items" field
-      # These are automatically filled from videos.yml in order
-      - start_time: "09:00"
-        end_time: "09:45"
-        slots: 1  # Single talk
-
-      - start_time: "09:45"
-        end_time: "10:15"
-        slots: 3  # Three parallel talks
-
-      # Time slots for non-talk activities - WITH "items" field
-      # These are schedule-only items (no recordings)
-      - start_time: "10:15"
-        end_time: "10:30"
-        slots: 1
-        items:
-          - Coffee Break
-
-      # Another talk slot - NO "items" field
-      - start_time: "10:30"
-        end_time: "11:00"
-        slots: 1
-
-tracks:
-  - name: "Track Name"
-    color: "#RRGGBB"
-    text_color: "#FFFFFF"  # Optional
+```bash
+bin/rails g schedule --event-series rbqconf --event rbqconf-2026 --break_duration 5
 ```
 
-### Complete Example
+The generator will pull information from the event about days and how many talks need to be scheduled and try to schedule accordingly.
 
-```yaml
-# Schedule: https://rubyconf.org/schedule/
-# Embed: https://sessionize.com/api/v2/3nqsadrc/view/GridSmart?under=True
+Get help on usage by calling help on the generator.
 
-days:
-  - name: "Day 1"
-    date: "2024-11-13"
-    grid:
-      - start_time: "08:30"
-        end_time: "10:00"
-        slots: 1
-        items:
-          - Registration & Breakfast
+```bash
+bin/rails g schedule --help
+```
 
-      - start_time: "09:30"
-        end_time: "10:30"
-        slots: 1
-        # Empty slot - maps to actual talks
+## Customising the file
 
-      - start_time: "10:30"
-        end_time: "10:45"
-        slots: 1
-        items:
-          - Break
+Schedules are different for every event.
+This generator will give you a basic schedule with registration, lunch, and talks, but we expect that it will need to be customized by hand.
+If you have a workshop track, you'll definitely need to customize the final yml.
 
-      - start_time: "10:45"
-        end_time: "11:15"
-        slots: 4
-        # 4 parallel tracks
-
-      - start_time: "12:45"
-        end_time: "14:15"
-        slots: 1
-        items:
-          - Lunch
-
-  - name: "Day 2"
-    date: "2024-11-14"
-    grid:
-      - start_time: "10:00"
-        end_time: "11:00"
-        slots: 1
-
-      - start_time: "18:15"
-        end_time: "19:45"
-        slots: 1
-        items:
-          - title: "Closing Party"
-            description: "Join us for drinks and networking to close out the conference."
-
+```
 tracks:
   - name: "Main Track"
     color: "#000000"
@@ -133,42 +65,6 @@ tracks:
     color: "#95BF47"
     text_color: "#ffffff"
 ```
-
-## Field Descriptions
-
-### Day Fields
-
-| Field | Required | Description |
-|-------|----------|-------------|
-| `name` | Yes | Human-readable day name (e.g., "Day 1", "Day 2", "Hack Day") |
-| `date` | Yes | Date in ISO format (YYYY-MM-DD) |
-| `grid` | Yes | Array of time slots for the day |
-
-### Time Slot Fields
-
-| Field | Required | Description |
-|-------|----------|-------------|
-| `start_time` | Yes | Start time in 24-hour format (HH:MM) |
-| `end_time` | Yes | End time in 24-hour format (HH:MM) |
-| `slots` | Yes | Number of parallel tracks/sessions (1 for single track, 2+ for multiple) |
-| `items` | No | Array of non-talk activities for this time slot (breaks, meals, registration, social events). These are schedule-only items without recordings. Empty slots are filled with talks from `videos.yml` in running order |
-
-### Track Fields
-
-| Field | Required | Description |
-|-------|----------|-------------|
-| `name` | Yes | Display name of the track (e.g., "Main Track", "Lightning Talks"). Must match the `track` field in `videos.yml` for talks in this track |
-| `color` | Yes | Hex color code for the track (e.g., "#FF0000") |
-| `text_color` | No | Text color for contrast (defaults to white "#FFFFFF") |
-
-### Item Fields
-
-Items can be simple strings or objects with additional details:
-
-| Field | Required | Description |
-|-------|----------|-------------|
-| `title` | No | Title of the activity (when using object format) |
-| `description` | No | Detailed description of the activity |
 
 ## Common Schedule Elements
 
@@ -257,7 +153,7 @@ ls data/{series-name}/{event}/schedule.yml
 If the file doesn't exist, create it:
 
 ```bash
-touch data/{series-name}/{event}/schedule.yml
+
 ```
 
 ### 3. Gather Schedule Information
@@ -269,21 +165,6 @@ For each day, collect:
 - Number of parallel tracks
 - Track names and any color preferences
 - Special events or activities
-
-### 4. Structure the YAML
-
-Start with the basic structure and add days in chronological order:
-
-```yaml
-# Schedule: [source URL]
-
-days:
-  - name: "Day 1"
-    date: "YYYY-MM-DD"
-    grid: []
-
-tracks: []
-```
 
 ### 5. Add Time Slots
 

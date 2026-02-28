@@ -7,17 +7,18 @@ class SponsorsGenerator < Generators::EventBase
 
   class_option :event_series, type: :string, desc: "Event series folder name", required: true, group: "Fields"
   class_option :event, type: :string, desc: "Event folder name", required: true, aliases: ["-e"], group: "Fields"
-  argument :sponsors, type: :array, default: ["Sponsor Name:Sponsors"], banner: "sponsor_name[:tier][:badge] sponsor_name[:tier]"
+  argument :sponsors, type: :array, default: ["Sponsor Name|https://TODO.sponsor.url|Sponsors"], banner: "sponsor_name|url[|tier][|badge] sponsor_name|url[|tier]"
 
   def initialize(args, *options)
     super
     sponsors_data = sponsors.map do |sponsor_arg|
-      parts = sponsor_arg.split(":")
+      parts = sponsor_arg.split("|")
       {
         name: parts[0],
-        tier: parts[1] || "Sponsors",
+        url: parts[1],
+        tier: parts[2] || "Sponsors",
         slug: parts[0].downcase.tr(" ", "-"),
-        badge: parts[2]
+        badge: parts[3]
       }
     end
     @sponsors_by_tier = sponsors_data.group_by { |s| s[:tier] }
