@@ -5,4 +5,5 @@
 <% else %>
   <h3 class="text-lg font-semibold mb-4">Notes</h3>
   <p><%= favorite_user.notes %></p>
+  <%= link_to "Edit", edit_profile_notes_path(user), class: "btn btn-secondary mt-4" %>
 <% end %>

@@ -1,7 +1,8 @@
-<%# locals: (favorite_user:) %>
+<%# locals: (favorite_user:, redirect_to: "") %>
 
 <%= form_with(model: favorite_user, local: true) do |form| %>
   <%= form.hidden_field :favorite_user_id %>
+  <%= hidden_field_tag(:redirect_to, redirect_to) if redirect_to.present? %>
 
   <div class="field">
     <%= form.label :notes %>

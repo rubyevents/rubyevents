@@ -208,7 +208,7 @@ Rails.application.routes.draw do
       resources :talks, only: [:index]
       resources :events, only: [:index]
       resources :mutual_events, only: [:index]
-      resources :notes, only: [:index]
+      resource :notes, only: [:show, :edit]
       resources :stamps, only: [:index]
       resources :stickers, only: [:index]
       resources :involvements, only: [:index]

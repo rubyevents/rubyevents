@@ -26,7 +26,13 @@ class FavoriteUsersController < ApplicationController
   def update
     respond_to do |format|
       if @favorite_user.update(favorite_user_params)
-        format.html { redirect_back_or_to favorite_users_path }
+        format.html do
+          if params[:redirect_to].present?
+            redirect_to params[:redirect_to]
+          else
+            redirect_back_or_to favorite_users_path
+          end
+        end
       else
         format.html { redirect_back_or_to favorite_users_path, alert: "Failed to update." }
       end
