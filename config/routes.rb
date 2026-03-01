@@ -208,6 +208,7 @@ Rails.application.routes.draw do
       resources :talks, only: [:index]
       resources :events, only: [:index]
       resources :mutual_events, only: [:index]
+      resources :notes, only: [:index]
       resources :stamps, only: [:index]
       resources :stickers, only: [:index]
       resources :involvements, only: [:index]
@@ -224,7 +225,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :favorite_users, only: [:index, :create, :destroy]
+  resources :favorite_users, only: [:index, :create, :destroy, :update]
 
   resources :events, param: :slug, only: [:index, :show, :update, :edit] do
     resources :event_participations, only: [:create, :destroy]

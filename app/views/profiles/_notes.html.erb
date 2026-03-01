@@ -1,0 +1,8 @@
+<%# locals: (user:, favorite_user:) %>
+
+<% if favorite_user.notes.blank? %>
+  <%= render partial: "favorite_users/form", locals: {favorite_user: favorite_user} %>
+<% else %>
+  <h3 class="text-lg font-semibold mb-4">Notes</h3>
+  <p><%= favorite_user.notes %></p>
+<% end %>

@@ -9,7 +9,7 @@
           <% end %>
       <% end %>
     <% elsif favorite_user.persisted? %>
-      <%= ui_tooltip "Remove from your list of Favorite Rubyists" do %>
+      <%= ui_tooltip "Remove from your list of Favorite Rubyists and delete notes." do %>
           <%= button_to favorite_user_path(favorite_user), method: :delete, form_class: "mt-1" do %>
             <%= fa("star", size: :sm, style: :solid, class: "fill-yellow-400") %>
           <% end %>

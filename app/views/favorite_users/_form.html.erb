@@ -1,0 +1,14 @@
+<%# locals: (favorite_user:) %>
+
+<%= form_with(model: favorite_user, local: true) do |form| %>
+  <%= form.hidden_field :favorite_user_id %>
+
+  <div class="field">
+    <%= form.label :notes %>
+    <%= form.text_area :notes, rows: 3, class: "textarea textarea-bordered w-full" %>
+  </div>
+
+  <div class="actions mt-2">
+    <%= form.submit "Save", class: "btn btn-primary" %>
+  </div>
+<% end %>

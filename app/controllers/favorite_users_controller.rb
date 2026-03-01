@@ -1,5 +1,5 @@
 class FavoriteUsersController < ApplicationController
-  before_action :set_favorite_user, only: %i[destroy]
+  before_action :set_favorite_user, only: %i[destroy update]
 
   # GET /favorite_users or /favorite_users.json
   def index
@@ -22,6 +22,17 @@ class FavoriteUsersController < ApplicationController
     end
   end
 
+  # PATCH/PUT /favorite_users/1 or /favorite_users/1.json
+  def update
+    respond_to do |format|
+      if @favorite_user.update(favorite_user_params)
+        format.html { redirect_back_or_to favorite_users_path }
+      else
+        format.html { redirect_back_or_to favorite_users_path, alert: "Failed to update." }
+      end
+    end
+  end
+
   # DELETE /favorite_users/1 or /favorite_users/1.json
   def destroy
     @favorite_user.destroy!
@@ -40,6 +51,6 @@ class FavoriteUsersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def favorite_user_params
-    params.expect(favorite_user: [:favorite_user_id])
+    params.expect(favorite_user: [:favorite_user_id, :notes])
   end
 end
