@@ -1,8 +1,10 @@
 Description:
-    Explain the generator
+    Generates a schedule.yml file for an event in an event series, auto-filling talk slots from videos.yml.
+    Customize the generated file for multi-track events or special activities as needed.
 
 Example:
-    bin/rails generate schedule Thing
+    bin/rails generate schedule --event-series=SERIES_SLUG --event=EVENT_SLUG
 
     This will create:
-        what/will/it/create
+        /data/SERIES_SLUG/EVENT_SLUG/schedule.yml
+    The file will be pre-populated with a basic schedule template for editing.

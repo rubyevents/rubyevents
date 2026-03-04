@@ -6,7 +6,7 @@ class ScheduleGenerator < Generators::EventBase
   source_root File.expand_path("templates", __dir__)
 
   class_option :break_duration, type: :numeric, desc: "The duration of breaks between talks in minutes", default: 15, group: "Fields"
-  class_option :days, type: :array, desc: "The days of the event in YYYY-MM-DD format (e.g. 2024-09-01)", group: "Fields"
+  class_option :days, type: :array, desc: "The days of the event in YYYY-MM-DD format (e.g. 2024-09-01) - calculated from event start and end dates if not provided", group: "Fields"
   class_option :day_start, type: :string, desc: "The start time of each day in HH:MM format (e.g. 08:00)", default: "08:00", group: "Fields"
   class_option :slots, type: :numeric, desc: "The number of concurrent talks per time slot", default: 1, group: "Fields"
   class_option :talk_duration, type: :numeric, desc: "The duration of each talk in minutes", default: 30, group: "Fields"

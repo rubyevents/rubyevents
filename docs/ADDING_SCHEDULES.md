@@ -47,6 +47,25 @@ Schedules are different for every event.
 This generator will give you a basic schedule with registration, lunch, and talks, but we expect that it will need to be customized by hand.
 If you have a workshop track, you'll definitely need to customize the final yml.
 
+### Multi-track conferences
+
+If there are multiple talks happening at the same time, update the slots option.
+The entire schedule does not need to have the same number of slots.
+Lunch and Breakfast can have 1 slot, and the talk slots can have more.
+The generator supports setting slots on all talk slots.
+For example, the below command creates 3 timeslots for talks running concurrently.
+
+```bash
+bin/rails g schedule --event-series rubyconf --event rubyconf-2026 --slots 3
+```
+
+Schedules also support tagging talks by track.
+
+**This is not currently supported by the generator and you will need to add it manually.**
+
+Add a section at the bottom of the yml file with tracks. Each video must map exactly to a track.
+Ensure the color and text_color have enough contrast.
+
 ```
 tracks:
   - name: "Main Track"
@@ -66,9 +85,7 @@ tracks:
     text_color: "#ffffff"
 ```
 
-## Common Schedule Elements
-
-### Standard Activities
+### Unrecorded Activities
 
 Typical schedule-only items (activities without recordings, simple string format):
 - `Registration` - Check-in and badge pickup
@@ -80,63 +97,18 @@ Typical schedule-only items (activities without recordings, simple string format
 - `Closing` - Conference wrap-up (when not recorded)
 - `Welcome` - Welcome reception or gathering
 
-### Special Events
-
-For non-talk events with additional details (object format). These are schedule-only activities without individual talk recordings:
+For non-talk events you can add an items array which will map to each slot.
+Items can be text-only or have a title and description.
+The ScheduleGenerator includes examples of using items.
 
 ```yaml
 items:
-  - title: "Opening Reception"
-    description: "Welcome drinks and networking before the conference begins."
+  - "Breakfast and Reception"
 
   - title: "Sponsor Showcase"
     description: "Meet our sponsors and learn about their products and services."
-
-  - title: "Panel Discussion"
-    description: "Community panel discussion (when not recorded as individual talks)."
-
-  - title: "Networking Hour"
-    description: "Structured networking time for attendees."
 ```
 
-## Track Configuration
-
-### Common Track Types
-
-1. **Main/Keynote Track** - Primary presentations and keynotes
-2. **Technical Track** - Deep technical sessions
-3. **Community Track** - Community-focused presentations
-4. **Lightning Talks** - Short presentation format
-5. **Workshop Track** - Hands-on learning sessions
-6. **Beginner Track** - Introductory content
-
-### Schedules in other Languages
-
-We prefer the English translation of the schedule if provided, otherwise use the content provided by the organizers.
-
-### Track Colors
-
-Choose colors that provide good contrast and visual distinction:
-
-```yaml
-tracks:
-  - name: "Main Stage"
-    color: "#000000"     # Black
-    text_color: "#ffffff"
-
-  - name: "Technical Track"
-    color: "#0066CC"     # Blue
-    text_color: "#ffffff"
-
-  - name: "Community Track"
-    color: "#CC6600"     # Orange
-
-  - name: "Lightning Talks"
-    color: "#95BF47"     # Green
-
-  - name: "Workshop Track"
-    color: "#9900CC"     # Purple
-```
 
 ## Step-by-Step Guide
 
@@ -148,15 +120,7 @@ First, check if a schedule file already exists:
 ls data/{series-name}/{event}/schedule.yml
 ```
 
-### 2. Create or Edit the Schedule File
-
-If the file doesn't exist, create it:
-
-```bash
-
-```
-
-### 3. Gather Schedule Information
+### 2. Gather Schedule Information
 
 For each day, collect:
 - Official conference dates
@@ -166,7 +130,15 @@ For each day, collect:
 - Track names and any color preferences
 - Special events or activities
 
-### 5. Add Time Slots
+### 3. Create or Edit the Schedule File
+
+If the file doesn't exist, create it:
+
+```bash
+bin/rails g schedule --event-series series-slug --event event-slug
+```
+
+### 4. Add Time Slots
 
 Fill in the time slots for each day. Remember:
 - Use 24-hour format (e.g., "14:30")
@@ -176,7 +148,7 @@ Fill in the time slots for each day. Remember:
 
 **Important**: Empty time slots are filled with talks from the conference's `videos.yml` file in running order. The talks must be ordered chronologically in the `videos.yml` file to match the schedule grid timing.
 
-### 6. Configure Tracks
+### 5. Configure Tracks
 
 If the conference has multiple tracks, define them. **Important**: Track names must exactly match the `track` field values used in the conference's `videos.yml` file:
 
@@ -194,7 +166,7 @@ tracks:
 Ensure the YAML is properly formatted:
 
 ```bash
-yarn format:yml
+bin/lint
 ```
 
 ## Finding Schedule Information
@@ -229,6 +201,12 @@ yarn format:yml
 - **Track mismatch**: Number of tracks should match maximum `slots` used
 - **Track name mismatch**: Track names in `schedule.yml` must exactly match `track` field values in `videos.yml`
 - **Talk order mismatch**: If talks appear in wrong schedule slots, check that `videos.yml` has talks in chronological order
+
+## FAQ
+
+### Schedules in other Languages
+
+We prefer the English translation of the schedule if provided, otherwise use the content provided by the organizers.
 
 ## Submission Process
 
