@@ -12,7 +12,12 @@
           <b class="mt-4 mb-2">Events without videos:</b>
 
           <% events.each do |event| %>
-            <span><%= link_to event.name, event, class: "hover:underline" %></span>
+            <span>
+              <%= link_to event.name, event, class: "hover:underline" %>
+              <% if event.static_metadata.playlist.present? %>
+                (<%= link_to "playlist", event.static_metadata.playlist, target: "_blank", rel: "noopener" %>)
+              <% end %>
+            </span>
           <% end %>
         </div>
       <% end %>

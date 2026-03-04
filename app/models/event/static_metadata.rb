@@ -110,6 +110,10 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
     static_repository&.status == "cancelled"
   end
 
+  def playlist
+    static_repository&.playlist
+  end
+
   private
 
   def static_repository
