@@ -1,7 +1,7 @@
 ---
 title: "RubyEvents.org February 2026 Newsletter"
 slug: february-2026-newsletter
-date: 2026-02-01
+date: 2026-03-01
 author: chaelcodes
 published: true
 excerpt: |-
