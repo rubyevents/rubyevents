@@ -30,4 +30,19 @@ class FavoriteUsersControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to favorite_users_url
   end
+
+  test "should update favorite_user notes" do
+    favorite_user = favorite_users(:one)
+    patch favorite_user_url(favorite_user), params: {favorite_user: {notes: "Met at dinner at Blue Ridge Ruby"}}
+    assert_redirected_to favorite_users_url
+    favorite_user.reload
+    assert_equal "Met at dinner at Blue Ridge Ruby", favorite_user.notes
+  end
+
+  test "User is unfavorited while taking notes" do
+    favorite_user = favorite_users(:one)
+    delete favorite_user_url(favorite_user)
+    patch favorite_user_url(favorite_user), params: {favorite_user: {notes: "This note should not be saved"}}
+    assert_response :not_found
+  end
 end

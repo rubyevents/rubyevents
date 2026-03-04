@@ -4,6 +4,7 @@
 # Database name: primary
 #
 #  id               :integer          not null, primary key
+#  notes            :text
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  favorite_user_id :integer          not null, indexed
