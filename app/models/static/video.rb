@@ -4,7 +4,7 @@ module Static
     self.base_path = Rails.root.join("data")
 
     SEARCH_INDEX_ON_IMPORT_DEFAULT = ENV.fetch("SEARCH_INDEX_ON_IMPORT", "true") == "true"
-    
+
     def self.child_talks
       @child_talks ||= Static::Video.all.flat_map(&:talks).compact
     end
