@@ -5,5 +5,6 @@ class Events::ArchiveController < ApplicationController
     @events = Event.canonical.includes(:series).order("series.name ASC, events.start_date ASC")
     @events = @events.where("lower(events.name) LIKE ?", "#{params[:letter].downcase}%") if params[:letter].present?
     @events = @events.ft_search(params[:s]) if params[:s].present?
+    @events = @events.where(kind: params[:kind]) if params[:kind].present? && params[:kind] != "all"
   end
 end
