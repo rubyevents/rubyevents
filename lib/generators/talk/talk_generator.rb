@@ -5,11 +5,15 @@ require "generators/event_base"
 class TalkGenerator < Generators::EventBase
   source_root File.expand_path("templates", __dir__)
 
-  class_option :title, type: :string, default: "TODO", desc: "Title of the talk"
-  class_option :speaker, type: :array, default: ["TODO"], desc: "Speaker name"
-  class_option :description, type: :string, default: "TODO", desc: "Description of the talk"
-  class_option :date, type: :string, desc: "Date of the talk (YYYY-MM-DD)", required: false
-  class_option :kind, type: :string, enum: Talk.kinds.keys, default: "talk", desc: "Type of talk (e.g., 'keynote', 'lightning')"
+  class_option :id, type: :string, desc: "ID of the talk (optional, will be generated from title and speaker if not provided)", required: false, group: "Fields"
+  class_option :title, type: :string, default: "TODO", desc: "Title of the talk", group: "Fields"
+  class_option :speaker, type: :array, default: ["TODO"], desc: "Speaker name", group: "Fields"
+  class_option :description, type: :string, default: "TODO", desc: "Description of the talk", group: "Fields"
+  class_option :kind, type: :string, enum: Talk.kinds.keys, default: "talk", desc: "Type of talk (e.g., 'keynote', 'lightning')", group: "Fields"
+
+  # dates
+  class_option :date, type: :string, desc: "Date of the talk (YYYY-MM-DD)", required: false, group: "Fields"
+  class_option :announced_at, type: :string, desc: "Date when the talk was announced (YYYY-MM-DD)", required: false, group: "Fields"
 
   def initialize_values
     event = Static::Event.find_by_slug options[:event]
@@ -31,7 +35,7 @@ class TalkGenerator < Generators::EventBase
   private
 
   def talk_id
-    @talk_id ||= begin
+    @talk_id ||= options[:id].presence || begin
       talk_id_parts = []
       if options[:speaker].length > 2
         talk_id_parts << options[:title].parameterize
