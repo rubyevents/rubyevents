@@ -6,12 +6,12 @@ Description:
   The generator will always produce a valid entry with default values for missing parameters.
 
 Example: |
-  bin/rails generate talk --event-series blue-ridge-ruby --event blue-ridge-ruby-2026 --title "Your first open-source contribution" --speaker "Rachael Wright-Munn"
+  bin/rails generate talk --event blue-ridge-ruby-2026 --title "Your first open-source contribution" --speaker "Rachael Wright-Munn"
 
   This will create:
       data/blue-ridge-ruby/blue-ridge-ruby-2026/videos.yml
 
-  bin/rails g talk --event-series ruby-community-conference --event ruby-community-conference-winter-edition-2026 --speaker "Chris Hasiński" --title "Doom" --kind lightning_talk
+  bin/rails g talk --event ruby-community-conference-winter-edition-2026 --speaker "Chris Hasiński" --title "Doom" --kind lightning_talk
 
   This will create a lightning talk entry for Chris Hasiński's talk "Doom":
       data/ruby-community-conference/ruby-community-conference-winter-edition-2026/videos.yml

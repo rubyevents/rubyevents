@@ -2,10 +2,22 @@ require "rails/generators"
 
 module Generators
   class EventBase < Rails::Generators::Base
-    class_option :event_series, type: :string, desc: "Event series folder name", required: true, group: "Fields"
+    class_option :event_series, type: :string, desc: "Event series folder name - defaults to the series of the event", required: false, group: "Fields"
     class_option :event, type: :string, desc: "Event folder name", required: true, aliases: ["-e"], group: "Fields"
 
     GeocodedAddress = Struct.new(:street_address, :city, :state, :postal_code, :country, :country_code, :latitude, :longitude)
+
+    def event_directory
+      @event_directory ||= File.join(destination_root, "data", event_series_slug, options[:event])
+    end
+
+    def event_series_slug
+      @series_slug ||= options[:event_series] || static_event&.series_slug
+    end
+
+    def static_event
+      @static_event ||= Static::Event.find_by_slug options[:event]
+    end
 
     private
 
