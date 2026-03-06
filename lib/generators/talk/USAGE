@@ -2,8 +2,16 @@ Description:
   This generator creates a new video entry in videos.yml for an unpublished talk.
   It will create the file if one does not exist, and update a talk if the id matches.
 
+  If you do not have data for a value, omit the parameter.
+  The generator will always produce a valid entry with default values for missing parameters.
+
 Example: |
-  bin/rails generate talk --event-series blue-ridge-ruby --event blue-ridge-ruby-2026 --title "Your first open-source contribution" --speaker "Rachael Wright-Munn" --description ""
+  bin/rails generate talk --event-series blue-ridge-ruby --event blue-ridge-ruby-2026 --title "Your first open-source contribution" --speaker "Rachael Wright-Munn"
 
   This will create:
-      data/event-series/event-name/videos.yml
+      data/blue-ridge-ruby/blue-ridge-ruby-2026/videos.yml
+
+  bin/rails g talk --event-series ruby-community-conference --event ruby-community-conference-winter-edition-2026 --speaker "Chris Hasiński" --title "Doom" --kind lightning_talk
+
+  This will create a lightning talk entry for Chris Hasiński's talk "Doom":
+      data/ruby-community-conference/ruby-community-conference-winter-edition-2026/videos.yml
