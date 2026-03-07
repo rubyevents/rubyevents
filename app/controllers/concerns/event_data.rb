@@ -1,0 +1,41 @@
+module EventData
+  extend ActiveSupport::Concern
+
+  include FavoriteUsers
+
+  def set_event
+    @event = Event.includes(:event_participations).find_by(slug: params[:event_slug])
+    redirect_to root_path, status: :moved_permanently unless @event
+  end
+
+  def set_event_meta_tags
+    set_meta_tags(@event)
+  end
+
+  def set_participation
+    @participation ||= Current.user&.main_participation_to(@event)
+  end
+
+  def set_participants
+    participants = @event.participants.preloaded.order(:name).distinct
+    if Current.user
+      @participants = {
+        "Ruby Friends" => [],
+        "Favorites" => [],
+        "Known Participants" => []
+      }
+      participants.each do |participant|
+        fav_user = @favorite_users[participant.id]
+        if fav_user&.ruby_friend?
+          @participants["Ruby Friends"] << participant
+        elsif fav_user&.persisted?
+          @participants["Favorites"] << participant
+        else
+          @participants["Known Participants"] << participant
+        end
+      end
+    else
+      @participants = {"Known Participants" => participants}
+    end
+  end
+end
