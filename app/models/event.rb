@@ -127,7 +127,7 @@ class Event < ApplicationRecord
       )
       .distinct
   }
-  scope :past, -> { where("end_date <= ? OR (end_date IS NULL AND (start_date <= ? OR start_date IS NULL))", Date.today, Date.today).order(Arel.sql("COALESCE(end_date, start_date) DESC")) }
+  scope :past, -> { where(end_date: ..Date.today).order(end_date: :desc) }
   scope :upcoming, -> { where(start_date: Date.today..).order(start_date: :asc) }
 
   def upcoming?

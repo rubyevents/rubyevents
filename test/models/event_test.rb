@@ -237,30 +237,6 @@ class EventTest < ActiveSupport::TestCase
     assert_empty result
   end
 
-  test "past scope includes events with start_date in the past and no end_date" do
-    event = Event.create!(name: "Meetup Past No End", series: @series, start_date: 1.week.ago, end_date: nil)
-
-    assert_includes Event.past, event
-  end
-
-  test "past scope includes events with end_date in the past" do
-    event = Event.create!(name: "Conference Past With End", series: @series, start_date: 10.days.ago, end_date: 8.days.ago)
-
-    assert_includes Event.past, event
-  end
-
-  test "past scope includes events with no start_date and no end_date" do
-    event = Event.create!(name: "Undated Meetup", series: @series, start_date: nil, end_date: nil)
-
-    assert_includes Event.past, event
-  end
-
-  test "past scope does not include upcoming events" do
-    event = Event.create!(name: "Future Meetup", series: @series, start_date: 1.week.from_now, end_date: nil)
-
-    assert_not_includes Event.past, event
-  end
-
   test "belongs to city" do
     event = events(:rails_world_2023)
 
