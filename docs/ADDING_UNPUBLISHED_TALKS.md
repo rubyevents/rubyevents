@@ -32,7 +32,7 @@ ls data/{series-name}/{event-name}/videos.yml
 If the file doesn't exist, create it by calling the generator with the first talk.
 
 ```bash
-bin/rails generate talk --event-series blue-ridge-ruby --event blue-ridge-ruby-2026 --title "Your first open-source contribution" --speaker "Rachael Wright-Munn" --description ""
+bin/rails generate talk --event blue-ridge-ruby-2026 --title "Your first open-source contribution" --speaker "Rachael Wright-Munn" --description ""
 ```
 
 Check the usage instructions using `--help`.
@@ -46,7 +46,7 @@ Call the generator multiple times to add multiple talks to the event.
 Pass multiple speakers per talk in by passing multiple names to the argument.
 
 ```bash
-bin/rails generate talk --event-series blue-ridge-ruby --event blue-ridge-ruby-2026 --title "RubyEvents is great!" --speaker "Marco Roth" "Rachael Wright-Munn"
+bin/rails generate talk --event blue-ridge-ruby-2026 --title "RubyEvents is great!" --speaker "Marco Roth" "Rachael Wright-Munn"
 ```
 
 Update a talk by calling the generator again with new paramaters.
@@ -55,7 +55,7 @@ The id can be manually passed, but we prefer that it does not change after gener
 All values from the existing talk must be included.
 
 ```bash
-bin/rails generate talk --event-series blue-ridge-ruby --event blue-ridge-ruby-2026 --id "marco-roth-rachael-wright-munn-blue-ridge-ruby-2026" --title "RubyEvents is great!" --speaker "Rachael Wright-Munn" --description "Learn why RubyEvents is great and how to contribute!"
+bin/rails generate talk --event blue-ridge-ruby-2026 --id "marco-roth-rachael-wright-munn-blue-ridge-ruby-2026" --title "RubyEvents is great!" --speaker "Rachael Wright-Munn" --description "Learn why RubyEvents is great and how to contribute!"
 ```
 
 ### 3. Gather Talk Information
@@ -89,10 +89,13 @@ The other fields are nice, but GitHub is how we deduplicate, auth, and populate 
 <details><summary>How do I handle talks that are not in English?</summary>
   For talks that are not in English, we prefer English descriptions and titles if provided by the event.
   If those are not provided, use the original language for the description, translate the title to English, and store the title in its original language in original_title.
+  The language field should be the 2 letter language code.
+  This will make it easier for people to find talks in their native language!
 
   ```yaml
   - id: "name-talk-type-event-name-year"
     title: "Talk title in English"
+    language: "ja"
     original_title: "Talk title in original language"
     description: "Description in original language"
   ```

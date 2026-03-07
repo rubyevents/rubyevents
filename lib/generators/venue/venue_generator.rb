@@ -16,6 +16,6 @@ class VenueGenerator < Generators::EventBase
 
   def copy_venue_file
     @geocoded_address = geocode_address(name: options[:name], address: options[:address])
-    template "venue.yml.tt", File.join(["data", options[:event_series], options[:event], "venue.yml"])
+    template "venue.yml.tt", File.join([event_directory, "venue.yml"])
   end
 end
