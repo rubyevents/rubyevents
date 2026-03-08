@@ -1,7 +1,7 @@
 require "simplecov"
 SimpleCov.start "rails" do
   enable_coverage :branch
-  add_filter /(app\/avo|controllers\/avo)/
+  add_filter(/(app\/avo|controllers\/avo)/)
   add_group "Clients", "app/clients"
   add_group "Components", "app/components"
   add_group "Jobs", "app/jobs"
