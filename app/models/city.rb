@@ -99,6 +99,16 @@ class City < ApplicationRecord
     end
   end
 
+  def meetups_path
+    if featured?
+      Router.city_meetups_path(self)
+    elsif state_code.present? && state.present?
+      Router.city_with_state_meetups_path(alpha2: country.code, state: state.slug, city: slug)
+    else
+      Router.city_by_country_meetups_path(alpha2: country.code, city: slug)
+    end
+  end
+
   def stamps_path
     if featured?
       Router.city_stamps_path(self)

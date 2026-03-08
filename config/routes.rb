@@ -68,6 +68,7 @@ Rails.application.routes.draw do
     scope module: :locations do
       resources :past, only: [:index]
       resources :users, only: [:index]
+      resources :meetups, only: [:index]
       resources :stamps, only: [:index]
       resources :map, only: [:index]
     end
@@ -81,6 +82,7 @@ Rails.application.routes.draw do
     scope module: :locations do
       resources :past, only: [:index]
       resources :users, only: [:index]
+      resources :meetups, only: [:index]
       resources :stamps, only: [:index]
       resources :map, only: [:index]
     end
@@ -95,6 +97,7 @@ Rails.application.routes.draw do
     scope module: :locations do
       resources :past, only: [:index]
       resources :users, only: [:index]
+      resources :meetups, only: [:index]
       resources :stamps, only: [:index]
       resources :map, only: [:index]
     end
@@ -105,6 +108,7 @@ Rails.application.routes.draw do
     scope module: :locations do
       resources :past, only: [:index]
       resources :users, only: [:index]
+      resources :meetups, only: [:index]
       resources :stamps, only: [:index]
       resources :map, only: [:index]
     end
@@ -115,6 +119,7 @@ Rails.application.routes.draw do
     scope module: :locations do
       resources :past, only: [:index]
       resources :users, only: [:index]
+      resources :meetups, only: [:index]
       resources :stamps, only: [:index]
       resources :map, only: [:index]
     end
