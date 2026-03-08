@@ -6,7 +6,7 @@ require "yaml"
 
 class SponsorsGeneratorTest < Rails::Generators::TestCase
   tests SponsorsGenerator
-  destination Rails.root.join("tmp/generators")
+  destination Rails.root.join("tmp/generators/sponsors")
   setup :prepare_destination
 
   test "generator populates sponsors.yml with arguments" do
@@ -20,6 +20,8 @@ class SponsorsGeneratorTest < Rails::Generators::TestCase
       assert_match(/typesense/, content, "typesense sponsor missing")
       assert_match(/appsignal/, content, "AppSignal sponsor missing")
     end
+
+    File.delete File.join(destination_root, "data/tropicalrb/tropical-on-rails-2026/sponsors.yml")
   end
 
   test "sponsors.yml passes schema validation" do
@@ -38,5 +40,7 @@ class SponsorsGeneratorTest < Rails::Generators::TestCase
     end
 
     assert_empty errors, "Sponsors YAML does not conform to schema: #{errors.join(", ")}"
+
+    File.delete sponsor_file_path
   end
 end

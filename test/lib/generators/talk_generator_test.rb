@@ -5,14 +5,15 @@ require "json_schemer"
 
 class TalkGeneratorTest < Rails::Generators::TestCase
   tests TalkGenerator
-  destination Rails.root.join("tmp/generators")
-  setup :prepare_destination
+  destination Rails.root.join("tmp/generators/talk")
 
   test "generator runs without errors" do
     assert_nothing_raised do
       # This must be a real event - tests Static::Event lookup
       run_generator ["--event", "rubyconf-2024"]
     end
+
+    File.delete(File.join(destination_root, "data/rubyconf/rubyconf-2024/videos.yml"))
   end
 
   test "creates videos.yml with valid yaml" do
@@ -24,6 +25,8 @@ class TalkGeneratorTest < Rails::Generators::TestCase
 
     videos_file_path = File.join(destination_root, "data/rubyconf/2025/videos.yml")
     validate_talk_file(videos_file_path)
+
+    File.delete(videos_file_path)
   end
 
   test "update videos.yml if called twice" do
@@ -37,6 +40,8 @@ class TalkGeneratorTest < Rails::Generators::TestCase
 
     videos_file_path = File.join(destination_root, "data/rubyconf/2026/videos.yml")
     validate_talk_file(videos_file_path)
+
+    File.delete(videos_file_path)
   end
 
   test "append to videos.yml if called with a different details" do
@@ -57,13 +62,18 @@ class TalkGeneratorTest < Rails::Generators::TestCase
 
     videos_file_path = File.join(destination_root, "data/rubyconf/2027/videos.yml")
     validate_talk_file(videos_file_path)
+
+    File.delete(videos_file_path)
   end
 
   test "finds event series from static event if not provided" do
     run_generator ["--event", "tropical-on-rails-2026", "--title", "Keynote: Marco Roth", "--speaker", "Marco Roth"]
+
     assert_file "data/tropicalrb/tropical-on-rails-2026/videos.yml" do |content|
       assert_match(/\S/, content)
     end
+
+    File.delete(File.join(destination_root, "data/tropicalrb/tropical-on-rails-2026/videos.yml"))
   end
 
   def validate_talk_file(path)
