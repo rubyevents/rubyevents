@@ -1,9 +1,10 @@
 Description:
-    Generates a venue.yml file for a specific event in an event series.
+  Generates a venue.yml file for a specific event in an event series.
+  This will attempt to geocode the provided address and include the coordinates  and full address info in the generated file.
+  We use nominatim (openstreetmap) by default, but including a Google Maps API key in .env may improve your results.
 
 Example:
-    bin/rails generate venue --event-series=SERIES_SLUG --event=EVENT_SLUG
+  bin/rails g venue --event=tiny-ruby-conf-2026 --name="Korjaamo Kino cinema" --address "Töölönkatu 51 A-B, 00250 Helsinki"
 
-This will create:
-    /data/SERIES_SLUG/EVENT_SLUG/venue.yml
-    The file will be pre-populated with a venue template for editing.
+  This will create a venue file with geocoded coordinates and all address values.
+    data/tiny-ruby-conf/tiny-ruby-conf-2026/venue.yml

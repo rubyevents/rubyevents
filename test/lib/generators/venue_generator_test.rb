@@ -11,10 +11,10 @@ class VenueGeneratorTest < Rails::Generators::TestCase
 
   test "creates venue.yml in correct directory" do
     assert_nothing_raised do
-      run_generator ["--event-series", "rubyconf", "--event", "2001"]
+      run_generator ["--event", "rubyconf-2001"]
     end
 
-    assert_file "data/rubyconf/2001/venue.yml" do |content|
+    assert_file "data/rubyconf/rubyconf-2001/venue.yml" do |content|
       assert_match(/\S/, content) # Verify file has content
     end
   end

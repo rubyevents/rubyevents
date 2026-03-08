@@ -6,10 +6,11 @@ class TalkGenerator < Generators::EventBase
   source_root File.expand_path("templates", __dir__)
 
   class_option :id, type: :string, desc: "ID of the talk (optional, will be generated from title and speaker if not provided)", required: false, group: "Fields"
-  class_option :title, type: :string, default: "TODO", desc: "Title of the talk", group: "Fields"
+  class_option :title, type: :string, default: "TODO - title", desc: "Title of the talk", group: "Fields"
   class_option :speaker, type: :array, default: ["TODO"], desc: "Speaker name", group: "Fields"
-  class_option :description, type: :string, default: "TODO", desc: "Description of the talk", group: "Fields"
+  class_option :description, type: :string, default: "TODO - description", desc: "Description of the talk", group: "Fields"
   class_option :kind, type: :string, enum: Talk.kinds.keys, default: "talk", desc: "Type of talk (e.g., 'keynote', 'lightning')", group: "Fields"
+  class_option :language, type: :string, default: "en", desc: "Language of the talk (e.g., 'en', 'es')", group: "Fields"
 
   # dates
   class_option :date, type: :string, desc: "Date of the talk (YYYY-MM-DD)", required: false, group: "Fields"
@@ -20,11 +21,14 @@ class TalkGenerator < Generators::EventBase
     @date = options[:date] || (event&.start_date || Date.today).iso8601
   end
 
-  def add_talk_to_file
-    videos_file_path = File.join("data", options[:event_series], options[:event], "videos.yml")
-    template "videos.yml.tt", videos_file_path unless File.exist?(destination_path(videos_file_path))
+  def videos_file_path
+    @videos_file_path ||= File.join(event_directory, "videos.yml")
+  end
 
-    if File.read(destination_path(videos_file_path)).match?(/- id: "#{talk_id}"/)
+  def add_talk_to_file
+    template "videos.yml.tt", videos_file_path unless File.exist?(videos_file_path)
+
+    if File.read(videos_file_path).match?(/- id: "#{talk_id}"/)
       match_one_talk = /\n- id: "#{talk_id}"[\s\S]*video_id: "#{talk_id}"/
       gsub_file videos_file_path, match_one_talk, template_content("talk.yml.tt")
     else
