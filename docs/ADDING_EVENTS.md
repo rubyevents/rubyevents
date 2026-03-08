@@ -98,8 +98,7 @@ Like this!
 ```
 </details>
 <details><summary>What about meetups?</summary>
-  There's some ongoing work to consolidate how meetups and events are stored.
-  Unfortunately this guide does not cover meetups at this time.
+  Meetups are modeled differently: one event per meetup group, and each monthly edition is an entry in <code>videos.yml</code>. See the dedicated guide: <a href="ADDING_MEETUPS.md">ADDING_MEETUPS.md</a>.
 </details> 
 <details><summary>How should I handle a cancelled event?</summary>
   Cancelled events get an attribute of `status: "cancelled"` which will change how they're displayed on the site.
