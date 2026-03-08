@@ -3,8 +3,7 @@ require "generators/schedule/schedule_generator"
 
 class ScheduleGeneratorTest < Rails::Generators::TestCase
   tests ScheduleGenerator
-  destination Rails.root.join("tmp/generators")
-  setup :prepare_destination
+  destination Rails.root.join("tmp/generators/schedule")
 
   test "creates schedule.yml in correct directory" do
     assert_nothing_raised do
@@ -15,7 +14,10 @@ class ScheduleGeneratorTest < Rails::Generators::TestCase
       assert_match(/\S/, content) # Verify file has content
     end
 
-    validate_schedule_schema File.join(destination_root, "data/rbqconf/rbqconf-2026/schedule.yml")
+    schedule_file_path = File.join(destination_root, "data/rbqconf/rbqconf-2026/schedule.yml")
+    validate_schedule_schema schedule_file_path
+
+    File.delete schedule_file_path
   end
 
   def validate_schedule_schema(file_path)

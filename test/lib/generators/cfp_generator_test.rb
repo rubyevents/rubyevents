@@ -6,8 +6,7 @@ require "yaml"
 
 class CFPGeneratorTest < Rails::Generators::TestCase
   tests CfpGenerator
-  destination Rails.root.join("tmp/generators")
-  setup :prepare_destination
+  destination Rails.root.join("tmp/generators/cfp")
 
   test "generator runs without errors" do
     assert_nothing_raised do
@@ -24,6 +23,8 @@ class CFPGeneratorTest < Rails::Generators::TestCase
 
     cfp_file_path = File.join(destination_root, "data/rubyconf/2022/cfp.yml")
     validate_cfp_file(cfp_file_path)
+
+    File.delete cfp_file_path
   end
 
   test "update cfp.yml if called twice" do
@@ -37,6 +38,8 @@ class CFPGeneratorTest < Rails::Generators::TestCase
 
     cfp_file_path = File.join(destination_root, "data/rubyconf/2023/cfp.yml")
     validate_cfp_file(cfp_file_path)
+
+    File.delete cfp_file_path
   end
 
   test "append to cfp.yml if called with a different name" do
@@ -50,6 +53,8 @@ class CFPGeneratorTest < Rails::Generators::TestCase
 
     cfp_file_path = File.join(destination_root, "data/rubyconf/2024/cfp.yml")
     validate_cfp_file(cfp_file_path)
+
+    File.delete cfp_file_path
   end
 
   def validate_cfp_file(path)
