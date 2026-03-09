@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "gum"
+require "mini_magick"
 
 namespace :validate do
   def validate_event_files
@@ -252,6 +253,36 @@ namespace :validate do
     exit 1 unless validate_speakerdeck_urls
   end
 
+  def validate_event_asset_dimensions
+    warnings = Event::AssetDimensionValidator.warnings
+
+    if warnings.any?
+      puts Gum.style("Event assets with unexpected dimensions (warning only, #{warnings.count}):", foreground: "3")
+      puts
+
+      warnings.each do |warning|
+        puts Gum.style("⚠ #{warning[:path]}", foreground: "3")
+
+        if warning[:error]
+          puts "   Could not inspect image: #{warning[:error]}"
+        else
+          puts "   Expected #{warning[:expected][:width]}x#{warning[:expected][:height]}, got #{warning[:actual][:width]}x#{warning[:actual][:height]}"
+        end
+
+        puts
+      end
+    else
+      puts Gum.style("✓ All checked event assets match their expected dimensions", foreground: "2")
+    end
+
+    true
+  end
+
+  desc "Warn when event assets do not match expected dimensions"
+  task event_assets: :environment do
+    validate_event_asset_dimensions
+  end
+
   desc "Validate all city-related data"
   task cities: [:event_city_names, :video_city_names]
 
@@ -342,6 +373,9 @@ namespace :validate do
 
     puts Gum.style("Validating video city names", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_video_city_names
+
+    puts Gum.style("Validating event asset dimensions", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+    validate_event_asset_dimensions
 
     puts
     if results.all?
