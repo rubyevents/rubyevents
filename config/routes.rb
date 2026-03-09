@@ -232,6 +232,7 @@ Rails.application.routes.draw do
 
   resources :favorite_users, only: [:index, :create, :destroy, :update]
 
+  get "/meetups", to: "meetups#index"
   resources :events, param: :slug, only: [:index, :show, :update, :edit] do
     resources :event_participations, only: [:create, :destroy]
 

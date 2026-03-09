@@ -1,0 +1,27 @@
+<div class="container py-8 hotwire-native:py-3" data-controller="events-view-switcher">
+  <div class="flex flex-col md:flex-row items-start md:items-center justify-between w-full gap-4 hotwire-native:hidden">
+    <h1 class="title shrink-0">
+      <%= title "Upcoming Meetups" %>
+    </h1>
+
+    <div class="flex flex-col md:flex-row items-start md:items-center gap-4">
+      <div class="tabs tabs-boxed">
+        <button type="button" class="tab tab-active" data-events-view-switcher-target="previewButton" data-action="click->events-view-switcher#showPreview">
+          Preview
+        </button>
+
+        <button type="button" class="tab" data-events-view-switcher-target="listButton" data-action="click->events-view-switcher#showList">
+          List
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div data-events-view-switcher-target="previewView">
+    <%= render partial: "events/featured_card_list", locals: {events: @meetups} %>
+  </div>
+
+  <div class="hidden mt-6" data-events-view-switcher-target="listView">
+    <%= render partial: "events/plain_list", locals: {events: @meetups} %>
+  </div>
+</div>
