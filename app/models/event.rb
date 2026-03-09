@@ -238,7 +238,7 @@ class Event < ApplicationRecord
   end
 
   def formatted_dates
-    return nil if meetup?
+    return "Recurring" if meetup?
     case date_precision
     when "year"
       start_date.strftime("%Y")
