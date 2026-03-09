@@ -50,6 +50,10 @@ class State
     Router.state_users_path(state_alpha2: country.code, state_slug: slug)
   end
 
+  def meetups_path
+    Router.state_meetups_path(state_alpha2: country.code, state_slug: slug)
+  end
+
   def cities_path
     Router.state_cities_path(state_alpha2: country.code, state_slug: slug)
   end
