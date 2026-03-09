@@ -417,7 +417,7 @@ module Static
 
             organisation_ids << s.id
 
-            event.sponsors.find_or_create_by!(organization: s, event: event).update!(tier: tier["name"], badge: sponsor["badge"])
+            event.sponsors.find_or_create_by!(organization: s, event: event).update!(tier: tier["name"], badge: sponsor["badge"], level: tier["level"])
           end
         end
       end

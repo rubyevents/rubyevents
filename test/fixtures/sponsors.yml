@@ -7,6 +7,7 @@
 #
 #  id              :integer          not null, primary key
 #  badge           :string
+#  level           :integer
 #  tier            :string           uniquely indexed => [event_id, organization_id]
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
