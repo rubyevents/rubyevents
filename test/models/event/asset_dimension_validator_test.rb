@@ -41,13 +41,22 @@ class Event::AssetDimensionValidatorTest < ActiveSupport::TestCase
         unknown_path.to_s => {width: 100, height: 100}
       }
 
-      Event::AssetDimensionValidator.stub(:dimensions_for, ->(path) { dimensions_by_path.fetch(path.to_s) }) do
+      validator = Event::AssetDimensionValidator
+      original_method = validator.method(:dimensions_for)
+
+      validator.define_singleton_method(:dimensions_for) do |path|
+        dimensions_by_path.fetch(path.to_s)
+      end
+
+      begin
         warnings = Event::AssetDimensionValidator.warnings(image_root: image_root)
 
         assert_equal 1, warnings.size
         assert_equal "series/event/avatar.webp", warnings.first[:path]
         assert_equal({width: 128, height: 128}, warnings.first[:actual])
         assert_equal({width: 256, height: 256}, warnings.first[:expected])
+      ensure
+        validator.define_singleton_method(:dimensions_for, original_method)
       end
     end
   end
