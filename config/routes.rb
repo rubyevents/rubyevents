@@ -232,7 +232,6 @@ Rails.application.routes.draw do
 
   resources :favorite_users, only: [:index, :create, :destroy, :update]
 
-  get "/meetups", to: "meetups#index"
   resources :events, param: :slug, only: [:index, :show, :update, :edit] do
     resources :event_participations, only: [:create, :destroy]
 
@@ -244,6 +243,7 @@ Rails.application.routes.draw do
         get "/:year" => "years#index", :as => :year, :constraints => {year: /\d{4}/}
         get "/past" => "past#index", :as => :past
         get "/archive" => "archive#index", :as => :archive
+        get "/meetups" => "meetups#index", :as => :meetups
         get "/countries" => redirect("/countries")
         get "/countries/:country" => redirect { |params, _| "/countries/#{params[:country]}" }
         get "/cities", to: redirect("/cities", status: 301)
