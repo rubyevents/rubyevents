@@ -13,7 +13,7 @@
 
           <% events.each do |event| %>
             <span>
-              <%= link_to event.name, event, class: "hover:underline" %>
+              <%= link_to event.name, event, class: "hover:underline", data: {turbo_frame: "_top"} %>
               <% if event.static_metadata.playlist.present? %>
                 (<%= link_to "playlist", event.static_metadata.playlist, target: "_blank", rel: "noopener" %>)
               <% end %>
