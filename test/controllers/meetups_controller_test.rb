@@ -1,14 +1,23 @@
 require "test_helper"
 
 class MeetupsControllerTest < ActionDispatch::IntegrationTest
-  setup do
-    @event = events(:wnb_rb_meetup)
+  test "should show active meetup" do
+    active_meetup = events(:wnb_rb_meetup)
+    talk = talks(:two)
+    talk.update!(date: 2.months.ago, event: active_meetup)
+
+    get meetups_url
+    assert_response :success
+    assert_match active_meetup.name, response.body
   end
 
-  test "should get index" do
-    get archive_events_url
+  test "should not show inactive meetup" do
+    inactive_meetup = events(:wnb_rb_meetup)
+    talk = talks(:two)
+    talk.update!(date: 2.years.ago, event: inactive_meetup)
+
+    get meetups_url
     assert_response :success
-    assert_select "h1", /Events Archive/i
-    assert_select "##{dom_id(@event)}", 1
+    assert_no_match inactive_meetup.name, response.body
   end
 end
