@@ -3,7 +3,17 @@
 # TODO: Order talks once schedule is fully revealed
 ---
 days:
-  - name: "Day 1"
+  - name: "Day Before the Conference"
+    date: "2026-03-12"
+    grid:
+      - start_time: "18:00"
+        end_time: "22:00"
+        slots: 1
+        items:
+          - title: "Kraków Ruby User Group"
+            description: |-
+              Join us for KRUG (Kraków Ruby User Group) Hosted at Zendesk, ul. Marii Konopnickiej 29, Kraków
+  - name: "Conference Day"
     date: "2026-03-13"
     grid:
       - start_time: "10:00"
@@ -65,3 +75,13 @@ days:
         slots: 1
         items:
           - After-party!
+  - name: "Day After the Conference"
+    date: "2026-03-14"
+    grid:
+      - start_time: "12:00"
+        end_time: "15:00"
+        slots: 1
+        items:
+          - title: "Trip to Wieliczka Salt Mine"
+            description: |-
+              Trip to the UNESCO-listed World Heritage Site, including round-trip train transport from Kraków and a 2–3 hour English-guided tour. Separate ticket is required on Luma.
