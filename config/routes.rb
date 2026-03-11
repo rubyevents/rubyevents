@@ -243,6 +243,7 @@ Rails.application.routes.draw do
         get "/:year" => "years#index", :as => :year, :constraints => {year: /\d{4}/}
         get "/past" => "past#index", :as => :past
         get "/archive" => "archive#index", :as => :archive
+        get "/meetups" => "meetups#index", :as => :meetups
         get "/countries" => redirect("/countries")
         get "/countries/:country" => redirect { |params, _| "/countries/#{params[:country]}" }
         get "/cities", to: redirect("/cities", status: 301)
