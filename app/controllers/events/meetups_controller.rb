@@ -5,9 +5,9 @@ class Events::MeetupsController < ApplicationController
   def index
     @meetups = Event.where(kind: :meetup)
       .joins(:talks)
-      .where(talks: {date: 1.year.ago..})
       .distinct
       .includes(:series)
-      .order(:name)
+      .group("events.id")
+      .order("max(talks.date) DESC")
   end
 end
