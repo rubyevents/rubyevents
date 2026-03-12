@@ -243,4 +243,26 @@ class EventTest < ActiveSupport::TestCase
     assert_equal "Amsterdam", event.city_record.name
     assert event.city_record.events.include?(event)
   end
+
+  test "returns past meetups" do
+    past_meetup = events(:wnb_rb_meetup)
+    past_meetup.update!(date: 1.week.ago)
+
+    upcoming_meetup = events(:new_rb_meetup)
+    upcoming_meetup.update!(date: 1.week.from_now)
+
+    assert_includes Event.past_meetups, past_meetup
+    assert Event.past_meetups.count, 1
+  end
+
+  test "returns upcoming meetups" do
+    past_meetup = events(:wnb_rb_meetup)
+    past_meetup.update!(date: 1.week.ago)
+
+    upcoming_meetup = events(:new_rb_meetup)
+    upcoming_meetup.update!(date: 1.week.from_now)
+
+    assert_includes Event.upcoming_meetups, upcoming_meetup
+    assert Event.upcoming_meetups.count, 1
+  end
 end

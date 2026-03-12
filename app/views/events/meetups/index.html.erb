@@ -2,6 +2,10 @@
   <div class="flex flex-col md:flex-row items-start md:items-center justify-between w-full gap-4 hotwire-native:hidden">
     <h1 class="title shrink-0">
       <%= title "Meetups" %>
+      <span class="text-base text-gray-500">
+        (<%= pluralize(Event.upcoming_meetups.count, "upcoming meetup") %>,
+        <%= pluralize(Event.past_meetups.count, "past meetup") %>)
+      </span>
     </h1>
 
     <div class="flex flex-col md:flex-row items-start md:items-center gap-4">
