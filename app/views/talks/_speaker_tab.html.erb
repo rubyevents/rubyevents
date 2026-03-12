@@ -1,4 +1,4 @@
-<%# locals: (talk:) %>
+<%# locals: (talk:, favorite_users:) %>
 
 <div class="flex flex-col gap-6 overflow-hidden min-w-0">
   <% talk.speakers.each do |speaker| %>
@@ -16,6 +16,10 @@
 
             <% if speaker.pronouns.present? %>
               <span class="text-sm text-gray-500">(<%= speaker.pronouns %>)</span>
+            <% end %>
+
+            <% if favorite_users[speaker.id] %>
+              <%= render partial: "favorite_users/favorite_user", locals: {favorite_user: favorite_users[speaker.id]} %>
             <% end %>
           </div>
 

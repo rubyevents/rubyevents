@@ -1,36 +1,4 @@
 ---
-- id: "irina-nazarova-ruby-community-conference-winter-edition-2026"
-  title: "Startups on Rails: 2026"
-  speakers:
-    - Irina Nazarova
-  event_name: "Ruby Community Conference Winter Edition 2026"
-  date: "2026-03-13"
-  announced_at: "2025-12-08"
-  video_provider: "scheduled"
-  video_id: "irina-nazarova-ruby-community-conference-winter-edition-2026"
-  description: |-
-    A continuation of the "Startups on Rails" series, this talk brings insights from conversations with ambitious new founders - including recent YC grads - who intentionally chose Ruby and Rails to move faster than their peers.
-
-    Irina will explore:
-    - Why new founders still bet on Rails in 2026
-    - What Rails offers that competing stacks don't
-    - What's missing (from modern frontend paths to AI patterns & tooling)
-    - How the Rails ecosystem continues to evolve with Ruby 4.0 and new type systems
-
-- id: "obie-fernandez-ruby-community-conference-winter-edition-2026"
-  title: "Ruby & AI conversation"
-  speakers:
-    - Obie Fernandez
-  event_name: "Ruby Community Conference Winter Edition 2026"
-  date: "2026-03-13"
-  announced_at: "2025-12-10"
-  video_provider: "scheduled"
-  video_id: "obie-fernandez-ruby-community-conference-winter-edition-2026"
-  description: |-
-    His session will take the form of a “Ruby & AI conversation”, an open exploration of where Ruby stands in this new era, where it should be heading, and what opportunities (and challenges) lie ahead.
-
-    The final shape of the talk may evolve - and we’re excited to see where he takes it.
-
 - id: "cezary-klos-kaja-witek-ruby-community-conference-winter-edition-2026"
   title: "Workshop: Deploy with Kamal"
   speakers:
@@ -42,31 +10,36 @@
   video_provider: "scheduled"
   video_id: "cezary-klos-kaja-witek-ruby-community-conference-winter-edition-2026"
   kind: "workshop"
-  description: ""
+  description: |-
+    Get hands-on experience deploying Rails applications with Kamal, the modern deployment tool from 37signals. Learn to deploy to your own servers with zero downtime.
 
 - id: "michal-lecicki-ruby-community-conference-winter-edition-2026"
   title: "Workshop: Building a Live Kanban Board with Hotwire and Rails"
   speakers:
     - Michał Łęcicki
+    - Piotr Witek
   event_name: "Ruby Community Conference Winter Edition 2026"
   date: "2026-03-13"
   announced_at: "2025-12-16"
+  kind: "workshop"
+  description: |-
+    Build a fully functional live Kanban board from scratch using Hotwire and Rails. Master Turbo Streams, Stimulus controllers, and real-time updates without writing JavaScript.
   video_provider: "scheduled"
   video_id: "michal-lecicki-ruby-community-conference-winter-edition-2026"
-  kind: "workshop"
-  description: ""
 
 - id: "sebastian-tekieli-ruby-community-conference-winter-edition-2026"
   title: "Workshop: Hotwire Native – Build Mobile Apps the Rails Way"
   speakers:
     - Sebastian Tekieli
+    - Alexander Repnikov
   event_name: "Ruby Community Conference Winter Edition 2026"
   date: "2026-03-13"
   announced_at: "2025-12-16"
+  kind: "workshop"
+  description: |-
+    Discover how to build native mobile apps for iOS and Android using Hotwire Native. Learn the Rails way of mobile development without leaving your comfort zone.
   video_provider: "scheduled"
   video_id: "sebastian-tekieli-ruby-community-conference-winter-edition-2026"
-  kind: "workshop"
-  description: ""
 
 - id: "pawel-strzalkowski-ruby-community-conference-winter-edition-2026"
   title: "Workshop: Model Context Protocol in Ruby on Rails"
@@ -75,45 +48,38 @@
   event_name: "Ruby Community Conference Winter Edition 2026"
   date: "2026-03-13"
   announced_at: "2025-12-16"
+  kind: "workshop"
+  description: |-
+    Explore Model Context Protocol (MCP) and learn how to integrate AI assistants with your Rails applications. Build custom MCP servers and connect them to Claude and other AI models.
   video_provider: "scheduled"
   video_id: "pawel-strzalkowski-ruby-community-conference-winter-edition-2026"
-  kind: "workshop"
-  description: ""
 
 - id: "oskar-lakner-ruby-community-conference-winter-edition-2026"
-  title: "Workshop by Oskar Lakner"
-  speakers:
-    - Oskar Lakner
-  event_name: "Ruby Community Conference Winter Edition 2026"
+  title: "Workshop: From Code to Product: Build a Startup That Actually Works"
+  description: |-
+    Learn how to turn an idea into a startup that doesn't fail in the first year. Most technical founders skip the fundamentals - they build before validating, split equity badly, and ship products nobody wants. In this hands-on workshop, we'll cover the complete journey: validating ideas before writing code, building teams without destroying friendships, avoiding the traps that kill 90% of startups, and scoping an MVP that actually ships.
   date: "2026-03-13"
   announced_at: "2025-12-16"
+  kind: "workshop"
+  speakers:
+    - Oskar Lakner
   video_provider: "scheduled"
   video_id: "oskar-lakner-ruby-community-conference-winter-edition-2026"
-  kind: "workshop"
-  description: ""
 
 - id: "chris-hasinski-ruby-community-conference-winter-edition-2026"
-  title: "Workshop by Chris Hasiński"
+  title: "Workshop: Training an LLM from scratch with torch.rb"
   speakers:
     - Chris Hasiński
   event_name: "Ruby Community Conference Winter Edition 2026"
   date: "2026-03-13"
   announced_at: "2025-12-16"
+  kind: "workshop"
+  description: |-
+    Ever wondered how Large Language Models are actually built - from raw data to a talking model - but felt that most explanations stop at Python boilerplate?
+    Good news: we're doing it in Ruby.
+    In this hands-on workshop we'll build a real, working LLM from scratch, focusing on the pre-training phase. Using nanoGPT and torch.rb, we'll walk through the full pipeline: tokenization, model architecture, training loop, and finally running a model that mimics your own data.
   video_provider: "scheduled"
   video_id: "chris-hasinski-ruby-community-conference-winter-edition-2026"
-  kind: "workshop"
-  description: ""
-
-- id: "marco-roth-ruby-community-conference-winter-edition-2026"
-  title: "Talk by Marco Roth"
-  speakers:
-    - Marco Roth
-  event_name: "Ruby Community Conference Winter Edition 2026"
-  date: "2026-03-13"
-  announced_at: "2025-12-30"
-  video_provider: "scheduled"
-  video_id: "marco-roth-ruby-community-conference-winter-edition-2026"
-  description: ""
 
 - id: "carmine-paolino-ruby-community-conference-winter-edition-2026"
   title: "Workshop: Building AI Apps in Ruby and Rails with RubyLLM"
@@ -122,10 +88,86 @@
   event_name: "Ruby Community Conference Winter Edition 2026"
   date: "2026-03-13"
   announced_at: "2026-01-08"
-  video_provider: "scheduled"
-  video_id: "carmine-paolino-ruby-community-conference-winter-edition-2026"
   kind: "workshop"
   description: |-
-    RubyLLM has quickly become one of the most exciting additions to the Ruby ecosystem, helping Rubyists integrate modern LLM capabilities into real applications with a clean, unified interface.
+    Learn how to build modern AI-powered applications in Ruby and Rails using RubyLLM, the leading open-source framework for AI development in the Ruby ecosystem. In this hands-on workshop, we’ll build a real AI-powered Rails application together and explore how RubyLLM makes AI development simple, flexible, and production-ready.
+  video_provider: "scheduled"
+  video_id: "carmine-paolino-ruby-community-conference-winter-edition-2026"
 
-    This will be the first RubyLLM workshop taught by Carmine Paolino, the creator of RubyLLM.
+- id: "obie-fernandez-ruby-community-conference-winter-edition-2026"
+  title: "Ruby & AI conversation"
+  description: |-
+    A conversation about the intersection of Ruby and AI technologies, exploring opportunities and challenges.
+  speakers:
+    - Obie Fernandez
+  date: "2026-03-13"
+  announced_at: "2025-12-10"
+  video_provider: "scheduled"
+  video_id: "obie-fernandez-ruby-community-conference-winter-edition-2026"
+
+- id: "marco-roth-ruby-community-conference-winter-edition-2026"
+  title: "Talk by Marco Roth"
+  description: |-
+    TODO
+  speakers:
+    - Marco Roth
+  date: "2026-03-13"
+  announced_at: "2025-12-30"
+  video_provider: "scheduled"
+  video_id: "marco-roth-ruby-community-conference-winter-edition-2026"
+
+- id: "carmine-paolino-talk-ruby-community-conference-winter-edition-2026"
+  title: "Ruby Is the Best Language for Building AI Web Apps"
+  description: |-
+    Everyone says you need Python to build serious AI apps. That used to be true for training models, but most teams today are building products on top of APIs. This talk shows, with real code and production experience, why Ruby can be a better default for that work: less ceremony, cleaner agent abstractions, and faster iteration. The thesis is simple: when complexity drops, product quality goes up.
+  kind: "talk"
+  language: "en"
+  date: "2026-03-13"
+  speakers:
+    - Carmine Paolino
+  video_provider: "scheduled"
+  video_id: "carmine-paolino-talk-ruby-community-conference-winter-edition-2026"
+
+- id: "chris-hasinski-lightning_talk-ruby-community-conference-winter-edition-2026"
+  title: "Doom"
+  kind: "lightning_talk"
+  description: |-
+    TODO
+  date: "2026-03-13"
+  speakers:
+    - Chris Hasiński
+  video_provider: "scheduled"
+  video_id: "chris-hasinski-lightning_talk-ruby-community-conference-winter-edition-2026"
+
+- id: "sergey-sergyenko-lightning_talk-ruby-community-conference-winter-edition-2026"
+  title: "The 00 Robot Arm: Low-Cost Open-Source Infrastructure for Embodied AI Inference"
+  description: |-
+    TODO
+  kind: "lightning_talk"
+  date: "2026-03-13"
+  speakers:
+    - Sergey Sergyenko
+  video_provider: "scheduled"
+  video_id: "sergey-sergyenko-lightning_talk-ruby-community-conference-winter-edition-2026"
+
+- id: "pawel-strzalkowski-lightning_talk-ruby-community-conference-winter-edition-2026"
+  title: "Make a game with Ruby and Model Context Protocol"
+  description: |-
+    TODO
+  kind: "lightning_talk"
+  date: "2026-03-13"
+  speakers:
+    - Paweł Strzałkowski
+  video_provider: "scheduled"
+  video_id: "pawel-strzalkowski-lightning_talk-ruby-community-conference-winter-edition-2026"
+
+- id: "nick-sutterer-lightning_talk-ruby-community-conference-winter-edition-2026"
+  title: "The Story"
+  description: |-
+    TODO
+  kind: "lightning_talk"
+  date: "2026-03-13"
+  speakers:
+    - Nick Sutterer
+  video_provider: "scheduled"
+  video_id: "nick-sutterer-lightning_talk-ruby-community-conference-winter-edition-2026"

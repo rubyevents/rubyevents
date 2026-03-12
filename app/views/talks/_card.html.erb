@@ -4,7 +4,7 @@
 <% watched_talk = watched_talks.find { |wt| wt.talk_id == talk.id } || user_watched_talks.find { |wt| wt.talk_id == talk.id } %>
 
 <div
-  class="relative w-full bg-white border card card-compact"
+  class="relative w-full bg-white border card card-compact <%= "talk-all talk-kind-all talk-kind-#{talk.kind} talk-language-all talk-language-#{talk.language}" %>"
   id="<%= dom_id talk %>"
   data-watched="<%= watched_talk&.watched? ? "true" : "false" %>">
   <% if talk.child_talks.size.positive? %>

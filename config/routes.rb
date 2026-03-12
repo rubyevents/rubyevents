@@ -16,6 +16,13 @@ Rails.application.routes.draw do
   get "/pages/assets", to: "page#assets"
   get "/featured" => "page#featured"
 
+  # announcements/blog
+  resources :announcements, only: [:index, :show], param: :slug do
+    collection do
+      get :feed, defaults: {format: :rss}
+    end
+  end
+
   resources :browse, only: [:index, :show]
 
   # authentication
@@ -35,10 +42,12 @@ Rails.application.routes.draw do
   if Rails.env.development?
     mount MissionControl::Jobs::Engine, at: "/jobs"
     mount Avo::Engine, at: Avo.configuration.root_path
+    mount Avo::Dashboards::Engine, at: "#{Avo.configuration.root_path}/dashboards" if defined?(Avo::Dashboards::Engine)
   else
     authenticate :admin do
       mount MissionControl::Jobs::Engine, at: "/jobs"
       mount Avo::Engine, at: Avo.configuration.root_path
+      mount Avo::Dashboards::Engine, at: "#{Avo.configuration.root_path}/dashboards" if defined?(Avo::Dashboards::Engine)
     end
   end
 
@@ -59,6 +68,7 @@ Rails.application.routes.draw do
     scope module: :locations do
       resources :past, only: [:index]
       resources :users, only: [:index]
+      resources :meetups, only: [:index]
       resources :stamps, only: [:index]
       resources :map, only: [:index]
     end
@@ -72,6 +82,7 @@ Rails.application.routes.draw do
     scope module: :locations do
       resources :past, only: [:index]
       resources :users, only: [:index]
+      resources :meetups, only: [:index]
       resources :stamps, only: [:index]
       resources :map, only: [:index]
     end
@@ -86,6 +97,7 @@ Rails.application.routes.draw do
     scope module: :locations do
       resources :past, only: [:index]
       resources :users, only: [:index]
+      resources :meetups, only: [:index]
       resources :stamps, only: [:index]
       resources :map, only: [:index]
     end
@@ -96,6 +108,7 @@ Rails.application.routes.draw do
     scope module: :locations do
       resources :past, only: [:index]
       resources :users, only: [:index]
+      resources :meetups, only: [:index]
       resources :stamps, only: [:index]
       resources :map, only: [:index]
     end
@@ -106,6 +119,7 @@ Rails.application.routes.draw do
     scope module: :locations do
       resources :past, only: [:index]
       resources :users, only: [:index]
+      resources :meetups, only: [:index]
       resources :stamps, only: [:index]
       resources :map, only: [:index]
     end
@@ -145,6 +159,7 @@ Rails.application.routes.draw do
   end
 
   resources :contributions, only: [:index, :show], param: :step
+  resources :todos, only: [:index], path: "data/todos"
 
   resources :templates, only: [:new, :create] do
     collection do
@@ -198,6 +213,7 @@ Rails.application.routes.draw do
       resources :talks, only: [:index]
       resources :events, only: [:index]
       resources :mutual_events, only: [:index]
+      resource :notes, only: [:show, :edit]
       resources :stamps, only: [:index]
       resources :stickers, only: [:index]
       resources :involvements, only: [:index]
@@ -214,7 +230,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :favorite_users, only: [:index, :create, :destroy]
+  resources :favorite_users, only: [:index, :create, :destroy, :update]
 
   resources :events, param: :slug, only: [:index, :show, :update, :edit] do
     resources :event_participations, only: [:create, :destroy]
@@ -227,6 +243,7 @@ Rails.application.routes.draw do
         get "/:year" => "years#index", :as => :year, :constraints => {year: /\d{4}/}
         get "/past" => "past#index", :as => :past
         get "/archive" => "archive#index", :as => :archive
+        get "/meetups" => "meetups#index", :as => :meetups
         get "/countries" => redirect("/countries")
         get "/countries/:country" => redirect { |params, _| "/countries/#{params[:country]}" }
         get "/cities", to: redirect("/cities", status: 301)
@@ -253,6 +270,7 @@ Rails.application.routes.draw do
       resources :cfp, only: [:index]
       resources :collectibles, only: [:index]
       resource :tickets, only: [:show]
+      resources :todos, only: [:index]
     end
   end
 
@@ -321,6 +339,24 @@ Rails.application.routes.draw do
         end
         namespace :ios do
           resource :path_configuration, only: :show
+        end
+      end
+    end
+  end
+
+  namespace :api, defaults: {format: "json"} do
+    namespace :v1 do
+      namespace :embed do
+        match "*path", to: "base#preflight", via: :options
+
+        resources :talks, only: [:index, :show], param: :slug
+        resources :speakers, only: [:index, :show], param: :slug
+        resources :profiles, only: [:index, :show], param: :slug
+        resources :topics, only: [:show], param: :slug
+        resources :stickers, only: [:show], param: :slug
+        resources :stamps, only: [:show], param: :slug
+        resources :events, only: [:index, :show], param: :slug do
+          get :participants, on: :member
         end
       end
     end

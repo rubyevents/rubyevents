@@ -32,6 +32,9 @@ application.register("hover-card", HoverCardController)
 import EventListController from "./event_list_controller"
 application.register("event-list", EventListController)
 
+import EventsViewSwitcherController from "./events_view_switcher_controller"
+application.register("events-view-switcher", EventsViewSwitcherController)
+
 import GeolocationController from "./geolocation_controller"
 application.register("geolocation", GeolocationController)
 
@@ -70,6 +73,9 @@ application.register("tabs", TabsController)
 
 import TalksFilterController from "./talks_filter_controller"
 application.register("talks-filter", TalksFilterController)
+
+import TalksFilterPillController from "./talks_filter_pill_controller"
+application.register("talks-filter-pill", TalksFilterPillController)
 
 import TalksNavigationController from "./talks_navigation_controller"
 application.register("talks-navigation", TalksNavigationController)

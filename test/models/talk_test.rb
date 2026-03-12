@@ -398,11 +398,11 @@ class TalkTest < ActiveSupport::TestCase
   test "discarded user_talks" do
     talk = talks(:one)
     user_talk = talk.user_talks.first
-    assert_equal 1, user_talk.user.talks_count
+    assert_equal 2, user_talk.user.talks_count
     user_talk.discard
     assert_equal 1, talk.user_talks.count
     assert_equal 0, talk.kept_user_talks.count
-    assert_equal 0, user_talk.user.talks_count
+    assert_equal 1, user_talk.user.talks_count
   end
 
   test "should return original title" do

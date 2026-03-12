@@ -1,0 +1,103 @@
+# docs/ADDING_VENUES.md
+# Delete unnecessary keys 
+---
+name: "<%= options[:name] %>"
+description: "Description of the venue - Optional"
+instructions: "Instructions for getting to the venue - Optional"
+url: "Venue website url - Optional"
+
+address:
+  street: "<%= @geocoded_address.street_address %>"
+  city: "<%= @geocoded_address.city %>"
+  region: "<%= @geocoded_address.state %>"
+  postal_code: "<%= @geocoded_address.postal_code %>"
+  country: "<%= @geocoded_address.country %>"
+  country_code: "<%= @geocoded_address.country_code %>"
+  display: "<%= options[:address] %>"
+
+coordinates:
+  latitude: <%= @geocoded_address.latitude %>
+  longitude: <%= @geocoded_address.longitude %>
+
+maps:
+  google: ""
+  apple: ""
+  openstreetmap: ""
+
+<%- if options[:locations] -%>
+locations:
+  - name: "location name"
+    kind: "Type of location (e.g., 'After Party Location')"
+    description: "Location description"
+    address:
+      street: ""
+      city: ""
+      region: ""
+      postal_code: ""
+      country: ""
+      country_code: ""
+      display: ""
+    distance: "Distance from main venue - Optional"
+    url: ""
+    coordinates:
+      latitude: 0.0
+      longitude: 0.0
+    maps:
+      google: ""
+      apple: ""
+      openstreetmap: ""
+
+<%- end -%>
+<%- if options[:hotels] -%>
+hotels:
+  - name: "Hotel name"
+    kind: "Type of hotel (eg. 'Speaker Hotel')"
+    description: "Hotel description"
+    address:
+      street: ""
+      city: ""
+      region: ""
+      postal_code: ""
+      country: ""
+      country_code: ""
+      display: ""
+    coordinates:
+      latitude: 0.0
+      longitude: 0.0
+    distance: "Distance from the venue"
+    url: "hotel website"
+    maps:
+      google: ""
+      apple: ""
+      openstreetmap: ""
+
+<%- end -%>
+<%- if options[:rooms] -%>
+rooms:
+  - name: ""
+    floor: ""
+    capacity: 0
+    instructions: ""
+
+<%- end -%>
+<%- if options[:spaces] -%>
+spaces:
+  - name: ""
+    floor: ""
+    instructions: ""
+
+<%- end -%>
+<%- if options[:accessibility] -%>
+accessibility:
+  wheelchair: true
+  elevators: true
+  accessible_restrooms: true
+  notes: "Addional accessibility notes"
+
+<%- end -%>
+<%- if options[:nearby] -%>
+nearby:
+  public_transport: ""
+  parking: ""
+
+<%- end -%>

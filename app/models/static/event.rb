@@ -379,6 +379,7 @@ module Static
 
       require "public_suffix"
 
+      organisation_ids = []
       event.sponsors_file.file.each do |sponsors|
         sponsors["tiers"].each do |tier|
           tier["sponsors"].each do |sponsor|
@@ -398,7 +399,7 @@ module Static
               end
             end
 
-            s ||= ::Organization.find_by(name: sponsor["name"]) || ::Organization.find_by(slug: sponsor["slug"]&.downcase)
+            s ||= ::Organization.find_by_name_or_alias(sponsor["name"]) || ::Organization.find_by_slug_or_alias(sponsor["slug"]&.downcase)
             s ||= ::Organization.find_or_initialize_by(name: sponsor["name"])
 
             s.update(
@@ -410,14 +411,17 @@ module Static
             s.add_logo_url(sponsor["logo_url"]) if sponsor["logo_url"].present?
             s.logo_url = sponsor["logo_url"] if sponsor["logo_url"].present? && s.logo_url.blank?
 
-            s = ::Organization.find_by(slug: s.slug) || ::Organization.find_by(name: s.name) unless s.persisted?
+            s = ::Organization.find_by_slug_or_alias(s.slug) || ::Organization.find_by_name_or_alias(s.name) unless s.persisted?
 
             s.save!
 
-            event.sponsors.find_or_create_by!(organization: s, event: event).update!(tier: tier["name"], badge: sponsor["badge"])
+            organisation_ids << s.id
+
+            event.sponsors.find_or_create_by!(organization: s, event: event).update!(tier: tier["name"], badge: sponsor["badge"], level: tier["level"])
           end
         end
       end
+      event.sponsors.where.not(organization_id: organisation_ids).destroy_all
     end
 
     def import_involvements!(event)
@@ -469,7 +473,7 @@ module Static
         Array.wrap(involvement_data["organisations"]).each_with_index do |org_name, index|
           next if org_name.blank?
 
-          organization = ::Organization.find_by(name: org_name) || ::Organization.find_by(slug: org_name.parameterize)
+          organization = ::Organization.find_by_name_or_alias(org_name) || ::Organization.find_by_slug_or_alias(org_name.parameterize)
 
           unless organization
             # raise "Organization '#{org_name}' not found" if Rails.env.development?

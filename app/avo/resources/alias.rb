@@ -13,7 +13,9 @@ class Avo::Resources::Alias < Avo::BaseResource
 
   def fields
     field :id, as: :id
-    field :aliasable, as: :belongs_to, polymorphic_as: :aliasable, types: [::User, ::Event, ::EventSeries, ::Organization]
+    field :aliasable, as: :belongs_to, polymorphic_as: :aliasable, types: [::User, ::Event, ::EventSeries, ::Organization, ::City]
+    field :aliasable_type, as: :text, readonly: true, only_on: :show
+    field :aliasable_id, as: :id, readonly: true, only_on: :show
     field :name, as: :text, required: true
     field :slug, as: :text, required: true
     field :external_url,
@@ -29,15 +31,17 @@ class Avo::Resources::Alias < Avo::BaseResource
   def self.aliasable_link(app, record)
     case record.aliasable_type
     when "User"
-      app.profile_path(record.slug)
+      app.profile_path(record.aliasable.slug)
     when "Event"
-      app.event_path(record.slug)
+      app.event_path(record.aliasable.slug)
     when "EventSeries"
-      app.series_path(record.slug)
+      app.series_path(record.aliasable.slug)
     when "Talk"
-      app.talk_path(record.slug)
+      app.talk_path(record.aliasable.slug)
     when "Organization"
-      app.organization_path(record.slug)
+      app.organization_path(record.aliasable.slug)
+    when "City"
+      app.city_path(record.aliasable.slug)
     else
       raise "Unknown aliasable type: #{record.aliasable_type}"
     end

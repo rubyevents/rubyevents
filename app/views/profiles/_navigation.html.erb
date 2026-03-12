@@ -13,6 +13,10 @@
     <%= active_link_to "Mutual Events (#{mutual_events.size})", profile_mutual_events_path(user), class: "tab px-6", active_class: "tab-active", role: "tab" %>
   <% end %>
 
+  <% if favorite_user&.persisted? %>
+    <%= active_link_to "Notes", profile_notes_path(user), class: "tab px-6", active_class: "tab-active", role: "tab" %>
+  <% end %>
+
   <% if involvements_by_role.any? %>
     <%= active_link_to "Involvements", profile_involvements_path(user), class: "tab px-6", active_class: "tab-active", role: "tab" %>
   <% end %>

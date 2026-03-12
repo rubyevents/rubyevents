@@ -1,4 +1,4 @@
-<%# locals: (talk:, user_favorite_talks_ids:) %>
+<%# locals: (talk:, speakers:, user_favorite_talks_ids:, favorite_users:) %>
 
 <% current_user_watched_talk = talk.watched_talks.find { |wt| wt.user_id == Current.user&.id } %>
 <% is_watched = signed_in? && current_user_watched_talk&.watched? %>
@@ -138,20 +138,20 @@
         <div class="flex justify-between w-full py-2">
           <div class="flex flex-wrap">
             <% speaker_size = 2 %>
-            <% more_speakers = talk.speakers.size > speaker_size %>
+            <% more_speakers = speakers.size > speaker_size %>
             <% speaker_preview_count = more_speakers ? 1 : 2 %>
 
-            <% talk.speakers.take(speaker_preview_count).each do |speaker| %>
+            <% speakers.take(speaker_preview_count).each do |speaker| %>
               <%= content_tag :div, class: class_names("hidden xl:block" => more_speakers) do %>
-                <%= render partial: "users/card", locals: {user: speaker} %>
+                <%= render partial: "users/card", locals: {user: speaker, favorite_user: favorite_users[speaker.id]} %>
               <% end %>
             <% end %>
 
             <% if more_speakers %>
-              <div class="flex flex-col gap-4 px-4 duration-300 ease-in-out rounded-lg cursor-pointer hover:bg-gray-200 transition-bg md:p-2" onclick="document.querySelector('[name=talk_tabs][aria-label=Speakers]').checked = true" data-tip="<%= talk.speakers.to_a.from(2).map(&:name).to_sentence %>">
+              <div class="flex flex-col gap-4 px-4 duration-300 ease-in-out rounded-lg cursor-pointer hover:bg-gray-200 transition-bg md:p-2" onclick="document.querySelector('[name=talk_tabs][aria-label=Speakers]').checked = true" data-tip="<%= speakers.to_a.from(2).map(&:name).to_sentence %>">
                 <div class="flex items-center <% if !talk.meta_talk? %> gap-x-4 <% end %>">
                   <div class="-space-x-6 avatar-group rtl:space-x-reverse">
-                    <% talk.speakers.to_a.from(speaker_preview_count).each do |speaker| %>
+                    <% speakers.to_a.from(speaker_preview_count).each do |speaker| %>
                       <div class="avatar placeholder border-none <% if talk.meta_talk? %>hidden <% end %>">
                         <%= ui_avatar speaker %>
                       </div>
@@ -163,11 +163,11 @@
                       <div class="border-none avatar placeholder">
                         <%= content_tag :div, class: "w-12 rounded-full bg-primary text-neutral-content" do %>
                           <span class="hidden text-lg xl:block">
-                            +<%= talk.speakers.size - 1 %>
+                            +<%= speakers.size - 1 %>
                           </span>
 
                           <span class="block text-lg xl:hidden">
-                            +<%= talk.speakers.size %>
+                            +<%= speakers.size %>
                           </span>
                         <% end %>
                       </div>
@@ -179,11 +179,11 @@
                       </div>
 
                       <div class="hidden text-base font-bold xl:block line-clamp-1">
-                        <%= pluralize(talk.speakers.size - 1, "more speaker") %>
+                        <%= pluralize(speakers.size - 1, "more speaker") %>
                       </div>
 
                       <div class="block text-base font-bold xl:hidden line-clamp-1">
-                        See all <%= pluralize(talk.speakers.size, "speaker") %>
+                        See all <%= pluralize(speakers.size, "speaker") %>
                       </div>
                     </div>
                   </div>
@@ -233,7 +233,7 @@
           <% end %>
 
           <h2><%= talk.title %></h2>
-          <%= talk.speakers.map(&:name).to_sentence %> • <%= talk.formatted_date %> • <%= talk.to_location.to_html(show_links: false) %> <% if language && language != "English" %> • <%= language %> <% end %> • <%= talk.formatted_kind %>
+          <%= speakers.map(&:name).to_sentence %> • <%= talk.formatted_date %> • <%= talk.to_location.to_html(show_links: false) %> <% if language && language != "English" %> • <%= language %> <% end %> • <%= talk.formatted_kind %>
 
           <article class="mt-4 prose markdown"><%= markdown_to_html(talk.summary) %></article>
         </div>
@@ -244,7 +244,7 @@
         <article class="prose">
           <p>
             <b><%= talk.title %></b><br>
-            <%= talk.speakers.map(&:name).to_sentence %>
+            <%= speakers.map(&:name).to_sentence %>
             • <%= talk.to_location.to_html(show_links: false) %>
             <% if language && language != "English" %> • <%= language %> <% end %> •
             <%= talk.formatted_kind %>
@@ -313,10 +313,10 @@
         </div>
       <% end %>
 
-      <% if talk.speakers.length.positive? %>
-        <input type="radio" name="talk_tabs" role="tab" class="tab" aria-label="<%= "Speaker".pluralize(talk.speakers.size) %>">
+      <% if speakers.length.positive? %>
+        <input type="radio" name="talk_tabs" role="tab" class="tab" aria-label="<%= "Speaker".pluralize(speakers.size) %>">
         <div role="tabpanel" class="tab-content !rounded-s-xl rounded-xl bg-base-200/50 p-6 mt-6 overflow-x-auto max-w-full min-w-0">
-          <%= render partial: "talks/speaker_tab", locals: {talk: talk} %>
+          <%= render partial: "talks/speaker_tab", locals: {talk: talk, favorite_users: favorite_users} %>
         </div>
       <% end %>
 

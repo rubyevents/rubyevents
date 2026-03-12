@@ -146,6 +146,26 @@ class CountryTest < ActiveSupport::TestCase
     assert_equal "united-states", country.slug
   end
 
+  test "slug preserves transliterated diacritics for backward compatibility" do
+    country = Country.find_by(country_code: "TR")
+
+    assert_equal "tuerkiye", country.slug
+  end
+
+  test "find returns country by slug with diacritics stripped" do
+    country = Country.find("turkiye")
+
+    assert_not_nil country
+    assert_equal "TR", country.alpha2
+  end
+
+  test "find returns country by transliterated slug" do
+    country = Country.find("tuerkiye")
+
+    assert_not_nil country
+    assert_equal "TR", country.alpha2
+  end
+
   test "path returns countries path with slug" do
     country = Country.find_by(country_code: "DE")
 

@@ -1,0 +1,18 @@
+Description:
+    Generates an event.yml file for a new event in an event series.
+    Use this to add a new conference, meetup, workshop, or other Ruby event.
+    Can optionally generate a venue.yml file if venue details are provided.
+
+Example:
+    bin/rails generate event --event-series=rubyconf --event=rubyconf-2026 --name="RubyConf 2026"
+
+    This will create:
+        /data/rubyconf/rubyconf-2026/event.yml
+
+    bin/rails generate event --event-series=tropicalrb --event=tropical-on-rails-2027 \
+      --name="Tropical on Rails 2027" --start-date=2027-04-01 --end-date=2027-04-03 \
+      --venue-name="Hotel Grande" --venue-address="R. Olimpíadas, 205 - Vila Olímpia, São Paulo - SP, 04551-000"
+
+    This will create:
+        /data/tropicalrb/tropical-on-rails-2027/event.yml
+        /data/tropicalrb/tropical-on-rails-2027/venue.yml

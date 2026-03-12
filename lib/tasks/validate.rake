@@ -130,6 +130,12 @@ namespace :validate do
     exit 1 unless success
   end
 
+  desc "Validate all sponsors.yml files against SeriesSchema"
+  task sponsors: :environment do
+    success = validate_array_files("data/**/sponsors.yml", SponsorsSchema, "sponsors.yml")
+    exit 1 unless success
+  end
+
   desc "Validate all venue.yml files against VenueSchema"
   task venues: :environment do
     success = validate_files("data/**/venue.yml", VenueSchema, "venue.yml")
@@ -393,7 +399,10 @@ namespace :validate do
     results << validate_files("data/*/series.yml", SeriesSchema, "series.yml")
 
     puts Gum.style("Validating cfp.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_array_files("data/*/cfp.yml", CFPSchema, "cfp.yml")
+    results << validate_array_files("data/**/cfp.yml", CFPSchema, "cfp.yml")
+
+    puts Gum.style("Validating sponsors.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+    results << validate_array_files("data/**/sponsors.yml", SponsorsSchema, "sponsors.yml")
 
     puts Gum.style("Validating venue.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_files("data/**/venue.yml", VenueSchema, "venue.yml")

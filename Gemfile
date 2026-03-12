@@ -159,11 +159,18 @@ gem "json-repair", "~> 0.2.0"
 # Markdown that smells nice
 gem "redcarpet", "~> 3.6"
 
+# Syntax highlighting
+gem "rouge", "~> 4.4"
+
 # Country Select Plugin
 gem "country_select"
 
 # Admin panel framework and Content Management System for Ruby on Rails.
 gem "avo"
+
+group :avo, optional: true do
+  gem "avo-pro", source: "https://packager.dev/avo-hq/"
+end
 
 # Marksmith is a GitHub-style markdown editor for Ruby on Rails applications.
 gem "marksmith"
@@ -205,13 +212,16 @@ gem "openssl" # https://github.com/ruby/openssl/issues/949
 gem "ostruct"
 
 # Complete geocoding solution for Ruby.
-gem "geocoder"
+gem "geocoder", github: "alexreisner/geocoder" # Use latest geocoder with Nominatim improvements until next release
 
 # RubyGems.org API wrapper for gem information
 gem "gems"
 
 # A glamorous CLI toolkit for Ruby
 gem "gum", "~> 0.3.1"
+
+# Regex pattern searching in files
+gem "grepfruit"
 
 # Create beautiful JavaScript maps with one line of Ruby
 gem "mapkick-rb", "~> 0.2.0"

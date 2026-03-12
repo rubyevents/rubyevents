@@ -1,4 +1,4 @@
-<%# locals(user:, favorite_user) %>
+<%# locals: (user:, favorite_user:) %>
 
 <div class="block lg:flex gap-8 align-center justify-between" id="<%= dom_id(user, :header) %>">
   <%= render "profiles/header_content", user:, favorite_user: %>

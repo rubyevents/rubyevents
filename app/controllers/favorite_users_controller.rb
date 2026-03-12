@@ -1,10 +1,11 @@
 class FavoriteUsersController < ApplicationController
-  before_action :set_favorite_user, only: %i[destroy]
+  before_action :set_favorite_user, only: %i[destroy update]
 
   # GET /favorite_users or /favorite_users.json
   def index
-    @favorite_users = FavoriteUser.where(user: Current.user).includes(:favorite_user).order(favorite_user: {name: :asc})
-    @recommendations = FavoriteUser.recommendations_for(Current.user) if @favorite_users.empty?
+    @ruby_friends = FavoriteUser.where(user: Current.user).includes(:favorite_user, :mutual_favorite_user).where.associated(:mutual_favorite_user).order(favorite_user: {name: :asc})
+    @favorite_rubyists = FavoriteUser.where(user: Current.user).includes(:favorite_user, :mutual_favorite_user).where.missing(:mutual_favorite_user).order(favorite_user: {name: :asc})
+    @recommendations = FavoriteUser.recommendations_for(Current.user) if @favorite_rubyists.empty? && @ruby_friends.empty?
   end
 
   # POST /favorite_users or /favorite_users.json
@@ -17,6 +18,23 @@ class FavoriteUsersController < ApplicationController
         format.html { redirect_back_or_to favorite_users_path, notice: "You favorited #{@favorite_user.favorite_user.name}!" }
       else
         format.html { redirect_back_or_to favorite_users_path, notice: "Favorite was unsuccessful." }
+      end
+    end
+  end
+
+  # PATCH/PUT /favorite_users/1 or /favorite_users/1.json
+  def update
+    respond_to do |format|
+      if @favorite_user.update(favorite_user_params)
+        format.html do
+          if params[:redirect_to].present?
+            redirect_to params[:redirect_to]
+          else
+            redirect_back_or_to favorite_users_path
+          end
+        end
+      else
+        format.html { redirect_back_or_to favorite_users_path, alert: "Failed to update." }
       end
     end
   end
@@ -39,6 +57,6 @@ class FavoriteUsersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def favorite_user_params
-    params.expect(favorite_user: [:favorite_user_id])
+    params.expect(favorite_user: [:favorite_user_id, :notes])
   end
 end

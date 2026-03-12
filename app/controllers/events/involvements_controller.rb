@@ -3,6 +3,7 @@ class Events::InvolvementsController < ApplicationController
 
   def index
     @event = Event.includes(:event_involvements).find_by(slug: params[:event_slug])
+    set_meta_tags(@event) if @event
     involvements = @event.event_involvements.includes(:involvementable).order(:position).to_a
     @involvements_by_role = involvements.group_by(&:role)
     @participation = Current.user&.main_participation_to(@event)

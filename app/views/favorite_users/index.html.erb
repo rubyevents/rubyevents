@@ -1,13 +1,24 @@
-<div class="container">
-  <h2>
-    <%= fa("star", size: :sm, style: :solid, class: "fill-yellow-400 inline") %>
-    Favorite Rubyists
-  </h2>
-  <% if @favorite_users.empty? %>
+<div class="container flex flex-col gap-6">
+  <% if @favorite_rubyists.empty? && @ruby_friends.empty? %>
     <%= render partial: "favorite_users/no_favorites", locals: {recommendations: @recommendations} %>
   <% else %>
-    <div id="favorite_users" class="min-w-full grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-2">
-      <%= render @favorite_users %>
-    </div>
+    <% if @ruby_friends.any? %>
+      <div id="ruby-friends">
+        <h2 class="mb-4">
+          <%= fa("star", size: :sm, style: :solid, class: "fill-red-600 inline") %>
+          Ruby Friends
+        </h2>
+        <%= render partial: "favorite_users/list", locals: {favorite_users: @ruby_friends} %>
+      </div>
+    <% end %>
+    <% if @favorite_rubyists.any? %>
+      <div id="favorite-rubyists">
+        <h2>
+          <%= fa("star", size: :sm, style: :solid, class: "fill-yellow-400 inline") %>
+          Favorite Rubyists
+        </h2>
+        <%= render partial: "favorite_users/list", locals: {favorite_users: @favorite_rubyists} %>
+      </div>
+    <% end %>
   <% end %>
 </div>

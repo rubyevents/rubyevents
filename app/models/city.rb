@@ -29,8 +29,6 @@ class City < ApplicationRecord
 
   configure_slug(attribute: :name, auto_suffix_on_collision: true)
 
-  query_constraints :name, :country_code, :state_code
-
   geocoded_by :geocode_query do |record, results|
     if (result = results.first)
       record.latitude = result.latitude
@@ -98,6 +96,16 @@ class City < ApplicationRecord
       Router.city_with_state_users_path(alpha2: country.code, state: state.slug, city: slug)
     else
       Router.city_by_country_users_path(alpha2: country.code, city: slug)
+    end
+  end
+
+  def meetups_path
+    if featured?
+      Router.city_meetups_path(self)
+    elsif state_code.present? && state.present?
+      Router.city_with_state_meetups_path(alpha2: country.code, state: state.slug, city: slug)
+    else
+      Router.city_by_country_meetups_path(alpha2: country.code, city: slug)
     end
   end
 
@@ -233,11 +241,11 @@ class City < ApplicationRecord
   end
 
   def events_count
-    @events_count ||= events.count
+    @events_count ||= events.size
   end
 
   def users_count
-    @users_count ||= users.count
+    @users_count ||= users.size
   end
 
   def feature!

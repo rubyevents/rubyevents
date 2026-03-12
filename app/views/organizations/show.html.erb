@@ -2,7 +2,7 @@
 
 <%= turbo_frame_tag dom_id(@organization), data: {turbo_action: "advance", turbo_frame: "_top"} do %>
   <div class="container py-8">
-    <% if @events_by_year.any? %>
+    <% if @events_by_year.any? || @involved_events.any? %>
       <div role="tablist" class="tabs tabs-bordered mt-6">
         <input type="radio" name="organization_tabs" role="tab" class="tab" aria-label="Supported Events (<%= @events.size %>)" checked>
 

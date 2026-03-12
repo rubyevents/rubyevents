@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.2].define(version: 2026_01_18_175214) do
+ActiveRecord::Schema[8.2].define(version: 2026_03_06_110802) do
   create_table "_litestream_lock", id: false, force: :cascade do |t|
     t.integer "id"
   end
@@ -239,6 +239,7 @@ ActiveRecord::Schema[8.2].define(version: 2026_01_18_175214) do
   create_table "favorite_users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "favorite_user_id", null: false
+    t.text "notes"
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
     t.index ["favorite_user_id"], name: "index_favorite_users_on_favorite_user_id"
@@ -348,6 +349,7 @@ ActiveRecord::Schema[8.2].define(version: 2026_01_18_175214) do
     t.string "badge"
     t.datetime "created_at", null: false
     t.integer "event_id", null: false
+    t.integer "level"
     t.integer "organization_id", null: false
     t.string "tier"
     t.datetime "updated_at", null: false
