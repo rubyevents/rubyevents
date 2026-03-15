@@ -1,6 +1,10 @@
 
 - id: "<%= @talk_id %>"
+<%- if options[:title] -%>
   title: "<%= options[:title] %>"
+<%- else -%>
+  title: "<%= "#{options[:kind].titlecase} by #{options[:speaker].to_sentence}" %>" # TODO
+<%- end -%>
   description: |-
     <%= options[:description] %>
   kind: "<%= options[:kind] %>"
