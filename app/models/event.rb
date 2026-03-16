@@ -131,11 +131,11 @@ class Event < ApplicationRecord
   scope :upcoming, -> { where(start_date: Date.today..).order(start_date: :asc) }
 
   scope :past_meetups, -> {
-    joins(:talks).where(kind: :meetup, talks: {published_at: ..Date.today}).distinct
+    joins(:talks).where(kind: :meetup, talks: {date: ..Date.today}).distinct
   }
 
   scope :upcoming_meetups, -> {
-    joins(:talks).where(kind: :meetup, talks: {published_at: nil}).distinct
+    joins(:talks).where(kind: :meetup, talks: {date: nil}).distinct
   }
 
   def upcoming?

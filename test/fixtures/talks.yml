@@ -135,7 +135,7 @@ meetup_past_talk:
   slug: talk-title-3
   kind: "talk"
   event: wnb_rb_meetup
-  published_at: <%= 1.day.ago %>
+  date: <%= 1.day.ago %>
   video_provider: youtube
   static_id: talk-title-4
 
@@ -145,6 +145,5 @@ meetup_upcoming_talk:
   slug: talk-title-5
   kind: "talk"
   event: new_rb_meetup
-  video_provider: youtube
   static_id: talk-title-5
 
