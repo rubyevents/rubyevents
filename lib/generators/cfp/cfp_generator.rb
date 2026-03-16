@@ -11,10 +11,10 @@ class CfpGenerator < Generators::EventBase
   class_option :close_date, type: :string, desc: "CFP close date (YYYY-MM-DD)", default: "2026-12-31", group: "Fields"
 
   def copy_cfp_file
-    cfp_file = File.join(["data", options[:event_series], options[:event], "cfp.yml"])
-    template "header.yml.tt", cfp_file unless File.exist?(destination_path(cfp_file))
+    cfp_file = File.join([event_directory, "cfp.yml"])
+    template "header.yml.tt", cfp_file unless File.exist?(cfp_file)
 
-    if File.read(destination_path(cfp_file)).include?(options[:name])
+    if File.read(cfp_file).include?(options[:name])
       gsub_file cfp_file, /- name: "#{options[:name]}"\s*(link: "[^"]*"\s*)(open_date: "[^"]*"\s*)?(close_date: "[^"]*"\s*)?/, template_content("cfp.yml.tt")
     else
       append_to_file cfp_file, template_content("cfp.yml.tt")
