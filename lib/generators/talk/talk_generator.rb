@@ -55,7 +55,6 @@ class TalkGenerator < Generators::EventBase
 
   private
 
-
   def generate_talk_id
     talk_id_parts = []
     if options[:speaker].length > 2
