@@ -7,7 +7,7 @@ class TalkGenerator < Generators::EventBase
 
   class_option :id, type: :string, desc: "ID of the talk (optional, will be generated from title and speaker if not provided)", required: false, group: "Fields"
   class_option :title, type: :string, desc: "Title of the talk", group: "Fields"
-  class_option :speaker, type: :array, default: ["TODO"], desc: "Speaker name", group: "Fields"
+  class_option :speakers, type: :array, default: ["TODO"], desc: "Speaker names", group: "Fields"
   class_option :description, type: :string, default: "TODO - description", desc: "Description of the talk", group: "Fields"
   class_option :kind, type: :string, enum: Talk.kinds.keys, default: "talk", desc: "Type of talk (e.g., 'keynote', 'lightning_talk')", group: "Fields"
   class_option :language, type: :string, default: "en", desc: "Language of the talk (e.g., 'en', 'es')", group: "Fields"
@@ -18,23 +18,46 @@ class TalkGenerator < Generators::EventBase
 
   class_option :lightning_talks, type: :boolean, default: false, desc: "Add empty group of lightning talks", group: "Options"
 
-  Talk = Struct.new(:id, :title, :speakers, :description, :kind, :language, :date, :announced_at) do
+  Talk = Struct.new(:event, :id, :title, :speakers, :description, :kind, :language, :date, :announced_at) do
     def title
-      @title ||= self[:title].presence || ["TODO", options[:kind], "Title"].merge(options[:speakers]).compact.join(" ")
+      @title ||= self[:title].presence || "#{self[:kind].titlecase} by #{self[:speakers].to_sentence}"
     end
 
     def description
-      @description ||= self[:description].presence || ["TODO", options[:title], "Description"].merge(options[:speakers]).compact.join(" ")
+      @description ||= self[:description].presence || ["TODO", self[:title], "Description"].join(" - ")
     end
 
-    def talk_id
-      @talk_id ||= options[:id].presence || generate_talk_id
+    def id
+      @id ||= self[:id].presence || generate_talk_id
+    end
+
+    def generate_talk_id
+      talk_id_parts = []
+      if speakers.length > 2
+        talk_id_parts << title.parameterize
+      else
+        talk_id_parts.concat(speakers.map(&:parameterize))
+      end
+      talk_id_parts << self[:kind] unless self[:kind].in? ["talk", "panel"]
+      talk_id_parts << self[:event]
+      talk_id_parts.join("-")
     end
   end
 
   def initialize_values
     event = Static::Event.find_by_slug options[:event]
     @date = options[:date] || (event&.start_date || Date.today).iso8601
+    @talk = Talk.new(
+      event: options[:event],
+      id: options[:id],
+      title: options[:title],
+      speakers: options[:speakers],
+      description: options[:description],
+      kind: options[:kind],
+      language: options[:language],
+      date: @date,
+      announced_at: options[:announced_at]
+    )
   end
 
   def videos_file_path
@@ -45,8 +68,8 @@ class TalkGenerator < Generators::EventBase
     template "videos.yml.tt", videos_file_path unless File.exist?(videos_file_path)
     talk_template = options[:lightning_talks] ? "lightning_talks.yml.tt" : "talk.yml.tt"
 
-    if File.read(videos_file_path).match?(/- id: "#{talk_id}"/)
-      match_one_talk = /\n- id: "#{talk_id}"[\s\S]*video_id: "#{talk_id}"\n/
+    if File.read(videos_file_path).match?(/- id: "#{@talk.id}"/)
+      match_one_talk = /\n- id: "#{@talk.id}"[\s\S]*video_id: "#{@talk.id}"\n/
       gsub_file videos_file_path, match_one_talk, template_content(talk_template)
     else
       append_to_file videos_file_path, template_content(talk_template)
@@ -54,16 +77,4 @@ class TalkGenerator < Generators::EventBase
   end
 
   private
-
-  def generate_talk_id
-    talk_id_parts = []
-    if options[:speaker].length > 2
-      talk_id_parts << options[:title].parameterize
-    else
-      talk_id_parts.concat(options[:speaker].map(&:parameterize))
-    end
-    talk_id_parts << options[:kind] unless options[:kind].in? ["talk", "panel"]
-    talk_id_parts << options[:event]
-    talk_id_parts.join("-")
-  end
 end
