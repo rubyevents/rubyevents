@@ -79,7 +79,7 @@
     TODO - description
   kind: "talk"
   language: "en"
-  date: "2026-04-17"
+  date: "2026-04-18"
   speakers:
     - Markus Schirp
   video_provider: "scheduled"
@@ -92,7 +92,7 @@
     - Ismael Celis
   event_name: "wroclove.rb 2026"
   published_at: "TODO"
-  date: "2026-04-17"
+  date: "2026-04-18"
   description: |-
     Let's explore Event Sourcing and the Actor model in Ruby, and how this paradigm can open up entire mental models to think about problems, including concurrency as a domain-level concept, and embracing the eventually-consistent relationship between reality and the code designed to represent it. Ismael has been thinking about and exploring these ideas since 2016, both in Ruby and other stacks. In his talk, he will show how Event Sourcing can provide a cohesive, end-to-end programming model centred around workflows, where a small set of building blocks can enable auditable data, durable execution and reactive UIs by default. All with the simplicity of idiomatic Ruby.
   video_id: "ismael-celis-wrocloverb-2026"
@@ -104,7 +104,7 @@
     Machine Learning often feels like a black box reserved for Python data scientists. But what happens when you solve a complex product recommendation problem using Plain Old Ruby Objects, only to discover you've unknowingly recreated the architecture of a Neural Network? Nicolò will deconstruct a real-world recommendation engine that processes thousands of orders per week to prove that you do not not need heavy external services to solve AI problems — you need Ruby!
   kind: "talk"
   language: "en"
-  date: "2026-04-17"
+  date: "2026-04-18"
   speakers:
     - Nicolò Rebughini
   video_provider: "scheduled"
@@ -116,7 +116,7 @@
     Stop forcing REST into every use case. Learn when and how to leverage gRPC for performance, MQTT for IoT, and MCP for AI integration within Ruby on Rails. For over a decade, REST has been the undisputed king of Rails communication. While it remains the standard for web APIs, modern engineering challenges (ranging from high-frequency microservices to IoT deployments and the rise of AI agents) often push HTTP/JSON to its breaking point. Emiliano has been working with Rails for nearly 20 years and spent significant time benchmarking and implementing non-RESTful interfaces in production Ruby environments. This session provides a technical deep dive into how Ruby on Rails can transcend the traditional request-response cycle by integrating three powerful alternatives: gRPC, MQTT and MCP.
   kind: "talk"
   language: "en"
-  date: "2026-04-17"
+  date: "2026-04-18"
   speakers:
     - Emiliano Della Casa
   video_provider: "scheduled"
@@ -128,7 +128,7 @@
     UringMachine is a new Ruby gem that provides a fast low-level API for building concurrent applications, harnessing the Linux io_uring interface. Let's see how io_uring works, understand the design of UringMachine, and the performance advantages it brings for Ruby web apps. Sharon is a long-time Ruby programmer, and the author of multiple open-source Ruby gems, including Sequel, Extralite, Polyphony, and Papercraft. He is a recipient of a Japanese Ruby Association grant for working on UringMachine. If you are looking for an expert on this topic — you just found one!
   kind: "talk"
   language: "en"
-  date: "2026-04-17"
+  date: "2026-04-18"
   speakers:
     - Sharon Rosner
   video_provider: "scheduled"
@@ -141,19 +141,67 @@
     - Josef Strzibny
   event_name: "wroclove.rb 2026"
   published_at: "TODO"
-  date: "2026-04-17"
+  date: "2026-04-18"
   description: |-
     Think implementing Kamal in your app is complicated? Josef will prove that it is actually no harder than using your favorite PaaS. Josef is a long time programmer previously working with Ruby/Rails, Elixir/Phoenix and as a Linux package manager and the author of Kamal handbook — the first ever book on Kamal. With this expertese, Josef will present everything you need to know about Kamal.
   video_id: "josef-strzibny-wrocloverb-2026"
   video_provider: "scheduled"
 
 - id: "lightning-talks-wroclove-rb-2026"
-  title: ""
+  title: "Lightning talks"
   description: |-
-    TODO - description
-  kind: "lightning"
+    Lightning talks are a great way to learn about new ideas and share your thoughts. Throughout the day, we encourage you to add your topic to the whiteboard if you'd like to present.
+  kind: "lightning_talk"
   language: "en"
-  date: "2026-04-17"
+  date: "2026-04-18"
   video_provider: "scheduled"
-  video_id: "lightning--wroclove-rb-2026"
-  videos: []
+  video_id: "lightning-talks-wroclove-rb-2026"
+  talks: []
+
+- id: "julik-tarkhanov-wroclove-rb-2026"
+  title: "Adventures in durable execution"
+  description: |-
+    Workflow engines are everywhere now, but Rails still does not have a good one. For more than a year Julik has been exploring workflows and durable execution in Rails — the likes of Vercel 'use workflow', Temporal and DBos. As a result, he has discovered that ActiveJob is an inadequate tool for the purpose — even with 'job continuations' introduced in Rails natively it is still subpar. In his talk, Julik will present a solution that integrates well with Rails without having the user do too much — a Rails-based gem for workflows.
+  kind: "talk"
+  language: "en"
+  date: "2026-04-19"
+  speakers:
+    - Julik Tarkhanov
+  video_provider: "scheduled"
+  video_id: "julik-tarkhanov-wroclove-rb-2026"
+
+- id: "kuba-suder-wroclove-rb-2026"
+  title: "Building on Bluesky's AT Protocol with Ruby"
+  description: |-
+    Ever heard of Authenticated Transfer Protocol? If you have a Bluesky social media account, you're already using it every day. Kuba discovered Bluesky and the AT Protocol in 2023 and he got so hooked that he has been spending all his time building things on it since then. With his curiosity about the AT Protocol, Kuba developed many Bluesky-related open source projects and tools and he takes the stage at wroclove.rb to explore the protocol in depth.
+  kind: "talk"
+  language: "en"
+  date: "2026-04-19"
+  speakers:
+    - Kuba Suder
+  video_provider: "scheduled"
+  video_id: "kuba-suder-wroclove-rb-2026"
+
+- id: "louis-antonopoulos-wroclove-rb-2026"
+  title: "Rubyana Gems and the Ractorous Rubetta Stones!"
+  description: |-
+    What if we had a severly time-constricted and CPU-intensive task that we wanted to solve with Ruby? How might we tackle it? Using the fictional discovery of The Rubetta Stones as our plot driver, and an hourglass that is rapidly running out, we will embark on a journey that leverages the power of Ractors alongside a cheeky AI assistant (trained in Ruby, linguistics, and cryptanalysis) to face this unprecedented challenge. The goal? Break 5 ciphers in 60 seconds to unlock the ultimate secret of the Rubetta Keystone. Join Louis on a whimsical adventure to learn about Ractors while collaborating with an AI for assistance with the linguistic tools that will help us unlock the mystery of The Rubetta Stones!
+  kind: "talk"
+  language: "en"
+  date: "2026-04-19"
+  speakers:
+    - Louis Antonopoulos
+  video_provider: "scheduled"
+  video_id: "louis-antonopoulos-wroclove-rb-2026"
+
+- id: "adam-okon-wroclove-rb-2026"
+  title: "Forms Are Dead: Building Agentic Workflows in Ruby"
+  description: |-
+    Imagine replacing complex data entry forms with an agentic workflow. Instead of multi-field forms, users paste unstructured content — like emails — into a single text field. The LLM extracts structured data, pre-fills the remaining fields, and saves hours of manual work monthly. Join Adam's talk to discover why LLMs make traditional multi-field forms obsolete and how you can integrate agentic workflows into existing Rails applications.
+  kind: "talk"
+  language: "en"
+  date: "2026-04-19"
+  speakers:
+    - Adam Okoń
+  video_provider: "scheduled"
+  video_id: "adam-okon-wroclove-rb-2026"
