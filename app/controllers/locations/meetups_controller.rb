@@ -10,4 +10,10 @@ class Locations::MeetupsController < Locations::BaseController
 
     render_location_view("meetups")
   end
+
+  private
+
+  def redirect_path_helper
+    :city_meetups_path
+  end
 end
