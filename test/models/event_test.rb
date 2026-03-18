@@ -243,4 +243,28 @@ class EventTest < ActiveSupport::TestCase
     assert_equal "Amsterdam", event.city_record.name
     assert event.city_record.events.include?(event)
   end
+
+  test "today? conference is not today" do
+    event = Event.new(start_date: 3.days.ago, end_date: 2.days.ago, kind: :conference)
+
+    assert !event.today?
+  end
+
+  test "today? conference is today" do
+    event = Event.new(start_date: 1.day.ago, end_date: 2.days.from_now, kind: :conference)
+
+    assert event.today?
+  end
+
+  test "today? meetup is not today" do
+    event = Event.new(date: 2.days.ago, kind: :meetup)
+
+    assert !event.today?
+  end
+
+  test "today? meetup is today" do
+    event = Event.new(date: Date.today, kind: :meetup)
+
+    assert event.today?
+  end
 end
