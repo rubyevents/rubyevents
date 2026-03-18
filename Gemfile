@@ -91,10 +91,10 @@ gem "yt"
 gem "rss", "~> 0.3.1"
 
 # Powerful and seamless HTML-aware ERB parsing and tooling.
-gem "herb", "~> 0.8"
+gem "herb", "~> 0.9"
 
 # An ActionView-compatible ERB engine with modern DX - re-imagined with Herb.
-gem "reactionview", "~> 0.2"
+gem "reactionview", "~> 0.3"
 
 # Agnostic pagination in plain ruby.
 gem "pagy"
