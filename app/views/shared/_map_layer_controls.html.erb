@@ -10,15 +10,13 @@
           type="radio" name="map_layer" class="hidden"
           data-action="change->map#selectLayer"
           data-layer-id="<%= layer[:id] %>"
-          <% if layer[:visible] %> checked <% end %>
-        >
+          <% if layer[:visible] %> checked <% end %>>
       <% else %>
         <input
           type="checkbox" class="hidden"
           data-action="change->map#toggleLayer"
           data-layer-id="<%= layer[:id] %>"
-          <% if layer[:visible] %> checked <% end %>
-        >
+          <% if layer[:visible] %> checked <% end %>>
       <% end %>
 
       <%= display_label %>

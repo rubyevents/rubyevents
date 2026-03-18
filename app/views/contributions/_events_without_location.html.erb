@@ -1,5 +1,7 @@
+<%# locals: (events_without_location:) %>
+
 <%= turbo_frame_tag "events_without_location" do %>
-  <h2 class="mb-4">Events without locations (<%= events_without_location_count %>)</h2>
+  <h2 class="mb-4">Events without locations (<%= events_without_location.flat_map(&:last).count %>)</h2>
 
   <article class="prose mb-6">This section lists events that are missing location information. By adding a location, we can show in which city/country this event took place.</article>
 

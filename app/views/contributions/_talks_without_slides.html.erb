@@ -1,5 +1,7 @@
+<%# locals: (talks_without_slides:) %>
+
 <%= turbo_frame_tag "talks_without_slides" do %>
-  <h2 class="mb-4">Talks without slides (<%= talks_without_slides_count %>)</h2>
+  <h2 class="mb-4">Talks without slides (<%= talks_without_slides.count %>)</h2>
 
   <article class="prose mb-6">These talks currently do not have slides attached. However, we know that the speaker has an account on Speakerdeck where they usually upload their slides. Feel free to explore if these talks have associated slidedecks on Speakerdeck.com.</article>
 
@@ -11,14 +13,6 @@
           <span><%= talk.speakers.first.name %></span>
         </div>
       <% end %>
-    <% end %>
-
-    <% remaining_talks_count = (talks_without_slides_count - talks_without_slides.count) %>
-
-    <% if remaining_talks_count.positive? %>
-      <div class="flex items-center hover:bg-gray-100 p-4 rounded-lg border bg-white">
-        <span>and <%= remaining_talks_count %> more</span>
-      </div>
     <% end %>
   </div>
 <% end %>

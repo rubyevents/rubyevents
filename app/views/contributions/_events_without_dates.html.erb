@@ -1,5 +1,7 @@
+<%# locals: (events_without_dates:) %>
+
 <%= turbo_frame_tag "events_without_dates" do %>
-  <h2 class="mb-4">Events without conference dates (<%= events_without_dates_count %>)</h2>
+  <h2 class="mb-4">Events without conference dates (<%= events_without_dates.flat_map(&:last).count %>)</h2>
 
   <article class="prose mb-6">This section lists events that are missing conference dates. Adding conference dates allows us to show when this event took place, so we could show them in a calendar or similar.</article>
 

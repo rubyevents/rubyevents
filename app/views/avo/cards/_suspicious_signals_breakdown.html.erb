@@ -1,12 +1,11 @@
 <% suspicious_users = User.suspicious.to_a %>
 <% signals = {
-    "New GitHub Account" => suspicious_users.count { |u| u.suspicion_detector.github_account_new? },
-    "No Talks" => suspicious_users.count { |u| u.suspicion_detector.no_talks? },
-    "No Watched Talks" => suspicious_users.count { |u| u.suspicion_detector.no_watched_talks? },
-    "Bio Contains URL" => suspicious_users.count { |u| u.suspicion_detector.bio_contains_url? },
-    "Empty GitHub Profile" => suspicious_users.count { |u| u.suspicion_detector.github_account_empty? }
-  }
-%>
+     "New GitHub Account" => suspicious_users.count { |u| u.suspicion_detector.github_account_new? },
+     "No Talks" => suspicious_users.count { |u| u.suspicion_detector.no_talks? },
+     "No Watched Talks" => suspicious_users.count { |u| u.suspicion_detector.no_watched_talks? },
+     "Bio Contains URL" => suspicious_users.count { |u| u.suspicion_detector.bio_contains_url? },
+     "Empty GitHub Profile" => suspicious_users.count { |u| u.suspicion_detector.github_account_empty? }
+   } %>
 
 <div class="p-4">
   <% if suspicious_users.empty? %>

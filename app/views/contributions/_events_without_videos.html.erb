@@ -1,5 +1,7 @@
+<%# locals: (events_without_videos:) %>
+
 <%= turbo_frame_tag "events_without_videos" do %>
-  <h2 class="mb-4">Events without videos (<%= events_without_videos_count %>)</h2>
+  <h2 class="mb-4">Events without videos (<%= events_without_videos.flat_map(&:last).count %>)</h2>
 
   <article class="prose mb-6">This section highlights events that do not have associated videos available. Explore these events to see if the talks weren't recorded or just not yet added the site.</article>
 

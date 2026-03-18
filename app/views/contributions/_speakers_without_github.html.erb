@@ -1,5 +1,7 @@
+<%# locals: (speakers_without_github:) %>
+
 <%= turbo_frame_tag "speakers_without_github" do %>
-  <h2 class="mb-4">Speakers without GitHub handles (<%= speakers_without_github_count %>)</h2>
+  <h2 class="mb-4">Speakers without GitHub handles (<%= speakers_without_github.count %>)</h2>
 
   <article class="prose mb-6">These speakers are currently missing a GitHub handle. By adding a GitHub handle to their profile, we can enhance their speaker profiles with an avatar and automatically retrieve additional information.</article>
 
@@ -13,14 +15,6 @@
           <% end %>
         </span>
       <% end %>
-    <% end %>
-
-    <% remaining_speakers_count = (speakers_without_github_count - speakers_without_github.count) %>
-
-    <% if remaining_speakers_count.positive? %>
-      <div class="flex items-center hover:bg-gray-100 p-4 rounded-lg border bg-white">
-        <span>and <%= remaining_speakers_count %> more</span>
-      </div>
     <% end %>
   </div>
 <% end %>
