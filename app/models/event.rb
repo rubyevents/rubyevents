@@ -135,7 +135,7 @@ class Event < ApplicationRecord
   }
 
   scope :upcoming_meetups, -> {
-    joins(:talks).where(kind: :meetup, talks: {date: nil}).distinct
+    joins(:talks).where(kind: :meetup, talks: {date: Date.today..}).distinct
   }
 
   def upcoming?
