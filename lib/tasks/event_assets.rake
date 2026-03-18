@@ -327,9 +327,9 @@ class EventAssetGenerator
     end
 
     if content.match?(/^featured_color:/)
-      content.gsub!(/^featured_color:.*$/, "featured_color: \"#{text_color.delete("#")}\"")
+      content.gsub!(/^featured_color:.*$/, "featured_color: \"#{text_color}\"")
     else
-      content = content.rstrip + "\nfeatured_color: \"#{text_color.delete("#")}\"\n"
+      content = content.rstrip + "\nfeatured_color: \"#{text_color}\"\n"
     end
     updated = true
 
