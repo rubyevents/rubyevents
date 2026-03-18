@@ -232,11 +232,9 @@ class Event < ApplicationRecord
   end
 
   def today?
-    if meetup?
-      (date.beginning_of_day..date.end_of_day)
-    else
-      (start_date..end_date)
-    end.cover?(Date.today)
+    return talks.where(date: Date.today).exists? if meetup?
+
+    (start_date..end_date).cover?(Date.today)
   rescue => _e
     false
   end

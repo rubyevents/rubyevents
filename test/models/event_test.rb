@@ -246,24 +246,26 @@ class EventTest < ActiveSupport::TestCase
 
   test "today? conference is not today" do
     event = Event.new(start_date: 3.days.ago, end_date: 2.days.ago, kind: :conference)
-
     assert !event.today?
   end
 
   test "today? conference is today" do
     event = Event.new(start_date: 1.day.ago, end_date: 2.days.from_now, kind: :conference)
-
     assert event.today?
   end
 
   test "today? meetup is not today" do
-    event = Event.new(date: 2.days.ago, kind: :meetup)
+    event = events(:wnb_rb_meetup)
+    talk = talks(:non_english_talk_one)
+    talk.update!(date: 3.days.ago, event: event)
 
     assert !event.today?
   end
 
   test "today? meetup is today" do
-    event = Event.new(date: Date.today, kind: :meetup)
+    event = events(:wnb_rb_meetup)
+    talk = talks(:non_english_talk_one)
+    talk.update!(date: Date.today, event: event)
 
     assert event.today?
   end
