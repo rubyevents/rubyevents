@@ -1,4 +1,4 @@
-events_with_unavailable = Talk.video_unavailable
+<% events_with_unavailable = Talk.video_unavailable
     .joins(:event)
     .group("events.id", "events.name")
     .order(Arel.sql("COUNT(*) DESC"))
