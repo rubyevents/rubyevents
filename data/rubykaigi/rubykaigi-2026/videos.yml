@@ -1,85 +1,42 @@
-# TODO: Add talks and videos
-# docs/ADDING_UNPUBLISHED_TALKS.md
-
-# Website: https://rubykaigi.org
+# Website: https://rubykaigi.org/2026/schedule/
 # Videos: -
 ---
 - id: "satoshi-tagomori-keynote-rubykaigi-2026"
-  title: "Keynote: Satoshi Tagomori"
+  title: "Keynote: The Journey of Box Building"
+  track: "Large Hall #rubykaigiA"
   description: |-
-    TODO - description
+    "Ruby Box" is a new experimental feature, introduced at Ruby 4.0.
+    I'll introduce the very basic of Ruby Box, and then will explain the problems, hard things, and technically interesting points around finding/determining boxes while running Ruby programs.
   kind: "keynote"
-  language: "en"
+  language: "ja"
   date: "2026-04-22"
   speakers:
     - Satoshi Tagomori
   video_provider: "scheduled"
   video_id: "satoshi-tagomori-keynote-rubykaigi-2026"
 
-- id: "charles-nutter-keynote-rubykaigi-2026"
-  title: "Keynote: Charles Nutter"
+- id: "hitoshi-hasumi-rubykaigi-2026"
+  title: "Funicular: A Browser App Framework Powered by PicoRuby.WASM"
+  track: "Large Hall #rubykaigiA"
   description: |-
-    TODO - description
-  kind: "keynote"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Charles Nutter
-  video_provider: "scheduled"
-  video_id: "charles-nutter-keynote-rubykaigi-2026"
-
-- id: "yukihiro-matsumoto-keynote-rubykaigi-2026"
-  title: "Keynote: Yukihiro Matsumoto"
-  description: |-
-    TODO - description
-  kind: "keynote"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Yukihiro Matsumoto
-  video_provider: "scheduled"
-  video_id: "yukihiro-matsumoto-keynote-rubykaigi-2026"
-
-- id: "aaron-patterson-rubykaigi-2026"
-  title: "Talk: Aaron Patterson"
-  description: |-
-    TODO - description
+    PicoRuby's compact design and built-in multitasking capabilities unlock the potential for developing entirely Ruby-based applications that run directly in the browser.
+    In this talk, we'll discuss the technical details of Funicular, a new web frontend framework, providing a lightweight and Ruby-centric alternative to existing solutions.
+    Discover how Full-Stack Ruby can make your Ruby life fun!
   kind: "talk"
-  language: "en"
+  language: "ja"
   date: "2026-04-22"
   speakers:
-    - Aaron Patterson
+    - HASUMI Hitoshi
   video_provider: "scheduled"
-  video_id: "aaron-patterson-rubykaigi-2026"
-
-- id: "albert-pazderin-rubykaigi-2026"
-  title: "Talk: Albert Pazderin"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Albert Pazderin
-  video_provider: "scheduled"
-  video_id: "albert-pazderin-rubykaigi-2026"
-
-- id: "alexandre-terrasa-rubykaigi-2026"
-  title: "Talk: Alexandre Terrasa"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Alexandre Terrasa
-  video_provider: "scheduled"
-  video_id: "alexandre-terrasa-rubykaigi-2026"
+  video_id: "hitoshi-hasumi-rubykaigi-2026"
 
 - id: "andrey-marchenko-rubykaigi-2026"
-  title: "Talk: Andrey Marchenko"
+  title: "When Can You Skip a Test? Tracking Test Impact"
+  track: "Sub Arena #rubykaigiB"
   description: |-
-    TODO - description
+    Running a full test suite for a Ruby app on every change works at a small scale, but eventually becomes slow and expensive. Many existing tools that try to run only the tests affected by a change either skip too much and then miss test failures or add so much overhead that they are unusable in CI. To solve this I built a test impact analysis engine for the open-source Datadog test optimization gem. This tool now runs in production and saves engineering teams 150 000+ hours of CI time per year.
+
+    In this talk I’ll show how that work became a deep dive into the Ruby internals with some surprising findings about what coverage means in Ruby: turns out it is far from being only about the lines of code. In this talk I will tell you about a journey of building a high-performance library that tracks what is really covered by your tests and share the tricks I learned along the way.
   kind: "talk"
   language: "en"
   date: "2026-04-22"
@@ -88,634 +45,24 @@
   video_provider: "scheduled"
   video_id: "andrey-marchenko-rubykaigi-2026"
 
-- id: "andrey-novikov-rubykaigi-2026"
-  title: "Talk: Andrey Novikov"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Andrey Novikov
-  video_provider: "scheduled"
-  video_id: "andrey-novikov-rubykaigi-2026"
-
-- id: "benoit-daloze-rubykaigi-2026"
-  title: "Talk: Benoit Daloze"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Benoit Daloze
-  video_provider: "scheduled"
-  video_id: "benoit-daloze-rubykaigi-2026"
-
-- id: "charlie-savage-rubykaigi-2026"
-  title: "Talk: Charlie Savage"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Charlie Savage
-  video_provider: "scheduled"
-  video_id: "charlie-savage-rubykaigi-2026"
-
-- id: "chris-hasinski-rubykaigi-2026"
-  title: "Talk: Chris Hasiński"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Chris Hasiński
-  video_provider: "scheduled"
-  video_id: "chris-hasinski-rubykaigi-2026"
-
-- id: "daichi-kamiyama-rubykaigi-2026"
-  title: "Talk: Daichi Kamiyama"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Daichi Kamiyama
-  video_provider: "scheduled"
-  video_id: "daichi-kamiyama-rubykaigi-2026"
-
-- id: "daisuke-aritomo-rubykaigi-2026"
-  title: "Talk: Daisuke Aritomo"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Daisuke Aritomo
-  video_provider: "scheduled"
-  video_id: "daisuke-aritomo-rubykaigi-2026"
-
-- id: "daisuke-fujimura-rubykaigi-2026"
-  title: "Talk: Daisuke Fujimura"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Daisuke Fujimura
-  video_provider: "scheduled"
-  video_id: "daisuke-fujimura-rubykaigi-2026"
-
-- id: "edouard-chin-rubykaigi-2026"
-  title: "Talk: Edouard Chin"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Edouard Chin
-  video_provider: "scheduled"
-  video_id: "edouard-chin-rubykaigi-2026"
-
-- id: "hadashia-rubykaigi-2026"
-  title: "Talk: hadashiA"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - hadashiA
-  video_provider: "scheduled"
-  video_id: "hadashia-rubykaigi-2026"
-
-- id: "hayao-kimura-rubykaigi-2026"
-  title: "Talk: Hayao Kimura"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Hayao Kimura
-  video_provider: "scheduled"
-  video_id: "hayao-kimura-rubykaigi-2026"
-
-- id: "hiroshi-shibata-rubykaigi-2026"
-  title: "Talk: Hiroshi SHIBATA"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Hiroshi SHIBATA
-  video_provider: "scheduled"
-  video_id: "hiroshi-shibata-rubykaigi-2026"
-
-- id: "hiroya-fujinami-rubykaigi-2026"
-  title: "Talk: Hiroya Fujinami"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Hiroya Fujinami
-  video_provider: "scheduled"
-  video_id: "hiroya-fujinami-rubykaigi-2026"
-
-- id: "hitoshi-hasumi-rubykaigi-2026"
-  title: "Talk: Hitoshi HASUMI"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Hitoshi HASUMI
-  video_provider: "scheduled"
-  video_id: "hitoshi-hasumi-rubykaigi-2026"
-
-- id: "ivo-anjo-rubykaigi-2026"
-  title: "Talk: Ivo Anjo"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Ivo Anjo
-  video_provider: "scheduled"
-  video_id: "ivo-anjo-rubykaigi-2026"
-
-- id: "jacob-rubykaigi-2026"
-  title: "Talk: Jacob"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Jacob
-  video_provider: "scheduled"
-  video_id: "jacob-rubykaigi-2026"
-
-- id: "jeremy-evans-rubykaigi-2026"
-  title: "Talk: Jeremy Evans"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Jeremy Evans
-  video_provider: "scheduled"
-  video_id: "jeremy-evans-rubykaigi-2026"
-
-- id: "john-hawthorn-rubykaigi-2026"
-  title: "Talk: John Hawthorn"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - John Hawthorn
-  video_provider: "scheduled"
-  video_id: "john-hawthorn-rubykaigi-2026"
-
-- id: "justin-bowen-rubykaigi-2026"
-  title: "Talk: Justin Bowen"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Justin Bowen
-  video_provider: "scheduled"
-  video_id: "justin-bowen-rubykaigi-2026"
-
-- id: "katsuhiko-kageyama-rubykaigi-2026"
-  title: "Talk: Katsuhiko Kageyama"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Katsuhiko Kageyama
-  video_provider: "scheduled"
-  video_id: "katsuhiko-kageyama-rubykaigi-2026"
-
-- id: "kazuaki-tanaka-rubykaigi-2026"
-  title: "Talk: Kazuaki Tanaka"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Kazuaki Tanaka
-  video_provider: "scheduled"
-  video_id: "kazuaki-tanaka-rubykaigi-2026"
-
-- id: "kazuho-oku-rubykaigi-2026"
-  title: "Talk: Kazuho Oku"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Kazuho Oku
-  video_provider: "scheduled"
-  video_id: "kazuho-oku-rubykaigi-2026"
-
-- id: "koichi-ito-rubykaigi-2026"
-  title: "Talk: Koichi ITO"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Koichi ITO
-  video_provider: "scheduled"
-  video_id: "koichi-ito-rubykaigi-2026"
-
-- id: "koichi-sasada-rubykaigi-2026"
-  title: "Talk: Koichi Sasada"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Koichi Sasada
-  video_provider: "scheduled"
-  video_id: "koichi-sasada-rubykaigi-2026"
-
-- id: "kouji-takao-rubykaigi-2026"
-  title: "Talk: Kouji Takao"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Kouji Takao
-  video_provider: "scheduled"
-  video_id: "kouji-takao-rubykaigi-2026"
-
-- id: "luke-gruber-rubykaigi-2026"
-  title: "Talk: Luke Gruber"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Luke Gruber
-  video_provider: "scheduled"
-  video_id: "luke-gruber-rubykaigi-2026"
-
-- id: "maciej-mensfeld-rubykaigi-2026"
-  title: "Talk: Maciej Mensfeld"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Maciej Mensfeld
-  video_provider: "scheduled"
-  video_id: "maciej-mensfeld-rubykaigi-2026"
-
-- id: "marco-roth-rubykaigi-2026"
-  title: "Talk: Marco Roth"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Marco Roth
-  video_provider: "scheduled"
-  video_id: "marco-roth-rubykaigi-2026"
-
-- id: "masato-ohba-rubykaigi-2026"
-  title: "Talk: Masato Ohba"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Masato Ohba
-  video_provider: "scheduled"
-  video_id: "masato-ohba-rubykaigi-2026"
-
-- id: "masatoshi-seki-rubykaigi-2026"
-  title: "Talk: Masatoshi SEKI"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Masatoshi SEKI
-  video_provider: "scheduled"
-  video_id: "masatoshi-seki-rubykaigi-2026"
-
-- id: "max-bernstein-rubykaigi-2026"
-  title: "Talk: Max Bernstein"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Max Bernstein
-  video_provider: "scheduled"
-  video_id: "max-bernstein-rubykaigi-2026"
-
-- id: "misaki-shioi-rubykaigi-2026"
-  title: "Talk: Misaki Shioi"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Misaki Shioi
-  video_provider: "scheduled"
-  video_id: "misaki-shioi-rubykaigi-2026"
-
-- id: "soichiro-isshiki-rubykaigi-2026"
-  title: "Talk: Soichiro Isshiki"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Soichiro Isshiki
-  video_provider: "scheduled"
-  video_id: "soichiro-isshiki-rubykaigi-2026"
-
-- id: "nagachika-rubykaigi-2026"
-  title: "Talk: nagachika"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - nagachika
-  video_provider: "scheduled"
-  video_id: "nagachika-rubykaigi-2026"
-
-- id: "nate-berkopec-rubykaigi-2026"
-  title: "Talk: Nate Berkopec"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Nate Berkopec
-  video_provider: "scheduled"
-  video_id: "nate-berkopec-rubykaigi-2026"
-
 - id: "oda-hirohito-rubykaigi-2026"
-  title: "Talk: ODA Hirohito"
+  title: "Back to the roots of date"
+  track: "Small Hall #rubykaigiC"
   description: |-
-    TODO - description
+    The date library was originally implemented in Ruby, but during the transition from version 1.8.7 to the 1.9 series, it was rewritten in C to improve performance. Currently, the date library lacks a dedicated maintainer, which has become a burden for Ruby committers. Therefore, I am taking on the challenge of replacing the date library with a pure Ruby implementation.
   kind: "talk"
-  language: "en"
+  language: "ja"
   date: "2026-04-22"
   speakers:
     - ODA Hirohito
   video_provider: "scheduled"
   video_id: "oda-hirohito-rubykaigi-2026"
 
-- id: "peter-zhu-rubykaigi-2026"
-  title: "Talk: Peter Zhu"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Peter Zhu
-  video_provider: "scheduled"
-  video_id: "peter-zhu-rubykaigi-2026"
-
-- id: "ryosuke-uchida-rubykaigi-2026"
-  title: "Talk: Ryosuke Uchida"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Ryosuke Uchida
-  video_provider: "scheduled"
-  video_id: "ryosuke-uchida-rubykaigi-2026"
-
-- id: "samuel-giddins-rubykaigi-2026"
-  title: "Talk: Samuel Giddins"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Samuel Giddins
-  video_provider: "scheduled"
-  video_id: "samuel-giddins-rubykaigi-2026"
-
-- id: "samuel-williams-rubykaigi-2026"
-  title: "Talk: Samuel Williams"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Samuel Williams
-  video_provider: "scheduled"
-  video_id: "samuel-williams-rubykaigi-2026"
-
-- id: "sangyong-sim-rubykaigi-2026"
-  title: "Talk: Sangyong Sim"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Sangyong Sim
-  video_provider: "scheduled"
-  video_id: "sangyong-sim-rubykaigi-2026"
-
-- id: "shigeru-nakajima-rubykaigi-2026"
-  title: "Talk: Shigeru Nakajima"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Shigeru Nakajima
-  video_provider: "scheduled"
-  video_id: "shigeru-nakajima-rubykaigi-2026"
-
-- id: "shintaro-otsuka-rubykaigi-2026"
-  title: "Talk: Shintaro Otsuka"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Shintaro Otsuka
-  video_provider: "scheduled"
-  video_id: "shintaro-otsuka-rubykaigi-2026"
-
-- id: "shunsuke-michii-rubykaigi-2026"
-  title: "Talk: Shunsuke Michii"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Shunsuke Michii
-  video_provider: "scheduled"
-  video_id: "shunsuke-michii-rubykaigi-2026"
-
-- id: "soutaro-matsumoto-rubykaigi-2026"
-  title: "Talk: Soutaro Matsumoto"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Soutaro Matsumoto
-  video_provider: "scheduled"
-  video_id: "soutaro-matsumoto-rubykaigi-2026"
-
-- id: "stan-lo-rubykaigi-2026"
-  title: "Talk: Stan Lo"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Stan Lo
-  video_provider: "scheduled"
-  video_id: "stan-lo-rubykaigi-2026"
-
-- id: "sutou-kouhei-rubykaigi-2026"
-  title: "Talk: Sutou Kouhei"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Sutou Kouhei
-  video_provider: "scheduled"
-  video_id: "sutou-kouhei-rubykaigi-2026"
-
-- id: "takashi-kokubun-rubykaigi-2026"
-  title: "Talk: Takashi Kokubun"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Takashi Kokubun
-  video_provider: "scheduled"
-  video_id: "takashi-kokubun-rubykaigi-2026"
-
-- id: "tomoya-ishida-rubykaigi-2026"
-  title: "Talk: Tomoya Ishida"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Tomoya Ishida
-  video_provider: "scheduled"
-  video_id: "tomoya-ishida-rubykaigi-2026"
-
-- id: "tsutomu-katsube-rubykaigi-2026"
-  title: "Talk: Tsutomu Katsube"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Tsutomu Katsube
-  video_provider: "scheduled"
-  video_id: "tsutomu-katsube-rubykaigi-2026"
-
-- id: "uchio-kondo-rubykaigi-2026"
-  title: "Talk: Uchio KONDO"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Uchio KONDO
-  video_provider: "scheduled"
-  video_id: "uchio-kondo-rubykaigi-2026"
-
-- id: "vladimir-dementyev-rubykaigi-2026"
-  title: "Talk: Vladimir Dementyev"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Vladimir Dementyev
-  video_provider: "scheduled"
-  video_id: "vladimir-dementyev-rubykaigi-2026"
-
-- id: "yoh-osaki-rubykaigi-2026"
-  title: "Talk: Yoh Osaki"
-  description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Yoh Osaki
-  video_provider: "scheduled"
-  video_id: "yoh-osaki-rubykaigi-2026"
-
 - id: "yudai-takada-rubykaigi-2026"
-  title: "Talk: Yudai Takada"
+  title: "Liberating Ruby's Parser from Lexer Hacks"
+  track: "Large Hall #rubykaigiA"
   description: |-
-    TODO - description
+    In traditional LR parsing, the lexer must decide what token to return before the parser sees it. But for context-sensitive syntax, the correct tokenization depends on context that only the parser knows. The lexer can't see it—so Ruby's lexer resorts to manual lex state management, guessing context through hand-written code. This scatters language rules across implementation details, makes bugs hard to reproduce, and complicates every syntax change. PSLR(1): Pseudo-Scannerless Minimal LR(1), which I've implemented in Lrama, inverts this relationship: the parser tells the lexer which tokens are valid at each point. In this talk, I'll show how PSLR(1) bridges the information gap between parser and lexer, and explore how it could liberate Ruby's parser from the Lexer Hack curse.
   kind: "talk"
   language: "en"
   date: "2026-04-22"
@@ -724,34 +71,113 @@
   video_provider: "scheduled"
   video_id: "yudai-takada-rubykaigi-2026"
 
-- id: "yuhei-okazaki-rubykaigi-2026"
-  title: "Talk: Yuhei Okazaki"
+- id: "justin-bowen-rubykaigi-2026"
+  title: "Million-Agent Ruby: Ractor-Local GC in the Age of AI"
+  track: "Sub Arena #rubykaigiB"
   description: |-
-    TODO - description
+    Ractors promised true parallelism, but "Stop-the-World" Garbage Collection remained the final bottleneck—until now. Ruby 4.x introduces Ractor-Local GC, a monumental shift in memory management that decouples object heaps and allows for disjoint collection.
+    This talk explores the technical breakthroughs of the MaNy Project (M:N threading) and how they enable "Hyper-Generational" on device workloads in Ruby. Using ragents—a Ractor-native AI agent framework—we demonstrate how to bridge the conceptual gap between Memory Management and LLM Context Management. We will visualize the synergy between heap compaction and token window summarization, proving how Ruby 4.x enables near-linear scaling for autonomous agent swarms. Attendees will leave with a deep understanding of Ruby 4.x internals and a blueprint for high-concurrency AI orchestration.
   kind: "talk"
   language: "en"
   date: "2026-04-22"
   speakers:
-    - Yuhei Okazaki
+    - Justin Bowen
   video_provider: "scheduled"
-  video_id: "yuhei-okazaki-rubykaigi-2026"
+  video_id: "justin-bowen-rubykaigi-2026"
 
-- id: "yuichiro-kaneko-rubykaigi-2026"
-  title: "Talk: Yuichiro Kaneko"
+- id: "tsutomu-katsube-rubykaigi-2026"
+  title: "Portable and Fast - How to implement a parallel test runner"
+  track: "Small Hall #rubykaigiC"
   description: |-
-    TODO - description
+    When a library grows, its test suites become slow. This makes programmers unhappy. Parallel testing based on the multiprocess is a common practice to solve this. However, most testing frameworks and tools are not "portable" enough to support various environments. Because they depend on Unix specific features like fork or external libraries including other bundled gems like drb.
+
+    To address this, test-unit (as a bundled gem) now natively supports portable and fast parallel test running based on the multiprocess. It is designed to work in various environments (e.g. Windows) out of the box.
+
+    This talk describes the journey of implementing parallel running to a historical testing framework without breaking backward compatibility. If you are interested in speeding up your test suites, implementing portable parallel libraries or maintaining historical codebases, this talk will help you.
+  kind: "talk"
+  language: "ja"
+  date: "2026-04-22"
+  speakers:
+    - Tsutomu Katsube
+  video_provider: "scheduled"
+  video_id: "tsutomu-katsube-rubykaigi-2026"
+
+- id: "koichi-ito-rubykaigi-2026"
+  title: "Exploring RuboCop with MCP"
+  track: "Large Hall #rubykaigiA"
+  description: |-
+    This talk explores the potential of tools in the Ruby ecosystem in the AI era, with a particular focus on linters and formatters.
+
+    Traditionally, RuboCop has been triggered by humans or by other programs. In the AI era, AI agents have emerged as a new kind of trigger. This talk discusses practical ways to combine generative AI with linters and formatters, such as running these tools alongside AI agents, by integrating an MCP (Model Context Protocol) server implemented in Ruby.
+
+    While the AI landscape is evolving rapidly and technologies are changing at a fast pace, this talk aims to provide an opportunity for Ruby ecosystem developers to consider how existing Ruby tools like RuboCop can evolve in the AI era through MCP.
+  kind: "talk"
+  language: "ja"
+  date: "2026-04-22"
+  speakers:
+    - Koichi ITO
+  video_provider: "scheduled"
+  video_id: "koichi-ito-rubykaigi-2026"
+
+- id: "daisuke-aritomo-rubykaigi-2026"
+  title: "ext/profile, or How to Make Profilers Tell the Truth"
+  track: "Sub Arena #rubykaigiB"
+  description: |-
+    When our code runs in slow motion, we reach for profilers. They promise to tell us what’s making it slow.
+
+    Or do they? Profilers do not always “tell the truth”. Their non-deterministic nature comes with pitfalls: sampling bias, hidden methods optimized away, misattributed work between threads. Existing profilers rely on a surprising number of tricks to observe Ruby execution internals.
+
+    As Ruby evolves with features such as Ractors, M:N threading and JIT, the limits of this external approach are becoming increasingly apparent. The more complex the runtime becomes, the harder it is for profilers outside of the VM.
+
+    Let us explore the capabilities and limits of today's Ruby profilers, and show how embedding a profiler, say 'ext/profile', directly into CRuby lets us break fundamental limits of external profiling. What should be called "true"? We will find out by the end.
   kind: "talk"
   language: "en"
   date: "2026-04-22"
   speakers:
-    - Yuichiro Kaneko
+    - Daisuke Aritomo
   video_provider: "scheduled"
-  video_id: "yuichiro-kaneko-rubykaigi-2026"
+  video_id: "daisuke-aritomo-rubykaigi-2026"
+
+- id: "hadashia-rubykaigi-2026"
+  title: "mruby on C#: From VM Implementation to Game Scripting"
+  track: "Small Hall #rubykaigiC"
+  description: |-
+    What if mruby could run anywhere—without any C compilation?
+    I built MRubyCS, a complete mruby VM implementation in pure C#. This makes embedding mruby in cross-platform applications far easier.  Cross-platform distribution means juggling build targets, static/dynamic linking, and diverse host machines—a constant hassle (iOS, Web, Win, Mac, consoles, etc.). And on closed platforms like game consoles (Ps, Switch, Xbox..), it's often impractical without SDK access—now it just works. Unity and .NET already handle platform abstraction for you.
+    This also opens new doors for the Ruby community. Game development has long been a space where Ruby has limited presence. With mruby running in Unity, Ruby developers can bring their language into one of the world's most popular game engines—for scripting game logic, building tools, and more.
+    Beyond the VM implementation story, I'll show practical game scripting with VitalRouter.MRuby and Fiber-based coroutines!
+  kind: "talk"
+  language: "ja"
+  date: "2026-04-22"
+  speakers:
+    - hadashiA
+  video_provider: "scheduled"
+  video_id: "hadashia-rubykaigi-2026"
+
+- id: "luke-gruber-rubykaigi-2026"
+  title: "Ruby's Scheduler: Improving I/O"
+  track: "Large Hall #rubykaigiA"
+  description: |-
+    Ruby’s thread scheduler is a round-robin scheduler, which makes it simple and completely fair. However, this hurts the responsiveness of I/O-bound threads for mixed I/O and CPU workloads because I/O-bound threads have to wait for CPU-bound threads to finish their timeslice. Many Ruby applications have this type of workload, so would benefit from a priority scheduler. In this talk, we will examine how a priority scheduler works and the benefits it can give to a Ruby application.
+  kind: "talk"
+  language: "en"
+  date: "2026-04-22"
+  speakers:
+    - Luke Gruber
+  video_provider: "scheduled"
+  video_id: "luke-gruber-rubykaigi-2026"
 
 - id: "yuji-yokoo-rubykaigi-2026"
-  title: "Talk: Yuji Yokoo"
+  title: "mruby in the 8-bit world: mruby VM for Zilog Z80"
+  track: "Sub Arena #rubykaigiB"
   description: |-
-    TODO - description
+    Zilog Z80 was a popular 8-bit processor back in its day, and still remains popular in many use cases today. It was widely used for personal computers and game consoles including Sega Master System and Game Gear. However, there is currently no Ruby implementation that runs on Z80.
+
+    I am working on mrubyz, which is an mruby VM implementation that aims to run the mruby bytecode on the Z80 processor, with caveats and limitations.
+
+    It is very limited in terms of supported features and instructions. Also, Z80 is a rather old, and slow processor with many limitations. However, I am making it usable for some purposes.
+
+    This presentation will share with you what it takes to run (a subset of) Ruby on an old 8-bit processor, and some insights gained from developing one.
   kind: "talk"
   language: "en"
   date: "2026-04-22"
@@ -760,34 +186,53 @@
   video_provider: "scheduled"
   video_id: "yuji-yokoo-rubykaigi-2026"
 
-- id: "yusuke-endoh-rubykaigi-2026"
-  title: "Talk: Yusuke Endoh"
+- id: "kazuho-oku-rubykaigi-2026"
+  title: "Rapid Start: Faster Internet Connections, with Ruby's Help"
+  track: "Small Hall #rubykaigiC"
   description: |-
-    TODO - description
-  kind: "talk"
-  language: "en"
-  date: "2026-04-22"
-  speakers:
-    - Yusuke Endoh
-  video_provider: "scheduled"
-  video_id: "yusuke-endoh-rubykaigi-2026"
+    Making communication faster has long meant removing bottlenecks, one by one. In the past, bandwidth was the primary bottleneck. As bandwidth became more abundant, latency emerged as the next major constraint. Early efforts to reduce it included HTTP/2 multiplexing, TLS 1.3, and QUIC's shorter handshakes.
 
-- id: "yutaka-hara-rubykaigi-2026"
-  title: "Talk: Yutaka HARA"
-  description: |-
-    TODO - description
+    Now that QUIC has been standardized and is gaining adoption, attention is shifting to the next bottleneck: the startup phase—the time it takes to discover and fully utilize available bandwidth after a connection is established.
+
+    This session introduces "Rapid Start," a new approach currently being evaluated by Fastly. It reviews Slow Start, the conventional method for bandwidth probing, explaining why startup can be slow, what assumptions it relies on, and where its limitations appear. It then shows how Rapid Start changes the initial behavior of bandwidth estimation to shorten startup time, highlighting its design points, trade-offs, and how Ruby was used to analyze its behavior.
   kind: "talk"
-  language: "en"
+  language: "ja"
   date: "2026-04-22"
   speakers:
-    - Yutaka HARA
+    - Kazuho Oku
   video_provider: "scheduled"
-  video_id: "yutaka-hara-rubykaigi-2026"
+  video_id: "kazuho-oku-rubykaigi-2026"
+
+- id: "yuichiro-kaneko-rubykaigi-2026"
+  title: "Kingdom of the Machine: The Tale of Operators and Commands"
+  track: "Large Hall #rubykaigiA"
+  description: |-
+    Leaving aside the trivialities of specific implementation details[^1], what are the fundamental problems a parser must confront and solve[^2]?
+
+    Let’s consider the input: 1 + 2 * 3. Suppose a grammar dictates that this input should be structured as 1 + (2 * 3). As a parser reads the input from left to right, it reaches 1 + 2 and recognizes that the next token is *. At this point, it must decide whether to group the preceding part into a single unit or continue. This challenge is independent of how the parser is implemented; it's a universal problem inherent to parsing itself.
+
+    In this session, I will highlight several such problems within the parsing domain and explore how different parser implementations try to solve them.
+
+    [^1]: In truth, the "how" is where the real struggle lies…
+    [^2]: I will limit my scope to one-way, non-backtracking parsers that read input from left to right.
+    [^3]: Of course, the discussion won't end with simply observing how those problems are addressed…
+  kind: "talk"
+  language: "ja"
+  date: "2026-04-22"
+  speakers:
+    - Yuichiro Kaneko
+  video_provider: "scheduled"
+  video_id: "yuichiro-kaneko-rubykaigi-2026"
 
 - id: "yuya-fujiwara-rubykaigi-2026"
-  title: "Talk: Yuya Fujiwara"
+  title: "From Live Code to Sound: Building a Ruby Live Coding Engine"
+  track: "Sub Arena #rubykaigiB"
   description: |-
-    TODO - description
+    What if we could create sounds incrementally, shaping music as we type Ruby in a live coding session?
+
+    I built strudel-rb, a Ruby implementation inspired by Strudel (a browser-based live coding environment for algorithmic music at https://strudel.cc ),  so we can live-code in Ruby while generating rhythmic patterns and melodies from Ruby syntax.
+
+    In this presentation, I will talk about parsing a sequence of sounds defined in Mini-Notation, how to calculate the timing of sound playback, syntax that Ruby cannot handle when adapting Strudel-style syntax, and techniques for preventing sound from stopping when a syntax error occurs during live-coding.
   kind: "talk"
   language: "en"
   date: "2026-04-22"
@@ -795,3 +240,903 @@
     - Yuya Fujiwara
   video_provider: "scheduled"
   video_id: "yuya-fujiwara-rubykaigi-2026"
+
+- id: "katsuhiko-kageyama-rubykaigi-2026"
+  title: "MicroRuby as a Multi-VM Operating System"
+  track: "Small Hall #rubykaigiC"
+  description: |-
+    With the emergence of PicoRuby, mruby-centered technologies have increasingly been used as lightweight operating environments for microcontrollers.
+
+    In this talk, I present a more self-contained approach: an operating system for microcontrollers built around MicroRuby, where the mruby VM serves as the system core. I call this framework Family mruby OS.
+
+    The system enables developers to write and run Ruby applications directly on a microcontroller with a GUI, using a USB keyboard, mouse, and display—without relying on a PC.
+
+    By leveraging FreeRTOS, multiple MicroRuby VMs, as well as VMs of other languages, can run concurrently at the machine-code level, enabling true multi-VM execution while keeping Ruby responsible for application lifecycle management.
+
+    I will explain the design and implementation of this framework, discuss the key technical challenges involved, and demonstrate the system running on real hardware.
+  kind: "talk"
+  language: "ja"
+  date: "2026-04-22"
+  speakers:
+    - Katsuhiko Kageyama
+  video_provider: "scheduled"
+  video_id: "katsuhiko-kageyama-rubykaigi-2026"
+
+- id: "max-bernstein-rubykaigi-2026"
+  title: "The design and implementation of ZJIT & the next five years"
+  track: "Large Hall #rubykaigiA"
+  description: |-
+    The ZJIT team talked about ZJIT briefly last year right before it was merged. Now I will talk about what has changed, where the optimization ideas come from, and what the future holds, including constant-folding, value numbering, escape analysis, scalar replacement, register allocation, and more. I will walk through the rich history of dynamic language compiler research and how it can be applied to a language as dynamic as Ruby. Last, we will see if Ruby 4 holds up to the performance expectations from RubyKaigi 2022.
+  kind: "talk"
+  language: "en"
+  date: "2026-04-22"
+  speakers:
+    - Max Bernstein
+  video_provider: "scheduled"
+  video_id: "max-bernstein-rubykaigi-2026"
+
+- id: "albert-pazderin-rubykaigi-2026"
+  title: "TutorialKit.rb: interactive Ruby gem docs powered by Wasm"
+  track: "Sub Arena #rubykaigiB"
+  description: |-
+    What if trying a Ruby gem was as easy as opening a web page – no local setup, no "bundle install," no version headaches? TutorialKit.rb enables interactive, runnable tutorials for Ruby gems directly in the browser by combining Ruby on WebAssembly with an in-browser development runtime.
+
+    This talk presents the grant-funded evolution of the project: TutorialKit.rb was awarded a Ruby Association Grant in 2025, and the work from that grant is the core of what I'll share at RubyKaigi 2026.
+
+    First of all I'll showcase building an example tutorial using the framework.
+    . RubyKaigi is a technical conference, so then we'll go beyond the demo and focus on the engineering: the architecture that wires Browser → WebContainer → Ruby WASM, the Ruby ⇄ WebContainer bridge, and the build/distribution pipeline that makes a full-featured development workflow possible inside the browser.
+  kind: "talk"
+  language: "en"
+  date: "2026-04-22"
+  speakers:
+    - Albert Pazderin
+  video_provider: "scheduled"
+  video_id: "albert-pazderin-rubykaigi-2026"
+
+- id: "yoh-osaki-rubykaigi-2026"
+  title: "Guide to getting started walking source codes of CRuby"
+  track: "Small Hall #rubykaigiC"
+  description: |-
+    Have you ever wanted to read CRuby's source code?
+    Do you want to understand how Ruby works?
+    I wrote a self-published book called “CRuby Adventures Log (CRubyのぼうけんのしょ)”. In this book, you'll read CRuby's source code alongside the author, exploring its inner workings as if on an adventure.
+    In this talk, I'll share the essence of the book and techniques for deciphering source code that I gained through writing it.
+  kind: "talk"
+  language: "ja"
+  date: "2026-04-22"
+  speakers:
+    - Yoh Osaki
+  video_provider: "scheduled"
+  video_id: "yoh-osaki-rubykaigi-2026"
+
+- id: "tomoya-ishida-rubykaigi-2026"
+  title: "Digits, Digits, and Digits"
+  track: "Large Hall #rubykaigiA"
+  description: |-
+    Do you know BigDecimal's BigMath module?
+    It can calculate mathematical functions in arbitrary precision.
+    But it takes few seconds calculating sin(1) for just 10000 digits in bigdecimal-3.1.9. It's not "Big" at all. We need more and more digits.
+    In this talk, I'll show how BigMath calculation is maintained, improved, and the fun part of designing digit calculation.
+  kind: "talk"
+  language: "ja"
+  date: "2026-04-22"
+  speakers:
+    - Tomoya Ishida
+  video_provider: "scheduled"
+  video_id: "tomoya-ishida-rubykaigi-2026"
+
+- id: "edouard-chin-rubykaigi-2026"
+  title: "Faster Bundler, Happier Developers"
+  track: "Sub Arena #rubykaigiB"
+  description: |-
+    Bundler has reliably helped the Ruby community install and manage dependencies for close to two decades, but with the announcement of Python's uv we found ourselves asking "Could Bundler be faster?".
+    We took this opportunity to investigate and fix a multitude of performance issues now released in Bundler 4.
+
+    In this talk, we’ll dive into why Bundler is slow, what we are doing about it, and how the Ruby community can help.
+    Our goals are to evolve Rubygems and Bundler in order to offer Ruby developers an exceptionally fast experience when running bundle install.
+  kind: "talk"
+  language: "en"
+  date: "2026-04-22"
+  speakers:
+    - Edouard Chin
+  video_provider: "scheduled"
+  video_id: "edouard-chin-rubykaigi-2026"
+
+- id: "shunsuke-michii-rubykaigi-2026"
+  title: "Building a Standalone Ruby Programming Environment"
+  track: "Small Hall #rubykaigiC"
+  description: |-
+    Modern computing is too complex for young learners to get a feel for programming. Even to write Ruby, beginners must first learn, such as managing an OS, setting up an editor, and installing Ruby runtimes. This noise makes it hard to reach the essence of programming.
+
+    In this talk, I will demonstrate how a standalone Ruby computer was built with mruby. This $20 handmade single board computer provides a complete programming environment with display output and keyboard input, all without a host PC.
+
+    I will dive into the implementation of its graphics engine featuring real-time 640x480 output and text/shape rendering, as well as a Ruby shell with USB keyboard input and serial communication with external R2P2 devices. By showing how every component runs on the mruby VM, I will demonstrate that it is powerful enough to build a complete computing experience from scratch on a tiny microcontroller.
+  kind: "talk"
+  language: "ja"
+  date: "2026-04-22"
+  speakers:
+    - Shunsuke Michii
+  video_provider: "scheduled"
+  video_id: "shunsuke-michii-rubykaigi-2026"
+
+- id: "charles-nutter-keynote-rubykaigi-2026"
+  title: "Keynote: JRuby: Tomorrow's Ruby Today"
+  track: "Large Hall #rubykaigiA"
+  description: |-
+    You know that JRuby is Ruby for the JVM, but what does that really mean? JRuby is compatible with Ruby 4 and runs Rails, but also enables use cases that regular Ruby can only dream of:
+
+
+    Precompiling code for commercial products
+    Single-file deployment with any JDK on any device (even mobile and embedded)
+    Low-overhead profiling of production apps
+    Simple, powerful multi-threading that uses all cores
+    Cross-platform libraries for graphics, GUIs, games and AI
+
+
+    And with JRuby 10.1, we're adding new and amazing features and optimizations every day. You've never seen Ruby like this!
+
+    This talk will present several fun and cool JRuby use cases that are difficult or impossible to do with regular Ruby. You'll learn how to do more with Ruby and bring Ruby to more places.
+  kind: "keynote"
+  language: "en"
+  date: "2026-04-23"
+  speakers:
+    - Charles Oliver Nutter
+  video_provider: "scheduled"
+  video_id: "charles-nutter-keynote-rubykaigi-2026"
+
+- id: "koichi-sasada-rubykaigi-2026"
+  title: "The AST Galaxy to the Virtual Machine Blues"
+  track: "Large Hall #rubykaigiA"
+  description: |-
+    Ruby has long relied on virtual machines for performance, but their growing complexity can sometimes feel like the "virtual machine blues." In this talk, I introduce ASTro, an AST-based reusable optimization framework, and share an experiment in reimplementing Ruby using this new approach.
+
+    Before Ruby 1.9, Ruby programs were executed by directly traversing their AST. While modern Ruby implementations have moved to bytecode VMs and JIT compilers, this talk revisits AST-based execution with today’s techniques by rebuilding parts of Ruby on top of ASTro.
+
+    Using ASTro, Ruby programs are optimized and compiled at the AST level, generating C source code and producing efficient native code. This is a research-stage experiment rather than a production proposal, and the talk focuses on what worked, what did not, and what we learned from the attempt.
+  kind: "talk"
+  language: "en"
+  date: "2026-04-23"
+  speakers:
+    - Koichi Sasada
+  video_provider: "scheduled"
+  video_id: "koichi-sasada-rubykaigi-2026"
+
+- id: "daichi-kamiyama-rubykaigi-2026"
+  title: "No Types Needed, Just Callable Method Check"
+  track: "Sub Arena #rubykaigiB"
+  description: |-
+    In recent years, Ruby's type ecosystem has been growing steadily. More and more production applications are benefiting from type checking. However, as AI-generated Ruby code continues to improve in quality, I find myself questioning more often: do we really need types?
+
+    In this session, I'll share my realization that most of the benefits of typing really boil down to preventing NoMethodError. Based on this, I'll introduce Method-Ray, a gem I'm developing that provides this benefit without requiring any type annotations. I will cover its usage, development background, current architecture (implemented in Rust), and how it differs from existing type checkers.
+  kind: "talk"
+  language: "en"
+  date: "2026-04-23"
+  speakers:
+    - Daichi Kamiyama
+  video_provider: "scheduled"
+  video_id: "daichi-kamiyama-rubykaigi-2026"
+
+- id: "daisuke-fujimura-rubykaigi-2026"
+  title: "Keeping Ruby Running on Cygwin"
+  track: "Small Hall #rubykaigiC"
+  description: |-
+    Ruby runs on a wide variety of platforms, but behind that portability lies continuous and often invisible package maintenance for each environment.
+
+    This talk presents a case study of maintaining Ruby binary packages on the Cygwin environment, from the perspective of a downstream package maintainer rather than a Ruby core committer.
+    It focuses on how Ruby packages on Cygwin, which had fallen far behind upstream releases due to a lack of active maintenance, were restored and kept up to date, and on the technical challenges encountered along the way.
+    These include platform-specific build and test issues, packaging decisions, and the effects of Cygwin’s POSIX compatibility layer, toolchain, and library differences on Ruby.
+    Some of these issues resulted in feedback and patches to Ruby upstream.
+
+    Through this experience, I will share practical lessons on keeping Ruby running on a non-mainstream platform, and the role of downstream maintenance in supporting Ruby’s multi-platform support.
+  kind: "talk"
+  language: "ja"
+  date: "2026-04-23"
+  speakers:
+    - Daisuke Fujimura
+  video_provider: "scheduled"
+  video_id: "daisuke-fujimura-rubykaigi-2026"
+
+- id: "peter-zhu-rubykaigi-2026"
+  title: "Building the Next-Generation Garbage Collector in Ruby"
+  track: "Large Hall #rubykaigiA"
+  description: |-
+    Last year at RubyKaigi 2025, the Modular Garbage Collector feature in Ruby was introduced. With this feature, we shipped an alternative garbage collector using the Memory Management Toolkit (MMTk) framework. At the time, however, MMTk was significantly slower than the default garbage collector in Ruby.
+
+    Over the past year, the MMTk Ruby integration has been significantly improved and the performance is now on par with the default garbage collector. It now supports the Moving Immix garbage collection strategy, improved parallelism, and numerous optimizations.
+
+    In this talk, we will go over the Modular Garbage Collector feature and its differences with the default garbage collector, examine the techniques used to speed up the Ruby MMTk integration, and discuss how it can be improved further in the future.
+  kind: "talk"
+  language: "en"
+  date: "2026-04-23"
+  speakers:
+    - Peter Zhu
+  video_provider: "scheduled"
+  video_id: "peter-zhu-rubykaigi-2026"
+
+- id: "uchio-kondo-rubykaigi-2026"
+  title: "Uzumibi: Reinventing mruby for the Edges"
+  track: "Sub Arena #rubykaigiB"
+  description: |-
+    Can Ruby be practically deployed in edge computing environments like Cloudflare Workers, Fastly Compute, or Spin? In this talk, I will introduce "mruby/edge" and "Uzumibi," a framework built upon it to bring the power of Ruby to the edge.
+
+    mruby/edge is an mruby-compatible VM built from scratch in Pure Rust. It generates highly portable Wasm binaries, enabling minimal builds under 400KiB.
+
+    Since RubyKaigi 2024, mruby/edge has evolved significantly. It now supports basic OOP features, exception handling, closures, control structures, keyword args, and feature flags.
+
+    Uzumibi is a lightweight web framework leveraging mruby/edge. Uzumibi can run the same Ruby code across multiple edge platforms, providing a simple web API.
+
+    mruby/edge and Uzumibi are opening new possibilities for Ruby in edge computing, where Ruby has traditionally been difficult to utilize.
+    I'll discuss why I built a VM from scratch for Wasm and edges, share the challenges and solutions, and present the future roadmap.
+  kind: "talk"
+  language: "en"
+  date: "2026-04-23"
+  speakers:
+    - Kondo Uchio
+  video_provider: "scheduled"
+  video_id: "uchio-kondo-rubykaigi-2026"
+
+- id: "masatoshi-seki-rubykaigi-2026"
+  title: "Programming with DJ Controller"
+  track: "Small Hall #rubykaigiC"
+  description: |-
+    The current DJ scene is dominated by PCDJ controllers, which communicate with a PC via MIDI for performance. This eliminates the need to carry around equipment or vinyl records, making it easy to get started. However, many people who start easily quickly lose interest or realize the limits of their own talent. I am certainly one of them.
+
+    DJ controllers are equipped with multiple switches such as jog wheels, volume controls, and buttons, and can be purchased for just a few tens of thousands of yen. It's difficult to assemble a similar device yourself by gathering the necessary parts. This presentation will introduce examples of effectively utilizing DJ controllers as Human Interface Devices (HIDs).
+
+    I want to share the know-how of implementing each area in Ruby, from communication with the DJ controller to control of desktop applications and editors, and programming support.
+  kind: "talk"
+  language: "ja"
+  date: "2026-04-23"
+  speakers:
+    - Masatoshi SEKI
+  video_provider: "scheduled"
+  video_id: "masatoshi-seki-rubykaigi-2026"
+
+- id: "vladimir-dementyev-rubykaigi-2026"
+  title: "Require Hooks: Filling the Gap in Ruby's Extensibility"
+  track: "Large Hall #rubykaigiA"
+  description: |-
+    Ruby is famously extensible: open classes, included, inherited and such, TracePoint, and more. Yet when it comes to intercepting the process of loading (or requiring) source code, we're left without a standard mechanism to do so.
+
+    Transpilers, load flow analyzers, runtime type checkers—all of these could benefit from having a standard API for hijacking require calls. What if we had one? Actually, we do.
+
+    Let me introduce the require-hooks gem, which brings a universal interface for intercepting require (and load) calls in Ruby, allowing you to perform source transformations and more.
+  kind: "talk"
+  language: "en"
+  date: "2026-04-23"
+  speakers:
+    - Vladimir Dementyev
+  video_provider: "scheduled"
+  video_id: "vladimir-dementyev-rubykaigi-2026"
+
+- id: "samuel-williams-rubykaigi-2026"
+  title: "Surviving Black Friday: 100 billion requests with Falcon!"
+  track: "Sub Arena #rubykaigiB"
+  description: |-
+    On Black Friday 2025, Shopify's Storefront served billions of requests on Falcon—23 million RPM at peak, zero dropped requests. One year earlier, we ran three different web servers and had no idea which parts of our 15-year-old Rails codebase were thread-safe.
+
+    This talk brings together three perspectives on migrating a massive Rails application to async Ruby in production:
+
+    Samuel Williams discusses production reliability: worker health monitoring, proactive memory management, and fiber profiling to detect code blocking the event loop.
+
+    Marc-André Cournoyer dives into "long tasks": an approach that lets CPU-bound Rails apps handle concurrent I/O without performance degradation. GraphQL @defer went from blocking workers for 30+ seconds to nearly free.
+
+    Josh Teeter shares the infrastructure wins: the Outbox system (hundreds of Kafka connections → one per pod), debugging issues that only surfaced at BFCM scale, and orchestrating a zero-downtime rollout.
+  kind: "talk"
+  language: "en"
+  date: "2026-04-23"
+  speakers:
+    - Samuel Williams
+    - Marc-André Cournoyer
+  video_provider: "scheduled"
+  video_id: "samuel-williams-rubykaigi-2026"
+
+- id: "nagachika-rubykaigi-2026"
+  title: "Pure Intonation on Browser: Building a Sequencer with Ruby"
+  track: "Small Hall #rubykaigiC"
+  description: |-
+    Ruby/WASM empowers Rubyists to build flexible applications directly on the browser. I developed "purified-synth," a browser-based synthesizer and sequencer combining Ruby/WASM with the Web Audio API.
+    The core distinction of this project is its focus on "Pure Intonation" rather than the standard 12-tone equal temperament. While microtonal music often relies on approximations like 53-TET, this sequencer uses Ruby to calculate precise frequency ratios, enabling chords in their purest mathematical form.
+    In this session, I will demonstrate the implementation of this musical theory in Ruby and share practical techniques for building functional applications using Ruby/WASM. I will discuss the nuances of JavaScript interoperability (JS interop) and the architectural patterns required to bridge the gap between Ruby and Web APIs, providing insights for those looking to move beyond "Hello World" examples in Ruby/WASM.
+  kind: "talk"
+  language: "ja"
+  date: "2026-04-23"
+  speakers:
+    - Tomoyuki Chikanaga
+  video_provider: "scheduled"
+  video_id: "nagachika-rubykaigi-2026"
+
+- id: "aaron-patterson-rubykaigi-2026"
+  title: "A Faster FFI"
+  track: "Large Hall #rubykaigiA"
+  description: |-
+    We all love programming in Ruby, but sometimes it is necessary to call native code.  Unfortunately, C extensions usually have better performance than using FFI.  In this presentation, I want to show how we can have an FFI implementation that matches, or even beats, the performance of using a C extension.  We’ll look at what makes FFI slow and how we can address performance.  Lets make FFI fast so that we can stop using C extensions!
+  kind: "talk"
+  language: "ja"
+  date: "2026-04-23"
+  speakers:
+    - Aaron Patterson
+  video_provider: "scheduled"
+  video_id: "aaron-patterson-rubykaigi-2026"
+
+- id: "soutaro-matsumoto-rubykaigi-2026"
+  title: "Making the RBS Parser Faster"
+  track: "Sub Arena #rubykaigiB"
+  description: |-
+    At the last RubyKaigi, a talk introduced a major overhaul of the RBS parser, making it more portable so that it could be reused by other tools such as Sorbet. After the new parser was merged into the main branch, an issue was reported indicating roughly a 10% performance regression compared to the RBS 3.9 parser.
+
+    However, this was not the worst case. We soon noticed that, for smaller files, the new parser could be up to five times slower than the previous implementation.
+
+    In this talk, I will walk you through a short journey of making the RBS parser faster by profiling the implementation, clarifying undocumented assumptions, and improving the parser implementation in C.
+  kind: "talk"
+  language: "en"
+  date: "2026-04-23"
+  speakers:
+    - Soutaro Matsumoto
+  video_provider: "scheduled"
+  video_id: "soutaro-matsumoto-rubykaigi-2026"
+
+- id: "ryosuke-uchida-rubykaigi-2026"
+  title: "PicoRuby with Practical MQTT"
+  track: "Small Hall #rubykaigiC"
+  description: |-
+    PicoRuby aims to bring Ruby into the world of microcontrollers, where severe memory and execution constraints make practical networking difficult. In this talk, I present a real-world implementation of a practical MQTT client on PicoRuby with mruby/c, built on top of picoruby-net.
+
+    Unlike CRuby, mruby/c provides no threads, limited socket abstractions, and very restricted memory. Implementing MQTT in this environment required careful design of packet construction and parsing, buffer management, connection lifecycle handling, and interaction with garbage collection, while preserving a Ruby-like programming model.
+
+    This session explores what it actually takes to implement a non-trivial network protocol in Ruby under extreme constraints. It shows how far Ruby can realistically be pushed toward bare-metal environments and where it must adapt.
+  kind: "talk"
+  language: "ja"
+  date: "2026-04-23"
+  speakers:
+    - Ryosuke Uchida
+  video_provider: "scheduled"
+  video_id: "ryosuke-uchida-rubykaigi-2026"
+
+- id: "jeremy-evans-rubykaigi-2026"
+  title: "Implementing Core Set"
+  track: "Large Hall #rubykaigiA"
+  description: |-
+    Historically, Ruby's Set class was in the standard library.  Starting in Ruby 3.2, the Set standard library was autoloaded by default.  In Ruby 4.0, Set is now implemented as one of the core classes.  In this presentation, I'll go over the history of Set, why and how it was implemented as a core class, interesting implementation issues, and how it led to a decrease in memory usage for some embedded RTypedData objects (and what RTypedData objects are).
+  kind: "talk"
+  language: "en"
+  date: "2026-04-23"
+  speakers:
+    - Jeremy Evans
+  video_provider: "scheduled"
+  video_id: "jeremy-evans-rubykaigi-2026"
+
+- id: "chris-hasinski-rubykaigi-2026"
+  title: "From C to Ruby: Porting Doom"
+  track: "Sub Arena #rubykaigiB"
+  description: |-
+    optcarrot has become a de-facto benchmark for Ruby performance experiments, but it represents a relatively simple rendering workload. To explore a different performance profile, I ported the core of the 1993 game Doom to Ruby, including its BSP-based renderer translated directly from Chocolate Doom.
+
+    Despite its reputation, Doom is not a raycaster but a constrained 3D engine operating on 2D maps, with dynamic lighting, sprites, stairs, and variable floor heights. This makes it a surprisingly rich real-time, CPU-bound workload for Ruby.
+
+    In this talk, I will describe strategies for porting a large C codebase to Ruby, validating correctness via frame-by-frame comparison with the original engine, and measuring performance. I will also show how modern Ruby features such as YJIT affect a real-time renderer, where the engine reaches playable frame rates at 320×240 but quickly exposes bottlenecks at higher resolutions.
+
+    Includes a demo (gem install doom && doom).
+  kind: "talk"
+  language: "en"
+  date: "2026-04-23"
+  speakers:
+    - Chris Hasiński
+  video_provider: "scheduled"
+  video_id: "chris-hasinski-rubykaigi-2026"
+
+- id: "shigeru-nakajima-rubykaigi-2026"
+  title: "ruby.wasm also enables JavaScript to call Ruby libraries."
+  track: "Small Hall #rubykaigiC"
+  description: |-
+    In 2022, ruby.wasm emerged and has advanced in the realm of Ruby in browser. Examples include loading Ruby scripts from files, automatic conversion of JavaScript native types, and Promise operations. On the other hand, there has been no progress in executing Ruby scripts from JavaScript. Currently, only minimal eval functionality is available. By implementing features equivalent to Ruby in browser—such as loading scripts from files, automatic conversion of native types, and method calls—we can expand Ruby's use cases. For example, it could enable executing Ruby libraries from JavaScript running in browsers or Node.js servers.
+  kind: "talk"
+  language: "ja"
+  date: "2026-04-23"
+  speakers:
+    - Shigeru Nakajima
+  video_provider: "scheduled"
+  video_id: "shigeru-nakajima-rubykaigi-2026"
+
+- id: "maciej-mensfeld-rubykaigi-2026"
+  title: "Thread-Coordinated Ractors: The Pattern That Delivers"
+  track: "Large Hall #rubykaigiA"
+  description: |-
+    Ractors have been "experimental" since Ruby 3.0. Four years later, most developers still haven't found a practical use for them.
+
+    I did. By moving message deserialization into a Ractor pool, Karafka achieves up to 70% throughput improvement on certain workloads - without requiring users to change a single line of code.
+
+    This talk covers the architecture, the patterns that actually perform, and what I learned about making Ractors useful in production.
+  kind: "talk"
+  language: "en"
+  date: "2026-04-23"
+  speakers:
+    - Maciej Mensfeld
+  video_provider: "scheduled"
+  video_id: "maciej-mensfeld-rubykaigi-2026"
+
+- id: "charlie-savage-rubykaigi-2026"
+  title: "Building a Modern Ruby <-> C++ Toolchain"
+  track: "Sub Arena #rubykaigiB"
+  description: |-
+    It started with pybind11 envy. Back in 2020, I used pybind11 to create a Python extension for my company's C++ pattern discovery engine. It took only a few days but enabled our data scientists to make breakthrough discoveries in cancer research. There is something magical when compiled code comes alive in a REPL like IRB.
+
+    I wanted that experience in Ruby, but the tooling was not there. Thus began a 5-year journey to build a modern Ruby ↔ C++ toolchain. The result now powers Ruby bindings for libraries such as PyTorch, faiss and OpenCV.
+
+    This talk will walk through the toolchain:
+
+
+    ffi-clang: parse C++ headers using libclang
+    ruby-bindgen: generate bindings from the clang AST
+    Rice: Ruby <-> C++ interoperability
+    CMake: cross-platform native builds
+
+
+    We will cover challenges like ownership, garbage collection, templates and method overloading. Attendees will leave knowing how to bridge Ruby and modern C++ for both small utilities and large, complex libraries.
+  kind: "talk"
+  language: "en"
+  date: "2026-04-23"
+  speakers:
+    - Charlie Savage
+  video_provider: "scheduled"
+  video_id: "charlie-savage-rubykaigi-2026"
+
+- id: "shintaro-otsuka-rubykaigi-2026"
+  title: "Chasing Real-Time Observability for CRuby"
+  track: "Small Hall #rubykaigiC"
+  description: |-
+    Understanding how a program behaves is hard. You need to understand what happens inside the methods being executed and in Ruby, which method is actually called is often not obvious from reading the source code. On top of that, CRuby performs runtime work that never appears in your program, such as GVL-driven thread scheduling and garbage collection.
+
+    CRuby does provide observability APIs, including TracePoint. In this talk, I will present rrtrace, an attempt at chasing real-time observability for CRuby: a system that captures instrumentation events in a CRuby C-extension, streams them to a dedicated external process, reconstructs thread/stack state, and visualizes execution in near real time as a 3D space: time × thread × call stack. With this view, you can literally see GVL thread switches and GC runs as they happen.
+
+    I will also cover the engineering required to make this feasible while disturbing the observed Ruby process as little as possible.
+  kind: "talk"
+  language: "ja"
+  date: "2026-04-23"
+  speakers:
+    - Shintaro Otsuka
+  video_provider: "scheduled"
+  video_id: "shintaro-otsuka-rubykaigi-2026"
+
+- id: "yusuke-endoh-rubykaigi-2026"
+  title: "Practical TypeProf: Lessons from Analyzing Optcarrot"
+  track: "Large Hall #rubykaigiA"
+  description: |-
+    TypeProf is a static type analyzer designed to analyze Ruby code with minimal type annotations. While TypeProf has steadily evolved, its verification has been largely limited to self-hosting: analyzing its own source code with TypeProf itself.
+
+    To prove its utility for the wider ecosystem beyond the tool's own codebase, I conducted an experiment on a "real-world" application. Specifically, I used Optcarrot, an 8-bit machine simulator written in pure Ruby that I developed.
+
+    Optcarrot has historically served as a benchmark to drive Ruby interpreter development. Its optimized, complex logic is an ideal, challenging subject for static analysis. I will report on the specific issues encountered during this experiment and the improvements made to TypeProf to resolve them.
+
+    Finally, I will share practical lessons learned and workflows derived from this experience. Attendees will gain a realistic understanding of TypeProf’s current capabilities and how to leverage it in their own projects.
+  kind: "talk"
+  language: "ja"
+  date: "2026-04-23"
+  speakers:
+    - Yusuke Endoh
+  video_provider: "scheduled"
+  video_id: "yusuke-endoh-rubykaigi-2026"
+
+- id: "jacob-rubykaigi-2026"
+  title: "Whose Memory is it Anyway"
+  track: "Sub Arena #rubykaigiB"
+  description: |-
+    Ruby’s dynamic nature makes for a great developer experience but causes challenges during compilation. More information gives the compiler more opportunities to generate better code.
+
+    In this talk, I’ll show how statements can be optimized, re-ordered, and removed in ZJIT. We will discuss a new side effect analysis system, show the improvements in code generation due to this design, and discuss the future performance increases that the effect system may lead to.
+  kind: "talk"
+  language: "en"
+  date: "2026-04-23"
+  speakers:
+    - Jacob
+  video_provider: "scheduled"
+  video_id: "jacob-rubykaigi-2026"
+
+- id: "masato-ohba-rubykaigi-2026"
+  title: "From Formal Specification to Property Based Test"
+  track: "Small Hall #rubykaigiC"
+  description: |-
+    Formal methods may not be common in everyday software development, but they are time-tested tools for detecting ambiguities and contradictions in specifications. What if we could identify properties from formal specifications and automatically generate property based tests? This would be valuable from a quality assurance perspective.
+
+    I'm exploring this idea by building a Ruby tool that parses formal specifications, detects property patterns, and generates executable property based test code.
+
+    In this talk, I'll demonstrate the concept, discuss the challenges, and share insights from bridging formal methods and Ruby testing.
+  kind: "talk"
+  language: "ja"
+  date: "2026-04-23"
+  speakers:
+    - Masato Ohba
+  video_provider: "scheduled"
+  video_id: "masato-ohba-rubykaigi-2026"
+
+- id: "stan-lo-rubykaigi-2026"
+  title: "The future of Ruby documentation"
+  track: "Large Hall #rubykaigiA"
+  description: |-
+    Ruby documentation is getting its biggest update in years. As an RDoc maintainer, I've spent the past year modernizing how we read Ruby docs. But improving the reading experience is just the beginning.
+
+    This year, I'm focusing on three major developments: migrating from RDoc markup to GitHub Flavored Markdown, integrating RBS type signatures directly into documentation, and preparing Ruby docs for the AI era with LLM-ready output formats and agent tooling.
+
+    This talk covers where Ruby documentation has been, where it's going, and the concrete roadmap for RDoc's evolution. Writing and consuming Ruby documentation is about to get a lot better.
+  kind: "talk"
+  language: "en"
+  date: "2026-04-23"
+  speakers:
+    - Stan Lo
+  video_provider: "scheduled"
+  video_id: "stan-lo-rubykaigi-2026"
+
+- id: "soichiro-isshiki-rubykaigi-2026"
+  title: "Invariants in my own Ruby: some things must never change"
+  track: "Sub Arena #rubykaigiB"
+  description: |-
+    We all love Ruby for its flexibility, but it’s a total nightmare for a JIT compiler. Redefining Integer#+ or using eval and Binding creates chaos. To go fast, JIT compilers make "optimistic bets" called invariants—assuming things won't change to skip redundant checks. But when these bets fail, we need an emergency exit to the great Mother interpreter : deoptimization.
+
+    I’ll share my journey building monoruby (a Ruby implementation written from scratch in Rust) and how I keep it fast and correct. We'll explore:
+
+
+    Why JIT-generated code is faster than the interpreter.
+    The specific invariants used to handle Ruby's dynamic nature.
+    Implementation details in monoruby.
+
+
+    Let's dive into the black box of JIT internals!
+  kind: "talk"
+  language: "en"
+  date: "2026-04-23"
+  speakers:
+    - Soichiro Isshiki
+  video_provider: "scheduled"
+  video_id: "soichiro-isshiki-rubykaigi-2026"
+
+- id: "hayao-kimura-rubykaigi-2026"
+  title: "Integration of PRK Firmware and R2P2"
+  track: "Small Hall #rubykaigiC"
+  description: |-
+    PicoRuby currently has two major implementations: PRK Firmware and R2P2. PRK Firmware serves as a keyboard firmware, while R2P2 can be used as a general-purpose electronics platform.
+    Can these two be integrated? In other words, if R2P2 is a general-purpose electronics platform, wouldn't it be possible to write keyboard firmware using R2P2?
+    In practice, there are several hurdles to achieving this integration. In this session, I will discuss the work I have been doing toward this integration.
+  kind: "talk"
+  language: "ja"
+  date: "2026-04-23"
+  speakers:
+    - Hayao Kimura
+  video_provider: "scheduled"
+  video_id: "hayao-kimura-rubykaigi-2026"
+
+- id: "ruby-committers-rubykaigi-2026"
+  title: "Ruby Committers and the World"
+  track: "Large Hall #rubykaigiA"
+  description: |-
+    CRuby committers on stage!
+  kind: "talk"
+  language: "en"
+  date: "2026-04-24"
+  speakers:
+    - CRuby Committers
+  video_provider: "scheduled"
+  video_id: "ruby-committers-rubykaigi-2026"
+
+- id: "misaki-shioi-rubykaigi-2026"
+  title: "The Less-Told Story of Socket Timeouts"
+  track: "Large Hall #rubykaigiA"
+  description: |-
+    TCPSocket.new and Socket.tcp are methods that return a socket connected to a remote host over TCP, and starting with Ruby 4.0, they introduce a new timeout feature called open_timeout.
+    Even before Ruby 3.4, these methods already provided two kinds of timeout features: resolv_timeout, which sets a timeout for hostname resolution, and connect_timeout, which sets a timeout for establishing the connection.
+
+    Why, then, is a third timeout necessary now? The answer lies in a less-told story of these methods.
+
+    In this talk, I would like to discuss the history of how these methods came to have the timeout features, the impact of the HEv2 algorithm introduced in Ruby 3.4, the bug that had actually existed for a long time, and the new feature that comprehensively improves these methods for the future, along with concrete implementation details.
+  kind: "talk"
+  language: "ja"
+  date: "2026-04-24"
+  speakers:
+    - Misaki Shioi
+  video_provider: "scheduled"
+  video_id: "misaki-shioi-rubykaigi-2026"
+
+- id: "nate-berkopec-rubykaigi-2026"
+  title: "Brute-Forcing Ruby Performance Issues with LLMs"
+  track: "Sub Arena #rubykaigiB"
+  description: |-
+    AI agents (LLMs) are very good at automating the less-fun parts of programming. They're also very good at working in a loop: try something, verify if it worked, learn and try again. We'll talk about how to harness LLM agents to fix performance problems, even in Ruby itself (and even if you don't understand C!).
+
+    We'll show how to use a combination of LLMs, simple scripts, skills and MCPs to create reproducible benchmarks. These tools will combine to create an "agent-native" Ruby performance improving workbench. We'll also explore and discuss the limitations of these tools, including what kinds of problems they tend to be bad at solving.
+  kind: "talk"
+  language: "en"
+  date: "2026-04-24"
+  speakers:
+    - Nate Berkopec
+  video_provider: "scheduled"
+  video_id: "nate-berkopec-rubykaigi-2026"
+
+- id: "kazuaki-tanaka-rubykaigi-2026"
+  title: "Native Multi-Core Support in mruby/c: Enhancing Performance"
+  track: "Small Hall #rubykaigiC"
+  description: |-
+    mruby/c is a lightweight Ruby implementation that is optimised for use in embedded systems and environments with limited resources.
+    mruby/c now supports native multi-core, enabling it to leverage the capabilities of modern processors.
+
+    This presentation will highlight how mruby/c enables concurrent processing through its native multi-core functionality, particularly within the mruby/c VM, which is designed to efficiently manage multiple threads.
+
+    The presentation covers the following topics:
+
+
+    Challenges in multi-core support
+    Mutex
+    task switching among cores
+    Performance evaluation
+  kind: "talk"
+  language: "ja"
+  date: "2026-04-24"
+  speakers:
+    - Kazuaki Tanaka
+  video_provider: "scheduled"
+  video_id: "kazuaki-tanaka-rubykaigi-2026"
+
+- id: "john-hawthorn-rubykaigi-2026"
+  title: "A Write Barrier Validating GC for Ruby"
+  track: "Large Hall #rubykaigiA"
+  description: |-
+    Missing or incorrect write barriers are a common source of bugs both in C extensions and CRuby itself. They can cause memory corruption that only manifests under specific GC timing, making them difficult to reproduce and to be confident in a fix.
+
+    This talk introduces a new garbage collector specifically for dynamic analysis of write barrier correctness. I'll explain how it works, how to use it, the bugs it has fixed, and the hard rules for when write barriers are required.
+  kind: "talk"
+  language: "en"
+  date: "2026-04-24"
+  speakers:
+    - John Hawthorn
+  video_provider: "scheduled"
+  video_id: "john-hawthorn-rubykaigi-2026"
+
+- id: "andrey-novikov-rubykaigi-2026"
+  title: "Writing DSL for DSL: Catch Code as It's Born with TracePoint"
+  track: "Sub Arena #rubykaigiB"
+  description: |-
+    Let’s dive into an unconventional use of Ruby’s TracePoint API, not for performance profiling, but for runtime introspection in metaprogramming-heavy Ruby code.
+
+    We’ll focus on real-world use case of writing DSLs for use with existing DSLs, exploring how TracePoint enables us to untangle messy results of metaprogramming techniques and do things like dynamic linking logic to DSL-generated methods.
+
+    Expect a blend of advanced Ruby techniques, practical insights, and a fresh perspective on a lesser-known Ruby API.
+  kind: "talk"
+  language: "ja"
+  date: "2026-04-24"
+  speakers:
+    - Andrey Novikov
+  video_provider: "scheduled"
+  video_id: "andrey-novikov-rubykaigi-2026"
+
+- id: "sutou-kouhei-rubykaigi-2026"
+  title: "Pure Ruby Apache Arrow reader/writer"
+  track: "Small Hall #rubykaigiC"
+  description: |-
+    Apache Arrow is the de fact standard data format in modern data processing systems. We can use the official Red Arrow gem to process Apache Arrow data. It's suitable for fast large data processing but it's  over-performance for only low cost data exchange needs. Red Arrow is larger and a bit difficult to install than pure Ruby gems because Red Arrow is implemented as bindings.
+
+    I'm implementing the official pure Ruby Apache Arrow reader/writer for only low cost data exchange needs. I expect that more Ruby libraries and applications add support for Apache Arrow inputs/outputs by the pure Ruby Apache Arrow reader/writer. Ruby can be used more for data processing by it.
+
+    This talk describes how to implement fast pure Ruby binary data reader/writer and the future of data processing in Ruby.
+
+    This is a 2025 Ruby Association Grant project: https://www.ruby.or.jp/en/news/20251030
+  kind: "talk"
+  language: "ja"
+  date: "2026-04-24"
+  speakers:
+    - Kouhei Sutou
+  video_provider: "scheduled"
+  video_id: "sutou-kouhei-rubykaigi-2026"
+
+- id: "hiroya-fujinami-rubykaigi-2026"
+  title: "(Re)make Regexp in Ruby: Democratizing internals for the JIT"
+  track: "Large Hall #rubykaigiA"
+  description: |-
+    With the rise of JIT implementations like YJIT and ZJIT, rewriting Ruby primitives in Ruby has become a realistic way for optimization. This brings a dream of a pure-Ruby Regexp engine that works with JIT and integrates naturally with Ruby features (e.g., timeouts).
+
+    However, turning this dream into a production-ready reality faces a massive hurdle: compatibility. To replace Onigmo, we must replicate its exact behaviors, which is notoriously difficult. From my experience, the hardest barriers to a compatible reimplementation are the parsing and character class semantics.
+
+    I propose a pragmatic solution: exposing Onigmo's parser and character class logic as Ruby APIs. This democratizes the engine, offloading the complexity of compatibility to C while allowing us to focus on rewriting the matching logic in Ruby. I will demonstrate a PoC and discuss the future of a hackable, JIT-friendly Regexp engine.
+  kind: "talk"
+  language: "ja"
+  date: "2026-04-24"
+  speakers:
+    - Hiroya Fujinami
+  video_provider: "scheduled"
+  video_id: "hiroya-fujinami-rubykaigi-2026"
+
+- id: "ivo-anjo-rubykaigi-2026"
+  title: "From Ruby 2 to 4: Updating a C extension for a Modern VM"
+  track: "Sub Arena #rubykaigiB"
+  description: |-
+    The Ruby VM has evolved a lot from Ruby 2 to Ruby 4. While this evolution was reflected in Ruby's C APIs, great care was taken to provide backwards compatibility. Old gems work with little change on Ruby 4, ensuring apps don't get stuck on old versions just because some dependency has not been updated.
+
+    However, C extensions shouldn't remain stuck on "old ways". If not updated, they can silently get in the way of modern VM features such as GC compaction, or force the garbage collector to do extra unnecessary work, on top of missing out on performance and correctness improvements.
+
+    In this talk, I present our ongoing work to modernize the datadog gem for a Ruby 4-era VM, identifying key modern Ruby C APIs, the VM assumptions they encode, and when and why native gems should adopt them.
+  kind: "talk"
+  language: "en"
+  date: "2026-04-24"
+  speakers:
+    - Ivo Anjo
+  video_provider: "scheduled"
+  video_id: "ivo-anjo-rubykaigi-2026"
+
+- id: "kouji-takao-rubykaigi-2026"
+  title: "Smalruby: Visualizing Ruby with Bidirectional Transpiration"
+  track: "Small Hall #rubykaigiC"
+  description: |-
+    Smalruby 3 (https://smalruby.app) is a visual programming environment that seamlessly bridges the gap between Scratch blocks and Ruby code. While Scratch is the de facto standard for K-12 education, transitioning to text-based languages remains a high barrier. Smalruby 3 solves this by providing real-time, bidirectional conversion between blocks and Ruby.
+
+    In this talk, I will explore the technical challenges and implementation details of Smalruby 3. How do we map Scratch's event-driven, actor model to Ruby's object-oriented syntax? How is the AST manipulated to ensure that a move(10) block becomes a method call, and conversely, how arbitrary Ruby code is parsed back into visual blocks?
+
+    I will demonstrate how puts "Hello" is visualized not as console output but as a speech bubble from a sprite, and how class and def definitions intuitively map to actor properties and behaviors. This session reveals how we can "visualize" Ruby's semantics to foster the next generation of Rubyists.
+  kind: "talk"
+  language: "ja"
+  date: "2026-04-24"
+  speakers:
+    - Kouji Takao
+  video_provider: "scheduled"
+  video_id: "kouji-takao-rubykaigi-2026"
+
+- id: "hiroshi-shibata-rubykaigi-2026"
+  title: "Ruby Releases Ruby"
+  track: "Large Hall #rubykaigiA"
+  description: |-
+    The process of delivering Ruby involves more than just shipping code; it is a defense against supply chain attacks. To build a robust fortress around our ecosystem, we had to eliminate the most significant security vulnerability: the human element.
+
+    Gone are the days of manual checklists and opaque procedures. Today, they have been replaced by secure, automated pipelines where code verifies code. In essence, Ruby is releasing Ruby.
+
+    In this session, I will take you behind the scenes of this evolution from the perspective of a Ruby Core Release Manager. We will dive deep into how release-gem and Sigstore build attestations create a tamper-proof chain of custody. The highlight of this session is the "self-hosting" challenge: releasing Ruby and RubyGems—the root of our dependency tree—autonomously. I will demonstrate our recursive engineering approach, utilizing sigstore-ruby to cryptographically verify the release of RubyGems itself. Join us to see how we ensure that the tools you rely.
+  kind: "talk"
+  language: "ja"
+  date: "2026-04-24"
+  speakers:
+    - Hiroshi SHIBATA
+  video_provider: "scheduled"
+  video_id: "hiroshi-shibata-rubykaigi-2026"
+
+- id: "marco-roth-rubykaigi-2026"
+  title: "HTML-Aware ERB: The Path to Reactive Rendering"
+  track: "Sub Arena #rubykaigiB"
+  description: |-
+    ERB templates in Ruby are traditionally rendered by engines that treat templates as string generators, which makes it difficult to reason about HTML structure, state changes, or incremental updates. These limitations become especially visible in modern HTML-over-the-wire workflows.
+
+    In this talk, we explore what it would take to build a reactive ERB rendering engine. We begin by revisiting how existing ERB engines compile templates into Ruby code and look at how recent advances in HTML-aware parsing and tooling make new approaches possible.
+
+    Using Herb::Engine as a concrete example, we examine how structural understanding enables state-aware rendering, diff-based updates, and a more responsive development experience, including instant updates without full page reloads, rich in-browser developer tools. Such as template outlines, partial and ERB structure views, jump-to-source navigation, and many other innovations.
+  kind: "talk"
+  language: "en"
+  date: "2026-04-24"
+  speakers:
+    - Marco Roth
+  video_provider: "scheduled"
+  video_id: "marco-roth-rubykaigi-2026"
+
+- id: "yutaka-hara-rubykaigi-2026"
+  title: "Ruby on NES - how to make a smallest ruby ever"
+  track: "Small Hall #rubykaigiC"
+  description: |-
+    If this is not your first RubyKaigi, you may know that Ruby has been ported to many game consoles. But how about to NES?
+
+    In this session I will explain how I built nesruby, a tiny Ruby interpreter runs on NES, and its sample game The Ruby Catcher.
+  kind: "talk"
+  language: "ja"
+  date: "2026-04-24"
+  speakers:
+    - Yutaka HARA
+  video_provider: "scheduled"
+  video_id: "yutaka-hara-rubykaigi-2026"
+
+- id: "benoit-daloze-rubykaigi-2026"
+  title: "Making Hash Parallel, Thread-Safe and Fast!"
+  track: "Large Hall #rubykaigiA"
+  description: |-
+    Can we make Hash support parallel reads and writes, be thread-safe, and still be as fast on a single thread as before? Yes!
+    With extensive state-of-the-art research, including an all-new lock to allow parallel reads and writes, we found a way to achieve all of these goals. Embark on a journey to reimplement Hash so it’s fast and safe no matter if used by one or many threads at once. It's even safer than under the GVL!
+  kind: "talk"
+  language: "en"
+  date: "2026-04-24"
+  speakers:
+    - Benoit Daloze
+  video_provider: "scheduled"
+  video_id: "benoit-daloze-rubykaigi-2026"
+
+- id: "alexandre-terrasa-rubykaigi-2026"
+  title: "Blazing-fast Code Indexing for Smarter Ruby Tools"
+  track: "Sub Arena #rubykaigiB"
+  description: |-
+    Building smart, code-aware developer tools for Ruby should be easier. Today, tools like language servers, documentation generators, and type checkers each implement its own mechanism for understanding Ruby code.
+
+    With Rubydex, we introduce a unified code indexer that simplifies static analysis across the entire Ruby ecosystem. Rubydex delivers fast, memory-efficient access to code insights like constant resolution, inheritance linearization, reference tracking, and is accessible from both Ruby and non-Ruby tools via native bindings. After integrating Rubydex in RubyLSP, Tapioca, and Spoom, we observed up to 10x speed improvements and 2x lower memory usage.
+
+    In this talk, we'll dive into Rubydex’s architecture, implementation, optimizations, and show how you can leverage it to create the next generation of Ruby developer tools.
+  kind: "talk"
+  language: "en"
+  date: "2026-04-24"
+  speakers:
+    - Alexandre Terrasa
+  video_provider: "scheduled"
+  video_id: "alexandre-terrasa-rubykaigi-2026"
+
+- id: "yuhei-okazaki-rubykaigi-2026"
+  title: "PicoRuby for IoT: Connecting to the Cloud with MQTT"
+  track: "Small Hall #rubykaigiC"
+  description: |-
+    PicoRuby is an extremely small implementation of Ruby that can run even on microcontrollers such as the ESP32, developed by Espressif Systems. At RubyKaigi 2025, I talked about porting PicoRuby to the ESP32.
+
+    This talk is a sequel to that session. I will introduce the process of enabling PicoRuby on the ESP32 to connect to the cloud over the internet.
+
+    The ESP32 supports Wi-Fi and TCP/IP networking, making it well suited for IoT applications. For PicoRuby running on the ESP32, I implemented and refined classes such as WiFi, Socket, and an MQTT client. This work also includes secure communication using TLS and device authentication with X.509 client certificates. These implementations are portable and can be adapted to POSIX environments as well as other microcontrollers.
+
+    As a result, PicoRuby can now communicate with cloud services such as AWS IoT Core using the publish/subscribe model, making it ready for real-world IoT systems.
+  kind: "talk"
+  language: "ja"
+  date: "2026-04-24"
+  speakers:
+    - Yuhei Okazaki
+  video_provider: "scheduled"
+  video_id: "yuhei-okazaki-rubykaigi-2026"
+
+- id: "takashi-kokubun-rubykaigi-2026"
+  title: "Lightning-Fast Method Calls with Ruby 4.1 ZJIT"
+  track: "Large Hall #rubykaigiA"
+  description: |-
+    One of the largest sources of slowness in Ruby is the overhead associated with method calls. While recent versions of Ruby have seen YJIT enhance method call performance by optimizing machine code for various method call types, a significant bottleneck remains: the process of pushing a Ruby method frame.
+
+    In this talk, we will explore the various elements Ruby needs to handle within method frames and unveil our approach to making this process nearly zero-cost with ZJIT's Lightweight Frames and method inlining. Additionally, we will discuss the compelling reasons to transition from YJIT to ZJIT in Ruby 4.1, highlighting the performance benefits you can expect.
+  kind: "talk"
+  language: "en"
+  date: "2026-04-24"
+  speakers:
+    - Takashi Kokubun
+  video_provider: "scheduled"
+  video_id: "takashi-kokubun-rubykaigi-2026"
+
+- id: "samuel-giddins-rubykaigi-2026"
+  title: "Ruby the Hard Way: Writing Bytecode to Optimize Plain Ruby"
+  track: "Sub Arena #rubykaigiB"
+  description: |-
+    Ruby is famously dynamic, expressive, and productive—but those same qualities can make performance tuning feel opaque when you hit a true hotspot. When profiling stops pointing to anti-patterns code and starts pointing at our beautiful idiomatic Ruby, what options do you have?
+
+    In this talk, we’ll explore an unconventional but powerful approach: writing Ruby bytecode (or generating it) to optimize critical paths in otherwise ordinary Ruby applications. We’ll look at how Ruby code is compiled into bytecode, what that bytecode actually looks like, and how controlling it can eliminate overhead that’s difficult or impossible to remove at the source level.
+
+    Through concrete examples, we’ll demonstrate replacing hot Ruby methods with bytecode-generated equivalents, discuss the tradeoffs and risks involved, and show when this technique is worth considering. The goal is not to replace Ruby—but to understand it deeply enough to bend it, safely, when performance truly matters.
+  kind: "talk"
+  language: "en"
+  date: "2026-04-24"
+  speakers:
+    - Samuel Giddins
+  video_provider: "scheduled"
+  video_id: "samuel-giddins-rubykaigi-2026"
+
+- id: "sangyong-sim-rubykaigi-2026"
+  title: "Good Enough Types: Heuristic Type Inference for Ruby"
+  track: "Small Hall #rubykaigiC"
+  description: |-
+    What if you could get type information without writing type annotations?
+
+    type-guessr is a Ruby LSP addon that reverses duck typing.
+    Instead of "if it responds to these methods, it's OK," we reason:
+    "if these methods were called, it must be this class."
+
+    For example, if ingredients and steps are called on a variable, and only the Recipe class has both methods, we infer the type as Recipe.
+
+    In this talk, I'll share how it works in practice, its algorithm design, and the limits of this approach.
+  kind: "talk"
+  language: "ja"
+  date: "2026-04-24"
+  speakers:
+    - Sangyong "Shia" Sim
+  video_provider: "scheduled"
+  video_id: "sangyong-sim-rubykaigi-2026"
+
+- id: "yukihiro-matsumoto-keynote-rubykaigi-2026"
+  title: "Keynote"
+  track: "Large Hall #rubykaigiA"
+  description: |-
+    Keynote by Yukihiro "Matz" Matsumoto
+  kind: "keynote"
+  language: "ja"
+  date: "2026-04-24"
+  speakers:
+    - Yukihiro "Matz" Matsumoto
+  video_provider: "scheduled"
+  video_id: "yukihiro-matsumoto-keynote-rubykaigi-2026"
