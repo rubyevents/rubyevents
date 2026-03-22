@@ -1,11 +1,11 @@
 
-- id: "<%= @talk_id %>"
-  title: "<%= options[:title] %>"
+- id: "<%= @talk.id %>"
+  title: "<%= @talk.title %>"
   description: |-
-    <%= options[:description] %>
-  kind: "lightning"
-  language: "<%= options[:language] %>"
-  date: "<%= @date %>"
+    <%= @talk.description %>
+  kind: "lightning_talk"
+  language: "<%= @talk.language %>"
+  date: "<%= @talk.date %>"
+  talks: []
   video_provider: "scheduled"
-  video_id: "<%= @talk_id %>"
-  videos: []
+  video_id: "<%= @talk.id %>"

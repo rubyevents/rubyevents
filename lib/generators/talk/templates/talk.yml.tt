@@ -5,12 +5,12 @@
     <%= @talk.description %>
   kind: "<%= @talk.kind %>"
   language: "<%= @talk.language %>"
-  date: "<%= @date %>"
+  date: "<%= @talk.date %>"
 <%- if options[:announced_at] -%>
   announced_at: "<%= @talk.announced_at %>"
 <%- end -%>
   speakers:
-  <%- options[:speakers].each do |speaker| -%>
+  <%- @talk.speakers.each do |speaker| -%>
     - <%= speaker %>
   <%- end -%>
   video_provider: "scheduled"
