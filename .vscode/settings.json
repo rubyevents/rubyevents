@@ -6,7 +6,10 @@
   "editor.multiCursorModifier": "ctrlCmd",
   "editor.insertSpaces": true,
   "editor.tabSize": 2,
-  "editor.rulers": [80, 120],
+  "editor.rulers": [
+    80,
+    120
+  ],
   "editor.renderControlCharacters": true,
   "editor.snippetSuggestions": "top",
   "editor.trimAutoWhitespace": true,
@@ -37,5 +40,13 @@
     "erb": "html"
   },
   "tailwindCSS.emmetCompletions": true,
-  "tailwindCSS.validate": true
+  "tailwindCSS.validate": true,
+  "yaml.schemas": {
+    "lib/schemas/cfps_schema.json": "data/**/cfp.yml",
+    "lib/schemas/event_schema.json": "data/**/event.yml",
+    "lib/schemas/schedule_schema.json": "data/**/schedule.yml",
+    "lib/schemas/tiers_sponsors_schema.json": "data/**/sponsors.yml",
+    "lib/schemas/venue_schema.json": "data/**/venue.yml",
+    "lib/schemas/videos_schema.json": "**/videos.yml",
+  }
 }
