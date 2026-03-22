@@ -1,0 +1,11 @@
+
+- id: "<%= @talk.id %>"
+  title: "<%= @talk.title %>"
+  description: |-
+    <%= @talk.description %>
+  kind: "lightning_talk"
+  language: "<%= @talk.language %>"
+  date: "<%= @talk.date %>"
+  talks: []
+  video_provider: "scheduled"
+  video_id: "<%= @talk.id %>"

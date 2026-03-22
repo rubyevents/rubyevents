@@ -1,21 +1,17 @@
 
-- id: "<%= @talk_id %>"
-<%- if options[:title] -%>
-  title: "<%= options[:title] %>"
-<%- else -%>
-  title: "<%= "#{options[:kind].titlecase} by #{options[:speaker].to_sentence}" %>" # TODO
-<%- end -%>
+- id: "<%= @talk.id %>"
+  title: "<%= @talk.title %>"<%= options[:title] ? "" : " # TODO" %>
   description: |-
-    <%= options[:description] %>
-  kind: "<%= options[:kind] %>"
-  language: "<%= options[:language] %>"
-  date: "<%= @date %>"
+    <%= @talk.description %>
+  kind: "<%= @talk.kind %>"
+  language: "<%= @talk.language %>"
+  date: "<%= @talk.date %>"
 <%- if options[:announced_at] -%>
-  announced_at: "<%= options[:announced_at] %>"
+  announced_at: "<%= @talk.announced_at %>"
 <%- end -%>
   speakers:
-  <%- options[:speaker].each do |speaker| -%>
+  <%- @talk.speakers.each do |speaker| -%>
     - <%= speaker %>
   <%- end -%>
   video_provider: "scheduled"
-  video_id: "<%= @talk_id %>"
+  video_id: "<%= @talk.id %>"

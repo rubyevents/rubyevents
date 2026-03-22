@@ -13,9 +13,8 @@ class ScheduleGenerator < Generators::EventBase
   class_option :videos_count, type: :numeric, desc: "The total number of videos to schedule - will be fetched from videos.yml if not provided", group: "Fields"
 
   def initialize_values
-    event = Static::Event.find_by_slug options[:event]
-    start_date = event.start_date
-    end_date = event.end_date
+    start_date = static_event.start_date
+    end_date = static_event.end_date
     @days = options[:days] || (start_date..end_date).to_a
     @day_start = Time.parse(options[:day_start])
     videos_count = options[:videos_count] || Static::Video.where_event_slug(options[:event]).count
@@ -23,6 +22,6 @@ class ScheduleGenerator < Generators::EventBase
   end
 
   def create_schedule_file
-    template "schedule.yml.tt", File.join(destination_root, "data", options[:event_series], options[:event], "schedule.yml")
+    template "schedule.yml.tt", File.join(event_directory, "schedule.yml")
   end
 end
