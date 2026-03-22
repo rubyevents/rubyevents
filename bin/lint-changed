@@ -82,11 +82,15 @@ fi
 
 # ── YAML data files ───────────────────────────────────────────────────────────
 if [ -n "$YAML_DATA_FILES" ]; then
+  echo "==> Enforce Strings (YAML)"
+  echo "$YAML_DATA_FILES" | tr '\n' '\0' | xargs -0 node yaml/enforce_changed.mjs
+
   echo "==> Prettier (YAML)"
-  yarn lint:yml
+  echo "$YAML_DATA_FILES" | tr '\n' '\0' | xargs -0 yarn prettier --check --write
 
   echo "==> Schema validation"
-  bin/rails validate:all
+  JOINED=$(echo "$YAML_DATA_FILES" | tr '\n' '\0' | xargs -0)
+  bin/rails "validate:changed[$JOINED]"
 else
   echo "==> Skipping YAML lint & schema validation — no data/*.yml files changed"
 fi
