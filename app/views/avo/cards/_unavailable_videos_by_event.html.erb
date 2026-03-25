@@ -1,10 +1,9 @@
-events_with_unavailable = Talk.video_unavailable
-    .joins(:event)
-    .group("events.id", "events.name")
-    .order(Arel.sql("COUNT(*) DESC"))
-    .limit(10)
-    .pluck("events.id", "events.name", Arel.sql("COUNT(*)"))
-%>
+<% events_with_unavailable = Talk.video_unavailable
+     .joins(:event)
+     .group("events.id", "events.name")
+     .order(Arel.sql("COUNT(*) DESC"))
+     .limit(10)
+     .pluck("events.id", "events.name", Arel.sql("COUNT(*)")) %>
 
 <div class="p-4 overflow-y-auto h-full">
   <% if events_with_unavailable.empty? %>

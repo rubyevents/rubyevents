@@ -244,19 +244,29 @@ class EventTest < ActiveSupport::TestCase
     assert event.city_record.events.include?(event)
   end
 
-  test "returns past meetups" do
-    past_meetup = events(:wnb_rb_meetup)
-    events(:new_rb_meetup)
-
-    assert_includes Event.past_meetups, past_meetup
-    assert Event.past_meetups.count, 1
+  test "today? conference is not today" do
+    event = Event.new(start_date: 3.days.ago, end_date: 2.days.ago, kind: :conference)
+    assert !event.today?
   end
 
-  test "returns upcoming meetups" do
-    events(:wnb_rb_meetup)
-    upcoming_meetup = events(:new_rb_meetup)
+  test "today? conference is today" do
+    event = Event.new(start_date: 1.day.ago, end_date: 2.days.from_now, kind: :conference)
+    assert event.today?
+  end
 
-    assert_includes Event.upcoming_meetups, upcoming_meetup
-    assert Event.upcoming_meetups.count, 1
+  test "today? meetup is not today" do
+    event = events(:wnb_rb_meetup)
+    talk = talks(:non_english_talk_one)
+    talk.update!(date: 3.days.ago, event: event)
+
+    assert !event.today?
+  end
+
+  test "today? meetup is today" do
+    event = events(:wnb_rb_meetup)
+    talk = talks(:non_english_talk_one)
+    talk.update!(date: Date.today, event: event)
+
+    assert event.today?
   end
 end

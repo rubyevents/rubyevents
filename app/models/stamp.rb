@@ -48,6 +48,10 @@ class Stamp
       @attend_one_event_stamp ||= all.find { |s| s.code == "ATTEND-ONE-EVENT" }
     end
 
+    def ruby_30th_anniversary
+      @ruby_30th_anniversary ||= all.find { |s| s.code == "RUBY-30TH-ANNIVERSARY" }
+    end
+
     def online_stamp
       @online_stamp ||= all.find { |s| s.code == "ONLINE" }
     end

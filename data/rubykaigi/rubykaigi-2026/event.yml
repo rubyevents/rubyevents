@@ -10,8 +10,10 @@ website: "https://rubykaigi.org/2026/"
 twitter: "rubykaigi"
 mastodon: "https://ruby.social/@rubykaigi"
 tickets_url: "https://ti.to/rubykaigi/2026"
-banner_background: "#873923"
-featured_background: "#873923"
+banner_background: |-
+  linear-gradient(to bottom, #471712, #471712 50%, #471712 50%) left top / 50% 100% no-repeat, /* Left side */
+  linear-gradient(to bottom, #883D25, #883D25 50%, #883D25 50%) right top / 50% 100% no-repeat /* Right side */
+featured_background: "#883D25"
 featured_color: "#FFFFFF"
 coordinates:
   latitude: 41.78201480210688

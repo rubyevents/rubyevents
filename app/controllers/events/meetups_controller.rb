@@ -1,7 +1,7 @@
 class Events::MeetupsController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
 
-  # GET /meetups
+  # GET /events/meetups
   def index
     @meetups = Event.where(kind: :meetup)
       .joins(:talks)
