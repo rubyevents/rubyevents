@@ -1,1 +1,42 @@
-{"type":"object","properties":{"street":{"type":"string","description":"Street address"},"city":{"type":"string","description":"City name"},"region":{"type":"string","description":"State/Province/Region"},"postal_code":{"type":"string","description":"Postal/ZIP code"},"country":{"type":"string","description":"Country name"},"country_code":{"type":"string","description":"ISO country code (e.g., 'US', 'CA', 'JP')"},"display":{"type":"string","description":"Full formatted address for display"}},"required":["street","city","country","country_code","display"],"additionalProperties":false,"strict":true}
+{
+  "type": "object",
+  "properties": {
+    "street": {
+      "type": "string",
+      "description": "Street address"
+    },
+    "city": {
+      "type": "string",
+      "description": "City name"
+    },
+    "region": {
+      "type": "string",
+      "description": "State/Province/Region"
+    },
+    "postal_code": {
+      "type": "string",
+      "description": "Postal/ZIP code"
+    },
+    "country": {
+      "type": "string",
+      "description": "Country name"
+    },
+    "country_code": {
+      "type": "string",
+      "description": "ISO country code (e.g., 'US', 'CA', 'JP')"
+    },
+    "display": {
+      "type": "string",
+      "description": "Full formatted address for display"
+    }
+  },
+  "required": [
+    "street",
+    "city",
+    "country",
+    "country_code",
+    "display"
+  ],
+  "additionalProperties": false,
+  "strict": true
+}

@@ -1,1 +1,26 @@
-{"type":"object","properties":{"link":{"type":"string","description":"CFP link"},"name":{"type":"string","description":"Name for the CFP (default: \"Call for Proposals\")"},"open_date":{"type":"string","description":"CFP open date (YYYY-MM-DD format)"},"close_date":{"type":"string","description":"CFP close date (YYYY-MM-DD format)"}},"required":["link"],"additionalProperties":false,"strict":true}
+{
+  "type": "object",
+  "properties": {
+    "link": {
+      "type": "string",
+      "description": "CFP link"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name for the CFP (default: \"Call for Proposals\")"
+    },
+    "open_date": {
+      "type": "string",
+      "description": "CFP open date (YYYY-MM-DD format)"
+    },
+    "close_date": {
+      "type": "string",
+      "description": "CFP close date (YYYY-MM-DD format)"
+    }
+  },
+  "required": [
+    "link"
+  ],
+  "additionalProperties": false,
+  "strict": true
+}
