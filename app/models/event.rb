@@ -130,6 +130,14 @@ class Event < ApplicationRecord
   scope :past, -> { where(end_date: ..Date.today).order(end_date: :desc) }
   scope :upcoming, -> { where(start_date: Date.today..).order(start_date: :asc) }
 
+  scope :past_meetups, -> {
+    joins(:talks).where(kind: :meetup, talks: {date: ..Date.today}).distinct
+  }
+
+  scope :upcoming_meetups, -> {
+    joins(:talks).where(kind: :meetup, talks: {date: Date.today..}).distinct
+  }
+
   def upcoming?
     start_date.present? && start_date >= Date.today
   end
