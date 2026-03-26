@@ -17,3 +17,164 @@
       title: "Rails is Good Enough"
       type: "article"
       url: "https://onurozer.me/rails-is-good-enough/"
+
+- id: "vladimir-dementyev-balkanruby-2026"
+  title: "Drop your app/services!"
+  description: |-
+    Remove your app/services folder! Let your models model.
+  kind: "talk"
+  language: "en"
+  date: "2026-05-15"
+  speakers:
+    - Vladimir Dementyev
+  video_provider: "scheduled"
+  video_id: "vladimir-dementyev-balkanruby-2026"
+
+- id: "jean-boussier-balkanruby-2026"
+  title: "Multiprocessing is the most efficient way to serve Rails apps"
+  description: |-
+    You've been wondering how many threads Puma should be configured to use, or how much cool stuff you'll be able to build once you've migrated to use fibers and async?
+
+    I'll show you how to stop worrying about all that, and significantly improve performance and developer experience by embracing good old multi-processing.
+  kind: "talk"
+  language: "en"
+  date: "2026-05-15"
+  speakers:
+    - Jean Boussier
+  video_provider: "scheduled"
+  video_id: "jean-boussier-balkanruby-2026"
+
+- id: "stephen-margheim-balkanruby-2026"
+  title: "Plain and .css can be beautiful"
+  description: |-
+    TODO - Plain and .css can be beautiful - Description
+  kind: "talk"
+  language: "en"
+  date: "2026-05-15"
+  speakers:
+    - Stephen Margheim
+  video_provider: "scheduled"
+  video_id: "stephen-margheim-balkanruby-2026"
+
+- id: "hans-schnedlitz-balkanruby-2026"
+  title: "Gems Are Overrated: or How I Learned to Stop Worrying and Love Copy-Pasting"
+  description: |-
+    When I started working with Ruby, I embraced its rich ecosystem. My Gemfile for any new project immediately grew longer than Gandalf's beard. Unfortunately, using Gems comes with downsides. On the practical side, pulling in third-party libraries exposes your app to supply-chain attacks that are increasingly common. However, what's even worse is that most Gems are pure bloatware. They add thousands of lines of code you'll never need, and churn constantly.
+
+    The alternative, obviously, is to build everything from scratch. In this talk, we'll look at some examples of how some well-known gems can be boiled down to a single file that you can copy-paste to any new project. We'll also look at the limits of this approach, and when you actually should reach for that Gem.
+  kind: "talk"
+  language: "en"
+  date: "2026-05-15"
+  speakers:
+    - Hans Schnedlitz
+  video_provider: "scheduled"
+  video_id: "hans-schnedlitz-balkanruby-2026"
+
+- id: "bernard-banta-balkanruby-2026"
+  title: "Sanarei: Offline Web Browsing with Ruby"
+  description: |-
+    This talk introduces Sanarei, a Ruby middleware that leverages USSD to enable offline-friendly web experiences on basic mobile phones. Attendees will learn how to build web applications that function without internet access and how to extend digital services to billions of underserved users worldwide. Discover how Ruby can help drive meaningful financial and digital inclusion.
+  kind: "talk"
+  language: "en"
+  date: "2026-05-15"
+  speakers:
+    - Bernard Banta
+  video_provider: "scheduled"
+  video_id: "bernard-banta-balkanruby-2026"
+
+- id: "tsvetelina-borisova-balkanruby-2026"
+  title: "Why We Talk About Tools and Not About Humans in Tech"
+  description: |-
+    The tech industry excels at talking about tools.
+
+    We analyze frameworks, architectures, performance, and scalability in great detail. But when it comes to the human side of our work — power, emotional responsibility, communication, and impact — the conversation often becomes vague or uncomfortable.
+  kind: "talk"
+  language: "en"
+  date: "2026-05-15"
+  speakers:
+    - Tsvetelina Borisova
+  video_provider: "scheduled"
+  video_id: "tsvetelina-borisova-balkanruby-2026"
+
+- id: "roman-samoilov-balkanruby-2026"
+  title: "Rage Under the Hood: Breaking Rack and Embracing Fibers"
+  description: |-
+    "Ruby is not dead" has become the ecosystem's favourite reassurance. It's also the wrong conversation. Ruby is alive — but companies are still leaving, and the reasons are concrete: blocking I/O by default, framework overhead that's become Ruby's reputation, and generic abstractions that prioritise backend-swappability.
+
+    Rails.cache, Active Job, the Rack interface itself — these are designed to work with everything, which means they're optimised for nothing.
+
+    This talk introduces Rage, a framework that takes the opposite approach: every layer is purpose-built for a fiber-based, single-process runtime. No generic adapters but tailored solutions for a specific architecture. Rage challenges the status quo by coupling directly with the web server and leveraging the Fiber Scheduler to achieve asynchronous I/O that feels synchronous to write. In this talk, we'll open up the framework and look at the decisions inside:
+
+    The "Synchronous Illusion" — how Rage lets developers write linear Ruby that executes asynchronously, with no callbacks and no new syntax.
+    "Promise.all" style concurrency using Ruby Fibers — and the scheduler mechanics that make it possible.
+    What we learned by replacing ActiveRecord's connection pool — and how it unlocked a 2.6x throughput gain in CPU-bound workloads.
+    Real-world load tests comparing Rage against standard Rails setups under sustained heavy traffic.
+
+    This talk is for anyone who believes Ruby's best days aren't behind it — but only if we're willing to rethink the foundations.
+  kind: "talk"
+  language: "en"
+  date: "2026-05-15"
+  speakers:
+    - Roman Samoilov
+  video_provider: "scheduled"
+  video_id: "roman-samoilov-balkanruby-2026"
+
+- id: "galia-kraicheva-balkanruby-2026"
+  title: "Stop Tuning Hyperparameters. Start Looking at Your Data."
+  description: |-
+    Why do so many AI projects fail — even with fancy models and impressive metrics?
+
+    Because we obsess over algorithms and ignore the one thing that actually matters: the data.
+
+    In this talk, we'll challenge the "model-first" mindset that dominates modern data science. Instead of jumping straight to XGBoost, deep learning, or the latest AI trend, we'll step back and ask a simpler question: Have we actually looked at our data?
+
+    We'll talk about how skipping proper exploratory data analysis leads to false confidence, hidden leakage, biased predictions, and systems that work great in a notebook… and fall apart in production. Through practical examples and clear principles, I'll argue that understanding your data-generating process is more valuable than any hyperparameter search strategy.
+
+    Better models don't start with better tuning. They start with better questions.
+  kind: "talk"
+  language: "en"
+  date: "2026-05-15"
+  speakers:
+    - Galia Kraicheva
+  video_provider: "scheduled"
+  video_id: "galia-kraicheva-balkanruby-2026"
+
+- id: "giovanni-panasiti-balkanruby-2026"
+  title: "Rails Engines Are the Best-Kept Secret (And You're Using Them Wrong)"
+  description: |-
+    Rails engines are the most powerful architectural tool Rails gives you. After 5+ years building engines in production (including the 440+ star Active Storage Dashboard), I've learned that engines aren't just "gems with views." They're the missing piece between "monolith that's getting painful" and "let's rewrite everything as microservices." In this talk, I want to share the patterns that work, the mistakes that will ruin your week, and my zero-dependency philosophy that keeps engines maintainable for years. I'll also introduce ActiveCanvas a new open-source Rails engine that is a CMS/builder where marketing views can be dynamically changed by the marketing team without requiring too much html knowledge and without redeploy every time. Hot take: You don't need microservices. You don't need a team of ten. You need engines.
+  kind: "talk"
+  language: "en"
+  date: "2026-05-15"
+  speakers:
+    - Giovanni Panasiti
+  video_provider: "scheduled"
+  video_id: "giovanni-panasiti-balkanruby-2026"
+
+- id: "fernando-martinez-balkanruby-2026"
+  title: "Ruby off Rails"
+  description: |-
+    Rails was key in Ruby's rise to fame, but there's much more you can do with it, so much it does not fit in a talk, but let's see an example building a ruby cli utility with the tools we don't use every day.
+  kind: "talk"
+  language: "en"
+  date: "2026-05-15"
+  speakers:
+    - Fernando Martínez
+  video_provider: "scheduled"
+  video_id: "fernando-martinez-balkanruby-2026"
+
+- id: "wojtek-wrona-balkanruby-2026"
+  title: "From PostgreSQL to SQLite in Rails: Our Migration Journey, Challenges, and Lasting Trade-Offs"
+  description: |-
+    SQLite's rise in production use - boosted by recent Rails improvements - has caught many developers' attention. But beyond the buzz, what does it take to migrate a Rails app from PostgreSQL, and what trade-offs come with it?
+
+    In this talk, I'll share our real-world migration story: the incremental process we followed, the challenges we faced, and the ongoing post-migration quirks you'll need to accept.
+
+    Whether you're drawn to the promise of a simpler, more cost-effective setup or are cautious about potential compromises, you'll leave with clear, practical insights.
+  kind: "talk"
+  language: "en"
+  date: "2026-05-15"
+  speakers:
+    - Wojtek Wrona
+  video_provider: "scheduled"
+  video_id: "wojtek-wrona-balkanruby-2026"
