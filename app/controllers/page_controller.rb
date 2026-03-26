@@ -31,8 +31,9 @@ class PageController < ApplicationController
     @recommended_talks = Current.user.talk_recommender.talks(limit: 4) if Current.user
 
     imported_slugs = Event.not_meetup.with_watchable_talks.pluck(:slug)
+    today_slugs = Event.not_meetup.with_talks.where(start_date: ..Date.today, end_date: Date.today..).pluck(:slug)
     featurable_slugs = Static::Event.where.not(featured_background: nil).pluck(:slug)
-    slug_candidates = imported_slugs & featurable_slugs
+    slug_candidates = (imported_slugs | today_slugs) & featurable_slugs
 
     featured_slugs = Static::Event.all
       .select { |event| slug_candidates.include?(event.slug) }
