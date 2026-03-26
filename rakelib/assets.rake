@@ -12,11 +12,15 @@ task :export_assets, [:conference_name] => :environment do |t, args|
   }
 
   if (conference_name = args[:conference_name])
-    conference_pages = conference_pages.select { |_id, page|
-      playlist = Event.preload(:series).find_by(name: page["name"])
+    series = EventSeries.find_by(name: conference_name) || EventSeries.find_by(slug: conference_name)
 
-      if playlist
-        page["name"] == conference_name || playlist.slug == conference_name
+    conference_pages = conference_pages.select { |_id, page|
+      event = Event.preload(:series).find_by(name: page["name"])
+
+      if series && event
+        event.series == series
+      elsif event
+        page["name"] == conference_name || event.slug == conference_name
       else
         page["name"] == conference_name
       end
@@ -29,11 +33,16 @@ task :export_assets, [:conference_name] => :environment do |t, args|
         artboard["name"].downcase.start_with?("sticker")
     }
     event = Event.includes(:series).find_by(name: page["name"])
+    page_series = EventSeries.find_by(name: page["name"]) || EventSeries.find_by(slug: page["name"]) unless event
 
-    next if event.nil?
+    next if event.nil? && page_series.nil?
 
     item_ids = artboard_exports.keys.join(",")
-    target_directory = Rails.root.join("app", "assets", "images", "events", event.series.slug, event.slug)
+    target_directory = if event
+      Rails.root.join("app", "assets", "images", "events", event.series.slug, event.slug)
+    else
+      Rails.root.join("app", "assets", "images", "events", page_series.slug, "default")
+    end
 
     Command.run "#{sketchtool} export artboards #{sketch_file} --items=#{item_ids} --output=#{target_directory} --save-for-web=YES --formats=webp"
   end
