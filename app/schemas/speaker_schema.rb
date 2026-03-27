@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class SpeakerSchema < RubyLLM::Schema
-  string :name, description: "Full name of the speaker"
-  string :slug, description: "URL-friendly slug for the speaker"
+  string :name, description: "Full name of the speaker", required: true
+  string :slug, description: "URL-friendly slug for the speaker", required: true
+  string :github, description: "GitHub username", required: true
 
   string :twitter, description: "Twitter/X handle (without @)", required: false
-  string :github, description: "GitHub username", required: false
   string :website, description: "Personal website URL", required: false
   string :mastodon, description: "Full Mastodon profile URL", required: false
   string :bluesky, description: "Bluesky handle", required: false

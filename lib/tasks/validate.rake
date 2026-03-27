@@ -64,6 +64,7 @@ namespace :validate do
 
         errors.each do |error|
           error["data_pointer"] = "/#{index}#{error["data_pointer"]}"
+          error["item_label"] = item["name"] || item["title"] || item["id"] || "index #{index}"
           file_errors << error
         end
       end
@@ -83,7 +84,7 @@ namespace :validate do
         puts Gum.style("❌ #{file[:path]}", foreground: "1")
         file[:errors].first(10).each do |e|
           gh_action_annotation = (ENV["GITHUB_ACTIONS"] == "true") ? "::error file=data/#{file[:path]},line=1::" : "::error::"
-          puts " #{gh_action_annotation} #{e["error"]} at #{e["data_pointer"]}"
+          puts " #{gh_action_annotation} #{e["error"]} at #{e["data_pointer"]} (#{e["item_label"]})"
         end
         puts "   ... and #{file[:errors].count - 10} more errors" if file[:errors].count > 10
         puts
@@ -234,6 +235,7 @@ namespace :validate do
 
     if missing.any?
       unique_speakers = missing.map { |m| m[:speaker] }.uniq.sort
+
       puts Gum.style("Speakers referenced in videos.yml but missing from speakers.yml (#{unique_speakers.count}):", foreground: "1")
       puts
 
