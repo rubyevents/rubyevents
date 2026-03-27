@@ -142,6 +142,12 @@ namespace :validate do
     exit 1 unless success
   end
 
+  desc "Validate speakers.yml against SpeakerSchema"
+  task speakers: :environment do
+    success = validate_array_files("data/speakers.yml", SpeakerSchema, "speakers.yml")
+    exit 1 unless success
+  end
+
   desc "Validate all videos.yml files against VideoSchema"
   task videos: :environment do
     success = validate_array_files("data/**/videos.yml", VideoSchema, "videos.yml")
@@ -152,6 +158,101 @@ namespace :validate do
   task schedules: :environment do
     success = validate_files("data/**/schedule.yml", ScheduleSchema, "schedule.yml")
     exit 1 unless success
+  end
+
+  def validate_unique_speaker_fields
+    speakers = YAML.load_file(Rails.root.join("data/speakers.yml"))
+    success = true
+
+    slug_duplicates = speakers.map { |s| s["slug"] }.compact.tally.select { |_, count| count > 1 }
+    github_duplicates = speakers.map { |s| s["github"] }.select(&:present?).tally.select { |_, count| count > 1 }
+
+    if slug_duplicates.any?
+      puts Gum.style("Duplicate speaker slugs found (#{slug_duplicates.count}):", foreground: "1")
+      puts
+      slug_duplicates.each do |slug, count|
+        puts Gum.style("❌ #{slug} (#{count} occurrences)", foreground: "1")
+      end
+      puts
+      success = false
+    else
+      puts Gum.style("✓ All speaker slugs are unique", foreground: "2")
+    end
+
+    if github_duplicates.any?
+      puts Gum.style("Duplicate speaker GitHub handles found (#{github_duplicates.count}):", foreground: "1")
+      puts
+      github_duplicates.each do |github, count|
+        puts Gum.style("❌ #{github} (#{count} occurrences)", foreground: "1")
+      end
+      puts
+      success = false
+    else
+      puts Gum.style("✓ All speaker GitHub handles are unique", foreground: "2")
+    end
+
+    success
+  end
+
+  desc "Validate that speaker slugs and GitHub handles are unique"
+  task unique_speakers: :environment do
+    exit 1 unless validate_unique_speaker_fields
+  end
+
+  def validate_speakers_in_videos
+    speakers_data = YAML.load_file(Rails.root.join("data/speakers.yml"))
+    known_names = Set.new
+
+    speakers_data.each do |speaker|
+      known_names << speaker["name"]
+      Array(speaker["aliases"]).each { |a| known_names << a["name"] }
+    end
+
+    files = Dir.glob(Rails.root.join("data/**/videos.yml"))
+    missing = []
+
+    files.each do |file|
+      data = YAML.load_file(file)
+      relative_path = file.sub("#{Rails.root}/data/", "")
+
+      Array(data).each do |video|
+        Array(video["speakers"]).each do |name|
+          unless known_names.include?(name)
+            missing << {path: relative_path, speaker: name}
+          end
+        end
+
+        Array(video["talks"]).each do |talk|
+          Array(talk["speakers"]).each do |name|
+            unless known_names.include?(name)
+              missing << {path: relative_path, speaker: name}
+            end
+          end
+        end
+      end
+    end
+
+    if missing.any?
+      unique_speakers = missing.map { |m| m[:speaker] }.uniq.sort
+      puts Gum.style("Speakers referenced in videos.yml but missing from speakers.yml (#{unique_speakers.count}):", foreground: "1")
+      puts
+
+      missing.group_by { |m| m[:speaker] }.sort_by { |name, _| name }.each do |name, occurrences|
+        puts Gum.style("❌ #{name}", foreground: "1")
+        occurrences.each { |o| puts "   #{o[:path]}" }
+      end
+
+      puts
+      false
+    else
+      puts Gum.style("✓ All speakers in videos.yml exist in speakers.yml", foreground: "2")
+      true
+    end
+  end
+
+  desc "Validate that all speakers in videos.yml exist in speakers.yml"
+  task speakers_in_videos: :environment do
+    exit 1 unless validate_speakers_in_videos
   end
 
   desc "Validate that all Static::Video records have unique ids"
@@ -407,11 +508,17 @@ namespace :validate do
     puts Gum.style("Validating venue.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_files("data/**/venue.yml", VenueSchema, "venue.yml")
 
+    puts Gum.style("Validating speakers.yml", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+    results << validate_array_files("data/speakers.yml", SpeakerSchema, "speakers.yml")
+
     puts Gum.style("Validating videos.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_array_files("data/**/videos.yml", VideoSchema, "videos.yml")
 
     puts Gum.style("Validating schedule.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_files("data/**/schedule.yml", ScheduleSchema, "schedule.yml")
+
+    puts Gum.style("Validating unique speaker slugs and GitHub handles", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+    results << validate_unique_speaker_fields
 
     puts Gum.style("Validating unique video ids", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
 
