@@ -65,7 +65,8 @@ class User < ApplicationRecord
   has_delegated_json :settings,
     feedback_enabled: true,
     wrapped_public: false,
-    searchable: true
+    searchable: true,
+    distance: 250
 
   GITHUB_URL_PATTERN = %r{\A(https?://)?(www\.)?github\.com/}i
 
@@ -139,6 +140,7 @@ class User < ApplicationRecord
   validates :email, format: {with: URI::MailTo::EMAIL_REGEXP}, allow_blank: true
   validates :github_handle, presence: true, uniqueness: true, allow_blank: true
   validates :canonical, exclusion: {in: ->(user) { [user] }, message: "can't be itself"}
+  validates :distance, comparison: {less_than_or_equal_to: 20_000, greater_than_or_equal_to: 250}
 
   normalizes :github_handle, with: ->(value) { normalize_github_handle(value) }
 
@@ -195,6 +197,7 @@ class User < ApplicationRecord
   scope :with_public_wrapped, -> { where("json_extract(settings, '$.wrapped_public') = ?", true) }
   scope :with_feedback_enabled, -> { where("json_extract(settings, '$.feedback_enabled') = ?", true) }
   scope :searchable, -> { where("json_extract(settings, '$.searchable') = ?", true) }
+  scope :with_radius, ->(distance) { where("json_extract(settings, '$.distance') = ?", distance) }
   scope :indexable, -> {
     canonical.not_marked_for_deletion.where("talks_count > 0 OR json_extract(settings, '$.searchable') = ?", true)
   }
