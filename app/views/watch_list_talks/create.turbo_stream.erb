@@ -1,0 +1,3 @@
+<%= turbo_stream.replace dom_id(@talk, :bookmark_button) do %>
+  <%= render partial: "watch_list_talks/bookmark_button", locals: {talk: @talk, default_watch_list: @watch_list, is_bookmarked: true} %>
+<% end %>
