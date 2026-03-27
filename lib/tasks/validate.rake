@@ -161,6 +161,24 @@ namespace :validate do
     exit 1 unless success
   end
 
+  desc "Validate featured_cities.yml against FeaturedCitySchema"
+  task featured_cities: :environment do
+    success = validate_array_files("data/featured_cities.yml", FeaturedCitySchema, "featured_cities.yml")
+    exit 1 unless success
+  end
+
+  desc "Validate all involvements.yml files against InvolvementSchema"
+  task involvements: :environment do
+    success = validate_array_files("data/**/involvements.yml", InvolvementSchema, "involvements.yml")
+    exit 1 unless success
+  end
+
+  desc "Validate all transcripts.yml files against TranscriptSchema"
+  task transcripts: :environment do
+    success = validate_array_files("data/**/transcripts.yml", TranscriptSchema, "transcripts.yml")
+    exit 1 unless success
+  end
+
   def validate_unique_speaker_fields
     speakers = YAML.load_file(Rails.root.join("data/speakers.yml"))
     success = true
@@ -518,6 +536,15 @@ namespace :validate do
 
     puts Gum.style("Validating schedule.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_files("data/**/schedule.yml", ScheduleSchema, "schedule.yml")
+
+    puts Gum.style("Validating featured_cities.yml", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+    results << validate_array_files("data/featured_cities.yml", FeaturedCitySchema, "featured_cities.yml")
+
+    puts Gum.style("Validating involvements.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+    results << validate_array_files("data/**/involvements.yml", InvolvementSchema, "involvements.yml")
+
+    puts Gum.style("Validating transcripts.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+    results << validate_array_files("data/**/transcripts.yml", TranscriptSchema, "transcripts.yml")
 
     puts Gum.style("Validating unique speaker slugs and GitHub handles", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_unique_speaker_fields
