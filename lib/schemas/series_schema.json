@@ -1,0 +1,121 @@
+{
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the event series (e.g., 'RailsConf')"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the event series"
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "conference",
+        "meetup",
+        "retreat",
+        "hackathon",
+        "event",
+        "podcast",
+        "online",
+        "organisation",
+        "workshop"
+      ],
+      "description": "Type of event series"
+    },
+    "frequency": {
+      "type": "string",
+      "enum": [
+        "yearly",
+        "monthly",
+        "weekly",
+        "irregular",
+        "biweekly",
+        "biyearly",
+        "quarterly"
+      ],
+      "description": "How often the event occurs"
+    },
+    "ended": {
+      "type": "boolean",
+      "description": "Whether the event series has ended"
+    },
+    "default_country_code": {
+      "type": "string",
+      "description": "Default ISO country code (e.g., 'US', 'JP')"
+    },
+    "language": {
+      "type": "string",
+      "description": "Primary language of the event (e.g., 'english', 'japanese')"
+    },
+    "website": {
+      "type": "string",
+      "description": "Official website URL"
+    },
+    "original_website": {
+      "type": "string",
+      "description": "Original/archived website URL"
+    },
+    "twitter": {
+      "type": "string",
+      "description": "Twitter/X handle (without @)"
+    },
+    "mastodon": {
+      "type": "string",
+      "description": "Full Mastodon profile URL"
+    },
+    "bsky": {
+      "type": "string",
+      "description": "Bluesky handle"
+    },
+    "github": {
+      "type": "string",
+      "description": "GitHub organization or repository"
+    },
+    "linkedin": {
+      "type": "string",
+      "description": "LinkedIn page URL"
+    },
+    "meetup": {
+      "type": "string",
+      "description": "Meetup.com group URL"
+    },
+    "luma": {
+      "type": "string",
+      "description": "Luma event URL"
+    },
+    "guild": {
+      "type": "string",
+      "description": "Guild.host URL"
+    },
+    "vimeo": {
+      "type": "string",
+      "description": "Vimeo channel URL"
+    },
+    "youtube_channel_id": {
+      "type": "string",
+      "description": "YouTube channel ID (starts with UC...)"
+    },
+    "youtube_channel_name": {
+      "type": "string",
+      "description": "YouTube channel name"
+    },
+    "playlist_matcher": {
+      "type": "string",
+      "description": "Pattern to match playlists for this series"
+    },
+    "aliases": {
+      "type": "array",
+      "description": "Alternative names for the series",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "additionalProperties": false,
+  "strict": true
+}
