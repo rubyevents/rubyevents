@@ -123,19 +123,25 @@ GIT
 GEM
   remote: https://packager.dev/avo-hq/
   specs:
-    avo-dashboards (3.28.0)
-      avo (= 3.28.0)
+    avo-dashboards (4.0.0.beta.5)
+      avo (= 4.0.0.beta.5)
+      avo-licensing (= 4.0.0.beta.2)
       turbo-rails
       view_component (>= 3.7.0)
       zeitwerk (>= 2.6.12)
-    avo-menu (3.28.0)
-      avo (= 3.28.0)
+    avo-licensing (4.0.0.beta.2)
+      avo (>= 4.0.0.beta.1)
+      zeitwerk (>= 2.6.12)
+    avo-menu (4.0.0.beta.5)
+      avo (= 4.0.0.beta.5)
+      avo-licensing (= 4.0.0.beta.2)
       docile
       zeitwerk (>= 2.6.12)
-    avo-pro (3.28.0)
-      avo (= 3.28.0)
-      avo-dashboards (= 3.28.0)
-      avo-menu (= 3.28.0)
+    avo-pro (4.0.0.beta.5)
+      avo (= 4.0.0.beta.5)
+      avo-dashboards (= 4.0.0.beta.5)
+      avo-licensing (= 4.0.0.beta.2)
+      avo-menu (= 4.0.0.beta.5)
       zeitwerk (>= 2.6.12)
 
 GEM
@@ -172,7 +178,7 @@ GEM
       metrics (~> 0.12)
       traces (~> 0.18)
     authentication-zero (4.0.3)
-    avo (3.28.0)
+    avo (4.0.0.beta.5)
       actionview (>= 6.1)
       active_link_to
       activerecord (>= 6.1)
@@ -181,7 +187,7 @@ GEM
       avo-icons (>= 0.1.1)
       docile
       meta-tags
-      pagy (>= 7.0.0, < 43)
+      pagy (>= 43.0)
       prop_initializer (>= 0.2.0)
       turbo-rails (>= 2.0.0)
       turbo_power (>= 0.6.0)
@@ -529,7 +535,10 @@ GEM
       omniauth (~> 2.0)
     openssl (3.3.2)
     ostruct (0.6.3)
-    pagy (9.4.0)
+    pagy (43.4.4)
+      json
+      uri
+      yaml
     parallel (1.27.0)
     parser (3.3.10.1)
       ast (~> 2.4.1)
@@ -775,6 +784,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
+    yaml (0.4.0)
     yt (0.34.0)
       activesupport
     zeitwerk (2.7.4)
@@ -794,8 +804,8 @@ DEPENDENCIES
   annotaterb
   appsignal
   authentication-zero
-  avo
-  avo-pro!
+  avo (>= 4.0.0.beta)
+  avo-pro (>= 4.0.0.beta)!
   bcrypt (~> 3.1.7)
   bootsnap
   bundler-audit

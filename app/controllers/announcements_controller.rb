@@ -1,5 +1,5 @@
 class AnnouncementsController < ApplicationController
-  include Pagy::Backend
+  include Pagy::Method
 
   skip_before_action :authenticate_user!
 
@@ -8,7 +8,7 @@ class AnnouncementsController < ApplicationController
     filtered_announcements = announcements
     filtered_announcements = filtered_announcements.by_tag(@current_tag) if @current_tag.present?
 
-    @pagy, @announcements = pagy_array(filtered_announcements, limit: 10, page: page_number)
+    @pagy, @announcements = pagy(:offset, filtered_announcements, limit: 10, page: page_number)
   end
 
   def show

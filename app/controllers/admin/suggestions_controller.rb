@@ -1,6 +1,6 @@
 module Admin
   class SuggestionsController < ApplicationController
-    include Pagy::Backend
+    include Pagy::Method
 
     def index
       @pagy, @suggestions = pagy(Suggestion.pending.order(created_at: :asc))

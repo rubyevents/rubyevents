@@ -1,5 +1,5 @@
 class TopicsController < ApplicationController
-  include Pagy::Backend
+  include Pagy::Method
   include WatchedTalks
 
   skip_before_action :authenticate_user!
@@ -15,11 +15,9 @@ class TopicsController < ApplicationController
     @topic = Topic.find_by(slug: params[:slug])
     return redirect_to(root_path, status: :moved_permanently) unless @topic
 
-    @pagy, @talks = pagy_countless(
+    @pagy, @talks = pagy(:countless,
       @topic.talks.includes(:speakers, event: :series, child_talks: :speakers).order(date: :desc),
-      gearbox_extra: true,
-      gearbox_limit: [12, 24, 48, 96],
-      overflow: :empty_page,
+      limit: 12,
       page: page_number
     )
     set_meta_tags(@topic)

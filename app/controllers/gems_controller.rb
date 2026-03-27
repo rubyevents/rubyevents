@@ -1,5 +1,5 @@
 class GemsController < ApplicationController
-  include Pagy::Backend
+  include Pagy::Method
   include WatchedTalks
 
   skip_before_action :authenticate_user!
@@ -32,7 +32,7 @@ class GemsController < ApplicationController
   end
 
   def talks
-    @pagy, @talks = pagy_countless(
+    @pagy, @talks = pagy(:countless,
       @topic.talks.includes(:speakers, event: :series).order(date: :desc),
       limit: 24,
       page: page_number

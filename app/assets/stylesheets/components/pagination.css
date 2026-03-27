@@ -1,12 +1,12 @@
 @layer components {
-  nav.pagy.nav {
+  nav.pagy.series-nav {
     @apply mx-auto flex justify-normal gap-4 bg-transparent text-base-content sm:gap-8;
 
-    .current {
+    [aria-current="page"] {
       @apply font-semibold text-primary;
     }
 
-    .page.disabled {
+    [aria-disabled="true"] {
       @apply text-base-300;
     }
   }

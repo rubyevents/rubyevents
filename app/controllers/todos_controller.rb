@@ -1,5 +1,5 @@
 class TodosController < ApplicationController
-  include Pagy::Backend
+  include Pagy::Method
 
   skip_before_action :authenticate_user!
 
@@ -10,13 +10,13 @@ class TodosController < ApplicationController
     case @view
     when "by_type"
       @todos_by_type = group_by_type(@todos)
-      @pagy, @todos_by_type = pagy_array(@todos_by_type, limit: 25)
+      @pagy, @todos_by_type = pagy(:offset,@todos_by_type, limit: 25)
     else
       @series_with_todos = group_by_series(@todos)
       @series_with_todos = @series_with_todos.sort_by do |series_data|
         [-series_data[:total_count], series_data[:series]&.name || "zzz"]
       end
-      @pagy, @series_with_todos = pagy_array(@series_with_todos, limit: 25)
+      @pagy, @series_with_todos = pagy(:offset,@series_with_todos, limit: 25)
     end
   end
 

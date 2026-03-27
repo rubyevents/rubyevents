@@ -1,7 +1,7 @@
 class Avo::Cards::UnavailableVideosMetric < Avo::Cards::MetricCard
   self.id = "unavailable_videos_metric"
   self.label = "Unavailable Videos"
-  self.description = "Number of talks with unavailable videos"
+  self.discreet_description = "Number of talks with unavailable videos"
   self.cols = 1
 
   def query

@@ -1,5 +1,5 @@
 class Events::SeriesController < ApplicationController
-  include Pagy::Backend
+  include Pagy::Method
 
   skip_before_action :authenticate_user!, only: %i[index show]
   before_action :set_event_series, only: %i[show reimport reindex]

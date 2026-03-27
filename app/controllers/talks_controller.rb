@@ -1,7 +1,7 @@
 class TalksController < ApplicationController
   include FavoriteUsers
   include RemoteModal
-  include Pagy::Backend
+  include Pagy::Method
   include WatchedTalks
 
   skip_before_action :authenticate_user!

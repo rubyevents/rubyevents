@@ -6,7 +6,7 @@ class ProfilesController < ApplicationController
   before_action :set_mutual_events, only: %i[show]
   before_action :require_admin!, only: %i[reindex]
 
-  include Pagy::Backend
+  include Pagy::Method
   include RemoteModal
   include WatchedTalks
 

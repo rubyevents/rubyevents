@@ -1,7 +1,7 @@
 class Avo::Cards::SameNameDuplicatesMetric < Avo::Cards::MetricCard
   self.id = "same_name_duplicates_metric"
   self.label = "Same Name Duplicates"
-  self.description = "Users with identical names"
+  self.discreet_description = "Users with identical names"
   self.cols = 1
 
   def query

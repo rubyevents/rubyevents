@@ -65,7 +65,7 @@
             } %>
     </div>
     <div class="flex w-full mt-4">
-      <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+      <%== @pagy.series_nav if @pagy.pages > 1 %>
     </div>
   <% end %>
 </div>
