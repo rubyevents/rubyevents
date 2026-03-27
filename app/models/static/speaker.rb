@@ -32,7 +32,7 @@ module Static
       user.twitter = twitter if twitter.present?
       user.github_handle = github if github.present?
       user.website = website if website.present?
-      user.bio = bio if bio.present?
+
       user.save!
 
       Array(aliases).each do |alias_data|
