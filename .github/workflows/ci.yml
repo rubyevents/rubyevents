@@ -13,6 +13,7 @@ concurrency:
 jobs:
   lint:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     env:
       RAILS_ENV: test
       RUBOCOP_CACHE_ROOT: tmp/rubocop
@@ -66,6 +67,7 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     env:
       RAILS_ENV: test
     steps:
@@ -103,6 +105,7 @@ jobs:
 
   seed_smoke_test:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     env:
       RAILS_ENV: test
       SEED_SMOKE_TEST: true
