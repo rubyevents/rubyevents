@@ -9,13 +9,13 @@
       "type": "string",
       "description": "URL-friendly slug for the speaker"
     },
-    "twitter": {
-      "type": "string",
-      "description": "Twitter/X handle (without @)"
-    },
     "github": {
       "type": "string",
       "description": "GitHub username"
+    },
+    "twitter": {
+      "type": "string",
+      "description": "Twitter/X handle (without @)"
     },
     "website": {
       "type": "string",
@@ -33,9 +33,29 @@
       "type": "string",
       "description": "LinkedIn profile URL"
     },
-    "bio": {
+    "speakerdeck": {
       "type": "string",
-      "description": "Short biography of the speaker"
+      "description": "Speakerdeck profile URL"
+    },
+    "aliases": {
+      "type": "array",
+      "description": "Alternative names for the speaker",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "slug"
+        ],
+        "additionalProperties": false
+      }
     },
     "canonical_slug": {
       "type": "string",
@@ -44,7 +64,8 @@
   },
   "required": [
     "name",
-    "slug"
+    "slug",
+    "github"
   ],
   "additionalProperties": false,
   "strict": true
