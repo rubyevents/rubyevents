@@ -1,0 +1,185 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the event (YouTube playlist ID or custom slug)"
+    },
+    "title": {
+      "type": "string",
+      "description": "Full name of the event (e.g., 'RailsConf 2024')"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the event"
+    },
+    "aliases": {
+      "type": "array",
+      "description": "Alternative names for the event",
+      "items": {
+        "type": "string"
+      }
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "conference",
+        "meetup",
+        "retreat",
+        "hackathon",
+        "event",
+        "workshop"
+      ],
+      "description": "Type of event"
+    },
+    "hybrid": {
+      "type": "boolean",
+      "description": "Whether the event has both in-person and online attendance"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "cancelled",
+        "postponed",
+        "scheduled"
+      ],
+      "description": "Event status"
+    },
+    "last_edition": {
+      "type": "boolean",
+      "description": "Whether this is the last edition of the event"
+    },
+    "start_date": {
+      "type": "string",
+      "description": "Start date of the event (YYYY-MM-DD format)"
+    },
+    "end_date": {
+      "type": "string",
+      "description": "End date of the event (YYYY-MM-DD format)"
+    },
+    "published_at": {
+      "type": "string",
+      "description": "Date when videos were published (YYYY-MM-DD format)"
+    },
+    "announced_on": {
+      "type": "string",
+      "description": "Date when the event was announced (YYYY-MM-DD format)"
+    },
+    "year": {
+      "type": "integer",
+      "description": "Year of the event"
+    },
+    "date_precision": {
+      "type": "string",
+      "enum": [
+        "year",
+        "month",
+        "day"
+      ],
+      "description": "Precision of the date (when exact dates are unknown)"
+    },
+    "frequency": {
+      "type": "string",
+      "description": "How often the event occurs (for recurring meetups)"
+    },
+    "location": {
+      "type": "string",
+      "description": "Location in 'City, Country' format (e.g., 'Detroit, MI' or 'Tokyo, Japan')"
+    },
+    "venue": {
+      "type": "string",
+      "description": "Name of the venue"
+    },
+    "channel_id": {
+      "type": "string",
+      "description": "YouTube channel ID (starts with UC...)"
+    },
+    "playlist": {
+      "type": "string",
+      "description": "YouTube playlist/Vimeo showcase link"
+    },
+    "website": {
+      "type": "string",
+      "description": "Official event website URL"
+    },
+    "original_website": {
+      "type": "string",
+      "description": "Original/archived website URL"
+    },
+    "twitter": {
+      "type": "string",
+      "description": "Twitter/X handle (without @)"
+    },
+    "mastodon": {
+      "type": "string",
+      "description": "Full Mastodon profile URL"
+    },
+    "github": {
+      "type": "string",
+      "description": "GitHub organization or repository URL"
+    },
+    "meetup": {
+      "type": "string",
+      "description": "Meetup.com group URL"
+    },
+    "luma": {
+      "type": "string",
+      "description": "Luma event URL"
+    },
+    "youtube": {
+      "type": "string",
+      "description": "YouTube channel or video URL"
+    },
+    "tickets_url": {
+      "type": "string",
+      "description": "URL to purchase tickets (e.g., Tito, Eventbrite, Luma)"
+    },
+    "banner_background": {
+      "type": "string",
+      "description": "CSS background value for the banner (color or gradient)"
+    },
+    "featured_background": {
+      "type": "string",
+      "description": "CSS background color for featured cards"
+    },
+    "featured_color": {
+      "type": "string",
+      "description": "CSS text color for featured cards"
+    },
+    "coordinates": {
+      "description": "Geographic coordinates (use 'coordinates: false' for online events)",
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "latitude": {
+              "type": "number",
+              "description": "Latitude coordinate"
+            },
+            "longitude": {
+              "type": "number",
+              "description": "Longitude coordinate"
+            }
+          },
+          "required": [
+            "latitude",
+            "longitude"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "boolean"
+        }
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "title",
+    "kind",
+    "location",
+    "coordinates"
+  ],
+  "additionalProperties": false,
+  "strict": true
+}
