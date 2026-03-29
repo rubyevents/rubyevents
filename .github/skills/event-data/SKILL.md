@@ -1,12 +1,15 @@
 ---
 name: event-data
-description: Guide for handling event data. Use when asked to update event data such as CFPs, Talks, Videos, Schedule, Sponsors, Involvements, or Videos. Use when updating any file in the /data/ directory.
+description: Guide for handling event data. Use when asked to update event data such as CFPs, Talks, Schedule, Sponsors, Involvements, or Videos. Use when updating any file in the /data/ directory.
 ---
 
-# Capabilities
+# Important Notes
 If something is unclear, use the AskUserTool to ask for clarification.
 **Always use the generators if possible.**
 The generators will create a file with the correct structure, and will help you avoid formatting errors.
+If you do not have a paramter for the generator, do not pass it as a parameter.
+The generaator will create a reasonable fault or TODO for someone else to fill out later.
+`bin/lint` must be called before commiting any changes to confirm the structure of the file is correct.
 
 # Adding a talk
 
@@ -26,7 +29,13 @@ For example, if the user says "Create a lightning talk from Chris Hasiński, the
 bin/rails g talk --event ruby-community-conference-winter-edition-2026 --speaker "Chris Hasiński" --title "Doom" --kind lightning_talk
 ```
 
+Exclude any missing parameters, and let the generator create TODOs for someone else to fill out later.
+
 If the rubyevents MCP is available, and the user did not provide an event series slug and event, use the EventLookupTool to find the correct event.
+
+Call the generator once per talk, and do not attempt to create multiple talks in one command.
+
+Run `bin/lint` once all talks are added to confirm the structure.
 
 # Generating a Schedule
 
@@ -56,9 +65,7 @@ bin/rails g sponsor --help
 
 Generate the sponsor file with appropriate tiers and sponsor names. 
 
-Go back and populate the the generated file with sponsor urls and sponsor image paths.
-
-# speakers.yml
+# Speakers
 
 When updating speakers.yml, the structure is:
 
