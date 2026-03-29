@@ -78,4 +78,12 @@ class EventSeriesTest < ActiveSupport::TestCase
       @series.sync_aliases_from_list(nil)
     end
   end
+
+  test "supports weekly and biweekly frequencies" do
+    @series.frequency = :weekly
+    assert_predicate @series, :weekly?
+
+    @series.frequency = :biweekly
+    assert_predicate @series, :biweekly?
+  end
 end
