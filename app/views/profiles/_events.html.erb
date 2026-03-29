@@ -1,7 +1,7 @@
 <%# Event Participations v1 %>
 
 <% future_events = events.upcoming.sort_by(&:sort_date).reverse %>
-<% past_events = events.to_a - future_events.sort_by(&:sort_date).reverse %>
+<% past_events = (events.to_a - future_events.sort_by(&:sort_date).reverse).sort_by(&:sort_date).reverse %>
 
 <% cache [user, events, Current.user] do %>
   <div>
