@@ -29,6 +29,7 @@ module Static
         ::User.new
 
       user.name = name
+      user.slug = slug if slug.present? && user.slug.blank?
       user.twitter = twitter if twitter.present?
       user.github_handle = github if github.present?
       user.website = website if website.present?
