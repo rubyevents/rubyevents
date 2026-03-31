@@ -1,0 +1,72 @@
+{
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Full name of the speaker"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-friendly slug for the speaker"
+    },
+    "github": {
+      "type": "string",
+      "description": "GitHub username"
+    },
+    "twitter": {
+      "type": "string",
+      "description": "Twitter/X handle (without @)"
+    },
+    "website": {
+      "type": "string",
+      "description": "Personal website URL"
+    },
+    "mastodon": {
+      "type": "string",
+      "description": "Full Mastodon profile URL"
+    },
+    "bluesky": {
+      "type": "string",
+      "description": "Bluesky handle"
+    },
+    "linkedin": {
+      "type": "string",
+      "description": "LinkedIn profile URL"
+    },
+    "speakerdeck": {
+      "type": "string",
+      "description": "Speakerdeck profile URL"
+    },
+    "aliases": {
+      "type": "array",
+      "description": "Alternative names for the speaker",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "slug"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "canonical_slug": {
+      "type": "string",
+      "description": "Slug of the canonical speaker profile (for deduplication)"
+    }
+  },
+  "required": [
+    "name",
+    "slug",
+    "github"
+  ],
+  "additionalProperties": false,
+  "strict": true
+}
