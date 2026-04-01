@@ -72,9 +72,6 @@ gem "active_record-associated_object"
 # Headless Chrome driver for Capybara
 gem "cuprite"
 
-# Reusable modules for tasks like data extraction, scoring, and ranking
-gem "active_genie"
-
 # A single delightful Ruby way to work with AI.
 gem "ruby_llm", "~> 1.9.1"
 
