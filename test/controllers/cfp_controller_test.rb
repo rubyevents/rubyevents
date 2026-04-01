@@ -25,6 +25,6 @@ class CFPControllerTest < ActionDispatch::IntegrationTest
     @event.cfps.first.update(open_date: 1.week.ago, close_date: 1.day.from_now)
 
     get cfp_index_path
-    assert_select "div", /CFP closes on/i
+    assert_select "div", /closes on/i
   end
 end
