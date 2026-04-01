@@ -13,7 +13,7 @@ tags:
 featured_image:
 ---
 
-In March, RubyEvents had TODO contributors and TODO PRs merged! This month, we had Ruby Community Conference Winter Edition and RBQConf. April will be busy with 5 different events - Tropical on Rails, wroclove.rb, RubyKaigi, Haggis Ruby, and Blue Ridge Ruby!
+In March, RubyEvents had a shocking 89 PRs from 20 contributors merged! This month, we had Ruby Community Conference Winter Edition and RBQConf. April will be busy with 5 different events - Tropical on Rails, wroclove.rb, RubyKaigi, Haggis Ruby, and Blue Ridge Ruby!
 
 ## Open CFPs
 
