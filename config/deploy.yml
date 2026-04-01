@@ -3,7 +3,7 @@
 service: rubyvideo
 
 # Name of the container image.
-image: adrienpoly/rubyvideo
+image: ghcr.io/rubyevents/rubyevents
 
 # Deploy to these servers.
 servers:
@@ -43,7 +43,8 @@ proxy:
 
 # Credentials for your image host.
 registry:
-  username: adrienpoly
+  server: ghcr.io
+  username: rubyevents
   password:
     - KAMAL_REGISTRY_PASSWORD
 
