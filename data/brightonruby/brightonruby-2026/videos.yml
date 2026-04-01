@@ -1,14 +1,22 @@
-# TODO: Add talks and videos - docs/ADDING_VIDEOS.md
-# TODO: Confirm talk titles when announced
-# TODO: Running order of talks
-#
 # Website: https://brightonruby.com
 # Videos: -
 ---
-- id: "brian-casel-brightonruby-2026"
-  title: "Talk by Brian Casel"
+- id: "andy-croll-brightonruby-2026"
+  title: "Welcome"
   description: |-
-    Brian is the founder of Builder Methods and brings longtime Ruby, Rails, and SaaS experience, having built and sold multiple software products over the past decade. He'll explore what actually changes when experienced developers start building with AI — and what doesn't.
+    Welcome to Brighton Ruby 2026.
+  kind: "talk"
+  language: "en"
+  date: "2026-06-25"
+  speakers:
+    - Andy Croll
+  video_provider: "scheduled"
+  video_id: "andy-croll-brightonruby-2026"
+
+- id: "brian-casel-brightonruby-2026"
+  title: "Your experience is your (AI) advantage"
+  description: |-
+    Everyone's seen AI spin up a fresh app from scratch. But what about your well-established codebase, with years of decisions, conventions, and real users? Brian Casel argues that experienced developers have the biggest advantage in the AI era, and shows why the best teams are blurring the lines between developer, designer, and product manager—and what that means for us as builders.
   kind: "talk"
   language: "en"
   date: "2026-06-25"
@@ -18,22 +26,22 @@
   video_id: "brian-casel-brightonruby-2026"
 
 - id: "elena-tanasoiu-emma-gabriel-brightonruby-2026"
-  title: "Talk by Elena Tănăsoiu & Emma Gabriel"
+  title: "Performance Engineering for Everyone"
   description: |-
-    Elena & Emma from GitHub's Performance Engineering team will teach you how to read flamegraphs — the visualization that shows exactly where your code spends time. They'll demonstrate through a real production story where profiling a single page cut CPU consumption by 13%.
+    Your app has a slow endpoint. You've added a database index, turned on caching, reached for larger instances — and you're still guessing. This talk teaches you how to read flamegraphs: the visualization that shows exactly where your code spends time, no guesswork required. We'll demonstrate the technique through a real production story from GitHub, where profiling a single page cut CPU consumption by 13% and rebuilt developer trust in the merge button on the Pull Request page.
   kind: "talk"
   language: "en"
   date: "2026-06-25"
   speakers:
-    - Elena Tănăsoiu
+    - "Elena Tănăsoiu"
     - Emma Gabriel
   video_provider: "scheduled"
   video_id: "elena-tanasoiu-emma-gabriel-brightonruby-2026"
 
 - id: "craig-norford-brightonruby-2026"
-  title: "Talk by Craig Norford"
+  title: "Scaling Sidekiq: Managing Multi Tenancy"
   description: |-
-    Craig is a DevOps Engineer at PassEntry. A former professional musician who transitioned into tech via Le Wagon, he'll share different strategies for managing multi-tenancy in Sidekiq, especially balancing cost and compute with shuffle sharding.
+    Different strategies for managing multi tenancy in Sidekiq and different strategies based on your business needs. Especially looking at balancing cost and compute with shuffle sharding.
   kind: "talk"
   language: "en"
   date: "2026-06-25"
@@ -42,34 +50,10 @@
   video_provider: "scheduled"
   video_id: "craig-norford-brightonruby-2026"
 
-- id: "iliana-hadzhiatanasova-brightonruby-2026"
-  title: "Talk by Iliana Hadzhiatanasova"
-  description: |-
-    Iliana is a Senior Product Engineer at Intercom, where their 3 million line monolith runs on the main branch of Rails. She'll share 15 years of upgrade stories — the things that broke, the monkey patches, and getting 300 engineers comfortable on unreleased Rails.
-  kind: "talk"
-  language: "en"
-  date: "2026-06-25"
-  speakers:
-    - Iliana Hadzhiatanasova
-  video_provider: "scheduled"
-  video_id: "iliana-hadzhiatanasova-brightonruby-2026"
-
-- id: "alex-watt-brightonruby-2026"
-  title: "Talk by Alex Watt"
-  description: |-
-    Alex is a Senior Staff Software Engineer at Shopify who's been writing Ruby for over 10 years. He'll talk about improving healthcare in Addis Ababa, Ethiopia, with a Rails app for mobile medical clinics.
-  kind: "talk"
-  language: "en"
-  date: "2026-06-25"
-  speakers:
-    - Alex Watt
-  video_provider: "scheduled"
-  video_id: "alex-watt-brightonruby-2026"
-
 - id: "remy-hannequin-brightonruby-2026"
-  title: "Talk by Rémy Hannequin"
+  title: "Time is a Lie (and How to Deal With It in Ruby)"
   description: |-
-    Rémy is a senior developer at thoughtbot and creator of Astronoby, an astronomy Ruby gem. He'll explore why time is genuinely weird and work through practical patterns for handling it safely in Ruby and Rails.
+    Time seems simple until a background job vanishes during the DST switch or an API silently shifts dates because it assumed UTC. We'll look at why time is genuinely weird, and then work through practical patterns for handling it safely in Ruby and Rails.
   kind: "talk"
   language: "en"
   date: "2026-06-25"
@@ -78,22 +62,10 @@
   video_provider: "scheduled"
   video_id: "remy-hannequin-brightonruby-2026"
 
-- id: "maria-yudina-brightonruby-2026"
-  title: "Talk by Maria Yudina"
-  description: |-
-    Maria is a software developer at Shopify who'll draw on her love of movies and storytelling to show what screenwriting can teach us about writing code and prompts.
-  kind: "talk"
-  language: "en"
-  date: "2026-06-25"
-  speakers:
-    - Maria Yudina
-  video_provider: "scheduled"
-  video_id: "maria-yudina-brightonruby-2026"
-
 - id: "tekin-suleyman-brightonruby-2026"
-  title: "Talk by Tekin Süleyman"
+  title: "Lightning Talk: 10 Cool Things You Probably Didn't Know About Internationalisation"
   description: |-
-    A lightning talk on internationalisation.
+    10 cool things you probably didn't know about internationalisation.
   kind: "lightning_talk"
   language: "en"
   date: "2026-06-25"
@@ -103,9 +75,9 @@
   video_id: "tekin-suleyman-brightonruby-2026"
 
 - id: "tijmen-brommet-brightonruby-2026"
-  title: "Talk by Tijmen Brommet"
+  title: "Lightning Talk: Woodworking for Rubyists"
   description: |-
-    A lightning talk on what woodworking can teach us about software.
+    What woodworking can teach us about software development. From jigs to joints, the parallels between crafting with wood and crafting with code.
   kind: "lightning_talk"
   language: "en"
   date: "2026-06-25"
@@ -115,9 +87,9 @@
   video_id: "tijmen-brommet-brightonruby-2026"
 
 - id: "jennie-evans-brightonruby-2026"
-  title: "Talk by Jennie Evans"
+  title: "Lightning Talk: Kindness is a Superpower"
   description: |-
-    A lightning talk on kindness in development teams.
+    How kindness shows up in development teams and why it matters. A look at the small acts that make teams stronger.
   kind: "lightning_talk"
   language: "en"
   date: "2026-06-25"
@@ -125,3 +97,39 @@
     - Jennie Evans
   video_provider: "scheduled"
   video_id: "jennie-evans-brightonruby-2026"
+
+- id: "maria-yudina-brightonruby-2026"
+  title: "Code, Prompts, and Stories"
+  description: |-
+    What screenwriting can teach us about writing code and prompts. The same craft principles that make stories work — clarity, structure, naming — apply across code, prompts, and communication.
+  kind: "talk"
+  language: "en"
+  date: "2026-06-25"
+  speakers:
+    - Maria Yudina
+  video_provider: "scheduled"
+  video_id: "maria-yudina-brightonruby-2026"
+
+- id: "iliana-hadzhiatanasova-brightonruby-2026"
+  title: "From Rails 3.0 to Rails Edge: 15 years of upgrades in a 3 million line monolith"
+  description: |-
+    Intercom has been running on Rails since 2011. Starting from Rails 3.0, today our 3 million line monolith is running on the main branch of Rails. This talk covers our Rails upgrade journey over the last 15 years - the things that broke, the monkey patches keeping it all together, and what it takes to get 300 engineers comfortable shipping on unreleased Rails versions.
+  kind: "talk"
+  language: "en"
+  date: "2026-06-25"
+  speakers:
+    - Iliana Hadzhiatanasova
+  video_provider: "scheduled"
+  video_id: "iliana-hadzhiatanasova-brightonruby-2026"
+
+- id: "alex-watt-brightonruby-2026"
+  title: "Ethiopia on Rails"
+  description: |-
+    Improving healthcare in Addis Ababa, Ethiopia, with a Rails app for mobile medical clinics.
+  kind: "talk"
+  language: "en"
+  date: "2026-06-25"
+  speakers:
+    - Alex Watt
+  video_provider: "scheduled"
+  video_id: "alex-watt-brightonruby-2026"
