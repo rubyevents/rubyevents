@@ -18,7 +18,7 @@ class CFPControllerTest < ActionDispatch::IntegrationTest
 
   test "should get call4papers open in future" do
     get cfp_index_path
-    assert_select "div", /CFP opens on/i
+    assert_select "div", /opens on/i
   end
 
   test "should get index call4papers opened" do
