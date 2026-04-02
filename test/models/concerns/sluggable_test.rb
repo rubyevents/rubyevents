@@ -51,6 +51,13 @@ class SluggableTest < ActiveSupport::TestCase
     assert_equal "hello-world", talk.to_param
   end
 
+  test "fails validation and logs warning for kanji-only text" do
+    talk = Talk.new(title: "松本行弘", date: "2025-01-01", static_id: "test-kanji")
+
+    assert_not talk.valid?
+    assert_includes talk.errors[:slug], "can't be blank"
+  end
+
   test "auto suffixes on collision when configured" do
     create_talk(title: "Duplicate Talk")
     duplicate = create_talk(title: "Duplicate Talk")
