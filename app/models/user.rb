@@ -230,6 +230,18 @@ class User < ApplicationRecord
     alias_record&.aliasable
   end
 
+  def self.find_by_transliterated_name(name)
+    return nil if name.blank?
+
+    transliterated_slug = Sluggable.transliterate(name)
+    return nil if transliterated_slug.blank?
+
+    user = find_by(slug: transliterated_slug)
+    return user if user
+
+    where(marked_for_deletion: false).find { |u| Sluggable.transliterate(u.name) == transliterated_slug }
+  end
+
   def self.find_by_slug_or_alias(slug)
     return nil if slug.blank?
 

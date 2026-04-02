@@ -189,6 +189,7 @@ GEM
       zeitwerk (>= 2.6.12)
     avo-icons (0.1.1)
       inline_svg
+    babosa (2.0.0)
     base64 (0.2.0)
     bcrypt (3.1.20)
     bcrypt_pbkdf (1.1.1)
@@ -468,6 +469,9 @@ GEM
       railties (>= 7.1)
       stimulus-rails
       turbo-rails
+    moji (1.6)
+    mojinizer (0.2.2)
+      moji (~> 1.6)
     msgpack (1.8.0)
     multi_xml (0.8.0)
       bigdecimal (>= 3.1, < 5)
@@ -796,6 +800,7 @@ DEPENDENCIES
   authentication-zero
   avo
   avo-pro!
+  babosa
   bcrypt (~> 3.1.7)
   bootsnap
   bundler-audit
@@ -838,6 +843,7 @@ DEPENDENCIES
   minisky (~> 0.4.0)
   minitest-difftastic (~> 0.2)
   mission_control-jobs
+  mojinizer
   omniauth
   omniauth-github
   omniauth-rails_csrf_protection

@@ -218,6 +218,36 @@ namespace :validate do
     exit 1 unless validate_unique_speaker_fields
   end
 
+  def validate_transliteration_duplicates
+    speakers = YAML.load_file(Rails.root.join("data/speakers.yml"))
+
+    transliterated_groups = speakers
+      .select { |s| s["name"].present? }
+      .group_by { |s| Sluggable.transliterate(s["name"]) }
+      .select { |slug, group| slug.present? && group.size > 1 }
+
+    if transliterated_groups.any?
+      puts Gum.style("Speaker names that transliterate to the same slug (#{transliterated_groups.count}):", foreground: "3")
+      puts
+
+      transliterated_groups.each do |slug, speakers|
+        names = speakers.map { |s| s["name"] }.join(", ")
+        puts Gum.style("⚠ \"#{slug}\" ← #{names}", foreground: "3")
+      end
+
+      puts
+      false
+    else
+      puts Gum.style("✓ No transliteration duplicates found among speakers", foreground: "2")
+      true
+    end
+  end
+
+  desc "Validate that speaker names don't collide after transliteration"
+  task transliteration_duplicates: :environment do
+    exit 1 unless validate_transliteration_duplicates
+  end
+
   def validate_speakers_in_videos
     speakers_data = YAML.load_file(Rails.root.join("data/speakers.yml"))
     known_names = Set.new
@@ -548,6 +578,9 @@ namespace :validate do
 
     puts Gum.style("Validating unique speaker slugs and GitHub handles", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_unique_speaker_fields
+
+    puts Gum.style("Validating speaker transliteration duplicates", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+    results << validate_transliteration_duplicates
 
     puts Gum.style("Validating unique video ids", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
 
