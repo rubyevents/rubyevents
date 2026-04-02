@@ -11,6 +11,12 @@ module Sluggable
     slug
   end
 
+  def self.transliterate(value)
+    transliterated = value.contains_japanese? ? value.romaji : value
+    transliterated = transliterated.to_slug.transliterate.normalize.to_s
+    transliterated.gsub(/[^\x00-\x7F]/, "").strip
+  end
+
   private
 
   def set_slug
@@ -18,8 +24,7 @@ module Sluggable
     return if source_value.blank?
     return if slug.present?
 
-    transliterated = source_value.romaji.to_slug.transliterate.normalize.to_s
-    transliterated = transliterated.gsub(/[^\x00-\x7F]/, "").strip
+    transliterated = Sluggable.transliterate(source_value)
 
     if transliterated.blank?
       Rails.logger.warn("[Sluggable] Could not generate slug for #{self.class.name} with #{slug_source}: #{source_value.inspect}. Please set the slug manually.")

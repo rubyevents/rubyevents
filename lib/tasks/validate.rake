@@ -218,16 +218,12 @@ namespace :validate do
     exit 1 unless validate_unique_speaker_fields
   end
 
-  def transliterate_name(name)
-    name.romaji.to_slug.transliterate.normalize.to_s
-  end
-
   def validate_transliteration_duplicates
     speakers = YAML.load_file(Rails.root.join("data/speakers.yml"))
 
     transliterated_groups = speakers
       .select { |s| s["name"].present? }
-      .group_by { |s| transliterate_name(s["name"]) }
+      .group_by { |s| Sluggable.transliterate(s["name"]) }
       .select { |slug, group| slug.present? && group.size > 1 }
 
     if transliterated_groups.any?
