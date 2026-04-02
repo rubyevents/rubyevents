@@ -28,9 +28,9 @@ class UserTest < ActiveSupport::TestCase
   test "user distance can not be less than 250" do
     user = User.create!(name: "John Doe")
 
-    user.distance = 30
+    user.distance = -10
     user.valid?
-    assert_equal "Distance must be greater than or equal to 250", user.errors.full_messages.first
+    assert_equal "Distance must be greater than or equal to 0", user.errors.full_messages.first
   end
 
   test "user distance can not be greater than 20_000" do

@@ -73,13 +73,13 @@
                 <span class="label-text-alt" id="distance-value"><%= Current.user.distance %> km</span>
               </label>
               <%= form.range_field :distance,
-                    min: 250,
+                    min: 0,
                     max: 20_000,
                     step: 250,
                     class: "range range-primary",
                     oninput: "document.getElementById('distance-value').textContent = this.value + ' km'" %>
               <div class="flex justify-between text-xs text-gray-400 mt-1">
-                <span>250 km</span>
+                <span>0 km</span>
                 <span>20,000 km</span>
               </div>
             </div>
