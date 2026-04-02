@@ -17,7 +17,7 @@ module Sluggable
     source_value = send(slug_source)
     return if source_value.blank?
 
-    self.slug = slug.presence || I18n.transliterate(source_value.downcase).parameterize
+    self.slug = slug.presence || source_value.romaji.to_slug.transliterate.normalize.to_s
 
     # if slug is already taken, add a random string to the end
     if self.class.exists?(slug: slug) && self.class.auto_suffix_on_collision
