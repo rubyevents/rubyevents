@@ -267,6 +267,12 @@ ActiveRecord::Schema[8.2].define(version: 2026_03_06_110802) do
     t.index ["task_name"], name: "index_llm_requests_on_task_name"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "name"
+    t.datetime "updated_at", null: false
+  end
+
   create_table "organizations", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.text "description"
