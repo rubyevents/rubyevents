@@ -62,6 +62,30 @@
           </div>
         </div>
 
+        <div class="card bg-base-100 shadow-sm border">
+          <div class="card-body">
+            <h2 class="card-title text-lg">Location</h2>
+            <p class="text-sm text-gray-500 mb-4">Configure how far away events can be to appear in your feed.</p>
+
+            <div class="form-control">
+              <label class="label">
+                <span class="label-text font-medium">Event distance</span>
+                <span class="label-text-alt" id="distance-value"><%= Current.user.distance %> km</span>
+              </label>
+              <%= form.range_field :distance,
+                    min: 0,
+                    max: 20_000,
+                    step: 250,
+                    class: "range range-primary",
+                    oninput: "document.getElementById('distance-value').textContent = this.value + ' km'" %>
+              <div class="flex justify-between text-xs text-gray-400 mt-1">
+                <span>0 km</span>
+                <span>20,000 km</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="flex justify-end">
           <%= ui_button "Save settings", type: :submit %>
         </div>
