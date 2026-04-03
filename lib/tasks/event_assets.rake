@@ -176,7 +176,7 @@ class EventAssetWizard
   end
 
   def print_summary(event, logo_path, background_color, text_color)
-    assets_list = EventAssetGenerator::ASSETS.map { |name, dims| "  • #{name}.webp (#{dims[:width]}x#{dims[:height]})" }.join("\n")
+    assets_list = EventAssetGenerator.assets.map { |name, dims| "  • #{name}.webp (#{dims[:width]}x#{dims[:height]})" }.join("\n")
 
     summary = <<~SUMMARY
       Event:      #{event.name} (#{event.slug})
@@ -198,7 +198,7 @@ class EventAssetWizard
 
     generator.ensure_output_dir!
 
-    EventAssetGenerator::ASSETS.each do |name, dimensions|
+    EventAssetGenerator.assets.each do |name, dimensions|
       Gum.spin("Generating #{name}.webp...", spinner: "dot") do
         generator.generate_asset(name, dimensions[:width], dimensions[:height])
       end
@@ -226,14 +226,6 @@ class EventAssetWizard
 end
 
 class EventAssetGenerator
-  ASSETS = {
-    banner: {width: 1300, height: 350},
-    card: {width: 600, height: 350},
-    avatar: {width: 256, height: 256},
-    featured: {width: 615, height: 350},
-    poster: {width: 600, height: 350}
-  }.freeze
-
   LOGO_PADDING_RATIO = 0.15
 
   attr_reader :event, :logo_path, :background_color, :text_color, :output_dir
@@ -244,6 +236,10 @@ class EventAssetGenerator
     @background_color = normalize_color(background_color)
     @text_color = text_color.present? ? normalize_color(text_color) : calculate_text_color(@background_color)
     @output_dir = Rails.root.join("app", "assets", "images", "events", event.series.slug, event.slug)
+  end
+
+  def self.assets
+    Event::AssetDimensionValidator::GENERATED_ASSET_DIMENSIONS
   end
 
   def ensure_output_dir!
@@ -259,12 +255,12 @@ class EventAssetGenerator
     puts "  Output: #{output_dir}"
     puts ""
 
-    ASSETS.each do |name, dimensions|
+    self.class.assets.each do |name, dimensions|
       generate_asset(name, dimensions[:width], dimensions[:height])
     end
 
     puts ""
-    puts "Done! Generated #{ASSETS.size} assets."
+    puts "Done! Generated #{self.class.assets.size} assets."
   end
 
   def generate_asset(name, width, height)
