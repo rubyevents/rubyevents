@@ -10,4 +10,7 @@
 #
 class Notification < ApplicationRecord
   validates :name, presence: true, uniqueness: true
+  has_many :notification_user_subscriptions, dependent: :destroy
+  has_many :users, through: :notification_user_subscriptions
+  has_many :notification_users, dependent: :destroy
 end

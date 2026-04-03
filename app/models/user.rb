@@ -123,6 +123,7 @@ class User < ApplicationRecord
   # Favorite user associations
   has_many :favorite_users, dependent: :destroy, inverse_of: :user
   has_many :favorited_by, class_name: "FavoriteUser", foreign_key: "favorite_user_id", inverse_of: :favorite_user
+  has_many :notification_users, dependent: :destroy
 
   belongs_to :canonical, class_name: "User", optional: true
   belongs_to :city_record, class_name: "City", optional: true, inverse_of: false,
