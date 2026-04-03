@@ -1,0 +1,99 @@
+#!/usr/bin/env bash
+
+# Lint only files that have changed relative to a base branch/commit.
+# Usage: bin/lint-changed [base]   (default base: main)
+#
+# Detects changed files from three sources and merges them:
+#   1. Branch diff vs origin/<base> (or <base>)
+#   2. Staged changes (git index)
+#   3. Unstaged changes (working tree)
+
+set -e
+
+BASE="${1:-main}"
+
+echo "Finding changed files against '$BASE'..."
+
+# Collect changed files from all three sources; exclude deleted files (-d filter)
+if git rev-parse --verify "origin/$BASE" >/dev/null 2>&1; then
+  BRANCH_DIFF=$(git diff --name-only --diff-filter=d "origin/$BASE...HEAD" 2>/dev/null || true)
+elif git rev-parse --verify "$BASE" >/dev/null 2>&1; then
+  BRANCH_DIFF=$(git diff --name-only --diff-filter=d "$BASE...HEAD" 2>/dev/null || true)
+else
+  BRANCH_DIFF=""
+fi
+
+STAGED=$(git diff --name-only --cached --diff-filter=d 2>/dev/null || true)
+UNSTAGED=$(git diff --name-only --diff-filter=d 2>/dev/null || true)
+
+CHANGED_FILES=$(printf '%s\n%s\n%s\n' "$BRANCH_DIFF" "$STAGED" "$UNSTAGED" | sort -u | grep -v '^$')
+
+if [ -z "$CHANGED_FILES" ]; then
+  echo "No changed files detected. Nothing to lint."
+  exit 0
+fi
+
+FILE_COUNT=$(echo "$CHANGED_FILES" | wc -l | tr -d ' ')
+echo "Linting $FILE_COUNT changed file(s):"
+echo "$CHANGED_FILES" | sed 's/^/  /'
+echo ""
+
+# Returns changed files matching a regex pattern that still exist on disk
+changed_matching() {
+  echo "$CHANGED_FILES" | grep -E "$1" | while IFS= read -r f; do
+    [ -f "$f" ] && echo "$f"
+  done
+}
+
+RUBY_FILES=$(changed_matching '\.(rb|rake)$')
+JS_FILES=$(changed_matching '\.(js|mjs|cjs)$')
+ERB_FILES=$(changed_matching '\.erb$')
+YAML_DATA_FILES=$(changed_matching '^data/.*\.yml$')
+
+# ── Ruby ─────────────────────────────────────────────────────────────────────
+if [ -n "$RUBY_FILES" ]; then
+  echo "==> StandardRB (Ruby)"
+  echo "$RUBY_FILES" | tr '\n' '\0' | xargs -0 bundle exec standardrb --fix
+else
+  echo "==> Skipping StandardRB — no Ruby files changed"
+fi
+
+# ── JavaScript ───────────────────────────────────────────────────────────────
+if [ -n "$JS_FILES" ]; then
+  echo "==> StandardJS (JavaScript)"
+  echo "$JS_FILES" | tr '\n' '\0' | xargs -0 yarn format
+else
+  echo "==> Skipping StandardJS — no JS files changed"
+fi
+
+# ── ERB ──────────────────────────────────────────────────────────────────────
+if [ -n "$ERB_FILES" ]; then
+  echo "==> erb-lint"
+  echo "$ERB_FILES" | tr '\n' '\0' | xargs -0 bundle exec erb_lint --lint-all --autocorrect
+
+  echo "==> Herb linter"
+  echo "$ERB_FILES" | tr '\n' '\0' | xargs -0 npx @herb-tools/linter
+
+  echo "==> Herb analyze"
+  bundle exec herb analyze app/
+else
+  echo "==> Skipping erb-lint & Herb linter — no ERB files changed"
+fi
+
+# ── YAML data files ───────────────────────────────────────────────────────────
+if [ -n "$YAML_DATA_FILES" ]; then
+  echo "==> Enforce Strings (YAML)"
+  echo "$YAML_DATA_FILES" | tr '\n' '\0' | xargs -0 node yaml/enforce_changed.mjs
+
+  echo "==> Prettier (YAML)"
+  echo "$YAML_DATA_FILES" | tr '\n' '\0' | xargs -0 yarn prettier --check --write
+
+  echo "==> Schema validation"
+  JOINED=$(echo "$YAML_DATA_FILES" | tr '\n' '\0' | xargs -0)
+  bin/rails "validate:changed[$JOINED]"
+else
+  echo "==> Skipping YAML lint & schema validation — no data/*.yml files changed"
+fi
+
+echo ""
+echo "Done! All checks passed for changed files."
