@@ -33,6 +33,7 @@ Rails.application.routes.draw do
 
   resource :password, only: [:edit, :update]
   resource :settings, only: [:show, :update]
+  resources :notifications, only: [:index]
   namespace :identity do
     resource :email, only: [:edit, :update]
     resource :email_verification, only: [:show, :create]

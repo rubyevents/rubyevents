@@ -27,4 +27,9 @@ class NotificationUser < ApplicationRecord
   belongs_to :user
 
   validates :object_class, :object_id, presence: true
+
+  def title
+    talk = object_class.constantize.find(object_id)
+    talk.title
+  end
 end
