@@ -4,32 +4,28 @@ module Notifications
   module TalkPublished
     extend ActiveSupport::Concern
 
-    class_methods do
-      private
+    def create_user_notification_subscription
+      notification = Notification.find_by(name: :talk_published)
+      return unless notification
 
-      def create_user_notification_subscription
-        notification = Notification.find_by(name: :talk_published)
-        return unless notification
+      NotificationUserSubscription.find_or_create_by(
+        user: user,
+        notification: notification,
+        object_id: talk.id,
+        object_class: talk.class.name
+      )
+    end
 
-        NotificationUserSubscription.find_or_create_by(
-          user: user,
-          notification: notification,
-          object_id: talk.id,
-          object_class: talk.class.name
-        )
-      end
+    def destroy_user_notification_subscription
+      notification = Notification.find_by(name: :talk_published)
+      return unless notification
 
-      def destroy_user_notification_subscription
-        notification = Notification.find_by(name: :talk_published)
-        return unless notification
-
-        NotificationUserSubscription.find_by(
-          user: user,
-          notification: notification,
-          object_id: talk.id,
-          object_class: talk.class.name
-        ).destroy
-      end
+      NotificationUserSubscription.find_by(
+        user: user,
+        notification: notification,
+        object_id: talk.id,
+        object_class: talk.class.name
+      ).destroy
     end
   end
 end
