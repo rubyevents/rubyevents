@@ -32,4 +32,9 @@ class NotificationUser < ApplicationRecord
     talk = object_class.constantize.find(object_id)
     talk.title
   end
+
+  def to_link
+    object = object_class.constantize.find(object_id)
+    Rails.application.routes.url_helpers.polymorphic_path(object)
+  end
 end

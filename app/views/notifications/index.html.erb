@@ -7,7 +7,9 @@
         <div class="card bg-base-100 shadow-md hover:shadow-lg transition-shadow">
           <div class="card-body">
             <h3 class="card-title text-lg">
-              <%= notification_user.title %>
+              <%= link_to redirect_notification_path(notification_user) do %>
+                <%= notification_user.title %>
+              <% end %>
             </h3>
             <p class="text-sm text-gray-500">
               <%= time_ago_in_words(notification_user.created_at) %> ago
