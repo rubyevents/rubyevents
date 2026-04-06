@@ -33,7 +33,7 @@ module Static
       user.github_handle = github if github.present?
       user.website = website if website.present?
 
-      user.save!
+      user.save! if user.new_record? || user.changed?
 
       Array(aliases).each do |alias_data|
         next if alias_data.blank?
