@@ -40,10 +40,7 @@ namespace :db do
 
     desc "Seed all speakers"
     task speakers: :environment do
-      before = GC.stat[:total_allocated_objects]
       Static::Speaker.import_all!
-      after = GC.stat[:total_allocated_objects]
-      puts "Allocated objects before: #{before}, after: #{after}, difference: #{after - before}"
     end
   end
 end
