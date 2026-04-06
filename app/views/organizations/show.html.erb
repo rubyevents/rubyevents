@@ -4,7 +4,7 @@
   <div class="container py-8">
     <% if @events_by_year.any? || @involved_events.any? %>
       <div role="tablist" class="tabs tabs-bordered mt-6">
-        <input type="radio" name="organization_tabs" role="tab" class="tab" aria-label="Supported Events (<%= @events.size %>)" checked>
+        <input type="radio" name="organization_tabs" role="tab" class="tab px-6" aria-label="Supported Events (<%= @events.size %>)" <% if @events.size > 0 %> checked <% end %>>
 
         <div role="tabpanel" class="tab-content mt-6">
           <% @events_by_year.each do |year, events| %>
@@ -22,7 +22,7 @@
         </div>
 
         <% if @involvements_by_role.any? %>
-          <input type="radio" name="organization_tabs" role="tab" class="tab px-6" aria-label="Involvements (<%= @involved_events.size %>)">
+          <input type="radio" name="organization_tabs" role="tab" class="tab px-6" aria-label="Involvements (<%= @involved_events.size %>)" <% if @events.size <= 0 && @involvements_by_role.any? %> checked <% end %>>
 
           <div role="tabpanel" class="tab-content mt-6">
             <% @involvements_by_role.each do |role, involvements| %>
