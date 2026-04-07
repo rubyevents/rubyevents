@@ -1,4 +1,4 @@
-<%# locals: (user:, content: "", favorite_user: nil) %>
+<%# locals: (user:, content: "", favorite_user: nil, verified_attendance: false) %>
 
 <div class="flex items-center px-2">
   <% if favorite_user.present? %>
@@ -17,6 +17,12 @@
 
           <% if user.ruby_passport_claimed? %>
             <%= fa("passport", class: "fill-orange-800", size: :xs) %>
+          <% end %>
+
+          <% if verified_attendance %>
+            <%= ui_tooltip "Verified attendance" do %>
+              <%= fa("circle-check", style: :solid, class: "fill-green-700", size: :xs) %>
+            <% end %>
           <% end %>
         </div>
 
