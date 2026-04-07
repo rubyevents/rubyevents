@@ -27,7 +27,7 @@ class User::VerifiedEventParticipationTest < ActiveSupport::TestCase
   end
 
   test "verified_attended_events includes events from multiple passports" do
-    second_passport = ConnectedAccount.create!(user: @user, provider: "passport", uid: "DEF456")
+    ConnectedAccount.create!(user: @user, provider: "passport", uid: "DEF456")
     VerifiedEventParticipation.create!(connect_id: "ABC123", event: @event, scanned_at: Time.current)
     VerifiedEventParticipation.create!(connect_id: "DEF456", event: @other_event, scanned_at: Time.current)
 

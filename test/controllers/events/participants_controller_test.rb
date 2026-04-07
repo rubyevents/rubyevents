@@ -13,7 +13,7 @@ class Events::ParticipantsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "includes verified-only attendees in participants list" do
-    passport = ConnectedAccount.create!(user: @user, provider: "passport", uid: "PART01")
+    ConnectedAccount.create!(user: @user, provider: "passport", uid: "PART01")
     VerifiedEventParticipation.create!(connect_id: "PART01", event: @event, scanned_at: Time.current)
 
     get event_participants_url(@event)
@@ -22,7 +22,7 @@ class Events::ParticipantsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "shows verified icon for verified attendees" do
-    passport = ConnectedAccount.create!(user: @user, provider: "passport", uid: "PART02")
+    ConnectedAccount.create!(user: @user, provider: "passport", uid: "PART02")
     VerifiedEventParticipation.create!(connect_id: "PART02", event: @event, scanned_at: Time.current)
 
     get event_participants_url(@event)
@@ -32,7 +32,7 @@ class Events::ParticipantsControllerTest < ActionDispatch::IntegrationTest
 
   test "does not duplicate user who has both self-reported and verified attendance" do
     EventParticipation.create!(user: @user, event: @event, attended_as: "visitor")
-    passport = ConnectedAccount.create!(user: @user, provider: "passport", uid: "PART03")
+    ConnectedAccount.create!(user: @user, provider: "passport", uid: "PART03")
     VerifiedEventParticipation.create!(connect_id: "PART03", event: @event, scanned_at: Time.current)
 
     get event_participants_url(@event)

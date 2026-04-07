@@ -17,7 +17,7 @@ class Profiles::EventsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "shows verified-only events merged into the list" do
-    passport = ConnectedAccount.create!(user: @user, provider: "passport", uid: "EVT001")
+    ConnectedAccount.create!(user: @user, provider: "passport", uid: "EVT001")
     VerifiedEventParticipation.create!(connect_id: "EVT001", event: @event, scanned_at: Time.current)
 
     get profile_events_url(@user)
@@ -26,7 +26,7 @@ class Profiles::EventsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "shows verified badge on verified events" do
-    passport = ConnectedAccount.create!(user: @user, provider: "passport", uid: "EVT002")
+    ConnectedAccount.create!(user: @user, provider: "passport", uid: "EVT002")
     VerifiedEventParticipation.create!(connect_id: "EVT002", event: @event, scanned_at: Time.current)
 
     get profile_events_url(@user)
@@ -36,7 +36,7 @@ class Profiles::EventsControllerTest < ActionDispatch::IntegrationTest
 
   test "event with both self-reported and verified shows verified indicator" do
     EventParticipation.create!(user: @user, event: @event, attended_as: "visitor")
-    passport = ConnectedAccount.create!(user: @user, provider: "passport", uid: "EVT003")
+    ConnectedAccount.create!(user: @user, provider: "passport", uid: "EVT003")
     VerifiedEventParticipation.create!(connect_id: "EVT003", event: @event, scanned_at: Time.current)
 
     get profile_events_url(@user)
