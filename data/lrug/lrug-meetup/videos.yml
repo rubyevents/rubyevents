@@ -3544,8 +3544,8 @@
 
         Join us for a deep dive into why Rails has its mojo back and what this means for the future
         of Ruby development
-      video_id: "lrug-2026-01-12-rails_was_off_the_rails_but_its_back"
-      video_provider: "not_published"
+      video_provider: "mp4"
+      video_id: "https://assets.lrug.org/videos/2026/january/stephen-creedon-rails-was-off-the-rails-but-its-back-lrug-jan-2026.mp4"
     - id: "sebastian-siemianowski-lrug-january-2026"
       title: "RSpec Craftsmanship and Refactoring with Junie"
       event_name: "LRUG January 2026"
@@ -3568,5 +3568,190 @@
         - Many test suites pass—and still make refactoring terrifying. Why?
         - Explore clarity, intent, and refactor safety in RSpec.
         - See how AI can enhance craftsmanship without replacing developers.
-      video_id: "lrug-2026-01-12-rspec_craftmanship_and_refactoring_with_junie"
+      video_id: "lrug-2026-01-12-rspec-craftmanship-and-refactoring-with-junie"
+      video_provider: "not_published"
+- id: "lrug-february-2026"
+  title: "LRUG February 2026"
+  event_name: "LRUG February 2026"
+  date: "2026-02-09"
+  announced_at: "2026-01-22 17:17:00 +0000"
+  video_provider: "children"
+  video_id: "lrug-february-2026"
+  description: |-
+    https://lrug.org/meetings/2026/february/
+  talks:
+    - id: "niall-mullally-lrug-february-2026"
+      title: "Automating Feature Flag Cleanup with AI"
+      event_name: "LRUG February 2026"
+      date: "2026-02-09"
+      announced_at: "2026-01-22 17:17:00 +0000"
+      speakers:
+        - Niall Mullally
+      description: |-
+        At [BBB](https://www.british-business-bank.co.uk/), we use feature flags extensively in one
+        of our Rails applications.
+
+        Removing fully rolled-out feature flags is always a chore that’s easy to ignore and
+        eventually becomes a source of tech debt. In the talk, I’ll show how we use GitHub Actions
+        and GitHub Copilot to automatically generate PRs that remove obsolete flags and their
+        associated code paths.
+      video_provider: "mp4"
+      video_id: "https://assets.lrug.org/videos/2026/february/niall-mullally-automating-feature-flag-cleanup-with-ai-lrug-feb-2026.mp4"
+    - id: "lorenzo-barasti-lrug-february-2026"
+      title: "Why you might like some Truffle with your Ruby"
+      event_name: "LRUG February 2026"
+      date: "2026-02-09"
+      announced_at: "2026-01-22 17:17:00 +0000"
+      speakers:
+        - Lorenzo Barasti
+      description: |-
+        An overview of [TruffleRuby](https://truffleruby.dev)’s latest release and some of the
+        perks of running on [GraalVM](https://www.graalvm.org)
+      additional_resources:
+        - name: "Source Code"
+          type: "code"
+          title: "Github repository for the truffle ruby demo used in the talk"
+          url: "https://github.com/lbarasti/truffleruby-jfr-demo"
+        - name: "Link"
+          type: "link"
+          title: "Benchmarking blog post by Benoit Daloze mentioned in the talk"
+          url: "https://eregon.me/blog/2022/01/06/benchmarking-cruby-mjit-yjit-jruby-truffleruby.html"
+      video_provider: "mp4"
+      video_id: "https://assets.lrug.org/videos/2026/february/lorenzo-barasti-why-you-might-like-some-truffle-with-your-ruby-lrug-feb-2026.mp4"
+      slides_url: "https://docs.google.com/presentation/d/1UGQLaQ8JjGjpPkwoWC5Zw_jcQ78e4CyL9oOOJoT49go/edit?usp=sharing"
+    - id: "scott-matthewman-lrug-february-2026"
+      title: "THE BLOB MUST DIE! – How we destroyed a 1400-line monster"
+      event_name: "LRUG February 2026"
+      date: "2026-02-09"
+      announced_at: "2026-01-22 17:17:00 +0000"
+      speakers:
+        - Scott Matthewman
+      description: |-
+        A lightning talk about how we are replacing an all-consuming User object with domain-specific
+        roles, delegated types and a smattering of metaprogramming – presented with a 1950s B-movie
+        vibe
+      video_provider: "mp4"
+      video_id: "https://assets.lrug.org/videos/2026/february/scott-matthewman-the-blob-must-die-how-we-destroyed-a-1400-line-monster-lrug-feb-2026.mp4"
+    - id: "david-smith-lrug-february-2026"
+      title: "Junior Developers need your help"
+      event_name: "LRUG February 2026"
+      date: "2026-02-09"
+      announced_at: "2026-01-22 17:17:00 +0000"
+      speakers:
+        - David Smith
+      description: |-
+        Raising awareness on how the junior/graduate developer market has collapsed - not sure on
+        this yet, will probably be more apparent as I write it.
+      additional_resources:
+        - name: "Write-Up"
+          type: "write-up"
+          title: "Blog post - The Junior Developer Crisis by David Smith"
+          url: "https://open.substack.com/pub/davidrec/p/the-junior-developer-crisis?r=2xxv7&utm_campaign=post&utm_medium=web"
+      video_provider: "mp4"
+      video_id: "https://assets.lrug.org/videos/2026/february/david-smith-junior-developers-need-your-help-lrug-feb-2026.mp4"
+    - id: "jade-dickinson-lrug-february-2026"
+      title: "Managing a job search efficiently"
+      event_name: "LRUG February 2026"
+      date: "2026-02-09"
+      announced_at: "2026-01-22 17:17:00 +0000"
+      speakers:
+        - Jade Dickinson
+      description: |-
+        How to manage a job search and interview prep
+      additional_resources:
+        - name: "Write-Up"
+          type: "write-up"
+          title: 'Jade Dickinson: ~# /blog/lrug/ "Managing a job search efficiently"'
+          url: "https://jadedickinson.com/blog/lrug/"
+      video_id: "lrug-2026-02-09-managing-a-job-search-efficiently"
+      video_provider: "not_published"
+    - id: "eleanor-mchugh-lrug-february-2026"
+      title: "Shayk.online - anonymous chat with Sinatra and websockets"
+      event_name: "LRUG February 2026"
+      date: "2026-02-09"
+      announced_at: "2026-01-22 17:17:00 +0000"
+      speakers:
+        - Eleanor McHugh
+      description: |-
+        A quick peek at one of my research projects and why Sinatra is a great tool for prototyping.
+      video_provider: "mp4"
+      video_id: "https://assets.lrug.org/videos/2026/february/eleanor-mchugh-shayk-online-anonymous-chat-with-sinatra-and-websockets-lrug-feb-2026.mp4"
+      slides_url: "https://www.slideshare.net/slideshow/shayk-online-anonymous-chat-with-sinatra-and-websockets/285948608"
+- id: "lrug-march-2026"
+  title: "LRUG March 2026"
+  event_name: "LRUG March 2026"
+  date: "2026-03-09"
+  announced_at: "2026-02-15 17:00:00 +0000"
+  video_provider: "children"
+  video_id: "lrug-march-2026"
+  description: |-
+    https://lrug.org/meetings/2026/march/
+  talks:
+    - id: "andy-walker-lrug-march-2026"
+      title: "If agentic coding is the tool shift, what's the role shift?"
+      event_name: "LRUG March 2026"
+      date: "2026-03-09"
+      announced_at: "2026-02-15 17:00:00 +0000"
+      speakers:
+        - Andy Walker
+      description: |-
+        In this talk I'll compare today's AI moment to past tech S-curves, and argue it's not only a
+        toolset change that's required (learning to code agentically) but a deeper change in how we
+        work.
+
+        I'll cover the mindset and capability shifts this demands: outcome ownership, faster feedback
+        loops, more autonomy. I'll cover what engineers can do to meet the moment.
+
+        I'll also share how this is changing the way I think about hiring and scaling teams: what
+        signals matter now, and how we're adapting interview loops to find people who thrive in an
+        agentic world
+      video_id: "lrug-2026-03-09-if-agentic-coding-is-the-tool-shift-whats-the-role-shift"
+      video_provider: "not_published"
+    - id: "neil-cameron-lrug-march-2026"
+      title: "RAG on Rails"
+      event_name: "LRUG March 2026"
+      date: "2026-03-09"
+      announced_at: "2026-02-15 17:00:00 +0000"
+      speakers:
+        - Neil Cameron
+      description: |-
+        A brief guide to building out a retrieval augmented generation system on Rails.
+
+        We'll cover some of the basic (chunking, embeddings) and some not so basic things (why bother
+        re-ranking). You'll come away with an understanding of the different moving parts of a RAG
+        system and some tactical recommendations of gems and services to use.
+      video_id: "lrug-2026-03-09-rag-on-rails"
+      video_provider: "not_published"
+- id: "lrug-april-2026"
+  title: "LRUG April 2026"
+  event_name: "LRUG April 2026"
+  date: "2026-04-13"
+  announced_at: "2026-03-23 12:00:00 +0000"
+  video_provider: "children"
+  video_id: "lrug-april-2026"
+  description: |-
+    https://lrug.org/meetings/2026/april/
+  talks:
+    - id: "hemal-varambhia-lrug-april-2026"
+      title: "The Hottest New Programming Language Is Ubiquitous (Within A Bounded Context Window)"
+      event_name: "LRUG April 2026"
+      date: "2026-04-13"
+      announced_at: "2026-03-23 12:00:00 +0000"
+      speakers:
+        - Hemal Varambhia
+      description: |-
+        The title is a play on Andrey Karpathy's tweet.
+
+        This talk is a continuation of the one I gave at LRUG in March 2025.
+
+        Later that year I really started to reap the benefits of DDD and Ports and Adapters: refining
+        the programmer tests (no more Docker for unit tests!) and bringing the ubiquitous language to
+        life, which made writing tests cheap, and more importantly, fun.
+
+        Towards the end of 2025, I gave in to FOMO and started exploring AI-assisted programming. I
+        was particularly interested to see if it was now possible to prompt the LLM entirely in the
+        ubiquitous language and produce well-structured code.
+
+        Is the future of programming DDD's ubiquitous language?
+      video_id: "lrug-2026-04-13-the-hottest-new-programming-language-is-ubiquitous-within-a-bounded-context-window"
       video_provider: "not_published"
