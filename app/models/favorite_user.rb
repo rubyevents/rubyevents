@@ -33,6 +33,15 @@ class FavoriteUser < ApplicationRecord
     persisted? && mutual_favorite_user&.persisted?
   end
 
+  def next_mutual_event
+    return nil unless user && favorite_user
+
+    favorite_user.participated_events.upcoming
+      .where(id: user.participated_events)
+      .order(start_date: :asc)
+      .first
+  end
+
   # Suggest favorite users based on talks the user has watched
   # No check for existing favorite users
   def self.recommendations_for(user)

@@ -2,13 +2,21 @@
 
 <div class="mt-2 grid min-w-full gap-4 sm:grid-cols-2 lg:grid-cols-3">
   <% favorite_users.each do |favorite_user| %>
+    <% next_event = favorite_user.next_mutual_event %>
     <div
       class="
         transition-bg flex items-center justify-between rounded-lg border bg-white duration-300 ease-in-out
         hover:bg-gray-200
       "
     >
-      <%= render partial: "users/card", locals: {user: favorite_user.favorite_user, favorite_user: favorite_user} %>
+      <% if next_event %>
+        <% content = capture do %>
+          <span class="text-gray-400">Next mutual event: <%= next_event.name %></span>
+        <% end %>
+        <%= render partial: "users/card", locals: {user: favorite_user.favorite_user, favorite_user: favorite_user, content: content} %>
+      <% else %>
+        <%= render partial: "users/card", locals: {user: favorite_user.favorite_user, favorite_user: favorite_user} %>
+      <% end %>
     </div>
   <% end %>
 </div>
