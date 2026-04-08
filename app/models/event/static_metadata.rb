@@ -80,7 +80,7 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
   def banner_background
     static_repository.banner_background.present? ? static_repository.banner_background : "#081625"
   rescue => e
-    raise "No featured background found for #{event.name} :  #{e.message}. You might have to restart your Rails server." if Rails.env.local?
+    raise "No banner background found for #{event.name} :  #{e.message}. You might have to restart your Rails server." if Rails.env.local?
     "#081625"
   end
 
