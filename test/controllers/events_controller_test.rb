@@ -13,6 +13,14 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     assert_select "[data-event-id=#{@event.slug}]", 2
   end
 
+  test "should get index as ics" do
+    get events_url(format: :ics)
+    assert_response :success
+    assert_equal "text/calendar; charset=utf-8", response.content_type
+    assert_includes response.body, "BEGIN:VCALENDAR"
+    assert_includes response.body, "UID:RUBYEVENTS-#{@event.id}"
+  end
+
   test "should show event" do
     get event_url(@event)
     assert_response :success
