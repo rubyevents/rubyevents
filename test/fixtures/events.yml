@@ -102,10 +102,12 @@ brightonruby_2024:
 
 future_conference:
   date: <%= 3.weeks.from_now %>
+  start_date: <%= 3.weeks.from_now %>
+  end_date: <%= 3.weeks.from_now %>
   series: rails_world
   name: Future Conference
   kind: conference
-  slug: future-conference
+  slug: rails-world-2025 # use an existing slug so we can use it's metadata
 
 # Event specifically for testing sponsors missing page - should NEVER have sponsors added
 no_sponsors_event:

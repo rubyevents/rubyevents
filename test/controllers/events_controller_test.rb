@@ -2,41 +2,15 @@ require "test_helper"
 
 class EventsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @event = events(:railsconf_2017)
+    @event = events(:future_conference)
     @user = users(:lazaro_nixon)
   end
 
   test "should get index" do
-    get archive_events_url
+    get events_url
     assert_response :success
-    assert_select "h1", /Events Archive/i
-    assert_select "##{dom_id(@event)}", 1
-  end
-
-  test "should get index with search results" do
-    get archive_events_url(s: "rails")
-    assert_response :success
-    assert_select "h1", /Events Archive/i
-    assert_select "div", /search results for "rails"/i
-    assert_select "##{dom_id(@event)}", 1
-  end
-
-  test "should get index and return events in the correct order" do
-    event_names = %i[brightonruby_2024 no_sponsors_event new_rb_meetup railsconf_2017 future_conference rails_world_2023 tropical_rb_2024 rubyconfth_2022 wnb_rb_meetup].map { |event| events(event) }.map(&:name)
-
-    get archive_events_url
-
-    assert_response :success
-
-    assert_select ".event .event-name", count: event_names.size do |nodes|
-      assert_equal event_names, nodes.map(&:text)
-    end
-  end
-
-  test "should get index search result" do
-    get archive_events_url(letter: "T")
-    assert_response :success
-    assert_select "span", text: "Tropical Ruby 2024"
+    assert_select "h1", /Upcoming Events/i
+    assert_select "[data-event-id=#{@event.slug}]", 2
   end
 
   test "should show event" do
