@@ -603,8 +603,9 @@ GEM
       ffi (~> 1.0)
     rb_sys (0.9.124)
       rake-compiler-dock (= 1.11.0)
-    rbs (3.9.5)
+    rbs (3.10.4)
       logger
+      tsort
     rdoc (7.2.0)
       erb
       psych (>= 4.0.0)
@@ -638,7 +639,7 @@ GEM
       lint_roller (~> 1.1)
       rubocop (>= 1.75.0, < 2.0)
       rubocop-ast (>= 1.47.1, < 2.0)
-    ruby-lsp (0.26.4)
+    ruby-lsp (0.26.9)
       language_server-protocol (~> 3.17.0)
       prism (>= 1.2, < 2.0)
       rbs (>= 3, < 5)
