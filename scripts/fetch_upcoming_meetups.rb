@@ -302,7 +302,7 @@ def fetch_next_meetups(limit: nil, offset: 0, verbose: false)
     if success
       extracted = json["result"].is_a?(Hash) ? json["result"] : {}
 
-      maybe_append_next_meetup_to_videos(meetup: m, extracted: extracted)     
+      maybe_append_next_meetup_to_videos(meetup: m, extracted: extracted)
     end
 
     $stdout.flush
