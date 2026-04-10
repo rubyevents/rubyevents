@@ -26,7 +26,7 @@ class VideoSchema < RubyLLM::Schema
       string :video_provider,
         description: "Video hosting provider",
         enum: ["youtube", "vimeo", "not_recorded", "scheduled", "mp4", "parent", "not_published"]
-      string :video_id, required: false
+      string :video_id, required: true
       string :language, required: false
       string :track, required: false
       string :location, description: "Location within the venue", required: false

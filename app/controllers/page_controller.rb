@@ -3,7 +3,7 @@ class PageController < ApplicationController
 
   def home
     home_page_cached_data = Rails.cache.fetch("home_page_content", expires_in: 1.hour) do
-      latest_talks = Talk.watchable.with_speakers.order(date: :desc).limit(10)
+      latest_talks = Talk.watchable.with_speakers.order(published_at: :desc).limit(10)
       {
         talks_count: Talk.count,
         speakers_count: User.speakers.count,
@@ -30,9 +30,14 @@ class PageController < ApplicationController
     @featured_organizations = Organization.joins(:sponsors).includes(:events).group("organizations.id").order("COUNT(sponsors.id) DESC").limit(10)
     @recommended_talks = Current.user.talk_recommender.talks(limit: 4) if Current.user
 
-    # Add featured events logic
-    playlist_slugs = Static::Event.where.not(featured_background: nil)
-      .select(&:featured?)
+    imported_slugs = Event.not_meetup.with_watchable_talks.pluck(:slug)
+    today_slugs = Event.not_meetup.with_talks.where(start_date: ..Date.today, end_date: Date.today..).pluck(:slug)
+    featurable_slugs = Static::Event.where.not(featured_background: nil).pluck(:slug)
+    slug_candidates = (imported_slugs | today_slugs) & featurable_slugs
+
+    featured_slugs = Static::Event.all
+      .select { |event| slug_candidates.include?(event.slug) }
+      .select(&:home_sort_date)
       .sort_by(&:home_sort_date)
       .reverse
       .take(15)
@@ -40,9 +45,8 @@ class PageController < ApplicationController
 
     @featured_events = Event.distinct
       .includes(:series, :keynote_speakers, :speakers)
-      .where(slug: playlist_slugs)
-      # .with_watchable_talks
-      .in_order_of(:slug, playlist_slugs)
+      .where(slug: featured_slugs)
+      .in_order_of(:slug, featured_slugs)
 
     respond_to do |format|
       format.html

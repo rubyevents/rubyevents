@@ -20,7 +20,7 @@ class Spotlight::EventsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should limit events results" do
-    20.times { |i| Event.create!(name: "Event #{i}", series: @series) }
+    20.times { |i| Event.create!(name: "Event #{i}", series: @series, end_date: 1.month.ago) }
 
     get spotlight_events_url(format: :turbo_stream)
     assert_response :success

@@ -1,5 +1,5 @@
-ARG RUBY_VERSION=3.4.7
-FROM docker.io/library/ruby:$RUBY_VERSION-slim
+ARG RUBY_VERSION=4.0.1
+FROM docker.io/library/ruby:$RUBY_VERSION
 
 # Rails app lives here
 WORKDIR /rails
@@ -8,23 +8,25 @@ WORKDIR /rails
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
     build-essential \
-    curl \
-    git \
+    # curl \
+    # git \
+    # imagemagick \ # Generate Assets
     libjemalloc2 \
     libvips \
-    libyaml-dev \
+    # libyaml-dev \
     node-gyp \
     pkg-config \
     python-is-python3 \
-    sqlite3 \
+    # sqlite3 \
     chromium chromium-driver \
     && rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
-# Copy application code
-COPY . .
+# Copy lockfiles and setup script
+# COPY Gemfile Gemfile.lock package.json .env.sample .ruby-version ./
+# COPY bin ./bin
 
-# copy .env file if it doesn't exist
-# RUN "cp .env.sample .env"
+# Copy the whole application so we don't stumble on setting up the database
+COPY . ./
 
 # Install JavaScript dependencies
 ARG NODE_VERSION=22.15.1
@@ -35,11 +37,8 @@ RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz
     npm install -g yarn@$YARN_VERSION && \
     rm -rf /tmp/node-build-master
 
-# Install application gems
-RUN bundle install
-
-# Install JavaScript dependencies
-RUN yarn install
+# Setup dependencies
+RUN bin/setup --skip-server
 
 # Default command
-CMD ["bin/dev"]
+CMD ["sleep", "infinity"]

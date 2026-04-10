@@ -10,6 +10,11 @@
   <% end %>
 <% end %>
 
+<%= ui_button url: reindex_profile_path(user), method: :post, kind: :neutral, size: :sm do %>
+  <%= fa "arrows-rotate", size: :xs %>
+  <span>Reindex Profile</span>
+<% end %>
+
 <%= ui_button url: avo.resources_user_path(user), target: :_blank, kind: :neutral, size: :sm do %>
   <%= fa :avocado, size: :xs %>
 

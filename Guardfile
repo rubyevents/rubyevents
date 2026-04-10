@@ -5,6 +5,7 @@ require_relative "lib/guard/data_import"
 guard :data_import, wait_for_delay: 2 do
   watch(%r{^data/speakers\.yml$})
   watch(%r{^data/topics\.yml$})
+  watch(%r{^data/featured_cities\.yml$})
   watch(%r{^data/[^/]+/series\.yml$})
   watch(%r{^data/[^/]+/[^/]+/event\.yml$})
   watch(%r{^data/[^/]+/[^/]+/videos\.yml$})

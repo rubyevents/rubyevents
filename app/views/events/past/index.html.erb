@@ -7,6 +7,7 @@
     <div class="flex gap-4 whitespace-nowrap">
       <%= link_to "Upcoming Events", events_path, class: "link text-right w-full" %>
       <%= link_to "Archive", archive_events_path, class: "link text-right w-full" %>
+      <%= link_to "#{Date.today.year} Calendar", year_events_path(year: Date.today.year), class: "link text-right w-full" %>
     </div>
   </div>
 

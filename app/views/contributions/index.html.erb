@@ -156,7 +156,7 @@
 
           <p>We are checking against <a href="https://rubyconferences.org" target="_blank">rubyconferences.org</a> to identify missing events. Below, we will list conferences with video links first, followed by those without a video link.</p>
 
-          <p>If you would like to contribute data for any of the events listed below, please refer to <a href="https://github.com/rubyevents/rubyevents/blob/main/CONTRIBUTING.md" target="_blank">this guide</a> to add the event to the site.</p>
+          <p>If you would like to contribute data for any of the events listed below, please refer to <a href="https://github.com/rubyevents/rubyevents/blob/main/docs/ADDING_EVENTS.md" target="_blank">this guide</a> to add the event to the site.</p>
         </article>
 
         <h3 class="font-bold mb-3">Conferences from RubyConferences.org we already indexed</h3>
@@ -223,6 +223,18 @@
             <% end %>
           <% end %>
         </div>
+      </div>
+    </div>
+
+    <input type="radio" name="contribution-tabs" role="tab" class="tab" aria-label="Event Assets" style="width: 250px">
+    <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
+      <div>
+        <h2 class="mb-4">Event Assets</h2>
+
+        <article class="prose mb-6">
+          <p>We have a dedicated page for reviewing event assets like logos, posters, cards, and other event assets that need to be added or updated.</p>
+          <p>Please visit the <%= link_to "Event Assets Page", pages_assets_path, class: "underline" %> to see the list of events and their assets.</p>
+        </article>
       </div>
     </div>
   </div>

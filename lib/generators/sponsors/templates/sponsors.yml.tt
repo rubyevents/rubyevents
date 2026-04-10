@@ -1,0 +1,20 @@
+# docs/ADDING_SPONSORS.md
+# Do not remove todo until event is over and all sponsors are added.
+# TODO: Add missing sponsors.
+---
+- tiers:
+<%- level = 0 -%>
+<%- @sponsors_by_tier.each do |tier, sponsors| -%>
+    - name: "<%= tier %>"
+      level: <%= level += 1 %>
+      sponsors:
+        <%- sponsors.each do |sponsor| -%>
+        - name: "<%= sponsor[:name] %>"
+          website: "https://TODO.sponsor.com"
+          slug: "<%= sponsor[:slug] %>"
+          logo_url: "https://TODO.example.com/sponsor.png"
+          <%- if sponsor[:badge] -%>
+          badge: "<%= sponsor[:badge] %>"
+          <%- end -%>
+        <%- end -%>
+<%- end -%>

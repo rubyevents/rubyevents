@@ -15,12 +15,14 @@ export default class extends Controller {
     provider: String,
     startSeconds: Number,
     endSeconds: Number,
+    durationSeconds: Number,
     watchedTalkPath: String,
     currentUserPresent: { default: false, type: Boolean },
-    progressSeconds: { default: 0, type: Number }
+    progressSeconds: { default: 0, type: Number },
+    watched: { default: false, type: Boolean }
   }
 
-  static targets = ['player', 'playerWrapper']
+  static targets = ['player', 'playerWrapper', 'watchedOverlay', 'resumeOverlay', 'playOverlay']
   playbackRateOptions = [1, 1.25, 1.5, 1.75, 2]
 
   initialize () {
@@ -36,8 +38,52 @@ export default class extends Controller {
   init () {
     if (this.isPreview) return
     if (!this.hasPlayerTarget) return
+    if (this.watchedValue) return
+    if (this.hasResumeOverlayTarget || this.hasPlayOverlayTarget) return
 
     this.player = new Vlitejs(this.playerTarget, this.options)
+  }
+
+  dismissWatchedOverlay () {
+    this.showLoadingState(this.watchedOverlayTarget)
+    this.watchedValue = false
+    this.autoplay = true
+    this.player = new Vlitejs(this.playerTarget, this.options)
+  }
+
+  resumePlayback () {
+    this.showLoadingState(this.resumeOverlayTarget)
+    this.autoplay = true
+    this.player = new Vlitejs(this.playerTarget, this.options)
+  }
+
+  startPlayback () {
+    this.showLoadingState(this.playOverlayTarget)
+    this.autoplay = true
+    this.player = new Vlitejs(this.playerTarget, this.options)
+  }
+
+  showLoadingState (overlay) {
+    if (!overlay) return
+
+    const content = overlay.querySelector('.flex.flex-col')
+    if (content) {
+      content.innerHTML = `
+        <div class="p-4 bg-white/20 backdrop-blur-sm rounded-full">
+          <svg class="animate-spin h-8 w-8 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+        </div>
+        <div class="text-sm text-white/80">Loading...</div>
+      `
+    }
+  }
+
+  removeOverlays () {
+    if (this.hasWatchedOverlayTarget) this.watchedOverlayTarget.remove()
+    if (this.hasResumeOverlayTarget) this.resumeOverlayTarget.remove()
+    if (this.hasPlayOverlayTarget) this.playOverlayTarget.remove()
   }
 
   get options () {
@@ -55,6 +101,8 @@ export default class extends Controller {
       providerOptions.autohide = 0
       // Show YT controls
       providerOptions.controls = 1
+      // Ensure not muted on autoplay (user clicked overlay, so gesture is present)
+      providerParams.mute = 0
       // Hide the Vlitejs controls
       controls = false
     }
@@ -117,11 +165,11 @@ export default class extends Controller {
 
     if (this.providerValue === 'vimeo') {
       player.instance.on('ended', () => {
-        this.stopProgressTracking()
+        this.handleVideoEnded()
       })
 
       player.instance.on('pause', () => {
-        this.stopProgressTracking()
+        this.handleVideoPaused()
       })
 
       player.instance.on('play', () => {
@@ -129,8 +177,19 @@ export default class extends Controller {
       })
     }
 
-    if (this.hasProgressSecondsValue && this.progressSecondsValue > 0) {
+    if (this.hasProgressSecondsValue && this.progressSecondsValue > 0 && !this.isFullyWatched()) {
       this.player.seekTo(this.progressSecondsValue)
+    }
+
+    if (this.autoplay) {
+      this.autoplay = false
+      this.player.play()
+
+      if (this.player.unMute) {
+        this.player.unMute()
+      }
+
+      this.removeOverlays()
     }
   }
 
@@ -151,8 +210,10 @@ export default class extends Controller {
 
       if (event.data === YOUTUBE_STATES.PLAYING && this.currentUserPresentValue) {
         this.startProgressTracking()
-      } else if (event.data === YOUTUBE_STATES.PAUSED || event.data === YOUTUBE_STATES.ENDED) {
-        this.stopProgressTracking()
+      } else if (event.data === YOUTUBE_STATES.PAUSED) {
+        this.handleVideoPaused()
+      } else if (event.data === YOUTUBE_STATES.ENDED) {
+        this.handleVideoEnded()
       }
     })
   }
@@ -183,6 +244,29 @@ export default class extends Controller {
     }
   }
 
+  async handleVideoPaused () {
+    this.stopProgressTracking()
+
+    const currentTime = await this.getCurrentTime()
+    this.progressSecondsValue = Math.floor(currentTime)
+    this.updateWatchedProgress(this.progressSecondsValue)
+  }
+
+  async handleVideoEnded () {
+    this.stopProgressTracking()
+
+    if (this.hasDurationSecondsValue && this.durationSecondsValue > 0) {
+      this.progressSecondsValue = this.durationSecondsValue
+      this.updateWatchedProgress(this.durationSecondsValue)
+    }
+  }
+
+  isFullyWatched () {
+    if (!this.hasDurationSecondsValue || this.durationSecondsValue <= 0) return false
+
+    return this.progressSecondsValue >= this.durationSecondsValue - 5
+  }
+
   updateWatchedProgress (progressSeconds) {
     if (!this.hasWatchedTalkPathValue) return
     if (!this.currentUserPresentValue) return
@@ -192,7 +276,8 @@ export default class extends Controller {
         watched_talk: {
           progress_seconds: progressSeconds
         }
-      }
+      },
+      responseKind: 'turbo-stream'
     }).catch(error => {
       console.error('Error updating watch progress:', error)
     })

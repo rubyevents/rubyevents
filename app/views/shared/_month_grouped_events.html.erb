@@ -1,0 +1,31 @@
+<%# locals: (events:, empty_message: "No events found.") %>
+
+<% if events.any? %>
+  <% events_by_month = events.group_by { |e| e.start_date&.beginning_of_month }.sort_by { |month, _| month || Date.new(9999) }.reverse %>
+
+  <% events_by_month.each do |month, month_events| %>
+    <div class="mb-8" data-events-filter-target="group">
+      <div class="flex items-center gap-2 mb-4">
+        <span class="w-2 h-2 rounded-full bg-gray-400"></span>
+
+        <span class="text-lg font-semibold text-gray-800">
+          <% if month.present? %>
+            <%= month.strftime("%B %Y") %>
+          <% else %>
+            Date TBD
+          <% end %>
+        </span>
+      </div>
+
+      <div class="space-y-3 pl-4">
+        <% month_events.sort_by { |e| e.start_date || Date.new(9999) }.reverse.each do |event| %>
+          <%= render "shared/event_row", event: event %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <div class="text-gray-500 py-8 text-center border border-dashed">
+    <%= empty_message %>
+  </div>
+<% end %>

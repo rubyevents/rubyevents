@@ -1,8 +1,11 @@
 class ProfilesController < ApplicationController
   skip_before_action :authenticate_user!
-  before_action :set_user, only: %i[show edit update]
+  before_action :set_user, only: %i[show edit update reindex]
+  before_action :set_favorite_user, only: %i[show]
   before_action :set_user_favorites, only: %i[show]
   before_action :set_mutual_events, only: %i[show]
+  before_action :require_admin!, only: %i[reindex]
+
   include Pagy::Backend
   include RemoteModal
   include WatchedTalks
@@ -12,7 +15,12 @@ class ProfilesController < ApplicationController
   # GET /profiles/:slug
   def show
     load_profile_data_for_show
-    set_meta_tags(@user)
+
+    if @user.suspicious?
+      set_meta_tags(robots: "noindex, nofollow")
+    else
+      set_meta_tags(@user)
+    end
   end
 
   # GET /profiles/:slug/edit
@@ -30,7 +38,19 @@ class ProfilesController < ApplicationController
     end
   end
 
+  # POST /profiles/:slug/reindex
+  def reindex
+    Search::Backend.index(@user)
+    @user.talks.find_each { |talk| Search::Backend.index(talk) }
+
+    redirect_to profile_path(@user), notice: "Profile reindexed successfully."
+  end
+
   private
+
+  def require_admin!
+    redirect_to profile_path(@user), alert: "Not authorized" unless Current.user&.admin?
+  end
 
   def load_profile_data_for_show
     @talks = @user.kept_talks.includes(:speakers, event: :series, child_talks: :speakers).order(date: :desc)
@@ -46,10 +66,7 @@ class ProfilesController < ApplicationController
     @events_by_year = @events.group_by { |event| event.start_date&.year || "Unknown" }
 
     # Group events by country for the map tab
-    @countries_with_events = @events.group_by(&:country_code)
-      .map { |code, events| [ISO3166::Country.new(code), events] }
-      .reject { |country, _| country.nil? }
-      .sort_by { |country, _| country.translations["en"] }
+    @countries_with_events = @events.grouped_by_country
 
     @involved_events = @user.involved_events.includes(:series).distinct.order(start_date: :desc)
     event_involvements = @user.event_involvements.includes(:event).where(event: @involved_events)
@@ -81,8 +98,8 @@ class ProfilesController < ApplicationController
   end
 
   def set_user
-    @user = User.includes(:talks, :passports).find_by_slug_or_alias(params[:slug])
-    @user = User.includes(:talks).find_by_github_handle(params[:slug]) unless @user.present?
+    @user = User.preloaded.includes(:talks).find_by_slug_or_alias(params[:slug])
+    @user = User.preloaded.includes(:talks).find_by_github_handle(params[:slug]) unless @user.present?
 
     if @user.blank?
       redirect_to speakers_path, status: :moved_permanently, notice: "User not found"
@@ -115,6 +132,10 @@ class ProfilesController < ApplicationController
       :pronouns,
       :slug
     )
+  end
+
+  def set_favorite_user
+    @favorite_user = Current.user ? @user.favorited_by.find_or_initialize_by(user: Current.user) : nil
   end
 
   def set_mutual_events

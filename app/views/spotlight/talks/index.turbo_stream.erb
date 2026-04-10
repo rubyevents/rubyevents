@@ -1,12 +1,17 @@
-
 <%= turbo_stream.update "talks_search_results", method: "morph" do %>
   <div class="flex items-center flex-wrap gap-2 py-4">
-    <h2>Talks</h2>
-    <% if @talks.size.positive? %>
-      <span class="text-sm text-gray-500">(<%= @talks.size %><% if @talks.size >= Spotlight::TalksController::LIMIT %>+<% end %> <%= "talk".pluralize(@talks.size) %>)</span>
+    <h2><%= search_query.present? ? "Talks" : "Recent Talks" %></h2>
+    <% if @talks.size.positive? && total_count.present? %>
+      <span class="text-sm text-gray-500">(<%= total_count %> <%= "talk".pluralize(total_count) %>)</span>
       <%= link_to talks_path(s: search_query), class: "link text-sm text-gray-500", target: "_top" do %>
-        see results
+        see all
       <% end %>
+    <% end %>
+
+    <% if Rails.env.development? && search_backend == :sqlite_fts %>
+      <span class="badge badge-xs badge-warning">SQLite FTS</span>
+    <% elsif Rails.env.development? && search_backend == :typesense %>
+      <span class="badge badge-xs badge-primary">Typesense</span>
     <% end %>
   </div>
 
@@ -15,6 +20,8 @@
       <%= render partial: "spotlight/talks/talk", collection: @talks, as: :talk %>
     <% end %>
 
-    <div class="hidden only:block">No talks found for <strong><%= search_query %></strong></div>
+    <% if search_query.present? %>
+      <div class="hidden only:block">No talks found for <strong><%= search_query %></strong></div>
+    <% end %>
   </div>
 <% end %>

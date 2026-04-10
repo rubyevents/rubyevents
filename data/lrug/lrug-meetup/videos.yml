@@ -86,7 +86,7 @@
       date: "2020-02-10"
       announced_at: "2020-01-24 19:27:00 +0100"
       speakers:
-        - Elena Tanasoiu
+        - "Elena Tănăsoiu"
       description: |-
         How to start an investigation into transitioning from a monolith to a
         microservice architecture. A number of issues to consider before you
@@ -2764,8 +2764,8 @@
         - Rachel Bingham
         - Boaz Yehezkel
       description: |-
-        How we developed the B&W Rewards system. 
-        Starting from event storming with stakeholders and technical planning across squads to clear domain boundaries to  
+        How we developed the B&W Rewards system.
+        Starting from event storming with stakeholders and technical planning across squads to clear domain boundaries to
         how we used an event bus and agnostic accounting system to keep things clear, concise and extendable.
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2024/september/rachel-bingham-b-and-w-rewards-domains-events-and-ledgers-lrug-sep-2024.mp4"
@@ -3409,6 +3409,7 @@
         This talk contains a lot of code (possibly including a smidgeon of gnarly C) but regardless of you current skill level it will reveal a little of the magic which makes tools like Ruby possible. The examples should also be sufficient to kickstart your own adventures in this fascinating field.
       video_id: "lrug-2025-12-08-implementing-software-machines-in-ruby"
       video_provider: "not_published"
+      slides_url: "https://www.slideshare.net/slideshow/implementing-software-machines-in-ruby-rough-cut/284563205"
     - id: "yevhenii-kurtov-lrug-december-2025"
       title: "Distributed Systems' Golden Ratio"
       event_name: "LRUG December 2025"
@@ -3419,4 +3420,46 @@
       description: |-
         We'll spend our time interactively solving a distributed systems design challenge that will gradually grow in complexity, taking participants on a journey to discover the golden rule of distributed systems design: think globally, act locally.
       video_id: "lrug-2025-12-08-distributed-systems-golden-ration"
+      video_provider: "not_published"
+- id: "lrug-january-2026"
+  title: "LRUG January 2026"
+  event_name: "LRUG January 2026"
+  date: "2026-01-12"
+  announced_at: "2025-12-22 17:00:00 +0000"
+  video_provider: "children"
+  video_id: "lrug-january-2026"
+  description: |-
+    https://lrug.org/meetings/2026/january/
+  talks:
+    - id: "stephen-creedon-lrug-january-2026"
+      title: "Rails Was Off the Rails - But It’s Back!"
+      event_name: "LRUG January 2026"
+      date: "2026-01-12"
+      announced_at: "2025-12-22 17:00:00 +0000"
+      speakers:
+        - Stephen Creedon
+      description: |-
+        Rails lost its way during versions 4, 5, and 6 - becoming overly complex and slow as it leaned heavily into JavaScript. But the story doesn’t end there. With Rails 8.1 introducing features like Stimulus, Action Cable, and Solid Cable, the framework is returning to its roots: simplicity, speed, and developer joy.
+
+        Join us for a deep dive into why Rails has its mojo back and what this means for the future of Ruby developmen
+      video_id: "lrug-2026-01-12-rails_was_off_the_rails_but_its_back"
+      video_provider: "not_published"
+    - id: "sebastian-siemianowski-lrug-january-2026"
+      title: "RSpec Craftsmanship and Refactoring with Junie"
+      event_name: "LRUG January 2026"
+      date: "2026-01-12"
+      announced_at: "2025-12-22 17:00:00 +0000"
+      speakers:
+        - Sebastian Siemianowski
+      description: |-
+        In this talk, Sebastian will dive into RSpec as a craft — showing how thoughtful test design can make refactoring less terrifying. You’ll see real-world examples of transforming low-signal specs into readable, behaviour-driven tests, and learn how Junie, an IDE-native AI assistant, can act as a second pair of eyes to improve naming, structure, and guarantees.
+
+        This is a practical, opinionated look at using AI to support test quality—while keeping human judgment firmly in control.
+
+        Why join?
+
+        - Many test suites pass—and still make refactoring terrifying. Why?
+        - Explore clarity, intent, and refactor safety in RSpec.
+        - See how AI can enhance craftsmanship without replacing developers.
+      video_id: "lrug-2026-01-12-rspec_craftmanship_and_refactoring_with_junie"
       video_provider: "not_published"

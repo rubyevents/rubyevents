@@ -1,4 +1,8 @@
 class Event::StaticMetadata < ActiveRecord::AssociatedObject
+  extension do
+    def featured_metadata? = static_metadata.featured_background?
+  end
+
   delegate :published_date, :home_sort_date, :data_folder, to: :static_repository, allow_nil: true
 
   def kind
@@ -84,6 +88,10 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
     static_repository&.location&.presence || "Earth"
   end
 
+  def coordinates
+    static_repository&.coordinates
+  end
+
   def country
     return nil if location.blank?
 
@@ -92,6 +100,18 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
 
   def last_edition?
     static_repository&.last_edition || false
+  end
+
+  def hybrid?
+    !!static_repository.try(:hybrid) || false
+  end
+
+  def cancelled?
+    static_repository&.status == "cancelled"
+  end
+
+  def playlist
+    static_repository&.playlist
   end
 
   private

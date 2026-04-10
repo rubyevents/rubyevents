@@ -1,44 +1,52 @@
-# rubocop:disable Layout/LineLength
 # == Schema Information
 #
 # Table name: events
 # Database name: primary
 #
-#  id              :integer          not null, primary key
-#  city            :string
-#  country_code    :string
-#  date            :date
-#  date_precision  :string           default("day"), not null
-#  end_date        :date
-#  kind            :string           default("event"), not null, indexed
-#  name            :string           default(""), not null, indexed
-#  slug            :string           default(""), not null, indexed
-#  start_date      :date
-#  talks_count     :integer          default(0), not null
-#  website         :string           default("")
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  canonical_id    :integer          indexed
-#  event_series_id :integer          not null, indexed
+#  id               :integer          not null, primary key
+#  city             :string
+#  country_code     :string           indexed => [state_code]
+#  date             :date
+#  date_precision   :string           default("day"), not null
+#  end_date         :date
+#  geocode_metadata :json             not null
+#  kind             :string           default("event"), not null, indexed
+#  latitude         :decimal(10, 6)
+#  location         :string
+#  longitude        :decimal(10, 6)
+#  name             :string           default(""), not null, indexed
+#  slug             :string           default(""), not null, indexed
+#  start_date       :date
+#  state_code       :string           indexed => [country_code]
+#  talks_count      :integer          default(0), not null
+#  website          :string           default("")
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  canonical_id     :integer          indexed
+#  event_series_id  :integer          not null, indexed
 #
 # Indexes
 #
-#  index_events_on_canonical_id     (canonical_id)
-#  index_events_on_event_series_id  (event_series_id)
-#  index_events_on_kind             (kind)
-#  index_events_on_name             (name)
-#  index_events_on_slug             (slug)
+#  index_events_on_canonical_id                 (canonical_id)
+#  index_events_on_country_code_and_state_code  (country_code,state_code)
+#  index_events_on_event_series_id              (event_series_id)
+#  index_events_on_kind                         (kind)
+#  index_events_on_name                         (name)
+#  index_events_on_slug                         (slug)
 #
 # Foreign Keys
 #
 #  canonical_id     (canonical_id => events.id)
 #  event_series_id  (event_series_id => event_series.id)
 #
-# rubocop:enable Layout/LineLength
 class Event < ApplicationRecord
+  include Geocodeable
   include Suggestable
   include Sluggable
+  include Todoable
+  include Event::TypesenseSearchable
 
+  geocodeable :location_and_country_code
   configure_slug(attribute: :name, auto_suffix_on_collision: false)
 
   # associations
@@ -55,6 +63,7 @@ class Event < ApplicationRecord
   has_many :aliases, class_name: "Event", foreign_key: "canonical_id"
   has_many :slug_aliases, as: :aliasable, class_name: "Alias", dependent: :destroy
   has_many :cfps, dependent: :destroy
+  belongs_to :city_record, class_name: "City", optional: true, foreign_key: [:city, :country_code, :state_code], primary_key: [:name, :country_code, :state_code]
 
   # Event participation associations
   has_many :event_participations, dependent: :destroy
@@ -66,27 +75,30 @@ class Event < ApplicationRecord
   has_many :visitor_participants, -> { where(event_participations: {attended_as: :visitor}) },
     through: :event_participations, source: :user
 
+  # Event involvement associations
   has_many :event_involvements, dependent: :destroy
   has_many :involved_users, -> { where(event_involvements: {involvementable_type: "User"}) },
     through: :event_involvements, source: :involvementable, source_type: "User"
   has_many :involved_event_series, -> { where(event_involvements: {involvementable_type: "EventSeries"}) },
     through: :event_involvements, source: :involvementable, source_type: "EventSeries"
 
+  accepts_nested_attributes_for :event_involvements, allow_destroy: true, reject_if: :all_blank
+
+  has_object :assets
   has_object :schedule
   has_object :static_metadata
+  has_object :tickets
   has_object :sponsors_file
   has_object :cfp_file
+  has_object :involvements_file
+  has_object :transcripts_file
   has_object :venue
-
-  def talks_in_running_order(child_talks: true)
-    talks.in_order_of(:static_id, video_ids_in_running_order(child_talks: child_talks))
-  end
+  has_object :videos_file
 
   # validations
   validates :name, presence: true
   validates :kind, presence: true
-  VALID_COUNTRY_CODES = ISO3166::Country.codes
-  validates :country_code, inclusion: {in: VALID_COUNTRY_CODES}, allow_nil: true
+  validates :country_code, inclusion: {in: Country.valid_country_codes}, allow_nil: true
   validates :canonical, exclusion: {in: ->(event) { [event] }, message: "can't be itself"}
   validates :date_precision, presence: true
 
@@ -118,13 +130,29 @@ class Event < ApplicationRecord
   scope :past, -> { where(end_date: ..Date.today).order(end_date: :desc) }
   scope :upcoming, -> { where(start_date: Date.today..).order(start_date: :asc) }
 
+  scope :past_meetups, -> {
+    joins(:talks).where(kind: :meetup, talks: {date: ..Date.today}).distinct
+  }
+
+  scope :upcoming_meetups, -> {
+    joins(:talks).where(kind: :meetup, talks: {date: Date.today..}).distinct
+  }
+
+  def upcoming?
+    start_date.present? && start_date >= Date.today
+  end
+
+  def past?
+    end_date.present? && end_date < Date.today
+  end
+
   def self.find_by_name_or_alias(name)
     return nil if name.blank?
 
     event = find_by(name: name)
     return event if event
 
-    alias_record = Alias.find_by(aliasable_type: "Event", name: name)
+    alias_record = ::Alias.find_by(aliasable_type: "Event", name: name)
     alias_record&.aliasable
   end
 
@@ -134,8 +162,15 @@ class Event < ApplicationRecord
     event = find_by(slug: slug)
     return event if event
 
-    alias_record = Alias.find_by(aliasable_type: "Event", slug: slug)
+    alias_record = ::Alias.find_by(aliasable_type: "Event", slug: slug)
     alias_record&.aliasable
+  end
+
+  def self.grouped_by_country
+    all.group_by(&:country_code)
+      .map { |code, evts| [Country.find_by(country_code: code), evts] }
+      .reject { |country, _| country.nil? }
+      .sort_by { |country, _| country.name }
   end
 
   def sync_aliases_from_list(alias_names)
@@ -149,8 +184,8 @@ class Event < ApplicationRecord
         next
       end
 
-      existing_global = Alias.find_by(aliasable_type: "Event", name: alias_name)
-      existing_global ||= Alias.find_by(aliasable_type: "Event", slug: slug)
+      existing_global = ::Alias.find_by(aliasable_type: "Event", name: alias_name)
+      existing_global ||= ::Alias.find_by(aliasable_type: "Event", slug: slug)
 
       next if existing_global
 
@@ -183,30 +218,6 @@ class Event < ApplicationRecord
     static_metadata&.data_folder || Rails.root.join("data", series.slug, slug)
   end
 
-  def videos_file?
-    videos_file_path.exist?
-  end
-
-  def videos_file_path
-    data_folder.join("videos.yml")
-  end
-
-  def videos_file
-    YAML.load_file(videos_file_path)
-  end
-
-  def video_ids_in_running_order(child_talks: true)
-    if child_talks
-      videos_file.flat_map { |talk|
-        [talk.dig("id"), *talk["talks"]&.map { |child_talk|
-          child_talk.dig("id")
-        }]
-      }
-    else
-      videos_file.map { |talk| talk.dig("id") }
-    end
-  end
-
   def suggestion_summary
     <<~HEREDOC
       Event: #{name}
@@ -218,13 +229,26 @@ class Event < ApplicationRecord
     HEREDOC
   end
 
+  def location_and_country_code
+    default_country = series&.static_metadata&.default_country_code
+
+    [location, default_country].compact.join(", ")
+  end
+
+  def location_and_country_code_previously_changed?
+    location_previously_changed?
+  end
+
   def today?
+    return talks.where(date: Date.today).exists? if meetup?
+
     (start_date..end_date).cover?(Date.today)
   rescue => _e
     false
   end
 
   def formatted_dates
+    return "Recurring" if meetup?
     case date_precision
     when "year"
       start_date.strftime("%Y")
@@ -246,33 +270,15 @@ class Event < ApplicationRecord
     end
   end
 
-  def country
-    return nil if country_code.blank?
-
-    ISO3166::Country.new(country_code)
-  end
-
-  def country_name
-    return nil if country_code.blank?
-
-    ISO3166::Country.new(country_code)&.translations&.[]("en")
-  end
-
-  def country_url
-    Router.country_path(static_metadata.country&.translations&.[]("en")&.parameterize)
-  rescue
-    Router.countries_path
-  end
-
   def held_in_sentence
-    return "" if country_name.blank?
-
-    if country_name.starts_with?("United")
-      %( held in the #{country_name})
-    else
-      %( held in #{country_name})
-    end
+    country&.held_in_sentence || ""
   end
+
+  def to_location
+    @to_location ||= Location.from_record(self)
+  end
+
+  delegate :country, :state, :city_object, to: :to_location
 
   def description
     return @description if @description.present?
@@ -318,100 +324,12 @@ class Event < ApplicationRecord
     }
   end
 
-  def event_image_path
-    ["events", series.slug, slug].join("/")
-  end
-
-  def default_event_image_path
-    ["events", "default"].join("/")
-  end
-
-  def default_event_series_image_path
-    ["events", series.slug, "default"].join("/")
-  end
-
-  def event_image_or_default_for(filename)
-    event_path = [event_image_path, filename].join("/")
-    default_event_series_path = [default_event_series_image_path, filename].join("/")
-    default_path = [default_event_image_path, filename].join("/")
-
-    base = Rails.root.join("app", "assets", "images")
-
-    return event_path if (base / event_path).exist?
-    return default_event_series_path if (base / default_event_series_path).exist?
-
-    default_path
-  end
-
-  def event_image_for(filename)
-    event_path = [event_image_path, filename].join("/")
-
-    Rails.root.join("app", "assets", "images", event_image_path, filename).exist? ? event_path : nil
-  end
-
-  # banner - 1300x350
-  def banner_image_path
-    event_image_or_default_for("banner.webp")
-  end
-
-  # card - 600x350
-  def card_image_path
-    event_image_or_default_for("card.webp")
-  end
-
-  # avatar - 256x256
-  def avatar_image_path
-    event_image_or_default_for("avatar.webp")
-  end
-
-  # featured - 615x350
-  def featured_image_path
-    event_image_or_default_for("featured.webp")
-  end
-
-  # poster - 600x350
-  def poster_image_path
-    event_image_or_default_for("poster.webp")
-  end
-
-  def stickers
-    Sticker.for_event(self)
-  end
-
-  # sticker - 350x350
-  def sticker_image_paths
-    stickers.map(&:file_path)
-  end
-
-  def sticker_image_path
-    sticker_image_paths.first
-  end
-
-  def stamp_image_paths
-    base = Rails.root.join("app", "assets", "images")
-    Dir.glob(base.join(event_image_path, "stamp*.webp")).map { |path|
-      Pathname.new(path).relative_path_from(base).to_s
-    }.sort
-  end
-
-  def stamp_image_path
-    stamp_image_paths.first
-  end
-
-  def sticker?
-    sticker_image_paths.any?
-  end
-
-  def stamp?
-    stamp_image_paths.any?
+  def sort_date
+    start_date || end_date || Time.at(0)
   end
 
   def watchable_talks?
     talks.where.not(video_provider: ["scheduled", "not_published", "not_recorded"]).exists?
-  end
-
-  def featured_metadata?
-    static_metadata.featured_background?
   end
 
   def featurable?
@@ -427,7 +345,7 @@ class Event < ApplicationRecord
       id: id,
       name: name,
       slug: slug,
-      location: static_metadata.location,
+      location: location,
       start_date: start_date&.to_s,
       end_date: end_date&.to_s,
       card_image_url: Router.image_path(card_image_path, host: "#{request.protocol}#{request.host}:#{request.port}"),
@@ -437,5 +355,15 @@ class Event < ApplicationRecord
       featured_color: static_metadata.featured_color,
       url: Router.event_url(self, host: "#{request.protocol}#{request.host}:#{request.port}")
     }
+  end
+
+  private
+
+  def todos_data_path
+    Rails.root.join("data", series.slug, slug)
+  end
+
+  def todos_file_prefix
+    "#{series.slug}/#{slug}"
   end
 end

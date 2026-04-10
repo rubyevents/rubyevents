@@ -25,7 +25,9 @@ class ContributionsController < ApplicationController
 
     # Missing events
 
-    conference_names = Event.all.pluck(:name)
+    event_names = Event.all.pluck(:name)
+    event_alias_names = Alias.where(aliasable_type: "Event").pluck(:name)
+    conference_names = (event_names + event_alias_names).to_set
     @upstream_conferences = begin
       RubyConferences::Client.new.conferences_cached.reverse
     rescue
@@ -56,34 +58,27 @@ class ContributionsController < ApplicationController
   def speakers_without_github
     speaker_ids_with_pending_github_suggestions = Suggestion.pending.where("json_extract(content, '$.github') IS NOT NULL").where(suggestable_type: "Speaker").pluck(:suggestable_id)
     @speakers_without_github = User.speakers.canonical.without_github.order(talks_count: :desc).where.not(id: speaker_ids_with_pending_github_suggestions)
-    @speakers_without_github_count = @speakers_without_github.count
   end
 
   def talks_without_slides
     speakers_with_speakerdeck = User.speakers.where.not(speakerdeck: "")
     @talks_without_slides = Talk.past.preload(:speakers).joins(:users).where(slides_url: nil).where(users: {id: speakers_with_speakerdeck}).order(date: :desc)
-    @talks_without_slides_count = @talks_without_slides.count
   end
 
   def events_without_videos
-    @events_without_videos = Event.past.not_retreat.includes(:series).left_joins(:talks).where(talks_count: 0).group_by(&:series)
-    @events_without_videos_count = @events_without_videos.flat_map(&:last).count
+    @events_without_videos = Event.past.not_retreat.includes(:series).left_joins(:talks).where(talks_count: 0).reject { |e| e.static_metadata.cancelled? }.group_by(&:series)
 
     @events_without_location = Static::Event.where(location: nil).group_by(&:__file_path)
-    @events_without_location_count = @events_without_location.flat_map(&:last).count
 
-    @events_without_dates = Static::Event.where(start_date: nil).group_by(&:__file_path)
-    @events_without_dates_count = @events_without_dates.flat_map(&:last).count
+    @events_without_dates = Static::Event.where(start_date: nil).reject(&:meetup?).group_by(&:__file_path)
   end
 
   def events_without_location
     @events_without_location = Static::Event.where(location: nil).group_by(&:__file_path)
-    @events_without_location_count = @events_without_location.flat_map(&:last).count
   end
 
   def events_without_dates
-    @events_without_dates = Static::Event.where(start_date: nil).group_by(&:__file_path)
-    @events_without_dates_count = @events_without_dates.flat_map(&:last).count
+    @events_without_dates = Static::Event.where(start_date: nil).reject(&:meetup?).group_by(&:__file_path)
   end
 
   def talks_dates_out_of_bounds
@@ -98,7 +93,6 @@ class ContributionsController < ApplicationController
     talks_by_event_name = Talk.preload(:event).to_a.select { |talk| talk.event.name.in?(@dates_by_event_name.keys) }.group_by(&:event)
 
     @out_of_bound_talks = talks_by_event_name.map { |event, talks| [event, talks.reject { |talk| @dates_by_event_name[event.name].cover?(talk.date) }] }
-    @out_of_bound_talks_count = @out_of_bound_talks.map(&:last).flatten.count
   end
 
   def missing_videos_cue

@@ -1,0 +1,7 @@
+<%# locals: (events:) %>
+
+<%= turbo_frame_tag "browse-featured-events" do %>
+  <% if events&.any? %>
+    <%= render "browse/featured_events", events: events %>
+  <% end %>
+<% end %>

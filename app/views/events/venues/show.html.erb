@@ -25,8 +25,15 @@
               </div>
             <% end %>
 
-            <% if @venue.maps.any? %>
+            <% if @venue.maps.any? || @venue.url.present? %>
               <div class="flex flex-wrap gap-2 mt-4">
+                <% if @venue.url.present? %>
+                  <%= link_to @venue.url, target: "_blank", rel: "noopener", class: "btn btn-sm btn-outline gap-2" do %>
+                    <%= fa("square-arrow-up-right", size: :sm, style: :solid) %>
+                    Website
+                  <% end %>
+                <% end %>
+
                 <% if @venue.google_maps_url.present? %>
                   <%= link_to @venue.google_maps_url, target: "_blank", rel: "noopener", class: "btn btn-sm btn-outline gap-2" do %>
                     <%= fa("map-location", size: :sm, style: :solid) %>
@@ -50,23 +57,19 @@
               </div>
             <% end %>
           </div>
-
-          <% if @venue.latitude.present? && @venue.longitude.present? %>
-            <div class="w-full md:w-96 h-64 rounded-lg overflow-hidden border">
-              <iframe
-                title="Map showing location of <%= @venue.name %>"
-                width="100%"
-                height="100%"
-                frameborder="0"
-                style="border:0"
-                referrerpolicy="no-referrer-when-downgrade"
-                src="https://www.openstreetmap.org/export/embed.html?bbox=<%= @venue.longitude - 0.01 %>,<%= @venue.latitude - 0.005 %>,<%= @venue.longitude + 0.01 %>,<%= @venue.latitude + 0.005 %>&layer=mapnik&marker=<%= @venue.latitude %>,<%= @venue.longitude %>"
-                allowfullscreen>
-              </iframe>
-            </div>
-          <% end %>
         </div>
       </section>
+
+      <% if @venue.map_markers.any? %>
+        <section class="bg-white rounded-lg border shadow-sm overflow-hidden">
+          <div
+            id="venue-map"
+            class="w-full h-[400px] md:h-[500px]"
+            data-controller="map"
+            data-map-mode-value="venue"
+            data-map-markers-value="<%= @venue.map_markers.to_json %>"></div>
+        </section>
+      <% end %>
 
       <% if @venue.rooms.any? %>
         <section class="bg-white rounded-lg border p-6 shadow-sm">
@@ -170,8 +173,8 @@
                     <span class="badge badge-sm badge-primary shrink-0"><%= location["kind"] %></span>
                   <% end %>
                 </div>
-                <% if location["address"].present? %>
-                  <p class="text-sm text-gray-500 mt-1"><%= location["address"] %></p>
+                <% if location.dig("address", "display").present? %>
+                  <p class="text-sm text-gray-500 mt-1"><%= location.dig("address", "display") %></p>
                 <% end %>
                 <% if location["description"].present? %>
                   <p class="text-sm text-gray-600 mt-2"><%= location["description"] %></p>
@@ -217,8 +220,8 @@
                     <span class="badge badge-sm badge-outline shrink-0"><%= hotel["kind"] %></span>
                   <% end %>
                 </div>
-                <% if hotel["address"].present? %>
-                  <p class="text-sm text-gray-500 mt-1"><%= hotel["address"] %></p>
+                <% if hotel.dig("address", "display").present? %>
+                  <p class="text-sm text-gray-500 mt-1"><%= hotel.dig("address", "display") %></p>
                 <% end %>
                 <% if hotel["description"].present? %>
                   <p class="text-sm text-gray-600 mt-2"><%= hotel["description"] %></p>

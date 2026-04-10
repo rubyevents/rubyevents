@@ -1,0 +1,98 @@
+---
+- id: "philly-rb-meetup-april-2017"
+  title: "Philly.rb April 2017"
+  event_name: "Philly.rb April 2017"
+  date: "2017-04-18"
+  video_provider: "children"
+  video_id: "philly-rb-meetup-april-2017"
+  description: |-
+    Come to PhillyRBs first Gem Day to hear short talks from several speakers who will share exciting tales of their most useful or exciting Ruby Gems.
+    https://www.meetup.com/phillyrb/events/238886348/
+  talks:
+    - title: "VCR - A Gem used for caching HTTP requests during tests"
+      event_name: "Philly.rb April 2017"
+      date: "2017-04-18"
+      speakers:
+        - Mike Dalton
+      id: "mike-dalton-philly-rb-april-2017"
+      video_id: "mike-dalton-philly-rb-april-2017"
+      video_provider: "not_recorded"
+      slides_url: "https://speakerdeck.com/kcdragon/vcr-a-gem-used-for-caching-http-requests-during-tests"
+      description: |-
+        Overview of the VCR gem which is used to cache http requests while running tests. Practical examples will be provided.
+    - title: "Rack"
+      event_name: "Philly.rb April 2017"
+      date: "2017-04-18"
+      speakers:
+        - Ernesto Tagwerker
+      id: "ernesto-tagwerker-philly-rb-april-2017"
+      video_id: "ernesto-tagwerker-philly-rb-april-2017"
+      video_provider: "not_recorded"
+      description: |-
+        Many Ruby developers use Rack, but don't interact with it or know how it works. We'll look at how we all use it and the middleware available for rack-based applications.
+- id: "philly-rb-meetup-december-2025"
+  title: "Philly.rb December 2025"
+  event_name: "Philly.rb December 2025"
+  date: "2025-12-16"
+  video_provider: "children"
+  video_id: "philly-rb-meetup-december-2025"
+  description: |-
+    https://www.meetup.com/phillyrb/events/312047297/
+  talks:
+    - title: "Introduction to Hotwire Native"
+      event_name: "Philly.rb December 2025"
+      date: "2025-12-16"
+      speakers:
+        - Mike Dalton
+      id: "mike-dalton-philly-rb-december-2025"
+      video_id: "mike-dalton-philly-rb-december-2025"
+      video_provider: "not_recorded"
+      slides_url: "https://speakerdeck.com/kcdragon/introduction-to-hotwire-native"
+      description: |-
+        Hotwire Native is a set of JavaScript, iOS and Android libraries that allow developers to build iOS and Android apps with native capabilities using mostly Ruby on Rails. Mike will introduce Hotwire Native and describe how a developer can quickly use it to transform their Rails app to a native app. He will then show how to write native code to support more advanced features like OAuth.
+- id: "philly-rb-meetup-january-2026"
+  title: "Philly.rb January 2026"
+  event_name: "Philly.rb January 2026"
+  date: "2026-01-20"
+  video_provider: "children"
+  video_id: "philly-rb-meetup-january-2026"
+  description: |-
+    https://www.meetup.com/phillyrb/events/312486770/
+  talks:
+    - title: "Talking Shit About AI Agents"
+      event_name: "Philly.rb January 2026"
+      date: "2026-01-20"
+      speakers:
+        - Scott Werner
+      id: "scott-werner-philly-rb-january-2026"
+      video_id: "scott-werner-philly-rb-january-2026"
+      video_provider: "not_recorded"
+      description: |-
+        Ask seven people what an "AI agent" is and you'll get nine answers. One person will change their mind twice.
+
+        When we can't name something, it usually means we're looking at something genuinely new.
+
+        In this talk, I'll argue that what we're calling 'agents' might actually be a new programming paradigm hiding in plain sight. Think about what makes up an agent: an LLM, a prompt, a loop, some tools, a way to talk to it. It's essentially a little computer that receives messages and interprets them. That's suspiciously close to the way Alan Kay describes objects.
+
+        We'll take a detour through Xerox PARC circa 1972, explore what Kay actually meant by "object-oriented" (spoiler: not what we've been doing), and discover how LLMs accidentally achieved something he was reaching for: semantic late binding, where the meaning of a message is negotiated at the moment of receipt.
+
+        Then I'll demo a minimal Ruby environment where markdown files are the program and Ruby is just the scaffolding. You'll see prompt-objects receive messages, interpret them, talk to each other, and even create new prompt-objects at runtime.
+- id: "philly-rb-meetup-february-2026"
+  title: "Philly.rb February 2026"
+  event_name: "Philly.rb February 2026"
+  date: "2026-02-17"
+  video_provider: "children"
+  video_id: "philly-rb-meetup-february-2026"
+  description: |-
+    https://www.meetup.com/phillyrb/events/312486772/
+  talks:
+    - title: "Revealing Rails Magic with Enums"
+      event_name: "Philly.rb February 2026"
+      date: "2026-02-17"
+      speakers:
+        - Meg Gutshall
+      id: "meg-gutshall-philly-rb-february-2026"
+      video_id: "meg-gutshall-philly-rb-february-2026"
+      video_provider: "not_recorded"
+      description: |-
+        “Rails magic” is a term many people use to describe the ease with which Rails helps you go from zero to working app so quickly. However, like all other frameworks, there’s no magic to be found – only code! In this talk, you’ll get a peek behind the curtain as we break down the ActiveRecord Enums module. You’ll learn what it is, how/when to use it, and some cool tricks it provides. Even if you’re not a Rails developer, you will still come away from this talk with new-found knowledge on how to traverse a codebase and gain a better understanding of features built into your language of choice.

@@ -1,0 +1,8 @@
+<%# locals: (talks:) %>
+
+<%= render "browse/content_row",
+      title: "From Your Favorite Rubyists",
+      subtitle: "Latest talks from speakers you follow",
+      talks: talks,
+      view_all_path: favorite_users_path,
+      data_section: "favorite-rubyists" %>

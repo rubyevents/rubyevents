@@ -4,40 +4,43 @@
 # Table name: talks
 # Database name: primary
 #
-#  id                   :integer          not null, primary key
-#  additional_resources :json             not null
-#  announced_at         :datetime
-#  date                 :date             indexed, indexed => [video_provider]
-#  description          :text             default(""), not null
-#  duration_in_seconds  :integer
-#  end_seconds          :integer
-#  external_player      :boolean          default(FALSE), not null
-#  external_player_url  :string           default(""), not null
-#  kind                 :string           default("talk"), not null, indexed
-#  language             :string           default("en"), not null
-#  like_count           :integer          default(0)
-#  meta_talk            :boolean          default(FALSE), not null
-#  original_title       :string           default(""), not null
-#  published_at         :datetime
-#  slides_url           :string
-#  slug                 :string           default(""), not null, indexed
-#  start_seconds        :integer
-#  summarized_using_ai  :boolean          default(TRUE), not null
-#  summary              :text             default(""), not null
-#  thumbnail_lg         :string           default(""), not null
-#  thumbnail_md         :string           default(""), not null
-#  thumbnail_sm         :string           default(""), not null
-#  thumbnail_xl         :string           default(""), not null
-#  thumbnail_xs         :string           default(""), not null
-#  title                :string           default(""), not null, indexed
-#  video_provider       :string           default("youtube"), not null, indexed => [date]
-#  view_count           :integer          default(0)
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null, indexed
-#  event_id             :integer          indexed
-#  parent_talk_id       :integer          indexed
-#  static_id            :string           not null, uniquely indexed
-#  video_id             :string           default(""), not null
+#  id                            :integer          not null, primary key
+#  additional_resources          :json             not null
+#  announced_at                  :datetime
+#  date                          :date             indexed, indexed => [video_provider]
+#  description                   :text             default(""), not null
+#  duration_in_seconds           :integer
+#  end_seconds                   :integer
+#  external_player               :boolean          default(FALSE), not null
+#  external_player_url           :string           default(""), not null
+#  kind                          :string           default("talk"), not null, indexed
+#  language                      :string           default("en"), not null
+#  like_count                    :integer          default(0)
+#  meta_talk                     :boolean          default(FALSE), not null
+#  original_title                :string           default(""), not null
+#  published_at                  :datetime
+#  slides_url                    :string
+#  slug                          :string           default(""), not null, indexed
+#  start_seconds                 :integer
+#  summarized_using_ai           :boolean          default(TRUE), not null
+#  summary                       :text             default(""), not null
+#  thumbnail_lg                  :string           default(""), not null
+#  thumbnail_md                  :string           default(""), not null
+#  thumbnail_sm                  :string           default(""), not null
+#  thumbnail_xl                  :string           default(""), not null
+#  thumbnail_xs                  :string           default(""), not null
+#  title                         :string           default(""), not null, indexed
+#  video_availability_checked_at :datetime
+#  video_provider                :string           default("youtube"), not null, indexed => [date]
+#  video_unavailable_at          :datetime
+#  view_count                    :integer          default(0)
+#  youtube_thumbnail_checked_at  :datetime
+#  created_at                    :datetime         not null
+#  updated_at                    :datetime         not null, indexed
+#  event_id                      :integer          indexed
+#  parent_talk_id                :integer          indexed
+#  static_id                     :string           not null, uniquely indexed
+#  video_id                      :string           default(""), not null
 #
 # Indexes
 #
@@ -61,8 +64,10 @@ class Talk < ApplicationRecord
   include Rollupable
   include Sluggable
   include Suggestable
-  include Searchable
   include Watchable
+
+  include Talk::SQLiteFTSSearchable
+  include Talk::TypesenseSearchable
 
   configure_slug(attribute: :title, auto_suffix_on_collision: true)
 
@@ -100,6 +105,7 @@ class Talk < ApplicationRecord
   has_object :agents
   has_object :downloader
   has_object :thumbnails
+  has_object :similar_recommender
 
   # validations
   validates :title, presence: true
@@ -118,13 +124,29 @@ class Talk < ApplicationRecord
 
   WATCHABLE_PROVIDERS = ["youtube", "mp4", "vimeo"]
 
+  KIND_LABELS = {
+    "keynote" => "Keynote",
+    "talk" => "Talk",
+    "lightning_talk" => "Lightning Talk",
+    "panel" => "Panel",
+    "workshop" => "Workshop",
+    "gameshow" => "Gameshow",
+    "podcast" => "Podcast",
+    "q_and_a" => "Q&A",
+    "discussion" => "Discussion",
+    "fireside_chat" => "Fireside Chat",
+    "interview" => "Interview",
+    "award" => "Award",
+    "demo" => "Demo"
+  }.freeze
+
   # enums
   enum :video_provider, %w[youtube mp4 vimeo scheduled not_published not_recorded parent children].index_by(&:itself)
 
   attribute :kind, :string
   enum :kind,
     %w[keynote talk lightning_talk panel workshop gameshow podcast q_and_a discussion fireside_chat
-      interview award].index_by(&:itself)
+      interview award demo].index_by(&:itself)
 
   def self.speaker_role_titles
     {
@@ -139,7 +161,8 @@ class Talk < ApplicationRecord
       q_and_a: "Q&A Host/Participant",
       fireside_chat: "Fireside Chat Host/Participant",
       interview: "Interviewer/Interviewee",
-      award: "Award Presenter/Winner"
+      award: "Award Presenter/Winner",
+      demo: "Demo Speaker"
     }
   end
 
@@ -149,26 +172,12 @@ class Talk < ApplicationRecord
     talk = find_by(slug: slug)
     return talk if talk
 
-    alias_record = Alias.find_by(aliasable_type: "Talk", slug: slug)
+    alias_record = ::Alias.find_by(aliasable_type: "Talk", slug: slug)
     alias_record&.aliasable
   end
 
   def formatted_kind
-    case kind
-    when "keynote" then "Keynote"
-    when "talk" then "Talk"
-    when "lightning_talk" then "Lightning Talk"
-    when "panel" then "Panel"
-    when "workshop" then "Workshop"
-    when "gameshow" then "Gameshow"
-    when "podcast" then "Podcast"
-    when "q_and_a" then "Q&A"
-    when "discussion" then "Discussion"
-    when "fireside_chat" then "Fireside Chat"
-    when "interview" then "Interview"
-    when "award" then "Award"
-    else raise "`#{kind}` not defined in `Talk#formatted_kind`"
-    end
+    KIND_LABELS[kind] || raise("`#{kind}` not defined in `Talk::KIND_LABELS`")
   end
 
   # attributes
@@ -218,6 +227,8 @@ class Talk < ApplicationRecord
   }
   scope :with_summary, -> { where("summary IS NOT NULL AND summary != ''") }
   scope :without_summary, -> { where("summary IS NULL OR summary = ''") }
+  scope :with_duration, -> { where.not(duration_in_seconds: nil) }
+  scope :without_duration, -> { where(duration_in_seconds: nil) }
   scope :without_topics, -> { where.missing(:talk_topics) }
   scope :with_topics, -> { joins(:talk_topics) }
   scope :with_speakers, -> { joins(:user_talks).distinct }
@@ -227,6 +238,8 @@ class Talk < ApplicationRecord
   scope :scheduled, -> { where(video_provider: "scheduled") }
   scope :watchable, -> { where(video_provider: WATCHABLE_PROVIDERS) }
   scope :youtube, -> { where(video_provider: "youtube") }
+  scope :video_available, -> { watchable.where(video_unavailable_at: nil) }
+  scope :video_unavailable, -> { watchable.where.not(video_unavailable_at: nil) }
   scope :upcoming, -> { where(date: Date.today...) }
   scope :today, -> { where(date: Date.today) }
   scope :past, -> { where(date: ...Date.today) }
@@ -240,6 +253,53 @@ class Talk < ApplicationRecord
 
   def published?
     video_provider.in?(WATCHABLE_PROVIDERS) || parent_talk&.published?
+  end
+
+  def video_available?
+    published? && video_unavailable_at.blank?
+  end
+
+  def video_unavailable?
+    published? && video_unavailable_at.present?
+  end
+
+  def check_video_availability!
+    return unless youtube?
+
+    available = YouTube::Video.new.available?(video_id)
+
+    if available
+      update_columns(
+        video_unavailable_at: nil,
+        video_availability_checked_at: Time.current,
+        updated_at: Time.current
+      )
+    else
+      update_columns(
+        video_unavailable_at: video_unavailable_at || Time.current,
+        video_availability_checked_at: Time.current,
+        updated_at: Time.current
+      )
+    end
+
+    available
+  end
+
+  def validate_thumbnail!
+    return unless youtube?
+
+    thumbnail = YouTube::Thumbnail.new(video_id)
+    updates = {youtube_thumbnail_checked_at: Time.current}
+
+    if (xl_url = thumbnail.best_url_for(:thumbnail_xl))
+      updates[:thumbnail_xl] = xl_url
+    end
+
+    if (lg_url = thumbnail.best_url_for(:thumbnail_lg))
+      updates[:thumbnail_lg] = lg_url
+    end
+
+    update!(updates)
   end
 
   def to_meta_tags
@@ -293,7 +353,7 @@ class Talk < ApplicationRecord
   end
 
   def fallback_thumbnail
-    "/assets/#{Rails.application.assets.load_path.find("events/default/poster.webp").digested_path}"
+    Router.image_path("events/default/poster.webp")
   end
 
   def thumbnail_url(size:, request:)
@@ -310,13 +370,13 @@ class Talk < ApplicationRecord
     if self[size].present?
       return self[size] if self[size].start_with?("https://")
 
-      if (asset = Rails.application.assets.load_path.find(self[size]))
-        return "/assets/#{asset.digested_path}"
+      if Rails.application.assets.load_path.find(self[size])
+        return Router.image_path(self[size])
       end
     end
 
-    if (asset = Rails.application.assets.load_path.find("thumbnails/#{video_id}.webp"))
-      return "/assets/#{asset.digested_path}"
+    if Rails.application.assets.load_path.find("thumbnails/#{video_id}.webp")
+      return Router.image_path("thumbnails/#{video_id}.webp")
     end
 
     if vimeo?
@@ -331,7 +391,7 @@ class Talk < ApplicationRecord
       return "https://vumbnail.com/#{video_id}#{vimeo[size]}.jpg"
     end
 
-    if youtube?
+    if youtube? && video_available?
       youtube = {
         thumbnail_xs: "default",
         thumbnail_sm: "mqdefault",
@@ -347,8 +407,8 @@ class Talk < ApplicationRecord
       return parent_talk.thumbnail(size)
     end
 
-    if event && (asset = Rails.application.assets.load_path.find(event.poster_image_path))
-      return "/assets/#{asset.digested_path}"
+    if event && Rails.application.assets.load_path.find(event.poster_image_path)
+      return Router.image_path(event.poster_image_path)
     end
 
     fallback_thumbnail
@@ -425,6 +485,23 @@ class Talk < ApplicationRecord
     child_talks_speakers
   end
 
+  def feedback_allowed?
+    speakers.all?(&:feedback_enabled?)
+  end
+
+  def feedback_allowed_for?(user)
+    return false unless feedback_allowed?
+    return true if user.blank?
+
+    !speaker?(user)
+  end
+
+  def speaker?(user)
+    return false if user.blank?
+
+    speakers.exists?(id: user.id)
+  end
+
   def speaker_names
     speakers.pluck(:name).join(" ")
   end
@@ -448,7 +525,15 @@ class Talk < ApplicationRecord
   end
 
   def location
-    static_metadata.try(:location) || event.static_metadata.location
+    static_metadata.try(:location) || event&.location
+  end
+
+  def to_location
+    @to_location ||= if static_metadata&.location.present?
+      Location.from_string(static_metadata.location)
+    else
+      event&.to_location || Location.new
+    end
   end
 
   def slug_candidates
@@ -467,7 +552,7 @@ class Talk < ApplicationRecord
 
   def unused_slugs
     used_slugs = Talk.excluding(self).where(slug: slug_candidates).pluck(:slug)
-    used_alias_slugs = Alias.where(aliasable_type: "Talk", slug: slug_candidates)
+    used_alias_slugs = ::Alias.where(aliasable_type: "Talk", slug: slug_candidates)
       .where.not(aliasable_id: id)
       .pluck(:slug)
     slug_candidates - used_slugs - used_alias_slugs
@@ -482,7 +567,10 @@ class Talk < ApplicationRecord
   def fetch_and_update_raw_transcript!
     youtube_transcript = YouTube::Transcript.get(video_id)
     transcript = talk_transcript || Talk::Transcript.new(talk: self)
-    transcript.update!(raw_transcript: ::Transcript.create_from_youtube_transcript(youtube_transcript))
+
+    if youtube_transcript.present?
+      transcript.update!(raw_transcript: ::Transcript.create_from_youtube_transcript(youtube_transcript))
+    end
   end
 
   def fetch_duration_from_youtube!
@@ -603,6 +691,8 @@ class Talk < ApplicationRecord
       :award
     when /^(interview:|interview\ with).*/i
       :interview
+    when /^(demo:|demo\ |Startup\ Demo:).*/i, /.*(demo)$/i
+      :demo
     else
       :talk
     end

@@ -24,6 +24,8 @@ class Talk::Transcript < ApplicationRecord
   serialize :enhanced_transcript, coder: TranscriptSerializer
   serialize :raw_transcript, coder: TranscriptSerializer
 
+  scope :empty, -> { where("raw_transcript IS NULL OR raw_transcript = '[]'") }
+
   def transcript
     enhanced_transcript.presence || raw_transcript
   end

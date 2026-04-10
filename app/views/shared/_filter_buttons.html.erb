@@ -1,0 +1,30 @@
+<%# locals: (current_filter: "all") %>
+
+<div class="flex gap-2 mb-6" data-controller="events-filter" data-events-filter-current-value="<%= current_filter %>">
+  <button
+    type="button"
+    data-events-filter-target="button"
+    data-kind="all"
+    data-action="click->events-filter#filter"
+    class="btn btn-sm <%= "btn-active btn-primary" if current_filter == "all" %>">
+    All
+  </button>
+
+  <button
+    type="button"
+    data-events-filter-target="button"
+    data-kind="conference"
+    data-action="click->events-filter#filter"
+    class="btn btn-sm <%= "btn-active btn-primary" if current_filter == "conference" %>">
+    Conferences
+  </button>
+
+  <button
+    type="button"
+    data-events-filter-target="button"
+    data-kind="meetup"
+    data-action="click->events-filter#filter"
+    class="btn btn-sm <%= "btn-active btn-primary" if current_filter == "meetup" %>">
+    Meetups
+  </button>
+</div>

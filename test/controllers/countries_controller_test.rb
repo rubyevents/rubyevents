@@ -32,7 +32,7 @@ class CountriesControllerTest < ActionDispatch::IntegrationTest
 
   test "should handle invalid country parameter" do
     get country_path("nonexistent-country")
-    assert_response :not_found
+    assert_redirected_to countries_path
   end
 
   test "should filter events and users by country on show page" do
@@ -44,7 +44,7 @@ class CountriesControllerTest < ActionDispatch::IntegrationTest
     users = assigns(:users)
     assert_not_nil events
     assert_not_nil users
-    assert_kind_of Array, events
+    assert_kind_of ActiveRecord::Relation, events
     assert_kind_of ActiveRecord::Relation, users
 
     # All events should either match the country or be filtered out
@@ -58,19 +58,18 @@ class CountriesControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "should sort events by home_sort_date in reverse order on show page" do
+  test "should sort events by start_date in reverse order on show page" do
     get country_path("united-states")
     assert_response :success
 
     events = assigns(:events)
     assert_not_nil events
-    assert_kind_of Array, events
+    assert_kind_of ActiveRecord::Relation, events
 
     # Check that events are sorted in reverse order (most recent first)
-    # The controller sorts by home_sort_date || Time.at(0).to_date in reverse
     if events.size > 1
-      dates = events.map { |event| event.static_metadata&.home_sort_date || Time.at(0).to_date }
-      assert_equal dates.sort.reverse, dates, "Events should be sorted by date in reverse order"
+      dates = events.map(&:start_date)
+      assert_equal dates.sort { |a, b| (b || Date.new(0)) <=> (a || Date.new(0)) }, dates, "Events should be sorted by start_date in reverse order"
     end
   end
 
@@ -80,7 +79,7 @@ class CountriesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     assert_not_nil assigns(:events)
-    assert_kind_of Array, assigns(:events)
+    assert_kind_of ActiveRecord::Relation, assigns(:events)
   end
 
   test "should handle case sensitivity in country parameter" do
@@ -89,6 +88,27 @@ class CountriesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     assert_not_nil assigns(:events)
-    assert_kind_of Array, assigns(:events)
+    assert_kind_of ActiveRecord::Relation, assigns(:events)
+  end
+
+  test "country_path helper works with Country instance via to_param" do
+    country = Country.find_by(country_code: "DE")
+
+    assert_equal "/countries/germany", country_path(country)
+  end
+
+  test "country_path helper works with multi-word country names" do
+    country = Country.find_by(country_code: "US")
+
+    assert_equal "/countries/united-states", country_path(country)
+  end
+
+  test "can navigate to country page using Country instance" do
+    country = Country.find_by(country_code: "US")
+
+    get country_path(country)
+
+    assert_response :success
+    assert_equal country.alpha2, assigns(:country).alpha2
   end
 end

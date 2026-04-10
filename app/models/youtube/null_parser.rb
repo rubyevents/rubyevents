@@ -12,8 +12,9 @@ module YouTube
         {
           title: @metadata.title,
           event_name: @event_name,
-          published_at: @metadata.published_at,
           description: @metadata.description,
+          raw_title: @metadata.title,
+          published_at: @metadata.published_at,
           video_provider: "youtube",
           video_id: @metadata.video_id
         }

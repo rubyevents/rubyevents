@@ -4,32 +4,41 @@
 # Table name: users
 # Database name: primary
 #
-#  id                  :integer          not null, primary key
-#  admin               :boolean          default(FALSE), not null
-#  bio                 :text             default(""), not null
-#  bsky                :string           default(""), not null
-#  bsky_metadata       :json             not null
-#  email               :string           indexed
-#  github_handle       :string
-#  github_metadata     :json             not null
-#  linkedin            :string           default(""), not null
-#  location            :string           default("")
-#  marked_for_deletion :boolean          default(FALSE), not null, indexed
-#  mastodon            :string           default(""), not null
-#  name                :string           indexed
-#  password_digest     :string
-#  pronouns            :string           default(""), not null
-#  pronouns_type       :string           default("not_specified"), not null
-#  slug                :string           default(""), not null, uniquely indexed
-#  speakerdeck         :string           default(""), not null
-#  talks_count         :integer          default(0), not null
-#  twitter             :string           default(""), not null
-#  verified            :boolean          default(FALSE), not null
-#  watched_talks_count :integer          default(0), not null
-#  website             :string           default(""), not null
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
-#  canonical_id        :integer          indexed
+#  id                   :integer          not null, primary key
+#  admin                :boolean          default(FALSE), not null
+#  bio                  :text             default(""), not null
+#  bsky                 :string           default(""), not null
+#  bsky_metadata        :json             not null
+#  city                 :string
+#  country_code         :string
+#  email                :string           indexed
+#  geocode_metadata     :json             not null
+#  github_handle        :string
+#  github_metadata      :json             not null
+#  latitude             :decimal(10, 6)
+#  linkedin             :string           default(""), not null
+#  location             :string           default("")
+#  longitude            :decimal(10, 6)
+#  marked_for_deletion  :boolean          default(FALSE), not null, indexed
+#  mastodon             :string           default(""), not null
+#  name                 :string           indexed
+#  password_digest      :string
+#  pronouns             :string           default(""), not null
+#  pronouns_type        :string           default("not_specified"), not null
+#  settings             :json             not null
+#  slug                 :string           default(""), not null, uniquely indexed
+#  speakerdeck          :string           default(""), not null
+#  state_code           :string
+#  suspicion_cleared_at :datetime
+#  suspicion_marked_at  :datetime
+#  talks_count          :integer          default(0), not null
+#  twitter              :string           default(""), not null
+#  verified             :boolean          default(FALSE), not null
+#  watched_talks_count  :integer          default(0), not null
+#  website              :string           default(""), not null
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  canonical_id         :integer          indexed
 #
 # Indexes
 #
@@ -43,11 +52,20 @@
 # rubocop:enable Layout/LineLength
 class User < ApplicationRecord
   include ActionView::RecordIdentifier
+  include Geocodeable
   include Sluggable
   include Suggestable
-  include User::Searchable
 
+  include User::SQLiteFTSSearchable
+  include User::TypesenseSearchable
+
+  geocodeable :location
   configure_slug(attribute: :name, auto_suffix_on_collision: true)
+
+  has_delegated_json :settings,
+    feedback_enabled: true,
+    wrapped_public: false,
+    searchable: true
 
   GITHUB_URL_PATTERN = %r{\A(https?://)?(www\.)?github\.com/}i
 
@@ -67,6 +85,10 @@ class User < ApplicationRecord
   }.freeze
 
   has_secure_password validations: false
+
+  has_one_attached :wrapped_card
+  has_one_attached :wrapped_card_horizontal
+  has_one_attached :wrapped_og_image
 
   # Authentication and user-specific associations
   has_many :sessions, dependent: :destroy, inverse_of: :user
@@ -98,14 +120,21 @@ class User < ApplicationRecord
   has_many :event_involvements, as: :involvementable, dependent: :destroy
   has_many :involved_events, through: :event_involvements, source: :event
 
+  # Favorite user associations
+  has_many :favorite_users, dependent: :destroy, inverse_of: :user
+  has_many :favorited_by, class_name: "FavoriteUser", foreign_key: "favorite_user_id", inverse_of: :favorite_user
+
   belongs_to :canonical, class_name: "User", optional: true
+  belongs_to :city_record, class_name: "City", optional: true, inverse_of: false,
+    foreign_key: [:city, :country_code, :state_code], primary_key: [:name, :country_code, :state_code]
   has_one :contributor, dependent: :nullify
 
   has_object :profiles
-  has_object :location_info
   has_object :talk_recommender
   has_object :watched_talk_seeder
   has_object :speakerdeck_feed
+  has_object :suspicion_detector
+  has_object :duplicate_detector
 
   validates :email, format: {with: URI::MailTo::EMAIL_REGEXP}, allow_blank: true
   validates :github_handle, presence: true, uniqueness: true, allow_blank: true
@@ -152,8 +181,7 @@ class User < ApplicationRecord
     self.verified = false
   end
 
-  # Seed watched talks for new users in development
-  after_create :seed_development_watched_talks, if: -> { Rails.env.development? }
+  after_save :create_alias_for_previous_name, if: :saved_change_to_name?
 
   # Speaker scopes
   scope :with_talks, -> { where.not(talks_count: 0) }
@@ -164,6 +192,15 @@ class User < ApplicationRecord
   scope :not_canonical, -> { where.not(canonical_id: nil) }
   scope :marked_for_deletion, -> { where(marked_for_deletion: true) }
   scope :not_marked_for_deletion, -> { where(marked_for_deletion: false) }
+  scope :with_public_wrapped, -> { where("json_extract(settings, '$.wrapped_public') = ?", true) }
+  scope :with_feedback_enabled, -> { where("json_extract(settings, '$.feedback_enabled') = ?", true) }
+  scope :searchable, -> { where("json_extract(settings, '$.searchable') = ?", true) }
+  scope :indexable, -> {
+    canonical.not_marked_for_deletion.where("talks_count > 0 OR json_extract(settings, '$.searchable') = ?", true)
+  }
+  scope :with_location, -> { where.not(location: [nil, ""]) }
+  scope :without_location, -> { where(location: [nil, ""]) }
+  scope :preloaded, -> { includes(:connected_accounts) }
 
   def self.normalize_github_handle(value)
     value
@@ -189,7 +226,7 @@ class User < ApplicationRecord
     user = find_by(name: name, marked_for_deletion: false)
     return user if user
 
-    alias_record = Alias.find_by(aliasable_type: "User", name: name)
+    alias_record = ::Alias.find_by(aliasable_type: "User", name: name)
     alias_record&.aliasable
   end
 
@@ -199,7 +236,7 @@ class User < ApplicationRecord
     user = find_by(slug: slug, marked_for_deletion: false)
     return user if user
 
-    alias_record = Alias.find_by(aliasable_type: "User", slug: slug)
+    alias_record = ::Alias.find_by(aliasable_type: "User", slug: slug)
     alias_record&.aliasable
   end
 
@@ -217,12 +254,33 @@ class User < ApplicationRecord
     name
   end
 
+  def country
+    return nil if country_code.blank?
+
+    Country.find_by(country_code: country_code)
+  end
+
+  def to_location
+    @to_location ||= Location.from_record(self)
+  end
+
   def canonical_slug
     canonical&.slug
   end
 
   def verified?
-    connected_accounts.find { |account| account.provider == "github" }
+    !suspicious? && connected_accounts.any? { |account| account.provider == "github" }
+  end
+
+  def indexable?
+    return false if canonical_id.present? || marked_for_deletion?
+    return true if talks_count > 0 # speakers are always searchable
+
+    searchable?
+  end
+
+  def ruby_passport_claimed?
+    connected_accounts.any? { |account| account.provider == "passport" }
   end
 
   def possessive_pronoun
@@ -310,9 +368,17 @@ class User < ApplicationRecord
   end
 
   def meta_description
-    <<~HEREDOC
-      Discover all the talks given by #{name} on subjects related to Ruby language or Ruby Frameworks such as Rails, Hanami and others
-    HEREDOC
+    return "#{name}'s profile on RubyEvents.org" if talks_count.zero?
+
+    top_topics = topics.group(:id).order(Arel.sql("COUNT(*) DESC"), :name).limit(3).pluck(:name)
+
+    topic_text = if top_topics.any?
+      top_topics.to_sentence
+    else
+      "Ruby language and Ruby Frameworks such as Rails, Hanami and others"
+    end
+
+    "Discover all the talks given by #{name} on subjects related to #{topic_text}."
   end
 
   def assign_canonical_speaker!(canonical_speaker:)
@@ -385,6 +451,19 @@ class User < ApplicationRecord
     super
   end
 
+  def create_alias_for_previous_name
+    previous_name, _current_name = saved_change_to_name
+
+    return if previous_name.blank?
+    return if connected_accounts.github.none?
+
+    previous_slug = previous_name.parameterize
+
+    return if aliases.exists?(name: previous_name)
+
+    aliases.create(name: previous_name, slug: previous_slug)
+  end
+
   def speakerdeck_user_from_slides_url
     handles = talks
       .map(&:static_metadata).compact
@@ -397,11 +476,5 @@ class User < ApplicationRecord
 
   def to_param
     github_handle.presence || slug
-  end
-
-  private
-
-  def seed_development_watched_talks
-    watched_talk_seeder.seed_development_data
   end
 end

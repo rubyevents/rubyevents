@@ -1,0 +1,72 @@
+<%# locals: (title:, talks:, view_all_path: nil, subtitle: nil, watched_talks: [], data_section: nil) %>
+
+<% frame_id = "browse-#{data_section}" if data_section %>
+
+<% content = capture do %>
+  <% if talks.present? %>
+    <section class="flex flex-col gap-4 group/row" data-section="<%= data_section %>">
+      <div class="flex items-end justify-between">
+        <div>
+          <h2 class="text-xl font-bold"><%= title %></h2>
+          <% if subtitle.present? %>
+            <p class="text-sm text-gray-500"><%= subtitle %></p>
+          <% end %>
+        </div>
+
+        <% if view_all_path.present? %>
+          <%= link_to view_all_path, class: "link text-sm shrink-0 flex items-center gap-1 hover:gap-2 transition-all", data: {turbo_frame: "_top"} do %>
+            View All
+            <%= fa("arrow-right-long", size: :sm) %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="relative" data-controller="content-row">
+        <button
+          class="hidden lg:flex absolute -left-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white shadow-lg hover:bg-gray-100 transition-all opacity-0 group-hover/row:opacity-100 disabled:opacity-0"
+          data-content-row-target="prevButton"
+          data-action="click->content-row#scrollLeft">
+
+          <%= fa("chevron-left", size: :md, class: "text-gray-700") %>
+        </button>
+
+        <div
+          class="overflow-x-auto scroll-smooth snap-x snap-mandatory"
+          style="-ms-overflow-style: none; scrollbar-width: none;"
+          data-content-row-target="container"
+          data-action="scroll->content-row#handleScroll">
+          <div class="flex gap-4 sm:pb-2" data-content-row-target="track">
+            <% talks.each do |talk| %>
+              <% watched_talk = watched_talks.find { |wt| wt.talk_id == talk.id } if watched_talks.present? %>
+              <div class="snap-start shrink-0 w-[200px] sm:w-[300px] lg:w-[320px]">
+                <%= render "talks/card_thumbnail",
+                      talk: talk,
+                      watched_talk: watched_talk %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <button
+          class="hidden lg:flex absolute -right-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white shadow-lg hover:bg-gray-100 transition-all opacity-0 group-hover/row:opacity-100 disabled:opacity-0"
+          data-content-row-target="nextButton"
+          data-action="click->content-row#scrollRight">
+          <%= fa("chevron-right", size: :md, class: "text-gray-700") %>
+        </button>
+
+        <div
+          class="absolute right-0 top-0 bottom-2 w-64 pointer-events-none opacity-0 sm:opacity-50 transition-opacity"
+          style="background: linear-gradient(to left, var(--fallback-b1,oklch(var(--b1)/1)), transparent);"
+          data-content-row-target="gradient"></div>
+      </div>
+    </section>
+  <% end %>
+<% end %>
+
+<% if frame_id %>
+  <%= turbo_frame_tag frame_id do %>
+    <%= content %>
+  <% end %>
+<% else %>
+  <%= content %>
+<% end %>

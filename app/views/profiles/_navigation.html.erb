@@ -1,4 +1,4 @@
-<%# locals: (user:, talks:, events:, mutual_events:, stamps:, events_with_stickers:, involvements_by_role:, countries_with_events:, aliases: []) %>
+<%# locals: (user:, favorite_user:, talks:, events:, mutual_events:, stamps:, events_with_stickers:, involvements_by_role:, countries_with_events:, aliases: []) %>
 
 <div role="tablist" class="tabs tabs-bordered">
   <% if talks.length.positive? %>
@@ -11,6 +11,10 @@
 
   <% if mutual_events&.any? && Current.user && Current.user != user %>
     <%= active_link_to "Mutual Events (#{mutual_events.size})", profile_mutual_events_path(user), class: "tab px-6", active_class: "tab-active", role: "tab" %>
+  <% end %>
+
+  <% if favorite_user&.persisted? %>
+    <%= active_link_to "Notes", profile_notes_path(user), class: "tab px-6", active_class: "tab-active", role: "tab" %>
   <% end %>
 
   <% if involvements_by_role.any? %>

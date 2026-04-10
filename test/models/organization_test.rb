@@ -46,7 +46,6 @@ class OrganizationTest < ActiveSupport::TestCase
 
   test "should handle nil website" do
     organization = Organization.create!(name: "Test Corp", website: nil)
-    # Rails normalizes will set the attribute but nil values remain nil if not explicitly converted
     assert_nil organization.website
   end
 
@@ -83,5 +82,138 @@ class OrganizationTest < ActiveSupport::TestCase
   test "should allow setting kind to non_profit" do
     organization = Organization.create!(name: "Test Nonprofit", kind: :non_profit)
     assert_equal "non_profit", organization.kind
+  end
+
+  test "should default logo_background to white" do
+    organization = Organization.create!(name: "Logo Background Corp")
+    assert_equal "white", organization.logo_background
+  end
+
+  test "should generate correct organization_image_path" do
+    organization = Organization.create!(name: "Image Test Corp")
+    expected_path = "organizations/#{organization.slug}"
+    assert_equal expected_path, organization.organization_image_path
+  end
+
+  test "should generate correct default_organization_image_path" do
+    organization = Organization.create!(name: "Default Image Corp")
+    assert_equal "organizations/default", organization.default_organization_image_path
+  end
+
+  test "should generate correct avatar_image_path" do
+    organization = Organization.create!(name: "Avatar Corp")
+    expected_path = "organizations/default/avatar.webp"
+    assert_equal expected_path, organization.avatar_image_path
+  end
+
+  test "should generate correct banner_image_path" do
+    organization = Organization.create!(name: "Banner Corp")
+    expected_path = "organizations/default/banner.webp"
+    assert_equal expected_path, organization.banner_image_path
+  end
+
+  test "should generate correct logo_image_path" do
+    organization = Organization.create!(name: "Logo Corp")
+    expected_path = "organizations/default/logo.webp"
+    assert_equal expected_path, organization.logo_image_path
+  end
+
+  test "should fallback to logo_url when local logo doesn't exist" do
+    organization = Organization.create!(name: "Logo URL Corp", logo_url: "https://example.com/logo.png")
+    assert_equal "https://example.com/logo.png", organization.logo_image_path
+  end
+
+  test "should not add duplicate logo_urls" do
+    organization = Organization.create!(name: "Duplicate Logo Corp")
+    organization.add_logo_url("https://example.com/logo.png")
+    organization.add_logo_url("https://example.com/logo.png")
+
+    assert_equal 1, organization.logo_urls.count
+  end
+
+  test "should not add blank logo_urls" do
+    organization = Organization.create!(name: "Blank Logo Corp")
+    organization.add_logo_url("")
+    organization.add_logo_url(nil)
+
+    assert_empty organization.logo_urls
+  end
+
+  test "should ensure unique logo_urls on save" do
+    organization = Organization.create!(name: "Unique Logo Corp")
+    organization.logo_urls = ["https://example.com/logo.png", "https://example.com/logo.png", "https://example.com/other.png"]
+    organization.save!
+
+    assert_equal 2, organization.logo_urls.count
+    assert_includes organization.logo_urls, "https://example.com/logo.png"
+    assert_includes organization.logo_urls, "https://example.com/other.png"
+  end
+
+  test "find_by_name_or_alias finds organization by name" do
+    organization = Organization.create!(name: "Name Test Corp")
+
+    found_organization = Organization.find_by_name_or_alias("Name Test Corp")
+    assert_equal organization.id, found_organization.id
+  end
+
+  test "find_by_name_or_alias finds organization by alias name" do
+    organization = Organization.create!(name: "Current Corp Name")
+    organization.aliases.create!(name: "Old Corp Name", slug: "old-corp-name")
+
+    found_organization = Organization.find_by_name_or_alias("Old Corp Name")
+    assert_equal organization.id, found_organization.id
+  end
+
+  test "find_by_name_or_alias returns nil for non-existent name" do
+    found_organization = Organization.find_by_name_or_alias("Nonexistent Corp")
+    assert_nil found_organization
+  end
+
+  test "find_by_name_or_alias returns nil for blank name" do
+    assert_nil Organization.find_by_name_or_alias("")
+    assert_nil Organization.find_by_name_or_alias(nil)
+  end
+
+  test "find_by_name_or_alias prioritizes name over alias" do
+    org1 = Organization.create!(name: "Real Corp")
+    org2 = Organization.create!(name: "Other Corp")
+    org2.aliases.create!(name: "Real Corp Alias", slug: "real-corp")
+
+    found_organization = Organization.find_by_name_or_alias("Real Corp")
+    assert_equal org1.id, found_organization.id
+  end
+
+  test "find_by_slug_or_alias finds organization by slug" do
+    organization = Organization.create!(name: "Slug Test Corp")
+
+    found_organization = Organization.find_by_slug_or_alias(organization.slug)
+    assert_equal organization.id, found_organization.id
+  end
+
+  test "find_by_slug_or_alias finds organization by alias slug" do
+    organization = Organization.create!(name: "Primary Corp")
+    organization.aliases.create!(name: "Old Corp Name", slug: "old-corp")
+
+    found_organization = Organization.find_by_slug_or_alias("old-corp")
+    assert_equal organization.id, found_organization.id
+  end
+
+  test "find_by_slug_or_alias returns nil for non-existent slug" do
+    found_organization = Organization.find_by_slug_or_alias("nonexistent-slug")
+    assert_nil found_organization
+  end
+
+  test "find_by_slug_or_alias returns nil for blank slug" do
+    assert_nil Organization.find_by_slug_or_alias("")
+    assert_nil Organization.find_by_slug_or_alias(nil)
+  end
+
+  test "find_by_slug_or_alias prioritizes slug over alias" do
+    org1 = Organization.create!(name: "Organization One")
+    org2 = Organization.create!(name: "Organization Two")
+    org2.aliases.create!(name: "Alias", slug: org1.slug)
+
+    found_organization = Organization.find_by_slug_or_alias(org1.slug)
+    assert_equal org1.id, found_organization.id
   end
 end

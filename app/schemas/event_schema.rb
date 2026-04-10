@@ -40,6 +40,7 @@ class EventSchema < RubyLLM::Schema
   string :meetup, description: "Meetup.com group URL", required: false
   string :luma, description: "Luma event URL", required: false
   string :youtube, description: "YouTube channel or video URL", required: false
+  string :tickets_url, description: "URL to purchase tickets (e.g., Tito, Eventbrite, Luma)", required: false
 
   string :banner_background,
     description: "CSS background value for the banner (color or gradient)",
@@ -50,4 +51,13 @@ class EventSchema < RubyLLM::Schema
   string :featured_color,
     description: "CSS text color for featured cards",
     required: false
+
+  any_of :coordinates, description: "Geographic coordinates (use 'coordinates: false' for online events)" do
+    object do
+      number :latitude, description: "Latitude coordinate"
+      number :longitude, description: "Longitude coordinate"
+    end
+
+    boolean
+  end
 end

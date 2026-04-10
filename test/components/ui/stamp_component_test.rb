@@ -4,7 +4,7 @@ require "test_helper"
 
 class Ui::StampComponentTest < ViewComponent::TestCase
   setup do
-    @country_stamp = Stamp.for_country("BE")
+    @country_stamp = Stamp.for(country_code: "BE").first
 
     @contributor_stamp = Stamp.contributor_stamp
   end
@@ -20,7 +20,7 @@ class Ui::StampComponentTest < ViewComponent::TestCase
     render_inline(Ui::StampComponent.new(@contributor_stamp))
 
     assert_selector("a[href='/contributors']")
-    assert_selector("img[alt='Rubyevents Contributor passport stamp']")
+    assert_selector("img[alt='RubyEvents Contributor passport stamp']")
   end
 
   test "renders with default size full" do

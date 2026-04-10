@@ -1,0 +1,21 @@
+  - name: "<%= options[:name] %>"
+    description: "<%= options[:description] %>"
+    url: "<%= options[:url] %>"
+
+    address:
+      street: "<%= @geocoded_address.street_address %>"
+      city: "<%= @geocoded_address.city %>"
+      region: "<%= @geocoded_address.state %>"
+      postal_code: "<%= @geocoded_address.postal_code %>"
+      country: "<%= @geocoded_address.country %>"
+      country_code: "<%= @geocoded_address.country_code %>"
+      display: "<%= options[:address] || @geocoded_address.address %>"
+
+    coordinates:
+      latitude: <%= @geocoded_address.latitude %>
+      longitude: <%= @geocoded_address.longitude %>
+
+    maps:
+      google: ""
+      apple: ""
+      openstreetmap: ""

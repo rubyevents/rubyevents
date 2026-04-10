@@ -1,0 +1,38 @@
+<div class="flex-1 flex gap-12 items-center px-12 pt-8 pb-4">
+  <div class="flex flex-col items-center">
+    <% if organization.logo_url.present? %>
+      <div class="w-32 h-32 rounded-2xl overflow-hidden bg-white p-3 mb-6">
+        <%= image_tag organization.logo_url, class: "w-full h-full object-contain", alt: organization.name %>
+      </div>
+    <% end %>
+    <p class="text-red-300 text-lg"><%= organization.name %></p>
+    <h1 class="text-6xl font-black text-white mt-2"><%= year %></h1>
+    <p class="text-3xl font-bold text-red-200 mt-1">Wrapped</p>
+    <p class="text-red-300/80 text-sm mt-4">RubyEvents.org/Wrapped</p>
+  </div>
+
+  <div class="flex-1 grid grid-cols-2 gap-6">
+    <div class="bg-white/10 backdrop-blur rounded-2xl p-8 text-center">
+      <p class="text-6xl font-black text-white"><%= total_events_sponsored %></p>
+      <p class="text-red-200 text-lg mt-2">Events Supported</p>
+    </div>
+    <div class="bg-white/10 backdrop-blur rounded-2xl p-8 text-center">
+      <p class="text-6xl font-black text-white"><%= number_with_delimiter(talks_at_sponsored_events) %></p>
+      <p class="text-red-200 text-lg mt-2">Talks Supported</p>
+    </div>
+    <div class="bg-white/10 backdrop-blur rounded-2xl p-8 text-center">
+      <p class="text-6xl font-black text-white"><%= number_with_delimiter(speakers_at_sponsored_events) %></p>
+      <p class="text-red-200 text-lg mt-2">Speakers Supported</p>
+    </div>
+    <div class="bg-white/10 backdrop-blur rounded-2xl p-8 text-center">
+      <p class="text-6xl font-black text-white"><%= countries_sponsored.count %></p>
+      <p class="text-red-200 text-lg mt-2">Countries Reached</p>
+    </div>
+  </div>
+</div>
+
+<div class="w-full bg-white/5 py-3 mt-4 flex items-center justify-center gap-3">
+  <%= image_tag "logo.png", class: "w-6 h-6", alt: "RubyEvents.org" %>
+  <span class="text-white font-bold text-lg">RubyEvents.org</span>
+  <span class="text-red-300/80 text-sm">On a mission to index all Ruby events</span>
+</div>

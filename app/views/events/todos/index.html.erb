@@ -1,0 +1,39 @@
+<%= render partial: "events/header", locals: {event: @event, participation: @participation} %>
+
+<%= turbo_frame_tag dom_id(@event), data: {turbo_action: "advance", turbo_frame: "_top"} do %>
+  <div class="container py-8">
+    <%= render partial: "events/navigation", locals: {event: @event} %>
+
+    <div class="flex flex-col gap-4">
+      <div class="flex items-center gap-2 mb-4">
+        <span class="badge badge-primary badge-lg"><%= @todos.size %></span>
+        <span class="text-lg font-medium">TODOs for this event</span>
+      </div>
+
+      <div class="card bg-base-200">
+        <div class="card-body p-4">
+          <table class="table table-sm">
+            <thead>
+              <tr>
+                <th>Location</th>
+                <th>Content</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @todos.each do |todo| %>
+                <tr>
+                  <td class="font-mono text-xs">
+                    <%= link_to todo.url, target: "_blank", class: "link link-primary" do %>
+                      <%= File.basename(todo.file) %>:<%= todo.line %>
+                    <% end %>
+                  </td>
+                  <td><code class="text-xs break-all"><%= todo.content %></code></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

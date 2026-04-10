@@ -1,0 +1,17 @@
+<%= turbo_stream.append "gems" do %>
+  <% @gems.each do |topic_gem| %>
+    <%= render partial: "gem_card", locals: { topic_gem: topic_gem } %>
+  <% end %>
+<% end %>
+
+<% if @pagy.next.present? %>
+  <%= turbo_stream.replace :pagination do %>
+    <%= turbo_frame_tag :pagination,
+          data: {
+            controller: "lazy-loading",
+            lazy_loading_src_value: gems_path(letter: params[:letter], page: @pagy.next, format: :turbo_stream)
+          } %>
+  <% end %>
+<% else %>
+  <%= turbo_stream.remove :pagination %>
+<% end %>

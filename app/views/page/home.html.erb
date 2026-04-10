@@ -4,6 +4,7 @@
 <% if @featured_events.any? %>
   <% content_for :head do %>
     <meta name="theme-color" content="<%= @featured_events.first.static_metadata.featured_background %>" data-featured-theme-color>
+
     <style>
       :root {
         --featured-color: <%= @featured_events.first.static_metadata.featured_color %>;
@@ -91,7 +92,7 @@
                 class="splide__slide"
                 data-featured-color="<%= event.static_metadata.featured_color %>"
                 data-featured-background="<%= event.static_metadata.featured_background %>">
-                <div class="<%= "hidden" unless index == 0 %>">
+                <div class="<%= "hidden" if Current.user || index != 0 %>">
                   <%= render partial: "events/featured_home", locals: {event: event} %>
                 </div>
               </li>

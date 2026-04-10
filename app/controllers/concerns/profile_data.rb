@@ -4,6 +4,7 @@ module ProfileData
   included do
     skip_before_action :authenticate_user!
     before_action :set_user
+    before_action :set_favorite_user
     before_action :set_user_favorites
     before_action :set_mutual_events
     before_action :load_common_data
@@ -27,11 +28,26 @@ module ProfileData
   private
 
   def set_user
-    @user = User.includes(:talks, :passports).find_by(slug: params[:profile_slug])
+    @user = User.includes(:talks, :passports).find_by_slug_or_alias(params[:profile_slug])
     @user = User.includes(:talks).find_by_github_handle(params[:profile_slug]) unless @user.present?
 
-    redirect_to speakers_path, status: :moved_permanently, notice: "User not found" if @user.blank?
-    redirect_to profile_path(@user.canonical) if @user&.canonical.present?
+    if @user.blank?
+      redirect_to speakers_path, status: :moved_permanently, notice: "User not found"
+      return
+    end
+
+    if @user.canonical.present?
+      redirect_to profile_path(@user.canonical), status: :moved_permanently
+      return
+    end
+
+    if params[:profile_slug] != @user.to_param
+      redirect_to polymorphic_path([:profile, controller_name.to_sym, :index], profile_slug: @user.to_param), status: :moved_permanently
+    end
+  end
+
+  def set_favorite_user
+    @favorite_user = FavoriteUser.find_by(user: Current.user, favorite_user: @user)
   end
 
   def set_mutual_events

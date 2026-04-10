@@ -1,5 +1,7 @@
-<% cache [user, events, Current.user] do %>
-  <% if events.any? %>
+<%# locals: (events:, user:, involvements_by_role:) %>
+
+<% cache [user, involvements_by_role, Current.user] do %>
+  <% if involvements_by_role.any? %>
     <div class="space-y-8">
         <% if involvements_by_role.any? %>
           <% involvements_by_role.each do |role, events| %>
@@ -9,7 +11,6 @@
               </h3>
               <div class="mb-6">
                 <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                  <% events = events.sort_by(&:start_date).reverse.uniq %>
                   <%= cache events do %>
                     <%= render partial: "events/card", collection: events, as: :event, cached: true %>
                   <% end %>

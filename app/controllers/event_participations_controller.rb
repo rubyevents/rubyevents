@@ -1,6 +1,10 @@
 class EventParticipationsController < ApplicationController
+  include EventData
+
   before_action :set_event
   before_action :set_participation, only: [:destroy]
+  before_action :set_favorite_users
+  before_action :set_participants
 
   # POST /events/:event_slug/event_participations
   def create
@@ -23,6 +27,7 @@ class EventParticipationsController < ApplicationController
 
   # DELETE /events/:event_slug/event_participations/:id
   def destroy
+    redirect_to event_path(@event), alert: "Participation not found." unless @participation
     @participation.destroy
     @participation = Current.user&.main_participation_to(@event)
     set_participants
@@ -34,20 +39,6 @@ class EventParticipationsController < ApplicationController
   end
 
   private
-
-  def set_event
-    @event = Event.find_by(slug: params[:event_slug])
-    redirect_to root_path, status: :moved_permanently unless @event
-  end
-
-  def set_participation
-    @participation = @event.event_participations.find_by(id: params[:id], user: Current.user)
-    redirect_to event_path(@event), alert: "Participation not found." unless @participation
-  end
-
-  def set_participants
-    @participants = @event.participants.includes(:connected_accounts).order(:name)
-  end
 
   def participation_params
     params.permit(:attended_as)

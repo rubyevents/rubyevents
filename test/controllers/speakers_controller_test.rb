@@ -2,7 +2,7 @@ require "test_helper"
 
 class SpeakersControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @speaker = users(:one)
+    @speaker = users(:zero_talks)
     @speaker_with_talk = users(:marco)
   end
 

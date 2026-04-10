@@ -5,7 +5,7 @@
     <%= render partial: "events/navigation", locals: {event: @event} %>
     <div class="flex items-start flex-wrap gap-8 sm:flex-nowrap w-full">
       <div class="w-full">
-        <%= render partial: "events/participants/list", locals: {event: @event, participants: @participants, participation: @participation} %>
+        <%= render partial: "events/participants/list", locals: {event: @event, participants: @participants, participation: @participation, favorite_users: @favorite_users} %>
       </div>
     </div>
   </div>

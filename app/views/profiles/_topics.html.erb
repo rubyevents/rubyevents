@@ -1,4 +1,4 @@
-<%# locals: {user:, topics: [], talks: []} %>
+<%# locals: (user:, topics: [], talks: []) %>
 
 <% if topics.any? && talks.length.positive? %>
   <% cache [topics, back_to_from_request, user.name] do %>

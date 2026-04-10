@@ -3,13 +3,13 @@ class EventsController < ApplicationController
   include Pagy::Backend
 
   skip_before_action :authenticate_user!, only: %i[index show update]
-  before_action :set_event, only: %i[show edit update]
+  before_action :set_event, only: %i[show edit update reimport reindex]
   before_action :set_user_favorites, only: %i[show]
+  before_action :require_admin!, only: %i[reimport reindex]
 
   # GET /events
   def index
     @events = Event.includes(:series, :keynote_speakers)
-      .not_meetup
       .where(end_date: Date.today..)
       .order(start_date: :asc)
   end
@@ -24,7 +24,7 @@ class EventsController < ApplicationController
     other_speakers = @event.speakers.joins(:talks).where.not(talks: {kind: "keynote"}).distinct.limit(8)
     @featured_speakers = (keynote_speakers + other_speakers.first(8 - keynote_speakers.size)).uniq.shuffle
 
-    @sponsors = @event.sponsors.includes(:organization).joins(:organization).shuffle
+    @sponsors = @event.sponsors.includes(:organization).joins(:organization).order(level: :asc)
 
     @participation = Current.user&.main_participation_to(@event)
   end
@@ -42,6 +42,28 @@ class EventsController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  # POST /events/:slug/reimport
+  def reimport
+    static_event = Static::Event.find_by_slug(@event.slug)
+
+    if static_event
+      static_event.import!
+      redirect_to event_path(@event), notice: "Event reimported successfully."
+    else
+      redirect_to event_path(@event), alert: "Static event not found."
+    end
+  end
+
+  # POST /events/:slug/reindex
+  def reindex
+    Search::Backend.index(@event)
+
+    @event.talks.find_each { |talk| Search::Backend.index(talk) }
+    @event.speakers.find_each { |speaker| Search::Backend.index(speaker) }
+
+    redirect_to event_path(@event), notice: "Event reindexed successfully."
   end
 
   private
@@ -67,5 +89,9 @@ class EventsController < ApplicationController
     return unless Current.user
 
     @user_favorite_talks_ids = Current.user.default_watch_list.talks.ids
+  end
+
+  def require_admin!
+    redirect_to event_path(@event), alert: "Not authorized" unless Current.user&.admin?
   end
 end

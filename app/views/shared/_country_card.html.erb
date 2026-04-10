@@ -4,8 +4,8 @@
       <div class="flex items-center gap-4">
         <span class="text-2xl"><%= country.emoji_flag %></span>
         <div>
-          <%= link_to country_path(country.translations["en"].parameterize), class: "hover:underline", data: {turbo_frame: "_top"} do %>
-            <h4 class="font-semibold"><%= country.translations["en"] %></h4>
+          <%= link_to country.path, class: "hover:underline", data: {turbo_frame: "_top"} do %>
+            <h4 class="font-semibold"><%= country.name %></h4>
           <% end %>
           <p class="text-sm text-gray-500"><%= pluralize(events.size, "event") %></p>
         </div>

@@ -22,7 +22,14 @@ maps:
 hotels:
   - name: "Sheraton Philadelphia Downtown"
     kind: "Conference Hotel"
-    address: "201 N 17th St, Philadelphia, PA 19103, United States"
+    address:
+      street: "201 North 17th Street"
+      city: "Philadelphia"
+      region: "Pennsylvania"
+      postal_code: "19103"
+      country: "United States"
+      country_code: "US"
+      display: "201 N 17th St, Philadelphia, PA 19103, United States"
     coordinates:
       latitude: 39.957582
       longitude: -75.166872

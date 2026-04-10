@@ -1,0 +1,15 @@
+<h2 class="text-2xl font-bold mb-2 text-center">Your Event Map</h2>
+<p class="text-gray-500 text-center mb-6">Where Ruby took you in <%= year %></p>
+
+<div class="flex-1 flex items-center">
+  <div
+    id="wrapped-map"
+    class="w-full h-[400px] rounded-lg"
+    data-controller="map"
+    data-map-markers-value="<%= event_map_markers.to_json %>">
+  </div>
+</div>
+
+<div class="mt-4 text-center text-sm text-gray-500">
+  <%= countries_visited.count %> <%= (countries_visited.count == 1) ? "country" : "countries" %> visited
+</div>

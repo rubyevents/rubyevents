@@ -1,10 +1,10 @@
-<%# locals: (user:, topics:, talks:, events:, mutual_events:, stamps:, events_with_stickers:, involvements_by_role:, countries_with_events:, aliases: []) %>
+<%# locals: (user:, topics:, favorite_user:, talks:, events:, mutual_events:, stamps:, events_with_stickers:, involvements_by_role:, countries_with_events:, aliases: []) %>
 
 <%= turbo_refreshes_with method: :morph, scroll: :preserve %>
 <%= turbo_stream_from user %>
 
 <div class="container py-8">
-  <%= render partial: "profiles/header", locals: {user: user} %>
+  <%= render partial: "profiles/header", locals: {user: user, favorite_user: favorite_user} %>
   <%= render partial: "profiles/topics", locals: {topics: topics, user: user, talks: talks} %>
 
   <hr class="my-6">
@@ -12,6 +12,7 @@
   <%= turbo_frame_tag dom_id(user), data: {turbo_action: "advance", turbo_frame: "_top"} do %>
     <%= render partial: "profiles/navigation", locals: {
           user: user,
+          favorite_user: favorite_user,
           talks: talks,
           events: events,
           mutual_events: mutual_events,

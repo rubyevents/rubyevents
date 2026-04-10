@@ -1,0 +1,12 @@
+<%# locals: (language_rows:) %>
+
+<%= turbo_frame_tag "browse-language-rows" do %>
+  <% language_rows&.each do |row| %>
+    <%= render "browse/content_row",
+          title: "More Talks in #{row[:language_name]}",
+          subtitle: "Based on your watch history",
+          talks: row[:talks],
+          view_all_path: talks_path(language: row[:language_code]),
+          data_section: "language-#{row[:language_code]}" %>
+  <% end %>
+<% end %>

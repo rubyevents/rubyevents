@@ -33,7 +33,7 @@ def create_events_for_series(series_file_path)
     end
 
     FileUtils.mkdir_p(event_dir)
-    File.write(event_file, YAML.dump(playlist.to_h.stringify_keys))
+    File.write(event_file, YAML.dump(playlist.to_h.except(:videos_count, :metadata_parser, :slug).stringify_keys))
     puts "  Created: #{playlist.slug}/event.yml"
   end
 end

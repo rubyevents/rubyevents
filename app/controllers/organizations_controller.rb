@@ -4,7 +4,7 @@ class OrganizationsController < ApplicationController
 
   # GET /organizations
   def index
-    @organizations = Organization.includes(:events).order(:name)
+    @organizations = Organization.includes(:event_involvements, :events).order("LOWER(organizations.name)")
     @organizations = @organizations.where("lower(name) LIKE ?", "#{params[:letter].downcase}%") if params[:letter].present?
     @featured_organizations = Organization.joins(:sponsors).group("organizations.id").order("COUNT(sponsors.id) DESC").limit(25).includes(:events)
   end
@@ -15,12 +15,11 @@ class OrganizationsController < ApplicationController
     @events = @organization.events.includes(:series, :talks).order(start_date: :desc)
     @events_by_year = @events.group_by { |event| event.start_date&.year || "Unknown" }
 
-    @countries_with_events = @events.group_by(&:country_code)
-      .map { |code, events| [ISO3166::Country.new(code), events] }
-      .reject { |country, _| country.nil? }
-      .sort_by { |country, _| country.translations["en"] }
+    @countries_with_events = @events.grouped_by_country
 
-    involvements = @organization.event_involvements.includes(:event).order(:position)
+    involvements = @organization.event_involvements.joins(:event).order(
+      Arel.sql("COALESCE(events.start_date, events.created_at) ASC")
+    )
     @involvements_by_role = involvements.group_by(&:role)
     @involved_events = @organization.involved_events.includes(:series).distinct.order(start_date: :desc)
 
@@ -35,7 +34,7 @@ class OrganizationsController < ApplicationController
     {
       total_events: @events.size,
       total_countries: @countries_with_events.size,
-      total_continents: @countries_with_events.map { |country, _| country.continent }.uniq.size,
+      total_continents: @countries_with_events.map { |country, _| country.continent_name }.uniq.size,
       total_series: @events.map(&:series).uniq.size,
       total_talks: @events.joins(:talks).size,
       years_active: @events_by_year.keys.reject { |y| y == "Unknown" }.sort,
@@ -73,7 +72,7 @@ class OrganizationsController < ApplicationController
   end
 
   def set_organization
-    @organization = Organization.find_by(slug: params[:slug])
+    @organization = Organization.find_by_slug_or_alias(params[:slug])
 
     redirect_to organizations_path, status: :moved_permanently, notice: "Organization not found" if @organization.blank?
   end

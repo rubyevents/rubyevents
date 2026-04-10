@@ -48,17 +48,43 @@ class Stamp
       @attend_one_event_stamp ||= all.find { |s| s.code == "ATTEND-ONE-EVENT" }
     end
 
+    def ruby_30th_anniversary
+      @ruby_30th_anniversary ||= all.find { |s| s.code == "RUBY-30TH-ANNIVERSARY" }
+    end
+
     def online_stamp
       @online_stamp ||= all.find { |s| s.code == "ONLINE" }
     end
 
-    def for_country(country)
-      country_stamps.find { |s| s.code == country }
-    end
+    def for(country_code: nil, state_code: nil, events: nil)
+      if events
+        stamps = []
 
-    def for(events:)
-      event_countries = events.map { |event| event.country }.compact.uniq
-      all.select { |stamp| stamp.has_country? && event_countries.include?(stamp.country) }
+        events.each do |event|
+          next unless event.country
+
+          country_stamp = country_stamps.find { |s| s.code == event.country_code }
+          stamps << country_stamp if country_stamp
+
+          if event.country_code == "GB" && event.state_code.present?
+            uk_nation = UKNation.find_by_code(event.state_code)
+            stamps.concat(uk_nation.stamps) if uk_nation
+          end
+        end
+
+        return stamps.uniq { |s| s.code }
+      end
+
+      stamps = []
+      country_stamp = country_stamps.find { |s| s.code == country_code }
+      stamps << country_stamp if country_stamp
+
+      if country_code == "GB" && state_code.present?
+        uk_nation = UKNation.find_by_code(state_code)
+        stamps.concat(uk_nation.stamps) if uk_nation
+      end
+
+      stamps
     end
 
     def for_user(user)
@@ -72,7 +98,7 @@ class Stamp
         stamps << contributor_stamp
       end
 
-      if user.passports.any? && passport_stamp
+      if user.ruby_passport_claimed? && passport_stamp
         stamps << passport_stamp
       end
 
@@ -130,11 +156,11 @@ class Stamp
     end
 
     def user_attended_online_event?(user)
-      user.participated_events.any? { |event| event.static_metadata&.location == "Online" }
+      user.participated_events.any? { |event| event.location == "Online" }
     end
 
     def grouped_by_continent
-      stamps_by_continent = all.select(&:has_country?).group_by { |stamp| stamp.country&.continent }
+      stamps_by_continent = all.select(&:has_country?).group_by { |stamp| stamp.country&.continent_name }
       custom_stamps = all.reject(&:has_country?).reject(&:has_event?)
 
       stamps_by_continent["Custom"] = custom_stamps if custom_stamps.any?
@@ -143,12 +169,14 @@ class Stamp
     end
 
     def missing_for_events
-      event_countries = Event.all.map { |event| event.country }.compact.uniq
+      event_countries = Event.all.map(&:country).compact.uniq
       stamp_countries = all.select(&:has_country?).map(&:country).compact.uniq
+      gb_country = Country.find_by(country_code: "GB")
 
       event_countries.reject { |event_country|
-        stamp_countries.include?(event_country) || (event_country == ISO3166::Country.new("GB") && uk_subdivisions_covered?)
-      }.sort_by { |c| c.translations["en"] }
+        stamp_countries.any? { |sc| sc.alpha2 == event_country.alpha2 } ||
+          (event_country.alpha2 == gb_country&.alpha2 && uk_subdivisions_covered?)
+      }.sort_by(&:name)
     end
   end
 
@@ -199,14 +227,23 @@ class Stamp
   def self.create_stamp_from_code(stamp_code)
     stamp_upper = stamp_code.upcase
     file_path = "#{stamp_code}.webp"
-    country = ISO3166::Country.new(stamp_upper)
+    country = Country.find_by(country_code: stamp_upper)
+    uk_nation = UKNation.find_by_code(stamp_upper) unless country
 
     if country
       new(
         code: stamp_upper,
-        name: country.translations["en"],
+        name: country.name,
         file_path: file_path,
         country: country,
+        has_country: true
+      )
+    elsif uk_nation
+      new(
+        code: stamp_upper,
+        name: uk_nation.name,
+        file_path: file_path,
+        country: uk_nation,
         has_country: true
       )
     else

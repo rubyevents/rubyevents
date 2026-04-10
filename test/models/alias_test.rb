@@ -25,7 +25,7 @@ class AliasTest < ActiveSupport::TestCase
     assert alias_record.valid?
   end
 
-  test "slug must be unique per aliasable_type" do
+  test "slug must be globally unique across all aliasable types" do
     user1 = User.create!(name: "User One", github_handle: "user-one-alias")
     user2 = User.create!(name: "User Two", github_handle: "user-two-alias")
 
@@ -36,12 +36,15 @@ class AliasTest < ActiveSupport::TestCase
     assert_includes alias2.errors[:slug], "has already been taken"
   end
 
-  test "slug can be reused across different aliasable types" do
+  test "same aliasable can have multiple aliases with the same slug" do
     user = User.create!(name: "Test User", github_handle: "user-slug-reuse")
-    user_alias = user.aliases.create!(name: "Name", slug: "reusable-slug")
+    user.aliases.create!(name: "Name Variant One", slug: "same-slug")
+    alias2 = user.aliases.build(name: "Name Variant Two", slug: "same-slug")
 
-    assert user_alias.valid?
-    assert_equal "reusable-slug", user_alias.slug
+    assert alias2.valid?
+    alias2.save!
+
+    assert_equal 2, user.aliases.where(slug: "same-slug").count
   end
 
   test "name must be unique per aliasable_type" do
@@ -61,6 +64,26 @@ class AliasTest < ActiveSupport::TestCase
 
     assert user_alias.valid?
     assert_equal "Shared Name", user_alias.name
+  end
+
+  test "slug must be unique even when different aliasable types have the same id" do
+    user = User.create!(name: "Test User", github_handle: "user-same-id-test")
+    event_series = EventSeries.create!(name: "Test Series", slug: "test-series-same-id")
+
+    user.aliases.create!(name: "User Alias", slug: "globally-unique-slug")
+    series_alias = event_series.aliases.build(name: "Series Alias", slug: "globally-unique-slug")
+
+    assert_not series_alias.valid?
+    assert_includes series_alias.errors[:slug], "has already been taken"
+  end
+
+  test "same aliasable cannot have duplicate names" do
+    user = User.create!(name: "Test User", github_handle: "user-duplicate-name")
+    user.aliases.create!(name: "Same Name", slug: "slug-one")
+    alias2 = user.aliases.build(name: "Same Name", slug: "slug-two")
+
+    assert_not alias2.valid?
+    assert_includes alias2.errors[:name], "has already been taken"
   end
 
   test "polymorphic association works with different types" do

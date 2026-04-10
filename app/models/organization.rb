@@ -25,13 +25,18 @@
 class Organization < ApplicationRecord
   include Sluggable
   include UrlNormalizable
+  include Organization::TypesenseSearchable
 
   configure_slug(attribute: :name, auto_suffix_on_collision: false)
 
   # enums
-  enum :kind, {unknown: 0, company: 1, community: 2, foundation: 3, non_profit: 4}
+  enum :kind, {unknown: 0, company: 1, community: 2, foundation: 3, non_profit: 4, organisation: 5}
+
+  # attachments
+  has_one_attached :wrapped_card_horizontal
 
   # associations
+  has_many :aliases, as: :aliasable, dependent: :destroy
   has_many :sponsors, dependent: :destroy
   has_many :events, through: :sponsors
   has_many :event_involvements, as: :involvementable, dependent: :destroy
@@ -40,6 +45,26 @@ class Organization < ApplicationRecord
   validates :name, presence: true, uniqueness: true
 
   before_save :ensure_unique_logo_urls
+
+  def self.find_by_name_or_alias(name)
+    return nil if name.blank?
+
+    organization = find_by(name: name)
+    return organization if organization
+
+    alias_record = ::Alias.find_by(aliasable_type: "Organization", name: name)
+    alias_record&.aliasable
+  end
+
+  def self.find_by_slug_or_alias(slug)
+    return nil if slug.blank?
+
+    organization = find_by(slug: slug)
+    return organization if organization
+
+    alias_record = ::Alias.find_by(aliasable_type: "Organization", slug: slug)
+    alias_record&.aliasable
+  end
 
   normalize_url :website
 

@@ -1,0 +1,42 @@
+<div class="flex flex-col gap-4">
+  <% todos_by_type.each do |todo_type| %>
+    <div class="card bg-base-200">
+      <div class="card-body p-4">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="badge badge-primary"><%= todo_type[:count] %></span>
+          <span class="font-medium">TODO:</span>
+          <code class="bg-base-300 px-2 py-1 rounded text-sm"><%= todo_type[:normalized_content] %></code>
+        </div>
+
+        <div class="collapse collapse-arrow bg-base-300">
+          <input type="checkbox">
+          <div class="collapse-title py-2 min-h-0 font-medium">
+            Show <%= todo_type[:count] %> <%= "occurrence".pluralize(todo_type[:count]) %>
+          </div>
+          <div class="collapse-content">
+            <table class="table table-xs">
+              <thead>
+                <tr>
+                  <th>File</th>
+                  <th>Content</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% todo_type[:matches].each do |todo| %>
+                  <tr>
+                    <td>
+                      <%= link_to todo.url, target: "_blank", class: "link link-hover text-xs" do %>
+                        <code><%= todo.file %>:<%= todo.line %></code>
+                      <% end %>
+                    </td>
+                    <td><code class="text-xs break-all"><%= todo.content %></code></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

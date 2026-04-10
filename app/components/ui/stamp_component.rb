@@ -35,7 +35,7 @@ class Ui::StampComponent < ApplicationComponent
   def url
     case kind
     when :country
-      country_path(stamp.country.translations["en"].parameterize)
+      stamp.country.path
     when :event
       stamp.event ? event_path(stamp.event) : nil
     when :contributor

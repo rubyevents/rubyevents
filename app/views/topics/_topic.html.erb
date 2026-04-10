@@ -1,6 +1,9 @@
 <%= link_to topic_path(topic), id: dom_id(topic), class: "flex justify-between" do %>
   <div class="flex items-center gap-2">
     <span><%= topic.name %></span>
+    <% if topic.topic_gems.any? %>
+      <%= fa("gem", size: :xs, class: "fill-primary") %>
+    <% end %>
   </div>
   <%= ui_badge(topic.talks_count, kind: :secondary, outline: true, size: :lg, class: "min-w-10") %>
 <% end %>

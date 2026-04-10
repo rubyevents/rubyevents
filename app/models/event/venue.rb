@@ -1,14 +1,18 @@
 class Event::Venue < ActiveRecord::AssociatedObject
-  def file_path
-    event.data_folder.join("venue.yml")
-  end
+  include YAMLFile
 
-  def exist?
-    file_path.exist?
-  end
+  yaml_file "venue.yml"
 
-  def file
-    @file ||= YAML.load_file(file_path)
+  extension do
+    def geocode
+      super
+
+      if venue.exist? && venue.coordinates.present?
+        coords = venue.coordinates
+        self.latitude = coords["latitude"]
+        self.longitude = coords["longitude"]
+      end
+    end
   end
 
   def name
@@ -87,6 +91,10 @@ class Event::Venue < ActiveRecord::AssociatedObject
     file["instructions"]
   end
 
+  def url
+    file["url"]
+  end
+
   def accessibility
     file["accessibility"] || {}
   end
@@ -109,5 +117,50 @@ class Event::Venue < ActiveRecord::AssociatedObject
 
   def locations
     file["locations"] || []
+  end
+
+  def map_markers
+    markers = []
+
+    if latitude.present? && longitude.present?
+      markers << {
+        latitude: latitude,
+        longitude: longitude,
+        kind: "venue",
+        name: name,
+        address: display_address
+      }
+    end
+
+    hotels.each do |hotel|
+      coords = hotel["coordinates"]
+      next unless coords&.dig("latitude").present? && coords&.dig("longitude").present?
+
+      markers << {
+        latitude: coords["latitude"],
+        longitude: coords["longitude"],
+        kind: "hotel",
+        name: hotel["name"],
+        address: hotel.dig("address", "display"),
+        distance: hotel["distance"]
+      }
+    end
+
+    locations.each do |location|
+      coords = location["coordinates"]
+      next unless coords&.dig("latitude").present? && coords&.dig("longitude").present?
+
+      markers << {
+        latitude: coords["latitude"],
+        longitude: coords["longitude"],
+        kind: "location",
+        name: location["name"],
+        location_kind: location["kind"],
+        address: location.dig("address", "display"),
+        distance: location["distance"]
+      }
+    end
+
+    markers
   end
 end

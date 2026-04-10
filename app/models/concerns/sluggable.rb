@@ -14,7 +14,10 @@ module Sluggable
   private
 
   def set_slug
-    self.slug = slug.presence || I18n.transliterate(send(slug_source).downcase).parameterize
+    source_value = send(slug_source)
+    return if source_value.blank?
+
+    self.slug = slug.presence || I18n.transliterate(source_value.downcase).parameterize
 
     # if slug is already taken, add a random string to the end
     if self.class.exists?(slug: slug) && self.class.auto_suffix_on_collision

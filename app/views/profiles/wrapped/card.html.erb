@@ -1,0 +1,68 @@
+<div class="wrapped-page wrapped-cover" id="summary-card">
+  <div class="flex-1 flex flex-col items-center justify-center">
+    <div class="w-20 h-20 mx-auto rounded-full border-3 border-white overflow-hidden bg-white/20 mb-3">
+      <% if @user.custom_avatar? %>
+        <%= image_tag @user.avatar_url(size: 80), class: "w-full h-full object-cover", alt: @user.name %>
+      <% else %>
+        <div class="w-full h-full flex items-center justify-center text-2xl font-bold">
+          <%= @user.name.first.upcase %>
+        </div>
+      <% end %>
+    </div>
+
+    <p class="font-bold text-lg mb-0"><%= @user.name %></p>
+    <p class="text-red-200 text-sm mb-4"><%= @year %> Wrapped</p>
+
+    <div class="grid grid-cols-3 gap-2 w-full max-w-xs mb-3">
+      <div class="text-center p-2 bg-white/10 rounded-lg">
+        <p class="text-xl font-bold"><%= @total_talks_watched %></p>
+        <p class="text-[10px] text-red-200">Talks Watched</p>
+      </div>
+      <div class="text-center p-2 bg-white/10 rounded-lg">
+        <p class="text-xl font-bold"><%= @total_watch_time_hours %>h</p>
+        <p class="text-[10px] text-red-200">Watch Time</p>
+      </div>
+      <div class="text-center p-2 bg-white/10 rounded-lg">
+        <p class="text-xl font-bold"><%= @events_attended_in_year.count %></p>
+        <p class="text-[10px] text-red-200">Events</p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-2 w-full max-w-xs mb-3">
+      <div class="text-center p-2 bg-white/10 rounded-lg">
+        <p class="text-xl font-bold"><%= @countries_visited.count %></p>
+        <p class="text-[10px] text-red-200">Countries Visited</p>
+      </div>
+      <% if @talks_given_in_year.any? %>
+        <div class="text-center p-2 bg-white/20 rounded-lg">
+          <p class="text-xl font-bold"><%= @talks_given_in_year.count %></p>
+          <p class="text-[10px] text-red-200">Talks Given</p>
+        </div>
+      <% else %>
+        <div class="text-center p-2 bg-white/10 rounded-lg">
+          <p class="text-xl font-bold"><%= @top_topics.count %></p>
+          <p class="text-[10px] text-red-200">Topics Explored</p>
+        </div>
+      <% end %>
+    </div>
+
+    <% if @personality.present? %>
+      <div class="personality-badge text-sm px-4 py-2 mb-3">
+        <%= @personality %>
+      </div>
+    <% end %>
+
+    <% if @top_topics.any? %>
+      <div class="flex flex-wrap justify-center gap-1 max-w-xs">
+        <% @top_topics.first(3).each do |topic, _| %>
+          <span class="px-2 py-1 bg-white/10 rounded text-xs"><%= topic.name %></span>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mt-auto pt-4 text-center">
+    <p class="text-xs text-red-200 mb-1">See my full Wrapped at</p>
+    <p class="text-sm font-bold">RubyEvents.org <%= @year %> Wrapped</p>
+  </div>
+</div>

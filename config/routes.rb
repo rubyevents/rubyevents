@@ -5,14 +5,25 @@ Rails.application.routes.draw do
   extend Authenticator
 
   # static pages
-  get "uses", to: "page#uses"
+  get "/uses", to: "page#uses"
   get "/privacy", to: "page#privacy"
   get "/components", to: "page#components"
   get "/about", to: "page#about"
   get "/stickers", to: "page#stickers"
   get "/contributors", to: "page#contributors"
   get "/stamps", to: "stamps#index"
+  get "/wrapped", to: "wrapped#index"
   get "/pages/assets", to: "page#assets"
+  get "/featured" => "page#featured"
+
+  # announcements/blog
+  resources :announcements, only: [:index, :show], param: :slug do
+    collection do
+      get :feed, defaults: {format: :rss}
+    end
+  end
+
+  resources :browse, only: [:index, :show]
 
   # authentication
   get "/auth/failure", to: "sessions/omniauth#failure"
@@ -21,20 +32,125 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
 
   resource :password, only: [:edit, :update]
+  resource :settings, only: [:show, :update]
   namespace :identity do
     resource :email, only: [:edit, :update]
     resource :email_verification, only: [:show, :create]
     resource :password_reset, only: [:new, :edit, :create, :update]
   end
 
-  authenticate :admin do
+  if Rails.env.development?
     mount MissionControl::Jobs::Engine, at: "/jobs"
     mount Avo::Engine, at: Avo.configuration.root_path
+    mount Avo::Dashboards::Engine, at: "#{Avo.configuration.root_path}/dashboards" if defined?(Avo::Dashboards::Engine)
+  else
+    authenticate :admin do
+      mount MissionControl::Jobs::Engine, at: "/jobs"
+      mount Avo::Engine, at: Avo.configuration.root_path
+      mount Avo::Dashboards::Engine, at: "#{Avo.configuration.root_path}/dashboards" if defined?(Avo::Dashboards::Engine)
+    end
   end
 
   resources :topics, param: :slug, only: [:index, :show]
   resources :cfp, only: :index
-  resources :countries, param: :country, only: [:index, :show]
+
+  resources :continents, param: :continent, only: [:index, :show] do
+    scope module: :locations do
+      resources :past, only: [:index]
+      resources :users, only: [:index]
+      resources :stamps, only: [:index]
+      resources :map, only: [:index]
+    end
+    resources :countries, only: [:index], module: :continents
+  end
+
+  resources :countries, param: :country, only: [:index, :show] do
+    scope module: :locations do
+      resources :past, only: [:index]
+      resources :users, only: [:index]
+      resources :meetups, only: [:index]
+      resources :stamps, only: [:index]
+      resources :map, only: [:index]
+    end
+    resources :cities, only: [:index], module: :countries
+  end
+
+  get "/states", to: "states#index", as: :states
+  get "/states/:alpha2", to: "states#country_index", as: :country_states
+  get "/states/:state_alpha2/:state_slug", to: "states#show", as: :state
+  scope "/states/:state_alpha2/:state_slug", as: :state do
+    scope module: :locations do
+      resources :past, only: [:index]
+      resources :users, only: [:index]
+      resources :meetups, only: [:index]
+      resources :stamps, only: [:index]
+      resources :map, only: [:index]
+    end
+    resources :cities, only: [:index], module: :states
+  end
+
+  get "/cities", to: "cities#index", as: :cities
+  get "/cities/tokyo", to: redirect("/states/jp/tokyo", status: 301)
+
+  get "/cities/:alpha2/:city", to: "cities#show_by_country", as: :city_by_country, constraints: {alpha2: /[a-z]{2}/i}
+  scope "/cities/:alpha2/:city", as: :city_by_country, constraints: {alpha2: /[a-z]{2}/i} do
+    scope module: :locations do
+      resources :past, only: [:index]
+      resources :users, only: [:index]
+      resources :meetups, only: [:index]
+      resources :stamps, only: [:index]
+      resources :map, only: [:index]
+    end
+  end
+
+  get "/cities/:alpha2/:state/:city", to: "cities#show_with_state", as: :city_with_state, constraints: {alpha2: /[a-z]{2}/i}
+  scope "/cities/:alpha2/:state/:city", as: :city_with_state, constraints: {alpha2: /[a-z]{2}/i} do
+    scope module: :locations do
+      resources :past, only: [:index]
+      resources :users, only: [:index]
+      resources :meetups, only: [:index]
+      resources :stamps, only: [:index]
+      resources :map, only: [:index]
+    end
+  end
+
+  get "/cities/:slug", to: "cities#show", as: :city
+  scope "/cities/:slug", as: :city do
+    scope module: :locations do
+      resources :past, only: [:index]
+      resources :users, only: [:index]
+      resources :meetups, only: [:index]
+      resources :stamps, only: [:index]
+      resources :map, only: [:index]
+    end
+  end
+
+  resources :featured_cities, only: [:create, :destroy], param: :slug
+
+  get "/locations/online", to: "online#show", as: :online
+  scope "/locations/online", as: :online, online: true do
+    scope module: :locations do
+      resources :past, only: [:index]
+    end
+  end
+
+  get "/locations/search", to: "coordinates#index", as: :locations_search
+
+  get "/locations/@:coordinates", to: "coordinates#show", as: :coordinates,
+    constraints: {coordinates: /[-\d.]+,[-\d.]+/}
+  scope "/locations/@:coordinates", as: :coordinates, constraints: {coordinates: /[-\d.]+,[-\d.]+/} do
+    scope module: :locations do
+      resources :past, only: [:index]
+      resources :users, only: [:index]
+      resources :map, only: [:index]
+    end
+  end
+
+  resources :gems, param: :gem_name, only: [:index, :show] do
+    member do
+      get :talks
+    end
+  end
 
   namespace :profiles do
     resources :connect, only: [:index, :show]
@@ -43,6 +159,7 @@ Rails.application.routes.draw do
   end
 
   resources :contributions, only: [:index, :show], param: :step
+  resources :todos, only: [:index], path: "data/todos"
 
   resources :templates, only: [:new, :create] do
     collection do
@@ -71,7 +188,10 @@ Rails.application.routes.draw do
   resources :talks, param: :slug, only: [:index, :show, :update, :edit] do
     scope module: :talks do
       resources :recommendations, only: [:index]
-      resource :watched_talk, only: [:create, :destroy, :update]
+      resource :watched_talk, only: [:new, :create, :destroy, :update] do
+        post :toggle_attendance, on: :collection
+        post :toggle_online, on: :collection
+      end
       resource :slides, only: :show
     end
   end
@@ -81,29 +201,58 @@ Rails.application.routes.draw do
   resources :speakers, param: :slug, only: [:index]
   get "/speakers/:slug", to: redirect("/profiles/%{slug}", status: 301), as: :speaker
 
+  namespace :hover_cards do
+    resources :users, only: [:show], param: :slug
+    resources :events, only: [:show], param: :slug
+  end
+
   resources :profiles, param: :slug, only: [:show, :update, :edit] do
+    post :reindex, on: :member
+
     scope module: :profiles do
       resources :talks, only: [:index]
       resources :events, only: [:index]
       resources :mutual_events, only: [:index]
+      resource :notes, only: [:show, :edit]
       resources :stamps, only: [:index]
       resources :stickers, only: [:index]
       resources :involvements, only: [:index]
       resources :map, only: [:index]
       resources :aliases, only: [:index]
+      resources :wrapped, only: [:index] do
+        collection do
+          get :card
+          get :og_image
+          post :toggle_visibility
+          post :generate_card
+        end
+      end
     end
   end
+
+  resources :favorite_users, only: [:index, :create, :destroy, :update]
+
   resources :events, param: :slug, only: [:index, :show, :update, :edit] do
     resources :event_participations, only: [:create, :destroy]
 
+    post :reimport, on: :member
+    post :reindex, on: :member
+
     scope module: :events do
       collection do
+        get "/:year" => "years#index", :as => :year, :constraints => {year: /\d{4}/}
         get "/past" => "past#index", :as => :past
         get "/archive" => "archive#index", :as => :archive
+        get "/meetups" => "meetups#index", :as => :meetups
         get "/countries" => redirect("/countries")
         get "/countries/:country" => redirect { |params, _| "/countries/#{params[:country]}" }
-        resources :cities, param: :city, only: [:index, :show]
-        resources :series, param: :slug, only: [:index, :show]
+        get "/cities", to: redirect("/cities", status: 301)
+        get "/cities/:city", to: redirect("/cities", status: 301)
+        resources :series, param: :slug, only: [:index, :show] do
+          post :reimport, on: :member
+          post :reindex, on: :member
+        end
+        resources :attendances, only: [:index, :show], param: :event_slug
       end
 
       resources :schedules, only: [:index], path: "/schedule" do
@@ -120,11 +269,18 @@ Rails.application.routes.draw do
       resources :sponsors, only: [:index]
       resources :cfp, only: [:index]
       resources :collectibles, only: [:index]
+      resource :tickets, only: [:show]
+      resources :todos, only: [:index]
     end
   end
 
   resources :organizations, param: :slug, only: [:index, :show] do
     resource :logos, only: [:show, :update], controller: "organizations/logos"
+    resources :wrapped, only: [:index], controller: "organizations/wrapped" do
+      collection do
+        get :og_image
+      end
+    end
   end
 
   namespace :sponsors do
@@ -142,9 +298,13 @@ Rails.application.routes.draw do
     resources :talks, only: [:index]
     resources :speakers, only: [:index]
     resources :events, only: [:index]
+    resources :topics, only: [:index]
+    resources :series, only: [:index]
+    resources :organizations, only: [:index]
+    resources :locations, only: [:index]
+    resources :languages, only: [:index]
+    resources :kinds, only: [:index]
   end
-
-  get "/featured" => "page#featured"
 
   resources :recommendations, only: [:index]
 
@@ -179,6 +339,24 @@ Rails.application.routes.draw do
         end
         namespace :ios do
           resource :path_configuration, only: :show
+        end
+      end
+    end
+  end
+
+  namespace :api, defaults: {format: "json"} do
+    namespace :v1 do
+      namespace :embed do
+        match "*path", to: "base#preflight", via: :options
+
+        resources :talks, only: [:index, :show], param: :slug
+        resources :speakers, only: [:index, :show], param: :slug
+        resources :profiles, only: [:index, :show], param: :slug
+        resources :topics, only: [:show], param: :slug
+        resources :stickers, only: [:show], param: :slug
+        resources :stamps, only: [:show], param: :slug
+        resources :events, only: [:index, :show], param: :slug do
+          get :participants, on: :member
         end
       end
     end

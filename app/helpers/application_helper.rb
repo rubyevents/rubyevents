@@ -25,14 +25,15 @@ module ApplicationHelper
 
   def footer_credits
     maintainers = [
-      link_to("@adrienpoly", "https://github.com/adrienpoly", target: "_blank", class: "link", alt: "Adrien Poly"),
-      link_to("@marcoroth", "https://github.com/marcoroth", target: "_blank", class: "link", alt: "Marco Roth")
-    ].shuffle.join(" and ")
+      link_to("@adrienpoly", "https://www.rubyevents.org/profiles/adrienpoly", class: "link", alt: "Adrien Poly"),
+      link_to("@chaelcodes", "https://www.rubyevents.org/profiles/chaelcodes", class: "link", alt: "Rachael Wright-Munn"),
+      link_to("@marcoroth", "https://www.rubyevents.org/profiles/marcoroth", class: "link", alt: "Marco Roth")
+    ].shuffle.join(", ")
+
     output = ["Made with"]
     output << fa(:heart, size: :sm, class: "fill-red-700 inline")
     output << "for the Ruby community by"
-    output << maintainers
-    output << "and wonderful"
+    output << "#{maintainers}, and wonderful"
     output << link_to("contributors", contributors_path, class: "link")
     output << "using an"
     output << link_to("edge stack.", uses_path, class: "link")
@@ -41,5 +42,13 @@ module ApplicationHelper
 
   def canonical_url
     content_for?(:canonical_url) ? content_for(:canonical_url) : "https://www.rubyevents.org#{request.path}"
+  end
+
+  def sanitize_url(url, fallback: "")
+    if Rails::HTML::Sanitizer.allowed_uri?(url)
+      url
+    else
+      fallback
+    end
   end
 end

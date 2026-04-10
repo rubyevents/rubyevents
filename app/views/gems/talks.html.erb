@@ -1,0 +1,39 @@
+<div class="container flex flex-col w-full gap-4 my-8">
+  <%= link_to gem_path(gem_name: @gem.gem_name), class: "hotwire-native:hidden" do %>
+    <div class="flex items-center gap-2 title text-primary">
+      <%= fa("arrow-left-long", class: "transition-arrow fill-primary", size: :xs) %>
+      <code class="font-mono"><%= @gem.gem_name %></code>
+    </div>
+  <% end %>
+
+  <div class="flex items-center gap-3 title text-primary hotwire-native:hidden">
+    <h1 class="flex items-center gap-2">
+      <%= fa("gem", size: :md, class: "fill-primary") %>
+      Talks about the <code class="font-mono bg-base-200 px-1.5 py-0.5 rounded"><%= @gem.gem_name %></code> gem
+    </h1>
+    <span class="badge badge-ghost"><%= @topic.talks_count %></span>
+  </div>
+
+  <div
+    id="gem-talks"
+    class="grid min-w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 gallery">
+    <%= render partial: "talks/card",
+          collection: @talks,
+          as: :talk,
+          locals: {
+            favoritable: true,
+            user_favorite_talks_ids: @user_favorite_talks_ids,
+            user_watched_talks: user_watched_talks,
+            back_to: talks_gem_path(gem_name: @gem.gem_name),
+            back_to_title: @gem.gem_name
+          } %>
+  </div>
+
+  <% if @pagy.next.present? %>
+    <%= turbo_frame_tag :pagination,
+          data: {
+            controller: "lazy-loading",
+            lazy_loading_src_value: talks_gem_path(gem_name: @gem.gem_name, page: @pagy.next, format: :turbo_stream)
+          } %>
+  <% end %>
+</div>

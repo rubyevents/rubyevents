@@ -3,7 +3,7 @@
     <div class="items-center gap-6 hidden lg:flex">
       <ul class="desktop-menu">
         <%= render "shared/navbar/link", link_title: "Events", path: events_path %>
-        <%= render "shared/navbar/link", link_title: "Videos", path: talks_path %>
+        <%= render "shared/navbar/link", link_title: "Videos", path: browse_index_path %>
         <%= render "shared/navbar/link", link_title: "Speakers", path: speakers_path %>
         <%= render "shared/navbar/link", link_title: "Organizations", path: organizations_path %>
         <%= render "shared/navbar/link", link_title: "Topics", path: topics_path %>
@@ -20,22 +20,15 @@
     <div class="flex justify-end items-center">
       <ul class="hidden lg:flex items-center gap-4 h-full">
 
-        <% signed_in do %>
-          <div class="flex items-center gap-2">
-            <ul class="desktop-menu">
-              <%= render "shared/navbar/link", link_title: "For You", path: recommendations_path %>
-              <%= render "shared/navbar/link", link_title: "Recently Watched", path: watched_talks_path %>
-              <%= render "shared/navbar/link", link_title: "Bookmarks", path: watch_lists_path %>
-            </ul>
-            <% if Current.user.default_watch_list.talks_count.positive? %>
-              <div class="badge badge-secondary"><%= Current.user.default_watch_list.talks_count %></div>
+        <div class="flex items-center gap-2">
+          <ul class="desktop-menu">
+            <% signed_in do %>
+              <%= render "shared/navbar/link", link_title: "Favorite Rubyists", path: favorite_users_path %>
             <% end %>
-          </div>
-        <% end %>
-
-        <% signed_out do %>
-          <%= render "shared/navbar/link", link_title: "Contribute", path: contributions_path %>
-        <% end %>
+            <%= render "shared/navbar/link", link_title: "Contribute", path: contributions_path %>
+            <%= render "shared/navbar/link", link_title: "News", path: announcements_path %>
+          </ul>
+        </div>
 
         <%= render "shared/navbar/search_bar", id: "magnifying-glass" %>
 

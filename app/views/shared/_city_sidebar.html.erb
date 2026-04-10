@@ -1,0 +1,54 @@
+<%# locals: (city_name:, country:, users:, nearby_users: [], event_map_markers: []) %>
+
+<div class="space-y-8">
+  <% if event_map_markers.present? && event_map_markers.any? %>
+    <div>
+      <h3 class="font-bold text-gray-900 mb-4">Map</h3>
+
+      <div
+        id="sidebar-map"
+        class="w-full h-48 rounded-xl overflow-hidden border"
+        data-controller="map"
+        data-map-markers-value="<%= event_map_markers.to_json %>"></div>
+    </div>
+  <% end %>
+
+  <div class="bg-gray-50 rounded-xl p-6 border">
+    <div class="flex items-center gap-3 mb-3">
+      <div class="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center">
+        <%= fa("city", class: "text-red-600") %>
+      </div>
+
+      <span class="font-bold text-lg text-gray-900"><%= city_name %></span>
+    </div>
+
+    <p class="text-gray-600 text-sm">
+      Discover the hottest Ruby events in <%= city_name %>, and get notified of new events before they sell out.
+    </p>
+  </div>
+
+  <%= render "shared/rubyists_preview",
+        users: users.limit(24),
+        title: "Rubyists in #{city_name}",
+        total_count: users.count,
+        view_all_path: nil %>
+
+  <% if nearby_users.present? && nearby_users.any? %>
+    <%= render "shared/rubyists_preview",
+          users: nearby_users.first(24),
+          title: "Rubyists near #{city_name}",
+          total_count: nearby_users.count,
+          view_all_path: nil %>
+  <% end %>
+
+  <% if country.present? %>
+    <div>
+      <h3 class="font-bold text-gray-900 mb-4">Country</h3>
+
+      <%= link_to country.path, class: "flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors" do %>
+        <span class="fi fi-<%= country.alpha2.downcase %> border rounded w-8 text-[16pt]"></span>
+        <span class="text-gray-700"><%= country.name %></span>
+      <% end %>
+    </div>
+  <% end %>
+</div>

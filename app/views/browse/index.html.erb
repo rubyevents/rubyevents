@@ -1,0 +1,136 @@
+<%= turbo_refreshes_with method: :morph, scroll: :preserve %>
+
+<div class="container flex flex-col gap-8 my-8 hotwire-native:my-0 hotwire-native:mb-8">
+  <h1 class="title text-primary hotwire-native:hidden">Browse</h1>
+
+  <% if @featured_events.any? %>
+    <%= render "browse/featured_events", events: @featured_events %>
+  <% end %>
+
+  <% if @continue_watching&.any? %>
+    <%= render "browse/content_row",
+          title: "Continue Watching",
+          talks: @continue_watching.map(&:talk),
+          watched_talks: @continue_watching,
+          view_all_path: watched_talks_path,
+          data_section: "continue-watching" %>
+  <% end %>
+
+  <% @event_rows.each do |row| %>
+    <%= render "browse/content_row",
+          title: "From #{row[:event].name}",
+          talks: row[:talks],
+          view_all_path: event_path(row[:event]),
+          data_section: "event-#{row[:event].slug}" %>
+  <% end %>
+
+  <%= turbo_frame_tag "browse-newest-talks", src: browse_path("newest_talks"), loading: :lazy do %>
+    <%= render "browse/content_row_skeleton" %>
+  <% end %>
+
+  <%= turbo_frame_tag "browse-recently-published", src: browse_path("recently_published"), loading: :lazy do %>
+    <%= render "browse/content_row_skeleton" %>
+  <% end %>
+
+  <%= turbo_frame_tag "browse-trending", src: browse_path("trending"), loading: :lazy do %>
+    <%= render "browse/content_row_skeleton" %>
+  <% end %>
+
+  <% if Current.user %>
+    <%= turbo_frame_tag "browse-for-you", src: browse_path("for_you"), loading: :lazy do %>
+      <%= render "browse/content_row_skeleton" %>
+    <% end %>
+
+    <%= turbo_frame_tag "browse-from-bookmarks", src: browse_path("from_bookmarks"), loading: :lazy do %>
+      <%= render "browse/content_row_skeleton" %>
+    <% end %>
+
+    <%= turbo_frame_tag "browse-favorite-rubyists", src: browse_path("favorite_rubyists"), loading: :lazy do %>
+      <%= render "browse/content_row_skeleton" %>
+    <% end %>
+
+    <%= turbo_frame_tag "browse-events-attended", src: browse_path("events_attended"), loading: :lazy do %>
+      <%= render "browse/content_row_skeleton" %>
+    <% end %>
+
+    <%= turbo_frame_tag "browse-unwatched-attended", src: browse_path("unwatched_attended"), loading: :lazy do %>
+      <%= render "browse/content_row_skeleton" %>
+    <% end %>
+
+    <%= turbo_frame_tag "browse-favorite-speakers", src: browse_path("favorite_speakers"), loading: :lazy do %>
+      <%= render "browse/content_row_skeleton" %>
+    <% end %>
+
+    <%= turbo_frame_tag "browse-language-rows", src: browse_path("language_rows"), loading: :lazy do %>
+      <%= render "browse/content_row_skeleton" %>
+    <% end %>
+  <% end %>
+
+  <%= turbo_frame_tag "browse-popular", src: browse_path("popular"), loading: :lazy do %>
+    <%= render "browse/content_row_skeleton" %>
+  <% end %>
+
+  <%= turbo_frame_tag "browse-popular-youtube", src: browse_path("popular_youtube"), loading: :lazy do %>
+    <%= render "browse/content_row_skeleton" %>
+  <% end %>
+
+  <%= turbo_frame_tag "browse-most-bookmarked", src: browse_path("most_bookmarked"), loading: :lazy do %>
+    <%= render "browse/content_row_skeleton" %>
+  <% end %>
+
+  <%= turbo_frame_tag "browse-quick-watches", src: browse_path("quick_watches"), loading: :lazy do %>
+    <%= render "browse/content_row_skeleton" %>
+  <% end %>
+
+  <%= turbo_frame_tag "browse-deep-dives", src: browse_path("deep_dives"), loading: :lazy do %>
+    <%= render "browse/content_row_skeleton" %>
+  <% end %>
+
+  <%= turbo_frame_tag "browse-hidden-gems", src: browse_path("hidden_gems"), loading: :lazy do %>
+    <%= render "browse/content_row_skeleton" %>
+  <% end %>
+
+  <%= turbo_frame_tag "browse-evergreen", src: browse_path("evergreen"), loading: :lazy do %>
+    <%= render "browse/content_row_skeleton" %>
+  <% end %>
+
+  <%= turbo_frame_tag "browse-beginner-friendly", src: browse_path("beginner_friendly"), loading: :lazy do %>
+    <%= render "browse/content_row_skeleton" %>
+  <% end %>
+
+  <%= turbo_frame_tag "browse-mind-blowing", src: browse_path("mind_blowing"), loading: :lazy do %>
+    <%= render "browse/content_row_skeleton" %>
+  <% end %>
+
+  <%= turbo_frame_tag "browse-inspiring", src: browse_path("inspiring"), loading: :lazy do %>
+    <%= render "browse/content_row_skeleton" %>
+  <% end %>
+
+  <%= turbo_frame_tag "browse-most-liked", src: browse_path("most_liked"), loading: :lazy do %>
+    <%= render "browse/content_row_skeleton" %>
+  <% end %>
+
+  <%= turbo_frame_tag "browse-recommended-community", src: browse_path("recommended_community"), loading: :lazy do %>
+    <%= render "browse/content_row_skeleton" %>
+  <% end %>
+
+  <%= turbo_frame_tag "browse-popular-topics", src: browse_path("popular_topics"), loading: :lazy do %>
+    <%= render "browse/content_row_skeleton" %>
+  <% end %>
+
+  <%= turbo_frame_tag "browse-talk-kinds", src: browse_path("talk_kinds"), loading: :lazy do %>
+    <%= render "browse/content_row_skeleton" %>
+  <% end %>
+
+  <%= turbo_frame_tag "browse-topic-rows", src: browse_path("topic_rows"), loading: :lazy do %>
+    <%= render "browse/content_row_skeleton" %>
+  <% end %>
+
+  <div class="flex justify-center mt-4">
+    <%= link_to talks_path(status: "all"), class: "btn btn-primary btn-lg" do %>
+      <%= fa("video", class: "mr-2") %>
+
+      Browse All Talks
+    <% end %>
+  </div>
+</div>

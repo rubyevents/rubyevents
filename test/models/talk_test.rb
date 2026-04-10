@@ -53,7 +53,8 @@ class TalkTest < ActiveSupport::TestCase
       discussion: ["Discussion: Something", "Discussion", "Fishbowl: Topic", "Fishbowl Discussion: Topic"],
       fireside_chat: ["Fireside Chat: Something", "Fireside Chat"],
       interview: ["Interview with Matz", "Interview: Something"],
-      award: ["Award: Something", "Award Show", "Ruby Heroes Awards", "Ruby Heroes Award", "Rails Luminary"]
+      award: ["Award: Something", "Award Show", "Ruby Heroes Awards", "Ruby Heroes Award", "Rails Luminary"],
+      demo: ["Demo: Something", "Demo of New Features", "Product Demo"]
     }
 
     kind_with_titles.each do |kind, titles|
@@ -286,8 +287,8 @@ class TalkTest < ActiveSupport::TestCase
     assert_equal [@talk], Talk.ft_search("Hotwire Cookbook: Common Uses, Essential Patterns")
     assert_equal [@talk], Talk.ft_search('Hotwire"') # with an escaped quote
 
-    @talk.index.destroy!
-    @talk.reload.reindex # Need to reload or we get a FrozenError from trying to update attributes on the destroyed index record.
+    @talk.fts_index.destroy!
+    @talk.reload.reindex_fts # Need to reload or we get a FrozenError from trying to update attributes on the destroyed index record.
     assert_equal [@talk], Talk.ft_search("Hotwire Cookbook")
   end
 
@@ -397,11 +398,11 @@ class TalkTest < ActiveSupport::TestCase
   test "discarded user_talks" do
     talk = talks(:one)
     user_talk = talk.user_talks.first
-    assert_equal 1, user_talk.user.talks_count
+    assert_equal 2, user_talk.user.talks_count
     user_talk.discard
     assert_equal 1, talk.user_talks.count
     assert_equal 0, talk.kept_user_talks.count
-    assert_equal 0, user_talk.user.talks_count
+    assert_equal 1, user_talk.user.talks_count
   end
 
   test "should return original title" do

@@ -6,7 +6,7 @@ class TopicsController < ApplicationController
   before_action :set_user_favorites, only: %i[show]
 
   def index
-    @topics = Topic.approved.with_talks.order(name: :asc)
+    @topics = Topic.approved.with_talks.includes(:topic_gems).order(name: :asc)
     @topics = @topics.where("lower(name) LIKE ?", "#{params[:letter].downcase}%") if params[:letter].present?
     @pagy, @topics = pagy(@topics, limit: 100, page: page_number)
   end

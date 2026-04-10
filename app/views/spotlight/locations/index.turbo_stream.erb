@@ -1,0 +1,64 @@
+<%= turbo_stream.replace "locations_search_results" do %>
+  <div
+    id="locations_search_results"
+    class="<%= (@locations.any? || @geocoded_locations&.any?) ? "pb-4 border-b" : "hidden" %>"
+    data-spotlight-search-target="locationsSearchResults">
+    <% if @locations.any? %>
+      <div class="flex items-center flex-wrap gap-2 py-2">
+        <span class="text-sm font-medium text-gray-600">Locations</span>
+        <span class="text-xs text-gray-400">(<%= total_count %>)</span>
+      </div>
+      <div class="flex flex-col gap-1">
+        <% @locations.each do |location| %>
+          <% path = case location[:type].to_sym
+                    when :online then online_path
+                    when :continent then continent_path(location[:slug])
+                    when :country then country_path(location[:slug])
+                    when :state then state_path(state_alpha2: location[:country_code].downcase, state_slug: location[:slug])
+                    when :uk_nation then country_path(location[:slug])
+                    when :city then city_by_country_path(alpha2: location[:country_code].downcase, city: location[:slug])
+                    end
+             type_label = case location[:type].to_sym
+                          when :online then "Virtual"
+                          when :continent then "Continent"
+                          when :country then "Country"
+                          when :state then location[:country_name]
+                          when :uk_nation then "United Kingdom"
+                          when :city then location[:country_name]
+                          end
+          %>
+          <%= link_to path, target: "_top", class: "flex items-center justify-between gap-4 py-2 px-2 rounded hover:bg-gray-100 group" do %>
+            <div class="flex items-center gap-3">
+              <span class="text-lg"><%= location[:emoji_flag] %></span>
+              <span class="font-medium"><%= location[:name] %></span>
+            </div>
+            <div class="flex items-center gap-4 text-sm text-gray-500">
+              <span><%= type_label %></span>
+              <span class="text-xs">(<%= pluralize(location[:event_count], "event") %>)</span>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% elsif @geocoded_locations.present? && @geocoded_locations.any? %>
+      <div class="flex items-center flex-wrap gap-2 py-2">
+        <span class="text-sm font-medium text-gray-600">Locations</span>
+      </div>
+      <div class="flex flex-col gap-1">
+        <% @geocoded_locations.each do |geocoded_location| %>
+          <% location_display = geocoded_location[:country].present? ? "#{geocoded_location[:name]}, #{geocoded_location[:country]}" : geocoded_location[:name] %>
+          <%= link_to coordinates_path(coordinates: "#{geocoded_location[:latitude]},#{geocoded_location[:longitude]}"),
+                target: "_top",
+                class: "flex items-center justify-between gap-4 py-2 px-2 rounded hover:bg-gray-100 group" do %>
+            <div class="flex items-center gap-3">
+              <span class="text-lg">📍</span>
+              <span class="font-medium">Explore <%= location_display %></span>
+            </div>
+            <div class="flex items-center gap-4 text-sm text-gray-500">
+              <span>View nearby events</span>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
