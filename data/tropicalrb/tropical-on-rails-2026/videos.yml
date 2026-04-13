@@ -3,8 +3,7 @@
 ---
 - id: "rodrigo-serradura-workshop-tropical-on-rails-2026"
   title: "Modularizing Rails Applications in Practice"
-  description: |-
-    TODO - description
+  description: ""
   kind: "workshop"
   language: "pt"
   date: "2026-08-04"
@@ -16,8 +15,7 @@
 
 - id: "inertia-rails-from-rails-new-to-production-workshop-tropical-on-rails-2026"
   title: "Inertia Rails: from rails new to production"
-  description: |-
-    TODO - description
+  description: ""
   kind: "workshop"
   language: "en"
   date: "2026-08-04"
@@ -25,22 +23,24 @@
   speakers:
     - Svyatoslav Kryukov
     - Brian Knoles
-    - Brandon Shar
   video_provider: "scheduled"
   video_id: "inertia-rails-from-rails-new-to-production-workshop-tropical-on-rails-2026"
 
 - id: "marco-roth-tropical-on-rails-2026"
-  title: "Keynote by Marco Roth"
-  raw_title: "Keynote by Marco Roth"
+  title: "Keynote: Your Views Deserve a Grammar"
+  raw_title: "Your Views Deserve a Grammar"
   speakers:
     - Marco Roth
   event_name: "Tropical on Rails 2026"
   date: "2026-04-09"
   announced_at: "2025-10-27 13:30 UTC"
   description: |-
-    Marco is a passionate full-stack Ruby on Rails developer and a dedicated contributor to open source projects.
+    Rails has always been the "batteries included" framework, but the view layer never got the same treatment. HTML+ERB has been loosely defined for 20 years. What happens when you give it a proper grammar? You get a parser, a toolchain, and eventually, reactivity.
+
+    From a parser written in C, to a linter with 60+ rules, a language server, a rendering engine, and browser dev tools, all powered by the same syntax tree. We'll trace the evolution from Turbolinks to Hotwire, show where the current approach hits a ceiling, and introduce Herb and ReActionView: a path to reactive, server-rendered Rails views without leaving ERB behind.
   video_provider: "scheduled"
   video_id: "marco-roth-tropical-on-rails-2026"
+  slides_url: "https://speakerdeck.com/marcoroth/your-views-deserve-a-grammar-at-tropical-on-rails-2026-sao-paulo-brazil"
 
 - id: "rachael-wright-munn-tropical-on-rails-2026"
   title: "Unboxing Devcontainers and Docker for Rubyists"
