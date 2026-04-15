@@ -13,6 +13,7 @@ class Events::SeriesController < ApplicationController
   # GET /events/series/:slug
   def show
     set_meta_tags(@event_series)
+    @subscription = Current.user&.event_series_subscriptions&.find_by(event_series: @event_series)
 
     @events = @event_series.events.sort_by { |event|
       begin

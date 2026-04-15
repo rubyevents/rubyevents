@@ -251,6 +251,7 @@ Rails.application.routes.draw do
         resources :series, param: :slug, only: [:index, :show] do
           post :reimport, on: :member
           post :reindex, on: :member
+          resources :event_series_subscriptions, only: [:create, :destroy]
         end
         resources :attendances, only: [:index, :show], param: :event_slug
       end
