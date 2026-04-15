@@ -6,17 +6,7 @@
 
 <% cache [user, events, Current.user] do %>
   <div data-controller="events-filter" data-events-filter-current-value="all">
-    <div role="tablist" class="tabs tabs-boxed inline-flex mb-4">
-      <button type="button" class="tab tab-active" data-events-filter-target="button" data-kind="all" data-action="click->events-filter#filter">
-        All
-      </button>
-
-      <% event_kinds.each do |kind| %>
-        <button type="button" class="tab" data-events-filter-target="button" data-kind="<%= kind %>" data-action="click->events-filter#filter">
-          <%= kind.humanize.pluralize %>
-        </button>
-      <% end %>
-    </div>
+    <%= render "shared/filter_buttons", kinds: event_kinds, current_filter: "all" %>
 
     <div class="space-y-8">
         <% if future_events.any? %>
