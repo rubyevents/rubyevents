@@ -118,7 +118,6 @@ class ProfilesController < ApplicationController
 
   def user_params
     params.require(:user).permit(
-      :name,
       :github_handle,
       :twitter,
       :bsky,
