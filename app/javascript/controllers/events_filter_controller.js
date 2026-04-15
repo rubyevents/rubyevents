@@ -17,8 +17,6 @@ export default class extends Controller {
   updateButtons () {
     this.buttonTargets.forEach(button => {
       const isActive = button.dataset.kind === this.currentValue
-      button.classList.toggle('btn-active', isActive)
-      button.classList.toggle('btn-primary', isActive)
       button.classList.toggle('tab-active', isActive)
     })
   }
