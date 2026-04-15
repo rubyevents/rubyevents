@@ -1,4 +1,4 @@
-<%# locals: (event:, participation: nil) %>
+<%# locals: (event:, participation: nil, verified: false) %>
 
 <%= link_to event_path(event), class: "flex w-full", data: {turbo_frame: "_top"} do %>
   <div class="card card-compact bg-white border w-full <%= "cancelled" if event.static_metadata.cancelled? %>">
@@ -9,8 +9,19 @@
         <span><%= event.to_location.to_html(show_links: false) %></span>
         <span class="mt-1"><%= event.formatted_dates %></span>
 
-        <% if participation.present? %>
-          <%= ui_badge(participation.attended_as.humanize, size: :sm, class: "mt-2 bg-blue-700 border-blue-700") %>
+        <% if participation.present? || verified %>
+          <div class="flex items-center justify-center gap-1.5 mt-2">
+            <% if participation.present? %>
+              <%= ui_badge(participation.attended_as.humanize, size: :sm, class: "bg-blue-700 border-blue-700") %>
+            <% elsif verified %>
+              <%= ui_badge("Visitor", size: :sm, class: "bg-blue-700 border-blue-700") %>
+            <% end %>
+            <% if verified %>
+              <%= ui_tooltip "Verified attendance" do %>
+                <%= fa "circle-check", style: :solid, class: "fill-green-700", size: :xs %>
+              <% end %>
+            <% end %>
+          </div>
         <% end %>
 
         <% if event.static_metadata.last_edition? %>

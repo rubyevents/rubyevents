@@ -44,6 +44,7 @@ class Avo::Resources::Event < Avo::BaseResource
   def actions
     action Avo::Actions::AssignCanonicalEvent
     action Avo::Actions::GeocodeRecord
+    action Avo::Actions::ImportVerifiedEventParticipation
   end
 
   def filters

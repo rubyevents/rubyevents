@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.2].define(version: 2026_03_06_110802) do
+ActiveRecord::Schema[8.2].define(version: 2026_04_07_131057) do
   create_table "_litestream_lock", id: false, force: :cascade do |t|
     t.integer "id"
   end
@@ -517,6 +517,17 @@ ActiveRecord::Schema[8.2].define(version: 2026_03_06_110802) do
     t.index ["slug"], name: "index_users_on_slug", unique: true, where: "slug IS NOT NULL AND slug != ''"
   end
 
+  create_table "verified_event_participations", force: :cascade do |t|
+    t.string "connect_id", null: false
+    t.datetime "created_at", null: false
+    t.integer "event_id", null: false
+    t.datetime "scanned_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["connect_id", "event_id"], name: "index_verified_event_participations_on_connect_id_and_event_id", unique: true
+    t.index ["connect_id"], name: "index_verified_event_participations_on_connect_id"
+    t.index ["event_id"], name: "index_verified_event_participations_on_event_id"
+  end
+
   create_table "watch_list_talks", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "talk_id", null: false
@@ -582,6 +593,7 @@ ActiveRecord::Schema[8.2].define(version: 2026_03_06_110802) do
   add_foreign_key "topics", "topics", column: "canonical_id"
   add_foreign_key "user_talks", "talks"
   add_foreign_key "user_talks", "users"
+  add_foreign_key "verified_event_participations", "events"
   add_foreign_key "watch_list_talks", "talks"
   add_foreign_key "watch_list_talks", "watch_lists"
 

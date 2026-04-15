@@ -63,10 +63,18 @@ class ProfilesController < ApplicationController
     event_participations = @user.event_participations.includes(:event).where(event: @events)
     @participations = event_participations.index_by(&:event_id)
 
-    @events_by_year = @events.group_by { |event| event.start_date&.year || "Unknown" }
-
-    # Group events by country for the map tab
+    # Group events by country for the map tab (must happen before merge converts to Array)
     @countries_with_events = @events.grouped_by_country
+
+    # Merge verified-only events (not already in participated_events)
+    @verified_event_ids = @user.verified_event_ids
+    verified_only_event_ids = @verified_event_ids - @events.map(&:id).to_set
+    if verified_only_event_ids.any?
+      verified_only_events = Event.includes(:series).where(id: verified_only_event_ids)
+      @events = @events.to_a + verified_only_events.to_a
+    end
+
+    @events_by_year = @events.group_by { |event| event.start_date&.year || "Unknown" }
 
     @involved_events = @user.involved_events.includes(:series).distinct.order(start_date: :desc)
     event_involvements = @user.event_involvements.includes(:event).where(event: @involved_events)

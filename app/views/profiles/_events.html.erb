@@ -1,9 +1,10 @@
 <%# Event Participations v1 %>
+<%# locals: (user:, events:, talks:, participations:, verified_event_ids: Set.new) %>
 
-<% future_events = events.upcoming.sort_by(&:sort_date).reverse %>
+<% future_events = events.respond_to?(:upcoming) ? events.upcoming.sort_by(&:sort_date).reverse : events.select { |e| e.upcoming? }.sort_by(&:sort_date).reverse %>
 <% past_events = (events.to_a - future_events).sort_by(&:sort_date).reverse %>
 
-<% cache [user, events, Current.user] do %>
+<% cache [user, events, Current.user, verified_event_ids] do %>
   <div>
     <div class="space-y-8">
         <% if future_events.any? %>
@@ -12,8 +13,8 @@
             <div class="mb-6">
               <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 <% future_events.each do |event| %>
-                  <%= cache [event, participations[event.id]] do %>
-                    <%= render partial: "events/card", locals: {event: event, participation: participations[event.id]} %>
+                  <%= cache [event, participations[event.id], verified_event_ids.include?(event.id)] do %>
+                    <%= render partial: "events/card", locals: {event: event, participation: participations[event.id], verified: verified_event_ids.include?(event.id)} %>
                   <% end %>
                 <% end %>
               </div>
@@ -27,8 +28,8 @@
             <div class="mb-6">
               <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 <% past_events.each do |event| %>
-                  <%= cache [event, participations[event.id]] do %>
-                    <%= render partial: "events/card", locals: {event: event, participation: participations[event.id]} %>
+                  <%= cache [event, participations[event.id], verified_event_ids.include?(event.id)] do %>
+                    <%= render partial: "events/card", locals: {event: event, participation: participations[event.id], verified: verified_event_ids.include?(event.id)} %>
                   <% end %>
                 <% end %>
               </div>

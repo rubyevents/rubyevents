@@ -3,7 +3,7 @@ class Profiles::MapController < ApplicationController
   include EventMapMarkers
 
   def index
-    @events = @user.participated_events.includes(:series)
+    @events = @user.all_attended_events.includes(:series)
     @countries_with_events = @events.grouped_by_country
     @event_map_markers = event_map_markers(@events)
   end
