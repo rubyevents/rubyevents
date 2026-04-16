@@ -242,16 +242,16 @@
   video_id: "yuya-fujiwara-rubykaigi-2026"
 
 - id: "katsuhiko-kageyama-rubykaigi-2026"
-  title: "MicroRuby as a Multi-VM Operating System"
+  title: "PicoRuby as a Multi-VM Operating System"
   track: "Small Hall #rubykaigiC"
   description: |-
     With the emergence of PicoRuby, mruby-centered technologies have increasingly been used as lightweight operating environments for microcontrollers.
 
-    In this talk, I present a more self-contained approach: an operating system for microcontrollers built around MicroRuby, where the mruby VM serves as the system core. I call this framework Family mruby OS.
+    In this talk, I present a more self-contained approach: an operating system for microcontrollers built around PicoRuby, where the mruby VM serves as the system core. I call this framework Family mruby OS.
 
     The system enables developers to write and run Ruby applications directly on a microcontroller with a GUI, using a USB keyboard, mouse, and display—without relying on a PC.
 
-    By leveraging FreeRTOS, multiple MicroRuby VMs, as well as VMs of other languages, can run concurrently at the machine-code level, enabling true multi-VM execution while keeping Ruby responsible for application lifecycle management.
+    By leveraging FreeRTOS, multiple PicoRuby VMs, as well as VMs of other languages, can run concurrently at the machine-code level, enabling true multi-VM execution while keeping Ruby responsible for application lifecycle management.
 
     I will explain the design and implementation of this framework, discuss the key technical challenges involved, and demonstrate the system running on real hardware.
   kind: "talk"
@@ -360,22 +360,16 @@
   video_id: "shunsuke-michii-rubykaigi-2026"
 
 - id: "charles-nutter-keynote-rubykaigi-2026"
-  title: "Keynote: JRuby: Tomorrow's Ruby Today"
+  title: "Keynote: Twenty Years of JRuby"
   track: "Large Hall #rubykaigiA"
   description: |-
-    You know that JRuby is Ruby for the JVM, but what does that really mean? JRuby is compatible with Ruby 4 and runs Rails, but also enables use cases that regular Ruby can only dream of:
+    For the past twenty years, I have poured my heart and soul into JRuby to bring new opportunities to the Ruby world. We built the first JIT compiler for Ruby, helped the community embrace parallel threads, and became the only alternative Ruby deployed at scale.
 
-
-    Precompiling code for commercial products
-    Single-file deployment with any JDK on any device (even mobile and embedded)
-    Low-overhead profiling of production apps
-    Simple, powerful multi-threading that uses all cores
-    Cross-platform libraries for graphics, GUIs, games and AI
-
+    Today, JRuby continues to expand Ruby's horizons, offering unique features.
 
     And with JRuby 10.1, we're adding new and amazing features and optimizations every day. You've never seen Ruby like this!
 
-    This talk will present several fun and cool JRuby use cases that are difficult or impossible to do with regular Ruby. You'll learn how to do more with Ruby and bring Ruby to more places.
+    This talk will explore the history of JRuby and show how you can take Ruby to new places and open up a whole new world of Ruby applications.
   kind: "keynote"
   language: "en"
   date: "2026-04-23"
@@ -476,7 +470,7 @@
   video_id: "uchio-kondo-rubykaigi-2026"
 
 - id: "masatoshi-seki-rubykaigi-2026"
-  title: "Programming with DJ Controller"
+  title: "Programming with a DJ Controller - not vibe coding"
   track: "Small Hall #rubykaigiC"
   description: |-
     The current DJ scene is dominated by PCDJ controllers, which communicate with a PC via MIDI for performance. This eliminates the need to carry around equipment or vinyl records, making it easy to get started. However, many people who start easily quickly lose interest or realize the limits of their own talent. I am certainly one of them.
@@ -528,6 +522,7 @@
   speakers:
     - Samuel Williams
     - Marc-André Cournoyer
+    - Josh Teeter
   video_provider: "scheduled"
   video_id: "samuel-williams-rubykaigi-2026"
 
@@ -577,12 +572,12 @@
   video_id: "soutaro-matsumoto-rubykaigi-2026"
 
 - id: "ryosuke-uchida-rubykaigi-2026"
-  title: "PicoRuby with Practical MQTT"
+  title: "Extreme MQTT on PicoRuby"
   track: "Small Hall #rubykaigiC"
   description: |-
     PicoRuby aims to bring Ruby into the world of microcontrollers, where severe memory and execution constraints make practical networking difficult. In this talk, I present a real-world implementation of a practical MQTT client on PicoRuby with mruby/c, built on top of picoruby-net.
 
-    Unlike CRuby, mruby/c provides no threads, limited socket abstractions, and very restricted memory. Implementing MQTT in this environment required careful design of packet construction and parsing, buffer management, connection lifecycle handling, and interaction with garbage collection, while preserving a Ruby-like programming model.
+    Unlike CRuby, mruby/c provides no threads and very restricted memory. Implementing MQTT in this environment required careful design of polling-based progress, buffer management, connection lifecycle handling, and the boundary between Ruby and native code, while preserving a Ruby-like programming model.
 
     This session explores what it actually takes to implement a non-trivial network protocol in Ruby under extreme constraints. It shows how far Ruby can realistically be pushed toward bare-metal environments and where it must adapt.
   kind: "talk"
@@ -836,10 +831,10 @@
   video_id: "misaki-shioi-rubykaigi-2026"
 
 - id: "nate-berkopec-rubykaigi-2026"
-  title: "Brute-Forcing Ruby Performance Issues with LLMs"
+  title: "Autoresearching Ruby Performance with LLMs"
   track: "Sub Arena #rubykaigiB"
   description: |-
-    AI agents (LLMs) are very good at automating the less-fun parts of programming. They're also very good at working in a loop: try something, verify if it worked, learn and try again. We'll talk about how to harness LLM agents to fix performance problems, even in Ruby itself (and even if you don't understand C!).
+    AI agents (LLMs) are very good at automating the less-fun parts of programming. They're also very good at working in a loop: try something, verify if it worked, learn and try again. We'll talk about how to harness LLM agents to use "autoresearch" to fix performance problems, even in Ruby itself.
 
     We'll show how to use a combination of LLMs, simple scripts, skills and MCPs to create reproducible benchmarks. These tools will combine to create an "agent-native" Ruby performance improving workbench. We'll also explore and discuss the limitations of these tools, including what kinds of problems they tend to be bad at solving.
   kind: "talk"
@@ -899,7 +894,7 @@
 
     Expect a blend of advanced Ruby techniques, practical insights, and a fresh perspective on a lesser-known Ruby API.
   kind: "talk"
-  language: "ja"
+  language: "en"
   date: "2026-04-24"
   speakers:
     - Andrey Novikov
@@ -1011,12 +1006,12 @@
   video_id: "marco-roth-rubykaigi-2026"
 
 - id: "yutaka-hara-rubykaigi-2026"
-  title: "Ruby on NES - how to make a smallest ruby ever"
+  title: "Ruby on NES - how to make the smallest ruby ever"
   track: "Small Hall #rubykaigiC"
   description: |-
     If this is not your first RubyKaigi, you may know that Ruby has been ported to many game consoles. But how about to NES?
-
-    In this session I will explain how I built nesruby, a tiny Ruby interpreter runs on NES, and its sample game The Ruby Catcher.
+    In this session, I will explain how I built nesruby — a tiny Ruby interpreter that runs on the NES, inspired by mruby/c. I'll cover the strategy of reusing mruby's bytecode format, the VM implementation in C using cc65, and some interesting internals such as the Symbol class implementation.
+    Note: this talk focuses on the Ruby interpreter side. NES-specific topics (graphics hardware quirks, PPU, etc.) are out of scope, so no prior NES knowledge is required.
   kind: "talk"
   language: "ja"
   date: "2026-04-24"
@@ -1113,7 +1108,7 @@
   description: |-
     What if you could get type information without writing type annotations?
 
-    type-guessr is a Ruby LSP addon that reverses duck typing.
+    type-guessr is a Ruby LSP addon with duck typing heuristic.
     Instead of "if it responds to these methods, it's OK," we reason:
     "if these methods were called, it must be this class."
 
