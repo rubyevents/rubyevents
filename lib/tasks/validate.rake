@@ -1,10 +1,34 @@
 # frozen_string_literal: true
 
-namespace :validate do
-  require "gum"
-  require "json_schemer"
-  require "yaml"
+require "gum"
+require "json_schemer"
+require "yaml"
 
+CSS_NAMED_COLORS = Set.new(%w[
+  aliceblue antiquewhite aqua aquamarine azure beige bisque black blanchedalmond
+  blue blueviolet brown burlywood cadetblue chartreuse chocolate coral
+  cornflowerblue cornsilk crimson cyan darkblue darkcyan darkgoldenrod darkgray
+  darkgreen darkgrey darkkhaki darkmagenta darkolivegreen darkorange darkorchid
+  darkred darksalmon darkseagreen darkslateblue darkslategray darkslategrey
+  darkturquoise darkviolet deeppink deepskyblue dimgray dimgrey dodgerblue
+  firebrick floralwhite forestgreen fuchsia gainsboro ghostwhite gold goldenrod
+  gray green greenyellow grey honeydew hotpink indianred indigo ivory khaki
+  lavender lavenderblush lawngreen lemonchiffon lightblue lightcoral lightcyan
+  lightgoldenrodyellow lightgray lightgreen lightgrey lightpink lightsalmon
+  lightseagreen lightskyblue lightslategray lightslategrey lightsteelblue
+  lightyellow lime limegreen linen magenta maroon mediumaquamarine mediumblue
+  mediumorchid mediumpurple mediumseagreen mediumslateblue mediumspringgreen
+  mediumturquoise mediumvioletred midnightblue mintcream mistyrose moccasin
+  navajowhite navy oldlace olive olivedrab orange orangered orchid palegoldenrod
+  palegreen paleturquoise palevioletred papayawhip peachpuff peru pink plum
+  powderblue purple rebeccapurple red rosybrown royalblue saddlebrown salmon
+  sandybrown seagreen seashell sienna silver skyblue slateblue slategray
+  slategrey snow springgreen steelblue tan teal thistle tomato turquoise violet
+  wheat white whitesmoke yellow yellowgreen transparent currentcolor inherit
+  initial unset
+]).freeze
+
+namespace :validate do
   def validate_files(glob_pattern, schema_class, file_type, &custom_validation)
     schema = JSON.parse(schema_class.new.to_json_schema[:schema].to_json)
     schemer = JSONSchemer.schema(schema)
@@ -498,30 +522,6 @@ namespace :validate do
 
   desc "Validate all city-related data"
   task cities: [:event_city_names, :video_city_names]
-
-  CSS_NAMED_COLORS = Set.new(%w[
-    aliceblue antiquewhite aqua aquamarine azure beige bisque black blanchedalmond
-    blue blueviolet brown burlywood cadetblue chartreuse chocolate coral
-    cornflowerblue cornsilk crimson cyan darkblue darkcyan darkgoldenrod darkgray
-    darkgreen darkgrey darkkhaki darkmagenta darkolivegreen darkorange darkorchid
-    darkred darksalmon darkseagreen darkslateblue darkslategray darkslategrey
-    darkturquoise darkviolet deeppink deepskyblue dimgray dimgrey dodgerblue
-    firebrick floralwhite forestgreen fuchsia gainsboro ghostwhite gold goldenrod
-    gray green greenyellow grey honeydew hotpink indianred indigo ivory khaki
-    lavender lavenderblush lawngreen lemonchiffon lightblue lightcoral lightcyan
-    lightgoldenrodyellow lightgray lightgreen lightgrey lightpink lightsalmon
-    lightseagreen lightskyblue lightslategray lightslategrey lightsteelblue
-    lightyellow lime limegreen linen magenta maroon mediumaquamarine mediumblue
-    mediumorchid mediumpurple mediumseagreen mediumslateblue mediumspringgreen
-    mediumturquoise mediumvioletred midnightblue mintcream mistyrose moccasin
-    navajowhite navy oldlace olive olivedrab orange orangered orchid palegoldenrod
-    palegreen paleturquoise palevioletred papayawhip peachpuff peru pink plum
-    powderblue purple rebeccapurple red rosybrown royalblue saddlebrown salmon
-    sandybrown seagreen seashell sienna silver skyblue slateblue slategray
-    slategrey snow springgreen steelblue tan teal thistle tomato turquoise violet
-    wheat white whitesmoke yellow yellowgreen transparent currentcolor inherit
-    initial unset
-  ]).freeze
 
   def valid_css_color?(value)
     normalized = value.to_s.strip.chomp(";").strip
