@@ -6,7 +6,9 @@
 
 <% cache [user, events, Current.user] do %>
   <div data-controller="events-filter" data-events-filter-current-value="all">
-    <%= render "shared/filter_buttons", kinds: event_kinds, current_filter: "all" %>
+    <% if events.any? %>
+      <%= render "shared/filter_buttons", kinds: event_kinds, current_filter: "all" %>
+    <% end %>
 
     <div class="space-y-8">
         <% if future_events.any? %>
