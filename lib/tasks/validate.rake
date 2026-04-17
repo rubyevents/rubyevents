@@ -5,6 +5,26 @@ namespace :validate do
   require "json_schemer"
   require "yaml"
 
+  def validate_changed(file_name)
+    callers = {
+      cfp: "validate_array_files",
+      event: "validate_files",
+      series: "validate_files",
+      sponsors: "validate_array_files",
+      venue: "validate_files",
+      videos: "validate_array_files",
+      schedule: "validate_files"
+    }
+
+    file_name.split(%r{\s}).each do |file|
+      path = Pathname.new(file)
+      filename = path.basename(".*").to_s.to_sym
+      schema_class = (filename == :cfp) ? "CFPSchema".constantize : "#{filename.capitalize}Schema".constantize
+      func = callers[filename]
+      Object.send(func, file, schema_class, path.basename.to_s)
+    end
+  end
+
   def validate_files(glob_pattern, schema_class, file_type, &custom_validation)
     schema = JSON.parse(schema_class.new.to_json_schema[:schema].to_json)
     schemer = JSONSchemer.schema(schema)
@@ -100,6 +120,11 @@ namespace :validate do
     invalid_files.empty?
   end
 
+  desc "Validate only changed files"
+  task :changed, [:files] => [:environment] do |t, args|
+    validate_changed(args[:files])
+  end
+
   desc "Validate all cfp.yml files against CFPSchema"
   task cfps: :environment do
     success = validate_array_files("data/**/cfp.yml", CFPSchema, "cfp.yml")
@@ -131,7 +156,7 @@ namespace :validate do
     exit 1 unless success
   end
 
-  desc "Validate all sponsors.yml files against SeriesSchema"
+  desc "Validate all sponsors.yml files against SponsorsSchema"
   task sponsors: :environment do
     success = validate_array_files("data/**/sponsors.yml", SponsorsSchema, "sponsors.yml")
     exit 1 unless success
