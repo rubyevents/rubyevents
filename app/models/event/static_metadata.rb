@@ -57,19 +57,26 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
 
   def featured_background?
     return false unless static_repository
+    return false unless event.assets.has_custom_asset?("featured.webp")
 
     static_repository.featured_background.present? || static_repository.featured_color.present?
   end
 
   def featured_background
+    return "black" unless event.assets.has_custom_asset?("featured.webp")
+
     static_repository&.featured_background.presence || "black"
   end
 
   def featured_color
+    return "white" unless event.assets.has_custom_asset?("featured.webp")
+
     static_repository&.featured_color.presence || "white"
   end
 
   def banner_background
+    return "#081625" unless event.assets.has_custom_asset?("banner.webp")
+
     static_repository&.banner_background.presence || "#081625"
   end
 

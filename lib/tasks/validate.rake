@@ -28,6 +28,12 @@ CSS_NAMED_COLORS = Set.new(%w[
   initial unset
 ]).freeze
 
+FIELD_ASSET_MAP = {
+  "banner_background" => "banner.webp",
+  "featured_background" => "featured.webp",
+  "featured_color" => "featured.webp"
+}.freeze
+
 namespace :validate do
   def validate_files(glob_pattern, schema_class, file_type, &custom_validation)
     schema = JSON.parse(schema_class.new.to_json_schema[:schema].to_json)
@@ -568,6 +574,7 @@ namespace :validate do
   end
 
   def validate_event_colors
+    assets_base = Rails.root.join("app", "assets", "images", "events")
     files = Dir.glob(Rails.root.join("data/**/event.yml"))
     color_fields = %w[banner_background featured_background featured_color]
     issues = []
@@ -575,10 +582,18 @@ namespace :validate do
     files.each do |file|
       data = YAML.load_file(file)
       relative_path = file.sub("#{Rails.root}/data/", "")
+      series_slug = file.split("/")[-3]
+      event_slug = file.split("/")[-2]
+
+      asset_dir = assets_base.join(series_slug, event_slug)
+      default_asset_dir = assets_base.join(series_slug, "default")
 
       color_fields.each do |field|
         value = data[field]
         next if value.blank?
+
+        required_asset = FIELD_ASSET_MAP[field]
+        next unless asset_dir.join(required_asset).exist? || default_asset_dir.join(required_asset).exist?
 
         unless valid_css_color?(value)
           issues << {path: relative_path, field: field, value: value}
@@ -610,48 +625,49 @@ namespace :validate do
   end
 
   def validate_event_assets
-    asset_names = %w[banner card avatar featured poster]
     assets_base = Rails.root.join("app", "assets", "images", "events")
     files = Dir.glob(Rails.root.join("data/**/event.yml"))
-    issues = []
+    warnings = []
 
     files.each do |file|
       data = YAML.load_file(file)
-      next unless data["featured_background"].present? || data["featured_color"].present?
-
       relative_path = file.sub("#{Rails.root}/data/", "")
       series_slug = file.split("/")[-3]
       event_slug = file.split("/")[-2]
 
       asset_dir = assets_base.join(series_slug, event_slug)
-      missing_assets = asset_names.reject { |name| asset_dir.join("#{name}.webp").exist? }
+      default_asset_dir = assets_base.join(series_slug, "default")
+
+      missing_assets = FIELD_ASSET_MAP
+        .select { |field, _| data[field].present? }
+        .values
+        .uniq
+        .reject { |asset| asset_dir.join(asset).exist? || default_asset_dir.join(asset).exist? }
 
       if missing_assets.any?
-        issues << {path: relative_path, missing: missing_assets}
+        warnings << {path: relative_path, missing: missing_assets}
       end
     end
 
-    if issues.any?
-      puts Gum.style("Events with missing visual assets (#{issues.count}):", foreground: "1")
+    if warnings.any?
+      puts Gum.style("Events with visual config but no assets — values will be ignored (#{warnings.count}):", foreground: "3")
       puts
 
-      issues.each do |issue|
-        gh_action_annotation = (ENV["GITHUB_ACTIONS"] == "true") ? "::error file=data/#{issue[:path]},line=1::" : "::error::"
-        puts Gum.style("❌ #{issue[:path]}", foreground: "1")
-        puts "#{gh_action_annotation} Missing assets: #{issue[:missing].map { |a| "#{a}.webp" }.join(", ")}"
+      warnings.each do |warning|
+        puts Gum.style("⚠ #{warning[:path]}", foreground: "3")
+        puts "   No assets found for: #{warning[:missing].join(", ")} (configured values have no effect)"
         puts
       end
-
-      false
     else
       puts Gum.style("✓ All events with visual configuration have their assets", foreground: "2")
-      true
     end
+
+    true
   end
 
   desc "Validate that events with visual configuration have their asset files"
   task event_assets: :environment do
-    exit 1 unless validate_event_assets
+    validate_event_assets
   end
 
   desc "Validate all YAML files"
