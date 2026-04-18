@@ -2,19 +2,26 @@
 
 <% future_events = events.upcoming.sort_by(&:sort_date).reverse %>
 <% past_events = (events.to_a - future_events).sort_by(&:sort_date).reverse %>
+<% event_kinds = events.map(&:kind).uniq.sort %>
 
 <% cache [user, events, Current.user] do %>
-  <div>
+  <div data-controller="events-filter" data-events-filter-current-value="all">
+    <% if events.any? %>
+      <%= render "shared/filter_buttons", kinds: event_kinds, current_filter: "all" %>
+    <% end %>
+
     <div class="space-y-8">
         <% if future_events.any? %>
           <div>
             <h3 class="text-lg font-semibold mb-4">Future Events</h3>
             <div class="mb-6">
-              <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+              <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" data-events-filter-target="group">
                 <% future_events.each do |event| %>
-                  <%= cache [event, participations[event.id]] do %>
-                    <%= render partial: "events/card", locals: {event: event, participation: participations[event.id]} %>
-                  <% end %>
+                  <div data-events-filter-target="event" data-kind="<%= event.kind %>">
+                    <%= cache [event, participations[event.id]] do %>
+                      <%= render partial: "events/card", locals: {event: event, participation: participations[event.id]} %>
+                    <% end %>
+                  </div>
                 <% end %>
               </div>
             </div>
@@ -25,11 +32,13 @@
           <div>
             <h3 class="text-lg font-semibold mb-4">Past Events</h3>
             <div class="mb-6">
-              <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+              <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" data-events-filter-target="group">
                 <% past_events.each do |event| %>
-                  <%= cache [event, participations[event.id]] do %>
-                    <%= render partial: "events/card", locals: {event: event, participation: participations[event.id]} %>
-                  <% end %>
+                  <div data-events-filter-target="event" data-kind="<%= event.kind %>">
+                    <%= cache [event, participations[event.id]] do %>
+                      <%= render partial: "events/card", locals: {event: event, participation: participations[event.id]} %>
+                    <% end %>
+                  </div>
                 <% end %>
               </div>
             </div>

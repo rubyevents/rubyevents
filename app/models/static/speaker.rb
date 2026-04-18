@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Static
   class Speaker < FrozenRecord::Base
     self.backend = Backends::FileBackend.new("speakers.yml")
@@ -33,7 +35,8 @@ module Static
       user.github_handle = github if github.present?
       user.website = website if website.present?
 
-      user.save!
+      user_changed = user.changed? || user.new_record?
+      user.save! if user_changed
 
       Array(aliases).each do |alias_data|
         next if alias_data.blank?
@@ -41,15 +44,15 @@ module Static
         alias_name = alias_data["name"]
         alias_slug = alias_data["slug"]
 
-        raise "No name provided for alias: #{alias_data.inspect} and user: #{user.inspect}" if alias_name.blank?
-        raise "No slug provided for alias: #{alias_data.inspect} and user: #{user.inspect}" if alias_slug.blank?
+        raise format("No name provided for alias: %s and user: %s", alias_data.inspect, user.inspect) if alias_name.blank?
+        raise format("No slug provided for alias: %s and user: %s", alias_data.inspect, user.inspect) if alias_slug.blank?
 
         ::Alias.find_or_create_by!(aliasable: user, name: alias_name, slug: alias_slug)
       end
 
-      Search::Backend.index(user) if index
+      Search::Backend.index(user) if index && user_changed
 
-      user
+      user_changed ? user : nil
     rescue ActiveRecord::RecordInvalid => e
       puts "Couldn't save: #{name} (#{github}), error: #{e.message}"
       nil
