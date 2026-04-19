@@ -339,13 +339,16 @@ module Static
       cfps = YAML.load_file(cfp_file_path)
 
       cfps.each do |cfp_data|
-        event.cfps.find_or_create_by(
+        cfp = event.cfps.find_or_initialize_by(
           link: cfp_data["link"],
           open_date: cfp_data["open_date"]
-        ).update(
+        )
+        cfp.assign_attributes(
           name: cfp_data["name"],
           close_date: cfp_data["close_date"]
         )
+
+        cfp.save! if cfp.changed? || cfp.new_record?
       end
     end
 
