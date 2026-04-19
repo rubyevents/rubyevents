@@ -292,9 +292,9 @@ module Static
     end
 
     def import_event!
-      event = ::Event.find_or_create_by(slug: slug)
+      event = ::Event.find_or_initialize_by(slug: slug)
 
-      event.update!(
+      event.assign_attributes(
         name: title,
         date: attributes["date"] || published_at,
         date_precision: date_precision || "day",
@@ -309,16 +309,18 @@ module Static
       )
 
       if event.venue.exist?
-        event.update!(
+        event.assign_attributes(
           latitude: event.venue.latitude,
           longitude: event.venue.longitude
         )
       else
-        event.update!(
+        event.assign_attributes(
           latitude: coordinates.is_a?(Hash) ? coordinates.dig("latitude") : nil,
           longitude: coordinates.is_a?(Hash) ? coordinates.dig("longitude") : nil
         )
       end
+
+      event.save! if event.changed? || event.new_record?
 
       event.sync_aliases_from_list(aliases) if aliases.present?
 
