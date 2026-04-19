@@ -353,24 +353,11 @@ module Static
       return unless imported?
       return unless event.videos_file.exist?
 
-      event.videos_file.entries.each do |talk_data|
-        talk = ::Talk.find_or_initialize_by(static_id: talk_data["id"])
-        talk.update_from_yml_metadata!(event: event)
-        Search::Backend.index(talk) if index
-
-        child_talks = talk_data["talks"]
-
-        next unless child_talks
-
-        Array.wrap(child_talks).each do |child_talk_data|
-          child_talk = ::Talk.find_or_initialize_by(static_id: child_talk_data["id"])
-          child_talk.parent_talk = talk
-          child_talk.update_from_yml_metadata!(event: event)
-          Search::Backend.index(child_talk) if index
-        end
-      rescue ActiveRecord::RecordInvalid => e
-        puts "Couldn't save: #{talk_data["title"]} (#{talk_data["id"]}), error: #{e.message}"
+      Static::Video.where_event_slug(slug).each do |video|
+        video.import!(event: event, index: index)
       end
+    rescue ActiveRecord::RecordInvalid => e
+      puts "Couldn't save: #{talk_data["title"]} (#{talk_data["id"]}), error: #{e.message}"
     end
 
     def import_sponsors!(event)
