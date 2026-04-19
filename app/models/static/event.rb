@@ -373,7 +373,7 @@ module Static
       event.sponsors_file.file.each do |sponsors|
         sponsors["tiers"].each do |tier|
           tier["sponsors"].each do |sponsor|
-            s = nil
+            organization = nil
             domain = nil
 
             if sponsor["website"].present?
@@ -383,35 +383,41 @@ module Static
                 parsed = PublicSuffix.parse(host)
                 domain = parsed.domain
 
-                s = ::Organization.find_by(domain: domain) if domain.present?
+                organization = ::Organization.find_by(domain: domain) if domain.present?
               rescue PublicSuffix::Error, URI::InvalidURIError
                 # If parsing fails, continue with other matching methods
               end
             end
 
-            s ||= ::Organization.find_by_name_or_alias(sponsor["name"]) || ::Organization.find_by_slug_or_alias(sponsor["slug"]&.downcase)
-            s ||= ::Organization.find_or_initialize_by(name: sponsor["name"])
+            organization ||= ::Organization.find_by_name_or_alias(sponsor["name"]) || ::Organization.find_by_slug_or_alias(sponsor["slug"]&.downcase)
+            organization ||= ::Organization.find_or_initialize_by(name: sponsor["name"])
 
-            s.update(
+            organization.update(
               website: sponsor["website"],
               description: sponsor["description"],
               domain: domain
             )
 
-            s.add_logo_url(sponsor["logo_url"]) if sponsor["logo_url"].present?
-            s.logo_url = sponsor["logo_url"] if sponsor["logo_url"].present? && s.logo_url.blank?
+            organization.add_logo_url(sponsor["logo_url"]) if sponsor["logo_url"].present?
+            organization.logo_url = sponsor["logo_url"] if sponsor["logo_url"].present? && organization.logo_url.blank?
 
-            s = ::Organization.find_by_slug_or_alias(s.slug) || ::Organization.find_by_name_or_alias(s.name) unless s.persisted?
+            organization = ::Organization.find_by_slug_or_alias(organization.slug) || ::Organization.find_by_name_or_alias(organization.name) unless organization.persisted?
 
-            s.save!
+            organization.save! if organization.changed? || organization.new_record?
 
-            organisation_ids << s.id
+            organisation_ids << organization.id
 
-            event.sponsors.find_or_create_by!(organization: s, event: event).update!(tier: tier["name"], badge: sponsor["badge"], level: tier["level"])
+            sponsor = event.sponsors.find_or_initialize_by(organization:, event:)
+            sponsor.assign_attributes(tier: tier["name"], badge: sponsor["badge"], level: tier["level"])
+            sponsor.save! if sponsor.changed? || sponsor.new_record?
           end
         end
       end
       event.sponsors.where.not(organization_id: organisation_ids).destroy_all
+    rescue ActiveRecord::RecordInvalid => e
+      error_location = ActiveSupport::BacktraceCleaner.new.clean_locations(e.backtrace_locations).first
+      puts "::error file=#{error_location&.path},line=#{error_location&.lineno}::#{e.record.class} (#{e.record&.to_param}) - #{e.detailed_message}"
+      raise e
     end
 
     def import_involvements!(event)
