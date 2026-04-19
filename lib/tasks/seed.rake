@@ -38,7 +38,7 @@ namespace :db do
       before, after = 0, 0
       benchmark = Benchmark.measure do
         before = GC.stat[:total_allocated_objects]
-        Search::Backend.without_indexing do 
+        Search::Backend.without_indexing do
           Static::Event.import_all!
         end
         after = GC.stat[:total_allocated_objects]
