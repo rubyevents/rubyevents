@@ -521,7 +521,8 @@ module Static
         end
 
         transcript_record = talk.talk_transcript || ::Talk::Transcript.new(talk: talk)
-        transcript_record.update!(raw_transcript: transcript)
+        transcript_record.update_attributes(raw_transcript: transcript)
+        transcript_record.save! if transcript_record.changed? || transcript_record.new_record?
       end
     end
 
