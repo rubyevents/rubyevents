@@ -35,7 +35,15 @@ namespace :db do
 
     desc "Seed all events without series - will error on new event series"
     task events: :environment do
-      Static::Event.import_all!
+      before, after = 0, 0
+      benchmark = Benchmark.measure do
+        before = GC.stat[:total_allocated_objects]
+        Search::Backend.without_indexing do 
+          Static::Event.import_all!
+        end
+        after = GC.stat[:total_allocated_objects]
+      end
+      puts "Allocated objects: #{after - before}, Real: #{benchmark.real}, total: #{benchmark.total}"
     end
 
     desc "Seed all speakers"
