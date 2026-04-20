@@ -75,5 +75,6 @@ class Avo::Resources::User < Avo::BaseResource
     action Avo::Actions::UserFetchGitHub
     action Avo::Actions::GeocodeRecord
     action Avo::Actions::ClearUser
+    action Avo::Actions::AssignCanonicalUser
   end
 end

@@ -4,7 +4,14 @@ class Avo::Actions::AssignCanonicalUser < Avo::BaseAction
   def fields
     field :user_id, as: :select, name: "Canonical user",
       help: "The name of the speaker to be set as canonical",
-      options: -> { User.order(:name).pluck(:name, :id) }
+      options: -> {
+        User.order(:name).map do |u|
+          label = u.name.to_s
+          label += " (@#{u.github_handle})" if u.github_handle.present?
+          label += " – #{u.talks_count} talk(s)"
+          [label, u.id]
+        end
+      }
   end
 
   def handle(query:, fields:, current_user:, resource:, **args)
