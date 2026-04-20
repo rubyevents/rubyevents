@@ -410,40 +410,7 @@ class User < ApplicationRecord
   end
 
   def assign_canonical_user!(canonical_user:)
-    ActiveRecord::Base.transaction do
-      if name.present? && slug.present?
-        canonical_user.aliases.find_or_create_by!(name: name, slug: slug)
-      end
-
-      user_talks.each do |user_talk|
-        duplicated = user_talk.dup
-        duplicated.user = canonical_user
-        duplicated.save
-      end
-
-      event_participations.each do |participation|
-        duplicated = participation.dup
-        duplicated.user = canonical_user
-        duplicated.save
-      end
-
-      event_involvements.each do |involvement|
-        duplicated = involvement.dup
-        duplicated.involvementable = canonical_user
-        duplicated.save
-      end
-
-      user_talks.destroy_all
-      event_participations.destroy_all
-      event_involvements.destroy_all
-
-      update_columns(
-        canonical_id: canonical_user.id,
-        github_handle: nil,
-        slug: "",
-        marked_for_deletion: true
-      )
-    end
+    MergeUsersService.new(user_to_keep: canonical_user, user_to_merge: self).call
   end
 
   def set_slug
