@@ -61,7 +61,7 @@ class OrganizationTest < ActiveSupport::TestCase
 
   test "should prepend https and strip params if missing scheme" do
     organization = Organization.create!(name: "Coerce Corp", website: "example.com/?utm_campaign=abc#top")
-    assert_equal "https://example.com/", organization.website
+    assert_equal "https://example.com", organization.website
   end
 
   test "should default to unknown kind" do
