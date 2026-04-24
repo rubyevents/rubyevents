@@ -10,6 +10,7 @@ class MergeUsersService
 
   def call
     @merged_profile = PROFILE_FIELDS.to_h { |f| [f, user_to_merge.send(f)] }
+    succeeded = false
 
     ActiveRecord::Base.transaction do
       create_alias
@@ -22,8 +23,10 @@ class MergeUsersService
       transfer_favorited_by
       clear_unique_fields_from_merged_user
       merge_profile_fields
-      mark_merged_user_for_deletion
+      succeeded = true
     end
+
+    mark_merged_user_for_deletion if succeeded
   end
 
   private
@@ -113,10 +116,6 @@ class MergeUsersService
   end
 
   def mark_merged_user_for_deletion
-    user_to_merge.update_columns(
-      canonical_id: user_to_keep.id,
-      slug: "",
-      marked_for_deletion: true
-    )
+    user_to_merge.delete
   end
 end

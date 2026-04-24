@@ -10,14 +10,10 @@ class MergeUsersServiceTest < ActiveSupport::TestCase
     MergeUsersService.new(user_to_keep: @user_to_keep, user_to_merge: @user_to_merge).call
   end
 
-  test "marks merged user for deletion" do
+  test "destroys merged user" do
+    id = @user_to_merge.id
     merge
-    assert @user_to_merge.reload.marked_for_deletion
-  end
-
-  test "sets canonical_id on merged user" do
-    merge
-    assert_equal @user_to_keep.id, @user_to_merge.reload.canonical_id
+    assert_not User.exists?(id)
   end
 
   test "creates an alias for the merged user's name on user_to_keep" do
@@ -33,11 +29,9 @@ class MergeUsersServiceTest < ActiveSupport::TestCase
 
     merge
     @user_to_keep.reload
-    @user_to_merge.reload
 
     assert_includes @user_to_keep.talks, talk1
     assert_includes @user_to_keep.talks, talk2
-    assert_equal 0, @user_to_merge.talks.count
   end
 
   test "does not duplicate talks already on user_to_keep" do
@@ -60,7 +54,6 @@ class MergeUsersServiceTest < ActiveSupport::TestCase
     @user_to_keep.reload
 
     assert_equal 1, @user_to_keep.event_participations.where(event: event).count
-    assert_equal 0, @user_to_merge.reload.event_participations.count
   end
 
   test "transfers watched talks to user_to_keep" do
@@ -71,7 +64,6 @@ class MergeUsersServiceTest < ActiveSupport::TestCase
     @user_to_keep.reload
 
     assert @user_to_keep.watched_talks.exists?(talk: talk)
-    assert_equal 0, @user_to_merge.reload.watched_talks.count
   end
 
   test "does not duplicate watched talks already on user_to_keep" do
@@ -94,7 +86,6 @@ class MergeUsersServiceTest < ActiveSupport::TestCase
     @user_to_keep.reload
 
     assert @user_to_keep.watch_lists.joins(:watch_list_talks).where(watch_list_talks: {talk: talk}).exists?
-    assert_equal 0, @user_to_merge.reload.watch_lists.count
   end
 
   test "transfers favorite_users to user_to_keep" do
@@ -105,7 +96,6 @@ class MergeUsersServiceTest < ActiveSupport::TestCase
     @user_to_keep.reload
 
     assert @user_to_keep.favorite_users.exists?(favorite_user: other_user)
-    assert_equal 0, @user_to_merge.reload.favorite_users.count
   end
 
   test "does not create self-referential favorite after merge" do
@@ -125,7 +115,6 @@ class MergeUsersServiceTest < ActiveSupport::TestCase
     @user_to_keep.reload
 
     assert @user_to_keep.favorited_by.exists?(user: other_user)
-    assert_equal 0, @user_to_merge.reload.favorited_by.count
   end
 
   test "copies blank profile fields from merged user to user_to_keep" do
@@ -146,11 +135,6 @@ class MergeUsersServiceTest < ActiveSupport::TestCase
     @user_to_keep.reload
 
     assert_equal "Original bio", @user_to_keep.bio
-  end
-
-  test "clears github_handle on merged user" do
-    merge
-    assert_nil @user_to_merge.reload.github_handle
   end
 
   test "copies github_handle from merged user if user_to_keep has none" do
