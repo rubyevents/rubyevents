@@ -262,6 +262,9 @@ group :development do
   # Guard for watching file changes and auto-importing [https://github.com/guard/guard]
   gem "guard"
 
+  # Benchmark is no longer included in the standard lib - used for benchmarking
+  gem "benchmark"
+
   gem "ruby-lsp-rails", require: false
   gem "standardrb", "~> 1.0", require: false
   gem "erb_lint", require: false

@@ -79,15 +79,23 @@ class ProfilesControllerTest < ActionDispatch::IntegrationTest
     sign_in_as @user
 
     assert_no_changes -> { @user.suggestions.pending.count } do
-      patch profile_url(@user), params: {user: {bio: "new bio", name: "new-name", twitter: "new-twitter", website: "new-website"}}
+      patch profile_url(@user), params: {user: {bio: "new bio", twitter: "new-twitter", website: "new-website"}}
     end
 
     assert_redirected_to profile_url(@user)
     assert_equal "new bio", @user.reload.bio
-    assert_equal @user.name, "new-name"
     assert_equal @user.twitter, "new-twitter"
     assert_equal @user.website, "https://new-website"
     assert_equal @user.id, @user.suggestions.last.suggested_by_id
+  end
+
+  test "owner cannot update their name" do
+    sign_in_as @user
+    original_name = @user.name
+
+    patch profile_url(@user), params: {user: {name: "new-name"}}
+
+    assert_equal original_name, @user.reload.name
   end
 
   test "should redirect when user not found" do
