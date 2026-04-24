@@ -116,7 +116,7 @@ namespace :validate do
         video_id = video["id"] || video["video_id"] || "index #{index}"
         video_title = video["title"] || video["event_name"] || "unknown video"
 
-        if video["talks"].nil? || video["talks"].empty?
+        if (video["talks"].nil? || video["talks"].empty?) && !video["video_provider"].in?(["children", "not_recorded"])
           next unless missing_speakers?(video["speakers"])
 
           warnings << {
