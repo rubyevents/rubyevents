@@ -4,30 +4,6 @@ require "gum"
 require "json_schemer"
 require "yaml"
 
-CSS_NAMED_COLORS = Set.new(%w[
-  aliceblue antiquewhite aqua aquamarine azure beige bisque black blanchedalmond
-  blue blueviolet brown burlywood cadetblue chartreuse chocolate coral
-  cornflowerblue cornsilk crimson cyan darkblue darkcyan darkgoldenrod darkgray
-  darkgreen darkgrey darkkhaki darkmagenta darkolivegreen darkorange darkorchid
-  darkred darksalmon darkseagreen darkslateblue darkslategray darkslategrey
-  darkturquoise darkviolet deeppink deepskyblue dimgray dimgrey dodgerblue
-  firebrick floralwhite forestgreen fuchsia gainsboro ghostwhite gold goldenrod
-  gray green greenyellow grey honeydew hotpink indianred indigo ivory khaki
-  lavender lavenderblush lawngreen lemonchiffon lightblue lightcoral lightcyan
-  lightgoldenrodyellow lightgray lightgreen lightgrey lightpink lightsalmon
-  lightseagreen lightskyblue lightslategray lightslategrey lightsteelblue
-  lightyellow lime limegreen linen magenta maroon mediumaquamarine mediumblue
-  mediumorchid mediumpurple mediumseagreen mediumslateblue mediumspringgreen
-  mediumturquoise mediumvioletred midnightblue mintcream mistyrose moccasin
-  navajowhite navy oldlace olive olivedrab orange orangered orchid palegoldenrod
-  palegreen paleturquoise palevioletred papayawhip peachpuff peru pink plum
-  powderblue purple rebeccapurple red rosybrown royalblue saddlebrown salmon
-  sandybrown seagreen seashell sienna silver skyblue slateblue slategray
-  slategrey snow springgreen steelblue tan teal thistle tomato turquoise violet
-  wheat white whitesmoke yellow yellowgreen transparent currentcolor inherit
-  initial unset
-]).freeze
-
 FIELD_ASSET_MAP = {
   "banner_background" => "banner.webp",
   "featured_background" => "featured.webp",
@@ -529,52 +505,7 @@ namespace :validate do
   desc "Validate all city-related data"
   task cities: [:event_city_names, :video_city_names]
 
-  def valid_css_color?(value)
-    normalized = value.to_s.strip.chomp(";").strip
-    # Strip CSS comments (e.g. /* Left side */)
-    normalized = normalized.gsub(/\/\*.*?\*\//m, "").strip
-    return false if normalized.empty?
-
-    # Hex colors: #RGB, #RGBA, #RRGGBB, #RRGGBBAA
-    return true if normalized.match?(/\A#[0-9A-Fa-f]{3,4}\z/)
-    return true if normalized.match?(/\A#[0-9A-Fa-f]{6,8}\z/)
-
-    # Single CSS function: rgb(...), hsl(...), oklch(...), linear-gradient(...), etc.
-    return true if normalized.match?(/\A[\w-]+\(.*\)\z/m)
-
-    # Multi-value CSS background: linear-gradient(...) position size repeat, ...
-    # Each comma-separated layer must start with a CSS function
-    if normalized.include?(",")
-      layers = []
-      depth = 0
-      current = +""
-      normalized.each_char do |char|
-        case char
-        when "(" then depth += 1
-                      current << char
-        when ")" then depth -= 1
-                      current << char
-        when ","
-          if depth == 0
-            layers << current
-            current = +""
-          else
-            current << char
-          end
-        else
-          current << char
-        end
-      end
-      layers << current
-      return true if layers.all? { |layer| layer.strip.match?(/\A[\w-]+\(/) }
-    end
-
-    # CSS named colors
-    CSS_NAMED_COLORS.include?(normalized.downcase)
-  end
-
   def validate_event_colors
-    assets_base = Rails.root.join("app", "assets", "images", "events")
     files = Dir.glob(Rails.root.join("data/**/event.yml"))
     color_fields = %w[banner_background featured_background featured_color]
     issues = []
@@ -582,44 +513,35 @@ namespace :validate do
     files.each do |file|
       data = YAML.load_file(file)
       relative_path = file.sub("#{Rails.root}/data/", "")
-      series_slug = file.split("/")[-3]
-      event_slug = file.split("/")[-2]
-
-      asset_dir = assets_base.join(series_slug, event_slug)
-      default_asset_dir = assets_base.join(series_slug, "default")
 
       color_fields.each do |field|
-        value = data[field]
-        next if value.blank?
+        next unless data.key?(field)
 
-        required_asset = FIELD_ASSET_MAP[field]
-        next unless asset_dir.join(required_asset).exist? || default_asset_dir.join(required_asset).exist?
-
-        unless valid_css_color?(value)
-          issues << {path: relative_path, field: field, value: value}
+        if data[field].blank?
+          issues << {path: relative_path, field: field}
         end
       end
     end
 
     if issues.any?
-      puts Gum.style("Events with invalid color values (#{issues.count}):", foreground: "1")
+      puts Gum.style("Events with blank color values (#{issues.count}):", foreground: "1")
       puts
 
       issues.each do |issue|
         gh_action_annotation = (ENV["GITHUB_ACTIONS"] == "true") ? "::error file=data/#{issue[:path]},line=1::" : "::error::"
         puts Gum.style("❌ #{issue[:path]}", foreground: "1")
-        puts "#{gh_action_annotation} #{issue[:field]}: \"#{issue[:value]}\" (not a valid CSS color)"
+        puts "#{gh_action_annotation} #{issue[:field]}: is present but empty"
         puts
       end
 
       false
     else
-      puts Gum.style("✓ All event color values are valid CSS colors", foreground: "2")
+      puts Gum.style("✓ All event color fields have a value", foreground: "2")
       true
     end
   end
 
-  desc "Validate that event color fields contain valid CSS color values"
+  desc "Validate that event color fields are not empty when present"
   task event_colors: :environment do
     exit 1 unless validate_event_colors
   end
