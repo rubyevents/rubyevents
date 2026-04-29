@@ -19,6 +19,28 @@ class UserTest < ActiveSupport::TestCase
     assert_equal "tekin", user.slug
   end
 
+  test "default distance should be present" do
+    user = User.create!(name: "John Doe")
+
+    assert_equal 250, user.distance
+  end
+
+  test "user distance can not be less than 250" do
+    user = User.create!(name: "John Doe")
+
+    user.distance = -10
+    user.valid?
+    assert_equal "Distance must be greater than or equal to 0", user.errors.full_messages.first
+  end
+
+  test "user distance can not be greater than 20_000" do
+    user = User.create!(name: "John Doe")
+
+    user.distance = 20_001
+    user.valid?
+    assert_equal "Distance must be less than or equal to 20000", user.errors.full_messages.first
+  end
+
   test "should normalize github_handle by stripping URL, www, and @" do
     user = users(:one)
 
