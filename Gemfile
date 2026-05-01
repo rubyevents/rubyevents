@@ -90,6 +90,9 @@ gem "yt"
 # Family of libraries that support various formats of XML "feeds".
 gem "rss", "~> 0.3.1"
 
+# YAML Editing and Refactoring with Better Accuracy
+gem "yerba", "~> 0.1"
+
 # Powerful and seamless HTML-aware ERB parsing and tooling.
 gem "herb", "~> 0.9"
 
