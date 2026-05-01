@@ -27,6 +27,7 @@ module Static
       user = ::User.find_by_github_handle(github) ||
         ::User.find_by(slug: slug) ||
         ::User.find_by_name_or_alias(name) ||
+        ::User.find_by_transliterated_name(name) ||
         ::User.find_by(slug: name.parameterize) ||
         ::User.new
 

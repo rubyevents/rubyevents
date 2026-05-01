@@ -63,6 +63,12 @@ gem "countries"
 # ISO 639-1 and ISO 639-2 language code entries and convenience methods
 gem "iso-639"
 
+# Library for creating slugs with better Unicode/transliteration support
+gem "babosa"
+
+# Japanese kana to romaji transliteration
+gem "mojinizer"
+
 # A minimal client of Bluesky/ATProto API
 gem "minisky", "~> 0.4.0"
 
