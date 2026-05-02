@@ -6,20 +6,7 @@
       <div class="mt-4 leading-relaxed"><strong>Sign in</strong> to bookmark talks, create watch lists, mark your speaker page as verified and more to come.</div>
     </div>
     <div class="mt-8 space-y-6">
-      <div>
-        <%= ui_button url: "/auth/github?redirect_to=#{redirect_to_path}&state=#{@state}", kind: :neutral, class: "w-full", method: :post, data: {turbo: false} do %>
-          <%= icon "github", size: :sm, class: "mr-2" %>
-          Sign in with GitHub
-        <% end %>
-      </div>
-
-      <% if Rails.env.development? %>
-        <div>
-          <%= button_to "/auth/developer?state=#{@state}", method: :post, data: {turbo: false}, class: "btn w-full btn-accent" do %>
-            Sign in with OmniAuth (Development)
-          <% end %>
-        </div>
-      <% end %>
+      <%= render "sessions/oauth_buttons", redirect_to_path: redirect_to_path, state: @state %>
       <div class="text-base font-light leading-relaxed"> We collect your email address associated to your GitHub account and name to create your account. All emails are encrypted in our database. We do not share your email address with anyone else.</div>
     </div>
   </div>

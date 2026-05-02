@@ -29,7 +29,11 @@ Rails.application.routes.draw do
   get "/auth/failure", to: "sessions/omniauth#failure"
   get "/auth/:provider/callback", to: "sessions/omniauth#create"
   post "/auth/:provider/callback", to: "sessions/omniauth#create"
-  resources :sessions, only: [:new, :create, :destroy]
+  resources :sessions, only: [:new, :create, :destroy] do
+    collection do
+      get :exchange
+    end
+  end
 
   resource :password, only: [:edit, :update]
   resource :settings, only: [:show, :update]
@@ -334,6 +338,8 @@ Rails.application.routes.draw do
     namespace :native do
       namespace :v1 do
         get "home", to: "/page#home", defaults: {format: "json"}
+        resource :refresh, only: :show, controller: "refresh"
+        resource :oauth, only: :show, controller: "oauth"
         namespace :android do
           resource :path_configuration, only: :show
         end

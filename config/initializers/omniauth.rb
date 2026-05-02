@@ -1,3 +1,6 @@
+OmniAuth.config.allowed_request_methods = [:get, :post]
+OmniAuth.config.silence_get_warning = true
+
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :developer, fields: [:name, :github_handle] unless Rails.env.production? # You should replace it with your provider
 

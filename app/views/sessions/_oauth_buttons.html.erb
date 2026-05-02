@@ -1,0 +1,21 @@
+<% redirect_to_path = local_assigns[:redirect_to_path] || (params[:redirect_to].presence || request.fullpath) %>
+<% state = local_assigns[:state] %>
+<% native_state = hotwire_native_app? ? "native:android" : nil %>
+<% combined_state = [state, native_state].compact.join("|") %>
+
+<% github_path = "/auth/github?redirect_to=#{redirect_to_path}&state=#{combined_state}" %>
+<div>
+  <%= ui_button url: github_path, kind: :neutral, class: "w-full", method: :post, data: {turbo: false, controller: "bridge--oauth", action: "click->bridge--oauth#signIn:prevent", "bridge--oauth-authorization-path-value": github_path, "bridge--oauth-exchange-path-value": exchange_sessions_path} do %>
+    <%= icon "github", size: :sm, class: "mr-2" %>
+    Sign in with GitHub
+  <% end %>
+</div>
+
+<% if Rails.env.development? %>
+  <% developer_path = "/auth/developer?redirect_to=#{redirect_to_path}&state=#{combined_state}" %>
+  <div>
+    <%= button_to developer_path, method: :post, data: {turbo: false, controller: "bridge--oauth", action: "click->bridge--oauth#signIn:prevent", "bridge--oauth-authorization-path-value": developer_path, "bridge--oauth-exchange-path-value": exchange_sessions_path}, class: "btn w-full btn-accent" do %>
+      Sign in with OmniAuth (Development)
+    <% end %>
+  </div>
+<% end %>
