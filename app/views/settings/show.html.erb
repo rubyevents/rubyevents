@@ -1,6 +1,6 @@
 <div class="container py-8">
   <div class="max-w-2xl mx-auto">
-    <h1 class="text-3xl font-bold mb-8">Settings</h1>
+    <h1 class="text-3xl font-bold mb-8"><%= title "Settings" %></h1>
 
     <%= form_with(model: Current.user, url: settings_path, method: :patch) do |form| %>
       <div class="space-y-8">

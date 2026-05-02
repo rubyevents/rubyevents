@@ -1,4 +1,5 @@
 <% title hotwire_native_app? ? "RubyEvents" : "RubyEvents.org - On a mission to index all Ruby events" %>
+<% set_meta_tags site: nil # remove the "... | RubyEvents.org" from the title as that's already included above %>
 <% content_for :body_class, "home-page" %>
 
 <% if @featured_events.any? %>
