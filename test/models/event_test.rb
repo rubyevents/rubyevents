@@ -269,4 +269,9 @@ class EventTest < ActiveSupport::TestCase
 
     assert event.today?
   end
+
+  test "to_ical returns a Icalendar::Event" do
+    event = events(:rails_world_2023)
+    assert_kind_of Icalendar::Event, event.to_ical
+  end
 end

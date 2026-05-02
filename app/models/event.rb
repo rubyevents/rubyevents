@@ -357,6 +357,18 @@ class Event < ApplicationRecord
     }
   end
 
+  def to_ical
+    Icalendar::Event.new.tap do |event|
+      event.uid = "RUBYEVENTS-#{id}"
+      event.dtstart = start_date
+      event.dtend = end_date
+      event.summary = name
+      event.description = description
+      event.location = static_metadata.location
+      event.url = website
+    end
+  end
+
   private
 
   def todos_data_path

@@ -12,6 +12,19 @@ class EventsController < ApplicationController
     @events = Event.includes(:series, :keynote_speakers)
       .where(end_date: Date.today..)
       .order(start_date: :asc)
+
+    respond_to do |format|
+      format.html
+      format.ics do
+        calendar = Icalendar::Calendar.new
+
+        @events.where(date_precision: :day).each do |event|
+          calendar.add_event(event.to_ical)
+        end
+
+        render plain: calendar.to_ical
+      end
+    end
   end
 
   # GET /events/1

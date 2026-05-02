@@ -282,3 +282,5 @@ group :test do
   gem "vcr", "~> 6.1"
   gem "webmock"
 end
+
+gem "icalendar", "~> 2.12"
