@@ -1,5 +1,3 @@
-<% redirect_to_path = local_assigns[:redirect_to_path] || (params[:redirect_to].presence || request.fullpath) %>
-<% state = local_assigns[:state] %>
 <% native_state = hotwire_native_app? ? "native:android" : nil %>
 <% combined_state = [state, native_state].compact.join("|") %>
 
