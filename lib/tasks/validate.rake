@@ -100,6 +100,62 @@ namespace :validate do
     invalid_files.empty?
   end
 
+  def missing_speakers?(speakers)
+    !speakers.is_a?(Array) || speakers.empty?
+  end
+
+  def validate_video_speakers_presence_warnings
+    files = Dir.glob(Rails.root.join("data/**/videos.yml"))
+    warnings = []
+
+    files.each do |file|
+      data = YAML.load_file(file)
+      relative_path = file.sub("#{Rails.root}/data/", "")
+
+      Array(data).each_with_index do |video, index|
+        video_id = video["id"] || video["video_id"] || "index #{index}"
+        video_title = video["title"] || video["event_name"] || "unknown video"
+
+        if (video["talks"].nil? || video["talks"].empty?) && !video["video_provider"].in?(["children", "not_recorded"])
+          next unless missing_speakers?(video["speakers"])
+
+          warnings << {
+            path: relative_path,
+            talk_label: video_id,
+            video_id: video_id,
+            video_title: video_title
+          }
+        else
+          Array(video["talks"]).each_with_index do |talk, talk_index|
+            next unless missing_speakers?(talk["speakers"])
+
+            warnings << {
+              path: relative_path,
+              talk_label: talk["id"] || talk["title"] || "talk #{talk_index}",
+              video_id: video_id,
+              video_title: video_title
+            }
+          end
+        end
+      end
+    end
+
+    if warnings.any?
+      puts Gum.style("Videos with missing speakers (warning only) (#{warnings.count}):", foreground: "3")
+      puts
+
+      warnings.each do |warning|
+        puts Gum.style("⚠ #{warning[:path]} (#{warning[:talk_label]})", foreground: "3")
+        puts "::warning file=data/#{warning[:path]}:: #{warning[:video_title]} (#{warning[:video_id]}): missing speakers on #{warning[:talk_label]}"
+        puts
+      end
+    else
+      puts Gum.style("✓ All talks have speakers set", foreground: "2")
+    end
+
+    true
+  end
+
   desc "Validate all cfp.yml files against CFPSchema"
   task cfps: :environment do
     success = validate_array_files("data/**/cfp.yml", CFPSchema, "cfp.yml")
@@ -152,6 +208,7 @@ namespace :validate do
   desc "Validate all videos.yml files against VideoSchema"
   task videos: :environment do
     success = validate_array_files("data/**/videos.yml", VideoSchema, "videos.yml")
+    validate_video_speakers_presence_warnings
     exit 1 unless success
   end
 
@@ -533,6 +590,9 @@ namespace :validate do
 
     puts Gum.style("Validating videos.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_array_files("data/**/videos.yml", VideoSchema, "videos.yml")
+
+    puts Gum.style("Checking videos.yml for missing speakers (warning only)", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+    validate_video_speakers_presence_warnings
 
     puts Gum.style("Validating schedule.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_files("data/**/schedule.yml", ScheduleSchema, "schedule.yml")
