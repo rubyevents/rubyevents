@@ -413,9 +413,9 @@ module Static
 
             organisation_ids << organization.id
 
-            sponsor = event.sponsors.find_or_initialize_by(organization:, event:)
-            sponsor.assign_attributes(tier: tier["name"], badge: sponsor["badge"], level: tier["level"])
-            sponsor.save! if sponsor.changed? || sponsor.new_record?
+            sponsor_record = event.sponsors.find_or_initialize_by(organization:, event:)
+            sponsor_record.assign_attributes(tier: tier["name"], badge: sponsor["badge"], level: tier["level"])
+            sponsor_record.save! if sponsor_record.changed? || sponsor_record.new_record?
           end
         end
       end
