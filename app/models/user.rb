@@ -117,6 +117,9 @@ class User < ApplicationRecord
   has_many :visitor_events, -> { where(event_participations: {attended_as: :visitor}) },
     through: :event_participations, source: :event
 
+  has_many :event_series_subscriptions, dependent: :destroy
+  has_many :subscribed_event_series, through: :event_series_subscriptions, source: :event_series
+
   has_many :event_involvements, as: :involvementable, dependent: :destroy
   has_many :involved_events, through: :event_involvements, source: :event
 
