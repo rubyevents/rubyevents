@@ -17,12 +17,15 @@ export default class extends BridgeComponent {
     if (!this.enabled) return
 
     this.send('signIn', { authorizationPath: this.authorizationPathValue }, (message) => {
-      const token = message?.data?.token
-      if (!token) return
-
-      const url = new URL(this.exchangePathValue, window.location.origin)
-      url.searchParams.set('token', token)
-      Turbo.visit(url.toString())
+      this.#exchangeToken(message?.data?.token)
     })
+  }
+
+  #exchangeToken (token) {
+    if (!token) return
+
+    const url = new URL(this.exchangePathValue, window.location.origin)
+    url.searchParams.set('token', token)
+    Turbo.visit(url.toString())
   }
 }
