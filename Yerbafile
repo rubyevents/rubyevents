@@ -1,6 +1,9 @@
 rules:
   - files: "data/**/event.yml"
     pipeline:
+      - directives:
+          ensure: true
+
       - quote_style:
           path: "description"
           value_style: literal
@@ -50,6 +53,9 @@ rules:
 
   - files: "data/**/involvements.yml"
     pipeline:
+      - directives:
+          ensure: true
+
       - quote_style:
           key_style: plain
           value_style: double
@@ -64,12 +70,18 @@ rules:
 
   - files: "data/topics.yml"
     pipeline:
+      - directives:
+          ensure: true
+
       - quote_style:
           key_style: plain
           value_style: double
 
   - files: "data/**/cfp.yml"
     pipeline:
+      - directives:
+          ensure: true
+
       - quote_style:
           key_style: plain
           value_style: double
@@ -83,30 +95,45 @@ rules:
 
   - files: "data/featured_cities.yml"
     pipeline:
+      - directives:
+          ensure: true
+
       - quote_style:
           key_style: plain
           value_style: double
 
   - files: "data/**/sponsors.yml"
     pipeline:
+      - directives:
+          ensure: true
+
       - quote_style:
           key_style: plain
           value_style: double
 
   - files: "data/**/venue.yml"
     pipeline:
+      - directives:
+          ensure: true
+
       - quote_style:
           key_style: plain
           value_style: double
 
   - files: "data/**/schedule.yml"
     pipeline:
+      - directives:
+          ensure: true
+
       - quote_style:
           key_style: plain
           value_style: double
 
   - files: "data/**/series.yml"
     pipeline:
+      - directives:
+          ensure: true
+
       - quote_style:
           key_style: plain
           value_style: double
@@ -117,6 +144,9 @@ rules:
 
   - files: "data/**/videos.yml"
     pipeline:
+      - directives:
+          ensure: true
+
       - quote_style:
           path: "[].speakers"
           value_style: plain
@@ -181,6 +211,9 @@ rules:
 
   - files: "data/speakers.yml"
     pipeline:
+      - directives:
+          ensure: true
+
       - quote_style:
           key_style: plain
           value_style: double
