@@ -764,213 +764,213 @@
   video_id: "9vPTXGzBjKI"
   description: ""
   talks:
-    - title: "Lightning Talks Intro"
+    - id: "lightning-talks-intro-rubykaigi-2025"
+      title: "Lightning Talks Intro"
+      date: "2025-04-17"
       start_cue: "00:00"
       end_cue: "03:05"
       thumbnail_cue: "00:02"
-      date: "2025-04-17"
       published_at: "2025-05-27"
+      language: "japanese"
       video_provider: "parent"
       video_id: "lightning-talks-intro-rubykaigi-2025"
-      id: "lightning-talks-intro-rubykaigi-2025"
-      language: "japanese"
+      description: ""
       speakers:
         - TODO
-      description: ""
 
-    - title: "Lightning Talk: PicoRabbit: a Tiny Presentation Device Powered by Ruby"
+    - id: "shunsuke-michii-rubykaigi-2025"
+      title: "Lightning Talk: PicoRabbit: a Tiny Presentation Device Powered by Ruby"
+      date: "2025-04-17"
       start_cue: "03:13"
       end_cue: "08:20"
       thumbnail_cue: "03:44"
-      date: "2025-04-17"
       published_at: "2025-05-27"
+      language: "japanese"
       video_provider: "parent"
       video_id: "shunsuke-michii-rubykaigi-2025"
-      id: "shunsuke-michii-rubykaigi-2025"
-      language: "japanese"
-      speakers:
-        - Shunsuke Michii
       description: |-
         This talk introduces PicoRabbit, a presentation system built from scratch on a Raspberry Pi Pico 2. This talk itself is running on PicoRabbit.
 
         PicoRabbit is inspired by Rabbit, a slide tool for Rubyists. It aims to deliver real-time video output, USB-rewriteable content, and a slide engine implemented in mruby, all on a tiny $5 board.
 
         Through the implementation of PicoRabbit, I will show that developing with mruby on Raspberry Pi Pico has potential beyond just keyboards. By using Ruby to control real-time video output, I hope to show how it can expand our creativity with Ruby.
+      speakers:
+        - Shunsuke Michii
 
-    - title: "Lightning Talk: Road to RubyKaigi: Making Tinny Chiptunes with Ruby"
+    - id: "makicamel-rubykaigi-2025"
+      title: "Lightning Talk: Road to RubyKaigi: Making Tinny Chiptunes with Ruby"
+      date: "2025-04-17"
       start_cue: "08:26"
       end_cue: "13:35"
       thumbnail_cue: "08:31"
-      date: "2025-04-17"
       published_at: "2025-05-27"
-      video_provider: "parent"
-      video_id: "makicamel-rubykaigi-2025"
-      id: "makicamel-rubykaigi-2025"
       language: "japanese"
       slides_url: "https://speakerdeck.com/makicamel/road-to-rubykaigi-making-tinny-chiptunes-with-ruby"
-      speakers:
-        - makicamel
+      video_provider: "parent"
+      video_id: "makicamel-rubykaigi-2025"
       description: |-
         "Road to RubyKaigi" is an action game made in Ruby that you can play right in your terminal. We defeat bugs, dodge deadlines, and race toward the RubyKaigi venue. All the graphics are rendered with text, and the background music is performed on the fly using Ruby. In this talk, I will talk how to implement the BGM performance and present a live demo of the game in action.
+      speakers:
+        - makicamel
 
-    - title: "Lightning Talk: Ruby as a Frontend for Programming Language Implementations"
+    - id: "white-green-rubykaigi-2025"
+      title: "Lightning Talk: Ruby as a Frontend for Programming Language Implementations"
+      date: "2025-04-17"
       start_cue: "13:39"
       end_cue: "18:43"
       thumbnail_cue: "13:44"
-      date: "2025-04-17"
       published_at: "2025-05-27"
+      language: "japanese"
       video_provider: "parent"
       video_id: "white-green-rubykaigi-2025"
-      id: "white-green-rubykaigi-2025"
-      language: "japanese"
-      speakers:
-        - White-Green
       description: |-
         When developing a new programming language, it is typically necessary to implement both a frontend (such as a parser) and a backend (such as a virtual machine). However, especially during the prototyping stage, if the primary novelty of the language lies in its backend, it is desirable to simplify frontend implementation as much as possible. This presentation introduces an approach that leverages Ruby's powerful metaprogramming capabilities to construct language frontends with minimal effort. Specifically, we discuss an intuitive method of generating intermediate representations (such as SSA forms) directly from Ruby scripts written in a natural syntax.
+      speakers:
+        - White-Green
 
-    - title: "Lightning Talk: Ruby on Railroad: The Power of Visualizing CFG"
+    - id: "yudai-takada-lightning-talk-rubykaigi-2025"
+      title: "Lightning Talk: Ruby on Railroad: The Power of Visualizing CFG"
+      date: "2025-04-17"
       start_cue: "18:50"
       end_cue: "24:00"
       thumbnail_cue: "18:52"
-      date: "2025-04-17"
       published_at: "2025-05-27"
+      language: "japanese"
       video_provider: "parent"
       video_id: "yudai-takada-lightning-talk-rubykaigi-2025"
-      id: "yudai-takada-lightning-talk-rubykaigi-2025"
-      language: "japanese"
-      speakers:
-        - Yudai Takada
       description: |-
         A world has arrived where Ruby's grammar can be visualized graphically, allowing you to grasp the overall picture of its complex syntax rules at a glance. This has been made possible through the collaboration of railroad_diagrams and Lrama. So, Ruby on Railroad is here.
+      speakers:
+        - Yudai Takada
 
-    - title: "Lightning Talk: Ruby on a PlayStation"
+    - id: "chris-hasinski-rubykaigi-2025"
+      title: "Lightning Talk: Ruby on a PlayStation"
+      date: "2025-04-17"
       start_cue: "24:01"
       end_cue: "27:59"
       thumbnail_cue: "24:13"
-      date: "2025-04-17"
       published_at: "2025-05-27"
+      language: "english"
       video_provider: "parent"
       video_id: "chris-hasinski-rubykaigi-2025"
-      id: "chris-hasinski-rubykaigi-2025"
-      language: "english"
-      speakers:
-        - Chris Hasiński
       description: |-
         My very incomplete yet working port of mruby/c for PlayStation 1!
 
         A short story about setting up a development environment for a 30 year old video game console and getting it to run some .mrb files.
+      speakers:
+        - Chris Hasiński
 
-    - title: "Lightning Talk: Debugging DDR for Encrypted DNS with Ruby"
+    - id: "taketo-takashima-rubykaigi-2025"
+      title: "Lightning Talk: Debugging DDR for Encrypted DNS with Ruby"
+      date: "2025-04-17"
       start_cue: "28:04"
       end_cue: "33:10"
       thumbnail_cue: "28:07"
-      date: "2025-04-17"
       published_at: "2025-05-27"
+      language: "japanese"
       video_provider: "parent"
       video_id: "taketo-takashima-rubykaigi-2025"
-      id: "taketo-takashima-rubykaigi-2025"
-      language: "japanese"
-      speakers:
-        - Taketo Takashima
       description: |-
         As concerns about privacy and security in DNS resolution grow, encrypted protocols such as DoH (DNS over HTTPS) have emerged. In this talk, I will introduce a Ruby implementation of a DDR (Discovery of Designated Resolvers) client, which enables the distribution of information about secure and encrypted DNS resolvers like DoH. While DDR allows multiple DNS resolvers to be advertised, verifying whether each resolver is functioning correctly can be challenging. To address this, I developed a debugging tool as a Ruby gem to confirm whether DDR is operating as expected.
 
         Additionally, this talk will cover how this gem was used to troubleshoot issues encountered when deploying DDR in the DNS service provided for exhibitors and visitors at Interop Tokyo 2024's ShowNet.
+      speakers:
+        - Taketo Takashima
 
-    - title: "Lightning Talk: riscv64.rubyci.org internal"
+    - id: "kazuhiro-nishiyama-rubykaigi-2025"
+      title: "Lightning Talk: riscv64.rubyci.org internal"
+      date: "2025-04-17"
       start_cue: "33:15"
       end_cue: "38:23"
       thumbnail_cue: "33:18"
-      date: "2025-04-17"
       published_at: "2025-05-27"
+      language: "japanese"
       video_provider: "parent"
       video_id: "kazuhiro-nishiyama-rubykaigi-2025"
-      id: "kazuhiro-nishiyama-rubykaigi-2025"
-      language: "japanese"
-      speakers:
-        - Kazuhiro NISHIYAMA
       description: |-
         I set up the current riscv64.rubyci.org. It runs chkbuild on a RISC-V virtual machine using qemu. It's difficult to find maintenance windows between CI runs in a slow environment, so I'll talk about the way I solved that problem.
+      speakers:
+        - Kazuhiro NISHIYAMA
 
-    - title: "Lightning Talk: Fiber Scheduler vs. General-Purpose Parallel Client"
+    - id: "hayao-kimura-rubykaigi-2025"
+      title: "Lightning Talk: Fiber Scheduler vs. General-Purpose Parallel Client"
+      date: "2025-04-17"
       start_cue: "38:30"
       end_cue: "43:33"
       thumbnail_cue: "38:35"
-      date: "2025-04-17"
       published_at: "2025-05-27"
+      language: "japanese"
       video_provider: "parent"
       video_id: "hayao-kimura-rubykaigi-2025"
-      id: "hayao-kimura-rubykaigi-2025"
-      language: "japanese"
-      speakers:
-        - Hayao Kimura
       description: |-
         In an effort to build a general-purpose parallel request client in Ruby—something anyone in our team could easily use—I ran into an unexpected roadblock: the limitations of the Fiber Scheduler. This talk walks through the journey from parallelizing Faraday requests, to exploring Fiber Scheduler as a lightweight alternative to threads, and ultimately hitting a wall when trying to support gRPC and AWS SDK. I'll explain why Fiber Scheduler couldn't handle gRPC due to its C-level implementation, and how that led to a shift toward using threads instead. If you're curious about the real-world limitations of Ruby's Fiber Scheduler and what it takes to design a truly flexible parallel request client, this talk is for you.
+      speakers:
+        - Hayao Kimura
 
-    - title: "Lightning Talk: Displaying 'アパート' correctly on Textbringer"
+    - id: "shugo-maeda-rubykaigi-2025"
+      title: "Lightning Talk: Displaying 'アパート' correctly on Textbringer"
+      date: "2025-04-17"
       start_cue: "43:37"
       end_cue: "48:45"
       thumbnail_cue: "43:42"
-      date: "2025-04-17"
       published_at: "2025-05-27"
+      language: "japanese"
       video_provider: "parent"
       video_id: "shugo-maeda-rubykaigi-2025"
-      id: "shugo-maeda-rubykaigi-2025"
-      language: "japanese"
-      speakers:
-        - Shugo Maeda
       description: |-
         Displaying "アパート" on a text editor seems simple, right? But is it really? This presentation will explain how to handle combining diacritical marks, variation selectors, hangul jamo etc. on a text editor.
+      speakers:
+        - Shugo Maeda
 
-    - title: "Lightning Talk: Making a MIDI controller device with PicoRuby/R2P2"
+    - id: "ryo-ishigaki-rubykaigi-2025"
+      title: "Lightning Talk: Making a MIDI controller device with PicoRuby/R2P2"
+      date: "2025-04-17"
       start_cue: "48:52"
       end_cue: "54:00"
       thumbnail_cue: "48:57"
-      date: "2025-04-17"
       published_at: "2025-05-27"
+      language: "japanese"
       video_provider: "parent"
       video_id: "ryo-ishigaki-rubykaigi-2025"
-      id: "ryo-ishigaki-rubykaigi-2025"
-      language: "japanese"
-      speakers:
-        - Ryo Ishigaki
       description: |-
         There are many wonderful synthesizers and electronic instruments in the world. And instruments and devices that support MIDI (Musical Instrument Digital Interface) can easily be played together.
 
         I am making a simple MIDI controller device PRMC-1 for use in electronic music performances using PicoRuby/R2P2 (Ruby Rapid Portable Platform). I can adjust the synthesizer parameters by turning the knobs, or play chords as arpeggios with the sequencer function. The hardware is made with Raspberry Pi Pico, M5Stack Unit 8Angle and Unit MIDI, and no soldering.
 
         All code is written in Ruby! Would you like to create your own musical device using Ruby?
+      speakers:
+        - Ryo Ishigaki
 
-    - title: "Lightning Talk: Securing Credentials for Package Manager and Bundler"
+    - id: "taiga-asano-rubykaigi-2025"
+      title: "Lightning Talk: Securing Credentials for Package Manager and Bundler"
+      date: "2025-04-17"
       start_cue: "54:02"
       end_cue: "58:40"
       thumbnail_cue: "54:07"
-      date: "2025-04-17"
       published_at: "2025-05-27"
+      language: "japanese"
       video_provider: "parent"
       video_id: "taiga-asano-rubykaigi-2025"
-      id: "taiga-asano-rubykaigi-2025"
-      language: "japanese"
-      speakers:
-        - Taiga ASANO
       description: |-
         When using private gems, tokens are passed to Bundler via environment variables or config.
 
         Bundler would benefit from adopting credential helpers to reduce friction in automated environments and address security challenges, particularly when managing short-lived tokens. In this lightning talk, we'll explore how other package managers solved these challenges and present a practical proposal for bringing credential helpers to Bundler.
+      speakers:
+        - Taiga ASANO
 
-    - title: "Lightning Talks Outro"
+    - id: "lightning-talks-outro-rubykaigi-2025"
+      title: "Lightning Talks Outro"
+      date: "2025-04-17"
       start_cue: "58:41"
       end_cue: "59:39"
       thumbnail_cue: "58:46"
-      date: "2025-04-17"
       published_at: "2025-05-27"
+      language: "japanese"
       video_provider: "parent"
       video_id: "lightning-talks-outro-rubykaigi-2025"
-      id: "lightning-talks-outro-rubykaigi-2025"
-      language: "japanese"
+      description: ""
       speakers:
         - TODO
-      description: ""
 
 ## Day 3
 

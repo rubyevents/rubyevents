@@ -237,6 +237,43 @@ rules:
             - additional_resources
             - alternative_recordings
 
+      - sort_keys:
+          path: "[].talks[]"
+          order:
+            - id
+            - title
+            - raw_title
+            - original_title
+            - slug
+            - location
+            - kind
+            - event_name
+            - date
+            - time
+            - start_cue
+            - end_cue
+            - thumbnail_cue
+            - published_at
+            - announced_at
+            - status
+            - language
+            - track
+            - slides_url
+            - video_provider
+            - video_id
+            - external_player
+            - external_player_url
+            - thumbnail_xs
+            - thumbnail_sm
+            - thumbnail_md
+            - thumbnail_lg
+            - thumbnail_xl
+            - thumbnail_classes
+            - description
+            - speakers
+            - additional_resources
+            - alternative_recordings
+
   - files: "data/speakers.yml"
     pipeline:
       - directives:
