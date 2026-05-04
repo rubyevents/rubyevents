@@ -1,8 +1,17 @@
 ---
 - tiers:
-    - name: "Triumvir"
+    - name: "Imperator"
       description: ""
       level: 1
+      sponsors:
+        - name: "Wide Group"
+          website: "https://www.widegroup.eu/"
+          slug: "wide-group"
+          logo_url: "https://rubycon.it/assets/images/sponsors/imperator/wide_group.png"
+
+    - name: "Triumvir"
+      description: ""
+      level: 2
       sponsors:
         - name: "Typesense"
           website: "https://typesense.org/"
@@ -19,7 +28,7 @@
 
     - name: "Praetor"
       description: ""
-      level: 2
+      level: 3
       sponsors:
         - name: "AppSignal"
           website: "https://appsignal.com/"
@@ -28,20 +37,40 @@
         - name: "weLaika"
           website: "https://welaika.com/"
           slug: "welaika"
-          logo_url: "https://rubycon.it/assets/images/sponsors/praetor/welaika.svg"
+          logo_url: "https://rubycon.it/assets/images/sponsors/praetor/weLaika.png"
+
+        - name: "Seesaw"
+          website: "https://seesaw.it/"
+          slug: "seesaw"
+          logo_url: "https://rubycon.it/assets/images/sponsors/praetor/seesaw.svg%20fill.png"
+
+        - name: "Fancy Pixel"
+          website: "https://www.fancypixel.it/"
+          slug: "fancy-pixel"
+          logo_url: "https://rubycon.it/assets/images/sponsors/praetor/fancy_pixel%201.png"
 
     - name: "Quaestor"
       description: ""
-      level: 3
+      level: 4
       sponsors:
         - name: "Netframe"
           website: "https://netframe.it/"
           slug: "netframe"
           logo_url: "https://rubycon.it/assets/images/sponsors/quaestor/netframe.png"
 
+        - name: "Engim"
+          website: "https://www.engim.eu/"
+          slug: "engim"
+          logo_url: "https://rubycon.it/assets/images/sponsors/quaestor/Engim.png"
+
+        - name: "Deploio"
+          website: "https://www.deplo.io/"
+          slug: "deploio"
+          logo_url: "https://rubycon.it/assets/images/sponsors/quaestor/Deploio.png"
+
     - name: "Community"
       description: ""
-      level: 4
+      level: 5
       sponsors:
         - name: "Dev Fest Modena"
           website: "https://devfest.modena.it/"
@@ -102,3 +131,8 @@
           slug: "avo"
           description: |-
             A powerful framework for building internal tools, admin panels, and content management systems for Ruby on Rails applications.
+
+        - name: "Arkemis"
+          website: "https://arkemis.it/"
+          slug: "arkemis"
+          logo_url: "https://rubycon.it/assets/images/sponsors/community/arkemis.png"

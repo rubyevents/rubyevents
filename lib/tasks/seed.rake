@@ -35,12 +35,16 @@ namespace :db do
 
     desc "Seed all events without series - will error on new event series"
     task events: :environment do
-      Static::Event.import_all!
+      Search::Backend.without_indexing do
+        Static::Event.import_all!
+      end
     end
 
     desc "Seed all speakers"
     task speakers: :environment do
-      Static::Speaker.import_all!
+      Search::Backend.without_indexing do
+        Static::Speaker.import_all!
+      end
     end
   end
 end

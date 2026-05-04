@@ -14,6 +14,7 @@
     - Satoshi Tagomori
   video_provider: "scheduled"
   video_id: "satoshi-tagomori-keynote-rubykaigi-2026"
+  slides_url: "https://speakerdeck.com/tagomoris/the-journey-of-box-building"
 
 - id: "hitoshi-hasumi-rubykaigi-2026"
   title: "Funicular: A Browser App Framework Powered by PicoRuby.WASM"
@@ -57,6 +58,7 @@
     - ODA Hirohito
   video_provider: "scheduled"
   video_id: "oda-hirohito-rubykaigi-2026"
+  slides_url: "https://speakerdeck.com/jinroq/back-to-the-roots-of-date"
 
 - id: "yudai-takada-rubykaigi-2026"
   title: "Liberating Ruby's Parser from Lexer Hacks"
@@ -70,6 +72,7 @@
     - Yudai Takada
   video_provider: "scheduled"
   video_id: "yudai-takada-rubykaigi-2026"
+  slides_url: "https://speakerdeck.com/ydah/liberating-rubys-parser-from-lexer-hacks"
 
 - id: "justin-bowen-rubykaigi-2026"
   title: "Million-Agent Ruby: Ractor-Local GC in the Age of AI"
@@ -118,6 +121,7 @@
     - Koichi ITO
   video_provider: "scheduled"
   video_id: "koichi-ito-rubykaigi-2026"
+  slides_url: "https://speakerdeck.com/koic/exploring-rubocop-with-mcp"
 
 - id: "daisuke-aritomo-rubykaigi-2026"
   title: "ext/profile, or How to Make Profilers Tell the Truth"
@@ -153,6 +157,7 @@
     - hadashiA
   video_provider: "scheduled"
   video_id: "hadashia-rubykaigi-2026"
+  slides_url: "https://speakerdeck.com/hadashia/mruby-on-c-number-from-vm-implementation-to-game-scripting"
 
 - id: "luke-gruber-rubykaigi-2026"
   title: "Ruby's Scheduler: Improving I/O"
@@ -202,6 +207,7 @@
     - Kazuho Oku
   video_provider: "scheduled"
   video_id: "kazuho-oku-rubykaigi-2026"
+  slides_url: "https://speakerdeck.com/kazuho/faster-internet-connections-with-rubys-help"
 
 - id: "yuichiro-kaneko-rubykaigi-2026"
   title: "Kingdom of the Machine: The Tale of Operators and Commands"
@@ -223,6 +229,7 @@
     - Yuichiro Kaneko
   video_provider: "scheduled"
   video_id: "yuichiro-kaneko-rubykaigi-2026"
+  slides_url: "https://speakerdeck.com/yui_knk/kingdom-of-the-machine"
 
 - id: "yuya-fujiwara-rubykaigi-2026"
   title: "From Live Code to Sound: Building a Ruby Live Coding Engine"
@@ -242,16 +249,16 @@
   video_id: "yuya-fujiwara-rubykaigi-2026"
 
 - id: "katsuhiko-kageyama-rubykaigi-2026"
-  title: "MicroRuby as a Multi-VM Operating System"
+  title: "PicoRuby as a Multi-VM Operating System"
   track: "Small Hall #rubykaigiC"
   description: |-
     With the emergence of PicoRuby, mruby-centered technologies have increasingly been used as lightweight operating environments for microcontrollers.
 
-    In this talk, I present a more self-contained approach: an operating system for microcontrollers built around MicroRuby, where the mruby VM serves as the system core. I call this framework Family mruby OS.
+    In this talk, I present a more self-contained approach: an operating system for microcontrollers built around PicoRuby, where the mruby VM serves as the system core. I call this framework Family mruby OS.
 
     The system enables developers to write and run Ruby applications directly on a microcontroller with a GUI, using a USB keyboard, mouse, and display—without relying on a PC.
 
-    By leveraging FreeRTOS, multiple MicroRuby VMs, as well as VMs of other languages, can run concurrently at the machine-code level, enabling true multi-VM execution while keeping Ruby responsible for application lifecycle management.
+    By leveraging FreeRTOS, multiple PicoRuby VMs, as well as VMs of other languages, can run concurrently at the machine-code level, enabling true multi-VM execution while keeping Ruby responsible for application lifecycle management.
 
     I will explain the design and implementation of this framework, discuss the key technical challenges involved, and demonstrate the system running on real hardware.
   kind: "talk"
@@ -359,23 +366,145 @@
   video_provider: "scheduled"
   video_id: "shunsuke-michii-rubykaigi-2026"
 
+- title: "Lightning Talks"
+  event_name: "RubyKaigi 2026"
+  date: "2026-04-24"
+  track: "Large Hall #rubykaigiA"
+  kind: "lightning_talk"
+  language: "ja"
+  video_provider: "scheduled"
+  video_id: "lightning-talks-rubykaigi-2026"
+  id: "lightning-talks-rubykaigi-2026"
+  description: ""
+  talks:
+    - title: "Lightning Talk: Do Ruby::Box Dream of Modular Monolith"
+      video_provider: "parent"
+      video_id: "joker1007-rubykaigi-2026"
+      id: "joker1007-rubykaigi-2026"
+      language: "ja"
+      speakers:
+        - joker1007
+      description: |-
+        Demonstrates running Ruby::Box on Rails to establish boundaries for a modular monolith architecture, including implementation hacks and live demo.
+      slides_url: "https://speakerdeck.com/joker1007/do-ruby-box-dream-of-modular-monolith"
+
+    - title: "Lightning Talk: cover_rage - a coverage tool for production environment"
+      video_provider: "parent"
+      video_id: "weihang-jian-rubykaigi-2026"
+      id: "weihang-jian-rubykaigi-2026"
+      language: "en"
+      speakers:
+        - Weihang Jian
+      description: |-
+        A straightforward code coverage tool for identifying unused or stale code in production services, featuring zero dependencies and support for Redis, SQLite, and PStore storage.
+
+    - title: "Lightning Talk: Road to RubyKaigi: Play Hard(ware)"
+      video_provider: "parent"
+      video_id: "makicamel-rubykaigi-2026"
+      id: "makicamel-rubykaigi-2026"
+      language: "ja"
+      speakers:
+        - makicamel
+      description: |-
+        A terminal-based side-scrolling action game written in Ruby, now controllable via Raspberry Pi Pico 2W hardware integration.
+      slides_url: "https://speakerdeck.com/makicamel/road-to-rubykaigi-play-hard-ware"
+
+    - title: "Lightning Talk: Ruby on Bare Metal"
+      video_provider: "parent"
+      video_id: "sh-rubykaigi-2026"
+      id: "sh-rubykaigi-2026"
+      language: "ja"
+      speakers:
+        - S.H.
+      description: |-
+        Explores running CRuby directly on custom kernel without an operating system, revealing hidden dependencies and initialization requirements.
+      slides_url: "https://speakerdeck.com/gamelinks007/ruby-on-bare-metal"
+
+    - title: "Lightning Talk: mruby-gpu: The Joy of Talking to Hardware in Ruby"
+      video_provider: "parent"
+      video_id: "yuji-teshima-rubykaigi-2026"
+      id: "yuji-teshima-rubykaigi-2026"
+      language: "ja"
+      speakers:
+        - Yuji Teshima
+      description: |-
+        Implements Vulkan Compute Shaders on Raspberry Pi 5 using mruby, progressing from basic vector operations to MNIST training and real-time face detection.
+
+    - title: "Lightning Talk: Is Ruby's Multi-Encoding Overhead Heavy?"
+      video_provider: "parent"
+      video_id: "mari-imaizumi-rubykaigi-2026"
+      id: "mari-imaizumi-rubykaigi-2026"
+      language: "ja"
+      speakers:
+        - Mari Imaizumi
+      description: |-
+        Benchmarks performance impact of Ruby's per-string encoding design by progressively removing encoding-related components from CRuby.
+
+    - title: "Lightning Talk: Ruby YARV Challenge: Build Your Own Bytecode VM in 7 Steps"
+      video_provider: "parent"
+      video_id: "yuhi-rubykaigi-2026"
+      id: "yuhi-rubykaigi-2026"
+      language: "ja"
+      speakers:
+        - yuhi
+      description: |-
+        Browser-based workshop implementing a simplified YARV bytecode VM and compiler in Ruby, culminating in running recursive Fibonacci on a custom VM.
+      slides_url: "https://speakerdeck.com/yuhisatoxxx/ruby-yarv-challenge-build-your-own-bytecode-vm-in-7-steps"
+
+    - title: "Lightning Talk: Class.new is all you need"
+      video_provider: "parent"
+      video_id: "sangyong-sim-lt-rubykaigi-2026"
+      id: "sangyong-sim-lt-rubykaigi-2026"
+      language: "en"
+      speakers:
+        - Sangyong "Shia" Sim
+      description: |-
+        Demonstrates significant performance improvements in TypeGuessr by replacing complex IR node definitions with plain Class instances.
+      slides_url: "https://speakerdeck.com/riseshia/class-dot-new-is-all-you-need"
+
+    - title: "Lightning Talk: A Concurrent HTTP/2 Server with Ractor"
+      video_provider: "parent"
+      video_id: "tomoya-kuwayama-rubykaigi-2026"
+      id: "tomoya-kuwayama-rubykaigi-2026"
+      language: "ja"
+      speakers:
+        - Tomoya Kuwayama
+      description: |-
+        Introduces "biryani," an HTTP/2 server implementation leveraging Ractor for handling concurrent streams and multiplexing with strict state management.
+      slides_url: "https://speakerdeck.com/thekuwayama/2-server-with-ractor"
+
+    - title: "Lightning Talk: Your ruby.wasm Doesn't Work on Mobile. Here's Why."
+      video_provider: "parent"
+      video_id: "ryudo-awaru-rubykaigi-2026"
+      id: "ryudo-awaru-rubykaigi-2026"
+      language: "en"
+      speakers:
+        - Ryudo Awaru
+      description: |-
+        Identifies and resolves three mobile compatibility issues encountered when deploying ruby.wasm applications to iOS and Android platforms.
+      slides_url: "https://speakerdeck.com/ryudoawaru/your-ruby-dot-wasm-doesnt-work-on-mobile-heres-why-number-rubykaigi-2026-lt"
+
+    - title: "Lightning Talk: Rebuilding Turbo Streams with ruby.wasm and Ruby Sockets"
+      video_provider: "parent"
+      video_id: "haruna-tsujita-rubykaigi-2026"
+      id: "haruna-tsujita-rubykaigi-2026"
+      language: "ja"
+      speakers:
+        - Haruna Tsujita
+      description: |-
+        Reimplements Turbo Streams functionality using ruby.wasm and Ruby's Socket library with minimal JavaScript dependency.
+
 - id: "charles-nutter-keynote-rubykaigi-2026"
-  title: "Keynote: JRuby: Tomorrow's Ruby Today"
+  title: "Keynote: Twenty Years of JRuby"
   track: "Large Hall #rubykaigiA"
   description: |-
-    You know that JRuby is Ruby for the JVM, but what does that really mean? JRuby is compatible with Ruby 4 and runs Rails, but also enables use cases that regular Ruby can only dream of:
+    For the past twenty years, I have poured my heart and soul into JRuby to bring new opportunities to the Ruby world. We built the first JIT compiler for Ruby, helped the community embrace parallel threads, and became the only alternative Ruby deployed at scale.
 
-
-    Precompiling code for commercial products
-    Single-file deployment with any JDK on any device (even mobile and embedded)
-    Low-overhead profiling of production apps
-    Simple, powerful multi-threading that uses all cores
-    Cross-platform libraries for graphics, GUIs, games and AI
-
+    Today, JRuby continues to expand Ruby's horizons, offering unique features.
 
     And with JRuby 10.1, we're adding new and amazing features and optimizations every day. You've never seen Ruby like this!
 
-    This talk will present several fun and cool JRuby use cases that are difficult or impossible to do with regular Ruby. You'll learn how to do more with Ruby and bring Ruby to more places.
+    This talk will explore the history of JRuby and show how you can take Ruby to new places and open up a whole new world of Ruby applications.
   kind: "keynote"
   language: "en"
   date: "2026-04-23"
@@ -415,6 +544,7 @@
     - Daichi Kamiyama
   video_provider: "scheduled"
   video_id: "daichi-kamiyama-rubykaigi-2026"
+  slides_url: "https://speakerdeck.com/dak2/no-types-needed-just-callable-method-check"
 
 - id: "daisuke-fujimura-rubykaigi-2026"
   title: "Keeping Ruby Running on Cygwin"
@@ -476,7 +606,7 @@
   video_id: "uchio-kondo-rubykaigi-2026"
 
 - id: "masatoshi-seki-rubykaigi-2026"
-  title: "Programming with DJ Controller"
+  title: "Programming with a DJ Controller - not vibe coding"
   track: "Small Hall #rubykaigiC"
   description: |-
     The current DJ scene is dominated by PCDJ controllers, which communicate with a PC via MIDI for performance. This eliminates the need to carry around equipment or vinyl records, making it easy to get started. However, many people who start easily quickly lose interest or realize the limits of their own talent. I am certainly one of them.
@@ -491,6 +621,7 @@
     - Masatoshi SEKI
   video_provider: "scheduled"
   video_id: "masatoshi-seki-rubykaigi-2026"
+  slides_url: "https://speakerdeck.com/m_seki/programming-with-a-dj-controller-not-vibe-coding"
 
 - id: "vladimir-dementyev-rubykaigi-2026"
   title: "Require Hooks: Filling the Gap in Ruby's Extensibility"
@@ -508,6 +639,7 @@
     - Vladimir Dementyev
   video_provider: "scheduled"
   video_id: "vladimir-dementyev-rubykaigi-2026"
+  slides_url: "https://speakerdeck.com/palkan/rubykaigi-2026-require-hooks"
 
 - id: "samuel-williams-rubykaigi-2026"
   title: "Surviving Black Friday: 100 billion requests with Falcon!"
@@ -528,6 +660,7 @@
   speakers:
     - Samuel Williams
     - Marc-André Cournoyer
+    - Josh Teeter
   video_provider: "scheduled"
   video_id: "samuel-williams-rubykaigi-2026"
 
@@ -545,6 +678,7 @@
     - Tomoyuki Chikanaga
   video_provider: "scheduled"
   video_id: "nagachika-rubykaigi-2026"
+  slides_url: "https://speakerdeck.com/nagachika/pure-intonation-on-browser-building-a-sequencer-with-ruby"
 
 - id: "aaron-patterson-rubykaigi-2026"
   title: "A Faster FFI"
@@ -575,14 +709,15 @@
     - Soutaro Matsumoto
   video_provider: "scheduled"
   video_id: "soutaro-matsumoto-rubykaigi-2026"
+  slides_url: "https://speakerdeck.com/soutaro/making-the-rbs-parser-faster"
 
 - id: "ryosuke-uchida-rubykaigi-2026"
-  title: "PicoRuby with Practical MQTT"
+  title: "Extreme MQTT on PicoRuby"
   track: "Small Hall #rubykaigiC"
   description: |-
     PicoRuby aims to bring Ruby into the world of microcontrollers, where severe memory and execution constraints make practical networking difficult. In this talk, I present a real-world implementation of a practical MQTT client on PicoRuby with mruby/c, built on top of picoruby-net.
 
-    Unlike CRuby, mruby/c provides no threads, limited socket abstractions, and very restricted memory. Implementing MQTT in this environment required careful design of packet construction and parsing, buffer management, connection lifecycle handling, and interaction with garbage collection, while preserving a Ruby-like programming model.
+    Unlike CRuby, mruby/c provides no threads and very restricted memory. Implementing MQTT in this environment required careful design of polling-based progress, buffer management, connection lifecycle handling, and the boundary between Ruby and native code, while preserving a Ruby-like programming model.
 
     This session explores what it actually takes to implement a non-trivial network protocol in Ruby under extreme constraints. It shows how far Ruby can realistically be pushed toward bare-metal environments and where it must adapt.
   kind: "talk"
@@ -592,6 +727,7 @@
     - Ryosuke Uchida
   video_provider: "scheduled"
   video_id: "ryosuke-uchida-rubykaigi-2026"
+  slides_url: "https://speakerdeck.com/ryosk7/extreme-mqtt-on-picoruby"
 
 - id: "jeremy-evans-rubykaigi-2026"
   title: "Implementing Core Set"
@@ -716,6 +852,7 @@
     - Yusuke Endoh
   video_provider: "scheduled"
   video_id: "yusuke-endoh-rubykaigi-2026"
+  slides_url: "https://speakerdeck.com/mame/practical-typeprof-lessons-from-analyzing-optcarrot"
 
 - id: "jacob-rubykaigi-2026"
   title: "Whose Memory is it Anyway"
@@ -748,6 +885,7 @@
     - Masato Ohba
   video_provider: "scheduled"
   video_id: "masato-ohba-rubykaigi-2026"
+  slides_url: "https://speakerdeck.com/ohbarye/from-formal-specification-to-property-based-test"
 
 - id: "stan-lo-rubykaigi-2026"
   title: "The future of Ruby documentation"
@@ -803,6 +941,7 @@
     - Hayao Kimura
   video_provider: "scheduled"
   video_id: "hayao-kimura-rubykaigi-2026"
+  slides_url: "https://speakerdeck.com/hayaokimura/integration-of-prk-firmware-and-r2p2"
 
 - id: "ruby-committers-rubykaigi-2026"
   title: "Ruby Committers and the World"
@@ -834,12 +973,13 @@
     - Misaki Shioi
   video_provider: "scheduled"
   video_id: "misaki-shioi-rubykaigi-2026"
+  slides_url: "https://speakerdeck.com/coe401_/the-less-told-story-of-socket-timeouts"
 
 - id: "nate-berkopec-rubykaigi-2026"
-  title: "Brute-Forcing Ruby Performance Issues with LLMs"
+  title: "Autoresearching Ruby Performance with LLMs"
   track: "Sub Arena #rubykaigiB"
   description: |-
-    AI agents (LLMs) are very good at automating the less-fun parts of programming. They're also very good at working in a loop: try something, verify if it worked, learn and try again. We'll talk about how to harness LLM agents to fix performance problems, even in Ruby itself (and even if you don't understand C!).
+    AI agents (LLMs) are very good at automating the less-fun parts of programming. They're also very good at working in a loop: try something, verify if it worked, learn and try again. We'll talk about how to harness LLM agents to use "autoresearch" to fix performance problems, even in Ruby itself.
 
     We'll show how to use a combination of LLMs, simple scripts, skills and MCPs to create reproducible benchmarks. These tools will combine to create an "agent-native" Ruby performance improving workbench. We'll also explore and discuss the limitations of these tools, including what kinds of problems they tend to be bad at solving.
   kind: "talk"
@@ -899,7 +1039,7 @@
 
     Expect a blend of advanced Ruby techniques, practical insights, and a fresh perspective on a lesser-known Ruby API.
   kind: "talk"
-  language: "ja"
+  language: "en"
   date: "2026-04-24"
   speakers:
     - Andrey Novikov
@@ -941,6 +1081,11 @@
     - Hiroya Fujinami
   video_provider: "scheduled"
   video_id: "hiroya-fujinami-rubykaigi-2026"
+  slides_url: "https://speakerdeck.com/makenowjust/re-make-regexp-in-ruby-democratizing-internals-for-the-jit"
+  additional_resources:
+    - name: "makenowjust/naraku"
+      type: "repo"
+      url: "https://github.com/makenowjust/naraku"
 
 - id: "ivo-anjo-rubykaigi-2026"
   title: "From Ruby 2 to 4: Updating a C extension for a Modern VM"
@@ -1009,14 +1154,15 @@
     - Marco Roth
   video_provider: "scheduled"
   video_id: "marco-roth-rubykaigi-2026"
+  slides_url: "https://speakerdeck.com/marcoroth/html-aware-erb-the-path-to-reactive-rendering-at-rubykaigi-2026-hakodate-japan"
 
 - id: "yutaka-hara-rubykaigi-2026"
-  title: "Ruby on NES - how to make a smallest ruby ever"
+  title: "Ruby on NES - how to make the smallest ruby ever"
   track: "Small Hall #rubykaigiC"
   description: |-
     If this is not your first RubyKaigi, you may know that Ruby has been ported to many game consoles. But how about to NES?
-
-    In this session I will explain how I built nesruby, a tiny Ruby interpreter runs on NES, and its sample game The Ruby Catcher.
+    In this session, I will explain how I built nesruby — a tiny Ruby interpreter that runs on the NES, inspired by mruby/c. I'll cover the strategy of reusing mruby's bytecode format, the VM implementation in C using cc65, and some interesting internals such as the Symbol class implementation.
+    Note: this talk focuses on the Ruby interpreter side. NES-specific topics (graphics hardware quirks, PPU, etc.) are out of scope, so no prior NES knowledge is required.
   kind: "talk"
   language: "ja"
   date: "2026-04-24"
@@ -1074,6 +1220,7 @@
     - Yuhei Okazaki
   video_provider: "scheduled"
   video_id: "yuhei-okazaki-rubykaigi-2026"
+  slides_url: "https://speakerdeck.com/yuuu/picoruby-for-iot-connecting-to-the-cloud-with-mqtt"
 
 - id: "takashi-kokubun-rubykaigi-2026"
   title: "Lightning-Fast Method Calls with Ruby 4.1 ZJIT"
@@ -1089,6 +1236,7 @@
     - Takashi Kokubun
   video_provider: "scheduled"
   video_id: "takashi-kokubun-rubykaigi-2026"
+  slides_url: "https://speakerdeck.com/k0kubun/rubykaigi-2026"
 
 - id: "samuel-giddins-rubykaigi-2026"
   title: "Ruby the Hard Way: Writing Bytecode to Optimize Plain Ruby"
@@ -1113,7 +1261,7 @@
   description: |-
     What if you could get type information without writing type annotations?
 
-    type-guessr is a Ruby LSP addon that reverses duck typing.
+    type-guessr is a Ruby LSP addon with duck typing heuristic.
     Instead of "if it responds to these methods, it's OK," we reason:
     "if these methods were called, it must be this class."
 
@@ -1127,9 +1275,10 @@
     - Sangyong "Shia" Sim
   video_provider: "scheduled"
   video_id: "sangyong-sim-rubykaigi-2026"
+  slides_url: "https://speakerdeck.com/riseshia/good-enough-types-heuristic-type-inference-for-ruby"
 
 - id: "yukihiro-matsumoto-keynote-rubykaigi-2026"
-  title: "Keynote"
+  title: "Keynote: Meet Spinel"
   track: "Large Hall #rubykaigiA"
   description: |-
     Keynote by Yukihiro "Matz" Matsumoto

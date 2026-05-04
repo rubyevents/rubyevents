@@ -57,31 +57,27 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
 
   def featured_background?
     return false unless static_repository
+    return false unless event.assets.has_custom_asset?("featured.webp")
 
     static_repository.featured_background.present? || static_repository.featured_color.present?
   end
 
   def featured_background
-    return static_repository.featured_background if static_repository.featured_background.present?
+    return "black" unless event.assets.has_custom_asset?("featured.webp")
 
-    "black"
-  rescue => e
-    raise "No featured background found for #{event.name} :  #{e.message}. You might have to restart your Rails server." if Rails.env.local?
-    "black"
+    static_repository&.featured_background.presence || "black"
   end
 
   def featured_color
-    static_repository.featured_color.present? ? static_repository.featured_color : "white"
-  rescue => e
-    raise "No featured color found for #{event.name} :  #{e.message}. You might have to restart your Rails server." if Rails.env.local?
-    "white"
+    return "white" unless event.assets.has_custom_asset?("featured.webp")
+
+    static_repository&.featured_color.presence || "white"
   end
 
   def banner_background
-    static_repository.banner_background.present? ? static_repository.banner_background : "#081625"
-  rescue => e
-    raise "No featured background found for #{event.name} :  #{e.message}. You might have to restart your Rails server." if Rails.env.local?
-    "#081625"
+    return "#081625" unless event.assets.has_custom_asset?("banner.webp")
+
+    static_repository&.banner_background.presence || "#081625"
   end
 
   def location

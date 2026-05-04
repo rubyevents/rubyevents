@@ -178,3 +178,79 @@
         An introduction to the Elixir programming language, its advantages, and when to use it, with particular reference to concurrency and parallelism.
       speakers:
         - Felix Stüber
+    - title: "Discussion: LLM Coding and its effects on a developer's everyday work"
+      event_name: "Dresden.rb meetup November 2025"
+      date: "2025-11-06"
+      video_provider: "not_recorded"
+      id: "dresden-rb-meetup-november-2025-ai-discussion"
+      video_id: "dresden-rb-meetup-november-2025-ai-discussion"
+      description: |-
+        Let's debate:
+
+        * how we use LLM for coding
+        * how it effects our every day business and our coding style
+        * how the role of a software developer is and/or will be changing
+        * will junior devs still learn "real" software development
+
+        **This will be an open, (but) moderated discussion.**
+      speakers:
+        - Benjamin Deutscher
+
+- id: "dresden-rb-meetup-february-2026"
+  title: "Dresden.rb meetup February 2026"
+  event_name: "Dresden.rb meetup February 2026"
+  date: "2026-02-26"
+  video_provider: "children"
+  video_id: "dresden-rb-meetup-february-2026"
+  description: |-
+    The new Ruby User Group in Dresden welcomes everyone with an interest in the Ruby programming language. Our sixth meetup will take place on February 26, 2026, at 19:00.
+
+    We aim to foster knowledge exchange, share experiences, and spark new ideas through regular meetups, talks, and occasional hands-on workshops. Members can learn from one another, showcase creative projects, and discuss the latest trends in the Ruby community. Plus, there will be snacks and drinks - everyone is welcome!
+
+    https://dresdenrb.onruby.de/events/dresden-rb-meetup-february-2026-2135
+  talks:
+    - title: "Generating Type Signatures from Automated Tests"
+      event_name: "Dresden.rb meetup February 2026"
+      date: "2026-02-26"
+      video_provider: "not_recorded"
+      id: "dresden-rb-meetup-february-2026-racer"
+      video_id: "dresden-rb-meetup-february-2026-racer"
+      description: |-
+        Static typing has many advantages that we miss out in dynamically typed Ruby code:
+
+        * It eliminates a whole category of errors.
+        * It helps onboarding new developers to your code base.
+        * It makes static analysis easier which allows better IDE support (method completion, argument hints and more)
+
+        Implementing static typing in Ruby is possible, but it comes with the downside of... having to type everything yourself.
+
+        During my master thesis I implemented Racer, a gem that traces all method calls during runtime (e.g. when running your automated tests) and generates RBS type signatures from those traces. In this talks I'd like to further explain the motivation, showcase the tool and explain how it works and what future developments may bring.
+
+      speakers:
+        - Richard Böhme
+    - title: "Oaken: A new approach to generating test data"
+      event_name: "Dresden.rb meetup February 2026"
+      date: "2026-02-26"
+      video_provider: "not_recorded"
+      id: "dresden-rb-meetup-february-2026-oaken"
+      video_id: "dresden-rb-meetup-february-2026-oaken"
+      description: |-
+        FactoryBot is flexible, but slow. Fixtures are fast, but confusing. The Oaken Gem promises to combine the best of both worlds: one-time loading, transaction rollbacks, named scenarios – and all in Ruby instead of YAML.
+
+        In this talk, we'll take a look at how Oaken works, compare it directly with FactoryBot, and discuss whether the approach is suitable for larger projects.
+      speakers:
+        - Arthur Stähr
+
+- id: "dresden-rb-meetup-may-2026"
+  title: "Dresden.rb meetup May 2026"
+  event_name: "Dresden.rb meetup May 2026"
+  date: "2026-05-29"
+  video_provider: "children"
+  video_id: "dresden-rb-meetup-may-2026"
+  description: |-
+    The new Ruby User Group in Dresden welcomes everyone with an interest in the Ruby programming language. Our seventh meetup will take place on May 28, 2026, at 19:00.
+
+    We aim to foster knowledge exchange, share experiences, and spark new ideas through regular meetups, talks, and occasional hands-on workshops. Members can learn from one another, showcase creative projects, and discuss the latest trends in the Ruby community. Plus, there will be snacks and drinks - everyone is welcome!
+
+    https://dresdenrb.onruby.de/events/dresden-rb-meetup-may-2026-2466
+  talks: []

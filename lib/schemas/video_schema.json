@@ -58,6 +58,10 @@
           "description": {
             "type": "string"
           },
+          "kind": {
+            "type": "string",
+            "description": "Type of video (e.g., 'keynote', 'lightning')"
+          },
           "speakers": {
             "type": "array",
             "items": {

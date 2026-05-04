@@ -1,3 +1,4 @@
+# Generated at 2026-04-07 21:45:00 +0000 from LRUG.org version main#ae7a7c4b30b76817c79ed9eab8c73a0d1386b9c9
 ---
 - id: "lrug-january-2020"
   title: "LRUG January 2020"
@@ -86,7 +87,7 @@
       date: "2020-02-10"
       announced_at: "2020-01-24 19:27:00 +0100"
       speakers:
-        - Elena Tanasoiu
+        - Elena Tănăsoiu
       description: |-
         How to start an investigation into transitioning from a monolith to a
         microservice architecture. A number of issues to consider before you
@@ -258,9 +259,14 @@
       speakers:
         - Joel Chippindale
       description: |-
-        We all know how valuable it is to keep the quality of your code high. Working on a high quality codebase is more enjoyable and enables us to deliver value much more effectively for our users and yet, time and again I hear engineers saying, “I am not allowed to spend sufficient time on code quality”.
+        We all know how valuable it is to keep the quality of your code high. Working on a high
+        quality codebase is more enjoyable and enables us to deliver value much more effectively for
+        our users and yet, time and again I hear engineers saying, “I am not allowed to spend
+        sufficient time on code quality”.
 
-        This talk clarifies the value of maintaining a high quality codebase, gives you guidance on how to talk about this to help you get the support of your colleagues and managers for spending time on this and also outlines some key practices that will help you achieve this.
+        This talk clarifies the value of maintaining a high quality codebase, gives you guidance on
+        how to talk about this to help you get the support of your colleagues and managers for
+        spending time on this and also outlines some key practices that will help you achieve this.
       additional_resources:
         - name: "Transcript"
           type: "transcript"
@@ -288,7 +294,8 @@
         * microtonal music - 19 EDO (Equal Division of the Octave)
         * interfacing with MIDI controllers over USB and bluetooth BLE.
 
-        Also Rob will walk us through a memory management improvement PR to Sonic Pi - that may have made it into the release.
+        Also Rob will walk us through a memory management improvement PR to Sonic Pi - that may have
+        made it into the release.
       video_id: "lrug-2020-04-06-music-experiments-in-sonic-pi"
       video_provider: "not_published"
 - id: "lrug-may-2020"
@@ -438,7 +445,9 @@
         > years. They are tried and tested, things that I have actually done
         > throughout my career. They might or might not help you.
 
-        Nicky is an Engineering Manager at FutureLearn, providing management and support to the Technology Team. Offline, Nicky enjoys watching bad TV and learning new stuff: this year it's a serious sewing/dressmaking habit.
+        Nicky is an Engineering Manager at FutureLearn, providing management and support to the
+        Technology Team. Offline, Nicky enjoys watching bad TV and learning new stuff: this year
+        it's a serious sewing/dressmaking habit.
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2020/july/nicky-thompson-perfect-is-the-enemy-of-good-lrug-jul-2020.mp4"
 - id: "lrug-august-2020"
@@ -1053,8 +1062,10 @@
         > problems. You’ll enjoy this talk if you know you have slow areas in your
         > Ruby application\*, and would like to learn how to find the code responsible.
 
-        You can find out more about what you need to prepare for the workshop via [Jade's
-        mailing list post about it](http://lists.lrug.org/pipermail/chat-lrug.org/2021-September/025800.html).
+        You can find out more about what you need to prepare for the workshop via [Jade's mailing
+        list post about it][mailing-list-post].
+
+        [mailing-list-post]: http://lists.lrug.org/pipermail/chat-lrug.org/2021-September/025800.html
       video_id: "lrug-2021-09-13-how-to-use-flamegraphs-to-find-performance-problems"
       video_provider: "not_published"
 - id: "lrug-october-2021"
@@ -1155,8 +1166,11 @@
         Implementing load-shedding and deadline propagation across your services
         is a technique which can help you provide a more resilient service to
         your customers. This talk will introduce some of the concepts explored
-        in [CGA1123/loadshedding-experiment-ruby](https://github.com/CGA1123/loadshedding-experiment-ruby)
-        & [CGA1123/shed](https://github.com/CGA1123/shed).
+        in [CGA1123/loadshedding-experiment-ruby][experiment]
+        & [CGA1123/shed][shed].
+
+        [experiment]: https://github.com/CGA1123/loadshedding-experiment-ruby
+        [shed]: https://github.com/CGA1123/shed
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2021/november/christian-gregg-failing-better-with-load-shedding-and-deadline-propagation-across-services-lrug-nov-2021.mp4"
       slides_url: "https://github.com/lrug/lrug.org/files/7529520/presentation.pdf"
@@ -1423,21 +1437,20 @@
       speakers:
         - Christian Gregg
       description: |-
-        Fast deploy pipelines are an important facet of a fast moving engineering
-        team; allowing you to ship smaller, safer units of value to production, [faster](https://xkcd.com/303/),
-        and more often.
+        Fast deploy pipelines are an important facet of a fast moving engineering team; allowing you
+        to ship smaller, safer units of value to production, [faster](https://xkcd.com/303/), and
+        more often.
 
-        In this talk we'll be covering how using [git tree objects](https://git-scm.com/book/en/v2/Git-Internals-Git-Objects#_tree_objects)
-        can allow you to run CI less or potentially not at all (in a not scary manner :)
-        after merging your changes into your default branch, allowing you to get straight
-        to deploying! 🚂
+        In this talk we'll be covering how using [git tree
+        objects](https://git-scm.com/book/en/v2/Git-Internals-Git-Objects#_tree_objects) can allow
+        you to run CI less or potentially not at all (in a not scary manner :) after merging your
+        changes into your default branch, allowing you to get straight to deploying! 🚂
 
-        In cases where your team can precompile deployment
-        artefacts your changes could make it into production in under 60s. If your
-        team uses Heroku or Buildpacks to deploy your code, I'll point you to
-        [some](https://buildpacks.io/docs/app-developer-guide/build-an-app/) [tricks](https://github.com/CGA1123/slugcmplr)
-        to help you do just that by detaching building and releasing your application
-        to production!
+        In cases where your team can precompile deployment artefacts your changes could make it into
+        production in under 60s. If your team uses Heroku or Buildpacks to deploy your code, I'll
+        point you to [some](https://buildpacks.io/docs/app-developer-guide/build-an-app/)
+        [tricks](https://github.com/CGA1123/slugcmplr) to help you do just that by detaching
+        building and releasing your application to production!
       additional_resources:
         - name: "Write-Up"
           type: "write-up"
@@ -1476,13 +1489,13 @@
       speakers:
         - Panos Matsinopoulos
       description: |-
-        In the Ruby world, we traditionally address the PDF generation problem
-        using gems like [Prawn](https://github.com/prawnpdf/prawn) and [PDFKit](https://github.com/pdfkit/pdfkit) or
-        libraries like [whtmltopdf](https://wkhtmltopdf.org/).
+        In the Ruby world, we traditionally address the PDF generation problem using gems like
+        [Prawn](https://github.com/prawnpdf/prawn) and [PDFKit](https://github.com/pdfkit/pdfkit)
+        or libraries like [whtmltopdf](https://wkhtmltopdf.org/).
 
-        Recently, in one of our Ruby on Rails projects in which we wanted to generate PDF documents for
-        invoices, we decided to use another programming language and technology: React
-        and AWS Lambda.
+        Recently, in one of our Ruby on Rails projects in which we wanted to generate PDF documents
+        for invoices, we decided to use another programming language and technology: React and AWS
+        Lambda.
 
         In this talk, we will be covering how we did it, what were
         the challenges and what pros and cons over the incumbent tools for Ruby.
@@ -1518,12 +1531,12 @@
       speakers:
         - Duncan Brown
       description: |-
-        We recently extracted a [gem for talking to Google BigQuery](https://github.com/DFE-Digital/dfe-analytics)
-        from 5 different Rails applications at the Department for Education
-        I'll talk through the process of pulling the code out, how to test gems
-        that work with Rails, figuring out how to deal with divergence among
-        existing implementations of the same functionality, and how we're
-        driving adoption of internal open source at DfE.
+        We recently extracted a [gem for talking to Google
+        BigQuery](https://github.com/DFE-Digital/dfe-analytics) from 5 different Rails applications
+        at the Department for Education I'll talk through the process of pulling the code out, how to
+        test gems that work with Rails, figuring out how to deal with divergence among existing
+        implementations of the same functionality, and how we're driving adoption of internal open
+        source at DfE.
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2022/may/duncan-brown-mining-a-gem-how-to-safely-discover-extract-and-share-useful-code-from-your-rails-app-lrug-may-2022.mp4"
     - id: "leena-gupte-rosa-fox-lrug-may-2022"
@@ -1613,11 +1626,17 @@
       speakers:
         - André Barbosa
       description: |-
-        It’s not often that you hear about a startup doings things differently in the mortgages world. And there’s some good reasons for it, the cost of entry is super high!
+        It’s not often that you hear about a startup doings things differently in the mortgages
+        world. And there’s some good reasons for it, the cost of entry is super high!
 
-        It’s not just funding and regulations either. You also need to back it up with the right technology and tools to manage a highly complex business where mistakes can be very costly. On top of that, startups need to move fast to out-innovate the incumbents with only a fraction of the resources.
+        It’s not just funding and regulations either. You also need to back it up with the right
+        technology and tools to manage a highly complex business where mistakes can be very costly.
+        On top of that, startups need to move fast to out-innovate the incumbents with only a
+        fraction of the resources.
 
-        At Generation Home Ruby has been a catalyst to help us deliver a product we’re proud of in a short time-scale. We’ll talk about some of the challenges we faced early on, how Ruby, Rails and the whole ecosystem helped us deliver and what still lays ahead of us.
+        At Generation Home Ruby has been a catalyst to help us deliver a product we’re proud of in
+        a short time-scale. We’ll talk about some of the challenges we faced early on, how Ruby,
+        Rails and the whole ecosystem helped us deliver and what still lays ahead of us.
       video_id: "lrug-2022-07-11-building-a-mortgage-lender-at-generation-home"
       video_provider: "not_published"
 - id: "lrug-august-2022"
@@ -1638,11 +1657,18 @@
       speakers:
         - Javier Honduvilla Coto
       description: |-
-        Understanding our applications' performance can be tricky. Some of the readily available performance tools introduce a big overhead which makes them not suitable for use in production environments, where in many cases, it's the best place to troubleshoot performance issues.
+        Understanding our applications' performance can be tricky. Some of the readily available
+        performance tools introduce a big overhead which makes them not suitable for use in
+        production environments, where in many cases, it's the best place to troubleshoot performance
+        issues.
 
-        [rbperf](https://github.com/javierhonduco/rbperf/) is a low-overhead on-CPU profiler and tracer that is suitable for usage in production environments. It doesn't require the application under investigation to be restarted or disturbed in any way.
+        [rbperf](https://github.com/javierhonduco/rbperf/) is a low-overhead on-CPU profiler and
+        tracer that is suitable for usage in production environments. It doesn't require the
+        application under investigation to be restarted or disturbed in any way.
 
-        We will discuss some of the tradeoffs in its design, its architecture, the features that make it unique, as well as its limitations compared to other tools. We will also take a look at how the Ruby stack is laid out in memory and the role BPF plays in rbperf.
+        We will discuss some of the tradeoffs in its design, its architecture, the features that make
+        it unique, as well as its limitations compared to other tools. We will also take a look at
+        how the Ruby stack is laid out in memory and the role BPF plays in rbperf.
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2022/august/javier-honduvilla-coto-low-overhead-ruby-profiling-and-tracing-with-rbperf-lrug-aug-2022.mp4"
 - id: "lrug-september-2022"
@@ -1663,9 +1689,14 @@
       speakers:
         - Thijs Cadier
       description: |-
-        That strange phenomenon where air molecules bounce against each other in a way that somehow comforts you, makes you cry, or makes you dance all night: music. Since the advent of recorded audio, a musician doesn't even need to be present anymore for this to happen (which makes putting "I will always love you" on repeat a little less awkward).
+        That strange phenomenon where air molecules bounce against each other in a way that somehow
+        comforts you, makes you cry, or makes you dance all night: music. Since the advent of
+        recorded audio, a musician doesn't even need to be present anymore for this to happen (which
+        makes putting "I will always love you" on repeat a little less awkward).
 
-        Musicians and sound engineers have found many ways of creating music, and making music sound good when played from a record. Some of their methods have become industry staples used on every recording released today.
+        Musicians and sound engineers have found many ways of creating music, and making music sound
+        good when played from a record. Some of their methods have become industry staples used on
+        every recording released today.
 
         Let's look at what they do and reproduce some of their methods in Ruby!
       video_provider: "mp4"
@@ -1678,11 +1709,17 @@
       speakers:
         - André Barbosa
       description: |-
-        It’s not often that you hear about a startup doings things differently in the mortgages world. And there’s some good reasons for it, the cost of entry is super high!
+        It’s not often that you hear about a startup doings things differently in the mortgages
+        world. And there’s some good reasons for it, the cost of entry is super high!
 
-        It’s not just funding and regulations either. You also need to back it up with the right technology and tools to manage a highly complex business where mistakes can be very costly. On top of that, startups need to move fast to out-innovate the incumbents with only a fraction of the resources.
+        It’s not just funding and regulations either. You also need to back it up with the right
+        technology and tools to manage a highly complex business where mistakes can be very costly.
+        On top of that, startups need to move fast to out-innovate the incumbents with only a
+        fraction of the resources.
 
-        At Generation Home Ruby has been a catalyst to help us deliver a product we’re proud of in a short time-scale. We’ll talk about some of the challenges we faced early on, how Ruby, Rails and the whole ecosystem helped us deliver and what still lays ahead of us.
+        At Generation Home Ruby has been a catalyst to help us deliver a product we’re proud of in
+        a short time-scale. We’ll talk about some of the challenges we faced early on, how Ruby,
+        Rails and the whole ecosystem helped us deliver and what still lays ahead of us.
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2022/september/andre-barbosa-buildin-a-mortgage-lender-at-generation-home-lrug-sep-2022.mp4"
     - id: "shen-sat-lrug-september-2022"
@@ -1781,15 +1818,19 @@
       speakers:
         - Stan Lo
       description: |-
-        In this talk, I will demonstrate 3 powerful debugging techniques using Ruby's new debugger [`ruby/debug`](https://github.com/ruby/debug):
+        In this talk, I will demonstrate 3 powerful debugging techniques using Ruby's new debugger
+        [`ruby/debug`](https://github.com/ruby/debug):
 
         * Step-debugging
         * Frame navigation
         * Breakpoint commands
 
-        By using them together, we can reduce unnecessary context switching and make our debugging sessions more efficient. You will also learn more about `ruby/debug` while we walk through these techniques with its commands and console.
+        By using them together, we can reduce unnecessary context switching and make our debugging
+        sessions more efficient. You will also learn more about `ruby/debug` while we walk through
+        these techniques with its commands and console.
 
-        And finally, I will show you how to level up our productivity even further by automating debugging steps using `ruby/debug`'s scriptable breakpoints.
+        And finally, I will show you how to level up our productivity even further by automating
+        debugging steps using `ruby/debug`'s scriptable breakpoints.
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2022/november/stan-lo-ruby-debug-the-best-investment-for-your-productivity-lrug-nov-2022.mp4"
       slides_url: "https://github.com/st0012/slides/blob/main/2022-11-14-lrug/Ruby%20debugger%20-%20The%20best%20investment%20for%20your%20productivity%20-%20LRUG.pdf"
@@ -1964,7 +2005,7 @@
       date: "2023-02-13"
       announced_at: "2023-01-18 10:13:00 +0000"
       speakers:
-        - Fell Sunderland
+        - fell sunderland
       description: |-
         An opinionated look at the pros and cons of
         choosing abstractions early vs. waiting and duplicating effort
@@ -2018,7 +2059,7 @@
         With tools like Turbo Native working in conjunction with Ruby on Rails, it’s
         possible to mix web technologies with native APIs to build slick hybrid mobile
         apps. We’ll take a look at why the hybrid approach gets such a bad rap, why
-        that reputation is undeserved, and how we can build hybrid apps that don''t
+        that reputation is undeserved, and how we can build hybrid apps that don’t
         suck.
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2023/march/ayush-newatia-native-apps-are-dead-long-live-native-apps-lrug-mar-2023.mp4"
@@ -2060,7 +2101,9 @@
       description: |-
         Ruby has leftward assignment. It has rightward assignment. But what about upward assignment?
 
-        In this talk, we’ll misuse Ruby’s internals to build an arrow operator that lets us assign upwards. We’ll see some powerful Ruby metaprogramming features that allow us to bend Ruby to our will – and we’ll talk about why it’s good to write code that’s just plain daft.
+        In this talk, we’ll misuse Ruby’s internals to build an arrow operator that lets us assign
+        upwards. We’ll see some powerful Ruby metaprogramming features that allow us to bend Ruby
+        to our will – and we’ll talk about why it’s good to write code that’s just plain daft.
       additional_resources:
         - name: "Write-Up"
           type: "write-up"
@@ -2255,7 +2298,8 @@
       description: |-
         I've been working with Ruby since the early 2000s. Ruby has changed a lot in that time,
         but we don't always remember how much. Let's rewrite a short program so that it runs in
-        a twenty-year-old version of Ruby and see how much syntax and performance has changed for the better in twenty years
+        a twenty-year-old version of Ruby and see how much syntax and performance has changed for
+        the better in twenty years
       additional_resources:
         - name: "Transcript"
           type: "transcript"
@@ -2328,11 +2372,19 @@
       speakers:
         - Melinda Seckington
       description: |-
-        Everywhere you look, stories surround us, and everyone has something that’s worth sharing with others. As speakers, we need to understand how to structure our talks so they can have the best effect on the audiences we are trying to reach. How do you discover the right angle and the right story for a talk? How do you frame your story?
+        Everywhere you look, stories surround us, and everyone has something that’s worth sharing
+        with others. As speakers, we need to understand how to structure our talks so they can have
+        the best effect on the audiences we are trying to reach. How do you discover the right angle
+        and the right story for a talk? How do you frame your story?
 
-        Within tech we know how to approach building a new product: we research our user base, we figure out what and for who we’re trying to create something for and we make sure we constantly iterate on what we’ve come up with. So why aren’t we taking the same approach for our talks?
+        Within tech we know how to approach building a new product: we research our user base, we
+        figure out what and for who we’re trying to create something for and we make sure we
+        constantly iterate on what we’ve come up with. So why aren’t we taking the same approach
+        for our talks?
 
-        This talk will examine how to get in the right mindset of examining your talk ideas, and will introduce a framework of how to design and iterate on your talk. It will focus on several exercises and questions to help you create the best talk for the story you’re trying to tell.
+        This talk will examine how to get in the right mindset of examining your talk ideas, and will
+        introduce a framework of how to design and iterate on your talk. It will focus on several
+        exercises and questions to help you create the best talk for the story you’re trying to tell.
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2023/november/melinda-seckington-the-art-of-talk-design.mp4"
 - id: "lrug-december-2023"
@@ -2355,9 +2407,19 @@
       description: |-
         [Christian Bruckmayer](https://twitter.com/bruckmayer) says:
 
-        > The simplest way of running tests is to run all of them, regardless of what changes you are testing. However, depending on the size of your test suite, this will either get slow or expensive. At Shopify we have almost 300,000 Rails tests and we add 50,000 more annually. The sheer amount of tests and their growth makes it impossible to run all tests, all the time! Hence we implemented a framework to only run tests relevant to your code changes.
+        > The simplest way of running tests is to run all of them, regardless of what changes you
+        > are testing. However, depending on the size of your test suite, this will either get slow
+        > or expensive. At Shopify we have almost 300,000 Rails tests and we add 50,000 more
+        > annually. The sheer amount of tests and their growth makes it impossible to run all tests,
+        > all the time! Hence we implemented a framework to only run tests relevant to your code
+        > changes.
         >
-        > We will build a test selection framework from scratch in this workshop. We will begin by exploring the fundamentals of such a framework: code analysis. After that we will dive into minitest reporters, how they work and how we can use them to generate a test map. Finally we will use the generated test map to only run tests relevant to your code changes. Attendees will walk away with a solid understanding of what test selection is, how it works and how to implement it.
+        > We will build a test selection framework from scratch in this workshop. We will begin by
+        > exploring the fundamentals of such a framework: code analysis. After that we will dive into
+        > minitest reporters, how they work and how we can use them to generate a test map. Finally
+        > we will use the generated test map to only run tests relevant to your code changes.
+        > Attendees will walk away with a solid understanding of what test selection is, how it works
+        > and how to implement it.
 
         This is a workshop, so bring your laptop!
       video_id: "lrug-2023-12-11-test-smarter-not-harder-crafting-a-test-selection-framework-from-scratch"
@@ -2386,7 +2448,7 @@
         back in-house difficult and expensive. If AWS, Google Cloud Computing, Azure
         and all the others are clouds, then we also need a sky. Researchers at Berkeley
         and other institutions have proposed sky computing: an interoperability layer
-        that removes technological lock-in and enables multi cloud application development.'
+        that removes technological lock-in and enables multi cloud application development.
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2024/january/kevin-sedgley-sky-computing-lrug-jan-2024.mp4"
     - id: "joel-biffin-lrug-january-2024"
@@ -2427,11 +2489,11 @@
       speakers:
         - Jay Caines-Gooby
       description: |-
-        A quick dive into getting data-pagination (.csv, .json, .tsv
-        & .yaml files in your _data directory) working with the [jekyll-paginate-v2](https://github.com/sverrirs/jekyll-paginate-v2)
-        gem. After deciding that I wanted to archive my posts to a Slack
-        #music-we-like channel, I wanted to also make the archived posts
-        paginatible...
+        A quick dive into getting data-pagination (`.csv`, `.json`, `.tsv` & `.yaml` files in your
+        `_data` directory) working with the
+        [jekyll-paginate-v2](https://github.com/sverrirs/jekyll-paginate-v2) gem. After deciding that
+        I wanted to archive my posts to a Slack `#music-we-like` channel, I wanted to also make the
+        archived posts paginatible...
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2024/february/jay-caines-gooby-data-pagination-for-jekyll-paginate-v2-lrug-feb-2024.mp4"
     - id: "jonathan-james-lrug-february-2024"
@@ -2442,10 +2504,10 @@
       speakers:
         - Jonathan James
       description: |-
-        When an engineer joins your organisation, how long does it take for
-        them to configure their development environment? I will discuss using
-        [devcontainers with VSCode](https://code.visualstudio.com/docs/devcontainers/containers) to reduce this time from "days" to
-        "minutes''.
+        When an engineer joins your organisation, how long does it take for them to configure their
+        development environment? I will discuss using [devcontainers with
+        VSCode](https://code.visualstudio.com/docs/devcontainers/containers) to reduce this time from
+        "days" to "minutes".
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2024/february/jonathan-james-using-devcontainers-with-ruby-lrug-feb-2024.mp4"
       slides_url: "https://github.com/jonathanjames1729/talks/blob/main/2024-02-12-lrug/devcontainers.pdf"
@@ -2470,14 +2532,15 @@
       date: "2024-02-12"
       announced_at: "2024-01-14 22:51:00 +0000"
       speakers:
-        - Fell Sunderland
+        - fell sunderland
       description: |-
-        I'd like to do a whistlestop tour of a few different gems I've written over
-        the years, with the aim of talking about having fun whilst learning what
-        ruby is capable of. I'd like to showcase things like [aspectual](https://github.com/AgentAntelope/aspectual)
-        for bringing aspect oriented programming to ruby, [cherry-pick](https://github.com/AgentAntelope/cherry_pick)
-        for when you miss `import foo from bar`, [overload](https://github.com/AgentAntelope/overload) for when you
-        want to *really* have optional arguments do something different, and more!
+        I'd like to do a whistlestop tour of a few different gems I've written over the years, with
+        the aim of talking about having fun whilst learning what ruby is capable of. I'd like to
+        showcase things like [aspectual](https://github.com/AgentAntelope/aspectual) for bringing
+        aspect oriented programming to ruby,
+        [cherry-pick](https://github.com/AgentAntelope/cherry_pick) for when you miss `import foo
+        from bar`, [overload](https://github.com/AgentAntelope/overload) for when you want to
+        *really* have optional arguments do something different, and more!
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2024/february/fell-sunderland-what-is-ruby-really-capable-of-lrug-feb-2024.mp4"
       slides_url: "https://docs.google.com/presentation/d/1GNzpKWO6aqqbfo4eOTixIL_r1GI08bFYWjyRhBOUmBk/edit?usp=sharing"
@@ -2622,7 +2685,7 @@
         Ruby web applications and how to maintain existing ones. I will use examples
         adapted from real applications that I worked on during my 10 years of experience
         with Ruby outlining: technical limitations of the language, how to use a modular
-        dependency structure to enforce boundaries in complex domains.'
+        dependency structure to enforce boundaries in complex domains.
       video_id: "lrug-2024-05-13-build-and-maintain-large-ruby-applications"
       video_provider: "not_published"
     - id: "winston-ferguson-lrug-may-2024"
@@ -2679,7 +2742,8 @@
         LiveView is  Elixir's analogue to Hotwire that also helps to keep it closer
         to the server and contributes to the One Person Framework movement.  In this talk,
         we will explore how the stateful model makes it different from similar technologies
-        and what optimisations the Phoenix team did to make it feel snappy and deliver a world-class UX
+        and what optimisations the Phoenix team did to make it feel snappy and deliver a
+        world-class UX
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2024/june/yevhenii-kurtov-liveview-stateful-server-rendered-html-lrug-jun-2024.mp4"
 - id: "lrug-july-2024"
@@ -2698,7 +2762,7 @@
       date: "2024-07-08"
       announced_at: "2024-06-23 08:00:00 +0000"
       speakers:
-        - Fell Sunderland
+        - fell sunderland
       description: |-
         How does an experienced programmer solve problems? It's simpler (and more
         complicated) than you might think!
@@ -2765,8 +2829,10 @@
         - Boaz Yehezkel
       description: |-
         How we developed the B&W Rewards system.
-        Starting from event storming with stakeholders and technical planning across squads to clear domain boundaries to
-        how we used an event bus and agnostic accounting system to keep things clear, concise and extendable.
+
+        Starting from event storming with stakeholders and technical planning across squads to clear
+        domain boundaries how we used an event bus and agnostic accounting system to keep things
+        clear, concise and extendable.
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2024/september/rachel-bingham-b-and-w-rewards-domains-events-and-ledgers-lrug-sep-2024.mp4"
     - id: "lily-stoney-lrug-september-2024"
@@ -2939,7 +3005,7 @@
       date: "2025-02-10"
       announced_at: "2025-01-15 18:00:00 +0000"
       speakers:
-        - Fell Sunderland
+        - fell sunderland
       description: |-
         Why I don't use AI programming tools, and I don't think you should either.
       video_provider: "mp4"
@@ -3169,7 +3235,9 @@
       speakers:
         - Lorenzo Barasti
       description: |-
-        A no-nonsense exploration of integrating LLM capabilities into Ruby applications using ruby_llm and similar libraries, highlighting real-world use cases without the Silicon Valley hyperbole.
+        A no-nonsense exploration of integrating LLM capabilities into Ruby applications using
+        ruby_llm and similar libraries, highlighting real-world use cases without the Silicon
+        Valley hyperbole.
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2025/may/lorenzo-barasti-practical-ai-in-ruby-what-llms-can-and-cant-do-for-your-projects-today-may-2025.mp4"
 - id: "lrug-june-2025"
@@ -3293,7 +3361,11 @@
       speakers:
         - Karl Lingiah
       description: |-
-        As Ruby developers we all rely on the vast RubyGem ecosystem, but as gem users we're not necessarily aware of everything that goes into maintaining the gems that make up that ecosystem. When I became a developer advocate at Vonage, I went from gem user to gem maintainer overnight. In this talk I would like to share that journey, and some of the lessons I learned along the way.
+        As Ruby developers we all rely on the vast RubyGem ecosystem, but as gem users we're not
+        necessarily aware of everything that goes into maintaining the gems that make up that
+        ecosystem. When I became a developer advocate at Vonage, I went from gem user to gem
+        maintainer overnight. In this talk I would like to share that journey, and some of the
+        lessons I learned along the way.
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2025/september/karl-lingiah-inheriting-gems-lrug-sep-2025.mp4"
     - id: "joel-chippindale-lrug-september-2025"
@@ -3304,11 +3376,15 @@
       speakers:
         - Joel Chippindale
       description: |-
-        Imagine the following situation. You disagree with your colleague (or your manager) but are unable to change their minds. You feel stuck and frustrated. The only options you feel you have available are to repeat your argument more forcefully or give up. Neither feels like a good option.
+        Imagine the following situation. You disagree with your colleague (or your manager) but are
+        unable to change their minds. You feel stuck and frustrated. The only options you feel you
+        have available are to repeat your argument more forcefully or give up. Neither feels like a
+        good option.
 
         Does this situation sound familiar to you?
 
-        In this talk, we will explore how to get unstuck, have more effective discussions with your colleagues, and increase your influence.
+        In this talk, we will explore how to get unstuck, have more effective discussions with your
+        colleagues, and increase your influence.
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2025/september/joel-chippindale-get-on-the-same-side-of-the-table-lrug-sep-2025.mp4"
       slides_url: "https://blog.mocoso.co.uk/assets/get-on-the-same-side-of-the-table/get-on-the-same-side-of-the-table-lrug-2025-09.pdf"
@@ -3330,7 +3406,10 @@
       speakers:
         - Harry Lascelles
       description: |-
-        An exploration into the world of Software Versioning, with an emphasis on the RubyGems ecosystem. This talk will cover extreme real-world examples from Rubyland and beyond, including code examples, footguns and award winners, as well as tips for developers navigating version management. It will get quite technical, so bring your regex hard hat.
+        An exploration into the world of Software Versioning, with an emphasis on the RubyGems
+        ecosystem. This talk will cover extreme real-world examples from Rubyland and beyond,
+        including code examples, footguns and award winners, as well as tips for developers
+        navigating version management. It will get quite technical, so bring your regex hard hat.
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2025/october/harry-lascelles-extreme-versioning-lrug-oct-2025.mp4"
     - id: "josh-bebbington-lrug-october-2025"
@@ -3341,7 +3420,10 @@
       speakers:
         - Josh Bebbington
       description: |-
-        The Global VM Lock is one of Ruby’s more mysterious 'under the hood' features. This talk explores new ways to peer inside it, using Ruby's modern instrumentation to reveal how it actually performs work. I'll demonstrate how we've applied those learnings at Carwow, to optimise the performance and reliability of our Sidekiq workers.
+        The Global VM Lock is one of Ruby’s more mysterious 'under the hood' features. This talk
+        explores new ways to peer inside it, using Ruby's modern instrumentation to reveal how it
+        actually performs work. I'll demonstrate how we've applied those learnings at Carwow, to
+        optimise the performance and reliability of our Sidekiq workers.
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2025/october/josh-bebbington-demystifying-the-gvl-lrug-oct-2025.mp4"
 - id: "lrug-november-2025"
@@ -3362,7 +3444,8 @@
       speakers:
         - Ismael Celis
       description: |-
-        I’ll explore how architecting Ruby apps around a durable message log enables different patterns, from asynchronous processing, to event sourcing and durable execution
+        I’ll explore how architecting Ruby apps around a durable message log enables different
+        patterns, from asynchronous processing, to event sourcing and durable execution
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2025/november/ismael-celis-durable-messaging-and-related-patterns-for-fun-and-profit-lrug-nov-2025.mp4"
     - id: "james-smith-lrug-november-2025"
@@ -3373,11 +3456,15 @@
       speakers:
         - James Smith
       description: |-
-        In September, DHH, the creator of Rails and community figurehead, wrote a factually incorrect post bemoaning the state of London these days, claiming that it’s no longer “native British”, and promoting far right agitator Tommy Robinson.
+        In September, DHH, the creator of Rails and community figurehead, wrote a factually incorrect
+        post bemoaning the state of London these days, claiming that it’s no longer “native British”,
+        and promoting far right agitator Tommy Robinson.
 
-        At a time when the far right is rising in the UK, is this the figurehead our community needs? Can we separate technology and political views? Should we?
+        At a time when the far right is rising in the UK, is this the figurehead our community needs?
+        Can we separate technology and political views? Should we?
 
-        This is less of a talk, and more of an opportunity for discussion - does something need to change, and if so, how? And if not, what does that mean for the Ruby and Rails communities?
+        This is less of a talk, and more of an opportunity for discussion - does something need to
+        change, and if so, how? And if not, what does that mean for the Ruby and Rails communities?
       video_provider: "mp4"
       video_id: "https://assets.lrug.org/videos/2025/november/james-smith-how-do-you-solve-a-problem-like-dhh-lrug-nov-2025.mp4"
 - id: "lrug-december-2025"
@@ -3400,13 +3487,22 @@
       description: |-
         This will be a quirky dive into the rudiments of virtual machine and emulator implementation.
 
-        When you're working with Ruby you’re relying on a software machine written by a small but dedicated team of virtual machine enthusiasts. And unless you’ve taken a course in programming language implementation you probably have only a loose idea of what this is, how it works, or how easy it is to write your own machines.
+        When you're working with Ruby you’re relying on a software machine written by a small but
+        dedicated team of virtual machine enthusiasts. And unless you’ve taken a course in
+        programming language implementation you probably have only a loose idea of what this is, how
+        it works, or how easy it is to write your own machines.
 
-        In this fast-paced introduction I’ll use code written in Ruby to explain the basic building-blocks with which we can model computing machines in software, covering as many of the main architectural features as possible in the time: stacks; heaps; dispatchers; clocks; registers; instruction sets.
+        In this fast-paced introduction I’ll use code written in Ruby to explain the basic
+        building-blocks with which we can model computing machines in software, covering as many of
+        the main architectural features as possible in the time: stacks; heaps; dispatchers; clocks;
+        registers; instruction sets.
 
         Then I'll put them to a somewhat different use than you might expect.
 
-        This talk contains a lot of code (possibly including a smidgeon of gnarly C) but regardless of you current skill level it will reveal a little of the magic which makes tools like Ruby possible. The examples should also be sufficient to kickstart your own adventures in this fascinating field.
+        This talk contains a lot of code (possibly including a smidgeon of gnarly C) but regardless
+        of you current skill level it will reveal a little of the magic which makes tools like Ruby
+        possible. The examples should also be sufficient to kickstart your own adventures in this
+        fascinating field.
       video_id: "lrug-2025-12-08-implementing-software-machines-in-ruby"
       video_provider: "not_published"
       slides_url: "https://www.slideshare.net/slideshow/implementing-software-machines-in-ruby-rough-cut/284563205"
@@ -3418,7 +3514,9 @@
       speakers:
         - Yevhenii Kurtov
       description: |-
-        We'll spend our time interactively solving a distributed systems design challenge that will gradually grow in complexity, taking participants on a journey to discover the golden rule of distributed systems design: think globally, act locally.
+        We'll spend our time interactively solving a distributed systems design challenge that will
+        gradually grow in complexity, taking participants on a journey to discover the golden rule
+        of distributed systems design: think globally, act locally.
       video_id: "lrug-2025-12-08-distributed-systems-golden-ration"
       video_provider: "not_published"
 - id: "lrug-january-2026"
@@ -3439,11 +3537,15 @@
       speakers:
         - Stephen Creedon
       description: |-
-        Rails lost its way during versions 4, 5, and 6 - becoming overly complex and slow as it leaned heavily into JavaScript. But the story doesn’t end there. With Rails 8.1 introducing features like Stimulus, Action Cable, and Solid Cable, the framework is returning to its roots: simplicity, speed, and developer joy.
+        Rails lost its way during versions 4, 5, and 6 - becoming overly complex and slow as it
+        leaned heavily into JavaScript. But the story doesn’t end there. With Rails 8.1 introducing
+        features like Stimulus, Action Cable, and Solid Cable, the framework is returning to its
+        roots: simplicity, speed, and developer joy.
 
-        Join us for a deep dive into why Rails has its mojo back and what this means for the future of Ruby developmen
-      video_id: "lrug-2026-01-12-rails_was_off_the_rails_but_its_back"
-      video_provider: "not_published"
+        Join us for a deep dive into why Rails has its mojo back and what this means for the future
+        of Ruby development
+      video_provider: "mp4"
+      video_id: "https://assets.lrug.org/videos/2026/january/stephen-creedon-rails-was-off-the-rails-but-its-back-lrug-jan-2026.mp4"
     - id: "sebastian-siemianowski-lrug-january-2026"
       title: "RSpec Craftsmanship and Refactoring with Junie"
       event_name: "LRUG January 2026"
@@ -3452,14 +3554,204 @@
       speakers:
         - Sebastian Siemianowski
       description: |-
-        In this talk, Sebastian will dive into RSpec as a craft — showing how thoughtful test design can make refactoring less terrifying. You’ll see real-world examples of transforming low-signal specs into readable, behaviour-driven tests, and learn how Junie, an IDE-native AI assistant, can act as a second pair of eyes to improve naming, structure, and guarantees.
+        In this talk, Sebastian will dive into RSpec as a craft — showing how thoughtful test
+        design can make refactoring less terrifying. You’ll see real-world examples of
+        transforming low-signal specs into readable, behaviour-driven tests, and learn how Junie, an
+        IDE-native AI assistant, can act as a second pair of eyes to improve naming, structure, and
+        guarantees.
 
-        This is a practical, opinionated look at using AI to support test quality—while keeping human judgment firmly in control.
+        This is a practical, opinionated look at using AI to support test quality—while keeping
+        human judgment firmly in control.
 
         Why join?
 
         - Many test suites pass—and still make refactoring terrifying. Why?
         - Explore clarity, intent, and refactor safety in RSpec.
         - See how AI can enhance craftsmanship without replacing developers.
-      video_id: "lrug-2026-01-12-rspec_craftmanship_and_refactoring_with_junie"
+      video_id: "lrug-2026-01-12-rspec-craftmanship-and-refactoring-with-junie"
+      video_provider: "not_published"
+- id: "lrug-february-2026"
+  title: "LRUG February 2026"
+  event_name: "LRUG February 2026"
+  date: "2026-02-09"
+  announced_at: "2026-01-22 17:17:00 +0000"
+  video_provider: "children"
+  video_id: "lrug-february-2026"
+  description: |-
+    https://lrug.org/meetings/2026/february/
+  talks:
+    - id: "niall-mullally-lrug-february-2026"
+      title: "Automating Feature Flag Cleanup with AI"
+      event_name: "LRUG February 2026"
+      date: "2026-02-09"
+      announced_at: "2026-01-22 17:17:00 +0000"
+      speakers:
+        - Niall Mullally
+      description: |-
+        At [BBB](https://www.british-business-bank.co.uk/), we use feature flags extensively in one
+        of our Rails applications.
+
+        Removing fully rolled-out feature flags is always a chore that’s easy to ignore and
+        eventually becomes a source of tech debt. In the talk, I’ll show how we use GitHub Actions
+        and GitHub Copilot to automatically generate PRs that remove obsolete flags and their
+        associated code paths.
+      video_provider: "mp4"
+      video_id: "https://assets.lrug.org/videos/2026/february/niall-mullally-automating-feature-flag-cleanup-with-ai-lrug-feb-2026.mp4"
+    - id: "lorenzo-barasti-lrug-february-2026"
+      title: "Why you might like some Truffle with your Ruby"
+      event_name: "LRUG February 2026"
+      date: "2026-02-09"
+      announced_at: "2026-01-22 17:17:00 +0000"
+      speakers:
+        - Lorenzo Barasti
+      description: |-
+        An overview of [TruffleRuby](https://truffleruby.dev)’s latest release and some of the
+        perks of running on [GraalVM](https://www.graalvm.org)
+      additional_resources:
+        - name: "Source Code"
+          type: "code"
+          title: "Github repository for the truffle ruby demo used in the talk"
+          url: "https://github.com/lbarasti/truffleruby-jfr-demo"
+        - name: "Link"
+          type: "link"
+          title: "Benchmarking blog post by Benoit Daloze mentioned in the talk"
+          url: "https://eregon.me/blog/2022/01/06/benchmarking-cruby-mjit-yjit-jruby-truffleruby.html"
+      video_provider: "mp4"
+      video_id: "https://assets.lrug.org/videos/2026/february/lorenzo-barasti-why-you-might-like-some-truffle-with-your-ruby-lrug-feb-2026.mp4"
+      slides_url: "https://docs.google.com/presentation/d/1UGQLaQ8JjGjpPkwoWC5Zw_jcQ78e4CyL9oOOJoT49go/edit?usp=sharing"
+    - id: "scott-matthewman-lrug-february-2026"
+      title: "THE BLOB MUST DIE! – How we destroyed a 1400-line monster"
+      event_name: "LRUG February 2026"
+      date: "2026-02-09"
+      announced_at: "2026-01-22 17:17:00 +0000"
+      speakers:
+        - Scott Matthewman
+      description: |-
+        A lightning talk about how we are replacing an all-consuming User object with domain-specific
+        roles, delegated types and a smattering of metaprogramming – presented with a 1950s B-movie
+        vibe
+      video_provider: "mp4"
+      video_id: "https://assets.lrug.org/videos/2026/february/scott-matthewman-the-blob-must-die-how-we-destroyed-a-1400-line-monster-lrug-feb-2026.mp4"
+    - id: "david-smith-lrug-february-2026"
+      title: "Junior Developers need your help"
+      event_name: "LRUG February 2026"
+      date: "2026-02-09"
+      announced_at: "2026-01-22 17:17:00 +0000"
+      speakers:
+        - David Smith
+      description: |-
+        Raising awareness on how the junior/graduate developer market has collapsed - not sure on
+        this yet, will probably be more apparent as I write it.
+      additional_resources:
+        - name: "Write-Up"
+          type: "write-up"
+          title: "Blog post - The Junior Developer Crisis by David Smith"
+          url: "https://open.substack.com/pub/davidrec/p/the-junior-developer-crisis?r=2xxv7&utm_campaign=post&utm_medium=web"
+      video_provider: "mp4"
+      video_id: "https://assets.lrug.org/videos/2026/february/david-smith-junior-developers-need-your-help-lrug-feb-2026.mp4"
+    - id: "jade-dickinson-lrug-february-2026"
+      title: "Managing a job search efficiently"
+      event_name: "LRUG February 2026"
+      date: "2026-02-09"
+      announced_at: "2026-01-22 17:17:00 +0000"
+      speakers:
+        - Jade Dickinson
+      description: |-
+        How to manage a job search and interview prep
+      additional_resources:
+        - name: "Write-Up"
+          type: "write-up"
+          title: 'Jade Dickinson: ~# /blog/lrug/ "Managing a job search efficiently"'
+          url: "https://jadedickinson.com/blog/lrug/"
+      video_id: "lrug-2026-02-09-managing-a-job-search-efficiently"
+      video_provider: "not_published"
+    - id: "eleanor-mchugh-lrug-february-2026"
+      title: "Shayk.online - anonymous chat with Sinatra and websockets"
+      event_name: "LRUG February 2026"
+      date: "2026-02-09"
+      announced_at: "2026-01-22 17:17:00 +0000"
+      speakers:
+        - Eleanor McHugh
+      description: |-
+        A quick peek at one of my research projects and why Sinatra is a great tool for prototyping.
+      video_provider: "mp4"
+      video_id: "https://assets.lrug.org/videos/2026/february/eleanor-mchugh-shayk-online-anonymous-chat-with-sinatra-and-websockets-lrug-feb-2026.mp4"
+      slides_url: "https://www.slideshare.net/slideshow/shayk-online-anonymous-chat-with-sinatra-and-websockets/285948608"
+- id: "lrug-march-2026"
+  title: "LRUG March 2026"
+  event_name: "LRUG March 2026"
+  date: "2026-03-09"
+  announced_at: "2026-02-15 17:00:00 +0000"
+  video_provider: "children"
+  video_id: "lrug-march-2026"
+  description: |-
+    https://lrug.org/meetings/2026/march/
+  talks:
+    - id: "andy-walker-lrug-march-2026"
+      title: "If agentic coding is the tool shift, what's the role shift?"
+      event_name: "LRUG March 2026"
+      date: "2026-03-09"
+      announced_at: "2026-02-15 17:00:00 +0000"
+      speakers:
+        - Andy Walker
+      description: |-
+        In this talk I'll compare today's AI moment to past tech S-curves, and argue it's not only a
+        toolset change that's required (learning to code agentically) but a deeper change in how we
+        work.
+
+        I'll cover the mindset and capability shifts this demands: outcome ownership, faster feedback
+        loops, more autonomy. I'll cover what engineers can do to meet the moment.
+
+        I'll also share how this is changing the way I think about hiring and scaling teams: what
+        signals matter now, and how we're adapting interview loops to find people who thrive in an
+        agentic world
+      video_id: "lrug-2026-03-09-if-agentic-coding-is-the-tool-shift-whats-the-role-shift"
+      video_provider: "not_published"
+    - id: "neil-cameron-lrug-march-2026"
+      title: "RAG on Rails"
+      event_name: "LRUG March 2026"
+      date: "2026-03-09"
+      announced_at: "2026-02-15 17:00:00 +0000"
+      speakers:
+        - Neil Cameron
+      description: |-
+        A brief guide to building out a retrieval augmented generation system on Rails.
+
+        We'll cover some of the basic (chunking, embeddings) and some not so basic things (why bother
+        re-ranking). You'll come away with an understanding of the different moving parts of a RAG
+        system and some tactical recommendations of gems and services to use.
+      video_id: "lrug-2026-03-09-rag-on-rails"
+      video_provider: "not_published"
+- id: "lrug-april-2026"
+  title: "LRUG April 2026"
+  event_name: "LRUG April 2026"
+  date: "2026-04-13"
+  announced_at: "2026-03-23 12:00:00 +0000"
+  video_provider: "children"
+  video_id: "lrug-april-2026"
+  description: |-
+    https://lrug.org/meetings/2026/april/
+  talks:
+    - id: "hemal-varambhia-lrug-april-2026"
+      title: "The Hottest New Programming Language Is Ubiquitous (Within A Bounded Context Window)"
+      event_name: "LRUG April 2026"
+      date: "2026-04-13"
+      announced_at: "2026-03-23 12:00:00 +0000"
+      speakers:
+        - Hemal Varambhia
+      description: |-
+        The title is a play on Andrey Karpathy's tweet.
+
+        This talk is a continuation of the one I gave at LRUG in March 2025.
+
+        Later that year I really started to reap the benefits of DDD and Ports and Adapters: refining
+        the programmer tests (no more Docker for unit tests!) and bringing the ubiquitous language to
+        life, which made writing tests cheap, and more importantly, fun.
+
+        Towards the end of 2025, I gave in to FOMO and started exploring AI-assisted programming. I
+        was particularly interested to see if it was now possible to prompt the LLM entirely in the
+        ubiquitous language and produce well-structured code.
+
+        Is the future of programming DDD's ubiquitous language?
+      video_id: "lrug-2026-04-13-the-hottest-new-programming-language-is-ubiquitous-within-a-bounded-context-window"
       video_provider: "not_published"
