@@ -4,7 +4,7 @@ CI.run do
   step "Style: Ruby", "bundle exec standardrb --fix"
   step "Style: JS", "yarn format"
   step "Style: ERB", "bundle exec erb_lint --lint-all --autocorrect"
-  step "Style: YAML", "yarn format:yml"
+  step "Style: YAML", "yerba apply"
 
   step "Security: Gem audit", "bin/bundler-audit"
   # step "Security: Importmap vulnerability audit", "bin/importmap audit"

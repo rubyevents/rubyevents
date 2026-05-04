@@ -7,7 +7,6 @@ if command -v mise &> /dev/null; then
 fi
 
 curl https://lrug.org/rubyevents-video-playlist.yml > data/lrug/lrug-meetup/videos.yml
-node yaml/enforce_strings.mjs data/lrug/lrug-meetup/videos.yml
-prettier -c data/lrug/lrug-meetup/videos.yml -w
 git add data/lrug/lrug-meetup/videos.yml
+bundle exec yerba apply
 git commit -m "Update LRUG Meetups"
