@@ -4,7 +4,7 @@ import { Turbo } from '@hotwired/turbo-rails'
 export default class extends BridgeComponent {
   static component = 'oauth'
   static values = {
-    authorizationPath: String,
+    startPath: String,
     exchangePath: String
   }
 
@@ -16,7 +16,7 @@ export default class extends BridgeComponent {
   signIn () {
     if (!this.enabled) return
 
-    this.send('signIn', { authorizationPath: this.authorizationPathValue }, (message) => {
+    this.send('signIn', { startPath: this.startPathValue }, (message) => {
       this.#exchangeToken(message?.data?.token)
     })
   }
