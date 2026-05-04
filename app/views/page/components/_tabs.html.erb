@@ -2,6 +2,7 @@
   <a href="#tabs" class="opacity-0 group-hover:opacity-100 no-underline mr-1 text-gray-400" aria-label="Link to Tabs">#</a>
   Tabs
 </h2>
+<p>Bordered Tabs</p>
 <div class="flex flex-col items-start justify-start gap-8 py-8">
   <div>Todo (this is a WIP of the tab component, just the Daisy UI markup and a Stimulus controller)</div>
 
@@ -20,5 +21,19 @@
     <div role="tabpanel" class="tab-content py-4" style="view-transition-name: tab-content-3;">
       Tab content 3
     </div>
+  </div>
+</div>
+<p>Boxed Tabs/Toggle</p>
+<div class="flex flex-col md:flex-row items-start md:items-center gap-4 py-8">
+  <div role="tablist" class="tabs tabs-boxed" data-controller="tabs">
+    <button role="tab" type="button" class="tab tab-active" aria-label="Tab 1" data-action="click->tabs#showPanel">
+      <span>Tab 1</span>
+    </button>
+    <button role="tab" type="button" class="tab" aria-label="Tab 2" data-action="click->tabs#showPanel">
+      <span>Tab 2</span>
+    </button>
+    <button role="tab" type="button" class="tab" aria-label="Tab 3" data-action="click->tabs#showPanel">
+      <span>Tab 3</span>
+    </button>
   </div>
 </div>
