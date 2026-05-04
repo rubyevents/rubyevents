@@ -1,10 +1,16 @@
 # frozen_string_literal: true
 
-namespace :validate do
-  require "gum"
-  require "json_schemer"
-  require "yaml"
+require "gum"
+require "json_schemer"
+require "yaml"
 
+FIELD_ASSET_MAP = {
+  "banner_background" => "banner.webp",
+  "featured_background" => "featured.webp",
+  "featured_color" => "featured.webp"
+}.freeze
+
+namespace :validate do
   def validate_files(glob_pattern, schema_class, file_type, &custom_validation)
     schema = JSON.parse(schema_class.new.to_json_schema[:schema].to_json)
     schemer = JSONSchemer.schema(schema)
@@ -499,6 +505,93 @@ namespace :validate do
   desc "Validate all city-related data"
   task cities: [:event_city_names, :video_city_names]
 
+  def validate_event_colors
+    files = Dir.glob(Rails.root.join("data/**/event.yml"))
+    color_fields = %w[banner_background featured_background featured_color]
+    issues = []
+
+    files.each do |file|
+      data = YAML.load_file(file)
+      relative_path = file.sub("#{Rails.root}/data/", "")
+
+      color_fields.each do |field|
+        next unless data.key?(field)
+
+        if data[field].blank?
+          issues << {path: relative_path, field: field}
+        end
+      end
+    end
+
+    if issues.any?
+      puts Gum.style("Events with blank color values (#{issues.count}):", foreground: "1")
+      puts
+
+      issues.each do |issue|
+        gh_action_annotation = (ENV["GITHUB_ACTIONS"] == "true") ? "::error file=data/#{issue[:path]},line=1::" : "::error::"
+        puts Gum.style("❌ #{issue[:path]}", foreground: "1")
+        puts "#{gh_action_annotation} #{issue[:field]}: is present but empty"
+        puts
+      end
+
+      false
+    else
+      puts Gum.style("✓ All event color fields have a value", foreground: "2")
+      true
+    end
+  end
+
+  desc "Validate that event color fields are not empty when present"
+  task event_colors: :environment do
+    exit 1 unless validate_event_colors
+  end
+
+  def validate_event_assets
+    assets_base = Rails.root.join("app", "assets", "images", "events")
+    files = Dir.glob(Rails.root.join("data/**/event.yml"))
+    warnings = []
+
+    files.each do |file|
+      data = YAML.load_file(file)
+      relative_path = file.sub("#{Rails.root}/data/", "")
+      series_slug = file.split("/")[-3]
+      event_slug = file.split("/")[-2]
+
+      asset_dir = assets_base.join(series_slug, event_slug)
+      default_asset_dir = assets_base.join(series_slug, "default")
+
+      missing_assets = FIELD_ASSET_MAP
+        .select { |field, _| data[field].present? }
+        .values
+        .uniq
+        .reject { |asset| asset_dir.join(asset).exist? || default_asset_dir.join(asset).exist? }
+
+      if missing_assets.any?
+        warnings << {path: relative_path, missing: missing_assets}
+      end
+    end
+
+    if warnings.any?
+      puts Gum.style("Events with visual config but no assets — values will be ignored (#{warnings.count}):", foreground: "3")
+      puts
+
+      warnings.each do |warning|
+        puts Gum.style("⚠ #{warning[:path]}", foreground: "3")
+        puts "   No assets found for: #{warning[:missing].join(", ")} (configured values have no effect)"
+        puts
+      end
+    else
+      puts Gum.style("✓ All events with visual configuration have their assets", foreground: "2")
+    end
+
+    true
+  end
+
+  desc "Validate that events with visual configuration have their asset files"
+  task event_assets: :environment do
+    validate_event_assets
+  end
+
   desc "Validate all YAML files"
   task all: :environment do
     results = []
@@ -620,6 +713,12 @@ namespace :validate do
 
     puts Gum.style("Validating video city names", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_video_city_names
+
+    puts Gum.style("Validating event color values", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+    results << validate_event_colors
+
+    puts Gum.style("Validating event visual assets", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+    results << validate_event_assets
 
     puts
     if results.all?
