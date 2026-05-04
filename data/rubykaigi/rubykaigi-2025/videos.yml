@@ -790,7 +790,7 @@
       language: "japanese"
       speakers:
         - Shunsuke Michii
-      description: |
+      description: |-
         This talk introduces PicoRabbit, a presentation system built from scratch on a Raspberry Pi Pico 2. This talk itself is running on PicoRabbit.
 
         PicoRabbit is inspired by Rabbit, a slide tool for Rubyists. It aims to deliver real-time video output, USB-rewriteable content, and a slide engine implemented in mruby, all on a tiny $5 board.
@@ -810,7 +810,7 @@
       slides_url: "https://speakerdeck.com/makicamel/road-to-rubykaigi-making-tinny-chiptunes-with-ruby"
       speakers:
         - makicamel
-      description: |
+      description: |-
         "Road to RubyKaigi" is an action game made in Ruby that you can play right in your terminal. We defeat bugs, dodge deadlines, and race toward the RubyKaigi venue. All the graphics are rendered with text, and the background music is performed on the fly using Ruby. In this talk, I will talk how to implement the BGM performance and present a live demo of the game in action.
 
     - title: "Lightning Talk: Ruby as a Frontend for Programming Language Implementations"
@@ -825,7 +825,7 @@
       language: "japanese"
       speakers:
         - White-Green
-      description: |
+      description: |-
         When developing a new programming language, it is typically necessary to implement both a frontend (such as a parser) and a backend (such as a virtual machine). However, especially during the prototyping stage, if the primary novelty of the language lies in its backend, it is desirable to simplify frontend implementation as much as possible. This presentation introduces an approach that leverages Ruby's powerful metaprogramming capabilities to construct language frontends with minimal effort. Specifically, we discuss an intuitive method of generating intermediate representations (such as SSA forms) directly from Ruby scripts written in a natural syntax.
 
     - title: "Lightning Talk: Ruby on Railroad: The Power of Visualizing CFG"
@@ -840,7 +840,7 @@
       language: "japanese"
       speakers:
         - Yudai Takada
-      description: |
+      description: |-
         A world has arrived where Ruby's grammar can be visualized graphically, allowing you to grasp the overall picture of its complex syntax rules at a glance. This has been made possible through the collaboration of railroad_diagrams and Lrama. So, Ruby on Railroad is here.
 
     - title: "Lightning Talk: Ruby on a PlayStation"
@@ -855,7 +855,7 @@
       language: "english"
       speakers:
         - Chris Hasiński
-      description: |
+      description: |-
         My very incomplete yet working port of mruby/c for PlayStation 1!
 
         A short story about setting up a development environment for a 30 year old video game console and getting it to run some .mrb files.
@@ -872,7 +872,7 @@
       language: "japanese"
       speakers:
         - Taketo Takashima
-      description: |
+      description: |-
         As concerns about privacy and security in DNS resolution grow, encrypted protocols such as DoH (DNS over HTTPS) have emerged. In this talk, I will introduce a Ruby implementation of a DDR (Discovery of Designated Resolvers) client, which enables the distribution of information about secure and encrypted DNS resolvers like DoH. While DDR allows multiple DNS resolvers to be advertised, verifying whether each resolver is functioning correctly can be challenging. To address this, I developed a debugging tool as a Ruby gem to confirm whether DDR is operating as expected.
 
         Additionally, this talk will cover how this gem was used to troubleshoot issues encountered when deploying DDR in the DNS service provided for exhibitors and visitors at Interop Tokyo 2024's ShowNet.
@@ -889,7 +889,7 @@
       language: "japanese"
       speakers:
         - Kazuhiro NISHIYAMA
-      description: |
+      description: |-
         I set up the current riscv64.rubyci.org. It runs chkbuild on a RISC-V virtual machine using qemu. It's difficult to find maintenance windows between CI runs in a slow environment, so I'll talk about the way I solved that problem.
 
     - title: "Lightning Talk: Fiber Scheduler vs. General-Purpose Parallel Client"
@@ -904,7 +904,7 @@
       language: "japanese"
       speakers:
         - Hayao Kimura
-      description: |
+      description: |-
         In an effort to build a general-purpose parallel request client in Ruby—something anyone in our team could easily use—I ran into an unexpected roadblock: the limitations of the Fiber Scheduler. This talk walks through the journey from parallelizing Faraday requests, to exploring Fiber Scheduler as a lightweight alternative to threads, and ultimately hitting a wall when trying to support gRPC and AWS SDK. I'll explain why Fiber Scheduler couldn't handle gRPC due to its C-level implementation, and how that led to a shift toward using threads instead. If you're curious about the real-world limitations of Ruby's Fiber Scheduler and what it takes to design a truly flexible parallel request client, this talk is for you.
 
     - title: "Lightning Talk: Displaying 'アパート' correctly on Textbringer"
@@ -919,7 +919,7 @@
       language: "japanese"
       speakers:
         - Shugo Maeda
-      description: |
+      description: |-
         Displaying "アパート" on a text editor seems simple, right? But is it really? This presentation will explain how to handle combining diacritical marks, variation selectors, hangul jamo etc. on a text editor.
 
     - title: "Lightning Talk: Making a MIDI controller device with PicoRuby/R2P2"
@@ -934,7 +934,7 @@
       language: "japanese"
       speakers:
         - Ryo Ishigaki
-      description: |
+      description: |-
         There are many wonderful synthesizers and electronic instruments in the world. And instruments and devices that support MIDI (Musical Instrument Digital Interface) can easily be played together.
 
         I am making a simple MIDI controller device PRMC-1 for use in electronic music performances using PicoRuby/R2P2 (Ruby Rapid Portable Platform). I can adjust the synthesizer parameters by turning the knobs, or play chords as arpeggios with the sequencer function. The hardware is made with Raspberry Pi Pico, M5Stack Unit 8Angle and Unit MIDI, and no soldering.
@@ -953,7 +953,7 @@
       language: "japanese"
       speakers:
         - Taiga ASANO
-      description: |
+      description: |-
         When using private gems, tokens are passed to Bundler via environment variables or config.
 
         Bundler would benefit from adopting credential helpers to reduce friction in automated environments and address security challenges, particularly when managing short-lived tokens. In this lightning talk, we'll explore how other package managers solved these challenges and present a practical proposal for bringing credential helpers to Bundler.

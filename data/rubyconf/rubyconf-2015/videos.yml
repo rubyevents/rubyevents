@@ -1,10 +1,9 @@
----
 # TODO: talks running order
 # TODO: talk dates
 
 # Website: https://web.archive.org/web/20150924165354/http://rubyconf.org/
 # Schedule: https://web.archive.org/web/20151227062245/http://rubyconf.org/schedule
-
+---
 - id: "adam-cuppy-rubyconf-2015"
   title: "Pluck It"
   raw_title: "RubyConf 2015 - Pluck It by Adam Cuppy"
@@ -14,8 +13,6 @@
   video_provider: "youtube"
   video_id: "r5l0CaxqSvA"
   description: |-
-    Pluck It by Adam Cuppy
-
     How many times have you written the same bits of code, over and over, and thought, “You know, if only this was big enough to be a gem, I would pluck it out." Often, we think of a RubyGem as a larger library of code that we “bolt on” to an app. And, these smaller code blobs become a hassle to distribute to the multiple apps that use them.
 
     A small micro-library, done the right way, at the right time, can greatly improve an app.
@@ -33,8 +30,6 @@
   video_provider: "youtube"
   video_id: "BZg75PlmzXI"
   description: |-
-    Keynote: Leagues of Sea and Sky by Jeff Norris
-
     In this keynote, Jeff tells three stories of inventions for nautical and aeronautical exploration to reveal how partnership has shaped the greatest journeys in history and how it should shape your own. From the sextant to holographic mixed reality, Jeff shares meticulously researched history along with some of the projects he's led in space exploration via a unique medium that he created just for this presentation.
   speakers:
     - Jeff Norris
@@ -48,8 +43,6 @@
   video_provider: "youtube"
   video_id: "E-5VhMUYmVY"
   description: |-
-    The Not So Rational Programmer by Laura Eck
-
     Cognitive biases are heuristics that the brain uses to process information and quickly come up with decisions. They are generally pretty useful, but they aren’t perfect processes and can often lead to suboptimal decisions or behaviors.
 
     This talk will help you to recognize their patterns in your thinking and behavior and (since we unfortunately can’t quite de-bug our own brains yet) to monkey-patch them - in order to become a more efficient, more cooperative and ultimately more successful developer.
@@ -65,8 +58,6 @@
   video_provider: "youtube"
   video_id: "CT8JSJkymZM"
   description: |-
-    Inside Ruby's VM: The TMI Edition. by Aaron Patterson
-
     This is about Ruby's Virtual Machine. Specifically MRI's Virtual Machine. We will take a dive in to how your Ruby code is compiled in to byte code and how that byte code is executed. Once we get a grip on how the VM works, we'll see how to make it perform tricks the likes of which you've never seen! Ok, maybe you have seen them, just not with MRI's virtual machine.
   speakers:
     - Aaron Patterson
@@ -80,8 +71,6 @@
   video_provider: "youtube"
   video_id: "VD51AkG8EZw"
   description: |-
-    How to Stop Hating your Test Suite by Justin Searls
-
     Your app is a unique snowflake. Your tests are too… but they shouldn't be!
 
     Years helping teams write better tests has taught me one thing: consistency is crucial. Inconsistent tests slow teams down, wasting time to understand how each test works. Deciding on conventions—even arbitrary ones—can prevent tremendous pain later.
@@ -99,8 +88,6 @@
   video_provider: "youtube"
   video_id: "ojd1G4gOMdk"
   description: |-
-    A Guided Read of Minitest by Nate Berkopec
-
     Minitest is a testing library of just 1,500 lines of Ruby code. By comparison, Rspec clocks in at nearly 15,000! Why is Minitest so small? I'd like to investigate by doing a guided read of Minitest's source code.
   speakers:
     - Nate Berkopec
@@ -114,8 +101,6 @@
   video_provider: "youtube"
   video_id: "zhW1E6_YpC4"
   description: |-
-    Your own 'Images as a Service'
-
     The average web page size is greater than 2MB, and increasing. And great swathes of that are images. Serving the right size of image can vastly improve the experience for your users. But while we're arguing about whether Rails is slow or not we're chucking vast images at peoples phones over EDGE connections.
 
     Serving images should be a 'solved' problem, just like it is for 'hosting' or authentication. However lots of solutions make poor default suggestions. What can we do for our users with 100 lines of code, Sinatra, a single gem and a CDN?
@@ -131,8 +116,6 @@
   video_provider: "youtube"
   video_id: "MZVSK4cjeF4"
   description: |-
-    Ruby Preserves by Craig Buchek
-
     How simple can we make an Object-Relational Mapper (ORM) that's still useful? What if we just used SQL, instead of trying to hide it from developers?
 
     I decided to find out.
@@ -150,8 +133,6 @@
   video_provider: "youtube"
   video_id: "KifjmbSHHs0"
   description: |-
-    JRuby 9000 Is Out; Now What? by  Thomas Enebo and Charles Nutter
-
     JRuby 9000 is here! After years of work, JRuby now supports Ruby 2.2 and ships with a redesigned optimizing runtime. The first update release improved performance and compatibility, and we've only just begun. In this talk we'll show you where we stand today and cover upcoming work that will keep JRuby moving forward: profiling, inlining, unboxing...oh my!
   speakers:
     - Thomas E Enebo
@@ -166,8 +147,6 @@
   video_provider: "youtube"
   video_id: "sjFqWUq6CjQ"
   description: |-
-    Making it on your own and the pitfalls of gem dependencies by Nikki Murray and Maggie Epps
-
     Putting "require '[gem name]'" at the top of your Ruby file and running 'gem install' or 'bundle install' can be an easy way to solve a difficult problem. But you could be potentially adding hundreds of lines of code you didn't write or read, for only half a of a fix. Did the gem actually solve your problem or is it just an approximate solution? How much research did you do on that gem first? Are there hidden security risks in it? In this talk, you will learn how to evaluate gems for fit, figure out when it makes more sense to write your own, and how to go about writing your own.
   speakers:
     - Nikki Murray
@@ -182,8 +161,6 @@
   video_provider: "youtube"
   video_id: "QaR3Wcms4HM"
   description: |-
-    Ruby in 79 AD (Open Sourcing my Role as Indiana Jones) by sean Marcia
-
     I'll demonstrate a practical guide on how you can get involved with neat projects by partnering with academics to build open source tools. We all have the ability to be Indiana Jones and I'll show you how through my experience. Come learn the unforeseen benefits of contributing to open source. My contributions to open source garnered the attention of an archaeological team doing research in Pompeii. Before I knew it I had been granted archaeologist credentials and was on my way to Italy as part of the research team collecting data in Pompeii.
   speakers:
     - Sean Marcia
@@ -197,8 +174,6 @@
   video_provider: "youtube"
   video_id: "_ztlV76b2Gg"
   description: |-
-    Mind Over Error by Michel Martens
-
     Industries like aviation and power plants have improved their safety mechanisms using our growing understanding of the nature of human error, but have we kept up? How do we incorporate the ideas from Human Error, The Design of Everyday Things, and other great resources into what we build? I want to show you how to improve the safety of our systems by reducing their complexity and generating accurate mental models.
   speakers:
     - Michel Martens
@@ -212,8 +187,6 @@
   video_provider: "youtube"
   video_id: "S2FUSr3WlPk"
   description: |-
-    How to Crash an Airplane
-
     On July 19, 1989, United Airlines Flight 232 was en route to Chicago when a mechanical failure caused the plane to become all but uncontrollable. In this unsurvivable situation, the flight crew saved more than half of those onboard. How did they do it?
 
     Flight crews and software teams actually have a lot in common, and there's much we can learn from how the best crews do their jobs. What can we learn from the story of United 232? While this talk won't earn you your pilot's license, you'll definitely come away with some fresh ideas on how to make your team even more amazing.
@@ -229,8 +202,6 @@
   video_provider: "youtube"
   video_id: "H2aKUfiFlFc"
   description: |-
-    RuntimeError: can't save WORLD
-
     Rumor has it that software engineers hold the power to build the things of our future. Now, the world is filling up with technologies and devices – who knows what all of them are for? With power comes responsibility, or in this case the chance to build and write better things.
 
     Here is where strategies and concepts from the social design practice apply. They offer ideas for a holistic approach to programming, while yielding the prospect to establish a connection with your work that goes beyond the purely technical side of things.
@@ -246,8 +217,6 @@
   video_provider: "youtube"
   video_id: "JC4mS7sYQlU"
   description: |-
-    Working Compassionately with Legacy Code by Amar Shah
-
     Your code is your partner. It struggles against you, but also alongside you. Your code comes to you as it is, not as you wish it were. Like a real-life partner, it has a history that you’ll never fully know; like a real-life child, it bears your imprint, but it is wild, unruly, and fiercely self-sovereign. You’ll never stop working with code that’s hard to figure out or difficult to change. But this code, this stubborn creature, is entrusted to you. Let go of your anger at the developer who wrote it. Let go of the terror of being blamed for its unforeseeable regressions. Let go--and find joy.
   speakers:
     - Amar Shah
@@ -261,8 +230,6 @@
   video_provider: "youtube"
   video_id: "4DqzaqeeMgY"
   description: |-
-    How does Bundler work, anyway? by Andre Arko
-
     We all use Bundler at some point, and most of us use it every day. But what does it do, exactly? Why do we have to use bundle exec? What's the point of checking in the Gemfile.lock? Why can't we just gem install the gems we need? Join me for a walk through the reasons that Bundler exists, and a guide to what actually happens when you use it. Finally, we'll cover some Bundler "pro tips" that can improve your workflow when developing on multiple applications at once.
   speakers:
     - André Arko
@@ -276,8 +243,6 @@
   video_provider: "youtube"
   video_id: "UhMnFy3vNAU"
   description: |-
-    Ruby 2 Methodology by Akira Matsuda
-
     This talk focuses on "Method" in Ruby.
 
     Although Method is the key feature of an OOP language like Ruby, Ruby's Method is still drastically evolving. This session is a quick tour on new features and changes around Method in recent versions of the Ruby language. Not just introducing the APIs, we'll also show you lots of interesting stories behind these features, and real-world code examples. Through this session, you'll probably learn some modern methods of Ruby programming that you did never know.
@@ -293,8 +258,6 @@
   video_provider: "youtube"
   video_id: "7qWZ5w5v7Eg"
   description: |-
-    Domo Arigato mruby Roboto by Yurie Yamane and Maysayoshi Takahashi
-
     Let's make a self-balancing robot with mruby!
 
     We show inverted pendulum robots using mruby. Inverted pendulum robot is two-wheeled, self-balancing robot like Segway. A self-balancing robot usually uses C or C++ because of real time responsibility, but we try to use mruby. We show you two robots, LEGO Mindstorms EV3 version and Raspberry Pi DIY version, and describe how to make them.
@@ -312,8 +275,6 @@
   video_provider: "youtube"
   video_id: "_O1MGHcsQCI"
   description: |-
-    Keynote: Stupid Ideas for Many Computers by Aja Hammerly
-
     There are plenty of useful things you can do with Ruby and a bunch of servers. This talk isn't about useful things. This talk will show off asinine, amusing, and useless things you can do with Ruby and access to cloud computing.
 
     Sentiment analysis based on emoji? Why not? Hacky performance testing frameworks? Definitely! Multiplayer infinite battleship? Maybe? The world's most inefficient logic puzzle solver? Awesome!
@@ -331,8 +292,6 @@
   video_provider: "youtube"
   video_id: "2h1EocEyiSo"
   description: |-
-    Nobody Expects an Inquisition! - A Programmer’s Guide to Asking Questions by Amanda Quaranto
-
     What was the last question you asked someone? Did you actually care what the answer was? Did it improve the conversation? Did it start an interesting discussion? Did it start an argument?
 
     Like many programmers, I’ve relied on deductive reasoning to avoid asking questions - fearing that someone would find out I didn't belong. At the start of this year, I made the decision to change all that. This talk will evaluate tools which improved my professional and personal life.
@@ -350,8 +309,6 @@
   video_provider: "youtube"
   video_id: "Tr83XxNRg3k"
   description: |-
-    Stately State Machines with Ragel by Ian Duggan
-
     State machines are an important tool in computer programming, and Ragel is a wonderful tool for creating them. Come learn how to use Ragel to compose simple state machines into much more complicated versions useful for parsing and processing all manner of input. We'll progress simple regex-like machines to full-blown context-sensitive scanners capable of ripping-fast processing of protocols and language grammars.
   speakers:
     - Ian Duggan
@@ -365,8 +322,6 @@
   video_provider: "youtube"
   video_id: "vMOAcaA33Dk"
   description: |-
-    Communicating Intent Through Git by Josh Freeman
-
     Git is a distributed version control system for our source code. It provides the technical mechanism to answer the who, what, when, and where of every decision made. However, Git never requires us to answer why.
 
     Software is the result of thousands of decisions. Add this feature; clarify this method; change this behavior. Every team should be able to know why a decision was made.
@@ -384,8 +339,6 @@
   video_provider: "youtube"
   video_id: "r5kwIm3Q6Y0"
   description: |-
-    Writing concurrent libraries for all Ruby runtimes by Petr Chalupa
-
     Have you ever wondered how to use all of your cores?
 
     The talk will take you on a path of writing a simple concurrent class. We'll start with a basic implementation and gradually improve it based on presented problems and newly learned facts. Our final solution will behave well in the face of concurrency and execute consistently on all Ruby implementations.
@@ -403,8 +356,6 @@
   video_provider: "youtube"
   video_id: "8UrsjxJSPcY"
   description: |-
-    Hardware Hacking: You can be a Maker by Christopher Sexton and Leah Sexton
-
     There is something fundamentally satisfying about building things that bridge the gap between your code and the physical world. This father/daughter duo will show you how they've bridge that gap.
 
     I frequently find Rubyists that are interested in tinkering with hardware but are often intimidated by the idea. Turns out, it is so easy even a grown-up can do it. In fact it is easier than it has ever been. And the best part is, you can use little Ruby.
@@ -421,8 +372,6 @@
   video_provider: "youtube"
   video_id: "exZTxhH06tw"
   description: |-
-    Learn to Make Music. With Ruby. by Darin Wilson
-
     If you can write code, you can make music. And in this talk, and you'll see exactly how.
 
     We'll take a look at Sonic Pi, a powerful, multi-platform app that uses a Ruby DSL to create just about any kind of music you can think of.
@@ -442,8 +391,6 @@
   video_provider: "youtube"
   video_id: "aQ0dz7eykvI"
   description: |-
-    Mo Money Mo Problems (with Ruby) by Federico Soria
-
     Are you thinking or starting to build an app that deals with money? Come to this talk to learn the best practices of handling money transactions. In my 2+ years working in a startup based on payments, I have been able to compile do's and don'ts of handling money.
   speakers:
     - Federico Soria
@@ -457,8 +404,6 @@
   video_provider: "youtube"
   video_id: "FXVj2kauFCM"
   description: |-
-    Shall We Play A Game? by Randy Coulman
-
     Teaching computers to play games has been a pursuit and passion for many programmers. Game playing has led to many advances in computing over the years, and the best computerized game players have gained a lot of attention from the general public (think Deep Blue and Watson).
 
     Using the Ricochet Robots board game as an example, let's talk about what's involved in teaching a computer to play games. Along the way, we'll touch on graph search techniques, data representation, algorithms, heuristics, pruning, and optimization.
@@ -474,8 +419,6 @@
   video_provider: "youtube"
   video_id: "APNZmTEs9tc"
   description: |-
-    GDB: A Gentle Intro by Jason Clark
-
     We love Ruby’s elegance, simplicity, and flexibility. But our favorite language perches atop a world of native code. When that other world intrudes on your peaceful Ruby, GDB, the venerable GNU debugger, is the tool to turn to.
 
     We’ll examine setting up Ruby to work with GDB. We’ll learn the fundamental commands, and soon you’ll be debugging with ease. We’ll even peer deep into Ruby object internals and face down crashes, deadlocks, and bugs.
@@ -493,8 +436,6 @@
   video_provider: "youtube"
   video_id: "GCqd_BcOrsU"
   description: |-
-    Not so Neo In the Matrix by Micah Adams
-
     Matrices are powerful data structures that are used for all sorts of interesting problems- from 3d graphics, to image processing, and cryptography. However, the mighty matrix can be used to solve more mundane problems as well. This talk attempts to demystify the matrix and offer real life examples for using this powerful but understandable data structure.
   speakers:
     - Micah Adams
@@ -508,8 +449,6 @@
   video_provider: "youtube"
   video_id: "lCtzFWAPDP4"
   description: |-
-    Time flies like an arrow; Fruit flies like a banana: Parsers for Great Good by Hsing-Hui Hsu
-
     When you type print "Hello, world!", how does your computer know what to do? Humans are able to naturally parse spoken language by analyzing the role and meaning of each word in context of its sentence, but we usually take for granted the way computers make sense of the code we write.
 
     By exploring the way our brains construct grammars to parse sentences, we can better understand how parsers are used for computering -- whether it be in the way Ruby and other languages are implemented or in webserver routing -- and recognize when they may be the right tool to use in our own code.
@@ -525,8 +464,6 @@
   video_provider: "youtube"
   video_id: "sn7prRGGp4Q"
   description: |-
-    Bikeshed! Live! by Evan Phoenix and Adam Keys
-
     Everyone loves live coding! What's not to love about watching someone struggle through some trivial code while the audience corrects their every syntax error?
 
     This session takes that to the next level by adding literal play-by-play commentary to a live coding session. Come and join us for what is sure to be a hilarious (and hopefully informational) trainwreck.
@@ -543,8 +480,6 @@
   video_provider: "youtube"
   video_id: "obyrJ_aJU6A"
   description: |-
-    How to Performance by Eileen Uchitelle
-
     Understanding performance output can feel like reading tea leaves. It makes sense to a few people, but many of us are left in the dark; overwhelmed and frustrated by the data. Additionally there are a ton of performance tools to choose from; StackProf, RubyProf, AllocationTracer. Where do you even start?
 
     In this talk we will not only look at how to read performance output, but when and how to use the right profilers for the job. We'll discuss a variety of methods and techniques for benchmarking and profiling so you can get the most out of each performance tool.
@@ -560,8 +495,6 @@
   video_provider: "youtube"
   video_id: "O98rt9Z11LU"
   description: |-
-    Code, Culture and the Pursuit of Happiness by Kinsey Ann Durham
-
     Life’s good. People who never thought they could code are becoming developers. Outreach programs are getting people in, but we’re facing an even bigger problem. Getting them to stay there. 57% of women alone leave the tech industry. The root cause of people leaving, and not just people from underrepresented backgrounds, points to company culture. Let’s build company cultures the way we build products, applying scrum principles we use everyday. This talk dives into the reasons why people are leaving the industry in droves, and what unexpected, actionable steps we can take to solve this problem.
   speakers:
     - Kinsey Ann Durham
@@ -594,8 +527,6 @@
   video_provider: "youtube"
   video_id: "XGLYHQ1BLfM"
   description: |-
-    Softly, softly typing by John Cinnamond
-
     The ruby community is large and varied but, for the most part, we haven't rushed to engage with type theory. Static typing - whatever that is - is for the slow moving world of Java developers. Type theory is for Haskell weirdos.
 
     All that could be about to change.
@@ -613,8 +544,6 @@
   video_provider: "youtube"
   video_id: "jBMwT53oGsM"
   description: |-
-    I Estimate this Talk will be 20 Minutes Long, Give or Take 10 Minutes by Noel Rappin
-
     Estimates are like weather forecasts. Getting them right is hard, and everybody complains when you are wrong. Estimating projects is often critically important to the people who pay us to develop software.
 
     We can do better. We can focus our estimates on the parts we do well, like estimating complexity. We can present estimates without falsely inflating them, and we can be transparent during the development process. The humble point estimate can help you, if you understand its limitations.
@@ -632,8 +561,6 @@
   video_provider: "youtube"
   video_id: "tw5wFOAmpTc"
   description: |-
-    Moneyball at the keyboard: Lessons on how to Scout Talented Developers by Adam Jonas
-
     The central premise of Moneyball is that the collected wisdom of baseball insiders is subjective and flawed. Like baseball, the tech industry has a poor history of evaluating talent by favoring biased perspectives over objective analysis. As a baseball scout turned web developer and team lead, I will explore how the lessons I learned in my former career can enable us all to make better decisions on how to grow our teams and surface undervalued skills.
   speakers:
     - Adam Jonas
@@ -647,8 +574,6 @@
   video_provider: "youtube"
   video_id: "tqLbgS0fw5c"
   description: |-
-    Seven Habits of Highly Effective Gems by Mat Brown
-
     These days, publishing a Ruby Gem is incredibly easy—but publishing a good one isn’t. By following a few best practices when you release your code to the open source community, you can make your library stand out from the crowd. We’ll lay out some basic principles, touching on both code design and build tooling, that will have other programmers clamoring to use and contribute to your project, guaranteeing that you will become a code celebrity practically overnight.
   speakers:
     - Mat Brown
@@ -662,8 +587,6 @@
   video_provider: "youtube"
   video_id: "nZNfSQKC-Yk"
   description: |-
-    The Art of Ruby Technical Interviews by Chris Mar
-
     So, you want to be a Ruby developer? You've attended a bootcamp, read the books, and completed online courses. You're ready to start building great things. But the technical interview process can be a challenge for new Ruby developers. I'll teach you how to prepare, practice and give you techniques to answer tough questions.
   speakers:
     - Chris Mar
@@ -677,8 +600,6 @@
   video_provider: "youtube"
   video_id: "ruETk-YbQpI"
   description: |-
-    Design Thinking for Rubyists by Louisa Barrett
-
     Everyone has the power to be creative, and design thinking is about shifting your mindset to fully embrace your ability to generate new ideas. Let's explore how to flex those creative muscles -- because while technology needs change, the ability to generate great ideas that resonate with users will never lose value.
   speakers:
     - Louisa Barrett
@@ -706,8 +627,6 @@
   video_provider: "youtube"
   video_id: "7vuOth98ZzY"
   description: |-
-    The Seven Righteous Fights by Heidi Waterhouse
-
     There are seven fights that I have over and over again, whenever I start at a company. I'm here to convince you that it's valuable for everyone to have these things in mind from the inception of a project.
 
     Having these fights early prevents you from doing the software equivalent of poking chocolate chips into an already-baked cookie
@@ -913,8 +832,6 @@
   video_provider: "youtube"
   video_id: "6Tblgvvit4E"
   description: |-
-    A Muggle's Guide to Tail Call Optimization in Ruby by Danny Guinther
-
     Submitted for your approval: a circle of torment unchronicled by the poets of old, a terror at the heart of many a horror story: SystemStackError: stack level too deep
 
     Tremble no more! Conquer the well of eternity!
@@ -932,8 +849,6 @@
   video_provider: "youtube"
   video_id: "44VFrNs7JTU"
   description: |-
-    Extremely Defensive Coding by Sam Phippen
-
     Defensive programming is one of those abstract ideas that seems great but is often unclear in practice.
 
     In this talk we'll look at some of the extremely defensive patterns that have been driven out in RSpec through the years. We'll look at building Ruby that works across a range of interpreters (including 1.8.7!). We'll investigate how you can write code that defends against objects that redefine methods like send, method and is_a?.
@@ -951,8 +866,6 @@
   video_provider: "youtube"
   video_id: "dP4U1yI1WZ0"
   description: |-
-    Everything You Know About the GIL is Wrong by Jerry D'Antonio
-
     When a Rubyist hears "concurrency" they usually Google Elixir, Go, or even Node.js. Turns out, Ruby can be great for concurrency! The Global Interpreter Lock (GIL) does NOT prevent Ruby programs from performing concurrently. In this presentation we'll discuss the true meaning of concurrency, explore the inner-workings of the GIL, and gain a deeper understanding of how the GIL effects concurrent programs. Along the way we'll write a bunch of concurrent Ruby code, run it on multiple interpreters, and compare the results.
   speakers:
     - "Jerry D'Antonio"
@@ -966,8 +879,6 @@
   video_provider: "youtube"
   video_id: "thZx3k6cmis"
   description: |-
-    Ruby's Environment Variable API by Jack DangerCanty
-
     You use tools like Bundler, RVM, rbenv, or chruby every day. But what are these tools actually doing behind the scenes?
 
     Let's take a closer look at how tools like these alter Ruby's behavior by tweaking the environment it runs in. We'll take the mystery out of load paths and gems sets. You'll come away with a better understanding of how tools like RVM work, and a better idea of where to look when they don't do what you expected.
@@ -983,8 +894,6 @@
   video_provider: "youtube"
   video_id: "FplG2HLe3y0"
   description: |-
-    Storytelling via the Psychology of Professional Wrestling by David Copeland
-
     Great storytelling feels almost impossible at times, yet week in and week out, for over 30 years, the jacked-up men & women of World Wrestling Entertainment have been doing it, five minutes at a time.
 
     No back-story, little dialog, and a live crowd that knows it's all scripted. Yet, they get the audience invested in the outcomes almost every time.
@@ -1002,35 +911,22 @@
   video_provider: "youtube"
   video_id: "t2v32N56sSY"
   description: |-
-    The Math Behind Mandelbrot by David Bock
-
     One day in my high school classroom I heard a student ask "What is 'i' good for anyway? I mean, is it a concept that's useful in the real world?" I jumped at the chance to explain the Mandelbrot set. Come with me on a journey to understand how infinite complexity can arise from a few simple rules. Infinity will fit inside your head, and you'll feel like you just learned one of the Great Secrets of the Universe. If you can multiply, you'll understand all the math in this talk.
   speakers:
     - David Bock
 
 - id: "tobias-pfeiffer-rubyconf-2015"
-
   title: "Beating Go Thanks To The Power Of Randomness"
-
   raw_title: "RubyConf 2015 - Beating Go thanks to the power of randomness by Tobias Pfeiffer"
-
   event_name: "RubyConf 2015"
-
   date: "2015-11-23"
-
   published_at: "2015-11-23"
-
   video_provider: "youtube"
-
   video_id: "fFGB3VFuSFU"
-
-  description: |+
-    Beating Go thanks to the power of randomness by Tobias Pfeiffer
-
+  description: |-
     Go is a board game that is more than 2,500 years old (yes, this is not about the programming language!) and it is fascinating from multiple viewpoints. For instance, go bots still can’t beat professional players, unlike in chess.
 
     This talk will show you what is so special about Go that computers still can’t beat humans. We will take a look at the most popular underlying algorithm and show you how the Monte Carlo method, basically random simulation, plays a vital role in conquering Go's complexity and creating the strong Go bots of today.
-
   speakers:
     - Tobias Pfeiffer
 
@@ -1043,8 +939,6 @@
   video_provider: "youtube"
   video_id: "qXC9Gk4dCEw"
   description: |-
-    Why is nobody using Refinements? by James Adam
-
     Refinements have been a feature in Ruby for several years now, added as a more structured alternative to the "scourge" of monkey patching, but it seems like almost nobody is using them. My question is this: why not? Are they a bad idea? Are they broken? Or do we just not understand them?
 
     Let's figure out once and for all what refinements are good for, and what their limitations might be, so that future generations can either use them for glory, or rightfully ignore them forevermore.
@@ -1060,8 +954,6 @@
   video_provider: "youtube"
   video_id: "wUWwDrP_6Zw"
   description: |-
-    s/regex/DSLs/: What Regex Teaches Us About DSL Design by Betsy Haibel
-
     Many Ruby domain-specific languages go for beauty over usability - and it shows, when you try to use them. But one of programming's oldest, most common DSLs - regular expressions - is both as ugly and as persistent as a cockroach. What makes regexes tick? By breaking down their design, we'll learn concrete principles that go deeper than "Englishy:" principles like "composability" and "deep domain integration." We'll learn how to get precise about the API design and boundaries of our DSLs. We'll write a micro-DSL that is usable without monkeypatching.`
   speakers:
     - Betsy Haibel
@@ -1075,33 +967,20 @@
   video_provider: "youtube"
   video_id: "gTClDj9Zl1g"
   description: |-
-    Changing the Unchangeable: The Hows and Whys of Immutable Data Structures by Brad Urani
-
     Immutable data structures give us peace of mind, but using them is challenging. How do you build an immutable list? Why would you use one? Join us and learn what makes a data structure "persistent", the holy grail combination of immutability and performance. We'll see not just how to use them, but also why they're a good idea and how they work. Most importantly, we'll see how these data structures are useful in real-life programming scenarios. Master this cornerstone of functional programming and learn the answer to the ultimate riddle: how do you change a list while leaving it unchanged?  video_provider: youtube
   speakers:
     - Brad Urani
 
 - id: "eric-weinstein-rubyconf-2015"
-
   title: "The Hitchhiker's Guide to Ruby GC"
-
   raw_title: "RubyConf 2015 - The Hitchhiker's Guide to Ruby GC by Eric Weinstein"
-
   event_name: "RubyConf 2015"
-
   date: "2015-11-23"
-
   published_at: "2015-11-23"
-
   video_provider: "youtube"
-
   video_id: "NnqId_OvUU4"
-
-  description: |+
-    The Hitchhiker's Guide to Ruby GC by Eric Weinstein
-
+  description: |-
     When Ruby programs slow down, the usual culprits—database queries, superlinear time complexity—aren't always the real problem. Ruby's object space and garbage collection are a surprisingly rich and oft-misunderstood area of the language, and one where performance issues can easily hide. This talk is a brief but deep dive into the history and details of garbage collection in Ruby, including its evolution, parameter tuning, and a case study using the Unicorn web server.
-
   speakers:
     - Eric Weinstein
 
@@ -1114,8 +993,6 @@
   video_provider: "youtube"
   video_id: "UM8rn2N0g4U"
   description: |-
-    Botany with Bytes by Lito Nicolai
-
     Plants are tiny computers. As they grow, the sprouts are computing from first principles how to be a plant. We’ll see how they do it!
 
     This talk uses Ruby and the ‘graphics’ gem to build models of all kinds of plants, from algae blooms to juniper branches. We’ll touch on rewriting systems, formal grammars, and Alan Turing’s contributions to botany. We’ll look at the shapes of euphorbia, artichoke, and oregon grape, and how these come from plants’ love of sunlight and greedy desire for growth. By the end, we'll have a series of great visual metaphors for fundamental computer science concepts!
@@ -1131,8 +1008,6 @@
   video_provider: "youtube"
   video_id: "zv_bCpOCXxo"
   description: |-
-    Building CLI Apps for Everyone by Terence Lee
-
     Many projects rely on command-line tools to provide an efficient and powerful interface to work.
 
     Building tools for everyone can be difficult, because of conflicting environment or OS.
@@ -1156,8 +1031,6 @@
   video_provider: "youtube"
   video_id: "v_3i_U7Nf80"
   description: |-
-    Cucumbers Have Layers: A Love Story Sam Livingston-Gray
-
     Cucumber sucks. Features are hard to write and constantly break when the UI changes. Step definitions are annoying to create and a freaking nightmare to maintain. And Cucumber suites take for-EVER to run, because you have to wait for a web browser.
 
     Except... [almost] none of that is actually true.
@@ -1175,8 +1048,6 @@
   video_provider: "youtube"
   video_id: "-C3WI5LxI-s"
   description: |-
-    Tagging your world with RFID by Adam Walker
-
     Come learn all the wonderful uses of UHF RFID tags and how Ruby makes it easy to read, write and deploy real time asset tracking systems. RFID tags can be read from 30 or more feet away and easily integrated with a variety of existing systems with a low barrier to entry. By the end of this session, you'll learn how to track your pets, clothes, keys, and even make a tool that assists with your grocery shopping.
   speakers:
     - Adam Walker
@@ -1190,8 +1061,6 @@
   video_provider: "youtube"
   video_id: "505ybcH0f6s"
   description: |-
-    Manage Your Energy, Not Your Time by Joe Mastey
-
     High-tech culture is obsessed with managing time. In fact, if there’s one thing that we spend as much time on as actual work, it’s getting the most out of that work time. But here, like elsewhere, choosing the wrong optimization does more harm than good. Wringing every minute out of your day is more likely to burn you out than to turn you into a code-producing machine. Instead, we need to get better at managing our energy. Put down the kitchen timer, because in this talk you’ll learn about better research-driven approaches to get more out of work and life.
   speakers:
     - Joe Mastey
@@ -1205,8 +1074,6 @@
   video_provider: "youtube"
   video_id: "TZWQAvlMru8"
   description: |-
-    Messenger: The (Complete) Story of Method Lookup by Jay McGavren
-
     You call a method on an object, and it invokes the instance method defined on the class. Simple. Except when the method isn't on the class itself, because it's inherited from a superclass. Or a singleton class, mixin, or refinement. Actually, this is kind of complicated!
 
     In this talk, we'll take an inside look at Ruby method lookup. We'll start with the basics, like inherited methods, and work our way up to the cutting-edge stuff, like refinements and prepending mixins. You'll leave with a clear understanding of how it all works, and maybe with some better ideas for structuring your code!
@@ -1222,8 +1089,6 @@
   video_provider: "youtube"
   video_id: "rBBLMmr9e-k"
   description: |-
-    A Tale of Two Feature Flags by Rebecca Sliter
-
     It was the best of times, it was the worst of times. Feature flags are a quick win for development teams seeking a way to more rapidly release software but can create unexpected technical complexity.
 
     Join us for a comparison of the life-cycles of two seemingly similar feature flags. We'll discuss the challenges teams often face when implementing them, as well as strategies to avoid these issues and deliver software quickly and reliably.
@@ -1239,8 +1104,6 @@
   video_provider: "youtube"
   video_id: "xCBRqZpiB2M"
   description: |-
-    The Joy of Miniature Painting by Caleb Thompson
-
     As developers, we often stare at a computer screen all day only to come home and stare at more glowing boxes all night. Having a productive, nontechnical hobby can really help to keep us sharp for our day jobs.
 
     You'll watch me live-paint a small model for a game called Warmachine while I describe some of the techniques I use. You'll hear about how painting has helped me to clear my mind after work, keeping me away from burnout I might encounter if I wasn't exercising a different brain lobe.
@@ -1258,8 +1121,6 @@
   video_provider: "youtube"
   video_id: "GenjU6iRb6o"
   description: |-
-    Using Ruby In Security Critical Applications by Tom Macklin
-
     We’ve worked to improve security in MRI for a variety of security critical applications, and will describe some of our successes and failures in terms of real-world applications and their various runtime environments. We will describe some of the security principles that guide our work, and how they fit in with the ruby culture. We will also introduce some objectives we have moving forward to improve ruby’s security, and ways we’d like to engage the community to help.
   speakers:
     - Tom Macklin
@@ -1290,8 +1151,6 @@
   video_provider: "youtube"
   video_id: "Vpr-xDmA2G4"
   description: |-
-    Keynote: Consequences of an Insightful Algorithm by Carina C. Zona
-
     Coders have ethical responsibilities. We can extract remarkably precise intuitions about people. Do we have a right to know what they didn't consent to share, even when they shared data leading us there? Balancing human needs and business specs can be tough. How do we mitigate against unintended outcomes? In this talk, we look at examples of uncritical programming, & painful results of using insightful data in ways that were benignly intended. You'll learn practices for examining how code might harm individuals. We’ll look at how to flip the paradigm, for consequences that are better for all.
   speakers:
     - Carina C. Zona
@@ -1305,8 +1164,6 @@
   video_provider: "youtube"
   video_id: "zaql_NwlO18"
   description: |-
-    String Theory and Time Travel: the humble text editor by Colin Fulton
-
     Did you know that the time machine in your text editor is probably broken? Better yet, have you considered that your text editor has a time machine?
 
     The majority of our day is spent in a text editor, but most never think about how they really work. There is a lot more to an editor than saving a few keystrokes or the rivalry between Vim and Emacs; they can teach us about data structures, IO, design, and the dangers of time travel.

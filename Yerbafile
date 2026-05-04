@@ -2,6 +2,10 @@ rules:
   - files: "data/**/event.yml"
     pipeline:
       - quote_style:
+          path: "description"
+          value_style: literal
+
+      - quote_style:
           key_style: plain
           value_style: double
 
@@ -128,6 +132,14 @@ rules:
       - quote_style:
           path: "[].talks[].alternative_recordings[].speakers"
           value_style: plain
+
+      - quote_style:
+          path: "[].description"
+          value_style: literal
+
+      - quote_style:
+          path: "[].talks[].description"
+          value_style: literal
 
       - blank_lines:
           count: 1
