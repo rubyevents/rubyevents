@@ -129,11 +129,7 @@
   video_provider: "youtube"
   video_id: "bJMzWumXPmo"
   description: |-
-    RubyConf 2019 - Investigative Metaprogramming by Betsy Haibel
-
     When was the last time you got an un-Googleable error? The kind that takes you and your lead three days to debug, with weird generic stacktraces deep in framework internals? What if you could approach that bug with something other than trial, error, and tears? Metaprogramming can come to the rescue -- just not the kind you do in production. In this talk, you'll learn strategies for investigative metaprogramming. You'll learn how to insert debugging hooks anywhere and instrument anything. You'll even learn how to turn that information into actionable bugfixes.
-
-
   speakers:
     - Betsy Haibel
 
@@ -202,7 +198,6 @@
 
     Ruby core team plans to introduce pattern matching as an experimental feature in Ruby 2.7. In this presentation, we will talk about the current proposed syntax and its design policy.
 
-
   speakers:
     - Kazuki Tsujimoto
 
@@ -214,21 +209,10 @@
   published_at: "2019-12-03"
   video_provider: "youtube"
   video_id: "DT5XeAnXifI"
-  description:
-    "RubyConf 2019 - Bridging the Knowledge Gap: Debugging by Mina Slater
-
-
-    We're usually never get an official lesson in debugging. No one tells us at bootcamp or in online tutorials what to do when our code doesn’t work. It’s one of those
-    learn-it-on-the-job sort of things and comes with experience. As early-career developers, we get a lot of syntax thrown at us when we’re first learning, but in actuality, the
-    majority of our time is spent trying to fix broken code.
-
-
-
+  description: |-
+    We're usually never get an official lesson in debugging. No one tells us at bootcamp or in online tutorials what to do when our code doesn’t work. It’s one of those learn-it-on-the-job sort of things and comes with experience. As early-career developers, we get a lot of syntax thrown at us when we’re first learning, but in actuality, the majority of our time is spent trying to fix broken code.
 
     But why should we slog through it alone? Let’s explore some Ruby/Rails debugging techniques and tools together!
-
-
-    "
   speakers:
     - Mina Slater
 
@@ -244,7 +228,6 @@
     RubyConf 2019 - Ruby ate my DSL! by Daniel Azuma
 
     DSLs (Domain-Specific Languages) are fun to design, but it's easy to forget that they are still "Just Ruby." If users of your DSL can mix in Ruby code... any Ruby code... you can bet they will, and it's all too easy for that to go awry. In this session, you'll encounter examples of how seemingly innocuous Ruby code can make a DSL go disastrously wrong, and you’ll learn techniques you can use to harden your DSL against the cleverness of your users. If you’re writing, or even thinking of writing a DSL, this talk is for you.
-
 
   speakers:
     - Daniel Azuma
@@ -262,7 +245,6 @@
 
     Functional programming’s popularity is on the rise and support for FP is growing in Ruby. But can you really write functional code in Ruby? More importantly, why should you? Learn how Ruby enables functional programming concepts while maintaining highly readable and fun-to-write code.
 
-
   speakers:
     - Joe Leo
 
@@ -278,7 +260,6 @@
     RubyConf 2019 - mruby/c: Running on Less Than 64KB RAM Microcontroller by HASUMI Hitoshi
 
     I will show you an actual IoT product which uses one-chip-microcontroller-based hardwares for a Japanese Sake Brewery. Brewing Sake requires workers to take temperature of the ingredients very frequently. mruby/c is a small implementation of Ruby and runs on microcontroller which has less than 64KB RAM. You will see a new Ruby World.
-
 
   speakers:
     - HASUMI Hitoshi
@@ -296,7 +277,6 @@
 
     Ruby is a big language, used for lots of different things—so, where to start? This talk discusses the core subjects needed to learn enough Ruby to be productive, focusing both on features it has in common with other languages and the things that make it unique. For those interested in web development, we’ll also talk about the pros and cons of learning Ruby before Rails, as well as whether to learn Rails at all.
 
-
   speakers:
     - Michael Hartl
 
@@ -308,21 +288,12 @@
   published_at: "2019-12-03"
   video_provider: "youtube"
   video_id: "T6epHXlUmG0"
-  description:
-    "RubyConf 2019 - Ruby Next: make old Ruby quack like a new one by Vladimir Dementyev
-
-
+  description: |-
     Ruby 2.7 is just around the corner. It will bring a lot of new features, including new syntax additions: pattern matching, numbered parameters.
 
-
-    That's good news. The bad news is that not many of us will be able to use these goodies right away: the upgrade cost blocks application developers; gem authors have to support
-    older versions.
-
+    That's good news. The bad news is that not many of us will be able to use these goodies right away: the upgrade cost blocks application developers; gem authors have to support older versions.
 
     What if we were able to use Ruby Next features while running Ruby Current? Maybe, we can cast a metaprogramming spell for that? Yes, we can. And I'll show you how.
-
-
-    "
   speakers:
     - Vladimir Dementyev
 
