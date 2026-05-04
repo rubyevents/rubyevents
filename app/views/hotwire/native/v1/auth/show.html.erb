@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Signing in…</title>
+    <%= csrf_meta_tags %>
+    <style>
+      body { font-family: system-ui, sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
+      .box { text-align: center; padding: 1.5rem; }
+      button { font: inherit; padding: 0.6rem 1.2rem; border-radius: 0.5rem; border: 1px solid #999; background: #fafafa; cursor: pointer; }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <p>Redirecting to sign in…</p>
+      <% form_query = {redirect_to: @redirect_to, state: @state}.compact_blank.to_query %>
+      <% form_url = "/auth/#{@provider}#{"?#{form_query}" if form_query.present?}" %>
+      <%= form_with url: form_url, method: :post, local: true, id: "oauth-start-form", data: {turbo: false} do %>
+        <noscript><button type="submit">Continue</button></noscript>
+      <% end %>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("oauth-start-form").requestSubmit();
+      });
+    </script>
+  </body>
+</html>

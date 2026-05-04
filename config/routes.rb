@@ -340,6 +340,7 @@ Rails.application.routes.draw do
         get "home", to: "/page#home", defaults: {format: "json"}
         resource :refresh, only: :show, controller: "refresh"
         resource :oauth, only: :show, controller: "oauth"
+        resources :auth, only: :show, param: :provider, controller: "auth"
         namespace :android do
           resource :path_configuration, only: :show
         end
