@@ -1,9 +1,9 @@
 require "test_helper"
 
-class Hotwire::Native::V1::AuthControllerTest < ActionDispatch::IntegrationTest
+class Hotwire::Native::V1::StartControllerTest < ActionDispatch::IntegrationTest
   test "renders auto-submitting POST form for github with redirect_to and state in action URL" do
     with_forgery_protection do
-      get hotwire_native_v1_auth_url(provider: :github, redirect_to: "/talks", state: "abc|native:android")
+      get hotwire_native_v1_start_url(provider: :github, redirect_to: "/talks", state: "abc|native:android")
     end
     assert_response :success
     assert_select "form[method='post']" do |forms|
@@ -17,7 +17,7 @@ class Hotwire::Native::V1::AuthControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "omits empty redirect_to and state from action URL" do
-    get hotwire_native_v1_auth_url(provider: :github)
+    get hotwire_native_v1_start_url(provider: :github)
     assert_response :success
     assert_select "form[action='/auth/github']"
   end

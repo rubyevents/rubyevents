@@ -1,4 +1,4 @@
-class Hotwire::Native::V1::AuthController < ApplicationController
+class Hotwire::Native::V1::StartController < ApplicationController
   layout false
 
   skip_before_action :authenticate_user!
