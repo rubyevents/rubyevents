@@ -80,11 +80,9 @@ The CI performs these checks:
 - erblint
 - standardrb
 - standard (js)
-- prettier (yaml)
+- yerba (yaml)
 
 Before committing your code you can run `bin/lint` to detect and potentially autocorrect lint errors and validate schemas.
-
-To follow Tailwind CSS's recommended order of classes, you can use [Prettier](https://prettier.io/) along with the [prettier-plugin-tailwindcss](https://github.com/tailwindlabs/prettier-plugin-tailwindcss), both of which are included as devDependencies. This formatting is not yet enforced by the CI.
 
 ### Typesense (Optional)
 
