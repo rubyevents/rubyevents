@@ -58,6 +58,8 @@ module Static
         meetup: nil,
         luma: nil,
         youtube: nil,
+        coordinates: nil,
+        tickets_url: nil,
         banner_background: nil,
         featured_background: nil,
         featured_color: nil
@@ -102,6 +104,8 @@ module Static
         data["meetup"] = meetup if meetup.present?
         data["luma"] = luma if luma.present?
         data["youtube"] = youtube if youtube.present?
+        data["coordinates"] = coordinates if coordinates.present?
+        data["tickets_url"] = tickets_url if tickets_url.present?
         data["banner_background"] = banner_background if banner_background.present?
         data["featured_background"] = featured_background if featured_background.present?
         data["featured_color"] = featured_color if featured_color.present?

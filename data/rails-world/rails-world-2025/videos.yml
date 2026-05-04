@@ -226,9 +226,11 @@
   published_at: "2025-09-15"
   announced_at: "2025-05-20"
   language: "english"
-  track: "Track 1"
-  video_provider: "youtube"
-  video_id: "9r0xmX0oK5Y"
+  kind: "fireside_chat"
+
+- title: "Ruby Stability at Scale"
+  speakers:
+    - Peter Zhu
   description: |-
     There are many talks, articles, and tutorials on how to monitor your Rails app for stability. These assume the source of the bug comes from your application code, from Rails itself, or from a gem. But what if the source of instability comes from Ruby or a native gem? If Ruby crashes, do you have any monitoring or ways to debug it?
 
