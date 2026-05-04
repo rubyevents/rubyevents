@@ -90,7 +90,7 @@ module Static
         data["published_at"] = published_at if published_at.present?
         data["announced_on"] = announced_on if announced_on.present?
         data["year"] = year if year.present?
-        data["date_precision"] = date_precision if date_precision.present?
+        data["date_precision"] = date_precision if defined?(date_precision) && date_precision.present?
         data["frequency"] = frequency if frequency.present?
         data["location"] = location if location.present?
         data["venue"] = venue if venue.present?
@@ -303,7 +303,7 @@ module Static
       event.assign_attributes(
         name: title,
         date: attributes["date"] || published_at,
-        date_precision: date_precision || "day",
+        date_precision: defined?(date_precision) || "day",
         series: static_series.event_series_record,
         website: website,
         country_code: country&.alpha2,
