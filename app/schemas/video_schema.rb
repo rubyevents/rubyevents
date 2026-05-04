@@ -18,6 +18,7 @@ class VideoSchema < RubyLLM::Schema
       string :title, required: false
       string :raw_title, required: false
       string :description, required: false
+      string :kind, description: "Type of video (e.g., 'keynote', 'lightning')", required: false
       array :speakers, of: :string, required: false
       string :event_name, required: false
       string :date, required: false
