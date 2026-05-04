@@ -1,16 +1,16 @@
 <% case @step %>
 <% when :speakers_without_github %>
-  <%= render "contributions/speakers_without_github", locals: {speakers_without_github: @speakers_without_github} %>
+  <%= render "contributions/speakers_without_github", speakers_without_github: @speakers_without_github %>
 <% when :talks_without_slides %>
-  <%= render "contributions/talks_without_slides", locals: {talks_without_slides: @talks_without_slides} %>
+  <%= render "contributions/talks_without_slides", talks_without_slides: @talks_without_slides %>
 <% when :events_without_videos %>
-  <%= render "contributions/events_without_videos", locals: {events_without_videos: @events_without_videos} %>
+  <%= render "contributions/events_without_videos", events_without_videos: @events_without_videos %>
 <% when :events_without_location %>
-  <%= render "contributions/events_without_location", locals: {events_without_location: @events_without_location} %>
+  <%= render "contributions/events_without_location", events_without_location: @events_without_location %>
 <% when :events_without_dates %>
-  <%= render "contributions/events_without_dates", locals: {events_without_dates: @events_without_dates} %>
+  <%= render "contributions/events_without_dates", events_without_dates: @events_without_dates %>
 <% when :talks_dates_out_of_bounds %>
-  <%= render "contributions/talks_dates_out_of_bounds", locals: {out_of_bound_talks: @out_of_bound_talks, dates_by_event_name: @dates_by_event_name} %>
+  <%= render "contributions/talks_dates_out_of_bounds", out_of_bound_talks: @out_of_bound_talks, dates_by_event_name: @dates_by_event_name %>
 <% when :missing_videos_cue %>
-  <%= render "contributions/missing_videos_cue", locals: {missing_videos_cue: @missing_videos_cue, missing_videos_cue_count: @missing_videos_cue_count} %>
+  <%= render "contributions/missing_videos_cue", missing_videos_cue: @missing_videos_cue, missing_videos_cue_count: @missing_videos_cue_count %>
 <% end %>
