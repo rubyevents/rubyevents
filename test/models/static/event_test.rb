@@ -44,6 +44,17 @@ class Static::EventTest < ActiveSupport::TestCase
     assert event_record.sponsors.exists?
   end
 
+  test "import_sponsors! imports sponsor attributes" do
+    Static::EventSeries.find_by_slug("balkanruby").import_series!
+    event = Static::Event.find_by_slug("balkanruby-2025")
+    event_record = event.import_event!
+    event.import_sponsors!(event_record)
+    assert event_record.sponsors.exists?
+    avo = Organization.find_by(name: "Avo")
+    avo_sponsor = event_record.sponsors.find_by(organization: avo)
+    assert_equal "Party Sponsor", avo_sponsor.badge
+  end
+
   test "import_transcripts!" do
     Static::EventSeries.find_by_slug("helveticruby").import_series!
     event = Static::Event.find_by_slug(SLUG)

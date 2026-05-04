@@ -58,6 +58,8 @@ module Static
         meetup: nil,
         luma: nil,
         youtube: nil,
+        coordinates: nil,
+        tickets_url: nil,
         banner_background: nil,
         featured_background: nil,
         featured_color: nil
@@ -102,6 +104,8 @@ module Static
         data["meetup"] = meetup if meetup.present?
         data["luma"] = luma if luma.present?
         data["youtube"] = youtube if youtube.present?
+        data["coordinates"] = coordinates if coordinates.present?
+        data["tickets_url"] = tickets_url if tickets_url.present?
         data["banner_background"] = banner_background if banner_background.present?
         data["featured_background"] = featured_background if featured_background.present?
         data["featured_color"] = featured_color if featured_color.present?
@@ -413,9 +417,9 @@ module Static
 
             organisation_ids << organization.id
 
-            sponsor = event.sponsors.find_or_initialize_by(organization:, event:)
-            sponsor.assign_attributes(tier: tier["name"], badge: sponsor["badge"], level: tier["level"])
-            sponsor.save! if sponsor.changed? || sponsor.new_record?
+            sponsor_record = event.sponsors.find_or_initialize_by(organization:, event:)
+            sponsor_record.assign_attributes(tier: tier["name"], badge: sponsor["badge"], level: tier["level"])
+            sponsor_record.save! if sponsor_record.changed? || sponsor_record.new_record?
           end
         end
       end
