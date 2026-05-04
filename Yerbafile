@@ -12,6 +12,9 @@ rules:
           key_style: plain
           value_style: double
 
+      - blank_lines:
+          count: 0
+
       - delete:
           path: "date_precision"
           condition: '.date_precision == "day"'
@@ -170,6 +173,10 @@ rules:
       - quote_style:
           path: "[].talks[].description"
           value_style: literal
+
+      - blank_lines:
+          path: "[]"
+          count: 0
 
       - blank_lines:
           count: 1

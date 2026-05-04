@@ -1,10 +1,9 @@
----
 # TODO: talks running order
 # TODO: talk dates
 
 # Website: https://web.archive.org/web/20140422001806/http://www.bigrubyconf.com
 # Schedule: https://web.archive.org/web/20140422001806/http://www.bigrubyconf.com/#schedule
-
+---
 - id: "keavy-mcminn-big-ruby-2014"
   title: "Keynote"
   raw_title: "Big Ruby 2014 - Keynote by Keavy McMinn"
@@ -39,8 +38,6 @@
   video_provider: "youtube"
   video_id: "Pf_nXuHhods"
   description: |-
-    By Coraline Ada Ehmke
-
     Agile companies need timely and reliable access to data to make critical business decisions. In the enterprise world, this is accomplished with expensive and esoteric data warehousing solutions, while younger organizations make do with generic analytics platforms. In this talk I will introduce an agile approach to business intelligence that drives decision support, feeds data analysis, and delivers flexible reporting capabilities.
 
     We will explore the complete architecture of a lightweight BI system that is used in the real world to capture and analyze customer information, monitor user behaviour, feed machine-learning algorithms for decision support, and deliver real knowledge and value to business stakeholders.
@@ -57,8 +54,6 @@
   video_provider: "youtube"
   video_id: "fXyDTkDtQfs"
   description: |-
-    By Tanner Burson
-
     At Tapjoy we process over a million jobs an hour with Ruby. This talk is a discussion of tools, techniques, and interesting problems from the trenches of scaling up over the last two years. Expect to learn a lot about Ruby job queues (beyond Resque/Sidekiq), performance, concurrency and more.
   speakers:
     - Tanner Burson
@@ -86,16 +81,9 @@
   video_provider: "youtube"
   video_id: "6njTQdFLz6I"
   description: |-
-    Last year at this very conference John Duff spoke about how Shopify
-    scales while maintaing one of the longest lived and largest Rails deployments,
-    and how we affront the challenges that come with growth. Shopify in 2013 became
-    more than twice the size in every single aspect; requests per minute, GMV, merchants,
-    number of developers, etc. \n\nAfter CyberMonday 2012 it became clear that if
-    we wanted to survive CyberMonday 2013 we needed to spread the load across more
-    than a single huge database, and move to a model of smaller databases to enable
-    horizontal scalability. This is the story of how, in 2013, we more than doubled
-    the number number of databases that power Shopify, and all the challenges that
-    come along when sharding a living, breathing and money producing Ruby application.
+    Last year at this very conference John Duff spoke about how Shopify scales while maintaing one of the longest lived and largest Rails deployments, and how we affront the challenges that come with growth. Shopify in 2013 became more than twice the size in every single aspect; requests per minute, GMV, merchants, number of developers, etc.
+
+    After CyberMonday 2012 it became clear that if we wanted to survive CyberMonday 2013 we needed to spread the load across more than a single huge database, and move to a model of smaller databases to enable horizontal scalability. This is the story of how, in 2013, we more than doubled the number number of databases that power Shopify, and all the challenges that come along when sharding a living, breathing and money producing Ruby application.
   speakers:
     - Camilo Lopez
 
@@ -111,17 +99,15 @@
   description: |-
     If you get 10 minutes into this talk and decide you don't really like the topic, the topic will change! If you don't like the speaker, well ... there's no accounting for taste.
 
-    The Cobbler's Production Console Has No Shoes. Don't give all your great stuff to your end-users, build something nice for yourself as well. We'll look at a few of the things I've built for myself at LivingSocial
-    and hopefully will inspire you to do the same. \n\nDo-It-Yourself Mocks and Fixtures.
-    Big projects need some custom love. factory_girl, ActiveRecord fixtures and mocha
-    demo nice, but sometimes they wear out their welcome in a big code base. How hard
-    could it be to do yourself? Let's find out! It might be easier than you think.
-    \n\nTrack yer Big Stuff without screwing up production with Humperdink. With over
-    2500 translation keys in one app, we decided to build out some tooling to track
-    at runtime what was and wasn't being used so we could prune out the dead stuff.
-    \n\nALL THE ANALOGIES We've all tried to wield the construction analogy to help
-    figure out what the heck it is we do. Let's get creative and think of 10 other
-    ways that don't quite capture it either.\n\n\n\n
+    The Cobbler's Production Console Has No Shoes. Don't give all your great stuff to your end-users, build something nice for yourself as well. We'll look at a few of the things I've built for myself at LivingSocial and hopefully will inspire you to do the same.
+
+    Do-It-Yourself Mocks and Fixtures.
+
+    Big projects need some custom love. factory_girl, ActiveRecord fixtures and mocha demo nice, but sometimes they wear out their welcome in a big code base. How hard could it be to do yourself? Let's find out! It might be easier than you think.
+
+    Track yer Big Stuff without screwing up production with Humperdink. With over 2500 translation keys in one app, we decided to build out some tooling to track at runtime what was and wasn't being used so we could prune out the dead stuff.
+
+    ALL THE ANALOGIES We've all tried to wield the construction analogy to help figure out what the heck it is we do. Let's get creative and think of 10 other ways that don't quite capture it either.
   speakers:
     - Chris Morris
 
@@ -134,8 +120,6 @@
   video_provider: "youtube"
   video_id: "KiFTzsOdmcg"
   description: |-
-    By Ashe Dryden
-
     The state of diversity in open source contributions is abysmal. With the number of female OSS contributors at a shockingly low 1.5% and other groups not even documented, we need to ask what we can be doing better as a community. We'll discuss the barriers that people face contributing to our open source projects and what we can do to increase participation.
   speakers:
     - Ashe Dryden
@@ -189,8 +173,6 @@
   video_provider: "youtube"
   video_id: "MUl4loZC58Y"
   description: |-
-    By Mando Escamilla
-
     Once you've properly structured your Rails app, you'll begin to find logical seams in your domain logic. These seams can be the perfect opportunity to extract a software component into a stand-alone service.
 
     Using a live-in-production example, we'll walk through how we build and integrate services at Union Metrics. We'll go over some tips and patterns we've discovered as well as about some of the pitfalls and things to avoid when building and deploying stand-alone services.
@@ -299,8 +281,6 @@
   video_provider: "youtube"
   video_id: "-_3Us7Ystyg"
   description: |-
-    By Hector Castro
-
     Most Computer Science curriculums offer at least one course that focuses on databases. Most of the time, these courses promote relational database management systems (RDBMS) by emphasizing the relational model, relational algebra, data normalization, and Structured Query Language (SQL).
 
     Key/value data stores are increasing in popularity but our mental model for storing data is still primarily relational.
@@ -333,8 +313,6 @@
   video_provider: "youtube"
   video_id: "V5mPordkbD8"
   description: |-
-    By Adam Keys
-
     Working well with other developers: it's difficult and it's crucial. Many projects that fail do so due to social problems, not technical problems. The ability to communicate and work with lots of different kinds of developers and stakeholders can be a superpower almost as awesome as writing software.
 
     Sadly, there's no manual for developers to read about effective collaboration. But we can still try to better understand different kinds of developers and how to work with them. We can pick up some ideas for how to survive working in a team, or how to lead a team. We can learn how to get from our imperfect teams now to a better team in the future.
