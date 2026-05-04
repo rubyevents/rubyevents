@@ -70,6 +70,13 @@ rules:
           key_style: plain
           value_style: double
 
+      - sort_keys:
+          order:
+            - name
+            - link
+            - open_date
+            - close_date
+
   - files: "data/featured_cities.yml"
     pipeline:
       - quote_style:
