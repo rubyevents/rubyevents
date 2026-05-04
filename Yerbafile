@@ -114,6 +114,14 @@ rules:
           key_style: plain
           value_style: double
 
+      - blank_lines:
+          path: "[].tiers"
+          count: 1
+
+      - blank_lines:
+          path: "[].tiers[].sponsors"
+          count: 1
+
   - files: "data/**/venue.yml"
     pipeline:
       - directives:
@@ -131,6 +139,14 @@ rules:
       - quote_style:
           key_style: plain
           value_style: double
+
+      - blank_lines:
+          path: "days"
+          count: 1
+
+      - blank_lines:
+          path: "days[].grid"
+          count: 1
 
   - files: "data/**/series.yml"
     pipeline:
@@ -179,6 +195,11 @@ rules:
           count: 0
 
       - blank_lines:
+          path: ""
+          count: 1
+
+      - blank_lines:
+          path: "[].talks"
           count: 1
 
       - sort_keys:
