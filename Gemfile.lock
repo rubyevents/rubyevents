@@ -21,7 +21,7 @@ GIT
 
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 5b4cf30c08a2dd022ed8c56b2958aff7c81ca4b6
+  revision: fac8810bcdec7b796a471b56a6dcbaa6648e2984
   specs:
     actioncable (8.2.0.alpha)
       actionpack (= 8.2.0.alpha)
@@ -536,7 +536,7 @@ GEM
     openssl (4.0.1)
     ostruct (0.6.3)
     pagy (9.4.0)
-    parallel (1.27.0)
+    parallel (1.28.0)
     parser (3.3.11.1)
       ast (~> 2.4.1)
       racc
@@ -551,7 +551,7 @@ GEM
     prism (1.9.0)
     prop_initializer (0.3.0)
       zeitwerk (>= 2.6.18)
-    propshaft (1.3.1)
+    propshaft (1.3.2)
       actionpack (>= 7.0.0)
       activesupport (>= 7.0.0)
       rack
@@ -618,7 +618,7 @@ GEM
       actionview (>= 7.0)
       herb (>= 0.9.0, < 1.0.0)
     redcarpet (3.6.1)
-    regexp_parser (2.11.3)
+    regexp_parser (2.12.0)
     reline (0.6.3)
       io-console (~> 0.5)
     rexml (3.4.4)
@@ -689,13 +689,13 @@ GEM
       activejob (>= 7.2)
       activerecord (>= 7.2)
       railties (>= 7.2)
-    sqlite3 (2.9.2-aarch64-linux-gnu)
-    sqlite3 (2.9.2-aarch64-linux-musl)
-    sqlite3 (2.9.2-arm-linux-gnu)
-    sqlite3 (2.9.2-arm-linux-musl)
-    sqlite3 (2.9.2-arm64-darwin)
-    sqlite3 (2.9.2-x86_64-linux-gnu)
-    sqlite3 (2.9.2-x86_64-linux-musl)
+    sqlite3 (2.9.3-aarch64-linux-gnu)
+    sqlite3 (2.9.3-aarch64-linux-musl)
+    sqlite3 (2.9.3-arm-linux-gnu)
+    sqlite3 (2.9.3-arm-linux-musl)
+    sqlite3 (2.9.3-arm64-darwin)
+    sqlite3 (2.9.3-x86_64-linux-gnu)
+    sqlite3 (2.9.3-x86_64-linux-musl)
     sshkit (1.25.0)
       base64
       logger
@@ -779,13 +779,13 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    yerba (0.3.0)
-    yerba (0.3.0-aarch64-linux-gnu)
-    yerba (0.3.0-aarch64-linux-musl)
-    yerba (0.3.0-arm-linux-gnu)
-    yerba (0.3.0-arm64-darwin)
-    yerba (0.3.0-x86_64-linux-gnu)
-    yerba (0.3.0-x86_64-linux-musl)
+    yerba (0.4.0)
+    yerba (0.4.0-aarch64-linux-gnu)
+    yerba (0.4.0-aarch64-linux-musl)
+    yerba (0.4.0-arm-linux-gnu)
+    yerba (0.4.0-arm64-darwin)
+    yerba (0.4.0-x86_64-linux-gnu)
+    yerba (0.4.0-x86_64-linux-musl)
     yt (0.34.1)
       activesupport
     zeitwerk (2.7.5)
@@ -797,7 +797,7 @@ PLATFORMS
   arm-linux
   arm-linux-gnu
   arm-linux-musl
-  arm64-darwin-24
+  arm64-darwin
   x86_64-linux
   x86_64-linux-gnu
   x86_64-linux-musl
@@ -892,7 +892,7 @@ DEPENDENCIES
   vite_rails
   web-console
   webmock
-  yerba (~> 0.1)
+  yerba (~> 0.4.0)
   yt
 
 RUBY VERSION

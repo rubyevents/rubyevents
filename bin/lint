@@ -17,7 +17,7 @@ bundle exec erb_lint --lint-all --autocorrect
 
 # Check YAML file formatting
 echo "Checking YAML file formatting in data/ ..."
-yarn format:yml
+bundle exec yerba apply
 
 echo "Validating Schema of files in data/ ..."
 bin/rails validate:all
