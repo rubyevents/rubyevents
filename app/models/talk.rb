@@ -641,7 +641,7 @@ class Talk < ApplicationRecord
 
     self.slug = new_slug
 
-    save!
+    save! if changed? || new_record?
   end
 
   def static_metadata

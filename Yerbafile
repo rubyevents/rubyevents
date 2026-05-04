@@ -1,0 +1,82 @@
+rules:
+  - files: "data/**/event.yml"
+    pipeline:
+      - quote_style:
+          key_style: plain
+          value_style: double
+
+      - sort_keys:
+          order:
+            - id
+            - title
+            - aliases
+            - kind
+            - location
+            - description
+            - published_at
+            - announced_on
+            - start_date
+            - end_date
+            - date_precision
+            - channel_id
+            - playlist
+            - year
+            - frequency
+            - status
+            - last_edition
+            - hybrid
+            - website
+            - original_website
+            - tickets_url
+            - twitter
+            - mastodon
+            - youtube
+            - github
+            - luma
+            - meetup
+            - venue
+            - banner_background
+            - featured_background
+            - featured_color
+            - coordinates
+
+  - files: "data/**/videos.yml"
+    pipeline:
+      - quote_style:
+          key_style: plain
+          value_style: double
+
+      - sort_keys:
+          path: "[]"
+          order:
+            - id
+            - title
+            - raw_title
+            - original_title
+            - slug
+            - kind
+            - speakers
+            - event_name
+            - date
+            - time
+            - location
+            - published_at
+            - announced_at
+            - status
+            - description
+            - language
+            - track
+            - talks
+            - slides_url
+            - additional_resources
+            - alternative_recordings
+            - video_provider
+            - video_id
+            - external_player
+            - external_player_url
+            - thumbnail_xs
+            - thumbnail_sm
+            - thumbnail_md
+            - thumbnail_lg
+            - thumbnail_xl
+            - thumbnail_classes

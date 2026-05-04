@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Static
   class Event < FrozenRecord::Base
     include ActionView::Helpers::DateHelper
@@ -292,9 +294,9 @@ module Static
     end
 
     def import_event!
-      event = ::Event.find_or_create_by(slug: slug)
+      event = ::Event.find_or_initialize_by(slug: slug)
 
-      event.update!(
+      event.assign_attributes(
         name: title,
         date: attributes["date"] || published_at,
         date_precision: date_precision || "day",
@@ -309,16 +311,18 @@ module Static
       )
 
       if event.venue.exist?
-        event.update!(
+        event.assign_attributes(
           latitude: event.venue.latitude,
           longitude: event.venue.longitude
         )
       else
-        event.update!(
+        event.assign_attributes(
           latitude: coordinates.is_a?(Hash) ? coordinates.dig("latitude") : nil,
           longitude: coordinates.is_a?(Hash) ? coordinates.dig("longitude") : nil
         )
       end
+
+      event.save! if event.changed? || event.new_record?
 
       event.sync_aliases_from_list(aliases) if aliases.present?
 
@@ -339,13 +343,16 @@ module Static
       cfps = YAML.load_file(cfp_file_path)
 
       cfps.each do |cfp_data|
-        event.cfps.find_or_create_by(
+        cfp = event.cfps.find_or_initialize_by(
           link: cfp_data["link"],
           open_date: cfp_data["open_date"]
-        ).update(
+        )
+        cfp.assign_attributes(
           name: cfp_data["name"],
           close_date: cfp_data["close_date"]
         )
+
+        cfp.save! if cfp.changed? || cfp.new_record?
       end
     end
 
@@ -353,24 +360,13 @@ module Static
       return unless imported?
       return unless event.videos_file.exist?
 
-      event.videos_file.entries.each do |talk_data|
-        talk = ::Talk.find_or_initialize_by(static_id: talk_data["id"])
-        talk.update_from_yml_metadata!(event: event)
-        Search::Backend.index(talk) if index
-
-        child_talks = talk_data["talks"]
-
-        next unless child_talks
-
-        Array.wrap(child_talks).each do |child_talk_data|
-          child_talk = ::Talk.find_or_initialize_by(static_id: child_talk_data["id"])
-          child_talk.parent_talk = talk
-          child_talk.update_from_yml_metadata!(event: event)
-          Search::Backend.index(child_talk) if index
-        end
-      rescue ActiveRecord::RecordInvalid => e
-        puts "Couldn't save: #{talk_data["title"]} (#{talk_data["id"]}), error: #{e.message}"
+      Static::Video.where_event_slug(slug).each do |video|
+        video.import!(event: event, index: index)
       end
+    rescue ActiveRecord::RecordInvalid => e
+      puts "Couldn't save: #{talk_data["title"]} (#{talk_data["id"]}), error: #{e.message}"
+      error_location = ActiveSupport::BacktraceCleaner.new.clean_locations(e.backtrace_locations).first
+      puts "::error file=#{error_location&.path},line=#{error_location&.lineno}::#{e.record.class} (#{e.record&.to_param}) - #{e.detailed_message}"
     end
 
     def import_sponsors!(event)
@@ -383,7 +379,7 @@ module Static
       event.sponsors_file.file.each do |sponsors|
         sponsors["tiers"].each do |tier|
           tier["sponsors"].each do |sponsor|
-            s = nil
+            organization = nil
             domain = nil
 
             if sponsor["website"].present?
@@ -393,35 +389,41 @@ module Static
                 parsed = PublicSuffix.parse(host)
                 domain = parsed.domain
 
-                s = ::Organization.find_by(domain: domain) if domain.present?
+                organization = ::Organization.find_by(domain: domain) if domain.present?
               rescue PublicSuffix::Error, URI::InvalidURIError
                 # If parsing fails, continue with other matching methods
               end
             end
 
-            s ||= ::Organization.find_by_name_or_alias(sponsor["name"]) || ::Organization.find_by_slug_or_alias(sponsor["slug"]&.downcase)
-            s ||= ::Organization.find_or_initialize_by(name: sponsor["name"])
+            organization ||= ::Organization.find_by_name_or_alias(sponsor["name"]) || ::Organization.find_by_slug_or_alias(sponsor["slug"]&.downcase)
+            organization ||= ::Organization.find_or_initialize_by(name: sponsor["name"])
 
-            s.update(
+            organization.update(
               website: sponsor["website"],
               description: sponsor["description"],
               domain: domain
             )
 
-            s.add_logo_url(sponsor["logo_url"]) if sponsor["logo_url"].present?
-            s.logo_url = sponsor["logo_url"] if sponsor["logo_url"].present? && s.logo_url.blank?
+            organization.add_logo_url(sponsor["logo_url"]) if sponsor["logo_url"].present?
+            organization.logo_url = sponsor["logo_url"] if sponsor["logo_url"].present? && organization.logo_url.blank?
 
-            s = ::Organization.find_by_slug_or_alias(s.slug) || ::Organization.find_by_name_or_alias(s.name) unless s.persisted?
+            organization = ::Organization.find_by_slug_or_alias(organization.slug) || ::Organization.find_by_name_or_alias(organization.name) unless organization.persisted?
 
-            s.save!
+            organization.save! if organization.changed? || organization.new_record?
 
-            organisation_ids << s.id
+            organisation_ids << organization.id
 
-            event.sponsors.find_or_create_by!(organization: s, event: event).update!(tier: tier["name"], badge: sponsor["badge"], level: tier["level"])
+            sponsor_record = event.sponsors.find_or_initialize_by(organization:, event:)
+            sponsor_record.assign_attributes(tier: tier["name"], badge: sponsor["badge"], level: tier["level"])
+            sponsor_record.save! if sponsor_record.changed? || sponsor_record.new_record?
           end
         end
       end
       event.sponsors.where.not(organization_id: organisation_ids).destroy_all
+    rescue ActiveRecord::RecordInvalid => e
+      error_location = ActiveSupport::BacktraceCleaner.new.clean_locations(e.backtrace_locations).first
+      puts "::error file=#{error_location&.path},line=#{error_location&.lineno}::#{e.record.class} (#{e.record&.to_param}) - #{e.detailed_message}"
+      raise e
     end
 
     def import_involvements!(event)
@@ -531,7 +533,8 @@ module Static
         end
 
         transcript_record = talk.talk_transcript || ::Talk::Transcript.new(talk: talk)
-        transcript_record.update!(raw_transcript: transcript)
+        transcript_record.update_attributes(raw_transcript: transcript)
+        transcript_record.save! if transcript_record.changed? || transcript_record.new_record?
       end
     end
 
