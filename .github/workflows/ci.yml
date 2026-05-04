@@ -51,7 +51,7 @@ jobs:
         run: yarn lint
 
       - name: Lint YAML data files
-        run: yerba check
+        run: bundle exec yerba check
 
       - name: Validate YAML data schemas
         run: bin/rails validate:all
