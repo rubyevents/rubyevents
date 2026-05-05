@@ -15,6 +15,7 @@
 - id: "joel-quenneville-blue-ridge-ruby-2026"
   title: "State is the First Decision You Never Made"
   date: "2026-04-30"
+  slides_url: "https://speakerdeck.com/joelq/state-is-the-first-decision-you-never-made"
   video_provider: "scheduled"
   video_id: "joel-quenneville-blue-ridge-ruby-2026"
   description: |-
@@ -83,6 +84,31 @@
     Your LLM calls deserve the same observability as your database queries. This talk shows how to architect telemetry as a domain concern—not scattered logger calls—so you can review prompts, track costs, and debug production AI features like a proper Rails developer.
   speakers:
     - David Paluy
+
+- id: "lightning-talks-blue-ridge-ruby-2026"
+  title: "Lightning Talks" # TODO: add all lightning talks
+  kind: "lightning_talk"
+  date: "2026-05-01"
+  video_provider: "scheduled"
+  video_id: "lightning-talks-blue-ridge-ruby-2026"
+  talks:
+    - id: "ernesto-tagwerker-blue-ridge-ruby-2026"
+      title: "Lightning Talk: Teaching Claude Code to Upgrade Rails"
+      kind: "lightning_talk"
+      date: "2026-05-01"
+      slides_url: "https://speakerdeck.com/etagwerker/teaching-claude-code-to-upgrade-rails-at-blue-ridge-ruby-26"
+      video_provider: "scheduled"
+      video_id: "ernesto-tagwerker-blue-ridge-ruby-2026"
+      description: |-
+        What if Claude could just upgrade Rails for me?
+
+        Out of the box, Claude Code happily bumps the Rails version in your Gemfile, but it skips the practices that make upgrades safe: dual booting, gradual deployments, smaller upgrade branches, and fixing the test suite to work against both the current and target Rails versions.
+
+        This talk introduces an opinionated Claude Code skill that strong-arms Claude into doing Rails upgrades the right way: dual boot locally, in CI, and in production, from Rails 2.3 to Rails 8.1 and beyond. The result: experience + LLMs = speed (and fewer tokens).
+
+        Try the skill and report issues here: https://github.com/ombulabs/claude-code_rails-upgrade-skill
+      speakers:
+        - Ernesto Tagwerker
 
 - id: "christine-seeman-blue-ridge-ruby-2026"
   title: "Optimize Your Mindset (Without Overclocking)"
