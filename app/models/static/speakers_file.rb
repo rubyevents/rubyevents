@@ -43,23 +43,30 @@ module Static
       document.where(**criteria)
     end
 
-    def add(name:, slug: nil, github: "", **attributes)
+    def add(name:, github: "", slug: nil, **attributes)
       slug ||= name.parameterize
 
-      entry = {name: name, slug: slug, github: github}
+      entry = {name: name, github: github, slug: slug }
       entry.merge!(attributes.reject { |_, value| value.nil? || value.to_s.empty? })
 
       document << entry
+
       entry
     end
 
     def all_referenced_names
       @all_referenced_names ||= begin
-        video_speakers = Yerba::Collection.get(videos_glob, "[].speakers[]") || []
-        sub_talk_speakers = Yerba::Collection.get(videos_glob, "[].talks[].speakers[]") || []
+        selectors = [
+          "[].speakers[]",
+          "[].talks[].speakers[]",
+          "[].alternative_recordings[].speakers[]",
+          "[].talks[].alternative_recordings[].speakers[]",
+        ]
+
+        video_names = selectors.flat_map { |selector| Yerba::Collection.get(videos_glob, selector) || [] }
         involvement_users = Yerba::Collection.get(involvements_glob, "[].users[]") || []
 
-        Set.new(video_speakers + sub_talk_speakers + involvement_users)
+        Set.new(video_names + involvement_users)
       end
     end
 
@@ -68,36 +75,24 @@ module Static
     end
 
     def orphaned_speakers
-      referenced = all_referenced_names
-      all_values = document.get_value("")
-
-      all_values.filter_map do |entry|
-        next unless entry.is_a?(Hash)
-
-        entry_names = [entry["name"]].compact
-        Array(entry["aliases"]).each { |a| entry_names << a["name"] if a.is_a?(Hash) }
-
-        entry["name"] if entry_names.none? { |name| referenced.include?(name) }
-      end
+      orphaned_entries.map { |_index, name| name }
     end
 
     def remove_orphaned_speakers!
-      orphaned = orphaned_speakers
-      return [] if orphaned.empty?
+      entries = orphaned_entries
 
-      orphaned_indices = names.each_with_index.filter_map { |name, index| index if orphaned.include?(name) }
+      return [] if entries.empty?
 
-      orphaned_indices.reverse_each { |index| document.root.delete_at(index) }
+      entries.map(&:first).reverse_each { |index| document.root.delete_at(index) }
 
-      orphaned
+      entries.map(&:last)
     end
 
     def add_missing_speakers
       missing = missing_speakers
 
       entries = missing.map do |name|
-        slug = name.parameterize
-        {name: name, slug: slug, github: ""}
+        {name: name, github: "", slug: name.parameterize}
       end
 
       document.concat(entries) if entries.any?
@@ -130,6 +125,20 @@ module Static
 
     def involvements_glob
       Rails.root.join(INVOLVEMENTS_GLOB).to_s
+    end
+
+    def orphaned_entries
+      referenced = all_referenced_names
+      all_values = document.get_value("")
+
+      all_values.each_with_index.filter_map do |entry, index|
+        next unless entry.is_a?(Hash)
+
+        entry_names = [entry["name"]].compact
+        Array(entry["aliases"]).each { |a| entry_names << a["name"] if a.is_a?(Hash) }
+
+        [index, entry["name"]] if entry_names.none? { |name| referenced.include?(name) }
+      end
     end
   end
 end
