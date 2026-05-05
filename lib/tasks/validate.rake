@@ -642,6 +642,21 @@ namespace :validate do
     puts Gum.style("Validating unique speaker slugs and GitHub handles", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_unique_speaker_fields
 
+    puts Gum.style("Validating speakers.yml is in sync", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+    speakers = Static::SpeakersFile.new
+    missing = speakers.missing_speakers
+    orphaned = speakers.orphaned_speakers
+
+    if missing.empty? && orphaned.empty?
+      puts Gum.style("✓ speakers.yml is in sync", foreground: "2")
+      results << true
+    else
+      puts Gum.style("✗ speakers.yml is out of sync", foreground: "1") if missing.any? || orphaned.any?
+      puts Gum.style("  #{missing.length} missing, #{orphaned.length} orphaned", foreground: "1")
+      puts Gum.style("  Run: rails speakers_file:sync", foreground: "3")
+      results << false
+    end
+
     puts Gum.style("Validating unique video ids", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
 
     all_ids = []

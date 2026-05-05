@@ -106,4 +106,33 @@ namespace :speakers_file do
       puts "Saved speakers.yml"
     end
   end
+
+  desc "Check if speakers.yml is in sync (exits 1 if not)"
+  task check: :environment do
+    speakers = Static::SpeakersFile.new
+    missing = speakers.missing_speakers
+    orphaned = speakers.orphaned_speakers
+    in_sync = missing.empty? && orphaned.empty?
+
+    if in_sync
+      puts "✓ speakers.yml is in sync"
+    else
+      if missing.any?
+        puts "✗ #{missing.length} speakers referenced in videos but missing from speakers.yml:"
+        missing.first(10).each { |name| puts "    - #{name}" }
+        puts "    ... and #{missing.length - 10} more" if missing.length > 10
+        puts
+      end
+
+      if orphaned.any?
+        puts "✗ #{orphaned.length} orphaned speakers in speakers.yml (not referenced anywhere):"
+        orphaned.sort.first(10).each { |name| puts "    - #{name}" }
+        puts "    ... and #{orphaned.length - 10} more" if orphaned.length > 10
+        puts
+      end
+
+      puts "Run `rails speakers_file:sync` to fix and review the output."
+      exit 1
+    end
+  end
 end

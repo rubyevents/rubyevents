@@ -46,7 +46,7 @@ module Static
     def add(name:, github: "", slug: nil, **attributes)
       slug ||= name.parameterize
 
-      entry = {name: name, github: github, slug: slug }
+      entry = {name: name, github: github, slug: slug}
       entry.merge!(attributes.reject { |_, value| value.nil? || value.to_s.empty? })
 
       document << entry
@@ -60,7 +60,7 @@ module Static
           "[].speakers[]",
           "[].talks[].speakers[]",
           "[].alternative_recordings[].speakers[]",
-          "[].talks[].alternative_recordings[].speakers[]",
+          "[].talks[].alternative_recordings[].speakers[]"
         ]
 
         video_names = selectors.flat_map { |selector| Yerba::Collection.get(videos_glob, selector) || [] }
