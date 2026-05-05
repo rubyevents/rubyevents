@@ -1,10 +1,10 @@
+---
 # TODO: Add talks and videos
 # TODO: Add videos - docs/ADDING_VIDEOS.md
 # TODO: Order when Schedule comes out
 #
 # Website: https://balkanruby.com
 # Videos: -
----
 - id: "onur-ozer-balkanruby-2026"
   title: "Your tech stack doesn't matter"
   date: "2026-05-15"
@@ -20,18 +20,6 @@
       type: "article"
       url: "https://onurozer.me/rails-is-good-enough/"
 
-- id: "vladimir-dementyev-balkanruby-2026"
-  title: "Drop your app/services!"
-  kind: "talk"
-  date: "2026-05-15"
-  language: "en"
-  video_provider: "scheduled"
-  video_id: "vladimir-dementyev-balkanruby-2026"
-  description: |-
-    Remove your app/services folder! Let your models model.
-  speakers:
-    - Vladimir Dementyev
-
 - id: "jean-boussier-balkanruby-2026"
   title: "Multiprocessing is the most efficient way to serve Rails apps"
   kind: "talk"
@@ -46,56 +34,29 @@
   speakers:
     - Jean Boussier
 
-- id: "stephen-margheim-balkanruby-2026"
-  title: "Plain and .css can be beautiful"
+- id: "fernando-martinez-balkanruby-2026"
+  title: "Ruby off Rails"
   kind: "talk"
   date: "2026-05-15"
   language: "en"
   video_provider: "scheduled"
-  video_id: "stephen-margheim-balkanruby-2026"
-  description: ""
-  speakers:
-    - Stephen Margheim
-
-- id: "hans-schnedlitz-balkanruby-2026"
-  title: "Gems Are Overrated: or How I Learned to Stop Worrying and Love Copy-Pasting"
-  kind: "talk"
-  date: "2026-05-15"
-  language: "en"
-  video_provider: "scheduled"
-  video_id: "hans-schnedlitz-balkanruby-2026"
+  video_id: "fernando-martinez-balkanruby-2026"
   description: |-
-    When I started working with Ruby, I embraced its rich ecosystem. My Gemfile for any new project immediately grew longer than Gandalf's beard. Unfortunately, using Gems comes with downsides. On the practical side, pulling in third-party libraries exposes your app to supply-chain attacks that are increasingly common. However, what's even worse is that most Gems are pure bloatware. They add thousands of lines of code you'll never need, and churn constantly.
-
-    The alternative, obviously, is to build everything from scratch. In this talk, we'll look at some examples of how some well-known gems can be boiled down to a single file that you can copy-paste to any new project. We'll also look at the limits of this approach, and when you actually should reach for that Gem.
+    Rails was key in Ruby's rise to fame, but there's much more you can do with it, so much it does not fit in a talk, but let's see an example building a ruby cli utility with the tools we don't use every day.
   speakers:
-    - Hans Schnedlitz
+    - Fernando Martínez
 
-- id: "bernard-banta-balkanruby-2026"
-  title: "Sanarei: Offline Web Browsing with Ruby"
+- id: "giovanni-panasiti-balkanruby-2026"
+  title: "Rails Engines Are the Best-Kept Secret (And You're Using Them Wrong)"
   kind: "talk"
   date: "2026-05-15"
   language: "en"
   video_provider: "scheduled"
-  video_id: "bernard-banta-balkanruby-2026"
+  video_id: "giovanni-panasiti-balkanruby-2026"
   description: |-
-    This talk introduces Sanarei, a Ruby middleware that leverages USSD to enable offline-friendly web experiences on basic mobile phones. Attendees will learn how to build web applications that function without internet access and how to extend digital services to billions of underserved users worldwide. Discover how Ruby can help drive meaningful financial and digital inclusion.
+    Rails engines are the most powerful architectural tool Rails gives you. After 5+ years building engines in production (including the 440+ star Active Storage Dashboard), I've learned that engines aren't just "gems with views." They're the missing piece between "monolith that's getting painful" and "let's rewrite everything as microservices." In this talk, I want to share the patterns that work, the mistakes that will ruin your week, and my zero-dependency philosophy that keeps engines maintainable for years. I'll also introduce ActiveCanvas a new open-source Rails engine that is a CMS/builder where marketing views can be dynamically changed by the marketing team without requiring too much html knowledge and without redeploy every time. Hot take: You don't need microservices. You don't need a team of ten. You need engines.
   speakers:
-    - Bernard Banta
-
-- id: "tsvetelina-borisova-balkanruby-2026"
-  title: "Why We Talk About Tools and Not About Humans in Tech"
-  kind: "talk"
-  date: "2026-05-15"
-  language: "en"
-  video_provider: "scheduled"
-  video_id: "tsvetelina-borisova-balkanruby-2026"
-  description: |-
-    The tech industry excels at talking about tools.
-
-    We analyze frameworks, architectures, performance, and scalability in great detail. But when it comes to the human side of our work — power, emotional responsibility, communication, and impact — the conversation often becomes vague or uncomfortable.
-  speakers:
-    - Tsvetelina Borisova
+    - Giovanni Panasiti
 
 - id: "roman-samoilov-balkanruby-2026"
   title: "Rage Under the Hood: Breaking Rack and Embracing Fibers"
@@ -120,10 +81,63 @@
   speakers:
     - Roman Samoilov
 
+- id: "hans-schnedlitz-balkanruby-2026"
+  title: "Gems Are Overrated: or How I Learned to Stop Worrying and Love Copy-Pasting"
+  kind: "talk"
+  date: "2026-05-15"
+  language: "en"
+  video_provider: "scheduled"
+  video_id: "hans-schnedlitz-balkanruby-2026"
+  description: |-
+    When I started working with Ruby, I embraced its rich ecosystem. My Gemfile for any new project immediately grew longer than Gandalf's beard. Unfortunately, using Gems comes with downsides. On the practical side, pulling in third-party libraries exposes your app to supply-chain attacks that are increasingly common. However, what's even worse is that most Gems are pure bloatware. They add thousands of lines of code you'll never need, and churn constantly.
+
+    The alternative, obviously, is to build everything from scratch. In this talk, we'll look at some examples of how some well-known gems can be boiled down to a single file that you can copy-paste to any new project. We'll also look at the limits of this approach, and when you actually should reach for that Gem.
+  speakers:
+    - Hans Schnedlitz
+
+- id: "stephen-margheim-balkanruby-2026"
+  title: "Plain <html> and .css can be beautiful"
+  kind: "talk"
+  date: "2026-05-16"
+  language: "en"
+  video_provider: "scheduled"
+  video_id: "stephen-margheim-balkanruby-2026"
+  description: ""
+  speakers:
+    - Stephen Margheim
+
+- id: "bernard-banta-balkanruby-2026"
+  title: "Sanarei: Offline Web Browsing with Ruby"
+  kind: "talk"
+  date: "2026-05-16"
+  language: "en"
+  video_provider: "scheduled"
+  video_id: "bernard-banta-balkanruby-2026"
+  description: |-
+    This talk introduces Sanarei, a Ruby middleware that leverages USSD to enable offline-friendly web experiences on basic mobile phones. Attendees will learn how to build web applications that function without internet access and how to extend digital services to billions of underserved users worldwide. Discover how Ruby can help drive meaningful financial and digital inclusion.
+  speakers:
+    - Bernard Banta
+
+- id: "wojtek-wrona-balkanruby-2026"
+  title: "From PostgreSQL to SQLite in Rails: Our Migration Journey, Challenges, and Lasting Trade-Offs"
+  kind: "talk"
+  date: "2026-05-16"
+  language: "en"
+  video_provider: "scheduled"
+  video_id: "wojtek-wrona-balkanruby-2026"
+  description: |-
+    SQLite's rise in production use - boosted by recent Rails improvements - has caught many developers' attention. But beyond the buzz, what does it take to migrate a Rails app from PostgreSQL, and what trade-offs come with it?
+
+    In this talk, I'll share our real-world migration story: the incremental process we followed, the challenges we faced, and the ongoing post-migration quirks you'll need to accept.
+
+    Whether you're drawn to the promise of a simpler, more cost-effective setup or are cautious about potential compromises, you'll leave with clear, practical insights.
+  speakers:
+    - Wojtek Wrona
+
 - id: "galia-kraicheva-balkanruby-2026"
   title: "Stop Tuning Hyperparameters. Start Looking at Your Data."
   kind: "talk"
-  date: "2026-05-15"
+  date: "2026-05-16"
   language: "en"
   video_provider: "scheduled"
   video_id: "galia-kraicheva-balkanruby-2026"
@@ -140,42 +154,26 @@
   speakers:
     - Galia Kraicheva
 
-- id: "giovanni-panasiti-balkanruby-2026"
-  title: "Rails Engines Are the Best-Kept Secret (And You're Using Them Wrong)"
+- id: "sava-lachezarov-balkanruby-2026"
+  title: "Let functional programming not disruby you"
   kind: "talk"
-  date: "2026-05-15"
+  date: "2026-05-16"
   language: "en"
   video_provider: "scheduled"
-  video_id: "giovanni-panasiti-balkanruby-2026"
+  video_id: "sava-lachezarov-balkanruby-2026"
   description: |-
-    Rails engines are the most powerful architectural tool Rails gives you. After 5+ years building engines in production (including the 440+ star Active Storage Dashboard), I've learned that engines aren't just "gems with views." They're the missing piece between "monolith that's getting painful" and "let's rewrite everything as microservices." In this talk, I want to share the patterns that work, the mistakes that will ruin your week, and my zero-dependency philosophy that keeps engines maintainable for years. I'll also introduce ActiveCanvas a new open-source Rails engine that is a CMS/builder where marketing views can be dynamically changed by the marketing team without requiring too much html knowledge and without redeploy every time. Hot take: You don't need microservices. You don't need a team of ten. You need engines.
+    Object-oriented programming is inspired by biology, while functional programming is based on lambda calculus. Ruby is a multi-paradigm language and I strongly believe that its better parts are functional. I'll guide you on a short historical excursion to help you understand the roots of modern computing. Through practical examples you will discover how elegant the functional dialects of Ruby can be.
   speakers:
-    - Giovanni Panasiti
+    - Sava Lachezarov
 
-- id: "fernando-martinez-balkanruby-2026"
-  title: "Ruby off Rails"
+- id: "vladimir-dementyev-balkanruby-2026"
+  title: "Drop your app/services!"
   kind: "talk"
-  date: "2026-05-15"
+  date: "2026-05-16"
   language: "en"
   video_provider: "scheduled"
-  video_id: "fernando-martinez-balkanruby-2026"
+  video_id: "vladimir-dementyev-balkanruby-2026"
   description: |-
-    Rails was key in Ruby's rise to fame, but there's much more you can do with it, so much it does not fit in a talk, but let's see an example building a ruby cli utility with the tools we don't use every day.
+    Remove your app/services folder! Let your models model.
   speakers:
-    - Fernando Martínez
-
-- id: "wojtek-wrona-balkanruby-2026"
-  title: "From PostgreSQL to SQLite in Rails: Our Migration Journey, Challenges, and Lasting Trade-Offs"
-  kind: "talk"
-  date: "2026-05-15"
-  language: "en"
-  video_provider: "scheduled"
-  video_id: "wojtek-wrona-balkanruby-2026"
-  description: |-
-    SQLite's rise in production use - boosted by recent Rails improvements - has caught many developers' attention. But beyond the buzz, what does it take to migrate a Rails app from PostgreSQL, and what trade-offs come with it?
-
-    In this talk, I'll share our real-world migration story: the incremental process we followed, the challenges we faced, and the ongoing post-migration quirks you'll need to accept.
-
-    Whether you're drawn to the promise of a simpler, more cost-effective setup or are cautious about potential compromises, you'll leave with clear, practical insights.
-  speakers:
-    - Wojtek Wrona
+    - Vladimir Dementyev
