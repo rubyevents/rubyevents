@@ -284,10 +284,9 @@ rules:
           value_style: double
 
       - sort_keys:
-          path: ""
+          path: "[]"
           order:
             - name
-            - slug
             - github
             - twitter
             - mastodon
@@ -295,7 +294,14 @@ rules:
             - linkedin
             - website
             - speakerdeck
+            - slug
             - aliases
+
+      - sort_keys:
+          path: "[].aliases[]"
+          order:
+            - name
+            - slug
 
       - sort:
           by: name
