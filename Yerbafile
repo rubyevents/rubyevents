@@ -1,50 +1,206 @@
 rules:
   - files: "data/**/event.yml"
     pipeline:
+      - directives:
+          ensure: true
+
+      - quote_style:
+          path: "description"
+          value_style: literal
+
       - quote_style:
           key_style: plain
           value_style: double
+
+      - blank_lines:
+          count: 0
+
+      - delete:
+          path: "date_precision"
+          condition: '.date_precision == "day"'
 
       - sort_keys:
           order:
             - id
             - title
-            - aliases
-            - kind
             - location
+            - kind
+            - frequency
             - description
             - published_at
             - announced_on
             - start_date
             - end_date
+            - year
             - date_precision
             - channel_id
             - playlist
-            - year
-            - frequency
             - status
             - last_edition
             - hybrid
             - website
             - original_website
             - tickets_url
+            - meetup
             - twitter
             - mastodon
             - youtube
             - github
             - luma
-            - meetup
             - venue
             - banner_background
             - featured_background
             - featured_color
             - coordinates
+            - aliases
 
-  - files: "data/**/videos.yml"
+  - files: "data/**/involvements.yml"
     pipeline:
+      - directives:
+          ensure: true
+
       - quote_style:
           key_style: plain
           value_style: double
+
+      - quote_style:
+          path: "[].users"
+          value_style: plain
+
+      - quote_style:
+          path: "[].organisations"
+          value_style: plain
+
+  - files: "data/topics.yml"
+    pipeline:
+      - directives:
+          ensure: true
+
+      - quote_style:
+          key_style: plain
+          value_style: double
+
+  - files: "data/**/cfp.yml"
+    pipeline:
+      - directives:
+          ensure: true
+
+      - quote_style:
+          key_style: plain
+          value_style: double
+
+      - sort_keys:
+          order:
+            - name
+            - link
+            - open_date
+            - close_date
+
+  - files: "data/featured_cities.yml"
+    pipeline:
+      - directives:
+          ensure: true
+
+      - quote_style:
+          key_style: plain
+          value_style: double
+
+  - files: "data/**/sponsors.yml"
+    pipeline:
+      - directives:
+          ensure: true
+
+      - quote_style:
+          key_style: plain
+          value_style: double
+
+      - blank_lines:
+          path: "[].tiers"
+          count: 1
+
+      - blank_lines:
+          path: "[].tiers[].sponsors"
+          count: 1
+
+  - files: "data/**/venue.yml"
+    pipeline:
+      - directives:
+          ensure: true
+
+      - quote_style:
+          key_style: plain
+          value_style: double
+
+  - files: "data/**/schedule.yml"
+    pipeline:
+      - directives:
+          ensure: true
+
+      - quote_style:
+          key_style: plain
+          value_style: double
+
+      - blank_lines:
+          path: "days"
+          count: 1
+
+      - blank_lines:
+          path: "days[].grid"
+          count: 1
+
+  - files: "data/**/series.yml"
+    pipeline:
+      - directives:
+          ensure: true
+
+      - quote_style:
+          key_style: plain
+          value_style: double
+
+      - quote_style:
+          path: "aliases[]"
+          value_style: plain
+
+  - files: "data/**/videos.yml"
+    pipeline:
+      - directives:
+          ensure: true
+
+      - quote_style:
+          path: "[].speakers"
+          value_style: plain
+
+      - quote_style:
+          path: "[].talks[].speakers"
+          value_style: plain
+
+      - quote_style:
+          path: "[].alternative_recordings[].speakers"
+          value_style: plain
+
+      - quote_style:
+          path: "[].talks[].alternative_recordings[].speakers"
+          value_style: plain
+
+      - quote_style:
+          path: "[].description"
+          value_style: literal
+
+      - quote_style:
+          path: "[].talks[].description"
+          value_style: literal
+
+      - blank_lines:
+          path: "[]"
+          count: 0
+
+      - blank_lines:
+          path: ""
+          count: 1
+
+      - blank_lines:
+          path: "[].talks"
+          count: 1
 
       - sort_keys:
           path: "[]"
@@ -54,22 +210,17 @@ rules:
             - raw_title
             - original_title
             - slug
+            - location
             - kind
-            - speakers
             - event_name
             - date
             - time
-            - location
             - published_at
             - announced_at
             - status
-            - description
             - language
             - track
-            - talks
             - slides_url
-            - additional_resources
-            - alternative_recordings
             - video_provider
             - video_id
             - external_player
@@ -80,3 +231,71 @@ rules:
             - thumbnail_lg
             - thumbnail_xl
             - thumbnail_classes
+            - description
+            - speakers
+            - talks
+            - additional_resources
+            - alternative_recordings
+
+      - sort_keys:
+          path: "[].talks[]"
+          order:
+            - id
+            - title
+            - raw_title
+            - original_title
+            - slug
+            - location
+            - kind
+            - event_name
+            - date
+            - time
+            - start_cue
+            - end_cue
+            - thumbnail_cue
+            - published_at
+            - announced_at
+            - status
+            - language
+            - track
+            - slides_url
+            - video_provider
+            - video_id
+            - external_player
+            - external_player_url
+            - thumbnail_xs
+            - thumbnail_sm
+            - thumbnail_md
+            - thumbnail_lg
+            - thumbnail_xl
+            - thumbnail_classes
+            - description
+            - speakers
+            - additional_resources
+            - alternative_recordings
+
+  - files: "data/speakers.yml"
+    pipeline:
+      - directives:
+          ensure: true
+
+      - quote_style:
+          key_style: plain
+          value_style: double
+
+      - sort_keys:
+          path: ""
+          order:
+            - name
+            - slug
+            - github
+            - twitter
+            - mastodon
+            - bluesky
+            - linkedin
+            - website
+            - speakerdeck
+            - aliases
+
+      - sort:
+          by: name

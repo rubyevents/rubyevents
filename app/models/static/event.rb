@@ -58,6 +58,8 @@ module Static
         meetup: nil,
         luma: nil,
         youtube: nil,
+        coordinates: nil,
+        tickets_url: nil,
         banner_background: nil,
         featured_background: nil,
         featured_color: nil
@@ -88,7 +90,7 @@ module Static
         data["published_at"] = published_at if published_at.present?
         data["announced_on"] = announced_on if announced_on.present?
         data["year"] = year if year.present?
-        data["date_precision"] = date_precision if date_precision.present?
+        data["date_precision"] = date_precision if defined?(date_precision) && date_precision.present?
         data["frequency"] = frequency if frequency.present?
         data["location"] = location if location.present?
         data["venue"] = venue if venue.present?
@@ -102,6 +104,8 @@ module Static
         data["meetup"] = meetup if meetup.present?
         data["luma"] = luma if luma.present?
         data["youtube"] = youtube if youtube.present?
+        data["coordinates"] = coordinates if coordinates.present?
+        data["tickets_url"] = tickets_url if tickets_url.present?
         data["banner_background"] = banner_background if banner_background.present?
         data["featured_background"] = featured_background if featured_background.present?
         data["featured_color"] = featured_color if featured_color.present?
@@ -299,7 +303,7 @@ module Static
       event.assign_attributes(
         name: title,
         date: attributes["date"] || published_at,
-        date_precision: date_precision || "day",
+        date_precision: defined?(date_precision) || "day",
         series: static_series.event_series_record,
         website: website,
         country_code: country&.alpha2,

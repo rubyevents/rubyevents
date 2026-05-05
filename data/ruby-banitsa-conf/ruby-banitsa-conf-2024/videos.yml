@@ -11,21 +11,21 @@
   title: "Rails: The Missing Parts"
   raw_title: "Rails: The Missing Parts by Radoslav Stankov"
   event_name: "Ruby Banitsa Conf 2024"
-  speakers:
-    - "Radoslav Stankov"
-  video_id: "c14M6QeFVgY"
+  date: "2024-12-07"
+  published_at: "2024-12-15"
   video_provider: "youtube"
+  video_id: "c14M6QeFVgY"
   thumbnail_xs: "https://pbs.twimg.com/media/GeLrKRZXMAAjxP6?format=jpg&name=small"
   thumbnail_sm: "https://pbs.twimg.com/media/GeLrKRZXMAAjxP6?format=jpg&name=small"
   thumbnail_md: "https://pbs.twimg.com/media/GeLrKRZXMAAjxP6?format=jpg"
   thumbnail_lg: "https://pbs.twimg.com/media/GeLrKRZXMAAjxP6?format=jpg"
   thumbnail_xl: "https://pbs.twimg.com/media/GeLrKRZXMAAjxP6?format=jpg&name=large"
-  date: "2024-12-07"
-  published_at: "2024-12-15"
   description: |-
     Radoslav Stankov was the CTO of Product Hunt. He is currently building Angry Building (https://angrybuilding.com/) as the single technical person on the team. This is his Rails stack.
 
     Learn about the flavor of Rails that Rado likes and uses.
+  speakers:
+    - Radoslav Stankov
 
 # Break
 
@@ -33,38 +33,38 @@
   title: "The Erlang VM"
   raw_title: "The Erlang VM by Nikola Jichev"
   event_name: "Ruby Banitsa Conf 2024"
-  speakers:
-    - "Nikola Jichev"
-  video_id: "nikola-jichev-the-erlang-vm-ruby-banitsa-2024"
+  date: "2024-12-07"
   video_provider: "scheduled"
+  video_id: "nikola-jichev-the-erlang-vm-ruby-banitsa-2024"
   thumbnail_xs: "https://pbs.twimg.com/media/GeL_CdcXAAA6Tsz?format=jpg&name=small"
   thumbnail_sm: "https://pbs.twimg.com/media/GeL_CdcXAAA6Tsz?format=jpg&name=small"
   thumbnail_md: "https://pbs.twimg.com/media/GeL_CdcXAAA6Tsz?format=jpg"
   thumbnail_lg: "https://pbs.twimg.com/media/GeL_CdcXAAA6Tsz?format=jpg"
   thumbnail_xl: "https://pbs.twimg.com/media/GeL_CdcXAAA6Tsz?format=jpg&name=large"
-  date: "2024-12-07"
   description: |-
     We’ll explore the Erlang Virtual Machine, a unique runtime designed for building highly concurrent and fault-tolerant systems. Built on the principles of the actor model, the Erlang VM handles processes and messaging in a way that has inspired scalable and resilient software for decades. Together, we’ll take a closer look at how it works and why its design continues to power some of the world's most demanding systems. Let’s dive in!
+  speakers:
+    - Nikola Jichev
 
 # Break
 
-- title: "Headless Components with Stimulus"
+- id: "ventislav-nikolov-headless-components-with-stimulus-ruby-banitsa-2024"
+  title: "Headless Components with Stimulus"
   raw_title: "Headless Components with Stimulus by Ventsislav Nikolov"
   event_name: "Ruby Banitsa Conf 2024"
-  speakers:
-    - "Ventsislav Nikolov"
-  id: "ventislav-nikolov-headless-components-with-stimulus-ruby-banitsa-2024"
-  video_id: "XM4SfSuzo6o"
-  video_provider: "youtube"
+  date: "2024-12-07"
   published_at: "2025-05-09"
+  video_provider: "youtube"
+  video_id: "XM4SfSuzo6o"
   thumbnail_xs: "https://pbs.twimg.com/media/GeMMeBzXgAAEWio?format=jpg&name=small"
   thumbnail_sm: "https://pbs.twimg.com/media/GeMMeBzXgAAEWio?format=jpg&name=small"
   thumbnail_md: "https://pbs.twimg.com/media/GeMMeBzXgAAEWio?format=jpg"
   thumbnail_lg: "https://pbs.twimg.com/media/GeMMeBzXgAAEWio?format=jpg"
   thumbnail_xl: "https://pbs.twimg.com/media/GeMMeBzXgAAEWio?format=jpg&name=large"
-  date: "2024-12-07"
   description: |-
     Ventsi will tell us what this means, it sure sound exciting. I can't wait to tail on those headless components.
+  speakers:
+    - Ventsislav Nikolov
 
 # Lunch Break
 
@@ -72,23 +72,23 @@
   title: "Express Your Ideas by Writing Your Own Gems"
   raw_title: "Express Your Ideas by Writing Your Own Gems by Kasper Timm Hansen"
   event_name: "Ruby Banitsa Conf 2024"
-  speakers:
-    - "Kasper Timm Hansen"
-  video_id: "_pI2muYwpM8"
+  date: "2024-12-07"
+  published_at: "2025-01-20"
   video_provider: "youtube"
+  video_id: "_pI2muYwpM8"
   thumbnail_xs: "https://pbs.twimg.com/media/GeMpS7LWsAAfR-6?format=jpg&name=small"
   thumbnail_sm: "https://pbs.twimg.com/media/GeMpS7LWsAAfR-6?format=jpg&name=small"
   thumbnail_md: "https://pbs.twimg.com/media/GeMpS7LWsAAfR-6?format=jpg"
   thumbnail_lg: "https://pbs.twimg.com/media/GeMpS7LWsAAfR-6?format=jpg"
   thumbnail_xl: "https://pbs.twimg.com/media/GeMpS7LWsAAfR-6?format=jpg&name=large"
-  date: "2024-12-07"
-  published_at: "2025-01-20"
   description: |-
     In this talk, we'll do a walkthrough of two gems of mine, ActiveRecord::AssociatedObject and Oaken.
 
     I'll go over why I wrote them and we'll break down the code too.
 
     The talk will you give you practical insight into what smaller gems look like, and hopefully inspire you to write your own!
+  speakers:
+    - Kasper Timm Hansen
   alternative_recordings:
     - title: "Express Your Ideas by Writing Your Own Gems"
       event_name: "Ruby Banitsa Conf 2024"
@@ -110,17 +110,15 @@
   title: "Weird Ruby"
   raw_title: "Weird Ruby by Bozhidar Batsov"
   event_name: "Ruby Banitsa Conf 2024"
-  speakers:
-    - "Bozhidar Batsov"
-  video_id: "u-wBrjK7340"
+  date: "2024-12-07"
+  published_at: "2024-12-16"
   video_provider: "youtube"
+  video_id: "u-wBrjK7340"
   thumbnail_xs: "https://pbs.twimg.com/media/GeNAE2KX0AAF3GJ?format=jpg&name=small"
   thumbnail_sm: "https://pbs.twimg.com/media/GeNAE2KX0AAF3GJ?format=jpg&name=small"
   thumbnail_md: "https://pbs.twimg.com/media/GeNAE2KX0AAF3GJ?format=jpg"
   thumbnail_lg: "https://pbs.twimg.com/media/GeNAE2KX0AAF3GJ?format=jpg"
   thumbnail_xl: "https://pbs.twimg.com/media/GeNAE2KX0AAF3GJ?format=jpg&name=large"
-  date: "2024-12-07"
-  published_at: "2024-12-16"
   description: |-
     Bozhidar is the author of RuboCop and the editor of the community Ruby
     style guide. He's involved in a myriad of open-source projects, mainly
@@ -128,5 +126,7 @@
     him as an Emacs zealot (and they would be right).
 
     This talk is very strange and unusual, unexpected, or not natural. It's a talk about Ruby!
+  speakers:
+    - Bozhidar Batsov
 
 # Give Thanks & Praises

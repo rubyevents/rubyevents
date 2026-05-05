@@ -24,14 +24,12 @@
 
     https://valenciarb.org/en/meetings/2024-12-11-relaunch
   talks:
-    - title: "Solid Queue Internals, Externals and all the things in between"
+    - id: "rosa-gutiérrez-valencia-rb-december-2024"
+      title: "Solid Queue Internals, Externals and all the things in between"
       event_name: "Valencia.rb December 2024"
       date: "2024-12-11"
-      speakers:
-        - Rosa Gutiérrez
-      id: "rosa-gutiérrez-valencia-rb-december-2024"
-      video_id: "rosa-gutiérrez-valencia-rb-december-2024"
       video_provider: "not_recorded"
+      video_id: "rosa-gutiérrez-valencia-rb-december-2024"
       thumbnail_xs: "https://cdn.bsky.app/img/feed_thumbnail/plain/did:plc:tin7f6teieaisxohxovzo3wv/bafkreihtcqgpiosbwugmm3ief2xwteb6iqipmvdtdw2zhrw4vzfqla43ou@jpeg"
       thumbnail_sm: "https://cdn.bsky.app/img/feed_thumbnail/plain/did:plc:tin7f6teieaisxohxovzo3wv/bafkreihtcqgpiosbwugmm3ief2xwteb6iqipmvdtdw2zhrw4vzfqla43ou@jpeg"
       thumbnail_md: "https://cdn.bsky.app/img/feed_thumbnail/plain/did:plc:tin7f6teieaisxohxovzo3wv/bafkreihtcqgpiosbwugmm3ief2xwteb6iqipmvdtdw2zhrw4vzfqla43ou@jpeg"
@@ -45,15 +43,15 @@
         After exploring existing alternatives, we decided to build our own and aim to make it the default for Rails 8.
 
         In this talk, I’ll present Solid Queue, explain some of the problems we had over the years, how we designed Solid Queue to address them, and all the Fun™ we had doing that.
+      speakers:
+        - Rosa Gutiérrez
 
-    - title: "Demystifying JIT Compilers with Ruby YJIT"
+    - id: "yauhen-karatkou-valencia-rb-december-2024"
+      title: "Demystifying JIT Compilers with Ruby YJIT"
       event_name: "Valencia.rb December 2024"
       date: "2024-12-11"
-      speakers:
-        - Yauhen Karatkou
-      id: "yauhen-karatkou-valencia-rb-december-2024"
-      video_id: "yauhen-karatkou-valencia-rb-december-2024"
       video_provider: "not_recorded"
+      video_id: "yauhen-karatkou-valencia-rb-december-2024"
       thumbnail_xs: "https://cdn.bsky.app/img/feed_thumbnail/plain/did:plc:tin7f6teieaisxohxovzo3wv/bafkreihzz3pbu3vx3ydrskxlg7nw6lr23to5lb2bfd2fmcyiaz2jodvy7u@jpeg"
       thumbnail_sm: "https://cdn.bsky.app/img/feed_thumbnail/plain/did:plc:tin7f6teieaisxohxovzo3wv/bafkreihzz3pbu3vx3ydrskxlg7nw6lr23to5lb2bfd2fmcyiaz2jodvy7u@jpeg"
       thumbnail_md: "https://cdn.bsky.app/img/feed_thumbnail/plain/did:plc:tin7f6teieaisxohxovzo3wv/bafkreihzz3pbu3vx3ydrskxlg7nw6lr23to5lb2bfd2fmcyiaz2jodvy7u@jpeg"
@@ -61,6 +59,8 @@
       thumbnail_xl: "https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:tin7f6teieaisxohxovzo3wv/bafkreihzz3pbu3vx3ydrskxlg7nw6lr23to5lb2bfd2fmcyiaz2jodvy7u@jpeg"
       description: |-
         In this talk, we will explore the wonderful world of Just-in-Time compilation, take a look at how Ruby JIT has evolved along with the language itself. And what impact the newest versions of Ruby can have on the performance of real applications
+      speakers:
+        - Yauhen Karatkou
 
 # 2025
 
@@ -85,14 +85,14 @@
 
     https://valenciarb.org/en/meetings/2025-02-05-fido-openssl-ruby/
   talks:
-    - title: "Fido, Ruby, and OpenSSL – When Payments Randomly Fail"
+    - id: "ignacio-huerta-valenciarb-february-2025"
+      title: "Fido, Ruby, and OpenSSL – When Payments Randomly Fail"
       event_name: "Valencia.rb February 2025"
       date: "2025-02-05"
       published_at: "2025-02-10"
-      speakers:
-        - Ignacio Huerta
-      id: "ignacio-huerta-valenciarb-february-2025"
-      video_id: "4HDfGcbF3aM"
       video_provider: "youtube"
+      video_id: "4HDfGcbF3aM"
       description: |-
         Ignacio Huerta will explain how a bug report became an unfathomable mystery. In this talk, we will live a debugging adventure with FIDO, Ruby and OpenSSL. Ignacio will share with everyone stories about encryption peculiarities, lessons learned “the hard way” and key insights about the use of Ruby applied to manage “in-car” payments for a major automotive company.
+      speakers:
+        - Ignacio Huerta

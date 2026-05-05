@@ -44,16 +44,15 @@
 
     https://www.meetup.com/parisrb/events/220872045
   talks:
-    - title: "Fix - Simple, stupid testing framework for Ruby"
+    - id: "cyril-kato-parisrb-meetup-march-2016"
+      title: "Fix - Simple, stupid testing framework for Ruby"
       raw_title: "Fix - Simple, stupid testing framework for Ruby by Cyril Kato"
-      speakers:
-        - Cyril Kato
       event_name: "Paris.rb Meetup March 2016"
-      language: "french"
       date: "2016-03-01"
       published_at: "2016-03-16"
+      language: "french"
+      slides_url: "https://speakerdeck.com/cyril/fix-simple-stupid-testing-framework-for-ruby"
       video_provider: "youtube"
-      id: "cyril-kato-parisrb-meetup-march-2016"
       video_id: "XV6tVZtKMfA"
       description: |-
         Talk in French.
@@ -72,7 +71,8 @@
 
         Find Cyril Kato at:
         https://github.com/cyril
-      slides_url: "https://speakerdeck.com/cyril/fix-simple-stupid-testing-framework-for-ruby"
+      speakers:
+        - Cyril Kato
       additional_resources:
         - name: "cyril/parisrb"
           type: "repo"
@@ -87,38 +87,38 @@
   video_id: "paris-rb-november-2021"
   description: ""
   talks:
-    - title: "Redis avec Heroku - Pourquoi et comment séparer son cache"
+    - id: "amelie-certin-parisrb-meetup-november-2021"
+      title: "Redis avec Heroku - Pourquoi et comment séparer son cache"
       raw_title: "Redis avec Heroku - Pourquoi et comment séparer son cache"
-      speakers:
-        - Amélie Certin
       event_name: "Paris.rb Meetup November 2021"
-      language: "french"
       date: "2021-11-02"
       published_at: "2022-06-07"
+      language: "french"
       video_provider: "youtube"
-      id: "amelie-certin-parisrb-meetup-november-2021"
       video_id: "lnfc61qjxME"
       description: |-
         Redis avec Heroku - Pourquoi et comment séparer son cache - Amélie Certin
 
         Paris.rb Novembre 2021
-
-    - title: "Comment on a amélioré le lien back-front en utilisant des fichiers openAPI"
-      raw_title: "Comment on a amélioré le lien back-front en utilisant des fichiers openAPI"
       speakers:
-        - Émilie Paillous
-        - Guillaume Terral
+        - Amélie Certin
+
+    - id: "emilie-paillous-parisrb-meetup-november-2021"
+      title: "Comment on a amélioré le lien back-front en utilisant des fichiers openAPI"
+      raw_title: "Comment on a amélioré le lien back-front en utilisant des fichiers openAPI"
       event_name: "Paris.rb Meetup November 2021"
-      language: "french"
       date: "2021-11-02"
       published_at: "2022-06-07"
+      language: "french"
       video_provider: "youtube"
-      id: "emilie-paillous-parisrb-meetup-november-2021"
       video_id: "2Vno981d2IU"
       description: |-
         Comment on a amélioré le lien back-front en utilisant des fichiers openAPI - Émilie Paillous et Guillaume Terral
 
         Paris.rb Novembre 2021
+      speakers:
+        - Émilie Paillous
+        - Guillaume Terral
 
 - id: "paris-rb-december-2021"
   title: "Paris.rb Meetup December 2021"
@@ -129,21 +129,21 @@
   video_id: "paris-rb-december-2021"
   description: ""
   talks:
-    - title: "Build a web app with Dry-System"
+    - id: "alexandre-lairan-parisrb-meetup-december-2021"
+      title: "Build a web app with Dry-System"
       raw_title: "Build a web app with Dry-System"
-      speakers:
-        - Alexandre Lairan
       event_name: "Paris.rb Meetup December 2021"
-      language: "french"
       date: "2021-12-07"
       published_at: "2022-06-07"
+      language: "french"
       video_provider: "youtube"
-      id: "alexandre-lairan-parisrb-meetup-december-2021"
       video_id: "74Wd_HueAJM"
       description: |-
         Alexandre Lairan
 
         Paris.rb Décembre 2021
+      speakers:
+        - Alexandre Lairan
 
 - id: "paris-rb-january-2022"
   title: "Paris.rb Meetup January 2022"
@@ -154,38 +154,38 @@
   video_id: "paris-rb-january-2022"
   description: ""
   talks:
-    - title: "Comment écrire son code sur un ticket de métro?"
+    - id: "sebastien-faure-parisrb-meetup-january-2022"
+      title: "Comment écrire son code sur un ticket de métro?"
       raw_title: "Comment écrire son code sur un ticket de métro?"
-      speakers:
-        - Sébastien Faure
-        - Julien Marseille
       event_name: "Paris.rb Meetup January 2022"
-      language: "french"
       date: "2022-01-04"
       published_at: "2022-06-07"
+      language: "french"
       video_provider: "youtube"
-      id: "sebastien-faure-parisrb-meetup-january-2022"
       video_id: "pWxNtCa2atw"
       description: |-
         Sébastien Faure & Julien Marseille
 
         Paris.rb Janvier 2022
-
-    - title: "React on Rails, le meilleur des deux mondes"
-      raw_title: "React on Rails, le meilleur des deux mondes"
       speakers:
-        - Pierre de Milly
+        - Sébastien Faure
+        - Julien Marseille
+
+    - id: "pierre-de-milly-parisrb-meetup-january-2022"
+      title: "React on Rails, le meilleur des deux mondes"
+      raw_title: "React on Rails, le meilleur des deux mondes"
       event_name: "Paris.rb Meetup January 2022"
-      language: "french"
       date: "2022-01-04"
       published_at: "2022-06-07"
+      language: "french"
       video_provider: "youtube"
-      id: "pierre-de-milly-parisrb-meetup-january-2022"
       video_id: "4aCYr7d-Fok"
       description: |-
         Pierre de Milly
 
         Paris.rb Janvier 2022
+      speakers:
+        - Pierre de Milly
 
 - id: "paris-rb-february-2022"
   title: "Paris.rb Meetup February 2022"
@@ -196,19 +196,19 @@
   video_id: "paris-rb-february-2022"
   description: ""
   talks:
-    - title: "Service Objects, la brique manquante de Rails"
+    - id: "service-objects-la-brique-manquante-de-rails-parisrb-meetup-february-2022"
+      title: "Service Objects, la brique manquante de Rails"
       raw_title: "Service Objects, la brique manquante de Rails"
       event_name: "Paris.rb Meetup February 2022"
-      language: "french"
       date: "2022-02-01"
       published_at: "2022-06-07"
+      language: "french"
       video_provider: "youtube"
-      speakers:
-        - TODO
-      id: "service-objects-la-brique-manquante-de-rails-parisrb-meetup-february-2022"
       video_id: "xVdDBpcvEYM"
       description: |-
         Paris.rb Février 2022
+      speakers:
+        - TODO
 
 - id: "paris-rb-march-2022"
   title: "Paris.rb Meetup March 2022"
@@ -219,21 +219,21 @@
   video_id: "paris-rb-march-2022"
   description: ""
   talks:
-    - title: "Better safe than sorry"
+    - id: "benjamin-combourieu-parisrb-meetup-march-2022"
+      title: "Better safe than sorry"
       raw_title: "Better safe than sorry"
-      speakers:
-        - Benjamin Combourieu
       event_name: "Paris.rb Meetup March 2022"
-      language: "french"
       date: "2022-03-01"
       published_at: "2022-06-07"
+      language: "french"
       video_provider: "youtube"
-      id: "benjamin-combourieu-parisrb-meetup-march-2022"
       video_id: "ioxG8mKR1zw"
       description: |-
         Benjamin Combourieu
 
         Paris.rb Mars 2022
+      speakers:
+        - Benjamin Combourieu
 
 - id: "paris-rb-may-2022"
   title: "Paris.rb Meetup May 2022"
@@ -244,40 +244,40 @@
   video_id: "paris-rb-may-2022"
   description: ""
   talks:
-    - title: "Implementing blackout period on Puma workers"
+    - id: "martin-chenu-parisrb-meetup-may-2022"
+      title: "Implementing blackout period on Puma workers"
       raw_title: "Implementing blackout period on Puma workers"
-      speakers:
-        - Martin Chenu
-        - Maxime Deveaux
       event_name: "Paris.rb Meetup May 2022"
-      language: "french"
       date: "2022-05-03"
       published_at: "2022-06-07"
+      language: "french"
       video_provider: "youtube"
-      id: "martin-chenu-parisrb-meetup-may-2022"
       video_id: "l9ie8M3RhdE"
       description: |-
         Martin Chenu & Maxime Deveaux
 
         Paris.rb Mai 2022
-
-    - title: "Lesson Learned from DB issues"
-      raw_title: "Lesson Learned from DB issues"
       speakers:
-        - Fabienne Bremond
-        - Juliette Audema
-        - Pauline Rousset
+        - Martin Chenu
+        - Maxime Deveaux
+
+    - id: "fabienne-bremond-parisrb-meetup-may-2022"
+      title: "Lesson Learned from DB issues"
+      raw_title: "Lesson Learned from DB issues"
       event_name: "Paris.rb Meetup May 2022"
-      language: "french"
       date: "2022-05-03"
       published_at: "2022-06-07"
+      language: "french"
       video_provider: "youtube"
-      id: "fabienne-bremond-parisrb-meetup-may-2022"
       video_id: "OS7lsnN6j8U"
       description: |-
         Fabienne Bremond, Juliette Audema, Pauline Rousset
 
         Paris.rb Mai 2022
+      speakers:
+        - Fabienne Bremond
+        - Juliette Audema
+        - Pauline Rousset
 
 - id: "paris-rb-june-2022"
   title: "Paris.rb Meetup June 2022"
@@ -288,52 +288,52 @@
   video_id: "paris-rb-june-2022"
   description: ""
   talks:
-    - title: "Commit comme un hipster avec Gitmoji !"
+    - id: "sylvain-pontoreau-parisrb-meetup-june-2022"
+      title: "Commit comme un hipster avec Gitmoji !"
       raw_title: "Commit comme un hipster avec Gitmoji !"
-      speakers:
-        - Sylvain Pontoreau
       event_name: "Paris.rb Meetup June 2022"
-      language: "french"
       date: "2022-06-07"
       published_at: "2022-06-08"
+      language: "french"
       video_provider: "youtube"
-      id: "sylvain-pontoreau-parisrb-meetup-june-2022"
       video_id: "1Lvr0Hr_ot0"
       description: |-
         Sylvain Pontoreau
         Paris.rb Juin 2022
-
-    - title: "Industrialiser une API"
-      raw_title: "Industrialiser une API"
       speakers:
-        - Anthony Gaidot
+        - Sylvain Pontoreau
+
+    - id: "anthony-gaidot-parisrb-meetup-june-2022"
+      title: "Industrialiser une API"
+      raw_title: "Industrialiser une API"
       event_name: "Paris.rb Meetup June 2022"
-      language: "french"
       date: "2022-06-07"
       published_at: "2022-06-08"
+      language: "french"
       video_provider: "youtube"
-      id: "anthony-gaidot-parisrb-meetup-june-2022"
       video_id: "sX8ELUVHV0U"
       description: |-
         Comment on a industrialisé le développement et le testing de notre API
         Anthony Gaidot
 
         Paris.rb Juin 2022
-
-    - title: "On a recruté un.e dev junior ! AMA"
-      raw_title: "On a recruté un.e dev junior ! AMA"
       speakers:
-        - Adrien Poly
+        - Anthony Gaidot
+
+    - id: "adrien-poly-parisrb-meetup-june-2022"
+      title: "On a recruté un.e dev junior ! AMA"
+      raw_title: "On a recruté un.e dev junior ! AMA"
       event_name: "Paris.rb Meetup June 2022"
-      language: "french"
       date: "2022-06-07"
       published_at: "2022-06-08"
+      language: "french"
       video_provider: "youtube"
-      id: "adrien-poly-parisrb-meetup-june-2022"
       video_id: "pAmY8GJvqK0"
       description: |-
         Par Adrien POLY
         Paris.rb Juin 2022
+      speakers:
+        - Adrien Poly
 
 - id: "paris-rb-september-2022"
   title: "Paris.rb Meetup September 2022"
@@ -344,39 +344,39 @@
   video_id: "paris-rb-september-2022"
   description: ""
   talks:
-    - title: "How music works, using Ruby [English]"
+    - id: "thijs-cadier-parisrb-meetup-september-2022"
+      title: "How music works, using Ruby [English]"
       raw_title: "How music works, using Ruby [English]"
-      speakers:
-        - Thijs Cadier
       event_name: "Paris.rb Meetup September 2022"
-      language: "english"
       date: "2022-09-06"
       published_at: "2022-10-17"
+      language: "english"
       video_provider: "youtube"
-      id: "thijs-cadier-parisrb-meetup-september-2022"
       video_id: "j5o9HbSaL8w"
       description: |-
         Thijs Cadier - Paris.rb Septembre 2022
 
         Merci à  @Squadracer qui a accueilli le meetup... sur une péniche !
         https://squadracer.com
+      speakers:
+        - Thijs Cadier
 
-    - title: "Rails : XSS protection"
+    - id: "rails-xss-protection-parisrb-meetup-september-2022"
+      title: "Rails : XSS protection"
       raw_title: "Rails : XSS protection"
       event_name: "Paris.rb Meetup September 2022"
-      language: "french"
       date: "2022-09-06"
       published_at: "2022-09-11"
+      language: "french"
       video_provider: "youtube"
-      speakers:
-        - TODO
-      id: "rails-xss-protection-parisrb-meetup-september-2022"
       video_id: "SFuGfTqSFvU"
       description: |-
         0xdbe - Paris.rb Septembre 2022
 
         Merci à @Squadracer  qui a accueilli le meetup... sur une péniche !
         https://squadracer.com
+      speakers:
+        - TODO
 
 - id: "paris-rb-october-2022"
   title: "Paris.rb Meetup October 2022"
@@ -387,22 +387,22 @@
   video_id: "paris-rb-october-2022"
   description: ""
   talks:
-    - title: "Produire du logiciel dans une coopérative ouvrière"
+    - id: "produire-du-logiciel-dans-une-cooperative-ouvriere-parisrb-meetup-october-2022"
+      title: "Produire du logiciel dans une coopérative ouvrière"
       raw_title: "Produire du logiciel dans une coopérative ouvrière"
       event_name: "Paris.rb Meetup October 2022"
-      language: "french"
       date: "2022-10-04"
       published_at: "2022-10-08"
+      language: "french"
       video_provider: "youtube"
-      speakers:
-        - TODO
-      id: "produire-du-logiciel-dans-une-cooperative-ouvriere-parisrb-meetup-october-2022"
       video_id: "lNbCLgJvuFA"
       description: |-
         Pourquoi Rails a été l'outil parfait pour concevoir Cyke
         Paris.rb octobre 2022
 
         Merci à Olvo d'avoir accueilli le metteup : https://www.olvo.fr
+      speakers:
+        - TODO
 
 - id: "paris-rb-november-2022"
   title: "Paris.rb Meetup November 2022"
@@ -413,16 +413,14 @@
   video_id: "paris-rb-november-2022"
   description: ""
   talks:
-    - title: "Sorbet in practice"
+    - id: "benjamin-roth-parisrb-meetup-november-2022"
+      title: "Sorbet in practice"
       raw_title: "Sorbet in practice"
-      speakers:
-        - Benjamin Roth
       event_name: "Paris.rb Meetup November 2022"
-      language: "french"
       date: "2022-11-01"
       published_at: "2022-11-26"
+      language: "french"
       video_provider: "youtube"
-      id: "benjamin-roth-parisrb-meetup-november-2022"
       video_id: "DRrIDPzirzE"
       description: |-
         Par Benjamin Roth
@@ -431,18 +429,17 @@
         Paris.rb novembre 2022
 
         Merci à Combo d'avoir accueilli le meeteup : https://combohr.com
-
-    - title: "Business Logic and data integrity"
-      raw_title: "Business Logic and data integrity"
       speakers:
-        - Stéphanie Chhim
-        - Benjamin Robert
+        - Benjamin Roth
+
+    - id: "stephanie-chhim-parisrb-meetup-november-2022"
+      title: "Business Logic and data integrity"
+      raw_title: "Business Logic and data integrity"
       event_name: "Paris.rb Meetup November 2022"
-      language: "french"
       date: "2022-11-01"
       published_at: "2022-11-26"
+      language: "french"
       video_provider: "youtube"
-      id: "stephanie-chhim-parisrb-meetup-november-2022"
       video_id: "JFPaJnahtH8"
       description: |-
         Par Stéphanie Chhim et Benjamin Robert
@@ -450,17 +447,18 @@
         Paris.rb novembre 2022
 
         Merci à Combo d'avoir accueilli le meeteup : https://combohr.com
-
-    - title: "Level up your Capybara acceptance tests using SitePrism"
-      raw_title: "Level up your Capybara acceptance tests using SitePrism"
       speakers:
-        - Dorian Lupu
+        - Stéphanie Chhim
+        - Benjamin Robert
+
+    - id: "dorian-lupu-parisrb-meetup-november-2022"
+      title: "Level up your Capybara acceptance tests using SitePrism"
+      raw_title: "Level up your Capybara acceptance tests using SitePrism"
       event_name: "Paris.rb Meetup November 2022"
-      language: "french"
       date: "2022-11-01"
       published_at: "2022-11-26"
+      language: "french"
       video_provider: "youtube"
-      id: "dorian-lupu-parisrb-meetup-november-2022"
       video_id: "Yf09FVj_hG4"
       description: |-
         Par Dorian Lupu
@@ -469,17 +467,17 @@
         Paris.rb novembre 2022
 
         Merci à Combo d'avoir accueilli le metteup : https://combohr.com
-
-    - title: "Optimisation TCP: le clash"
-      raw_title: "Optimisation TCP: le clash"
       speakers:
-        - Gauthier Monserand
+        - Dorian Lupu
+
+    - id: "gauthier-monserand-parisrb-meetup-november-2022"
+      title: "Optimisation TCP: le clash"
+      raw_title: "Optimisation TCP: le clash"
       event_name: "Paris.rb Meetup November 2022"
-      language: "french"
       date: "2022-11-01"
       published_at: "2022-11-26"
+      language: "french"
       video_provider: "youtube"
-      id: "gauthier-monserand-parisrb-meetup-november-2022"
       video_id: "GT-2P94U9-U"
       description: |-
         Nagle algorithm et delayed ack
@@ -489,6 +487,8 @@
         Paris.rb novembre 2022
 
         Merci à Combo d'avoir accueilli le meeteup : https://combohr.com
+      speakers:
+        - Gauthier Monserand
 
 - id: "paris-rb-december-2022"
   title: "Paris.rb Meetup December 2022"
@@ -499,16 +499,14 @@
   video_id: "paris-rb-december-2022"
   description: ""
   talks:
-    - title: "Comment nous avons divisé les bugs par 3.5 en un an"
+    - id: "stephane-hanser-parisrb-meetup-december-2022"
+      title: "Comment nous avons divisé les bugs par 3.5 en un an"
       raw_title: "Comment nous avons divisé les bugs par 3.5 en un an"
-      speakers:
-        - Stéphane Hanser
       event_name: "Paris.rb Meetup December 2022"
-      language: "french"
       date: "2022-12-06"
       published_at: "2022-12-20"
+      language: "french"
       video_provider: "youtube"
-      id: "stephane-hanser-parisrb-meetup-december-2022"
       video_id: "Nuu_cWiuudI"
       description: |-
         Par Stéphane Hanser
@@ -516,18 +514,17 @@
 
         Paris.rb Meetup décembre 2022
         Merci à kard.eu de nous avoir accueillis.
-
-    - title: "L'archi d'un backoffice"
-      raw_title: "L'archi d'un backoffice"
       speakers:
-        - Romain Durritçague
-        - Aymeric Serradeil
+        - Stéphane Hanser
+
+    - id: "romain-durritcague-parisrb-meetup-december-2022"
+      title: "L'archi d'un backoffice"
+      raw_title: "L'archi d'un backoffice"
       event_name: "Paris.rb Meetup December 2022"
-      language: "french"
       date: "2022-12-06"
       published_at: "2022-12-19"
+      language: "french"
       video_provider: "youtube"
-      id: "romain-durritcague-parisrb-meetup-december-2022"
       video_id: "9DvyzwjS4TA"
       description: |-
         Par Romain Durritçague et Aymeric Serradeil.
@@ -539,17 +536,18 @@
 
         Paris.rb Meetup décembre 2022
         Merci à kard.eu de nous avoir accueillis.
-
-    - title: "Le chaînage des scopes dans Active Record"
-      raw_title: "Le chaînage des scopes dans Active Record"
       speakers:
-        - Gauthier Monserand
+        - Romain Durritçague
+        - Aymeric Serradeil
+
+    - id: "gauthier-monserand-parisrb-meetup-december-2022"
+      title: "Le chaînage des scopes dans Active Record"
+      raw_title: "Le chaînage des scopes dans Active Record"
       event_name: "Paris.rb Meetup December 2022"
-      language: "french"
       date: "2022-12-06"
       published_at: "2022-12-19"
+      language: "french"
       video_provider: "youtube"
-      id: "gauthier-monserand-parisrb-meetup-december-2022"
       video_id: "arxxp4CK-CU"
       description: |-
         Par Gauthier Monserand
@@ -557,6 +555,8 @@
 
         Paris.rb Meetup décembre 2022
         Merci à kard.eu de nous avoir accueillis.
+      speakers:
+        - Gauthier Monserand
 
 - id: "paris-rb-january-2023"
   title: "Paris.rb Meetup January 2023"
@@ -567,16 +567,14 @@
   video_id: "paris-rb-january-2023"
   description: ""
   talks:
-    - title: "Éliminer définitivement vos bugs grâce à la méthode PISCARE"
+    - id: "stephane-hanser-parisrb-meetup-january-2023"
+      title: "Éliminer définitivement vos bugs grâce à la méthode PISCARE"
       raw_title: "Éliminer définitivement vos bugs grâce à la méthode PISCARE"
-      speakers:
-        - Stéphane Hanser
       event_name: "Paris.rb Meetup January 2023"
-      language: "french"
       date: "2023-01-03"
       published_at: "2023-01-12"
+      language: "french"
       video_provider: "youtube"
-      id: "stephane-hanser-parisrb-meetup-january-2023"
       video_id: "kL62x42LdpU"
       description: |-
         Par Stéphane Hanser
@@ -587,17 +585,17 @@
 
         00:00 Talk
         18:23 Questions
-
-    - title: "Ajouter la visibilité des CVEs dans rubygems.org"
-      raw_title: "Ajouter la visibilité des CVEs dans rubygems.org"
       speakers:
-        - Yoann Lecuyer
+        - Stéphane Hanser
+
+    - id: "yoann-lecuyer-parisrb-meetup-january-2023"
+      title: "Ajouter la visibilité des CVEs dans rubygems.org"
+      raw_title: "Ajouter la visibilité des CVEs dans rubygems.org"
       event_name: "Paris.rb Meetup January 2023"
-      language: "french"
       date: "2023-01-03"
       published_at: "2023-01-12"
+      language: "french"
       video_provider: "youtube"
-      id: "yoann-lecuyer-parisrb-meetup-january-2023"
       video_id: "E9lecF6gXek"
       description: |-
         Par Yoann Lecuyer
@@ -609,6 +607,8 @@
 
         00:00 Talk
         09:52 Questions
+      speakers:
+        - Yoann Lecuyer
 
 - id: "paris-rb-february-2023"
   title: "Paris.rb Meetup February 2023"
@@ -619,16 +619,14 @@
   video_id: "paris-rb-february-2023"
   description: ""
   talks:
-    - title: "Migrer sereinement du Monolithe aux microservices"
+    - id: "jean-paul-bonnetouche-parisrb-meetup-february-2023"
+      title: "Migrer sereinement du Monolithe aux microservices"
       raw_title: "Migrer sereinement du Monolithe aux microservices"
-      speakers:
-        - Jean-Paul Bonnetouche
       event_name: "Paris.rb Meetup February 2023"
-      language: "french"
       date: "2023-02-07"
       published_at: "2023-02-09"
+      language: "french"
       video_provider: "youtube"
-      id: "jean-paul-bonnetouche-parisrb-meetup-february-2023"
       video_id: "3itItUYOFCE"
       description: |-
         Par Jean-Paul Bonnetouche
@@ -643,17 +641,17 @@
         https://twitter.com/_jpb
         https://www.linkedin.com/in/jean-paul-bonnetouche/
         https://www.malt.fr/profile/madvoid
-
-    - title: "Testing best practices"
-      raw_title: "Testing best practices"
       speakers:
-        - Stéphane Akkaoui
+        - Jean-Paul Bonnetouche
+
+    - id: "stephane-akkaoui-parisrb-meetup-february-2023"
+      title: "Testing best practices"
+      raw_title: "Testing best practices"
       event_name: "Paris.rb Meetup February 2023"
-      language: "french"
       date: "2023-02-07"
       published_at: "2023-02-09"
+      language: "french"
       video_provider: "youtube"
-      id: "stephane-akkaoui-parisrb-meetup-february-2023"
       video_id: "pkIn4o5Ktt4"
       description: |-
         Par Stéphane Akkaoui
@@ -685,6 +683,8 @@
         - https://www.linkedin.com/in/st%C3%A9phane-akkaoui
         - https://commodat.com
         - https://nanotrust.io
+      speakers:
+        - Stéphane Akkaoui
 
 - id: "paris-rb-march-2023"
   title: "Paris.rb Meetup March 2023"
@@ -695,16 +695,14 @@
   video_id: "paris-rb-march-2023"
   description: ""
   talks:
-    - title: "Pourquoi quitter la tech ?"
+    - id: "pourquoi-quitter-la-tech-parisrb-meetup-march-2023"
+      title: "Pourquoi quitter la tech ?"
       raw_title: "Pourquoi quitter la tech ?"
       event_name: "Paris.rb Meetup March 2023"
-      language: "french"
       date: "2023-03-07"
       published_at: "2023-03-06"
+      language: "french"
       video_provider: "youtube"
-      speakers:
-        - TODO
-      id: "pourquoi-quitter-la-tech-parisrb-meetup-march-2023"
       video_id: "AuPewwPS6qM"
       description: |-
         Par Sonia
@@ -721,17 +719,17 @@
 
         Retrouvez Sonia :
         https://twitter.com/wondersonja
-
-    - title: "Des espaces sûrs pour les développeuses"
-      raw_title: "Des espaces sûrs pour les développeuses"
       speakers:
-        - Juliette Audema
+        - TODO
+
+    - id: "juliette-audema-parisrb-meetup-march-2023"
+      title: "Des espaces sûrs pour les développeuses"
+      raw_title: "Des espaces sûrs pour les développeuses"
       event_name: "Paris.rb Meetup March 2023"
-      language: "french"
       date: "2023-03-07"
       published_at: "2023-03-06"
+      language: "french"
       video_provider: "youtube"
-      id: "juliette-audema-parisrb-meetup-march-2023"
       video_id: "ZFc4IaGDvsQ"
       description: |-
         Par Juliette Audema
@@ -749,17 +747,17 @@
         Retrouvez Juliette Audema  :
         https://www.twitter.com/ajuliettedev
         https://www.linkedin.com/in/juliette-audema-46270a82
+      speakers:
+        - Juliette Audema
 
-    - title: "Rails : Gérer ses migrations sans downtime"
+    - id: "rails-gerer-ses-migrations-sans-downtime-parisrb-meetup-march-2023"
+      title: "Rails : Gérer ses migrations sans downtime"
       raw_title: "Rails : Gérer ses migrations sans downtime"
       event_name: "Paris.rb Meetup March 2023"
-      language: "french"
       date: "2023-03-07"
       published_at: "2023-03-06"
+      language: "french"
       video_provider: "youtube"
-      speakers:
-        - TODO
-      id: "rails-gerer-ses-migrations-sans-downtime-parisrb-meetup-march-2023"
       video_id: "NX6bgyB01mk"
       description: |-
         Par Thomas & Yann
@@ -780,6 +778,8 @@
         - https://piaille.fr/@thhareau
         - https://twitter.com/ThomasHareau
         - https://twitter.com/yann120
+      speakers:
+        - TODO
 
 - id: "paris-rb-april-2023"
   title: "Paris.rb Meetup April 2023"
@@ -790,16 +790,14 @@
   video_id: "paris-rb-april-2023"
   description: ""
   talks:
-    - title: "Numérique Responsable - Introduction"
+    - id: "xavier-meunier-parisrb-meetup-april-2023"
+      title: "Numérique Responsable - Introduction"
       raw_title: "Numérique Responsable - Introduction"
-      speakers:
-        - Xavier Meunier
       event_name: "Paris.rb Meetup April 2023"
-      language: "french"
       date: "2023-04-04"
       published_at: "2023-04-28"
+      language: "french"
       video_provider: "youtube"
-      id: "xavier-meunier-parisrb-meetup-april-2023"
       video_id: "Xle9RmF_wCY"
       description: |-
         Par Xavier Meunier
@@ -813,17 +811,17 @@
 
         Retrouvez Xavier Meunier :
         https://twitter.com/XavierMeunier
-
-    - title: "A Different Way to Think About Rails Models [EN]"
-      raw_title: "A Different Way to Think About Rails Models [EN]"
       speakers:
-        - Jason Swett
+        - Xavier Meunier
+
+    - id: "jason-swett-parisrb-meetup-april-2023"
+      title: "A Different Way to Think About Rails Models [EN]"
+      raw_title: "A Different Way to Think About Rails Models [EN]"
       event_name: "Paris.rb Meetup April 2023"
-      language: "english"
       date: "2023-04-04"
       published_at: "2023-04-28"
+      language: "english"
       video_provider: "youtube"
-      id: "jason-swett-parisrb-meetup-april-2023"
       video_id: "vKjwa8fie8E"
       description: |-
         Par Jason Swett
@@ -837,17 +835,17 @@
         Retrouvez Jason :
         https://twitter.com/JasonSwett
         https://www.codewithjason.com
+      speakers:
+        - Jason Swett
 
-    - title: "RoRdle, Ruby on Rails wordle"
+    - id: "rordle-ruby-on-rails-wordle-parisrb-meetup-april-2023"
+      title: "RoRdle, Ruby on Rails wordle"
       raw_title: "RoRdle, Ruby on Rails wordle"
       event_name: "Paris.rb Meetup April 2023"
-      language: "french"
       date: "2023-04-04"
       published_at: "2023-04-27"
+      language: "french"
       video_provider: "youtube"
-      speakers:
-        - TODO
-      id: "rordle-ruby-on-rails-wordle-parisrb-meetup-april-2023"
       video_id: "lc7Hp1lL3x4"
       description: |-
         Par Julien et Sébastien
@@ -865,6 +863,8 @@
         Retrouvez Julien et Sébastien :
         https://twitter.com/julienmarseil
         https://twitter.com/fauresebast
+      speakers:
+        - TODO
 
 - id: "paris-rb-may-2023"
   title: "Paris.rb Meetup May 2023"
@@ -875,16 +875,14 @@
   video_id: "paris-rb-may-2023"
   description: ""
   talks:
-    - title: "Ruby vs Amendes de stationnement"
+    - id: "ruby-vs-amendes-de-stationnement-parisrb-meetup-may-2023"
+      title: "Ruby vs Amendes de stationnement"
       raw_title: "Ruby vs Amendes de stationnement"
       event_name: "Paris.rb Meetup May 2023"
-      language: "french"
       date: "2023-05-02"
       published_at: "2023-06-29"
+      language: "french"
       video_provider: "youtube"
-      speakers:
-        - TODO
-      id: "ruby-vs-amendes-de-stationnement-parisrb-meetup-may-2023"
       video_id: "ERLdFyoEL-A"
       description: |-
         Par Tom
@@ -899,17 +897,17 @@
 
         Retrouvez Tom :
         https://github.com/troptropcontent
-
-    - title: "ROM-rb, a meta ORM"
-      raw_title: "ROM-rb, a meta ORM"
-      event_name: "Paris.rb Meetup May 2023"
-      language: "french"
-      date: "2023-05-02"
-      published_at: "2023-06-29"
-      video_provider: "youtube"
       speakers:
         - TODO
-      id: "rom-rb-a-meta-orm-parisrb-meetup-may-2023"
+
+    - id: "rom-rb-a-meta-orm-parisrb-meetup-may-2023"
+      title: "ROM-rb, a meta ORM"
+      raw_title: "ROM-rb, a meta ORM"
+      event_name: "Paris.rb Meetup May 2023"
+      date: "2023-05-02"
+      published_at: "2023-06-29"
+      language: "french"
+      video_provider: "youtube"
       video_id: "lot4pZztPwU"
       description: |-
         Par Alexandre
@@ -927,17 +925,17 @@
         https://github.com/alex-lairan
 
         Suite à un problème technique, nous n'avons malheureusement pas de vidéo au début du talk.
-
-    - title: "ViewComponent"
-      raw_title: "ViewComponent"
       speakers:
-        - Adrien Siami
+        - TODO
+
+    - id: "adrien-siami-parisrb-meetup-may-2023"
+      title: "ViewComponent"
+      raw_title: "ViewComponent"
       event_name: "Paris.rb Meetup May 2023"
-      language: "french"
       date: "2023-05-02"
       published_at: "2023-06-29"
+      language: "french"
       video_provider: "youtube"
-      id: "adrien-siami-parisrb-meetup-may-2023"
       video_id: "Gg3AZ-3Xj2o"
       description: |-
         Par Adrien Siami
@@ -953,6 +951,8 @@
         https://twitter.com/Intrepidd
 
         Suite à un problème technique, nous n'avons malheureusement pas de vidéo sur ce talk.
+      speakers:
+        - Adrien Siami
 
 - id: "paris-rb-june-2023"
   title: "Paris.rb Meetup June 2023"
@@ -963,16 +963,14 @@
   video_id: "paris-rb-june-2023"
   description: ""
   talks:
-    - title: "8 astuces pour une app plus rapide"
+    - id: "dorian-becker-parisrb-meetup-june-2023"
+      title: "8 astuces pour une app plus rapide"
       raw_title: "8 astuces pour une app plus rapide"
-      speakers:
-        - Dorian Becker
       event_name: "Paris.rb Meetup June 2023"
-      language: "french"
       date: "2023-06-06"
       published_at: "2023-08-24"
+      language: "french"
       video_provider: "youtube"
-      id: "dorian-becker-parisrb-meetup-june-2023"
       video_id: "lppgNnqxA3k"
       description: |-
         Par Dorian Becker
@@ -992,17 +990,17 @@
 
         Retrouvez Dorian :
         https://twitter.com/blaked_84
-
-    - title: "Migration d'Heroku à Scalingo"
-      raw_title: "Migration d'Heroku à Scalingo"
       speakers:
-        - Guillaume Wrobel
+        - Dorian Becker
+
+    - id: "guillaume-wrobel-parisrb-meetup-june-2023"
+      title: "Migration d'Heroku à Scalingo"
+      raw_title: "Migration d'Heroku à Scalingo"
       event_name: "Paris.rb Meetup June 2023"
-      language: "french"
       date: "2023-06-06"
       published_at: "2023-08-24"
+      language: "french"
       video_provider: "youtube"
-      id: "guillaume-wrobel-parisrb-meetup-june-2023"
       video_id: "1rFvYj4oBSQ"
       description: |-
         Par Guillaume
@@ -1013,6 +1011,8 @@
         0:00 Intro
         0:41 Talk
         17:05 Questions
+      speakers:
+        - Guillaume Wrobel
 
 - id: "paris-rb-september-2023"
   title: "Paris.rb Meetup September 2023"
@@ -1023,16 +1023,14 @@
   video_id: "paris-rb-september-2023"
   description: ""
   talks:
-    - title: 'Jurassic Stack – "Hello, world!" en assembleur sur Z80'
+    - id: "ronan-limon-duparcmeur-parisrb-meetup-september-2023"
+      title: 'Jurassic Stack – "Hello, world!" en assembleur sur Z80'
       raw_title: 'Jurassic Stack – "Hello, world!" en assembleur sur Z80'
-      speakers:
-        - Ronan Limon Duparcmeur
       event_name: "Paris.rb Meetup September 2023"
-      language: "french"
       date: "2023-09-05"
       published_at: "2023-12-29"
+      language: "french"
       video_provider: "youtube"
-      id: "ronan-limon-duparcmeur-parisrb-meetup-september-2023"
       video_id: "79lneqiaiP0"
       description: |-
         Par Ronan Limon Duparcmeur
@@ -1051,17 +1049,17 @@
         Retrouvez Ronan Limon Duparcmeur :
         https://ruby.social/@r3trofitted
         https://github.com/r3trofitted
-
-    - title: "Crypto tools in Ruby"
-      raw_title: "Crypto tools in Ruby"
       speakers:
-        - Stéphane Akkaoui
+        - Ronan Limon Duparcmeur
+
+    - id: "stephane-akkaoui-parisrb-meetup-september-2023"
+      title: "Crypto tools in Ruby"
+      raw_title: "Crypto tools in Ruby"
       event_name: "Paris.rb Meetup September 2023"
-      language: "french"
       date: "2023-09-05"
       published_at: "2023-12-29"
+      language: "french"
       video_provider: "youtube"
-      id: "stephane-akkaoui-parisrb-meetup-september-2023"
       video_id: "7ZPoV7Wiapc"
       description: |-
         Par Stéphane Akkaoui
@@ -1079,17 +1077,17 @@
         Retrouvez Stéphane Akkaoui :
         https://twitter.com/meuble
         https://linkedin.com/in/stéphane-akkaoui
-
-    - title: "Comment on a optimisé l'update des gems vulnérables avec dependabot"
-      raw_title: "Comment on a optimisé l'update des gems vulnérables avec dependabot"
       speakers:
-        - Yoann Lecuyer
+        - Stéphane Akkaoui
+
+    - id: "yoann-lecuyer-parisrb-meetup-september-2023"
+      title: "Comment on a optimisé l'update des gems vulnérables avec dependabot"
+      raw_title: "Comment on a optimisé l'update des gems vulnérables avec dependabot"
       event_name: "Paris.rb Meetup September 2023"
-      language: "french"
       date: "2023-09-05"
       published_at: "2023-12-29"
+      language: "french"
       video_provider: "youtube"
-      id: "yoann-lecuyer-parisrb-meetup-september-2023"
       video_id: "1r3aWmzdUY4"
       description: |-
         Par Yoann Lecuyer
@@ -1102,6 +1100,8 @@
 
         Liens :
         https://github.com/dependabot/dependabot-script
+      speakers:
+        - Yoann Lecuyer
 
 - id: "paris-rb-november-2023"
   title: "Paris.rb Meetup November 2023"
@@ -1112,16 +1112,14 @@
   video_id: "paris-rb-november-2023"
   description: ""
   talks:
-    - title: "Prepare a rails monolith for scale [English]"
+    - id: "prepare-a-rails-monolith-for-scale-english-parisrb-meetup-november-2023"
+      title: "Prepare a rails monolith for scale [English]"
       raw_title: "Prepare a rails monolith for scale [English]"
       event_name: "Paris.rb Meetup November 2023"
-      language: "english"
       date: "2023-11-07"
       published_at: "2023-12-31"
+      language: "english"
       video_provider: "youtube"
-      speakers:
-        - TODO
-      id: "prepare-a-rails-monolith-for-scale-english-parisrb-meetup-november-2023"
       video_id: "u-HDlDnFTBw"
       description: |-
         Par Pierre & Samy
@@ -1144,17 +1142,17 @@
         Retrouvez Pierre & Samy :
         - https://www.linkedin.com/in/pierrejolivet
         - https://twitter.com/illiatdesdindes
-
-    - title: "Creating a 2D game with Ruby [English]"
-      raw_title: "Creating a 2D game with Ruby [English]"
-      event_name: "Paris.rb Meetup November 2023"
-      language: "english"
-      date: "2023-11-07"
-      published_at: "2023-12-30"
-      video_provider: "youtube"
       speakers:
         - TODO
-      id: "creating-a-2d-game-with-ruby-english-parisrb-meetup-november-2023"
+
+    - id: "creating-a-2d-game-with-ruby-english-parisrb-meetup-november-2023"
+      title: "Creating a 2D game with Ruby [English]"
+      raw_title: "Creating a 2D game with Ruby [English]"
+      event_name: "Paris.rb Meetup November 2023"
+      date: "2023-11-07"
+      published_at: "2023-12-30"
+      language: "english"
+      video_provider: "youtube"
       video_id: "KwLzsWP1SAo"
       description: |-
         Par Fabien
@@ -1175,17 +1173,17 @@
         Retrouvez Fabien :
         https://github.com/FabienChaynes
         https://www.linkedin.com/in/fabienchaynes
-
-    - title: "order_cop: Protect you from random UI [English]"
-      raw_title: "order_cop: Protect you from random UI [English]"
       speakers:
-        - Gauthier Monserand
+        - TODO
+
+    - id: "gauthier-monserand-parisrb-meetup-november-2023"
+      title: "order_cop: Protect you from random UI [English]"
+      raw_title: "order_cop: Protect you from random UI [English]"
       event_name: "Paris.rb Meetup November 2023"
-      language: "english"
       date: "2023-11-07"
       published_at: "2023-12-30"
+      language: "english"
       video_provider: "youtube"
-      id: "gauthier-monserand-parisrb-meetup-november-2023"
       video_id: "abqLyhuejBM"
       description: |-
         Par Gauthier
@@ -1200,6 +1198,8 @@
         https://twitch.tv/squadracer
         https://twitter.com/squadracer
         https://www.linkedin.com/company/squadracer
+      speakers:
+        - Gauthier Monserand
 
 - id: "paris-rb-december-2023"
   title: "Paris.rb Meetup December 2023"
@@ -1210,16 +1210,14 @@
   video_id: "paris-rb-december-2023"
   description: ""
   talks:
-    - title: "L'art de maintenir son application"
+    - id: "stephane-hanser-parisrb-meetup-december-2023"
+      title: "L'art de maintenir son application"
       raw_title: "L'art de maintenir son application"
-      speakers:
-        - Stéphane Hanser
       event_name: "Paris.rb Meetup December 2023"
-      language: "french"
       date: "2023-12-05"
       published_at: "2024-01-27"
+      language: "french"
       video_provider: "youtube"
-      id: "stephane-hanser-parisrb-meetup-december-2023"
       video_id: "JyGZC56_dyE"
       description: |-
         Par Stéphane
@@ -1238,17 +1236,17 @@
         https://www.linkedin.com/in/stephane-hanser-developpeur/
         https://captive.fr/
         https://www.lesvieuxpotsdelatech.fr/
-
-    - title: "La nouvelle stack front de Rails (nobuild)"
-      raw_title: "La nouvelle stack front de Rails (nobuild)"
       speakers:
-        - Yoann Lecuyer
+        - Stéphane Hanser
+
+    - id: "yoann-lecuyer-parisrb-meetup-december-2023"
+      title: "La nouvelle stack front de Rails (nobuild)"
+      raw_title: "La nouvelle stack front de Rails (nobuild)"
       event_name: "Paris.rb Meetup December 2023"
-      language: "french"
       date: "2023-12-05"
       published_at: "2024-01-14"
+      language: "french"
       video_provider: "youtube"
-      id: "yoann-lecuyer-parisrb-meetup-december-2023"
       video_id: "x9jWjF3yPLk"
       description: |-
         Par Yoann Lecuyer
@@ -1273,6 +1271,8 @@
 
         Retrouvez Yoann Lecuyer :
         https://www.linkedin.com/in/ylecuyer/
+      speakers:
+        - Yoann Lecuyer
 
 - id: "paris-rb-january-2024"
   title: "Paris.rb Meetup January 2024"
@@ -1283,16 +1283,14 @@
   video_id: "paris-rb-january-2024"
   description: ""
   talks:
-    - title: "Le CTO à 2€"
+    - id: "le-cto-a-2-parisrb-meetup-january-2024"
+      title: "Le CTO à 2€"
       raw_title: "Le CTO à 2€"
       event_name: "Paris.rb Meetup January 2024"
-      language: "french"
       date: "2024-01-02"
       published_at: "2024-01-28"
+      language: "french"
       video_provider: "youtube"
-      speakers:
-        - TODO
-      id: "le-cto-a-2-parisrb-meetup-january-2024"
       video_id: "m8iY5Udl_zs"
       description: |-
         Par Sylvain
@@ -1309,17 +1307,17 @@
 
         Retrouvez Sylvain :
         https://mamot.fr/@abelar_s
-
-    - title: "Résoudre les N+1 Queries"
-      raw_title: "Résoudre les N+1 Queries"
       speakers:
-        - Clément Prod'homme
+        - TODO
+
+    - id: "clement-prod-homme-parisrb-meetup-january-2024"
+      title: "Résoudre les N+1 Queries"
+      raw_title: "Résoudre les N+1 Queries"
       event_name: "Paris.rb Meetup January 2024"
-      language: "french"
       date: "2024-01-02"
       published_at: "2024-01-28"
+      language: "french"
       video_provider: "youtube"
-      id: "clement-prod-homme-parisrb-meetup-january-2024"
       video_id: "Y7tXtkfrBDI"
       description: |-
         Par Clément Prod'homme
@@ -1336,17 +1334,17 @@
 
         Retrouvez Clément Prod'homme :
         Linkedin : https://www.linkedin.com/in/clementprodhomme/
+      speakers:
+        - "Clément Prod'homme"
 
-    - title: "Flash message et UX"
+    - id: "flash-message-et-ux-parisrb-meetup-january-2024"
+      title: "Flash message et UX"
       raw_title: "Flash message et UX"
       event_name: "Paris.rb Meetup January 2024"
-      language: "french"
       date: "2024-01-02"
       published_at: "2024-01-28"
+      language: "french"
       video_provider: "youtube"
-      speakers:
-        - TODO
-      id: "flash-message-et-ux-parisrb-meetup-january-2024"
       video_id: "ToUDekCKdX0"
       description: |-
         Par David
@@ -1364,6 +1362,8 @@
         https://twitter.com/bdavidxyz
         https://www.linkedin.com/in/bdavidxyz/
         https://bootrails.com
+      speakers:
+        - TODO
 
 - id: "paris-rb-february-2024"
   title: "Paris.rb Meetup February 2024"
@@ -1374,16 +1374,14 @@
   video_id: "paris-rb-february-2024"
   description: ""
   talks:
-    - title: "Live Coding en TDD"
+    - id: "live-coding-en-tdd-parisrb-meetup-february-2024"
+      title: "Live Coding en TDD"
       raw_title: "Live Coding en TDD"
       event_name: "Paris.rb Meetup February 2024"
-      language: "french"
       date: "2024-02-06"
       published_at: "2024-03-09"
+      language: "french"
       video_provider: "youtube"
-      speakers:
-        - TODO
-      id: "live-coding-en-tdd-parisrb-meetup-february-2024"
       video_id: "kqpHL_V1pUU"
       description: |-
         Par Marion et Stéphane
@@ -1397,17 +1395,17 @@
         Retrouvez Marion et Stéphane :
         https://www.linkedin.com/in/marion-velard/
         https://www.linkedin.com/in/stephane-hanser-developpeur/
-
-    - title: "1,2,3 Turbo"
-      raw_title: "1,2,3 Turbo"
       speakers:
-        - Adrien Poly
+        - TODO
+
+    - id: "adrien-poly-parisrb-meetup-february-2024"
+      title: "1,2,3 Turbo"
+      raw_title: "1,2,3 Turbo"
       event_name: "Paris.rb Meetup February 2024"
-      language: "french"
       date: "2024-02-06"
       published_at: "2024-03-09"
+      language: "french"
       video_provider: "youtube"
-      id: "adrien-poly-parisrb-meetup-february-2024"
       video_id: "DdIrdBI7AK8"
       description: |-
         Par Adrien
@@ -1430,6 +1428,8 @@
         https://adrienpoly.com/
         https://twitter.com/adrienpoly
         https://fr.linkedin.com/in/adrienpoly
+      speakers:
+        - Adrien Poly
 
 - id: "paris-rb-march-2024"
   title: "Paris.rb Meetup March 2024"
@@ -1440,16 +1440,14 @@
   video_id: "paris-rb-march-2024"
   description: ""
   talks:
-    - title: "Devenir proactifs grace à l'observabilité"
+    - id: "devenir-proactifs-grace-a-l-observabilite-parisrb-meetup-march-2024"
+      title: "Devenir proactifs grace à l'observabilité"
       raw_title: "Devenir proactifs grace à l'observabilité"
       event_name: "Paris.rb Meetup March 2024"
-      language: "french"
       date: "2024-03-05"
       published_at: "2024-05-06"
+      language: "french"
       video_provider: "youtube"
-      speakers:
-        - TODO
-      id: "devenir-proactifs-grace-a-l-observabilite-parisrb-meetup-march-2024"
       video_id: "f7U7HLAgElE"
       description: |-
         Par Johann
@@ -1462,17 +1460,17 @@
 
         Retrouvez Johann :
         https://www.linkedin.com/in/johann-wilfrid-calixte/
-
-    - title: "Faciliter les revues de code avec Rubocop"
-      raw_title: "Faciliter les revues de code avec Rubocop"
       speakers:
-        - Clément Prod'homme
+        - TODO
+
+    - id: "clement-prod-homme-parisrb-meetup-march-2024"
+      title: "Faciliter les revues de code avec Rubocop"
+      raw_title: "Faciliter les revues de code avec Rubocop"
       event_name: "Paris.rb Meetup March 2024"
-      language: "french"
       date: "2024-03-05"
       published_at: "2024-05-06"
+      language: "french"
       video_provider: "youtube"
-      id: "clement-prod-homme-parisrb-meetup-march-2024"
       video_id: "Il1DI9mgdvI"
       description: |-
         Par Clément Prod'homme
@@ -1490,17 +1488,17 @@
 
         Retrouvez Clément Prod'homme :
         Linkedin : https://www.linkedin.com/in/clementprodhomme/
-
-    - title: "Debugger ses tests grace aux enregistrements d'écran"
-      raw_title: "Debugger ses tests grace aux enregistrements d'écran"
       speakers:
-        - Dorian Lupu
+        - "Clément Prod'homme"
+
+    - id: "dorian-lupu-parisrb-meetup-march-2024"
+      title: "Debugger ses tests grace aux enregistrements d'écran"
+      raw_title: "Debugger ses tests grace aux enregistrements d'écran"
       event_name: "Paris.rb Meetup March 2024"
-      language: "french"
       date: "2024-03-05"
       published_at: "2024-05-06"
+      language: "french"
       video_provider: "youtube"
-      id: "dorian-lupu-parisrb-meetup-march-2024"
       video_id: "1Puywv2b-I8"
       description: |-
         Par Dorian @Botyglot
@@ -1516,6 +1514,8 @@
         Retrouvez Dorian @Botyglot :
         https://www.linkedin.com/in/dorianlupu/
         https://ruby.social/@DorianLupu
+      speakers:
+        - Dorian Lupu
 
 - id: "paris-rb-april-2024"
   title: "Paris.rb Meetup April 2024"
@@ -1526,16 +1526,14 @@
   video_id: "paris-rb-april-2024"
   description: ""
   talks:
-    - title: "Opinionated Dependabot Distribution"
+    - id: "yoann-lecuyer-parisrb-meetup-april-2024"
+      title: "Opinionated Dependabot Distribution"
       raw_title: "Opinionated Dependabot Distribution"
-      speakers:
-        - Yoann Lecuyer
       event_name: "Paris.rb Meetup April 2024"
-      language: "french"
       date: "2024-04-02"
       published_at: "2024-11-03"
+      language: "french"
       video_provider: "youtube"
-      id: "yoann-lecuyer-parisrb-meetup-april-2024"
       video_id: "fDMIhhwqDg0"
       description: |-
         Par Yoann Lecuyer
@@ -1548,17 +1546,17 @@
 
         Retrouvez Yoann Lecuyer :
         https://www.linkedin.com/in/ylecuyer/
-
-    - title: "Cadrages techniques, retours d'XP"
-      raw_title: "Cadrages techniques, retours d'XP"
       speakers:
-        - Pierre-Emmanuel Daigre
+        - Yoann Lecuyer
+
+    - id: "pierre-emmanuel-daigre-parisrb-meetup-april-2024"
+      title: "Cadrages techniques, retours d'XP"
+      raw_title: "Cadrages techniques, retours d'XP"
       event_name: "Paris.rb Meetup April 2024"
-      language: "french"
       date: "2024-04-02"
       published_at: "2024-11-03"
+      language: "french"
       video_provider: "youtube"
-      id: "pierre-emmanuel-daigre-parisrb-meetup-april-2024"
       video_id: "ESmWVeCGKuc"
       description: |-
         Par Pierre-Emmanuel Daigre
@@ -1576,17 +1574,17 @@
         Retrouvez Pierre-Emmanuel Daigre :
         https://www.linkedin.com/in/pedaigre/
         https://github.com/ioups
-
-    - title: "Value Objects"
-      raw_title: "Value Objects"
       speakers:
-        - Rémy Hannequin
+        - Pierre-Emmanuel Daigre
+
+    - id: "remy-hannequin-parisrb-meetup-april-2024"
+      title: "Value Objects"
+      raw_title: "Value Objects"
       event_name: "Paris.rb Meetup April 2024"
-      language: "french"
       date: "2024-04-02"
       published_at: "2024-11-03"
+      language: "french"
       video_provider: "youtube"
-      id: "remy-hannequin-parisrb-meetup-april-2024"
       video_id: "QyGnBrtopCo"
       description: |-
         Par Rémy Hannequin
@@ -1608,6 +1606,8 @@
         https://twitter.com/rhannequin
         https://ruby.social/@rhannequin
         https://www.linkedin.com/in/rhannequin/
+      speakers:
+        - Rémy Hannequin
 
 - id: "paris-rb-may-2024"
   title: "Paris.rb Meetup May 2024"
@@ -1618,16 +1618,14 @@
   video_id: "paris-rb-may-2024"
   description: ""
   talks:
-    - title: "Rustifying Ruby - A Journey of Elegant Language Fusion"
+    - id: "jean-paul-bonnetouche-parisrb-meetup-may-2024"
+      title: "Rustifying Ruby - A Journey of Elegant Language Fusion"
       raw_title: "Rustifying Ruby - A Journey of Elegant Language Fusion"
-      speakers:
-        - Jean-Paul Bonnetouche
       event_name: "Paris.rb Meetup May 2024"
-      language: "french"
       date: "2024-05-07"
       published_at: "2024-11-07"
+      language: "french"
       video_provider: "youtube"
-      id: "jean-paul-bonnetouche-parisrb-meetup-may-2024"
       video_id: "HjvsFqqESoc"
       description: |-
         Par Jean-Paul Bonnetouche
@@ -1651,17 +1649,17 @@
         * https://twitter.com/_jpb
         * https://www.linkedin.com/in/jean-paul-bonnetouche/
         * https://www.malt.fr/profile/madvoid
+      speakers:
+        - Jean-Paul Bonnetouche
 
-    - title: "Dry-Monads"
+    - id: "dry-monads-parisrb-meetup-may-2024"
+      title: "Dry-Monads"
       raw_title: "Dry-Monads"
       event_name: "Paris.rb Meetup May 2024"
-      language: "french"
       date: "2024-05-07"
       published_at: "2024-11-07"
+      language: "french"
       video_provider: "youtube"
-      speakers:
-        - TODO
-      id: "dry-monads-parisrb-meetup-may-2024"
       video_id: "oazdZLJse2Y"
       description: |-
         Par Antoine & JustTheV
@@ -1684,6 +1682,8 @@
         JustTheV : https://www.linkedin.com/in/hugo-vast/
 
         Offres d'emplois Wecasa : https://www.welcometothejungle.com/fr/companies/wecasa/jobs
+      speakers:
+        - TODO
 
 - id: "paris-rb-june-2024"
   title: "Paris.rb Meetup June 2024"
@@ -1694,16 +1694,14 @@
   video_id: "paris-rb-june-2024"
   description: ""
   talks:
-    - title: "Scaling our Ruby on Rails monolith using Packwerk"
+    - id: "scaling-our-ruby-on-rails-monolith-using-packwerk-parisrb-meetup-june-2024"
+      title: "Scaling our Ruby on Rails monolith using Packwerk"
       raw_title: "Scaling our Ruby on Rails monolith using Packwerk"
       event_name: "Paris.rb Meetup June 2024"
-      language: "french"
       date: "2024-06-04"
       published_at: "2024-11-14"
+      language: "french"
       video_provider: "youtube"
-      speakers:
-        - TODO
-      id: "scaling-our-ruby-on-rails-monolith-using-packwerk-parisrb-meetup-june-2024"
       video_id: "YTC4uiRa_co"
       description: |-
         Par François
@@ -1726,17 +1724,17 @@
 
         Retrouvez François :
         - www.linkedin.com/in/fpradel
-
-    - title: "PostgreSQL: it's a trap"
-      raw_title: "PostgreSQL: it's a trap"
       speakers:
-        - Benoit Tigeot
+        - TODO
+
+    - id: "benoit-tigeot-parisrb-meetup-june-2024"
+      title: "PostgreSQL: it's a trap"
+      raw_title: "PostgreSQL: it's a trap"
       event_name: "Paris.rb Meetup June 2024"
-      language: "french"
       date: "2024-06-04"
       published_at: "2024-11-14"
+      language: "french"
       video_provider: "youtube"
-      id: "benoit-tigeot-parisrb-meetup-june-2024"
       video_id: "m-7qkt0EMnY"
       description: |-
         Par Benoit Tigeot
@@ -1757,6 +1755,8 @@
 
         Retrouvez Benoit Tigeot :
         https://ruby.social/@benoit
+      speakers:
+        - Benoit Tigeot
 
 - id: "paris-rb-october-2024"
   title: "Paris.rb Meetup October 2024"
@@ -1767,16 +1767,14 @@
   video_id: "paris-rb-october-2024"
   description: ""
   talks:
-    - title: "Hexagonal On Rails"
+    - id: "hexagonal-on-rails-parisrb-meetup-october-2024"
+      title: "Hexagonal On Rails"
       raw_title: "Hexagonal On Rails"
       event_name: "Paris.rb Meetup October 2024"
-      language: "french"
       date: "2024-10-01"
       published_at: "2024-11-14"
+      language: "french"
       video_provider: "youtube"
-      speakers:
-        - TODO
-      id: "hexagonal-on-rails-parisrb-meetup-october-2024"
       video_id: "CIdg1oFIwe8"
       description: |-
         Par Johann
@@ -1791,17 +1789,17 @@
 
         Retrouvez Johann :
         https://www.linkedin.com/in/johann-wilfrid-calixte
-
-    - title: "Why You (really) Don't Need SPA"
-      raw_title: "Why You (really) Don't Need SPA"
       speakers:
-        - Guillaume Briday
+        - TODO
+
+    - id: "guillaume-briday-parisrb-meetup-october-2024"
+      title: "Why You (really) Don't Need SPA"
+      raw_title: "Why You (really) Don't Need SPA"
       event_name: "Paris.rb Meetup October 2024"
-      language: "french"
       date: "2024-10-01"
       published_at: "2024-11-14"
+      language: "french"
       video_provider: "youtube"
-      id: "guillaume-briday-parisrb-meetup-october-2024"
       video_id: "GQ61X5RV3aE"
       description: |-
         Par Guillaume Briday
@@ -1818,6 +1816,8 @@
 
         Retrouvez Guillaume Briday :
         https://guillaumebriday.fr/links
+      speakers:
+        - Guillaume Briday
 
 - id: "paris-rb-november-2024"
   title: "Paris.rb Meetup November 2024"
@@ -1845,16 +1845,14 @@
 
     https://www.meetup.com/paris_rb/events/303637189
   talks:
-    - title: "Hotwire Native: Turn Your Rails App into a Mobile App"
+    - id: "yaroslav-shmarov-parisrb-meetup-november-2024"
+      title: "Hotwire Native: Turn Your Rails App into a Mobile App"
       raw_title: "Hotwire Native: Turn Your Rails App into a Mobile App"
-      speakers:
-        - Yaroslav Shmarov
       event_name: "Paris.rb Meetup November 2024"
-      language: "english"
       date: "2024-11-05"
       published_at: "2024-11-23"
+      language: "english"
       video_provider: "youtube"
-      id: "yaroslav-shmarov-parisrb-meetup-november-2024"
       video_id: "25vqzypzTkQ"
       description: |-
         Talk en anglais.
@@ -1877,17 +1875,17 @@
 
         Retrouvez Yaroslav Shmarov:
         https://x.com/yarotheslav
-
-    - title: "Kamal 2: Pourquoi Et Comment Quitter Le Cloud?"
-      raw_title: "Kamal 2: Pourquoi Et Comment Quitter Le Cloud?"
       speakers:
-        - Guillaume Briday
+        - Yaroslav Shmarov
+
+    - id: "guillaume-briday-parisrb-meetup-november-2024"
+      title: "Kamal 2: Pourquoi Et Comment Quitter Le Cloud?"
+      raw_title: "Kamal 2: Pourquoi Et Comment Quitter Le Cloud?"
       event_name: "Paris.rb Meetup November 2024"
-      language: "french"
       date: "2024-11-05"
       published_at: "2024-11-23"
+      language: "french"
       video_provider: "youtube"
-      id: "guillaume-briday-parisrb-meetup-november-2024"
       video_id: "3-sS_F6Ds2o"
       description: |-
         Par Guillaume Briday
@@ -1909,17 +1907,17 @@
 
         Retrouvez Guillaume Briday:
         https://guillaumebriday.fr/links
-
-    - title: "Performances Active Record - Un Menu En 3 Étapes"
-      raw_title: "Performances Active Record - Un Menu En 3 Étapes"
       speakers:
-        - Gauthier Monserand
+        - Guillaume Briday
+
+    - id: "gauthier-monserand-parisrb-meetup-november-2024"
+      title: "Performances Active Record - Un Menu En 3 Étapes"
+      raw_title: "Performances Active Record - Un Menu En 3 Étapes"
       event_name: "Paris.rb Meetup November 2024"
-      language: "french"
       date: "2024-11-05"
       published_at: "2024-11-23"
+      language: "french"
       video_provider: "youtube"
-      id: "gauthier-monserand-parisrb-meetup-november-2024"
       video_id: "Tu3MDbKviL4"
       description: |-
         Par Gauthier
@@ -1942,6 +1940,8 @@
         Retrouvez Gauthier:
         https://www.squadracer.com
         https://www.linkedin.com/company/squadracer/
+      speakers:
+        - Gauthier Monserand
       additional_resources:
         - name: "Le repo de code du talk"
           type: "repo"
@@ -1981,18 +1981,16 @@
 
     https://www.meetup.com/paris_rb/events/303637325
   talks:
-    - title: "Rails: The Missing Coverage (aka Stimulus Coverage OOTB)"
+    - id: "yoann-lecuyer-parisrb-meetup-december-2024"
+      title: "Rails: The Missing Coverage (aka Stimulus Coverage OOTB)"
       raw_title: "Rails: The Missing Coverage (aka Stimulus Coverage OOTB)"
-      speakers:
-        - Yoann Lecuyer
       event_name: "Paris.rb Meetup December 2024"
-      language: "french"
       date: "2024-12-03"
       published_at: "2025-05-04"
-      video_provider: "youtube"
-      id: "yoann-lecuyer-parisrb-meetup-december-2024"
-      video_id: "3ejFewAZhWQ"
+      language: "french"
       slides_url: "https://docs.google.com/presentation/d/1h21dC51zFCmZSuaQrqhtIRY5bBcrneBLLr5DDbwwNmM/view"
+      video_provider: "youtube"
+      video_id: "3ejFewAZhWQ"
       description: |-
         Par Yoann Lecuyer
 
@@ -2002,6 +2000,8 @@
         Liens :
         https://github.com/ylecuyer/propshaft-js-coverage
         https://github.com/ylecuyer/sprockets-js-coverage
+      speakers:
+        - Yoann Lecuyer
       additional_resources:
         - name: "ylecuyer/propshaft-js-coverage"
           type: "repo"
@@ -2010,18 +2010,16 @@
           type: "repo"
           url: "https://github.com/ylecuyer/sprockets-js-coverage"
 
-    - title: "Ajoutez Des Badges Dynamiques À Vos Pull Requests Et Gagnez En Productivité"
+    - id: "christopher-saez-parisrb-meetup-december-2024"
+      title: "Ajoutez Des Badges Dynamiques À Vos Pull Requests Et Gagnez En Productivité"
       raw_title: "Ajoutez Des Badges Dynamiques À Vos Pull Requests Et Gagnez En Productivité"
-      speakers:
-        - Christopher Saez
       event_name: "Paris.rb Meetup December 2024"
-      language: "french"
       date: "2024-12-03"
       published_at: "2025-05-04"
-      video_provider: "youtube"
-      id: "christopher-saez-parisrb-meetup-december-2024"
-      video_id: "YVsJg7Uvk5A"
+      language: "french"
       slides_url: "https://www.slideshare.net/slideshow/add-dynamic-badges-into-your-pull-request-and-increase-your-productivity/273826082"
+      video_provider: "youtube"
+      video_id: "YVsJg7Uvk5A"
       description: |-
         Par Christopher
         Paris.rb Meetup Décembre 2024
@@ -2034,6 +2032,8 @@
         Retrouvez Christopher :
         https://www.linkedin.com/in/saezchristopher
         https://medium.com/@SaezChristopher
+      speakers:
+        - Christopher Saez
       additional_resources:
         - name: "Blog Post"
           type: "blog"
@@ -2065,18 +2065,16 @@
 
     https://www.meetup.com/paris_rb/events/304758193
   talks:
-    - title: "Scalability 101"
+    - id: "hugo-vast-parisrb-meetup-january-2025"
+      title: "Scalability 101"
       raw_title: "Scalability 101"
-      speakers:
-        - Hugo Vast
       event_name: "Paris.rb Meetup January 2025"
-      language: "french"
       date: "2025-01-07"
       published_at: "2025-06-04"
-      video_provider: "youtube"
-      id: "hugo-vast-parisrb-meetup-january-2025"
-      video_id: "c4_2WswMq38"
+      language: "french"
       slides_url: "https://docs.google.com/presentation/d/18CvWZrdattHoq6GmoAOnvMmhF7CLVimBcE817XwlDeo/edit?slide=id.p#slide=id.p"
+      video_provider: "youtube"
+      video_id: "c4_2WswMq38"
       description: |-
         Par V
         Paris.rb Meetup Janvier 2025
@@ -2089,19 +2087,19 @@
         Retrouvez V :
         LinkedIn : https://www.linkedin.com/in/hugo-vast/
         Github : https://github.com/just-the-v
-
-    - title: "Rails 8: Multi-db avec Solid Queue, Solid Cache et Kamal"
-      raw_title: "Rails 8: Multi-db avec Solid Queue, Solid Cache et Kamal"
       speakers:
-        - Guillaume Briday
+        - Hugo Vast
+
+    - id: "guillaume-briday-parisrb-meetup-january-2025"
+      title: "Rails 8: Multi-db avec Solid Queue, Solid Cache et Kamal"
+      raw_title: "Rails 8: Multi-db avec Solid Queue, Solid Cache et Kamal"
       event_name: "Paris.rb Meetup January 2025"
-      language: "french"
       date: "2025-01-07"
       published_at: "2025-06-04"
-      video_provider: "youtube"
-      id: "guillaume-briday-parisrb-meetup-january-2025"
-      video_id: "Qrx_pLr_ClM"
+      language: "french"
       slides_url: "https://rails-8-multi-db-solid-queue-cache.guillaumebriday.fr/"
+      video_provider: "youtube"
+      video_id: "Qrx_pLr_ClM"
       description: |-
         Par Guillaume Briday
         Paris.rb Meetup Janvier 2025
@@ -2120,6 +2118,8 @@
 
         Retrouvez Guillaume Briday :
         https://guillaumebriday.fr/links
+      speakers:
+        - Guillaume Briday
       additional_resources:
         - name: "rails/solid_cache"
           type: "repo"
@@ -2129,18 +2129,16 @@
           type: "repo"
           url: "https://github.com/rails/solid_queue"
 
-    - title: "Des formulaires qui rendent heureux"
+    - id: "adrien-siami-parisrb-meetup-january-2025"
+      title: "Des formulaires qui rendent heureux"
       raw_title: "Des formulaires qui rendent heureux"
-      speakers:
-        - Adrien Siami
       event_name: "Paris.rb Meetup January 2025"
-      language: "french"
       date: "2025-01-07"
       published_at: "2025-06-04"
-      video_provider: "youtube"
-      id: "adrien-siami-parisrb-meetup-january-2025"
-      video_id: "FT6Ab3uoAV4"
+      language: "french"
       slides_url: "https://talks.siami.fr/forms-that-spark-joy/"
+      video_provider: "youtube"
+      video_id: "FT6Ab3uoAV4"
       description: |-
         Par Adrien Siami
         Paris.rb Meetup Janvier 2025
@@ -2157,6 +2155,8 @@
 
         Retrouvez Adrien Siami :
         https://x.com/Intrepidd
+      speakers:
+        - Adrien Siami
       additional_resources:
         - name: "Intrepidd/hyperactiveform"
           type: "repo"
@@ -2165,6 +2165,7 @@
         - name: "Intrepidd/forms-demo"
           type: "repo"
           url: "https://github.com/Intrepidd/forms-demo"
+
 - id: "paris-rb-february-2025"
   title: "Paris.rb Meetup February 2025"
   raw_title: "Paris.rb Meetup February 2025"
@@ -2174,16 +2175,14 @@
   video_id: "paris-rb-february-2025"
   description: ""
   talks:
-    - title: "Types numériques en Ruby"
+    - id: "remy-hannequin-parisrb-meetup-february-2025"
+      title: "Types numériques en Ruby"
       raw_title: "Types numériques en Ruby"
-      speakers:
-        - Rémy Hannequin
       event_name: "Paris.rb Meetup February 2025"
-      language: "french"
       date: "2025-02-04"
       published_at: "2025-09-13"
+      language: "french"
       video_provider: "youtube"
-      id: "remy-hannequin-parisrb-meetup-february-2025"
       video_id: "Qmz1HuVB3Xg"
       description: |-
         Par Rémy Hannequin
@@ -2201,17 +2200,17 @@
         https://ruby.social/@rhannequin
         https://bsky.app/profile/rhannequin.bsky.social
         https://www.linkedin.com/in/rhannequin
+      speakers:
+        - Rémy Hannequin
 
-    - title: "Rails Best Practices"
+    - id: "rails-best-practices-parisrb-meetup-february-2025"
+      title: "Rails Best Practices"
       raw_title: "Rails Best Practices"
       event_name: "Paris.rb Meetup February 2025"
-      language: "french"
       date: "2025-02-04"
       published_at: "2025-09-13"
+      language: "french"
       video_provider: "youtube"
-      speakers:
-        - TODO
-      id: "rails-best-practices-parisrb-meetup-february-2025"
       video_id: "iM-4MPdBTuQ"
       description: |-
         Par Leijun
@@ -2227,6 +2226,8 @@
         https://docs.google.com/presentation/d/1dqaMV25J0_j-LVSFtz8c06G2PYDyHZaduzAPjVN24Ag/edit#slide=id.p
 
         http://www.leijun-jiang.com/jekyll/update/2024/12/24/rails-best-practices.html
+      speakers:
+        - TODO
 
 - id: "paris-rb-march-2025"
   title: "Paris.rb Meetup March 2025"
@@ -2237,16 +2238,14 @@
   video_id: "paris-rb-march-2025"
   description: ""
   talks:
-    - title: "Créer un framework à partir de dry-rb"
+    - id: "creer-un-framework-a-partir-de-dry-rb-parisrb-meetup-march-2025"
+      title: "Créer un framework à partir de dry-rb"
       raw_title: "Créer un framework à partir de dry-rb"
       event_name: "Paris.rb Meetup March 2025"
-      language: "french"
       date: "2025-03-04"
       published_at: "2025-09-03"
+      language: "french"
       video_provider: "youtube"
-      speakers:
-        - TODO
-      id: "creer-un-framework-a-partir-de-dry-rb-parisrb-meetup-march-2025"
       video_id: "_hT27qRrZEI"
       description: |-
         Par Alexandre
@@ -2266,17 +2265,17 @@
         Retrouvez Alexandre :
         https://x.com/alex-lairan
         https://github.com/alex-lairan/
-
-    - title: "Bannir les nombres magiques"
-      raw_title: "Bannir les nombres magiques"
       speakers:
-        - Clément Prod'homme
+        - TODO
+
+    - id: "clement-prod-homme-parisrb-meetup-march-2025"
+      title: "Bannir les nombres magiques"
+      raw_title: "Bannir les nombres magiques"
       event_name: "Paris.rb Meetup March 2025"
-      language: "french"
       date: "2025-03-04"
       published_at: "2025-09-02"
+      language: "french"
       video_provider: "youtube"
-      id: "clement-prod-homme-parisrb-meetup-march-2025"
       video_id: "kUVuvz-GV0o"
       description: |-
         Par Clément Prod'homme
@@ -2292,6 +2291,8 @@
 
         Retrouvez Clément Prod'homme :
         https://www.linkedin.com/in/clementprodhomme/
+      speakers:
+        - "Clément Prod'homme"
 
 - id: "paris-rb-june-2025"
   title: "Paris.rb Meetup June 2025"
@@ -2302,16 +2303,14 @@
   video_id: "paris-rb-june-2025"
   description: ""
   talks:
-    - title: "L2 Support AKA Bug Killer"
+    - id: "l2-support-aka-bug-killer-parisrb-meetup-june-2025"
+      title: "L2 Support AKA Bug Killer"
       raw_title: "L2 Support AKA Bug Killer"
       event_name: "Paris.rb Meetup June 2025"
-      language: "french"
       date: "2025-06-03"
       published_at: "2025-09-21"
+      language: "french"
       video_provider: "youtube"
-      speakers:
-        - TODO
-      id: "l2-support-aka-bug-killer-parisrb-meetup-june-2025"
       video_id: "ScCNaAuAsyg"
       description: |-
         Par Loic, Jules & Antoine
@@ -2329,17 +2328,17 @@
         LinkedIn Loic : https://www.linkedin.com/in/lo%C3%AFc-monthorin/
         LinkedIn Jules : https://www.linkedin.com/in/jules-pinsard/
         LinkedIn Antoine : https://www.linkedin.com/in/antoine-braconnier1991/
-
-    - title: "Recherche en plein texte avec PostgreSQL"
-      raw_title: "Recherche en plein texte avec PostgreSQL"
       speakers:
-        - Rémi Mercier
+        - TODO
+
+    - id: "remi-mercier-parisrb-meetup-june-2025"
+      title: "Recherche en plein texte avec PostgreSQL"
+      raw_title: "Recherche en plein texte avec PostgreSQL"
       event_name: "Paris.rb Meetup June 2025"
-      language: "french"
       date: "2025-06-03"
       published_at: "2025-09-15"
+      language: "french"
       video_provider: "youtube"
-      id: "remi-mercier-parisrb-meetup-june-2025"
       video_id: "cPY2M2XZv-0"
       description: |-
         Par Rémi Mercier
@@ -2358,6 +2357,8 @@
         https://remimercier.com/
         https://www.linkedin.com/in/remimercier/
         https://ruby.social/@remi
+      speakers:
+        - Rémi Mercier
 
 - id: "paris-rb-september-2025"
   title: "Paris.rb Meetup September 2025"
@@ -2368,50 +2369,48 @@
   video_id: "paris-rb-september-2025"
   description: ""
   talks:
-    - title: "How we run RubyGems.org"
+    - id: "marty-haught-parisrb-meetup-september-2025"
+      title: "How we run RubyGems.org"
       raw_title: "How we run RubyGems.org"
-      speakers:
-        - Marty Haught
       event_name: "Paris.rb Meetup September 2025"
-      language: "english"
       date: "2025-09-02"
       published_at: "2026-02-14"
+      language: "english"
       video_provider: "youtube"
-      id: "marty-haught-parisrb-meetup-september-2025"
       video_id: "7AC1dHHtndg"
       description: |-
         Par Marty Haught
         Paris.rb Meetup Septembre 2025
         Merci à Le Wagon de nous avoir accueillis.
         https://www.lewagon.com
-
-    - title: "What is the Cyber Resilience Act"
-      raw_title: "What is the Cyber Resilience Act"
       speakers:
         - Marty Haught
+
+    - id: "marty-haught-cyber-resilience-act-parisrb-meetup-september-2025"
+      title: "What is the Cyber Resilience Act"
+      raw_title: "What is the Cyber Resilience Act"
       event_name: "Paris.rb Meetup September 2025"
-      language: "english"
       date: "2025-09-02"
       published_at: "2026-02-14"
+      language: "english"
       video_provider: "youtube"
-      id: "marty-haught-cyber-resilience-act-parisrb-meetup-september-2025"
       video_id: "eAMRqSXzkCc"
       description: |-
         Par Marty Haught
         Paris.rb Meetup Septembre 2025
         Merci à Le Wagon de nous avoir accueillis.
         https://www.lewagon.com
-
-    - title: "Web performance myths busted"
-      raw_title: "Web performance myths busted"
       speakers:
-        - Guillaume Briday
+        - Marty Haught
+
+    - id: "guillaume-briday-parisrb-meetup-september-2025"
+      title: "Web performance myths busted"
+      raw_title: "Web performance myths busted"
       event_name: "Paris.rb Meetup September 2025"
-      language: "french"
       date: "2025-09-02"
       published_at: "2025-09-21"
+      language: "french"
       video_provider: "youtube"
-      id: "guillaume-briday-parisrb-meetup-september-2025"
       video_id: "9xhuBteWxwA"
       description: |-
         Par Guillaume Briday
@@ -2426,6 +2425,8 @@
         https://x.com/guillaumebriday
         https://www.instagram.com/guillaumebriday
         https://github.com/guillaumebriday
+      speakers:
+        - Guillaume Briday
 
 - id: "paris-rb-october-2025"
   title: "Paris.rb Meetup October 2025"
@@ -2436,56 +2437,56 @@
   video_id: "paris-rb-october-2025"
   description: ""
   talks:
-    - title: "2025 10 FastMCP"
+    - id: "yorick-jacquin-parisrb-meetup-october-2025"
+      title: "2025 10 FastMCP"
       raw_title: "2025 10 FastMCP"
-      speakers:
-        - Yorick Jacquin
       event_name: "Paris.rb Meetup October 2025"
-      language: "french"
       date: "2025-10-07"
       published_at: "2026-02-17"
+      language: "french"
       video_provider: "youtube"
-      id: "yorick-jacquin-parisrb-meetup-october-2025"
       video_id: "W_I-5JJB48I"
       description: |-
         Par Yorick Jacquin
         Paris.rb Meetup Octobre 2025
         Merci à Algolia de nous avoir accueillis.
         www.algolia.com
-
-    - title: "Claude Swarm"
-      raw_title: "Claude Swarm"
       speakers:
-        - Eric Proulx
+        - Yorick Jacquin
+
+    - id: "eric-proulx-parisrb-meetup-october-2025"
+      title: "Claude Swarm"
+      raw_title: "Claude Swarm"
       event_name: "Paris.rb Meetup October 2025"
-      language: "french"
       date: "2025-10-07"
       published_at: "2026-02-17"
+      language: "french"
       video_provider: "youtube"
-      id: "eric-proulx-parisrb-meetup-october-2025"
       video_id: "sjYPYlqBrjU"
       description: |-
         Par Eric Proulx
         Paris.rb Meetup Octobre 2025
         Merci à Algolia de nous avoir accueillis.
         www.algolia.com
-
-    - title: "AI, offline"
-      raw_title: "AI, offline"
       speakers:
-        - Chris Hasiński
+        - Eric Proulx
+
+    - id: "chris-hasinski-parisrb-meetup-october-2025"
+      title: "AI, offline"
+      raw_title: "AI, offline"
       event_name: "Paris.rb Meetup October 2025"
-      language: "english"
       date: "2025-10-07"
       published_at: "2026-02-17"
+      language: "english"
       video_provider: "youtube"
-      id: "chris-hasinski-parisrb-meetup-october-2025"
       video_id: "qGy8Rz0dMRE"
       description: |-
         Par Chris Hasiński
         Paris.rb Meetup Octobre 2025
         Merci à Algolia de nous avoir accueillis.
         www.algolia.com
+      speakers:
+        - Chris Hasiński
 
 - id: "paris-rb-november-2025"
   title: "Paris.rb Meetup November 2025"
@@ -2496,16 +2497,14 @@
   video_id: "paris-rb-november-2025"
   description: ""
   talks:
-    - title: "Papercraft: embracing the functional style in Ruby"
+    - id: "papercraft-embracing-the-functional-style-in-ruby-parisrb-meetup-november-2025"
+      title: "Papercraft: embracing the functional style in Ruby"
       raw_title: "Papercraft: embracing the functional style in Ruby"
       event_name: "Paris.rb Meetup November 2025"
-      language: "english"
       date: "2025-11-04"
       published_at: "2026-03-01"
+      language: "english"
       video_provider: "youtube"
-      speakers:
-        - TODO
-      id: "papercraft-embracing-the-functional-style-in-ruby-parisrb-meetup-november-2025"
       video_id: "WW5ww7gCFJs"
       description: |-
         Par Sharon
@@ -2519,40 +2518,42 @@
 
         Retrouvez Sharon :
         https://bsky.app/profile/noteflakes.bsky.social
-
-    - title: "Exploration de codebase avec codemaps"
-      raw_title: "Exploration de codebase avec codemaps"
       speakers:
-        - Cyril Duchon-Doris
+        - TODO
+
+    - id: "cyril-duchon-doris-parisrb-meetup-november-2025"
+      title: "Exploration de codebase avec codemaps"
+      raw_title: "Exploration de codebase avec codemaps"
       event_name: "Paris.rb Meetup November 2025"
-      language: "french"
       date: "2025-11-04"
       published_at: "2026-03-01"
+      language: "french"
       video_provider: "youtube"
-      id: "cyril-duchon-doris-parisrb-meetup-november-2025"
       video_id: "xcahtTZ6c4E"
       description: |-
         Par Cyril Duchon-Doris
         Paris.rb Meetup Novembre 2025
         Merci à My Job Glasses de nous avoir accueillis.
         www.myjobglasses.com
-
-    - title: "Autodoc : la doc connectée à vos tests d'intégration"
-      raw_title: "Autodoc : la doc connectée à vos tests d'intégration"
       speakers:
-        - Victor Mours
+        - Cyril Duchon-Doris
+
+    - id: "victor-mours-parisrb-meetup-november-2025"
+      title: "Autodoc : la doc connectée à vos tests d'intégration"
+      raw_title: "Autodoc : la doc connectée à vos tests d'intégration"
       event_name: "Paris.rb Meetup November 2025"
-      language: "french"
       date: "2025-11-04"
       published_at: "2026-03-01"
+      language: "french"
       video_provider: "youtube"
-      id: "victor-mours-parisrb-meetup-november-2025"
       video_id: "6PwnPsVOQlw"
       description: |-
         Par Victor Mours
         Paris.rb Meetup Novembre 2025
         Merci à My Job Glasses de nous avoir accueillis.
         www.myjobglasses.com
+      speakers:
+        - Victor Mours
 
 - id: "paris-rb-december-2025"
   title: "Paris.rb Meetup December 2025"
@@ -2563,53 +2564,53 @@
   video_id: "paris-rb-december-2025"
   description: ""
   talks:
-    - title: "Data for good"
+    - id: "paul-gabriel-parisrb-meetup-december-2025"
+      title: "Data for good"
       raw_title: "Data for good"
-      speakers:
-        - Paul Gabriel
       event_name: "Paris.rb Meetup December 2025"
-      language: "french"
       date: "2025-12-02"
       published_at: "2026-03-02"
+      language: "french"
       video_provider: "youtube"
-      id: "paul-gabriel-parisrb-meetup-december-2025"
       video_id: "iX2NNiO9MxE"
       description: |-
         Par Paul Gabriel
         Paris.rb Meetup Décembre 2025
         Merci à Qonto de nous avoir accueillis.
         qonto.com
-
-    - title: "Cloud exit at 37signals"
-      raw_title: "Cloud exit at 37signals"
       speakers:
         - Paul Gabriel
+
+    - id: "paul-gabriel-cloud-exit-parisrb-meetup-december-2025"
+      title: "Cloud exit at 37signals"
+      raw_title: "Cloud exit at 37signals"
       event_name: "Paris.rb Meetup December 2025"
-      language: "french"
       date: "2025-12-02"
       published_at: "2026-03-02"
+      language: "french"
       video_provider: "youtube"
-      id: "paul-gabriel-cloud-exit-parisrb-meetup-december-2025"
       video_id: "RcII1stMhVs"
       description: |-
         Par Paul Gabriel
         Paris.rb Meetup Décembre 2025
         Merci à Qonto de nous avoir accueillis.
         qonto.com
-
-    - title: "Ruby standards at Qonto"
-      raw_title: "Ruby standards at Qonto"
       speakers:
-        - Julien Perlot
+        - Paul Gabriel
+
+    - id: "julien-perlot-parisrb-meetup-december-2025"
+      title: "Ruby standards at Qonto"
+      raw_title: "Ruby standards at Qonto"
       event_name: "Paris.rb Meetup December 2025"
-      language: "french"
       date: "2025-12-02"
       published_at: "2026-03-02"
+      language: "french"
       video_provider: "youtube"
-      id: "julien-perlot-parisrb-meetup-december-2025"
       video_id: "3myaIWgLMdA"
       description: |-
         Par Julien Perlot
         Paris.rb Meetup Décembre 2025
         Merci à Qonto de nous avoir accueillis.
         qonto.com
+      speakers:
+        - Julien Perlot

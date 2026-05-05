@@ -49,40 +49,40 @@
 
     https://www.meetup.com/vienna-rb/events/304271765
   talks:
-    - title: "Refine Your Monkey Patch"
+    - id: "grzegorz-jakubiak-vienna-rb-december-2024"
+      title: "Refine Your Monkey Patch"
       event_name: "Vienna.rb December 2024"
       date: "2024-12-05"
-      speakers:
-        - Grzegorz Jakubiak
-      id: "grzegorz-jakubiak-vienna-rb-december-2024"
-      video_id: "grzegorz-jakubiak-vienna-rb-december-2024"
       video_provider: "not_recorded"
+      video_id: "grzegorz-jakubiak-vienna-rb-december-2024"
       description: |-
         A practical guide to monkey patching without introducing unexpected bugs. Learn techniques to safely extend your code without unwanted side effects, using Ruby’s refinement feature—a tool Matz has labeled a failure. This talk will equip you with best practices for patching responsibly.
+      speakers:
+        - Grzegorz Jakubiak
 
-    - title: "10 Years of HexaPDF"
+    - id: "thomas-leitner-vienna-rb-december-2024"
+      title: "10 Years of HexaPDF"
       event_name: "Vienna.rb December 2024"
       date: "2024-12-05"
-      speakers:
-        - Thomas Leitner
-      id: "thomas-leitner-vienna-rb-december-2024"
-      video_id: "thomas-leitner-vienna-rb-december-2024"
       video_provider: "not_recorded"
+      video_id: "thomas-leitner-vienna-rb-december-2024"
       description: |-
         A look at how HexaPDF came to be, from idea to running a business. The journey was (and still is) filled with challenges, happy moments and things one should -in hindsight - definitely not do! 🙂 The talk is light on the technical side of HexaPDF and focuses more on the things I did and learned.
 
         Blog Post: https://gettalong.org/blog/2024/10-years-of-hexapdf.html
+      speakers:
+        - Thomas Leitner
 
-    - title: "An Epic Migration"
+    - id: "nicolas-dular-vienna-rb-december-2024"
+      title: "An Epic Migration"
       event_name: "Vienna.rb December 2024"
       date: "2024-12-05"
-      speakers:
-        - Nicolas Dular
-      id: "nicolas-dular-vienna-rb-december-2024"
-      video_id: "nicolas-dular-vienna-rb-december-2024"
       video_provider: "not_recorded"
+      video_id: "nicolas-dular-vienna-rb-december-2024"
       description: |-
         Join me on our epic adventure of migrating GitLab epics! In this talk, I'll dive into the challenges of executing zero-downtime migrations at scale, why we opted for bi-directional syncing (and the struggles that came with it), and how we coordinated the project. Come for the tech insights, and stay for the stories of how we tracked down out-of-sync data!
+      speakers:
+        - Nicolas Dular
 
 # 2025
 
@@ -90,8 +90,8 @@
   title: "Vienna.rb March 2025"
   event_name: "Vienna.rb March 2025"
   date: "2025-03-06"
-  announced_at: "2025-02-03"
   published_at: "2025-03-10"
+  announced_at: "2025-02-03"
   video_provider: "children"
   video_id: "vienna-rb-march-2025"
   thumbnail_xs: "https://secure.meetupstatic.com/photos/event/1/8/8/5/600_526206277.webp?w=750"
@@ -154,15 +154,13 @@
 
     https://www.meetup.com/vienna-rb/events/305607564
   talks:
-    - title: "Balancing Quality and Speed of Testing with the Undercover Gem"
+    - id: "jan-grodowski-vienna-rb-march-2025"
+      title: "Balancing Quality and Speed of Testing with the Undercover Gem"
       event_name: "Vienna.rb March 2025"
       date: "2025-03-06"
       published_at: "2025-03-10"
-      speakers:
-        - Jan Grodowski
-      id: "jan-grodowski-vienna-rb-march-2025"
-      video_id: "G7kuYXr5oKA"
       video_provider: "youtube"
+      video_id: "G7kuYXr5oKA"
       description: |-
         We're joined by Jan Grodowski (https://x.com/mrgrodo), a Staff Engineer at Shopify. Jan dives deep into Ruby testing and shares what he has learned as a Solopreneur maintaining UndercoverCI ( https://undercover-ci.com ).
 
@@ -177,17 +175,17 @@
         00:00 Start
         23:25 Live Demo
         49:40 Q&A
+      speakers:
+        - Jan Grodowski
 
-    - title: "Building Beautiful UIs with Ruby: A Rails-Native Approach"
+    - id: "seth-horsley-vienna-rb-march-2025"
+      title: "Building Beautiful UIs with Ruby: A Rails-Native Approach"
       event_name: "Vienna.rb March 2025"
       date: "2025-03-06"
       published_at: "2025-03-10"
-      speakers:
-        - Seth Horsley
-      id: "seth-horsley-vienna-rb-march-2025"
-      video_id: "rQOHlmwPHoo"
-      video_provider: "youtube"
       slides_url: "https://speakerdeck.com/seth4242/building-a-beautiful-ui-with-phlex-and-rubyui"
+      video_provider: "youtube"
+      video_id: "rQOHlmwPHoo"
       description: |-
         We're joined by Seth Horsley (https://github.com/SethHorsley) from StateCert. Seth shares the future of Rails UIs with us. Creating amazing interfaces with plain Ruby using Ruby UI ( https://github.com/ruby-ui/ruby_ui ).
 
@@ -202,20 +200,20 @@
         00:00 Start
         4:08 Demo
         7:13 Q&A
+      speakers:
+        - Seth Horsley
       additional_resources:
         - name: "ruby-ui/ruby_ui"
           type: "repo"
           url: "https://github.com/ruby-ui/ruby_ui"
 
-    - title: "Jujutsu: Will it replace Git?"
+    - id: "anton-bangratz-vienna-rb-march-2025"
+      title: "Jujutsu: Will it replace Git?"
       event_name: "Vienna.rb March 2025"
       date: "2025-03-06"
       published_at: "2025-03-10"
-      speakers:
-        - Anton Bangratz
-      id: "anton-bangratz-vienna-rb-march-2025"
-      video_id: "6TMVcYxRjZ0"
       video_provider: "youtube"
+      video_id: "6TMVcYxRjZ0"
       description: |-
         We're joined by Anton "Tony" Bangratz (https://github.com/abangratz). Anton is a veteran Ruby developer from Vienna who works at Platogo. In this talk, he shares his experience using Jujutsu ( https://jj-vcs.github.io/jj/latest/ ) and explains why you should probably use it too!
 
@@ -230,16 +228,16 @@
         00:00 Start
         0:52 What is Jujutsu
         8:46 Q&A
+      speakers:
+        - Anton Bangratz
 
-    - title: "Logical, Mr Matz: A Foray into Logic Programming in Ruby"
+    - id: "johannes-daxboeck-vienna-rb-march-2025"
+      title: "Logical, Mr Matz: A Foray into Logic Programming in Ruby"
       event_name: "Vienna.rb March 2025"
       date: "2025-03-06"
       published_at: "2025-03-10"
-      speakers:
-        - Johannes Daxböck
-      id: "johannes-daxboeck-vienna-rb-march-2025"
-      video_id: "_rdIWfyfuK4"
       video_provider: "youtube"
+      video_id: "_rdIWfyfuK4"
       description: |-
         We're joined by Johannes Daxböck (https://www.linkedin.com/in/johdax). Johannes shares his exploration of logic programming in Ruby with us. If you have worked with Prolog at some point, this one might interest you. If you haven't, then too!
 
@@ -254,13 +252,15 @@
         00:00 Start
         00:51 Intro to logic programming
         14:48 Q&A
+      speakers:
+        - Johannes Daxböck
 
 - id: "vienna-rb-june-2025"
   title: "Vienna.rb June 2025"
   event_name: "Vienna.rb June 2025"
   date: "2025-06-05"
-  announced_at: "2025-05-09"
   published_at: "2025-06-11"
+  announced_at: "2025-05-09"
   video_provider: "children"
   video_id: "vienna-rb-june-2025"
   thumbnail_xs: "https://secure.meetupstatic.com/photos/event/a/0/5/5/highres_527921045.webp?w=750"
@@ -315,15 +315,13 @@
 
     https://www.meetup.com/vienna-rb/events/307283556
   talks:
-    - title: "How To Ship 1000+ Commits to a Rails Monolith Daily"
+    - id: "hana-harencarova-vienna-rb-june-2025"
+      title: "How To Ship 1000+ Commits to a Rails Monolith Daily"
       event_name: "Vienna.rb June 2025"
       date: "2025-06-05"
       published_at: "2025-06-11"
-      speakers:
-        - Hana Harencarova
-      id: "hana-harencarova-vienna-rb-june-2025"
-      video_id: "iUfP60kJka4"
       video_provider: "youtube"
+      video_id: "iUfP60kJka4"
       description: |-
         We're joined by Hana Harencarova (https://hharen.com/). Hana works at GitHub and is traveling all the way from Switzerland to give a talk on how GitHub ships hundreds of commits to our Rails monolith every day through a deployment process built for speed, safety, and reliability.
 
@@ -336,16 +334,16 @@
         00:00 Intro
         5:02 Talk
         33:50 Q&A
+      speakers:
+        - Hana Harencarova
 
-    - title: "Building Buildings with Rails"
+    - id: "alexander-fiedler-vienna-rb-june-2025"
+      title: "Building Buildings with Rails"
       event_name: "Vienna.rb June 2025"
       date: "2025-06-05"
       published_at: "2025-06-11"
-      speakers:
-        - Alexander Fiedler
-      id: "alexander-fiedler-vienna-rb-june-2025"
-      video_id: "rHMF-1vbR3A"
       video_provider: "youtube"
+      video_id: "rHMF-1vbR3A"
       description: |-
         Alexander Fiedler works at our host Planradar. PlanRadar provides a platform for construction management, and that platform is built on Ruby on Rails! Let's learn how the team at PlanRadar uses Rails, and discover why they chose it in the first place.
 
@@ -353,16 +351,16 @@
         - https://www.meetup.com/vienna-rb
         - https://x.com/vienna-rb
         - https://bsky.app/profile/ruby.wien
+      speakers:
+        - Alexander Fiedler
 
-    - title: "The Vienna.rb Ruby Quiz"
+    - id: "ruby-quiz-vienna-rb-june-2025"
+      title: "The Vienna.rb Ruby Quiz"
       event_name: "Vienna.rb June 2025"
       date: "2025-06-05"
       published_at: "2025-06-11"
-      speakers:
-        - Hans Schnedlitz
-      id: "ruby-quiz-vienna-rb-june-2025"
-      video_id: "8fBmFEXoS-Q"
       video_provider: "youtube"
+      video_id: "8fBmFEXoS-Q"
       description: |-
         Here's something different. We hosted a small Ruby Quiz - with actual prizes provided by the Ruby community! Thanks to Chris Oliver, Joe Masilotti, Andy Croll, and Ally Vogel!
 
@@ -375,6 +373,8 @@
         0:00 Intro
         3:22 Quiz Starts
         12:35 Results & Prizes
+      speakers:
+        - Hans Schnedlitz
 
 - id: "vienna-rb-september-2025"
   title: "Vienna.rb September 2025"
@@ -424,16 +424,14 @@
 
     https://www.meetup.com/vienna-rb/events/310404842
   talks:
-    - title: "Smart Queries for Dumb Models"
+    - id: "clemens-helm-vienna-rb-september-2025"
+      title: "Smart Queries for Dumb Models"
       event_name: "Vienna.rb September 2025"
       date: "2025-09-04"
-      announced_at: "2025-08-07"
       published_at: "2025-09-21"
-      speakers:
-        - Clemens Helm
-      id: "clemens-helm-vienna-rb-september-2025"
-      video_id: "6LOl7L2zALY"
+      announced_at: "2025-08-07"
       video_provider: "youtube"
+      video_id: "6LOl7L2zALY"
       description: |-
         Due to a technical hickup, there are no slides for this talk :(
 
@@ -443,17 +441,17 @@
           - https://www.meetup.com/vienna-rb
           - https://x.com/vienna-rb
           - https://bsky.app/profile/ruby.wien
+      speakers:
+        - Clemens Helm
 
-    - title: "Know Your Weaknesses"
+    - id: "wolfgang-hotwagner-vienna-rb-september-2025"
+      title: "Know Your Weaknesses"
       event_name: "Vienna.rb September 2025"
       date: "2025-09-04"
-      announced_at: "2025-08-07"
       published_at: "2025-09-21"
-      speakers:
-        - Wolfgang Hotwagner
-      id: "wolfgang-hotwagner-vienna-rb-september-2025"
-      video_id: "dKQJQ_Gn01U"
+      announced_at: "2025-08-07"
       video_provider: "youtube"
+      video_id: "dKQJQ_Gn01U"
       description: |-
         Wolfgang Hotwagner is a Linux and Information Security enthusiast from Vienna. On top of all that he's also an avid Rubyist! In his talk he demonstrates how to easily integrate security into your development process without expert knowledge, using an open-source Ruby application as an example.
 
@@ -461,13 +459,15 @@
           - https://www.meetup.com/vienna-rb
           - https://x.com/vienna-rb
           - https://bsky.app/profile/ruby.wien
+      speakers:
+        - Wolfgang Hotwagner
 
 - id: "vienna-rb-december-2025"
   title: "Vienna.rb December 2025"
   event_name: "Vienna.rb December 2025"
   date: "2025-12-03"
-  announced_at: "2025-11-04"
   published_at: "2026-01-01"
+  announced_at: "2025-11-04"
   video_provider: "children"
   video_id: "vienna-rb-december-2025"
   thumbnail_xs: "https://secure.meetupstatic.com/photos/event/1/d/9/d/highres_531127581.webp?w=750"
@@ -530,28 +530,29 @@
 
     https://www.meetup.com/vienna-rb/events/311836381
   talks:
-    - title: "AI Interface in 5 Minutes - Model Context Protocol on Rails"
+    - id: "pawel-strzalkowski-vienna-rb-december-2025"
+      title: "AI Interface in 5 Minutes - Model Context Protocol on Rails"
       event_name: "Vienna.rb December 2025"
       date: "2025-12-03"
       announced_at: "2025-11-04"
-      speakers:
-        - Paweł Strzałkowski
-      id: "pawel-strzalkowski-vienna-rb-december-2025"
-      video_id: "pawel-strzalkowski-vienna-rb-december-2025"
       video_provider: "not_recorded"
+      video_id: "pawel-strzalkowski-vienna-rb-december-2025"
       description: |-
         This talk delivers a low-risk, high-value AI strategy that applies to any Rails app, new or old. It proves the ecosystem's power to modernize existing assets in the AI era without the need for expensive rewrites. It teaches one of the key aspects of the modern AI tech stack, giving a competitive advantage.
-    - title: "Machines That Talk About Themselves"
+      speakers:
+        - Paweł Strzałkowski
+
+    - id: "rosa-gutierrez-vienna-rb-december-2025"
+      title: "Machines That Talk About Themselves"
       event_name: "Vienna.rb December 2025"
       date: "2025-12-03"
       announced_at: "2025-11-04"
-      speakers:
-        - Rosa Gutiérrez
-      id: "rosa-gutierrez-vienna-rb-december-2025"
-      video_id: "rosa-gutierrez-vienna-rb-december-2025"
       video_provider: "not_recorded"
+      video_id: "rosa-gutierrez-vienna-rb-december-2025"
       description: |-
         We'll start with four symbols and a printing machine. From there, we'll explore how a mathematical crisis from the 1930s ended up shaping everything we do as programmers today. No math background needed, just your curiosity.
+      speakers:
+        - Rosa Gutiérrez
 
 # 2026
 
@@ -559,8 +560,8 @@
   title: "Vienna.rb March 2026"
   event_name: "Vienna.rb March 2026"
   date: "2026-03-05"
-  announced_at: "2026-02-09"
   published_at: "2026-03-11"
+  announced_at: "2026-02-09"
   video_provider: "children"
   video_id: "vienna-rb-march-2026"
   thumbnail_xs: "https://secure.meetupstatic.com/photos/event/b/6/3/0/highres_532666640.webp?w=750"
@@ -610,39 +611,41 @@
 
     https://www.meetup.com/vienna-rb/events/313282866
   talks:
-    - title: "Structured Logging in Ruby: Where We Are and Where We're Heading"
+    - id: "peter-solnica-vienna-rb-march-2026"
+      title: "Structured Logging in Ruby: Where We Are and Where We're Heading"
       event_name: "Vienna.rb March 2026"
       date: "2026-03-05"
-      announced_at: "2026-02-09"
       published_at: "2026-03-11"
-      speakers:
-        - Peter Solnica
-      id: "peter-solnica-vienna-rb-march-2026"
-      video_id: "A367dhj3W4g"
+      announced_at: "2026-02-09"
       video_provider: "youtube"
+      video_id: "A367dhj3W4g"
       description: |-
         Ruby's logging ecosystem is evolving, and there's a lot of momentum to build on. In this talk, we'll explore the current state of logging in Ruby and compare it with ecosystems like Elixir, where a more capable, well-designed logger is built right into the standard library. We'll dive into recent developments in Rails - including its new structured events API - and how they connect to the broader picture of structured logging, error handling, and tracing. Along the way, we'll build a vision for what Ruby's standard library could offer: a powerful, extendable logger that makes structured logging a natural part of every Ruby project.
-    - title: "Building Games with Ruby"
+      speakers:
+        - Peter Solnica
+
+    - id: "marie-therese-fischer-vienna-rb-march-2026"
+      title: "Building Games with Ruby"
       event_name: "Vienna.rb March 2026"
       date: "2026-03-05"
-      announced_at: "2026-02-09"
       published_at: "2026-03-11"
-      speakers:
-        - Marie-Therese Fischer
-      id: "marie-therese-fischer-vienna-rb-march-2026"
-      video_id: "ujNdn3OJn9A"
+      announced_at: "2026-02-09"
       video_provider: "youtube"
+      video_id: "ujNdn3OJn9A"
       description: |-
         What do you end up with when you strip Rails from a Rails developer? Plain Ruby. Join me as I explore the language behind the framework through the lens of game development. By building a simple terminal game and a 2D platformer, I'll break down the essential building blocks every game is built on - from loops and input handling to visuals. We'll look at how stepping away from the 'magic' of Rails to build games can lead to a deeper understanding of Ruby logic and application structure.
-    - title: "The Art of Testing Nothing"
+      speakers:
+        - Marie-Therese Fischer
+
+    - id: "christoph-lipautz-vienna-rb-march-2026"
+      title: "The Art of Testing Nothing"
       event_name: "Vienna.rb March 2026"
       date: "2026-03-05"
-      announced_at: "2026-02-09"
       published_at: "2026-03-11"
-      speakers:
-        - Christoph Lipautz
-      id: "christoph-lipautz-vienna-rb-march-2026"
-      video_id: "1CzJJ2KM3F8"
+      announced_at: "2026-02-09"
       video_provider: "youtube"
+      video_id: "1CzJJ2KM3F8"
       description: |-
         Traditional CI/CD pipelines often waste significant resources re-validating unchanged code, creating a bottleneck in the development lifecycle. This session explores the results of my attempts to shift from exhaustive execution to smart omission. I'll discuss how doing nothing turns into a technical strategic advantage while maintaining confidence.
+      speakers:
+        - Christoph Lipautz
