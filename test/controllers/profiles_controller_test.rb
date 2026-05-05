@@ -22,11 +22,9 @@ class ProfilesControllerTest < ActionDispatch::IntegrationTest
     original_slug = @user_with_talk.slug
 
     @user_with_talk.assign_canonical_speaker!(canonical_speaker: @user)
-    @user_with_talk.reload
+    @user.reload
 
-    assert_equal @user, @user_with_talk.canonical
     assert @user.talks.ids.include?(talk.id)
-    assert @user_with_talk.talks.empty?
 
     get profile_url(original_slug)
     assert_redirected_to profile_url(@user)
@@ -128,7 +126,6 @@ class ProfilesControllerTest < ActionDispatch::IntegrationTest
     duplicate_user = User.create!(name: "Duplicate User", github_handle: "duplicate-controller")
 
     duplicate_user.assign_canonical_user!(canonical_user: canonical_user)
-    duplicate_user.reload
 
     alias_record = Alias.find_by(slug: "duplicate-controller")
     assert_not_nil alias_record

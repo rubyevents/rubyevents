@@ -91,17 +91,14 @@ class UserTest < ActiveSupport::TestCase
     assert_equal user1.id, found_user.id
   end
 
-  test "assign_canonical_user! marks user for deletion" do
+  test "assign_canonical_user! deletes user" do
     user = User.create!(name: "Duplicate User", github_handle: "duplicate-test")
     canonical_user = User.create!(name: "Canonical User", github_handle: "canonical-test")
-
-    assert_equal false, user.marked_for_deletion
+    user_id = user.id
 
     user.assign_canonical_user!(canonical_user: canonical_user)
-    user.reload
 
-    assert_equal true, user.marked_for_deletion
-    assert_equal canonical_user, user.canonical
+    assert_not User.exists?(user_id)
   end
 
   test "assign_canonical_user! creates an alias on the canonical user" do
@@ -171,12 +168,9 @@ class UserTest < ActiveSupport::TestCase
     assert_equal 0, canonical_user.talks.count
 
     user.assign_canonical_user!(canonical_user: canonical_user)
-    user.reload
     canonical_user.reload
 
-    assert_equal 0, user.talks.count
     assert_equal 2, canonical_user.talks.count
-
     assert_includes canonical_user.talks, talk1
     assert_includes canonical_user.talks, talk2
   end
@@ -193,10 +187,8 @@ class UserTest < ActiveSupport::TestCase
     assert_equal 0, canonical_user.event_participations.count
 
     user.assign_canonical_user!(canonical_user: canonical_user)
-    user.reload
     canonical_user.reload
 
-    assert_equal 0, user.event_participations.count
     assert_equal 1, canonical_user.event_participations.count
     assert_equal event, canonical_user.participated_events.first
   end
@@ -234,10 +226,8 @@ class UserTest < ActiveSupport::TestCase
     assert_equal 0, canonical_user.event_involvements.count
 
     user.assign_canonical_user!(canonical_user: canonical_user)
-    user.reload
     canonical_user.reload
 
-    assert_equal 0, user.event_involvements.count
     assert_equal 1, canonical_user.event_involvements.count
     assert_equal event, canonical_user.involved_events.first
   end
@@ -265,15 +255,14 @@ class UserTest < ActiveSupport::TestCase
     assert_equal event.id, new_involvement.event_id
   end
 
-  test "assign_canonical_speaker! calls assign_canonical_user!" do
+  test "assign_canonical_speaker! deletes user and creates alias" do
     user = User.create!(name: "Old Method User", github_handle: "old-method")
     canonical_user = User.create!(name: "Canonical", github_handle: "canonical-old")
+    user_id = user.id
 
     user.assign_canonical_speaker!(canonical_speaker: canonical_user)
-    user.reload
 
-    assert_equal true, user.marked_for_deletion
-    assert_equal canonical_user, user.canonical
+    assert_not User.exists?(user_id)
     assert_not_nil canonical_user.aliases.find_by(name: "Old Method User")
   end
 
@@ -285,12 +274,11 @@ class UserTest < ActiveSupport::TestCase
     assert_nil found_user
   end
 
-  test "find_by_name_or_alias finds alias even if original user is marked for deletion" do
+  test "find_by_name_or_alias finds alias even if original user is deleted" do
     canonical_user = User.create!(name: "Canonical User", github_handle: "canonical-marked-test")
     marked_user = User.create!(name: "Duplicate User", github_handle: "duplicate-marked-test")
 
     marked_user.assign_canonical_user!(canonical_user: canonical_user)
-    marked_user.reload
 
     alias_record = Alias.find_by(aliasable_type: "User", name: "Duplicate User")
     assert_not_nil alias_record
@@ -309,13 +297,12 @@ class UserTest < ActiveSupport::TestCase
     assert_nil found_user
   end
 
-  test "find_by_slug_or_alias finds alias even if original user is marked for deletion" do
+  test "find_by_slug_or_alias finds alias even if original user is deleted" do
     canonical_user = User.create!(name: "Canonical Slug User", github_handle: "canonical-slug-marked")
     marked_user = User.create!(name: "Duplicate Slug User", github_handle: "duplicate-slug-marked")
     original_slug = marked_user.slug
 
     marked_user.assign_canonical_user!(canonical_user: canonical_user)
-    marked_user.reload
 
     alias_record = Alias.find_by(aliasable_type: "User", slug: original_slug)
     assert_not_nil alias_record
