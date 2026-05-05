@@ -651,9 +651,20 @@ namespace :validate do
       puts Gum.style("✓ speakers.yml is in sync", foreground: "2")
       results << true
     else
-      puts Gum.style("✗ speakers.yml is out of sync", foreground: "1") if missing.any? || orphaned.any?
-      puts Gum.style("  #{missing.length} missing, #{orphaned.length} orphaned", foreground: "1")
-      puts Gum.style("  Run: rails speakers_file:sync", foreground: "3")
+      if missing.any?
+        puts Gum.style("#{missing.length} speakers referenced in videos but missing from speakers.yml:", foreground: "1")
+        missing.each { |name| puts Gum.style("  ❌ #{name}", foreground: "1") }
+        puts
+      end
+
+      if orphaned.any?
+        puts Gum.style("#{orphaned.length} orphaned speakers in speakers.yml:", foreground: "1")
+        orphaned.sort.each { |name| puts Gum.style("  ❌ #{name}", foreground: "1") }
+        puts
+      end
+
+      puts Gum.style("Run: rails speakers_file:sync", foreground: "3")
+
       results << false
     end
 
