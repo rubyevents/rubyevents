@@ -198,7 +198,7 @@
         </section>
       <% end %>
 
-      <% if @event.talks.empty? && @event.speakers.empty? && @sponsors.empty? %>
+      <% if @event.talks.empty? && @event.speakers.empty? && @sponsors.empty? && !@event.static_metadata.cancelled? %>
         <div class="text-center py-12">
           <div class="max-w-md mx-auto">
             <div class="text-6xl mb-4">🎤</div>
