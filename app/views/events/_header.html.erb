@@ -1,4 +1,5 @@
 <%# locals: (event:, participation: nil) %>
+
 <div
   class="w-full md:h-[198px] lg:h-[267px] xl:h-[336px] 2xl:h-[405px] justify-center align-center flex mt-3 border-t border-b hotwire-native:hidden"
   style="
@@ -13,6 +14,12 @@
   ">
   <%= image_tag image_path(event.banner_image_path), class: "w-full md:container" %>
 </div>
+
+<% if event.static_metadata.cancelled? %>
+  <div class="bg-red-600 text-white text-center py-3 font-semibold text-lg">
+    This event has been cancelled.
+  </div>
+<% end %>
 
 <div class="container py-8">
   <div class="block lg:flex gap-8 align-center justify-between">
@@ -36,7 +43,10 @@
     <div class="flex flex-col gap-2">
       <%= ui_button "View all #{event.series.name} events", url: series_path(event.series), kind: :secondary, size: :sm, class: "w-full" %>
       <%= render "events/participation_button", event: event, participation: participation %>
-      <%= render Tito::ButtonComponent.new(event: event) %>
+
+      <% unless event.static_metadata.cancelled? %>
+        <%= render Tito::ButtonComponent.new(event: event) %>
+      <% end %>
 
       <% if Current.user&.admin? %>
         <div class="flex items-center gap-2 mt-4 pt-4 border-t border-gray-200">
@@ -66,7 +76,7 @@
   </p>
 
   <% event.cfps.each do |cfp| %>
-    <% if event.start_date && event.start_date > Date.today %>
+    <% if event.start_date && event.start_date > Date.today && !event.static_metadata.cancelled? %>
       <div class="mt-6 p-4 bg-gray-100 rounded-lg max-w-[700px]">
         <h3 class="font-bold text-lg mb-2"><%= cfp.name.presence || "Call for Proposals" %></h3>
 
