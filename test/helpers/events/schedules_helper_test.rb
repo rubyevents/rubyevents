@@ -8,14 +8,20 @@ class Events::SchedulesHelperTest < ActionView::TestCase
   end
 
   test "selects the schedule day matching today" do
-    assert_equal @day2, selected_schedule_day(@days, today: "2026-07-21")
+    travel_to Date.new(2026, 7, 21) do
+      assert_equal @day2, selected_schedule_day(@days)
+    end
   end
 
   test "returns the first day before the event" do
-    assert_equal @day1, selected_schedule_day(@days, today: "2026-01-01")
+    travel_to Date.new(2026, 7, 19) do
+      assert_equal @day1, selected_schedule_day(@days)
+    end
   end
 
   test "returns the first day after the event" do
-    assert_equal @day1, selected_schedule_day(@days, today: "2027-01-01")
+    travel_to Date.new(2026, 7, 22) do
+      assert_equal @day1, selected_schedule_day(@days)
+    end
   end
 end
