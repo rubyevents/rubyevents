@@ -14,6 +14,12 @@
   <%= image_tag image_path(event.banner_image_path), class: "w-full md:container" %>
 </div>
 
+<% if event.static_metadata.cancelled? %>
+  <div class="bg-red-600 text-white text-center py-3 font-semibold text-lg">
+    This event has been cancelled.
+  </div>
+<% end %>
+
 <div class="container py-8">
   <div class="block lg:flex gap-8 align-center justify-between">
     <div class="flex flex-col lg:flex-row gap-8 items-center lg:justify-right text-center lg:text-left mb-6 lg:mb-0">
@@ -66,7 +72,7 @@
   </p>
 
   <% event.cfps.each do |cfp| %>
-    <% if event.start_date && event.start_date > Date.today %>
+    <% if event.start_date && event.start_date > Date.today && !event.static_metadata.cancelled? %>
       <div class="mt-6 p-4 bg-gray-100 rounded-lg max-w-[700px]">
         <h3 class="font-bold text-lg mb-2"><%= cfp.name.presence || "Call for Proposals" %></h3>
 

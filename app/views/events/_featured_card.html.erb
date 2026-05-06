@@ -1,6 +1,6 @@
 <div
   data-event-list-target="poster" data-event-id="<%= event.slug %>"
-  class="hidden w-full lg:h-92 p-4 lg:p-16 border rounded-[25px] lg:rounded-[50px] text-center lg:text-left"
+  class="hidden w-full lg:h-92 p-4 lg:p-16 border rounded-[25px] lg:rounded-[50px] text-center lg:text-left relative overflow-hidden"
   style="
     color: <%= event.static_metadata.featured_color %>;
     <% if event.static_metadata.featured_background.start_with?("data:") %>
@@ -12,7 +12,7 @@
     <% end %>
   ">
   <a href="<%= event_path(event) %>">
-    <div class="grid-cols-[1fr_2fr]">
+    <div class="grid-cols-[1fr_2fr] <% if event.static_metadata.cancelled? %> opacity-50 grayscale <% end %>">
       <div>
         <div class="flex justify-center mb-9">
           <%= image_tag event.featured_image_path, class: "w-[200px] max-h-none lg:w-full", loading: "lazy", width: 615, height: 350, alt: event.name %>
@@ -29,4 +29,10 @@
       </div>
     </div>
   </a>
+
+  <% if event.static_metadata.cancelled? %>
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+      <span class="bg-red-600 text-white font-bold text-2xl lg:text-4xl uppercase tracking-widest px-16 py-3 -rotate-12 shadow-lg">Cancelled</span>
+    </div>
+  <% end %>
 </div>
