@@ -17,7 +17,7 @@
 
 <% if event.static_metadata.cancelled? %>
   <div class="bg-red-600 text-white text-center py-3 font-semibold text-lg">
-    This event <%= (event.start_date.present? && event.start_date < Date.today) ? "was cancelled." : "has been cancelled." %>
+    This event <%= event.start_date&.past? ? "was cancelled." : "has been cancelled." %>
   </div>
 <% end %>
 
