@@ -2,8 +2,8 @@ require "test_helper"
 
 class Events::SchedulesHelperTest < ActionView::TestCase
   setup do
-    @day1 = { "date" => "2026-07-20" }
-    @day2 = { "date" => "2026-07-21" }
+    @day1 = {"date" => "2026-07-20"}
+    @day2 = {"date" => "2026-07-21"}
     @days = [@day1, @day2]
   end
 
