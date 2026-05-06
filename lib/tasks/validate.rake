@@ -189,31 +189,34 @@ namespace :validate do
     speakers = YAML.load_file(Rails.root.join("data/speakers.yml"))
     success = true
 
-    slug_duplicates = speakers.map { |s| s["slug"] }.compact.tally.select { |_, count| count > 1 }
-    github_duplicates = speakers.map { |s| s["github"] }.select(&:present?).tally.select { |_, count| count > 1 }
+    unique_fields = {
+      "slug" => "slugs",
+      "github" => "GitHub handles",
+      "twitter" => "Twitter handles",
+      "speakerdeck" => "SpeakerDeck handles",
+      "mastodon" => "Mastodon handles",
+      "bluesky" => "Bluesky handles"
+    }
 
-    if slug_duplicates.any?
-      puts Gum.style("Duplicate speaker slugs found (#{slug_duplicates.count}):", foreground: "1")
-      puts
-      slug_duplicates.each do |slug, count|
-        puts Gum.style("❌ #{slug} (#{count} occurrences)", foreground: "1")
-      end
-      puts
-      success = false
-    else
-      puts Gum.style("✓ All speaker slugs are unique", foreground: "2")
-    end
+    unique_fields.each do |field, label|
+      duplicates = speakers.map { |s| s[field] }.select(&:present?).tally.select { |_, count| count > 1 }
 
-    if github_duplicates.any?
-      puts Gum.style("Duplicate speaker GitHub handles found (#{github_duplicates.count}):", foreground: "1")
-      puts
-      github_duplicates.each do |github, count|
-        puts Gum.style("❌ #{github} (#{count} occurrences)", foreground: "1")
+      if duplicates.any?
+        puts Gum.style("Duplicate speaker #{label} found (#{duplicates.count}):", foreground: "1")
+        puts
+
+        duplicates.each do |value, count|
+          names = speakers.select { |s| s[field] == value }.map { |s| s["name"] }.join(", ")
+
+          puts Gum.style("❌ #{value} (#{count}x: #{names})", foreground: "1")
+        end
+
+        puts
+
+        success = false
+      else
+        puts Gum.style("✓ All speaker #{label} are unique", foreground: "2")
       end
-      puts
-      success = false
-    else
-      puts Gum.style("✓ All speaker GitHub handles are unique", foreground: "2")
     end
 
     success
@@ -502,6 +505,32 @@ namespace :validate do
     exit 1 unless validate_video_city_names
   end
 
+  def validate_speakerdeck_urls
+    issues = Speakerdeck::SlidesScanner.new.problematic_urls
+
+    if issues.any?
+      puts Gum.style("Problematic SpeakerDeck slides URLs (#{issues.count}):", foreground: "1")
+      puts
+
+      issues.each do |issue|
+        gh_annotation = (ENV["GITHUB_ACTIONS"] == "true") ? "::error file=data/#{issue[:path]},line=1::" : "::error::"
+        puts Gum.style("❌ #{issue[:path]}", foreground: "1")
+        puts " #{gh_annotation} #{issue[:label]}: #{issue[:url]}"
+        puts
+      end
+
+      false
+    else
+      puts Gum.style("✓ All SpeakerDeck slides URLs are valid", foreground: "2")
+      true
+    end
+  end
+
+  desc "Validate SpeakerDeck slides URLs"
+  task speakerdeck_urls: :environment do
+    exit 1 unless validate_speakerdeck_urls
+  end
+
   desc "Validate all city-related data"
   task cities: [:event_city_names, :video_city_names]
 
@@ -733,6 +762,9 @@ namespace :validate do
       puts Gum.style("Validating speaker duplicates", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
       results << validate_speaker_duplicates
     end
+
+    puts Gum.style("Validating SpeakerDeck slides URLs", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+    results << validate_speakerdeck_urls
 
     puts Gum.style("Validating event city names", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_event_city_names

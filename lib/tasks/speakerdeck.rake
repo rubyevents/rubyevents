@@ -1,52 +1,53 @@
 namespace :speakerdeck do
   require "gum"
 
-  def render_progress_bar(current, total, width: 40)
-    return if total.zero?
-    return unless $stdin.tty?
-
-    percentage = (current.to_f / total * 100).round(1)
-    filled = (current.to_f / total * width).round
-    empty = width - filled
-
-    bar = "█" * filled + "░" * empty
-    "\r\e[K#{bar} #{percentage}% (#{current}/#{total})"
-  end
-
-  desc "Set speakerdeck name from slides_url"
+  desc "Set speakerdeck name in speakers.yml from slides_url in videos"
   task set_usernames_from_slides_url: :environment do
     puts Gum.style("Setting SpeakerDeck usernames from slides URLs", border: "rounded", padding: "0 2", border_foreground: "5")
     puts
 
-    users = User.distinct.where(speakerdeck: "").where.associated(:talks)
-    total_count = users.count
-    updated = 0
-    processed = 0
+    scanner = Speakerdeck::SlidesScanner.new.scan
+    speakers_file = Static::SpeakersFile.new
 
-    puts "Found #{total_count} speakers with no SpeakerDeck name"
-    puts
+    multi = scanner.multi_handle_speakers
+    if multi.any?
+      puts Gum.style("Speakers with multiple SpeakerDeck handles:", foreground: "3")
 
-    users.find_in_batches do |batch|
-      batch.each do |user|
-        speakerdeck_name = user.speakerdeck_user_from_slides_url
-
-        if speakerdeck_name
-          user.update!(speakerdeck: speakerdeck_name)
-          print "\r\e[K"
-          puts Gum.style("✓ #{user.name} → #{speakerdeck_name}", foreground: "2")
-          updated += 1
-        end
-
-        processed += 1
-        print render_progress_bar(processed, total_count)
+      multi.each do |name, handles|
+        puts "  ⚠ #{name}: #{handles.to_a.join(", ")}"
       end
+
+      puts
     end
 
-    puts "\n"
+    candidates = scanner.candidates
+    updated = 0
+
+    puts "Found #{candidates.size} speakers with a unique SpeakerDeck handle from slides"
+    puts
+
+    candidates.each do |name, handles|
+      speaker = speakers_file.find_by(name: name)
+      next unless speaker
+
+      handle = handles.first
+      next if speaker.key?("speakerdeck") && speaker["speakerdeck"].to_s == handle
+
+      if speaker.key?("speakerdeck")
+        speaker["speakerdeck"] = handle
+      else
+        speaker.insert(:speakerdeck, handle)
+      end
+      puts Gum.style("✓ #{name} → #{handle}", foreground: "2")
+      updated += 1
+    end
 
     if updated > 0
-      puts Gum.style("Updated #{updated} speakers!", border: "rounded", padding: "0 2", foreground: "2", border_foreground: "2")
+      speakers_file.save!
+      puts
+      puts Gum.style("Updated #{updated} speakers in speakers.yml!", border: "rounded", padding: "0 2", foreground: "2", border_foreground: "2")
     else
+      puts
       puts Gum.style("No speakers updated", border: "rounded", padding: "0 2", foreground: "3", border_foreground: "3")
     end
   end
