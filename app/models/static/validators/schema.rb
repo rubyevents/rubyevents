@@ -8,10 +8,19 @@ module Static
         @schema = schema
       end
 
+      PATTERNS = [
+        "data/*/*/event.yml",
+        "data/*/*/venue.yml",
+        "data/*/*/schedule.yml",
+        "data/*/series.yml"
+      ].freeze
+      
       def applicable?
         return false unless File.exist?(@file_path)
-        @file_path.match?(/data\/[^\/]+\/[^\/]+\/(event|venue|schedule)\.yml$/) ||
-          @file_path.match?(/data\/[^\/]+\/series\.yml$/)
+      
+        PATTERNS.any? do |pattern|
+          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME)
+        end
       end
 
       def errors
