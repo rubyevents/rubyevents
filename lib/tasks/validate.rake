@@ -615,7 +615,7 @@ namespace :validate do
 
     puts Gum.style("Validating event.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_files("data/**/event.yml", EventSchema, "event.yml")
-    results << validate_event_dates.any?
+    results << validate_event_dates.none?
 
     puts Gum.style("Validating series.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_files("data/*/series.yml", SeriesSchema, "series.yml")
