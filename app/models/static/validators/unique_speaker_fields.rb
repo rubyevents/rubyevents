@@ -36,10 +36,10 @@ module Static
       def validate
         return [] unless applicable?
 
-        speakers = YAML.load_file(@file_path)
+        speakers = Static::SpeakersFile.new(@file_path)
         errors = []
 
-        slug_duplicates = speakers.map { |s| s["slug"] }.compact.tally.select { |_, count| count > 1 }
+        slug_duplicates = speakers.duplicate_slugs
         slug_duplicates.each do |slug, count|
           errors << Static::Validators::Error.new(
             "Duplicate slug: #{slug} (#{count} occurrences)",
@@ -48,7 +48,7 @@ module Static
           )
         end
 
-        github_duplicates = speakers.map { |s| s["github"] }.select(&:present?).tally.select { |_, count| count > 1 }
+        github_duplicates = speakers.duplicate_githubs
         github_duplicates.each do |github, count|
           errors << Static::Validators::Error.new(
             "Duplicate GitHub handle: #{github} (#{count} occurrences)",
