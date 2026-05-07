@@ -26,7 +26,7 @@ class SponsorsGeneratorTest < Rails::Generators::TestCase
     run_generator ["--event-series", "rubyconf", "--event", "2024"]
 
     sponsor_file_path = File.join(destination_root, "data/rubyconf/2024/sponsors.yml")
-    errors = Static::Validators::SchemaArray.new(file_path: sponsor_file_path, schema: SponsorsSchema).validate
+    errors = Static::Validators::SchemaArray.new(file_path: sponsor_file_path).validate
     assert_empty errors, "Sponsors YAML does not conform to schema: #{errors.join(", ")}"
 
     File.delete sponsor_file_path

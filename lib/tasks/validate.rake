@@ -11,13 +11,13 @@ FIELD_ASSET_MAP = {
 }.freeze
 
 namespace :validate do
-  def validate_files(glob_pattern, schema_class, file_type)
+  def validate_files(glob_pattern, file_type)
     files = Dir.glob(Rails.root.join(glob_pattern))
     valid_count = 0
     invalid_files = []
 
     files.each do |file|
-      file_errors = Static::Validators::Schema.new(file_path: file, schema: schema_class).errors
+      file_errors = Static::Validators::Schema.new(file_path: file).errors
 
       if file_errors.empty?
         valid_count += 1
@@ -46,13 +46,13 @@ namespace :validate do
     invalid_files.empty?
   end
 
-  def validate_array_files(glob_pattern, schema_class, file_type)
+  def validate_array_files(glob_pattern, file_type)
     files = Dir.glob(Rails.root.join(glob_pattern))
     valid_count = 0
     invalid_files = []
 
     files.each do |file|
-      file_errors = Static::Validators::SchemaArray.new(file_path: file, schema: schema_class).errors
+      file_errors = Static::Validators::SchemaArray.new(file_path: file).errors
 
       if file_errors.empty?
         valid_count += 1
@@ -86,14 +86,12 @@ namespace :validate do
 
   desc "Validate all cfp.yml files against CFPSchema"
   task cfps: :environment do
-    success = validate_array_files("data/**/cfp.yml", CFPSchema, "cfp.yml")
-    exit 1 unless success
+    exit 1 unless validate_array_files("data/**/cfp.yml", "cfp.yml")
   end
 
   desc "Validate all event.yml files against EventSchema"
   task events: :environment do
-    success = validate_files("data/**/event.yml", EventSchema, "event.yml")
-    exit 1 unless success
+    exit 1 unless validate_files("data/**/event.yml", "event.yml")
   end
 
   def validate_event_dates
@@ -115,62 +113,52 @@ namespace :validate do
 
   desc "Validate start_date and end_date are present for non-meetup event.yml files"
   task event_dates: :environment do
-    errors = validate_event_dates
-    exit 1 if errors.any?
+    exit 1 if validate_event_dates.any?
   end
 
   desc "Validate all series.yml files against SeriesSchema"
   task series: :environment do
-    success = validate_files("data/*/series.yml", SeriesSchema, "series.yml")
-    exit 1 unless success
+    exit 1 unless validate_files("data/*/series.yml", "series.yml")
   end
 
   desc "Validate all sponsors.yml files against SeriesSchema"
   task sponsors: :environment do
-    success = validate_array_files("data/**/sponsors.yml", SponsorsSchema, "sponsors.yml")
-    exit 1 unless success
+    exit 1 unless validate_array_files("data/**/sponsors.yml", "sponsors.yml")
   end
 
   desc "Validate all venue.yml files against VenueSchema"
   task venues: :environment do
-    success = validate_files("data/**/venue.yml", VenueSchema, "venue.yml")
-    exit 1 unless success
+    exit 1 unless validate_files("data/**/venue.yml", "venue.yml")
   end
 
   desc "Validate speakers.yml against SpeakerSchema"
   task speakers: :environment do
-    success = validate_array_files("data/speakers.yml", SpeakerSchema, "speakers.yml")
-    exit 1 unless success
+    exit 1 unless validate_array_files("data/speakers.yml", "speakers.yml")
   end
 
   desc "Validate all videos.yml files against VideoSchema"
   task videos: :environment do
-    success = validate_array_files("data/**/videos.yml", VideoSchema, "videos.yml")
-    exit 1 unless success
+    exit 1 unless validate_array_files("data/**/videos.yml", "videos.yml")
   end
 
   desc "Validate all schedule.yml files against ScheduleSchema"
   task schedules: :environment do
-    success = validate_files("data/**/schedule.yml", ScheduleSchema, "schedule.yml")
-    exit 1 unless success
+    exit 1 unless validate_files("data/**/schedule.yml", "schedule.yml")
   end
 
   desc "Validate featured_cities.yml against FeaturedCitySchema"
   task featured_cities: :environment do
-    success = validate_array_files("data/featured_cities.yml", FeaturedCitySchema, "featured_cities.yml")
-    exit 1 unless success
+    exit 1 unless validate_array_files("data/featured_cities.yml", "featured_cities.yml")
   end
 
   desc "Validate all involvements.yml files against InvolvementSchema"
   task involvements: :environment do
-    success = validate_array_files("data/**/involvements.yml", InvolvementSchema, "involvements.yml")
-    exit 1 unless success
+    exit 1 unless validate_array_files("data/**/involvements.yml", "involvements.yml")
   end
 
   desc "Validate all transcripts.yml files against TranscriptSchema"
   task transcripts: :environment do
-    success = validate_array_files("data/**/transcripts.yml", TranscriptSchema, "transcripts.yml")
-    exit 1 unless success
+    exit 1 unless validate_array_files("data/**/transcripts.yml", "transcripts.yml")
   end
 
   def validate_unique_speaker_fields
@@ -590,38 +578,38 @@ namespace :validate do
     results = []
 
     puts Gum.style("Validating event.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_files("data/**/event.yml", EventSchema, "event.yml")
+    results << validate_files("data/**/event.yml", "event.yml")
     results << validate_event_dates.none?
 
     puts Gum.style("Validating series.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_files("data/*/series.yml", SeriesSchema, "series.yml")
+    results << validate_files("data/*/series.yml", "series.yml")
 
     puts Gum.style("Validating cfp.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_array_files("data/**/cfp.yml", CFPSchema, "cfp.yml")
+    results << validate_array_files("data/**/cfp.yml", "cfp.yml")
 
     puts Gum.style("Validating sponsors.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_array_files("data/**/sponsors.yml", SponsorsSchema, "sponsors.yml")
+    results << validate_array_files("data/**/sponsors.yml", "sponsors.yml")
 
     puts Gum.style("Validating venue.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_files("data/**/venue.yml", VenueSchema, "venue.yml")
+    results << validate_files("data/**/venue.yml", "venue.yml")
 
     puts Gum.style("Validating speakers.yml", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_array_files("data/speakers.yml", SpeakerSchema, "speakers.yml")
+    results << validate_array_files("data/speakers.yml", "speakers.yml")
 
     puts Gum.style("Validating videos.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_array_files("data/**/videos.yml", VideoSchema, "videos.yml")
+    results << validate_array_files("data/**/videos.yml", "videos.yml")
 
     puts Gum.style("Validating schedule.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_files("data/**/schedule.yml", ScheduleSchema, "schedule.yml")
+    results << validate_files("data/**/schedule.yml", "schedule.yml")
 
     puts Gum.style("Validating featured_cities.yml", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_array_files("data/featured_cities.yml", FeaturedCitySchema, "featured_cities.yml")
+    results << validate_array_files("data/featured_cities.yml", "featured_cities.yml")
 
     puts Gum.style("Validating involvements.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_array_files("data/**/involvements.yml", InvolvementSchema, "involvements.yml")
+    results << validate_array_files("data/**/involvements.yml", "involvements.yml")
 
     puts Gum.style("Validating transcripts.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_array_files("data/**/transcripts.yml", TranscriptSchema, "transcripts.yml")
+    results << validate_array_files("data/**/transcripts.yml", "transcripts.yml")
 
     puts Gum.style("Validating unique speaker slugs and GitHub handles", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_unique_speaker_fields.none?

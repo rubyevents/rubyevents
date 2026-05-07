@@ -7,51 +7,44 @@ class Static::Validators::SchemaArrayTest < ActiveSupport::TestCase
   VALID_CFP_FILE = Rails.root.join("data/helveticruby/helveticruby-2025/cfp.yml").to_s
 
   test "returns empty array for a valid file" do
-    validator = Static::Validators::SchemaArray.new(file_path: VALID_CFP_FILE, schema: CFPSchema)
+    validator = Static::Validators::SchemaArray.new(file_path: VALID_CFP_FILE)
     assert_empty validator.validate
   end
 
   test "returns errors for invalid items" do
     with_temp_cfp_yaml([{"name" => "CFP without required link"}].to_yaml) do |path|
-      validator = Static::Validators::SchemaArray.new(file_path: path, schema: CFPSchema)
+      validator = Static::Validators::SchemaArray.new(file_path: path)
       assert validator.validate.any?, "Expected validation errors but got none"
     end
   end
 
   test "errors are Static::Validators::Error objects" do
     with_temp_cfp_yaml([{"name" => "missing link"}].to_yaml) do |path|
-      validator = Static::Validators::SchemaArray.new(file_path: path, schema: CFPSchema)
+      validator = Static::Validators::SchemaArray.new(file_path: path)
       assert validator.validate.all? { |e| e.is_a?(Static::Validators::Error) }
     end
   end
 
   test "returns errors for multiple invalid items" do
     with_temp_cfp_yaml([{"name" => "first"}, {"name" => "second"}].to_yaml) do |path|
-      validator = Static::Validators::SchemaArray.new(file_path: path, schema: CFPSchema)
+      validator = Static::Validators::SchemaArray.new(file_path: path)
       assert validator.validate.count >= 2, "Expected errors for both items"
     end
   end
 
-  test "accepts schema instance as well as schema class" do
-    with_temp_cfp_yaml([{"name" => "missing link"}].to_yaml) do |path|
-      validator = Static::Validators::SchemaArray.new(file_path: path, schema: CFPSchema.new)
-      assert validator.validate.any?, "Expected validation errors but got none"
-    end
-  end
-
   test "applicable? returns true for cfp.yml" do
-    validator = Static::Validators::SchemaArray.new(file_path: VALID_CFP_FILE, schema: CFPSchema)
+    validator = Static::Validators::SchemaArray.new(file_path: VALID_CFP_FILE)
     assert validator.applicable?
   end
 
   test "applicable? returns false for a non-array file" do
     file = Dir.glob(Rails.root.join("data/**/event.yml")).first
-    validator = Static::Validators::SchemaArray.new(file_path: file, schema: EventSchema)
+    validator = Static::Validators::SchemaArray.new(file_path: file)
     assert_not validator.applicable?
   end
 
   test "applicable? returns false for a non-existent file" do
-    validator = Static::Validators::SchemaArray.new(file_path: "/nonexistent/cfp.yml", schema: CFPSchema)
+    validator = Static::Validators::SchemaArray.new(file_path: "/nonexistent/cfp.yml")
     assert_not validator.applicable?
   end
 

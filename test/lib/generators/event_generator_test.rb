@@ -55,7 +55,7 @@ class EventGeneratorTest < Rails::Generators::TestCase
   end
 
   def validate_event_schema(file_path)
-    schema_validator = Static::Validators::Schema.new(file_path: file_path, schema: EventSchema)
+    schema_validator = Static::Validators::Schema.new(file_path: file_path)
     assert_empty schema_validator.errors, "Event YAML does not conform to schema: #{schema_validator.errors.map { |e| e.to_h["message"] }.join(", ")}"
     dates_validator = Static::Validators::EventDates.new(file_path: file_path)
     assert_empty dates_validator.errors, "Event YAML is missing required start_date or end_date: #{dates_validator.errors.map { |e| e.to_h["message"] }.join(", ")}"

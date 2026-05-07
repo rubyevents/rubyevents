@@ -3,22 +3,22 @@
 module Static
   module Validators
     class Schema
-      def initialize(file_path:, schema:)
+      def initialize(file_path:)
         @file_path = file_path
-        @schema = schema
+        @schema = PATH_TO_SCHEMA.find { |pattern, _| File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME) }&.last
       end
 
-      PATTERNS = [
-        "**/event.yml",
-        "**/venue.yml",
-        "**/schedule.yml",
-        "**/series.yml"
-      ].freeze
+      PATH_TO_SCHEMA = {
+        "**/event.yml" => EventSchema,
+        "**/schedule.yml" => ScheduleSchema,
+        "**/series.yml" => SeriesSchema,
+        "**/venue.yml" => VenueSchema
+      }.freeze
 
       def applicable?
         return false unless File.exist?(@file_path)
 
-        PATTERNS.any? do |pattern|
+        PATH_TO_SCHEMA.keys.any? do |pattern|
           File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME)
         end
       end

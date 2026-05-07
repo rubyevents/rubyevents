@@ -56,7 +56,7 @@ class CFPGeneratorTest < Rails::Generators::TestCase
   end
 
   def validate_cfp_file(path)
-    errors = Static::Validators::SchemaArray.new(file_path: path, schema: CFPSchema).validate
+    errors = Static::Validators::SchemaArray.new(file_path: path).validate
     assert_empty errors, "CFP YAML does not conform to schema: #{errors.join(", ")}"
   end
 end

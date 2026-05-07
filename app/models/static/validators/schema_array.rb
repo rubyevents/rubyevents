@@ -3,25 +3,25 @@
 module Static
   module Validators
     class SchemaArray
-      def initialize(file_path:, schema:)
+      def initialize(file_path:)
         @file_path = file_path
-        @schema = schema
+        @schema = PATH_TO_SCHEMA.find { |pattern, _| File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME) }&.last
       end
 
-      PATTERNS = [
-        "**/cfp.yml",
-        "**/featured_cities.yml",
-        "**/involvements.yml",
-        "**/speakers.yml",
-        "**/sponsors.yml",
-        "**/transcripts.yml",
-        "**/videos.yml"
-      ].freeze
+      PATH_TO_SCHEMA = {
+        "**/cfp.yml" => CFPSchema,
+        "**/featured_cities.yml" => FeaturedCitySchema,
+        "**/involvements.yml" => InvolvementSchema,
+        "**/speakers.yml" => SpeakerSchema,
+        "**/sponsors.yml" => SponsorsSchema,
+        "**/transcripts.yml" => TranscriptSchema,
+        "**/videos.yml" => VideoSchema
+      }.freeze
 
       def applicable?
         return false unless File.exist?(@file_path)
 
-        PATTERNS.any? do |pattern|
+        PATH_TO_SCHEMA.keys.any? do |pattern|
           File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME)
         end
       end
@@ -30,8 +30,6 @@ module Static
         @errors ||= validate
       end
 
-      # Returns a flat array of error hashes, one per validation failure:
-      #   { "error" => "...", "data_pointer" => "/0/field", "item_label" => "..." }
       def validate
         return [] unless applicable?
         schemer = build_schemer
