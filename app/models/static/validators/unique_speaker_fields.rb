@@ -20,7 +20,6 @@ module Static
         bluesky
       ].freeze
 
-
       def applicable?
         return false unless File.exist?(@file_path)
 

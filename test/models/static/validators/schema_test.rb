@@ -2,9 +2,7 @@
 
 require "test_helper"
 
-
 class Static::Validators::SchemaTest < ActiveSupport::TestCase
-
   test "applicable? returns true for a valid event.yml" do
     file = Rails.root.join("data/helveticruby/helveticruby-2025/event.yml")
     validator = Static::Validators::Schema.new(file_path: file)
