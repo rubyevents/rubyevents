@@ -1,8 +1,5 @@
 require "test_helper"
 require "generators/event/event_generator"
-require "#{Rails.root}/app/schemas/event_schema"
-require "json_schemer"
-require "yaml"
 
 class EventGeneratorTest < Rails::Generators::TestCase
   tests EventGenerator
@@ -58,12 +55,9 @@ class EventGeneratorTest < Rails::Generators::TestCase
   end
 
   def validate_event_schema(file_path)
-    data = YAML.load_file(file_path)
-
-    schema = JSON.parse(EventSchema.new.to_json_schema[:schema].to_json)
-    schemer = JSONSchemer.schema(schema)
-
-    errors = schemer.validate(data).to_a
-    assert_empty errors, "Event YAML does not conform to schema: #{errors.join(", ")}"
+    schema_validator = Static::Validators::Schema.new(file_path: file_path, schema: EventSchema)
+    assert_empty schema_validator.errors, "Event YAML does not conform to schema: #{schema_validator.errors.map { |e| e.to_h["message"] }.join(", ")}"
+    dates_validator = Static::Validators::EventDates.new(file_path: file_path)
+    assert_empty dates_validator.errors, "Event YAML is missing required start_date or end_date: #{dates_validator.errors.map { |e| e.to_h["message"] }.join(", ")}"
   end
 end

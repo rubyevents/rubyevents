@@ -20,7 +20,7 @@ module Static
       # Returns a flat array of error hashes, one per validation failure:
       #   { "error" => "...", "data_pointer" => "/0/field", "item_label" => "..." }
       def validate
-        return unless applicable?
+        return [] unless applicable?
         schemer = build_schemer
         data = YAML.load_file(@file_path)
         errors = []

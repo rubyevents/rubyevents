@@ -5,7 +5,7 @@ module Static
 
       def initialize(message, file_path:, line:)
         @message = message
-        @file_path = file_path
+        @file_path = file_path.sub("#{Rails.root}/", "")
         @line = line
       end
 

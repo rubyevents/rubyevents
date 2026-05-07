@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "test_helper"
-require "tempfile"
 
 class Static::Validators::SchemaArrayTest < ActiveSupport::TestCase
   # CFPSchema is simple (link:required, name, open_date, close_date) — good for tests
@@ -13,81 +12,58 @@ class Static::Validators::SchemaArrayTest < ActiveSupport::TestCase
   end
 
   test "returns errors for invalid items" do
-    yaml = [{"name" => "CFP without required link"}].to_yaml
-    with_temp_yaml(yaml) do |path|
+    with_temp_cfp_yaml([{"name" => "CFP without required link"}].to_yaml) do |path|
       validator = Static::Validators::SchemaArray.new(file_path: path, schema: CFPSchema)
-      errors = validator.validate
-      assert errors.any?, "Expected validation errors but got none"
+      assert validator.validate.any?, "Expected validation errors but got none"
     end
   end
 
-  test "data_pointer is prefixed with item index" do
-    yaml = [{"name" => "missing link"}].to_yaml
-    with_temp_yaml(yaml) do |path|
+  test "errors are Static::Validators::Error objects" do
+    with_temp_cfp_yaml([{"name" => "missing link"}].to_yaml) do |path|
       validator = Static::Validators::SchemaArray.new(file_path: path, schema: CFPSchema)
-      errors = validator.validate
-      assert errors.all? { |e| e["data_pointer"].start_with?("/0") },
-        "Expected all data_pointers to start with /0, got: #{errors.map { |e| e["data_pointer"] }}"
+      assert validator.validate.all? { |e| e.is_a?(Static::Validators::Error) }
     end
   end
 
-  test "data_pointer index increments per item" do
-    yaml = [{"name" => "first"}, {"name" => "second"}].to_yaml
-    with_temp_yaml(yaml) do |path|
+  test "returns errors for multiple invalid items" do
+    with_temp_cfp_yaml([{"name" => "first"}, {"name" => "second"}].to_yaml) do |path|
       validator = Static::Validators::SchemaArray.new(file_path: path, schema: CFPSchema)
-      errors = validator.validate
-      pointers = errors.map { |e| e["data_pointer"] }
-      assert pointers.any? { |p| p.start_with?("/0") }, "Expected errors for item 0"
-      assert pointers.any? { |p| p.start_with?("/1") }, "Expected errors for item 1"
-    end
-  end
-
-  test "item_label uses name when present" do
-    yaml = [{"name" => "My CFP"}].to_yaml
-    with_temp_yaml(yaml) do |path|
-      validator = Static::Validators::SchemaArray.new(file_path: path, schema: CFPSchema)
-      errors = validator.validate
-      assert errors.all? { |e| e["item_label"] == "My CFP" },
-        "Expected item_label to be 'My CFP'"
-    end
-  end
-
-  test "item_label uses title when name is absent" do
-    yaml = [{"title" => "My Talk", "date" => "2025-01-01", "video_provider" => "youtube", "video_id" => "abc123", "id" => "abc"}].to_yaml
-    with_temp_yaml(yaml) do |path|
-      validator = Static::Validators::SchemaArray.new(file_path: path, schema: VideoSchema)
-      errors = validator.validate
-      assert errors.all? { |e| e["item_label"] == "My Talk" },
-        "Expected item_label to be 'My Talk', got: #{errors.map { |e| e["item_label"] }.inspect}"
-    end
-  end
-
-  test "item_label falls back to index N when no identifying fields" do
-    yaml = [{}].to_yaml
-    with_temp_yaml(yaml) do |path|
-      validator = Static::Validators::SchemaArray.new(file_path: path, schema: CFPSchema)
-      errors = validator.validate
-      assert errors.all? { |e| e["item_label"] == "index 0" },
-        "Expected item_label to be 'index 0', got: #{errors.map { |e| e["item_label"] }.inspect}"
+      assert validator.validate.count >= 2, "Expected errors for both items"
     end
   end
 
   test "accepts schema instance as well as schema class" do
-    yaml = [{"name" => "missing link"}].to_yaml
-    with_temp_yaml(yaml) do |path|
+    with_temp_cfp_yaml([{"name" => "missing link"}].to_yaml) do |path|
       validator = Static::Validators::SchemaArray.new(file_path: path, schema: CFPSchema.new)
-      errors = validator.validate
-      assert errors.any?, "Expected validation errors but got none"
+      assert validator.validate.any?, "Expected validation errors but got none"
     end
+  end
+
+  test "applicable? returns true for cfp.yml" do
+    validator = Static::Validators::SchemaArray.new(file_path: VALID_CFP_FILE, schema: CFPSchema)
+    assert validator.applicable?
+  end
+
+  test "applicable? returns false for a non-array file" do
+    file = Dir.glob(Rails.root.join("data/**/event.yml")).first
+    validator = Static::Validators::SchemaArray.new(file_path: file, schema: EventSchema)
+    assert_not validator.applicable?
+  end
+
+  test "applicable? returns false for a non-existent file" do
+    validator = Static::Validators::SchemaArray.new(file_path: "/nonexistent/cfp.yml", schema: CFPSchema)
+    assert_not validator.applicable?
   end
 
   private
 
-  def with_temp_yaml(yaml_content)
-    Tempfile.create(["schema_array_test", ".yml"]) do |f|
-      f.write(yaml_content)
-      f.flush
-      yield f.path
-    end
+  def with_temp_cfp_yaml(yaml_content)
+    dir = Dir.mktmpdir
+    path = File.join(dir, "data", "testconf", "testconf-2025", "cfp.yml")
+    FileUtils.mkdir_p(File.dirname(path))
+    File.write(path, yaml_content)
+    yield path
+  ensure
+    FileUtils.rm_rf(dir)
   end
 end

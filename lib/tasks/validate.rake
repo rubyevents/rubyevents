@@ -11,25 +11,19 @@ FIELD_ASSET_MAP = {
 }.freeze
 
 namespace :validate do
-  def validate_files(glob_pattern, schema_class, file_type, &custom_validation)
-    schema = JSON.parse(schema_class.new.to_json_schema[:schema].to_json)
-    schemer = JSONSchemer.schema(schema)
-
+  def validate_files(glob_pattern, schema_class, file_type)
     files = Dir.glob(Rails.root.join(glob_pattern))
     valid_count = 0
     invalid_files = []
 
     files.each do |file|
-      data = YAML.load_file(file)
-      errors = schemer.validate(data).to_a
+      file_errors = Static::Validators::Schema.new(file_path: file, schema: schema_class).errors
 
-      custom_validation&.call(data, errors)
-
-      if errors.empty?
+      if file_errors.empty?
         valid_count += 1
       else
-        relative_path = file.sub("#{Rails.root}/data/", "")
-        invalid_files << {path: relative_path, errors: errors}
+        relative_path = file.sub("#{Rails.root}/", "")
+        invalid_files << {path: relative_path, errors: file_errors}
       end
     end
 
@@ -38,8 +32,7 @@ namespace :validate do
       puts
       invalid_files.each do |file|
         puts Gum.style("❌ #{file[:path]}", foreground: "1")
-        gh_action_anotation = (ENV["GITHUB_ACTIONS"] == "true") ? "::error file=data/#{file[:path]},line=1::" : "::error::"
-        file[:errors].each { |e| puts "#{gh_action_anotation} #{e["error"]} at #{e["data_pointer"]}" }
+        file[:errors].each { |e| puts e.as_error }
         puts
       end
     end
@@ -99,21 +92,31 @@ namespace :validate do
 
   desc "Validate all event.yml files against EventSchema"
   task events: :environment do
-    success = validate_files("data/**/event.yml", EventSchema, "event.yml") do |data, errors|
-      is_meetup = data["kind"] == "meetup"
-
-      unless is_meetup
-        if data["start_date"].nil? || data["start_date"].to_s.strip.empty?
-          errors << {"error" => "start_date is required for non-meetup events", "data_pointer" => "/start_date"}
-        end
-
-        if data["end_date"].nil? || data["end_date"].to_s.strip.empty?
-          errors << {"error" => "end_date is required for non-meetup events", "data_pointer" => "/end_date"}
-        end
-      end
-    end
-
+    success = validate_files("data/**/event.yml", EventSchema, "event.yml")
     exit 1 unless success
+  end
+
+  def validate_event_dates
+    files = Dir.glob(Rails.root.join("data/**/event.yml"))
+    errors = []
+
+    files.each do |file|
+      file_errors = Static::Validators::EventDates.new(file_path: file).errors
+      next if file_errors.empty?
+
+      relative_path = file.sub("#{Rails.root}/", "")
+      puts Gum.style("❌ #{relative_path}", foreground: "1")
+      file_errors.each { |e| puts e.as_error }
+      puts
+      errors.concat(file_errors)
+    end
+    errors
+  end
+
+  desc "Validate start_date and end_date are present for non-meetup event.yml files"
+  task event_dates: :environment do
+    errors = validate_event_dates
+    exit 1 if errors.any?
   end
 
   desc "Validate all series.yml files against SeriesSchema"
@@ -226,7 +229,7 @@ namespace :validate do
 
     files.each do |file|
       data = YAML.load_file(file)
-      relative_path = file.sub("#{Rails.root}/data/", "")
+      relative_path = file.sub("#{Rails.root}/", "")
 
       Array(data).each do |video|
         Array(video["speakers"]).each do |name|
@@ -382,7 +385,7 @@ namespace :validate do
       canonical = alias_to_canonical[city_part.downcase]
 
       if canonical && canonical.downcase != city_part.downcase
-        relative_path = file.sub("#{Rails.root}/data/", "")
+        relative_path = file.sub("#{Rails.root}/", "")
 
         issues << {
           path: relative_path,
@@ -441,7 +444,7 @@ namespace :validate do
 
     files.each do |file|
       data = YAML.load_file(file)
-      relative_path = file.sub("#{Rails.root}/data/", "")
+      relative_path = file.sub("#{Rails.root}/", "")
 
       Array(data).each_with_index do |video, index|
         location = video["location"]
@@ -526,7 +529,7 @@ namespace :validate do
 
     files.each do |file|
       data = YAML.load_file(file)
-      relative_path = file.sub("#{Rails.root}/data/", "")
+      relative_path = file.sub("#{Rails.root}/", "")
 
       color_fields.each do |field|
         next unless data.key?(field)
@@ -567,7 +570,7 @@ namespace :validate do
 
     files.each do |file|
       data = YAML.load_file(file)
-      relative_path = file.sub("#{Rails.root}/data/", "")
+      relative_path = file.sub("#{Rails.root}/", "")
       series_slug = file.split("/")[-3]
       event_slug = file.split("/")[-2]
 
@@ -611,17 +614,8 @@ namespace :validate do
     results = []
 
     puts Gum.style("Validating event.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_files("data/**/event.yml", EventSchema, "event.yml") do |data, errors|
-      is_meetup = data["kind"] == "meetup"
-      unless is_meetup
-        if data["start_date"].nil? || data["start_date"].to_s.strip.empty?
-          errors << {"error" => "start_date is required for non-meetup events", "data_pointer" => "/start_date"}
-        end
-        if data["end_date"].nil? || data["end_date"].to_s.strip.empty?
-          errors << {"error" => "end_date is required for non-meetup events", "data_pointer" => "/end_date"}
-        end
-      end
-    end
+    results << validate_files("data/**/event.yml", EventSchema, "event.yml")
+    results << validate_event_dates.any?
 
     puts Gum.style("Validating series.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_files("data/*/series.yml", SeriesSchema, "series.yml")
