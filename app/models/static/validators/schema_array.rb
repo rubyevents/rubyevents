@@ -3,11 +3,14 @@
 module Static
   module Validators
     class SchemaArray
-      Error = Struct.new(:error, :file_path, :line, :data_pointer, :item_label)
-
       def initialize(file_path:, schema:)
         @file_path = file_path
         @schema = schema
+      end
+
+      def applicable?
+        return false unless File.exist?(@file_path)
+        @file_path.match?(/data\/[^\/]+\/[^\/]+\/(cfp|involvements|sponsors|transcripts|videos|)\.yml/) || @file_path.match?(/data\/(featured_cities|speakers).yml/)
       end
 
       def errors
@@ -17,16 +20,18 @@ module Static
       # Returns a flat array of error hashes, one per validation failure:
       #   { "error" => "...", "data_pointer" => "/0/field", "item_label" => "..." }
       def validate
+        return unless applicable?
         schemer = build_schemer
         data = YAML.load_file(@file_path)
         errors = []
 
         Array(data).each_with_index do |item, index|
           schemer.validate(item).each do |error|
-            error["file_path"] = @file_path
-            error["line"] = 1 # YAML.load doesn't provide line numbers, unfortunately
-            error["data_pointer"] = "/#{index}#{error["data_pointer"]}"
-            error["item_label"] = item["name"] || item["title"] || item["id"] || "index #{index}"
+            error = Static::Validators::Error.new(
+              error["error"],
+              file_path: @file_path,
+              line: 1
+            )
             errors << error
           end
         end

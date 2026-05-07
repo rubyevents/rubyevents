@@ -59,7 +59,7 @@ namespace :validate do
     invalid_files = []
 
     files.each do |file|
-      file_errors = Static::Validators::SchemaArray.new(file_path: file, schema: schema_class).validate
+      file_errors = Static::Validators::SchemaArray.new(file_path: file, schema: schema_class).errors
 
       if file_errors.empty?
         valid_count += 1
@@ -75,10 +75,9 @@ namespace :validate do
       invalid_files.each do |file|
         puts Gum.style("❌ #{file[:path]}", foreground: "1")
         file[:errors].first(10).each do |e|
-          gh_action_annotation = (ENV["GITHUB_ACTIONS"] == "true") ? "::error file=data/#{file[:path]},line=1::" : "::error::"
-          puts " #{gh_action_annotation} #{e["error"]} at #{e["data_pointer"]} (#{e["item_label"]})"
+          puts e.as_error
         end
-        puts "   ... and #{file[:errors].count - 10} more errors" if file[:errors].count > 10
+        puts "... and #{file[:errors].count - 10} more errors" if file[:errors].count > 10
         puts
       end
     end
