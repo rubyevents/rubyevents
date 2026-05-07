@@ -180,60 +180,24 @@ namespace :validate do
   end
 
   def validate_speakers_in_videos
-    speakers_data = YAML.load_file(Rails.root.join("data/speakers.yml"))
-    known_names = Set.new
-
-    speakers_data.each do |speaker|
-      known_names << speaker["name"]
-      Array(speaker["aliases"]).each { |a| known_names << a["name"] }
-    end
-
     files = Dir.glob(Rails.root.join("data/**/videos.yml"))
-    missing = []
+    errors = files.flat_map { |f| Static::Validators::SpeakerExists.new(file_path: f).errors }
 
-    files.each do |file|
-      data = YAML.load_file(file)
-      relative_path = file.sub("#{Rails.root}/", "")
-
-      Array(data).each do |video|
-        Array(video["speakers"]).each do |name|
-          unless known_names.include?(name)
-            missing << {path: relative_path, speaker: name}
-          end
-        end
-
-        Array(video["talks"]).each do |talk|
-          Array(talk["speakers"]).each do |name|
-            unless known_names.include?(name)
-              missing << {path: relative_path, speaker: name}
-            end
-          end
-        end
-      end
-    end
-
-    if missing.any?
-      unique_speakers = missing.map { |m| m[:speaker] }.uniq.sort
-
-      puts Gum.style("Speakers referenced in videos.yml but missing from speakers.yml (#{unique_speakers.count}):", foreground: "1")
+    if errors.any?
+      puts Gum.style("Speakers referenced in videos.yml but missing from speakers.yml (#{errors.count}):", foreground: "1")
       puts
-
-      missing.group_by { |m| m[:speaker] }.sort_by { |name, _| name }.each do |name, occurrences|
-        puts Gum.style("❌ #{name}", foreground: "1")
-        occurrences.each { |o| puts "   #{o[:path]}" }
-      end
-
+      errors.each { |e| puts e.as_error }
       puts
-      false
+      puts Gum.style("Run: rails speakers_file:sync", foreground: "3")
     else
       puts Gum.style("✓ All speakers in videos.yml exist in speakers.yml", foreground: "2")
-      true
     end
+    errors
   end
 
   desc "Validate that all speakers in videos.yml exist in speakers.yml"
   task speakers_in_videos: :environment do
-    exit 1 unless validate_speakers_in_videos
+    exit 1 if validate_speakers_in_videos.any?
   end
 
   desc "Validate that all Static::Video records have unique ids"
@@ -614,21 +578,17 @@ namespace :validate do
     puts Gum.style("Validating unique speaker slugs and GitHub handles", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_unique_speaker_fields.none?
 
+    puts Gum.style("Validating speakers in videos.yml exist in speakers.yml", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+    results << validate_speakers_in_videos.none?
+
     puts Gum.style("Validating speakers.yml is in sync", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     speakers = Static::SpeakersFile.new
-    missing = speakers.missing_speakers
     orphaned = speakers.orphaned_speakers
 
-    if missing.empty? && orphaned.empty?
+    if orphaned.empty?
       puts Gum.style("✓ speakers.yml is in sync", foreground: "2")
       results << true
     else
-      if missing.any?
-        puts Gum.style("#{missing.length} speakers referenced in videos but missing from speakers.yml:", foreground: "1")
-        missing.each { |name| puts Gum.style("  ❌ #{name}", foreground: "1") }
-        puts
-      end
-
       if orphaned.any?
         puts Gum.style("#{orphaned.length} orphaned speakers in speakers.yml:", foreground: "1")
         orphaned.sort.each { |name| puts Gum.style("  ❌ #{name}", foreground: "1") }
