@@ -125,11 +125,6 @@ namespace :validate do
     exit 1 unless validate_files("data/**/venue.yml", "venue.yml")
   end
 
-  desc "Validate speakers.yml against SpeakerSchema"
-  task speakers: :environment do
-    exit 1 unless validate_array_files("data/speakers.yml", "speakers.yml")
-  end
-
   desc "Validate all videos.yml files against VideoSchema"
   task videos: :environment do
     exit 1 unless validate_array_files("data/**/videos.yml", "videos.yml")
@@ -155,12 +150,14 @@ namespace :validate do
     exit 1 unless validate_array_files("data/**/transcripts.yml", "transcripts.yml")
   end
 
-  def validate_unique_speaker_fields
+  def validate_speakers
     file = Rails.root.join("data/speakers.yml").to_s
-    errors = Static::Validators::UniqueSpeakerFields.new(file_path: file).errors
+    errors = []
+    errors.concat(Static::Validators::UniqueSpeakerFields.new(file_path: file).errors)
+    errors.concat(Static::Validators::SchemaArray.new(file_path: file).errors)
 
     if errors.empty?
-      puts Gum.style("✓ All speaker fields are unique", foreground: "2")
+      puts Gum.style("✓ All speakers are valid!", foreground: "2")
     else
       errors.each { |e| puts e.as_error }
     end
@@ -168,9 +165,9 @@ namespace :validate do
     errors
   end
 
-  desc "Validate that speaker slugs and GitHub handles are unique"
-  task unique_speakers: :environment do
-    exit 1 if validate_unique_speaker_fields.any?
+  desc "Validate data/speakers.yml"
+  task speakers: :environment do
+    exit 1 if validate_speakers.any?
   end
 
   def validate_speakers_in_videos
@@ -485,9 +482,6 @@ namespace :validate do
     puts Gum.style("Validating venue.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_files("data/**/venue.yml", "venue.yml")
 
-    puts Gum.style("Validating speakers.yml", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_array_files("data/speakers.yml", "speakers.yml")
-
     puts Gum.style("Validating videos.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_array_files("data/**/videos.yml", "videos.yml")
 
@@ -503,8 +497,8 @@ namespace :validate do
     puts Gum.style("Validating transcripts.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_array_files("data/**/transcripts.yml", "transcripts.yml")
 
-    puts Gum.style("Validating unique speaker slugs and GitHub handles", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_unique_speaker_fields.none?
+    puts Gum.style("Validating data/speakers.yml", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+    results << validate_speakers.none?
 
     puts Gum.style("Validating speakers in videos.yml exist in speakers.yml", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_speakers_in_videos.none?
