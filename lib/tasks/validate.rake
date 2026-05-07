@@ -54,31 +54,17 @@ namespace :validate do
   end
 
   def validate_array_files(glob_pattern, schema_class, file_type)
-    schema = JSON.parse(schema_class.new.to_json_schema[:schema].to_json)
-    schemer = JSONSchemer.schema(schema)
-
     files = Dir.glob(Rails.root.join(glob_pattern))
     valid_count = 0
     invalid_files = []
 
     files.each do |file|
-      data = YAML.load_file(file)
-      file_errors = []
-
-      Array(data).each_with_index do |item, index|
-        errors = schemer.validate(item).to_a
-
-        errors.each do |error|
-          error["data_pointer"] = "/#{index}#{error["data_pointer"]}"
-          error["item_label"] = item["name"] || item["title"] || item["id"] || "index #{index}"
-          file_errors << error
-        end
-      end
+      file_errors = Static::Validators::SchemaArray.new(file_path: file, schema: schema_class).validate
 
       if file_errors.empty?
         valid_count += 1
       else
-        relative_path = file.sub("#{Rails.root}/data/", "")
+        relative_path = file.sub("#{Rails.root}/", "")
         invalid_files << {path: relative_path, errors: file_errors}
       end
     end
