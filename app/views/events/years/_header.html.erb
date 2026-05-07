@@ -22,6 +22,37 @@
             across <%= events_by_month.keys.count %> months
           <% end %>
         </span>
+
+        <%= ui_button "Subscribe to calendar", size: :sm, kind: :link, data: {toggle: "modal", target: "modal-middle"} %>
+        <%= ui_modal position: :middle, id: "modal-middle" do %>
+          <h1>Subscribe to calendar</h1>
+          <div class="flex flex-col gap-3">
+            <p>Copy the URL below and add it to your calendar application as an external calendar.</p>
+            <div
+              class="flex justify-between items-center"
+              data-controller="copy-to-clipboard"
+              data-copy-to-clipboard-success-class="scale-95">
+              <pre
+                class="text-sm font-mono text-gray-800 whitespace-pre-wrap break-words"
+                data-copy-to-clipboard-target="source">
+                <%= events_url(format: :ics) %>
+              </pre>
+              <button
+                class="btn btn-sm btn-outline transition-transform duration-150 ease-in-out"
+                data-action="click->copy-to-clipboard#copy"
+                data-copy-to-clipboard-target="button">
+                Copy
+              </button>
+            </div>
+            <p>Instructions for your device can be found here:</p>
+            <ul>
+              <li><%= external_link_to "Google Calendar / Android", "https://support.google.com/calendar/answer/37100?co=GENIE.Platform%3DDesktop&amp;hl=en&amp;oco=1" %></li>
+              <li><%= external_link_to "Microsoft Outlook", "https://support.microsoft.com/en-us/office/import-calendars-into-outlook-8e8364e1-400e-4c0f-a573-fe76b5a2d379" %></li>
+              <li><%= external_link_to "Mac", "https://support.apple.com/kb/ph11523?locale=en_US" %></li>
+              <li><%= external_link_to "iPhone (iCloud)", "https://support.apple.com/en-us/HT202361" %></li>
+            </ul>
+          </div>
+        <% end %>
       </p>
     </div>
 
