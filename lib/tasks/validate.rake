@@ -174,45 +174,21 @@ namespace :validate do
   end
 
   def validate_unique_speaker_fields
-    speakers = YAML.load_file(Rails.root.join("data/speakers.yml"))
-    success = true
+    file = Rails.root.join("data/speakers.yml").to_s
+    errors = Static::Validators::UniqueSpeakerFields.new(file_path: file).errors
 
-    unique_fields = {
-      "slug" => "slugs",
-      "github" => "GitHub handles",
-      "twitter" => "Twitter handles",
-      "speakerdeck" => "SpeakerDeck handles",
-      "mastodon" => "Mastodon handles",
-      "bluesky" => "Bluesky handles"
-    }
-
-    unique_fields.each do |field, label|
-      duplicates = speakers.map { |s| s[field] }.select(&:present?).tally.select { |_, count| count > 1 }
-
-      if duplicates.any?
-        puts Gum.style("Duplicate speaker #{label} found (#{duplicates.count}):", foreground: "1")
-        puts
-
-        duplicates.each do |value, count|
-          names = speakers.select { |s| s[field] == value }.map { |s| s["name"] }.join(", ")
-
-          puts Gum.style("❌ #{value} (#{count}x: #{names})", foreground: "1")
-        end
-
-        puts
-
-        success = false
-      else
-        puts Gum.style("✓ All speaker #{label} are unique", foreground: "2")
-      end
+    if errors.empty?
+      puts Gum.style("✓ All speaker fields are unique", foreground: "2")
+    else
+      errors.each { |e| puts e.as_error }
     end
 
-    success
+    errors
   end
 
   desc "Validate that speaker slugs and GitHub handles are unique"
   task unique_speakers: :environment do
-    exit 1 unless validate_unique_speaker_fields
+    exit 1 if validate_unique_speaker_fields.any?
   end
 
   def validate_speakers_in_videos
@@ -648,7 +624,7 @@ namespace :validate do
     results << validate_array_files("data/**/transcripts.yml", TranscriptSchema, "transcripts.yml")
 
     puts Gum.style("Validating unique speaker slugs and GitHub handles", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_unique_speaker_fields
+    results << validate_unique_speaker_fields.none?
 
     puts Gum.style("Validating speakers.yml is in sync", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     speakers = Static::SpeakersFile.new
