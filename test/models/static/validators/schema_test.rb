@@ -36,7 +36,7 @@ class Static::Validators::SchemaTest < ActiveSupport::TestCase
     yaml = {"name" => "Bad Event"}.to_yaml
     with_temp_event_yaml(yaml) do |path|
       validator = Static::Validators::Schema.new(file_path: path)
-      assert validator.errors.any?, "Expected validation errors but got none"
+      assert_match(/line 2: object property at `\/name` is a disallowed additional property at \/name/, validator.errors.first.as_error)
     end
   end
 

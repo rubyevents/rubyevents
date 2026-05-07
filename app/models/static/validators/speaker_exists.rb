@@ -28,13 +28,16 @@ module Static
         errors = []
         data = YAML.load_file(@file_path)
 
+        # TODO: Get location for speaker name references in videos.yml
+
         Array(data).each do |video|
           Array(video["speakers"]).each do |name|
             unless KNOWN_NAMES.include?(name)
               errors << Static::Validators::Error.new(
                 "Speaker '#{name}' not found in speakers.yml",
                 file_path: @file_path,
-                line: 1
+                line: 1,
+                end_line: 1
               )
             end
           end
@@ -45,7 +48,8 @@ module Static
                 errors << Static::Validators::Error.new(
                   "Speaker '#{name}' not found in speakers.yml",
                   file_path: @file_path,
-                  line: 1
+                  line: 1,
+                  end_line: 1
                 )
               end
             end

@@ -30,14 +30,17 @@ module Static
       def validate
         return [] unless applicable?
 
-        data = YAML.load_file(@file_path)
-        raw_errors = build_schemer.validate(data).to_a
+        document = Yerba.parse_file(@file_path.to_s)
+        raw_errors = build_schemer.validate(document.to_h).to_a
 
         raw_errors.map do |e|
+          data_pointer = e["data_pointer"].gsub(/\A\//, "").tr("/", ".") || ""
+          location = document[data_pointer]&.location
           Static::Validators::Error.new(
             "#{e["error"]} at #{e["data_pointer"]}",
             file_path: @file_path,
-            line: 1
+            line: location&.start_line || 1,
+            end_line: location&.end_line
           )
         end
       end

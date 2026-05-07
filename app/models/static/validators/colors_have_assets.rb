@@ -39,6 +39,8 @@ module Static
         asset_dir = assets_base.join(series_slug, event_slug)
         default_asset_dir = assets_base.join(series_slug, "default")
 
+        # TODO: Get location for event color keys
+
         FIELD_ASSET_MAP
           .select { |field, _| data[field].present? }
           .values
@@ -48,7 +50,8 @@ module Static
             Static::Validators::Error.new(
               "Color field configured but asset '#{asset}' not found in #{asset_dir} or #{default_asset_dir}",
               file_path: @file_path,
-              line: 1
+              line: 1,
+              end_line: 1
             )
           end
       end

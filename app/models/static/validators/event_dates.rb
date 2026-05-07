@@ -31,11 +31,14 @@ module Static
 
         errors = []
 
+        # TODO: Get location for these keys
+
         if data["start_date"].nil? || data["start_date"].to_s.strip.empty?
           errors << Static::Validators::Error.new(
             "start_date is required for non-meetup events at /start_date",
             file_path: @file_path,
-            line: 1
+            line: 1,
+            end_line: 1
           )
         end
 
@@ -43,7 +46,8 @@ module Static
           errors << Static::Validators::Error.new(
             "end_date is required for non-meetup events at /end_date",
             file_path: @file_path,
-            line: 1
+            line: 1,
+            end_line: 1
           )
         end
 

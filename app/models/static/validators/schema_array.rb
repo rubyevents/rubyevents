@@ -36,12 +36,15 @@ module Static
         data = YAML.load_file(@file_path)
         errors = []
 
+        # TODO: Get location for array items
+
         Array(data).each_with_index do |item, index|
           schemer.validate(item).each do |error|
             error = Static::Validators::Error.new(
               error["error"],
               file_path: @file_path,
-              line: 1
+              line: 1,
+              end_line: 1
             )
             errors << error
           end
