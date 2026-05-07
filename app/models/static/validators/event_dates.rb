@@ -7,9 +7,16 @@ module Static
         @file_path = file_path
       end
 
+      PATTERNS = [
+        "**/event.yml"
+      ].freeze
+
       def applicable?
         return false unless File.exist?(@file_path)
-        @file_path.match?(/event\.yml$/)
+
+        PATTERNS.any? do |pattern|
+          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME)
+        end
       end
 
       def errors

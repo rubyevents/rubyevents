@@ -8,9 +8,22 @@ module Static
         @schema = schema
       end
 
+      PATTERNS = [
+        "**/cfp.yml",
+        "**/featured_cities.yml",
+        "**/involvements.yml",
+        "**/speakers.yml",
+        "**/sponsors.yml",
+        "**/transcripts.yml",
+        "**/videos.yml"
+      ].freeze
+
       def applicable?
         return false unless File.exist?(@file_path)
-        @file_path.match?(/data\/[^\/]+\/[^\/]+\/(cfp|involvements|sponsors|transcripts|videos|)\.yml/) || @file_path.match?(/data\/(featured_cities|speakers).yml/)
+
+        PATTERNS.any? do |pattern|
+          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME)
+        end
       end
 
       def errors

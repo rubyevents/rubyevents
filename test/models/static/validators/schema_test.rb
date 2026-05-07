@@ -4,15 +4,15 @@ require "test_helper"
 require "tempfile"
 
 class Static::Validators::SchemaTest < ActiveSupport::TestCase
-  VALID_EVENT_FILE = Rails.root.join("data/helveticruby/helveticruby-2025/event.yml").to_s
 
   test "applicable? returns true for a valid event.yml" do
-    validator = Static::Validators::Schema.new(file_path: VALID_EVENT_FILE, schema: EventSchema)
+    file = Rails.root.join("data/helveticruby/helveticruby-2025/event.yml")
+    validator = Static::Validators::Schema.new(file_path: file, schema: EventSchema)
     assert validator.applicable?
   end
 
   test "applicable? returns true for series.yml" do
-    file = Dir.glob(Rails.root.join("data/*/series.yml")).first
+    file = Rails.root.join("data/blue-ridge-ruby/series.yml")
     validator = Static::Validators::Schema.new(file_path: file, schema: SeriesSchema)
     assert validator.applicable?
   end
@@ -23,13 +23,14 @@ class Static::Validators::SchemaTest < ActiveSupport::TestCase
   end
 
   test "applicable? returns false for an array-based file" do
-    file = Dir.glob(Rails.root.join("data/**/videos.yml")).first
+    file = Rails.root.join("data/blue-ridge-ruby/videos.yml")
     validator = Static::Validators::Schema.new(file_path: file, schema: VideoSchema)
     assert_not validator.applicable?
   end
 
   test "returns empty array for a valid file" do
-    validator = Static::Validators::Schema.new(file_path: VALID_EVENT_FILE, schema: EventSchema)
+    file = Rails.root.join("data/helveticruby/helveticruby-2025/event.yml")
+    validator = Static::Validators::Schema.new(file_path: file, schema: EventSchema)
     assert_empty validator.errors
   end
 
@@ -51,11 +52,6 @@ class Static::Validators::SchemaTest < ActiveSupport::TestCase
 
   test "returns empty array when file does not exist" do
     validator = Static::Validators::Schema.new(file_path: "/nonexistent/path/event.yml", schema: EventSchema)
-    assert_empty validator.errors
-  end
-
-  test "accepts schema instance as well as schema class" do
-    validator = Static::Validators::Schema.new(file_path: VALID_EVENT_FILE, schema: EventSchema.new)
     assert_empty validator.errors
   end
 

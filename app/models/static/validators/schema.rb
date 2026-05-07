@@ -9,15 +9,15 @@ module Static
       end
 
       PATTERNS = [
-        "data/*/*/event.yml",
-        "data/*/*/venue.yml",
-        "data/*/*/schedule.yml",
-        "data/*/series.yml"
+        "**/event.yml",
+        "**/venue.yml",
+        "**/schedule.yml",
+        "**/series.yml"
       ].freeze
-      
+
       def applicable?
         return false unless File.exist?(@file_path)
-      
+
         PATTERNS.any? do |pattern|
           File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME)
         end
