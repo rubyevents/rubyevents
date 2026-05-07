@@ -108,6 +108,10 @@ module Static
       document.pluck(:github).select(&:present?).tally.select { |_, count| count > 1 }
     end
 
+    def duplicates(field)
+      document.pluck(field.to_sym).select(&:present?).tally.select { |_, count| count > 1 }
+    end
+
     def save!
       document.sort(by: :name)
       document.save!(apply: true)

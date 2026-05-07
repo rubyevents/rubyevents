@@ -39,22 +39,14 @@ module Static
         speakers = Static::SpeakersFile.new(@file_path)
         errors = []
 
-        slug_duplicates = speakers.duplicate_slugs
-        slug_duplicates.each do |slug, count|
-          errors << Static::Validators::Error.new(
-            "Duplicate slug: #{slug} (#{count} occurrences)",
-            file_path: @file_path,
-            line: 1
-          )
-        end
-
-        github_duplicates = speakers.duplicate_githubs
-        github_duplicates.each do |github, count|
-          errors << Static::Validators::Error.new(
-            "Duplicate GitHub handle: #{github} (#{count} occurrences)",
-            file_path: @file_path,
-            line: 1
-          )
+        UNIQUE_FIELDS.each do |field|
+          speakers.duplicates(field).each do |value, count|
+            errors << Static::Validators::Error.new(
+              "Duplicate #{field}: #{value} (#{count} occurrences)",
+              file_path: @file_path,
+              line: 1
+            )
+          end
         end
 
         errors
