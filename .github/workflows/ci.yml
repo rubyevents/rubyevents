@@ -50,11 +50,11 @@ jobs:
       - name: StandardJS Check
         run: yarn lint
 
-      - name: Lint YAML data files
-        run: bundle exec yerba check
-
       - name: Validate YAML data schemas
         run: bin/rails validate:all
+
+      - name: Lint YAML data files
+        run: bundle exec yerba check
 
       - name: erb-lint Check
         run: bundle exec erb_lint --lint-all
