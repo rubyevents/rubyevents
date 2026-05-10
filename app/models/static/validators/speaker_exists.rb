@@ -28,22 +28,26 @@ module Static
         errors = []
         document = Yerba.parse_file(@file_path)
 
-        index = 0
+        video_index, speaker_index = 0, 0
         loop do
-          speakers = document.at_path("[].speakers[#{index}]")
-          break if speakers.empty?
-          speakers.each do |speaker|
-            name = speaker&.value
-            next if name.blank? || KNOWN_NAMES.include?(name)
-            location = speaker&.location
-            errors << Static::Validators::Error.new(
-              "Speaker '#{name}' not found in speakers.yml",
-              file_path: @file_path,
-              line: location&.start_line || 1,
-              end_line: location&.end_line
-            )
+          video = document.at_path("[#{video_index}]")
+          break if video.nil?
+          speaker = document.at_path("[#{video_index}].speakers[#{speaker_index}]")
+          if speaker.nil?
+            video_index += 1
+            speaker_index = 0
+            next
           end
-          index += 1
+          name = speaker&.value
+          speaker_index += 1
+          next if name.blank? || KNOWN_NAMES.include?(name)
+          location = speaker&.location
+          errors << Static::Validators::Error.new(
+            "Speaker '#{name}' not found in speakers.yml",
+            file_path: @file_path,
+            line: location&.start_line || 1,
+            end_line: location&.end_line
+          )
         end
 
         video_index, talk_index, speakers_index = 0, 0, 0
