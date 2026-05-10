@@ -1,7 +1,7 @@
 module Static
   module Validators
     class Error
-      attr_reader :error, :file_path, :line, :end_line
+      attr_reader :message, :file_path, :line, :end_line
 
       def initialize(message, file_path:, line:, end_line:)
         @message = message
@@ -12,10 +12,10 @@ module Static
 
       def to_h
         {
-          "message" => @message,
-          "file_path" => @file_path,
-          "line" => @line,
-          "end_line" => @end_line
+          "message" => message,
+          "file_path" => file_path,
+          "line" => line,
+          "end_line" => end_line
         }
       end
 
@@ -27,7 +27,7 @@ module Static
         else
           "❌"
         end
-        "#{prefix} #{@message}"
+        "#{prefix} #{message}"
       end
 
       def as_warning
@@ -38,7 +38,7 @@ module Static
         else
           "⚠️"
         end
-        "#{prefix} #{@message}"
+        "#{prefix} #{message}"
       end
     end
   end
