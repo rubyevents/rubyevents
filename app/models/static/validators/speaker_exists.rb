@@ -26,18 +26,20 @@ module Static
         return [] unless applicable?
 
         errors = []
-        data = YAML.load_file(@file_path)
+        document = Yerba.parse_file(@file_path)
 
-        # TODO: Get location for speaker name references in videos.yml
+        Array(document).each_with_index do |video, index|
 
-        Array(data).each do |video|
-          Array(video["speakers"]).each do |name|
-            unless KNOWN_NAMES.include?(name)
+          Array(document["[#{index}]"]["speakers"]).each_with_index do |name, index|
+            unless KNOWN_NAMES.include?(name.to_s)
+              binding.irb
+              location = document["[#{index}]"]["speakers"][index.to_s]&.location
+
               errors << Static::Validators::Error.new(
                 "Speaker '#{name}' not found in speakers.yml",
                 file_path: @file_path,
-                line: 1,
-                end_line: 1
+                line: location&.start_line || 1,
+                end_line: location&.end_line
               )
             end
           end

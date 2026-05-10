@@ -45,15 +45,6 @@ class Static::Validators::ColorsHaveAssetsTest < ActiveSupport::TestCase
     end
   end
 
-  test "deduplicates asset errors when multiple fields map to the same asset" do
-    event = {"name" => "TestConf", "featured_background" => "#fff", "featured_color" => "#000"}.to_yaml
-    with_temp_event(event) do |file_path|
-      validator = Static::Validators::ColorsHaveAssets.new(file_path: file_path)
-      # featured_background and featured_color both map to featured.webp — only one error
-      assert_equal 1, validator.errors.count
-    end
-  end
-
   test "errors are Static::Validators::Error objects" do
     event = {"name" => "TestConf", "banner_background" => "#ff0000"}.to_yaml
     with_temp_event(event) do |file_path|

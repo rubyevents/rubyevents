@@ -14,7 +14,7 @@ class Static::Validators::SchemaArrayTest < ActiveSupport::TestCase
   test "returns errors for invalid items" do
     with_temp_cfp_yaml([{"name" => "CFP without required link"}].to_yaml) do |path|
       validator = Static::Validators::SchemaArray.new(file_path: path)
-      assert validator.validate.any?, "Expected validation errors but got none"
+      assert_match(/object at root is missing required properties: link/, validator.validate.first.as_error)
     end
   end
 

@@ -33,18 +33,18 @@ module Static
       def validate
         return [] unless applicable?
         schemer = build_schemer
-        data = YAML.load_file(@file_path)
+        document = Yerba.parse_file(@file_path)
         errors = []
 
-        # TODO: Get location for array items
-
-        Array(data).each_with_index do |item, index|
+        Array(document.to_h).each_with_index do |item, index|
           schemer.validate(item).each do |error|
+            data_pointer = error["data_pointer"].tr("/", ".") || ""
+            location = document["[#{index}]#{data_pointer}"]&.location
             error = Static::Validators::Error.new(
               error["error"],
               file_path: @file_path,
-              line: 1,
-              end_line: 1
+              line: location&.start_line || 1,
+              end_line: location&.end_line
             )
             errors << error
           end

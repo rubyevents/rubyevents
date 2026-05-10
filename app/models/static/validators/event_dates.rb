@@ -26,28 +26,28 @@ module Static
       def validate
         return [] unless applicable?
 
-        data = YAML.load_file(@file_path)
-        return [] if data["kind"] == "meetup"
+        document = Yerba.parse_file(@file_path)
+        return [] if document["kind"] == "meetup"
 
         errors = []
 
-        # TODO: Get location for these keys
-
-        if data["start_date"].nil? || data["start_date"].to_s.strip.empty?
+        if document["start_date"].nil? || document["start_date"].to_s.strip.empty?
+          location = document["start_date"]&.location
           errors << Static::Validators::Error.new(
             "start_date is required for non-meetup events at /start_date",
             file_path: @file_path,
-            line: 1,
-            end_line: 1
+            line: location&.start_line || 1,
+            end_line: location&.end_line
           )
         end
 
-        if data["end_date"].nil? || data["end_date"].to_s.strip.empty?
+        if document["end_date"].nil? || document["end_date"].to_s.strip.empty?
+          location = document["end_date"]&.location
           errors << Static::Validators::Error.new(
             "end_date is required for non-meetup events at /end_date",
             file_path: @file_path,
-            line: 1,
-            end_line: 1
+            line: location&.start_line || 1,
+            end_line: location&.end_line
           )
         end
 

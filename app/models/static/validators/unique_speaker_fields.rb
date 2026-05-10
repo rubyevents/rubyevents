@@ -38,15 +38,14 @@ module Static
         speakers = Static::SpeakersFile.new(@file_path)
         errors = []
 
-        # TODO: Get location for speaker fields
-
         UNIQUE_FIELDS.each do |field|
           speakers.duplicates(field).each do |value, count|
+            location = speakers.document.find_by("#{field}": value)&.location
             errors << Static::Validators::Error.new(
               "Duplicate #{field}: #{value} (#{count} occurrences)",
               file_path: @file_path,
-              line: 1,
-              end_line: 1
+              line: location&.start_line || 1,
+              end_line: location&.end_line
             )
           end
         end
