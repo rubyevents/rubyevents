@@ -1,7 +1,6 @@
 require "test_helper"
 require "generators/talk/talk_generator"
 require "#{Rails.root}/app/schemas/video_schema"
-require "json_schemer"
 
 class TalkGeneratorTest < Rails::Generators::TestCase
   tests TalkGenerator
@@ -93,16 +92,7 @@ class TalkGeneratorTest < Rails::Generators::TestCase
   end
 
   def validate_talk_file(path)
-    data = YAML.load_file(path)
-    schema = JSON.parse(VideoSchema.new.to_json_schema[:schema].to_json)
-    schemer = JSONSchemer.schema(schema)
-
-    errors = []
-    Array(data).each_with_index do |item, index|
-      errs = schemer.validate(item).to_a
-      errors.append(errs) unless errs.empty?
-    end
-
+    errors = Static::Validators::SchemaArray.new(file_path: path).validate
     assert_empty errors, "Videos YAML does not conform to schema: #{errors.join(", ")}"
   end
 end

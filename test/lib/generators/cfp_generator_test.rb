@@ -1,8 +1,6 @@
 require "test_helper"
 require "generators/cfp/cfp_generator"
 require "#{Rails.root}/app/schemas/cfp_schema"
-require "json_schemer"
-require "yaml"
 
 class CFPGeneratorTest < Rails::Generators::TestCase
   tests CfpGenerator
@@ -58,17 +56,7 @@ class CFPGeneratorTest < Rails::Generators::TestCase
   end
 
   def validate_cfp_file(path)
-    data = YAML.load_file(path)
-
-    schema = JSON.parse(CFPSchema.new.to_json_schema[:schema].to_json)
-    schemer = JSONSchemer.schema(schema)
-
-    errors = []
-    Array(data).each_with_index do |item, index|
-      errs = schemer.validate(item).to_a
-      errors.append(errs) unless errs.empty?
-    end
-
+    errors = Static::Validators::SchemaArray.new(file_path: path).validate
     assert_empty errors, "CFP YAML does not conform to schema: #{errors.join(", ")}"
   end
 end
