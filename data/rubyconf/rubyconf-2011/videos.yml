@@ -535,8 +535,7 @@
   description: |-
     Ruby (MRI) has an unit-testing library, 'test/unit'. This is used for ruby's `make test-all`. In February 2011, I committed a patch ("parallel_test") that allows us to run multiple Test::Unit::TestCase-s at the same time. Because of this patch, ruby's `make test-all` can run tests faster. This patch also affects to existing tests using `test/unit`. In this talk, I take you into the parallel testing world. We'll talk about general parallel testing, benefits of parallel testing, multi-threaded or multi-process, etc. Then talk about the patch, the story of making the patch and describe how the patch works.
   speakers:
-    - Shota
-    - Fukumori
+    - Shota Fukumori
 
 - id: "koichi-sasada-rubyconf-2011"
   title: "Implementation of Ruby 1.9.3 and Later"
