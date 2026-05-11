@@ -7,19 +7,27 @@ description: Guide for handling event data. Use when asked to update event data 
 If something is unclear, use the AskUserTool to ask for clarification.
 **Always use the generators if possible.**
 The generators will create a file with the correct structure, and will help you avoid formatting errors.
-If you do not have a paramter for the generator, do not pass it as a parameter.
-The generaator will create a reasonable fault or TODO for someone else to fill out later.
+If you do not have a parameter for the generator, do not pass it as a parameter.
+The generaator will create a reasonable default or TODO for someone else to fill out later.
 `bin/lint` must be called before commiting any changes to confirm the structure of the file is correct.
+
+# Adding a new Event
+
+Reference the documentation in docs/ADDING_EVENTS.md if needed.
+
+Run `bin/rails g event --help` to review the available parameters for the EventGenerator.
+
+Create a command to reproduce the event.
+
+```bash
+bin/rails g event --event-series ruby-community-conference --event ruby-community-conference-winter-edition-2026 --name "Ruby Community Conference Winter Edition 2026" --venue-name "TBD" --venue-address "TBD"
+```
 
 # Adding a talk
 
 Review documentation in docs/ADDING_UNPUBLISHED_TALKS.md.
 
-Review the available parameters for the TalkGenerator.
-
-```bash
-bin/rails g talk --help
-```
+Run `bin/rails g talk --help` to review the available parameters for the TalkGenerator.
 
 Create a command to reproduce the talk.
 
@@ -28,8 +36,6 @@ For example, if the user says "Create a lightning talk from Chris Hasiński, the
 ```bash
 bin/rails g talk --event ruby-community-conference-winter-edition-2026 --speaker "Chris Hasiński" --title "Doom" --kind lightning_talk
 ```
-
-Exclude any missing parameters, and let the generator create TODOs for someone else to fill out later.
 
 If the rubyevents MCP is available, and the user did not provide an event series slug and event, use the EventLookupTool to find the correct event.
 
