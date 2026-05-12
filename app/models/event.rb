@@ -360,8 +360,8 @@ class Event < ApplicationRecord
   def to_ical
     Icalendar::Event.new.tap do |event|
       event.uid = "RUBYEVENTS-#{id}"
-      event.dtstart = start_date
-      event.dtend = end_date + 1.day # dtend is exclusive, add 1 day to make it inclusive
+      event.dtstart = Icalendar::Values::Date.new(start_date)
+      event.dtend = Icalendar::Values::Date.new(end_date + 1.day) # dtend is exclusive, add 1 day to make it inclusive
       event.summary = name
       event.description = description
       event.location = static_metadata.location
