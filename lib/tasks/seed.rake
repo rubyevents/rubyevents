@@ -17,7 +17,6 @@ namespace :db do
 
         Rake::Task["backfill:speaker_participation"].invoke
         Rake::Task["backfill:event_involvements"].invoke
-        Rake::Task["speakerdeck:set_usernames_from_slides_url"].invoke
       end
 
       # Search::Backend.reindex_all
