@@ -30,6 +30,10 @@ class Avo::Resources::User < Avo::BaseResource
     field :suspicion_marked_at, as: :date_time, hide_on: :index
     field :suspicion_cleared_at, as: :date_time, hide_on: :index
 
+    field :orphaned, name: "Orphaned", as: :boolean, hide_on: [:forms] do
+      record.orphaned?
+    end
+
     field :slug, as: :text, hide_on: :index
     field :bio, as: :textarea, hide_on: :index
     field :website, as: :text, hide_on: :index
@@ -69,6 +73,7 @@ class Avo::Resources::User < Avo::BaseResource
     filter Avo::Filters::GeocodedPresence
     filter Avo::Filters::Suspicious
     filter Avo::Filters::HasDuplicate
+    filter Avo::Filters::Orphaned
   end
 
   def actions

@@ -244,6 +244,29 @@ class Talk < ApplicationRecord
   scope :today, -> { where(date: Date.today) }
   scope :past, -> { where(date: ...Date.today) }
 
+  scope :orphaned, -> {
+    static_ids = all_static_ids
+    where.not(static_id: static_ids).or(where(static_id: [nil, ""]))
+  }
+
+  scope :not_orphaned, -> {
+    static_ids = all_static_ids
+    where(static_id: static_ids)
+  }
+
+  def self.all_static_ids
+    @all_static_ids ||= begin
+      collection = Yerba::Collection.new("data/**/videos.yml")
+      parent_ids = collection.pluck(:id).compact
+      child_ids = collection.pluck(:talks).compact.flatten.map { |t| t["id"] }
+      parent_ids + child_ids
+    end
+  end
+
+  def orphaned?
+    static_id.blank? || self.class.all_static_ids.exclude?(static_id)
+  end
+
   def managed_by?(visiting_user)
     return false unless visiting_user.present?
     return true if visiting_user.admin?

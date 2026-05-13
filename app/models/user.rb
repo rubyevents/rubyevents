@@ -203,6 +203,27 @@ class User < ApplicationRecord
   }
   scope :with_location, -> { where.not(location: [nil, ""]) }
   scope :without_location, -> { where(location: [nil, ""]) }
+
+  scope :orphaned, -> {
+    speaker_slugs = all_speaker_slugs
+    where.not(slug: speaker_slugs).where.missing(:connected_accounts).where(talks_count: 0)
+  }
+
+  scope :not_orphaned, -> {
+    speaker_slugs = all_speaker_slugs
+    where(slug: speaker_slugs)
+      .or(where.associated(:connected_accounts))
+      .or(where.not(talks_count: 0))
+  }
+
+  def self.all_speaker_slugs
+    @all_speaker_slugs ||= Yerba::Collection.new("data/speakers.yml").pluck(:slug).compact
+  end
+
+  def orphaned?
+    self.class.all_speaker_slugs.exclude?(slug) && connected_accounts.none? && talks_count == 0
+  end
+
   scope :preloaded, -> { includes(:connected_accounts) }
 
   def self.normalize_github_handle(value)
