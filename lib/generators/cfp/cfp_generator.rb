@@ -10,7 +10,7 @@ class CfpGenerator < Generators::EventBase
   class_option :open_date, type: :string, desc: "CFP open date (YYYY-MM-DD)", group: "Fields"
   class_option :close_date, type: :string, desc: "CFP close date (YYYY-MM-DD)", group: "Fields"
 
-  CFP = Struct.new("CFP", :event, :name, :link, :open_date, :close_date)
+  CFP = Struct.new("CFP", :name, :link, :open_date, :close_date)
 
   def cfp_file
     @cfp_file = File.join([event_directory, "cfp.yml"])
@@ -37,11 +37,10 @@ class CfpGenerator < Generators::EventBase
 
   def create_cfp_record
     @cfp = CFP.new(
-      event: static_event,
-      name: options[:name] || "Call for Proposals",
-      link: options[:link] || "https://www.TODO.example.com/cfp",
-      open_date: options[:open_date] || Date.today.iso8601,
-      close_date: options[:close_date] || static_event&.end_date
+      name: options[:name] || @existing_cfp[:name] || "Call for Proposals",
+      link: options[:link] || @existing_cfp[:link] || "https://www.TODO.example.com/cfp",
+      open_date: options[:open_date] || @existing_cfp[:open_date] || Date.today.iso8601,
+      close_date: options[:close_date] || @existing_cfp[:close_date] || static_event&.start_date
     )
 
     append_to_file @cfp_file, template_content("cfp.yml.tt")
