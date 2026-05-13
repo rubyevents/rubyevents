@@ -171,8 +171,7 @@ namespace :validate do
   end
 
   def validate_speakers_in_videos
-    files = Dir.glob(Rails.root.join("data/**/videos.yml"))
-    errors = files.flat_map { |f| Static::Validators::SpeakerExists.new(file_path: f).errors }
+    errors = Static::Validators::SpeakerExists.errors
 
     if errors.any?
       puts Gum.style("Speakers referenced in videos.yml but missing from speakers.yml (#{errors.count}):", foreground: "1")

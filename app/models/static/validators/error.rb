@@ -3,7 +3,7 @@ module Static
     class Error
       attr_reader :message, :file_path, :line, :end_line
 
-      def initialize(message, file_path:, line:, end_line:)
+      def initialize(message, file_path:, line:, end_line: nil)
         @message = message
         @file_path = file_path.sub("#{Rails.root}/", "")
         @line = line
@@ -27,6 +27,7 @@ module Static
         else
           "❌"
         end
+
         "#{prefix} #{message}"
       end
 
@@ -38,6 +39,7 @@ module Static
         else
           "⚠️"
         end
+
         "#{prefix} #{message}"
       end
     end

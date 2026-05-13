@@ -1,6 +1,9 @@
 rules:
   - files: "data/**/event.yml"
     pipeline:
+      - schema:
+          file: "lib/schemas/event_schema.json"
+
       - directives:
           ensure: true
 
@@ -56,6 +59,10 @@ rules:
 
   - files: "data/**/involvements.yml"
     pipeline:
+      - schema:
+          file: "lib/schemas/involvement_schema.json"
+          path: "[]"
+
       - directives:
           ensure: true
 
@@ -82,6 +89,10 @@ rules:
 
   - files: "data/**/cfp.yml"
     pipeline:
+      - schema:
+          file: "lib/schemas/cfp_schema.json"
+          path: "[]"
+
       - directives:
           ensure: true
 
@@ -98,6 +109,10 @@ rules:
 
   - files: "data/featured_cities.yml"
     pipeline:
+      - schema:
+          file: "lib/schemas/featured_city_schema.json"
+          path: "[]"
+
       - directives:
           ensure: true
 
@@ -107,6 +122,10 @@ rules:
 
   - files: "data/**/sponsors.yml"
     pipeline:
+      - schema:
+          file: "lib/schemas/sponsors_schema.json"
+          path: "[]"
+
       - directives:
           ensure: true
 
@@ -124,6 +143,9 @@ rules:
 
   - files: "data/**/venue.yml"
     pipeline:
+      - schema:
+          file: "lib/schemas/venue_schema.json"
+
       - directives:
           ensure: true
 
@@ -133,6 +155,9 @@ rules:
 
   - files: "data/**/schedule.yml"
     pipeline:
+      - schema:
+          file: "lib/schemas/schedule_schema.json"
+
       - directives:
           ensure: true
 
@@ -150,6 +175,9 @@ rules:
 
   - files: "data/**/series.yml"
     pipeline:
+      - schema:
+          file: "lib/schemas/series_schema.json"
+
       - directives:
           ensure: true
 
@@ -163,6 +191,10 @@ rules:
 
   - files: "data/**/videos.yml"
     pipeline:
+      - schema:
+          file: "lib/schemas/video_schema.json"
+          path: "[]"
+
       - directives:
           ensure: true
 
@@ -276,6 +308,10 @@ rules:
 
   - files: "data/speakers.yml"
     pipeline:
+      - schema:
+          file: "lib/schemas/speaker_schema.json"
+          path: "[]"
+
       - directives:
           ensure: true
 
@@ -304,4 +340,4 @@ rules:
             - slug
 
       - sort:
-          by: name
+          by: ".name"

@@ -8,6 +8,13 @@ module Static
     VIDEOS_GLOB = "data/**/videos.yml"
     INVOLVEMENTS_GLOB = "data/**/involvements.yml"
 
+    VIDEO_SPEAKER_SELECTORS = [
+      "[].speakers[]",
+      "[].alternative_recordings[].speakers[]",
+      "[].talks[].speakers[]",
+      "[].talks[].alternative_recordings[].speakers[]"
+    ].freeze
+
     def initialize(path = Rails.root.join(SPEAKERS_PATH).to_s)
       @document = Yerba.parse_file(path)
     end
@@ -26,7 +33,7 @@ module Static
     end
 
     def aliases
-      document.get("[].aliases[].name") || []
+      document.value_at("[].aliases[].name") || []
     end
 
     def known_names
@@ -54,24 +61,25 @@ module Static
       entry
     end
 
-    def all_referenced_names
-      @all_referenced_names ||= begin
-        selectors = [
-          "[].speakers[]",
-          "[].talks[].speakers[]",
-          "[].alternative_recordings[].speakers[]",
-          "[].talks[].alternative_recordings[].speakers[]"
-        ]
+    def all_speaker_references
+      @all_speaker_references ||= begin
+        video_refs = VIDEO_SPEAKER_SELECTORS.flat_map { |selector| Yerba::Collection.get(videos_glob, selector) }
+        involvement_refs = Yerba::Collection.get(involvements_glob, "[].users[]")
 
-        video_names = selectors.flat_map { |selector| Yerba::Collection.get(videos_glob, selector) || [] }
-        involvement_users = Yerba::Collection.get(involvements_glob, "[].users[]") || []
-
-        Set.new(video_names + involvement_users)
+        (video_refs + involvement_refs).reject { |scalar| scalar.value.blank? }
       end
     end
 
+    def all_referenced_names
+      @all_referenced_names ||= Set.new(all_speaker_references.map(&:value))
+    end
+
+    def missing_speaker_references
+      all_speaker_references.reject { |scalar| known_names.include?(scalar.value) }
+    end
+
     def missing_speakers
-      all_referenced_names.reject { |name| name.empty? || known_names.include?(name) }.sort
+      missing_speaker_references.map(&:value).uniq.sort
     end
 
     def orphaned_speakers
@@ -133,7 +141,7 @@ module Static
 
     def orphaned_entries
       referenced = all_referenced_names
-      all_values = document.get_value("")
+      all_values = document.value_at("")
 
       all_values.each_with_index.filter_map do |entry, index|
         next unless entry.is_a?(Hash)
