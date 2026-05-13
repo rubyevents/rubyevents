@@ -25,13 +25,17 @@ class CFPGeneratorTest < Rails::Generators::TestCase
     File.delete cfp_file_path
   end
 
-  test "update cfp.yml if called twice" do
+  test "update cfp.yml if called twice with same name" do
     run_generator ["--event-series", "rubyconf", "--event", "2023"]
+    assert_file "data/rubyconf/2023/cfp.yml" do |content|
+      assert_match(%r{https://www.TODO.example.com/cfp}, content)
+    end
+
     run_generator ["--event-series", "rubyconf", "--event", "2023", "--name", "Call for Proposals", "--link", "https://example.com/cfp"]
 
     assert_file "data/rubyconf/2023/cfp.yml" do |content|
       assert_match(%r{https://example.com/cfp}, content)
-      assert_no_match(%r{https://TODO.example.com/cfp}, content)
+      assert_no_match(%r{https://www.TODO.example.com/cfp}, content)
     end
 
     cfp_file_path = File.join(destination_root, "data/rubyconf/2023/cfp.yml")
