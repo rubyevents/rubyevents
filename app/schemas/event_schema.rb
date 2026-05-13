@@ -27,6 +27,7 @@ class EventSchema < RubyLLM::Schema
   string :frequency, description: "How often the event occurs (for recurring meetups)", required: false
 
   string :location, description: "Location in 'City, Country' format (e.g., 'Detroit, MI' or 'Tokyo, Japan')"
+  string :timezone, description: "IANA time zone identifier, e.g. America/New_York", enum: TZInfo::Timezone.all_identifiers
   string :venue, description: "Name of the venue", required: false
 
   string :channel_id, description: "YouTube channel ID (starts with UC...)", required: false
