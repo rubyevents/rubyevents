@@ -590,6 +590,9 @@ namespace :validate do
     puts Gum.style("Validating SpeakerDeck slides URLs", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_speakerdeck_urls
 
+    puts Gum.style("Validating SpeakerDeck handles", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+    results << validate_speakerdeck_handles
+
     puts Gum.style("Validating event city names", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_event_city_names
 
