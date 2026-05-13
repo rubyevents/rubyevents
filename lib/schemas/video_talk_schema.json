@@ -1,0 +1,203 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "raw_title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string",
+      "description": "Type of video (e.g., 'keynote', 'lightning')"
+    },
+    "speakers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "event_name": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string"
+    },
+    "published_at": {
+      "type": "string"
+    },
+    "announced_at": {
+      "type": "string"
+    },
+    "video_provider": {
+      "type": "string",
+      "description": "Use 'parent' if there is one video"
+    },
+    "video_id": {
+      "type": "string"
+    },
+    "language": {
+      "type": "string"
+    },
+    "track": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string",
+      "description": "Location within the venue"
+    },
+    "start_cue": {
+      "type": "string",
+      "description": "Start time cue in video"
+    },
+    "end_cue": {
+      "type": "string",
+      "description": "End time cue in video"
+    },
+    "thumbnail_cue": {
+      "type": "string",
+      "description": "Thumbnail time cue"
+    },
+    "slides_url": {
+      "type": "string"
+    },
+    "additional_resources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "write-up",
+              "blog",
+              "article",
+              "source-code",
+              "code",
+              "repo",
+              "github",
+              "documentation",
+              "docs",
+              "presentation",
+              "video",
+              "podcast",
+              "audio",
+              "gem",
+              "library",
+              "transcript",
+              "handout",
+              "notes",
+              "photos",
+              "link"
+            ]
+          },
+          "title": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "url",
+          "type"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "thumbnail_xs": {
+      "type": "string"
+    },
+    "thumbnail_sm": {
+      "type": "string"
+    },
+    "thumbnail_md": {
+      "type": "string"
+    },
+    "thumbnail_lg": {
+      "type": "string"
+    },
+    "thumbnail_xl": {
+      "type": "string"
+    },
+    "thumbnail_classes": {
+      "type": "string"
+    },
+    "alternative_recordings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "raw_title": {
+            "type": "string"
+          },
+          "published_at": {
+            "type": "string"
+          },
+          "speakers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "video_provider": {
+            "type": "string"
+          },
+          "video_id": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "id",
+    "video_provider",
+    "video_id"
+  ],
+  "additionalProperties": false,
+  "strict": true,
+  "if": {
+    "properties": {
+      "video_provider": {
+        "const": "youtube"
+      }
+    },
+    "required": [
+      "video_provider"
+    ]
+  },
+  "then": {
+    "required": [
+      "published_at"
+    ],
+    "properties": {
+      "published_at": {
+        "type": "string",
+        "not": {
+          "const": "TODO"
+        },
+        "minLength": 1,
+        "pattern": "^\\d{4}-\\d{2}-\\d{2}"
+      }
+    }
+  }
+}

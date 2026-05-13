@@ -136,6 +136,26 @@ module Static
       document.pluck(field.to_sym).select(&:present?).tally.select { |_, count| count > 1 }
     end
 
+    def same_name_duplicates
+      names.tally.select { |_, count| count > 1 }
+    end
+
+    def reversed_name_duplicates
+      name_set = Set.new(names.map(&:downcase))
+
+      names.each_with_object({}) do |name, result|
+        next unless name.include?(" ")
+
+        reversed = name.split(" ").reverse.join(" ")
+
+        next if reversed.downcase == name.downcase
+        next unless name_set.include?(reversed.downcase)
+
+        key = [name, reversed].sort
+        result[key] ||= key
+      end.values
+    end
+
     def save!
       document.sort(by: :name)
       document.save!(apply: true)

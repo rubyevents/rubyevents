@@ -50,6 +50,9 @@ jobs:
       - name: StandardJS Check
         run: yarn lint
 
+      - name: Check speakers.yml is in sync
+        run: bin/rails speakers_file:check
+
       - name: Validate YAML data schemas
         run: bin/rails validate:all
 

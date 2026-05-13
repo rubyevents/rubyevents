@@ -1,93 +1,8 @@
 # frozen_string_literal: true
 
 require "gum"
-require "json_schemer"
-require "yaml"
 
 namespace :validate do
-  def validate_files(glob_pattern, file_type)
-    files = Dir.glob(Rails.root.join(glob_pattern))
-    valid_count = 0
-    invalid_files = []
-
-    files.each do |file|
-      file_errors = Static::Validators::Schema.new(file_path: file).errors
-
-      if file_errors.empty?
-        valid_count += 1
-      else
-        relative_path = file.sub("#{Rails.root}/", "")
-        invalid_files << {path: relative_path, errors: file_errors}
-      end
-    end
-
-    if invalid_files.any?
-      puts Gum.style("Invalid #{file_type} files (#{invalid_files.count}):", foreground: "1")
-      puts
-      invalid_files.each do |file|
-        puts Gum.style("❌ #{file[:path]}", foreground: "1")
-        file[:errors].each { |e| puts e.as_error }
-        puts
-      end
-    end
-
-    if invalid_files.any?
-      puts Gum.style("#{file_type}: #{valid_count} valid, #{invalid_files.count} invalid out of #{files.count} files", foreground: "1")
-    else
-      puts Gum.style("#{file_type}: #{valid_count} valid out of #{files.count} files", foreground: "2")
-    end
-
-    invalid_files.empty?
-  end
-
-  def validate_array_files(glob_pattern, file_type)
-    files = Dir.glob(Rails.root.join(glob_pattern))
-    valid_count = 0
-    invalid_files = []
-
-    files.each do |file|
-      file_errors = Static::Validators::SchemaArray.new(file_path: file).errors
-
-      if file_errors.empty?
-        valid_count += 1
-      else
-        relative_path = file.sub("#{Rails.root}/", "")
-        invalid_files << {path: relative_path, errors: file_errors}
-      end
-    end
-
-    if invalid_files.any?
-      puts Gum.style("Invalid #{file_type} files (#{invalid_files.count}):", foreground: "1")
-      puts
-      invalid_files.each do |file|
-        puts Gum.style("❌ #{file[:path]}", foreground: "1")
-        file[:errors].first(10).each do |e|
-          puts e.as_error
-        end
-        puts "... and #{file[:errors].count - 10} more errors" if file[:errors].count > 10
-        puts
-      end
-    end
-
-    if invalid_files.any?
-      puts Gum.style("#{file_type}: #{valid_count} valid, #{invalid_files.count} invalid out of #{files.count} files", foreground: "1")
-    else
-      puts Gum.style("#{file_type}: #{valid_count} valid out of #{files.count} files", foreground: "2")
-    end
-
-    invalid_files.empty?
-  end
-
-  desc "Validate all cfp.yml files against CFPSchema"
-  task cfps: :environment do
-    exit 1 unless validate_array_files("data/**/cfp.yml", "cfp.yml")
-  end
-
-  desc "Validate all event.yml files against EventSchema"
-  task events: :environment do
-    exit 1 unless validate_files("data/**/event.yml", "event.yml")
-  end
-
   def validate_event_dates
     files = Dir.glob(Rails.root.join("data/**/event.yml"))
     errors = []
@@ -102,6 +17,7 @@ namespace :validate do
       puts
       errors.concat(file_errors)
     end
+
     errors
   end
 
@@ -110,54 +26,12 @@ namespace :validate do
     exit 1 if validate_event_dates.any?
   end
 
-  desc "Validate all series.yml files against SeriesSchema"
-  task series: :environment do
-    exit 1 unless validate_files("data/*/series.yml", "series.yml")
-  end
-
-  desc "Validate all sponsors.yml files against SeriesSchema"
-  task sponsors: :environment do
-    exit 1 unless validate_array_files("data/**/sponsors.yml", "sponsors.yml")
-  end
-
-  desc "Validate all venue.yml files against VenueSchema"
-  task venues: :environment do
-    exit 1 unless validate_files("data/**/venue.yml", "venue.yml")
-  end
-
-  desc "Validate all videos.yml files against VideoSchema"
-  task videos: :environment do
-    exit 1 unless validate_array_files("data/**/videos.yml", "videos.yml")
-  end
-
-  desc "Validate all schedule.yml files against ScheduleSchema"
-  task schedules: :environment do
-    exit 1 unless validate_files("data/**/schedule.yml", "schedule.yml")
-  end
-
-  desc "Validate featured_cities.yml against FeaturedCitySchema"
-  task featured_cities: :environment do
-    exit 1 unless validate_array_files("data/featured_cities.yml", "featured_cities.yml")
-  end
-
-  desc "Validate all involvements.yml files against InvolvementSchema"
-  task involvements: :environment do
-    exit 1 unless validate_array_files("data/**/involvements.yml", "involvements.yml")
-  end
-
-  desc "Validate all transcripts.yml files against TranscriptSchema"
-  task transcripts: :environment do
-    exit 1 unless validate_array_files("data/**/transcripts.yml", "transcripts.yml")
-  end
-
   def validate_speakers
     file = Rails.root.join("data/speakers.yml").to_s
-    errors = []
-    errors.concat(Static::Validators::UniqueSpeakerFields.new(file_path: file).errors)
-    errors.concat(Static::Validators::SchemaArray.new(file_path: file).errors)
+    errors = Static::Validators::UniqueSpeakerFields.new(file_path: file).errors
 
     if errors.empty?
-      puts Gum.style("✓ All speakers are valid!", foreground: "2")
+      puts Gum.style("✓ All speaker fields are unique!", foreground: "2")
     else
       errors.each { |e| puts e.as_error }
     end
@@ -217,55 +91,41 @@ namespace :validate do
     end
   end
 
-  desc "Validate that all YouTube videos have a published_at date"
-  task youtube_published_at: :environment do
-    missing_published_at = []
-
-    Static::Video.all.each do |video|
-      if video.video_provider == "youtube" && (video.published_at.blank? || video.published_at == "TODO")
-        missing_published_at << video
-      end
-
-      video.talks.each do |talk|
-        if talk.video_provider == "youtube" && (talk.published_at.blank? || talk.published_at == "TODO")
-          missing_published_at << talk
-        end
-      end
-    end
-
-    if missing_published_at.any?
-      puts Gum.style("YouTube videos missing published_at date (#{missing_published_at.count}):", foreground: "1")
-      puts
-
-      missing_published_at.each do |video|
-        puts Gum.style("❌ #{video.id} (#{video.title})", foreground: "1")
-      end
-
-      puts
-
-      exit 1
-    else
-      puts Gum.style("✓ All YouTube videos have a published_at date", foreground: "2")
-    end
-  end
-
   def validate_speaker_duplicates
-    report = Gum.spin("Checking for speaker duplicates...", spinner: "dot") do
-      User::DuplicateDetector.report
+    speakers_file = Static::SpeakersFile.new
+    passed = true
+
+    same = speakers_file.same_name_duplicates
+
+    if same.any?
+      puts Gum.style("Same name duplicates (#{same.count}):", foreground: "1")
+
+      same.each do |name, count|
+        puts Gum.style("  ❌ #{name} (#{count} occurrences)", foreground: "1")
+      end
+
+      puts
+      passed = false
     end
 
-    has_duplicates = report != "No duplicates found."
+    reversed = speakers_file.reversed_name_duplicates
 
-    if has_duplicates
-      puts Gum.style(report, foreground: "1")
+    if reversed.any?
+      puts Gum.style("Reversed name duplicates (#{reversed.count} pairs):", foreground: "1")
+
+      reversed.each do |pair|
+        puts Gum.style("  ❌ #{pair[0]} ↔ #{pair[1]}", foreground: "1")
+      end
+
       puts
-      puts Gum.style("To fix: Make sure the name in speakers.yml matches the reference in the videos.yml files.", foreground: "3")
-      puts
-    else
-      puts Gum.style("✓ No unresolved speaker duplicates found", foreground: "2")
+      passed = false
     end
 
-    !has_duplicates
+    if passed
+      puts Gum.style("✓ No speaker duplicates found", foreground: "2")
+    end
+
+    passed
   end
 
   desc "Validate that there are no unresolved speaker duplicates"
@@ -465,38 +325,18 @@ namespace :validate do
   task all: :environment do
     results = []
 
-    puts Gum.style("Validating event.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_files("data/**/event.yml", "event.yml")
+    puts Gum.style("Running yerba check (schemas, formatting, uniqueness)", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+    yerba_passed = system("bundle exec yerba check")
+    results << yerba_passed
+
+    if yerba_passed
+      puts Gum.style("✓ All Yerbafile rules passed", foreground: "2")
+    end
+
+    puts Gum.style("Validating event dates", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_event_dates.none?
 
-    puts Gum.style("Validating series.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_files("data/*/series.yml", "series.yml")
-
-    puts Gum.style("Validating cfp.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_array_files("data/**/cfp.yml", "cfp.yml")
-
-    puts Gum.style("Validating sponsors.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_array_files("data/**/sponsors.yml", "sponsors.yml")
-
-    puts Gum.style("Validating venue.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_files("data/**/venue.yml", "venue.yml")
-
-    puts Gum.style("Validating videos.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_array_files("data/**/videos.yml", "videos.yml")
-
-    puts Gum.style("Validating schedule.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_files("data/**/schedule.yml", "schedule.yml")
-
-    puts Gum.style("Validating featured_cities.yml", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_array_files("data/featured_cities.yml", "featured_cities.yml")
-
-    puts Gum.style("Validating involvements.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_array_files("data/**/involvements.yml", "involvements.yml")
-
-    puts Gum.style("Validating transcripts.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_array_files("data/**/transcripts.yml", "transcripts.yml")
-
-    puts Gum.style("Validating data/speakers.yml", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+    puts Gum.style("Validating unique speaker fields", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_speakers.none?
 
     puts Gum.style("Validating speakers in videos.yml exist in speakers.yml", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
@@ -549,43 +389,8 @@ namespace :validate do
       results << true
     end
 
-    puts Gum.style("Validating YouTube videos have published_at", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-
-    missing_published_at = []
-
-    Static::Video.all.each do |video|
-      if video.video_provider == "youtube" && (video.published_at.blank? || video.published_at == "TODO")
-        missing_published_at << video
-      end
-
-      video.talks.each do |talk|
-        if talk.video_provider == "youtube" && (talk.published_at.blank? || talk.published_at == "TODO")
-          missing_published_at << talk
-        end
-      end
-    end
-
-    if missing_published_at.any?
-      puts Gum.style("YouTube videos missing published_at date (#{missing_published_at.count}):", foreground: "1")
-      puts
-
-      missing_published_at.each do |video|
-        puts Gum.style("❌ #{video.id} (#{video.title})", foreground: "1")
-      end
-
-      puts
-
-      results << false
-    else
-      puts Gum.style("✓ All YouTube videos have a published_at date", foreground: "2")
-
-      results << true
-    end
-
-    if Rails.env.development?
-      puts Gum.style("Validating speaker duplicates", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-      results << validate_speaker_duplicates
-    end
+    puts Gum.style("Validating speaker duplicates", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+    results << validate_speaker_duplicates
 
     puts Gum.style("Validating SpeakerDeck slides URLs", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_speakerdeck_urls

@@ -73,10 +73,10 @@ gem "active_record-associated_object"
 gem "cuprite"
 
 # A single delightful Ruby way to work with AI.
-gem "ruby_llm", "~> 1.9.1"
+gem "ruby_llm", "~> 1.15.0"
 
 # A simple and clean Ruby DSL for creating JSON schemas.
-gem "ruby_llm-schema"
+gem "ruby_llm-schema", github: "marcoroth/ruby_llm-schema", branch: "required-if"
 
 # JSON Schema validator
 gem "json_schemer"

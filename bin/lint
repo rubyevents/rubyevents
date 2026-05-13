@@ -3,21 +3,26 @@
 # Exit when any command fails
 set -e
 
-# Check Ruby code formatting
-echo "Checking Ruby code formatting..."
-bundle exec standardrb --fix
-
-# Check Ruby code formatting
-echo "Checking JS code formatting..."
-yarn format
-
-# Check erb file formatting
-echo "Checking erb file formatting..."
-bundle exec erb_lint --lint-all --autocorrect
-
-# Check YAML file formatting
 echo "Checking YAML file formatting in data/ ..."
 bundle exec yerba apply
 
+echo "Syncing speakers.yml ..."
+bin/rails speakers_file:sync
+
+echo "Syncing SpeakerDeck usernames ..."
+bin/rails speakerdeck:sync
+
+echo "Exporting JSON schemas ..."
+bin/rails schema:export
+
 echo "Validating Schema of files in data/ ..."
 bin/rails validate:all
+
+echo "Checking Ruby code formatting..."
+bundle exec standardrb --fix
+
+echo "Checking JS code formatting..."
+yarn format
+
+echo "Checking erb file formatting..."
+bundle exec erb_lint --lint-all --autocorrect

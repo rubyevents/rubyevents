@@ -1,0 +1,47 @@
+{
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "raw_title": {
+      "type": "string"
+    },
+    "language": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "published_at": {
+      "type": "string"
+    },
+    "event_name": {
+      "type": "string"
+    },
+    "speakers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "video_provider": {
+      "type": "string"
+    },
+    "video_id": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "external_url": {
+      "type": "string"
+    }
+  },
+  "required": [],
+  "additionalProperties": false,
+  "strict": true
+}

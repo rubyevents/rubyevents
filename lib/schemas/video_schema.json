@@ -118,10 +118,12 @@
               "type": "object",
               "properties": {
                 "name": {
-                  "type": "string"
+                  "type": "string",
+                  "description": "Display name for the resource"
                 },
                 "url": {
-                  "type": "string"
+                  "type": "string",
+                  "description": "URL to the resource"
                 },
                 "type": {
                   "type": "string",
@@ -145,11 +147,14 @@
                     "handout",
                     "notes",
                     "photos",
-                    "link"
-                  ]
+                    "link",
+                    "book"
+                  ],
+                  "description": "Type of resource"
                 },
                 "title": {
-                  "type": "string"
+                  "type": "string",
+                  "description": "Full title of the resource"
                 }
               },
               "required": [
@@ -189,7 +194,19 @@
                 "raw_title": {
                   "type": "string"
                 },
+                "language": {
+                  "type": "string"
+                },
+                "date": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
                 "published_at": {
+                  "type": "string"
+                },
+                "event_name": {
                   "type": "string"
                 },
                 "speakers": {
@@ -206,6 +223,9 @@
                 },
                 "url": {
                   "type": "string"
+                },
+                "external_url": {
+                  "type": "string"
                 }
               },
               "required": [],
@@ -218,7 +238,32 @@
           "video_provider",
           "video_id"
         ],
-        "additionalProperties": false
+        "additionalProperties": false,
+        "if": {
+          "properties": {
+            "video_provider": {
+              "const": "youtube"
+            }
+          },
+          "required": [
+            "video_provider"
+          ]
+        },
+        "then": {
+          "required": [
+            "published_at"
+          ],
+          "properties": {
+            "published_at": {
+              "type": "string",
+              "not": {
+                "const": "TODO"
+              },
+              "minLength": 1,
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}"
+            }
+          }
+        }
       }
     },
     "event_name": {
@@ -271,6 +316,18 @@
       "type": "string",
       "description": "URL for external player"
     },
+    "track": {
+      "type": "string",
+      "description": "Conference track (e.g., 'Main Stage', 'Workshop')"
+    },
+    "language": {
+      "type": "string",
+      "description": "Language of the talk"
+    },
+    "slides_url": {
+      "type": "string",
+      "description": "URL to the slides"
+    },
     "alternative_recordings": {
       "type": "array",
       "description": "Alternative video recordings",
@@ -310,6 +367,9 @@
           "video_id": {
             "type": "string"
           },
+          "url": {
+            "type": "string"
+          },
           "external_url": {
             "type": "string"
           }
@@ -317,18 +377,6 @@
         "required": [],
         "additionalProperties": false
       }
-    },
-    "track": {
-      "type": "string",
-      "description": "Conference track (e.g., 'Main Stage', 'Workshop')"
-    },
-    "language": {
-      "type": "string",
-      "description": "Language of the talk"
-    },
-    "slides_url": {
-      "type": "string",
-      "description": "URL to the slides"
     },
     "additional_resources": {
       "type": "array",
@@ -418,5 +466,30 @@
     "video_id"
   ],
   "additionalProperties": false,
-  "strict": true
+  "strict": true,
+  "if": {
+    "properties": {
+      "video_provider": {
+        "const": "youtube"
+      }
+    },
+    "required": [
+      "video_provider"
+    ]
+  },
+  "then": {
+    "required": [
+      "published_at"
+    ],
+    "properties": {
+      "published_at": {
+        "type": "string",
+        "not": {
+          "const": "TODO"
+        },
+        "minLength": 1,
+        "pattern": "^\\d{4}-\\d{2}-\\d{2}"
+      }
+    }
+  }
 }
