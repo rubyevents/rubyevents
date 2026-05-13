@@ -95,16 +95,21 @@
   speakers:
     - Hans Schnedlitz
 
-- id: "stephen-margheim-balkanruby-2026"
-  title: "Plain <html> and .css can be beautiful"
+- id: "marco-roth-balkanruby-2026"
+  title: "HTML-Aware ERB: The Path to Reactive Rendering"
   kind: "talk"
   date: "2026-05-16"
   language: "en"
   video_provider: "scheduled"
-  video_id: "stephen-margheim-balkanruby-2026"
-  description: ""
+  video_id: "marco-roth-balkanruby-2026"
+  description: |-
+    ERB templates in Ruby are traditionally rendered by engines that treat templates as string generators, which makes it difficult to reason about HTML structure, state changes, or incremental updates. These limitations become especially visible in modern HTML-over-the-wire workflows.
+
+    In this talk, we explore what it would take to build a reactive ERB rendering engine. We begin by revisiting how existing ERB engines compile templates into Ruby code and look at how recent advances in HTML-aware parsing and tooling make new approaches possible.
+
+    Using Herb::Engine as a concrete example, we examine how structural understanding enables state-aware rendering, diff-based updates, and a more responsive development experience, including instant updates without full page reloads and rich in-browser developer tools. Such as template outlines, partial and ERB structure views, jump-to-source navigation, and many other innovations.
   speakers:
-    - Stephen Margheim
+    - Marco Roth
 
 - id: "carmine-paolino-balkanruby-2026"
   title: "Ruby Is the Best Language for Building AI Web Apps"
@@ -113,7 +118,8 @@
   language: "en"
   video_provider: "scheduled"
   video_id: "carmine-paolino-balkanruby-2026"
-  description: ""
+  description: |-
+    Everyone says you need Python to build serious AI apps. That used to be true for training models, but most teams today are building products on top of APIs. This talk shows, with real code and production experience, why Ruby can be a better default for that work: less ceremony, cleaner agent abstractions, and faster iteration. The thesis is simple: when complexity drops, product quality goes up.
   speakers:
     - Carmine Paolino
 
