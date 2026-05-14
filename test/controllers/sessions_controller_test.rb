@@ -40,4 +40,25 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     delete session_url(@user.sessions.last)
     assert_redirected_to root_url
   end
+
+  test "should sign out and redirect to native refresh when in hotwire native app" do
+    sign_in_as @user
+
+    delete session_url(@user.sessions.last), headers: {"User-Agent" => "Hotwire Native iOS"}
+    assert_redirected_to hotwire_native_v1_refresh_path
+  end
+
+  test "exchange signs in user with valid token and redirects to native refresh" do
+    token = @user.signed_id(purpose: :native_signin, expires_in: 60.seconds)
+
+    get exchange_sessions_url(token: token)
+    assert_redirected_to hotwire_native_v1_refresh_path
+    assert_equal "Signed in successfully", flash[:notice]
+  end
+
+  test "exchange with invalid token redirects to new session" do
+    get exchange_sessions_url(token: "invalid")
+    assert_redirected_to new_session_path
+    assert_equal "Sign-in link expired. Please try again.", flash[:alert]
+  end
 end
