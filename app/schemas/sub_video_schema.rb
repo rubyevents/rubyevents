@@ -29,8 +29,8 @@ class SubVideoSchema < RubyLLM::Schema
   string :thumbnail_classes, required: false
   array :alternative_recordings, of: AlternativeRecordingSchema, required: false
 
-  require_if :video_provider, equals: "youtube" do
+  conditional video_provider: "youtube" do
     requires :published_at
-    validates :published_at, not_value: "TODO", min_length: 1, pattern: "^\\d{4}-\\d{2}-\\d{2}"
+    validates :published_at, type: :string, not_value: "TODO", min_length: 1, pattern: "^\\d{4}-\\d{2}-\\d{2}"
   end
 end

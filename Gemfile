@@ -76,7 +76,7 @@ gem "cuprite"
 gem "ruby_llm", "~> 1.15.0"
 
 # A simple and clean Ruby DSL for creating JSON schemas.
-gem "ruby_llm-schema", github: "marcoroth/ruby_llm-schema", branch: "required-if"
+gem "ruby_llm-schema", github: "marcoroth/ruby_llm-schema", branch: "conditionals"
 
 # JSON Schema validator
 gem "json_schemer"
