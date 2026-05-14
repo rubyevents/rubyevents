@@ -40,6 +40,8 @@ class EventSeries < ApplicationRecord
   has_many :events, dependent: :destroy, inverse_of: :series, foreign_key: :event_series_id, strict_loading: true
   has_many :talks, through: :events
   has_many :aliases, as: :aliasable, class_name: "Alias", dependent: :destroy
+  has_many :event_series_subscriptions, dependent: :destroy
+  has_many :subscribers, through: :event_series_subscriptions, source: :user
   has_object :static_metadata
 
   # validations
