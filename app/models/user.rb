@@ -206,78 +206,82 @@ class User < ApplicationRecord
   scope :without_location, -> { where(location: [nil, ""]) }
 
   scope :orphaned, -> {
-    speaker_slugs = all_speaker_slugs
-    where.not(slug: speaker_slugs)
+    known_githubs, known_names = all_speaker_identifiers
+    where.not(github_handle: known_githubs)
+      .where.not(name: known_names)
       .where.missing(:connected_accounts)
       .where.missing(:event_involvements)
       .where(talks_count: 0)
   }
 
   scope :not_orphaned, -> {
-    speaker_slugs = all_speaker_slugs
-    where(slug: speaker_slugs)
+    known_githubs, known_names = all_speaker_identifiers
+    where(github_handle: known_githubs)
+      .or(where(name: known_names))
       .or(where.associated(:connected_accounts))
       .or(where.associated(:event_involvements))
       .or(where.not(talks_count: 0))
   }
 
-  def self.all_speaker_slugs
-    @all_speaker_slugs ||= Yerba::Collection.new("data/speakers.yml").pluck(:slug).compact
+  def self.all_speaker_identifiers
+    @all_speaker_identifiers ||= begin
+      collection = Yerba::Collection.new("data/speakers.yml")
+      githubs = collection.pluck(:github).compact
+      names = collection.pluck(:name).compact
+      [githubs, names]
+    end
   end
 
   def self.speaker_alias_to_main_speaker
     @speaker_alias_to_main_speaker ||= begin
       collection = Yerba::Collection.new("data/speakers.yml")
-      slugs = collection.pluck(:slug)
+      names = collection.pluck(:name)
       githubs = collection.pluck(:github)
       aliases_data = collection.pluck(:aliases)
 
       mapping = {}
-      slugs.zip(githubs, aliases_data).each do |main_slug, github, aliases|
-        next if main_slug.nil? || aliases.nil?
+      names.zip(githubs, aliases_data).each do |main_name, github, aliases|
+        next if main_name.nil? || aliases.nil?
 
         Array(aliases).each do |a|
-          mapping[a["slug"]] = {slug: main_slug, github: github} if a["slug"]
+          alias_name = a["name"]
+          next if alias_name.nil? || alias_name == main_name
+
+          mapping[alias_name] = {name: main_name, github: github}
         end
       end
       mapping
     end
   end
 
-  # Keep simple slug mapping for backward compat
-  def self.speaker_alias_to_main_slug
-    @speaker_alias_to_main_slug ||= speaker_alias_to_main_speaker
-      .transform_values { |v| v[:slug] }
-      .reject { |alias_slug, main_slug| alias_slug == main_slug }
-  end
-
   scope :duplicate_aliases, -> {
-    alias_slugs = speaker_alias_to_main_slug.keys
-    where(slug: alias_slugs)
+    alias_names = speaker_alias_to_main_speaker.keys
+    where(name: alias_names)
   }
 
   def orphaned?
-    self.class.all_speaker_slugs.exclude?(slug) &&
+    known_githubs, known_names = self.class.all_speaker_identifiers
+    known_githubs.exclude?(github_handle) &&
+      known_names.exclude?(name) &&
       connected_accounts.none? &&
       event_involvements.none? &&
       talks_count == 0
   end
 
   def duplicate_alias?
-    self.class.speaker_alias_to_main_slug.key?(slug)
+    self.class.speaker_alias_to_main_speaker.key?(name)
   end
 
-  def main_speaker_slug
-    self.class.speaker_alias_to_main_slug[slug]
+  def main_speaker_name
+    self.class.speaker_alias_to_main_speaker.dig(name, :name)
   end
 
   def find_main_speaker
-    data = self.class.speaker_alias_to_main_speaker[slug]
+    data = self.class.speaker_alias_to_main_speaker[name]
     return unless data
 
-    User.find_by(slug: data[:slug]) ||
-      User.find_by_github_handle(data[:github]) ||
-      User.find_by_slug_or_alias(data[:slug])
+    User.find_by_github_handle(data[:github]) ||
+      User.find_by_name_or_alias(data[:name])
   end
 
   scope :preloaded, -> { includes(:connected_accounts) }
@@ -494,7 +498,7 @@ class User < ApplicationRecord
   end
 
   def set_slug
-    self.slug = slug.presence || github_handle.presence&.downcase
+    self.slug = slug.presence || name.presence&.parameterize || github_handle.presence&.downcase
     super
   end
 

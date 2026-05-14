@@ -13,10 +13,42 @@ class UserTest < ActiveSupport::TestCase
     assert_equal "john-doe-2", user.slug
   end
 
+  # Slug generation priority: explicit slug > name > github_handle
+
+  test "slug is derived from name when name and github_handle are present" do
+    user = User.create!(name: "Gabriel Enslein", github_handle: "genslein")
+    assert_equal "gabriel-enslein", user.slug
+  end
+
+  test "slug falls back to github_handle when name is blank" do
+    user = User.create!(name: "", github_handle: "genslein")
+    assert_equal "genslein", user.slug
+  end
+
+  test "slug falls back to github_handle when name is nil" do
+    user = User.new(github_handle: "genslein")
+    user.password = SecureRandom.base58
+    user.save!
+    assert_equal "genslein", user.slug
+  end
+
+  test "explicit slug takes precedence over name and github_handle" do
+    user = User.create!(name: "Gabriel Enslein", github_handle: "genslein", slug: "custom-slug")
+    assert_equal "custom-slug", user.slug
+  end
+
+  test "existing slug is preserved on update" do
+    user = User.create!(name: "Gabriel Enslein", github_handle: "genslein")
+    assert_equal "gabriel-enslein", user.slug
+
+    user.update!(name: "Gabe Enslein")
+    assert_equal "gabriel-enslein", user.slug
+  end
+
   test "not downcasing github_handle" do
     user = User.create!(name: "John Doe", github_handle: "TEKIN")
     assert_equal "TEKIN", user.github_handle
-    assert_equal "tekin", user.slug
+    assert_equal "john-doe", user.slug
   end
 
   test "default distance should be present" do
@@ -109,7 +141,7 @@ class UserTest < ActiveSupport::TestCase
 
     alias_record = canonical_user.aliases.find_by(name: "Old Name")
     assert_not_nil alias_record
-    assert_equal "old-name-test", alias_record.slug
+    assert_equal "old-name", alias_record.slug
   end
 
   test "marked_for_deletion scope returns only marked users" do

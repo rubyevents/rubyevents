@@ -16,7 +16,7 @@ class Avo::Actions::MergeDuplicateAlias < Avo::BaseAction
 
       main_user = record.find_main_speaker
       unless main_user
-        skipped << "#{record.name} (#{record.slug}) — main user '#{record.main_speaker_slug}' not found"
+        skipped << "#{record.name} (#{record.slug}) — main user '#{record.main_speaker_name}' not found"
         next
       end
 

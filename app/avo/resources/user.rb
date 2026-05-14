@@ -45,8 +45,7 @@ class Avo::Resources::User < Avo::BaseResource
           view_context.link_to(main_user.name, Avo::Engine.routes.url_helpers.resources_user_path(main_user))
         end
       } do
-        main_user = record.find_main_speaker
-        (main_user && main_user.id != record.id) ? main_user.name : nil
+        record.main_speaker_name
       end
 
     field :slug, as: :text, hide_on: :index

@@ -67,7 +67,6 @@ class Sessions::OmniauthController < ApplicationController
     User.new(github_handle: omniauth_username) do |user|
       user.password = SecureRandom.base58
       user.name = omniauth_params[:name]
-      user.slug = omniauth_params[:username]
       user.email = omniauth_params[:email]
       user.verified = true
     end
