@@ -1,4 +1,4 @@
-<%# locals: (user:, topics:, favorite_user:, talks:, events:, mutual_events:, stamps:, events_with_stickers:, involvements_by_role:, countries_with_events:, aliases: []) %>
+<%# locals: (user:, topics:, favorite_user:, talks:, events:, mutual_events:, stamps:, events_with_stickers:, involvements_by_role:, countries_with_events:) %>
 
 <%= turbo_refreshes_with method: :morph, scroll: :preserve %>
 <%= turbo_stream_from user %>
@@ -19,8 +19,7 @@
           stamps: stamps,
           events_with_stickers: events_with_stickers,
           involvements_by_role: involvements_by_role,
-          countries_with_events: countries_with_events,
-          aliases: aliases
+          countries_with_events: countries_with_events
         } %>
 
     <div class="mt-6">
