@@ -206,13 +206,17 @@ class User < ApplicationRecord
 
   scope :orphaned, -> {
     speaker_slugs = all_speaker_slugs
-    where.not(slug: speaker_slugs).where.missing(:connected_accounts).where(talks_count: 0)
+    where.not(slug: speaker_slugs)
+      .where.missing(:connected_accounts)
+      .where.missing(:event_involvements)
+      .where(talks_count: 0)
   }
 
   scope :not_orphaned, -> {
     speaker_slugs = all_speaker_slugs
     where(slug: speaker_slugs)
       .or(where.associated(:connected_accounts))
+      .or(where.associated(:event_involvements))
       .or(where.not(talks_count: 0))
   }
 
@@ -221,7 +225,10 @@ class User < ApplicationRecord
   end
 
   def orphaned?
-    self.class.all_speaker_slugs.exclude?(slug) && connected_accounts.none? && talks_count == 0
+    self.class.all_speaker_slugs.exclude?(slug) &&
+      connected_accounts.none? &&
+      event_involvements.none? &&
+      talks_count == 0
   end
 
   scope :preloaded, -> { includes(:connected_accounts) }
