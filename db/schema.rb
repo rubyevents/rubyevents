@@ -267,6 +267,35 @@ ActiveRecord::Schema[8.2].define(version: 2026_03_06_110802) do
     t.index ["task_name"], name: "index_llm_requests_on_task_name"
   end
 
+  create_table "notification_user_subscriptions", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "notification_id", null: false
+    t.string "object_class"
+    t.integer "object_id"
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["notification_id"], name: "index_notification_user_subscriptions_on_notification_id"
+    t.index ["user_id"], name: "index_notification_user_subscriptions_on_user_id"
+  end
+
+  create_table "notification_users", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "notification_id", null: false
+    t.string "object_class", null: false
+    t.integer "object_id", null: false
+    t.boolean "read", default: false, null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["notification_id"], name: "index_notification_users_on_notification_id"
+    t.index ["user_id"], name: "index_notification_users_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "name"
+    t.datetime "updated_at", null: false
+  end
+
   create_table "organizations", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.text "description"
@@ -566,6 +595,10 @@ ActiveRecord::Schema[8.2].define(version: 2026_03_06_110802) do
   add_foreign_key "events", "events", column: "canonical_id"
   add_foreign_key "favorite_users", "users"
   add_foreign_key "favorite_users", "users", column: "favorite_user_id"
+  add_foreign_key "notification_user_subscriptions", "notifications"
+  add_foreign_key "notification_user_subscriptions", "users"
+  add_foreign_key "notification_users", "notifications"
+  add_foreign_key "notification_users", "users"
   add_foreign_key "password_reset_tokens", "users"
   add_foreign_key "sessions", "users"
   add_foreign_key "speakers", "speakers", column: "canonical_id"

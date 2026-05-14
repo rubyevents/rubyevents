@@ -34,6 +34,14 @@
 
     <% c.with_menu_item_divider %>
     <% c.with_menu_item_link_to "My Profile", profile_path(Current.user) %>
+    <% c.with_menu_item_link_to notifications_path do %>
+      <div class="flex items-center gap-2">
+        <span>Notifications</span>
+        <% if Current.user.notification_users.where(read: false).exists? %>
+          <div class="badge badge-secondary"><%= Current.user.notification_users.where(read: false).count %></div>
+        <% end %>
+      </div>
+    <% end %>
     <% c.with_menu_item_link_to "Settings", settings_path %>
     <% if Current.user&.admin? %>
       <% c.with_menu_item_link_to "Suggestions", admin_suggestions_path %>
