@@ -5,7 +5,7 @@ class Avo::Actions::AssignCanonicalUser < Avo::BaseAction
     field :user_id, as: :select, name: "Canonical user",
       help: "The name of the speaker to be set as canonical",
       options: -> {
-        User.order(:name).map do |u|
+        User.order(Arel.sql("LOWER(name)")).map do |u|
           label = u.name.to_s
           label += " (@#{u.github_handle})" if u.github_handle.present?
           label += " – #{u.talks_count} talk(s)"

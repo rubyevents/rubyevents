@@ -136,6 +136,7 @@ class User < ApplicationRecord
   has_object :speakerdeck_feed
   has_object :suspicion_detector
   has_object :duplicate_detector
+  has_object :merger
 
   validates :email, format: {with: URI::MailTo::EMAIL_REGEXP}, allow_blank: true
   validates :github_handle, presence: true, uniqueness: true, allow_blank: true
@@ -224,11 +225,59 @@ class User < ApplicationRecord
     @all_speaker_slugs ||= Yerba::Collection.new("data/speakers.yml").pluck(:slug).compact
   end
 
+  def self.speaker_alias_to_main_speaker
+    @speaker_alias_to_main_speaker ||= begin
+      collection = Yerba::Collection.new("data/speakers.yml")
+      slugs = collection.pluck(:slug)
+      githubs = collection.pluck(:github)
+      aliases_data = collection.pluck(:aliases)
+
+      mapping = {}
+      slugs.zip(githubs, aliases_data).each do |main_slug, github, aliases|
+        next if main_slug.nil? || aliases.nil?
+
+        Array(aliases).each do |a|
+          mapping[a["slug"]] = {slug: main_slug, github: github} if a["slug"]
+        end
+      end
+      mapping
+    end
+  end
+
+  # Keep simple slug mapping for backward compat
+  def self.speaker_alias_to_main_slug
+    @speaker_alias_to_main_slug ||= speaker_alias_to_main_speaker
+      .transform_values { |v| v[:slug] }
+      .reject { |alias_slug, main_slug| alias_slug == main_slug }
+  end
+
+  scope :duplicate_aliases, -> {
+    alias_slugs = speaker_alias_to_main_slug.keys
+    where(slug: alias_slugs)
+  }
+
   def orphaned?
     self.class.all_speaker_slugs.exclude?(slug) &&
       connected_accounts.none? &&
       event_involvements.none? &&
       talks_count == 0
+  end
+
+  def duplicate_alias?
+    self.class.speaker_alias_to_main_slug.key?(slug)
+  end
+
+  def main_speaker_slug
+    self.class.speaker_alias_to_main_slug[slug]
+  end
+
+  def find_main_speaker
+    data = self.class.speaker_alias_to_main_speaker[slug]
+    return unless data
+
+    User.find_by(slug: data[:slug]) ||
+      User.find_by_github_handle(data[:github]) ||
+      User.find_by_slug_or_alias(data[:slug])
   end
 
   scope :preloaded, -> { includes(:connected_accounts) }
@@ -441,7 +490,7 @@ class User < ApplicationRecord
   end
 
   def assign_canonical_user!(canonical_user:)
-    MergeUsersService.new(user_to_keep: canonical_user, user_to_merge: self).call
+    canonical_user.merge_with!(self)
   end
 
   def set_slug

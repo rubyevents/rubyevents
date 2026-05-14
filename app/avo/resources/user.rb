@@ -34,6 +34,21 @@ class Avo::Resources::User < Avo::BaseResource
       record.orphaned?
     end
 
+    field :duplicate_alias, name: "Duplicate Alias", as: :boolean, hide_on: [:forms] do
+      record.duplicate_alias?
+    end
+
+    field :main_speaker, name: "Main Speaker", as: :text, as_html: true, hide_on: [:index, :forms],
+      format_using: -> {
+        main_user = record.find_main_speaker
+        if main_user && main_user.id != record.id
+          view_context.link_to(main_user.name, Avo::Engine.routes.url_helpers.resources_user_path(main_user))
+        end
+      } do
+        main_user = record.find_main_speaker
+        (main_user && main_user.id != record.id) ? main_user.name : nil
+      end
+
     field :slug, as: :text, hide_on: :index
     field :bio, as: :textarea, hide_on: :index
     field :website, as: :text, hide_on: :index
@@ -74,6 +89,7 @@ class Avo::Resources::User < Avo::BaseResource
     filter Avo::Filters::Suspicious
     filter Avo::Filters::HasDuplicate
     filter Avo::Filters::Orphaned
+    filter Avo::Filters::DuplicateAlias
   end
 
   def actions
@@ -81,5 +97,6 @@ class Avo::Resources::User < Avo::BaseResource
     action Avo::Actions::GeocodeRecord
     action Avo::Actions::ClearUser
     action Avo::Actions::AssignCanonicalUser
+    action Avo::Actions::MergeDuplicateAlias
   end
 end
