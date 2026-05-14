@@ -36,6 +36,10 @@ class User::Merger < ActiveRecord::AssociatedObject
     return if @other_user.name.blank? || @other_user.slug.blank?
     user.aliases.find_or_create_by!(name: @other_user.name, slug: @other_user.slug)
 
+    if @other_user.github_handle.present? && @other_user.github_handle.downcase != @other_user.slug
+      user.aliases.find_or_create_by!(name: @other_user.github_handle, slug: @other_user.github_handle.downcase)
+    end
+
     @other_user.aliases.each do |existing_alias|
       if user.aliases.exists?(slug: existing_alias.slug)
         existing_alias.destroy
