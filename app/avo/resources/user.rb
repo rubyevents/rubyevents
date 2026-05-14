@@ -1,6 +1,20 @@
 class Avo::Resources::User < Avo::BaseResource
   self.title = :name
   self.includes = []
+
+  self.description = -> {
+    if view == :index
+      orphaned = Avo::Filters::BaseFilter.encode_filters({"Avo::Filters::Orphaned" => {"orphaned" => true}})
+      duplicates = Avo::Filters::BaseFilter.encode_filters({"Avo::Filters::DuplicateAlias" => {"duplicate_alias" => true}})
+      url_helpers = Avo::Engine.routes.url_helpers
+
+      view_context.safe_join([
+        view_context.link_to("Orphaned Users", url_helpers.resources_users_path(encoded_filters: orphaned), class: "btn btn-sm btn-outline btn-error mr-2"),
+        view_context.link_to("Duplicate Aliases", url_helpers.resources_users_path(encoded_filters: duplicates), class: "btn btn-sm btn-outline btn-warning")
+      ])
+    end
+  }
+
   self.find_record_method = -> {
     if id.is_a?(Array)
       if id.first.to_i == 0
@@ -12,9 +26,11 @@ class Avo::Resources::User < Avo::BaseResource
       (id.to_i == 0) ? (query.find_by_slug_or_alias(id) || query.find_by_github_handle(id)) : query.find(id)
     end
   }
+
   self.search = {
     query: -> { query.where("lower(name) LIKE ? OR email LIKE ?", "%#{params[:q]&.downcase}%", "%#{params[:q]}%") }
   }
+
   self.external_link = -> {
     main_app.profile_path(record)
   }
