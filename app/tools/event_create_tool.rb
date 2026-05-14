@@ -12,7 +12,7 @@ class EventCreateTool < RubyLLM::Tool
     required = SCHEMA_DATA[:required]&.include?(name)
 
     desc = config[:description] || ""
-    desc += " (#{config[:enum].join(", ")})" if config[:enum]
+    desc += " (#{config[:enum].join(", ")})" if config[:enum] && config[:enum].length <= 20
 
     param name, desc: desc, required: required
   end
