@@ -211,6 +211,8 @@ class User < ApplicationRecord
       .where.not(name: known_names)
       .where.missing(:connected_accounts)
       .where.missing(:event_involvements)
+      .where.missing(:event_participations)
+      .where.missing(:contributor)
       .where(talks_count: 0)
   }
 
@@ -220,6 +222,8 @@ class User < ApplicationRecord
       .or(where(name: known_names))
       .or(where.associated(:connected_accounts))
       .or(where.associated(:event_involvements))
+      .or(where.associated(:event_participations))
+      .or(where.associated(:contributor))
       .or(where.not(talks_count: 0))
   }
 
@@ -265,6 +269,8 @@ class User < ApplicationRecord
       known_names.exclude?(name) &&
       connected_accounts.none? &&
       event_involvements.none? &&
+      event_participations.none? &&
+      !contributor? &&
       talks_count == 0
   end
 
