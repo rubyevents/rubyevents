@@ -58,7 +58,7 @@ class ProfilesController < ApplicationController
     @topics = @user.topics.approved.tally.sort_by(&:last).reverse.map(&:first)
     # Load participated events (from event_participations)
     @events = @user.participated_events.includes(:series).distinct.in_order_of(:attended_as, EventParticipation.attended_as.keys)
-    @events_with_stickers = @events.select(&:sticker?)
+    @stickers = Sticker.for_user(@user, events: @events)
 
     event_participations = @user.event_participations.includes(:event).where(event: @events)
     @participations = event_participations.index_by(&:event_id)

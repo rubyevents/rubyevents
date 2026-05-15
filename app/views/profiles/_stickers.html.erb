@@ -1,3 +1,3 @@
-<% if events_with_stickers.any? %>
-  <%= render partial: "shared/stickers_display", locals: {events: events_with_stickers} %>
+<% if stickers.any? %>
+  <%= render partial: "shared/stickers_display", locals: {stickers: stickers} %>
 <% end %>
