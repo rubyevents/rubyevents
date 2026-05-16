@@ -110,7 +110,7 @@ class User < ApplicationRecord
 
   # Event participation associations
   has_many :event_participations, dependent: :destroy
-  has_many :participated_events, through: :event_participations, source: :event
+  has_many :participated_events, -> { distinct }, through: :event_participations, source: :event
   has_many :speaker_events, -> { where(event_participations: {attended_as: :speaker}) },
     through: :event_participations, source: :event
   has_many :keynote_speaker_events, -> { where(event_participations: {attended_as: :keynote_speaker}) },

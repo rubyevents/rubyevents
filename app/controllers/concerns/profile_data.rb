@@ -52,7 +52,7 @@ module ProfileData
 
   def set_mutual_events
     @mutual_events = if Current.user
-      @user.participated_events.where(id: Current.user.participated_events).distinct.order(start_date: :desc)
+      @user.participated_events.where(id: Current.user.participated_events).order(start_date: :desc)
     else
       Event.none
     end

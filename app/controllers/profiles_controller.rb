@@ -57,7 +57,7 @@ class ProfilesController < ApplicationController
     @talks_by_kind = @talks.group_by(&:kind)
     @topics = @user.topics.approved.tally.sort_by(&:last).reverse.map(&:first)
     # Load participated events (from event_participations)
-    @events = @user.participated_events.includes(:series).distinct.in_order_of(:attended_as, EventParticipation.attended_as.keys)
+    @events = @user.participated_events.includes(:series).in_order_of(:attended_as, EventParticipation.attended_as.keys)
     @stickers = Sticker.for_user(@user, events: @events)
 
     event_participations = @user.event_participations.includes(:event).where(event: @events)
@@ -139,7 +139,7 @@ class ProfilesController < ApplicationController
 
   def set_mutual_events
     @mutual_events = if Current.user
-      @user.participated_events.where(id: Current.user.participated_events).distinct.order(start_date: :desc)
+      @user.participated_events.where(id: Current.user.participated_events).order(start_date: :desc)
     else
       Event.none
     end
