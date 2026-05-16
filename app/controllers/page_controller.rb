@@ -106,6 +106,7 @@ class PageController < ApplicationController
 
   def stickers
     @events = Event.all.select(&:sticker?)
+    @stickers = @events.flat_map(&:stickers)
   end
 
   def contributors

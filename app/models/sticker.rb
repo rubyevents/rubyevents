@@ -23,6 +23,10 @@ class Sticker
     }
   end
 
+  def self.for_user(user, events: user.participated_events)
+    events.flat_map { for_event(it) }
+  end
+
   def asset_path
     ActionController::Base.helpers.asset_path(file_path)
   end
