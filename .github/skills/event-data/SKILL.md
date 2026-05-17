@@ -7,7 +7,7 @@ description: Guide for handling event data. Use when asked to update event data 
 If something is unclear, use the AskUserTool to ask for clarification.
 **Always use the generators if possible.**
 The generators will create a file with the correct structure, and will help you avoid formatting errors.
-If you do not have a parameter for the generator, do not pass it as a parameter.
+If you do not have a parameter for the generator, do not pass a default value as a parameter.
 The generaator will create a reasonable default or TODO for someone else to fill out later.
 `bin/lint` must be called before commiting any changes to confirm the structure of the file is correct.
 
