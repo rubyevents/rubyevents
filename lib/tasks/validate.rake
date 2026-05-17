@@ -3,10 +3,10 @@
 require "gum"
 
 namespace :validate do
-  desc "Validate event.yml files"
-  task events: :environment do
+  def validate_event_files
     validators = [
-      Static::Validators::EventDates
+      Static::Validators::EventDates,
+      Static::Validators::ColorsHaveAssets
     ]
     file_errors = Hash.new { |h, k| h[k] = [] }
     files = Dir.glob(Rails.root.join("data/**/event.yml"))
@@ -20,34 +20,21 @@ namespace :validate do
       end
     end
 
-    file_errors.each do |file, errors|
-      puts Gum.style(file, foreground: "1")
-      errors.each { |e| puts e.as_error }
-      puts
+    if file_errors.empty?
+      puts Gum.style("✓ All event.yml files passed validations!", foreground: "2")
+    else
+      file_errors.each do |file, errors|
+        puts Gum.style(file, foreground: "1")
+        errors.each { |e| puts e.as_error }
+        puts
+      end
     end
+    file_errors.values.flatten
   end
 
-  def validate_event_dates
-    files = Dir.glob(Rails.root.join("data/**/event.yml"))
-    errors = []
-
-    files.each do |file|
-      file_errors = Static::Validators::EventDates.new(file_path: file).errors
-      next if file_errors.empty?
-
-      relative_path = file.sub("#{Rails.root}/", "")
-      puts Gum.style("❌ #{relative_path}", foreground: "1")
-      file_errors.each { |e| puts e.as_error }
-      puts
-      errors.concat(file_errors)
-    end
-
-    errors
-  end
-
-  desc "Validate start_date and end_date are present for non-meetup event.yml files"
-  task event_dates: :environment do
-    exit 1 if validate_event_dates.any?
+  desc "Validate event.yml files"
+  task events: :environment do
+    exit 1 if validate_event_files.any?
   end
 
   def validate_speakers
@@ -324,27 +311,6 @@ namespace :validate do
   desc "Validate all city-related data"
   task cities: [:event_city_names, :video_city_names]
 
-  def validate_assets_if_colors_configured
-    files = Dir.glob(Rails.root.join("data/**/event.yml"))
-    errors = files.flat_map { |f| Static::Validators::ColorsHaveAssets.new(file_path: f).errors }
-
-    if errors.any?
-      puts Gum.style("Events with visual config but no assets (#{errors.count}):", foreground: "1")
-      puts
-      errors.each { |e| puts e.as_error }
-      puts
-    else
-      puts Gum.style("✓ All events with visual configuration have their assets", foreground: "2")
-    end
-
-    errors
-  end
-
-  desc "Validate that events with visual configuration have their asset files"
-  task event_assets: :environment do
-    exit 1 if validate_assets_if_colors_configured.any?
-  end
-
   desc "Validate all YAML files"
   task all: :environment do
     results = []
@@ -357,8 +323,8 @@ namespace :validate do
       puts Gum.style("✓ All Yerbafile rules passed", foreground: "2")
     end
 
-    puts Gum.style("Validating event dates", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_event_dates.none?
+    puts Gum.style("Validating event.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+    results << validate_event_files.none?
 
     puts Gum.style("Validating unique speaker fields", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_speakers.none?
@@ -427,9 +393,6 @@ namespace :validate do
 
     puts Gum.style("Validating video city names", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_video_city_names
-
-    puts Gum.style("Validating event visual assets", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_assets_if_colors_configured.none?
 
     puts
     if results.all?
