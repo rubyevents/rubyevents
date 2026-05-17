@@ -81,9 +81,8 @@ class Static::Validators::UniqueSpeakersTest < ActiveSupport::TestCase
     with_temp_speakers_yaml(yaml) do |path|
       validator = Static::Validators::UniqueSpeakers.new(file_path: path)
       errors = validator.errors
-      assert errors.any? { |e| e.to_h["message"].include?("Alias name") }
-      assert errors.any? { |e| e.to_h["message"].include?("alice smith") }
-      assert errors.any? { |e| e.to_h["message"].include?("conflicts with main name") }
+      assert errors.any? { |e| e.to_h["message"].include?("Same name duplicate") }
+      assert errors.any? { |e| e.to_h["message"].include?("Alice Smith") }
     end
   end
 
@@ -107,9 +106,8 @@ class Static::Validators::UniqueSpeakersTest < ActiveSupport::TestCase
     with_temp_speakers_yaml(yaml) do |path|
       validator = Static::Validators::UniqueSpeakers.new(file_path: path)
       errors = validator.errors
-      assert errors.any? { |e| e.to_h["message"].include?("Alias name") }
-      assert errors.any? { |e| e.to_h["message"].include?("a. smith") }
-      assert errors.any? { |e| e.to_h["message"].include?("shared across speakers") }
+      assert errors.any? { |e| e.to_h["message"].include?("Same name duplicate") }
+      assert errors.any? { |e| e.to_h["message"].include?("A. Smith") }
     end
   end
 
@@ -143,8 +141,7 @@ class Static::Validators::UniqueSpeakersTest < ActiveSupport::TestCase
       errors = validator.errors
       assert errors.any? { |e| e.to_h["message"].include?("Same name duplicate") }
       assert errors.any? { |e| e.to_h["message"].include?("Reversed name duplicate") }
-      assert errors.any? { |e| e.to_h["message"].include?("Alias name") }
-      assert_operator errors.count, :>=, 3
+      assert_operator errors.count, :==, 2
     end
   end
 

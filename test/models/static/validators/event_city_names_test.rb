@@ -4,7 +4,8 @@ require "test_helper"
 
 class Static::Validators::EventCityNamesTest < ActiveSupport::TestCase
   test "applicable? returns true for an event.yml file" do
-    validator = Static::Validators::EventCityNames.new(file_path: "/data/rubyconf/rubyconf-2026/event.yml")
+    file_path = File.join(Rails.root, "data", "rubyconf", "rubyconf-2026", "event.yml")
+    validator = Static::Validators::EventCityNames.new(file_path:)
     assert validator.applicable?
   end
 

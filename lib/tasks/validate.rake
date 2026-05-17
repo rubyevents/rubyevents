@@ -136,11 +136,6 @@ namespace :validate do
     end
   end
 
-  desc "Validate that event locations use canonical city names (not aliases)"
-  task event_city_names: :environment do
-    exit 1 unless validate_event_city_names
-  end
-
   def validate_video_city_names
     alias_to_canonical = Static::City.alias_lookup
     files = Dir.glob(Rails.root.join("data/**/videos.yml"))
