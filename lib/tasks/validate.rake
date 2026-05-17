@@ -325,14 +325,6 @@ namespace :validate do
   task all: :environment do
     results = []
 
-    puts Gum.style("Running yerba check (schemas, formatting, uniqueness)", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    yerba_passed = system("bundle exec yerba check")
-    results << yerba_passed
-
-    if yerba_passed
-      puts Gum.style("✓ All Yerbafile rules passed", foreground: "2")
-    end
-
     puts Gum.style("Validating event dates", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_event_dates.none?
 
@@ -406,6 +398,14 @@ namespace :validate do
 
     puts Gum.style("Validating event visual assets", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_assets_if_colors_configured.none?
+
+    puts Gum.style("Running yerba check (schemas, formatting, uniqueness)", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+    yerba_passed = system("bundle exec yerba check")
+    results << yerba_passed
+
+    if yerba_passed
+      puts Gum.style("✓ All Yerbafile rules passed", foreground: "2")
+    end
 
     puts
     if results.all?
