@@ -3,6 +3,30 @@
 require "gum"
 
 namespace :validate do
+  desc "Validate event.yml files"
+  task events: :environment do
+    validators = [
+      Static::Validators::EventDates
+    ]
+    file_errors = Hash.new { |h, k| h[k] = [] }
+    files = Dir.glob(Rails.root.join("data/**/event.yml"))
+
+    files.each do |file|
+      validators.each do |validator_class|
+        validator = validator_class.new(file_path: file)
+        validator.errors.each do |error|
+          file_errors[error.file_path] << error
+        end
+      end
+    end
+
+    file_errors.each do |file, errors|
+      puts Gum.style(file, foreground: "1")
+      errors.each { |e| puts e.as_error }
+      puts
+    end
+  end
+
   def validate_event_dates
     files = Dir.glob(Rails.root.join("data/**/event.yml"))
     errors = []
