@@ -367,6 +367,7 @@ class Event < ApplicationRecord
       event.description = description.strip
       event.location = static_metadata.location
       event.url = website
+      event.status = static_metadata.cancelled? ? "CANCELLED" : "CONFIRMED"
     end
   end
 

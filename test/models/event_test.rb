@@ -290,6 +290,7 @@ class EventTest < ActiveSupport::TestCase
         DESCRIPTION:RailsWorld is a yearly conference held in Netherlands.
         LAST-MODIFIED:20260101T000000
         LOCATION:Amsterdam\\, Netherlands
+        STATUS:CONFIRMED
         SUMMARY:Rails World 2023
         URL;VALUE=URI:https://rubyonrails.org/world
         END:VEVENT
