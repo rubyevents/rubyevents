@@ -6,7 +6,8 @@ namespace :validate do
   def validate_event_files
     validators = [
       Static::Validators::EventDates,
-      Static::Validators::ColorsHaveAssets
+      Static::Validators::ColorsHaveAssets,
+      Static::Validators::EventCityNames
     ]
     file_errors = Hash.new { |h, k| h[k] = [] }
     files = Dir.glob(Rails.root.join("data/**/event.yml"))
@@ -119,67 +120,6 @@ namespace :validate do
     end
   end
 
-  def build_city_alias_lookup
-    alias_to_canonical = {}
-
-    Static::City.all.each do |city|
-      Array(city.aliases).each do |alias_name|
-        alias_to_canonical[alias_name.downcase] = city.name
-      end
-    end
-
-    alias_to_canonical
-  end
-
-  def validate_event_city_names
-    alias_to_canonical = build_city_alias_lookup
-    files = Dir.glob(Rails.root.join("data/**/event.yml"))
-    issues = []
-
-    files.each do |file|
-      data = YAML.load_file(file)
-      location = data["location"]
-
-      next if location.blank?
-
-      city_part = location.split(",").first&.strip
-
-      next if city_part.blank?
-
-      canonical = alias_to_canonical[city_part.downcase]
-
-      if canonical && canonical.downcase != city_part.downcase
-        relative_path = file.sub("#{Rails.root}/", "")
-
-        issues << {
-          path: relative_path,
-          field: "location",
-          current: city_part,
-          canonical: canonical,
-          value: location
-        }
-      end
-    end
-
-    if issues.any?
-      puts Gum.style("Events using city aliases instead of canonical names (#{issues.count}):", foreground: "1")
-      puts
-
-      issues.each do |issue|
-        puts Gum.style("❌ #{issue[:path]}", foreground: "1")
-        puts "   #{issue[:field]}: \"#{issue[:value]}\""
-        puts "   Should use \"#{issue[:canonical]}\" instead of \"#{issue[:current]}\""
-        puts
-      end
-
-      false
-    else
-      puts Gum.style("✓ All events use canonical city names", foreground: "2")
-
-      true
-    end
-  end
-
   def check_city_alias(city_name, field, path, alias_to_canonical, issues)
     return if city_name.blank?
 
@@ -202,7 +142,7 @@ namespace :validate do
   end
 
   def validate_video_city_names
-    alias_to_canonical = build_city_alias_lookup
+    alias_to_canonical = Static::City.alias_lookup
     files = Dir.glob(Rails.root.join("data/**/videos.yml"))
     issues = []
 
@@ -220,7 +160,7 @@ namespace :validate do
         next if city_part.blank?
         next if city_part.downcase == "online" || city_part.downcase == "remote"
 
-        canonical = alias_to_canonical[city_part.downcase]
+        canonical = alias_to_canonical[city_part.downcase]&.name
 
         if canonical && canonical.downcase != city_part.downcase
           video_id = video["video_id"] || video["id"] || "index #{index}"
@@ -359,9 +299,6 @@ namespace :validate do
 
     puts Gum.style("Validating SpeakerDeck handles", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_speakerdeck_handles
-
-    puts Gum.style("Validating event city names", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_event_city_names
 
     puts Gum.style("Validating video city names", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_video_city_names
