@@ -360,10 +360,11 @@ class Event < ApplicationRecord
   def to_ical
     Icalendar::Event.new.tap do |event|
       event.uid = "RUBYEVENTS-#{id}"
+      event.last_modified = updated_at
       event.dtstart = Icalendar::Values::Date.new(start_date)
       event.dtend = Icalendar::Values::Date.new(end_date)
       event.summary = name
-      event.description = description
+      event.description = description.strip
       event.location = static_metadata.location
       event.url = website
     end

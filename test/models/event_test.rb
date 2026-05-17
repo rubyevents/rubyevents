@@ -279,6 +279,7 @@ class EventTest < ActiveSupport::TestCase
   test "to_ical serializes to a ical formatted string with the event details" do
     travel_to DateTime.new(2026, 1, 1) do
       event = events(:rails_world_2023)
+      event.updated_at = Time.now
 
       assert_equal <<~ICAL.gsub("\n", "\r\n"), event.to_ical.to_ical
         BEGIN:VEVENT
@@ -286,7 +287,8 @@ class EventTest < ActiveSupport::TestCase
         UID:RUBYEVENTS-#{event.id}
         DTSTART;VALUE=DATE:20231026
         DTEND;VALUE=DATE:20231026
-        DESCRIPTION:RailsWorld is a yearly conference held in Netherlands.\\n
+        DESCRIPTION:RailsWorld is a yearly conference held in Netherlands.
+        LAST-MODIFIED:20260101T000000
         LOCATION:Amsterdam\\, Netherlands
         SUMMARY:Rails World 2023
         URL;VALUE=URI:https://rubyonrails.org/world
