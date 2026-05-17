@@ -285,7 +285,7 @@ class EventTest < ActiveSupport::TestCase
         DTSTAMP:20260101T000000Z
         UID:RUBYEVENTS-#{event.id}
         DTSTART;VALUE=DATE:20231026
-        DTEND;VALUE=DATE:20231027
+        DTEND;VALUE=DATE:20231026
         DESCRIPTION:RailsWorld is a yearly conference held in Netherlands.\\n
         LOCATION:Amsterdam\\, Netherlands
         SUMMARY:Rails World 2023
