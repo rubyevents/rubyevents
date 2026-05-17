@@ -137,7 +137,7 @@ module Static
     end
 
     def same_name_duplicates
-      names.tally.select { |_, count| count > 1 }
+      (names + aliases).compact.tally.select { |_, count| count > 1 }
     end
 
     def reversed_name_duplicates

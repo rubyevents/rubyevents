@@ -37,24 +37,41 @@ namespace :validate do
     exit 1 if validate_event_files.any?
   end
 
-  def validate_speakers
-    file = Rails.root.join("data/speakers.yml").to_s
-    errors = Static::Validators::UniqueSpeakerFields.new(file_path: file).errors
+  def validate_speakers_file
+    validators = [
+      Static::Validators::UniqueSpeakerFields,
+      Static::Validators::UniqueSpeakers
+    ]
+    file_errors = Hash.new { |h, k| h[k] = [] }
+    files = Dir.glob(Rails.root.join("data/speakers.yml"))
 
-    if errors.empty?
-      puts Gum.style("✓ All speaker fields are unique!", foreground: "2")
-    else
-      errors.each { |e| puts e.as_error }
+    files.each do |file|
+      validators.each do |validator_class|
+        validator = validator_class.new(file_path: file)
+        validator.errors.each do |error|
+          file_errors[error.file_path] << error
+        end
+      end
     end
 
-    errors
+    if file_errors.empty?
+      puts Gum.style("✓ data/speakers.yml passed validations!", foreground: "2")
+    else
+      file_errors.each do |file, errors|
+        puts Gum.style(file, foreground: "1")
+        errors.each { |e| puts e.as_error }
+        puts
+      end
+    end
+    file_errors.values.flatten
   end
 
   desc "Validate data/speakers.yml"
   task speakers: :environment do
-    exit 1 if validate_speakers.any?
+    exit 1 if validate_speakers_file.any?
   end
 
+  # Validates videos.yml
   def validate_speakers_in_videos
     errors = Static::Validators::SpeakerExists.errors
 
@@ -100,48 +117,6 @@ namespace :validate do
     else
       puts Gum.style("✓ All video ids are unique", foreground: "2")
     end
-  end
-
-  def validate_speaker_duplicates
-    speakers_file = Static::SpeakersFile.new
-    passed = true
-
-    same = speakers_file.same_name_duplicates
-
-    if same.any?
-      puts Gum.style("Same name duplicates (#{same.count}):", foreground: "1")
-
-      same.each do |name, count|
-        puts Gum.style("  ❌ #{name} (#{count} occurrences)", foreground: "1")
-      end
-
-      puts
-      passed = false
-    end
-
-    reversed = speakers_file.reversed_name_duplicates
-
-    if reversed.any?
-      puts Gum.style("Reversed name duplicates (#{reversed.count} pairs):", foreground: "1")
-
-      reversed.each do |pair|
-        puts Gum.style("  ❌ #{pair[0]} ↔ #{pair[1]}", foreground: "1")
-      end
-
-      puts
-      passed = false
-    end
-
-    if passed
-      puts Gum.style("✓ No speaker duplicates found", foreground: "2")
-    end
-
-    passed
-  end
-
-  desc "Validate that there are no unresolved speaker duplicates"
-  task speaker_duplicates: :environment do
-    exit 1 unless validate_speaker_duplicates
   end
 
   def build_city_alias_lookup
@@ -326,8 +301,8 @@ namespace :validate do
     puts Gum.style("Validating event.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_event_files.none?
 
-    puts Gum.style("Validating unique speaker fields", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_speakers.none?
+    puts Gum.style("Validating speakers.yml file", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+    results << validate_speakers_file.none?
 
     puts Gum.style("Validating speakers in videos.yml exist in speakers.yml", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_speakers_in_videos.none?
@@ -378,9 +353,6 @@ namespace :validate do
 
       results << true
     end
-
-    puts Gum.style("Validating speaker duplicates", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_speaker_duplicates
 
     puts Gum.style("Validating SpeakerDeck slides URLs", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_speakerdeck_urls
