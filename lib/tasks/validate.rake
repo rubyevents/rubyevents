@@ -3,47 +3,76 @@
 require "gum"
 
 namespace :validate do
-  def validate_event_dates
+  def validate_event_files
+    validators = [
+      Static::Validators::EventDates,
+      Static::Validators::ColorsHaveAssets,
+      Static::Validators::EventCityNames
+    ]
+    file_errors = Hash.new { |h, k| h[k] = [] }
     files = Dir.glob(Rails.root.join("data/**/event.yml"))
-    errors = []
 
     files.each do |file|
-      file_errors = Static::Validators::EventDates.new(file_path: file).errors
-      next if file_errors.empty?
-
-      relative_path = file.sub("#{Rails.root}/", "")
-      puts Gum.style("❌ #{relative_path}", foreground: "1")
-      file_errors.each { |e| puts e.as_error }
-      puts
-      errors.concat(file_errors)
+      validators.each do |validator_class|
+        validator = validator_class.new(file_path: file)
+        validator.errors.each do |error|
+          file_errors[error.file_path] << error
+        end
+      end
     end
 
-    errors
-  end
-
-  desc "Validate start_date and end_date are present for non-meetup event.yml files"
-  task event_dates: :environment do
-    exit 1 if validate_event_dates.any?
-  end
-
-  def validate_speakers
-    file = Rails.root.join("data/speakers.yml").to_s
-    errors = Static::Validators::UniqueSpeakerFields.new(file_path: file).errors
-
-    if errors.empty?
-      puts Gum.style("✓ All speaker fields are unique!", foreground: "2")
+    if file_errors.empty?
+      puts Gum.style("✓ All event.yml files passed validations!", foreground: "2")
     else
-      errors.each { |e| puts e.as_error }
+      file_errors.each do |file, errors|
+        puts Gum.style(file, foreground: "1")
+        errors.each { |e| puts e.as_error }
+        puts
+      end
+    end
+    file_errors.values.flatten
+  end
+
+  desc "Validate event.yml files"
+  task events: :environment do
+    exit 1 if validate_event_files.any?
+  end
+
+  def validate_speakers_file
+    validators = [
+      Static::Validators::UniqueSpeakerFields,
+      Static::Validators::UniqueSpeakers
+    ]
+    file_errors = Hash.new { |h, k| h[k] = [] }
+    files = Dir.glob(Rails.root.join("data/speakers.yml"))
+
+    files.each do |file|
+      validators.each do |validator_class|
+        validator = validator_class.new(file_path: file)
+        validator.errors.each do |error|
+          file_errors[error.file_path] << error
+        end
+      end
     end
 
-    errors
+    if file_errors.empty?
+      puts Gum.style("✓ data/speakers.yml passed validations!", foreground: "2")
+    else
+      file_errors.each do |file, errors|
+        puts Gum.style(file, foreground: "1")
+        errors.each { |e| puts e.as_error }
+        puts
+      end
+    end
+    file_errors.values.flatten
   end
 
   desc "Validate data/speakers.yml"
   task speakers: :environment do
-    exit 1 if validate_speakers.any?
+    exit 1 if validate_speakers_file.any?
   end
 
+  # Validates videos.yml
   def validate_speakers_in_videos
     errors = Static::Validators::SpeakerExists.errors
 
@@ -91,109 +120,6 @@ namespace :validate do
     end
   end
 
-  def validate_speaker_duplicates
-    speakers_file = Static::SpeakersFile.new
-    passed = true
-
-    same = speakers_file.same_name_duplicates
-
-    if same.any?
-      puts Gum.style("Same name duplicates (#{same.count}):", foreground: "1")
-
-      same.each do |name, count|
-        puts Gum.style("  ❌ #{name} (#{count} occurrences)", foreground: "1")
-      end
-
-      puts
-      passed = false
-    end
-
-    reversed = speakers_file.reversed_name_duplicates
-
-    if reversed.any?
-      puts Gum.style("Reversed name duplicates (#{reversed.count} pairs):", foreground: "1")
-
-      reversed.each do |pair|
-        puts Gum.style("  ❌ #{pair[0]} ↔ #{pair[1]}", foreground: "1")
-      end
-
-      puts
-      passed = false
-    end
-
-    if passed
-      puts Gum.style("✓ No speaker duplicates found", foreground: "2")
-    end
-
-    passed
-  end
-
-  desc "Validate that there are no unresolved speaker duplicates"
-  task speaker_duplicates: :environment do
-    exit 1 unless validate_speaker_duplicates
-  end
-
-  def build_city_alias_lookup
-    alias_to_canonical = {}
-
-    Static::City.all.each do |city|
-      Array(city.aliases).each do |alias_name|
-        alias_to_canonical[alias_name.downcase] = city.name
-      end
-    end
-
-    alias_to_canonical
-  end
-
-  def validate_event_city_names
-    alias_to_canonical = build_city_alias_lookup
-    files = Dir.glob(Rails.root.join("data/**/event.yml"))
-    issues = []
-
-    files.each do |file|
-      data = YAML.load_file(file)
-      location = data["location"]
-
-      next if location.blank?
-
-      city_part = location.split(",").first&.strip
-
-      next if city_part.blank?
-
-      canonical = alias_to_canonical[city_part.downcase]
-
-      if canonical && canonical.downcase != city_part.downcase
-        relative_path = file.sub("#{Rails.root}/", "")
-
-        issues << {
-          path: relative_path,
-          field: "location",
-          current: city_part,
-          canonical: canonical,
-          value: location
-        }
-      end
-    end
-
-    if issues.any?
-      puts Gum.style("Events using city aliases instead of canonical names (#{issues.count}):", foreground: "1")
-      puts
-
-      issues.each do |issue|
-        puts Gum.style("❌ #{issue[:path]}", foreground: "1")
-        puts "   #{issue[:field]}: \"#{issue[:value]}\""
-        puts "   Should use \"#{issue[:canonical]}\" instead of \"#{issue[:current]}\""
-        puts
-      end
-
-      false
-    else
-      puts Gum.style("✓ All events use canonical city names", foreground: "2")
-
-      true
-    end
-  end
-
   def check_city_alias(city_name, field, path, alias_to_canonical, issues)
     return if city_name.blank?
 
@@ -210,13 +136,8 @@ namespace :validate do
     end
   end
 
-  desc "Validate that event locations use canonical city names (not aliases)"
-  task event_city_names: :environment do
-    exit 1 unless validate_event_city_names
-  end
-
   def validate_video_city_names
-    alias_to_canonical = build_city_alias_lookup
+    alias_to_canonical = Static::City.alias_lookup
     files = Dir.glob(Rails.root.join("data/**/videos.yml"))
     issues = []
 
@@ -234,7 +155,7 @@ namespace :validate do
         next if city_part.blank?
         next if city_part.downcase == "online" || city_part.downcase == "remote"
 
-        canonical = alias_to_canonical[city_part.downcase]
+        canonical = alias_to_canonical[city_part.downcase]&.name
 
         if canonical && canonical.downcase != city_part.downcase
           video_id = video["video_id"] || video["id"] || "index #{index}"
@@ -300,27 +221,6 @@ namespace :validate do
   desc "Validate all city-related data"
   task cities: [:event_city_names, :video_city_names]
 
-  def validate_assets_if_colors_configured
-    files = Dir.glob(Rails.root.join("data/**/event.yml"))
-    errors = files.flat_map { |f| Static::Validators::ColorsHaveAssets.new(file_path: f).errors }
-
-    if errors.any?
-      puts Gum.style("Events with visual config but no assets (#{errors.count}):", foreground: "1")
-      puts
-      errors.each { |e| puts e.as_error }
-      puts
-    else
-      puts Gum.style("✓ All events with visual configuration have their assets", foreground: "2")
-    end
-
-    errors
-  end
-
-  desc "Validate that events with visual configuration have their asset files"
-  task event_assets: :environment do
-    exit 1 if validate_assets_if_colors_configured.any?
-  end
-
   desc "Validate all YAML files"
   task all: :environment do
     results = []
@@ -333,11 +233,11 @@ namespace :validate do
       puts Gum.style("✓ All Yerbafile rules passed", foreground: "2")
     end
 
-    puts Gum.style("Validating event dates", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_event_dates.none?
+    puts Gum.style("Validating event.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+    results << validate_event_files.none?
 
-    puts Gum.style("Validating unique speaker fields", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_speakers.none?
+    puts Gum.style("Validating speakers.yml file", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+    results << validate_speakers_file.none?
 
     puts Gum.style("Validating speakers in videos.yml exist in speakers.yml", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_speakers_in_videos.none?
@@ -389,23 +289,14 @@ namespace :validate do
       results << true
     end
 
-    puts Gum.style("Validating speaker duplicates", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_speaker_duplicates
-
     puts Gum.style("Validating SpeakerDeck slides URLs", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_speakerdeck_urls
 
     puts Gum.style("Validating SpeakerDeck handles", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_speakerdeck_handles
 
-    puts Gum.style("Validating event city names", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_event_city_names
-
     puts Gum.style("Validating video city names", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_video_city_names
-
-    puts Gum.style("Validating event visual assets", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_assets_if_colors_configured.none?
 
     puts
     if results.all?
