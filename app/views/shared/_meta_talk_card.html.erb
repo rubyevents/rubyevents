@@ -26,7 +26,7 @@
               loading: "lazy",
               alt: "talk by #{meta_talk.speakers.map(&:name).join(", ")}: #{meta_talk.title}",
               style: "view-transition-name: #{dom_id(meta_talk, :image)}",
-              class: "w-full object-cover rounded-xl #{meta_talk.thumbnail_classes}"
+              class: "w-full rounded-xl #{meta_talk.thumbnail_classes.presence || "object-cover"}"
             ) %>
       </div>
       <div class="min-w-0">
