@@ -610,4 +610,15 @@ class UserTest < ActiveSupport::TestCase
     assert_equal "Amsterdam", user.city_record.name
     assert user.city_record.users.include?(user)
   end
+
+  test "participated_events returns each event once even with multiple participations" do
+    user = users(:one)
+    event = events(:railsconf_2025)
+
+    user.event_participations.create!(event: event, attended_as: :keynote_speaker)
+    user.event_participations.create!(event: event, attended_as: :speaker)
+
+    assert_equal 2, user.event_participations.where(event: event).count
+    assert_equal [event], user.participated_events.where(id: event.id).to_a
+  end
 end

@@ -30,7 +30,7 @@ class Events::ArchiveControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index and return events in the correct order" do
-    event_names = %i[brightonruby_2024 no_sponsors_event new_rb_meetup railsconf_2017 rails_world_2023 tropical_rb_2024 future_conference rubyconfth_2022 wnb_rb_meetup].map { |event| events(event) }.map(&:name)
+    event_names = %i[brightonruby_2024 no_sponsors_event new_rb_meetup railsconf_2017 railsconf_2025 rails_world_2023 tropical_rb_2024 future_conference rubyconfth_2022 wnb_rb_meetup].map { |event| events(event) }.map(&:name)
 
     get archive_events_path
 

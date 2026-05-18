@@ -1,4 +1,4 @@
-<%# locals: (user:, favorite_user:, talks:, events:, mutual_events:, stamps:, events_with_stickers:, involvements_by_role:, countries_with_events:) %>
+<%# locals: (user:, favorite_user:, talks:, events:, mutual_events:, stamps:, stickers:, involvements_by_role:, countries_with_events:) %>
 
 <div role="tablist" class="tabs tabs-bordered">
   <% if talks.length.positive? %>
@@ -25,8 +25,8 @@
     <%= active_link_to "Stamps (#{stamps.size})", profile_stamps_path(user), class: "tab px-6", active_class: "tab-active", role: "tab" %>
   <% end %>
 
-  <% if events_with_stickers.any? %>
-    <%= active_link_to "Stickers (#{events_with_stickers.size})", profile_stickers_path(user), class: "tab px-6", active_class: "tab-active", role: "tab" %>
+  <% if stickers.any? %>
+    <%= active_link_to "Stickers (#{stickers.size})", profile_stickers_path(user), class: "tab px-6", active_class: "tab-active", role: "tab" %>
   <% end %>
 
   <% if countries_with_events&.any? %>
