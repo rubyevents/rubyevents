@@ -360,12 +360,14 @@ class Event < ApplicationRecord
   def to_ical
     Icalendar::Event.new.tap do |event|
       event.uid = "RUBYEVENTS-#{id}"
+      event.last_modified = updated_at
       event.dtstart = Icalendar::Values::Date.new(start_date)
-      event.dtend = Icalendar::Values::Date.new(end_date + 1.day) # dtend is exclusive, add 1 day to make it inclusive
+      event.dtend = Icalendar::Values::Date.new(end_date)
       event.summary = name
-      event.description = description
+      event.description = description.strip
       event.location = static_metadata.location
       event.url = website
+      event.status = static_metadata.cancelled? ? "CANCELLED" : "CONFIRMED"
     end
   end
 
