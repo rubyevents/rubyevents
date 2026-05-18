@@ -303,7 +303,7 @@ module Static
       event.assign_attributes(
         name: title,
         date: attributes["date"] || published_at,
-        date_precision: defined?(date_precision) || "day",
+        date_precision: date_precision || "day",
         series: static_series.event_series_record,
         website: website,
         country_code: country&.alpha2,
