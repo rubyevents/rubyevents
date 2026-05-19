@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.2].define(version: 2026_03_01_182003) do
+ActiveRecord::Schema[8.2].define(version: 2026_03_06_110802) do
   create_table "_litestream_lock", id: false, force: :cascade do |t|
     t.integer "id"
   end
@@ -347,6 +347,7 @@ ActiveRecord::Schema[8.2].define(version: 2026_03_01_182003) do
     t.string "badge"
     t.datetime "created_at", null: false
     t.integer "event_id", null: false
+    t.integer "level"
     t.integer "organization_id", null: false
     t.string "tier"
     t.datetime "updated_at", null: false

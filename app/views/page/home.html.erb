@@ -1,26 +1,16 @@
 <% title hotwire_native_app? ? "RubyEvents" : "RubyEvents.org - On a mission to index all Ruby events" %>
+<% set_meta_tags site: nil # remove the "... | RubyEvents.org" from the title as that's already included above %>
 <% content_for :body_class, "home-page" %>
 
 <% if @featured_events.any? %>
   <% content_for :head do %>
-    <% if @wrapped_active %>
-      <meta name="theme-color" content="#991B1B" data-featured-theme-color>
-    <% else %>
-      <meta name="theme-color" content="<%= @featured_events.first.static_metadata.featured_background %>" data-featured-theme-color>
-    <% end %>
+    <meta name="theme-color" content="<%= @featured_events.first.static_metadata.featured_background %>" data-featured-theme-color>
 
     <style>
-      <% if @wrapped_active %>
-        :root {
-          --featured-color: white;
-          --featured-background: #991B1B;
-        }
-      <% else %>
-        :root {
-          --featured-color: <%= @featured_events.first.static_metadata.featured_color %>;
-          --featured-background: <%= @featured_events.first.static_metadata.featured_background %>;
-        }
-      <% end %>
+      :root {
+        --featured-color: <%= @featured_events.first.static_metadata.featured_color %>;
+        --featured-background: <%= @featured_events.first.static_metadata.featured_background %>;
+      }
 
       body.home-page .navbar {
         background: var(--featured-background);
@@ -98,23 +88,12 @@
 
         <div class="splide__track">
           <ul class="splide__list">
-            <% if @wrapped_active %>
-              <li
-                class="splide__slide"
-                data-featured-color="white"
-                data-featured-background="#991B1B">
-                <div>
-                  <%= render "wrapped/featured", users: @wrapped_users %>
-                </div>
-              </li>
-            <% end %>
-
             <% @featured_events.each_with_index do |event, index| %>
               <li
                 class="splide__slide"
                 data-featured-color="<%= event.static_metadata.featured_color %>"
                 data-featured-background="<%= event.static_metadata.featured_background %>">
-                <div class="<%= "hidden" if @wrapped_users.any? || Current.user || index != 0 %>">
+                <div class="<%= "hidden" if Current.user || index != 0 %>">
                   <%= render partial: "events/featured_home", locals: {event: event} %>
                 </div>
               </li>
@@ -127,11 +106,9 @@
 
   <div class="container">
     <div class="flex flex-col gap-12 mt-12">
-      <%= render partial: "wrapped/card" %>
-
       <section class="flex flex-col w-full gap-4">
         <div class="flex items-center justify-between w-full">
-          <h2 class="text-primary shrink-0">Latest talks</h2>
+          <h2 class="text-primary shrink-0">Latest videos</h2>
           <%= link_to "see all talks", talks_path, class: "link text-right w-full" %>
         </div>
 

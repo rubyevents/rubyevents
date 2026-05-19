@@ -55,6 +55,10 @@ class Avo::Resources::Talk < Avo::BaseResource
     field :language, hide_on: :index
     field :slug, as: :text, hide_on: :index
     field :year, as: :number, hide_on: :index
+    field :static_id, as: :text, hide_on: :index
+    field :orphaned, name: "Orphaned", as: :boolean, hide_on: [:forms] do
+      record.orphaned?
+    end
     field :video_id, as: :text, hide_on: :index
     field :video_provider, as: :text, hide_on: :index
     field :video_available, name: "Video Available", as: :boolean do
@@ -101,5 +105,6 @@ class Avo::Resources::Talk < Avo::BaseResource
     filter Avo::Filters::Language
     filter Avo::Filters::VideoProvider
     filter Avo::Filters::VideoAvailability
+    filter Avo::Filters::Orphaned
   end
 end

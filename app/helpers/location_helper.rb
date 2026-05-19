@@ -13,6 +13,10 @@ module LocationHelper
     location.users_path
   end
 
+  def location_meetups_path(location)
+    location.try(:meetups_path)
+  end
+
   def location_countries_path(location)
     location.try(:countries_path)
   end

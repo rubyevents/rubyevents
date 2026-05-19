@@ -44,6 +44,10 @@ class Country
     Router.country_users_path(self)
   end
 
+  def meetups_path
+    Router.country_meetups_path(self)
+  end
+
   def cities_path
     Router.country_cities_path(self)
   end

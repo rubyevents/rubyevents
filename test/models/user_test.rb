@@ -13,10 +13,64 @@ class UserTest < ActiveSupport::TestCase
     assert_equal "john-doe-2", user.slug
   end
 
+  # Slug generation priority: explicit slug > name > github_handle
+
+  test "slug is derived from name when name and github_handle are present" do
+    user = User.create!(name: "Gabriel Enslein", github_handle: "genslein")
+    assert_equal "gabriel-enslein", user.slug
+  end
+
+  test "slug falls back to github_handle when name is blank" do
+    user = User.create!(name: "", github_handle: "genslein")
+    assert_equal "genslein", user.slug
+  end
+
+  test "slug falls back to github_handle when name is nil" do
+    user = User.new(github_handle: "genslein")
+    user.password = SecureRandom.base58
+    user.save!
+    assert_equal "genslein", user.slug
+  end
+
+  test "explicit slug takes precedence over name and github_handle" do
+    user = User.create!(name: "Gabriel Enslein", github_handle: "genslein", slug: "custom-slug")
+    assert_equal "custom-slug", user.slug
+  end
+
+  test "existing slug is preserved on update" do
+    user = User.create!(name: "Gabriel Enslein", github_handle: "genslein")
+    assert_equal "gabriel-enslein", user.slug
+
+    user.update!(name: "Gabe Enslein")
+    assert_equal "gabriel-enslein", user.slug
+  end
+
   test "not downcasing github_handle" do
     user = User.create!(name: "John Doe", github_handle: "TEKIN")
     assert_equal "TEKIN", user.github_handle
-    assert_equal "tekin", user.slug
+    assert_equal "john-doe", user.slug
+  end
+
+  test "default distance should be present" do
+    user = User.create!(name: "John Doe")
+
+    assert_equal 250, user.distance
+  end
+
+  test "user distance can not be less than 250" do
+    user = User.create!(name: "John Doe")
+
+    user.distance = -10
+    user.valid?
+    assert_equal "Distance must be greater than or equal to 0", user.errors.full_messages.first
+  end
+
+  test "user distance can not be greater than 20_000" do
+    user = User.create!(name: "John Doe")
+
+    user.distance = 20_001
+    user.valid?
+    assert_equal "Distance must be less than or equal to 20000", user.errors.full_messages.first
   end
 
   test "should normalize github_handle by stripping URL, www, and @" do
@@ -69,17 +123,14 @@ class UserTest < ActiveSupport::TestCase
     assert_equal user1.id, found_user.id
   end
 
-  test "assign_canonical_user! marks user for deletion" do
+  test "assign_canonical_user! deletes user" do
     user = User.create!(name: "Duplicate User", github_handle: "duplicate-test")
     canonical_user = User.create!(name: "Canonical User", github_handle: "canonical-test")
-
-    assert_equal false, user.marked_for_deletion
+    user_id = user.id
 
     user.assign_canonical_user!(canonical_user: canonical_user)
-    user.reload
 
-    assert_equal true, user.marked_for_deletion
-    assert_equal canonical_user, user.canonical
+    assert_not User.exists?(user_id)
   end
 
   test "assign_canonical_user! creates an alias on the canonical user" do
@@ -90,7 +141,7 @@ class UserTest < ActiveSupport::TestCase
 
     alias_record = canonical_user.aliases.find_by(name: "Old Name")
     assert_not_nil alias_record
-    assert_equal "old-name-test", alias_record.slug
+    assert_equal "old-name", alias_record.slug
   end
 
   test "marked_for_deletion scope returns only marked users" do
@@ -149,12 +200,9 @@ class UserTest < ActiveSupport::TestCase
     assert_equal 0, canonical_user.talks.count
 
     user.assign_canonical_user!(canonical_user: canonical_user)
-    user.reload
     canonical_user.reload
 
-    assert_equal 0, user.talks.count
     assert_equal 2, canonical_user.talks.count
-
     assert_includes canonical_user.talks, talk1
     assert_includes canonical_user.talks, talk2
   end
@@ -171,10 +219,8 @@ class UserTest < ActiveSupport::TestCase
     assert_equal 0, canonical_user.event_participations.count
 
     user.assign_canonical_user!(canonical_user: canonical_user)
-    user.reload
     canonical_user.reload
 
-    assert_equal 0, user.event_participations.count
     assert_equal 1, canonical_user.event_participations.count
     assert_equal event, canonical_user.participated_events.first
   end
@@ -212,10 +258,8 @@ class UserTest < ActiveSupport::TestCase
     assert_equal 0, canonical_user.event_involvements.count
 
     user.assign_canonical_user!(canonical_user: canonical_user)
-    user.reload
     canonical_user.reload
 
-    assert_equal 0, user.event_involvements.count
     assert_equal 1, canonical_user.event_involvements.count
     assert_equal event, canonical_user.involved_events.first
   end
@@ -243,15 +287,14 @@ class UserTest < ActiveSupport::TestCase
     assert_equal event.id, new_involvement.event_id
   end
 
-  test "assign_canonical_speaker! calls assign_canonical_user!" do
+  test "assign_canonical_speaker! deletes user and creates alias" do
     user = User.create!(name: "Old Method User", github_handle: "old-method")
     canonical_user = User.create!(name: "Canonical", github_handle: "canonical-old")
+    user_id = user.id
 
     user.assign_canonical_speaker!(canonical_speaker: canonical_user)
-    user.reload
 
-    assert_equal true, user.marked_for_deletion
-    assert_equal canonical_user, user.canonical
+    assert_not User.exists?(user_id)
     assert_not_nil canonical_user.aliases.find_by(name: "Old Method User")
   end
 
@@ -263,12 +306,11 @@ class UserTest < ActiveSupport::TestCase
     assert_nil found_user
   end
 
-  test "find_by_name_or_alias finds alias even if original user is marked for deletion" do
+  test "find_by_name_or_alias finds alias even if original user is deleted" do
     canonical_user = User.create!(name: "Canonical User", github_handle: "canonical-marked-test")
     marked_user = User.create!(name: "Duplicate User", github_handle: "duplicate-marked-test")
 
     marked_user.assign_canonical_user!(canonical_user: canonical_user)
-    marked_user.reload
 
     alias_record = Alias.find_by(aliasable_type: "User", name: "Duplicate User")
     assert_not_nil alias_record
@@ -287,13 +329,12 @@ class UserTest < ActiveSupport::TestCase
     assert_nil found_user
   end
 
-  test "find_by_slug_or_alias finds alias even if original user is marked for deletion" do
+  test "find_by_slug_or_alias finds alias even if original user is deleted" do
     canonical_user = User.create!(name: "Canonical Slug User", github_handle: "canonical-slug-marked")
     marked_user = User.create!(name: "Duplicate Slug User", github_handle: "duplicate-slug-marked")
     original_slug = marked_user.slug
 
     marked_user.assign_canonical_user!(canonical_user: canonical_user)
-    marked_user.reload
 
     alias_record = Alias.find_by(aliasable_type: "User", slug: original_slug)
     assert_not_nil alias_record
@@ -568,5 +609,16 @@ class UserTest < ActiveSupport::TestCase
     )
     assert_equal "Amsterdam", user.city_record.name
     assert user.city_record.users.include?(user)
+  end
+
+  test "participated_events returns each event once even with multiple participations" do
+    user = users(:one)
+    event = events(:railsconf_2025)
+
+    user.event_participations.create!(event: event, attended_as: :keynote_speaker)
+    user.event_participations.create!(event: event, attended_as: :speaker)
+
+    assert_equal 2, user.event_participations.where(event: event).count
+    assert_equal [event], user.participated_events.where(id: event.id).to_a
   end
 end

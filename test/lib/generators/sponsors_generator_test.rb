@@ -1,8 +1,6 @@
 require "test_helper"
 require "generators/sponsors/sponsors_generator"
 require "#{Rails.root}/app/schemas/sponsors_schema"
-require "json_schemer"
-require "yaml"
 
 class SponsorsGeneratorTest < Rails::Generators::TestCase
   tests SponsorsGenerator
@@ -28,17 +26,7 @@ class SponsorsGeneratorTest < Rails::Generators::TestCase
     run_generator ["--event-series", "rubyconf", "--event", "2024"]
 
     sponsor_file_path = File.join(destination_root, "data/rubyconf/2024/sponsors.yml")
-    data = YAML.load_file(sponsor_file_path)
-
-    schema = JSON.parse(SponsorsSchema.new.to_json_schema[:schema].to_json)
-    schemer = JSONSchemer.schema(schema)
-
-    errors = []
-    Array(data).each_with_index do |item, index|
-      errs = schemer.validate(item).to_a
-      errors.append(errs) unless errs.empty?
-    end
-
+    errors = Static::Validators::SchemaArray.new(file_path: sponsor_file_path).validate
     assert_empty errors, "Sponsors YAML does not conform to schema: #{errors.join(", ")}"
 
     File.delete sponsor_file_path

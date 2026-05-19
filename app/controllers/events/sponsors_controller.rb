@@ -4,7 +4,7 @@ class Events::SponsorsController < ApplicationController
 
   # GET /events/:event_slug/sponsors
   def index
-    @sponsors_by_tier = @event.sponsors.includes(:organization).group_by(&:tier)
+    @sponsors_by_tier = @event.sponsors.includes(:organization).order(:level).group_by(&:tier)
   end
 
   private

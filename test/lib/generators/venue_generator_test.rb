@@ -1,8 +1,5 @@
 require "test_helper"
 require "generators/venue/venue_generator"
-require "#{Rails.root}/app/schemas/venue_schema"
-require "json_schemer"
-require "yaml"
 
 class VenueGeneratorTest < Rails::Generators::TestCase
   tests VenueGenerator
@@ -48,12 +45,7 @@ class VenueGeneratorTest < Rails::Generators::TestCase
   end
 
   def validate_venue_schema(file_path)
-    data = YAML.load_file(file_path)
-
-    schema = JSON.parse(VenueSchema.new.to_json_schema[:schema].to_json)
-    schemer = JSONSchemer.schema(schema)
-
-    errors = schemer.validate(data).to_a
-    assert_empty errors, "Venue YAML does not conform to schema: #{errors.join(", ")}"
+    validator = Static::Validators::Schema.new(file_path: file_path)
+    assert_empty validator.errors, "Venue YAML does not conform to schema: #{validator.errors.map { |e| e.to_h["message"] }.join(", ")}"
   end
 end

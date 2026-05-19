@@ -15,6 +15,7 @@ class EventGenerator < Generators::EventBase
   # Location Details
   class_option :online, type: :boolean, desc: "Is this an online-only event?", default: false, group: "Fields"
   class_option :location, type: :string, desc: "Location (City, Country)", group: "Fields"
+  class_option :timezone, type: :string, desc: "IANA timezone identifier (e.g. America/New_York)", group: "Fields"
   class_option :venue_name, type: :string, desc: "TODO Venue name", default: "TODO", group: "Fields"
   class_option :venue_address, type: :string, desc: "Venue address", default: "123 TODO St, City, State, ZIP, Country", group: "Fields"
   # TODO: Save YouTube playlists and videos for another day
@@ -28,6 +29,7 @@ class EventGenerator < Generators::EventBase
     else
       options[:location].presence || [@geocoded_address.city, @geocoded_address.state, @geocoded_address.country_code].compact.join(", ").presence || "Earth"
     end
+    @timezone = options[:timezone] || "UTC"
   end
 
   def copy_event_file

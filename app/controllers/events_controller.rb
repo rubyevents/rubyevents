@@ -12,6 +12,19 @@ class EventsController < ApplicationController
     @events = Event.includes(:series, :keynote_speakers)
       .where(end_date: Date.today..)
       .order(start_date: :asc)
+
+    respond_to do |format|
+      format.html
+      format.ics do
+        calendar = Icalendar::Calendar.new
+
+        @events.where(date_precision: :day).each do |event|
+          calendar.add_event(event.to_ical)
+        end
+
+        render plain: calendar.to_ical
+      end
+    end
   end
 
   # GET /events/1
@@ -32,7 +45,7 @@ class EventsController < ApplicationController
       @featured_speakers = (keynote_speakers + other_speakers.first(8 - keynote_speakers.size)).uniq.shuffle
     end
 
-    @sponsors = @event.sponsors.includes(:organization).joins(:organization).shuffle
+    @sponsors = @event.sponsors.includes(:organization).joins(:organization).order(level: :asc)
 
     @participation = Current.user&.main_participation_to(@event)
   end

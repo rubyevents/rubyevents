@@ -22,11 +22,9 @@ class ProfilesControllerTest < ActionDispatch::IntegrationTest
     original_slug = @user_with_talk.slug
 
     @user_with_talk.assign_canonical_speaker!(canonical_speaker: @user)
-    @user_with_talk.reload
+    @user.reload
 
-    assert_equal @user, @user_with_talk.canonical
     assert @user.talks.ids.include?(talk.id)
-    assert @user_with_talk.talks.empty?
 
     get profile_url(original_slug)
     assert_redirected_to profile_url(@user)
@@ -79,15 +77,23 @@ class ProfilesControllerTest < ActionDispatch::IntegrationTest
     sign_in_as @user
 
     assert_no_changes -> { @user.suggestions.pending.count } do
-      patch profile_url(@user), params: {user: {bio: "new bio", name: "new-name", twitter: "new-twitter", website: "new-website"}}
+      patch profile_url(@user), params: {user: {bio: "new bio", twitter: "new-twitter", website: "new-website"}}
     end
 
     assert_redirected_to profile_url(@user)
     assert_equal "new bio", @user.reload.bio
-    assert_equal @user.name, "new-name"
     assert_equal @user.twitter, "new-twitter"
     assert_equal @user.website, "https://new-website"
     assert_equal @user.id, @user.suggestions.last.suggested_by_id
+  end
+
+  test "owner cannot update their name" do
+    sign_in_as @user
+    original_name = @user.name
+
+    patch profile_url(@user), params: {user: {name: "new-name"}}
+
+    assert_equal original_name, @user.reload.name
   end
 
   test "should redirect when user not found" do
@@ -120,7 +126,6 @@ class ProfilesControllerTest < ActionDispatch::IntegrationTest
     duplicate_user = User.create!(name: "Duplicate User", github_handle: "duplicate-controller")
 
     duplicate_user.assign_canonical_user!(canonical_user: canonical_user)
-    duplicate_user.reload
 
     alias_record = Alias.find_by(slug: "duplicate-controller")
     assert_not_nil alias_record

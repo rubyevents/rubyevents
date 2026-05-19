@@ -9,6 +9,6 @@ class CFPController < ApplicationController
       cfps = cfps.joins(:event).where(events: {kind: params[:kind]})
     end
 
-    @events = cfps.map(&:event)
+    @events = cfps.map(&:event).group_by(&:kind).values.flatten
   end
 end

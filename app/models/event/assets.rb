@@ -60,6 +60,13 @@ class Event::Assets < ActiveRecord::AssociatedObject
     (IMAGES_BASE_PATH / event_path).exist? ? event_path : nil
   end
 
+  def has_custom_asset?(filename)
+    event_path = [base_path, filename].join("/")
+    series_default_path = [default_series_path, filename].join("/")
+
+    (IMAGES_BASE_PATH / event_path).exist? || (IMAGES_BASE_PATH / series_default_path).exist?
+  end
+
   def banner_path
     image_path_for("banner.webp")
   end

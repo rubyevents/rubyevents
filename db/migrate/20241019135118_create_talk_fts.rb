@@ -4,8 +4,6 @@ class CreateTalkFTS < ActiveRecord::Migration[7.2]
       "title", "summary", "speaker_names",
       "tokenize = porter"
     ]
-
-    Talk.reindex_all
   end
 
   def down

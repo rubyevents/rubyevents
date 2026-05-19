@@ -1,12 +1,12 @@
 <% classes = "bg-white hover:bg-gray-100 cursor-pointer px-4 py-2 text-sm text-gray-500 rounded-full border font-bold select-none" %>
-<% active_classes = "bg-red-500 hover:bg-red-600 text-white border-red-500" %>
+<% active_classes = "!bg-red-500 hover:!bg-red-600 !text-white !border-red-500" %>
 
 <% talks_by_language = talks.group_by(&:language) %>
 <% talks_by_kind = talks.group_by(&:kind) %>
 
 <% if talks_by_language.length >= 2 || talks_by_kind.length >= 2 %>
   <div class="mb-6" data-controller="talks-filter-pill" data-talks-filter-pill-active-class="<%= active_classes %>">
-    <div class="flex divide-x">
+    <div class="flex flex-wrap sm:divide-y divide-x">
       <% if talks_by_kind.length >= 2 %>
         <div class="flex gap-2 mb-3 pr-6 justify-center">
           <% talks_by_kind.each do |kind, talks| %>

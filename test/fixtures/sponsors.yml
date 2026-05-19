@@ -7,6 +7,7 @@
 #
 #  id              :integer          not null, primary key
 #  badge           :string
+#  level           :integer
 #  tier            :string           uniquely indexed => [event_id, organization_id]
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
@@ -42,3 +43,9 @@ three:
   badge: "Bronze Sponsor"
   event: railsconf_2017
   organization: three
+
+four:
+  tier: "gold"
+  badge: "Gold Sponsor"
+  event: railsconf_2025
+  organization: four
