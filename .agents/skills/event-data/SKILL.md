@@ -72,15 +72,13 @@ Run `bin/lint` to confirm the schedule structure.
 
 ## Generating a Sponsors file
 
-Load Documentation from docs/ADDING_SPONSORS.md into context.
+Reference the documentation in docs/ADDING_SPONSORS.md if needed.
 
-Review the available parameters for the SponsorGenerator.
+Run `bin/rails g sponsors --help` to review the available parameters for the SponsorsGenerator.
 
-```bash
-bin/rails g sponsor --help
-```
+Create a command for each sponsor to add or update their details.
 
-Generate the sponsor file with appropriate tiers and sponsor names. 
+Once all sponsors are added, run `bin/lint` to confirm the structure of the file.
 
 ## Generate a Venue file
 
