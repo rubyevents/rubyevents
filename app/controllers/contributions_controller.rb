@@ -90,7 +90,7 @@ class ContributionsController < ApplicationController
 
     @dates_by_event_name = ranges_for_events_with_dates.union(ranges_for_events_without_dates).to_h
 
-    talks_by_event_name = Talk.preload(:event).to_a.select { |talk| talk.event.name.in?(@dates_by_event_name.keys) }.group_by(&:event)
+    talks_by_event_name = Talk.preload(:event).to_a.select { |talk| talk.event&.name&.in?(@dates_by_event_name.keys) }.group_by(&:event)
 
     @out_of_bound_talks = talks_by_event_name.map { |event, talks| [event, talks.reject { |talk| @dates_by_event_name[event.name].cover?(talk.date) }] }
   end
