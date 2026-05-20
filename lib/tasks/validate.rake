@@ -226,11 +226,19 @@ namespace :validate do
     results = []
 
     puts Gum.style("Running yerba check (schemas, formatting, uniqueness)", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    yerba_passed = system("bundle exec yerba check")
+    yerba_output = `bundle exec yerba check 2>&1`
+    yerba_passed = $?.success?
     results << yerba_passed
 
     if yerba_passed
       puts Gum.style("✓ All Yerbafile rules passed", foreground: "2")
+    else
+      puts yerba_output
+
+      if yerba_output.include?("published_at")
+        puts Gum.style("Hint: Run 'rails youtube:fetch_published_at' to fetch missing published_at dates from YouTube", foreground: "3")
+        puts
+      end
     end
 
     puts Gum.style("Validating event.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
