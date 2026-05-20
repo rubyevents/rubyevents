@@ -239,31 +239,79 @@
           "video_id"
         ],
         "additionalProperties": false,
-        "if": {
-          "properties": {
-            "video_provider": {
-              "const": "youtube"
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "video_provider": {
+                  "const": "youtube"
+                }
+              },
+              "required": [
+                "video_provider"
+              ]
+            },
+            "then": {
+              "required": [
+                "published_at"
+              ],
+              "properties": {
+                "published_at": {
+                  "type": "string",
+                  "not": {
+                    "const": "TODO"
+                  },
+                  "minLength": 1,
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}"
+                },
+                "video_id": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9_-]{11}$"
+                }
+              }
             }
           },
-          "required": [
-            "video_provider"
-          ]
-        },
-        "then": {
-          "required": [
-            "published_at"
-          ],
-          "properties": {
-            "published_at": {
-              "type": "string",
-              "not": {
-                "const": "TODO"
+          {
+            "if": {
+              "properties": {
+                "video_provider": {
+                  "const": "vimeo"
+                }
               },
-              "minLength": 1,
-              "pattern": "^\\d{4}-\\d{2}-\\d{2}"
+              "required": [
+                "video_provider"
+              ]
+            },
+            "then": {
+              "properties": {
+                "video_id": {
+                  "type": "string",
+                  "pattern": "^\\d+$"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "video_provider": {
+                  "const": "mp4"
+                }
+              },
+              "required": [
+                "video_provider"
+              ]
+            },
+            "then": {
+              "properties": {
+                "video_id": {
+                  "type": "string",
+                  "pattern": "^https?://"
+                }
+              }
             }
           }
-        }
+        ]
       }
     },
     "event_name": {
@@ -467,29 +515,77 @@
   ],
   "additionalProperties": false,
   "strict": true,
-  "if": {
-    "properties": {
-      "video_provider": {
-        "const": "youtube"
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "video_provider": {
+            "const": "youtube"
+          }
+        },
+        "required": [
+          "video_provider"
+        ]
+      },
+      "then": {
+        "required": [
+          "published_at"
+        ],
+        "properties": {
+          "published_at": {
+            "type": "string",
+            "not": {
+              "const": "TODO"
+            },
+            "minLength": 1,
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}"
+          },
+          "video_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_-]{11}$"
+          }
+        }
       }
     },
-    "required": [
-      "video_provider"
-    ]
-  },
-  "then": {
-    "required": [
-      "published_at"
-    ],
-    "properties": {
-      "published_at": {
-        "type": "string",
-        "not": {
-          "const": "TODO"
+    {
+      "if": {
+        "properties": {
+          "video_provider": {
+            "const": "vimeo"
+          }
         },
-        "minLength": 1,
-        "pattern": "^\\d{4}-\\d{2}-\\d{2}"
+        "required": [
+          "video_provider"
+        ]
+      },
+      "then": {
+        "properties": {
+          "video_id": {
+            "type": "string",
+            "pattern": "^\\d+$"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "video_provider": {
+            "const": "mp4"
+          }
+        },
+        "required": [
+          "video_provider"
+        ]
+      },
+      "then": {
+        "properties": {
+          "video_id": {
+            "type": "string",
+            "pattern": "^https?://"
+          }
+        }
       }
     }
-  }
+  ]
 }
