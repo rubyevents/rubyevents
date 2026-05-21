@@ -28,7 +28,7 @@ class VideoSchema < RubyLLM::Schema
   boolean :external_player, description: "Whether to use external player", required: false
   string :external_player_url, description: "URL for external player", required: false
   string :track, description: "Conference track (e.g., 'Main Stage', 'Workshop')", required: false
-  string :language, description: "Language of the talk", required: false
+  string :language, description: "Language of the talk (ISO 639-1)", enum: Language.english_names, required: false
   string :slides_url, description: "URL to the slides", required: false
 
   array :alternative_recordings, of: AlternativeRecordingSchema, description: "Alternative video recordings", required: false
