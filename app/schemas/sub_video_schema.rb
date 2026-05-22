@@ -13,7 +13,7 @@ class SubVideoSchema < RubyLLM::Schema
   string :announced_at, required: false
   string :video_provider, description: "Use 'parent' if there is one video", required: true
   string :video_id, required: true
-  string :language, required: false
+  string :language, enum: Language.english_names, required: false
   string :track, required: false
   string :location, description: "Location within the venue", required: false
   string :start_cue, description: "Start time cue in video", required: false

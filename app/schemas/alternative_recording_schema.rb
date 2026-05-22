@@ -3,7 +3,7 @@
 class AlternativeRecordingSchema < RubyLLM::Schema
   string :title, required: false
   string :raw_title, required: false
-  string :language, required: false
+  string :language, enum: Language.english_names, required: false
   string :date, required: false
   string :description, required: false
   string :published_at, required: false

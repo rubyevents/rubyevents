@@ -76,13 +76,13 @@ class TalkGeneratorTest < Rails::Generators::TestCase
   end
 
   test "creates lightning talk entry when lightning_talks option is true" do
-    run_generator ["--event-series", "rubyconf", "--event", "2028", "--title", "Lightning Round", "--description", "Quick talks", "--language", "en", "--lightning-talks"]
+    run_generator ["--event-series", "rubyconf", "--event", "2028", "--title", "Lightning Round", "--description", "Quick talks", "--language", "English", "--lightning-talks"]
 
     assert_file "data/rubyconf/2028/videos.yml" do |content|
       assert_match(/kind: "lightning_talk"/, content)
       assert_match(/title: "Lightning Round"/, content)
       assert_match(/description: |-\n\sLightning talks\./, content)
-      assert_match(/language: "en"/, content)
+      assert_match(/language: "English"/, content)
       assert_match(/talks: \[\]/, content)
     end
 

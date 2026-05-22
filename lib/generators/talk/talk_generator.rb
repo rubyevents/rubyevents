@@ -10,7 +10,7 @@ class TalkGenerator < Generators::EventBase
   class_option :speakers, type: :array, default: ["TODO"], desc: "Speaker names", group: "Fields"
   class_option :description, type: :string, desc: "Description of the talk", group: "Fields"
   class_option :kind, type: :string, enum: Talk.kinds.keys, default: "talk", desc: "Type of talk (e.g., 'keynote', 'lightning_talk')", group: "Fields"
-  class_option :language, type: :string, default: "en", desc: "Language of the talk (e.g., 'en', 'es')", group: "Fields"
+  class_option :language, type: :string, default: "English", desc: "Language of the talk (e.g., 'English', 'Japanese')", group: "Fields"
 
   # dates
   class_option :date, type: :string, desc: "Date of the talk (YYYY-MM-DD)", required: false, group: "Fields"
