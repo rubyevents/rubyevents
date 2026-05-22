@@ -31,6 +31,7 @@ class SubVideoSchema < RubyLLM::Schema
 
   given video_provider: "youtube" do
     requires :published_at
+    # YYYY-MM-DD
     validates :published_at, type: :string, not_value: "TODO", min_length: 1, pattern: "^\\d{4}-\\d{2}-\\d{2}"
     validates :video_id, type: :string, pattern: "^[A-Za-z0-9_-]{11}$"
   end
