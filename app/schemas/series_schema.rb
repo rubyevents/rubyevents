@@ -16,7 +16,7 @@ class SeriesSchema < RubyLLM::Schema
 
   string :default_country_code, description: "Default ISO country code (e.g., 'US', 'JP')", required: false
 
-  string :language, description: "Primary language of the event (e.g., 'english', 'japanese')", required: false
+  string :language, description: "Primary language of the event", enum: Language.english_names, required: false
 
   string :website, description: "Official website URL", required: false
   string :original_website, description: "Original/archived website URL", required: false
