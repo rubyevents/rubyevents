@@ -9,9 +9,19 @@ If something is unclear, use the AskUserTool to ask for clarification.
 The generators will create a file with the correct structure, and will help you avoid formatting errors.
 If you do not have a parameter for the generator, do not pass it as a parameter.
 The generaator will create a reasonable default or TODO for someone else to fill out later.
-`bin/lint` must be called before commiting any changes to confirm the structure of the file is correct.
 
-# Adding a new Event
+# Workflow
+
+1. Identify the event series and event that you need to update. If the user did not provide an event series and event, use the EventLookupTool to find the correct event and EventSeriesLookupTool to find the correct event series.
+2. Determine if the update can be made with a generator. If so, use the appropriate generator to make the update. If not, make the update manually in the appropriate file. The generators and how to use them are documented below.
+3. Run `bin/lint` to confirm that the structure of the file is correct.
+4. Call `bin/rails db:seed:event_series[<event-series-slug>]
+5. Start the dev server if needed with `bin/dev` to review the changes locally.
+6. Take a screenshot with playwright of any pages that were affected by the update, and include the screenshots in your PR description.
+
+# Adding Event Data with the Generators
+
+## Adding a new Event
 
 Reference the documentation in docs/ADDING_EVENTS.md if needed.
 
@@ -23,7 +33,7 @@ Create a command to reproduce the event.
 bin/rails g event --event-series ruby-community-conference --event ruby-community-conference-winter-edition-2026 --name "Ruby Community Conference Winter Edition 2026" --venue-name "TBD" --venue-address "TBD"
 ```
 
-# Adding a talk
+## Adding a talk
 
 Review documentation in docs/ADDING_UNPUBLISHED_TALKS.md.
 
@@ -43,7 +53,7 @@ Call the generator once per talk, and do not attempt to create multiple talks in
 
 Run `bin/lint` once all talks are added to confirm the structure.
 
-# Generating a Schedule
+## Generating a Schedule
 
 Load Documentation from docs/ADDING_SCHEDULES.md into context.
 
@@ -59,7 +69,7 @@ Modify the yaml file to match the schedule exactly.
 
 Run `bin/lint` to confirm the schedule structure.
 
-# Generating a Sponsors file
+## Generating a Sponsors file
 
 Load Documentation from docs/ADDING_SPONSORS.md into context.
 
@@ -71,7 +81,7 @@ bin/rails g sponsor --help
 
 Generate the sponsor file with appropriate tiers and sponsor names. 
 
-# Speakers
+## Speakers
 
 When updating speakers.yml, the structure is:
 
