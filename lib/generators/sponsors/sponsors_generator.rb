@@ -70,7 +70,7 @@ class SponsorsGenerator < Generators::EventBase
       sponsor_details.website ||= file_sponsor["website"].value
       sponsor_details.slug ||= file_sponsor["slug"].value
       sponsor_details.logo_url ||= file_sponsor["logo_url"].value
-      sponsor_details.badge ||= file_sponsor["badge"].value
+      sponsor_details.badge ||= file_sponsor["badge"]&.value
       file_sponsor.delete
     end
   end
@@ -80,7 +80,6 @@ class SponsorsGenerator < Generators::EventBase
       tier = sponsors_document["[0].tiers[]"].find { |t| t["name"].value&.downcase == options[:tier].to_s.downcase }
         || sponsors_document["[0].tiers[]"].last
       say "Adding sponsor to tier: #{tier["name"].value}", :green
-      binding.irb
       tier["sponsors"] << sponsor_details.for_document
       sponsors_document.save!
     else
