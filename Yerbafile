@@ -200,6 +200,10 @@ rules:
           ensure: true
 
       - quote_style:
+          key_style: plain
+          value_style: double
+
+      - quote_style:
           path: "[].speakers"
           value_style: plain
 

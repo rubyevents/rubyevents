@@ -28,7 +28,7 @@ class VideoSchema < RubyLLM::Schema
   boolean :external_player, description: "Whether to use external player", required: false
   string :external_player_url, description: "URL for external player", required: false
   string :track, description: "Conference track (e.g., 'Main Stage', 'Workshop')", required: false
-  string :language, description: "Language of the talk", required: false
+  string :language, description: "Language of the talk", enum: Language.english_names, required: false
   string :slides_url, description: "URL to the slides", required: false
 
   array :alternative_recordings, of: AlternativeRecordingSchema, description: "Alternative video recordings", required: false
@@ -44,5 +44,14 @@ class VideoSchema < RubyLLM::Schema
   given video_provider: "youtube" do
     requires :published_at
     validates :published_at, type: :string, not_value: "TODO", min_length: 1, pattern: "^\\d{4}-\\d{2}-\\d{2}"
+    validates :video_id, type: :string, pattern: "^[A-Za-z0-9_-]{11}$"
+  end
+
+  given video_provider: "vimeo" do
+    validates :video_id, type: :string, pattern: "^\\d+$"
+  end
+
+  given video_provider: "mp4" do
+    validates :video_id, type: :string, pattern: "^https?://"
   end
 end

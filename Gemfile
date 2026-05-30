@@ -76,7 +76,7 @@ gem "cuprite"
 gem "ruby_llm", "~> 1.15.0"
 
 # A simple and clean Ruby DSL for creating JSON schemas.
-gem "ruby_llm-schema", github: "marcoroth/ruby_llm-schema", branch: "conditionals"
+gem "ruby_llm-schema", github: "crmne/ruby_llm-schema", branch: "main"
 
 # JSON Schema validator
 gem "json_schemer"
@@ -88,7 +88,7 @@ gem "yt"
 gem "rss", "~> 0.3.1"
 
 # YAML Editing and Refactoring with Better Accuracy
-gem "yerba", "~> 0.5.0"
+gem "yerba", "~> 0.5.1"
 
 # Powerful and seamless HTML-aware ERB parsing and tooling.
 gem "herb", "~> 0.9"

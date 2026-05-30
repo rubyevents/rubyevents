@@ -13,7 +13,7 @@ class SubVideoSchema < RubyLLM::Schema
   string :announced_at, required: false
   string :video_provider, description: "Use 'parent' if there is one video", required: true
   string :video_id, required: true
-  string :language, required: false
+  string :language, enum: Language.english_names, required: false
   string :track, required: false
   string :location, description: "Location within the venue", required: false
   string :start_cue, description: "Start time cue in video", required: false
@@ -31,6 +31,16 @@ class SubVideoSchema < RubyLLM::Schema
 
   given video_provider: "youtube" do
     requires :published_at
+    # YYYY-MM-DD
     validates :published_at, type: :string, not_value: "TODO", min_length: 1, pattern: "^\\d{4}-\\d{2}-\\d{2}"
+    validates :video_id, type: :string, pattern: "^[A-Za-z0-9_-]{11}$"
+  end
+
+  given video_provider: "vimeo" do
+    validates :video_id, type: :string, pattern: "^\\d+$"
+  end
+
+  given video_provider: "mp4" do
+    validates :video_id, type: :string, pattern: "^https?://"
   end
 end
