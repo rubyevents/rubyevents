@@ -38,6 +38,39 @@ namespace :validate do
     exit 1 if validate_event_files.any?
   end
 
+  def validate_venue_files
+    validators = [
+      Static::Validators::DefaultVenue
+    ]
+    file_errors = Hash.new { |h, k| h[k] = [] }
+    files = Dir.glob(Rails.root.join("data/**/venue.yml"))
+
+    files.each do |file|
+      validators.each do |validator_class|
+        validator = validator_class.new(file_path: file)
+        validator.errors.each do |error|
+          file_errors[error.file_path] << error
+        end
+      end
+    end
+
+    if file_errors.empty?
+      puts Gum.style("✓ All venue.yml files passed validations!", foreground: "2")
+    else
+      file_errors.each do |file, errors|
+        puts Gum.style(file, foreground: "1")
+        errors.each { |e| puts e.as_error }
+        puts
+      end
+    end
+    file_errors.values.flatten
+  end
+
+  desc "Validate venue.yml files"
+  task venues: :environment do
+    exit 1 if validate_venue_files.any?
+  end
+
   def validate_speakers_file
     validators = [
       Static::Validators::UniqueSpeakerFields,
@@ -243,6 +276,9 @@ namespace :validate do
 
     puts Gum.style("Validating event.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_event_files.none?
+
+    puts Gum.style("Validating venue.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+    results << validate_venue_files.none?
 
     puts Gum.style("Validating speakers.yml file", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_speakers_file.none?
