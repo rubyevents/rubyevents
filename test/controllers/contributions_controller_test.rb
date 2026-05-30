@@ -4,6 +4,7 @@ class ContributionsControllerTest < ActionDispatch::IntegrationTest
   test "index returns success" do
     get contributions_path
     assert_response :success
+  end
 
   ContributionsController::STEPS.each do |step|
     test "should get #{step} as a turbo frame request" do
