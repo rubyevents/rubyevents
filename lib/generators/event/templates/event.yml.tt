@@ -1,24 +1,29 @@
 # docs/ADDING_EVENTS.md
 ---
 id: "<%= options[:event] %>"
-title: "<%= options[:name] %>"
+title: "<%= options[:title] %>"
 kind: "<%= options[:kind] %>"
+<%- if options[:description] -%>
 description: |-
-  <%= options[:description] %>
+<%= optimize_indentation(options[:description], 4) %>
+<%- end -%>
 start_date: "<%= options[:start_date] %>"
 end_date: "<%= options[:end_date] %>"
 year: <%= @year %>
-tickets_url: "<%= options[:tickets_url] %>"
-website: "<%= options[:website] %>"
+tickets_url: "<%= options[:tickets_url] %>"<% " # TODO" if options[:tickets_url].blank? %>
+website: "<%= options[:website] %>"<% " # TODO" if options[:website].blank? %>
 <%- if options[:last_edition] -%>
 last_edition: true
 <%- end -%>
+<%- if @location -%>
 location: "<%= @location %>"
+<%- end -%>
+<%- if @timezone -%>
 timezone: "<%= @timezone %>"
-coordinates:
-<%- if options[:online] -%>
-  false
-<%- else -%>
+<%- end -%>
+coordinates:<%- if options[:online] -%>
+ false
+<% else %>
   latitude: <%= @geocoded_address.latitude %>
   longitude: <%= @geocoded_address.longitude %>
 <%- end -%>
