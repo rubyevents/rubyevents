@@ -56,6 +56,10 @@ In May, we had 5 conferences - Blue Ridge Ruby, Rubycon, Balkan Ruby, RubyConf A
 
 This month, we merged [54 PRs from 21 contributors!](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+created%3A>%3D2026-05-01+-created%3A>2026-06-01+) 26 PRs were [new event data and videos](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+created%3A>%3D2026-05-01+-created%3A>2026-06-01+label%3Acontent).
 
+### Big Updates
+
+On the [calendar view](https://www.rubyevents.org/events/2026) of the events page, you'll notice a new "Subscribe to calendar" which is an ics feed of all events on RubyEvents.org. You can add this to your calendar app of choice to stay up to date on all the events in the Ruby community! Thanks, @dennispaagman!
+
 ### Welcome, First-Time Contributors!
 
 A warm welcome to 12 developers making their first contribution to RubyEvents!
