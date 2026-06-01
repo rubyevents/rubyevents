@@ -3,11 +3,23 @@
 ---
 # Day 1 - May 29th (Haus Der Musik)
 
+- id: "hans-schnedlitz-rubyconf-austria-2026"
+  title: "Welcome & Opening"
+  event_name: "RubyConf Austria 2026"
+  date: "2026-05-29"
+  track: "Haus der Musik"
+  video_provider: "scheduled"
+  video_id: "hans-schnedlitz-rubyconf-austria-2026"
+  description: ""
+  speakers:
+    - Hans Schnedlitz
+
 - id: "marco-roth-rubyconf-austria-2026"
-  title: "Herb & ReActionView: Mid-2026 Progress Update"
+  title: "HTML-Aware ERB: The Path to Reactive Rendering"
   event_name: "RubyConf Austria 2026"
   date: "2026-05-29"
   announced_at: "2025-12-27 12:05:00 UTC"
+  track: "Haus der Musik"
   video_provider: "scheduled"
   video_id: "marco-roth-rubyconf-austria-2026"
   description: ""
@@ -19,28 +31,19 @@
   event_name: "RubyConf Austria 2026"
   date: "2026-05-29"
   announced_at: "2025-12-27 12:05:00 UTC"
+  track: "Haus der Musik"
   video_provider: "scheduled"
   video_id: "maedi-prichard-rubyconf-austria-2026"
   description: ""
   speakers:
     - Maedi Prichard
 
-- id: "bozhidar-batsov-rubyconf-austria-2026"
-  title: "RuboCop 2.0: Where do we go now?"
-  event_name: "RubyConf Austria 2026"
-  date: "2026-05-29"
-  announced_at: "2025-12-27 12:05:00 UTC"
-  video_provider: "scheduled"
-  video_id: "bozhidar-batsov-rubyconf-austria-2026"
-  description: ""
-  speakers:
-    - Bozhidar Batsov
-
 - id: "panel-discussion-rubyconf-austria-2026"
   title: "Panel Discussion"
   event_name: "RubyConf Austria 2026"
   date: "2026-05-29"
   announced_at: "2025-12-27 12:05:00 UTC"
+  track: "Haus der Musik"
   video_provider: "scheduled"
   video_id: "panel-discussion-rubyconf-austria-2026"
   description: ""
@@ -53,32 +56,24 @@
 # Day 2 - May 30th (Das MuTh)
 
 - id: "chad-fowler-rubyconf-austria-2026"
-  title: "Opening Keynote"
+  title: "Keynote: This is What We've Been Training For"
   kind: "keynote"
   event_name: "RubyConf Austria 2026"
   date: "2026-05-30"
   announced_at: "2025-07-14 13:39:00 UTC"
+  track: "Main Stage"
+  slides_url: "https://chadfowler.com/talks/this-is-what-weve-been-training-for.pdf"
   video_provider: "scheduled"
   video_id: "chad-fowler-rubyconf-austria-2026"
   description: ""
   speakers:
     - Chad Fowler
 
-- id: "kinsey-durham-grace-rubyconf-austria-2026"
-  title: "Composing Agentic Systems in Ruby: Turning AI Chaos into Harmony"
-  event_name: "RubyConf Austria 2026"
-  date: "2026-05-30"
-  announced_at: "2025-12-27 12:05:00 UTC"
-  video_provider: "scheduled"
-  video_id: "kinsey-durham-grace-rubyconf-austria-2026"
-  description: ""
-  speakers:
-    - Kinsey Durham Grace
-
 - id: "obie-fernandez-rubyconf-austria-2026"
   title: "Talk by Obie Fernandez"
   event_name: "RubyConf Austria 2026"
   date: "2026-05-30"
+  track: "Main Stage"
   video_provider: "scheduled"
   video_id: "obie-fernandez-rubyconf-austria-2026"
   description: ""
@@ -90,6 +85,8 @@
   event_name: "RubyConf Austria 2026"
   date: "2026-05-30"
   announced_at: "2025-12-27 12:05:00 UTC"
+  track: "Main Stage"
+  slides_url: "https://docs.google.com/presentation/d/e/2PACX-1vQ9oBnZpzK_eicVLGSqDmVzhsXsblONEKepnw5_xGHGXTM52JSjaS_ObYUJbx-zkb1M2ul9N2A2MnvU/pub?start=false&loop=false&delayms=60000&slide=id.g140fe579a5a_0_0"
   video_provider: "scheduled"
   video_id: "andy-maleh-rubyconf-austria-2026"
   description: ""
@@ -102,6 +99,7 @@
   event_name: "RubyConf Austria 2026"
   date: "2026-05-30"
   announced_at: "2025-12-27 12:05:00 UTC"
+  track: "Workshop"
   video_provider: "scheduled"
   video_id: "john-gallagher-rubyconf-austria-2026"
   description: ""
@@ -113,28 +111,88 @@
   event_name: "RubyConf Austria 2026"
   date: "2026-05-30"
   announced_at: "2025-12-27 12:05:00 UTC"
+  track: "Main Stage"
   video_provider: "scheduled"
   video_id: "ljubomir-markovic-rubyconf-austria-2026"
   description: ""
   speakers:
     - Ljubomir Marković
 
-- id: "vlad-dyachenko-rubyconf-austria-2026"
-  title: "jemalloc is dead, long live mimalloc!"
+- id: "bozhidar-batsov-rubyconf-austria-2026"
+  title: "RuboCop 2.0: Where do we go now?"
   event_name: "RubyConf Austria 2026"
-  date: "2026-05-30"
+  date: "2026-05-29"
   announced_at: "2025-12-27 12:05:00 UTC"
+  track: "Main Stage"
   video_provider: "scheduled"
-  video_id: "vlad-dyachenko-rubyconf-austria-2026"
+  video_id: "bozhidar-batsov-rubyconf-austria-2026"
   description: ""
   speakers:
-    - Vlad Dyachenko
+    - Bozhidar Batsov
+
+- id: "lightning-talks-rubyconf-austria-2026"
+  title: "Lightning Talks"
+  event_name: "RubyConf Austria 2026"
+  date: "2026-05-30"
+  track: "Main Stage"
+  video_provider: "scheduled"
+  video_id: "lightning-talks-rubyconf-austria-2026"
+  description: ""
+  talks:
+    - id: "lukasz-reszke-rubyconf-austria-2026"
+      title: "Lightning Talk: Storing Data as a Sequence of Events"
+      event_name: "RubyConf Austria 2026"
+      date: "2026-05-30"
+      slides_url: "https://speakerdeck.com/lukaszreszke/storing-data-as-a-sequence-of-events-rubyconfat"
+      video_provider: "scheduled"
+      video_id: "lukasz-reszke-rubyconf-austria-2026"
+      description: ""
+      speakers:
+        - Łukasz Reszke
+      additional_resources:
+        - name: "Blog Post: Lightning Talk Supplement"
+          type: "blog"
+          url: "https://blog.arkency.com/storing-data-as-a-sequence-of-events-ruby-conf-austria-lightning-talk-supplement/"
+
+    - id: "radan-skoric-rubyconf-austria-2026"
+      title: "Lightning Talk: Talk by Radan Skorić"
+      event_name: "RubyConf Austria 2026"
+      date: "2026-05-30"
+      video_provider: "scheduled"
+      video_id: "radan-skoric-rubyconf-austria-2026"
+      description: ""
+      speakers:
+        - Radan Skorić
+
+    - id: "fabio-sangiovanni-rubyconf-austria-2026"
+      title: "Lightning Talk: Lovli - A lovable url shortener"
+      event_name: "RubyConf Austria 2026"
+      date: "2026-05-30"
+      video_provider: "scheduled"
+      video_id: "fabio-sangiovanni-rubyconf-austria-2026"
+      description: |-
+        https://lovli.fyi
+        https://github.com/callmesangio/lovli-cli
+      speakers:
+        - Fabio Sangiovanni
+
+    - id: "lightning-talk-4-rubyconf-austria-2026"
+      title: "Lightning Talk"
+      event_name: "RubyConf Austria 2026"
+      date: "2026-05-30"
+      video_provider: "scheduled"
+      video_id: "lightning-talk-4-rubyconf-austria-2026"
+      description: ""
+      speakers:
+        - TODO
 
 - id: "andrzej-krzywda-rubyconf-austria-2026"
   title: "15 years of Rails with Domain Driven Design - lessons learnt"
   event_name: "RubyConf Austria 2026"
   date: "2026-05-30"
   announced_at: "2025-12-27 12:05:00 UTC"
+  track: "Main Stage"
+  slides_url: "https://speakerdeck.com/andrzejkrzywda/15-years-of-rails-with-domain-driven-design-lessons-learnt"
   video_provider: "scheduled"
   video_id: "andrzej-krzywda-rubyconf-austria-2026"
   description: ""
@@ -147,16 +205,23 @@
   event_name: "RubyConf Austria 2026"
   date: "2026-05-30"
   announced_at: "2025-12-27 12:05:00 UTC"
+  track: "Workshop"
+  slides_url: "https://speakerdeck.com/headius/jruby-workshop-at-rubyconf-austria-2026"
   video_provider: "scheduled"
   video_id: "charles-oliver-nutter-rubyconf-austria-2026"
   description: ""
   speakers:
     - Charles Oliver Nutter
+  additional_resources:
+    - name: "Tutorial Repository"
+      type: "code"
+      url: "https://github.com/headius/tutorial"
 
 - id: "carmine-paolino-rubyconf-austria-2026"
-  title: "Talk by Carmine Paolino"
+  title: "Ruby Is the Best Language for Building AI Web Apps"
   event_name: "RubyConf Austria 2026"
   date: "2026-05-30"
+  track: "Main Stage"
   video_provider: "scheduled"
   video_id: "carmine-paolino-rubyconf-austria-2026"
   description: ""
@@ -168,6 +233,7 @@
   event_name: "RubyConf Austria 2026"
   date: "2026-05-30"
   announced_at: "2025-12-27 12:05:00 UTC"
+  track: "Main Stage"
   video_provider: "scheduled"
   video_id: "dalma-jess-rubyconf-austria-2026"
   description: ""
@@ -176,11 +242,12 @@
     - Jess Sullivan
 
 - id: "dave-thomas-rubyconf-austria-2026"
-  title: "Closing Keynote"
+  title: "Keynote: Start Writing Ruby"
   kind: "keynote"
   event_name: "RubyConf Austria 2026"
   date: "2026-05-30"
   announced_at: "2025-07-14 15:19:00 UTC"
+  track: "Main Stage"
   video_provider: "scheduled"
   video_id: "dave-thomas-rubyconf-austria-2026"
   description: ""
