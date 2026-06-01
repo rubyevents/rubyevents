@@ -286,7 +286,6 @@ class EventTest < ActiveSupport::TestCase
         DTSTAMP:20260101T000000Z
         UID:RUBYEVENTS-#{event.id}
         DTSTART;VALUE=DATE:20231026
-        DTEND;VALUE=DATE:20231026
         DESCRIPTION:RailsWorld is a yearly conference held in Netherlands.
         LAST-MODIFIED:20260101T000000
         LOCATION:Amsterdam\\, Netherlands
@@ -296,5 +295,14 @@ class EventTest < ActiveSupport::TestCase
         END:VEVENT
       ICAL
     end
+  end
+
+  test "to_ical sets an inclusive DTEND for multi-day events" do
+    event = events(:railsconf_2025)
+
+    ical = event.to_ical.to_ical
+
+    assert_includes ical, "DTSTART;VALUE=DATE:20250708"
+    assert_includes ical, "DTEND;VALUE=DATE:20250711"
   end
 end
