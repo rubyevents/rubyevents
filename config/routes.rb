@@ -185,7 +185,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :talks, param: :slug, only: [:index, :show, :update, :edit] do
+  resources :talks, param: :slug, only: [:index, :show] do
     scope module: :talks do
       resources :recommendations, only: [:index]
       resource :watched_talk, only: [:new, :create, :destroy, :update] do

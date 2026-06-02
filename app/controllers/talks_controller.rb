@@ -1,14 +1,11 @@
 class TalksController < ApplicationController
   include FavoriteUsers
-  include RemoteModal
   include Pagy::Backend
   include WatchedTalks
 
   skip_before_action :authenticate_user!
 
-  respond_with_remote_modal only: [:edit]
-
-  before_action :set_talk, only: %i[show edit update]
+  before_action :set_talk, only: %i[show]
   before_action :set_favorite_users, only: %i[show]
   before_action :set_user_favorites, only: %i[index show]
 
@@ -24,21 +21,6 @@ class TalksController < ApplicationController
   # GET /talks/1
   def show
     set_meta_tags(@talk)
-  end
-
-  # GET /talks/1/edit
-  def edit
-    set_modal_options(size: :lg)
-  end
-
-  # PATCH/PUT /talks/1
-  def update
-    suggestion = @talk.create_suggestion_from(params: talk_params, user: Current.user)
-    if suggestion.persisted?
-      redirect_to @talk, notice: suggestion.notice
-    else
-      render :edit, status: :unprocessable_entity
-    end
   end
 
   private
@@ -108,11 +90,6 @@ class TalksController < ApplicationController
 
     return redirect_to talk_path(@talk), status: :moved_permanently if @talk.slug != params[:slug]
     @speakers = @talk.speakers.preloaded
-  end
-
-  # Only allow a list of trusted parameters through.
-  def talk_params
-    params.require(:talk).permit(:title, :description, :summarized_using_ai, :summary, :date, :slides_url)
   end
 
   helper_method :search_params
