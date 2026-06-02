@@ -232,7 +232,7 @@ Rails.application.routes.draw do
 
   resources :favorite_users, only: [:index, :create, :destroy, :update]
 
-  resources :events, param: :slug, only: [:index, :show, :update, :edit] do
+  resources :events, param: :slug, only: [:index, :show] do
     resources :event_participations, only: [:create, :destroy]
 
     post :reimport, on: :member
@@ -312,7 +312,6 @@ Rails.application.routes.draw do
 
   # admin
   namespace :admin, if: -> { Current.user & admin? } do
-    resources :suggestions, only: %i[index update destroy]
   end
 
   get "/sitemap.xml", to: "sitemaps#show", defaults: {format: "xml"}

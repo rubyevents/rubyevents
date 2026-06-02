@@ -26,7 +26,6 @@ class Avo::Resources::EventSeries < Avo::BaseResource
     field :youtube_channel_name, as: :text, hide_on: :index
     field :slug, as: :text, hide_on: :index
     field :twitter, as: :text, hide_on: :index
-    # field :suggestions, as: :has_many
     field :events, as: :has_many
     field :talks, as: :has_many, through: :events
   end

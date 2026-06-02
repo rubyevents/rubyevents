@@ -41,7 +41,6 @@
 #
 class Event < ApplicationRecord
   include Geocodeable
-  include Suggestable
   include Sluggable
   include Todoable
   include Event::TypesenseSearchable
@@ -210,23 +209,8 @@ class Event < ApplicationRecord
     end
   end
 
-  def managed_by?(user)
-    Current.user&.admin?
-  end
-
   def data_folder
     Rails.root.join("data", series.slug, slug)
-  end
-
-  def suggestion_summary
-    <<~HEREDOC
-      Event: #{name}
-      #{description}
-      #{city}
-      #{country_code}
-      #{series.name}
-      #{date}
-    HEREDOC
   end
 
   def location_and_country_code

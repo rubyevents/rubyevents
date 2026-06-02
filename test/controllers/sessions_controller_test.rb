@@ -30,7 +30,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_session_url(email_hint: @user.email)
     assert_equal "That email or password is incorrect", flash[:alert]
 
-    get admin_suggestions_url
+    get settings_url
     assert_redirected_to new_session_url
   end
 

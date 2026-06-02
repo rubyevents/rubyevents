@@ -84,7 +84,6 @@ class Avo::Resources::Talk < Avo::BaseResource
     field :speakers, as: :has_many
     field :raw_transcript, as: :textarea, hide_on: :index, format_using: -> { value&.to_text }, readonly: true
     field :enhanced_transcript, as: :textarea, hide_on: :index, format_using: -> { value&.to_text }, readonly: true
-    # field :suggestions, as: :has_many
   end
 
   def actions
