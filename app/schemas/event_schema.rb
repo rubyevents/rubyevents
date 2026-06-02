@@ -30,7 +30,7 @@ class EventSchema < RubyLLM::Schema
   string :timezone, description: "IANA time zone identifier, e.g. America/New_York", enum: TZInfo::Timezone.all_identifiers
   string :venue, description: "Name of the venue", required: false
 
-  string :channel_id, description: "YouTube channel ID (starts with UC...)", required: false
+  array :youtube_channels, of: YouTubeChannelSchema, description: "YouTube channels associated with this event", required: false
   string :playlist, description: "YouTube playlist/Vimeo showcase link", required: false
 
   string :website, description: "Official event website URL", required: false

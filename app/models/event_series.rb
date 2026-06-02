@@ -4,19 +4,17 @@
 # Table name: event_series
 # Database name: primary
 #
-#  id                   :integer          not null, primary key
-#  description          :text             default(""), not null
-#  frequency            :integer          default("unknown"), not null, indexed
-#  kind                 :integer          default("conference"), not null, indexed
-#  language             :string           default(""), not null
-#  name                 :string           default(""), not null, indexed
-#  slug                 :string           default(""), not null, indexed
-#  twitter              :string           default(""), not null
-#  website              :string           default(""), not null
-#  youtube_channel_name :string           default("")
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null
-#  youtube_channel_id   :string           default("")
+#  id          :integer          not null, primary key
+#  description :text             default(""), not null
+#  frequency   :integer          default("unknown"), not null, indexed
+#  kind        :integer          default("conference"), not null, indexed
+#  language    :string           default(""), not null
+#  name        :string           default(""), not null, indexed
+#  slug        :string           default(""), not null, indexed
+#  twitter     :string           default(""), not null
+#  website     :string           default(""), not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
 #
 # Indexes
 #

@@ -30,9 +30,7 @@ class SeriesSchema < RubyLLM::Schema
   string :guild, description: "Guild.host URL", required: false
   string :vimeo, description: "Vimeo channel URL", required: false
 
-  string :youtube_channel_id, description: "YouTube channel ID (starts with UC...)", required: false
-  string :youtube_channel_name, description: "YouTube channel name", required: false
-  string :playlist_matcher, description: "Pattern to match playlists for this series", required: false
+  array :youtube_channels, of: YouTubeChannelSchema, description: "YouTube channels associated with this series", required: false
 
   array :aliases, of: :string, description: "Alternative names for the series", required: false
 end

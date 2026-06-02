@@ -1,14 +1,36 @@
 ---
 name: "RailsConf"
 website: "https://railsconf.org/"
-twitter: "railsconf"
-youtube_channel_name: "confreaks"
 kind: "conference"
 frequency: "yearly"
-playlist_matcher: "rails"
 language: "English"
-youtube_channel_id: "UCWnPjmqvljcafA0z2U1fwKQ"
+twitter: "railsconf"
 ended: true
 aliases:
   - Rails Conf
   - Rails Conference
+youtube_channels:
+- id: "UCWnPjmqvljcafA0z2U1fwKQ"
+  name: "confreaks"
+  handle: "@confreaks"
+  playlist_matcher: "rails"
+
+- id: "UC3BGlwmI-Vk6PWyMt15dKGw"
+  name: "O'Reilly"
+  handle: "@oreilly"
+  playlist_matcher: "rails"
+
+- id: "UC2pr4PqyPSzo5B_sdb7gcGQ"
+  name: "Test Double"
+  handle: "@testdouble"
+  playlist_matcher: "rails"
+
+- id: "UCpXtMg5_kerIimaR9C_SqRw"
+  name: "Jason Charnes"
+  handle: "@jmcharnes"
+  playlist_matcher: "rails"
+
+- id: "UCpFXaEz3vKJ45XjW5m5pbow"
+  name: "Ruby Central"
+  handle: "@rubycentral"
+  playlist_matcher: "rails"

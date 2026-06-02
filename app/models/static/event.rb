@@ -48,7 +48,7 @@ module Static
         frequency: nil,
         location: nil,
         venue: nil,
-        channel_id: nil,
+        youtube_channels: nil,
         playlist: nil,
         website: nil,
         original_website: nil,
@@ -94,7 +94,7 @@ module Static
         data["frequency"] = frequency if frequency.present?
         data["location"] = location if location.present?
         data["venue"] = venue if venue.present?
-        data["channel_id"] = channel_id if channel_id.present?
+        data["youtube_channels"] = youtube_channels if youtube_channels.present?
         data["playlist"] = playlist if playlist.present?
         data["website"] = website if website.present?
         data["original_website"] = original_website if original_website.present?
