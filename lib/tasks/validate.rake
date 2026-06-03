@@ -7,7 +7,8 @@ namespace :validate do
     validators = [
       Static::Validators::EventDates,
       Static::Validators::ColorsHaveAssets,
-      Static::Validators::EventCityNames
+      Static::Validators::EventCityNames,
+      Static::Validators::DuplicateYouTubeChannels
     ]
     file_errors = Hash.new { |h, k| h[k] = [] }
     files = Dir.glob(Rails.root.join("data/**/event.yml"))
