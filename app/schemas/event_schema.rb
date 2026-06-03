@@ -40,7 +40,6 @@ class EventSchema < RubyLLM::Schema
   string :github, description: "GitHub organization or repository URL", required: false
   string :meetup, description: "Meetup.com group URL", required: false
   string :luma, description: "Luma event URL", required: false
-  string :youtube, description: "YouTube channel or video URL", required: false
   string :tickets_url, description: "URL to purchase tickets (e.g., Tito, Eventbrite, Luma)", required: false
 
   string :banner_background,
