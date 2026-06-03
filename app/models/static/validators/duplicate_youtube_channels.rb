@@ -30,7 +30,7 @@ module Static
         event_channels = Array(document.value_at("youtube_channels"))
         return [] if event_channels.empty?
 
-        series_path = File.join(File.dirname(File.dirname(@file_path)), "series.yml")
+        series_path = File.join(File.dirname(@file_path, 2), "series.yml")
         return [] unless File.exist?(series_path)
 
         series_document = Yerba.parse_file(series_path)
