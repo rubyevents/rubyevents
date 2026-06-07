@@ -40,7 +40,7 @@ module Static
           "⚠️"
         end
 
-        "#{prefix} #{message}"
+        "#{prefix}  #{message}"
       end
     end
   end
