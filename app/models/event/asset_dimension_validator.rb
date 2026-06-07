@@ -1,5 +1,3 @@
-require "mini_magick"
-
 class Event::AssetDimensionValidator
   IMAGE_ROOT = Rails.root.join("app", "assets", "images", "events")
 
@@ -32,12 +30,7 @@ class Event::AssetDimensionValidator
   end
 
   def self.dimensions_for(path)
-    output = MiniMagick::Tool.new("identify") do |identify|
-      identify.format("%w %h")
-      identify << path.to_s
-    end
-
-    width, height = output.to_s.strip.split.map(&:to_i)
+    width, height = FastImage.size(path.to_s)
     return nil if width.zero? || height.zero?
 
     {width: width, height: height}
@@ -55,11 +48,6 @@ class Event::AssetDimensionValidator
         path: Pathname.new(path).relative_path_from(image_root).to_s,
         actual: actual,
         expected: expected
-      }
-    rescue MiniMagick::Error, MiniMagick::Invalid => e
-      {
-        path: Pathname.new(path).relative_path_from(image_root).to_s,
-        error: e.message
       }
     end
   end

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "gum"
-require "mini_magick"
 
 namespace :validate do
   def validate_event_files

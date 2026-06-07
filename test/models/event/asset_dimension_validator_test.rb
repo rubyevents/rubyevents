@@ -60,4 +60,8 @@ class Event::AssetDimensionValidatorTest < ActiveSupport::TestCase
       end
     end
   end
+
+  test "dimensions_for with real image" do
+    assert_equal({width: 256, height: 256}, Event::AssetDimensionValidator.dimensions_for(Rails.root.join("app/assets/images/events/default/avatar.webp")))
+  end
 end
