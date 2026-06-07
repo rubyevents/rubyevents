@@ -239,7 +239,7 @@ class EventAssetGenerator
   end
 
   def self.assets
-    Event::AssetDimensionValidator::GENERATED_ASSET_DIMENSIONS
+    Event::Assets::DIMENSIONS.slice("avatar", "banner", "card", "featured", "poster")
   end
 
   def ensure_output_dir!

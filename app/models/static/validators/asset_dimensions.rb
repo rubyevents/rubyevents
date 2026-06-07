@@ -5,23 +5,13 @@ module Static
     class AssetDimensions
       PATTERNS = ["**/*.webp"].freeze
 
-      EXPECTED_DIMENSIONS = {
-        "avatar.webp" => {width: 256, height: 256},
-        "banner.webp" => {width: 1300, height: 350},
-        "card.webp" => {width: 600, height: 350},
-        "featured.webp" => {width: 615, height: 350},
-        "poster.webp" => {width: 600, height: 350},
-        "sticker.webp" => {width: 350, height: 350},
-        "stamp.webp" => {width: 512, height: 512}
-      }.freeze
-
-      GENERATED_ASSET_DIMENSIONS = EXPECTED_DIMENSIONS.slice(
-        "banner.webp",
-        "card.webp",
-        "avatar.webp",
-        "featured.webp",
-        "poster.webp"
-      ).transform_keys { |filename| File.basename(filename, ".webp").to_sym }.freeze
+      GENERATED_ASSET_DIMENSIONS = ::Event::Assets::DIMENSIONS.slice(
+        "banner",
+        "card",
+        "avatar",
+        "featured",
+        "poster"
+      ).freeze
 
       def initialize(file_path:)
         @file_path = file_path.to_s
@@ -57,11 +47,11 @@ module Static
 
       class << self
         def expected_dimensions_for(path_or_filename)
-          filename = File.basename(path_or_filename.to_s)
+          filename = File.basename(path_or_filename.to_s, ".webp")
 
-          return EXPECTED_DIMENSIONS[filename] if EXPECTED_DIMENSIONS.key?(filename)
-          return EXPECTED_DIMENSIONS["sticker.webp"] if filename.match?(/\Asticker(?:-[^.]+)?\.webp\z/)
-          return EXPECTED_DIMENSIONS["stamp.webp"] if filename.match?(/\Astamp(?:-[^.]+)?\.webp\z/)
+          return ::Event::Assets::DIMENSIONS[filename] if ::Event::Assets::DIMENSIONS.key?(filename)
+          return ::Event::Assets::DIMENSIONS["sticker"] if filename.match?(/\Asticker(?:-[^.]+)?\z/)
+          return ::Event::Assets::DIMENSIONS["stamp"] if filename.match?(/\Astamp(?:-[^.]+)?\z/)
 
           nil
         end
