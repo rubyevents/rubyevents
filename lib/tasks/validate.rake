@@ -237,8 +237,7 @@ namespace :validate do
       validators: [
         Static::Validators::AssetDimensions
       ],
-      success_message: "✓ All event assets passed validations!",
-      warning_only: true
+      success_message: "✓ All event assets passed validations!"
     )
   end
 
