@@ -26,7 +26,6 @@
 # rubocop:enable Layout/LineLength
 class EventSeries < ApplicationRecord
   include Sluggable
-  include Suggestable
   include Todoable
   include EventSeries::TypesenseSearchable
 
