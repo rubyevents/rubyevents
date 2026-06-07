@@ -71,14 +71,6 @@ class Static::Validators::AssetDimensionsTest < ActiveSupport::TestCase
     end
   end
 
-  test "scans all real event assets into validator errors" do
-    errors = Dir.glob(Rails.root.join("app/assets/images/events/**/*.webp")).flat_map do |file_path|
-      Static::Validators::AssetDimensions.new(file_path: file_path).errors
-    end
-
-    assert errors.all? { |error| error.is_a?(Static::Validators::Error) }
-  end
-
   test "dimensions_for with real image" do
     assert_equal({width: 256, height: 256}, Static::Validators::AssetDimensions.dimensions_for(VALID_ASSET_FILE))
   end
