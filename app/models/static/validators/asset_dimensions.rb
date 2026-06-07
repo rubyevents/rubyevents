@@ -5,14 +5,6 @@ module Static
     class AssetDimensions
       PATTERNS = ["**/*.webp"].freeze
 
-      GENERATED_ASSET_DIMENSIONS = ::Event::Assets::DIMENSIONS.slice(
-        "banner",
-        "card",
-        "avatar",
-        "featured",
-        "poster"
-      ).freeze
-
       def initialize(file_path:)
         @file_path = file_path.to_s
       end
