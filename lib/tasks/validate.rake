@@ -3,17 +3,8 @@
 require "gum"
 
 namespace :validate do
-  def validate_event_files
-    validators = [
-      Static::Validators::EventDates,
-      Static::Validators::ColorsHaveAssets,
-      Static::Validators::EventCityNames,
-      Static::Validators::DuplicateYouTubeChannels
-    ]
-    file_errors = Hash.new { |h, k| h[k] = [] }
-    files = Dir.glob(Rails.root.join("data/**/event.yml"))
-
-    files.each do |file|
+  def collect_validator_errors(files:, validators:)
+    files.each_with_object(Hash.new { |h, k| h[k] = [] }) do |file, file_errors|
       validators.each do |validator_class|
         validator = validator_class.new(file_path: file)
         validator.errors.each do |error|
@@ -21,17 +12,41 @@ namespace :validate do
         end
       end
     end
+  end
+
+  def print_validator_errors(file_errors, warning_only: false)
+    file_errors.each do |file, errors|
+      puts Gum.style(file, foreground: (warning_only ? "3" : "1"))
+      errors.each do |error|
+        puts warning_only ? error.as_warning : error.as_error
+      end
+      puts
+    end
+  end
+
+  def validate_files(files:, validators:, success_message:, warning_only: false)
+    file_errors = collect_validator_errors(files:, validators:)
 
     if file_errors.empty?
-      puts Gum.style("✓ All event.yml files passed validations!", foreground: "2")
+      puts Gum.style(success_message, foreground: "2")
     else
-      file_errors.each do |file, errors|
-        puts Gum.style(file, foreground: "1")
-        errors.each { |e| puts e.as_error }
-        puts
-      end
+      print_validator_errors(file_errors, warning_only:)
     end
+
     file_errors.values.flatten
+  end
+
+  def validate_event_files
+    validate_files(
+      files: Dir.glob(Rails.root.join("data/**/event.yml")),
+      validators: [
+        Static::Validators::EventDates,
+        Static::Validators::ColorsHaveAssets,
+        Static::Validators::EventCityNames,
+        Static::Validators::DuplicateYouTubeChannels
+      ],
+      success_message: "✓ All event.yml files passed validations!"
+    )
   end
 
   desc "Validate event.yml files"
@@ -40,31 +55,13 @@ namespace :validate do
   end
 
   def validate_venue_files
-    validators = [
-      Static::Validators::DefaultVenue
-    ]
-    file_errors = Hash.new { |h, k| h[k] = [] }
-    files = Dir.glob(Rails.root.join("data/**/venue.yml"))
-
-    files.each do |file|
-      validators.each do |validator_class|
-        validator = validator_class.new(file_path: file)
-        validator.errors.each do |error|
-          file_errors[error.file_path] << error
-        end
-      end
-    end
-
-    if file_errors.empty?
-      puts Gum.style("✓ All venue.yml files passed validations!", foreground: "2")
-    else
-      file_errors.each do |file, errors|
-        puts Gum.style(file, foreground: "1")
-        errors.each { |e| puts e.as_error }
-        puts
-      end
-    end
-    file_errors.values.flatten
+    validate_files(
+      files: Dir.glob(Rails.root.join("data/**/venue.yml")),
+      validators: [
+        Static::Validators::DefaultVenue
+      ],
+      success_message: "✓ All venue.yml files passed validations!"
+    )
   end
 
   desc "Validate venue.yml files"
@@ -73,32 +70,14 @@ namespace :validate do
   end
 
   def validate_speakers_file
-    validators = [
-      Static::Validators::UniqueSpeakerFields,
-      Static::Validators::UniqueSpeakers
-    ]
-    file_errors = Hash.new { |h, k| h[k] = [] }
-    files = Dir.glob(Rails.root.join("data/speakers.yml"))
-
-    files.each do |file|
-      validators.each do |validator_class|
-        validator = validator_class.new(file_path: file)
-        validator.errors.each do |error|
-          file_errors[error.file_path] << error
-        end
-      end
-    end
-
-    if file_errors.empty?
-      puts Gum.style("✓ data/speakers.yml passed validations!", foreground: "2")
-    else
-      file_errors.each do |file, errors|
-        puts Gum.style(file, foreground: "1")
-        errors.each { |e| puts e.as_error }
-        puts
-      end
-    end
-    file_errors.values.flatten
+    validate_files(
+      files: Dir.glob(Rails.root.join("data/speakers.yml")),
+      validators: [
+        Static::Validators::UniqueSpeakerFields,
+        Static::Validators::UniqueSpeakers
+      ],
+      success_message: "✓ data/speakers.yml passed validations!"
+    )
   end
 
   desc "Validate data/speakers.yml"
@@ -252,6 +231,21 @@ namespace :validate do
     exit 1 unless validate_speakerdeck_urls
   end
 
+  def validate_event_asset_dimensions
+    validate_files(
+      files: Dir.glob(Rails.root.join("app/assets/images/events/**/*.webp")),
+      validators: [
+        Static::Validators::AssetDimensions
+      ],
+      success_message: "✓ All event assets passed validations!"
+    )
+  end
+
+  desc "Warn when event assets do not match expected dimensions"
+  task event_assets: :environment do
+    exit 1 unless validate_event_asset_dimensions.any?
+  end
+
   desc "Validate all city-related data"
   task cities: [:event_city_names, :video_city_names]
 
@@ -342,6 +336,9 @@ namespace :validate do
 
     puts Gum.style("Validating video city names", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_video_city_names
+
+    puts Gum.style("Validating event asset dimensions", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+    results << validate_event_asset_dimensions.none?
 
     puts
     if results.all?
