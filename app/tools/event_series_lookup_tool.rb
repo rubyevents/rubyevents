@@ -32,8 +32,7 @@ class EventSeriesLookupTool < RubyLLM::Tool
       website: series.website,
       twitter: series.twitter,
       language: series.language,
-      youtube_channel_id: series.youtube_channel_id,
-      youtube_channel_name: series.youtube_channel_name,
+      youtube_channels: series.static_metadata&.all_youtube_channels || [],
       events_count: series.events.size,
       data_path: "data/#{series.slug}/series.yml"
     }.compact

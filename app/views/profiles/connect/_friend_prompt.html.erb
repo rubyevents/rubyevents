@@ -46,7 +46,6 @@
           <%= fa :plus, variant: :solid, class: "w-5 h-5 mr-2" %>
           Connect
         <% end %>
-      <% else %>
       <% end %>
     <% else %>
       <%= ui_button url: new_session_path(connect_to: params[:id]), kind: :primary, size: :lg, class: "px-8 shadow-lg", data: {turbo_frame: "modal"} do %>

@@ -65,7 +65,8 @@ class User < ApplicationRecord
   has_delegated_json :settings,
     feedback_enabled: true,
     wrapped_public: false,
-    searchable: true
+    searchable: true,
+    distance: 250
 
   GITHUB_URL_PATTERN = %r{\A(https?://)?(www\.)?github\.com/}i
 
@@ -109,7 +110,7 @@ class User < ApplicationRecord
 
   # Event participation associations
   has_many :event_participations, dependent: :destroy
-  has_many :participated_events, through: :event_participations, source: :event
+  has_many :participated_events, -> { distinct }, through: :event_participations, source: :event
   has_many :speaker_events, -> { where(event_participations: {attended_as: :speaker}) },
     through: :event_participations, source: :event
   has_many :keynote_speaker_events, -> { where(event_participations: {attended_as: :keynote_speaker}) },
@@ -135,10 +136,12 @@ class User < ApplicationRecord
   has_object :speakerdeck_feed
   has_object :suspicion_detector
   has_object :duplicate_detector
+  has_object :merger
 
   validates :email, format: {with: URI::MailTo::EMAIL_REGEXP}, allow_blank: true
   validates :github_handle, presence: true, uniqueness: true, allow_blank: true
   validates :canonical, exclusion: {in: ->(user) { [user] }, message: "can't be itself"}
+  validates :distance, comparison: {less_than_or_equal_to: 20_000, greater_than_or_equal_to: 0}
 
   normalizes :github_handle, with: ->(value) { normalize_github_handle(value) }
 
@@ -150,7 +153,11 @@ class User < ApplicationRecord
   normalizes :linkedin, with: ->(value) { value.gsub(%r{https?://(?:www\.)?(?:linkedin\.com/in)/}, "") }
 
   normalizes :mastodon, with: ->(value) {
-    return value if value&.match?(URI::DEFAULT_PARSER.make_regexp)
+    return "" if value.blank?
+
+    # Only allow http(s) URLs through verbatim; reject javascript: and other
+    # potentially dangerous schemas.
+    return value if value.match?(%r{\Ahttps?://}i)
     return "" unless value.count("@") == 2
 
     _, handle, instance = value.split("@")
@@ -195,11 +202,98 @@ class User < ApplicationRecord
   scope :with_public_wrapped, -> { where("json_extract(settings, '$.wrapped_public') = ?", true) }
   scope :with_feedback_enabled, -> { where("json_extract(settings, '$.feedback_enabled') = ?", true) }
   scope :searchable, -> { where("json_extract(settings, '$.searchable') = ?", true) }
+  scope :with_radius, ->(distance) { where("json_extract(settings, '$.distance') = ?", distance) }
   scope :indexable, -> {
     canonical.not_marked_for_deletion.where("talks_count > 0 OR json_extract(settings, '$.searchable') = ?", true)
   }
   scope :with_location, -> { where.not(location: [nil, ""]) }
   scope :without_location, -> { where(location: [nil, ""]) }
+
+  scope :orphaned, -> {
+    known_githubs, known_names = all_speaker_identifiers
+    where.not(github_handle: known_githubs)
+      .where.not(name: known_names)
+      .where.missing(:connected_accounts)
+      .where.missing(:event_involvements)
+      .where.missing(:event_participations)
+      .where.missing(:contributor)
+      .where(talks_count: 0)
+  }
+
+  scope :not_orphaned, -> {
+    known_githubs, known_names = all_speaker_identifiers
+    where(github_handle: known_githubs)
+      .or(where(name: known_names))
+      .or(where.associated(:connected_accounts))
+      .or(where.associated(:event_involvements))
+      .or(where.associated(:event_participations))
+      .or(where.associated(:contributor))
+      .or(where.not(talks_count: 0))
+  }
+
+  def self.all_speaker_identifiers
+    @all_speaker_identifiers ||= begin
+      collection = Yerba::Collection.new("data/speakers.yml")
+      githubs = collection.pluck(:github).compact
+      names = collection.pluck(:name).compact
+      [githubs, names]
+    end
+  end
+
+  def self.speaker_alias_to_main_speaker
+    @speaker_alias_to_main_speaker ||= begin
+      collection = Yerba::Collection.new("data/speakers.yml")
+      names = collection.pluck(:name)
+      githubs = collection.pluck(:github)
+      aliases_data = collection.pluck(:aliases)
+
+      mapping = {}
+      names.zip(githubs, aliases_data).each do |main_name, github, aliases|
+        next if main_name.nil? || aliases.nil?
+
+        Array(aliases).each do |a|
+          alias_name = a["name"]
+          next if alias_name.nil? || alias_name == main_name
+
+          mapping[alias_name] = {name: main_name, github: github}
+        end
+      end
+      mapping
+    end
+  end
+
+  scope :duplicate_aliases, -> {
+    alias_names = speaker_alias_to_main_speaker.keys
+    where(name: alias_names)
+  }
+
+  def orphaned?
+    known_githubs, known_names = self.class.all_speaker_identifiers
+    known_githubs.exclude?(github_handle) &&
+      known_names.exclude?(name) &&
+      connected_accounts.none? &&
+      event_involvements.none? &&
+      event_participations.none? &&
+      !contributor? &&
+      talks_count == 0
+  end
+
+  def duplicate_alias?
+    self.class.speaker_alias_to_main_speaker.key?(name)
+  end
+
+  def main_speaker_name
+    self.class.speaker_alias_to_main_speaker.dig(name, :name)
+  end
+
+  def find_main_speaker
+    data = self.class.speaker_alias_to_main_speaker[name]
+    return unless data
+
+    User.find_by_github_handle(data[:github]) ||
+      User.find_by_name_or_alias(data[:name])
+  end
+
   scope :preloaded, -> { includes(:connected_accounts) }
 
   def self.normalize_github_handle(value)
@@ -410,44 +504,11 @@ class User < ApplicationRecord
   end
 
   def assign_canonical_user!(canonical_user:)
-    ActiveRecord::Base.transaction do
-      if name.present? && slug.present?
-        canonical_user.aliases.find_or_create_by!(name: name, slug: slug)
-      end
-
-      user_talks.each do |user_talk|
-        duplicated = user_talk.dup
-        duplicated.user = canonical_user
-        duplicated.save
-      end
-
-      event_participations.each do |participation|
-        duplicated = participation.dup
-        duplicated.user = canonical_user
-        duplicated.save
-      end
-
-      event_involvements.each do |involvement|
-        duplicated = involvement.dup
-        duplicated.involvementable = canonical_user
-        duplicated.save
-      end
-
-      user_talks.destroy_all
-      event_participations.destroy_all
-      event_involvements.destroy_all
-
-      update_columns(
-        canonical_id: canonical_user.id,
-        github_handle: nil,
-        slug: "",
-        marked_for_deletion: true
-      )
-    end
+    canonical_user.merge_with!(self)
   end
 
   def set_slug
-    self.slug = slug.presence || github_handle.presence&.downcase
+    self.slug = slug.presence || name.presence&.parameterize || github_handle.presence&.downcase
     super
   end
 

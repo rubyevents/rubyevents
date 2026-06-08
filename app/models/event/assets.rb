@@ -3,6 +3,16 @@
 class Event::Assets < ActiveRecord::AssociatedObject
   IMAGES_BASE_PATH = Rails.root.join("app", "assets", "images")
 
+  DIMENSIONS = {
+    "avatar" => {width: 256, height: 256},
+    "banner" => {width: 1300, height: 350},
+    "card" => {width: 600, height: 350},
+    "featured" => {width: 615, height: 350},
+    "poster" => {width: 600, height: 350},
+    "sticker" => {width: 350, height: 350},
+    "stamp" => {width: 512, height: 512}
+  }.freeze
+
   extension do
     delegate :stickers, :sticker?, :stamp?, to: :assets
 
@@ -58,6 +68,13 @@ class Event::Assets < ActiveRecord::AssociatedObject
     event_path = [base_path, filename].join("/")
 
     (IMAGES_BASE_PATH / event_path).exist? ? event_path : nil
+  end
+
+  def has_custom_asset?(filename)
+    event_path = [base_path, filename].join("/")
+    series_default_path = [default_series_path, filename].join("/")
+
+    (IMAGES_BASE_PATH / event_path).exist? || (IMAGES_BASE_PATH / series_default_path).exist?
   end
 
   def banner_path

@@ -4,19 +4,17 @@
 # Table name: event_series
 # Database name: primary
 #
-#  id                   :integer          not null, primary key
-#  description          :text             default(""), not null
-#  frequency            :integer          default("unknown"), not null, indexed
-#  kind                 :integer          default("conference"), not null, indexed
-#  language             :string           default(""), not null
-#  name                 :string           default(""), not null, indexed
-#  slug                 :string           default(""), not null, indexed
-#  twitter              :string           default(""), not null
-#  website              :string           default(""), not null
-#  youtube_channel_name :string           default("")
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null
-#  youtube_channel_id   :string           default("")
+#  id          :integer          not null, primary key
+#  description :text             default(""), not null
+#  frequency   :integer          default("unknown"), not null, indexed
+#  kind        :integer          default("conference"), not null, indexed
+#  language    :string           default(""), not null
+#  name        :string           default(""), not null, indexed
+#  slug        :string           default(""), not null, indexed
+#  twitter     :string           default(""), not null
+#  website     :string           default(""), not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
 #
 # Indexes
 #
@@ -47,7 +45,7 @@ class EventSeries < ApplicationRecord
 
   # enums
   enum :kind, {conference: 0, meetup: 1, organisation: 2, retreat: 3, hackathon: 4, event: 5, workshop: 6}
-  enum :frequency, {unknown: 0, yearly: 1, monthly: 2, biyearly: 3, quarterly: 4, irregular: 5}
+  enum :frequency, {unknown: 0, yearly: 1, monthly: 2, biyearly: 3, quarterly: 4, irregular: 5, weekly: 6, biweekly: 7}
 
   def self.find_by_name_or_alias(name)
     return nil if name.blank?

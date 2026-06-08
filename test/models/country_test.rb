@@ -6,7 +6,7 @@ class CountryTest < ActiveSupport::TestCase
 
     assert_not_nil country
     assert_equal "US", country.alpha2
-    assert_equal "United States of America (the)", country.iso_short_name
+    assert_equal "United States of America", country.iso_short_name
   end
 
   test "find_by returns country for lowercase country code" do

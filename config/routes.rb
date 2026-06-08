@@ -185,7 +185,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :talks, param: :slug, only: [:index, :show, :update, :edit] do
+  resources :talks, param: :slug, only: [:index, :show] do
     scope module: :talks do
       resources :recommendations, only: [:index]
       resource :watched_talk, only: [:new, :create, :destroy, :update] do
@@ -311,8 +311,10 @@ Rails.application.routes.draw do
   get "leaderboard", to: "leaderboard#index"
 
   # admin
-  namespace :admin, if: -> { Current.user & admin? } do
-    resources :suggestions, only: %i[index update destroy]
+  authenticate :admin do
+    namespace :admin do
+      resources :suggestions, only: %i[index update destroy]
+    end
   end
 
   get "/sitemap.xml", to: "sitemaps#show", defaults: {format: "xml"}

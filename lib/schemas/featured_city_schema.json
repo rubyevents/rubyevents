@@ -1,0 +1,48 @@
+{
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Full city name"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-friendly slug for the city"
+    },
+    "state_code": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "State or province code"
+    },
+    "country_code": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 country code"
+    },
+    "latitude": {
+      "type": "number",
+      "description": "Geographic latitude"
+    },
+    "longitude": {
+      "type": "number",
+      "description": "Geographic longitude"
+    },
+    "aliases": {
+      "type": "array",
+      "description": "Alternative names or abbreviations",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "name",
+    "slug",
+    "country_code",
+    "latitude",
+    "longitude"
+  ],
+  "additionalProperties": false,
+  "strict": true
+}

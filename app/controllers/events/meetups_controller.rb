@@ -4,7 +4,7 @@ class Events::MeetupsController < ApplicationController
   # GET /events/meetups
   def index
     @meetups = Event.where(kind: :meetup)
-      .joins(:talks)
+      .left_joins(:talks)
       .distinct
       .includes(:series)
       .group("events.id")

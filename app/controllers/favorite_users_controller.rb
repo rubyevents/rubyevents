@@ -52,7 +52,7 @@ class FavoriteUsersController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_favorite_user
-    @favorite_user = FavoriteUser.find(params.expect(:id))
+    @favorite_user = Current.user.favorite_users.find(params.expect(:id))
   end
 
   # Only allow a list of trusted parameters through.

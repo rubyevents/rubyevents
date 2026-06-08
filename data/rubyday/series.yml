@@ -1,11 +1,18 @@
 ---
 name: "rubyday"
 website: "https://rubyday.it"
-twitter: "rubydayit"
 kind: "conference"
 frequency: "yearly"
-playlist_matcher: "rubyday"
+language: "English"
+twitter: "rubydayit"
 default_country_code: "IT"
-youtube_channel_name: "GrUSP"
-language: "english"
-youtube_channel_id: "UCdWnwC8nz_CCFQrmLBrLCVw"
+youtube_channels:
+- id: "UCdWnwC8nz_CCFQrmLBrLCVw"
+  name: "GrUSP"
+  handle: "@grusp"
+  playlist_matcher: "rubyday"
+
+- id: "UCkxizXigZY3iewM6dswcYzQ"
+  name: "Asso Ruby"
+  handle: "@assoruby7221"
+  playlist_matcher: "rubyday"

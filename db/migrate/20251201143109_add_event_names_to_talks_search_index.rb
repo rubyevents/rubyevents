@@ -7,7 +7,7 @@ class AddEventNamesToTalksSearchIndex < ActiveRecord::Migration[8.1]
       "tokenize = porter"
     ]
 
-    Talk.reindex_all
+    # Talk.reindex_all
   end
 
   def down
@@ -18,6 +18,6 @@ class AddEventNamesToTalksSearchIndex < ActiveRecord::Migration[8.1]
       "tokenize = porter"
     ]
 
-    Talk.reindex_all
+    # Talk.reindex_all
   end
 end

@@ -128,3 +128,23 @@ non_english_talk_one:
   external_player: true
   date: "2025-05-20"
   static_id: non-english-talk-title
+
+meetup_past_talk:
+  title: talk title 3
+  description: talk descritpion 3
+  slug: talk-title-3
+  kind: "talk"
+  event: wnb_rb_meetup
+  date: <%= 1.day.ago %>
+  video_provider: youtube
+  static_id: talk-title-4
+
+meetup_upcoming_talk:
+  title: talk title 5
+  description: talk descritpion 5
+  slug: talk-title-5
+  date: <%= 1.day.from_now %>
+  kind: "talk"
+  event: new_rb_meetup
+  static_id: talk-title-5
+

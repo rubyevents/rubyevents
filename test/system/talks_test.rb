@@ -12,17 +12,6 @@ class TalksTest < ApplicationSystemTestCase
     assert_selector "h1", text: "Video Recordings of Talks"
   end
 
-  test "should update Talk" do
-    visit talk_url(@talk)
-    click_on "Edit", match: :first
-
-    fill_in "Description", with: @talk.description
-    fill_in "Title", with: @talk.title
-    click_on "Suggest modifications"
-
-    assert_text "Your suggestion was successfully created and will be reviewed soon."
-  end
-
   test "should provide a link to the event of the talk" do
     visit talk_url(@talk)
 

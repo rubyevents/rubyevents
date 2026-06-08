@@ -130,6 +130,14 @@ class Event < ApplicationRecord
   scope :past, -> { where(end_date: ..Date.today).order(end_date: :desc) }
   scope :upcoming, -> { where(start_date: Date.today..).order(start_date: :asc) }
 
+  scope :past_meetups, -> {
+    joins(:talks).where(kind: :meetup, talks: {date: ..Date.today}).distinct
+  }
+
+  scope :upcoming_meetups, -> {
+    joins(:talks).where(kind: :meetup, talks: {date: Date.today..}).distinct
+  }
+
   def upcoming?
     start_date.present? && start_date >= Date.today
   end
@@ -232,6 +240,8 @@ class Event < ApplicationRecord
   end
 
   def today?
+    return talks.where(date: Date.today).exists? if meetup?
+
     (start_date..end_date).cover?(Date.today)
   rescue => _e
     false
@@ -345,6 +355,24 @@ class Event < ApplicationRecord
       featured_color: static_metadata.featured_color,
       url: Router.event_url(self, host: "#{request.protocol}#{request.host}:#{request.port}")
     }
+  end
+
+  def to_ical
+    Icalendar::Event.new.tap do |event|
+      event.uid = "RUBYEVENTS-#{id}"
+      event.last_modified = updated_at
+      event.dtstart = Icalendar::Values::Date.new(start_date)
+
+      if end_date > start_date
+        event.dtend = Icalendar::Values::Date.new(end_date + 1.day) # dtend is exclusive, add 1 day to make it inclusive
+      end
+
+      event.summary = name
+      event.description = description.strip
+      event.location = static_metadata.location
+      event.url = website
+      event.status = static_metadata.cancelled? ? "CANCELLED" : "CONFIRMED"
+    end
   end
 
   private

@@ -11,3 +11,12 @@
         watched_online: @watched_online,
         has_feedback: watched_talk&.has_rating_feedback? || false %>
 <% end %>
+
+<%= turbo_stream.replace "attendance-counter" do %>
+  <% attended_count = @talk.event.talks.joins(:watched_talks).where(watched_talks: { user: Current.user, watched_on: "in_person" }).count %>
+  <% total_talks = @talk.event.talks.count %>
+  <div id="attendance-counter" class="text-right">
+    <div class="text-xl font-bold text-primary"><%= attended_count %>/<%= total_talks %></div>
+    <div class="text-xs text-gray-500">in-person</div>
+  </div>
+<% end %>

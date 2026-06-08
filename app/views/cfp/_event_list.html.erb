@@ -20,14 +20,15 @@
 
         <% event.cfps.open.each do |cfp| %>
           <div class="text-[#636B74] group-hover:text-inherit font-bold">
+            <%= cfp.name.presence || "Call for Proposals" %>
             <% if cfp.close_date.present? && (cfp.open_date.blank? || cfp.open_date.past?) %>
-              CFP closes on
+              - closes on
               <%= cfp.formatted_close_date %>
             <% elsif cfp.open_date.present? && cfp.open_date.future? %>
-              CFP opens on
+              - opens on
               <%= cfp.formatted_open_date %>
             <% elsif cfp.open_ended? %>
-              CFP always open
+              - always open
             <% end %>
           </div>
         <% end %>

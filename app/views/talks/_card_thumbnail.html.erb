@@ -16,7 +16,7 @@
           srcset: ["#{talk.thumbnail_lg} 2x"],
           loading: "lazy",
           alt: talk.title,
-          class: class_names("w-full h-full object-cover rounded-xl sm:group-hover:scale-105 transition-transform duration-300", talk.thumbnail_classes)
+          class: class_names("w-full h-full rounded-xl sm:group-hover:scale-105 transition-transform duration-300", talk.thumbnail_classes.presence || "object-cover")
         ) %>
 
     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent rounded-xl hidden sm:block"></div>

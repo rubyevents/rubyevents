@@ -43,4 +43,12 @@ module ApplicationHelper
   def canonical_url
     content_for?(:canonical_url) ? content_for(:canonical_url) : "https://www.rubyevents.org#{request.path}"
   end
+
+  def sanitize_url(url, fallback: "")
+    if Rails::HTML::Sanitizer.allowed_uri?(url)
+      url
+    else
+      fallback
+    end
+  end
 end

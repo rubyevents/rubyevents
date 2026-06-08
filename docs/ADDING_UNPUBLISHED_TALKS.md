@@ -58,6 +58,14 @@ All values from the existing talk must be included.
 bin/rails generate talk --event blue-ridge-ruby-2026 --id "marco-roth-rachael-wright-munn-blue-ridge-ruby-2026" --title "RubyEvents is great!" --speaker "Rachael Wright-Munn" --description "Learn why RubyEvents is great and how to contribute!"
 ```
 
+To add an empty lightning talk session that will have sub-talks for each lightning talk, use the following command:
+
+```bash
+  bin/rails g talk --event rubycon-2026 --lightning-talks
+```
+
+The usual parameters, such as title, description, etc are available but not necessary.
+
 ### 3. Gather Talk Information
 
 For each talk, collect:

@@ -72,14 +72,11 @@ gem "active_record-associated_object"
 # Headless Chrome driver for Capybara
 gem "cuprite"
 
-# Reusable modules for tasks like data extraction, scoring, and ranking
-gem "active_genie"
-
 # A single delightful Ruby way to work with AI.
-gem "ruby_llm", "~> 1.9.1"
+gem "ruby_llm", "~> 1.15.0"
 
 # A simple and clean Ruby DSL for creating JSON schemas.
-gem "ruby_llm-schema"
+gem "ruby_llm-schema", github: "crmne/ruby_llm-schema", branch: "main"
 
 # JSON Schema validator
 gem "json_schemer"
@@ -90,11 +87,14 @@ gem "yt"
 # Family of libraries that support various formats of XML "feeds".
 gem "rss", "~> 0.3.1"
 
+# YAML Editing and Refactoring with Better Accuracy
+gem "yerba", "~> 0.5.1"
+
 # Powerful and seamless HTML-aware ERB parsing and tooling.
-gem "herb", "~> 0.8"
+gem "herb", "~> 0.9"
 
 # An ActionView-compatible ERB engine with modern DX - re-imagined with Herb.
-gem "reactionview", "~> 0.2"
+gem "reactionview", "~> 0.3"
 
 # Agnostic pagination in plain ruby.
 gem "pagy"
@@ -262,6 +262,9 @@ group :development do
   # Guard for watching file changes and auto-importing [https://github.com/guard/guard]
   gem "guard"
 
+  # Benchmark is no longer included in the standard lib - used for benchmarking
+  gem "benchmark"
+
   gem "ruby-lsp-rails", require: false
   gem "standardrb", "~> 1.0", require: false
   gem "erb_lint", require: false
@@ -276,3 +279,7 @@ group :test do
   gem "vcr", "~> 6.1"
   gem "webmock"
 end
+
+gem "icalendar", "~> 2.12"
+
+gem "fastimage", "~> 2.4"
