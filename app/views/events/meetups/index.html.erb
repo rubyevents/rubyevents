@@ -1,4 +1,4 @@
-<div class="container py-8 hotwire-native:py-3" data-controller="events-view-switcher">
+<div class="container py-8 hotwire-native:py-3" data-controller="events-view-switcher" data-events-view-switcher-storage-key-value="meetups-view-preference">
   <div class="flex flex-col md:flex-row items-start md:items-center justify-between w-full gap-4 hotwire-native:hidden">
     <h1 class="title shrink-0">
       <%= title "Meetups" %>
@@ -10,12 +10,16 @@
 
     <div class="flex flex-col md:flex-row items-start md:items-center gap-4">
       <div class="tabs tabs-boxed">
-        <button type="button" class="tab tab-active" data-events-view-switcher-target="previewButton" data-action="click->events-view-switcher#showPreview">
+        <button type="button" class="tab tab-active" data-events-view-switcher-target="button" data-events-view-switcher-view-param="preview" data-action="click->events-view-switcher#show">
           Preview
         </button>
 
-        <button type="button" class="tab" data-events-view-switcher-target="listButton" data-action="click->events-view-switcher#showList">
+        <button type="button" class="tab" data-events-view-switcher-target="button" data-events-view-switcher-view-param="list" data-action="click->events-view-switcher#show">
           List
+        </button>
+
+        <button type="button" class="tab" data-events-view-switcher-target="button" data-events-view-switcher-view-param="country" data-action="click->events-view-switcher#show">
+          By Country
         </button>
       </div>
       <div class="flex gap-4 whitespace-nowrap">
@@ -24,17 +28,16 @@
     </div>
   </div>
 
-  <div data-events-view-switcher-target="previewView">
+  <div data-events-view-switcher-target="view" data-events-view-switcher-view-param="preview">
     <%= render partial: "events/featured_card_list", locals: {events: @meetups} %>
   </div>
 
-  <div class="hidden mt-6" data-events-view-switcher-target="listView">
+  <div class="hidden mt-6" data-events-view-switcher-target="view" data-events-view-switcher-view-param="list">
     <%= render partial: "events/plain_list", locals: {events: @meetups} %>
   </div>
 
-  <div class="mt-6">
-    <h1>Browse worldwide meetups</h1>
-    <p>
+  <div class="hidden mt-6" data-events-view-switcher-target="view" data-events-view-switcher-view-param="country">
+    <p class="mb-4">
       Explore Ruby meetups from around the world, or find all events by
       <%= link_to "continent", continents_path, class: "link" %>,
       <%= link_to "country", countries_path, class: "link" %>
