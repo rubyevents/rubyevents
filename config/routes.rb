@@ -311,8 +311,10 @@ Rails.application.routes.draw do
   get "leaderboard", to: "leaderboard#index"
 
   # admin
-  namespace :admin, if: -> { Current.user & admin? } do
-    resources :suggestions, only: %i[index update destroy]
+  authenticate :admin do
+    namespace :admin do
+      resources :suggestions, only: %i[index update destroy]
+    end
   end
 
   get "/sitemap.xml", to: "sitemaps#show", defaults: {format: "xml"}
