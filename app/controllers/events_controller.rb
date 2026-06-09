@@ -29,25 +29,10 @@ class EventsController < ApplicationController
 
   # GET /events/1
   def show
-    set_meta_tags(@event)
-
-    if @event.meetup?
-      all_meetup_events = @event.talks.where(meta_talk: true).includes(:speakers, :parent_talk, child_talks: :speakers)
-      @upcoming_meetup_events = all_meetup_events.where("date >= ?", Date.today).order(date: :asc).limit(4)
-      @recent_meetup_events = all_meetup_events.where("date < ?", Date.today).order(date: :desc).limit(4)
-      @recent_talks = @event.talks.where(meta_talk: false).includes(:speakers, :parent_talk, child_talks: :speakers).order(date: :desc).to_a.sample(8)
-      @featured_speakers = @event.speakers.joins(:talks).distinct.to_a.sample(8)
-    else
-      @keynotes = @event.talks.joins(:speakers).where(kind: "keynote").includes(:speakers, event: :series)
-      @recent_talks = @event.talks.watchable.includes(:speakers, event: :series).limit(8).shuffle
-      keynote_speakers = @event.speakers.joins(:talks).where(talks: {kind: "keynote"}).distinct
-      other_speakers = @event.speakers.joins(:talks).where.not(talks: {kind: "keynote"}).distinct.limit(8)
-      @featured_speakers = (keynote_speakers + other_speakers.first(8 - keynote_speakers.size)).uniq.shuffle
+    respond_to do |format|
+      format.html { load_event_data_for_show }
+      format.md { render plain: MarkdownPresenters::EventPresenter.new(@event).to_markdown, content_type: "text/markdown" }
     end
-
-    @sponsors = @event.sponsors.includes(:organization).joins(:organization).order(level: :asc)
-
-    @participation = Current.user&.main_participation_to(@event)
   end
 
   # GET /events/1/edit
@@ -88,6 +73,29 @@ class EventsController < ApplicationController
   end
 
   private
+
+  def load_event_data_for_show
+    set_meta_tags(@event)
+    @markdown_alternate_url = event_url(@event, format: :md)
+
+    if @event.meetup?
+      all_meetup_events = @event.talks.where(meta_talk: true).includes(:speakers, :parent_talk, child_talks: :speakers)
+      @upcoming_meetup_events = all_meetup_events.where("date >= ?", Date.today).order(date: :asc).limit(4)
+      @recent_meetup_events = all_meetup_events.where("date < ?", Date.today).order(date: :desc).limit(4)
+      @recent_talks = @event.talks.where(meta_talk: false).includes(:speakers, :parent_talk, child_talks: :speakers).order(date: :desc).to_a.sample(8)
+      @featured_speakers = @event.speakers.joins(:talks).distinct.to_a.sample(8)
+    else
+      @keynotes = @event.talks.joins(:speakers).where(kind: "keynote").includes(:speakers, event: :series)
+      @recent_talks = @event.talks.watchable.includes(:speakers, event: :series).limit(8).shuffle
+      keynote_speakers = @event.speakers.joins(:talks).where(talks: {kind: "keynote"}).distinct
+      other_speakers = @event.speakers.joins(:talks).where.not(talks: {kind: "keynote"}).distinct.limit(8)
+      @featured_speakers = (keynote_speakers + other_speakers.first(8 - keynote_speakers.size)).uniq.shuffle
+    end
+
+    @sponsors = @event.sponsors.includes(:organization).joins(:organization).order(level: :asc)
+
+    @participation = Current.user&.main_participation_to(@event)
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_event

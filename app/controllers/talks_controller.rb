@@ -20,7 +20,14 @@ class TalksController < ApplicationController
 
   # GET /talks/1
   def show
-    set_meta_tags(@talk)
+    respond_to do |format|
+      format.html do
+        set_meta_tags(@talk)
+        @markdown_alternate_url = talk_url(@talk, format: :md)
+      end
+      format.json # show.json.jbuilder
+      format.md { render plain: MarkdownPresenters::TalkPresenter.new(@talk).to_markdown, content_type: "text/markdown" }
+    end
   end
 
   private

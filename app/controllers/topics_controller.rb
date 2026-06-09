@@ -15,14 +15,21 @@ class TopicsController < ApplicationController
     @topic = Topic.find_by(slug: params[:slug])
     return redirect_to(root_path, status: :moved_permanently) unless @topic
 
-    @pagy, @talks = pagy_countless(
-      @topic.talks.includes(:speakers, event: :series, child_talks: :speakers).order(date: :desc),
-      gearbox_extra: true,
-      gearbox_limit: [12, 24, 48, 96],
-      overflow: :empty_page,
-      page: page_number
-    )
-    set_meta_tags(@topic)
+    respond_to do |format|
+      format.any(:html, :turbo_stream) do
+        @pagy, @talks = pagy_countless(
+          @topic.talks.includes(:speakers, event: :series, child_talks: :speakers).order(date: :desc),
+          gearbox_extra: true,
+          gearbox_limit: [12, 24, 48, 96],
+          overflow: :empty_page,
+          page: page_number
+        )
+        set_meta_tags(@topic)
+        @markdown_alternate_url = topic_url(@topic, format: :md)
+        render
+      end
+      format.md { render plain: MarkdownPresenters::TopicPresenter.new(@topic).to_markdown, content_type: "text/markdown" }
+    end
   end
 
   def set_user_favorites
