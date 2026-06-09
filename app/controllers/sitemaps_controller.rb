@@ -28,7 +28,7 @@ class SitemapsController < ApplicationController
 
         add events_path, priority: 0.7, changefreq: "weekly"
 
-        Event.canonical.pluck(:slug, :updated_at) do |event_slug, updated_at|
+        Event.canonical.pluck(:slug, :updated_at).each do |event_slug, updated_at|
           add event_path(event_slug), priority: 0.9, lastmod: updated_at
         end
 
