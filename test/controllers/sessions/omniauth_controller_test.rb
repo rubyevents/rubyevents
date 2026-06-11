@@ -157,4 +157,39 @@ class Sessions::OmniauthControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_path
     assert_equal "Signed in successfully", flash[:notice]
   end
+
+  test "with native state redirects to deep link with signin token and does not create a session" do
+    OmniAuth.config.mock_auth[:developer] = @developer_auth
+
+    OmniAuth.config.before_callback_phase = lambda do |env|
+      env["omniauth.params"] = {"state" => "native:android"}
+    end
+
+    assert_no_difference "Session.count" do
+      post "/auth/developer/callback"
+    end
+
+    assert_response :redirect
+    location = response.location
+    assert_match %r{\Arubyevents://auth/developer/callback\?token=}, location
+
+    token = location.split("token=").last
+    assert_equal @developer_user, User.find_signed(token, purpose: :native_signin)
+  end
+
+  test "with native state for new user creates the user but no session" do
+    OmniAuth.config.mock_auth[:developer] = OmniAuth::AuthHash.new(provider: :developer, uid: "99999", info: {github_handle: "native-user", name: "Native User"})
+
+    OmniAuth.config.before_callback_phase = lambda do |env|
+      env["omniauth.params"] = {"state" => "native:android"}
+    end
+
+    assert_difference "User.count", 1 do
+      assert_no_difference "Session.count" do
+        post "/auth/developer/callback"
+      end
+    end
+
+    assert_match %r{\Arubyevents://auth/developer/callback\?token=}, response.location
+  end
 end
