@@ -1,0 +1,129 @@
+#!/usr/bin/env bash
+
+set -Eeuo pipefail
+
+get_last_release() {
+  gh release list --limit 1 --json tagName --jq '.[0].tagName' 2>/dev/null || echo ""
+}
+
+check_for_prs() {
+  local last_release="$1"
+
+  if [ -z "$last_release" ]; then
+    echo "No previous release found" >&2
+    return 0
+  fi
+
+  local published_at
+  published_at=$(gh release view "$last_release" --json publishedAt --jq '.publishedAt')
+
+  local pr_count
+  pr_count=$(gh pr list \
+    --state merged \
+    --search "merged:>=${published_at} -author:app/dependabot" \
+    --json number \
+    --jq 'length')
+
+  if [ "$pr_count" -gt 0 ]; then
+    echo "Found $pr_count non-dependabot PRs merged since last release" >&2
+    return 0
+  else
+    echo "No relevant PRs merged since last release" >&2
+    return 1
+  fi
+}
+
+preview_release_notes() {
+  local tag="$1"
+  local last_release="$2"
+
+  echo "Preview of release notes for $tag:" >&2
+  echo "---" >&2
+
+  if [ -z "$last_release" ]; then
+    echo "No previous release found - would generate notes from repository history" >&2
+  else
+    gh api repos/:owner/:repo/releases/generate-notes \
+      -f tag_name="$tag" \
+      -f target_commitish="main" \
+      -f previous_tag_name="$last_release" \
+      --jq '.body'
+  fi
+}
+
+create_release() {
+  local tag="$1"
+  gh release create "$tag" \
+    --title "$tag" \
+    --generate-notes
+}
+
+show_help() {
+  cat <<EOF
+Usage: bin/gh-release [OPTIONS] [TAG]
+
+Create a GitHub release with auto-generated notes, excluding dependabot PRs.
+
+OPTIONS:
+  --preview     Preview release notes without creating the release
+  --help        Show this help message
+
+ARGUMENTS:
+  TAG           Release tag (defaults to YY.MM.DD format)
+
+EXAMPLES:
+  bin/gh-release                  # Create release with today's date
+  bin/gh-release 25.11.01         # Create release with specific tag
+  bin/gh-release --preview        # Preview release notes
+EOF
+}
+
+main() {
+  local preview=false
+  local tag=""
+
+  while [[ $# -gt 0 ]]; do
+    case $1 in
+      --preview)
+        preview=true
+        shift
+        ;;
+      --help)
+        show_help
+        exit 0
+        ;;
+      -*)
+        die "Unknown option: $1"
+        ;;
+      *)
+        tag="$1"
+        shift
+        ;;
+    esac
+  done
+
+  tag="${tag:-$(date +'%y.%m.%d')}"
+  local last_release
+  last_release=$(get_last_release)
+
+  if [ "$preview" = true ]; then
+    preview_release_notes "$tag" "$last_release"
+    exit 0
+  fi
+
+  if ! check_for_prs "$last_release"; then
+    echo "Skipping release creation" >&2
+    exit 0
+  fi
+
+  echo "Creating release $tag..." >&2
+  create_release "$tag"
+  echo "Release created successfully" >&2
+}
+
+die() {
+  echo "$*" >&2
+  exit 1
+}
+
+main "$@"
