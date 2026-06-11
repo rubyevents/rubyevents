@@ -6,10 +6,10 @@
 # Database name: primary
 #
 #  id         :integer          not null, primary key
-#  close_date :date
+#  close_date :datetime
 #  link       :string
 #  name       :string
-#  open_date  :date
+#  open_date  :datetime
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  event_id   :integer          not null, indexed
