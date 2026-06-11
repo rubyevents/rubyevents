@@ -67,29 +67,8 @@
             <% end %>
           <% end %>
 
-          <% if default_watch_list %>
-            <% if user_favorite_talks_ids.include?(talk.id) %>
-              <%= ui_tooltip "Add talk to your watch list" do %>
-                <%= ui_button url: watch_list_talk_path(default_watch_list, talk.id), method: :delete, kind: :pill do %>
-                  <%= fa("bookmark", size: :xs, style: :solid, class: "text-primary") %>
-                  <span class="text-xs">Bookmark</span>
-                <% end %>
-              <% end %>
-            <% else %>
-              <%= ui_tooltip "Add talk to your watch list" do %>
-                <%= ui_button url: watch_list_talks_path(default_watch_list, talk_id: talk.id), method: :post, kind: :pill do %>
-                  <%= fa("bookmark", size: :xs, style: :regular) %>
-                  <span class="text-xs">Bookmark</span>
-                <% end %>
-              <% end %>
-            <% end %>
-          <% else %>
-            <%= ui_tooltip "Add talk to your watch list" do %>
-              <%= ui_button url: new_session_path(redirect_to: request.fullpath), data: {turbo_frame: "modal"}, kind: :pill do %>
-                <%= fa("bookmark", size: :xs, style: :regular) %>
-                <span class="text-xs">Bookmark</span>
-              <% end %>
-            <% end %>
+          <%= turbo_frame_tag dom_id(talk, :bookmark_button) do %>
+            <%= render partial: "watch_list_talks/bookmark_button", locals: {talk: talk, default_watch_list: default_watch_list, is_bookmarked: user_favorite_talks_ids&.include?(talk.id)} %>
           <% end %>
 
           <% if talk.youtube? || talk.parent_talk&.youtube? %>
