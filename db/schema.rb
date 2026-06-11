@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.2].define(version: 2026_03_06_110802) do
+ActiveRecord::Schema[8.2].define(version: 2026_04_15_012838) do
   create_table "_litestream_lock", id: false, force: :cascade do |t|
     t.integer "id"
   end
@@ -203,6 +203,16 @@ ActiveRecord::Schema[8.2].define(version: 2026_03_06_110802) do
     t.index ["kind"], name: "index_event_series_on_kind"
     t.index ["name"], name: "index_event_series_on_name"
     t.index ["slug"], name: "index_event_series_on_slug"
+  end
+
+  create_table "event_series_subscriptions", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "event_series_id", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["event_series_id"], name: "index_event_series_subscriptions_on_event_series_id"
+    t.index ["user_id", "event_series_id"], name: "idx_on_user_id_event_series_id_68ec03d2be", unique: true
+    t.index ["user_id"], name: "index_event_series_subscriptions_on_user_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -562,6 +572,8 @@ ActiveRecord::Schema[8.2].define(version: 2026_03_06_110802) do
   add_foreign_key "event_involvements", "events"
   add_foreign_key "event_participations", "events"
   add_foreign_key "event_participations", "users"
+  add_foreign_key "event_series_subscriptions", "event_series"
+  add_foreign_key "event_series_subscriptions", "users"
   add_foreign_key "events", "event_series"
   add_foreign_key "events", "events", column: "canonical_id"
   add_foreign_key "favorite_users", "users"
