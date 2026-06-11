@@ -107,6 +107,14 @@ class Talk < ApplicationRecord
   has_object :thumbnails
   has_object :similar_recommender
 
+  after_save :notification_subscribers
+
+  def notification_subscribers
+    return unless saved_changes.include?("published_at")
+    return unless scheduled?
+    Notification::TalkPublishedJob.perform_later(talk_id: id)
+  end
+
   # validations
   validates :title, presence: true
   validates :language, presence: true,
