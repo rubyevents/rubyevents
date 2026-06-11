@@ -273,6 +273,7 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  gem "simplecov", require: false
   gem "capybara"
   gem "rails-controller-testing"
   gem "selenium-webdriver"
