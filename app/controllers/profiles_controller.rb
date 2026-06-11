@@ -14,12 +14,22 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/:slug
   def show
-    load_profile_data_for_show
+    respond_to do |format|
+      format.html do
+        load_profile_data_for_show
 
-    if @user.suspicious?
-      set_meta_tags(robots: "noindex, nofollow")
-    else
-      set_meta_tags(@user)
+        if @user.suspicious?
+          set_meta_tags(robots: "noindex, nofollow")
+        else
+          set_meta_tags(@user)
+          @markdown_alternate_url = profile_url(@user, format: :md)
+        end
+      end
+      format.md do
+        return head(:not_found) if @user.suspicious?
+
+        render plain: MarkdownPresenters::SpeakerPresenter.new(@user).to_markdown, content_type: "text/markdown"
+      end
     end
   end
 

@@ -319,6 +319,9 @@ Rails.application.routes.draw do
 
   get "/sitemap.xml", to: "sitemaps#show", defaults: {format: "xml"}
 
+  get "/llms.txt", to: "llms#index", defaults: {format: "text"}
+  get "/llms-full.txt", to: "llms#full", defaults: {format: "text"}
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

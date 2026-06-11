@@ -1,1 +1,11 @@
 # See https://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
+
+# RubyEvents content is MIT-licensed and open to search, AI retrieval, and AI
+# training. NOTE: this origin policy can be overridden by a Cloudflare-managed
+# robots.txt at the edge. If AI crawlers are still blocked, update the setting in
+# the Cloudflare dashboard (see PR description).
+User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /
+
+Sitemap: https://www.rubyevents.org/sitemap.xml
