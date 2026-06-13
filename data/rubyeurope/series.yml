@@ -5,8 +5,15 @@ kind: "meetup"
 frequency: "irregular"
 language: "English"
 twitter: "RubyEurope"
+luma: "https://luma.com/rubyeurope"
+
 youtube_channels:
-- id: "UCPkGcnK-vKiYVmefSp22enA"
-  name: "Ruby Europe"
-  handle: "@rubyeurope"
-  playlist_matcher: "Ruby"
+  - id: "UCPkGcnK-vKiYVmefSp22enA"
+    name: "Ruby Europe"
+    handle: "@rubyeurope"
+    playlist_matcher: "Ruby"
+
+feeds:
+  - type: "ical"
+    url: "https://api.luma.com/ics/get?entity=calendar&id=cal-e1hbsrfKzZEFCi5"
+    name: "Luma"

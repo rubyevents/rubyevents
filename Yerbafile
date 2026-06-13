@@ -57,6 +57,7 @@ rules:
             - coordinates
             - aliases
             - youtube_channels
+            - feeds
 
       - sort_keys:
           path: "youtube_channels[]"
@@ -228,6 +229,16 @@ rules:
             - bsky
             - aliases
             - youtube_channels
+            - feeds
+
+      - sort_keys:
+          path: "feeds[]"
+          order:
+            - type
+            - url
+            - name
+            - handle
+            - account
 
   - files: "data/**/videos.yml"
     pipeline:

@@ -2,11 +2,16 @@
 name: "Ruby Romania"
 website: "https://rubyromania.ro"
 kind: "meetup"
-frequency: "monthly"
-language: "English"
 twitter: ""
 default_country_code: "RO"
+luma: "https://luma.com/ruby-romania"
+
 youtube_channels:
-- id: "UCWGhazT-zopg4NJvdHZQueQ"
-  name: "Ruby Romania"
-  handle: "@RubyRomaniaCommunity"
+  - id: "UCWGhazT-zopg4NJvdHZQueQ"
+    name: "Ruby Romania"
+    handle: "@RubyRomaniaCommunity"
+
+feeds:
+  - type: "ical"
+    url: "https://api.luma.com/ics/get?entity=calendar&id=cal-ZitScjuNKCMOq9Y"
+    name: "Luma"

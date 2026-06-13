@@ -31,6 +31,7 @@ class EventSchema < RubyLLM::Schema
   string :venue, description: "Name of the venue", required: false
 
   array :youtube_channels, of: YouTubeChannelSchema, description: "YouTube channels associated with this event", required: false
+  array :feeds, of: FeedSourceSchema, description: "External feeds (iCal, RSS, social) for this event", required: false
   string :playlist, description: "YouTube playlist/Vimeo showcase link", required: false
 
   string :website, description: "Official event website URL", required: false
@@ -52,7 +53,7 @@ class EventSchema < RubyLLM::Schema
     description: "CSS text color for featured cards",
     required: false
 
-  any_of :coordinates, description: "Geographic coordinates (use 'coordinates: false' for online events)" do
+  any_of :coordinates, description: "Geographic coordinates (use 'coordinates: false' for online events)", required: false do
     object do
       number :latitude, description: "Latitude coordinate"
       number :longitude, description: "Longitude coordinate"

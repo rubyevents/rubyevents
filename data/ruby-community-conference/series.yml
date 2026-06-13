@@ -6,11 +6,18 @@ frequency: "biyearly"
 language: "English"
 twitter: "visualitypl"
 default_country_code: "PL"
+
 aliases:
   - RCC
   - RuCoCo
+
 youtube_channels:
-- id: "UCVlG6qQ1mGnJv185ayWjEzg"
-  name: "Visualitypl"
-  handle: "@visualitypl"
-  playlist_matcher: "Ruby Community Conference"
+  - id: "UCVlG6qQ1mGnJv185ayWjEzg"
+    name: "Visualitypl"
+    handle: "@visualitypl"
+    playlist_matcher: "Ruby Community Conference"
+
+feeds:
+  - type: "ical"
+    url: "https://api.luma.com/ics/get?entity=calendar&id=cal-AAWef86ZmSO6oZQ"
+    name: "Luma"

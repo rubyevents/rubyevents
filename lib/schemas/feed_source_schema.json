@@ -1,0 +1,30 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "Feed type (ical, rss, bluesky, mastodon, twitter, linkedin)"
+    },
+    "url": {
+      "type": "string",
+      "description": "Feed URL"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name for this feed"
+    },
+    "handle": {
+      "type": "string",
+      "description": "Account handle (for social feeds)"
+    },
+    "account": {
+      "type": "string",
+      "description": "Full account URL (for Mastodon, etc.)"
+    }
+  },
+  "required": [
+    "type"
+  ],
+  "additionalProperties": false,
+  "strict": true
+}
