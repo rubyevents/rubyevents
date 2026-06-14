@@ -26,6 +26,10 @@ class EventGenerator < Generators::EventBase
   # TODO: Save YouTube playlists and videos for another day
   # TODO: Save "with-series" option for another day
 
+  def event_file_path
+    @event_file_path ||= File.join(event_directory, "event.yml")
+  end
+
   def initialize_values
     @year = Date.parse(options[:start_date]).year
     @geocoded_address = nil
@@ -43,7 +47,7 @@ class EventGenerator < Generators::EventBase
   end
 
   def copy_event_file
-    template "event.yml.tt", File.join(["data", options[:event_series], options[:event], "event.yml"])
+    template "event.yml.tt", event_file_path
   end
 
   def generate_venue_file
