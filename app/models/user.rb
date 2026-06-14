@@ -153,7 +153,11 @@ class User < ApplicationRecord
   normalizes :linkedin, with: ->(value) { value.gsub(%r{https?://(?:www\.)?(?:linkedin\.com/in)/}, "") }
 
   normalizes :mastodon, with: ->(value) {
-    return value if value&.match?(URI::DEFAULT_PARSER.make_regexp)
+    return "" if value.blank?
+
+    # Only allow http(s) URLs through verbatim; reject javascript: and other
+    # potentially dangerous schemas.
+    return value if value.match?(%r{\Ahttps?://}i)
     return "" unless value.count("@") == 2
 
     _, handle, instance = value.split("@")

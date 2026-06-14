@@ -281,3 +281,5 @@ group :test do
 end
 
 gem "icalendar", "~> 2.12"
+
+gem "fastimage", "~> 2.4"

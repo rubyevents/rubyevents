@@ -309,11 +309,6 @@ Rails.application.routes.draw do
   resources :recommendations, only: [:index]
 
   get "leaderboard", to: "leaderboard#index"
-
-  # admin
-  namespace :admin, if: -> { Current.user & admin? } do
-  end
-
   get "/sitemap.xml", to: "sitemaps#show", defaults: {format: "xml"}
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

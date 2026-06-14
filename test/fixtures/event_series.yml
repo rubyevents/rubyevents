@@ -4,19 +4,17 @@
 # Table name: event_series
 # Database name: primary
 #
-#  id                   :integer          not null, primary key
-#  description          :text             default(""), not null
-#  frequency            :integer          default("unknown"), not null, indexed
-#  kind                 :integer          default("conference"), not null, indexed
-#  language             :string           default(""), not null
-#  name                 :string           default(""), not null, indexed
-#  slug                 :string           default(""), not null, indexed
-#  twitter              :string           default(""), not null
-#  website              :string           default(""), not null
-#  youtube_channel_name :string           default("")
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null
-#  youtube_channel_id   :string           default("")
+#  id          :integer          not null, primary key
+#  description :text             default(""), not null
+#  frequency   :integer          default("unknown"), not null, indexed
+#  kind        :integer          default("conference"), not null, indexed
+#  language    :string           default(""), not null
+#  name        :string           default(""), not null, indexed
+#  slug        :string           default(""), not null, indexed
+#  twitter     :string           default(""), not null
+#  website     :string           default(""), not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
 #
 # Indexes
 #
@@ -33,8 +31,7 @@ railsconf:
   website: https://railsconf.org/
   kind: 1
   frequency: 1
-  youtube_channel_id: UCWnPjmqvljcafA0z2U1fwKQ
-  youtube_channel_name: confreaks
+
   slug: railsconf
 
 rubyconfth:
@@ -43,8 +40,7 @@ rubyconfth:
   website: https://rubyconfth.com/
   kind: 1
   frequency: 1
-  youtube_channel_id: UCWnPjmqvljcsqsdafA0z2U1fwKQ
-  youtube_channel_name: rubyconfth
+
   slug: railsconfth
 
 rails_world:
@@ -53,8 +49,7 @@ rails_world:
   website: https://rubyonrails.org/world
   kind: 1
   frequency: 1
-  youtube_channel_id: UC9zbLaqReIdoFfzdUbh13Nw
-  youtube_channel_name: railsofficial
+
   slug: rails-world
   twitter: rails
 

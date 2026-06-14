@@ -89,6 +89,30 @@ class UserTest < ActiveSupport::TestCase
     assert_equal "tekin", user.github_handle
   end
 
+  test "should normalize mastodon handle into a profile URL" do
+    user = users(:one)
+
+    user.mastodon = "@matz@ruby.social"
+    user.save
+    assert_equal "https://ruby.social/@matz", user.mastodon
+
+    user.mastodon = "https://ruby.social/@matz"
+    user.save
+    assert_equal "https://ruby.social/@matz", user.mastodon
+  end
+
+  test "should reject dangerous mastodon URI schemes" do
+    user = users(:one)
+
+    user.mastodon = "javascript:alert(document.cookie)"
+    user.save
+    assert_equal "", user.mastodon
+
+    user.mastodon = "data:text/html,<script>alert(1)</script>"
+    user.save
+    assert_equal "", user.mastodon
+  end
+
   test "find_by_name_or_alias finds user by exact name" do
     user = User.create!(name: "Yukihiro Matsumoto", github_handle: "matz-test-1")
 

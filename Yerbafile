@@ -37,7 +37,6 @@ rules:
             - end_date
             - year
             - date_precision
-            - channel_id
             - playlist
             - status
             - last_edition
@@ -57,6 +56,15 @@ rules:
             - featured_color
             - coordinates
             - aliases
+            - youtube_channels
+
+      - sort_keys:
+          path: "youtube_channels[]"
+          order:
+            - id
+            - name
+            - handle
+            - playlist_matcher
 
   - files: "data/**/involvements.yml"
     pipeline:
@@ -189,6 +197,37 @@ rules:
       - quote_style:
           path: "aliases[]"
           value_style: plain
+
+      - sort_keys:
+          path: "youtube_channels[]"
+          order:
+            - id
+            - name
+            - handle
+            - playlist_matcher
+
+      - sort_keys:
+          order:
+            - name
+            - website
+            - kind
+            - frequency
+            - language
+            - twitter
+            - default_country_code
+            - meetup
+            - github
+            - mastodon
+            - original_website
+            - guild
+            - vimeo
+            - linkedin
+            - description
+            - luma
+            - ended
+            - bsky
+            - aliases
+            - youtube_channels
 
   - files: "data/**/videos.yml"
     pipeline:
