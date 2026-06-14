@@ -25,15 +25,13 @@ class EventGeneratorTest < Rails::Generators::TestCase
   end
 
   test "minimal event passes schema validation" do
-    run_generator [
-      "--force", # Force file creation
+    run_generator ["--force", # Force file creation
       "--event-series", "rubyconf",
       "--event", "2028",
       "--title", "RubyConf 2028",
       "--start-date", "2028-11-13",
       "--end-date", "2028-11-15",
-      "--online"
-    ]
+      "--online"]
 
     event_file_path = File.join(destination_root, "data/rubyconf/2028/event.yml")
     validate_event_schema event_file_path
@@ -51,8 +49,7 @@ class EventGeneratorTest < Rails::Generators::TestCase
   end
 
   test "event with all flags passes schema validation" do
-    run_generator [
-      "--force", # Force file creation
+    run_generator ["--force", # Force file creation
       "--event-series", "rubyconf",
       "--event", "2027",
       "--title", "RubyConf 2027",
@@ -64,8 +61,7 @@ class EventGeneratorTest < Rails::Generators::TestCase
       "--website", "https://example.com/rubyconf-2027",
       "--last-edition",
       "--timezone", "America/Chicago",
-      "--online"
-    ]
+      "--online"]
 
     event_file_path = File.join(destination_root, "data/rubyconf/2027/event.yml")
     validate_event_schema event_file_path
@@ -86,6 +82,25 @@ class EventGeneratorTest < Rails::Generators::TestCase
     end
 
     cleanup_event_directory("2027")
+  end
+
+  test "event with location and coordinates" do
+    event_file_path = File.join(destination_root, "data/tropical-rb/2028/event.yml")
+    run_generator ["--force", # Force file creation
+      "--event-series", "tropical-rb",
+      "--event", "2028",
+      "--title", "Tropical on Rails 2028",
+      "--start-date", "2028-07-20",
+      "--end-date", "2028-07-22",
+      "--location", "Recife, PE, Brazil",
+      "--latitude", "-8.04756",
+      "--longitude", "-34.877"]
+    validate_event_schema event_file_path
+
+    assert_file event_file_path do |content|
+      assert_match(/coordinates:\n\s+latitude: -8.04756/, content)
+      assert_match(/longitude: -34.877/, content)
+    end
   end
 
   test "event with venue-name and venue-address creates venue.yml" do

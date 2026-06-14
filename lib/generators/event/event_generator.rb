@@ -11,10 +11,15 @@ class EventGenerator < Generators::EventBase
   class_option :end_date, type: :string, desc: "End date (YYYY-MM-DD)", required: true, group: "Fields"
   class_option :tickets_url, type: :string, desc: "URL to purchase tickets (e.g., Tito, Eventbrite, Luma)", group: "Fields"
   class_option :website, type: :string, desc: "Event website URL", group: "Fields"
+
+  # Flags
   class_option :last_edition, type: :boolean, desc: "Is this the last edition?", default: false, group: "Fields"
+
   # Location Details
   class_option :online, type: :boolean, desc: "Is this an online-only event?", default: false, group: "Fields"
   class_option :location, type: :string, desc: "Location (City, Country)", group: "Fields"
+  class_option :latitude, type: :string, desc: "Latitude", group: "Fields"
+  class_option :longitude, type: :string, desc: "Longitude", group: "Fields"
   class_option :timezone, type: :string, desc: "IANA timezone identifier (e.g. America/New_York)", group: "Fields"
   class_option :venue_name, type: :string, desc: "Venue name - will generate venue.yml", group: "Fields"
   class_option :venue_address, type: :string, desc: "Venue address - will generate venue.yml", group: "Fields"
@@ -28,11 +33,11 @@ class EventGenerator < Generators::EventBase
       "online"
     else
       @geocoded_address = geocode_address(name: options[:venue_name], address: options[:venue_address] || options[:location])
+      @coordinates = {
+        latitude: options[:latitude] || @geocoded_address.latitude,
+        longitude: options[:longitude] || @geocoded_address.longitude
+      }
       options[:location].presence || [@geocoded_address&.city, @geocoded_address&.state, @geocoded_address&.country_code].compact.join(", ").presence || "Earth"
-      @coordinates = if @geocoded_address
-        {latitude: @geocoded_address.latitude,
-         longitude: @geocoded_address.longitude}
-      end
     end
     @timezone = options[:timezone] || "UTC"
   end
