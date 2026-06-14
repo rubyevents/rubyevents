@@ -17,7 +17,7 @@
         <% suggestion.content.keys.each do |key| %>
           <span><%= key %></span>
           <span>
-            <%= sanitize Diffy::Diff.new(suggestion.suggestable[key].to_s, suggestion.content[key].to_s, include_plus_and_minus_in_html: true).to_s(:html) %>
+            <%= sanitize Diffy::Diff.new(suggestion.suggestable.try(:[], key).to_s, suggestion.content.try(:[], key).to_s, include_plus_and_minus_in_html: true).to_s(:html) %>
           </span>
         <% end %>
       </div>
