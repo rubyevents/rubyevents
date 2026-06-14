@@ -118,10 +118,9 @@ class EventGeneratorTest < Rails::Generators::TestCase
     event_file_path = File.join(destination_root, "data/rubyconf/2025/event.yml")
     assert_file event_file_path do |content|
       assert_match(/title: "RubyConf 2025"/, content)
-      # TODO: Implement
-      # assert_match(/location: "São Paulo, SP, BR"/, content)
-      # assert_match(/coordinates:\n\s+latitude: -23.59572/, content)
-      # assert_match(/longitude: -46.68448/, content)
+      assert_match(/location: "São Paulo, SP, BR"/, content)
+      assert_match(/coordinates:\n\s+latitude: -23.595/, content)
+      assert_match(/longitude: -46.684/, content)
     end
 
     venue_file_path = File.join(destination_root, "data/rubyconf/2025/venue.yml")
