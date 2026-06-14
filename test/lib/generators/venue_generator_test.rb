@@ -93,6 +93,33 @@ class VenueGeneratorTest < Rails::Generators::TestCase
     File.delete venue_file_path
   end
 
+  test "venue generator updates existing event's coordinates" do
+    event_file_path = File.join(destination_root, "data/tropical-rb/tropicalrb-2029/event.yml")
+    venue_file_path = File.join(destination_root, "data/tropical-rb/tropicalrb-2029/venue.yml")
+
+    Rails::Generators.invoke "event", [
+      "--event-series", "tropical-rb",
+      "--event", "tropicalrb-2029",
+      "--title", "Tropical on Rails",
+      "--start-date", "2029-07-15",
+      "--end-date", "2029-07-17"
+    ], behavior: :invoke, destination_root: destination_root
+
+    run_generator ["--force", # Force file creation
+      "--event-series", "tropical-rb",
+      "--event", "tropicalrb-2029",
+      "--name", "Pullman Auditorium"]
+
+    skip "Not yet implemented"
+    assert_file event_file_path do |content|
+      assert_match(/latitude: -23.59572/, content)
+      assert_match(/longitude: -46.68448/, content)
+    end
+  ensure
+    File.delete event_file_path if File.exist?(event_file_path)
+    File.delete venue_file_path if File.exist?(venue_file_path)
+  end
+
   def validate_venue_schema(file_path)
     validator = Static::Validators::Schema.new(file_path: file_path)
     assert_empty validator.errors, "Venue YAML does not conform to schema: #{validator.errors.map { |e| e.to_h["message"] }.join(", ")}"

@@ -28,7 +28,11 @@ class EventGenerator < Generators::EventBase
       "online"
     else
       @geocoded_address = geocode_address(name: options[:venue_name], address: options[:venue_address] || options[:location])
-      options[:location].presence || [@geocoded_address.city, @geocoded_address.state, @geocoded_address.country_code].compact.join(", ").presence || "Earth"
+      options[:location].presence || [@geocoded_address&.city, @geocoded_address&.state, @geocoded_address&.country_code].compact.join(", ").presence || "Earth"
+      @coordinates = if @geocoded_address
+        {latitude: @geocoded_address.latitude,
+         longitude: @geocoded_address.longitude}
+      end
     end
     @timezone = options[:timezone] || "UTC"
   end
