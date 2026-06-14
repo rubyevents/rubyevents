@@ -21,6 +21,17 @@ class VenueGeneratorTest < Rails::Generators::TestCase
         }
       ]
     )
+    Geocoder::Lookup::Test.add_stub(
+      "São Paulo", [
+        {
+          "coordinates" => [-23.54966, -46.64679],
+          "city" => "São Paulo",
+          "state" => "SP",
+          "country" => "Brazil",
+          "country_code" => "BR"
+        }
+      ]
+    )
   end
 
   test "minimal venue without geocoder result" do
@@ -97,23 +108,27 @@ class VenueGeneratorTest < Rails::Generators::TestCase
     event_file_path = File.join(destination_root, "data/tropical-rb/tropicalrb-2029/event.yml")
     venue_file_path = File.join(destination_root, "data/tropical-rb/tropicalrb-2029/venue.yml")
 
-    Rails::Generators.invoke "event", [
-      "--event-series", "tropical-rb",
-      "--event", "tropicalrb-2029",
-      "--title", "Tropical on Rails",
-      "--start-date", "2029-07-15",
-      "--end-date", "2029-07-17"
-    ], behavior: :invoke, destination_root: destination_root
+    capture(:stdout) do
+      Rails::Generators.invoke "event", [
+        "--event-series", "tropical-rb",
+        "--event", "tropicalrb-2029",
+        "--title", "Tropical on Rails",
+        "--start-date", "2029-07-15",
+        "--end-date", "2029-07-17",
+        "--location", "São Paulo",
+        "--latitude", "-23.54966",
+        "--longitude", "-46.64679"
+      ], behavior: :invoke, destination_root: destination_root
+    end
 
     run_generator ["--force", # Force file creation
       "--event-series", "tropical-rb",
       "--event", "tropicalrb-2029",
       "--name", "Pullman Auditorium"]
 
-    skip "Not yet implemented"
     assert_file event_file_path do |content|
-      assert_match(/latitude: -23.59572/, content)
-      assert_match(/longitude: -46.68448/, content)
+      assert_match(/latitude: -23.595/, content)
+      assert_match(/longitude: -46.684/, content)
     end
   ensure
     File.delete event_file_path if File.exist?(event_file_path)

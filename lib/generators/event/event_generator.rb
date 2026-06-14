@@ -38,8 +38,8 @@ class EventGenerator < Generators::EventBase
     else
       @geocoded_address = geocode_address(name: options[:venue_name], address: options[:venue_address] || options[:location])
       @coordinates = {
-        latitude: options[:latitude] || @geocoded_address.latitude,
-        longitude: options[:longitude] || @geocoded_address.longitude
+        latitude: options[:latitude] || @geocoded_address&.latitude,
+        longitude: options[:longitude] || @geocoded_address&.longitude
       }
       options[:location].presence || [@geocoded_address&.city, @geocoded_address&.state, @geocoded_address&.country_code].compact.join(", ").presence || "Earth"
     end
