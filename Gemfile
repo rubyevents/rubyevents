@@ -184,9 +184,6 @@ gem "frozen_record", "~> 0.27.2"
 # ActiveRecord soft-deletes done right
 gem "discard"
 
-# Makes consuming restful web services dead easy.
-gem "httparty"
-
 # Use OmniAuth to support multi-provider authentication [https://github.com/omniauth/omniauth]
 gem "omniauth"
 
