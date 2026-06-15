@@ -57,8 +57,7 @@ namespace :validate do
   def validate_venue_files
     validate_files(
       files: Dir.glob(Rails.root.join("data/**/venue.yml")),
-      validators: [
-      ],
+      validators: [],
       success_message: "✓ All venue.yml files passed validations!"
     )
   end
