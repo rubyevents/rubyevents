@@ -229,6 +229,12 @@ gem "typesense", "~> 4.1"
 # Typesense integration to your favorite ORM
 gem "typesense-rails", "~> 1.0.0.rc4"
 
+# A ruby implementation of the iCalendar specification (RFC-5545).
+gem "icalendar", "~> 2.12"
+
+# FastImage finds the size or type of an image given its uri by fetching as little as needed.
+gem "fastimage", "~> 2.4"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "bundler-audit", require: false
@@ -250,17 +256,11 @@ group :development do
   # For call-stack profiling flamegraphs
   gem "stackprof"
 
-  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
-
   # Use listen to watch files for changes [https://github.com/guard/listen]
   gem "listen", "~> 3.5"
 
   # Guard for watching file changes and auto-importing [https://github.com/guard/guard]
   gem "guard"
-
-  # Benchmark is no longer included in the standard lib - used for benchmarking
-  gem "benchmark"
 
   gem "ruby-lsp-rails", require: false
   gem "standardrb", "~> 1.0", require: false
@@ -276,7 +276,3 @@ group :test do
   gem "vcr", "~> 6.1"
   gem "webmock"
 end
-
-gem "icalendar", "~> 2.12"
-
-gem "fastimage", "~> 2.4"
