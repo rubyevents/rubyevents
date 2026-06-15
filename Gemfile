@@ -181,9 +181,6 @@ gem "commonmarker", ">= 2.6.1"
 # ActiveRecord like interface to read only access and query static YAML files
 gem "frozen_record", "~> 0.27.2"
 
-# A convenient way to diff string in ruby
-gem "diffy"
-
 # ActiveRecord soft-deletes done right
 gem "discard"
 

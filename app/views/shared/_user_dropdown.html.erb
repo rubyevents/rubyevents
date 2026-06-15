@@ -36,7 +36,6 @@
     <% c.with_menu_item_link_to "My Profile", profile_path(Current.user) %>
     <% c.with_menu_item_link_to "Settings", settings_path %>
     <% if Current.user&.admin? %>
-      <% c.with_menu_item_link_to "Suggestions", admin_suggestions_path %>
       <% c.with_menu_item_link_to t("admin"), avo_path %>
       <% c.with_menu_item_divider %>
     <% end %>

@@ -30,9 +30,13 @@ class ProfilesController < ApplicationController
 
   # PATCH/PUT /profiles/:slug
   def update
-    suggestion = @user.create_suggestion_from(params: user_params, user: Current.user)
-    if suggestion.persisted?
-      redirect_to profile_path(@user), notice: suggestion.notice
+    unless @user.managed_by?(Current.user)
+      redirect_to profile_path(@user), alert: "Not authorized"
+      return
+    end
+
+    if @user.update(user_params)
+      redirect_to profile_path(@user), notice: "Profile updated!"
     else
       render :edit, status: :unprocessable_entity
     end

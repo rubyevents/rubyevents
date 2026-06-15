@@ -54,7 +54,6 @@ class User < ApplicationRecord
   include ActionView::RecordIdentifier
   include Geocodeable
   include Sluggable
-  include Suggestable
 
   include User::SQLiteFTSSearchable
   include User::TypesenseSearchable
@@ -481,16 +480,6 @@ class User < ApplicationRecord
 
   def primary_speaker
     canonical || self
-  end
-
-  def suggestion_summary
-    <<~HEREDOC
-      Speaker: #{name}
-      github_handle: #{github_handle}
-      twitter: #{twitter}
-      website: #{website}
-      bio: #{bio}
-    HEREDOC
   end
 
   def to_mobile_json(request)
