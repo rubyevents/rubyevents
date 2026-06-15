@@ -153,9 +153,6 @@ gem "active_job-performs"
 # Use the OpenAI API with Ruby!
 gem "ruby-openai"
 
-# Repairs broken JSON strings.
-gem "json-repair", "~> 0.2.0"
-
 # Markdown that smells nice
 gem "redcarpet", "~> 3.6"
 
