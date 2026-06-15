@@ -5,18 +5,16 @@
 #
 #  id           :integer          not null, primary key
 #  discarded_at :datetime
-#  speaker_name :string           uniquely indexed => [talk_id]
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  talk_id      :integer          not null, uniquely indexed => [user_id], uniquely indexed => [speaker_name], indexed
-#  user_id      :integer          uniquely indexed => [talk_id], indexed
+#  talk_id      :integer          not null, indexed, uniquely indexed => [user_id]
+#  user_id      :integer          not null, indexed, uniquely indexed => [talk_id]
 #
 # Indexes
 #
-#  idx_user_talks_linked_unique    (talk_id,user_id) UNIQUE WHERE user_id IS NOT NULL
-#  idx_user_talks_unlinked_unique  (talk_id,speaker_name) UNIQUE WHERE speaker_name IS NOT NULL
-#  index_user_talks_on_talk_id     (talk_id)
-#  index_user_talks_on_user_id     (user_id)
+#  index_user_talks_on_talk_id              (talk_id)
+#  index_user_talks_on_user_id              (user_id)
+#  index_user_talks_on_user_id_and_talk_id  (user_id,talk_id) UNIQUE
 #
 # Foreign Keys
 #
