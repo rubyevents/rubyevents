@@ -163,7 +163,7 @@ group :avo, optional: true do
   gem "avo-pro", source: "https://packager.dev/avo-hq/"
 end
 
-# Avo 3.x depends on this
+# Avo 3.x depends on this
 gem "ferrum", "~> 0.17.2"
 
 # Marksmith is a GitHub-style markdown editor for Ruby on Rails applications.
