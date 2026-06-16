@@ -525,9 +525,6 @@ GEM
     omniauth-oauth2 (1.9.0)
       oauth2 (>= 2.0.2, < 3)
       omniauth (~> 2.0)
-    omniauth-rails_csrf_protection (2.0.1)
-      actionpack (>= 4.2)
-      omniauth (~> 2.0)
     openssl (4.0.1)
     ostruct (0.6.3)
     pagy (9.4.0)
@@ -843,7 +840,6 @@ DEPENDENCIES
   mission_control-jobs
   omniauth
   omniauth-github
-  omniauth-rails_csrf_protection
   openssl
   ostruct
   pagy

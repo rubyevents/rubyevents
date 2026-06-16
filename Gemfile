@@ -181,9 +181,6 @@ gem "omniauth"
 # Official OmniAuth strategy for GitHub.
 gem "omniauth-github"
 
-# Provides a mitigation against CVE-2015-9284 [https://github.com/cookpad/omniauth-rails_csrf_protection]
-gem "omniauth-rails_csrf_protection"
-
 # An accessible autocomplete for Ruby on Rails apps using Hotwire.
 gem "hotwire_combobox", "~> 0.4.0"
 
