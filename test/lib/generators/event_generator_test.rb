@@ -6,16 +6,32 @@ class EventGeneratorTest < Rails::Generators::TestCase
   tests EventGenerator
   destination Rails.root.join("tmp/generators/event")
 
+  setup do
+    Geocoder::Lookup::Test.set_default_stub([])
+    Geocoder::Lookup::Test.add_stub(
+      "Pullman Auditorium", [
+        {
+          "coordinates" => [-23.59572, -46.68448],
+          "address" => "R. Olimpíadas, 205 - Vila Olímpia, São Paulo - SP, 04551-000",
+          "city" => "São Paulo",
+          "state" => "SP",
+          "country" => "Brazil",
+          "country_code" => "BR",
+          "postal_code" => "04551-000",
+          "street_address" => "R. Olimpíadas, 205"
+        }
+      ]
+    )
+  end
+
   test "minimal event passes schema validation" do
-    run_generator [
-      "--force", # Force file creation
+    run_generator ["--force", # Force file creation
       "--event-series", "rubyconf",
       "--event", "2028",
       "--title", "RubyConf 2028",
       "--start-date", "2028-11-13",
       "--end-date", "2028-11-15",
-      "--online"
-    ]
+      "--online"]
 
     event_file_path = File.join(destination_root, "data/rubyconf/2028/event.yml")
     validate_event_schema event_file_path
@@ -33,8 +49,7 @@ class EventGeneratorTest < Rails::Generators::TestCase
   end
 
   test "event with all flags passes schema validation" do
-    run_generator [
-      "--force", # Force file creation
+    run_generator ["--force", # Force file creation
       "--event-series", "rubyconf",
       "--event", "2027",
       "--title", "RubyConf 2027",
@@ -46,8 +61,7 @@ class EventGeneratorTest < Rails::Generators::TestCase
       "--website", "https://example.com/rubyconf-2027",
       "--last-edition",
       "--timezone", "America/Chicago",
-      "--online"
-    ]
+      "--online"]
 
     event_file_path = File.join(destination_root, "data/rubyconf/2027/event.yml")
     validate_event_schema event_file_path
@@ -70,43 +84,56 @@ class EventGeneratorTest < Rails::Generators::TestCase
     cleanup_event_directory("2027")
   end
 
-  test "event with venue-name and venue-address creates venue.yml" do
-    geocoded_address = Generators::EventBase::GeocodedAddress.new(
-      street_address: "123 Main St",
-      city: "Test City",
-      state: "TS",
-      postal_code: "12345",
-      country: "Testland",
-      country_code: "TL",
-      latitude: 1.23,
-      longitude: 4.56
-    )
+  test "event with location and coordinates" do
+    event_file_path = File.join(destination_root, "data/tropical-rb/2028/event.yml")
+    run_generator ["--force", # Force file creation
+      "--event-series", "tropical-rb",
+      "--event", "2028",
+      "--title", "Tropical on Rails 2028",
+      "--start-date", "2028-07-20",
+      "--end-date", "2028-07-22",
+      "--location", "Recife, PE, Brazil",
+      "--latitude", "-8.04756",
+      "--longitude", "-34.877"]
+    validate_event_schema event_file_path
 
-    with_stubbed_geocoder_result(geocoded_address) do
-      run_generator [
-        "--force", # Force file creation
-        "--event-series", "rubyconf",
-        "--event", "2025",
-        "--title", "RubyConf 2025",
-        "--start-date", "2025-11-17",
-        "--end-date", "2025-11-19",
-        "--venue-name", "RubyConf 2025 Venue",
-        "--venue-address", "123 Main St, Test City"
-      ]
+    assert_file event_file_path do |content|
+      assert_match(/coordinates:\n\s+latitude: -8.04756/, content)
+      assert_match(/longitude: -34.877/, content)
     end
+  end
+
+  test "event with venue-name and venue-address creates venue.yml" do
+    run_generator [
+      "--force", # Force file creation
+      "--event-series", "rubyconf",
+      "--event", "2025",
+      "--title", "RubyConf 2025",
+      "--start-date", "2025-11-17",
+      "--end-date", "2025-11-19",
+      "--venue-name", "Pullman Auditorium",
+      "--venue-address", "R. Olimpíadas, 205 - Vila Olímpia, São Paulo - SP, 04551-000"
+    ]
 
     event_file_path = File.join(destination_root, "data/rubyconf/2025/event.yml")
     assert_file event_file_path do |content|
       assert_match(/title: "RubyConf 2025"/, content)
-      assert_match(/location: "Test City, TS, TL"/, content)
-      assert_match(/coordinates:\n\s+latitude: 1.23/, content)
-      assert_match(/longitude: 4.56/, content)
+      assert_match(/location: "São Paulo, SP, BR"/, content)
+      assert_match(/coordinates:\n\s+latitude: -23.595/, content)
+      assert_match(/longitude: -46.684/, content)
     end
 
     venue_file_path = File.join(destination_root, "data/rubyconf/2025/venue.yml")
     assert_file venue_file_path do |content|
-      assert_match(/RubyConf 2025 Venue/, content)
-      assert_match(/123 Main St/, content)
+      assert_match(/name: "Pullman Auditorium"/, content)
+      assert_match(/street: "R. Olimpíadas, 205"/, content)
+      assert_match(/city: "São Paulo"/, content)
+      assert_match(/region: "SP"/, content)
+      assert_match(/postal_code: "04551-000"/, content)
+      assert_match(/country: "Brazil"/, content)
+      assert_match(/country_code: "BR"/, content)
+      assert_match(/latitude: -23.59572/, content)
+      assert_match(/longitude: -46.68448/, content)
     end
 
     validate_event_schema event_file_path
@@ -124,16 +151,7 @@ class EventGeneratorTest < Rails::Generators::TestCase
     FileUtils.rm_rf(File.join(destination_root, "data/rubyconf", event_slug))
   end
 
-  def with_stubbed_geocoder_result(result)
-    geocoder_singleton = Geocoder.singleton_class
-    original_search = Geocoder.method(:search)
-
-    geocoder_singleton.send(:define_method, :search) do |*|
-      [result]
-    end
-
-    yield
-  ensure
-    geocoder_singleton.send(:define_method, :search, original_search)
+  teardown do
+    Geocoder::Lookup::Test.reset
   end
 end

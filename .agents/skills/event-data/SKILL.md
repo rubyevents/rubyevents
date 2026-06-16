@@ -81,6 +81,20 @@ bin/rails g sponsor --help
 
 Generate the sponsor file with appropriate tiers and sponsor names. 
 
+## Generate a Venue file
+
+Review Documentation from docs/ADDING_VENUES.md.
+
+Run `bin/rails g venue --help` to review the available parameters for the VenueGenerator.
+
+Create a command to reproduce the venue.
+
+```bash
+bin/rails g venue --event "sfruby-2026" --name "SF Jazz" \
+  --address "201 Franklin Street San Francisco, CA 94102" \
+  --website "https://www.sfjazz.org/"
+```
+
 ## Speakers
 
 When updating speakers.yml, the structure is:
