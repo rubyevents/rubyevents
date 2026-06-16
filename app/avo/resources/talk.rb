@@ -91,6 +91,7 @@ class Avo::Resources::Talk < Avo::BaseResource
     action Avo::Actions::UpdateFromYml
     action Avo::Actions::TalkIndex
     action Avo::Actions::FetchDuration
+    action Avo::Actions::ValidateThumbnail
   end
 
   def filters
