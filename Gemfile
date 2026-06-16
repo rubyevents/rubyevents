@@ -66,9 +66,6 @@ gem "minisky", "~> 0.4.0"
 # Extract Collaborator Objects from your Active Records, a new concept called Associated Objects
 gem "active_record-associated_object"
 
-# Headless Chrome driver for Capybara
-gem "cuprite"
-
 # A single delightful Ruby way to work with AI.
 gem "ruby_llm", "~> 1.15.0"
 
