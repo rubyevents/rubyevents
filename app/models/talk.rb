@@ -686,7 +686,8 @@ class Talk < ApplicationRecord
       :gameshow
     when /^(podcast:|podcast\ recording:|live\ podcast:).*/i
       :podcast
-    when /.*(q&a|q&a:|q&a\ with|questions\ and\ answers|ruby\ committers\ vs\ the\ world|ruby\ committers\ and\ the\ world).*/i,
+    when /.*(q&a|q&a:|q&a\ with|questions\ and\ answers).*/i,
+        /.*(ruby\ committers\ vs\ the\ world|ruby\ committers\ and\ the\ world).*/i,
         /.*(AMA)$/,
         /^(AMA:)/
       :q_and_a
