@@ -63,9 +63,6 @@ gem "iso-639"
 # A minimal client of Bluesky/ATProto API
 gem "minisky", "~> 0.4.0"
 
-# Extract Collaborator Objects from your Active Records, a new concept called Associated Objects
-gem "active_record-associated_object"
-
 # A single delightful Ruby way to work with AI.
 gem "ruby_llm", "~> 1.15.0"
 
@@ -140,6 +137,9 @@ gem "dry-types", "~> 1.7"
 
 # Protocol Buffers are Google's data interchange format.
 gem "google-protobuf", require: false
+
+# Extract Collaborator Objects from your Active Records, a new concept called Associated Objects
+gem "active_record-associated_object"
 
 # ActiveJob::Performs adds the `performs` macro to set up jobs by convention.
 gem "active_job-performs"
