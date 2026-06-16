@@ -153,9 +153,6 @@ gem "active_job-performs"
 # Use the OpenAI API with Ruby!
 gem "ruby-openai"
 
-# Repairs broken JSON strings.
-gem "json-repair", "~> 0.2.0"
-
 # Markdown that smells nice
 gem "redcarpet", "~> 3.6"
 
@@ -183,9 +180,6 @@ gem "frozen_record", "~> 0.27.2"
 
 # ActiveRecord soft-deletes done right
 gem "discard"
-
-# Makes consuming restful web services dead easy.
-gem "httparty"
 
 # Use OmniAuth to support multi-provider authentication [https://github.com/omniauth/omniauth]
 gem "omniauth"
@@ -265,7 +259,6 @@ group :development do
   gem "ruby-lsp-rails", require: false
   gem "standardrb", "~> 1.0", require: false
   gem "erb_lint", require: false
-  gem "authentication-zero", require: false
 end
 
 group :test do
