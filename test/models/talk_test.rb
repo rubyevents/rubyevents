@@ -49,7 +49,7 @@ class TalkTest < ActiveSupport::TestCase
       workshop: ["Workshop: Something", "workshop: Something"],
       gameshow: ["Gameshow", "Game Show", "Gameshow: Something", "Game Show: Something"],
       podcast: ["Podcast: Something", "Podcast Recording: Something", "Live Podcast: Something"],
-      q_and_a: ["Q&A", "Q&A: Something", "Something AMA", "Q&A with Somebody", "Ruby Committers vs The World", "Ruby Committers and the World", "AMA: Rails Core"],
+      q_and_a: ["Q&A", "Q&A: Something", "Something AMA", "Q&A with Somebody", "Ruby Committers vs The World", "Ruby Committers and the World", "AMA: Rails Core", "Questions and Answers", "Questions and Answers: Something", "Questions and Answers with Matz"],
       discussion: ["Discussion: Something", "Discussion", "Fishbowl: Topic", "Fishbowl Discussion: Topic"],
       fireside_chat: ["Fireside Chat: Something", "Fireside Chat"],
       interview: ["Interview with Matz", "Interview: Something"],
