@@ -13,3 +13,8 @@ Timezone:
 Name: 
 Address: 
 Website:
+
+# Sponsors
+
+Name | Website | Logo Url | Tier
+---|---|---|---
