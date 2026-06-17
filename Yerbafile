@@ -1,19 +1,28 @@
+files: "data/**/*.yml"
+
+pipeline:
+  - directives:
+      ensure: true
+
+  - collection_style:
+      style: block
+
+  - sequence_indent:
+      style: indented
+
+  - quote_style:
+      key_style: plain
+      value_style: double
+
 rules:
   - files: "data/**/event.yml"
     pipeline:
       - schema:
           file: "lib/schemas/event_schema.json"
 
-      - directives:
-          ensure: true
-
       - quote_style:
           path: "description"
           value_style: literal
-
-      - quote_style:
-          key_style: plain
-          value_style: double
 
       - blank_lines:
           count: 0
@@ -72,13 +81,6 @@ rules:
           file: "lib/schemas/involvement_schema.json"
           path: "[]"
 
-      - directives:
-          ensure: true
-
-      - quote_style:
-          key_style: plain
-          value_style: double
-
       - quote_style:
           path: "[].users"
           value_style: plain
@@ -88,26 +90,13 @@ rules:
           value_style: plain
 
   - files: "data/topics.yml"
-    pipeline:
-      - directives:
-          ensure: true
-
-      - quote_style:
-          key_style: plain
-          value_style: double
+    pipeline: []
 
   - files: "data/**/cfp.yml"
     pipeline:
       - schema:
           file: "lib/schemas/cfp_schema.json"
           path: "[]"
-
-      - directives:
-          ensure: true
-
-      - quote_style:
-          key_style: plain
-          value_style: double
 
       - sort_keys:
           order:
@@ -122,25 +111,11 @@ rules:
           file: "lib/schemas/featured_city_schema.json"
           path: "[]"
 
-      - directives:
-          ensure: true
-
-      - quote_style:
-          key_style: plain
-          value_style: double
-
   - files: "data/**/sponsors.yml"
     pipeline:
       - schema:
           file: "lib/schemas/sponsors_schema.json"
           path: "[]"
-
-      - directives:
-          ensure: true
-
-      - quote_style:
-          key_style: plain
-          value_style: double
 
       - blank_lines:
           path: "[].tiers"
@@ -155,24 +130,10 @@ rules:
       - schema:
           file: "lib/schemas/venue_schema.json"
 
-      - directives:
-          ensure: true
-
-      - quote_style:
-          key_style: plain
-          value_style: double
-
   - files: "data/**/schedule.yml"
     pipeline:
       - schema:
           file: "lib/schemas/schedule_schema.json"
-
-      - directives:
-          ensure: true
-
-      - quote_style:
-          key_style: plain
-          value_style: double
 
       - blank_lines:
           path: "days"
@@ -186,13 +147,6 @@ rules:
     pipeline:
       - schema:
           file: "lib/schemas/series_schema.json"
-
-      - directives:
-          ensure: true
-
-      - quote_style:
-          key_style: plain
-          value_style: double
 
       - quote_style:
           path: "aliases[]"
@@ -234,13 +188,6 @@ rules:
       - schema:
           file: "lib/schemas/video_schema.json"
           path: "[]"
-
-      - directives:
-          ensure: true
-
-      - quote_style:
-          key_style: plain
-          value_style: double
 
       - quote_style:
           path: "[].speakers"
@@ -355,13 +302,6 @@ rules:
       - schema:
           file: "lib/schemas/speaker_schema.json"
           path: "[]"
-
-      - directives:
-          ensure: true
-
-      - quote_style:
-          key_style: plain
-          value_style: double
 
       - sort_keys:
           path: "[]"
