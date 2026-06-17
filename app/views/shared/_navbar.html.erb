@@ -38,9 +38,6 @@
               <%= render Ui::AvatarComponent.new(Current.user, size: :sm, size_class: "w-7", outline: true) %>
             <% end %>
           </li>
-          <li class="flex items-center">
-            <%= render "shared/user_dropdown" %>
-          </li>
         <% end %>
 
         <% signed_out do %>
@@ -48,6 +45,10 @@
             <%= link_to "Sign in", new_session_path(redirect_to: request.fullpath), data: {turbo_frame: "modal"}, class: "btn btn-primary" %>
           </li>
         <% end %>
+
+        <li class="flex items-center">
+          <%= render "shared/user_dropdown" %>
+        </li>
       </ul>
 
       <div class="flex lg:hidden gap-2 items-center">

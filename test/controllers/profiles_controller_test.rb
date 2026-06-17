@@ -50,41 +50,30 @@ class ProfilesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_url
   end
 
-  test "should create a suggestion for user" do
-    patch profile_url(@user), params: {user: {bio: "new bio", github: "new-github", name: "new-name", slug: "new-slug", twitter: "new-twitter", website: "new-website"}}
-
-    @user.reload
+  test "anonymous user cannot update a profile" do
+    patch profile_url(@user), params: {user: {bio: "new bio"}}
 
     assert_redirected_to profile_url(@user)
-    assert_not_equal @user.reload.bio, "new bio"
-    assert_equal 1, @user.suggestions.pending.count
+    assert_not_equal "new bio", @user.reload.bio
   end
 
-  test "admin can update directly the user" do
-    assert_equal 0, @user.suggestions.pending.count
+  test "admin can update the user" do
     sign_in_as users(:admin)
-    patch profile_url(@user), params: {user: {bio: "new bio", github: "new-github", name: "new-name", twitter: "new-twitter", website: "new-website"}}
-
-    @user.reload
+    patch profile_url(@user), params: {user: {bio: "new bio", twitter: "new-twitter", website: "new-website"}}
 
     assert_redirected_to profile_path(@user)
     assert_equal "new bio", @user.reload.bio
-    assert_equal 0, @user.suggestions.pending.count
-    assert_equal users(:admin).id, @user.suggestions.last.suggested_by_id
   end
 
-  test "owner can update the user directly" do
+  test "owner can update their profile" do
     sign_in_as @user
 
-    assert_no_changes -> { @user.suggestions.pending.count } do
-      patch profile_url(@user), params: {user: {bio: "new bio", twitter: "new-twitter", website: "new-website"}}
-    end
+    patch profile_url(@user), params: {user: {bio: "new bio", twitter: "new-twitter", website: "new-website"}}
 
     assert_redirected_to profile_url(@user)
     assert_equal "new bio", @user.reload.bio
     assert_equal @user.twitter, "new-twitter"
     assert_equal @user.website, "https://new-website"
-    assert_equal @user.id, @user.suggestions.last.suggested_by_id
   end
 
   test "owner cannot update their name" do

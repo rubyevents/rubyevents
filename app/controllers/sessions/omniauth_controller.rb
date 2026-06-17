@@ -3,12 +3,10 @@ class Sessions::OmniauthController < ApplicationController
   skip_before_action :authenticate_user!
 
   def create
-    # This needs to be refactored to be more robust when we have more states
-    if state.present?
-      key, value = state.split(":")
-      connect_id = (key == "connect_id") ? value : nil
-      connect_to = (key == "connect_to") ? value : nil
-    end
+    state_values = parse_state(state)
+    connect_id = state_values["connect_id"]
+    connect_to = state_values["connect_to"]
+    native_platform = state_values["native"]
 
     connected_account = ConnectedAccount.find_or_initialize_by(provider: omniauth.provider, username: omniauth_username&.downcase)
 
@@ -41,12 +39,17 @@ class Sessions::OmniauthController < ApplicationController
       @user.update(name: omniauth_params[:name]) if omniauth_params[:name].present?
       @user.watched_talk_seeder.seed_development_data if Rails.env.development?
 
-      sign_in @user
-
-      if connect_id.present?
-        redirect_to profile_path(@user), notice: "🙌 Congrats you claimed your passport"
+      if native_platform.present?
+        signin_token = @user.signed_id(purpose: :native_signin, expires_in: 60.seconds)
+        redirect_to "rubyevents://auth/#{omniauth.provider}/callback?token=#{signin_token}", allow_other_host: true
       else
-        redirect_to redirect_to_path, notice: "Signed in successfully"
+        sign_in @user
+
+        if connect_id.present?
+          redirect_to profile_path(@user), notice: "🙌 Congrats you claimed your passport"
+        else
+          redirect_to redirect_to_path, notice: "Signed in successfully"
+        end
       end
     else
       redirect_to new_session_path, alert: "Authentication failed"
@@ -58,6 +61,14 @@ class Sessions::OmniauthController < ApplicationController
   end
 
   private
+
+  def parse_state(state)
+    return {} if state.blank?
+    state.split("|").each_with_object({}) do |pair, hash|
+      key, value = pair.split(":", 2)
+      hash[key] = value if key.present?
+    end
+  end
 
   def omniauth_username
     omniauth_params[:username]

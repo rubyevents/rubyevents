@@ -21,9 +21,9 @@ location: "<%= @location %>"
 <%- if @timezone -%>
 timezone: "<%= @timezone %>"
 <%- end -%>
-coordinates:<%- if options[:online] -%>
+coordinates:<%- if options[:online] || @coordinates.nil? -%>
  false
 <% else %>
-  latitude: <%= @geocoded_address.latitude %>
-  longitude: <%= @geocoded_address.longitude %>
+  latitude: <%= @coordinates[:latitude] %>
+  longitude: <%= @coordinates[:longitude] %>
 <%- end -%>

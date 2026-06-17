@@ -29,7 +29,11 @@ Rails.application.routes.draw do
   get "/auth/failure", to: "sessions/omniauth#failure"
   get "/auth/:provider/callback", to: "sessions/omniauth#create"
   post "/auth/:provider/callback", to: "sessions/omniauth#create"
-  resources :sessions, only: [:new, :create, :destroy]
+  resources :sessions, only: [:new, :create, :destroy] do
+    collection do
+      get :exchange
+    end
+  end
 
   resource :password, only: [:edit, :update]
   resource :settings, only: [:show, :update]
@@ -232,7 +236,7 @@ Rails.application.routes.draw do
 
   resources :favorite_users, only: [:index, :create, :destroy, :update]
 
-  resources :events, param: :slug, only: [:index, :show, :update, :edit] do
+  resources :events, param: :slug, only: [:index, :show] do
     resources :event_participations, only: [:create, :destroy]
 
     post :reimport, on: :member
@@ -309,14 +313,6 @@ Rails.application.routes.draw do
   resources :recommendations, only: [:index]
 
   get "leaderboard", to: "leaderboard#index"
-
-  # admin
-  authenticate :admin do
-    namespace :admin do
-      resources :suggestions, only: %i[index update destroy]
-    end
-  end
-
   get "/sitemap.xml", to: "sitemaps#show", defaults: {format: "xml"}
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -336,6 +332,9 @@ Rails.application.routes.draw do
     namespace :native do
       namespace :v1 do
         get "home", to: "/page#home", defaults: {format: "json"}
+        resource :refresh, only: :show, controller: "refresh"
+        resource :oauth, only: :show, controller: "oauth"
+        resources :start, only: :show, param: :provider, controller: "start"
         namespace :android do
           resource :path_configuration, only: :show
         end

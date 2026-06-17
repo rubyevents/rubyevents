@@ -63,7 +63,6 @@
 class Talk < ApplicationRecord
   include Rollupable
   include Sluggable
-  include Suggestable
   include Watchable
 
   include Talk::SQLiteFTSSearchable
@@ -265,13 +264,6 @@ class Talk < ApplicationRecord
 
   def orphaned?
     static_id.blank? || self.class.all_static_ids.exclude?(static_id)
-  end
-
-  def managed_by?(visiting_user)
-    return false unless visiting_user.present?
-    return true if visiting_user.admin?
-
-    users.exists?(id: visiting_user.id)
   end
 
   def published?
@@ -671,14 +663,6 @@ class Talk < ApplicationRecord
     @static_metadata ||= Static::Video.find_by_static_id(static_id)
   end
 
-  def suggestion_summary
-    <<~HEREDOC
-      Talk: #{title} (#{date})
-      by #{speakers.map(&:name).to_sentence}
-      at #{event.name}
-    HEREDOC
-  end
-
   def set_kind
     if static_metadata && static_metadata.kind.present?
       unless static_metadata.kind.in?(Talk.kinds.keys)
@@ -702,7 +686,8 @@ class Talk < ApplicationRecord
       :gameshow
     when /^(podcast:|podcast\ recording:|live\ podcast:).*/i
       :podcast
-    when /.*(q&a|q&a:|q&a\ with|ruby\ committers\ vs\ the\ world|ruby\ committers\ and\ the\ world).*/i,
+    when /.*(q&a|q&a:|q&a\ with|questions\ and\ answers).*/i,
+        /.*(ruby\ committers\ vs\ the\ world|ruby\ committers\ and\ the\ world).*/i,
         /.*(AMA)$/,
         /^(AMA:)/
       :q_and_a

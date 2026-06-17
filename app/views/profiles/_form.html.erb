@@ -61,11 +61,6 @@
 
   <div class="flex items-center gap-4 justify-end">
     <%= ui_button "Cancel", data: {action: "click->modal#close"}, role: :button, kind: :ghost %>
-
-    <% if user.managed_by?(Current.user) %>
-      <%= ui_button "Update profile", type: :submit %>
-    <% else %>
-      <%= ui_button "Suggest modifications", type: :submit %>
-    <% end %>
+    <%= ui_button "Update profile", type: :submit %>
   </div>
 <% end %>

@@ -56,8 +56,7 @@ class ContributionsController < ApplicationController
   end
 
   def speakers_without_github
-    speaker_ids_with_pending_github_suggestions = Suggestion.pending.where("json_extract(content, '$.github') IS NOT NULL").where(suggestable_type: "Speaker").pluck(:suggestable_id)
-    @speakers_without_github = User.speakers.canonical.without_github.order(talks_count: :desc).where.not(id: speaker_ids_with_pending_github_suggestions)
+    @speakers_without_github = User.speakers.canonical.without_github.order(talks_count: :desc)
   end
 
   def talks_without_slides
