@@ -15,9 +15,6 @@
     Rack is a super simple, yet a very versatile tool to implement web servers in Ruby. It beats under the hood of #Rails, but it can do much more. The socket hijacking has been implemented into Rack to support WebSockets by bypassing the middleware and so not blocking the worker threads. Together with the HTTP Upgrade requests, this can be used to send regular TCP traffic through an open HTTP connection. This talk is about leveraging socket hijacking to smuggle an SSH connection through an HTTP session using Rack. All this by using Ruby, a language that's not ideal for doing concurrency and IO.
 
     Warning: your infosec team already does not like me, but I have some cute stickers.
-
-
-    Video Partner – iTechArt https://www.itechart.by
   speakers:
     - David Halasz
 
@@ -34,8 +31,6 @@
     We are experienced developers. Yet, when we deal with big codebases, we often feel that we don't fully control the situation. The question is what's missing? What is this mysterious thing? 
 
     We continuously learn new things, try new frameworks and approaches, but it doesn't really help. Let's talk why is it happening and how to reclaim the sense of control back.
-
-    Video Partner – iTechArt https://www.itechart.by
   speakers:
     - Ivan Nemytchenko
 
@@ -52,8 +47,6 @@
     On our way to scalability in SoftSwiss we discovered that our beloved RabbitMQ does not want to play by new rules. So we turn our heads towards #ApacheKafka, stream-processing platform developed to withhold hundreds of thousands messages per second. 
 
     In this talk I'll briefly discuss Kafka's architecture, show how we spin it up in production (and which problems we encountered) and talk about future challenges our product have to solve to fully encorporate high-availability mindset.
-
-    Video Partner – iTechArt https://www.itechart.by
   speakers:
     - Nick Grysimov
 
@@ -85,8 +78,6 @@
         Event Driven IoT Architectures
 
     Serverless Ruby opens a world of possibilities for Ruby programmers.
-
-    Video Partner – iTechArt https://www.itechart.by
   speakers:
     - Tung Nguyen
 
@@ -107,8 +98,6 @@
     I strongly believe that the ability of implementing business logic, separated from the framework, separated from the persistence mechanism, separated from any library - is crucial to the success of many business projects. 
 
     During the talk I want to take you for this journey with me and leave you with new knowledge that you can apply in your codebase immediately.
-
-    Video Partner – iTechArt https://www.itechart.by
   speakers:
     - Andrzej Krzywda
 
@@ -143,8 +132,6 @@
     Have you ever heard about data consistency problems within the multi-service architecture? That problem could be solved using Sagas design pattern. In fact, it's quite hard to implement. 
 
     Want to know how? Welcome on board, young magicians!
-
-    Video Partner – iTechArt https://www.itechart.by
   speakers:
     - Sergey Dolganov
 
@@ -210,8 +197,6 @@
     rendering is handled in #Rails. This will include the process by which views are compiled, cached, and rendered. We'll learn how much memory they are found, how much memory they use, and more importantly how we can speed them up.
 
     Audience members should expect to leave with more information about Rails internals along with development techniques that they can use in their applications today!
-
-    Video Partner – iTechArt https://www.itechart.by
   speakers:
     - Aaron Patterson
 
@@ -235,8 +220,6 @@
     One-off requests like these are probably fine, but occasionally they can be so numerous that you end up spending a significant amount of your time dealing with incoming requests. (You have more interesting stuff to do!) Ideally, business stakeholders themselves would be able to figure out why that calculation result is so high, and would be able to change the factors themselves.
 
     The implementation of the algorithm is in code – and it is typically not feasible to let business stakeholders handle code. (They have more interesting stuff to do!) We can move the algorithm's implementation out of code and into data… and that yields us a bunch of interesting advantages. 
-
-    Video Partner – iTechArt https://www.itechart.by
   speakers:
     - Denis Defreyne
 
@@ -253,7 +236,5 @@
     Do you like hacking? For the first time, you will be able to do this during a talk! 
 
     In this talk, Ana will drive the biggest mobprogramming session ever. We all will write code live together to send a PR to an open source #Ruby or #Rails project. The project we choose, what we implement and the code we write is up to you! More than 200 developers and 45 minutes to select a task, implement it and send a working code upstream may sound impossible. Even if we don't manage, we will learn from each other a ton about open source, git, Ruby and RoR.
-
-    Video Partner – iTechArt https://www.itechart.by
   speakers:
     - Ana María Martínez Gómez

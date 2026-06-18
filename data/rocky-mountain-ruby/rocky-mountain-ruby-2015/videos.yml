@@ -96,7 +96,6 @@
   video_provider: "youtube"
   video_id: "XZNfQTw1IVw"
   description: |-
-    By Terence Lee
     Ruby is a great language for building CLIs. There’s an amazing selection of existing libraries like Thor, GLI, or even OptionParser. You probably use a number of Ruby tools everyday like chef, the heroku toolbelt, , and of course the rails command line tool. Though it’s easy to build a Ruby CLI, distributing it to end users is much more complicated because it requires a Ruby runtime. One option is to rely on Ruby being already installed on the end user’s computer. The other is to bundle ruby as part of the distribution package. Both of these are problematic so much that Vagrant, CloudFoundry and hub (Github command-line tool) have all switched over to Go. But there’s still hope! In 2012, Matz started working on a lightweight embeddable ruby called mruby. Since mruby is designed for being embedded in other compiled languages, it also solves the distribution problem. In this talk we’ll look how we can write CLI tools using mruby to produce a self-contained binary that can be shipped to end users.
   speakers:
     - Terence Lee

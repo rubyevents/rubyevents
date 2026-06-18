@@ -487,8 +487,6 @@
   video_provider: "youtube"
   video_id: "BlFtNc76x9Q"
   description: |-
-    Civic Hacking on Rails by William Jeffries
-
     Do you want to use your coding skills for good rather than for evil? Did you ever want to build something to make your city or your community suck less? Here are some lessons from a civic hacker on how to kickstart your project. Hint: it's nothing like writing a gem.
   speakers:
     - William Jeffries
@@ -502,8 +500,6 @@
   video_provider: "youtube"
   video_id: "8p10bGFM9dg"
   description: |-
-    By Pete Holiday, Kate Harlan and Nate Ranson
-
     Do Users Love Your API? Developer-focused API Design
   speakers:
     - Pete Holiday
@@ -519,8 +515,6 @@
   video_provider: "youtube"
   video_id: "yCCtDpW_apk"
   description: |-
-    By Starr Horne
-
     Many people assume that the only way to add interesting charts and visualizations to their web applications is via JavaScript. But this isn't true. You don't need a 900 kB JavaScript library to generate simple charts. Instead you can use SVG and Ruby. Once you learn how to build your own SVG graphics then it's possible to do cool things like cache them, or use your own CSS and JavaScript to manipulate them. This presentation will show you how.
   speakers:
     - Starr Horne
@@ -535,8 +529,6 @@
   video_provider: "youtube"
   video_id: "7zoD6NZy6vY"
   description: |-
-    by Eileen Uchitelle
-
     Contributing to Rails for the first time can be terrifying. In this lab I’ll make contributing to Rails more approachable by going over the contributing guidelines and technical details you need to know. We’ll walk through traversing the source code with tools such as CTags, source_location and TracePoint. Additionally, we’ll create reproduction scripts for reporting issues and learn advanced git commands like bisect and squash. At the end of this session you’ll have the confidence to fix bugs and add features to Ruby on Rails
   speakers:
     - Eileen M. Uchitelle
@@ -550,8 +542,6 @@
   video_provider: "youtube"
   video_id: "Q4ttqkIEM7g"
   description: |-
-    by Jessica Dillon
-
     Working with large CSS codebases can be hard. Large-scale refactors, or even just tweaking styles on our more general elements, could end up having unintended consequences on the rest of the site. To catch these problems, we manually check every page on our site, which is a slow and error-prone approach. We need a better way to test our CSS. This talk will walk through how we implemented a visual CSS testing framework using RSpec & Selenium, using automatic screenshot comparison to catch style regressions.
   speakers:
     - Jessica Dillon
@@ -565,8 +555,6 @@
   video_provider: "youtube"
   video_id: "ouGWyZfGZ8M"
   description: |-
-    by Jeremy Fairbank
-
     When we want to offer customizability to the users of our applications, things can get tricky. How do we allow users to customize the look of the user interface while reusing the static CSS we’ve already designed?
 
     There is a way, but it is fraught with many dangers. Learn about the power of dynamically generating CSS from Sass files. Tackle the foes of dynamic content injection, rendering, caching, and background processing. In the end, we will look triumphantly at our ability to reuse our application styles to create customizable interfaces for our end users.
@@ -582,8 +570,6 @@
   video_provider: "youtube"
   video_id: "JsZ3YmdVMxo"
   description: |-
-    by Daniel Schierbeck
-
     While most parts of Rails have been thoroughly overhauled during the past few years, one part has stubbornly refused improvement. The view layer is still by default using ERB to transform your app’s objects into HTML. While trying to solve a seemingly unrelated problem we discovered a design that suddenly enabled us to move past the limitations of ERB while still integrating closely with Rails. We could now separate presentation logic from display structure; reason about our views and how they relate; and dramatically improve our code. We called the library Curly, and it's pretty awesome.
   speakers:
     - Daniel Schierbeck
@@ -610,8 +596,6 @@
   video_provider: "youtube"
   video_id: "VsVwMrEuaoY"
   description: |-
-    by Daniel Spector
-
     Javascript front-end frameworks like Ember, React and Angular are really useful tools for building out beautiful and seamless UIs. But how do you make it work with Rails? How do you include the framework, share data, avoid expensive repeated network calls in a consistent way?
 
     In this talk we will review a variety of different approaches and look at real world cases for creating a seamless bridge between your Javascript and Rails
@@ -627,8 +611,6 @@
   video_provider: "youtube"
   video_id: "ikhoXFyy85w"
   description: |-
-    by Dennis Ushakov
-
     How does a Ruby debugger look and work on the inside? Is it difficult to write a debugger? Hear the full story of supporting Ruby 2.0 straight from the maintainer of the RubyMine debugger. In this session we'll expose debugger internals, including different APIs used by debuggers; review how they evolved; and look at what it takes to keep the performance of a debugged application at a reasonable level. We'll also talk about alternative implementations including JRuby and Rubinius.
   speakers:
     - Dennis Ushakov
@@ -642,8 +624,6 @@
   video_provider: "youtube"
   video_id: "qSxN4mlyQO8"
   description: |-
-    by Nick Sutterer and J Austin Hughey
-
     Trailblazer introduces several new abstraction layers into Rails. It gives developers structure and architectural guidance and finally answers the question of "Where do I put this kind of code?" in Rails. This talk walks you through a realistic development of a Rails application with Trailblazer and discusses every bloody aspect of it.
   speakers:
     - Nick Sutterer
@@ -658,8 +638,6 @@
   video_provider: "youtube"
   video_id: "V6e_A9VzPy8"
   description: |-
-    by Nick Merwin
-
     When a Fortune 500 company wants to use your app but can't risk sharing sensitive data in the cloud, you'll need to package and deploy an autonomous version of it behind their firewall (aka the Fog). We’ll explore some methods to make this possible including standalone VM provisioning, codebase security, encrypted package distribution, seat based licensing and code updates.
   speakers:
     - Nick Merwin
@@ -777,8 +755,6 @@
   video_provider: "youtube"
   video_id: "3CUTl7vELL4"
   description: |-
-    by Barrett Clark
-
     Rails and the ActiveRecord gem are really handy tools to get work done, and do it quickly. They aren't a silver bullet, though. Sometimes the database is the best place to run a complicated query. Especially when you have big transactional or time-series data. Databases are also incredibly powerful, and can do remarkable things at scale. Why not take advantage of that power?
 
     This talk will discuss some of the things that you can do with PostgreSQL that will both blow your mind and also help you transform data into knowledge. Let's have some fun playing with data together!
@@ -794,8 +770,6 @@
   video_provider: "youtube"
   video_id: "mURhRy9plrY"
   description: |-
-    by Raimonds Simanovskis
-
     Typical Rails applications have database schemas that are designed for on-line transaction processing. But when the data volumes grow then they are not well suited for effective data analysis. You probably need a data warehouse and specialized data analysis tools for that. This presentation will cover * an introduction to a data warehouse and multi-dimensional schema design, * comparison of traditional and analytical databases, * extraction, transformation and load (ETL) of data, * On-Line Analytical Processing (OLAP) tools, Mondrian OLAP engine in particular and how to use it from Ruby.
   speakers:
     - Raimonds Simanovskis
@@ -809,8 +783,6 @@
   video_provider: "youtube"
   video_id: "Pkf-wN-fDHw"
   description: |-
-    by Charles Wood
-
     You may be surprised to know that the things that you learn after talking to hundreds of programmers (mostly about Ruby) is that the lessons you learn are mostly lessons about people. The oddest thing about this is that it's had a very profound effect on the way I write code.
 
     We will walk through the years of podcasting and screencasting shows like Ruby Rogues, Rails Coach, and Teach Me To Code and discuss what we can learn from each other, what I've learned from you, and how that changes who we are and how we code.
@@ -839,8 +811,6 @@
   video_provider: "youtube"
   video_id: "MsRPxS7Cu_Q"
   description: |-
-    by Stephan Hagemann
-
     Component-based Rails helps you regain control over your sprawling Rails application. It helps you structure your new Rails application in a way that it will stay more manageable longer. It helps you think completely differently about writing applications - not just in Ruby and Rails!
 
     This session will help you pass the initial hurdle of getting started with component-based Rails. While there is nothing really new, there is a lot that is just a little different. We will go over those differences so your start with component-based Rails is a smooth one.
@@ -995,8 +965,6 @@
   video_provider: "youtube"
   video_id: "O1UxbZVP6N8"
   description: |-
-    by Christian Joudrey
-
     Shopify is an e-commerce platform that powers over 150,000 online shops such as Tesla and GitHub. During the weekend of Black Friday and Cyber Monday, the platform gets hit with over a million requests per minute resulting in over 6,000 orders per minute (~50 million dollars.)
 
     Learn how we scale our Rails app and the measures we take (load testing, monitoring, caching, etc.) to ensure that there are no hiccups during this important weekend.
@@ -1085,8 +1053,6 @@
   video_provider: "youtube"
   video_id: "j9J7dLaxyog"
   description: |-
-    by Yehuda Katz and Tom Dale
-
     Ruby is a productive language that developers love. When Ruby isn't fast enough, they often fall back to writing C extensions. But C extensions are scary for a number of reasons; it's easy to leak memory, or segfault the entire process. When we started to look at writing parts of the Skylight agent using native code, Rust was still pretty new, but its promise of low-level control with high-level safety intrigued us. We'll cover the reasons we went with Rust, how we structured our code, and how you can do it too. If you're looking to expand your horizons, Rust may be the language for you.
   speakers:
     - Yehuda Katz
@@ -1101,8 +1067,6 @@
   video_provider: "youtube"
   video_id: "lmbT-QyCTZM"
   description: |-
-    by Chandra Carney
-
     What does accessibility entail as it is related to the web? Most developers don't consider that someone with visual impairments may use the web and don't think about what this experience may be like for someone who has a visual impairment. The current trend is to push access-driven design to the end of feature building, but we will explore why this needs to be a top priority.
   speakers:
     - Chandra Carney
@@ -1116,8 +1080,6 @@
   video_provider: "youtube"
   video_id: "dof0EspDPlU"
   description: |-
-    by Chase Douglas
-
     Rails comes with many powerful security protections out of the box, but no code is perfect. This talk will highlight a new approach to web app security, one focusing on a higher level of abstraction than current techniques. We will take a look at current security processes and tools and some common vulnerabilities still found in many Rails apps. Then we will investigate novel ways to protect against these vulnerabilities.
   speakers:
     - Chase Douglas
@@ -1131,8 +1093,6 @@
   video_provider: "youtube"
   video_id: "7cYjoguB-n0"
   description: |-
-    by David Furber
-
     So you are building an app that has a ton of forms each with tons of fields. Your heart sinks as you think of writing and managing all those models, migrations and associations. PostgreSQL JSON column and ActiveRecord::Store to the rescue! This talk covers a way to wrap these Rails 4 features to simplify the building of extensive hierarchical data models. You will learn to expressively declare schema-less attributes on your model that act much like “real" columns, meaning they are typecast, validated, query able, embeddable, and behave with Rails form builders.
   speakers:
     - David Furber
@@ -1146,8 +1106,6 @@
   video_provider: "youtube"
   video_id: "S1F8rVKyqGU"
   description: |-
-    by Sharon Steed
-
     Developers are trained to communicate to things with a goal in mind. When you're talking to something like, say a computer, you type in your code and it responds by giving you back what you want. Simple and straight-forward. Talking to humans? That's more of a challenge. Why? Because communicating with people requires a special set of skills - namely, empathy and a little bit of storytelling. In an industry filled with brilliant minds, great ideas and mass disruption, so few of the best and brightest know how to tell their compelling story. This workshop will teach you how.
   speakers:
     - Sharon Steed
@@ -1641,8 +1599,6 @@
   video_provider: "youtube"
   video_id: "72zRL4LYd7g"
   description: |-
-    by Paola Moretto
-
     Applications today are spidery and include thousands of possible optimization points. No matter how deep performance testing data are, developers are still at a loss when asked to derive meaningful and actionable data that pinpoint to bottlenecks in the application. You know things are slow, but you are left with the challenge of figuring out where to optimize. This presentation describes a new kind of analytics, called performance analytics, that provide tangible ways to root cause performance problems in today’s applications and clearly identify where and what to optimize.
   speakers:
     - Paola Moretto
@@ -1701,7 +1657,6 @@
   video_provider: "youtube"
   video_id: "nYfMDnmmitY"
   description: |-
-    By Jamis Buck
     A gentleman wizard and his sarcastic manservant examine a common anti-pattern in schema design, in which indexes are “left for later”. The pitfalls and dangers of this approach are set forth. Right incantations (which is to say, scenarios and sample code) for battling this devious tendency will be presented, with all magic (that is, “buzz”) words thoroughly demystified and clearly explained. Walk away with a new understanding of why your application tables deserve indexes from day one, and how to make sure you’ve got them covered.
   speakers:
     - Jamis Buck
@@ -1741,8 +1696,6 @@
   video_provider: "youtube"
   video_id: "vvc2mWGvwE0"
   description: |-
-    by Nathen Harvey and Nell Shamrell-Harrington
-
     Managing your infrastructure with configuration management tools like Chef melds the practices of development and operations together. This workshop will focus on a development practice - Test Driven Development - and how that method can be applied to managing your Rails infrastructure and deployments. You will learn how to: Analyze your application and define your infrastructure needs (databases, load balancers, etc.), define unique infrastructure requirements for Rails applications (i.e. asset pipeline), capture your requirements in tests using Test Kitchen, ServerSpec, and other frameworks
   speakers:
     - Nathen Harvey
