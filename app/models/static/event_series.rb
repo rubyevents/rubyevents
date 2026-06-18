@@ -108,7 +108,7 @@ module Static
         website: website || "",
         twitter: twitter || "",
         kind: kind,
-        frequency: frequency,
+        frequency: frequency || "unknown",
         slug: slug,
         language: language || ""
       )
