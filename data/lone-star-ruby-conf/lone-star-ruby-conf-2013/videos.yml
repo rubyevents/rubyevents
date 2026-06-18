@@ -1,11 +1,10 @@
----
 # Website: https://web.archive.org/web/20130829023207/http://www.lonestarruby.org/
 
 # Schedule: https://web.archive.org/web/20130821204939/http://www.lonestarruby.org/2013/lsrc#schedule
 
 # TODO: talks running order
 # TODO: talk date
-
+---
 - id: "avdi-grimm-lonestarruby-conf-2013"
   title: "Closing Keynote: You Gotta Try This"
   raw_title: "LoneStarRuby 2013 - Closing Keynote by Avdi Grimm"
@@ -56,8 +55,6 @@
   video_provider: "youtube"
   video_id: "WxUGrRQtG7Q"
   description: |-
-    By Byron Reese
-
     This talk explores how the widespread proliferation of cheap sensors of all kinds will create a vast collective memory for the planet which will serve as a record of every cause and effect. This data will be scoured for associations that will be turned into algorithms which optimize every decision we have to make in life. And while we may not always choose to do those things, it will effectively make every person on the planet vastly wiser than the wisest person who has ever lived. In the future, no one will ever need to make a mistake again.
   speakers:
     - Byron Reese
@@ -71,9 +68,6 @@
   video_provider: "youtube"
   video_id: "KQwEmdOH-GM"
   description: |-
-    Dave Thomas
-    Elixir: Power of Erlang, Joy of Ruby
-
     I'm a language nut. I love trying them out, and I love thinking about their design and implementation. (I know, it's sad.)
 
     I came across Ruby in 1998 because I was an avid reader of comp.lang.misc (ask your parents). I downloaded it, compiled it, and fell in love. As with any time you fall in love, it's difficult to explain why. It just worked the way I work, and it had enough depth to keep me interested.
@@ -129,11 +123,9 @@
   video_provider: "youtube"
   video_id: "zzv-uv39954"
   description: |-
-    By Corey Ehmke
-
     Rails as a framework is famous for getting an application up and running quickly, but the very paradigms that make it so easy at the start can lead to maintenance nightmares down the road. Successful applications grow rapidly larger, more complex, and harder to extend and maintain. One way to approach refactoring a monolithic application is dividing it up into a series of smaller applications that organize the work of the system through internal APIs and message queues. In this presentation you will be introduced to tools to enable this architecture, gain insight on how best to use them, and explore the guiding principles behind the SOA approach to refactoring.
   speakers:
-    - Coraline Ada Ehmke
+    - Corey Ehmke
 
 - id: "bryan-helmkamp-lonestarruby-conf-2013"
   title: "Building a Culture of Quality"
@@ -192,8 +184,7 @@
   published_at: "2013-08-19"
   video_provider: "youtube"
   video_id: "rffDdYBpyYM"
-  description: |-
-    By Steve Klabnik
+  description: ""
   speakers:
     - Steve Klabnik
 
@@ -222,16 +213,16 @@
 
     In this talk I will cover:
 
-    skills that are important (some I had, others I had to develop)
-    iteration planning
-    testing
-    debugging/support
-    polyglot skills
-    contributing to a team much more skilled than you
-    pair-programming with someone much more senior or junior than you
-    how culture at Mavenlink has helped me succeed
-    what you can do to help onboard and train up your Junior Developers
-    things you should look for in a Junior Developer candidate
+    * skills that are important (some I had, others I had to develop)
+    * iteration planning
+    * testing
+    * debugging/support
+    * polyglot skills
+    * contributing to a team much more skilled than you
+    * pair-programming with someone much more senior or junior than you
+    * how culture at Mavenlink has helped me succeed
+    * what you can do to help onboard and train up your Junior Developers
+    * things you should look for in a Junior Developer candidate
   speakers:
     - Reid Gillette
 
@@ -331,21 +322,20 @@
   video_provider: "youtube"
   video_id: "M-fJIWB5WgY"
   description: |-
-    By Alan Skorkin - Why You Should Love The Command-Line And Get Rid of Your Rake Tasks Once and For All
-
     Rake is ubiquitous in our community, it's in just about every project. But why is this so, it is awkward and inflexible (try passing some arguments to rake tasks), and the way we've come to use it almost encourages bad design. Interestingly we've had a better way, to handle the things that we use Rake for, since before Rake even existed - command-line apps. Apps that do one task and do it well, it's the unix philosophy.
 
     The problem is that as far as most of us know, writing a good command-line app in Ruby is not easy. Fiddling with OptionParser to produce a hacky script is no better than Rake, if anything it is worse. But what if we had the technology to build excellent command-line apps simply and easily? Well, to some extent we already do, but most of the tools available don't go far enough and so never become a viable Rake alternative.
 
     In this talk we'll try to figure out what features a command-line framework needs to become your go-to tool instead of Rake (and how close existing tools are to this ideal). We'll cover things like:
 
-    What exactly is so bad about Rake
-    What makes a good command-line interface
-    Configuring your command-line apps
-    What are your options for parsing options
-    Can a command-line framework encourage good code design?
-    Writing highly testable CLI apps
-    Etc.
+    * What exactly is so bad about Rake
+    * What makes a good command-line interface
+    * Configuring your command-line apps
+    * What are your options for parsing options
+    * Can a command-line framework encourage good code design?
+    * Writing highly testable CLI apps
+    * Etc.
+
     And as an added bonus, while we talk about all this, we'll touch on good and bad code design as well as look at some of the unexpected corners of your app where 'bad' code is hiding.
   speakers:
     - Alan Skorkin
@@ -376,8 +366,6 @@
   video_provider: "youtube"
   video_id: "yd9GLA1c9eg"
   description: |-
-    By Matt Rogers
-
     Open Source projects can be hard to navigate for both new and old contributors alike. In this talk, we'll walk through some tips and tricks for dealing with the various pieces of open source projects. From dealing with trolls to nurturing one shot patch submitters into long time contributors we'll walk through various tips to get the most out of your open source experience
   speakers:
     - Matt Rogers
@@ -423,8 +411,6 @@
   video_provider: "youtube"
   video_id: "1zMcGagg_M8"
   description: |-
-    By Dave Kapp
-
     While Ruby is a terrific language, it doesn't offer a lot of ways to deal with
     asynchronous tasks using the default libraries. Thankfully, the community has
     come up with several great options for bringing asynchronicity to your applications.
