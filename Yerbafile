@@ -99,6 +99,10 @@ rules:
           file: "lib/schemas/cfp_schema.json"
           path: "[]"
 
+      - blank_lines:
+          path: ""
+          count: 1
+
       - sort_keys:
           order:
             - name
