@@ -2,6 +2,7 @@ files: "data/**/*.yml"
 
 pipeline:
   - directives:
+      max: 1
       ensure: true
 
   - collection_style:
