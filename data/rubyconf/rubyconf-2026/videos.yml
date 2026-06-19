@@ -1,18 +1,18 @@
 ---
 # Day 1 - Tuesday, July 14, 2026
 
-- id: "dave-thomas-keynote-rubyconf-2026"
-  title: "Keynote by Dave Thomas"
+- id: "yukihiro-matsumoto-keynote-rubyconf-2026"
+  title: 'Keynote by Yukihiro "Matz" Matsumoto'
   kind: "keynote"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
-  video_id: "dave-thomas-keynote-rubyconf-2026"
+  video_id: "yukihiro-matsumoto-keynote-rubyconf-2026"
   description: ""
   speakers:
-    - Dave Thomas
+    - "Yukihiro \"Matz\" Matsumoto"
 
 - id: "marco-roth-rubyconf-2026"
   title: "The Anatomy of an ERB Rendering Engine"
@@ -84,32 +84,32 @@
   speakers:
     - David Gillis
 
-- id: "sponsor-session-2-rubyconf-2026"
-  title: "Sponsor Session 2"
+- id: "jon-rizzo-rubyconf-2026"
+  title: "Teaching Ruby to Rank: A Search Pipeline Story"
   kind: "talk"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
   language: "English"
   track: "Breakout 2 - Charleston E-B"
   video_provider: "scheduled"
-  video_id: "sponsor-session-2-rubyconf-2026"
+  video_id: "jon-rizzo-rubyconf-2026"
   description: ""
   speakers:
-    - TODO
+    - Jon Rizzo
+    - Dave Currie
 
-- id: "julia-egorova-rubyconf-2026"
-  title: "From cores to queues: parallelizing Ruby tests the right way"
+- id: "neha-abraham-rubyconf-2026"
+  title: "Powerful Data: Making Rails Apps Faster with Aggregation"
   kind: "talk"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
-  video_id: "julia-egorova-rubyconf-2026"
-  description: |-
-    Your test suite takes 25 minutes. But you have 8 cores. So it should take 3 minutes, right? If only it were that simple! Whether you're on Minitest or RSpec, running tests in parallel can dramatically shrink your local and CI feedback loops. That said, parallelization is no free lunch. Naive approaches introduce flaky tests, waste resources, and sometimes make things slower. In this talk, I'll walk you through the full spectrum of Ruby test parallelization – from the simplest CI-level splitting to sophisticated queue-based orchestration. We'll see what works, what breaks, and why you can't just throw more cores at the problem. - We'll start with the fundamentals: why parallelization matters and how to think about it. - Then we'll explore the most common strategies: splitting work across CI jobs, using parallel_tests to leverage multiple cores within a single machine, and Rails' built-in parallel testing for Minitest. - From there, we'll go deeper into queue-based approaches: how tools like Knapsack Pro dynamically distribute work across workers, why static splitting hits a ceiling, and the critical difference between splitting by file versus splitting by individual example (and when each makes sense). Along the way, I'll tackle the real-world headaches: shared state and flaky tests, the tension between let_it_be-style optimizations and per-example splitting, and the art of balancing workers so no single node becomes a bottleneck. We'll close with Amdahl's Law applied to your test suite (understanding the hard limits of parallelization) and what to do when more cores stop helping: profiling, factory optimization, and making your tests genuinely faster. Takeaways: The audience will leave with a clear mental model for choosing the right parallelization strategy for their projects, concrete tool recommendations for both Minitest and RSpec – and an understanding of when to stop parallelizing and start optimizing.
+  video_id: "neha-abraham-rubyconf-2026"
+  description: ""
   speakers:
-    - Julia Egorova
+    - Neha Abraham
 
 - id: "nery-campusano-rubyconf-2026"
   title: "Each All the Way Down: How Ruby Enumerators Power Streaming in gRPC Ruby"
@@ -125,18 +125,18 @@
   speakers:
     - Nery Campusano
 
-- id: "sponsor-session-3-rubyconf-2026"
-  title: "Sponsor Session 3"
+- id: "aaron-patterson-rubyconf-2026"
+  title: "Faster FFI For Ruby"
   kind: "talk"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
   language: "English"
   track: "Breakout 2 - Charleston E-B"
   video_provider: "scheduled"
-  video_id: "sponsor-session-3-rubyconf-2026"
+  video_id: "aaron-patterson-rubyconf-2026"
   description: ""
   speakers:
-    - TODO
+    - Aaron Patterson
 
 - id: "keith-bennett-rubyconf-2026"
   title: "Command-Line Applications in Ruby: Design Patterns and Best Practices"
@@ -166,18 +166,18 @@
   speakers:
     - Dalma Boros
 
-- id: "sponsor-session-4-rubyconf-2026"
-  title: "Sponsor Session 4"
-  kind: "talk"
+- id: "ruby-alliance-panel-rubyconf-2026"
+  title: "Panel: Ruby Alliance"
+  kind: "panel"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
   language: "English"
   track: "Breakout 2 - Charleston E-B"
   video_provider: "scheduled"
-  video_id: "sponsor-session-4-rubyconf-2026"
+  video_id: "ruby-alliance-panel-rubyconf-2026"
   description: ""
   speakers:
-    - TODO
+    - Ran Craycraft
 
 - id: "ziggy-the-hamster-rubyconf-2026"
   title: "Weird and Wacky Machines Running Ruby"
@@ -207,18 +207,18 @@
   speakers:
     - Cameron Dutro
 
-- id: "sponsor-session-5-rubyconf-2026"
-  title: "Sponsor Session 5"
+- id: "tess-griffin-rubyconf-2026"
+  title: "Learning Empathy From Pokémon Blue"
   kind: "talk"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
   language: "English"
   track: "Breakout 2 - Charleston E-B"
   video_provider: "scheduled"
-  video_id: "sponsor-session-5-rubyconf-2026"
+  video_id: "tess-griffin-rubyconf-2026"
   description: ""
   speakers:
-    - TODO
+    - Tess Griffin
 
 - id: "scott-werner-rubyconf-2026"
   title: "Talking Shit About AI Agents"
@@ -248,46 +248,114 @@
   speakers:
     - Gabriel Quaresma
 
-- id: "sponsor-session-6-rubyconf-2026"
-  title: "Sponsor Session 6"
+- id: "charles-nutter-rubyconf-2026"
+  title: "Expand your Ruby Potential with JRuby"
   kind: "talk"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
   language: "English"
   track: "Breakout 2 - Charleston E-B"
   video_provider: "scheduled"
-  video_id: "sponsor-session-6-rubyconf-2026"
+  video_id: "charles-nutter-rubyconf-2026"
   description: ""
   speakers:
-    - TODO
+    - Charles Nutter
 
-- id: "obie-fernandez-keynote-rubyconf-2026"
-  title: "Keynote by Obie Fernandez"
+- id: "edy-silva-rubyconf-2026"
+  title: "Ractors in Ruby 4.0: Message Passing Without the Pain"
+  kind: "talk"
+  event_name: "RubyConf 2026"
+  date: "2026-07-14"
+  language: "English"
+  track: "Main Stage - Red Rock"
+  video_provider: "scheduled"
+  video_id: "edy-silva-rubyconf-2026"
+  description: |-
+    Concurrency in Ruby has always been a compromise. Threads are error-prone. Fibers are complex. The Global Interpreter Lock limits true parallelism. We accepted that concurrent Ruby is hard. I came from Erlang and Elixir, where concurrency is the default. The Actor Model - message passing, isolated processes, no shared state - is how you build reliable distributed systems. When Ruby introduced Ractors in 3.0, I was skeptical. The API was clunky. The limitations were severe. It felt like Ruby trying to be something it wasn't. Ruby 4.0 changed my mind. `Ractor::Port` (the mailbox concept), shareable procs and lambdas, and the removal of awkward APIs like `Ractor.yield` make Ractors ergonomic now. You can write a parallel map in 10 lines of Ruby that would have taken 50 lines of fragile thread code. You can spawn isolated workers that communicate through message passing without worrying about mutexes or race conditions. This talk is for Rubyists who are tired of concurrency being hard. I'll show you what Ruby 4.0 got right, what it still gets wrong, and the patterns I borrowed from Elixir that make Ractors useful in production.
+  speakers:
+    - Edy Silva
+
+- id: "andy-andrea-rubyconf-2026"
+  title: "The little schema that could (...but should it?)"
+  kind: "talk"
+  event_name: "RubyConf 2026"
+  date: "2026-07-14"
+  language: "English"
+  track: "Breakout 1 - Charleston D-C"
+  video_provider: "scheduled"
+  video_id: "andy-andrea-rubyconf-2026"
+  description: |-
+    Even in a duck-typed language like Ruby, we often work with structured data that adheres to particular schemas. For anyone that's worked in a Rails app, a schema.rb or structure.sql file is an inherent part of our apps, and many Ruby devs have worked with JSON Schema or OpenAPI in various applications. In many of those cases, though, we have a lot of duplication especially when we're dealing with CRUD. A `create` endpoint, for example, might accept incoming parameters that look very similar to what's returned by a `show` endpoint, and both will likely have a lot in common with a corresponding table's schema. This duplication is not a major problem--it can often be the best choice--but what would it look like if we tried to DRY things up a little...or a lot? If we're willing to get a little weird, how far can we possibly take a single schema? In this talk, we'll have a single schema and show how it can be applied to (or shoe-horned into):
+      - Database management - Model generation;
+      - Controller input validation;
+      - Controller output validation;
+      - Testing with RSpec;
+      - Auto-generated documentation that stays up to date;
+      - The front end;
+      - CI;
+      - Metaprogramming;
+      - AI tooling including auto-generating tools for your AI applications to call and ways to improve the efficacy of dev tooling like BugBot and Cursor. We'll be making things DRYer than the Sahara and doing away with tons of boilerplate along the way.
+  speakers:
+    - Andy Andrea
+
+- id: "gannon-mcgibbon-rubyconf-2026"
+  title: "Overengineering Ruby with Native Extensions"
+  kind: "talk"
+  event_name: "RubyConf 2026"
+  date: "2026-07-14"
+  language: "English"
+  track: "Breakout 2 - Charleston E-B"
+  video_provider: "scheduled"
+  video_id: "gannon-mcgibbon-rubyconf-2026"
+  description: |-
+    Native extensions are a powerful tool that allows Rubyists to reach outside the Ruby VM into machine code. In this talk, you'll learn just enough C to write your first native extension, and all the different ways you can over complicate your Ruby apps with interoperability.
+  speakers:
+    - Gannon McGibbon
+
+- id: "jessica-kerr-keynote-rubyconf-2026"
+  title: "Keynote by Jessica Kerr"
   kind: "keynote"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
-  video_id: "obie-fernandez-keynote-rubyconf-2026"
+  video_id: "jessica-kerr-keynote-rubyconf-2026"
   description: ""
   speakers:
-    - Obie Fernandez
+    - Jessica Kerr
 
 # Day 2 - Wednesday, July 15, 2026 (Community Day)
 
-- id: "keynote-3-rubyconf-2026"
-  title: "Panel"
-  kind: "panel"
+- id: "allison-pike-keynote-rubyconf-2026"
+  title: "Panel: Once a Maintainer"
+  kind: "keynote"
   event_name: "RubyConf 2026"
   date: "2026-07-15"
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
-  video_id: "keynote-3-rubyconf-2026"
+  video_id: "allison-pike-keynote-rubyconf-2026"
   description: ""
   speakers:
-    - TODO
+    - Allison Pike
+    - Richard Schneeman
+    - Jeremy Evans
+    - Colby Swandale
+
+- id: "marty-haught-rubyconf-2026"
+  title: "From Scan to Fix: A Maintainer's Guide to Gem Security"
+  kind: "talk"
+  event_name: "RubyConf 2026"
+  date: "2026-07-15"
+  language: "English"
+  track: "Main Stage - Red Rock"
+  video_provider: "scheduled"
+  video_id: "marty-haught-rubyconf-2026"
+  description: ""
+  speakers:
+    - Marty Haught
+    - Colby Swandale
 
 - id: "amir-rajan-rubyconf-2026"
   title: "Workshop: DragonRuby Game Toolkit - Soup to Nuts"
@@ -369,23 +437,22 @@
   video_provider: "scheduled"
   video_id: "lightning-talks-rubyconf-2026"
   description: ""
-  speakers:
-    - TODO
+  talks: []
 
 # Day 3 - Thursday, July 16, 2026
 
-- id: "keynote-4-rubyconf-2026"
-  title: "Keynote 4"
+- id: "obie-fernandez-keynote-rubyconf-2026"
+  title: "Keynote by Obie Fernandez"
   kind: "keynote"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
-  video_id: "keynote-4-rubyconf-2026"
+  video_id: "obie-fernandez-keynote-rubyconf-2026"
   description: ""
   speakers:
-    - TODO
+    - Obie Fernandez
 
 - id: "brandon-weaver-rubyconf-2026"
   title: "We Who Remember Magic"
@@ -416,7 +483,7 @@
     - Madison Sites
 
 - id: "miles-georgi-rubyconf-2026"
-  title: "Goofin' about with Ractors!"
+  title: "Come Discuss Ractors and Concurrency with 'The Dude'!"
   kind: "talk"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
@@ -513,47 +580,19 @@
   speakers:
     - Hilary Stohs-Krause
 
-- id: "edy-silva-rubyconf-2026"
-  title: "Ractors in Ruby 4.0: Message Passing Without the Pain"
-  kind: "talk"
+- id: "q-and-a-with-matz-rubyconf-2026"
+  title: "Q&A with Matz"
+  kind: "q_and_a"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
-  video_id: "edy-silva-rubyconf-2026"
-  description: |-
-    Concurrency in Ruby has always been a compromise. Threads are error-prone. Fibers are complex. The Global Interpreter Lock limits true parallelism. We accepted that concurrent Ruby is hard. I came from Erlang and Elixir, where concurrency is the default. The Actor Model - message passing, isolated processes, no shared state - is how you build reliable distributed systems. When Ruby introduced Ractors in 3.0, I was skeptical. The API was clunky. The limitations were severe. It felt like Ruby trying to be something it wasn't. Ruby 4.0 changed my mind. `Ractor::Port` (the mailbox concept), shareable procs and lambdas, and the removal of awkward APIs like `Ractor.yield` make Ractors ergonomic now. You can write a parallel map in 10 lines of Ruby that would have taken 50 lines of fragile thread code. You can spawn isolated workers that communicate through message passing without worrying about mutexes or race conditions. This talk is for Rubyists who are tired of concurrency being hard. I'll show you what Ruby 4.0 got right, what it still gets wrong, and the patterns I borrowed from Elixir that make Ractors useful in production.
+  video_id: "q-and-a-with-matz-rubyconf-2026"
+  description: ""
   speakers:
-    - Edy Silva
-
-- id: "andy-andrea-rubyconf-2026"
-  title: "The little schema that could (...but should it?)"
-  kind: "talk"
-  event_name: "RubyConf 2026"
-  date: "2026-07-16"
-  language: "English"
-  track: "Breakout 1 - Charleston D-C"
-  video_provider: "scheduled"
-  video_id: "andy-andrea-rubyconf-2026"
-  description: |-
-    Even in a duck-typed language like Ruby, we often work with structured data that adheres to particular schemas. For anyone that's worked in a Rails app, a schema.rb or structure.sql file is an inherent part of our apps, and many Ruby devs have worked with JSON Schema or OpenAPI in various applications. In many of those cases, though, we have a lot of duplication especially when we're dealing with CRUD. A `create` endpoint, for example, might accept incoming parameters that look very similar to what's returned by a `show` endpoint, and both will likely have a lot in common with a corresponding table's schema. This duplication is not a major problem--it can often be the best choice--but what would it look like if we tried to DRY things up a little...or a lot? If we're willing to get a little weird, how far can we possibly take a single schema? In this talk, we'll have a single schema and show how it can be applied to (or shoe-horned into): - Database management - Model generation; - Controller input validation; - Controller output validation; - Testing with RSpec; - Auto-generated documentation that stays up to date; - The front end; - CI; - Metaprogramming; - AI tooling including auto-generating tools for your AI applications to call and ways to improve the efficacy of dev tooling like BugBot and Cursor. We'll be making things DRYer than the Sahara and doing away with tons of boilerplate along the way.
-  speakers:
-    - Andy Andrea
-
-- id: "gannon-mcgibbon-rubyconf-2026"
-  title: "Overengineering Ruby with Native Extensions"
-  kind: "talk"
-  event_name: "RubyConf 2026"
-  date: "2026-07-16"
-  language: "English"
-  track: "Breakout 2 - Charleston E-B"
-  video_provider: "scheduled"
-  video_id: "gannon-mcgibbon-rubyconf-2026"
-  description: |-
-    Native extensions are a powerful tool that allows Rubyists to reach outside the Ruby VM into machine code. In this talk, you'll learn just enough C to write your first native extension, and all the different ways you can over complicate your Ruby apps with interoperability.
-  speakers:
-    - Gannon McGibbon
+    - "Yukihiro \"Matz\" Matsumoto"
+    - Aaron Patterson
 
 - id: "alicia-rojas-rubyconf-2026"
   title: "Convention Over Hallucination: Harness Engineering for AI-Powered Rails"
@@ -625,29 +664,28 @@
   speakers:
     - Joé Dupuis
 
-- id: "antonio-paulino-rubyconf-2026"
-  title: "Tribology on Rails: Reducing Friction and Wear in Software Systems"
+- id: "phil-crissman-rubyconf-2026"
+  title: "Elements of Programming, In Ruby"
   kind: "talk"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
   language: "English"
   track: "Breakout 2 - Charleston E-B"
   video_provider: "scheduled"
-  video_id: "antonio-paulino-rubyconf-2026"
-  description: |-
-    Tribology is the science of friction, wear, and lubrication. Might seem worlds apart from software engineering. But there are some concepts we can use to connect the dots: systems slow down under load, interfaces degrade over time, and without proper "lubrication", can result in unexpected failures. In this talk, we'll explore how tribological principles apply to software architecture and demonstrate how Rails conventions and tools act as the perfect lubricant for building smooth, maintainable systems. From reducing friction in APIs to preventing wear in long-running applications, you'll see your codebase through a mechanical engineer's lens.
+  video_id: "phil-crissman-rubyconf-2026"
+  description: ""
   speakers:
-    - Antônio Paulino
+    - Phil Crissman
 
-- id: "yukihiro-matsumoto-keynote-rubyconf-2026"
-  title: 'Keynote by Yukihiro "Matz" Matsumoto'
+- id: "dave-thomas-keynote-rubyconf-2026"
+  title: "Keynote by Dave Thomas"
   kind: "keynote"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
-  video_id: "yukihiro-matsumoto-keynote-rubyconf-2026"
+  video_id: "dave-thomas-keynote-rubyconf-2026"
   description: ""
   speakers:
-    - "Yukihiro \"Matz\" Matsumoto"
+    - Dave Thomas

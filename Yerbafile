@@ -2,6 +2,7 @@ files: "data/**/*.yml"
 
 pipeline:
   - directives:
+      max: 1
       ensure: true
 
   - collection_style:
@@ -98,6 +99,10 @@ rules:
       - schema:
           file: "lib/schemas/cfp_schema.json"
           path: "[]"
+
+      - blank_lines:
+          path: ""
+          count: 1
 
       - sort_keys:
           order:
@@ -234,6 +239,10 @@ rules:
 
       - blank_lines:
           path: "[].talks"
+          count: 1
+
+      - blank_lines:
+          path: "[].additional_resources"
           count: 1
 
       - sort_keys:

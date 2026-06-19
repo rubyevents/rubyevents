@@ -1,8 +1,7 @@
----
 # TODO: talks running order
 # TODO: talk date
 # TODO: schedule website
-
+---
 - id: "ryan-davis-mountainwest-rubyconf-2014"
   title: "Nerd Party, v3.1"
   raw_title: "MountainWest RubyConf 2014 - Nerd Party, v 3.1 by Ryan Davis"
@@ -26,7 +25,9 @@
   video_id: "4EwuuSLr2Lk"
   description: |-
     Exploits happen when attackers discover that your application is actually an interpreter for a weird programming language with operators like 'make admin', or 'consume all available memory'. Don't give them access to that kind of computational power! Stop them at the very boundaries of your application's input handling--the parser. By generating parsers tailored to the specific input formats of your app, you can prevent it from becoming a weird interpreter and make it harder to exploit.
+
     When you use a parser specific to your input format, it's not only more secure, it's better specified and definite. When you have a grammar for your inputs, you can give your API consumers better error messages and better documentation based on that grammar.
+
     Using Ruby's metaprogramming superpowers, doing this doesn't have to be a painful process. I've been working on a library called Muskox that aims to make generating parsers almost as simple as using Rails 4's Strong Parameters. Writing code to secure your app's inputs should be easy, fun and fast.
   speakers:
     - Nick Howard
@@ -53,10 +54,10 @@
   video_provider: "youtube"
   video_id: "ViUvz4FCDxg"
   description: |-
-    By Sam Rawlins
-
     Ruby 2.1 is coming out soon with an amazing new feature under ObjectSpace: #trace_object_allocations. We are now able to trace the file and line number (as well as method) where any Ruby object is allocated from. This is a very welcome feature, as object-level tracing has been very difficult in Ruby, especially since the memprof gem could not support Ruby past 1.8.x.
+
     This new Ruby 2.1 feature is really just exposing some raw (and vast) data, so it can be difficult to tease out meaningful information. Two gems are introduced in this talk to solve just that problem. The objspace-stats gem allows us to view and summarize new object allocations in meaningful ways. We'll look at how to filter, group, and sort new object allocations. The second gem is rack-objspace-stats. We'll see how this tool can intercept requests to a Rack stack, and measure new object allocations taking place during the request. (For those familiar, this works very similar to the rack-perftools_profiler gem.)
+
     We'll look at various examples of how this new Ruby 2.1 feature, and these tools can help an organization reduce unnecessary memory allocations, and speed up their code, especially mature Rack applications.
   speakers:
     - Sam Rawlins
@@ -70,9 +71,8 @@
   video_provider: "youtube"
   video_id: "ZoT5qrAUkT0"
   description: |-
-    By Christopher Sexton
-
     Is your test suite comprehensible to someone new to the project? Can you find where you tested that last feature? Do you have to wade through dozens of files to deal with updated code?
+
     Organizing tests are hard. It is easy to make things overly elaborate and complicated. Learn an approach to grouping the tests together in a way that makes sense. We can test drive without creating overly brittle tests. Lets build better designed projects by keeping our test suite clear and understandable.
   speakers:
     - Christopher Sexton
@@ -87,10 +87,11 @@
   video_id: "H8lBCI_TQ8E"
   description: |-
     Regression testing is invaluable to knowing if changes to code have broken the software. However, it always seems to be the case that no matter how many tests you have in your regression buckets, bugs continue to happily creep in undetected. As a result, you are not sure if you can trust your tests anymore or your methodology, and you are ready to change that. I will present a powerful technique called mutation testing that will help make your tests capable of detecting future bugs. I will also give you a metric to assess the effectiveness of your tests in terms of regression, so that future changes in your software can be done with impunity.
+
     Audience will learn:
-    What mutation testing is and why it works.
-    When and how to apply mutation testing.
-    How to improve their tests so they detect bugs that are introduced during the normal evolution of software.
+    * What mutation testing is and why it works.
+    * When and how to apply mutation testing.
+    * How to improve their tests so they detect bugs that are introduced during the normal evolution of software.
   speakers:
     - Mario Gonzalez
 
@@ -104,6 +105,7 @@
   video_id: "FzzL_QDKv0c"
   description: |-
     As engineers working on a team, we all make technical decisions. What's the best way to implement this? Where should this function live? Is this library worth using? Some decisions, though, are larger, riskier and more important than that. But generally, they're also far less frequent.
+
     Right now, your team might be struggling to organize the client-side parts of your application. Ember? Angular? Backbone? Flip a coin? Uh...which one has the most...retweets? These choices don't need to be arbitrary or based on vague personal preference. Come learn a more useful and realistic approach that makes large-scale technical decisions less risky.
   speakers:
     - Sarah Mei
@@ -118,6 +120,7 @@
   video_id: "NMwyWBtSiGM"
   description: |-
     Rubyists use hashes all the time. But could you build Ruby's Hash class from scratch?
+
     In this talk, I'll walk you through it. We'll learn what it takes to get the interface we want and maintain O(1) performance as it grows.
   speakers:
     - Nathan Long
@@ -132,6 +135,7 @@
   video_id: "Pxp6ukQFFb8"
   description: |-
     I transformed my office building into an airport using a combination of Ruby, Objective-C, and a number of hardware hacks. The goal was to prototype a better in-airport experience using a mixture of GPS and iBeacon technology to establish precise indoor geolocation.
+
     This talk will run down the various stages of the project, an overview of outdoor vs indoor location technologies, and how the iPhone (and Android) devices currently handle location. I'll also discuss how I built a robust Ruby backend, and how I hacked some hardware together to create iBeacons.
   speakers:
     - Barrett Clark
@@ -146,7 +150,9 @@
   video_id: "7UT3pDD7XK8"
   description: |-
     We all know that intelligent species learn from mistakes, right?
+
     There's just one problem: Life is too short to make every possible mistake! Also, some mistakes are more costly than others. What's the ambitious learner to do? I'm glad you asked! I'm an expert at making mistakes, and I'm happy to share as many of them as I can possibly fit into a 45-minute time slot with you, my dear conference attendee!
+
     We'll discuss a variety of exciting mistakes, ranging from the misapplication of metaprogramming techniques to letting emotions become barriers to new technologies to why it's a horrible idea to stretch a gel keyboard wrist rest across a room, even if it seems like an awesome plan at the time.
   speakers:
     - Ernie Miller
@@ -161,6 +167,7 @@
   video_id: "aQu18GXl74Q"
   description: |-
     A good design communicates the intended use of an object. In the physical world, this communication is accomplished by "affordances", as discussed by Donald Norman in "The Psychology of Everyday Things".
+
     Programming languages also have affordances, and they influence the kinds of solutions we develop. The more languages we know, the more we "expand our design space" so that we can come up with better solutions to the problems we face every day.
   speakers:
     - Randy Coulman
@@ -175,6 +182,7 @@
   video_id: "Qyn4NyeftUE"
   description: |-
     In OO, assignment is one of our main tools. Most developers learn how to store values in variables shortly after learning "Hello World". By contrast, functional programming makes much less use of assignment and mutation. Instead techniques like function composition, recursion, and anonymous functions are used to produce the same results that OO programmers produce with side effects.
+
     Despite being object oriented, Ruby easily accommodates pure functional approaches. This talk will demonstrate how common programming tasks can be accomplished without assignment or mutation. Ruby and Scheme (a Lisp dialect) will be used for examples. I'll also discuss some of the great resources available for those interested in digging deeper into functional programming.
   speakers:
     - Aja Hammerly
@@ -188,12 +196,14 @@
   video_provider: "youtube"
   video_id: "crziu7dk6Vw"
   description: |-
-    Five machine learning techniques that you can use in your Ruby apps today By Benjamin Curtis
-
     Machine learning is everywhere these days. Features like search, voice recognition, recommendations - they've become so common that people have started to expect them. They're starting to expect the apps we build to be smarter.
+
     Ten years ago, machine learning and data mining techniques were only available to the people dedicated enough to dig through the math. Now that's not the case.
+
     The most common machine learning techniques are well known. Standard approaches have been developed. And, fortunately for us, many of these are available as ruby gems. Some are even easy to implement yourself.
+
     In this presentation we'll cover five important machine learning techniques that can be used in a wide range of applications. It will be a wide and shallow introduction, for Rubyists, not mathematicians - we'll have plenty of simple code examples.
+
     By the end of the presentation, you won't be an expert, but you'll know about a class of tools you may not have realized were available.
   speakers:
     - Benjamin Curtis
@@ -221,6 +231,7 @@
   video_id: "DJJbIjlLmLM"
   description: |-
     "Design patterns" is a common phrase that is often spoken in the course of design and development of web applications. But it's genesis is not from programming, but Architecture. They come from a trio of books in the 1970s by Christopher Alexander, the most famous of which is the middle book: "A Pattern Language". The issue arises that Pattern Languages, much like spoken languages, are most effective when the speaker is fluent.
+
     We'll look at the origin of pattern languages and why they can be dangerous and even detrimental tools in the hands of the inexperienced designer and developer through examples of bad grammar and poor idiomatic choices(aka antipatterns), and perhaps some architecture as well.
   speakers:
     - John Athayde
@@ -234,12 +245,14 @@
   video_provider: "youtube"
   video_id: "eGaKZBr0ga4"
   description: |-
-    By Noel Rappin
-
     Smalltalk has mystique. We talk about it more than we use it.
+
     It seems like it should be so similar to Ruby. It has similar Object-Oriented structures, it even has blocks.
+
     But everything is so slightly different, from the programming environment, to the 1-based arrays, to the simple syntax. Using Smalltalk will make you look at familiar constructs with new eyes.
+
     We'll show you how to get started on Smalltalk, and walk through some sample code. Live coding may be involved.
+
     You'll never look at objects the same way again.
   speakers:
     - Noel Rappin
@@ -254,8 +267,11 @@
   video_id: "-sH2lSW2BGo"
   description: |-
     MagLev is a Ruby implementation built on top of a mature VM which offers native object persistence. Working with these live objects is awesome - but this image-based development is very different than traditional file-based development. MagLev uses both which has broad reaching effects - from design to deployment.
+
     In traditional applications, data and code are separate. Deployments involve pulling new code, updating or migrating the data-store, and restarting or reloading the application which creates a new runtime with this new code.
+
     MagLev's transient objects behave in this same manner, but committed objects are always there. Migrating these live, persistent objects is quite different. Your 'data' migrations involve things like instance variables, method definitions and class hierarchies, rather than creating tables or updating column definitions.
+
     In this talk we will walk through a number of examples including a simple job and worker which use persisted blocks, and how to deploy an application and migrate persisted objects.
   speakers:
     - Johnny T
@@ -269,8 +285,6 @@
   video_provider: "youtube"
   video_id: "lOpVcqiAIiI"
   description: |-
-    By Eileen Uchitelle
-
     The magic of ActiveRecord database interactions is easy to rely on and allows us assume it knows best. Without a solid understanding of how ActiveRecord translates into MySQL, however, significant issues can arise. This is particularly true with large data sets and complex model relationships. My talk explores an example for each CRUD function and shows how these queries can result in MySQL timeouts, memory issues or stack level too deep errors. The examples will examine the consequences of chaining large datasets, uses for Arel, and how to avoid encountering major problems and most importantly, how these queries can be rewritten to run more efficiently.
   speakers:
     - Eileen M. Uchitelle
@@ -284,10 +298,10 @@
   video_provider: "youtube"
   video_id: "jYe2bF7tc2Q"
   description: |-
-    By Julian Simioni
-
     In August 1961, the MIT Instrument Laboratory was awarded the contract for a guidance system to fly men to the moon, the first contract for the entire Apollo Program. The word software was not mentioned anywhere. Six years later, 400 engineers were employed on the project writing software.
+
     The resulting Apollo Guidance Computer is to this day a marvel of engineering. It included a realtime operating system and even a software interpreter. Despite weighing 70 pounds, it ran on only 50W of power. Only one guidance computer was present in each Apollo spacecraft, with no backups: it never failed in thousands of hours of space flight. Before the first work on UNIX or the C programming language had begun, the Apollo Guidance Computer had already taken men to the moon.
+
     NASA and MIT kept meticulous records, giving us the opportunity to look back today on some of the pioneers of our industry, relive their experiences, and maybe learn a few things ourselves.
   speakers:
     - Julian Simioni

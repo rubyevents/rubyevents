@@ -234,8 +234,6 @@
   video_provider: "youtube"
   video_id: "RfueDq8-Wwg"
   description: |-
-    By Jon Dahl
-
     APIs are interfaces, just like UIs. But while a website or a mobile app is designed to be used by a consumer, an API has two very specific audiences in mind: other systems, and the programmers who build them.
     A well-designed API can make or break an application. So how do developers build great APIs? What design principles should be followed? We will discuss these questions based on the work of thinkers in the areas of industrial design, writing, and product design theory.
   speakers:
@@ -518,9 +516,8 @@
   video_provider: "youtube"
   video_id: "Cj2VDSugHM8"
   description: |-
-    By Christopher Greene & Aimee Simone
-
     Ever wondered what Rails is doing behind the scenes? What happens to an HTTP request after it leaves your browser? How does Rails process the response?
+
     In this beginner talk, Aimee Simone and Christopher Green break down the request/response cycle of a web application, navigating through the magestic internals of Rails. We'll outline the responsibilities of each Rails component, including its MVC framework and RESTful routing concepts. By following the flow from a client HTTP request to a completed server response, you'll gain a better understanding of the anatomy of a Rails application.
   speakers:
     - Christopher Greene
@@ -536,6 +533,7 @@
   video_id: "xXLijKrPMv4"
   description: |-
     The Ruby on Rails developer faces an interesting duality. Their inner Rubyist is driven by a sense of beauty and explores a wide range of ways to solve a problem. The inner Railser is driven by a strong set of conventions and is guided by the Rails Way™. The /lib directory is where these developers meet and end result is a junk drawer of awkward code.
+
     In this talk, I go over a few ways to keep this junk drawer problem from happening by adding some conventions I've created from building Rails in anger:
     * Treat /lib as a temple (keep /lib in a state to extract to a gem in minutes)
     * Avoid autoloading everything in /lib
@@ -571,7 +569,9 @@
   video_id: "9GO7XGmv5gk"
   description: |-
     Paul Graham once quipped that "Web 2.0" really meant "JavaScript now works". Nearly ten years later, more and more functionality of our web applications is written in JavaScript. But for those of us who came of age when JavaScript was unreliable, it's been preferable to test the server-side, while leaving the UI a thin-as-possible shell. Testing the front-end was error prone and brittle.
+
     However, when you're delivering a JavaScript widget hundreds of thousands of times a day on diverse third party websites, it needs to work. So: we need to test it, and those tests need to be as painless as possible to write and maintain.
+
     This is a session for front-end testing skeptics (like me): It is possible to create tests that drive your web UI (JavaScript and all) that are automated, fast, reliable, headless -- no browser required -- and written in pure Ruby instead of some obtuse syntax. We'll explore the challenges and gotchas of testing the front-end and walk through an example that meets the above goals.
   speakers:
     - Luke Francl
@@ -586,6 +586,7 @@
   video_id: "lTSl7IwbrvI"
   description: |-
     Good integration tests are hard. There are many approaches for testing server/client HTTP libraries - all with various tradeoffs and problems that come up. Some are obvious, some are a little more tricky.
+
     I'll run through some approaches and problems I've come across developing server/client APIs, while developing these in a highly distributed systems setup at Engine Yard.
   speakers:
     - Shai Rosenfeld
@@ -600,6 +601,7 @@
   video_id: "elRlAjtaFsg"
   description: |-
     Unwieldy templates (a.k.a. views) are all too common in Rails apps, even among teams that otherwise craft high-quality code. Being brought into or having to maintain a project with poorly-crafted templates leads to extreme frustration and less than-adequite-velocity. At philosophie, we have started to use a few simple patterns that result in templates that are easier to maintain. By investing a small amount of time up-front learning and applying these patterns we have saved countless hours in the long run.
+
     Topics include:
     * The Decorator Pattern
     * Using View objects
@@ -679,9 +681,13 @@
   video_id: "t97ePwSk_wc"
   description: |-
     Developers: how many times have you had to completely rip out your hard earned code for a totally new site design?
+
     Designers: how many times has a re-design taken 4 times as long as the developer said it would and not looked good in the end?
+
     Change all that by using an incremental approach to design. Set up your code to change all the buttons at once or prioritize design changes to make each small change good enough for production.
+
     A designer and developer will talk about the challenges and joys of making this process work in two production sites.
+
     Topics covered:
     * What is incremental design?
     * How to design with incremental changes in mind
@@ -707,6 +713,10 @@
     https://daniel-azuma.com/articles/talks/railsconf-2013
   speakers:
     - Daniel Azuma
+  additional_resources:
+    - name: "Blog Post"
+      type: "blog"
+      url: "https://daniel-azuma.com/articles/talks/railsconf-2013"
 
 - id: "aaron-patterson-railsconf-2013"
   title: "Closing Keynote: A ♭"
@@ -730,6 +740,7 @@
   video_id: "a0teD9ynuTM"
   description: |-
     Coming from a hacker background, I've continually been surprised by how frequently new grads lacked the skills needed, particularly in community learning. When I was asked to teach Ruby on Rails at Columbia University I observed that a significant number of the skills required to become successful professionals in the industry are acquired on the job and aren't being taught in school.
+
     This presentation will review:
     - Lessons learned from the experience teaching in my alma mater's CS program.
     - How I developed a hacker-centric curriculum teaching not only the algorithms, but the keys to being a successful developer in the modern open source driven Rails community.
@@ -747,6 +758,7 @@
   video_id: "97fpzfRGTcs"
   description: |-
     Explore tips to upgrade from each major version to the other, and how to efficiently tackle a 1.2 to 4.0 upgrade through two different case studies.
+
     The velocity of change for Rails versions has a side effect -- businesses hesitate to update to the latest version until their productivity drops and they're forced to update. What happens then? Let's explore a case study of a Rails app that followed this pattern.
   speakers:
     - Jesse Wolgamott
@@ -761,8 +773,11 @@
   video_id: "7v3_t5SK8DM"
   description: |-
     As Ruby Developer I've had a pretty involved relationship with my Mac. I own iPads and iPhones since Apple started to make them. A few years back I told myself I was going to build apps for the Mac/iPhone/iPad but then reality sunk in when I started learning Objective-C and using XCode. The environment (and the language) felt like a trip back to 1995.
+
     If you are a Web developer used to working with dynamically-typed, lightweight languages, following agile practices like Test-Driven Development, and comfortable with a Unix Shell, then jumping into a development world with an ugly cousin of C++ and an IDE that looks like an F16 cockpit just doesn't seem appealing.
+
     Luckily for us there is an alternative in RubyMotion, a Ruby-based toolchain for iOS that brings a Ruby on Rails style of development to the world of iOS application development.
+
     In this talk I will show you how you can use well engrained Ruby practices like TDD to build iOS Apps with RubyMotion.
   speakers:
     - Brian Sam-Bodden
@@ -777,8 +792,11 @@
   video_id: "1E_n47ct280"
   description: |-
     Datomic is a new database categorized as NewSQL and was created by Rich Hickey. Everybody knows this big name and thinks of Clojure. It is true Datomic fits well to Clojure programming. However, it is not only for Clojure people.
+
     Absolutely, Rubyists can use it. We have Diametric gem (https://github.com/relevance/diametric). Using Diametric, we can dive into Datomic from Ruby, from Rails.
+
     On Diametric, Datomic's entity is an ActiveModel compliant. Diametric supports Rails' scaffolding. Its usage might look like Datamapper or MongoDB. Eventually, Diametric's API design settled in a bit far from Ruby, Rails style. In another word, it is not ORM-like. Even though the API design may puzzle Rubyists, Diametric chose the one to expose Datomic's intrinsic properties. It is to leverage a good side of Datomic for us. I believe the more Rubyists use Diametric, the more they like it.
+
     In my talk, I'll introduce Diametric gem and how to use it as well as why its API design is good for us. Also, I will cover how Ruby helped to integrate Datomic API in Diametric gem.
   speakers:
     - Yoko Harada
@@ -811,7 +829,9 @@
   video_id: "l9JXH7JPjR4"
   description: |-
     Nearly every developer will be asked to present to his or her peers at some point. Those that do it well will tend to have an outsized influence on their team, company, and community.
+
     This talk will demonstrate (mostly by example) the straightforward techniques for giving excellent presentations, from a veteran conference speaker and teacher.
+
     Topics to cover include:
     * Phrases that turn your audience against you.
     * Basic body language tips that affect perception.
@@ -1188,6 +1208,7 @@
   video_id: "glU_I3Xiooc"
   description: |-
     Do you have to look at Rails models with 2500 lines of code? Or 200 line methods loaded with iterators, conditionals and instance variables? Not only you, even the code author does not understand what's going on in there.
+
     I'll show you how you can craft simple and beautiful Rails application by adopting functional programming inspired ideas. Say goodbye to the mess you have by constructing tiny classes and functions that you can use to build up a complex system.
   speakers:
     - Attila Domokos
@@ -1228,6 +1249,7 @@
   video_id: "MDeUgHHTiyg"
   description: |-
     As your simple Rails app grows into a larger system or set of systems, using simple constants and Yaml files for configuration may no longer suffice. The meaning of 'configuration' expands to include business logic alongside the customary hostnames and timeout intervals; the rate at which configuration changes are required increases; non-engineers begin to require the ability to make configuration changes themselves; different environments require different configurations. This presentation will examine several patterns that can be applied to handle these issues, keeping iteration team high and reducing the burden on your engineering team. We'll create and iterate on a simple game as a case study to illustrate the value of these principles in practice, and also look at a few open source projects that integrate some of these concepts.
+
     Topics:
     * moving configuration values out of source
     * sharing configuration across multiple applications/services
@@ -1265,7 +1287,9 @@
   video_id: "o5u87SZ6S9M"
   description: |-
     Building services and integrating them into Rails is hard. We want smaller Rails apps and nicely encapsulated services, but services introduce complexity. If you go overboard in the beginning, you're doing extra work and getting some of it wrong. If you wait too long, you've got a mess.
+
     At Yammer, we constantly clean up the mess that worked well in the early days, but has become troublesome to maintain and scale. We pull things out of the core Rails app, stand them up on their own, and make sure they work well and are fast. With 20+ services, we've learned some lessons along the way. Services that seem clean in the beginning can turn into development environment nightmares. Temporary double-dispatching solutions turn into developer confusion. Monitoring one app turns into monitoring a suite of apps and handling failure between them.
+
     This talk looks at our mistakes and solutions, the tradeoffs, and how we're able to keep moving quickly. Having services and a smaller Rails codebase makes for scalable development teams, happier engineers, and predictable production environments. Getting there is full of hard decisions -- sometimes we get it right, sometimes we get it wrong, but we usually have a story to tell.
   speakers:
     - Brian Morton
@@ -1280,8 +1304,11 @@
   video_id: "NFhL7RhwnFU"
   description: |-
     So you've just added a suite of RESTful APIs to your web service. Now you need to generate documentation and build Ruby, Python, and JavaScript clients to consume those new APIs. With so many moving parts, how do you keep your service, documentation and clients in sync?
+
     We all know how to describe data using ActiveRecord models. Have you considered using a model to describe your service?
+
     A service model provides a number of benefits including: easy to generate API documentation, consistent server side parameter validation, versioned APIs, easy to build clients, and more. It also represents a unified view of your API which helps to keep your code and documentation DRY. But what does a service model look like? For instance, did you know that your APIs can be described using just four parameter types? What if your could express your APIs using a Rails DSL?
+
     This talk will introduce Seahorse, a DSL for describing API operations for just about any web service. It provides all of the above functionality, allowing you to describe your service model in a single place with Ruby code. We will demonstrate how to use Seahorse to generate clients, model existing real-world APIs, and even build one of our own
   speakers:
     - Trevor Rowe
@@ -1296,6 +1323,7 @@
   video_id: "UEB6H8jAzIg"
   description: |-
     You have been doing this Rails thing for a while and you're starting to feel like it's time to give back. Great! Now what?
+
     In this session we'll walk through the technical aspects of getting started with contributing back to Rails as well as the non-technical tips, tricks, and considerations to keep in mind along the way.
   speakers:
     - Mark McSpadden
@@ -1396,6 +1424,7 @@
   video_id: "s3NJ15Svq8U"
   description: |-
     With Rails 4.0 killing off the humble plugin, there is never a better time to learn how to create reusable code using Engines. Creating an engine can be as simple as adding a model, or a complex as an entire content management system. Using the Asset Pipeline, even javascript and css files can be packaged and shared, making projects cleaner and more maintainable than ever before.
+
     This talk will cover how developers can create their own engines, to add new controllers/models/views, rake tasks and/or generators. It will cover how engines can interact with Rails having their own initializers and middleware. Finally, based on our experiences converting BrowserCMS and its entire module ecosystem to work as mountable engines, this talk will cover how to make engines that are designed to work together, extend each other engine's behavior and make it easy for developers to upgrade when you release new versions.
   speakers:
     - Patrick Peak
@@ -1410,7 +1439,9 @@
   video_id: "TslkdT3PfKc"
   description: |-
     One of the best ways to learn is to experiment with seemingly crazy ideas. When Rails 3 first came out, it became easier than ever to embed a Sinatra application inside your Rails application. But what if you wanted to implement parts of Sinatra in Rails?
+
     Have you ever wished your controllers had Sinatra style routes? Have you ever wondered if you could render a template in the same context as your controllers? What about one single-file Rails applications?
+
     In this talk, we are going to build all those functionalities into a Rails application, making sure we learn about Rails internals and have fun while doing it.
   speakers:
     - José Valim

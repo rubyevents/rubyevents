@@ -1,5 +1,5 @@
 class Avo::Resources::User < Avo::BaseResource
-  self.title = :name
+  self.title = -> { [record.name, record.github_handle.presence&.then { |gh| "(@#{gh})" }, "(##{record.id})"].compact.join(" ") }
   self.includes = []
 
   self.description = -> {
@@ -28,7 +28,13 @@ class Avo::Resources::User < Avo::BaseResource
   }
 
   self.search = {
-    query: -> { query.where("lower(name) LIKE ? OR email LIKE ?", "%#{params[:q]&.downcase}%", "%#{params[:q]}%") }
+    query: -> { query.where("lower(name) LIKE ? OR email LIKE ? OR lower(github_handle) LIKE ?", "%#{params[:q]&.downcase}%", "%#{params[:q]}%", "%#{params[:q]&.downcase}%") },
+    item: -> {
+      {
+        title: [record.name, record.github_handle.presence&.then { |gh| "(@#{gh})" }].compact.join(" "),
+        description: "ID: #{record.id}"
+      }
+    }
   }
 
   self.external_link = -> {

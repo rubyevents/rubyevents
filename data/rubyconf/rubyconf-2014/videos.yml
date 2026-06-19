@@ -943,8 +943,6 @@
   video_provider: "youtube"
   video_id: "Pta7Lr-eskc"
   description: |-
-    Scalable Deployments - How we Deploy Rails app to 100+ Hosts in a Minute by Shota Fukumori
-
     If you're developing webapps, I guess you deploy sometime using tools like Capistrano. We think existing tools slow for huge apps and a lot of servers.
 
     We serves cookpad.com, which is a huge Rails app, and the largest recipe site in Japan. It's backed 120+ app servers. We've used Capistrano + SSH + rsync, but it became a bottleneck, slower and slower, as well as server increases. Our developer have wanted to focus on development. Deployments should be done in short time.
