@@ -10,7 +10,7 @@ class PageController < ApplicationController
         events_count: Event.count,
         latest_talk_ids: latest_talks.pluck(:id),
         upcoming_talk_ids: Talk.with_speakers.where(date: Date.today..).order(date: :asc).limit(15).pluck(:id),
-        latest_event_ids: Event.order(date: :desc).limit(10).pluck(:id).sample(4),
+        latest_event_ids: Event.conference.past.limit(10).pluck(:id),
         featured_speaker_ids: User.with_github
           .joins(:talks)
           .where(talks: {date: 12.months.ago..})
