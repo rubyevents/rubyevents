@@ -139,6 +139,10 @@ class User < ApplicationRecord
 
   validates :email, format: {with: URI::MailTo::EMAIL_REGEXP}, allow_blank: true
   validates :github_handle, presence: true, uniqueness: true, allow_blank: true
+  GITHUB_HANDLE_PATTERN = /\A[A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?\z/
+  validates :github_handle,
+    format: {with: GITHUB_HANDLE_PATTERN, message: "is not a valid GitHub username"},
+    allow_blank: true
   validates :canonical, exclusion: {in: ->(user) { [user] }, message: "can't be itself"}
   validates :distance, comparison: {less_than_or_equal_to: 20_000, greater_than_or_equal_to: 0}
 

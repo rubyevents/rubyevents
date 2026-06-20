@@ -89,6 +89,22 @@ class UserTest < ActiveSupport::TestCase
     assert_equal "tekin", user.github_handle
   end
 
+  test "rejects github_handle with path-injection characters" do
+    user = users(:one)
+
+    ["victim/repos", "x?per_page=100", "foo#frag", "../user", "bad_handle"].each do |handle|
+      user.github_handle = handle
+      assert_not user.valid?, "expected #{handle.inspect} to be invalid"
+      assert_includes user.errors[:github_handle], "is not a valid GitHub username"
+    end
+  end
+
+  test "accepts a valid github_handle" do
+    user = users(:one)
+    user.github_handle = "matz-the-creator"
+    assert user.valid?
+  end
+
   test "should normalize mastodon handle into a profile URL" do
     user = users(:one)
 
