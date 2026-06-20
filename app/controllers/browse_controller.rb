@@ -10,7 +10,7 @@ class BrowseController < ApplicationController
     unwatched_attended favorite_speakers popular popular_youtube most_bookmarked
     quick_watches deep_dives hidden_gems evergreen beginner_friendly mind_blowing
     inspiring most_liked recommended_community popular_topics talk_kinds topic_rows
-    language_rows
+    language_rows closing_cfps upcoming_events recent_events featured_organizations
   ].freeze
 
   def index
@@ -59,6 +59,10 @@ class BrowseController < ApplicationController
     when "talk_kinds" then {talk_kinds: @talk_kinds}
     when "topic_rows" then {topic_rows: @topic_rows}
     when "language_rows" then {language_rows: @language_rows}
+    when "closing_cfps" then {events: @closing_cfp_events}
+    when "upcoming_events" then {events: @upcoming_events}
+    when "recent_events" then {events: @recent_events}
+    when "featured_organizations" then {organizations: @featured_organizations}
     else {}
     end
   end
@@ -568,5 +572,39 @@ class BrowseController < ApplicationController
           talk_ids: event.talks.watchable.order(date: :desc).limit(15).pluck(:id)
         }
       end
+  end
+
+  def load_closing_cfps
+    @closing_cfp_events = Event
+      .joins(:cfps)
+      .merge(CFP.open.where.not(close_date: nil))
+      .includes(:series, :cfps)
+      .order("cfps.close_date ASC")
+      .distinct
+      .limit(10)
+  end
+
+  def load_upcoming_events
+    @upcoming_events = Event.upcoming
+      .includes(:series)
+      .limit(15)
+  end
+
+  def load_recent_events
+    @recent_events = Event.conference.past
+      .includes(:series)
+      .limit(15)
+  end
+
+  def load_featured_organizations
+    ids = Rails.cache.fetch(cache_key("featured_organizations"), expires_in: CACHE_EXPIRY) do
+      Organization.joins(:sponsors)
+        .group("organizations.id")
+        .order("COUNT(sponsors.id) DESC")
+        .limit(10)
+        .pluck(:id)
+    end
+
+    @featured_organizations = Organization.includes(:events).where(id: ids).in_order_of(:id, ids)
   end
 end

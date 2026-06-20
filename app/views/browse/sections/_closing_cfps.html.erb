@@ -1,0 +1,21 @@
+<%# locals: (events:) %>
+
+<%= turbo_frame_tag "browse-closing-cfps" do %>
+  <% if events&.any? %>
+    <section class="flex flex-col gap-4" data-section="closing-cfps">
+      <div class="flex items-end justify-between">
+        <div>
+          <h2 class="text-xl font-bold">CFPs Closing Soon</h2>
+          <p class="text-sm text-gray-500">Submit your talk proposals before it's too late</p>
+        </div>
+
+        <%= link_to cfp_index_path, class: "link text-sm shrink-0 flex items-center gap-1 hover:gap-2 transition-all", data: {turbo_frame: "_top"} do %>
+          View All
+          <%= fa("arrow-right-long", size: :sm) %>
+        <% end %>
+      </div>
+
+      <%= render partial: "cfp/event_list", locals: {events: events} %>
+    </section>
+  <% end %>
+<% end %>

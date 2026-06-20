@@ -106,100 +106,124 @@
 
   <div class="container">
     <div class="flex flex-col gap-12 mt-12">
-      <section class="flex flex-col w-full gap-4">
-        <div class="flex items-center justify-between w-full">
-          <h2 class="text-primary shrink-0">Latest videos</h2>
-          <%= link_to "see all talks", talks_path, class: "link text-right w-full" %>
-        </div>
-
-        <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 md:[&>:nth-child(4)]:hidden lg:grid-cols-4 lg:[&>:nth-child(4)]:block">
-          <%= render partial: "talks/card", collection: @latest_talks.first(4), as: :talk, cached: true, locals: {back_to: root_path, back_to_title: "Home"} %>
-        </div>
-      </section>
-
-      <section class="flex flex-col w-full gap-4">
-        <div class="flex items-center justify-between w-full">
-          <h2 class="text-primary shrink-0">Featured speakers</h2>
-          <%= link_to "see all speakers", speakers_path, class: "link text-right w-full" %>
-        </div>
-
-        <div class="relative" data-controller="scroll">
-          <div class="overflow-x-auto scroll-smooth snap-x snap-mandatory"
-               data-scroll-target="container"
-               data-action="scroll->scroll#checkScroll">
-            <div class="flex pb-4 gap-4">
-              <% @featured_speakers.each do |speaker| %>
-                <div class="snap-start" data-scroll-target="card">
-                  <%= render partial: "speakers/card", locals: {speaker: speaker} %>
-                </div>
-              <% end %>
-            </div>
-          </div>
-          <div
-            class="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white to-transparent pointer-events-none"
-            data-scroll-target="gradient"></div>
-        </div>
-      </section>
-
-      <section class="flex flex-col w-full gap-4">
-        <div class="flex items-center justify-between w-full">
-          <h2 class="text-primary shrink-0">Latest events</h2>
-          <%= link_to "see all events", events_path, class: "link text-right w-full" %>
-        </div>
-        <div class="relative" data-controller="scroll">
-          <div class="overflow-x-auto scroll-smooth snap-x snap-mandatory"
-               data-scroll-target="container"
-               data-action="scroll->scroll#checkScroll">
-            <div class="flex pb-4 gap-4">
-              <%= cache @latest_events do %>
-                <% @latest_events.each do |event| %>
-                  <div class="snap-start shrink-0 w-64 sm:w-72" data-scroll-target="card">
-                    <%= render partial: "events/card", locals: {event: event} %>
-                  </div>
-                <% end %>
-              <% end %>
-            </div>
-          </div>
-          <div
-            class="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white to-transparent pointer-events-none"
-            data-scroll-target="gradient"></div>
-        </div>
-      </section>
-
-      <% if @recommended_talks.present? %>
-        <section class="flex flex-col w-full gap-4">
-          <div class="flex items-center justify-between w-full">
-            <h2 class="text-primary shrink-0">Recommended for you</h2>
-            <%= link_to "see all recommendations", recommendations_path, class: "link text-right w-full" %>
-          </div>
-          <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 md:[&>:nth-child(4)]:hidden lg:grid-cols-4 lg:[&>:nth-child(4)]:block">
-            <%= render partial: "talks/card", collection: @recommended_talks, as: :talk, cached: true, locals: {back_to: root_path, back_to_title: "Home"} %>
-          </div>
-        </section>
+      <%= turbo_frame_tag "browse-newest-talks", src: browse_path("newest_talks"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
       <% end %>
 
-      <% if @featured_organizations.present? %>
-        <section class="flex flex-col w-full gap-4">
-          <div class="flex items-center justify-between w-full">
-            <h2 class="text-primary shrink-0">Featured organizations</h2>
-            <%= link_to "see all organizations", organizations_path, class: "link text-right w-full" %>
-          </div>
-
-          <div class="relative" data-controller="scroll">
-            <div class="overflow-x-auto scroll-smooth snap-x snap-mandatory" data-scroll-target="container" data-action="scroll->scroll#checkScroll">
-              <div class="flex pb-4 gap-4">
-                <% @featured_organizations.each do |organization| %>
-                  <div class="snap-start" data-scroll-target="card">
-                    <%= render partial: "organizations/card", locals: {organization: organization} %>
-                  </div>
-                <% end %>
-              </div>
-            </div>
-
-            <div class="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white to-transparent pointer-events-none" data-scroll-target="gradient"></div>
-          </div>
-        </section>
+      <%= turbo_frame_tag "browse-closing-cfps", src: browse_path("closing_cfps"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
       <% end %>
+
+      <%= turbo_frame_tag "browse-recently-published", src: browse_path("recently_published"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-upcoming-events", src: browse_path("upcoming_events"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-trending", src: browse_path("trending"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <% if Current.user %>
+        <%= turbo_frame_tag "browse-for-you", src: browse_path("for_you"), loading: :lazy do %>
+          <%= render "browse/content_row_skeleton" %>
+        <% end %>
+
+        <%= turbo_frame_tag "browse-from-bookmarks", src: browse_path("from_bookmarks"), loading: :lazy do %>
+          <%= render "browse/content_row_skeleton" %>
+        <% end %>
+
+        <%= turbo_frame_tag "browse-favorite-speakers", src: browse_path("favorite_speakers"), loading: :lazy do %>
+          <%= render "browse/content_row_skeleton" %>
+        <% end %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-event-rows", src: browse_path("event_rows"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-popular", src: browse_path("popular"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-popular-youtube", src: browse_path("popular_youtube"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-recent-events", src: browse_path("recent_events"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-hidden-gems", src: browse_path("hidden_gems"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-quick-watches", src: browse_path("quick_watches"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-popular-topics", src: browse_path("popular_topics"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-talk-kinds", src: browse_path("talk_kinds"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-topic-rows", src: browse_path("topic_rows"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-featured-organizations", src: browse_path("featured_organizations"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <section class="py-12">
+        <h2 class="text-2xl font-bold text-center mb-2">Get involved in the Ruby community</h2>
+        <p class="text-gray-500 text-center mb-8">Whether you want to learn, share, or build — there's a place for you</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <%= link_to events_path, class: "group flex flex-col items-center gap-4 p-8 rounded-2xl border border-base-300 hover:border-primary hover:shadow-lg transition-all" do %>
+            <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+              <%= fa("ticket", size: :xl, class: "fill-primary") %>
+            </div>
+            <h3 class="text-xl font-bold">Attend</h3>
+            <p class="text-gray-500 text-center text-sm">Find upcoming Ruby conferences and meetups near you</p>
+            <span class="text-primary text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
+              Browse events <%= fa("arrow-right-long", size: :sm) %>
+            </span>
+          <% end %>
+
+          <%= link_to cfp_index_path, class: "group flex flex-col items-center gap-4 p-8 rounded-2xl border border-base-300 hover:border-primary hover:shadow-lg transition-all" do %>
+            <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+              <%= fa("microphone", size: :xl, class: "fill-primary") %>
+            </div>
+            <h3 class="text-xl font-bold">Speak</h3>
+            <p class="text-gray-500 text-center text-sm">Submit a talk proposal to an open Call for Proposals</p>
+            <span class="text-primary text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
+              View open CFPs <%= fa("arrow-right-long", size: :sm) %>
+            </span>
+          <% end %>
+
+          <div class="group flex flex-col items-center gap-4 p-8 rounded-2xl border border-base-300 bg-base-200/50">
+            <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
+              <%= fa("people-group", size: :xl, class: "fill-primary") %>
+            </div>
+            <h3 class="text-xl font-bold">Organize</h3>
+            <p class="text-gray-500 text-center text-sm">Resources and guides for running your own Ruby event</p>
+            <span class="text-gray-400 text-sm font-semibold">Coming soon</span>
+          </div>
+        </div>
+      </section>
+
+      <div class="flex justify-center pb-4">
+        <%= link_to browse_index_path, class: "btn btn-primary btn-lg gap-2" do %>
+          <%= fa("compass", size: :md) %>
+          Explore all categories
+        <% end %>
+      </div>
     </div>
   </div>
 </main>
