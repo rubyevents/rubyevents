@@ -122,6 +122,10 @@
     <%= render "browse/content_row_skeleton" %>
   <% end %>
 
+  <%= turbo_frame_tag "browse-talk-languages", src: browse_path("talk_languages"), loading: :lazy do %>
+    <%= render "browse/content_row_skeleton" %>
+  <% end %>
+
   <%= turbo_frame_tag "browse-topic-rows", src: browse_path("topic_rows"), loading: :lazy do %>
     <%= render "browse/content_row_skeleton" %>
   <% end %>

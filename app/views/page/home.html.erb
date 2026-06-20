@@ -172,6 +172,10 @@
         <%= render "browse/content_row_skeleton" %>
       <% end %>
 
+      <%= turbo_frame_tag "browse-talk-languages", src: browse_path("talk_languages"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
       <%= turbo_frame_tag "browse-topic-rows", src: browse_path("topic_rows"), loading: :lazy do %>
         <%= render "browse/content_row_skeleton" %>
       <% end %>
@@ -182,39 +186,41 @@
 
       <section class="py-12">
         <h2 class="text-2xl font-bold text-center mb-2">Get involved in the Ruby community</h2>
-        <p class="text-gray-500 text-center mb-8">Whether you want to learn, share, or build — there's a place for you</p>
+        <p class="text-gray-500 text-center mb-8">Whether you want to learn, share, or build, there's a place for you</p>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <%= link_to events_path, class: "group flex flex-col items-center gap-4 p-8 rounded-2xl border border-base-300 hover:border-primary hover:shadow-lg transition-all" do %>
+          <%= link_to attend_path, class: "group flex flex-col items-center gap-4 p-8 rounded-2xl border border-base-300 bg-white hover:border-primary hover:shadow-lg transition-all" do %>
             <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
               <%= fa("ticket", size: :xl, class: "fill-primary") %>
             </div>
             <h3 class="text-xl font-bold">Attend</h3>
             <p class="text-gray-500 text-center text-sm">Find upcoming Ruby conferences and meetups near you</p>
             <span class="text-primary text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
-              Browse events <%= fa("arrow-right-long", size: :sm) %>
+              Learn more <%= fa("arrow-right-long", size: :sm) %>
             </span>
           <% end %>
 
-          <%= link_to cfp_index_path, class: "group flex flex-col items-center gap-4 p-8 rounded-2xl border border-base-300 hover:border-primary hover:shadow-lg transition-all" do %>
+          <%= link_to speak_path, class: "group flex flex-col items-center gap-4 p-8 rounded-2xl border border-base-300 bg-white hover:border-primary hover:shadow-lg transition-all" do %>
             <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
               <%= fa("microphone", size: :xl, class: "fill-primary") %>
             </div>
             <h3 class="text-xl font-bold">Speak</h3>
             <p class="text-gray-500 text-center text-sm">Submit a talk proposal to an open Call for Proposals</p>
             <span class="text-primary text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
-              View open CFPs <%= fa("arrow-right-long", size: :sm) %>
+              Learn more <%= fa("arrow-right-long", size: :sm) %>
             </span>
           <% end %>
 
-          <div class="group flex flex-col items-center gap-4 p-8 rounded-2xl border border-base-300 bg-base-200/50">
-            <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
+          <%= link_to organize_path, class: "group flex flex-col items-center gap-4 p-8 rounded-2xl border border-base-300 bg-white hover:border-primary hover:shadow-lg transition-all" do %>
+            <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
               <%= fa("people-group", size: :xl, class: "fill-primary") %>
             </div>
             <h3 class="text-xl font-bold">Organize</h3>
             <p class="text-gray-500 text-center text-sm">Resources and guides for running your own Ruby event</p>
-            <span class="text-gray-400 text-sm font-semibold">Coming soon</span>
-          </div>
+            <span class="text-primary text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
+              Get started <%= fa("arrow-right-long", size: :sm) %>
+            </span>
+          <% end %>
         </div>
       </section>
 

@@ -92,6 +92,15 @@ class PageController < ApplicationController
   def about
   end
 
+  def attend
+  end
+
+  def speak
+  end
+
+  def organize
+  end
+
   def stickers
     @events = Event.all.select(&:sticker?)
     @stickers = @events.flat_map(&:stickers)

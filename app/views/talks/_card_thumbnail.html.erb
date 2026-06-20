@@ -21,6 +21,12 @@
 
     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent rounded-xl hidden sm:block"></div>
 
+    <% if talk.language.present? && talk.language != "en" %>
+      <div class="absolute top-2 left-2 z-20 px-1.5 py-0.5 bg-black/70 backdrop-blur-sm rounded text-white text-xs font-medium">
+        <%= Language.emoji_flag(talk.language) %>
+      </div>
+    <% end %>
+
     <% if talk.duration_in_seconds.present? %>
       <div class="absolute top-2 right-2 z-20 px-1.5 py-0.5 bg-black/70 backdrop-blur-sm rounded text-white text-xs font-medium">
         <% if watched_talk&.in_progress? && watched_talk.progress_seconds.present? %>
@@ -33,7 +39,7 @@
       </div>
     <% end %>
 
-    <div class="absolute inset-0 bottom-6 z-10 hidden sm:flex items-center justify-center opacity-0 sm:group-hover:opacity-100 transition-opacity duration-200">
+    <div class="absolute inset-0 bottom-6 z-10 hidden sm:group-hover:flex items-center justify-center opacity-0 sm:group-hover:opacity-100 transition-opacity duration-200">
       <div class="p-2 bg-white/20 backdrop-blur-sm rounded-full sm:group-hover:bg-white/30 sm:group-hover:scale-110 transition-all duration-200">
         <%= fa("play", size: :sm, class: "fill-white") %>
       </div>

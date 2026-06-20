@@ -11,6 +11,9 @@ class BrowseController < ApplicationController
     quick_watches deep_dives hidden_gems evergreen beginner_friendly mind_blowing
     inspiring most_liked recommended_community popular_topics talk_kinds topic_rows
     language_rows closing_cfps upcoming_events recent_events featured_organizations
+    upcoming_events_europe upcoming_events_north_america upcoming_events_south_america
+    upcoming_events_asia upcoming_events_australia upcoming_events_africa
+    talk_languages
   ].freeze
 
   def index
@@ -57,12 +60,14 @@ class BrowseController < ApplicationController
     when "recommended_community" then {talks: @recommended_by_community}
     when "popular_topics" then {topics: @popular_topics}
     when "talk_kinds" then {talk_kinds: @talk_kinds}
+    when "talk_languages" then {languages: @talk_languages}
     when "topic_rows" then {topic_rows: @topic_rows}
     when "language_rows" then {language_rows: @language_rows}
     when "closing_cfps" then {events: @closing_cfp_events}
     when "upcoming_events" then {events: @upcoming_events}
     when "recent_events" then {events: @recent_events}
     when "featured_organizations" then {organizations: @featured_organizations}
+    when /\Aupcoming_events_(\w+)\z/ then {events: @continent_events, continent: @continent}
     else {}
     end
   end
@@ -535,6 +540,16 @@ class BrowseController < ApplicationController
       .limit(12)
   end
 
+  def load_talk_languages
+    @talk_languages = Rails.cache.fetch(cache_key("talk_languages"), expires_in: CACHE_EXPIRY) do
+      Talk.watchable
+        .where.not(language: [nil, ""])
+        .group(:language)
+        .order(Arel.sql("COUNT(*) DESC"))
+        .count
+    end
+  end
+
   def talk_kinds_query
     Talk.watchable
       .group(:kind)
@@ -594,6 +609,17 @@ class BrowseController < ApplicationController
     @recent_events = Event.conference.past
       .includes(:series)
       .limit(15)
+  end
+
+  %w[europe north_america south_america asia australia africa].each do |continent_key|
+    define_method("load_upcoming_events_#{continent_key}") do
+      slug = continent_key.tr("_", "-")
+      @continent = Continent.find(slug)
+      @continent_events = Event.upcoming
+        .includes(:series)
+        .where(country_code: @continent.country_codes)
+        .limit(15)
+    end
   end
 
   def load_featured_organizations

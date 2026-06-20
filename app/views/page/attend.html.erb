@@ -1,0 +1,126 @@
+<% title "Attend a Ruby Event" %>
+<% set_meta_tags description: "Find upcoming Ruby conferences and meetups worldwide. Browse events by region and join the Ruby community.",
+                 keywords: "ruby events, ruby conferences, ruby meetups, attend ruby conference, rubyconf, railsconf",
+                 og: {title: "Attend a Ruby Event | RubyEvents.org", description: "Find upcoming Ruby conferences and meetups worldwide. Browse events by region and join the Ruby community."},
+                 twitter: {title: "Attend a Ruby Event | RubyEvents.org", description: "Find upcoming Ruby conferences and meetups worldwide. Browse events by region and join the Ruby community."} %>
+
+<main>
+  <div class="container">
+    <section class="py-12 text-center max-w-3xl mx-auto">
+      <h1 class="text-4xl font-bold text-primary mb-4">Attend a Ruby Event</h1>
+      <p class="text-lg text-gray-600">
+        Ruby events are where friendships are made, ideas are sparked, and careers are shaped.
+        Whether you're looking for a multi-day conference or a casual evening meetup, there's an event for you.
+      </p>
+    </section>
+
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+      <%= link_to events_path(kind: "conference"), class: "group flex flex-col items-center gap-3 p-6 rounded-2xl border border-base-300 bg-white hover:border-primary hover:shadow-lg transition-all" do %>
+        <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+          <%= fa("building-columns", size: :xl, class: "fill-primary") %>
+        </div>
+        <h3 class="text-lg font-bold">Conferences</h3>
+        <p class="text-gray-500 text-center text-sm">Multi-day events with talks, workshops, and hallway conversations</p>
+      <% end %>
+
+      <%= link_to events_path(kind: "meetup"), class: "group flex flex-col items-center gap-3 p-6 rounded-2xl border border-base-300 bg-white hover:border-primary hover:shadow-lg transition-all" do %>
+        <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+          <%= fa("users", size: :xl, class: "fill-primary") %>
+        </div>
+        <h3 class="text-lg font-bold">Meetups</h3>
+        <p class="text-gray-500 text-center text-sm">Regular local gatherings to learn, share, and connect with fellow Rubyists</p>
+      <% end %>
+
+      <%= link_to talks_path, class: "group flex flex-col items-center gap-3 p-6 rounded-2xl border border-base-300 bg-white hover:border-primary hover:shadow-lg transition-all" do %>
+        <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+          <%= fa("circle-play", size: :xl, class: "fill-primary") %>
+        </div>
+        <h3 class="text-lg font-bold">Watch Online</h3>
+        <p class="text-gray-500 text-center text-sm">Can't travel? Watch recorded talks from conferences around the world</p>
+      <% end %>
+    </section>
+
+    <div class="flex flex-col gap-12">
+      <%= turbo_frame_tag "browse-upcoming-events", src: browse_path("upcoming_events"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <section>
+        <h2 class="text-2xl font-bold mb-6">Events by Region</h2>
+
+        <div class="flex flex-col gap-8">
+          <%= turbo_frame_tag "browse-upcoming-events-europe", src: browse_path("upcoming_events_europe"), loading: :lazy do %>
+            <%= render "browse/content_row_skeleton" %>
+          <% end %>
+
+          <%= turbo_frame_tag "browse-upcoming-events-north-america", src: browse_path("upcoming_events_north_america"), loading: :lazy do %>
+            <%= render "browse/content_row_skeleton" %>
+          <% end %>
+
+          <%= turbo_frame_tag "browse-upcoming-events-asia", src: browse_path("upcoming_events_asia"), loading: :lazy do %>
+            <%= render "browse/content_row_skeleton" %>
+          <% end %>
+
+          <%= turbo_frame_tag "browse-upcoming-events-south-america", src: browse_path("upcoming_events_south_america"), loading: :lazy do %>
+            <%= render "browse/content_row_skeleton" %>
+          <% end %>
+
+          <%= turbo_frame_tag "browse-upcoming-events-australia", src: browse_path("upcoming_events_australia"), loading: :lazy do %>
+            <%= render "browse/content_row_skeleton" %>
+          <% end %>
+
+          <%= turbo_frame_tag "browse-upcoming-events-africa", src: browse_path("upcoming_events_africa"), loading: :lazy do %>
+            <%= render "browse/content_row_skeleton" %>
+          <% end %>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold mb-6">Helpful Resources</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <%= link_to events_path, class: "flex items-center gap-3 p-4 rounded-xl border border-base-300 bg-white hover:border-primary hover:shadow transition-all" do %>
+            <%= fa("calendar", size: :lg, class: "fill-primary shrink-0") %>
+            <div>
+              <div class="font-semibold">Browse all events</div>
+              <div class="text-sm text-gray-500">Conferences, meetups, and more</div>
+            </div>
+          <% end %>
+
+          <%= link_to past_events_path, class: "flex items-center gap-3 p-4 rounded-xl border border-base-300 bg-white hover:border-primary hover:shadow transition-all" do %>
+            <%= fa("clock-rotate-left", size: :lg, class: "fill-primary shrink-0") %>
+            <div>
+              <div class="font-semibold">Past events & recordings</div>
+              <div class="text-sm text-gray-500">Watch talks you missed</div>
+            </div>
+          <% end %>
+
+          <%= link_to locations_search_path, class: "flex items-center gap-3 p-4 rounded-xl border border-base-300 bg-white hover:border-primary hover:shadow transition-all" do %>
+            <%= fa("magnifying-glass-location", size: :lg, class: "fill-primary shrink-0") %>
+            <div>
+              <div class="font-semibold">Find events near you</div>
+              <div class="text-sm text-gray-500">Search by city, country, or region</div>
+            </div>
+          <% end %>
+
+          <%= link_to continents_path, class: "flex items-center gap-3 p-4 rounded-xl border border-base-300 bg-white hover:border-primary hover:shadow transition-all" do %>
+            <%= fa("globe", size: :lg, class: "fill-primary shrink-0") %>
+            <div>
+              <div class="font-semibold">Events by continent</div>
+              <div class="text-sm text-gray-500">Browse events worldwide</div>
+            </div>
+          <% end %>
+
+          <%= link_to browse_index_path, class: "flex items-center gap-3 p-4 rounded-xl border border-base-300 bg-white hover:border-primary hover:shadow transition-all" do %>
+            <%= fa("compass", size: :lg, class: "fill-primary shrink-0") %>
+            <div>
+              <div class="font-semibold">Browse talks</div>
+              <div class="text-sm text-gray-500">Discover talks by topic and format</div>
+            </div>
+          <% end %>
+        </div>
+      </section>
+
+      <%= render "page/community_cta", exclude: :attend %>
+    </div>
+  </div>
+</main>

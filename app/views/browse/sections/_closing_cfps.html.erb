@@ -2,7 +2,7 @@
 
 <%= turbo_frame_tag "browse-closing-cfps" do %>
   <% if events&.any? %>
-    <section class="flex flex-col gap-4" data-section="closing-cfps">
+    <section class="flex flex-col gap-4 group/row" data-section="closing-cfps">
       <div class="flex items-end justify-between">
         <div>
           <h2 class="text-xl font-bold">CFPs Closing Soon</h2>
@@ -15,7 +15,65 @@
         <% end %>
       </div>
 
-      <%= render partial: "cfp/event_list", locals: {events: events} %>
+      <div class="relative" data-controller="content-row">
+        <button
+          class="hidden lg:flex absolute -left-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white hover:bg-gray-100 transition-all opacity-0 group-hover/row:opacity-100 disabled:opacity-0"
+          data-content-row-target="prevButton"
+          data-action="click->content-row#scrollLeft">
+          <%= fa("chevron-left", size: :md, class: "text-gray-700") %>
+        </button>
+
+        <div
+          class="overflow-x-auto scroll-smooth snap-x snap-mandatory"
+          style="-ms-overflow-style: none; scrollbar-width: none;"
+          data-content-row-target="container"
+          data-action="scroll->content-row#handleScroll">
+          <div class="flex gap-4 sm:pb-2" data-content-row-target="track">
+            <% events.each do |event| %>
+              <div class="snap-start shrink-0 w-72 sm:w-80">
+                <%= link_to event_cfp_index_path(event), class: "block p-4 rounded-xl bg-white border border-base-300 hover:border-primary transition-all h-full", data: {turbo_frame: "_top"} do %>
+                  <div class="flex items-center gap-3 mb-3">
+                    <%= image_tag image_path(event.avatar_image_path), class: "rounded-lg border border-base-200 size-10", alt: event.name, loading: :lazy %>
+                    <div class="min-w-0">
+                      <div class="font-bold text-sm truncate"><%= event.name %></div>
+                      <div class="text-xs text-gray-500 truncate"><%= event.location %></div>
+                    </div>
+                  </div>
+
+                  <% event.cfps.open.each do |cfp| %>
+                    <div class="flex items-center justify-between gap-2">
+                      <div class="text-xs text-gray-600">
+                        <% if cfp.close_date.present? && (cfp.open_date.blank? || cfp.open_date.past?) %>
+                          Closes <%= cfp.formatted_close_date %>
+                        <% elsif cfp.open_ended? %>
+                          Always open
+                        <% end %>
+                      </div>
+                      <% if cfp.days_remaining %>
+                        <span class="badge badge-sm <%= cfp.days_remaining <= 7 ? "badge-error" : "badge-warning" %>">
+                          <%= pluralize(cfp.days_remaining, "day") %> left
+                        </span>
+                      <% end %>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <button
+          class="hidden lg:flex absolute -right-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white hover:bg-gray-100 transition-all opacity-0 group-hover/row:opacity-100 disabled:opacity-0"
+          data-content-row-target="nextButton"
+          data-action="click->content-row#scrollRight">
+          <%= fa("chevron-right", size: :md, class: "text-gray-700") %>
+        </button>
+
+        <div
+          class="absolute right-0 top-0 bottom-2 w-64 pointer-events-none opacity-0 sm:opacity-50 transition-opacity"
+          style="background: linear-gradient(to left, var(--fallback-b1,oklch(var(--b1)/1)), transparent);"
+          data-content-row-target="gradient"></div>
+      </div>
     </section>
   <% end %>
 <% end %>
