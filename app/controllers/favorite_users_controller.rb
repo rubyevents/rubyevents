@@ -5,7 +5,7 @@ class FavoriteUsersController < ApplicationController
   def index
     @ruby_friends = FavoriteUser.where(user: Current.user).includes(:favorite_user, :mutual_favorite_user).where.associated(:mutual_favorite_user).order(favorite_user: {name: :asc})
     @favorite_rubyists = FavoriteUser.where(user: Current.user).includes(:favorite_user, :mutual_favorite_user).where.missing(:mutual_favorite_user).order(favorite_user: {name: :asc})
-    @recommendations = FavoriteUser.recommendations_for(Current.user) if @favorite_rubyists.empty? && @ruby_friends.empty?
+    @recommendations = FavoriteUser.recommendations_for(Current.user)
   end
 
   # POST /favorite_users or /favorite_users.json

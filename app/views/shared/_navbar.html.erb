@@ -23,7 +23,7 @@
         <div class="flex items-center gap-2">
           <ul class="desktop-menu">
             <% signed_in do %>
-              <%= render "shared/navbar/link", link_title: "Favorite Rubyists", path: favorite_users_path %>
+              <%= render "shared/navbar/link", link_title: "Library", path: recommendations_path %>
             <% end %>
             <%= render "shared/navbar/link", link_title: "Contribute", path: contributions_path %>
             <%= render "shared/navbar/link", link_title: "News", path: announcements_path %>

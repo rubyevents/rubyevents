@@ -2,50 +2,63 @@
   <div class="grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-8">
     <%= render "talks/sidebar", sidebar_data: @sidebar_data %>
 
-      <div class="flex flex-col gap-4">
-        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 min-h-[2.5rem] hotwire-native:mb-3">
-          <h1 class="title text-primary hotwire-native:hidden">
-            <% if @section_title %>
-              <%= title @section_title %>
-            <% elsif params[:kind].present? %>
-              <%= title((Talk::KIND_LABELS[params[:kind]] || params[:kind].titleize).pluralize) %>
-            <% elsif params[:language].present? %>
-              <%= title "#{Language.emoji_flag(params[:language])} #{Language.by_code(params[:language])}" %>
-            <% elsif params[:status] == "no_video" %>
-              <%= title "Talks Without Video" %>
-            <% else %>
-              <%= title "Talks" %>
-            <% end %>
+    <div class="flex flex-col gap-4">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 min-h-[2.5rem] hotwire-native:mb-3">
+        <h1 class="title text-primary hotwire-native:hidden">
+          <% if @section_title %>
+            <%= title @section_title %>
+          <% elsif params[:kind].present? %>
+            <%= title((Talk::KIND_LABELS[params[:kind]] || params[:kind].titleize).pluralize) %>
+          <% elsif params[:language].present? %>
+            <%= title "#{Language.emoji_flag(params[:language])} #{Language.by_code(params[:language])}" %>
+          <% elsif params[:status] == "no_video" %>
+            <%= title "Talks Without Video" %>
+          <% else %>
+            <%= title "Talks" %>
+          <% end %>
 
-            <% if params[:s].present? %>
-              : search results for "<%= params[:s] %>"
-            <% end %>
-          </h1>
+          <% if params[:s].present? %>
+            : search results for "<%= params[:s] %>"
+          <% end %>
+        </h1>
 
-          <div class="flex items-center gap-2 hotwire-native:hidden">
-            <% if filtered_search? %>
-              <div class="text-sm text-gray-500"><%= @pagy.count %> results</div>
-            <% end %>
+        <div class="flex items-center gap-2 hotwire-native:hidden">
+          <% if filtered_search? %>
+            <div class="text-sm text-gray-500"><%= @pagy.count %> results</div>
+          <% end %>
 
-            <% unless params[:section].present? %>
-              <div class="tabs tabs-boxed">
-                <%= link_to talks_path(search_params.except(:status).merge(status: "all")),
-                      class: "tab gap-1.5 #{"tab-active" if params[:status] == "all"}" do %>
-                  All <span class="text-xs opacity-60"><%= number_with_delimiter(@status_counts[:all]) %></span>
-                <% end %>
-                <%= link_to talks_path(search_params.except(:status)),
-                      class: "tab gap-1.5 #{"tab-active" if params[:status].blank? || params[:status] == "watchable"}" do %>
-                  Watchable <span class="text-xs opacity-60"><%= number_with_delimiter(@status_counts[:watchable]) %></span>
-                <% end %>
-                <%= link_to talks_path(search_params.except(:status).merge(status: "no_video")),
-                      class: "tab gap-1.5 #{"tab-active" if params[:status] == "no_video"}" do %>
-                  No Video <span class="text-xs opacity-60"><%= number_with_delimiter(@status_counts[:no_video]) %></span>
-                <% end %>
-              </div>
+          <% unless params[:section].present? %>
+            <div class="tabs tabs-boxed">
+              <%= link_to talks_path(search_params.except(:status).merge(status: "all")),
+                    class: "tab gap-1.5 #{"tab-active" if params[:status] == "all"}" do %>
+                All <span class="text-xs opacity-60"><%= number_with_delimiter(@status_counts[:all]) %></span>
+              <% end %>
+              <%= link_to talks_path(search_params.except(:status)),
+                    class: "tab gap-1.5 #{"tab-active" if params[:status].blank? || params[:status] == "watchable"}" do %>
+                Watchable <span class="text-xs opacity-60"><%= number_with_delimiter(@status_counts[:watchable]) %></span>
+              <% end %>
+              <%= link_to talks_path(search_params.except(:status).merge(status: "no_video")),
+                    class: "tab gap-1.5 #{"tab-active" if params[:status] == "no_video"}" do %>
+                No Video <span class="text-xs opacity-60"><%= number_with_delimiter(@status_counts[:no_video]) %></span>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <% if @sign_in_required %>
+        <div class="text-center py-12">
+          <div class="max-w-md mx-auto">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">Personalized recommendations</h2>
+            <p class="text-gray-600 mb-6">
+              Sign in to get talk recommendations based on your interests and viewing history.
+            </p>
+            <%= link_to new_session_path(redirect_to: request.fullpath), class: "btn btn-primary", data: {turbo_frame: "modal"} do %>
+              Sign in to get started
             <% end %>
           </div>
         </div>
-
+      <% elsif @talks.present? %>
         <div id="talks" class="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
           <% @talks.each do |talk| %>
             <div>
@@ -55,8 +68,19 @@
         </div>
 
         <div class="flex w-full mt-4">
-          <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+          <%== pagy_nav(@pagy) if @pagy&.pages.to_i > 1 %>
         </div>
+      <% else %>
+        <div class="text-center py-12">
+          <div class="max-w-md mx-auto">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">No talks found</h2>
+            <p class="text-gray-600 mb-6">Try adjusting your filters or browse all talks.</p>
+            <%= link_to talks_path, class: "btn btn-primary" do %>
+              Browse all talks
+            <% end %>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

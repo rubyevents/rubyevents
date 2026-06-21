@@ -204,6 +204,7 @@ Rails.application.routes.draw do
   end
 
   resources :watched_talks, only: [:index, :destroy]
+  resources :feedback, only: [:index]
 
   resources :speakers, param: :slug, only: [:index]
   get "/speakers/:slug", to: redirect("/profiles/%{slug}", status: 301), as: :speaker

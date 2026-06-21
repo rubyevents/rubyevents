@@ -44,10 +44,15 @@ class TalksController < ApplicationController
   def index
     load_sidebar_data
 
-    if params[:section] == "for_you" && Current.user
-      talks = Current.user.talk_recommender.talks(limit: 100)
-      @pagy, @talks = pagy_array(talks, limit: 42)
+    if params[:section] == "for_you"
       @section_title = SECTION_TITLES["for_you"]
+      if Current.user
+        talks = Current.user.talk_recommender.talks(limit: 100)
+        @pagy, @talks = pagy_array(talks, limit: 42)
+      else
+        @talks = []
+        @sign_in_required = true
+      end
     elsif params[:section].present? && SECTION_SCOPES[params[:section]]
       scope = Talk.send(SECTION_SCOPES[params[:section]]).includes(:speakers, event: :series)
       @pagy, @talks = pagy(scope, limit: 42)
@@ -163,6 +168,7 @@ class TalksController < ApplicationController
         kind_counts: Talk.group(:kind).order(Arel.sql("COUNT(*) DESC")).count,
         language_counts: Talk.where.not(language: [nil, ""]).group(:language).order(Arel.sql("COUNT(*) DESC")).count,
         top_topics: Topic.approved
+          .where.not(name: ["Ruby", "Ruby on Rails"])
           .joins(:talks)
           .group("topics.id")
           .order(Arel.sql("COUNT(talks.id) DESC"))

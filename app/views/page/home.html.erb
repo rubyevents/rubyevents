@@ -111,7 +111,7 @@
       <% end %>
 
       <%= turbo_frame_tag "browse-closing-cfps", src: browse_path("closing_cfps"), loading: :lazy do %>
-        <%= render "browse/content_row_skeleton" %>
+        <%= render "browse/event_row_skeleton", min_height: "174px", card_height: "h-24" %>
       <% end %>
 
       <%= turbo_frame_tag "browse-recently-published", src: browse_path("recently_published"), loading: :lazy do %>
@@ -119,7 +119,7 @@
       <% end %>
 
       <%= turbo_frame_tag "browse-upcoming-events", src: browse_path("upcoming_events"), loading: :lazy do %>
-        <%= render "browse/content_row_skeleton" %>
+        <%= render "browse/event_row_skeleton" %>
       <% end %>
 
       <%= turbo_frame_tag "browse-trending", src: browse_path("trending"), loading: :lazy do %>
@@ -173,7 +173,7 @@
       <% end %>
 
       <%= turbo_frame_tag "browse-recent-events", src: browse_path("recent_events"), loading: :lazy do %>
-        <%= render "browse/content_row_skeleton" %>
+        <%= render "browse/event_row_skeleton", min_height: "384px" %>
       <% end %>
 
       <%= turbo_frame_tag "browse-hidden-gems", src: browse_path("hidden_gems"), loading: :lazy do %>
@@ -219,15 +219,15 @@
       <% end %>
 
       <%= turbo_frame_tag "browse-popular-topics", src: browse_path("popular_topics"), loading: :lazy do %>
-        <%= render "browse/content_row_skeleton" %>
+        <%= render "browse/pill_row_skeleton" %>
       <% end %>
 
       <%= turbo_frame_tag "browse-talk-kinds", src: browse_path("talk_kinds"), loading: :lazy do %>
-        <%= render "browse/content_row_skeleton" %>
+        <%= render "browse/pill_row_skeleton", min_height: "140px" %>
       <% end %>
 
       <%= turbo_frame_tag "browse-talk-languages", src: browse_path("talk_languages"), loading: :lazy do %>
-        <%= render "browse/content_row_skeleton" %>
+        <%= render "browse/pill_row_skeleton", min_height: "140px" %>
       <% end %>
 
       <%= turbo_frame_tag "browse-topic-rows", src: browse_path("topic_rows"), loading: :lazy do %>
@@ -235,48 +235,12 @@
       <% end %>
 
       <%= turbo_frame_tag "browse-featured-organizations", src: browse_path("featured_organizations"), loading: :lazy do %>
-        <%= render "browse/content_row_skeleton" %>
+        <%= render "browse/event_row_skeleton", min_height: "369px" %>
       <% end %>
 
-      <section class="py-12">
-        <h2 class="text-2xl font-bold text-center mb-2">Get involved in the Ruby community</h2>
-        <p class="text-gray-500 text-center mb-8">Whether you want to learn, share, or build, there's a place for you</p>
+      <%= render "page/ruby_passport" %>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <%= link_to attend_path, class: "group flex flex-col items-center gap-4 p-8 rounded-2xl border border-base-300 bg-white hover:border-primary hover:shadow-lg transition-all" do %>
-            <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-              <%= fa("ticket", size: :xl, class: "fill-primary") %>
-            </div>
-            <h3 class="text-xl font-bold">Attend</h3>
-            <p class="text-gray-500 text-center text-sm">Find upcoming Ruby conferences and meetups near you</p>
-            <span class="text-primary text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
-              Learn more <%= fa("arrow-right-long", size: :sm) %>
-            </span>
-          <% end %>
-
-          <%= link_to speak_path, class: "group flex flex-col items-center gap-4 p-8 rounded-2xl border border-base-300 bg-white hover:border-primary hover:shadow-lg transition-all" do %>
-            <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-              <%= fa("microphone", size: :xl, class: "fill-primary") %>
-            </div>
-            <h3 class="text-xl font-bold">Speak</h3>
-            <p class="text-gray-500 text-center text-sm">Submit a talk proposal to an open Call for Proposals</p>
-            <span class="text-primary text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
-              Learn more <%= fa("arrow-right-long", size: :sm) %>
-            </span>
-          <% end %>
-
-          <%= link_to organize_path, class: "group flex flex-col items-center gap-4 p-8 rounded-2xl border border-base-300 bg-white hover:border-primary hover:shadow-lg transition-all" do %>
-            <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-              <%= fa("people-group", size: :xl, class: "fill-primary") %>
-            </div>
-            <h3 class="text-xl font-bold">Organize</h3>
-            <p class="text-gray-500 text-center text-sm">Resources and guides for running your own Ruby event</p>
-            <span class="text-primary text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
-              Get started <%= fa("arrow-right-long", size: :sm) %>
-            </span>
-          <% end %>
-        </div>
-      </section>
+      <%= render "page/get_involved" %>
 
       <div class="flex justify-center pb-4">
         <%= link_to browse_index_path, class: "btn btn-primary btn-lg gap-2" do %>

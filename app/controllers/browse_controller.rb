@@ -458,7 +458,7 @@ class BrowseController < ApplicationController
   def load_talk_languages
     @talk_languages = Rails.cache.fetch(cache_key("talk_languages"), expires_in: CACHE_EXPIRY) do
       Talk.watchable
-        .where.not(language: [nil, ""])
+        .where.not(language: nil)
         .group(:language)
         .order(Arel.sql("COUNT(*) DESC"))
         .count
