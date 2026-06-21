@@ -1,6 +1,6 @@
 <%= render layout: "shared/library_layout" do %>
   <h1 class="title text-primary hotwire-native:hidden">
-    <%= title(@filter == "in_progress" ? "Continue Watching" : "Watch History") %>
+    <%= title((@filter == "in_progress") ? "Continue Watching" : "Watch History") %>
   </h1>
 
   <% if @filter == "in_progress" %>

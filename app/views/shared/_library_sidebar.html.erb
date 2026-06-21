@@ -3,10 +3,10 @@
 <% library_link = ->(label, path, icon:, active: false, count: nil) do %>
   <% capture do %>
     <%= link_to path, class: class_names(
-      "flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors",
-      "bg-primary/10 text-primary font-semibold": active,
-      "text-gray-700 hover:bg-base-200": !active
-    ) do %>
+          "flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors",
+          "bg-primary/10 text-primary font-semibold": active,
+          "text-gray-700 hover:bg-base-200": !active
+        ) do %>
       <span class="<%= class_names("w-4 [&>svg]:w-4 [&>svg]:h-4", "text-primary": active, "text-gray-400": !active) %>">
         <%= fa(icon, size: :sm, class: "fill-current") %>
       </span>

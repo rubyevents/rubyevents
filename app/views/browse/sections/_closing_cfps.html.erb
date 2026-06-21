@@ -50,7 +50,7 @@
                         <% end %>
                       </div>
                       <% if cfp.days_remaining %>
-                        <span class="badge badge-sm <%= cfp.days_remaining <= 7 ? "badge-primary" : "badge-ghost" %>">
+                        <span class="badge badge-sm <%= (cfp.days_remaining <= 7) ? "badge-primary" : "badge-ghost" %>">
                           <%= pluralize(cfp.days_remaining, "day") %> left
                         </span>
                       <% end %>

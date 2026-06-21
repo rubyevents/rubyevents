@@ -3,10 +3,10 @@
 <% sidebar_link = ->(label, path, icon: nil, active: false, count: nil, badge: nil) do %>
 <% capture do %>
   <%= link_to path, class: class_names(
-    "flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors",
-    "bg-primary/10 text-primary font-semibold": active,
-    "text-gray-700 hover:bg-base-200": !active
-  ) do %>
+        "flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors",
+        "bg-primary/10 text-primary font-semibold": active,
+        "text-gray-700 hover:bg-base-200": !active
+      ) do %>
     <% if icon %>
       <span class="<%= class_names("w-4 [&>svg]:w-4 [&>svg]:h-4", "text-primary": active, "text-gray-400": !active) %>">
         <%= fa(icon, size: :sm, class: "fill-current") %>
@@ -47,11 +47,11 @@
       <div class="flex flex-col gap-0.5">
         <% sidebar_data[:kind_counts].each do |kind, count| %>
           <%= sidebar_link.call(
-            Talk::KIND_LABELS[kind] || kind.titleize,
-            talks_path(kind: kind),
-            active: params[:kind] == kind,
-            count: count
-          ) %>
+                Talk::KIND_LABELS[kind] || kind.titleize,
+                talks_path(kind: kind),
+                active: params[:kind] == kind,
+                count: count
+              ) %>
         <% end %>
       </div>
     </div>
@@ -63,11 +63,11 @@
       <div class="flex flex-col gap-0.5">
         <% sidebar_data[:language_counts].first(10).each do |code, count| %>
           <%= sidebar_link.call(
-            "#{Language.emoji_flag(code)} #{Language.by_code(code) || code}",
-            talks_path(language: code),
-            active: params[:language] == code,
-            count: count
-          ) %>
+                "#{Language.emoji_flag(code)} #{Language.by_code(code) || code}",
+                talks_path(language: code),
+                active: params[:language] == code,
+                count: count
+              ) %>
         <% end %>
       </div>
     </div>
@@ -79,11 +79,11 @@
       <div class="flex flex-col gap-0.5">
         <% sidebar_data[:top_topics].each do |_id, name, slug, count| %>
           <%= sidebar_link.call(
-            name,
-            talks_path(topic: slug),
-            active: params[:topic] == slug,
-            count: count
-          ) %>
+                name,
+                talks_path(topic: slug),
+                active: params[:topic] == slug,
+                count: count
+              ) %>
         <% end %>
         <%= sidebar_link.call("All Topics", topics_path, icon: "ellipsis") %>
       </div>
