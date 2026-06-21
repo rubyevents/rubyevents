@@ -127,6 +127,10 @@
       <% end %>
 
       <% if Current.user %>
+        <%= turbo_frame_tag "browse-continue-watching", src: browse_path("continue_watching"), loading: :lazy do %>
+          <%= render "browse/content_row_skeleton" %>
+        <% end %>
+
         <%= turbo_frame_tag "browse-for-you", src: browse_path("for_you"), loading: :lazy do %>
           <%= render "browse/content_row_skeleton" %>
         <% end %>
@@ -135,7 +139,19 @@
           <%= render "browse/content_row_skeleton" %>
         <% end %>
 
+        <%= turbo_frame_tag "browse-favorite-rubyists", src: browse_path("favorite_rubyists"), loading: :lazy do %>
+          <%= render "browse/content_row_skeleton" %>
+        <% end %>
+
         <%= turbo_frame_tag "browse-favorite-speakers", src: browse_path("favorite_speakers"), loading: :lazy do %>
+          <%= render "browse/content_row_skeleton" %>
+        <% end %>
+
+        <%= turbo_frame_tag "browse-events-attended", src: browse_path("events_attended"), loading: :lazy do %>
+          <%= render "browse/content_row_skeleton" %>
+        <% end %>
+
+        <%= turbo_frame_tag "browse-unwatched-attended", src: browse_path("unwatched_attended"), loading: :lazy do %>
           <%= render "browse/content_row_skeleton" %>
         <% end %>
       <% end %>
@@ -152,6 +168,10 @@
         <%= render "browse/content_row_skeleton" %>
       <% end %>
 
+      <%= turbo_frame_tag "browse-most-bookmarked", src: browse_path("most_bookmarked"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
       <%= turbo_frame_tag "browse-recent-events", src: browse_path("recent_events"), loading: :lazy do %>
         <%= render "browse/content_row_skeleton" %>
       <% end %>
@@ -162,6 +182,40 @@
 
       <%= turbo_frame_tag "browse-quick-watches", src: browse_path("quick_watches"), loading: :lazy do %>
         <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-deep-dives", src: browse_path("deep_dives"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-evergreen", src: browse_path("evergreen"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-beginner-friendly", src: browse_path("beginner_friendly"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-mind-blowing", src: browse_path("mind_blowing"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-inspiring", src: browse_path("inspiring"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-most-liked", src: browse_path("most_liked"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-recommended-community", src: browse_path("recommended_community"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <% if Current.user %>
+        <%= turbo_frame_tag "browse-language-rows", src: browse_path("language_rows"), loading: :lazy do %>
+          <%= render "browse/content_row_skeleton" %>
+        <% end %>
       <% end %>
 
       <%= turbo_frame_tag "browse-popular-topics", src: browse_path("popular_topics"), loading: :lazy do %>

@@ -13,7 +13,7 @@ class BrowseController < ApplicationController
     language_rows closing_cfps upcoming_events recent_events featured_organizations
     upcoming_events_europe upcoming_events_north_america upcoming_events_south_america
     upcoming_events_asia upcoming_events_australia upcoming_events_africa
-    talk_languages
+    talk_languages always_open_cfps
   ].freeze
 
   def index
@@ -64,6 +64,7 @@ class BrowseController < ApplicationController
     when "topic_rows" then {topic_rows: @topic_rows}
     when "language_rows" then {language_rows: @language_rows}
     when "closing_cfps" then {events: @closing_cfp_events}
+    when "always_open_cfps" then {events: @always_open_cfp_events}
     when "upcoming_events" then {events: @upcoming_events}
     when "recent_events" then {events: @recent_events}
     when "featured_organizations" then {organizations: @featured_organizations}
@@ -400,95 +401,17 @@ class BrowseController < ApplicationController
     Event.where(slug: featured_slugs).in_order_of(:slug, featured_slugs)
   end
 
-  def recently_published_query
-    Talk.watchable
-      .where.not(published_at: nil)
-      .order(published_at: :desc)
-      .limit(15)
-  end
-
-  def newest_talks_query
-    Talk.watchable
-      .where("date <= ?", Date.current)
-      .order(date: :desc)
-      .limit(15)
-  end
-
-  def trending_talks_query
-    Talk.watchable
-      .joins(:watched_talks)
-      .where(watched_talks: {watched_at: 30.days.ago..})
-      .group(:id)
-      .order(Arel.sql("COUNT(watched_talks.id) DESC"))
-      .limit(15)
-  end
-
-  def popular_talks_query
-    Talk.watchable
-      .joins(:watched_talks)
-      .group(:id)
-      .order(Arel.sql("COUNT(watched_talks.id) DESC"))
-      .limit(15)
-  end
-
-  def popular_on_youtube_query
-    Talk.watchable
-      .where("view_count > 0")
-      .order(view_count: :desc)
-      .limit(15)
-  end
-
-  def most_bookmarked_query
-    Talk.watchable
-      .joins(:watch_list_talks)
-      .group(:id)
-      .order(Arel.sql("COUNT(watch_list_talks.id) DESC"))
-      .limit(15)
-  end
-
-  def quick_watches_query
-    Talk.watchable
-      .where("duration_in_seconds > 0 AND duration_in_seconds <= ?", 15 * 60)
-      .order(Arel.sql("RANDOM()"))
-      .limit(15)
-  end
-
-  def deep_dives_query
-    Talk.watchable
-      .where("duration_in_seconds >= ?", 45 * 60)
-      .order(Arel.sql("RANDOM()"))
-      .limit(15)
-  end
-
-  def hidden_gems_query
-    Talk.watchable
-      .joins(:watched_talks)
-      .where("view_count < 5000 OR view_count IS NULL")
-      .group(:id)
-      .having("COUNT(watched_talks.id) >= 3")
-      .order(Arel.sql("COUNT(watched_talks.id) DESC"))
-      .limit(15)
-  end
-
-  def evergreen_talks_query
-    Talk.watchable
-      .joins(:watched_talks)
-      .where("json_extract(watched_talks.feedback, '$.content_freshness') = ?", "evergreen")
-      .group(:id)
-      .having("COUNT(watched_talks.id) >= 2")
-      .order(Arel.sql("COUNT(watched_talks.id) DESC"))
-      .limit(15)
-  end
-
-  def beginner_friendly_query
-    Talk.watchable
-      .joins(:watched_talks)
-      .where("json_extract(watched_talks.feedback, '$.experience_level') = ?", "beginner")
-      .group(:id)
-      .having("COUNT(watched_talks.id) >= 2")
-      .order(Arel.sql("COUNT(watched_talks.id) DESC"))
-      .limit(15)
-  end
+  def recently_published_query = Talk.recently_published_talks.limit(15)
+  def newest_talks_query = Talk.newest_talks.limit(15)
+  def trending_talks_query = Talk.trending_talks.limit(15)
+  def popular_talks_query = Talk.popular_talks.limit(15)
+  def popular_on_youtube_query = Talk.popular_on_youtube_talks.limit(15)
+  def most_bookmarked_query = Talk.most_bookmarked_talks.limit(15)
+  def quick_watches_query = Talk.quick_watches_talks.order(Arel.sql("RANDOM()")).limit(15)
+  def deep_dives_query = Talk.deep_dives_talks.order(Arel.sql("RANDOM()")).limit(15)
+  def hidden_gems_query = Talk.hidden_gems_talks.limit(15)
+  def evergreen_talks_query = Talk.evergreen_talks.limit(15)
+  def beginner_friendly_query = Talk.beginner_friendly_talks.limit(15)
 
   def mind_blowing_query
     Talk.watchable
@@ -511,15 +434,7 @@ class BrowseController < ApplicationController
       .limit(15)
   end
 
-  def most_liked_query
-    Talk.watchable
-      .joins(:watched_talks)
-      .where("json_extract(watched_talks.feedback, '$.liked') = ?", true)
-      .group(:id)
-      .having("COUNT(watched_talks.id) >= 2")
-      .order(Arel.sql("COUNT(watched_talks.id) DESC"))
-      .limit(15)
-  end
+  def most_liked_query = Talk.most_liked_talks.limit(15)
 
   def recommended_by_community_query
     Talk.watchable
@@ -597,6 +512,15 @@ class BrowseController < ApplicationController
       .order("cfps.close_date ASC")
       .distinct
       .limit(10)
+  end
+
+  def load_always_open_cfps
+    @always_open_cfp_events = Event
+      .joins(:cfps)
+      .merge(CFP.open.where(close_date: nil))
+      .includes(:series, :cfps)
+      .distinct
+      .limit(15)
   end
 
   def load_upcoming_events

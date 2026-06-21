@@ -1,15 +1,15 @@
 <%# locals: (events:) %>
 
-<%= turbo_frame_tag "browse-closing-cfps" do %>
+<%= turbo_frame_tag "browse-always-open-cfps" do %>
   <% if events&.any? %>
-    <section class="flex flex-col gap-4 group/row" data-section="closing-cfps">
+    <section class="flex flex-col gap-4 group/row" data-section="always-open-cfps">
       <div class="flex items-end justify-between">
         <div>
-          <h2 class="text-xl font-bold">CFPs Closing Soon</h2>
-          <p class="text-sm text-gray-500">Submit your talk proposals before it's too late</p>
+          <h2 class="text-xl font-bold">Always Open for Proposals</h2>
+          <p class="text-sm text-gray-500">Meetups accepting talk proposals year-round</p>
         </div>
 
-        <%= link_to cfp_index_path, class: "link text-sm shrink-0 flex items-center gap-1 hover:gap-2 transition-all", data: {turbo_frame: "_top"} do %>
+        <%= link_to cfp_index_path(kind: "meetup"), class: "link text-sm shrink-0 flex items-center gap-1 hover:gap-2 transition-all", data: {turbo_frame: "_top"} do %>
           View All
           <%= fa("arrow-right-long", size: :sm) %>
         <% end %>
@@ -39,21 +39,10 @@
                       <div class="text-xs text-gray-500 truncate"><%= event.location %></div>
                     </div>
                   </div>
-
-                  <% event.cfps.open.each do |cfp| %>
+                  <% event.cfps.open.where(close_date: nil).each do |cfp| %>
                     <div class="flex items-center justify-between gap-2">
-                      <div class="text-xs text-gray-600">
-                        <% if cfp.close_date.present? && (cfp.open_date.blank? || cfp.open_date.past?) %>
-                          Closes <%= cfp.formatted_close_date %>
-                        <% elsif cfp.open_ended? %>
-                          Always open
-                        <% end %>
-                      </div>
-                      <% if cfp.days_remaining %>
-                        <span class="badge badge-sm <%= cfp.days_remaining <= 7 ? "badge-primary" : "badge-ghost" %>">
-                          <%= pluralize(cfp.days_remaining, "day") %> left
-                        </span>
-                      <% end %>
+                      <div class="text-xs text-gray-600 truncate"><%= cfp.name.presence || "Call for Proposals" %></div>
+                      <span class="badge badge-sm badge-ghost">Always open</span>
                     </div>
                   <% end %>
                 <% end %>
