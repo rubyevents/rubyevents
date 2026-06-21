@@ -1,8 +1,12 @@
 
 - id: "<%= @talk.id %>"
   title: "<%= @talk.title %>"<%= options[:title] ? "" : " # TODO" %>
+<%- if @talk.description.blank? -%>
+  description: "" # TODO
+<%- else -%>
   description: |-
 <%= optimize_indentation(@talk.description, 4) %>
+<%- end -%>
   kind: "<%= @talk.kind %>"
   language: "<%= @talk.language %>"
   date: "<%= @talk.date %>"
