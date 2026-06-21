@@ -8,6 +8,7 @@ class TalkGenerator < Generators::EventBase
 
   class_option :id, type: :string, desc: "ID of the talk (optional, will be generated from title and speaker if not provided)", required: false, group: "Fields"
   class_option :title, type: :string, desc: "Title of the talk", group: "Fields"
+  class_option :original_title, type: :string, desc: "Original title in native language (e.g., Japanese)", required: false, group: "Fields"
   class_option :speakers, type: :array, desc: "Speaker names", group: "Fields"
   class_option :description, type: :string, desc: "Description of the talk", group: "Fields"
   class_option :kind, type: :string, enum: Talk.kinds.keys, default: "talk", desc: "Type of talk (e.g., 'keynote', 'lightning_talk')", group: "Fields"
@@ -22,7 +23,7 @@ class TalkGenerator < Generators::EventBase
 
   # Internal classes to represent talk data that defines Defaults
   class Talk
-    attr_accessor :event_slug, :event, :announced_at, :description, :kind
+    attr_accessor :event_slug, :event, :announced_at, :description, :kind, :original_title
     attr_writer :id, :date, :language, :speakers, :title
 
     def initialize(**attributes)
