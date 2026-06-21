@@ -1,4 +1,4 @@
-# Generated at 2026-04-07 21:45:00 +0000 from LRUG.org version main#ae7a7c4b30b76817c79ed9eab8c73a0d1386b9c9
+# Generated at 2026-06-21 18:27:10 +0000 from LRUG.org version main#eedb28d45f6fbcb471d8075ea4163033257ac336
 ---
 - id: "lrug-january-2020"
   title: "LRUG January 2020"
@@ -3645,8 +3645,8 @@
       date: "2025-12-08"
       announced_at: "2025-11-19 21:00:00 +0000"
       slides_url: "https://www.slideshare.net/slideshow/implementing-software-machines-in-ruby-rough-cut/284563205"
-      video_provider: "not_published"
-      video_id: "lrug-2025-12-08-implementing-software-machines-in-ruby"
+      video_provider: "mp4"
+      video_id: "https://assets.lrug.org/videos/2025/december/eleanor-mchugh-implementing-software-machines-in-ruby-lrug-dec-2025.mp4"
       description: |-
         This will be a quirky dive into the rudiments of virtual machine and emulator implementation.
 
@@ -3674,8 +3674,8 @@
       event_name: "LRUG December 2025"
       date: "2025-12-08"
       announced_at: "2025-11-19 21:00:00 +0000"
-      video_provider: "not_published"
-      video_id: "lrug-2025-12-08-distributed-systems-golden-ration"
+      video_provider: "mp4"
+      video_id: "https://assets.lrug.org/videos/2025/december/yevhenii-kurtov-distributed-systems-golden-ratio-lrug-dec-2025.mp4"
       description: |-
         We'll spend our time interactively solving a distributed systems design challenge that will
         gradually grow in complexity, taking participants on a journey to discover the golden rule
@@ -3911,8 +3911,9 @@
       event_name: "LRUG April 2026"
       date: "2026-04-13"
       announced_at: "2026-03-23 12:00:00 +0000"
-      video_provider: "not_published"
-      video_id: "lrug-2026-04-13-the-hottest-new-programming-language-is-ubiquitous-within-a-bounded-context-window"
+      slides_url: "https://assets.lrug.org/slides/2026/april/hemal-varambhia-the-hottest-new-programming-language-is-ubiquitous.pptx"
+      video_provider: "mp4"
+      video_id: "https://assets.lrug.org/videos/2026/april/hemal-varambhia-the-hottest-new-programming-language-is-ubiquitous-within-a-bounded-context-window-lrug-apr-2026.mp4"
       description: |-
         The title is a play on Andrey Karpathy's tweet.
 
@@ -3929,3 +3930,126 @@
         Is the future of programming DDD's ubiquitous language?
       speakers:
         - Hemal Varambhia
+
+- id: "lrug-may-2026"
+  title: "LRUG May 2026"
+  event_name: "LRUG May 2026"
+  date: "2026-05-11"
+  announced_at: "2026-04-20 06:00:00 +0000"
+  video_provider: "children"
+  video_id: "lrug-may-2026"
+  description: |-
+    https://lrug.org/meetings/2026/may/
+  talks:
+  - id: "sam-burns-lrug-may-2026"
+    title: "Ruby in Parallel: Fibers, Ractors, and Ruby 4"
+    event_name: "LRUG May 2026"
+    date: "2026-05-11"
+    announced_at: "2026-04-20 06:00:00 +0000"
+    video_provider: "not_published"
+    video_id: "lrug-2026-05-11-ruby-in-parallel-fibers-ractors-and-ruby-4"
+    description: |-
+      Ruby 4 builds on Ruby 3's concurrency features, introducing refinements to Fibers and Ractors.
+      This milestone in the language's evolution transforms concurrency from an experimental
+      frontier to a production-ready reality.
+
+      This talk provides an up-to-date guide to Ruby’s modern concurrency toolkit, from the
+      lightweight efficiency of Fibers to the parallel power of Ractors.
+
+      Join us to explore the core concurrency features of Ruby, and get an up-to-date picture of
+      the latest developments in Ruby 4.
+    speakers:
+    - Sam Burns
+
+  - id: "adrian-booth-lrug-may-2026"
+    title: "PRs without code review: Building a risk classification pipeline in Ruby"
+    event_name: "LRUG May 2026"
+    date: "2026-05-11"
+    announced_at: "2026-04-20 06:00:00 +0000"
+    video_provider: "not_published"
+    video_id: "lrug-2026-05-11-p-rs-without-code-review-building-a-risk-classification-pipeline-in-ruby"
+    description: |-
+      Agents are shifting the bottleneck from implementation to verification.
+
+      In this talk I'll discuss how to build a risk classification pipeline in Ruby which we've
+      beenusing since January of this year to classify our code changes, which opened the door for
+      us to safely enable auto-approvals on Github PRs
+
+      The talk will spend roughly 10-15 minutes on implementation and another 10 minutes
+      explaining how to convince teams / engineers to adopt in your org.
+    speakers:
+    - Adrian Booth
+
+- id: "lrug-june-2026"
+  title: "LRUG June 2026"
+  event_name: "LRUG June 2026"
+  date: "2026-06-08"
+  announced_at: "2026-05-21 06:00:00 +0000"
+  video_provider: "children"
+  video_id: "lrug-june-2026"
+  description: |-
+    https://lrug.org/meetings/2026/june/
+  talks:
+  - id: "murray-steele-lrug-june-2026"
+    title: "What is ruby fo(u)r?"
+    event_name: "LRUG June 2026"
+    date: "2026-06-08"
+    announced_at: "2026-05-21 06:00:00 +0000"
+    video_provider: "mp4"
+    video_id: "https://assets.lrug.org/videos/2026/june/murray-steele-what-is-ruby-four-lrug-june-2025.mp4"
+    description: |-
+      [Ruby 4.0.0 came out on Christmas Day
+      2025](https://www.ruby-lang.org/en/news/2025/12/25/ruby-4-0-0-released/)
+      and a new major version is something worth celebrating. In this talk
+      we'll explore what previous major versions of Ruby contained before
+      diving in to see what we've got in Ruby 4. We'll wrap up by ruminating on
+      what ruby is actually _for_.
+    speakers:
+    - Murray Steele
+    additional_resources:
+    - name: "Transcript"
+      type: "transcript"
+      title: "Talks ∋ What is ruby fo(u)r?"
+      url: "http://h-lame.com/talks/what-is-ruby-four/"
+
+- id: "lrug-july-2026"
+  title: "LRUG July 2026"
+  event_name: "LRUG July 2026"
+  date: "2026-07-13"
+  announced_at: "2026-06-21 19:00:00 +0000"
+  video_provider: "children"
+  video_id: "lrug-july-2026"
+  description: |-
+    https://lrug.org/meetings/2026/july/
+  talks:
+  - id: "ismael-celis-lrug-july-2026"
+    title: "Reactive command-oriented apps in Ruby"
+    event_name: "LRUG July 2026"
+    date: "2026-07-13"
+    announced_at: "2026-06-21 19:00:00 +0000"
+    video_provider: "not_published"
+    video_id: "lrug-2026-07-13-reactive-command-oriented-apps-in-ruby"
+    description: |-
+      How the command pattern, CQRS and simple interfaces can build reactive,
+      collaborative Ruby apps with very few building blocks.
+    speakers:
+    - Ismael Celis
+
+  - id: "fritz-meissner-lrug-july-2026"
+    title: "AI fixed our flaky tests overnight (with two weeks of help)"
+    event_name: "LRUG July 2026"
+    date: "2026-07-13"
+    announced_at: "2026-06-21 19:00:00 +0000"
+    video_provider: "not_published"
+    video_id: "lrug-2026-07-13-ai-fixed-our-flaky-tests-overnight"
+    description: |-
+      Abstract: We tolerated intermittent failures in our hotwire test suite
+      for three years before Claude Code found a solution one night. It only
+      took two weeks to turn the overnight solution into something useful!
+      Come hear a story about eliminating flakiness in tests that cover
+      hotwire pages, how AI helped (spoiler: a lot), how it might have hurt
+      (also a lot), and what it took to avoid the worst of what it suggested.
+      Along the way we'll reflect on how to be discerning in the face of AI
+      hype and pessimism.
+    speakers:
+    - Fritz Meissner
