@@ -15,7 +15,11 @@ module Static
       "[].talks[].alternative_recordings[].speakers[]"
     ].freeze
 
-    def initialize(path = Rails.root.join(SPEAKERS_PATH).to_s)
+    class StaleFileError < StandardError; end
+
+    def initialize(path = SPEAKERS_PATH)
+      @path = path
+      @loaded_mtime = File.mtime(path)
       @document = Yerba.parse_file(path)
     end
 
@@ -157,8 +161,16 @@ module Static
     end
 
     def save!
+      if File.mtime(@path) != @loaded_mtime
+        raise StaleFileError, "#{@path} was modified externally since it was loaded"
+      end
+
       document.sort(by: :name)
       document.save!(apply: true)
+
+      @loaded_mtime = File.mtime(@path)
+
+      reset_cache
     end
 
     def changed?
@@ -166,6 +178,13 @@ module Static
     end
 
     private
+
+    def reset_cache
+      @known_names = nil
+      @indexes = nil
+      @all_speaker_references = nil
+      @all_referenced_names = nil
+    end
 
     def videos_glob
       Rails.root.join(VIDEOS_GLOB).to_s
