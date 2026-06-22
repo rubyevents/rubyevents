@@ -323,8 +323,6 @@ GEM
     ffi (1.17.4-x86_64-linux-musl)
     formatador (1.2.3)
       reline
-    frozen_record (0.27.4)
-      activemodel
     fugit (1.12.1)
       et-orbi (~> 1.4)
       raabro (~> 1.4)
@@ -789,14 +787,14 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    yerba (0.7.1)
-    yerba (0.7.1-aarch64-linux-gnu)
-    yerba (0.7.1-aarch64-linux-musl)
-    yerba (0.7.1-arm-linux-gnu)
-    yerba (0.7.1-arm64-darwin)
-    yerba (0.7.1-x86_64-darwin)
-    yerba (0.7.1-x86_64-linux-gnu)
-    yerba (0.7.1-x86_64-linux-musl)
+    yerba (0.7.2)
+    yerba (0.7.2-aarch64-linux-gnu)
+    yerba (0.7.2-aarch64-linux-musl)
+    yerba (0.7.2-arm-linux-gnu)
+    yerba (0.7.2-arm64-darwin)
+    yerba (0.7.2-x86_64-darwin)
+    yerba (0.7.2-x86_64-linux-gnu)
+    yerba (0.7.2-x86_64-linux-musl)
     yt (0.34.1)
       activesupport
     zeitwerk (2.7.5)
@@ -838,7 +836,6 @@ DEPENDENCIES
   erb_lint
   fastimage (~> 2.4)
   ferrum (~> 0.17.2)
-  frozen_record (~> 0.27.2)
   gems
   geocoder!
   google-protobuf
@@ -898,7 +895,7 @@ DEPENDENCIES
   vite_rails
   web-console
   webmock
-  yerba (~> 0.7.1)
+  yerba (~> 0.7.2)
   yt
 
 RUBY VERSION

@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
 module Static
-  class City < FrozenRecord::Base
-    self.backend = Backends::FileBackend.new("featured_cities.yml")
+  class City < Yerba::Record::Base
+    self.path = "featured_cities.yml"
     self.base_path = Rails.root.join("data")
+
+    schema FeaturedCitySchema
 
     SEARCH_INDEX_ON_IMPORT_DEFAULT = ENV.fetch("SEARCH_INDEX_ON_IMPORT", "true") == "true"
 
@@ -17,6 +19,12 @@ module Static
           lookup[alias_name.downcase] = city
         end
       end
+    end
+
+    def self.unload!
+      super
+
+      @alias_lookup = nil
     end
 
     def import!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
