@@ -6,7 +6,17 @@ frequency: "monthly"
 language: "English"
 twitter: "toronto_ruby"
 default_country_code: "CA"
+luma: "https://luma.com/torontorb"
 youtube_channels:
   - id: "UClHJzi2-L5SA5K7GaV5p1JQ"
     name: "TorontoRuby"
     handle: "@torontoruby"
+
+feeds:
+  - type: "ical"
+    url: "https://toronto-ruby.com/events/all.ics"
+    name: "iCal"
+
+  - type: "ical"
+    url: "https://api.luma.com/ics/get?entity=calendar&id=cal-h9wzB583gCu5WMH"
+    name: "Luma"

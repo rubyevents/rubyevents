@@ -5,7 +5,13 @@ kind: "organisation"
 frequency: "quarterly"
 language: "English"
 default_country_code: "FI"
+
 youtube_channels:
   - id: "UCcoS038f4xA_Lz5AoD0ShzA"
     name: "helsinkiruby"
     handle: "@helsinkiruby"
+
+feeds:
+  - type: "ical"
+    url: "https://api.luma.com/ics/get?entity=calendar&id=cal-AAWef86ZmSO6oZQ"
+    name: "Luma"

@@ -31,6 +31,7 @@ class SeriesSchema < RubyLLM::Schema
   string :vimeo, description: "Vimeo channel URL", required: false
 
   array :youtube_channels, of: YouTubeChannelSchema, description: "YouTube channels associated with this series", required: false
+  array :feeds, of: FeedSourceSchema, description: "External feeds (iCal, RSS, social) for this series", required: false
 
   array :aliases, of: :string, description: "Alternative names for the series", required: false
 end
