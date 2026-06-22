@@ -17,7 +17,7 @@ module Static
 
     class StaleFileError < StandardError; end
 
-    def initialize(path = SPEAKERS_PATH)
+    def initialize(path = Rails.root.join(SPEAKERS_PATH).to_s)
       @path = path
       @loaded_mtime = File.mtime(path)
       @document = Yerba.parse_file(path)
