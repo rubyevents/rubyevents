@@ -20,14 +20,6 @@ Title | Speaker | Description | Kind
 ---|---|---|---
 
 # Sponsors
-<<<<<<< HEAD:.agents/skills/event-data/TEMPLATE.md
 
 Name | Website | Logo Url | Tier | Badge
 ---|---|---|---|---
-=======
-Name:
-Website:
-Logo URL:
-Tier:
-Badge:
->>>>>>> 9412073fb (Fix sponsors generator: remove debugger and handle nil badge):.github/skills/event-data/TEMPLATE.md
