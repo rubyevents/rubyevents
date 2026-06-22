@@ -144,6 +144,10 @@ rules:
           path: "[].tiers[].sponsors"
           count: 1
 
+      - quote_style:
+          key_style: "plain"
+          value_style: "double"
+
   - files: "data/**/venue.yml"
     pipeline:
       - schema:

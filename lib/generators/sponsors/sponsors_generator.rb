@@ -2,6 +2,7 @@
 
 require "generators/event_base"
 
+# Add or update a Sponsor entry in the sponsors.yml file for a given event.
 class SponsorsGenerator < Generators::EventBase
   source_root File.expand_path("templates", __dir__)
 
@@ -81,7 +82,8 @@ class SponsorsGenerator < Generators::EventBase
         || sponsors_document["[0].tiers[]"].last
       say "Adding sponsor to tier: #{tier["name"].value}", :green
       tier["sponsors"] << sponsor_details.for_document
-      sponsors_document.save!
+
+      sponsors_document.save!(apply: true)
     else
       say "No sponsor details provided, skipping sponsor addition", :yellow
     end
