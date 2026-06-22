@@ -1,6 +1,6 @@
 <%# Event Participations v1 %>
 
-<% future_events = events.upcoming.sort_by(&:sort_date).reverse %>
+<% future_events = events.upcoming.sort_by(&:sort_date) %>
 <% past_events = (events.to_a - future_events).sort_by(&:sort_date).reverse %>
 <% event_kinds = events.map(&:kind).uniq.sort %>
 
