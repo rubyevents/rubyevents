@@ -203,3 +203,87 @@
     Irina Nazarova, CEO at Evil Martians, gave a talk at the Open Core Summit in San Francisco on December 7, 2023. The topic is how to recognize and overcome the fundamental problem in the business of open source: the conflict between the open and the commercial mindsets.
   speakers:
     - Irina Nazarova
+
+- id: "maxime-chevalier-boisvert-splash-2023"
+  title: "Evaluating YJIT's Performance in a Production Context: A Pragmatic Approach"
+  raw_title: "Evaluration YJIT's Performance in a Production Context: A Pragmatic Approach"
+  location: "Cascais, Portugal"
+  event_name: "SPLASH 2023"
+  date: "2023-10-22"
+  time: "11:00 - 11:22"
+  published_at: "2023-10-22"
+  video_provider: "youtube"
+  video_id: "pVRmPZcNUhc"
+  description: |-
+    Ruby is a dynamically-typed programming language with a large breadth of features which has grown in popularity with the rise of the modern web, and remains at the core of the implementation of widely-used online platforms such as Shopify, GitHub, Discourse, and Mastodon.
+
+    There have been many attempts to integrate JIT compilation into Ruby implementations, but until recently, despite impressive performance on benchmarks, none had seen widespread adoption. This has changed with the arrival of YJIT, a new JIT compiler based on a Lazy Basic Block Versioning (LBBV) architecture which has recently been upstreamed into CRuby, and has since seen multiple large-scale production deployments.
+
+    This paper extends on previous work on YJIT and takes a pragmatic approach towards evaluating YJIT's performance in a production context. We evaluate and compare its performance on benchmarks as well as a large-scale real-world production deployment, and we look not only at peak performance, but also at memory usage and warm-up time.
+
+    On all of our benchmarks, YJIT is able to consistently outperform the CRuby interpreter by a wide margin. It offers consistent speedups, full compatibility with existing Ruby code, much less memory overhead and faster warm-up compared to JRuby and TruffleRuby.
+
+    We also show that YJIT is able to deliver significant speedups on a real-world deployment on Shopify's worldwide StoreFront Renderer infrastructure, an application for which it is currently the only viable JIT compiler.
+
+    https://2023.splashcon.org/details/mplr-2023-papers/7/Evaluating-YJIT-s-Performance-in-a-Production-Context-A-Pragmatic-Approach
+  speakers:
+    - Maxime Chevalier-Boisvert
+
+- id: "maxime-chevalier-boisvert-splash-2021"
+  title: "YJIT: A Basic Block Versioning JIT Compiler for CRuby"
+  raw_title: "YJIT: A Basic Block Versioning JIT Compiler for CRuby"
+  location: "Chicago, IL"
+  event_name: "SPLASH 2021"
+  date: "2021-10-19"
+  time: "14:50 - 15:10"
+  published_at: "2021-10-19"
+  track: "VMIL"
+  video_provider: "youtube"
+  video_id: "PFb5wNj2ztM"
+  description: |-
+    Ruby is a dynamically typed programming language with a large breadth of features which has grown in popularity with the rise of the modern web, and remains at the core of the implementation of many widely-used websites.
+
+    CRuby, the default implementation of the language, features a JIT compiler known as MJIT, but developers often do not enable it in production environments, because it does not always yield performance improvements on real-world software. Attempts to independently reimplement the Ruby language, such as JRuby and TruffleRuby have shown impressive performance results on benchmarks, but often lag behind CRuby when it comes to supporting new additions to the language, which limits their adoption.
+
+    We introduce YJIT, a new JIT compiler built inside CRuby based on a Lazy Basic Block Versioning (LBBV) architecture. We show that while our compiler does not match the peak performance of TruffleRuby, it offers near-100% compatibility with existing Ruby code, impressively fast warmup, and speedups from 15% to 19% on sizeable benchmarks based on real-world software.
+
+    https://2021.splashcon.org/details/vmil-2021-papers/1/YJIT-A-Basic-Block-Versioning-JIT-Compiler-for-CRuby
+  speakers:
+    - Maxime Chevalier-Boisvert
+
+- id: "takashi-kokubun-splash-2025"
+  title: "ZJIT: Building a New JIT Compiler for Ruby"
+  raw_title: "[REBASE'25] ZJIT: Building a New JIT Compiler for Ruby"
+  location: "Singapore"
+  event_name: "SPLASH 2025"
+  date: "2025-10-18"
+  time: "14:55 - 15:30"
+  published_at: "2025-10-18"
+  track: "REBASE"
+  video_provider: "youtube"
+  video_id: "zPrSG2e10Ig"
+  description: |-
+    The Ruby programming language has achieved a 2-3x speedup in real-world application benchmarks through its JIT compiler, YJIT. For the upcoming Ruby 3.5 release, we are developing a new JIT compiler, ZJIT.
+
+    In this talk, we’ll discuss the challenges of speeding up this highly dynamic programming language and how we are altering the compiler design to address these challenges more effectively.
+
+    https://conf.researchr.org/details/icfp-splash-2025/rebase-2025-papers/1/ZJIT-Building-a-New-JIT-Compiler-for-Ruby
+  speakers:
+    - Takashi Kokubun
+
+- id: "milod-kazerounian-pldi-2019"
+  title: "Type-Level Computations for Ruby Libraries"
+  raw_title: "Type-Level Computations for Ruby Libraries"
+  location: "Phoenix, AZ"
+  event_name: "PLDI 2019"
+  date: "2019-06-25"
+  time: "16:20 - 16:40"
+  published_at: "2019-06-25"
+  video_provider: "youtube"
+  video_id: "cmK7TzvhEds"
+  description: |-
+    Many researchers have explored ways to bring static typing to dynamic languages. However, to date, such systems are not precise enough when types depend on values, which often arises when using certain Ruby libraries. For example, the type safety of a database query in Ruby on Rails depends on the table and column names used in the query. To address this issue, we introduce CompRDL, a type system for Ruby that allows library method type signatures to include type-level computations (or comp types for short). Combined with singleton types for table and column names, comp types let us give database query methods type signatures that compute a table's schema to yield very precise type information. Comp types for hash, array, and string libraries can also increase precision and thereby reduce the need for type casts. We formalize CompRDL and prove its type system sound. Rather than type check the bodies of library methods with comp types — those methods may include native code or be complex — CompRDL inserts run-time checks to ensure library methods abide by their computed types. We evaluated CompRDL by writing annotations with type-level computations for several Ruby core libraries and database query APIs. We then used those annotations to type check two popular Ruby libraries and four Ruby on Rails web apps. We found the annotations were relatively compact and could successfully type check 132 methods across our subject programs. Moreover, the use of type-level computations allowed us to check more expressive properties, with fewer manually inserted casts, than was possible without type-level computations. In the process, we found two type errors and a documentation error that were confirmed by the developers. Thus, we believe CompRDL is an important step forward in bringing precise static type checking to dynamic languages.
+
+    https://pldi19.sigplan.org/details/pldi-2019-papers/52/Type-Level-Computations-for-Ruby-Libraries
+  speakers:
+    - Milod Kazerounian
