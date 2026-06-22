@@ -287,3 +287,39 @@
     https://pldi19.sigplan.org/details/pldi-2019-papers/52/Type-Level-Computations-for-Ruby-Libraries
   speakers:
     - Milod Kazerounian
+
+- id: "milod-kazerounian-dls-2020"
+  title: "Sound, Heuristic Type Annotation Inference for Ruby"
+  raw_title: "Sound, Heuristic Type Annotation Inference for Ruby"
+  location: "online"
+  event_name: "SPLASH 2020"
+  date: "2020-11-18"
+  published_at: "2020-11-13"
+  track: "DLS 2020"
+  video_provider: "youtube"
+  video_id: "bQwr_-TpZBA"
+  description: |-
+    Many researchers have explored retrofitting static type systems to dynamic languages. This raises the question of how to add type annotations to code that was previously untyped. One obvious solution is type inference. However, in complex type systems, in particular those with structural types, type inference typically produces most general types that are large, hard to understand, and unnatural for programmers. To solve this problem, we introduce InferDL, a novel Ruby type inference system that infers sound and useful type annotations by incorporating heuristics that guess types. For example, we might heuristically guess that a parameter whose name ends in ``count'' is an integer. InferDL works by first running standard type inference and then applying heuristics to any positions for which standard type inference produces overly-general types. Heuristic guesses are added as constraints to the type inference problem to ensure they are consistent with the rest of the program and other heuristic guesses; inconsistent guesses are discarded. We formalized InferDL in a core type and constraint language. We implemented InferDL on top of RDL, an existing Ruby type checker. To evaluate InferDL, we applied it to four Ruby on Rails apps that had been previously type checked with RDL, and hence had type annotations. We found that, when using heuristics, InferDL inferred 22% more types that were as or more precise than the previous annotations, compared to standard type inference without heuristics. We also found one new type error. We further evaluated InferDL by applying it to six additional apps, finding five additional type errors. Thus, we believe InferDL represents a promising approach for inferring type annotations in dynamic languages.
+
+    https://conf.researchr.org/details/dls-2020/dls-2020-papers/9/Sound-Heuristic-Type-Annotation-Inference-for-Ruby
+  speakers:
+    - Milod Kazerounian
+
+- id: "kunshan-wang-ismm-2025"
+  title: "Reworking Memory Management in CRuby: A Practitioner Report"
+  raw_title: "Reworking Memory Management in CRuby: A Practitioner Report"
+  location: "Seoul, South Korea"
+  event_name: "ISMM 2025"
+  date: "2025-06-17"
+  time: "11:00 - 11:20"
+  published_at: "2025-07-09"
+  video_provider: "youtube"
+  video_id: "-mTxhJJDWbw"
+  description: |-
+    Ruby is a dynamic programming language that was first released in 1995 and remains heavily used today. Ruby underpins Ruby on Rails, one of the most widely deployed web application frameworks. The scale at which Rails is deployed has placed increasing pressure on the underlying CRuby implementation, and in particular its approach to memory management. CRuby implements a mark-sweep garbage collector which until recently was non-moving and only allocated fixed-size 40-byte objects, falling back to malloc to manage all larger objects. This paper reports on a multi-year academic-industrial collaboration to rework CRuby’s approach to memory management with the goal of introducing modularity and the ability to incorporate modern high performance garbage collection algorithms. This required identifying and addressing deeply ingrained assumptions across many aspects of the CRuby runtime. We describe the longstanding CRuby implementation and enumerate core challenges we faced and lessons they offer.
+
+    Our work has been embraced by the Ruby community, and the refactorings and new garbage collection interface we describe have been upstreamed. We look forward to this work being used to deploy a new class of garbage collectors for Ruby. We hope that this paper will provide important lessons and insights for Ruby developers, garbage collection researchers and language designers.
+
+    https://conf.researchr.org/details/ismm-2025/ismm-2025-papers/8/Reworking-Memory-Management-in-CRuby-A-Practitioner-Report
+  speakers:
+    - Kunshan Wang
