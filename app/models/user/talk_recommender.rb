@@ -2,7 +2,7 @@ class User::TalkRecommender < ActiveRecord::AssociatedObject
   def talks(limit: 4)
     return Talk.none if user.watched_talks.watched.empty?
 
-    ids = candidate_ids(limit: limit).shuffle(random: Random.new(daily_seed)).first(limit)
+    ids = candidate_ids(limit: limit).sample(limit, random: Random.new(daily_seed))
 
     Talk.where(id: ids).includes(:speakers, event: :series).in_order_of(:id, ids).to_a
   end
