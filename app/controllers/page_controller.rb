@@ -14,14 +14,26 @@ class PageController < ApplicationController
     @speakers_count = home_page_cached_data[:speakers_count]
     @events_count = home_page_cached_data[:events_count]
 
-    @featured_events = Event.distinct
-      .not_meetup
-      .with_watchable_talks
-      .featurable
-      .where.not(home_sort_date: nil)
-      .includes(:series, :keynote_speakers, :speakers)
-      .order(home_sort_date: :desc)
-      .limit(15)
+    today = Date.today
+    base = Event.distinct.not_meetup.featurable.where.not(home_sort_date: nil)
+
+    featured_ids = (
+      base.with_watchable_talks.pluck(:id) +
+      base.with_talks.where(start_date: ..today, end_date: today..).pluck(:id) +
+      base.with_talks.where(start_date: today.next_day..(today + Event::FEATURED_UPCOMING_WINDOW)).pluck(:id) +
+      base.joins(:cfps).where(cfps: {close_date: today..(today + Event::FEATURED_CFP_CLOSING_WINDOW)}).where.not(cfps: {link: nil}).pluck(:id)
+    ).uniq
+
+    featured_ids = Event.where(id: featured_ids)
+      .includes(:cfps)
+      .sort_by { |event| event.featured_distance(today: today) }
+      .first(15)
+      .map(&:id)
+
+    @featured_events = Event
+      .where(id: featured_ids)
+      .includes(:series, :keynote_speakers, :speakers, :cfps)
+      .in_order_of(:id, featured_ids)
 
     respond_to do |format|
       format.html

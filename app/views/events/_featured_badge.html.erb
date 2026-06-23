@@ -1,0 +1,31 @@
+<%# locals: (event:, extra_class: "") %>
+
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-white/20 backdrop-blur-sm border whitespace-nowrap <%= extra_class %>" style="border-color: color-mix(in srgb, currentColor 30%, transparent);">
+  <% case event.featured_reason %>
+  <% when :happening %>
+    <span class="relative flex h-2 w-2">
+      <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-current opacity-75"></span>
+      <span class="relative inline-flex h-2 w-2 rounded-full bg-current"></span>
+    </span>
+    Happening now
+  <% when :cfp_closing %>
+    <%= fa("microphone", size: nil, class: "h-3.5 w-3.5 fill-current") %>
+
+    <% days = event.featured_cfp&.days_remaining %>
+
+    <% if days&.positive? %>
+      CFP closes in <%= pluralize(days, "day") %>
+    <% else %>
+      CFP closes today
+    <% end %>
+  <% when :upcoming %>
+    <%= fa("calendar", size: nil, class: "h-3.5 w-3.5 fill-current") %>
+    Coming up soon
+  <% when :recently_published %>
+    <%= fa("video", size: nil, class: "h-3.5 w-3.5 fill-current") %>
+    Recordings just published
+  <% else %>
+    <%= fa("play", size: nil, class: "h-3.5 w-3.5 fill-current") %>
+    Recordings available
+  <% end %>
+</span>
