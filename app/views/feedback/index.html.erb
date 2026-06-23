@@ -1,0 +1,82 @@
+<%= render layout: "shared/library_layout" do %>
+  <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 min-h-[2.5rem]">
+    <h1 class="title text-primary hotwire-native:hidden">
+      <%= title "Feedback" %>
+    </h1>
+
+    <div class="tabs tabs-boxed">
+      <%= link_to feedback_index_path, class: "tab gap-1.5 #{"tab-active" if params[:filter].blank? || params[:filter] == "all"}" do %>
+        All <span class="text-xs opacity-60"><%= @unrated_talks.size + @rated_talks.size %></span>
+      <% end %>
+
+      <%= link_to feedback_index_path(filter: "awaiting"), class: "tab gap-1.5 #{"tab-active" if params[:filter] == "awaiting"}" do %>
+        Awaiting Feedback <span class="text-xs opacity-60"><%= @unrated_talks.size %></span>
+      <% end %>
+
+      <%= link_to feedback_index_path(filter: "rated"), class: "tab gap-1.5 #{"tab-active" if params[:filter] == "rated"}" do %>
+        Rated <span class="text-xs opacity-60"><%= @rated_talks.size %></span>
+      <% end %>
+    </div>
+  </div>
+
+  <% show_unrated = @filter.in?(%w[all awaiting]) %>
+  <% show_rated = @filter.in?(%w[all rated]) %>
+
+  <% if show_unrated && @unrated_talks.present? %>
+    <div class="flex flex-col gap-3">
+      <% if @filter == "all" %>
+        <h2 class="text-lg font-bold text-gray-900">Awaiting Feedback</h2>
+      <% end %>
+
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
+        <% @unrated_talks.each do |watched_talk| %>
+          <div>
+            <%= render partial: "talks/card_thumbnail",
+                  locals: {
+                    talk: watched_talk.talk,
+                    watched_talk: watched_talk,
+                    back_to: feedback_index_path(filter: params[:filter]),
+                    back_to_title: "Feedback"
+                  } %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if show_rated && @rated_talks.present? %>
+    <div class="flex flex-col gap-3">
+      <% if @filter == "all" %>
+        <h2 class="text-lg font-bold text-gray-900">Already Rated</h2>
+      <% end %>
+
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
+        <% @rated_talks.each do |watched_talk| %>
+          <div>
+            <%= render partial: "talks/card_thumbnail",
+                  locals: {
+                    talk: watched_talk.talk,
+                    watched_talk: watched_talk,
+                    back_to: feedback_index_path(filter: params[:filter]),
+                    back_to_title: "Feedback"
+                  } %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if @unrated_talks.blank? && @rated_talks.blank? %>
+    <div class="text-center py-12">
+      <div class="max-w-md mx-auto">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">No feedback yet</h2>
+        <p class="text-gray-600 mb-6">Watch some talks and share your feedback to help other Rubyists find great content.</p>
+
+        <%= link_to talks_path, class: "btn btn-primary" do %>
+          <%= fa("video", size: :sm, class: "mr-2") %>
+          Browse Talks
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

@@ -1,24 +1,106 @@
-<div class="container flex flex-col gap-6">
-  <% if @favorite_rubyists.empty? && @ruby_friends.empty? %>
-    <%= render partial: "favorite_users/no_favorites", locals: {recommendations: @recommendations} %>
-  <% else %>
-    <% if @ruby_friends.any? %>
-      <div id="ruby-friends">
-        <h2 class="mb-4">
-          <%= fa("star", size: :sm, style: :solid, class: "fill-red-600 inline") %>
+<%= render layout: "shared/library_layout" do %>
+  <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 min-h-[2.5rem]">
+    <h1 class="title text-primary hotwire-native:hidden">
+      <%= title "Favorite Rubyists" %>
+    </h1>
+
+    <div class="tabs tabs-boxed">
+      <%= link_to favorite_users_path,
+            class: "tab gap-1.5 #{"tab-active" if params[:filter].blank?}" do %>
+        All <span class="text-xs opacity-60"><%= @ruby_friends.size + @favorite_rubyists.size %></span>
+      <% end %>
+      <%= link_to favorite_users_path(filter: "favorites"),
+            class: "tab gap-1.5 #{"tab-active" if params[:filter] == "favorites"}" do %>
+        Favorites <span class="text-xs opacity-60"><%= @favorite_rubyists.size %></span>
+      <% end %>
+      <%= link_to favorite_users_path(filter: "friends"),
+            class: "tab gap-1.5 #{"tab-active" if params[:filter] == "friends"}" do %>
+        Ruby Friends <span class="text-xs opacity-60"><%= @ruby_friends.size %></span>
+      <% end %>
+      <%= link_to favorite_users_path(filter: "suggested"),
+            class: "tab gap-1.5 #{"tab-active" if params[:filter] == "suggested"}" do %>
+        Suggested
+      <% end %>
+    </div>
+  </div>
+
+  <% show_favorites = params[:filter].blank? || params[:filter] == "favorites" %>
+  <% show_friends = params[:filter].blank? || params[:filter] == "friends" %>
+  <% show_suggested = params[:filter] == "suggested" %>
+
+  <% if show_favorites && @favorite_rubyists.any? %>
+    <div class="flex flex-col gap-4">
+      <% if params[:filter].blank? %>
+        <h2 class="text-lg font-bold flex items-center gap-2">
+          <%= fa("star", size: :sm, class: "fill-yellow-400") %>
+          Favorites
+        </h2>
+      <% end %>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+        <% @favorite_rubyists.each do |favorite_user| %>
+          <div class="relative w-48 sm:w-64">
+            <%= render partial: "speakers/card", locals: {speaker: favorite_user.favorite_user} %>
+            <div class="absolute top-2 right-2 z-10">
+              <%= render partial: "favorite_users/favorite_user", locals: {favorite_user: favorite_user} %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if show_friends && @ruby_friends.any? %>
+    <div class="flex flex-col gap-4">
+      <% if params[:filter].blank? %>
+        <h2 class="text-lg font-bold flex items-center gap-2">
+          <%= fa("heart", size: :sm, class: "fill-red-500") %>
           Ruby Friends
         </h2>
-        <%= render partial: "favorite_users/list", locals: {favorite_users: @ruby_friends} %>
+      <% end %>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+        <% @ruby_friends.each do |favorite_user| %>
+          <div class="relative w-48 sm:w-64">
+            <%= render partial: "speakers/card", locals: {speaker: favorite_user.favorite_user} %>
+            <div class="absolute top-2 right-2 z-10">
+              <%= render partial: "favorite_users/favorite_user", locals: {favorite_user: favorite_user} %>
+            </div>
+          </div>
+        <% end %>
       </div>
-    <% end %>
-    <% if @favorite_rubyists.any? %>
-      <div id="favorite-rubyists">
-        <h2>
-          <%= fa("star", size: :sm, style: :solid, class: "fill-yellow-400 inline") %>
-          Favorite Rubyists
-        </h2>
-        <%= render partial: "favorite_users/list", locals: {favorite_users: @favorite_rubyists} %>
-      </div>
-    <% end %>
+    </div>
   <% end %>
-</div>
+
+  <% if show_suggested && @recommendations.present? %>
+    <div class="flex flex-col gap-4">
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+        <% @recommendations.each do |favorite_user| %>
+          <div class="relative w-48 sm:w-64" id="<%= dom_id favorite_user %>">
+            <%= render partial: "speakers/card", locals: {speaker: favorite_user.favorite_user} %>
+            <div class="absolute top-2 right-2 z-10">
+              <%= render partial: "favorite_users/favorite_user", locals: {favorite_user: favorite_user} %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if params[:filter].blank? && @ruby_friends.empty? && @favorite_rubyists.empty? %>
+    <div class="text-center py-12">
+      <div class="max-w-md mx-auto">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">No Favorite Rubyists Yet</h2>
+        <p class="text-gray-600 mb-6">Visit speaker profiles or check the Suggested tab to find Rubyists to follow.</p>
+        <div class="flex gap-3 justify-center">
+          <%= link_to favorite_users_path(filter: "suggested"), class: "btn btn-primary" do %>
+            View Suggestions
+          <% end %>
+          <%= link_to speakers_path, class: "btn btn-outline" do %>
+            Browse Speakers
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

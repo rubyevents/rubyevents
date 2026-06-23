@@ -9,13 +9,63 @@ class TalksController < ApplicationController
   before_action :set_favorite_users, only: %i[show]
   before_action :set_user_favorites, only: %i[index show]
 
+  SECTION_SCOPES = {
+    "newest" => :newest_talks,
+    "recently_published" => :recently_published_talks,
+    "trending" => :trending_talks,
+    "popular" => :popular_talks,
+    "popular_youtube" => :popular_on_youtube_talks,
+    "most_bookmarked" => :most_bookmarked_talks,
+    "hidden_gems" => :hidden_gems_talks,
+    "quick_watches" => :quick_watches_talks,
+    "deep_dives" => :deep_dives_talks,
+    "evergreen" => :evergreen_talks,
+    "beginner_friendly" => :beginner_friendly_talks,
+    "most_liked" => :most_liked_talks
+  }.freeze
+
+  SECTION_TITLES = {
+    "newest" => "Recently Held",
+    "recently_published" => "Recently Uploaded",
+    "trending" => "Trending",
+    "popular" => "Popular",
+    "popular_youtube" => "Popular on YouTube",
+    "most_bookmarked" => "Most Bookmarked",
+    "hidden_gems" => "Hidden Gems",
+    "quick_watches" => "Quick Watches",
+    "deep_dives" => "Deep Dives",
+    "evergreen" => "Evergreen",
+    "beginner_friendly" => "Beginner Friendly",
+    "most_liked" => "Most Liked",
+    "for_you" => "For You"
+  }.freeze
+
   # GET /talks
   def index
-    @pagy, @talks = search_backend.search_talks_with_pagy(
-      params[:s],
-      pagy_backend: self,
-      **search_options
-    )
+    load_sidebar_data
+
+    if params[:section] == "for_you"
+      @section_title = SECTION_TITLES["for_you"]
+      if Current.user
+        talks = Current.user.talk_recommender.talks(limit: 100)
+        @pagy, @talks = pagy_array(talks, limit: 42)
+      else
+        @talks = []
+        @sign_in_required = true
+      end
+    elsif params[:section].present? && SECTION_SCOPES[params[:section]]
+      scope = Talk.send(SECTION_SCOPES[params[:section]]).includes(:speakers, event: :series)
+      @pagy, @talks = pagy(scope, limit: 42)
+      @section_title = SECTION_TITLES[params[:section]]
+    else
+      @pagy, @talks = search_backend.search_talks_with_pagy(
+        params[:s],
+        pagy_backend: self,
+        **search_options
+      )
+
+      load_status_counts
+    end
   end
 
   # GET /talks/1
@@ -31,7 +81,7 @@ class TalksController < ApplicationController
 
   def search_options
     {
-      per_page: params[:limit]&.to_i || 20,
+      per_page: params[:limit]&.to_i || 42,
       page: params[:page]&.to_i || 1,
       sort: sort_key,
       topic_slug: params[:topic],
@@ -40,9 +90,9 @@ class TalksController < ApplicationController
       kind: talk_kind,
       language: params[:language],
       created_after: created_after,
-      status: params[:status],
-      include_unwatchable: params[:status] == "all"
-    }.compact_blank
+      status: params[:status].presence_in(%w[scheduled no_video all]),
+      include_unwatchable: params[:status].in?(%w[all no_video])
+    }.compact
   end
 
   def sort_key
@@ -94,7 +144,38 @@ class TalksController < ApplicationController
 
   helper_method :search_params
   def search_params
-    params.permit(:s, :topic, :event, :speaker, :kind, :created_after, :all, :order_by, :status, :language)
+    params.permit(:s, :topic, :event, :speaker, :kind, :created_after, :all, :order_by, :status, :language, :section)
+  end
+
+  def load_status_counts
+    base = Talk.all
+    base = base.where(kind: params[:kind]) if params[:kind].present?
+    base = base.where(language: params[:language]) if params[:language].present?
+    base = base.for_topic(params[:topic]) if params[:topic].present?
+    base = base.for_event(params[:event]) if params[:event].present?
+    base = base.for_speaker(params[:speaker]) if params[:speaker].present?
+
+    @status_counts = {
+      all: base.count,
+      watchable: base.watchable.count,
+      no_video: base.where.not(video_provider: Talk::WATCHABLE_PROVIDERS).count
+    }
+  end
+
+  def load_sidebar_data
+    @sidebar_data = Rails.cache.fetch("talks_sidebar_data", expires_in: 1.hour) do
+      {
+        kind_counts: Talk.group(:kind).order(Arel.sql("COUNT(*) DESC")).count,
+        language_counts: Talk.where.not(language: [nil, ""]).group(:language).order(Arel.sql("COUNT(*) DESC")).count,
+        top_topics: Topic.approved
+          .where.not(name: ["Ruby", "Ruby on Rails"])
+          .joins(:talks)
+          .group("topics.id")
+          .order(Arel.sql("COUNT(talks.id) DESC"))
+          .limit(15)
+          .pluck(:id, :name, :slug, Arel.sql("COUNT(talks.id) as talks_count"))
+      }
+    end
   end
 
   def set_user_favorites

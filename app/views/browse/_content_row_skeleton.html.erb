@@ -1,6 +1,6 @@
-<%# locals: () %>
+<%# locals: (min_height: "252px") %>
 
-<section class="flex flex-col gap-4 animate-pulse">
+<section class="flex flex-col gap-4 animate-pulse" style="min-height: <%= min_height %>">
   <div class="flex items-end justify-between">
     <div>
       <div class="h-6 w-48 bg-base-300 rounded"></div>
@@ -12,6 +12,11 @@
     <% 5.times do %>
       <div class="shrink-0 w-[200px] sm:w-[300px] lg:w-[320px]">
         <div class="aspect-video bg-base-300 rounded-lg"></div>
+
+        <div class="mt-2 sm:hidden">
+          <div class="h-4 w-3/4 bg-base-300 rounded"></div>
+          <div class="h-3 w-1/2 bg-base-300 rounded mt-1"></div>
+        </div>
       </div>
     <% end %>
   </div>

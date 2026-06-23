@@ -65,6 +65,7 @@ class Talk < ApplicationRecord
   include Sluggable
   include Watchable
 
+  include Talk::Queries
   include Talk::SQLiteFTSSearchable
   include Talk::TypesenseSearchable
 

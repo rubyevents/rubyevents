@@ -21,6 +21,12 @@
 
     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent rounded-xl hidden sm:block"></div>
 
+    <% if talk.language.present? && talk.language != "en" %>
+      <div class="absolute top-2 left-2 z-20 px-1.5 py-0.5 bg-black/70 backdrop-blur-sm rounded text-white text-xs font-medium">
+        <%= Language.emoji_flag(talk.language) %>
+      </div>
+    <% end %>
+
     <% if talk.duration_in_seconds.present? %>
       <div class="absolute top-2 right-2 z-20 px-1.5 py-0.5 bg-black/70 backdrop-blur-sm rounded text-white text-xs font-medium">
         <% if watched_talk&.in_progress? && watched_talk.progress_seconds.present? %>
@@ -33,11 +39,41 @@
       </div>
     <% end %>
 
-    <div class="absolute inset-0 bottom-6 z-10 hidden sm:flex items-center justify-center opacity-0 sm:group-hover:opacity-100 transition-opacity duration-200">
-      <div class="p-2 bg-white/20 backdrop-blur-sm rounded-full sm:group-hover:bg-white/30 sm:group-hover:scale-110 transition-all duration-200">
-        <%= fa("play", size: :sm, class: "fill-white") %>
+    <% if talk.published? && talk.video_available? %>
+      <div class="absolute inset-0 bottom-6 z-10 hidden sm:group-hover:flex items-center justify-center opacity-0 sm:group-hover:opacity-100 transition-opacity duration-200">
+        <div class="p-2 bg-white/20 backdrop-blur-sm rounded-full sm:group-hover:bg-white/30 sm:group-hover:scale-110 transition-all duration-200">
+          <%= fa("play", size: :sm, class: "fill-white") %>
+        </div>
       </div>
-    </div>
+    <% elsif talk.scheduled? || talk.parent_talk&.scheduled? %>
+      <div class="absolute inset-0 bottom-6 z-10 hidden sm:group-hover:flex items-center justify-center opacity-0 sm:group-hover:opacity-100 transition-opacity duration-200">
+        <div class="flex items-center gap-2 px-3 py-1.5 bg-black/60 backdrop-blur-sm rounded-full">
+          <%= fa("clock", size: :sm, class: "fill-white") %>
+          <span class="text-white text-xs font-medium">Scheduled</span>
+        </div>
+      </div>
+    <% elsif talk.not_recorded? || talk.parent_talk&.not_recorded? %>
+      <div class="absolute inset-0 bottom-6 z-10 hidden sm:group-hover:flex items-center justify-center opacity-0 sm:group-hover:opacity-100 transition-opacity duration-200">
+        <div class="flex items-center gap-2 px-3 py-1.5 bg-black/60 backdrop-blur-sm rounded-full">
+          <%= fa("video-slash", size: :sm, class: "fill-white") %>
+          <span class="text-white text-xs font-medium">Not recorded</span>
+        </div>
+      </div>
+    <% elsif talk.not_published? || talk.parent_talk&.not_published? %>
+      <div class="absolute inset-0 bottom-6 z-10 hidden sm:group-hover:flex items-center justify-center opacity-0 sm:group-hover:opacity-100 transition-opacity duration-200">
+        <div class="flex items-center gap-2 px-3 py-1.5 bg-black/60 backdrop-blur-sm rounded-full">
+          <%= fa("upload", size: :sm, class: "fill-white") %>
+          <span class="text-white text-xs font-medium">Not published</span>
+        </div>
+      </div>
+    <% elsif talk.video_unavailable? %>
+      <div class="absolute inset-0 bottom-6 z-10 hidden sm:group-hover:flex items-center justify-center opacity-0 sm:group-hover:opacity-100 transition-opacity duration-200">
+        <div class="flex items-center gap-2 px-3 py-1.5 bg-black/60 backdrop-blur-sm rounded-full">
+          <%= fa("video-slash", size: :sm, class: "fill-white") %>
+          <span class="text-white text-xs font-medium">Unavailable</span>
+        </div>
+      </div>
+    <% end %>
 
     <div class="absolute bottom-0 left-0 right-0 z-20 p-3 text-white hidden sm:block">
       <div class="text-sm font-semibold line-clamp-1 leading-tight mb-1">
