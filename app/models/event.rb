@@ -49,6 +49,10 @@ class Event < ApplicationRecord
   include Todoable
   include Event::TypesenseSearchable
 
+  FEATURED_RECENTLY_PUBLISHED_WINDOW = 30.days
+  FEATURED_UPCOMING_WINDOW = 2.weeks
+  FEATURED_CFP_CLOSING_WINDOW = 5.days
+
   geocodeable :location_and_country_code
   configure_slug(attribute: :name, auto_suffix_on_collision: false)
 
@@ -148,6 +152,44 @@ class Event < ApplicationRecord
 
   def past?
     end_date.present? && end_date < Date.today
+  end
+
+  def happening?
+    start_date.present? && end_date.present? && (start_date..end_date).cover?(Date.today)
+  end
+
+  def featured_cfp
+    cfps.select { |cfp| cfp.link.present? && cfp.close_date && cfp.close_date.between?(Date.today, Date.today + FEATURED_CFP_CLOSING_WINDOW) }.min_by(&:close_date)
+  end
+
+  def featured_reason
+    if happening?
+      :happening
+    elsif featured_cfp
+      :cfp_closing
+    elsif upcoming?
+      :upcoming
+    elsif home_sort_date && home_sort_date >= FEATURED_RECENTLY_PUBLISHED_WINDOW.ago.to_date
+      :recently_published
+    else
+      :available
+    end
+  end
+
+  def featured_distance(today: Date.today)
+    cfp = featured_cfp
+
+    if happening?
+      0
+    elsif cfp
+      (cfp.close_date - today).to_i
+    elsif upcoming?
+      (start_date - today).to_i
+    elsif home_sort_date
+      (today - home_sort_date).to_i
+    else
+      Float::INFINITY
+    end
   end
 
   def self.find_by_name_or_alias(name)
