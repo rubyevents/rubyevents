@@ -23,6 +23,7 @@
         We are known for our community. Does this mean our job is done? Are we starting to stagnate? Simply gathering Rubyists together isn't enough. How are you improving your community? Fear not as anyone of you can take action. Whether you live in a place with no organized Ruby meet-ups or you're contemplating a big regional event, we will go over why you should take action and give you practical steps to do so. We'll also bring light to not just increasing membership counts but actively making everyone better. Innovation is happening out there that we'll go over in detail. Join us, learn and get involved -- we're building something awesome!
       video_provider: "youtube"
       video_id: "2I3oawIsR-k"
+      note: "2015 Re-Upload"
 
 - id: "angela-harms-ruby-midwest-2011"
   title: "Does Pair Programming have to suck?"
@@ -51,6 +52,7 @@
         I'd like to talk about these survey results, and have an honest discussion about why pairing sucks or doesn't suck, and how we can bring the two sides together.
       video_provider: "youtube"
       video_id: "MvjGDnKVE3Q"
+      note: "2015 Re-Upload"
 
 - id: "ben-scofield-ruby-midwest-2011"
   title: "Break It Down"
@@ -77,6 +79,7 @@
         In this talk, I'll show just how to go about decomposing one app into these sorts of services -- from identifying splittable functionality, to extracting it, and to integrating the service back into the main app.
       video_provider: "youtube"
       video_id: "MoJFreD7XKY"
+      note: "2015 Re-Upload"
 
 - id: "dave-rappin-ruby-midwest-2011"
   title: "Test your legacy Rails code"
@@ -116,6 +119,7 @@
         This talk will dive into how GitHub uses GitHub: we'll look at some of our actual Pull Requests, the internal apps we build on our own API, how we plan new features, our Git branching strategies, and lots of tricks we use to get everyone â€” developers, designers, and everyone else â€” involved with new code. We think it's a great way to work, and we think it'll work in your company, too.
       video_provider: "youtube"
       video_id: "w95Udrj79Ok"
+      note: "2015 Re-Upload"
 
 - id: "ruby-rogues-ruby-midwest-2011"
   title: "Beyond Web Development"
@@ -154,6 +158,7 @@
         If you're writing code that looks like User.all.reject(), you're doing it wrong. Don't worry though, we've all done it before. ActiveRecord makes it all too easy to introduce code that is far from performant, and after awhile, we tend to forget that underneath the pretty API, we are still producing SQL. In this talk, we'll peel back the API so that we can see some of the common mistakes I see when dealing with ActiveRecord statements, and more importantly, how you can fix them.
       video_provider: "youtube"
       video_id: "TO2yfO6gDGU"
+      note: "2015 Re-Upload"
 
 - id: "michael-bleigh-ruby-midwest-2011"
   title: "Rails is the New Rails"
@@ -179,6 +184,7 @@
         The sweeping changes brought on by Rails 3 and 3.1 haven't just make our existing development patterns easier, they have opened up the ability for us to build new patterns that accomplish more in a more beautiful and efficient way. In this session you will see how thinking about new features in a different light can lead to real innovation for your development practices. Examples include baking routing constraints into your models, application composition with Rack, truly modular design with the asset pipeline, and more.
       video_provider: "youtube"
       video_id: "gFUx-DZUIVc"
+      note: "2015 Re-Upload"
 
 - id: "ola-bini-ruby-midwest-2011"
   title: "Ruby Safari"
@@ -205,6 +211,7 @@
         Ruby is a big language, and this presentation will show you some of the corners of Ruby that you might not have known about, or even dared think would exist in a modern language. Some of these features are useful, some of them are useless and some of them are just downright puzzling. Come here to get a tasting of the weirder parts of Ruby.
       video_provider: "youtube"
       video_id: "_jkFXL-Q3o8"
+      note: "2015 Re-Upload"
 
 - id: "david-czarnecki-ruby-midwest-2011"
   title: "Final Boss Ruby/Rails in the Video Game Industry"
@@ -230,6 +237,7 @@
         Did you know there are video games, both console and handheld, that talk directly to a Rails stack to provide functionality, both in-game and on the web? Did you know that there are Ruby/Rails services running 24/7/365 to process game data for over 40 million players around the world? You will learn about the code, methodologies and tools used to make all of this happen (and gain 5000 Rails XP)!
       video_provider: "youtube"
       video_id: "ywtUZfSTjmg"
+      note: "2015 Re-Upload"
 
 - id: "dr-nic-williams-ruby-midwest-2011"
   title: "High Performance Ruby Threading Versus Evented"
@@ -256,6 +264,7 @@
         What was important to me
       video_provider: "youtube"
       video_id: "Nt3Zva6KBho"
+      note: "2015 Re-Upload"
 
 - id: "joe-obrien-ruby-midwest-2011"
   title: "People Patterns"
@@ -282,6 +291,7 @@
         People Patterns introduces my latest effort to capture the subtleties and nuances of interpersonal relations. I'm distilling a lot of experience, a bit of psychology and a substantial amount of research and have come up with a series of patterns that can help everyone be more successful in teams and at work. How do you have those critical conversations? How do you get your point across when you think the other person is incompetent? Come and help me reveal these and join a lively discussion.
       video_provider: "youtube"
       video_id: "JUqhl7Yd7v4"
+      note: "2015 Re-Upload"
 
 - id: "eric-redmond-ruby-midwest-2011"
   title: "Modern Databases"
@@ -317,6 +327,7 @@
         Which Ruby drivers to use
       video_provider: "youtube"
       video_id: "gTk7NaBMlN0"
+      note: "2015 Re-Upload"
 
 - id: "avdi-grimm-ruby-midwest-2011"
   title: "Confident Code"
@@ -327,7 +338,20 @@
   video_provider: "youtube"
   video_id: "T8J0j2xJFgQ"
   description: |-
-    Are your methods timid? Do they constantly second-guess themselves, checking for nil values, errors, and unexpected input? Even the cleanest Ruby codebases can become littered over time with nil checks, error handling, and other interruptions which steal attention away from the essential purpose of the code. This talk will discuss strategies for writing your Ruby classes and methods in a confident, straightforward style; without sacrificing functionality or robustness. In the process, we'll cover concepts and techniques points including: The narrative style of method construction The four parts of a method Three strategies for dealing with uncertain input Massaging input with coercion and the Decorator pattern Lightweight preconditions Exterminating nils from your code The chaining and iterative styles of method construction Eliminating conditionals with the Special Case and Null Object patterns Isolating errors with the Bouncer and Checked Method patterns
+    Are your methods timid? Do they constantly second-guess themselves, checking for nil values, errors, and unexpected input?
+
+    Even the cleanest Ruby codebases can become littered over time with nil checks, error handling, and other interruptions which steal attention away from the essential purpose of the code.
+
+    This talk will discuss strategies for writing your Ruby classes and methods in a confident, straightforward style; without sacrificing functionality or robustness. In the process, we'll cover concepts and techniques points including:
+    * The narrative style of method construction
+    * The four parts of a method
+    * Three strategies for dealing with uncertain input
+    * Massaging input with coercion and the Decorator pattern
+    * Lightweight preconditions
+    * Exterminating nils from your code
+    * The chaining and iterative styles of method construction
+    * Eliminating conditionals with the Special Case and Null Object patterns
+    * Isolating errors with the Bouncer and Checked Method patterns
   speakers:
     - Avdi Grimm
   alternative_recordings:
@@ -340,18 +364,22 @@
       published_at: "2015-07-30"
       description: |-
         Are your methods timid? Do they constantly second-guess themselves, checking for nil values, errors, and unexpected input?
-        Even the cleanest Ruby codebases can become littered over time with nil checks, error handling, and other interruptions which steal attention away from the essential purpose of the code. This talk will discuss strategies for writing your Ruby classes and methods in a confident, straightforward style; without sacrificing functionality or robustness. In the process, we'll cover concepts and techniques points including:
-        The narrative style of method construction
-        The four parts of a method
-        Three strategies for dealing with uncertain input
-        Massaging input with coercion and the Decorator pattern
-        Lightweight preconditions
-        Exterminating nils from your code
-        The chaining and iterative styles of method construction
-        Eliminating conditionals with the Special Case and Null Object patterns
-        Isolating errors with the Bouncer and Checked Method patterns
+
+        Even the cleanest Ruby codebases can become littered over time with nil checks, error handling, and other interruptions which steal attention away from the essential purpose of the code.
+
+        This talk will discuss strategies for writing your Ruby classes and methods in a confident, straightforward style; without sacrificing functionality or robustness. In the process, we'll cover concepts and techniques points including:
+        * The narrative style of method construction
+        * The four parts of a method
+        * Three strategies for dealing with uncertain input
+        * Massaging input with coercion and the Decorator pattern
+        * Lightweight preconditions
+        * Exterminating nils from your code
+        * The chaining and iterative styles of method construction
+        * Eliminating conditionals with the Special Case and Null Object patterns
+        * Isolating errors with the Bouncer and Checked Method patterns
       video_provider: "youtube"
       video_id: "t8s2MqnDPD8"
+      note: "2015 Re-Upload"
 
 - id: "david-copeland-ruby-midwest-2011"
   title: "Make Awesome Command-Line Apps with Ruby"
@@ -377,6 +405,7 @@
         Tired of maintaining your one-off script that has now become someone's job to execute? Wishing you could create polished applications on the command line similar to git or cucumber? In my talk, I'll talk about what makes a command line application "awesome", and why you should care. I'll talk about what makes Ruby particularly suited to this task over mainstays like bash and Perl. We'll compare and contrast several Ruby libraries that can make even your lowliest automation script a polished, maintainable, and predictable application.
       video_provider: "youtube"
       video_id: "eYk2Otz4X4I"
+      note: "2015 Re-Upload"
 
 - id: "matt-hicks-ruby-midwest-2011"
   title: "Running Red Hat Openshift with a little help from Ruby Ruby"
@@ -405,6 +434,7 @@
         Cover how we are using Apache Qpid (AMQP), the Ruby bindings and MCollective as the basis of our scale-out architecture
       video_provider: "youtube"
       video_id: "umV2LAFbFpE"
+      note: "2015 Re-Upload"
 
 - id: "robert-martin-ruby-midwest-2011"
   title: "Keynote: Architecture the Lost Years"
@@ -430,6 +460,7 @@
         Robert C. Martin (Uncle Bob) has been a software professional since 1970. In the last 40 years, he has worked in various capacities on literally hundreds of software projects. He has authored "landmark" books on Agile Programming, Extreme Programming, UML, Object-Oriented Programming, C++ Programming and Clean Code. He has published dozens of articles in various trade journals. Today, he is one of the software industry's leading authorities on Agile software development and is a regular speaker at international conferences and trade shows. He is a former editor of the C++ Report and writes regular blogs at http://cleancoder.posterous.com/.
       video_provider: "youtube"
       video_id: "hALFGQNeEnU"
+      note: "2015 Re-Upload"
 
 - id: "jim-weirich-ruby-midwest-2011"
   title: "Mastering the ruby debugger"
@@ -457,6 +488,7 @@
         Despite a general disdain for the debugger in the Ruby community, the Ruby debugger is a powerful tool that can quickly get to the heart of a coding problem. This talk will concentrate on getting Rubyists up to speed on the debugger, how to use it effectively and learning other general debugging tips.
       video_provider: "youtube"
       video_id: "y0G_3GUfpu8"
+      note: "2015 Re-Upload"
 
 - id: "rogelio-j-samour-ruby-midwest-2011"
   title: "No Sudo for You!"
@@ -472,8 +504,9 @@
     - Rogelio J. Samour
 
 - id: "beyond-web-development-ruby-midwest-2011"
-  title: "Beyond Web Development"
+  title: "Podcast: Beyond Web Development"
   raw_title: "Ruby Midwest 2011 - Beyond Web Development"
+  kind: "podcast"
   event_name: "Ruby Midwest 2011"
   date: "2011-11-04"
   published_at: "2015-07-30"
