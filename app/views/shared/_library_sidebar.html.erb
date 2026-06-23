@@ -18,17 +18,17 @@
   <% end %>
 <% end %>
 
-<nav class="hidden lg:flex flex-col gap-6 sticky top-20">
+<nav class="hidden lg:flex flex-col gap-6 sticky top-20 max-h-[calc(100vh-6rem)] overflow-y-auto pb-8 [mask-image:linear-gradient(to_bottom,black_calc(100%-3rem),transparent)]" style="-ms-overflow-style: none; scrollbar-width: none;">
   <div>
     <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 mb-2">My Library</h3>
 
     <div class="flex flex-col gap-0.5">
       <%= library_link.call("Watch History", watched_talks_path, icon: "clock-rotate-left", active: request.path == watched_talks_path && params[:filter].blank?, count: Current.user&.watched_talks_count) %>
       <%= library_link.call("Continue Watching", watched_talks_path(filter: "in_progress"), icon: "play", active: request.path == watched_talks_path && params[:filter] == "in_progress") %>
-      <%= library_link.call("For You", recommendations_path, icon: "sparkles", active: request.path == recommendations_path) %>
       <%= library_link.call("Bookmarks", watch_lists_path, icon: "bookmark", active: request.path.start_with?("/bookmarks"), count: Current.user&.default_watch_list&.talks_count) %>
       <%= library_link.call("Feedback", feedback_index_path, icon: "comment-dots", active: request.path == feedback_index_path) %>
       <%= library_link.call("Favorite Rubyists", favorite_users_path, icon: "heart", active: request.path == favorite_users_path) %>
+      <%= library_link.call("My Attendances", attendances_path, icon: "ticket", active: request.path.start_with?("/events/attendances")) %>
     </div>
   </div>
 

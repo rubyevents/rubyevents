@@ -29,6 +29,10 @@ class User::TalkRecommender < ActiveRecord::AssociatedObject
     user.watched_talks.watched.select(:talk_id)
   end
 
+  def own_talk_ids
+    user.user_talks.select(:talk_id)
+  end
+
   def collaborative_filtering_recommendations(limit:)
     similar_user_ids = WatchedTalk.watched
       .where(talk_id: watched_talk_ids)
@@ -42,6 +46,7 @@ class User::TalkRecommender < ActiveRecord::AssociatedObject
     Talk.joins(:watched_talks)
       .where(watched_talks: {user_id: similar_user_ids})
       .where.not(id: watched_talk_ids)
+      .where.not(id: own_talk_ids)
       .where(video_provider: Talk::WATCHABLE_PROVIDERS)
       .group(:id)
       .order(Arel.sql("COUNT(watched_talks.id) DESC"))
@@ -57,6 +62,7 @@ class User::TalkRecommender < ActiveRecord::AssociatedObject
     Talk.joins(:approved_topics)
       .where(topics: {id: watched_topic_ids})
       .where.not(id: watched_talk_ids)
+      .where.not(id: own_talk_ids)
       .where(video_provider: Talk::WATCHABLE_PROVIDERS)
       .order("created_at DESC")
       .limit(limit)
