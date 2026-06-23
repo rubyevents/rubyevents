@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.2].define(version: 2026_06_15_000903) do
+ActiveRecord::Schema[8.2].define(version: 2026_06_23_000500) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -198,6 +198,7 @@ ActiveRecord::Schema[8.2].define(version: 2026_06_15_000903) do
   end
 
   create_table "events", force: :cascade do |t|
+    t.string "banner_background"
     t.integer "canonical_id"
     t.string "city"
     t.string "country_code"
@@ -206,7 +207,10 @@ ActiveRecord::Schema[8.2].define(version: 2026_06_15_000903) do
     t.string "date_precision", default: "day", null: false
     t.date "end_date"
     t.integer "event_series_id", null: false
+    t.string "featured_background"
+    t.string "featured_color"
     t.json "geocode_metadata", default: {}, null: false
+    t.date "home_sort_date"
     t.string "kind", default: "event", null: false
     t.decimal "latitude", precision: 10, scale: 6
     t.string "location"

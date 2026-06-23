@@ -241,7 +241,11 @@ module Static
         location: location,
         start_date: start_date,
         end_date: end_date,
-        kind: kind
+        kind: kind,
+        featured_background: featured_background,
+        featured_color: featured_color,
+        banner_background: banner_background,
+        home_sort_date: home_sort_date(event_record: event)
       )
 
       if event.venue.exist?
