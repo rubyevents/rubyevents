@@ -386,19 +386,13 @@ class BrowseController < ApplicationController
   end
 
   def featured_events_query
-    imported_slugs = Event.not_meetup.with_watchable_talks.pluck(:slug)
-    featurable_slugs = Static::Event.where.not(featured_background: nil).pluck(:slug)
-    slug_candidates = imported_slugs & featurable_slugs
-
-    featured_slugs = Static::Event.all
-      .select { |event| slug_candidates.include?(event.slug) }
-      .select(&:home_sort_date)
-      .sort_by(&:home_sort_date)
-      .reverse
-      .take(5)
-      .map(&:slug)
-
-    Event.where(slug: featured_slugs).in_order_of(:slug, featured_slugs)
+    Event
+      .not_meetup
+      .with_watchable_talks
+      .featurable
+      .where.not(home_sort_date: nil)
+      .order(home_sort_date: :desc)
+      .limit(5)
   end
 
   def recently_published_query = Talk.recently_published_talks.limit(15)

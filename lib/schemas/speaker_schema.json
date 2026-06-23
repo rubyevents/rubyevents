@@ -11,11 +11,13 @@
     },
     "github": {
       "type": "string",
-      "description": "GitHub username"
+      "description": "GitHub username (not a URL)",
+      "pattern": "^([^/:\\s]+)?$"
     },
     "twitter": {
       "type": "string",
-      "description": "Twitter/X handle (without @)"
+      "description": "Twitter/X handle (without @, not a URL)",
+      "pattern": "^([^/:\\s]+)?$"
     },
     "website": {
       "type": "string",
@@ -23,19 +25,23 @@
     },
     "mastodon": {
       "type": "string",
-      "description": "Full Mastodon profile URL"
+      "description": "Full Mastodon profile URL (e.g. https://ruby.social/@username)",
+      "pattern": "^(https?://[^/]+/@[^/\\s]+)?$"
     },
     "bluesky": {
       "type": "string",
-      "description": "Bluesky handle"
+      "description": "Bluesky handle (not a URL)",
+      "pattern": "^([^/:\\s]+)?$"
     },
     "linkedin": {
       "type": "string",
-      "description": "LinkedIn profile URL"
+      "description": "LinkedIn username (the part after /in/, not a URL)",
+      "pattern": "^([^/:\\s]+)?$"
     },
     "speakerdeck": {
       "type": "string",
-      "description": "Speakerdeck profile URL"
+      "description": "Speakerdeck username (not a URL)",
+      "pattern": "^([^/:\\s]+)?$"
     },
     "aliases": {
       "type": "array",

@@ -190,6 +190,9 @@ rules:
 
   - files: "data/**/videos.yml"
     pipeline:
+      - sequence_indent:
+          style: indented
+
       - schema:
           file: "lib/schemas/video_schema.json"
           path: "[]"
