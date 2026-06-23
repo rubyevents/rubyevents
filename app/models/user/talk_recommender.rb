@@ -2,12 +2,28 @@ class User::TalkRecommender < ActiveRecord::AssociatedObject
   def talks(limit: 4)
     return Talk.none if user.watched_talks.watched.empty?
 
-    (collaborative_filtering_recommendations(limit: limit) + content_based_recommendations(limit: limit))
-      .uniq
-      .sample(limit)
+    ids = candidate_ids(limit: limit).shuffle(random: Random.new(daily_seed)).first(limit)
+
+    Talk.where(id: ids).includes(:speakers, event: :series).in_order_of(:id, ids).to_a
   end
 
   private
+
+  def candidate_ids(limit:)
+    Rails.cache.fetch(["talk_recommendations", user.id, limit, watched_talks_version], expires_at: Date.current.end_of_day) do
+      (collaborative_filtering_recommendations(limit: limit) + content_based_recommendations(limit: limit)).uniq.map(&:id)
+    end
+  end
+
+  def watched_talks_version
+    watched = user.watched_talks.watched
+
+    "#{watched.maximum(:updated_at).to_i}-#{watched.count}"
+  end
+
+  def daily_seed
+    user.id + Date.current.strftime("%Y%m%d").to_i
+  end
 
   def watched_talk_ids
     user.watched_talks.watched.select(:talk_id)
