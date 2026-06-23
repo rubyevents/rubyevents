@@ -598,9 +598,14 @@
                 },
                 "external_url": {
                   "type": "string"
+                },
+                "note": {
+                  "type": "string"
                 }
               },
-              "required": [],
+              "required": [
+                "note"
+              ],
               "additionalProperties": false
             }
           }
@@ -1164,9 +1169,14 @@
           },
           "external_url": {
             "type": "string"
+          },
+          "note": {
+            "type": "string"
           }
         },
-        "required": [],
+        "required": [
+          "note"
+        ],
         "additionalProperties": false
       }
     },

@@ -16,7 +16,11 @@
           srcset: ["#{talk.thumbnail_lg} 2x"],
           loading: "lazy",
           alt: talk.title,
-          class: class_names("w-full h-full rounded-xl sm:group-hover:scale-105 transition-transform duration-300", talk.thumbnail_classes.presence || "object-cover")
+          class: class_names(
+            "w-full h-full rounded-xl sm:group-hover:scale-105 transition duration-300",
+            talk.thumbnail_classes.presence || "object-cover",
+            "opacity-50 sm:group-hover:opacity-100": watched_talk&.watched?
+          )
         ) %>
 
     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent rounded-xl hidden sm:block"></div>
@@ -27,7 +31,12 @@
       </div>
     <% end %>
 
-    <% if talk.duration_in_seconds.present? %>
+    <% if watched_talk&.watched? %>
+      <div class="absolute top-2 right-2 z-20 inline-flex items-center gap-1 px-1.5 py-0.5 bg-black/70 backdrop-blur-sm rounded text-white text-xs font-medium">
+        <%= fa("circle-check", size: nil, class: "h-3 w-3 fill-green-400") %>
+        Watched
+      </div>
+    <% elsif talk.duration_in_seconds.present? %>
       <div class="absolute top-2 right-2 z-20 px-1.5 py-0.5 bg-black/70 backdrop-blur-sm rounded text-white text-xs font-medium">
         <% if watched_talk&.in_progress? && watched_talk.progress_seconds.present? %>
           <% remaining_seconds = talk.duration_in_seconds - watched_talk.progress_seconds %>
@@ -37,40 +46,17 @@
           <%= seconds_to_formatted_duration(talk.duration_in_seconds) %>
         <% end %>
       </div>
+    <% elsif (status = talk_watch_status(talk)) %>
+      <div class="absolute top-2 right-2 z-20 inline-flex items-center gap-1 px-1.5 py-0.5 bg-black/70 backdrop-blur-sm rounded text-white text-xs font-medium">
+        <%= fa(status[:icon], size: nil, class: "h-3 w-3 fill-white") %>
+        <%= status[:label] %>
+      </div>
     <% end %>
 
     <% if talk.published? && talk.video_available? %>
       <div class="absolute inset-0 bottom-6 z-10 hidden sm:group-hover:flex items-center justify-center opacity-0 sm:group-hover:opacity-100 transition-opacity duration-200">
         <div class="p-2 bg-white/20 backdrop-blur-sm rounded-full sm:group-hover:bg-white/30 sm:group-hover:scale-110 transition-all duration-200">
           <%= fa("play", size: :sm, class: "fill-white") %>
-        </div>
-      </div>
-    <% elsif talk.scheduled? || talk.parent_talk&.scheduled? %>
-      <div class="absolute inset-0 bottom-6 z-10 hidden sm:group-hover:flex items-center justify-center opacity-0 sm:group-hover:opacity-100 transition-opacity duration-200">
-        <div class="flex items-center gap-2 px-3 py-1.5 bg-black/60 backdrop-blur-sm rounded-full">
-          <%= fa("clock", size: :sm, class: "fill-white") %>
-          <span class="text-white text-xs font-medium">Scheduled</span>
-        </div>
-      </div>
-    <% elsif talk.not_recorded? || talk.parent_talk&.not_recorded? %>
-      <div class="absolute inset-0 bottom-6 z-10 hidden sm:group-hover:flex items-center justify-center opacity-0 sm:group-hover:opacity-100 transition-opacity duration-200">
-        <div class="flex items-center gap-2 px-3 py-1.5 bg-black/60 backdrop-blur-sm rounded-full">
-          <%= fa("video-slash", size: :sm, class: "fill-white") %>
-          <span class="text-white text-xs font-medium">Not recorded</span>
-        </div>
-      </div>
-    <% elsif talk.not_published? || talk.parent_talk&.not_published? %>
-      <div class="absolute inset-0 bottom-6 z-10 hidden sm:group-hover:flex items-center justify-center opacity-0 sm:group-hover:opacity-100 transition-opacity duration-200">
-        <div class="flex items-center gap-2 px-3 py-1.5 bg-black/60 backdrop-blur-sm rounded-full">
-          <%= fa("upload", size: :sm, class: "fill-white") %>
-          <span class="text-white text-xs font-medium">Not published</span>
-        </div>
-      </div>
-    <% elsif talk.video_unavailable? %>
-      <div class="absolute inset-0 bottom-6 z-10 hidden sm:group-hover:flex items-center justify-center opacity-0 sm:group-hover:opacity-100 transition-opacity duration-200">
-        <div class="flex items-center gap-2 px-3 py-1.5 bg-black/60 backdrop-blur-sm rounded-full">
-          <%= fa("video-slash", size: :sm, class: "fill-white") %>
-          <span class="text-white text-xs font-medium">Unavailable</span>
         </div>
       </div>
     <% end %>
