@@ -4,12 +4,12 @@
 
 <% if @featured_events.any? %>
   <% content_for :head do %>
-    <meta name="theme-color" content="<%= @featured_events.first.static_metadata.featured_background %>" data-featured-theme-color>
+    <meta name="theme-color" content="<%= @featured_events.first.featured_background %>" data-featured-theme-color>
 
     <style>
       :root {
-        --featured-color: <%= @featured_events.first.static_metadata.featured_color %>;
-        --featured-background: <%= @featured_events.first.static_metadata.featured_background %>;
+        --featured-color: <%= @featured_events.first.featured_color %>;
+        --featured-background: <%= @featured_events.first.featured_background %>;
       }
 
       body.home-page .navbar {
@@ -91,8 +91,8 @@
             <% @featured_events.each_with_index do |event, index| %>
               <li
                 class="splide__slide"
-                data-featured-color="<%= event.static_metadata.featured_color %>"
-                data-featured-background="<%= event.static_metadata.featured_background %>">
+                data-featured-color="<%= event.featured_color %>"
+                data-featured-background="<%= event.featured_background %>">
                 <div class="<%= "hidden" if Current.user || index != 0 %>">
                   <%= render partial: "events/featured_home", locals: {event: event} %>
                 </div>
