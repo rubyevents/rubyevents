@@ -1,20 +1,35 @@
 import { Controller } from '@hotwired/stimulus'
+import { useMatchMedia } from 'stimulus-use'
 
 export default class extends Controller {
   static targets = ['card', 'preview']
   static values = { delay: { type: Number, default: 350 } }
 
   connect () {
+    useMatchMedia(this, {
+      mediaQueries: { hoverable: '(min-width: 1024px) and (hover: hover) and (prefers-reduced-motion: no-preference)' }
+    })
     this.onScroll = () => this.hide(true)
+    this.onBeforeCache = () => this.hide(true)
+    document.addEventListener('turbo:before-cache', this.onBeforeCache)
   }
 
   disconnect () {
     this.#clearTimers()
     this.#detachScroll()
+    document.removeEventListener('turbo:before-cache', this.onBeforeCache)
+  }
+
+  isHoverable () {
+    this.hoverable = true
+  }
+
+  notHoverable () {
+    this.hoverable = false
   }
 
   enter () {
-    if (!this.#enabled) return
+    if (!this.hoverable) return
 
     clearTimeout(this.hideTimer)
     clearTimeout(this.cleanupTimer)
@@ -97,10 +112,6 @@ export default class extends Controller {
     preview.style.transition = ''
     preview.style.transform = ''
     preview.style.opacity = ''
-  }
-
-  get #enabled () {
-    return window.matchMedia('(min-width: 1024px) and (hover: hover)').matches
   }
 
   #detachScroll () {

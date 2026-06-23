@@ -37,14 +37,13 @@
           data-action="scroll->content-row#handleScroll">
           <div class="flex gap-4 sm:pb-2" data-content-row-target="track">
             <% talks.each do |talk| %>
-              <% watched_talk = watched_talks.find { |wt| wt.talk_id == talk.id } if watched_talks.present? %>
+              <% watched_talk = (watched_talks.presence || user_watched_talks).find { |wt| wt.talk_id == talk.id } %>
+
               <div class="snap-start shrink-0 w-[200px] sm:w-[300px] lg:w-[320px]"
                    data-controller="hover-preview"
                    data-action="mouseenter->hover-preview#enter mouseleave->hover-preview#leave">
                 <div data-hover-preview-target="card">
-                  <%= render "talks/card_thumbnail",
-                        talk: talk,
-                        watched_talk: watched_talk %>
+                  <%= render "talks/card_thumbnail", talk: talk, watched_talk: watched_talk %>
                 </div>
 
                 <div data-hover-preview-target="preview" class="hidden">

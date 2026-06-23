@@ -1,12 +1,53 @@
 <%# locals: (talk:) %>
 
 <div class="rounded-xl overflow-hidden bg-base-100 shadow-2xl ring-1 ring-black/10">
-  <%= link_to talk_path(talk), class: "block aspect-video overflow-hidden relative", data: {turbo_frame: "_top"} do %>
-    <%= image_tag talk.thumbnail_lg,
-          loading: "lazy",
-          alt: talk.title,
-          class: class_names("w-full h-full", talk.thumbnail_classes.presence || "object-cover") %>
-  <% end %>
+  <% watched_talk = user_watched_talks.find { |wt| wt.talk_id == talk.id } %>
+  <div class="relative aspect-video overflow-hidden">
+    <%= link_to talk_path(talk), class: "block w-full h-full", data: {turbo_frame: "_top"} do %>
+      <%= image_tag talk.thumbnail_lg,
+            loading: "lazy",
+            alt: talk.title,
+            class: class_names("w-full h-full", talk.thumbnail_classes.presence || "object-cover") %>
+    <% end %>
+
+    <% if default_watch_list %>
+      <% bookmarked = user_favorite_talks_ids.include?(talk.id) %>
+      <div class="absolute top-2 right-2 z-10"
+           data-controller="bookmark"
+           data-bookmark-bookmarked-value="<%= bookmarked %>"
+           data-bookmark-add-url-value="<%= watch_list_talks_path(default_watch_list, talk_id: talk.id) %>"
+           data-bookmark-remove-url-value="<%= watch_list_talk_path(default_watch_list, talk.id) %>">
+        <div data-bookmark-target="message" class="hidden absolute top-full right-0 mt-2 whitespace-nowrap rounded-md bg-black/80 px-2 py-1 text-xs font-medium text-white shadow-lg pointer-events-none opacity-0 -translate-y-1 transition duration-200"></div>
+
+        <button type="button" class="flex items-center justify-center size-8 rounded-full bg-black/50 backdrop-blur-sm hover:bg-black/70 transition-colors" data-action="bookmark#toggle" aria-label="Toggle bookmark">
+          <span data-bookmark-target="solid" class="<%= "hidden" unless bookmarked %>">
+            <%= fa("bookmark", style: :solid, size: :sm, class: "fill-current text-white") %>
+          </span>
+          <span data-bookmark-target="regular" class="<%= "hidden" if bookmarked %>">
+            <%= fa("bookmark", style: :regular, size: :sm, class: "fill-current text-white") %>
+          </span>
+        </button>
+      </div>
+    <% end %>
+
+    <% if watched_talk&.watched? %>
+      <div class="absolute top-2 left-2 z-10 inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-black/60 backdrop-blur-sm text-white text-xs font-medium">
+        <%= fa("circle-check", size: nil, class: "h-3 w-3 fill-current text-green-400") %>
+        Watched
+      </div>
+    <% elsif watched_talk&.in_progress? && talk.duration_in_seconds.present? && watched_talk.progress_seconds.present? %>
+      <% remaining_minutes = ((talk.duration_in_seconds - watched_talk.progress_seconds) / 60.0).ceil %>
+      <div class="absolute bottom-2 left-2 z-10 px-1.5 py-0.5 rounded bg-black/70 backdrop-blur-sm text-white text-xs font-medium">
+        <%= remaining_minutes %> min left
+      </div>
+    <% end %>
+
+    <% if watched_talk&.in_progress? %>
+      <div class="absolute bottom-0 inset-x-0 h-1 bg-white/30 z-10">
+        <div class="h-full bg-primary" style="width: <%= watched_talk.progress_percentage %>%"></div>
+      </div>
+    <% end %>
+  </div>
 
   <div class="p-3.5 flex flex-col gap-3">
     <div class="flex items-center gap-2.5">
@@ -30,12 +71,6 @@
     <% end %>
 
     <div class="flex flex-wrap items-center gap-1.5 text-xs font-medium text-base-content/70">
-      <% if talk.kind.present? && talk.kind != "talk" %>
-        <span class="inline-flex items-center px-2 py-1 rounded-md bg-base-200/80">
-          <%= Talk::KIND_LABELS[talk.kind] || talk.kind.titleize %>
-        </span>
-      <% end %>
-
       <% if talk.event&.name.present? %>
         <%= link_to event_path(talk.event), class: "inline-flex items-center gap-1.5 max-w-[60%] px-2 py-1 rounded-md bg-base-200/80 hover:bg-base-200", data: {turbo_frame: "_top"} do %>
           <% if talk.event.avatar_image_path.present? %>
@@ -59,6 +94,12 @@
         </span>
       <% end %>
 
+      <% if talk.kind.present? && talk.kind != "talk" %>
+        <span class="inline-flex items-center px-2 py-1 rounded-md bg-base-200/80">
+          <%= Talk::KIND_LABELS[talk.kind] || talk.kind.titleize %>
+        </span>
+      <% end %>
+
       <% if talk.language.present? %>
         <%= link_to talks_path(language: talk.language), class: "inline-flex items-center gap-1 px-2 py-1 rounded-md bg-base-200/80 hover:bg-base-200", data: {turbo_frame: "_top"} do %>
           <%= Language.emoji_flag(talk.language) %> <%= talk.language_name %>
@@ -70,6 +111,13 @@
           <%= fa("presentation-screen", size: nil, class: "h-3 w-3 fill-current") %>
           Slides
         <% end %>
+      <% end %>
+
+      <% if (status = talk_watch_status(talk)) %>
+        <span class="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-base-200/80">
+          <%= fa(status[:icon], size: nil, class: "h-3 w-3 fill-base-content/50") %>
+          <%= status[:label] %>
+        </span>
       <% end %>
     </div>
 
