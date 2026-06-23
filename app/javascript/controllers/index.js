@@ -44,6 +44,9 @@ application.register("events-view-switcher", EventsViewSwitcherController)
 import GeolocationController from "./geolocation_controller"
 application.register("geolocation", GeolocationController)
 
+import HoverPreviewController from "./hover_preview_controller"
+application.register("hover-preview", HoverPreviewController)
+
 import LazyLoadingController from "./lazy_loading_controller"
 application.register("lazy-loading", LazyLoadingController)
 
