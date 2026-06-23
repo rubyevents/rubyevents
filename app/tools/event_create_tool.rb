@@ -12,7 +12,7 @@ class EventCreateTool < RubyLLM::Tool
     required = SCHEMA_DATA[:required]&.include?(name)
 
     desc = config[:description] || ""
-    desc += " (#{config[:enum].join(", ")})" if config[:enum]
+    desc += " (#{config[:enum].join(", ")})" if config[:enum] && config[:enum].length <= 20
 
     param name, desc: desc, required: required
   end
@@ -23,6 +23,15 @@ class EventCreateTool < RubyLLM::Tool
 
     if params[:aliases].is_a?(String)
       params[:aliases] = params[:aliases].split(",").map(&:strip).reject(&:blank?)
+    end
+
+    if params[:coordinates].is_a?(String)
+      if params[:coordinates] == "false"
+        params[:coordinates] = false
+      else
+        lat, lng = params[:coordinates].split(",").map(&:strip).map(&:to_f)
+        params[:coordinates] = {"latitude" => lat, "longitude" => lng}
+      end
     end
 
     event = Static::Event.create(series_slug: series_slug, slug: slug, **params)

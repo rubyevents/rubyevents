@@ -22,13 +22,8 @@ class ScheduleGeneratorTest < Rails::Generators::TestCase
 
   def validate_schedule_schema(file_path)
     require "#{Rails.root}/app/schemas/schedule_schema"
-    require "json_schemer"
-    require "yaml"
 
-    data = YAML.load_file(file_path)
-    schema = JSON.parse(ScheduleSchema.new.to_json_schema[:schema].to_json)
-    schemer = JSONSchemer.schema(schema)
-    errors = schemer.validate(data).to_a
-    assert_empty errors, "Schedule YAML does not conform to schema: #{errors.join(", ")}"
+    validator = Static::Validators::Schema.new(file_path: file_path)
+    assert_empty validator.errors, "Schedule YAML does not conform to schema: #{validator.errors.map { |e| e.to_h["message"] }.join(", ")}"
   end
 end

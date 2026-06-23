@@ -3,27 +3,31 @@
 # Table name: events
 # Database name: primary
 #
-#  id               :integer          not null, primary key
-#  city             :string
-#  country_code     :string           indexed => [state_code]
-#  date             :date
-#  date_precision   :string           default("day"), not null
-#  end_date         :date
-#  geocode_metadata :json             not null
-#  kind             :string           default("event"), not null, indexed
-#  latitude         :decimal(10, 6)
-#  location         :string
-#  longitude        :decimal(10, 6)
-#  name             :string           default(""), not null, indexed
-#  slug             :string           default(""), not null, indexed
-#  start_date       :date
-#  state_code       :string           indexed => [country_code]
-#  talks_count      :integer          default(0), not null
-#  website          :string           default("")
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  canonical_id     :integer          indexed
-#  event_series_id  :integer          not null, indexed
+#  id                  :integer          not null, primary key
+#  banner_background   :string
+#  city                :string
+#  country_code        :string           indexed => [state_code]
+#  date                :date
+#  date_precision      :string           default("day"), not null
+#  end_date            :date
+#  featured_background :string
+#  featured_color      :string
+#  geocode_metadata    :json             not null
+#  home_sort_date      :date
+#  kind                :string           default("event"), not null, indexed
+#  latitude            :decimal(10, 6)
+#  location            :string
+#  longitude           :decimal(10, 6)
+#  name                :string           default(""), not null, indexed
+#  slug                :string           default(""), not null, indexed
+#  start_date          :date
+#  state_code          :string           indexed => [country_code]
+#  talks_count         :integer          default(0), not null
+#  website             :string           default("")
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  canonical_id        :integer          indexed
+#  event_series_id     :integer          not null, indexed
 #
 # Indexes
 #
@@ -41,7 +45,6 @@
 #
 class Event < ApplicationRecord
   include Geocodeable
-  include Suggestable
   include Sluggable
   include Todoable
   include Event::TypesenseSearchable
@@ -107,6 +110,7 @@ class Event < ApplicationRecord
   scope :with_talks, -> { where.associated(:talks) }
   scope :with_watchable_talks, -> { where.associated(:watchable_talks) }
   scope :canonical, -> { where(canonical_id: nil) }
+  scope :featurable, -> { where.not(featured_background: nil).where.not(featured_color: nil) }
   scope :not_canonical, -> { where.not(canonical_id: nil) }
   scope :ft_search, ->(query) {
     joins(<<~SQL.squish)
@@ -210,23 +214,8 @@ class Event < ApplicationRecord
     end
   end
 
-  def managed_by?(user)
-    Current.user&.admin?
-  end
-
   def data_folder
     Rails.root.join("data", series.slug, slug)
-  end
-
-  def suggestion_summary
-    <<~HEREDOC
-      Event: #{name}
-      #{description}
-      #{city}
-      #{country_code}
-      #{series.name}
-      #{date}
-    HEREDOC
   end
 
   def location_and_country_code
@@ -355,6 +344,24 @@ class Event < ApplicationRecord
       featured_color: static_metadata.featured_color,
       url: Router.event_url(self, host: "#{request.protocol}#{request.host}:#{request.port}")
     }
+  end
+
+  def to_ical
+    Icalendar::Event.new.tap do |event|
+      event.uid = "RUBYEVENTS-#{id}"
+      event.last_modified = updated_at
+      event.dtstart = Icalendar::Values::Date.new(start_date)
+
+      if end_date > start_date
+        event.dtend = Icalendar::Values::Date.new(end_date + 1.day) # dtend is exclusive, add 1 day to make it inclusive
+      end
+
+      event.summary = name
+      event.description = description.strip
+      event.location = static_metadata.location
+      event.url = website
+      event.status = static_metadata.cancelled? ? "CANCELLED" : "CONFIRMED"
+    end
   end
 
   private

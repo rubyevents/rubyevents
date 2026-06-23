@@ -17,6 +17,9 @@ application.register("auto-submit", AutoSubmitController)
 import Bridge__ButtonController from "./bridge/button_controller"
 application.register("bridge--button", Bridge__ButtonController)
 
+import Bridge__OauthController from "./bridge/oauth_controller"
+application.register("bridge--oauth", Bridge__OauthController)
+
 import CopyToClipboardController from "./copy_to_clipboard_controller"
 application.register("copy-to-clipboard", CopyToClipboardController)
 
@@ -31,6 +34,9 @@ application.register("hover-card", HoverCardController)
 
 import EventListController from "./event_list_controller"
 application.register("event-list", EventListController)
+
+import EventsFilterController from "./events_filter_controller"
+application.register("events-filter", EventsFilterController)
 
 import EventsViewSwitcherController from "./events_view_switcher_controller"
 application.register("events-view-switcher", EventsViewSwitcherController)

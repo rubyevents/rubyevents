@@ -54,9 +54,6 @@ gem "thruster", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 1.2"
 
-# Image processing for event asset generation
-gem "mini_magick"
-
 # All sorts of useful information about every country packaged as convenient little country objects
 gem "countries"
 
@@ -66,20 +63,11 @@ gem "iso-639"
 # A minimal client of Bluesky/ATProto API
 gem "minisky", "~> 0.4.0"
 
-# Extract Collaborator Objects from your Active Records, a new concept called Associated Objects
-gem "active_record-associated_object"
-
-# Headless Chrome driver for Capybara
-gem "cuprite"
-
-# Reusable modules for tasks like data extraction, scoring, and ranking
-gem "active_genie"
-
 # A single delightful Ruby way to work with AI.
-gem "ruby_llm", "~> 1.9.1"
+gem "ruby_llm", "~> 1.15.0"
 
 # A simple and clean Ruby DSL for creating JSON schemas.
-gem "ruby_llm-schema"
+gem "ruby_llm-schema", github: "crmne/ruby_llm-schema", branch: "main"
 
 # JSON Schema validator
 gem "json_schemer"
@@ -89,6 +77,9 @@ gem "yt"
 
 # Family of libraries that support various formats of XML "feeds".
 gem "rss", "~> 0.3.1"
+
+# YAML Editing and Refactoring with Better Accuracy
+gem "yerba", "~> 0.7.1"
 
 # Powerful and seamless HTML-aware ERB parsing and tooling.
 gem "herb", "~> 0.9"
@@ -147,14 +138,14 @@ gem "dry-types", "~> 1.7"
 # Protocol Buffers are Google's data interchange format.
 gem "google-protobuf", require: false
 
+# Extract Collaborator Objects from your Active Records, a new concept called Associated Objects
+gem "active_record-associated_object"
+
 # ActiveJob::Performs adds the `performs` macro to set up jobs by convention.
 gem "active_job-performs"
 
 # Use the OpenAI API with Ruby!
 gem "ruby-openai"
-
-# Repairs broken JSON strings.
-gem "json-repair", "~> 0.2.0"
 
 # Markdown that smells nice
 gem "redcarpet", "~> 3.6"
@@ -172,6 +163,9 @@ group :avo, optional: true do
   gem "avo-pro", source: "https://packager.dev/avo-hq/"
 end
 
+# Avo 3.x depends on this
+gem "ferrum", "~> 0.17.2"
+
 # Marksmith is a GitHub-style markdown editor for Ruby on Rails applications.
 gem "marksmith"
 
@@ -181,23 +175,14 @@ gem "commonmarker", ">= 2.6.1"
 # ActiveRecord like interface to read only access and query static YAML files
 gem "frozen_record", "~> 0.27.2"
 
-# A convenient way to diff string in ruby
-gem "diffy"
-
 # ActiveRecord soft-deletes done right
 gem "discard"
-
-# Makes consuming restful web services dead easy.
-gem "httparty"
 
 # Use OmniAuth to support multi-provider authentication [https://github.com/omniauth/omniauth]
 gem "omniauth"
 
 # Official OmniAuth strategy for GitHub.
 gem "omniauth-github"
-
-# Provides a mitigation against CVE-2015-9284 [https://github.com/cookpad/omniauth-rails_csrf_protection]
-gem "omniauth-rails_csrf_protection"
 
 # An accessible autocomplete for Ruby on Rails apps using Hotwire.
 gem "hotwire_combobox", "~> 0.4.0"
@@ -232,11 +217,16 @@ gem "typesense", "~> 4.1"
 # Typesense integration to your favorite ORM
 gem "typesense-rails", "~> 1.0.0.rc4"
 
+# A ruby implementation of the iCalendar specification (RFC-5545).
+gem "icalendar", "~> 2.12"
+
+# FastImage finds the size or type of an image given its uri by fetching as little as needed.
+gem "fastimage", "~> 2.4"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "bundler-audit", require: false
   gem "debug", platforms: %i[mri windows]
-  gem "byebug"
   gem "minitest-difftastic", "~> 0.2"
 end
 
@@ -253,9 +243,6 @@ group :development do
   # For call-stack profiling flamegraphs
   gem "stackprof"
 
-  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
-
   # Use listen to watch files for changes [https://github.com/guard/listen]
   gem "listen", "~> 3.5"
 
@@ -265,7 +252,6 @@ group :development do
   gem "ruby-lsp-rails", require: false
   gem "standardrb", "~> 1.0", require: false
   gem "erb_lint", require: false
-  gem "authentication-zero", require: false
 end
 
 group :test do

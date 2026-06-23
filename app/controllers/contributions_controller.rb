@@ -20,7 +20,7 @@ class ContributionsController < ApplicationController
 
     # Talks without speakers
 
-    @talks_without_speakers = User.find_by(name: "TODO").talks + User.find_by(name: "TBD").talks
+    @talks_without_speakers = User.find_by(name: "TODO")&.talks || []
     @talks_without_speakers_count = @talks_without_speakers.count
 
     # Missing events
@@ -56,8 +56,7 @@ class ContributionsController < ApplicationController
   end
 
   def speakers_without_github
-    speaker_ids_with_pending_github_suggestions = Suggestion.pending.where("json_extract(content, '$.github') IS NOT NULL").where(suggestable_type: "Speaker").pluck(:suggestable_id)
-    @speakers_without_github = User.speakers.canonical.without_github.order(talks_count: :desc).where.not(id: speaker_ids_with_pending_github_suggestions)
+    @speakers_without_github = User.speakers.canonical.without_github.order(talks_count: :desc)
   end
 
   def talks_without_slides
@@ -90,7 +89,7 @@ class ContributionsController < ApplicationController
 
     @dates_by_event_name = ranges_for_events_with_dates.union(ranges_for_events_without_dates).to_h
 
-    talks_by_event_name = Talk.preload(:event).to_a.select { |talk| talk.event.name.in?(@dates_by_event_name.keys) }.group_by(&:event)
+    talks_by_event_name = Talk.preload(:event).to_a.select { |talk| talk.event&.name&.in?(@dates_by_event_name.keys) }.group_by(&:event)
 
     @out_of_bound_talks = talks_by_event_name.map { |event, talks| [event, talks.reject { |talk| @dates_by_event_name[event.name].cover?(talk.date) }] }
   end

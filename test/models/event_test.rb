@@ -269,4 +269,40 @@ class EventTest < ActiveSupport::TestCase
 
     assert event.today?
   end
+
+  test "to_ical returns a Icalendar::Event" do
+    event = events(:rails_world_2023)
+
+    assert_kind_of Icalendar::Event, event.to_ical
+  end
+
+  test "to_ical serializes to a ical formatted string with the event details" do
+    travel_to DateTime.new(2026, 1, 1) do
+      event = events(:rails_world_2023)
+      event.updated_at = Time.now
+
+      assert_equal <<~ICAL.gsub("\n", "\r\n"), event.to_ical.to_ical
+        BEGIN:VEVENT
+        DTSTAMP:20260101T000000Z
+        UID:RUBYEVENTS-#{event.id}
+        DTSTART;VALUE=DATE:20231026
+        DESCRIPTION:RailsWorld is a yearly conference held in Netherlands.
+        LAST-MODIFIED:20260101T000000
+        LOCATION:Amsterdam\\, Netherlands
+        STATUS:CONFIRMED
+        SUMMARY:Rails World 2023
+        URL;VALUE=URI:https://rubyonrails.org/world
+        END:VEVENT
+      ICAL
+    end
+  end
+
+  test "to_ical sets an inclusive DTEND for multi-day events" do
+    event = events(:railsconf_2025)
+
+    ical = event.to_ical.to_ical
+
+    assert_includes ical, "DTSTART;VALUE=DATE:20250708"
+    assert_includes ical, "DTEND;VALUE=DATE:20250711"
+  end
 end

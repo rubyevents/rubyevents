@@ -50,11 +50,14 @@ jobs:
       - name: StandardJS Check
         run: yarn lint
 
-      - name: Lint YAML data files
-        run: yarn lint:yml
+      - name: Check speakers.yml is in sync
+        run: bin/rails speakers_file:check
 
       - name: Validate YAML data schemas
         run: bin/rails validate:all
+
+      - name: Lint YAML data files
+        run: bundle exec yerba check
 
       - name: erb-lint Check
         run: bundle exec erb_lint --lint-all
@@ -72,9 +75,6 @@ jobs:
       RAILS_ENV: test
     steps:
       - uses: actions/checkout@v5
-
-      - name: Install ImageMagick
-        run: sudo apt-get update && sudo apt-get install -y imagemagick
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
@@ -139,9 +139,6 @@ jobs:
 
       - name: Verify all thumbnails for child talks are present
         run: bin/rails verify_thumbnails
-
-      - name: Validate no duplicated speakers in database
-        run: bin/rails validate:speaker_duplicates
 
   build:
     name: Build Docker Image

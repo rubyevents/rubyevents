@@ -63,7 +63,6 @@
 class Talk < ApplicationRecord
   include Rollupable
   include Sluggable
-  include Suggestable
   include Watchable
 
   include Talk::SQLiteFTSSearchable
@@ -244,11 +243,27 @@ class Talk < ApplicationRecord
   scope :today, -> { where(date: Date.today) }
   scope :past, -> { where(date: ...Date.today) }
 
-  def managed_by?(visiting_user)
-    return false unless visiting_user.present?
-    return true if visiting_user.admin?
+  scope :orphaned, -> {
+    static_ids = all_static_ids
+    where.not(static_id: static_ids).or(where(static_id: [nil, ""]))
+  }
 
-    users.exists?(id: visiting_user.id)
+  scope :not_orphaned, -> {
+    static_ids = all_static_ids
+    where(static_id: static_ids)
+  }
+
+  def self.all_static_ids
+    @all_static_ids ||= begin
+      collection = Yerba::Collection.new("data/**/videos.yml")
+      parent_ids = collection.pluck(:id).compact
+      child_ids = collection.pluck(:talks).compact.flatten.map { |t| t["id"] }
+      parent_ids + child_ids
+    end
+  end
+
+  def orphaned?
+    static_id.blank? || self.class.all_static_ids.exclude?(static_id)
   end
 
   def published?
@@ -641,19 +656,11 @@ class Talk < ApplicationRecord
 
     self.slug = new_slug
 
-    save!
+    save! if changed? || new_record?
   end
 
   def static_metadata
     @static_metadata ||= Static::Video.find_by_static_id(static_id)
-  end
-
-  def suggestion_summary
-    <<~HEREDOC
-      Talk: #{title} (#{date})
-      by #{speakers.map(&:name).to_sentence}
-      at #{event.name}
-    HEREDOC
   end
 
   def set_kind
@@ -679,7 +686,8 @@ class Talk < ApplicationRecord
       :gameshow
     when /^(podcast:|podcast\ recording:|live\ podcast:).*/i
       :podcast
-    when /.*(q&a|q&a:|q&a\ with|ruby\ committers\ vs\ the\ world|ruby\ committers\ and\ the\ world).*/i,
+    when /.*(q&a|q&a:|q&a\ with|questions\ and\ answers).*/i,
+        /.*(ruby\ committers\ vs\ the\ world|ruby\ committers\ and\ the\ world).*/i,
         /.*(AMA)$/,
         /^(AMA:)/
       :q_and_a

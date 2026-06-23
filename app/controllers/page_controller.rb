@@ -3,14 +3,14 @@ class PageController < ApplicationController
 
   def home
     home_page_cached_data = Rails.cache.fetch("home_page_content", expires_in: 1.hour) do
-      latest_talks = Talk.watchable.with_speakers.order(published_at: :desc).limit(10)
+      latest_talks = Talk.watchable.with_speakers.order(date: :desc).limit(10)
       {
         talks_count: Talk.count,
         speakers_count: User.speakers.count,
         events_count: Event.count,
         latest_talk_ids: latest_talks.pluck(:id),
         upcoming_talk_ids: Talk.with_speakers.where(date: Date.today..).order(date: :asc).limit(15).pluck(:id),
-        latest_event_ids: Event.order(date: :desc).limit(10).pluck(:id).sample(4),
+        latest_event_ids: Event.conference.past.limit(10).pluck(:id),
         featured_speaker_ids: User.with_github
           .joins(:talks)
           .where(talks: {date: 12.months.ago..})
@@ -30,23 +30,14 @@ class PageController < ApplicationController
     @featured_organizations = Organization.joins(:sponsors).includes(:events).group("organizations.id").order("COUNT(sponsors.id) DESC").limit(10)
     @recommended_talks = Current.user.talk_recommender.talks(limit: 4) if Current.user
 
-    imported_slugs = Event.not_meetup.with_watchable_talks.pluck(:slug)
-    today_slugs = Event.not_meetup.with_talks.where(start_date: ..Date.today, end_date: Date.today..).pluck(:slug)
-    featurable_slugs = Static::Event.where.not(featured_background: nil).pluck(:slug)
-    slug_candidates = (imported_slugs | today_slugs) & featurable_slugs
-
-    featured_slugs = Static::Event.all
-      .select { |event| slug_candidates.include?(event.slug) }
-      .select(&:home_sort_date)
-      .sort_by(&:home_sort_date)
-      .reverse
-      .take(15)
-      .map(&:slug)
-
     @featured_events = Event.distinct
+      .not_meetup
+      .with_watchable_talks
+      .featurable
+      .where.not(home_sort_date: nil)
       .includes(:series, :keynote_speakers, :speakers)
-      .where(slug: featured_slugs)
-      .in_order_of(:slug, featured_slugs)
+      .order(home_sort_date: :desc)
+      .limit(15)
 
     respond_to do |format|
       format.html
@@ -106,6 +97,7 @@ class PageController < ApplicationController
 
   def stickers
     @events = Event.all.select(&:sticker?)
+    @stickers = @events.flat_map(&:stickers)
   end
 
   def contributors
