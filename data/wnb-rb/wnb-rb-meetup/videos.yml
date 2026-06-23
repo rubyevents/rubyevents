@@ -18,7 +18,7 @@
       raw_title: "Gemless - Brittany Martin"
       event_name: "WNB.rb Meetup March 2021"
       date: "2021-03-30"
-      video_provider: "not_published"
+      video_provider: "not_published" # unpublished video: Qm6X93VQaDE
       video_id: "brittany-martin-wnb-rb-meetup-march-2021"
       description: |-
         Brittany Martin talks about lessons learned as an Eng Lead during a project to build a lightweight script using AWS Lambda and Cloudwatch to funnel data from a variety of sources into S3 to create a data dashboard.
@@ -744,6 +744,7 @@
       video_id: "H_LHCn6aERQ"
       description: |-
         If you're unsure about what observability is or haven't given it much thought, this talk is perfect for you! We'll cover the basics of observability and how it can boost your confidence when shipping code to production by improving your ability to manage and monitor your Ruby on Rails applications.
+
         https://www.wnb-rb.dev/meetups/2024/08/30
       speakers:
         - Caroline Salib
@@ -832,6 +833,8 @@
         Join us for an exciting WNB.rb meetup, now with 4 engineers on our Staff Engineer Panel 🎉
 
         Get ready for an insightful and inspiring discussion full of real-world advice, and career journeys. Come with your questions—we'd love to see you there 👋
+
+        https://www.wnb-rb.dev/meetups/2025/01/25
       speakers:
         - Toni Rib
         - Sweta Sanghavi
@@ -883,6 +886,8 @@
 
         About the speaker:
         Rachel Serwetz' early professional experience was at Goldman Sachs in Operations and at Bridgewater Associates in HR. From there, she was trained as a coach at NYU and became a certified coach through the International Coach Federation. After this, she worked in HR Research at Aon Hewitt and attained her Technology MBA at NYU Stern. Throughout her career, she has helped hundreds of professionals with career exploration and for the past 7+ years she has been building her company, WOKEN, which is an online career exploration platform to coach professionals through the process of clarifying their ideal job and career path. She has also served as an Adjunct Professor of Entrepreneurship at Binghamton University and as a Career Coach through the Flatiron School/WeWork, Columbia University, and Project Activate. Learn more about WOKEN here: iamwoken.com.
+
+        https://www.wnb-rb.dev/meetups/2025/03/25
       speakers:
         - Rachel Serwetz
 
@@ -906,8 +911,33 @@
       video_id: "vXLZ4yCd1ZE"
       description: |-
         So you have a controller or a resolver that calls your domain objects, you feel confident in the test coverage, but over time the tests get slow. There are many well known and effective techniques for addressing slow tests, but what is at the core of this issue? That's what I want to explore in this talk, taking a step back and identifying where our boundaries lie.
+
+        https://www.wnb-rb.dev/meetups/2025/04/29
       speakers:
         - Liz Pine
+
+- id: "wnb-rb-meetup-june-2025"
+  title: "WNB.rb Meetup June 2025"
+  event_name: "WNB.rb Meetup June 2025"
+  date: "2025-06-24"
+  video_provider: "children"
+  video_id: "wnb-rb-meetup-june-2025"
+  description: |-
+    https://www.wnb-rb.dev/meetups/2025/06/24
+  talks:
+    - id: "tess-griffin-wnb-rb-meetup-june-2025"
+      title: "An ActiveRecord Rewrite: the Story Behind the Attributes API"
+      event_name: "WNB.rb Meetup June 2025"
+      date: "2025-06-24"
+      published_at: "2025-08-26"
+      video_provider: "youtube"
+      video_id: "XuW7OXFDgE4"
+      description: |-
+        This will be a peek under the hood to a foundational part of ActiveRecord. You'll learn about the difficult technical constraints and tradeoffs that were made in development. Even if you don't know anything about the Attributes API, if you've used ActiveRecord, you've used it!
+
+        https://www.wnb-rb.dev/meetups/2025/06/24
+      speakers:
+        - Tess Griffin
 
 - id: "wnb-rb-meetup-july-2025"
   title: "WNB.rb Meetup July 2025"
@@ -974,10 +1004,13 @@
       title: "Thoughtful Al for the Rubyist"
       event_name: "WNB.rb Meetup September 2025"
       date: "2025-09-30"
-      video_provider: "not_published"
-      video_id: "christine-seeman-wnb-rb-meetup-september-2025"
+      published_at: "2026-02-03"
+      video_provider: "youtube"
+      video_id: "bgMWyvt4bJ8"
       description: |-
         Ever wondered how to make AI work for you without losing that Ruby magic? We will walk through how to integrate AI tools into our workflow while keeping it intentional.
+
+        https://www.wnb-rb.dev/meetups/2025/09/30
       speakers:
         - Christine Seeman
 
@@ -994,9 +1027,13 @@
       title: "A Rails Edge Upgrade Playbook"
       event_name: "WNB.rb Meetup October 2025"
       date: "2025-10-28"
-      video_provider: "not_published"
-      video_id: "jill-klang-wnb-rb-meetup-october-2025"
-      description: ""
+      published_at: "2026-02-03"
+      video_provider: "youtube"
+      video_id: "XDH4iwxM_vc"
+      description: |-
+        Rails Edge has its risks and rewards; here's how you can do it successfully. In this  talk, I'll share hard-won takeaways from keeping a large, legacy app on pre-release Rails. I'll also show how we contribute to open source—landing small, focused PRs, and contributing where Rails still needs love—so the next upgrade is easier for everyone. You'll leave with a compact playbook for Rails upgrades and the confidence to spar with Edge without getting knocked out. Living on Rails Edge isn't a dare, it's a training plan.
+
+        https://www.wnb-rb.dev/meetups/2025/10/28
       speakers:
         - Jill Klang
 
@@ -1004,9 +1041,11 @@
       title: "Composing Music with Ruby"
       event_name: "WNB.rb Meetup October 2025"
       date: "2025-10-28"
+      slides_url: "https://speakerdeck.com/sandrakpodar/music-composition-with-ruby"
       video_provider: "not_published"
       video_id: "sandra-kpodar-wnb-rb-meetup-october-2025"
-      description: ""
+      description: |-
+        What if I told you that you could use your knowledge of Ruby to create sounds even songs? In this talk, I will show you how you can go from coding a beat to a full song whether you are a musician or not.
       speakers:
         - Sandra Kpodar
 
@@ -1023,12 +1062,20 @@
       title: "Meet the WNB.rb Community Leaders"
       event_name: "WNB.rb Meetup December 2025"
       date: "2025-12-02"
-      published_at: "TODO"
-      video_provider: "not_published"
-      video_id: "wnb-rb-community-leaders-wnb-rb-meetup-december-2025"
+      published_at: "2026-02-09"
+      video_provider: "youtube"
+      video_id: "8Fk8OdlrCiQ"
       description: |-
-        Meet WNB.rb's community leaders—Career Services, Meetups, Member Services, Partnerships, and Social Media directors. Connect and learn how to get involved.
-      speakers: []
+        In our November meetup, we chat with our community leaders and learn more about various initiatives within the WNB.rb community.
+      speakers:
+        - Emily Samp
+        - Christine Seeman
+        - Sarah Eggleston
+        - Sandra Kpodar
+        - Adrianna Chang
+        - Kaja Santro
+        - Jess Sullivan
+        - Madison Sites
 
 # 2026
 
@@ -1044,10 +1091,13 @@
       title: "Fake Minds Think Alike: AI, Ruby & Similarity Search"
       event_name: "WNB.rb Meetup January 2026"
       date: "2026-01-27"
-      video_provider: "scheduled"
-      video_id: "valerie-woolard-wnb-rb-meetup-january-2026"
+      published_at: "2026-02-09"
+      video_provider: "youtube"
+      video_id: "dKeJ_uJqvgM"
       description: |-
-        Learn how vector data powers LLMs — plus a practical Ruby example.
+        A primer on vector data types and how they are used in large language models and AI. We’ll talk about how models can fall short and walk through a practical example of how to build a similarity search with Ruby.
+
+        https://www.wnb-rb.dev/meetups/2026/01/27
       speakers:
         - Valerie Woolard
 
@@ -1069,9 +1119,35 @@
       video_id: "ybByM5wU8t8"
       description: |-
         Ever wondered how to get started speaking at conferences? Join us for an interactive panel discussion with four experienced speakers: Jess, Harriet, Jade, and Rosa!
+
+        https://www.wnb-rb.dev/meetups/2026/02/24
       speakers:
         - Jess Sullivan
         - Harriet Oughton
         - Jade Dickinson
         - Rosa Gutiérrez
         - Adrianna Chang
+
+- id: "wnb-rb-meetup-may-2026"
+  title: "WNB.rb Meetup May 2026"
+  event_name: "WNB.rb Meetup May 2026"
+  date: "2026-05-26"
+  video_provider: "children"
+  video_id: "wnb-rb-meetup-may-2026"
+  description: |-
+    https://www.wnb-rb.dev/meetups/2026/05/26
+  talks:
+    - id: "rachael-wright-munn-wnb-rb-meetup-may-2026"
+      title: "Your First Open-source Contribution"
+      raw_title: "Your First Open-source Contribution by Rachael Wright-Munn"
+      event_name: "WNB.rb Meetup May 2026"
+      date: "2026-05-26"
+      published_at: "2026-06-18"
+      video_provider: "youtube"
+      video_id: "QLB6aSLnjas"
+      description: |-
+        Is open-source intimidating? Are you nervous about your code being rejected by the maintainers? Or maybe you just don't know where to start. Let's talk about it. Let's talk about the feelings. Let's talk about the practices. Let's get you that first open-source PR!
+
+        https://www.wnb-rb.dev/meetups/2026/05/26
+      speakers:
+        - Rachael Wright-Munn
