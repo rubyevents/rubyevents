@@ -55,6 +55,12 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :static do
+    resources :events, param: :slug, only: [] do
+      resources :talks, except: [:show]
+    end
+  end
+
   resources :topics, param: :slug, only: [:index, :show]
   resources :cfp, only: :index
 

@@ -1,0 +1,126 @@
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+  <div class="form-control">
+    <label class="label" for="talk_title">Title *</label>
+    <input type="text" name="talk[title]" id="talk_title"
+           value="<%= talk&.title %>"
+           class="input input-bordered w-full"
+           placeholder="e.g., The Future of Ruby"
+           required>
+  </div>
+
+  <div class="form-control">
+    <label class="label" for="talk_id">ID *</label>
+    <input type="text" name="talk[id]" id="talk_id"
+           value="<%= talk&.id %>"
+           class="input input-bordered w-full"
+           placeholder="e.g., the-future-of-ruby">
+  </div>
+
+  <div class="form-control">
+    <label class="label" for="talk_speakers">Speakers</label>
+    <input type="text" name="talk[speakers]" id="talk_speakers"
+           value="<%= Array(talk&.[]("speakers")).join(", ") %>"
+           class="input input-bordered w-full"
+           placeholder="Speaker One, Speaker Two">
+    <div class="label">
+      <span class="label-text-alt text-gray-400">Comma-separated names</span>
+    </div>
+  </div>
+
+  <div class="form-control">
+    <label class="label" for="talk_date">Date *</label>
+    <input type="date" name="talk[date]" id="talk_date"
+           value="<%= talk&.date %>"
+           class="input input-bordered w-full"
+           required>
+  </div>
+
+  <div class="form-control">
+    <label class="label" for="talk_video_provider">Video Provider</label>
+    <select name="talk[video_provider]" id="talk_video_provider" class="select select-bordered w-full">
+      <option value="">Select provider...</option>
+      <% %w[youtube vimeo mp4 not_recorded scheduled not_published parent children].each do |provider| %>
+        <option value="<%= provider %>" <% if talk&.video_provider == provider %> selected <% end %>><%= provider %></option>
+      <% end %>
+    </select>
+  </div>
+
+  <div class="form-control">
+    <label class="label" for="talk_video_id">Video ID</label>
+    <input type="text" name="talk[video_id]" id="talk_video_id"
+           value="<%= talk&.video_id %>"
+           class="input input-bordered w-full"
+           placeholder="e.g., dQw4w9WgXcQ">
+  </div>
+
+  <div class="form-control">
+    <label class="label" for="talk_kind">Kind</label>
+    <input type="text" name="talk[kind]" id="talk_kind"
+           value="<%= talk&.kind %>"
+           class="input input-bordered w-full"
+           placeholder="e.g., keynote, lightning, workshop">
+  </div>
+
+  <div class="form-control">
+    <label class="label" for="talk_language">Language</label>
+    <input type="text" name="talk[language]" id="talk_language"
+           value="<%= talk&.language %>"
+           class="input input-bordered w-full"
+           placeholder="e.g., English">
+  </div>
+
+  <div class="form-control">
+    <label class="label" for="talk_published_at">Published At</label>
+    <input type="date" name="talk[published_at]" id="talk_published_at"
+           value="<%= talk&.published_at %>"
+           class="input input-bordered w-full">
+  </div>
+
+  <div class="form-control">
+    <label class="label" for="talk_slides_url">Slides URL</label>
+    <input type="url" name="talk[slides_url]" id="talk_slides_url"
+           value="<%= talk&.slides_url %>"
+           class="input input-bordered w-full"
+           placeholder="https://...">
+  </div>
+
+  <div class="form-control">
+    <label class="label" for="talk_start_cue">Start Cue</label>
+    <input type="text" name="talk[start_cue]" id="talk_start_cue"
+           value="<%= talk&.start_cue %>"
+           class="input input-bordered w-full"
+           placeholder="e.g., 00:00:00">
+  </div>
+
+  <div class="form-control">
+    <label class="label" for="talk_end_cue">End Cue</label>
+    <input type="text" name="talk[end_cue]" id="talk_end_cue"
+           value="<%= talk&.end_cue %>"
+           class="input input-bordered w-full"
+           placeholder="e.g., 00:30:00">
+  </div>
+
+  <div class="form-control">
+    <label class="label" for="talk_track">Track</label>
+    <input type="text" name="talk[track]" id="talk_track"
+           value="<%= talk&.track %>"
+           class="input input-bordered w-full"
+           placeholder="e.g., Main Stage">
+  </div>
+
+  <div class="form-control">
+    <label class="label" for="talk_status">Status</label>
+    <input type="text" name="talk[status]" id="talk_status"
+           value="<%= talk&.status %>"
+           class="input input-bordered w-full"
+           placeholder="e.g., published">
+  </div>
+</div>
+
+<div class="form-control mt-4">
+  <label class="label" for="talk_description">Description</label>
+  <textarea name="talk[description]" id="talk_description"
+            class="textarea textarea-bordered w-full"
+            rows="4"
+            placeholder="Talk description..."><%= talk&.description %></textarea>
+</div>

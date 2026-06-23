@@ -1,0 +1,18 @@
+<div class="container mx-auto px-4 py-8 max-w-4xl">
+  <div class="mb-6">
+    <h1 class="text-2xl font-bold">Edit Talk</h1>
+    <p class="text-gray-500 mt-1">
+      <%= link_to @static_event.title, event_path(@static_event.slug), class: "link link-hover" %>
+      &mdash; <%= @talk.title %>
+    </p>
+  </div>
+
+  <%= form_with url: static_event_talk_path(@static_event.slug, @talk.id), method: :patch do |form| %>
+    <%= render "form", talk: @talk %>
+
+    <div class="flex gap-2 mt-6">
+      <%= ui_button "Update Talk", type: :submit, kind: :primary %>
+      <%= ui_button "Cancel", url: static_event_talks_path(@static_event.slug), kind: :ghost %>
+    </div>
+  <% end %>
+</div>
