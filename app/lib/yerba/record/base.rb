@@ -38,14 +38,14 @@ module Yerba
       def [](key)
         if scalar_node?
           (key.to_s == self.class.scalar_field) ? unwrap(node) : nil
-        elsif @attributes
-          @attributes[key.to_s]
         else
-          unwrap(node[key.to_s])
+          attributes_cache[key.to_s]
         end
       end
 
       def []=(key, value)
+        @attributes_cache = nil
+
         if scalar_node?
           document.root[@index] = value if key.to_s == self.class.scalar_field
         else
@@ -113,11 +113,7 @@ module Yerba
       end
 
       def to_h
-        if scalar_node?
-          {self.class.scalar_field => unwrap(node)}
-        else
-          node.to_h
-        end
+        attributes_cache
       end
 
       def to_yaml
@@ -134,6 +130,14 @@ module Yerba
 
       def node
         @index ? document.root[@index] : document.root
+      end
+
+      def attributes_cache
+        @attributes_cache ||= if scalar_node?
+          {self.class.scalar_field => unwrap(node)}
+        else
+          node.to_h
+        end
       end
 
       def scalar_node?
