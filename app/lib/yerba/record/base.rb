@@ -39,13 +39,11 @@ module Yerba
         if scalar_node?
           (key.to_s == self.class.scalar_field) ? unwrap(node) : nil
         else
-          attributes_cache[key.to_s]
+          unwrap(node[key.to_s])
         end
       end
 
       def []=(key, value)
-        @attributes_cache = nil
-
         if scalar_node?
           document.root[@index] = value if key.to_s == self.class.scalar_field
         else
@@ -61,10 +59,7 @@ module Yerba
           dir = File.dirname(path)
           FileUtils.mkdir_p(dir) unless File.directory?(dir)
 
-          if self.class.schema
-            data = self.class.send(:build_data_from_schema_instance, self)
-            self.class.send(:validate_with_schema!, data)
-          end
+          validate! if self.class.schema
 
           document.save_to!(path)
 
@@ -94,6 +89,19 @@ module Yerba
         document.changed?
       end
 
+      def validate!
+        return unless self.class.schema
+
+        json_schema = JSON.parse(self.class.schema.new.to_json_schema[:schema].to_json)
+        schemer = JSONSchemer.schema(json_schema)
+        errors = schemer.validate(to_h).to_a
+
+        if errors.any?
+          error_messages = errors.map { |error| "#{error["error"]} at #{error["data_pointer"]}" }
+          raise ArgumentError, "Validation failed: #{error_messages.join(", ")}"
+        end
+      end
+
       def id
         self["id"]
       end
@@ -113,7 +121,11 @@ module Yerba
       end
 
       def to_h
-        attributes_cache
+        if scalar_node?
+          {self.class.scalar_field => unwrap(node)}
+        else
+          document&.yerba&.value_at(node.respond_to?(:selector) ? node.selector : "") || {}
+        end
       end
 
       def to_yaml
@@ -130,14 +142,6 @@ module Yerba
 
       def node
         @index ? document.root[@index] : document.root
-      end
-
-      def attributes_cache
-        @attributes_cache ||= if scalar_node?
-          {self.class.scalar_field => unwrap(node)}
-        else
-          node.to_h
-        end
       end
 
       def scalar_node?

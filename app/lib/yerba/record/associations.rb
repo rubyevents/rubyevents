@@ -74,6 +74,21 @@ module Yerba
 
             klass.new(document: document)
           end
+
+          define_method(:"build_#{name}") do |**attributes|
+            path = File.join(event_dir, in_file)
+            klass = class_name.is_a?(String) ? class_name.constantize : class_name
+
+            record = klass.new(**attributes)
+            record.define_singleton_method(:persist_path) { path }
+            record
+          end
+
+          define_method(:"create_#{name}") do |**attributes|
+            record = send(:"build_#{name}", **attributes)
+            record.save!
+            record
+          end
         end
 
         private

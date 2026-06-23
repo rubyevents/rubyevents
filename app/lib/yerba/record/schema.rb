@@ -38,17 +38,6 @@ module Yerba
             define_method(:"#{name}?") { self[name].present? } unless method_defined?(:"#{name}?")
           end
         end
-
-        def validate_with_schema!(data)
-          json_schema = JSON.parse(schema.new.to_json_schema[:schema].to_json)
-          schemer = JSONSchemer.schema(json_schema)
-          errors = schemer.validate(data).to_a
-
-          if errors.any?
-            error_messages = errors.map { |error| "#{error["error"]} at #{error["data_pointer"]}" }
-            raise ArgumentError, "Validation failed: #{error_messages.join(", ")}"
-          end
-        end
       end
     end
   end

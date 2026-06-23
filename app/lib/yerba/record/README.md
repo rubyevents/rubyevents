@@ -249,6 +249,15 @@ event.venue.name = "Updated"
 event.venue.save!
 ```
 
+Build or create an associated record when the file doesn't exist:
+
+```ruby
+event.venue                                        # => nil (no venue.yml)
+event.build_venue(name: "Convention Center")       # => in-memory, not saved
+event.create_venue(name: "Convention Center")      # => creates venue.yml and saves
+event.venue                                        # => Static::Venue
+```
+
 ### `has_one` with `through:` (delegated association)
 
 Delegate to an association on another record:
