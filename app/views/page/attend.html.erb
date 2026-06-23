@@ -8,10 +8,14 @@
   <div class="container">
     <section class="py-12 text-center max-w-3xl mx-auto">
       <h1 class="text-4xl font-bold text-primary mb-4">Attend a Ruby Event</h1>
-      <p class="text-lg text-gray-600">
+      <p class="text-lg text-gray-600 mb-8">
         Ruby events are where friendships are made, ideas are sparked, and careers are shaped.
         Whether you're looking for a multi-day conference or a casual evening meetup, there's an event for you.
       </p>
+
+      <div class="max-w-xl mx-auto">
+        <%= render "shared/location_search", compact: true %>
+      </div>
     </section>
 
     <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
