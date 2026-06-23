@@ -20,10 +20,24 @@ class WatchedTalksController < ApplicationController
         .order(updated_at: :desc)
         .limit(20)
 
-      watched_talks = Current.user.watched_talks
-        .watched
+      watched = Current.user.watched_talks.watched
+
+      @watched_count = watched.count
+      @in_person_count = watched.where(watched_on: "in_person").count
+      @online_count = @watched_count - @in_person_count
+
+      watched_talks = watched
         .includes(**watched_includes)
         .order(watched_at: :desc)
+
+      watched_talks = case @filter
+      when "in_person"
+        watched_talks.where(watched_on: "in_person")
+      when "online"
+        watched_talks.where("watched_on IS NULL OR watched_on != ?", "in_person")
+      else
+        watched_talks
+      end
 
       @watched_talks_by_date = watched_talks.group_by { |wt| (wt.watched_at || wt.created_at).to_date }
     end
