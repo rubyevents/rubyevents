@@ -5,11 +5,11 @@ tracks:
     color: "#303A32"
     text_color: "#FFFFFF"
 
-  - name: "Breakout 1 - Charleston D-C"
+  - name: "Breakout 1 - Red Rock A&D"
     color: "#E3ECDB"
     text_color: "#303A32"
 
-  - name: "Breakout 2 - Charleston E-B"
+  - name: "Breakout 2 - Red Rock G&H"
     color: "#FD8B00"
     text_color: "#FFFFFF"
 
@@ -34,12 +34,24 @@ days:
         slots: 1
 
       - start_time: "10:30"
-        end_time: "11:15"
+        end_time: "11:00"
         slots: 3
 
+      - start_time: "11:00"
+        end_time: "11:15"
+        slots: 1
+        items:
+          - "Break"
+
       - start_time: "11:15"
-        end_time: "12:00"
+        end_time: "11:45"
         slots: 3
+
+      - start_time: "11:45"
+        end_time: "12:00"
+        slots: 1
+        items:
+          - "Break"
 
       - start_time: "12:00"
         end_time: "12:45"
@@ -52,20 +64,44 @@ days:
           - "Lunch"
 
       - start_time: "14:00"
-        end_time: "14:45"
+        end_time: "14:30"
         slots: 3
+
+      - start_time: "14:30"
+        end_time: "14:45"
+        slots: 1
+        items:
+          - "Break"
 
       - start_time: "14:45"
-        end_time: "15:30"
+        end_time: "15:15"
         slots: 3
+
+      - start_time: "15:15"
+        end_time: "15:30"
+        slots: 1
+        items:
+          - "Break"
 
       - start_time: "15:30"
-        end_time: "16:15"
+        end_time: "16:00"
         slots: 3
 
+      - start_time: "16:00"
+        end_time: "16:15"
+        slots: 1
+        items:
+          - "Break"
+
       - start_time: "16:15"
-        end_time: "17:00"
+        end_time: "16:45"
         slots: 3
+
+      - start_time: "16:45"
+        end_time: "17:00"
+        slots: 1
+        items:
+          - "Break"
 
       - start_time: "17:00"
         end_time: "18:00"
@@ -96,11 +132,17 @@ days:
         end_time: "10:15"
         slots: 1
 
+      - start_time: "10:15"
+        end_time: "10:30"
+        slots: 1
+        items:
+          - "Break"
+
       - start_time: "10:30"
-        end_time: "12:45"
+        end_time: "12:30"
         slots: 3
 
-      - start_time: "12:45"
+      - start_time: "12:30"
         end_time: "14:00"
         slots: 1
         items:
@@ -111,10 +153,16 @@ days:
         slots: 3
 
       - start_time: "16:15"
-        end_time: "17:25"
+        end_time: "17:15"
         slots: 1
         items:
           - "Ruby Runway Finals"
+
+      - start_time: "17:15"
+        end_time: "17:25"
+        slots: 1
+        items:
+          - "Break"
 
       - start_time: "17:25"
         end_time: "18:25"
@@ -146,30 +194,54 @@ days:
         slots: 1
 
       - start_time: "10:30"
-        end_time: "11:15"
+        end_time: "11:00"
         slots: 3
+
+      - start_time: "11:00"
+        end_time: "11:15"
+        slots: 1
+        items:
+          - "Break"
 
       - start_time: "11:15"
-        end_time: "12:00"
+        end_time: "11:45"
         slots: 3
+
+      - start_time: "11:45"
+        end_time: "12:00"
+        slots: 1
+        items:
+          - "Break"
 
       - start_time: "12:00"
-        end_time: "12:45"
+        end_time: "12:30"
         slots: 3
 
-      - start_time: "12:45"
+      - start_time: "12:30"
         end_time: "14:00"
         slots: 1
         items:
           - "Lunch"
 
       - start_time: "14:00"
-        end_time: "14:45"
+        end_time: "14:30"
         slots: 1
 
+      - start_time: "14:30"
+        end_time: "14:45"
+        slots: 1
+        items:
+          - "Break"
+
       - start_time: "14:45"
-        end_time: "15:30"
+        end_time: "15:15"
         slots: 3
+
+      - start_time: "15:15"
+        end_time: "15:30"
+        slots: 1
+        items:
+          - "Break"
 
       - start_time: "15:30"
         end_time: "16:15"
