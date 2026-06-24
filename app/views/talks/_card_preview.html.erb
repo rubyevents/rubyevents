@@ -73,6 +73,16 @@
     <% end %>
 
     <div class="flex flex-wrap items-center gap-1.5 text-xs font-medium text-base-content/70">
+
+      <% if talk.published_at.present? && talk.published_at >= 1.week.ago %>
+        <span class="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-green-500/10 text-green-600 cursor-help"
+              data-controller="tooltip"
+              data-tooltip-content-value="Published <%= time_ago_in_words(talk.published_at) %> ago">
+          <%= fa("sparkles", size: nil, class: "h-3 w-3 fill-current") %>
+          New
+        </span>
+      <% end %>
+
       <% if talk.event&.name.present? %>
         <%= link_to event_path(talk.event), class: "inline-flex items-center gap-1.5 max-w-[60%] px-2 py-1 rounded-md bg-base-200/80 hover:bg-base-200", data: {turbo_frame: "_top"} do %>
           <% if talk.event.avatar_image_path.present? %>
