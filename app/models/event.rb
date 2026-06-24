@@ -158,6 +158,10 @@ class Event < ApplicationRecord
     start_date.present? && end_date.present? && (start_date..end_date).cover?(Date.today)
   end
 
+  def happening_tomorrow?
+    start_date.present? && start_date == Date.today + 1
+  end
+
   def featured_cfp
     cfps.select { |cfp| cfp.link.present? && cfp.close_date && cfp.close_date.between?(Date.today, Date.today + FEATURED_CFP_CLOSING_WINDOW) }.min_by(&:close_date)
   end
@@ -165,6 +169,8 @@ class Event < ApplicationRecord
   def featured_reason
     if happening?
       :happening
+    elsif happening_tomorrow?
+      :happening_tomorrow
     elsif featured_cfp
       :cfp_closing
     elsif upcoming?

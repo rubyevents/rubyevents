@@ -7,7 +7,10 @@
       <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-current opacity-75"></span>
       <span class="relative inline-flex h-2 w-2 rounded-full bg-current"></span>
     </span>
-    Happening now
+    <%= (event.start_date == event.end_date) ? "Happening Today" : "Happening now" %>
+  <% when :happening_tomorrow %>
+    <%= fa("calendar", size: nil, class: "h-3.5 w-3.5 fill-current") %>
+    Happening Tomorrow
   <% when :cfp_closing %>
     <%= fa("microphone", size: nil, class: "h-3.5 w-3.5 fill-current") %>
 
