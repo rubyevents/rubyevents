@@ -54,7 +54,9 @@
       <% if talk.speakers.present? %>
         <div class="avatar-group -space-x-3 shrink-0 [&_.avatar]:border-2">
           <% talk.speakers.first(3).each do |speaker| %>
-            <%= render Ui::AvatarComponent.new(speaker, size: :sm, linked: true) %>
+            <%= link_to profile_path(speaker), class: "block", data: {turbo_frame: "_top"} do %>
+              <%= render Ui::AvatarComponent.new(speaker, size: :sm) %>
+            <% end %>
           <% end %>
         </div>
       <% end %>
