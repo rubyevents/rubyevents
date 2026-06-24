@@ -75,19 +75,19 @@
               <div class="flex flex-wrap justify-center items-center gap-2 mb-12 lg:mb-6">
                 <span class="opacity-80">We have indexed</span>
 
-                <%= link_to events_path, class: "inline-flex items-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm font-semibold border hover:bg-white/30 transition-colors", style: "border-color: color-mix(in srgb, var(--featured-color) 25%, transparent);" do %>
+                <%= link_to events_path, class: "inline-flex items-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm font-semibold border hover:bg-white/30", style: "border-color: color-mix(in srgb, var(--featured-color) 25%, transparent);" do %>
                   <%= @events_count %> events
                 <% end %>
 
                 <span class="opacity-80">and</span>
 
-                <%= link_to talks_path, class: "inline-flex items-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm font-semibold border hover:bg-white/30 transition-colors", style: "border-color: color-mix(in srgb, var(--featured-color) 25%, transparent);" do %>
+                <%= link_to talks_path, class: "inline-flex items-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm font-semibold border hover:bg-white/30", style: "border-color: color-mix(in srgb, var(--featured-color) 25%, transparent);" do %>
                   <%= @talks_count %> talks
                 <% end %>
 
                 <span class="opacity-80">from</span>
 
-                <%= link_to speakers_path, class: "inline-flex items-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm font-semibold border hover:bg-white/30 transition-colors", style: "border-color: color-mix(in srgb, var(--featured-color) 25%, transparent);" do %>
+                <%= link_to speakers_path, class: "inline-flex items-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm font-semibold border hover:bg-white/30", style: "border-color: color-mix(in srgb, var(--featured-color) 25%, transparent);" do %>
                   <%= @speakers_count %> speakers
                 <% end %>
               </div>
