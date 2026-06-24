@@ -200,8 +200,12 @@ Rails.application.routes.draw do
         post :toggle_online, on: :collection
       end
       resource :slides, only: :show
+
+      resource :thumbnail, only: :show, controller: "thumbnails" if Rails.env.local?
     end
   end
+
+  get "/debug/thumbnails", to: "talks/thumbnails#index", as: :debug_thumbnails if Rails.env.local?
 
   resources :watched_talks, only: [:index, :destroy]
   resources :feedback, only: [:index]

@@ -1,0 +1,58 @@
+<% shown_speakers = speakers.first(5) %>
+<% extra_speakers = speakers.size - shown_speakers.size %>
+<% subtitle = [location, formatted_date].select(&:present?).join("  •  ") %>
+<% text_shadow = (featured_background[:type] == :image) ? "text-shadow: 0 2px 8px rgba(0,0,0,0.35);" : "" %>
+
+<div style="position: relative; width: <%= width %>px; height: <%= height %>px; overflow: hidden; color: <%= featured_color %>; <%= bg_style %>">
+  <div style="position: relative; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: space-between; padding: 56px 64px;">
+    <div style="display: flex; align-items: center; gap: 24px;">
+      <% if event_logo_uri.present? %>
+        <img src="<%= event_logo_uri %>" alt="" style="width: 88px; height: 88px; border-radius: 20px; object-fit: cover; box-shadow: 0 4px 16px rgba(0,0,0,0.35);">
+      <% end %>
+
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <div style="color: <%= featured_color %>; font-size: 34px; font-weight: 800; line-height: 1.1; <%= text_shadow %>"><%= event_name %></div>
+
+        <% if subtitle.present? %>
+          <div style="color: <%= featured_color %>; font-size: 24px; font-weight: 600; opacity: 0.8; <%= text_shadow %>"><%= subtitle %></div>
+        <% end %>
+      </div>
+    </div>
+
+    <div style="display: flex; flex: 1; align-items: center;">
+      <div style="
+        color: <%= featured_color %>;
+        font-size: 72px;
+        font-weight: 900;
+        line-height: 1.15;
+        letter-spacing: -1px;
+        padding-bottom: 8px;
+        <%= text_shadow %>
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      "><%= talk.title %></div>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 24px;">
+      <% if shown_speakers.any? %>
+        <div style="display: flex; flex-shrink: 0;">
+          <% shown_speakers.each_with_index do |speaker, i| %>
+            <img src="<%= speaker[:avatar_url] %>" alt="" style="width: 104px; height: 104px; border-radius: 9999px; object-fit: cover; border: 4px solid <%= featured_color %>; box-shadow: 0 4px 14px rgba(0,0,0,0.4); margin-left: <%= i.zero? ? 0 : -28 %>px;">
+          <% end %>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0;">
+          <div style="color: <%= featured_color %>; font-size: <%= (speakers.size == 1) ? 40 : 34 %>px; font-weight: 700; line-height: 1.15; <%= text_shadow %> display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+            <%= shown_speakers.map { |s| s[:name] }.join(", ") %><% if extra_speakers > 0 %><span style="opacity: 0.8;"> +<%= extra_speakers %></span><% end %>
+          </div>
+
+          <% if speakers.size == 1 && speakers.first[:github].present? %>
+            <div style="color: <%= featured_color %>; font-size: 30px; font-weight: 600; opacity: 0.7; <%= text_shadow %>">@<%= speakers.first[:github] %></div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

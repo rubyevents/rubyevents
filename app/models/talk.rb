@@ -101,6 +101,8 @@ class Talk < ApplicationRecord
   accepts_nested_attributes_for :talk_transcript
   delegate :transcript, :raw_transcript, :enhanced_transcript, to: :talk_transcript, allow_nil: true
 
+  has_one_attached :generated_thumbnail
+
   # associated objects
   has_object :agents
   has_object :downloader
