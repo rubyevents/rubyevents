@@ -73,6 +73,17 @@
     <% end %>
 
     <div class="flex flex-wrap items-center gap-1.5 text-xs font-medium text-base-content/70">
+      <% if talk.speakers.one? && (favorite_status = favorite_user_status_map[talk.speakers.first.id]) %>
+        <% badge_colors = favorite_status.ruby_friend? ? "bg-primary/10 text-primary hover:bg-primary/20" : "bg-yellow-400/20 text-yellow-700 hover:bg-yellow-400/30" %>
+
+        <% favorite_filter = favorite_status.ruby_friend? ? "friends" : "favorites" %>
+
+        <%= link_to favorite_users_path(filter: favorite_filter), class: "inline-flex items-center gap-1 px-2 py-1 rounded-md #{badge_colors}", data: {turbo_frame: "_top"} do %>
+          <%= fa(favorite_status.icon, size: nil, class: "h-3 w-3 fill-current") %>
+
+          <%= favorite_status.label %>
+        <% end %>
+      <% end %>
 
       <% if talk.published_at.present? && talk.published_at >= 1.week.ago %>
         <span class="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-green-500/10 text-green-600 cursor-help"

@@ -131,6 +131,7 @@ class User < ApplicationRecord
   has_one :contributor, dependent: :nullify
 
   has_object :profiles
+  has_object :favorite_statuses
   has_object :talk_recommender
   has_object :watched_talk_seeder
   has_object :speakerdeck_feed
