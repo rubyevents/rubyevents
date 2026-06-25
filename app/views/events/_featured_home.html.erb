@@ -32,7 +32,11 @@
           </h2>
         </div>
 
-        <% if event.featured_reason == :cfp_closing %>
+        <% if event.featured_reason == :happening && event.schedule.exist? %>
+          <%= ui_button url: event_schedules_path(event), kind: :rounded, class: "btn-sm lg:btn-md mx-auto lg:mx-0 mt-4 pointer-events-auto" do %>
+            <span>View Schedule</span>
+          <% end %>
+        <% elsif event.featured_reason == :cfp_closing %>
           <%= ui_button url: event_cfp_index_path(event), kind: :rounded, class: "btn-sm lg:btn-md mx-auto lg:mx-0 mt-4 pointer-events-auto" do %>
             <span>Submit Talk</span>
           <% end %>
