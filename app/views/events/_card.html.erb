@@ -1,10 +1,10 @@
 <%# locals: (event:, participation: nil, verified: false) %>
 
 <%= link_to event_path(event), class: "flex w-full", data: {turbo_frame: "_top"} do %>
-  <div class="card card-compact bg-white border w-full <%= "cancelled" if event.static_metadata.cancelled? %>">
+  <div class="card card-compact bg-white border w-full <% if event.static_metadata.cancelled? %> opacity-50 grayscale <% end %>">
     <%= image_tag image_path(event.card_image_path), class: "w-full object-cover rounded-t-xl border-b", alt: event.name, width: 300, height: 175 %>
     <div class="card-body flex flex-col items-center justify-center min-h-[130px]">
-      <div class="text-xl font-semibold text-center line-clamp-1"><%= event.name %></div>
+      <div class="text-xl font-semibold text-center line-clamp-1 <% if event.static_metadata.cancelled? %> line-through <% end %>"><%= event.name %></div>
       <div class="text-gray-500 flex flex-col text-center items-center">
         <span><%= event.to_location.to_html(show_links: false) %></span>
         <span class="mt-1"><%= event.formatted_dates %></span>
@@ -21,6 +21,13 @@
                 <%= fa "circle-check", style: :solid, class: "fill-green-700", size: :xs %>
               <% end %>
             <% end %>
+          </div>
+        <% end %>
+
+        <% if event.static_metadata.cancelled? %>
+          <div class="flex items-center justify-center mt-2 text-red-500">
+            <%= fa "circle-xmark", size: :xs, style: :regular, class: "fill-red-500" %>
+            <span class="text-sm mt-0.5 ml-1">Cancelled</span>
           </div>
         <% end %>
 

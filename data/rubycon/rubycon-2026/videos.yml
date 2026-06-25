@@ -1,137 +1,257 @@
-# TODO: schedule website
 # Website: https://rubycon.it
+# Schedule: https://rubycon.it/schedule/
 ---
 - id: "riccardo-carlesso-rubycon-2026"
   title: "Welcome to Rubycon"
-  description: |-
-    TODO - Welcome to Rubycon - Description
   kind: "talk"
-  language: "en"
   date: "2026-05-08"
+  published_at: "2026-06-13"
   announced_at: "2025-12-18"
+  language: "English"
+  slides_url: "https://speakerdeck.com/palladius/rubycon-opening-remarks"
+  video_provider: "youtube"
+  video_id: "EpuEfwT-QTM"
+  description: |-
+    Why Rubycon? Agenda of the day.
   speakers:
     - Riccardo Carlesso
-  video_provider: "scheduled"
-  video_id: "riccardo-carlesso-rubycon-2026"
 
 - id: "carmine-paolino-keynote-rubycon-2026"
   title: "Ruby Is the Best Language for Building AI Web Apps"
-  description: |-
-    TODO - Ruby Is the Best Language for Building AI Web Apps - Description
-  kind: "keynote"
-  language: "en"
+  kind: "talk"
   date: "2026-05-08"
+  published_at: "2026-06-13"
   announced_at: "2025-11-28 19:04 UTC"
+  language: "English"
+  slides_url: "https://talks.paolino.me/rubycon-2026"
+  video_provider: "youtube"
+  video_id: "N0lBjgAnK5E"
+  description: ""
   speakers:
     - Carmine Paolino
-  video_provider: "scheduled"
-  video_id: "carmine-paolino-keynote-rubycon-2026"
 
 - id: "julia-lopez-rubycon-2026"
   title: "Shift-left on Accessibility in your Ruby webapps"
-  description: |-
-    TODO - Shift-left on Accessibility in your Ruby webapps - Description
   kind: "talk"
-  language: "en"
   date: "2026-05-08"
+  published_at: "2026-06-13"
   announced_at: "2025-12-18"
+  language: "English"
+  slides_url: "https://speakerdeck.com/yukideluxe/shift-left-on-accessibility-in-your-ruby-web-apps"
+  video_provider: "youtube"
+  video_id: "fkCJIifvv-E"
+  description: |-
+    We all want to make the web more accessible for everybody, but we might not have the time or the knowledge to do it properly, and it might never be a priority for the people that make decisions at your company. We have already convinced everybody that tests matter and that a broken CI is a problem that needs to be fixed. So what if accessibility failures showed up right there, in your test suites?
+
+    This talk will show you how to add basic accessibility checks to your existing test suites very easily. Once your CI starts flagging accessibility issues the same way it flags failing functionality tests, everybody will start noticing them. And by fixing those issues, you will learn one step at a time. It's not everything, but it's a start. And if enough of us take that first step, we make the web a little better for everyone!
   speakers:
     - Julia López
-  video_provider: "scheduled"
-  video_id: "julia-lopez-rubycon-2026"
 
 - id: "silvano-stralla-rubycon-2026"
   title: "Breaking the rules of software engineering: will it work?"
-  description: |-
-    TODO - Breaking the rules of software engineering: will it work? - Description
   kind: "talk"
-  language: "en"
   date: "2026-05-08"
+  published_at: "2026-06-13"
+  language: "English"
+  slides_url: "https://speakerdeck.com/sistrall/breaking-the-rules"
+  video_provider: "youtube"
+  video_id: "vui1u6bQmS4"
+  description: ""
   speakers:
     - Silvano Stralla
-  video_provider: "scheduled"
-  video_id: "silvano-stralla-rubycon-2026"
 
 - id: "andre-arko-rubycon-2026"
   title: "rv, a ruby manager for the future"
-  description: |-
-    TODO - rv, a ruby manager for the future - Description
   kind: "talk"
-  language: "en"
   date: "2026-05-08"
+  published_at: "2026-06-13"
+  language: "English"
+  slides_url: "https://speakerdeck.com/indirect/rv-a-ruby-manager-for-the-future-bd5a98e3-9989-444e-805f-b427a6591c09"
+  video_provider: "youtube"
+  video_id: "F8TZgUBwCYQ"
+  description: ""
   speakers:
     - André Arko
-  video_provider: "scheduled"
-  video_id: "andre-arko-rubycon-2026"
 
 - id: "lightning-talks-rubycon-2026"
-  title: "⚡️ 5 minutes for everyone who has something to say"
-  description: |-
-    Lightning talks.
+  title: "Lightning Talks"
   kind: "lightning_talk"
-  language: "en"
   date: "2026-05-08"
-  talks: []
-  video_provider: "scheduled"
+  language: "English"
+  video_provider: "children"
   video_id: "lightning-talks-rubycon-2026"
+  description: |-
+    ⚡️ 5 minutes for everyone who has something to say
+  talks:
+    - id: "josua-lightning-talk-rubycon-2026"
+      title: "Lightning Talk: The Beer Parable"
+      event_name: "RubyCon 2026"
+      date: "2026-05-08"
+      video_provider: "scheduled"
+      video_id: "josua-lightning-talk-rubycon-2026"
+      description: ""
+      speakers:
+        - Josua Schmid
+
+    - id: "andrea-lightning-talk-rubycon-2026"
+      title: "Lightning Talk: AWS Serverless (Hosting + Backend)"
+      event_name: "RubyCon 2026"
+      date: "2026-05-08"
+      video_provider: "scheduled"
+      video_id: "andrea-lightning-talk-rubycon-2026"
+      description: ""
+      speakers:
+        - Andrea Carratta
+
+    - id: "remi-mercier-lightning-talk-rubycon-2026"
+      title: "Lightning Talk: From stained-glass master to Rails developer"
+      event_name: "RubyCon 2026"
+      date: "2026-05-08"
+      video_provider: "scheduled"
+      video_id: "remi-mercier-lightning-talk-rubycon-2026"
+      description: ""
+      speakers:
+        - Rémi Mercier
+
+    - id: "duccio-armenise-lightning-talk-rubycon-2026"
+      title: "Lightning Talk: Multithread your BRAIN"
+      event_name: "RubyCon 2026"
+      date: "2026-05-08"
+      video_provider: "scheduled"
+      video_id: "duccio-armenise-lightning-talk-rubycon-2026"
+      description: ""
+      speakers:
+        - Duccio Armenise
+
+    - id: "alessandro-rizzo-lightning-talk-rubycon-2026"
+      title: "Lightning Talk: Full-Stack No Regrets"
+      event_name: "RubyCon 2026"
+      date: "2026-05-08"
+      video_provider: "scheduled"
+      video_id: "alessandro-rizzo-lightning-talk-rubycon-2026"
+      description: ""
+      speakers:
+        - Alessandro Rizzo
+
+    - id: "goulwen-champenois-lightning-talk-rubycon-2026"
+      title: "Lightning Talk: From MINASWAN to PASTAFARIAN"
+      event_name: "RubyCon 2026"
+      date: "2026-05-08"
+      slides_url: "https://userland.fr/conferences/2026/from-minaswan-to-pastafarian/"
+      video_provider: "scheduled"
+      video_id: "goulwen-champenois-lightning-talk-rubycon-2026"
+      description: ""
+      speakers:
+        - Goulven Champenois
+
+    - id: "youssef-boulkaid-lightning-talk-rubycon-2026"
+      title: "Lightning Talk: Photographing an eclipse with Ruby"
+      event_name: "RubyCon 2026"
+      date: "2026-05-08"
+      video_provider: "scheduled"
+      video_id: "youssef-boulkaid-lightning-talk-rubycon-2026"
+      description: ""
+      speakers:
+        - Youssef Boulkaid
+
+    - id: "kaarle-kulvik-lightning-talk-rubycon-2026"
+      title: "Lightning Talk: OFFGRID LLM"
+      event_name: "RubyCon 2026"
+      date: "2026-05-08"
+      video_provider: "scheduled"
+      video_id: "kaarle-kulvik-lightning-talk-rubycon-2026"
+      description: ""
+      speakers:
+        - Kaarle Kulvik
+
+    - id: "andre-arko-lightning-talk-rubycon-2026"
+      title: 'Lightning Talk: Your own gem named "rails"'
+      event_name: "RubyCon 2026"
+      date: "2026-05-08"
+      video_provider: "scheduled"
+      video_id: "andre-arko-lightning-talk-rubycon-2026"
+      description: ""
+      speakers:
+        - André Arko
 
 - id: "michele-franzin-rubycon-2026"
   title: "Semantic Image Search in Ruby: Postgres, Redis, or LLM?"
-  description: |-
-    TODO - Semantic Image Search in Ruby: Postgres, Redis, or LLM? - Description
   kind: "talk"
-  language: "en"
   date: "2026-05-08"
+  published_at: "2026-06-13"
+  language: "English"
+  slides_url: "https://speakerdeck.com/fuzziness/semantic-image-search-in-ruby-postgres-redis-or-llm-a-co2-conscious-comparison"
+  video_provider: "youtube"
+  video_id: "bO1RYr09p5U"
+  description: |-
+    Postgres, Redis, or LLM? Ask any engineer, and you already know the answer: it depends.
+
+    On what, exactly? Usually, there are four things: speed, cost, complexity, and quality. This talk adds a fifth column to that table and shows how to fill it in.
+
+    Three real Ruby implementations of semantic image search are run on the same dataset and machine, and compared on grams of CO₂e per query alongside the usual four axes.
+
+    The deck includes the measurement method, the formula, the Ruby snippets, and the numbers — but no recommendation. Just one column you probably didn't have before.
   speakers:
     - Michele Franzin
-  video_provider: "scheduled"
-  video_id: "michele-franzin-rubycon-2026"
 
 - id: "akira-matsuda-rubycon-2026"
   title: "My daily life on Ruby"
-  description: |-
-    TODO - My daily life on Ruby - Description
   kind: "talk"
-  language: "en"
   date: "2026-05-08"
+  published_at: "2026-06-13"
+  language: "English"
+  slides_url: "https://speakerdeck.com/a_matsuda/my-daily-life-on-ruby"
+  video_provider: "youtube"
+  video_id: "Uz7ZoofrNDE"
+  description: ""
   speakers:
     - Akira Matsuda
-  video_provider: "scheduled"
-  video_id: "akira-matsuda-rubycon-2026"
 
 - id: "marco-roth-rubycon-2026"
-  title: "Talk by Marco Roth" # TODO
-  description: |-
-    TODO - Talk by Marco Roth - Description
+  title: "HTML-Aware ERB: The Path to Reactive Rendering"
   kind: "talk"
-  language: "en"
   date: "2026-05-08"
+  published_at: "2026-06-13"
   announced_at: "2025-11-13 17:51 UTC"
+  language: "English"
+  slides_url: "https://speakerdeck.com/marcoroth/html-aware-erb-the-path-to-reactive-rendering-at-rubycon-2026-rimini-italy"
+  video_provider: "youtube"
+  video_id: "Lc5MGy9ahs8"
+  description: |-
+    ERB templates in Ruby are traditionally rendered by engines that treat templates as string generators, which makes it difficult to reason about HTML structure, state changes, or incremental updates. These limitations become especially visible in modern HTML-over-the-wire workflows.
+
+    In this talk, we explore what it would take to build a reactive ERB rendering engine. We begin by revisiting how existing ERB engines compile templates into Ruby code and look at how recent advances in HTML-aware parsing and tooling make new approaches possible.
+
+    Using Herb::Engine as a concrete example, we examine how structural understanding enables state-aware rendering, diff-based updates, and a more responsive development experience, including instant updates without full page reloads and rich in-browser developer tools. Such as template outlines, partial and ERB structure views, jump-to-source navigation, and many other innovations.
   speakers:
     - Marco Roth
-  video_provider: "scheduled"
-  video_id: "marco-roth-rubycon-2026"
 
 - id: "yara-debian-rubycon-2026"
   title: "From Plato to Production: A Philosophical History of Code"
-  description: |-
-    TODO - From Plato to Production: A Philosophical History of Code - Description
   kind: "talk"
-  language: "en"
   date: "2026-05-08"
+  published_at: "2026-06-13"
+  language: "English"
+  slides_url: "https://speakerdeck.com/yaradeb123/from-plato-to-production"
+  video_provider: "youtube"
+  video_id: "zOclGvC2mtM"
+  description: |-
+    Every time you sit down to write code, you are unknowingly re-enacting a conversation that has been happening for 2,500 years. About what knowledge is. Where it comes from. And what we owe to the people who come after us.
+
+    From Plato to production is not a journey from philosophy to reality. It's the realization that production was always philosophical.
   speakers:
     - Yara Debian
-  video_provider: "scheduled"
-  video_id: "yara-debian-rubycon-2026"
 
 - id: "piadina-its-a-wrap-rubycon-2026"
   title: "Piadina - It's a wrap!"
-  description: |-
-    TODO - Piadina - It's a wrap! - Description
   kind: "talk"
-  language: "en"
   date: "2026-05-08"
+  published_at: "2026-06-13"
+  language: "English"
+  slides_url: "https://speakerdeck.com/palladius/rubycon-piadina-its-a-wrap"
+  video_provider: "youtube"
+  video_id: "eMc3PYgBmFo"
+  description: |-
+    Final thanks to the audience, details about dinner and city visit, and thanks to the sponsors.
   speakers:
     - Riccardo Carlesso
-  video_provider: "scheduled"
-  video_id: "piadina-its-a-wrap-rubycon-2026"

@@ -27,9 +27,10 @@ class EventSchema < RubyLLM::Schema
   string :frequency, description: "How often the event occurs (for recurring meetups)", required: false
 
   string :location, description: "Location in 'City, Country' format (e.g., 'Detroit, MI' or 'Tokyo, Japan')"
+  string :timezone, description: "IANA time zone identifier, e.g. America/New_York", enum: TZInfo::Timezone.all_identifiers
   string :venue, description: "Name of the venue", required: false
 
-  string :channel_id, description: "YouTube channel ID (starts with UC...)", required: false
+  array :youtube_channels, of: YouTubeChannelSchema, description: "YouTube channels associated with this event", required: false
   string :playlist, description: "YouTube playlist/Vimeo showcase link", required: false
 
   string :website, description: "Official event website URL", required: false
@@ -39,7 +40,6 @@ class EventSchema < RubyLLM::Schema
   string :github, description: "GitHub organization or repository URL", required: false
   string :meetup, description: "Meetup.com group URL", required: false
   string :luma, description: "Luma event URL", required: false
-  string :youtube, description: "YouTube channel or video URL", required: false
   string :tickets_url, description: "URL to purchase tickets (e.g., Tito, Eventbrite, Luma)", required: false
 
   string :banner_background,

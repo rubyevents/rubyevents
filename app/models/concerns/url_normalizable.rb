@@ -14,7 +14,7 @@ module UrlNormalizable
       # Strip query params and fragment identifiers
       uri.query = nil
       uri.fragment = nil
-      uri.to_s
+      uri.to_s.chomp("/")
     rescue URI::InvalidURIError
       value
     end

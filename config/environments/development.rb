@@ -89,6 +89,11 @@ Rails.application.configure do
   # View local server when hosted by GitHub Codespaces.
   config.hosts << /^[a-zA-Z0-9-]+-\d{4}\.app\.github\.dev$/
 
+  # Allow ngrok tunnels (e.g. for testing native bridge / OAuth callbacks).
+  config.hosts << /[a-z0-9-]+\.ngrok-free\.dev$/
+  config.hosts << /[a-z0-9-]+\.ngrok-free\.app$/
+  config.hosts << /[a-z0-9-]+\.ngrok\.io$/
+
   # https://vite-ruby.netlify.app/guide/troubleshooting.html#safari-does-not-reflect-css-and-js-changes-in-development
   # https://bugs.webkit.org/show_bug.cgi?id=193533
   config.action_view.preload_links_header = false

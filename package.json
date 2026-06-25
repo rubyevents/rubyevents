@@ -19,15 +19,14 @@
     "rfs": "^10.0.0",
     "stimulus-use": "^0.52.0",
     "tippy.js": "^6.3.7",
-    "vlitejs": "^7.3.2",
-    "yaml": "^2.7.1"
+    "vlitejs": "^7.3.2"
   },
   "scripts": {
     "build": "bin/vite build",
     "lint": "standard",
-    "lint:yml": "yarn prettier --check data/**/**/*.yml",
+    "lint:yml": "bundle exec yerba check",
     "format": "standard --fix",
-    "format:yml": "node yaml/enforce_strings.mjs && yarn run lint:yml --write",
+    "format:yml": "bundle exec yerba apply",
     "herb:lint": "herb-lint"
   },
   "packageManager": "yarn@1.22.19",
@@ -38,8 +37,6 @@
     "postcss": "^8.4.38",
     "postcss-import": "^16.1.0",
     "postcss-nested": "^6.0.1",
-    "prettier": "^2.8.8",
-    "prettier-plugin-tailwindcss": "^0.3.0",
     "standard": "^17.1.0",
     "stimulus-vite-helpers": "^3.1.0",
     "tailwindcss": "^3.4.4",

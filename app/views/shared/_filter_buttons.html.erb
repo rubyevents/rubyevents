@@ -1,30 +1,13 @@
-<%# locals: (current_filter: "all") %>
+<%# locals: (kinds:, current_filter: "all") %>
 
-<div class="flex gap-2 mb-6" data-controller="events-filter" data-events-filter-current-value="<%= current_filter %>">
-  <button
-    type="button"
-    data-events-filter-target="button"
-    data-kind="all"
-    data-action="click->events-filter#filter"
-    class="btn btn-sm <%= "btn-active btn-primary" if current_filter == "all" %>">
+<div role="tablist" class="tabs tabs-boxed inline-flex mb-4">
+  <button type="button" class="tab <%= "tab-active" if current_filter == "all" %>" data-events-filter-target="button" data-kind="all" data-action="click->events-filter#filter">
     All
   </button>
 
-  <button
-    type="button"
-    data-events-filter-target="button"
-    data-kind="conference"
-    data-action="click->events-filter#filter"
-    class="btn btn-sm <%= "btn-active btn-primary" if current_filter == "conference" %>">
-    Conferences
-  </button>
-
-  <button
-    type="button"
-    data-events-filter-target="button"
-    data-kind="meetup"
-    data-action="click->events-filter#filter"
-    class="btn btn-sm <%= "btn-active btn-primary" if current_filter == "meetup" %>">
-    Meetups
-  </button>
+  <% kinds.each do |kind| %>
+    <button type="button" class="tab <%= "tab-active" if current_filter == kind %>" data-events-filter-target="button" data-kind="<%= kind %>" data-action="click->events-filter#filter">
+      <%= kind.humanize.pluralize %>
+    </button>
+  <% end %>
 </div>

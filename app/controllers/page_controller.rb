@@ -3,72 +3,63 @@ class PageController < ApplicationController
 
   def home
     home_page_cached_data = Rails.cache.fetch("home_page_content", expires_in: 1.hour) do
-      latest_talks = Talk.watchable.with_speakers.order(published_at: :desc).limit(10)
       {
         talks_count: Talk.count,
         speakers_count: User.speakers.count,
-        events_count: Event.count,
-        latest_talk_ids: latest_talks.pluck(:id),
-        upcoming_talk_ids: Talk.with_speakers.where(date: Date.today..).order(date: :asc).limit(15).pluck(:id),
-        latest_event_ids: Event.order(date: :desc).limit(10).pluck(:id).sample(4),
-        featured_speaker_ids: User.with_github
-          .joins(:talks)
-          .where(talks: {date: 12.months.ago..})
-          .order(Arel.sql("RANDOM()"))
-          .limit(40)
-          .pluck(:id)
+        events_count: Event.count
       }
     end
 
     @talks_count = home_page_cached_data[:talks_count]
     @speakers_count = home_page_cached_data[:speakers_count]
     @events_count = home_page_cached_data[:events_count]
-    @latest_talks = Talk.includes(event: :series).where(id: home_page_cached_data[:latest_talk_ids])
-    @upcoming_talks = Talk.includes(event: :series).where(id: home_page_cached_data[:upcoming_talk_ids])
-    @latest_events = Event.includes(:series).where(id: home_page_cached_data[:latest_event_ids])
-    @featured_speakers = User.where(id: home_page_cached_data[:featured_speaker_ids]).sample(10)
-    @featured_organizations = Organization.joins(:sponsors).includes(:events).group("organizations.id").order("COUNT(sponsors.id) DESC").limit(10)
-    @recommended_talks = Current.user.talk_recommender.talks(limit: 4) if Current.user
 
-    imported_slugs = Event.not_meetup.with_watchable_talks.pluck(:slug)
-    today_slugs = Event.not_meetup.with_talks.where(start_date: ..Date.today, end_date: Date.today..).pluck(:slug)
-    featurable_slugs = Static::Event.where.not(featured_background: nil).pluck(:slug)
-    slug_candidates = (imported_slugs | today_slugs) & featurable_slugs
+    today = Date.today
+    base = Event.distinct.not_meetup.featurable.where.not(home_sort_date: nil)
 
-    featured_slugs = Static::Event.all
-      .select { |event| slug_candidates.include?(event.slug) }
-      .select(&:home_sort_date)
-      .sort_by(&:home_sort_date)
-      .reverse
-      .take(15)
-      .map(&:slug)
+    featured_ids = (
+      base.with_watchable_talks.pluck(:id) +
+      base.with_talks.where(start_date: ..today, end_date: today..).pluck(:id) +
+      base.with_talks.where(start_date: today.next_day..(today + Event::FEATURED_UPCOMING_WINDOW)).pluck(:id) +
+      base.joins(:cfps).where(cfps: {close_date: today..(today + Event::FEATURED_CFP_CLOSING_WINDOW)}).where.not(cfps: {link: nil}).pluck(:id)
+    ).uniq
 
-    @featured_events = Event.distinct
-      .includes(:series, :keynote_speakers, :speakers)
-      .where(slug: featured_slugs)
-      .in_order_of(:slug, featured_slugs)
+    featured_ids = Event.where(id: featured_ids)
+      .includes(:cfps)
+      .sort_by { |event| event.featured_distance(today: today) }
+      .first(15)
+      .map(&:id)
+
+    @featured_events = Event
+      .where(id: featured_ids)
+      .includes(:series, :keynote_speakers, :speakers, :cfps)
+      .in_order_of(:id, featured_ids)
 
     respond_to do |format|
       format.html
       format.json {
+        latest_talks = Talk.watchable.with_speakers.includes(event: :series).order(date: :desc).limit(10)
+        upcoming_talks = Talk.with_speakers.includes(event: :series).where(date: Date.today..).order(date: :asc).limit(15)
+        featured_speakers = User.with_github.joins(:talks).where(talks: {date: 12.months.ago..}).order(Arel.sql("RANDOM()")).limit(10)
+
         render json: {
           featured: @featured_events.map { |event| event.to_mobile_json(request) },
           talks: [
             {
               name: "Latest Recordings",
-              items: @latest_talks.map { |talk| talk.to_mobile_json(request) },
+              items: latest_talks.map { |talk| talk.to_mobile_json(request) },
               url: talks_url
             },
             {
               name: "Upcoming Talks",
-              items: @upcoming_talks.map { |talk| talk.to_mobile_json(request) },
+              items: upcoming_talks.map { |talk| talk.to_mobile_json(request) },
               url: talks_url
             }
           ],
           speakers: [
             {
               name: "Active Speakers",
-              items: @featured_speakers.map { |speaker| speaker.to_mobile_json(request) },
+              items: featured_speakers.map { |speaker| speaker.to_mobile_json(request) },
               url: speakers_url
             }
           ],
@@ -104,8 +95,18 @@ class PageController < ApplicationController
   def about
   end
 
+  def attend
+  end
+
+  def speak
+  end
+
+  def organize
+  end
+
   def stickers
     @events = Event.all.select(&:sticker?)
+    @stickers = @events.flat_map(&:stickers)
   end
 
   def contributors

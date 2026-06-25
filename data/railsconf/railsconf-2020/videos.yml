@@ -1,20 +1,17 @@
----
 # TODO: talks running order
 # TODO: talk dates
 # TODO: conference website
 # TODO: schedule website
-
+---
 - id: "vladimir-dementyev-railsconf-2020-ce"
   title: "Between Monoliths & Microservices"
   raw_title: "RailsConf 2020 CE - Between Monoliths & Microservices by Vladimir Dementyev"
-  speakers:
-    - Vladimir Dementyev
   event_name: "RailsConf 2020 CE"
   date: "2020-04-24"
   published_at: "2020-05-04"
+  video_provider: "youtube"
+  video_id: "P6IXPM3zFTw"
   description: |-
-    Between Monoliths & Microservices by Vladimir Dementyev
-
     "Rails applications tend to turn into giant monoliths. Keeping the codebase maintainable usually requires architectural changes. Microservices? A distributed monolith is still a monolith. What about breaking the code into pieces and rebuild a monolithic puzzle out of them?
 
     In Rails, we have the right tool for the job: engines. With engines, you can break your application into components—the same way as Rails combines all its parts, which are engines, too.
@@ -24,59 +21,52 @@
     __________
 
     Vladimir is a mathematician who found his happiness in programming Ruby and Erlang, contributing to open source and being an Evil Martian. Author of AnyCable, TestProf and many yet unknown ukulele melodies.
-  video_provider: "youtube"
-  video_id: "P6IXPM3zFTw"
+  speakers:
+    - Vladimir Dementyev
 
 - id: "eileen-m-uchitelle-railsconf-2020-ce"
   title: "Keynote: Technically, a Talk"
   raw_title: "RailsConf 2020 CE - Keynote: Technically, a Talk by Eileen Uchitelle"
-  speakers:
-    - Eileen M. Uchitelle
   event_name: "RailsConf 2020 CE"
   date: "2020-04-24"
   published_at: "2020-05-04"
   slides_url: "https://speakerdeck.com/eileencodes/technically-a-talk-railsconf-2020"
+  video_provider: "youtube"
+  video_id: "vebtTRXAznU"
   description: |-
-    Keynote: Technically, a Talk by Eileen M. Uchitelle
-
-    "Peer deep into Rails’ database handling and you may find the code overly complex, hard to follow, and full of technical debt. On the surface you’re right - it is complex, but that complexity represents the strong foundation that keeps your applications simple and focused on your product code. In this talk we’ll look at how to use multiple databases, the beauty (and horror) of Rails connection management, and why we built this feature for you.
-    "
+    "Peer deep into Rails’ database handling and you may find the code overly complex, hard to follow, and full of technical debt. On the surface you’re right - it is complex, but that complexity represents the strong foundation that keeps your applications simple and focused on your product code. In this talk we’ll look at how to use multiple databases, the beauty (and horror) of Rails connection management, and why we built this feature for you."
     __________
 
     Eileen M. Uchitelle is a Staff Software Engineer on the Ruby Architecture Team at GitHub and a member of the Rails Core team. She's an avid contributor to open source focusing on the Ruby on Rails framework and its dependencies. Eileen is passionate about scalability, performance, and making open source communities more sustainable and welcoming.
-  video_provider: "youtube"
-  video_id: "vebtTRXAznU"
+  speakers:
+    - Eileen M. Uchitelle
 
 - id: "aaron-patterson-railsconf-2020-ce"
   title: "Aaron Patterson's Variety Show"
   raw_title: "RailsConf 2020 CE - Aaron Patterson's Variety Show!"
-  speakers:
-    - Aaron Patterson
   event_name: "RailsConf 2020 CE"
   date: "2020-04-24"
   published_at: "2020-05-04"
+  video_provider: "youtube"
+  video_id: "9JEEabL90AA"
   description: |-
-    Aaron Patterson's Variety Show!
-
     I will talk about a variety of things related to puns, Rails, and puns on Rails
 
     __________
 
     Aaron is on the Ruby core team, the Rails core team, and the team that takes care of his cat, Gorby puff.  During the day he works for a small technology company.  Someday he will find the perfect safety gear to wear while extreme programming.
-  video_provider: "youtube"
-  video_id: "9JEEabL90AA"
+  speakers:
+    - Aaron Patterson
 
 - id: "alec-clarke-railsconf-2020-ce"
   title: "Measure Twice, Cut Once"
   raw_title: "RailsConf 2020 CE - Measure Twice, Cut Once by Alec Clarke"
-  speakers:
-    - Alec Clarke
   event_name: "RailsConf 2020 CE"
   date: "2020-04-24"
   published_at: "2020-05-04"
+  video_provider: "youtube"
+  video_id: "7zW_BBiTLAY"
   description: |-
-    Measure Twice, Cut Once by Alec Clarke
-
     "Woodworking and writing code go hand in hand, right?
 
     On the surface these two activities may seem different, but the skills, tools, and mindset required to create quality furniture are consistent with the qualities required to write code that delights both the customer and developer.
@@ -86,60 +76,53 @@
     __________
 
     Alec is a software developer and woodworking enthusiast who works remotely from Kingston, Ontario for Clio where he focuses on creating an enjoyable and effortless experience between law firms and their clients.
-  video_provider: "youtube"
-  video_id: "7zW_BBiTLAY"
+  speakers:
+    - Alec Clarke
 
 - id: "alex-kitchens-railsconf-2020-ce"
   title: "Building a Rails Controller From Scratch"
   raw_title: "RailsConf 2020 CE - Building a Rails Controller From Scratch by Alex Kitchens"
-  speakers:
-    - Alex Kitchens
   event_name: "RailsConf 2020 CE"
   date: "2020-04-24"
   published_at: "2020-05-04"
+  video_provider: "youtube"
+  video_id: "jne5VFK-K_M"
   description: |-
-    Building a Rails Controller From Scratch by Alex Kitchens
-
-
     If you replaced ActionController with an implementation of your own, what would you have to build to get your app working again? In this talk, we'll do just that. We'll see how the controller interacts with the router to receive a request, process it, and return a response. We'll also rebuild controller features like Params, Controller Callbacks, and Rendering. In the end, we'll have a new functioning controller class called AwesomeController, and we will have seen what it takes to process a request in Rails.
 
     __________
 
     Alex Kitchens (@alexcameron89) is a software engineer at Stitch Fix, where he gets to embrace his love of Rails as a backend developer.
-  video_provider: "youtube"
-  video_id: "jne5VFK-K_M"
+  speakers:
+    - Alex Kitchens
 
 - id: "anna-rankin-railsconf-2020-ce"
   title: "Deeper Understanding & Better Communication through Art"
   raw_title: "RailsConf 2020 CE - Deeper Understanding & Better Communication through Art by Anna Rankin"
-  speakers:
-    - Anna Rankin
   event_name: "RailsConf 2020 CE"
   date: "2020-04-24"
   published_at: "2020-05-04"
+  video_provider: "youtube"
+  video_id: "f2LcZqT1rZA"
   description: |-
-    Deeper Understanding & Better Communication through Art by Anna Rankin
-
     "Understanding new concepts and complex systems is hard. Explaining them? That’s even harder.
     Like anyone in a highly specialized career, software engineers may struggle to convey information concisely, confidently, and clearly to their technical and non-technical teammates. As a former illustrator and graphic designer, has found that visual art can be the key to both deeper understanding and clearer, more accessible communication. In this talk, we’ll explore why the ability to clearly communicate is so vital to mastering a complex topic, how to choose the right abstractions to present to a specific audience, and how a different medium can provide a new lens through which to view a familiar topic."
 
     __________
 
     As a tech lead, Anna spends her days at General Assembly helping a team of engineers deliver reliable, useful software that helps adults learn the skills they need to pursue a career that inspires them. Before transitioning to software, she was an undercover tech enthusiast working in roles ranging from graphic designer to ESL tutor — and even community relations for a small island! In her free time, she makes pixel art, designs punny stickers, and hangs out in dog parks with her pup.
-  video_provider: "youtube"
-  video_id: "f2LcZqT1rZA"
+  speakers:
+    - Anna Rankin
 
 - id: "chelsea-troy-railsconf-2020-ce"
   title: "Debugging: Techniques for Uncertain Times"
   raw_title: "RailsConf 2020 CE - Debugging: Techniques for Uncertain Times by Chelsea Troy"
-  speakers:
-    - Chelsea Troy
   event_name: "RailsConf 2020 CE"
   date: "2020-04-24"
   published_at: "2020-05-04"
+  video_provider: "youtube"
+  video_id: "XqWJ5nKrZpY"
   description: |-
-    Debugging: Techniques for Uncertain Times by Chelsea Troy
-
     "When we learn to code, we focus on writing features while we understand what the code is doing. When we debug, we don't understand what our code is doing. The less we understand, the less likely it is that our usual programming mindset—the one we use for feature development—can solve the problem.
 
     It turns out, the skills that make us calmer, more effective debuggers also equip us to deal with rapid, substantial changes to our lives.
@@ -148,25 +131,22 @@
 
     __________
 
-    "Chelsea writes code on projects like the Zooniverse Citizen Science Mobile App and the NASA Landsat Image Processing Pipeline. She looks for clients who are saving the planet, advancing basic scientific research, or providing resources to underserved communities. She streams some programming sessions to YouTube, so you can watch her code (and narrate!) in real time. 
+    "Chelsea writes code on projects like the Zooniverse Citizen Science Mobile App and the NASA Landsat Image Processing Pipeline. She looks for clients who are saving the planet, advancing basic scientific research, or providing resources to underserved communities. She streams some programming sessions to YouTube, so you can watch her code (and narrate!) in real time.
     Chelsea also teaches Mobile Software Development at the Master’s Program in Computer Science at the University of Chicago.
 
     Chelsea flings barbells around for fun. She drives an electric cafe cruiser named Gigi."
-  video_provider: "youtube"
-  video_id: "XqWJ5nKrZpY"
+  speakers:
+    - Chelsea Troy
 
 - id: "brynn-gitt-railsconf-2020-ce"
   title: "Enterprise Identity Management on Rails"
   raw_title: "RailsConf 2020 CE -  Enterprise Identity Management on Rails by Brynn Gitt & Oliver Sanford"
-  speakers:
-    - Brynn Gitt
-    - Oliver Sanford
   event_name: "RailsConf 2020 CE"
   date: "2020-04-24"
   published_at: "2020-05-04"
+  video_provider: "youtube"
+  video_id: "hMdvur0YqQY"
   description: |-
-    Enterprise Identity Management on Rails by Brynn Gitt & Oliver Sanford
-
     Your team’s just inked that enterprise deal: 5000 seats at a well-known brand. But wait! Every week 100 people get hired or leave. Soon the customer's HR is complaining to the CEO and their engineers are hacking scripts against your undocumented API. Want to avoid this situation? We did too! Join us and learn how to automate identity management in Rails. We’ll demystify SCIM, peer under the hood of key Ruby auth and identity gems, and share insights to help you anticipate the twists in the road.
 
     __________
@@ -174,20 +154,19 @@
     "Brynn Gitt has been working on Ruby on Rails apps for five years. She has a BSE in electrical engineering from the University of Iowa. She is a senior software engineer at Mode (http://mode.com/), and led Mode’s implementation of the SCIM API. Previously, she worked at Academia.edu
 
     Oliver Sanford has been developing Ruby and JavaScript apps for over a decade. He holds a PhD in anthropology from Berkeley and works as a senior software engineer at Mode (http://mode.com/), where he helps enterprises of all sizes understand the stories in their data."
-  video_provider: "youtube"
-  video_id: "hMdvur0YqQY"
+  speakers:
+    - Brynn Gitt
+    - Oliver Sanford
 
 - id: "ufuk-kayserilioglu-railsconf-2020-ce"
   title: "Peeling Away the Layers of the Network Stack"
   raw_title: "RailsConf 2020 CE - Peeling Away the Layers of the Network Stack by Ufuk Kayserilioglu"
-  speakers:
-    - Ufuk Kayserilioglu
   event_name: "RailsConf 2020 CE"
   date: "2020-04-24"
   published_at: "2020-05-04"
+  video_provider: "youtube"
+  video_id: "xPJgSca6TJc"
   description: |-
-    Peeling Away the Layers of the Network Stack by Ufuk Kayserilioglu
-
     "As Rails developers, we depend on network protocols to ensure the products we build are available and accessible to our users. Despite this, many of us are poorly aware of how the layers of the network stack actually work, or why they are there.
 
     Understanding the things that happen between physical signals on the wire and your Rails application will help you hone your craft and level you up. Fortunately, the basic concepts of network protocols are easy to grasp, with a little guidance. So let's walk together through these concepts, and peel away the layers of the network stack one by one."
@@ -195,40 +174,36 @@
     __________
 
     Ufuk is a Physics PhD turned polyglot software developer. He is currently working as a Senior Production Engineer on the Ruby and Rails Infrastructure Team at Shopify. He has over 20 years of experience working with statically and dynamically typed languages and he brings that to Shopify for the adoption of better Ruby tooling and practices. He currently works remotely from Cyprus where he lives with his beloved wife and wonderful daughter. In his free time, he teaches computer science to high-school students.
-  video_provider: "youtube"
-  video_id: "xPJgSca6TJc"
+  speakers:
+    - Ufuk Kayserilioglu
 
 - id: "david-heinemeier-hansson-railsconf-2020-ce"
   title: "Keynote: Interview with David Heinemeier Hansson"
   raw_title: "RailsConf 2020 CE - Keynote Interview with David Heinemeier Hansson"
-  speakers:
-    - David Heinemeier Hansson
-    - Evan Phoenix
   event_name: "RailsConf 2020 CE"
   date: "2020-04-24"
   published_at: "2020-05-04"
+  video_provider: "youtube"
+  video_id: "OltCr8AWpWw"
   description: |-
-    Keynote Interview with David Heinemeier Hansson
-
     David and Evan talk about Rails, work, and the world.
 
     __________
 
     David is the creator of Ruby on Rails, founder & CTO at Basecamp (formerly 37signals), best-selling author, Le Mans class-winning racing driver, public speaker, hobbyist photographer, and family man.
-  video_provider: "youtube"
-  video_id: "OltCr8AWpWw"
+  speakers:
+    - David Heinemeier Hansson
+    - Evan Phoenix
 
 - id: "christian-bruckmayer-railsconf-2020-ce"
   title: "Building a Performance Analytics Tool with ActiveSupport"
   raw_title: "RailsConf 2020 CE - Building a Performance Analytics Tool with ActiveSupport by Christian Bruckmayer"
-  speakers:
-    - Christian Bruckmayer
   event_name: "RailsConf 2020 CE"
   date: "2020-04-24"
   published_at: "2020-05-04"
+  video_provider: "youtube"
+  video_id: "2yc_kWJGLW8"
   description: |-
-    Building a Performance Analytics Tool with ActiveSupport by Christian Bruckmayer
-
     "Setting up a performance analytics tool like NewRelic or Skylight is one of the first things many developers do in a new project. However, have you ever wondered how these tools work under the hood?
 
     In this talk, we will build a basic performance analytics tool from scratch. We will deep dive into ActiveSupport instrumentations to collect, group and normalise metrics from your app. To persist these metrics, we will use a time series database and visualise the data on a dashboard. By the end of the talk, you will know how your favourite performance analytics tool works."
@@ -238,59 +213,53 @@
     "Christian Bruckmayer originally from Nuremberg, Germany, but now calls Bristol, UK, his home. In his day job, he makes everyday cooking fun at Cookpad, the best place to find and share home cooked recipes. Since 2014 he is an avid open source contributor hacking for instance on JRuby, openSUSE Linux or various gems.
 
     If he's not hacking Ruby, he's out doing what 'young' people do: traveling the world, skiing in the alps or going to concerts of his favourite band."
-  video_provider: "youtube"
-  video_id: "2yc_kWJGLW8"
+  speakers:
+    - Christian Bruckmayer
 
 - id: "elayne-juten-railsconf-2020-ce"
   title: "Blank Page Panic! Creating Confidence with Test Driven Development"
   raw_title: "RailsConf 2020 CE - Blank Page Panic! Creating Confidence with Test Driven ... by Elayne Juten"
-  speakers:
-    - Elayne Juten
   event_name: "RailsConf 2020 CE"
   date: "2020-04-24"
   published_at: "2020-05-04"
+  video_provider: "youtube"
+  video_id: "hrZktRv1XR4"
   description: |-
-    Blank Page Panic! Creating Confidence with Test Driven Development by Elayne Juten
-
     Have you ever stared at a blank feature spec file hoping for tests to magically appear? Well, you’re not alone! In this talk we’ll take a look at how the combination of Test-Driven Development, pseudocode and RSpec can help get you to your initial commit with confidence, one RSpec error at a time!
 
     __________
 
     Elayne Juten is a Software Engineer at Getty Images. As an early-career developer, she is passionate about finding ways to help build confidence in Ruby, Rails and RSpec.
-  video_provider: "youtube"
-  video_id: "hrZktRv1XR4"
+  speakers:
+    - Elayne Juten
 
 - id: "emily-giurleo-railsconf-2020-ce"
   title: "Successfully Onboarding a Junior Engineer in Three Steps"
   raw_title: "RailsConf 2020 CE - Successfully Onboarding a Junior Engineer in Three Steps by Emily Giurleo"
-  speakers:
-    - Emily Giurleo
   event_name: "RailsConf 2020 CE"
   date: "2020-04-24"
   published_at: "2020-05-04"
   slides_url: "https://docs.google.com/presentation/d/1IKHnxYJ_z1C2Bk5qgeGzIvq4KCaJWbSv/edit#slide=id.p1"
+  video_provider: "youtube"
+  video_id: "q473dYrJiMQ"
   description: |-
-    Successfully Onboarding a Junior Engineer in Three Steps by Emily Giurleo
-
     How you onboard someone to your team can have lasting effects on their professional success, growth, and happiness, but many teams treat onboarding as an afterthought. In this talk, you will learn how to successfully onboard a junior engineer in three steps, with the goals of building their trust, instilling confidence in their technical abilities, and enabling them to be an autonomous contributor to your team.
 
     __________
 
     Emily Giurleo is a software engineer and avid Rubyist. After graduating from MIT with a degree in computer science, she spent two years working as a Ruby developer at Codecademy. She now works at MongoDB, where she helps maintain the Ruby Driver and Mongoid Object-Document Mapper. In her spare time, she enjoys building tech for good causes, reading fantasy novels, and petting cats.
-  video_provider: "youtube"
-  video_id: "q473dYrJiMQ"
+  speakers:
+    - Emily Giurleo
 
 - id: "eric-hayes-railsconf-2020-ce"
   title: "Wrangle Your SQL With Arel"
   raw_title: "RailsConf 2020 CE - Wrangle Your SQL With Arel by Eric Hayes"
-  speakers:
-    - Eric Hayes
   event_name: "RailsConf 2020 CE"
   date: "2020-04-24"
   published_at: "2020-05-04"
+  video_provider: "youtube"
+  video_id: "8pQGzsDzYEo"
   description: |-
-    Wrangle Your SQL With Arel by Eric Hayes
-
     "You wanted to use those fancy Postgres features so you wrote raw SQL. Some time and a few more features go by and now your app is littered with SQL strings. Keep the power and lose the mess by building composable query objects that leverage Arel, the query builder under the hood of ActiveRecord.
 
     Come to this talk and learn what Arel is, how to construct complex SQL with Ruby, and how to wrap it all up in model-like classes that play nice with Rails."
@@ -298,20 +267,18 @@
     __________
 
     Eric Hayes started using Ruby while working at a school district in 2006. He's been social distancing since 2016 working remotely for Red Hat. In 2017 he became the CTO of a small, all-remote business where he gets to play with everything from design to databases.
-  video_provider: "youtube"
-  video_id: "8pQGzsDzYEo"
+  speakers:
+    - Eric Hayes
 
 - id: "hung-harry-doan-railsconf-2020-ce"
   title: "Static Type Checking in Rails with Sorbet"
   raw_title: "RailsConf 2020 CE - Static Type Checking in Rails with Sorbet by Hung Harry Doan"
-  speakers:
-    - Hung Harry Doan
   event_name: "RailsConf 2020 CE"
   date: "2020-04-24"
   published_at: "2020-05-04"
+  video_provider: "youtube"
+  video_id: "APkKh40CF-8"
   description: |-
-    Static Type Checking in Rails with Sorbet by Hung Harry Doan
-
     "Sorbet is a powerful static type-checking tool for Ruby. Type checking can catch errors early and improve the developer experience—and with the right tools, it can even be used with dynamic methods in Rails.
 
     In this talk, we’ll cover the basics of type checking and share the lessons learned from our adoption of Sorbet type checking across our 2,500-file codebase in just six months. We’ll talk about the technical challenges we faced and how we solved them with a new Sorbet-Rails gem, which makes it easy to gradually integrate type checking into your Rails app & improve your team’s efficiency."
@@ -319,20 +286,18 @@
     __________
 
     Harry Doan is a Staff Software Engineer at the Chan Zuckerberg Initiative. He’s passionate about building great developer productivity tools and applications for the community. He created Sorbet-Rails to help Rails developers benefit from static type checking. In his free time, he can be found meditating or studying Buddhism teachings.
-  video_provider: "youtube"
-  video_id: "APkKh40CF-8"
+  speakers:
+    - Hung Harry Doan
 
 - id: "hilary-stohs-krause-railsconf-2020-ce"
   title: "Why we Worry About all the Wrong Things"
   raw_title: "RailsConf 2020 CE - Why we Worry About all the Wrong Things by Hilary Stohs-Krause"
-  speakers:
-    - Hilary Stohs-Krause
   event_name: "RailsConf 2020 CE"
   date: "2020-04-24"
   published_at: "2020-05-04"
+  video_provider: "youtube"
+  video_id: "FgqnJIrR-mU"
   description: |-
-    Why we Worry About all the Wrong Things by Hilary Stohs-Krause
-
     "Modern humans aren’t great at risk assessment.
 
     We often blithely ignore that which could harm us, and are conversely intimidated by things that are quite safe. This inability to recognize threat has vast implications for many aspects of our lives, including our careers.
@@ -344,20 +309,18 @@
     "Hilary Stohs-Krause is currently based in Madison, WI, where she's co-owner and software developer at Ten Forward Consulting. She came to tech by way of childhood website-building (a ""Buffy the Vampire Slayer"" fansite, to be exact).
 
     She volunteers regularly with several tech and community organizations, and co-runs Madison Women in Tech, a local group with more than 2,000 members. She loves sci-fi/fantasy, board games and bourbon barrel-aged stouts. She tweets at @hilarysk."
-  video_provider: "youtube"
-  video_id: "FgqnJIrR-mU"
+  speakers:
+    - Hilary Stohs-Krause
 
 - id: "jameson-hampton-railsconf-2020-ce"
   title: "Achieving Inclusivity Through Remote Work"
   raw_title: "RailsConf 2020 CE - Achieving Inclusivity Through Remote Work by Jameson Hampton"
-  speakers:
-    - Jameson Hampton
   event_name: "RailsConf 2020 CE"
   date: "2020-04-24"
   published_at: "2020-05-04"
+  video_provider: "youtube"
+  video_id: "cZYPNPDzvYw"
   description: |-
-    Achieving Inclusivity Through Remote Work by Jameson Hampton
-
     "A strength of the tech industry is its ability to facilitate remote work. Remote work helps people — particularly people who are part of marginalized communities, such as folks who are undergoing a gender transition. We often talk about how to foster inclusive teams and remote work can be a big factor in that!
 
     In this talk, you’ll learn about barriers that disproportionately affect underrepresented folks in tech, like health concerns, financial/geographical logistics and emotional burnout, as well as the ways working remotely can ease those burdens, and how to promote healthy distributed teams."
@@ -365,99 +328,89 @@
     __________
 
     Jamey is a non-binary adventurer from Buffalo, NY who wishes they were immortal so they’d have time to visit every coffee shop in the world. They’re a Rails engineer who recently took the plunge into DevRel, and they're a panelist on the podcast Greater than Code. In their free time, they do advocacy in the transgender community, write comics and travel as much as they can (which isn't very much right now)! They tweet at @jameybash.
-  video_provider: "youtube"
-  video_id: "cZYPNPDzvYw"
+  speakers:
+    - Jameson Hampton
 
 - id: "jason-meller-railsconf-2020-ce"
   title: "Inoculating Rails Auth Against Bug Bounty Hunters"
   raw_title: "RailsConf 2020 CE - Inoculating Rails Auth Against Bug Bounty Hunters by Jason Meller"
-  speakers:
-    - Jason Meller
   event_name: "RailsConf 2020 CE"
   date: "2020-04-24"
   published_at: "2020-05-04"
+  video_provider: "youtube"
+  video_id: "K7zo-wnvcLs"
   description: |-
-    Inoculating Rails Auth Against Bug Bounty Hunters by Jason Meller
-
     You’ve rolled up your sleeves and built the most secure custom auth ever conceived by a dev team. Suddenly, your CTO informs you that your app will be participating in the Org's new Bug Bounty program. Terror fills your heart as you imagine security experts making mince-meat of your beautiful auth system. If only you knew their game plan... Kolide’s CEO, Jason Meller has been rolling his own Rails auth for over a decade and has the bug bounty receipts to prove it. In this talk, he will walk you through Kolide's actual bounty reports so you can level up your team’s auth system.
 
     __________
 
     Jason Meller is the CEO and Founder of Kolide, a security focused infrastructure analytics company. Jason has spent the majority of his 11 year career building tools and products in Ruby on Rails to aid cyber security professionals with the goal of ultimately making the field more accessible to newcomers.
-  video_provider: "youtube"
-  video_id: "K7zo-wnvcLs"
+  speakers:
+    - Jason Meller
 
 - id: "jesse-spevack-railsconf-2020-ce"
   title: "Mistakes Were Made"
   raw_title: "RailsConf 2020 CE - Mistakes Were Made by Jesse Spevack"
-  speakers:
-    - Jesse Spevack
   event_name: "RailsConf 2020 CE"
   date: "2020-04-24"
   published_at: "2020-05-04"
+  video_provider: "youtube"
+  video_id: "2-m4_srVuNY"
   description: |-
-    Mistakes Were Made by Jesse Spevack
-
     We picked the wrong technology. We worked in silos. We prematurely optimized. We introduced too many changes at once. And yet somehow we delivered a system that is integral to a shopping rewards app used by millions across the United States. I want to tell you the story of how the best of intentions led to crucial blunders. In this public, honest, and vulnerable post-mortem I will share the missteps I made so that you can avoid them.
 
     __________
 
     Jesse Spevack is a father of twins, skier, marathoner, and Senior Platform Engineer at Ibotta, a cash back for shopping app whose mission is to make every purchase rewarding. Before getting into the tech world, Jesse worked in public K-12 education for 11 years in teaching, school leadership, and consulting. Jesse transitioned from education into technology by way of the Turing School of Software Design, a Denver based code school with a Ruby-centric curriculum.
-  video_provider: "youtube"
-  video_id: "2-m4_srVuNY"
+  speakers:
+    - Jesse Spevack
 
 - id: "joel-hawksley-railsconf-2020-ce"
   title: "Encapsulating Views"
   raw_title: "RailsConf 2020 CE - Encapsulating Views by Joel Hawksley"
-  speakers:
-    - Joel Hawksley
   event_name: "RailsConf 2020 CE"
   date: "2020-04-24"
   published_at: "2020-05-04"
+  video_provider: "youtube"
+  video_id: "YVYRus_2KZM"
   description: |-
-    Encapsulating Views by Joel Hawksley
-
     Unlike models and controllers, Rails views are not encapsulated. This makes them hard to reason about and difficult to test, leading us to use abstractions such as presenters and decorators. In this talk, we'll explore the inner workings of how Rails compiles and executes views today, the lessons we've learned building encapsulated views at GitHub over the past year, and how you can do the same with the support for 3rd-party component frameworks coming in Rails 6.1.
 
     __________
 
     Joel is a software engineer at GitHub. He works on the Design Systems team, leading the development of ViewComponent.
-  video_provider: "youtube"
-  video_id: "YVYRus_2KZM"
+  speakers:
+    - Joel Hawksley
 
 - id: "kent-beck-railsconf-2020-ce"
   title: "Tidy First?"
   raw_title: "RailsConf 2020 CE - Tidy First? by Kent Beck"
-  speakers:
-    - Kent Beck
   event_name: "RailsConf 2020 CE"
   date: "2020-04-24"
   published_at: "2020-05-04"
+  video_provider: "youtube"
+  video_id: "BFFY9Zor6zw"
   description: |-
-    Tidy First? by Kent Beck
-
-    "Software design is an exercise in human relationships. 
+    "Software design is an exercise in human relationships.
 
     You have to change some ugly code. Should you tidy it first before you change it? Reflected in this simple, daily-repeated question are all the elements of software design: coupling/cohesion, economics, psychology, and sociology."
 
     __________
 
     In 45 years of programming, Kent hasn't been satisfied for more than a day at a time. Not with the tools, the techniques, the outcomes, and most of all not with his own understanding. These days he works at Gusto, the small business payroll and benefits provider.
-  video_provider: "youtube"
-  video_id: "BFFY9Zor6zw"
+  speakers:
+    - Kent Beck
 
 - id: "kevin-murphy-railsconf-2020-ce"
   title: "Fake It While You Make It"
   raw_title: "RailsConf 2020 CE - Fake It While You Make It by Kevin Murphy"
-  speakers:
-    - Kevin Murphy
   event_name: "RailsConf 2020 CE"
-  slides_url: "https://speakerdeck.com/kevinmurphy/fake-it-while-you-make-it"
   date: "2020-04-24"
   published_at: "2020-05-04"
+  slides_url: "https://speakerdeck.com/kevinmurphy/fake-it-while-you-make-it"
+  video_provider: "youtube"
+  video_id: "iEfpAp2sqiw"
   description: |-
-    Fake It While You Make It by Kevin Murphy
-
     "We all write code to interface with external systems, like a web service or a message queue. Can you confidently write tests without requiring the system as a dependency? How can you shield users of your code from the inner workings of the interface? Explore one attempt to answer these questions.
 
     There's no shortage of tools at your disposal to solve these problems. This talk will introduce some available options, provide guidance on when one approach may be more appropriate than another, and discuss how to use these tools together to ease the testing process."
@@ -467,39 +420,35 @@
     "Kevin spent more time investigating, refactoring, and rewriting tests for the project that prompted this talk than he did writing the actual implementation.
 
     Kevin lives near Boston, where he is a Software Developer at The Gnar Company."
-  video_provider: "youtube"
-  video_id: "iEfpAp2sqiw"
+  speakers:
+    - Kevin Murphy
 
 - id: "krystan-huffmenne-railsconf-2020-ce"
   title: "Inside Rails: The Lifecycle of a Response"
   raw_title: "RailsConf 2020 CE - Inside Rails: The Lifecycle of a Response by Krystan HuffMenne"
-  speakers:
-    - Krystan HuffMenne
   event_name: "RailsConf 2020 CE"
   date: "2020-04-24"
   published_at: "2020-05-04"
+  video_provider: "youtube"
+  video_id: "edjzEYMnrQw"
   description: |-
-    Inside Rails: The Lifecycle of a Response by Krystan HuffMenne
-
     This breathtaking documentary series combines rare action, unimaginable scale, impossible locations and intimate moments captured from the deepest depths of Rails internals. Last year, we followed the lifecycle of best loved, wildest and most elusive Rails components through a request, from the browser to a controller action. This year, our journey takes us across the great text/plain, following the flow of HTTP streams, taking in the spectacular Action View as we find our way back to the browser. Join us to unearth the amazing lifecycle of a Rails response.
 
     __________
 
     Krystan HuffMenne is an engineer at Tilde, where she works on Skylight, the smart Rails profiler. She writes code in Ruby, JavaScript, and Instant Pot. She’s a Florida-native living in Portland, OR with her husband and two kids.
-  video_provider: "youtube"
-  video_id: "edjzEYMnrQw"
+  speakers:
+    - Krystan HuffMenne
 
 - id: "kyle-doliveira-railsconf-2020-ce"
   title: "Communicating with Cops"
   raw_title: "RailsConf 2020 CE - Communicating with Cops by Kyle d'Oliveira"
-  speakers:
-    - Kyle d'Oliveira
   event_name: "RailsConf 2020 CE"
   date: "2020-04-24"
   published_at: "2020-05-04"
+  video_provider: "youtube"
+  video_id: "ws_8ie6TMtA"
   description: |-
-    Communicating with Cops by Kyle d'Oliveira
-
     "As the number of developers grows within an organization, how do you keep others informed of best practices, or patterns that caused problems in the past? Is there a lot of tribal knowledge or documentation that developers need to memorize? That is a recipe for cognitive overload.
 
     Alternatively, we can use Rubocop to codify some best practices or common traps to avoid. This talk will dive into how Rubocop can be used to not only enforce styling but also keep problematic patterns out, while also providing the motivation and context for enforcing it."
@@ -507,20 +456,18 @@
     __________
 
     Based in Vancouver, Canada, Kyle is a jack of all trades and a master of some; at least he thinks so. He works as a staff software developer to readily turn abstract ideas into working pieces of software. He has worked on every major Rails version, and remembers the days when everyone implemented their own authentication system. When not developing, he enjoys picking up really heavy objects so that they can be put back down again.
-  video_provider: "youtube"
-  video_id: "ws_8ie6TMtA"
+  speakers:
+    - "Kyle d'Oliveira"
 
 - id: "mark-hutter-railsconf-2020-ce"
   title: "Can ActiveStorage Serve Images for the Modern Web?"
   raw_title: "RailsConf 2020 CE - Can ActiveStorage Serve Images for the Modern Web? by Mark Hutter"
-  speakers:
-    - Mark Hutter
   event_name: "RailsConf 2020 CE"
   date: "2020-04-24"
   published_at: "2020-05-04"
+  video_provider: "youtube"
+  video_id: "MfaWl2-U_Zw"
   description: |-
-    Can ActiveStorage Serve Images for the Modern Web? by Mark Hutter
-
     "It’s a simple question: can ActiveStorage be used for image serving in your modern web apps? The answer is not so simple. Can it handle the speed requirements and size specifications of images that the modern web browsers deems as “fast”?
 
     We’ll look at the out-of-the-box approach ActiveStorage takes on asset serving, where it works well - resizing, usability, and security, and where we run into rough edges - image load times, CDN integration, and next gen image format storage. And then we’ll look at one pattern working in production today."
@@ -528,39 +475,35 @@
     __________
 
     I am 11 years into my career in the software development industry. This adventure has allowed me to pursue a range of technology specialties from SQL, Java, Ruby, Javascript, and Go. I am a husband and father, and there is nothing more important to me than family. I love food. All food. I have an eternal ongoing pursuit of the best quality audio experience I can find in headphones.
-  video_provider: "youtube"
-  video_id: "MfaWl2-U_Zw"
+  speakers:
+    - Mark Hutter
 
 - id: "nelson-wittwer-railsconf-2020-ce"
   title: "The Circle Of Lifecycle Events"
   raw_title: "RailsConf 2020 CE - The Circle Of Lifecycle Events by Nelson Wittwer"
-  speakers:
-    - Nelson Wittwer
   event_name: "RailsConf 2020 CE"
   date: "2020-04-24"
   published_at: "2020-05-04"
+  video_provider: "youtube"
+  video_id: "db-FEuSLIyc"
   description: |-
-    The Circle Of Lifecycle Events by Nelson Wittwer
-
     "To the new software developer wanting to build a web app with Rails, callbacks and associations are gifts from the gods. As your application grows in complexity however, you may notice your favorite tools have actually turned on you. New users suddenly aren't getting welcome emails and you've somehow orphaned associations. Come learn proven patterns for managing lifecycle events for associated records in a way that sparks joy."
 
     __________
 
     Nelson has spent most of his career working within Rails typically building new startups/products but has also maintained and iterated on platforms at scale supporting tens of millions of users. Nelson is a personable guy who loves to make people laugh.  Nelson currently lives in the Raleigh/Durham area and works for MX.com building banking/fintech products.
-  video_provider: "youtube"
-  video_id: "db-FEuSLIyc"
+  speakers:
+    - Nelson Wittwer
 
 - id: "nikolay-sverchkov-railsconf-2020-ce"
   title: "Authorization in the GraphQL era"
   raw_title: "RailsConf 2020 CE - Authorization in the GraphQL era by Nikolay Sverchkov"
-  speakers:
-    - Nikolay Sverchkov
   event_name: "RailsConf 2020 CE"
   date: "2020-04-24"
   published_at: "2020-05-04"
+  video_provider: "youtube"
+  video_id: "WuvlXZvqIMg"
   description: |-
-    Authorization in the GraphQL era by Nikolay Sverchkov
-
     "More and more teams choose GraphQL as the transport protocol for their projects. Switching the paradigm brings many benefits but comes at the price of figuring out how to deal with the well-known problems in this new world. Let’s talk about a particular one—access control organization.
 
     In this talk, I’d like to discuss the differences between graph nodes and controller actions when dealing with user permissions, the pattern of crafting authentication, and authorization in Rails applications with GraphQL API and demonstrate the options we have in our ecosystem."
@@ -568,96 +511,86 @@
     __________
 
     Creative Back-end developer at Evil Martians
-  video_provider: "youtube"
-  video_id: "WuvlXZvqIMg"
+  speakers:
+    - Nikolay Sverchkov
 
 - id: "noel-rappin-railsconf-2020-ce"
   title: "Building a Mentorship Program"
   raw_title: "RailsConf 2020 CE - Building a Mentorship Program by Noel Rappin"
-  speakers:
-    - Noel Rappin
   event_name: "RailsConf 2020 CE"
   date: "2020-04-24"
   published_at: "2020-05-04"
+  video_provider: "youtube"
+  video_id: "aovuLQm75Vw"
   description: |-
-    Building a Mentorship Program by Noel Rappin
-
     Mentorship is a great way for a newer developer to benefit from the experience of a more senior developer. While there are lots of available resources on how to be a good mentor or mentee, there are far fewer guidelines on how to set up a mentoring program within your engineering organization. I'm doing this now, and I'll share the process with you: why we decided to start a team-wide mentorship program, how we got volunteers and how we matched them, and how we followed up and what worked and what didn't. You'll get everything you need to start a mentorship program at your organization.
 
     __________
 
     Noel Rappin is a Staff Engineer at Root Insurance. Noel has authored multiple technical books, including "Modern Front End Development For Rails" and "Rails 5 Test Prescriptions". He also hosted the podcast Tech Done Right. Follow Noel on Twitter @noelrap, and online at http://www.noelrappin.com.
-  video_provider: "youtube"
-  video_id: "aovuLQm75Vw"
+  speakers:
+    - Noel Rappin
 
 - id: "paul-zaich-railsconf-2020-ce"
   title: "The Sounds of Silence: Lessons from an 18 hour API outage"
   raw_title: "RailsConf 2020 CE - The Sounds of Silence: Lessons from an 18 hour API outage by Paul Zaich"
-  speakers:
-    - Paul Zaich
   event_name: "RailsConf 2020 CE"
   date: "2020-04-24"
   published_at: "2020-05-04"
+  video_provider: "youtube"
+  video_id: "bSPvuaFtN6M"
   description: |-
-    The Sounds of Silence: Lessons from an 18 hour API outage by Paul Zaich
-
     Sometimes applications are behaving “normally” along strict definitions of HTTP statuses but under the surface, something is terribly wrong. In 2017, Checkr’s most important API endpoint went down for 12 hours without detection. In this talk I’ll talk about this incident, how we responded (what went well and what could have gone better) and explore how we’ve hardened our systems today with simple monitoring patterns.
 
     ___________
 
     Paul hails from Denver, CO where he works as an Engineering Manager at Checkr. He’s passionate about building technology for the new world of work. In a former life, Paul was a competitive swimmer. He now spends most of his free time on dry land with his wife and three children.
-  video_provider: "youtube"
-  video_id: "bSPvuaFtN6M"
+  speakers:
+    - Paul Zaich
 
 - id: "seyed-nasehi-railsconf-2020-ce"
   title: "Why You Should Avoid Identity Sync Like Wildfire?"
   raw_title: "RailsConf 2020 CE - Why You Should Avoid Identity Sync Like Wildfire? by Seyed Nasehi"
-  speakers:
-    - Seyed Nasehi
   event_name: "RailsConf 2020 CE"
   date: "2020-04-24"
   published_at: "2020-05-04"
+  video_provider: "youtube"
+  video_id: "huJtiA_wOtc"
   description: |-
-    Why You Should Avoid Identity Sync Like Wildfire? by Seyed Nasehi
-
     When we built our single sign-on service, we learned that syncing identity changes among applications can be deceptively complex. This is because we had to iteratively deploy the SSO service while supporting our existing applications that used the service. In this talk, we discuss lessons learned and recommendations on three key identity sync problems: 1) using editable fields such as email as an ID, 2) relying on unproven promises by standards such as SCIM, and 3) split-tenant situation. This talk will help developers avoid some pitfalls while building or working with an identity service.
 
     __________
 
     Seyed M Nasehi is a software engineer at Cisco with a decade of software development experience. He's been building Ruby on Rails applications in the past 3 years to help customers who are using Cisco security products. His latest involvement was building a single sign-on service to be used by multiple security products within Cisco.
-  video_provider: "youtube"
-  video_id: "huJtiA_wOtc"
+  speakers:
+    - Seyed Nasehi
 
 - id: "chris-oliver-railsconf-2020-ce"
   title: "Advanced ActionText: Attaching any Model in rich text"
   raw_title: "RailsConf 2020 CE - Advanced ActionText: Attaching any Model in rich text by Chris Oliver"
-  speakers:
-    - Chris Oliver
   event_name: "RailsConf 2020 CE"
   date: "2020-05-04"
   published_at: "2020-05-04"
+  video_provider: "youtube"
+  video_id: "2iGBuLQ3S0c"
   description: |-
-    Advanced ActionText: Attaching any Model in rich text by Chris Oliver
-
     Whether it's @ mentions for users, hashtags, or other resources, many application these days need rich text fields. ActionText allows you to embed rich snippets for any model in your Rails app, but it requires a bit of communication with the backend. You'll learn how to add @ mentions for users and YouTube embeds as ActionText attachments and see how it all works together.
 
     __________
 
     Chris is the founder of GoRails, host of the Remote Ruby podcast, and creator of Jumpstart and Hatchbox.io. He loves building tools to make developers' lives easier and helping people learn to code.
-  video_provider: "youtube"
-  video_id: "2iGBuLQ3S0c"
+  speakers:
+    - Chris Oliver
 
 - id: "justin-gordon-railsconf-2020-ce"
   title: "Webpacker, It-Just-Works, But How?"
   raw_title: "RailsConf 2020 CE - Webpacker, It-Just-Works, But How? by Justin Gordon"
-  speakers:
-    - Justin Gordon
   event_name: "RailsConf 2020 CE"
   date: "2020-05-05"
   published_at: "2020-05-05"
+  video_provider: "youtube"
+  video_id: "sJLoOpc5LD8"
   description: |-
-    Webpacker, It-Just-Works, But How? by Justin Gordon
-
     How does the Webpacker gem provide "it-just-works" webpack integration with Rails? That simplicity did not come easily. The rich functionality, complexity, and rapid evolution of the webpack ecosystem necessitated extension points beyond a simple Ruby config file.
 
     Yet you need to know almost nothing about webpack to leverage the modern JavaScript ecosystem. But what if you want to extend the standard configuration? What information might help you upgrade webpack and webpacker in the future?
@@ -669,5 +602,5 @@
     _________
 
     Justin has been a passionate user of webpack since early 2014 when he just could not stand copy-pasting one more jQuery file into his Rails project. In 2015, he created the gem "React on Rails," which integrated server-side rendered React and Webpack with Rails long before the Webpacker gem. These days, as CEO of ShakaCode.com, he helps companies optimize their Rails websites. He and his ShakaCode team also build Rails apps with modern front-ends, including their startup app, HiChee.com.
-  video_provider: "youtube"
-  video_id: "sJLoOpc5LD8"
+  speakers:
+    - Justin Gordon

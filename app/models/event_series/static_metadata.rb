@@ -7,6 +7,14 @@ class EventSeries::StaticMetadata < ActiveRecord::AssociatedObject
     static_repository.try(:default_country_code) || nil
   end
 
+  def all_youtube_channels
+    static_repository&.all_youtube_channels || []
+  end
+
+  def all_youtube_channel_ids
+    static_repository&.all_youtube_channel_ids || []
+  end
+
   private
 
   def static_repository

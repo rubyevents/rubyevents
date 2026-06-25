@@ -64,16 +64,10 @@ module YouTube
     end
 
     def valid_aspect_ratio?(url)
-      uri = URI.parse(url)
+      width, height = FastImage.size(url, timeout: 5)
+      return false unless width && height
 
-      response = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
-        http.open_timeout = 5
-        http.read_timeout = 5
-        http.request_get(uri.path)
-      end
-
-      image = MiniMagick::Image.read(response.body)
-      aspect_ratio = image.width.to_f / image.height
+      aspect_ratio = width.to_f / height
 
       (aspect_ratio - EXPECTED_ASPECT_RATIO).abs < ASPECT_RATIO_TOLERANCE
     rescue => e

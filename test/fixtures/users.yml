@@ -55,7 +55,7 @@ zero_talks:
   email: zero_talks_user@rubyevents.org
   name: Zero Talks
   twitter: zero_talks
-  github_handle: zero_talks
+  github_handle: zero-talks
   bio: "Zero Talks"
   slug: zero_talks
   password_digest: <%= BCrypt::Password.create("Secret1*3*5*") %>
@@ -131,6 +131,6 @@ developer_oauth:
 github_user:
   name: Github User
   slug: github-user
-  github_handle: GitHub_user
+  github_handle: GitHub-user
   email: github_user@example.com
   password_digest: <%= BCrypt::Password.create("password") %>

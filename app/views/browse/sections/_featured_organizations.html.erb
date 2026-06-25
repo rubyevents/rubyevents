@@ -1,0 +1,54 @@
+<%# locals: (organizations:) %>
+
+<%= turbo_frame_tag "browse-featured-organizations" do %>
+  <% if organizations&.any? %>
+    <section class="flex flex-col gap-4 group/row" data-section="featured-organizations">
+      <div class="flex items-end justify-between">
+        <div>
+          <h2 class="text-xl font-bold">Featured Organizations</h2>
+          <p class="text-sm text-gray-500">Organizations supporting Ruby events</p>
+        </div>
+
+        <%= link_to organizations_path, class: "link text-sm shrink-0 flex items-center gap-1 hover:gap-2 transition-all", data: {turbo_frame: "_top"} do %>
+          View All
+          <%= fa("arrow-right-long", size: :sm) %>
+        <% end %>
+      </div>
+
+      <div class="relative" data-controller="content-row">
+        <button
+          class="hidden lg:flex absolute -left-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white shadow-lg hover:bg-gray-100 transition-all opacity-0 group-hover/row:opacity-100 disabled:opacity-0"
+          data-content-row-target="prevButton"
+          data-action="click->content-row#scrollLeft">
+          <%= fa("chevron-left", size: :md, class: "text-gray-700") %>
+        </button>
+
+        <div
+          class="overflow-x-auto scroll-smooth snap-x snap-mandatory"
+          style="-ms-overflow-style: none; scrollbar-width: none;"
+          data-content-row-target="container"
+          data-action="scroll->content-row#handleScroll">
+          <div class="flex gap-4 sm:pb-2" data-content-row-target="track">
+            <% organizations.each do |organization| %>
+              <div class="snap-start shrink-0 w-64 sm:w-72">
+                <%= render partial: "organizations/card", locals: {organization: organization} %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <button
+          class="hidden lg:flex absolute -right-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white shadow-lg hover:bg-gray-100 transition-all opacity-0 group-hover/row:opacity-100 disabled:opacity-0"
+          data-content-row-target="nextButton"
+          data-action="click->content-row#scrollRight">
+          <%= fa("chevron-right", size: :md, class: "text-gray-700") %>
+        </button>
+
+        <div
+          class="absolute right-0 top-0 bottom-2 w-64 pointer-events-none opacity-0 sm:opacity-50 transition-opacity"
+          style="background: linear-gradient(to left, var(--fallback-b1,oklch(var(--b1)/1)), transparent);"
+          data-content-row-target="gradient"></div>
+      </div>
+    </section>
+  <% end %>
+<% end %>

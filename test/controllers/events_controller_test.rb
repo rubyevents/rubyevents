@@ -2,41 +2,23 @@ require "test_helper"
 
 class EventsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @event = events(:railsconf_2017)
+    @event = events(:future_conference)
     @user = users(:lazaro_nixon)
   end
 
   test "should get index" do
-    get archive_events_url
+    get events_url
     assert_response :success
-    assert_select "h1", /Events Archive/i
-    assert_select "##{dom_id(@event)}", 1
+    assert_select "h1", /Upcoming Events/i
+    assert_select "[data-event-id=#{@event.slug}]", 2
   end
 
-  test "should get index with search results" do
-    get archive_events_url(s: "rails")
+  test "should get index as ics" do
+    get events_url(format: :ics)
     assert_response :success
-    assert_select "h1", /Events Archive/i
-    assert_select "div", /search results for "rails"/i
-    assert_select "##{dom_id(@event)}", 1
-  end
-
-  test "should get index and return events in the correct order" do
-    event_names = %i[brightonruby_2024 no_sponsors_event new_rb_meetup railsconf_2017 future_conference rails_world_2023 tropical_rb_2024 rubyconfth_2022 wnb_rb_meetup].map { |event| events(event) }.map(&:name)
-
-    get archive_events_url
-
-    assert_response :success
-
-    assert_select ".event .event-name", count: event_names.size do |nodes|
-      assert_equal event_names, nodes.map(&:text)
-    end
-  end
-
-  test "should get index search result" do
-    get archive_events_url(letter: "T")
-    assert_response :success
-    assert_select "span", text: "Tropical Ruby 2024"
+    assert_equal "text/calendar; charset=utf-8", response.content_type
+    assert_includes response.body, "BEGIN:VCALENDAR"
+    assert_includes response.body, "UID:RUBYEVENTS-#{@event.id}"
   end
 
   test "should show event" do
@@ -76,41 +58,6 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     get event_url("old-event-slug")
     assert_response :moved_permanently
     assert_redirected_to event_path(@event)
-  end
-
-  test "should get edit" do
-    sign_in_as @user
-    get edit_event_url(@event)
-    assert_response :success
-  end
-
-  test "should create a pending suggestion for anonymous users" do
-    assert_difference "Suggestion.pending.count", 1 do
-      patch event_url(@event), params: {event: {city: "Paris", country_code: "FR"}}
-    end
-
-    assert_redirected_to event_url(@event)
-  end
-
-  test "should create a pending suggestion for signed in users" do
-    sign_in_as @user
-
-    assert_difference "Suggestion.pending.count", 1 do
-      patch event_url(@event), params: {event: {city: "Paris", country_code: "FR"}}
-    end
-
-    assert_redirected_to event_url(@event)
-  end
-
-  test "should update directly the content for admins" do
-    sign_in_as users(:admin)
-    assert_difference "Suggestion.approved.count", 1 do
-      patch event_url(@event), params: {event: {city: "Paris", country_code: "FR"}}
-    end
-
-    assert_equal "Paris", @event.reload.city
-    assert_equal "FR", @event.reload.country_code
-    assert_redirected_to event_url(@event)
   end
 
   test "should display an empty state message when no events are found" do

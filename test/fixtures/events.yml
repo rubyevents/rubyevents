@@ -4,27 +4,31 @@
 # Table name: events
 # Database name: primary
 #
-#  id               :integer          not null, primary key
-#  city             :string
-#  country_code     :string           indexed => [state_code]
-#  date             :date
-#  date_precision   :string           default("day"), not null
-#  end_date         :date
-#  geocode_metadata :json             not null
-#  kind             :string           default("event"), not null, indexed
-#  latitude         :decimal(10, 6)
-#  location         :string
-#  longitude        :decimal(10, 6)
-#  name             :string           default(""), not null, indexed
-#  slug             :string           default(""), not null, indexed
-#  start_date       :date
-#  state_code       :string           indexed => [country_code]
-#  talks_count      :integer          default(0), not null
-#  website          :string           default("")
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  canonical_id     :integer          indexed
-#  event_series_id  :integer          not null, indexed
+#  id                  :integer          not null, primary key
+#  banner_background   :string
+#  city                :string
+#  country_code        :string           indexed => [state_code]
+#  date                :date
+#  date_precision      :string           default("day"), not null
+#  end_date            :date
+#  featured_background :string
+#  featured_color      :string
+#  geocode_metadata    :json             not null
+#  home_sort_date      :date
+#  kind                :string           default("event"), not null, indexed
+#  latitude            :decimal(10, 6)
+#  location            :string
+#  longitude           :decimal(10, 6)
+#  name                :string           default(""), not null, indexed
+#  slug                :string           default(""), not null, indexed
+#  start_date          :date
+#  state_code          :string           indexed => [country_code]
+#  talks_count         :integer          default(0), not null
+#  website             :string           default("")
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  canonical_id        :integer          indexed
+#  event_series_id     :integer          not null, indexed
 #
 # Indexes
 #
@@ -102,6 +106,8 @@ brightonruby_2024:
 
 future_conference:
   date: <%= 3.weeks.from_now %>
+  start_date: <%= 3.weeks.from_now %>
+  end_date: <%= 3.weeks.from_now %>
   series: rails_world
   name: Future Conference
   kind: conference
@@ -131,3 +137,15 @@ new_rb_meetup:
   kind: meetup
   name: new Meetup
   slug: new-rb-meetup
+
+railsconf_2025:
+  date: 2025-07-08
+  start_date: 2025-07-08
+  end_date: 2025-07-10
+  series: railsconf
+  city: Philadelphia
+  country_code: US
+  state_code: PA
+  kind: conference
+  name: RailsConf 2025
+  slug: railsconf-2025

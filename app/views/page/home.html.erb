@@ -1,14 +1,15 @@
 <% title hotwire_native_app? ? "RubyEvents" : "RubyEvents.org - On a mission to index all Ruby events" %>
+<% set_meta_tags site: nil # remove the "... | RubyEvents.org" from the title as that's already included above %>
 <% content_for :body_class, "home-page" %>
 
 <% if @featured_events.any? %>
   <% content_for :head do %>
-    <meta name="theme-color" content="<%= @featured_events.first.static_metadata.featured_background %>" data-featured-theme-color>
+    <meta name="theme-color" content="<%= @featured_events.first.featured_background %>" data-featured-theme-color>
 
     <style>
       :root {
-        --featured-color: <%= @featured_events.first.static_metadata.featured_color %>;
-        --featured-background: <%= @featured_events.first.static_metadata.featured_background %>;
+        --featured-color: <%= @featured_events.first.featured_color %>;
+        --featured-background: <%= @featured_events.first.featured_background %>;
       }
 
       body.home-page .navbar {
@@ -46,8 +47,16 @@
         background: var(--featured-background);
         padding-bottom: 3rem;
         margin-bottom: 3rem !important;
-        border-bottom: 0.5px solid var(--featured-color);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
       }
+
+      <% if @featured_events.size > 1 && false %>
+        @media (min-width: 1024px) {
+          body.home-page .splide {
+            padding-bottom: 0;
+          }
+        }
+      <% end %>
       body.home-page .featured-stats {
         color: var(--featured-color);
       }
@@ -59,25 +68,26 @@
   <% cache @featured_events do %>
     <% if @featured_events.any? %>
       <section class="splide w-full" aria-label="Featured Events" data-controller="splide">
-        <div class="featured-stats w-full pt-8">
+        <div class="featured-stats w-full pt-8 lg:shrink-0">
           <div class="container hotwire-native:hidden flex flex-col items-center text-center">
             <h2 class="text-2xl font-bold tracking-tight mb-6">On a mission to index all Ruby events</h2>
             <div class="flex flex-wrap gap-4 justify-center items-center text-sm">
               <div class="flex flex-wrap justify-center items-center gap-2 mb-12 lg:mb-6">
                 <span class="opacity-80">We have indexed</span>
-                <%= link_to events_path, class: "inline-flex items-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm font-semibold border hover:bg-white/30 transition-colors", style: "border-color: color-mix(in srgb, var(--featured-color) 25%, transparent);" do %>
+
+                <%= link_to events_path, class: "inline-flex items-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm font-semibold border hover:bg-white/30", style: "border-color: color-mix(in srgb, var(--featured-color) 25%, transparent);" do %>
                   <%= @events_count %> events
                 <% end %>
 
                 <span class="opacity-80">and</span>
 
-                <%= link_to talks_path, class: "inline-flex items-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm font-semibold border hover:bg-white/30 transition-colors", style: "border-color: color-mix(in srgb, var(--featured-color) 25%, transparent);" do %>
+                <%= link_to talks_path, class: "inline-flex items-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm font-semibold border hover:bg-white/30", style: "border-color: color-mix(in srgb, var(--featured-color) 25%, transparent);" do %>
                   <%= @talks_count %> talks
                 <% end %>
 
                 <span class="opacity-80">from</span>
 
-                <%= link_to speakers_path, class: "inline-flex items-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm font-semibold border hover:bg-white/30 transition-colors", style: "border-color: color-mix(in srgb, var(--featured-color) 25%, transparent);" do %>
+                <%= link_to speakers_path, class: "inline-flex items-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm font-semibold border hover:bg-white/30", style: "border-color: color-mix(in srgb, var(--featured-color) 25%, transparent);" do %>
                   <%= @speakers_count %> speakers
                 <% end %>
               </div>
@@ -85,13 +95,13 @@
           </div>
         </div>
 
-        <div class="splide__track">
+        <div class="splide__track lg:flex-1 lg:flex lg:flex-col lg:justify-center lg:min-h-0">
           <ul class="splide__list">
             <% @featured_events.each_with_index do |event, index| %>
               <li
                 class="splide__slide"
-                data-featured-color="<%= event.static_metadata.featured_color %>"
-                data-featured-background="<%= event.static_metadata.featured_background %>">
+                data-featured-color="<%= event.featured_color %>"
+                data-featured-background="<%= event.featured_background %>">
                 <div class="<%= "hidden" if Current.user || index != 0 %>">
                   <%= render partial: "events/featured_home", locals: {event: event} %>
                 </div>
@@ -99,93 +109,201 @@
             <% end %>
           </ul>
         </div>
+
+        <a href="#more-content" class="hidden lg:flex lg:shrink-0 justify-center pb-1" aria-label="Scroll for more" style="color: var(--featured-color);">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </a>
+
+        <% if @featured_events.size > 1 %>
+          <div class="hidden lg:flex lg:shrink-0 justify-center items-center gap-2 py-4" style="color: var(--featured-color);">
+            <% @featured_events.each_with_index do |_featured_event, index| %>
+              <button
+                type="button"
+                class="h-2 w-2 rounded-full bg-current transition-opacity <%= index.zero? ? "opacity-100" : "opacity-40" %>"
+                data-slide-dot
+                data-index="<%= index %>"
+                data-action="click->splide#goTo"
+                aria-label="Go to slide <%= index + 1 %>"></button>
+            <% end %>
+          </div>
+        <% end %>
+
+        <% if @featured_events.size > 1 && false %>
+          <div class="hidden lg:grid lg:shrink-0 grid-cols-3 gap-px w-full border-t" style="border-color: color-mix(in srgb, var(--featured-color) 35%, transparent); background: color-mix(in srgb, var(--featured-color) 35%, transparent);">
+            <% @featured_events.each_with_index do |upcoming_event, index| %>
+              <% upcoming_color = upcoming_event.static_metadata.featured_color %>
+              <% upcoming_background = upcoming_event.static_metadata.featured_background %>
+              <% card_style = "color: #{upcoming_color};" %>
+              <% card_style += upcoming_background.to_s.start_with?("data:") ? " background: url('#{upcoming_background}'); background-size: cover; background-position: center;" : " background: #{upcoming_background};" %>
+
+              <%= link_to featured_cta_path(upcoming_event),
+                    class: "flex items-center gap-3 p-4 w-full overflow-hidden hover:brightness-125 transition #{"hidden" unless index.between?(1, 3)}",
+                    style: card_style,
+                    data: {up_next_card: ""} do %>
+                <div class="shrink-0 w-16 h-12 flex items-center justify-center">
+                  <%= image_tag upcoming_event.featured_image_path, class: "max-h-12 max-w-full object-contain", loading: "lazy", alt: upcoming_event.name %>
+                </div>
+
+                <div class="min-w-0 flex-1">
+                  <div class="font-semibold text-sm truncate"><%= upcoming_event.name %></div>
+                  <div class="text-xs opacity-70 truncate"><%= upcoming_event.formatted_dates %></div>
+                </div>
+
+                <%= render "events/featured_badge", event: upcoming_event, extra_class: "shrink-0" %>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
       </section>
     <% end %>
   <% end %>
 
-  <div class="container">
+  <div class="container" id="more-content" style="scroll-margin-top: 5rem;">
     <div class="flex flex-col gap-12 mt-12">
-      <section class="flex flex-col w-full gap-4">
-        <div class="flex items-center justify-between w-full">
-          <h2 class="text-primary shrink-0">Latest talks</h2>
-          <%= link_to "see all talks", talks_path, class: "link text-right w-full" %>
-        </div>
-
-        <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 md:[&>:nth-child(4)]:hidden lg:grid-cols-4 lg:[&>:nth-child(4)]:block">
-          <%= render partial: "talks/card", collection: @latest_talks.first(4), as: :talk, cached: true, locals: {back_to: root_path, back_to_title: "Home"} %>
-        </div>
-      </section>
-
-      <section class="flex flex-col w-full gap-4">
-        <div class="flex items-center justify-between w-full">
-          <h2 class="text-primary shrink-0">Featured speakers</h2>
-          <%= link_to "see all speakers", speakers_path, class: "link text-right w-full" %>
-        </div>
-
-        <div class="relative" data-controller="scroll">
-          <div class="overflow-x-auto scroll-smooth snap-x snap-mandatory"
-               data-scroll-target="container"
-               data-action="scroll->scroll#checkScroll">
-            <div class="flex pb-4 gap-4">
-              <% @featured_speakers.each do |speaker| %>
-                <div class="snap-start" data-scroll-target="card">
-                  <%= render partial: "speakers/card", locals: {speaker: speaker} %>
-                </div>
-              <% end %>
-            </div>
-          </div>
-          <div
-            class="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white to-transparent pointer-events-none"
-            data-scroll-target="gradient"></div>
-        </div>
-      </section>
-
-      <section class="flex flex-col w-full gap-4">
-        <div class="flex items-center justify-between w-full">
-          <h2 class="text-primary shrink-0">Latest events</h2>
-          <%= link_to "see all events", events_path, class: "link text-right w-full" %>
-        </div>
-        <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 md:[&>:nth-child(4)]:hidden lg:grid-cols-4 lg:[&>:nth-child(4)]:block">
-          <%= cache @latest_events do %>
-            <%= render partial: "events/card", collection: @latest_events, as: :event, cached: true %>
-          <% end %>
-        </div>
-      </section>
-
-      <% if @recommended_talks.present? %>
-        <section class="flex flex-col w-full gap-4">
-          <div class="flex items-center justify-between w-full">
-            <h2 class="text-primary shrink-0">Recommended for you</h2>
-            <%= link_to "see all recommendations", recommendations_path, class: "link text-right w-full" %>
-          </div>
-          <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 md:[&>:nth-child(4)]:hidden lg:grid-cols-4 lg:[&>:nth-child(4)]:block">
-            <%= render partial: "talks/card", collection: @recommended_talks, as: :talk, cached: true, locals: {back_to: root_path, back_to_title: "Home"} %>
-          </div>
-        </section>
+      <%= turbo_frame_tag "browse-newest-talks", src: browse_path("newest_talks"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
       <% end %>
 
-      <% if @featured_organizations.present? %>
-        <section class="flex flex-col w-full gap-4">
-          <div class="flex items-center justify-between w-full">
-            <h2 class="text-primary shrink-0">Featured organizations</h2>
-            <%= link_to "see all organizations", organizations_path, class: "link text-right w-full" %>
-          </div>
-
-          <div class="relative" data-controller="scroll">
-            <div class="overflow-x-auto scroll-smooth snap-x snap-mandatory" data-scroll-target="container" data-action="scroll->scroll#checkScroll">
-              <div class="flex pb-4 gap-4">
-                <% @featured_organizations.each do |organization| %>
-                  <div class="snap-start" data-scroll-target="card">
-                    <%= render partial: "organizations/card", locals: {organization: organization} %>
-                  </div>
-                <% end %>
-              </div>
-            </div>
-
-            <div class="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white to-transparent pointer-events-none" data-scroll-target="gradient"></div>
-          </div>
-        </section>
+      <%= turbo_frame_tag "browse-closing-cfps", src: browse_path("closing_cfps"), loading: :lazy do %>
+        <%= render "browse/event_row_skeleton", min_height: "174px", card_height: "h-24" %>
       <% end %>
+
+      <%= turbo_frame_tag "browse-recently-published", src: browse_path("recently_published"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-upcoming-events", src: browse_path("upcoming_events"), loading: :lazy do %>
+        <%= render "browse/event_row_skeleton" %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-trending", src: browse_path("trending"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <% if Current.user %>
+        <%= turbo_frame_tag "browse-continue-watching", src: browse_path("continue_watching"), loading: :lazy do %>
+          <%= render "browse/content_row_skeleton" %>
+        <% end %>
+
+        <%= turbo_frame_tag "browse-for-you", src: browse_path("for_you"), loading: :lazy do %>
+          <%= render "browse/content_row_skeleton" %>
+        <% end %>
+
+        <%= turbo_frame_tag "browse-from-bookmarks", src: browse_path("from_bookmarks"), loading: :lazy do %>
+          <%= render "browse/content_row_skeleton" %>
+        <% end %>
+
+        <%= turbo_frame_tag "browse-favorite-rubyists", src: browse_path("favorite_rubyists"), loading: :lazy do %>
+          <%= render "browse/content_row_skeleton" %>
+        <% end %>
+
+        <%= turbo_frame_tag "browse-favorite-speakers", src: browse_path("favorite_speakers"), loading: :lazy do %>
+          <%= render "browse/content_row_skeleton" %>
+        <% end %>
+
+        <%= turbo_frame_tag "browse-events-attended", src: browse_path("events_attended"), loading: :lazy do %>
+          <%= render "browse/content_row_skeleton" %>
+        <% end %>
+
+        <%= turbo_frame_tag "browse-unwatched-attended", src: browse_path("unwatched_attended"), loading: :lazy do %>
+          <%= render "browse/content_row_skeleton" %>
+        <% end %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-event-rows", src: browse_path("event_rows"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-popular", src: browse_path("popular"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-popular-youtube", src: browse_path("popular_youtube"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-most-bookmarked", src: browse_path("most_bookmarked"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-recent-events", src: browse_path("recent_events"), loading: :lazy do %>
+        <%= render "browse/event_row_skeleton", min_height: "384px" %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-hidden-gems", src: browse_path("hidden_gems"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-quick-watches", src: browse_path("quick_watches"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-deep-dives", src: browse_path("deep_dives"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-evergreen", src: browse_path("evergreen"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-beginner-friendly", src: browse_path("beginner_friendly"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-mind-blowing", src: browse_path("mind_blowing"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-inspiring", src: browse_path("inspiring"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-most-liked", src: browse_path("most_liked"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-recommended-community", src: browse_path("recommended_community"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <% if Current.user %>
+        <%= turbo_frame_tag "browse-language-rows", src: browse_path("language_rows"), loading: :lazy do %>
+          <%= render "browse/content_row_skeleton" %>
+        <% end %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-popular-topics", src: browse_path("popular_topics"), loading: :lazy do %>
+        <%= render "browse/pill_row_skeleton" %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-talk-kinds", src: browse_path("talk_kinds"), loading: :lazy do %>
+        <%= render "browse/pill_row_skeleton", min_height: "140px" %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-talk-languages", src: browse_path("talk_languages"), loading: :lazy do %>
+        <%= render "browse/pill_row_skeleton", min_height: "140px" %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-topic-rows", src: browse_path("topic_rows"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-featured-organizations", src: browse_path("featured_organizations"), loading: :lazy do %>
+        <%= render "browse/event_row_skeleton", min_height: "369px" %>
+      <% end %>
+
+      <%= render "page/ruby_passport" %>
+
+      <%= render "page/get_involved" %>
+
+      <div class="flex justify-center pb-4">
+        <%= link_to browse_index_path, class: "btn btn-primary btn-lg gap-2" do %>
+          <%= fa("compass", size: :md) %>
+          Explore all categories
+        <% end %>
+      </div>
     </div>
   </div>
 </main>

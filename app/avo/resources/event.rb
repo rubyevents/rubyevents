@@ -31,11 +31,11 @@ class Avo::Resources::Event < Avo::BaseResource
     field :kind, hide_on: :index
     field :slug, as: :text
     field :updated_at, as: :date, sortable: true
-    # field :suggestions, as: :has_many
     field :series, as: :belongs_to
     field :talks, as: :has_many
     field :speakers, as: :has_many, through: :talks, class_name: "User"
     field :participants, as: :has_many, through: :event_participations, class_name: "User"
+    field :cfps, as: :has_many
     field :event_involvements, as: :has_many
     field :topics, as: :has_many
     field :sponsors, as: :has_many

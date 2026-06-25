@@ -7,7 +7,7 @@ class Avo::Resources::UserTalk < Avo::BaseResource
 
   def fields
     field :id, as: :id
-    field :user, as: :belongs_to
+    field :user, as: :belongs_to, searchable: true
     field :talk, as: :belongs_to
   end
 end

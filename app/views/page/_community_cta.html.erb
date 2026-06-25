@@ -1,0 +1,38 @@
+<%# locals: (exclude:) %>
+
+<section class="py-8">
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+    <% unless exclude == :attend %>
+      <div class="text-center p-6 rounded-2xl border border-base-300 bg-white">
+        <h3 class="font-bold mb-2">Looking to attend an event?</h3>
+        <p class="text-gray-500 text-sm mb-4">Find upcoming Ruby conferences and meetups near you.</p>
+        <%= link_to attend_path, class: "btn btn-outline btn-sm gap-2" do %>
+          <%= fa("ticket", size: :sm) %>
+          Browse events
+        <% end %>
+      </div>
+    <% end %>
+
+    <% unless exclude == :speak %>
+      <div class="text-center p-6 rounded-2xl border border-base-300 bg-white">
+        <h3 class="font-bold mb-2">Want to speak at an event?</h3>
+        <p class="text-gray-500 text-sm mb-4">Tips for writing proposals and preparing great talks.</p>
+        <%= link_to speak_path, class: "btn btn-outline btn-sm gap-2" do %>
+          <%= fa("microphone", size: :sm) %>
+          Learn about speaking
+        <% end %>
+      </div>
+    <% end %>
+
+    <% unless exclude == :organize %>
+      <div class="text-center p-6 rounded-2xl border border-base-300 bg-white">
+        <h3 class="font-bold mb-2">Thinking about organizing?</h3>
+        <p class="text-gray-500 text-sm mb-4">The community needs more events. You can start one.</p>
+        <%= link_to organize_path, class: "btn btn-outline btn-sm gap-2" do %>
+          <%= fa("people-group", size: :sm) %>
+          Learn about organizing
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</section>

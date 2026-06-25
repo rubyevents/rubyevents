@@ -1,71 +1,86 @@
-<%= turbo_refreshes_with method: :morph, scroll: :preserve %>
+<div class="container my-8 hotwire-native:my-0 hotwire-native:mb-8">
+  <div class="grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-8">
+    <%= render "talks/sidebar", sidebar_data: @sidebar_data %>
 
-<div class="container flex flex-col w-full gap-4 my-8 hotwire-native:my-0 hotwire-native:mb-8">
-  <div class="flex items-end gap-2 title text-primary hotwire-native:mb-3">
-    <h1 class="title hotwire-native:hidden">
+    <div class="flex flex-col gap-4">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 min-h-[2.5rem] hotwire-native:mb-3">
+        <h1 class="title text-primary hotwire-native:hidden">
+          <% if @section_title %>
+            <%= title @section_title %>
+          <% elsif params[:kind].present? %>
+            <%= title((Talk::KIND_LABELS[params[:kind]] || params[:kind].titleize).pluralize) %>
+          <% elsif params[:language].present? %>
+            <%= title "#{Language.emoji_flag(params[:language])} #{Language.by_code(params[:language])}" %>
+          <% elsif params[:status] == "no_video" %>
+            <%= title "Talks Without Video" %>
+          <% else %>
+            <%= title "Talks" %>
+          <% end %>
 
-      <% if params[:status] == "scheduled" %>
-        <%= title "Scheduled Talks" %>
-      <% else %>
-        <%= title "Video Recordings of Talks" %>
-      <% end %>
+          <% if params[:s].present? %>
+            : search results for "<%= params[:s] %>"
+          <% end %>
+        </h1>
 
-      <% if params[:s].present? %>
-        : search results for "<%= params[:s] %>"
-      <% end %>
-    </h1>
-  </div>
+        <div class="flex items-center gap-2 hotwire-native:hidden">
+          <% if filtered_search? %>
+            <div class="text-sm text-gray-500"><%= @pagy.count %> results</div>
+          <% end %>
 
-  <div class="flex flex-col items-end justify-end gap-2 sm:items-center sm:flex-row hotwire-native:hidden">
-    <% if filtered_search? %>
-      <div class="text-sm">Results: <%= @pagy.count %></div>
-    <% end %>
-
-    <div class="tabs tabs-boxed">
-      <%= link_to "All", talks_path(search_params.except(:status).merge(status: "all")),
-            class: "tab #{"tab-active" if params[:status] == "all"}" %>
-      <%= link_to "Published", talks_path(search_params.except(:status)),
-            class: "tab #{"tab-active" if params[:status].blank?}" %>
-      <%= link_to "Scheduled", talks_path(search_params.except(:status).merge(status: "scheduled")),
-            class: "tab #{"tab-active" if params[:status] == "scheduled"}" %>
-    </div>
-
-    <div class="flex items-center gap-2">
-      <div class="text-sm text-gray-500">Sort by:</div>
-      <div class="flex items-center gap-2">
-        <details class="dropdown dropdown-end">
-          <summary class="pl-0 m-1 font-normal bg-transparent border-none shadow-none btn hover:bg-transparent"><%= ordering_title %></summary>
-          <ul class="z-30 p-2 shadow menu dropdown-content bg-base-100 rounded-box w-52">
-            <% if params[:s].present? %>
-              <li>
-                <%= link_to "Relevance", {**search_params, order_by: "ranked"} %>
-              </li>
-            <% end %>
-            <li>
-              <%= link_to "Newest first", {**search_params, order_by: "date_desc"} %>
-            </li>
-            <li>
-              <%= link_to "Oldest first", {**search_params, order_by: "date_asc"} %>
-            </li>
-          </ul>
-        </details>
+          <% unless params[:section].present? %>
+            <div class="tabs tabs-boxed">
+              <%= link_to talks_path(search_params.except(:status).merge(status: "all")),
+                    class: "tab gap-1.5 #{"tab-active" if params[:status] == "all"}" do %>
+                All <span class="text-xs opacity-60"><%= number_with_delimiter(@status_counts[:all]) %></span>
+              <% end %>
+              <%= link_to talks_path(search_params.except(:status)),
+                    class: "tab gap-1.5 #{"tab-active" if params[:status].blank? || params[:status] == "watchable"}" do %>
+                Watchable <span class="text-xs opacity-60"><%= number_with_delimiter(@status_counts[:watchable]) %></span>
+              <% end %>
+              <%= link_to talks_path(search_params.except(:status).merge(status: "no_video")),
+                    class: "tab gap-1.5 #{"tab-active" if params[:status] == "no_video"}" do %>
+                No Video <span class="text-xs opacity-60"><%= number_with_delimiter(@status_counts[:no_video]) %></span>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
       </div>
+
+      <% if @sign_in_required %>
+        <div class="text-center py-12">
+          <div class="max-w-md mx-auto">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">Personalized recommendations</h2>
+            <p class="text-gray-600 mb-6">
+              Sign in to get talk recommendations based on your interests and viewing history.
+            </p>
+            <%= link_to new_session_path(redirect_to: request.fullpath), class: "btn btn-primary", data: {turbo_frame: "modal"} do %>
+              Sign in to get started
+            <% end %>
+          </div>
+        </div>
+      <% elsif @talks.present? %>
+        <div id="talks" class="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
+          <% @talks.each do |talk| %>
+            <div>
+              <%= render "talks/card_thumbnail", talk: talk, back_to: back_to_from_request %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="flex w-full mt-4">
+          <%== pagy_nav(@pagy) if @pagy&.pages.to_i > 1 %>
+        </div>
+      <% else %>
+        <div class="text-center py-12">
+          <div class="max-w-md mx-auto">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">No talks found</h2>
+            <p class="text-gray-600 mb-6">Try adjusting your filters or browse all talks.</p>
+            <%= link_to talks_path, class: "btn btn-primary" do %>
+              Browse all talks
+            <% end %>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
-  <%= turbo_frame_tag "talks", target: "_top" do %>
-    <div id="talks" class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gallery">
-      <%= render partial: "talks/card",
-            collection: @talks,
-            as: :talk,
-            locals: {
-              favoritable: true,
-              user_favorite_talks_ids: @user_favorite_talks_ids,
-              user_watched_talks: user_watched_talks,
-              back_to: back_to_from_request
-            } %>
-    </div>
-    <div class="flex w-full mt-4">
-      <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
-    </div>
-  <% end %>
 </div>
