@@ -22,14 +22,14 @@ class CfpGenerator < Generators::EventBase
 
   def find_and_delete_existing_cfp
     @existing_cfp = nil
-    if File.read(@cfp_file).match?(/(name: "#{options[:name]}"|link: "#{options[:link]}")/)
+    if File.read(@cfp_file).match?(/name: "#{options[:name]}"/) || File.read(@cfp_file).match?(/link: "#{options[:link]}"/)
       document = Yerba.parse_file(@cfp_file)
       document["[]"].each do |cfp_entry|
         if cfp_entry["name"] == options[:name] || cfp_entry["link"] == options[:link]
           say "CFP with name '#{cfp_entry["name"]}' and link '#{cfp_entry["link"]}' already exists in #{@cfp_file}. Modifying existing CFP.", :yellow
           @existing_cfp = cfp_entry.to_h
-          file_location = cfp_entry.location
-          # Delete CFP entry here
+          cfp_entry.delete # Delete the existing CFP entry from the document
+          document.save!
         end
       end
     end
@@ -37,12 +37,12 @@ class CfpGenerator < Generators::EventBase
 
   def create_cfp_record
     @cfp = CFP.new(
-      name: options[:name] || @existing_cfp[:name] || "Call for Proposals",
-      link: options[:link] || @existing_cfp[:link] || "https://www.TODO.example.com/cfp",
-      open_date: options[:open_date] || @existing_cfp[:open_date] || Date.today.iso8601,
-      close_date: options[:close_date] || @existing_cfp[:close_date] || static_event&.start_date
+      name: options[:name] || @existing_cfp&.dig("name") || "Call for Proposals",
+      link: options[:link] || @existing_cfp&.dig("link") || "",
+      open_date: options[:open_date] || @existing_cfp&.dig("open_date") || Date.today.iso8601,
+      close_date: options[:close_date] || @existing_cfp&.dig("close_date") || static_event&.start_date
     )
 
-    append_to_file @cfp_file, template_content("cfp.yml.tt")
+    append_to_file cfp_file, template_content("cfp.yml.tt")
   end
 end

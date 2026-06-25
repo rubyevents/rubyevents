@@ -1,6 +1,5 @@
-
 - name: "<%= @cfp.name %>"
-  link: "<%= @cfp.link %>"
+  link: "<%= @cfp.link %>"<%= @cfp.link.blank? ? " # TODO" : "" %>
   open_date: "<%= @cfp.open_date %>"
 <%- if @cfp.close_date -%>
   close_date: "<%= @cfp.close_date %>"

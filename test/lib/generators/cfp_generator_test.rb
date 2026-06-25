@@ -12,55 +12,83 @@ class CFPGeneratorTest < Rails::Generators::TestCase
     end
   end
 
-  test "creates cfp.yml with valid yaml" do
-    run_generator ["--event-series", "rubyconf", "--event", "2022"]
-
-    assert_file "data/rubyconf/2022/cfp.yml" do |content|
-      assert_match(/\S/, content) # Verify file has content
-    end
-
+  test "creates cfp.yml with valid yaml with no params" do
     cfp_file_path = File.join(destination_root, "data/rubyconf/2022/cfp.yml")
-    validate_cfp_file(cfp_file_path)
+    eliminate_validated_file(file_path: cfp_file_path) do
+      run_generator ["--event-series", "rubyconf", "--event", "2022"]
 
-    File.delete cfp_file_path
+      assert_file cfp_file_path do |content|
+        assert_match(/\S/, content) # Verify file has content
+      end
+    end
+  end
+
+  test "creates cfp.yml with valid yaml with all params" do
+    cfp_file_path = File.join(destination_root, "data/rubyconf/2022/cfp.yml")
+    eliminate_validated_file(file_path: cfp_file_path) do
+      run_generator [
+        "--event-series", "rubyconf",
+        "--event", "2022",
+        "--name", "Call for Proposals",
+        "--link", "https://example.com/cfp",
+        "--open-date", "2022-01-01",
+        "--close-date", "2022-02-01"
+      ]
+
+      assert_file cfp_file_path do |content|
+        assert_match(/name: "Call for Proposals"/, content)
+        assert_match(%r{link: "https://example.com/cfp"}, content)
+        assert_match(/open_date: "2022-01-01"/, content)
+        assert_match(/close_date: "2022-02-01"/, content)
+      end
+    end
   end
 
   test "update cfp.yml if called twice with same name" do
-    run_generator ["--event-series", "rubyconf", "--event", "2023"]
-    assert_file "data/rubyconf/2023/cfp.yml" do |content|
-      assert_match(%r{https://www.TODO.example.com/cfp}, content)
+    file_path = File.join(destination_root, "data/rubyconf/2023/cfp.yml")
+    eliminate_validated_file(file_path:) do
+      run_generator [
+        "--event-series", "rubyconf",
+        "--event", "2023",
+        "--name", "Call for Proposals"
+      ]
+      assert_file file_path do |content|
+        assert_match(/name: "Call for Proposals"/, content)
+        assert_match(/link: "" # TODO/, content)
+      end
+
+      run_generator ["--event-series", "rubyconf", "--event", "2023", "--name", "Call for Proposals", "--link", "https://example.com/cfp"]
+
+      assert_file file_path do |content|
+        assert_match(%r{link: "https://example.com/cfp"}, content)
+        assert_no_match(/link: "" # TODO/, content)
+      end
     end
-
-    run_generator ["--event-series", "rubyconf", "--event", "2023", "--name", "Call for Proposals", "--link", "https://example.com/cfp"]
-
-    assert_file "data/rubyconf/2023/cfp.yml" do |content|
-      assert_match(%r{https://example.com/cfp}, content)
-      assert_no_match(%r{https://www.TODO.example.com/cfp}, content)
-    end
-
-    cfp_file_path = File.join(destination_root, "data/rubyconf/2023/cfp.yml")
-    validate_cfp_file(cfp_file_path)
-
-    File.delete cfp_file_path
   end
 
   test "append to cfp.yml if called with a different name" do
-    run_generator ["--event-series", "rubyconf", "--event", "2024"]
-    run_generator ["--event-series", "rubyconf", "--event", "2024", "--name", "CFP TWO"]
-
-    assert_file "data/rubyconf/2024/cfp.yml" do |content|
-      assert_match(/Call for Proposals/, content)
-      assert_match(/CFP TWO/, content)
-    end
-
     cfp_file_path = File.join(destination_root, "data/rubyconf/2024/cfp.yml")
-    validate_cfp_file(cfp_file_path)
+    eliminate_validated_file(file_path: cfp_file_path) do
+      run_generator ["--event-series", "rubyconf", "--event", "2024"]
+      run_generator ["--event-series", "rubyconf", "--event", "2024", "--name", "CFP TWO"]
 
-    File.delete cfp_file_path
+      assert_file cfp_file_path do |content|
+        assert_match(/name: "Call for Proposals"/, content)
+        assert_match(/name: "CFP TWO"/, content)
+      end
+    end
   end
 
   def validate_cfp_file(path)
     errors = Static::Validators::SchemaArray.new(file_path: path).validate
     assert_empty errors, "CFP YAML does not conform to schema: #{errors.join(", ")}"
+  end
+
+  def eliminate_validated_file(file_path:, &block)
+    File.delete(file_path) if File.exist?(file_path)
+    yield
+    validate_cfp_file(file_path)
+  ensure
+    File.delete(file_path) if File.exist?(file_path)
   end
 end
