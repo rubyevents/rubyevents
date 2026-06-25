@@ -1,0 +1,41 @@
+{
+  "name": "AI-assisted RubyEvents Dev",
+  "dockerComposeFile": "./docker-compose.yml",
+  "service": "rails-app",
+  "workspaceFolder": "/rails",
+  "overrideCommand": true,
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "git.terminalGitEditor": true
+      },
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "bradlc.vscode-tailwindcss",
+        "testdouble.vscode-standard-ruby",
+        "marcoroth.herb-lsp",
+        "redhat.vscode-yaml",
+        "sst-dev.opencode"
+      ]
+    }
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/sshd:1": {}
+  },
+  "postCreateCommand": "curl -fsSL https://opencode.ai/install | bash",
+  "portsAttributes": {
+    "3000": {
+      "label": "Ruby Events Rails Server",
+      "onAutoForward": "notify"
+    },
+    "3036": {
+      "label": "Vite Server",
+      "onAutoForward": "silent"
+    }
+  },
+  "mounts": [
+    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached"
+  ]
+}
