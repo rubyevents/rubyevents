@@ -658,10 +658,6 @@ GEM
       rbs (>= 3, < 5)
     ruby-lsp-rails (0.4.8)
       ruby-lsp (>= 0.26.0, < 0.27.0)
-    ruby-openai (8.3.0)
-      event_stream_parser (>= 0.3.0, < 2.0.0)
-      faraday (>= 1)
-      faraday-multipart (>= 1)
     ruby-progressbar (1.13.0)
     ruby-vips (2.3.0)
       ffi (~> 1.12)
@@ -878,7 +874,6 @@ DEPENDENCIES
   rouge (~> 4.4)
   rss (~> 0.3.1)
   ruby-lsp-rails
-  ruby-openai
   ruby_llm (~> 1.15.0)
   ruby_llm-schema!
   selenium-webdriver

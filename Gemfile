@@ -144,9 +144,6 @@ gem "active_record-associated_object"
 # ActiveJob::Performs adds the `performs` macro to set up jobs by convention.
 gem "active_job-performs"
 
-# Use the OpenAI API with Ruby!
-gem "ruby-openai"
-
 # Markdown that smells nice
 gem "redcarpet", "~> 3.6"
 

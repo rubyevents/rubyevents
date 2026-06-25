@@ -63,7 +63,7 @@ class Topic::Agents < ActiveRecord::AssociatedObject
       task_name: "match_talks"
     )
 
-    result = JSON.parse(response.dig("choices", 0, "message", "content"))
+    result = JSON.parse(response)
 
     matching_talk_ids = result["matches"]
       .select { |m| m["matches"] && m["confidence"] == "high" }
