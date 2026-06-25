@@ -606,7 +606,7 @@ class Talk < ApplicationRecord
       end
     end
 
-    no_speakers = Array.wrap(static_metadata.speakers).none?
+    no_speakers = Array.wrap(static_metadata.speakers.try(:names) || static_metadata.speakers).none?
     no_talks = Array.wrap(static_metadata.talks).none?
     meta_talk = static_metadata.meta_talk?
 
@@ -643,7 +643,13 @@ class Talk < ApplicationRecord
 
     self.kind = static_metadata.kind if static_metadata.try(:kind).present?
 
-    self.speakers = Array.wrap(static_metadata.speakers).reject(&:blank?).map { |speaker_name|
+    speaker_names = if static_metadata.speakers.respond_to?(:names)
+      static_metadata.speakers.names
+    else
+      Array.wrap(static_metadata.speakers)
+    end
+
+    self.speakers = speaker_names.reject(&:blank?).map { |speaker_name|
       User.find_by_name_or_alias(speaker_name.strip) ||
         User.find_by(slug: speaker_name.parameterize) ||
         User.find_or_create_by(name: speaker_name.strip)
