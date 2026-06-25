@@ -41,7 +41,7 @@ If the ruby version is updated, or you start running into issues, feel free to t
 
 #### Requirements
 
-- Ruby 4.0.1
+- Ruby 4.0.5
 - Node.js 22.15.1
 
 #### Setup
