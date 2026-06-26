@@ -16,42 +16,41 @@ class Profiles::EventsControllerTest < ActionDispatch::IntegrationTest
     assert_includes response.body, @event.name
   end
 
-  test "shows verified-only events merged into the list" do
+  test "shows checked-in-only events merged into the list" do
     ConnectedAccount.create!(user: @user, provider: "passport", uid: "EVT001")
-    VerifiedEventParticipation.create!(connect_id: "EVT001", event: @event, scanned_at: Time.current)
+    EventCheckIn.create!(connect_id: "EVT001", event: @event, checked_in_at: Time.current)
 
     get profile_events_url(@user)
     assert_response :success
     assert_includes response.body, @event.name
   end
 
-  test "shows verified badge on verified events" do
+  test "shows checked-in badge on checked-in events" do
     ConnectedAccount.create!(user: @user, provider: "passport", uid: "EVT002")
-    VerifiedEventParticipation.create!(connect_id: "EVT002", event: @event, scanned_at: Time.current)
+    EventCheckIn.create!(connect_id: "EVT002", event: @event, checked_in_at: Time.current)
 
     get profile_events_url(@user)
     assert_response :success
-    assert_includes response.body, "Verified"
+    assert_includes response.body, "Checked in"
   end
 
-  test "event with both self-reported and verified shows verified indicator" do
+  test "event with both self-reported and checked-in shows checked-in indicator" do
     EventParticipation.create!(user: @user, event: @event, attended_as: "visitor")
     ConnectedAccount.create!(user: @user, provider: "passport", uid: "EVT003")
-    VerifiedEventParticipation.create!(connect_id: "EVT003", event: @event, scanned_at: Time.current)
+    EventCheckIn.create!(connect_id: "EVT003", event: @event, checked_in_at: Time.current)
 
     get profile_events_url(@user)
     assert_response :success
     assert_includes response.body, @event.name
-    assert_includes response.body, "Verified"
+    assert_includes response.body, "Checked in"
   end
 
-  test "does not show verified events for unclaimed passport" do
-    # Verified attendance exists but no ConnectedAccount links it to the user
-    VerifiedEventParticipation.create!(connect_id: "ORPHAN", event: @event, scanned_at: Time.current)
+  test "does not show checked-in events for unclaimed passport" do
+    EventCheckIn.create!(connect_id: "ORPHAN", event: @event, checked_in_at: Time.current)
 
     get profile_events_url(@user)
     assert_response :success
-    refute_includes response.body, "Verified"
+    refute_includes response.body, "Checked in"
   end
 
   test "shows empty state when user has no attendance" do

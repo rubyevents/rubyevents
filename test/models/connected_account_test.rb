@@ -37,4 +37,14 @@ class ConnectedAccountTest < ActiveSupport::TestCase
       @user.connected_accounts.create(provider: "passport", uid: "123456")
     end
   end
+
+  test "passport uid is upcased so it matches event check-in connect_ids" do
+    account = @user.connected_accounts.create!(provider: "passport", uid: " 5780ea ")
+    assert_equal "5780EA", account.uid
+  end
+
+  test "non-passport uid casing is left untouched" do
+    account = @user.connected_accounts.create!(provider: "github", uid: "AbC123")
+    assert_equal "AbC123", account.uid
+  end
 end

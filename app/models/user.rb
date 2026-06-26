@@ -118,17 +118,16 @@ class User < ApplicationRecord
   has_many :visitor_events, -> { where(event_participations: {attended_as: :visitor}) },
     through: :event_participations, source: :event
 
-  # Verified event participation (resolved through passport ConnectedAccounts)
-  def verified_attended_events
-    Event.where(id: VerifiedEventParticipation.where(connect_id: passports.select(:uid)).select(:event_id))
+  def checked_in_events
+    Event.where(id: EventCheckIn.where(connect_id: passports.select(:uid)).select(:event_id))
   end
 
   def all_attended_events
-    Event.where(id: (participated_events.pluck(:id) + verified_attended_events.pluck(:id)).uniq)
+    Event.where(id: (participated_events.pluck(:id) + checked_in_events.pluck(:id)).uniq)
   end
 
-  def verified_event_ids
-    VerifiedEventParticipation.where(connect_id: passports.select(:uid)).pluck(:event_id).to_set
+  def checked_in_event_ids
+    EventCheckIn.where(connect_id: passports.select(:uid)).pluck(:event_id).to_set
   end
 
   has_many :event_involvements, as: :involvementable, dependent: :destroy

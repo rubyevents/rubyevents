@@ -1,5 +1,5 @@
-class Avo::Actions::ImportVerifiedEventParticipation < Avo::BaseAction
-  self.name = "Import Verified Event Participation"
+class Avo::Actions::ImportEventCheckIn < Avo::BaseAction
+  self.name = "Import Event Check-ins"
 
   def fields
     field :file, as: :file, name: "CSV File"
@@ -18,7 +18,7 @@ class Avo::Actions::ImportVerifiedEventParticipation < Avo::BaseAction
     end
 
     csv_content = file.read
-    result = VerifiedEventParticipation.import_from_csv(event: event, csv_content: csv_content)
+    result = EventCheckIn.import_from_csv(event: event, csv_content: csv_content)
 
     succeed "Import complete for #{event.name}: #{result[:created]} created, #{result[:skipped]} duplicates skipped, #{result[:errored]} errors."
   end

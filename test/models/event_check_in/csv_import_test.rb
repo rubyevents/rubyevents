@@ -1,6 +1,6 @@
 require "test_helper"
 
-class VerifiedEventParticipation::CsvImportTest < ActiveSupport::TestCase
+class EventCheckIn::CsvImportTest < ActiveSupport::TestCase
   setup do
     @event = events(:future_conference)
   end
@@ -13,12 +13,12 @@ class VerifiedEventParticipation::CsvImportTest < ActiveSupport::TestCase
       GHI789,test-event,url,2026-03-13 16:00:00 UTC
     CSV
 
-    result = VerifiedEventParticipation.import_from_csv(event: @event, csv_content: csv)
+    result = EventCheckIn.import_from_csv(event: @event, csv_content: csv)
 
     assert_equal 3, result[:created]
     assert_equal 0, result[:skipped]
     assert_equal 0, result[:errored]
-    assert_equal 3, VerifiedEventParticipation.where(event: @event).count
+    assert_equal 3, EventCheckIn.where(event: @event).count
   end
 
   test "uppercases connect_ids regardless of CSV casing" do
@@ -27,9 +27,9 @@ class VerifiedEventParticipation::CsvImportTest < ActiveSupport::TestCase
       abc123,test-event,url,2026-03-13 14:00:00 UTC
     CSV
 
-    VerifiedEventParticipation.import_from_csv(event: @event, csv_content: csv)
+    EventCheckIn.import_from_csv(event: @event, csv_content: csv)
 
-    assert_equal "ABC123", VerifiedEventParticipation.last.connect_id
+    assert_equal "ABC123", EventCheckIn.last.connect_id
   end
 
   test "deduplicates connect_ids keeping earliest timestamp" do
@@ -40,11 +40,11 @@ class VerifiedEventParticipation::CsvImportTest < ActiveSupport::TestCase
       ABC123,test-event,url,2026-03-13 16:00:00 UTC
     CSV
 
-    result = VerifiedEventParticipation.import_from_csv(event: @event, csv_content: csv)
+    result = EventCheckIn.import_from_csv(event: @event, csv_content: csv)
 
     assert_equal 1, result[:created]
-    vep = VerifiedEventParticipation.find_by(connect_id: "ABC123", event: @event)
-    assert_equal Time.parse("2026-03-13 14:00:00 UTC"), vep.scanned_at
+    vep = EventCheckIn.find_by(connect_id: "ABC123", event: @event)
+    assert_equal Time.parse("2026-03-13 14:00:00 UTC"), vep.checked_in_at
   end
 
   test "re-importing same CSV reports all as duplicates" do
@@ -54,8 +54,8 @@ class VerifiedEventParticipation::CsvImportTest < ActiveSupport::TestCase
       DEF456,test-event,url,2026-03-13 15:00:00 UTC
     CSV
 
-    VerifiedEventParticipation.import_from_csv(event: @event, csv_content: csv)
-    result = VerifiedEventParticipation.import_from_csv(event: @event, csv_content: csv)
+    EventCheckIn.import_from_csv(event: @event, csv_content: csv)
+    result = EventCheckIn.import_from_csv(event: @event, csv_content: csv)
 
     assert_equal 0, result[:created]
     assert_equal 2, result[:skipped]
@@ -74,8 +74,8 @@ class VerifiedEventParticipation::CsvImportTest < ActiveSupport::TestCase
       DEF456,test-event,url,2026-03-13 15:00:00 UTC
     CSV
 
-    VerifiedEventParticipation.import_from_csv(event: @event, csv_content: csv1)
-    result = VerifiedEventParticipation.import_from_csv(event: @event, csv_content: csv2)
+    EventCheckIn.import_from_csv(event: @event, csv_content: csv1)
+    result = EventCheckIn.import_from_csv(event: @event, csv_content: csv2)
 
     assert_equal 1, result[:created]
     assert_equal 1, result[:skipped]
@@ -88,7 +88,7 @@ class VerifiedEventParticipation::CsvImportTest < ActiveSupport::TestCase
       ABC123,test-event,url,2026-03-13 15:00:00 UTC
     CSV
 
-    result = VerifiedEventParticipation.import_from_csv(event: @event, csv_content: csv)
+    result = EventCheckIn.import_from_csv(event: @event, csv_content: csv)
 
     assert_equal 1, result[:created]
     assert_equal 1, result[:errored]
@@ -101,7 +101,7 @@ class VerifiedEventParticipation::CsvImportTest < ActiveSupport::TestCase
       DEF456,test-event,url,2026-03-13 15:00:00 UTC
     CSV
 
-    result = VerifiedEventParticipation.import_from_csv(event: @event, csv_content: csv)
+    result = EventCheckIn.import_from_csv(event: @event, csv_content: csv)
 
     assert_equal 1, result[:created]
     assert_equal 1, result[:errored]
@@ -110,7 +110,7 @@ class VerifiedEventParticipation::CsvImportTest < ActiveSupport::TestCase
   test "empty CSV returns zero counts" do
     csv = "connect_id,event,scan_type,created_at\n"
 
-    result = VerifiedEventParticipation.import_from_csv(event: @event, csv_content: csv)
+    result = EventCheckIn.import_from_csv(event: @event, csv_content: csv)
 
     assert_equal 0, result[:created]
     assert_equal 0, result[:skipped]
@@ -124,9 +124,9 @@ class VerifiedEventParticipation::CsvImportTest < ActiveSupport::TestCase
       ABC123,test-event,url,2026-03-13 14:00:00 UTC
     CSV
 
-    VerifiedEventParticipation.import_from_csv(event: @event, csv_content: csv)
+    EventCheckIn.import_from_csv(event: @event, csv_content: csv)
 
-    assert_equal 1, VerifiedEventParticipation.where(event: @event).count
-    assert_equal 0, VerifiedEventParticipation.where(event: other_event).count
+    assert_equal 1, EventCheckIn.where(event: @event).count
+    assert_equal 0, EventCheckIn.where(event: other_event).count
   end
 end

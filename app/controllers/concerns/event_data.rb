@@ -17,22 +17,19 @@ module EventData
   end
 
   def set_participants
-    # Resolve verified attendee user IDs for this event
-    @verified_participant_ids = VerifiedEventParticipation
+    @checked_in_participant_ids = EventCheckIn
       .where(event: @event)
-      .joins("INNER JOIN connected_accounts ON connected_accounts.uid = verified_event_participations.connect_id AND connected_accounts.provider = 'passport'")
+      .joins("INNER JOIN connected_accounts ON connected_accounts.uid = event_check_ins.connect_id AND connected_accounts.provider = 'passport'")
       .distinct
       .pluck("connected_accounts.user_id")
       .to_set
 
-    # Start with self-reported participants
     participants = @event.participants.preloaded.order(:name).distinct
-
-    # Add verified-only users (have verified attendance but no self-reported participation)
-    verified_only_ids = @verified_participant_ids - participants.map(&:id).to_set
+    checked_in_only_ids = @checked_in_participant_ids - participants.map(&:id).to_set
     all_participants = participants.to_a
-    if verified_only_ids.any?
-      all_participants += User.preloaded.where(id: verified_only_ids).order(:name).to_a
+
+    if checked_in_only_ids.any?
+      all_participants += User.preloaded.where(id: checked_in_only_ids).order(:name).to_a
     end
 
     if Current.user
@@ -41,11 +38,13 @@ module EventData
         "Favorites" => [],
         "Known Participants" => []
       }
+
       all_participants.each do |participant|
-        fav_user = @favorite_users[participant.id]
-        if fav_user&.ruby_friend?
+        favorite_user = @favorite_users[participant.id]
+
+        if favorite_user&.ruby_friend?
           @participants["Ruby Friends"] << participant
-        elsif fav_user&.persisted?
+        elsif favorite_user&.persisted?
           @participants["Favorites"] << participant
         else
           @participants["Known Participants"] << participant
