@@ -1,0 +1,61 @@
+<%# locals: (user:, check_ins:) %>
+
+<div class="max-w-2xl mx-auto">
+  <div class="flex items-center gap-3 mb-8">
+    <%= fa("passport", class: "fill-orange-800", size: :lg) %>
+
+    <div>
+      <h2 class="text-xl font-semibold text-gray-900">Ruby Passport</h2>
+
+      <p class="text-sm text-gray-500">
+        <% if check_ins.any? %>
+          <%= pluralize(check_ins.size, "check-in") %> across <%= pluralize(check_ins.map(&:event_id).uniq.size, "event") %>
+        <% else %>
+          No check-ins yet
+        <% end %>
+
+        <% if (code = user.passports.first&.uid).present? %>
+          · <span class="font-mono text-gray-400"><%= code %></span>
+        <% end %>
+      </p>
+    </div>
+  </div>
+
+  <% if check_ins.any? %>
+    <ol class="relative border-s-2 border-gray-200 ms-3">
+      <% check_ins.each do |check_in| %>
+        <% event = check_in.event %>
+
+        <li class="mb-8 ms-8">
+          <span class="absolute flex items-center justify-center w-8 h-8 bg-green-100 rounded-full -start-[1.05rem] ring-4 ring-white">
+            <%= fa("circle-check", style: :solid, class: "fill-green-700", size: :sm) %>
+          </span>
+
+          <%= link_to event_path(event), class: "group flex items-center gap-4 rounded-lg border bg-white p-3 hover:bg-gray-50 transition-colors", data: {turbo_frame: "_top"} do %>
+            <%= image_tag image_path(event.card_image_path), class: "w-20 h-12 object-cover rounded border shrink-0", alt: event.name, width: 80, height: 48 %>
+
+            <div class="min-w-0 flex-1">
+              <div class="font-semibold text-gray-900 line-clamp-1 group-hover:underline"><%= event.name %></div>
+              <div class="text-sm text-gray-500 line-clamp-1">
+                <%= event.to_location.to_html(show_links: false) %> · <%= event.formatted_dates %>
+              </div>
+            </div>
+          <% end %>
+
+          <time class="block mt-1.5 text-xs text-gray-400" datetime="<%= check_in.checked_in_at.iso8601 %>">
+            Checked in <%= check_in.checked_in_at.strftime("%B %-d, %Y at %H:%M") %>
+          </time>
+        </li>
+      <% end %>
+    </ol>
+  <% else %>
+    <div class="text-center py-12">
+      <div class="text-6xl mb-4">🛂</div>
+      <h3 class="text-lg font-semibold text-gray-900 mb-2">No check-ins yet</h3>
+
+      <p class="text-gray-600 max-w-md mx-auto">
+        Your Ruby Passport check-ins will appear here as you scan in at events.
+      </p>
+    </div>
+  <% end %>
+</div>
