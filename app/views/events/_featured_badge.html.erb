@@ -24,6 +24,9 @@
   <% when :upcoming %>
     <%= fa("calendar", size: nil, class: "h-3.5 w-3.5 fill-current") %>
     Coming up soon
+  <% when :recently_ended %>
+    <%= fa("circle-check", size: nil, class: "h-3.5 w-3.5 fill-current") %>
+    Just wrapped up
   <% when :recently_published %>
     <%= fa("video", size: nil, class: "h-3.5 w-3.5 fill-current") %>
     Recordings just published
