@@ -34,7 +34,7 @@
   event_name: "RubyConf 2026"
   date: "2026-07-14"
   language: "English"
-  track: "Breakout 1 - Charleston D-C"
+  track: "Breakout 1 - Red Rock A&D"
   video_provider: "scheduled"
   video_id: "michael-toppa-rubyconf-2026"
   description: |-
@@ -48,7 +48,7 @@
   event_name: "RubyConf 2026"
   date: "2026-07-14"
   language: "English"
-  track: "Breakout 2 - Charleston E-B"
+  track: "Breakout 2 - Red Rock G&H"
   video_provider: "scheduled"
   video_id: "chris-fung-rubyconf-2026"
   description: |-
@@ -76,7 +76,7 @@
   event_name: "RubyConf 2026"
   date: "2026-07-14"
   language: "English"
-  track: "Breakout 1 - Charleston D-C"
+  track: "Breakout 1 - Red Rock A&D"
   video_provider: "scheduled"
   video_id: "david-gillis-rubyconf-2026"
   description: |-
@@ -90,10 +90,11 @@
   event_name: "RubyConf 2026"
   date: "2026-07-14"
   language: "English"
-  track: "Breakout 2 - Charleston E-B"
+  track: "Breakout 2 - Red Rock G&H"
   video_provider: "scheduled"
   video_id: "jon-rizzo-rubyconf-2026"
-  description: ""
+  description: |-
+    "Search sucks." It's the feedback every team building search has heard, and for good reason — keyword and vector matching alone isn't sufficient, leading to negative feedback. Our users couldn't find products they knew existed and irrelevant results were being highly ranked. As a Ruby shop that wanted to make our search retrieval pipeline smarter with machine learning, we asked ourselves: how far can Ruby actually take us? This talk is the answer. We'll walk through the full Learning to Rank pipeline we built — click and impression collection, automated feature engineering, model training and deployment, and the reranker model that sits between the search engine and the user. We'll share the relevance metrics that moved, the qualitative feedback that changed, and how the same framework now backs four different search engines at Fullscript. From this talk, you'll leave with a concrete pattern for collecting search data, a sense of what "good" looks like, and a framework you can use to start measuring and ranking your own ecommerce search results.
   speakers:
     - Jon Rizzo
     - Dave Currie
@@ -107,7 +108,8 @@
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
   video_id: "neha-abraham-rubyconf-2026"
-  description: ""
+  description: |-
+    Dashboards and reports are often where Rails apps go to slow down. What starts as a "simple" count or sum quietly turns into expensive queries, background job pileups, and unhappy users staring at a spinner. This talk is about taking back control by using smart aggregation strategies to make Rails dashboards fast, predictable, and easier to maintain. We'll look at how letting the database do the work it was designed for leads to cleaner Ruby, simpler application logic, and systems that don't collapse under their own weight. We'll explore: - When aggregation actually helps, and when it's overkill - Designing aggregation tables and indices that scale without drama - Keeping aggregated data fresh with background jobs that stay boring - Knowing when to lean on ActiveRecord, and when raw SQL is simply the right tool The focus is on real-world Rails systems, not theoretical optimizations. You'll leave with practical patterns, honest trade-offs, and concrete examples you can apply immediately whether you're inheriting a slow legacy app or building something new and want to get ahead of the problem. If you've ever looked at a slow dashboard and thought, "this should be faster," this talk is for you.
   speakers:
     - Neha Abraham
 
@@ -117,7 +119,7 @@
   event_name: "RubyConf 2026"
   date: "2026-07-14"
   language: "English"
-  track: "Breakout 1 - Charleston D-C"
+  track: "Breakout 1 - Red Rock A&D"
   video_provider: "scheduled"
   video_id: "nery-campusano-rubyconf-2026"
   description: |-
@@ -131,10 +133,11 @@
   event_name: "RubyConf 2026"
   date: "2026-07-14"
   language: "English"
-  track: "Breakout 2 - Charleston E-B"
+  track: "Breakout 2 - Red Rock G&H"
   video_provider: "scheduled"
   video_id: "aaron-patterson-rubyconf-2026"
-  description: ""
+  description: |-
+    What makes FFI slow, and how can we build a faster implementation? In this talk we'll look at Ruby's calling convention, why FFI is slow, and what we can do about it. We'll look at Ruby internals, and how we connect Ruby code with native code with and without the JIT compiler. See you there!
   speakers:
     - Aaron Patterson
 
@@ -158,7 +161,7 @@
   event_name: "RubyConf 2026"
   date: "2026-07-14"
   language: "English"
-  track: "Breakout 1 - Charleston D-C"
+  track: "Breakout 1 - Red Rock A&D"
   video_provider: "scheduled"
   video_id: "dalma-boros-rubyconf-2026"
   description: |-
@@ -172,7 +175,7 @@
   event_name: "RubyConf 2026"
   date: "2026-07-14"
   language: "English"
-  track: "Breakout 2 - Charleston E-B"
+  track: "Breakout 2 - Red Rock G&H"
   video_provider: "scheduled"
   video_id: "ruby-alliance-panel-rubyconf-2026"
   description: ""
@@ -199,7 +202,7 @@
   event_name: "RubyConf 2026"
   date: "2026-07-14"
   language: "English"
-  track: "Breakout 1 - Charleston D-C"
+  track: "Breakout 1 - Red Rock A&D"
   video_provider: "scheduled"
   video_id: "cameron-dutro-rubyconf-2026"
   description: |-
@@ -213,10 +216,11 @@
   event_name: "RubyConf 2026"
   date: "2026-07-14"
   language: "English"
-  track: "Breakout 2 - Charleston E-B"
+  track: "Breakout 2 - Red Rock G&H"
   video_provider: "scheduled"
   video_id: "tess-griffin-rubyconf-2026"
-  description: ""
+  description: |-
+    Have you ever looked at a bug and wondered why it actually happens? It's easy to chalk it up to sloppy coding, but that's almost never the case. In this talk, we'll be dissecting an exploit from Pokémon Blue known as the "Missingno" glitch. We'll explore the details of each seemingly random bug behind this exploit and apply the lessons to our Ruby code 30 years later. If you've never played or even heard of Pokémon, that's ok! As long as you're interested in a deep dive into a fascinating set of bugs, this talk is for you.
   speakers:
     - Tess Griffin
 
@@ -240,7 +244,7 @@
   event_name: "RubyConf 2026"
   date: "2026-07-14"
   language: "English"
-  track: "Breakout 1 - Charleston D-C"
+  track: "Breakout 1 - Red Rock A&D"
   video_provider: "scheduled"
   video_id: "gabriel-quaresma-rubyconf-2026"
   description: |-
@@ -254,10 +258,11 @@
   event_name: "RubyConf 2026"
   date: "2026-07-14"
   language: "English"
-  track: "Breakout 2 - Charleston E-B"
+  track: "Breakout 2 - Red Rock G&H"
   video_provider: "scheduled"
   video_id: "charles-nutter-rubyconf-2026"
-  description: ""
+  description: |-
+    JRuby is an implementation of Ruby 4.0 built on the Java Virtual Machine. For the past 20 years we've expanded the horizons of Ruby, bringing more jobs and more opportunities to Rubyists like you: * High-scale applications needing shared-memory parallelism and big data * Enterprise organizations with existing Java infrastructure * Cross-platform, commercial-off-the-shelf (COTS) application packaging that protects your code * Graphics-intensive applications including desktop, games, and visualization * Mobile and embedded solutions using Android And you can do it all in Ruby, with no Java experience required! This talk will review JRuby's history and show you what's possible when you bring the best of Ruby and the JVM together.
   speakers:
     - Charles Nutter
 
@@ -281,7 +286,7 @@
   event_name: "RubyConf 2026"
   date: "2026-07-14"
   language: "English"
-  track: "Breakout 1 - Charleston D-C"
+  track: "Breakout 1 - Red Rock A&D"
   video_provider: "scheduled"
   video_id: "andy-andrea-rubyconf-2026"
   description: |-
@@ -304,7 +309,7 @@
   event_name: "RubyConf 2026"
   date: "2026-07-14"
   language: "English"
-  track: "Breakout 2 - Charleston E-B"
+  track: "Breakout 2 - Red Rock G&H"
   video_provider: "scheduled"
   video_id: "gannon-mcgibbon-rubyconf-2026"
   description: |-
@@ -336,7 +341,8 @@
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
   video_id: "allison-pike-keynote-rubyconf-2026"
-  description: ""
+  description: |-
+    Once a Maintainer will be a live roundtable discussion based on the popular Once a Maintainer newsletter which celebrates the people behind Open Source in the Ruby community. We're thrilled to have Richard Schneeman, Jeremy Evans, and Colby Swandale join us for the panel.
   speakers:
     - Allison Pike
     - Richard Schneeman
@@ -352,7 +358,8 @@
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
   video_id: "marty-haught-rubyconf-2026"
-  description: ""
+  description: |-
+    The gems you maintain could be foundational infrastructure for the Ruby community and that makes their security everyone's concern. But most maintainers aren't security engineers, and the path from "I think my gem might have a vulnerability" to "I've fixed it and shipped a release" can feel daunting. This hands-on workshop, led by the RubyGems team will incorporate lessons learned from Project Glasswing, Ruby Central's Alpha-Omega-funded security initiative for the Ruby ecosystem, and it will give maintainers the tools and confidence to take ownership of their gem's security posture. We'll walk through the full lifecycle: what good security looks like for a gem, how to run a scan against your own project, how to read and interpret the resulting report, and how to triage and address what you find. No prior security experience is assumed. By the end of the session, you'll have run a real scan, reviewed real findings, and left with practical strategies for fixing vulnerabilities and hardening your gem against future ones. What we'll cover: * An overview of Project Glasswing and how the gem scanning program works * What a strong security posture looks like for a Ruby gem * Running a scan and understanding the prompt-driven process * Reading and interpreting a scan report * Walking through an example scan together * Strategies for addressing vulnerabilities — from quick fixes to longer-term hardening Who should attend: Maintainers of Ruby gems of any size, from weekend projects to widely depended-on libraries. If you ship a gem, this workshop is for you.
   speakers:
     - Marty Haught
     - Colby Swandale
@@ -363,7 +370,7 @@
   event_name: "RubyConf 2026"
   date: "2026-07-15"
   language: "English"
-  track: "Breakout 1 - Charleston D-C"
+  track: "Breakout 1 - Red Rock A&D"
   video_provider: "scheduled"
   video_id: "amir-rajan-rubyconf-2026"
   description: |-
@@ -377,7 +384,7 @@
   event_name: "RubyConf 2026"
   date: "2026-07-15"
   language: "English"
-  track: "Breakout 2 - Charleston E-B"
+  track: "Breakout 2 - Red Rock G&H"
   video_provider: "scheduled"
   video_id: "joe-masilotti-rubyconf-2026"
   description: |-
@@ -405,7 +412,7 @@
   event_name: "RubyConf 2026"
   date: "2026-07-15"
   language: "English"
-  track: "Breakout 1 - Charleston D-C"
+  track: "Breakout 1 - Red Rock A&D"
   video_provider: "scheduled"
   video_id: "miguel-marcondes-filho-rubyconf-2026"
   description: |-
@@ -419,7 +426,7 @@
   event_name: "RubyConf 2026"
   date: "2026-07-15"
   language: "English"
-  track: "Breakout 2 - Charleston E-B"
+  track: "Breakout 2 - Red Rock G&H"
   video_provider: "scheduled"
   video_id: "noel-rappin-rubyconf-2026"
   description: |-
@@ -474,7 +481,7 @@
   event_name: "RubyConf 2026"
   date: "2026-07-16"
   language: "English"
-  track: "Breakout 1 - Charleston D-C"
+  track: "Breakout 1 - Red Rock A&D"
   video_provider: "scheduled"
   video_id: "madison-sites-rubyconf-2026"
   description: |-
@@ -488,7 +495,7 @@
   event_name: "RubyConf 2026"
   date: "2026-07-16"
   language: "English"
-  track: "Breakout 2 - Charleston E-B"
+  track: "Breakout 2 - Red Rock G&H"
   video_provider: "scheduled"
   video_id: "miles-georgi-rubyconf-2026"
   description: |-
@@ -516,7 +523,7 @@
   event_name: "RubyConf 2026"
   date: "2026-07-16"
   language: "English"
-  track: "Breakout 1 - Charleston D-C"
+  track: "Breakout 1 - Red Rock A&D"
   video_provider: "scheduled"
   video_id: "mike-dalton-rubyconf-2026"
   description: |-
@@ -530,7 +537,7 @@
   event_name: "RubyConf 2026"
   date: "2026-07-16"
   language: "English"
-  track: "Breakout 2 - Charleston E-B"
+  track: "Breakout 2 - Red Rock G&H"
   video_provider: "scheduled"
   video_id: "peter-zhu-rubyconf-2026"
   description: |-
@@ -558,7 +565,7 @@
   event_name: "RubyConf 2026"
   date: "2026-07-16"
   language: "English"
-  track: "Breakout 1 - Charleston D-C"
+  track: "Breakout 1 - Red Rock A&D"
   video_provider: "scheduled"
   video_id: "fito-von-zastrow-rubyconf-2026"
   description: |-
@@ -572,7 +579,7 @@
   event_name: "RubyConf 2026"
   date: "2026-07-16"
   language: "English"
-  track: "Breakout 2 - Charleston E-B"
+  track: "Breakout 2 - Red Rock G&H"
   video_provider: "scheduled"
   video_id: "hilary-stohs-krause-rubyconf-2026"
   description: |-
@@ -614,7 +621,7 @@
   event_name: "RubyConf 2026"
   date: "2026-07-16"
   language: "English"
-  track: "Breakout 1 - Charleston D-C"
+  track: "Breakout 1 - Red Rock A&D"
   video_provider: "scheduled"
   video_id: "kyle-doliveira-rubyconf-2026"
   description: |-
@@ -628,7 +635,7 @@
   event_name: "RubyConf 2026"
   date: "2026-07-16"
   language: "English"
-  track: "Breakout 2 - Charleston E-B"
+  track: "Breakout 2 - Red Rock G&H"
   video_provider: "scheduled"
   video_id: "markus-schirp-rubyconf-2026"
   description: |-
@@ -656,7 +663,7 @@
   event_name: "RubyConf 2026"
   date: "2026-07-16"
   language: "English"
-  track: "Breakout 1 - Charleston D-C"
+  track: "Breakout 1 - Red Rock A&D"
   video_provider: "scheduled"
   video_id: "joe-dupuis-rubyconf-2026"
   description: |-
@@ -670,7 +677,7 @@
   event_name: "RubyConf 2026"
   date: "2026-07-16"
   language: "English"
-  track: "Breakout 2 - Charleston E-B"
+  track: "Breakout 2 - Red Rock G&H"
   video_provider: "scheduled"
   video_id: "phil-crissman-rubyconf-2026"
   description: ""

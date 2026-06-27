@@ -244,6 +244,12 @@ module Static
       Country.find(location.to_s.split(",").last&.strip)
     end
 
+    def time_zone
+      return nil if attributes["timezone"].blank?
+
+      ActiveSupport::TimeZone[attributes["timezone"]]
+    end
+
     def city
       return nil if location.blank?
 

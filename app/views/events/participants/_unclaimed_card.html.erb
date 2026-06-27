@@ -1,0 +1,16 @@
+<%# locals: (count:) %>
+
+<div class="h-full border border-dashed border-red-300 rounded-lg bg-red-50/40 hover:bg-red-50 transition-bg duration-300 ease-in-out">
+  <div class="flex items-center px-2 h-full">
+    <div class="flex flex-1 items-center gap-4 p-2 px-4">
+      <div class="flex size-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100">
+        <%= fa("passport", class: "fill-orange-800", size: :lg) %>
+      </div>
+
+      <div class="min-w-0">
+        <div class="font-bold text-base line-clamp-1 text-red-900">+ <%= count %> unidentified <%= "Rubyist".pluralize(count) %></div>
+        <div class="text-xs text-red-700/70 line-clamp-2">Checked in but haven't claimed their Ruby Passport yet</div>
+      </div>
+    </div>
+  </div>
+</div>

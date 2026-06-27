@@ -50,6 +50,7 @@ class Event < ApplicationRecord
   include Event::TypesenseSearchable
 
   FEATURED_RECENTLY_PUBLISHED_WINDOW = 30.days
+  FEATURED_RECENTLY_ENDED_WINDOW = 2.days
   FEATURED_UPCOMING_WINDOW = 2.weeks
   FEATURED_CFP_CLOSING_WINDOW = 5.days
 
@@ -158,6 +159,14 @@ class Event < ApplicationRecord
     start_date.present? && end_date.present? && (start_date..end_date).cover?(Date.today)
   end
 
+  def happening_tomorrow?
+    start_date.present? && start_date == Date.today + 1
+  end
+
+  def recently_ended?
+    past? && end_date >= FEATURED_RECENTLY_ENDED_WINDOW.ago.to_date
+  end
+
   def featured_cfp
     cfps.select { |cfp| cfp.link.present? && cfp.close_date && cfp.close_date.between?(Date.today, Date.today + FEATURED_CFP_CLOSING_WINDOW) }.min_by(&:close_date)
   end
@@ -165,10 +174,14 @@ class Event < ApplicationRecord
   def featured_reason
     if happening?
       :happening
+    elsif happening_tomorrow?
+      :happening_tomorrow
     elsif featured_cfp
       :cfp_closing
     elsif upcoming?
       :upcoming
+    elsif recently_ended? && !watchable_talks?
+      :recently_ended
     elsif home_sort_date && home_sort_date >= FEATURED_RECENTLY_PUBLISHED_WINDOW.ago.to_date
       :recently_published
     else

@@ -54,7 +54,9 @@
       <% if talk.speakers.present? %>
         <div class="avatar-group -space-x-3 shrink-0 [&_.avatar]:border-2">
           <% talk.speakers.first(3).each do |speaker| %>
-            <%= render Ui::AvatarComponent.new(speaker, size: :sm, linked: true) %>
+            <%= link_to profile_path(speaker), class: "block", data: {turbo_frame: "_top"} do %>
+              <%= render Ui::AvatarComponent.new(speaker, size: :sm) %>
+            <% end %>
           <% end %>
         </div>
       <% end %>
@@ -71,6 +73,27 @@
     <% end %>
 
     <div class="flex flex-wrap items-center gap-1.5 text-xs font-medium text-base-content/70">
+      <% if talk.speakers.one? && (favorite_status = favorite_user_status_map[talk.speakers.first.id]) %>
+        <% badge_colors = favorite_status.ruby_friend? ? "bg-primary/10 text-primary hover:bg-primary/20" : "bg-yellow-400/20 text-yellow-700 hover:bg-yellow-400/30" %>
+
+        <% favorite_filter = favorite_status.ruby_friend? ? "friends" : "favorites" %>
+
+        <%= link_to favorite_users_path(filter: favorite_filter), class: "inline-flex items-center gap-1 px-2 py-1 rounded-md #{badge_colors}", data: {turbo_frame: "_top"} do %>
+          <%= fa(favorite_status.icon, size: nil, class: "h-3 w-3 fill-current") %>
+
+          <%= favorite_status.label %>
+        <% end %>
+      <% end %>
+
+      <% if talk.published_at.present? && talk.published_at >= 1.week.ago %>
+        <span class="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-green-500/10 text-green-600 cursor-help"
+              data-controller="tooltip"
+              data-tooltip-content-value="Published <%= time_ago_in_words(talk.published_at) %> ago">
+          <%= fa("sparkles", size: nil, class: "h-3 w-3 fill-current") %>
+          New
+        </span>
+      <% end %>
+
       <% if talk.event&.name.present? %>
         <%= link_to event_path(talk.event), class: "inline-flex items-center gap-1.5 max-w-[60%] px-2 py-1 rounded-md bg-base-200/80 hover:bg-base-200", data: {turbo_frame: "_top"} do %>
           <% if talk.event.avatar_image_path.present? %>

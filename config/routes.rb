@@ -230,6 +230,7 @@ Rails.application.routes.draw do
       resources :stickers, only: [:index]
       resources :involvements, only: [:index]
       resources :map, only: [:index]
+      resources :passport, only: [:index]
       resources :aliases, only: [:index]
       resources :wrapped, only: [:index] do
         collection do
