@@ -9,7 +9,7 @@
 
       <p class="text-sm text-gray-500">
         <% if check_ins.any? %>
-          <%= pluralize(check_ins.size, "check-in") %> across <%= pluralize(check_ins.map(&:event_id).uniq.size, "event") %>
+          <%= pluralize(check_ins.size, "check-in") %>
         <% else %>
           No check-ins yet
         <% end %>
