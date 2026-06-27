@@ -26,6 +26,7 @@
             <h3 class="text-base font-semibold text-gray-900"><%= button_text %></h3>
             <p class="text-sm text-gray-600">Mark yourself as a participant!</p>
           </div>
+
           <div class="flex-shrink-0">
             <%= render partial: "events/participation_button", locals: {event: event, participation: participation} %>
           </div>
@@ -42,7 +43,8 @@
             <span class="text-base font-normal text-gray-400">+ <%= unclaimed_check_ins_count %> unclaimed</span>
           <% end %>
         </h2>
-        <div id="<%= dom_id(event, key) %>" class="mb-12 min-w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 h-full">
+
+        <div id="<%= dom_id(event, key) %>" class="mb-12 min-w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 h-full">
           <% participants.each do |participant| %>
             <div class="border rounded-lg bg-white hover:bg-gray-200 transition-bg duration-300 ease-in-out">
               <%= render partial: "users/card", locals: {user: participant, favorite_user: favorite_users[participant.id], checked_in: checked_in_participant_ids.include?(participant.id), stamp: event_stamp} %>
