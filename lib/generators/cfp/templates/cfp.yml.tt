@@ -1,5 +1,6 @@
-
-- name: "<%= options[:name] %>"
-  link: "<%= options[:link] %>"
-  open_date: "<%= options[:open_date] %>"
-  close_date: "<%= options[:close_date] %>"
+- name: "<%= @cfp.name %>"
+  link: "<%= @cfp.link %>"<%= @cfp.link.blank? ? " # TODO" : "" %>
+  open_date: "<%= @cfp.open_date %>"
+<%- if @cfp.close_date -%>
+  close_date: "<%= @cfp.close_date %>"
+<%- end -%>
