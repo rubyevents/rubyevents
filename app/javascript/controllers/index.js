@@ -61,6 +61,9 @@ application.register("map", MapController)
 import ModalController from "./modal_controller"
 application.register("modal", ModalController)
 
+import PassportBookController from "./passport_book_controller"
+application.register("passport-book", PassportBookController)
+
 import PreserveScrollController from "./preserve_scroll_controller"
 application.register("preserve-scroll", PreserveScrollController)
 

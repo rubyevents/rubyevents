@@ -36,12 +36,6 @@
           <% end %>
         <% end %>
 
-        <% if user.ruby_passport_claimed? %>
-          <%= ui_tooltip "#{user.name} claimed #{user.possessive_pronoun} Ruby Passport" do %>
-            <%= fa("passport", class: "fill-orange-800") %>
-          <% end %>
-        <% end %>
-
         <% if user.contributor? %>
           <%= link_to contributors_path, class: "inline-flex items-center" do %>
             <%= ui_tooltip "#{user.name} contributed to RubyEvents.org" do %>
@@ -55,6 +49,14 @@
       </h1>
 
     </div>
+
+    <% if user.ruby_passport_claimed? %>
+      <% passport_first_name = user.name.to_s.split.first.presence || user.name %>
+      <button type="button" class="group mt-1 inline-flex cursor-pointer items-center gap-2.5 rounded-md border border-amber-300/40 bg-gradient-to-b from-[#6b1320] to-[#490c16] px-4 py-2 text-amber-300 shadow-sm transition hover:scale-[1.03] hover:border-amber-300/70 hover:from-[#7c1626] hover:to-[#560f1b] hover:shadow-md" data-action="click->passport-book#open" aria-label="View <%= passport_first_name %>'s Ruby Passport">
+        <%= image_tag image_path("passport/emblem.png"), alt: "", class: "h-5 w-auto drop-shadow-sm", loading: "lazy" %>
+        <span class="whitespace-nowrap text-xs font-semibold uppercase tracking-wide">View <%= passport_first_name %>'s Passport</span>
+      </button>
+    <% end %>
 
     <% if user.bio.present? && !user.suspicious? %>
       <p class="text-[#636B74] max-w-[700px]">
