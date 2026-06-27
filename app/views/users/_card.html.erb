@@ -1,13 +1,13 @@
-<%# locals: (user:, content: "", favorite_user: nil) %>
+<%# locals: (user:, content: "", favorite_user: nil, checked_in: false, stamp: nil) %>
 
 <div class="flex items-center px-2">
   <% if favorite_user.present? %>
     <%= render partial: "favorite_users/favorite_user", locals: {favorite_user: favorite_user} %>
   <% end %>
-  <%= link_to profile_path(user), class: "flex flex-col gap-4 hover:bg-gray-200 transition-bg duration-300 ease-in-out p-2 px-4 rounded-lg", data: {turbo_frame: "_top"} do %>
-    <div class="flex items-center gap-4">
+  <%= link_to profile_path(user), class: "flex flex-1 items-center gap-2 hover:bg-gray-200 transition-bg duration-300 ease-in-out p-2 px-4 rounded-lg", data: {turbo_frame: "_top"} do %>
+    <div class="flex items-center gap-4 min-w-0 flex-1">
       <%= ui_avatar(user) %>
-      <div>
+      <div class="min-w-0">
         <div class="font-bold text-base line-clamp-1 flex items-center gap-1.5">
           <span class="line-clamp-1"><%= user.name %></span>
 
@@ -15,8 +15,8 @@
             <%= fa("badge-check", class: "fill-blue-500", size: :xs) %>
           <% end %>
 
-          <% if user.ruby_passport_claimed? %>
-            <%= fa("passport", class: "fill-orange-800", size: :xs) %>
+          <% if checked_in && stamp.blank? %>
+            <%= render "shared/checked_in_badge" %>
           <% end %>
         </div>
 
@@ -33,5 +33,13 @@
         </div>
       </div>
     </div>
+
+    <% if checked_in && stamp.present? %>
+      <div class="flex-shrink-0">
+        <%= ui_tooltip "Checked in with Ruby Passport" do %>
+          <%= ui_stamp(stamp, size: :md, interactive: false, rotate: true) %>
+        <% end %>
+      </div>
+    <% end %>
   <% end %>
 </div>

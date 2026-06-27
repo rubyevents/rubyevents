@@ -60,23 +60,32 @@ class ProfilesController < ApplicationController
     @talks = @user.kept_talks.includes(:speakers, event: :series, child_talks: :speakers).order(date: :desc)
     @talks_by_kind = @talks.group_by(&:kind)
     @topics = @user.topics.approved.tally.sort_by(&:last).reverse.map(&:first)
-    # Load participated events (from event_participations)
     @events = @user.participated_events.includes(:series).in_order_of(:attended_as, EventParticipation.attended_as.keys)
     @stickers = Sticker.for_user(@user, events: @events)
 
-    event_participations = @user.event_participations.includes(:event).where(event: @events)
-    @participations = event_participations.index_by(&:event_id)
+    event_participations = @user.event_participations.includes(:event).where(event: @events).in_order_of(:attended_as, EventParticipation.attended_as.keys)
+
+    @participations = event_participations.group_by(&:event_id).transform_values(&:first)
+    @checked_in_event_ids = @user.checked_in_event_ids
+
+    checked_in_only_event_ids = @checked_in_event_ids - @events.map(&:id).to_set
+
+    if checked_in_only_event_ids.any?
+      checked_in_only_events = Event.includes(:series).where(id: checked_in_only_event_ids)
+      @events = @events.to_a + checked_in_only_events.to_a
+    end
+
+    country_scope = @events.is_a?(Array) ? Event.where(id: @events.map(&:id)) : @events
+    @countries_with_events = country_scope.grouped_by_country
 
     @events_by_year = @events.group_by { |event| event.start_date&.year || "Unknown" }
-
-    # Group events by country for the map tab
-    @countries_with_events = @events.grouped_by_country
 
     @involved_events = @user.involved_events.includes(:series).distinct.order(start_date: :desc)
     event_involvements = @user.event_involvements.includes(:event).where(event: @involved_events)
     involvement_lookup = event_involvements.group_by(&:event_id)
 
     @involvements_by_role = {}
+
     @involved_events.each do |event|
       involvements = involvement_lookup[event.id] || []
       involvements.each do |involvement|

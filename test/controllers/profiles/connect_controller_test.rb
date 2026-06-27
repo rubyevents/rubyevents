@@ -66,4 +66,14 @@ class Profiles::ConnectControllerTest < ActionDispatch::IntegrationTest
     # This is a POST request to claim a profile for themselves
     assert_select ".pt-4 a.btn.btn-primary[data-turbo-method=\"post\"]"
   end
+
+  test "lowercase connect_id redirects to claimed profile" do
+    get profiles_connect_path(id: @user.passports.first.uid.downcase)
+    assert_redirected_to profile_path(@user)
+  end
+
+  test "mixed case connect_id redirects to claimed profile" do
+    get profiles_connect_path(id: "AbCdEf")
+    assert_redirected_to profile_path(@lazaro)
+  end
 end

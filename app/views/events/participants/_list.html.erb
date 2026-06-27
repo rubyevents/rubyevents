@@ -1,8 +1,22 @@
-<%# locals: (event:, participants:, participation:, favorite_users:) %>
+<%# locals: (event:, participants:, participation:, favorite_users:, checked_in_participant_ids: Set.new, unclaimed_check_ins_count: 0) %>
 
 <% button_text = event.start_date&.future? ? "Are you going?" : "Were you there?" %>
+<% event_stamp = Stamp.for_event(event).first %>
 
 <div id="participants_list">
+  <% if unclaimed_check_ins_count > 0 %>
+    <div class="mb-6 flex items-center gap-3 rounded-lg border border-red-200 bg-red-50 p-4">
+      <div class="flex-shrink-0">
+        <%= fa("passport", class: "fill-red-700", size: :lg) %>
+      </div>
+      <div class="text-sm text-red-900">
+        <span class="font-semibold"><%= pluralize(unclaimed_check_ins_count, "passport") %></span>
+        checked in at this event <%= (unclaimed_check_ins_count == 1) ? "hasn't" : "haven't" %> been claimed yet.
+        <span class="text-red-700">Claim your Ruby Passport to appear in the list.</span>
+      </div>
+    </div>
+  <% end %>
+
   <% if participants.any? %>
     <% if Current.user && participation.blank? %>
       <div class="mb-6 border-2 border-dashed border-purple-300 rounded-lg bg-purple-50 p-4">
@@ -21,12 +35,22 @@
 
     <% participants.each do |key, participants| %>
       <% unless participants.size.zero? %>
-        <h2 class="mb-6"><%= "#{key} (#{participants.size})" %></h2>
+        <% show_unclaimed = key == "Known Participants" && unclaimed_check_ins_count > 0 %>
+        <h2 class="mb-6">
+          <%= "#{key} (#{participants.size})" %>
+          <% if show_unclaimed %>
+            <span class="text-base font-normal text-gray-400">+ <%= unclaimed_check_ins_count %> unclaimed</span>
+          <% end %>
+        </h2>
         <div id="<%= dom_id(event, key) %>" class="mb-12 min-w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 h-full">
           <% participants.each do |participant| %>
             <div class="border rounded-lg bg-white hover:bg-gray-200 transition-bg duration-300 ease-in-out">
-              <%= render partial: "users/card", locals: {user: participant, favorite_user: favorite_users[participant.id]} %>
+              <%= render partial: "users/card", locals: {user: participant, favorite_user: favorite_users[participant.id], checked_in: checked_in_participant_ids.include?(participant.id), stamp: event_stamp} %>
             </div>
+          <% end %>
+
+          <% if show_unclaimed %>
+            <%= render "events/participants/unclaimed_card", count: unclaimed_check_ins_count %>
           <% end %>
         </div>
       <% end %>
