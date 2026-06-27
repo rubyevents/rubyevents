@@ -130,6 +130,12 @@ class User < ApplicationRecord
     EventCheckIn.where(connect_id: passports.select(:uid)).pluck(:event_id).to_set
   end
 
+  def passport_check_ins
+    EventCheckIn.where(connect_id: passports.select(:uid))
+      .includes(event: :series)
+      .order(checked_in_at: :desc)
+  end
+
   has_many :event_involvements, as: :involvementable, dependent: :destroy
   has_many :involved_events, through: :event_involvements, source: :event
 

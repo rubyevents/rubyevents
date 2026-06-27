@@ -24,6 +24,11 @@ module EventData
       .pluck("connected_accounts.user_id")
       .to_set
 
+    @unclaimed_check_ins_count = EventCheckIn
+      .where(event: @event)
+      .where.not(connect_id: ConnectedAccount.passport.select(:uid))
+      .count
+
     participants = @event.participants.preloaded.order(:name).distinct
     checked_in_only_ids = @checked_in_participant_ids - participants.map(&:id).to_set
     all_participants = participants.to_a

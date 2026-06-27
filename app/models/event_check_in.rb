@@ -41,6 +41,17 @@ class EventCheckIn < ApplicationRecord
   # normalizations
   normalizes :connect_id, with: ->(value) { value.strip.upcase }
 
+  # callbacks
+  after_create_commit :ensure_event_participation
+
+  def ensure_event_participation
+    return unless user
+
+    return if EventParticipation.exists?(user_id: user.id, event_id: event_id)
+
+    EventParticipation.create(user: user, event: event, attended_as: :visitor)
+  end
+
   def self.import_from_csv(event:, csv_content:)
     require "csv"
 
