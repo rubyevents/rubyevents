@@ -28,6 +28,15 @@ class NewsletterGenerator < Rails::Generators::NamedBase
 
   private
 
+  def fetch_this_months_contributors
+    prs = JSON.parse(%x(
+        gh pr list --repo RubyEvents/RubyEvents --limit 100 \
+          --state merged --search "merged:#{@github_date_range}" \
+          --json author,number,url
+      ))
+    prs.group_by { it["author"] }
+  end
+
   def event_dates_in_sentence(event)
     if event.start_date == event.end_date
       "on #{event.formatted_dates}"
