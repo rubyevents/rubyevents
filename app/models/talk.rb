@@ -553,17 +553,15 @@ class Talk < ApplicationRecord
   end
 
   def slug_candidates
-    @slug_candidates ||= [
-      static_metadata.slug&.parameterize,
-      title.parameterize,
-      [title.parameterize, event&.name&.parameterize].compact.reject(&:blank?).join("-"),
-      [title.parameterize, language&.parameterize].compact.reject(&:blank?).join("-"),
-      [title.parameterize, event&.name&.parameterize, language&.parameterize].compact.reject(&:blank?).join("-"),
-      [date.to_s.parameterize, title.parameterize].compact.reject(&:blank?).join("-"),
-      [title.parameterize, *speakers.map(&:slug)].compact.reject(&:blank?).join("-"),
-      [static_metadata.raw_title.parameterize].compact.reject(&:blank?).join("-"),
-      [date.to_s.parameterize, static_metadata.raw_title.parameterize].compact.reject(&:blank?).join("-")
-    ].reject(&:blank?).uniq
+    @slug_candidates ||= Slug.candidates(
+      static_slug: static_metadata.slug,
+      title: title,
+      event_name: event&.name,
+      language: language,
+      date: date,
+      speaker_slugs: speakers.map(&:slug),
+      raw_title: static_metadata.raw_title
+    )
   end
 
   def unused_slugs
@@ -571,7 +569,7 @@ class Talk < ApplicationRecord
     used_alias_slugs = ::Alias.where(aliasable_type: "Talk", slug: slug_candidates)
       .where.not(aliasable_id: id)
       .pluck(:slug)
-    slug_candidates - used_slugs - used_alias_slugs
+    Slug.unused(slug_candidates, used: used_slugs + used_alias_slugs)
   end
 
   def event_name
@@ -665,46 +663,11 @@ class Talk < ApplicationRecord
   end
 
   def set_kind
-    if static_metadata && static_metadata.kind.present?
-      unless static_metadata.kind.in?(Talk.kinds.keys)
-        puts %(WARN: "#{title}" has an unknown talk kind defined in #{static_metadata.__file_path})
-      end
-
-      self.kind = static_metadata.kind
-      return
+    if static_metadata&.kind.present? && !static_metadata.kind.in?(Talk.kinds.keys)
+      puts %(WARN: "#{title}" has an unknown talk kind defined in #{static_metadata.__file_path})
     end
 
-    self.kind = case title
-    when /^(keynote:|keynote|opening\ keynote:|opening\ keynote|closing\ keynote:|closing\ keynote).*/i
-      :keynote
-    when /^(lightning\ talk:|lightning\ talk|lightning\ talks|micro\ talk:|micro\ talk).*/i
-      :lightning_talk
-    when /.*(panel:|panel).*/i
-      :panel
-    when /^(workshop:|workshop).*/i
-      :workshop
-    when /^(gameshow|game\ show|gameshow:|game\ show:).*/i
-      :gameshow
-    when /^(podcast:|podcast\ recording:|live\ podcast:).*/i
-      :podcast
-    when /.*(q&a|q&a:|q&a\ with|questions\ and\ answers).*/i,
-        /.*(ruby\ committers\ vs\ the\ world|ruby\ committers\ and\ the\ world).*/i,
-        /.*(AMA)$/,
-        /^(AMA:)/
-      :q_and_a
-    when /^(fishbowl:|fishbowl\ discussion:|discussion:|discussion).*/i
-      :discussion
-    when /^(fireside\ chat:|fireside\ chat).*/i
-      :fireside_chat
-    when /^(award:|award\ show|ruby\ heroes\ awards|ruby\ heroes\ award|rails\ luminary).*/i
-      :award
-    when /^(interview:|interview\ with).*/i
-      :interview
-    when /^(demo:|demo\ |Startup\ Demo:).*/i, /.*(demo)$/i
-      :demo
-    else
-      :talk
-    end
+    self.kind = Kind.from(title: title, static_kind: static_metadata&.kind)
   end
 
   def to_mobile_json(request)

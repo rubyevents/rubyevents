@@ -7,6 +7,10 @@ module Static
 
     SEARCH_INDEX_ON_IMPORT_DEFAULT = ENV.fetch("SEARCH_INDEX_ON_IMPORT", "true") == "true"
 
+    def self.bulk_import!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
+      Static::BulkSpeakerImport.run!(index: index)
+    end
+
     def self.import_all!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
       imported_users = []
       speakers = all.to_a

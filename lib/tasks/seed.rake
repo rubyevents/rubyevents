@@ -3,20 +3,8 @@ namespace :db do
     desc "Seed all contributions, event, speaker, and more data"
     task all: :environment do
       Search::Backend.without_indexing do
-        puts "Importing Cities..."
-        Static::City.import_all!
-
-        puts "Importing Speakers..."
-        Static::Speaker.import_all!
-
-        puts "Importing Event Series and Events..."
-        Static::EventSeries.import_all!
-
-        puts "Importing Topics..."
-        Static::Topic.import_all!
-
+        Static::Importer.import_all!
         Rake::Task["backfill:speaker_participation"].invoke
-        Rake::Task["backfill:event_involvements"].invoke
       end
 
       # Search::Backend.reindex_all

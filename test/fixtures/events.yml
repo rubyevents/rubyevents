@@ -20,7 +20,7 @@
 #  location            :string
 #  longitude           :decimal(10, 6)
 #  name                :string           default(""), not null, indexed
-#  slug                :string           default(""), not null, indexed
+#  slug                :string           default(""), not null, uniquely indexed
 #  start_date          :date
 #  state_code          :string           indexed => [country_code]
 #  talks_count         :integer          default(0), not null
@@ -37,7 +37,7 @@
 #  index_events_on_event_series_id              (event_series_id)
 #  index_events_on_kind                         (kind)
 #  index_events_on_name                         (name)
-#  index_events_on_slug                         (slug)
+#  index_events_on_slug                         (slug) UNIQUE
 #
 # Foreign Keys
 #

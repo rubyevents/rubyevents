@@ -28,6 +28,26 @@ module Static
         all.select { |event| event.end_date && event.end_date >= import_cutoff }.each { |event| event.import!(index: index) }
       end
 
+      def bulk_import!
+        existing = ::Event.all.index_by(&:slug)
+        now = Time.current
+
+        rows = all.map do |static_event|
+          event = existing[static_event.slug] || ::Event.new(slug: static_event.slug)
+          static_event.assign_import_attributes!(event)
+
+          row = {slug: static_event.slug, created_at: event.created_at || now, updated_at: now}
+          IMPORT_COLUMNS.each { |column| row[column] = event[column] }
+          row
+        end
+
+        ::Event.upsert_all(rows, unique_by: :slug, update_only: IMPORT_COLUMNS)
+
+        all.select { |static_event| static_event.aliases.present? }.each do |static_event|
+          ::Event.find_by(slug: static_event.slug)&.sync_aliases_from_list(static_event.aliases)
+        end
+      end
+
       def create(
         series_slug:,
         title:,
@@ -303,9 +323,13 @@ module Static
       event
     end
 
-    def import_event!
-      event = ::Event.find_or_initialize_by(slug: slug)
+    IMPORT_COLUMNS = %i[
+      name date date_precision event_series_id website country_code city
+      location start_date end_date kind featured_background featured_color
+      banner_background home_sort_date latitude longitude
+    ].freeze
 
+    def assign_import_attributes!(event)
       event.assign_attributes(
         name: title,
         date: attributes["date"],
@@ -335,6 +359,14 @@ module Static
           longitude: coordinates.is_a?(Hash) ? coordinates.dig("longitude") : nil
         )
       end
+
+      event
+    end
+
+    def import_event!
+      event = ::Event.find_or_initialize_by(slug: slug)
+
+      assign_import_attributes!(event)
 
       event.save! if event.changed? || event.new_record?
 
