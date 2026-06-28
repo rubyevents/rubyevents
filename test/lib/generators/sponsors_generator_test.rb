@@ -7,28 +7,131 @@ class SponsorsGeneratorTest < Rails::Generators::TestCase
   destination Rails.root.join("tmp/generators/sponsors")
   setup :prepare_destination
 
-  test "generator populates sponsors.yml with arguments" do
-    assert_nothing_raised do
-      run_generator ["typesense:platinum", "braze:platinum", "AppSignal:Gold", "--event_series", "tropicalrb", "--event", "tropical-on-rails-2026"]
-    end
+  test "generator creates an empty sponsors file with specified tiers" do
+    file_path = File.join(destination_root, "data/tropicalrb/tropical-on-rails-2026/sponsors.yml")
+    eliminate_validated_file(file_path:) do
+      assert_nothing_raised do
+        run_generator ["--tiers", "Platinum,Gold,Silver",
+          "--event", "tropical-on-rails-2026"]
+      end
 
-    assert_file "data/tropicalrb/tropical-on-rails-2026/sponsors.yml" do |content|
-      assert_match(/platinum/, content, "platinum Tier missing")
-      assert_match(/Gold/, content, "Gold Tier missing")
-      assert_match(/typesense/, content, "typesense sponsor missing")
-      assert_match(/appsignal/, content, "AppSignal sponsor missing")
+      assert_file file_path do |content|
+        assert_match(/name: "Platinum"/, content, "Platinum Tier missing")
+        assert_match(/Gold/, content, "Gold Tier missing")
+        assert_match(/Silver/, content, "Silver Tier missing")
+      end
     end
-
-    File.delete File.join(destination_root, "data/tropicalrb/tropical-on-rails-2026/sponsors.yml")
   end
 
-  test "sponsors.yml passes schema validation" do
-    run_generator ["--event-series", "rubyconf", "--event", "2024"]
+  test "generator creates a sponsors.yml and adds a first sponsor" do
+    file_path = File.join(destination_root, "data/tropicalrb/tropical-on-rails-2026/sponsors.yml")
+    eliminate_validated_file(file_path:) do
+      assert_nothing_raised do
+        run_generator ["--tiers", "Platinum,Gold,Silver",
+          "--event", "tropical-on-rails-2026",
+          "--name", "Typesense",
+          "--website", "https://typesense.org",
+          "--logo-url", "https://typesense.org/logo.png",
+          "--tier", "Platinum"]
+      end
 
-    sponsor_file_path = File.join(destination_root, "data/rubyconf/2024/sponsors.yml")
-    errors = Static::Validators::SchemaArray.new(file_path: sponsor_file_path).validate
+      assert_file file_path do |content|
+        assert_match(/name: "Platinum"/, content, "Platinum Tier missing")
+        assert_match(/Gold/, content, "Gold Tier missing")
+        assert_match(/Silver/, content, "Silver Tier missing")
+        assert_match(/Typesense/, content, "Typesense sponsor missing")
+        assert_match(/https:\/\/typesense.org/, content, "typesense website missing")
+        assert_match(/https:\/\/typesense.org\/logo.png/, content, "typesense logo URL missing")
+      end
+    end
+  end
+
+  test "generator adds a new sponsor to a tier with existing sponsors" do
+    file_path = File.join(destination_root, "data/tropicalrb/tropical-on-rails-2026/sponsors.yml")
+    eliminate_validated_file(file_path:) do
+      run_generator ["--tiers", "Platinum,Gold,Silver",
+        "--event", "tropical-on-rails-2026",
+        "--name", "Typesense",
+        "--website", "https://typesense.org",
+        "--logo-url", "https://typesense.org/logo.png",
+        "--tier", "Platinum"]
+
+      assert_file file_path do |content|
+        assert_match(/name: Typesense/, content)
+        assert_match(/website: https:\/\/typesense.org/, content)
+        assert_match(/logo_url: https:\/\/typesense.org\/logo.png/, content)
+      end
+
+      run_generator ["--event", "tropical-on-rails-2026",
+        "--name", "Braze",
+        "--website", "https://braze.com",
+        "--logo-url", "https://braze.com/logo.png",
+        "--tier", "Platinum"]
+
+      assert_file file_path do |content|
+        assert_match(/name: Braze/, content)
+        assert_match(/name: Typesense/, content)
+      end
+    end
+  end
+
+  test "generator updates an existing sponsor's information" do
+    file_path = File.join(destination_root, "data/tropicalrb/tropical-on-rails-2026/sponsors.yml")
+    eliminate_validated_file(file_path:) do
+      run_generator ["--tiers", "Platinum,Gold,Silver",
+        "--event", "tropical-on-rails-2026",
+        "--name", "Typesense",
+        "--website", "https://typesense.org",
+        "--logo-url", "https://typesense.org/logo.png",
+        "--tier", "Gold"]
+
+      assert_file file_path do |content|
+        assert_match(/name: Typesense/, content)
+      end
+
+      run_generator ["--event", "tropical-on-rails-2026",
+        "--name", "Typesense",
+        "--badge", "Wifi Sponsor"]
+
+      assert_file file_path do |content|
+        assert_match(/name: Typesense/, content)
+        assert_match(/website: https:\/\/typesense.org/, content)
+        assert_match(/logo_url: https:\/\/typesense.org\/logo.png/, content)
+        assert_match(/badge: Wifi Sponsor/, content)
+      end
+      # TODO - removing the last sponsor leaves an empty space instead of an empty array. Need to fix that.
+    end
+  end
+
+  test "generator pulls sponsor information from other sponsor files" do
+    skip "Implement LATER :)"
+    run_generator ["--tiers", "Platinum,Gold,Silver",
+      "--event", "tropical-on-rails-2026",
+      "--name", "Typesense",
+      "--tier", "Gold"]
+    file_path = File.join(destination_root, "data/tropicalrb/tropical-on-rails-2026/sponsors.yml")
+
+    assert_file file_path do |content|
+      assert_match(/name: "Typesense"/, content)
+      assert_match(/website: "https:\/\/typesense.org"/, content)
+      assert_match(/logo_url: "https:\/\/typesense.org\/logo.png"/, content)
+    end
+
+    sponsors_file_passes_validations(file_path:)
+
+    File.delete file_path
+  end
+
+  def validate_sponsor_file(file_path:)
+    errors = Static::Validators::SchemaArray.new(file_path: file_path).validate
     assert_empty errors, "Sponsors YAML does not conform to schema: #{errors.join(", ")}"
+  end
 
-    File.delete sponsor_file_path
+  def eliminate_validated_file(file_path:, &block)
+    File.delete(file_path) if File.exist?(file_path)
+    yield
+    validate_sponsor_file(file_path:)
+  ensure
+    File.delete(file_path) if File.exist?(file_path)
   end
 end

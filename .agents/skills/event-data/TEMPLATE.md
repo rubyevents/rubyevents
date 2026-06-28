@@ -21,5 +21,5 @@ Title | Speaker | Description | Kind
 
 # Sponsors
 
-Name | Website | Logo Url | Tier
----|---|---|---
+Name | Website | Logo Url | Tier | Badge
+---|---|---|---|---
