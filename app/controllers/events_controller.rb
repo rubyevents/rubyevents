@@ -2,8 +2,8 @@ class EventsController < ApplicationController
   include WatchedTalks
   include Pagy::Backend
 
-  skip_before_action :authenticate_user!, only: %i[index show update]
-  before_action :set_event, only: %i[show edit update reimport reindex]
+  skip_before_action :authenticate_user!, only: %i[index show]
+  before_action :set_event, only: %i[show reimport reindex]
   before_action :set_user_favorites, only: %i[show]
   before_action :require_admin!, only: %i[reimport reindex]
 
@@ -12,6 +12,19 @@ class EventsController < ApplicationController
     @events = Event.includes(:series, :keynote_speakers)
       .where(end_date: Date.today..)
       .order(start_date: :asc)
+
+    respond_to do |format|
+      format.html
+      format.ics do
+        calendar = Icalendar::Calendar.new
+
+        @events.where(date_precision: :day).each do |event|
+          calendar.add_event(event.to_ical)
+        end
+
+        render plain: calendar.to_ical
+      end
+    end
   end
 
   # GET /events/1
@@ -35,21 +48,6 @@ class EventsController < ApplicationController
     @sponsors = @event.sponsors.includes(:organization).joins(:organization).order(level: :asc)
 
     @participation = Current.user&.main_participation_to(@event)
-  end
-
-  # GET /events/1/edit
-  def edit
-  end
-
-  # PATCH/PUT /events/1
-  def update
-    suggestion = @event.create_suggestion_from(params: event_params, user: Current.user)
-
-    if suggestion.persisted?
-      redirect_to event_path(@event), notice: suggestion.notice
-    else
-      render :edit, status: :unprocessable_entity
-    end
   end
 
   # POST /events/:slug/reimport
@@ -86,11 +84,6 @@ class EventsController < ApplicationController
     return redirect_to event_path(@event), status: :moved_permanently if @event.slug != params[:slug]
 
     redirect_to event_path(@event.canonical), status: :moved_permanently if @event.canonical.present?
-  end
-
-  # Only allow a list of trusted parameters through.
-  def event_params
-    params.require(:event).permit(:name, :city, :country_code)
   end
 
   def set_user_favorites

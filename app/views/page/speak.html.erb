@@ -1,0 +1,148 @@
+<% title "Speak at a Ruby Event" %>
+<% set_meta_tags description: "Submit talk proposals to Ruby conferences and meetups. Find open CFPs, tips for writing proposals, and resources for preparing great talks.",
+     keywords: "ruby cfp, call for proposals, ruby conference speaker, submit talk, speaking at conferences",
+     og: {title: "Speak at a Ruby Event | RubyEvents.org", description: "Submit talk proposals to Ruby conferences and meetups. Find open CFPs, tips for writing proposals, and resources for preparing great talks."},
+     twitter: {title: "Speak at a Ruby Event | RubyEvents.org", description: "Submit talk proposals to Ruby conferences and meetups. Find open CFPs, tips for writing proposals, and resources for preparing great talks."} %>
+
+<main>
+  <div class="container">
+    <section class="py-12 text-center max-w-3xl mx-auto">
+      <h1 class="text-4xl font-bold text-primary mb-4">Speak at a Ruby Event</h1>
+      <p class="text-lg text-gray-600">
+        The Ruby community wants to hear your story. Whether it's your first talk or your fiftieth,
+        there's an audience waiting to learn from your experience. You don't need to be an expert,
+        you just need something worth sharing.
+      </p>
+    </section>
+
+    <div class="flex flex-col gap-12">
+      <%= turbo_frame_tag "browse-closing-cfps", src: browse_path("closing_cfps"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <%= turbo_frame_tag "browse-always-open-cfps", src: browse_path("always_open_cfps"), loading: :lazy do %>
+        <%= render "browse/content_row_skeleton" %>
+      <% end %>
+
+      <div class="flex justify-center">
+        <%= link_to cfp_index_path, class: "btn btn-primary btn-lg gap-2" do %>
+          <%= fa("paper-plane", size: :md) %>
+          View all open CFPs
+        <% end %>
+      </div>
+
+      <section>
+        <h2 class="text-2xl font-bold mb-2">Tips for Writing a Great Proposal</h2>
+        <p class="text-gray-500 mb-6">Conference organizers review hundreds of proposals. Here's how to make yours stand out.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="p-6 rounded-2xl bg-white border border-base-300">
+            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-3">
+              <%= fa("lightbulb", size: :lg, class: "fill-primary") %>
+            </div>
+            <h3 class="font-bold mb-2">Share your unique perspective</h3>
+            <p class="text-sm text-gray-500">You don't need to be the world's top expert. Your unique journey, mistakes, and discoveries are what make your talk valuable. First-time speakers are welcome at most events.</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-white border border-base-300">
+            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-3">
+              <%= fa("bullseye", size: :lg, class: "fill-primary") %>
+            </div>
+            <h3 class="font-bold mb-2">Be specific about takeaways</h3>
+            <p class="text-sm text-gray-500">Organizers want to know what attendees will learn. Instead of "I'll talk about testing," try "Attendees will learn 3 patterns for reducing test suite runtime by 50%."</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-white border border-base-300">
+            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-3">
+              <%= fa("heading", size: :lg, class: "fill-primary") %>
+            </div>
+            <h3 class="font-bold mb-2">Craft a compelling title</h3>
+            <p class="text-sm text-gray-500">Your title is the first thing reviewers and attendees see. Make it specific, intriguing, and clear about the topic. Avoid generic titles like "My Journey with Ruby."</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-white border border-base-300">
+            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-3">
+              <%= fa("list-check", size: :lg, class: "fill-primary") %>
+            </div>
+            <h3 class="font-bold mb-2">Include an outline</h3>
+            <p class="text-sm text-gray-500">Even a rough outline shows organizers you've thought through the structure. It helps them assess whether the talk fits their audience and time slot.</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-white border border-base-300">
+            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-3">
+              <%= fa("paper-plane", size: :lg, class: "fill-primary") %>
+            </div>
+            <h3 class="font-bold mb-2">Submit to multiple events</h3>
+            <p class="text-sm text-gray-500">Don't put all your eggs in one basket. Most speakers submit the same talk to several conferences. It's expected and encouraged, and it increases your chances significantly.</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-white border border-base-300">
+            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-3">
+              <%= fa("rotate", size: :lg, class: "fill-primary") %>
+            </div>
+            <h3 class="font-bold mb-2">Iterate on your abstract</h3>
+            <p class="text-sm text-gray-500">Ask a friend or colleague to review your proposal. Fresh eyes catch vague language, missing context, and assumptions you didn't notice.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold mb-2">Preparing Your Talk</h2>
+        <p class="text-gray-500 mb-6">Your proposal got accepted. Now what? Here are some tips for delivering a great talk.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="p-6 rounded-2xl bg-white border border-base-300">
+            <h3 class="font-bold mb-2"><%= fa("presentation-screen", size: :md, class: "fill-primary mr-2") %>Start with your story</h3>
+            <p class="text-sm text-gray-500">The best talks aren't lectures, they're stories. Start with the problem you faced, walk through your journey, and share what you learned. People remember stories far better than bullet points.</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-white border border-base-300">
+            <h3 class="font-bold mb-2"><%= fa("stopwatch", size: :md, class: "fill-primary mr-2") %>Practice with a timer</h3>
+            <p class="text-sm text-gray-500">Run through your talk at least twice with a timer. Most speakers run long on their first try. Cut ruthlessly. A focused 25-minute talk beats a rushed 40-minute one.</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-white border border-base-300">
+            <h3 class="font-bold mb-2"><%= fa("code", size: :md, class: "fill-primary mr-2") %>Keep slides simple</h3>
+            <p class="text-sm text-gray-500">Less text, more visuals. Code samples should be short and highlighted. If attendees are reading your slides, they're not listening to you. Use large fonts so the back row can read them too.</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-white border border-base-300">
+            <h3 class="font-bold mb-2"><%= fa("heart", size: :md, class: "fill-primary mr-2") %>Be yourself</h3>
+            <p class="text-sm text-gray-500">Audiences connect with authenticity. It's okay to be nervous, to say "I don't know," or to show vulnerability. The Ruby community is famously welcoming and they're rooting for you.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold mb-6">Resources for Speakers</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <%= link_to "https://speakerline.io", target: "_blank", rel: "noopener noreferrer", class: "flex items-center gap-3 p-4 rounded-xl border border-base-300 bg-white hover:border-primary hover:shadow transition-all" do %>
+            <%= fa("chart-line", size: :lg, class: "fill-primary shrink-0") %>
+            <div>
+              <div class="font-semibold">Speakerline.io</div>
+              <div class="text-sm text-gray-500">Browse real CFP proposals from other speakers to learn what gets accepted</div>
+            </div>
+          <% end %>
+
+          <%= link_to talks_path, class: "flex items-center gap-3 p-4 rounded-xl border border-base-300 bg-white hover:border-primary hover:shadow transition-all" do %>
+            <%= fa("circle-play", size: :lg, class: "fill-primary shrink-0") %>
+            <div>
+              <div class="font-semibold">Watch talks for inspiration</div>
+              <div class="text-sm text-gray-500">See how other speakers structure their presentations</div>
+            </div>
+          <% end %>
+
+          <%= link_to topics_path, class: "flex items-center gap-3 p-4 rounded-xl border border-base-300 bg-white hover:border-primary hover:shadow transition-all" do %>
+            <%= fa("tags", size: :lg, class: "fill-primary shrink-0") %>
+            <div>
+              <div class="font-semibold">Browse topics</div>
+              <div class="text-sm text-gray-500">Find your niche or discover underrepresented topics</div>
+            </div>
+          <% end %>
+        </div>
+      </section>
+
+      <%= render "page/community_cta", exclude: :speak %>
+    </div>
+  </div>
+</main>

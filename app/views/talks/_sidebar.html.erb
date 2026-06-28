@@ -1,0 +1,117 @@
+<%# locals: (sidebar_data:) %>
+
+<% sidebar_link = ->(label, path, icon: nil, active: false, count: nil, badge: nil) do %>
+<% capture do %>
+  <%= link_to path, class: class_names(
+        "flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors",
+        "bg-primary/10 text-primary font-semibold": active,
+        "text-gray-700 hover:bg-base-200": !active
+      ) do %>
+    <% if icon %>
+      <span class="<%= class_names("w-4 [&>svg]:w-4 [&>svg]:h-4", "text-primary": active, "text-gray-400": !active) %>">
+        <%= fa(icon, size: :sm, class: "fill-current") %>
+      </span>
+    <% end %>
+    <span class="flex-1 truncate"><%= label %></span>
+    <% if count %>
+      <span class="text-xs text-gray-400"><%= number_with_delimiter(count) %></span>
+    <% end %>
+    <% if badge %>
+      <span class="badge badge-xs badge-primary"><%= badge %></span>
+    <% end %>
+  <% end %>
+<% end %>
+<% end %>
+
+<nav class="hidden lg:flex flex-col gap-6 sticky top-20 max-h-[calc(100vh-6rem)] overflow-y-auto pb-8 [mask-image:linear-gradient(to_bottom,black_calc(100%-3rem),transparent)]" style="-ms-overflow-style: none; scrollbar-width: none;">
+  <div>
+    <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 mb-2">Browse</h3>
+    <div class="flex flex-col gap-0.5">
+      <%= sidebar_link.call("All Talks", talks_path(status: "all"), icon: "globe", active: params[:status] == "all" && params[:section].blank? && params[:kind].blank? && params[:language].blank?) %>
+      <%= sidebar_link.call("Recently Held", talks_path(section: "newest"), icon: "clock", active: params[:section] == "newest") %>
+      <%= sidebar_link.call("Recently Uploaded", talks_path(section: "recently_published"), icon: "upload", active: params[:section] == "recently_published") %>
+      <%= sidebar_link.call("Trending", talks_path(section: "trending"), icon: "fire", active: params[:section] == "trending") %>
+      <%= sidebar_link.call("Popular", talks_path(section: "popular"), icon: "chart-simple", active: params[:section] == "popular") %>
+      <%= sidebar_link.call("Popular on YouTube", talks_path(section: "popular_youtube"), icon: "youtube", active: params[:section] == "popular_youtube") %>
+      <%= sidebar_link.call("Most Bookmarked", talks_path(section: "most_bookmarked"), icon: "bookmark", active: params[:section] == "most_bookmarked") %>
+      <%= sidebar_link.call("Hidden Gems", talks_path(section: "hidden_gems"), icon: "gem", active: params[:section] == "hidden_gems") %>
+      <%= sidebar_link.call("Quick Watches", talks_path(section: "quick_watches"), icon: "bolt", active: params[:section] == "quick_watches") %>
+      <%= sidebar_link.call("Deep Dives", talks_path(section: "deep_dives"), icon: "book-open", active: params[:section] == "deep_dives") %>
+    </div>
+  </div>
+
+  <% if Current.user %>
+    <div>
+      <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 mb-2">For You</h3>
+      <div class="flex flex-col gap-0.5">
+        <%= sidebar_link.call("Recommended", talks_path(section: "for_you"), icon: "sparkles", active: params[:section] == "for_you") %>
+        <%= sidebar_link.call("From Favorite Rubyists", talks_path(section: "favorite_rubyists"), icon: "heart", active: params[:section] == "favorite_rubyists") %>
+        <%= sidebar_link.call("From Speakers You Watch", talks_path(section: "favorite_speakers"), icon: "microphone", active: params[:section] == "favorite_speakers") %>
+        <%= sidebar_link.call("From Attended Events", talks_path(section: "events_attended"), icon: "ticket", active: params[:section] == "events_attended") %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if false %>
+    <div>
+      <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 mb-2">Based on Feedback</h3>
+      <div class="flex flex-col gap-0.5">
+        <%= sidebar_link.call("Most Liked", talks_path(section: "most_liked"), icon: "thumbs-up", active: params[:section] == "most_liked") %>
+        <%= sidebar_link.call("Mind-Blowing", talks_path(section: "mind_blowing"), icon: "brain", active: params[:section] == "mind_blowing") %>
+        <%= sidebar_link.call("Inspiring", talks_path(section: "inspiring"), icon: "lightbulb", active: params[:section] == "inspiring") %>
+        <%= sidebar_link.call("Recommended by the Community", talks_path(section: "recommended_community"), icon: "users", active: params[:section] == "recommended_community") %>
+        <%= sidebar_link.call("Evergreen", talks_path(section: "evergreen"), icon: "leaf", active: params[:section] == "evergreen") %>
+        <%= sidebar_link.call("Beginner Friendly", talks_path(section: "beginner_friendly"), icon: "graduation-cap", active: params[:section] == "beginner_friendly") %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if sidebar_data[:kind_counts].present? %>
+    <div>
+      <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 mb-2">Format</h3>
+      <div class="flex flex-col gap-0.5">
+        <% sidebar_data[:kind_counts].each do |kind, count| %>
+          <%= sidebar_link.call(
+                Talk::KIND_LABELS[kind] || kind.titleize,
+                talks_path(kind: kind),
+                active: params[:kind] == kind,
+                count: count
+              ) %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if sidebar_data[:language_counts].present? %>
+    <div>
+      <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 mb-2">Language</h3>
+      <div class="flex flex-col gap-0.5">
+        <% sidebar_data[:language_counts].first(10).each do |code, count| %>
+          <%= sidebar_link.call(
+                "#{Language.emoji_flag(code)} #{Language.by_code(code) || code}",
+                talks_path(language: code),
+                active: params[:language] == code,
+                count: count
+              ) %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if sidebar_data[:top_topics].present? %>
+    <div>
+      <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 mb-2">Topics</h3>
+      <div class="flex flex-col gap-0.5">
+        <% sidebar_data[:top_topics].each do |_id, name, slug, count| %>
+          <%= sidebar_link.call(
+                name,
+                talks_path(topic: slug),
+                active: params[:topic] == slug,
+                count: count
+              ) %>
+        <% end %>
+        <%= sidebar_link.call("All Topics", topics_path, icon: "ellipsis") %>
+      </div>
+    </div>
+  <% end %>
+</nav>

@@ -10,7 +10,10 @@ class BrowseController < ApplicationController
     unwatched_attended favorite_speakers popular popular_youtube most_bookmarked
     quick_watches deep_dives hidden_gems evergreen beginner_friendly mind_blowing
     inspiring most_liked recommended_community popular_topics talk_kinds topic_rows
-    language_rows
+    language_rows closing_cfps upcoming_events recent_events featured_organizations
+    upcoming_events_europe upcoming_events_north_america upcoming_events_south_america
+    upcoming_events_asia upcoming_events_australia upcoming_events_africa
+    talk_languages always_open_cfps
   ].freeze
 
   def index
@@ -57,8 +60,15 @@ class BrowseController < ApplicationController
     when "recommended_community" then {talks: @recommended_by_community}
     when "popular_topics" then {topics: @popular_topics}
     when "talk_kinds" then {talk_kinds: @talk_kinds}
+    when "talk_languages" then {languages: @talk_languages}
     when "topic_rows" then {topic_rows: @topic_rows}
     when "language_rows" then {language_rows: @language_rows}
+    when "closing_cfps" then {events: @closing_cfp_events}
+    when "always_open_cfps" then {events: @always_open_cfp_events}
+    when "upcoming_events" then {events: @upcoming_events}
+    when "recent_events" then {events: @recent_events}
+    when "featured_organizations" then {organizations: @featured_organizations}
+    when /\Aupcoming_events_(\w+)\z/ then {events: @continent_events, continent: @continent}
     else {}
     end
   end
@@ -169,8 +179,13 @@ class BrowseController < ApplicationController
     attended_event_ids = Current.user.participated_events.pluck(:id)
     return unless attended_event_ids.any?
 
+    watched_talk_ids = Current.user.watched_talks.pluck(:talk_id)
+    own_talk_ids = Current.user.user_talks.select(:talk_id)
+
     @from_events_attended = Talk.watchable
       .where(event_id: attended_event_ids)
+      .where.not(id: watched_talk_ids)
+      .where.not(id: own_talk_ids)
       .includes(:speakers, event: :series)
       .order(date: :desc)
       .limit(15)
@@ -206,10 +221,13 @@ class BrowseController < ApplicationController
       .pluck(:user_id)
     return unless top_speaker_ids.any?
 
+    own_talk_ids = Current.user.user_talks.select(:talk_id)
+
     @from_favorite_speakers = Talk.watchable
       .joins(:user_talks)
       .where(user_talks: {user_id: top_speaker_ids})
       .where.not(id: watched_talk_ids)
+      .where.not(id: own_talk_ids)
       .includes(:speakers, event: :series)
       .order(Arel.sql("RANDOM()"))
       .limit(15)
@@ -376,151 +394,31 @@ class BrowseController < ApplicationController
   end
 
   def featured_events_query
-    imported_slugs = Event.not_meetup.with_watchable_talks.pluck(:slug)
-    featurable_slugs = Static::Event.where.not(featured_background: nil).pluck(:slug)
-    slug_candidates = imported_slugs & featurable_slugs
-
-    featured_slugs = Static::Event.all
-      .select { |event| slug_candidates.include?(event.slug) }
-      .select(&:home_sort_date)
-      .sort_by(&:home_sort_date)
-      .reverse
-      .take(5)
-      .map(&:slug)
-
-    Event.where(slug: featured_slugs).in_order_of(:slug, featured_slugs)
+    Event
+      .not_meetup
+      .with_watchable_talks
+      .featurable
+      .where.not(home_sort_date: nil)
+      .order(home_sort_date: :desc)
+      .limit(5)
   end
 
-  def recently_published_query
-    Talk.watchable
-      .where.not(published_at: nil)
-      .order(published_at: :desc)
-      .limit(15)
-  end
+  def recently_published_query = Talk.recently_published_talks.limit(15)
+  def newest_talks_query = Talk.newest_talks.limit(15)
+  def trending_talks_query = Talk.trending_talks.limit(15)
+  def popular_talks_query = Talk.popular_talks.limit(15)
+  def popular_on_youtube_query = Talk.popular_on_youtube_talks.limit(15)
+  def most_bookmarked_query = Talk.most_bookmarked_talks.limit(15)
+  def quick_watches_query = Talk.quick_watches_talks.order(Arel.sql("RANDOM()")).limit(15)
+  def deep_dives_query = Talk.deep_dives_talks.order(Arel.sql("RANDOM()")).limit(15)
+  def hidden_gems_query = Talk.hidden_gems_talks.limit(15)
+  def evergreen_talks_query = Talk.evergreen_talks.limit(15)
+  def beginner_friendly_query = Talk.beginner_friendly_talks.limit(15)
 
-  def newest_talks_query
-    Talk.watchable
-      .where("date <= ?", Date.current)
-      .order(date: :desc)
-      .limit(15)
-  end
-
-  def trending_talks_query
-    Talk.watchable
-      .joins(:watched_talks)
-      .where(watched_talks: {watched_at: 30.days.ago..})
-      .group(:id)
-      .order(Arel.sql("COUNT(watched_talks.id) DESC"))
-      .limit(15)
-  end
-
-  def popular_talks_query
-    Talk.watchable
-      .joins(:watched_talks)
-      .group(:id)
-      .order(Arel.sql("COUNT(watched_talks.id) DESC"))
-      .limit(15)
-  end
-
-  def popular_on_youtube_query
-    Talk.watchable
-      .where("view_count > 0")
-      .order(view_count: :desc)
-      .limit(15)
-  end
-
-  def most_bookmarked_query
-    Talk.watchable
-      .joins(:watch_list_talks)
-      .group(:id)
-      .order(Arel.sql("COUNT(watch_list_talks.id) DESC"))
-      .limit(15)
-  end
-
-  def quick_watches_query
-    Talk.watchable
-      .where("duration_in_seconds > 0 AND duration_in_seconds <= ?", 15 * 60)
-      .order(Arel.sql("RANDOM()"))
-      .limit(15)
-  end
-
-  def deep_dives_query
-    Talk.watchable
-      .where("duration_in_seconds >= ?", 45 * 60)
-      .order(Arel.sql("RANDOM()"))
-      .limit(15)
-  end
-
-  def hidden_gems_query
-    Talk.watchable
-      .joins(:watched_talks)
-      .where("view_count < 5000 OR view_count IS NULL")
-      .group(:id)
-      .having("COUNT(watched_talks.id) >= 3")
-      .order(Arel.sql("COUNT(watched_talks.id) DESC"))
-      .limit(15)
-  end
-
-  def evergreen_talks_query
-    Talk.watchable
-      .joins(:watched_talks)
-      .where("json_extract(watched_talks.feedback, '$.content_freshness') = ?", "evergreen")
-      .group(:id)
-      .having("COUNT(watched_talks.id) >= 2")
-      .order(Arel.sql("COUNT(watched_talks.id) DESC"))
-      .limit(15)
-  end
-
-  def beginner_friendly_query
-    Talk.watchable
-      .joins(:watched_talks)
-      .where("json_extract(watched_talks.feedback, '$.experience_level') = ?", "beginner")
-      .group(:id)
-      .having("COUNT(watched_talks.id) >= 2")
-      .order(Arel.sql("COUNT(watched_talks.id) DESC"))
-      .limit(15)
-  end
-
-  def mind_blowing_query
-    Talk.watchable
-      .joins(:watched_talks)
-      .where("json_extract(watched_talks.feedback, '$.feeling') = ?", "mind_blown")
-      .group(:id)
-      .having("COUNT(watched_talks.id) >= 2")
-      .order(Arel.sql("COUNT(watched_talks.id) DESC"))
-      .limit(15)
-  end
-
-  def inspiring_talks_query
-    Talk.watchable
-      .joins(:watched_talks)
-      .where("json_extract(watched_talks.feedback, '$.feeling') IN (?, ?)", "inspired", "exciting")
-      .or(Talk.watchable.joins(:watched_talks).where("json_extract(watched_talks.feedback, '$.inspiring') = ?", true))
-      .group(:id)
-      .having("COUNT(watched_talks.id) >= 2")
-      .order(Arel.sql("COUNT(watched_talks.id) DESC"))
-      .limit(15)
-  end
-
-  def most_liked_query
-    Talk.watchable
-      .joins(:watched_talks)
-      .where("json_extract(watched_talks.feedback, '$.liked') = ?", true)
-      .group(:id)
-      .having("COUNT(watched_talks.id) >= 2")
-      .order(Arel.sql("COUNT(watched_talks.id) DESC"))
-      .limit(15)
-  end
-
-  def recommended_by_community_query
-    Talk.watchable
-      .joins(:watched_talks)
-      .where("json_extract(watched_talks.feedback, '$.would_recommend') = ?", true)
-      .group(:id)
-      .having("COUNT(watched_talks.id) >= 2")
-      .order(Arel.sql("COUNT(watched_talks.id) DESC"))
-      .limit(15)
-  end
+  def mind_blowing_query = Talk.mind_blowing_talks.limit(15)
+  def inspiring_talks_query = Talk.inspiring_talks.limit(15)
+  def most_liked_query = Talk.most_liked_talks.limit(15)
+  def recommended_by_community_query = Talk.recommended_by_community_talks.limit(15)
 
   def popular_topics_query
     Topic.approved
@@ -529,6 +427,16 @@ class BrowseController < ApplicationController
       .group("topics.id")
       .order(Arel.sql("COUNT(talks.id) DESC"))
       .limit(12)
+  end
+
+  def load_talk_languages
+    @talk_languages = Rails.cache.fetch(cache_key("talk_languages"), expires_in: CACHE_EXPIRY) do
+      Talk.watchable
+        .where.not(language: nil)
+        .group(:language)
+        .order(Arel.sql("COUNT(*) DESC"))
+        .count
+    end
   end
 
   def talk_kinds_query
@@ -568,5 +476,59 @@ class BrowseController < ApplicationController
           talk_ids: event.talks.watchable.order(date: :desc).limit(15).pluck(:id)
         }
       end
+  end
+
+  def load_closing_cfps
+    @closing_cfp_events = Event
+      .joins(:cfps)
+      .merge(CFP.open.where.not(close_date: nil))
+      .includes(:series, :cfps)
+      .order("cfps.close_date ASC")
+      .distinct
+      .limit(10)
+  end
+
+  def load_always_open_cfps
+    @always_open_cfp_events = Event
+      .joins(:cfps)
+      .merge(CFP.open.where(close_date: nil))
+      .includes(:series, :cfps)
+      .distinct
+      .limit(15)
+  end
+
+  def load_upcoming_events
+    @upcoming_events = Event.upcoming
+      .includes(:series)
+      .limit(15)
+  end
+
+  def load_recent_events
+    @recent_events = Event.conference.past
+      .includes(:series)
+      .limit(15)
+  end
+
+  %w[europe north_america south_america asia australia africa].each do |continent_key|
+    define_method("load_upcoming_events_#{continent_key}") do
+      slug = continent_key.tr("_", "-")
+      @continent = Continent.find(slug)
+      @continent_events = Event.upcoming
+        .includes(:series)
+        .where(country_code: @continent.country_codes)
+        .limit(15)
+    end
+  end
+
+  def load_featured_organizations
+    ids = Rails.cache.fetch(cache_key("featured_organizations"), expires_in: CACHE_EXPIRY) do
+      Organization.joins(:sponsors)
+        .group("organizations.id")
+        .order("COUNT(sponsors.id) DESC")
+        .limit(10)
+        .pluck(:id)
+    end
+
+    @featured_organizations = Organization.includes(:events).where(id: ids).in_order_of(:id, ids)
   end
 end

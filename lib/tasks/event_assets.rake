@@ -1,4 +1,4 @@
-require "mini_magick"
+require "fastimage"
 require "fileutils"
 require "gum"
 
@@ -118,8 +118,11 @@ class EventAssetWizard
     end
 
     begin
-      image = MiniMagick::Image.open(expanded_path)
-      puts Gum.style("✓ #{File.basename(path)} (#{image.width}x#{image.height} #{image.type})", foreground: "2")
+      size = FastImage.size(expanded_path)
+      type = FastImage.type(expanded_path)
+      raise "Could not read image" unless size
+
+      puts Gum.style("✓ #{File.basename(path)} (#{size[0]}x#{size[1]} #{type})", foreground: "2")
     rescue => e
       puts Gum.style("Invalid image: #{e.message}", foreground: "1")
       if Gum.confirm("Try again?")
@@ -176,7 +179,7 @@ class EventAssetWizard
   end
 
   def print_summary(event, logo_path, background_color, text_color)
-    assets_list = EventAssetGenerator::ASSETS.map { |name, dims| "  • #{name}.webp (#{dims[:width]}x#{dims[:height]})" }.join("\n")
+    assets_list = EventAssetGenerator.assets.map { |name, dims| "  • #{name}.webp (#{dims[:width]}x#{dims[:height]})" }.join("\n")
 
     summary = <<~SUMMARY
       Event:      #{event.name} (#{event.slug})
@@ -198,7 +201,7 @@ class EventAssetWizard
 
     generator.ensure_output_dir!
 
-    EventAssetGenerator::ASSETS.each do |name, dimensions|
+    EventAssetGenerator.assets.each do |name, dimensions|
       Gum.spin("Generating #{name}.webp...", spinner: "dot") do
         generator.generate_asset(name, dimensions[:width], dimensions[:height])
       end
@@ -226,14 +229,6 @@ class EventAssetWizard
 end
 
 class EventAssetGenerator
-  ASSETS = {
-    banner: {width: 1300, height: 350},
-    card: {width: 600, height: 350},
-    avatar: {width: 256, height: 256},
-    featured: {width: 615, height: 350},
-    poster: {width: 600, height: 350}
-  }.freeze
-
   LOGO_PADDING_RATIO = 0.15
 
   attr_reader :event, :logo_path, :background_color, :text_color, :output_dir
@@ -244,6 +239,10 @@ class EventAssetGenerator
     @background_color = normalize_color(background_color)
     @text_color = text_color.present? ? normalize_color(text_color) : calculate_text_color(@background_color)
     @output_dir = Rails.root.join("app", "assets", "images", "events", event.series.slug, event.slug)
+  end
+
+  def self.assets
+    Event::Assets::DIMENSIONS.slice("avatar", "banner", "card", "featured", "poster")
   end
 
   def ensure_output_dir!
@@ -259,19 +258,19 @@ class EventAssetGenerator
     puts "  Output: #{output_dir}"
     puts ""
 
-    ASSETS.each do |name, dimensions|
+    self.class.assets.each do |name, dimensions|
       generate_asset(name, dimensions[:width], dimensions[:height])
     end
 
     puts ""
-    puts "Done! Generated #{ASSETS.size} assets."
+    puts "Done! Generated #{self.class.assets.size} assets."
   end
 
   def generate_asset(name, width, height)
     output_path = output_dir.join("#{name}.webp")
 
-    logo = MiniMagick::Image.open(logo_path)
-    logo_aspect = logo.width.to_f / logo.height.to_f
+    logo_width, logo_height = FastImage.size(logo_path)
+    logo_aspect = logo_width.to_f / logo_height.to_f
 
     padding = [width, height].min * LOGO_PADDING_RATIO
     max_logo_width = width - (padding * 2)

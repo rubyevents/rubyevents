@@ -5,14 +5,14 @@ module Generators
     class_option :event_series, type: :string, desc: "Event series folder name - defaults to the series of the event", required: false, group: "Fields"
     class_option :event, type: :string, desc: "Event folder name", required: true, aliases: ["-e"], group: "Fields"
 
-    GeocodedAddress = Struct.new(:street_address, :city, :state, :postal_code, :country, :country_code, :latitude, :longitude)
-
     def event_directory
       @event_directory ||= File.join(destination_root, "data", event_series_slug, options[:event])
     end
 
     def event_series_slug
-      @series_slug ||= options[:event_series] || static_event&.series_slug
+      @series_slug ||= options[:event_series]
+        || static_event&.series_slug
+        || say_error("Could not determine event series.", :red) && exit(1)
     end
 
     def static_event
@@ -26,27 +26,17 @@ module Generators
     end
 
     def geocode_address(name:, address:)
-      if address != "123 TODO St, City, State, ZIP, Country" || name != "TODO Venue name"
-        # Combine venue name and address for better accuracy
+      if address.present? || name.present?
+        # Combine venue name and address for better accuracy with Google
         search = [name, address].compact.join(", ")
         geocode_results = Geocoder.search(search)
         # Nominatim works better with separate queries - doesn't find the combined one
         geocode_results = Geocoder.search(address) if geocode_results.empty?
         geocode_results = Geocoder.search(name) if geocode_results.empty?
         # Nominatim works better with just the street address
-        geocode_results = Geocoder.search(address.split(",")[0]) if geocode_results.empty?
+        geocode_results = Geocoder.search(address.split(",")[0]) if address.present? && geocode_results.empty?
+        geocode_results&.first
       end
-
-      geocode_results&.first || GeocodedAddress.new(
-        street_address: "123 Main St",
-        city: "City",
-        state: "State",
-        postal_code: "ZIP",
-        country: "Country",
-        country_code: "CC",
-        latitude: 0.0,
-        longitude: 0.0
-      )
     end
 
     def template_content(source, &block)

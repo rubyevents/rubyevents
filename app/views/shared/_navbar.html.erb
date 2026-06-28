@@ -3,7 +3,7 @@
     <div class="items-center gap-6 hidden lg:flex">
       <ul class="desktop-menu">
         <%= render "shared/navbar/link", link_title: "Events", path: events_path %>
-        <%= render "shared/navbar/link", link_title: "Videos", path: browse_index_path %>
+        <%= render "shared/navbar/link", link_title: "Talks", path: talks_path %>
         <%= render "shared/navbar/link", link_title: "Speakers", path: speakers_path %>
         <%= render "shared/navbar/link", link_title: "Organizations", path: organizations_path %>
         <%= render "shared/navbar/link", link_title: "Topics", path: topics_path %>
@@ -23,8 +23,9 @@
         <div class="flex items-center gap-2">
           <ul class="desktop-menu">
             <% signed_in do %>
-              <%= render "shared/navbar/link", link_title: "Favorite Rubyists", path: favorite_users_path %>
+              <%= render "shared/navbar/link", link_title: "Library", path: watched_talks_path %>
             <% end %>
+
             <%= render "shared/navbar/link", link_title: "Contribute", path: contributions_path %>
             <%= render "shared/navbar/link", link_title: "News", path: announcements_path %>
           </ul>
@@ -38,9 +39,6 @@
               <%= render Ui::AvatarComponent.new(Current.user, size: :sm, size_class: "w-7", outline: true) %>
             <% end %>
           </li>
-          <li class="flex items-center">
-            <%= render "shared/user_dropdown" %>
-          </li>
         <% end %>
 
         <% signed_out do %>
@@ -48,6 +46,10 @@
             <%= link_to "Sign in", new_session_path(redirect_to: request.fullpath), data: {turbo_frame: "modal"}, class: "btn btn-primary" %>
           </li>
         <% end %>
+
+        <li class="flex items-center">
+          <%= render "shared/user_dropdown" %>
+        </li>
       </ul>
 
       <div class="flex lg:hidden gap-2 items-center">

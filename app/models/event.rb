@@ -3,27 +3,31 @@
 # Table name: events
 # Database name: primary
 #
-#  id               :integer          not null, primary key
-#  city             :string
-#  country_code     :string           indexed => [state_code]
-#  date             :date
-#  date_precision   :string           default("day"), not null
-#  end_date         :date
-#  geocode_metadata :json             not null
-#  kind             :string           default("event"), not null, indexed
-#  latitude         :decimal(10, 6)
-#  location         :string
-#  longitude        :decimal(10, 6)
-#  name             :string           default(""), not null, indexed
-#  slug             :string           default(""), not null, indexed
-#  start_date       :date
-#  state_code       :string           indexed => [country_code]
-#  talks_count      :integer          default(0), not null
-#  website          :string           default("")
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  canonical_id     :integer          indexed
-#  event_series_id  :integer          not null, indexed
+#  id                  :integer          not null, primary key
+#  banner_background   :string
+#  city                :string
+#  country_code        :string           indexed => [state_code]
+#  date                :date
+#  date_precision      :string           default("day"), not null
+#  end_date            :date
+#  featured_background :string
+#  featured_color      :string
+#  geocode_metadata    :json             not null
+#  home_sort_date      :date
+#  kind                :string           default("event"), not null, indexed
+#  latitude            :decimal(10, 6)
+#  location            :string
+#  longitude           :decimal(10, 6)
+#  name                :string           default(""), not null, indexed
+#  slug                :string           default(""), not null, indexed
+#  start_date          :date
+#  state_code          :string           indexed => [country_code]
+#  talks_count         :integer          default(0), not null
+#  website             :string           default("")
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  canonical_id        :integer          indexed
+#  event_series_id     :integer          not null, indexed
 #
 # Indexes
 #
@@ -41,10 +45,14 @@
 #
 class Event < ApplicationRecord
   include Geocodeable
-  include Suggestable
   include Sluggable
   include Todoable
   include Event::TypesenseSearchable
+
+  FEATURED_RECENTLY_PUBLISHED_WINDOW = 30.days
+  FEATURED_RECENTLY_ENDED_WINDOW = 2.days
+  FEATURED_UPCOMING_WINDOW = 2.weeks
+  FEATURED_CFP_CLOSING_WINDOW = 5.days
 
   geocodeable :location_and_country_code
   configure_slug(attribute: :name, auto_suffix_on_collision: false)
@@ -107,6 +115,7 @@ class Event < ApplicationRecord
   scope :with_talks, -> { where.associated(:talks) }
   scope :with_watchable_talks, -> { where.associated(:watchable_talks) }
   scope :canonical, -> { where(canonical_id: nil) }
+  scope :featurable, -> { where.not(featured_background: nil).where.not(featured_color: nil) }
   scope :not_canonical, -> { where.not(canonical_id: nil) }
   scope :ft_search, ->(query) {
     joins(<<~SQL.squish)
@@ -144,6 +153,56 @@ class Event < ApplicationRecord
 
   def past?
     end_date.present? && end_date < Date.today
+  end
+
+  def happening?
+    start_date.present? && end_date.present? && (start_date..end_date).cover?(Date.today)
+  end
+
+  def happening_tomorrow?
+    start_date.present? && start_date == Date.today + 1
+  end
+
+  def recently_ended?
+    past? && end_date >= FEATURED_RECENTLY_ENDED_WINDOW.ago.to_date
+  end
+
+  def featured_cfp
+    cfps.select { |cfp| cfp.link.present? && cfp.close_date && cfp.close_date.between?(Date.today, Date.today + FEATURED_CFP_CLOSING_WINDOW) }.min_by(&:close_date)
+  end
+
+  def featured_reason
+    if happening?
+      :happening
+    elsif happening_tomorrow?
+      :happening_tomorrow
+    elsif featured_cfp
+      :cfp_closing
+    elsif upcoming?
+      :upcoming
+    elsif recently_ended? && !watchable_talks?
+      :recently_ended
+    elsif home_sort_date && home_sort_date >= FEATURED_RECENTLY_PUBLISHED_WINDOW.ago.to_date
+      :recently_published
+    else
+      :available
+    end
+  end
+
+  def featured_distance(today: Date.today)
+    cfp = featured_cfp
+
+    if happening?
+      0
+    elsif cfp
+      (cfp.close_date - today).to_i
+    elsif upcoming?
+      (start_date - today).to_i
+    elsif home_sort_date
+      (today - home_sort_date).to_i
+    else
+      Float::INFINITY
+    end
   end
 
   def self.find_by_name_or_alias(name)
@@ -210,23 +269,8 @@ class Event < ApplicationRecord
     end
   end
 
-  def managed_by?(user)
-    Current.user&.admin?
-  end
-
   def data_folder
     Rails.root.join("data", series.slug, slug)
-  end
-
-  def suggestion_summary
-    <<~HEREDOC
-      Event: #{name}
-      #{description}
-      #{city}
-      #{country_code}
-      #{series.name}
-      #{date}
-    HEREDOC
   end
 
   def location_and_country_code
@@ -355,6 +399,24 @@ class Event < ApplicationRecord
       featured_color: static_metadata.featured_color,
       url: Router.event_url(self, host: "#{request.protocol}#{request.host}:#{request.port}")
     }
+  end
+
+  def to_ical
+    Icalendar::Event.new.tap do |event|
+      event.uid = "RUBYEVENTS-#{id}"
+      event.last_modified = updated_at
+      event.dtstart = Icalendar::Values::Date.new(start_date)
+
+      if end_date > start_date
+        event.dtend = Icalendar::Values::Date.new(end_date + 1.day) # dtend is exclusive, add 1 day to make it inclusive
+      end
+
+      event.summary = name
+      event.description = description.strip
+      event.location = static_metadata.location
+      event.url = website
+      event.status = static_metadata.cancelled? ? "CANCELLED" : "CONFIRMED"
+    end
   end
 
   private

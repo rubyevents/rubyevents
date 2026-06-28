@@ -1,9 +1,761 @@
-# TODO: Add talks and videos
-
-# Playlist: https://www.youtube.com/playlist?list=PLE7tQUdRKcyYAOs4EJPp-a0M2vA20lvhm
-# Matz Slides: https://www.slideshare.net/slideshow/rubyconf-2010-keynote-by-matz/5777480
-
-# https://weekly-geekly.imtqy.com/articles/113635/index.html
-# https://vimeo.com/16774463
 ---
-[]
+- id: "dave-thomas-rubyconf-2010"
+  title: "Keynote"
+  raw_title: "RubyConf 2010 - Keynote by: Dave Thomas"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "nwG1Z_uh0sI"
+  description: ""
+  speakers:
+    - Dave Thomas
+
+- id: "nick-howard-rubyconf-2010"
+  title: "AppEngine and Dubious and New Google API's Oh My!"
+  raw_title: "RubyConf 2010 - AppEngine and Dubious and New Google API's Oh My! by: Nick Howard, Bob Aman"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "IUCb4TUKEjs"
+  description: |-
+    Developers are now deploying Rails and Sinatra applications to Google App Engine. These apps run in a servlet container, with access to all the Java APIs. Unlike a traditional Ruby hosting environment, new app instances spin-up on-demand, so developers avoid paying for servers that sit idle. Unfortunately, new Rails instances can take many seconds to spin-up. Dubious provides a way to bypass the spin-up problem by replacing part (or all) of your app with Mirah code, which can be almost identical to the Ruby code found in a Rails app. Using Dubious, each new instance can spin-up in about a second, with scalability and performance that beats all other traditional web frameworks. This is possible because Mirah uses compile-time macros and plugins to generate code, instead using abstractions that create runtime dependencies with associated initialization costs.
+  speakers:
+    - Nick Howard
+    - Bob Aman
+
+- id: "eric-hodel-rubyconf-2010"
+  title: "History of RDoc and Rubygems"
+  raw_title: "RubyConf 2010 - History of RDoc and Rubygems by: Eric Hodel"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "1Z3SQI_bodM"
+  description: |-
+    Both RDoc and RubyGems are projects that live at the core of Ruby. RDoc was added to the standard library in Ruby 1.8.1. I started improving RDoc in Ruby in 2006 and releasing it as a gem in 2008. Over that time I've overhauled most of RDoc in order to make it easier to use, understand and modify. RubyGems was added to the standard library in Ruby 1.9.0. I started improving RubyGems in 2005 and took over releasing it in 2007. Over that time I've made RubyGems easier to use as a tool, as a library and I've improved the ease and speed of installing gems We will cover how RDoc and RubyGems moved from slow, poorly tested and slightly neglected project to their faster, better tested modern counterparts.
+  speakers:
+    - Eric Hodel
+
+- id: "aman-gupta-rubyconf-2010"
+  title: "Debugging Ruby"
+  raw_title: "RubyConf 2010 - Debugging Ruby by: Aman Gupta"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "y8oLjyxMlAs"
+  description: |-
+    Ruby might be slow, but bad code only makes it worse. This talk will teach you how to use powerful tools to see how your code is executed, so you can understand, debug and optimize it. The talk will cover techniques that can be used to troubleshoot production ruby deployments from three perspectives: the operating system and process, the C code VM, and the Ruby code in application itself. Each tool will be presented with a variety of real-world examples of how it was used to solve problems in a popular library or application.
+  speakers:
+    - Aman Gupta
+
+- id: "yoko-harada-rubyconf-2010"
+  title: "RubyGems to All JVM Languages"
+  raw_title: "RubyConf 2010 - RubyGems to All JVM Languages by: Yoko Harada"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "BWfH7YBvE9k"
+  description: |-
+    Have you ever imagined using RubyGems from Clojure, Jython or other JVM languages? It might sound bizarre, but JRuby enables that. The magic is JRuby's RedBridge. RedBridge is a nickname of embedding API included in JRuby, and is for using Ruby from Java. Using Ruby from Java is another feature of JRuby as well as using Java from Ruby. With JRuby's RedBridge, RubyGems becomes one of the choices to build a Java application. This means JVM languages can also choose RubyGems to create an application. For example, DataMapper from Clojure or Cucumber from Jython are possible combinations. Even Rails can work with non-Ruby languages. JRuby's RedBridge has unleashed RubyGems to all JVM languages. Besides, you can do this easily since RedBridge provides simple, colorful and JRuby friendly API. Why don't you enjoy new flavor of blending RubyGems and JVM languages?
+  speakers:
+    - Yoko Harada
+
+- id: "nathaniel-talbott-rubyconf-2010"
+  title: "RubyConf Decathlon"
+  raw_title: "RubyConf 2010 - RubyConf Decathlon by: Nathaniel Talbott"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "4vzUr8Xcss8"
+  description: |-
+    Did you know that only one person raised their hand at the first RubyConf when the attendees were asked, "Who's getting paid to write Ruby code?" Or that _why the lucky stiff was at the second RubyConf and came off as a preppy surfer dude? Or that Rubygems as we know it today was coded up in the bar at the third RubyConf, but that was actually its second incarnation? As one of the few people who has been to every RubyConf, and the only person to speak at each of them, I can't think of anything more fun for the tenth incarnation than to take a trip down memory lane. I'm going to talk about RubyConfs past, my own personal highs and lows as a ten year serial presenter, and what it all can teach us about the past, present, and future of the Ruby community that we know and love.
+  speakers:
+    - Nathaniel Talbott
+
+- id: "jim-weirich-rubyconf-2010"
+  title: "The Polite Programmer's Guide to Ruby Etiquette"
+  raw_title: "RubyConf 2010 - The Polite Programmer's Guide to Ruby Etiquette"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "ugzZqcXgi-g"
+  description: |-
+    Fellow rubyists, are you tired of constantly dealing with impolite and boorish code that invades your personal space, clobbering your instance variables and messing with your method missings. We kindly invite you to join us in a session promoting proper programming protocols, where multiple programmers can coexist in a polite environment without their code behaving in crude and inappropriate ways. We will discuss the proper etiquette for metaprogramming techniques, hook method implementations, and proper aliasing of methods. By adopting a greater degree of decorum you will be able to leave rudeness behind and produce code that interoperates in the most civilized of ways.
+  speakers:
+    - Jim Weirich
+    - Chris Nelson
+    - Ed Sumerfield
+
+- id: "daniel-jackoway-rubyconf-2010"
+  title: "Ruboto: Ruby in your Pocket"
+  raw_title: "RubyConf 2010 - Ruboto: Ruby in your Pocket by: Daniel Jackoway"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "siYraYeMNBk"
+  description: |-
+    Android is getting huge fast. Learn about Ruboto, a project to bring Ruby to Android. See a demo of the IRB app, then delve into ruboto-core, a platform for writing full Android apps in pure Ruby. Also take a quick look at writing apps in Mirah, Charles Nutter's JVM language that has a Ruby-like syntax but compiles directly to Java code, meaning that it is just as fast as Java.
+  speakers:
+    - Daniel Jackoway
+
+- id: "jeremy-hinegardner-rubyconf-2010"
+  title: "Anthropology of Ruby: Excavating its Gems"
+  raw_title: "RubyConf 2010 - Anthropology of Ruby: Excavating its Gems by: Jeremy Hinegardner"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "AhCeK2WcF8Q"
+  description: |-
+    Rubygems was created in 2003 and the repository of gems it spawned as a whole holds a history of ruby's usage and the people contributing to ruby. This talk will present an investigation into the anthropology of Ruby through its gems. Who did what, when, and how often, along with the interrelations between projects, and the interesting visualization that can be produced from this dataset.
+  speakers:
+    - Jeremy Hinegardner
+
+- id: "jake-scruggs-rubyconf-2010"
+  title: "Hotspots with Metric Fu"
+  raw_title: "RubyConf 2010 - Hotspots with Metric Fu by: Jake Scruggs"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "d2ZP75LTCtw"
+  description: |-
+    Recently MetricFu, a ruby gem for creating many code metrics, added Hotspots. Now you can see where in your code you have multiple problems at once. Wouldn't you want to know if you have complex code that changes a lot in source control AND has bad coverage? Of course you would. I'll show you how to use MetricFu to find the worst code in your application and then how to fix it.
+  speakers:
+    - Jake Scruggs
+
+- id: "nick-sieger-rubyconf-2010"
+  title: "Self-Contained, Source-Free, Executable Ruby Applications with Warbler"
+  raw_title: "RubyConf 2010 - Self-Contained, Source-Free, Executable Ruby Applications with Warbler"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "w2bzbuo10vo"
+  description: |-
+    Have you ever wanted to write pure Ruby code and deploy it on a friend's machine, a server, or some computer where you have little control? With Warbler you can pack a fully functioning application into a single file and run the application anywhere there is a JVM. Build micro webapps, background agents, environment monitors, utilities, or desktop applications that can be trivially deployed across a mixed computing environment. Take Ruby where you previously could not, and leave your source code at home at the same time! We'll discuss how Warbler, JRuby and the JVM are combined to make this happen, and show some examples where such a deployment scheme might make sense. Warbler started as a simple tool to package a Rails application into a single file. Soon after 1.0, Warbler was capable of embedding a minimal web server for fully-functional Rails application servers in a single file with compiled, obfuscated code. The 1.3 release available soon will allow bundling of any Ruby application with bin script and a gemspec or Gemfile into an executable.
+  speakers:
+    - Nick Sieger
+
+- id: "rein-henrichs-rubyconf-2010"
+  title: "Each: A Brief History of Iteration"
+  raw_title: "RubyConf 2010 - Each: A Brief History of Iteration by: Rein Henrichs"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "HWw0wXYQe1Q"
+  description: |-
+    You know that Ruby has powerful tools for iteration, but do you know from whence they came? Do you know how to take advantage of them for  strike world domination /strike  your own uses? Take a journey through languages of yore. Slay dragons and save the... Ok, there won't be dragons. But there will be iterators (both external and internal), generators and enumerators. Oh my! Explore the elegant power of Ruby's Enumerable library, discover the expressive simplicity of Ruby's duck typing and learn a few useful Rubyisms along the way that will help you understand the behavior of your own code in the larger Ruby ecosystem. Ok, sure. Slay dragons. You know you want to.
+  speakers:
+    - Rein Henrichs
+
+- id: "aaron-patterson-rubyconf-2010"
+  title: "ZOMG WHY IS THIS CODE SO SLOW?"
+  raw_title: "RubyConf 2010 - ZOMG WHY IS THIS CODE SO SLOW? by: Aaron Patterson"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "I8m6rY4JI1U"
+  description: |-
+    In this talk, we'll take a look at different tips and tricks for writing speedy code in Ruby. We'll look at techniques for analyzing our Ruby code to find the slow spots, and ways we can speed up those hot spots. MRI's VM will be analyzed in order to understand how to take maximum advantage of our Virtual Machine. Tools for uncovering the hidden algorithms used in our legacy code will be on display! Learning to mathematically represent those algorithms will be discussed so that we can slice away at our slow code! Bring your helmets and seat belts and get ready to strap yourself in for some EXTREME programming! If you attend this talk we'll give you the whole seat, but you'll only need the edge! Space is limited, so ACT NOW!
+  speakers:
+    - Aaron Patterson
+
+- id: "daniel-lucraft-rubyconf-2010"
+  title: "It's Time for a Ruby Editor"
+  raw_title: "RubyConf 2010 - It's Time for a Ruby Editor by: Daniel Lucraft"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "7OBJ5gx7yJU"
+  description: |-
+    Redcar is a cross-platform GUI text editor. Why another editor? Because Redcar is written entirely in Ruby and you can install it as a gem now. When you use Redcar, you know that every command you use you can hack in Ruby if you want to. You can read the Cucumber tests of each text operation. You can write interactive plugins using HTML 5 and JavaScript that interoperate with Ruby controllers. You can fork the editor on GitHub and contribute a patch that will reach master today. Redcar takes advantage of Ruby's dynamism. Users can extend the editor with new commands while it is running, which we will do during this talk. We'll also look at how Redcar defines plugin APIs for working with text and creating tree views. Java has Eclipse and Netbeans. Python has IDLE and Wing. Perl has Padre, but where are the Ruby editors? It's time for an editor in Ruby for Rubyists.
+  speakers:
+    - Daniel Lucraft
+
+- id: "yukihiro-matz-matsumoto-rubyconf-2010"
+  title: "Keynote: History, Future, and Diversity"
+  raw_title: "RubyConf 2010 - Keynote #3 by: Yukihiro 'Matz' Matsumoto"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  slides_url: "https://www.slideshare.net/slideshow/rubyconf-2010-keynote-by-matz/5777480"
+  video_provider: "youtube"
+  video_id: "umyZp6DXdKA"
+  description: ""
+  speakers:
+    - "Yukihiro \"Matz\" Matsumoto"
+
+- id: "david-heinemeier-hansson-rubyconf-2010"
+  title: "Keynote: Why Ruby?"
+  raw_title: "RubyConf 2010 - Keynote: Why Ruby? by: David Heinemeier Hansson"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "V4yhAnI9w80"
+  description: ""
+  speakers:
+    - David Heinemeier Hansson
+
+- id: "tom-preston-werner-rubyconf-2010"
+  title: "The Road from Ruby Hacker to Entrepreneur"
+  raw_title: "RubyConf 2010 - The Road from Ruby Hacker to Entrepreneur by: Tom Preston-Werner"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "a2ucoz20mRk"
+  description: |-
+    Are you an aspiring entrepreneur with a passion for Ruby? Do you think Ruby can help you on your path to creating a successful internet startup? I was once in your same shoes. When I entered the Ruby community I had no open source, no accolades, and no visibility. Over the course of several years I inserted myself into the Ruby ecosystem, got myself to San Francisco, and founded GitHub with a team of kickass Ruby developers. This talk will chronicle those events and I'll shower you with insights on how to make the same journey from anonymous hacker to successful entrepreneur!
+  speakers:
+    - Tom Preston-Werner
+
+- id: "peter-jackson-rubyconf-2010"
+  title: "Spatial Programming for the Rubyist"
+  raw_title: "RubyConf 2010 - Spatial Programming for the Rubyist by: Peter Jackson"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "_rCO12oZ4S8"
+  description: |-
+    Spatial programming is the field that treats distance, space, and size as first-order programming concepts. Using spatial programming techniques, you can answer questions that are much more difficult -- or impossible -- to answer using standard object-relational (SQL) or document-oriented (NOSQL) techniques. With the prolific rise of location based applications, the Ruby programmer cannot afford to be without a spatial toolkit. This lecture-format discussion will cover the standard Ruby spatial stack, including GeoRuby and spatial_adapter. We will also examine the use of Spatial DBMS systems such as PostGIS, MySQL Spatial, and Oracle Spatial. We will also cover non-geographical spatial applications, and some emerging platforms that make it easier to build geospatial applications. After this session, the attendee will have a basic understanding of spatial programming technique, knowledge of the available spatial tools, and enough guidance to get started with spatial programming on their own.
+  speakers:
+    - Peter Jackson
+
+- id: "paul-campbell-rubyconf-2010"
+  title: "The Enterprising Rubyist - Bootstrapping your Business with Ruby"
+  raw_title: "RubyConf 2010 - The Enterprising Rubyist - Bootstrapping your Business with Ruby by: Paul Campbell"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "d1_Ylso-vM8"
+  description: |-
+    Many of the leaders in the Ruby community are business founders. As a basis for this talk, I will interview a number of founders who are also key influencers in the Ruby world. How has working with Ruby helped shape the products they build? How have needs and constraints of the business impacted on their software and the code they've written? What are the benefits of being a hacker and an entrepreneur? What are the downsides? Through consideration and curation of these interviews, I will present an insightful look into the relationship and interdependence between business and code. This talk will appeal to anyone who is bootstrapping their own startup using Ruby, or who is interested in doing so.
+  speakers:
+    - Paul Campbell
+
+- id: "thomas-enebo-rubyconf-2010"
+  title: "JRuby Hacking Guide"
+  raw_title: "RubyConf 2010 - JRuby Hacking Guide by: Thomas Enebo, Charles Nutter"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "yyrFQQJzses"
+  description: |-
+    You know JRuby and you love JRuby, but you have no idea how to contribute. What's a Rubyist to do? In this talk, JRuby core team members will give you a tour of the codebase, showing how JRuby parses Ruby code, implements Strings and other core classes, and eventually compiles and optimizes JRuby code on the JVM. You'll learn how to debug JRuby, profile performance or memory hotspots, implement extensions in Java or Ruby, and ultimately how to contribute back to JRuby.
+  speakers:
+    - Thomas Enebo
+    - Charles Nutter
+
+- id: "piotr-sarnacki-rubyconf-2010"
+  title: "Ruby Summer of Code - Rails 3 Mountable Apps"
+  raw_title: "RubyConf 2010 - Ruby Summer of Code - Rails 3 Mountable Apps by: Piotr Sarnacki"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "7s_gmreDnmA"
+  description: ""
+  speakers:
+    - Piotr Sarnacki
+
+- id: "sidu-ponnappa-rubyconf-2010"
+  title: "India::Ruby"
+  raw_title: "RubyConf 2010 - India::Ruby by: Sidu Ponnappa, Niranjan Paranjape"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "cRjnNYa7evg"
+  description: |-
+    This talk draws on the experiences of the speakers over the last four years of working with Ruby in India, starting with a Ruby based product startup in 2006, two years spent working on offshore Ruby projects at ThoughtWorks India followed by nearly a year building and running a boutique Ruby consultancy in Bangalore.
+
+    The talk will cover
+
+    * A first hand (subjective) description of the Ruby scene in India over the last five years
+    * Where things are today - the good, the bad and the ugly - in terms of the community, the ecosystem, the job market and business opportunities
+    * The realities of running a Ruby shop in India and what this means for people who want to have Ruby work done in India
+    * A set of guidelines for distributed Ruby projects that make things simpler and more transparent for both the client and the developer
+    * Job opportunities in India, and why it's starting to make sense to move to India if you're an independent contractor
+  speakers:
+    - Sidu Ponnappa
+    - Niranjan Paranjape
+
+- id: "evan-phoenix-rubyconf-2010"
+  title: "Rubinius - What Have You Done For Me Today?"
+  raw_title: "RubyConf 2010 - Rubinius - What Have You Done For Me Today? by: Evan Phoenix"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "j8ZWajQOFHA"
+  description: |-
+    Rubinius continues to grow having hit 1.0 earlier this year. In addition to compatibility and performance, Rubinius also contains a whole host of APIs and tools for making your development better. These include memory inspectors, code debuggers, and much more. In this talk, Evan will discuss a number of these APIs and tools, showing how you can put them to use daily to improve your ruby development process.
+  speakers:
+    - Evan Phoenix
+
+- id: "rick-olson-rubyconf-2010"
+  title: "Git: the stupid NOSQL database"
+  raw_title: "RubyConf 2010 - Git: the stupid NOSQL database by: Rick Olson"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "8axPfg7Fw9s"
+  description: |-
+    Many of us use Git as our source control tool of choice. But the man page says Git is a "stupid content tracker." Apps are able to use Git for all sorts of other things, such as a distributed key/value store. We'll take a look at how you can start using Git as the canonical data store for your app, why you would want to, and what the pitfalls you might run into are.
+  speakers:
+    - Rick Olson
+
+- id: "derek-collison-rubyconf-2010"
+  title: "Building Scalable Cloud Infrastructure with Ruby - How we built VMforce"
+  raw_title: "RubyConf 2010 - Building Scalable Cloud Infrastructure with Ruby - How we built VMforce"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "sfsCZGj_va0"
+  description: |-
+    This talk will detail the use of Ruby, EventMachine, RabbitMQ, and various distributed systems techniques in the building of a large scale cloud system at VMware. Topics covered will be the cloud system architecture, asynchronous programming in Ruby, EventMachine, Sinatra, and the use of messaging in a complex distributed system.
+  speakers:
+    - Derek Collison
+
+- id: "monty-williams-rubyconf-2010"
+  title: "TANSTAAFL - Implementing Maglev Ruby on top of GemStone"
+  raw_title: "RubyConf 2010 - TANSTAAFL - Implementing Maglev Ruby on top of GemStone"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "fBZxTqLgUfk"
+  description: |-
+    When we started the MagLev project, it looked straightforward to implement Ruby on a system which already ran Smalltalk. The object models were quite similar, the languages had a lot in common. We were aware of some key differences and had strategies to deal with them. However we quickly rediscovered the TAANSTAFL principle -- There Ain't No Such Thing As A Free Lunch. There were differences in modules and eigenclasses, class definition and open classes, collection classes, method contexts, block/proc/lambdas, exception handling, the order of rescue/ensure processing, etc. Since much of MagLev is written in Ruby, there was even the danger that wild monkeys might patch methods in Hash and break the parser. You'll learn what techniques we developed to deal with the differences, which ones worked well, and which ones we would do differently next time.
+  speakers:
+    - Monty Williams
+    - Peter McLain
+
+- id: "justin-love-rubyconf-2010"
+  title: "AMP: Cross-repo version control in Ruby"
+  raw_title: "RubyConf 2010 - AMP: Cross-repo version control in Ruby by: Justin Love"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "WVqv55zEC4s"
+  description: |-
+    The several different distributed version control systems are all solving essentially the same problem, and often in essentially the same way. The AMP project aims to support all the different repository formats with a single API and common, cross platform interfaces - written Ruby, AMP runs anywhere Ruby runs. Rather than dictate a single user interface, AMP introduces the ampfile, a Ruby domain specific language (think Rake) for VCS commands, allowing the user to pick any workflow, including his own, with the full power of Ruby at his disposal. The AMP project hasn't achieved all of these goals yet - especially wide repository support. This talk will also cover the AMP architecture to encourage further contributions.
+  speakers:
+    - Justin Love
+
+- id: "eleanor-mchugh-rubyconf-2010"
+  title: "Concurrency: Rubies, plural"
+  raw_title: "RubyConf 2010 - Concurrency: Rubies, plural by: Eleanor McHugh, Elise Huard"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "gDi-SP43zqo"
+  description: |-
+    For the last few years hardware manufacturers have driven increasingly powerful multi-core processors into consumer-grade computing hardware. Power which twenty years ago was restricted to a handful of government-funded research institutes is now available on the desktop, introducing many developers to the conundrum of how best to use it with languages implemented primarily for sequential environments. In this presentation we'll use code to explore the various traditional models for concurrent execution supported directly by Ruby - such as Threads, Processes and Fibres - and their limitations before turning to the approaches pioneered in other languages and seeing how many we can bring into the Ruby fold. Starting with some underlying theory we'll explore Coroutines, Actor Models, Petri Nets, Process Algebras (particularly CSP and the Pi-Calculus), Software Transactional Memory and distributed Map/Reduce algorithms. Along the way we'll present characteristic examples of these techniques drawn from a variety of languages including Go, Occam-Pi, Clojure and Erlang. We'll take some of these examples and demonstrate how to construct similar architectures in Ruby using its native features and libraries such as EventMachine or RevActor. This is a practical session, focused on increasing increasing the knowledge of concurrency and how to work with it. It should help people improve both the structure of applications and the performance of those applications on multi-core hardware.
+  speakers:
+    - Eleanor McHugh
+    - Elise Huard
+
+- id: "matt-aimonetti-rubyconf-2010"
+  title: "MacRuby - Why and How"
+  raw_title: "RubyConf 2010 - MacRuby - Why and How by: Matt Aimonetti"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "0KR5_J-u1JU"
+  description: |-
+    MacRuby is Apple's Ruby implementation on top of the Objective-C runtime. With so many Ruby implementations, why and when should you be using MacRuby? What does Apple's Ruby bring to the development scene that other implementations or languages don't? Finally, learn about the progress made since last RubyConf and see real life examples of fun stuff you can do with MacRuby.
+  speakers:
+    - Matt Aimonetti
+
+- id: "joe-o-brien-rubyconf-2010"
+  title: "Sales for Geeks, or How to Frame Suggestions, Questions and Requests"
+  raw_title: "RubyConf 2010 - Sales for Geeks, or How to Frame Suggestions, Questions and Requests by: Joe O'Brien"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "ESD91IcKPNU"
+  description: |-
+    Somewhere down the line, sales got a bad wrap. People began to see it as a way of tricking others into consuming something they do not need or want. That is wrong. Sales is about identifying needs and finding solutions that fit both parties. Everyone needs to understand sales, but many of us do not realize this. Understanding how to get your point across, or how to frame an issue clearly and understandably helps us in discussions with bosses, current clients and prospective clients. In this talk, I will walk you through the basics of sales. I'll show you how I have applied what I know about sales to help my bosses see why certain technologies should be used, convince my customers to team up with us to realize their visions and convince my wife to let me get an iPad.
+  speakers:
+    - "Joe O'Brien"
+
+- id: "michael-j-i-jackson-rubyconf-2010"
+  title: "Grammars, Parsers, and Interpreters, In Ruby"
+  raw_title: "RubyConf 2010 - Grammars, Parsers, and Interpreters, In Ruby by: Michael J. I. Jackson"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "3Ih5QdT3z_k"
+  description: |-
+    Parsing expression grammars (PEG) are a declarative alternative to the traditional generative approach of context-free grammars (CFG) and regular expressions. They require no tokenization phase, and are usually simpler to understand and maintain. We'll be discussing the Citrus and Treetop Ruby gems and the role of PEG's versus CFG's and regular expressions when parsing and interpreting data. You should come away with an understanding of what a PEG is, how to make one, and how to test and use it to build combined parsers and interpreters for your Ruby programs.
+  speakers:
+    - Michael J. I. Jackson
+
+- id: "shugo-maeda-rubyconf-2010"
+  title: "Classboxes, nested methods, and real private methods"
+  raw_title: "RubyConf 2010 - Classboxes, nested methods, and real private methods by: Shugo Maeda"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "4r-QUaOJlgA"
+  description: |-
+    Ruby is a highly dynamic language, which enables you to extend existing classes and their methods. However, such extensions sometimes cause conflict and break code. This talk propose new features of Ruby to reduce such problems: classboxes, nested methods, and real private methods.
+  speakers:
+    - Shugo Maeda
+
+- id: "sarah-allen-rubyconf-2010"
+  title: "pie: the making of a DSL for simple games"
+  raw_title: "RubyConf 2010 - pie: the making of a DSL for simple games by: Sarah Allen"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "hLujtKDbQa0"
+  description: |-
+    Sarah will first demo some games created with Pie. She will then talk about the Ruby language features that make it easy (possible) to create domain specific languages and how they are used in Pie. She will also cover design considerations... why certain syntax worked well and other early design choices turned out to be a bad idea.
+  speakers:
+    - Sarah Allen
+
+- id: "ron-evans-rubyconf-2010"
+  title: "How to Jam in Code"
+  raw_title: "RubyConf 2010 - How to Jam in Code by: Ron Evans"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "_w459UJDdlE"
+  description: |-
+    "Music is a world within itself, with a language we all understand" said Stevie Wonder. That sounds a lot like programming! The parallels between music and software development are striking, and understanding how they intersect can teach us a lot about how we can improve our code, our craft, and our joy in how we approach our work. In this talk, which will include some *unique musical forms of live audience participation*, we will experience some of the patterns that connect two of the most human of activities: creating code, and creating music.
+  speakers:
+    - Ron Evans
+
+- id: "brian-ford-rubyconf-2010"
+  title: "Poisoning Rubinius: The _why and how."
+  raw_title: "RubyConf 2010 - Poisoning Rubinius: The _why and how. by: Brian Ford"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "3akJaqzCOnI"
+  description: |-
+    Before he vanished in a cloud of smoke and scattered bits, \_why had been working on an interesting language experiment called Potion. The language borrows heavily from Io and Ruby but adds a few interesting features. One of these is an embedded data language built of things called Licks that permits easily defining tree data structures. Considering \_why's work an Shoes, it is likely that Potion was to be a new language for encouraging and enabling delightful experimentation and programming language pedagogy. Rubinius is an implementation of the Ruby programming language. However, under the hood Rubinius is a first-class virtual machine with a very fast bytecode interpreter, advanced garbage collector, and just-in-time (JIT) compiler which uses the terrific LLVM project. The Rubinius bytecode compiler and most of the Ruby core library is actually written in Ruby. Rubinius is an excellent platform to experiment with implementing other languages. Poison is an "interpretation" of Potion on Rubinius. It is an interpretation in the sense of a singer who interprets a song written by another author. Since \_why did not finish Potion, there is room to extend the work he did. Rounding out the features in Poison give one an opportunity to ponder the decisions that _why made. We will take a look at some of the interesting elements of the Potion language and walk through the steps to implement a language like Potion on Rubinius. These steps would permit any aspiring language designer to have simple features of a new programming language executing in an afternoon.
+  speakers:
+    - Brian Ford
+
+- id: "mark-bates-rubyconf-2010"
+  title: "Far and Away (A Tour of DistribRuted Programming with Ruby)"
+  raw_title: "RubyConf 2010 - Far and Away (A Tour of DistribRuted Programming with Ruby) by: Mark Bates"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "nOvctKebc1s"
+  description: |-
+    This talk will guide you through the various different aspects of building distributed applications with Ruby. While this talk will not do a deep dive into any technology we will look at libraries that ship with Ruby, such as DRb and Rinda, as well as other 3rd party libraries that are available, during the discussion and examples. We'll talk about remote method invocation (RMI), message queues, asynchronous tasks, map reduce, and background jobs, just to name a few. The discussion will include what those terms all mean and when and where you may want to use a particular technology.
+  speakers:
+    - Mark Bates
+
+- id: "cj-kihlborn-rubyconf-2010"
+  title: "Socialist Software Development"
+  raw_title: "RubyConf 2010 - Socialist Software Development by: CJ Kihlborn"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "jrSjV243pTU"
+  description: |-
+    Socialism is often portrayed as pure evil by US media (hello Fox News), yet many socialist countries are ranked as some of the best countries in the world (Newsweek). So maybe it's not all bad? If you look at job listings for software developers, it seem like a lot
+  speakers:
+    - CJ Kihlborn
+
+- id: "tony-arcieri-rubyconf-2010"
+  title: "Rev, Revactor, Reia"
+  raw_title: "RubyConf 2010 - Rev, Revactor, Reia by: Tony Arcieri"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "LxBQvxWfi7w"
+  description: |-
+    Come with us now on a journey through time and space. From the EventMachine and Rev event frameworks to the Revactor Actor frameworkTony Arcieri explores the people and ideas that lead him to the Reia programming language, as well as the ideas of people like Zed Shaw of Mongrel, Ry Dahl of Node.js, and Ilya Grigorik of em-synchrony. We all love Ruby, but it has its foibles, especially when dealing with issues like concurrency and I/O. Reia is a new programming language which serves up Erlang sandwiches on warm, crispy, delcious Ruby-flavored buns. Reia makes it easier to solve the kinds of problems which are presently difficult in Ruby, such as building complex distributed systems which can automatically leverage all of the cores of a host CPU. Reia lets you build Erlangy systems with robust distribution, fault tolerance, and concurrency, all without having to deal with Erlang's nasty syntax.
+  speakers:
+    - Tony Arcieri
+
+- id: "paul-wilson-rubyconf-2010"
+  title: "Automated Acceptance Testing, The Vietnam of Test Driven Development"
+  raw_title: "RubyConf 2010 - Automated Acceptance Testing, The Vietnam of Test Driven Development by: Paul Wilson"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "c7WH2XIMs2Q"
+  description: |-
+    Ted Neward's 2006 essay "The Vietnam of Computer Science"[1] famously compares Object/Relational mapping to the Vietnam War: "The United States began a military project with simple yet unclear and conflicting goals, and quickly became enmeshed in a quagmire that ... brought down two governments". The analogy can equally apply to Automated Acceptance Testing: early successes lead to committing to use Cucumber Tests for all stories; more and more resources get spent covering difficult cases and maintaining fragile tests; before you know it your project is bogged down, and you are scrambling for the last helicopter off the embassy roof. In this session I will draw upon a long experience of Acceptance Testing, with Java and FIT before Cucumber. I will present on the goals of acceptance testing, when and how to use them and, as importantly, when not to use them. My aim is to help prevent your Acceptance Test suite turning from an asset into a liability. [1] http://blogs.tedneward.com/2006/06/26/The+Vietnam+Of+Computer+Science.aspx
+  speakers:
+    - Paul Wilson
+
+- id: "carolyn-rupar-rubyconf-2010"
+  title: "Healthy Hackers!"
+  raw_title: "RubyConf 2010 - Healthy Hackers! by: Carolyn Rupar, Ted Han,"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "nwtby7VTYEI"
+  description: |-
+    In engineering we apply systematic thinking to business and technical problems. This skill is also present in other fields, and with domain specific knowledge we can apply the same systematic thinking to other parts of our lives. We will talk about dietetics and nutrition for hackers, and how choosing your diet is like choosing your software libraries, including evidence-based analysis, library/project implementation, and testing. Find out how to hack your diet and pick a nutritional regiment that's healthy appropriate for you!
+  speakers:
+    - Carolyn Rupar
+    - Ted Han
+
+- id: "jonathan-dahl-rubyconf-2010"
+  title: "Programming and minimalism: lessons from Orwell and the Clash"
+  raw_title: "RubyConf 2010 - Programming and minimalism: lessons from Orwell and the Clash by: Jonathan Dahl"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "PyP33F9qfPo"
+  description: |-
+    Programming is writing. A programmer's job is to express abstract ideas in a specific language - just like the poet, the essayist, and the composer. But while writers and composers spend years improving their style, many programmers think style stops with "two-space indentation". This needs to change. This session will discuss style in music, writing, and software. We'll look at such diverse sources as George Orwell, Mozart, and punk music, and will find that much of art revolves around complexity and minimalism - just like software. Finally, we'll look at specific patterns and tools for writing software that is effective, efficient, and beautiful.
+  speakers:
+    - Jonathan Dahl
+
+- id: "james-coglan-rubyconf-2010"
+  title: "Faye: an Event Driven App"
+  raw_title: "RubyConf 2010 - Faye: an Event Driven App by: James Coglan"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "-n-kAnBVrWc"
+  description: |-
+    The rise of Node.js has pushed event-driven programming under the noses of server-side developers like never before. Commonly used in client-side GUI coding, event-driven development can be a useful tool for structuring server-side apps as well, helping you separate concerns, handle non-blocking I/O and distribute your application's workload. Faye is a Ruby project that aims to make pub/sub messaging between server and client as simple as possible. You'll find out how it works under the covers, and learn some common event-driven patterns that it uses to keep things modular and maintainable. You'll also learn how you can script and test heavily asynchronous applications without overdosing on callbacks.
+  speakers:
+    - James Coglan
+
+- id: "rick-denatale-rubyconf-2010"
+  title: "Objects are Just Objects, Aren't they?"
+  raw_title: "RubyConf 2010 - Objects are Just Objects, Aren't they? by: Rick DeNatale"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "qb82MEICfyU"
+  description: |-
+    For almost 30 years, it has been conventional wisdom that objects in an "object-oriented" programming language were somehow the same, whether that language was C++ or Smalltalk, Java or Ruby, etc. One of the headwaters of this wisdom was the OOPSLA '87 paper by Peter Wegner "Dimensions of Object-Based Language Design" which surveyed the 'hot' language features of those days including classes, inheritance, delegation, prototypes, and abstract data types. Among other things it defined an object oriented language as one with object, classes, and inheritance, a definition with subtle but important differences from the definition intended by Alan Kay when HE coined the term "object-oriented," some 20 years previously. This paper gave many readers the false impression of more unification of these concepts than existed in reality. In some ways it created a kind of "Tower of Babel" effect, by confounding communication by making us think we were speaking the same language when we really were not. More recently, one of Wegner's students, William Cook, perhaps in a moment of apostasy drafted a paper http://userweb.cs.utexas.edu/~wcook/Drafts/2009/essay.pdf which exposes the truth which some of us have known all these years, that there is a vast difference between Abstract Data Types and Objects. As a result, a great number of today's practitioners labor under false beliefs, that there are (nearly) universal approaches to "object-oriented" design, many of these coming from languages based on Abstract Data Types, primarily C++ and other statically typed languages. What does this mean to Ruby programmers? Ruby is an Object Oriented language in the true sense of the word, and not an ADT language. This talk will discuss the differences between ADTs and Objects; touch on the connections between closures from languages such as Lisp and Scheme, and true objects; and explore the pragmatic consequences for the Rubyist.
+  speakers:
+    - Rick DeNatale
+
+- id: "michael-granger-rubyconf-2010"
+  title: "LDAP: the Original \"NoSQL\""
+  raw_title: "RubyConf 2010 - LDAP: the Original \"NoSQL\" by: Michael Granger"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "0p8HPryqqCI"
+  description: |-
+    There has been a movement of late to re-think the use of relational databases for some classes of problems, opting instead for some kind of structured storage that allows for more free-form, organic storage of data. A whole crop of new technologies have sprung up to fulfill this requirement, but as so often happens, I think we might be overlooking a technology that can already fulfill the needs of many structured-data applications that's well-tested, stable, robust, and already deployed in many organizations: LDAP, the "Lightweight Directory Access Protocol". While LDAP has a reputation for being complex and strange, and is often relegated to being "only for phone directories", it's actually quite a capable, elegant, and pleasantly Ruby-ish datastore. It also matches some of the more-popular "NoSQL" datastores feature for feature, and is applicable to some of the same problems. I'll introduce the protocol at a high level, talk about some of its features and philosophies, and then show how nicely it plays in a Ruby environment. I'll also introduce Treequel, a functional-style LDAP library modeled after the Sequel database library, and show how it maps Ruby objects onto directory entries in a clean, natural way. I'll show some examples of how to use LDAP in a wide range of applications from traditional ones like company directories and address books, to some more esoteric ones like Asterisk phone auto-provisioning, automated service monitoring and trending, and physical asset inventories. If there's time, I'll also demonstrate some off-the-wall experimental uses like an MMORPG objectstore.
+  speakers:
+    - Michael Granger
+
+- id: "james-edward-gray-ii-rubyconf-2010"
+  title: "Unblocked"
+  raw_title: "RubyConf 2010 - Unblocked by: James Edward Gray II"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "1WK6v6NyE6o"
+  description: |-
+    We've always known that blocks are a big part of what makes Ruby great to work with. I also imagine that most Rubyists are pretty comfortable using them in standard contexts, such as passing them to iterators. But how far can blocks really go? Let's find out. In this talk we will dig into several examples of Ruby block usage that are a bit less standard. We will look at the power of methods that return lambda's, passing blocks to Class.new(), using a full method to impersonate a block, and more. The goal is follow the rabbit hole all the way down to see what insights we can gain for the programming we do back in the real world.
+  speakers:
+    - James Edward Gray II
+
+- id: "glenn-vanderburg-rubyconf-2010"
+  title: "Putting On Your Birthday Suit"
+  raw_title: "RubyConf 2010 - Putting On Your Birthday Suit by: Glenn Vanderburg"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "9SumXnYc5N8"
+  description: |-
+    At first glance, Ruby seems like a natural fit for a "naked objects" system. Existing frameworks for naked objects "primarily Java-based" are high in ceremony, and tend to intrude into the domain object declarations. Ruby's open nature (and especially its easy reflection) suggest that naked objects might be more successful in Ruby than they have been in other languages. Hirsute is a naked objects framework and interface for Ruby, begun as a Whyday project. The process of building Hirsute has taught me some interesting lessons about the requirements for naked objects. In particular, a truly "naked" object, even one with the adornments provided by ActiveRecord and ActiveModel, provides insufficient information to allow us to automatically build even a passable user interface for it. Most interestingly, the additional declarations required would also be very useful even outside a naked objects interface. My hypothesis is that the weaknesses exposed by trying to build an effective naked objects system in Ruby can show us how to build richer, more reflective, and more useful domain models for Ruby programs of all kinds. This talk provides an overview of naked objects and the Hirsute framework, and concludes with a discussion of some insights into domain modeling in Ruby.
+  speakers:
+    - Glenn Vanderburg
+
+- id: "masahiro-tanaka-rubyconf-2010"
+  title: "Pwrake: a Distributed Workflow Engine for e-Science"
+  raw_title: "RubyConf 2010 - Pwrake : a Distributed Workflow Engine for e-Science by: Masahiro Tanaka"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "8fOCG9h1Q6Y"
+  description: |-
+    e-Science is scientific research enabled by widely distributed computational resources in collaboration among several institutes. One of issues in making use of e-Science infrastructure is to define complex workflows (composition of many tasks and their dependencies). We propose to employ Rake as a workflow definition language. In contrast to Makefile, Rake is an internal DSL and takes advantage of Ruby's scripting power which requires to define complex scientific workflows. In order to execute Rake workflow on distributed computer resources, we develop Pwrake, an Parallel Workflow extension for Rake. Pwrake is designed to work on Gfarm, a wide-area distributed file system. Gfarm provides a unified filesystem and consistent file time stamps among distributed computers, and also high performance of parallel I/O. We show a powerfulness of Rake as a workflow language and the scalable performance of distributed computing using Pwrake and Gfarm.
+  speakers:
+    - Masahiro Tanaka
+
+- id: "scott-chacon-rubyconf-2010"
+  title: "Classy Git"
+  raw_title: "RubyConf 2010 - Classy Git by: Scott Chacon"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "KdxQIOHzABE"
+  description: |-
+    Everybody at RubyConf is likely using Git now, but Git is capable of doing a lot of stuff. Do you know what replacements do? Have you used bundles? Do you have rerere turned on? Did I just make that last one up? Can you list out all the commits on a branch that have and have not already been cherry-picked? What is a git note? This talk will go over all of that and more, but in a classy way. If you are a regular Git user (and I know you are), I can almost guarantee that you will learn several things and can use your new moves to amaze and confuse your friends.
+  speakers:
+    - Scott Chacon
+
+- id: "gregory-brown-rubyconf-2010"
+  title: "Ruby Mendicant University: A New Way to Learn"
+  raw_title: "RubyConf 2010 - Ruby Mendicant University: A New Way to Learn by: Gregory Brown"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "23Cj1eqpmEQ"
+  description: |-
+    With the hopes of making some waves in the technical education space, Gregory Brown started Ruby Mendicant University in the summer of 2010 as a free online school open to anyone looking to improve their Ruby craftsmanship. In a period of just 10 days, 47 donors pitched in a total of $3050 to help offset the cost of content creation. Shortly afterwards, 87 students took and passed an entrance exam that earned them a seat in one of the upcoming training sessions. Needless to say, the program was off to a great start. But how have things gone since then? At RubyConf X, Gregory will give the community an inside look at what it's like to be an RMU student. You'll get to see the kinds of projects students are working on as well as the open source tooling we've built up to support RMU itself. You might also learn a thing or two about the virtues of goal-driven learning along the way.
+  speakers:
+    - Gregory Brown
+
+- id: "martin-thiede-rubyconf-2010"
+  title: "DSLs go Concrete"
+  raw_title: "RubyConf 2010 - DSLs go Concrete by: Martin Thiede"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "mgzZzTrr_JU"
+  description: |-
+    "RGen" is a lightweight Ruby framework supporting domain specific languages. It features metamodel and model definition, model transformation and code generation by means of internal Ruby DSLs. In this talk I will briefly introduce RGen and describe how it is used for code generation and model transformation in the automotive software domain. "Concrete" is a web technology based editor for domain specific languages. It is "keyboard oriented" and provides auto completion and constraint checking based on the domain language. Furthermore it features rich graphical representation of model elements, customizable via HTML templates and CSS. Concrete and RGen work together very well, a Concrete web editor can be derived automatically from an RGen metamodel, models are exchanged via JSON. In the second part of my talk, I will introduce Concrete and present example editors for different domain specific languages. One example shows Concrete for editing RGen metamodel definitions, i.e. as a convenient frontend to the internal Ruby DSL. Another one shows how Concrete integrates into Rails and how it can be used to customize web applications on the web with ease.
+  speakers:
+    - Martin Thiede
+
+- id: "keavy-mcminn-rubyconf-2010"
+  title: "From Artist to Programmer"
+  raw_title: "RubyConf 2010 - From Artist to Programmer by: Keavy McMinn"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "4HglRcZlMVg"
+  description: |-
+    How can we improve our professional practice as programmers? What can we learn from the creative processes in fine art? The talk will be based around one woman's experience of coming into programming from a training in sculpture. Looking at planning, process and evaluation within the discipline of fine art, what can we learn and apply to software development? Can these approaches improve our own processes and lead towards a more fulfilling and successful career in development?
+  speakers:
+    - Keavy McMinn
+
+- id: "michael-bleigh-rubyconf-2010"
+  title: "The Grapes of Rapid"
+  raw_title: "RubyConf 2010 - The Grapes of Rapid by: Michael Bleigh"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "C7beg3OzxC4"
+  description: |-
+    Most if not all web applications built in Ruby have need for a RESTful API. They have become a fundamental part of the application building process. Meet Grape, a Rack micro-framework built from the ground up to provide a simple, powerful DSL for RESTful API development. Grape is built on an opinionated base and easy-to-use support for everything from API versioning to authorization and serialization. Then go beyond API development and learn about GrapeDoc, a way to automatically publish API documentation with social features based on your Grape API.
+  speakers:
+    - Michael Bleigh
+
+- id: "patrick-ewing-rubyconf-2010"
+  title: "Mustache in the Front, Mustache in the Back"
+  raw_title: "RubyConf 2010 - Mustache in the Front, Mustache in the Back by: Patrick Ewing"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "CxT-IVdhIRU"
+  description: |-
+    Mustache, the tiny templating library first written for Github, now has implementations in Python, Erlang, Javascript, Scala... the list goes on. Besides the appeal of "logic-less templates," a strong selling point for this approach has been the promise that views code could be reused across language boundaries. This is the story of a "big rewrite" of the Twitter front-end with Mustache.rb and Mustache.js being used in close conjunction. The performance of Twitter's front-end servers has long been a bottleneck for scaling the service; even as many core components were being rewritten to run on the JVM, the Rails app still at its core is being redesigned to rendering work to the client while still supporting gracefully degrading in environments when Javascript is unavailable (mobile clients, web crawlers, email daemons etc.) We'll go over the perils of server-side rendering in JS using V8 and Spidermonkey and why Ruby was ultimately the language of choice there. Extensions to this simple-by-design templating libraries to allow for i18n support for an great number of languages will be explained in depth. Perhaps most importantly, we'll explore the practices developed while sharing view code between languages with very different coding conventions and developer cultures (particularly how that horrific chimera, the camel_Snake, was at last brought to its knobby knees).
+  speakers:
+    - Patrick Ewing
+
+- id: "cj-kihlborn-jonas-nicklas-rubyconf-2010"
+  title: "Front End Testing Frontier"
+  raw_title: "RubyConf 2010 - Front End Testing Frontier by: CJ Kihlborn, Jonas Nicklas"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "Pjhkm60i-n0"
+  description: |-
+    While most Ruby developers are very familiar with testing their code, front end and JavaScript testing is still a new frontier for many. This talk will show you how to easily write and run JavaScript integration tests with Capybara and Cucumber, and unit tests with Evergreen and Jasmine. The goal is to inspire you to get started with frontend testing, and point you in the right direction to go do it!
+  speakers:
+    - CJ Kihlborn
+    - Jonas Nicklas
+
+- id: "panel-rubyconf-2010"
+  title: "Panel: So You Think You Can Code?"
+  raw_title: "RubyConf 2010 - So You Think You Can Code?"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "zw8AYRWOjoE"
+  description: |-
+    This session is a panel featuring some of today's brightest -- and most opinionated -- Ruby personalities, moderated by Rein Henrichs. Topics up for debate include coding style, various patterns and anti-patterns (depending on who you ask), the state of the Ruby community, and any other contentious issues we can think of. Or, in the words of panel member Evan Phoenix: "Five jerks on stage with alcohol and topics they don't agree on". Come for a laugh but be prepared to learn something. Questions welcome. Panel members: The inimitable Evan Phoenix, the unspellable Yossef Mendelssohn, the indefatigable John Barnette, the unorthodox Aaron Patterson, and the antidisestablishmentarianist Ben Bleything.
+  speakers:
+    - Aaron Patterson
+    - Ben Bleything
+    - Evan Phoenix
+    - John Barnette
+    - Rein Henrichs
+    - Yossef Mendelssohn
+
+- id: "mike-moore-rubyconf-2010"
+  title: "Writing Games with Ruby"
+  raw_title: "RubyConf 2010 - Writing Games with Ruby by: Mike Moore"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "htyG_XdAglI"
+  description: |-
+    Creating games is crazy fun and dirt simple with Ruby. You will leave this session with a working game; no previous game development experience necessary. We will introduce basic concepts of game programming and show how to implement them using the Gosu library. This includes the game loop, sprites, animation, camera movement and hit detection. We will build a complete game, so you might want to bring your notebook and follow along.
+  speakers:
+    - Mike Moore
+
+- id: "greg-hnatiuk-rubyconf-2010"
+  title: "Consuming Gherkin: One Byte at a Time"
+  raw_title: "RubyConf 2010 - Consuming Gherkin: One Byte at a Time by: Greg Hnatiuk, Mike Sassak"
+  event_name: "RubyConf 2010"
+  date: "2010-11-11"
+  published_at: "2015-04-02"
+  video_provider: "youtube"
+  video_id: "oQXviFSY0d8"
+  description: |-
+    The Ragel state machine compiler is a fantastic, Ruby-friendly tool for building compilers, parsers and the like, and is used by many popular programs including Mongrel, Cucumber, and Hpricot. But despite its pervasiveness, Ragel has a reputation for being arcane and difficult to understand. It's not. It is powerful, focused and to the point ( and also a lot of fun ). In this talk, two of the authors of Gherkin--the parser that powers Cucumber--will demonstrate the basics of language implementation with Ragel. Using behavior-driven development and at least two ponies, they'll show you everything you need to know to get started developing software with Ragel.
+  speakers:
+    - Greg Hnatiuk
+    - Mike Sassak

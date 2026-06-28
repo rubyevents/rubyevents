@@ -1,0 +1,20 @@
+<div class="container py-8">
+  <div class="max-w-2xl mx-auto">
+    <h1 class="text-3xl font-bold mb-8"><%= title "Account" %></h1>
+
+    <div class="card bg-base-100 shadow-sm border">
+      <div class="card-body">
+        <% if Current.session %>
+          <h2 class="card-title text-lg">Account</h2>
+          <%= button_to "Sign out", Current.session, method: :delete, class: "btn btn-error w-full" %>
+        <% else %>
+          <h2 class="card-title text-lg">Sign in</h2>
+          <p class="text-sm text-gray-500 mb-4"><strong>Sign in</strong> to bookmark talks, create watch lists, mark your speaker page as verified and more to come.</p>
+          <div class="space-y-4">
+            <%= render "sessions/oauth_buttons", redirect_to_path: hotwire_native_v1_oauth_path, state: nil %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

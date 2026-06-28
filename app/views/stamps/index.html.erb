@@ -8,7 +8,7 @@
 
 <div class="container mx-auto px-4 py-8">
   <div class="max-w-7xl mx-auto">
-    <h1 class="text-4xl font-bold mb-8">Ruby Passport Stamps</h1>
+    <h1 class="text-4xl font-bold mb-8"><%= title "Ruby Passport Stamps" %></h1>
 
     <% if @stamps.empty? %>
       <div class="alert alert-info">
@@ -18,6 +18,11 @@
     <% else %>
       <div class="mb-8 text-gray-600">
         <p>Collect stamps from Ruby conferences around the world! <%= @stamps.size %> stamps available.</p>
+
+        <p class="mt-2">
+          Get your own physical passport at
+          <%= link_to "therubypassport.com", "https://therubypassport.com/", target: "_blank", rel: "noopener noreferrer", class: "link link-primary" %>.
+        </p>
       </div>
 
       <% if @missing_stamp_countries.present? %>

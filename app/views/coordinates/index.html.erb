@@ -12,30 +12,7 @@
       Find Ruby events and Rubyists near any location in the world
     </p>
 
-    <div class="space-y-6" data-controller="geolocation">
-      <%= form_tag locations_search_path, method: :get, class: "flex gap-2" do %>
-        <div class="flex-1">
-          <%= text_field_tag :q, params[:q], placeholder: "Search for a city, address, or place...", class: "input input-bordered w-full h-10", autofocus: true, autocomplete: "off" %>
-        </div>
-
-        <%= submit_tag "Search", class: "btn btn-primary" %>
-      <% end %>
-
-      <div class="divider">OR</div>
-
-      <button
-        type="button"
-        class="btn btn-outline btn-lg gap-2"
-        data-action="click->geolocation#locate"
-        data-geolocation-target="button">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-          <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
-        </svg>
-        <span data-geolocation-target="text">Use My Location</span>
-      </button>
-
-      <p class="text-sm text-gray-500" data-geolocation-target="status"></p>
-    </div>
+    <%= render "shared/location_search" %>
 
     <div class="mt-16">
       <h2 class="text-xl font-semibold text-gray-900 mb-6">Or browse by</h2>

@@ -1,22 +1,22 @@
 # docs/ADDING_VENUES.md
 ---
-name: "<%= options[:name] %>"
+name: "<%= options[:name] %>"<%- if options[:name].blank? -%> # TODO: Add venue name <%- end %>
 description: "<%= options[:description] %>"
-instructions: "Instructions for getting to the venue - Optional"
-url: "Venue website url - Optional"
+instructions: "<%= options[:instructions] %>"
+url: "<%= options[:url] %>"
 
-address:
-  street: "<%= @geocoded_address.street_address %>"
-  city: "<%= @geocoded_address.city %>"
-  region: "<%= @geocoded_address.state %>"
-  postal_code: "<%= @geocoded_address.postal_code %>"
-  country: "<%= @geocoded_address.country %>"
-  country_code: "<%= @geocoded_address.country_code %>"
+address:<%- if @geocoded_address.nil? -%> # TODO: Add venue address<%- end %>
+  street: "<%= @geocoded_address&.street_address %>"
+  city: "<%= @geocoded_address&.city %>"
+  region: "<%= @geocoded_address&.state %>"
+  postal_code: "<%= @geocoded_address&.postal_code %>"
+  country: "<%= @geocoded_address&.country %>"
+  country_code: "<%= @geocoded_address&.country_code %>"
   display: "<%= options[:address] %>"
 
 coordinates:
-  latitude: <%= @geocoded_address.latitude %>
-  longitude: <%= @geocoded_address.longitude %>
+  latitude: <%= @geocoded_address&.latitude %><%- if @geocoded_address&.latitude.nil? -%>.NAN # TODO<%- end %>
+  longitude: <%= @geocoded_address&.longitude %><%- if @geocoded_address&.longitude.nil? -%>.NAN # TODO<%- end %>
 
 maps:
   google: ""

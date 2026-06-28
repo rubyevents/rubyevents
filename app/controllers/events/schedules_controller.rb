@@ -8,7 +8,7 @@ class Events::SchedulesController < ApplicationController
       return
     end
 
-    @day = @days.first
+    @day = helpers.selected_schedule_day(@days)
     set_talks(@day)
   end
 

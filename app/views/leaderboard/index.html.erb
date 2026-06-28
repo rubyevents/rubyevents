@@ -1,5 +1,5 @@
 <div class="container mx-auto px-4 py-8">
-  <h1 class="text-3xl font-bold mb-6">Speaker Leaderboard</h1>
+  <h1 class="text-3xl font-bold mb-6"><%= title "Speaker Leaderboard" %></h1>
 
   <div class="mb-6">
     <%= link_to "All Time", leaderboard_path(filter: "all_time"), class: "btn btn-sm #{(@filter == "all_time") ? "btn-primary" : "btn-outline"} mr-2" %>

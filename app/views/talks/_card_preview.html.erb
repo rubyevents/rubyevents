@@ -1,0 +1,174 @@
+<%# locals: (talk:) %>
+
+<div class="rounded-xl overflow-hidden bg-base-100 shadow-2xl ring-1 ring-black/10">
+  <% watched_talk = user_watched_talks.find { |wt| wt.talk_id == talk.id } %>
+  <div class="relative aspect-video overflow-hidden">
+    <%= link_to talk_path(talk), class: "block w-full h-full", data: {turbo_frame: "_top"} do %>
+      <%= image_tag talk.thumbnail_lg,
+            loading: "lazy",
+            alt: talk.title,
+            class: class_names("w-full h-full", talk.thumbnail_classes.presence || "object-cover") %>
+    <% end %>
+
+    <% if default_watch_list %>
+      <% bookmarked = user_favorite_talks_ids.include?(talk.id) %>
+      <div class="absolute top-2 right-2 z-10"
+           data-controller="bookmark"
+           data-bookmark-bookmarked-value="<%= bookmarked %>"
+           data-bookmark-add-url-value="<%= watch_list_talks_path(default_watch_list, talk_id: talk.id) %>"
+           data-bookmark-remove-url-value="<%= watch_list_talk_path(default_watch_list, talk.id) %>">
+        <div data-bookmark-target="message" class="hidden absolute top-full right-0 mt-2 whitespace-nowrap rounded-md bg-black/80 px-2 py-1 text-xs font-medium text-white shadow-lg pointer-events-none opacity-0 -translate-y-1 transition duration-200"></div>
+
+        <button type="button" class="flex items-center justify-center size-8 rounded-full bg-black/50 backdrop-blur-sm hover:bg-black/70 transition-colors" data-action="bookmark#toggle" aria-label="Toggle bookmark">
+          <span data-bookmark-target="solid" class="<%= "hidden" unless bookmarked %>">
+            <%= fa("bookmark", style: :solid, size: :sm, class: "fill-current text-white") %>
+          </span>
+          <span data-bookmark-target="regular" class="<%= "hidden" if bookmarked %>">
+            <%= fa("bookmark", style: :regular, size: :sm, class: "fill-current text-white") %>
+          </span>
+        </button>
+      </div>
+    <% end %>
+
+    <% if watched_talk&.watched? %>
+      <div class="absolute top-2 left-2 z-10 inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-black/60 backdrop-blur-sm text-white text-xs font-medium">
+        <%= fa("circle-check", size: nil, class: "h-3 w-3 fill-current text-green-400") %>
+        Watched
+      </div>
+    <% elsif watched_talk&.in_progress? && talk.duration_in_seconds.present? && watched_talk.progress_seconds.present? %>
+      <% remaining_minutes = ((talk.duration_in_seconds - watched_talk.progress_seconds) / 60.0).ceil %>
+      <div class="absolute bottom-2 left-2 z-10 px-1.5 py-0.5 rounded bg-black/70 backdrop-blur-sm text-white text-xs font-medium">
+        <%= remaining_minutes %> min left
+      </div>
+    <% end %>
+
+    <% if watched_talk&.in_progress? %>
+      <div class="absolute bottom-0 inset-x-0 h-1 bg-white/30 z-10">
+        <div class="h-full bg-primary" style="width: <%= watched_talk.progress_percentage %>%"></div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="p-3.5 flex flex-col gap-3">
+    <div class="flex items-center gap-2.5">
+      <% if talk.speakers.present? %>
+        <div class="avatar-group -space-x-3 shrink-0 [&_.avatar]:border-2">
+          <% talk.speakers.first(3).each do |speaker| %>
+            <%= link_to profile_path(speaker), class: "block", data: {turbo_frame: "_top"} do %>
+              <%= render Ui::AvatarComponent.new(speaker, size: :sm) %>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+      <%= link_to talk.title, talk_path(talk), class: "text-base font-bold leading-snug line-clamp-2 hover:underline", data: {turbo_frame: "_top"} %>
+    </div>
+
+    <% if talk.speakers.present? %>
+      <div class="flex items-center gap-2 text-sm font-medium">
+        <%= fa("microphone", size: nil, class: "h-3.5 w-3.5 fill-base-content/40 shrink-0") %>
+        <span class="line-clamp-1">
+          <%= safe_join(talk.speakers.map { |speaker| link_to(speaker.name, profile_path(speaker), class: "hover:underline", data: {turbo_frame: "_top"}) }, ", ") %>
+        </span>
+      </div>
+    <% end %>
+
+    <div class="flex flex-wrap items-center gap-1.5 text-xs font-medium text-base-content/70">
+      <% if talk.speakers.one? && (favorite_status = favorite_user_status_map[talk.speakers.first.id]) %>
+        <% badge_colors = favorite_status.ruby_friend? ? "bg-primary/10 text-primary hover:bg-primary/20" : "bg-yellow-400/20 text-yellow-700 hover:bg-yellow-400/30" %>
+
+        <% favorite_filter = favorite_status.ruby_friend? ? "friends" : "favorites" %>
+
+        <%= link_to favorite_users_path(filter: favorite_filter), class: "inline-flex items-center gap-1 px-2 py-1 rounded-md #{badge_colors}", data: {turbo_frame: "_top"} do %>
+          <%= fa(favorite_status.icon, size: nil, class: "h-3 w-3 fill-current") %>
+
+          <%= favorite_status.label %>
+        <% end %>
+      <% end %>
+
+      <% if talk.published_at.present? && talk.published_at >= 1.week.ago %>
+        <span class="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-green-500/10 text-green-600 cursor-help"
+              data-controller="tooltip"
+              data-tooltip-content-value="Published <%= time_ago_in_words(talk.published_at) %> ago">
+          <%= fa("sparkles", size: nil, class: "h-3 w-3 fill-current") %>
+          New
+        </span>
+      <% end %>
+
+      <% if talk.event&.name.present? %>
+        <%= link_to event_path(talk.event), class: "inline-flex items-center gap-1.5 max-w-[60%] px-2 py-1 rounded-md bg-base-200/80 hover:bg-base-200", data: {turbo_frame: "_top"} do %>
+          <% if talk.event.avatar_image_path.present? %>
+            <%= image_tag image_path(talk.event.avatar_image_path), class: "size-4 rounded shrink-0 ring-1 ring-black/5", alt: talk.event.name, loading: "lazy" %>
+          <% end %>
+          <span class="truncate"><%= talk.event.name %></span>
+        <% end %>
+      <% end %>
+
+      <% if talk.date.present? %>
+        <span class="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-base-200/80">
+          <%= fa("calendar", size: nil, class: "h-3 w-3 fill-base-content/50") %>
+          <%= talk.date.strftime("%b %-d, %Y") %>
+        </span>
+      <% end %>
+
+      <% if talk.duration_in_seconds.present? %>
+        <span class="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-base-200/80">
+          <%= fa("clock", size: nil, class: "h-3 w-3 fill-base-content/50") %>
+          <%= seconds_to_formatted_duration(talk.duration_in_seconds) %>
+        </span>
+      <% end %>
+
+      <% if talk.kind.present? && talk.kind != "talk" %>
+        <span class="inline-flex items-center px-2 py-1 rounded-md bg-base-200/80">
+          <%= Talk::KIND_LABELS[talk.kind] || talk.kind.titleize %>
+        </span>
+      <% end %>
+
+      <% if talk.language.present? %>
+        <%= link_to talks_path(language: talk.language), class: "inline-flex items-center gap-1 px-2 py-1 rounded-md bg-base-200/80 hover:bg-base-200", data: {turbo_frame: "_top"} do %>
+          <%= Language.emoji_flag(talk.language) %> <%= talk.language_name %>
+        <% end %>
+      <% end %>
+
+      <% if talk.slides_url.present? %>
+        <%= link_to talk.slides_url, target: "_blank", rel: "noopener", class: "inline-flex items-center gap-1 px-2 py-1 rounded-md bg-primary/10 text-primary hover:bg-primary/20" do %>
+          <%= fa("presentation-screen", size: nil, class: "h-3 w-3 fill-current") %>
+          Slides
+        <% end %>
+      <% end %>
+
+      <% if (status = talk_watch_status(talk)) %>
+        <span class="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-base-200/80">
+          <%= fa(status[:icon], size: nil, class: "h-3 w-3 fill-base-content/50") %>
+          <%= status[:label] %>
+        </span>
+      <% end %>
+    </div>
+
+    <% sections = talk.child_talks.order(:start_seconds).to_a %>
+    <% if sections.any? %>
+      <div class="flex flex-col gap-1.5 pt-1">
+        <div class="text-[11px] font-semibold uppercase tracking-wide text-base-content/40">
+          <%= pluralize(sections.size, "section") %>
+        </div>
+        <div class="grid grid-cols-2 gap-x-3 gap-y-0.5">
+          <% sections.first(8).each_with_index do |section, index| %>
+            <%= link_to talk_path(section), class: "flex items-center gap-1.5 text-xs rounded px-1 -mx-1 py-0.5 hover:bg-base-200/60 min-w-0", data: {turbo_frame: "_top"} do %>
+              <span class="text-base-content/40 tabular-nums shrink-0"><%= index + 1 %>.</span>
+              <% if section.speakers.first %>
+                <%= render Ui::AvatarComponent.new(section.speakers.first, size: :xs) %>
+              <% end %>
+              <span class="min-w-0 truncate text-base-content/80"><%= section.title %></span>
+            <% end %>
+          <% end %>
+        </div>
+        <% if sections.size > 8 %>
+          <div class="text-xs text-base-content/50">+<%= sections.size - 8 %> more</div>
+        <% end %>
+      </div>
+    <% elsif talk.description.present? %>
+      <p class="text-xs leading-relaxed text-base-content/60 line-clamp-3 pt-1">
+        <%= talk.description %>
+      </p>
+    <% end %>
+  </div>
+</div>

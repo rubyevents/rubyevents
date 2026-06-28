@@ -5,11 +5,11 @@
   raw_title: "Preparing for a Natural Disaster Using Bots"
   event_name: "Future Sync 2019"
   date: "2019-06-15"
-  description: |-
-    Nick discusses the use of Bots when prepping for a natural disaster.
+  published_at: "2019-06-15"
   video_provider: "youtube"
   video_id: "hSwtA-WmAcQ"
-  published_at: "2019-06-15"
+  description: |-
+    Nick discusses the use of Bots when prepping for a natural disaster.
   speakers:
     - Nick Schwaderer
 
@@ -18,20 +18,23 @@
   raw_title: "Preparing for a Natural Disaster Using Bots"
   event_name: "Software Cornwall 2019"
   date: "2019-03-28"
-  description: |-
-    Nick discusses the use of Bots when prepping for a natural disaster.
+  published_at: "2019-03-28"
   video_provider: "youtube"
   video_id: "WCRfOcYf6tI"
-  published_at: "2019-03-28"
+  description: |-
+    Nick discusses the use of Bots when prepping for a natural disaster.
   speakers:
     - Nick Schwaderer
 
 - id: "andrew-atkinson-posette-2024"
   title: "SaaS on Rails on PostgreSQL"
   raw_title: "SaaS on Rails on PostgreSQL"
-  event_name: "Posette 2024"
   location: "online"
+  event_name: "Posette 2024"
   date: "2024-06-11"
+  published_at: "2024-06-13"
+  video_provider: "youtube"
+  video_id: "RwXJ4s2pw1A"
   description: |-
     Video of a conference talk about Saas on Rails on PostgreSQL presented by Andrew Atkinson at POSETTE: An Event for Postgres 2024. In this talk attendees will learn how Ruby on Rails and PostgreSQL can be used to create scalable SaaS applications, focusing on schema and query design, and leveraging database capabilities. We’ll define SaaS concepts, B2B, B2C, and multi-tenancy. Although Rails doesn't natively support SaaS or multi-tenancy, solutions like Bullet Train and Jumpstart Rails can be used for common SaaS needs. Next we'll cover database designs from the Apartment and actsastenant gems which support multi-tenancy concepts, and connect their designs to Citus's row and schema sharding capabilities from version 12.0. We’ll also cover PostgreSQL's LIST partitioning and how to use it for efficient detachment of unneeded customer data. We'll cover the basics of leveraging Rails 6.1's Horizontal Sharding for database-per-tenant designs. Besides the benefits for each tool, limitations will be described so that attendees can make informed choices. Attendees will leave with a broad survey of building multi-tenant SaaS applications, having reviewed application level designs, database designs, to help them put these into action in their own applications.
 
@@ -48,74 +51,71 @@
     14:27 - Multi-Tenancy and Sharding with Active Record
     17:02 - Citus and Sharding
     22:52 - Wrap Up and Advice
-  video_provider: "youtube"
-  video_id: "RwXJ4s2pw1A"
-  published_at: "2024-06-13"
   speakers:
     - Andrew Atkinson
 
 - id: "vladimir-dementyev-wasmcon-2024"
   title: "Lightning Talk: From Server to Client: Ruby on Rails on WebAssembly"
   raw_title: "Lightning Talk: From Server to Client: Ruby on Rails on WebAssembly - Vladimir Dementyev"
-  event_name: "WasmCon 2024"
   location: "Salt Lake City, UT"
+  event_name: "WasmCon 2024"
   date: "2024-09-10"
-  description: |-
-    Ruby on Rails is a famous “batteries included” framework for the rapid development of web applications. Its full-stack promise comes in a server-oriented, or HTML-over-the-Wire flavor: a server oversees everything from database interactions to your application UI/UX. And whenever there is a server involved, the network and its unpredictability come into play. No matter how much you enjoy developing with Rails, it would be hard to achieve the same level of user experience as with client-side and especially local-first frameworks. And here comes Wasm. With the help of WebAssembly, we can do a radical shift—bring the Rails application right into your browser, and make it local-first! In my talk, I want to discuss the challenges of making a classic web framework Wasm compatible, the techniques we can use to run server-first applications in the browsers and what are the use cases.
+  published_at: "2024-11-18"
   video_provider: "youtube"
   video_id: "z_iWZrC3rtQ"
-  published_at: "2024-11-18"
+  description: |-
+    Ruby on Rails is a famous “batteries included” framework for the rapid development of web applications. Its full-stack promise comes in a server-oriented, or HTML-over-the-Wire flavor: a server oversees everything from database interactions to your application UI/UX. And whenever there is a server involved, the network and its unpredictability come into play. No matter how much you enjoy developing with Rails, it would be hard to achieve the same level of user experience as with client-side and especially local-first frameworks. And here comes Wasm. With the help of WebAssembly, we can do a radical shift—bring the Rails application right into your browser, and make it local-first! In my talk, I want to discuss the challenges of making a classic web framework Wasm compatible, the techniques we can use to run server-first applications in the browsers and what are the use cases.
   speakers:
     - Vladimir Dementyev
 
 - id: "irina-nazarova-viteconf-2024"
   title: "Using Vite Ruby"
   raw_title: "Irina Nazarova | Using Vite Ruby | ViteConf 2024"
-  event_name: "ViteConf 2024"
   location: "online"
+  event_name: "ViteConf 2024"
   date: "2024-10-03"
+  published_at: "2024-11-05"
+  slides_url: "https://speakerdeck.com/irinanazarova/using-vite-ruby-vite-conf-2024"
+  video_provider: "youtube"
+  video_id: "vIxQ6u9pHaw"
   description: |-
     Let's talk about the depth of the asset pipeline problem for the Ruby on Rails community and the role of Vite and Vite Ruby. I'm also sharing feedback and quotes from the teams using Vite Ruby: why they chose it and what's missing.
 
     https://ViteConf.org hosted by https://StackBlitz.com
-  video_provider: "youtube"
-  video_id: "vIxQ6u9pHaw"
-  published_at: "2024-11-05"
-  slides_url: "https://speakerdeck.com/irinanazarova/using-vite-ruby-vite-conf-2024"
   speakers:
     - Irina Nazarova
 
 - id: "okura-masafumi-burikaigi-2024"
   title: "Writing documentation can be fun with plugin system"
   raw_title: "Writing documentation can be fun with plugin system"
-  event_name: "BuriKaigi 2024"
   location: "Toyama, Japan"
+  event_name: "BuriKaigi 2024"
   date: "2024-07-27"
+  published_at: "2024-07-27"
+  slides_url: "https://speakerdeck.com/okuramasafumi/writing-documentation-can-be-fun-with-plugin-system"
+  video_provider: "not_recorded"
+  video_id: "okura-masafumi-burikaigi-2024"
   description: |-
     https://burikaigi.dev/2024/speakers/004/
     https://fortee.jp/burikaigi-2025/proposal/03ac7594-fce1-4dad-9dd0-c37649127f90
-  video_provider: "not_recorded"
-  video_id: "okura-masafumi-burikaigi-2024"
-  published_at: "2024-07-27"
-  slides_url: "https://speakerdeck.com/okuramasafumi/writing-documentation-can-be-fun-with-plugin-system"
   speakers:
     - OKURA Masafumi
 
 - id: "charles-nutter-carolina-code-conference-2023"
   title: "Bringing Ruby to the JVM: Making the Impossible Possible"
   raw_title: "Charles Nutter - Bringing Ruby to the JVM: Making the Impossible Possible // Carolina Code Conf 2023"
-  event_name: "Carolina Code Conference 2023"
   location: "Greenville, SC"
+  event_name: "Carolina Code Conference 2023"
   date: "2023-08-19"
+  published_at: "2023-09-04"
+  video_provider: "youtube"
+  video_id: "pzm6I4liJlg"
   description: |-
     Over the past 18 years, the JRuby team has worked to bring Ruby to the JVM, defying impossible challenges and building the most successful alternative Ruby implementation in the world. Today, JRuby is actively developed and deployed at thousands of Ruby and Java shops around the world... but how did we get here? This talk provides a retrospective of the JRuby project, with examples of modern JRuby usage along the way.
 
     Presented on August 19, 2023 at the Carolina Code Conference in Greenville, SC
 
     https://carolina.codes
-  video_provider: "youtube"
-  video_id: "pzm6I4liJlg"
-  published_at: "2023-09-04"
   speakers:
     - Charles Nutter
 
@@ -124,38 +124,40 @@
   raw_title: "Rails Database Corruption"
   event_name: "Kansas City Developer Conference 2016"
   date: "2016-06-22"
+  published_at: "2016-06-22"
+  slides_url: "https://push.cx/talks/kcdc2016/Rails%20Database%20Corruption%20-%20Peter%20Bhat%20Harkins.pdf"
+  video_provider: "mp4"
+  video_id: "https://push.cx/talks/kcdc2016/Rails-Database-Corruption-Peter-Bhat-Harkins-KCDC-2016.mp4"
   description: |-
     Almost every Rails database contains records that won't pass their model validations, leading to "can't happen" bugs months or years later. This talk introduces a gem that detects unsafe practices and lurking corrupt data. Learn to recognize and prevent five six ways data becomes corrupt, and maybe replace ActiveRecord validations entirely.
 
     https://push.cx/talks/kcdc2016
-  video_provider: "mp4"
-  video_id: "https://push.cx/talks/kcdc2016/Rails-Database-Corruption-Peter-Bhat-Harkins-KCDC-2016.mp4"
-  published_at: "2016-06-22"
-  slides_url: "https://push.cx/talks/kcdc2016/Rails%20Database%20Corruption%20-%20Peter%20Bhat%20Harkins.pdf"
   speakers:
     - Peter Bhat Harkins
 
 - id: "henning-koch-full-stack-hour-by-makandra"
   title: "Fixing Flaky E2E Tests"
   raw_title: "Fixing Flaky E2E Tests"
-  event_name: "Full Stack Hour by makandra"
   location: "online"
+  event_name: "Full Stack Hour by makandra"
   date: "2023-12-07"
-  description: |-
-    Flaky tests can lead to unreliability in software development and negatively impact the quality of test results. In this video, we'll show you how to prevent flaky tests.
+  published_at: "2023-12-07"
   video_provider: "youtube"
   video_id: "LaCwiFDm2Vs"
-  published_at: "2023-12-07"
+  description: |-
+    Flaky tests can lead to unreliability in software development and negatively impact the quality of test results. In this video, we'll show you how to prevent flaky tests.
   speakers:
     - Henning Koch
 
 - id: "jim-weirich-cincycocoadev-meetup-april-2013"
   title: "RubyMotion"
   raw_title: "April CincyCocoaDev - RubyMotion with Jim Weirich"
-  event_name: "CincyCocoaDev Meetup - April 2013"
   location: "Cincinnati, OH"
+  event_name: "CincyCocoaDev Meetup - April 2013"
   date: "2013-04-18"
   published_at: "2013-04-19"
+  video_provider: "youtube"
+  video_id: "z7E1zx9j31M"
   description: |-
     RubyMotion is a revolutionary toolchain for iOS. It lets you quickly develop and test native iOS applications for iPhone or iPad, all using the awesome Ruby language you know and love.
 
@@ -164,8 +166,6 @@
     Repo: https://github.com/captproton/jim-weirich-rubymotion-intro
 
     https://www.meetup.com/cincycocoadev/events/112048512/
-  video_provider: "youtube"
-  video_id: "z7E1zx9j31M"
   speakers:
     - Jim Weirich
   additional_resources:
@@ -179,27 +179,147 @@
   event_name: "Google Tech Talks"
   date: "2008-10-20"
   published_at: "2008-10-21"
+  video_provider: "youtube"
+  video_id: "TcMklv40YMY"
   description: |-
     In this talk we will explore a few of the open source projects we work on here at Engine Yard. I will give a detailed overview of the Merb web framework and what it brings to the table. We will also discuss Rubinius, an alternate ruby VM based on SmallTalk 80 blue book that also uses LLVM for low level optimizations. We will also explore the 'stack' we are working on at EY which includes our own variant of Gentoo linux as well as a full stack of software dedicated to running ruby applications as efficiently as possible.
 
     Merb, like Ruby on Rails is an MVC framework. Unlike Rails, Merb is ORM-agnostic, JavaScript library agnostic, and template language agnostic, preferring plugins that add in support for a particular feature rather than trying to produce a monolithic library with everything in the core. While trying to keep the core as minimal and clean as possible, this hasnt meant a sacrifice of features. Merb has a very comprehensive set of features, which are continually improving.
 
     Rubinius is a project to develop the next generation virtual machine for the Ruby programming language, drawing on the best virtual machine research and technology of the last 30 years. It implements the core libraries in Ruby, making a system easily accessible for development and extension. Rubinius is also an excellent platform for experimenting with cutting-edge technology like software transactional memory.
-  video_provider: "youtube"
-  video_id: "TcMklv40YMY"
   speakers:
     - Ezra Zygmuntowicz
 
 - id: "irina-nazarova-open-core-summit-2023"
   title: "Wildest Dreams of Making Profit on Open Source"
   raw_title: "Irina Nazarova at the Open Core Summit 2023: Wildest Dreams of Making Profit on Open Source"
-  event_name: "Open Core Summit 2023"
   location: "San Francisco, CA"
+  event_name: "Open Core Summit 2023"
   date: "2023-12-07"
   published_at: "2024-01-03"
-  description: |-
-    Irina Nazarova, CEO at Evil Martians, gave a talk at the Open Core Summit in San Francisco on December 7, 2023. The topic is how to recognize and overcome the fundamental problem in the business of open source: the conflict between the open and the commercial mindsets.
   video_provider: "youtube"
   video_id: "tfQghAdUUtY"
+  description: |-
+    Irina Nazarova, CEO at Evil Martians, gave a talk at the Open Core Summit in San Francisco on December 7, 2023. The topic is how to recognize and overcome the fundamental problem in the business of open source: the conflict between the open and the commercial mindsets.
   speakers:
     - Irina Nazarova
+
+- id: "maxime-chevalier-boisvert-splash-2023"
+  title: "Evaluating YJIT's Performance in a Production Context: A Pragmatic Approach"
+  raw_title: "Evaluration YJIT's Performance in a Production Context: A Pragmatic Approach"
+  location: "Cascais, Portugal"
+  event_name: "SPLASH 2023"
+  date: "2023-10-22"
+  time: "11:00 - 11:22"
+  published_at: "2024-02-15"
+  video_provider: "youtube"
+  video_id: "pVRmPZcNUhc"
+  description: |-
+    Ruby is a dynamically-typed programming language with a large breadth of features which has grown in popularity with the rise of the modern web, and remains at the core of the implementation of widely-used online platforms such as Shopify, GitHub, Discourse, and Mastodon.
+
+    There have been many attempts to integrate JIT compilation into Ruby implementations, but until recently, despite impressive performance on benchmarks, none had seen widespread adoption. This has changed with the arrival of YJIT, a new JIT compiler based on a Lazy Basic Block Versioning (LBBV) architecture which has recently been upstreamed into CRuby, and has since seen multiple large-scale production deployments.
+
+    This paper extends on previous work on YJIT and takes a pragmatic approach towards evaluating YJIT's performance in a production context. We evaluate and compare its performance on benchmarks as well as a large-scale real-world production deployment, and we look not only at peak performance, but also at memory usage and warm-up time.
+
+    On all of our benchmarks, YJIT is able to consistently outperform the CRuby interpreter by a wide margin. It offers consistent speedups, full compatibility with existing Ruby code, much less memory overhead and faster warm-up compared to JRuby and TruffleRuby.
+
+    We also show that YJIT is able to deliver significant speedups on a real-world deployment on Shopify's worldwide StoreFront Renderer infrastructure, an application for which it is currently the only viable JIT compiler.
+
+    https://2023.splashcon.org/details/mplr-2023-papers/7/Evaluating-YJIT-s-Performance-in-a-Production-Context-A-Pragmatic-Approach
+  speakers:
+    - Maxime Chevalier-Boisvert
+
+- id: "maxime-chevalier-boisvert-splash-2021"
+  title: "YJIT: A Basic Block Versioning JIT Compiler for CRuby"
+  raw_title: "YJIT: A Basic Block Versioning JIT Compiler for CRuby"
+  location: "Chicago, IL"
+  event_name: "SPLASH 2021"
+  date: "2021-10-19"
+  time: "14:50 - 15:10"
+  published_at: "2021-11-10"
+  track: "VMIL"
+  video_provider: "youtube"
+  video_id: "PFb5wNj2ztM"
+  description: |-
+    Ruby is a dynamically typed programming language with a large breadth of features which has grown in popularity with the rise of the modern web, and remains at the core of the implementation of many widely-used websites.
+
+    CRuby, the default implementation of the language, features a JIT compiler known as MJIT, but developers often do not enable it in production environments, because it does not always yield performance improvements on real-world software. Attempts to independently reimplement the Ruby language, such as JRuby and TruffleRuby have shown impressive performance results on benchmarks, but often lag behind CRuby when it comes to supporting new additions to the language, which limits their adoption.
+
+    We introduce YJIT, a new JIT compiler built inside CRuby based on a Lazy Basic Block Versioning (LBBV) architecture. We show that while our compiler does not match the peak performance of TruffleRuby, it offers near-100% compatibility with existing Ruby code, impressively fast warmup, and speedups from 15% to 19% on sizeable benchmarks based on real-world software.
+
+    https://2021.splashcon.org/details/vmil-2021-papers/1/YJIT-A-Basic-Block-Versioning-JIT-Compiler-for-CRuby
+  speakers:
+    - Maxime Chevalier-Boisvert
+
+- id: "takashi-kokubun-splash-2025"
+  title: "ZJIT: Building a New JIT Compiler for Ruby"
+  raw_title: "[REBASE'25] ZJIT: Building a New JIT Compiler for Ruby"
+  location: "Singapore"
+  event_name: "SPLASH 2025"
+  date: "2025-10-18"
+  time: "14:55 - 15:30"
+  published_at: "2025-12-05"
+  track: "REBASE"
+  video_provider: "youtube"
+  video_id: "zPrSG2e10Ig"
+  description: |-
+    The Ruby programming language has achieved a 2-3x speedup in real-world application benchmarks through its JIT compiler, YJIT. For the upcoming Ruby 3.5 release, we are developing a new JIT compiler, ZJIT.
+
+    In this talk, we’ll discuss the challenges of speeding up this highly dynamic programming language and how we are altering the compiler design to address these challenges more effectively.
+
+    https://conf.researchr.org/details/icfp-splash-2025/rebase-2025-papers/1/ZJIT-Building-a-New-JIT-Compiler-for-Ruby
+  speakers:
+    - Takashi Kokubun
+
+- id: "milod-kazerounian-pldi-2019"
+  title: "Type-Level Computations for Ruby Libraries"
+  raw_title: "Type-Level Computations for Ruby Libraries"
+  location: "Phoenix, AZ"
+  event_name: "PLDI 2019"
+  date: "2019-06-25"
+  time: "16:20 - 16:40"
+  published_at: "2019-11-26"
+  video_provider: "youtube"
+  video_id: "cmK7TzvhEds"
+  description: |-
+    Many researchers have explored ways to bring static typing to dynamic languages. However, to date, such systems are not precise enough when types depend on values, which often arises when using certain Ruby libraries. For example, the type safety of a database query in Ruby on Rails depends on the table and column names used in the query. To address this issue, we introduce CompRDL, a type system for Ruby that allows library method type signatures to include type-level computations (or comp types for short). Combined with singleton types for table and column names, comp types let us give database query methods type signatures that compute a table's schema to yield very precise type information. Comp types for hash, array, and string libraries can also increase precision and thereby reduce the need for type casts. We formalize CompRDL and prove its type system sound. Rather than type check the bodies of library methods with comp types — those methods may include native code or be complex — CompRDL inserts run-time checks to ensure library methods abide by their computed types. We evaluated CompRDL by writing annotations with type-level computations for several Ruby core libraries and database query APIs. We then used those annotations to type check two popular Ruby libraries and four Ruby on Rails web apps. We found the annotations were relatively compact and could successfully type check 132 methods across our subject programs. Moreover, the use of type-level computations allowed us to check more expressive properties, with fewer manually inserted casts, than was possible without type-level computations. In the process, we found two type errors and a documentation error that were confirmed by the developers. Thus, we believe CompRDL is an important step forward in bringing precise static type checking to dynamic languages.
+
+    https://pldi19.sigplan.org/details/pldi-2019-papers/52/Type-Level-Computations-for-Ruby-Libraries
+  speakers:
+    - Milod Kazerounian
+
+- id: "milod-kazerounian-dls-2020"
+  title: "Sound, Heuristic Type Annotation Inference for Ruby"
+  raw_title: "Sound, Heuristic Type Annotation Inference for Ruby"
+  location: "online"
+  event_name: "SPLASH 2020"
+  date: "2020-11-18"
+  published_at: "2020-11-13"
+  track: "DLS 2020"
+  video_provider: "youtube"
+  video_id: "bQwr_-TpZBA"
+  description: |-
+    Many researchers have explored retrofitting static type systems to dynamic languages. This raises the question of how to add type annotations to code that was previously untyped. One obvious solution is type inference. However, in complex type systems, in particular those with structural types, type inference typically produces most general types that are large, hard to understand, and unnatural for programmers. To solve this problem, we introduce InferDL, a novel Ruby type inference system that infers sound and useful type annotations by incorporating heuristics that guess types. For example, we might heuristically guess that a parameter whose name ends in ``count'' is an integer. InferDL works by first running standard type inference and then applying heuristics to any positions for which standard type inference produces overly-general types. Heuristic guesses are added as constraints to the type inference problem to ensure they are consistent with the rest of the program and other heuristic guesses; inconsistent guesses are discarded. We formalized InferDL in a core type and constraint language. We implemented InferDL on top of RDL, an existing Ruby type checker. To evaluate InferDL, we applied it to four Ruby on Rails apps that had been previously type checked with RDL, and hence had type annotations. We found that, when using heuristics, InferDL inferred 22% more types that were as or more precise than the previous annotations, compared to standard type inference without heuristics. We also found one new type error. We further evaluated InferDL by applying it to six additional apps, finding five additional type errors. Thus, we believe InferDL represents a promising approach for inferring type annotations in dynamic languages.
+
+    https://conf.researchr.org/details/dls-2020/dls-2020-papers/9/Sound-Heuristic-Type-Annotation-Inference-for-Ruby
+  speakers:
+    - Milod Kazerounian
+
+- id: "kunshan-wang-ismm-2025"
+  title: "Reworking Memory Management in CRuby: A Practitioner Report"
+  raw_title: "Reworking Memory Management in CRuby: A Practitioner Report"
+  location: "Seoul, South Korea"
+  event_name: "ISMM 2025"
+  date: "2025-06-17"
+  time: "11:00 - 11:20"
+  published_at: "2025-07-09"
+  video_provider: "youtube"
+  video_id: "-mTxhJJDWbw"
+  description: |-
+    Ruby is a dynamic programming language that was first released in 1995 and remains heavily used today. Ruby underpins Ruby on Rails, one of the most widely deployed web application frameworks. The scale at which Rails is deployed has placed increasing pressure on the underlying CRuby implementation, and in particular its approach to memory management. CRuby implements a mark-sweep garbage collector which until recently was non-moving and only allocated fixed-size 40-byte objects, falling back to malloc to manage all larger objects. This paper reports on a multi-year academic-industrial collaboration to rework CRuby’s approach to memory management with the goal of introducing modularity and the ability to incorporate modern high performance garbage collection algorithms. This required identifying and addressing deeply ingrained assumptions across many aspects of the CRuby runtime. We describe the longstanding CRuby implementation and enumerate core challenges we faced and lessons they offer.
+
+    Our work has been embraced by the Ruby community, and the refactorings and new garbage collection interface we describe have been upstreamed. We look forward to this work being used to deploy a new class of garbage collectors for Ruby. We hope that this paper will provide important lessons and insights for Ruby developers, garbage collection researchers and language designers.
+
+    https://conf.researchr.org/details/ismm-2025/ismm-2025-papers/8/Reworking-Memory-Management-in-CRuby-A-Practitioner-Report
+  speakers:
+    - Kunshan Wang

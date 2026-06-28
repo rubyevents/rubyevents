@@ -1,11 +1,18 @@
 ---
 name: "Blue Ridge Ruby"
 website: "https://blueridgeruby.com"
-twitter: "blueridgeruby"
 kind: "conference"
 frequency: "yearly"
-playlist_matcher: "Blue Ridge Ruby"
+language: "English"
+twitter: "blueridgeruby"
 default_country_code: "US"
-youtube_channel_name: "Confreaks"
-language: "english"
-youtube_channel_id: "UCWnPjmqvljcafA0z2U1fwKQ"
+youtube_channels:
+  - id: "UCmJGdvmh0U0Q7NnysjxYc1w"
+    name: "Blue Ridge Ruby"
+    handle: "@blueridgeruby"
+    playlist_matcher: "Blue Ridge Ruby"
+
+  - id: "UCWnPjmqvljcafA0z2U1fwKQ"
+    name: "Confreaks"
+    handle: "@confreaks"
+    playlist_matcher: "Blue Ridge Ruby"

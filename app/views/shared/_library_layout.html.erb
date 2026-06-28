@@ -1,0 +1,11 @@
+<%# locals: () %>
+
+<div class="container my-8 hotwire-native:my-0 hotwire-native:mb-8">
+  <div class="grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-8">
+    <%= render "shared/library_sidebar" %>
+
+    <div class="flex flex-col gap-4">
+      <%= yield %>
+    </div>
+  </div>
+</div>

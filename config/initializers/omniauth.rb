@@ -1,3 +1,5 @@
+OmniAuth.config.request_validation_phase = OmniAuth::AuthenticityTokenProtection.new(key: :_csrf_token)
+
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :developer, fields: [:name, :github_handle] unless Rails.env.production? # You should replace it with your provider
 

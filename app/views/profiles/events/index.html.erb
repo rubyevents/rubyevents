@@ -5,10 +5,10 @@
       events: @events,
       mutual_events: @mutual_events,
       stamps: @stamps,
-      events_with_stickers: @events_with_stickers,
+      stickers: @stickers,
       involvements_by_role: @involvements_by_role,
       countries_with_events: @countries_with_events,
       favorite_user: @favorite_user
     } do %>
-  <%= render partial: "profiles/events", locals: {user: @user, events: @events, talks: @talks, participations: @participations} %>
+  <%= render partial: "profiles/events", locals: {user: @user, events: @events, talks: @talks, participations: @participations, checked_in_event_ids: @checked_in_event_ids || Set.new} %>
 <% end %>

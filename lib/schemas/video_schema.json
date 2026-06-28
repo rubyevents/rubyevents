@@ -27,7 +27,22 @@
     },
     "kind": {
       "type": "string",
-      "description": "Type of video (e.g., 'keynote', 'lightning')"
+      "enum": [
+        "keynote",
+        "talk",
+        "lightning_talk",
+        "panel",
+        "workshop",
+        "gameshow",
+        "podcast",
+        "q_and_a",
+        "discussion",
+        "fireside_chat",
+        "interview",
+        "award",
+        "demo"
+      ],
+      "description": "Type of video (e.g., 'keynote', 'lightning_talk')"
     },
     "status": {
       "type": "string",
@@ -58,6 +73,10 @@
           "description": {
             "type": "string"
           },
+          "kind": {
+            "type": "string",
+            "description": "Type of video (e.g., 'keynote', 'lightning')"
+          },
           "speakers": {
             "type": "array",
             "items": {
@@ -84,7 +103,193 @@
             "type": "string"
           },
           "language": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "Afar",
+              "Abkhazian",
+              "Afrikaans",
+              "Akan",
+              "Albanian",
+              "Amharic",
+              "Arabic",
+              "Aragonese",
+              "Armenian",
+              "Assamese",
+              "Avaric",
+              "Avestan",
+              "Aymara",
+              "Azerbaijani",
+              "Bashkir",
+              "Bambara",
+              "Basque",
+              "Belarusian",
+              "Bengali",
+              "Bihari languages",
+              "Bislama",
+              "Bosnian",
+              "Breton",
+              "Bulgarian",
+              "Burmese",
+              "Catalan",
+              "Chamorro",
+              "Chechen",
+              "Chinese",
+              "Church Slavic",
+              "Chuvash",
+              "Cornish",
+              "Corsican",
+              "Cree",
+              "Czech",
+              "Danish",
+              "Divehi",
+              "Dutch",
+              "Dzongkha",
+              "English",
+              "Esperanto",
+              "Estonian",
+              "Ewe",
+              "Faroese",
+              "Fijian",
+              "Finnish",
+              "French",
+              "Western Frisian",
+              "Fulah",
+              "Georgian",
+              "German",
+              "Gaelic",
+              "Irish",
+              "Galician",
+              "Manx",
+              "Greek, Modern (1453-)",
+              "Guarani",
+              "Gujarati",
+              "Haitian",
+              "Hausa",
+              "Hebrew",
+              "Herero",
+              "Hindi",
+              "Hiri Motu",
+              "Croatian",
+              "Hungarian",
+              "Igbo",
+              "Icelandic",
+              "Ido",
+              "Sichuan Yi",
+              "Inuktitut",
+              "Interlingue",
+              "Interlingua (International Auxiliary Language Association)",
+              "Indonesian",
+              "Inupiaq",
+              "Italian",
+              "Javanese",
+              "Japanese",
+              "Kalaallisut",
+              "Kannada",
+              "Kashmiri",
+              "Kanuri",
+              "Kazakh",
+              "Central Khmer",
+              "Kikuyu",
+              "Kinyarwanda",
+              "Kirghiz",
+              "Komi",
+              "Kongo",
+              "Korean",
+              "Kuanyama",
+              "Kurdish",
+              "Lao",
+              "Latin",
+              "Latvian",
+              "Limburgan",
+              "Lingala",
+              "Lithuanian",
+              "Luxembourgish",
+              "Luba-Katanga",
+              "Ganda",
+              "Macedonian",
+              "Marshallese",
+              "Malayalam",
+              "Maori",
+              "Marathi",
+              "Malay",
+              "Malagasy",
+              "Maltese",
+              "Mongolian",
+              "Nauru",
+              "Navajo",
+              "Ndebele, South",
+              "Ndebele, North",
+              "Ndonga",
+              "Nepali",
+              "Norwegian Nynorsk",
+              "Bokmål, Norwegian",
+              "Norwegian",
+              "Chichewa",
+              "Occitan (post 1500)",
+              "Ojibwa",
+              "Oriya",
+              "Oromo",
+              "Ossetian",
+              "Panjabi",
+              "Persian",
+              "Pali",
+              "Polish",
+              "Portuguese",
+              "Pushto",
+              "Quechua",
+              "Romansh",
+              "Romanian",
+              "Rundi",
+              "Russian",
+              "Sango",
+              "Sanskrit",
+              "Sinhala",
+              "Slovak",
+              "Slovenian",
+              "Northern Sami",
+              "Samoan",
+              "Shona",
+              "Sindhi",
+              "Somali",
+              "Sotho, Southern",
+              "Spanish",
+              "Sardinian",
+              "Serbian",
+              "Swati",
+              "Sundanese",
+              "Swahili",
+              "Swedish",
+              "Tahitian",
+              "Tamil",
+              "Tatar",
+              "Telugu",
+              "Tajik",
+              "Tagalog",
+              "Thai",
+              "Tibetan",
+              "Tigrinya",
+              "Tonga (Tonga Islands)",
+              "Tswana",
+              "Tsonga",
+              "Turkmen",
+              "Turkish",
+              "Twi",
+              "Uighur",
+              "Ukrainian",
+              "Urdu",
+              "Uzbek",
+              "Venda",
+              "Vietnamese",
+              "Volapük",
+              "Welsh",
+              "Walloon",
+              "Wolof",
+              "Xhosa",
+              "Yiddish",
+              "Yoruba",
+              "Zhuang",
+              "Zulu"
+            ]
           },
           "track": {
             "type": "string"
@@ -114,10 +319,12 @@
               "type": "object",
               "properties": {
                 "name": {
-                  "type": "string"
+                  "type": "string",
+                  "description": "Display name for the resource"
                 },
                 "url": {
-                  "type": "string"
+                  "type": "string",
+                  "description": "URL to the resource"
                 },
                 "type": {
                   "type": "string",
@@ -141,11 +348,14 @@
                     "handout",
                     "notes",
                     "photos",
-                    "link"
-                  ]
+                    "link",
+                    "book"
+                  ],
+                  "description": "Type of resource"
                 },
                 "title": {
-                  "type": "string"
+                  "type": "string",
+                  "description": "Full title of the resource"
                 }
               },
               "required": [
@@ -185,7 +395,205 @@
                 "raw_title": {
                   "type": "string"
                 },
+                "language": {
+                  "type": "string",
+                  "enum": [
+                    "Afar",
+                    "Abkhazian",
+                    "Afrikaans",
+                    "Akan",
+                    "Albanian",
+                    "Amharic",
+                    "Arabic",
+                    "Aragonese",
+                    "Armenian",
+                    "Assamese",
+                    "Avaric",
+                    "Avestan",
+                    "Aymara",
+                    "Azerbaijani",
+                    "Bashkir",
+                    "Bambara",
+                    "Basque",
+                    "Belarusian",
+                    "Bengali",
+                    "Bihari languages",
+                    "Bislama",
+                    "Bosnian",
+                    "Breton",
+                    "Bulgarian",
+                    "Burmese",
+                    "Catalan",
+                    "Chamorro",
+                    "Chechen",
+                    "Chinese",
+                    "Church Slavic",
+                    "Chuvash",
+                    "Cornish",
+                    "Corsican",
+                    "Cree",
+                    "Czech",
+                    "Danish",
+                    "Divehi",
+                    "Dutch",
+                    "Dzongkha",
+                    "English",
+                    "Esperanto",
+                    "Estonian",
+                    "Ewe",
+                    "Faroese",
+                    "Fijian",
+                    "Finnish",
+                    "French",
+                    "Western Frisian",
+                    "Fulah",
+                    "Georgian",
+                    "German",
+                    "Gaelic",
+                    "Irish",
+                    "Galician",
+                    "Manx",
+                    "Greek, Modern (1453-)",
+                    "Guarani",
+                    "Gujarati",
+                    "Haitian",
+                    "Hausa",
+                    "Hebrew",
+                    "Herero",
+                    "Hindi",
+                    "Hiri Motu",
+                    "Croatian",
+                    "Hungarian",
+                    "Igbo",
+                    "Icelandic",
+                    "Ido",
+                    "Sichuan Yi",
+                    "Inuktitut",
+                    "Interlingue",
+                    "Interlingua (International Auxiliary Language Association)",
+                    "Indonesian",
+                    "Inupiaq",
+                    "Italian",
+                    "Javanese",
+                    "Japanese",
+                    "Kalaallisut",
+                    "Kannada",
+                    "Kashmiri",
+                    "Kanuri",
+                    "Kazakh",
+                    "Central Khmer",
+                    "Kikuyu",
+                    "Kinyarwanda",
+                    "Kirghiz",
+                    "Komi",
+                    "Kongo",
+                    "Korean",
+                    "Kuanyama",
+                    "Kurdish",
+                    "Lao",
+                    "Latin",
+                    "Latvian",
+                    "Limburgan",
+                    "Lingala",
+                    "Lithuanian",
+                    "Luxembourgish",
+                    "Luba-Katanga",
+                    "Ganda",
+                    "Macedonian",
+                    "Marshallese",
+                    "Malayalam",
+                    "Maori",
+                    "Marathi",
+                    "Malay",
+                    "Malagasy",
+                    "Maltese",
+                    "Mongolian",
+                    "Nauru",
+                    "Navajo",
+                    "Ndebele, South",
+                    "Ndebele, North",
+                    "Ndonga",
+                    "Nepali",
+                    "Norwegian Nynorsk",
+                    "Bokmål, Norwegian",
+                    "Norwegian",
+                    "Chichewa",
+                    "Occitan (post 1500)",
+                    "Ojibwa",
+                    "Oriya",
+                    "Oromo",
+                    "Ossetian",
+                    "Panjabi",
+                    "Persian",
+                    "Pali",
+                    "Polish",
+                    "Portuguese",
+                    "Pushto",
+                    "Quechua",
+                    "Romansh",
+                    "Romanian",
+                    "Rundi",
+                    "Russian",
+                    "Sango",
+                    "Sanskrit",
+                    "Sinhala",
+                    "Slovak",
+                    "Slovenian",
+                    "Northern Sami",
+                    "Samoan",
+                    "Shona",
+                    "Sindhi",
+                    "Somali",
+                    "Sotho, Southern",
+                    "Spanish",
+                    "Sardinian",
+                    "Serbian",
+                    "Swati",
+                    "Sundanese",
+                    "Swahili",
+                    "Swedish",
+                    "Tahitian",
+                    "Tamil",
+                    "Tatar",
+                    "Telugu",
+                    "Tajik",
+                    "Tagalog",
+                    "Thai",
+                    "Tibetan",
+                    "Tigrinya",
+                    "Tonga (Tonga Islands)",
+                    "Tswana",
+                    "Tsonga",
+                    "Turkmen",
+                    "Turkish",
+                    "Twi",
+                    "Uighur",
+                    "Ukrainian",
+                    "Urdu",
+                    "Uzbek",
+                    "Venda",
+                    "Vietnamese",
+                    "Volapük",
+                    "Welsh",
+                    "Walloon",
+                    "Wolof",
+                    "Xhosa",
+                    "Yiddish",
+                    "Yoruba",
+                    "Zhuang",
+                    "Zulu"
+                  ]
+                },
+                "date": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
                 "published_at": {
+                  "type": "string"
+                },
+                "event_name": {
                   "type": "string"
                 },
                 "speakers": {
@@ -202,9 +610,17 @@
                 },
                 "url": {
                   "type": "string"
+                },
+                "external_url": {
+                  "type": "string"
+                },
+                "note": {
+                  "type": "string"
                 }
               },
-              "required": [],
+              "required": [
+                "note"
+              ],
               "additionalProperties": false
             }
           }
@@ -214,7 +630,80 @@
           "video_provider",
           "video_id"
         ],
-        "additionalProperties": false
+        "additionalProperties": false,
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "video_provider": {
+                  "const": "youtube"
+                }
+              },
+              "required": [
+                "video_provider"
+              ]
+            },
+            "then": {
+              "required": [
+                "published_at"
+              ],
+              "properties": {
+                "published_at": {
+                  "type": "string",
+                  "not": {
+                    "const": "TODO"
+                  },
+                  "minLength": 1,
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}"
+                },
+                "video_id": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9_-]{11}$"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "video_provider": {
+                  "const": "vimeo"
+                }
+              },
+              "required": [
+                "video_provider"
+              ]
+            },
+            "then": {
+              "properties": {
+                "video_id": {
+                  "type": "string",
+                  "pattern": "^\\d+$"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "video_provider": {
+                  "const": "mp4"
+                }
+              },
+              "required": [
+                "video_provider"
+              ]
+            },
+            "then": {
+              "properties": {
+                "video_id": {
+                  "type": "string",
+                  "pattern": "^https?://"
+                }
+              }
+            }
+          }
+        ]
       }
     },
     "event_name": {
@@ -267,6 +756,204 @@
       "type": "string",
       "description": "URL for external player"
     },
+    "track": {
+      "type": "string",
+      "description": "Conference track (e.g., 'Main Stage', 'Workshop')"
+    },
+    "language": {
+      "type": "string",
+      "enum": [
+        "Afar",
+        "Abkhazian",
+        "Afrikaans",
+        "Akan",
+        "Albanian",
+        "Amharic",
+        "Arabic",
+        "Aragonese",
+        "Armenian",
+        "Assamese",
+        "Avaric",
+        "Avestan",
+        "Aymara",
+        "Azerbaijani",
+        "Bashkir",
+        "Bambara",
+        "Basque",
+        "Belarusian",
+        "Bengali",
+        "Bihari languages",
+        "Bislama",
+        "Bosnian",
+        "Breton",
+        "Bulgarian",
+        "Burmese",
+        "Catalan",
+        "Chamorro",
+        "Chechen",
+        "Chinese",
+        "Church Slavic",
+        "Chuvash",
+        "Cornish",
+        "Corsican",
+        "Cree",
+        "Czech",
+        "Danish",
+        "Divehi",
+        "Dutch",
+        "Dzongkha",
+        "English",
+        "Esperanto",
+        "Estonian",
+        "Ewe",
+        "Faroese",
+        "Fijian",
+        "Finnish",
+        "French",
+        "Western Frisian",
+        "Fulah",
+        "Georgian",
+        "German",
+        "Gaelic",
+        "Irish",
+        "Galician",
+        "Manx",
+        "Greek, Modern (1453-)",
+        "Guarani",
+        "Gujarati",
+        "Haitian",
+        "Hausa",
+        "Hebrew",
+        "Herero",
+        "Hindi",
+        "Hiri Motu",
+        "Croatian",
+        "Hungarian",
+        "Igbo",
+        "Icelandic",
+        "Ido",
+        "Sichuan Yi",
+        "Inuktitut",
+        "Interlingue",
+        "Interlingua (International Auxiliary Language Association)",
+        "Indonesian",
+        "Inupiaq",
+        "Italian",
+        "Javanese",
+        "Japanese",
+        "Kalaallisut",
+        "Kannada",
+        "Kashmiri",
+        "Kanuri",
+        "Kazakh",
+        "Central Khmer",
+        "Kikuyu",
+        "Kinyarwanda",
+        "Kirghiz",
+        "Komi",
+        "Kongo",
+        "Korean",
+        "Kuanyama",
+        "Kurdish",
+        "Lao",
+        "Latin",
+        "Latvian",
+        "Limburgan",
+        "Lingala",
+        "Lithuanian",
+        "Luxembourgish",
+        "Luba-Katanga",
+        "Ganda",
+        "Macedonian",
+        "Marshallese",
+        "Malayalam",
+        "Maori",
+        "Marathi",
+        "Malay",
+        "Malagasy",
+        "Maltese",
+        "Mongolian",
+        "Nauru",
+        "Navajo",
+        "Ndebele, South",
+        "Ndebele, North",
+        "Ndonga",
+        "Nepali",
+        "Norwegian Nynorsk",
+        "Bokmål, Norwegian",
+        "Norwegian",
+        "Chichewa",
+        "Occitan (post 1500)",
+        "Ojibwa",
+        "Oriya",
+        "Oromo",
+        "Ossetian",
+        "Panjabi",
+        "Persian",
+        "Pali",
+        "Polish",
+        "Portuguese",
+        "Pushto",
+        "Quechua",
+        "Romansh",
+        "Romanian",
+        "Rundi",
+        "Russian",
+        "Sango",
+        "Sanskrit",
+        "Sinhala",
+        "Slovak",
+        "Slovenian",
+        "Northern Sami",
+        "Samoan",
+        "Shona",
+        "Sindhi",
+        "Somali",
+        "Sotho, Southern",
+        "Spanish",
+        "Sardinian",
+        "Serbian",
+        "Swati",
+        "Sundanese",
+        "Swahili",
+        "Swedish",
+        "Tahitian",
+        "Tamil",
+        "Tatar",
+        "Telugu",
+        "Tajik",
+        "Tagalog",
+        "Thai",
+        "Tibetan",
+        "Tigrinya",
+        "Tonga (Tonga Islands)",
+        "Tswana",
+        "Tsonga",
+        "Turkmen",
+        "Turkish",
+        "Twi",
+        "Uighur",
+        "Ukrainian",
+        "Urdu",
+        "Uzbek",
+        "Venda",
+        "Vietnamese",
+        "Volapük",
+        "Welsh",
+        "Walloon",
+        "Wolof",
+        "Xhosa",
+        "Yiddish",
+        "Yoruba",
+        "Zhuang",
+        "Zulu"
+      ],
+      "description": "Language of the talk"
+    },
+    "slides_url": {
+      "type": "string",
+      "description": "URL to the slides"
+    },
     "alternative_recordings": {
       "type": "array",
       "description": "Alternative video recordings",
@@ -280,7 +967,193 @@
             "type": "string"
           },
           "language": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "Afar",
+              "Abkhazian",
+              "Afrikaans",
+              "Akan",
+              "Albanian",
+              "Amharic",
+              "Arabic",
+              "Aragonese",
+              "Armenian",
+              "Assamese",
+              "Avaric",
+              "Avestan",
+              "Aymara",
+              "Azerbaijani",
+              "Bashkir",
+              "Bambara",
+              "Basque",
+              "Belarusian",
+              "Bengali",
+              "Bihari languages",
+              "Bislama",
+              "Bosnian",
+              "Breton",
+              "Bulgarian",
+              "Burmese",
+              "Catalan",
+              "Chamorro",
+              "Chechen",
+              "Chinese",
+              "Church Slavic",
+              "Chuvash",
+              "Cornish",
+              "Corsican",
+              "Cree",
+              "Czech",
+              "Danish",
+              "Divehi",
+              "Dutch",
+              "Dzongkha",
+              "English",
+              "Esperanto",
+              "Estonian",
+              "Ewe",
+              "Faroese",
+              "Fijian",
+              "Finnish",
+              "French",
+              "Western Frisian",
+              "Fulah",
+              "Georgian",
+              "German",
+              "Gaelic",
+              "Irish",
+              "Galician",
+              "Manx",
+              "Greek, Modern (1453-)",
+              "Guarani",
+              "Gujarati",
+              "Haitian",
+              "Hausa",
+              "Hebrew",
+              "Herero",
+              "Hindi",
+              "Hiri Motu",
+              "Croatian",
+              "Hungarian",
+              "Igbo",
+              "Icelandic",
+              "Ido",
+              "Sichuan Yi",
+              "Inuktitut",
+              "Interlingue",
+              "Interlingua (International Auxiliary Language Association)",
+              "Indonesian",
+              "Inupiaq",
+              "Italian",
+              "Javanese",
+              "Japanese",
+              "Kalaallisut",
+              "Kannada",
+              "Kashmiri",
+              "Kanuri",
+              "Kazakh",
+              "Central Khmer",
+              "Kikuyu",
+              "Kinyarwanda",
+              "Kirghiz",
+              "Komi",
+              "Kongo",
+              "Korean",
+              "Kuanyama",
+              "Kurdish",
+              "Lao",
+              "Latin",
+              "Latvian",
+              "Limburgan",
+              "Lingala",
+              "Lithuanian",
+              "Luxembourgish",
+              "Luba-Katanga",
+              "Ganda",
+              "Macedonian",
+              "Marshallese",
+              "Malayalam",
+              "Maori",
+              "Marathi",
+              "Malay",
+              "Malagasy",
+              "Maltese",
+              "Mongolian",
+              "Nauru",
+              "Navajo",
+              "Ndebele, South",
+              "Ndebele, North",
+              "Ndonga",
+              "Nepali",
+              "Norwegian Nynorsk",
+              "Bokmål, Norwegian",
+              "Norwegian",
+              "Chichewa",
+              "Occitan (post 1500)",
+              "Ojibwa",
+              "Oriya",
+              "Oromo",
+              "Ossetian",
+              "Panjabi",
+              "Persian",
+              "Pali",
+              "Polish",
+              "Portuguese",
+              "Pushto",
+              "Quechua",
+              "Romansh",
+              "Romanian",
+              "Rundi",
+              "Russian",
+              "Sango",
+              "Sanskrit",
+              "Sinhala",
+              "Slovak",
+              "Slovenian",
+              "Northern Sami",
+              "Samoan",
+              "Shona",
+              "Sindhi",
+              "Somali",
+              "Sotho, Southern",
+              "Spanish",
+              "Sardinian",
+              "Serbian",
+              "Swati",
+              "Sundanese",
+              "Swahili",
+              "Swedish",
+              "Tahitian",
+              "Tamil",
+              "Tatar",
+              "Telugu",
+              "Tajik",
+              "Tagalog",
+              "Thai",
+              "Tibetan",
+              "Tigrinya",
+              "Tonga (Tonga Islands)",
+              "Tswana",
+              "Tsonga",
+              "Turkmen",
+              "Turkish",
+              "Twi",
+              "Uighur",
+              "Ukrainian",
+              "Urdu",
+              "Uzbek",
+              "Venda",
+              "Vietnamese",
+              "Volapük",
+              "Welsh",
+              "Walloon",
+              "Wolof",
+              "Xhosa",
+              "Yiddish",
+              "Yoruba",
+              "Zhuang",
+              "Zulu"
+            ]
           },
           "date": {
             "type": "string"
@@ -306,25 +1179,21 @@
           "video_id": {
             "type": "string"
           },
+          "url": {
+            "type": "string"
+          },
           "external_url": {
+            "type": "string"
+          },
+          "note": {
             "type": "string"
           }
         },
-        "required": [],
+        "required": [
+          "note"
+        ],
         "additionalProperties": false
       }
-    },
-    "track": {
-      "type": "string",
-      "description": "Conference track (e.g., 'Main Stage', 'Workshop')"
-    },
-    "language": {
-      "type": "string",
-      "description": "Language of the talk"
-    },
-    "slides_url": {
-      "type": "string",
-      "description": "URL to the slides"
     },
     "additional_resources": {
       "type": "array",
@@ -414,5 +1283,78 @@
     "video_id"
   ],
   "additionalProperties": false,
-  "strict": true
+  "strict": true,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "video_provider": {
+            "const": "youtube"
+          }
+        },
+        "required": [
+          "video_provider"
+        ]
+      },
+      "then": {
+        "required": [
+          "published_at"
+        ],
+        "properties": {
+          "published_at": {
+            "type": "string",
+            "not": {
+              "const": "TODO"
+            },
+            "minLength": 1,
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}"
+          },
+          "video_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_-]{11}$"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "video_provider": {
+            "const": "vimeo"
+          }
+        },
+        "required": [
+          "video_provider"
+        ]
+      },
+      "then": {
+        "properties": {
+          "video_id": {
+            "type": "string",
+            "pattern": "^\\d+$"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "video_provider": {
+            "const": "mp4"
+          }
+        },
+        "required": [
+          "video_provider"
+        ]
+      },
+      "then": {
+        "properties": {
+          "video_id": {
+            "type": "string",
+            "pattern": "^https?://"
+          }
+        }
+      }
+    }
+  ]
 }
