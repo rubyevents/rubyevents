@@ -68,7 +68,7 @@ class User < ApplicationRecord
     distance: 250
 
   GITHUB_URL_PATTERN = %r{\A(https?://)?(www\.)?github\.com/}i
-  GITHUB_HANDLE_PATTERN = /\A[A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?\z/
+  GITHUB_HANDLE_PATTERN = /\A[A-Za-z0-9][A-Za-z0-9-]{0,38}\z/
 
   PRONOUNS = {
     "Not specified": :not_specified,
