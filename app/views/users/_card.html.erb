@@ -7,8 +7,7 @@
 
   <%= link_to profile_path(user), class: "relative flex flex-1 items-center gap-2 overflow-hidden hover:bg-gray-200 transition-bg duration-300 ease-in-out p-2 px-4 rounded-lg", data: {turbo_frame: "_top"} do %>
     <% if checked_in && stamp.present? %>
-      <%# event stamp as a large, faint watermark filling the right of the card %>
-      <div class="pointer-events-none absolute right-2 top-1/2 z-0 size-28 -translate-y-1/2 opacity-20">
+      <div class="pointer-events-none absolute right-2 top-1/2 z-0 size-20 -translate-y-1/2 opacity-20">
         <%= ui_stamp(stamp, size: :full, interactive: false, rotate: true) %>
       </div>
     <% end %>
