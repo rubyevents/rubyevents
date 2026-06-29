@@ -13,7 +13,7 @@ tags:
 featured_image:
 ---
 
-TODO - excerpt
+3 events in June - Matsue RubyKaigi 12, Blastoff Rails, and Brighton Ruby - and 3 events in July - Ruby Retreat 2026, RubyConf 2026, and Kansai RubyKaigi 09. The Fall CFP season is coming to a close with just two CFPs closing this month. We had XX PRs merged from XX contributors this month, and the homepage and videos page got a major refresh!
 
 ## Open CFPs
 
@@ -55,7 +55,7 @@ TODO - excerpt
 
 ## Contributions
 
-This month, we merged [XX PRs from XX contributors!](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A2026-06-01..2026-06-30) XX PRs were [new event data and videos](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A2026-06-01..2026-06-30+label%3Acontent).
+This month, we merged [XX PRs from XX contributors!](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A2026-06-01..2026-06-30) XX PRs were [new event data and videos.](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A2026-06-01..2026-06-30+label%3Acontent)
 
 ### Big Updates
 
