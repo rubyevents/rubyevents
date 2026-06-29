@@ -59,7 +59,7 @@ This month, we merged [XX PRs from XX contributors!](https://github.com/rubyeven
 
 ### Big Updates
 
-
+The front page of RubyEvents.org has received a major refresh! You'll now find CFPs, upcoming events, lots of suggested videos, and a new section for how to get involved with the Ruby Community! This page includes links to new guides on getting involved - [Attend](/attend), [Speak](/speak), and [Organize](/organize). The [talks](/talks) page has a new layout and way of browsing videos - by category, type, language, and topic! If you're signed in, you'll see 4 additional categories - "Recommended", "From Favorite Rubyists", "From Speakers You Watched", and "From Attended Events". Check it out and let us know what you think!
 
 ### Welcome, First-Time Contributors!
 
