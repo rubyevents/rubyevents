@@ -12,10 +12,10 @@
 
     <div class="space-y-8">
         <% if future_events.any? %>
-          <div>
+          <div data-events-filter-target="group">
             <h3 class="text-lg font-semibold mb-4">Future Events</h3>
             <div class="mb-6">
-              <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" data-events-filter-target="group">
+              <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 <% future_events.each do |event| %>
                   <div data-events-filter-target="event" data-kind="<%= event.kind %>">
                     <%= cache [event, participations[event.id], checked_in_event_ids.include?(event.id)] do %>
@@ -29,10 +29,10 @@
         <% end %>
 
         <% if past_events.any? %>
-          <div>
+          <div data-events-filter-target="group">
             <h3 class="text-lg font-semibold mb-4">Past Events</h3>
             <div class="mb-6">
-              <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" data-events-filter-target="group">
+              <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 <% past_events.each do |event| %>
                   <div data-events-filter-target="event" data-kind="<%= event.kind %>">
                     <%= cache [event, participations[event.id], checked_in_event_ids.include?(event.id)] do %>
