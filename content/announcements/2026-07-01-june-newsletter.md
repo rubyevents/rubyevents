@@ -33,7 +33,7 @@ TODO - excerpt
 ## July's events
 
 - [Ruby Retreat 2026](/events/ruby-retreat-au-2026) will be in Sydney, NSW, AU from July 03-06. [Tickets](https://ti.to/ruby-australia/ruby-retreat-2026) are no longer available.
-- [RubyConf 2026](/events/rubyconf-2026) will be in Las Vegas, NV, United States from July 14-16. [Tickets](https://ti.to/rubyconf/rubyconf-2026) are available for $995 and $375 for students.
+- [RubyConf 2026](/events/rubyconf-2026) will be in Las Vegas, NV, United States from July 14-16. [Tickets](https://ti.to/rubyconf/rubyconf-2026) are available for $995 and $375 for students. _Meet RubyEvents team members Rachael Wright-Munn and Marco Roth! They'll be hosting a hack day for RubyEvents on day 2._
 - [Kansai RubyKaigi 09](/events/kansai-rubykaigi-09) will be in Otsu, Japan on July 18. Registration is required, but [tickets](https://ti.to/kansairubykaigi/09) are free!
 
 > Prepare more than a few months ahead by checking out our [calendar](https://www.rubyevents.org/events/2026) or the full [list of events](https://www.rubyevents.org/events).
