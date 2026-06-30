@@ -101,8 +101,6 @@ class Talk < ApplicationRecord
   accepts_nested_attributes_for :talk_transcript
   delegate :transcript, :raw_transcript, :enhanced_transcript, to: :talk_transcript, allow_nil: true
 
-  has_one_attached :generated_thumbnail
-
   # associated objects
   has_object :agents
   has_object :downloader
@@ -256,6 +254,10 @@ class Talk < ApplicationRecord
     where(static_id: static_ids)
   }
 
+  scope :needing_generated_thumbnail, lambda {
+    where.associated(:event).where.not(video_provider: WATCHABLE_PROVIDERS + ["parent"])
+  }
+
   def self.all_static_ids
     @all_static_ids ||= begin
       collection = Yerba::Collection.new("data/**/videos.yml")
@@ -370,6 +372,8 @@ class Talk < ApplicationRecord
     static_metadata.try(:[], "thumbnail_classes") || ""
   end
 
+  delegate :cache_version, :background, :background_color, :text_color, to: :thumbnails, prefix: :thumbnail
+
   def fallback_thumbnail
     Router.image_path("events/default/poster.webp")
   end
@@ -425,11 +429,15 @@ class Talk < ApplicationRecord
       return parent_talk.thumbnail(size)
     end
 
-    if event && Rails.application.assets.load_path.find(event.poster_image_path)
-      return Router.image_path(event.poster_image_path)
-    end
+    thumbnails.generated_path
+  end
 
-    fallback_thumbnail
+  def poster_thumbnail
+    if event && Rails.application.assets.load_path.find(event.poster_image_path)
+      Router.image_path(event.poster_image_path)
+    else
+      fallback_thumbnail
+    end
   end
 
   def external_player_utm_params

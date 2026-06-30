@@ -1,5 +1,6 @@
 require "ferrum"
 require "open-uri"
+require "open3"
 
 class Talk::ThumbnailGenerator
   BASE = {width: 640, height: 360}.freeze
@@ -12,6 +13,16 @@ class Talk::ThumbnailGenerator
   LOGO_PATH = Rails.root.join("app", "assets", "images", "logo.png")
   DISK_BASE_PATH = Rails.root.join("tmp", "thumbnails", "generated")
 
+  RENDERER = ENV.fetch("THUMBNAIL_RENDERER", "satori").to_sym
+  AVATAR_FETCH_TIMEOUT = 5
+  CARD_AVATAR_SIZE = 160
+  SPOTLIGHT_AVATAR_SIZE = 440
+  IMAGE_CACHE_TTL = 1.week
+
+  SATORI_IMAGE_MIMES = %w[image/png image/jpeg image/gif image/svg+xml].freeze
+  MIME_BY_EXT = {"jpg" => "image/jpeg", "jpeg" => "image/jpeg", "svg" => "image/svg+xml"}.freeze
+  MAGICK_BIN = (system("command -v magick > /dev/null 2>&1") ? "magick" : "convert").freeze
+
   PARTIALS = {
     "classic" => "card",
     "spotlight" => "spotlight"
@@ -19,6 +30,17 @@ class Talk::ThumbnailGenerator
 
   VARIANTS = PARTIALS.keys.freeze
   DEFAULT_VARIANT = "classic"
+
+  def self.vips_available?
+    return @vips_available unless @vips_available.nil?
+
+    @vips_available = begin
+      require "vips"
+      true
+    rescue LoadError
+      false
+    end
+  end
 
   attr_reader :talk, :variant
 
@@ -28,18 +50,12 @@ class Talk::ThumbnailGenerator
   end
 
   def generate
-    html_content = render_html
-    return nil unless html_content
+    partial_html = render_partial_html
+    return nil unless partial_html
 
-    browser = Ferrum::Browser.new(**browser_options)
-
-    begin
-      data_uri = "data:text/html;base64,#{Base64.strict_encode64(html_content)}"
-      browser.go_to(data_uri)
-      sleep 1.5 # allow remote avatar images to load
-      browser.screenshot(format: :png, full: true)
-    ensure
-      browser.quit
+    case RENDERER
+    when :ferrum then generate_with_ferrum(partial_html)
+    else generate_with_satori(partial_html)
     end
   rescue => e
     Rails.logger.error("Talk::ThumbnailGenerator failed for talk #{talk.id}: #{e.message}")
@@ -47,23 +63,38 @@ class Talk::ThumbnailGenerator
     nil
   end
 
+  def storage_filename
+    "thumbnail-#{talk.slug}-#{variant}-#{talk.thumbnail_cache_version}.png"
+  end
+
+  def stored_blob
+    blob = talk.generated_thumbnail
+
+    blob if blob.attached? && blob.filename.to_s == storage_filename
+  end
+
+  def cached_png
+    stored_blob&.download
+  end
+
   def save_to_storage
-    screenshot_data = generate
-    return nil unless screenshot_data
+    png = generate
+    return nil unless png
 
-    decoded_data = Base64.decode64(screenshot_data)
+    store(png)
+  end
 
-    talk.generated_thumbnail.attach(
-      io: StringIO.new(decoded_data),
-      filename: "thumbnail-#{talk.slug}#{variant_suffix}.png",
-      content_type: "image/png"
-    )
+  def generate_and_store
+    png = generate
+    return nil unless png
 
-    talk.generated_thumbnail
+    store(png)
+
+    png
   end
 
   def exists?
-    talk.generated_thumbnail.attached?
+    stored_blob.present?
   end
 
   def disk_path
@@ -72,21 +103,53 @@ class Talk::ThumbnailGenerator
   end
 
   def write_to_disk
-    screenshot_data = generate
-    return nil unless screenshot_data
+    png = generate
+    return nil unless png
 
     path = disk_path
     FileUtils.mkdir_p(path.dirname)
-    File.binwrite(path, Base64.decode64(screenshot_data))
+    File.binwrite(path, png)
 
     path
   end
 
   private
 
-  def render_html
-    speakers = talk.speakers.to_a
+  def store(png)
+    talk.generated_thumbnail.attach(
+      io: StringIO.new(png),
+      filename: storage_filename,
+      content_type: "image/png"
+    )
+  end
+
+  def generate_with_satori(partial_html)
+    base64 = Renderer.render_png_base64(partial_html, WIDTH, HEIGHT)
+    return nil if base64.blank?
+
+    Base64.decode64(base64)
+  end
+
+  def generate_with_ferrum(partial_html)
+    browser = Ferrum::Browser.new(**browser_options)
+
+    begin
+      html_content = wrap_in_html_document(partial_html)
+      data_uri = "data:text/html;base64,#{Base64.strict_encode64(html_content)}"
+      browser.go_to(data_uri)
+
+      sleep 1.5
+
+      Base64.decode64(browser.screenshot(format: :png, full: true))
+    ensure
+      browser.quit
+    end
+  end
+
+  def render_partial_html
+    speakers = talk.speakers.to_a.reject { |speaker| speaker.name.to_s.strip.casecmp?("TODO") }
     background = background_value
+    avatar_size = avatar_fetch_size(speakers.size)
 
     locals = {
       talk: talk,
@@ -94,7 +157,7 @@ class Talk::ThumbnailGenerator
       event_name: talk.event_name,
       location: talk.location.presence,
       formatted_date: talk.date ? I18n.l(talk.date, format: :long, default: talk.date.to_s) : nil,
-      speakers: speakers.map { |speaker| {name: speaker.name, avatar_url: speaker.avatar_url(size: 480), github: speaker.github_handle.presence} },
+      speakers: speakers.map { |speaker| {name: speaker.name, avatar_url: inline_remote_image(speaker.avatar_url(size: avatar_size)), github: speaker.github_handle.presence} },
       featured_background: background,
       bg_style: background_style(background),
       featured_color: featured_color,
@@ -104,12 +167,14 @@ class Talk::ThumbnailGenerator
       height: HEIGHT
     }
 
-    partial_html = ApplicationController.render(
+    ApplicationController.render(
       partial: "talks/thumbnail/#{PARTIALS[variant]}",
       locals: locals
     )
+  end
 
-    wrap_in_html_document(partial_html)
+  def avatar_fetch_size(speaker_count)
+    (variant == "spotlight" && speaker_count == 1) ? SPOTLIGHT_AVATAR_SIZE : CARD_AVATAR_SIZE
   end
 
   def variant_suffix
@@ -117,14 +182,14 @@ class Talk::ThumbnailGenerator
   end
 
   def background_value
-    bg = talk.event&.static_metadata&.featured_background.presence || "#081625"
-    return {type: :image, value: bg} if bg.start_with?("data:")
+    background = talk.thumbnail_background
+    return {type: :image, value: background} if background.start_with?("data:")
 
-    {type: :color, value: bg}
+    {type: :color, value: background}
   end
 
   def featured_color
-    talk.event&.static_metadata&.featured_color.presence || "#FFFFFF"
+    talk.thumbnail_text_color
   end
 
   def background_style(background)
@@ -141,12 +206,65 @@ class Talk::ThumbnailGenerator
     inline_file(IMAGES_BASE_PATH.join(relative_path))
   end
 
+  def inline_remote_image(url)
+    return nil if url.blank?
+    return url if url.start_with?("data:")
+
+    Rails.cache.fetch(["thumbnail-generator", "remote-image", url], expires_in: IMAGE_CACHE_TTL) do
+      io = URI.parse(url).open(open_timeout: AVATAR_FETCH_TIMEOUT, read_timeout: AVATAR_FETCH_TIMEOUT)
+      image_data_uri(io.read, io.content_type.presence || "image/jpeg")
+    end
+  rescue => e
+    Rails.logger.warn("Talk::ThumbnailGenerator could not inline avatar #{url}: #{e.message}")
+    url
+  end
+
   def inline_file(path)
     return nil unless path && File.exist?(path)
 
+    Rails.cache.fetch(["thumbnail-generator", "file-image", path.to_s, File.mtime(path).to_i], expires_in: IMAGE_CACHE_TTL) do
+      inline_file_uncached(path)
+    end
+  end
+
+  def inline_file_uncached(path)
     ext = File.extname(path).delete(".").downcase
-    mime = (ext == "svg") ? "svg+xml" : ext
-    "data:image/#{mime};base64,#{Base64.strict_encode64(File.binread(path))}"
+    mime = MIME_BY_EXT.fetch(ext, "image/#{ext}")
+    image_data_uri(File.binread(path), mime)
+  end
+
+  def image_data_uri(bytes, mime)
+    unless SATORI_IMAGE_MIMES.include?(mime)
+      bytes = convert_to_png(bytes)
+      return nil unless bytes
+      mime = "image/png"
+    end
+
+    "data:#{mime};base64,#{Base64.strict_encode64(bytes)}"
+  end
+
+  def convert_to_png(bytes)
+    convert_to_png_with_vips(bytes) || convert_to_png_with_magick(bytes)
+  end
+
+  def convert_to_png_with_vips(bytes)
+    return nil unless self.class.vips_available?
+
+    Vips::Image.new_from_buffer(bytes, "").pngsave_buffer
+  rescue => e
+    Rails.logger.warn("Talk::ThumbnailGenerator vips conversion failed: #{e.message}")
+    nil
+  end
+
+  def convert_to_png_with_magick(bytes)
+    out, status = Open3.capture2(MAGICK_BIN, "-", "png:-", stdin_data: bytes, binmode: true)
+    return out if status.success?
+
+    Rails.logger.warn("Talk::ThumbnailGenerator #{MAGICK_BIN} exited #{status.exitstatus} converting image to PNG")
+    nil
+  rescue => e
+    Rails.logger.warn("Talk::ThumbnailGenerator image conversion failed: #{e.message}")
+    nil
   end
 
   def wrap_in_html_document(partial_html)

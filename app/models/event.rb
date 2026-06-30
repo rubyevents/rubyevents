@@ -53,6 +53,7 @@ class Event < ApplicationRecord
   FEATURED_RECENTLY_ENDED_WINDOW = 2.days
   FEATURED_UPCOMING_WINDOW = 2.weeks
   FEATURED_CFP_CLOSING_WINDOW = 5.days
+  THUMBNAIL_RELEVANT_ATTRIBUTES = %w[name featured_background featured_color city country_code location].freeze
 
   geocodeable :location_and_country_code
   configure_slug(attribute: :name, auto_suffix_on_collision: false)
@@ -89,6 +90,8 @@ class Event < ApplicationRecord
     through: :event_involvements, source: :involvementable, source_type: "User"
   has_many :involved_event_series, -> { where(event_involvements: {involvementable_type: "EventSeries"}) },
     through: :event_involvements, source: :involvementable, source_type: "EventSeries"
+
+  after_update_commit :purge_talk_generated_thumbnails, if: :talk_thumbnails_outdated?
 
   accepts_nested_attributes_for :event_involvements, allow_destroy: true, reject_if: :all_blank
 
@@ -420,6 +423,14 @@ class Event < ApplicationRecord
   end
 
   private
+
+  def talk_thumbnails_outdated?
+    saved_changes.keys.intersect?(THUMBNAIL_RELEVANT_ATTRIBUTES)
+  end
+
+  def purge_talk_generated_thumbnails
+    talks.with_attached_generated_thumbnail.find_each { |talk| talk.thumbnails.purge_generated }
+  end
 
   def todos_data_path
     Rails.root.join("data", series.slug, slug)

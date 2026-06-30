@@ -73,7 +73,7 @@ class TalksController < ApplicationController
         @sign_in_required = true
       end
     elsif params[:section].present? && SECTION_SCOPES[params[:section]]
-      scope = Talk.send(SECTION_SCOPES[params[:section]]).includes(:speakers, event: :series)
+      scope = Talk.send(SECTION_SCOPES[params[:section]]).includes(:speakers, event: :series).with_attached_generated_thumbnail
       @pagy, @talks = pagy(scope, limit: 42)
       @section_title = SECTION_TITLES[params[:section]]
     else
@@ -103,7 +103,7 @@ class TalksController < ApplicationController
       Talk.watchable
         .joins(:user_talks)
         .where(user_talks: {user_id: favorite_user_ids})
-        .includes(:speakers, event: :series)
+        .includes(:speakers, event: :series).with_attached_generated_thumbnail
         .order(date: :desc)
         .distinct
     when "favorite_speakers"
@@ -123,7 +123,7 @@ class TalksController < ApplicationController
         .where(user_talks: {user_id: top_speaker_ids})
         .where.not(id: watched_talk_ids)
         .where.not(id: Current.user.user_talks.select(:talk_id))
-        .includes(:speakers, event: :series)
+        .includes(:speakers, event: :series).with_attached_generated_thumbnail
         .order(date: :desc)
         .distinct
     when "events_attended"
@@ -136,7 +136,7 @@ class TalksController < ApplicationController
         .where(event_id: attended_event_ids)
         .where.not(id: watched_talk_ids)
         .where.not(id: Current.user.user_talks.select(:talk_id))
-        .includes(:speakers, event: :series)
+        .includes(:speakers, event: :series).with_attached_generated_thumbnail
         .order(date: :desc)
     else
       Talk.none

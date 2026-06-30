@@ -73,6 +73,33 @@ namespace :thumbnails do
 
     puts "Done. #{generated} generated/enqueued, #{skipped} skipped (already present)."
   end
+
+  desc <<~DESC.strip
+    Enqueue background generation for every talk that shows a generated thumbnail
+    (scheduled / not_published / not_recorded / children) but doesn't have one
+    stored yet. Pass FORCE=1 to re-enqueue talks that already have one.
+  DESC
+  task enqueue_missing: :environment do
+    force = ENV["FORCE"].present?
+    variant = "spotlight"
+
+    scope = Talk.needing_generated_thumbnail.includes(:speakers).with_attached_generated_thumbnail
+    total = scope.count
+    enqueued = 0
+    skipped = 0
+
+    scope.find_each do |talk|
+      if !force && Talk::ThumbnailGenerator.new(talk, variant: variant).exists?
+        skipped += 1
+        next
+      end
+
+      GenerateTalkThumbnailJob.perform_later(talk, variant)
+      enqueued += 1
+    end
+
+    puts "Enqueued #{enqueued} thumbnail job(s), skipped #{skipped} already-stored (of #{total} needing one)."
+  end
 end
 
 desc "Verify all talks with start_cue have thumbnails"

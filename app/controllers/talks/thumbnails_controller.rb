@@ -1,5 +1,12 @@
 class Talks::ThumbnailsController < ApplicationController
-  before_action :require_local_admin!
+  skip_before_action :authenticate_user!, only: :show
+  before_action :require_local_admin!, only: :index
+
+  disable_analytics
+
+  skip_before_action :track_ahoy_visit, only: :show, raise: false
+  before_action :skip_session, only: :show
+  after_action :force_public_caching, only: :show
 
   PER_PAGE = 48
 
@@ -20,13 +27,37 @@ class Talks::ThumbnailsController < ApplicationController
     talk = Talk.find_by_slug_or_alias(params[:talk_slug])
     return head :not_found if talk.blank?
 
-    path = Talk::ThumbnailGenerator.new(talk, variant: params[:variant].to_s).write_to_disk
-    return head :unprocessable_entity if path.blank?
+    variant = params[:variant].to_s
+    png = Talk::ThumbnailGenerator.new(talk, variant: variant).cached_png
 
-    send_file path, type: "image/png", disposition: "inline"
+    if png.blank?
+      talk.thumbnails.enqueue_generation(variant: variant)
+
+      return serve_placeholder(talk)
+    end
+
+    etag = [talk.thumbnail_cache_version, variant, "thumbnail-v1"]
+
+    if stale?(etag: etag, public: true)
+      expires_in 1.year, public: true
+      send_data png, type: "image/png", disposition: "inline"
+    end
   end
 
   private
+
+  def serve_placeholder(talk)
+    response.headers["Cache-Control"] = "no-store"
+    redirect_to talk.poster_thumbnail, allow_other_host: false
+  end
+
+  def skip_session
+    request.session_options[:skip] = true
+  end
+
+  def force_public_caching
+    response.headers["Cache-Control"] = "public, max-age=31536000, immutable" if response.successful?
+  end
 
   def require_local_admin!
     head :not_found unless Rails.env.local? && Current.user&.admin?

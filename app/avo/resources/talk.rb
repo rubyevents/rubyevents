@@ -91,6 +91,8 @@ class Avo::Resources::Talk < Avo::BaseResource
     action Avo::Actions::TalkIndex
     action Avo::Actions::FetchDuration
     action Avo::Actions::ValidateThumbnail
+    action Avo::Actions::RegenerateThumbnail
+    action Avo::Actions::EnqueueMissingThumbnails
   end
 
   def filters

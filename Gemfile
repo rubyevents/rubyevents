@@ -165,6 +165,7 @@ end
 
 # Avo 3.x depends on this
 gem "ferrum", "~> 0.17.2"
+gem "nodo", "~> 1.5"
 
 # Marksmith is a GitHub-style markdown editor for Ruby on Rails applications.
 gem "marksmith"

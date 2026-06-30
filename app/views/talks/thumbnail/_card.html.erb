@@ -43,9 +43,9 @@
           <% end %>
         </div>
 
-        <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0;">
+        <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1;">
           <div style="color: <%= featured_color %>; font-size: <%= (speakers.size == 1) ? 40 : 34 %>px; font-weight: 700; line-height: 1.15; <%= text_shadow %> display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-            <%= shown_speakers.map { |s| s[:name] }.join(", ") %><% if extra_speakers > 0 %><span style="opacity: 0.8;"> +<%= extra_speakers %></span><% end %>
+            <%= shown_speakers.map { |s| s[:name] }.join(", ") %><%= " +#{extra_speakers}" if extra_speakers > 0 %>
           </div>
 
           <% if speakers.size == 1 && speakers.first[:github].present? %>

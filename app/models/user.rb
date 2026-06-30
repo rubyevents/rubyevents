@@ -209,6 +209,7 @@ class User < ApplicationRecord
   end
 
   after_save :create_alias_for_previous_name, if: :saved_change_to_name?
+  after_update_commit :purge_talk_generated_thumbnails, if: :talk_thumbnails_outdated?
 
   # Speaker scopes
   scope :with_talks, -> { where.not(talks_count: 0) }
@@ -421,6 +422,14 @@ class User < ApplicationRecord
     return 2 if github_avatar_url.present?
 
     3
+  end
+
+  def talk_thumbnails_outdated?
+    saved_change_to_github_handle? || saved_change_to_name?
+  end
+
+  def purge_talk_generated_thumbnails
+    talks.with_attached_generated_thumbnail.find_each { |talk| talk.thumbnails.purge_generated }
   end
 
   def custom_avatar?

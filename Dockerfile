@@ -62,13 +62,20 @@ RUN bundle exec bootsnap precompile app/ lib/
 RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 
 
-RUN rm -rf node_modules
+# Prune dev-only JS packages but keep runtime dependencies (satori, satori-html,
+# @resvg/resvg-js) used by Talk::ThumbnailGenerator's Nodo bridge to render thumbnails.
+RUN yarn install --production --frozen-lockfile
 
 
 # Final stage for app image
 FROM base
 
-# Copy built artifacts: gems, application
+# Node runtime is needed at request time: the thumbnail generator renders PNGs via
+# satori/resvg through Nodo (see app/models/talk/thumbnail_generator/renderer.rb).
+COPY --from=build /usr/local/node /usr/local/node
+ENV PATH=/usr/local/node/bin:$PATH
+
+# Copy built artifacts: gems, application (incl. node_modules and scripts/fonts)
 COPY --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
 COPY --from=build /rails /rails
 
