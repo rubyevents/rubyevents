@@ -4,6 +4,17 @@ module Static
   module Validators
     class EventPublishedAt
       WATCHABLE_PROVIDERS = %w[youtube mp4 vimeo].freeze
+      TERMINAL_PROVIDERS = %w[not_recorded not_published].freeze
+      PERCENTILE = 90
+
+      def self.percentile(dates, percentile = PERCENTILE)
+        return nil if dates.empty?
+
+        sorted = dates.sort
+        rank = (percentile / 100.0 * sorted.size).ceil
+
+        sorted[[rank - 1, 0].max]
+      end
 
       def initialize(file_path:)
         @file_path = file_path
@@ -43,9 +54,13 @@ module Static
         errors = []
 
         if @event_document["published_at"].present?
-          errors.concat(validate_not_before_event_dates)
-          errors.concat(validate_not_before_video_published_dates)
-        else
+          if majority_published?
+            errors.concat(validate_not_before_event_dates)
+            errors.concat(validate_not_before_video_published_dates)
+          else
+            errors.concat(validate_absence)
+          end
+        elsif majority_published?
           errors.concat(validate_presence)
         end
 
@@ -56,6 +71,18 @@ module Static
 
       def meetup?
         @event_document["kind"]&.value == "meetup"
+      end
+
+      def majority_published?
+        resolvable_count.positive? && watchable_count * 2 > resolvable_count
+      end
+
+      def watchable_count
+        @videos.count { |video| video["video_provider"]&.in?(WATCHABLE_PROVIDERS) }
+      end
+
+      def resolvable_count
+        @videos.count { |video| !video["video_provider"]&.in?(TERMINAL_PROVIDERS) }
       end
 
       def validate_absence_for_meetup
@@ -74,15 +101,24 @@ module Static
       end
 
       def validate_presence
-        watchable_count = @videos.count { |video| video["video_provider"]&.in?(WATCHABLE_PROVIDERS) }
+        [
+          Static::Validators::Error.new(
+            "published_at is required when the majority of talks are published (#{watchable_count}/#{resolvable_count} resolvable talks published)",
+            file_path: @file_path,
+            line: 1
+          )
+        ]
+      end
 
-        return [] if watchable_count == 0
+      def validate_absence
+        location = @event_document["published_at"]&.location
 
         [
           Static::Validators::Error.new(
-            "published_at is required when event has watchable talks (#{watchable_count} watchable talks found)",
+            "published_at (#{@event_document["published_at"]}) must not be set unless the majority of talks are published (#{watchable_count}/#{resolvable_count} resolvable talks published)",
             file_path: @file_path,
-            line: 1
+            line: location&.start_line || 1,
+            end_line: location&.end_line
           )
         ]
       end
@@ -127,15 +163,17 @@ module Static
 
         return [] unless published_at
 
-        latest_video = @videos.filter_map { |video| parse_date(video["published_at"]) }.max
+        video_dates = @videos.filter_map { |video| parse_date(video["published_at"]) }
+        reference_date = self.class.percentile(video_dates)
 
-        return [] unless latest_video
+        return [] unless reference_date
 
-        if published_at < latest_video
+        if published_at < reference_date
           location = @event_document["published_at"]&.location
+
           [
             Static::Validators::Error.new(
-              "published_at (#{@event_document["published_at"]}) must not be before the latest video published_at (#{latest_video})",
+              "published_at (#{@event_document["published_at"]}) must not be before the P#{PERCENTILE} of the video published_at dates (#{reference_date})",
               file_path: @file_path,
               line: location&.start_line || 1,
               end_line: location&.end_line
