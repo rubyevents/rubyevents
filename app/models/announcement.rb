@@ -8,7 +8,7 @@ class Announcement
     end
 
     def by_tag(tag)
-      Collection.new(select { |a| a.tags.any? { |tag_value| tag_value.to_s.casecmp?(tag) }})
+      Collection.new(select { |a| a.tags.any? { |tag_value| tag_value.to_s.casecmp?(tag) } })
     end
 
     def all_tags
