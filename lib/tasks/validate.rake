@@ -52,7 +52,16 @@ namespace :validate do
 
   desc "Validate event.yml files"
   task events: :environment do
-    exit 1 if validate_event_files.any?
+    errors = validate_event_files
+
+    if errors.any? { |error| error.message.include?("published_at") }
+      puts
+      puts Gum.style("To fix published_at issues:", foreground: "3")
+      puts Gum.style("  • bin/rails event_published_at:fix       # reconcile event.yml published_at", foreground: "3")
+      puts Gum.style("  • bin/rails youtube:sync_published_at    # correct video dates first (needs a YouTube API key)", foreground: "3")
+    end
+
+    exit 1 if errors.any?
   end
 
   def validate_venue_files
