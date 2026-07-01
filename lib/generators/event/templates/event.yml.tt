@@ -2,6 +2,12 @@
 ---
 id: "<%= options[:event] %>"
 title: "<%= options[:title] %>"
+<%- if @location -%>
+location: "<%= @location %>"
+<%- end -%>
+<%- if @timezone -%>
+timezone: "<%= @timezone %>"
+<%- end -%>
 kind: "<%= options[:kind] %>"
 <%- if options[:description] -%>
 description: |-
@@ -19,19 +25,13 @@ year: <%= @year %>
 <%- if options[:date_precision] -%>
 date_precision: "<%= options[:date_precision] %>"
 <%- end -%>
-tickets_url: "<%= options[:tickets_url] %>"<%= " # TODO" if options[:tickets_url].blank? %>
 website: "<%= options[:website] %>"<%= " # TODO" if options[:website].blank? %>
 <%- if options[:original_website] -%>
 original_website: "<%= options[:original_website] %>"
 <%- end -%>
+tickets_url: "<%= options[:tickets_url] %>"<%= " # TODO" if options[:tickets_url].blank? %>
 <%- if options[:last_edition] -%>
 last_edition: true
-<%- end -%>
-<%- if @location -%>
-location: "<%= @location %>"
-<%- end -%>
-<%- if @timezone -%>
-timezone: "<%= @timezone %>"
 <%- end -%>
 coordinates:<%- if options[:online] || @coordinates.nil? -%>
  false
