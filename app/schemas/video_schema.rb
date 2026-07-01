@@ -7,7 +7,7 @@ class VideoSchema < RubyLLM::Schema
   string :original_title, description: "Original title in native language", required: false
   string :description, description: "Description of the talk"
   string :slug, description: "URL-friendly slug", required: false
-  string :kind, description: "Type of video (e.g., 'keynote', 'lightning')", required: false
+  string :kind, description: "Type of video (e.g., 'keynote', 'lightning_talk')", required: false, enum: Talk::KIND_LABELS.keys
   string :status, description: "Status of the video", required: false
 
   array :speakers, of: :string, description: "List of speaker names", required: false

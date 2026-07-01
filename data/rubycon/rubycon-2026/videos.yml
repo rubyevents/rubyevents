@@ -81,14 +81,15 @@
   video_provider: "children"
   video_id: "lightning-talks-rubycon-2026"
   description: |-
-    ⚡️ 5 minutes for everyone who has something to say
+    Lightning talk session from Rubycon 2026, featuring 5-minute community talks.
   talks:
     - id: "josua-lightning-talk-rubycon-2026"
       title: "Lightning Talk: The Beer Parable"
       event_name: "RubyCon 2026"
       date: "2026-05-08"
-      video_provider: "scheduled"
-      video_id: "josua-lightning-talk-rubycon-2026"
+      published_at: "2026-06-27"
+      video_provider: "youtube"
+      video_id: "ogPmpAOlfjo"
       description: ""
       speakers:
         - Josua Schmid
@@ -97,8 +98,9 @@
       title: "Lightning Talk: AWS Serverless (Hosting + Backend)"
       event_name: "RubyCon 2026"
       date: "2026-05-08"
-      video_provider: "scheduled"
-      video_id: "andrea-lightning-talk-rubycon-2026"
+      published_at: "2026-06-27"
+      video_provider: "youtube"
+      video_id: "-Ed39hZICG8"
       description: ""
       speakers:
         - Andrea Carratta
@@ -107,8 +109,9 @@
       title: "Lightning Talk: From stained-glass master to Rails developer"
       event_name: "RubyCon 2026"
       date: "2026-05-08"
-      video_provider: "scheduled"
-      video_id: "remi-mercier-lightning-talk-rubycon-2026"
+      published_at: "2026-06-27"
+      video_provider: "youtube"
+      video_id: "ymBkSBbhFKc"
       description: ""
       speakers:
         - Rémi Mercier
@@ -117,8 +120,9 @@
       title: "Lightning Talk: Multithread your BRAIN"
       event_name: "RubyCon 2026"
       date: "2026-05-08"
-      video_provider: "scheduled"
-      video_id: "duccio-armenise-lightning-talk-rubycon-2026"
+      published_at: "2026-06-27"
+      video_provider: "youtube"
+      video_id: "Z4vk2TJBE7o"
       description: ""
       speakers:
         - Duccio Armenise
@@ -127,8 +131,9 @@
       title: "Lightning Talk: Full-Stack No Regrets"
       event_name: "RubyCon 2026"
       date: "2026-05-08"
-      video_provider: "scheduled"
-      video_id: "alessandro-rizzo-lightning-talk-rubycon-2026"
+      published_at: "2026-06-27"
+      video_provider: "youtube"
+      video_id: "N0Y3ggXeqU4"
       description: ""
       speakers:
         - Alessandro Rizzo
@@ -137,9 +142,10 @@
       title: "Lightning Talk: From MINASWAN to PASTAFARIAN"
       event_name: "RubyCon 2026"
       date: "2026-05-08"
+      published_at: "2026-06-27"
       slides_url: "https://userland.fr/conferences/2026/from-minaswan-to-pastafarian/"
-      video_provider: "scheduled"
-      video_id: "goulwen-champenois-lightning-talk-rubycon-2026"
+      video_provider: "youtube"
+      video_id: "XZaFiWpcz3c"
       description: ""
       speakers:
         - Goulven Champenois
@@ -148,8 +154,9 @@
       title: "Lightning Talk: Photographing an eclipse with Ruby"
       event_name: "RubyCon 2026"
       date: "2026-05-08"
-      video_provider: "scheduled"
-      video_id: "youssef-boulkaid-lightning-talk-rubycon-2026"
+      published_at: "2026-06-27"
+      video_provider: "youtube"
+      video_id: "JM6lOHZ0rGU"
       description: ""
       speakers:
         - Youssef Boulkaid
@@ -158,8 +165,9 @@
       title: "Lightning Talk: OFFGRID LLM"
       event_name: "RubyCon 2026"
       date: "2026-05-08"
-      video_provider: "scheduled"
-      video_id: "kaarle-kulvik-lightning-talk-rubycon-2026"
+      published_at: "2026-06-27"
+      video_provider: "youtube"
+      video_id: "VGJZc8qTucM"
       description: ""
       speakers:
         - Kaarle Kulvik
@@ -168,11 +176,48 @@
       title: 'Lightning Talk: Your own gem named "rails"'
       event_name: "RubyCon 2026"
       date: "2026-05-08"
-      video_provider: "scheduled"
-      video_id: "andre-arko-lightning-talk-rubycon-2026"
+      published_at: "2026-06-27"
+      video_provider: "youtube"
+      video_id: "VEOTIWhUB50"
       description: ""
       speakers:
         - André Arko
+
+    - id: "alessandro-rodi-lightning-talk-rubycon-2026"
+      title: "Lightning Talk: OnlyLogs"
+      event_name: "RubyCon 2026"
+      date: "2026-05-08"
+      published_at: "2026-06-27"
+      video_provider: "youtube"
+      video_id: "aMaDNl8GQB0"
+      description: ""
+      speakers:
+        - Alessandro Rodi
+      additional_resources:
+        - name: "renuo/onlylogs"
+          type: "repo"
+          url: "https://github.com/renuo/onlylogs"
+
+    - id: "francesco-beccari-lightning-talk-rubycon-2026"
+      title: "Lightning Talk: Carving the Monolith"
+      event_name: "RubyCon 2026"
+      date: "2026-05-08"
+      published_at: "2026-06-27"
+      video_provider: "youtube"
+      video_id: "zNaxqdxV9Vc"
+      description: ""
+      speakers:
+        - Francesco Beccari
+  alternative_recordings:
+    - note: "Full combined session"
+      title: "Lightning Talks"
+      raw_title: "Rubycon 26 #06 — Lightning Talks (Various Speakers)"
+      date: "2026-05-08"
+      published_at: "2026-06-13"
+      language: "English"
+      video_provider: "youtube"
+      video_id: "-UT9yEXKbgE"
+      description: ""
 
 - id: "michele-franzin-rubycon-2026"
   title: "Semantic Image Search in Ruby: Postgres, Redis, or LLM?"

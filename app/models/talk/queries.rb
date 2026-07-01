@@ -16,5 +16,8 @@ module Talk::Queries
     def evergreen_talks = watchable.joins(:watched_talks).where("json_extract(watched_talks.feedback, '$.content_freshness') = ?", "evergreen").group(:id).having("COUNT(watched_talks.id) >= 2").order(Arel.sql("COUNT(watched_talks.id) DESC"))
     def beginner_friendly_talks = watchable.joins(:watched_talks).where("json_extract(watched_talks.feedback, '$.experience_level') = ?", "beginner").group(:id).having("COUNT(watched_talks.id) >= 2").order(Arel.sql("COUNT(watched_talks.id) DESC"))
     def most_liked_talks = watchable.joins(:watched_talks).where("json_extract(watched_talks.feedback, '$.liked') = ?", true).group(:id).having("COUNT(watched_talks.id) >= 2").order(Arel.sql("COUNT(watched_talks.id) DESC"))
+    def mind_blowing_talks = watchable.joins(:watched_talks).where("json_extract(watched_talks.feedback, '$.feeling') = ?", "mind_blown").group(:id).having("COUNT(watched_talks.id) >= 2").order(Arel.sql("COUNT(watched_talks.id) DESC"))
+    def inspiring_talks = watchable.joins(:watched_talks).where("json_extract(watched_talks.feedback, '$.feeling') IN (?, ?)", "inspired", "exciting").or(watchable.joins(:watched_talks).where("json_extract(watched_talks.feedback, '$.inspiring') = ?", true)).group(:id).having("COUNT(watched_talks.id) >= 2").order(Arel.sql("COUNT(watched_talks.id) DESC"))
+    def recommended_by_community_talks = watchable.joins(:watched_talks).where("json_extract(watched_talks.feedback, '$.would_recommend') = ?", true).group(:id).having("COUNT(watched_talks.id) >= 2").order(Arel.sql("COUNT(watched_talks.id) DESC"))
   end
 end

@@ -13,4 +13,5 @@ class AlternativeRecordingSchema < RubyLLM::Schema
   string :video_id, required: false
   string :url, required: false
   string :external_url, required: false
+  string :note, required: true
 end

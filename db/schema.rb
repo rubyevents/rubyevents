@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.2].define(version: 2026_06_23_000500) do
+ActiveRecord::Schema[8.2].define(version: 2026_06_25_000000) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -150,6 +150,17 @@ ActiveRecord::Schema[8.2].define(version: 2026_06_23_000500) do
   create_table "email_verification_tokens", force: :cascade do |t|
     t.integer "user_id", null: false
     t.index ["user_id"], name: "index_email_verification_tokens_on_user_id"
+  end
+
+  create_table "event_check_ins", force: :cascade do |t|
+    t.datetime "checked_in_at", null: false
+    t.string "connect_id", null: false
+    t.datetime "created_at", null: false
+    t.integer "event_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["connect_id", "event_id"], name: "index_event_check_ins_on_connect_id_and_event_id", unique: true
+    t.index ["connect_id"], name: "index_event_check_ins_on_connect_id"
+    t.index ["event_id"], name: "index_event_check_ins_on_event_id"
   end
 
   create_table "event_involvements", force: :cascade do |t|
@@ -540,6 +551,7 @@ ActiveRecord::Schema[8.2].define(version: 2026_06_23_000500) do
   add_foreign_key "connected_accounts", "users"
   add_foreign_key "contributors", "users"
   add_foreign_key "email_verification_tokens", "users"
+  add_foreign_key "event_check_ins", "events"
   add_foreign_key "event_involvements", "events"
   add_foreign_key "event_participations", "events"
   add_foreign_key "event_participations", "users"

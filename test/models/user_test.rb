@@ -105,6 +105,15 @@ class UserTest < ActiveSupport::TestCase
     assert user.valid?
   end
 
+  test "accepts legacy github_handle ending in a hyphen" do
+    user = users(:one)
+
+    ["bruno-", "pam-"].each do |handle|
+      user.github_handle = handle
+      assert user.valid?, "expected #{handle.inspect} to be valid"
+    end
+  end
+
   test "should normalize mastodon handle into a profile URL" do
     user = users(:one)
 

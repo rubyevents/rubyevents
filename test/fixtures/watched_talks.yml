@@ -37,3 +37,11 @@ two:
   progress_seconds: 150
   watched_at: <%= Time.current %>
   watched: true
+
+in_person:
+  user: one
+  talk: three
+  progress_seconds: 0
+  watched_at: <%= Time.current %>
+  watched: true
+  watched_on: in_person

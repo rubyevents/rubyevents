@@ -45,6 +45,16 @@ module EventsHelper
       end
   end
 
+  def featured_cta_path(event)
+    if event.featured_reason == :cfp_closing
+      event_cfp_index_path(event)
+    elsif event.tickets.available?
+      event_tickets_path(event)
+    else
+      event_path(event)
+    end
+  end
+
   def home_updated_text(event)
     if event.static_metadata.published_date
       return "Talks recordings were published #{time_ago_in_words(event.static_metadata.published_date)} ago."

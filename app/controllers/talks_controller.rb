@@ -21,7 +21,10 @@ class TalksController < ApplicationController
     "deep_dives" => :deep_dives_talks,
     "evergreen" => :evergreen_talks,
     "beginner_friendly" => :beginner_friendly_talks,
-    "most_liked" => :most_liked_talks
+    "most_liked" => :most_liked_talks,
+    "mind_blowing" => :mind_blowing_talks,
+    "inspiring" => :inspiring_talks,
+    "recommended_community" => :recommended_by_community_talks
   }.freeze
 
   SECTION_TITLES = {
@@ -37,8 +40,16 @@ class TalksController < ApplicationController
     "evergreen" => "Evergreen",
     "beginner_friendly" => "Beginner Friendly",
     "most_liked" => "Most Liked",
-    "for_you" => "For You"
+    "mind_blowing" => "Mind-Blowing",
+    "inspiring" => "Inspiring",
+    "recommended_community" => "Recommended by the Community",
+    "for_you" => "For You",
+    "favorite_rubyists" => "From Your Favorite Rubyists",
+    "favorite_speakers" => "More From Speakers You Watch",
+    "events_attended" => "From Events You Attended"
   }.freeze
+
+  PERSONALIZED_SECTIONS = %w[favorite_rubyists favorite_speakers events_attended].freeze
 
   # GET /talks
   def index
@@ -49,6 +60,14 @@ class TalksController < ApplicationController
       if Current.user
         talks = Current.user.talk_recommender.talks(limit: 100)
         @pagy, @talks = pagy_array(talks, limit: 42)
+      else
+        @talks = []
+        @sign_in_required = true
+      end
+    elsif PERSONALIZED_SECTIONS.include?(params[:section])
+      @section_title = SECTION_TITLES[params[:section]]
+      if Current.user
+        @pagy, @talks = pagy(personalized_section_scope(params[:section]), limit: 42)
       else
         @talks = []
         @sign_in_required = true
@@ -74,6 +93,55 @@ class TalksController < ApplicationController
   end
 
   private
+
+  def personalized_section_scope(section)
+    case section
+    when "favorite_rubyists"
+      favorite_user_ids = FavoriteUser.where(user: Current.user).pluck(:favorite_user_id)
+      return Talk.none if favorite_user_ids.empty?
+
+      Talk.watchable
+        .joins(:user_talks)
+        .where(user_talks: {user_id: favorite_user_ids})
+        .includes(:speakers, event: :series)
+        .order(date: :desc)
+        .distinct
+    when "favorite_speakers"
+      watched_talk_ids = Current.user.watched_talks.pluck(:talk_id)
+      return Talk.none if watched_talk_ids.empty?
+
+      top_speaker_ids = UserTalk
+        .where(talk_id: watched_talk_ids)
+        .group(:user_id)
+        .order(Arel.sql("COUNT(*) DESC"))
+        .limit(10)
+        .pluck(:user_id)
+      return Talk.none if top_speaker_ids.empty?
+
+      Talk.watchable
+        .joins(:user_talks)
+        .where(user_talks: {user_id: top_speaker_ids})
+        .where.not(id: watched_talk_ids)
+        .where.not(id: Current.user.user_talks.select(:talk_id))
+        .includes(:speakers, event: :series)
+        .order(date: :desc)
+        .distinct
+    when "events_attended"
+      attended_event_ids = Current.user.participated_events.pluck(:id)
+      return Talk.none if attended_event_ids.empty?
+
+      watched_talk_ids = Current.user.watched_talks.pluck(:talk_id)
+
+      Talk.watchable
+        .where(event_id: attended_event_ids)
+        .where.not(id: watched_talk_ids)
+        .where.not(id: Current.user.user_talks.select(:talk_id))
+        .includes(:speakers, event: :series)
+        .order(date: :desc)
+    else
+      Talk.none
+    end
+  end
 
   def search_backend
     @search_backend ||= Search::Backend.resolve(params[:search_backend])

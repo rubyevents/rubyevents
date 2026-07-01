@@ -179,8 +179,13 @@ class BrowseController < ApplicationController
     attended_event_ids = Current.user.participated_events.pluck(:id)
     return unless attended_event_ids.any?
 
+    watched_talk_ids = Current.user.watched_talks.pluck(:talk_id)
+    own_talk_ids = Current.user.user_talks.select(:talk_id)
+
     @from_events_attended = Talk.watchable
       .where(event_id: attended_event_ids)
+      .where.not(id: watched_talk_ids)
+      .where.not(id: own_talk_ids)
       .includes(:speakers, event: :series)
       .order(date: :desc)
       .limit(15)
@@ -216,10 +221,13 @@ class BrowseController < ApplicationController
       .pluck(:user_id)
     return unless top_speaker_ids.any?
 
+    own_talk_ids = Current.user.user_talks.select(:talk_id)
+
     @from_favorite_speakers = Talk.watchable
       .joins(:user_talks)
       .where(user_talks: {user_id: top_speaker_ids})
       .where.not(id: watched_talk_ids)
+      .where.not(id: own_talk_ids)
       .includes(:speakers, event: :series)
       .order(Arel.sql("RANDOM()"))
       .limit(15)
@@ -407,38 +415,10 @@ class BrowseController < ApplicationController
   def evergreen_talks_query = Talk.evergreen_talks.limit(15)
   def beginner_friendly_query = Talk.beginner_friendly_talks.limit(15)
 
-  def mind_blowing_query
-    Talk.watchable
-      .joins(:watched_talks)
-      .where("json_extract(watched_talks.feedback, '$.feeling') = ?", "mind_blown")
-      .group(:id)
-      .having("COUNT(watched_talks.id) >= 2")
-      .order(Arel.sql("COUNT(watched_talks.id) DESC"))
-      .limit(15)
-  end
-
-  def inspiring_talks_query
-    Talk.watchable
-      .joins(:watched_talks)
-      .where("json_extract(watched_talks.feedback, '$.feeling') IN (?, ?)", "inspired", "exciting")
-      .or(Talk.watchable.joins(:watched_talks).where("json_extract(watched_talks.feedback, '$.inspiring') = ?", true))
-      .group(:id)
-      .having("COUNT(watched_talks.id) >= 2")
-      .order(Arel.sql("COUNT(watched_talks.id) DESC"))
-      .limit(15)
-  end
-
+  def mind_blowing_query = Talk.mind_blowing_talks.limit(15)
+  def inspiring_talks_query = Talk.inspiring_talks.limit(15)
   def most_liked_query = Talk.most_liked_talks.limit(15)
-
-  def recommended_by_community_query
-    Talk.watchable
-      .joins(:watched_talks)
-      .where("json_extract(watched_talks.feedback, '$.would_recommend') = ?", true)
-      .group(:id)
-      .having("COUNT(watched_talks.id) >= 2")
-      .order(Arel.sql("COUNT(watched_talks.id) DESC"))
-      .limit(15)
-  end
+  def recommended_by_community_query = Talk.recommended_by_community_talks.limit(15)
 
   def popular_topics_query
     Topic.approved

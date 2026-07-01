@@ -244,6 +244,12 @@ module Static
       Country.find(location.to_s.split(",").last&.strip)
     end
 
+    def time_zone
+      return nil if attributes["timezone"].blank?
+
+      ActiveSupport::TimeZone[attributes["timezone"]]
+    end
+
     def city
       return nil if location.blank?
 
@@ -302,8 +308,8 @@ module Static
 
       event.assign_attributes(
         name: title,
-        date: attributes["date"] || published_at,
-        date_precision: date_precision || "day",
+        date: attributes["date"],
+        date_precision: attributes["date_precision"] || "day",
         series: static_series.event_series_record,
         website: website,
         country_code: country&.alpha2,

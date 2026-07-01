@@ -28,7 +28,6 @@
     <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 mb-2">Browse</h3>
     <div class="flex flex-col gap-0.5">
       <%= sidebar_link.call("All Talks", talks_path(status: "all"), icon: "globe", active: params[:status] == "all" && params[:section].blank? && params[:kind].blank? && params[:language].blank?) %>
-      <%= sidebar_link.call("For You", talks_path(section: "for_you"), icon: "sparkles", active: params[:section] == "for_you") %>
       <%= sidebar_link.call("Recently Held", talks_path(section: "newest"), icon: "clock", active: params[:section] == "newest") %>
       <%= sidebar_link.call("Recently Uploaded", talks_path(section: "recently_published"), icon: "upload", active: params[:section] == "recently_published") %>
       <%= sidebar_link.call("Trending", talks_path(section: "trending"), icon: "fire", active: params[:section] == "trending") %>
@@ -40,6 +39,32 @@
       <%= sidebar_link.call("Deep Dives", talks_path(section: "deep_dives"), icon: "book-open", active: params[:section] == "deep_dives") %>
     </div>
   </div>
+
+  <% if Current.user %>
+    <div>
+      <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 mb-2">For You</h3>
+      <div class="flex flex-col gap-0.5">
+        <%= sidebar_link.call("Recommended", talks_path(section: "for_you"), icon: "sparkles", active: params[:section] == "for_you") %>
+        <%= sidebar_link.call("From Favorite Rubyists", talks_path(section: "favorite_rubyists"), icon: "heart", active: params[:section] == "favorite_rubyists") %>
+        <%= sidebar_link.call("From Speakers You Watch", talks_path(section: "favorite_speakers"), icon: "microphone", active: params[:section] == "favorite_speakers") %>
+        <%= sidebar_link.call("From Attended Events", talks_path(section: "events_attended"), icon: "ticket", active: params[:section] == "events_attended") %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if false %>
+    <div>
+      <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 mb-2">Based on Feedback</h3>
+      <div class="flex flex-col gap-0.5">
+        <%= sidebar_link.call("Most Liked", talks_path(section: "most_liked"), icon: "thumbs-up", active: params[:section] == "most_liked") %>
+        <%= sidebar_link.call("Mind-Blowing", talks_path(section: "mind_blowing"), icon: "brain", active: params[:section] == "mind_blowing") %>
+        <%= sidebar_link.call("Inspiring", talks_path(section: "inspiring"), icon: "lightbulb", active: params[:section] == "inspiring") %>
+        <%= sidebar_link.call("Recommended by the Community", talks_path(section: "recommended_community"), icon: "users", active: params[:section] == "recommended_community") %>
+        <%= sidebar_link.call("Evergreen", talks_path(section: "evergreen"), icon: "leaf", active: params[:section] == "evergreen") %>
+        <%= sidebar_link.call("Beginner Friendly", talks_path(section: "beginner_friendly"), icon: "graduation-cap", active: params[:section] == "beginner_friendly") %>
+      </div>
+    </div>
+  <% end %>
 
   <% if sidebar_data[:kind_counts].present? %>
     <div>
@@ -86,17 +111,6 @@
               ) %>
         <% end %>
         <%= sidebar_link.call("All Topics", topics_path, icon: "ellipsis") %>
-      </div>
-    </div>
-  <% end %>
-
-  <% if Current.user %>
-    <div>
-      <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 mb-2">Your Library</h3>
-      <div class="flex flex-col gap-0.5">
-        <%= sidebar_link.call("For You", talks_path(section: "for_you"), icon: "sparkles", active: params[:section] == "for_you") %>
-        <%= sidebar_link.call("Watch Later", watched_talks_path, icon: "bookmark", active: request.path == watched_talks_path) %>
-        <%= sidebar_link.call("Watch History", watched_talks_path(filter: "completed"), icon: "clock-rotate-left", active: request.path == watched_talks_path && params[:filter] == "completed") %>
       </div>
     </div>
   <% end %>

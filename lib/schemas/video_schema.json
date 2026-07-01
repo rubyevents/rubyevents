@@ -27,7 +27,22 @@
     },
     "kind": {
       "type": "string",
-      "description": "Type of video (e.g., 'keynote', 'lightning')"
+      "enum": [
+        "keynote",
+        "talk",
+        "lightning_talk",
+        "panel",
+        "workshop",
+        "gameshow",
+        "podcast",
+        "q_and_a",
+        "discussion",
+        "fireside_chat",
+        "interview",
+        "award",
+        "demo"
+      ],
+      "description": "Type of video (e.g., 'keynote', 'lightning_talk')"
     },
     "status": {
       "type": "string",
@@ -598,9 +613,14 @@
                 },
                 "external_url": {
                   "type": "string"
+                },
+                "note": {
+                  "type": "string"
                 }
               },
-              "required": [],
+              "required": [
+                "note"
+              ],
               "additionalProperties": false
             }
           }
@@ -1164,9 +1184,14 @@
           },
           "external_url": {
             "type": "string"
+          },
+          "note": {
+            "type": "string"
           }
         },
-        "required": [],
+        "required": [
+          "note"
+        ],
         "additionalProperties": false
       }
     },
