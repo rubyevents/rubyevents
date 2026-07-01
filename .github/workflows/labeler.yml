@@ -15,3 +15,44 @@ jobs:
     steps:
       - name: Label PRs
         uses: actions/labeler@v6
+
+  published-videos:
+    name: Published videos
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: Label PRs that add a watchable video
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const files = await github.paginate(github.rest.pulls.listFiles, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+              per_page: 100,
+            });
+
+            const addedWatchable = /^\+\s*video_provider:\s*["']?(youtube|vimeo|mp4)["']?\s*$/;
+
+            const published = files.some((file) => {
+              if (!file.filename.endsWith("videos.yml") || !file.patch) return false;
+              return file.patch.split("\n").some((line) => addedWatchable.test(line));
+            });
+
+            if (!published) {
+              core.info("No watchable video_provider added.");
+              return;
+            }
+
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              labels: ["videos"],
+            });
+
+            core.info("Added 'videos' label for published video transition.");
