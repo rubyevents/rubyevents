@@ -102,4 +102,4 @@ _[Bozhidar](https://github.com/RubyEvents/RubyEvents/pull/1799), [Ajina Slater](
 - Ajina Slater [(@DoodlingDev)](https://github.com/DoodlingDev) 1 PRs
 - Bozhidar [(@Bozhidar003)](https://github.com/Bozhidar003) 1 PRs
 
-> Looking to join this list in July? Check out our [contributions page](https://www.rubyevents.org/contributions) or the [CONTRIBUTING.md](https://github.com/rubyevents/rubyevents/blob/main/CONTRIBUTING.md) in GitHub.
+> Looking to join this list in July? Check out our [contributions page](https://www.rubyevents.org/contributions) or the [CONTRIBUTING.md](https://github.com/rubyevents/rubyevents/blob/main/CONTRIBUTING.md) on GitHub.
