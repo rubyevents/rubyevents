@@ -3,8 +3,10 @@
 namespace :youtube do
   require "gum"
 
-  desc "Fetch and set published_at dates for YouTube videos missing them"
+  desc "Fetch and set published_at (UTC datetime) for YouTube videos missing them. Requires a YouTube API key."
   task fetch_published_at: :environment do
+    next unless youtube_api_key_present!
+
     puts Gum.style("Fetching published_at dates from YouTube", border: "rounded", padding: "0 2", border_foreground: "5")
     puts
 
@@ -44,7 +46,7 @@ namespace :youtube do
           next
         end
 
-        published_at = snippet["publishedAt"]&.to_date&.to_s
+        published_at = snippet["publishedAt"].present? ? Time.parse(snippet["publishedAt"]).utc.iso8601 : nil
 
         unless published_at
           puts Gum.style("  ✗ #{id} (#{video_id}) — no publishedAt in response", foreground: "1")
@@ -107,11 +109,11 @@ namespace :youtube do
     end
   end
 
-  desc "Sync published_at for YouTube videos against the API (fills missing and corrects mismatches). DRY_RUN=1 to preview."
+  desc "Sync published_at (as a UTC datetime) for YouTube videos against the API. Requires a YouTube API key. DRY_RUN=1 to preview."
   task sync_published_at: :environment do
+    next unless youtube_api_key_present!
+
     dry_run = ENV["DRY_RUN"].present?
-    min_drift = Integer(ENV.fetch("MIN_DRIFT_DAYS", "1"))  # ignore ±N days as timezone noise (local date vs API UTC date)
-    max_drift = Integer(ENV.fetch("MAX_DRIFT_DAYS", "365")) # skip API dates far later than stored (likely re-uploads)
 
     parse_date = ->(value) do
       Date.parse(value.to_s)
@@ -140,42 +142,36 @@ namespace :youtube do
     puts Gum.style("Auditing #{entries.size} YouTube videos against the API", border: "rounded", padding: "0 2", border_foreground: "5")
     api = YouTube::Video.new.get_published_at(entries.map { |e| e[:video_id] }.uniq)
 
+    midnight_utc = ->(date) { Time.utc(date.year, date.month, date.day).iso8601 }
+
     stats = Hash.new(0)
     writes = []
-    skipped = []
 
     entries.each do |entry|
-      api_date = api[entry[:video_id]]&.to_date
+      api_time = api[entry[:video_id]]
       stored_date = parse_date.call(entry[:stored])
 
-      status =
-        if api_date.nil? then :api_missing
-        elsif entry[:stored].empty? then :stored_blank
-        elsif stored_date.nil? then :stored_unparseable
-        elsif stored_date == api_date then :match
-        else :mismatch
+      desired =
+        if api_time
+          api_time.utc.iso8601
+        elsif stored_date
+          midnight_utc.call(stored_date)
         end
 
-      stats[status] += 1
-
-      next if status == :match || status == :api_missing
-
-      drift = stored_date ? (api_date - stored_date).to_i : nil
-
-      if max_drift.positive? && drift && drift > max_drift
-        skipped << entry.merge(api_date:, drift:)
-
+      if desired.nil?
+        stats[:unresolved] += 1
+        next
+      elsif entry[:stored] == desired
+        stats[:match] += 1
         next
       end
 
-      next if drift && drift.abs <= min_drift
-
-      writes << entry.merge(api_date:, status:, drift:)
+      stats[entry[:stored].empty? ? :blank : :corrected] += 1
+      writes << entry.merge(desired:)
     end
 
-    puts %i[match mismatch stored_blank stored_unparseable api_missing].each { |k| puts "  #{k.to_s.ljust(20)} #{stats[k]}" }
+    %i[match corrected blank unresolved].each { |k| puts "  #{k.to_s.ljust(20)} #{stats[k]}" }
     puts Gum.style("  #{"to write".ljust(20)} #{writes.size}", foreground: "2")
-    puts Gum.style("  #{"skipped re-uploads".ljust(20)} #{skipped.size}", foreground: "3") if skipped.any?
 
     if writes.empty?
       puts
@@ -186,7 +182,7 @@ namespace :youtube do
     puts
 
     writes.first(40).each do |w|
-      puts Gum.style("  #{"[dry-run] " if dry_run}#{(w[:stored].empty? ? "(blank)" : w[:stored]).ljust(12)} → #{w[:api_date]}  #{w[:video_id]}", foreground: "2")
+      puts Gum.style("  #{"[dry-run] " if dry_run}#{(w[:stored].empty? ? "(blank)" : w[:stored]).ljust(20)} → #{w[:desired]}  #{w[:video_id]}", foreground: "2")
     end
 
     puts "  ... and #{writes.size - 40} more" if writes.size > 40
@@ -199,12 +195,11 @@ namespace :youtube do
 
     writes.each do |write|
       node = write[:node]
-      value = write[:api_date].iso8601
 
       if node.key?("published_at")
-        node["published_at"] = value
+        node["published_at"] = write[:desired]
       else
-        node.insert("published_at", value, after: "date")
+        node.insert("published_at", write[:desired], after: "date")
       end
 
       node["published_at"].quote_style = "double"
@@ -217,6 +212,14 @@ namespace :youtube do
   end
 
   private
+
+  def youtube_api_key_present!
+    return true if Rails.application.credentials.youtube&.dig(:api_key).present? || ENV["YOUTUBE_API_KEY"].present?
+
+    puts Gum.style("A YouTube API key is required for this task.", foreground: "1", border: "rounded", padding: "0 2", border_foreground: "1")
+    puts Gum.style("Set credentials.youtube.api_key or the YOUTUBE_API_KEY environment variable.", foreground: "3")
+    false
+  end
 
   def fetch_snippets(client, video_ids)
     path = "/videos"

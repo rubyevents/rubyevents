@@ -248,7 +248,25 @@
             Held on: <%= talk.formatted_date %><br>
 
             <span class="text-gray-400">
-              Published: <% if talk.published_at %><%= l(talk.published_at&.to_date, default: "unknown") %><% elsif talk.published? %> unknown <% else %> not published <% end %><br>
+              Published:
+
+              <% if talk.published_at %>
+                <% published_at = talk.published_at %>
+                <% has_time = published_at.utc.strftime("%H%M%S") != "000000" %>
+
+                <time datetime="<%= published_at.utc.iso8601 %>" title="<%= published_at.utc.strftime("%Y-%m-%d %H:%M:%S UTC") %>">
+                  <%= l(published_at.to_date) %>
+
+                  <% if has_time %>
+                    <span class="opacity-70">(<%= time_ago_in_words(published_at) %> ago)</span>
+                  <% end %>
+                </time>
+              <% elsif talk.published? %>
+                unknown
+              <% else %>
+                not published
+              <% end %>
+              <br>
 
               <% if talk.video_unavailable? %>
                 Unavailable: <%= l(talk.video_unavailable_at.to_date) %><br>
