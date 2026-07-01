@@ -123,6 +123,7 @@ class Talk < ApplicationRecord
   before_validation :set_kind, if: -> { !kind_changed? }
 
   WATCHABLE_PROVIDERS = ["youtube", "mp4", "vimeo"]
+  UNPUBLISHED_PROVIDERS = ["not_recorded", "scheduled", "not_published"]
 
   KIND_LABELS = {
     "keynote" => "Keynote",
