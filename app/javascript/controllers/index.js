@@ -82,12 +82,6 @@ application.register("spotlight-search", SpotlightSearchController)
 import TabsController from "./tabs_controller"
 application.register("tabs", TabsController)
 
-import ThumbnailController from "./thumbnail_controller"
-application.register("thumbnail", ThumbnailController)
-
-import ThumbnailBatchController from "./thumbnail_batch_controller"
-application.register("thumbnail-batch", ThumbnailBatchController)
-
 import TalksFilterController from "./talks_filter_controller"
 application.register("talks-filter", TalksFilterController)
 

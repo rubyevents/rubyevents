@@ -201,11 +201,9 @@ Rails.application.routes.draw do
       end
       resource :slides, only: :show
 
-      resource :thumbnail, only: :show, controller: "thumbnails" if Rails.env.local?
+      resource :thumbnail, only: :show, controller: "thumbnails"
     end
   end
-
-  get "/debug/thumbnails", to: "talks/thumbnails#index", as: :debug_thumbnails if Rails.env.local?
 
   resources :watched_talks, only: [:index, :destroy]
   resources :feedback, only: [:index]

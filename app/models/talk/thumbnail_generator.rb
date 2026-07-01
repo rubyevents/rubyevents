@@ -1,4 +1,3 @@
-require "ferrum"
 require "open-uri"
 require "open3"
 
@@ -13,7 +12,6 @@ class Talk::ThumbnailGenerator
   LOGO_PATH = Rails.root.join("app", "assets", "images", "logo.png")
   DISK_BASE_PATH = Rails.root.join("tmp", "thumbnails", "generated")
 
-  RENDERER = ENV.fetch("THUMBNAIL_RENDERER", "satori").to_sym
   AVATAR_FETCH_TIMEOUT = 5
   CARD_AVATAR_SIZE = 160
   SPOTLIGHT_AVATAR_SIZE = 440
@@ -53,10 +51,10 @@ class Talk::ThumbnailGenerator
     partial_html = render_partial_html
     return nil unless partial_html
 
-    case RENDERER
-    when :ferrum then generate_with_ferrum(partial_html)
-    else generate_with_satori(partial_html)
-    end
+    base64 = Renderer.render_png_base64(partial_html, WIDTH, HEIGHT)
+    return nil if base64.blank?
+
+    Base64.decode64(base64)
   rescue => e
     Rails.logger.error("Talk::ThumbnailGenerator failed for talk #{talk.id}: #{e.message}")
     Rails.logger.error(e.backtrace.first(10).join("\n"))
@@ -121,29 +119,6 @@ class Talk::ThumbnailGenerator
       filename: storage_filename,
       content_type: "image/png"
     )
-  end
-
-  def generate_with_satori(partial_html)
-    base64 = Renderer.render_png_base64(partial_html, WIDTH, HEIGHT)
-    return nil if base64.blank?
-
-    Base64.decode64(base64)
-  end
-
-  def generate_with_ferrum(partial_html)
-    browser = Ferrum::Browser.new(**browser_options)
-
-    begin
-      html_content = wrap_in_html_document(partial_html)
-      data_uri = "data:text/html;base64,#{Base64.strict_encode64(html_content)}"
-      browser.go_to(data_uri)
-
-      sleep 1.5
-
-      Base64.decode64(browser.screenshot(format: :png, full: true))
-    ensure
-      browser.quit
-    end
   end
 
   def render_partial_html
@@ -265,56 +240,5 @@ class Talk::ThumbnailGenerator
   rescue => e
     Rails.logger.warn("Talk::ThumbnailGenerator image conversion failed: #{e.message}")
     nil
-  end
-
-  def wrap_in_html_document(partial_html)
-    <<~HTML
-      <!DOCTYPE html>
-      <html>
-      <head>
-        <meta charset="utf-8">
-        <style>
-          * { margin: 0; padding: 0; box-sizing: border-box; }
-          html, body {
-            width: #{WIDTH}px;
-            height: #{HEIGHT}px;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
-          }
-          img { display: block; }
-        </style>
-      </head>
-      <body>
-        #{partial_html}
-      </body>
-      </html>
-    HTML
-  end
-
-  def browser_options
-    options = {
-      headless: true,
-      window_size: [WIDTH, HEIGHT],
-      timeout: 30
-    }
-
-    if chrome_ws_url
-      options[:url] = chrome_ws_url
-    else
-      options[:browser_options] = {
-        "no-sandbox": true,
-        "disable-gpu": true,
-        "disable-dev-shm-usage": true
-      }
-    end
-
-    options
-  end
-
-  def chrome_ws_url
-    return ENV["CHROME_WS_URL"] if ENV["CHROME_WS_URL"].present?
-    return nil if Rails.env.local?
-
-    service_name = Rails.env.staging? ? "rubyvideo_staging" : "rubyvideo"
-    "ws://#{service_name}-chrome:3000"
   end
 end
