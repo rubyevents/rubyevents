@@ -67,7 +67,7 @@ A warm welcome to 11 developers making their first contribution to RubyEvents!
 
 _[Bozhidar](https://github.com/RubyEvents/RubyEvents/pull/1799), [Ajina Slater](https://github.com/RubyEvents/RubyEvents/pull/1841), [Chris Fung](https://github.com/RubyEvents/RubyEvents/pull/1770), [Connor Shea](https://github.com/RubyEvents/RubyEvents/pull/1776), [oliver maule](https://github.com/RubyEvents/RubyEvents/pull/1812), [Hana Harencarova](https://github.com/RubyEvents/RubyEvents/pull/1798), [Muhammad Ali Ansari](https://github.com/RubyEvents/RubyEvents/pull/1795), [minhlq](https://github.com/RubyEvents/RubyEvents/pull/1842), [Josua Schmid](https://github.com/RubyEvents/RubyEvents/pull/1775), [Wilman](https://github.com/RubyEvents/RubyEvents/pull/1816), [Yashika Vijayvargiya](https://github.com/RubyEvents/RubyEvents/pull/1847), and [Ryan Davis](https://github.com/RubyEvents/RubyEvents/pull/1791)_
 
-### Thank You to All XX Contributors ❤️
+### Thank You to All 30 Contributors ❤️
 
 - Marco Roth [(@marcoroth)](https://github.com/marcoroth) 21 PRs
 - Rachael Wright-Munn [(@ChaelCodes)](https://github.com/ChaelCodes) 9 PRs
