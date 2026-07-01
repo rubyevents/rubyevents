@@ -30,10 +30,14 @@ module Static
 
         @event_document = Yerba.parse_file(@file_path)
 
+        return validate_absence_for_meetup if meetup?
+
         videos_path = File.join(File.dirname(@file_path), "videos.yml")
+
         return [] unless File.exist?(videos_path)
 
         @videos = YAML.load_file(videos_path)
+
         return [] unless @videos.is_a?(Array) && @videos.any?
 
         errors = []
@@ -50,8 +54,27 @@ module Static
 
       private
 
+      def meetup?
+        @event_document["kind"]&.value == "meetup"
+      end
+
+      def validate_absence_for_meetup
+        return [] if @event_document["published_at"].blank?
+
+        location = @event_document["published_at"]&.location
+
+        [
+          Static::Validators::Error.new(
+            "published_at (#{@event_document["published_at"]}) must not be set for meetups",
+            file_path: @file_path,
+            line: location&.start_line || 1,
+            end_line: location&.end_line
+          )
+        ]
+      end
+
       def validate_presence
-        watchable_count = @videos.count { |v| v["video_provider"]&.in?(WATCHABLE_PROVIDERS) }
+        watchable_count = @videos.count { |video| video["video_provider"]&.in?(WATCHABLE_PROVIDERS) }
 
         return [] if watchable_count == 0
 
@@ -66,13 +89,15 @@ module Static
 
       def validate_not_before_event_dates
         published_at = parse_date(@event_document["published_at"])
+
         return [] unless published_at
 
         errors = []
-
         start_date = parse_date(@event_document["start_date"])
+
         if start_date && published_at < start_date
           location = @event_document["published_at"]&.location
+
           errors << Static::Validators::Error.new(
             "published_at (#{@event_document["published_at"]}) must not be before start_date (#{@event_document["start_date"]})",
             file_path: @file_path,
@@ -82,8 +107,10 @@ module Static
         end
 
         end_date = parse_date(@event_document["end_date"])
+
         if end_date && published_at < end_date
           location = @event_document["published_at"]&.location
+
           errors << Static::Validators::Error.new(
             "published_at (#{@event_document["published_at"]}) must not be before end_date (#{@event_document["end_date"]})",
             file_path: @file_path,
@@ -97,11 +124,10 @@ module Static
 
       def validate_not_before_video_published_dates
         published_at = parse_date(@event_document["published_at"])
+
         return [] unless published_at
 
-        latest_video = @videos
-          .filter_map { |v| parse_date(v["published_at"]) }
-          .max
+        latest_video = @videos.filter_map { |video| parse_date(video["published_at"]) }.max
 
         return [] unless latest_video
 
