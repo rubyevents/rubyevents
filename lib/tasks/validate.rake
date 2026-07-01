@@ -64,6 +64,36 @@ namespace :validate do
     exit 1 if errors.any?
   end
 
+  def validate_talk_date_files
+    validate_files(
+      files: Dir.glob(Rails.root.join("data/**/videos.yml")),
+      validators: [
+        Static::Validators::TalkDates
+      ],
+      success_message: "✓ All talk dates are valid!"
+    )
+  end
+
+  desc "Validate talk dates in videos.yml files"
+  task talk_dates: :environment do
+    exit 1 if validate_talk_date_files.any?
+  end
+
+  def validate_talk_published_at_files
+    validate_files(
+      files: Dir.glob(Rails.root.join("data/**/videos.yml")),
+      validators: [
+        Static::Validators::TalkPublishedAt
+      ],
+      success_message: "✓ All talk published_at values are valid!"
+    )
+  end
+
+  desc "Validate talk published_at in videos.yml files"
+  task talk_published_at: :environment do
+    exit 1 if validate_talk_published_at_files.any?
+  end
+
   def validate_venue_files
     validate_files(
       files: Dir.glob(Rails.root.join("data/**/venue.yml")),
@@ -344,6 +374,12 @@ namespace :validate do
 
     puts Gum.style("Validating video city names", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_video_city_names
+
+    puts Gum.style("Validating talk dates", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+    results << validate_talk_date_files.none?
+
+    puts Gum.style("Validating talk published_at", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+    results << validate_talk_published_at_files.none?
 
     puts Gum.style("Validating event asset dimensions", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_event_asset_dimensions.none?
