@@ -57,7 +57,7 @@ A warm welcome to XX developers making their first contribution to RubyEvents!
 ```bash
 comm -13 \
    <(gh pr list --repo RubyEvents/RubyEvents --limit 1000 --state merged \
-       --search "merged:<%= @first_day_of_month.iso8601 %>" \
+       --search "merged:<<%= @first_day_of_month.iso8601 %>" \
        --json author --jq '[.[].author.login] | unique | sort | .[]') \
    <(gh pr list --repo RubyEvents/RubyEvents --limit 100 --state merged \
        --search "merged:>=<%= @first_day_of_month.iso8601 %>" \
@@ -73,8 +73,7 @@ comm -13 \
 ### Thank You to All XX Contributors ❤️
 
 ```bash
-gh pr list --repo RubyEvents/RubyEvents   --limit 100   --state merged   --json author   --search "merged:>=<%= @first_day_of_month.iso8601 %> merged:<=<%= @last_day_of_month.iso8601 %>"   --jq '[group_by(.author.login)[] | {name: .[0].author.name, login: .[0].author.login, count: length}] | sort_by(.count) | reverse[] | "- \(.name) [(@\(.
-login))](https://github.com/\(.login)) \(.count) PRs"'
+gh pr list --repo RubyEvents/RubyEvents   --limit 100   --state merged   --json author   --search "merged:>=<%= @first_day_of_month.iso8601 %> merged:<=<%= @last_day_of_month.iso8601 %>"   --jq '[group_by(.author.login)[] | {name: .[0].author.name, login: .[0].author.login, count: length}] | sort_by(.count) | reverse[] | "- \(.name) [(@\(.login))](https://github.com/\(.login)) \(.count) PRs"'
 ```
 
 > Looking to join this list in July? Check out our [contributions page](https://www.rubyevents.org/contributions) or the [CONTRIBUTING.md](https://github.com/rubyevents/rubyevents/blob/main/CONTRIBUTING.md) in GitHub.
