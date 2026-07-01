@@ -31,6 +31,15 @@ class Static::Validators::TalkDatesTest < ActiveSupport::TestCase
     end
   end
 
+  test "compares published_at in the event timezone, not UTC" do
+    event = {"kind" => "conference", "start_date" => "2023-05-11", "end_date" => "2023-05-11", "timezone" => "Asia/Tokyo"}
+    videos = [{"date" => "2023-05-11", "published_at" => "2023-05-10T20:00:00Z"}]
+
+    with_temp_video(videos, event: event) do |path|
+      assert_empty Static::Validators::TalkDates.new(file_path: path).errors
+    end
+  end
+
   test "flags a talk date outside the event range" do
     videos = [{"date" => "2024-03-01", "published_at" => "2024-03-05"}]
 

@@ -27,9 +27,10 @@ module Static
         return [] unless applicable?
 
         document = Yerba.parse_file(@file_path)
+
         return [] unless document.root
 
-        @start_date, @end_date = event_dates
+        @start_date, @end_date, @timezone = event_context
 
         document.root.each.flat_map do |video|
           nested = Array(video["talks"]&.each&.to_a)
@@ -40,20 +41,24 @@ module Static
 
       private
 
-      def event_dates
+      def event_context
         event_path = File.join(File.dirname(@file_path), "event.yml")
-        return [nil, nil] unless File.exist?(event_path)
+        return [nil, nil, nil] unless File.exist?(event_path)
 
         document = Yerba.parse_file(event_path)
 
-        [parse_date(document["start_date"]&.value), parse_date(document["end_date"]&.value)]
+        [
+          parse_date(document["start_date"]&.value),
+          parse_date(document["end_date"]&.value),
+          document["timezone"]&.value
+        ]
       end
 
       def talk_errors(node)
         errors = []
 
         date = parse_date(node.value_at("date"))
-        published_at = parse_date(node.value_at("published_at"))
+        published_at = published_local_date(node.value_at("published_at"))
 
         if date && published_at && published_at < date
           location = node["published_at"]&.location
@@ -83,6 +88,20 @@ module Static
       def parse_date(value)
         Date.parse(value.to_s)
       rescue Date::Error, TypeError
+        nil
+      end
+
+      def published_local_date(value)
+        string = value.to_s.strip
+
+        return nil if string.empty?
+        return parse_date(string) unless string.include?("T")
+
+        time = Time.parse(string)
+        zone = @timezone && Time.find_zone(@timezone)
+
+        (zone ? time.in_time_zone(zone) : time).to_date
+      rescue ArgumentError, TypeError
         nil
       end
     end
