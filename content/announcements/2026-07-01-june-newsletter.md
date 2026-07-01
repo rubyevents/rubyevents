@@ -5,7 +5,7 @@ date: 2026-07-01
 author: chaelcodes
 published: true
 excerpt: |-
-  TODO - excerpt
+  3 events in June - Matsue RubyKaigi 12, Blastoff Rails, and Brighton Ruby - and 3 events in July - Ruby Retreat 2026, RubyConf 2026, and Kansai RubyKaigi 09. The Fall CFP season is coming to a close with just two remaining CFPs open this month. Big thanks to 30 contributors this month for the 70 PRs merged this month! Make sure to check out the newly refreshed homepage and videos page!
 tags:
   - newsletter
   - june
@@ -13,7 +13,7 @@ tags:
 featured_image:
 ---
 
-3 events in June - Matsue RubyKaigi 12, Blastoff Rails, and Brighton Ruby - and 3 events in July - Ruby Retreat 2026, RubyConf 2026, and Kansai RubyKaigi 09. The Fall CFP season is coming to a close with just two CFPs closing this month. We had XX PRs merged from XX contributors this month, and the homepage and videos page got a major refresh!
+3 events in June - Matsue RubyKaigi 12, Blastoff Rails, and Brighton Ruby - and 3 events in July - Ruby Retreat 2026, RubyConf 2026, and Kansai RubyKaigi 09. The Fall CFP season is coming to a close with just two remaining CFPs open this month. Big thanks to 30 contributors this month for the 70 merged PRs! Make sure to check out the newly refreshed homepage and videos page!
 
 ## Open CFPs
 
@@ -40,14 +40,14 @@ featured_image:
 
 ## Uploaded videos
 
-- Most videos from [Blastoff Rails 2026](/events/blastoffrails-2026) are now available!
+- [Blastoff Rails 2026](/events/blastoffrails-2026) videos are now available!
 - [Nepal Ruby Meetup's May 2026 video](https://www.rubyevents.org/talks/nepal-ruby-meetup-may-2026) talks by Jonathan Clarke and Prazwal Bhattari.
 - Several videos from [Sapporo RubyKaigi 2012](https://www.rubyevents.org/events/sapporo-rubykaigi-2012/talks) are available on RubyEvents!
 - Most videos from [wroclove.rb 2026](https://www.rubyevents.org/events/wroclove-rb-2026/talks) are now available!
 - [Helsinki Ruby Brigade's May 2026 Meetup](https://www.rubyevents.org/talks/helsinki-ruby-brigade-may-2026) with talk from Ville Lautanala is now available!
-- All [Rubycon 2026](https://www.rubyevents.org/events/rubycon-2026/talks) videos are now available!
-- All [RubyConf 2009](https://www.rubyevents.org/events/rubyconf-2009/talks) videos are available on RubyEvents!
-- All [RubyConf 2010](https://www.rubyevents.org/events/rubyconf-2010/talks) videos are available on RubyEvents!
+- [Rubycon 2026](https://www.rubyevents.org/events/rubycon-2026/talks) videos are now available!
+- [RubyConf 2009](https://www.rubyevents.org/events/rubyconf-2009/talks) videos are available on RubyEvents!
+- [RubyConf 2010](https://www.rubyevents.org/events/rubyconf-2010/talks) videos are available on RubyEvents!
 - Detail added for [Tropical on Rails lightning talks](https://www.rubyevents.org/talks/lightning-talks-tropical-on-rails-2026)!
 - [December 2025](https://www.rubyevents.org/talks/lrug-december-2025) and [January 2026](https://www.rubyevents.org/talks/lrug-january-2026) videos from LRUG are now available!
 - [Friendly.rb 2025 videos](https://www.rubyevents.org/events/friendly-rb-2025/talks) are now available on RubyEvents!
@@ -55,7 +55,7 @@ featured_image:
 
 ## Contributions
 
-This month, we merged [XX PRs from XX contributors!](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A2026-06-01..2026-06-30) XX PRs were [new event data and videos.](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A2026-06-01..2026-06-30+label%3Acontent)
+This month, we merged [70 PRs from 30 contributors!](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A2026-06-01..2026-06-30) 40 PRs were [new event data and videos.](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A2026-06-01..2026-06-30+label%3Acontent)
 
 ### Big Updates
 
@@ -63,16 +63,43 @@ The front page of RubyEvents.org has received a major refresh! You'll now find C
 
 ### Welcome, First-Time Contributors!
 
-A warm welcome to XX developers making their first contribution to RubyEvents!
+A warm welcome to 11 developers making their first contribution to RubyEvents!
 
-```bash
-```
+_[Bozhidar](https://github.com/RubyEvents/RubyEvents/pull/1799), [Ajina Slater](https://github.com/RubyEvents/RubyEvents/pull/1841), [Chris Fung](https://github.com/RubyEvents/RubyEvents/pull/1770), [Connor Shea](https://github.com/RubyEvents/RubyEvents/pull/1776), [oliver maule](https://github.com/RubyEvents/RubyEvents/pull/1812), [Hana Harencarova](https://github.com/RubyEvents/RubyEvents/pull/1798), [Muhammad Ali Ansari](https://github.com/RubyEvents/RubyEvents/pull/1795), [minhlq](https://github.com/RubyEvents/RubyEvents/pull/1842), [Josua Schmid](https://github.com/RubyEvents/RubyEvents/pull/1775), [Wilman](https://github.com/RubyEvents/RubyEvents/pull/1816), [Yashika Vijayvargiya](https://github.com/RubyEvents/RubyEvents/pull/1847), and [Ryan Davis](https://github.com/RubyEvents/RubyEvents/pull/1791)_
 
 ### Thank You to All XX Contributors ❤️
 
-```bash
-gh pr list --repo RubyEvents/RubyEvents   --limit 100   --state merged   --json author   --search "merged:>=2026-06-01 merged:<=2026-06-30"   --jq '[group_by(.author.login)[] | {name: .[0].author.name, login: .[0].author.login, count: length}] | sort_by(.count) | reverse[] | "- \(.name) [(@\(.
-login))](https://github.com/\(.login)) \(.count) PRs"'
-```
+- Marco Roth [(@marcoroth)](https://github.com/marcoroth) 21 PRs
+- Rachael Wright-Munn [(@ChaelCodes)](https://github.com/ChaelCodes) 9 PRs
+- 🤖 [(@app/copilot-swe-agent)](https://github.com/app/copilot-swe-agent) 4 PRs
+- Travis [(@travisdock)](https://github.com/travisdock) 3 PRs
+- Matt Mayer [(@matthewmayer)](https://github.com/matthewmayer) 2 PRs
+- Muhammad Ali Ansari [(@m-aliansari)](https://github.com/m-aliansari) 2 PRs
+- Francois DUMAS LATTAQUE [(@francoisedumas)](https://github.com/francoisedumas) 2 PRs
+- Connor Shea [(@connorshea)](https://github.com/connorshea) 2 PRs
+- Adrian Marin [(@adrianthedev)](https://github.com/adrianthedev) 2 PRs
+- Ryan Davis [(@zenspider)](https://github.com/zenspider) 1 PRs
+- Wilman [(@wilidgasoft)](https://github.com/wilidgasoft) 1 PRs
+- [(@susan-gurzu)](https://github.com/susan-gurzu) 1 PRs
+- Sudeep Tarlekar [(@sudeeptarlekar)](https://github.com/sudeeptarlekar) 1 PRs
+- Josua Schmid [(@schmijos)](https://github.com/schmijos) 1 PRs
+- Richard Böhme [(@richardboehme)](https://github.com/richardboehme) 1 PRs
+- Riccardo Carlesso [(@palladius)](https://github.com/palladius) 1 PRs
+- minhlq [(@minhluuquang)](https://github.com/minhluuquang) 1 PRs
+- Mike Dalton [(@kcdragon)](https://github.com/kcdragon) 1 PRs
+- Jeremy Smith [(@jeremysmithco)](https://github.com/jeremysmithco) 1 PRs
+- Hiroshi SHIBATA [(@hsbt)](https://github.com/hsbt) 1 PRs
+- Hana Harencarova [(@hharen)](https://github.com/hharen) 1 PRs
+- Murray Steele [(@h-lame)](https://github.com/h-lame) 1 PRs
+- Ender Ahmet Yurt [(@enderahmetyurt)](https://github.com/enderahmetyurt) 1 PRs
+- Dennis Paagman [(@dennispaagman)](https://github.com/dennispaagman) 1 PRs
+- oliver maule [(@cyberdevOM)](https://github.com/cyberdevOM) 1 PRs
+- Alessandro Rodi [(@coorasse)](https://github.com/coorasse) 1 PRs
+- Prabin Poudel [(@coolprobn)](https://github.com/coolprobn) 1 PRs
+- z [(@codez)](https://github.com/codez) 1 PRs
+- 🤖 [(@app/dependabot)](https://github.com/app/dependabot) 1 PRs
+- Chris Fung [(@aergonaut)](https://github.com/aergonaut) 1 PRs
+- Ajina Slater [(@DoodlingDev)](https://github.com/DoodlingDev) 1 PRs
+- Bozhidar [(@Bozhidar003)](https://github.com/Bozhidar003) 1 PRs
 
 > Looking to join this list in July? Check out our [contributions page](https://www.rubyevents.org/contributions) or the [CONTRIBUTING.md](https://github.com/rubyevents/rubyevents/blob/main/CONTRIBUTING.md) in GitHub.
