@@ -7,9 +7,17 @@ class EventGenerator < Generators::EventBase
   class_option :title, type: :string, desc: "Event name", group: "Fields", required: true
   class_option :description, type: :string, desc: "Event description", group: "Fields"
   class_option :kind, type: :string, enum: Event.kinds.keys, desc: "Event kind (e.g. conference, meetup, workshop)", default: "conference", group: "Fields"
+
+  # Dates
   class_option :start_date, type: :string, desc: "Start date (YYYY-MM-DD)", required: true, group: "Fields"
   class_option :end_date, type: :string, desc: "End date (YYYY-MM-DD)", required: true, group: "Fields"
+  class_option :announced_on, type: :string, desc: "Date when the event was announced (YYYY-MM-DD)", group: "Fields"
+  class_option :published_at, type: :string, desc: "Date when videos were published (YYYY-MM-DD)", group: "Fields"
+  class_option :date_precision, type: :string, enum: ["year", "month", "day"], desc: "Precision of the date (when exact dates are unknown)", group: "Fields"
+
+  # Websites
   class_option :tickets_url, type: :string, desc: "URL to purchase tickets (e.g., Tito, Eventbrite, Luma)", group: "Fields"
+  class_option :original_website, type: :string, desc: "Original/archived website URL", group: "Fields"
   class_option :website, type: :string, desc: "Event website URL", group: "Fields"
 
   # Flags

@@ -56,9 +56,13 @@ class EventGeneratorTest < Rails::Generators::TestCase
       "--description", "RubyConf 2027 description",
       "--start-date", "2027-11-15",
       "--end-date", "2027-11-17",
+      "--date-precision", "year",
+      "--announced-on", "2027-01-01",
+      "--published-at", "2027-12-01",
       "--kind", "retreat",
       "--tickets-url", "https://example.com/tickets",
       "--website", "https://example.com/rubyconf-2027",
+      "--original-website", "https://example.com/rubyconf-2027-archive",
       "--last-edition",
       "--timezone", "America/Chicago",
       "--online"]
@@ -71,10 +75,13 @@ class EventGeneratorTest < Rails::Generators::TestCase
       assert_match(/description: |-\s+RubyConf 2027 description/, content)
       assert_match(/start_date: "2027-11-15"/, content)
       assert_match(/end_date: "2027-11-17"/, content)
+      assert_match(/announced_on: "2027-01-01"/, content)
+      assert_match(/published_at: "2027-12-01"/, content)
       assert_match(/year: 2027/, content)
       assert_match(/kind: "retreat"/, content)
       assert_match(/tickets_url: "https:\/\/example.com\/tickets"/, content)
       assert_match(/website: "https:\/\/example.com\/rubyconf-2027"/, content)
+      assert_match(/original_website: "https:\/\/example.com\/rubyconf-2027-archive"/, content)
       assert_match(/timezone: "America\/Chicago"/, content)
       assert_match(/last_edition: true/, content)
       assert_match(/location: "online"/, content)

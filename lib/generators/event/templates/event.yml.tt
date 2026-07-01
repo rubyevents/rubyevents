@@ -2,24 +2,36 @@
 ---
 id: "<%= options[:event] %>"
 title: "<%= options[:title] %>"
-kind: "<%= options[:kind] %>"
-<%- if options[:description] -%>
-description: |-
-<%= optimize_indentation(options[:description], 4) %>
-<%- end -%>
-start_date: "<%= options[:start_date] %>"
-end_date: "<%= options[:end_date] %>"
-year: <%= @year %>
-tickets_url: "<%= options[:tickets_url] %>"<% " # TODO" if options[:tickets_url].blank? %>
-website: "<%= options[:website] %>"<% " # TODO" if options[:website].blank? %>
-<%- if options[:last_edition] -%>
-last_edition: true
-<%- end -%>
 <%- if @location -%>
 location: "<%= @location %>"
 <%- end -%>
 <%- if @timezone -%>
 timezone: "<%= @timezone %>"
+<%- end -%>
+kind: "<%= options[:kind] %>"
+<%- if options[:description] -%>
+description: |-
+<%= optimize_indentation(options[:description], 4) %>
+<%- end -%>
+<%- if options[:published_at] -%>
+published_at: "<%= options[:published_at] %>"
+<%- end -%>
+<%- if options[:announced_on] -%>
+announced_on: "<%= options[:announced_on] %>"
+<%- end -%>
+start_date: "<%= options[:start_date] %>"
+end_date: "<%= options[:end_date] %>"
+year: <%= @year %>
+<%- if options[:date_precision] -%>
+date_precision: "<%= options[:date_precision] %>"
+<%- end -%>
+website: "<%= options[:website] %>"<%= " # TODO" if options[:website].blank? %>
+<%- if options[:original_website] -%>
+original_website: "<%= options[:original_website] %>"
+<%- end -%>
+tickets_url: "<%= options[:tickets_url] %>"<%= " # TODO" if options[:tickets_url].blank? %>
+<%- if options[:last_edition] -%>
+last_edition: true
 <%- end -%>
 coordinates:<%- if options[:online] || @coordinates.nil? -%>
  false
