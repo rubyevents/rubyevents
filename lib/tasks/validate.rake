@@ -41,6 +41,7 @@ namespace :validate do
       files: Dir.glob(Rails.root.join("data/**/event.yml")),
       validators: [
         Static::Validators::EventDates,
+        Static::Validators::EventPublishedAt,
         Static::Validators::ColorsHaveAssets,
         Static::Validators::EventCityNames,
         Static::Validators::DuplicateYouTubeChannels
