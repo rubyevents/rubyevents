@@ -9,6 +9,7 @@ Example:
     This will create:
         /data/rubyconf/rubyconf-2026/event.yml
 
+  Create an event that has a venue.
     bin/rails generate event --event-series=tropicalrb --event=tropical-on-rails-2027 \
       --title="Tropical on Rails 2027" --start-date=2027-04-01 --end-date=2027-04-03 \
       --venue-name="Hotel Grande" --venue-address="R. Olimpíadas, 205 - Vila Olímpia, São Paulo - SP, 04551-000"
@@ -16,3 +17,11 @@ Example:
     This will create:
         /data/tropicalrb/tropical-on-rails-2027/event.yml
         /data/tropicalrb/tropical-on-rails-2027/venue.yml
+
+  Create an upcoming event that doesn't have a scheduled date yet - only a year.
+    bin/rails g event --event-series rubyconf-au --event rubyconf-au-2027 --title "RubyConf AU 2027" \
+      --kind "conference" --location "Melbourne, VIC, AU" --date-precision "year" --start-date "2027-12-31" \
+      --end-date "2027-12-31" --timezone "Australia/Melbourne"
+
+    This will create:
+        /data/rubyconf-au/rubyconf-au-2027/event.yml

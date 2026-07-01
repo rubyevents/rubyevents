@@ -7,11 +7,23 @@ kind: "<%= options[:kind] %>"
 description: |-
 <%= optimize_indentation(options[:description], 4) %>
 <%- end -%>
+<%- if options[:published_at] -%>
+published_at: "<%= options[:published_at] %>"
+<%- end -%>
+<%- if options[:announced_on] -%>
+announced_on: "<%= options[:announced_on] %>"
+<%- end -%>
 start_date: "<%= options[:start_date] %>"
 end_date: "<%= options[:end_date] %>"
 year: <%= @year %>
-tickets_url: "<%= options[:tickets_url] %>"<% " # TODO" if options[:tickets_url].blank? %>
-website: "<%= options[:website] %>"<% " # TODO" if options[:website].blank? %>
+<%- if options[:date_precision] -%>
+date_precision: "<%= options[:date_precision] %>"
+<%- end -%>
+tickets_url: "<%= options[:tickets_url] %>"<%= " # TODO" if options[:tickets_url].blank? %>
+website: "<%= options[:website] %>"<%= " # TODO" if options[:website].blank? %>
+<%- if options[:original_website] -%>
+original_website: "<%= options[:original_website] %>"
+<%- end -%>
 <%- if options[:last_edition] -%>
 last_edition: true
 <%- end -%>
