@@ -7,6 +7,8 @@ module Static
         "**/videos.yml"
       ].freeze
 
+      IGNORE_PUBLISHED_AT_BEFORE_DATE = "validator:disable published_at_before_date"
+
       def initialize(file_path:)
         @file_path = file_path
       end
@@ -67,12 +69,14 @@ module Static
         if date && published_at && published_at < date
           location = node["published_at"]&.location
 
-          errors << Static::Validators::Error.new(
-            "published_at (#{node.value_at("published_at")}) must not be before the talk date (#{node.value_at("date")})",
-            file_path: @file_path,
-            line: location&.start_line || 1,
-            end_line: location&.end_line
-          )
+          unless ignored?(location&.start_line, IGNORE_PUBLISHED_AT_BEFORE_DATE)
+            errors << Static::Validators::Error.new(
+              "published_at (#{node.value_at("published_at")}) must not be before the talk date (#{node.value_at("date")})",
+              file_path: @file_path,
+              line: location&.start_line || 1,
+              end_line: location&.end_line
+            )
+          end
         end
 
         if date && @range_start && @end_date && !date.between?(@range_start, @end_date)
@@ -88,6 +92,16 @@ module Static
         end
 
         errors
+      end
+
+      def ignored?(line_number, marker)
+        return false unless line_number
+
+        file_lines[line_number - 1].to_s.include?(marker)
+      end
+
+      def file_lines
+        @file_lines ||= File.readlines(@file_path)
       end
 
       def parse_date(value)

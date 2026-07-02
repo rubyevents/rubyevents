@@ -96,16 +96,28 @@
             "type": "string"
           },
           "date": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
           },
           "published_at": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           },
           "announced_at": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           },
           "video_provider": {
             "type": "string",
+            "enum": [
+              "youtube",
+              "mp4",
+              "vimeo",
+              "scheduled",
+              "not_published",
+              "not_recorded",
+              "parent"
+            ],
             "description": "Use 'parent' if there is one video"
           },
           "video_id": {
@@ -712,7 +724,20 @@
               }
             }
           }
-        ]
+        ],
+        "dependentSchemas": {
+          "published_at": {
+            "properties": {
+              "video_provider": {
+                "enum": [
+                  "youtube",
+                  "mp4",
+                  "vimeo"
+                ]
+              }
+            }
+          }
+        }
       }
     },
     "event_name": {
@@ -721,7 +746,8 @@
     },
     "date": {
       "type": "string",
-      "description": "Date of the talk (YYYY-MM-DD format)"
+      "description": "Date of the talk (YYYY-MM-DD format)",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
     },
     "time": {
       "type": "string",
@@ -729,11 +755,13 @@
     },
     "published_at": {
       "type": "string",
-      "description": "Date when the video was published (YYYY-MM-DD format)"
+      "description": "Date when the video was published (YYYY-MM-DD format)",
+      "minLength": 1
     },
     "announced_at": {
       "type": "string",
-      "description": "Date when the talk was announced"
+      "description": "Date when the talk was announced",
+      "minLength": 1
     },
     "location": {
       "type": "string",
@@ -743,13 +771,12 @@
       "type": "string",
       "enum": [
         "youtube",
-        "vimeo",
-        "not_recorded",
-        "scheduled",
         "mp4",
-        "parent",
-        "children",
-        "not_published"
+        "vimeo",
+        "scheduled",
+        "not_published",
+        "not_recorded",
+        "children"
       ],
       "description": "Video hosting provider"
     },
@@ -1365,5 +1392,18 @@
         }
       }
     }
-  ]
+  ],
+  "dependentSchemas": {
+    "published_at": {
+      "properties": {
+        "video_provider": {
+          "enum": [
+            "youtube",
+            "mp4",
+            "vimeo"
+          ]
+        }
+      }
+    }
+  }
 }

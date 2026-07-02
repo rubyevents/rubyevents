@@ -31,16 +31,28 @@
       "type": "string"
     },
     "date": {
-      "type": "string"
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
     },
     "published_at": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1
     },
     "announced_at": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1
     },
     "video_provider": {
       "type": "string",
+      "enum": [
+        "youtube",
+        "mp4",
+        "vimeo",
+        "scheduled",
+        "not_published",
+        "not_recorded",
+        "parent"
+      ],
       "description": "Use 'parent' if there is one video"
     },
     "video_id": {
@@ -648,5 +660,18 @@
         }
       }
     }
-  ]
+  ],
+  "dependentSchemas": {
+    "published_at": {
+      "properties": {
+        "video_provider": {
+          "enum": [
+            "youtube",
+            "mp4",
+            "vimeo"
+          ]
+        }
+      }
+    }
+  }
 }

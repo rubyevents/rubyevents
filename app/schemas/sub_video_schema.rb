@@ -9,10 +9,10 @@ class SubVideoSchema < RubyLLM::Schema
   string :kind, description: "Type of video (e.g., 'keynote', 'lightning')", required: false
   array :speakers, of: :string, required: false
   string :event_name, required: false
-  string :date, required: false
-  string :published_at, required: false
-  string :announced_at, required: false
-  string :video_provider, description: "Use 'parent' if there is one video", required: true
+  string :date, required: false, pattern: "^\\d{4}-\\d{2}-\\d{2}$"
+  string :published_at, required: false, min_length: 1
+  string :announced_at, required: false, min_length: 1
+  string :video_provider, description: "Use 'parent' if there is one video", required: true, enum: (Talk.video_providers.keys - ["children"])
   string :video_id, required: true
   string :language, enum: Language.english_names, required: false
   string :track, required: false
@@ -42,5 +42,9 @@ class SubVideoSchema < RubyLLM::Schema
 
   given video_provider: "mp4" do
     validates :video_id, type: :string, pattern: "^https?://"
+  end
+
+  dependent :published_at do
+    validates :video_provider, enum: Talk::WATCHABLE_PROVIDERS
   end
 end

@@ -721,9 +721,9 @@ class Talk < ApplicationRecord
       :recap
     when /.*(after\ ?movie).*/i
       :aftermovie
-    when /^(intro:|intro|introduction:|introduction|opening\ remarks:|opening\ remarks|welcome:|welcome\ talk|welcome\ address|opening\ session).*/i
+    when /^(intro:?|introduction:?|opening\ remarks:?|opening\ session|welcome:|welcome\ talk|welcome\ address).*/i
       :intro
-    when /^(outro:|outro|closing\ remarks:|closing\ remarks|closing\ words|closing\ session|closing\ address).*/i
+    when /^(outro:?|closing\ remarks:?|closing\ words|closing\ session|closing\ address).*/i
       :outro
     else
       :talk
