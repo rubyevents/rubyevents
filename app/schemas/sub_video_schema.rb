@@ -4,6 +4,7 @@ class SubVideoSchema < RubyLLM::Schema
   string :id, required: true
   string :title, required: false
   string :raw_title, required: false
+  string :original_title, description: "Original title in native language", required: false
   string :description, required: false
   string :kind, description: "Type of video (e.g., 'keynote', 'lightning')", required: false
   array :speakers, of: :string, required: false
