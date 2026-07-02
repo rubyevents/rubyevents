@@ -238,7 +238,7 @@ ActiveRecord::Schema[8.2].define(version: 2026_07_02_093844) do
     t.index ["event_series_id"], name: "index_events_on_event_series_id"
     t.index ["kind"], name: "index_events_on_kind"
     t.index ["name"], name: "index_events_on_name"
-    t.index ["slug"], name: "index_events_on_slug"
+    t.index ["slug"], name: "index_events_on_slug", unique: true
   end
 
   create_table "favorite_users", force: :cascade do |t|

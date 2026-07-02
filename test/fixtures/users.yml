@@ -28,6 +28,7 @@
 #  settings             :json             not null
 #  slug                 :string           default(""), not null, uniquely indexed
 #  speakerdeck          :string           default(""), not null
+#  spoken_languages     :json             not null
 #  state_code           :string
 #  suspicion_cleared_at :datetime
 #  suspicion_marked_at  :datetime
