@@ -117,13 +117,13 @@ class TalkGeneratorTest < Rails::Generators::TestCase
   end
 
   test "creates maximum lightning talk entry when lightning_talks option is true" do
-    videos_file_path = File.join(destination_root, "data/rubyconf/2028/videos.yml")
+    videos_file_path = File.join(destination_root, "data/rubyconf/2029/videos.yml")
     eliminate_validated_file(file_path: videos_file_path) do
       run_generator ["--event-series", "rubyconf",
-        "--event", "2028",
+        "--event", "2029",
         "--title", "Lightning Round",
         "--description", "Quick talks",
-        "--date", "2028-09-15",
+        "--date", "2029-09-15",
         "--language", "English",
         "--lightning-talks"]
 

@@ -1,8 +1,8 @@
 <%# locals: (talks:) %>
 
 <%= render "browse/content_row",
-      title: "Newest Talks",
-      subtitle: "Most recently held",
+      title: "Recently Held",
+      subtitle: "Talks from the most recent events",
       talks: talks,
-      view_all_path: talks_path(order_by: "date_desc"),
+      view_all_path: talks_path(section: "newest"),
       data_section: "newest-talks" %>

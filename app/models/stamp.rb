@@ -88,7 +88,7 @@ class Stamp
     end
 
     def for_user(user)
-      user_events = user.participated_events
+      user_events = user.all_attended_events
       stamps = self.for(events: user_events).to_a
 
       event_stamps_for_user = user_events.flat_map { |event| for_event(event) }
@@ -102,7 +102,7 @@ class Stamp
         stamps << passport_stamp
       end
 
-      if user_attended_triathlon_2025?(user) && triathlon_2025_stamp
+      if user_attended_triathlon_2025?(user_events) && triathlon_2025_stamp
         stamps << triathlon_2025_stamp
       end
 
@@ -114,11 +114,11 @@ class Stamp
         stamps << meetup_speaker_stamp
       end
 
-      if user_attended_conference?(user) && attend_one_event_stamp
+      if user_attended_conference?(user_events) && attend_one_event_stamp
         stamps << attend_one_event_stamp
       end
 
-      if user_attended_online_event?(user) && online_stamp
+      if user_attended_online_event?(user_events) && online_stamp
         stamps << online_stamp
       end
 
@@ -136,9 +136,9 @@ class Stamp
       }
     end
 
-    def user_attended_triathlon_2025?(user)
+    def user_attended_triathlon_2025?(user_events)
       required_event_slugs = ["rails-world-2025", "friendly-rb-2025", "euruko-2025"]
-      attended_event_slugs = user.participated_events.pluck(:slug)
+      attended_event_slugs = user_events.pluck(:slug)
 
       required_event_slugs.all? { |slug| attended_event_slugs.include?(slug) }
     end
@@ -151,12 +151,12 @@ class Stamp
       user.speaker_events.where(kind: :meetup).exists?
     end
 
-    def user_attended_conference?(user)
-      user.participated_events.where(kind: :conference).exists?
+    def user_attended_conference?(user_events)
+      user_events.where(kind: :conference).exists?
     end
 
-    def user_attended_online_event?(user)
-      user.participated_events.any? { |event| event.location == "Online" }
+    def user_attended_online_event?(user_events)
+      user_events.any? { |event| event.location == "Online" }
     end
 
     def grouped_by_continent

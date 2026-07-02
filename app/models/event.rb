@@ -19,7 +19,7 @@
 #  location            :string
 #  longitude           :decimal(10, 6)
 #  name                :string           default(""), not null, indexed
-#  slug                :string           default(""), not null, indexed
+#  slug                :string           default(""), not null, uniquely indexed
 #  start_date          :date
 #  state_code          :string           indexed => [country_code]
 #  talks_count         :integer          default(0), not null
@@ -36,7 +36,7 @@
 #  index_events_on_event_series_id              (event_series_id)
 #  index_events_on_kind                         (kind)
 #  index_events_on_name                         (name)
-#  index_events_on_slug                         (slug)
+#  index_events_on_slug                         (slug) UNIQUE
 #
 # Foreign Keys
 #
@@ -48,6 +48,11 @@ class Event < ApplicationRecord
   include Sluggable
   include Todoable
   include Event::TypesenseSearchable
+
+  FEATURED_RECENTLY_PUBLISHED_WINDOW = 30.days
+  FEATURED_RECENTLY_ENDED_WINDOW = 2.days
+  FEATURED_UPCOMING_WINDOW = 2.weeks
+  FEATURED_CFP_CLOSING_WINDOW = 5.days
 
   geocodeable :location_and_country_code
   configure_slug(attribute: :name, auto_suffix_on_collision: false)
@@ -148,6 +153,56 @@ class Event < ApplicationRecord
 
   def past?
     end_date.present? && end_date < Date.today
+  end
+
+  def happening?
+    start_date.present? && end_date.present? && (start_date..end_date).cover?(Date.today)
+  end
+
+  def happening_tomorrow?
+    start_date.present? && start_date == Date.today + 1
+  end
+
+  def recently_ended?
+    past? && end_date >= FEATURED_RECENTLY_ENDED_WINDOW.ago.to_date
+  end
+
+  def featured_cfp
+    cfps.select { |cfp| cfp.link.present? && cfp.close_date && cfp.close_date.between?(Date.today, Date.today + FEATURED_CFP_CLOSING_WINDOW) }.min_by(&:close_date)
+  end
+
+  def featured_reason
+    if happening?
+      :happening
+    elsif happening_tomorrow?
+      :happening_tomorrow
+    elsif featured_cfp
+      :cfp_closing
+    elsif upcoming?
+      :upcoming
+    elsif recently_ended? && !watchable_talks?
+      :recently_ended
+    elsif home_sort_date && home_sort_date >= FEATURED_RECENTLY_PUBLISHED_WINDOW.ago.to_date
+      :recently_published
+    else
+      :available
+    end
+  end
+
+  def featured_distance(today: Date.today)
+    cfp = featured_cfp
+
+    if happening?
+      0
+    elsif cfp
+      (cfp.close_date - today).to_i
+    elsif upcoming?
+      (start_date - today).to_i
+    elsif home_sort_date
+      (today - home_sort_date).to_i
+    else
+      Float::INFINITY
+    end
   end
 
   def self.find_by_name_or_alias(name)

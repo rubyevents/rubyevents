@@ -242,8 +242,8 @@ rules:
           order:
             - id
             - title
-            - raw_title
             - original_title
+            - raw_title
             - slug
             - location
             - kind
@@ -271,6 +271,23 @@ rules:
             - talks
             - additional_resources
             - alternative_recordings
+
+      - sort_keys:
+          path: "[].alternative_recordings[]"
+          order:
+            - note
+            - title
+            - raw_title
+            - location
+            - event_name
+            - date
+            - published_at
+            - language
+            - video_provider
+            - video_id
+            - external_url
+            - description
+            - speakers
 
       - sort_keys:
           path: "[].talks[]"

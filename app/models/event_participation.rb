@@ -33,7 +33,20 @@ class EventParticipation < ApplicationRecord
   # enums
   enum :attended_as, %w[keynote_speaker speaker visitor].index_by(&:itself), prefix: true
 
+  # callbacks
+  after_create_commit :dedupe_with_speaker_role
+
   def name
     "#{user.name} - #{event.name} - #{attended_as}"
+  end
+
+  private
+
+  def dedupe_with_speaker_role
+    if attended_as_visitor?
+      destroy if user.event_participations.where(event_id:, attended_as: [:speaker, :keynote_speaker]).exists?
+    else
+      user.event_participations.attended_as_visitor.where(event_id:).delete_all
+    end
   end
 end

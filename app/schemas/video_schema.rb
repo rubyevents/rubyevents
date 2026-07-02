@@ -7,7 +7,7 @@ class VideoSchema < RubyLLM::Schema
   string :original_title, description: "Original title in native language", required: false
   string :description, description: "Description of the talk"
   string :slug, description: "URL-friendly slug", required: false
-  string :kind, description: "Type of video (e.g., 'keynote', 'lightning')", required: false
+  string :kind, description: "Type of video (e.g., 'keynote', 'lightning_talk')", required: false, enum: Talk::KIND_LABELS.keys
   string :status, description: "Status of the video", required: false
 
   array :speakers, of: :string, description: "List of speaker names", required: false
@@ -43,7 +43,7 @@ class VideoSchema < RubyLLM::Schema
 
   given video_provider: "youtube" do
     requires :published_at
-    validates :published_at, type: :string, not_value: "TODO", min_length: 1, pattern: "^\\d{4}-\\d{2}-\\d{2}"
+    validates :published_at, type: :string, not_value: "TODO", min_length: 1, pattern: "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
     validates :video_id, type: :string, pattern: "^[A-Za-z0-9_-]{11}$"
   end
 

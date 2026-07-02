@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   get "/privacy", to: "page#privacy"
   get "/components", to: "page#components"
   get "/about", to: "page#about"
+  get "/attend", to: "page#attend"
+  get "/speak", to: "page#speak"
+  get "/organize", to: "page#organize"
   get "/stickers", to: "page#stickers"
   get "/contributors", to: "page#contributors"
   get "/stamps", to: "stamps#index"
@@ -201,6 +204,7 @@ Rails.application.routes.draw do
   end
 
   resources :watched_talks, only: [:index, :destroy]
+  resources :feedback, only: [:index]
 
   resources :speakers, param: :slug, only: [:index]
   get "/speakers/:slug", to: redirect("/profiles/%{slug}", status: 301), as: :speaker
@@ -222,6 +226,7 @@ Rails.application.routes.draw do
       resources :stickers, only: [:index]
       resources :involvements, only: [:index]
       resources :map, only: [:index]
+      resources :passport, only: [:index]
       resources :aliases, only: [:index]
       resources :wrapped, only: [:index] do
         collection do

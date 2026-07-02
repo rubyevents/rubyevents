@@ -4,17 +4,24 @@ class WatchListTalksController < ApplicationController
 
   def create
     @talk = Talk.find(params[:talk_id])
-    @watch_list.talks << @talk
-    redirect_back fallback_location: @watch_list
+    @watch_list.talks << @talk unless @watch_list.talk_ids.include?(@talk.id)
+    respond_to_toggle
   end
 
   def destroy
-    @talk = @watch_list.talks.find(params[:id])
-    WatchListTalk.find_by(talk_id: @talk.id, watch_list_id: @watch_list.id).destroy
-    redirect_back fallback_location: @watch_list
+    @watch_list.watch_list_talks.find_by(talk_id: params[:id])&.destroy
+    respond_to_toggle
   end
 
   private
+
+  def respond_to_toggle
+    if request.format.turbo_stream?
+      redirect_back fallback_location: @watch_list
+    else
+      head :no_content
+    end
+  end
 
   def set_watch_list
     @watch_list = Current.user.watch_lists.find(params[:watch_list_id])
