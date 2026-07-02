@@ -1,43 +1,32 @@
-<main class="container py-8 hotwire-native:py-3">
-  <h1 class="title hotwire-native:hidden mb-9">
+<%= render layout: "shared/library_layout" do %>
+  <h1 class="title text-primary hotwire-native:hidden">
     <%= title "Recommended for you" %>
   </h1>
 
   <% if @recommended_talks.present? %>
-    <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-      <%= render partial: "talks/card", collection: @recommended_talks, as: :talk, cached: true,
-            locals: {
-              back_to: recommendations_path,
-              back_to_title: "Recommended for you",
-              favoritable: true,
-              user_favorite_talks_ids: @user_favorite_talks_ids,
-              user_watched_talks:
-            } %>
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
+      <% @recommended_talks.each do |talk| %>
+        <div>
+          <%= render "talks/card_thumbnail", talk: talk, back_to: recommendations_path, back_to_title: "For You" %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="flex w-full mt-4">
+      <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
     </div>
   <% else %>
     <div class="text-center py-12">
       <div class="max-w-md mx-auto">
-        <div class="text-6xl mb-4">🎯</div>
         <h2 class="text-2xl font-bold text-gray-900 mb-4">No recommendations yet</h2>
         <p class="text-gray-600 mb-6">
           Watch some talks to get personalized recommendations based on your interests and viewing history.
         </p>
-        <div class="bg-purple-50 border border-purple-200 rounded-lg p-4 text-left">
-          <h3 class="font-semibold text-purple-800 mb-2">How it works:</h3>
-          <ul class="text-sm text-purple-700 space-y-1">
-            <li>• Watch talks or that interest you</li>
-            <li>• Mark talks as "watched" you have seen in-person</li>
-            <li>• Get personalized recommendations</li>
-            <li>• Discover new content</li>
-          </ul>
-        </div>
-        <div class="mt-6">
-          <%= link_to talks_path, class: "btn btn-primary" do %>
-            <%= fa "video", variant: :solid, class: "w-5 h-5 mr-2" %>
-            Browse Talks
-          <% end %>
-        </div>
+        <%= link_to talks_path, class: "btn btn-primary" do %>
+          <%= fa("video", size: :sm, class: "mr-2") %>
+          Browse Talks
+        <% end %>
       </div>
     </div>
   <% end %>
-</main>
+<% end %>

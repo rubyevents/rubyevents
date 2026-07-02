@@ -337,6 +337,8 @@ module Talk::TypesenseSearchable
       case options[:status]
       when "scheduled"
         filters << "video_provider:=scheduled"
+      when "no_video"
+        filters << "video_provider:!=[youtube,mp4,vimeo]"
       when "all"
         # Show all talks
       else

@@ -15,6 +15,7 @@
 #  geocode_metadata     :json             not null
 #  github_handle        :string
 #  github_metadata      :json             not null
+#  language_preferences :json             not null
 #  latitude             :decimal(10, 6)
 #  linkedin             :string           default(""), not null
 #  location             :string           default("")
@@ -68,6 +69,7 @@ class User < ApplicationRecord
     distance: 250
 
   GITHUB_URL_PATTERN = %r{\A(https?://)?(www\.)?github\.com/}i
+  GITHUB_HANDLE_PATTERN = /\A[A-Za-z0-9][A-Za-z0-9-]{0,38}\z/
 
   PRONOUNS = {
     "Not specified": :not_specified,
@@ -117,6 +119,24 @@ class User < ApplicationRecord
   has_many :visitor_events, -> { where(event_participations: {attended_as: :visitor}) },
     through: :event_participations, source: :event
 
+  def checked_in_events
+    Event.where(id: EventCheckIn.where(connect_id: passports.select(:uid)).select(:event_id))
+  end
+
+  def all_attended_events
+    Event.where(id: (participated_events.pluck(:id) + checked_in_events.pluck(:id)).uniq)
+  end
+
+  def checked_in_event_ids
+    EventCheckIn.where(connect_id: passports.select(:uid)).pluck(:event_id).to_set
+  end
+
+  def passport_check_ins
+    EventCheckIn.where(connect_id: passports.select(:uid))
+      .includes(event: :series)
+      .order(checked_in_at: :desc)
+  end
+
   has_many :event_involvements, as: :involvementable, dependent: :destroy
   has_many :involved_events, through: :event_involvements, source: :event
 
@@ -130,6 +150,8 @@ class User < ApplicationRecord
   has_one :contributor, dependent: :nullify
 
   has_object :profiles
+  has_object :favorite_statuses
+  has_object :languages
   has_object :talk_recommender
   has_object :watched_talk_seeder
   has_object :speakerdeck_feed
@@ -138,7 +160,8 @@ class User < ApplicationRecord
   has_object :merger
 
   validates :email, format: {with: URI::MailTo::EMAIL_REGEXP}, allow_blank: true
-  validates :github_handle, presence: true, uniqueness: true, allow_blank: true
+  validates :github_handle, presence: true, uniqueness: true, allow_blank: true,
+    format: {with: GITHUB_HANDLE_PATTERN, message: "is not a valid GitHub username"}
   validates :canonical, exclusion: {in: ->(user) { [user] }, message: "can't be itself"}
   validates :distance, comparison: {less_than_or_equal_to: 20_000, greater_than_or_equal_to: 0}
 

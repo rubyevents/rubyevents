@@ -41,6 +41,7 @@ namespace :validate do
       files: Dir.glob(Rails.root.join("data/**/event.yml")),
       validators: [
         Static::Validators::EventDates,
+        Static::Validators::EventPublishedAt,
         Static::Validators::ColorsHaveAssets,
         Static::Validators::EventCityNames,
         Static::Validators::DuplicateYouTubeChannels
@@ -51,7 +52,61 @@ namespace :validate do
 
   desc "Validate event.yml files"
   task events: :environment do
-    exit 1 if validate_event_files.any?
+    errors = validate_event_files
+
+    if errors.any? { |error| error.message.include?("published_at") }
+      puts
+      puts Gum.style("To fix published_at issues:", foreground: "3")
+      puts Gum.style("  • bin/rails event_published_at:fix       # reconcile event.yml published_at", foreground: "3")
+      puts Gum.style("  • bin/rails youtube:sync_published_at    # correct video dates first (needs a YouTube API key)", foreground: "3")
+    end
+
+    exit 1 if errors.any?
+  end
+
+  def validate_talk_date_files
+    validate_files(
+      files: Dir.glob(Rails.root.join("data/**/videos.yml")),
+      validators: [
+        Static::Validators::TalkDates
+      ],
+      success_message: "✓ All talk dates are valid!"
+    )
+  end
+
+  desc "Validate talk dates in videos.yml files"
+  task talk_dates: :environment do
+    exit 1 if validate_talk_date_files.any?
+  end
+
+  def validate_talk_published_at_files
+    validate_files(
+      files: Dir.glob(Rails.root.join("data/**/videos.yml")),
+      validators: [
+        Static::Validators::TalkPublishedAt
+      ],
+      success_message: "✓ All talk published_at values are valid!"
+    )
+  end
+
+  desc "Validate talk published_at in videos.yml files"
+  task talk_published_at: :environment do
+    exit 1 if validate_talk_published_at_files.any?
+  end
+
+  def validate_talk_kind_files
+    validate_files(
+      files: Dir.glob(Rails.root.join("data/**/videos.yml")),
+      validators: [
+        Static::Validators::TalkKind
+      ],
+      success_message: "✓ All talk kinds are set explicitly where inferred!"
+    )
+  end
+
+  desc "Validate talk kind in videos.yml files"
+  task talk_kind: :environment do
+    exit 1 if validate_talk_kind_files.any?
   end
 
   def validate_venue_files
@@ -334,6 +389,15 @@ namespace :validate do
 
     puts Gum.style("Validating video city names", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_video_city_names
+
+    puts Gum.style("Validating talk dates", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+    results << validate_talk_date_files.none?
+
+    puts Gum.style("Validating talk published_at", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+    results << validate_talk_published_at_files.none?
+
+    puts Gum.style("Validating talk kind", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+    results << validate_talk_kind_files.none?
 
     puts Gum.style("Validating event asset dimensions", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_event_asset_dimensions.none?

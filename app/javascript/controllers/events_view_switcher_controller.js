@@ -1,7 +1,7 @@
 import { Controller } from '@hotwired/stimulus'
 
 export default class extends Controller {
-  static targets = ['view', 'button']
+  static targets = ['previewButton', 'listButton', 'previewView', 'listView']
   static values = { storageKey: { type: String, default: 'events-view-preference' } }
 
   connect () {
@@ -9,34 +9,33 @@ export default class extends Controller {
     this.switchTo(savedView)
   }
 
-  show (event) {
-    const view = event.params.view
-    this.switchTo(view)
+  showPreview () {
+    this.switchTo('preview')
+  }
+
+  showList () {
+    this.switchTo('list')
   }
 
   switchTo (view) {
-    const viewTarget = this.viewTargets.find(
-      (target) => target.dataset.eventsViewSwitcherViewParam === view
-    )
+    const isList = view === 'list'
 
-    if (!viewTarget) {
-      this.switchTo('preview')
-      return
+    window.localStorage.setItem(this.storageKeyValue, isList ? 'list' : 'preview')
+
+    if (this.hasPreviewViewTarget) {
+      this.previewViewTarget.classList.toggle('hidden', isList)
     }
 
-    window.localStorage.setItem(this.storageKeyValue, view)
+    if (this.hasListViewTarget) {
+      this.listViewTarget.classList.toggle('hidden', !isList)
+    }
 
-    this.viewTargets.forEach((target) => target.classList.add('hidden'))
-    this.buttonTargets.forEach((target) => target.classList.remove('tab-active'))
+    if (this.hasPreviewButtonTarget) {
+      this.previewButtonTarget.classList.toggle('tab-active', !isList)
+    }
 
-    viewTarget.classList.remove('hidden')
-
-    const buttonTarget = this.buttonTargets.find(
-      (target) => target.dataset.eventsViewSwitcherViewParam === view
-    )
-
-    if (buttonTarget) {
-      buttonTarget.classList.add('tab-active')
+    if (this.hasListButtonTarget) {
+      this.listButtonTarget.classList.toggle('tab-active', isList)
     }
   }
 }

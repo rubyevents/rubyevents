@@ -1,0 +1,42 @@
+<div id="language-prompt">
+  <% code = Current.user&.languages&.pending_prompt %>
+
+  <% if code %>
+    <% language_name = Language.by_code(code) || code.upcase %>
+    <% watched_count = Current.user.languages.watched_count(code) %>
+
+    <div class="bg-base-200 border-y border-base-300">
+      <div class="container py-3 flex flex-wrap items-center justify-between gap-3">
+        <p class="text-sm">
+          <span class="mr-1"><%= Language.emoji_flag(code) %></span>
+          You've watched <strong><%= pluralize(watched_count, "talk") %></strong> in <strong><%= language_name %></strong>. Do you understand it?
+          <span class="text-base-content/60">We'll use this to recommend talks.</span>
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto">
+          <%= button_to Language.understands_confirmation(code),
+                language_preference_path(language_code: code, answer: "understands"),
+                method: :patch,
+                class: "btn btn-sm btn-primary w-full sm:w-auto" %>
+
+          <%= button_to "No, I don't understand #{language_name}",
+                language_preference_path(language_code: code, answer: "does_not_understand"),
+                method: :patch,
+                class: "btn btn-sm btn-outline w-full sm:w-auto" %>
+        </div>
+      </div>
+    </div>
+  <% elsif local_assigns[:just_completed] %>
+    <div class="bg-base-200 border-y border-base-300">
+      <div class="container py-3 flex flex-wrap items-center justify-between gap-3">
+        <p class="text-sm">
+          Thanks for the information! You can always update your language preferences in your profile.
+        </p>
+
+        <%= ui_button url: edit_profile_path(Current.user), kind: :neutral, size: :sm, data: {turbo_frame: "modal"} do %>
+          Update language preferences
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
