@@ -24,7 +24,7 @@ class Static::SpeakersFileTest < ActiveSupport::TestCase
 
     File.write(@tmp_file.path, File.read(@tmp_file.path))
 
-    assert_raises(Static::SpeakersFile::StaleFileError) do
+    assert_raises(Yerba::StaleFileError) do
       speakers_file.save!
     end
   end
