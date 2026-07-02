@@ -119,9 +119,6 @@ class Talk < ApplicationRecord
   # delegates
   delegate :name, to: :event, prefix: true, allow_nil: true
 
-  # callbacks
-  before_validation :set_kind, if: -> { !kind_changed? }
-
   WATCHABLE_PROVIDERS = ["youtube", "mp4", "vimeo"]
   UNPUBLISHED_PROVIDERS = ["not_recorded", "scheduled", "not_published"]
   SUPPLEMENTARY_KINDS = ["trailer", "recap", "aftermovie"]
@@ -653,7 +650,7 @@ class Talk < ApplicationRecord
       end_seconds: static_metadata.end_cue_in_seconds
     )
 
-    self.kind = static_metadata.kind if static_metadata.try(:kind).present?
+    self.kind = static_metadata.kind
 
     self.speakers = Array.wrap(static_metadata.speakers).reject(&:blank?).map { |speaker_name|
       User.find_by_name_or_alias(speaker_name.strip) ||
@@ -674,59 +671,6 @@ class Talk < ApplicationRecord
 
   def static_metadata
     @static_metadata ||= Static::Video.find_by_static_id(static_id)
-  end
-
-  def set_kind
-    if static_metadata && static_metadata.kind.present?
-      unless static_metadata.kind.in?(Talk.kinds.keys)
-        puts %(WARN: "#{title}" has an unknown talk kind defined in #{static_metadata.__file_path})
-      end
-
-      self.kind = static_metadata.kind
-      return
-    end
-
-    self.kind = case title
-    when /^(keynote:|keynote|opening\ keynote:|opening\ keynote|closing\ keynote:|closing\ keynote).*/i
-      :keynote
-    when /^(lightning\ talk:|lightning\ talk|lightning\ talks|micro\ talk:|micro\ talk).*/i
-      :lightning_talk
-    when /.*(panel:|panel).*/i
-      :panel
-    when /^(workshop:|workshop).*/i
-      :workshop
-    when /^(gameshow|game\ show|gameshow:|game\ show:).*/i
-      :gameshow
-    when /^(podcast:|podcast\ recording:|live\ podcast:).*/i
-      :podcast
-    when /.*(q&a|q&a:|q&a\ with|questions\ and\ answers).*/i,
-        /.*(ruby\ committers\ vs\ the\ world|ruby\ committers\ and\ the\ world).*/i,
-        /.*(AMA)$/,
-        /^(AMA:)/
-      :q_and_a
-    when /^(fishbowl:|fishbowl\ discussion:|discussion:|discussion).*/i
-      :discussion
-    when /^(fireside\ chat:|fireside\ chat).*/i
-      :fireside_chat
-    when /^(award:|award\ show|ruby\ heroes\ awards|ruby\ heroes\ award|rails\ luminary).*/i
-      :award
-    when /^(interview:|interview\ with).*/i
-      :interview
-    when /^(demo:|demo\ |Startup\ Demo:).*/i, /.*(demo)$/i
-      :demo
-    when /.*(trailer).*/i
-      :trailer
-    when /.*(recap).*/i
-      :recap
-    when /.*(after\ ?movie).*/i
-      :aftermovie
-    when /^(intro:?|introduction:?|opening\ remarks:?|opening\ session|welcome:|welcome\ talk|welcome\ address).*/i
-      :intro
-    when /^(outro:?|closing\ remarks:?|closing\ words|closing\ session|closing\ address).*/i
-      :outro
-    else
-      :talk
-    end
   end
 
   def to_mobile_json(request)

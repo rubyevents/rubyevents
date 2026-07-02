@@ -10,7 +10,9 @@
   description: |-
 <%= optimize_indentation(@talk.description, 4) %>
 <%- end -%>
+<%- if @talk.write_kind? -%>
   kind: "<%= @talk.kind %>"
+<%- end -%>
   language: "<%= @talk.language %>"
   date: "<%= @talk.date %>"
 <%- if options[:announced_at] -%>
