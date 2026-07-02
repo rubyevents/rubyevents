@@ -15,6 +15,7 @@
 #  geocode_metadata     :json             not null
 #  github_handle        :string
 #  github_metadata      :json             not null
+#  language_preferences :json             not null
 #  latitude             :decimal(10, 6)
 #  linkedin             :string           default(""), not null
 #  location             :string           default("")
@@ -150,6 +151,7 @@ class User < ApplicationRecord
 
   has_object :profiles
   has_object :favorite_statuses
+  has_object :languages
   has_object :talk_recommender
   has_object :watched_talk_seeder
   has_object :speakerdeck_feed

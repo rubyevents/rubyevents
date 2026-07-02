@@ -1,7 +1,7 @@
 <%= turbo_stream.replace "kinds_search_results" do %>
   <div
     id="kinds_search_results"
-    class="<%= @kinds.any? ? 'pb-4 border-b' : 'hidden' %>"
+    class="<%= @kinds.any? ? 'py-4 border-t' : 'hidden' %>"
     data-spotlight-search-target="kindsSearchResults">
 
     <% if @kinds.any? %>

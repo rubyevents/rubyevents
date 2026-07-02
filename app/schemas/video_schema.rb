@@ -14,15 +14,13 @@ class VideoSchema < RubyLLM::Schema
   array :talks, of: SubVideoSchema, description: "Sub-talks for panel discussions", required: false
 
   string :event_name, description: "Name of the event (e.g., 'RailsConf 2024')", required: false
-  string :date, description: "Date of the talk (YYYY-MM-DD format)", required: true
+  string :date, description: "Date of the talk (YYYY-MM-DD format)", required: true, pattern: "^\\d{4}-\\d{2}-\\d{2}$"
   string :time, description: "Time of the talk", required: false
-  string :published_at, description: "Date when the video was published (YYYY-MM-DD format)", required: false
-  string :announced_at, description: "Date when the talk was announced", required: false
+  string :published_at, description: "Date when the video was published (YYYY-MM-DD format)", required: false, min_length: 1
+  string :announced_at, description: "Date when the talk was announced", required: false, min_length: 1
   string :location, description: "Location within the venue", required: false
 
-  string :video_provider,
-    description: "Video hosting provider",
-    enum: ["youtube", "vimeo", "not_recorded", "scheduled", "mp4", "parent", "children", "not_published"]
+  string :video_provider, description: "Video hosting provider", enum: (Talk.video_providers.keys - ["parent"])
   string :video_id, description: "Video ID on the provider platform"
 
   boolean :external_player, description: "Whether to use external player", required: false
@@ -53,5 +51,9 @@ class VideoSchema < RubyLLM::Schema
 
   given video_provider: "mp4" do
     validates :video_id, type: :string, pattern: "^https?://"
+  end
+
+  dependent :published_at do
+    validates :video_provider, enum: Talk::WATCHABLE_PROVIDERS
   end
 end

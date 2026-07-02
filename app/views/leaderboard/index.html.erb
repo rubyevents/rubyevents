@@ -3,7 +3,13 @@
 
   <div class="mb-6">
     <%= link_to "All Time", leaderboard_path(filter: "all_time"), class: "btn btn-sm #{(@filter == "all_time") ? "btn-primary" : "btn-outline"} mr-2" %>
-    <%= link_to "Last 12 Months", leaderboard_path(filter: "last_12_months"), class: "btn btn-sm #{(@filter == "last_12_months") ? "btn-primary" : "btn-outline"}" %>
+    <%= link_to "Last 12 Months", leaderboard_path(filter: "last_12_months"), class: "btn btn-sm #{(@filter == "last_12_months") ? "btn-primary" : "btn-outline"} mr-2" %>
+
+    <% current_year = Date.today.year %>
+
+    <% current_year.downto(current_year - 10).each do |year| %>
+      <%= link_to year, leaderboard_path(year: year), class: "btn btn-sm #{(@year == year.to_s) ? "btn-primary" : "btn-outline"}" %>
+    <% end %>
   </div>
 
   <div class="overflow-x-auto">

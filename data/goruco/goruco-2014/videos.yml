@@ -1,11 +1,11 @@
----
 # Website: https://web.archive.org/web/20141008055937/http://goruco.com/
+---
 
 - id: "aaron-quint-goruco-2014"
   title: "The Future of Ruby Performance Tooling"
   raw_title: "GoRuCo 2014 - The Future of Ruby Performance Tooling by Aaron Quint"
   event_name: "GORUCO 2014"
-  date: "2014-07-16"
+  date: "2014-06-21"
   published_at: "2014-07-16T20:28:16Z"
   video_provider: "youtube"
   video_id: "cOaVIeX6qGg"
@@ -20,13 +20,13 @@
 
     (Some) of the topics I'd like to cover:
 
-        Brief overview of new Generational GC
-        Object Space dumps
-        Analyzing Object Space dumps
-        Using the object allocation maps
-        Rblineprof and ppprofiler
-        StackProf
-        rbtrace and attaching to a Unicorn
+    * Brief overview of new Generational GC
+    * Object Space dumps
+    * Analyzing Object Space dumps
+    * Using the object allocation maps
+    * Rblineprof and ppprofiler
+    * StackProf
+    * rbtrace and attaching to a Unicorn
 
     I'll also give a sneak preview of some tools we've been working on that are not Open Source (yet) which I'd like to share.
   speakers:
@@ -66,9 +66,9 @@
 
     I ended up coming across three amazing pieces of writing that helped illuminate things for me:
 
-        "Types and Programming Languages" by Benjamin C. Pierce
-        "Propositions as Types" by Philip Wadler
-        "A Practical Optional Type System for Clojure" - Ambrose Bonnaire-Sergeant
+    * "Types and Programming Languages" by Benjamin C. Pierce
+    * "Propositions as Types" by Philip Wadler
+    * "A Practical Optional Type System for Clojure" - Ambrose Bonnaire-Sergeant
 
     After studying these works, I still can't write Haskell, but I do understand a lot more about what types are. In the course of my research, I also came across two fascinating projects - a static type checker for Ruby, and a type inferencer for Ruby, both experimental projects from the University of Maryland's Programming Languages lab (PLUM). These provocative projects helped me understand how static types could be integrated into dynamically typed languages. While they aren't practical implementations, they made me think. Which is what I'd like to make you do during this talk - think about types, how they could help us, and what we sacrifice by not having an expressive type system in Ruby.
   speakers:
@@ -105,9 +105,9 @@
     I will be sharing these structured projects as a template for other beginner workshops, and talk about what I learned by building and teaching this workshop.
     I'll cover
 
-        What can be effectively covered in a day?
-        How can you setup a workshop up to maximize fun and learning on the day
-        Demos of some of the best projects!
+    * What can be effectively covered in a day?
+    * How can you setup a workshop up to maximize fun and learning on the day
+    * Demos of some of the best projects!
   speakers:
     - Audrey Troutt
   additional_resources:
@@ -119,7 +119,7 @@
   title: "BI Tooling with Rails"
   raw_title: "GoRuCo 2014 - BI Tooling with Rails by Kahn Solomon"
   event_name: "GORUCO 2014"
-  date: "2014-07-16"
+  date: "2014-06-21"
   published_at: "2014-07-16T15:35:07Z"
   video_provider: "youtube"
   video_id: "Xbn6SZ6TJpE"
@@ -138,13 +138,13 @@
 
     Here's a step by step outline of the talk:
 
-        The Problem
-        How Most Companies Try To Solve It
-        How Activerecord & erb Create a Better Solution
-        Going Through The Code
-        Dashboards, Visualizations and Complex Reports
-        Deploying The Application
-        The Social & Political Benefits Within Your Company
+    * The Problem
+    * How Most Companies Try To Solve It
+    * How Activerecord & erb Create a Better Solution
+    * Going Through The Code
+    * Dashboards, Visualizations and Complex Reports
+    * Deploying The Application
+    * The Social & Political Benefits Within Your Company
   speakers:
     - Solomon Kahn
 
@@ -171,7 +171,7 @@
   title: "Growing a Tech Community"
   raw_title: "GoRuCo 2014 - Growing a Tech Community by Luke Melia"
   event_name: "GORUCO 2014"
-  date: "2014-07-16"
+  date: "2014-06-21"
   published_at: "2014-07-16T15:30:11Z"
   video_provider: "youtube"
   video_id: "23MsBL3kEHk"
@@ -234,15 +234,16 @@
   video_id: "60rjetFNA_Q"
   description: |-
     Your rails app is slow. Even after memory caching, optimizing queries, and adding servers the problem persists, killing your user experience. You've heard of services called "Content Delivery Networks" (CDNs), that could help, but they only seem to work with static content. Worry not, for there is a solution: dynamic content caching at the edge. In this talk, we explain how CDNs can be used to accelerate dynamic rails applications.
+
     We will cover:
 
-        What is Caching?
-        What are CDNs?
-        What is Dynamic Caching?
-        Instant Purging
-        Surrogate-Control headers
-        Key Based Purging
-        A Rails Plugin for dynamic caching integration
+    * What is Caching?
+    * What are CDNs?
+    * What is Dynamic Caching?
+    * Instant Purging
+    * Surrogate-Control headers
+    * Key Based Purging
+    * A Rails Plugin for dynamic caching integration
 
     You'll leave with:
 
@@ -256,7 +257,7 @@
   title: "How to Debug Anything"
   raw_title: "GoRuCo 2014 - How to Debug Anything by James Golick"
   event_name: "GORUCO 2014"
-  date: "2014-07-16"
+  date: "2014-06-21"
   published_at: "2014-07-16T19:11:48Z"
   video_provider: "youtube"
   video_id: "VV7b7fs4VI8"

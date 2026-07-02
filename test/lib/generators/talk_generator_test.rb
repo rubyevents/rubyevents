@@ -16,7 +16,7 @@ class TalkGeneratorTest < Rails::Generators::TestCase
         assert_match(/id: "todo-2024"/, content)
         assert_match(/title: "Talk by TODO"/, content)
         assert_match(/description: "" # TODO/, content)
-        assert_match(/kind: "talk"/, content)
+        assert_no_match(/kind:/, content)
         assert_match(/language: "English"/, content)
       end
     end
@@ -41,6 +41,57 @@ class TalkGeneratorTest < Rails::Generators::TestCase
         assert_match(/language: "Japanese"/, content)
         assert_match(/date: "2025-09-15"/, content)
         assert_match(/- Jane Doe/, content)
+      end
+    end
+  end
+
+  test "infers a non-default kind from the title when --kind is omitted" do
+    videos_file_path = File.join(destination_root, "data/rubyconf/2030/videos.yml")
+
+    eliminate_validated_file(file_path: videos_file_path) do
+      run_generator ["--event-series", "rubyconf", "--event", "2030", "--title", "Keynote: Jane Doe", "--speakers", "Jane Doe"]
+
+      assert_file videos_file_path do |content|
+        assert_match(/title: "Keynote: Jane Doe"/, content)
+        assert_match(/kind: "keynote"/, content)
+      end
+    end
+  end
+
+  test "does not write a kind when the title classifies as the default talk" do
+    videos_file_path = File.join(destination_root, "data/rubyconf/2031/videos.yml")
+
+    eliminate_validated_file(file_path: videos_file_path) do
+      run_generator ["--event-series", "rubyconf", "--event", "2031", "--title", "Building Better APIs", "--speakers", "Jane Doe"]
+
+      assert_file videos_file_path do |content|
+        assert_match(/title: "Building Better APIs"/, content)
+        assert_no_match(/kind:/, content)
+      end
+    end
+  end
+
+  test "an explicit --kind wins over the title inference" do
+    videos_file_path = File.join(destination_root, "data/rubyconf/2032/videos.yml")
+
+    eliminate_validated_file(file_path: videos_file_path) do
+      run_generator ["--event-series", "rubyconf", "--event", "2032", "--title", "Keynote: Jane Doe", "--kind", "panel", "--speakers", "Jane Doe"]
+
+      assert_file videos_file_path do |content|
+        assert_match(/kind: "panel"/, content)
+      end
+    end
+  end
+
+  test "writes an explicit --kind talk that overrides a non-default classification" do
+    videos_file_path = File.join(destination_root, "data/rubyconf/2033/videos.yml")
+
+    eliminate_validated_file(file_path: videos_file_path) do
+      run_generator ["--event-series", "rubyconf", "--event", "2033", "--title", "Welcome to Authentication Hell", "--kind", "talk", "--speakers", "Jane Doe"]
+
+      assert_file videos_file_path do |content|
+        assert_match(/title: "Welcome to Authentication Hell"/, content)
+        assert_match(/kind: "talk"/, content)
       end
     end
   end
@@ -138,8 +189,10 @@ class TalkGeneratorTest < Rails::Generators::TestCase
   end
 
   def validate_talk_file(path)
-    errors = Static::Validators::SchemaArray.new(file_path: path).validate
-    assert_empty errors, "Videos YAML does not conform to schema: #{errors.join(", ")}"
+    [Static::Validators::SchemaArray, Static::Validators::TalkKind].each do |validator|
+      errors = validator.new(file_path: path).validate
+      assert_empty errors, "#{validator} failed: #{errors.map { |error| error.to_h["message"] }.join(", ")}"
+    end
   end
 
   def eliminate_validated_file(file_path:, &block)
