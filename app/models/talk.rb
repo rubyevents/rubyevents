@@ -124,6 +124,7 @@ class Talk < ApplicationRecord
 
   WATCHABLE_PROVIDERS = ["youtube", "mp4", "vimeo"]
   UNPUBLISHED_PROVIDERS = ["not_recorded", "scheduled", "not_published"]
+  SUPPLEMENTARY_KINDS = ["trailer", "recap", "aftermovie"]
 
   KIND_LABELS = {
     "keynote" => "Keynote",
@@ -145,8 +146,6 @@ class Talk < ApplicationRecord
     "intro" => "Intro",
     "outro" => "Outro"
   }.freeze
-
-  SUPPLEMENTARY_KINDS = ["trailer", "recap", "aftermovie"]
 
   # enums
   enum :video_provider, %w[youtube mp4 vimeo scheduled not_published not_recorded parent children].index_by(&:itself)
