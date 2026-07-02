@@ -15,6 +15,22 @@
       <%= form.text_field :location, class: "input input-bordered w-full" %>
     </div>
 
+    <div class="col-span-2">
+      <%= form.label :spoken_languages, "Languages I speak" %>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-2 mt-2 max-h-60 overflow-y-auto border rounded-lg p-3">
+        <% Language.used.each do |code, name| %>
+          <label class="flex items-center gap-2">
+            <%= check_box_tag "user[spoken_languages][]",
+                  code,
+                  user.spoken_languages.include?(code) %>
+
+            <%= name %>
+          </label>
+        <% end %>
+      </div>
+    </div>
+
     <div>
       <%= form.label :github_handle, "GitHub" %>
       <%= form.text_field :github_handle, class: "input input-bordered w-full" %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.2].define(version: 2026_06_25_000000) do
+ActiveRecord::Schema[8.2].define(version: 2026_07_02_093844) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -492,6 +492,7 @@ ActiveRecord::Schema[8.2].define(version: 2026_06_25_000000) do
     t.json "settings", default: {}, null: false
     t.string "slug", default: "", null: false
     t.string "speakerdeck", default: "", null: false
+    t.json "spoken_languages", default: [], null: false
     t.string "state_code"
     t.datetime "suspicion_cleared_at"
     t.datetime "suspicion_marked_at"

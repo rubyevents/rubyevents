@@ -123,4 +123,17 @@ class ProfilesControllerTest < ActionDispatch::IntegrationTest
     get profile_url("duplicate-controller")
     assert_redirected_to profile_url(canonical_user)
   end
+
+  test "owner can update their spoken languages" do
+    sign_in_as @user
+
+    patch profile_url(@user), params: {
+      user: {
+        spoken_languages: ["en", "ja"]
+      }
+    }
+
+    assert_redirected_to profile_url(@user)
+    assert_equal ["en", "ja"], @user.reload.spoken_languages
+  end
 end

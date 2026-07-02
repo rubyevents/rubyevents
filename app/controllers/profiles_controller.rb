@@ -142,7 +142,8 @@ class ProfilesController < ApplicationController
       :speakerdeck,
       :pronouns_type,
       :pronouns,
-      :slug
+      :slug,
+      spoken_languages: []
     )
   end
 
