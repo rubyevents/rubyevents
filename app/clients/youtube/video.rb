@@ -45,10 +45,11 @@ module YouTube
 
     def get_published_at(video_ids)
       Array(video_ids).each_slice(50).each_with_object({}) do |batch, result|
-        items = all_items("/videos", query: {part: "snippet", id: batch.join(",")})
+        items = all_items("/videos", query: {part: "snippet,liveStreamingDetails", id: batch.join(",")})
 
         items.each do |item|
-          published_at = item.dig("snippet", "publishedAt")
+          published_at = item.dig("liveStreamingDetails", "actualStartTime") || item.dig("snippet", "publishedAt")
+
           result[item["id"]] = Time.parse(published_at) if published_at
         end
       end

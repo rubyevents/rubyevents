@@ -138,8 +138,15 @@ class Talk < ApplicationRecord
     "fireside_chat" => "Fireside Chat",
     "interview" => "Interview",
     "award" => "Award",
-    "demo" => "Demo"
+    "demo" => "Demo",
+    "trailer" => "Trailer",
+    "recap" => "Recap",
+    "aftermovie" => "Aftermovie",
+    "intro" => "Intro",
+    "outro" => "Outro"
   }.freeze
+
+  SUPPLEMENTARY_KINDS = ["trailer", "recap", "aftermovie"]
 
   # enums
   enum :video_provider, %w[youtube mp4 vimeo scheduled not_published not_recorded parent children].index_by(&:itself)
@@ -147,7 +154,7 @@ class Talk < ApplicationRecord
   attribute :kind, :string
   enum :kind,
     %w[keynote talk lightning_talk panel workshop gameshow podcast q_and_a discussion fireside_chat
-      interview award demo].index_by(&:itself)
+      interview award demo trailer recap aftermovie intro outro].index_by(&:itself)
 
   def self.speaker_role_titles
     {
@@ -163,7 +170,12 @@ class Talk < ApplicationRecord
       fireside_chat: "Fireside Chat Host/Participant",
       interview: "Interviewer/Interviewee",
       award: "Award Presenter/Winner",
-      demo: "Demo Speaker"
+      demo: "Demo Speaker",
+      trailer: "Featured",
+      recap: "Featured",
+      aftermovie: "Featured",
+      intro: "Host",
+      outro: "Host"
     }
   end
 
@@ -703,6 +715,16 @@ class Talk < ApplicationRecord
       :interview
     when /^(demo:|demo\ |Startup\ Demo:).*/i, /.*(demo)$/i
       :demo
+    when /.*(trailer).*/i
+      :trailer
+    when /.*(recap).*/i
+      :recap
+    when /.*(after\ ?movie).*/i
+      :aftermovie
+    when /^(intro:|intro|introduction:|introduction|opening\ remarks:|opening\ remarks|welcome:|welcome\ talk|welcome\ address|opening\ session).*/i
+      :intro
+    when /^(outro:|outro|closing\ remarks:|closing\ remarks|closing\ words|closing\ session|closing\ address).*/i
+      :outro
     else
       :talk
     end

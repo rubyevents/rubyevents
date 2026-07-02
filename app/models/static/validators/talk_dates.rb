@@ -30,7 +30,8 @@ module Static
 
         return [] unless document.root
 
-        @start_date, @end_date, @timezone = event_context
+        @start_date, @end_date, @timezone, pre_date = event_context
+        @range_start = [pre_date, @start_date].compact.min
 
         document.root.each.flat_map do |video|
           nested = Array(video["talks"]&.each&.to_a)
@@ -43,18 +44,21 @@ module Static
 
       def event_context
         event_path = File.join(File.dirname(@file_path), "event.yml")
-        return [nil, nil, nil] unless File.exist?(event_path)
+        return [nil, nil, nil, nil] unless File.exist?(event_path)
 
         document = Yerba.parse_file(event_path)
 
         [
           parse_date(document["start_date"]&.value),
           parse_date(document["end_date"]&.value),
-          document["timezone"]&.value
+          document["timezone"]&.value,
+          parse_date(document["pre_date"]&.value)
         ]
       end
 
       def talk_errors(node)
+        return [] if Talk::SUPPLEMENTARY_KINDS.include?(node.value_at("kind"))
+
         errors = []
 
         date = parse_date(node.value_at("date"))
@@ -71,11 +75,12 @@ module Static
           )
         end
 
-        if date && @start_date && @end_date && !date.between?(@start_date, @end_date)
+        if date && @range_start && @end_date && !date.between?(@range_start, @end_date)
           location = node["date"]&.location
 
           errors << Static::Validators::Error.new(
-            "date (#{node.value_at("date")}) must be within the event dates (#{@start_date} to #{@end_date})",
+            "date (#{node.value_at("date")}) must be within the event dates (#{@range_start} to #{@end_date}). " \
+            "If this is a pre-conference activity (e.g. workshops or a pre-party) held before the event, add a pre_date to the event.yml.",
             file_path: @file_path,
             line: location&.start_line || 1,
             end_line: location&.end_line

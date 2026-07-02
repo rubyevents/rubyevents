@@ -57,6 +57,35 @@ class Static::Validators::TalkDatesTest < ActiveSupport::TestCase
     end
   end
 
+  test "skips supplementary kinds (trailer/recap/aftermovie)" do
+    Talk::SUPPLEMENTARY_KINDS.each do |kind|
+      videos = [{"kind" => kind, "date" => "2024-03-01", "published_at" => "2024-01-01T00:00:00Z"}]
+
+      with_temp_video(videos, event: event_yaml) do |path|
+        assert_empty Static::Validators::TalkDates.new(file_path: path).errors, "expected #{kind} to be skipped"
+      end
+    end
+  end
+
+  test "allows a talk on the pre_date (before start_date)" do
+    event = {"kind" => "conference", "pre_date" => "2024-01-14", "start_date" => "2024-01-15", "end_date" => "2024-01-17"}
+    videos = [{"kind" => "workshop", "date" => "2024-01-14", "video_provider" => "not_recorded"}]
+
+    with_temp_video(videos, event: event) do |path|
+      assert_empty Static::Validators::TalkDates.new(file_path: path).errors
+    end
+  end
+
+  test "still flags a talk before the pre_date" do
+    event = {"kind" => "conference", "pre_date" => "2024-01-14", "start_date" => "2024-01-15", "end_date" => "2024-01-17"}
+    videos = [{"kind" => "workshop", "date" => "2024-01-10", "video_provider" => "not_recorded"}]
+
+    with_temp_video(videos, event: event) do |path|
+      errors = Static::Validators::TalkDates.new(file_path: path).errors
+      assert errors.any? { |e| e.to_h["message"].include?("add a pre_date") }
+    end
+  end
+
   test "skips the range check when there is no event.yml" do
     videos = [{"date" => "2024-03-01", "published_at" => "2024-03-05"}]
 
