@@ -23,6 +23,32 @@ class Static::Validators::TalkDatesTest < ActiveSupport::TestCase
     end
   end
 
+  test "does not flag published_at before the talk date when the ignore comment is present" do
+    raw = <<~YAML
+      ---
+      - date: "2024-01-15"
+        published_at: "2024-01-10" # validator:disable published_at_before_date
+    YAML
+
+    with_raw_video(raw, event: event_yaml) do |path|
+      errors = Static::Validators::TalkDates.new(file_path: path).errors
+      refute errors.any? { |e| e.to_h["message"].include?("must not be before the talk date") }
+    end
+  end
+
+  test "the ignore comment only suppresses the matching line" do
+    raw = <<~YAML
+      ---
+      - date: "2024-01-15"
+        published_at: "2024-01-10"
+    YAML
+
+    with_raw_video(raw, event: event_yaml) do |path|
+      errors = Static::Validators::TalkDates.new(file_path: path).errors
+      assert errors.any? { |e| e.to_h["message"].include?("must not be before the talk date") }
+    end
+  end
+
   test "valid when published_at is on or after the talk date" do
     videos = [{"date" => "2024-01-15", "published_at" => "2024-01-20T09:00:00Z"}]
 
@@ -110,11 +136,15 @@ class Static::Validators::TalkDatesTest < ActiveSupport::TestCase
   end
 
   def with_temp_video(videos, event: nil)
+    with_raw_video(videos.to_yaml, event: event) { |path| yield path }
+  end
+
+  def with_raw_video(raw, event: nil)
     dir = Dir.mktmpdir
     videos_path = File.join(dir, "data", "testconf", "2024", "videos.yml")
 
     FileUtils.mkdir_p(File.dirname(videos_path))
-    File.write(videos_path, videos.to_yaml)
+    File.write(videos_path, raw)
     File.write(File.join(File.dirname(videos_path), "event.yml"), event.to_yaml) if event
 
     yield videos_path
