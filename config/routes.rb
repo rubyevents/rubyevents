@@ -241,6 +241,8 @@ Rails.application.routes.draw do
 
   resources :favorite_users, only: [:index, :create, :destroy, :update]
 
+  resource :language_preference, only: [:update]
+
   resources :events, param: :slug, only: [:index, :show] do
     resources :event_participations, only: [:create, :destroy]
 

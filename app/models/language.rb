@@ -4,6 +4,22 @@ class Language
   ALL_ENGLISH_NAMES = ISO_639::ISO_639_1.map { |language| language.english_name.split(";").first }.freeze
   ALL_LANGUAGES = ALL_ALPHA2_CODES.zip(ALL_ENGLISH_NAMES).to_h.freeze
 
+  UNDERSTANDS_CONFIRMATIONS = {
+    "en" => "Yes, I understand English",
+    "ja" => "はい、日本語がわかります",
+    "zh" => "是的，我听得懂中文",
+    "pt" => "Sim, eu entendo português",
+    "es" => "Sí, entiendo español",
+    "fr" => "Oui, je comprends le français",
+    "it" => "Sì, capisco l'italiano",
+    "de" => "Ja, ich verstehe Deutsch",
+    "ru" => "Да, я понимаю русский",
+    "tr" => "Evet, Türkçe anlıyorum",
+    "pl" => "Tak, rozumiem polski",
+    "bg" => "Да, разбирам български",
+    "ro" => "Da, înțeleg română"
+  }.freeze
+
   def self.find(term)
     ISO_639
       .search(term)
@@ -51,6 +67,10 @@ class Language
 
   def self.native_name(code)
     LanguageHelper::NATIVE_NAMES[code]
+  end
+
+  def self.understands_confirmation(code)
+    UNDERSTANDS_CONFIRMATIONS[code] || "Yes, I understand #{by_code(code) || code}"
   end
 
   def self.emoji_flag(code)

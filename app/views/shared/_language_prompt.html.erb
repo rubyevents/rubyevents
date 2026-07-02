@@ -1,0 +1,37 @@
+<div id="language-prompt">
+  <% pending_codes = Current.user ? Current.user.languages.pending_prompts : [] %>
+
+  <% if pending_codes.any? %>
+    <% watched_counts = Current.user.languages.watched_counts %>
+
+    <div class="bg-base-200 border-y border-base-300">
+      <div class="container py-3">
+        <div class="flex flex-col divide-y divide-base-300">
+          <% pending_codes.each do |code| %>
+          <% language_name = Language.by_code(code) || code.upcase %>
+          <div class="flex flex-wrap items-center justify-between gap-3 py-2 first:pt-0 last:pb-0">
+            <p class="text-sm">
+              <span class="mr-1"><%= Language.emoji_flag(code) %></span>
+              You've watched <strong><%= pluralize(watched_counts[code].to_i, "talk") %></strong> in <strong><%= language_name %></strong>. Do you understand it?
+            </p>
+
+            <div class="flex items-center gap-2">
+              <%= button_to Language.understands_confirmation(code),
+                    language_preference_path(language_code: code, answer: "understands"),
+                    method: :patch,
+                    class: "btn btn-sm btn-primary" %>
+
+              <%= button_to "No, I don't understand #{language_name}",
+                    language_preference_path(language_code: code, answer: "does_not_understand"),
+                    method: :patch,
+                    class: "btn btn-sm btn-outline" %>
+            </div>
+          </div>
+          <% end %>
+        </div>
+
+        <p class="text-sm text-base-content/60 mt-2">We'll use this to recommend talks.</p>
+      </div>
+    </div>
+  <% end %>
+</div>

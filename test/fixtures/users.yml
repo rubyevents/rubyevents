@@ -15,6 +15,7 @@
 #  geocode_metadata     :json             not null
 #  github_handle        :string
 #  github_metadata      :json             not null
+#  language_preferences :json             not null
 #  latitude             :decimal(10, 6)
 #  linkedin             :string           default(""), not null
 #  location             :string           default("")
@@ -28,7 +29,6 @@
 #  settings             :json             not null
 #  slug                 :string           default(""), not null, uniquely indexed
 #  speakerdeck          :string           default(""), not null
-#  spoken_languages     :json             not null
 #  state_code           :string
 #  suspicion_cleared_at :datetime
 #  suspicion_marked_at  :datetime

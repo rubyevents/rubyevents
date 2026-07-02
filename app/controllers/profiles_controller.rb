@@ -130,7 +130,7 @@ class ProfilesController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(
+    permitted = params.require(:user).permit(
       :github_handle,
       :twitter,
       :bsky,
@@ -143,8 +143,19 @@ class ProfilesController < ApplicationController
       :pronouns_type,
       :pronouns,
       :slug,
-      spoken_languages: []
+      language_preferences: {}
     )
+
+    if permitted.key?(:language_preferences)
+      permitted[:language_preferences] = permitted[:language_preferences].to_h.filter_map { |code, answer|
+        case answer
+        when "understands" then [code, {"understands" => true}]
+        when "does_not_understand" then [code, {"understands" => false}]
+        end
+      }.to_h
+    end
+
+    permitted
   end
 
   def set_favorite_user

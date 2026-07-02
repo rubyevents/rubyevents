@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.2].define(version: 2026_07_02_093844) do
+ActiveRecord::Schema[8.2].define(version: 2026_07_02_130000) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -479,6 +479,7 @@ ActiveRecord::Schema[8.2].define(version: 2026_07_02_093844) do
     t.json "geocode_metadata", default: {}, null: false
     t.string "github_handle"
     t.json "github_metadata", default: {}, null: false
+    t.json "language_preferences", default: {}, null: false
     t.decimal "latitude", precision: 10, scale: 6
     t.string "linkedin", default: "", null: false
     t.string "location", default: ""
@@ -492,7 +493,6 @@ ActiveRecord::Schema[8.2].define(version: 2026_07_02_093844) do
     t.json "settings", default: {}, null: false
     t.string "slug", default: "", null: false
     t.string "speakerdeck", default: "", null: false
-    t.json "spoken_languages", default: [], null: false
     t.string "state_code"
     t.datetime "suspicion_cleared_at"
     t.datetime "suspicion_marked_at"

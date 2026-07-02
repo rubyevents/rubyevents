@@ -15,22 +15,6 @@
       <%= form.text_field :location, class: "input input-bordered w-full" %>
     </div>
 
-    <div class="col-span-2">
-      <%= form.label :spoken_languages, "Languages I speak" %>
-
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-2 mt-2 max-h-60 overflow-y-auto border rounded-lg p-3">
-        <% Language.used.each do |code, name| %>
-          <label class="flex items-center gap-2">
-            <%= check_box_tag "user[spoken_languages][]",
-                  code,
-                  user.spoken_languages.include?(code) %>
-
-            <%= name %>
-          </label>
-        <% end %>
-      </div>
-    </div>
-
     <div>
       <%= form.label :github_handle, "GitHub" %>
       <%= form.text_field :github_handle, class: "input input-bordered w-full" %>
@@ -72,6 +56,64 @@
     <div>
       <%= form.label :website %>
       <%= form.text_field :website, class: "input input-bordered w-full" %>
+    </div>
+
+    <div class="col-span-2">
+      <%= form.label :languages, "Languages" %>
+      <p class="text-sm text-base-content/60 mb-2">This helps us recommend talks in languages you understand.</p>
+
+      <% watched_counts = user.languages.watched_counts %>
+      <% grouped_languages = Language.used.group_by do |code, _name|
+           if user.languages.understands?(code)
+             :understands
+           elsif watched_counts[code].to_i > 0
+             :watched
+           else
+             :other
+           end
+         end %>
+
+      <div class="flex flex-col gap-4 mt-2 max-h-72 overflow-y-auto border rounded-lg p-3">
+        <% [[:understands, "Languages you understand"], [:watched, "Languages you watched talks in"], [:other, "Other languages"]].each do |group, heading| %>
+          <% languages = grouped_languages[group] %>
+          <% next if languages.blank? %>
+
+          <div>
+            <h4 class="text-xs font-semibold text-base-content/50 uppercase tracking-wider mb-1"><%= heading %> (<%= languages.size %>)</h4>
+
+            <div class="flex flex-col gap-1">
+              <% languages.each do |code, name| %>
+                <% current = if user.languages.understands?(code)
+                     "understands"
+                   else
+                     (user.languages.does_not_understand?(code) ? "does_not_understand" : "unset")
+                   end %>
+                <div class="flex flex-wrap items-center justify-between gap-2 py-1">
+                  <span class="flex items-center gap-2">
+                    <span><%= Language.emoji_flag(code) %> <%= name %></span>
+                    <% if (watched = watched_counts[code].to_i) > 0 %>
+                      <span class="text-xs text-base-content/50">You've watched <%= pluralize(watched, "talk") %></span>
+                    <% end %>
+                  </span>
+
+                  <div class="join">
+                    <% [["understands", "Understand"], ["does_not_understand", "Don't understand"]].each do |value, label| %>
+                      <%= tag.input(
+                            type: "radio",
+                            name: "user[language_preferences][#{code}]",
+                            value: value,
+                            class: "join-item btn btn-sm",
+                            "aria-label": label,
+                            checked: current == value
+                          ) %>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 

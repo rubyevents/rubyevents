@@ -670,4 +670,65 @@ class UserTest < ActiveSupport::TestCase
     assert_equal 2, user.event_participations.where(event: event).count
     assert_equal [event], user.participated_events.where(id: event.id).to_a
   end
+
+  test "understands? and does_not_understand? reflect the stored preferences" do
+    user = users(:one)
+    user.update!(language_preferences: {"ja" => {"understands" => true}, "pt" => {"understands" => false}})
+
+    assert user.languages.understands?("ja")
+    assert user.languages.understands?(:ja)
+    assert_not user.languages.understands?("pt")
+    assert user.languages.does_not_understand?("pt")
+    assert_not user.languages.does_not_understand?("ja")
+  end
+
+  test "set moves a code between understood and not understood" do
+    user = users(:one)
+
+    user.languages.set("ja", :understands)
+    assert_equal ["ja"], user.reload.languages.understood
+
+    user.languages.set("ja", :does_not_understand)
+    assert_equal [], user.reload.languages.understood
+    assert_equal ["ja"], user.languages.not_understood
+
+    user.languages.set("ja", :unset)
+    assert_equal [], user.reload.languages.understood
+    assert_equal [], user.languages.not_understood
+    assert_empty user.language_preferences
+  end
+
+  test "language preferences reject an invalid shape" do
+    user = users(:one)
+    user.language_preferences = {"ja" => "maybe"}
+
+    assert_not user.valid?
+    assert user.errors[:language_preferences].any?
+  end
+
+  test "pending_prompt includes English so we don't assume everyone understands it" do
+    user = users(:one)
+    english_talk = Talk.find_by(language: "en")
+    user.watched_talks.find_or_create_by!(talk: english_talk) { |wt| wt.watched = true }
+
+    assert_includes user.languages.pending_prompts, "en"
+
+    user.languages.set("en", :does_not_understand)
+    assert_not_includes user.reload.languages.pending_prompts, "en"
+  end
+
+  test "pending_prompt returns a watched language without a preference" do
+    user = users(:one)
+    talk = talks(:non_english_talk_one)
+    assert_equal "pt", talk.language
+
+    user.languages.set("en", :understands)
+    assert_nil user.reload.languages.pending_prompt
+
+    user.watched_talks.create!(talk: talk, watched: true)
+    assert_equal "pt", user.languages.pending_prompt
+
+    user.languages.set("pt", :does_not_understand)
+    assert_nil user.reload.languages.pending_prompt
+  end
 end
