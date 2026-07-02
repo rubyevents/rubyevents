@@ -142,20 +142,25 @@ class ProfilesController < ApplicationController
       :speakerdeck,
       :pronouns_type,
       :pronouns,
-      :slug,
-      language_preferences: {}
+      :slug
     )
 
-    if permitted.key?(:language_preferences)
-      permitted[:language_preferences] = permitted[:language_preferences].to_h.filter_map { |code, answer|
-        case answer
-        when "understands" then [code, {"understands" => true}]
-        when "does_not_understand" then [code, {"understands" => false}]
-        end
-      }.to_h
-    end
+    permitted[:language_preferences] = language_preferences_param if params[:user]&.key?(:language_preferences)
 
     permitted
+  end
+
+  def language_preferences_param
+    raw = params.require(:user).fetch(:language_preferences, {}).to_unsafe_h
+
+    raw.each_with_object({}) do |(code, answer), result|
+      next unless Language.by_code(code)
+
+      case answer
+      when "understands" then result[code] = {"understands" => true}
+      when "does_not_understand" then result[code] = {"understands" => false}
+      end
+    end
   end
 
   def set_favorite_user
