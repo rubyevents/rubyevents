@@ -38,10 +38,12 @@ module Static
 
       private
 
+      PROVIDERS_WITHOUT_PUBLISHED_AT = (Talk::UNPUBLISHED_PROVIDERS + ["children", "parent"]).freeze
+
       def talk_errors(node)
         provider = node.value_at("video_provider")
 
-        return [] unless Talk::UNPUBLISHED_PROVIDERS.include?(provider)
+        return [] unless PROVIDERS_WITHOUT_PUBLISHED_AT.include?(provider)
         return [] if node.value_at("published_at").to_s.strip.empty?
 
         location = node["published_at"]&.location

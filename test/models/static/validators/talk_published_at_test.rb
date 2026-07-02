@@ -14,7 +14,7 @@ class Static::Validators::TalkPublishedAtTest < ActiveSupport::TestCase
     assert_not Static::Validators::TalkPublishedAt.new(file_path: file).applicable?
   end
 
-  ["not_recorded", "scheduled", "not_published"].each do |provider|
+  ["not_recorded", "scheduled", "not_published", "children", "parent"].each do |provider|
     test "flags published_at present for #{provider}" do
       videos = [{"video_provider" => provider, "published_at" => "2024-01-15"}]
 
