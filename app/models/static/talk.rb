@@ -75,6 +75,10 @@ module Static
       self["end_cue"]
     end
 
+    def kind
+      self["kind"].presence || ::Talk::Kind.from_title(title).to_s
+    end    
+
     def thumbnail_cue
       duration_to_formatted_cue(ActiveSupport::Duration.build(thumbnail_cue_in_seconds))
     end
