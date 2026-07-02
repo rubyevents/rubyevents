@@ -17,8 +17,8 @@ class SponsorsGeneratorTest < Rails::Generators::TestCase
 
       assert_file file_path do |content|
         assert_match(/name: "Platinum"/, content, "Platinum Tier missing")
-        assert_match(/Gold/, content, "Gold Tier missing")
-        assert_match(/Silver/, content, "Silver Tier missing")
+        assert_match(/name: "Gold"/, content, "Gold Tier missing")
+        assert_match(/name: "Silver"/, content, "Silver Tier missing")
       end
     end
   end
