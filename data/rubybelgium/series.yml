@@ -7,6 +7,12 @@ language: "English"
 twitter: "rubybelgium"
 default_country_code: "BE"
 linkedin: "https://www.linkedin.com/company/ruby-belgium"
-luma: "https://lu.ma/rubybelgium"
+luma: "https://luma.com/rubybelgium"
+
 aliases:
   - rubybelgium
+
+feeds:
+  - type: "ical"
+    url: "https://api.luma.com/ics/get?entity=calendar&id=cal-xxSFE7F64frGUhe"
+    name: "Luma"

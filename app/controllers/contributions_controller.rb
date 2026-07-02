@@ -84,7 +84,11 @@ class ContributionsController < ApplicationController
     events_with_start_date = Static::Event.all.pluck(:title, :start_date, :end_date).select { |_, start_date| start_date.present? }
     events_without_start_date = Static::Event.all.pluck(:title, :year, :start_date).select { |_, _, start_date, _| start_date.blank? }
 
-    ranges_for_events_with_dates = events_with_start_date.map { |name, start_date, end_date| [name, Date.parse(start_date)..Date.parse(end_date)] }
+    ranges_for_events_with_dates = events_with_start_date.filter_map do |name, start_date, end_date|
+      [name, start_date.to_date..(end_date || start_date).to_date]
+    rescue Date::Error
+      nil
+    end
     ranges_for_events_without_dates = events_without_start_date.map { |title, year, _| [title, Date.parse("#{year}-01-01").all_year] }
 
     @dates_by_event_name = ranges_for_events_with_dates.union(ranges_for_events_without_dates).to_h

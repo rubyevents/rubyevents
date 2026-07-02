@@ -6,8 +6,15 @@ frequency: "monthly"
 language: "English"
 twitter: "artificialruby"
 default_country_code: "US"
+luma: "https://luma.com/artificialruby"
+
 youtube_channels:
   - id: "UCKeTdPW5f7IMMsKP25XwOgA"
     name: "artificial_ruby"
     handle: "@artificial_ruby"
     playlist_matcher: "Artificial Ruby"
+
+feeds:
+  - type: "ical"
+    url: "https://api.luma.com/ics/get?entity=calendar&id=cal-sDQsjgNbdoHd8c3"
+    name: "Luma"

@@ -1,8 +1,17 @@
 ---
-name: "Poznań Ruby User Group (PRUG)"
+name: "Poznań Ruby User Group"
 website: "https://luma.com/prug"
 kind: "meetup"
 frequency: "monthly"
 language: "English"
 twitter: ""
 default_country_code: "PL"
+luma: "https://luma.com/prug"
+
+aliases:
+  - PRUG
+
+feeds:
+  - type: "ical"
+    url: "https://api.luma.com/ics/get?entity=calendar&id=cal-Y0YsxgnzWReQXMG"
+    name: "Luma"

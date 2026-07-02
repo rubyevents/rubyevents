@@ -5,8 +5,15 @@ kind: "conference"
 frequency: "yearly"
 language: "English"
 twitter: "madisonruby"
+luma: "https://luma.com/calendar/cal-LlD9HPh8QnHgqEQ"
+
 youtube_channels:
   - id: "UCWnPjmqvljcafA0z2U1fwKQ"
     name: "confreaks"
     handle: "@confreaks"
     playlist_matcher: "Madison+ Ruby"
+
+feeds:
+  - type: "ical"
+    url: "https://api.luma.com/ics/get?entity=calendar&id=cal-LlD9HPh8QnHgqEQ"
+    name: "Luma"
