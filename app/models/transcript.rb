@@ -107,8 +107,8 @@ class Transcript
       transcript = Transcript.new
       snippets = youtube_transcript.snippets || []
       snippets.each do |snippet|
-        start_time = (snippet.start * 1000).to_i
-        end_time = ((snippet.start + snippet.duration) * 1000).to_i
+        start_time = format_time((snippet.start * 1000).to_i)
+        end_time = format_time(((snippet.start + snippet.duration) * 1000).to_i)
         text = snippet.text
         transcript.add_cue(Cue.new(start_time: start_time, end_time: end_time, text: text))
       end

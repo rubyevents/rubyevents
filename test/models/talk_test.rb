@@ -17,7 +17,7 @@ class TalkTest < ActiveSupport::TestCase
 
     VCR.use_cassette("youtube/transcript") do
       perform_enqueued_jobs do
-        @talk.fetch_and_update_raw_transcript!
+        @talk.youtube_transcript.fetch_and_store!
       end
     end
 
@@ -31,7 +31,7 @@ class TalkTest < ActiveSupport::TestCase
 
     VCR.use_cassette("youtube/transcript_not_available") do
       perform_enqueued_jobs do
-        @talk.fetch_and_update_raw_transcript!
+        @talk.youtube_transcript.fetch_and_store!
       end
     end
 

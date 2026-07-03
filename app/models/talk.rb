@@ -106,6 +106,7 @@ class Talk < ApplicationRecord
   has_object :downloader
   has_object :thumbnails
   has_object :similar_recommender
+  has_object :youtube_transcript
 
   # validations
   validates :title, presence: true
@@ -194,7 +195,6 @@ class Talk < ApplicationRecord
 
   # jobs
   performs :update_from_yml_metadata!
-  performs :fetch_and_update_raw_transcript!, retries: 3
   performs :fetch_duration_from_youtube!
 
   # normalization
@@ -587,16 +587,6 @@ class Talk < ApplicationRecord
     return event.name unless event.meetup?
 
     static_metadata.try("event_name") || event.name
-  end
-
-  def fetch_and_update_raw_transcript!
-    transcript_client = YoutubeRb::Transcript::YouTubeTranscriptApi.new
-    youtube_transcript = transcript_client.fetch(video_id)
-    transcript = talk_transcript || Talk::Transcript.new(talk: self)
-
-    if youtube_transcript.present?
-      transcript.update!(raw_transcript: ::Transcript.create_from_youtube_transcript(youtube_transcript))
-    end
   end
 
   def fetch_duration_from_youtube!

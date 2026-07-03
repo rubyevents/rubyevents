@@ -228,6 +228,7 @@ group :development, :test do
   gem "bundler-audit", require: false
   gem "debug", platforms: %i[mri windows]
   gem "minitest-difftastic", "~> 0.2"
+  gem "minitest-mock", "~> 5.27"
 end
 
 group :development do
