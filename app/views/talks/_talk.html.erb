@@ -18,9 +18,23 @@
 <% language = Language.by_code(talk.language) %>
 <%= content_tag :div, id: dom_id(talk) do %>
 
-  <%= turbo_frame_tag dom_id(talk, :video_player) do %>
-    <%= render partial: "talks/video_player", locals: {talk: talk, current_user_watched_talk: current_user_watched_talk, is_watched: is_watched, video_provider: video_provider, video_id: video_id} %>
-  <% end %>
+  <div class="relative" data-controller="mention-popup" data-action="video-player:timeupdate@window->mention-popup#timeUpdate">
+    <%= turbo_frame_tag dom_id(talk, :video_player) do %>
+      <%= render partial: "talks/video_player", locals: {talk: talk, current_user_watched_talk: current_user_watched_talk, is_watched: is_watched, video_provider: video_provider, video_id: video_id} %>
+    <% end %>
+
+    <div data-mention-popup-target="card" data-action="click->mention-popup#jump"
+      class="absolute z-20 flex items-center gap-3 px-3 py-2 transition-all duration-300 translate-y-2 border shadow-lg opacity-0 cursor-pointer pointer-events-none left-3 top-3 rounded-xl bg-base-100/95 backdrop-blur border-base-300 max-w-xs">
+      <span class="text-xl" data-mention-popup-target="icon">🏷️</span>
+
+      <div class="min-w-0">
+        <div class="text-xs text-base-content/60"><span data-mention-popup-target="type">Topic</span> mentioned</div>
+        <div class="font-semibold truncate" data-mention-popup-target="name">Hotwire</div>
+      </div>
+
+      <span class="ml-1 text-xs text-primary whitespace-nowrap">Jump →</span>
+    </div>
+  </div>
 
   <div id="<%= dom_id(talk, :feedback_banner) %>">
     <% if is_watched %>
@@ -321,6 +335,11 @@
           <% end %>
         </div>
       <% end %>
+
+      <input type="radio" name="talk_tabs" role="tab" class="tab" aria-label="Mentions">
+      <div role="tabpanel" class="tab-content !rounded-s-xl rounded-xl bg-base-200/50 p-6 mt-6 overflow-x-auto max-w-full">
+        <%= render partial: "talks/mentions", locals: {talk: talk} %>
+      </div>
 
       <% if talk.slides_url.present? %>
         <input type="radio" name="talk_tabs" role="tab" class="tab" aria-label="Slides">

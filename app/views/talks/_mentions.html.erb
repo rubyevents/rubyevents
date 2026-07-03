@@ -1,0 +1,67 @@
+<%# locals: (talk:) %>
+
+<div data-controller="transcript">
+  <div class="flex flex-wrap items-center gap-2 mb-4">
+    <span class="badge badge-neutral badge-sm">Preview</span>
+    <div class="flex flex-wrap gap-1 ml-auto">
+      <button type="button" class="btn btn-xs btn-active">All</button>
+      <button type="button" class="btn btn-xs btn-ghost">Topics</button>
+      <button type="button" class="btn btn-xs btn-ghost">People</button>
+      <button type="button" class="btn btn-xs btn-ghost">Talks</button>
+      <button type="button" class="btn btn-xs btn-ghost">Events</button>
+      <button type="button" class="btn btn-xs btn-ghost">Links</button>
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <% dummy_talk_mentions(talk).each do |mention| %>
+      <% theme = mention_theme(mention[:kind]) %>
+      <% ring_shape = (mention[:kind] == :talk) ? "rounded-lg" : "rounded-full" %>
+
+      <div class="flex items-center gap-4 p-2.5 rounded-2xl border border-base-300/50 bg-base-100 hover:border-base-300 hover:shadow-sm transition">
+        <button type="button" class="self-center px-2 py-1 text-sm font-medium transition rounded-lg shrink-0 tabular-nums text-[#065FD4] bg-[#DEF1FF] hover:brightness-95" data-action="click->transcript#seek" data-start="<%= mention[:start] %>">
+          <%= mention[:time] %>
+        </button>
+
+        <div class="flex items-center justify-center shrink-0 ring-2 <%= ring_shape %> <%= theme[:ring] %>">
+          <% case mention[:kind] %>
+          <% when :person %>
+            <%= render Ui::AvatarComponent.new(mention_avatarable(mention), size: :sm) %>
+          <% when :event %>
+            <%= image_tag image_path(mention[:record].avatar_image_path), alt: mention[:record].name, class: "object-cover rounded-full size-9" %>
+          <% when :talk %>
+            <%= image_tag mention[:record].thumbnail_sm, alt: mention[:record].title, class: "object-cover rounded-md w-14 h-9" %>
+          <% when :topic %>
+            <div class="flex items-center justify-center rounded-full size-9 <%= theme[:pill] %>"><%= fa("gem", size: :xs) %></div>
+          <% else %>
+            <div class="flex items-center justify-center rounded-full size-9 <%= theme[:pill] %>"><%= fa("link", size: :xs) %></div>
+          <% end %>
+        </div>
+
+        <div class="flex flex-col flex-1 min-w-0">
+          <div class="flex items-center gap-2">
+            <% if mention_link(mention).present? %>
+              <%= link_to mention_title(mention), mention_link(mention), class: "font-semibold truncate hover:underline", data: {turbo_frame: "_top"} %>
+            <% else %>
+              <span class="font-semibold truncate"><%= mention_title(mention) %></span>
+            <% end %>
+
+            <span class="px-2 py-0.5 rounded-full text-[11px] font-medium shrink-0 <%= theme[:pill] %>"><%= mention[:kind].to_s.capitalize %></span>
+
+            <% if mention[:kind] == :person && mention[:record].nil? %>
+              <span class="text-[11px] text-base-content/60 shrink-0">not on RubyEvents</span>
+            <% end %>
+          </div>
+
+          <p class="text-sm truncate text-base-content/70">“…<%= mention[:surface] %>…”</p>
+        </div>
+
+        <% if mention[:status] == :verified %>
+          <span class="px-2 py-0.5 rounded-full text-[11px] font-medium shrink-0 text-green-700 bg-green-100" title="Verified reference">Verified</span>
+        <% else %>
+          <span class="px-2 py-0.5 rounded-full text-[11px] font-medium shrink-0 text-amber-700 bg-amber-100" title="Auto-detected — pending review">Suggested</span>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

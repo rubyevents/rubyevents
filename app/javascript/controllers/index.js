@@ -58,6 +58,9 @@ application.register("lazy-loading", LazyLoadingController)
 import MapController from "./map_controller"
 application.register("map", MapController)
 
+import MentionPopupController from "./mention_popup_controller"
+application.register("mention-popup", MentionPopupController)
+
 import ModalController from "./modal_controller"
 application.register("modal", ModalController)
 
