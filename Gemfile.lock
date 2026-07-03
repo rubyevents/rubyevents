@@ -304,6 +304,8 @@ GEM
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
+    faraday-follow_redirects (0.5.0)
+      faraday (>= 1, < 3)
     faraday-multipart (1.2.0)
       multipart-post (~> 2.0)
     faraday-net_http (3.4.4)
@@ -335,27 +337,6 @@ GEM
     gems (1.3.0)
     globalid (1.3.0)
       activesupport (>= 6.1)
-    google-protobuf (4.34.1)
-      bigdecimal
-      rake (~> 13.3)
-    google-protobuf (4.34.1-aarch64-linux-gnu)
-      bigdecimal
-      rake (~> 13.3)
-    google-protobuf (4.34.1-aarch64-linux-musl)
-      bigdecimal
-      rake (~> 13.3)
-    google-protobuf (4.34.1-arm64-darwin)
-      bigdecimal
-      rake (~> 13.3)
-    google-protobuf (4.34.1-x86_64-darwin)
-      bigdecimal
-      rake (~> 13.3)
-    google-protobuf (4.34.1-x86_64-linux-gnu)
-      bigdecimal
-      rake (~> 13.3)
-    google-protobuf (4.34.1-x86_64-linux-musl)
-      bigdecimal
-      rake (~> 13.3)
     grepfruit (3.2.1)
       dry-cli (~> 1.1)
     groupdate (6.7.0)
@@ -475,6 +456,7 @@ GEM
       prism (~> 1.5)
     minitest-difftastic (0.2.1)
       difftastic (~> 0.6)
+    minitest-mock (5.27.0)
     mission_control-jobs (1.1.0)
       actioncable (>= 7.1)
       actionpack (>= 7.1)
@@ -692,6 +674,12 @@ GEM
       rubyzip (>= 1.2.2, < 4.0)
       websocket (~> 1.0)
     shellany (0.0.1)
+    simplecov (0.22.0)
+      docile (~> 1.1)
+      simplecov-html (~> 0.11)
+      simplecov_json_formatter (~> 0.1)
+    simplecov-html (0.13.2)
+    simplecov_json_formatter (0.1.4)
     simpleidn (0.2.3)
     sitemap_generator (6.3.0)
       builder (~> 3.0)
@@ -803,6 +791,10 @@ GEM
     yerba (0.7.3-x86_64-darwin)
     yerba (0.7.3-x86_64-linux-gnu)
     yerba (0.7.3-x86_64-linux-musl)
+    youtube-transcript-rb (0.2.3)
+      faraday (~> 2.0)
+      faraday-follow_redirects (~> 0.3)
+      nokogiri (~> 1.15)
     yt (0.34.1)
       activesupport
     zeitwerk (2.7.5)
@@ -847,7 +839,6 @@ DEPENDENCIES
   frozen_record (~> 0.27.2)
   gems
   geocoder!
-  google-protobuf
   grepfruit
   groupdate
   guard
@@ -866,6 +857,7 @@ DEPENDENCIES
   meta-tags
   minisky (~> 0.4.0)
   minitest-difftastic (~> 0.2)
+  minitest-mock (~> 5.27)
   mission_control-jobs
   omniauth
   omniauth-github
@@ -888,6 +880,7 @@ DEPENDENCIES
   ruby_llm (~> 1.15.0)
   ruby_llm-schema!
   selenium-webdriver
+  simplecov
   sitemap_generator (~> 6.3)
   solid_cache
   solid_queue!
@@ -905,6 +898,7 @@ DEPENDENCIES
   web-console
   webmock
   yerba (~> 0.7.3)
+  youtube-transcript-rb
   yt
 
 RUBY VERSION

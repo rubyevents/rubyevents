@@ -35,4 +35,17 @@ class PageControllerTest < ActionDispatch::IntegrationTest
     assert_select "meta[name='twitter:card'][content=summary_large_image]"
     assert_select "meta[name='twitter:image'][content=?]", expected_logo_url
   end
+
+  test "home page should render featured events" do
+    events(:rails_world_2023).update!(
+      featured_background: "#101820",
+      featured_color: "#ffffff",
+      home_sort_date: Date.today
+    )
+
+    get root_path
+
+    assert_response :success
+    assert_select "section[aria-label=?]", "Featured Events"
+  end
 end

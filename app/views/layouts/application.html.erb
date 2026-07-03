@@ -38,7 +38,7 @@
   <body data-controller="preserve-scroll" class="<%= yield(:body_class) %>">
     <div class="hotwire-native:hidden">
       <%= render "shared/navbar" %>
-      <%= render "shared/language_prompt" %>
+      <%= render "shared/language_prompt" unless controller_name == "page" && action_name == "home" %>
     </div>
 
     <div class="min-h-screen">

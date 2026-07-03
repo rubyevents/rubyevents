@@ -62,8 +62,8 @@ class Event < ApplicationRecord
   has_many :talks, dependent: :destroy, inverse_of: :event, foreign_key: :event_id
   has_many :watchable_talks, -> { watchable }, class_name: "Talk"
   has_many :speakers, -> { distinct }, through: :talks, class_name: "User"
-  has_many :keynote_speakers, -> { joins(:talks).where(talks: {kind: "keynote"}).distinct },
-    through: :talks, source: :speakers
+  has_many :keynote_talks, -> { where(kind: "keynote") }, class_name: "Talk", foreign_key: :event_id, inverse_of: :event
+  has_many :keynote_speakers, -> { distinct }, through: :keynote_talks, source: :speakers
   has_many :topics, -> { distinct }, through: :talks
   has_many :sponsors, dependent: :destroy
   has_many :organizations, through: :sponsors
@@ -99,7 +99,6 @@ class Event < ApplicationRecord
   has_object :sponsors_file
   has_object :cfp_file
   has_object :involvements_file
-  has_object :transcripts_file
   has_object :venue
   has_object :videos_file
 

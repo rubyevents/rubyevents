@@ -148,6 +148,8 @@ export default class extends Controller {
     // for seekTo to work we need to store again the player instance
     this.player = player
 
+    this.startTimeBroadcast()
+
     const controlBar = player.elements.container.querySelector('.v-controlBar')
 
     if (controlBar) {
@@ -179,6 +181,11 @@ export default class extends Controller {
 
     if (this.hasProgressSecondsValue && this.progressSecondsValue > 0 && !this.isFullyWatched()) {
       this.player.seekTo(this.progressSecondsValue)
+    }
+
+    if (this.pendingSeek != null) {
+      this.player.seekTo(this.pendingSeek)
+      this.pendingSeek = null
     }
 
     if (this.autoplay) {
@@ -305,9 +312,30 @@ export default class extends Controller {
 
     const { time } = event.params
 
-    if (time) {
+    if (time == null) return
+
+    this.player.seekTo(time)
+
+    if (!this.isPlaying) this.player.play()
+  }
+
+  seekToTime (event) {
+    const time = event.detail?.time
+
+    if (time == null) return
+
+    if (this.ready) {
       this.player.seekTo(time)
+      if (!this.isPlaying) this.player.play()
+      return
     }
+
+    if (!this.hasPlayerTarget) return
+
+    this.pendingSeek = time
+    this.autoplay = true
+    this.removeOverlays()
+    this.player = new Vlitejs(this.playerTarget, this.options)
   }
 
   pause () {
@@ -318,6 +346,25 @@ export default class extends Controller {
 
   disconnect () {
     this.stopProgressTracking()
+    this.stopTimeBroadcast()
+  }
+
+  startTimeBroadcast () {
+    if (this.timeBroadcast) return
+
+    this.timeBroadcast = setInterval(async () => {
+      if (!this.ready || !this.isPlaying) return
+
+      const time = await this.getCurrentTime()
+      this.dispatch('timeupdate', { target: window, detail: { time } })
+    }, 500)
+  }
+
+  stopTimeBroadcast () {
+    if (!this.timeBroadcast) return
+
+    clearInterval(this.timeBroadcast)
+    this.timeBroadcast = null
   }
 
   #togglePictureInPicturePlayer (enabled) {

@@ -6,11 +6,11 @@
 
     <div class="flex flex-col md:flex-row items-start md:items-center gap-4">
       <div class="tabs tabs-boxed">
-        <button type="button" class="tab tab-active" data-events-view-switcher-target="previewButton" data-action="click->events-view-switcher#showPreview">
+        <button type="button" class="tab tab-active" data-events-view-switcher-target="button" data-events-view-switcher-view-param="preview" data-action="click->events-view-switcher#show">
           Preview
         </button>
 
-        <button type="button" class="tab" data-events-view-switcher-target="listButton" data-action="click->events-view-switcher#showList">
+        <button type="button" class="tab" data-events-view-switcher-target="button" data-events-view-switcher-view-param="list" data-action="click->events-view-switcher#show">
           List
         </button>
 
@@ -25,11 +25,11 @@
     </div>
   </div>
 
-  <div data-events-view-switcher-target="previewView">
+  <div data-events-view-switcher-target="view" data-events-view-switcher-view-param="preview">
     <%= render partial: "events/featured_card_list", locals: {events: @events} %>
   </div>
 
-  <div class="hidden mt-6" data-events-view-switcher-target="listView">
+  <div class="hidden mt-6" data-events-view-switcher-target="view" data-events-view-switcher-view-param="list">
     <%= render partial: "events/plain_list", locals: {events: @events} %>
   </div>
 </div>

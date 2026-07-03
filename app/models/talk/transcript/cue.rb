@@ -1,4 +1,4 @@
-class Cue
+class Talk::Transcript::Cue
   attr_reader :start_time, :end_time, :text
 
   def initialize(start_time:, end_time:, text:)
@@ -28,6 +28,7 @@ class Cue
     hours = parts[0] * 3600
     minutes = parts[1] * 60
     seconds = parts[2]
+
     (hours + minutes + seconds).to_i
   rescue
     0

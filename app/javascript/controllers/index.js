@@ -100,6 +100,9 @@ application.register("tooltip", TooltipController)
 import TopBannerController from "./top_banner_controller"
 application.register("top-banner", TopBannerController)
 
+import TranscriptController from "./transcript_controller"
+application.register("transcript", TranscriptController)
+
 import TransitionController from "./transition_controller"
 application.register("transition", TransitionController)
 

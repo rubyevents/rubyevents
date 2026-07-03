@@ -135,8 +135,8 @@ gem "dry-initializer-rails"
 # Type system for Ruby supporting coercions, constraints and complex types
 gem "dry-types", "~> 1.7"
 
-# Protocol Buffers are Google's data interchange format.
-gem "google-protobuf", require: false
+# YouTube transcript unofficial API client.
+gem "youtube-transcript-rb"
 
 # Extract Collaborator Objects from your Active Records, a new concept called Associated Objects
 gem "active_record-associated_object"
@@ -228,6 +228,7 @@ group :development, :test do
   gem "bundler-audit", require: false
   gem "debug", platforms: %i[mri windows]
   gem "minitest-difftastic", "~> 0.2"
+  gem "minitest-mock", "~> 5.27"
 end
 
 group :development do
@@ -256,6 +257,7 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  gem "simplecov", require: false
   gem "capybara"
   gem "rails-controller-testing"
   gem "selenium-webdriver"

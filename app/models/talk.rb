@@ -97,15 +97,15 @@ class Talk < ApplicationRecord
 
   has_many :aliases, as: :aliasable, dependent: :destroy
 
-  has_one :talk_transcript, class_name: "Talk::Transcript", dependent: :destroy
-  accepts_nested_attributes_for :talk_transcript
-  delegate :transcript, :raw_transcript, :enhanced_transcript, to: :talk_transcript, allow_nil: true
+  has_many :talk_transcripts, class_name: "Talk::Transcript", dependent: :destroy
+  accepts_nested_attributes_for :talk_transcripts
 
   # associated objects
   has_object :agents
   has_object :downloader
   has_object :thumbnails
   has_object :similar_recommender
+  has_object :youtube_transcript
 
   # validations
   validates :title, presence: true
@@ -122,6 +122,7 @@ class Talk < ApplicationRecord
   WATCHABLE_PROVIDERS = ["youtube", "mp4", "vimeo"]
   UNPUBLISHED_PROVIDERS = ["not_recorded", "scheduled", "not_published"]
   SUPPLEMENTARY_KINDS = ["trailer", "recap", "aftermovie"]
+  NON_RECOMMENDABLE_KINDS = SUPPLEMENTARY_KINDS + ["intro", "outro", "trailer", "recap", "aftermovie"]
 
   KIND_LABELS = {
     "keynote" => "Keynote",
@@ -194,7 +195,6 @@ class Talk < ApplicationRecord
 
   # jobs
   performs :update_from_yml_metadata!
-  performs :fetch_and_update_raw_transcript!, retries: 3
   performs :fetch_duration_from_youtube!
 
   # normalization
@@ -204,35 +204,39 @@ class Talk < ApplicationRecord
 
   # ensure that during the reindex process the associated records are eager loaded
   scope :without_raw_transcript, -> {
-    joins(:talk_transcript)
+    joins(:talk_transcripts)
       .where(%(
         talk_transcripts.raw_transcript IS NULL
         OR talk_transcripts.raw_transcript = ''
         OR talk_transcripts.raw_transcript = '[]'
       ))
+      .distinct
   }
   scope :with_raw_transcript, -> {
-    joins(:talk_transcript)
+    joins(:talk_transcripts)
       .where(%(
         talk_transcripts.raw_transcript IS NOT NULL
         AND talk_transcripts.raw_transcript != '[]'
       ))
+      .distinct
   }
   scope :without_enhanced_transcript,
     -> {
-      joins(:talk_transcript)
+      joins(:talk_transcripts)
         .where(%(
           talk_transcripts.enhanced_transcript IS NULL
           OR talk_transcripts.enhanced_transcript = ''
           OR talk_transcripts.enhanced_transcript = '[]'
         ))
+        .distinct
     }
   scope :with_enhanced_transcript, -> {
-    joins(:talk_transcript)
+    joins(:talk_transcripts)
       .where(%(
         talk_transcripts.enhanced_transcript IS NOT NULL
         AND talk_transcripts.enhanced_transcript != '[]'
       ))
+      .distinct
   }
   scope :with_summary, -> { where("summary IS NOT NULL AND summary != ''") }
   scope :without_summary, -> { where("summary IS NULL OR summary = ''") }
@@ -274,6 +278,30 @@ class Talk < ApplicationRecord
 
   def orphaned?
     static_id.blank? || self.class.all_static_ids.exclude?(static_id)
+  end
+
+  def transcript_languages
+    talk_transcripts.map(&:language)
+  end
+
+  def talk_transcript(language: self.language)
+    transcripts = talk_transcripts.to_a
+    transcripts.find { |transcript| transcript.language == language } ||
+      transcripts.find { |transcript| transcript.language == self.language } ||
+      transcripts.find { |transcript| transcript.language == "en" } ||
+      transcripts.first
+  end
+
+  def transcript(language: self.language)
+    talk_transcript(language:)&.transcript
+  end
+
+  def raw_transcript(language: self.language)
+    talk_transcript(language:)&.raw_transcript
+  end
+
+  def enhanced_transcript(language: self.language)
+    talk_transcript(language:)&.enhanced_transcript
   end
 
   def published?
@@ -587,15 +615,6 @@ class Talk < ApplicationRecord
     return event.name unless event.meetup?
 
     static_metadata.try("event_name") || event.name
-  end
-
-  def fetch_and_update_raw_transcript!
-    youtube_transcript = YouTube::Transcript.get(video_id)
-    transcript = talk_transcript || Talk::Transcript.new(talk: self)
-
-    if youtube_transcript.present?
-      transcript.update!(raw_transcript: ::Transcript.create_from_youtube_transcript(youtube_transcript))
-    end
   end
 
   def fetch_duration_from_youtube!

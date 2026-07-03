@@ -54,4 +54,24 @@ module TalksHelper
   rescue URI::InvalidURIError
     resource["url"]
   end
+
+  def transcript_language_label(talk_transcript)
+    name = Language.find(talk_transcript.language)&.english_name || talk_transcript.language.upcase
+    talk_transcript.auto_generated ? "#{name} (auto-generated)" : name
+  end
+
+  def transcript_shows_hours?(cue_list)
+    cue_list.cues.last&.start_time_in_seconds.to_i >= 3600
+  end
+
+  def formatted_cue_timestamp(cue, show_hours:)
+    minutes, seconds = cue.start_time_in_seconds.divmod(60)
+
+    if show_hours
+      hours, minutes = minutes.divmod(60)
+      format("%d:%02d:%02d", hours, minutes, seconds)
+    else
+      format("%02d:%02d", minutes, seconds)
+    end
+  end
 end

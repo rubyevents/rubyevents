@@ -29,7 +29,7 @@
         </div>
 
         <div class="text-xs text-gray-500 line-clamp-1">
-          <% if defined?(content) %>
+          <% if defined?(content) && content.present? %>
             <%= content %>
           <% elsif user.github_handle.present? %>
             <%= "@#{user.github_handle}" %>

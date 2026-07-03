@@ -190,9 +190,19 @@
   thumbnail_lg: "https://img.youtube.com/vi/c58mN6NtwsQ/hqdefault.jpg"
   thumbnail_xl: "https://img.youtube.com/vi/c58mN6NtwsQ/hqdefault.jpg"
   description: ""
-  speakers:
-    - Akira Matsuda
   talks:
+    - id: "intro-lighting-talk-rubykaigi-2023"
+      title: "Lightning Talks Intro"
+      kind: "intro"
+      start_cue: "00:00"
+      end_cue: "00:55"
+      thumbnail_cue: "00:11"
+      language: "English"
+      video_provider: "parent"
+      video_id: "intro-lighting-talk-rubykaigi-2023"
+      speakers:
+        - Akira Matsuda
+
     - id: "katsyoshi-lighting-talk-rubykaigi-2023"
       title: "Lightning Talk: Building Ruby Native Extension using Ruby"
       kind: "lightning_talk"
