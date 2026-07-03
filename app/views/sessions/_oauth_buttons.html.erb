@@ -4,7 +4,7 @@
 <% github_path = "/auth/github?redirect_to=#{redirect_to_path}&state=#{combined_state}" %>
 <% github_start_path = hotwire_native_v1_start_path(provider: :github, redirect_to: redirect_to_path, state: combined_state) %>
 
-<% unless Rails.env.local? %>
+<% unless Rails.env.development? %>
   <div>
     <%= ui_button url: github_path, kind: :neutral, class: "w-full", method: :post, data: {turbo: false, controller: "bridge--oauth", action: "click->bridge--oauth#signIn:prevent", "bridge--oauth-start-path-value": github_start_path, "bridge--oauth-exchange-path-value": exchange_sessions_path} do %>
       <%= icon "github", size: :sm, class: "mr-2" %>
