@@ -442,35 +442,69 @@ class BrowseController < ApplicationController
   end
 
   def build_topic_sections
-    Topic.approved
+    topics = Topic.approved
       .joins(:talks)
-      .where(talks: {video_provider: Talk::WATCHABLE_PROVIDERS})
+      .where(talks: { video_provider: Talk::WATCHABLE_PROVIDERS })
       .group("topics.id")
       .having("COUNT(talks.id) >= 5")
       .order(Arel.sql("COUNT(talks.id) DESC"))
       .limit(4)
-      .map do |topic|
-        {
-          topic_id: topic.id,
-          talk_ids: topic.talks.watchable.order(date: :desc).limit(15).pluck(:id)
-        }
-      end
+      .select(:id)
+
+    topic_ids = topics.map(&:id)
+    return [] if topic_ids.empty?
+
+    # Fetch topic -> talk id rows in one query and group them in Ruby.
+    talk_topic_rows = TalkTopic.joins(:talk)
+      .where(topic_id: topic_ids, talks: { video_provider: Talk::WATCHABLE_PROVIDERS })
+      .order("talks.date DESC")
+      .pluck(:topic_id, "talks.id")
+
+    talks_by_topic = talk_topic_rows.group_by { |topic_id, talk_id|
+      topic_id
+    }.transform_values { |pairs|
+      pairs.map { |_, talk_id| talk_id }.first(15)
+    }
+
+    topic_ids.map do |tid|
+      {
+        topic_id: tid,
+        talk_ids: talks_by_topic[tid] || []
+      }
+    end
   end
 
   def build_event_sections
-    Event.joins(:talks)
-      .where(talks: {video_provider: Talk::WATCHABLE_PROVIDERS})
+    events = Event.joins(:talks)
+      .where(talks: { video_provider: Talk::WATCHABLE_PROVIDERS })
       .where("talks.published_at > ?", 12.months.ago)
       .group("events.id")
       .having("COUNT(talks.id) >= 3")
       .order(Arel.sql("MAX(talks.published_at) DESC"))
       .limit(6)
-      .map do |event|
-        {
-          event_id: event.id,
-          talk_ids: event.talks.watchable.order(date: :desc).limit(15).pluck(:id)
-        }
-      end
+      .select(:id)
+
+    event_ids = events.map(&:id)
+    return [] if event_ids.empty?
+
+    # Fetch event -> talk id rows in one query and group them in Ruby.
+    talk_rows = Talk.watchable
+      .where(event_id: event_ids)
+      .order(date: :desc)
+      .pluck(:event_id, :id)
+
+    talks_by_event = talk_rows.group_by { |event_id, talk_id|
+      event_id
+    }.transform_values { |pairs|
+      pairs.map { |_, talk_id| talk_id }.first(15)
+    }
+
+    event_ids.map do |eid|
+      {
+        event_id: eid,
+        talk_ids: talks_by_event[eid] || []
+      }
+    end
   end
 
   def load_closing_cfps
