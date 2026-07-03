@@ -75,21 +75,13 @@
     <%= event.description %>
   </p>
 
-  <% event.cfps.each do |cfp| %>
+  <% event.cfps.open.each do |cfp| %>
     <% if event.start_date && event.start_date > Date.today && !event.static_metadata.cancelled? %>
       <div class="mt-6 p-4 bg-gray-100 rounded-lg max-w-[700px]">
         <h3 class="font-bold text-lg mb-2"><%= cfp.name.presence || "Call for Proposals" %></h3>
 
         <p class="text-[#636B74] mb-3">
-          <% if cfp.future? %>
-            The CFP opens on <%= cfp.formatted_open_date %><% if cfp.close_date.present? %> and closes on <%= cfp.formatted_close_date %><% end %>.
-          <% elsif cfp.open? %>
-            The CFP is currently open and closes on <%= cfp.formatted_close_date %>.
-          <% elsif cfp.closed? %>
-            The CFP closed on <%= cfp.formatted_close_date %>.
-          <% else %>
-            Call for Proposals information is available.
-          <% end %>
+          The CFP is currently open and closes on <%= cfp.formatted_close_date %>.
         </p>
 
         <% if cfp.close_date.blank? || cfp.open? %>
