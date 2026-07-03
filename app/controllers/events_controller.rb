@@ -1,16 +1,30 @@
 class EventsController < ApplicationController
   include WatchedTalks
   include Pagy::Backend
-  skip_before_action :authenticate_user!, only: %i[index show update]
-  before_action :set_event, only: %i[show edit update]
+
+  skip_before_action :authenticate_user!, only: %i[index show]
+  before_action :set_event, only: %i[show reimport reindex]
   before_action :set_user_favorites, only: %i[show]
+  before_action :require_admin!, only: %i[reimport reindex]
 
   # GET /events
   def index
-    @events = Event.includes(:organisation, :keynote_speakers)
-      .conference
+    @events = Event.includes(:series, :keynote_speakers)
       .where(end_date: Date.today..)
       .order(start_date: :asc)
+
+    respond_to do |format|
+      format.html
+      format.ics do
+        calendar = Icalendar::Calendar.new
+
+        @events.where(date_precision: :day).each do |event|
+          calendar.add_event(event.to_ical)
+        end
+
+        render plain: calendar.to_ical
+      end
+    end
   end
 
   # GET /events/1
@@ -24,51 +38,61 @@ class EventsController < ApplicationController
       @recent_talks = @event.talks.where(meta_talk: false).includes(:speakers, :parent_talk, child_talks: :speakers).order(date: :desc).to_a.sample(8)
       @featured_speakers = @event.speakers.joins(:talks).distinct.to_a.sample(8)
     else
-      @keynotes = @event.talks.joins(:speakers).where(kind: "keynote").includes(:speakers, event: :organisation)
-      @recent_talks = @event.talks.watchable.includes(:speakers, event: :organisation).limit(8).shuffle
+      @keynotes = @event.talks.joins(:speakers).where(kind: "keynote").includes(:speakers, event: :series)
+      @recent_talks = @event.talks.watchable.includes(:speakers, event: :series).limit(8).shuffle
       keynote_speakers = @event.speakers.joins(:talks).where(talks: {kind: "keynote"}).distinct
       other_speakers = @event.speakers.joins(:talks).where.not(talks: {kind: "keynote"}).distinct.limit(8)
       @featured_speakers = (keynote_speakers + other_speakers.first(8 - keynote_speakers.size)).uniq.shuffle
     end
 
-    @sponsors = @event.event_sponsors.includes(:sponsor).joins(:sponsor).shuffle
+    @sponsors = @event.sponsors.includes(:organization).joins(:organization).order(level: :asc)
 
     @participation = Current.user&.main_participation_to(@event)
   end
 
-  # GET /events/1/edit
-  def edit
+  # POST /events/:slug/reimport
+  def reimport
+    static_event = Static::Event.find_by_slug(@event.slug)
+
+    if static_event
+      static_event.import!
+      redirect_to event_path(@event), notice: "Event reimported successfully."
+    else
+      redirect_to event_path(@event), alert: "Static event not found."
+    end
   end
 
-  # PATCH/PUT /events/1
-  def update
-    suggestion = @event.create_suggestion_from(params: event_params, user: Current.user)
+  # POST /events/:slug/reindex
+  def reindex
+    Search::Backend.index(@event)
 
-    if suggestion.persisted?
-      redirect_to event_path(@event), notice: suggestion.notice
-    else
-      render :edit, status: :unprocessable_entity
-    end
+    @event.talks.find_each { |talk| Search::Backend.index(talk) }
+    @event.speakers.find_each { |speaker| Search::Backend.index(speaker) }
+
+    redirect_to event_path(@event), notice: "Event reindexed successfully."
   end
 
   private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_event
-    @event = Event.includes(:organisation).find_by(slug: params[:slug])
+    @event = Event.includes(:series).find_by(slug: params[:slug])
+    @event ||= Event.find_by_slug_or_alias(params[:slug])
+
     return redirect_to(root_path, status: :moved_permanently) unless @event
 
-    redirect_to event_path(@event.canonical), status: :moved_permanently if @event.canonical.present?
-  end
+    return redirect_to event_path(@event), status: :moved_permanently if @event.slug != params[:slug]
 
-  # Only allow a list of trusted parameters through.
-  def event_params
-    params.require(:event).permit(:name, :city, :country_code)
+    redirect_to event_path(@event.canonical), status: :moved_permanently if @event.canonical.present?
   end
 
   def set_user_favorites
     return unless Current.user
 
     @user_favorite_talks_ids = Current.user.default_watch_list.talks.ids
+  end
+
+  def require_admin!
+    redirect_to event_path(@event), alert: "Not authorized" unless Current.user&.admin?
   end
 end

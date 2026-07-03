@@ -2,6 +2,7 @@
 # == Schema Information
 #
 # Table name: email_verification_tokens
+# Database name: primary
 #
 #  id      :integer          not null, primary key
 #  user_id :integer          not null, indexed

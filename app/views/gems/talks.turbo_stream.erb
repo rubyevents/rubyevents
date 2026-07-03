@@ -1,0 +1,24 @@
+<%= turbo_stream.append "gem-talks" do %>
+  <%= render partial: "talks/card",
+        collection: @talks,
+        as: :talk,
+        locals: {
+          favoritable: true,
+          user_favorite_talks_ids: @user_favorite_talks_ids,
+          user_watched_talks: user_watched_talks,
+          back_to: talks_gem_path(gem_name: @gem.gem_name),
+          back_to_title: @gem.gem_name
+        } %>
+<% end %>
+
+<% if @pagy.next.present? %>
+  <%= turbo_stream.replace :pagination do %>
+    <%= turbo_frame_tag :pagination,
+          data: {
+            controller: "lazy-loading",
+            lazy_loading_src_value: talks_gem_path(gem_name: @gem.gem_name, page: @pagy.next, format: :turbo_stream)
+          } %>
+  <% end %>
+<% else %>
+  <%= turbo_stream.remove :pagination %>
+<% end %>

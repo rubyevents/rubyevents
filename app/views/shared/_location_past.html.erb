@@ -1,0 +1,51 @@
+<%# locals: (location:, events:, users:, event_map_markers:, geo_layers: [], nearby_users: [], cities: []) %>
+
+<%= turbo_refreshes_with method: :morph, scroll: :preserve %>
+
+<% if location.is_a?(OnlineLocation) %>
+  <% title "Past Online Ruby Events" %>
+<% elsif location.is_a?(CoordinateLocation) %>
+  <% title "Past Events near #{location.name}" %>
+<% else %>
+  <% title "Past Events in #{location.name}" %>
+<% end %>
+
+<%= render "shared/location_header",
+      name: location.name,
+      subtitle: location.to_location.to_text,
+      flag_code: (location.respond_to?(:alpha2) && !location.is_a?(Continent)) ? location.alpha2 : nil,
+      emoji: location.is_a?(Continent) ? location.emoji_flag : nil,
+      stats: location.is_a?(OnlineLocation) ? "#{pluralize(events.count, "past event")} online" : "#{pluralize(events.count, "past event")} in #{location.name}",
+      location: location %>
+
+<%= render "shared/location_navigation",
+      location: location,
+      current_tab: "past",
+      show_cities: location.is_a?(Country),
+      show_countries: location.is_a?(Continent),
+      show_states: location.is_a?(Country) && location.states?,
+      show_stamps: location.stamps.any? %>
+
+<div class="container py-8">
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div class="lg:col-span-2">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl font-bold text-gray-900">Past Events</h2>
+      </div>
+
+      <%= render "shared/month_grouped_events", events: events, empty_message: "No past events in #{location.name}." %>
+    </div>
+
+    <div class="lg:col-span-1">
+      <%= render "shared/location_sidebar",
+            location: location,
+            users: users,
+            nearby_users: nearby_users,
+            cities: cities,
+            show_cities: cities.any?,
+            event_map_markers: event_map_markers,
+            geo_layers: geo_layers,
+            map_title: "Past Events Map" %>
+    </div>
+  </div>
+</div>

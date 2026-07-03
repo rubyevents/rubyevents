@@ -42,61 +42,24 @@ class TalksControllerTest < ActionDispatch::IntegrationTest
 
   test "should show talk" do
     get talk_url(@talk)
+    assert_select "div", /#{@talk.title}/
+    assert_select "div", /#{@talk.event.name}/
+    assert_select "div", /#{@talk.speakers.first.name}/
     assert_response :success
   end
 
   test "should redirect to talks for wrong slugs" do
     get talk_url("wrong-slug")
     assert_response :moved_permanently
+    assert_redirected_to talks_path
   end
 
-  test "should get edit" do
-    get edit_talk_url(@talk), headers: {"Turbo-Frame" => "modal"}
-    assert_response :success
-  end
+  test "should redirect to correct talk slug when accessed via alias" do
+    @talk.aliases.create!(name: "Old Title", slug: "old-talk-slug")
 
-  test "anonymous user can suggest a modification" do
-    patch talk_url(@talk), params: {talk: {description: "new description", slug: "new-slug", title: "new title", date: "2024-01-01"}}
-    assert_redirected_to talk_url(@talk)
-    assert_equal "Your suggestion was successfully created and will be reviewed soon.", flash[:notice]
-    assert_equal 1, @talk.suggestions.pending.count
-    assert_not_equal "new description", @talk.reload.description
-    assert_not_equal "new title", @talk.title
-    assert_not_equal "2024-01-01", @talk.date.to_s
-  end
-
-  test "admin user can update talk" do
-    @user = users(:admin)
-    sign_in_as @user
-
-    patch talk_url(@talk), params: {talk: {summary: "new summary", description: "new description", slug: "new-slug", title: "new title", date: "2024-01-01"}}
-    assert_redirected_to talk_url(@talk)
-    assert_equal "Modification approved!", flash[:notice]
-    assert_equal 1, @talk.suggestions.approved.count
-    assert_equal "new description", @talk.reload.description
-    assert_equal "new summary", @talk.summary
-    assert_equal "new title", @talk.title
-    assert_equal "2024-01-01", @talk.date.to_s
-
-    # some attributes cannot be changed
-    assert_not_equal "new-slug", @talk.slug
-  end
-
-  test "owner can update directly the talk" do
-    user = @talk.users.first
-    sign_in_as user
-
-    patch talk_url(@talk), params: {talk: {summary: "new summary", description: "new description", slug: "new-slug", title: "new title", date: "2024-01-01"}}
-    assert_redirected_to talk_url(@talk)
-    assert_equal "Modification approved!", flash[:notice]
-    assert_equal 1, @talk.suggestions.approved.count
-    assert_equal "new description", @talk.reload.description
-    assert_equal "new summary", @talk.summary
-    assert_equal "new title", @talk.title
-    assert_equal "2024-01-01", @talk.date.to_s
-
-    # some attributes cannot be changed
-    assert_not_equal "new-slug", @talk.slug
+    get talk_url("old-talk-slug")
+    assert_response :moved_permanently
+    assert_redirected_to talk_path(@talk)
   end
 
   test "should show topics" do
@@ -138,8 +101,8 @@ class TalksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index with created_after" do
-    talk = Talk.create!(title: "test", description: "test", date: "2023-01-01", created_at: "2023-01-01", video_provider: "youtube")
-    talk_2 = Talk.create!(title: "test 2", description: "test", date: "2025-01-01", created_at: "2025-01-01", video_provider: "youtube")
+    talk = Talk.create!(title: "test", description: "test", date: "2023-01-01", created_at: "2023-01-01", video_provider: "youtube", static_id: "test-created-after-2023")
+    talk_2 = Talk.create!(title: "test 2", description: "test", date: "2025-01-01", created_at: "2025-01-01", video_provider: "youtube", static_id: "test-created-after-2025")
 
     get talks_url(created_after: "2024-01-01")
     assert_response :success
@@ -149,7 +112,7 @@ class TalksControllerTest < ActionDispatch::IntegrationTest
     assert assigns(:talks).all? { |talk| talk.created_at >= Date.parse("2024-01-01") }
   end
 
-  test "should get index with invalide created_after" do
+  test "should get index with invalid created_after" do
     get talks_url(created_after: "wrong-date")
     assert_response :success
     assert assigns(:talks).size.positive?

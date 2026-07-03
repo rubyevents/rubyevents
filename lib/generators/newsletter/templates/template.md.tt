@@ -1,0 +1,79 @@
+---
+title: "RubyEvents.org <%= @month %> <%= @year %> Newsletter"
+slug: <%= @month.downcase %>-<%= @year %>-newsletter
+date: <%= @newsletter_date %>
+author: chaelcodes
+published: true
+excerpt: |-
+  TODO - excerpt
+tags:
+  - newsletter
+  - <%= @month.downcase %>
+  - <%= @year %>
+featured_image:
+---
+
+TODO - excerpt
+
+## Open CFPs
+
+<%- @cfps.each do |cfp| -%>
+- [<%= cfp.event.name %>](<%= Router.event_cfp_index_path(cfp.event) %>) will be in <%= cfp.event.location %> <%= event_dates_in_sentence(cfp.event) %>. The [CFP](<%= cfp.link %>) closes <%= cfp.formatted_close_date.gsub(/, #{@year}/, "") %>.
+<%- end -%>
+
+> None of these feel quite right? Check out our list of [meetup cfps](https://www.rubyevents.org/cfp?kind=meetup)! Many are open year round and always looking for new talks.
+
+## <%= @month %>'s events
+
+<%- @this_month_events.each do |event| -%>
+<%- next if event.static_metadata.cancelled? -%>
+- [<%= event.name.gsub(/ #{@year}/, "") %>](<%= Router.event_path(event) %>) was in <%= event.location %> <%= event_dates_in_sentence(event) %>. <% if event.talks.watchable.any? %>[Videos are available!](<%= Router.event_videos_path(event) %>)<% end %>
+<%- end -%>
+
+> Did you attend a Ruby event this month that isn't on the list? Let us know with an [issue](https://github.com/rubyevents/rubyevents/issues/new) or [PR](https://github.com/rubyevents/rubyevents/blob/main/CONTRIBUTING.md)!
+
+## <%= @next_month %>'s events
+
+<%- @next_month_events.each do |event| -%>
+- [<%= event.name %>](<%= Router.event_path(event) %>) will be in <%= event.location %> <%= event_dates_in_sentence(event) %>.<% if event.tickets.url %> [Tickets](<%= event.tickets.url %>) are available for $TICKET_PRICE.<% end %>
+<%- end -%>
+
+> Prepare more than a few months ahead by checking out our [calendar](https://www.rubyevents.org/events/<%= @year %>) or the full [list of events](https://www.rubyevents.org/events).
+
+## Uploaded videos
+
+
+## Contributions
+
+This month, we merged [XX PRs from XX contributors!](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A<%= @github_date_range %>) XX PRs were [new event data and videos](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A<%= @github_date_range %>+label%3Acontent).
+
+### Big Updates
+
+
+### Welcome, First-Time Contributors!
+
+A warm welcome to XX developers making their first contribution to RubyEvents!
+
+```bash
+comm -13 \
+   <(gh pr list --repo RubyEvents/RubyEvents --limit 1000 --state merged \
+       --search "merged:<<%= @first_day_of_month.iso8601 %>" \
+       --json author --jq '[.[].author.login] | unique | sort | .[]') \
+   <(gh pr list --repo RubyEvents/RubyEvents --limit 100 --state merged \
+       --search "merged:>=<%= @first_day_of_month.iso8601 %>" \
+       --json author --jq '[.[].author.login] | unique | sort | .[]') | \
+ while read login; do
+   gh pr list --repo RubyEvents/RubyEvents --state merged \
+     --search "merged:>=<%= @first_day_of_month.iso8601 %> author:$login" \
+     --limit 100 --json author,number,createdAt \
+     --jq 'sort_by(.createdAt) | .[0] | "[\(.author.name)](https://github.com/RubyEvents/RubyEvents/pull/\(.number))"'
+ done
+```
+
+### Thank You to All XX Contributors ❤️
+
+```bash
+gh pr list --repo RubyEvents/RubyEvents   --limit 100   --state merged   --json author   --search "merged:>=<%= @first_day_of_month.iso8601 %> merged:<=<%= @last_day_of_month.iso8601 %>"   --jq '[group_by(.author.login)[] | {name: .[0].author.name, login: .[0].author.login, count: length}] | sort_by(.count) | reverse[] | "- \(.name) [(@\(.login))](https://github.com/\(.login)) \(.count) PRs"'
+```
+
+> Looking to join this list in July? Check out our [contributions page](https://www.rubyevents.org/contributions) or the [CONTRIBUTING.md](https://github.com/rubyevents/rubyevents/blob/main/CONTRIBUTING.md) on GitHub.

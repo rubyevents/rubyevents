@@ -1,0 +1,35 @@
+<%# locals: (events:, empty_message: "No events found.") %>
+
+<% if events.any? %>
+  <% grouped_events = group_events_by_date(events) %>
+
+  <% grouped_events.each do |display_info, date_events| %>
+    <div class="mb-8" data-events-filter-target="group">
+      <div class="flex items-center gap-2 mb-4">
+        <span class="w-2 h-2 rounded-full bg-gray-400"></span>
+
+        <span class="text-lg font-semibold text-gray-800">
+          <% if display_info[:precision] == "day" && display_info[:date].present? %>
+            <%= display_info[:date].strftime("%b %-d") %>
+
+            <span class="font-normal text-gray-500"><%= display_info[:date].strftime("%A") %></span>
+          <% elsif display_info[:date].present? %>
+            <%= event_date_display(date_events.first, day_name: false) %>
+          <% else %>
+            Date TBD
+          <% end %>
+        </span>
+      </div>
+
+      <div class="space-y-3 pl-4">
+        <% date_events.each do |event| %>
+          <%= render "shared/event_row", event: event %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <div class="text-gray-500 py-8 text-center">
+    <%= empty_message %>
+  </div>
+<% end %>

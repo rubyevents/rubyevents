@@ -1,0 +1,59 @@
+<%= turbo_refreshes_with method: :morph, scroll: :preserve %>
+
+<% title "Countries in #{@continent.name}" %>
+
+<%= render "shared/location_header",
+      name: @continent.name,
+      subtitle: @continent.to_location.to_text,
+      emoji: @continent.emoji_flag,
+      stats: "#{pluralize(@countries.count, "country")} in #{@continent.name}",
+      location: @continent %>
+
+<%= render "shared/location_navigation",
+      location: @continent,
+      current_tab: "countries",
+      show_cities: false,
+      show_countries: true,
+      show_stamps: @continent.stamps.any? %>
+
+<div class="container py-8">
+  <div class="flex items-center justify-between mb-6">
+    <h2 class="text-xl font-bold text-gray-900">Countries in <%= @continent.name %></h2>
+    <%= ui_badge(@countries.count, kind: :secondary, outline: true) %>
+  </div>
+
+  <% if @countries.any? %>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <% @countries.each do |country| %>
+        <% events_count = @events_by_country[country]&.count || 0 %>
+        <% users_count = @users_by_country[country] || 0 %>
+
+        <%= link_to country_path(country),
+              class: "block bg-white rounded-lg border p-4 hover:border-gray-400 transition-colors" do %>
+          <div class="flex items-center gap-3 mb-2">
+            <span class="fi fi-<%= country.alpha2.downcase %> text-2xl"></span>
+            <span class="font-semibold text-gray-900"><%= country.name %></span>
+          </div>
+
+          <div class="flex gap-4 text-sm text-gray-600">
+            <% if events_count > 0 %>
+              <span class="flex items-center gap-1">
+                <%= fa("calendar", size: :xs, class: "text-gray-400") %>
+                <%= pluralize(events_count, "event") %>
+              </span>
+            <% end %>
+
+            <% if users_count > 0 %>
+              <span class="flex items-center gap-1">
+                <%= fa("users", size: :xs, class: "text-gray-400") %>
+                <%= pluralize(users_count, "Rubyist") %>
+              </span>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="text-gray-500 py-8 text-center">No countries with Ruby events in <%= @continent.name %> yet.</p>
+  <% end %>
+</div>

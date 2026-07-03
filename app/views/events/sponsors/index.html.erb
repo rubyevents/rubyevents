@@ -5,15 +5,15 @@
     <%= render partial: "events/navigation", locals: {event: @event} %>
 
     <% if @sponsors_by_tier.any? %>
-      <% @sponsors_by_tier.each do |tier, event_sponsors| %>
-        <div class="mb-12">
-          <h2 class="text-2xl font-bold text-gray-900 mb-6 capitalize">
+      <% @sponsors_by_tier.each do |tier, sponsors| %>
+        <div>
+          <h2 class="mb-6 capitalize">
             <%= tier %>
           </h2>
 
-          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
-            <% event_sponsors.each do |event_sponsor| %>
-              <%= render "sponsors/card", sponsor: event_sponsor.sponsor, event_sponsor: event_sponsor, turbo_frame: true, grid_layout: true, hide_event_count: true %>
+          <div class="mb-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+            <% sponsors.each do |sponsor| %>
+              <%= render "organizations/card", organization: sponsor.organization, sponsor: sponsor, turbo_frame: true, grid_layout: true, hide_event_count: true %>
             <% end %>
           </div>
         </div>

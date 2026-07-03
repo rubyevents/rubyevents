@@ -1,0 +1,43 @@
+<%= turbo_refreshes_with method: :morph, scroll: :preserve %>
+
+<% title "Explore Ruby Communities" %>
+
+<div class="container py-16">
+  <div class="max-w-2xl mx-auto text-center">
+    <h1 class="text-4xl font-bold text-gray-900 mb-4">
+      Explore Ruby Communities
+    </h1>
+
+    <p class="text-lg text-gray-600 mb-12">
+      Find Ruby events and Rubyists near any location in the world
+    </p>
+
+    <%= render "shared/location_search" %>
+
+    <div class="mt-16">
+      <h2 class="text-xl font-semibold text-gray-900 mb-6">Or browse by</h2>
+
+      <div class="flex flex-wrap justify-center gap-4">
+        <%= link_to continents_path, class: "btn btn-ghost gap-2" do %>
+          <span class="text-xl">🌍</span>
+          Continents
+        <% end %>
+
+        <%= link_to countries_path, class: "btn btn-ghost gap-2" do %>
+          <span class="text-xl">🏳️</span>
+          Countries
+        <% end %>
+
+        <%= link_to cities_path, class: "btn btn-ghost gap-2" do %>
+          <span class="text-xl">🏙️</span>
+          Cities
+        <% end %>
+
+        <%= link_to online_path, class: "btn btn-ghost gap-2" do %>
+          <span class="text-xl">🌐</span>
+          Online
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,158 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# MCP Server for Claude Code
+# Run with: bin/mcp_server
+
+require_relative "../config/environment"
+require "json"
+
+class MCPServer
+  PROTOCOL_VERSION = "2024-11-05"
+
+  def initialize
+    @tools = discover_tools
+  end
+
+  def run
+    $stderr.puts "MCP Server started with #{@tools.size} tools"
+
+    loop do
+      line = $stdin.gets
+      break if line.nil?
+
+      begin
+        request = JSON.parse(line)
+        response = handle_request(request)
+        send_response(response) if response
+      rescue JSON::ParserError => e
+        send_error(nil, -32700, "Parse error: #{e.message}")
+      rescue => e
+        send_error(request&.dig("id"), -32603, "Internal error: #{e.message}")
+      end
+    end
+  end
+
+  private
+
+  def discover_tools
+    Dir[Rails.root.join("app/tools/**/*_tool.rb")].each_with_object({}) do |file, tools|
+      require file
+      class_name = File.basename(file, ".rb").camelize
+      tool_class = class_name.constantize
+      tools[tool_name(class_name)] = tool_class
+    end
+  end
+
+  def tool_name(class_name)
+    class_name.underscore.sub(/_tool$/, "")
+  end
+
+  def handle_request(request)
+    method = request["method"]
+    id = request["id"]
+    params = request["params"] || {}
+
+    case method
+    when "initialize"
+      handle_initialize(id, params)
+    when "notifications/initialized"
+      nil
+    when "tools/list"
+      handle_tools_list(id)
+    when "tools/call"
+      handle_tools_call(id, params)
+    when "ping"
+      handle_ping(id)
+    else
+      error_response(id, -32601, "Method not found: #{method}")
+    end
+  end
+
+  def handle_initialize(id, params)
+    {
+      jsonrpc: "2.0",
+      id: id,
+      result: {
+        protocolVersion: PROTOCOL_VERSION,
+        capabilities: {tools: {}},
+        serverInfo: {name: "rubyevents-mcp", version: "1.0.0"}
+      }
+    }
+  end
+
+  def handle_ping(id)
+    {jsonrpc: "2.0", id: id, result: {}}
+  end
+
+  def handle_tools_list(id)
+    tools_list = @tools.map do |name, tool_class|
+      {
+        name: name,
+        description: tool_class.description,
+        inputSchema: build_input_schema(tool_class)
+      }
+    end
+
+    {jsonrpc: "2.0", id: id, result: {tools: tools_list}}
+  end
+
+  def handle_tools_call(id, params)
+    tool_name = params["name"]
+    arguments = params["arguments"] || {}
+
+    tool_class = @tools[tool_name]
+    return error_response(id, -32602, "Unknown tool: #{tool_name}") unless tool_class
+
+    tool = tool_class.new
+    result = tool.execute(**arguments.symbolize_keys)
+
+    {
+      jsonrpc: "2.0",
+      id: id,
+      result: {
+        content: [{type: "text", text: result.is_a?(String) ? result : JSON.pretty_generate(result)}]
+      }
+    }
+  rescue => e
+    {
+      jsonrpc: "2.0",
+      id: id,
+      result: {
+        content: [{type: "text", text: JSON.pretty_generate({error: e.message})}],
+        isError: true
+      }
+    }
+  end
+
+  def build_input_schema(tool_class)
+    schema = {type: "object", properties: {}, required: []}
+
+    if tool_class.respond_to?(:parameters)
+      tool_class.parameters.each do |name, param|
+        schema[:properties][name.to_s] = {
+          type: param.type || "string",
+          description: param.description
+        }
+        schema[:required] << name.to_s if param.required
+      end
+    end
+
+    schema
+  end
+
+  def send_response(response)
+    $stdout.puts JSON.generate(response)
+    $stdout.flush
+  end
+
+  def error_response(id, code, message)
+    {jsonrpc: "2.0", id: id, error: {code: code, message: message}}
+  end
+
+  def send_error(id, code, message)
+    send_response(error_response(id, code, message))
+  end
+end
+
+MCPServer.new.run

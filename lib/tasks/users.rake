@@ -6,4 +6,24 @@ namespace :users do
       user.update!(slug: user.github_handle)
     end
   end
+
+  desc "Update user locations from GitHub metadata"
+  task update_locations: :environment do
+    users = User.where(location: [nil, ""]).where.not(github_metadata: {})
+    updated_count = 0
+
+    users.each do |user|
+      location = user.github_metadata.dig("profile", "location")
+
+      next if location.blank?
+
+      user.update(location: location)
+
+      updated_count += 1
+
+      puts "Updated location for #{user.name}: #{location}"
+    end
+
+    puts "Updated #{updated_count} user locations"
+  end
 end

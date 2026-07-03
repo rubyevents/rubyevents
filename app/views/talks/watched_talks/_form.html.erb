@@ -1,0 +1,21 @@
+<%# locals: (talk:, watched_talk:, inline: false) %>
+
+<div class="space-y-6">
+  <%= render partial: "talks/watched_talks/where_watched", locals: {talk: talk, watched_talk: watched_talk} %>
+
+  <% if talk.feedback_allowed_for?(Current.user) %>
+    <hr class="my-4">
+    <%= render partial: "talks/watched_talks/feedback_questions", locals: {talk: talk, watched_talk: watched_talk} %>
+  <% end %>
+</div>
+
+<% unless inline %>
+  <% form_options = {model: watched_talk, url: talk_watched_talk_path(talk), method: :patch} %>
+
+  <%= form_with(**form_options) do |form| %>
+    <div class="flex items-center gap-4 justify-end mt-6">
+      <%= ui_button "Cancel", data: {action: "click->modal#close"}, role: :button, kind: :ghost %>
+      <%= ui_button watched_talk.persisted? ? "Update" : "Mark as Watched", type: :submit %>
+    </div>
+  <% end %>
+<% end %>

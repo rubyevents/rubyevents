@@ -1,69 +1,69 @@
 ---
 http_interactions:
-- request:
-    method: get
-    uri: https://youtube.googleapis.com/youtube/v3/videos?id=9LfmrkyP81M&key=AIzaSyCe3yTMydyYrEKSS0N0oh9w5y9Rct3g3QU&maxResults=50&part=contentDetails
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Content-Type:
-      - application/json; charset=UTF-8
-      Vary:
-      - Origin
-      - Referer
-      - X-Origin
-      Date:
-      - Thu, 28 Aug 2025 21:03:02 GMT
-      Server:
-      - scaffolding on HTTPServer2
-      X-Xss-Protection:
-      - '0'
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Content-Type-Options:
-      - nosniff
-      Alt-Svc:
-      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
-      Transfer-Encoding:
-      - chunked
-    body:
-      encoding: ASCII-8BIT
-      string: |
-        {
-          "kind": "youtube#videoListResponse",
-          "etag": "k4Tckuzp6iqi-TbYt9gLMfjwars",
-          "items": [
-            {
-              "kind": "youtube#video",
-              "etag": "sb9PwS-6NnHvqRCQzbV2Yy8NjAA",
-              "id": "9LfmrkyP81M",
-              "contentDetails": {
-                "duration": "PT1H1M17S",
-                "dimension": "2d",
-                "definition": "hd",
-                "caption": "true",
-                "licensedContent": true,
-                "contentRating": {},
-                "projection": "rectangular"
+  - request:
+      method: get
+      uri: https://youtube.googleapis.com/youtube/v3/videos?id=9LfmrkyP81M&key=REDACTED_YOUTUBE_API_KEY&maxResults=50&part=contentDetails
+      body:
+        encoding: US-ASCII
+        string: ""
+      headers:
+        Accept-Encoding:
+          - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+        Accept:
+          - "*/*"
+        User-Agent:
+          - Ruby
+    response:
+      status:
+        code: 200
+        message: OK
+      headers:
+        Content-Type:
+          - application/json; charset=UTF-8
+        Vary:
+          - Origin
+          - Referer
+          - X-Origin
+        Date:
+          - Thu, 28 Aug 2025 21:03:02 GMT
+        Server:
+          - scaffolding on HTTPServer2
+        X-Xss-Protection:
+          - "0"
+        X-Frame-Options:
+          - SAMEORIGIN
+        X-Content-Type-Options:
+          - nosniff
+        Alt-Svc:
+          - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+        Transfer-Encoding:
+          - chunked
+      body:
+        encoding: ASCII-8BIT
+        string: |
+          {
+            "kind": "youtube#videoListResponse",
+            "etag": "k4Tckuzp6iqi-TbYt9gLMfjwars",
+            "items": [
+              {
+                "kind": "youtube#video",
+                "etag": "sb9PwS-6NnHvqRCQzbV2Yy8NjAA",
+                "id": "9LfmrkyP81M",
+                "contentDetails": {
+                  "duration": "PT1H1M17S",
+                  "dimension": "2d",
+                  "definition": "hd",
+                  "caption": "true",
+                  "licensedContent": true,
+                  "contentRating": {},
+                  "projection": "rectangular"
+                }
               }
+            ],
+            "pageInfo": {
+              "totalResults": 1,
+              "resultsPerPage": 1
             }
-          ],
-          "pageInfo": {
-            "totalResults": 1,
-            "resultsPerPage": 1
           }
-        }
-  recorded_at: Thu, 28 Aug 2025 21:03:02 GMT
+    recorded_at: Thu, 28 Aug 2025 21:03:02 GMT
 recorded_with: VCR 6.3.1

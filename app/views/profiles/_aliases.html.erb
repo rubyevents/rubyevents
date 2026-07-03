@@ -1,0 +1,42 @@
+<%# locals: (user:, aliases:) %>
+
+<% if aliases.any? %>
+  <div class="space-y-8">
+    <div class="mb-6">
+      <div class="mb-4 flex items-center justify-between">
+        <h3 class="text-lg font-semibold text-gray-800">
+          <%= aliases.size %> Known <%= "Alias".pluralize(aliases.size) %>
+        </h3>
+      </div>
+
+      <p class="text-[#636B74] mb-6">
+        These are alternative names and slugs that have been merged into <%= user.name %>'s profile.
+      </p>
+
+      <div class="overflow-x-auto">
+        <table class="table table-zebra w-full">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Slug</th>
+              <th>Created</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% aliases.each do |alias_record| %>
+              <tr>
+                <td><%= alias_record.name %></td>
+                <td><code class="text-sm bg-base-200 px-2 py-1 rounded"><%= alias_record.slug %></code></td>
+                <td><%= alias_record.created_at.strftime("%b %d, %Y") %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="text-center py-12">
+    <p class="text-[#636B74]">No known aliases for this user.</p>
+  </div>
+<% end %>

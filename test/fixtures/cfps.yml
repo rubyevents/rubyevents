@@ -1,0 +1,30 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# == Schema Information
+#
+# Table name: cfps
+# Database name: primary
+#
+#  id         :integer          not null, primary key
+#  close_date :date
+#  link       :string
+#  name       :string
+#  open_date  :date
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  event_id   :integer          not null, indexed
+#
+# Indexes
+#
+#  index_cfps_on_event_id  (event_id)
+#
+# Foreign Keys
+#
+#  event_id  (event_id => events.id)
+#
+one:
+  link: https://www.futureconference.com/cfp
+  open_date: <%= 1.week.from_now %>
+  close_date: <%= 2.weeks.from_now %>
+  event: future_conference
+  name: Future Conference 2024 CFP

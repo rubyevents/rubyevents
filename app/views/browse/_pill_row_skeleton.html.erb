@@ -1,0 +1,16 @@
+<%# locals: (min_height: "140px") %>
+
+<section class="flex flex-col gap-4 animate-pulse" style="min-height: <%= min_height %>">
+  <div class="flex items-end justify-between">
+    <div>
+      <div class="h-6 w-48 bg-base-300 rounded"></div>
+      <div class="h-4 w-32 bg-base-300 rounded mt-2"></div>
+    </div>
+  </div>
+
+  <div class="flex flex-wrap gap-3">
+    <% [16, 12, 20, 14, 10, 18, 12, 16, 14, 10].each do |w| %>
+      <div class="h-8 bg-base-300 rounded-lg" style="width: <%= w * 4 %>px;"></div>
+    <% end %>
+  </div>
+</section>

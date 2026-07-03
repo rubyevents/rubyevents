@@ -1,0 +1,51 @@
+<div class="wrapped-page wrapped-cover">
+  <div class="mb-6">
+    <svg width="100" height="100" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 25 L16 10 L64 10 L78 25 L40 70 Z" fill="white" opacity="0.3" />
+    </svg>
+  </div>
+
+  <div class="w-20 h-20 mx-auto rounded-full border-4 border-white/50 overflow-hidden bg-white/20 mb-4">
+    <% if @user.custom_avatar? %>
+      <%= image_tag @user.avatar_url(size: 120), class: "w-full h-full object-cover opacity-50", alt: @user.name %>
+    <% else %>
+      <div class="w-full h-full flex items-center justify-center text-2xl font-bold opacity-50">
+        <%= @user.name.first.upcase %>
+      </div>
+    <% end %>
+  </div>
+
+  <h1 class="text-2xl font-bold mb-2"><%= @user.name %>'s Wrapped</h1>
+  <p class="text-red-200 mb-8">This wrapped hasn't been shared yet</p>
+
+  <div class="w-16 h-16 mb-6 rounded-full bg-white/10 flex items-center justify-center">
+    <svg class="w-8 h-8 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+    </svg>
+  </div>
+
+  <p class="text-red-100 text-sm max-w-xs text-center mb-8">
+    <%= @user.name %> hasn't made their 2025 Wrapped public yet. Check back later!
+  </p>
+
+  <div class="mt-auto pt-4 space-y-3 w-full max-w-xs">
+    <%= link_to wrapped_path, class: "block w-full px-4 py-3 bg-white text-red-700 font-semibold rounded-lg text-center hover:bg-red-50 transition" do %>
+      Browse Community Wrappeds
+    <% end %>
+
+    <% if Current.user %>
+      <%= link_to profile_wrapped_index_path(Current.user), class: "block w-full px-4 py-3 bg-white/10 text-white font-semibold rounded-lg text-center hover:bg-white/20 transition" do %>
+        View Your Own Wrapped
+      <% end %>
+    <% else %>
+      <%= link_to new_session_path, class: "block w-full px-4 py-3 bg-white/10 text-white font-semibold rounded-lg text-center hover:bg-white/20 transition" do %>
+        Sign In to See Yours
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="mt-6 flex flex-col items-center">
+    <%= image_tag "logo.png", class: "w-8 h-8 mb-1 opacity-70", alt: "RubyEvents.org" %>
+    <p class="text-xs text-red-200">RubyEvents.org</p>
+  </div>
+</div>

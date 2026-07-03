@@ -1,0 +1,35 @@
+<%# locals: (location:, stamps:) %>
+
+<%= turbo_refreshes_with method: :morph, scroll: :preserve %>
+
+<% title "Stamps in #{location.name}" %>
+
+<%= render "shared/location_header",
+      name: location.name,
+      subtitle: location.to_location.to_text,
+      flag_code: (location.respond_to?(:alpha2) && !location.is_a?(Continent)) ? location.alpha2 : nil,
+      emoji: location.is_a?(Continent) ? location.emoji_flag : nil,
+      stats: "#{pluralize(stamps.count, "stamp")} in #{location.name}",
+      location: location %>
+
+<%= render "shared/location_navigation",
+      location: location,
+      current_tab: "stamps",
+      show_cities: location.is_a?(Country),
+      show_countries: location.is_a?(Continent),
+      show_states: location.is_a?(Country) && location.states?,
+      show_stamps: true %>
+
+<div class="container py-8">
+  <div class="flex items-center justify-between mb-6">
+    <h2 class="text-xl font-bold text-gray-900">Stamps from <%= location.name %></h2>
+
+    <%= ui_badge(stamps.count, kind: :secondary, outline: true) %>
+  </div>
+
+  <% if stamps.any? %>
+    <%= render partial: "shared/stamps_grid", locals: {stamps: stamps, min_rows: 1} %>
+  <% else %>
+    <p class="text-gray-500 py-8 text-center">No stamps from <%= location.name %> yet.</p>
+  <% end %>
+</div>

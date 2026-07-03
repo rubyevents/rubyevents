@@ -1,0 +1,31 @@
+<h2 class="text-2xl font-bold mb-2 text-center">Your Favorite Speakers</h2>
+<p class="text-gray-500 text-center mb-6">The voices that inspired you this year</p>
+
+<% if top_speakers.any? %>
+  <div class="space-y-4 flex-1">
+    <% top_speakers.each do |speaker, count| %>
+      <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+        <div class="w-12 h-12 rounded-full overflow-hidden bg-gray-200 flex-shrink-0">
+          <%= image_tag speaker.avatar_url(size: 80), class: "w-full h-full object-cover", alt: speaker.name %>
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="font-semibold truncate"><%= speaker.name %></p>
+          <p class="text-sm text-gray-500"><%= count %> <%= "talk".pluralize(count) %> watched</p>
+        </div>
+        <div class="text-2xl">
+          <% if count >= 5 %>
+            🎤
+          <% elsif count >= 3 %>
+            ⭐
+          <% else %>
+            ✨
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <div class="flex-1 flex items-center justify-center">
+    <p class="text-gray-400 text-center">Watch more talks to discover your favorite speakers!</p>
+  </div>
+<% end %>

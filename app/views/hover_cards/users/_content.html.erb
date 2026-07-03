@@ -1,0 +1,74 @@
+<%# locals: (user:, avatar_size: :sm) %>
+
+<div class="p-5">
+  <div class="flex items-start gap-3">
+    <%= link_to profile_path(user) do %>
+      <%= ui_avatar(user, size: avatar_size) %>
+    <% end %>
+
+    <div class="min-w-0 flex-1">
+      <%= link_to profile_path(user), class: "font-bold text-gray-900 leading-tight line-clamp-1 flex items-center gap-1.5 hover:underline" do %>
+        <span class="truncate"><%= user.name %></span>
+
+        <% if user.verified? %>
+          <%= fa("badge-check", class: "fill-blue-500 shrink-0", size: :xs) %>
+        <% end %>
+
+        <% if user.ruby_passport_claimed? %>
+          <%= fa("passport", class: "fill-orange-800 shrink-0", size: :xs) %>
+        <% end %>
+      <% end %>
+
+      <div class="text-sm text-gray-500 truncate">
+        <% if user.github_handle.present? %>
+          @<%= user.github_handle %>
+        <% elsif user.bsky.present? %>
+          @<%= user.bsky %>
+        <% else %>
+          @<%= user.slug %>
+        <% end %>
+      </div>
+
+      <% if user.to_location.present? %>
+        <div class="flex items-center gap-1 text-xs text-gray-500 mt-1">
+          <%= fa "location-dot", size: :xs, class: "text-gray-400" %>
+          <span><%= user.to_location.to_html %></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <% if user.bio.present? %>
+    <p class="text-xs text-gray-600 mt-3 line-clamp-2"><%= user.bio %></p>
+  <% end %>
+
+  <% if user.talks_count > 0 || user.events.any? %>
+    <div class="mt-3 pt-3 border-t border-gray-100 flex items-center justify-between">
+      <div class="flex items-center gap-3 text-xs text-gray-500">
+        <% if user.talks_count > 0 %>
+          <span class="flex items-center gap-1">
+            <%= fa "video", size: :xs, class: "text-gray-400" %>
+            <%= pluralize(user.talks_count, "talk") %>
+          </span>
+        <% elsif user.events.any? %>
+          <span class="flex items-center gap-1">
+            <%= fa "calendar", size: :xs, class: "text-gray-400" %>
+            <%= pluralize(user.events.count, "event") %> attended
+          </span>
+        <% end %>
+      </div>
+
+      <% if user.events.any? %>
+        <div class="flex -space-x-1">
+          <% user.events.limit(3).each do |event| %>
+            <% if event.avatar_image_path %>
+              <%= link_to event_path(event), class: "block w-5 h-5 rounded overflow-hidden ring-2 ring-white hover:ring-primary transition-all", data: {controller: "tooltip", tooltip_content_value: event.name} do %>
+                <%= image_tag event.avatar_image_path, alt: event.name, class: "w-full h-full object-cover", loading: "lazy" %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

@@ -2,7 +2,8 @@ class Talk::Index < ApplicationRecord
   self.table_name = :talks_search_index
 
   include ActiveRecord::SQLite::Index # Depends on `table_name` being assigned.
-  class_attribute :index_columns, default: {title: 0, summary: 1, speaker_names: 2}
+
+  class_attribute :index_columns, default: {title: 0, summary: 1, speaker_names: 2, event_names: 3}
 
   belongs_to :talk, foreign_key: :rowid
 
@@ -27,7 +28,12 @@ class Talk::Index < ApplicationRecord
   end
 
   def reindex
-    update! id: talk.id, title: talk.title, summary: talk.summary, speaker_names: talk.speaker_names
+    update!(id: talk.id,
+      title: talk.title,
+      summary: talk.summary,
+      speaker_names: talk.speaker_names,
+      event_names: talk.event_names,
+      video_provider: talk.video_provider)
   end
 
   def self.remove_invalid_search_characters(query)

@@ -1,0 +1,11 @@
+<%# locals: (topic_rows:) %>
+
+<%= turbo_frame_tag "browse-topic-rows" do %>
+  <% topic_rows&.each do |row| %>
+    <%= render "browse/content_row",
+          title: row[:topic].name,
+          talks: row[:talks],
+          view_all_path: topic_path(row[:topic]),
+          data_section: "topic-#{row[:topic].slug}" %>
+  <% end %>
+<% end %>

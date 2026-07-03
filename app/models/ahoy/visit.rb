@@ -2,6 +2,7 @@
 # == Schema Information
 #
 # Table name: ahoy_visits
+# Database name: primary
 #
 #  id               :integer          not null, primary key
 #  app_version      :string
@@ -9,7 +10,7 @@
 #  city             :string
 #  country          :string
 #  device_type      :string
-#  ip               :string
+#  ip               :string           indexed, indexed => [started_at]
 #  landing_page     :text
 #  latitude         :float
 #  longitude        :float
@@ -19,7 +20,7 @@
 #  referrer         :text
 #  referring_domain :string
 #  region           :string
-#  started_at       :datetime
+#  started_at       :datetime         indexed => [ip]
 #  user_agent       :text
 #  utm_campaign     :string
 #  utm_content      :string
@@ -32,14 +33,17 @@
 #
 # Indexes
 #
-#  index_ahoy_visits_on_user_id      (user_id)
-#  index_ahoy_visits_on_visit_token  (visit_token) UNIQUE
+#  index_ahoy_visits_on_ip                 (ip)
+#  index_ahoy_visits_on_started_at_and_ip  (started_at,ip)
+#  index_ahoy_visits_on_user_id            (user_id)
+#  index_ahoy_visits_on_visit_token        (visit_token) UNIQUE
 #
 # rubocop:enable Layout/LineLength
 class Ahoy::Visit < ApplicationRecord
   self.table_name = "ahoy_visits"
 
   include Rollupable
+
   rollup_default_column :started_at
 
   has_many :events, class_name: "Ahoy::Event", dependent: :destroy

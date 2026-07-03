@@ -1,0 +1,23 @@
+<h2 class="text-2xl font-bold mb-2 text-center">Content Mix</h2>
+<p class="text-gray-500 text-center mb-6">The types of talks you enjoyed</p>
+
+<% if talk_kinds.any? %>
+  <div class="space-y-4 flex-1">
+    <% talk_kinds.each do |kind, count| %>
+      <% percentage = (total_talks_watched.positive? ? (count.to_f / total_talks_watched * 100).round : 0) %>
+      <div>
+        <div class="flex justify-between mb-1">
+          <span class="font-medium"><%= Talk::KIND_LABELS[kind.to_s] || kind.to_s.humanize %></span>
+          <span class="text-gray-500"><%= count %> (<%= percentage %>%)</span>
+        </div>
+        <div class="bg-gray-100 rounded-full h-3">
+          <div class="month-bar h-3" style="width: <%= percentage %>%"></div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <div class="flex-1 flex items-center justify-center">
+    <p class="text-gray-400 text-center">Watch talks to see your content preferences!</p>
+  </div>
+<% end %>

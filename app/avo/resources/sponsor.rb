@@ -7,10 +7,9 @@ class Avo::Resources::Sponsor < Avo::BaseResource
 
   def fields
     field :id, as: :id
-    field :name, as: :text
-    field :website, as: :text
-    field :slug, as: :text
-    field :description, as: :textarea
-    field :main_location, as: :text
+    field :event, as: :belongs_to
+    field :organization, as: :belongs_to
+    field :tier, as: :text
+    field :badge, as: :text
   end
 end

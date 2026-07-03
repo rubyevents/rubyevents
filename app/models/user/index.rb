@@ -2,6 +2,7 @@ class User::Index < ApplicationRecord
   self.table_name = :users_search_index
 
   include ActiveRecord::SQLite::Index # Depends on `table_name` being assigned.
+
   class_attribute :index_columns, default: {name: 0, github_handle: 1}
 
   belongs_to :user, foreign_key: :rowid

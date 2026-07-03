@@ -2,8 +2,9 @@ require "test_helper"
 
 class TalkTest < ActiveSupport::TestCase
   include ActiveJob::TestHelper
+
   test "should handle empty transcript" do
-    talk = Talk.new(title: "Sample Talk", date: Date.today, talk_transcript_attributes: {raw_transcript: Transcript.new})
+    talk = Talk.new(title: "Sample Talk", date: Date.today, static_id: "test-sample-talk", talk_transcript_attributes: {raw_transcript: Transcript.new})
     assert talk.save
 
     loaded_talk = Talk.find(talk.id)
@@ -26,7 +27,7 @@ class TalkTest < ActiveSupport::TestCase
   end
 
   test "when the talk doesn't have any transcript yet" do
-    @talk = Talk.create!(title: "Express Your Ideas by Writing Your Own Gems", video_id: "Md90cwnmGc8", video_provider: "youtube", date: Date.today)
+    @talk = Talk.create!(title: "Express Your Ideas by Writing Your Own Gems", video_id: "Md90cwnmGc8", video_provider: "youtube", date: Date.today, static_id: "test-express-ideas-gems")
 
     VCR.use_cassette("youtube/transcript_not_available") do
       perform_enqueued_jobs do
@@ -39,54 +40,15 @@ class TalkTest < ActiveSupport::TestCase
     assert @talk.transcript.cues.length > 100
   end
 
-  test "should guess kind from title" do
-    kind_with_titles = {
-      talk: ["I love Ruby", "Beyond Code: Crafting effective discussions to further technical decision-making", "From LALR to IELR: A Lrama's Next Step"],
-      keynote: ["Keynote: Something ", "Opening keynote Something", "closing keynote Something", "Keynote", "Keynote by Someone", "Opening Keynote", "Closing Keynote"],
-      lightning_talk: ["Lightning Talk: Something", "lightning talk: Something", "Lightning talk: Something", "lightning talk", "Lightning Talks", "Lightning talks", "lightning talks", "Lightning Talks Day 1", "Lightning Talks (Day 1)", "Lightning Talks - Day 1", "Micro Talk: Something", "micro talk: Something", "micro talk: Something", "micro talk"],
-      panel: ["Panel: foo", "Panel", "Something Panel"],
-      workshop: ["Workshop: Something", "workshop: Something"],
-      gameshow: ["Gameshow", "Game Show", "Gameshow: Something", "Game Show: Something"],
-      podcast: ["Podcast: Something", "Podcast Recording: Something", "Live Podcast: Something"],
-      q_and_a: ["Q&A", "Q&A: Something", "Something AMA", "Q&A with Somebody", "Ruby Committers vs The World", "Ruby Committers and the World", "AMA: Rails Core"],
-      discussion: ["Discussion: Something", "Discussion", "Fishbowl: Topic", "Fishbowl Discussion: Topic"],
-      fireside_chat: ["Fireside Chat: Something", "Fireside Chat"],
-      interview: ["Interview with Matz", "Interview: Something"],
-      award: ["Award: Something", "Award Show", "Ruby Heroes Awards", "Ruby Heroes Award", "Rails Luminary"]
-    }
-
-    kind_with_titles.each do |kind, titles|
-      titles.each do |title|
-        talk = Talk.new(title:, date: Date.today)
-        talk.save!
-
-        assert_equal [kind.to_s, title], [talk.kind, talk.title]
-
-        talk.destroy!
-      end
-    end
-  end
-
-  test "should not guess a kind if it's provided" do
-    talk = Talk.create!(title: "foo", kind: "panel", date: Date.today)
+  test "keeps an explicitly provided kind" do
+    talk = Talk.create!(title: "foo", kind: "panel", date: Date.today, static_id: "test-panel-foo")
 
     assert_equal "panel", talk.kind
   end
 
-  test "should not guess a kind if it's provided in the static metadata" do
-    talk = Talk.create!(
-      title: "Who Wants to be a Ruby Engineer?",
-      video_provider: "mp4",
-      video_id: "https://videos.brightonruby.com/videos/2024/drew-bragg-who-wants-to-be-a-ruby-engineer.mp4",
-      date: Date.today
-    )
-
-    assert_equal "gameshow", talk.kind
-  end
-
   test "transcript should default to raw_transcript" do
     raw_transcript = Transcript.new(cues: [Cue.new(start_time: 0, end_time: 1, text: "Hello")])
-    talk = Talk.new(title: "Sample Talk", date: Date.today, talk_transcript_attributes: {raw_transcript: raw_transcript})
+    talk = Talk.new(title: "Sample Talk", date: Date.today, static_id: "test-transcript-default", talk_transcript_attributes: {raw_transcript: raw_transcript})
     assert talk.save
 
     loaded_talk = Talk.find(talk.id)
@@ -101,7 +63,7 @@ class TalkTest < ActiveSupport::TestCase
 
   test "enhance talk transcript" do
     @talk = talks(:one)
-    @talk = Talk.includes(event: :organisation).find(@talk.id)
+    @talk = Talk.includes(event: :series).find(@talk.id)
 
     refute @talk.enhanced_transcript.cues.present?
     VCR.use_cassette("talks/transcript-enhancement") do
@@ -118,7 +80,7 @@ class TalkTest < ActiveSupport::TestCase
 
   test "summarize talk" do
     @talk = talks(:one)
-    @talk = Talk.includes(event: :organisation).find(@talk.id)
+    @talk = Talk.includes(event: :series).find(@talk.id)
 
     refute @talk.summary.present?
     VCR.use_cassette("talks/summarize") do
@@ -167,6 +129,92 @@ class TalkTest < ActiveSupport::TestCase
     @talk.update_from_yml_metadata!
 
     assert_equal "Hotwire Cookbook: Common Uses, Essential Patterns & Best Practices", @talk.title
+    assert_equal "talk", @talk.kind
+  end
+
+  test "update_from_yml_metadata sets the kind from the static metadata" do
+    @talk = talks(:one)
+    @talk.update!(kind: "keynote")
+
+    @talk.update_from_yml_metadata!
+
+    assert_equal "talk", @talk.kind
+  end
+
+  test "update_from_yml_metadata creates alias when slug changes" do
+    @talk = talks(:one)
+    original_title = @talk.title
+
+    old_slug = "old-legacy-slug"
+
+    @talk.update_columns(slug: old_slug)
+    @talk.update_from_yml_metadata!
+
+    assert_not_equal old_slug, @talk.slug
+    assert_equal "Hotwire Cookbook: Common Uses, Essential Patterns & Best Practices", @talk.title
+
+    alias_record = @talk.aliases.find_by(slug: old_slug)
+
+    assert_not_nil alias_record
+    assert_equal original_title, alias_record.name
+  end
+
+  test "update_from_yml_metadata does not create duplicate aliases" do
+    @talk = talks(:one)
+    old_slug = "old-legacy-slug"
+
+    @talk.aliases.create!(name: @talk.title, slug: old_slug)
+    @talk.update_columns(slug: old_slug)
+
+    assert_no_difference "@talk.aliases.count" do
+      @talk.update_from_yml_metadata!
+    end
+  end
+
+  test "find_by_slug_or_alias finds talk by slug" do
+    @talk = talks(:one)
+    found = Talk.find_by_slug_or_alias(@talk.slug)
+
+    assert_equal @talk, found
+  end
+
+  test "find_by_slug_or_alias finds talk by alias slug" do
+    @talk = talks(:one)
+    @talk.aliases.create!(name: "Old Title", slug: "old-talk-slug")
+
+    found = Talk.find_by_slug_or_alias("old-talk-slug")
+
+    assert_equal @talk, found
+  end
+
+  test "find_by_slug_or_alias returns nil for non-existent slug" do
+    found = Talk.find_by_slug_or_alias("non-existent-slug")
+
+    assert_nil found
+  end
+
+  test "find_by_slug_or_alias returns nil for blank slug" do
+    assert_nil Talk.find_by_slug_or_alias(nil)
+    assert_nil Talk.find_by_slug_or_alias("")
+  end
+
+  test "unused_slugs excludes slugs used as aliases by other talks" do
+    @talk = talks(:one)
+    other_talk = talks(:two)
+
+    candidate_slug = @talk.slug_candidates.first
+    other_talk.aliases.create!(name: "Some Title", slug: candidate_slug)
+
+    assert_not_includes @talk.unused_slugs, candidate_slug
+  end
+
+  test "unused_slugs allows talk to keep its own alias slug" do
+    @talk = talks(:one)
+
+    candidate_slug = @talk.slug_candidates.second
+    @talk.aliases.create!(name: "Old Title", slug: candidate_slug)
+
+    assert_includes @talk.unused_slugs, candidate_slug
   end
 
   test "language is english by default" do
@@ -197,7 +245,7 @@ class TalkTest < ActiveSupport::TestCase
   end
 
   test "create a new talk with a nil language" do
-    talk = Talk.create!(title: "New title", language: nil, date: Date.today)
+    talk = Talk.create!(title: "New title", language: nil, date: Date.today, static_id: "test-new-title-nil-language")
     assert_equal "en", talk.language
     assert talk.valid?
   end
@@ -208,13 +256,13 @@ class TalkTest < ActiveSupport::TestCase
     assert_equal [@talk], Talk.ft_search("Hotwire Cookbook: Common Uses, Essential Patterns")
     assert_equal [@talk], Talk.ft_search('Hotwire"') # with an escaped quote
 
-    @talk.index.destroy!
-    @talk.reload.reindex # Need to reload or we get a FrozenError from trying to update attributes on the destroyed index record.
+    @talk.fts_index.destroy!
+    @talk.reload.reindex_fts # Need to reload or we get a FrozenError from trying to update attributes on the destroyed index record.
     assert_equal [@talk], Talk.ft_search("Hotwire Cookbook")
   end
 
   test "full text search creating and deleting a talk" do
-    talk = Talk.create!(title: "Full text seach with Sqlite", summary: "On using sqlite full text search with an ActiveRecord backed virtual table", date: Time.current)
+    talk = Talk.create!(title: "Full text seach with Sqlite", summary: "On using sqlite full text search with an ActiveRecord backed virtual table", date: Time.current, static_id: "kasper-timm-hansen-full-text-search-test")
     talk.users.create!(name: "Kasper Timm Hansen")
 
     assert_equal [talk], Talk.ft_search("sqlite full text search") # title
@@ -304,7 +352,7 @@ class TalkTest < ActiveSupport::TestCase
 
   test "should return the event thumbnail for non youtube talks" do
     talk = talks(:brightonruby_2024_one).tap do |t|
-      ActiveRecord::Associations::Preloader.new(records: [t], associations: [event: :organisation]).call
+      ActiveRecord::Associations::Preloader.new(records: [t], associations: [event: :series]).call
     end
 
     assert_match %r{^/assets/events/brightonruby/brightonruby-2024/poster-.*.webp$}, talk.thumbnail
@@ -319,11 +367,11 @@ class TalkTest < ActiveSupport::TestCase
   test "discarded user_talks" do
     talk = talks(:one)
     user_talk = talk.user_talks.first
-    assert_equal 1, user_talk.user.talks_count
+    assert_equal 2, user_talk.user.talks_count
     user_talk.discard
     assert_equal 1, talk.user_talks.count
     assert_equal 0, talk.kept_user_talks.count
-    assert_equal 0, user_talk.user.talks_count
+    assert_equal 1, user_talk.user.talks_count
   end
 
   test "should return original title" do
@@ -333,7 +381,7 @@ class TalkTest < ActiveSupport::TestCase
   end
   test "llm request caching for transcript enhancement" do
     @talk = talks(:one)
-    @talk = Talk.includes(event: :organisation).find(@talk.id)
+    @talk = Talk.includes(event: :series).find(@talk.id)
 
     refute @talk.enhanced_transcript.cues.present?
     VCR.use_cassette("talks/transcript-enhancement") do
@@ -364,7 +412,7 @@ class TalkTest < ActiveSupport::TestCase
 
   test "llm request caching for summarization" do
     @talk = talks(:one)
-    @talk = Talk.includes(event: :organisation).find(@talk.id)
+    @talk = Talk.includes(event: :series).find(@talk.id)
 
     refute @talk.summary.present?
     VCR.use_cassette("talks/summarize") do
@@ -419,7 +467,7 @@ class TalkTest < ActiveSupport::TestCase
 
   test "llm request caching with successful response" do
     @talk = talks(:one)
-    @talk = Talk.includes(event: :organisation).find(@talk.id)
+    @talk = Talk.includes(event: :series).find(@talk.id)
 
     VCR.use_cassette("talks/transcript-enhancement") do
       # First call should succeed and create a successful request

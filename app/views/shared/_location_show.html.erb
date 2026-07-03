@@ -1,0 +1,125 @@
+<%# locals: (location:, events:, users:, stamps:, event_map_markers:, geo_layers: [], nearby_users: [], nearby_events: [], cities: [], events_by_country: {}, country_events: [], country: nil, state: nil, state_users: [], continent_events: [], continent: nil, emoji: nil) %>
+
+<%= turbo_refreshes_with method: :morph, scroll: :preserve %>
+
+<% if location.is_a?(OnlineLocation) %>
+  <% title "Online Ruby Events" %>
+<% elsif location.is_a?(CoordinateLocation) %>
+  <% title "Ruby Community near #{location.name}" %>
+<% else %>
+  <% title "Ruby Community in #{location.name}" %>
+<% end %>
+
+<% upcoming_event_count = events.count(&:upcoming?) %>
+<% upcoming_nearby_count = nearby_events.count { |n| n[:event].upcoming? } %>
+<% upcoming_country_count = country_events.present? ? country_events.count : 0 %>
+<% upcoming_continent_count = continent_events.present? ? continent_events.count : 0 %>
+
+<% stats_text = if upcoming_event_count > 0
+     "#{pluralize(upcoming_event_count, "upcoming event")} in #{location.name}"
+   elsif upcoming_nearby_count > 0
+     "#{pluralize(upcoming_nearby_count, "event")} nearby"
+   elsif upcoming_country_count > 0 && country.present?
+     "#{pluralize(upcoming_country_count, "upcoming event")} in #{country.name}"
+   elsif upcoming_continent_count > 0 && continent.present?
+     "#{pluralize(upcoming_continent_count, "upcoming event")} in #{continent.name}"
+   else
+     "#{pluralize(events.count, "event")} in #{location.name}"
+   end %>
+
+<%= render "shared/location_header",
+      name: location.name,
+      subtitle: location.to_location.to_text,
+      flag_code: (location.respond_to?(:alpha2) && !location.is_a?(Continent)) ? location.alpha2 : nil,
+      emoji: location.is_a?(Continent) ? location.emoji_flag : emoji,
+      stats: stats_text,
+      location: location %>
+
+<%= render "shared/location_navigation",
+      location: location,
+      current_tab: "overview",
+      show_cities: location.is_a?(Country) || location.is_a?(UKNation) || location.is_a?(State),
+      show_countries: location.is_a?(Continent),
+      show_states: location.is_a?(Country) && location.states?,
+      show_stamps: location.stamps.any? %>
+
+<div class="container py-8">
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div class="lg:col-span-2">
+      <% upcoming_events = events.select(&:upcoming?) %>
+      <% past_events = events.select(&:past?) %>
+      <% upcoming_nearby_events = nearby_events.select { |n| n[:event].upcoming? } %>
+
+      <% if upcoming_events.any? %>
+        <%= render "shared/events_section",
+              title: "Upcoming Events",
+              events: upcoming_events,
+              limit: upcoming_events.size,
+              empty_message: "No upcoming events." %>
+
+      <% elsif upcoming_nearby_events.any? %>
+        <%= render "shared/events_section",
+              title: "Upcoming Events",
+              events: upcoming_events,
+              empty_message: "No upcoming events in #{location.name}.",
+              fallback_text: past_events.any? ? "View #{pluralize(past_events.count, "past event")} in #{location.name} →" : nil,
+              fallback_path: past_events.any? ? location_past_path(location) : nil %>
+
+      <% else %>
+        <%= render "shared/events_section",
+              title: "Upcoming Events",
+              events: [],
+              empty_message: "No upcoming events in #{location.name} yet.",
+              fallback_text: past_events.any? ? "View #{pluralize(past_events.count, "past event")} →" : nil,
+              fallback_path: past_events.any? ? location_past_path(location) : nil %>
+
+      <% end %>
+
+      <% if upcoming_nearby_events.any? %>
+        <%= render "shared/nearby_events_section",
+              title: "Upcoming Events Near #{location.name}",
+              nearby_events: upcoming_nearby_events,
+              dimmed: false %>
+      <% end %>
+
+      <% if country_events.present? && country_events.any? && country.present? %>
+        <%= render "shared/events_section",
+              title: "Upcoming Events in #{country.name}",
+              events: country_events,
+              view_all_path: country_path(country),
+              view_all_count: country_events.count,
+              empty_message: "No upcoming events in #{country.name}.",
+              dimmed: true %>
+      <% end %>
+
+      <% if continent_events.present? && continent_events.any? && continent.present? %>
+        <%= render "shared/events_section",
+              title: "Upcoming Events in #{continent.name}",
+              events: continent_events,
+              view_all_path: continent_path(continent),
+              view_all_count: continent_events.count,
+              empty_message: "No upcoming events in #{continent.name}.",
+              limit: 8,
+              dimmed: true %>
+      <% end %>
+    </div>
+
+    <div class="lg:col-span-1">
+      <%= render "shared/location_sidebar",
+            location: location,
+            users: users,
+            nearby_users: nearby_users,
+            nearby_events: nearby_events,
+            cities: cities,
+            countries: events_by_country,
+            show_cities: cities.any?,
+            show_countries: events_by_country.any?,
+            event_map_markers: event_map_markers,
+            geo_layers: geo_layers,
+            country_events: country_events,
+            continent_events: continent_events,
+            state: state,
+            state_users: state_users %>
+    </div>
+  </div>
+</div>

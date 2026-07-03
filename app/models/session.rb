@@ -2,6 +2,7 @@
 # == Schema Information
 #
 # Table name: sessions
+# Database name: primary
 #
 #  id         :integer          not null, primary key
 #  ip_address :string

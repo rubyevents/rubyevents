@@ -7,16 +7,16 @@ namespace :speakers do
       attributes = speaker.attributes.except("id", "created_at", "updated_at", "canonical_id", "github")
       attributes["github_handle"] = speaker.github
       if user.present?
-        begin
-          puts "Updating user #{user.name} with speaker data"
-          user.update!(**attributes)
-        end
+
+        puts "Updating user #{user.name} with speaker data"
+        user.update!(**attributes)
+
       else
-        begin
-          puts "Creating user #{speaker.name} with speaker data"
-          user = User.create!(**attributes)
-          speaker.update!(user: user)
-        end
+
+        puts "Creating user #{speaker.name} with speaker data"
+        user = User.create!(**attributes)
+        speaker.update!(user: user)
+
       end
 
       # Create UserTalk records for each SpeakerTalk

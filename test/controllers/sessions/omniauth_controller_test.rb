@@ -13,7 +13,7 @@ class Sessions::OmniauthControllerTest < ActionDispatch::IntegrationTest
     @user = github.user
     @github_auth = OmniAuth::AuthHash.new(github.attributes
                                           .slice("provider", "uid")
-                                          .merge({info: {email: github.user.email}}))
+                                          .merge(info: {nickname: github.user.github_handle, email: github.user.email}))
   end
 
   def teardown
@@ -29,7 +29,7 @@ class Sessions::OmniauthControllerTest < ActionDispatch::IntegrationTest
     assert_difference "User.count", 1 do
       post "/auth/developer/callback"
     end
-    user = User.find_by(github_handle: "new-user")
+    user = User.find_by_github_handle("new-user")
     assert_equal 1, user.connected_accounts.count
   end
 
@@ -66,6 +66,18 @@ class Sessions::OmniauthControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_path
   end
 
+  test "finds existing user if already exists (github) with different casing" do
+    github = connected_accounts(:github_connected_account)
+    @user = github.user
+    OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(github.attributes
+                                          .slice("provider", "uid")
+                                          .merge({username: github.user.github_handle.upcase, info: {nickname: github.user.github_handle.upcase, email: github.user.email}}))
+    assert_no_difference "User.count" do
+      post "/auth/github/callback"
+    end
+    assert_redirected_to root_path
+  end
+
   test "assign a passport to the existing user (github)" do
     connected_account = connected_accounts(:github_connected_account)
 
@@ -76,7 +88,7 @@ class Sessions::OmniauthControllerTest < ActionDispatch::IntegrationTest
     OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(
       provider: :github,
       uid: connected_account.uid,
-      info: {email: @user.email}
+      info: {nickname: connected_account.username, email: @user.email}
     )
     assert_no_difference "User.count" do
       post "/auth/github/callback"
@@ -105,6 +117,7 @@ class Sessions::OmniauthControllerTest < ActionDispatch::IntegrationTest
 
   test "full oauth flow" do
     OmniAuth.config.mock_auth[:github] = @github_auth
+    OmniAuth.config.request_validation_phase = nil
     state = "connect_id:123456"
 
     # Start the auth request with the state
@@ -144,5 +157,40 @@ class Sessions::OmniauthControllerTest < ActionDispatch::IntegrationTest
     post "/auth/developer/callback"
     assert_redirected_to root_path
     assert_equal "Signed in successfully", flash[:notice]
+  end
+
+  test "with native state redirects to deep link with signin token and does not create a session" do
+    OmniAuth.config.mock_auth[:developer] = @developer_auth
+
+    OmniAuth.config.before_callback_phase = lambda do |env|
+      env["omniauth.params"] = {"state" => "native:android"}
+    end
+
+    assert_no_difference "Session.count" do
+      post "/auth/developer/callback"
+    end
+
+    assert_response :redirect
+    location = response.location
+    assert_match %r{\Arubyevents://auth/developer/callback\?token=}, location
+
+    token = location.split("token=").last
+    assert_equal @developer_user, User.find_signed(token, purpose: :native_signin)
+  end
+
+  test "with native state for new user creates the user but no session" do
+    OmniAuth.config.mock_auth[:developer] = OmniAuth::AuthHash.new(provider: :developer, uid: "99999", info: {github_handle: "native-user", name: "Native User"})
+
+    OmniAuth.config.before_callback_phase = lambda do |env|
+      env["omniauth.params"] = {"state" => "native:android"}
+    end
+
+    assert_difference "User.count", 1 do
+      assert_no_difference "Session.count" do
+        post "/auth/developer/callback"
+      end
+    end
+
+    assert_match %r{\Arubyevents://auth/developer/callback\?token=}, response.location
   end
 end

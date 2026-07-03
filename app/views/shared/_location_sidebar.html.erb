@@ -1,0 +1,157 @@
+<%# locals: (location:, users:, nearby_users: [], nearby_events: [], cities: [], countries: {}, show_cities: true, show_countries: false, event_map_markers: [], geo_layers: [], country_events: [], continent_events: [], state: nil, state_users: [], map_title: "Upcoming Events Map") %>
+
+<div class="space-y-8">
+  <% if location.is_a?(OnlineLocation) %>
+    <div>
+      <h3 class="font-bold text-gray-900 mb-4">About Online Events</h3>
+      <p class="text-gray-600 text-sm">
+        Online events are virtual conferences, meetups, and workshops that you can attend from anywhere in the world.
+      </p>
+    </div>
+
+    <div>
+      <h3 class="font-bold text-gray-900 mb-4">Browse by Location</h3>
+
+      <div class="space-y-1">
+        <%= link_to continents_path, class: "flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors" do %>
+          <span class="text-xl">🌍</span>
+          <span class="text-gray-700">Continents</span>
+        <% end %>
+
+        <%= link_to countries_path, class: "flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors" do %>
+          <span class="text-xl">🏳️</span>
+          <span class="text-gray-700">Countries</span>
+        <% end %>
+
+        <%= link_to cities_path, class: "flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors" do %>
+          <span class="text-xl">🏙️</span>
+          <span class="text-gray-700">Cities</span>
+        <% end %>
+      </div>
+    </div>
+  <% elsif geo_layers.any? || event_map_markers.any? || location.bounds.present? %>
+    <div
+      data-controller="map"
+      <% if geo_layers.any? %>
+        data-map-layers-value="<%= geo_layers.to_json %>"
+      <% end %>
+      <% if geo_layers.empty? %>
+        data-map-markers-value="<%= event_map_markers.to_json %>"
+      <% end %>
+      <% if location.bounds.present? %>
+        data-map-bounds-value="<%= location.bounds.to_json %>"
+      <% end %>>
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="font-bold text-gray-900"><%= map_title %></h3>
+      </div>
+
+      <% if geo_layers.size >= 1 %>
+        <div class="flex flex-wrap items-center gap-2 mb-4">
+          <%= render "shared/map_layer_controls", layers: geo_layers, selection: "radio", use_emoji: true %>
+        </div>
+      <% end %>
+
+      <div
+        id="sidebar-map"
+        class="w-full h-96 rounded-xl overflow-hidden border"
+        data-map-target="container"></div>
+    </div>
+  <% end %>
+
+  <% unless location.is_a?(OnlineLocation) %>
+    <%= render "shared/rubyists_preview",
+          users: users.limit(24),
+          title: "Rubyists in #{location.name}",
+          total_count: users.count,
+          view_all_path: location_users_path(location) %>
+  <% end %>
+
+  <% if nearby_users.present? && nearby_users.any? %>
+    <div>
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="font-bold text-gray-900">Rubyists near <%= location.name %></h3>
+
+        <%= link_to location_users_path(location), class: "link text-sm" do %>
+          View all
+        <% end %>
+      </div>
+
+      <div class="grid grid-cols-[repeat(auto-fill,3rem)] gap-2 justify-between">
+        <% nearby_users.first(24).each do |nearby| %>
+          <% user = nearby.is_a?(Hash) ? nearby[:user] : nearby %>
+          <% distance_km = nearby.is_a?(Hash) ? nearby[:distance_km] : nil %>
+
+          <div class="relative group">
+            <%= render Ui::AvatarComponent.new(user, size: :md, hover_card: true) %>
+
+            <% if distance_km %>
+              <div class="absolute -bottom-1 -right-1 bg-gray-700 text-white text-[10px] px-1 rounded-full leading-tight">
+                <%= distance_km %>km
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if state.present? && state_users.present? && state_users.any? %>
+    <%= render "shared/rubyists_preview",
+          users: state_users.first(24),
+          title: "Rubyists in #{state.name}",
+          view_all_path: state_users_path(state_alpha2: state.country.code, state_slug: state.slug) %>
+  <% end %>
+
+  <% if show_countries && countries.present? && countries.any? %>
+    <div id="countries">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="font-bold text-gray-900">Countries</h3>
+
+        <% if countries.size > 12 %>
+          <%= link_to "View all countries", continent_countries_path(location), class: "link text-sm mt-3 inline-block" %>
+        <% end %>
+      </div>
+
+      <div class="space-y-1">
+        <% countries.first(12).each do |country, events| %>
+          <% next unless country %>
+
+          <%= link_to country_path(country), class: "flex justify-between items-center py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors" do %>
+            <span class="text-gray-700 flex items-center gap-2">
+              <span class="fi fi-<%= country.alpha2.downcase %>"></span>
+              <%= country.name %>
+            </span>
+
+            <%= ui_badge(events.count, kind: :secondary, outline: true, size: :sm) %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if show_cities && cities.present? && cities.any? %>
+    <div id="cities">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="font-bold text-gray-900">Cities</h3>
+
+        <% if location_cities_path(location).present? %>
+          <%= link_to location_cities_path(location), class: "link text-sm" do %>
+            View all
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="space-y-1">
+        <% cities.first(12).each do |city| %>
+          <%= link_to city.path, class: "flex justify-between items-center py-0.5 rounded-lg hover:bg-gray-50 transition-colors" do %>
+            <span class="text-gray-700">
+              <%= city.name %><% if city.state.present? %><span class="text-gray-400">, <%= city.state.code %></span><% end %>
+            </span>
+
+            <%= ui_badge(city.events_count, kind: :secondary, outline: true, size: :sm) %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

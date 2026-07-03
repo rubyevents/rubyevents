@@ -1,86 +1,105 @@
----
 # https://2016.euruko.org/schedule
-
+---
 ## Day 1
 
-- title: "Opening Keynote: Ruby 3 Today"
+- id: "yukihiro-matz-matsumoto-euruko-2016"
+  title: "Opening Keynote: Ruby 3 Today"
   raw_title: 'EuRuKo 2016 - Day 1 Keynote by Yukihiro "Matz" Matsumoto'
-  speakers:
-    - Yukihiro "Matz" Matsumoto
+  kind: "keynote"
   event_name: "EuRuKo 2016"
   date: "2016-09-23"
-  description: ""
+  published_at: "2016-10-19T08:23:21Z"
   video_provider: "youtube"
   video_id: "8aHmArEq4y0"
-
-- title: "Little Snippets"
-  raw_title: "EuRuKo 2016 - Little Snippets by Xavier Noria"
+  description: ""
   speakers:
-    - Xavier Noria
+    - "Yukihiro \"Matz\" Matsumoto"
+
+- id: "xavier-noria-euruko-2016"
+  title: "Little Snippets"
+  raw_title: "EuRuKo 2016 - Little Snippets by Xavier Noria"
   event_name: "EuRuKo 2016"
   date: "2016-09-23"
-  description: ""
+  published_at: "2016-10-19T08:23:21Z"
   video_provider: "youtube"
   video_id: "mC9TyVeER_8"
-
-- title: "Rules, Laws, and Gentle Guidelines"
-  raw_title: "EuRuKo 2016 - Rules, Laws, and Gentle Guidelines by Andrew Radev"
+  description: ""
   speakers:
-    - Andrew Radev
+    - Xavier Noria
+
+- id: "andrew-radev-euruko-2016"
+  title: "Rules, Laws, and Gentle Guidelines"
+  raw_title: "EuRuKo 2016 - Rules, Laws, and Gentle Guidelines by Andrew Radev"
   event_name: "EuRuKo 2016"
   date: "2016-09-23"
-  description: ""
+  published_at: "2016-10-19T08:23:20Z"
   video_provider: "youtube"
   video_id: "BDXQ4pcbEBA"
+  description: ""
+  speakers:
+    - Andrew Radev
 
 # Lunch
 
-- title: "Simplifying Logs, Events and Streams: Kafka + Rails"
+- id: "terence-lee-euruko-2016"
+  title: "Simplifying Logs, Events and Streams: Kafka + Rails"
   raw_title: "EuRuKo 2016 - Simplifying Logs, Events and Streams: Kafka + Rails by Terence Lee"
-  speakers:
-    - Terence Lee
   event_name: "EuRuKo 2016"
   date: "2016-09-23"
-  description: ""
+  published_at: "2016-10-11T10:29:01Z"
   video_provider: "youtube"
   video_id: "yl3JmF3n2bQ"
-
-- title: "GraphQL on Rails"
-  raw_title: "EuRuKo 2016 - GraphQL on Rails by Marc-André Giroux"
+  description: ""
   speakers:
-    - Marc-André Giroux
+    - Terence Lee
+
+- id: "marc-andr-giroux-euruko-2016"
+  title: "GraphQL on Rails"
+  raw_title: "EuRuKo 2016 - GraphQL on Rails by Marc-André Giroux"
   event_name: "EuRuKo 2016"
   date: "2016-09-23"
-  description: ""
+  published_at: "2016-10-19T08:23:21Z"
   video_provider: "youtube"
   video_id: "_V96jduEvjY"
-
-- title: "Herding Cats to a Firefight"
-  raw_title: "EuRuKo 2016 - Herding Cats to a Firefight by Grace Chang"
+  description: ""
   speakers:
-    - Grace Chang
+    - Marc-André Giroux
+
+- id: "grace-chang-euruko-2016"
+  title: "Herding Cats to a Firefight"
+  raw_title: "EuRuKo 2016 - Herding Cats to a Firefight by Grace Chang"
   event_name: "EuRuKo 2016"
   date: "2016-09-23"
-  description: ""
+  published_at: "2016-10-19T08:23:19Z"
   video_provider: "youtube"
   video_id: "u_7wrPXaSto"
+  description: ""
+  speakers:
+    - Grace Chang
 
 # Coffee Break
 
-- title: "How Sprockets Works"
+- id: "rafael-mendona-frana-euruko-2016"
+  title: "How Sprockets Works"
   raw_title: "EuRuKo 2016 - How Sprockets Works by Rafael França"
-  speakers:
-    - Rafael Mendonça França
   event_name: "EuRuKo 2016"
   date: "2016-09-23"
-  description: ""
+  published_at: "2016-10-19T08:23:19Z"
   video_provider: "youtube"
   video_id: "rbM_1wRVfeI"
+  description: ""
+  speakers:
+    - Rafael Mendonça França
 
-- title: "Lightning Talks: Day 1"
+- id: "lightning-talks-day-1-euruko-2016"
+  title: "Lightning Talks: Day 1"
   raw_title: "EuRuKo 2016 - Day 1 Lightning Talks"
+  kind: "lightning_talk"
   event_name: "EuRuKo 2016"
   date: "2016-09-23"
+  published_at: "2016-10-20T08:27:22Z"
+  video_provider: "youtube"
+  video_id: "UehkClMTJDw"
   description: |-
     Lightning talks from Day 1 of EuRuKo
 
@@ -91,11 +110,9 @@
     * "Validations" by Krzysztof (Christopher) Wawer (23:39)
     * "The Importance of Teaching and Metoring" by Demir Zekić (28:53)
     * "Whirly - The Friendly Terminal Spinner" by Jan Lelis (35:25)
-
-  video_provider: "youtube"
-  video_id: "UehkClMTJDw"
   talks:
-    - title: "Making a Multiplayer Memory Game with Elixir and Elm"
+    - id: "max-gorin-lighting-talk-euruko-2016"
+      title: "Making a Multiplayer Memory Game with Elixir and Elm"
       start_cue: "0:29"
       end_cue: "6:20"
       video_provider: "parent"
@@ -103,7 +120,8 @@
       speakers:
         - Max Gorin
 
-    - title: "Team Joda 2016 (Rails Girls Summer of Code 2016)"
+    - id: "johanna-lang-lighting-talk-euruko-2016"
+      title: "Team Joda 2016 (Rails Girls Summer of Code 2016)"
       start_cue: "6:20"
       end_cue: "12:11"
       video_provider: "parent"
@@ -112,7 +130,8 @@
         - Johanna Lang
         - Dayana Mick
 
-    - title: "We Are Rubycats! (Rails Girls Summer of Code 2016)"
+    - id: "kinga-kalinowska-lighting-talk-euruko-2016"
+      title: "We Are Rubycats! (Rails Girls Summer of Code 2016)"
       start_cue: "12:11"
       end_cue: "18:22"
       video_provider: "parent"
@@ -121,7 +140,8 @@
         - Kinga Kalinowska
         - Izabela Komorek
 
-    - title: "Magic Solution to the Tech Gender Gap"
+    - id: "melanie-keatley-lighting-talk-euruko-2016"
+      title: "Magic Solution to the Tech Gender Gap"
       start_cue: "18:22"
       end_cue: "23:39"
       video_provider: "parent"
@@ -130,7 +150,8 @@
         - Melanie Keatley
         - Stephanie Nemeth
 
-    - title: "Validations"
+    - id: "krzysztof-wawer-lighting-talk-euruko-2016"
+      title: "Validations"
       start_cue: "23:39"
       end_cue: "28:53"
       video_provider: "parent"
@@ -138,7 +159,8 @@
       speakers:
         - Krzysztof (Christopher) Wawer
 
-    - title: "The Importance of Teaching and Metoring"
+    - id: "demir-zekic-lighting-talk-euruko-2016"
+      title: "The Importance of Teaching and Metoring"
       start_cue: "28:53"
       end_cue: "35:25"
       video_provider: "parent"
@@ -146,7 +168,8 @@
       speakers:
         - Demir Zekić
 
-    - title: "Whirly - The Friendly Terminal Spinner"
+    - id: "jan-lelis-lighting-talk-euruko-2016"
+      title: "Whirly - The Friendly Terminal Spinner"
       start_cue: "35:25"
       video_provider: "parent"
       video_id: "jan-lelis-lighting-talk-euruko-2016"
@@ -155,80 +178,96 @@
 
 ## Day 2
 
-- title: "Idioms for Building Distributed Fault–Tolerant Applications with Elixir"
+- id: "jos-valim-euruko-2016"
+  title: "Idioms for Building Distributed Fault–Tolerant Applications with Elixir"
   raw_title: "EuRuKo 2016 - Idioms for Building Distributed Fault–Tolerant Applications with Elixir by José Valim"
-  speakers:
-    - José Valim
   event_name: "EuRuKo 2016"
   date: "2016-09-24"
-  description: ""
+  published_at: "2016-10-19T08:23:17Z"
   video_provider: "youtube"
   video_id: "xhwnHovnq_0"
-
-- title: "How to Begin to Develop Ruby Core"
-  raw_title: "EuRuKo 2016 - How to Begin to Develop Ruby Core by Hiroshi Shibata"
+  description: ""
   speakers:
-    - Hiroshi Shibata
+    - José Valim
+
+- id: "hiroshi-shibata-euruko-2016"
+  title: "How to Begin to Develop Ruby Core"
+  raw_title: "EuRuKo 2016 - How to Begin to Develop Ruby Core by Hiroshi Shibata"
   event_name: "EuRuKo 2016"
   date: "2016-09-24"
-  description: ""
+  published_at: "2016-10-19T08:23:18Z"
   video_provider: "youtube"
   video_id: "IRfsakcZJKw"
-
-- title: "Consequences of an Insightful Algorithm"
-  raw_title: "EuRuKo 2016 - Consequences of an Insightful Algorithm by Carina C. Zona"
+  description: ""
   speakers:
-    - Carina C. Zona
+    - Hiroshi Shibata
+
+- id: "carina-c-zona-euruko-2016"
+  title: "Consequences of an Insightful Algorithm"
+  raw_title: "EuRuKo 2016 - Consequences of an Insightful Algorithm by Carina C. Zona"
   event_name: "EuRuKo 2016"
   date: "2016-09-24"
-  description: ""
+  published_at: "2016-10-19T08:23:17Z"
   video_provider: "youtube"
   video_id: "bp4yFKw_1QM"
+  description: ""
+  speakers:
+    - Carina C. Zona
 
 # Lunch
 
-- title: "Viewing Ruby Blossom"
+- id: "anton-davydov-euruko-2016"
+  title: "Viewing Ruby Blossom"
   raw_title: "EuRuKo 2016 - Viewing Ruby Blossom by Anton Davydov"
-  speakers:
-    - Anton Davydov
   event_name: "EuRuKo 2016"
   date: "2016-09-24"
-  description: ""
+  published_at: "2016-10-19T08:23:18Z"
   video_provider: "youtube"
   video_id: "3L6I4UoK8xM"
-
-- title: "What I Have Learned From Organizing Remote Internship"
-  raw_title: "EuRuKo 2016 - What I Have Learned From Organizing Remote Internship by Ivan Nemytchenko"
+  description: ""
   speakers:
-    - Ivan Nemytchenko
+    - Anton Davydov
+
+- id: "ivan-nemytchenko-euruko-2016"
+  title: "What I Have Learned From Organizing Remote Internship"
+  raw_title: "EuRuKo 2016 - What I Have Learned From Organizing Remote Internship by Ivan Nemytchenko"
   event_name: "EuRuKo 2016"
   date: "2016-09-24"
-  description: ""
+  published_at: "2016-10-19T08:23:18Z"
   video_provider: "youtube"
   video_id: "H-K0ZKOclBU"
-
-- title: "A Year of Ruby, Together"
-  raw_title: "EuRuKo 2016 - A Year of Ruby, Together by André Arko"
+  description: ""
   speakers:
-    - André Arko
+    - Ivan Nemytchenko
+
+- id: "andr-arko-euruko-2016"
+  title: "A Year of Ruby, Together"
+  raw_title: "EuRuKo 2016 - A Year of Ruby, Together by André Arko"
   event_name: "EuRuKo 2016"
   date: "2016-09-24"
-  description: ""
+  published_at: "2016-10-19T08:23:18Z"
   video_provider: "youtube"
   video_id: "SJddsEfvcW8"
+  description: ""
+  speakers:
+    - André Arko
 
 # Coffee Break
 
-- title: "Lightning Talks: Day 2"
+- id: "lightning-talks-day-2-euruko-2016"
+  title: "Lightning Talks: Day 2"
   raw_title: "EuRuKo 2016 - Day 2 Lightning Talks"
+  kind: "lightning_talk"
   event_name: "EuRuKo 2016"
   date: "2016-09-24"
-  description: |-
-    Lightning talks from Day 2 of EuRuKo
+  published_at: "2016-10-19T11:47:24Z"
   video_provider: "youtube"
   video_id: "WnlgKWCt8wQ"
+  description: |-
+    Lightning talks from Day 2 of EuRuKo
   talks:
-    - title: "The HTT(Pancake) Request - Keeping Your Clients Happy, Not Hangry"
+    - id: "kriselda-rabino-lighting-talk-euruko-2016"
+      title: "The HTT(Pancake) Request - Keeping Your Clients Happy, Not Hangry"
       start_cue: "00:57"
       end_cue: "07:50"
       video_provider: "parent"
@@ -236,7 +275,8 @@
       speakers:
         - Kriselda Rabino
 
-    - title: "How to decode ADSK data (Commodore 64 Edition)"
+    - id: "stefan-daschek-lighting-talk-euruko-2016"
+      title: "How to decode ADSK data (Commodore 64 Edition)"
       start_cue: "07:50"
       end_cue: "13:47"
       video_provider: "parent"
@@ -244,7 +284,8 @@
       speakers:
         - Stefan Daschek
 
-    - title: "Working with PDFs in Ruby"
+    - id: "thomas-leitner-lighting-talk-euruko-2016"
+      title: "Working with PDFs in Ruby"
       start_cue: "13:47"
       end_cue: "22:55"
       video_provider: "parent"
@@ -252,7 +293,8 @@
       speakers:
         - Thomas Leitner
 
-    - title: "Ruby for Science and Open Data"
+    - id: "victor-shepelev-lighting-talk-euruko-2016"
+      title: "Ruby for Science and Open Data"
       start_cue: "22:55"
       end_cue: "29:37"
       video_provider: "parent"
@@ -260,7 +302,8 @@
       speakers:
         - Victor Shepelev
 
-    - title: "CodeMarathon & HiredInTech - Using Rails to scale teaching CS online"
+    - id: "anton-dimitrov-lighting-talk-euruko-2016"
+      title: "CodeMarathon & HiredInTech - Using Rails to scale teaching CS online"
       start_cue: "29:37"
       end_cue: "34:16"
       video_provider: "parent"
@@ -268,7 +311,8 @@
       speakers:
         - Anton Dimitrov
 
-    - title: "Opening a calculator with Rails"
+    - id: "igor-omokov-lighting-talk-euruko-2016"
+      title: "Opening a calculator with Rails"
       start_cue: "34:16"
       end_cue: "40:35"
       video_provider: "parent"
@@ -276,7 +320,8 @@
       speakers:
         - Igor Omokov
 
-    - title: "Feel Worse, Do Better"
+    - id: "alex-jahraus-lighting-talk-euruko-2016"
+      title: "Feel Worse, Do Better"
       start_cue: "40:35"
       end_cue: "48:09"
       video_provider: "parent"
@@ -284,12 +329,14 @@
       speakers:
         - Alex Jahraus
 
-- title: "The Illusion of Stable APIs"
+- id: "nick-sutterer-euruko-2016"
+  title: "The Illusion of Stable APIs"
   raw_title: "EuRuKo 2016 - The Illusion of Stable APIs by Nick Sutterer"
-  speakers:
-    - Nick Sutterer
   event_name: "EuRuKo 2016"
   date: "2016-09-24"
-  description: ""
+  published_at: "2016-10-19T08:23:17Z"
   video_provider: "youtube"
   video_id: "mvHwTtsIH8g"
+  description: ""
+  speakers:
+    - Nick Sutterer

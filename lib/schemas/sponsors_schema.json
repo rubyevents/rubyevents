@@ -1,0 +1,74 @@
+{
+  "type": "object",
+  "properties": {
+    "tiers": {
+      "type": "array",
+      "description": "List of sponsorship tiers",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Sponsorship Tier Name"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the sponsorship tier"
+          },
+          "level": {
+            "type": "integer",
+            "description": "Sponsorship level (lower number indicates higher level)"
+          },
+          "sponsors": {
+            "type": "array",
+            "description": "List of sponsors in this tier",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Sponsor Name"
+                },
+                "slug": {
+                  "type": "string",
+                  "description": "Sponsor identifier slug"
+                },
+                "website": {
+                  "type": "string",
+                  "description": "Sponsor's website URL"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Description of the sponsor"
+                },
+                "logo_url": {
+                  "type": "string",
+                  "description": "URL to the sponsor's logo image"
+                },
+                "badge": {
+                  "type": "string",
+                  "description": "Sponsor badge text"
+                }
+              },
+              "required": [
+                "name",
+                "slug",
+                "website"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "sponsors"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "tiers"
+  ],
+  "additionalProperties": false,
+  "strict": true
+}

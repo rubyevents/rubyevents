@@ -1,0 +1,8 @@
+<%# locals: (continue_watching:) %>
+
+<%= render "browse/content_row",
+      title: "Continue Watching",
+      talks: continue_watching&.map(&:talk) || [],
+      watched_talks: continue_watching || [],
+      view_all_path: watched_talks_path,
+      data_section: "continue-watching" %>

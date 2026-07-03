@@ -12,7 +12,7 @@
 
 # Ignore all environment files.
 /.env*
-!/.env.example
+!/.env.sample
 
 # Ignore all logfiles and tempfiles.
 /log/*
@@ -38,8 +38,6 @@
 !/app/assets/builds/.keep
 /public/assets
 /scripts/*
-
-/data_preparation/*
 
 /docs/*
 /load_testing/*

@@ -1,0 +1,8 @@
+<%= link_to series_path(series), class: "flex w-full" do %>
+  <div class="card border w-full h-full">
+    <div class="card-body flex flex-col items-center justify-center">
+        <div class="text-xl font-semibold text-center"><%= series.name %></div>
+        <div><%= pluralize(series.events.count, "event") %></div>
+    </div>
+  </div>
+<% end %>

@@ -2,49 +2,74 @@
 # == Schema Information
 #
 # Table name: users
+# Database name: primary
 #
-#  id                  :integer          not null, primary key
-#  admin               :boolean          default(FALSE), not null
-#  bio                 :text             default(""), not null
-#  bsky                :string           default(""), not null
-#  bsky_metadata       :json             not null
-#  email               :string           indexed
-#  github_handle       :string           uniquely indexed
-#  github_metadata     :json             not null
-#  linkedin            :string           default(""), not null
-#  mastodon            :string           default(""), not null
-#  name                :string           indexed
-#  password_digest     :string
-#  pronouns            :string           default(""), not null
-#  pronouns_type       :string           default("not_specified"), not null
-#  slug                :string           default(""), not null, uniquely indexed
-#  speakerdeck         :string           default(""), not null
-#  talks_count         :integer          default(0), not null
-#  twitter             :string           default(""), not null
-#  verified            :boolean          default(FALSE), not null
-#  watched_talks_count :integer          default(0), not null
-#  website             :string           default(""), not null
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
-#  canonical_id        :integer          indexed
+#  id                   :integer          not null, primary key
+#  admin                :boolean          default(FALSE), not null
+#  bio                  :text             default(""), not null
+#  bsky                 :string           default(""), not null
+#  bsky_metadata        :json             not null
+#  city                 :string
+#  country_code         :string
+#  email                :string           indexed
+#  geocode_metadata     :json             not null
+#  github_handle        :string
+#  github_metadata      :json             not null
+#  language_preferences :json             not null
+#  latitude             :decimal(10, 6)
+#  linkedin             :string           default(""), not null
+#  location             :string           default("")
+#  longitude            :decimal(10, 6)
+#  marked_for_deletion  :boolean          default(FALSE), not null, indexed
+#  mastodon             :string           default(""), not null
+#  name                 :string           indexed
+#  password_digest      :string
+#  pronouns             :string           default(""), not null
+#  pronouns_type        :string           default("not_specified"), not null
+#  settings             :json             not null
+#  slug                 :string           default(""), not null, uniquely indexed
+#  speakerdeck          :string           default(""), not null
+#  state_code           :string
+#  suspicion_cleared_at :datetime
+#  suspicion_marked_at  :datetime
+#  talks_count          :integer          default(0), not null
+#  twitter              :string           default(""), not null
+#  verified             :boolean          default(FALSE), not null
+#  watched_talks_count  :integer          default(0), not null
+#  website              :string           default(""), not null
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  canonical_id         :integer          indexed
 #
 # Indexes
 #
-#  index_users_on_canonical_id   (canonical_id)
-#  index_users_on_email          (email)
-#  index_users_on_github_handle  (github_handle) UNIQUE WHERE github_handle IS NOT NULL AND github_handle != ''
-#  index_users_on_name           (name)
-#  index_users_on_slug           (slug) UNIQUE WHERE slug IS NOT NULL AND slug != ''
+#  index_users_on_canonical_id         (canonical_id)
+#  index_users_on_email                (email)
+#  index_users_on_lower_github_handle  (lower(github_handle)) UNIQUE WHERE github_handle IS NOT NULL AND github_handle != ''
+#  index_users_on_marked_for_deletion  (marked_for_deletion)
+#  index_users_on_name                 (name)
+#  index_users_on_slug                 (slug) UNIQUE WHERE slug IS NOT NULL AND slug != ''
 #
 # rubocop:enable Layout/LineLength
 class User < ApplicationRecord
   include ActionView::RecordIdentifier
+  include Geocodeable
   include Sluggable
-  include Suggestable
-  include User::Searchable
+
+  include User::SQLiteFTSSearchable
+  include User::TypesenseSearchable
+
+  geocodeable :location
   configure_slug(attribute: :name, auto_suffix_on_collision: true)
 
+  has_delegated_json :settings,
+    feedback_enabled: true,
+    wrapped_public: false,
+    searchable: true,
+    distance: 250
+
   GITHUB_URL_PATTERN = %r{\A(https?://)?(www\.)?github\.com/}i
+  GITHUB_HANDLE_PATTERN = /\A[A-Za-z0-9][A-Za-z0-9-]{0,38}\z/
 
   PRONOUNS = {
     "Not specified": :not_specified,
@@ -55,7 +80,17 @@ class User < ApplicationRecord
     Custom: :custom
   }.freeze
 
+  POSSESSIVE_PRONOUNS = {
+    "she_her" => "her",
+    "he_him" => "his",
+    "they_them" => "their"
+  }.freeze
+
   has_secure_password validations: false
+
+  has_one_attached :wrapped_card
+  has_one_attached :wrapped_card_horizontal
+  has_one_attached :wrapped_og_image
 
   # Authentication and user-specific associations
   has_many :sessions, dependent: :destroy, inverse_of: :user
@@ -70,12 +105,13 @@ class User < ApplicationRecord
   has_many :kept_talks, -> { joins(:user_talks).where(user_talks: {discarded_at: nil}).distinct },
     through: :user_talks, inverse_of: :speakers, class_name: "Talk", source: :talk
   has_many :events, -> { distinct }, through: :talks, inverse_of: :speakers
-  has_many :aliases, class_name: "User", foreign_key: "canonical_id"
+  has_many :canonical_aliases, class_name: "User", foreign_key: "canonical_id"
+  has_many :aliases, as: :aliasable, dependent: :destroy
   has_many :topics, through: :talks
 
   # Event participation associations
   has_many :event_participations, dependent: :destroy
-  has_many :participated_events, through: :event_participations, source: :event
+  has_many :participated_events, -> { distinct }, through: :event_participations, source: :event
   has_many :speaker_events, -> { where(event_participations: {attended_as: :speaker}) },
     through: :event_participations, source: :event
   has_many :keynote_speaker_events, -> { where(event_participations: {attended_as: :keynote_speaker}) },
@@ -83,13 +119,51 @@ class User < ApplicationRecord
   has_many :visitor_events, -> { where(event_participations: {attended_as: :visitor}) },
     through: :event_participations, source: :event
 
+  def checked_in_events
+    Event.where(id: EventCheckIn.where(connect_id: passports.select(:uid)).select(:event_id))
+  end
+
+  def all_attended_events
+    Event.where(id: (participated_events.pluck(:id) + checked_in_events.pluck(:id)).uniq)
+  end
+
+  def checked_in_event_ids
+    EventCheckIn.where(connect_id: passports.select(:uid)).pluck(:event_id).to_set
+  end
+
+  def passport_check_ins
+    EventCheckIn.where(connect_id: passports.select(:uid))
+      .includes(event: :series)
+      .order(checked_in_at: :desc)
+  end
+
+  has_many :event_involvements, as: :involvementable, dependent: :destroy
+  has_many :involved_events, through: :event_involvements, source: :event
+
+  # Favorite user associations
+  has_many :favorite_users, dependent: :destroy, inverse_of: :user
+  has_many :favorited_by, class_name: "FavoriteUser", foreign_key: "favorite_user_id", inverse_of: :favorite_user
+
   belongs_to :canonical, class_name: "User", optional: true
+  belongs_to :city_record, class_name: "City", optional: true, inverse_of: false,
+    foreign_key: [:city, :country_code, :state_code], primary_key: [:name, :country_code, :state_code]
+  has_one :contributor, dependent: :nullify
 
   has_object :profiles
+  has_object :favorite_statuses
+  has_object :languages
+  has_object :talk_recommender
+  has_object :watched_talk_seeder
+  has_object :speakerdeck_feed
+  has_object :suspicion_detector
+  has_object :duplicate_detector
+  has_object :merger
 
   validates :email, format: {with: URI::MailTo::EMAIL_REGEXP}, allow_blank: true
-  validates :github_handle, presence: true, uniqueness: true, allow_blank: true
+  validates :github_handle, presence: true, uniqueness: true, allow_blank: true,
+    format: {with: GITHUB_HANDLE_PATTERN, message: "is not a valid GitHub username"}
   validates :canonical, exclusion: {in: ->(user) { [user] }, message: "can't be itself"}
+  validates :distance, comparison: {less_than_or_equal_to: 20_000, greater_than_or_equal_to: 0}
 
   normalizes :github_handle, with: ->(value) { normalize_github_handle(value) }
 
@@ -101,7 +175,11 @@ class User < ApplicationRecord
   normalizes :linkedin, with: ->(value) { value.gsub(%r{https?://(?:www\.)?(?:linkedin\.com/in)/}, "") }
 
   normalizes :mastodon, with: ->(value) {
-    return value if value&.match?(URI::DEFAULT_PARSER.make_regexp)
+    return "" if value.blank?
+
+    # Only allow http(s) URLs through verbatim; reject javascript: and other
+    # potentially dangerous schemas.
+    return value if value.match?(%r{\Ahttps?://}i)
     return "" unless value.count("@") == 2
 
     _, handle, instance = value.split("@")
@@ -132,6 +210,8 @@ class User < ApplicationRecord
     self.verified = false
   end
 
+  after_save :create_alias_for_previous_name, if: :saved_change_to_name?
+
   # Speaker scopes
   scope :with_talks, -> { where.not(talks_count: 0) }
   scope :speakers, -> { where("talks_count > 0") }
@@ -139,6 +219,104 @@ class User < ApplicationRecord
   scope :without_github, -> { where(github_handle: [nil, ""]) }
   scope :canonical, -> { where(canonical_id: nil) }
   scope :not_canonical, -> { where.not(canonical_id: nil) }
+  scope :marked_for_deletion, -> { where(marked_for_deletion: true) }
+  scope :not_marked_for_deletion, -> { where(marked_for_deletion: false) }
+  scope :with_public_wrapped, -> { where("json_extract(settings, '$.wrapped_public') = ?", true) }
+  scope :with_feedback_enabled, -> { where("json_extract(settings, '$.feedback_enabled') = ?", true) }
+  scope :searchable, -> { where("json_extract(settings, '$.searchable') = ?", true) }
+  scope :with_radius, ->(distance) { where("json_extract(settings, '$.distance') = ?", distance) }
+  scope :indexable, -> {
+    canonical.not_marked_for_deletion.where("talks_count > 0 OR json_extract(settings, '$.searchable') = ?", true)
+  }
+  scope :with_location, -> { where.not(location: [nil, ""]) }
+  scope :without_location, -> { where(location: [nil, ""]) }
+
+  scope :orphaned, -> {
+    known_githubs, known_names = all_speaker_identifiers
+    where.not(github_handle: known_githubs)
+      .where.not(name: known_names)
+      .where.missing(:connected_accounts)
+      .where.missing(:event_involvements)
+      .where.missing(:event_participations)
+      .where.missing(:contributor)
+      .where(talks_count: 0)
+  }
+
+  scope :not_orphaned, -> {
+    known_githubs, known_names = all_speaker_identifiers
+    where(github_handle: known_githubs)
+      .or(where(name: known_names))
+      .or(where.associated(:connected_accounts))
+      .or(where.associated(:event_involvements))
+      .or(where.associated(:event_participations))
+      .or(where.associated(:contributor))
+      .or(where.not(talks_count: 0))
+  }
+
+  def self.all_speaker_identifiers
+    @all_speaker_identifiers ||= begin
+      collection = Yerba::Collection.new("data/speakers.yml")
+      githubs = collection.pluck(:github).compact
+      names = collection.pluck(:name).compact
+      [githubs, names]
+    end
+  end
+
+  def self.speaker_alias_to_main_speaker
+    @speaker_alias_to_main_speaker ||= begin
+      collection = Yerba::Collection.new("data/speakers.yml")
+      names = collection.pluck(:name)
+      githubs = collection.pluck(:github)
+      aliases_data = collection.pluck(:aliases)
+
+      mapping = {}
+      names.zip(githubs, aliases_data).each do |main_name, github, aliases|
+        next if main_name.nil? || aliases.nil?
+
+        Array(aliases).each do |a|
+          alias_name = a["name"]
+          next if alias_name.nil? || alias_name == main_name
+
+          mapping[alias_name] = {name: main_name, github: github}
+        end
+      end
+      mapping
+    end
+  end
+
+  scope :duplicate_aliases, -> {
+    alias_names = speaker_alias_to_main_speaker.keys
+    where(name: alias_names)
+  }
+
+  def orphaned?
+    known_githubs, known_names = self.class.all_speaker_identifiers
+    known_githubs.exclude?(github_handle) &&
+      known_names.exclude?(name) &&
+      connected_accounts.none? &&
+      event_involvements.none? &&
+      event_participations.none? &&
+      !contributor? &&
+      talks_count == 0
+  end
+
+  def duplicate_alias?
+    self.class.speaker_alias_to_main_speaker.key?(name)
+  end
+
+  def main_speaker_name
+    self.class.speaker_alias_to_main_speaker.dig(name, :name)
+  end
+
+  def find_main_speaker
+    data = self.class.speaker_alias_to_main_speaker[name]
+    return unless data
+
+    User.find_by_github_handle(data[:github]) ||
+      User.find_by_name_or_alias(data[:name])
+  end
+
+  scope :preloaded, -> { includes(:connected_accounts) }
 
   def self.normalize_github_handle(value)
     value
@@ -153,9 +331,34 @@ class User < ApplicationRecord
     end
   end
 
+  def self.find_by_github_handle(handle)
+    return nil if handle.blank?
+    where("lower(github_handle) = ?", handle.downcase).first
+  end
+
+  def self.find_by_name_or_alias(name)
+    return nil if name.blank?
+
+    user = find_by(name: name, marked_for_deletion: false)
+    return user if user
+
+    alias_record = ::Alias.find_by(aliasable_type: "User", name: name)
+    alias_record&.aliasable
+  end
+
+  def self.find_by_slug_or_alias(slug)
+    return nil if slug.blank?
+
+    user = find_by(slug: slug, marked_for_deletion: false)
+    return user if user
+
+    alias_record = ::Alias.find_by(aliasable_type: "User", slug: slug)
+    alias_record&.aliasable
+  end
+
   # User-specific methods
   def default_watch_list
-    @default_watch_list ||= watch_lists.first || watch_lists.create(name: "Favorites")
+    @default_watch_list ||= watch_lists.first || watch_lists.create(name: "Bookmarks")
   end
 
   def main_participation_to(event)
@@ -167,12 +370,41 @@ class User < ApplicationRecord
     name
   end
 
+  def country
+    return nil if country_code.blank?
+
+    Country.find_by(country_code: country_code)
+  end
+
+  def to_location
+    @to_location ||= Location.from_record(self)
+  end
+
   def canonical_slug
     canonical&.slug
   end
 
   def verified?
-    connected_accounts.find { |account| account.provider == "github" }
+    !suspicious? && connected_accounts.any? { |account| account.provider == "github" }
+  end
+
+  def indexable?
+    return false if canonical_id.present? || marked_for_deletion?
+    return true if talks_count > 0 # speakers are always searchable
+
+    searchable?
+  end
+
+  def ruby_passport_claimed?
+    connected_accounts.any? { |account| account.provider == "passport" }
+  end
+
+  def possessive_pronoun
+    POSSESSIVE_PRONOUNS[pronouns_type] || "their"
+  end
+
+  def contributor?
+    contributor.present?
   end
 
   def managed_by?(visiting_user)
@@ -252,39 +484,25 @@ class User < ApplicationRecord
   end
 
   def meta_description
-    <<~HEREDOC
-      Discover all the talks given by #{name} on subjects related to Ruby language or Ruby Frameworks such as Rails, Hanami and others
-    HEREDOC
+    return "#{name}'s profile on RubyEvents.org" if talks_count.zero?
+
+    top_topics = topics.group(:id).order(Arel.sql("COUNT(*) DESC"), :name).limit(3).pluck(:name)
+
+    topic_text = if top_topics.any?
+      top_topics.to_sentence
+    else
+      "Ruby language and Ruby Frameworks such as Rails, Hanami and others"
+    end
+
+    "Discover all the talks given by #{name} on subjects related to #{topic_text}."
   end
 
   def assign_canonical_speaker!(canonical_speaker:)
-    ActiveRecord::Base.transaction do
-      self.canonical = canonical_speaker
-      self.github_handle = nil
-      save!
-
-      user_talks.each do |user_talk|
-        UserTalk.create(talk: user_talk.talk, user: canonical_speaker)
-      end
-
-      # We need to destroy the remaining user_talks. They can be remaining given the unicity constraint
-      # on the user_talks table. The update above swallows the error if the user_talk duet exists already
-      UserTalk.where(user_id: id).destroy_all
-    end
+    assign_canonical_user!(canonical_user: canonical_speaker)
   end
 
   def primary_speaker
     canonical || self
-  end
-
-  def suggestion_summary
-    <<~HEREDOC
-      Speaker: #{name}
-      github_handle: #{github_handle}
-      twitter: #{twitter}
-      website: #{website}
-      bio: #{bio}
-    HEREDOC
   end
 
   def to_mobile_json(request)
@@ -298,23 +516,38 @@ class User < ApplicationRecord
   end
 
   def assign_canonical_user!(canonical_user:)
-    ActiveRecord::Base.transaction do
-      self.canonical = canonical_user
-      self.github_handle = nil
-      save!
-
-      user_talks.each do |user_talk|
-        UserTalk.create(talk: user_talk.talk, user: canonical_user)
-      end
-
-      # We need to destroy the remaining user_talks. They can be remaining given the unicity constraint
-      # on the user_talks table. The update above swallows the error if the user_talk duet exists already
-      UserTalk.where(user_id: id).destroy_all
-    end
+    canonical_user.merge_with!(self)
   end
 
   def set_slug
-    self.slug = slug.presence || github_handle.presence&.downcase
+    self.slug = slug.presence || name.presence&.parameterize || github_handle.presence&.downcase
     super
+  end
+
+  def create_alias_for_previous_name
+    previous_name, _current_name = saved_change_to_name
+
+    return if previous_name.blank?
+    return if connected_accounts.github.none?
+
+    previous_slug = previous_name.parameterize
+
+    return if aliases.exists?(name: previous_name)
+
+    aliases.create(name: previous_name, slug: previous_slug)
+  end
+
+  def speakerdeck_user_from_slides_url
+    handles = talks
+      .map(&:static_metadata).compact
+      .map(&:slides_url).compact
+      .select { |url| url.include?("speakerdeck.com") }
+      .map { |url| url.split("/")[3] }.uniq
+
+    (handles.count == 1) ? handles.first : nil
+  end
+
+  def to_param
+    github_handle.presence || slug
   end
 end

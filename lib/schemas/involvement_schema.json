@@ -1,0 +1,28 @@
+{
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Role or involvement type (e.g., 'Organizer', 'Program Committee member')"
+    },
+    "users": {
+      "type": "array",
+      "description": "Person names involved in this role",
+      "items": {
+        "type": "string"
+      }
+    },
+    "organisations": {
+      "type": "array",
+      "description": "Organization names involved in this role",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "additionalProperties": false,
+  "strict": true
+}

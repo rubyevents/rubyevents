@@ -1,0 +1,70 @@
+<%# locals: (title:, nearby_events:, fallback_text: nil, fallback_path: nil, limit: 8, dimmed: false) %>
+
+<div class="mb-12 <%= "opacity-60 hover:opacity-100 transition-opacity" if dimmed %>">
+  <div class="flex items-center justify-between mb-6">
+    <h2 class="text-xl font-bold text-gray-900"><%= title %></h2>
+  </div>
+
+  <% limited_events = nearby_events.first(limit) %>
+  <% events_by_date = limited_events.group_by { |n| event_date_group_key(n[:event]) }.sort_by { |key, _| key || "zzz" } %>
+
+  <% events_by_date.each do |_, date_nearby_events| %>
+    <% first_event = date_nearby_events.first[:event] %>
+    <div class="mb-8">
+      <div class="flex items-center gap-2 mb-4">
+        <span class="w-2 h-2 rounded-full bg-gray-400"></span>
+        <span class="text-lg font-semibold text-gray-800">
+          <% if first_event.date_precision == "day" && first_event.start_date.present? %>
+            <%= first_event.start_date.strftime("%b %-d") %>
+            <span class="font-normal text-gray-500"><%= first_event.start_date.strftime("%A") %></span>
+          <% elsif first_event.start_date.present? %>
+            <%= event_date_display(first_event, day_name: false) %>
+          <% else %>
+            Date TBD
+          <% end %>
+        </span>
+      </div>
+
+      <div class="space-y-3 pl-4">
+        <% date_nearby_events.each do |nearby| %>
+          <% event = nearby[:event] %>
+
+          <%= link_to event_path(event), class: "block bg-white rounded-lg border p-4 hover:border-gray-400 transition-colors" do %>
+            <div class="flex gap-4 items-start">
+              <% if event.avatar_image_path %>
+                <div class="w-16 h-16 flex-shrink-0 rounded-lg overflow-hidden">
+                  <%= image_tag event.avatar_image_path, class: "w-full h-full object-cover" %>
+                </div>
+              <% end %>
+
+              <div class="flex-grow min-w-0">
+                <div class="font-semibold text-gray-900 truncate"><%= event.name %></div>
+
+                <div class="text-sm text-gray-600 mt-1">
+                  <span class="inline-flex items-center gap-1">
+                    <%= fa("map-marker-alt", size: :xs, class: "text-gray-400") %>
+                    <%= event.location %>
+
+                    <span class="text-gray-400">• <%= nearby[:distance_km] %> km away</span>
+                  </span>
+                </div>
+              </div>
+
+              <% if event.participants.any? %>
+                <div class="flex-shrink-0">
+                  <%= render Ui::AvatarGroupComponent.new(event.participants.to_a, max: 4, size: :md, overlap: "-space-x-3") %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if fallback_path.present? && fallback_text.present? %>
+    <div class="mt-6 text-center">
+      <%= link_to fallback_text, fallback_path, class: "link text-sm" %>
+    </div>
+  <% end %>
+</div>

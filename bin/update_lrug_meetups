@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -e  # Exit on error
+
+if command -v mise &> /dev/null; then
+  eval "$(mise activate bash)"
+fi
+
+curl https://lrug.org/rubyevents-video-playlist.yml > data/lrug/lrug-meetup/videos.yml
+git add data/lrug/lrug-meetup/videos.yml
+bundle exec yerba apply
+git commit -m "Update LRUG Meetups"

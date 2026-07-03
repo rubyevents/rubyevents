@@ -17,7 +17,7 @@ module LanguageHelper
     "czech" => "🇨🇿",
     "danish" => "🇩🇰",
     "dutch" => "🇳🇱",
-    "english" => "",
+    "english" => "🇬🇧",
     "esperanto" => "🏳️",
     "estonian" => "🇪🇪",
     "fijian" => "🇫🇯",
@@ -104,6 +104,36 @@ module LanguageHelper
     "xhosa" => "🇿🇦",
     "yoruba" => "🇳🇬",
     "zulu" => "🇿🇦"
+  }.freeze
+
+  NATIVE_NAMES = {
+    "de" => "deutsch",
+    "es" => "español",
+    "fr" => "français",
+    "it" => "italiano",
+    "pt" => "português",
+    "ja" => "日本語",
+    "ko" => "한국어",
+    "zh" => "中文",
+    "ru" => "русский",
+    "nl" => "nederlands",
+    "pl" => "polski",
+    "sv" => "svenska",
+    "da" => "dansk",
+    "no" => "norsk",
+    "fi" => "suomi",
+    "cs" => "čeština",
+    "hu" => "magyar",
+    "ro" => "română",
+    "uk" => "українська",
+    "el" => "ελληνικά",
+    "tr" => "türkçe",
+    "ar" => "العربية",
+    "he" => "עברית",
+    "hi" => "हिन्दी",
+    "th" => "ไทย",
+    "vi" => "tiếng việt",
+    "id" => "bahasa indonesia"
   }.freeze
 
   def language_to_emoji(language)

@@ -1,0 +1,63 @@
+<div class="flex flex-col gap-4">
+  <% series_with_todos.each do |series_data| %>
+    <div class="card bg-base-200">
+      <div class="card-body p-4">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="badge badge-primary"><%= series_data[:total_count] %></span>
+
+          <% if series_data[:series] %>
+            <%= link_to series_path(series_data[:series].slug), class: "font-bold text-lg hover:underline" do %>
+              <%= series_data[:series].name %>
+            <% end %>
+          <% else %>
+            <span class="font-bold text-lg"><%= series_data[:series_slug] %></span>
+          <% end %>
+        </div>
+
+        <% series_data[:events].each do |event_data| %>
+          <div class="collapse collapse-arrow bg-base-300 mb-1">
+            <input type="checkbox">
+            <div class="collapse-title py-2 min-h-0 font-medium flex items-center gap-2">
+              <span class="badge badge-sm badge-secondary"><%= event_data[:total_count] %></span>
+
+              <% if event_data[:event] %>
+                <%= link_to event_path(event_data[:event].slug), class: "hover:underline" do %>
+                  <%= event_data[:event].title %>
+                <% end %>
+                <% if event_data[:event].end_date %>
+                  <span class="text-base-content/50 text-sm">(<%= event_data[:event].end_date.strftime("%b %Y") %>)</span>
+                <% end %>
+              <% else %>
+                <span><%= event_data[:event_slug] %></span>
+              <% end %>
+            </div>
+            <div class="collapse-content">
+              <table class="table table-xs">
+                <thead>
+                  <tr>
+                    <th>Location</th>
+                    <th>Content</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% event_data[:files].each do |file, todos| %>
+                    <% todos.each do |todo| %>
+                      <tr>
+                        <td class="font-mono text-xs">
+                          <%= link_to todo.url, target: "_blank", class: "link link-primary" do %>
+                            <%= File.basename(todo.file) %>:<%= todo.line %>
+                          <% end %>
+                        </td>
+                        <td><code class="text-xs break-all"><%= todo.content %></code></td>
+                      </tr>
+                    <% end %>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -2,6 +2,7 @@
 # == Schema Information
 #
 # Table name: connected_accounts
+# Database name: primary
 #
 #  id           :integer          not null, primary key
 #  access_token :string
@@ -36,3 +37,4 @@ github_connected_account:
   uid: "789012"
   user: github_user
   access_token: "789012"
+  username: "github_user"

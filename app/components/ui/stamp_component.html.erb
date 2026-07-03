@@ -1,0 +1,15 @@
+<% if interactive && clickable? %>
+  <%= link_to(url, **link_attributes.deep_merge(data: {turbo_frame: "_top"})) do %>
+    <%= image_tag(stamp.asset_path,
+          alt: "#{stamp.name} passport stamp",
+          class: classes,
+          style: image_style,
+          loading: "lazy") %>
+  <% end %>
+<% else %>
+  <%= image_tag(stamp.asset_path,
+        alt: "#{stamp.name} passport stamp",
+        class: classes,
+        style: image_style,
+        loading: "lazy") %>
+<% end %>

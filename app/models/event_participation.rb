@@ -1,6 +1,7 @@
 # == Schema Information
 #
 # Table name: event_participations
+# Database name: primary
 #
 #  id          :integer          not null, primary key
 #  attended_as :string           not null, uniquely indexed => [user_id, event_id], indexed
@@ -30,9 +31,22 @@ class EventParticipation < ApplicationRecord
   validates :user_id, uniqueness: {scope: [:event_id, :attended_as]}
 
   # enums
-  enum :attended_as, %w[organiser keynote_speaker speaker visitor].index_by(&:itself), prefix: true
+  enum :attended_as, %w[keynote_speaker speaker visitor].index_by(&:itself), prefix: true
+
+  # callbacks
+  after_create_commit :dedupe_with_speaker_role
 
   def name
     "#{user.name} - #{event.name} - #{attended_as}"
+  end
+
+  private
+
+  def dedupe_with_speaker_role
+    if attended_as_visitor?
+      destroy if user.event_participations.where(event_id:, attended_as: [:speaker, :keynote_speaker]).exists?
+    else
+      user.event_participations.attended_as_visitor.where(event_id:).delete_all
+    end
   end
 end

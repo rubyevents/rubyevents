@@ -17,11 +17,11 @@ json.talk do
       json.start_date @talk.event.start_date
       json.end_date @talk.event.end_date
 
-      if @talk.event.organisation.present?
-        json.organisation do
-          json.id @talk.event.organisation.id
-          json.name @talk.event.organisation.name
-          json.slug @talk.event.organisation.slug
+      if @talk.event.series.present?
+        json.series do
+          json.id @talk.event.series.id
+          json.name @talk.event.series.name
+          json.slug @talk.event.series.slug
         end
       end
     end

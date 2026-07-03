@@ -98,6 +98,8 @@ end
 
 ### ViewComponent Architecture
 
+> **Detailed UI Component Rules**: See [viewcomponents.mdc](./viewcomponents.mdc) for comprehensive UI component guidelines.
+
 **Component Structure:**
 
 - All components inherit from `ApplicationComponent`
@@ -257,7 +259,7 @@ end
 
 **Data Management:**
 
-- `bin/rails db:seed` - Seed database from YAML files
+- `bin/rails db:seed:all` - Seed database from YAML files
 - YAML files define conference structure and video metadata
 
 ### Deployment & Production

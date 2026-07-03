@@ -1,6 +1,7 @@
 # == Schema Information
 #
 # Table name: speakers
+# Database name: primary
 #
 #  id              :integer          not null, primary key
 #  bio             :text             default(""), not null
@@ -32,7 +33,6 @@
 # Foreign Keys
 #
 #  canonical_id  (canonical_id => speakers.id)
-#
 #
 # This is a legacy model that should be removed
 class Speaker < ApplicationRecord

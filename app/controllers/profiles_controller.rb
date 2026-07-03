@@ -1,39 +1,26 @@
 class ProfilesController < ApplicationController
   skip_before_action :authenticate_user!
-  before_action :set_user, only: %i[show edit update]
+  before_action :set_user, only: %i[show edit update reindex]
+  before_action :set_favorite_user, only: %i[show]
   before_action :set_user_favorites, only: %i[show]
+  before_action :set_mutual_events, only: %i[show]
+  before_action :require_admin!, only: %i[reindex]
+
   include Pagy::Backend
   include RemoteModal
   include WatchedTalks
+
   respond_with_remote_modal only: [:edit]
 
   # GET /profiles/:slug
   def show
-    @talks = @user.kept_talks.includes(:speakers, event: :organisation, child_talks: :speakers).order(date: :desc)
-    @talks_by_kind = @talks.group_by(&:kind)
-    @topics = @user.topics.approved.tally.sort_by(&:last).reverse.map(&:first)
-    # Load participated events (from event_participations)
-    @events = @user.participated_events.includes(:organisation).distinct.in_order_of(:attended_as, EventParticipation.attended_as.keys)
-    @events_with_stickers = @events.select(&:sticker?)
+    load_profile_data_for_show
 
-    event_participations = @user.event_participations.includes(:event).where(event: @events)
-    participation_lookup = event_participations.index_by(&:event_id)
-
-    @participated_events_by_type = @events.group_by { |event|
-      participation = participation_lookup[event.id]
-      participation&.attended_as || "visitor"
-    }
-    @events_by_year = @events.group_by { |event| event.start_date&.year || "Unknown" }
-
-    # Group events by country for the map tab
-    @countries_with_events = @events.map { |event|
-      country = event.static_metadata&.country
-      [country, @events.select { |e| e.static_metadata&.country == country }] if country
-    }.compact.uniq(&:first).sort_by { |country, _| country.translations["en"] }
-
-    @back_path = speakers_path
-
-    set_meta_tags(@user)
+    if @user.suspicious?
+      set_meta_tags(robots: "noindex, nofollow")
+    else
+      set_meta_tags(@user)
+    end
   end
 
   # GET /profiles/:slug/edit
@@ -43,15 +30,75 @@ class ProfilesController < ApplicationController
 
   # PATCH/PUT /profiles/:slug
   def update
-    suggestion = @user.create_suggestion_from(params: user_params, user: Current.user)
-    if suggestion.persisted?
-      redirect_to profile_path(@user), notice: suggestion.notice
+    unless @user.managed_by?(Current.user)
+      redirect_to profile_path(@user), alert: "Not authorized"
+      return
+    end
+
+    if @user.update(user_params)
+      redirect_to profile_path(@user), notice: "Profile updated!"
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
+  # POST /profiles/:slug/reindex
+  def reindex
+    Search::Backend.index(@user)
+    @user.talks.find_each { |talk| Search::Backend.index(talk) }
+
+    redirect_to profile_path(@user), notice: "Profile reindexed successfully."
+  end
+
   private
+
+  def require_admin!
+    redirect_to profile_path(@user), alert: "Not authorized" unless Current.user&.admin?
+  end
+
+  def load_profile_data_for_show
+    @talks = @user.kept_talks.includes(:speakers, event: :series, child_talks: :speakers).order(date: :desc)
+    @talks_by_kind = @talks.group_by(&:kind)
+    @topics = @user.topics.approved.tally.sort_by(&:last).reverse.map(&:first)
+    @events = @user.participated_events.includes(:series).in_order_of(:attended_as, EventParticipation.attended_as.keys)
+    @stickers = Sticker.for_user(@user, events: @events)
+
+    event_participations = @user.event_participations.includes(:event).where(event: @events).in_order_of(:attended_as, EventParticipation.attended_as.keys)
+
+    @participations = event_participations.group_by(&:event_id).transform_values(&:first)
+    @checked_in_event_ids = @user.checked_in_event_ids
+
+    checked_in_only_event_ids = @checked_in_event_ids - @events.map(&:id).to_set
+
+    if checked_in_only_event_ids.any?
+      checked_in_only_events = Event.includes(:series).where(id: checked_in_only_event_ids)
+      @events = @events.to_a + checked_in_only_events.to_a
+    end
+
+    country_scope = @events.is_a?(Array) ? Event.where(id: @events.map(&:id)) : @events
+    @countries_with_events = country_scope.grouped_by_country
+
+    @events_by_year = @events.group_by { |event| event.start_date&.year || "Unknown" }
+
+    @involved_events = @user.involved_events.includes(:series).distinct.order(start_date: :desc)
+    event_involvements = @user.event_involvements.includes(:event).where(event: @involved_events)
+    involvement_lookup = event_involvements.group_by(&:event_id)
+
+    @involvements_by_role = {}
+
+    @involved_events.each do |event|
+      involvements = involvement_lookup[event.id] || []
+      involvements.each do |involvement|
+        @involvements_by_role[involvement.role] ||= []
+        @involvements_by_role[involvement.role] << event
+      end
+    end
+
+    @stamps = Stamp.for_user(@user)
+    @aliases = Current.user&.admin? ? @user.aliases : []
+
+    @back_path = speakers_path
+  end
 
   helper_method :user_kind
   def user_kind
@@ -64,23 +111,26 @@ class ProfilesController < ApplicationController
   end
 
   def set_user
-    @user = User.includes(:talks, :passports).find_by(slug: params[:slug])
+    @user = User.preloaded.includes(:talks).find_by_slug_or_alias(params[:slug])
+    @user = User.preloaded.includes(:talks).find_by_github_handle(params[:slug]) unless @user.present?
 
-    # TODO review this redirection as it causes some issues with the redirect loop
-    # # When the user is found from its slug, but the github handle is different, we need to redirect to the github handle
-    # if @user.present? && @user.github_handle.present? && @user.github_handle != params[:slug]
-    #   return redirect_to profile_path(@user.github_handle), status: :moved_permanently
-    # end
+    if @user.blank?
+      redirect_to speakers_path, status: :moved_permanently, notice: "User not found"
+      return
+    end
 
-    @user = User.includes(:talks).find_by(github_handle: params[:slug]) unless @user.present?
+    if @user.canonical.present?
+      redirect_to profile_path(@user.canonical), status: :moved_permanently
+      return
+    end
 
-    redirect_to speakers_path, status: :moved_permanently, notice: "User not found" if @user.blank?
-    redirect_to profile_path(@user.canonical) if @user&.canonical.present?
+    if params[:slug] != @user.to_param
+      redirect_to profile_path(@user), status: :moved_permanently
+    end
   end
 
   def user_params
-    params.require(:user).permit(
-      :name,
+    permitted = params.require(:user).permit(
       :github_handle,
       :twitter,
       :bsky,
@@ -88,11 +138,47 @@ class ProfilesController < ApplicationController
       :mastodon,
       :bio,
       :website,
+      :location,
       :speakerdeck,
       :pronouns_type,
       :pronouns,
       :slug
     )
+
+    permitted[:language_preferences] = language_preferences_param if params[:user]&.key?(:language_preferences)
+
+    permitted
+  end
+
+  def language_preferences_param
+    raw = params.require(:user)[:language_preferences]
+
+    return {} unless raw.respond_to?(:each_pair)
+
+    result = {}
+
+    raw.each_pair do |code, answer|
+      next unless Language.by_code(code)
+
+      case answer
+      when "understands" then result[code] = {"understands" => true}
+      when "does_not_understand" then result[code] = {"understands" => false}
+      end
+    end
+
+    result
+  end
+
+  def set_favorite_user
+    @favorite_user = Current.user ? @user.favorited_by.find_or_initialize_by(user: Current.user) : nil
+  end
+
+  def set_mutual_events
+    @mutual_events = if Current.user
+      @user.participated_events.where(id: Current.user.participated_events).order(start_date: :desc)
+    else
+      Event.none
+    end
   end
 
   def set_user_favorites

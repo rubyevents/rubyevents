@@ -3,6 +3,12 @@ class CFPController < ApplicationController
 
   # GET /cfp
   def index
-    @events = Event.where(cfp_close_date: Date.today..).order(cfp_close_date: :asc)
+    cfps = CFP.includes(:event).open.order(CFP.arel_table[:close_date].asc.nulls_last)
+
+    if params[:kind].present? && params[:kind] != "all"
+      cfps = cfps.joins(:event).where(events: {kind: params[:kind]})
+    end
+
+    @events = cfps.map(&:event).group_by(&:kind).values.flatten
   end
 end

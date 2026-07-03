@@ -8,8 +8,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - `bin/setup` - Full setup including database seeding via docker-compose
 - `bin/dev` - Start Rails server, SolidQueue jobs, and Vite (for CSS/JS)
-- `bin/lint` - Run all formatters and linters (StandardRB, JS Standard, ERB lint, YAML prettier)
+- `bin/lint` - Run all formatters and linters (StandardRB, JS Standard, ERB lint, yerba)
 - `bin/rails db:seed` - Seed database with conference data manually
+- `bin/rails db:seed:all` - Seed database with all conference data manually
 
 ### Testing
 
@@ -22,7 +23,25 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `bundle exec standardrb --fix` - Fix Ruby formatting issues
 - `yarn format` - Fix JavaScript formatting
 - `bundle exec erb_lint --lint-all --autocorrect` - Fix ERB templates
-- `yarn format:yml` - Format YAML files in data/ directory
+- `bundle exec yerba apply` - Format YAML files in data/ (uses Yerbafile rules)
+- `bundle exec yerba check` - Validate YAML files match Yerbafile rules (used in CI)
+
+### Yerba (YAML Formatting)
+
+This project uses [yerba](https://github.com/marcoroth/yerba) to enforce consistent YAML formatting across all data files. The `Yerbafile` in the project root defines formatting rules as pipelines.
+
+Key commands:
+- `bundle exec yerba apply` - Apply all Yerbafile rules and write changes
+- `bundle exec yerba check` - Verify all files match rules (exits 1 if not, used in CI)
+- `bundle exec yerba get <file> <selector>` - Read values from YAML files
+- `bundle exec yerba set <file> <selector> <value>` - Update values in YAML files
+- `bundle exec yerba selectors <file>` - Show all valid selectors for a file
+- `bundle exec yerba sort <file> --by <field> --order <direction>` - Sort or reorder items
+- `bundle exec yerba insert <file> <selector> <value>` - Insert new items
+
+Yerba preserves comments, blank lines, quote styles, and formatting. It operates on the concrete syntax tree (CST), so edits are surgical. When editing YAML data files in bulk, yerba is the preferred tool — it's fast, accurate, and supports glob patterns to operate across hundreds of files at once. Prefer yerba commands over manual edits or Ruby scripts when making bulk changes to the data files.
+
+Run `yerba --help` for a full overview of all commands, selectors, conditions, and the Yerbafile. Each subcommand also has detailed help with examples — for instance `yerba get --help`, `yerba sort --help`, or `yerba quote-style --help`.
 
 ### Jobs & Search
 
@@ -33,10 +52,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### Core Models & Relationships
 
-- **Event**: Ruby conferences/meetups (belongs_to Organisation)
+- **Event**: Ruby conferences/meetups (belongs_to EventSeries)
 - **Talk**: Conference presentations (belongs_to Event, has_many SpeakerTalks)
 - **Speaker**: Presenters (has_many SpeakerTalks, has social media fields)
-- **Organisation**: Conference organizers (has_many Events)
+- **EventSeries**: Conference series/organizers (has_many Events)
 - **Topic**: AI-extracted talk topics (has_many TalkTopics)
 - **WatchList**: User-curated lists (belongs_to User, has_many WatchListTalks)
 
@@ -44,11 +63,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Conference data is stored in YAML files under `/data/`:
 
-- `data/organisations.yml` - Conference organizers
 - `data/speakers.yml` - Global speaker database
-- `data/{org-name}/playlists.yml` - YouTube playlist mappings
-- `data/{org-name}/{event-name}/videos.yml` - Individual talk data
-- `data/{org-name}/{event-name}/schedule.yml` - Event schedules
+- `data/{series-slug}/series.yml` - Event series metadata (conference organizers/series)
+- `data/{series-slug}/{event-name}/event.yml` - Event metadata (dates, location, colors, etc.)
+- `data/{series-slug}/{event-name}/videos.yml` - Individual talk data
+- `data/{series-slug}/{event-name}/schedule.yml` - Event schedules
 
 ### Technology Stack
 

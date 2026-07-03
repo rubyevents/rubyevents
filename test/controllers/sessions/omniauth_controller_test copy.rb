@@ -28,7 +28,7 @@ class Sessions::OmniauthControllerTest < ActionDispatch::IntegrationTest
     assert_difference "User.count", 1 do
       post "/auth/developer/callback"
     end
-    user = User.find_by(github_handle: "new-user")
+    user = User.find_by_github_handle("new-user")
     assert_equal 1, user.connected_accounts.count
     OmniAuth.config.mock_auth[:developer] = nil
   end

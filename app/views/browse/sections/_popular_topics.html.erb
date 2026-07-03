@@ -1,0 +1,7 @@
+<%# locals: (topics:) %>
+
+<%= turbo_frame_tag "browse-popular-topics" do %>
+  <% if topics&.any? %>
+    <%= render "browse/topic_row", topics: topics %>
+  <% end %>
+<% end %>

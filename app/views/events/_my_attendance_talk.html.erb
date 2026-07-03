@@ -1,0 +1,73 @@
+<%# locals: (talk:, track:, attended_in_person:, watched_online:, has_feedback:) %>
+<% bg_class, text_class = if attended_in_person
+     ["bg-green-50", "text-green-800"]
+   elsif watched_online
+     ["bg-blue-50", "text-blue-800"]
+   else
+     ["bg-white", "text-gray-900"]
+   end
+
+   in_person_confirm = if attended_in_person && has_feedback
+     "Remove in-person attendance? Your feedback will be deleted."
+   elsif watched_online
+     "Switch from watched online to attended in-person?"
+   end
+
+   online_confirm = if watched_online && has_feedback
+     "Remove watched online status? Your feedback will be deleted."
+   elsif attended_in_person
+     "Switch from attended in-person to watched online?"
+   end %>
+
+<%= turbo_frame_tag dom_id(talk, :attendance), style: "display: contents" do %>
+  <div class="flex items-center gap-1 p-1 <%= bg_class %>">
+    <%= ui_tooltip attended_in_person ? "Remove in-person attendance" : "Mark as attended in-person" do %>
+      <%= button_to toggle_attendance_talk_watched_talk_path(talk),
+            method: :post,
+            class: "shrink-0 p-1 rounded hover:bg-gray-100 transition-colors cursor-pointer",
+            data: {turbo_frame: dom_id(talk, :attendance), turbo_confirm: in_person_confirm}.compact do %>
+        <% if attended_in_person %>
+          <%= fa("circle-check", size: :sm, style: :solid, class: "fill-green-600") %>
+        <% else %>
+          <%= fa("circle", size: :sm, style: :regular, class: "text-gray-300 hover:text-green-500") %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% if talk.video_provider.in?(Talk::WATCHABLE_PROVIDERS) %>
+      <%= ui_tooltip watched_online ? "Remove watched online status" : "Mark as watched online" do %>
+        <%= button_to toggle_online_talk_watched_talk_path(talk),
+              method: :post,
+              class: "shrink-0 p-1 rounded hover:bg-gray-100 transition-colors cursor-pointer",
+              data: {turbo_frame: dom_id(talk, :attendance), turbo_confirm: online_confirm}.compact do %>
+          <% if watched_online %>
+            <%= fa("video", size: :sm, style: :solid, class: "fill-blue-600") %>
+          <% else %>
+            <%= fa("video", size: :sm, style: :regular, class: "text-gray-300 hover:text-blue-500") %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <%= ui_tooltip "Recording not available" do %>
+        <div class="shrink-0 p-1 rounded cursor-not-allowed opacity-40">
+          <%= fa("video-slash", size: :sm, style: :regular, class: "text-gray-300") %>
+        </div>
+      <% end %>
+    <% end %>
+
+    <div class="flex-1 min-w-0 px-1">
+      <div class="text-xs font-medium <%= text_class %> truncate">
+        <%= talk.title %>
+      </div>
+      <div class="text-xs text-gray-400 truncate">
+        <%= talk.speakers.map(&:name).join(", ") %>
+      </div>
+    </div>
+
+    <% if track %>
+      <span class="shrink-0 py-0.5 px-1.5 rounded text-[10px]" style="background: <%= track["color"] %>; color: <%= track["text_color"] %>">
+        <%= track["name"] %>
+      </span>
+    <% end %>
+  </div>
+<% end %>

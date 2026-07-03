@@ -35,6 +35,13 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
+  # Enable serving of images with full URLs
+  config.asset_host = "http://localhost:3000"
+  # Enable serving of images, stylesheets, and JavaScripts from an asset server.
+  config.asset_host = lambda { |source, request = nil|
+    request&.host&.include?("localhost") ? "http://localhost:3000" : "#{request&.protocol}#{request&.host_with_port}"
+  }
+
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
@@ -78,6 +85,14 @@ Rails.application.configure do
   # config.generators.apply_rubocop_autocorrect_after_generate!
 
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  # View local server when hosted by GitHub Codespaces.
+  config.hosts << /^[a-zA-Z0-9-]+-\d{4}\.app\.github\.dev$/
+
+  # Allow ngrok tunnels (e.g. for testing native bridge / OAuth callbacks).
+  config.hosts << /[a-z0-9-]+\.ngrok-free\.dev$/
+  config.hosts << /[a-z0-9-]+\.ngrok-free\.app$/
+  config.hosts << /[a-z0-9-]+\.ngrok\.io$/
 
   # https://vite-ruby.netlify.app/guide/troubleshooting.html#safari-does-not-reflect-css-and-js-changes-in-development
   # https://bugs.webkit.org/show_bug.cgi?id=193533

@@ -1,8 +1,11 @@
 ---
-- title: "Ruby Frankfurt Meetup - April 2024"
+- id: "ruby-frankfurt-meetup-april-2024"
+  title: "Ruby Frankfurt Meetup - April 2024"
   raw_title: "Ruby Frankfurt Meetup - April 2024"
   event_name: "Ruby Frankfurt Meetup - April 2024"
   date: "2024-04-16"
+  video_provider: "children"
+  video_id: "ruby-frankfurt-meetup-april-2024"
   thumbnail_xs: "https://files.speakerdeck.com/presentations/acc18daa4a6f48f28c26e8b80ddc657e/preview_slide_0.jpg"
   thumbnail_sm: "https://files.speakerdeck.com/presentations/acc18daa4a6f48f28c26e8b80ddc657e/slide_0.jpg"
   thumbnail_md: "https://files.speakerdeck.com/presentations/acc18daa4a6f48f28c26e8b80ddc657e/slide_0.jpg"
@@ -36,16 +39,15 @@
     We have a new Slack channel to connect in the time between meetups. The Rhein-Main Ruby! Just message one of the organizers of the meetup and we'll invite you.
 
     https://www.meetup.com/frankfurt-ruby-meetup/events/299586276
-  video_provider: "children"
-  video_id: "ruby-frankfurt-meetup-april-2024"
   talks:
-    - title: "Turbo Native & Strada: Turning a Web-Only Rails App Native"
-      date: "2024-04-16"
-      published_at: "2024-04-22"
-      video_id: "BDBjgGSQA_4"
-      video_provider: "youtube"
+    - id: "kevin-liebholz-ruby-frankfurt-meetup-april-2024"
+      title: "Turbo Native & Strada: Turning a Web-Only Rails App Native"
       event_name: "Ruby Frankfurt Meetup - April 2024"
+      date: "2024-04-16"
+      published_at: "2024-04-22T09:16:11Z"
       slides_url: "https://speakerdeck.com/kevinliebholz/going-native-turning-a-web-only-rails-app-native"
+      video_provider: "youtube"
+      video_id: "BDBjgGSQA_4"
       thumbnail_xs: "https://files.speakerdeck.com/presentations/acc18daa4a6f48f28c26e8b80ddc657e/preview_slide_0.jpg"
       thumbnail_sm: "https://files.speakerdeck.com/presentations/acc18daa4a6f48f28c26e8b80ddc657e/preview_slide_0.jpg"
       thumbnail_md: "https://files.speakerdeck.com/presentations/acc18daa4a6f48f28c26e8b80ddc657e/slide_0.jpg"
@@ -59,14 +61,21 @@
         Repo: https://github.com/kevkev300/personal_knowledge_base
       speakers:
         - Kevin Liebholz
+      additional_resources:
+        - name: "kevkev300/personal_knowledge_base"
+          type: "repo"
+          url: "https://github.com/kevkev300/personal_knowledge_base"
 
 # TODO: missing event: https://www.meetup.com/frankfurt-ruby-meetup/events/301216095
 # TODO: missing event: https://www.meetup.com/frankfurt-ruby-meetup/events/302960601
 
-- title: "Ruby Frankfurt Meetup - April 2025"
+- id: "ruby-frankfurt-meetup-april-2025"
+  title: "Ruby Frankfurt Meetup - April 2025"
   raw_title: "Ruby Frankfurt Meetup - April 2025 - Kamal 2"
   event_name: "Ruby Frankfurt Meetup - April 2025"
   date: "2025-04-23"
+  video_provider: "children"
+  video_id: "ruby-frankfurt-meetup-april-2025"
   description: |-
     Dear Frankfurt Rubyists,
 
@@ -99,15 +108,14 @@
     We have a new Slack channel to connect in the time between meetups. The Rhein-Main Ruby! Just message one of the organizers of the meetup and we'll invite you.
 
     https://www.meetup.com/frankfurt-ruby-meetup/events/306805327
-  video_provider: "children"
-  video_id: "ruby-frankfurt-meetup-april-2025"
   talks:
-    - title: "Kamal 2 - report from the trench lines"
-      date: "2025-04-23"
-      video_id: "stefan-wienert-ruby-frankfurt-meetup-april-2025"
-      video_provider: "not_recorded"
+    - id: "stefan-wienert-ruby-frankfurt-meetup-april-2025"
+      title: "Kamal 2 - report from the trench lines"
       event_name: "Ruby Frankfurt Meetup - April 2025"
+      date: "2025-04-23"
       slides_url: "https://zealot128.github.io/presentations/kamal"
+      video_provider: "not_recorded"
+      video_id: "stefan-wienert-ruby-frankfurt-meetup-april-2025"
       description: |-
         Writeup: https://www.stefanwienert.de/blog/2025/05/04/kamal-presentation-ruby-frankfurt
       speakers:

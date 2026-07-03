@@ -55,7 +55,7 @@ module YouTube
       return title if title.blank?
 
       title.gsub(/^[-:]?/, "").strip.then do |title|
-        title.gsub(/[-:,\.]$/, "").strip
+        title.gsub(/[-:,.]$/, "").strip
       end
     end
 
