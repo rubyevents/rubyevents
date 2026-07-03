@@ -14,8 +14,8 @@ class Talk::Agents < ActiveRecord::AssociatedObject
       task_name: "enhance_transcript"
     )
     enhanced_json_transcript = JSON.parse(response.dig("choices", 0, "message", "content")).dig("transcript")
-    transcript = talk.talk_transcript || Talk::Transcript.new
-    transcript.update!(enhanced_transcript: ::Transcript.create_from_json(enhanced_json_transcript))
+    transcript = talk.talk_transcript || talk.talk_transcripts.build(language: talk.language)
+    transcript.update!(enhanced_transcript: Talk::Transcript::CueList.from_json(enhanced_json_transcript))
   end
 
   performs def summarize

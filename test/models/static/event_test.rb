@@ -55,15 +55,6 @@ class Static::EventTest < ActiveSupport::TestCase
     assert_equal "Party Sponsor", avo_sponsor.badge
   end
 
-  test "import_transcripts!" do
-    Static::EventSeries.find_by_slug("helveticruby").import_series!
-    event = Static::Event.find_by_slug(SLUG)
-    event_record = event.import_event!
-    event.import_videos!(event_record)
-    event.import_transcripts!(event_record)
-    assert ::Talk::Transcript.exists?
-  end
-
   test "import_involvements!" do
     event = Static::Event.find_by_slug("xoruby-portland-2025")
     event.import_event!

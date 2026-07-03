@@ -4,7 +4,7 @@ class TalkTest < ActiveSupport::TestCase
   include ActiveJob::TestHelper
 
   test "should handle empty transcript" do
-    talk = Talk.new(title: "Sample Talk", date: Date.today, static_id: "test-sample-talk", talk_transcript_attributes: {raw_transcript: Transcript.new})
+    talk = Talk.new(title: "Sample Talk", date: Date.today, static_id: "test-sample-talk", talk_transcripts_attributes: [{language: "en", raw_transcript: Talk::Transcript::CueList.new(cues: [])}])
     assert talk.save
 
     loaded_talk = Talk.find(talk.id)
@@ -21,8 +21,8 @@ class TalkTest < ActiveSupport::TestCase
       end
     end
 
-    assert @talk.transcript.is_a?(Transcript)
-    assert @talk.transcript.cues.first.is_a?(Cue)
+    assert @talk.transcript.is_a?(Talk::Transcript::CueList)
+    assert @talk.transcript.cues.first.is_a?(Talk::Transcript::Cue)
     assert @talk.transcript.cues.length > 100
   end
 
@@ -35,8 +35,8 @@ class TalkTest < ActiveSupport::TestCase
       end
     end
 
-    assert @talk.reload.transcript.is_a?(Transcript)
-    assert @talk.transcript.cues.first.is_a?(Cue)
+    assert @talk.reload.transcript.is_a?(Talk::Transcript::CueList)
+    assert @talk.transcript.cues.first.is_a?(Talk::Transcript::Cue)
     assert @talk.transcript.cues.length > 100
   end
 
@@ -47,8 +47,8 @@ class TalkTest < ActiveSupport::TestCase
   end
 
   test "transcript should default to raw_transcript" do
-    raw_transcript = Transcript.new(cues: [Cue.new(start_time: 0, end_time: 1, text: "Hello")])
-    talk = Talk.new(title: "Sample Talk", date: Date.today, static_id: "test-transcript-default", talk_transcript_attributes: {raw_transcript: raw_transcript})
+    raw_transcript = Talk::Transcript::CueList.new(cues: [Talk::Transcript::Cue.new(start_time: 0, end_time: 1, text: "Hello")])
+    talk = Talk.new(title: "Sample Talk", date: Date.today, static_id: "test-transcript-default", talk_transcripts_attributes: [{language: "en", raw_transcript: raw_transcript}])
     assert talk.save
 
     loaded_talk = Talk.find(talk.id)
@@ -57,8 +57,8 @@ class TalkTest < ActiveSupport::TestCase
 
   test "talks one has a valid transcript" do
     talk = talks(:one)
-    assert talk.transcript.is_a?(Transcript)
-    assert talk.transcript.cues.first.is_a?(Cue)
+    assert talk.transcript.is_a?(Talk::Transcript::CueList)
+    assert talk.transcript.cues.first.is_a?(Talk::Transcript::Cue)
   end
 
   test "enhance talk transcript" do

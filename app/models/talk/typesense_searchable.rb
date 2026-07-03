@@ -33,6 +33,11 @@ module Talk::TypesenseSearchable
       end
 
       attribute :video_provider
+
+      attribute :watchable do
+        published? || false
+      end
+
       attribute :video_id
       attribute :duration_in_seconds
       attribute :view_count
@@ -162,7 +167,7 @@ module Talk::TypesenseSearchable
       end
 
       attribute :transcript_text do
-        talk_transcript&.transcript&.to_text&.truncate(100_000)
+        talk_transcripts.filter_map { |transcript| transcript.transcript&.to_text }.join("\n\n").presence&.truncate(100_000)
       end
 
       attribute :has_slides do
@@ -172,7 +177,7 @@ module Talk::TypesenseSearchable
       attribute :slides_url
 
       attribute :has_transcript do
-        talk_transcript&.raw_transcript.present?
+        talk_transcripts.any? { |transcript| transcript.raw_transcript.present? }
       end
 
       attribute :resource_names do
@@ -221,6 +226,7 @@ module Talk::TypesenseSearchable
         {"name" => "language", "type" => "string", "facet" => true},
         {"name" => "year", "type" => "int32", "optional" => true, "facet" => true},
         {"name" => "video_provider", "type" => "string", "facet" => true},
+        {"name" => "watchable", "type" => "bool"},
         {"name" => "country_code", "type" => "string", "optional" => true, "facet" => true},
         {"name" => "country_name", "type" => "string", "optional" => true, "facet" => true},
         {"name" => "state", "type" => "string", "optional" => true, "facet" => true},
@@ -338,11 +344,11 @@ module Talk::TypesenseSearchable
       when "scheduled"
         filters << "video_provider:=scheduled"
       when "no_video"
-        filters << "video_provider:!=[youtube,mp4,vimeo]"
+        filters << "watchable:=false"
       when "all"
         # Show all talks
       else
-        filters << "video_provider:=[youtube,mp4,vimeo]" unless options[:include_unwatchable]
+        filters << "watchable:=true" unless options[:include_unwatchable]
       end
 
       search_options[:filter_by] = filters.join(" && ") if filters.any?

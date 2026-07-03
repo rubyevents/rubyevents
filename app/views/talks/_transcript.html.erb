@@ -1,12 +1,12 @@
-<%# locals: (talk:) %>
+<%# locals: (transcript:, show_hours: nil) %>
 
-<div class="flex flex-col gap-2">
-  <% talk.transcript.cues.each do |cue| %>
+<% show_hours = transcript_shows_hours?(transcript) if show_hours.nil? %>
+
+<div class="flex flex-col gap-1">
+  <% transcript.cues.each do |cue| %>
     <% next if cue.nil? || cue.text.blank? || cue.sound_descriptor? %>
-    <div class="flex gap-4">
-      <span class="link" data-action="click->video-player#seekTo" data-video-player-time-param="<%= cue.start_time_in_seconds %>">
-        <%= cue.start_time %>
-      </span>
+    <div class="flex gap-4 px-2 py-1 rounded-md cursor-pointer hover:bg-base-300/60 transition-colors" data-transcript-target="cue" data-start="<%= cue.start_time_in_seconds %>" data-action="click->transcript#seek">
+      <span class="self-start ml-2 px-1.5 rounded shrink-0 tabular-nums font-normal text-[#065FD4] bg-[#DEF1FF]"><%= formatted_cue_timestamp(cue, show_hours: show_hours) %></span>
       <span><%= cue.text %></span>
     </div>
   <% end %>

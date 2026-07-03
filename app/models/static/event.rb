@@ -296,7 +296,6 @@ module Static
       import_videos!(event, index: index)
       import_sponsors!(event)
       import_involvements!(event)
-      import_transcripts!(event)
 
       Search::Backend.index(event) if index
 
@@ -517,39 +516,6 @@ module Static
         end
       end
       event.update!(event_involvements_attributes: event_involvements_attributes)
-    end
-
-    def import_transcripts!(event)
-      return unless imported?
-      return unless event.transcripts_file.exist?
-
-      transcripts = event.transcripts_file.entries
-      return if transcripts.blank?
-
-      transcripts.each do |transcript_data|
-        video_id = transcript_data["video_id"]
-        cues = transcript_data["cues"]
-
-        next if video_id.blank? || cues.blank?
-
-        talk = event.talks.find_by(video_id: video_id)
-        next unless talk
-
-        transcript = ::Transcript.new
-        cues.each do |cue_data|
-          transcript.add_cue(
-            Cue.new(
-              start_time: cue_data["start_time"],
-              end_time: cue_data["end_time"],
-              text: cue_data["text"]
-            )
-          )
-        end
-
-        transcript_record = talk.talk_transcript || ::Talk::Transcript.new(talk: talk)
-        transcript_record.update_attributes(raw_transcript: transcript)
-        transcript_record.save! if transcript_record.changed? || transcript_record.new_record?
-      end
     end
 
     def series_slug

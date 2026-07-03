@@ -99,7 +99,6 @@ class Event < ApplicationRecord
   has_object :sponsors_file
   has_object :cfp_file
   has_object :involvements_file
-  has_object :transcripts_file
   has_object :venue
   has_object :videos_file
 
