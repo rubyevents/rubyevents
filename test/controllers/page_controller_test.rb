@@ -37,8 +37,15 @@ class PageControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "home page should render featured events" do
+    events(:rails_world_2023).update!(
+      featured_background: "#101820",
+      featured_color: "#ffffff",
+      home_sort_date: Date.today
+    )
+
     get root_path
+
     assert_response :success
-    assert_select "h2", text: "Latest talks"
+    assert_select "section[aria-label=?]", "Featured Events"
   end
 end
