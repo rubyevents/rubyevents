@@ -45,6 +45,10 @@ module Static
       super || ""
     end
 
+    def kind
+      self["kind"].presence || ::Talk::Kind.from_title(title).to_s
+    end
+
     def start_cue
       self["start_cue"]
     end

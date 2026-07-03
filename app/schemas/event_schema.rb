@@ -15,6 +15,7 @@ class EventSchema < RubyLLM::Schema
     required: false
   boolean :last_edition, description: "Whether this is the last edition of the event", required: false
 
+  string :pre_date, description: "Date of pre-conference activities (workshops, pre-party) held before start_date (YYYY-MM-DD format)", required: false
   string :start_date, description: "Start date of the event (YYYY-MM-DD format)", required: false
   string :end_date, description: "End date of the event (YYYY-MM-DD format)", required: false
   string :published_at, description: "Date when videos were published (YYYY-MM-DD format)", required: false

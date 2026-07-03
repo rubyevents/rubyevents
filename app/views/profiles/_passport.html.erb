@@ -36,7 +36,7 @@
 
           <%= link_to event_path(event), class: "group relative flex items-center gap-4 overflow-hidden rounded-lg border bg-white p-3 hover:bg-gray-50 transition-colors", data: {turbo_frame: "_top"} do %>
             <% if stamp %>
-              <div class="pointer-events-none absolute right-2 top-1/2 z-0 size-32 -translate-y-1/2 opacity-20">
+              <div class="pointer-events-none absolute right-2 top-1/2 z-0 size-20 -translate-y-1/2 opacity-20">
                 <%= ui_stamp(stamp, size: :full, interactive: false, rotate: true) %>
               </div>
             <% end %>

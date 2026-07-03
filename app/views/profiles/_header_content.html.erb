@@ -3,6 +3,18 @@
 <div id="<%= dom_id(user, :header_content) %>" class="flex flex-col lg:flex-row gap-8 items-center lg:justify-right text-center lg:text-left mb-6 lg:mb-0">
   <div class="relative w-fit">
     <%= ui_avatar(user, size_class: "size-24 md:size-36", size: :lg) %>
+
+    <% understood_languages = user.languages.understood %>
+
+    <% if understood_languages.any? %>
+      <div class="flex justify-center gap-1.5">
+        <% understood_languages.each do |code| %>
+          <%= ui_tooltip("Understands #{Language.by_code(code) || code}") do %>
+            <span class="text-lg leading-none"><%= Language.emoji_flag(code) %></span>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 
   <div class="flex-col flex gap-2 title justify-center items-center lg:items-start">

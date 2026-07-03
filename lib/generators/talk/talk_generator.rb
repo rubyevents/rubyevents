@@ -11,7 +11,7 @@ class TalkGenerator < Generators::EventBase
   class_option :original_title, type: :string, desc: "Original title in native language (e.g., Japanese)", required: false, group: "Fields"
   class_option :speakers, type: :array, desc: "Speaker names", group: "Fields"
   class_option :description, type: :string, desc: "Description of the talk", group: "Fields"
-  class_option :kind, type: :string, enum: Talk.kinds.keys, default: "talk", desc: "Type of talk (e.g., 'keynote', 'lightning_talk')", group: "Fields"
+  class_option :kind, type: :string, enum: Talk.kinds.keys, desc: "Type of talk (#{Talk.kinds.keys.to_sentence(last_word_connector: " or ")}). Inferred from the title when omitted.", group: "Fields"
   class_option :language, type: :string, desc: "Language of the talk (e.g., 'English', 'Japanese')", group: "Fields"
 
   # dates
@@ -23,8 +23,8 @@ class TalkGenerator < Generators::EventBase
 
   # Internal classes to represent talk data that defines Defaults
   class Talk
-    attr_accessor :event_slug, :event, :announced_at, :description, :kind, :original_title
-    attr_writer :id, :date, :language, :speakers, :title
+    attr_accessor :event_slug, :event, :announced_at, :description, :original_title
+    attr_writer :id, :date, :language, :speakers, :title, :kind
 
     def initialize(**attributes)
       attributes.each { |k, v| send("#{k}=", v) }
@@ -54,13 +54,23 @@ class TalkGenerator < Generators::EventBase
       @title ||= "#{kind.titlecase} by #{speakers.to_sentence}"
     end
 
+    def kind
+      @kind ||= @title.present? ? ::Talk::Kind.from_title(@title).to_s : "talk"
+    end
+
+    def write_kind?
+      kind != "talk" || ::Talk::Kind.from_title(title).to_s != "talk"
+    end
+
     def generate_talk_id
       talk_id_parts = []
+
       if speakers.length > 2 || speakers.length.zero?
         talk_id_parts << title.parameterize
       else
         talk_id_parts.concat(speakers.map(&:parameterize))
       end
+
       talk_id_parts << kind unless kind.in? ["talk", "panel"]
       talk_id_parts << event_slug
       talk_id_parts.join("-")
