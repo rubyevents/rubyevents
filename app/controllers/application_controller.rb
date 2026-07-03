@@ -2,13 +2,22 @@ class ApplicationController < ActionController::Base
   include Authenticable
   include Metadata
   include Analytics
+  include WatchedTalks
 
   prepend_before_action :redirect_to_ruby_events
 
-  helper_method :default_watch_list
+  helper_method :default_watch_list, :user_favorite_talks_ids, :favorite_user_status_map
 
   def default_watch_list
     @default_watch_list ||= Current.user&.default_watch_list
+  end
+
+  def user_favorite_talks_ids
+    @user_favorite_talks_ids ||= default_watch_list&.talks&.ids || []
+  end
+
+  def favorite_user_status_map
+    @favorite_user_status_map ||= Current.user&.favorite_statuses&.map || {}
   end
 
   private

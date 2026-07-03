@@ -1,0 +1,60 @@
+<%# locals: () %>
+
+<div class="mt-16">
+  <%= link_to stamps_path, class: "block group" do %>
+    <section class="py-12 px-8 rounded-2xl bg-gradient-to-br from-stone-800 to-stone-950 text-white overflow-visible relative">
+      <div class="absolute inset-0 opacity-5 overflow-hidden rounded-2xl">
+        <% Stamp.country_stamps.sample(20).each_with_index do |stamp, i| %>
+          <div class="absolute" style="top: <%= rand(0..90) %>%; left: <%= rand(0..90) %>%; transform: rotate(<%= rand(-30..30) %>deg); opacity: 0.4;">
+            <%= image_tag image_path("stamps/#{stamp.file_path}"), class: "w-16 h-16", loading: "lazy" %>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="relative z-10 flex flex-col lg:flex-row items-center gap-32">
+        <div class="shrink-0 -mt-24 lg:-mt-24 lg:ml-8">
+          <%= image_tag image_path("ruby-passport.jpg"), class: "w-48 lg:w-56 rounded-lg shadow-2xl transform -rotate-12 group-hover:-rotate-3 transition-transform duration-300", alt: "The Ruby Passport" %>
+        </div>
+
+        <div class="flex-1 flex flex-col gap-4 text-center lg:text-left">
+          <div>
+            <h2 class="text-2xl font-bold mb-2">Get Your Ruby Passport</h2>
+            <p class="text-white/80">Collect stamps from Ruby events around the world. Every conference and meetup you attend adds a stamp to your passport.</p>
+          </div>
+
+          <div class="flex flex-wrap justify-center lg:justify-start gap-3">
+            <% Stamp.event_stamps.sample(8).each do |stamp| %>
+              <div class="w-20 h-20 rounded-lg bg-white shadow-sm p-2">
+                <%= image_tag image_path(stamp.file_path), class: "w-full h-full object-contain", loading: "lazy", alt: stamp.name %>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <span class="btn btn-outline btn-sm border-white/30 text-white hover:bg-white/10 gap-2">
+              View all stamps <%= fa("arrow-right-long", size: :sm) %>
+            </span>
+
+            <% passport_data = Rails.cache.fetch("passport_holders_home", expires_in: 1.hour) do %>
+              <% holders = User.joins(:passports).where.not(github_handle: [nil, ""]).distinct %>
+
+              <% {count: holders.count, avatar_urls: holders.order(Arel.sql("RANDOM()")).limit(8).map { |u| {url: u.avatar_url(size: 32), name: u.name} }} %>
+            <% end %>
+
+            <% if passport_data[:count] > 0 %>
+              <div class="flex items-center gap-1">
+                <div class="flex -space-x-2">
+                  <% passport_data[:avatar_urls].each do |user| %>
+                    <%= image_tag user[:url], class: "w-7 h-7 rounded-full border-2 border-stone-800", alt: user[:name], loading: "lazy" %>
+                  <% end %>
+                </div>
+
+                <span class="text-white/60 text-xs ml-2"><%= passport_data[:count] %>+ passport holders</span>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </section>
+  <% end %>
+</div>

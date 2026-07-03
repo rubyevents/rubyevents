@@ -1,25 +1,24 @@
 ---
 # Day 1 - Tuesday, July 14, 2026
 
-- id: "dave-thomas-keynote-rubyconf-2026"
-  title: "Keynote by Dave Thomas"
+- id: "yukihiro-matsumoto-keynote-rubyconf-2026"
+  title: 'Keynote by Yukihiro "Matz" Matsumoto'
   kind: "keynote"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
-  language: "en"
+  language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
-  video_id: "dave-thomas-keynote-rubyconf-2026"
+  video_id: "yukihiro-matsumoto-keynote-rubyconf-2026"
   description: ""
   speakers:
-    - Dave Thomas
+    - "Yukihiro \"Matz\" Matsumoto"
 
 - id: "marco-roth-rubyconf-2026"
   title: "The Anatomy of an ERB Rendering Engine"
-  kind: "talk"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
-  language: "en"
+  language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
   video_id: "marco-roth-rubyconf-2026"
@@ -30,11 +29,10 @@
 
 - id: "michael-toppa-rubyconf-2026"
   title: "AI-assisted coding: lessons from small startups to legacy codebases"
-  kind: "talk"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
-  language: "en"
-  track: "Breakout 1 - Charleston D-C"
+  language: "English"
+  track: "Breakout 1 - Red Rock A&D"
   video_provider: "scheduled"
   video_id: "michael-toppa-rubyconf-2026"
   description: |-
@@ -43,24 +41,23 @@
     - Michael Toppa
 
 - id: "sponsor-session-1-rubyconf-2026"
-  title: "Sponsor Session 1"
-  kind: "talk"
+  title: "Stop Fighting Ruby I18n: Message Format Is All You Need"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
-  language: "en"
-  track: "Breakout 2 - Charleston E-B"
+  language: "English"
+  track: "Breakout 2 - Red Rock G&H"
   video_provider: "scheduled"
-  video_id: "sponsor-session-1-rubyconf-2026"
-  description: ""
+  video_id: "chris-fung-rubyconf-2026"
+  description: |-
+    Ruby I18n tries to do the simplest thing that works in the most common situations. But do you know all of the pitfalls and trip-ups hiding within? What if there was an alternative that was just as simple and didn't require remembering gotchas? This talk is aimed at experienced Rails developers who have worked on multi-lingual applications. This talk will introduce i18n-message_format as an alternative to the built-in I18n module that ships with every Rails app.
   speakers:
-    - TODO
+    - Chris Fung
 
 - id: "jeremy-evans-rubyconf-2026"
   title: "Implementing Core Set"
-  kind: "talk"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
-  language: "en"
+  language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
   video_id: "jeremy-events-rubyconf-2026"
@@ -71,11 +68,10 @@
 
 - id: "david-gillis-rubyconf-2026"
   title: "Ready: 12x Faster Ruby CLIs Through Spectacular Overengineering"
-  kind: "talk"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
-  language: "en"
-  track: "Breakout 1 - Charleston D-C"
+  language: "English"
+  track: "Breakout 1 - Red Rock A&D"
   video_provider: "scheduled"
   video_id: "david-gillis-rubyconf-2026"
   description: |-
@@ -83,40 +79,39 @@
   speakers:
     - David Gillis
 
-- id: "sponsor-session-2-rubyconf-2026"
-  title: "Sponsor Session 2"
-  kind: "talk"
+- id: "jon-rizzo-rubyconf-2026"
+  title: "Teaching Ruby to Rank: A Search Pipeline Story"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
-  language: "en"
-  track: "Breakout 2 - Charleston E-B"
+  language: "English"
+  track: "Breakout 2 - Red Rock G&H"
   video_provider: "scheduled"
-  video_id: "sponsor-session-2-rubyconf-2026"
-  description: ""
+  video_id: "jon-rizzo-rubyconf-2026"
+  description: |-
+    "Search sucks." It's the feedback every team building search has heard, and for good reason — keyword and vector matching alone isn't sufficient, leading to negative feedback. Our users couldn't find products they knew existed and irrelevant results were being highly ranked. As a Ruby shop that wanted to make our search retrieval pipeline smarter with machine learning, we asked ourselves: how far can Ruby actually take us? This talk is the answer. We'll walk through the full Learning to Rank pipeline we built — click and impression collection, automated feature engineering, model training and deployment, and the reranker model that sits between the search engine and the user. We'll share the relevance metrics that moved, the qualitative feedback that changed, and how the same framework now backs four different search engines at Fullscript. From this talk, you'll leave with a concrete pattern for collecting search data, a sense of what "good" looks like, and a framework you can use to start measuring and ranking your own ecommerce search results.
   speakers:
-    - TODO
+    - Jon Rizzo
+    - Dave Currie
 
-- id: "julia-egorova-rubyconf-2026"
-  title: "From cores to queues: parallelizing Ruby tests the right way"
-  kind: "talk"
+- id: "neha-abraham-rubyconf-2026"
+  title: "Powerful Data: Making Rails Apps Faster with Aggregation"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
-  language: "en"
+  language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
-  video_id: "julia-egorova-rubyconf-2026"
+  video_id: "neha-abraham-rubyconf-2026"
   description: |-
-    Your test suite takes 25 minutes. But you have 8 cores. So it should take 3 minutes, right? If only it were that simple! Whether you're on Minitest or RSpec, running tests in parallel can dramatically shrink your local and CI feedback loops. That said, parallelization is no free lunch. Naive approaches introduce flaky tests, waste resources, and sometimes make things slower. In this talk, I'll walk you through the full spectrum of Ruby test parallelization – from the simplest CI-level splitting to sophisticated queue-based orchestration. We'll see what works, what breaks, and why you can't just throw more cores at the problem. - We'll start with the fundamentals: why parallelization matters and how to think about it. - Then we'll explore the most common strategies: splitting work across CI jobs, using parallel_tests to leverage multiple cores within a single machine, and Rails' built-in parallel testing for Minitest. - From there, we'll go deeper into queue-based approaches: how tools like Knapsack Pro dynamically distribute work across workers, why static splitting hits a ceiling, and the critical difference between splitting by file versus splitting by individual example (and when each makes sense). Along the way, I'll tackle the real-world headaches: shared state and flaky tests, the tension between let_it_be-style optimizations and per-example splitting, and the art of balancing workers so no single node becomes a bottleneck. We'll close with Amdahl's Law applied to your test suite (understanding the hard limits of parallelization) and what to do when more cores stop helping: profiling, factory optimization, and making your tests genuinely faster. Takeaways: The audience will leave with a clear mental model for choosing the right parallelization strategy for their projects, concrete tool recommendations for both Minitest and RSpec – and an understanding of when to stop parallelizing and start optimizing.
+    Dashboards and reports are often where Rails apps go to slow down. What starts as a "simple" count or sum quietly turns into expensive queries, background job pileups, and unhappy users staring at a spinner. This talk is about taking back control by using smart aggregation strategies to make Rails dashboards fast, predictable, and easier to maintain. We'll look at how letting the database do the work it was designed for leads to cleaner Ruby, simpler application logic, and systems that don't collapse under their own weight. We'll explore: - When aggregation actually helps, and when it's overkill - Designing aggregation tables and indices that scale without drama - Keeping aggregated data fresh with background jobs that stay boring - Knowing when to lean on ActiveRecord, and when raw SQL is simply the right tool The focus is on real-world Rails systems, not theoretical optimizations. You'll leave with practical patterns, honest trade-offs, and concrete examples you can apply immediately whether you're inheriting a slow legacy app or building something new and want to get ahead of the problem. If you've ever looked at a slow dashboard and thought, "this should be faster," this talk is for you.
   speakers:
-    - Julia Egorova
+    - Neha Abraham
 
 - id: "nery-campusano-rubyconf-2026"
   title: "Each All the Way Down: How Ruby Enumerators Power Streaming in gRPC Ruby"
-  kind: "talk"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
-  language: "en"
-  track: "Breakout 1 - Charleston D-C"
+  language: "English"
+  track: "Breakout 1 - Red Rock A&D"
   video_provider: "scheduled"
   video_id: "nery-campusano-rubyconf-2026"
   description: |-
@@ -124,25 +119,24 @@
   speakers:
     - Nery Campusano
 
-- id: "sponsor-session-3-rubyconf-2026"
-  title: "Sponsor Session 3"
-  kind: "talk"
+- id: "aaron-patterson-rubyconf-2026"
+  title: "Faster FFI For Ruby"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
-  language: "en"
-  track: "Breakout 2 - Charleston E-B"
+  language: "English"
+  track: "Breakout 2 - Red Rock G&H"
   video_provider: "scheduled"
-  video_id: "sponsor-session-3-rubyconf-2026"
-  description: ""
+  video_id: "aaron-patterson-rubyconf-2026"
+  description: |-
+    What makes FFI slow, and how can we build a faster implementation? In this talk we'll look at Ruby's calling convention, why FFI is slow, and what we can do about it. We'll look at Ruby internals, and how we connect Ruby code with native code with and without the JIT compiler. See you there!
   speakers:
-    - TODO
+    - Aaron Patterson
 
 - id: "keith-bennett-rubyconf-2026"
   title: "Command-Line Applications in Ruby: Design Patterns and Best Practices"
-  kind: "talk"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
-  language: "en"
+  language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
   video_id: "keith-bennett-rubyconf-2026"
@@ -153,11 +147,10 @@
 
 - id: "dalma-boros-rubyconf-2026"
   title: "Makeover Monday: How a Weekly Ritual Transformed Our Codebase and Culture"
-  kind: "talk"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
-  language: "en"
-  track: "Breakout 1 - Charleston D-C"
+  language: "English"
+  track: "Breakout 1 - Red Rock A&D"
   video_provider: "scheduled"
   video_id: "dalma-boros-rubyconf-2026"
   description: |-
@@ -165,25 +158,24 @@
   speakers:
     - Dalma Boros
 
-- id: "sponsor-session-4-rubyconf-2026"
-  title: "Sponsor Session 4"
-  kind: "talk"
+- id: "ruby-alliance-panel-rubyconf-2026"
+  title: "Panel: Ruby Alliance"
+  kind: "panel"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
-  language: "en"
-  track: "Breakout 2 - Charleston E-B"
+  language: "English"
+  track: "Breakout 2 - Red Rock G&H"
   video_provider: "scheduled"
-  video_id: "sponsor-session-4-rubyconf-2026"
+  video_id: "ruby-alliance-panel-rubyconf-2026"
   description: ""
   speakers:
-    - TODO
+    - Ran Craycraft
 
 - id: "ziggy-the-hamster-rubyconf-2026"
   title: "Weird and Wacky Machines Running Ruby"
-  kind: "talk"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
-  language: "en"
+  language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
   video_id: "ziggy-the-hamster-rubyconf-2026"
@@ -194,11 +186,10 @@
 
 - id: "cameron-dutro-rubyconf-2026"
   title: "Garnet.js: Implementing the YARV Virtual Machine"
-  kind: "talk"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
-  language: "en"
-  track: "Breakout 1 - Charleston D-C"
+  language: "English"
+  track: "Breakout 1 - Red Rock A&D"
   video_provider: "scheduled"
   video_id: "cameron-dutro-rubyconf-2026"
   description: |-
@@ -206,25 +197,24 @@
   speakers:
     - Cameron Dutro
 
-- id: "sponsor-session-5-rubyconf-2026"
-  title: "Sponsor Session 5"
-  kind: "talk"
+- id: "tess-griffin-rubyconf-2026"
+  title: "Learning Empathy From Pokémon Blue"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
-  language: "en"
-  track: "Breakout 2 - Charleston E-B"
+  language: "English"
+  track: "Breakout 2 - Red Rock G&H"
   video_provider: "scheduled"
-  video_id: "sponsor-session-5-rubyconf-2026"
-  description: ""
+  video_id: "tess-griffin-rubyconf-2026"
+  description: |-
+    Have you ever looked at a bug and wondered why it actually happens? It's easy to chalk it up to sloppy coding, but that's almost never the case. In this talk, we'll be dissecting an exploit from Pokémon Blue known as the "Missingno" glitch. We'll explore the details of each seemingly random bug behind this exploit and apply the lessons to our Ruby code 30 years later. If you've never played or even heard of Pokémon, that's ok! As long as you're interested in a deep dive into a fascinating set of bugs, this talk is for you.
   speakers:
-    - TODO
+    - Tess Griffin
 
 - id: "scott-werner-rubyconf-2026"
   title: "Talking Shit About AI Agents"
-  kind: "talk"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
-  language: "en"
+  language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
   video_id: "scott-werner-rubyconf-2026"
@@ -235,11 +225,10 @@
 
 - id: "gabriel-quaresma-rubyconf-2026"
   title: "Why a 1990s Machine Learning Algorithm Destroys LLMs at Predicting House Prices"
-  kind: "talk"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
-  language: "en"
-  track: "Breakout 1 - Charleston D-C"
+  language: "English"
+  track: "Breakout 1 - Red Rock A&D"
   video_provider: "scheduled"
   video_id: "gabriel-quaresma-rubyconf-2026"
   description: |-
@@ -247,54 +236,121 @@
   speakers:
     - Gabriel Quaresma
 
-- id: "sponsor-session-6-rubyconf-2026"
-  title: "Sponsor Session 6"
-  kind: "talk"
+- id: "charles-nutter-rubyconf-2026"
+  title: "Expand your Ruby Potential with JRuby"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
-  language: "en"
-  track: "Breakout 2 - Charleston E-B"
+  language: "English"
+  track: "Breakout 2 - Red Rock G&H"
   video_provider: "scheduled"
-  video_id: "sponsor-session-6-rubyconf-2026"
-  description: ""
+  video_id: "charles-nutter-rubyconf-2026"
+  description: |-
+    JRuby is an implementation of Ruby 4.0 built on the Java Virtual Machine. For the past 20 years we've expanded the horizons of Ruby, bringing more jobs and more opportunities to Rubyists like you: * High-scale applications needing shared-memory parallelism and big data * Enterprise organizations with existing Java infrastructure * Cross-platform, commercial-off-the-shelf (COTS) application packaging that protects your code * Graphics-intensive applications including desktop, games, and visualization * Mobile and embedded solutions using Android And you can do it all in Ruby, with no Java experience required! This talk will review JRuby's history and show you what's possible when you bring the best of Ruby and the JVM together.
   speakers:
-    - TODO
+    - Charles Nutter
 
-- id: "obie-fernandez-keynote-rubyconf-2026"
-  title: "Keynote by Obie Fernandez"
+- id: "edy-silva-rubyconf-2026"
+  title: "Ractors in Ruby 4.0: Message Passing Without the Pain"
+  event_name: "RubyConf 2026"
+  date: "2026-07-14"
+  language: "English"
+  track: "Main Stage - Red Rock"
+  video_provider: "scheduled"
+  video_id: "edy-silva-rubyconf-2026"
+  description: |-
+    Concurrency in Ruby has always been a compromise. Threads are error-prone. Fibers are complex. The Global Interpreter Lock limits true parallelism. We accepted that concurrent Ruby is hard. I came from Erlang and Elixir, where concurrency is the default. The Actor Model - message passing, isolated processes, no shared state - is how you build reliable distributed systems. When Ruby introduced Ractors in 3.0, I was skeptical. The API was clunky. The limitations were severe. It felt like Ruby trying to be something it wasn't. Ruby 4.0 changed my mind. `Ractor::Port` (the mailbox concept), shareable procs and lambdas, and the removal of awkward APIs like `Ractor.yield` make Ractors ergonomic now. You can write a parallel map in 10 lines of Ruby that would have taken 50 lines of fragile thread code. You can spawn isolated workers that communicate through message passing without worrying about mutexes or race conditions. This talk is for Rubyists who are tired of concurrency being hard. I'll show you what Ruby 4.0 got right, what it still gets wrong, and the patterns I borrowed from Elixir that make Ractors useful in production.
+  speakers:
+    - Edy Silva
+
+- id: "andy-andrea-rubyconf-2026"
+  title: "The little schema that could (...but should it?)"
+  event_name: "RubyConf 2026"
+  date: "2026-07-14"
+  language: "English"
+  track: "Breakout 1 - Red Rock A&D"
+  video_provider: "scheduled"
+  video_id: "andy-andrea-rubyconf-2026"
+  description: |-
+    Even in a duck-typed language like Ruby, we often work with structured data that adheres to particular schemas. For anyone that's worked in a Rails app, a schema.rb or structure.sql file is an inherent part of our apps, and many Ruby devs have worked with JSON Schema or OpenAPI in various applications. In many of those cases, though, we have a lot of duplication especially when we're dealing with CRUD. A `create` endpoint, for example, might accept incoming parameters that look very similar to what's returned by a `show` endpoint, and both will likely have a lot in common with a corresponding table's schema. This duplication is not a major problem--it can often be the best choice--but what would it look like if we tried to DRY things up a little...or a lot? If we're willing to get a little weird, how far can we possibly take a single schema? In this talk, we'll have a single schema and show how it can be applied to (or shoe-horned into):
+      - Database management - Model generation;
+      - Controller input validation;
+      - Controller output validation;
+      - Testing with RSpec;
+      - Auto-generated documentation that stays up to date;
+      - The front end;
+      - CI;
+      - Metaprogramming;
+      - AI tooling including auto-generating tools for your AI applications to call and ways to improve the efficacy of dev tooling like BugBot and Cursor. We'll be making things DRYer than the Sahara and doing away with tons of boilerplate along the way.
+  speakers:
+    - Andy Andrea
+
+- id: "gannon-mcgibbon-rubyconf-2026"
+  title: "Overengineering Ruby with Native Extensions"
+  event_name: "RubyConf 2026"
+  date: "2026-07-14"
+  language: "English"
+  track: "Breakout 2 - Red Rock G&H"
+  video_provider: "scheduled"
+  video_id: "gannon-mcgibbon-rubyconf-2026"
+  description: |-
+    Native extensions are a powerful tool that allows Rubyists to reach outside the Ruby VM into machine code. In this talk, you'll learn just enough C to write your first native extension, and all the different ways you can over complicate your Ruby apps with interoperability.
+  speakers:
+    - Gannon McGibbon
+
+- id: "jessica-kerr-keynote-rubyconf-2026"
+  title: "Keynote by Jessica Kerr"
   kind: "keynote"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
-  language: "en"
+  language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
-  video_id: "obie-fernandez-keynote-rubyconf-2026"
+  video_id: "jessica-kerr-keynote-rubyconf-2026"
   description: ""
   speakers:
-    - Obie Fernandez
+    - Jessica Kerr
 
 # Day 2 - Wednesday, July 15, 2026 (Community Day)
 
-- id: "keynote-3-rubyconf-2026"
-  title: "Panel"
-  kind: "panel"
+- id: "allison-pike-keynote-rubyconf-2026"
+  title: "Panel: Once a Maintainer"
+  kind: "keynote"
   event_name: "RubyConf 2026"
   date: "2026-07-15"
-  language: "en"
+  language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
-  video_id: "keynote-3-rubyconf-2026"
-  description: ""
+  video_id: "allison-pike-keynote-rubyconf-2026"
+  description: |-
+    Once a Maintainer will be a live roundtable discussion based on the popular Once a Maintainer newsletter which celebrates the people behind Open Source in the Ruby community. We're thrilled to have Richard Schneeman, Jeremy Evans, and Colby Swandale join us for the panel.
   speakers:
-    - TODO
+    - Allison Pike
+    - Richard Schneeman
+    - Jeremy Evans
+    - Colby Swandale
+
+- id: "marty-haught-rubyconf-2026"
+  title: "From Scan to Fix: A Maintainer's Guide to Gem Security"
+  kind: "workshop"
+  event_name: "RubyConf 2026"
+  date: "2026-07-15"
+  language: "English"
+  track: "Main Stage - Red Rock"
+  video_provider: "scheduled"
+  video_id: "marty-haught-rubyconf-2026"
+  description: |-
+    The gems you maintain could be foundational infrastructure for the Ruby community and that makes their security everyone's concern. But most maintainers aren't security engineers, and the path from "I think my gem might have a vulnerability" to "I've fixed it and shipped a release" can feel daunting. This hands-on workshop, led by the RubyGems team will incorporate lessons learned from Project Glasswing, Ruby Central's Alpha-Omega-funded security initiative for the Ruby ecosystem, and it will give maintainers the tools and confidence to take ownership of their gem's security posture. We'll walk through the full lifecycle: what good security looks like for a gem, how to run a scan against your own project, how to read and interpret the resulting report, and how to triage and address what you find. No prior security experience is assumed. By the end of the session, you'll have run a real scan, reviewed real findings, and left with practical strategies for fixing vulnerabilities and hardening your gem against future ones. What we'll cover: * An overview of Project Glasswing and how the gem scanning program works * What a strong security posture looks like for a Ruby gem * Running a scan and understanding the prompt-driven process * Reading and interpreting a scan report * Walking through an example scan together * Strategies for addressing vulnerabilities — from quick fixes to longer-term hardening Who should attend: Maintainers of Ruby gems of any size, from weekend projects to widely depended-on libraries. If you ship a gem, this workshop is for you.
+  speakers:
+    - Marty Haught
+    - Colby Swandale
 
 - id: "amir-rajan-rubyconf-2026"
   title: "Workshop: DragonRuby Game Toolkit - Soup to Nuts"
   kind: "workshop"
   event_name: "RubyConf 2026"
   date: "2026-07-15"
-  language: "en"
-  track: "Breakout 1 - Charleston D-C"
+  language: "English"
+  track: "Breakout 1 - Red Rock A&D"
   video_provider: "scheduled"
   video_id: "amir-rajan-rubyconf-2026"
   description: |-
@@ -307,8 +363,8 @@
   kind: "workshop"
   event_name: "RubyConf 2026"
   date: "2026-07-15"
-  language: "en"
-  track: "Breakout 2 - Charleston E-B"
+  language: "English"
+  track: "Breakout 2 - Red Rock G&H"
   video_provider: "scheduled"
   video_id: "joe-masilotti-rubyconf-2026"
   description: |-
@@ -321,7 +377,7 @@
   kind: "workshop"
   event_name: "RubyConf 2026"
   date: "2026-07-15"
-  language: "en"
+  language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
   video_id: "carolyn-cole-rubyconf-2026"
@@ -335,8 +391,8 @@
   kind: "workshop"
   event_name: "RubyConf 2026"
   date: "2026-07-15"
-  language: "en"
-  track: "Breakout 1 - Charleston D-C"
+  language: "English"
+  track: "Breakout 1 - Red Rock A&D"
   video_provider: "scheduled"
   video_id: "miguel-marcondes-filho-rubyconf-2026"
   description: |-
@@ -349,8 +405,8 @@
   kind: "workshop"
   event_name: "RubyConf 2026"
   date: "2026-07-15"
-  language: "en"
-  track: "Breakout 2 - Charleston E-B"
+  language: "English"
+  track: "Breakout 2 - Red Rock G&H"
   video_provider: "scheduled"
   video_id: "noel-rappin-rubyconf-2026"
   description: |-
@@ -363,35 +419,33 @@
   kind: "lightning_talk"
   event_name: "RubyConf 2026"
   date: "2026-07-15"
-  language: "en"
+  language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
   video_id: "lightning-talks-rubyconf-2026"
   description: ""
-  speakers:
-    - TODO
+  talks: []
 
 # Day 3 - Thursday, July 16, 2026
 
-- id: "keynote-4-rubyconf-2026"
-  title: "Keynote 4"
+- id: "obie-fernandez-keynote-rubyconf-2026"
+  title: "Keynote by Obie Fernandez"
   kind: "keynote"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
-  language: "en"
+  language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
-  video_id: "keynote-4-rubyconf-2026"
+  video_id: "obie-fernandez-keynote-rubyconf-2026"
   description: ""
   speakers:
-    - TODO
+    - Obie Fernandez
 
 - id: "brandon-weaver-rubyconf-2026"
   title: "We Who Remember Magic"
-  kind: "talk"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
-  language: "en"
+  language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
   video_id: "brandon-weaver-rubyconf-2026"
@@ -402,11 +456,10 @@
 
 - id: "madison-sites-rubyconf-2026"
   title: "Legacy Rails and the AI That Couldn't"
-  kind: "talk"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
-  language: "en"
-  track: "Breakout 1 - Charleston D-C"
+  language: "English"
+  track: "Breakout 1 - Red Rock A&D"
   video_provider: "scheduled"
   video_id: "madison-sites-rubyconf-2026"
   description: |-
@@ -415,12 +468,11 @@
     - Madison Sites
 
 - id: "miles-georgi-rubyconf-2026"
-  title: "Goofin' about with Ractors!"
-  kind: "talk"
+  title: "Come Discuss Ractors and Concurrency with 'The Dude'!"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
-  language: "en"
-  track: "Breakout 2 - Charleston E-B"
+  language: "English"
+  track: "Breakout 2 - Red Rock G&H"
   video_provider: "scheduled"
   video_id: "miles-georgi-rubyconf-2026"
   description: |-
@@ -430,10 +482,9 @@
 
 - id: "alexander-baygeldin-rubyconf-2026"
   title: "Fair by design: orchestrating background jobs in Ruby"
-  kind: "talk"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
-  language: "en"
+  language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
   video_id: "alexander-baygeldin-rubyconf-2026"
@@ -447,8 +498,8 @@
   kind: "talk"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
-  language: "en"
-  track: "Breakout 1 - Charleston D-C"
+  language: "English"
+  track: "Breakout 1 - Red Rock A&D"
   video_provider: "scheduled"
   video_id: "mike-dalton-rubyconf-2026"
   description: |-
@@ -458,11 +509,10 @@
 
 - id: "peter-zhu-rubyconf-2026"
   title: "Building the Next-Generation Garbage Collector in Ruby"
-  kind: "talk"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
-  language: "en"
-  track: "Breakout 2 - Charleston E-B"
+  language: "English"
+  track: "Breakout 2 - Red Rock G&H"
   video_provider: "scheduled"
   video_id: "peter-zhu-rubyconf-2026"
   description: |-
@@ -472,10 +522,9 @@
 
 - id: "sam-ruby-rubyconf-2026"
   title: "There Is No Server"
-  kind: "talk"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
-  language: "en"
+  language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
   video_id: "sam-ruby-rubyconf-2026"
@@ -486,11 +535,10 @@
 
 - id: "fito-von-zastrow-rubyconf-2026"
   title: "Defying Gravity: Teaching AI to Write Better Ruby"
-  kind: "talk"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
-  language: "en"
-  track: "Breakout 1 - Charleston D-C"
+  language: "English"
+  track: "Breakout 1 - Red Rock A&D"
   video_provider: "scheduled"
   video_id: "fito-von-zastrow-rubyconf-2026"
   description: |-
@@ -500,11 +548,10 @@
 
 - id: "hilary-stohs-krause-rubyconf-2026"
   title: "How to Accessibility if You're Mostly Back-End"
-  kind: "talk"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
-  language: "en"
-  track: "Breakout 2 - Charleston E-B"
+  language: "English"
+  track: "Breakout 2 - Red Rock G&H"
   video_provider: "scheduled"
   video_id: "hilary-stohs-krause-rubyconf-2026"
   description: |-
@@ -512,54 +559,25 @@
   speakers:
     - Hilary Stohs-Krause
 
-- id: "edy-silva-rubyconf-2026"
-  title: "Ractors in Ruby 4.0: Message Passing Without the Pain"
-  kind: "talk"
+- id: "q-and-a-with-matz-rubyconf-2026"
+  title: "Q&A with Matz"
+  kind: "q_and_a"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
-  language: "en"
+  language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
-  video_id: "edy-silva-rubyconf-2026"
-  description: |-
-    Concurrency in Ruby has always been a compromise. Threads are error-prone. Fibers are complex. The Global Interpreter Lock limits true parallelism. We accepted that concurrent Ruby is hard. I came from Erlang and Elixir, where concurrency is the default. The Actor Model - message passing, isolated processes, no shared state - is how you build reliable distributed systems. When Ruby introduced Ractors in 3.0, I was skeptical. The API was clunky. The limitations were severe. It felt like Ruby trying to be something it wasn't. Ruby 4.0 changed my mind. `Ractor::Port` (the mailbox concept), shareable procs and lambdas, and the removal of awkward APIs like `Ractor.yield` make Ractors ergonomic now. You can write a parallel map in 10 lines of Ruby that would have taken 50 lines of fragile thread code. You can spawn isolated workers that communicate through message passing without worrying about mutexes or race conditions. This talk is for Rubyists who are tired of concurrency being hard. I'll show you what Ruby 4.0 got right, what it still gets wrong, and the patterns I borrowed from Elixir that make Ractors useful in production.
+  video_id: "q-and-a-with-matz-rubyconf-2026"
+  description: ""
   speakers:
-    - Edy Silva
-
-- id: "andy-andrea-rubyconf-2026"
-  title: "The little schema that could (...but should it?)"
-  kind: "talk"
-  event_name: "RubyConf 2026"
-  date: "2026-07-16"
-  language: "en"
-  track: "Breakout 1 - Charleston D-C"
-  video_provider: "scheduled"
-  video_id: "andy-andrea-rubyconf-2026"
-  description: |-
-    Even in a duck-typed language like Ruby, we often work with structured data that adheres to particular schemas. For anyone that's worked in a Rails app, a schema.rb or structure.sql file is an inherent part of our apps, and many Ruby devs have worked with JSON Schema or OpenAPI in various applications. In many of those cases, though, we have a lot of duplication especially when we're dealing with CRUD. A `create` endpoint, for example, might accept incoming parameters that look very similar to what's returned by a `show` endpoint, and both will likely have a lot in common with a corresponding table's schema. This duplication is not a major problem--it can often be the best choice--but what would it look like if we tried to DRY things up a little...or a lot? If we're willing to get a little weird, how far can we possibly take a single schema? In this talk, we'll have a single schema and show how it can be applied to (or shoe-horned into): - Database management - Model generation; - Controller input validation; - Controller output validation; - Testing with RSpec; - Auto-generated documentation that stays up to date; - The front end; - CI; - Metaprogramming; - AI tooling including auto-generating tools for your AI applications to call and ways to improve the efficacy of dev tooling like BugBot and Cursor. We'll be making things DRYer than the Sahara and doing away with tons of boilerplate along the way.
-  speakers:
-    - Andy Andrea
-
-- id: "gannon-mcgibbon-rubyconf-2026"
-  title: "Overengineering Ruby with Native Extensions"
-  kind: "talk"
-  event_name: "RubyConf 2026"
-  date: "2026-07-16"
-  language: "en"
-  track: "Breakout 2 - Charleston E-B"
-  video_provider: "scheduled"
-  video_id: "gannon-mcgibbon-rubyconf-2026"
-  description: |-
-    Native extensions are a powerful tool that allows Rubyists to reach outside the Ruby VM into machine code. In this talk, you'll learn just enough C to write your first native extension, and all the different ways you can over complicate your Ruby apps with interoperability.
-  speakers:
-    - Gannon McGibbon
+    - "Yukihiro \"Matz\" Matsumoto"
+    - Aaron Patterson
 
 - id: "alicia-rojas-rubyconf-2026"
   title: "Convention Over Hallucination: Harness Engineering for AI-Powered Rails"
-  kind: "talk"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
-  language: "en"
+  language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
   video_id: "alicia-rojas-rubyconf-2026"
@@ -570,11 +588,10 @@
 
 - id: "kyle-doliveira-rubyconf-2026"
   title: "Fibonacci Funhouse"
-  kind: "talk"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
-  language: "en"
-  track: "Breakout 1 - Charleston D-C"
+  language: "English"
+  track: "Breakout 1 - Red Rock A&D"
   video_provider: "scheduled"
   video_id: "kyle-doliveira-rubyconf-2026"
   description: |-
@@ -584,11 +601,10 @@
 
 - id: "markus-schirp-rubyconf-2026"
   title: "Pattern Parrots and the Semantic Knot: Mutation Testing in the Agentic World"
-  kind: "talk"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
-  language: "en"
-  track: "Breakout 2 - Charleston E-B"
+  language: "English"
+  track: "Breakout 2 - Red Rock G&H"
   video_provider: "scheduled"
   video_id: "markus-schirp-rubyconf-2026"
   description: |-
@@ -598,10 +614,9 @@
 
 - id: "alan-ridlehoover-rubyconf-2026"
   title: "Indispensable: What Human Computers Can Teach Human Programmers"
-  kind: "talk"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
-  language: "en"
+  language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
   video_id: "alan-ridlehoover-rubyconf-2026"
@@ -612,11 +627,10 @@
 
 - id: "joe-dupuis-rubyconf-2026"
   title: "Artisanal Computing: Handcrafted Ruby Execution for the Modern Age"
-  kind: "talk"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
-  language: "en"
-  track: "Breakout 1 - Charleston D-C"
+  language: "English"
+  track: "Breakout 1 - Red Rock A&D"
   video_provider: "scheduled"
   video_id: "joe-dupuis-rubyconf-2026"
   description: |-
@@ -624,29 +638,27 @@
   speakers:
     - Joé Dupuis
 
-- id: "antonio-paulino-rubyconf-2026"
-  title: "Tribology on Rails: Reducing Friction and Wear in Software Systems"
-  kind: "talk"
+- id: "phil-crissman-rubyconf-2026"
+  title: "Elements of Programming, In Ruby"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
-  language: "en"
-  track: "Breakout 2 - Charleston E-B"
+  language: "English"
+  track: "Breakout 2 - Red Rock G&H"
   video_provider: "scheduled"
-  video_id: "antonio-paulino-rubyconf-2026"
-  description: |-
-    Tribology is the science of friction, wear, and lubrication. Might seem worlds apart from software engineering. But there are some concepts we can use to connect the dots: systems slow down under load, interfaces degrade over time, and without proper "lubrication", can result in unexpected failures. In this talk, we'll explore how tribological principles apply to software architecture and demonstrate how Rails conventions and tools act as the perfect lubricant for building smooth, maintainable systems. From reducing friction in APIs to preventing wear in long-running applications, you'll see your codebase through a mechanical engineer's lens.
+  video_id: "phil-crissman-rubyconf-2026"
+  description: ""
   speakers:
-    - Antônio Paulino
+    - Phil Crissman
 
-- id: "yukihiro-matsumoto-keynote-rubyconf-2026"
-  title: 'Keynote by Yukihiro "Matz" Matsumoto'
+- id: "dave-thomas-keynote-rubyconf-2026"
+  title: "Keynote by Dave Thomas"
   kind: "keynote"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
-  language: "en"
+  language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
-  video_id: "yukihiro-matsumoto-keynote-rubyconf-2026"
+  video_id: "dave-thomas-keynote-rubyconf-2026"
   description: ""
   speakers:
-    - "Yukihiro \"Matz\" Matsumoto"
+    - Dave Thomas

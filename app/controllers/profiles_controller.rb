@@ -30,9 +30,13 @@ class ProfilesController < ApplicationController
 
   # PATCH/PUT /profiles/:slug
   def update
-    suggestion = @user.create_suggestion_from(params: user_params, user: Current.user)
-    if suggestion.persisted?
-      redirect_to profile_path(@user), notice: suggestion.notice
+    unless @user.managed_by?(Current.user)
+      redirect_to profile_path(@user), alert: "Not authorized"
+      return
+    end
+
+    if @user.update(user_params)
+      redirect_to profile_path(@user), notice: "Profile updated!"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -56,23 +60,32 @@ class ProfilesController < ApplicationController
     @talks = @user.kept_talks.includes(:speakers, event: :series, child_talks: :speakers).order(date: :desc)
     @talks_by_kind = @talks.group_by(&:kind)
     @topics = @user.topics.approved.tally.sort_by(&:last).reverse.map(&:first)
-    # Load participated events (from event_participations)
     @events = @user.participated_events.includes(:series).in_order_of(:attended_as, EventParticipation.attended_as.keys)
     @stickers = Sticker.for_user(@user, events: @events)
 
-    event_participations = @user.event_participations.includes(:event).where(event: @events)
-    @participations = event_participations.index_by(&:event_id)
+    event_participations = @user.event_participations.includes(:event).where(event: @events).in_order_of(:attended_as, EventParticipation.attended_as.keys)
+
+    @participations = event_participations.group_by(&:event_id).transform_values(&:first)
+    @checked_in_event_ids = @user.checked_in_event_ids
+
+    checked_in_only_event_ids = @checked_in_event_ids - @events.map(&:id).to_set
+
+    if checked_in_only_event_ids.any?
+      checked_in_only_events = Event.includes(:series).where(id: checked_in_only_event_ids)
+      @events = @events.to_a + checked_in_only_events.to_a
+    end
+
+    country_scope = @events.is_a?(Array) ? Event.where(id: @events.map(&:id)) : @events
+    @countries_with_events = country_scope.grouped_by_country
 
     @events_by_year = @events.group_by { |event| event.start_date&.year || "Unknown" }
-
-    # Group events by country for the map tab
-    @countries_with_events = @events.grouped_by_country
 
     @involved_events = @user.involved_events.includes(:series).distinct.order(start_date: :desc)
     event_involvements = @user.event_involvements.includes(:event).where(event: @involved_events)
     involvement_lookup = event_involvements.group_by(&:event_id)
 
     @involvements_by_role = {}
+
     @involved_events.each do |event|
       involvements = involvement_lookup[event.id] || []
       involvements.each do |involvement|
@@ -117,7 +130,7 @@ class ProfilesController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(
+    permitted = params.require(:user).permit(
       :github_handle,
       :twitter,
       :bsky,
@@ -131,6 +144,29 @@ class ProfilesController < ApplicationController
       :pronouns,
       :slug
     )
+
+    permitted[:language_preferences] = language_preferences_param if params[:user]&.key?(:language_preferences)
+
+    permitted
+  end
+
+  def language_preferences_param
+    raw = params.require(:user)[:language_preferences]
+
+    return {} unless raw.respond_to?(:each_pair)
+
+    result = {}
+
+    raw.each_pair do |code, answer|
+      next unless Language.by_code(code)
+
+      case answer
+      when "understands" then result[code] = {"understands" => true}
+      when "does_not_understand" then result[code] = {"understands" => false}
+      end
+    end
+
+    result
   end
 
   def set_favorite_user

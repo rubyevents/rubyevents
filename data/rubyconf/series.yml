@@ -1,14 +1,21 @@
 ---
 name: "RubyConf"
 website: "https://rubyconf.org/"
-twitter: "rubyconf"
 kind: "conference"
 frequency: "yearly"
-playlist_matcher: "rubyconf"
+language: "English"
+twitter: "rubyconf"
 default_country_code: "US"
-youtube_channel_name: "Confreaks"
-language: "english"
-youtube_channel_id: "UCWnPjmqvljcafA0z2U1fwKQ"
 aliases:
   - Ruby Conf
   - Ruby Conference
+youtube_channels:
+  - id: "UCWnPjmqvljcafA0z2U1fwKQ"
+    name: "Confreaks"
+    handle: "@confreaks"
+    playlist_matcher: "RubyConf"
+
+  - id: "UCpFXaEz3vKJ45XjW5m5pbow"
+    name: "Ruby Central"
+    handle: "@rubycentral"
+    playlist_matcher: "RubyConf"

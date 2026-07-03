@@ -48,7 +48,7 @@ module Static
         frequency: nil,
         location: nil,
         venue: nil,
-        channel_id: nil,
+        youtube_channels: nil,
         playlist: nil,
         website: nil,
         original_website: nil,
@@ -94,7 +94,7 @@ module Static
         data["frequency"] = frequency if frequency.present?
         data["location"] = location if location.present?
         data["venue"] = venue if venue.present?
-        data["channel_id"] = channel_id if channel_id.present?
+        data["youtube_channels"] = youtube_channels if youtube_channels.present?
         data["playlist"] = playlist if playlist.present?
         data["website"] = website if website.present?
         data["original_website"] = original_website if original_website.present?
@@ -244,6 +244,12 @@ module Static
       Country.find(location.to_s.split(",").last&.strip)
     end
 
+    def time_zone
+      return nil if attributes["timezone"].blank?
+
+      ActiveSupport::TimeZone[attributes["timezone"]]
+    end
+
     def city
       return nil if location.blank?
 
@@ -302,8 +308,8 @@ module Static
 
       event.assign_attributes(
         name: title,
-        date: attributes["date"] || published_at,
-        date_precision: date_precision || "day",
+        date: attributes["date"],
+        date_precision: attributes["date_precision"] || "day",
         series: static_series.event_series_record,
         website: website,
         country_code: country&.alpha2,
@@ -311,7 +317,11 @@ module Static
         location: location,
         start_date: start_date,
         end_date: end_date,
-        kind: kind
+        kind: kind,
+        featured_background: featured_background,
+        featured_color: featured_color,
+        banner_background: banner_background,
+        home_sort_date: home_sort_date(event_record: event)
       )
 
       if event.venue.exist?

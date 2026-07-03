@@ -45,4 +45,26 @@ class FavoriteUsersControllerTest < ActionDispatch::IntegrationTest
     patch favorite_user_url(favorite_user), params: {favorite_user: {notes: "This note should not be saved"}}
     assert_response :not_found
   end
+
+  test "should not destroy another user's favorite_user" do
+    # favorite_users(:two) belongs to users(:two), but we're signed in as users(:one).
+    other_users_favorite = favorite_users(:two)
+
+    assert_no_difference("FavoriteUser.count") do
+      delete favorite_user_url(other_users_favorite)
+    end
+
+    assert_response :not_found
+    assert FavoriteUser.exists?(other_users_favorite.id)
+  end
+
+  test "should not update another user's favorite_user" do
+    # favorite_users(:two) belongs to users(:two), but we're signed in as users(:one).
+    other_users_favorite = favorite_users(:two)
+
+    patch favorite_user_url(other_users_favorite), params: {favorite_user: {notes: "Should not be saved"}}
+
+    assert_response :not_found
+    assert_nil other_users_favorite.reload.notes
+  end
 end

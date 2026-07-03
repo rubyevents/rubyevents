@@ -39,9 +39,7 @@ module Static
         luma: nil,
         guild: nil,
         vimeo: nil,
-        youtube_channel_id: nil,
-        youtube_channel_name: nil,
-        playlist_matcher: nil,
+        youtube_channels: nil,
         aliases: nil
       )
         slug ||= name.parameterize
@@ -72,9 +70,7 @@ module Static
         data["luma"] = luma if luma.present?
         data["guild"] = guild if guild.present?
         data["vimeo"] = vimeo if vimeo.present?
-        data["youtube_channel_id"] = youtube_channel_id if youtube_channel_id.present?
-        data["youtube_channel_name"] = youtube_channel_name if youtube_channel_name.present?
-        data["playlist_matcher"] = playlist_matcher if playlist_matcher.present?
+        data["youtube_channels"] = youtube_channels if youtube_channels.present?
         data["aliases"] = Array(aliases) if aliases.present?
 
         schema = JSON.parse(SeriesSchema.new.to_json_schema[:schema].to_json)
@@ -111,10 +107,8 @@ module Static
         name: name,
         website: website || "",
         twitter: twitter || "",
-        youtube_channel_name: youtube_channel_name,
         kind: kind,
         frequency: frequency,
-        youtube_channel_id: youtube_channel_id,
         slug: slug,
         language: language || ""
       )
@@ -130,6 +124,14 @@ module Static
       import_series!(index: index)
       events.each { |event| event.import!(index: index) }
       event_series_record
+    end
+
+    def all_youtube_channels
+      @all_youtube_channels ||= Array(try(:youtube_channels) || [])
+    end
+
+    def all_youtube_channel_ids
+      all_youtube_channels.map { |c| c["id"] }.compact
     end
 
     def events

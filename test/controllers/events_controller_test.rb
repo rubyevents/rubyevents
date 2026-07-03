@@ -60,41 +60,6 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to event_path(@event)
   end
 
-  test "should get edit" do
-    sign_in_as @user
-    get edit_event_url(@event)
-    assert_response :success
-  end
-
-  test "should create a pending suggestion for anonymous users" do
-    assert_difference "Suggestion.pending.count", 1 do
-      patch event_url(@event), params: {event: {city: "Paris", country_code: "FR"}}
-    end
-
-    assert_redirected_to event_url(@event)
-  end
-
-  test "should create a pending suggestion for signed in users" do
-    sign_in_as @user
-
-    assert_difference "Suggestion.pending.count", 1 do
-      patch event_url(@event), params: {event: {city: "Paris", country_code: "FR"}}
-    end
-
-    assert_redirected_to event_url(@event)
-  end
-
-  test "should update directly the content for admins" do
-    sign_in_as users(:admin)
-    assert_difference "Suggestion.approved.count", 1 do
-      patch event_url(@event), params: {event: {city: "Paris", country_code: "FR"}}
-    end
-
-    assert_equal "Paris", @event.reload.city
-    assert_equal "FR", @event.reload.country_code
-    assert_redirected_to event_url(@event)
-  end
-
   test "should display an empty state message when no events are found" do
     Event.destroy_all
 

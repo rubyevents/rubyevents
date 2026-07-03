@@ -13,8 +13,7 @@ class Talk::Agents < ActiveRecord::AssociatedObject
       resource: talk,
       task_name: "enhance_transcript"
     )
-    raw_response = JSON.repair(response.dig("choices", 0, "message", "content"))
-    enhanced_json_transcript = JSON.parse(raw_response).dig("transcript")
+    enhanced_json_transcript = JSON.parse(response.dig("choices", 0, "message", "content")).dig("transcript")
     transcript = talk.talk_transcript || Talk::Transcript.new
     transcript.update!(enhanced_transcript: ::Transcript.create_from_json(enhanced_json_transcript))
   end
@@ -28,8 +27,7 @@ class Talk::Agents < ActiveRecord::AssociatedObject
       task_name: "summarize"
     )
 
-    raw_response = JSON.repair(response.dig("choices", 0, "message", "content"))
-    summary = JSON.parse(raw_response).dig("summary")
+    summary = JSON.parse(response.dig("choices", 0, "message", "content")).dig("summary")
     talk.update!(summary: summary)
   end
 
@@ -42,9 +40,8 @@ class Talk::Agents < ActiveRecord::AssociatedObject
       task_name: "analyze_topics"
     )
 
-    raw_response = JSON.repair(response.dig("choices", 0, "message", "content"))
     topics = begin
-      JSON.parse(raw_response)["topics"]
+      JSON.parse(response.dig("choices", 0, "message", "content"))["topics"]
     rescue
       []
     end

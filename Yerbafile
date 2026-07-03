@@ -1,19 +1,29 @@
+files: "data/**/*.yml"
+
+pipeline:
+  - directives:
+      max: 1
+      ensure: true
+
+  - collection_style:
+      style: block
+
+  - sequence_indent:
+      style: indented
+
+  - quote_style:
+      key_style: plain
+      value_style: double
+
 rules:
   - files: "data/**/event.yml"
     pipeline:
       - schema:
           file: "lib/schemas/event_schema.json"
 
-      - directives:
-          ensure: true
-
       - quote_style:
           path: "description"
           value_style: literal
-
-      - quote_style:
-          key_style: plain
-          value_style: double
 
       - blank_lines:
           count: 0
@@ -31,13 +41,13 @@ rules:
             - kind
             - frequency
             - description
-            - published_at
             - announced_on
+            - date_precision
+            - pre_date
             - start_date
             - end_date
+            - published_at
             - year
-            - date_precision
-            - channel_id
             - playlist
             - status
             - last_edition
@@ -57,19 +67,21 @@ rules:
             - featured_color
             - coordinates
             - aliases
+            - youtube_channels
+
+      - sort_keys:
+          path: "youtube_channels[]"
+          order:
+            - id
+            - name
+            - handle
+            - playlist_matcher
 
   - files: "data/**/involvements.yml"
     pipeline:
       - schema:
           file: "lib/schemas/involvement_schema.json"
           path: "[]"
-
-      - directives:
-          ensure: true
-
-      - quote_style:
-          key_style: plain
-          value_style: double
 
       - quote_style:
           path: "[].users"
@@ -80,13 +92,7 @@ rules:
           value_style: plain
 
   - files: "data/topics.yml"
-    pipeline:
-      - directives:
-          ensure: true
-
-      - quote_style:
-          key_style: plain
-          value_style: double
+    pipeline: []
 
   - files: "data/**/cfp.yml"
     pipeline:
@@ -94,12 +100,9 @@ rules:
           file: "lib/schemas/cfp_schema.json"
           path: "[]"
 
-      - directives:
-          ensure: true
-
-      - quote_style:
-          key_style: plain
-          value_style: double
+      - blank_lines:
+          path: ""
+          count: 1
 
       - sort_keys:
           order:
@@ -114,25 +117,11 @@ rules:
           file: "lib/schemas/featured_city_schema.json"
           path: "[]"
 
-      - directives:
-          ensure: true
-
-      - quote_style:
-          key_style: plain
-          value_style: double
-
   - files: "data/**/sponsors.yml"
     pipeline:
       - schema:
           file: "lib/schemas/sponsors_schema.json"
           path: "[]"
-
-      - directives:
-          ensure: true
-
-      - quote_style:
-          key_style: plain
-          value_style: double
 
       - blank_lines:
           path: "[].tiers"
@@ -147,24 +136,10 @@ rules:
       - schema:
           file: "lib/schemas/venue_schema.json"
 
-      - directives:
-          ensure: true
-
-      - quote_style:
-          key_style: plain
-          value_style: double
-
   - files: "data/**/schedule.yml"
     pipeline:
       - schema:
           file: "lib/schemas/schedule_schema.json"
-
-      - directives:
-          ensure: true
-
-      - quote_style:
-          key_style: plain
-          value_style: double
 
       - blank_lines:
           path: "days"
@@ -179,25 +154,49 @@ rules:
       - schema:
           file: "lib/schemas/series_schema.json"
 
-      - directives:
-          ensure: true
-
-      - quote_style:
-          key_style: plain
-          value_style: double
-
       - quote_style:
           path: "aliases[]"
           value_style: plain
 
+      - sort_keys:
+          path: "youtube_channels[]"
+          order:
+            - id
+            - name
+            - handle
+            - playlist_matcher
+
+      - sort_keys:
+          order:
+            - name
+            - website
+            - kind
+            - frequency
+            - language
+            - twitter
+            - default_country_code
+            - meetup
+            - github
+            - mastodon
+            - original_website
+            - guild
+            - vimeo
+            - linkedin
+            - description
+            - luma
+            - ended
+            - bsky
+            - aliases
+            - youtube_channels
+
   - files: "data/**/videos.yml"
     pipeline:
+      - sequence_indent:
+          style: indented
+
       - schema:
           file: "lib/schemas/video_schema.json"
           path: "[]"
-
-      - directives:
-          ensure: true
 
       - quote_style:
           path: "[].speakers"
@@ -235,13 +234,17 @@ rules:
           path: "[].talks"
           count: 1
 
+      - blank_lines:
+          path: "[].additional_resources"
+          count: 1
+
       - sort_keys:
           path: "[]"
           order:
             - id
             - title
-            - raw_title
             - original_title
+            - raw_title
             - slug
             - location
             - kind
@@ -269,6 +272,23 @@ rules:
             - talks
             - additional_resources
             - alternative_recordings
+
+      - sort_keys:
+          path: "[].alternative_recordings[]"
+          order:
+            - note
+            - title
+            - raw_title
+            - location
+            - event_name
+            - date
+            - published_at
+            - language
+            - video_provider
+            - video_id
+            - external_url
+            - description
+            - speakers
 
       - sort_keys:
           path: "[].talks[]"
@@ -312,13 +332,6 @@ rules:
       - schema:
           file: "lib/schemas/speaker_schema.json"
           path: "[]"
-
-      - directives:
-          ensure: true
-
-      - quote_style:
-          key_style: plain
-          value_style: double
 
       - sort_keys:
           path: "[]"

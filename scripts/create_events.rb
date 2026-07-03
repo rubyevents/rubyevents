@@ -9,14 +9,17 @@ def create_events_for_series(series_file_path)
   series_slug = File.basename(File.dirname(series_file_path))
   series_data = YAML.load_file(series_file_path)
 
-  return if series_data["youtube_channel_id"].blank?
+  channels = Array(series_data["youtube_channels"])
+  return if channels.empty?
 
   puts "Processing: #{series_slug}"
 
-  playlists = YouTube::Playlists.new.all(
-    channel_id: series_data["youtube_channel_id"],
-    title_matcher: series_data["playlist_matcher"]
-  )
+  playlists = channels.flat_map { |channel|
+    YouTube::Playlists.new.all(
+      channel_id: channel["id"],
+      title_matcher: channel["playlist_matcher"]
+    )
+  }
   playlists.sort_by! { |playlist| playlist.year.to_i }
   playlists.select! { |playlist| playlist.videos_count.positive? }
 

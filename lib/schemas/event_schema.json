@@ -49,6 +49,10 @@
       "type": "boolean",
       "description": "Whether this is the last edition of the event"
     },
+    "pre_date": {
+      "type": "string",
+      "description": "Date of pre-conference activities (workshops, pre-party) held before start_date (YYYY-MM-DD format)"
+    },
     "start_date": {
       "type": "string",
       "description": "Start date of the event (YYYY-MM-DD format)"
@@ -694,9 +698,36 @@
       "type": "string",
       "description": "Name of the venue"
     },
-    "channel_id": {
-      "type": "string",
-      "description": "YouTube channel ID (starts with UC...)"
+    "youtube_channels": {
+      "type": "array",
+      "description": "YouTube channels associated with this event",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "YouTube channel ID (starts with UC...)"
+          },
+          "name": {
+            "type": "string",
+            "description": "YouTube channel display name"
+          },
+          "handle": {
+            "type": "string",
+            "description": "YouTube channel handle (e.g. @HelveticRuby)"
+          },
+          "playlist_matcher": {
+            "type": "string",
+            "description": "Pattern to match playlists on this channel"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "handle"
+        ],
+        "additionalProperties": false
+      }
     },
     "playlist": {
       "type": "string",
@@ -729,10 +760,6 @@
     "luma": {
       "type": "string",
       "description": "Luma event URL"
-    },
-    "youtube": {
-      "type": "string",
-      "description": "YouTube channel or video URL"
     },
     "tickets_url": {
       "type": "string",
