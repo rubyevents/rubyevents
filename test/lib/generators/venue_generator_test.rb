@@ -1,45 +1,102 @@
 require "test_helper"
 require "generators/venue/venue_generator"
-require "#{Rails.root}/app/schemas/venue_schema"
-require "json_schemer"
-require "yaml"
 
 class VenueGeneratorTest < Rails::Generators::TestCase
   tests VenueGenerator
   destination Rails.root.join("tmp/generators/venue")
 
-  test "creates venue.yml in correct directory" do
-    assert_nothing_raised do
-      run_generator ["--event", "rubyconf-2001"]
-    end
-
-    assert_file "data/rubyconf/rubyconf-2001/venue.yml" do |content|
-      assert_match(/\S/, content) # Verify file has content
-    end
-
-    File.delete File.join(destination_root, "data/rubyconf/rubyconf-2001/venue.yml")
+  setup do
+    Geocoder::Lookup::Test.set_default_stub([])
+    Geocoder::Lookup::Test.add_stub(
+      "Pullman Auditorium", [
+        {
+          "coordinates" => [-23.59572, -46.68448],
+          "address" => "R. Olimpíadas, 205 - Vila Olímpia, São Paulo - SP, 04551-000",
+          "city" => "São Paulo",
+          "state" => "SP",
+          "country" => "Brazil",
+          "country_code" => "BR",
+          "postal_code" => "04551-000",
+          "street_address" => "R. Olimpíadas, 205"
+        }
+      ]
+    )
+    Geocoder::Lookup::Test.add_stub(
+      "São Paulo", [
+        {
+          "coordinates" => [-23.54966, -46.64679],
+          "city" => "São Paulo",
+          "state" => "SP",
+          "country" => "Brazil",
+          "country_code" => "BR"
+        }
+      ]
+    )
   end
 
-  test "venue.yml passes schema validation" do
-    run_generator ["--event-series", "rubyconf", "--event", "2002"]
-
-    venue_file_path = File.join(destination_root, "data/rubyconf/2002/venue.yml")
-    validate_venue_schema venue_file_path
+  test "minimal venue without geocoder result" do
+    venue_file_path = File.join(destination_root, "data/tropical-rb/tropicalrb-2027/venue.yml")
+    assert_nothing_raised do
+      run_generator ["--force", # Force file creation
+        "--event-series", "tropical-rb",
+        "--event", "tropicalrb-2027"]
+    end
+    assert_file venue_file_path do |content|
+      assert_match(/street: ""/, content)
+      assert_match(/latitude: .NAN # TODO/, content)
+      assert_match(/longitude: .NAN # TODO/, content)
+    end
 
     File.delete venue_file_path
   end
 
   test "venue with all flags passes schema validation" do
-    run_generator ["--event-series", "rubyconf", "--event", "2003", "--hotel", "--nearby", "--locations", "--rooms", "--spaces", "--accessibility"]
+    run_generator ["--force", # Force file creation
+      "--event-series", "tropical-rb",
+      "--event", "tropicalrb-2028",
+      "--name", "Pullman Auditorium",
+      "--address", "R. Olimpíadas, 205 - Vila Olímpia, São Paulo - SP",
+      "--description", "Pullman Auditorium!",
+      "--instructions", "Enter through the main doors and check in at the front desk.",
+      "--url", "https://example.com/venue",
+      "--hotel",
+      "--nearby",
+      "--locations",
+      "--rooms",
+      "--spaces",
+      "--accessibility"]
 
-    venue_file_path = File.join(destination_root, "data/rubyconf/2003/venue.yml")
+    venue_file_path = File.join(destination_root, "data/tropical-rb/tropicalrb-2028/venue.yml")
+    assert_file venue_file_path do |content|
+      assert_match(/name: "Pullman Auditorium"/, content)
+      assert_match(/description: "Pullman Auditorium!"/, content)
+      assert_match(/instructions: "Enter through the main doors and check in at the front desk."/, content)
+      assert_match(/url: "https:\/\/example.com\/venue"/, content)
+      assert_match(/street: "R. Olimpíadas, 205"/, content)
+      assert_match(/city: "São Paulo"/, content)
+      assert_match(/region: "SP"/, content)
+      assert_match(/postal_code: "04551-000"/, content)
+      assert_match(/country: "Brazil"/, content)
+      assert_match(/country_code: "BR"/, content)
+      assert_match(/latitude: -23.59572/, content)
+      assert_match(/longitude: -46.68448/, content)
+    end
     validate_venue_schema venue_file_path
 
     File.delete venue_file_path
   end
 
-  test "venue with all flags off passes schema validation" do
-    run_generator ["--event-series", "rubyconf", "--event", "2004", "--no-hotel", "--no-nearby", "--no-locations", "--no-rooms", "--no-spaces", "--no-accessibility"]
+  test "venue with all optional flags off passes schema validation" do
+    run_generator ["--force", # Force file creation
+      "--event-series", "rubyconf",
+      "--event", "2004",
+      "--name", "Pullman Auditorium",
+      "--no-hotel",
+      "--no-nearby",
+      "--no-locations",
+      "--no-rooms",
+      "--no-spaces",
+      "--no-accessibility"]
 
     venue_file_path = File.join(destination_root, "data/rubyconf/2004/venue.yml")
     validate_venue_schema venue_file_path
@@ -47,13 +104,43 @@ class VenueGeneratorTest < Rails::Generators::TestCase
     File.delete venue_file_path
   end
 
+  test "venue generator updates existing event's coordinates" do
+    event_file_path = File.join(destination_root, "data/tropical-rb/tropicalrb-2029/event.yml")
+    venue_file_path = File.join(destination_root, "data/tropical-rb/tropicalrb-2029/venue.yml")
+
+    capture(:stdout) do
+      Rails::Generators.invoke "event", [
+        "--event-series", "tropical-rb",
+        "--event", "tropicalrb-2029",
+        "--title", "Tropical on Rails",
+        "--start-date", "2029-07-15",
+        "--end-date", "2029-07-17",
+        "--location", "São Paulo",
+        "--latitude", "-23.54966",
+        "--longitude", "-46.64679"
+      ], behavior: :invoke, destination_root: destination_root
+    end
+
+    run_generator ["--force", # Force file creation
+      "--event-series", "tropical-rb",
+      "--event", "tropicalrb-2029",
+      "--name", "Pullman Auditorium"]
+
+    assert_file event_file_path do |content|
+      assert_match(/latitude: -23.595/, content)
+      assert_match(/longitude: -46.684/, content)
+    end
+  ensure
+    File.delete event_file_path if File.exist?(event_file_path)
+    File.delete venue_file_path if File.exist?(venue_file_path)
+  end
+
   def validate_venue_schema(file_path)
-    data = YAML.load_file(file_path)
+    validator = Static::Validators::Schema.new(file_path: file_path)
+    assert_empty validator.errors, "Venue YAML does not conform to schema: #{validator.errors.map { |e| e.to_h["message"] }.join(", ")}"
+  end
 
-    schema = JSON.parse(VenueSchema.new.to_json_schema[:schema].to_json)
-    schemer = JSONSchemer.schema(schema)
-
-    errors = schemer.validate(data).to_a
-    assert_empty errors, "Venue YAML does not conform to schema: #{errors.join(", ")}"
+  teardown do
+    Geocoder::Lookup::Test.reset
   end
 end

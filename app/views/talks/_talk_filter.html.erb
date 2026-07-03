@@ -6,7 +6,7 @@
 
 <% if talks_by_language.length >= 2 || talks_by_kind.length >= 2 %>
   <div class="mb-6" data-controller="talks-filter-pill" data-talks-filter-pill-active-class="<%= active_classes %>">
-    <div class="flex divide-x">
+    <div class="flex flex-wrap sm:divide-y divide-x">
       <% if talks_by_kind.length >= 2 %>
         <div class="flex gap-2 mb-3 pr-6 justify-center">
           <% talks_by_kind.each do |kind, talks| %>

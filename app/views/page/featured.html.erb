@@ -1,6 +1,5 @@
 <main class="container">
-  <% playlists = Static::Event.where.not(featured_background: nil) %>
-  <% events = Event.where(slug: playlists.map(&:slug)).order(date: :desc) %>
+  <% events = Event.featurable.order(date: :desc) %>
 
   <div>
     <% events.each do |event| %>

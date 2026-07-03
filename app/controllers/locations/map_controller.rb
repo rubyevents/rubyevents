@@ -203,7 +203,7 @@ class Locations::MapController < Locations::BaseController
     }
 
     if @city.respond_to?(:nearby_events) && @city.geocoded?
-      nearby_event_data = @city.nearby_events(radius_km: 250, limit: 50, exclude_ids: city_events.map(&:id))
+      nearby_event_data = @city.nearby_events(radius_km: Current.user&.distance || 250, limit: 50, exclude_ids: city_events.map(&:id))
       nearby_events_list = nearby_event_data.map { |d| d[:event] }
 
       city_plus_nearby = city_events + nearby_events_list
@@ -302,7 +302,7 @@ class Locations::MapController < Locations::BaseController
       group: "geo"
     }
 
-    nearby_event_data = @location.nearby_events(radius_km: 250, limit: 50, exclude_ids: coordinate_events.map(&:id))
+    nearby_event_data = @location.nearby_events(radius_km: Current.user&.distance || 250, limit: 50, exclude_ids: coordinate_events.map(&:id))
     nearby_events_list = nearby_event_data.map { |d| d[:event] }
 
     coordinate_plus_nearby = coordinate_events + nearby_events_list

@@ -29,25 +29,6 @@ class Event::SponsorsFile < ActiveRecord::AssociatedObject
   #   event.sponsors_file.download(html: "<html>...</html>")
   #
   def download(base_url: nil, sponsors_url: nil, html: nil)
-    # Default to event website as base_url if no arguments provided
-    if [base_url, sponsors_url, html].compact.empty?
-      base_url = event.website
-    end
-
-    # Log which input method is being used
-    if html
-      puts "Using HTML content: #{html.length} characters"
-    elsif sponsors_url
-      puts "Using sponsors URL: #{sponsors_url}"
-    elsif base_url
-      puts "Using base URL: #{base_url}"
-    end
-
-    DownloadSponsors.new.download_sponsors(
-      base_url: base_url,
-      sponsors_url: sponsors_url,
-      html: html,
-      save_file: event.data_folder.join(FILE_NAME)
-    )
+    raise NotImplementedError, "Download method is being removed because the supporting download script no longer succeeds."
   end
 end

@@ -1,5 +1,4 @@
 require "rss"
-require "httparty"
 
 class User::SpeakerdeckFeed < ActiveRecord::AssociatedObject
   def username
@@ -43,7 +42,8 @@ class User::SpeakerdeckFeed < ActiveRecord::AssociatedObject
       return self if @feed_fetched
 
       rss_url = "https://speakerdeck.com/#{@username}.rss"
-      response = HTTParty.get(rss_url)
+      uri = URI(rss_url)
+      response = Net::HTTP.get_response(uri)
       rss = RSS::Parser.parse(response.body, false)
 
       if rss&.items
@@ -52,7 +52,7 @@ class User::SpeakerdeckFeed < ActiveRecord::AssociatedObject
 
       @feed_fetched = true
       self
-    rescue HTTParty::Error, Net::HTTPError, SocketError, Timeout::Error => e
+    rescue Net::HTTPError, SocketError, Timeout::Error => e
       Rails.logger.error "Failed to fetch Speakerdeck feed for #{username}: #{e.message}"
       @decks = []
       @feed_fetched = true

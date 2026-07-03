@@ -24,7 +24,13 @@ module YouTube
         params: params
       }
 
-      @response = HTTParty.post(url, headers: headers, body: body.to_json)
+      uri = URI(url)
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+      request = Net::HTTP::Post.new(uri.request_uri, headers)
+      request.body = body.to_json
+      @response = http.request(request)
+
       JSON.parse(@response.body)
     end
 

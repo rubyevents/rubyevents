@@ -10,15 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.2].define(version: 2026_03_06_110802) do
-  create_table "_litestream_lock", id: false, force: :cascade do |t|
-    t.integer "id"
-  end
-
-  create_table "_litestream_seq", force: :cascade do |t|
-    t.integer "seq"
-  end
-
+ActiveRecord::Schema[8.2].define(version: 2026_07_02_130000) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -160,6 +152,17 @@ ActiveRecord::Schema[8.2].define(version: 2026_03_06_110802) do
     t.index ["user_id"], name: "index_email_verification_tokens_on_user_id"
   end
 
+  create_table "event_check_ins", force: :cascade do |t|
+    t.datetime "checked_in_at", null: false
+    t.string "connect_id", null: false
+    t.datetime "created_at", null: false
+    t.integer "event_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["connect_id", "event_id"], name: "index_event_check_ins_on_connect_id_and_event_id", unique: true
+    t.index ["connect_id"], name: "index_event_check_ins_on_connect_id"
+    t.index ["event_id"], name: "index_event_check_ins_on_event_id"
+  end
+
   create_table "event_involvements", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "event_id", null: false
@@ -206,6 +209,7 @@ ActiveRecord::Schema[8.2].define(version: 2026_03_06_110802) do
   end
 
   create_table "events", force: :cascade do |t|
+    t.string "banner_background"
     t.integer "canonical_id"
     t.string "city"
     t.string "country_code"
@@ -214,7 +218,10 @@ ActiveRecord::Schema[8.2].define(version: 2026_03_06_110802) do
     t.string "date_precision", default: "day", null: false
     t.date "end_date"
     t.integer "event_series_id", null: false
+    t.string "featured_background"
+    t.string "featured_color"
     t.json "geocode_metadata", default: {}, null: false
+    t.date "home_sort_date"
     t.string "kind", default: "event", null: false
     t.decimal "latitude", precision: 10, scale: 6
     t.string "location"
@@ -231,7 +238,7 @@ ActiveRecord::Schema[8.2].define(version: 2026_03_06_110802) do
     t.index ["event_series_id"], name: "index_events_on_event_series_id"
     t.index ["kind"], name: "index_events_on_kind"
     t.index ["name"], name: "index_events_on_name"
-    t.index ["slug"], name: "index_events_on_slug"
+    t.index ["slug"], name: "index_events_on_slug", unique: true
   end
 
   create_table "favorite_users", force: :cascade do |t|
@@ -356,21 +363,6 @@ ActiveRecord::Schema[8.2].define(version: 2026_03_06_110802) do
     t.index ["organization_id"], name: "index_sponsors_on_organization_id"
   end
 
-  create_table "suggestions", force: :cascade do |t|
-    t.integer "approved_by_id"
-    t.text "content"
-    t.datetime "created_at", null: false
-    t.integer "status", default: 0, null: false
-    t.integer "suggestable_id", null: false
-    t.string "suggestable_type", null: false
-    t.integer "suggested_by_id"
-    t.datetime "updated_at", null: false
-    t.index ["approved_by_id"], name: "index_suggestions_on_approved_by_id"
-    t.index ["status"], name: "index_suggestions_on_status"
-    t.index ["suggestable_type", "suggestable_id"], name: "index_suggestions_on_suggestable"
-    t.index ["suggested_by_id"], name: "index_suggestions_on_suggested_by_id"
-  end
-
   create_table "talk_topics", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "talk_id", null: false
@@ -487,6 +479,7 @@ ActiveRecord::Schema[8.2].define(version: 2026_03_06_110802) do
     t.json "geocode_metadata", default: {}, null: false
     t.string "github_handle"
     t.json "github_metadata", default: {}, null: false
+    t.json "language_preferences", default: {}, null: false
     t.decimal "latitude", precision: 10, scale: 6
     t.string "linkedin", default: "", null: false
     t.string "location", default: ""
@@ -559,6 +552,7 @@ ActiveRecord::Schema[8.2].define(version: 2026_03_06_110802) do
   add_foreign_key "connected_accounts", "users"
   add_foreign_key "contributors", "users"
   add_foreign_key "email_verification_tokens", "users"
+  add_foreign_key "event_check_ins", "events"
   add_foreign_key "event_involvements", "events"
   add_foreign_key "event_participations", "events"
   add_foreign_key "event_participations", "users"
@@ -571,8 +565,6 @@ ActiveRecord::Schema[8.2].define(version: 2026_03_06_110802) do
   add_foreign_key "speakers", "speakers", column: "canonical_id"
   add_foreign_key "sponsors", "events"
   add_foreign_key "sponsors", "organizations"
-  add_foreign_key "suggestions", "users", column: "approved_by_id"
-  add_foreign_key "suggestions", "users", column: "suggested_by_id"
   add_foreign_key "talk_topics", "talks"
   add_foreign_key "talk_topics", "topics"
   add_foreign_key "talk_transcripts", "talks"

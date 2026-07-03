@@ -154,9 +154,10 @@
           loading: "lazy",
           alt: "talk by #{talk.speakers.map(&:name).join(", ")}: #{talk.title}",
           style: "view-transition-name: #{dom_id(talk, :image)}",
+          onload: "this.classList.remove('skeleton')",
           class: class_names(
-            "w-full object-cover skeleton rounded-t-xl border-b",
-            talk.thumbnail_classes,
+            "w-full skeleton rounded-t-xl border-b",
+            talk.thumbnail_classes.presence || "object-cover",
             "opacity-50 group-hover:opacity-75 transition-opacity": watched_talk&.watched?
           )
         ) %>

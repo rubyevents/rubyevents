@@ -8,7 +8,7 @@
 
 <div class="container py-8">
   <div class="flex items-center justify-between mb-8">
-    <h1 class="title text-primary">Announcements</h1>
+    <h1 class="title text-primary"><%= title "Announcements" %></h1>
     <%= link_to feed_announcements_path(format: :rss, tag: @current_tag.presence), class: "btn btn-ghost btn-sm gap-2", title: "RSS Feed", target: "_blank" do %>
       <%= fa("rss", size: :sm) %>
     <% end %>

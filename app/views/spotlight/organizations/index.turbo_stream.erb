@@ -1,7 +1,7 @@
 <%= turbo_stream.replace "organizations_search_results" do %>
   <div
     id="organizations_search_results"
-    class="<%= @organizations.any? ? 'pb-4 border-b' : 'hidden' %>"
+    class="<%= @organizations.any? ? 'py-4 border-t' : 'hidden' %>"
     data-spotlight-search-target="organizationsSearchResults">
     <% if @organizations.any? %>
       <div class="flex items-center flex-wrap gap-2 py-2">

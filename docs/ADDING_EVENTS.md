@@ -10,6 +10,8 @@ If you are adding an event or event series that already has videos uploaded to Y
 
 If this is the first event of the series added to RubyEvents, you'll need to create the series first.
 
+<details><summary>Create a new folder for your series and add a `series.yml` file</summary>
+
 Create a new folder for your series and add a `series.yml` file:
 
 ```bash
@@ -32,6 +34,8 @@ youtube_channel_id: "" # Will be filled by prepare_series.rb
 playlist_matcher: "" # Optional text to filter playlists
 ```
 
+</details>
+
 ### Step 2 - Create the Event
 
 If you are backfilling an event that has already happened, and has video recordings on YouTube, you can use a script to automatically generate the event and videos file using the steps in [ADDING_VIDEOS](/docs/ADDING_VIDEOS.md).
@@ -39,13 +43,13 @@ If you are backfilling an event that has already happened, and has video recordi
 Otherwise create the event using a generator:
 
 ```bash
-bin/rails g event --event-series haggis-ruby --event haggis-ruby-2026 --name "Haggis Ruby 2026"
+bin/rails g event --event-series haggis-ruby --event haggis-ruby-2026 --title "Haggis Ruby 2026"
 ```
 
-You can create a venue file when the event is created.
+You can create a venue file when the event is created by passing venue-name or venue-address (preferably both).
 
 ```bash
-bin/rails g event --event-series tropicalrb --event tropical-on-rails-2027 --name "Tropical on Rails 2027" --venue-name "" --venue-address "R. Olimpíadas, 205 - Vila Olímpia, São Paulo - SP, 04551-000"
+bin/rails g event --event-series tropicalrb --event tropical-on-rails-2027 --title "Tropical on Rails 2027" --venue-name "" --venue-address "R. Olimpíadas, 205 - Vila Olímpia, São Paulo - SP, 04551-000"
 ```
 
 The full schema for an event is available in [EventSchema](app/schemas/event_schema.rb).
@@ -55,6 +59,8 @@ Check the usage instructions using `--help`.
 ```bash
 bin/rails g event --help
 ```
+
+There are lot of other examples in USAGE.
 
 ### Step 3 - Add Visual Assets
 
