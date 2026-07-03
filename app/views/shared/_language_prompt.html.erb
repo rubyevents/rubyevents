@@ -1,25 +1,34 @@
 <div id="language-prompt">
-  <% code = Current.user&.languages&.pending_prompt %>
+  <% prompt = Current.user&.languages&.pending_prompt %>
 
-  <% if code %>
+  <% if prompt %>
+    <% code = prompt[:code] %>
     <% language_name = Language.by_code(code) || code.upcase %>
-    <% watched_count = Current.user.languages.watched_count(code) %>
+    <% given = prompt[:source] == :given %>
+    <% yes_label = given ? "Yes, add #{language_name}" : Language.understands_confirmation(code) %>
+    <% no_label = given ? "No thanks" : "No, I don't understand #{language_name}" %>
 
     <div class="bg-base-200 border-y border-base-300">
       <div class="container py-3 flex flex-wrap items-center justify-between gap-3">
-        <p class="text-sm">
-          <span class="mr-1"><%= Language.emoji_flag(code) %></span>
-          You've watched <strong><%= pluralize(watched_count, "talk") %></strong> in <strong><%= language_name %></strong>. Do you understand it?
-          <span class="text-base-content/60">We'll use this to recommend talks.</span>
-        </p>
+        <div class="text-sm">
+          <p>
+            <span class="mr-1"><%= Language.emoji_flag(code) %></span>
+            <% if given %>
+              You've given <strong><%= pluralize(prompt[:count], "talk") %></strong> in <strong><%= language_name %></strong>. Want to add it to your profile?
+            <% else %>
+              You've watched <strong><%= pluralize(prompt[:count], "talk") %></strong> in <strong><%= language_name %></strong>. Do you understand it?
+            <% end %>
+          </p>
+          <p class="text-base-content/60">We'll use this to recommend talks.</p>
+        </div>
 
         <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto">
-          <%= button_to Language.understands_confirmation(code),
+          <%= button_to yes_label,
                 language_preference_path(language_code: code, answer: "understands"),
                 method: :patch,
                 class: "btn btn-sm btn-primary w-full sm:w-auto" %>
 
-          <%= button_to "No, I don't understand #{language_name}",
+          <%= button_to no_label,
                 language_preference_path(language_code: code, answer: "does_not_understand"),
                 method: :patch,
                 class: "btn btn-sm btn-outline w-full sm:w-auto" %>

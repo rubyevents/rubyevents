@@ -101,6 +101,7 @@
 - id: "david-heinemeier-hansson-railsconf-2018"
   title: "Opening Keynote: FIXME"
   raw_title: "RailsConf 2018: Opening Keynote: FIXME by David Heinemeier Hansson"
+  kind: "keynote"
   event_name: "RailsConf 2018"
   date: "2018-04-17"
   published_at: "2018-05-15T19:21:06Z"
@@ -338,6 +339,7 @@
 - id: "mark-imbriaco-railsconf-2018"
   title: "Keynote: Rails Doesn't Scale"
   raw_title: "RailsConf 2018: Keynote: Rails Doesn't Scale by Mark Imbriaco"
+  kind: "keynote"
   event_name: "RailsConf 2018"
   date: "2018-04-17"
   published_at: "2018-05-16T20:20:25Z"
@@ -779,6 +781,7 @@
 - id: "eileen-m-uchitelle-railsconf-2018"
   title: "Keynote: The Future of Rails 6: Scalable by Default"
   raw_title: "RailsConf 2018: Keynote: The Future of Rails 6: Scalable by Default by Eileen Uchitelle"
+  kind: "keynote"
   event_name: "RailsConf 2018"
   date: "2018-04-17"
   published_at: "2018-05-17T22:18:39Z"
@@ -878,6 +881,7 @@
 - id: "sarah-mei-railsconf-2018"
   title: "Keynote: Livable Code"
   raw_title: "RailsConf 2018: Keynote - Livable Code by Sarah Mei"
+  kind: "keynote"
   event_name: "RailsConf 2018"
   date: "2018-04-17"
   published_at: "2018-05-18T06:12:13Z"
@@ -949,6 +953,7 @@
 - id: "aaron-patterson-railsconf-2018"
   title: "Closing Keynote"
   raw_title: "RailsConf 2018: Closing Keynote by Aaron Patterson"
+  kind: "keynote"
   event_name: "RailsConf 2018"
   date: "2018-04-17"
   published_at: "2018-05-18T06:27:15Z"
@@ -1174,6 +1179,7 @@
 - id: "lightning-talks-railsconf-2018"
   title: "Lightning Talks"
   raw_title: "RailsConf 2018: Lightning Talks"
+  kind: "lightning_talk"
   event_name: "RailsConf 2018"
   date: "2018-04-17"
   published_at: "2018-05-18T23:04:31Z"
@@ -1183,6 +1189,7 @@
   talks:
     - id: "teck-mike-lighting-talk-railsconf-2018"
       title: "Lightning Talk: Teck & Mike"
+      kind: "lightning_talk"
       start_cue: "00:00:00"
       end_cue: "00:01:00"
       video_provider: "parent"
@@ -1193,6 +1200,7 @@
 
     - id: "claudio-baccigalupo-lighting-talk-railsconf-2018"
       title: "Lightning Talk: LA Ruby Meetup"
+      kind: "lightning_talk"
       start_cue: "00:01:00"
       end_cue: "00:01:31"
       slides_url: "https://www.meetup.com/laruby/"
@@ -1203,6 +1211,7 @@
 
     - id: "fiona-lighting-talk-railsconf-2018"
       title: "Lightning Talk: Fiona"
+      kind: "lightning_talk"
       start_cue: "00:01:31"
       end_cue: "00:06:06"
       video_provider: "parent"
@@ -1212,6 +1221,7 @@
 
     - id: "nynne-just-christoffersen-lighting-talk-railsconf-2018"
       title: "Lightning Talk: Nynne Just Christoffersen"
+      kind: "lightning_talk"
       start_cue: "00:06:06"
       end_cue: "00:07:59"
       video_provider: "parent"
@@ -1221,6 +1231,7 @@
 
     - id: "jacklyn-ma-lighting-talk-railsconf-2018"
       title: "Lightning Talk: Jacklyn Ma"
+      kind: "lightning_talk"
       start_cue: "00:07:59"
       end_cue: "00:09:36"
       video_provider: "parent"
@@ -1230,6 +1241,7 @@
 
     - id: "jingyi-chen-lighting-talk-railsconf-2018"
       title: "Lightning Talk: Jingyi Chen"
+      kind: "lightning_talk"
       start_cue: "00:09:36"
       end_cue: "00:14:51"
       video_provider: "parent"
@@ -1239,6 +1251,7 @@
 
     - id: "jamie-gaskins-lighting-talk-railsconf-2018"
       title: "Lightning Talk: Front-end web apps in Ruby (Opal)"
+      kind: "lightning_talk"
       start_cue: "00:14:51"
       end_cue: "00:19:41"
       slides_url: "http://clearwaterrb.org/"
@@ -1249,6 +1262,7 @@
 
     - id: "samay-sharma-lighting-talk-railsconf-2018"
       title: "Lightning Talk: Samay Sharma"
+      kind: "lightning_talk"
       start_cue: "00:19:41"
       end_cue: "00:24:38"
       video_provider: "parent"
@@ -1258,6 +1272,7 @@
 
     - id: "lee-richmond-lighting-talk-railsconf-2018"
       title: "Lightning Talk: JSONAPI Suite alternative to GraphQL"
+      kind: "lightning_talk"
       start_cue: "00:24:38"
       end_cue: "00:29:38"
       video_provider: "parent"
@@ -1269,6 +1284,7 @@
 
     - id: "raimond-garcia-lighting-talk-railsconf-2018"
       title: "Lightning Talk: Free software for citizen participation"
+      kind: "lightning_talk"
       start_cue: "00:29:38"
       end_cue: "00:35:08"
       video_provider: "parent"
@@ -1280,6 +1296,7 @@
 
     - id: "chris-lighting-talk-railsconf-2018"
       title: "Lightning Talk: Ruby for Good 2018"
+      kind: "lightning_talk"
       start_cue: "00:35:08"
       end_cue: "00:39:28"
       video_provider: "parent"
@@ -1291,6 +1308,7 @@
 
     - id: "chris-lawrence-lighting-talk-railsconf-2018"
       title: "Lightning Talk: Chris Lawrence - Why Is Chunky So We Are Chunky"
+      kind: "lightning_talk"
       start_cue: "00:39:28"
       end_cue: "00:44:45"
       video_provider: "parent"
@@ -1302,6 +1320,7 @@
 
     - id: "andrew-louis-lighting-talk-railsconf-2018"
       title: "Lightning Talk: Memex"
+      kind: "lightning_talk"
       start_cue: "00:44:45"
       end_cue: "00:51:14"
       video_provider: "parent"
@@ -1313,6 +1332,7 @@
 
     - id: "thomas-mcgoey-smith-lighting-talk-railsconf-2018"
       title: "Lightning Talk: sqlite as a reference datastore"
+      kind: "lightning_talk"
       start_cue: "00:51:14"
       end_cue: "00:55:20"
       video_provider: "parent"
@@ -1322,6 +1342,7 @@
 
     - id: "heidi-waterhouse-lighting-talk-railsconf-2018"
       title: "Lightning Talk: Heidi Waterhouse"
+      kind: "lightning_talk"
       start_cue: "00:55:20"
       end_cue: "01:00:59"
       video_provider: "parent"
@@ -1331,6 +1352,7 @@
 
     - id: "adam-cuppy-lighting-talk-railsconf-2018"
       title: "Lightning Talk: Adam Cuppy"
+      kind: "lightning_talk"
       start_cue: "01:00:59"
       end_cue: "01:04:12"
       video_provider: "parent"
@@ -1340,6 +1362,7 @@
 
     - id: "barret-clark-brittany-alexander-lighting-talk-railsconf-2018"
       title: "Lightning Talk: Rails Camp South 2018"
+      kind: "lightning_talk"
       start_cue: "01:04:12"
       end_cue: "01:08:19"
       video_provider: "parent"
@@ -1354,6 +1377,7 @@
 
     - id: "jordan-byron-lighting-talk-railsconf-2018"
       title: "Lightning Talk: Jordan Byron"
+      kind: "lightning_talk"
       start_cue: "01:08:19"
       end_cue: "01:10:41"
       video_provider: "parent"
@@ -1363,6 +1387,7 @@
 
     - id: "mike-wheeler-lighting-talk-railsconf-2018"
       title: "Lightning Talk: Mike Wheeler"
+      kind: "lightning_talk"
       start_cue: "01:10:41"
       end_cue: "01:14:24"
       video_provider: "parent"
@@ -1372,6 +1397,7 @@
 
     - id: "kenny-browne-lighting-talk-railsconf-2018"
       title: "Lightning Talk: Kenny Browne"
+      kind: "lightning_talk"
       start_cue: "01:14:24"
       end_cue: "01:19:42"
       video_provider: "parent"

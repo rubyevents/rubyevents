@@ -3,7 +3,7 @@
 ---
 - id: "riccardo-carlesso-rubycon-2026"
   title: "Welcome to Rubycon"
-  kind: "talk"
+  kind: "intro"
   date: "2026-05-08"
   published_at: "2026-06-13T06:06:51Z"
   announced_at: "2025-12-18"
@@ -18,7 +18,6 @@
 
 - id: "carmine-paolino-keynote-rubycon-2026"
   title: "Ruby Is the Best Language for Building AI Web Apps"
-  kind: "talk"
   date: "2026-05-08"
   published_at: "2026-06-13T06:06:52Z"
   announced_at: "2025-11-28 19:04 UTC"
@@ -32,7 +31,6 @@
 
 - id: "julia-lopez-rubycon-2026"
   title: "Shift-left on Accessibility in your Ruby webapps"
-  kind: "talk"
   date: "2026-05-08"
   published_at: "2026-06-13T06:06:53Z"
   announced_at: "2025-12-18"
@@ -49,7 +47,6 @@
 
 - id: "silvano-stralla-rubycon-2026"
   title: "Breaking the rules of software engineering: will it work?"
-  kind: "talk"
   date: "2026-05-08"
   published_at: "2026-06-13T06:06:54Z"
   language: "English"
@@ -62,7 +59,6 @@
 
 - id: "andre-arko-rubycon-2026"
   title: "rv, a ruby manager for the future"
-  kind: "talk"
   date: "2026-05-08"
   published_at: "2026-06-13T06:06:55Z"
   language: "English"
@@ -85,6 +81,7 @@
   talks:
     - id: "josua-lightning-talk-rubycon-2026"
       title: "Lightning Talk: The Beer Parable"
+      kind: "lightning_talk"
       event_name: "RubyCon 2026"
       date: "2026-05-08"
       published_at: "2026-06-27T12:43:14Z"
@@ -96,6 +93,7 @@
 
     - id: "andrea-lightning-talk-rubycon-2026"
       title: "Lightning Talk: AWS Serverless (Hosting + Backend)"
+      kind: "lightning_talk"
       event_name: "RubyCon 2026"
       date: "2026-05-08"
       published_at: "2026-06-27T12:43:13Z"
@@ -107,6 +105,7 @@
 
     - id: "remi-mercier-lightning-talk-rubycon-2026"
       title: "Lightning Talk: From stained-glass master to Rails developer"
+      kind: "lightning_talk"
       event_name: "RubyCon 2026"
       date: "2026-05-08"
       published_at: "2026-06-27T12:43:16Z"
@@ -118,6 +117,7 @@
 
     - id: "duccio-armenise-lightning-talk-rubycon-2026"
       title: "Lightning Talk: Multithread your BRAIN"
+      kind: "lightning_talk"
       event_name: "RubyCon 2026"
       date: "2026-05-08"
       published_at: "2026-06-27T12:43:19Z"
@@ -129,6 +129,7 @@
 
     - id: "alessandro-rizzo-lightning-talk-rubycon-2026"
       title: "Lightning Talk: Full-Stack No Regrets"
+      kind: "lightning_talk"
       event_name: "RubyCon 2026"
       date: "2026-05-08"
       published_at: "2026-06-27T12:43:17Z"
@@ -140,6 +141,7 @@
 
     - id: "goulwen-champenois-lightning-talk-rubycon-2026"
       title: "Lightning Talk: From MINASWAN to PASTAFARIAN"
+      kind: "lightning_talk"
       event_name: "RubyCon 2026"
       date: "2026-05-08"
       published_at: "2026-06-27T12:43:15Z"
@@ -152,6 +154,7 @@
 
     - id: "youssef-boulkaid-lightning-talk-rubycon-2026"
       title: "Lightning Talk: Photographing an eclipse with Ruby"
+      kind: "lightning_talk"
       event_name: "RubyCon 2026"
       date: "2026-05-08"
       published_at: "2026-06-27T12:43:11Z"
@@ -163,6 +166,7 @@
 
     - id: "kaarle-kulvik-lightning-talk-rubycon-2026"
       title: "Lightning Talk: OFFGRID LLM"
+      kind: "lightning_talk"
       event_name: "RubyCon 2026"
       date: "2026-05-08"
       published_at: "2026-06-27T12:43:10Z"
@@ -174,6 +178,7 @@
 
     - id: "andre-arko-lightning-talk-rubycon-2026"
       title: 'Lightning Talk: Your own gem named "rails"'
+      kind: "lightning_talk"
       event_name: "RubyCon 2026"
       date: "2026-05-08"
       published_at: "2026-06-27T12:43:20Z"
@@ -185,6 +190,7 @@
 
     - id: "alessandro-rodi-lightning-talk-rubycon-2026"
       title: "Lightning Talk: OnlyLogs"
+      kind: "lightning_talk"
       event_name: "RubyCon 2026"
       date: "2026-05-08"
       published_at: "2026-06-27T12:43:22Z"
@@ -200,6 +206,7 @@
 
     - id: "francesco-beccari-lightning-talk-rubycon-2026"
       title: "Lightning Talk: Carving the Monolith"
+      kind: "lightning_talk"
       event_name: "RubyCon 2026"
       date: "2026-05-08"
       published_at: "2026-06-27T12:43:21Z"
@@ -221,7 +228,6 @@
 
 - id: "michele-franzin-rubycon-2026"
   title: "Semantic Image Search in Ruby: Postgres, Redis, or LLM?"
-  kind: "talk"
   date: "2026-05-08"
   published_at: "2026-06-13T06:06:58Z"
   language: "English"
@@ -241,7 +247,6 @@
 
 - id: "akira-matsuda-rubycon-2026"
   title: "My daily life on Ruby"
-  kind: "talk"
   date: "2026-05-08"
   published_at: "2026-06-13T06:06:59Z"
   language: "English"
@@ -254,7 +259,6 @@
 
 - id: "marco-roth-rubycon-2026"
   title: "HTML-Aware ERB: The Path to Reactive Rendering"
-  kind: "talk"
   date: "2026-05-08"
   published_at: "2026-06-13T06:07:00Z"
   announced_at: "2025-11-13 17:51 UTC"
@@ -273,7 +277,6 @@
 
 - id: "yara-debian-rubycon-2026"
   title: "From Plato to Production: A Philosophical History of Code"
-  kind: "talk"
   date: "2026-05-08"
   published_at: "2026-06-13T06:07:02Z"
   language: "English"
@@ -289,7 +292,7 @@
 
 - id: "piadina-its-a-wrap-rubycon-2026"
   title: "Piadina - It's a wrap!"
-  kind: "talk"
+  kind: "outro"
   date: "2026-05-08"
   published_at: "2026-06-13T06:07:04Z"
   language: "English"

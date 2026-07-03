@@ -54,24 +54,37 @@ class User::Languages < ActiveRecord::AssociatedObject
   end
 
   def pending_prompts
-    watched_languages
-      .select { |code| dimension(code, "understands").nil? }
-      .sort_by { |code| -watched_counts[code].to_i }
+    given = given_counts
+    watched = watched_counts
+
+    codes = (given.keys + watched.keys).compact.uniq.reject { |code| understanding_set?(code) }
+
+    codes.map { |code|
+      if given[code].to_i.positive?
+        {code: code, source: :given, count: given[code]}
+      else
+        {code: code, source: :watched, count: watched[code].to_i}
+      end
+    }.sort_by { |prompt| [(prompt[:source] == :given) ? 0 : 1, -prompt[:count]] }
   end
 
   def pending_prompt
     pending_prompts.first
   end
 
-  def watched_count(code)
-    user.watched_talks.joins(:talk).where(talks: {language: code.to_s}).count
-  end
-
   def watched_counts
     user.watched_talks.joins(:talk).group("talks.language").count
   end
 
+  def given_counts
+    user.talks.where.not(language: nil).group(:language).count
+  end
+
   private
+
+  def understanding_set?(code)
+    !dimension(code, "understands").nil?
+  end
 
   def dimension(code, name)
     preferences.dig(code.to_s, name)
@@ -83,13 +96,5 @@ class User::Languages < ActiveRecord::AssociatedObject
 
   def preferences
     user.language_preferences
-  end
-
-  def watched_languages
-    user.watched_talks
-      .joins(:talk)
-      .where.not(talks: {language: nil})
-      .distinct
-      .pluck("talks.language")
   end
 end

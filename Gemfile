@@ -79,7 +79,7 @@ gem "yt"
 gem "rss", "~> 0.3.1"
 
 # YAML Editing and Refactoring with Better Accuracy
-gem "yerba", "~> 0.7.1"
+gem "yerba", "~> 0.7.3"
 
 # Powerful and seamless HTML-aware ERB parsing and tooling.
 gem "herb", "~> 0.9"
@@ -256,6 +256,7 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  gem "simplecov", require: false
   gem "capybara"
   gem "rails-controller-testing"
   gem "selenium-webdriver"

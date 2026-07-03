@@ -14,9 +14,9 @@ class LeaderboardController < ApplicationController
       .where(talks: {kind: %w[talk keynote]})
 
     if @year.present?
-      @ranked_speakers = @ranked_speakers.where(talks: { date: Date.parse("#{@year}-01-01").all_year })
+      @ranked_speakers = @ranked_speakers.where(talks: {date: Date.parse("#{@year}-01-01").all_year})
     elsif @filter == "last_12_months"
-      @ranked_speakers = @ranked_speakers.where(talks: { date: 12.months.ago.to_date..Date.today })
+      @ranked_speakers = @ranked_speakers.where(talks: {date: 12.months.ago.to_date..Date.today})
     end
 
     @ranked_speakers = @ranked_speakers.limit(100)

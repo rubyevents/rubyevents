@@ -711,10 +711,10 @@ class UserTest < ActiveSupport::TestCase
     english_talk = Talk.find_by(language: "en")
     user.watched_talks.find_or_create_by!(talk: english_talk) { |wt| wt.watched = true }
 
-    assert_includes user.languages.pending_prompts, "en"
+    assert_includes user.languages.pending_prompts.map { |prompt| prompt[:code] }, "en"
 
     user.languages.set("en", :does_not_understand)
-    assert_not_includes user.reload.languages.pending_prompts, "en"
+    assert_not_includes user.reload.languages.pending_prompts.map { |prompt| prompt[:code] }, "en"
   end
 
   test "pending_prompt returns a watched language without a preference" do
@@ -726,9 +726,22 @@ class UserTest < ActiveSupport::TestCase
     assert_nil user.reload.languages.pending_prompt
 
     user.watched_talks.create!(talk: talk, watched: true)
-    assert_equal "pt", user.languages.pending_prompt
+    prompt = user.languages.pending_prompt
+    assert_equal "pt", prompt[:code]
+    assert_equal :watched, prompt[:source]
 
     user.languages.set("pt", :does_not_understand)
     assert_nil user.reload.languages.pending_prompt
+  end
+
+  test "pending_prompt surfaces languages of talks the user has given" do
+    user = users(:one)
+    talk = talks(:non_english_talk_one)
+    assert_equal "pt", talk.language
+    user.user_talks.create!(talk: talk)
+
+    prompt = user.languages.pending_prompts.find { |candidate| candidate[:code] == "pt" }
+    assert_equal :given, prompt[:source]
+    assert_equal 1, prompt[:count]
   end
 end
