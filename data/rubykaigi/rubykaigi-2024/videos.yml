@@ -505,9 +505,19 @@
   video_provider: "youtube"
   video_id: "w1AodsHYT_o"
   description: ""
-  speakers:
-    - Akira Matsuda
   talks:
+    - id: "intro-lighting-talk-rubykaigi-2024"
+      title: "Lightning Talks Intro"
+      kind: "intro"
+      start_cue: "00:00"
+      end_cue: "00:51"
+      thumbnail_cue: "00:11"
+      language: "English"
+      video_provider: "parent"
+      video_id: "intro-lighting-talk-rubykaigi-2024"
+      speakers:
+        - Akira Matsuda
+
     - id: "sunao-hogelog-komuro-lighting-talk-rubykaigi-2024"
       title: "Lightning Talk: Visualize the internal state of ruby processes in Real-Time"
       kind: "lightning_talk"
