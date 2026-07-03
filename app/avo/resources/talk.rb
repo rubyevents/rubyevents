@@ -25,7 +25,7 @@ class Avo::Resources::Talk < Avo::BaseResource
       record.speakers.map(&:name)
     end
 
-    field :topics, as: :tags, hide_on: [:index, :forms] do
+    field :topic_tags, for_attribute: :topics, name: "Topics", as: :tags, hide_on: [:index, :forms] do
       record.topics.map(&:name)
     end
     field :updated_at, as: :date, sortable: true
@@ -55,6 +55,10 @@ class Avo::Resources::Talk < Avo::BaseResource
     field :language, hide_on: :index
     field :slug, as: :text, hide_on: :index
     field :year, as: :number, hide_on: :index
+    field :static_id, as: :text, hide_on: :index
+    field :orphaned, name: "Orphaned", as: :boolean, hide_on: [:forms] do
+      record.orphaned?
+    end
     field :video_id, as: :text, hide_on: :index
     field :video_provider, as: :text, hide_on: :index
     field :video_available, name: "Video Available", as: :boolean do
@@ -76,11 +80,10 @@ class Avo::Resources::Talk < Avo::BaseResource
     field :thumbnail_md, as: :external_image, hide_on: :index
     field :thumbnail_lg, as: :external_image, hide_on: :index
     field :thumbnail_xl, as: :external_image, hide_on: :index
-    # field :speaker_talks, as: :has_many, attach_scope: -> { query.order(name: :asc) }
-    field :speakers, as: :has_many
+    field :speakers, as: :has_many, through: :user_talks, searchable: true, attach_scope: -> { query.order(name: :asc) }
+    field :topics, as: :has_many, searchable: true, attach_scope: -> { query.order(name: :asc) }
     field :raw_transcript, as: :textarea, hide_on: :index, format_using: -> { value&.to_text }, readonly: true
     field :enhanced_transcript, as: :textarea, hide_on: :index, format_using: -> { value&.to_text }, readonly: true
-    # field :suggestions, as: :has_many
   end
 
   def actions
@@ -88,6 +91,7 @@ class Avo::Resources::Talk < Avo::BaseResource
     action Avo::Actions::UpdateFromYml
     action Avo::Actions::TalkIndex
     action Avo::Actions::FetchDuration
+    action Avo::Actions::ValidateThumbnail
   end
 
   def filters
@@ -101,5 +105,6 @@ class Avo::Resources::Talk < Avo::BaseResource
     filter Avo::Filters::Language
     filter Avo::Filters::VideoProvider
     filter Avo::Filters::VideoAvailability
+    filter Avo::Filters::Orphaned
   end
 end

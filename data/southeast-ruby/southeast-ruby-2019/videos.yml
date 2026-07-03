@@ -1,6 +1,163 @@
-# TODO: Add talks and videos
-
-# Website: https://southeastruby.com/
+# Website: https://2019.southeastruby.com/
 # Videos: -
 ---
-[]
+# Day 1 - Thursday, August 1, 2019 (Workshops)
+
+- id: "ernesto-tagwerker-southeast-ruby-2019"
+  title: "Workshop: Upgrade Rails 101: The Roadmap to Smooth Upgrades"
+  kind: "workshop"
+  event_name: "Southeast Ruby 2019"
+  date: "2019-08-01"
+  video_provider: "not_recorded"
+  video_id: "ernesto-tagwerker-southeast-ruby-2019"
+  description: |-
+    Upgrading Rails is easy, right? Not really. An upgrade in a big application is not a trivial project: It took GitHub a year and a half to upgrade from Rails 3.2 to 5.2. In this workshop you will learn a proven Rails upgrade process for major and minor version changes of Rails.
+  speakers:
+    - Ernesto Tagwerker
+
+- id: "jason-swett-southeast-ruby-2019"
+  title: "Workshop: Reliable, Repeatable Techniques for Cleaning Up Legacy Code"
+  kind: "workshop"
+  event_name: "Southeast Ruby 2019"
+  date: "2019-08-01"
+  video_provider: "not_recorded"
+  video_id: "jason-swett-southeast-ruby-2019"
+  description: |-
+    Legacy code can be difficult to work with. Often there's a "touch it as little as possible" mentality due to the fragility of the codebase. Luckily, however, there are some techniques that can be applied to legacy projects to improve the code with relatively little risk. Hint: it involves tests.
+  speakers:
+    - Jason Swett
+
+- id: "noah-gibbs-southeast-ruby-2019"
+  title: "Workshop: Build Your Own Web Framework to Understand Rails Magic"
+  kind: "workshop"
+  event_name: "Southeast Ruby 2019"
+  date: "2019-08-01"
+  video_provider: "not_recorded"
+  video_id: "noah-gibbs-southeast-ruby-2019"
+  description: |-
+    Rails "magic" comes from metaprogramming. Each piece makes sense once you see how Ruby does it. To understand those tricks -- build them. We'll build a web framework using Rails' own dependencies. You'll learn deep Rails metaprogramming tricks. You'll also be able to build your own web framework.
+  speakers:
+    - Noah Gibbs
+
+- id: "julian-fahrer-james-hart-southeast-ruby-2019"
+  title: "Workshop: Dockerizing Rails - A supercharged development process"
+  kind: "workshop"
+  event_name: "Southeast Ruby 2019"
+  date: "2019-08-01"
+  video_provider: "not_recorded"
+  video_id: "julian-fahrer-james-hart-southeast-ruby-2019"
+  description: |-
+    Running applications is not trivial. Even a simple Rails application has many requirements that need to be set up and maintained. In this workshop, you will learn how to harvest the power of Docker to streamline your development process and make managing dependencies a breeze.
+  speakers:
+    - Julian Fahrer
+    - James Hart
+
+# Day 2 - Friday, August 2, 2019 (Conference)
+
+- id: "jessica-kerr-southeast-ruby-2019"
+  title: "Keynote"
+  kind: "keynote"
+  event_name: "Southeast Ruby 2019"
+  date: "2019-08-02"
+  video_provider: "not_recorded"
+  video_id: "jessica-kerr-southeast-ruby-2019"
+  description: ""
+  speakers:
+    - Jessica Kerr
+
+- id: "fernando-seror-garcia-southeast-ruby-2019"
+  title: "The Object Oriented Design Cookbook"
+  event_name: "Southeast Ruby 2019"
+  date: "2019-08-02"
+  video_provider: "not_recorded"
+  video_id: "fernando-seror-garcia-southeast-ruby-2019"
+  description: |-
+    Do you ever feel Object Oriented Design is often glorified, but there aren't specific guidelines about how to achieve it? I've struggled with that for years! This talk is a list of step-by-step recipes to systematically improve the design of your code. Come and start improving your code today!
+  speakers:
+    - Fernando Seror Garcia
+
+- id: "sonia-gupta-southeast-ruby-2019"
+  title: "Digital Ethics in an Unethical Era: How to Not Ruin The World"
+  event_name: "Southeast Ruby 2019"
+  date: "2019-08-02"
+  video_provider: "not_recorded"
+  video_id: "sonia-gupta-southeast-ruby-2019"
+  description: |-
+    In a Twitter poll, I discovered that almost 70% of engineers have not had any formal training in ethics. This is obviously a gaping hole in engineering education. My talk will teach your audience the history of ethics, as well as why it's important to learn and apply it in our lives.
+  speakers:
+    - Sonia Gupta
+
+- id: "john-k-sawers-southeast-ruby-2019"
+  title: "Hacking Your Emotional API"
+  event_name: "Southeast Ruby 2019"
+  date: "2019-08-02"
+  video_provider: "not_recorded"
+  video_id: "john-k-sawers-southeast-ruby-2019"
+  description: ""
+  speakers:
+    - John K. Sawers
+
+- id: "brandon-weaver-southeast-ruby-2019"
+  title: "Tales from the Ruby Grimoire"
+  event_name: "Southeast Ruby 2019"
+  date: "2019-08-02"
+  video_provider: "not_recorded"
+  video_id: "brandon-weaver-southeast-ruby-2019"
+  description: |-
+    Ruby has serious black magic, and people are quick to dismiss it as "not good code", but there are lessons to be learned and fascinating concepts to discover for those brave enough to venture down that path. The Ruby Grimoire is a collection of my most evil Ruby code, enter if you dare.
+  speakers:
+    - Brandon Weaver
+
+- id: "alex-neuhausen-southeast-ruby-2019"
+  title: '"Holy Front-End Frameworks Batman!" Using Rails and Vue.js to Clean Up a Complex Client-Side'
+  event_name: "Southeast Ruby 2019"
+  date: "2019-08-02"
+  video_provider: "not_recorded"
+  video_id: "alex-neuhausen-southeast-ruby-2019"
+  description: |-
+    I'm going to present an app architecture that takes the dynamic duo of Rails and Vue.js to its logical endpoint, pairing the agile, opinionated server-side framework that we all know and love with Vue's fast rendering, encapsulation, and easy integration into an existing server-rendered workflow.
+  speakers:
+    - Alex Neuhausen
+
+- id: "richard-schneeman-southeast-ruby-2019"
+  title: "The Life-Changing Magic of Tidying Active Record Allocations"
+  event_name: "Southeast Ruby 2019"
+  date: "2019-08-02"
+  video_provider: "not_recorded"
+  video_id: "richard-schneeman-southeast-ruby-2019"
+  description: |-
+    Your app is slow. It does not spark joy. In this talk, we will use memory profiling tools to discover performance hotspots. We will use this technique with a real-world application to identify a piece of optimizable code in Active Record that leads to a patch with substantial page speed impact.
+  speakers:
+    - Richard Schneeman
+
+- id: "cat-swetel-southeast-ruby-2019"
+  title: "Invited Speaker"
+  event_name: "Southeast Ruby 2019"
+  date: "2019-08-02"
+  video_provider: "not_recorded"
+  video_id: "cat-swetel-southeast-ruby-2019"
+  description: ""
+  speakers:
+    - Cat Swetel
+
+- id: "tung-nguyen-southeast-ruby-2019"
+  title: "Jets: The Ruby Serverless Framework"
+  event_name: "Southeast Ruby 2019"
+  date: "2019-08-02"
+  video_provider: "not_recorded"
+  video_id: "tung-nguyen-southeast-ruby-2019"
+  description: |-
+    Learn how to run Ruby applications without managing servers with the Jets Ruby Serverless Framework. A live demo is provided. We deploy it to AWS Lambda with a single command.
+  speakers:
+    - Tung Nguyen
+
+- id: "avdi-grimm-southeast-ruby-2019"
+  title: "Keynote"
+  kind: "keynote"
+  event_name: "Southeast Ruby 2019"
+  date: "2019-08-02"
+  video_provider: "not_recorded"
+  video_id: "avdi-grimm-southeast-ruby-2019"
+  description: ""
+  speakers:
+    - Avdi Grimm

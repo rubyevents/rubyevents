@@ -3,6 +3,18 @@
 <div id="<%= dom_id(user, :header_content) %>" class="flex flex-col lg:flex-row gap-8 items-center lg:justify-right text-center lg:text-left mb-6 lg:mb-0">
   <div class="relative w-fit">
     <%= ui_avatar(user, size_class: "size-24 md:size-36", size: :lg) %>
+
+    <% understood_languages = user.languages.understood %>
+
+    <% if understood_languages.any? %>
+      <div class="flex justify-center gap-1.5">
+        <% understood_languages.each do |code| %>
+          <%= ui_tooltip("Understands #{Language.by_code(code) || code}") do %>
+            <span class="text-lg leading-none"><%= Language.emoji_flag(code) %></span>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 
   <div class="flex-col flex gap-2 title justify-center items-center lg:items-start">
@@ -39,30 +51,9 @@
             <% end %>
           <% end %>
         <% end %>
-
-        <% if Current.user && favorite_user.present? %>
-          <%= button_to favorite_user_path(favorite_user), method: :delete do %>
-            <%= ui_tooltip "Remove from your list of Favorite Rubyists" do %>
-              <%= fa("star", size: :sm, style: :solid, class: "fill-yellow-400") %>
-            <% end %>
-          <% end %>
-        <% elsif Current.user && Current.user != user %>
-          <%= ui_tooltip "Add to your list of Favorite Rubyists" do %>
-            <%= button_to favorite_users_path(favorite_user: {favorite_user_id: user.id}), method: :post do %>
-              <%= fa("star", size: :sm, style: :regular) %>
-            <% end %>
-          <% end %>
-        <% end %>
+        <%= render "favorite_users/favorite_user", favorite_user: favorite_user %>
       </h1>
 
-      <% if user.wrapped_public? %>
-        <%= link_to profile_wrapped_index_path(user), class: "inline-flex items-center gap-1.5 px-3 py-1 bg-gradient-to-r from-red-600 to-red-700 text-white text-sm font-medium rounded-full hover:from-red-700 hover:to-red-800 transition shadow-sm" do %>
-          <svg class="size-4" viewBox="0 0 80 80" fill="currentColor">
-            <path d="M2 25 L16 10 L64 10 L78 25 L40 70 Z" />
-          </svg>
-          <span>2025 Wrapped</span>
-        <% end %>
-      <% end %>
     </div>
 
     <% if user.bio.present? && !user.suspicious? %>

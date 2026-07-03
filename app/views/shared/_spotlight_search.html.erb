@@ -70,7 +70,7 @@
     </div>
     <div
       role="listbox"
-      class="flex-1 overflow-hidden mt-4"
+      class="flex-1 overflow-y-auto mt-4"
       data-spotlight-search-target="searchResults"
       aria-live="polite">
       <div
@@ -86,46 +86,47 @@
         <% end %>
       </div>
 
+      <div class="grid md:grid-cols-3 md:divide-x gap-4 md:gap-0 pt-4 pb-4">
+        <% spotlight_resources.unshift(spotlight_main_resource) %>
+        <% spotlight_resources.uniq.each_with_index do |resource, index| %>
+          <% padding = {"0" => "md:pr-4", "1" => "md:px-4", "2" => "md:pl-4"}.dig(index.to_s) %>
+
+          <div
+            id="<%= resource %>_search_results"
+            class="<%= padding %>"
+            data-spotlight-search-target="<%= resource %>SearchResults"></div>
+        <% end %>
+      </div>
+
       <div
         id="topics_search_results"
-        class="pb-4 border-b hidden"
+        class="py-4 border-t hidden"
         data-spotlight-search-target="topicsSearchResults"></div>
 
       <div
         id="kinds_search_results"
-        class="pb-4 border-b hidden"
+        class="py-4 border-t hidden"
         data-spotlight-search-target="kindsSearchResults"></div>
 
       <div
         id="locations_search_results"
-        class="pb-4 border-b hidden"
+        class="py-4 border-t hidden"
         data-spotlight-search-target="locationsSearchResults"></div>
 
       <div
         id="languages_search_results"
-        class="pb-4 border-b hidden"
+        class="py-4 border-t hidden"
         data-spotlight-search-target="languagesSearchResults"></div>
 
       <div
         id="series_search_results"
-        class="pb-4 border-b hidden"
+        class="py-4 border-t hidden"
         data-spotlight-search-target="seriesSearchResults"></div>
 
       <div
         id="organizations_search_results"
-        class="pb-4 border-b hidden"
+        class="py-4 border-t hidden"
         data-spotlight-search-target="organizationsSearchResults"></div>
-
-      <div class="grid md:grid-cols-3 md:divide-x gap-4 md:gap-0 h-full overflow-hidden pt-4 border-t">
-        <% spotlight_resources.unshift(spotlight_main_resource) %>
-        <% spotlight_resources.uniq.each_with_index do |resource, index| %>
-          <% padding = {"0" => "md:pr-4", "1" => "md:px-4", "2" => "md:pl-4"}.dig(index.to_s) %>
-          <div
-            id="<%= resource %>_search_results"
-            class="<%= padding %> overflow-y-auto"
-            data-spotlight-search-target="<%= resource %>SearchResults"></div>
-        <% end %>
-      </div>
     </div>
   </div>
 <% end %>

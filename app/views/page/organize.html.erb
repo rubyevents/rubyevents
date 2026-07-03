@@ -1,0 +1,164 @@
+<% title "Organize a Ruby Event" %>
+<% set_meta_tags description: "Start your own Ruby event. Whether it's a casual meetup at a bar or a full conference, the community needs more gatherings. Find guides, resources, and inspiration.",
+     keywords: "organize ruby event, start ruby meetup, ruby conference organizer, ruby community, run a meetup",
+     og: {title: "Organize a Ruby Event | RubyEvents.org", description: "Start your own Ruby event. Whether it's a casual meetup at a bar or a full conference, the community needs more gatherings. Find guides, resources, and inspiration."},
+     twitter: {title: "Organize a Ruby Event | RubyEvents.org", description: "Start your own Ruby event. Whether it's a casual meetup at a bar or a full conference, the community needs more gatherings."} %>
+
+<main>
+  <div class="container">
+    <section class="py-12 text-center max-w-3xl mx-auto">
+      <h1 class="text-4xl font-bold text-primary mb-4">Organize a Ruby Event</h1>
+      <p class="text-lg text-gray-600">
+        Every great community event started with someone deciding to bring people together.
+        That someone could be you. The Ruby community is built by people who show up
+        and people who create spaces for others to show up.
+      </p>
+    </section>
+
+    <div class="flex flex-col gap-12">
+      <section class="max-w-3xl mx-auto">
+        <h2 class="text-2xl font-bold mb-4">It's Simpler Than You Think</h2>
+        <div class="prose-lg text-gray-600">
+          <p>
+            When people hear "organize an event," they often picture months of planning, sponsors,
+            venues, and logistics. But it doesn't have to be that way.
+          </p>
+          <p>
+            Some of the most impactful Ruby gatherings are simple: a table at a restaurant,
+            a few people with laptops at a coffee shop, or drinks at a bar after work.
+            No slides required. No sponsors needed. Just Rubyists talking about Ruby.
+          </p>
+          <p>
+            If there's no Ruby meetup in your city, <strong>you</strong> can be the one to start it.
+            Post on social media, invite a few colleagues, pick a date and a place. That's it.
+            Then <%= link_to "add it to RubyEvents", "https://github.com/rubyevents/rubyevents/blob/main/docs/ADDING_EVENTS.md", target: "_blank", rel: "noopener noreferrer", class: "link link-primary" %>
+            so other Rubyists in your area can find it.
+            You'd be surprised how many people are waiting for someone to take the first step.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold mb-2">Event Format Ideas</h2>
+        <p class="text-gray-500 mb-6">Not every event needs a stage and a projector. Here are some formats that work great.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="p-6 rounded-2xl bg-white border border-base-300">
+            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-3">
+              <%= fa("utensils", size: :lg, class: "fill-primary") %>
+            </div>
+            <h3 class="font-bold mb-2">Dinner Meetup</h3>
+            <p class="text-sm text-gray-500">Reserve a table at a restaurant, pick a topic, and invite local Rubyists. Great food and great conversations, no setup required.</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-white border border-base-300">
+            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-3">
+              <%= fa("beer-mug-empty", size: :lg, class: "fill-primary") %>
+            </div>
+            <h3 class="font-bold mb-2">Pub Night</h3>
+            <p class="text-sm text-gray-500">The most casual format. Meet at a bar, chat about code (or not), and build friendships. Zero pressure, maximum fun.</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-white border border-base-300">
+            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-3">
+              <%= fa("laptop-code", size: :lg, class: "fill-primary") %>
+            </div>
+            <h3 class="font-bold mb-2">Hack Night</h3>
+            <p class="text-sm text-gray-500">Bring laptops, pick an open source project or a coding challenge, and hack together. Pair programming welcome. Coffee shop or co-working space works perfectly.</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-white border border-base-300">
+            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-3">
+              <%= fa("bolt", size: :lg, class: "fill-primary") %>
+            </div>
+            <h3 class="font-bold mb-2">Lightning Talks</h3>
+            <p class="text-sm text-gray-500">5-minute talks on any topic. Low pressure for speakers, high variety for attendees. A great way to encourage first-time speakers in your community.</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-white border border-base-300">
+            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-3">
+              <%= fa("book-open", size: :lg, class: "fill-primary") %>
+            </div>
+            <h3 class="font-bold mb-2">Study Group</h3>
+            <p class="text-sm text-gray-500">Pick a book, a gem, or a Ruby feature. Read a chapter each week and discuss it together. Works great for learning and building deeper connections.</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-white border border-base-300">
+            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-3">
+              <%= fa("building-columns", size: :lg, class: "fill-primary") %>
+            </div>
+            <h3 class="font-bold mb-2">Conference</h3>
+            <p class="text-sm text-gray-500">The big one. Multi-day, multiple tracks, sponsors, and a CFP. Start small. A single-day, single-track event is a great first step before scaling up.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="rounded-2xl border-2 border-primary/20 bg-primary/5 p-8 text-center">
+        <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+          <%= fa("book", size: :xl, class: "fill-primary") %>
+        </div>
+        <h2 class="text-2xl font-bold mb-2">The RubyEvents Organizer Guide</h2>
+        <p class="text-gray-600 mb-4 max-w-xl mx-auto">
+          We're working on a comprehensive guide covering everything from finding a venue
+          to managing speakers, handling sponsors, and building a community around your event.
+        </p>
+        <span class="badge badge-primary badge-lg">Coming Soon</span>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold mb-6">Resources for Organizers</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <%= link_to "https://evilmartians.com/chronicles/lets-have-more-tech-meetups-a-quick-start-guide-to-holding-your-own", target: "_blank", rel: "noopener noreferrer", class: "flex items-center gap-3 p-4 rounded-xl border border-base-300 bg-white hover:border-primary hover:shadow transition-all" do %>
+            <%= fa("newspaper", size: :lg, class: "fill-primary shrink-0") %>
+            <div>
+              <div class="font-semibold">A quick-start guide to holding your own meetup</div>
+              <div class="text-sm text-gray-500">Practical tips for starting a tech meetup by Evil Martians</div>
+            </div>
+          <% end %>
+
+          <%= link_to "https://rubyconferenceproject.com/interviews/", target: "_blank", rel: "noopener noreferrer", class: "flex items-center gap-3 p-4 rounded-xl border border-base-300 bg-white hover:border-primary hover:shadow transition-all" do %>
+            <%= fa("lightbulb", size: :lg, class: "fill-primary shrink-0") %>
+            <div>
+              <div class="font-semibold">Conference Organizing Insights</div>
+              <div class="text-sm text-gray-500">Interviews and tips from Ruby conference organizers</div>
+            </div>
+          <% end %>
+
+          <%= link_to events_path, class: "flex items-center gap-3 p-4 rounded-xl border border-base-300 bg-white hover:border-primary hover:shadow transition-all" do %>
+            <%= fa("calendar", size: :lg, class: "fill-primary shrink-0") %>
+            <div>
+              <div class="font-semibold">Browse existing events</div>
+              <div class="text-sm text-gray-500">See how other Ruby events are structured</div>
+            </div>
+          <% end %>
+
+          <%= link_to continents_path, class: "flex items-center gap-3 p-4 rounded-xl border border-base-300 bg-white hover:border-primary hover:shadow transition-all" do %>
+            <%= fa("globe", size: :lg, class: "fill-primary shrink-0") %>
+            <div>
+              <div class="font-semibold">Events worldwide</div>
+              <div class="text-sm text-gray-500">See where Ruby events are happening, and where they're not yet</div>
+            </div>
+          <% end %>
+
+          <%= link_to "https://join.slack.com/t/rubycentralcommunity/shared_invite/zt-41jguxsjq-imDu9pZ0zbNVe5ermzPskA", target: "_blank", rel: "noopener noreferrer", class: "flex items-center gap-3 p-4 rounded-xl border border-base-300 bg-white hover:border-primary hover:shadow transition-all" do %>
+            <%= fa("comments", size: :lg, class: "fill-primary shrink-0") %>
+            <div>
+              <div class="font-semibold">#meetup-organizers on Slack</div>
+              <div class="text-sm text-gray-500">Join the Ruby Central Community Slack for advice, regular calls, and support from fellow organizers</div>
+            </div>
+          <% end %>
+
+          <%= link_to "https://rubycentral.org", target: "_blank", rel: "noopener noreferrer", class: "flex items-center gap-3 p-4 rounded-xl border border-base-300 bg-white hover:border-primary hover:shadow transition-all" do %>
+            <%= fa("gem", size: :lg, class: "fill-primary shrink-0") %>
+            <div>
+              <div class="font-semibold">Ruby Central</div>
+              <div class="text-sm text-gray-500">The organization behind RubyConf and RailsConf</div>
+            </div>
+          <% end %>
+        </div>
+      </section>
+
+      <%= render "page/community_cta", exclude: :organize %>
+    </div>
+  </div>
+</main>

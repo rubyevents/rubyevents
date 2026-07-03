@@ -6,7 +6,7 @@ class Profiles::ConnectController < ApplicationController
   end
 
   def show
-    @connect_id = params[:id]
+    @connect_id = params[:id]&.upcase
     @found_account = ConnectedAccount.find_by(uid: @connect_id, provider: "passport")
     @found_user = @found_account&.user
 

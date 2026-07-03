@@ -143,7 +143,8 @@ class ApplicationClient
     JSON_OBJECT_CLASS = OpenStruct
     PARSER = {
       "application/json" => ->(response) { JSON.parse(response.body, object_class: JSON_OBJECT_CLASS) },
-      "application/xml" => ->(response) { Nokogiri::XML(response.body) }
+      "application/xml" => ->(response) { Nokogiri::XML(response.body) },
+      "text/xml" => ->(response) { Nokogiri::XML(response.body) }
     }
     FALLBACK_PARSER = ->(response) { response.body }
 

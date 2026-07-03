@@ -45,7 +45,7 @@ module GeoMapLayers
   def add_nearby_layer(layers, city_events)
     return unless @city.respond_to?(:nearby_events) && @city.geocoded?
 
-    nearby_event_data = @city.nearby_events(radius_km: 250, limit: 50, exclude_ids: city_events.map(&:id))
+    nearby_event_data = @city.nearby_events(radius_km: Current.user&.distance || 250, limit: 50, exclude_ids: city_events.map(&:id))
     nearby_events_list = filter_events_by_time(nearby_event_data.map { |d| d[:event] })
 
     maybe_add_layer(layers, id: "geo-nearby", label: "Nearby", emoji: "📍🔄", events: city_events + nearby_events_list)

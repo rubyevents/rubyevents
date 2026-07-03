@@ -2,7 +2,7 @@
   <h1 class="title">Event Series</h1>
 
   <section class="flex flex-col w-full gap-4 mt-8">
-    <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 md:[&>:nth-child(4)]:hidden lg:grid-cols-4 lg:[&>:nth-child(4)]:block">
+    <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       <%= render partial: "events/series/card", collection: @event_series, as: :series %>
     </div>
 

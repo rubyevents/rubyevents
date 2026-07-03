@@ -11,6 +11,14 @@ module Static
       all.map { |city| city.import!(index: index) }
     end
 
+    def self.alias_lookup
+      @alias_lookup ||= all.each_with_object({}) do |city, lookup|
+        Array(city.aliases).each do |alias_name|
+          lookup[alias_name.downcase] = city
+        end
+      end
+    end
+
     def import!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
       city_record = ::City.find_by(slug: slug)
       city_record ||= ::City.find_by(name: name, state_code: state_code, country_code: country_code)

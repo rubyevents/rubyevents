@@ -1,4 +1,10 @@
-<% if event.start_date && event.date_precision == "day" %>
+<% if event.static_metadata.cancelled? %>
+  <div class="flex flex-col justify-center">
+    <div class="self-end w-16 h-16 bg-red-600 text-white rounded-xl flex flex-col items-center justify-center text-xs leading-none">
+      <div class="text-[11px] font-bold">Cancelled</div>
+    </div>
+  </div>
+<% elsif event.start_date && event.date_precision == "day" %>
   <% days = (event.start_date - Date.current).to_i %>
   <% today = (event.start_date..event.end_date).include?(Date.current) %>
 

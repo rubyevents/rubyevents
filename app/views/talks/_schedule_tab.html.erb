@@ -189,7 +189,7 @@
                   </span>
 
                   <div class="w-16 h-9 flex-shrink-0 rounded overflow-hidden">
-                    <%= image_tag schedule_talk.thumbnail_sm, class: "w-full h-full object-cover #{schedule_talk.thumbnail_classes}", loading: :lazy, alt: "" %>
+                    <%= image_tag schedule_talk.thumbnail_sm, class: "w-full h-full #{schedule_talk.thumbnail_classes.presence || "object-cover"}", loading: :lazy, alt: "" %>
                   </div>
 
                   <div class="flex-grow min-w-0">

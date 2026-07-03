@@ -1,31 +1,45 @@
-<%= link_to profile_path(user), class: "flex flex-col gap-4 hover:bg-gray-200 transition-bg duration-300 ease-in-out p-2 px-4 rounded-lg", data: {turbo_frame: "_top"} do %>
-  <div class="flex items-center gap-4">
-    <%= ui_avatar(user) %>
+<%# locals: (user:, content: "", favorite_user: nil, checked_in: false, stamp: nil) %>
 
-    <div>
-      <div class="font-bold text-base line-clamp-1 flex items-center gap-1.5">
-        <span class="line-clamp-1"><%= user.name %></span>
+<div class="flex items-center px-2">
+  <% if favorite_user.present? %>
+    <%= render partial: "favorite_users/favorite_user", locals: {favorite_user: favorite_user} %>
+  <% end %>
 
-        <% if user.verified? %>
-          <%= fa("badge-check", class: "fill-blue-500", size: :xs) %>
-        <% end %>
-
-        <% if user.ruby_passport_claimed? %>
-          <%= fa("passport", class: "fill-orange-800", size: :xs) %>
-        <% end %>
+  <%= link_to profile_path(user), class: "relative flex flex-1 items-center gap-2 overflow-hidden hover:bg-gray-200 transition-bg duration-300 ease-in-out p-2 px-4 rounded-lg", data: {turbo_frame: "_top"} do %>
+    <% if checked_in && stamp.present? %>
+      <div class="pointer-events-none absolute right-2 top-1/2 z-0 size-20 -translate-y-1/2 opacity-20">
+        <%= ui_stamp(stamp, size: :full, interactive: false, rotate: true) %>
       </div>
+    <% end %>
 
-      <div class="text-xs text-gray-500 line-clamp-1">
-        <% if defined?(content) %>
-          <%= content %>
-        <% elsif user.github_handle.present? %>
-          <%= "@#{user.github_handle}" %>
-        <% elsif user.bsky.present? %>
-          <%= "@#{user.bsky}" %>
-        <% else %>
-          <%= "@#{user.slug}" %>
-        <% end %>
+    <div class="relative z-10 flex items-center gap-4 min-w-0 flex-1">
+      <%= ui_avatar(user) %>
+
+      <div class="min-w-0">
+        <div class="font-bold text-base line-clamp-1 flex items-center gap-1.5">
+          <span class="line-clamp-1"><%= user.name %></span>
+
+          <% if user.verified? %>
+            <%= fa("badge-check", class: "fill-blue-500", size: :xs) %>
+          <% end %>
+
+          <% if checked_in %>
+            <%= render "shared/checked_in_badge" %>
+          <% end %>
+        </div>
+
+        <div class="text-xs text-gray-500 line-clamp-1">
+          <% if defined?(content) %>
+            <%= content %>
+          <% elsif user.github_handle.present? %>
+            <%= "@#{user.github_handle}" %>
+          <% elsif user.bsky.present? %>
+            <%= "@#{user.bsky}" %>
+          <% else %>
+            <%= "@#{user.slug}" %>
+          <% end %>
+        </div>
       </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>

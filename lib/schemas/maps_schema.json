@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "properties": {
+    "google": {
+      "type": "string",
+      "description": "Google Maps URL"
+    },
+    "apple": {
+      "type": "string",
+      "description": "Apple Maps URL"
+    },
+    "openstreetmap": {
+      "type": "string",
+      "description": "OpenStreetMap URL"
+    }
+  },
+  "required": [],
+  "additionalProperties": false,
+  "strict": true
+}

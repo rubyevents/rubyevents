@@ -1,0 +1,17 @@
+<% count = User::DuplicateDetector.all_duplicate_ids.count %>
+
+<div class="p-6 h-full flex flex-col justify-between">
+  <div class="text-center">
+    <div class="text-4xl font-bold <%= (count > 0) ? "text-yellow-600" : "text-green-600" %>">
+      <%= count %>
+    </div>
+    <div class="text-sm text-gray-500 mt-1">users with potential duplicates</div>
+  </div>
+
+  <div class="mt-4 text-center">
+    <%= link_to "View Details →",
+          avo_dashboards.dashboard_path(:duplicates),
+          class: "text-sm text-blue-600 hover:text-blue-800 hover:underline font-medium",
+          data: {turbo_frame: "_top"} %>
+  </div>
+</div>

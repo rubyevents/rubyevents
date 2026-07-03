@@ -28,7 +28,6 @@
 # rubocop:enable Layout/LineLength
 class EventSeries < ApplicationRecord
   include Sluggable
-  include Suggestable
   include Todoable
   include EventSeries::TypesenseSearchable
 
@@ -47,7 +46,7 @@ class EventSeries < ApplicationRecord
 
   # enums
   enum :kind, {conference: 0, meetup: 1, organisation: 2, retreat: 3, hackathon: 4, event: 5, workshop: 6}
-  enum :frequency, {unknown: 0, yearly: 1, monthly: 2, biyearly: 3, quarterly: 4, irregular: 5}
+  enum :frequency, {unknown: 0, yearly: 1, monthly: 2, biyearly: 3, quarterly: 4, irregular: 5, weekly: 6, biweekly: 7}
 
   def self.find_by_name_or_alias(name)
     return nil if name.blank?
@@ -98,8 +97,11 @@ class EventSeries < ApplicationRecord
   end
 
   def description
-    start_year = events.minimum(:date)&.year
-    end_year = events.maximum(:date)&.year
+    non_cancelled = events.reject { |e| e.static_metadata.cancelled? }
+
+    event_years = non_cancelled.filter_map { |e| (e.date || e.start_date || e.end_date)&.year }
+    start_year = event_years.min
+    end_year = event_years.max
 
     time_range = if start_year && start_year == end_year
       %( in #{start_year})
@@ -109,11 +111,11 @@ class EventSeries < ApplicationRecord
       ""
     end
 
-    event_type = pluralize(events.size, meetup? ? "event-series" : "event")
+    event_type = pluralize(non_cancelled.size, meetup? ? "event-series" : "event")
     frequency_text = (kind == "organisation") ? "" : " is a #{frequency} #{kind} and "
 
     <<~DESCRIPTION
-      #{name} #{frequency_text}hosted #{event_type}#{time_range}. We have currently indexed #{pluralize(events.sum { |event| event.talks_count }, "#{name} talk")}.
+      #{name} #{frequency_text}hosted #{event_type}#{time_range}. We have currently indexed #{pluralize(non_cancelled.sum(&:talks_count), "#{name} talk")}.
     DESCRIPTION
   end
 

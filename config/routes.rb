@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   get "/privacy", to: "page#privacy"
   get "/components", to: "page#components"
   get "/about", to: "page#about"
+  get "/attend", to: "page#attend"
+  get "/speak", to: "page#speak"
+  get "/organize", to: "page#organize"
   get "/stickers", to: "page#stickers"
   get "/contributors", to: "page#contributors"
   get "/stamps", to: "stamps#index"
@@ -16,13 +19,24 @@ Rails.application.routes.draw do
   get "/pages/assets", to: "page#assets"
   get "/featured" => "page#featured"
 
+  # announcements/blog
+  resources :announcements, only: [:index, :show], param: :slug do
+    collection do
+      get :feed, defaults: {format: :rss}
+    end
+  end
+
   resources :browse, only: [:index, :show]
 
   # authentication
   get "/auth/failure", to: "sessions/omniauth#failure"
   get "/auth/:provider/callback", to: "sessions/omniauth#create"
   post "/auth/:provider/callback", to: "sessions/omniauth#create"
-  resources :sessions, only: [:new, :create, :destroy]
+  resources :sessions, only: [:new, :create, :destroy] do
+    collection do
+      get :exchange
+    end
+  end
 
   resource :password, only: [:edit, :update]
   resource :settings, only: [:show, :update]
@@ -35,10 +49,12 @@ Rails.application.routes.draw do
   if Rails.env.development?
     mount MissionControl::Jobs::Engine, at: "/jobs"
     mount Avo::Engine, at: Avo.configuration.root_path
+    mount Avo::Dashboards::Engine, at: "#{Avo.configuration.root_path}/dashboards" if defined?(Avo::Dashboards::Engine)
   else
     authenticate :admin do
       mount MissionControl::Jobs::Engine, at: "/jobs"
       mount Avo::Engine, at: Avo.configuration.root_path
+      mount Avo::Dashboards::Engine, at: "#{Avo.configuration.root_path}/dashboards" if defined?(Avo::Dashboards::Engine)
     end
   end
 
@@ -59,6 +75,7 @@ Rails.application.routes.draw do
     scope module: :locations do
       resources :past, only: [:index]
       resources :users, only: [:index]
+      resources :meetups, only: [:index]
       resources :stamps, only: [:index]
       resources :map, only: [:index]
     end
@@ -72,6 +89,7 @@ Rails.application.routes.draw do
     scope module: :locations do
       resources :past, only: [:index]
       resources :users, only: [:index]
+      resources :meetups, only: [:index]
       resources :stamps, only: [:index]
       resources :map, only: [:index]
     end
@@ -86,6 +104,7 @@ Rails.application.routes.draw do
     scope module: :locations do
       resources :past, only: [:index]
       resources :users, only: [:index]
+      resources :meetups, only: [:index]
       resources :stamps, only: [:index]
       resources :map, only: [:index]
     end
@@ -96,6 +115,7 @@ Rails.application.routes.draw do
     scope module: :locations do
       resources :past, only: [:index]
       resources :users, only: [:index]
+      resources :meetups, only: [:index]
       resources :stamps, only: [:index]
       resources :map, only: [:index]
     end
@@ -106,6 +126,7 @@ Rails.application.routes.draw do
     scope module: :locations do
       resources :past, only: [:index]
       resources :users, only: [:index]
+      resources :meetups, only: [:index]
       resources :stamps, only: [:index]
       resources :map, only: [:index]
     end
@@ -171,7 +192,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :talks, param: :slug, only: [:index, :show, :update, :edit] do
+  resources :talks, param: :slug, only: [:index, :show] do
     scope module: :talks do
       resources :recommendations, only: [:index]
       resource :watched_talk, only: [:new, :create, :destroy, :update] do
@@ -183,6 +204,7 @@ Rails.application.routes.draw do
   end
 
   resources :watched_talks, only: [:index, :destroy]
+  resources :feedback, only: [:index]
 
   resources :speakers, param: :slug, only: [:index]
   get "/speakers/:slug", to: redirect("/profiles/%{slug}", status: 301), as: :speaker
@@ -199,10 +221,12 @@ Rails.application.routes.draw do
       resources :talks, only: [:index]
       resources :events, only: [:index]
       resources :mutual_events, only: [:index]
+      resource :notes, only: [:show, :edit]
       resources :stamps, only: [:index]
       resources :stickers, only: [:index]
       resources :involvements, only: [:index]
       resources :map, only: [:index]
+      resources :passport, only: [:index]
       resources :aliases, only: [:index]
       resources :wrapped, only: [:index] do
         collection do
@@ -215,9 +239,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :favorite_users, only: [:index, :create, :destroy]
+  resources :favorite_users, only: [:index, :create, :destroy, :update]
 
-  resources :events, param: :slug, only: [:index, :show, :update, :edit] do
+  resource :language_preference, only: [:update]
+
+  resources :events, param: :slug, only: [:index, :show] do
     resources :event_participations, only: [:create, :destroy]
 
     post :reimport, on: :member
@@ -228,6 +254,7 @@ Rails.application.routes.draw do
         get "/:year" => "years#index", :as => :year, :constraints => {year: /\d{4}/}
         get "/past" => "past#index", :as => :past
         get "/archive" => "archive#index", :as => :archive
+        get "/meetups" => "meetups#index", :as => :meetups
         get "/countries" => redirect("/countries")
         get "/countries/:country" => redirect { |params, _| "/countries/#{params[:country]}" }
         get "/cities", to: redirect("/cities", status: 301)
@@ -293,12 +320,6 @@ Rails.application.routes.draw do
   resources :recommendations, only: [:index]
 
   get "leaderboard", to: "leaderboard#index"
-
-  # admin
-  namespace :admin, if: -> { Current.user & admin? } do
-    resources :suggestions, only: %i[index update destroy]
-  end
-
   get "/sitemap.xml", to: "sitemaps#show", defaults: {format: "xml"}
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -318,6 +339,9 @@ Rails.application.routes.draw do
     namespace :native do
       namespace :v1 do
         get "home", to: "/page#home", defaults: {format: "json"}
+        resource :refresh, only: :show, controller: "refresh"
+        resource :oauth, only: :show, controller: "oauth"
+        resources :start, only: :show, param: :provider, controller: "start"
         namespace :android do
           resource :path_configuration, only: :show
         end

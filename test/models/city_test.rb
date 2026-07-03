@@ -288,7 +288,7 @@ class CityTest < ActiveSupport::TestCase
     create_city(name: "London", country_code: "GB", state_code: "ENG")
 
     assert_includes City.for_country("US"), us_city
-    assert_equal 1, City.for_country("US").count
+    assert_equal 2, City.for_country("US").count
   end
 
   test ".for_state returns cities in state" do

@@ -8,13 +8,13 @@
   <% end %>
 
   <% c.with_menu_item_link_to "Home", root_path %>
-  <% c.with_menu_item_link_to "Videos", browse_index_path %>
   <% c.with_menu_item_link_to "Talks", talks_path %>
   <% c.with_menu_item_link_to "Speakers", speakers_path %>
   <% c.with_menu_item_link_to "Organizations", organizations_path %>
   <% c.with_menu_item_link_to "Events", events_path %>
-  <% c.with_menu_item_link_to "CFPs", events_path %>
+  <% c.with_menu_item_link_to "CFPs", cfp_index_path %>
   <% c.with_menu_item_link_to "Topics", topics_path %>
+  <% c.with_menu_item_link_to "News", announcements_path %>
 
   <% c.with_menu_item_divider %>
 
@@ -52,7 +52,6 @@
     <% c.with_menu_item_button_to t("sign_out"), Current.session, method: :delete, id: :sign_out %>
 
     <% if Current.user&.admin? %>
-      <% c.with_menu_item_link_to "Suggestions", admin_suggestions_path %>
       <% c.with_menu_item_link_to t("admin"), avo_path %>
     <% end %>
   <% end %>

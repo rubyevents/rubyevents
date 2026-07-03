@@ -1,3 +1,5 @@
+<% return if event.static_metadata.cancelled? %>
+
 <% event.cfps.each do |cfp| %>
   <% if cfp.future? %>
     <% cfp_open_days = cfp.days_until_open %>

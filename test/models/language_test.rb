@@ -53,15 +53,15 @@ class LanguageTest < ActiveSupport::TestCase
   end
 
   test "used" do
-    assert_equal 1, Language.used.length
-    assert_equal ["en"], Language.used.keys
+    assert_equal 2, Language.used.length
+    assert_equal ["en", "pt"], Language.used.keys
 
     talk = talks(:two)
     talk.language = "Spanish"
     talk.save
 
-    assert_equal 2, Language.used.length
-    assert_equal ["en", "es"], Language.used.keys
+    assert_equal 3, Language.used.length
+    assert_equal ["en", "pt", "es"], Language.used.keys
   end
 
   test "find_by_code" do

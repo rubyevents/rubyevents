@@ -3,18 +3,45 @@ class WatchedTalksController < ApplicationController
   include WatchedTalks
 
   def index
-    @in_progress_talks = Current.user.watched_talks
-      .in_progress
-      .includes(talk: [:speakers, {event: :series}, {child_talks: :speakers}])
-      .order(updated_at: :desc)
-      .limit(20)
+    @filter = params[:filter]
 
-    watched_talks = Current.user.watched_talks
-      .watched
-      .includes(talk: [:speakers, {event: :series}, {child_talks: :speakers}])
-      .order(watched_at: :desc)
+    watched_includes = {talk: [:speakers, {event: :series}, {child_talks: :speakers}]}
 
-    @watched_talks_by_date = watched_talks.group_by { |wt| (wt.watched_at || wt.created_at).to_date }
+    case @filter
+    when "in_progress"
+      @in_progress_talks = Current.user.watched_talks
+        .in_progress
+        .includes(**watched_includes)
+        .order(updated_at: :desc)
+    else
+      @in_progress_talks = Current.user.watched_talks
+        .in_progress
+        .includes(**watched_includes)
+        .order(updated_at: :desc)
+        .limit(20)
+
+      watched = Current.user.watched_talks.watched
+
+      @watched_count = watched.count
+      @in_person_count = watched.where(watched_on: "in_person").count
+      @online_count = @watched_count - @in_person_count
+
+      watched_talks = watched
+        .includes(**watched_includes)
+        .order(watched_at: :desc)
+
+      watched_talks = case @filter
+      when "in_person"
+        watched_talks.where(watched_on: "in_person")
+      when "online"
+        watched_talks.where("watched_on IS NULL OR watched_on != ?", "in_person")
+      else
+        watched_talks
+      end
+
+      @watched_talks_by_date = watched_talks.group_by { |wt| (wt.watched_at || wt.created_at).to_date }
+    end
+
     @user_favorite_talks_ids = Current.user.default_watch_list.talks.ids
   end
 

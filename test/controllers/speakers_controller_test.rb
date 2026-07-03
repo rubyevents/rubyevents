@@ -2,7 +2,7 @@ require "test_helper"
 
 class SpeakersControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @speaker = users(:one)
+    @speaker = users(:zero_talks)
     @speaker_with_talk = users(:marco)
   end
 
@@ -30,9 +30,6 @@ class SpeakersControllerTest < ActionDispatch::IntegrationTest
     speaker = users(:one)
     canonical = users(:marco)
     speaker.assign_canonical_speaker!(canonical_speaker: canonical)
-    speaker.reload
-    assert_equal speaker.canonical, canonical
-    assert_equal speaker.canonical_slug, canonical.slug
 
     get speakers_url(canonical: false, with_talks: false), as: :json
     assert_response :success

@@ -3,7 +3,6 @@
 <%= turbo_frame_tag dom_id(@event), data: {turbo_action: "advance", turbo_frame: "_top"} do %>
   <div class="container py-8">
     <%= render partial: "events/navigation", locals: {event: @event} %>
-
     <%= render Events::UpcomingEventBannerComponent.new(event: @event) %>
 
     <div class="flex flex-col gap-12 mt-8">
@@ -199,7 +198,7 @@
         </section>
       <% end %>
 
-      <% if @event.talks.empty? && @event.speakers.empty? && @sponsors.empty? %>
+      <% if @event.talks.empty? && @event.speakers.empty? && @sponsors.empty? && !@event.static_metadata.cancelled? %>
         <div class="text-center py-12">
           <div class="max-w-md mx-auto">
             <div class="text-6xl mb-4">🎤</div>

@@ -22,11 +22,11 @@ class Avo::Resources::EventSeries < Avo::BaseResource
     field :language, as: :text
     field :kind, as: :select, enum: ::EventSeries.kinds
     field :frequency, as: :select, enum: ::EventSeries.frequencies, hide_on: :index
-    field :youtube_channel_id, as: :text, hide_on: :index
-    field :youtube_channel_name, as: :text, hide_on: :index
+    field :youtube_channels, name: "YouTube Channels", as: :text, hide_on: [:index, :forms] do
+      record.static_metadata&.all_youtube_channels&.map { |c| [c["name"], c["id"]].compact.join(" — ") }&.join(", ")
+    end
     field :slug, as: :text, hide_on: :index
     field :twitter, as: :text, hide_on: :index
-    # field :suggestions, as: :has_many
     field :events, as: :has_many
     field :talks, as: :has_many, through: :events
   end

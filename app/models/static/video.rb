@@ -29,6 +29,10 @@ module Static
       all_talks_map[id]
     end
 
+    def self.where_event_slug(event_slug)
+      all.select { |video| video.__file_path&.include?("/#{event_slug}/") }
+    end
+
     def self.import_all!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
       all.each { |video| video.import!(index: index) }
     end
@@ -39,6 +43,10 @@ module Static
 
     def description
       super || ""
+    end
+
+    def kind
+      self["kind"].presence || ::Talk::Kind.from_title(title).to_s
     end
 
     def start_cue

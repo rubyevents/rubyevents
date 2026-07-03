@@ -3,6 +3,18 @@ module TalksHelper
     Duration.seconds_to_formatted_duration(seconds, raise: false)
   end
 
+  def talk_watch_status(talk)
+    if talk.scheduled? || talk.parent_talk&.scheduled?
+      {label: "Scheduled", icon: "clock"}
+    elsif talk.not_recorded? || talk.parent_talk&.not_recorded?
+      {label: "Not Recorded", icon: "video-slash"}
+    elsif talk.not_published? || talk.parent_talk&.not_published?
+      {label: "Not Published", icon: "upload"}
+    elsif talk.video_unavailable?
+      {label: "Unavailable", icon: "video-slash"}
+    end
+  end
+
   def ordering_title
     case order_by_key
     when "date_desc"
