@@ -364,17 +364,12 @@ class BrowseController < ApplicationController
   def load_language_rows
     return @language_rows = [] unless Current.user
 
+    understood_languages = Current.user.languages.understood - ["en"]
+    return @language_rows = [] unless understood_languages.any?
+
     watched_talk_ids = Current.user.watched_talks.pluck(:talk_id)
-    return @language_rows = [] unless watched_talk_ids.any?
 
-    watched_languages = Talk.where(id: watched_talk_ids)
-      .where.not(language: ["en", nil])
-      .distinct
-      .pluck(:language)
-
-    return @language_rows = [] unless watched_languages.any?
-
-    @language_rows = watched_languages.map do |lang_code|
+    @language_rows = understood_languages.map do |lang_code|
       language_name = Language.by_code(lang_code)
       talks = Talk.watchable
         .where(language: lang_code)

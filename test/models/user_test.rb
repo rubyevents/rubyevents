@@ -105,6 +105,15 @@ class UserTest < ActiveSupport::TestCase
     assert user.valid?
   end
 
+  test "accepts legacy github_handle ending in a hyphen" do
+    user = users(:one)
+
+    ["bruno-", "pam-"].each do |handle|
+      user.github_handle = handle
+      assert user.valid?, "expected #{handle.inspect} to be valid"
+    end
+  end
+
   test "should normalize mastodon handle into a profile URL" do
     user = users(:one)
 
@@ -660,5 +669,79 @@ class UserTest < ActiveSupport::TestCase
 
     assert_equal 2, user.event_participations.where(event: event).count
     assert_equal [event], user.participated_events.where(id: event.id).to_a
+  end
+
+  test "understands? and does_not_understand? reflect the stored preferences" do
+    user = users(:one)
+    user.update!(language_preferences: {"ja" => {"understands" => true}, "pt" => {"understands" => false}})
+
+    assert user.languages.understands?("ja")
+    assert user.languages.understands?(:ja)
+    assert_not user.languages.understands?("pt")
+    assert user.languages.does_not_understand?("pt")
+    assert_not user.languages.does_not_understand?("ja")
+  end
+
+  test "set moves a code between understood and not understood" do
+    user = users(:one)
+
+    user.languages.set("ja", :understands)
+    assert_equal ["ja"], user.reload.languages.understood
+
+    user.languages.set("ja", :does_not_understand)
+    assert_equal [], user.reload.languages.understood
+    assert_equal ["ja"], user.languages.not_understood
+
+    user.languages.set("ja", :unset)
+    assert_equal [], user.reload.languages.understood
+    assert_equal [], user.languages.not_understood
+    assert_empty user.language_preferences
+  end
+
+  test "language preferences reject an invalid shape" do
+    user = users(:one)
+    user.language_preferences = {"ja" => "maybe"}
+
+    assert_not user.valid?
+    assert user.errors[:language_preferences].any?
+  end
+
+  test "pending_prompt includes English so we don't assume everyone understands it" do
+    user = users(:one)
+    english_talk = Talk.find_by(language: "en")
+    user.watched_talks.find_or_create_by!(talk: english_talk) { |wt| wt.watched = true }
+
+    assert_includes user.languages.pending_prompts.map { |prompt| prompt[:code] }, "en"
+
+    user.languages.set("en", :does_not_understand)
+    assert_not_includes user.reload.languages.pending_prompts.map { |prompt| prompt[:code] }, "en"
+  end
+
+  test "pending_prompt returns a watched language without a preference" do
+    user = users(:one)
+    talk = talks(:non_english_talk_one)
+    assert_equal "pt", talk.language
+
+    user.languages.set("en", :understands)
+    assert_nil user.reload.languages.pending_prompt
+
+    user.watched_talks.create!(talk: talk, watched: true)
+    prompt = user.languages.pending_prompt
+    assert_equal "pt", prompt[:code]
+    assert_equal :watched, prompt[:source]
+
+    user.languages.set("pt", :does_not_understand)
+    assert_nil user.reload.languages.pending_prompt
+  end
+
+  test "pending_prompt surfaces languages of talks the user has given" do
+    user = users(:one)
+    talk = talks(:non_english_talk_one)
+    assert_equal "pt", talk.language
+    user.user_talks.create!(talk: talk)
+
+    prompt = user.languages.pending_prompts.find { |candidate| candidate[:code] == "pt" }
+    assert_equal :given, prompt[:source]
+    assert_equal 1, prompt[:count]
   end
 end

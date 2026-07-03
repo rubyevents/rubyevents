@@ -234,7 +234,7 @@ class TalksController < ApplicationController
     @sidebar_data = Rails.cache.fetch("talks_sidebar_data", expires_in: 1.hour) do
       {
         kind_counts: Talk.group(:kind).order(Arel.sql("COUNT(*) DESC")).count,
-        language_counts: Talk.where.not(language: [nil, ""]).group(:language).order(Arel.sql("COUNT(*) DESC")).count,
+        language_counts: Language.used_counts,
         top_topics: Topic.approved
           .where.not(name: ["Ruby", "Ruby on Rails"])
           .joins(:talks)

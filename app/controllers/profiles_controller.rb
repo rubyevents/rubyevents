@@ -130,7 +130,7 @@ class ProfilesController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(
+    permitted = params.require(:user).permit(
       :github_handle,
       :twitter,
       :bsky,
@@ -144,6 +144,29 @@ class ProfilesController < ApplicationController
       :pronouns,
       :slug
     )
+
+    permitted[:language_preferences] = language_preferences_param if params[:user]&.key?(:language_preferences)
+
+    permitted
+  end
+
+  def language_preferences_param
+    raw = params.require(:user)[:language_preferences]
+
+    return {} unless raw.respond_to?(:each_pair)
+
+    result = {}
+
+    raw.each_pair do |code, answer|
+      next unless Language.by_code(code)
+
+      case answer
+      when "understands" then result[code] = {"understands" => true}
+      when "does_not_understand" then result[code] = {"understands" => false}
+      end
+    end
+
+    result
   end
 
   def set_favorite_user

@@ -1,7 +1,7 @@
 <%= turbo_stream.replace "locations_search_results" do %>
   <div
     id="locations_search_results"
-    class="<%= (@locations.any? || @geocoded_locations&.any?) ? "pb-4 border-b" : "hidden" %>"
+    class="<%= (@locations.any? || @geocoded_locations&.any?) ? "py-4 border-t" : "hidden" %>"
     data-spotlight-search-target="locationsSearchResults">
     <% if @locations.any? %>
       <div class="flex items-center flex-wrap gap-2 py-2">

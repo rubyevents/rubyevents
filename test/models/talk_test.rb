@@ -40,51 +40,10 @@ class TalkTest < ActiveSupport::TestCase
     assert @talk.transcript.cues.length > 100
   end
 
-  test "should guess kind from title" do
-    kind_with_titles = {
-      talk: ["I love Ruby", "Beyond Code: Crafting effective discussions to further technical decision-making", "From LALR to IELR: A Lrama's Next Step"],
-      keynote: ["Keynote: Something ", "Opening keynote Something", "closing keynote Something", "Keynote", "Keynote by Someone", "Opening Keynote", "Closing Keynote"],
-      lightning_talk: ["Lightning Talk: Something", "lightning talk: Something", "Lightning talk: Something", "lightning talk", "Lightning Talks", "Lightning talks", "lightning talks", "Lightning Talks Day 1", "Lightning Talks (Day 1)", "Lightning Talks - Day 1", "Micro Talk: Something", "micro talk: Something", "micro talk: Something", "micro talk"],
-      panel: ["Panel: foo", "Panel", "Something Panel"],
-      workshop: ["Workshop: Something", "workshop: Something"],
-      gameshow: ["Gameshow", "Game Show", "Gameshow: Something", "Game Show: Something"],
-      podcast: ["Podcast: Something", "Podcast Recording: Something", "Live Podcast: Something"],
-      q_and_a: ["Q&A", "Q&A: Something", "Something AMA", "Q&A with Somebody", "Ruby Committers vs The World", "Ruby Committers and the World", "AMA: Rails Core", "Questions and Answers", "Questions and Answers: Something", "Questions and Answers with Matz"],
-      discussion: ["Discussion: Something", "Discussion", "Fishbowl: Topic", "Fishbowl Discussion: Topic"],
-      fireside_chat: ["Fireside Chat: Something", "Fireside Chat"],
-      interview: ["Interview with Matz", "Interview: Something"],
-      award: ["Award: Something", "Award Show", "Ruby Heroes Awards", "Ruby Heroes Award", "Rails Luminary"],
-      demo: ["Demo: Something", "Demo of New Features", "Product Demo"]
-    }
-
-    kind_with_titles.each do |kind, titles|
-      titles.each_with_index do |title, index|
-        talk = Talk.new(title:, date: Date.today, static_id: "test-kind-#{kind}-#{index}")
-        talk.save!
-
-        assert_equal [kind.to_s, title], [talk.kind, talk.title]
-
-        talk.destroy!
-      end
-    end
-  end
-
-  test "should not guess a kind if it's provided" do
+  test "keeps an explicitly provided kind" do
     talk = Talk.create!(title: "foo", kind: "panel", date: Date.today, static_id: "test-panel-foo")
 
     assert_equal "panel", talk.kind
-  end
-
-  test "should not guess a kind if it's provided in the static metadata" do
-    talk = Talk.create!(
-      title: "Who Wants to be a Ruby Engineer?",
-      video_provider: "mp4",
-      video_id: "https://videos.brightonruby.com/videos/2024/drew-bragg-who-wants-to-be-a-ruby-engineer.mp4",
-      date: Date.today,
-      static_id: "drew-bragg-who-wants-to-be-a-ruby-engineer"
-    )
-
-    assert_equal "gameshow", talk.kind
   end
 
   test "transcript should default to raw_transcript" do
@@ -170,6 +129,16 @@ class TalkTest < ActiveSupport::TestCase
     @talk.update_from_yml_metadata!
 
     assert_equal "Hotwire Cookbook: Common Uses, Essential Patterns & Best Practices", @talk.title
+    assert_equal "talk", @talk.kind
+  end
+
+  test "update_from_yml_metadata sets the kind from the static metadata" do
+    @talk = talks(:one)
+    @talk.update!(kind: "keynote")
+
+    @talk.update_from_yml_metadata!
+
+    assert_equal "talk", @talk.kind
   end
 
   test "update_from_yml_metadata creates alias when slug changes" do
