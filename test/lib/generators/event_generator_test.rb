@@ -58,7 +58,7 @@ class EventGeneratorTest < Rails::Generators::TestCase
       "--end-date", "2027-11-17",
       "--date-precision", "year",
       "--announced-on", "2027-01-01",
-      "--published-at", "2027-12-01",
+      "--recordings-published-date", "2027-12-01",
       "--kind", "retreat",
       "--tickets-url", "https://example.com/tickets",
       "--website", "https://example.com/rubyconf-2027",
@@ -76,7 +76,7 @@ class EventGeneratorTest < Rails::Generators::TestCase
       assert_match(/start_date: "2027-11-15"/, content)
       assert_match(/end_date: "2027-11-17"/, content)
       assert_match(/announced_on: "2027-01-01"/, content)
-      assert_match(/published_at: "2027-12-01"/, content)
+      assert_match(/recordings_published_date: "2027-12-01"/, content)
       assert_match(/year: 2027/, content)
       assert_match(/kind: "retreat"/, content)
       assert_match(/tickets_url: "https:\/\/example.com\/tickets"/, content)

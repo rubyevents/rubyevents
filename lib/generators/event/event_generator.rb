@@ -12,7 +12,7 @@ class EventGenerator < Generators::EventBase
   class_option :start_date, type: :string, desc: "Start date (YYYY-MM-DD)", required: true, group: "Fields"
   class_option :end_date, type: :string, desc: "End date (YYYY-MM-DD)", required: true, group: "Fields"
   class_option :announced_on, type: :string, desc: "Date when the event was announced (YYYY-MM-DD)", group: "Fields"
-  class_option :published_at, type: :string, desc: "Date when videos were published (YYYY-MM-DD)", group: "Fields"
+  class_option :recordings_published_date, type: :string, desc: "Date when the event's recordings were published (YYYY-MM-DD)", group: "Fields"
   class_option :date_precision, type: :string, enum: ["year", "month", "day"], desc: "Precision of the date (when exact dates are unknown)", group: "Fields"
 
   # Websites
