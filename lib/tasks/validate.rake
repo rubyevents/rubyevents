@@ -109,6 +109,21 @@ namespace :validate do
     exit 1 if validate_talk_kind_files.any?
   end
 
+  def validate_talk_short_kind_files
+    validate_files(
+      files: Dir.glob(Rails.root.join("data/**/videos.yml")),
+      validators: [
+        Static::Validators::TalkShortKind
+      ],
+      success_message: "✓ All short talks (under 10 minutes) have an explicit kind!"
+    )
+  end
+
+  desc "Validate that short talks (under 10 minutes) have an explicit kind"
+  task talk_short_kind: :environment do
+    exit 1 if validate_talk_short_kind_files.any?
+  end
+
   def validate_speakers_or_talks_files
     validate_files(
       files: Dir.glob(Rails.root.join("data/**/videos.yml")),
@@ -413,6 +428,9 @@ namespace :validate do
 
     puts Gum.style("Validating talk kind", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_talk_kind_files.none?
+
+    puts Gum.style("Validating short talk kind", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+    results << validate_talk_short_kind_files.none?
 
     puts Gum.style("Validating speakers/talks presence", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_speakers_or_talks_files.none?

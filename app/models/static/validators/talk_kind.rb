@@ -40,6 +40,11 @@ module Static
 
       DEFAULT_KIND = "talk"
 
+      def short?(node)
+        duration = CueDuration.duration_in_seconds(node)
+        duration && duration < TalkShortKind::SHORT_DURATION_THRESHOLD
+      end
+
       def talk_errors(node)
         kind = node.value_at("kind").to_s.strip
         inferred = Talk::Kind.from_title(node.value_at("title")).to_s
@@ -50,6 +55,7 @@ module Static
           location = node["title"]&.location
           message = "kind is inferred as \"#{inferred}\" from the title but is not set explicitly. Add `kind: \"#{inferred}\"` to the entry if this is a \"#{inferred}\". Otherwise you can explicitly set `kind: \"talk\"` if the tite classifiier didn't get it right."
         elsif kind == DEFAULT_KIND && inferred == DEFAULT_KIND
+          return [] if short?(node)
 
           location = node["kind"]&.location
 
