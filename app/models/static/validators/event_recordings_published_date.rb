@@ -43,6 +43,9 @@ module Static
 
         return validate_absence_for_meetup if meetup?
 
+        future_start_errors = validate_absence_for_future_start
+        return future_start_errors if future_start_errors.any?
+
         videos_path = File.join(File.dirname(@file_path), "videos.yml")
 
         return [] unless File.exist?(videos_path)
@@ -93,6 +96,25 @@ module Static
         [
           Static::Validators::Error.new(
             "recordings_published_date (#{@event_document["recordings_published_date"]}) must not be set for meetups",
+            file_path: @file_path,
+            line: location&.start_line || 1,
+            end_line: location&.end_line
+          )
+        ]
+      end
+
+      def validate_absence_for_future_start
+        return [] if @event_document["recordings_published_date"].blank?
+
+        start_date = parse_date(@event_document["start_date"])
+
+        return [] unless start_date && start_date > Date.current
+
+        location = @event_document["recordings_published_date"]&.location
+
+        [
+          Static::Validators::Error.new(
+            "recordings_published_date (#{@event_document["recordings_published_date"]}) must not be set for an event that has not started yet (start_date #{@event_document["start_date"]} is in the future)",
             file_path: @file_path,
             line: location&.start_line || 1,
             end_line: location&.end_line

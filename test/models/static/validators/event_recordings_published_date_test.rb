@@ -78,6 +78,19 @@ class Static::Validators::EventRecordingsPublishedDateTest < ActiveSupport::Test
     end
   end
 
+  test "flags a recordings_published_date on an event that has not started yet" do
+    with_temp_event({"kind" => "conference", "start_date" => "2099-01-01", "recordings_published_date" => "2099-01-02"}, providers("scheduled", 3)) do |path|
+      errors = Static::Validators::EventRecordingsPublishedDate.new(file_path: path).errors
+      assert errors.any? { |e| e.to_h["message"].include?("has not started yet") }
+    end
+  end
+
+  test "a future event without a recordings_published_date is valid" do
+    with_temp_event({"kind" => "conference", "start_date" => "2099-01-01"}, providers("scheduled", 3)) do |path|
+      assert_empty Static::Validators::EventRecordingsPublishedDate.new(file_path: path).errors
+    end
+  end
+
   test "percentile ignores a single late straggler" do
     dates = Array.new(9) { Date.new(2020, 1, 1) } + [Date.new(2025, 1, 1)]
     assert_equal Date.new(2020, 1, 1), Static::Validators::EventRecordingsPublishedDate.percentile(dates)
