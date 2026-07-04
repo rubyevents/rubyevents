@@ -42,10 +42,16 @@ class PageController < ApplicationController
         latest_talks = Talk.watchable.with_speakers.includes(event: :series).order(date: :desc).limit(10)
         upcoming_talks = Talk.with_speakers.includes(event: :series).where(date: Date.today..).order(date: :asc).limit(15)
         featured_speakers = User.with_github.joins(:talks).where(talks: {date: 12.months.ago..}).order(Arel.sql("RANDOM()")).limit(10)
+        mp4_talks = Talk.watchable.with_speakers.includes(event: :series).where(video_provider: "mp4").order("RANDOM()").limit(15)
 
         render json: {
           featured: @featured_events.map { |event| event.to_mobile_json(request) },
           talks: [
+            {
+              name: "Watch in the App",
+              items: mp4_talks.map { |talk| talk.to_mobile_json(request) },
+              url: talks_url
+            },
             {
               name: "Latest Recordings",
               items: latest_talks.map { |talk| talk.to_mobile_json(request) },

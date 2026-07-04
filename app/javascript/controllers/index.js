@@ -19,6 +19,9 @@ application.register("bridge--button", Bridge__ButtonController)
 import Bridge__OauthController from "./bridge/oauth_controller"
 application.register("bridge--oauth", Bridge__OauthController)
 
+import Bridge__PlayerController from "./bridge/player_controller"
+application.register("bridge--player", Bridge__PlayerController)
+
 import CollapsibleController from "./collapsible_controller"
 application.register("collapsible", CollapsibleController)
 

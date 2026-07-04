@@ -1,11 +1,28 @@
 <%# locals: (talk:, current_user_watched_talk:, is_watched:, video_provider:, video_id:) %>
 
 <% video_player_controller = talk.external_player ? nil : "video-player" %>
+<% native_player = video_provider == "mp4" && talk.provider_url.to_s.start_with("https://") %>
+<% controllers = [video_player_controller, ("bridge--player" if native_player)].compact.join(" ").presence %>
+<% bridge_player_data = {} %>
+
+<% if native_player %>
+  <% bridge_player_data = {
+       "bridge--player-slug-value" => talk.slug,
+       "bridge--player-url-value" => talk.provider_url,
+       "bridge--player-title-value" => talk.title,
+       "bridge--player-subtitle-value" => talk.speakers.map(&:name).join(", "),
+       "bridge--player-poster-value" => talk.thumbnail_xl,
+       "bridge--player-start-seconds-value" => (is_watched ? nil : talk.start_seconds),
+       "bridge--player-progress-seconds-value" => current_user_watched_talk&.progress_seconds || 0,
+       "bridge--player-duration-seconds-value" => talk.duration_in_seconds,
+       "bridge--player-watched-talk-path-value" => talk_watched_talk_path(talk)
+     } %>
+<% end %>
 
 <%= content_tag :div, id: dom_id(talk, :player_container),
       class: "w-full max-w-full",
       data: {
-        controller: video_player_controller,
+        controller: controllers,
         action: "transcript:seek@window->video-player#seekToTime",
         video_player_poster_value: talk.thumbnail_xl,
         video_player_provider_value: video_provider,
@@ -17,7 +34,7 @@
         video_player_current_user_present_value: signed_in?,
         video_player_progress_seconds_value: current_user_watched_talk&.progress_seconds || 0,
         video_player_watched_value: is_watched
-      } do %>
+      }.merge(bridge_player_data) do %>
 
   <div class="relative overflow-hidden bg-gray-300 aspect-video banner-img card-horizontal-img rounded-xl outline outline-1 outline-gray-300 w-full max-w-full">
     <% if talk.external_player %>
@@ -49,7 +66,7 @@
       </div>
 
       <% if current_user_watched_talk&.in_progress? && !is_watched && talk.video_available? %>
-        <div class="absolute inset-0 cursor-pointer group/resume" data-video-player-target="resumeOverlay" data-action="click->video-player#resumePlayback">
+        <div class="absolute inset-0 cursor-pointer group/resume" data-video-player-target="resumeOverlay" data-action="<%= "click->bridge--player#play " if native_player %>click->video-player#resumePlayback">
           <%= image_tag talk.thumbnail_xl, class: "absolute inset-0 w-full h-full object-cover rounded-xl", style: "view-transition-name: #{dom_id(talk, :image)}" %>
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 rounded-xl"></div>
           <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent rounded-xl opacity-0 group-hover/resume:opacity-100 transition-opacity duration-300"></div>
@@ -65,7 +82,7 @@
           </div>
         </div>
       <% elsif video_provider.in?(["mp4", "youtube", "vimeo"]) && !is_watched && talk.video_available? %>
-        <div class="absolute inset-0 cursor-pointer group/play" data-video-player-target="playOverlay" data-action="click->video-player#startPlayback">
+        <div class="absolute inset-0 cursor-pointer group/play" data-video-player-target="playOverlay" data-action="<%= "click->bridge--player#play " if native_player %>click->video-player#startPlayback">
           <%= image_tag talk.thumbnail_xl, class: "absolute inset-0 w-full h-full object-cover rounded-xl", style: "view-transition-name: #{dom_id(talk, :image)}" %>
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 rounded-xl"></div>
           <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent rounded-xl opacity-0 group-hover/play:opacity-100 transition-opacity duration-300"></div>
