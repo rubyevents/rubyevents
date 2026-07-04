@@ -1,6 +1,72 @@
 class Talk::Thumbnails < ActiveRecord::AssociatedObject
+  DEFAULT_BACKGROUND = "#081625"
+  DEFAULT_COLOR = "#FFFFFF"
+  RELEVANT_ATTRIBUTES = %w[title slug date language video_provider video_id].freeze
+
+  extension do
+    has_one_attached :generated_thumbnail
+
+    after_update_commit -> { thumbnails.purge_generated }, if: -> { thumbnails.outdated? }
+  end
+
   def path
     directory / "#{talk.video_id}.webp"
+  end
+
+  def generated_path
+    enqueue_generation
+
+    Router.talk_thumbnail_path(talk_slug: talk.slug, variant: "spotlight", v: cache_version)
+  rescue => e
+    Rails.logger.warn("Talk::Thumbnails#generated_path failed for #{talk.id}: #{e.message}")
+
+    talk.poster_thumbnail
+  end
+
+  def enqueue_generation(variant: "spotlight")
+    return if Talk::ThumbnailGenerator.new(talk, variant: variant).exists?
+
+    lock_key = ["thumbnail-generation", talk.id, variant, cache_version]
+    return unless Rails.cache.write(lock_key, true, expires_in: 1.minute, unless_exist: true)
+
+    GenerateTalkThumbnailJob.perform_later(talk, variant)
+  rescue => e
+    Rails.logger.warn("Talk::Thumbnails#enqueue_generation failed for #{talk.id}: #{e.message}")
+
+    nil
+  end
+
+  def cache_version
+    speaker_signature = talk.speakers.map { |speaker| [speaker.name, speaker.github_handle] }.sort
+
+    payload = [
+      talk.title, talk.date, talk.slug,
+      talk.event&.name, talk.event&.featured_background, talk.event&.featured_color,
+      talk.event&.city, talk.event&.country_code, talk.event&.location,
+      speaker_signature
+    ].join("|")
+
+    Digest::SHA1.hexdigest(payload).first(12)
+  end
+
+  def outdated?
+    talk.saved_changes.keys.intersect?(RELEVANT_ATTRIBUTES)
+  end
+
+  def purge_generated
+    talk.generated_thumbnail.purge_later if talk.generated_thumbnail.attached?
+  end
+
+  def background
+    talk.event&.static_metadata&.featured_background.presence || DEFAULT_BACKGROUND
+  end
+
+  def background_color
+    background.start_with?("data:") ? DEFAULT_BACKGROUND : background
+  end
+
+  def text_color
+    talk.event&.static_metadata&.featured_color.presence || DEFAULT_COLOR
   end
 
   def extractable?

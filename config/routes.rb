@@ -200,6 +200,8 @@ Rails.application.routes.draw do
         post :toggle_online, on: :collection
       end
       resource :slides, only: :show
+
+      resource :thumbnail, only: :show, controller: "thumbnails"
     end
   end
 

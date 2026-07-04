@@ -11,7 +11,7 @@
 
 <div data-controller="hover-preview" data-action="mouseenter->hover-preview#enter mouseleave->hover-preview#leave">
   <%= link_to talk_path(talk, back_to: back_to, back_to_title: back_to_title), class: "block group", data: {turbo_frame: "_top", hover_preview_target: "card"} do %>
-    <div class="aspect-video overflow-hidden relative rounded-xl sm:shadow-md transition-shadow">
+    <div class="aspect-video overflow-hidden relative rounded-xl sm:shadow-md transition-shadow" style="background-color: <%= talk.thumbnail_background_color %>;">
       <%= image_tag(
             talk.thumbnail_lg,
             srcset: ["#{talk.thumbnail_lg} 2x"],
