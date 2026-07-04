@@ -446,24 +446,26 @@
   description: ""
   talks:
     - id: "keshia-coriolan-lightning-talk-rubyconf-2026"
-      title: "Lightning Talk: Keshia Coriolan"
+      title: "From Ruby Objects to Salsa Moves 💃🏽"
       kind: "lightning_talk"
       event_name: "RubyConf 2026"
       date: "2026-07-15"
       video_provider: "scheduled"
       video_id: "keshia-coriolan-lightning-talk-rubyconf-2026"
-      description: ""
+      description: |-
+        As a salsa dancer, I often spend more time deciding what to practice than actually practicing. Which moves should I work on? What combinations make sense together? And what song should I use?\nIn this lightning talk, I'll share a fun Ruby project I build to solve that problem: a salsa practice session generator that creates move combinations, suggests music, and helps me jump straight into practice.\nAlong the way, I'll show how modeling a hobby domain with Ruby objects makes the project simple, expressive, and enjoyable to build. Sometimes the best way to learn Ruby is to use it to make our own hobbies more fun.
       speakers:
         - Keshia Coriolan
 
     - id: "kj-loving-lightning-talk-rubyconf-2026"
-      title: "Lightning Talk: KJ Loving"
+      title: "Love Scales"
       kind: "lightning_talk"
       event_name: "RubyConf 2026"
       date: "2026-07-15"
       video_provider: "scheduled"
       video_id: "kj-loving-lightning-talk-rubyconf-2026"
-      description: ""
+      description: |-
+        A love letter to everyone who made space for someone who didn't see themselves here. On being loved into a room you never thought was yours and planting seeds you may never see bloom. Love scales.
       speakers:
         - KJ Loving
 
@@ -479,40 +481,45 @@
         - Mohammad Arjamand Ali
 
     - id: "alan-ridlehoover-lightning-talk-rubyconf-2026"
-      title: "Lightning Talk: Alan Ridlehoover"
+      title: "Happier"
       kind: "lightning_talk"
       event_name: "RubyConf 2026"
       date: "2026-07-15"
       video_provider: "scheduled"
       video_id: "alan-ridlehoover-lightning-talk-rubyconf-2026"
-      description: ""
+      description: |-
+        I took a leave of absence this year because work had become so all consuming that I stopped taking care of myself. While on leave, I participated in group therapy and learned that if we don't know our own values, we'll spend ourselves on someone else's. This is the story of how I figured out what my values are and how they differ from those of my father and his father's before him.
+
+        This is a deeply personal talk that people have told me is both deeply moving and inspirational. I really hope you select it. It will be cathartic to share with my fellow Rubyists.
       speakers:
         - Alan Ridlehoover
 
     - id: "adam-mccrea-lightning-talk-rubyconf-2026"
-      title: "Lightning Talk: Adam McCrea"
+      title: "5 Steps to Resilient Job Queues"
       kind: "lightning_talk"
       event_name: "RubyConf 2026"
       date: "2026-07-15"
       video_provider: "scheduled"
       video_id: "adam-mccrea-lightning-talk-rubyconf-2026"
-      description: ""
+      description: |-
+        Five quick tips to avoid queue backlogs and struggling worker processes. Dense, practical, and lightning fast! We'll cover how to structure your queues, alerting, and scaling.
       speakers:
         - Adam McCrea
 
     - id: "ben-greenberg-lightning-talk-rubyconf-2026"
-      title: "Lightning Talk: Ben Greenberg"
+      title: "The Missing Gem in HTTP: x402 Payments with Ruby"
       kind: "lightning_talk"
       event_name: "RubyConf 2026"
       date: "2026-07-15"
       video_provider: "scheduled"
       video_id: "ben-greenberg-lightning-talk-rubyconf-2026"
-      description: ""
+      description: |-
+        HTTP 402 has been sitting unused for decades, but x402 gives it a practical job: letting APIs request and verify payments directly through standard HTTP flows. In this lightning talk, I’ll briefly explain how x402 works and show what it can look like from Ruby, turning “Payment Required” into something developers can actually build with.
       speakers:
         - Ben Greenberg
 
     - id: "marco-roth-lightning-talk-rubyconf-2026"
-      title: "Lightning Talk: Insta: Snapshot Testing for Ruby"
+      title: "Insta: Snapshot Testing for Ruby"
       kind: "lightning_talk"
       event_name: "RubyConf 2026"
       date: "2026-07-15"
@@ -526,57 +533,63 @@
         - Marco Roth
 
     - id: "cameron-dutro-lightning-talk-rubyconf-2026"
-      title: "Lightning Talk: Cameron Dutro"
+      title: "Re-rendering ViewComponents on the client"
       kind: "lightning_talk"
       event_name: "RubyConf 2026"
       date: "2026-07-15"
       video_provider: "scheduled"
       video_id: "cameron-dutro-lightning-talk-rubyconf-2026"
-      description: ""
+      description: |-
+        ViewComponents are awesome but they only work on the server... until now!
       speakers:
         - Cameron Dutro
 
     - id: "irina-nazarova-lightning-talk-rubyconf-2026"
-      title: "Lightning Talk: Irina Nazarova"
+      title: "San Francisco Ruby Startup Conference 2026"
       kind: "lightning_talk"
       event_name: "RubyConf 2026"
       date: "2026-07-15"
       video_provider: "scheduled"
       video_id: "irina-nazarova-lightning-talk-rubyconf-2026"
-      description: ""
+      description: |-
+        Announcing the second edition of the SF Ruby Conference on Nov 10-12, with the President of Y Combinator, Garry Tan, delivering a keynote. Announcing planned ticket sales and how to get involved.
       speakers:
         - Irina Nazarova
 
     - id: "shuveksha-tuladhar-lightning-talk-rubyconf-2026"
-      title: "Lightning Talk: Shuveksha Tuladhar"
+      title: "Ruby as the Glue for AI: Planning Fun Activities for My Kids"
       kind: "lightning_talk"
       event_name: "RubyConf 2026"
       date: "2026-07-15"
       video_provider: "scheduled"
       video_id: "shuveksha-tuladhar-lightning-talk-rubyconf-2026"
-      description: ""
+      description: |-
+        As a mom, I often spend more time searching for activities than actually doing them with my kids. While there are countless activity ideas available online, finding ones that match my children's ages, interests, available supplies, and our limited free time can be overwhelming.
+        In this lightning talk, I'll share how I built a small Rails application that uses an LLM to generate personalized activity ideas based on my children's ages, interests, available supplies, and time constraints. While the AI generates creative suggestions, Ruby and Rails provide the structure by storing preferences, tracking activity history, and delivering relevant recommendations. This project demonstrates how Ruby can act as the glue that connects AI capabilities with real-world workflows, turning a language model into a practical tool that helps families spend less time planning and more time creating memories together.
       speakers:
         - Shuveksha Tuladhar
 
     - id: "stefan-taitano-lightning-talk-rubyconf-2026"
-      title: "Lightning Talk: Stefan Taitano"
+      title: "Volunteering at RubyConf Before Becoming a Ruby Developer"
       kind: "lightning_talk"
       event_name: "RubyConf 2026"
       date: "2026-07-15"
       video_provider: "scheduled"
       video_id: "stefan-taitano-lightning-talk-rubyconf-2026"
-      description: ""
+      description: |-
+        What is it like to attend RubyConf while still learning Ruby? Share the experience of the conference through the eyes of a newcomer, covering initial expectations, memorable interactions, and lessons learned from volunteering alongside experienced Rubyists (so far).
       speakers:
         - Stefan Taitano
 
     - id: "rachael-wright-munn-lightning-talk-rubyconf-2026"
-      title: "Lightning Talk: Rachael Wright-Munn"
+      title: "RubyEvents.org - on a mission to index all Ruby events!"
       kind: "lightning_talk"
       event_name: "RubyConf 2026"
       date: "2026-07-15"
       video_provider: "scheduled"
       video_id: "rachael-wright-munn-lightning-talk-rubyconf-2026"
-      description: ""
+      description: |-
+        RubyEvents.org brings together RubyVideo.dev and RubyConferences.org to support Ruby community events. This talk will be a brief overview of our mission, our architecture, and how you can help!
       speakers:
         - Rachael Wright-Munn
 
