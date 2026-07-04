@@ -13,9 +13,9 @@ class CFPGeneratorTest < Rails::Generators::TestCase
   end
 
   test "creates cfp.yml with valid yaml with no params" do
-    cfp_file_path = File.join(destination_root, "data/rubyconf/2022/cfp.yml")
+    cfp_file_path = File.join(destination_root, "data/rubyconf/2021/cfp.yml")
     eliminate_validated_file(file_path: cfp_file_path) do
-      run_generator ["--event-series", "rubyconf", "--event", "2022"]
+      run_generator ["--event-series", "rubyconf", "--event", "2021"]
 
       assert_file cfp_file_path do |content|
         assert_match(/\S/, content) # Verify file has content
