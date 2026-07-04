@@ -40,7 +40,8 @@ class PageControllerTest < ActionDispatch::IntegrationTest
     events(:rails_world_2023).update!(
       featured_background: "#101820",
       featured_color: "#ffffff",
-      home_sort_date: Date.today
+      home_sort_date: Date.today,
+      recordings_published_date: Date.today
     )
 
     get root_path

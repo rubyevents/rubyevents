@@ -2,7 +2,7 @@
 
 module Static
   module Validators
-    class EventPublishedAt
+    class EventRecordingsPublishedDate
       WATCHABLE_PROVIDERS = %w[youtube mp4 vimeo].freeze
       TERMINAL_PROVIDERS = %w[not_recorded not_published].freeze
       PERCENTILE = 90
@@ -53,7 +53,7 @@ module Static
 
         errors = []
 
-        if @event_document["published_at"].present?
+        if @event_document["recordings_published_date"].present?
           if majority_published?
             errors.concat(validate_not_before_event_dates)
             errors.concat(validate_not_before_video_published_dates)
@@ -86,13 +86,13 @@ module Static
       end
 
       def validate_absence_for_meetup
-        return [] if @event_document["published_at"].blank?
+        return [] if @event_document["recordings_published_date"].blank?
 
-        location = @event_document["published_at"]&.location
+        location = @event_document["recordings_published_date"]&.location
 
         [
           Static::Validators::Error.new(
-            "published_at (#{@event_document["published_at"]}) must not be set for meetups",
+            "recordings_published_date (#{@event_document["recordings_published_date"]}) must not be set for meetups",
             file_path: @file_path,
             line: location&.start_line || 1,
             end_line: location&.end_line
@@ -103,7 +103,7 @@ module Static
       def validate_presence
         [
           Static::Validators::Error.new(
-            "published_at is required when the majority of talks are published (#{watchable_count}/#{resolvable_count} resolvable talks published)",
+            "recordings_published_date is required when the majority of talks are published (#{watchable_count}/#{resolvable_count} resolvable talks published)",
             file_path: @file_path,
             line: 1
           )
@@ -111,11 +111,11 @@ module Static
       end
 
       def validate_absence
-        location = @event_document["published_at"]&.location
+        location = @event_document["recordings_published_date"]&.location
 
         [
           Static::Validators::Error.new(
-            "published_at (#{@event_document["published_at"]}) must not be set unless the majority of talks are published (#{watchable_count}/#{resolvable_count} resolvable talks published)",
+            "recordings_published_date (#{@event_document["recordings_published_date"]}) must not be set unless the majority of talks are published (#{watchable_count}/#{resolvable_count} resolvable talks published)",
             file_path: @file_path,
             line: location&.start_line || 1,
             end_line: location&.end_line
@@ -124,18 +124,18 @@ module Static
       end
 
       def validate_not_before_event_dates
-        published_at = parse_date(@event_document["published_at"])
+        published_date = parse_date(@event_document["recordings_published_date"])
 
-        return [] unless published_at
+        return [] unless published_date
 
         errors = []
         start_date = parse_date(@event_document["start_date"])
 
-        if start_date && published_at < start_date
-          location = @event_document["published_at"]&.location
+        if start_date && published_date < start_date
+          location = @event_document["recordings_published_date"]&.location
 
           errors << Static::Validators::Error.new(
-            "published_at (#{@event_document["published_at"]}) must not be before start_date (#{@event_document["start_date"]})",
+            "recordings_published_date (#{@event_document["recordings_published_date"]}) must not be before start_date (#{@event_document["start_date"]})",
             file_path: @file_path,
             line: location&.start_line || 1,
             end_line: location&.end_line
@@ -144,11 +144,11 @@ module Static
 
         end_date = parse_date(@event_document["end_date"])
 
-        if end_date && published_at < end_date
-          location = @event_document["published_at"]&.location
+        if end_date && published_date < end_date
+          location = @event_document["recordings_published_date"]&.location
 
           errors << Static::Validators::Error.new(
-            "published_at (#{@event_document["published_at"]}) must not be before end_date (#{@event_document["end_date"]})",
+            "recordings_published_date (#{@event_document["recordings_published_date"]}) must not be before end_date (#{@event_document["end_date"]})",
             file_path: @file_path,
             line: location&.start_line || 1,
             end_line: location&.end_line
@@ -159,21 +159,21 @@ module Static
       end
 
       def validate_not_before_video_published_dates
-        published_at = parse_date(@event_document["published_at"])
+        published_date = parse_date(@event_document["recordings_published_date"])
 
-        return [] unless published_at
+        return [] unless published_date
 
         video_dates = @videos.filter_map { |video| parse_date(video["published_at"]) }
         reference_date = self.class.percentile(video_dates)
 
         return [] unless reference_date
 
-        if published_at < reference_date
-          location = @event_document["published_at"]&.location
+        if published_date < reference_date
+          location = @event_document["recordings_published_date"]&.location
 
           [
             Static::Validators::Error.new(
-              "published_at (#{@event_document["published_at"]}) must not be before the P#{PERCENTILE} of the video published_at dates (#{reference_date})",
+              "recordings_published_date (#{@event_document["recordings_published_date"]}) must not be before the P#{PERCENTILE} of the video published_at dates (#{reference_date})",
               file_path: @file_path,
               line: location&.start_line || 1,
               end_line: location&.end_line

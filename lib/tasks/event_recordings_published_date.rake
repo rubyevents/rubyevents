@@ -2,11 +2,11 @@
 
 require "gum"
 
-namespace :event_published_at do
-  desc "Reconcile published_at across all event.yml files (meetups, majority rule, P90/date correction). Pass DRY_RUN=1 to preview."
+namespace :event_recordings_published_date do
+  desc "Reconcile recordings_published_date across all event.yml files (meetups, majority rule, P90/date correction). Pass DRY_RUN=1 to preview."
   task fix: :environment do
     dry_run = ENV["DRY_RUN"].present?
-    validator = Static::Validators::EventPublishedAt
+    validator = Static::Validators::EventRecordingsPublishedDate
 
     parse_date = ->(value) do
       Date.parse(value.to_s)
@@ -31,7 +31,7 @@ namespace :event_published_at do
 
     Dir.glob(Rails.root.join("data/**/event.yml")).sort.each do |path|
       document = Yerba.parse_file(path)
-      present = document["published_at"].present?
+      present = document["recordings_published_date"].present?
       videos_path = File.join(File.dirname(path), "videos.yml")
       relative = path.sub("#{Rails.root}/", "")
 
@@ -55,7 +55,7 @@ namespace :event_published_at do
 
         next unless target
 
-        current = parse_date.call(scalar.call(document["published_at"])) if present
+        current = parse_date.call(scalar.call(document["recordings_published_date"])) if present
 
         next if current && current >= target
 
@@ -66,11 +66,11 @@ namespace :event_published_at do
     end
 
     if changes.empty?
-      puts Gum.style("✓ All event.yml published_at values are already consistent", foreground: "2")
+      puts Gum.style("✓ All event.yml recordings_published_date values are already consistent", foreground: "2")
       next
     end
 
-    puts Gum.style("#{dry_run ? "Would reconcile" : "Reconciling"} published_at on #{changes.size} event(s)", border: "rounded", padding: "0 2", border_foreground: "5")
+    puts Gum.style("#{dry_run ? "Would reconcile" : "Reconciling"} recordings_published_date on #{changes.size} event(s)", border: "rounded", padding: "0 2", border_foreground: "5")
     puts
 
     changes.each do |change|
@@ -84,13 +84,13 @@ namespace :event_published_at do
 
       case change[:action]
       when :set
-        document["published_at"] = change[:value]
-        document["published_at"].quote_style = "double"
+        document["recordings_published_date"] = change[:value]
+        document["recordings_published_date"].quote_style = "double"
       when :insert
-        document.insert("published_at", change[:value], after: "description")
-        document["published_at"].quote_style = "double"
+        document.insert("recordings_published_date", change[:value], after: "description")
+        document["recordings_published_date"].quote_style = "double"
       when :delete
-        document.delete("published_at")
+        document.delete("recordings_published_date")
       end
 
       document.save!(apply: true)

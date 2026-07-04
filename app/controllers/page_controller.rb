@@ -18,7 +18,7 @@ class PageController < ApplicationController
     base = Event.distinct.not_meetup.featurable.where.not(home_sort_date: nil)
 
     featured_ids = (
-      base.with_watchable_talks.pluck(:id) +
+      base.where.not(recordings_published_date: nil).pluck(:id) +
       base.with_talks.where(start_date: ..today, end_date: today..).pluck(:id) +
       base.with_talks.where(end_date: (today - Event::FEATURED_RECENTLY_ENDED_WINDOW)..today.prev_day).pluck(:id) +
       base.with_talks.where(start_date: today.next_day..(today + Event::FEATURED_UPCOMING_WINDOW)).pluck(:id) +

@@ -3,31 +3,32 @@
 # Table name: events
 # Database name: primary
 #
-#  id                  :integer          not null, primary key
-#  banner_background   :string
-#  city                :string
-#  country_code        :string           indexed => [state_code]
-#  date                :date
-#  date_precision      :string           default("day"), not null
-#  end_date            :date
-#  featured_background :string
-#  featured_color      :string
-#  geocode_metadata    :json             not null
-#  home_sort_date      :date
-#  kind                :string           default("event"), not null, indexed
-#  latitude            :decimal(10, 6)
-#  location            :string
-#  longitude           :decimal(10, 6)
-#  name                :string           default(""), not null, indexed
-#  slug                :string           default(""), not null, uniquely indexed
-#  start_date          :date
-#  state_code          :string           indexed => [country_code]
-#  talks_count         :integer          default(0), not null
-#  website             :string           default("")
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
-#  canonical_id        :integer          indexed
-#  event_series_id     :integer          not null, indexed
+#  id                        :integer          not null, primary key
+#  banner_background         :string
+#  city                      :string
+#  country_code              :string           indexed => [state_code]
+#  date                      :date
+#  date_precision            :string           default("day"), not null
+#  end_date                  :date
+#  featured_background       :string
+#  featured_color            :string
+#  geocode_metadata          :json             not null
+#  home_sort_date            :date
+#  kind                      :string           default("event"), not null, indexed
+#  latitude                  :decimal(10, 6)
+#  location                  :string
+#  longitude                 :decimal(10, 6)
+#  name                      :string           default(""), not null, indexed
+#  recordings_published_date :date
+#  slug                      :string           default(""), not null, uniquely indexed
+#  start_date                :date
+#  state_code                :string           indexed => [country_code]
+#  talks_count               :integer          default(0), not null
+#  website                   :string           default("")
+#  created_at                :datetime         not null
+#  updated_at                :datetime         not null
+#  canonical_id              :integer          indexed
+#  event_series_id           :integer          not null, indexed
 #
 # Indexes
 #

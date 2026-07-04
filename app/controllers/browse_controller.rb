@@ -391,7 +391,7 @@ class BrowseController < ApplicationController
   def featured_events_query
     Event
       .not_meetup
-      .with_watchable_talks
+      .where.not(recordings_published_date: nil)
       .featurable
       .where.not(home_sort_date: nil)
       .order(home_sort_date: :desc)

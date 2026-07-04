@@ -41,7 +41,7 @@ module Static
         last_edition: nil,
         start_date: nil,
         end_date: nil,
-        published_at: nil,
+        recordings_published_date: nil,
         announced_on: nil,
         year: nil,
         date_precision: nil,
@@ -87,7 +87,7 @@ module Static
         data["last_edition"] = last_edition unless last_edition.nil?
         data["start_date"] = start_date if start_date.present?
         data["end_date"] = end_date if end_date.present?
-        data["published_at"] = published_at if published_at.present?
+        data["recordings_published_date"] = recordings_published_date if recordings_published_date.present?
         data["announced_on"] = announced_on if announced_on.present?
         data["year"] = year if year.present?
         data["date_precision"] = date_precision if defined?(date_precision) && date_precision.present?
@@ -233,7 +233,7 @@ module Static
     end
 
     def published_date
-      Date.parse(published_at)
+      Date.parse(recordings_published_date)
     rescue TypeError, Date::Error
       nil
     end
@@ -320,6 +320,7 @@ module Static
         featured_background: featured_background,
         featured_color: featured_color,
         banner_background: banner_background,
+        recordings_published_date: published_date,
         home_sort_date: home_sort_date(event_record: event)
       )
 
