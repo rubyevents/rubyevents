@@ -47,38 +47,38 @@ class EventGeneratorTest < Rails::Generators::TestCase
   end
 
   test "event with all flags passes schema validation" do
-    event_file_path = File.join(destination_root, "data/rubyconf/2027/event.yml")
+    event_file_path = File.join(destination_root, "data/rubyconf/2022/event.yml")
     eliminate_validated_file(file_path: event_file_path) do
       run_generator ["--force", # Force file creation
         "--event-series", "rubyconf",
-        "--event", "2027",
-        "--title", "RubyConf 2027",
-        "--description", "RubyConf 2027 description",
-        "--start-date", "2027-11-15",
-        "--end-date", "2027-11-17",
+        "--event", "2022",
+        "--title", "RubyConf 2022",
+        "--description", "RubyConf 2022 description",
+        "--start-date", "2022-11-15",
+        "--end-date", "2022-11-17",
         "--date-precision", "year",
-        "--announced-on", "2027-01-01",
-        "--recordings-published-date", "2027-12-01",
+        "--announced-on", "2022-01-01",
+        "--recordings-published-date", "2022-12-01",
         "--kind", "retreat",
         "--tickets-url", "https://example.com/tickets",
-        "--website", "https://example.com/rubyconf-2027",
-        "--original-website", "https://example.com/rubyconf-2027-archive",
+        "--website", "https://example.com/rubyconf-2022",
+        "--original-website", "https://example.com/rubyconf-2022-archive",
         "--last-edition",
         "--timezone", "America/Chicago",
         "--online"]
 
       assert_file event_file_path do |content|
-        assert_match(/title: "RubyConf 2027"/, content)
-        assert_match(/description: |-\s+RubyConf 2027 description/, content)
-        assert_match(/start_date: "2027-11-15"/, content)
-        assert_match(/end_date: "2027-11-17"/, content)
-        assert_match(/announced_on: "2027-01-01"/, content)
-        assert_match(/recordings_published_date: "2027-12-01"/, content)
-        assert_match(/year: 2027/, content)
+        assert_match(/title: "RubyConf 2022"/, content)
+        assert_match(/description: |-\s+RubyConf 2022 description/, content)
+        assert_match(/start_date: "2022-11-15"/, content)
+        assert_match(/end_date: "2022-11-17"/, content)
+        assert_match(/announced_on: "2022-01-01"/, content)
+        assert_match(/recordings_published_date: "2022-12-01"/, content)
+        assert_match(/year: 2022/, content)
         assert_match(/kind: "retreat"/, content)
         assert_match(/tickets_url: "https:\/\/example.com\/tickets"/, content)
-        assert_match(/website: "https:\/\/example.com\/rubyconf-2027"/, content)
-        assert_match(/original_website: "https:\/\/example.com\/rubyconf-2027-archive"/, content)
+        assert_match(/website: "https:\/\/example.com\/rubyconf-2022"/, content)
+        assert_match(/original_website: "https:\/\/example.com\/rubyconf-2022-archive"/, content)
         assert_match(/timezone: "America\/Chicago"/, content)
         assert_match(/last_edition: true/, content)
         assert_match(/location: "online"/, content)
@@ -99,7 +99,6 @@ class EventGeneratorTest < Rails::Generators::TestCase
         "--location", "Recife, PE, Brazil",
         "--latitude", "-8.04756",
         "--longitude", "-34.877"]
-      validate_event_schema event_file_path
 
       assert_file event_file_path do |content|
         assert_match(/coordinates:\n\s+latitude: -8.04756/, content)
@@ -146,12 +145,12 @@ class EventGeneratorTest < Rails::Generators::TestCase
 
   def validate_event_file(path)
     Static::Validators::Validator.event_validator_classes.each do |validator|
-      errors = validator.new(file_path: path).validate
+      errors = validator.new(file_path: path).errors
       assert_empty errors, "#{validator} failed: #{errors.map { |error| error.to_h["message"] }.join(", ")}"
     end
   end
 
-  def eliminate_validated_file(file_path, &block)
+  def eliminate_validated_file(file_path:, &block)
     FileUtils.rm_rf(File.dirname(file_path))
     yield
     validate_event_file(file_path)
