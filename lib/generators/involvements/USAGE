@@ -1,0 +1,10 @@
+Description:
+    Creates the involvements for a given event.
+
+Example:
+  Add organizer involvements for XO Ruby 2026 Salt Lake City:
+    bin/rails g involvements --event xoruby-salt-lake-city-2026 \
+      --name "Organizer" --users "Jim Remsik" --organisations "Flagrant"
+
+    This will create:
+      data/xoruby/xoruby-salt-lake-city-2026/involvements.yml
