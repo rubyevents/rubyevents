@@ -6,7 +6,7 @@ class SubVideoSchema < RubyLLM::Schema
   string :raw_title, required: false
   string :original_title, description: "Original title in native language", required: false
   string :description, required: false
-  string :kind, description: "Type of video (e.g., 'keynote', 'lightning')", required: false
+  string :kind, description: "Type of video (e.g., 'keynote', 'lightning')", required: false, enum: Talk.kinds.keys
   array :speakers, of: :string, required: false
   string :event_name, required: false
   string :date, required: false, pattern: "^\\d{4}-\\d{2}-\\d{2}$"
@@ -17,9 +17,9 @@ class SubVideoSchema < RubyLLM::Schema
   string :language, enum: Language.english_names, required: false
   string :track, required: false
   string :location, description: "Location within the venue", required: false
-  string :start_cue, description: "Start time cue in video", required: false
-  string :end_cue, description: "End time cue in video", required: false
-  string :thumbnail_cue, description: "Thumbnail time cue", required: false
+  string :start_cue, description: "Start time cue in video (MM:SS, HH:MM:SS, or 'TODO')", required: false, pattern: "^(TODO|\\d{1,2}:\\d{2}(:\\d{2})?)$"
+  string :end_cue, description: "End time cue in video (MM:SS, HH:MM:SS, or 'TODO')", required: false, pattern: "^(TODO|\\d{1,2}:\\d{2}(:\\d{2})?)$"
+  string :thumbnail_cue, description: "Thumbnail time cue (MM:SS, HH:MM:SS, or 'TODO')", required: false, pattern: "^(TODO|\\d{1,2}:\\d{2}(:\\d{2})?)$"
   string :slides_url, required: false
   array :additional_resources, of: AdditionalResourceSchema, required: false
   string :thumbnail_xs, required: false

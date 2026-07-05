@@ -128,6 +128,9 @@ class Talk < ApplicationRecord
     "keynote" => "Keynote",
     "talk" => "Talk",
     "lightning_talk" => "Lightning Talk",
+    "open_mic" => "Open Mic",
+    "announcement" => "Announcement",
+    "city_pitch" => "City Pitch",
     "panel" => "Panel",
     "workshop" => "Workshop",
     "gameshow" => "Gameshow",
@@ -150,14 +153,17 @@ class Talk < ApplicationRecord
 
   attribute :kind, :string
   enum :kind,
-    %w[keynote talk lightning_talk panel workshop gameshow podcast q_and_a discussion fireside_chat
-      interview award demo trailer recap aftermovie intro outro].index_by(&:itself)
+    %w[keynote talk lightning_talk open_mic announcement city_pitch panel workshop gameshow podcast
+      q_and_a discussion fireside_chat interview award demo trailer recap aftermovie intro outro].index_by(&:itself)
 
   def self.speaker_role_titles
     {
       keynote: "Keynote Speaker",
       talk: "Speaker",
       lightning_talk: "Lightning Talk Speaker",
+      open_mic: "Open Mic Speaker",
+      announcement: "Presenter",
+      city_pitch: "City Pitcher",
       panel: "Panelist",
       discussion: "Panelist",
       gameshow: "Game Show Host",

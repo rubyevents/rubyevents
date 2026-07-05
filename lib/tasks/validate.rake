@@ -41,7 +41,7 @@ namespace :validate do
       files: Dir.glob(Rails.root.join("data/**/event.yml")),
       validators: [
         Static::Validators::EventDates,
-        Static::Validators::EventPublishedAt,
+        Static::Validators::EventRecordingsPublishedDate,
         Static::Validators::ColorsHaveAssets,
         Static::Validators::EventCityNames,
         Static::Validators::DuplicateYouTubeChannels
@@ -54,11 +54,11 @@ namespace :validate do
   task events: :environment do
     errors = validate_event_files
 
-    if errors.any? { |error| error.message.include?("published_at") }
+    if errors.any? { |error| error.message.include?("recordings_published_date") }
       puts
-      puts Gum.style("To fix published_at issues:", foreground: "3")
-      puts Gum.style("  • bin/rails event_published_at:fix       # reconcile event.yml published_at", foreground: "3")
-      puts Gum.style("  • bin/rails youtube:sync_published_at    # correct video dates first (needs a YouTube API key)", foreground: "3")
+      puts Gum.style("To fix recordings_published_date issues:", foreground: "3")
+      puts Gum.style("  • bin/rails event_recordings_published_date:fix  # reconcile event.yml recordings_published_date", foreground: "3")
+      puts Gum.style("  • bin/rails youtube:sync_published_at            # correct video dates first (needs a YouTube API key)", foreground: "3")
     end
 
     exit 1 if errors.any?
@@ -107,6 +107,21 @@ namespace :validate do
   desc "Validate talk kind in videos.yml files"
   task talk_kind: :environment do
     exit 1 if validate_talk_kind_files.any?
+  end
+
+  def validate_talk_short_kind_files
+    validate_files(
+      files: Dir.glob(Rails.root.join("data/**/videos.yml")),
+      validators: [
+        Static::Validators::TalkShortKind
+      ],
+      success_message: "✓ All short talks (under 10 minutes) have an explicit kind!"
+    )
+  end
+
+  desc "Validate that short talks (under 10 minutes) have an explicit kind"
+  task talk_short_kind: :environment do
+    exit 1 if validate_talk_short_kind_files.any?
   end
 
   def validate_speakers_or_talks_files
@@ -413,6 +428,9 @@ namespace :validate do
 
     puts Gum.style("Validating talk kind", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_talk_kind_files.none?
+
+    puts Gum.style("Validating short talk kind", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+    results << validate_talk_short_kind_files.none?
 
     puts Gum.style("Validating speakers/talks presence", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_speakers_or_talks_files.none?

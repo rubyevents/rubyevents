@@ -70,4 +70,19 @@ class Static::EventTest < ActiveSupport::TestCase
     event = Static::Event.find_by_slug("railsconf-2025")
     assert_not event.today?
   end
+
+  test "home_sort_date uses the event's own dates for non-conference, non-meetup events" do
+    event = Static::Event.find_by_slug("ceru-camp-2009")
+    stub_record = Event.new(start_date: Date.new(2000, 1, 1))
+
+    assert_equal "retreat", event.kind
+    assert_equal event.end_date, event.home_sort_date(event_record: stub_record)
+  end
+
+  test "home_sort_date prefers recordings_published_date when present" do
+    event = Static::Event.find_by_slug("brightonruby-2025")
+    stub_record = Event.new(start_date: Date.new(2000, 1, 1))
+
+    assert_equal event.published_date, event.home_sort_date(event_record: stub_record)
+  end
 end

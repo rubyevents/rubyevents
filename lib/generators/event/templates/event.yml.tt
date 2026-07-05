@@ -12,8 +12,8 @@ kind: "<%= options[:kind] %>"
 description: |-
 <%= optimize_indentation(options[:description], 4) %>
 <%- end -%>
-<%- if options[:published_at] -%>
-published_at: "<%= options[:published_at] %>"
+<%- if options[:recordings_published_date] -%>
+recordings_published_date: "<%= options[:recordings_published_date] %>"
 <%- end -%>
 <%- if options[:announced_on] -%>
 announced_on: "<%= options[:announced_on] %>"

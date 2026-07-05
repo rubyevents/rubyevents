@@ -31,6 +31,9 @@
         "keynote",
         "talk",
         "lightning_talk",
+        "open_mic",
+        "announcement",
+        "city_pitch",
         "panel",
         "workshop",
         "gameshow",
@@ -84,6 +87,29 @@
           },
           "kind": {
             "type": "string",
+            "enum": [
+              "keynote",
+              "talk",
+              "lightning_talk",
+              "open_mic",
+              "announcement",
+              "city_pitch",
+              "panel",
+              "workshop",
+              "gameshow",
+              "podcast",
+              "q_and_a",
+              "discussion",
+              "fireside_chat",
+              "interview",
+              "award",
+              "demo",
+              "trailer",
+              "recap",
+              "aftermovie",
+              "intro",
+              "outro"
+            ],
             "description": "Type of video (e.g., 'keynote', 'lightning')"
           },
           "speakers": {
@@ -321,15 +347,18 @@
           },
           "start_cue": {
             "type": "string",
-            "description": "Start time cue in video"
+            "description": "Start time cue in video (MM:SS, HH:MM:SS, or 'TODO')",
+            "pattern": "^(TODO|\\d{1,2}:\\d{2}(:\\d{2})?)$"
           },
           "end_cue": {
             "type": "string",
-            "description": "End time cue in video"
+            "description": "End time cue in video (MM:SS, HH:MM:SS, or 'TODO')",
+            "pattern": "^(TODO|\\d{1,2}:\\d{2}(:\\d{2})?)$"
           },
           "thumbnail_cue": {
             "type": "string",
-            "description": "Thumbnail time cue"
+            "description": "Thumbnail time cue (MM:SS, HH:MM:SS, or 'TODO')",
+            "pattern": "^(TODO|\\d{1,2}:\\d{2}(:\\d{2})?)$"
           },
           "slides_url": {
             "type": "string"

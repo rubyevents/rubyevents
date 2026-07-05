@@ -97,12 +97,16 @@
         <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
           <%= fa("book", size: :xl, class: "fill-primary") %>
         </div>
+
         <h2 class="text-2xl font-bold mb-2">The RubyEvents Organizer Guide</h2>
+
         <p class="text-gray-600 mb-4 max-w-xl mx-auto">
-          We're working on a comprehensive guide covering everything from finding a venue
-          to managing speakers, handling sponsors, and building a community around your event.
+          A comprehensive guide covering everything from finding a venue to managing speakers, handling sponsors, and building a community around your event.
         </p>
-        <span class="badge badge-primary badge-lg">Coming Soon</span>
+
+        <%= link_to "https://guides.rubyevents.org", target: "_blank", rel: "noopener noreferrer", class: "btn btn-primary" do %>
+          Read the guide <%= fa("arrow-up-right-from-square", class: "fill-current") %>
+        <% end %>
       </section>
 
       <section>
