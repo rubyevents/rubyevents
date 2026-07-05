@@ -39,13 +39,7 @@ namespace :validate do
   def validate_event_files
     validate_files(
       files: Dir.glob(Rails.root.join("data/**/event.yml")),
-      validators: [
-        Static::Validators::EventDates,
-        Static::Validators::EventRecordingsPublishedDate,
-        Static::Validators::ColorsHaveAssets,
-        Static::Validators::EventCityNames,
-        Static::Validators::DuplicateYouTubeChannels
-      ],
+      validators: Static::Validators::Validator.event_validator_classes,
       success_message: "✓ All event.yml files passed validations!"
     )
   end
@@ -64,81 +58,6 @@ namespace :validate do
     exit 1 if errors.any?
   end
 
-  def validate_talk_date_files
-    validate_files(
-      files: Dir.glob(Rails.root.join("data/**/videos.yml")),
-      validators: [
-        Static::Validators::TalkDates
-      ],
-      success_message: "✓ All talk dates are valid!"
-    )
-  end
-
-  desc "Validate talk dates in videos.yml files"
-  task talk_dates: :environment do
-    exit 1 if validate_talk_date_files.any?
-  end
-
-  def validate_talk_published_at_files
-    validate_files(
-      files: Dir.glob(Rails.root.join("data/**/videos.yml")),
-      validators: [
-        Static::Validators::TalkPublishedAt
-      ],
-      success_message: "✓ All talk published_at values are valid!"
-    )
-  end
-
-  desc "Validate talk published_at in videos.yml files"
-  task talk_published_at: :environment do
-    exit 1 if validate_talk_published_at_files.any?
-  end
-
-  def validate_talk_kind_files
-    validate_files(
-      files: Dir.glob(Rails.root.join("data/**/videos.yml")),
-      validators: [
-        Static::Validators::TalkKind
-      ],
-      success_message: "✓ All talk kinds are set explicitly where inferred!"
-    )
-  end
-
-  desc "Validate talk kind in videos.yml files"
-  task talk_kind: :environment do
-    exit 1 if validate_talk_kind_files.any?
-  end
-
-  def validate_talk_short_kind_files
-    validate_files(
-      files: Dir.glob(Rails.root.join("data/**/videos.yml")),
-      validators: [
-        Static::Validators::TalkShortKind
-      ],
-      success_message: "✓ All short talks (under 10 minutes) have an explicit kind!"
-    )
-  end
-
-  desc "Validate that short talks (under 10 minutes) have an explicit kind"
-  task talk_short_kind: :environment do
-    exit 1 if validate_talk_short_kind_files.any?
-  end
-
-  def validate_speakers_or_talks_files
-    validate_files(
-      files: Dir.glob(Rails.root.join("data/**/videos.yml")),
-      validators: [
-        Static::Validators::SpeakersOrTalks
-      ],
-      success_message: "✓ All entries have either speakers or talks (never both)!"
-    )
-  end
-
-  desc "Validate speakers/talks presence in videos.yml files"
-  task speakers_or_talks: :environment do
-    exit 1 if validate_speakers_or_talks_files.any?
-  end
-
   def validate_venue_files
     validate_files(
       files: Dir.glob(Rails.root.join("data/**/venue.yml")),
@@ -155,10 +74,7 @@ namespace :validate do
   def validate_speakers_file
     validate_files(
       files: Dir.glob(Rails.root.join("data/speakers.yml")),
-      validators: [
-        Static::Validators::UniqueSpeakerFields,
-        Static::Validators::UniqueSpeakers
-      ],
+      validators: Static::Validators::Validator.speaker_validator_classes,
       success_message: "✓ data/speakers.yml passed validations!"
     )
   end
@@ -166,6 +82,18 @@ namespace :validate do
   desc "Validate data/speakers.yml"
   task speakers: :environment do
     exit 1 if validate_speakers_file.any?
+  end
+
+  def validate_video_files
+    validate_files(
+      files: Dir.glob(Rails.root.join("data/**/videos.yml")),
+      validators: Static::Validators::Validator.video_validator_classes,
+      success_message: "✓ All videos.yml files passed validations!"
+    )
+  end
+
+  desc "Validate videos.yml files" do
+    exit 1 if validate_video_files.any?
   end
 
   # Validates videos.yml
@@ -314,7 +242,7 @@ namespace :validate do
     exit 1 unless validate_speakerdeck_urls
   end
 
-  def validate_event_asset_dimensions
+  def validate_event_assets
     validate_files(
       files: Dir.glob(Rails.root.join("app/assets/images/events/**/*.webp")),
       validators: [
@@ -326,7 +254,7 @@ namespace :validate do
 
   desc "Warn when event assets do not match expected dimensions"
   task event_assets: :environment do
-    exit 1 unless validate_event_asset_dimensions.any?
+    exit 1 unless validate_event_assets.any?
   end
 
   desc "Validate all city-related data"
@@ -361,8 +289,8 @@ namespace :validate do
     puts Gum.style("Validating speakers.yml file", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_speakers_file.none?
 
-    puts Gum.style("Validating speakers in videos.yml exist in speakers.yml", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_speakers_in_videos.none?
+    puts Gum.style("Validating videos.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+    results << validate_video_files.none?
 
     puts Gum.style("Validating speakers.yml is in sync", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     speakers = Static::SpeakersFile.new
@@ -420,23 +348,8 @@ namespace :validate do
     puts Gum.style("Validating video city names", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_video_city_names
 
-    puts Gum.style("Validating talk dates", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_talk_date_files.none?
-
-    puts Gum.style("Validating talk published_at", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_talk_published_at_files.none?
-
-    puts Gum.style("Validating talk kind", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_talk_kind_files.none?
-
-    puts Gum.style("Validating short talk kind", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_talk_short_kind_files.none?
-
-    puts Gum.style("Validating speakers/talks presence", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_speakers_or_talks_files.none?
-
     puts Gum.style("Validating event asset dimensions", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_event_asset_dimensions.none?
+    results << validate_event_assets.none?
 
     puts
     if results.all?
