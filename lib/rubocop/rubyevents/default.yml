@@ -1,0 +1,33 @@
+AllCops:
+  Include:
+    - "data/**/*.yml"
+  Exclude: []
+
+Lint:
+  Exclude:
+    - "data/**/*.yml"
+
+Style:
+  Exclude:
+    - "data/**/*.yml"
+
+Layout:
+  Exclude:
+    - "data/**/*.yml"
+
+Metrics:
+  Exclude:
+    - "data/**/*.yml"
+
+Naming:
+  Exclude:
+    - "data/**/*.yml"
+
+Security:
+  Exclude:
+    - "data/**/*.yml"
+
+RubyEvents/Validations:
+  Enabled: true
+  Include:
+    - "data/**/*.yml"
