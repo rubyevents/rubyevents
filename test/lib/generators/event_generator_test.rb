@@ -147,13 +147,12 @@ class EventGeneratorTest < Rails::Generators::TestCase
     cleanup_event_directory("2025")
   end
 
-  def validate_event_schema(file_path)
-    schema_validator = Static::Validators::Schema.new(file_path: file_path)
-    assert_empty schema_validator.errors, "Event YAML does not conform to schema: #{schema_validator.errors.map { |e| e.to_h["message"] }.join(", ")}"
-    dates_validator = Static::Validators::EventDates.new(file_path: file_path)
-    assert_empty dates_validator.errors, "Event YAML is missing required start_date or end_date: #{dates_validator.errors.map { |e| e.to_h["message"] }.join(", ")}"
+  def validate_event_schema(path)
+    Static::Validators::Validator.event_validator_classes.each do |validator|
+      errors = validator.new(file_path: path).validate
+      assert_empty errors, "#{validator} failed: #{errors.map { |error| error.to_h["message"] }.join(", ")}"
+    end
   end
-
   def cleanup_event_directory(event_slug)
     FileUtils.rm_rf(File.join(destination_root, "data/rubyconf", event_slug))
   end

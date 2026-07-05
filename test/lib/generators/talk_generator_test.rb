@@ -189,7 +189,7 @@ class TalkGeneratorTest < Rails::Generators::TestCase
   end
 
   def validate_talk_file(path)
-    [Static::Validators::SchemaArray, Static::Validators::TalkKind].each do |validator|
+    Static::Validators::Validator.video_validator_classes.each do |validator|
       errors = validator.new(file_path: path).validate
       assert_empty errors, "#{validator} failed: #{errors.map { |error| error.to_h["message"] }.join(", ")}"
     end
