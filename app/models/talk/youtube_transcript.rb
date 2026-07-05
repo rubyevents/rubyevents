@@ -1,5 +1,7 @@
 class Talk::YouTubeTranscript < ActiveRecord::AssociatedObject
-  performs :fetch_and_store!, retries: 3
+  performs :fetch_and_store!, retries: 3 do
+    limits_concurrency to: 1, key: "youtube_transcript"
+  end
 
   def available?
     talk.youtube? && talk.video_id.present?
@@ -14,7 +16,11 @@ class Talk::YouTubeTranscript < ActiveRecord::AssociatedObject
   def fetch_and_store!
     return unless available?
 
-    preferred_languages.each { |language| fetch_and_store_language!(language) }
+    YouTube::Transcript.tracks(talk.video_id, languages: preferred_languages).each do |track|
+      store_track(track)
+    end
+
+    talk.update_column(:transcript_checked_at, Time.current)
   end
 
   private
@@ -23,33 +29,33 @@ class Talk::YouTubeTranscript < ActiveRecord::AssociatedObject
     [talk.language, "en"].compact.uniq
   end
 
-  def fetch_and_store_language!(language)
-    youtube_transcript = YouTube::Transcript.get(talk.video_id, languages: [language])
-    return unless youtube_transcript.present?
-
-    raw = Talk::Transcript::CueList.from_youtube(youtube_transcript)
-    generated = youtube_transcript.is_generated
+  def store_track(track)
+    raw = Talk::Transcript::CueList.from_youtube(track)
     segments = talk.child_talks.where(video_provider: "parent")
 
     if segments.any?
-      segments.each { |child| store_slice(child, language, raw, generated) }
+      segments.each { |child| store_slice(child, track, raw) }
     else
-      store(talk, language, raw, generated)
+      store(talk, track, raw)
     end
   end
 
-  def store_slice(child, language, raw, generated)
+  def store_slice(child, track, raw)
     return unless child.start_seconds && child.end_seconds
 
     slice = raw.slice(child.start_seconds, child.end_seconds).presence
     return unless slice
 
-    store(child, language, slice, generated)
+    store(child, track, slice)
   end
 
-  def store(talk, language, raw, generated)
-    transcript = talk.talk_transcripts.find_or_initialize_by(language: language)
+  def store(talk, track, raw)
+    transcript = talk.talk_transcripts.find_or_initialize_by(language: track.language_code)
 
-    transcript.update!(raw_transcript: raw, auto_generated: generated)
+    transcript.update!(
+      raw_transcript: raw,
+      auto_generated: track.is_generated,
+      translated: track.translated
+    )
   end
 end

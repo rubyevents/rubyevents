@@ -286,10 +286,10 @@
         </article>
       </div>
 
-      <% if talk.transcript.present? %>
+      <% if talk.raw_transcript.present? %>
         <input type="radio" name="talk_tabs" role="tab" class="tab" aria-label="Transcript">
         <div role="tabpanel" class="tab-content !rounded-s-xl rounded-xl bg-base-200/50 p-6 mt-6 overflow-x-auto max-w-full">
-          <% transcripts = talk.talk_transcripts.select { |transcript| transcript.transcript.present? }.sort_by { |transcript| [(transcript.language == talk.language) ? 0 : 1, transcript.language] } %>
+          <% transcripts = talk.talk_transcripts.select { |transcript| transcript.raw_transcript.present? }.sort_by { |transcript| [(transcript.language == talk.language) ? 0 : 1, transcript.language] } %>
           <% default_language = (transcripts.any? { |transcript| transcript.language == talk.language }) ? talk.language : transcripts.first.language %>
 
           <%= tag.div data: {controller: "transcript", action: "video-player:timeupdate@window->transcript#timeUpdate"} do %>
@@ -315,7 +315,7 @@
 
             <% transcripts.each do |talk_transcript| %>
               <%= tag.div hidden: talk_transcript.language != default_language, class: "relative overflow-y-auto max-h-[32rem] pr-1", data: {language: talk_transcript.language, transcript_target: "panel", transcript_scroll: ""} do %>
-                <%= render partial: "talks/transcript", locals: {transcript: talk_transcript.transcript} %>
+                <%= render partial: "talks/transcript", locals: {transcript: talk_transcript.raw_transcript} %>
               <% end %>
             <% end %>
           <% end %>

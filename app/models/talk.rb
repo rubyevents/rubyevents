@@ -30,6 +30,7 @@
 #  thumbnail_xl                  :string           default(""), not null
 #  thumbnail_xs                  :string           default(""), not null
 #  title                         :string           default(""), not null, indexed
+#  transcript_checked_at         :datetime
 #  video_availability_checked_at :datetime
 #  video_provider                :string           default("youtube"), not null, indexed => [date]
 #  video_unavailable_at          :datetime
@@ -123,6 +124,7 @@ class Talk < ApplicationRecord
   UNPUBLISHED_PROVIDERS = ["not_recorded", "scheduled", "not_published"]
   SUPPLEMENTARY_KINDS = ["trailer", "recap", "aftermovie"]
   NON_RECOMMENDABLE_KINDS = SUPPLEMENTARY_KINDS + ["intro", "outro", "trailer", "recap", "aftermovie"]
+  TRANSCRIPT_RECHECK_AFTER = 3.months
 
   KIND_LABELS = {
     "keynote" => "Keynote",
@@ -218,6 +220,7 @@ class Talk < ApplicationRecord
       ))
       .distinct
   }
+
   scope :with_raw_transcript, -> {
     joins(:talk_transcripts)
       .where(%(
@@ -226,6 +229,7 @@ class Talk < ApplicationRecord
       ))
       .distinct
   }
+
   scope :without_enhanced_transcript,
     -> {
       joins(:talk_transcripts)
@@ -236,6 +240,7 @@ class Talk < ApplicationRecord
         ))
         .distinct
     }
+
   scope :with_enhanced_transcript, -> {
     joins(:talk_transcripts)
       .where(%(
@@ -244,6 +249,14 @@ class Talk < ApplicationRecord
       ))
       .distinct
   }
+
+  scope :pending_transcript, -> {
+    youtube
+      .left_joins(:talk_transcripts)
+      .where(talk_transcripts: {id: nil})
+      .where("transcript_checked_at IS NULL OR transcript_checked_at < ?", TRANSCRIPT_RECHECK_AFTER.ago)
+  }
+
   scope :with_summary, -> { where("summary IS NOT NULL AND summary != ''") }
   scope :without_summary, -> { where("summary IS NULL OR summary = ''") }
   scope :with_duration, -> { where.not(duration_in_seconds: nil) }

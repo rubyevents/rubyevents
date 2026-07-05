@@ -57,7 +57,14 @@ module TalksHelper
 
   def transcript_language_label(talk_transcript)
     name = Language.find(talk_transcript.language)&.english_name || talk_transcript.language.upcase
-    talk_transcript.auto_generated ? "#{name} (auto-generated)" : name
+
+    if talk_transcript.translated
+      "#{name} (auto-translated)"
+    elsif talk_transcript.auto_generated
+      "#{name} (auto-generated)"
+    else
+      name
+    end
   end
 
   def transcript_shows_hours?(cue_list)
