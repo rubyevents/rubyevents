@@ -21,6 +21,7 @@ class SeriesSchema < RubyLLM::Schema
   string :website, description: "Official website URL", required: false
   string :original_website, description: "Original/archived website URL", required: false
   string :twitter, description: "Twitter/X handle (without @)", required: false
+  string :facebook, description: "Facebook Page URL", required: false
   string :mastodon, description: "Full Mastodon profile URL", required: false
   string :bsky, description: "Bluesky handle", required: false
   string :github, description: "GitHub organization or repository", required: false

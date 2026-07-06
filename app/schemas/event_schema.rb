@@ -37,6 +37,7 @@ class EventSchema < RubyLLM::Schema
   string :website, description: "Official event website URL", required: false
   string :original_website, description: "Original/archived website URL", required: false
   string :twitter, description: "Twitter/X handle (without @)", required: false
+  string :facebook, description: "Facebook Page URL", required: false
   string :mastodon, description: "Full Mastodon profile URL", required: false
   string :github, description: "GitHub organization or repository URL", required: false
   string :meetup, description: "Meetup.com group URL", required: false
