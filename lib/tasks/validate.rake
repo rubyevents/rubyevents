@@ -257,6 +257,21 @@ namespace :validate do
     exit 1 unless validate_event_assets.any?
   end
 
+  def validate_thumbnails
+    validate_files(
+      files: Dir.glob(Rails.root.join("app/assets/images/thumbnails/*.webp")),
+      validators: [
+        Static::Validators::RedundantThumbnails
+      ],
+      success_message: "✓ No redundant thumbnails found!"
+    )
+  end
+
+  desc "Validate that thumbnails are not redundant (no orphaned thumbnail files)"
+  task thumbnails: :environment do
+    exit 1 if validate_thumbnails.any?
+  end
+
   desc "Validate all city-related data"
   task cities: [:event_city_names, :video_city_names]
 
@@ -350,6 +365,9 @@ namespace :validate do
 
     puts Gum.style("Validating event asset dimensions", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
     results << validate_event_assets.none?
+
+    puts Gum.style("Validating redundant thumbnails", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+    results << validate_thumbnails.none?
 
     puts
     if results.all?
