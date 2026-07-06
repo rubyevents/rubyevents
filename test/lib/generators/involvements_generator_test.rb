@@ -19,7 +19,7 @@ class InvolvementsGeneratorTest < Rails::Generators::TestCase
       end
 
       assert_file file_path do |content|
-        assert_match(/Organizers/, content)
+        assert_match(/Organizer/, content)
         assert_match(/- Jim Remsik/, content)
         assert_match(/- Co-organizer/, content)
       end
@@ -37,7 +37,7 @@ class InvolvementsGeneratorTest < Rails::Generators::TestCase
         ]
       end
       assert_file file_path do |content|
-        assert_match(/Organizers/, content)
+        assert_match(/Organizer/, content)
         assert_match(/- Flagrant/, content)
         assert_match(/- Another Org/, content)
       end
@@ -57,9 +57,65 @@ class InvolvementsGeneratorTest < Rails::Generators::TestCase
         ]
       end
       assert_file file_path do |content|
-        assert_match(/Organizers/, content)
+        assert_match(/Organizer/, content)
         assert_match(/- Jim Remsik/, content)
         assert_match(/- Flagrant/, content)
+      end
+    end
+  end
+
+  test "generator updates existing involvements file" do
+    file_path = File.join(destination_root, "data/xoruby/2027/involvements.yml")
+    eliminate_validated_file(file_path:) do
+      # First run to create the file
+      run_generator [
+        "--event-series", "xoruby",
+        "--event", "2027",
+        "--name", "Organizer",
+        "--users", "Jim Remsik"
+      ]
+
+      # Second run to update the file with new users
+      assert_nothing_raised do
+        run_generator [
+          "--event-series", "xoruby",
+          "--event", "2027",
+          "--name", "Organizer",
+          "--organisations", "Flagrant"
+        ]
+      end
+
+      assert_file file_path do |content|
+        assert_match(/Organizer/, content)
+        assert_match(/- Flagrant/, content)
+        refute_match(/- Jim Remsik/, content) # Ensure the old user is removed
+      end
+    end
+  end
+
+  test "generator creates new involvement entry if name is different" do
+    file_path = File.join(destination_root, "data/xoruby/2028/involvements.yml")
+    eliminate_validated_file(file_path:) do
+      # First run to create the file with one involvement
+      run_generator [
+        "--event-series", "xoruby",
+        "--event", "2028",
+        "--name", "Organizer",
+        "--users", "Jim Remsik"
+      ]
+
+      run_generator [
+        "--event-series", "xoruby",
+        "--event", "2028",
+        "--name", "Volunteer",
+        "--users", "Alice Smith"
+      ]
+
+      assert_file file_path do |content|
+        assert_match(/Organizer/, content)
+        assert_match(/- Jim Remsik/, content)
+        assert_match(/Volunteer/, content)
+        assert_match(/- Alice Smith/, content)
       end
     end
   end
