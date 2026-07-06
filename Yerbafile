@@ -84,12 +84,20 @@ rules:
           path: "[]"
 
       - quote_style:
+          path: "[].name"
+          value_style: double
+
+      - quote_style:
           path: "[].users"
           value_style: plain
 
       - quote_style:
           path: "[].organisations"
           value_style: plain
+
+      - blank_lines:
+          path: ""
+          count: 1
 
   - files: "data/topics.yml"
     pipeline: []

@@ -6,18 +6,60 @@ class InvolvementsGeneratorTest < Rails::Generators::TestCase
   destination Rails.root.join("tmp/generators/involvements")
   setup :prepare_destination
 
-  test "generator with minimum arguments" do
+  test "generator with users argument" do
     file_path = File.join(destination_root, "data/xoruby/xoruby-salt-lake-city-2026/involvements.yml")
 
     eliminate_validated_file(file_path:) do
       assert_nothing_raised do
         run_generator [
           "--event", "xoruby-salt-lake-city-2026",
-          "--name", "Organizers"
+          "--name", "Organizer",
+          "--users", "Jim Remsik", "Co-organizer"
         ]
       end
 
-      assert_file "data/xoruby/xoruby-salt-lake-city-2026/involvements.yml" do |content|
+      assert_file file_path do |content|
+        assert_match(/Organizers/, content)
+        assert_match(/- Jim Remsik/, content)
+        assert_match(/- Co-organizer/, content)
+      end
+    end
+  end
+
+  test "generator with organizers argument" do
+    file_path = File.join(destination_root, "data/xoruby/xoruby-austin-2025/involvements.yml")
+    eliminate_validated_file(file_path:) do
+      assert_nothing_raised do
+        run_generator [
+          "--event", "xoruby-austin-2025",
+          "--name", "Organizer",
+          "--organisations", "Flagrant", "Another Org"
+        ]
+      end
+      assert_file file_path do |content|
+        assert_match(/Organizers/, content)
+        assert_match(/- Flagrant/, content)
+        assert_match(/- Another Org/, content)
+      end
+    end
+  end
+
+  test "generator with both arguments" do
+    file_path = File.join(destination_root, "data/xoruby/2026/involvements.yml")
+    eliminate_validated_file(file_path:) do
+      assert_nothing_raised do
+        run_generator [
+          "--event-series", "xoruby",
+          "--event", "2026",
+          "--name", "Organizer",
+          "--users", "Jim Remsik",
+          "--organisations", "Flagrant"
+        ]
+      end
+      assert_file file_path do |content|
+        assert_match(/Organizers/, content)
+        assert_match(/- Jim Remsik/, content)
+        assert_match(/- Flagrant/, content)
       end
     end
   end

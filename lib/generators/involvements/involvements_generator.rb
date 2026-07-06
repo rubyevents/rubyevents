@@ -14,6 +14,14 @@ class InvolvementsGenerator < Generators::EventBase
     @involvements_file_path ||= File.join(event_directory, "involvements.yml")
   end
 
+  def involvement_attributes
+    @involvement ||= {
+      "name" => options[:name].singularize,
+      "users" => options[:users],
+      "organisations" => options[:organisations]
+    }.compact
+  end
+
   def ensure_file_exists
     template "header.yml.tt", involvements_file_path unless File.exist?(involvements_file_path)
   end
@@ -22,13 +30,18 @@ class InvolvementsGenerator < Generators::EventBase
     @document ||= Yerba.parse_file(involvements_file_path)
   end
 
+  def delete_existing_involvement_entry
+    yerba_document.root.each do |entry|
+      if entry["name"].value == involvement_attributes["name"]
+        entry.delete
+        say "Existing involvement entry '#{involvement_attributes["name"]}' found, updating...", :yellow
+      end
+    end
+  end
+
   def add_involvement_entry
-    involvement_entry = {
-      "name" => options[:name]
-    }
-    involvement_entry["users"] = options[:users] if options[:users]
-    involvement_entry["organisations"] = options[:organisations] if options[:organisations]
-    yerba_document << involvement_entry
-    yerba_document.save!
+    yerba_document << involvement_attributes
+    yerba_document.save!(apply: true)
+    say "Added involvement entry '#{involvement_attributes["name"]}' to #{involvements_file_path}", :green
   end
 end
