@@ -47,8 +47,7 @@ module Static
           errors << Static::Validators::Error.new(
             "Same name duplicate: #{name} (#{count} occurrences)",
             file_path: @file_path,
-            line: location&.start_line || 1,
-            end_line: location&.end_line
+            location: location
           )
         end
 
@@ -65,8 +64,7 @@ module Static
           errors << Static::Validators::Error.new(
             "Reversed name duplicate: #{pair[0]} ↔ #{pair[1]}",
             file_path: @file_path,
-            line: location&.start_line || 1,
-            end_line: location&.end_line
+            location: location
           )
         end
 

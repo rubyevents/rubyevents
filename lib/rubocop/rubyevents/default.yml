@@ -1,33 +1,41 @@
 AllCops:
   Include:
     - "data/**/*.yml"
+    - "data/**/*.yaml"
   Exclude: []
 
 Lint:
   Exclude:
-    - "data/**/*.yml"
+    - "**/*.yml"
+    - "**/*.yaml"
 
 Style:
   Exclude:
-    - "data/**/*.yml"
+    - "**/*.yml"
+    - "**/*.yaml"
 
 Layout:
   Exclude:
-    - "data/**/*.yml"
+    - "**/*.yml"
+    - "**/*.yaml"
 
 Metrics:
   Exclude:
-    - "data/**/*.yml"
+    - "**/*.yml"
+    - "**/*.yaml"
 
 Naming:
   Exclude:
-    - "data/**/*.yml"
+    - "**/*.yml"
+    - "**/*.yaml"
 
 Security:
   Exclude:
-    - "data/**/*.yml"
+    - "**/*.yml"
+    - "**/*.yaml"
 
 RubyEvents/Validations:
   Enabled: true
   Include:
     - "data/**/*.yml"
+    - "data/**/*.yaml"

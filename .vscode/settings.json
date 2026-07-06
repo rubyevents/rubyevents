@@ -49,5 +49,7 @@
     "lib/schemas/venue_schema.json": "data/**/venue.yml",
     "lib/schemas/videos_schema.json": "**/videos.yml",
   },
-  "yaml.format.enable": false
+  "yaml.format.enable": false,
+  "standardRuby.mode": "enableUnconditionally",
+  "standardRuby.commandPath": "mise exec -- bundle exec standardrb"
 }

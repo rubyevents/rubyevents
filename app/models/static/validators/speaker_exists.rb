@@ -24,10 +24,11 @@ module Static
       end
 
       def self.errors
-        @errors ||= Static::SpeakersFile.new.missing_speaker_references.map do |scalar|
+        Static::SpeakersFile.new.missing_speaker_references.map do |scalar|
           Static::Validators::Error.new(
             %(Speaker "#{scalar.value}" not found in data/speakers.yml),
             file_path: scalar.file_path || "",
+            location: scalar.location,
             line: scalar.line || 1
           )
         end

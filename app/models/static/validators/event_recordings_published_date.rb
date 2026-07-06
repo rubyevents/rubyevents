@@ -97,8 +97,7 @@ module Static
           Static::Validators::Error.new(
             "recordings_published_date (#{@event_document["recordings_published_date"]}) must not be set for meetups",
             file_path: @file_path,
-            line: location&.start_line || 1,
-            end_line: location&.end_line
+            location: location
           )
         ]
       end
@@ -116,8 +115,7 @@ module Static
           Static::Validators::Error.new(
             "recordings_published_date (#{@event_document["recordings_published_date"]}) must not be set for an event that has not started yet (start_date #{@event_document["start_date"]} is in the future)",
             file_path: @file_path,
-            line: location&.start_line || 1,
-            end_line: location&.end_line
+            location: location
           )
         ]
       end
@@ -139,8 +137,7 @@ module Static
           Static::Validators::Error.new(
             "recordings_published_date (#{@event_document["recordings_published_date"]}) must not be set unless the majority of talks are published (#{watchable_count}/#{resolvable_count} resolvable talks published)",
             file_path: @file_path,
-            line: location&.start_line || 1,
-            end_line: location&.end_line
+            location: location
           )
         ]
       end
@@ -159,8 +156,7 @@ module Static
           errors << Static::Validators::Error.new(
             "recordings_published_date (#{@event_document["recordings_published_date"]}) must not be before start_date (#{@event_document["start_date"]})",
             file_path: @file_path,
-            line: location&.start_line || 1,
-            end_line: location&.end_line
+            location: location
           )
         end
 
@@ -172,8 +168,7 @@ module Static
           errors << Static::Validators::Error.new(
             "recordings_published_date (#{@event_document["recordings_published_date"]}) must not be before end_date (#{@event_document["end_date"]})",
             file_path: @file_path,
-            line: location&.start_line || 1,
-            end_line: location&.end_line
+            location: location
           )
         end
 
@@ -197,8 +192,7 @@ module Static
             Static::Validators::Error.new(
               "recordings_published_date (#{@event_document["recordings_published_date"]}) must not be before the P#{PERCENTILE} of the video published_at dates (#{reference_date})",
               file_path: @file_path,
-              line: location&.start_line || 1,
-              end_line: location&.end_line
+              location: location
             )
           ]
         else

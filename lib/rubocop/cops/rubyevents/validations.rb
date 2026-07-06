@@ -29,6 +29,10 @@ module RuboCop
         private
 
         def investigate_rubyevents
+          return unless data_yaml_file?
+
+          self.class.load_rubyevents_environment!
+
           file_path = processed_source.file_path
 
           ::Static::Validators::Validator.all_validator_classes.each do |validator_class|
@@ -38,16 +42,35 @@ module RuboCop
           end
         end
 
-        def build_offense(offense)
-          range = build_range(offense)
-          add_offense(range, message: offense.message, severity: :error)
+        def data_yaml_file?
+          file_path = processed_source.file_path
+
+          return false unless file_path
+          return false unless file_path.end_with?(".yml", ".yaml")
+
+          file_path.include?("/data/") || file_path.start_with?("data/")
         end
 
-        def build_range(offense)
-          buffer = processed_source.buffer
+        def build_offense(error)
+          range = build_range(error)
+          add_offense(range, message: error.message, severity: :error)
+        end
 
-          begin_position = buffer.line_range(offense.line).begin_pos
-          end_position = buffer.line_range(offense.end_line).end_pos
+        def build_range(error)
+          buffer = processed_source.buffer
+          begin_line = buffer.line_range(error.line)
+
+          begin_position = if error.column
+            begin_line.begin_pos + error.column
+          else
+            begin_line.begin_pos + leading_whitespace_width(begin_line.source)
+          end
+
+          end_position = if error.end_column
+            buffer.line_range(error.end_line).begin_pos + error.end_column
+          else
+            buffer.line_range(error.end_line).end_pos
+          end
 
           Parser::Source::Range.new(buffer, begin_position, end_position)
         end

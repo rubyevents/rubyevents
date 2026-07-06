@@ -73,8 +73,7 @@ module Static
             errors << Static::Validators::Error.new(
               "published_at (#{node.value_at("published_at")}) must not be before the talk date (#{node.value_at("date")})",
               file_path: @file_path,
-              line: location&.start_line || 1,
-              end_line: location&.end_line
+              location: location
             )
           end
         end
@@ -86,8 +85,7 @@ module Static
             "date (#{node.value_at("date")}) must be within the event dates (#{@range_start} to #{@end_date}). " \
             "If this is a pre-conference activity (e.g. workshops or a pre-party) held before the event, add a pre_date to the event.yml.",
             file_path: @file_path,
-            line: location&.start_line || 1,
-            end_line: location&.end_line
+            location: location
           )
         end
 
