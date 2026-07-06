@@ -100,6 +100,10 @@ rules:
           file: "lib/schemas/cfp_schema.json"
           path: "[]"
 
+      - quote_style:
+          path: "[].name"
+          value_style: double
+
       - blank_lines:
           path: ""
           count: 1
