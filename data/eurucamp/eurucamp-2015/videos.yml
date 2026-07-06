@@ -49,7 +49,25 @@
 
     This is a very exciting time to come aboard the Crystal train, especially coming from a Ruby background.
   speakers:
-    - Luis Ferreira
+    - Luís Ferreira
+
+- id: "leslie-hawthorn-eurucamp-2015"
+  title: "Will the Real Technical People Please Stand Up?"
+  raw_title: "eurucamp 2015 - Will the Real Technical People Please Stand Up? by Leslie Hawthorn"
+  event_name: "eurucamp 2015"
+  date: "2015-08-01"
+  published_at: "2015-08-13T23:59:59Z"
+  announced_at: "2014-11-17"
+  video_provider: "youtube"
+  video_id: "QZxcg1NiN2A"
+  description: |-
+    How often have you heard – or said – the phrase “$PERSON just isn’t technical”?
+    If you’re our speaker, you’ve heard it plenty of times over the past 15 years, and frequently applied to yourself and other colleagues who didn’t quite fit into well understood “technologist” categories.
+    But what does technical actually mean? What makes someone technical? What makes them not technical?
+    In this talk, the speaker will explore how “not technical” is dangerous phrase we use to ensure that we need never question our hidden biases about others and their aptitudes. She will demonstrate how this phrase not only encourages a lack of collaboration, but leads to stagnation in the growth of your orgnization by actively discouraging your peers from learning new skills.
+    She will conclude with concrete steps attendees can take to better understand the capabilities of everyone on their team – coders or not – so their projects, company or teams can be most successful.
+  speakers:
+    - Leslie Hawthorn
 
 - id: "christophe-philemotte-eurucamp-2015"
   title: "Deep Diving: How to Explore a New Code Base"
@@ -64,6 +82,20 @@
     As a developer, diving in a new code base is not uncommon: you’ve just been hired, you change of project, you want to help an open source project, the open source library your project depends on is buggy, etc. It’s like entering in a underwater cave, you don’t know the treasures or the monsters you’ll find there, neither if the path is treacherous or if it’s a true labyrinth where you’ll get lost. You can prepare yourself, you can plan your visit, you can equip yourself, you can survive and find the gem you’re looking for…
   speakers:
     - Christophe Philemotte
+
+- id: "meike-wiemann-eurucamp-2015"
+  title: "Moving the Web into the Physical World with Beacons"
+  raw_title: "eurucamp 2015 - Moving the Web into the Physical World with Beacons by Meike Wiemann"
+  event_name: "eurucamp 2015"
+  date: "2015-08-01"
+  published_at: "2015-08-13T23:56:09Z"
+  announced_at: "2014-11-17"
+  video_provider: "youtube"
+  video_id: "WZJBSmFZ-LY"
+  description: |-
+    Have you ever wondered what those beacons are? Beacons come in a lot of forms. I lately got my hands on some of the so-called physical web beacons. Physical web beacons are little devices that broadcast a URL via Bluetooth within a certain radius. You might wonder, so what? Well, the power of these beacons is that people, places and objects can become part of the Web and we can start designing for context-sensitive experiences. To give you an idea about the range of possibilities that become available I want to show some of my very simple prototypes that I built with Ruby, Rails and JavaScript. However, just being able to build cool stuff does not necessarily mean that it will be useful for someone. So, I evaluated how users experience this technology and I want to present the results to you as well.
+  speakers:
+    - Meike Wiemann
 
 - id: "davy-stevenson-eurucamp-2015"
   title: "Orders of Magnitude"
@@ -137,38 +169,6 @@
   speakers:
     - Daniel Schweighöfer
 
-- id: "meike-wiemann-eurucamp-2015"
-  title: "Moving the Web into the Physical World with Beacons"
-  raw_title: "eurucamp 2015 - Moving the Web into the Physical World with Beacons by Meike Wiemann"
-  event_name: "eurucamp 2015"
-  date: "2015-08-01"
-  published_at: "2015-08-13T23:56:09Z"
-  announced_at: "2014-11-17"
-  video_provider: "youtube"
-  video_id: "WZJBSmFZ-LY"
-  description: |-
-    Have you ever wondered what those beacons are? Beacons come in a lot of forms. I lately got my hands on some of the so-called physical web beacons. Physical web beacons are little devices that broadcast a URL via Bluetooth within a certain radius. You might wonder, so what? Well, the power of these beacons is that people, places and objects can become part of the Web and we can start designing for context-sensitive experiences. To give you an idea about the range of possibilities that become available I want to show some of my very simple prototypes that I built with Ruby, Rails and JavaScript. However, just being able to build cool stuff does not necessarily mean that it will be useful for someone. So, I evaluated how users experience this technology and I want to present the results to you as well.
-  speakers:
-    - Meike Wiemann
-
-- id: "leslie-hawthorn-eurucamp-2015"
-  title: "Will the Real Technical People Please Stand Up?"
-  raw_title: "eurucamp 2015 - Will the Real Technical People Please Stand Up? by Leslie Hawthorn"
-  event_name: "eurucamp 2015"
-  date: "2015-08-01"
-  published_at: "2015-08-13T23:59:59Z"
-  announced_at: "2014-11-17"
-  video_provider: "youtube"
-  video_id: "QZxcg1NiN2A"
-  description: |-
-    How often have you heard – or said – the phrase “$PERSON just isn’t technical”?
-    If you’re our speaker, you’ve heard it plenty of times over the past 15 years, and frequently applied to yourself and other colleagues who didn’t quite fit into well understood “technologist” categories.
-    But what does technical actually mean? What makes someone technical? What makes them not technical?
-    In this talk, the speaker will explore how “not technical” is dangerous phrase we use to ensure that we need never question our hidden biases about others and their aptitudes. She will demonstrate how this phrase not only encourages a lack of collaboration, but leads to stagnation in the growth of your orgnization by actively discouraging your peers from learning new skills.
-    She will conclude with concrete steps attendees can take to better understand the capabilities of everyone on their team – coders or not – so their projects, company or teams can be most successful.
-  speakers:
-    - Leslie Hawthorn
-
 - id: "joseph-wilk-eurucamp-2015"
   title: "Programming as a Performance"
   raw_title: "eurucamp 2015 - Programming as a Performance by Joseph Wilk"
@@ -240,7 +240,7 @@
   description: |-
     Every time we solve an everyday programming problem we learn from its solution. When we come across a similar problem later on, we think “aha! I’ve seen this before! I know how to solve it!”. Many of us are also familiar with design patterns, which are abstractions that solve entire classes of problems. There also exists, however, a different kind of pattern. But, as opposed to help you structure a whole compiler or business application, these patterns love hiding in small things like methods or functions, or even binary operations. They whisper to you when you concatenate two strings. They leave a trail of breadcrumbs every time you map over a list. These abstractions have superpowers, too. They can separate the what from the when, or even from the how. They can add together things other than numbers. They can control time, or take over the control flow of your program entirely. In this talk you will discover the amazing power of small abstractions. After that you’ll start hearing their whispers and seeing their breadcrumb trails. And only then you will be ready to let them unfold their full potential in your programs.
   speakers:
-    - "Josep M. \"Tsux\" Bach"
+    - "Josep M. \"Txus\" Bach"
 
 - id: "lightning-talks-eurucamp-2015"
   title: "Lightning Talks"
