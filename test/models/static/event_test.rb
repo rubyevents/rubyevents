@@ -63,7 +63,7 @@ class Static::EventTest < ActiveSupport::TestCase
     involvements = event_record.reload.event_involvements.pluck(:id)
     event.import_involvements!(event_record)
     assert_equal involvements, event_record.reload.event_involvements.pluck(:id)
-    assert_equal 6, event_record.event_involvements.count
+    assert_equal 7, event_record.event_involvements.count
   end
 
   test "today? returns false if event is in the past" do
