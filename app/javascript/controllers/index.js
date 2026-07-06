@@ -73,6 +73,9 @@ application.register("scroll", ScrollController)
 import ScrollIntoViewController from "./scroll_into_view_controller"
 application.register("scroll-into-view", ScrollIntoViewController)
 
+import SlidesEmbedController from "./slides_embed_controller"
+application.register("slides-embed", SlidesEmbedController)
+
 import SplideController from "./splide_controller"
 application.register("splide", SplideController)
 
