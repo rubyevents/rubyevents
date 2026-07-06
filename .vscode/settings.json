@@ -47,9 +47,10 @@
     "lib/schemas/schedule_schema.json": "data/**/schedule.yml",
     "lib/schemas/tiers_sponsors_schema.json": "data/**/sponsors.yml",
     "lib/schemas/venue_schema.json": "data/**/venue.yml",
-    "lib/schemas/videos_schema.json": "**/videos.yml",
+    "lib/schemas/videos_schema.json": "data/**/videos.yml",
   },
   "yaml.format.enable": false,
   "standardRuby.mode": "enableUnconditionally",
-  "standardRuby.commandPath": "mise exec -- bundle exec standardrb"
+  "standardRuby.commandPath": "mise exec -- bundle exec standardrb",
+  "standardRuby.additionalLanguages": ["yaml"]
 }

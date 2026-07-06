@@ -8,15 +8,6 @@ module RuboCop
     module RubyEvents
       # Runs the RubyEvents Static::Validations on data/**/*.yml files and
       # reports errors as RuboCop findings.
-      #
-      # This cop acts as a bridge, running all enabled RubyEvents rules in a single
-      # pass and mapping the results into RuboCop's offense system.
-      #
-      # @example
-      #   # .rubocop.yml
-      #   RubyEvents/Validations:
-      #     Enabled: true
-      #
       class Validations < Base
         def on_new_investigation
           investigate_rubyevents
@@ -30,8 +21,6 @@ module RuboCop
 
         def investigate_rubyevents
           return unless data_yaml_file?
-
-          self.class.load_rubyevents_environment!
 
           file_path = processed_source.file_path
 
@@ -52,8 +41,11 @@ module RuboCop
         end
 
         def build_offense(error)
-          range = build_range(error)
-          add_offense(range, message: error.message, severity: :error)
+          add_offense(
+            build_range(error),
+            message: error.message,
+            severity: :error
+          )
         end
 
         def build_range(error)
