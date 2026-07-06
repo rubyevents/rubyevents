@@ -8,27 +8,31 @@ class SponsorsGeneratorTest < Rails::Generators::TestCase
   setup :prepare_destination
 
   test "generator creates an empty sponsors file with specified tiers" do
-    file_path = File.join(destination_root, "data/tropicalrb/tropical-on-rails-2026/sponsors.yml")
+    file_path = File.join(destination_root, "data/tropicalrb/tropical-on-rails-2023/sponsors.yml")
     eliminate_validated_file(file_path:) do
       assert_nothing_raised do
-        run_generator ["--tiers", "Platinum,Gold,Silver",
-          "--event", "tropical-on-rails-2026"]
+        run_generator [
+          "--tiers", "Platinum,Gold,Silver",
+          "--event-series", "tropicalrb",
+          "--event", "tropical-on-rails-2023"
+        ]
       end
 
       assert_file file_path do |content|
-        assert_match(/name: "Platinum"/, content, "Platinum Tier missing")
-        assert_match(/name: "Gold"/, content, "Gold Tier missing")
-        assert_match(/name: "Silver"/, content, "Silver Tier missing")
+        assert_match(/name: "Platinum"/, content)
+        assert_match(/name: "Gold"/, content)
+        assert_match(/name: "Silver"/, content)
       end
     end
   end
 
   test "generator creates a sponsors.yml and adds a first sponsor" do
-    file_path = File.join(destination_root, "data/tropicalrb/tropical-on-rails-2026/sponsors.yml")
+    file_path = File.join(destination_root, "data/tropicalrb/tropical-on-rails-2024/sponsors.yml")
     eliminate_validated_file(file_path:) do
       assert_nothing_raised do
         run_generator ["--tiers", "Platinum,Gold,Silver",
-          "--event", "tropical-on-rails-2026",
+          "--event-series", "tropicalrb",
+          "--event", "tropical-on-rails-2024",
           "--name", "Typesense",
           "--website", "https://typesense.org",
           "--logo-url", "https://typesense.org/logo.png",
@@ -47,10 +51,10 @@ class SponsorsGeneratorTest < Rails::Generators::TestCase
   end
 
   test "generator adds a new sponsor to a tier with existing sponsors" do
-    file_path = File.join(destination_root, "data/tropicalrb/tropical-on-rails-2026/sponsors.yml")
+    file_path = File.join(destination_root, "data/tropicalrb/tropical-on-rails-2025/sponsors.yml")
     eliminate_validated_file(file_path:) do
       run_generator ["--tiers", "Platinum,Gold,Silver",
-        "--event", "tropical-on-rails-2026",
+        "--event", "tropical-on-rails-2025",
         "--name", "Typesense",
         "--website", "https://typesense.org",
         "--logo-url", "https://typesense.org/logo.png",
@@ -62,7 +66,7 @@ class SponsorsGeneratorTest < Rails::Generators::TestCase
         assert_match(/logo_url: https:\/\/typesense.org\/logo.png/, content)
       end
 
-      run_generator ["--event", "tropical-on-rails-2026",
+      run_generator ["--event", "tropical-on-rails-2025",
         "--name", "Braze",
         "--website", "https://braze.com",
         "--logo-url", "https://braze.com/logo.png",
@@ -99,7 +103,6 @@ class SponsorsGeneratorTest < Rails::Generators::TestCase
         assert_match(/logo_url: https:\/\/typesense.org\/logo.png/, content)
         assert_match(/badge: Wifi Sponsor/, content)
       end
-      # TODO - removing the last sponsor leaves an empty space instead of an empty array. Need to fix that.
     end
   end
 
