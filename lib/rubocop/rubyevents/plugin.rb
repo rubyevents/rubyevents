@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "lint_roller"
-require_relative "../cops/rubyevents_cops"
+require_relative "../cops/rubyevents/validations"
 
 module RuboCop
   module RubyEvents
@@ -11,9 +11,8 @@ module RuboCop
       def about
         LintRoller::About.new(
           name: "rubocop-rubyevents",
-          version: 1.0,
           homepage: "https://rubyevents.org",
-          description: "RuboCop integration for our yaml file validations"
+          description: "RuboCop integration for the RubyEvents YAML Validators"
         )
       end
 
