@@ -90,6 +90,13 @@
         <% if speaker_text %><%= speaker_text %> • <% end %><%= talk.event&.name %>
       </div>
     </div>
+
+    <% if (snippet = talk_transcript_snippet(talk)) %>
+      <div class="flex gap-1.5 mt-1.5 text-xs text-base-content/60">
+        <%= fa("file-lines", size: nil, class: "h-3.5 w-3.5 fill-base-content/40 shrink-0 mt-0.5") %>
+        <span class="line-clamp-2 [&_mark]:bg-info/20 [&_mark]:text-info [&_mark]:rounded [&_mark]:px-0.5 [&_mark]:font-medium">…<%= sanitize(snippet, tags: ["mark"]) %>…</span>
+      </div>
+    <% end %>
   <% end %>
 
   <div data-hover-preview-target="preview" class="hidden">

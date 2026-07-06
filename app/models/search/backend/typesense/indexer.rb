@@ -33,6 +33,7 @@ class Search::Backend::Typesense
         reindex_languages
         reindex_locations
         reindex_kinds
+        reindex_transcript_passages
       end
 
       def reindex_talks
@@ -69,6 +70,10 @@ class Search::Backend::Typesense
 
       def reindex_kinds
         KindIndexer.reindex_all
+      end
+
+      def reindex_transcript_passages
+        TranscriptPassageIndexer.reindex_all
       end
 
       private

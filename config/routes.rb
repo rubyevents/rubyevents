@@ -315,7 +315,10 @@ Rails.application.routes.draw do
     resources :locations, only: [:index]
     resources :languages, only: [:index]
     resources :kinds, only: [:index]
+    resources :transcripts, only: [:index]
   end
+
+  get "search/transcripts", to: "transcript_searches#index", as: :transcript_search
 
   resources :recommendations, only: [:index]
 

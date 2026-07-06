@@ -75,7 +75,7 @@
             </div>
 
             <div class="flex flex-col gap-1">
-              <div class="text-lg font-semibold">Play</div>
+              <div class="text-lg font-semibold" data-video-player-target="playLabel">Play</div>
               <% if talk.duration_in_seconds.present? %>
                 <div class="text-sm text-white/80"><%= seconds_to_formatted_duration(talk.duration_in_seconds) %></div>
               <% end %>

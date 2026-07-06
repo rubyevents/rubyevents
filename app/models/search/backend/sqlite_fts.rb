@@ -150,6 +150,10 @@ class Search::Backend::SQLiteFTS
       [[], 0]
     end
 
+    def search_transcript_passages(query, limit:, page: 1)
+      [[], 0, 0]
+    end
+
     def available?
       true
     end
