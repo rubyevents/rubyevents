@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "rubocop"
-require_relative "../../../../config/environment"
+require_relative "../../../../config/environment" # TODO: remove this
 
 module RuboCop
   module Cop
@@ -58,14 +58,8 @@ module RuboCop
 
         def build_range(error)
           buffer = processed_source.buffer
-          begin_line = buffer.line_range(error.line)
 
-          begin_position = if error.column
-            begin_line.begin_pos + error.column
-          else
-            begin_line.begin_pos + leading_whitespace_width(begin_line.source)
-          end
-
+          begin_position = buffer.line_range(error.line).begin_pos + (error.column || 0)
           end_position = if error.end_column
             buffer.line_range(error.end_line).begin_pos + error.end_column
           else
