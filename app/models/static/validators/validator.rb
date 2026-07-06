@@ -1,4 +1,12 @@
 class Static::Validators::Validator
+  def self.all_validator_classes
+    @all_validators ||= [
+      *event_validator_classes,
+      *speaker_validator_classes,
+      *video_validator_classes
+    ]
+  end
+
   def self.event_validator_classes
     @event_validators ||= [
       Static::Validators::Schema,

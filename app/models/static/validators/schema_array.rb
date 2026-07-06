@@ -43,8 +43,7 @@ module Static
             error = Static::Validators::Error.new(
               error["error"],
               file_path: @file_path,
-              line: location&.start_line || 1,
-              end_line: location&.end_line
+              location: location
             )
             errors << error
           end

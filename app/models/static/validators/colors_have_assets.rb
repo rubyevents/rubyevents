@@ -48,8 +48,7 @@ module Static
             Static::Validators::Error.new(
               "Color field configured but asset '#{asset}' not found in #{asset_dir} or #{default_asset_dir}",
               file_path: @file_path,
-              line: location&.start_line || 1,
-              end_line: location&.end_line
+              location: location
             )
           end.compact
       end
