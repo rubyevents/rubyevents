@@ -63,12 +63,13 @@
 - id: "simulating-the-world-with-ruby-madison-ruby-2012"
   title: "Simulating the World with Ruby"
   date: "2012-08-24"
-  video_provider: "not_recorded"
-  video_id: "simulating-the-world-with-ruby-madison-ruby-2012"
+  published_at: "2012-09-14T22:48:53Z"
+  video_provider: "youtube"
+  video_id: "T5Hur-a0_zc"
   description: |-
-    A talk about simulating the world with Ruby.
+    Ruby is good for more than just making web pages and APIs. Its expressiveness makes it a good candidate for creating real world simulations. Out of the box, Ruby has some nuances that might make you think otherwise. In this talk, we'll review why Ruby is a great choice for creating simulations, and discuss hurdles and solutions for problems that you will run into. Topics include concurrency, domain modeling, testing, and more exciting topics.
   speakers:
-    - TODO
+    - Bryan Liles
 
 - id: "anti-oppression-101-madison-ruby-2012"
   title: "Anti-Oppression 101"
@@ -83,132 +84,193 @@
 - id: "gonzo-madison-ruby-2012"
   title: "Gonzo - Exploration of Culture, Innovation and the Weird in Software"
   date: "2012-08-24"
-  video_provider: "not_recorded"
-  video_id: "gonzo-madison-ruby-2012"
+  published_at: "2015-07-30T21:14:39Z"
+  video_provider: "youtube"
+  video_id: "9VQFjZneIsU"
   description: |-
     An exploration of culture, innovation and the weird in software.
   speakers:
-    - TODO
+    - Leon Gersing
 
 - id: "how-to-contribute-to-open-source-madison-ruby-2012"
   title: "How to Contribute to Open Source: Extensibility from Simplicity"
   date: "2012-08-24"
-  video_provider: "not_recorded"
-  video_id: "how-to-contribute-to-open-source-madison-ruby-2012"
+  published_at: "2012-09-14T22:59:02Z"
+  video_provider: "youtube"
+  video_id: "WCseubgaRJc"
   description: |-
-    A talk on contributing to open source through extensibility from simplicity.
+    The bar for contributing to open source is much lower today due to technologies like git & github... _or is it_?
+
+    It is now downright simple for developers to be able to fork projects and send pull requests upstream. As such, the number of forked projects and pull requests have scaled up. But all that burden has been shifted back to the maintainers of the original project. They're left with the decision to accept the patches as-is, reject them, or rewrite them in a more generalized form.
+
+    In other words, the maintainers are faced with the decision of increasing maintenance complexity, increased animosity / drama, or somehow distilling the underlying reasoning behind the change and abstracting them so they're usable by everyone.
+
+    The latter is both the hardest to do and the most beneficial to all parties involved and much of that effort can be done before the pull request even goes upstream.
   speakers:
-    - TODO
+    - Ryan Davis
 
 - id: "behind-the-curtain-madison-ruby-2012"
   title: "Behind the Curtain: Applying lessons learned from years in the Theatre to crafting software applications"
   date: "2012-08-24"
-  video_provider: "not_recorded"
-  video_id: "behind-the-curtain-madison-ruby-2012"
+  published_at: "2015-07-30T20:53:16Z"
+  video_provider: "youtube"
+  video_id: "tk7CGpyAY68"
   description: |-
     Applying lessons learned from years in the theatre to crafting software applications.
   speakers:
-    - TODO
+    - Nell Shamrell-Harrington
 
 - id: "integrating-hadoop-batch-data-processing-madison-ruby-2012"
   title: "Integrating Hadoop Batch Data Processing into your App"
   date: "2012-08-24"
-  video_provider: "not_recorded"
-  video_id: "integrating-hadoop-batch-data-processing-madison-ruby-2012"
+  published_at: "2012-09-14T22:46:50Z"
+  video_provider: "youtube"
+  video_id: "feHTJqhw72g"
   description: |-
-    A talk on integrating Hadoop batch data processing into your application.
+    Some data is better generated in batch, for example: user session data, ad click through rates, sales conversions, and recommendations.
+
+    Unfortunately, to generate these useful pieces of information you have to process GB, or maybe even TB of log and database data files.
+
+    Enter Hadoop Map-Reduce, a linearly scalable way to process vast amounts of data with relatively trivial code.
+
+    Getting started with Hadoop can be a total time sync, to prevent this, I'll try my best to lead you in the right direction and go over the following points:
+
+    1) MapReduce and Hadoop 101
+    2) Getting Data into Hadoop
+    3) Running a MapReduce job in Ruby (!)
+    4) An overview of Ruby MR helper frameworks
+    5) Using SQL for ad-hoc data queries via Hive
+    6) Integrating these jobs into your ruby app framework (scheduling, starting jobs, getting the data out again)
+
+    Plus the bonus:
+    7) How to use this setup to automate A/B testing and totally blow your mind.
   speakers:
-    - TODO
+    - Matthew Rathbone
 
 ## Conference Day 2 - August 25, 2012
 
 - id: "revenge-of-method-missing-madison-ruby-2012"
   title: "The Revenge of method_missing()"
   date: "2012-08-25"
-  video_provider: "not_recorded"
-  video_id: "revenge-of-method-missing-madison-ruby-2012"
+  published_at: "2012-09-15T00:02:01Z"
+  video_provider: "youtube"
+  video_id: "pv-DvWQtXvo"
   description: |-
-    A talk about the power and pitfalls of Ruby's method_missing.
+    Convinced that nobody can bully method_missing() and get away with it, Nusco resolved to present a talk about it. When is method_missing() appropriate, and when should you pick an alternative metaprogramming magic spell instead? Is method_missing() really dangerous? What are the common method_missing() pitfalls, and how can you avoid them?
   speakers:
-    - TODO
+    - Paolo Perrotta
 
 - id: "sand-piles-and-software-madison-ruby-2012"
   title: "Sand Piles and Software"
   date: "2012-08-25"
-  video_provider: "not_recorded"
-  video_id: "sand-piles-and-software-madison-ruby-2012"
+  published_at: "2015-07-30T21:03:40Z"
+  video_provider: "youtube"
+  video_id: "uMnkv4l26_o"
   description: |-
-    A talk exploring the parallels between sand piles and software systems.
+    This talk applies the concepts of chaos theory to software development using the Bak–Tang–Wiesenfeld sand pile model as the vehicle for exploration. The sand pile model, which is used to show how a complex system is attracted to living on the edge of chaos, will be used as a both a powerful metaphor and analogy for building software. Software, it turns out, has its own natural attraction to living in its own edge of chaos. In this talk, we'll explore what this means and what to do about it.
+
+    The speaker's hypothesis is that by understanding how complex systems work we can gain insights to better understand and improve the act of building software. By looking through the lens of the sand pile model we'll explore the following:
+
+    * what chaos theory and the sand pile model can tell us about software development
+    * how the act of building software compares to complex systems from the perspective of chaos theory
+    * how software is naturally attracted to its own chaos
+    * the impacts on software living perpetually on the edge of chaos
+    * how existing software practices can be used to detract software away from chaos
+    * what this means not only for our software, but for our teams, and ourselves individually
+
+    This thought-provoking perspective will leave you with new ways to think about software. You'll walk away having learned about chaos theory, complex systems, and how they apply to software.
   speakers:
-    - TODO
+    - Zach Dennis
 
 - id: "async-everything-madison-ruby-2012"
   title: "Async Everything"
   date: "2012-08-25"
-  video_provider: "not_recorded"
-  video_id: "async-everything-madison-ruby-2012"
+  published_at: "2012-09-15T00:15:27Z"
+  video_provider: "youtube"
+  video_id: "IOscBuh5RJ0"
   description: |-
-    A talk on asynchronous programming patterns and techniques.
+    One of the best ways to make applications perform well is to develop them to handle things in parallel and asynchronously. From parallel processing to asynchronous IO, when you need an application to perform well you need to think asynchronously. This talk will cover various means of parallel processing and asynchronous communication available to Ruby applications such as threading, using multiple processors and non-blocking IO. It will also cover libraries built to support asynchronous execution such as Resque and EventMachine.
   speakers:
-    - TODO
+    - Anthony Eden
 
 - id: "enterprise-strikes-back-madison-ruby-2012"
   title: "The Enterprise Strikes Back: Using Rails to compete with startups"
   date: "2012-08-25"
-  video_provider: "not_recorded"
-  video_id: "enterprise-strikes-back-madison-ruby-2012"
+  published_at: "2015-07-30T21:06:29Z"
+  video_provider: "youtube"
+  video_id: "CdOyFCkHD0k"
   description: |-
     How enterprises can use Rails to compete with startups.
   speakers:
-    - TODO
+    - Jonathan Broad
 
 - id: "making-a-difference-madison-ruby-2012"
   title: "Making a difference, right off the bat!"
   date: "2012-08-25"
-  video_provider: "not_recorded"
-  video_id: "making-a-difference-madison-ruby-2012"
+  published_at: "2015-07-30T21:10:33Z"
+  video_provider: "youtube"
+  video_id: "55iZEdPLTPA"
   description: |-
-    A talk on making an impact in software development from the start.
+    You've landed a great opportunity to work with some of the smartest people in the industry. You can barely contain the enthusiasm to learn and contribute to the team. You may not have all the required technical skills on day 1, but you are confident that you will get there with the support from your team. It's exciting & stressful at the same time because you need to start contributing right away.
+
+    A lot of developers find themselves in these shoes, just as I did in not-too-distant past. This talk offers specific strategies and tactics developers of all skill levels can use to start making an immediate impact. These strategies have enabled me to contribute quickly on a new team and I want to share it with you so that they can help you on each new project or team you work with.
+
+    The talk will primarily focus on:
+
+    Techniques for quickly learning a new codebase
+    Finding ways to have a significant impact quickly
+
+    While this talk is from the perspective of someone new to the team, I feel that it will also help experienced developers better understand the mindset and needs of new team members necessary to help them onboard new developers quickly and effectively.
   speakers:
-    - TODO
+    - Ashish Dixit
 
 - id: "modular-reusable-frontend-code-madison-ruby-2012"
   title: "Modular & reusable front-end code with HTML5, Sass and CoffeeScript"
   date: "2012-08-25"
-  video_provider: "not_recorded"
-  video_id: "modular-reusable-frontend-code-madison-ruby-2012"
+  published_at: "2015-07-30T21:07:48Z"
+  video_provider: "youtube"
+  video_id: "2ITq5n0co6A"
   description: |-
-    Building modular and reusable front-end code with HTML5, Sass, and CoffeeScript.
+    A lot of Ruby developers use Rails for their everyday projects. Often they toy around with front-end themselves or outsource it, ending up tangled in a web of css-all-over-the-place.
+
+    Keeping your front-end code clean is hard. Before you know it you're suffering from CSS specificity issues and not-really-generic partials. Find out how to keep things tidy using the HTML5 document outline and modular Sass & CoffeeScript, for truly reusable code.
   speakers:
-    - TODO
+    - Roy Tomeij
 
 - id: "building-the-web-for-everyone-madison-ruby-2012"
   title: "Building the web for everyone"
   date: "2012-08-25"
-  video_provider: "not_recorded"
-  video_id: "building-the-web-for-everyone-madison-ruby-2012"
+  published_at: "2015-07-30T21:08:58Z"
+  video_provider: "youtube"
+  video_id: "zH4OJ1LH7XI"
   description: |-
     A talk on building accessible and inclusive web applications.
   speakers:
-    - TODO
+    - Greg Tarnoff
 
 - id: "teaching-rails-panel-madison-ruby-2012"
   title: "Teaching Rails Panel"
   kind: "panel"
   date: "2012-08-25"
-  video_provider: "not_recorded"
-  video_id: "teaching-rails-panel-madison-ruby-2012"
+  published_at: "2012-09-15T00:26:37Z"
+  video_provider: "youtube"
+  video_id: "Z0yVI1O4h9I"
   description: |-
     A panel discussion on teaching Rails.
   speakers:
-    - TODO
+    - Steven Bristol
+    - Stephen Anderson
+    - Chad Pytel
+    - Jeff Cohen
+    - Jeff Casimir
 
 - id: "your-user-the-animal-madison-ruby-2012"
   title: "Your User: The Animal"
   date: "2012-08-25"
-  video_provider: "not_recorded"
-  video_id: "your-user-the-animal-madison-ruby-2012"
+  published_at: "2015-07-30T21:18:48Z"
+  video_provider: "youtube"
+  video_id: "DQNPYJKtKgM"
   description: |-
     Understanding user behavior and psychology in software design.
   speakers:
-    - TODO
+    - Hampton Catlin
