@@ -10,7 +10,7 @@ Sponsor data is stored in YAML files within the conference/event directories. Ea
 
 Sponsors are stored in YAML files at:
 
-```
+```yaml
 data/{series-name}/{event-name}/sponsors.yml
 ```
 
