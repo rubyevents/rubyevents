@@ -95,7 +95,7 @@ class Search::Backend::Typesense
           page: page,
           highlight_full_fields: "text",
           highlight_affix_num_tokens: 8,
-          sort_by: "_text_match:desc"
+          sort_by: "_text_match:desc,date_timestamp:desc"
         )
 
         groups = result["grouped_hits"].to_a.map { |group| build_group(group) }
