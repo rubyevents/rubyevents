@@ -11,7 +11,7 @@ class SponsorsGenerator < Generators::EventBase
   class_option :tier, type: :string, desc: "Sponsor tier (e.g. Platinum, Gold)", default: "Sponsors", group: "Fields"
   class_option :logo_url, type: :string, desc: "URL to sponsor logo", required: false, group: "Fields"
   class_option :badge, type: :string, desc: "Sponsor badge", required: false, group: "Fields"
-  class_option :tiers, type: :string, desc: "Comma-separated list of sponsorship tiers (e.g. 'Platinum,Gold')", required: false, group: "Fields"
+  class_option :tiers, type: :string, desc: "Comma-separated list of all sponsorship tiers (e.g. 'Platinum,Gold'), include on first run", required: false, group: "Fields"
 
   Sponsor = Struct.new("Sponsor", :name, :website, :slug, :logo_url, :tier, :badge) do |sponsor_struct|
     def for_document
@@ -30,7 +30,7 @@ class SponsorsGenerator < Generators::EventBase
   end
 
   def tiers
-    @tiers ||= options[:tiers]&.split(",") || sponsors_document["tiers[]"] || ["Sponsors"]
+    @tiers ||= options[:tiers]&.split(",") || ["Sponsors"]
   end
 
   def ensure_file_exists
@@ -66,7 +66,7 @@ class SponsorsGenerator < Generators::EventBase
         || sponsor["slug"].value == sponsor_details.slug
     end
     if file_sponsor
-      say "Deleteing existing sponsor: #{file_sponsor["name"].value}", :yellow
+      say "Existing sponsor found: #{file_sponsor["name"].value}. Updating...", :yellow
       sponsor_details.name ||= file_sponsor["name"].value
       sponsor_details.website ||= file_sponsor["website"].value
       sponsor_details.slug ||= file_sponsor["slug"].value

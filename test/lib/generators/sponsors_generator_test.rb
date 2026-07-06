@@ -7,14 +7,30 @@ class SponsorsGeneratorTest < Rails::Generators::TestCase
   destination Rails.root.join("tmp/generators/sponsors")
   setup :prepare_destination
 
+  test "generator creates an empty sponsors file with default tier" do
+    file_path = File.join(destination_root, "data/tropicalrb/tropical-on-rails-2021/sponsors.yml")
+    eliminate_validated_file(file_path:) do
+      assert_nothing_raised do
+        run_generator [
+          "--event-series", "tropicalrb",
+          "--event", "tropical-on-rails-2021"
+        ]
+      end
+
+      assert_file file_path do |content|
+        assert_match(/name: "Sponsors"/, content)
+      end
+    end
+  end
+
   test "generator creates an empty sponsors file with specified tiers" do
-    file_path = File.join(destination_root, "data/tropicalrb/tropical-on-rails-2023/sponsors.yml")
+    file_path = File.join(destination_root, "data/tropicalrb/tropical-on-rails-2022/sponsors.yml")
     eliminate_validated_file(file_path:) do
       assert_nothing_raised do
         run_generator [
           "--tiers", "Platinum,Gold,Silver",
           "--event-series", "tropicalrb",
-          "--event", "tropical-on-rails-2023"
+          "--event", "tropical-on-rails-2022"
         ]
       end
 
@@ -22,6 +38,24 @@ class SponsorsGeneratorTest < Rails::Generators::TestCase
         assert_match(/name: "Platinum"/, content)
         assert_match(/name: "Gold"/, content)
         assert_match(/name: "Silver"/, content)
+      end
+    end
+  end
+
+  test "generator creates a sponsor with no tiers and no logo" do
+    file_path = File.join(destination_root, "data/tropicalrb/tropical-on-rails-2023/sponsors.yml")
+    eliminate_validated_file(file_path:) do
+      assert_nothing_raised do
+        run_generator [
+          "--event-series", "tropicalrb",
+          "--event", "tropical-on-rails-2023",
+          "--name", "Typesense",
+          "--website", "https://typesense.org"
+        ]
+      end
+
+      assert_file file_path do |content|
+        assert_match(/name: "Sponsors"/, content)
       end
     end
   end
