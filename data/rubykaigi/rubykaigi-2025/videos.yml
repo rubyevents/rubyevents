@@ -382,6 +382,8 @@
     "Feel, don't think."
 
     https://github.com/tric/trick2025
+
+    RubyKaigi 2025: https://rubykaigi.org/2025/presentations/tric.html
   speakers:
     - Yusuke Endoh
     - Koichiro Eto
@@ -410,7 +412,18 @@
   slides_url: "https://docs.google.com/presentation/d/1lDnxFkc4URsi0LP4w1M5IXv5A02AG_HUy3gW_SpEWOA/view"
   video_provider: "youtube"
   video_id: "nSdkM-PEL6c"
-  description: ""
+  description: |-
+    Performance bugs are really annoying. Our tests are still passing! It works on our machine and in staging! It even works for most customers in production!
+    And then someone reports the app hangs, and there's timeouts...
+
+    How would we know something's not correct? This is where observability tools come in: tools for monitoring, performance and debugging.
+    But have you ever wondered how they work? These tools often require access to Ruby internals that regular Ruby libraries or applications don't have (or need).
+
+    To support these use-cases, the CRuby VM has a number of low-level APIs that can be used to know more about such things as the state of threads, the global VM lock, object creation, garbage collection, etc.
+
+    In this talk, I'll explore Ruby VM's low-level observability APIs: what they provide, how they can be used, lessons learned from using them, and how you can get started in building your own custom tools for performance bug investigations.
+
+    RubyKaigi 2025: https://rubykaigi.org/2025/presentations/KnuX.html
   speakers:
     - Ivo Anjo
 
@@ -422,10 +435,17 @@
   published_at: "2025-05-27T13:12:31Z"
   language: "Japanese"
   track: "Main Hall #rubykaigiA"
-  slides_url: ""
+  slides_url: "https://speakerdeck.com/ydah/dissecting-and-reconstructing-ruby-syntactic-structures"
   video_provider: "youtube"
   video_id: "17xQKhpCmGs"
-  description: ""
+  description: |-
+    The parse.y file, a blueprint for creating Ruby's parser, can be considered a direct representation of Ruby's grammatical structure. However, its syntax rules are highly complex, making it challenging to comprehend its architecture.
+
+    By dissecting and reconstructing the structure of the grammar rules, we can enhance the maintainability of parse.y file. Additionally, through this process, we will gain a deeper understanding of the underlying principles and patterns of Ruby's syntactic structure.
+
+    Let’s embark on a journey to explore the internal workings of the Ruby language and uncover the true laws and principles that govern its grammar structure.
+
+    RubyKaigi 2025: https://rubykaigi.org/2025/presentations/ydah_.html
   speakers:
     - Yudai Takada
 
@@ -437,10 +457,17 @@
   published_at: "2025-05-27T13:12:34Z"
   language: "English"
   track: "Sub Hall #rubykaigiB"
-  slides_url: ""
+  slides_url: "https://speakerdeck.com/osyoyu/profile-and-benchmark-every-change-rubykaigi-2025"
   video_provider: "youtube"
   video_id: "PI_ODvQsj2g"
-  description: ""
+  description: |-
+    It's always easy to write 1% slower Ruby code without knowing it. 1% slower code can be a big problem when there are hundreds of them, and it's not easy to find and fix all of them afterwards.
+
+    Benchmarking and profiling every single change ("Benchmark-Driven Development") helps out here! This idea may sound absurd and inefficient, but I have written a 100x faster Sinatra implementation in this fashion. I will introduce recent evolution in profilers which support this style.
+
+    Your programs will be faster, even before you can say premature optimization is the root of all evil!
+
+    RubyKaigi 2025: https://rubykaigi.org/2025/presentations/osyoyu.html
   speakers:
     - Daisuke Aritomo
 
@@ -452,10 +479,15 @@
   published_at: "2025-05-27T13:12:38Z"
   language: "English"
   track: "Pearls Room #rubykaigiC"
-  slides_url: ""
+  slides_url: "https://speakerdeck.com/hmsk/running-javascript-within-ruby"
   video_provider: "youtube"
   video_id: "vkq4Cv-g8nk"
-  description: ""
+  description: |-
+    This talk explores the journey of building quickjs.rb, a native Ruby extension for running JavaScript using QuickJS. The project began with the need to execute JavaScript within Ruby in a SaaS and involved diving into native extension development as a newcomer.
+
+    The session will cover how quickjs.rb was introduced into Ruby and Rails projects, discussing the practical outcomes, challenges faced, and insights gained. This talk aims to share perspectives on the impact and possibilities of integrating JavaScript execution into Ruby environments.
+
+    RubyKaigi 2025: https://rubykaigi.org/2025/presentations/hmsk.html
   speakers:
     - Kengo Hamasaki
 
@@ -470,7 +502,12 @@
   slides_url: "https://www.slideshare.net/slideshow/zjit-building-a-next-generation-ruby-jit/278807093"
   video_provider: "youtube"
   video_id: "1CCDuRW0OLk"
-  description: ""
+  description: |-
+    YJIT can make Ruby code run faster, but this is a balancing act, because the JIT compiler itself must consume both memory and CPU cycles to compile and optimize your code while it is running. Furthermore, in large-scale production environments such as those of GitHub, Shopify and Stripe, we end up in a situation where YJIT is compiling the same code over and over again on a very large number of servers, which seems very inefficient.
+
+    In this presentation, we will go over the design of ZJIT, a next generation Ruby JIT which aims to save and reuse compiled code between executions. We hope that this will help us eliminate duplicated work while also allowing the compiler to spend more time optimizing code so that we can get better performance.
+
+    RubyKaigi 2025: https://rubykaigi.org/2025/presentations/maximecb.html
   speakers:
     - Maxime Chevalier-Boisvert
 
@@ -482,10 +519,13 @@
   published_at: "2025-05-27T13:12:38Z"
   language: "English"
   track: "Sub Hall #rubykaigiB"
-  slides_url: ""
+  slides_url: "https://lyninx.com/static/artifacts/keeping_secrets_lessons_learned_from_securing_github_rubykaigi_2025.pdf"
   video_provider: "youtube"
   video_id: "oY0OcLpdCXs"
-  description: ""
+  description: |-
+    This talk recalls an incident at GitHub in which a security researcher was able to access all of the production environment variables from github.com by utilizing unsafe reflection to exploit a vulnerability in GitHub's codebase. We'll walk through the process of identifying the vulnerability, GitHub's response to the disclosure, how you can improve the code security of your Ruby codebases, and some tips related to managing secrets in Ruby apps.
+
+    RubyKaigi 2025: https://rubykaigi.org/2025/presentations/lyninx.html
   speakers:
     - Dennis Pacewicz
     - Wei Lin Ngo
@@ -498,10 +538,17 @@
   published_at: "2025-05-27T13:12:31Z"
   language: "Japanese"
   track: "Pearls Room #rubykaigiC"
-  slides_url: ""
+  slides_url: "https://slide.rabbit-shocker.org/authors/naitoh/rubykaigi-2025/"
   video_provider: "youtube"
   video_id: "-R5w5vVbw-8"
-  description: ""
+  description: |-
+    REXML is a standard XML library (Bundled Gem) for Ruby implemented in Pure Ruby.
+
+    It is up to 40% faster between rexml 3.2.6 gem attached to Ruby 3.3.0 and rexml 3.4.0 gem attached to Ruby 3.4.0.
+
+    Through our REXML speedup efforts using StringScanner, I will explain why using StringScanner is faster and how it can be implemented to make it faster.
+
+    RubyKaigi 2025: https://rubykaigi.org/2025/presentations/naitoh.html
   speakers:
     - NAITOH Jun
 
@@ -513,10 +560,17 @@
   published_at: "2025-05-27T13:12:33Z"
   language: "Japanese"
   track: "Main Hall #rubykaigiA"
-  slides_url: ""
+  slides_url: "https://speakerdeck.com/mame/writing-ruby-scripts-with-typeprof"
   video_provider: "youtube"
   video_id: "EEWnXE8kbgg"
-  description: ""
+  description: |-
+    TypeProf is an LSP server that enhances editor support for Ruby developers. Unlike other Ruby type checkers, TypeProf performs type checking with minimal need for explicit type annotations, aiming to make it easier to integrate into existing workflows.
+
+    With the release of TypeProf v0.30, bundled with Ruby 3.4, the tool now supports the entire range of Ruby syntax. This milestone makes TypeProf a practical option for developing simple Ruby scripts under certain conditions.
+
+    In this presentation, I will share my hands-on experience of writing Ruby scripts with TypeProf. I will cover how to use the tool effectively, key considerations to keep in mind, recent features added over the past year, and the roadmap for future development.
+
+    RubyKaigi 2025: https://rubykaigi.org/2025/presentations/mametter.html
   speakers:
     - Yusuke Endoh
 
@@ -528,10 +582,15 @@
   published_at: "2025-05-27T13:12:38Z"
   language: "English"
   track: "Sub Hall #rubykaigiB"
-  slides_url: ""
+  slides_url: "https://docs.google.com/presentation/d/1X1OTpCGHGRwhIV6W5A0IR8Pj8Z0Mjqo7NnxKdT0XEd4/edit?slide=id.ge6ec12dbb5_0_92#slide=id.ge6ec12dbb5_0_92"
   video_provider: "youtube"
   video_id: "ynrXsbuApXM"
-  description: ""
+  description: |-
+    Know the tool you are using! Maximize your debugger knowledge with our in-depth talk! Gain vital insights of Byebug, debug gem and RubyMine Debugger. Uncover the secrets of Ruby debugger internals. This talk will equip you with an advanced understanding of how ruby debuggers work and provide you with useful insights of how tools like RubyMine Debugger can speed up your debugging process.
+
+    Expert-led talk, "Demystifying Debugger", offers a sophisticated exploration into the labyrinths of advanced debugging tools at the disposal of Ruby developers. Elevate your debugging from a routine task to an expert skill.
+
+    RubyKaigi 2025: https://rubykaigi.org/2025/presentations/DmitryPogrebnoy.html
   speakers:
     - Dmitry Pogrebnoy
 
@@ -679,7 +738,7 @@
   published_at: "2025-05-27T13:12:38Z"
   language: "Japanese"
   track: "Pearls Room #rubykaigiC"
-  slides_url: ""
+  slides_url: "https://speakerdeck.com/joetake/rubykaigi2025-martin-okoshi"
   video_provider: "youtube"
   video_id: "w1l_QoAeTlY"
   description: |-
@@ -990,7 +1049,10 @@
   slides_url: ""
   video_provider: "youtube"
   video_id: "oluYFmZSTwk"
-  description: ""
+  description: |-
+    CRuby committers on stage!
+
+    RubyKaigi 2025: https://rubykaigi.org/2025/presentations/rubylangorg.html
   speakers:
     - Ruby Committers
 
