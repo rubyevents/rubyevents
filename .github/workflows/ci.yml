@@ -19,6 +19,8 @@ jobs:
       RUBOCOP_CACHE_ROOT: tmp/rubocop
     steps:
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1

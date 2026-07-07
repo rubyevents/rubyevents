@@ -6,9 +6,13 @@ module Static
 
     attr_reader :path, :document
 
-    def initialize(path)
+    def initialize(path, document: nil)
       @path = path
-      @document = Yerba.parse_file(path)
+      @document = document || Yerba.parse_file(path)
+    end
+
+    def self.parse(content, path: nil)
+      new(path, document: Yerba.parse(content))
     end
 
     def self.all
