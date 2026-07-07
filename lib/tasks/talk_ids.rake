@@ -11,7 +11,6 @@ namespace :talk_ids do
       next unless validator.applicable?
 
       renames = validator.expected_ids.reject { |node, expected| node.value_at("id") == expected }
-      next if renames.empty?
 
       renames.each do |node, expected|
         current = node.value_at("id")
@@ -23,6 +22,11 @@ namespace :talk_ids do
         node["video_id"] = expected if placeholder_video_id
       end
 
+      redundant = validator.expected_ids.keys.select { |node| node.value_at("old_id") == node.value_at("id") }
+      redundant.each { |node| node.delete("old_id") }
+
+      next if renames.empty? && redundant.empty?
+
       validator.document.save!(apply: true)
 
       renamed += renames.size
@@ -32,5 +36,24 @@ namespace :talk_ids do
 
     puts
     puts "Renamed #{renamed} talk id(s) across #{files} file(s)"
+  end
+
+  desc "Remove old_id keys once production has been re-seeded with the new ids"
+  task remove_old_ids: :environment do
+    removed = 0
+
+    Static::VideosFile.all.each do |file|
+      nodes = file.talks.select { |node| node.value_at("old_id").present? }
+      next if nodes.empty?
+
+      nodes.each { |node| node.delete("old_id") }
+      file.save!
+
+      removed += nodes.size
+      puts "#{file.relative_path}: removed #{nodes.size} old_id(s)"
+    end
+
+    puts
+    puts "Removed #{removed} old_id(s)"
   end
 end
