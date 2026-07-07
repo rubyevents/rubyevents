@@ -1,25 +1,39 @@
 # frozen_string_literal: true
 
 require "gum"
+require "parallel"
 
 namespace :validate do
   def collect_validator_errors(files:, validators:)
-    files.each_with_object(Hash.new { |h, k| h[k] = [] }) do |file, file_errors|
-      validators.each do |validator_class|
-        validator = validator_class.new(file_path: file)
-        validator.errors.each do |error|
-          file_errors[error.file_path] << error
-        end
-      end
-    end
+    return {} if files.empty? || validators.empty?
+
+    validators.each { |validator_class| validator_class.warmup if validator_class.respond_to?(:warmup) }
+
+    worker_count = [files.size, Parallel.processor_count].min
+
+    Parallel.map(files, in_processes: worker_count) do |file|
+      document = parse_document(file)
+
+      validators.flat_map { |validator_class| validator_class.new(file_path: file, document: document).errors }
+    end.flatten.group_by(&:file_path)
+  end
+
+  def parse_document(file)
+    return nil unless file.to_s.end_with?(".yml")
+
+    Yerba.parse_file(file)
+  rescue
+    nil
   end
 
   def print_validator_errors(file_errors, warning_only: false)
     file_errors.each do |file, errors|
       puts Gum.style(file, foreground: (warning_only ? "3" : "1"))
+
       errors.each do |error|
         puts warning_only ? error.as_warning : error.as_error
       end
+
       puts
     end
   end
@@ -92,7 +106,8 @@ namespace :validate do
     )
   end
 
-  desc "Validate videos.yml files" do
+  desc "Validate videos.yml files"
+  task videos: :environment do
     exit 1 if validate_video_files.any?
   end
 
@@ -117,8 +132,7 @@ namespace :validate do
     exit 1 if validate_speakers_in_videos.any?
   end
 
-  desc "Validate that all Static::Video records have unique ids"
-  task unique_video_ids: :environment do
+  def validate_unique_video_ids
     all_ids = []
 
     Static::Video.all.each do |video|
@@ -138,10 +152,17 @@ namespace :validate do
 
       puts
 
-      exit 1
+      false
     else
       puts Gum.style("✓ All video ids are unique", foreground: "2")
+
+      true
     end
+  end
+
+  desc "Validate that all Static::Video records have unique ids"
+  task unique_video_ids: :environment do
+    exit 1 unless validate_unique_video_ids
   end
 
   def check_city_alias(city_name, field, path, alias_to_canonical, issues)
@@ -254,7 +275,7 @@ namespace :validate do
 
   desc "Warn when event assets do not match expected dimensions"
   task event_assets: :environment do
-    exit 1 unless validate_event_assets.any?
+    exit 1 if validate_event_assets.any?
   end
 
   def validate_thumbnails
@@ -275,107 +296,92 @@ namespace :validate do
   desc "Validate all city-related data"
   task cities: [:event_city_names, :video_city_names]
 
-  desc "Validate all YAML files"
-  task all: :environment do
-    results = []
+  def run_yerba_check
+    output = `bundle exec yerba check 2>&1`
 
-    puts Gum.style("Running yerba check (schemas, formatting, uniqueness)", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    yerba_output = `bundle exec yerba check 2>&1`
-    yerba_passed = $?.success?
-    results << yerba_passed
-
-    if yerba_passed
+    if $?.success?
       puts Gum.style("✓ All Yerbafile rules passed", foreground: "2")
-    else
-      puts yerba_output
 
-      if yerba_output.include?("published_at")
+      true
+    else
+      puts output
+
+      if output.include?("published_at")
         puts Gum.style("Hint: Run 'rails youtube:fetch_published_at' to fetch missing published_at dates from YouTube", foreground: "3")
         puts
       end
+
+      false
     end
+  end
 
-    puts Gum.style("Validating event.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_event_files.none?
-
-    puts Gum.style("Validating venue.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_venue_files.none?
-
-    puts Gum.style("Validating speakers.yml file", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_speakers_file.none?
-
-    puts Gum.style("Validating videos.yml files", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_video_files.none?
-
-    puts Gum.style("Validating speakers.yml is in sync", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    speakers = Static::SpeakersFile.new
-    orphaned = speakers.orphaned_speakers
+  def validate_speakers_in_sync
+    orphaned = Static::SpeakersFile.new.orphaned_speakers
 
     if orphaned.empty?
       puts Gum.style("✓ speakers.yml is in sync", foreground: "2")
-      results << true
-    else
-      if orphaned.any?
-        puts Gum.style("#{orphaned.length} orphaned speakers in speakers.yml:", foreground: "1")
-        orphaned.sort.each { |name| puts Gum.style("  ❌ #{name}", foreground: "1") }
-        puts
-      end
 
+      true
+    else
+      puts Gum.style("#{orphaned.length} orphaned speakers in speakers.yml:", foreground: "1")
+      orphaned.sort.each { |name| puts Gum.style("  ❌ #{name}", foreground: "1") }
+      puts
       puts Gum.style("Run: rails speakers_file:sync", foreground: "3")
 
-      results << false
+      false
     end
+  end
 
-    puts Gum.style("Validating unique video ids", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+  desc "Validate all YAML files"
+  task all: :environment do
+    sections = {
+      "Running yerba check (schemas, formatting, uniqueness)" => -> { run_yerba_check },
+      "Validating videos.yml files" => -> { validate_video_files.none? },
+      "Validating event.yml files" => -> { validate_event_files.none? },
+      "Validating venue.yml files" => -> { validate_venue_files.none? },
+      "Validating speakers.yml file" => -> { validate_speakers_file.none? },
+      "Validating speakers.yml is in sync" => -> { validate_speakers_in_sync },
+      "Validating unique video ids" => -> { validate_unique_video_ids },
+      "Validating SpeakerDeck slides URLs" => -> { validate_speakerdeck_urls },
+      "Validating SpeakerDeck handles" => -> { validate_speakerdeck_handles },
+      "Validating video city names" => -> { validate_video_city_names },
+      "Validating event asset dimensions" => -> { validate_event_assets.none? },
+      "Validating redundant thumbnails" => -> { validate_thumbnails.none? }
+    }
 
-    all_ids = []
+    print_mutex = Mutex.new
 
-    Static::Video.all.each do |video|
-      all_ids << video.id
-      video.talks.each { |talk| all_ids << talk.id }
-    end
-
-    duplicates = all_ids.tally.select { |_id, count| count > 1 }
-
-    if duplicates.any?
-      puts Gum.style("Duplicate video ids found (#{duplicates.count}):", foreground: "1")
-      puts
-
-      duplicates.each do |id, count|
-        puts Gum.style("❌ #{id} (#{count} occurrences)", foreground: "1")
+    on_finish = ->(title, _index, result) {
+      print_mutex.synchronize do
+        puts Gum.style(title, border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
+        puts result[1]
       end
+    }
 
-      puts
+    color = $stdout.tty?
 
-      results << false
-    else
-      puts Gum.style("✓ All video ids are unique", foreground: "2")
+    results = Parallel.map(sections.keys, in_processes: sections.size, finish: on_finish) do |title|
+      ENV["CLICOLOR_FORCE"] = "1" if color
 
-      results << true
+      captured = StringIO.new
+      original, $stdout = $stdout, captured
+
+      begin
+        [sections.fetch(title).call, captured.string]
+      ensure
+        $stdout = original
+      end
     end
 
-    puts Gum.style("Validating SpeakerDeck slides URLs", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_speakerdeck_urls
-
-    puts Gum.style("Validating SpeakerDeck handles", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_speakerdeck_handles
-
-    puts Gum.style("Validating video city names", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_video_city_names
-
-    puts Gum.style("Validating event asset dimensions", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_event_assets.none?
-
-    puts Gum.style("Validating redundant thumbnails", border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "5")
-    results << validate_thumbnails.none?
+    passed = results.all? { |section_passed, _output| section_passed }
 
     puts
-    if results.all?
+    if passed
       puts Gum.style("All validations passed!", border: "rounded", padding: "0 2", foreground: "2", border_foreground: "2")
     else
       puts Gum.style("Some validations failed", border: "rounded", padding: "0 2", foreground: "1", border_foreground: "1")
     end
 
-    exit 1 unless results.all?
+    exit 1 unless passed
   end
 end

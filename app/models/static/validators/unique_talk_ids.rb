@@ -7,7 +7,7 @@ module Static
 
       KEYS = %w[id old_id].freeze
 
-      def initialize(file_path:)
+      def initialize(file_path:, document: nil)
         @file_path = file_path.to_s.sub("#{Rails.root}/", "")
       end
 
@@ -27,6 +27,10 @@ module Static
 
       def self.errors
         @errors ||= duplicate_errors(files: Static::VideosFile.all)
+      end
+
+      def self.warmup
+        errors
       end
 
       def self.reset!

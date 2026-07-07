@@ -7,8 +7,9 @@ module Static
         "**/videos.yml"
       ].freeze
 
-      def initialize(file_path:)
+      def initialize(file_path:, document: nil)
         @file_path = file_path
+        @document = document
       end
 
       def applicable?
@@ -26,7 +27,6 @@ module Static
       def validate
         return [] unless applicable?
 
-        document = Yerba.parse_file(@file_path)
         return [] unless document.root
 
         document.root.each.flat_map do |video|
@@ -37,6 +37,10 @@ module Static
       end
 
       private
+
+      def document
+        @document ||= Yerba.parse_file(@file_path.to_s)
+      end
 
       def talk_errors(node)
         has_talks = node.key?("talks")

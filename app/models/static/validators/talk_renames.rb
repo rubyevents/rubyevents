@@ -9,9 +9,10 @@ module Static
         "**/videos.yml"
       ].freeze
 
-      def initialize(file_path:, baseline: nil)
+      def initialize(file_path:, baseline: nil, document: nil)
         @file_path = file_path
         @baseline = baseline
+        @document = document
       end
 
       def applicable?
@@ -33,7 +34,7 @@ module Static
       end
 
       def current
-        @current ||= Static::VideosFile.new(@file_path)
+        @current ||= Static::VideosFile.new(@file_path, document: @document)
       end
 
       def renamed_talks

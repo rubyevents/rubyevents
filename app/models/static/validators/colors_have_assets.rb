@@ -11,8 +11,9 @@ module Static
         "featured_color" => "featured.webp"
       }.freeze
 
-      def initialize(file_path:)
+      def initialize(file_path:, document: nil)
         @file_path = file_path
+        @document = document
       end
 
       def applicable?
@@ -30,7 +31,6 @@ module Static
       def validate
         return [] unless applicable?
 
-        document = Yerba.parse_file(@file_path)
         path_parts = @file_path.split("/")
         series_slug = path_parts[-3]
         event_slug = path_parts[-2]
@@ -52,6 +52,12 @@ module Static
               end_line: location&.end_line
             )
           end.compact
+      end
+
+      private
+
+      def document
+        @document ||= Yerba.parse_file(@file_path.to_s)
       end
     end
   end

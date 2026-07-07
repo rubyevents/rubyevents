@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class TranscriptSchema < ApplicationSchema
+  data_file "**/transcripts.yml", selector: "[]"
+
   string :video_id, description: "Video ID on the provider platform"
   array :cues, description: "Transcript cues" do
     object do

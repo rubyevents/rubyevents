@@ -7,8 +7,9 @@ module Static
         "**/videos.yml"
       ].freeze
 
-      def initialize(file_path:)
+      def initialize(file_path:, document: nil)
         @file_path = file_path
+        @document = document
       end
 
       def applicable?

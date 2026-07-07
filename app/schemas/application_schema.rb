@@ -18,6 +18,23 @@ class ApplicationSchema < RubyLLM::Schema
     @registry ||= []
   end
 
+  def self.data_file(pattern = nil, selector: nil)
+    if pattern
+      @data_file = pattern
+      @data_file_selector = selector
+    end
+
+    @data_file
+  end
+
+  def self.data_file_selector
+    @data_file_selector
+  end
+
+  def self.matches?(file_path)
+    data_file.present? && File.fnmatch?(data_file, file_path.to_s, File::FNM_PATHNAME)
+  end
+
   def self.json_schema
     new.to_json_schema[:schema].as_json
   end

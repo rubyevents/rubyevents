@@ -160,7 +160,7 @@ class SponsorsGeneratorTest < Rails::Generators::TestCase
   end
 
   def validate_sponsor_file(file_path:)
-    errors = Static::Validators::SchemaArray.new(file_path: file_path).validate
+    errors = Static::Validators::Schema.new(file_path: file_path).validate
     assert_empty errors, "Sponsors YAML does not conform to schema: #{errors.join(", ")}"
   end
 

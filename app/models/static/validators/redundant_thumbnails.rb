@@ -6,7 +6,7 @@ module Static
       PATTERNS = ["**/thumbnails/**/*.webp"].freeze
       REMOTE_THUMBNAIL_PROVIDERS = %w[youtube vimeo].freeze
 
-      def initialize(file_path:)
+      def initialize(file_path:, document: nil)
         @file_path = file_path.to_s
       end
 
@@ -60,6 +60,10 @@ module Static
           register.call(video, nil)
           video.talks.each { |talk| register.call(talk, video.id) }
         end
+      end
+
+      def self.warmup
+        talk_lookup
       end
 
       def self.reset!
