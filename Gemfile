@@ -67,10 +67,7 @@ gem "minisky", "~> 0.4.0"
 gem "ruby_llm", "~> 1.15.0"
 
 # A simple and clean Ruby DSL for creating JSON schemas.
-gem "ruby_llm-schema", github: "crmne/ruby_llm-schema", branch: "main"
-
-# JSON Schema validator
-gem "json_schemer"
+gem "ruby_llm-schema", "~> 0.4.0"
 
 # YouTube V3 API client.
 gem "yt"

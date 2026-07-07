@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class HotelSchema < RubyLLM::Schema
+class HotelSchema < ApplicationSchema
   string :name, description: "Hotel name"
   string :kind, description: "Type of hotel (e.g., 'Speaker Hotel')", required: false
   string :description, description: "Hotel description", required: false

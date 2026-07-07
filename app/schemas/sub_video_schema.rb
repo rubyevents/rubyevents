@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SubVideoSchema < RubyLLM::Schema
+class SubVideoSchema < ApplicationSchema
   string :id, required: true
   string :old_id, description: "Previous id, kept so production records can be migrated to the new id on the next seed", required: false
   string :title, required: false

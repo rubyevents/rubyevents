@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class VideoSchema < RubyLLM::Schema
+class VideoSchema < ApplicationSchema
   string :id, description: "Unique identifier for the video", required: true
   string :old_id, description: "Previous id, kept so production records can be migrated to the new id on the next seed", required: false
   string :title, description: "Title of the talk"

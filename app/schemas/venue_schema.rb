@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class VenueSchema < RubyLLM::Schema
+class VenueSchema < ApplicationSchema
   string :name, description: "Name of the venue"
   string :description, description: "Description of the venue", required: false
   string :instructions, description: "Instructions for getting to the venue", required: false

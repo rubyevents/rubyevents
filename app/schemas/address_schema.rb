@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddressSchema < RubyLLM::Schema
+class AddressSchema < ApplicationSchema
   string :street, description: "Street address"
   string :city, description: "City name"
   string :region, description: "State/Province/Region", required: false

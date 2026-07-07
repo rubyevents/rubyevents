@@ -110,17 +110,15 @@ module Static
         data["featured_background"] = featured_background if featured_background.present?
         data["featured_color"] = featured_color if featured_color.present?
 
-        schema = JSON.parse(EventSchema.new.to_json_schema[:schema].to_json)
-        schemer = JSONSchemer.schema(schema)
-        errors = schemer.validate(data).to_a
+        errors = Yerba.parse(data.to_yaml).validate(EventSchema.json_schema)
 
         if errors.any?
-          error_messages = errors.map { |e| "#{e["error"]} at #{e["data_pointer"]}" }
+          error_messages = errors.map { |error| "#{error["message"]} at #{error["path"]}" }
           raise ArgumentError, "Validation failed: #{error_messages.join(", ")}"
         end
 
         FileUtils.mkdir_p(event_dir)
-        File.write(event_file, data.to_yaml)
+        File.write(event_file, content)
 
         videos_file = event_dir.join("videos.yml")
         File.write(videos_file, "[]\n") unless videos_file.exist?

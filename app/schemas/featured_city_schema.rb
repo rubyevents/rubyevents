@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class FeaturedCitySchema < RubyLLM::Schema
+class FeaturedCitySchema < ApplicationSchema
   string :name, description: "Full city name"
   string :slug, description: "URL-friendly slug for the city"
   string :state_code, description: "State or province code", required: false

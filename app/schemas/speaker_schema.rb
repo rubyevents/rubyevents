@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SpeakerSchema < RubyLLM::Schema
+class SpeakerSchema < ApplicationSchema
   string :name, description: "Full name of the speaker", required: true
   string :slug, description: "URL-friendly slug for the speaker", required: true
   string :github, description: "GitHub username (not a URL)", required: true, pattern: "^([^/:\\s]+)?$"
