@@ -1,17 +1,15 @@
 # frozen_string_literal: true
 
 require "gum"
+require "parallel"
 
 namespace :validate do
   def collect_validator_errors(files:, validators:)
-    files.each_with_object(Hash.new { |h, k| h[k] = [] }) do |file, file_errors|
-      validators.each do |validator_class|
-        validator = validator_class.new(file_path: file)
-        validator.errors.each do |error|
-          file_errors[error.file_path] << error
-        end
-      end
-    end
+    worker_count = [files.size, Parallel.processor_count].min
+
+    Parallel.map(files, in_processes: worker_count) do |file|
+      validators.flat_map { |validator_class| validator_class.new(file_path: file).errors }
+    end.flatten.group_by(&:file_path)
   end
 
   def print_validator_errors(file_errors, warning_only: false)
@@ -92,7 +90,8 @@ namespace :validate do
     )
   end
 
-  desc "Validate videos.yml files" do
+  desc "Validate videos.yml files"
+  task videos: :environment do
     exit 1 if validate_video_files.any?
   end
 

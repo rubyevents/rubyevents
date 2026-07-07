@@ -199,6 +199,9 @@ gem "gems"
 # A glamorous CLI toolkit for Ruby
 gem "gum", "~> 0.3.1"
 
+# Run blocks in parallel processes
+gem "parallel"
+
 # Regex pattern searching in files
 gem "grepfruit"
 
