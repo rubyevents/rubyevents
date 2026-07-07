@@ -1,6 +1,6 @@
 require "test_helper"
 require "rubocop"
-require "rubocop/cop/ruby_events/prefer_yerba"
+require "rubocop/cop/rubyevents/prefer_yerba"
 
 class RuboCop::Cop::RubyEvents::PreferYerbaTest < ActiveSupport::TestCase
   def offenses(source)
