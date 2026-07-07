@@ -92,6 +92,24 @@ class Static::Validators::TalkRenamesTest < ActiveSupport::TestCase
     end
   end
 
+  test "does not flag re-ordered talks and still matches renames by video_id" do
+    baseline = [
+      {"id" => "jane-doe-testconf-2024", "title" => "A", "video_provider" => "youtube", "video_id" => "abc12345678"},
+      {"id" => "john-smith-testconf-2024", "title" => "B", "video_provider" => "youtube", "video_id" => "def12345678"}
+    ]
+    videos = [
+      {"id" => "john-smith-testconf-2024", "title" => "B", "video_provider" => "youtube", "video_id" => "def12345678"},
+      {"id" => "jane-doe-keynote-testconf-2024", "title" => "A", "video_provider" => "youtube", "video_id" => "abc12345678"}
+    ]
+
+    with_temp_video(videos) do |path|
+      errors = errors_for(path, baseline: baseline)
+
+      assert_equal 1, errors.size
+      assert_includes errors.first.message, %(id "jane-doe-keynote-testconf-2024" was renamed from "jane-doe-testconf-2024")
+    end
+  end
+
   test "skips files without a git baseline" do
     with_temp_video([{"id" => "anything-goes", "title" => "Something"}]) do |path|
       assert_empty Static::Validators::TalkRenames.new(file_path: path).errors
