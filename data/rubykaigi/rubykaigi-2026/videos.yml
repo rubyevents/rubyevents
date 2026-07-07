@@ -1,7 +1,8 @@
 # Website: https://rubykaigi.org/2026/schedule/
 # Videos: -
 ---
-- id: "satoshi-tagomori-keynote-rubykaigi-2026"
+- id: "satoshi-tagomori-rubykaigi-2026"
+  old_id: "satoshi-tagomori-keynote-rubykaigi-2026"
   title: "Keynote: The Journey of Box Building"
   kind: "keynote"
   date: "2026-04-22"
@@ -9,20 +10,21 @@
   track: "Large Hall #rubykaigiA"
   slides_url: "https://speakerdeck.com/tagomoris/the-journey-of-box-building"
   video_provider: "scheduled"
-  video_id: "satoshi-tagomori-keynote-rubykaigi-2026"
+  video_id: "satoshi-tagomori-rubykaigi-2026"
   description: |-
     "Ruby Box" is a new experimental feature, introduced at Ruby 4.0.
     I'll introduce the very basic of Ruby Box, and then will explain the problems, hard things, and technically interesting points around finding/determining boxes while running Ruby programs.
   speakers:
     - Satoshi Tagomori
 
-- id: "hitoshi-hasumi-rubykaigi-2026"
+- id: "hasumi-hitoshi-rubykaigi-2026"
+  old_id: "hitoshi-hasumi-rubykaigi-2026"
   title: "Funicular: A Browser App Framework Powered by PicoRuby.WASM"
   date: "2026-04-22"
   language: "Japanese"
   track: "Large Hall #rubykaigiA"
   video_provider: "scheduled"
-  video_id: "hitoshi-hasumi-rubykaigi-2026"
+  video_id: "hasumi-hitoshi-rubykaigi-2026"
   description: |-
     PicoRuby's compact design and built-in multitasking capabilities unlock the potential for developing entirely Ruby-based applications that run directly in the browser.
     In this talk, we'll discuss the technical details of Funicular, a new web frontend framework, providing a lightweight and Ruby-centric alternative to existing solutions.
@@ -346,7 +348,8 @@
   speakers:
     - Shunsuke Michii
 
-- id: "lightning-talks-rubykaigi-2026"
+- id: "lightning-talk-rubykaigi-2026"
+  old_id: "lightning-talks-rubykaigi-2026"
   title: "Lightning Talks"
   kind: "lightning_talk"
   event_name: "RubyKaigi 2026"
@@ -354,7 +357,7 @@
   language: "Japanese"
   track: "Large Hall #rubykaigiA"
   video_provider: "scheduled"
-  video_id: "lightning-talks-rubykaigi-2026"
+  video_id: "lightning-talk-rubykaigi-2026"
   description: ""
   talks:
     - id: "joker1007-rubykaigi-2026"
@@ -392,13 +395,14 @@
       speakers:
         - makicamel
 
-    - id: "sh-rubykaigi-2026"
+    - id: "s-h-gamelinks-rubykaigi-2026"
+      old_id: "sh-rubykaigi-2026"
       title: "Lightning Talk: Ruby on Bare Metal"
       kind: "lightning_talk"
       language: "Japanese"
       slides_url: "https://speakerdeck.com/gamelinks007/ruby-on-bare-metal"
       video_provider: "parent"
-      video_id: "sh-rubykaigi-2026"
+      video_id: "s-h-gamelinks-rubykaigi-2026"
       description: |-
         Explores running CRuby directly on custom kernel without an operating system, revealing hidden dependencies and initialization requirements.
       speakers:
@@ -427,25 +431,27 @@
       speakers:
         - Mari Imaizumi
 
-    - id: "yuhi-rubykaigi-2026"
+    - id: "yuhi-sato-rubykaigi-2026"
+      old_id: "yuhi-rubykaigi-2026"
       title: "Lightning Talk: Ruby YARV Challenge: Build Your Own Bytecode VM in 7 Steps"
       kind: "lightning_talk"
       language: "Japanese"
       slides_url: "https://speakerdeck.com/yuhisatoxxx/ruby-yarv-challenge-build-your-own-bytecode-vm-in-7-steps"
       video_provider: "parent"
-      video_id: "yuhi-rubykaigi-2026"
+      video_id: "yuhi-sato-rubykaigi-2026"
       description: |-
         Browser-based workshop implementing a simplified YARV bytecode VM and compiler in Ruby, culminating in running recursive Fibonacci on a custom VM.
       speakers:
         - Yuhi Sato
 
-    - id: "sangyong-sim-lt-rubykaigi-2026"
+    - id: "sangyong-shia-sim-lightning-talk-rubykaigi-2026"
+      old_id: "sangyong-sim-lt-rubykaigi-2026"
       title: "Lightning Talk: Class.new is all you need"
       kind: "lightning_talk"
       language: "English"
       slides_url: "https://speakerdeck.com/riseshia/class-dot-new-is-all-you-need"
       video_provider: "parent"
-      video_id: "sangyong-sim-lt-rubykaigi-2026"
+      video_id: "sangyong-shia-sim-lightning-talk-rubykaigi-2026"
       description: |-
         Demonstrates significant performance improvements in TypeGuessr by replacing complex IR node definitions with plain Class instances.
       speakers:
@@ -487,14 +493,15 @@
       speakers:
         - Haruna Tsujita
 
-- id: "charles-nutter-keynote-rubykaigi-2026"
+- id: "charles-oliver-nutter-rubykaigi-2026"
+  old_id: "charles-nutter-keynote-rubykaigi-2026"
   title: "Keynote: Twenty Years of JRuby"
   kind: "keynote"
   date: "2026-04-23"
   language: "English"
   track: "Large Hall #rubykaigiA"
   video_provider: "scheduled"
-  video_id: "charles-nutter-keynote-rubykaigi-2026"
+  video_id: "charles-oliver-nutter-rubykaigi-2026"
   description: |-
     For the past twenty years, I have poured my heart and soul into JRuby to bring new opportunities to the Ruby world. We built the first JIT compiler for Ruby, helped the community embrace parallel threads, and became the only alternative Ruby deployed at scale.
 
@@ -572,13 +579,14 @@
   speakers:
     - Peter Zhu
 
-- id: "uchio-kondo-rubykaigi-2026"
+- id: "kondo-uchio-rubykaigi-2026"
+  old_id: "uchio-kondo-rubykaigi-2026"
   title: "Uzumibi: Reinventing mruby for the Edges"
   date: "2026-04-23"
   language: "English"
   track: "Sub Arena #rubykaigiB"
   video_provider: "scheduled"
-  video_id: "uchio-kondo-rubykaigi-2026"
+  video_id: "kondo-uchio-rubykaigi-2026"
   description: |-
     Can Ruby be practically deployed in edge computing environments like Cloudflare Workers, Fastly Compute, or Spin? In this talk, I will introduce "mruby/edge" and "Uzumibi," a framework built upon it to bring the power of Ruby to the edge.
 
@@ -627,14 +635,15 @@
   speakers:
     - Vladimir Dementyev
 
-- id: "samuel-williams-rubykaigi-2026"
+- id: "surviving-black-friday-100-billion-requests-with-falcon-rubykaigi-2026"
+  old_id: "samuel-williams-rubykaigi-2026"
   title: "Surviving Black Friday: 100 billion requests with Falcon!"
   date: "2026-04-23"
   language: "English"
   track: "Sub Arena #rubykaigiB"
   slides_url: "https://speakerdeck.com/ioquatix/surviving-black-friday-329-billion-requests-with-falcon"
   video_provider: "scheduled"
-  video_id: "samuel-williams-rubykaigi-2026"
+  video_id: "surviving-black-friday-100-billion-requests-with-falcon-rubykaigi-2026"
   description: |-
     On Black Friday 2025, Shopify's Storefront served billions of requests on Falcon—23 million RPM at peak, zero dropped requests. One year earlier, we ran three different web servers and had no idea which parts of our 15-year-old Rails codebase were thread-safe.
 
@@ -650,14 +659,15 @@
     - Marc-André Cournoyer
     - Josh Teeter
 
-- id: "nagachika-rubykaigi-2026"
+- id: "tomoyuki-chikanaga-rubykaigi-2026"
+  old_id: "nagachika-rubykaigi-2026"
   title: "Pure Intonation on Browser: Building a Sequencer with Ruby"
   date: "2026-04-23"
   language: "Japanese"
   track: "Small Hall #rubykaigiC"
   slides_url: "https://speakerdeck.com/nagachika/pure-intonation-on-browser-building-a-sequencer-with-ruby"
   video_provider: "scheduled"
-  video_id: "nagachika-rubykaigi-2026"
+  video_id: "tomoyuki-chikanaga-rubykaigi-2026"
   description: |-
     Ruby/WASM empowers Rubyists to build flexible applications directly on the browser. I developed "purified-synth," a browser-based synthesizer and sequencer combining Ruby/WASM with the Web Audio API.
     The core distinction of this project is its focus on "Pure Intonation" rather than the standard 12-tone equal temperament. While microtonal music often relies on approximations like 53-TET, this sequencer uses Ruby to calculate precise frequency ratios, enabling chords in their purest mathematical form.
@@ -915,14 +925,15 @@
   speakers:
     - Hayao Kimura
 
-- id: "ruby-committers-rubykaigi-2026"
+- id: "q-and-a-rubykaigi-2026"
+  old_id: "ruby-committers-rubykaigi-2026"
   title: "Ruby Committers and the World"
   kind: "q_and_a"
   date: "2026-04-24"
   language: "English"
   track: "Large Hall #rubykaigiA"
   video_provider: "scheduled"
-  video_id: "ruby-committers-rubykaigi-2026"
+  video_id: "q-and-a-rubykaigi-2026"
   description: |-
     CRuby committers on stage!
   speakers:
@@ -1013,13 +1024,14 @@
   speakers:
     - Andrey Novikov
 
-- id: "sutou-kouhei-rubykaigi-2026"
+- id: "kouhei-sutou-rubykaigi-2026"
+  old_id: "sutou-kouhei-rubykaigi-2026"
   title: "Pure Ruby Apache Arrow reader/writer"
   date: "2026-04-24"
   language: "Japanese"
   track: "Small Hall #rubykaigiC"
   video_provider: "scheduled"
-  video_id: "sutou-kouhei-rubykaigi-2026"
+  video_id: "kouhei-sutou-rubykaigi-2026"
   description: |-
     Apache Arrow is the de fact standard data format in modern data processing systems. We can use the official Red Arrow gem to process Apache Arrow data. It's suitable for fast large data processing but it's  over-performance for only low cost data exchange needs. Red Arrow is larger and a bit difficult to install than pure Ruby gems because Red Arrow is implemented as bindings.
 
@@ -1210,14 +1222,15 @@
   speakers:
     - Samuel Giddins
 
-- id: "sangyong-sim-rubykaigi-2026"
+- id: "sangyong-shia-sim-rubykaigi-2026"
+  old_id: "sangyong-sim-rubykaigi-2026"
   title: "Good Enough Types: Heuristic Type Inference for Ruby"
   date: "2026-04-24"
   language: "Japanese"
   track: "Small Hall #rubykaigiC"
   slides_url: "https://speakerdeck.com/riseshia/good-enough-types-heuristic-type-inference-for-ruby"
   video_provider: "scheduled"
-  video_id: "sangyong-sim-rubykaigi-2026"
+  video_id: "sangyong-shia-sim-rubykaigi-2026"
   description: |-
     What if you could get type information without writing type annotations?
 
@@ -1231,14 +1244,15 @@
   speakers:
     - "Sangyong \"Shia\" Sim"
 
-- id: "yukihiro-matsumoto-keynote-rubykaigi-2026"
+- id: "yukihiro-matz-matsumoto-rubykaigi-2026"
+  old_id: "yukihiro-matsumoto-keynote-rubykaigi-2026"
   title: "Keynote: Meet Spinel"
   kind: "keynote"
   date: "2026-04-24"
   language: "Japanese"
   track: "Large Hall #rubykaigiA"
   video_provider: "scheduled"
-  video_id: "yukihiro-matsumoto-keynote-rubykaigi-2026"
+  video_id: "yukihiro-matz-matsumoto-rubykaigi-2026"
   description: |-
     Keynote by Yukihiro "Matz" Matsumoto
   speakers:

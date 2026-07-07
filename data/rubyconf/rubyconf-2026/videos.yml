@@ -2,7 +2,8 @@
 ---
 # Day 1 - Tuesday, July 14, 2026
 
-- id: "yukihiro-matsumoto-keynote-rubyconf-2026"
+- id: "yukihiro-matz-matsumoto-rubyconf-2026"
+  old_id: "yukihiro-matsumoto-keynote-rubyconf-2026"
   title: 'Keynote by Yukihiro "Matz" Matsumoto'
   kind: "keynote"
   event_name: "RubyConf 2026"
@@ -10,7 +11,7 @@
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
-  video_id: "yukihiro-matsumoto-keynote-rubyconf-2026"
+  video_id: "yukihiro-matz-matsumoto-rubyconf-2026"
   description: ""
   speakers:
     - "Yukihiro \"Matz\" Matsumoto"
@@ -41,7 +42,8 @@
   speakers:
     - Michael Toppa
 
-- id: "sponsor-session-1-rubyconf-2026"
+- id: "chris-fung-rubyconf-2026"
+  old_id: "sponsor-session-1-rubyconf-2026"
   title: "Stop Fighting Ruby I18n: Message Format Is All You Need"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
@@ -80,14 +82,15 @@
   speakers:
     - David Gillis
 
-- id: "jon-rizzo-rubyconf-2026"
+- id: "jon-rizzo-dave-currie-rubyconf-2026"
+  old_id: "jon-rizzo-rubyconf-2026"
   title: "Teaching Ruby to Rank: A Search Pipeline Story"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
   language: "English"
   track: "Breakout 2 - Red Rock G&H"
   video_provider: "scheduled"
-  video_id: "jon-rizzo-rubyconf-2026"
+  video_id: "jon-rizzo-dave-currie-rubyconf-2026"
   description: |-
     "Search sucks." It's the feedback every team building search has heard, and for good reason — keyword and vector matching alone isn't sufficient, leading to negative feedback. Our users couldn't find products they knew existed and irrelevant results were being highly ranked. As a Ruby shop that wanted to make our search retrieval pipeline smarter with machine learning, we asked ourselves: how far can Ruby actually take us? This talk is the answer. We'll walk through the full Learning to Rank pipeline we built — click and impression collection, automated feature engineering, model training and deployment, and the reranker model that sits between the search engine and the user. We'll share the relevance metrics that moved, the qualitative feedback that changed, and how the same framework now backs four different search engines at Fullscript. From this talk, you'll leave with a concrete pattern for collecting search data, a sense of what "good" looks like, and a framework you can use to start measuring and ranking your own ecommerce search results.
   speakers:
@@ -159,7 +162,8 @@
   speakers:
     - Dalma Boros
 
-- id: "ruby-alliance-panel-rubyconf-2026"
+- id: "ran-craycraft-rubyconf-2026"
+  old_id: "ruby-alliance-panel-rubyconf-2026"
   title: "Panel: Ruby Alliance"
   kind: "panel"
   event_name: "RubyConf 2026"
@@ -167,7 +171,7 @@
   language: "English"
   track: "Breakout 2 - Red Rock G&H"
   video_provider: "scheduled"
-  video_id: "ruby-alliance-panel-rubyconf-2026"
+  video_id: "ran-craycraft-rubyconf-2026"
   description: ""
   speakers:
     - Ran Craycraft
@@ -298,7 +302,8 @@
   speakers:
     - Gannon McGibbon
 
-- id: "jessica-kerr-keynote-rubyconf-2026"
+- id: "jessica-kerr-rubyconf-2026"
+  old_id: "jessica-kerr-keynote-rubyconf-2026"
   title: "Keynote by Jessica Kerr"
   kind: "keynote"
   event_name: "RubyConf 2026"
@@ -306,14 +311,15 @@
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
-  video_id: "jessica-kerr-keynote-rubyconf-2026"
+  video_id: "jessica-kerr-rubyconf-2026"
   description: ""
   speakers:
     - Jessica Kerr
 
 # Day 2 - Wednesday, July 15, 2026 (Community Day)
 
-- id: "allison-pike-keynote-rubyconf-2026"
+- id: "keynote-rubyconf-2026"
+  old_id: "allison-pike-keynote-rubyconf-2026"
   title: "Panel: Once a Maintainer"
   kind: "keynote"
   event_name: "RubyConf 2026"
@@ -321,7 +327,7 @@
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
-  video_id: "allison-pike-keynote-rubyconf-2026"
+  video_id: "keynote-rubyconf-2026"
   description: |-
     Once a Maintainer will be a live roundtable discussion based on the popular Once a Maintainer newsletter which celebrates the people behind Open Source in the Ruby community. We're thrilled to have Richard Schneeman, Jeremy Evans, and Colby Swandale join us for the panel.
   speakers:
@@ -330,7 +336,8 @@
     - Jeremy Evans
     - Colby Swandale
 
-- id: "marty-haught-rubyconf-2026"
+- id: "marty-haught-colby-swandale-rubyconf-2026"
+  old_id: "marty-haught-rubyconf-2026"
   title: "From Scan to Fix: A Maintainer's Guide to Gem Security"
   kind: "workshop"
   event_name: "RubyConf 2026"
@@ -338,7 +345,7 @@
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
-  video_id: "marty-haught-rubyconf-2026"
+  video_id: "marty-haught-colby-swandale-rubyconf-2026"
   description: |-
     The gems you maintain could be foundational infrastructure for the Ruby community and that makes their security everyone's concern. But most maintainers aren't security engineers, and the path from "I think my gem might have a vulnerability" to "I've fixed it and shipped a release" can feel daunting. This hands-on workshop, led by the RubyGems team will incorporate lessons learned from Project Glasswing, Ruby Central's Alpha-Omega-funded security initiative for the Ruby ecosystem, and it will give maintainers the tools and confidence to take ownership of their gem's security posture. We'll walk through the full lifecycle: what good security looks like for a gem, how to run a scan against your own project, how to read and interpret the resulting report, and how to triage and address what you find. No prior security experience is assumed. By the end of the session, you'll have run a real scan, reviewed real findings, and left with practical strategies for fixing vulnerabilities and hardening your gem against future ones. What we'll cover: * An overview of Project Glasswing and how the gem scanning program works * What a strong security posture looks like for a Ruby gem * Running a scan and understanding the prompt-driven process * Reading and interpreting a scan report * Walking through an example scan together * Strategies for addressing vulnerabilities — from quick fixes to longer-term hardening Who should attend: Maintainers of Ruby gems of any size, from weekend projects to widely depended-on libraries. If you ship a gem, this workshop is for you.
   speakers:
@@ -373,7 +380,8 @@
   speakers:
     - Joe Masilotti
 
-- id: "future-of-ruby-panel-rubyconf-2026"
+- id: "panel-rubyconf-2026"
+  old_id: "future-of-ruby-panel-rubyconf-2026"
   title: "Future of Ruby Panel"
   kind: "panel"
   event_name: "RubyConf 2026"
@@ -381,7 +389,7 @@
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
-  video_id: "future-of-ruby-panel-rubyconf-2026"
+  video_id: "panel-rubyconf-2026"
   description: |-
     Matz, Jessica Kerr, Obie Fernandez, Dave Thomas, Rich Kilmer, Chad Fowler, and Chad Pytel — all on one stage. On Community Day (July 15th), they're coming together to talk about where Ruby goes from here. Don't miss it.
   speakers:
@@ -435,7 +443,8 @@
   speakers:
     - Noel Rappin
 
-- id: "lightning-talks-rubyconf-2026"
+- id: "lightning-talk-rubyconf-2026"
+  old_id: "lightning-talks-rubyconf-2026"
   title: "Lightning Talks"
   kind: "lightning_talk"
   event_name: "RubyConf 2026"
@@ -443,16 +452,17 @@
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
-  video_id: "lightning-talks-rubyconf-2026"
+  video_id: "lightning-talk-rubyconf-2026"
   description: ""
   talks:
-    - id: "keshia-coriolan-lightning-talk-rubyconf-2026"
+    - id: "keshia-coriolan-rubyconf-2026"
+      old_id: "keshia-coriolan-lightning-talk-rubyconf-2026"
       title: "Lightning Talk: From Ruby Objects to Salsa Moves 💃🏽"
       kind: "lightning_talk"
       event_name: "RubyConf 2026"
       date: "2026-07-15"
       video_provider: "scheduled"
-      video_id: "keshia-coriolan-lightning-talk-rubyconf-2026"
+      video_id: "keshia-coriolan-rubyconf-2026"
       description: |-
         As a salsa dancer, I often spend more time deciding what to practice than actually practicing. Which moves should I work on? What combinations make sense together? And what song should I use?
 
@@ -462,25 +472,27 @@
       speakers:
         - Keshia Coriolan
 
-    - id: "kj-loving-lightning-talk-rubyconf-2026"
+    - id: "kj-loving-rubyconf-2026"
+      old_id: "kj-loving-lightning-talk-rubyconf-2026"
       title: "Lightning Talk: Love Scales"
       kind: "lightning_talk"
       event_name: "RubyConf 2026"
       date: "2026-07-15"
       video_provider: "scheduled"
-      video_id: "kj-loving-lightning-talk-rubyconf-2026"
+      video_id: "kj-loving-rubyconf-2026"
       description: |-
         A love letter to everyone who made space for someone who didn't see themselves here. On being loved into a room you never thought was yours and planting seeds you may never see bloom. Love scales.
       speakers:
         - KJ Loving
 
-    - id: "mohammad-arjamand-ali-lightning-talk-rubyconf-2026"
+    - id: "mohammad-arjamand-ali-rubyconf-2026"
+      old_id: "mohammad-arjamand-ali-lightning-talk-rubyconf-2026"
       title: "Lightning Talk: Mohammad Arjamand Ali"
       kind: "lightning_talk"
       event_name: "RubyConf 2026"
       date: "2026-07-15"
       video_provider: "scheduled"
-      video_id: "mohammad-arjamand-ali-lightning-talk-rubyconf-2026"
+      video_id: "mohammad-arjamand-ali-rubyconf-2026"
       description: ""
       speakers:
         - Mohammad Arjamand Ali
@@ -499,25 +511,27 @@
       speakers:
         - Alan Ridlehoover
 
-    - id: "adam-mccrea-lightning-talk-rubyconf-2026"
+    - id: "adam-mccrea-rubyconf-2026"
+      old_id: "adam-mccrea-lightning-talk-rubyconf-2026"
       title: "Lightning Talk: 5 Steps to Resilient Job Queues"
       kind: "lightning_talk"
       event_name: "RubyConf 2026"
       date: "2026-07-15"
       video_provider: "scheduled"
-      video_id: "adam-mccrea-lightning-talk-rubyconf-2026"
+      video_id: "adam-mccrea-rubyconf-2026"
       description: |-
         Five quick tips to avoid queue backlogs and struggling worker processes. Dense, practical, and lightning fast! We'll cover how to structure your queues, alerting, and scaling.
       speakers:
         - Adam McCrea
 
-    - id: "ben-greenberg-lightning-talk-rubyconf-2026"
+    - id: "ben-greenberg-rubyconf-2026"
+      old_id: "ben-greenberg-lightning-talk-rubyconf-2026"
       title: "Lightning Talk: The Missing Gem in HTTP: x402 Payments with Ruby"
       kind: "lightning_talk"
       event_name: "RubyConf 2026"
       date: "2026-07-15"
       video_provider: "scheduled"
-      video_id: "ben-greenberg-lightning-talk-rubyconf-2026"
+      video_id: "ben-greenberg-rubyconf-2026"
       description: |-
         HTTP 402 has been sitting unused for decades, but x402 gives it a practical job: letting APIs request and verify payments directly through standard HTTP flows. In this lightning talk, I’ll briefly explain how x402 works and show what it can look like from Ruby, turning “Payment Required” into something developers can actually build with.
       speakers:
@@ -549,25 +563,27 @@
       speakers:
         - Cameron Dutro
 
-    - id: "irina-nazarova-lightning-talk-rubyconf-2026"
+    - id: "irina-nazarova-rubyconf-2026"
+      old_id: "irina-nazarova-lightning-talk-rubyconf-2026"
       title: "Lightning Talk: San Francisco Ruby Startup Conference 2026"
       kind: "lightning_talk"
       event_name: "RubyConf 2026"
       date: "2026-07-15"
       video_provider: "scheduled"
-      video_id: "irina-nazarova-lightning-talk-rubyconf-2026"
+      video_id: "irina-nazarova-rubyconf-2026"
       description: |-
         Announcing the second edition of the SF Ruby Conference on Nov 10-12, with the President of Y Combinator, Garry Tan, delivering a keynote. Announcing planned ticket sales and how to get involved.
       speakers:
         - Irina Nazarova
 
-    - id: "shuveksha-tuladhar-lightning-talk-rubyconf-2026"
+    - id: "shuveksha-tuladhar-rubyconf-2026"
+      old_id: "shuveksha-tuladhar-lightning-talk-rubyconf-2026"
       title: "Lightning Talk: Ruby as the Glue for AI: Planning Fun Activities for My Kids"
       kind: "lightning_talk"
       event_name: "RubyConf 2026"
       date: "2026-07-15"
       video_provider: "scheduled"
-      video_id: "shuveksha-tuladhar-lightning-talk-rubyconf-2026"
+      video_id: "shuveksha-tuladhar-rubyconf-2026"
       description: |-
         As a mom, I often spend more time searching for activities than actually doing them with my kids. While there are countless activity ideas available online, finding ones that match my children's ages, interests, available supplies, and our limited free time can be overwhelming.
 
@@ -575,25 +591,27 @@
       speakers:
         - Shuveksha Tuladhar
 
-    - id: "stefan-taitano-lightning-talk-rubyconf-2026"
+    - id: "stefan-taitano-rubyconf-2026"
+      old_id: "stefan-taitano-lightning-talk-rubyconf-2026"
       title: "Lightning Talk: Volunteering at RubyConf Before Becoming a Ruby Developer"
       kind: "lightning_talk"
       event_name: "RubyConf 2026"
       date: "2026-07-15"
       video_provider: "scheduled"
-      video_id: "stefan-taitano-lightning-talk-rubyconf-2026"
+      video_id: "stefan-taitano-rubyconf-2026"
       description: |-
         What is it like to attend RubyConf while still learning Ruby? Share the experience of the conference through the eyes of a newcomer, covering initial expectations, memorable interactions, and lessons learned from volunteering alongside experienced Rubyists (so far).
       speakers:
         - Stefan Taitano
 
-    - id: "rachael-wright-munn-lightning-talk-rubyconf-2026"
+    - id: "rachael-wright-munn-rubyconf-2026"
+      old_id: "rachael-wright-munn-lightning-talk-rubyconf-2026"
       title: "Lightning Talk: RubyEvents.org - on a mission to index all Ruby events!"
       kind: "lightning_talk"
       event_name: "RubyConf 2026"
       date: "2026-07-15"
       video_provider: "scheduled"
-      video_id: "rachael-wright-munn-lightning-talk-rubyconf-2026"
+      video_id: "rachael-wright-munn-rubyconf-2026"
       description: |-
         RubyEvents.org brings together RubyVideo.dev and RubyConferences.org to support Ruby community events. This talk will be a brief overview of our mission, our architecture, and how you can help!
       speakers:
@@ -601,7 +619,8 @@
 
 # Day 3 - Thursday, July 16, 2026
 
-- id: "obie-fernandez-keynote-rubyconf-2026"
+- id: "obie-fernandez-rubyconf-2026"
+  old_id: "obie-fernandez-keynote-rubyconf-2026"
   title: "Keynote by Obie Fernandez"
   kind: "keynote"
   event_name: "RubyConf 2026"
@@ -609,7 +628,7 @@
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
-  video_id: "obie-fernandez-keynote-rubyconf-2026"
+  video_id: "obie-fernandez-rubyconf-2026"
   description: ""
   speakers:
     - Obie Fernandez
@@ -732,7 +751,8 @@
   speakers:
     - Hilary Stohs-Krause
 
-- id: "q-and-a-with-matz-rubyconf-2026"
+- id: "yukihiro-matz-matsumoto-aaron-patterson-rubyconf-2026"
+  old_id: "q-and-a-with-matz-rubyconf-2026"
   title: "Q&A with Matz"
   kind: "q_and_a"
   event_name: "RubyConf 2026"
@@ -740,7 +760,7 @@
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
-  video_id: "q-and-a-with-matz-rubyconf-2026"
+  video_id: "yukihiro-matz-matsumoto-aaron-patterson-rubyconf-2026"
   description: ""
   speakers:
     - "Yukihiro \"Matz\" Matsumoto"
@@ -759,14 +779,15 @@
   speakers:
     - Alicia Rojas
 
-- id: "kyle-doliveira-rubyconf-2026"
+- id: "kyle-d-oliveira-rubyconf-2026"
+  old_id: "kyle-doliveira-rubyconf-2026"
   title: "Fibonacci Funhouse"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
   language: "English"
   track: "Breakout 1 - Red Rock A&D"
   video_provider: "scheduled"
-  video_id: "kyle-doliveira-rubyconf-2026"
+  video_id: "kyle-d-oliveira-rubyconf-2026"
   description: |-
     Are you ready to journey into the weird side of Ruby? Join us as we dive deep into the Fibonacci sequence—beyond the simple and into the spectacular. Forget the first, tenth, or even the thousandth Fibonacci number; we're setting our sights on the billionth! In this unusual talk, we'll unravel eleven ways, from simple to downright mind-bending, to compute Fibonacci numbers in Ruby. From straightforward iterations, to tail call optimization, to complex matrix operations. Discover some secret techniques and bizarre quirks of Ruby that make calculating the billionth Fibonacci number not just possible, but fast too. Whether you're a Ruby newbie or a seasoned vet, you'll leave with a toolkit full of Fibonacci hacks and a newfound appreciation for the playful power of Ruby.
   speakers:
@@ -823,7 +844,8 @@
   speakers:
     - Phil Crissman
 
-- id: "dave-thomas-keynote-rubyconf-2026"
+- id: "dave-thomas-rubyconf-2026"
+  old_id: "dave-thomas-keynote-rubyconf-2026"
   title: "Keynote by Dave Thomas"
   kind: "keynote"
   event_name: "RubyConf 2026"
@@ -831,7 +853,7 @@
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
-  video_id: "dave-thomas-keynote-rubyconf-2026"
+  video_id: "dave-thomas-rubyconf-2026"
   description: ""
   speakers:
     - Dave Thomas
