@@ -5,6 +5,10 @@
       "type": "string",
       "description": "Unique identifier for the video"
     },
+    "old_id": {
+      "type": "string",
+      "description": "Previous id, kept so production records can be migrated to the new id on the next seed"
+    },
     "title": {
       "type": "string",
       "description": "Title of the talk"
@@ -71,6 +75,10 @@
         "properties": {
           "id": {
             "type": "string"
+          },
+          "old_id": {
+            "type": "string",
+            "description": "Previous id, kept so production records can be migrated to the new id on the next seed"
           },
           "title": {
             "type": "string"

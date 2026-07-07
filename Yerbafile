@@ -260,6 +260,7 @@ rules:
           path: "[]"
           order:
             - id
+            - old_id
             - title
             - original_title
             - raw_title
@@ -312,6 +313,7 @@ rules:
           path: "[].talks[]"
           order:
             - id
+            - old_id
             - title
             - raw_title
             - original_title
