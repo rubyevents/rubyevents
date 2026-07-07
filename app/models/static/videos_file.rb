@@ -12,7 +12,11 @@ module Static
     end
 
     def self.all
-      @all ||= Dir.glob(Rails.root.join(VIDEOS_GLOB)).map { |path| new(path) }
+      @all ||= Dir.glob(Rails.root.join(VIDEOS_GLOB)).filter_map do |path|
+        new(path)
+      rescue Errno::ENOENT
+        nil
+      end
     end
 
     def self.clear_cache!
@@ -82,6 +86,14 @@ module Static
 
     def talks
       top_level_talks + sub_talks
+    end
+
+    def ids
+      talks.filter_map { |talk| talk.value_at("id") }
+    end
+
+    def old_ids
+      talks.filter_map { |talk| talk.value_at("old_id") }
     end
 
     def top_level_talks

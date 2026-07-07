@@ -52,6 +52,8 @@ If the rubyevents MCP is available, and the user did not provide an event series
 
 Call the generator once per talk, and do not attempt to create multiple talks in one command.
 
+Do not pass `--id` when adding a new talk. Talk ids follow the "firstname-lastname-event-slug" convention (enforced by `bin/rails validate:videos`), and the generator derives the correct id from the speakers, kind, and title, avoiding ids already taken in the file. Only pass `--id` to update an existing talk: the generator updates the entry with that id, and fails with a list of available ids when it doesn't exist.
+
 Run `bin/lint` once all talks are added to confirm the structure.
 
 ## Generating a Schedule

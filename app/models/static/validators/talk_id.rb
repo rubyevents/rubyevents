@@ -7,8 +7,6 @@ module Static
         "**/videos.yml"
       ].freeze
 
-      PLACEHOLDER_SPEAKER = "TODO"
-
       def initialize(file_path:)
         @file_path = file_path
       end
@@ -94,45 +92,27 @@ module Static
         Yerba.parse_file(event_file).value_at("kind") == "meetup"
       end
 
-      def speakers(node)
-        Array(node.value_at("speakers")).map(&:to_s).reject { |name| name.blank? || name == PLACEHOLDER_SPEAKER }
-      end
+      def id_for(node)
+        @ids ||= {}
 
-      def kind(node)
-        node.value_at("kind").presence || ::Talk::Kind.from_title(node.value_at("title")).to_s
-      end
-
-      def expected(*parts)
-        base = parts.map { |part| part.to_s.parameterize }.reject(&:blank?)
-        return nil if base.empty?
-
-        [*base, event_slug].join("-")
+        @ids[node] ||= ::Talk::StaticID.new(
+          event_slug: event_slug,
+          title: node.value_at("title"),
+          speakers: node.value_at("speakers"),
+          kind: node.value_at("kind")
+        )
       end
 
       def speaker_id(node)
-        names = speakers(node)
-
-        if names.size.between?(1, 2)
-          expected(*names)
-        elsif kind(node) == "talk"
-          title_id(node)
-        else
-          expected(kind(node).dasherize)
-        end
+        id_for(node).speaker_id
       end
 
       def kind_id(node)
-        names = speakers(node)
-
-        if names.size.between?(1, 2) && kind(node) != "talk"
-          expected(*names, kind(node).dasherize)
-        else
-          speaker_id(node)
-        end
+        id_for(node).kind_id
       end
 
       def title_id(node)
-        expected(node.value_at("title"))
+        id_for(node).title_id
       end
 
       def numbered(node, id, index)

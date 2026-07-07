@@ -6,7 +6,7 @@ require "generators/event_base"
 class TalkGenerator < Generators::EventBase
   source_root File.expand_path("templates", __dir__)
 
-  class_option :id, type: :string, desc: "ID of the talk (optional, will be generated from title and speaker if not provided)", required: false, group: "Fields"
+  class_option :id, type: :string, desc: "ID of an existing talk to update. New talks always get a generated id, so omit this to append one.", required: false, group: "Fields"
   class_option :title, type: :string, desc: "Title of the talk", group: "Fields"
   class_option :original_title, type: :string, desc: "Original title in native language (e.g., Japanese)", required: false, group: "Fields"
   class_option :speakers, type: :array, desc: "Speaker names", group: "Fields"
@@ -21,10 +21,15 @@ class TalkGenerator < Generators::EventBase
   # Options
   class_option :lightning_talks, type: :boolean, default: false, desc: "Add empty group of lightning talks", group: "Options"
 
-  # Internal classes to represent talk data that defines Defaults
+  # Internal class to represent talk data that defines Defaults
   class Talk
+    LIGHTNING_TALKS_DEFAULTS = {
+      "title" => "Lightning Talks",
+      "kind" => "lightning_talk"
+    }.freeze
+
     attr_accessor :event_slug, :event, :announced_at, :description, :original_title
-    attr_writer :id, :date, :language, :speakers, :title, :kind
+    attr_writer :id, :date, :language, :speakers, :title, :kind, :existing_ids
 
     def initialize(**attributes)
       attributes.each { |k, v| send("#{k}=", v) }
@@ -63,44 +68,28 @@ class TalkGenerator < Generators::EventBase
     end
 
     def generate_talk_id
-      talk_id_parts = []
+      candidates = ::Talk::StaticID.new(event_slug: event_slug, title: title, speakers: speakers, kind: kind).candidates
 
-      if speakers.length > 2 || speakers.length.zero?
-        talk_id_parts << title.parameterize
-      else
-        talk_id_parts.concat(speakers.map(&:parameterize))
-      end
-
-      talk_id_parts << kind unless kind.in? ["talk", "panel"]
-      talk_id_parts << event_slug
-      talk_id_parts.join("-")
-    end
-  end
-
-  # Overrides Talk defaults to fit Lightning Talks better
-  class LightningTalk < Talk
-    def id
-      @id ||= "lightning-talks-#{event_slug}"
+      candidates.find { |candidate| existing_ids.exclude?(candidate) } || candidates.last
     end
 
-    def title
-      @title ||= "Lightning Talks"
-    end
-
-    def description
-      @description ||= "Lightning talks."
+    def existing_ids
+      @existing_ids || []
     end
   end
 
   def initialize_values
-    @attributes = options
-      .slice(*VideoSchema.properties.keys.map(&:to_s))
-      .compact
+    @attributes = options.slice(*VideoSchema.properties.keys.map(&:to_s)).compact
+
     attrs = @attributes.merge({
       event: static_event,
-      event_slug: options[:event]
+      event_slug: options[:event],
+      existing_ids: existing_ids
     })
-    @talk = options[:lightning_talks] ? LightningTalk.new(**attrs) : Talk.new(**attrs)
+
+    attrs = Talk::LIGHTNING_TALKS_DEFAULTS.merge(attrs) if options[:lightning_talks]
+
+    @talk = Talk.new(**attrs)
   end
 
   def videos_file_path
@@ -113,9 +102,12 @@ class TalkGenerator < Generators::EventBase
 
   def add_talk_to_file
     gsub_file videos_file_path, /---\s*\[\]\n/, "---\n"
-    if File.read(videos_file_path).match?(/- id: "#{@talk.id}"/)
+
+    if File.read(videos_file_path).match?(/- id: "#{Regexp.escape(@talk.id)}"/)
       say("Existing talk with id:'#{@talk.id}' found. Updating...", :yellow)
       update_talk
+    elsif options[:id]
+      raise Thor::Error, missing_talk_message
     else
       talk_template = options[:lightning_talks] ? "lightning_talks.yml.tt" : "talk.yml.tt"
       say("Appending new talk with id:'#{@talk.id}'...", :green)
@@ -125,13 +117,34 @@ class TalkGenerator < Generators::EventBase
 
   private
 
+  def videos_file
+    Static::VideosFile.new(videos_file_path) if File.exist?(videos_file_path)
+  end
+
+  def existing_ids
+    return [] unless videos_file
+
+    videos_file.ids + videos_file.old_ids
+  end
+
+  def missing_talk_message
+    ids = videos_file&.ids || []
+
+    message = "No talk with id '#{options[:id]}' found in #{videos_file_path}. "
+    message << "Available ids:\n  #{ids.join("\n  ")}\n" if ids.any?
+    message << "If you are looking to add a new talk, omit --id and an id will be generated for you."
+  end
+
   def update_talk
     document = Static::VideosFile.new(videos_file_path)
     @existing_talk = document.find_by(id: @talk.id)
+
     @attributes.each do |key, value|
       @existing_talk[key] = value
     end
+
     document.save!
+
     say("#{@attributes.keys.to_sentence} updated.", :green)
   end
 end
