@@ -9,7 +9,7 @@ class TemplateTest < ActiveSupport::TestCase
       speakers: "John Doe, Jane Smith"
     )
 
-    parsed = YAML.safe_load(template.to_yaml).first
+    parsed = Yerba.parse(template.to_yaml).to_a.first
 
     assert_equal "Test Talk", parsed["title"]
     assert_equal "Test Event", parsed["event_name"]
@@ -28,7 +28,7 @@ class TemplateTest < ActiveSupport::TestCase
       end_cue: Time.parse("00:45:00")
     )
 
-    parsed = YAML.safe_load(template.to_yaml).first
+    parsed = Yerba.parse(template.to_yaml).to_a.first
 
     assert_equal "youtube", parsed["video_provider"]
     assert_equal "abc123", parsed["video_id"]
@@ -50,7 +50,7 @@ class TemplateTest < ActiveSupport::TestCase
 
     template.children << child
 
-    parsed = YAML.safe_load(template.to_yaml).first
+    parsed = Yerba.parse(template.to_yaml).to_a.first
 
     assert_equal "children", parsed["video_provider"]
     assert_equal 1, parsed["talks"].length

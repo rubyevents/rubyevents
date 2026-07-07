@@ -1,9 +1,11 @@
+# TODO: remove this client
+
 module RubyConferences
   class Client < ApplicationClient
     BASE_URI = "https://raw.githubusercontent.com/ruby-conferences/ruby-conferences.github.io/refs/heads/main"
 
     def conferences
-      YAML.load(get("/_data/conferences.yml").body, permitted_classes: [Date])
+      Yerba.parse(get("/_data/conferences.yml").body).to_a
     end
 
     def conferences_cached

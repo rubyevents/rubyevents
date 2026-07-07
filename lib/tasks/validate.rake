@@ -166,7 +166,7 @@ namespace :validate do
     issues = []
 
     files.each do |file|
-      data = YAML.load_file(file)
+      data = Yerba.parse_file(file).to_a
       relative_path = file.sub("#{Rails.root}/", "")
 
       Array(data).each_with_index do |video, index|

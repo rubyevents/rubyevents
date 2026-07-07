@@ -356,7 +356,7 @@ module Static
 
       return unless File.exist?(cfp_file_path)
 
-      cfps = YAML.load_file(cfp_file_path)
+      cfps = Yerba.parse_file(cfp_file_path.to_s).to_a
 
       cfps.each do |cfp_data|
         cfp = event.cfps.find_or_initialize_by(
