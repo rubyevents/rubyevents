@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SponsorsSchema < RubyLLM::Schema
+class SponsorsSchema < ApplicationSchema
   array :tiers, description: "List of sponsorship tiers", required: true do
     object do
       string :name, description: "Sponsorship Tier Name", required: false

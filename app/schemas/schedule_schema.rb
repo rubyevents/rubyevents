@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ScheduleSchema < RubyLLM::Schema
+class ScheduleSchema < ApplicationSchema
   array :days, description: "List of conference days" do
     object do
       string :name, description: "Name of the day (e.g., 'Day 1', 'Workshop Day')"

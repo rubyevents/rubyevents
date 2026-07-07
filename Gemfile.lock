@@ -7,13 +7,6 @@ GIT
       csv (>= 3.0.0)
 
 GIT
-  remote: https://github.com/crmne/ruby_llm-schema.git
-  revision: 2c5629ed0b13b28891b6f2ef7e4c6116164578b2
-  branch: main
-  specs:
-    ruby_llm-schema (0.3.1)
-
-GIT
   remote: https://github.com/joshleblanc/solid_queue.git
   revision: f7feb485de3021c72310ea8a4ed16ffaa132484a
   branch: async-mode
@@ -356,7 +349,6 @@ GEM
     gum (0.3.2-arm64-darwin)
     gum (0.3.2-x86_64-darwin)
     gum (0.3.2-x86_64-linux)
-    hana (1.3.7)
     hashdiff (1.2.1)
     hashie (5.1.0)
       logger
@@ -368,11 +360,6 @@ GEM
     herb (0.9.4-x86_64-darwin)
     herb (0.9.4-x86_64-linux-gnu)
     herb (0.9.4-x86_64-linux-musl)
-    hotwire_combobox (0.4.1)
-      platform_agent (>= 1.0.1)
-      rails (>= 7.0.7.2)
-      stimulus-rails (>= 1.2)
-      turbo-rails (>= 1.2)
     i18n (1.15.2)
       concurrent-ruby (~> 1.0)
     icalendar (2.12.2)
@@ -403,11 +390,6 @@ GEM
       actionview (>= 7.0.0)
       activesupport (>= 7.0.0)
     json (2.20.0)
-    json_schemer (2.5.0)
-      bigdecimal
-      hana (~> 1.3)
-      regexp_parser (~> 2.0)
-      simpleidn (~> 0.2)
     jwt (3.2.0)
       base64
     kamal (2.7.0)
@@ -537,9 +519,6 @@ GEM
     parser (3.3.11.1)
       ast (~> 2.4.1)
       racc
-    platform_agent (1.0.1)
-      activesupport (>= 5.2.0)
-      useragent (~> 0.16.3)
     pp (0.6.3)
       prettyprint
     pretty_please (0.2.0)
@@ -664,6 +643,7 @@ GEM
       marcel (~> 1)
       ruby_llm-schema (~> 0)
       zeitwerk (~> 2)
+    ruby_llm-schema (0.4.0)
     rubyzip (3.2.2)
     safely_block (0.5.0)
     securerandom (0.4.1)
@@ -680,7 +660,6 @@ GEM
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.13.2)
     simplecov_json_formatter (0.1.4)
-    simpleidn (0.2.3)
     sitemap_generator (6.3.0)
       builder (~> 3.0)
     smart_properties (1.17.0)
@@ -783,14 +762,14 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    yerba (0.7.4)
-    yerba (0.7.4-aarch64-linux-gnu)
-    yerba (0.7.4-aarch64-linux-musl)
-    yerba (0.7.4-arm-linux-gnu)
-    yerba (0.7.4-arm64-darwin)
-    yerba (0.7.4-x86_64-darwin)
-    yerba (0.7.4-x86_64-linux-gnu)
-    yerba (0.7.4-x86_64-linux-musl)
+    yerba (0.7.5)
+    yerba (0.7.5-aarch64-linux-gnu)
+    yerba (0.7.5-aarch64-linux-musl)
+    yerba (0.7.5-arm-linux-gnu)
+    yerba (0.7.5-arm64-darwin)
+    yerba (0.7.5-x86_64-darwin)
+    yerba (0.7.5-x86_64-linux-gnu)
+    yerba (0.7.5-x86_64-linux-musl)
     youtube-transcript-rb (0.2.3)
       faraday (~> 2.0)
       faraday-follow_redirects (~> 0.3)
@@ -844,12 +823,10 @@ DEPENDENCIES
   guard
   gum (~> 0.3.1)
   herb (~> 0.9)
-  hotwire_combobox (~> 0.4.0)
   icalendar (~> 2.12)
   image_processing (~> 1.2)
   iso-639
   jbuilder
-  json_schemer
   kamal (= 2.7.0)
   listen (~> 3.5)
   mapkick-rb (~> 0.2.0)
@@ -878,7 +855,7 @@ DEPENDENCIES
   ruby-lsp-rails
   ruby-openai
   ruby_llm (~> 1.15.0)
-  ruby_llm-schema!
+  ruby_llm-schema (~> 0.4.0)
   selenium-webdriver
   simplecov
   sitemap_generator (~> 6.3)
@@ -897,7 +874,7 @@ DEPENDENCIES
   vite_rails
   web-console
   webmock
-  yerba (~> 0.7.3)
+  yerba (~> 0.7.5)
   youtube-transcript-rb
   yt
 

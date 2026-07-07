@@ -31,26 +31,22 @@ module Static
         return [] unless applicable?
 
         document = Yerba.parse_file(@file_path.to_s)
-        raw_errors = build_schemer.validate(document.to_h).to_a
 
-        raw_errors.map do |e|
-          data_pointer = e["data_pointer"].gsub(/\A\//, "").tr("/", ".") || ""
-          location = document[data_pointer]&.location
+        document.validate(json_schema).map do |error|
+          message = [error["message"], error["path"].presence].compact.join(" at ")
+
           Static::Validators::Error.new(
-            "#{e["error"]} at #{e["data_pointer"]}",
+            message,
             file_path: @file_path,
-            line: location&.start_line || 1,
-            end_line: location&.end_line
+            line: error["line"] || 1
           )
         end
       end
 
       private
 
-      def build_schemer
-        schema_instance = @schema.is_a?(Class) ? @schema.new : @schema
-        schema_json = JSON.parse(schema_instance.to_json_schema[:schema].to_json)
-        JSONSchemer.schema(schema_json)
+      def json_schema
+        @schema.json_schema
       end
     end
   end

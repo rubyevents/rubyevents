@@ -50,7 +50,7 @@ module Static
 
         return [] unless File.exist?(videos_path)
 
-        @videos = YAML.load_file(videos_path)
+        @videos = Yerba.parse_file(videos_path).to_a
 
         return [] unless @videos.is_a?(Array) && @videos.any?
 

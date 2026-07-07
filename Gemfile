@@ -67,10 +67,7 @@ gem "minisky", "~> 0.4.0"
 gem "ruby_llm", "~> 1.15.0"
 
 # A simple and clean Ruby DSL for creating JSON schemas.
-gem "ruby_llm-schema", github: "crmne/ruby_llm-schema", branch: "main"
-
-# JSON Schema validator
-gem "json_schemer"
+gem "ruby_llm-schema", "~> 0.4.0"
 
 # YouTube V3 API client.
 gem "yt"
@@ -79,7 +76,7 @@ gem "yt"
 gem "rss", "~> 0.3.1"
 
 # YAML Editing and Refactoring with Better Accuracy
-gem "yerba", "~> 0.7.3"
+gem "yerba", "~> 0.7.5"
 
 # Powerful and seamless HTML-aware ERB parsing and tooling.
 gem "herb", "~> 0.9"
@@ -183,9 +180,6 @@ gem "omniauth"
 
 # Official OmniAuth strategy for GitHub.
 gem "omniauth-github"
-
-# An accessible autocomplete for Ruby on Rails apps using Hotwire.
-gem "hotwire_combobox", "~> 0.4.0"
 
 # Common locale data and translations for Rails i18n.
 gem "rails-i18n", "~> 8.0"

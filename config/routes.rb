@@ -168,15 +168,6 @@ Rails.application.routes.draw do
   resources :contributions, only: [:index, :show], param: :step
   resources :todos, only: [:index], path: "data/todos"
 
-  resources :templates, only: [:new, :create] do
-    collection do
-      get :new_child
-      delete :delete_child
-      get :speakers_search
-      post :speakers_search_chips
-    end
-  end
-
   # resources
   namespace :analytics do
     resource :dashboards, only: [:show] do

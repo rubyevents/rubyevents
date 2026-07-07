@@ -73,17 +73,15 @@ module Static
         data["youtube_channels"] = youtube_channels if youtube_channels.present?
         data["aliases"] = Array(aliases) if aliases.present?
 
-        schema = JSON.parse(SeriesSchema.new.to_json_schema[:schema].to_json)
-        schemer = JSONSchemer.schema(schema)
-        errors = schemer.validate(data).to_a
+        errors = Yerba.parse(data.to_yaml).validate(SeriesSchema.json_schema)
 
         if errors.any?
-          error_messages = errors.map { |e| "#{e["error"]} at #{e["data_pointer"]}" }
+          error_messages = errors.map { |error| "#{error["message"]} at #{error["path"]}" }
           raise ArgumentError, "Validation failed: #{error_messages.join(", ")}"
         end
 
         FileUtils.mkdir_p(series_dir)
-        File.write(series_file, data.to_yaml)
+        File.write(series_file, content)
 
         @slug_index = nil
         unload!

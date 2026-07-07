@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SeriesSchema < RubyLLM::Schema
+class SeriesSchema < ApplicationSchema
   string :name, description: "Name of the event series (e.g., 'RailsConf')"
   string :description, description: "Description of the event series", required: false
 
