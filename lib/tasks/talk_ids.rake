@@ -11,6 +11,7 @@ namespace :talk_ids do
       next unless validator.applicable?
 
       renames = validator.expected_ids.reject { |node, expected| node.value_at("id") == expected }
+      event_slug = File.basename(File.dirname(path))
 
       renames.each do |node, expected|
         current = node.value_at("id")
@@ -20,6 +21,17 @@ namespace :talk_ids do
         node["old_id"] = current if node.value_at("old_id").blank?
         node["id"] = expected
         node["video_id"] = expected if placeholder_video_id
+
+        event_thumbnails = Rails.root.join("app/assets/images/thumbnails", event_slug)
+
+        Dir.glob(event_thumbnails.join("**/#{current}.webp")).each do |thumbnail|
+          renamed_thumbnail = File.join(File.dirname(thumbnail), "#{expected}.webp")
+          FileUtils.mv(thumbnail, renamed_thumbnail) unless File.exist?(renamed_thumbnail)
+        end
+
+        directory = event_thumbnails.join(current)
+        renamed_directory = event_thumbnails.join(expected)
+        FileUtils.mv(directory, renamed_directory) if Dir.exist?(directory) && !Dir.exist?(renamed_directory)
       end
 
       redundant = validator.expected_ids.keys.select { |node| node.value_at("old_id") == node.value_at("id") }
