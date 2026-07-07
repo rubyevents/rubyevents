@@ -117,3 +117,6 @@ application.register("watched-talk-form", WatchedTalkFormController)
 
 import WrappedStoriesController from "./wrapped_stories_controller"
 application.register("wrapped-stories", WrappedStoriesController)
+
+import RequestedTalkTopicsFilterController from "./requested_talk_topics/filter_controller"
+application.register("requested-talk-topics-filter", RequestedTalkTopicsFilterController)
