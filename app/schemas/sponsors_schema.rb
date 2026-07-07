@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class SponsorsSchema < ApplicationSchema
+  data_file "**/sponsors.yml", selector: "[]"
+
   array :tiers, description: "List of sponsorship tiers", required: true do
     object do
       string :name, description: "Sponsorship Tier Name", required: false

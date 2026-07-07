@@ -12,7 +12,7 @@ class Static::Validators::Validator
 
   def self.speaker_validator_classes
     @speaker_validators ||= [
-      Static::Validators::SchemaArray,
+      Static::Validators::Schema,
       Static::Validators::UniqueSpeakerFields,
       Static::Validators::UniqueSpeakers
     ]
@@ -20,7 +20,7 @@ class Static::Validators::Validator
 
   def self.video_validator_classes
     @video_validators ||= [
-      Static::Validators::SchemaArray,
+      Static::Validators::Schema,
       Static::Validators::SpeakerExists,
       Static::Validators::SpeakersOrTalks,
       Static::Validators::TalkDates,

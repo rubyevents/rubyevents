@@ -3,63 +3,84 @@
 require "test_helper"
 
 class Static::Validators::SchemaTest < ActiveSupport::TestCase
-  test "applicable? returns true for a valid event.yml" do
+  test "applicable? returns true for a mapping-based file like event.yml" do
     file = Rails.root.join("data/helveticruby/helveticruby-2025/event.yml")
-    validator = Static::Validators::Schema.new(file_path: file)
-    assert validator.applicable?
+
+    assert Static::Validators::Schema.new(file_path: file).applicable?
   end
 
-  test "applicable? returns true for series.yml" do
-    file = Rails.root.join("data/blue-ridge-ruby/series.yml")
-    validator = Static::Validators::Schema.new(file_path: file)
-    assert validator.applicable?
+  test "applicable? returns true for an array-based file like videos.yml" do
+    file = Rails.root.join("data/helveticruby/helveticruby-2025/videos.yml")
+
+    assert Static::Validators::Schema.new(file_path: file).applicable?
   end
 
   test "applicable? returns false for a non-existent file" do
-    validator = Static::Validators::Schema.new(file_path: "/nonexistent/event.yml")
-    assert_not validator.applicable?
+    assert_not Static::Validators::Schema.new(file_path: "/nonexistent/event.yml").applicable?
   end
 
-  test "applicable? returns false for an array-based file" do
-    file = Rails.root.join("data/blue-ridge-ruby/videos.yml")
-    validator = Static::Validators::Schema.new(file_path: file)
-    assert_not validator.applicable?
+  test "applicable? returns false for a file without a schema" do
+    with_temp_yaml("something.yml", "---\nname: 5\n") do |path|
+      assert_not Static::Validators::Schema.new(file_path: path).applicable?
+    end
   end
 
-  test "returns empty array for a valid file" do
+  test "returns empty array for a valid mapping-based file" do
     file = Rails.root.join("data/helveticruby/helveticruby-2025/event.yml")
-    validator = Static::Validators::Schema.new(file_path: file)
-    assert_empty validator.errors
+
+    assert_empty Static::Validators::Schema.new(file_path: file).errors
   end
 
-  test "returns errors for an invalid file" do
-    yaml = {"name" => "Bad Event"}.to_yaml
-    with_temp_event_yaml(yaml) do |path|
-      validator = Static::Validators::Schema.new(file_path: path)
-      assert_match(/"id" is a required property/, validator.errors.first.as_error)
+  test "returns empty array for a valid array-based file" do
+    file = Rails.root.join("data/helveticruby/helveticruby-2025/cfp.yml")
+
+    assert_empty Static::Validators::Schema.new(file_path: file).errors
+  end
+
+  test "returns errors for an invalid mapping-based file" do
+    with_temp_yaml("event.yml", %(---\nname: "Bad Event"\n)) do |path|
+      errors = Static::Validators::Schema.new(file_path: path).errors
+
+      assert_match(/"id" is a required property/, errors.first.as_error)
+    end
+  end
+
+  test "returns errors with the item label for an invalid array-based file" do
+    with_temp_yaml("cfp.yml", %(---\n- name: "CFP without required link"\n)) do |path|
+      errors = Static::Validators::Schema.new(file_path: path).errors
+
+      assert_match(/"link" is a required property/, errors.first.as_error)
+      assert_match(/CFP without required link/, errors.first.as_error)
+    end
+  end
+
+  test "a passed selector overrides the schema's data file selector" do
+    with_temp_yaml("event.yml", %(---\n- name: "Event in an unexpected array"\n)) do |path|
+      errors = Static::Validators::Schema.new(file_path: path, selector: "[]").errors
+
+      assert_match(/"id" is a required property/, errors.first.as_error)
     end
   end
 
   test "errors are Static::Validators::Error objects" do
-    yaml = {"name" => "Bad Event"}.to_yaml
-    with_temp_event_yaml(yaml) do |path|
-      validator = Static::Validators::Schema.new(file_path: path)
-      assert validator.errors.all? { |e| e.is_a?(Static::Validators::Error) }
+    with_temp_yaml("event.yml", %(---\nname: "Bad Event"\n)) do |path|
+      errors = Static::Validators::Schema.new(file_path: path).errors
+
+      assert errors.all? { |error| error.is_a?(Static::Validators::Error) }
     end
   end
 
   test "returns empty array when file does not exist" do
-    validator = Static::Validators::Schema.new(file_path: "/nonexistent/path/event.yml")
-    assert_empty validator.errors
+    assert_empty Static::Validators::Schema.new(file_path: "/nonexistent/path/event.yml").errors
   end
 
   private
 
-  def with_temp_event_yaml(yaml_content)
+  def with_temp_yaml(filename, content)
     dir = Dir.mktmpdir
-    path = File.join(dir, "data", "testconf", "2025", "event.yml")
+    path = File.join(dir, "data", "testconf", "testconf-2025", filename)
     FileUtils.mkdir_p(File.dirname(path))
-    File.write(path, yaml_content)
+    File.write(path, content)
     yield path
   ensure
     FileUtils.rm_rf(dir)

@@ -121,7 +121,7 @@ class InvolvementsGeneratorTest < Rails::Generators::TestCase
   end
 
   def validate_involvements_file(file_path)
-    [Static::Validators::SchemaArray].each do |validator|
+    [Static::Validators::Schema].each do |validator|
       errors = validator.new(file_path:).validate
       assert_empty errors, "#{validator} failed: #{errors.map { |error| error.to_h["message"] }.join(", ")}"
     end

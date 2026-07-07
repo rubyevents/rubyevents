@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class CFPSchema < ApplicationSchema
+  data_file "**/cfp.yml", selector: "[]"
+
   string :link, description: "CFP link", required: true
   string :name, description: 'Name for the CFP (default: "Call for Proposals")', required: false
   string :open_date, description: "CFP open date (YYYY-MM-DD format)", required: false
