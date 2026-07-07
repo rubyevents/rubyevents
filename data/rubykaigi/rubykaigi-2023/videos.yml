@@ -10,9 +10,15 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:21:02Z"
   language: "Japanese"
+  slides_url: "https://speakerdeck.com/iberianpig/diy-your-touchpad-experience-building-your-own-gestures-rubykaigi2023"
   video_provider: "youtube"
   video_id: "gnwe8DqPDrk"
-  description: ""
+  description: |-
+    It's fun to improve the development environment and tools you use every day in the way you like. Let's build your own tools that feel good in your hands using Ruby.
+    I have developed a gem for gesture control on Linux, allowing you to define your own custom gestures and actions.
+    In this talk, I will show how to handle device events such as touchpad and keyboard in real-time and how to implement a flexible plugin mechanism using Gem.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/nukumaro22.html
   speakers:
     - Kohei Yamada
 
@@ -23,9 +29,17 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:22:30Z"
   language: "Japanese"
+  slides_url: "https://speakerdeck.com/yui_knk/the-future-vision-of-ruby-parser"
   video_provider: "youtube"
   video_id: "IhfDsLx784g"
-  description: ""
+  description: |-
+    Recently maintainability and usability of ruby's parser have been discussed. There are several approaches for these problems, however I believe LR parser is the best solution for supporting Ruby's elegant syntax.
+
+    When using parser generators, we write a grammar description file like "parse.y". In a grammar file, many DSL, e.g. %parse-param, %initial-action, %left, %right ..., are used to control the behavior of generated parser. Even so Push Down Automaton has potential to solve these problems, parser generator's DSL is not enough to represent it. Such impedance mismatches between DSL and PDA requires us to use hacks like lex state.
+
+    This talk will cover redesigning the responsibility of lexer and parser, how to expand DSL for grammar files and introduction to Lrama parser generator.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/spikeolaf.html
   speakers:
     - Yuichiro Kaneko
 
@@ -36,9 +50,13 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:21:02Z"
   language: "English"
+  # slides_url: "https://kaigi-rubocops-baddest-cop.herokuapp.com/"
   video_provider: "youtube"
   video_id: "n-D9uPOo_kc"
-  description: ""
+  description: |-
+    At Dext (dext.com), we use a perky Ruby style – we omit the parentheses in method calls. When I joined the company we enforced this rule through code review. Having spent time in Go-land where gofmt rules every discussion, I wondered... How hard it is to make RuboCop enforce calls without parens? Turns out – it's pretty hard! Ruby hides a lot of ambiguities and requirements in that permissive syntax. Join me, in a talk where I explore every little Ruby quirk I found while trying to invent a robot that yells at me when I call a method with parens instead of a Human!
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/gsamokovarov.html
   speakers:
     - Genadi Samokovarov
 
@@ -66,9 +84,19 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:21:02Z"
   language: "Japanese"
+  slides_url: "https://speakerdeck.com/makenowjust/make-regexp-number-match-much-faster"
   video_provider: "youtube"
   video_id: "IbMFHxeqpN4"
-  description: ""
+  description: |-
+    Regular expressions (Regexp) are the fundamental text-processing tool for programmers. Ruby also has Regexp functions as the standard feature.
+
+    Regexp is helpful, but it may cause some problems. The typical issue is ReDoS (Regular expression Denial of Service), a vulnerability in Regexp matching. When Regexp matching is implemented by back-tracking, a matching time could explode. This explosion overloads a service and makes it hard to provide the service. Such a DoS attack using Regexp matching is called ReDoS. For example, it caused damage to Cloudflare.
+
+    Previous Ruby's Regexp implementation could cause ReDoS. In Ruby 3.2.0, Regexp matching has been optimized to prevent ReDoS. This optimization makes Regexp, which previously took exponential matching time, be matched in linear time.
+
+    In this talk, I will describe a Regexp matching implementation and the details of the Regexp matching optimization implemented in Ruby 3.2.0.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/makenowjust.html
   speakers:
     - Hiroya Fujinami
 
@@ -79,9 +107,19 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:21:02Z"
   language: "English"
+  slides_url: "https://docs.google.com/presentation/d/1GYoYnLij7YGnYGLgMSlRvBPSTEEVqFqUhowtkN4eH24/present"
   video_provider: "youtube"
   video_id: "rI4XlFvMNEw"
-  description: ""
+  description: |-
+    The Global VM Lock (GVL), also known as Global Interpreter Lock (GIL), is an implementation detail of the CRuby VM.
+
+    At a high-level, it prevents Ruby code across multiple threads from running in parallel (while still allowing concurrency!).
+
+    The GVL is an extremely important implementation detail, as it can have a big impact on the performance and responsiveness of any Ruby application that uses more than a single thread to do its work.
+
+    In this talk, I explore what the GVL is, why it is no longer called global VM lock, its impact on Ruby applications and how we can see it in action by using the GVL instrumentation API through the gvl-tracing and gvltools gems.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/KnuX.html
   speakers:
     - Ivo Anjo
 
@@ -92,9 +130,17 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:21:02Z"
   language: "Japanese"
+  slides_url: "https://speakerdeck.com/logiteca7/developing-chrome-extension-with-ruby-dot-wasm"
   video_provider: "youtube"
   video_id: "A2ziP8V9muE"
-  description: ""
+  description: |-
+    Ruby3.2 supports WASM and can run ruby.wasm on the browser.
+
+    As a way to incorporate it into a working application, I came up with the idea of building a Ruby framework for Chrome extensions.
+
+    I will present its mechanism and goals.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/3yUma_rb.html
   speakers:
     - Yuma Sawai
 
@@ -105,9 +151,17 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:21:02Z"
   language: "English"
+  slides_url: "https://atdot.net/~ko1/activities/2023_rubykaigi2023.pdf"
   video_provider: "youtube"
   video_id: "Id706gYi3wk"
-  description: ""
+  description: |-
+    Ractor was introduced in Ruby 3.0 as an experimental feature to enable parallel programming in Ruby.
+
+    Now Ractor is not widely used for many reasons. For example, from the perspective of a Ractor implementer, Ractor does not have enough performance and quality.
+
+    In this talk, we will explain which features are not enough, why they are difficult, and how to solve these difficulties.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/ko1.html
   speakers:
     - Koichi Sasada
 
@@ -118,9 +172,15 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:21:02Z"
   language: "English"
+  slides_url: "https://file.linhares.blue/ruby_kaigi/2023/slides.pdf"
   video_provider: "youtube"
   video_id: "Tuhk4iS3F_I"
-  description: ""
+  description: |-
+    It is possible to use Ruby language for high-performance real-time 3D graphics. And it is possible to create games as impressive as those built with the most popular engines, like Unity, Unreal, and Godot.
+
+    I have been working on Candy Gear, a game engine for the mruby that uses Vulkan to render the graphics. It works well enough to show how to embed mruby into a Vulkan engine. I will also show which challenges I found and how I solved them. Finally, I will discuss the future work needed to make modern 3D games using this project.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/fredolinhares.html
   speakers:
     - Frederico Linhares
 
@@ -131,9 +191,13 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:22:30Z"
   language: "Japanese"
+  slides_url: "https://speakerdeck.com/ima1zumi/c-9f8bab18-7b38-4a6a-b0b2-56a9fda78a9f"
   video_provider: "youtube"
   video_id: "y5rGatij0DE"
-  description: ""
+  description: |-
+    mruby/c could only use ASCII (binary), but it will support UTF-8. In this talk I will explain how I implemented UTF-8 support available in mruby/c.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/ima1zumi.html
   speakers:
     - Mari Imaizumi
 
@@ -144,9 +208,19 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:22:30Z"
   language: "Japanese"
+  slides_url: "https://drive.google.com/file/d/1Pvj4mmF6g9aNHk92KESzrOvBJn62O4VD/view"
   video_provider: "youtube"
   video_id: "VweV7ngcDEk"
-  description: ""
+  description: |-
+    Nowadays, we can use the power of types when writing code in an editor or IDE.
+
+    But how about in IRB?
+
+    What if the auto completion of IRB gets more accurate using type information? Wouldn’t it be happy?
+
+    In this talk, I will show how to implement type based auto completion and make your own customized IRB.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/tompng.html
   speakers:
     - Tomoya Ishida
 
@@ -157,9 +231,21 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:21:02Z"
   language: "English"
+  slides_url: "https://www.eightbitraptor.com/presentations/RubyKaigi2023-mvh.pdf"
   video_provider: "youtube"
   video_id: "chhNDhyPbyc"
-  description: ""
+  description: |-
+    Dynamic memory management is a complex and often controversial topic. There are a wide variety of different algorithms and approaches that one can take towards managing memory, both manually and automatically.
+
+    Some language implementations tend to pick their favourite approach early in their development, like Pythons reference counting and Ruby's extended Mark Sweep collector, and stick with it for the long term.
+
+    Others, like the JVM, aim to have a more configurable approach, with multiple Garbage Collection algorithms that can be configured at runtime, or even dynamically tuned by the VM during program execution.
+
+    What if we could have that for Ruby?
+
+    This talk is going to be an exploration of how we can support multiple GC algorithms in Ruby. We'll talk about building a unified memory management API, and explore our integration with MMTk, a research project to build a unified memory management toolkit, with integrations into the JVM, v8, Julia, and now Ruby.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/eightbitraptor.html
   speakers:
     - Matt Valentine-House
 
@@ -171,9 +257,11 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:21:02Z"
   language: "Japanese"
+  slides_url: "https://speakerdeck.com/matz/30-years-of-ruby"
   video_provider: "youtube"
   video_id: "184Sc0hsnek"
-  description: ""
+  description: |-
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/yukihiro_matz.html
   speakers:
     - "Yukihiro \"Matz\" Matsumoto"
 
@@ -353,9 +441,19 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:22:30Z"
   language: "English"
+  slides_url: "https://www.sw.it.aoyama.ac.jp/2023/pub/RubyꝩduЯ"
   video_provider: "youtube"
   video_id: "F3feRCr6S64"
-  description: ""
+  description: |-
+    A bit over a year ago, the Trojan Source attacks created quite a scare. This talk looks at what can and should be done for Ruby.
+
+    Ruby has embraced Unicode in the form of UTF-8 for source code so that identifiers as well as comments can use non-ASCII characters. This can be very convenient but also may be dangerous.
+
+    We will explain the dangers: Bidirectional attacks can use special Unicode formatting characters to regroup source text so that it looks like it does something, but actually does something else. Homoglyph attacks can use lookalike characters to confuse code reviewers. Invisible characters and special spaces can be even more difficult to detect.
+
+    Remedies include better Ruby parsing, new checks to editors, IDEs, and code management sites such as github, and stronger linters such as Rubycop.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/duerst.html
   speakers:
     - Martin J. Dürst
 
@@ -366,9 +464,15 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:22:30Z"
   language: "Japanese"
+  slides_url: "https://speakerdeck.com/m_seki/learn-ractor"
   video_provider: "youtube"
   video_id: "_pMKdqCxE8w"
-  description: ""
+  description: |-
+    I learned Ractor by improving the speed of my application. From this experience, I'll show you situations where Ractor is a good fit and how I changed it for Ractor.
+
+    https://masaki.druby.work/city
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/m_seki.html
   speakers:
     - Masatoshi SEKI
 
@@ -379,9 +483,13 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:22:30Z"
   language: "English"
+  slides_url: "https://speakerdeck.com/headius/jruby-looking-forward"
   video_provider: "youtube"
   video_id: "yxdbbOMWE0g"
-  description: ""
+  description: |-
+    Over the past few years, we've update JRuby to support Ruby 3.1 compatibility and new JVM features like native fibers and FFI. Now we're returning to performance work, catching up with the latest optimizations. In this talk we'll explore some popular benchmarks and show how we're improving JRuby across the board. Well also discuss the future of JRuby and how Rubyists can help.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/headius.html
   speakers:
     - Charles Nutter
 
@@ -392,9 +500,22 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:22:30Z"
   language: "English"
+  slides_url: "https://github.com/st0012/slides/blob/main/2023-05-11-rubykaigi/Build%20a%20mini%20Ruby%20debugger.pdf"
   video_provider: "youtube"
   video_id: "7uLFVL2KNXo"
-  description: ""
+  description: |-
+    As developers, we know that the best way to learn is by doing. Many of us have built mini-rails, mini-sinatra, and even mini-rubies. But have you ever built your own debugger?
+
+    In this talk, I'll show you how to create a mini Ruby debugger that's both powerful and fun to use. You'll learn how to:
+
+    - Run your program with debugger with a simple command
+    - Set breakpoints and through debugger commands
+    - Step through your code to find bugs
+    - And best of all, you'll do it all in under 300 lines of code!
+
+    Don't miss out on this opportunity to level up your debugging skills and have some fun along the way.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/_st0012.html
   speakers:
     - Stan Lo
 
@@ -405,9 +526,17 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:22:30Z"
   language: "Japanese"
+  slides_url: "https://speakerdeck.com/coe401_/implementing-plus-plus-operator-stepping-into-parse-dot-y"
   video_provider: "youtube"
   video_id: "x_p5r8p0i1o"
-  description: ""
+  description: |-
+    The fact that there is no increment/decrement operator in Ruby is known to many Rubyists. Currently, if you try to write code like i = 0; i++ in Ruby, MRI's parser considers it syntactically invalid.
+
+    Still, if we want them that means adding a new syntax for ++ operator to Ruby. This seems like a simple syntax at first glance, but to achieve this we need to dig a little deeper into MRI, and explore parse.y - the parser file called "魔窟" (the maze), and consider the compatibility with existing specifications of Ruby.
+
+    This talk will show you some ideas to obtain ++ with the trial-and-error process of a programmer who is not an expert in a parser, thereby making the interesting topics, lexical analysis, and parsing more familiar to you.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/coe401_.html
   speakers:
     - Misaki Shioi
 
@@ -418,9 +547,17 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:22:30Z"
   language: "English"
+  slides_url: "https://speakerdeck.com/kddnewton/yarp"
   video_provider: "youtube"
   video_id: "3vzpv9GZdLo"
-  description: ""
+  description: |-
+    Building good Ruby tooling is dependent on having a good parser. Today, it is difficult to use the CRuby parser to build tooling because of its lack of public interface and documentation. This has led to people using external gems and generally fragmenting the community.
+
+    The Yet Another Ruby Parser project is building a universal Ruby parser that can be used by all Ruby implementations and tools. It is documented, error tolerant, and performant. It can be used without linking against CRuby, which means it can be easily used by other projects.
+
+    This talk is about the YARP project's motivation, design, implementation, and results. Come to learn about the future of parsing Ruby.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/kddnewton.html
   speakers:
     - Kevin Newton
 
@@ -431,9 +568,17 @@
   date: "2023-05-11"
   published_at: "2023-06-12T03:44:41Z"
   language: "English"
+  slides_url: "https://mensfeld.github.io/rubygems-on-the-watch/"
   video_provider: "youtube"
   video_id: "H4qbhzifBz8"
-  description: ""
+  description: |-
+    Did you know that in 2022, over 400 malicious packages were released to RubyGems? That's more than one per day! Our packages ecosystem may not be the biggest, but sure it is being actively exploited!
+
+    Are you worried? Don't be! You are not alone! RubyGems has a security team actively monitoring and mitigating various threats to ensure that the gems ecosystem is safe and sound. The previous year was when the RubyGems security team would have to issue critical CVEs related to RubyGems security. Still, at the same time, we spent days and nights making sure that the discovered vulnerabilities were not actively exploited.
+
+    Join me on an adventure from one critical vulnerability to another. Let's explore the world of malicious packages together and learn how you can ensure your safety in this world full of threats and bad actors.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/maciejmensfeld.html
   speakers:
     - Maciej Mensfeld
 
@@ -444,9 +589,19 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:22:30Z"
   language: "Japanese"
+  slides_url: "https://speakerdeck.com/sue445/fix-sql-n-plus-one-queries-with-rubocop"
   video_provider: "youtube"
   video_id: "mDDAbZsDPMk"
-  description: ""
+  description: |-
+    ISUCON is most famous performance turning contest in Japan.
+    https://isucon.net/
+
+    I created https://github.com/sue445/rubocop-isucon for ISUCON.
+    This gem automatically modifies SQL N+1 queries with RuboCop.
+
+    I'll talk about why I did this CRAZY thing and the technology it took to do this.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/sue445.html
   speakers:
     - Go Sueyoshi
 
@@ -457,9 +612,15 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:22:31Z"
   language: "Japanese"
+  slides_url: "https://speakerdeck.com/mame/revisiting-typeprof-ide-support-as-a-primary-feature"
   video_provider: "youtube"
   video_id: "UitqAvgmX0Y"
-  description: ""
+  description: |-
+    TypeProf is a type analyzer for Ruby code that has been bundled since Ruby 3.0. It has provided type inference of non-type-annotated Ruby code as a primary feature, and IDE support via Language Server as a secondary feature.
+
+    This year, we are trying to reverse this; Let IDE a primary target. We're redesigning the analyzer to help achieving this. To speed up the response to edits in the IDE, we plan to make the analysis modular and incremental and reduce the amount of re-analysis per edit. We also plan to implement showing analyzed types as mouse hover hint by changing the analysis from bytecode-based to AST based. In this talk, we will present the new design of TypeProf and its prototype.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/mametter.html
   speakers:
     - Yusuke Endoh
 
@@ -470,9 +631,17 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:22:30Z"
   language: "English"
+  slides_url: "https://eregon.me/blog/assets/research/splitting-the-crucial-optimization-for-ruby-blocks-rubykaigi.pdf"
   video_provider: "youtube"
   video_id: "KdyV6geWZAk"
-  description: ""
+  description: |-
+    Blocks are one of the most expressive parts of the Ruby syntax. Many Ruby methods take a block. When a method is given different blocks, there is a crucial optimization necessary to unlock the best performance.
+
+    This optimization dates back to the early days of research on dynamic languages, yet it seems only a single Ruby implementation currently uses it.
+
+    This optimization is called splitting and what it does is using different copies of a method and specialize them to the block given at different call sites. This enables compiling the method and the block together for the best performance.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/eregontp.html
   speakers:
     - Benoit Daloze
 
@@ -483,9 +652,21 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:22:30Z"
   language: "Japanese"
+  slides_url: "https://speakerdeck.com/koic/the-resurrection-of-the-fast-parallel-test-runner"
   video_provider: "youtube"
   video_id: "Bg45cDBcQzo"
-  description: ""
+  description: |-
+    Are your tests running fast enough?
+
+    As far as I know, the most effective solution is test parallelization if your project testing is slow.
+
+    In recent years, parallel testing has been included in Rails 6 for parallelization of tests, but speeding up tests is important not only for Rails. parallel_tests and test-queue are well-known parallel test runners for vanilla Ruby, classic Rails application project, and so on.
+
+    Both parallel_tests and test-queue support testing in parallel, and each has a different strategy. The test-queue strategy has distinct advantages over parallel_tests but maintenance was stuck when I got a commit bit for test-queue. So I've been contributing to the resurrection of the product sustainability. I will share some lesser-known parallel testing insights I've gained in reviving the test-queue. And explore possibilities of parallel programming in Ruby.
+
+    I hope this talk provides an opportunity to make your test faster and makes you happy.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/koic.html
   speakers:
     - Koichi ITO
 
@@ -496,9 +677,19 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:22:30Z"
   language: "Japanese"
+  slides_url: "https://speakerdeck.com/shioyama/multiverse-ruby"
   video_provider: "youtube"
   video_id: "xGpz0ZXrhco"
-  description: ""
+  description: |-
+    Sharing code in Ruby is like sharing stuff on the web: grab a top-level name that's free, park your stuff under it, and point to the address. Like the Internet, Ruby's constant namespace is global and reachable from anywhere.
+
+    But although it feels natural, there are serious downsides to this approach. Working in a single, shared universe makes namespace pollution a necessary fact of life; boundaries and code isolation depend on the good manners of every maintainer in your Gemfile.
+
+    In this talk, I present a gem called Im that lets you share your code without touching the global namespace at all. A fork of Zeitwerk, Im leverages new features in Ruby 3.2 to load constants onto namespaces whose roots are anonymous.
+
+    Loading this way positions each unit of code at the center of its own universe, free from name conflicts and isolated from the rest of the world. We explore how this freedom impacts the writing and sharing of code, and the benefits it unlocks for designing applications at scale.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/shioyama.html
   speakers:
     - Chris Salzberg
 
@@ -509,9 +700,15 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:22:30Z"
   language: "English"
+  slides_url: "https://slide.rabbit-shocker.org/authors/unasuke/rubykaigi-2023/"
   video_provider: "youtube"
   video_id: "jcm8hsRuFYs"
-  description: ""
+  description: |-
+    I am working on a Ruby implementation of the QUIC protocol with support from the Ruby Association Grant.
+
+    I started by porting the aioquic code from Python to Ruby and then developing a version of QUIC that is more suited to the Ruby language. In this presentation, I will summarize my progress and discuss some challenges I faced during the code transition.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/yu_suke1994.html
   speakers:
     - Yusuke Nakamura
 
@@ -522,9 +719,19 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:22:30Z"
   language: "English"
+  slides_url: "https://speakerdeck.com/yotii23/reading-and-improving-pattern-matching-in-ruby"
   video_provider: "youtube"
   video_id: "KDvVfbWQyMA"
-  description: ""
+  description: |-
+    Pattern Matching is already one of the essential features in Ruby, but not everyone knows how it is implemented.
+
+    In this talk, I will show not only how it is, but also explain how to read and understand the specific feature's implementations in Ruby's C source code.
+
+    Moreover, I'm going to try improving Pattern Matching on speed(the result is not guaranteed...). I will also show how to do it, and how to measure it.
+
+    I hope this talk will be an opportunity to get Ruby programmers who are not familiar with the C language interested in Pattern Matching and Ruby implementation!
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/yotii23.html
   speakers:
     - Yuki Torii
 
@@ -535,9 +742,13 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:22:30Z"
   language: "English"
+  slides_url: "https://github.com/XrXr/slides/blob/main/RubyKaigi2023/fitting-rust-yjit-into-cruby.pdf"
   video_provider: "youtube"
   video_id: "GI7vvAgP_Qs"
-  description: ""
+  description: |-
+    In 2021 we wrote YJIT in C and then in 2022 we ported it to Rust. Let's talk about the practicalities of incorporating Rust into a mature C codebase that is primarily released as only source code. Decision making history, wrangling build tools, solving language idiom mismatch, minimizing externalities... All the fun stuff that culminated into Rust YJIT's release in Ruby 3.2.0!
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/alanwusx.html
   speakers:
     - Alan Wu
 
@@ -548,9 +759,16 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:22:30Z"
   language: "English"
+  slides_url: "https://speakerdeck.com/osyoyu/hacking-and-profiling-ruby-for-performance-rubykaigi-2023"
   video_provider: "youtube"
   video_id: "WPgor5jmcuE"
-  description: ""
+  description: |-
+    Programming in Ruby is undoubtedly fun and productive - however, it isn't always straightforward when your program will go under high load.
+    Ruby has its unique strengths and weaknesses. We will discuss and compare them with other languages, through our experiences in ISUCON - the eight-hour web app tuning contest.
+
+    Come see how Ruby can be performative - why we love this highly hackable language, how we measure CRuby performance, and what tools we have built to profile our code!
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/osyoyu.html
   speakers:
     - Daisuke Aritomo
 
@@ -561,9 +779,22 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:22:30Z"
   language: "Japanese"
+  slides_url: "https://speakerdeck.com/onomax/introduction-of-new-features-for-vs-code-debugging"
   video_provider: "youtube"
   video_id: "kuXD9p--Te0"
-  description: ""
+  description: |-
+    ruby/debug, which is a replacement for traditional lib/debug.rb standard library has been developed for two years. Also, many improvements are still being made.
+
+    In this talk, I'll introduce new features to improve the user experience in VS Code debugging.
+
+    VS Code Debug Visualizer:
+    Would it be helpful if we could see the Active Record object as a table? Debug Visualizer allows you to visualize many objects in many ways, such as bar charts and line charts!
+    Demo: https://www.youtube.com/watch?v=9vLVCrpzlDQ
+
+    Trace Inspector:
+    Trace Inspector is useful when tracing in VS Code. Users can search tracing logs easily and get a lot of helpful information by using Rdbg Trace Inspector. For example, users can know which method is called, which line is executed, local variables at some point, and so on.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/ono-max.html
   speakers:
     - Naoto Ono
 
@@ -574,9 +805,15 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:22:30Z"
   language: "English"
+  slides_url: "https://drive.google.com/file/d/1HW2aC-Di5-5QuB1bqb0kFu4K5R8zIOJf/view"
   video_provider: "youtube"
   video_id: "7y6DhXQU4wU"
-  description: ""
+  description: |-
+    Have you ever had the urge to contribute to Ruby? Maybe to fix a bug you saw, add more documentation, or put up a PR to go alongside a feature request?
+
+    Then this talk is for you! We will discuss how to develop in MRI, by learning the C we need to get started, and how to build, test, and debug within the MRI codebase. Even if you already have experience developing in MRI, this talk will hopefully give you tips to make it easier to contribute more!
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/jemmaissroff.html
   speakers:
     - Jemma Issroff
 
@@ -587,9 +824,13 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:22:30Z"
   language: "English"
+  slides_url: "https://code.jeremyevans.net/presentations/rubykaigi2023/index.html"
   video_provider: "youtube"
   video_id: "y_1iqQOkv1E"
-  description: ""
+  description: |-
+    Historically, calling a method with a very large number of arguments resulted in a core dump. In Ruby 1.9, this was improved to instead raise SystemStackError. In Ruby 2.2, the issue was fixed for methods defined in Ruby. However, in Ruby 3.2, this is still an issue for methods defined in C. This issue was reported as a bug over 12 years ago, and was the second oldest open bug in Ruby's bug tracker. Come learn about stacks, heaps, argument handling during method dispatch, and how we fixed this bug in Ruby 3.3.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/jeremyevans0.html
   speakers:
     - Jeremy Evans
 
@@ -600,9 +841,19 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:22:30Z"
   language: "Japanese"
+  slides_url: "https://speakerdeck.com/lmt_swallow/eliminating-redos-with-ruby-3-dot-2"
   video_provider: "youtube"
   video_id: "CEvSx1D3dFQ"
-  description: ""
+  description: |-
+    Just evaluating inefficient regular expressions may break your service - one with an exponential time complexity may cause a denial-of-service (ReDoS), depending on engines.
+
+    Ruby had adopted a native algorithm like some of the major languages, leaving a risk of ReDoS. However, Ruby 3.2 introduced drastic updates to the Regexp engine internals to reduce the risk. Ruby developers no longer need to be afraid of it for basic usage.
+
+    To confirm the effectiveness of the language-level changes in addressing ReDoS, this talk will provide a case study by highlighting real ReDoS vulnerabilities in GitLab. Each was resolved in app-level approaches, but this talk will show how the vulnerabilities relate to the old engine's characteristics and how the new engine contributes to eliminating it at scale.
+
+    The talk will also present recommended coding practices for Ruby users to avoid ReDoS vulnerabilities, considering attack vectors uncovered by the updates and the appropriate usage of timeouts.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/lmt_swallow.html
   speakers:
     - Takashi Yoneuchi
 
@@ -614,11 +865,17 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:22:30Z"
   language: "English"
+  slides_url: "https://docs.google.com/presentation/d/1d6o1ChSKLDwcu_ghVKlnjtwi6rb3cBEwk-QOEEoAT4s/present"
   video_provider: "youtube"
   video_id: "X0JRhh8w_4I"
   thumbnail_lg: "https://img.youtube.com/vi/X0JRhh8w_4I/hqdefault.jpg"
   thumbnail_xl: "https://img.youtube.com/vi/X0JRhh8w_4I/hqdefault.jpg"
-  description: ""
+  description: |-
+    The release of Ruby 3.2 brought many improvements to YJIT, both in terms of performance and memory usage. Importantly, the reduced memory footprint makes YJIT much more viable for real-world production deployments. Enough so that YJIT is no longer marked as experimental, and Shopify has chosen to deploy it on its worldwide StoreFront renderer infrastructure.
+
+    Making YJIT suitable for production is not just a matter of getting the highest performance numbers possible. In this talk, I want to go over the story and the process that has enabled us to bring YJIT to a state where we consider it to be production-ready, all the way from the original research ideas that lead to the creation of YJIT, to the choice of benchmarks and the curation of our benchmark suite, to the methodology used to benchmark YJIT, but also discussing specific key performance optimizations that YJIT performs, and how we were able to optimize YJIT for a real production workload using a data-driven approach.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/maximecb.html
   speakers:
     - Maxime Chevalier-Boisvert
 
@@ -632,7 +889,12 @@
   language: "English"
   video_provider: "youtube"
   video_id: "3qPUy4t7QHE"
-  description: ""
+  description: |-
+    Development of advanced IDE features requires parsing broken source code because writing something in editors usually causes intermediate – syntactically incorrect states. This is not only for Ruby code, but also for RBS type definitions.
+
+    In this talk, I will introduce my error tolerant parser and the tricks that generate better syntax trees from incorrect RBS source code.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/soutaro.html
   speakers:
     - Soutaro Matsumoto
 
@@ -646,7 +908,10 @@
   language: "English"
   video_provider: "youtube"
   video_id: "APa9R0v9GY0"
-  description: ""
+  description: |-
+    CRuby committers on stage!
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/rubylangorg.html
   speakers:
     - Ruby Committers # TODO: list each person
 
@@ -657,9 +922,17 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:23:25Z"
   language: "English"
+  slides_url: "https://drive.google.com/file/d/1xgbM8Sa3cCJxC7P5rf3uNvJfRV2Co_MM"
   video_provider: "youtube"
   video_id: "GOC4BRJ-OPY"
-  description: ""
+  description: |-
+    Since the releases of Sorbet then RBS, many developers are looking to adopt gradual type checking for their Ruby project. But what are the differences between these two solutions? Which one should they choose?
+
+    In this talk we’ll compare RBS and RBI/Sorbet typing specifications. We’ll show how to get started with typing, the pros and cons of each solution as well as their related tooling.
+
+    Whether you're just getting started with Ruby or you're calling the technical shots for your team, come and see which typing specification is best suited for your needs and how it can improve your developer experience.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/Morriar.html
   speakers:
     - Alexandre Terrasa
 
@@ -670,9 +943,15 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:23:25Z"
   language: "Japanese"
+  slides_url: "https://speakerdeck.com/heronshoes/the-adventure-of-redamber-a-data-frame-library-in-ruby"
   video_provider: "youtube"
   video_id: "MZxDBDRUu6I"
-  description: ""
+  description: |-
+    RedAmber is a data frame library written in Ruby. Its goal is to allow data frame processing to be written in a Ruby-like manner. RedAmber utilizes Red Arrow, a Ruby implementation of Apache Arrow which aims to build a language-independent data processing infrastructure based on the columnar format. Development of RedAmber began in April 2022 and has completed implementation of key features and significant code revisions. In this presentation, I plan to introduce the significance of
+
+    RedAmber in the field of data processing with Ruby, its unique features not found in other libraries, and future improvements. I would also like to share my message to the Ruby community from my experience as a novice OSS developer in the process of creating RedAmber.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/heronshoes.html
   speakers:
     - Hirokazu SUZUKI
 
@@ -683,9 +962,17 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:23:25Z"
   language: "Japanese"
+  slides_url: "https://slide.rabbit-shocker.org/authors/kou/rubykaigi-2023/"
   video_provider: "youtube"
   video_id: "vwEiRTK32Ik"
-  description: ""
+  description: |-
+    ADBC is Apache Arrow Database Connectivity. It provides a API that can connect to different databases by wrapping database specific APIs.
+
+    This is not a new approach. There are existing APIs such as Active Record, Sequel and ODBC. The difference between the existing APIs and ADBC is the focus on large data and performance.
+
+    ADBC is an important part to use Ruby for data processing. We can extract large data from many databases (not only RDBMSs but also data ware houses and so on) and load large data into many databases with ADBC. To use Ruby for data processing, we need data. ADBC helps it.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/ktou.html
   speakers:
     - Sutou Kouhei
 
@@ -696,9 +983,13 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:23:25Z"
   language: "English"
+  slides_url: "https://github.com/failure-driven/kickboxer-vs-ruby/blob/main/slides/kickboxer-vs-ruby-slides-public.pdf"
   video_provider: "youtube"
   video_id: "tBuceJGDtmE"
-  description: ""
+  description: |-
+    In the midst of COVID pandemic lockdowns, a Muay Thai kickboxer reached out for the only sparing partner left that she could compete with, Ruby. Is it possible to fight Ruby? Is it possible to create a hardware sparing robot running Ruby and integrated across the web to track her training progress as well as verse her coding pair in battle of real vs virtual fighting? Come on a journey of ups and downs and the state of MRuby for hardware dev, JRuby running on mobile and CRuby for the backend.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/saramic.html
   speakers:
     - Selena Small
     - Michael Milewski
@@ -710,9 +1001,15 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:23:25Z"
   language: "English"
+  slides_url: "https://speakerdeck.com/vinistock/code-indexing-how-language-servers-understand-our-code"
   video_provider: "youtube"
   video_id: "ks3tQojSJLU"
-  description: ""
+  description: |-
+    Language servers are a way of providing IDE features to any editor. Specialized functionality for navigating and understanding our Ruby code can greatly improve the developer experience and is highly aligned with the goal of making the developer happy.
+
+    In the context of the Ruby LSP, let’s dive into how language servers can build up knowledge about codebases using indexing and how it is used to implement features such as go to definition.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/vinistock.html
   speakers:
     - Vinicius Stock
 
@@ -723,9 +1020,17 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:23:25Z"
   language: "English"
+  slides_url: "https://speakerdeck.com/flyerhzm/find-and-replace-code-based-on-ast"
   video_provider: "youtube"
   video_id: "zqA0vfKXYsk"
-  description: ""
+  description: |-
+    When we want to find and replace code, we usually search by plain text or regular expression, it's quick for simple cases, but I'd like to share with you how to do a much more powerful and accurate find and replace based on AST.
+
+    I have built synvert for years, it allows you to write snippet code to rewrite ruby code, it provides CLI, GUI, and VSCode extension, and it can automatically generate snippets, so even junior developers can rewrite code based on AST at will.
+
+    You'll learn how to query and mutate code based on AST node. You'll also learn how to use synvert GUI to rewrite your code even if you don't have any idea about AST.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/flyerhzm.html
   speakers:
     - Richard Huang
 
@@ -736,9 +1041,13 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:23:25Z"
   language: "Japanese"
+  slides_url: "https://speakerdeck.com/ledsun/load-gem-from-browsr"
   video_provider: "youtube"
   video_id: "bol8RnNVREg"
-  description: ""
+  description: |-
+    WebAssembly is now supported in Ruby 3.2. Now you can run Ruby scripts in the browser. When you run Ruby scripts in the browser, you expect to be able to use many gems available at RubyGems.org. Currently, only the standard gems are available. In this session, I will talk about how to use gems on the browser and the progress of their implementation.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/ledsun.html
   speakers:
     - Shigeru Nakajima
 
@@ -749,9 +1058,15 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:23:25Z"
   language: "English"
+  slides_url: "https://speakerdeck.com/k0kubun/rubykaigi-2023"
   video_provider: "youtube"
   video_id: "mlcQ8DErvVs"
-  description: ""
+  description: |-
+    YJIT delivered a significant speedup to various real-world applications. Have you wondered how a Just-In-Time compiler makes your application fast?
+
+    Ruby 3.2 has a secret backdoor to hook your own Just-In-Time compiler. Using that “feature”, this talk will guide you through how a Ruby JIT can be written in Ruby. You’ll learn the basics of Ruby VM, how to encode native instructions in Ruby, and interesting optimizations that JIT can do with them.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/k0kubun.html
   speakers:
     - Takashi Kokubun
 
@@ -762,9 +1077,13 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:23:25Z"
   language: "English"
+  slides_url: "https://github.com/ioquatix/presentations/blob/main/2023/Unleashing%20the%20Power%20of%20Asynchronous%20HTTP.pdf"
   video_provider: "youtube"
   video_id: "SKNhyqHmqUo"
-  description: ""
+  description: |-
+    The Hyper Text Transfer Protocol (HTTP) underpins the vast majority of Ruby web applications, but its details are often hidden from the application layer. In this session, we will explore the inner workings of the HTTP protocol, its evolution from HTTP/0.9 to HTTP/3, and the various interfaces and implementations offered for HTTP clients and servers for the Ruby programming language. Additionally, we will delve into the world of Asynchronous HTTP, examining its key concepts and benefits, and learn how to leverage its power within Ruby to build fast, scalable, and efficient web applications. From understanding the history of HTTP, to implementing best practices for Asynchronous HTTP, this presentation is a starting point for anyone looking to improve their Ruby web development skills. Unleash the power of Asynchronous HTTP with Ruby.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/ioquatix.html
   speakers:
     - Samuel Williams
 
@@ -775,9 +1094,15 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:23:25Z"
   language: "English"
+  slides_url: "https://speakerdeck.com/nirvdrum/rethinking-strings"
   video_provider: "youtube"
   video_id: "a1xvhB8jndQ"
-  description: ""
+  description: |-
+    Ruby strings serve two distinct purposes: the representation of textual data and the representation of binary data. These two use cases generally require different operations, but today they're both accessible via String. Combining the two creates a discoverability issue and can be error-prone. Many String operations have no logical meaning for arbitrary binary data. Having to use strings with a special encoding to pass binary data around is a non-obvious solution and hampers Ruby's usability. Moreover, binary data can sometimes look like ASCII text, which may help build false trust in code with logic errors. Such errors are nuanced and difficult to debug.
+
+    This talk takes a high-level look at Ruby's strings and encodings, highlighting potentially problematic areas and suggesting ways to improve. While the emphasis is on the logical interface for text and binary data, we'll also look at the performance ramifications of the current design and how that might improve as well.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/nirvdrum.html
   speakers:
     - Kevin Menard
 
@@ -788,9 +1113,14 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:23:25Z"
   language: "English"
+  slides_url: "https://speakerdeck.com/pocke/lets-write-rbs"
   video_provider: "youtube"
   video_id: "ngoXe-6BCXU"
-  description: ""
+  description: |-
+    RBS improves your development experience, but you need to know the tools and conventions to use RBS efficiently.
+    This talk describes the RBS way to develop applications and gems by demonstrating Ruby coding with RBS.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/p_ck_.html
   speakers:
     - Masataka Kuwabara
 
@@ -801,9 +1131,14 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:23:25Z"
   language: "Japanese"
+  slides_url: "https://slide.rabbit-shocker.org/authors/hasumikin/RubyKaigi2023/"
   video_provider: "youtube"
   video_id: "Nypt-HP4NAI"
-  description: ""
+  description: |-
+    SQLite3 runs on any OS or bare metal by providing a VFS functions layer.
+    This talk shows you a real example of an SQLite3 application for a DIY keyboard.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/hasumikin.html
   speakers:
     - HASUMI Hitoshi
 
@@ -814,8 +1149,16 @@
   date: "2023-05-11"
   published_at: "2023-11-24T05:30:17Z"
   language: "Japanese"
+  slides_url: "https://www.slideshare.net/hsbt/how-resolve-gem-dependencies-in-your-code"
   video_provider: "youtube"
   video_id: "NydwplWLuH0"
-  description: ""
+  description: |-
+    I maintain the RubyGems, Bundler and the standard libraries of the Ruby language. I've finished to work that standard libraries promote to the default gems until Ruby 3.1. I've promote some gems like net-smtp, net-imap to the bundled gems. And we released rbs and debug gems as the bundled gems. So, we can provide the best developer experience at the release day.
+
+    On the other hands, the default gems and bundled gems have a lot of problems especially dependency resolution. I'll describe what are problems related default gems and bundled gems in maintainer's view. I'd like to get more feedback to Gemification for the future with this session.
+
+    In Ruby 3.2, Bundler 2.4 have new dependency resolver named PubGrub. RubyGems team have a plan to introduce this resolver for RubyGems. I describe the feature of dependency resolution of gem dependencies. Finaly, I introduce how RubyGems and Bundler resolve gem dependencies in your code with the default gems and bundled gems.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/hsbt.html
   speakers:
     - Hiroshi SHIBATA

@@ -1,0 +1,59 @@
+<div class="max-w-4xl mx-auto px-4 py-8">
+  <h1 class="text-2xl font-bold mb-1">Search transcripts</h1>
+  <p class="text-sm text-base-content/60 mb-6">Find the exact moment something was said, across every talk.</p>
+
+  <%= form_with url: transcript_search_path, method: :get,
+        data: {controller: "auto-submit", turbo_frame: "transcript_results", turbo_action: "advance"} do %>
+    <div class="flex items-center gap-2 rounded-lg bg-base-200 px-3 mb-8">
+      <%= fa("magnifying-glass", size: :md, style: :regular) %>
+      <%= text_field_tag :q, search_query, autofocus: true, autocomplete: "off",
+            placeholder: "e.g. hotwire, n+1, active record…",
+            class: "w-full p-3 bg-transparent outline-none text-lg" %>
+    </div>
+  <% end %>
+
+  <%= turbo_frame_tag "transcript_results" do %>
+    <% if search_query.present? %>
+    <% if @groups.any? %>
+      <p class="text-sm text-base-content/60 mb-4">
+        <%= number_with_delimiter(@total_moments) %> <%= "moment".pluralize(@total_moments) %>
+        across <%= number_with_delimiter(@total_talks) %> <%= "talk".pluralize(@total_talks) %>
+      </p>
+
+      <div class="flex flex-col gap-4">
+        <% @groups.each do |group| %>
+          <div class="flex gap-4 p-4 rounded-xl bg-base-200/40">
+            <% if group[:thumbnail].present? %>
+              <%= link_to talk_path(group[:talk_slug]), class: "shrink-0", data: {turbo_frame: "_top"} do %>
+                <%= image_tag group[:thumbnail], loading: "lazy", class: "w-32 sm:w-44 aspect-video object-cover rounded-lg" %>
+              <% end %>
+            <% end %>
+
+            <div class="flex-1 min-w-0">
+              <%= link_to group[:talk_title], talk_path(group[:talk_slug]), class: "font-semibold hover:underline line-clamp-1", data: {turbo_frame: "_top"} %>
+              <div class="text-sm text-base-content/60 line-clamp-1 mb-2">
+                <%= group[:speaker_names] %><% if group[:event_name].present? %> &bull; <%= group[:event_name] %><% end %>
+              </div>
+
+              <div class="flex flex-col gap-0.5">
+                <% group[:moments].each do |moment| %>
+                  <%= link_to talk_path(group[:talk_slug], t: moment[:start_seconds]), class: "flex items-baseline gap-2 rounded px-2 py-1 text-sm hover:bg-base-200", data: {turbo_frame: "_top"} do %>
+                    <span class="font-mono tabular-nums text-primary shrink-0"><%= seconds_to_formatted_duration(moment[:start_seconds]) %></span>
+                    <span class="text-base-content/70 [&_mark]:bg-info/20 [&_mark]:text-info [&_mark]:rounded [&_mark]:px-0.5 [&_mark]:font-medium">…<%= sanitize(moment[:snippet], tags: ["mark"]) %>…</span>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="mt-8 flex justify-center">
+        <%== pagy_nav(@pagy) if @pagy && @pagy.pages > 1 %>
+      </div>
+    <% else %>
+      <p class="text-base-content/60">No transcript matches for <strong><%= search_query %></strong>.</p>
+    <% end %>
+    <% end %>
+  <% end %>
+</div>

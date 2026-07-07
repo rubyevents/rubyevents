@@ -55,6 +55,12 @@ module TalksHelper
     resource["url"]
   end
 
+  def talk_transcript_snippet(talk)
+    highlight = talk.highlight_result&.find { |result| result["field"] == "transcript_text" }
+
+    highlight && highlight["snippet"]
+  end
+
   def slides_external_link(slides_url)
     host = URI(slides_url).host
     link_to "See Slides on #{host}", sanitize_url(slides_url), target: "_blank", class: "btn btn-primary mt-6"
