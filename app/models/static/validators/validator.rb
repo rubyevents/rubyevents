@@ -24,10 +24,13 @@ class Static::Validators::Validator
       Static::Validators::SpeakerExists,
       Static::Validators::SpeakersOrTalks,
       Static::Validators::TalkDates,
+      Static::Validators::TalkId,
       Static::Validators::TalkKind,
       Static::Validators::TalkLanguage,
       Static::Validators::TalkPublishedAt,
-      Static::Validators::TalkShortKind
+      Static::Validators::TalkRenames,
+      Static::Validators::TalkShortKind,
+      Static::Validators::UniqueTalkIds
     ]
   end
 end

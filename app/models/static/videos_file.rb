@@ -6,13 +6,21 @@ module Static
 
     attr_reader :path, :document
 
-    def initialize(path)
+    def initialize(path, document: nil)
       @path = path
-      @document = Yerba.parse_file(path)
+      @document = document || Yerba.parse_file(path)
+    end
+
+    def self.parse(content, path: nil)
+      new(path, document: Yerba.parse(content))
     end
 
     def self.all
-      @all ||= Dir.glob(Rails.root.join(VIDEOS_GLOB)).map { |path| new(path) }
+      @all ||= Dir.glob(Rails.root.join(VIDEOS_GLOB)).filter_map do |path|
+        new(path)
+      rescue Errno::ENOENT
+        nil
+      end
     end
 
     def self.clear_cache!
@@ -82,6 +90,14 @@ module Static
 
     def talks
       top_level_talks + sub_talks
+    end
+
+    def ids
+      talks.filter_map { |talk| talk.value_at("id") }
+    end
+
+    def old_ids
+      talks.filter_map { |talk| talk.value_at("old_id") }
     end
 
     def top_level_talks

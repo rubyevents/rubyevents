@@ -2,6 +2,7 @@
 
 class SubVideoSchema < RubyLLM::Schema
   string :id, required: true
+  string :old_id, description: "Previous id, kept so production records can be migrated to the new id on the next seed", required: false
   string :title, required: false
   string :raw_title, required: false
   string :original_title, description: "Original title in native language", required: false
