@@ -184,9 +184,6 @@ gem "omniauth"
 # Official OmniAuth strategy for GitHub.
 gem "omniauth-github"
 
-# An accessible autocomplete for Ruby on Rails apps using Hotwire.
-gem "hotwire_combobox", "~> 0.4.0"
-
 # Common locale data and translations for Rails i18n.
 gem "rails-i18n", "~> 8.0"
 
