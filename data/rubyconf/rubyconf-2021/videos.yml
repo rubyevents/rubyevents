@@ -1,10 +1,12 @@
----
 # TODO: running order
 # TODO: talk dates
 
 # Website: https://web.archive.org/web/20211204180005/https://rubyconf.org
 # Schedule: https://web.archive.org/web/20211204180005/https://rubyconf.org/schedule
 
+# Playlist: https://www.youtube.com/playlist?list=PLE7tQUdRKcyYVnWhDQk4RCPVlMW40I6s5 (Confreaks)
+# Playlist: https://www.youtube.com/playlist?list=PLbHJudTY1K0f0oMhWtY-UyzOb7tUlaHps (RubyCentral)
+---
 - id: "riaz-virani-rubyconf-2021"
   title: "Whimsy: Pry Irresponsibly"
   raw_title: "RubyConf 2021 - Whimsy: Pry Irresponsibly by Riaz Virani"
@@ -16,6 +18,10 @@
   description: ""
   speakers:
     - Riaz Virani
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "CwV3SBTb2Pk"
 
 - id: "aaron-patterson-rubyconf-2021"
   title: "Some Assembly Required"
@@ -30,6 +36,10 @@
     Let's write a JIT for Ruby, in Ruby! We're going to learn how a JIT works from the ground up by building TenderJIT, a pure Ruby JIT compiler. First, we'll learn how Ruby's virtual machine works, then we'll learn how to plug a JIT in to the virtual machine. Finally, we'll generate machine code from our Ruby programs. By the end of the presentation we'll have a working JIT that converts Ruby code in to machine code all written in pure Ruby! But don't forget: some assembly is required!
   speakers:
     - Aaron Patterson
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "ROvPv-kYM-8"
 
 - id: "andrea-guendelman-rubyconf-2021"
   title: "Keynote: Finding Purpose and Cultivating Spirituality by Andrea Guendelman"
@@ -43,6 +53,10 @@
   description: ""
   speakers:
     - Andrea Guendelman
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "2Wno5nld0x4"
 
 - id: "betsy-haibel-rubyconf-2021"
   title: "Your Team, as Saga"
@@ -56,6 +70,10 @@
     Software systems are made of code, and the people who work on them. But most of all, they're made of the stories those people tell. Heroic legends of shipping to deadline, spooky ghost stories of refactors gone bad... and a lot of sci-fi, projecting out into a utopian (or dystopian) future. How can you edit this story to make it go right? In this talk, we'll apply fiction-writing tricks to the art of engineering roadmapping. We'll learn how to build narratives, develop our characters, and world-build our way to healthier teams and healthier code.
   speakers:
     - Betsy Haibel
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "CAQSDwCeQOM"
 
 - id: "brandon-weaver-rubyconf-2021"
   title: "Delightfully Fashionable Lemurs in Decorating Ruby"
@@ -71,6 +89,10 @@
     Join the lemurs on a fashion-filled journey through decoration patterns in Ruby including tricks with method, define_method, method_added, and Module#prepend.
   speakers:
     - Brandon Weaver
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "qnB54a_oDL8"
 
 - id: "kevin-newton-rubyconf-2021"
   title: "Parsing Ruby"
@@ -84,6 +106,10 @@
     Since Ruby's inception, there have been many different projects that parse Ruby code. This includes everything from development tools to Ruby implementations themselves. This talk dives into the technical details and tradeoffs of how each of these tools parses and subsequently understands your applications. After, we'll discuss how you can do the same with your own projects using the Ripper standard library. You'll see just how far we can take this library toward building useful development tools.
   speakers:
     - Kevin Newton
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "lUIt2UWXW-I"
 
 - id: "nickolas-means-rubyconf-2021"
   title: "Taking the 737 to the Max"
@@ -114,6 +140,10 @@
     In this talk, we will cover practical steps for navigating specific challenges related to hiring and being hired as a second-career dev. If approached with intention and thoughtfulness, the benefits can be immense for all involved.
   speakers:
     - Ben Greenberg
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "_YhBMu43Lm4"
 
 - id: "evan-phoenix-rubyconf-2021"
   title: "Q&A with Matz"
@@ -128,6 +158,10 @@
   speakers:
     - Evan Phoenix
     - "Yukihiro \"Matz\" Matsumoto"
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "ThnEAxzTjuY"
 
 - id: "elisabeth-hendrickson-rubyconf-2021"
   title: "Keynote: On the Care and Feeding of Feedback Cycles by Elisabeth Hendrickson"
@@ -141,6 +175,10 @@
   description: ""
   speakers:
     - Elisabeth Hendrickson
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "NUd3gR9xkAI"
 
 - id: "jenny-shih-rubyconf-2021"
   title: "Fake Your Test Away: How To Abuse Your Test Doubles"
@@ -154,6 +192,10 @@
     You probably already know: In a unit test, use test doubles to sub real dependencies. You probably also know: In reality, things are not so easy. What do you do if the dependencies span multiple layers? What if the dependencies are implicit? If we can't find the best level of isolation, test doubles can be unwieldy very quickly and they will make the test, as well as the future you, miserable. In this talk, we will look at symptoms that produce unreliable and unmaintainable tests, and develop a strategy that will make your test suite more resilient and actually enjoyable.
   speakers:
     - Jenny Shih
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "RMDX7u9MA9Y"
 
 - id: "kyle-doliveira-rubyconf-2021"
   title: "The Mindset of Debugging"
@@ -167,6 +209,10 @@
     We, as developers, spend a large portion of our time debugging software. Sometimes the problems are easy to understand, but many times they are not and we are thrown into unfamiliar code and are expected to quickly find the problem and craft a solution. However, honing the skill of debugging doesn’t come up as much as it should. In this talk, I’ll go through a generic approach to debugging that can be applied and built upon to help you excel as you move through your career solving problems for a living.
   speakers:
     - "Kyle d'Oliveira"
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "nmAABP8K0QE"
 
 - id: "rachael-wright-munn-rubyconf-2021"
   title: "Your First Open-Source Contribution"
@@ -180,6 +226,10 @@
     Is open-source intimidating? Are you nervous about your code being rejected by the maintainers? Or maybe you just don’t know where to start. I know those nerves well. Let’s talk about it. We'll go step-by-step through the process of finding an issue, creating a PR, and collaborating with maintainers. Let’s get you that first open-source PR!
   speakers:
     - Rachael Wright-Munn
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "ctBBrdHVbo0"
 
 - id: "steve-lynch-rubyconf-2021"
   title: "I Read It But Don’t Get It, or How to Tackle Technical Texts"
@@ -195,6 +245,10 @@
     Help, however, is on the way -- there are concrete skills that engaged readers of all kinds of texts employ while reading. This talk will outline those techniques while also providing concrete questions that can be used during reading to help you stay
   speakers:
     - Steve Lynch
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "tnB74T9saN4"
 
 - id: "ariel-caplan-rubyconf-2021"
   title: "The Audacious Array"
@@ -212,6 +266,10 @@
     Understanding arrays deeply is a powerful step forward in writing concise, beautiful, semantic Ruby.
   speakers:
     - Ariel Caplan
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "1BUfW0wn230"
 
 - id: "emily-giurleo-rubyconf-2021"
   title: "To mock, or not to mock?"
@@ -228,6 +286,10 @@
     So… how do we know when to use mocks in our tests? In this talk, we’ll identify three important questions that can help us make that decision. By the end of the talk, you will have a framework in mind to help you answer the question: to mock, or not to mock?
   speakers:
     - Emily Giurleo
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "fm_FxuRfcWE"
 
 - id: "elayne-juten-rubyconf-2021"
   title: "Blank Page Panic! Creating Confidence with TDD"
@@ -241,6 +303,10 @@
     Have you ever stared at a blank feature spec file hoping for tests to magically appear? Well, you’re not alone! In this talk we’ll take a look at how the combination of Test-Driven Development, pseudocode and RSpec can help get you to your initial commit with confidence, one RSpec error at a time!
   speakers:
     - Elayne Juten
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "3E5TRUtlLFw"
 
 - id: "claudio-baccigalupo-rubyconf-2021"
   title: "The art of deleting code"
@@ -258,6 +324,10 @@
     We will see how git can help, with commands like blame, log --follow, and bisect. We will talk about static analysis, and running code coverage in development. We will explain how Ruby meta-programming can conflict with the "Find in Project" approach. We will show how to be nice to reviewers when submitting Pull Requests that delete code.
   speakers:
     - Claudio Baccigalupo
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "5confvgVAgI"
 
 - id: "micah-gates-rubyconf-2021"
   title: "Learning Ractor with Raft"
@@ -275,6 +345,10 @@
     In this session we’ll build a simple Raft implementation from scratch using Ractor. Ractor is one of the most exciting new features of Ruby, and modeling a distributed system is a great way to see what it can offer.
   speakers:
     - Micah Gates
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "_O3NBm_C3rM"
 
 - id: "kevin-kuchta-rubyconf-2021"
   title: "Vertical Assignment in Ruby"
@@ -288,6 +362,10 @@
     Ruby's long had leftward assignment (x = 3) and recently got rightward assignment (3 = or greater x). The problem here is obvious: we need a vertical assignment operator. In a complete abdication of good taste and common sense, this talk will walk through correcting this heinous oversight. We'll abuse otherwise-respectable metaprogramming tools like Ripper and TracePoint to add a fully functional vequals operator. While this talk is almost 100% bad-ideas-by-volume, you'll learn a few tricks that you can use in your day-to-day work (or at least to terrify your co-workers).
   speakers:
     - Kevin Kuchta
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "vi_uVTd25LI"
 
 - id: "christian-bruckmayer-rubyconf-2021"
   title: "Keeping Developers Happy with a Fast CI"
@@ -303,6 +381,10 @@
     At Shopify we have more than 170,000 Ruby tests and we add 30,000 more annually. The sheer amount of tests and their growth requires some aggressive methods. We will illustrate some of our techniques including monitoring, test selection, timeouts and the 80/20 rule. If you have experience in writing tests and want to learn tricks on how to speed up your test suite, this talk is for you!
   speakers:
     - Christian Bruckmayer
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "WzKzqdpCAx4"
 
 - id: "sweta-sanghavi-rubyconf-2021"
   title: "Schrödinger's Error: Living In the grey area of Exceptions"
@@ -318,6 +400,10 @@
     In this talk, we’ll discuss what makes exception management difficult, tools to triage and respond to exceptions, and processes for more collective and effective exception management. We'll also explore some related opinions from you, my dear colleagues.
   speakers:
     - Sweta Sanghavi
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "KvcFphVk4eg"
 
 - id: "chris-cha-rubyconf-2021"
   title: "Automating Legacy Desktop Applications with JRuby and Sikuli"
@@ -331,6 +417,10 @@
     Desktop applications supporting line-of-business, enterprise functions live on as massive, complex beasts. Without an easy route into its internals and modernization falling by the wayside, it's up to you to make sure any small change doesn't break — well — everything. In this talk, we'll discuss the journey of bringing up a Windows VM to poke at an app using screenshots, image recognition, and Minitest to create our own Robotic Process Automation (RPA) framework.
   speakers:
     - Chris Cha
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "r0DBJ6cU9Xw"
 
 - id: "nick-schwaderer-rubyconf-2021"
   title: "Ruby Archaeology"
@@ -351,6 +441,10 @@
     And for the brave: how can you set up an environment to run Ruby 1.8 code from ~2008 on a modern machine?
   speakers:
     - Nick Schwaderer
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "rxp2E0efspM"
 
 - id: "paul-sadauskas-rubyconf-2021"
   title: "Service Objects With Dry.rb: Monads and Transactions"
@@ -364,6 +458,10 @@
     Service objects are an important tool in your toolbox, and Dry.rb's Transaction library is one of the most powerful, and one of the most magic. It's a "business transaction" DSL, and has error handling as a primary concern. We'll start by exploring Monads in Ruby (they're not scary!). Then we'll see how that simple concept unlocks another level of service objects that are far more robust and testable, and how to wire them all together with Dry::Transaction. Finally we'll touch on extending transactions with custom steps, and how to integrate them into an existing application.
   speakers:
     - Paul Sadauskas
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "YXiqzHMmv_o"
 
 - id: "vaidehi-joshi-rubyconf-2021"
   title: "The Science and Magic of Debugging"
@@ -381,6 +479,10 @@
     In this talk, we'll learn what makes debugging hard, and the cognitive process behind it. We'll also explore using the scientific method as a debugging process model in order to help us get better at finding the bugs in our own Ruby programs. Let's become better debuggers together!
   speakers:
     - Vaidehi Joshi
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "jlX5AN8_cIo"
 
 - id: "justin-searls-rubyconf-2021"
   title: "How to Make a Gem of a Gem"
@@ -398,6 +500,10 @@
     Answering those questions is… harder. That's why the remaining 15 minutes of this talk will compress a decade of design missteps, dependency regrets, and versioning nightmares into actionable advice to help ensure that your next gem is a great one.
   speakers:
     - Justin Searls
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "tOX_W1dyx7A"
 
 - id: "joel-hawksley-rubyconf-2021"
   title: "How GitHub uses linters"
@@ -411,6 +517,10 @@
     The GitHub code base is growing at over 25% every year through contributions from over 1000 engineers, clocking in at 1.7+ million lines of Ruby. In this talk, we'll share how we use linters to keep our codebase healthy by ensuring best practices are applied consistently, feedback loops are as short as possible, and code reviews bring the most value, all without creating too much friction.
   speakers:
     - Joel Hawksley
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "vynyFGOZOZ8"
 
 - id: "mike-dalessio-rubyconf-2021"
   title: "Building Native Extensions. This Could Take A While..."
@@ -426,6 +536,10 @@
     This talk will provide a deep look at the techniques and toolchain used to ship native versions of Nokogiri (a commonly-used rubygem), and will discuss why human trust is an important requirement. Gem maintainers will learn how to build native versions of their own gems, and developers will learn how to use and deploy pre-compiled packages
   speakers:
     - Mike Dalessio
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "ZqSGkNclOh8"
 
 - id: "jason-meller-rubyconf-2021"
   title: "Dishonest Software: Fighting Back Against the Industry Norms"
@@ -447,6 +561,10 @@
     Explore how engineers can advocate for the data privacy rights of others
   speakers:
     - Jason Meller
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "m68tA3XUoPk"
 
 - id: "emily-harber-rubyconf-2021"
   title: "Problem Solving Through Pair Programming"
@@ -462,6 +580,10 @@
     In this talk, I’ll give you the How and Why of pair programming with your mentee, as well as practical actionable advice to have more productive, educational, and even fun pairing sessions. You’ll come away from this talk excited for your next pairing session, where you’ll write better quality code with a longer shelf life, and give your mentee programming superpowers they couldn’t achieve on their own.
   speakers:
     - Emily Harber
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "WcW5-yrPERI"
 
 - id: "hilary-stohs-krause-rubyconf-2021"
   title: "Why we worry about all the wrong things"
@@ -479,6 +601,10 @@
     In this talk, we’ll explore root causes of fear and anxiety, and discover how we can start to deliberately rewrite our “instincts”. This will allow us to redirect our worry toward what actually matters, and channel it into productive outcomes that make us safer, happier and less stressed, both at work and in our personal lives.
   speakers:
     - Hilary Stohs-Krause
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "TCBgE97v0FQ"
 
 - id: "jameson-hampton-rubyconf-2021"
   title: "Reframing Shame & Embracing Mistakes"
@@ -492,6 +618,10 @@
     Imposter syndrome is rampant among tech workers and there are so many ways that we put ourselves down and minimize our own accomplishments without even realizing it - and shame is a powerful and dangerous emotion. But everyone makes mistakes and in fact, making mistakes and learning from them makes us smarter! The tenets of cognitive behavioral therapy suggest that these kinds of harmful thought patterns are automatic, ingrained in us from years of practice. This talk will help you identify some of those thought patterns so you can challenge them and reframe them in healthier ways!
   speakers:
     - Jameson Hampton
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "ySGuGUYLT9w"
 
 - id: "katya-dreyer-oren-rubyconf-2021"
   title: "Contractualism + Software Engineering: We're All In This Together"
@@ -505,6 +635,10 @@
     As engineers, we are constantly confronted with decisions, from the tiny – “how thick should this border box be?” – to the huge – “how will this algorithm affect the world?” How do we make those decisions? Come learn about contractualism, or how to treat your users as a part of a larger community. We’ll discuss the concept of the “user stack,” anyone who will use or be influenced by your work. Understanding the principles of contractualism and how to apply them makes it easier for you to make ethical decisions as a software engineer, and convince others at your organization to listen.
   speakers:
     - Katya Dreyer Oren
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "aFCoWsO3HxM"
 
 - id: "yechiel-kalmenson-rubyconf-2021"
   title: "The Algorithm Ate My Homework"
@@ -524,6 +658,10 @@
     We may not leave with all the answers, but hopefully, we will spark a conversation about the questions we should be asking.
   speakers:
     - Yechiel Kalmenson
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "iuVPObgoxF8"
 
 - id: "omar-rubyconf-2021"
   title: "Squashing Security Bugs with Rubocop"
@@ -541,6 +679,10 @@
     This talk will cover how Betterment uses Rubocop to detect vulnerabilities and the thought process that went into this work.
   speakers:
     - Omar
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "aeJIA5oD1tA"
 
 - id: "ufuk-kayserilioglu-rubyconf-2021"
   title: "Gradual Typing in Ruby - A Three Year Retrospective"
@@ -557,6 +699,10 @@
   speakers:
     - Ufuk Kayserilioglu
     - Alexandre Terrasa
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "a3jfpSmikdg"
 
 - id: "stephen-margheim-rubyconf-2021"
   title: "Acidic Jobs: A Layman's Guide to Job Bliss"
@@ -571,6 +717,10 @@
     Background jobs have become an essential component of any Ruby infrastructure, and, as the Sidekiq Best Practices remind us, it is essential that jobs be "idempotent and transactional." But how do we make our jobs idempotent and transactional? In this talk, we will explore various techniques to make our jobs robust and ACIDic.
   speakers:
     - Stephen Margheim
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "2JOlAnN62k8"
 
 - id: "nick-barone-rubyconf-2021"
   title: "Joyful Polyglot: Beautiful insights from many languages"
@@ -584,6 +734,10 @@
     Every language teaches you something beautiful, leading new and experienced programmers alike to novel and joyful ways to think about code. Would you benefit from a broader bag of programming concepts, or are you just curious about what can be learned when venturing outside your current box? From C++'s template metaprogramming to Scala's companion objects and more, this talk will explore a multitude of different programming languages and how the ideas and principles exemplified by each can be used by any other - but specifically, Ruby.
   speakers:
     - Nick Barone
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "JgWAWwF6pNY"
 
 - id: "shashank-dat-rubyconf-2021"
   title: "Drones Galore: controlling multiple drones using mruby/ruby"
@@ -597,6 +751,10 @@
     mruby is a lightweight implementation of the Ruby language. This talk focuses on how mruby differs from ruby, how its build system works, how to optimize its configuration for controlling a certain category (Tello) of programmable drones. It will include - flight control using UDP sockets in mruby - multiple drone control using Fibers in murby - multiple drone control using using Ruby Actors The talk will end with a demo of multi-drone acrobatics.
   speakers:
     - Shashank Daté
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "xHMZ2XNrcwE"
 
 - id: "kota-weaver-rubyconf-2021"
   title: "Mixed Reality Robotics Simulation with Ruby"
@@ -614,6 +772,10 @@
     Join us in an exploration of this dynamic and interactive robot exploration lab!
   speakers:
     - Kota Weaver
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "WsTuad1zrVA"
 
 - id: "jemma-issroff-rubyconf-2021"
   title: "Achieving Fast Method Metaprogramming: Lessons from MemoWise"
@@ -628,6 +790,10 @@
   speakers:
     - Jemma Issroff
     - Jacob Evelyn
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "c2Pa6W_O8oo"
 
 - id: "maxime-chevalier-boisvert-rubyconf-2021"
   title: "YJIT - Building a new JIT Compiler inside CRuby"
@@ -641,6 +807,10 @@
     TruffleRuby together with Truffle Regex can now execute Ruby Regexps up to 40 times faster than CRuby! This is possible by just-in-time compiling Ruby Regexps to machine code by using Truffle Regex, a Truffle language for regular expressions. Truffle Regex uses finite-state machines, a much faster alternative to backtracking regexp engines. Because of the unique capability of GraalVM to inline across languages, the Ruby code and the Regexp are optimized and compiled together for ultimate performance.
   speakers:
     - Maxime Chevalier-Boisvert
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "zO9_uTaELCw"
 
 - id: "jake-zimmerman-rubyconf-2021"
   title: "Compiling Ruby to Native Code with Sorbet & LLVM"
@@ -657,6 +827,10 @@
   speakers:
     - Jake Zimmerman
     - Trevor Elliott
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "BH8S1htcHXY"
 
 - id: "eileen-m-uchitelle-rubyconf-2021"
   title: "Improving CVAR performance in Ruby 3.1"
@@ -673,6 +847,10 @@
     In this talk we'll look at the language design of class variables, learn about how they work, and, deep dive into how we improved their performance in Ruby 3.1 by adding a cache! We'll look at the cache design and real-world benchmarks showing how much faster they are regardless of the size of the inheritance chain.
   speakers:
     - Eileen M. Uchitelle
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "pFYUuytIwmk"
 
 - id: "jeremy-evans-rubyconf-2021"
   title: "Optimizing Partial Backtraces in Ruby 3"
@@ -686,6 +864,10 @@
     Backtraces are very useful tools when debugging problems in Ruby programs. Unfortunately, backtrace generation is expensive for deep callstacks. In older versions of Ruby, this is true even if you only want a partial backtrace, such as a single backtrace frame. Thankfully, Ruby 3 has been optimized so that it no longer processes unnecessary backtrace frames, which can greatly speed up the generation of partial backtraces. Join me for an interesting look a Ruby backtraces, how they are generated, how we optimized partial backtraces in Ruby 3, and how we fixed bugs in the optimization in 3.0.1.
   speakers:
     - Jeremy Evans
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "6wOiN1MWl9U"
 
 - id: "rahul-subramaniam-ey-rubyconf-2021"
   title: "A message from Engineyard"
@@ -698,6 +880,10 @@
   description: ""
   speakers:
     - Rahul Subramaniam EY
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "v5eSBw1J3uE"
 
 - id: "jose-rosello-rubyconf-2021"
   title: "Sorbet at Grailed: Typing a Large Rails Codebase to Ship with Confidence"
@@ -715,6 +901,10 @@
     Ever since we started gradually typing our codebase with Sorbet, we’ve been able to make intrusive changes faster and confidently. In this talk, we’ll walk you through our prior art, challenges, learnings, and big benefits of typing our codebase.
   speakers:
     - Jose Rosello
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "oI4dEMmsTEk"
 
 - id: "zaid-zawaideh-rubyconf-2021"
   title: "Scaling Happy Engineering Teams"
@@ -728,6 +918,10 @@
     Scaling engineering organizations doesn't have to mean chaos, stress or losing the ability to have impact. In this talk I'll explain the principles we are applying at Wrapbook for scaling our Engineering teams to provide a healthy, happy and productive environment for people to do their best work.
   speakers:
     - Zaid Zawaideh
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "MFr-yLYZklY"
 
 - id: "jake-anderson-rubyconf-2021"
   title: "Cultivating Developer-Centric DSLs"
@@ -741,6 +935,10 @@
     Writing boilerplate code can be draining. Breaking things out into classes and modules doesn't always make this process more enjoyable either. At Weedmaps, we've developed a suite of Domain Specific Languages (DSLs) for the vast majority of our workflows. This includes things like query objects all the way to crawlers. Done right, these tools allow team members to accomplish more with less. Done wrong, team members would have been better off writing everything from scratch. This talk is meant for those who want to build better tooling around repetitive workflows. It's also for those that want to better understand how some of these tools work under the hood. Embrace the magic!
   speakers:
     - Jake Anderson
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "CTTB8D-En98"
 
 - id: "sarah-reid-rubyconf-2021"
   title: "Rswag: Automated API Documentation"
@@ -754,6 +952,10 @@
     Do you struggle to write documentation for your REST API? Do you often forget to update the docs after changing an endpoint? Does your API feel like a black box to other engineers? Do your docs say one thing, but your API does another? This talk is for you! We’ll explore all of these problems and discover how Rswag can solve them for you.
   speakers:
     - Sarah Reid
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "y7cNkomQt54"
 
 - id: "benoit-daloze-rubyconf-2021"
   title: "Just-in-Time Compiling Ruby Regexps on TruffleRuby"
@@ -768,6 +970,10 @@
   speakers:
     - Benoit Daloze
     - Josef Haider
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "Cq-cXtegysQ"
 
 - id: "anthony-navarre-rubyconf-2021"
   title: "Dismantling Dystopian Futures with Humane Factories"
@@ -781,6 +987,10 @@
     The terminal glowed a sickly pale green, reflecting in her lenses. “What do you mean, RecordInvalid?” she scoffed, and set to the task of debugging the factory. Hairs stood up on her neck as she realized the implications of her findings — she could practically smell the corrosion, but it was nobody’s fault. It was everyone’s fault. Data was long ago divorced from the human lives they were intended to improve. Dmitry bolted upright in a sweat. She was safe at home — it was all a dream, at least for now. There was still time. She started her morning routine, but breakfast was the last thing on her mind. She didn’t know all the factors, but she knew where to begin. Join me in this whimsical exploration of some not-so-whimsical tactics to put your test factories to work in some unconventional ways.
   speakers:
     - Anthony Navarre
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "iszig2M3LSQ"
 
 - id: "laura-maguire-rubyconf-2021"
   title: "Workshop: Fundamentals of Joint Cognitive Systems"
@@ -796,6 +1006,10 @@
   speakers:
     - Laura Maguire
     - John Allspaw
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "jOmMJ0HJUOg"
 
 - id: "alex-robinson-rubyconf-2021"
   title: "Workshop: Intentional Team Building"
@@ -811,6 +1025,10 @@
   speakers:
     - Alex Robinson
     - Will Mitchell
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "78EX8oy7ixI"
 
 - id: "amir-rajan-rubyconf-2021"
   title: "Soup to Nuts: Build a video game using Ruby!"
@@ -828,6 +1046,10 @@
     You’ll be given a free, unrestricted commercial license of DragonRuby Game Toolkit (this is the game engine we’ll be using during the workshop).
   speakers:
     - Amir Rajan
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "6YZnKZYfqU0"
 
 - id: "thai-wood-rubyconf-2021"
   title: "Workshop: Run your first game day"
@@ -844,6 +1066,10 @@
     You'll learn how to run table top game days, including how to set them up, how to design scenarios and how to encourage participation, all with techniques supported by real word experience and supported by research.
   speakers:
     - Thai Wood
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "SxsrhKRiVdk"
 
 - id: "chelsea-troy-rubyconf-2021"
   title: "RubyCond 2021 - Workshop: Tackling Technical Debt: An Analytical Approach"
@@ -859,6 +1085,10 @@
     In this workshop, you will learn how to measure tech debt and address the areas of highest need first. You’ll learn to identify high leverage code changes and separate those from renovations. You’ll also learn about the skills tech teams can use to prevent and reduce tech debt.
   speakers:
     - Chelsea Troy
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "mD-treo4QhY"
 
 - id: "scott-moore-rubyconf-2021"
   title: "All comments must be haiku! Custom linting with RuboCop"
@@ -879,6 +1109,10 @@
   speakers:
     - Scott Moore
     - Kari Silva
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "wC0fO7Ggzyg"
 
 - id: "jesse-spevack-rubyconf-2021"
   title: "Clean RSpec: A Workshop on Ruby Testing Craftsmanship"
@@ -892,6 +1126,10 @@
     Testing has been a feature of the Ruby community for a long time. Why then are our spec files often so incomprehensible? In this workshop, I will share some ground rules for writing maintainable tests that will ensure that new teammates along with future-you can understand your test suite. We will use the RSpec testing framework to introduce several testing code-smells. For each smell, I will provide a demonstration on how to refactor the test along with time to practice for workshop participants. This workshop is geared towards anyone looking to hone their Ruby testing craft.
   speakers:
     - Jesse Spevack
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "i6h0-ZSe49I"
 
 - id: "jade-dickinson-rubyconf-2021"
   title: "Workshop: How to use flamegraphs to find performance problems"
@@ -906,6 +1144,10 @@
     Slow Ruby code can be a puzzle, but it doesn’t have to be that way. In this workshop you will see how fun it can be to use flamegraphs to find performance problems. You’ll get the most out of this session if you know you have slow areas in your Ruby application, and would like to learn how to find the code responsible.
   speakers:
     - Jade Dickinson
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "CCyABMJscIE"
 
 - id: "jason-swett-rubyconf-2021"
   title: "Workshop: A Gentle Introduction to Docker for Rubyists"
@@ -920,6 +1162,10 @@
     Have you heard about how great Docker supposedly is, but you're not sure exactly what all the fuss is about, or even what Docker is or why people use it? Or maybe you understand what Docker is but you've never worked with it before. In this workshop, you'll learn exactly what Docker is and why you'd want to use it, and you'll come away with your own fully Dockerized Ruby application.
   speakers:
     - Jason Swett
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "paZ5_3F22V8"
 
 - id: "cory-watson-rubyconf-2021"
   title: "Surprise! Inspiring Resilience"
@@ -935,6 +1181,10 @@
     In this talk we'll bring examples from outside tech. We’re talking aircraft carriers, race cars, priceless works of art, and hard-fought wisdom from across the accomplishments of humans and even nature itself. Join me in marveling at they ways things keep working, and we’ll get some cool ideas for how to create resilience in your organization or systems.
   speakers:
     - Cory Watson
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "tcWOcz5QjMc"
 
 - id: "hitoshi-hasumi-rubyconf-2021"
   title: "Picoruby and PRK Firmware"
@@ -952,6 +1202,10 @@
     The ultimate goal is certainly not a small one --- let's make Ruby comparable to projects such as MicroPython, CircuitPython or Lua in terms of viability as a scripting language on Board!
   speakers:
     - Hitoshi Hasumi
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "SLSwn41iJX4"
 
 - id: "john-gallagher-rubyconf-2021"
   title: "Using Monads for Elegant Error Handling"
@@ -969,6 +1223,10 @@
     You'll refactor an existing app to use a functional style and see first hand how easy monads are to use and how they can make your code incredibly clean and expressive.
   speakers:
     - John Gallagher
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "bj7yH0KhEww"
 
 - id: "leon-hu-rubyconf-2021"
   title: "Why Did We Rewrite Our Main Product Four Times?"
@@ -982,6 +1240,10 @@
     "Hi, this is a friendly reminder you have an appt on 12/07, Thursday 2pm". How hard can building and scaling an Appointment Reminder system be? An average developer can build such proof of concept in under a day. But to scale it to sending to millions of patients a week, nobody in our team thought it'd take us to rewrite it the 4th time. From dealing performance pain and ever increasing complexity, we poured in countless hours to come up with the perfect design. We have a thing or two to share about solving a seemingly trivial problem.
   speakers:
     - Leon Hu
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "qf9E5u7KUiA"
 
 - id: "lisa-karlin-curtis-rubyconf-2021"
   title: "How to stop breaking other people's things"
@@ -997,6 +1259,10 @@
     This talk will cover how you can: (a) Get really good at identifying what changes might break someone’s integration (b) Help your API consumers to build integrations that are resilient to these kinds of changes (c) Release potentially breaking changes as safely as possible
   speakers:
     - Lisa Karlin Curtis
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "Nf_rEWaIZjk"
 
 - id: "marc-busqu-rubyconf-2021"
   title: "Harness the power of functions to build composable rack applications"
@@ -1010,6 +1276,10 @@
     hat's a function? A function is a black box that takes an input and returns an output. Similarly, from the outside, HTTP requests take some request data to give it back as a response. Functions may compose if the output of one matches the input of the next one. web_pipe helps you build rack applications by plugging small process units that progressively create a response from a given request.
   speakers:
     - Marc Busqué
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "g6j1r7epbpg"
 
 - id: "maria-moore-rubyconf-2021"
   title: "Engineering at Root"
@@ -1027,6 +1297,10 @@
     Maria will share more about how we built an insurance company from scratch and how our Engineering teams continue to unbreak the insurance industry every day.
   speakers:
     - Maria Moore
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "RXRLHCsYW2A"
 
 - id: "okura-masafumi-rubyconf-2021"
   title: "Control methods like a pro: A guide to Ruby's awesomeness, a.k.a metaprogramming"
@@ -1042,6 +1316,10 @@
     Do you know that methods are objects in Ruby? We can manipulate method objects just like other object, meaning that we can store them in variables, get information from them and wrap them in other objects like Proc. In this talk, I'll show a real-world example of manipulating methods. I'll cover from the basic such as listing available methods and getting a method object to the difference between Method and UnboundMethod and redefining methods with original method object.
   speakers:
     - OKURA Masafumi
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "th48zwJlEW4"
 
 - id: "mercedes-bernard-rubyconf-2021"
   title: "Minimize Your Circus Factor: Building resilient teams"
@@ -1057,6 +1335,10 @@
     After a year+ in a pandemic, many are considering taking new roles or extended PTO. It's more important than ever to invest in minimizing our "circus factor" and building resilient teams so that everyone can unplug and do what's best for them with as little stress as possible. In this talk, we'll discuss low-friction changes you can make today so that if you join the circus tomorrow your team is empowered and enabled for continued success.
   speakers:
     - Mercedes Bernard
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "yqnJWFrmj28"
 
 - id: "mina-slater-rubyconf-2021"
   title: "Managing Out: Strategies for Leveling Up"
@@ -1070,6 +1352,10 @@
     "Mid-level Engineers". Who are we? We have enough experience to understand the domain of a project and the technical know-how to provide guidance to earlier-career teammates. But how do we continue to grow and reach the next level of team leadership? Let's explore some of the initiatives we can take as mid-level engineers to level up our leadership skills, while contributing to the mentorship of newer engineers. You'll walk away with strategies to do so internal to the engineering team, across disciplines of Design and Product and externally with stakeholders and/or product owners.
   speakers:
     - Mina Slater
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "fOY2vEzNlmM"
 
 - id: "nat-budin-rubyconf-2021"
   title: "Hello, computer. Writing Ruby with voice recognition"
@@ -1085,6 +1371,10 @@
     When my finger was injured last year, I had a long recovery period, and during that time, I learned to code using voice recognition software. In this talk, I’ll tell the whole story and demo the tool I learned.
   speakers:
     - Nat Budin
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "Q4Fz7twdb5w"
 
 - id: "peter-zhu-rubyconf-2021"
   title: "Optimizing Ruby's Memory Layout"
@@ -1101,6 +1391,10 @@
   speakers:
     - Peter Zhu
     - Matt Valentine-House
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "5ifXSPYidoE"
 
 - id: "richard-schneeman-rubyconf-2021"
   title: "Beware the Dreaded Dead End!!"
@@ -1114,6 +1408,10 @@
     Nothing stops a program from executing quite as fast as a syntax error. After years of “unexpected end” in my dev life, I decided to “do” something about it. In this talk we'll cover lexing, parsing, and indentation informed syntax tree search that power that dead_end Ruby library.
   speakers:
     - Richard Schneeman
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "LTKSkyueWwo"
 
 - id: "rolen-le-rubyconf-2021"
   title: "Dungeons and Collaboration"
@@ -1129,6 +1427,10 @@
     Having played Dungeons and Dragons for almost a decade and playing remotely for half that time, I have learned lessons that have taught me how to interact as a developer on a distributed team. From general online etiquette to building great teams, I will discuss tips and tricks of roleplaying that can make someone a better coworker.
   speakers:
     - Rolen Le
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "891HC-nYOMg"
 
 - id: "stefanni-brasil-rubyconf-2021"
   title: "Perceptual Learning == More Ruby Experts?"
@@ -1146,6 +1448,10 @@
     In this talk, we'll learn how to create expertise based on PL's techniques, and how you can apply them to become an expert Ruby developer.
   speakers:
     - Stefanni Brasil
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "3sfyVxjvew0"
 
 - id: "stephanie-minn-rubyconf-2021"
   title: "The Intro to Abstraction I Wish I'd Received"
@@ -1161,6 +1467,10 @@
     We’ll also dig into a real-world example of fighting a troublesome abstraction and learn strategies for identifying when one no longer works for you—the first step toward imagining new abstractions for your code to take shape.
   speakers:
     - Stephanie Minn
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "BNuy-CPrXnY"
 
 - id: "takashi-kokubun-rubyconf-2021"
   title: "Optimizing Production Performance with MRI JIT"
@@ -1176,6 +1486,10 @@
     In this talk, you'll learn some tricks to make sure it happens on your production application. Get the easy speedup of your application for free!
   speakers:
     - Takashi Kokubun
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "MlOrTYAmupA"
 
 - id: "vinicius-stock-rubyconf-2021"
   title: "Parallel testing with Ractors - Putting CPU's to work"
@@ -1191,6 +1505,10 @@
     Let’s find the answers to these questions by building a test framework built on Ractors, from scratch. We’ll compare the current solutions for parallelization and what advantages or limitations Ractors bring when used in this context.
   speakers:
     - Vinicius Stock
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "wI7NgPJO7Zg"
 
 - id: "amy-newell-rubyconf-2021"
   title: "Debugging Product Teams"
@@ -1210,6 +1528,10 @@
     “Debugging” a team is a lot like caring for a complex distributed software system: it’s less about fixes, and more about observation, hypotheses, intervention, and more observation. Whatever your role, these are skills you can learn and apply right now, on your own teams.
   speakers:
     - Amy Newell
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "38ClEqnx3tY"
 
 - id: "andromeda-yelton-rubyconf-2021"
   title: "This is not a talk about airplane crashes"
@@ -1231,6 +1553,10 @@
     (CW: injury, death.)
   speakers:
     - Andromeda Yelton
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "h0P3AUznSPU"
 
 - id: "bruno-sutic-rubyconf-2021"
   title: "Async Ruby"
@@ -1246,6 +1572,10 @@
     This talk is suitable for both beginners and experts, and is relevant for you if you're making web requests in ruby. It will introduce you to some the most impressive async features and explain its core concepts.
   speakers:
     - Bruno Sutic
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "pzpH_ND-CQM"
 
 - id: "chris-seaton-rubyconf-2021"
   title: "A History of Compiling Ruby"
@@ -1259,6 +1589,10 @@
     Did you know that there have been at least sixteen attempts to build a compiler from Ruby to machine code? Why have there been so many? What were the ideas and context of each of these compilers? How are they similar and how are they different? What can we learn about compilers and Ruby from looking at them all? It turns out that we can trace the major advances in compiler research from the last couple of decades through Ruby!
   speakers:
     - Chris Seaton
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "Zg-1_7ed0hE"
 
 - id: "ely-alvarado-rubyconf-2021"
   title: "Golf Scripting with Ruby - Helping Santa Schedule Christmas"
@@ -1272,6 +1606,10 @@
     Code Golf is a fun form of programming competition where the aim is to produce the shortest source code that implements an algorithm. In this talk we will show how we tackle a complex problem: helping Santa schedule the work of his elves Army to deliver presents on Christmas Day. We will go step by step on how to find an algorithm to solve it and how to use Ruby’s language features to make it as short as possible. You’ll learn a few secret shortcuts built into Ruby that you probably don’t know about.
   speakers:
     - Ely Alvarado
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "Qad12Vc4FQ8"
 
 - id: "julia-ferraioli-rubyconf-2021"
   title: "Black Swan Events in Open Source: That time we broke the internet"
@@ -1288,6 +1626,10 @@
   speakers:
     - Julia Ferraioli
     - Amanda Casari
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "GLBJMmdcmbU"
 
 - id: "koichi-sasada-rubyconf-2021"
   title: "debug.gem: Ruby's new debug functionality"
@@ -1311,6 +1653,10 @@
     In this talk, I'll introduce useful features of this new debugger and tips for Ruby development.
   speakers:
     - Koichi Sasada
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "XeWHrsp6nwo"
 
 - id: "rein-henrichs-rubyconf-2021"
   title: "Beyond Blameless"
@@ -1324,6 +1670,10 @@
     In the aftermath of John Allspaw's hugely influential "Blameless Post-Mortems", blamelessness has become a shibboleth for modern production operations teams. But it seems that something has been lost in translation. Organizations that try to "be blameless" without understanding blame often make activities taboo that can lead to blame. But many of them (like attribution and event analysis) are not inherently harmful — and they are necessary for learning. When we throw the baby of learning out with the bathwater of blaming, we also lose opportunities to become more resilient.
   speakers:
     - Rein Henrichs
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "KXrsvLMqF1Q"
 
 - id: "shailvi-wakhlu-rubyconf-2021"
   title: "The Intentional Plan for Intersectionality"
@@ -1337,6 +1687,10 @@
     When thinking about issues faced by the underrepresented groups, we cannot ignore intersectionality. For eg. Women face plenty of challenges in STEM fields, and also face additional challenges based on their race, sexual orientation, nationality, disability, education, etc. This talk highlights the fierce urgency of now, in planning for intersectionality.
   speakers:
     - Shailvi Wakhlu
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "ORYz6KYjkuI"
 
 - id: "tom-stuart-rubyconf-2021"
   title: "Programming with Something"
@@ -1350,6 +1704,10 @@
     Programs which manipulate other programs are extremely fun and incredibly powerful. To write them, we need a way to represent code as a data structure which we can analyse, manipulate and eventually execute. In this talk we’ll learn how to store executable code as data in Ruby, and explore how to write different kinds of programs that process it.
   speakers:
     - Tom Stuart
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "-BNTFml5lCk"
 
 - id: "yusuke-endoh-rubyconf-2021"
   title: "Enjoy Ruby Programming in IDE and TypeProf"
@@ -1363,6 +1721,10 @@
     The rich development experience in integrated development environments (IDEs), including on-the-fly error reporting, refactoring feature, completion, etc., has become increasingly important. To achieve this, many programing languages are incorporating annotations such as type hinting. However, is such IDE features infeasible without annotations? We are challenging ourselves to achieve modern development experience with non-type-annotated Ruby programs by using TypeProf, which is a type analysis tool bundled in Ruby 3.0. In this talk, we demonstrate our prototype, and present its roadmap.
   speakers:
     - Yusuke Endoh
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "UTMj51j9yEg"
 
 - id: "rachel-green-rubyconf-2021"
   title: "Whimsy: Art, Beats & Code"
@@ -1375,6 +1737,10 @@
   description: ""
   speakers:
     - Rachel Green
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "4LcCnmheJYY"
 
 - id: "ali-ibrahim-rubyconf-2021"
   title: "Whimsy: Babies just want to have fun"
@@ -1387,6 +1753,10 @@
   description: ""
   speakers:
     - Ali Ibrahim
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "gJH6aTz0PPo"
 
 - id: "mike-dalessio-whimsy-rubyconf-2021"
   title: "Whimsy: Put That Test Down! You don't know where it's been"
@@ -1399,6 +1769,10 @@
   description: ""
   speakers:
     - Mike Dalessio
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "zOutXbz_7Ns"
 
 - id: "yukihiro-matz-matsumoto-rubyconf-2021"
   title: "Keynote: Beyond Ruby 3.0"
@@ -1412,3 +1786,24 @@
   description: ""
   speakers:
     - "Yukihiro \"Matz\" Matsumoto"
+  alternative_recordings:
+    - note: "Ruby Central upload"
+      video_provider: "youtube"
+      video_id: "2r8wcrwPH8E"
+
+# TODO: (Confreaks) add missing talk - https://www.youtube.com/watch?v=x_aWs_wkM1g  RubyConf 2021 - Job Fair Part 1: Weedmaps, MX, and Doximity
+# TODO: (Confreaks) add missing talk - https://www.youtube.com/watch?v=XEcCRIx-ULw  RubyConf 2021 - Job Fair Part 2: Homebot, Vimeo, and Grailed
+# TODO: (Confreaks) add missing talk - https://www.youtube.com/watch?v=9cg-iwY_DL0  RubyConf 2021 - Lightning Talks
+# TODO: (Confreaks) add missing talk - https://www.youtube.com/watch?v=bF4duJMWVsE  RubyConf 2021 - MX Hacker's Revenge
+# TODO: (Confreaks) add missing talk - https://www.youtube.com/watch?v=_ttOFi-8l_4  RubyConf 2021 - Virtual Job Fair: Engine Yard, Wrapbook, Shopify
+# TODO: (Confreaks) add missing talk - https://www.youtube.com/watch?v=hqp8ebsIcq0  RubyConf 2021 - Virtual Job Fair: Kolide, Fullscript, CZI
+# TODO: (Confreaks) add missing talk - https://www.youtube.com/watch?v=VjbnS1ZZzbg  RubyConf 2021 - Meet Shopify's Ruby and Rails Infrastructure Team
+
+# TODO: (RubyCentral) add missing talk - https://www.youtube.com/watch?v=v6TSz5MAFxc  RubyConf 2021 - Job Fair Part 1: Weedmaps, MX, and Doximity
+# TODO: (RubyCentral) add missing talk - https://www.youtube.com/watch?v=vaFu7ccjon8  RubyConf 2021 - Do regex dream of Turing Completeness? by Daniel Magliola
+# TODO: (RubyCentral) add missing talk - https://www.youtube.com/watch?v=pCmwayRgzMo  RubyConf 2021 - Job Fair Part 2: Homebot, Vimeo, and Grailed
+# TODO: (RubyCentral) add missing talk - https://www.youtube.com/watch?v=weMs6ZDZ41o  RubyConf 2021 - MX Hacker's Revenge
+# TODO: (RubyCentral) add missing talk - https://www.youtube.com/watch?v=uvWa5t2Gveo  RubyConf 2021 - Virtual Job Fair: Engine Yard, Wrapbook, Shopify
+# TODO: (RubyCentral) add missing talk - https://www.youtube.com/watch?v=8xjCx5axiJ4  RubyConf 2021 - Virtual Job Fair: Kolide, Fullscript, CZI
+# TODO: (RubyCentral) add missing talk - https://www.youtube.com/watch?v=e0Yg5boTZZk  RubyConf 2021 - Meet Shopify's Ruby and Rails Infrastructure Team
+# TODO: (RubyCentral) add missing talk - https://www.youtube.com/watch?v=mCKaldTE-Lc  RubyConf 2021 - Lightning Talks

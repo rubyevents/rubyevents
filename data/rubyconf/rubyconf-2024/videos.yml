@@ -1,6 +1,8 @@
----
-# Wesbite: https://rubyconf.org
+# Website: https://rubyconf.org
 # Schedule: https://rubyconf.org/schedule
+# Playlist: https://www.youtube.com/playlist?list=PLE7tQUdRKcyYHWvkCPtXih86q-pUPOo7b (Confreaks)
+# Playlist: https://www.youtube.com/playlist?list=PLbHJudTY1K0fFsGc9a2tBFR-iUulnMJM7 (RubyCentral)
+---
 
 ## Day 1 - 2024-11-13
 
@@ -19,6 +21,10 @@
   speakers:
     - Kinsey Durham Grace
     - Jim Remsik
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "8HwvdzTj1Bw"
 
 - id: "alan-ridlehoover-rubyconf-2024"
   title: "Sponsor Moment Cisco Meraki: Ruby Love"
@@ -31,6 +37,10 @@
   description: ""
   speakers:
     - Alan Ridlehoover
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "CnNcEsdaKW4"
 
 - id: "sharon-decaro-rubyconf-2024"
   title: "Sponsor Moment Paypal: Ruby Love"
@@ -43,6 +53,10 @@
   description: ""
   speakers:
     - Sharon DeCaro
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "Yjwl0sm-qVI"
 
 - id: "yukihiro-matz-matsumoto-rubyconf-2024"
   title: "Keynote: Infinity and Beyond"
@@ -56,6 +70,10 @@
   description: ""
   speakers:
     - "Yukihiro \"Matz\" Matsumoto"
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "e0Zvh7KQxp8"
 
 - id: "vincius-stock-rubyconf-2024"
   title: "The State of Ruby Dev Tooling"
@@ -71,6 +89,10 @@
     So where are we at this point? How do we compare to other ecosystems? Is it time to converge, unite efforts and reduce fragmentation? And where are we going next? Let’s analyze the full picture of Ruby tooling and try to answer these questions together.
   speakers:
     - Vinícius Stock
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "pOuy51ZCGEw"
 
 - id: "ivo-anjo-rubyconf-2024"
   title: "How the Ruby Global VM Lock impacts app performance"
@@ -89,6 +111,10 @@
     Join me as we explore what the GVL is; what it is not; and how we can use the `gvl-tracing` gem to show it in action. We’ll also look into how Ractors, M:N scheduling and fibers fit into this story. By the end of the talk you’ll have the tools to evaluate if your own applications are being impacted, as well as learn a number of do’s and don’ts of Ruby performance.
   speakers:
     - Ivo Anjo
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "MmKhsvvyiCw"
 
 - id: "murray-steele-rubyconf-2024"
   title: "Names from a hat"
@@ -104,6 +130,10 @@
     We'll start with the obvious technique of using `Array#sample` but as it's not very interesting or satisfying to write we'll go a bit further. We'll look at interactivity using `Fiber`, and several attempts at animation using _why's Shoes framework. Finally, we'll explore my magnum opus of a terminal-based dungeon crawler (like nethack and rogue) written in ruby that introduces a human element of randomisation alongside the computer element.
   speakers:
     - Murray Steele
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "gJXEsnGELGo"
 
 - id: "liz-heym-rubyconf-2024"
   title: "Supporter Talk by Cisco: Catching Waves with Time-Series Data"
@@ -120,6 +150,10 @@
     In order to understand the best-practices of time-series data, we’ll follow a surfer’s journey as she attempts to record every wave she’s ever caught. We’ll discover how to structure the time-series data, query for performant access, aggregate data over timespans, and present the data via an API endpoint. Surf’s up!
   speakers:
     - Liz Heym
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "-gIjjIVGLt4"
 
 - id: "ahmed-omran-rubyconf-2024"
   title: "Compose Software Like Nature Would"
@@ -134,6 +168,10 @@
     The only constant in software development is change. When our software cannot adapt, it turns into a big ball of mud. It becomes hard to reason about and hard to change. On the other hand, living organisms have the incredible ability to adapt to their environment. Over eons, they evolved innumerable adaptations. Let’s explore together how we can create adaptable, maintainable, and resilient software with some inspiration from nature.
   speakers:
     - Ahmed Omran
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "BrX2ws5QbCw"
 
 - id: "koichi-sasada-rubyconf-2024"
   title: "Ractor on Ruby 3.4"
@@ -150,6 +188,10 @@
     of current Ractor programming, and the future perspective of Ractor in Ruby 3.4 and beyond.
   speakers:
     - Koichi Sasada
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "xyWRUzyixz0"
 
 - id: "herve-aniglo-rubyconf-2024"
   title: "Sounds, Synths, and Sonic Pi! Oh My!"
@@ -176,6 +218,10 @@
     Live demo where I will turn my computer into a myriad of musical instruments to play music and songs of different genres
   speakers:
     - Herve Aniglo
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "5fle6iFyQow"
 
 - id: "youssef-chaker-rubyconf-2024"
   title: "Supporter Talk by Paypal: Building Scalable & Resilient Background Jobs for FinTech"
@@ -205,6 +251,10 @@
     While Ruby was not directly derived from Smalltalk, the two are surprisingly similar. We'll explore the history of Smalltalk, and the context in which it was formed. We'll see how Ruby rediscovered and reapplied Smalltalk's concepts, with an eye towards understanding Ruby's future.
   speakers:
     - Craig Buchek
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "-t8-q4dgxYw"
 
 - id: "keith-gable-rubyconf-2024"
   title: "Lessons Learned Running Sidekiq at Scale"
@@ -220,6 +270,10 @@
     I aim to share my operational experience, architectural advice, and how I got out of sticky situations when I made poor choices.
   speakers:
     - Keith Gable
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "_ER3FDhGO9w"
 
 - id: "thomas-e-enebo-rubyconf-2024"
   title: "Let's write an esoteric language in Ruby!"
@@ -235,6 +289,10 @@
     Rpiet starts as a naive port of one of the other language implementations of Piet. From there, we consider what is special about this language versus traditional programming languages. We then distill our initial implementation into a lean and mean version which verges on ROFLScale. It even includes a working graphical debugger!
   speakers:
     - Thomas E Enebo
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "TfMihNZQP7E"
 
 - id: "noel-rappin-rubyconf-2024"
   title: "Supporter Talk by Chime: Coordinate Ruby Teams With Chime"
@@ -276,6 +334,10 @@
     - name: "mogox/talk_breaking_nil"
       type: "repo"
       url: "https://github.com/mogox/talk_breaking_nil"
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "FW_UpbqlPa4"
 
 - id: "charles-nutter-rubyconf-2024"
   title: "Building JRuby: How We Implement Ruby on the JVM"
@@ -291,6 +353,10 @@
   speakers:
     - Charles Nutter
     - Thomas E Enebo
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "mDRqCXV88sA"
 
 - id: "jade-dickinson-rubyconf-2024"
   title: "Plan to Scale or Plan to Fail: An Evidence-Based Approach for Improving Systems Performance"
@@ -308,6 +374,10 @@
     At Theta Lake we operate at scale and are applying this methodology to proactively find ways to bring down our server costs. You don’t want to leave it until either your server costs soar out of control, or your entire system is about to fail. By seeing into the future just a little bit, you can find bottlenecks in your system and so find where you can improve its scalability.
   speakers:
     - Jade Dickinson
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "h_G6wHWba-M"
 
 - id: "samuel-giddins-rubyconf-2024"
   title: "The State of RubyGems"
@@ -323,6 +393,10 @@
     - Samuel Giddins
     - Martin Emde
     - Marty Haught
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "UH56pZs_NP0"
 
 - id: "errol-schmidt-rubyconf-2024"
   title: "Supporter Talk by reinteractive: Future Proofing your Ruby Stack"
@@ -337,6 +411,10 @@
     Discussing how current industry trends and product owner expectations effect how we build and maintain our Ruby apps (without compromising).
   speakers:
     - Errol Schmidt
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "V28mlUoKNAo"
 
 - id: "jamis-buck-rubyconf-2024"
   title: "Flattening Recursion with Fibers"
@@ -357,6 +435,10 @@
   speakers:
     - Jamis Buck
     - Adviti Mishra
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "TyRQ97VVpu8"
 
 - id: "sara-jackson-rubyconf-2024"
   title: "Chaos Engineering on the Death Star"
@@ -370,6 +452,10 @@
     An exhaust vent wasn't the only flaw on the Death Star! We'll follow along with a flustered Death Star engineer, Maia, and learn how ideas from the world of chaos engineering could have saved her app from exploitation by the rebels.
   speakers:
     - Sara Jackson
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "pUjJxcjPDhA"
 
 - id: "stephen-margheim-rubyconf-2024"
   title: "ACIDic Jobs: Scaling a resilient jobs layer"
@@ -383,6 +469,10 @@
     Background jobs have become an essential component of any Rails app. As your /jobs directory grows, however, how do you both ensure that your jobs are resilient and that complex operations are maintainable and cohesive? In this talk, we will explore how we can build maintainable, resilient, cohesive jobs, all by making our jobs ACIDic.
   speakers:
     - Stephen Margheim
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "kqR7KUeBctk"
 
 - id: "mariusz-kozie-rubyconf-2024"
   title: "Building the Future of Ruby Through Community"
@@ -396,6 +486,10 @@
     Discover how Ruby Europe is creating a stronger Ruby ecosystem by prioritizing community development. Explore real-life examples of how community initiatives have transformed careers, inspired projects, and sparked innovations. See how each of us can play a vital role in shaping the future of Ruby.
   speakers:
     - Mariusz Kozieł
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "Z1PMfr8N1T4"
 
 - id: "daniel-farina-rubyconf-2024"
   title: "Supporter Talk by Ubicloud: Build a Cloud in Thirteen Years"
@@ -425,6 +519,10 @@
     Delegate methods are methods that take any parameters, and pass those parameters on to other methods. It may not seem like it, but this is an extremely common pattern in Ruby code. In this session, we’re going to learn how Ruby method calls work, how inline caches work, and how we can use the combination of this knowledge to optimize delegate methods.
   speakers:
     - Aaron Patterson
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "Avp7yJZLy6A"
 
 - id: "tyler-lemburg-rubyconf-2024"
   title: "The Mutation Game: Cracking the Enigma of Mutation Testing"
@@ -440,6 +538,10 @@
     Storm into this session and learn what mutation testing is all about, see if it may be right for your Ruby codebase, and explore the tools that make it possible. We will use the `mutant` gem and delve into an example Ruby app, bringing it to full mutation testing coverage through simplifying code and improving tests. Even if this technique is not right for your project, you will come away from this session with a deeper understanding of Ruby, code parsing, test-driven development, and writing clean, beautiful code.
   speakers:
     - Tyler Lemburg
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "WqrL5w0WP0o"
 
 - id: "jp-camara-rubyconf-2024"
   title: "In-Depth Ruby Concurrency: Navigating the Ruby Concurrency Landscape"
@@ -457,6 +559,10 @@
     In this talk, we'll build an understanding of the Ruby concurrency landscape, and map that understanding onto concurrent gems like Sidekiq, Puma, Falcon, Pitchfork, SolidQueue and Mooro. My goal is for you to better understand how they work, what concurrency options they offer, and how you can best utilize them for scaling your applications.
   speakers:
     - JP Camara
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "RDHZm5Uv51Y"
 
 # TBA
 
@@ -472,6 +578,10 @@
   description: ""
   speakers:
     - Nickolas Means
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "HqyF4w_jdSA"
 
 ## Day 2 - 2024-11-14
 
@@ -492,6 +602,10 @@
     prize.'
   speakers:
     - Drew Bragg
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "fQKSH7e28oU"
 
 - id: "aji-slater-rubyconf-2024"
   title: "Workshop: Breaking the Unbreakable Code Whose Breaking Won World War II"
@@ -509,6 +623,10 @@
     Delve into object-oriented programming and bring the Enigma machine back to life with an emulator built in Ruby. Use Test Driven Development to unravel the secrets of this nigh-unbreakable cipher device, witness OO principles unlock its mysteries, discover the power and versatility of the patterns we use as developers and how they mirror the Enigma's inner workings.
   speakers:
     - Aji Slater
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "8oS89fFboYA"
 
 - id: "andy-maleh-rubyconf-2024"
   title: "Workshop: How To Build Basic Desktop Applications in Ruby"
@@ -533,6 +651,10 @@
     Please install the latest version of the Ruby gem (run `gem install glimmer-dsl-libui`) and confirm it is working (run `glimmer examples`) in advance to hit the ground running when the workshop begins.
   speakers:
     - Andy Maleh
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "M6JUDMPKZjk"
 
 - id: "koichi-sasada-rubyconf-2024-ruby-hack-challenge"
   title: "Ruby Hack Challenge"
@@ -589,6 +711,10 @@
     - name: "ko1/rubyhackchallenge"
       type: "repo"
       url: "https://github.com/ko1/rubyhackchallenge/tree/master"
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "z9rUllBtfXg"
 
 - id: "sean-collins-workshop-rubyconf-2024"
   title: "Workshop: Hands on Hanami"
@@ -635,6 +761,10 @@
     - name: "noelrappin/cookie_cutter"
       type: "repo"
       url: "https://github.com/noelrappin/cookie_cutter"
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "OM37TfsCyF4"
 
 - id: "lightning-talks-rubyconf-2024"
   title: "Lightning Talks"
@@ -890,6 +1020,10 @@
   description: ""
   speakers:
     - Brandon Weaver
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "nDiCH-a5TVg"
 
 - id: "mari-imaizumi-rubyconf-2024"
   title: "Exploring Reline: Enhancing Command Line Usability"
@@ -907,6 +1041,10 @@
     and talk about their implementation in Reline.
   speakers:
     - Mari Imaizumi
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "xZPQEb9emSI"
 
 - id: "shunsuke-kokuyou-mori-rubyconf-2024"
   title: "Do LLMs dream of Type Inference?"
@@ -923,6 +1061,10 @@
     For future improvement of RBS Goose, a more detailed evaluation mechanism is needed. In this regard, we will share ideas about TypeEvalRb, a type inference benchmark, by referring to examples from previous studies.
   speakers:
     - "Shunsuke \"Kokuyou\" Mori"
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "7tANwgfJS_0"
 
 - id: "karl-weber-rubyconf-2024"
   title: "MVC Ruby in Less Than 5K. The Wonder of Camping"
@@ -971,6 +1113,10 @@
     Bonus I have physical boxed copies of Ruby Camping that you can win or buy.
   speakers:
     - Karl Weber
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "4EFRl5KQmpc"
 
 - id: "yusuke-endoh-rubyconf-2024"
   title: "An Invitation to TRICK: How to write weird Ruby programs"
@@ -996,6 +1142,10 @@
     By the end of this talk, you'll be ready to submit your original Ruby creations to TRICK 2025!
   speakers:
     - Yusuke Endoh
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "VDk---TgCv4"
 
 - id: "scott-werner-rubyconf-2024"
   title: "Going Postel"
@@ -1014,6 +1164,10 @@
     AI’s true power for software development.
   speakers:
     - Scott Werner
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "Y926FZ0DqJI"
 
 - id: "jeremy-evans-rubyconf-2024"
   title: "10 Years of Roda"
@@ -1029,6 +1183,10 @@
     The first conference presentation on Roda was given 10 years ago at RubyConf 2014. Come learn about Roda, the progress Roda has made since then, how Roda powers open source frameworks and applications, and why you may want to use Roda for your next web application.
   speakers:
     - Jeremy Evans
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "OUBvXckHPos"
 
 - id: "fabio-leandro-janiszevski-rubyconf-2024"
   title: "Detecting and classifying object images using ruby"
@@ -1052,6 +1210,10 @@
     - name: "fabiosammy/rubyconf2024"
       type: "repo"
       url: "https://github.com/fabiosammy/rubyconf2024"
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "n5srk2ivKgk"
 
 - id: "shannon-skipper-rubyconf-2024"
   title: "Streaming over the web with modern Ruby"
@@ -1067,6 +1229,10 @@
     This session will provide foundational definitions along with practical insights and examples, showcasing how Ruby library advancements can be applied in real-world applications.
   speakers:
     - Shannon Skipper
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "8lnCB3yDL8I"
 
 - id: "nadia-odunayo-rubyconf-2024"
   title: "Keynote: The Case of the Peculiar Pattern - A Ruby Mystery Story"
@@ -1094,3 +1260,16 @@
   speakers:
     - Kinsey Durham Grace
     - Jim Remsik
+  alternative_recordings:
+    - note: "Confreaks upload"
+      video_provider: "youtube"
+      video_id: "AbLQahtMcCg"
+
+# TODO: add missing talk - https://www.youtube.com/watch?v=Q2LRdItywWM  RubyConf 2024 Supporter Talk by Paypal: Building Scalable & Resilient ... by Youssef Chaker
+# TODO: add missing talk - https://www.youtube.com/watch?v=Cj1i8xFJX9w  RubyConf 2024 Supporter Talk by Chime: Coordinate Ruby Teams With Chime by Noel Rappin
+# TODO: add missing talk - https://www.youtube.com/watch?v=KC7CNC0wXes  RubyConf 2024 Supporter Talk by Ubicloud: Build a Cloud in Thirteen Years by Daniel Farina
+# TODO: add missing talk - https://www.youtube.com/watch?v=brsLTX-UWzU  RubyConf 2024 Keynote by Nadia Odunayo
+# TODO: add missing talk - https://www.youtube.com/watch?v=onfYv1WT5N4  RubyConf 2024 Going Postel by Scott Werner
+
+# TODO: add recap (Confreaks) - https://www.youtube.com/watch?v=nBGqrvWbJLA  RubyConf 2024 Chicago Recap#
+# TODO: add recap (RubyCentral) https://www.youtube.com/watch?v=STVaf3yYL1A  RubyConf 2024 Chicago Recap

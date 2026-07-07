@@ -1,9 +1,10 @@
----
 # TODO: talks running order
 # TODO: conference website
 # TODO: schedule website
 # TODO: talk dates
 
+# Playlist: https://www.youtube.com/playlist?list=PLE7tQUdRKcyZ09J3-EXxzX2yCgl4a5qUk
+---
 - id: "ron-evans-la-rubyconf-2013"
   title: "Keynote: The Signal"
   raw_title: "LA Ruby Conference 2013 Keynote by Ron Evans"
@@ -27,9 +28,6 @@
   video_provider: "youtube"
   video_id: "fh1y1BUTJxE"
   description: |-
-    Title: People who liked this talk also liked ... Building Recommendation Systems Using Ruby
-    Presented by: Ryan Weald
-
     From Amazon, to Spotify, to thermostats, recommendation systems are everywhere. The ability to provide recommendations for your users is becoming a crucial feature for modern applications. In this talk I'll show you how you can use Ruby to build recommendation systems for your users. You don't need a PhD to build a simple recommendation engine -- all you need is Ruby. Together we'll dive into the dark arts of machine learning and you'll discover that writing a basic recommendation engine is not as hard as you might have imagined. Using Ruby I'll teach you some of the common algorithms used in recommender systems, such as: Collaborative Filtering, K-Nearest Neighbor, and Pearson Correlation Coefficient. At the end of the talk you should be on your way to writing your own basic recommendation system in Ruby.
   speakers:
     - Ryan Weald
@@ -126,6 +124,10 @@
     If MRI is a potato peeler that does one thing very well, JRUby is the Swiss Army Knife that offers developers a multitude of tools. JRuby opens doors that MRI has closed, being highly performant and offers access to Java libraries. From the perspective of a former MRI'er, I'll discuss concrete examples of how to realize the benefits of the JRuby stack, drawing examples from my work on an open-source JRuby on Rails app.
   speakers:
     - Fiona Tay
+  alternative_recordings:
+    - note: "Double upload"
+      video_provider: "youtube"
+      video_id: "OFpqBhPXhO8"
 
 - id: "austin-fonacier-la-rubyconf-2013-backbonejs-jasmine-and-rails-t"
   title: "Backbone.js, Jasmine and Rails: The Lust Story"
