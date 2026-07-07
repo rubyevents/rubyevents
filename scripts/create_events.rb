@@ -1,3 +1,5 @@
+# TODO: remove this script
+
 # start this script with the rails runner command
 # $ rails runner scripts/create_events.rb
 #
