@@ -223,7 +223,7 @@ gem "fastimage", "~> 2.4"
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "bundler-audit", require: false
-  gem "debug", platforms: %i[mri windows]
+  gem "debug", platforms: %i[mri windows], require: "debug/prelude"
   gem "minitest-difftastic", "~> 0.2"
   gem "minitest-mock", "~> 5.27"
 end

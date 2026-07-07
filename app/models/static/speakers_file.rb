@@ -17,10 +17,10 @@ module Static
 
     class StaleFileError < StandardError; end
 
-    def initialize(path = Rails.root.join(SPEAKERS_PATH).to_s)
+    def initialize(path = Rails.root.join(SPEAKERS_PATH).to_s, document: nil)
       @path = path
       @loaded_mtime = File.mtime(path)
-      @document = Yerba.parse_file(path)
+      @document = document || Yerba.parse_file(path)
     end
 
     def count

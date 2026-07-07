@@ -7,8 +7,9 @@ module Static
         "**/videos.yml"
       ].freeze
 
-      def initialize(file_path:)
+      def initialize(file_path:, document: nil)
         @file_path = file_path
+        @document = document
       end
 
       def applicable?
@@ -26,7 +27,6 @@ module Static
       def validate
         return [] unless applicable?
 
-        document = Yerba.parse_file(@file_path)
         return [] unless document.root
 
         document.root.each.flat_map do |video|
@@ -39,6 +39,10 @@ module Static
       private
 
       PROVIDERS_WITHOUT_PUBLISHED_AT = (Talk::UNPUBLISHED_PROVIDERS + ["children", "parent"]).freeze
+
+      def document
+        @document ||= Yerba.parse_file(@file_path.to_s)
+      end
 
       def talk_errors(node)
         provider = node.value_at("video_provider")
