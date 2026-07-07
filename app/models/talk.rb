@@ -447,8 +447,12 @@ class Talk < ApplicationRecord
       end
     end
 
-    if Rails.application.assets.load_path.find("thumbnails/#{video_id}.webp")
-      return Router.image_path("thumbnails/#{video_id}.webp")
+    if event
+      asset_path = ["thumbnails", event.slug, parent_talk&.static_id, "#{video_id}.webp"].compact.join("/")
+
+      if Rails.application.assets.load_path.find(asset_path)
+        return Router.image_path(asset_path)
+      end
     end
 
     if vimeo?

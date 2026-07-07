@@ -259,7 +259,7 @@ namespace :validate do
 
   def validate_thumbnails
     validate_files(
-      files: Dir.glob(Rails.root.join("app/assets/images/thumbnails/*.webp")),
+      files: Dir.glob(Rails.root.join("app/assets/images/thumbnails/**/*.webp")),
       validators: [
         Static::Validators::RedundantThumbnails
       ],
