@@ -9,8 +9,10 @@ class TalkGeneratorTest < Rails::Generators::TestCase
   test "creates minimum videos.yml with valid yaml" do
     videos_file_path = File.join(destination_root, "data/rubyconf/2024/videos.yml")
     eliminate_validated_file(file_path: videos_file_path) do
-      run_generator ["--event-series", "rubyconf",
-        "--event", "2024"]
+      run_generator [
+        "--event-series", "rubyconf",
+        "--event", "2024"
+      ]
 
       assert_file videos_file_path do |content|
         assert_match(/id: "talk-by-todo-2024"/, content)
@@ -25,14 +27,16 @@ class TalkGeneratorTest < Rails::Generators::TestCase
   test "creates maximum videos.yml with valid yaml" do
     videos_file_path = File.join(destination_root, "data/rubyconf/2025/videos.yml")
     eliminate_validated_file(file_path: videos_file_path) do
-      run_generator ["--event-series", "rubyconf",
+      run_generator [
+        "--event-series", "rubyconf",
         "--event", "2025",
         "--title", "Keynote: Jane Doe",
         "--description", "An insightful talk about Ruby and its future.",
         "--kind", "keynote",
         "--language", "Japanese",
         "--date", "2025-09-15",
-        "--speakers", "Jane Doe"]
+        "--speakers", "Jane Doe"
+      ]
 
       assert_file videos_file_path do |content|
         assert_match(/title: "Keynote: Jane Doe"/, content)
@@ -49,7 +53,12 @@ class TalkGeneratorTest < Rails::Generators::TestCase
     videos_file_path = File.join(destination_root, "data/rubyconf/2030/videos.yml")
 
     eliminate_validated_file(file_path: videos_file_path) do
-      run_generator ["--event-series", "rubyconf", "--event", "2030", "--title", "Keynote: Jane Doe", "--speakers", "Jane Doe"]
+      run_generator [
+        "--event-series", "rubyconf",
+        "--event", "2030",
+        "--title", "Keynote: Jane Doe",
+        "--speakers", "Jane Doe"
+      ]
 
       assert_file videos_file_path do |content|
         assert_match(/title: "Keynote: Jane Doe"/, content)
@@ -62,7 +71,12 @@ class TalkGeneratorTest < Rails::Generators::TestCase
     videos_file_path = File.join(destination_root, "data/rubyconf/2031/videos.yml")
 
     eliminate_validated_file(file_path: videos_file_path) do
-      run_generator ["--event-series", "rubyconf", "--event", "2031", "--title", "Building Better APIs", "--speakers", "Jane Doe"]
+      run_generator [
+        "--event-series", "rubyconf",
+        "--event", "2031",
+        "--title", "Building Better APIs",
+        "--speakers", "Jane Doe"
+      ]
 
       assert_file videos_file_path do |content|
         assert_match(/title: "Building Better APIs"/, content)
@@ -75,7 +89,13 @@ class TalkGeneratorTest < Rails::Generators::TestCase
     videos_file_path = File.join(destination_root, "data/rubyconf/2032/videos.yml")
 
     eliminate_validated_file(file_path: videos_file_path) do
-      run_generator ["--event-series", "rubyconf", "--event", "2032", "--title", "Keynote: Jane Doe", "--kind", "panel", "--speakers", "Jane Doe"]
+      run_generator [
+        "--event-series", "rubyconf",
+        "--event", "2032",
+        "--title", "Keynote: Jane Doe",
+        "--kind", "panel",
+        "--speakers", "Jane Doe"
+      ]
 
       assert_file videos_file_path do |content|
         assert_match(/kind: "panel"/, content)
@@ -87,7 +107,13 @@ class TalkGeneratorTest < Rails::Generators::TestCase
     videos_file_path = File.join(destination_root, "data/rubyconf/2033/videos.yml")
 
     eliminate_validated_file(file_path: videos_file_path) do
-      run_generator ["--event-series", "rubyconf", "--event", "2033", "--title", "Welcome to Authentication Hell", "--kind", "talk", "--speakers", "Jane Doe"]
+      run_generator [
+        "--event-series", "rubyconf",
+        "--event", "2033",
+        "--title", "Welcome to Authentication Hell",
+        "--kind", "talk",
+        "--speakers", "Jane Doe"
+      ]
 
       assert_file videos_file_path do |content|
         assert_match(/title: "Welcome to Authentication Hell"/, content)
