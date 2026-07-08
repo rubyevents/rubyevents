@@ -7,7 +7,8 @@ class Static::Validators::Validator
       Static::Validators::EventCityNames,
       Static::Validators::EventDates,
       Static::Validators::EventRecordingsPublishedDate,
-      Static::Validators::IdMatchesFolder
+      Static::Validators::IdMatchesFolder,
+      Static::Validators::SeriesDefaultColors
     ]
   end
 

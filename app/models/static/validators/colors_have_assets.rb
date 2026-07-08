@@ -46,7 +46,7 @@ module Static
             location = document[field].location
 
             Static::Validators::Error.new(
-              "Color field configured but asset '#{asset}' not found in #{asset_dir} or #{default_asset_dir}",
+              "#{field} is defined but '#{asset}' exists neither in #{asset_dir} nor in #{default_asset_dir}, events falling back to the global default #{asset} must not define brand colors",
               file_path: @file_path,
               line: location&.start_line || 1,
               end_line: location&.end_line
