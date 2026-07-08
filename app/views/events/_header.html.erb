@@ -75,25 +75,25 @@
     <%= event.description %>
   </p>
 
-  <% if event.start_date.present? && event.start_date.future? && !event.static_metadata.cancelled? %>
-    <% event.cfps.open.each do |cfp| %>
-      <div class="mt-6 p-4 bg-gray-100 rounded-lg max-w-[700px]">
-        <h3 class="font-bold text-lg mb-2">
-          <%= cfp.name.presence || "Call for Proposals" %>
-        </h3>
+  <% event.cfps.each do |cfp| %>
+    <% next unless cfp.open? %>
 
-        <p class="text-[#636B74] mb-3">
-          <% if cfp.close_date.present? %>
-            The CFP is currently open and closes on <%= cfp.formatted_close_date %>.
-          <% else %>
-            The CFP is currently open.
-          <% end %>
-        </p>
+    <div class="mt-6 p-4 bg-gray-100 rounded-lg max-w-[700px]">
+      <h3 class="font-bold text-lg mb-2">
+        <%= cfp.name.presence || "Call for Proposals" %>
+      </h3>
 
-        <%= external_link_to "Submit your proposal",
-              cfp.link,
-              class: "btn btn-primary btn-sm" %>
-      </div>
-    <% end %>
+      <p class="text-[#636B74] mb-3">
+        <% if cfp.close_date.present? %>
+          The CFP is currently open and closes on <%= cfp.formatted_close_date %>.
+        <% else %>
+          The CFP is currently open.
+        <% end %>
+      </p>
+
+      <%= external_link_to "Submit your proposal",
+            cfp.link,
+            class: "btn btn-primary btn-sm" %>
+    </div>
   <% end %>
 </div>
