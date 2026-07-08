@@ -2,6 +2,7 @@ class Static::Validators::Validator
   def self.event_validator_classes
     @event_validators ||= [
       Static::Validators::Schema,
+      Static::Validators::AssetsHaveColors,
       Static::Validators::ColorsHaveAssets,
       Static::Validators::DuplicateYouTubeChannels,
       Static::Validators::EventCityNames,

@@ -293,7 +293,8 @@ namespace :validate do
     validate_files(
       files: Dir.glob(Rails.root.join("app/assets/images/events/**/*.webp")),
       validators: [
-        Static::Validators::AssetDimensions
+        Static::Validators::AssetDimensions,
+        Static::Validators::OrphanedEventAssets
       ],
       success_message: "✓ All event assets passed validations!"
     )
