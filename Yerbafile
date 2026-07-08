@@ -15,6 +15,9 @@ pipeline:
       key_style: plain
       value_style: double
 
+  - final_newline:
+      count: 1
+
 rules:
   - files: "data/**/event.yml"
     pipeline:
