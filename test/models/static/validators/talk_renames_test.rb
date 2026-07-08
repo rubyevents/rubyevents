@@ -19,6 +19,19 @@ class Static::Validators::TalkRenamesTest < ActiveSupport::TestCase
     end
   end
 
+  test "does not flag removed old_ids as long as the id survives" do
+    baseline = [
+      {"id" => "jane-doe-testconf-2024", "old_id" => "jane-doe-legacy-id", "title" => "Building Things", "video_provider" => "youtube", "video_id" => "abc12345678"}
+    ]
+    videos = [
+      {"id" => "jane-doe-testconf-2024", "title" => "Building Things", "video_provider" => "youtube", "video_id" => "abc12345678"}
+    ]
+
+    with_temp_video(videos) do |path|
+      assert_empty errors_for(path, baseline: baseline)
+    end
+  end
+
   test "does not flag a rename that keeps the previous id as old_id" do
     videos = [
       {"id" => "jane-doe-keynote-testconf-2024", "old_id" => "jane-doe-testconf-2024", "title" => "Building Things", "video_provider" => "youtube", "video_id" => "abc12345678"}
