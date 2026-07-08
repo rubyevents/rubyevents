@@ -289,6 +289,21 @@ namespace :validate do
     exit 1 unless validate_speakerdeck_urls
   end
 
+  def validate_data_files
+    validate_files(
+      files: Dir.glob(Rails.root.join("data/**/*"), File::FNM_DOTMATCH).select { |file| File.file?(file) },
+      validators: [
+        Static::Validators::ExpectedDataFiles
+      ],
+      success_message: "✓ All data files are in expected locations!"
+    )
+  end
+
+  desc "Validate that data/ only contains expected files at expected nesting levels"
+  task data_files: :environment do
+    exit 1 if validate_data_files.any?
+  end
+
   def validate_event_assets
     validate_files(
       files: Dir.glob(Rails.root.join("app/assets/images/events/**/*.webp")),
@@ -381,6 +396,7 @@ namespace :validate do
       "Validating speakers.yml file" => -> { validate_speakers_file.none? },
       "Validating involvements.yml file" => -> { validate_involvements_file.none? },
       "Validating speakers.yml is in sync" => -> { validate_speakers_in_sync },
+      "Validating data file locations" => -> { validate_data_files.none? },
       "Validating unique video ids" => -> { validate_unique_video_ids },
       "Validating SpeakerDeck slides URLs" => -> { validate_speakerdeck_urls },
       "Validating SpeakerDeck handles" => -> { validate_speakerdeck_handles },
