@@ -72,6 +72,19 @@ namespace :validate do
     exit 1 if errors.any?
   end
 
+  def validate_series_files
+    validate_files(
+      files: Dir.glob(Rails.root.join("data/**/series.yml")),
+      validators: Static::Validators::Validator.series_validator_classes,
+      success_message: "✓ All series.yml files passed validations!"
+    )
+  end
+
+  desc "Validate series.yml files"
+  task series: :environment do
+    exit 1 if validate_series_files.any?
+  end
+
   def validate_venue_files
     validate_files(
       files: Dir.glob(Rails.root.join("data/**/venue.yml")),
@@ -351,6 +364,7 @@ namespace :validate do
       "Running yerba check (schemas, formatting, uniqueness)" => -> { run_yerba_check },
       "Validating videos.yml files" => -> { validate_video_files.none? },
       "Validating event.yml files" => -> { validate_event_files.none? },
+      "Validating series.yml files" => -> { validate_series_files.none? },
       "Validating venue.yml files" => -> { validate_venue_files.none? },
       "Validating speakers.yml file" => -> { validate_speakers_file.none? },
       "Validating involvements.yml file" => -> { validate_involvements_file.none? },

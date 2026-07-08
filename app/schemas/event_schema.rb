@@ -3,7 +3,7 @@
 class EventSchema < ApplicationSchema
   data_file "**/event.yml"
 
-  string :id, description: "Unique identifier for the event (YouTube playlist ID or custom slug)"
+  string :id, description: "Unique identifier for the event, matches the event folder name"
 
   string :title, description: "Full name of the event (e.g., 'RailsConf 2024')"
   string :description, description: "Description of the event", required: false

@@ -77,9 +77,11 @@ module Static
           raise ArgumentError, "Event '#{slug}' already exists at #{event_file}"
         end
 
-        data = {"title" => title, "kind" => kind}
+        if id.present? && id != slug
+          raise ArgumentError, "id must match the event folder name ('#{slug}'), got '#{id}'"
+        end
 
-        data["id"] = id if id.present?
+        data = {"id" => slug, "title" => title, "kind" => kind}
         data["description"] = description if description.present?
         data["aliases"] = Array(aliases) if aliases.present?
         data["hybrid"] = hybrid unless hybrid.nil?
@@ -203,11 +205,7 @@ module Static
     end
 
     def slug
-      @slug ||= begin
-        return attributes["slug"] if attributes["slug"].present?
-
-        File.basename(File.dirname(__file_path))
-      end
+      @slug ||= attributes["id"]
     end
 
     def imported?
