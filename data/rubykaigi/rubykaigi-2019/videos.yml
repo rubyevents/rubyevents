@@ -235,13 +235,25 @@
   description: |-
     RubyKaigi 2019 https://rubykaigi.org/2019/presentations/lt/
   talks:
+    - id: "lighting-talk-intro-rubykaigi-2019"
+      title: "Lightning Talk: Intro"
+      kind: "intro"
+      start_cue: "00:00"
+      end_cue: "01:01"
+      language: "English"
+      video_provider: "parent"
+      video_id: "lighting-talk-intro-rubykaigi-2019"
+      speakers:
+        - Akira Matsuda
+        - Sam Phippen
+
     - id: "naoki-kishida-rubykaigi-2019"
       old_id: "naoki-kishida-lighting-talk-rubykaigi-2019"
-      # language: TODO
       title: "Lightning Talk: How does TruffleRuby work"
       kind: "lightning_talk"
       start_cue: "TODO"
       end_cue: "TODO"
+      language: "Japanese"
       video_provider: "parent"
       video_id: "naoki-kishida-rubykaigi-2019"
       speakers:
@@ -249,11 +261,11 @@
 
     - id: "satoshi-moris-tagomori-rubykaigi-2019"
       old_id: "satoshi-moris-tagomori-lighting-talk-rubykaigi-2019"
-      # language: TODO
       title: "Lightning Talk: Invitation to Dark Side of Ruby"
       kind: "lightning_talk"
       start_cue: "TODO"
       end_cue: "TODO"
+      language: "English"
       video_provider: "parent"
       video_id: "satoshi-moris-tagomori-rubykaigi-2019"
       speakers:
@@ -261,11 +273,11 @@
 
     - id: "lin-yu-hsiang-rubykaigi-2019"
       old_id: "lin-yu-hsiang-lighting-talk-rubykaigi-2019"
-      # language: TODO
       title: "Lightning Talk: Automatic Differentiation for Ruby"
       kind: "lightning_talk"
       start_cue: "TODO"
       end_cue: "TODO"
+      language: "English"
       video_provider: "parent"
       video_id: "lin-yu-hsiang-rubykaigi-2019"
       speakers:
@@ -273,11 +285,11 @@
 
     - id: "martin-j-duerst-rubykaigi-2019"
       old_id: "martin-j-durst-lighting-talk-rubykaigi-2019"
-      # language: TODO
       title: "Lightning Talk: From Emperors to Zombies: Ruby from Unicode 10 to 12.1"
       kind: "lightning_talk"
       start_cue: "TODO"
       end_cue: "TODO"
+      language: "English"
       video_provider: "parent"
       video_id: "martin-j-duerst-rubykaigi-2019"
       speakers:
@@ -285,11 +297,11 @@
 
     - id: "mitsubosh-rubykaigi-2019"
       old_id: "mitsubosh-lighting-talk-rubykaigi-2019"
-      # language: TODO
       title: "Lightning Talk: From ㍻ to U+32FF"
       kind: "lightning_talk"
       start_cue: "TODO"
       end_cue: "TODO"
+      language: "English"
       video_provider: "parent"
       video_id: "mitsubosh-rubykaigi-2019"
       speakers:
@@ -297,11 +309,11 @@
 
     - id: "yuichiro-kaneko-rubykaigi-2019"
       old_id: "yuichiro-kaneko-lighting-talk-rubykaigi-2019"
-      # language: TODO
       title: "Lightning Talk: Dive into middleware with mruby"
       kind: "lightning_talk"
       start_cue: "TODO"
       end_cue: "TODO"
+      language: "Japanese"
       video_provider: "parent"
       video_id: "yuichiro-kaneko-rubykaigi-2019"
       speakers:
@@ -309,11 +321,11 @@
 
     - id: "sorah-fukumori-rubykaigi-2019"
       old_id: "sorah-fukumori-lighting-talk-rubykaigi-2019"
-      # language: TODO
       title: "Lightning Talk: VXLAN VTEPs with Ruby"
       kind: "lightning_talk"
       start_cue: "TODO"
       end_cue: "TODO"
+      language: "Japanese"
       video_provider: "parent"
       video_id: "sorah-fukumori-rubykaigi-2019"
       speakers:
@@ -321,11 +333,11 @@
 
     - id: "hiroyuki-inoue-rubykaigi-2019"
       old_id: "hiroyuki-inoue-lighting-talk-rubykaigi-2019"
-      # language: TODO
       title: "Lightning Talk: Write ETL or ELT data processing jobs with bricolage."
       kind: "lightning_talk"
       start_cue: "TODO"
       end_cue: "TODO"
+      language: "English"
       video_provider: "parent"
       video_id: "hiroyuki-inoue-rubykaigi-2019"
       speakers:
@@ -333,11 +345,11 @@
 
     - id: "shunsuke-onishi-rubykaigi-2019"
       old_id: "shunsuke-onishi-lighting-talk-rubykaigi-2019"
-      # language: TODO
       title: "Lightning Talk: Applying mruby to World-first Small SAR Satellite"
       kind: "lightning_talk"
       start_cue: "TODO"
       end_cue: "TODO"
+      language: "Japanese"
       video_provider: "parent"
       video_id: "shunsuke-onishi-rubykaigi-2019"
       speakers:
@@ -345,11 +357,11 @@
 
     - id: "oda-hirohito-rubykaigi-2019"
       old_id: "oda-hirohito-lighting-talk-rubykaigi-2019"
-      # language: TODO
       title: "Lightning Talk: How to Make Bad Source"
       kind: "lightning_talk"
       start_cue: "TODO"
       end_cue: "TODO"
+      language: "Japanese"
       video_provider: "parent"
       video_id: "oda-hirohito-rubykaigi-2019"
       speakers:
@@ -357,11 +369,11 @@
 
     - id: "koichi-ito-rubykaigi-2019"
       old_id: "koichi-ito-lighting-talk-rubykaigi-2019"
-      # language: TODO
       title: "Lightning Talk: The TracePoint Bomb!"
       kind: "lightning_talk"
       start_cue: "TODO"
       end_cue: "TODO"
+      language: "Japanese"
       video_provider: "parent"
       video_id: "koichi-ito-rubykaigi-2019"
       speakers:
@@ -369,11 +381,11 @@
 
     - id: "tomoyuki-chikanaga-lightning-talk-rubykaigi-2019"
       old_id: "nagachika-lighting-talk-rubykaigi-2019"
-      # language: TODO
       title: "Lightning Talk: Make Ruby Differentiable"
       kind: "lightning_talk"
       start_cue: "TODO"
       end_cue: "TODO"
+      language: "Japanese"
       video_provider: "parent"
       video_id: "tomoyuki-chikanaga-lightning-talk-rubykaigi-2019"
       speakers:

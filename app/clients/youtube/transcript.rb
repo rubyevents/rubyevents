@@ -12,6 +12,16 @@ module YouTube
       nil
     end
 
+    def self.list(video_id)
+      new.list(video_id)
+    end
+
+    def list(video_id)
+      api.list(video_id)
+    rescue YoutubeRb::Transcript::CouldNotRetrieveTranscript
+      nil
+    end
+
     def self.tracks(video_id, languages:)
       new.tracks(video_id, languages:)
     end

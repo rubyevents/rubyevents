@@ -18,7 +18,7 @@ class Static::Validators::TalkLanguageTest < ActiveSupport::TestCase
   test "does not flag a file where no talk sets a language" do
     videos = [
       {"id" => "jane-doe-testconf-2024", "title" => "A"},
-      {"id" => "john-smith-testconf-2024", "title" => "B"}
+      {"id" => "john-smith-testconf-2024", "title" => "B", "video_provider" => "youtube"}
     ]
 
     with_temp_video(videos) do |path|
@@ -37,17 +37,28 @@ class Static::Validators::TalkLanguageTest < ActiveSupport::TestCase
     end
   end
 
+  test "does not flag a file where every talk is explicitly in English" do
+    videos = [
+      {"id" => "jane-doe-testconf-2024", "title" => "A", "language" => "English"},
+      {"id" => "john-smith-testconf-2024", "title" => "B", "language" => "English"}
+    ]
+
+    with_temp_video(videos) do |path|
+      assert_empty Static::Validators::TalkLanguage.new(file_path: path).errors
+    end
+  end
+
   test "flags talks without a language when another talk sets one" do
     videos = [
       {"id" => "jane-doe-testconf-2024", "title" => "A", "language" => "Japanese"},
-      {"id" => "john-smith-testconf-2024", "title" => "B"}
+      {"id" => "john-smith-testconf-2024", "title" => "B", "video_provider" => "youtube"}
     ]
 
     with_temp_video(videos) do |path|
       errors = Static::Validators::TalkLanguage.new(file_path: path).errors
 
       assert_equal 1, errors.size
-      assert_equal %(Other talks in this file already set an explicit "language", so please add one to "john-smith-testconf-2024" as well, e.g. `language: "English"`. That way no talk is left guessing its language.), errors.first.message
+      assert_equal %(Other talks in this file already set an explicit "language", so please add one to "john-smith-testconf-2024" as well, e.g. `language: "English"`, or run `bin/rails talk_languages:backfill` to detect it from the talk's YouTube captions. That way no talk is left guessing its language.), errors.first.message
     end
   end
 
@@ -57,9 +68,10 @@ class Static::Validators::TalkLanguageTest < ActiveSupport::TestCase
       {
         "id" => "lightning-talk-testconf-2024",
         "title" => "Lightning Talks",
+        "video_provider" => "youtube",
         "language" => "English",
         "talks" => [
-          {"id" => "john-smith-testconf-2024", "title" => "Lightning Talk: B"}
+          {"id" => "john-smith-testconf-2024", "title" => "Lightning Talk: B", "video_provider" => "parent"}
         ]
       }
     ]
@@ -68,7 +80,7 @@ class Static::Validators::TalkLanguageTest < ActiveSupport::TestCase
       errors = Static::Validators::TalkLanguage.new(file_path: path).errors
 
       assert_equal 1, errors.size
-      assert_equal %(Other talks in this file already set an explicit "language", so please add one to "john-smith-testconf-2024" as well, e.g. `language: "English"`. That way no talk is left guessing its language.), errors.first.message
+      assert_equal %(Other talks in this file already set an explicit "language", so please add one to "john-smith-testconf-2024" as well, e.g. `language: "English"`, or run `bin/rails talk_languages:backfill` to detect it from the talk's YouTube captions. That way no talk is left guessing its language.), errors.first.message
     end
   end
 
@@ -77,10 +89,11 @@ class Static::Validators::TalkLanguageTest < ActiveSupport::TestCase
       {
         "id" => "lightning-talk-testconf-2024",
         "title" => "Lightning Talks",
+        "video_provider" => "youtube",
         "language" => "Spanish",
         "talks" => [
-          {"id" => "john-smith-testconf-2024", "title" => "Lightning Talk: B"},
-          {"id" => "jane-doe-testconf-2024", "title" => "Lightning Talk: C"}
+          {"id" => "john-smith-testconf-2024", "title" => "Lightning Talk: B", "video_provider" => "parent"},
+          {"id" => "jane-doe-testconf-2024", "title" => "Lightning Talk: C", "video_provider" => "parent"}
         ]
       }
     ]
@@ -89,8 +102,49 @@ class Static::Validators::TalkLanguageTest < ActiveSupport::TestCase
       errors = Static::Validators::TalkLanguage.new(file_path: path).errors
 
       assert_equal 2, errors.size
-      assert_equal %(Other talks in this file already set an explicit "language", so please add one to "john-smith-testconf-2024" as well, e.g. `language: "English"`. That way no talk is left guessing its language.), errors.first.message
-      assert_equal %(Other talks in this file already set an explicit "language", so please add one to "jane-doe-testconf-2024" as well, e.g. `language: "English"`. That way no talk is left guessing its language.), errors.last.message
+      assert_equal %(Other talks in this file already set an explicit "language", so please add one to "john-smith-testconf-2024" as well, e.g. `language: "English"`, or run `bin/rails talk_languages:backfill` to detect it from the talk's YouTube captions. That way no talk is left guessing its language.), errors.first.message
+      assert_equal %(Other talks in this file already set an explicit "language", so please add one to "jane-doe-testconf-2024" as well, e.g. `language: "English"`, or run `bin/rails talk_languages:backfill` to detect it from the talk's YouTube captions. That way no talk is left guessing its language.), errors.last.message
+    end
+  end
+
+  test "does not flag talks with non-watchable video providers" do
+    videos = [
+      {"id" => "jane-doe-testconf-2024", "title" => "A", "language" => "Japanese"},
+      {"id" => "john-smith-testconf-2024", "title" => "B", "video_provider" => "not_recorded"},
+      {"id" => "sam-doe-testconf-2024", "title" => "C", "video_provider" => "scheduled"}
+    ]
+
+    with_temp_video(videos) do |path|
+      assert_empty Static::Validators::TalkLanguage.new(file_path: path).errors
+    end
+  end
+
+  test "does not flag non-watchable talks next to explicit English keys" do
+    videos = [
+      {"id" => "jane-doe-testconf-2024", "title" => "A", "language" => "English"},
+      {"id" => "john-smith-testconf-2024", "title" => "B", "video_provider" => "not_recorded"}
+    ]
+
+    with_temp_video(videos) do |path|
+      assert_empty Static::Validators::TalkLanguage.new(file_path: path).errors
+    end
+  end
+
+  test "does not flag a sub-talk of a non-watchable parent video" do
+    videos = [
+      {"id" => "jane-doe-testconf-2024", "title" => "A", "language" => "Japanese"},
+      {
+        "id" => "lightning-talk-testconf-2024",
+        "title" => "Lightning Talks",
+        "video_provider" => "not_recorded",
+        "talks" => [
+          {"id" => "john-smith-testconf-2024", "title" => "Lightning Talk: B", "video_provider" => "parent"}
+        ]
+      }
+    ]
+
+    with_temp_video(videos) do |path|
+      assert_empty Static::Validators::TalkLanguage.new(file_path: path).errors
     end
   end
 
@@ -99,6 +153,7 @@ class Static::Validators::TalkLanguageTest < ActiveSupport::TestCase
       {
         "id" => "lightning-talk-testconf-2024",
         "title" => "Lightning Talks",
+        "video_provider" => "youtube",
         "talks" => [
           {"id" => "john-smith-testconf-2024", "title" => "Lightning Talk: B", "language" => "Spanish"}
         ]
