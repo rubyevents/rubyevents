@@ -138,62 +138,29 @@ namespace :speakers_file do
 
   desc "List near-duplicate speaker names (typos/accents) for review. THRESHOLD=0.85"
   task duplicates: :environment do
+    include ActionView::Helpers::TextHelper
+
     threshold = (ENV["THRESHOLD"] || "0.85").to_f
     speakers = Static::SpeakersFile.new
     clusters = speakers.near_duplicate_names(threshold: threshold)
 
-    signals = speakers.document.value_at("").to_h do |entry|
-      [entry["name"].to_s, {
-        github: entry["github"].to_s,
-        website: entry["website"].to_s,
-        slug: entry["slug"].to_s
-      }]
-    end
-
-    differ = begin
-      require "difftastic"
-      Difftastic::Differ.new(color: :always, display: "inline")
-    rescue LoadError
-      nil
-    end
-
-    canonicalize = ->(name) { name.unicode_normalize(:nfkd).gsub(/\p{Mn}/, "").downcase.gsub(/[^a-z0-9]/, "") }
-
-    same_person = lambda do |a, b|
-      next true if signals[a][:github].present? && signals[a][:github].casecmp?(signals[b][:github])
-      next true if signals[a][:website].present? && signals[a][:website].casecmp?(signals[b][:website])
-
-      canonicalize.call(a) == canonicalize.call(b)
-    end
-
-    signal_line = lambda do |name|
-      signal = signals[name]
-
-      bits = [signal[:github].empty? ? "gh=—" : "gh=#{signal[:github]}"]
-      bits << "web=#{signal[:website]}" if signal[:website].present?
-      bits << "slug=#{signal[:slug]}" if signal[:slug].present?
-
-      bits.join("  ")
-    end
-
-    puts "#{speakers.count} speakers, #{clusters.size} near-duplicate cluster(s) (threshold #{threshold})."
-    puts
+    require "difftastic"
+    differ = Difftastic::Differ.new(color: :always, display: "inline", underline_highlights: true)
 
     clusters.each do |cluster|
       names = cluster.names
       primary = names.first
-      verdict = (names.drop(1).all? { |name| same_person.call(primary, name) }) ? "likely SAME person" : "REVIEW — no corroborating signal"
-
-      puts format("%.2f  %s", cluster.score, verdict)
-      names.each { |name| puts format("  %-28s %s", name.inspect, signal_line.call(name)) }
 
       if differ
         names.drop(1).each do |name|
-          puts differ.diff_strings(primary, name).lines.map { |line| "      #{line.rstrip}" }.join("\n")
+          puts differ.diff_strings(primary, name)
+          puts "-----"
         end
       end
 
       puts
     end
+
+    puts "#{pluralize(speakers.count, "speaker")}, #{pluralize(clusters.size, "near-duplicate cluster")} (threshold #{threshold})."
   end
 end
