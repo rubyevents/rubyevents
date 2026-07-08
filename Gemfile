@@ -197,7 +197,7 @@ gem "geocoder", github: "alexreisner/geocoder" # Use latest geocoder with Nomina
 gem "gems"
 
 # A glamorous CLI toolkit for Ruby
-gem "gum", "~> 0.3.1"
+gem "charm", require: false
 
 # Run blocks in parallel processes
 gem "parallel"

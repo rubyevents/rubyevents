@@ -6,7 +6,15 @@ class Static::Validators::Validator
       Static::Validators::DuplicateYouTubeChannels,
       Static::Validators::EventCityNames,
       Static::Validators::EventDates,
-      Static::Validators::EventRecordingsPublishedDate
+      Static::Validators::EventRecordingsPublishedDate,
+      Static::Validators::IdMatchesFolder
+    ]
+  end
+
+  def self.series_validator_classes
+    @series_validators ||= [
+      Static::Validators::Schema,
+      Static::Validators::IdMatchesFolder
     ]
   end
 
@@ -32,6 +40,13 @@ class Static::Validators::Validator
       Static::Validators::TalkRenames,
       Static::Validators::TalkShortKind,
       Static::Validators::UniqueTalkIds
+    ]
+  end
+
+  def self.involvement_validator_classes
+    @involvement_validators ||= [
+      Static::Validators::Schema,
+      Static::Validators::InvolvementRoleName
     ]
   end
 end

@@ -1,6 +1,10 @@
 {
   "type": "object",
   "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the event series, matches the series folder name"
+    },
     "name": {
       "type": "string",
       "description": "Name of the event series (e.g., 'RailsConf')"
@@ -323,6 +327,7 @@
     }
   },
   "required": [
+    "id",
     "name"
   ],
   "additionalProperties": false,

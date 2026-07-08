@@ -51,7 +51,7 @@ module Static
           raise ArgumentError, "Event series '#{slug}' already exists at #{series_file}"
         end
 
-        data = {"name" => name}
+        data = {"id" => slug, "name" => name}
 
         data["description"] = description if description.present?
         data["kind"] = kind if kind.present?
@@ -91,7 +91,7 @@ module Static
     end
 
     def slug
-      @slug ||= File.basename(File.dirname(__file_path))
+      @slug ||= attributes["id"]
     end
 
     def event_series_record
