@@ -46,6 +46,31 @@ class Static::Validators::InvolvementRoleNameTest < ActiveSupport::TestCase
     end
   end
 
+  test "does not return errors when both names and organisations are present" do
+    with_temp_involvements([
+      {
+        "name" => "Organizer",
+        "users" => ["Amanda Perino"],
+        "organisations" => ["Rails Foundation"]
+      }
+    ]) do |path|
+      assert_empty Static::Validators::InvolvementRoleName.new(file_path: path).errors
+    end
+  end
+
+  test "returns an error when neither names nor organisations are present" do
+    with_temp_involvements([
+      {
+        "name" => ""
+      }
+    ]) do |path|
+      errors = Static::Validators::InvolvementRoleName.new(file_path: path).errors
+
+      assert_equal 1, errors.size
+      assert_match "must have at least one name or organisation", errors.first.message
+    end
+  end
+
   private
 
   def with_temp_involvements(involvements)
