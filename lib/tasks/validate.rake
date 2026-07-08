@@ -98,6 +98,19 @@ namespace :validate do
     exit 1 if validate_speakers_file.any?
   end
 
+  desc "Validate data/**/involvements.yml"
+  task involvements: :environment do
+    exit 1 if validate_involvements_file.any?
+  end
+
+  def validate_involvements_file
+    validate_files(
+      files: Dir.glob(Rails.root.join("data/**/involvements.yml")),
+      validators: Static::Validators::Validator.involvement_validator_classes,
+      success_message: "✓ data/**/involvements.yml passed validations!"
+    )
+  end
+
   def validate_video_files
     validate_files(
       files: Dir.glob(Rails.root.join("data/**/videos.yml")),
@@ -340,6 +353,7 @@ namespace :validate do
       "Validating event.yml files" => -> { validate_event_files.none? },
       "Validating venue.yml files" => -> { validate_venue_files.none? },
       "Validating speakers.yml file" => -> { validate_speakers_file.none? },
+      "Validating involvements.yml file" => -> { validate_involvements_file.none? },
       "Validating speakers.yml is in sync" => -> { validate_speakers_in_sync },
       "Validating unique video ids" => -> { validate_unique_video_ids },
       "Validating SpeakerDeck slides URLs" => -> { validate_speakerdeck_urls },
