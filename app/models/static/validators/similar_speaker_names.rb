@@ -53,7 +53,7 @@ module Static
             location = speakers.document.find_by(name: name)&.location
 
             Static::Validators::Error.new(
-              "#{name} closely matches #{others.join(", ")} but has no social handle " \
+              "#{name.inspect} closely matches #{others.map(&:inspect).join(", ")} but has no social handle " \
               "(#{SOCIAL_HANDLE_FIELDS.join(", ")}). Add one to disambiguate whether they are the same person.",
               file_path: @file_path,
               line: location&.start_line || 1,
