@@ -40,7 +40,7 @@ module Static
 
           if name.blank? && involvement["organisations"].blank?
             errors << Static::Validators::Error.new(
-              "'#{name || 'Involvement'}' must have at least one name or organisation",
+              "'#{name || "Involvement"}' must have at least one name or organisation",
               file_path: @file_path,
               line: 1
             )
