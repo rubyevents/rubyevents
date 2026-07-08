@@ -143,6 +143,7 @@ namespace :speakers_file do
     threshold = (ENV["THRESHOLD"] || "0.85").to_f
     speakers = Static::SpeakersFile.new
     clusters = speakers.near_duplicate_names(threshold: threshold)
+      .reject { |cluster| cluster.names.all? { |name| speakers.social_handle?(name) } }
 
     require "difftastic"
     differ = Difftastic::Differ.new(color: :always, display: "inline", underline_highlights: true)

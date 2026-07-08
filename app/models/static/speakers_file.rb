@@ -8,6 +8,8 @@ module Static
 
     NameCluster = Struct.new(:names, :score, keyword_init: true)
 
+    SOCIAL_HANDLE_FIELDS = %w[github twitter mastodon bluesky linkedin speakerdeck].freeze
+
     SPEAKERS_PATH = "data/speakers.yml"
     VIDEOS_GLOB = "data/**/videos.yml"
     INVOLVEMENTS_GLOB = "data/**/involvements.yml"
@@ -187,6 +189,10 @@ module Static
       1.0 - (DidYouMean::Levenshtein.distance(a, b).to_f / max)
     end
 
+    def social_handle?(name)
+      social_handles.fetch(name, false)
+    end
+
     def save!
       if File.mtime(@path) != @loaded_mtime
         raise StaleFileError, "#{@path} was modified externally since it was loaded"
@@ -212,6 +218,13 @@ module Static
       @all_speaker_references = nil
       @all_referenced_names = nil
       @near_duplicate_names = nil
+      @social_handles = nil
+    end
+
+    def social_handles
+      @social_handles ||= document.value_at("").to_h do |entry|
+        [entry["name"], SOCIAL_HANDLE_FIELDS.any? { |field| entry[field].to_s.strip.present? }]
+      end
     end
 
     def similar_name_pairs(entries, threshold)
