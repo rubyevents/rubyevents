@@ -329,16 +329,27 @@ namespace :validate do
   end
 
   def validate_speakers_in_sync
-    orphaned = Static::SpeakersFile.new.orphaned_speakers
+    speakers = Static::SpeakersFile.new
+    missing = speakers.missing_speakers
+    orphaned = speakers.orphaned_speakers
 
-    if orphaned.empty?
+    if missing.empty? && orphaned.empty?
       puts Gum.style("✓ speakers.yml is in sync", foreground: "2")
 
       true
     else
-      puts Gum.style("#{orphaned.length} orphaned speakers in speakers.yml:", foreground: "1")
-      orphaned.sort.each { |name| puts Gum.style("  ❌ #{name}", foreground: "1") }
-      puts
+      if missing.any?
+        puts Gum.style("#{missing.length} speakers referenced in videos but missing from speakers.yml:", foreground: "1")
+        missing.sort.each { |name| puts Gum.style("  ❌ #{name}", foreground: "1") }
+        puts
+      end
+
+      if orphaned.any?
+        puts Gum.style("#{orphaned.length} orphaned speakers in speakers.yml:", foreground: "1")
+        orphaned.sort.each { |name| puts Gum.style("  ❌ #{name}", foreground: "1") }
+        puts
+      end
+
       puts Gum.style("Run: rails speakers_file:sync", foreground: "3")
 
       false
@@ -363,6 +374,36 @@ namespace :validate do
       "Validating redundant thumbnails" => -> { validate_thumbnails.none? }
     }
 
+    passed = if $stdout.tty? && ENV["VALIDATE_TUI"] != "0"
+      run_sections_with_tui(sections)
+    else
+      run_sections_with_text_output(sections)
+    end
+
+    puts
+    if passed
+      puts Gum.style("All validations passed!", border: "rounded", padding: "0 2", foreground: "2", border_foreground: "2")
+    else
+      puts Gum.style("Some validations failed", border: "rounded", padding: "0 2", foreground: "1", border_foreground: "1")
+    end
+
+    exit 1 unless passed
+  end
+
+  def run_sections_with_tui(sections)
+    require_relative "../validate/tui"
+
+    passed, failures = Validate::TUI.run(sections)
+
+    failures.each do |title, output|
+      puts Gum.style(title, border: "rounded", padding: "0 2", margin: "1 0", border_foreground: "1")
+      puts output
+    end
+
+    passed
+  end
+
+  def run_sections_with_text_output(sections)
     print_mutex = Mutex.new
 
     on_finish = ->(title, _index, result) {
@@ -387,15 +428,6 @@ namespace :validate do
       end
     end
 
-    passed = results.all? { |section_passed, _output| section_passed }
-
-    puts
-    if passed
-      puts Gum.style("All validations passed!", border: "rounded", padding: "0 2", foreground: "2", border_foreground: "2")
-    else
-      puts Gum.style("Some validations failed", border: "rounded", padding: "0 2", foreground: "1", border_foreground: "1")
-    end
-
-    exit 1 unless passed
+    results.all? { |section_passed, _output| section_passed }
   end
 end
