@@ -10,11 +10,17 @@ class Static::SpeakersFileTest < ActiveSupport::TestCase
         slug: "matz"
     YAML
     @tmp_file.flush
+    @extra_tmp_files = []
   end
 
   teardown do
     @tmp_file.close
     @tmp_file.unlink
+
+    @extra_tmp_files.each do |file|
+      file.close
+      file.unlink
+    end
   end
 
   test "raises StaleFileError when file was modified externally" do
@@ -57,5 +63,62 @@ class Static::SpeakersFileTest < ActiveSupport::TestCase
 
     assert_equal 2, speakers_file.count
     assert_includes speakers_file.index_by(:slug), "aaron-patterson"
+  end
+
+  test "near_duplicate_names clusters near-identical names" do
+    file = speakers_file_with(<<~YAML)
+      ---
+      - name: "Pat Shaughnessy"
+        github: "pat"
+        slug: "pat-shaughnessy"
+      - name: "Pat Saughnessy"
+        github: ""
+        slug: "pat-saughnessy"
+      - name: "Yukihiro Matsumoto"
+        github: "matz"
+        slug: "yukihiro-matsumoto"
+    YAML
+
+    clusters = file.near_duplicate_names
+
+    assert_equal 1, clusters.size
+    assert_equal ["Pat Saughnessy", "Pat Shaughnessy"], clusters.first.names
+    assert_in_delta 0.93, clusters.first.score, 0.02
+  end
+
+  test "near_duplicate_names groups 3+ variants into one cluster" do
+    file = speakers_file_with(<<~YAML)
+      ---
+      - name: "Masayoshi Takahashi"
+      - name: "Masayoshi Takahasi"
+      - name: "Maysayoshi Takahashi"
+    YAML
+
+    clusters = file.near_duplicate_names
+
+    assert_equal 1, clusters.size
+    assert_equal 3, clusters.first.names.size
+  end
+
+  test "near_duplicate_names ignores distinct names and respects the threshold" do
+    file = speakers_file_with(<<~YAML)
+      ---
+      - name: "Aaron Patterson"
+      - name: "Yukihiro Matsumoto"
+      - name: "Sam Saffron"
+    YAML
+
+    assert_empty file.near_duplicate_names
+    assert_empty file.near_duplicate_names(threshold: 0.99)
+  end
+
+  private
+
+  def speakers_file_with(yaml)
+    tmp = Tempfile.new(["speakers", ".yml"])
+    tmp.write(yaml)
+    tmp.flush
+    @extra_tmp_files << tmp
+    Static::SpeakersFile.new(tmp.path)
   end
 end

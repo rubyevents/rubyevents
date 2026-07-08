@@ -13,6 +13,7 @@ class Static::Validators::Validator
   def self.speaker_validator_classes
     @speaker_validators ||= [
       Static::Validators::Schema,
+      Static::Validators::SimilarSpeakerNames,
       Static::Validators::UniqueSpeakerFields,
       Static::Validators::UniqueSpeakers
     ]
