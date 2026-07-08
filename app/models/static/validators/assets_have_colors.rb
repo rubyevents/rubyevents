@@ -31,13 +31,12 @@ module Static
       def validate
         return [] unless applicable?
 
-        path_parts = @file_path.split("/")
-        series_slug = path_parts[-3]
-        event_slug = path_parts[-2]
+        match = File.expand_path(@file_path).match(%r{\A(?<root>.*)/data/(?<series>[^/]+)/(?<event>[^/]+)/event\.yml\z})
+        return [] unless match
 
-        assets_base = Rails.root.join("app", "assets", "images", "events")
-        asset_dir = assets_base.join(series_slug, event_slug)
-        default_asset_dir = assets_base.join(series_slug, "default")
+        assets_base = Pathname.new(match[:root]).join("app", "assets", "images", "events")
+        asset_dir = assets_base.join(match[:series], match[:event])
+        default_asset_dir = assets_base.join(match[:series], "default")
 
         FIELD_ASSET_MAP
           .map do |field, asset|
@@ -47,7 +46,7 @@ module Static
             next unless asset_path
 
             Static::Validators::Error.new(
-              "#{field} is not defined but '#{asset_path.join(asset).relative_path_from(Rails.root)}' exists — events with a custom #{asset} must define brand colors",
+              "#{field} is not defined but '#{asset_path.join(asset).relative_path_from(match[:root])}' exists — events with a custom #{asset} must define brand colors",
               file_path: @file_path,
               line: 1
             )
