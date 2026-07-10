@@ -71,6 +71,28 @@ class Static::Validators::InvolvementRoleNameTest < ActiveSupport::TestCase
     end
   end
 
+  test "does not return errors when names present and organisations are not present" do
+    with_temp_involvements([
+      {
+        "name" => "Organizer"
+      }
+    ]) do |path|
+
+      assert_empty Static::Validators::InvolvementRoleName.new(file_path: path).errors
+    end
+  end
+
+  test "does not return errors when organisations present and name is not present" do
+    with_temp_involvements([
+      {
+        "organisations" => ["rails"]
+      }
+    ]) do |path|
+
+      assert_empty Static::Validators::InvolvementRoleName.new(file_path: path).errors
+    end
+  end
+
   private
 
   def with_temp_involvements(involvements)
