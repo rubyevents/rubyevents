@@ -77,7 +77,6 @@ class Static::Validators::InvolvementRoleNameTest < ActiveSupport::TestCase
         "name" => "Organizer"
       }
     ]) do |path|
-
       assert_empty Static::Validators::InvolvementRoleName.new(file_path: path).errors
     end
   end
@@ -88,7 +87,6 @@ class Static::Validators::InvolvementRoleNameTest < ActiveSupport::TestCase
         "organisations" => ["rails"]
       }
     ]) do |path|
-
       assert_empty Static::Validators::InvolvementRoleName.new(file_path: path).errors
     end
   end
