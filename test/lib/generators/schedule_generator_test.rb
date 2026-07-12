@@ -9,7 +9,7 @@ class ScheduleGeneratorTest < Rails::Generators::TestCase
   teardown { FileUtils.remove_entry(destination_root) }
 
   test "creates schedule.yml in correct directory" do
-    schedule_file_path = File.join(destination_root, "data/rbqconf/rbqconf-2026/schedule.yml")
+    File.join(destination_root, "data/rbqconf/rbqconf-2026/schedule.yml")
     assert_nothing_raised do
       run_generator ["--event-series", "rbqconf", "--event", "rbqconf-2026"]
     end

@@ -106,7 +106,7 @@ class VenueGeneratorTest < Rails::Generators::TestCase
 
   test "venue generator updates existing event's coordinates" do
     event_file_path = File.join(destination_root, "data/tropical-rb/tropicalrb-2029/event.yml")
-    venue_file_path = File.join(destination_root, "data/tropical-rb/tropicalrb-2029/venue.yml")
+    File.join(destination_root, "data/tropical-rb/tropicalrb-2029/venue.yml")
 
     capture(:stdout) do
       Rails::Generators.invoke "event", [
