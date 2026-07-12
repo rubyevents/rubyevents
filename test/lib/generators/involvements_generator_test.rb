@@ -25,7 +25,7 @@ class InvolvementsGeneratorTest < Rails::Generators::TestCase
       assert_match(/- Co-organizer/, content)
     end
 
-    validate_involvements_file(file_path)
+    assert_file_passes_validations(file_path)
   end
 
   test "generator with organizers argument" do
@@ -42,7 +42,7 @@ class InvolvementsGeneratorTest < Rails::Generators::TestCase
       assert_match(/- Flagrant/, content)
       assert_match(/- Another Org/, content)
     end
-    validate_involvements_file(file_path)
+    assert_file_passes_validations(file_path)
   end
 
   test "generator with both arguments" do
@@ -61,7 +61,7 @@ class InvolvementsGeneratorTest < Rails::Generators::TestCase
       assert_match(/- Jim Remsik/, content)
       assert_match(/- Flagrant/, content)
     end
-    validate_involvements_file(file_path)
+    assert_file_passes_validations(file_path)
   end
 
   test "generator updates existing involvements file" do
@@ -90,7 +90,7 @@ class InvolvementsGeneratorTest < Rails::Generators::TestCase
       refute_match(/- Jim Remsik/, content) # Ensure the old user is removed
     end
 
-    validate_involvements_file(file_path)
+    assert_file_passes_validations(file_path)
   end
 
   test "generator creates new involvement entry if name is different" do
@@ -116,13 +116,13 @@ class InvolvementsGeneratorTest < Rails::Generators::TestCase
       assert_match(/- Alice Smith/, content)
     end
 
-    validate_involvements_file(file_path)
+    assert_file_passes_validations(file_path)
   end
 
-  def validate_involvements_file(file_path)
+  def assert_file_passes_validations(file_path, msg = nil)
     [Static::Validators::Schema].each do |validator|
       errors = validator.new(file_path:).validate
-      assert_empty errors, "#{validator} failed: #{errors.map { |error| error.to_h["message"] }.join(", ")}"
+      assert_empty errors, msg || "#{validator} failed: #{errors.map { |error| error.to_h["message"] }.join(", ")}"
     end
   end
 end
