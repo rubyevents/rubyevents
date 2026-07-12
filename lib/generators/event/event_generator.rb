@@ -67,6 +67,6 @@ class EventGenerator < Generators::EventBase
       "--event", options[:event],
       "--name", options[:venue_name],
       "--address", options[:venue_address]
-    ], behavior: :invoke, destination_root: destination_root
+    ], behavior: behavior, destination_root: destination_root
   end
 end

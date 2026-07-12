@@ -1,11 +1,14 @@
-
-- id: "<%= @talk.id %>"
-  title: "<%= @talk.title %>"
-  description: |-
-    <%= @talk.description %>
-  kind: "lightning_talk"
-  language: "<%= @talk.language %>"
-  date: "<%= @talk.date %>"
-  talks: []
-  video_provider: "scheduled"
-  video_id: "<%= @talk.id %>"
+id: "<%= @talk.id %>"
+title: "<%= @talk.title %>"
+<%- if @talk.description.blank? -%>
+description: "" # TODO
+<%- else -%>
+description: |-
+<%= optimize_indentation(@talk.description, 2) %>
+<%- end -%>
+kind: "lightning_talk"
+language: "<%= @talk.language %>"
+date: "<%= @talk.date %>"
+talks: []
+video_provider: "scheduled"
+video_id: "<%= @talk.id %>"

@@ -277,11 +277,145 @@ class TalkGeneratorTest < Rails::Generators::TestCase
     end
   end
 
+  test "destroy removes a generated talk again" do
+    videos_file_path = File.join(destination_root, "data/rubyconf/2040/videos.yml")
+    eliminate_validated_file(file_path: videos_file_path) do
+      run_generator [
+        "--event-series", "rubyconf",
+        "--event", "2040",
+        "--title", "Keynote: Jane Doe",
+        "--speakers", "Jane Doe"
+      ]
+
+      content_before = File.read(videos_file_path)
+
+      run_generator [
+        "--event-series", "rubyconf",
+        "--event", "2040",
+        "--title", "Building Better APIs",
+        "--speakers", "John Smith"
+      ]
+
+      assert_match(/Building Better APIs/, File.read(videos_file_path))
+
+      run_generator [
+        "--event-series", "rubyconf",
+        "--event", "2040",
+        "--id", "john-smith-2040"
+      ], behavior: :revoke
+
+      assert_equal content_before, File.read(videos_file_path)
+    end
+  end
+
+  test "destroy with --id removes that talk" do
+    videos_file_path = File.join(destination_root, "data/rubyconf/2041/videos.yml")
+    eliminate_validated_file(file_path: videos_file_path) do
+      run_generator [
+        "--event-series", "rubyconf",
+        "--event", "2041",
+        "--title", "Keynote: Jane Doe",
+        "--speakers", "Jane Doe"
+      ]
+
+      run_generator [
+        "--event-series", "rubyconf",
+        "--event", "2041",
+        "--id", "jane-doe-2041"
+      ], behavior: :revoke
+
+      assert_no_match(/jane-doe-2041/, File.read(videos_file_path))
+    end
+  end
+
+  test "destroy without --id raises and never matches by speakers or title" do
+    videos_file_path = File.join(destination_root, "data/rubyconf/2042/videos.yml")
+    eliminate_validated_file(file_path: videos_file_path) do
+      talk = [
+        "--event-series", "rubyconf",
+        "--event", "2042",
+        "--title", "Keynote: Jane Doe",
+        "--speakers", "Jane Doe"
+      ]
+
+      run_generator talk
+
+      stderr = capture(:stderr) do
+        run_generator talk, behavior: :revoke
+      end
+
+      assert_includes stderr, "Pass --id to destroy a talk"
+      assert_includes stderr, "jane-doe-2042"
+      assert_match(/Keynote: Jane Doe/, File.read(videos_file_path))
+    end
+  end
+
+  test "destroy fails when --id is an old_id" do
+    videos_file_path = File.join(destination_root, "data/rubyconf/2043/videos.yml")
+
+    eliminate_file(file_path: videos_file_path) do
+      run_generator [
+        "--event-series", "rubyconf",
+        "--event", "2043",
+        "--title", "Keynote: Jane Doe",
+        "--speakers", "Jane Doe"
+      ]
+
+      document = Yerba.parse_file(videos_file_path)
+      entry = document.find_by(id: "jane-doe-2043")
+      entry["id"] = "keynote-2043"
+      entry.insert("old_id", "jane-doe-2043", after: "id")
+      document.save!
+
+      stderr = capture(:stderr) do
+        run_generator [
+          "--event-series", "rubyconf",
+          "--event", "2043",
+          "--id", "jane-doe-2043"
+        ], behavior: :revoke
+      end
+
+      assert_includes stderr, "No talk with id 'jane-doe-2043' found"
+      assert_match(/keynote-2043/, File.read(videos_file_path))
+    end
+  end
+
+  test "generating without --id raises when the generated id is already taken" do
+    videos_file_path = File.join(destination_root, "data/rubyconf/2044/videos.yml")
+
+    eliminate_file(file_path: videos_file_path) do
+      talk = [
+        "--event-series", "rubyconf",
+        "--event", "2044",
+        "--title", "Keynote: Jane Doe",
+        "--speakers", "Jane Doe",
+        "--kind", "talk"
+      ]
+
+      run_generator talk
+      run_generator talk
+
+      stderr = capture(:stderr) do
+        run_generator talk
+      end
+
+      assert_includes stderr, "already exists"
+      assert_includes stderr, "Pass --id"
+    end
+  end
+
   def validate_talk_file(path)
     Static::Validators::Validator.video_validator_classes.each do |validator|
       errors = validator.new(file_path: path).errors
       assert_empty errors, "#{validator} failed: #{errors.map { |error| error.to_h["message"] }.join(", ")}"
     end
+  end
+
+  def eliminate_file(file_path:, &block)
+    File.delete(file_path) if File.exist?(file_path)
+    yield
+  ensure
+    File.delete(file_path) if File.exist?(file_path)
   end
 
   def eliminate_validated_file(file_path:, &block)

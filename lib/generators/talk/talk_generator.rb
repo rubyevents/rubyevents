@@ -6,7 +6,7 @@ require "generators/event_base"
 class TalkGenerator < Generators::EventBase
   source_root File.expand_path("templates", __dir__)
 
-  class_option :id, type: :string, desc: "ID of an existing talk to update. New talks always get a generated id, so omit this to append one.", required: false, group: "Fields"
+  class_option :id, type: :string, desc: "ID of an existing talk to update or destroy. New talks always get a generated id, so omit this to append one.", required: false, group: "Fields"
   class_option :title, type: :string, desc: "Title of the talk", group: "Fields"
   class_option :original_title, type: :string, desc: "Original title in native language (e.g., Japanese)", required: false, group: "Fields"
   class_option :speakers, type: :array, desc: "Speaker names", group: "Fields"
@@ -67,9 +67,11 @@ class TalkGenerator < Generators::EventBase
       kind != "talk" || ::Talk::Kind.from_title(title).to_s != "talk"
     end
 
-    def generate_talk_id
-      candidates = ::Talk::StaticID.new(event_slug: event_slug, title: title, speakers: speakers, kind: kind).candidates
+    def candidates
+      ::Talk::StaticID.new(event_slug: event_slug, title: title, speakers: speakers, kind: kind).candidates
+    end
 
+    def generate_talk_id
       candidates.find { |candidate| existing_ids.exclude?(candidate) } || candidates.last
     end
 
@@ -97,25 +99,45 @@ class TalkGenerator < Generators::EventBase
   end
 
   def ensure_file_exists
+    return if behavior == :revoke
+
     template "videos.yml.tt", videos_file_path unless File.exist?(videos_file_path)
   end
 
   def add_talk_to_file
-    gsub_file videos_file_path, /---\s*\[\]\n/, "---\n"
-
-    if File.read(videos_file_path).match?(/- id: "#{Regexp.escape(@talk.id)}"/)
-      say("Existing talk with id:'#{@talk.id}' found. Updating...", :yellow)
-      update_talk
+    if behavior == :revoke
+      remove_talk
     elsif options[:id]
-      raise Thor::Error, missing_talk_message
+      update_talk
+    elsif videos_file&.ids&.include?(@talk.id)
+      raise Thor::Error, duplicate_talk_message
     else
-      talk_template = options[:lightning_talks] ? "lightning_talks.yml.tt" : "talk.yml.tt"
-      say("Appending new talk with id:'#{@talk.id}'...", :green)
-      append_to_file videos_file_path, template_content(talk_template)
+      append_talk
     end
   end
 
   private
+
+  def append_talk
+    talk_template = options[:lightning_talks] ? "lightning_talks.yml.tt" : "talk.yml.tt"
+
+    yaml_append videos_file_path, template_content(talk_template), unique_by: {id: @talk.id}
+  end
+
+  def remove_talk
+    raise Thor::Error, destroy_requires_id_message if options[:id].blank?
+
+    file = videos_file
+    entry = file&.find_by(id: options[:id])
+
+    raise Thor::Error, missing_talk_message unless entry
+
+    say_status(:remove, "#{relative_to_original_destination_root(videos_file_path)} (id: #{options[:id]})", :red)
+    return if options[:pretend]
+
+    entry.delete
+    file.save!
+  end
 
   def videos_file
     Static::VideosFile.new(videos_file_path) if File.exist?(videos_file_path)
@@ -135,16 +157,31 @@ class TalkGenerator < Generators::EventBase
     message << "If you are looking to add a new talk, omit --id and an id will be generated for you."
   end
 
-  def update_talk
-    document = Static::VideosFile.new(videos_file_path)
-    @existing_talk = document.find_by(id: @talk.id)
+  def duplicate_talk_message
+    "A talk with id '#{@talk.id}' already exists in #{videos_file_path}. Pass --id '#{@talk.id}' to update it."
+  end
 
-    @attributes.each do |key, value|
-      @existing_talk[key] = value
+  def destroy_requires_id_message
+    ids = videos_file&.ids || []
+
+    message = "Pass --id to destroy a talk — talks are addressed by id, not by speakers or title."
+    message += " Available ids:\n  #{ids.join("\n  ")}" if ids.any?
+    message
+  end
+
+  def update_talk
+    file = videos_file
+    existing_talk = file&.find_by(id: options[:id])
+
+    raise Thor::Error, missing_talk_message unless existing_talk
+
+    say_status(:update, "#{relative_to_original_destination_root(videos_file_path)} (id: #{options[:id]})", :yellow)
+    return if options[:pretend]
+
+    @attributes.except("id").each do |key, value|
+      existing_talk[key] = value
     end
 
-    document.save!
-
-    say("#{@attributes.keys.to_sentence} updated.", :green)
+    file.save!
   end
 end

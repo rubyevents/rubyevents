@@ -27,6 +27,6 @@ class InvolvementsGenerator < Generators::EventBase
   end
 
   def upsert_involvement_entry
-    yaml_upsert involvements_file_path, involvement_attributes, identity: {name: involvement_attributes["name"]}
+    yaml_upsert involvements_file_path, involvement_attributes, unique_by: {name: involvement_attributes["name"]}
   end
 end
