@@ -133,7 +133,7 @@ class VenueGeneratorTest < Rails::Generators::TestCase
   end
 
   def assert_valid_file(file_path, msg = nil, &block)
-    errors = [Static::Validators::Schema].flat_map do |validator|
+    errors = Static::Validators::Validator.venue_validator_classes.flat_map do |validator|
       validator.new(file_path:).errors
     end
     assert_empty errors, msg || errors.map { |e| e.to_h["message"] }.join(", ")

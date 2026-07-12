@@ -19,13 +19,11 @@ class InvolvementsGeneratorTest < Rails::Generators::TestCase
       ]
     end
 
-    assert_file file_path do |content|
+    assert_valid_file file_path do |content|
       assert_match(/Organizer/, content)
       assert_match(/- Jim Remsik/, content)
       assert_match(/- Co-organizer/, content)
     end
-
-    assert_file_passes_validations(file_path)
   end
 
   test "generator with organizers argument" do
@@ -37,12 +35,11 @@ class InvolvementsGeneratorTest < Rails::Generators::TestCase
         "--organisations", "Flagrant", "Another Org"
       ]
     end
-    assert_file file_path do |content|
+    assert_valid_file file_path do |content|
       assert_match(/Organizer/, content)
       assert_match(/- Flagrant/, content)
       assert_match(/- Another Org/, content)
     end
-    assert_file_passes_validations(file_path)
   end
 
   test "generator with both arguments" do
@@ -56,12 +53,11 @@ class InvolvementsGeneratorTest < Rails::Generators::TestCase
         "--organisations", "Flagrant"
       ]
     end
-    assert_file file_path do |content|
+    assert_valid_file file_path do |content|
       assert_match(/Organizer/, content)
       assert_match(/- Jim Remsik/, content)
       assert_match(/- Flagrant/, content)
     end
-    assert_file_passes_validations(file_path)
   end
 
   test "generator updates existing involvements file" do
@@ -84,13 +80,11 @@ class InvolvementsGeneratorTest < Rails::Generators::TestCase
       ]
     end
 
-    assert_file file_path do |content|
+    assert_valid_file file_path do |content|
       assert_match(/Organizer/, content)
       assert_match(/- Flagrant/, content)
       refute_match(/- Jim Remsik/, content) # Ensure the old user is removed
     end
-
-    assert_file_passes_validations(file_path)
   end
 
   test "generator creates new involvement entry if name is different" do
@@ -109,20 +103,19 @@ class InvolvementsGeneratorTest < Rails::Generators::TestCase
       "--users", "Alice Smith"
     ]
 
-    assert_file file_path do |content|
+    assert_valid_file file_path do |content|
       assert_match(/Organizer/, content)
       assert_match(/- Jim Remsik/, content)
       assert_match(/Volunteer/, content)
       assert_match(/- Alice Smith/, content)
     end
-
-    assert_file_passes_validations(file_path)
   end
 
-  def assert_file_passes_validations(file_path, msg = nil)
-    [Static::Validators::Schema].each do |validator|
-      errors = validator.new(file_path:).validate
-      assert_empty errors, msg || "#{validator} failed: #{errors.map { |error| error.to_h["message"] }.join(", ")}"
+  def assert_valid_file(file_path, msg = nil, &block)
+    errors = Static::Validators::Validator.involvement_validator_classes.flat_map do |validator|
+      validator.new(file_path:).errors
     end
+    assert_empty errors, msg || errors.map { |e| e.to_h["message"] }.join(", ")
+    assert_file file_path, msg, &block
   end
 end

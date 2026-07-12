@@ -1,4 +1,10 @@
 class Static::Validators::Validator
+  def self.cfp_validator_classes
+    @cfp_validators ||= [
+      Static::Validators::Schema
+    ]
+  end
+
   def self.event_validator_classes
     @event_validators ||= [
       Static::Validators::Schema,
@@ -10,6 +16,19 @@ class Static::Validators::Validator
       Static::Validators::EventRecordingsPublishedDate,
       Static::Validators::IdMatchesFolder,
       Static::Validators::SeriesDefaultColors
+    ]
+  end
+
+  def self.involvement_validator_classes
+    @involvement_validators ||= [
+      Static::Validators::Schema,
+      Static::Validators::InvolvementRoleName
+    ]
+  end
+
+  def self.schedule_validator_classes
+    @sponsor_validators ||= [
+      Static::Validators::Schema
     ]
   end
 
@@ -29,6 +48,18 @@ class Static::Validators::Validator
     ]
   end
 
+  def self.sponsor_validator_classes
+    @sponsor_validators ||= [
+      Static::Validators::Schema
+    ]
+  end
+
+  def self.venue_validator_classes
+    @venue_validators ||= [
+      Static::Validators::Schema
+    ]
+  end
+
   def self.video_validator_classes
     @video_validators ||= [
       Static::Validators::Schema,
@@ -42,13 +73,6 @@ class Static::Validators::Validator
       Static::Validators::TalkRenames,
       Static::Validators::TalkShortKind,
       Static::Validators::UniqueTalkIds
-    ]
-  end
-
-  def self.involvement_validator_classes
-    @involvement_validators ||= [
-      Static::Validators::Schema,
-      Static::Validators::InvolvementRoleName
     ]
   end
 end

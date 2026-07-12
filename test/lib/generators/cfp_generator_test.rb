@@ -18,10 +18,9 @@ class CFPGeneratorTest < Rails::Generators::TestCase
       ]
     end
 
-    assert_file cfp_file_path do |content|
+    assert_valid_file cfp_file_path do |content|
       assert_match(/name: "Call for Proposals"/, content)
     end
-    assert_file_passes_validations(cfp_file_path)
   end
 
   test "creates cfp.yml with valid yaml with all params" do
@@ -35,13 +34,12 @@ class CFPGeneratorTest < Rails::Generators::TestCase
       "--close-date", "2022-02-01"
     ]
 
-    assert_file cfp_file_path do |content|
+    assert_valid_file cfp_file_path do |content|
       assert_match(/name: "Call for Proposals"/, content)
       assert_match(%r{link: "https://example.com/cfp"}, content)
       assert_match(/open_date: "2022-01-01"/, content)
       assert_match(/close_date: "2022-02-01"/, content)
     end
-    assert_file_passes_validations(cfp_file_path)
   end
 
   test "update cfp.yml if called twice with same name" do
@@ -51,19 +49,17 @@ class CFPGeneratorTest < Rails::Generators::TestCase
       "--event", "2023",
       "--name", "Call for Proposals"
     ]
-    assert_file file_path do |content|
+    assert_valid_file file_path do |content|
       assert_match(/name: "Call for Proposals"/, content)
       assert_match(/link: "" # TODO/, content)
     end
 
     run_generator ["--event-series", "rubyconf", "--event", "2023", "--name", "Call for Proposals", "--link", "https://example.com/cfp"]
 
-    assert_file file_path do |content|
+    assert_valid_file file_path do |content|
       assert_match(%r{link: "https://example.com/cfp"}, content)
       assert_no_match(/link: "" # TODO/, content)
     end
-
-    assert_file_passes_validations(file_path)
   end
 
   test "append to cfp.yml if called with a different name" do
@@ -71,17 +67,17 @@ class CFPGeneratorTest < Rails::Generators::TestCase
     run_generator ["--event-series", "rubyconf", "--event", "2024"]
     run_generator ["--event-series", "rubyconf", "--event", "2024", "--name", "CFP TWO"]
 
-    assert_file cfp_file_path do |content|
+    assert_valid_file cfp_file_path do |content|
       assert_match(/name: "Call for Proposals"/, content)
       assert_match(/name: "CFP TWO"/, content)
     end
-    assert_file_passes_validations(cfp_file_path)
   end
 
-  def assert_file_passes_validations(file_path, msg = nil)
-    [Static::Validators::Schema].each do |validator|
-      errors = validator.new(file_path:).validate
-      assert_empty errors, msg || "#{validator} failed: #{errors.map { |error| error.to_h["message"] }.join(", ")}"
+  def assert_valid_file(file_path, msg = nil, &block)
+    errors = Static::Validators::Validator.cfp_validator_classes.flat_map do |validator|
+      validator.new(file_path:).errors
     end
+    assert_empty errors, msg || errors.map { |e| e.to_h["message"] }.join(", ")
+    assert_file file_path, msg, &block
   end
 end

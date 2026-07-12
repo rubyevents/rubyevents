@@ -14,17 +14,16 @@ class ScheduleGeneratorTest < Rails::Generators::TestCase
       run_generator ["--event-series", "rbqconf", "--event", "rbqconf-2026"]
     end
 
-    assert_file "data/rbqconf/rbqconf-2026/schedule.yml" do |content|
+    assert_valid_file "data/rbqconf/rbqconf-2026/schedule.yml" do |content|
       assert_match(/\S/, content) # Verify file has content
     end
-
-    assert_file_passes_validations(schedule_file_path)
   end
 
-  def assert_file_passes_validations(file_path, msg = nil)
-    [Static::Validators::Schema].each do |validator|
-      errors = validator.new(file_path:).validate
-      assert_empty errors, msg || "#{validator} failed: #{errors.map { |error| error.to_h["message"] }.join(", ")}"
+  def assert_valid_file(file_path, msg = nil, &block)
+    errors = Static::Validators::Validator.schedule_validator_classes.flat_map do |validator|
+      validator.new(file_path:).errors
     end
+    assert_empty errors, msg || errors.map { |e| e.to_h["message"] }.join(", ")
+    assert_file file_path, msg, &block
   end
 end

@@ -39,7 +39,7 @@ class EventGeneratorTest < Rails::Generators::TestCase
       "--end-date", "2021-11-15",
       "--online"]
 
-    assert_file event_file_path do |content|
+    assert_valid_file event_file_path do |content|
       assert_match(/title: "RubyConf 2021"/, content)
       assert_match(/start_date: "2021-11-13"/, content)
       assert_match(/end_date: "2021-11-15"/, content)
@@ -47,8 +47,6 @@ class EventGeneratorTest < Rails::Generators::TestCase
       assert_match(/location: "online"/, content)
       assert_match(/coordinates: false/, content)
     end
-
-    assert_file_passes_validations(event_file_path)
   end
 
   test "event with all flags passes schema validation" do
@@ -71,7 +69,7 @@ class EventGeneratorTest < Rails::Generators::TestCase
       "--timezone", "America/Chicago",
       "--online"]
 
-    assert_file event_file_path do |content|
+    assert_valid_file event_file_path do |content|
       assert_match(/title: "RubyConf 2022"/, content)
       assert_match(/description: |-\s+RubyConf 2022 description/, content)
       assert_match(/start_date: "2022-11-15"/, content)
@@ -88,8 +86,6 @@ class EventGeneratorTest < Rails::Generators::TestCase
       assert_match(/location: "online"/, content)
       assert_match(/coordinates: false/, content)
     end
-
-    assert_file_passes_validations(event_file_path)
   end
 
   test "event with location and coordinates" do
@@ -104,12 +100,10 @@ class EventGeneratorTest < Rails::Generators::TestCase
       "--latitude", "-8.04756",
       "--longitude", "-34.877"]
 
-    assert_file event_file_path do |content|
+    assert_valid_file event_file_path do |content|
       assert_match(/coordinates:\n\s+latitude: -8.04756/, content)
       assert_match(/longitude: -34.877/, content)
     end
-
-    assert_file_passes_validations(event_file_path)
   end
 
   test "event with venue-name and venue-address creates venue.yml" do
@@ -125,7 +119,7 @@ class EventGeneratorTest < Rails::Generators::TestCase
       "--venue-address", "R. Olimpíadas, 205 - Vila Olímpia, São Paulo - SP, 04551-000"
     ]
 
-    assert_file event_file_path do |content|
+    assert_valid_file event_file_path do |content|
       assert_match(/title: "RubyConf 2025"/, content)
       assert_match(/location: "São Paulo, SP, BR"/, content)
       assert_match(/coordinates:\n\s+latitude: -23.595/, content)
@@ -144,14 +138,13 @@ class EventGeneratorTest < Rails::Generators::TestCase
       assert_match(/latitude: -23.59572/, content)
       assert_match(/longitude: -46.68448/, content)
     end
-
-    assert_file_passes_validations(event_file_path)
   end
 
-  def assert_file_passes_validations(file_path, msg = nil)
-    Static::Validators::Validator.event_validator_classes.each do |validator|
-      errors = validator.new(file_path:).errors
-      assert_empty errors, msg || "#{validator} failed: #{errors.map { |error| error.to_h["message"] }.join(", ")}"
+  def assert_valid_file(file_path, msg = nil, &block)
+    errors = Static::Validators::Validator.event_validator_classes.flat_map do |validator|
+      validator.new(file_path:).errors
     end
+    assert_empty errors, msg || errors.map { |e| e.to_h["message"] }.join(", ")
+    assert_file file_path, msg, &block
   end
 end

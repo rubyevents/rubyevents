@@ -18,10 +18,9 @@ class SponsorsGeneratorTest < Rails::Generators::TestCase
       ]
     end
 
-    assert_file file_path do |content|
+    assert_valid_file file_path do |content|
       assert_match(/name: "Sponsors"/, content)
     end
-    assert_file_passes_validations(file_path)
   end
 
   test "generator creates an empty sponsors file with specified tiers" do
@@ -34,12 +33,11 @@ class SponsorsGeneratorTest < Rails::Generators::TestCase
       ]
     end
 
-    assert_file file_path do |content|
+    assert_valid_file file_path do |content|
       assert_match(/name: "Platinum"/, content)
       assert_match(/name: "Gold"/, content)
       assert_match(/name: "Silver"/, content)
     end
-    assert_file_passes_validations(file_path)
   end
 
   test "generator creates a sponsor with no tiers and no logo" do
@@ -53,10 +51,9 @@ class SponsorsGeneratorTest < Rails::Generators::TestCase
       ]
     end
 
-    assert_file file_path do |content|
+    assert_valid_file file_path do |content|
       assert_match(/name: "Sponsors"/, content)
     end
-    assert_file_passes_validations(file_path)
   end
 
   test "generator creates a sponsors.yml and adds a first sponsor" do
@@ -71,7 +68,7 @@ class SponsorsGeneratorTest < Rails::Generators::TestCase
         "--tier", "Platinum"]
     end
 
-    assert_file file_path do |content|
+    assert_valid_file file_path do |content|
       assert_match(/name: "Platinum"/, content, "Platinum Tier missing")
       assert_match(/Gold/, content, "Gold Tier missing")
       assert_match(/Silver/, content, "Silver Tier missing")
@@ -79,7 +76,6 @@ class SponsorsGeneratorTest < Rails::Generators::TestCase
       assert_match(/https:\/\/typesense.org/, content, "typesense website missing")
       assert_match(/https:\/\/typesense.org\/logo.png/, content, "typesense logo URL missing")
     end
-    assert_file_passes_validations(file_path)
   end
 
   test "generator adds a new sponsor to a tier with existing sponsors" do
@@ -103,11 +99,10 @@ class SponsorsGeneratorTest < Rails::Generators::TestCase
       "--logo-url", "https://braze.com/logo.png",
       "--tier", "Platinum"]
 
-    assert_file file_path do |content|
+    assert_valid_file file_path do |content|
       assert_match(/name: Braze/, content)
       assert_match(/name: Typesense/, content)
     end
-    assert_file_passes_validations(file_path)
   end
 
   test "generator updates an existing sponsor's information" do
@@ -127,13 +122,12 @@ class SponsorsGeneratorTest < Rails::Generators::TestCase
       "--name", "Typesense",
       "--badge", "Wifi Sponsor"]
 
-    assert_file file_path do |content|
+    assert_valid_file file_path do |content|
       assert_match(/name: Typesense/, content)
       assert_match(/website: https:\/\/typesense.org/, content)
       assert_match(/logo_url: https:\/\/typesense.org\/logo.png/, content)
       assert_match(/badge: Wifi Sponsor/, content)
     end
-    assert_file_passes_validations(file_path)
   end
 
   test "generator pulls sponsor information from other sponsor files" do
@@ -144,19 +138,18 @@ class SponsorsGeneratorTest < Rails::Generators::TestCase
       "--name", "Typesense",
       "--tier", "Gold"]
 
-    assert_file file_path do |content|
+    assert_valid_file file_path do |content|
       assert_match(/name: "Typesense"/, content)
       assert_match(/website: "https:\/\/typesense.org"/, content)
       assert_match(/logo_url: "https:\/\/typesense.org\/logo.png"/, content)
     end
-
-    assert_file_passes_validations(file_path)
   end
 
-  def assert_file_passes_validations(file_path, msg = nil)
-    [Static::Validators::Schema].each do |validator|
-      errors = validator.new(file_path:).validate
-      assert_empty errors, msg || "#{validator} failed: #{errors.map { |error| error.to_h["message"] }.join(", ")}"
+  def assert_valid_file(file_path, msg = nil, &block)
+    errors = Static::Validators::Validator.sponsor_validator_classes.flat_map do |validator|
+      validator.new(file_path:).errors
     end
+    assert_empty errors, msg || errors.map { |e| e.to_h["message"] }.join(", ")
+    assert_file file_path, msg, &block
   end
 end
