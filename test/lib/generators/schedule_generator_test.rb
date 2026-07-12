@@ -3,9 +3,13 @@ require "generators/schedule/schedule_generator"
 
 class ScheduleGeneratorTest < Rails::Generators::TestCase
   tests ScheduleGenerator
-  destination Rails.root.join("tmp/generators/schedule")
+  setup do
+    self.class.destination Dir.mktmpdir("schedule_generator", Rails.root.join("tmp").to_s)
+  end
+  teardown { FileUtils.remove_entry(destination_root) }
 
   test "creates schedule.yml in correct directory" do
+    schedule_file_path = File.join(destination_root, "data/rbqconf/rbqconf-2026/schedule.yml")
     assert_nothing_raised do
       run_generator ["--event-series", "rbqconf", "--event", "rbqconf-2026"]
     end
@@ -14,16 +18,13 @@ class ScheduleGeneratorTest < Rails::Generators::TestCase
       assert_match(/\S/, content) # Verify file has content
     end
 
-    schedule_file_path = File.join(destination_root, "data/rbqconf/rbqconf-2026/schedule.yml")
-    validate_schedule_schema schedule_file_path
-
-    File.delete schedule_file_path
+    assert_file_passes_validations(schedule_file_path)
   end
 
-  def validate_schedule_schema(file_path)
-    require "#{Rails.root}/app/schemas/schedule_schema"
-
-    validator = Static::Validators::Schema.new(file_path: file_path)
-    assert_empty validator.errors, "Schedule YAML does not conform to schema: #{validator.errors.map { |e| e.to_h["message"] }.join(", ")}"
+  def assert_file_passes_validations(file_path, msg = nil)
+    [Static::Validators::Schema].each do |validator|
+      errors = validator.new(file_path:).validate
+      assert_empty errors, msg || "#{validator} failed: #{errors.map { |error| error.to_h["message"] }.join(", ")}"
+    end
   end
 end
