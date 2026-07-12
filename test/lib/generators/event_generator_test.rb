@@ -25,7 +25,7 @@ class EventGeneratorTest < Rails::Generators::TestCase
   end
 
   teardown do
-    FileUtils.remove_entry(destination_root) 
+    FileUtils.remove_entry(destination_root)
     Geocoder::Lookup::Test.reset
   end
 
