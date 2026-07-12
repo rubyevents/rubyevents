@@ -120,6 +120,57 @@ class InvolvementsGeneratorTest < Rails::Generators::TestCase
     end
   end
 
+  test "destroy removes the involvement entry again" do
+    file_path = File.join(destination_root, "data/xoruby/2029/involvements.yml")
+    eliminate_validated_file(file_path:) do
+      run_generator [
+        "--event-series", "xoruby",
+        "--event", "2029",
+        "--name", "Organizer",
+        "--users", "Jim Remsik"
+      ]
+
+      content_before = File.read(file_path)
+
+      volunteer_args = [
+        "--event-series", "xoruby",
+        "--event", "2029",
+        "--name", "Volunteer",
+        "--users", "Alice Smith"
+      ]
+
+      run_generator volunteer_args
+      assert_match(/Volunteer/, File.read(file_path))
+
+      run_generator volunteer_args, behavior: :revoke
+
+      assert_equal content_before, File.read(file_path)
+    end
+  end
+
+  test "destroy without a matching entry leaves the file untouched" do
+    file_path = File.join(destination_root, "data/xoruby/2030/involvements.yml")
+    eliminate_validated_file(file_path:) do
+      run_generator [
+        "--event-series", "xoruby",
+        "--event", "2030",
+        "--name", "Organizer",
+        "--users", "Jim Remsik"
+      ]
+
+      content_before = File.read(file_path)
+
+      run_generator [
+        "--event-series", "xoruby",
+        "--event", "2030",
+        "--name", "Volunteer",
+        "--users", "Alice Smith"
+      ], behavior: :revoke
+
+      assert_equal content_before, File.read(file_path)
+    end
+  end
+
   def validate_involvements_file(file_path)
     [Static::Validators::Schema].each do |validator|
       errors = validator.new(file_path:).validate

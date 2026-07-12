@@ -1,7 +1,10 @@
 require "rails/generators"
+require "generators/yerba_actions"
 
 module Generators
   class EventBase < Rails::Generators::Base
+    include YerbaActions
+
     class_option :event_series, type: :string, desc: "Event series folder name - defaults to the series of the event", required: false, group: "Fields"
     class_option :event, type: :string, desc: "Event folder name", required: true, aliases: ["-e"], group: "Fields"
 

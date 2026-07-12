@@ -29,12 +29,10 @@ class VenueGenerator < Generators::EventBase
   def update_event_file
     return unless @geocoded_address
     event_file = File.join([event_directory, "event.yml"])
-    return unless File.exist?(event_file)
-    @coordinates = {latitude: @geocoded_address.latitude, longitude: @geocoded_address.longitude}
 
-    event_document = Yerba.parse_file(event_file)
-    event_document["coordinates.latitude"] = @coordinates[:latitude]
-    event_document["coordinates.longitude"] = @coordinates[:longitude]
-    event_document.save!
+    return unless File.exist?(event_file)
+
+    yaml_set event_file, "coordinates.latitude", @geocoded_address.latitude
+    yaml_set event_file, "coordinates.longitude", @geocoded_address.longitude
   end
 end
