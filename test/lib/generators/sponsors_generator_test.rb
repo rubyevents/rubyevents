@@ -5,7 +5,6 @@ require "#{Rails.root}/app/schemas/sponsors_schema"
 class SponsorsGeneratorTest < Rails::Generators::TestCase
   tests SponsorsGenerator
   destination Rails.root.join("tmp/generators/sponsors")
-  setup :prepare_destination
 
   test "generator creates an empty sponsors file with default tier" do
     file_path = File.join(destination_root, "data/tropicalrb/tropical-on-rails-2021/sponsors.yml")

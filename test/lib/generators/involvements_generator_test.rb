@@ -4,7 +4,6 @@ require "generators/involvements/involvements_generator"
 class InvolvementsGeneratorTest < Rails::Generators::TestCase
   tests InvolvementsGenerator
   destination Rails.root.join("tmp/generators/involvements")
-  setup :prepare_destination
 
   test "generator with users argument" do
     file_path = File.join(destination_root, "data/xoruby/xoruby-salt-lake-city-2026/involvements.yml")
