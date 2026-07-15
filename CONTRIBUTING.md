@@ -43,6 +43,17 @@ If the ruby version is updated, or you start running into issues, feel free to t
 
 - Ruby 4.0.1
 - Node.js 22.15.1
+- Yarn >= 1.22.22 (`npm install -g yarn`)
+
+##### Debian
+
+Dependencies of the application will require some operating system development packages to be installed.
+
+On Debian, you can install these packages by running the following command:
+
+```shell
+apt-get install -y libssl-dev libyaml-dev
+```
 
 #### Setup
 
