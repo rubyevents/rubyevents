@@ -25,6 +25,7 @@ class CFP < ApplicationRecord
 
   scope :open, -> { where("close_date IS NULL OR close_date >= ?", Date.today) }
   scope :closed, -> { where("close_date < ?", Date.today) }
+  scope :with_dates, -> { where.not(open_date: nil).where.not(close_date: nil) }
 
   def open?
     return false if closed?
