@@ -94,4 +94,15 @@ class CFP < ApplicationRecord
   def formatted_close_date
     I18n.l(close_date, default: "unknown")
   end
+
+  def to_ical
+    Icalendar::Event.new.tap do |cal_event|
+      cal_event.uid = "RUBYEVENTS-CFP-#{id}"
+      cal_event.last_modified = updated_at
+      cal_event.dtstart = Icalendar::Values::Date.new(open_date)
+      cal_event.dtend = Icalendar::Values::Date.new(close_date + 1.day)
+      cal_event.summary = "#{event.name} - #{name.presence || "Call for Proposals"}"
+      cal_event.url = link
+    end
+  end
 end
