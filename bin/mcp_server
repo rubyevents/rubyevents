@@ -5,6 +5,7 @@
 # Run with: bin/mcp_server
 
 require_relative "../config/environment"
+require_relative "../lib/generators/tool_generation"
 require "json"
 
 class MCPServer
@@ -36,11 +37,15 @@ class MCPServer
   private
 
   def discover_tools
-    Dir[Rails.root.join("app/tools/**/*_tool.rb")].each_with_object({}) do |file, tools|
+    discovered_tools = Dir[Rails.root.join("app/tools/**/*_tool.rb")].each_with_object({}) do |file, tools|
       require file
       class_name = File.basename(file, ".rb").camelize
       tool_class = class_name.constantize
       tools[tool_name(class_name)] = tool_class
+    end
+
+    ToolGeneration.generate_tools.each.with_object(discovered_tools) do |klass, tools|
+      tools[klass.name] = klass
     end
   end
 
