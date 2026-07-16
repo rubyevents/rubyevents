@@ -1,8 +1,6 @@
 import { Application } from '@hotwired/stimulus'
 import { appsignal } from '~/support/appsignal'
 
-import HwComboboxController from '@josefarias/hotwire_combobox'
-
 const application = Application.start()
 
 // Configure Stimulus development experience
@@ -20,7 +18,5 @@ const appsignalErrorHandler = (error, message, detail = {}) => {
 
 // overwrite the default handler with our new composed handler
 application.handleError = appsignalErrorHandler
-
-application.register('hw-combobox', HwComboboxController)
 
 export { application }

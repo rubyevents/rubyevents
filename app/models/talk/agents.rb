@@ -14,8 +14,8 @@ class Talk::Agents < ActiveRecord::AssociatedObject
       task_name: "enhance_transcript"
     )
     enhanced_json_transcript = JSON.parse(response.dig("choices", 0, "message", "content")).dig("transcript")
-    transcript = talk.talk_transcript || Talk::Transcript.new
-    transcript.update!(enhanced_transcript: ::Transcript.create_from_json(enhanced_json_transcript))
+    transcript = talk.talk_transcript || talk.talk_transcripts.build(language: talk.language)
+    transcript.update!(enhanced_transcript: Talk::Transcript::CueList.from_json(enhanced_json_transcript))
   end
 
   performs def summarize
@@ -53,7 +53,7 @@ class Talk::Agents < ActiveRecord::AssociatedObject
   end
 
   performs def ingest
-    talk.fetch_and_update_raw_transcript! unless talk.raw_transcript.present?
+    talk.youtube_transcript.fetch_and_store! unless talk.raw_transcript.present?
     talk.agents.improve_transcript unless talk.enhanced_transcript.present?
     talk.agents.summarize unless talk.summary.present?
     talk.agents.analyze_topics unless talk.topics.present?

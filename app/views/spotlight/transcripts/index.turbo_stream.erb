@@ -1,0 +1,51 @@
+<%= turbo_stream.replace "transcripts_search_results" do %>
+  <div
+    id="transcripts_search_results"
+    class="<%= @groups.any? ? "py-4 border-t" : "hidden" %>"
+    data-spotlight-search-target="transcriptsSearchResults">
+    <% if @groups.any? %>
+      <div class="flex items-center flex-wrap gap-2 py-2">
+        <span class="text-sm font-medium text-gray-600">In Transcripts</span>
+
+        <% if total_count.present? && total_count.positive? %>
+          <span class="text-xs text-gray-400">(<%= total_count %> <%= "talk".pluralize(total_count) %>)</span>
+        <% end %>
+
+        <%= link_to "see all", transcript_search_path(q: search_query), class: "link text-sm text-gray-500", target: "_top" %>
+
+        <% if Rails.env.development? && search_backend == :typesense %>
+          <span class="badge badge-xs badge-primary">Typesense</span>
+        <% end %>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <% @groups.each do |group| %>
+          <div class="rounded-lg p-2 hover:bg-base-200/50">
+            <%= link_to talk_path(group[:talk_slug]), target: "_top", role: "option", class: "flex items-center gap-3 group" do %>
+              <% if group[:thumbnail].present? %>
+                <%= image_tag group[:thumbnail], loading: "lazy", class: "w-20 aspect-video object-cover rounded-md shrink-0" %>
+              <% end %>
+
+              <div class="min-w-0">
+                <div class="text-sm font-semibold line-clamp-1 group-hover:underline"><%= group[:talk_title] %></div>
+
+                <div class="text-xs text-gray-500 line-clamp-1">
+                  <%= group[:speaker_names] %><% if group[:event_name].present? %> &bull; <%= group[:event_name] %><% end %>
+                </div>
+              </div>
+            <% end %>
+
+            <div class="flex flex-col gap-0.5 mt-1.5 sm:ml-[5.75rem]">
+              <% group[:moments].each do |moment| %>
+                <%= link_to talk_path(group[:talk_slug], t: moment[:start_seconds]), target: "_top", role: "option", class: "flex items-baseline gap-2 rounded px-1.5 py-1 text-xs hover:bg-base-200" do %>
+                  <span class="font-mono tabular-nums text-primary shrink-0"><%= seconds_to_formatted_duration(moment[:start_seconds]) %></span>
+                  <span class="line-clamp-1 text-base-content/70 [&_mark]:bg-info/20 [&_mark]:text-info [&_mark]:rounded [&_mark]:px-0.5 [&_mark]:font-medium"><%= sanitize(moment[:snippet], tags: ["mark"]) %></span>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

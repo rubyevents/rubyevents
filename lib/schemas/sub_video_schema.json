@@ -4,17 +4,48 @@
     "id": {
       "type": "string"
     },
+    "old_id": {
+      "type": "string",
+      "description": "Previous id, kept so production records can be migrated to the new id on the next seed"
+    },
     "title": {
       "type": "string"
     },
     "raw_title": {
       "type": "string"
     },
+    "original_title": {
+      "type": "string",
+      "description": "Original title in native language"
+    },
     "description": {
       "type": "string"
     },
     "kind": {
       "type": "string",
+      "enum": [
+        "keynote",
+        "talk",
+        "lightning_talk",
+        "open_mic",
+        "announcement",
+        "city_pitch",
+        "panel",
+        "workshop",
+        "gameshow",
+        "podcast",
+        "q_and_a",
+        "discussion",
+        "fireside_chat",
+        "interview",
+        "award",
+        "demo",
+        "trailer",
+        "recap",
+        "aftermovie",
+        "intro",
+        "outro"
+      ],
       "description": "Type of video (e.g., 'keynote', 'lightning')"
     },
     "speakers": {
@@ -27,16 +58,28 @@
       "type": "string"
     },
     "date": {
-      "type": "string"
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
     },
     "published_at": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1
     },
     "announced_at": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1
     },
     "video_provider": {
       "type": "string",
+      "enum": [
+        "youtube",
+        "mp4",
+        "vimeo",
+        "scheduled",
+        "not_published",
+        "not_recorded",
+        "parent"
+      ],
       "description": "Use 'parent' if there is one video"
     },
     "video_id": {
@@ -240,15 +283,18 @@
     },
     "start_cue": {
       "type": "string",
-      "description": "Start time cue in video"
+      "description": "Start time cue in video (MM:SS, HH:MM:SS, or 'TODO')",
+      "pattern": "^(TODO|\\d{1,2}:\\d{2}(:\\d{2})?)$"
     },
     "end_cue": {
       "type": "string",
-      "description": "End time cue in video"
+      "description": "End time cue in video (MM:SS, HH:MM:SS, or 'TODO')",
+      "pattern": "^(TODO|\\d{1,2}:\\d{2}(:\\d{2})?)$"
     },
     "thumbnail_cue": {
       "type": "string",
-      "description": "Thumbnail time cue"
+      "description": "Thumbnail time cue (MM:SS, HH:MM:SS, or 'TODO')",
+      "pattern": "^(TODO|\\d{1,2}:\\d{2}(:\\d{2})?)$"
     },
     "slides_url": {
       "type": "string"
@@ -553,9 +599,14 @@
           },
           "external_url": {
             "type": "string"
+          },
+          "note": {
+            "type": "string"
           }
         },
-        "required": [],
+        "required": [
+          "note"
+        ],
         "additionalProperties": false
       }
     }
@@ -590,7 +641,7 @@
               "const": "TODO"
             },
             "minLength": 1,
-            "pattern": "^\\d{4}-\\d{2}-\\d{2}"
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
           },
           "video_id": {
             "type": "string",
@@ -639,5 +690,18 @@
         }
       }
     }
-  ]
+  ],
+  "dependentSchemas": {
+    "published_at": {
+      "properties": {
+        "video_provider": {
+          "enum": [
+            "youtube",
+            "mp4",
+            "vimeo"
+          ]
+        }
+      }
+    }
+  }
 }

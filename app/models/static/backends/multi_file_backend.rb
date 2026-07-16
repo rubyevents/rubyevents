@@ -24,6 +24,8 @@ module Static::Backends
         rescue Psych::SyntaxError => e
           puts "#{e.message} in #{file}"
           raise e
+        rescue Errno::ENOENT
+          []
         end
       }
     end

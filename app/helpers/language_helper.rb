@@ -17,7 +17,7 @@ module LanguageHelper
     "czech" => "🇨🇿",
     "danish" => "🇩🇰",
     "dutch" => "🇳🇱",
-    "english" => "",
+    "english" => "🇬🇧",
     "esperanto" => "🏳️",
     "estonian" => "🇪🇪",
     "fijian" => "🇫🇯",

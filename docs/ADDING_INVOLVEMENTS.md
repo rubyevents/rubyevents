@@ -18,53 +18,7 @@ For example:
 - [`data/rubyconf/rubyconf-2024/involvements.yml`](/data/rubyconf/rubyconf-2024/involvements.yml)
 - [`data/rubyconfth/rubyconfth-2026/involvements.yml`](/data/rubyconfth/rubyconfth-2026/involvements.yml)
 
-## YAML Structure
-
-### Basic Structure
-
-```yaml
----
-- name: "Role Name"
-  users:
-    - Person Name
-    - Another Person
-  organisations:  # Optional
-    - Organisation Name
-```
-
-### Complete Example
-
-```yaml
----
-- name: "Organizer"
-  users:
-    - Irina Nazarova
-  organisations:
-    - Evil Martians
-
-- name: "Program Committee Member"
-  users:
-    - Maple Ong
-    - Cameron Dutro
-    - Noel Rappin
-    - Vladimir Dementyev
-
-- name: "Volunteer"
-  users:
-    - Daniel Azuma
-    - Todd Kummer
-    - Ken Decanio
-```
-
-## Field Descriptions
-
-### Role Fields
-
-| Field | Required | Description |
-|-------|----------|-------------|
-| `name` | Yes | The role title (e.g., "Organizer", "Program Committee Member", "MC") |
-| `users` | Yes | Array of user names who have this role - matched to [speakers.yml](data/speakers.yml) |
-| `organisations` | No | Array of organisation names - matched with existing organisations |
+All permitted fields are defined in [InvolvementSchema.](/app/schemas/involvement_schema.rb)
 
 ## Common Roles
 
@@ -76,6 +30,22 @@ Typical roles used in involvements:
 - **Volunteer** - Event volunteers
 - **Scholar** - Scholarship recipients
 - **Guide** - Mentors for scholars
+
+_Note that we use singular role names._
+
+## Generation
+
+Generate an involvements.yml in the correct folder using the InvolvementsGenerator!
+
+```bash
+bin/rails g involvements --event xoruby-salt-lake-city-2026 --name Organizer --users "Jim Remsik"
+```
+
+Check the usage instructions using help.
+
+```bash
+bin/rails g involvements --help
+```
 
 ## Step-by-Step Guide
 
@@ -92,7 +62,7 @@ ls data/{series-name}/{event}/involvements.yml
 If the file doesn't exist, create it:
 
 ```bash
-touch data/{series-name}/{event}/involvements.yml
+bin/rails g involvements --event <event-slug> --name <role-name> --users "Name One" "Name Two" --organisations "Org One" "Org Two"
 ```
 
 ### 3. Gather Involvement Information
@@ -102,23 +72,28 @@ For each role, collect:
 - Names of people who have this role
 - Any organisations associated with the role (optional)
 
-### 4. Structure the YAML
+### 4. Format the yaml
 
-Create the basic template, and replace with your involvement information.
-If you need to provide additional details for an organisation, you can add that organisation to sponsors.yml.
-(See RubyConf TH 2026 for an example.)
+Run the linter to automatically format and verify all required properties are present.
 
-```yaml
----
-- name: "Organizer"
-  users:
-    - Name
-  organisations:
-    - Organisation Name
+```bash
+bin/lint
+```
 
-- name: "Volunteer"
-  users:
-    - Volunteer One
+### 5. Run seeds to load data
+
+Run the event series seed to load data.
+
+```bash
+bundle exec rake db:seed:event_series[event-series-slug]
+```
+
+### 6. Review on your dev server
+
+Start the dev server and review the event.
+
+```bash
+bin/dev
 ```
 
 ## Troubleshooting

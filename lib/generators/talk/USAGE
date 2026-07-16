@@ -11,19 +11,31 @@ Example: |
     "Your first open-source contribution" for the speaker "Rachael Wright-Munn"
     use the following command:
 
-  bin/rails generate talk --event blue-ridge-ruby-2026 --title "Your first open-source contribution" --speaker "Rachael Wright-Munn"
+  bin/rails generate talk --event blue-ridge-ruby-2026 --title "Your first open-source contribution" --speakers "Rachael Wright-Munn"
 
-  This will create:
+  This will create or update:
       data/blue-ridge-ruby/blue-ridge-ruby-2026/videos.yml
 
   To create a lightning talk for "Ruby Community Conference Winter Edition 2026"
     with title "Doom" by "Chris Hasiński" use this command:
 
-  bin/rails g talk --event ruby-community-conference-winter-edition-2026 --speaker "Chris Hasiński" --title "Doom" --kind lightning_talk
+  bin/rails g talk --event ruby-community-conference-winter-edition-2026 --speakers "Chris Hasiński" --title "Doom" --kind lightning_talk
 
-  This will create a lightning talk entry for Chris Hasiński's talk "Doom":
+  This will create or update:
       data/ruby-community-conference/ruby-community-conference-winter-edition-2026/videos.yml
 
-  If you need to add a lightning talk block where the lightning talks have not been defined:
+  To create an empty lightning talk block:
 
   bin/rails g talk --event rubycon-2026 --lightning-talks
+
+  This will create or update:
+    data/rubycon/rubycon-2026/videos.yml
+
+  To create a keynote with a multi-line description:
+
+  bin/rails g talk --title "Keynote: Marco Roth" --kind "keynote"\
+    --description "ERB templates in Ruby are traditionally rendered by engines that treat templates as string generators, which makes it difficult to reason about HTML structure, state changes, or incremental updates. These limitations become especially visible in modern HTML-over-the-wire workflows.
+
+    In this talk, we explore what it would take to build a reactive ERB rendering engine. We begin by revisiting how existing ERB engines compile templates into Ruby code and look at how recent advances in HTML-aware parsing and tooling make new approaches possible.
+
+    Using Herb::Engine as a concrete example, we examine how structural understanding enables state-aware rendering, diff-based updates, and a more responsive development experience, including instant updates without full page reloads and rich in-browser developer tools. Such as template outlines, partial and ERB structure views, jump-to-source navigation, and many other innovations."

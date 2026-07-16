@@ -40,7 +40,7 @@
             <% all_speakers = event.speakers.to_a %>
             <% speakers_with_avatars = all_speakers.select { |speaker| speaker.avatar_url.present? }.sort_by(&:avatar_rank) %>
 
-            <% event.keynote_speakers.each do |keynote_speaker| %>
+            <% event.keynote_speakers.sample(5).each do |keynote_speaker| %>
               <% shown_speakers << keynote_speaker %>
 
               <%= ui_avatar(keynote_speaker, size: :lg, size_class: "w-12 lg:w-28 xl:w-40") %>

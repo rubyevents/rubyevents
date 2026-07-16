@@ -34,7 +34,7 @@ class CFPCreateToolTest < ActiveSupport::TestCase
         close_date: '2025-02-01'
     STRING
 
-    cfp_content = YAML.load_file(File.join(@tmp_dir, "cfp.yml"))
+    cfp_content = Yerba.parse_file(File.join(@tmp_dir, "cfp.yml")).to_a
     assert_equal 1, cfp_content.size
     assert_equal "Call for Proposals", cfp_content.first["name"]
     assert_equal "https://cfp.example.com", cfp_content.first["link"]

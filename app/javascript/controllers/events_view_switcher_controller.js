@@ -5,38 +5,32 @@ export default class extends Controller {
   static values = { storageKey: { type: String, default: 'events-view-preference' } }
 
   connect () {
-    const savedView = window.localStorage.getItem(this.storageKeyValue) || 'preview'
-    this.switchTo(savedView)
+    this.switchTo(window.localStorage.getItem(this.storageKeyValue))
   }
 
   show (event) {
-    const view = event.params.view
-    this.switchTo(view)
+    this.switchTo(event.params.view)
   }
 
   switchTo (view) {
-    const viewTarget = this.viewTargets.find(
+    const requested = this.viewTargets.find(
       (target) => target.dataset.eventsViewSwitcherViewParam === view
     )
 
-    if (!viewTarget) {
-      this.switchTo('preview')
-      return
-    }
+    const target = requested || this.viewTargets[0]
+    if (!target) return
 
-    window.localStorage.setItem(this.storageKeyValue, view)
+    const activeView = target.dataset.eventsViewSwitcherViewParam
 
-    this.viewTargets.forEach((target) => target.classList.add('hidden'))
-    this.buttonTargets.forEach((target) => target.classList.remove('tab-active'))
+    window.localStorage.setItem(this.storageKeyValue, activeView)
 
-    viewTarget.classList.remove('hidden')
+    this.viewTargets.forEach((viewTarget) => {
+      viewTarget.classList.toggle('hidden', viewTarget !== target)
+    })
 
-    const buttonTarget = this.buttonTargets.find(
-      (target) => target.dataset.eventsViewSwitcherViewParam === view
-    )
-
-    if (buttonTarget) {
-      buttonTarget.classList.add('tab-active')
-    }
+    this.buttonTargets.forEach((button) => {
+      const isActive = button.dataset.eventsViewSwitcherViewParam === activeView
+      button.classList.toggle('tab-active', isActive)
+    })
   }
 }

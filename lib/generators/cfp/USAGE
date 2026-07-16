@@ -1,11 +1,24 @@
 Description:
-    Generate a CFP for an event in an event series.
+  Generate or update a CFP for an event in an event series. When updating an
+    existing CFP, pass the link or name of the existing CFP, and the values that
+    are changing. The event-series is optional, and if not provided, the generator
+    will attempt to find the series from the event.
 
 Example:
-    bin/rails generate cfp --event-series=rubyconf --event=rubyconf-2026
+  bin/rails generate cfp --event-series=rubyconf --event=rubyconf-2026
 
-    This will create:
-        A CFP file in the correct directory for the event series and event.
-        The file will be pre-populated with a template for the CFP.
-        Call it twice with the same cfp name to update the existing CFP.
-        Call it twice with a different cfp name to append a new CFP to the end of the file.
+  This will create:
+    - data/rubyconf/rubyconf-2026/cfp.yml
+
+  To generate an ongoing meetup CFP for LRUG:
+    bin/rails generate cfp --event=lrug-meetup --name "Want to speak at LRUG?" \
+      --link "https://readme.lrug.org/#talks"
+
+  To generate a lightning talk CFP for RBQConf 2026:
+    bin/rails generate cfp --event=rbqconf-2026 --name "Lightning Talks" \
+      --link "https://docs.google.com/forms/d/e/1FAIpQLSdVIotL2KY-ZLSCAa6tZfsYZGctnWBKwEfuAtrL4JDqmq6xOg/viewform" \
+      --open-date "2026-02-20" --close-date "2026-02-26"
+
+  To update a CFP and extend the close date:
+    bin/rails generate cfp --event=rbqconf-2026 --name "Lightning Talks" \
+      --close-date "2026-03-26"

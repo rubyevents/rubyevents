@@ -135,4 +135,33 @@ namespace :speakers_file do
       exit 1
     end
   end
+
+  desc "List near-duplicate speaker names (typos/accents) for review. THRESHOLD=0.85"
+  task duplicates: :environment do
+    include ActionView::Helpers::TextHelper
+
+    threshold = (ENV["THRESHOLD"] || "0.85").to_f
+    speakers = Static::SpeakersFile.new
+    clusters = speakers.near_duplicate_names(threshold: threshold)
+      .reject { |cluster| cluster.names.all? { |name| speakers.social_handle?(name) } }
+
+    require "difftastic"
+    differ = Difftastic::Differ.new(color: :always, display: "inline", underline_highlights: true)
+
+    clusters.each do |cluster|
+      names = cluster.names
+      primary = names.first
+
+      if differ
+        names.drop(1).each do |name|
+          puts differ.diff_strings(primary, name)
+          puts "-----"
+        end
+      end
+
+      puts
+    end
+
+    puts "#{pluralize(speakers.count, "speaker")}, #{pluralize(clusters.size, "near-duplicate cluster")} (threshold #{threshold})."
+  end
 end

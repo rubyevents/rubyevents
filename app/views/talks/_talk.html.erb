@@ -248,7 +248,25 @@
             Held on: <%= talk.formatted_date %><br>
 
             <span class="text-gray-400">
-              Published: <% if talk.published_at %><%= l(talk.published_at&.to_date, default: "unknown") %><% elsif talk.published? %> unknown <% else %> not published <% end %><br>
+              Published:
+
+              <% if talk.published_at %>
+                <% published_at = talk.published_at %>
+                <% has_time = published_at.utc.strftime("%H%M%S") != "000000" %>
+
+                <time datetime="<%= published_at.utc.iso8601 %>" title="<%= published_at.utc.strftime("%Y-%m-%d %H:%M:%S UTC") %>">
+                  <%= l(published_at.to_date) %>
+
+                  <% if has_time %>
+                    <span class="opacity-70">(<%= time_ago_in_words(published_at) %> ago)</span>
+                  <% end %>
+                </time>
+              <% elsif talk.published? %>
+                unknown
+              <% else %>
+                not published
+              <% end %>
+              <br>
 
               <% if talk.video_unavailable? %>
                 Unavailable: <%= l(talk.video_unavailable_at.to_date) %><br>
@@ -268,10 +286,39 @@
         </article>
       </div>
 
-      <% if talk.transcript.present? %>
+      <% if talk.raw_transcript.present? %>
         <input type="radio" name="talk_tabs" role="tab" class="tab" aria-label="Transcript">
         <div role="tabpanel" class="tab-content !rounded-s-xl rounded-xl bg-base-200/50 p-6 mt-6 overflow-x-auto max-w-full">
-          <%= render partial: "talks/transcript", locals: {talk: talk} %>
+          <% transcripts = talk.talk_transcripts.select { |transcript| transcript.raw_transcript.present? }.sort_by { |transcript| [(transcript.language == talk.language) ? 0 : 1, transcript.language] } %>
+          <% default_language = (transcripts.any? { |transcript| transcript.language == talk.language }) ? talk.language : transcripts.first.language %>
+
+          <%= tag.div data: {controller: "transcript", action: "video-player:timeupdate@window->transcript#timeUpdate"} do %>
+            <div class="flex flex-wrap items-center gap-2 mb-4">
+              <%= tag.button type: "button", class: "gap-2 btn btn-sm btn-primary", aria: {pressed: "true"}, data: {action: "transcript#toggleLive"} do %>
+                <span class="inline-block w-2 h-2 rounded-full bg-white animate-pulse" data-transcript-target="liveDot"></span>
+                <span data-transcript-target="liveLabel">Auto-Scroll</span>
+              <% end %>
+
+              <% if transcripts.many? %>
+                <div class="join">
+                  <% transcripts.each do |talk_transcript| %>
+                    <%= tag.button transcript_language_label(talk_transcript),
+                          type: "button",
+                          class: class_names("join-item btn btn-sm whitespace-nowrap", "btn-primary" => talk_transcript.language == default_language),
+                          data: {language: talk_transcript.language, transcript_target: "tab", action: "transcript#selectLanguage"} %>
+                  <% end %>
+                </div>
+              <% else %>
+                <span class="ml-2 text-sm text-base-content/50"><%= transcript_language_label(transcripts.first) %></span>
+              <% end %>
+            </div>
+
+            <% transcripts.each do |talk_transcript| %>
+              <%= tag.div hidden: talk_transcript.language != default_language, class: "relative overflow-y-auto max-h-[32rem] pr-1", data: {language: talk_transcript.language, transcript_target: "panel", transcript_scroll: ""} do %>
+                <%= render partial: "talks/transcript", locals: {transcript: talk_transcript.raw_transcript} %>
+              <% end %>
+            <% end %>
+          <% end %>
         </div>
       <% end %>
 

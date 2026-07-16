@@ -3,8 +3,9 @@
 module Static
   module Validators
     class EventDates
-      def initialize(file_path:)
+      def initialize(file_path:, document: nil)
         @file_path = file_path
+        @document = document
       end
 
       PATTERNS = [
@@ -26,7 +27,6 @@ module Static
       def validate
         return [] unless applicable?
 
-        document = Yerba.parse_file(@file_path)
         return [] if document["kind"] == "meetup"
 
         errors = []
@@ -52,6 +52,12 @@ module Static
         end
 
         errors
+      end
+
+      private
+
+      def document
+        @document ||= Yerba.parse_file(@file_path.to_s)
       end
     end
   end

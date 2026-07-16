@@ -8,7 +8,7 @@ class Announcement
     end
 
     def by_tag(tag)
-      Collection.new(select { |a| a.tags.map(&:downcase).include?(tag.downcase) })
+      Collection.new(select { |a| a.tags.any? { |tag_value| tag_value.to_s.casecmp?(tag) } })
     end
 
     def all_tags
@@ -109,7 +109,7 @@ class Announcement
       parts = content.split(/^---\s*$/, 3)
       return [nil, content] if parts.length < 3
 
-      frontmatter = YAML.safe_load(parts[1], permitted_classes: [Date, Time])
+      frontmatter = Yerba.parse(parts[1]).to_h
       body = parts[2]
 
       [frontmatter, body]

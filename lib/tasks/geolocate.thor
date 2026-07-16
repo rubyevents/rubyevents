@@ -42,7 +42,8 @@ class Geolocate < Thor
   private
 
   def process_event_file(file_path, overwrite)
-    data = YAML.load_file(file_path)
+    document = Yerba.parse_file(file_path)
+    data = document.to_h
 
     unless data.is_a?(Hash)
       puts "⚠ Skipping #{file_path}, invalid YAML structure"
@@ -52,12 +53,12 @@ class Geolocate < Thor
     # Prioritize venue.yml if it exists and has coordinates
     venue_file = File.join(File.dirname(file_path), "venue.yml")
     if File.exist?(venue_file)
-      venue_data = YAML.load_file(venue_file)
+      venue_data = Yerba.parse_file(venue_file).to_h
       venue_coordinates = venue_data["coordinates"]
       if venue_coordinates && venue_coordinates["latitude"] && venue_coordinates["longitude"]
         if data["coordinates"] != venue_coordinates || overwrite
-          data["coordinates"] = venue_coordinates
-          File.write(file_path, YAML.dump(data))
+          document["coordinates"] = venue_coordinates
+          document.save!
           puts "✓ #{file_path}: Updated from venue.yml -> #{venue_coordinates}"
         else
           puts "⚠ Skipping #{file_path}: Already has coordinates from venue"
@@ -80,8 +81,8 @@ class Geolocate < Thor
     coordinates = geocode_location(location)
 
     if coordinates
-      data["coordinates"] = coordinates
-      File.write(file_path, YAML.dump(data))
+      document["coordinates"] = coordinates
+      document.save!
       puts "✓ #{file_path}: #{data["title"]} (#{location}) -> #{coordinates}"
     else
       puts "✗ #{file_path}: Failed to geocode (#{location})"

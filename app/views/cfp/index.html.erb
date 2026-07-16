@@ -4,10 +4,14 @@
       <%= title "Open Call for Proposals" %>
     </h1>
 
-    <div class="tabs tabs-boxed mt-4 md:mt-0">
-      <%= link_to "All", cfp_index_path(kind: "all"), class: "tab #{"tab-active" if params[:kind].blank? || params[:kind] == "all"}" %>
-      <%= link_to "Conferences", cfp_index_path(kind: "conference"), class: "tab #{"tab-active" if params[:kind] == "conference"}" %>
-      <%= link_to "Meetups", cfp_index_path(kind: "meetup"), class: "tab #{"tab-active" if params[:kind] == "meetup"}" %>
+    <div class="flex items-center gap-4 mt-4 md:mt-0">
+      <div class="tabs tabs-boxed">
+        <%= link_to "All", cfp_index_path(kind: "all"), class: "tab #{"tab-active" if params[:kind].blank? || params[:kind] == "all"}" %>
+        <%= link_to "Conferences", cfp_index_path(kind: "conference"), class: "tab #{"tab-active" if params[:kind] == "conference"}" %>
+        <%= link_to "Meetups", cfp_index_path(kind: "meetup"), class: "tab #{"tab-active" if params[:kind] == "meetup"}" %>
+      </div>
+
+      <%= render "shared/subscribe_to_calendar", url: cfp_index_url(format: :ics), modal_id: "cfp-calendar-modal" %>
     </div>
   </div>
 
