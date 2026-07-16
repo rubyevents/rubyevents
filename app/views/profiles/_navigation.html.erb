@@ -1,43 +1,45 @@
 <%# locals: (user:, favorite_user:, talks:, events:, mutual_events:, stamps:, stickers:, involvements_by_role:, countries_with_events:) %>
 
-<div role="tablist" class="tabs tabs-bordered">
-  <% if talks.length.positive? %>
-    <%= active_link_to "Talks (#{talks.size})", profile_talks_path(user), class: "tab px-6", active_class: "tab-active", role: "tab" %>
-  <% end %>
+<div class="px-4 md:px-0">
+  <div role="tablist" class="tabs tabs-boxed inline-flex flex-wrap gap-1">
+    <% if talks.length.positive? %>
+      <%= active_link_to "Talks (#{talks.size})", profile_talks_path(user), class: "tab", active_class: "tab-active", role: "tab" %>
+    <% end %>
 
-  <% if events.any? %>
-    <%= active_link_to "Attended Events (#{events.size})", profile_events_path(user), class: "tab px-6", active_class: "tab-active", role: "tab" %>
-  <% end %>
+    <% if events.any? %>
+      <%= active_link_to "Attended Events (#{events.size})", profile_events_path(user), class: "tab", active_class: "tab-active", role: "tab" %>
+    <% end %>
 
-  <% if mutual_events&.any? && Current.user && Current.user != user %>
-    <%= active_link_to "Mutual Events (#{mutual_events.size})", profile_mutual_events_path(user), class: "tab px-6", active_class: "tab-active", role: "tab" %>
-  <% end %>
+    <% if mutual_events&.any? && Current.user && Current.user != user %>
+      <%= active_link_to "Mutual Events (#{mutual_events.size})", profile_mutual_events_path(user), class: "tab", active_class: "tab-active", role: "tab" %>
+    <% end %>
 
-  <% if favorite_user&.persisted? %>
-    <%= active_link_to "Notes", profile_notes_path(user), class: "tab px-6", active_class: "tab-active", role: "tab" %>
-  <% end %>
+    <% if favorite_user&.persisted? %>
+      <%= active_link_to "Notes", profile_notes_path(user), class: "tab", active_class: "tab-active", role: "tab" %>
+    <% end %>
 
-  <% if involvements_by_role.any? %>
-    <%= active_link_to "Involvements", profile_involvements_path(user), class: "tab px-6", active_class: "tab-active", role: "tab" %>
-  <% end %>
+    <% if involvements_by_role.any? %>
+      <%= active_link_to "Involvements", profile_involvements_path(user), class: "tab", active_class: "tab-active", role: "tab" %>
+    <% end %>
 
-  <% if stamps.any? %>
-    <%= active_link_to "Stamps (#{stamps.size})", profile_stamps_path(user), class: "tab px-6", active_class: "tab-active", role: "tab" %>
-  <% end %>
+    <% if stamps.any? %>
+      <%= active_link_to "Stamps (#{stamps.size})", profile_stamps_path(user), class: "tab", active_class: "tab-active", role: "tab" %>
+    <% end %>
 
-  <% if stickers.any? %>
-    <%= active_link_to "Stickers (#{stickers.size})", profile_stickers_path(user), class: "tab px-6", active_class: "tab-active", role: "tab" %>
-  <% end %>
+    <% if stickers.any? %>
+      <%= active_link_to "Stickers (#{stickers.size})", profile_stickers_path(user), class: "tab", active_class: "tab-active", role: "tab" %>
+    <% end %>
 
-  <% if countries_with_events&.any? %>
-    <%= active_link_to "Map", profile_map_index_path(user), class: "tab px-6", active_class: "tab-active", role: "tab" %>
-  <% end %>
+    <% if countries_with_events&.any? %>
+      <%= active_link_to "Map", profile_map_index_path(user), class: "tab", active_class: "tab-active", role: "tab" %>
+    <% end %>
 
-  <% if user.ruby_passport_claimed? %>
-    <%= active_link_to "Ruby Passport", profile_passport_index_path(user), class: "tab px-6", active_class: "tab-active", role: "tab" %>
-  <% end %>
+    <% if user.ruby_passport_claimed? %>
+      <%= active_link_to "Ruby Passport", profile_passport_index_path(user), class: "tab", active_class: "tab-active", role: "tab" %>
+    <% end %>
 
-  <% if Current.user&.admin? %>
-    <%= active_link_to "Aliases (#{user.aliases.size})", profile_aliases_path(user), class: "tab px-6", active_class: "tab-active", role: "tab" %>
-  <% end %>
+    <% if Current.user&.admin? %>
+      <%= active_link_to "Aliases (#{user.aliases.size})", profile_aliases_path(user), class: "tab", active_class: "tab-active", role: "tab" %>
+    <% end %>
+  </div>
 </div>

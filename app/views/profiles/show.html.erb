@@ -1,11 +1,11 @@
 <%= turbo_refreshes_with method: :morph, scroll: :preserve %>
 <%= turbo_stream_from @user %>
 
-<div class="container py-8">
+<div class="container md:py-8 py-0">
   <%= render partial: "profiles/header", locals: {user: @user, favorite_user: @favorite_user} %>
   <%= render partial: "profiles/topics", locals: {topics: @topics, user: @user, talks: @talks} %>
 
-  <hr class="my-6">
+  <hr class="md:my-6 my-3">
 
   <%= turbo_frame_tag dom_id(@user), data: {turbo_action: "advance", turbo_frame: "_top"} do %>
     <%= render partial: "profiles/navigation", locals: {
