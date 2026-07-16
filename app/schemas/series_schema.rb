@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
-class SeriesSchema < RubyLLM::Schema
+class SeriesSchema < ApplicationSchema
+  data_file "**/series.yml"
+
+  string :id, description: "Unique identifier for the event series, matches the series folder name"
   string :name, description: "Name of the event series (e.g., 'RailsConf')"
   string :description, description: "Description of the event series", required: false
 
@@ -21,6 +24,7 @@ class SeriesSchema < RubyLLM::Schema
   string :website, description: "Official website URL", required: false
   string :original_website, description: "Original/archived website URL", required: false
   string :twitter, description: "Twitter/X handle (without @)", required: false
+  string :facebook, description: "Facebook Page URL", required: false
   string :mastodon, description: "Full Mastodon profile URL", required: false
   string :bsky, description: "Bluesky handle", required: false
   string :github, description: "GitHub organization or repository", required: false

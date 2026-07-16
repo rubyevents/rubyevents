@@ -33,6 +33,10 @@
     <%= active_link_to "Map", profile_map_index_path(user), class: "tab px-6", active_class: "tab-active", role: "tab" %>
   <% end %>
 
+  <% if user.ruby_passport_claimed? %>
+    <%= active_link_to "Ruby Passport", profile_passport_index_path(user), class: "tab px-6", active_class: "tab-active", role: "tab" %>
+  <% end %>
+
   <% if Current.user&.admin? %>
     <%= active_link_to "Aliases (#{user.aliases.size})", profile_aliases_path(user), class: "tab px-6", active_class: "tab-active", role: "tab" %>
   <% end %>

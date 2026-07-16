@@ -21,13 +21,13 @@ module YAMLFile
   def file
     return {} unless exist?
 
-    @file ||= YAML.load_file(file_path) || {}
+    @file ||= Yerba.parse_file(file_path.to_s).to_h
   end
 
   def entries
     return [] unless exist?
 
-    @entries ||= YAML.load_file(file_path) || []
+    @entries ||= Yerba.parse_file(file_path.to_s).to_a
   end
 
   def reload

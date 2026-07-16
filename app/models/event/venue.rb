@@ -136,6 +136,8 @@ class Event::Venue < ActiveRecord::AssociatedObject
       coords = hotel["coordinates"]
       next unless coords&.dig("latitude").present? && coords&.dig("longitude").present?
 
+      next if same_location_as_venue?(coords["latitude"], coords["longitude"])
+
       markers << {
         latitude: coords["latitude"],
         longitude: coords["longitude"],
@@ -162,5 +164,13 @@ class Event::Venue < ActiveRecord::AssociatedObject
     end
 
     markers
+  end
+
+  private
+
+  def same_location_as_venue?(lat, lng)
+    return false unless latitude.present? && longitude.present?
+
+    lat.round(5) == latitude.round(5) && lng.round(5) == longitude.round(5)
   end
 end

@@ -7,18 +7,26 @@ import { application } from "./application"
 import AutoClickController from "./auto-click_controller"
 application.register("auto-click", AutoClickController)
 
-import CollapsibleController from "./collapsible_controller"
-application.register("collapsible", CollapsibleController)
-application.register("collapsible-feedback", CollapsibleController)
-
 import AutoSubmitController from "./auto_submit_controller"
 application.register("auto-submit", AutoSubmitController)
+
+import BookmarkController from "./bookmark_controller"
+application.register("bookmark", BookmarkController)
 
 import Bridge__ButtonController from "./bridge/button_controller"
 application.register("bridge--button", Bridge__ButtonController)
 
+import Bridge__LiveActivityController from "./bridge/live_activity_controller"
+application.register("bridge--live-activity", Bridge__LiveActivityController)
+
 import Bridge__OauthController from "./bridge/oauth_controller"
 application.register("bridge--oauth", Bridge__OauthController)
+
+import CollapsibleController from "./collapsible_controller"
+application.register("collapsible", CollapsibleController)
+
+import ContentRowController from "./content_row_controller"
+application.register("content-row", ContentRowController)
 
 import CopyToClipboardController from "./copy_to_clipboard_controller"
 application.register("copy-to-clipboard", CopyToClipboardController)
@@ -28,9 +36,6 @@ application.register("dropdown", DropdownController)
 
 import EventController from "./event_controller"
 application.register("event", EventController)
-
-import HoverCardController from "./hover_card_controller"
-application.register("hover-card", HoverCardController)
 
 import EventListController from "./event_list_controller"
 application.register("event-list", EventListController)
@@ -43,6 +48,12 @@ application.register("events-view-switcher", EventsViewSwitcherController)
 
 import GeolocationController from "./geolocation_controller"
 application.register("geolocation", GeolocationController)
+
+import HoverCardController from "./hover_card_controller"
+application.register("hover-card", HoverCardController)
+
+import HoverPreviewController from "./hover_preview_controller"
+application.register("hover-preview", HoverPreviewController)
 
 import LazyLoadingController from "./lazy_loading_controller"
 application.register("lazy-loading", LazyLoadingController)
@@ -59,14 +70,14 @@ application.register("preserve-scroll", PreserveScrollController)
 import PronounsSelectController from "./pronouns_select_controller"
 application.register("pronouns-select", PronounsSelectController)
 
-import ContentRowController from "./content_row_controller"
-application.register("content-row", ContentRowController)
-
 import ScrollController from "./scroll_controller"
 application.register("scroll", ScrollController)
 
 import ScrollIntoViewController from "./scroll_into_view_controller"
 application.register("scroll-into-view", ScrollIntoViewController)
+
+import SlidesEmbedController from "./slides_embed_controller"
+application.register("slides-embed", SlidesEmbedController)
 
 import SplideController from "./splide_controller"
 application.register("splide", SplideController)
@@ -94,6 +105,9 @@ application.register("tooltip", TooltipController)
 
 import TopBannerController from "./top_banner_controller"
 application.register("top-banner", TopBannerController)
+
+import TranscriptController from "./transcript_controller"
+application.register("transcript", TranscriptController)
 
 import TransitionController from "./transition_controller"
 application.register("transition", TransitionController)

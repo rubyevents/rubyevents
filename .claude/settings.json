@@ -1,0 +1,42 @@
+{
+  "attribution": {
+    "commit": ""
+  },
+  "enabledMcpjsonServers": [
+    "rubyevents"
+  ],
+  "enableAllProjectMcpServers": true,
+  "permissions": {
+    "allow": [
+      "mcp__rubyevents__*",
+      "Bash(npx agent-browser:*)",
+      "WebFetch(domain:github.com)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // empty' | grep -q '/data/' && echo '{\"decision\":\"block\",\"reason\":\"Do not write to data/ directly. Use `yerba` commands (see. `bundle exec yerba --help`) or the Yerba Ruby API via `require 'yerba'`, `Yerba.parse(source)`, or `Yerba.parse_file(path)`.\"}' || true"
+          },
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // empty' | grep -q 'lib/schemas/' && echo '{\"decision\":\"block\",\"reason\":\"Do not edit files in lib/schemas/ directly. They are auto-generated. Edit the Ruby schema in app/schemas/*.rb instead, then run: bin/rails schema:export\"}' || true"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.command // empty' | grep -qE 'YAML\\.(load_file|load|parse|safe_load|dump)|\\.(to_yaml)' && echo '{\"decision\":\"block\",\"reason\":\"Do not use YAML.load_file, YAML.dump, or .to_yaml for data files. Use Yerba.parse_file to read and doc.save! to write, preserving formatting, comments, and whitespace.\"}' || true"
+          }
+        ]
+      }
+    ]
+  }
+}

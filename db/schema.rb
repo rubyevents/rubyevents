@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.2].define(version: 2026_06_15_000903) do
+ActiveRecord::Schema[8.2].define(version: 2026_07_05_130000) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -152,6 +152,17 @@ ActiveRecord::Schema[8.2].define(version: 2026_06_15_000903) do
     t.index ["user_id"], name: "index_email_verification_tokens_on_user_id"
   end
 
+  create_table "event_check_ins", force: :cascade do |t|
+    t.datetime "checked_in_at", null: false
+    t.string "connect_id", null: false
+    t.datetime "created_at", null: false
+    t.integer "event_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["connect_id", "event_id"], name: "index_event_check_ins_on_connect_id_and_event_id", unique: true
+    t.index ["connect_id"], name: "index_event_check_ins_on_connect_id"
+    t.index ["event_id"], name: "index_event_check_ins_on_event_id"
+  end
+
   create_table "event_involvements", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "event_id", null: false
@@ -198,6 +209,7 @@ ActiveRecord::Schema[8.2].define(version: 2026_06_15_000903) do
   end
 
   create_table "events", force: :cascade do |t|
+    t.string "banner_background"
     t.integer "canonical_id"
     t.string "city"
     t.string "country_code"
@@ -206,12 +218,16 @@ ActiveRecord::Schema[8.2].define(version: 2026_06_15_000903) do
     t.string "date_precision", default: "day", null: false
     t.date "end_date"
     t.integer "event_series_id", null: false
+    t.string "featured_background"
+    t.string "featured_color"
     t.json "geocode_metadata", default: {}, null: false
+    t.date "home_sort_date"
     t.string "kind", default: "event", null: false
     t.decimal "latitude", precision: 10, scale: 6
     t.string "location"
     t.decimal "longitude", precision: 10, scale: 6
     t.string "name", default: "", null: false
+    t.date "recordings_published_date"
     t.string "slug", default: "", null: false
     t.date "start_date"
     t.string "state_code"
@@ -223,7 +239,7 @@ ActiveRecord::Schema[8.2].define(version: 2026_06_15_000903) do
     t.index ["event_series_id"], name: "index_events_on_event_series_id"
     t.index ["kind"], name: "index_events_on_kind"
     t.index ["name"], name: "index_events_on_name"
-    t.index ["slug"], name: "index_events_on_slug"
+    t.index ["slug"], name: "index_events_on_slug", unique: true
   end
 
   create_table "favorite_users", force: :cascade do |t|
@@ -359,11 +375,15 @@ ActiveRecord::Schema[8.2].define(version: 2026_06_15_000903) do
   end
 
   create_table "talk_transcripts", force: :cascade do |t|
+    t.boolean "auto_generated"
     t.datetime "created_at", null: false
     t.text "enhanced_transcript"
+    t.string "language", default: "en", null: false
     t.text "raw_transcript"
     t.integer "talk_id", null: false
+    t.boolean "translated", default: false, null: false
     t.datetime "updated_at", null: false
+    t.index ["talk_id", "language"], name: "index_talk_transcripts_on_talk_id_and_language", unique: true
     t.index ["talk_id"], name: "index_talk_transcripts_on_talk_id"
   end
 
@@ -397,6 +417,7 @@ ActiveRecord::Schema[8.2].define(version: 2026_06_15_000903) do
     t.string "thumbnail_xl", default: "", null: false
     t.string "thumbnail_xs", default: "", null: false
     t.string "title", default: "", null: false
+    t.datetime "transcript_checked_at"
     t.datetime "updated_at", null: false
     t.datetime "video_availability_checked_at"
     t.string "video_id", default: "", null: false
@@ -464,6 +485,7 @@ ActiveRecord::Schema[8.2].define(version: 2026_06_15_000903) do
     t.json "geocode_metadata", default: {}, null: false
     t.string "github_handle"
     t.json "github_metadata", default: {}, null: false
+    t.json "language_preferences", default: {}, null: false
     t.decimal "latitude", precision: 10, scale: 6
     t.string "linkedin", default: "", null: false
     t.string "location", default: ""
@@ -536,6 +558,7 @@ ActiveRecord::Schema[8.2].define(version: 2026_06_15_000903) do
   add_foreign_key "connected_accounts", "users"
   add_foreign_key "contributors", "users"
   add_foreign_key "email_verification_tokens", "users"
+  add_foreign_key "event_check_ins", "events"
   add_foreign_key "event_involvements", "events"
   add_foreign_key "event_participations", "events"
   add_foreign_key "event_participations", "users"

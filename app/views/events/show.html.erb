@@ -1,5 +1,20 @@
 <%= render partial: "events/header", locals: {event: @event, participation: @participation} %>
 
+<% if hotwire_native_app? && @event.live? %>
+  <div class="container pt-4"
+       data-controller="bridge--live-activity"
+       data-bridge--live-activity-slug-value="<%= @event.slug %>"
+       data-bridge--live-activity-name-value="<%= @event.name %>">
+    <button type="button"
+            class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-white font-medium transition-opacity"
+            data-bridge--live-activity-target="button"
+            data-action="click->bridge--live-activity#start">
+      <span data-bridge--live-activity-target="icon"><%= fa("circle-dot") %></span>
+      <span data-bridge--live-activity-target="label">Follow live schedule</span>
+    </button>
+  </div>
+<% end %>
+
 <%= turbo_frame_tag dom_id(@event), data: {turbo_action: "advance", turbo_frame: "_top"} do %>
   <div class="container py-8">
     <%= render partial: "events/navigation", locals: {event: @event} %>

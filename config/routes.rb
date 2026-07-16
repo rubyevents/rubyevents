@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   get "/privacy", to: "page#privacy"
   get "/components", to: "page#components"
   get "/about", to: "page#about"
+  get "/attend", to: "page#attend"
+  get "/speak", to: "page#speak"
+  get "/organize", to: "page#organize"
   get "/stickers", to: "page#stickers"
   get "/contributors", to: "page#contributors"
   get "/stamps", to: "stamps#index"
@@ -165,15 +168,6 @@ Rails.application.routes.draw do
   resources :contributions, only: [:index, :show], param: :step
   resources :todos, only: [:index], path: "data/todos"
 
-  resources :templates, only: [:new, :create] do
-    collection do
-      get :new_child
-      delete :delete_child
-      get :speakers_search
-      post :speakers_search_chips
-    end
-  end
-
   # resources
   namespace :analytics do
     resource :dashboards, only: [:show] do
@@ -201,6 +195,7 @@ Rails.application.routes.draw do
   end
 
   resources :watched_talks, only: [:index, :destroy]
+  resources :feedback, only: [:index]
 
   resources :speakers, param: :slug, only: [:index]
   get "/speakers/:slug", to: redirect("/profiles/%{slug}", status: 301), as: :speaker
@@ -222,6 +217,7 @@ Rails.application.routes.draw do
       resources :stickers, only: [:index]
       resources :involvements, only: [:index]
       resources :map, only: [:index]
+      resources :passport, only: [:index]
       resources :aliases, only: [:index]
       resources :wrapped, only: [:index] do
         collection do
@@ -235,6 +231,8 @@ Rails.application.routes.draw do
   end
 
   resources :favorite_users, only: [:index, :create, :destroy, :update]
+
+  resource :language_preference, only: [:update]
 
   resources :events, param: :slug, only: [:index, :show] do
     resources :event_participations, only: [:create, :destroy]
@@ -308,7 +306,10 @@ Rails.application.routes.draw do
     resources :locations, only: [:index]
     resources :languages, only: [:index]
     resources :kinds, only: [:index]
+    resources :transcripts, only: [:index]
   end
+
+  get "search/transcripts", to: "transcript_searches#index", as: :transcript_search
 
   resources :recommendations, only: [:index]
 
@@ -332,6 +333,13 @@ Rails.application.routes.draw do
     namespace :native do
       namespace :v1 do
         get "home", to: "/page#home", defaults: {format: "json"}
+
+        resources :events, only: [], param: :slug do
+          resource :live_schedule, only: :show, controller: "live_schedules", defaults: {format: "json"}
+        end
+
+        resource :search_config, only: :show, controller: "search_configs", defaults: {format: "json"}
+        resource :next_event, only: :show, controller: "next_events", defaults: {format: "json"}
         resource :refresh, only: :show, controller: "refresh"
         resource :oauth, only: :show, controller: "oauth"
         resources :start, only: :show, param: :provider, controller: "start"

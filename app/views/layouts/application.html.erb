@@ -17,7 +17,6 @@
     <%= display_meta_tags site: "RubyEvents.org", reverse: true %>
 
     <%= vite_client_tag %>
-    <%= combobox_style_tag %>
     <%= vite_javascript_tag "application", media: "all", "data-turbo-track": "reload" %>
     <%= vite_stylesheet_tag "application.css", media: "all", "data-turbo-track": "reload" %>
 
@@ -38,6 +37,7 @@
   <body data-controller="preserve-scroll" class="<%= yield(:body_class) %>">
     <div class="hotwire-native:hidden">
       <%= render "shared/navbar" %>
+      <%= render "shared/language_prompt" unless controller_name == "page" && action_name == "home" %>
     </div>
 
     <div class="min-h-screen">

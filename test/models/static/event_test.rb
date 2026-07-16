@@ -55,15 +55,6 @@ class Static::EventTest < ActiveSupport::TestCase
     assert_equal "Party Sponsor", avo_sponsor.badge
   end
 
-  test "import_transcripts!" do
-    Static::EventSeries.find_by_slug("helveticruby").import_series!
-    event = Static::Event.find_by_slug(SLUG)
-    event_record = event.import_event!
-    event.import_videos!(event_record)
-    event.import_transcripts!(event_record)
-    assert ::Talk::Transcript.exists?
-  end
-
   test "import_involvements!" do
     event = Static::Event.find_by_slug("xoruby-portland-2025")
     event.import_event!
@@ -72,11 +63,26 @@ class Static::EventTest < ActiveSupport::TestCase
     involvements = event_record.reload.event_involvements.pluck(:id)
     event.import_involvements!(event_record)
     assert_equal involvements, event_record.reload.event_involvements.pluck(:id)
-    assert_equal 6, event_record.event_involvements.count
+    assert_equal 7, event_record.event_involvements.count
   end
 
   test "today? returns false if event is in the past" do
     event = Static::Event.find_by_slug("railsconf-2025")
     assert_not event.today?
+  end
+
+  test "home_sort_date uses the event's own dates for non-conference, non-meetup events" do
+    event = Static::Event.find_by_slug("ceru-camp-2009")
+    stub_record = Event.new(start_date: Date.new(2000, 1, 1))
+
+    assert_equal "retreat", event.kind
+    assert_equal event.end_date, event.home_sort_date(event_record: stub_record)
+  end
+
+  test "home_sort_date prefers recordings_published_date when present" do
+    event = Static::Event.find_by_slug("brightonruby-2025")
+    stub_record = Event.new(start_date: Date.new(2000, 1, 1))
+
+    assert_equal event.published_date, event.home_sort_date(event_record: stub_record)
   end
 end

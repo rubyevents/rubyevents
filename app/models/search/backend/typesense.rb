@@ -88,6 +88,12 @@ class Search::Backend::Typesense
       end
     end
 
+    def search_transcript_passages(query, limit:, page: 1)
+      perform_search(:transcript_passage, query) do
+        TranscriptPassageIndexer.search(query, limit: limit, page: page)
+      end
+    end
+
     def available?
       return false if Rails.env.test?
 

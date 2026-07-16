@@ -41,7 +41,7 @@ module Static
         last_edition: nil,
         start_date: nil,
         end_date: nil,
-        published_at: nil,
+        recordings_published_date: nil,
         announced_on: nil,
         year: nil,
         date_precision: nil,
@@ -77,9 +77,11 @@ module Static
           raise ArgumentError, "Event '#{slug}' already exists at #{event_file}"
         end
 
-        data = {"title" => title, "kind" => kind}
+        if id.present? && id != slug
+          raise ArgumentError, "id must match the event folder name ('#{slug}'), got '#{id}'"
+        end
 
-        data["id"] = id if id.present?
+        data = {"id" => slug, "title" => title, "kind" => kind}
         data["description"] = description if description.present?
         data["aliases"] = Array(aliases) if aliases.present?
         data["hybrid"] = hybrid unless hybrid.nil?
@@ -87,7 +89,7 @@ module Static
         data["last_edition"] = last_edition unless last_edition.nil?
         data["start_date"] = start_date if start_date.present?
         data["end_date"] = end_date if end_date.present?
-        data["published_at"] = published_at if published_at.present?
+        data["recordings_published_date"] = recordings_published_date if recordings_published_date.present?
         data["announced_on"] = announced_on if announced_on.present?
         data["year"] = year if year.present?
         data["date_precision"] = date_precision if defined?(date_precision) && date_precision.present?
@@ -110,17 +112,15 @@ module Static
         data["featured_background"] = featured_background if featured_background.present?
         data["featured_color"] = featured_color if featured_color.present?
 
-        schema = JSON.parse(EventSchema.new.to_json_schema[:schema].to_json)
-        schemer = JSONSchemer.schema(schema)
-        errors = schemer.validate(data).to_a
+        errors = Yerba.parse(data.to_yaml).validate(EventSchema.json_schema)
 
         if errors.any?
-          error_messages = errors.map { |e| "#{e["error"]} at #{e["data_pointer"]}" }
+          error_messages = errors.map { |error| "#{error["message"]} at #{error["path"]}" }
           raise ArgumentError, "Validation failed: #{error_messages.join(", ")}"
         end
 
         FileUtils.mkdir_p(event_dir)
-        File.write(event_file, data.to_yaml)
+        File.write(event_file, content)
 
         videos_file = event_dir.join("videos.yml")
         File.write(videos_file, "[]\n") unless videos_file.exist?
@@ -205,11 +205,7 @@ module Static
     end
 
     def slug
-      @slug ||= begin
-        return attributes["slug"] if attributes["slug"].present?
-
-        File.basename(File.dirname(__file_path))
-      end
+      @slug ||= attributes["id"]
     end
 
     def imported?
@@ -233,7 +229,7 @@ module Static
     end
 
     def published_date
-      Date.parse(published_at)
+      Date.parse(recordings_published_date)
     rescue TypeError, Date::Error
       nil
     end
@@ -242,6 +238,12 @@ module Static
       return nil if location.blank?
 
       Country.find(location.to_s.split(",").last&.strip)
+    end
+
+    def time_zone
+      return nil if attributes["timezone"].blank?
+
+      ActiveSupport::TimeZone[attributes["timezone"]]
     end
 
     def city
@@ -258,15 +260,17 @@ module Static
         return published_date
       end
 
-      if conference? && end_date.present?
+      if meetup?
+        return event_record.end_date if event_record.present?
+
+        return Time.at(0)
+      end
+
+      if end_date.present?
         return end_date
       end
 
-      if meetup? && event_record.present?
-        return event_record.end_date
-      end
-
-      if conference? && start_date.present?
+      if start_date.present?
         return start_date
       end
 
@@ -290,7 +294,6 @@ module Static
       import_videos!(event, index: index)
       import_sponsors!(event)
       import_involvements!(event)
-      import_transcripts!(event)
 
       Search::Backend.index(event) if index
 
@@ -302,8 +305,8 @@ module Static
 
       event.assign_attributes(
         name: title,
-        date: attributes["date"] || published_at,
-        date_precision: date_precision || "day",
+        date: attributes["date"],
+        date_precision: attributes["date_precision"] || "day",
         series: static_series.event_series_record,
         website: website,
         country_code: country&.alpha2,
@@ -311,7 +314,12 @@ module Static
         location: location,
         start_date: start_date,
         end_date: end_date,
-        kind: kind
+        kind: kind,
+        featured_background: featured_background,
+        featured_color: featured_color,
+        banner_background: banner_background,
+        recordings_published_date: published_date,
+        home_sort_date: home_sort_date(event_record: event)
       )
 
       if event.venue.exist?
@@ -344,7 +352,7 @@ module Static
 
       return unless File.exist?(cfp_file_path)
 
-      cfps = YAML.load_file(cfp_file_path)
+      cfps = Yerba.parse_file(cfp_file_path.to_s).to_a
 
       cfps.each do |cfp_data|
         cfp = event.cfps.find_or_initialize_by(
@@ -507,39 +515,6 @@ module Static
         end
       end
       event.update!(event_involvements_attributes: event_involvements_attributes)
-    end
-
-    def import_transcripts!(event)
-      return unless imported?
-      return unless event.transcripts_file.exist?
-
-      transcripts = event.transcripts_file.entries
-      return if transcripts.blank?
-
-      transcripts.each do |transcript_data|
-        video_id = transcript_data["video_id"]
-        cues = transcript_data["cues"]
-
-        next if video_id.blank? || cues.blank?
-
-        talk = event.talks.find_by(video_id: video_id)
-        next unless talk
-
-        transcript = ::Transcript.new
-        cues.each do |cue_data|
-          transcript.add_cue(
-            Cue.new(
-              start_time: cue_data["start_time"],
-              end_time: cue_data["end_time"],
-              text: cue_data["text"]
-            )
-          )
-        end
-
-        transcript_record = talk.talk_transcript || ::Talk::Transcript.new(talk: talk)
-        transcript_record.update_attributes(raw_transcript: transcript)
-        transcript_record.save! if transcript_record.changed? || transcript_record.new_record?
-      end
     end
 
     def series_slug

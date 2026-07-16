@@ -35,4 +35,39 @@ class PageControllerTest < ActionDispatch::IntegrationTest
     assert_select "meta[name='twitter:card'][content=summary_large_image]"
     assert_select "meta[name='twitter:image'][content=?]", expected_logo_url
   end
+
+  test "home page should render featured events" do
+    events(:rails_world_2023).update!(
+      featured_background: "#101820",
+      featured_color: "#ffffff",
+      home_sort_date: Date.today,
+      recordings_published_date: Date.today
+    )
+
+    get root_path
+
+    assert_response :success
+    assert_select "section[aria-label=?]", "Featured Events"
+  end
+
+  test "home page features a happening event that has no talks (e.g. a camp/retreat)" do
+    Event.create!(
+      name: "Ruby Camp Test 2026",
+      series: event_series(:rails_world),
+      kind: "retreat",
+      start_date: Date.today - 1,
+      end_date: Date.today + 1,
+      home_sort_date: Date.today,
+      geocode_metadata: {},
+      featured_background: "#E7F2E2",
+      featured_color: "#064E3B"
+    )
+
+    get root_path
+
+    assert_response :success
+    assert_select "section[aria-label=?]", "Featured Events" do
+      assert_select "a[aria-label=?]", "Ruby Camp Test 2026"
+    end
+  end
 end

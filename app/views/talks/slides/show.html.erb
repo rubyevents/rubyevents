@@ -13,9 +13,35 @@
         <div class="responsive-iframe-container">
           <%= sanitize oembed_json.dig("html"), tags: ["iframe"], attributes: ["id", "class", "src", "width", "height", "style", "frameborder", "allowtransparency", "allowfullscreen"] %>
         </div>
+
+        <%= slides_external_link(@talk.slides_url) %>
+
+      <% elsif (embed_url = google_slides_embed_url(@talk.slides_url)) %>
+        <div data-controller="slides-embed">
+          <div data-slides-embed-target="loading"
+               class="w-full rounded bg-base-300 animate-pulse aspect-video">
+          </div>
+
+          <div class="responsive-iframe-container">
+            <iframe src="<%= embed_url %>"
+                    title="<%= @talk.title %>"
+                    frameborder="0"
+                    hidden
+                    data-slides-embed-target="iframe"
+                    data-action="load->slides-embed#loaded"
+                    allowfullscreen
+                    mozallowfullscreen
+                    webkitallowfullscreen
+                    class="aspect-video">
+            </iframe>
+          </div>
+
+          <%= slides_external_link(@talk.slides_url) %>
+        </div>
+
+      <% else %>
+        <%= slides_external_link(@talk.slides_url) %>
       <% end %>
     <% end %>
-
-    <a class="btn btn-primary mt-6" href="<%= sanitize(@talk.slides_url) %>" target="_blank">See Slides on <%= uri.host %></a>
   <% end %>
 <% end %>

@@ -39,7 +39,7 @@ class VenueCreateTool < RubyLLM::Tool
         "postal_code" => geo.postal_code,
         "country" => geo.country,
         "country_code" => geo.country_code,
-        "display" => geo.formatted_address
+        "display" => geo.respond_to?(:formatted_address) ? geo.formatted_address : geo.address
       }.compact,
       "coordinates" => {
         "latitude" => geo.latitude,

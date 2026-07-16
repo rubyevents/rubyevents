@@ -2,6 +2,7 @@ files: "data/**/*.yml"
 
 pipeline:
   - directives:
+      max: 1
       ensure: true
 
   - collection_style:
@@ -13,6 +14,9 @@ pipeline:
   - quote_style:
       key_style: plain
       value_style: double
+
+  - final_newline:
+      count: 1
 
 rules:
   - files: "data/**/event.yml"
@@ -40,12 +44,13 @@ rules:
             - kind
             - frequency
             - description
-            - published_at
             - announced_on
+            - date_precision
+            - pre_date
             - start_date
             - end_date
+            - recordings_published_date
             - year
-            - date_precision
             - playlist
             - status
             - last_edition
@@ -55,6 +60,7 @@ rules:
             - tickets_url
             - meetup
             - twitter
+            - facebook
             - mastodon
             - youtube
             - github
@@ -82,12 +88,20 @@ rules:
           path: "[]"
 
       - quote_style:
+          path: "[].name"
+          value_style: double
+
+      - quote_style:
           path: "[].users"
           value_style: plain
 
       - quote_style:
           path: "[].organisations"
           value_style: plain
+
+      - blank_lines:
+          path: ""
+          count: 1
 
   - files: "data/topics.yml"
     pipeline: []
@@ -97,6 +111,14 @@ rules:
       - schema:
           file: "lib/schemas/cfp_schema.json"
           path: "[]"
+
+      - quote_style:
+          path: "[].name"
+          value_style: double
+
+      - blank_lines:
+          path: ""
+          count: 1
 
       - sort_keys:
           order:
@@ -124,6 +146,10 @@ rules:
       - blank_lines:
           path: "[].tiers[].sponsors"
           count: 1
+
+      - quote_style:
+          key_style: "plain"
+          value_style: "double"
 
   - files: "data/**/venue.yml"
     pipeline:
@@ -162,12 +188,14 @@ rules:
 
       - sort_keys:
           order:
+            - id
             - name
             - website
             - kind
             - frequency
             - language
             - twitter
+            - facebook
             - default_country_code
             - meetup
             - github
@@ -185,6 +213,9 @@ rules:
 
   - files: "data/**/videos.yml"
     pipeline:
+      - sequence_indent:
+          style: indented
+
       - schema:
           file: "lib/schemas/video_schema.json"
           path: "[]"
@@ -225,13 +256,18 @@ rules:
           path: "[].talks"
           count: 1
 
+      - blank_lines:
+          path: "[].additional_resources"
+          count: 1
+
       - sort_keys:
           path: "[]"
           order:
             - id
+            - old_id
             - title
-            - raw_title
             - original_title
+            - raw_title
             - slug
             - location
             - kind
@@ -261,9 +297,27 @@ rules:
             - alternative_recordings
 
       - sort_keys:
+          path: "[].alternative_recordings[]"
+          order:
+            - note
+            - title
+            - raw_title
+            - location
+            - event_name
+            - date
+            - published_at
+            - language
+            - video_provider
+            - video_id
+            - external_url
+            - description
+            - speakers
+
+      - sort_keys:
           path: "[].talks[]"
           order:
             - id
+            - old_id
             - title
             - raw_title
             - original_title

@@ -3,7 +3,7 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
     def featured_metadata? = static_metadata.featured_background?
   end
 
-  delegate :published_date, :home_sort_date, to: :static_repository, allow_nil: true
+  delegate :published_date, :home_sort_date, :time_zone, to: :static_repository, allow_nil: true
 
   def kind
     return static_repository.kind if static_repository&.kind

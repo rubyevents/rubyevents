@@ -1,0 +1,7 @@
+<%# locals: (languages:) %>
+
+<%= turbo_frame_tag "browse-talk-languages" do %>
+  <% if languages&.any? %>
+    <%= render "browse/language_row", languages: languages %>
+  <% end %>
+<% end %>
