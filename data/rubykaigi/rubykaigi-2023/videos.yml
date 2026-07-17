@@ -1,26 +1,22 @@
-# TODO: talks running order
-# TODO: talk dates
-# TODO: conference website
-# TODO: schedule website
 ---
-- id: "kohei-yamada-rubykaigi-2023"
-  title: "DIY Your Touchpad Experience: Building Your Own Gestures"
-  raw_title: "[JA] DIY Your Touchpad Experience: Building Your Own Gestures / Kohei Yamada @nukumaro22"
+## Day 1
+
+- id: "yukihiro-matz-matsumoto-keynote-rubykaigi-2023"
+  title: "Keynote: 30 Years of Ruby"
+  raw_title: '[JA][Keynote] Matz Keynote / Yukihiro "Matz" Matsumoto @yukihiro_matz'
+  kind: "keynote"
   event_name: "RubyKaigi 2023"
   date: "2023-05-11"
   published_at: "2023-06-09T15:21:02Z"
   language: "Japanese"
-  slides_url: "https://speakerdeck.com/iberianpig/diy-your-touchpad-experience-building-your-own-gestures-rubykaigi2023"
+  track: "Large Hall #rubykaigiA"
+  slides_url: "https://speakerdeck.com/matz/30-years-of-ruby"
   video_provider: "youtube"
-  video_id: "gnwe8DqPDrk"
+  video_id: "184Sc0hsnek"
   description: |-
-    It's fun to improve the development environment and tools you use every day in the way you like. Let's build your own tools that feel good in your hands using Ruby.
-    I have developed a gem for gesture control on Linux, allowing you to define your own custom gestures and actions.
-    In this talk, I will show how to handle device events such as touchpad and keyboard in real-time and how to implement a flexible plugin mechanism using Gem.
-
-    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/nukumaro22.html
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/yukihiro_matz.html
   speakers:
-    - Kohei Yamada
+    - "Yukihiro \"Matz\" Matsumoto"
 
 - id: "yuichiro-kaneko-rubykaigi-2023"
   title: "The future vision of Ruby Parser"
@@ -29,6 +25,7 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:22:30Z"
   language: "Japanese"
+  track: "Large Hall #rubykaigiA"
   slides_url: "https://speakerdeck.com/yui_knk/the-future-vision-of-ruby-parser"
   video_provider: "youtube"
   video_id: "IhfDsLx784g"
@@ -50,6 +47,7 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:21:02Z"
   language: "English"
+  track: "Small Hall #rubykaigiB"
   # slides_url: "https://kaigi-rubocops-baddest-cop.herokuapp.com/"
   video_provider: "youtube"
   video_id: "n-D9uPOo_kc"
@@ -67,6 +65,7 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:21:02Z"
   language: "English"
+  track: "Open Studio #rubykaigiC"
   slides_url: "https://drive.google.com/drive/folders/1PzSj_wTHVIrZNC80IyZzuma85sVIiWTz?usp=sharing"
   video_provider: "youtube"
   video_id: "UpbVZ4Gqk3c"
@@ -84,6 +83,7 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:21:02Z"
   language: "Japanese"
+  track: "Large Hall #rubykaigiA"
   slides_url: "https://speakerdeck.com/makenowjust/make-regexp-number-match-much-faster"
   video_provider: "youtube"
   video_id: "IbMFHxeqpN4"
@@ -107,6 +107,7 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:21:02Z"
   language: "English"
+  track: "Small Hall #rubykaigiB"
   slides_url: "https://docs.google.com/presentation/d/1GYoYnLij7YGnYGLgMSlRvBPSTEEVqFqUhowtkN4eH24/present"
   video_provider: "youtube"
   video_id: "rI4XlFvMNEw"
@@ -130,6 +131,7 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:21:02Z"
   language: "Japanese"
+  track: "Open Studio #rubykaigiC"
   slides_url: "https://speakerdeck.com/logiteca7/developing-chrome-extension-with-ruby-dot-wasm"
   video_provider: "youtube"
   video_id: "A2ziP8V9muE"
@@ -151,6 +153,7 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:21:02Z"
   language: "English"
+  track: "Large Hall #rubykaigiA"
   slides_url: "https://atdot.net/~ko1/activities/2023_rubykaigi2023.pdf"
   video_provider: "youtube"
   video_id: "Id706gYi3wk"
@@ -172,6 +175,7 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:21:02Z"
   language: "English"
+  track: "Small Hall #rubykaigiB"
   slides_url: "https://file.linhares.blue/ruby_kaigi/2023/slides.pdf"
   video_provider: "youtube"
   video_id: "Tuhk4iS3F_I"
@@ -191,6 +195,7 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:22:30Z"
   language: "Japanese"
+  track: "Open Studio #rubykaigiC"
   slides_url: "https://speakerdeck.com/ima1zumi/c-9f8bab18-7b38-4a6a-b0b2-56a9fda78a9f"
   video_provider: "youtube"
   video_id: "y5rGatij0DE"
@@ -208,6 +213,7 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:22:30Z"
   language: "Japanese"
+  track: "Large Hall #rubykaigiA"
   slides_url: "https://drive.google.com/file/d/1Pvj4mmF6g9aNHk92KESzrOvBJn62O4VD/view"
   video_provider: "youtube"
   video_id: "VweV7ngcDEk"
@@ -231,6 +237,7 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:21:02Z"
   language: "English"
+  track: "Small Hall #rubykaigiB"
   slides_url: "https://www.eightbitraptor.com/presentations/RubyKaigi2023-mvh.pdf"
   video_provider: "youtube"
   video_id: "chhNDhyPbyc"
@@ -249,21 +256,25 @@
   speakers:
     - Matt Valentine-House
 
-- id: "yukihiro-matz-matsumoto-keynote-rubykaigi-2023"
-  title: "Keynote: 30 Years of Ruby"
-  raw_title: '[JA][Keynote] Matz Keynote / Yukihiro "Matz" Matsumoto @yukihiro_matz'
-  kind: "keynote"
+- id: "kohei-yamada-rubykaigi-2023"
+  title: "DIY Your Touchpad Experience: Building Your Own Gestures"
+  raw_title: "[JA] DIY Your Touchpad Experience: Building Your Own Gestures / Kohei Yamada @nukumaro22"
   event_name: "RubyKaigi 2023"
   date: "2023-05-11"
   published_at: "2023-06-09T15:21:02Z"
   language: "Japanese"
-  slides_url: "https://speakerdeck.com/matz/30-years-of-ruby"
+  track: "Open Studio #rubykaigiC"
+  slides_url: "https://speakerdeck.com/iberianpig/diy-your-touchpad-experience-building-your-own-gestures-rubykaigi2023"
   video_provider: "youtube"
-  video_id: "184Sc0hsnek"
+  video_id: "gnwe8DqPDrk"
   description: |-
-    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/yukihiro_matz.html
+    It's fun to improve the development environment and tools you use every day in the way you like. Let's build your own tools that feel good in your hands using Ruby.
+    I have developed a gem for gesture control on Linux, allowing you to define your own custom gestures and actions.
+    In this talk, I will show how to handle device events such as touchpad and keyboard in real-time and how to implement a flexible plugin mechanism using Gem.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/nukumaro22.html
   speakers:
-    - "Yukihiro \"Matz\" Matsumoto"
+    - Kohei Yamada
 
 - id: "lightning-talk-rubykaigi-2023"
   title: "Lightning Talks"
@@ -273,6 +284,7 @@
   date: "2023-05-11"
   published_at: "2023-06-09T15:21:02Z"
   language: "Japanese"
+  track: "Large Hall #rubykaigiA"
   video_provider: "youtube"
   video_id: "c58mN6NtwsQ"
   thumbnail_lg: "https://img.youtube.com/vi/c58mN6NtwsQ/hqdefault.jpg"
@@ -295,32 +307,54 @@
       title: "Lightning Talk: Building Ruby Native Extension using Ruby"
       kind: "lightning_talk"
       start_cue: "00:55"
-      end_cue: "TODO"
+      end_cue: "06:14"
       language: "Japanese" # and English
       video_provider: "parent"
       video_id: "katsyoshi-rubykaigi-2023"
+      description:
+        |-
+          I build a native ruby compiler for x86.
+          This product is a native binary running on Linux.
+          I build a native ruby extension using this product.
       speakers:
         - katsyoshi
 
     - id: "kokuyou-rubykaigi-2023"
-      title: "Lightning Talk: RBS meets LLMs"
+      title: "Lightning Talk: RBS meets LLMs - Type inference using LLM"
       kind: "lightning_talk"
       start_cue: "06:14"
-      end_cue: "TODO"
+      end_cue: "11:30"
       language: "Japanese"
       video_provider: "parent"
       video_id: "kokuyou-rubykaigi-2023"
+      description:
+        |-
+          Recently, Large Language Models (LLMs), such as ChatGPT, have been rapidly evolving.
+          LLMs are characterized by their ability to interpret word meanings and contexts, and by their very wide range of applications.
+
+          By the way, common static analyzers and execution systems treat class and variable names as mere labels, but they are important clues when humans read code.
+          By using LLMs, we can interpret those intentions and use them for type inference.
+
+          Also, static analysis is not good at dynamic definitions such as define_method, which cannot be distinguished from a simple method call in Ruby syntax.
+          LLMs may be able to successfully generate type definitions in these cases.
+
+          In this session, we will introduce our efforts to use ChatGPT for RBS generation and discuss the possibility of incorporating LLMs into development tools.
       speakers:
         - kokuyou
 
     - id: "okura-masafumi-rubykaigi-2023"
-      title: "Lightning Talk: I love VIM"
+      title: "Lightning Talk: Customize your Vim/Neovim directly with Ruby"
       kind: "lightning_talk"
       start_cue: "11:30"
-      end_cue: "TODO"
+      end_cue: "16:40"
       language: "English"
       video_provider: "parent"
       video_id: "okura-masafumi-rubykaigi-2023"
+      description:
+        |-
+          My editor of choice is Neovim. Do you know what advantage Vim/Neovim have for us Rubyists? Yes, we can write plugins with Ruby!
+          This facility made it possible to develop rspec-current.vim, a Vim/Neovim plugin to tell you what subject and context are in your cursor position. It's useful with deeply nested RSpec file.
+          As I mentioned, we can use Ruby as a plugin development language. This means we can even use RubyVM::AbstractSyntaxTree in our plugin. In this talk I'll talk about the implementation detail of the plugin and encourage you to do the same!
       speakers:
         - OKURA Masafumi
 
@@ -328,98 +362,142 @@
       title: "Lightning Talk: mruby VM"
       kind: "lightning_talk"
       start_cue: "16:40"
-      end_cue: "TODO"
+      end_cue: "22:03"
       language: "Japanese"
       video_provider: "parent"
       video_id: "yukihiro-matz-matsumoto-lightning-talk-rubykaigi-2023"
+      description:
+        |-
+          In this talk, the core of the mruby VM will be explained.
       speakers:
         - "Yukihiro \"Matz\" Matsumoto"
 
     - id: "lulalala-rubykaigi-2023"
-      title: "Lightning Talk: Natsukantou - an XML translator"
+      title: "Lightning Talk: Natsukantou the XML translator"
       kind: "lightning_talk"
       start_cue: "22:03"
-      end_cue: "TODO"
+      end_cue: "26:29"
       language: "English"
       video_provider: "parent"
       video_id: "lulalala-rubykaigi-2023"
+      description:
+        |-
+          Natsukantou gem enables seamless XML translation by allowing users to mix & match filters and translation services (DeepL, みんなの自動翻訳, or ChatGPT). The gem's architecture will be presented, showcasing its middleware pattern, the use cases and wizard configuration inference.
       speakers:
         - lulalala
 
     - id: "shugo-maeda-rubykaigi-2023"
-      title: "Lightning Talk: Bingo in the browser using ruby.wasm"
+      title: "Lightning Talk: BINGO!"
       kind: "lightning_talk"
       start_cue: "26:29"
-      end_cue: "TODO"
+      end_cue: "31:36"
       language: "Japanese"
       video_provider: "parent"
       video_id: "shugo-maeda-rubykaigi-2023"
+      description:
+        |-
+          I became the president of Network Applied Communication Laboratory Ltd. (NaCl) last year, and one of the most important duties of the president at NaCl is to hold a lottery at a year-end party. So I've created a bingo machine and cards using Rails and ruby.wasm for the last year-end party. In this talk, I will explain how to write useful applications using ruby.wasm.
       speakers:
         - Shugo Maeda
 
     - id: "yla-aioi-rubykaigi-2023"
-      title: "Lightning Talk: Adding custom rule for RuboCop in the 2 month of employment"
+      title: "Lightning Talk: Adding custom rule for Rubocop in the 2 month of employment"
       kind: "lightning_talk"
       start_cue: "31:36"
-      end_cue: "TODO"
+      end_cue: "35:53"
       language: "Japanese"
       video_provider: "parent"
       video_id: "yla-aioi-rubykaigi-2023"
+      description:
+        |-
+          I will talk about how I contributed to the team by developing about "nice to have, but not too much trouble without" rule in Rubocop.
       speakers:
         - Yla Aioi
 
     - id: "yuichiro-kaneko-lightning-talk-rubykaigi-2023"
-      title: "Lightning Talk: Unexplored Region - parse.y"
+      title: "Lightning Talk: Unexplored Region - parse.y -"
       kind: "lightning_talk"
       start_cue: "35:53"
-      end_cue: "TODO"
+      end_cue: "41:07"
       language: "Japanese"
       video_provider: "parent"
       video_id: "yuichiro-kaneko-lightning-talk-rubykaigi-2023"
+      description:
+        |-
+          Someone calls it "Demon Castle", other calls simply "hell". However, have you visited parse.y?
+          This is a quick & safe tour of unexplored region, "parse.y".
       speakers:
         - Yuichiro Kaneko
 
     - id: "yuya-fujiwara-rubykaigi-2023"
-      title: "Lightning Talk: Ultra-fast Test Driven Development"
+      title: "Lightning Talk: Ultra-fast test-driven development"
       kind: "lightning_talk"
       start_cue: "41:07"
-      end_cue: "TODO"
+      end_cue: "46:20"
       language: "Japanese"
       video_provider: "parent"
       video_id: "yuya-fujiwara-rubykaigi-2023"
+      description:
+        |-
+          Software testing is crucial in our daily development process. Our team adopts mob programming to develop many features. While we also use TDD for development, it is known that running tests with Rspec can be slow. In particular, loading and initializing files can be a bottleneck.
+
+          One solution to this problem is rspec-daemon. rspec-daemon is an echo server implemented over TCP. When a file name is sent through nc, it simply executes it with Rspec.
+          This is a simple idea, but by maintaining a process that has been started once, there is no need to load and initialize files, allowing for fast execution of examples.
       speakers:
         - Yuya Fujiwara
 
     - id: "peter-zhu-rubykaigi-2023"
-      title: "Lightning Talk: Optimizing Ruby's Memory Layout - Variable Width Allocation"
+      title: "Lightning Talk: Optimizing Ruby's Memory Layout: Variable Width Allocation"
       kind: "lightning_talk"
       start_cue: "46:20"
-      end_cue: "TODO"
+      end_cue: "50:09"
       language: "English"
       video_provider: "parent"
       video_id: "peter-zhu-rubykaigi-2023"
+      description:
+        |-
+          Ruby 3.2 comes with Variable Width Allocation, a new feature inside of the garbage collector that increases allocation speed and improves memory efficiency. In this talk, I'll talk about the motivation behind this feature, what changes we made, and the performance improvements.
       speakers:
         - Peter Zhu
 
     - id: "yudai-takada-rubykaigi-2023"
-      title: "Lightning Talk: Dividing and Managing - The Cops Squad of RuboCop Rspec Dept."
+      title: "Lightning Talk: Dividing and Managing: The Cops Squad of RuboCop RSpec Dept"
       kind: "lightning_talk"
       start_cue: "50:09"
-      end_cue: "TODO"
+      end_cue: "54:31"
       language: "Japanese"
       video_provider: "parent"
       video_id: "yudai-takada-rubykaigi-2023"
+      description:
+        |-
+          As you all know, RuboCop is a static code analyzer and formatter for Ruby. It also has extensions that are specialized for external Ruby libraries/frameworks. RuboCop RSpec is one of those extensions.
+
+          RuboCop RSpec has four major departments: RSpec, Rails, Capybara, and FactoryBot. However, the latter two departments are not limited to RSpec and can also be used with other test frameworks.
+
+          For example:
+
+          - Test::Unit
+          - Cucumber
+          - Minitest
+          - Minitest::Spec
+
+          Users of these test frameworks may not need RSpec cops, but may find value in Capybara and FactoryBot cops. Therefore, RuboCop RSpec has started a project to separate these departments into individual gems.
+
+          I would like to report on the progress of this project.
       speakers:
         - Yudai Takada
 
     - id: "sorah-fukumori-lightning-talk-rubykaigi-2023"
-      title: "Lightning Talk: Serverless IdP for Small Team"
+      title: "Lightning Talk: Serverless IdP for small team"
       kind: "lightning_talk"
       start_cue: "54:31"
       end_cue: "59:35"
       language: "English"
       video_provider: "parent"
       video_id: "sorah-fukumori-lightning-talk-rubykaigi-2023"
+      description:
+        |-
+          Traditional IdPs like Google, Azure AD don't fit for small team formed with members from multiple organization or individuals, because no one want to manage additional credentials just for specific project, and those tend to be expensive; OTOH, I was thinking about IdP for RubyKaigi organizing team. In this lightning talk, I'm going to introduce sorah/himari, a Rack-based small OpenID Connect IdP, which uses Omniauth for its identity source. Additionally, to minimize overhead running cost, this small IdP can be deployed on serverless AWS environment. I'd also like quickly introduce the sorah/apigatewayv2_rack gem which allows cheap deployment.
       speakers:
         - Sorah Fukumori
 
@@ -434,13 +512,38 @@
       speakers:
         - Sorah Fukumori
 
+## Day 2
+
+- id: "hiroshi-shibata-rubykaigi-2023"
+  title: "How resolve Gem dependencies in your code?"
+  raw_title: "[JA] How resolve Gem dependencies in your code? / Hiroshi SHIBATA @hsbt"
+  event_name: "RubyKaigi 2023"
+  date: "2023-05-12"
+  published_at: "2023-11-24T05:30:17Z"
+  language: "Japanese"
+  track: "Large Hall #rubykaigiA"
+  slides_url: "https://www.slideshare.net/hsbt/how-resolve-gem-dependencies-in-your-code"
+  video_provider: "youtube"
+  video_id: "NydwplWLuH0"
+  description: |-
+    I maintain the RubyGems, Bundler and the standard libraries of the Ruby language. I've finished to work that standard libraries promote to the default gems until Ruby 3.1. I've promote some gems like net-smtp, net-imap to the bundled gems. And we released rbs and debug gems as the bundled gems. So, we can provide the best developer experience at the release day.
+
+    On the other hands, the default gems and bundled gems have a lot of problems especially dependency resolution. I'll describe what are problems related default gems and bundled gems in maintainer's view. I'd like to get more feedback to Gemification for the future with this session.
+
+    In Ruby 3.2, Bundler 2.4 have new dependency resolver named PubGrub. RubyGems team have a plan to introduce this resolver for RubyGems. I describe the feature of dependency resolution of gem dependencies. Finaly, I introduce how RubyGems and Bundler resolve gem dependencies in your code with the default gems and bundled gems.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/hsbt.html
+  speakers:
+    - Hiroshi SHIBATA
+
 - id: "martin-j-duerst-rubykaigi-2023"
   title: "On Ruby and ꝩduЯ, or How Scary are Trojan Source Attacks"
   raw_title: "[EN] On Ruby and ꝩduЯ, or How Scary are Trojan Source Attacks / Martin J. Dürst @duerst"
   event_name: "RubyKaigi 2023"
-  date: "2023-05-11"
+  date: "2023-05-12"
   published_at: "2023-06-09T15:22:30Z"
   language: "English"
+  track: "Small Hall #rubykaigiB"
   slides_url: "https://www.sw.it.aoyama.ac.jp/2023/pub/RubyꝩduЯ"
   video_provider: "youtube"
   video_id: "F3feRCr6S64"
@@ -461,9 +564,10 @@
   title: "Learn Ractor"
   raw_title: "[JA] Learn Ractor / Masatoshi SEKI @m_seki"
   event_name: "RubyKaigi 2023"
-  date: "2023-05-11"
+  date: "2023-05-12"
   published_at: "2023-06-09T15:22:30Z"
   language: "Japanese"
+  track: "Open Studio #rubykaigiC"
   slides_url: "https://speakerdeck.com/m_seki/learn-ractor"
   video_provider: "youtube"
   video_id: "_pMKdqCxE8w"
@@ -480,9 +584,10 @@
   title: "JRuby: Looking Forward"
   raw_title: "[EN] JRuby: Looking Forward / Charles Nutter @headius"
   event_name: "RubyKaigi 2023"
-  date: "2023-05-11"
+  date: "2023-05-12"
   published_at: "2023-06-09T15:22:30Z"
   language: "English"
+  track: "Large Hall #rubykaigiA"
   slides_url: "https://speakerdeck.com/headius/jruby-looking-forward"
   video_provider: "youtube"
   video_id: "yxdbbOMWE0g"
@@ -497,9 +602,10 @@
   title: "Build a mini Ruby debugger in under 300 lines"
   raw_title: "[EN] Build a mini Ruby debugger in under 300 lines / Stan Lo @_st0012"
   event_name: "RubyKaigi 2023"
-  date: "2023-05-11"
+  date: "2023-05-12"
   published_at: "2023-06-09T15:22:30Z"
   language: "English"
+  track: "Small Hall #rubykaigiB"
   slides_url: "https://github.com/st0012/slides/blob/main/2023-05-11-rubykaigi/Build%20a%20mini%20Ruby%20debugger.pdf"
   video_provider: "youtube"
   video_id: "7uLFVL2KNXo"
@@ -523,9 +629,10 @@
   title: "Implementing ++ operator, stepping into parse.y"
   raw_title: '[JA] Implementing "++" operator, stepping into parse.y / Misaki Shioi @coe401_'
   event_name: "RubyKaigi 2023"
-  date: "2023-05-11"
+  date: "2023-05-12"
   published_at: "2023-06-09T15:22:30Z"
   language: "Japanese"
+  track: "Open Studio #rubykaigiC"
   slides_url: "https://speakerdeck.com/coe401_/implementing-plus-plus-operator-stepping-into-parse-dot-y"
   video_provider: "youtube"
   video_id: "x_p5r8p0i1o"
@@ -544,9 +651,10 @@
   title: "Yet Another Ruby Parser"
   raw_title: "[EN] Yet Another Ruby Parser / Kevin Newton @kddnewton"
   event_name: "RubyKaigi 2023"
-  date: "2023-05-11"
+  date: "2023-05-12"
   published_at: "2023-06-09T15:22:30Z"
   language: "English"
+  track: "Large Hall #rubykaigiA"
   slides_url: "https://speakerdeck.com/kddnewton/yarp"
   video_provider: "youtube"
   video_id: "3vzpv9GZdLo"
@@ -565,9 +673,10 @@
   title: "RubyGems on the watch"
   raw_title: "[EN] RubyGems on the watch / Maciej Mensfeld @maciejmensfeld"
   event_name: "RubyKaigi 2023"
-  date: "2023-05-11"
+  date: "2023-05-12"
   published_at: "2023-06-12T03:44:41Z"
   language: "English"
+  track: "Small Hall #rubykaigiB"
   slides_url: "https://mensfeld.github.io/rubygems-on-the-watch/"
   video_provider: "youtube"
   video_id: "H4qbhzifBz8"
@@ -586,9 +695,10 @@
   title: "Fix SQL N+1 queries with RuboCop"
   raw_title: "[JA] Fix SQL N+1 queries with RuboCop / Go Sueyoshi @sue445"
   event_name: "RubyKaigi 2023"
-  date: "2023-05-11"
+  date: "2023-05-12"
   published_at: "2023-06-09T15:22:30Z"
   language: "Japanese"
+  track: "Open Studio #rubykaigiC"
   slides_url: "https://speakerdeck.com/sue445/fix-sql-n-plus-one-queries-with-rubocop"
   video_provider: "youtube"
   video_id: "mDDAbZsDPMk"
@@ -609,9 +719,10 @@
   title: "Revisiting TypeProf - IDE support as a primary feature"
   raw_title: "[JA] Revisiting TypeProf - IDE support as a primary feature / Yusuke Endoh @mametter"
   event_name: "RubyKaigi 2023"
-  date: "2023-05-11"
+  date: "2023-05-12"
   published_at: "2023-06-09T15:22:31Z"
   language: "Japanese"
+  track: "Large Hall #rubykaigiA"
   slides_url: "https://speakerdeck.com/mame/revisiting-typeprof-ide-support-as-a-primary-feature"
   video_provider: "youtube"
   video_id: "UitqAvgmX0Y"
@@ -628,9 +739,10 @@
   title: "Splitting: the Crucial Optimization for Ruby Blocks"
   raw_title: "[EN] Splitting: the Crucial Optimization for Ruby Blocks / Benoit Daloze @eregontp"
   event_name: "RubyKaigi 2023"
-  date: "2023-05-11"
+  date: "2023-05-12"
   published_at: "2023-06-09T15:22:30Z"
   language: "English"
+  track: "Small Hall #rubykaigiB"
   slides_url: "https://eregon.me/blog/assets/research/splitting-the-crucial-optimization-for-ruby-blocks-rubykaigi.pdf"
   video_provider: "youtube"
   video_id: "KdyV6geWZAk"
@@ -649,9 +761,10 @@
   title: "The Resurrection of the Fast Parallel Test Runner"
   raw_title: "[JA] The Resurrection of the Fast Parallel Test Runner / Koichi ITO @koic"
   event_name: "RubyKaigi 2023"
-  date: "2023-05-11"
+  date: "2023-05-12"
   published_at: "2023-06-09T15:22:30Z"
   language: "Japanese"
+  track: "Open Studio #rubykaigiC"
   slides_url: "https://speakerdeck.com/koic/the-resurrection-of-the-fast-parallel-test-runner"
   video_provider: "youtube"
   video_id: "Bg45cDBcQzo"
@@ -674,9 +787,10 @@
   title: "Multiverse Ruby"
   raw_title: "[JA] Multiverse Ruby / Chris Salzberg @shioyama"
   event_name: "RubyKaigi 2023"
-  date: "2023-05-11"
+  date: "2023-05-12"
   published_at: "2023-06-09T15:22:30Z"
   language: "Japanese"
+  track: "Large Hall #rubykaigiA"
   slides_url: "https://speakerdeck.com/shioyama/multiverse-ruby"
   video_provider: "youtube"
   video_id: "xGpz0ZXrhco"
@@ -697,9 +811,10 @@
   title: "Ruby Implementation of QUIC: Progress and Challenges"
   raw_title: "[EN] Ruby Implementation of QUIC: Progress and Challenges / Yusuke Nakamura @yu_suke1994"
   event_name: "RubyKaigi 2023"
-  date: "2023-05-11"
+  date: "2023-05-12"
   published_at: "2023-06-09T15:22:30Z"
   language: "English"
+  track: "Small Hall #rubykaigiB"
   slides_url: "https://slide.rabbit-shocker.org/authors/unasuke/rubykaigi-2023/"
   video_provider: "youtube"
   video_id: "jcm8hsRuFYs"
@@ -716,9 +831,10 @@
   title: "Reading and improving Pattern Matching in Ruby"
   raw_title: "[EN] Reading and improving Pattern Matching in Ruby / Yuki Torii @yotii23"
   event_name: "RubyKaigi 2023"
-  date: "2023-05-11"
+  date: "2023-05-12"
   published_at: "2023-06-09T15:22:30Z"
   language: "English"
+  track: "Open Studio #rubykaigiC"
   slides_url: "https://speakerdeck.com/yotii23/reading-and-improving-pattern-matching-in-ruby"
   video_provider: "youtube"
   video_id: "KDvVfbWQyMA"
@@ -739,9 +855,10 @@
   title: "Fitting Rust YJIT into CRuby"
   raw_title: "[EN] Fitting Rust YJIT into CRuby / Alan Wu @alanwusx"
   event_name: "RubyKaigi 2023"
-  date: "2023-05-11"
+  date: "2023-05-12"
   published_at: "2023-06-09T15:22:30Z"
   language: "English"
+  track: "Large Hall #rubykaigiA"
   slides_url: "https://github.com/XrXr/slides/blob/main/RubyKaigi2023/fitting-rust-yjit-into-cruby.pdf"
   video_provider: "youtube"
   video_id: "GI7vvAgP_Qs"
@@ -756,9 +873,10 @@
   title: "Hacking and profiling Ruby for performance"
   raw_title: "[EN] Hacking and profiling Ruby for performance / Daisuke Aritomo @osyoyu"
   event_name: "RubyKaigi 2023"
-  date: "2023-05-11"
+  date: "2023-05-12"
   published_at: "2023-06-09T15:22:30Z"
   language: "English"
+  track: "Small Hall #rubykaigiB"
   slides_url: "https://speakerdeck.com/osyoyu/hacking-and-profiling-ruby-for-performance-rubykaigi-2023"
   video_provider: "youtube"
   video_id: "WPgor5jmcuE"
@@ -776,9 +894,10 @@
   title: "Introduction of new features for VS Code debugging"
   raw_title: "[JA] Introduction of new features for VS Code debugging / Naoto Ono @ono-max"
   event_name: "RubyKaigi 2023"
-  date: "2023-05-11"
+  date: "2023-05-12"
   published_at: "2023-06-09T15:22:30Z"
   language: "Japanese"
+  track: "Open Studio #rubykaigiC"
   slides_url: "https://speakerdeck.com/onomax/introduction-of-new-features-for-vs-code-debugging"
   video_provider: "youtube"
   video_id: "kuXD9p--Te0"
@@ -802,9 +921,10 @@
   title: "Tips and Tricks for working in the MRI Codebase"
   raw_title: "[EN] Tips and Tricks for working in the MRI Codebase / Jemma Issroff @jemmaissroff"
   event_name: "RubyKaigi 2023"
-  date: "2023-05-11"
+  date: "2023-05-12"
   published_at: "2023-06-09T15:22:30Z"
   language: "English"
+  track: "Large Hall #rubykaigiA"
   slides_url: "https://drive.google.com/file/d/1HW2aC-Di5-5QuB1bqb0kFu4K5R8zIOJf/view"
   video_provider: "youtube"
   video_id: "7y6DhXQU4wU"
@@ -821,9 +941,10 @@
   title: "The Second Oldest Bug"
   raw_title: "[EN] The Second Oldest Bug / Jeremy Evans @jeremyevans0"
   event_name: "RubyKaigi 2023"
-  date: "2023-05-11"
+  date: "2023-05-12"
   published_at: "2023-06-09T15:22:30Z"
   language: "English"
+  track: "Small Hall #rubykaigiB"
   slides_url: "https://code.jeremyevans.net/presentations/rubykaigi2023/index.html"
   video_provider: "youtube"
   video_id: "y_1iqQOkv1E"
@@ -838,9 +959,10 @@
   title: "Eliminating ReDoS with Ruby 3.2"
   raw_title: "[JA] Eliminating ReDoS with Ruby 3.2 / Takashi Yoneuchi @lmt_swallow"
   event_name: "RubyKaigi 2023"
-  date: "2023-05-11"
+  date: "2023-05-12"
   published_at: "2023-06-09T15:22:30Z"
   language: "Japanese"
+  track: "Open Studio #rubykaigiC"
   slides_url: "https://speakerdeck.com/lmt_swallow/eliminating-redos-with-ruby-3-dot-2"
   video_provider: "youtube"
   video_id: "CEvSx1D3dFQ"
@@ -862,9 +984,10 @@
   raw_title: "[EN][Keynote] Optimizing YJIT’s Performance, from Inception to Production / @maximecb"
   kind: "keynote"
   event_name: "RubyKaigi 2023"
-  date: "2023-05-11"
+  date: "2023-05-12"
   published_at: "2023-06-09T15:22:30Z"
   language: "English"
+  track: "Large Hall #rubykaigiA"
   slides_url: "https://docs.google.com/presentation/d/1d6o1ChSKLDwcu_ghVKlnjtwi6rb3cBEwk-QOEEoAT4s/present"
   video_provider: "youtube"
   video_id: "X0JRhh8w_4I"
@@ -879,33 +1002,17 @@
   speakers:
     - Maxime Chevalier-Boisvert
 
-- id: "soutaro-matsumoto-rubykaigi-2023"
-  title: "Keynote: Parsing RBS"
-  raw_title: "[EN][Keynote] Parsing RBS / Soutaro Matsumoto @soutaro"
-  kind: "keynote"
-  event_name: "RubyKaigi 2023"
-  date: "2023-05-11"
-  published_at: "2023-06-09T15:22:30Z"
-  language: "English"
-  video_provider: "youtube"
-  video_id: "3qPUy4t7QHE"
-  description: |-
-    Development of advanced IDE features requires parsing broken source code because writing something in editors usually causes intermediate – syntactically incorrect states. This is not only for Ruby code, but also for RBS type definitions.
-
-    In this talk, I will introduce my error tolerant parser and the tricks that generate better syntax trees from incorrect RBS source code.
-
-    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/soutaro.html
-  speakers:
-    - Soutaro Matsumoto
+## Day 3
 
 - id: "ruby-committers-rubykaigi-2023"
   title: "Ruby Committers and The World"
   raw_title: "[EN] Ruby Committers and The World / CRuby Committers @rubylangorg"
   kind: "q_and_a"
   event_name: "RubyKaigi 2023"
-  date: "2023-05-11"
+  date: "2023-05-13"
   published_at: "2023-06-09T15:23:25Z"
   language: "English"
+  track: "Large Hall #rubykaigiA"
   video_provider: "youtube"
   video_id: "APa9R0v9GY0"
   description: |-
@@ -915,13 +1022,33 @@
   speakers:
     - Ruby Committers # TODO: list each person
 
+- id: "hasumi-hitoshi-rubykaigi-2023"
+  title: "Build Your Own SQLite3"
+  raw_title: "[JA] Build Your Own SQLite3 / Hitoshi HASUMI @hasumikin"
+  event_name: "RubyKaigi 2023"
+  date: "2023-05-13"
+  published_at: "2023-06-09T15:23:25Z"
+  language: "Japanese"
+  track: "Large Hall #rubykaigiA"
+  slides_url: "https://slide.rabbit-shocker.org/authors/hasumikin/RubyKaigi2023/"
+  video_provider: "youtube"
+  video_id: "Nypt-HP4NAI"
+  description: |-
+    SQLite3 runs on any OS or bare metal by providing a VFS functions layer.
+    This talk shows you a real example of an SQLite3 application for a DIY keyboard.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/hasumikin.html
+  speakers:
+    - HASUMI Hitoshi
+
 - id: "alexandre-terrasa-rubykaigi-2023"
   title: "Gradual typing for Ruby: comparing RBS and RBI/Sorbet"
   raw_title: "[EN] Gradual typing for Ruby: comparing RBS and RBI/Sorbet / Alexandre Terrasa @Morriar"
   event_name: "RubyKaigi 2023"
-  date: "2023-05-11"
+  date: "2023-05-13"
   published_at: "2023-06-09T15:23:25Z"
   language: "English"
+  track: "Small Hall #rubykaigiB"
   slides_url: "https://drive.google.com/file/d/1xgbM8Sa3cCJxC7P5rf3uNvJfRV2Co_MM"
   video_provider: "youtube"
   video_id: "GOC4BRJ-OPY"
@@ -940,9 +1067,10 @@
   title: "The Adventure of RedAmber - A data frame library in Ruby"
   raw_title: "[JA] The Adventure of RedAmber - A data frame library in Ruby / Hirokazu SUZUKI @heronshoes"
   event_name: "RubyKaigi 2023"
-  date: "2023-05-11"
+  date: "2023-05-13"
   published_at: "2023-06-09T15:23:25Z"
   language: "Japanese"
+  track: "Open Studio #rubykaigiC"
   slides_url: "https://speakerdeck.com/heronshoes/the-adventure-of-redamber-a-data-frame-library-in-ruby"
   video_provider: "youtube"
   video_id: "MZxDBDRUu6I"
@@ -959,9 +1087,10 @@
   title: "Ruby + ADBC - A single API between Ruby and DBs"
   raw_title: "[JA] Ruby + ADBC - A single API between Ruby and DBs / Sutou Kouhei @ktou"
   event_name: "RubyKaigi 2023"
-  date: "2023-05-11"
+  date: "2023-05-13"
   published_at: "2023-06-09T15:23:25Z"
   language: "Japanese"
+  track: "Large Hall #rubykaigiA"
   slides_url: "https://slide.rabbit-shocker.org/authors/kou/rubykaigi-2023/"
   video_provider: "youtube"
   video_id: "vwEiRTK32Ik"
@@ -980,9 +1109,10 @@
   title: "Ruby vs Kickboxer - the state of MRuby, JRuby and CRuby"
   raw_title: "[EN] Ruby vs Kickboxer - the state of MRuby, JRuby and CRuby / @saramic @selenasmall88"
   event_name: "RubyKaigi 2023"
-  date: "2023-05-11"
+  date: "2023-05-13"
   published_at: "2023-06-09T15:23:25Z"
   language: "English"
+  track: "Small Hall #rubykaigiB"
   slides_url: "https://github.com/failure-driven/kickboxer-vs-ruby/blob/main/slides/kickboxer-vs-ruby-slides-public.pdf"
   video_provider: "youtube"
   video_id: "tBuceJGDtmE"
@@ -998,9 +1128,10 @@
   title: "Code indexing: How language servers understand our code"
   raw_title: "[EN] Code indexing: How language servers understand our code / Vinicius Stock @vinistock"
   event_name: "RubyKaigi 2023"
-  date: "2023-05-11"
+  date: "2023-05-13"
   published_at: "2023-06-09T15:23:25Z"
   language: "English"
+  track: "Large Hall #rubykaigiA"
   slides_url: "https://speakerdeck.com/vinistock/code-indexing-how-language-servers-understand-our-code"
   video_provider: "youtube"
   video_id: "ks3tQojSJLU"
@@ -1017,9 +1148,10 @@
   title: "Find and Replace Code based on AST"
   raw_title: "[EN] Find and Replace Code based on AST / Richard Huang @flyerhzm"
   event_name: "RubyKaigi 2023"
-  date: "2023-05-11"
+  date: "2023-05-13"
   published_at: "2023-06-09T15:23:25Z"
   language: "English"
+  track: "Small Hall #rubykaigiB"
   slides_url: "https://speakerdeck.com/flyerhzm/find-and-replace-code-based-on-ast"
   video_provider: "youtube"
   video_id: "zqA0vfKXYsk"
@@ -1038,9 +1170,10 @@
   title: "Load gem from browser"
   raw_title: "[JA] Load gem from browser / SHIGERU NAKAJIMA @ledsun"
   event_name: "RubyKaigi 2023"
-  date: "2023-05-11"
+  date: "2023-05-13"
   published_at: "2023-06-09T15:23:25Z"
   language: "Japanese"
+  track: "Open Studio #rubykaigiC"
   slides_url: "https://speakerdeck.com/ledsun/load-gem-from-browsr"
   video_provider: "youtube"
   video_id: "bol8RnNVREg"
@@ -1055,9 +1188,10 @@
   title: "Ruby JIT Hacking Guide"
   raw_title: "[EN] Ruby JIT Hacking Guide / Takashi Kokubun @k0kubun"
   event_name: "RubyKaigi 2023"
-  date: "2023-05-11"
+  date: "2023-05-13"
   published_at: "2023-06-09T15:23:25Z"
   language: "English"
+  track: "Large Hall #rubykaigiA"
   slides_url: "https://speakerdeck.com/k0kubun/rubykaigi-2023"
   video_provider: "youtube"
   video_id: "mlcQ8DErvVs"
@@ -1074,9 +1208,10 @@
   title: "Unleashing the Power of Asynchronous HTTP with Ruby"
   raw_title: "[EN] Unleashing the Power of Asynchronous HTTP with Ruby / Samuel Williams @ioquatix"
   event_name: "RubyKaigi 2023"
-  date: "2023-05-11"
+  date: "2023-05-13"
   published_at: "2023-06-09T15:23:25Z"
   language: "English"
+  track: "Small Hall #rubykaigiB"
   slides_url: "https://github.com/ioquatix/presentations/blob/main/2023/Unleashing%20the%20Power%20of%20Asynchronous%20HTTP.pdf"
   video_provider: "youtube"
   video_id: "SKNhyqHmqUo"
@@ -1091,9 +1226,10 @@
   title: "Rethinking Strings"
   raw_title: "[EN] Rethinking Strings / Kevin Menard @nirvdrum"
   event_name: "RubyKaigi 2023"
-  date: "2023-05-11"
+  date: "2023-05-13"
   published_at: "2023-06-09T15:23:25Z"
   language: "English"
+  track: "Large Hall #rubykaigiA"
   slides_url: "https://speakerdeck.com/nirvdrum/rethinking-strings"
   video_provider: "youtube"
   video_id: "a1xvhB8jndQ"
@@ -1110,9 +1246,10 @@
   title: "Let's write RBS!"
   raw_title: "[EN] Let's write RBS! / Masataka Kuwabara @p_ck_"
   event_name: "RubyKaigi 2023"
-  date: "2023-05-11"
+  date: "2023-05-13"
   published_at: "2023-06-09T15:23:25Z"
   language: "English"
+  track: "Small Hall #rubykaigiB"
   slides_url: "https://speakerdeck.com/pocke/lets-write-rbs"
   video_provider: "youtube"
   video_id: "ngoXe-6BCXU"
@@ -1124,41 +1261,22 @@
   speakers:
     - Masataka Kuwabara
 
-- id: "hasumi-hitoshi-rubykaigi-2023"
-  title: "Build Your Own SQLite3"
-  raw_title: "[JA] Build Your Own SQLite3 / Hitoshi HASUMI @hasumikin"
+- id: "soutaro-matsumoto-rubykaigi-2023"
+  title: "Keynote: Parsing RBS"
+  raw_title: "[EN][Keynote] Parsing RBS / Soutaro Matsumoto @soutaro"
+  kind: "keynote"
   event_name: "RubyKaigi 2023"
-  date: "2023-05-11"
-  published_at: "2023-06-09T15:23:25Z"
-  language: "Japanese"
-  slides_url: "https://slide.rabbit-shocker.org/authors/hasumikin/RubyKaigi2023/"
+  date: "2023-05-13"
+  published_at: "2023-06-09T15:22:30Z"
+  language: "English"
+  track: "Large Hall #rubykaigiA"
   video_provider: "youtube"
-  video_id: "Nypt-HP4NAI"
+  video_id: "3qPUy4t7QHE"
   description: |-
-    SQLite3 runs on any OS or bare metal by providing a VFS functions layer.
-    This talk shows you a real example of an SQLite3 application for a DIY keyboard.
+    Development of advanced IDE features requires parsing broken source code because writing something in editors usually causes intermediate – syntactically incorrect states. This is not only for Ruby code, but also for RBS type definitions.
 
-    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/hasumikin.html
+    In this talk, I will introduce my error tolerant parser and the tricks that generate better syntax trees from incorrect RBS source code.
+
+    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/soutaro.html
   speakers:
-    - HASUMI Hitoshi
-
-- id: "hiroshi-shibata-rubykaigi-2023"
-  title: "How resolve Gem dependencies in your code?"
-  raw_title: "[JA] How resolve Gem dependencies in your code? / Hiroshi SHIBATA @hsbt"
-  event_name: "RubyKaigi 2023"
-  date: "2023-05-11"
-  published_at: "2023-11-24T05:30:17Z"
-  language: "Japanese"
-  slides_url: "https://www.slideshare.net/hsbt/how-resolve-gem-dependencies-in-your-code"
-  video_provider: "youtube"
-  video_id: "NydwplWLuH0"
-  description: |-
-    I maintain the RubyGems, Bundler and the standard libraries of the Ruby language. I've finished to work that standard libraries promote to the default gems until Ruby 3.1. I've promote some gems like net-smtp, net-imap to the bundled gems. And we released rbs and debug gems as the bundled gems. So, we can provide the best developer experience at the release day.
-
-    On the other hands, the default gems and bundled gems have a lot of problems especially dependency resolution. I'll describe what are problems related default gems and bundled gems in maintainer's view. I'd like to get more feedback to Gemification for the future with this session.
-
-    In Ruby 3.2, Bundler 2.4 have new dependency resolver named PubGrub. RubyGems team have a plan to introduce this resolver for RubyGems. I describe the feature of dependency resolution of gem dependencies. Finaly, I introduce how RubyGems and Bundler resolve gem dependencies in your code with the default gems and bundled gems.
-
-    RubyKaigi 2023: https://rubykaigi.org/2023/presentations/hsbt.html
-  speakers:
-    - Hiroshi SHIBATA
+    - Soutaro Matsumoto
