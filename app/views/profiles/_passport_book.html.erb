@@ -1,0 +1,119 @@
+<%# locals: (user:) %>
+
+<% stamps = Stamp.for_user(user).select(&:has_event?).sort_by { |s| s.event&.start_date || Date.new(9999, 1, 1) } %>
+<% check_ins = user.passport_check_ins %>
+<% events = check_ins.map(&:event).uniq %>
+<% code = user.passports.first&.uid.to_s.upcase %>
+<% holder = user.name.to_s.upcase.gsub(/[^A-Z0-9]+/, "<") %>
+<% mrz_line1 = "P<RUBY<#{holder}".ljust(44, "<")[0, 44] %>
+<% mrz_line2 = "#{code.gsub(/[^A-Z0-9]/, "<")}<<<RUBYEMBASSY<<#{check_ins.size}ENTRIES".ljust(44, "<")[0, 44] %>
+<% countries = events.map(&:country_code).compact.uniq.size %>
+<% passport_nationality = user.country_code.presence %>
+<% stamp_pages = stamps.each_slice(2).to_a %>
+
+<div data-passport-book-target="overlay" class="passport-overlay fixed inset-0 z-[100] hidden items-center justify-center p-4" data-action="pointerdown->passport-book#backdropPointerdown click->passport-book#backdropClose">
+  <button type="button" aria-label="Close" class="absolute right-5 top-5 z-10 flex size-10 items-center justify-center rounded-full bg-white/10 text-white/80 transition hover:bg-white/20" data-action="passport-book#close">
+    <%= fa("xmark", class: "fill-current", size: :sm) %>
+  </button>
+
+  <button type="button" aria-label="Previous page" class="absolute left-2 top-1/2 z-10 hidden size-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white/70 transition hover:bg-white/20 sm:flex" data-action="passport-book#prev">
+    <%= fa("chevron-left", class: "fill-current") %>
+  </button>
+  <button type="button" aria-label="Next page" class="absolute right-2 top-1/2 z-10 hidden size-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white/70 transition hover:bg-white/20 sm:flex" data-action="passport-book#next">
+    <%= fa("chevron-right", class: "fill-current") %>
+  </button>
+
+  <div data-passport-book-target="stage" class="passport-stage relative">
+    <div data-passport-book-target="shift" class="passport-book-shift">
+      <div data-passport-book-target="book" class="passport-book">
+        <div class="passport-page passport-page--cover passport-page--cover-front" data-density="hard"></div>
+
+        <div class="passport-page passport-page--data relative overflow-hidden">
+          <%= image_tag image_path("passport/emblem.png"), alt: "", class: "pointer-events-none absolute -right-5 -top-3 h-28 w-auto opacity-[0.07]" %>
+
+          <div class="flex h-full flex-col p-5 text-[#3a2236]">
+            <div class="flex items-center justify-between border-b border-[#7c1c2c]/30 pb-2">
+              <div class="text-[10px] font-bold uppercase tracking-[0.25em] text-[#7c1c2c]">Ruby Passport</div>
+              <%= image_tag image_path("passport/emblem.png"), alt: "", class: "h-5 w-auto" %>
+            </div>
+
+            <div class="mt-4 flex gap-4">
+              <div class="h-28 w-24 flex-shrink-0 overflow-hidden rounded-sm border-2 border-[#7c1c2c] bg-white">
+                <%= image_tag user.avatar_url(size: 240), alt: user.name, class: "h-full w-full object-cover" %>
+              </div>
+
+              <div class="flex min-w-0 flex-1 flex-col justify-center gap-2">
+                <div>
+                  <div class="text-[7px] font-bold uppercase tracking-[0.15em] text-[#7c1c2c]/60">Surname / Given names</div>
+                  <div class="passport-ink truncate text-xl leading-tight"><%= user.name %></div>
+                </div>
+
+                <div>
+                  <div class="text-[7px] font-bold uppercase tracking-[0.15em] text-[#7c1c2c]/60">Passport No.</div>
+                  <div class="passport-ink text-base leading-tight"><%= code.presence || "—" %></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 grid grid-cols-2 gap-x-4 gap-y-2.5">
+              <div>
+                <div class="text-[7px] font-bold uppercase tracking-[0.15em] text-[#7c1c2c]/60">Nationality</div>
+                <div class="passport-ink border-b border-[#7c1c2c]/20 text-sm leading-tight"><%= passport_nationality || "—" %></div>
+              </div>
+
+              <div>
+                <div class="text-[7px] font-bold uppercase tracking-[0.15em] text-[#7c1c2c]/60">Member since</div>
+                <div class="passport-ink border-b border-[#7c1c2c]/20 text-sm leading-tight"><%= user.created_at.strftime("%b %Y") %></div>
+              </div>
+
+              <div>
+                <div class="text-[7px] font-bold uppercase tracking-[0.15em] text-[#7c1c2c]/60">Stamps</div>
+                <div class="passport-ink border-b border-[#7c1c2c]/20 text-sm leading-tight"><%= stamps.size %></div>
+              </div>
+
+              <div>
+                <div class="text-[7px] font-bold uppercase tracking-[0.15em] text-[#7c1c2c]/60">Countries</div>
+                <div class="passport-ink border-b border-[#7c1c2c]/20 text-sm leading-tight"><%= countries %></div>
+              </div>
+            </div>
+
+            <div class="mt-3">
+              <div class="text-[7px] font-bold uppercase tracking-[0.15em] text-[#7c1c2c]/60">Signature</div>
+              <div class="passport-ink text-2xl leading-tight"><%= user.name %></div>
+            </div>
+
+            <div class="mt-auto rounded-sm bg-white/50 px-2 py-1">
+              <pre class="overflow-hidden whitespace-pre font-mono text-[7px] leading-tight tracking-[0.1em] text-[#3a2a1a]"><%= mrz_line1 %>
+  <%= mrz_line2 %></pre>
+            </div>
+          </div>
+        </div>
+
+        <% grid_pages = stamp_pages.dup %>
+        <% grid_pages << [] if grid_pages.size.even? %>
+
+        <% grid_pages.each_with_index do |page_stamps, i| %>
+          <% right_page = i.even? %>
+
+          <div class="passport-page <%= right_page ? "passport-page--stamps" : "passport-page--stamps-left" %>">
+            <div class="grid h-full grid-cols-1 content-center justify-items-center gap-12 px-12 pt-14 pb-20">
+              <% page_stamps.each do |stamp| %>
+                <% gx = rand(0..100) %>
+                <% gy = rand(0..100) %>
+                <% gsz = rand(120..200) %>
+
+                <div class="passport-stamp-rough aspect-square w-[62%]" style="-webkit-mask-position: <%= gx %>% <%= gy %>%; mask-position: <%= gx %>% <%= gy %>%; -webkit-mask-size: <%= gsz %>%; mask-size: <%= gsz %>%;">
+                  <%= ui_stamp(stamp, size: :full, rotate: true, zoom_effect: true) %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+
+        <div class="passport-page passport-page--cover passport-page--cover-back" data-density="hard"></div>
+      </div>
+    </div>
+
+    <div class="mt-4 text-center text-[11px] uppercase tracking-[0.25em] text-white/40">Drag or use ← → to turn pages</div>
+  </div>
+</div>
