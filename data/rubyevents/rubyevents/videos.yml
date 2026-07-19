@@ -1,153 +1,19 @@
-# Ruby talks at Non-Ruby events
----
-- id: "nick-schwaderer-future-sync-2019"
-  title: "Preparing for a Natural Disaster Using Bots"
-  raw_title: "Preparing for a Natural Disaster Using Bots"
-  event_name: "Future Sync 2019"
-  date: "2019-06-15"
-  published_at: "2019-06-15T06:45:02Z"
+- id: "ezra-zygmuntowicz-google-tech-talks"
+  title: "Merb, Rubinius and the Engine Yard Stack"
+  raw_title: "Merb, Rubinius and the Engine Yard Stack"
+  event_name: "Google Tech Talks"
+  date: "2008-10-20"
+  published_at: "2008-10-21T18:36:03Z"
   video_provider: "youtube"
-  video_id: "hSwtA-WmAcQ"
+  video_id: "TcMklv40YMY"
   description: |-
-    Nick discusses the use of Bots when prepping for a natural disaster.
+    In this talk we will explore a few of the open source projects we work on here at Engine Yard. I will give a detailed overview of the Merb web framework and what it brings to the table. We will also discuss Rubinius, an alternate ruby VM based on SmallTalk 80 blue book that also uses LLVM for low level optimizations. We will also explore the 'stack' we are working on at EY which includes our own variant of Gentoo linux as well as a full stack of software dedicated to running ruby applications as efficiently as possible.
+
+    Merb, like Ruby on Rails is an MVC framework. Unlike Rails, Merb is ORM-agnostic, JavaScript library agnostic, and template language agnostic, preferring plugins that add in support for a particular feature rather than trying to produce a monolithic library with everything in the core. While trying to keep the core as minimal and clean as possible, this hasnt meant a sacrifice of features. Merb has a very comprehensive set of features, which are continually improving.
+
+    Rubinius is a project to develop the next generation virtual machine for the Ruby programming language, drawing on the best virtual machine research and technology of the last 30 years. It implements the core libraries in Ruby, making a system easily accessible for development and extension. Rubinius is also an excellent platform for experimenting with cutting-edge technology like software transactional memory.
   speakers:
-    - Nick Schwaderer
-
-- id: "nick-schwaderer-software-cornwall-2019"
-  title: "Preparing for a Natural Disaster Using Bots"
-  raw_title: "Preparing for a Natural Disaster Using Bots"
-  event_name: "Software Cornwall 2019"
-  date: "2019-03-28"
-  published_at: "2019-03-28T09:00:07Z"
-  video_provider: "youtube"
-  video_id: "WCRfOcYf6tI"
-  description: |-
-    Nick discusses the use of Bots when prepping for a natural disaster.
-  speakers:
-    - Nick Schwaderer
-
-- id: "andrew-atkinson-posette-2024"
-  title: "SaaS on Rails on PostgreSQL"
-  raw_title: "SaaS on Rails on PostgreSQL"
-  location: "online"
-  event_name: "Posette 2024"
-  date: "2024-06-11"
-  published_at: "2024-06-13T11:53:35Z"
-  video_provider: "youtube"
-  video_id: "RwXJ4s2pw1A"
-  description: |-
-    Video of a conference talk about Saas on Rails on PostgreSQL presented by Andrew Atkinson at POSETTE: An Event for Postgres 2024. In this talk attendees will learn how Ruby on Rails and PostgreSQL can be used to create scalable SaaS applications, focusing on schema and query design, and leveraging database capabilities. We’ll define SaaS concepts, B2B, B2C, and multi-tenancy. Although Rails doesn't natively support SaaS or multi-tenancy, solutions like Bullet Train and Jumpstart Rails can be used for common SaaS needs. Next we'll cover database designs from the Apartment and actsastenant gems which support multi-tenancy concepts, and connect their designs to Citus's row and schema sharding capabilities from version 12.0. We’ll also cover PostgreSQL's LIST partitioning and how to use it for efficient detachment of unneeded customer data. We'll cover the basics of leveraging Rails 6.1's Horizontal Sharding for database-per-tenant designs. Besides the benefits for each tool, limitations will be described so that attendees can make informed choices. Attendees will leave with a broad survey of building multi-tenant SaaS applications, having reviewed application level designs, database designs, to help them put these into action in their own applications.
-
-    Andrew is a Staff Software Engineer who specializes in building high performance web applications using PostgreSQL and Ruby on Rails.
-
-    Andrew wrote a book "High Performance PostgreSQL for Rails," published by Pragmatic Programmers in 2024. Andrew has spoken previously at RailsConf, Sin City Ruby, PGDay Chicago, PGConf NYC, and RubyConf Argentina.
-
-    Chapters:
-    00:00 - Intro
-    00:39 - Overview of the presentation
-    01:10 - Definition of terms
-    05:36 - Adding multi-tenancy to Rideshare application
-    12:55 - Scaling beyond a single PostgreSQL instance
-    14:27 - Multi-Tenancy and Sharding with Active Record
-    17:02 - Citus and Sharding
-    22:52 - Wrap Up and Advice
-  speakers:
-    - Andrew Atkinson
-
-- id: "vladimir-dementyev-wasmcon-2024"
-  title: "Lightning Talk: From Server to Client: Ruby on Rails on WebAssembly"
-  raw_title: "Lightning Talk: From Server to Client: Ruby on Rails on WebAssembly - Vladimir Dementyev"
-  location: "Salt Lake City, UT"
-  kind: "lightning_talk"
-  event_name: "WasmCon 2024"
-  date: "2024-09-10"
-  published_at: "2024-11-18T20:26:49Z"
-  video_provider: "youtube"
-  video_id: "z_iWZrC3rtQ"
-  description: |-
-    Ruby on Rails is a famous “batteries included” framework for the rapid development of web applications. Its full-stack promise comes in a server-oriented, or HTML-over-the-Wire flavor: a server oversees everything from database interactions to your application UI/UX. And whenever there is a server involved, the network and its unpredictability come into play. No matter how much you enjoy developing with Rails, it would be hard to achieve the same level of user experience as with client-side and especially local-first frameworks. And here comes Wasm. With the help of WebAssembly, we can do a radical shift—bring the Rails application right into your browser, and make it local-first! In my talk, I want to discuss the challenges of making a classic web framework Wasm compatible, the techniques we can use to run server-first applications in the browsers and what are the use cases.
-  speakers:
-    - Vladimir Dementyev
-
-- id: "irina-nazarova-viteconf-2024"
-  title: "Using Vite Ruby"
-  raw_title: "Irina Nazarova | Using Vite Ruby | ViteConf 2024"
-  location: "online"
-  event_name: "ViteConf 2024"
-  date: "2024-10-03"
-  published_at: "2024-11-05T09:29:26Z"
-  slides_url: "https://speakerdeck.com/irinanazarova/using-vite-ruby-vite-conf-2024"
-  video_provider: "youtube"
-  video_id: "vIxQ6u9pHaw"
-  description: |-
-    Let's talk about the depth of the asset pipeline problem for the Ruby on Rails community and the role of Vite and Vite Ruby. I'm also sharing feedback and quotes from the teams using Vite Ruby: why they chose it and what's missing.
-
-    https://ViteConf.org hosted by https://StackBlitz.com
-  speakers:
-    - Irina Nazarova
-
-- id: "okura-masafumi-burikaigi-2024"
-  title: "Writing documentation can be fun with plugin system"
-  raw_title: "Writing documentation can be fun with plugin system"
-  location: "Toyama, Japan"
-  event_name: "BuriKaigi 2024"
-  date: "2024-07-27"
-  slides_url: "https://speakerdeck.com/okuramasafumi/writing-documentation-can-be-fun-with-plugin-system"
-  video_provider: "not_recorded"
-  video_id: "okura-masafumi-burikaigi-2024"
-  description: |-
-    https://burikaigi.dev/2024/speakers/004/
-    https://fortee.jp/burikaigi-2025/proposal/03ac7594-fce1-4dad-9dd0-c37649127f90
-  speakers:
-    - OKURA Masafumi
-
-- id: "charles-nutter-carolina-code-conference-2023"
-  title: "Bringing Ruby to the JVM: Making the Impossible Possible"
-  raw_title: "Charles Nutter - Bringing Ruby to the JVM: Making the Impossible Possible // Carolina Code Conf 2023"
-  location: "Greenville, SC"
-  event_name: "Carolina Code Conference 2023"
-  date: "2023-08-19"
-  published_at: "2023-09-04T12:15:16Z"
-  video_provider: "youtube"
-  video_id: "pzm6I4liJlg"
-  description: |-
-    Over the past 18 years, the JRuby team has worked to bring Ruby to the JVM, defying impossible challenges and building the most successful alternative Ruby implementation in the world. Today, JRuby is actively developed and deployed at thousands of Ruby and Java shops around the world... but how did we get here? This talk provides a retrospective of the JRuby project, with examples of modern JRuby usage along the way.
-
-    Presented on August 19, 2023 at the Carolina Code Conference in Greenville, SC
-
-    https://carolina.codes
-  speakers:
-    - Charles Nutter
-
-- id: "https://push.cx/talks/kcdc2016/Rails-Database-Corruption-Peter-Bhat-Harkins-KCDC-2016.mp4"
-  title: "Rails Database Corruption"
-  raw_title: "Rails Database Corruption"
-  event_name: "Kansas City Developer Conference 2016"
-  date: "2016-06-22"
-  published_at: "2016-06-22"
-  slides_url: "https://push.cx/talks/kcdc2016/Rails%20Database%20Corruption%20-%20Peter%20Bhat%20Harkins.pdf"
-  video_provider: "mp4"
-  video_id: "https://push.cx/talks/kcdc2016/Rails-Database-Corruption-Peter-Bhat-Harkins-KCDC-2016.mp4"
-  description: |-
-    Almost every Rails database contains records that won't pass their model validations, leading to "can't happen" bugs months or years later. This talk introduces a gem that detects unsafe practices and lurking corrupt data. Learn to recognize and prevent five six ways data becomes corrupt, and maybe replace ActiveRecord validations entirely.
-
-    https://push.cx/talks/kcdc2016
-  speakers:
-    - Peter Bhat Harkins
-
-- id: "henning-koch-full-stack-hour-by-makandra"
-  title: "Fixing Flaky E2E Tests"
-  raw_title: "Fixing Flaky E2E Tests"
-  location: "online"
-  event_name: "Full Stack Hour by makandra"
-  date: "2023-12-07"
-  published_at: "2023-12-07T13:03:05Z"
-  video_provider: "youtube"
-  video_id: "LaCwiFDm2Vs"
-  description: |-
-    Flaky tests can lead to unreliability in software development and negatively impact the quality of test results. In this video, we'll show you how to prevent flaky tests.
-  speakers:
-    - Henning Koch
+    - Ezra Zygmuntowicz
 
 - id: "jim-weirich-cincycocoadev-meetup-april-2013"
   title: "RubyMotion"
@@ -173,103 +39,48 @@
       type: "repo"
       url: "https://github.com/captproton/jim-weirich-rubymotion-intro"
 
-- id: "ezra-zygmuntowicz-google-tech-talks"
-  title: "Merb, Rubinius and the Engine Yard Stack"
-  raw_title: "Merb, Rubinius and the Engine Yard Stack"
-  event_name: "Google Tech Talks"
-  date: "2008-10-20"
-  published_at: "2008-10-21T18:36:03Z"
-  video_provider: "youtube"
-  video_id: "TcMklv40YMY"
+- id: "https://push.cx/talks/kcdc2016/Rails-Database-Corruption-Peter-Bhat-Harkins-KCDC-2016.mp4"
+  title: "Rails Database Corruption"
+  raw_title: "Rails Database Corruption"
+  event_name: "Kansas City Developer Conference 2016"
+  date: "2016-06-22"
+  published_at: "2016-06-22"
+  slides_url: "https://push.cx/talks/kcdc2016/Rails%20Database%20Corruption%20-%20Peter%20Bhat%20Harkins.pdf"
+  video_provider: "mp4"
+  video_id: "https://push.cx/talks/kcdc2016/Rails-Database-Corruption-Peter-Bhat-Harkins-KCDC-2016.mp4"
   description: |-
-    In this talk we will explore a few of the open source projects we work on here at Engine Yard. I will give a detailed overview of the Merb web framework and what it brings to the table. We will also discuss Rubinius, an alternate ruby VM based on SmallTalk 80 blue book that also uses LLVM for low level optimizations. We will also explore the 'stack' we are working on at EY which includes our own variant of Gentoo linux as well as a full stack of software dedicated to running ruby applications as efficiently as possible.
+    Almost every Rails database contains records that won't pass their model validations, leading to "can't happen" bugs months or years later. This talk introduces a gem that detects unsafe practices and lurking corrupt data. Learn to recognize and prevent five six ways data becomes corrupt, and maybe replace ActiveRecord validations entirely.
 
-    Merb, like Ruby on Rails is an MVC framework. Unlike Rails, Merb is ORM-agnostic, JavaScript library agnostic, and template language agnostic, preferring plugins that add in support for a particular feature rather than trying to produce a monolithic library with everything in the core. While trying to keep the core as minimal and clean as possible, this hasnt meant a sacrifice of features. Merb has a very comprehensive set of features, which are continually improving.
-
-    Rubinius is a project to develop the next generation virtual machine for the Ruby programming language, drawing on the best virtual machine research and technology of the last 30 years. It implements the core libraries in Ruby, making a system easily accessible for development and extension. Rubinius is also an excellent platform for experimenting with cutting-edge technology like software transactional memory.
+    https://push.cx/talks/kcdc2016
   speakers:
-    - Ezra Zygmuntowicz
+    - Peter Bhat Harkins
 
-- id: "irina-nazarova-open-core-summit-2023"
-  title: "Wildest Dreams of Making Profit on Open Source"
-  raw_title: "Irina Nazarova at the Open Core Summit 2023: Wildest Dreams of Making Profit on Open Source"
-  location: "San Francisco, CA"
-  event_name: "Open Core Summit 2023"
-  date: "2023-12-07"
-  published_at: "2024-01-03T18:20:48Z"
+- id: "nick-schwaderer-software-cornwall-2019"
+  title: "Preparing for a Natural Disaster Using Bots"
+  raw_title: "Preparing for a Natural Disaster Using Bots"
+  event_name: "Software Cornwall 2019"
+  date: "2019-03-28"
+  published_at: "2019-03-28T09:00:07Z"
   video_provider: "youtube"
-  video_id: "tfQghAdUUtY"
+  video_id: "WCRfOcYf6tI"
   description: |-
-    Irina Nazarova, CEO at Evil Martians, gave a talk at the Open Core Summit in San Francisco on December 7, 2023. The topic is how to recognize and overcome the fundamental problem in the business of open source: the conflict between the open and the commercial mindsets.
+    Nick discusses the use of Bots when prepping for a natural disaster.
   speakers:
-    - Irina Nazarova
+    - Nick Schwaderer
 
-- id: "maxime-chevalier-boisvert-splash-2023"
-  title: "Evaluating YJIT's Performance in a Production Context: A Pragmatic Approach"
-  raw_title: "Evaluration YJIT's Performance in a Production Context: A Pragmatic Approach"
-  location: "Cascais, Portugal"
-  event_name: "SPLASH 2023"
-  date: "2023-10-22"
-  time: "11:00 - 11:22"
-  published_at: "2024-02-15T16:35:01Z"
+# Ruby talks at Non-Ruby events
+- id: "nick-schwaderer-future-sync-2019"
+  title: "Preparing for a Natural Disaster Using Bots"
+  raw_title: "Preparing for a Natural Disaster Using Bots"
+  event_name: "Future Sync 2019"
+  date: "2019-06-15"
+  published_at: "2019-06-15T06:45:02Z"
   video_provider: "youtube"
-  video_id: "pVRmPZcNUhc"
+  video_id: "hSwtA-WmAcQ"
   description: |-
-    Ruby is a dynamically-typed programming language with a large breadth of features which has grown in popularity with the rise of the modern web, and remains at the core of the implementation of widely-used online platforms such as Shopify, GitHub, Discourse, and Mastodon.
-
-    There have been many attempts to integrate JIT compilation into Ruby implementations, but until recently, despite impressive performance on benchmarks, none had seen widespread adoption. This has changed with the arrival of YJIT, a new JIT compiler based on a Lazy Basic Block Versioning (LBBV) architecture which has recently been upstreamed into CRuby, and has since seen multiple large-scale production deployments.
-
-    This paper extends on previous work on YJIT and takes a pragmatic approach towards evaluating YJIT's performance in a production context. We evaluate and compare its performance on benchmarks as well as a large-scale real-world production deployment, and we look not only at peak performance, but also at memory usage and warm-up time.
-
-    On all of our benchmarks, YJIT is able to consistently outperform the CRuby interpreter by a wide margin. It offers consistent speedups, full compatibility with existing Ruby code, much less memory overhead and faster warm-up compared to JRuby and TruffleRuby.
-
-    We also show that YJIT is able to deliver significant speedups on a real-world deployment on Shopify's worldwide StoreFront Renderer infrastructure, an application for which it is currently the only viable JIT compiler.
-
-    https://2023.splashcon.org/details/mplr-2023-papers/7/Evaluating-YJIT-s-Performance-in-a-Production-Context-A-Pragmatic-Approach
+    Nick discusses the use of Bots when prepping for a natural disaster.
   speakers:
-    - Maxime Chevalier-Boisvert
-
-- id: "maxime-chevalier-boisvert-splash-2021"
-  title: "YJIT: A Basic Block Versioning JIT Compiler for CRuby"
-  raw_title: "YJIT: A Basic Block Versioning JIT Compiler for CRuby"
-  location: "Chicago, IL"
-  event_name: "SPLASH 2021"
-  date: "2021-10-19"
-  time: "14:50 - 15:10"
-  published_at: "2021-11-10T17:00:24Z"
-  track: "VMIL"
-  video_provider: "youtube"
-  video_id: "PFb5wNj2ztM"
-  description: |-
-    Ruby is a dynamically typed programming language with a large breadth of features which has grown in popularity with the rise of the modern web, and remains at the core of the implementation of many widely-used websites.
-
-    CRuby, the default implementation of the language, features a JIT compiler known as MJIT, but developers often do not enable it in production environments, because it does not always yield performance improvements on real-world software. Attempts to independently reimplement the Ruby language, such as JRuby and TruffleRuby have shown impressive performance results on benchmarks, but often lag behind CRuby when it comes to supporting new additions to the language, which limits their adoption.
-
-    We introduce YJIT, a new JIT compiler built inside CRuby based on a Lazy Basic Block Versioning (LBBV) architecture. We show that while our compiler does not match the peak performance of TruffleRuby, it offers near-100% compatibility with existing Ruby code, impressively fast warmup, and speedups from 15% to 19% on sizeable benchmarks based on real-world software.
-
-    https://2021.splashcon.org/details/vmil-2021-papers/1/YJIT-A-Basic-Block-Versioning-JIT-Compiler-for-CRuby
-  speakers:
-    - Maxime Chevalier-Boisvert
-
-- id: "takashi-kokubun-splash-2025"
-  title: "ZJIT: Building a New JIT Compiler for Ruby"
-  raw_title: "[REBASE'25] ZJIT: Building a New JIT Compiler for Ruby"
-  location: "Singapore"
-  event_name: "SPLASH 2025"
-  date: "2025-10-18"
-  time: "14:55 - 15:30"
-  published_at: "2025-12-05T13:32:02Z"
-  track: "REBASE"
-  video_provider: "youtube"
-  video_id: "zPrSG2e10Ig"
-  description: |-
-    The Ruby programming language has achieved a 2-3x speedup in real-world application benchmarks through its JIT compiler, YJIT. For the upcoming Ruby 3.5 release, we are developing a new JIT compiler, ZJIT.
-
-    In this talk, we’ll discuss the challenges of speeding up this highly dynamic programming language and how we are altering the compiler design to address these challenges more effectively.
-
-    https://conf.researchr.org/details/icfp-splash-2025/rebase-2025-papers/1/ZJIT-Building-a-New-JIT-Compiler-for-Ruby
-  speakers:
-    - Takashi Kokubun
+    - Nick Schwaderer
 
 - id: "milod-kazerounian-pldi-2019"
   title: "Type-Level Computations for Ruby Libraries"
@@ -305,6 +116,174 @@
   speakers:
     - Milod Kazerounian
 
+- id: "maxime-chevalier-boisvert-splash-2021"
+  title: "YJIT: A Basic Block Versioning JIT Compiler for CRuby"
+  raw_title: "YJIT: A Basic Block Versioning JIT Compiler for CRuby"
+  location: "Chicago, IL"
+  event_name: "SPLASH 2021"
+  date: "2021-10-19"
+  time: "14:50 - 15:10"
+  published_at: "2021-11-10T17:00:24Z"
+  track: "VMIL"
+  video_provider: "youtube"
+  video_id: "PFb5wNj2ztM"
+  description: |-
+    Ruby is a dynamically typed programming language with a large breadth of features which has grown in popularity with the rise of the modern web, and remains at the core of the implementation of many widely-used websites.
+
+    CRuby, the default implementation of the language, features a JIT compiler known as MJIT, but developers often do not enable it in production environments, because it does not always yield performance improvements on real-world software. Attempts to independently reimplement the Ruby language, such as JRuby and TruffleRuby have shown impressive performance results on benchmarks, but often lag behind CRuby when it comes to supporting new additions to the language, which limits their adoption.
+
+    We introduce YJIT, a new JIT compiler built inside CRuby based on a Lazy Basic Block Versioning (LBBV) architecture. We show that while our compiler does not match the peak performance of TruffleRuby, it offers near-100% compatibility with existing Ruby code, impressively fast warmup, and speedups from 15% to 19% on sizeable benchmarks based on real-world software.
+
+    https://2021.splashcon.org/details/vmil-2021-papers/1/YJIT-A-Basic-Block-Versioning-JIT-Compiler-for-CRuby
+  speakers:
+    - Maxime Chevalier-Boisvert
+
+- id: "charles-nutter-carolina-code-conference-2023"
+  title: "Bringing Ruby to the JVM: Making the Impossible Possible"
+  raw_title: "Charles Nutter - Bringing Ruby to the JVM: Making the Impossible Possible // Carolina Code Conf 2023"
+  location: "Greenville, SC"
+  event_name: "Carolina Code Conference 2023"
+  date: "2023-08-19"
+  published_at: "2023-09-04T12:15:16Z"
+  video_provider: "youtube"
+  video_id: "pzm6I4liJlg"
+  description: |-
+    Over the past 18 years, the JRuby team has worked to bring Ruby to the JVM, defying impossible challenges and building the most successful alternative Ruby implementation in the world. Today, JRuby is actively developed and deployed at thousands of Ruby and Java shops around the world... but how did we get here? This talk provides a retrospective of the JRuby project, with examples of modern JRuby usage along the way.
+
+    Presented on August 19, 2023 at the Carolina Code Conference in Greenville, SC
+
+    https://carolina.codes
+  speakers:
+    - Charles Nutter
+
+- id: "maxime-chevalier-boisvert-splash-2023"
+  title: "Evaluating YJIT's Performance in a Production Context: A Pragmatic Approach"
+  raw_title: "Evaluration YJIT's Performance in a Production Context: A Pragmatic Approach"
+  location: "Cascais, Portugal"
+  event_name: "SPLASH 2023"
+  date: "2023-10-22"
+  time: "11:00 - 11:22"
+  published_at: "2024-02-15T16:35:01Z"
+  video_provider: "youtube"
+  video_id: "pVRmPZcNUhc"
+  description: |-
+    Ruby is a dynamically-typed programming language with a large breadth of features which has grown in popularity with the rise of the modern web, and remains at the core of the implementation of widely-used online platforms such as Shopify, GitHub, Discourse, and Mastodon.
+
+    There have been many attempts to integrate JIT compilation into Ruby implementations, but until recently, despite impressive performance on benchmarks, none had seen widespread adoption. This has changed with the arrival of YJIT, a new JIT compiler based on a Lazy Basic Block Versioning (LBBV) architecture which has recently been upstreamed into CRuby, and has since seen multiple large-scale production deployments.
+
+    This paper extends on previous work on YJIT and takes a pragmatic approach towards evaluating YJIT's performance in a production context. We evaluate and compare its performance on benchmarks as well as a large-scale real-world production deployment, and we look not only at peak performance, but also at memory usage and warm-up time.
+
+    On all of our benchmarks, YJIT is able to consistently outperform the CRuby interpreter by a wide margin. It offers consistent speedups, full compatibility with existing Ruby code, much less memory overhead and faster warm-up compared to JRuby and TruffleRuby.
+
+    We also show that YJIT is able to deliver significant speedups on a real-world deployment on Shopify's worldwide StoreFront Renderer infrastructure, an application for which it is currently the only viable JIT compiler.
+
+    https://2023.splashcon.org/details/mplr-2023-papers/7/Evaluating-YJIT-s-Performance-in-a-Production-Context-A-Pragmatic-Approach
+  speakers:
+    - Maxime Chevalier-Boisvert
+
+- id: "henning-koch-full-stack-hour-by-makandra"
+  title: "Fixing Flaky E2E Tests"
+  raw_title: "Fixing Flaky E2E Tests"
+  location: "online"
+  event_name: "Full Stack Hour by makandra"
+  date: "2023-12-07"
+  published_at: "2023-12-07T13:03:05Z"
+  video_provider: "youtube"
+  video_id: "LaCwiFDm2Vs"
+  description: |-
+    Flaky tests can lead to unreliability in software development and negatively impact the quality of test results. In this video, we'll show you how to prevent flaky tests.
+  speakers:
+    - Henning Koch
+
+- id: "irina-nazarova-open-core-summit-2023"
+  title: "Wildest Dreams of Making Profit on Open Source"
+  raw_title: "Irina Nazarova at the Open Core Summit 2023: Wildest Dreams of Making Profit on Open Source"
+  location: "San Francisco, CA"
+  event_name: "Open Core Summit 2023"
+  date: "2023-12-07"
+  published_at: "2024-01-03T18:20:48Z"
+  video_provider: "youtube"
+  video_id: "tfQghAdUUtY"
+  description: |-
+    Irina Nazarova, CEO at Evil Martians, gave a talk at the Open Core Summit in San Francisco on December 7, 2023. The topic is how to recognize and overcome the fundamental problem in the business of open source: the conflict between the open and the commercial mindsets.
+  speakers:
+    - Irina Nazarova
+
+- id: "andrew-atkinson-posette-2024"
+  title: "SaaS on Rails on PostgreSQL"
+  raw_title: "SaaS on Rails on PostgreSQL"
+  location: "online"
+  event_name: "Posette 2024"
+  date: "2024-06-11"
+  published_at: "2024-06-13T11:53:35Z"
+  video_provider: "youtube"
+  video_id: "RwXJ4s2pw1A"
+  description: |-
+    Video of a conference talk about Saas on Rails on PostgreSQL presented by Andrew Atkinson at POSETTE: An Event for Postgres 2024. In this talk attendees will learn how Ruby on Rails and PostgreSQL can be used to create scalable SaaS applications, focusing on schema and query design, and leveraging database capabilities. We’ll define SaaS concepts, B2B, B2C, and multi-tenancy. Although Rails doesn't natively support SaaS or multi-tenancy, solutions like Bullet Train and Jumpstart Rails can be used for common SaaS needs. Next we'll cover database designs from the Apartment and actsastenant gems which support multi-tenancy concepts, and connect their designs to Citus's row and schema sharding capabilities from version 12.0. We’ll also cover PostgreSQL's LIST partitioning and how to use it for efficient detachment of unneeded customer data. We'll cover the basics of leveraging Rails 6.1's Horizontal Sharding for database-per-tenant designs. Besides the benefits for each tool, limitations will be described so that attendees can make informed choices. Attendees will leave with a broad survey of building multi-tenant SaaS applications, having reviewed application level designs, database designs, to help them put these into action in their own applications.
+
+    Andrew is a Staff Software Engineer who specializes in building high performance web applications using PostgreSQL and Ruby on Rails.
+
+    Andrew wrote a book "High Performance PostgreSQL for Rails," published by Pragmatic Programmers in 2024. Andrew has spoken previously at RailsConf, Sin City Ruby, PGDay Chicago, PGConf NYC, and RubyConf Argentina.
+
+    Chapters:
+    00:00 - Intro
+    00:39 - Overview of the presentation
+    01:10 - Definition of terms
+    05:36 - Adding multi-tenancy to Rideshare application
+    12:55 - Scaling beyond a single PostgreSQL instance
+    14:27 - Multi-Tenancy and Sharding with Active Record
+    17:02 - Citus and Sharding
+    22:52 - Wrap Up and Advice
+  speakers:
+    - Andrew Atkinson
+
+- id: "okura-masafumi-burikaigi-2024"
+  title: "Writing documentation can be fun with plugin system"
+  raw_title: "Writing documentation can be fun with plugin system"
+  location: "Toyama, Japan"
+  event_name: "BuriKaigi 2024"
+  date: "2024-07-27"
+  slides_url: "https://speakerdeck.com/okuramasafumi/writing-documentation-can-be-fun-with-plugin-system"
+  video_provider: "not_recorded"
+  video_id: "okura-masafumi-burikaigi-2024"
+  description: |-
+    https://burikaigi.dev/2024/speakers/004/
+    https://fortee.jp/burikaigi-2025/proposal/03ac7594-fce1-4dad-9dd0-c37649127f90
+  speakers:
+    - OKURA Masafumi
+
+- id: "vladimir-dementyev-wasmcon-2024"
+  title: "Lightning Talk: From Server to Client: Ruby on Rails on WebAssembly"
+  raw_title: "Lightning Talk: From Server to Client: Ruby on Rails on WebAssembly - Vladimir Dementyev"
+  location: "Salt Lake City, UT"
+  kind: "lightning_talk"
+  event_name: "WasmCon 2024"
+  date: "2024-09-10"
+  published_at: "2024-11-18T20:26:49Z"
+  video_provider: "youtube"
+  video_id: "z_iWZrC3rtQ"
+  description: |-
+    Ruby on Rails is a famous “batteries included” framework for the rapid development of web applications. Its full-stack promise comes in a server-oriented, or HTML-over-the-Wire flavor: a server oversees everything from database interactions to your application UI/UX. And whenever there is a server involved, the network and its unpredictability come into play. No matter how much you enjoy developing with Rails, it would be hard to achieve the same level of user experience as with client-side and especially local-first frameworks. And here comes Wasm. With the help of WebAssembly, we can do a radical shift—bring the Rails application right into your browser, and make it local-first! In my talk, I want to discuss the challenges of making a classic web framework Wasm compatible, the techniques we can use to run server-first applications in the browsers and what are the use cases.
+  speakers:
+    - Vladimir Dementyev
+
+- id: "irina-nazarova-viteconf-2024"
+  title: "Using Vite Ruby"
+  raw_title: "Irina Nazarova | Using Vite Ruby | ViteConf 2024"
+  location: "online"
+  event_name: "ViteConf 2024"
+  date: "2024-10-03"
+  published_at: "2024-11-05T09:29:26Z"
+  slides_url: "https://speakerdeck.com/irinanazarova/using-vite-ruby-vite-conf-2024"
+  video_provider: "youtube"
+  video_id: "vIxQ6u9pHaw"
+  description: |-
+    Let's talk about the depth of the asset pipeline problem for the Ruby on Rails community and the role of Vite and Vite Ruby. I'm also sharing feedback and quotes from the teams using Vite Ruby: why they chose it and what's missing.
+
+    https://ViteConf.org hosted by https://StackBlitz.com
+  speakers:
+    - Irina Nazarova
+
 - id: "kunshan-wang-ismm-2025"
   title: "Reworking Memory Management in CRuby: A Practitioner Report"
   raw_title: "Reworking Memory Management in CRuby: A Practitioner Report"
@@ -323,3 +302,23 @@
     https://conf.researchr.org/details/ismm-2025/ismm-2025-papers/8/Reworking-Memory-Management-in-CRuby-A-Practitioner-Report
   speakers:
     - Kunshan Wang
+
+- id: "takashi-kokubun-splash-2025"
+  title: "ZJIT: Building a New JIT Compiler for Ruby"
+  raw_title: "[REBASE'25] ZJIT: Building a New JIT Compiler for Ruby"
+  location: "Singapore"
+  event_name: "SPLASH 2025"
+  date: "2025-10-18"
+  time: "14:55 - 15:30"
+  published_at: "2025-12-05T13:32:02Z"
+  track: "REBASE"
+  video_provider: "youtube"
+  video_id: "zPrSG2e10Ig"
+  description: |-
+    The Ruby programming language has achieved a 2-3x speedup in real-world application benchmarks through its JIT compiler, YJIT. For the upcoming Ruby 3.5 release, we are developing a new JIT compiler, ZJIT.
+
+    In this talk, we’ll discuss the challenges of speeding up this highly dynamic programming language and how we are altering the compiler design to address these challenges more effectively.
+
+    https://conf.researchr.org/details/icfp-splash-2025/rebase-2025-papers/1/ZJIT-Building-a-New-JIT-Compiler-for-Ruby
+  speakers:
+    - Takashi Kokubun
