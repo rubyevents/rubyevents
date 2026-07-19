@@ -32,8 +32,8 @@ class TalkGenerator < Generators::EventBase
       "kind" => "lightning_talk"
     }.freeze
 
-    attr_accessor :event_slug, :event, :announced_at, :description, :original_title
-    attr_writer :id, :date, :language, :speakers, :title, :kind, :time, :existing_ids
+    attr_accessor :event_slug, :event, :announced_at, :description, :original_title, :time
+    attr_writer :id, :date, :language, :speakers, :title, :kind, :existing_ids
 
     def initialize(**attributes)
       attributes.each { |k, v| send("#{k}=", v) }
