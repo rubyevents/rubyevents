@@ -355,7 +355,7 @@ rules:
             - alternative_recordings
 
       - sort:
-          by: ".date"
+          by: ".date .time"
 
   - files: "data/speakers.yml"
     pipeline:
