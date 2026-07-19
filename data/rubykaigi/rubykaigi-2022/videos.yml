@@ -530,6 +530,32 @@
   speakers:
     - Ruby Committers # TODO: list each person
 
+- id: "packet-analysis-with-mruby-on-wireshark-druby-as-example-uncut-version-rubykaigi-2022"
+  title: "Packet analysis with mruby on Wireshark - dRuby as example (Uncut version)"
+  raw_title: "[JA][uncut]Packet analysis with mruby on Wireshark - dRuby as example - Misaki Shioi @coe401_"
+  event_name: "RubyKaigi 2022"
+  date: "2022-09-09"
+  published_at: "2022-11-04T05:17:21Z"
+  language: "Japanese"
+  track: "Middle Auditorium #rubykaigiB"
+  slides_url: "https://speakerdeck.com/coe401_/packet-analysis-with-mruby-on-wireshark-druby-as-example"
+  video_provider: "youtube"
+  video_id: "71oVELdmR8U"
+  description: |-
+    Wireshark is a very popular network traffic analyzer that supports not only many popular network protocols, but also custom protocols by adding an extension plugin called "dissector".'
+
+    Currently, Wireshark provides APIs to develop dissectors in Lua and C only. It’s a little disappointing for us Rubyists, we cannot write Ruby for developing Wireshark dissectors.
+
+    So I have created an extension for Wireshark that makes it possible to easily add dissector by writing a configuration file via Ruby DSL, allowing you to analyze any protocols.
+
+    It is accomplished by embedding mruby into Wireshark and wrapping Wireshark’s C API with Ruby.
+
+    This presentation will show its usage and implementation, and as an example, how to analyze dRuby (familiar to all Rubyists!) packets.
+
+    RubyKaigi 2022: https://rubykaigi.org/2022/presentations/coe401_.html
+  speakers:
+    - Misaki Shioi
+
 - id: "error_highlight-user-friendly-error-diagnostics-rubykaigi-2022"
   title: "error_highlight: user-friendly error diagnostics"
   raw_title: "[JA]error_highlight: user-friendly error diagnostics / Yusuke Endoh @mametter"
@@ -923,29 +949,3 @@
     RubyKaigi 2022: https://rubykaigi.org/2022/presentations/alanwusx.html
   speakers:
     - Alan Wu
-
-- id: "packet-analysis-with-mruby-on-wireshark-druby-as-example-uncut-version-rubykaigi-2022"
-  title: "Packet analysis with mruby on Wireshark - dRuby as example (Uncut version)"
-  raw_title: "[JA][uncut]Packet analysis with mruby on Wireshark - dRuby as example - Misaki Shioi @coe401_"
-  event_name: "RubyKaigi 2022"
-  date: "2022-09-09"
-  published_at: "2022-11-04T05:17:21Z"
-  language: "Japanese"
-  track: "Middle Auditorium #rubykaigiB"
-  slides_url: "https://speakerdeck.com/coe401_/packet-analysis-with-mruby-on-wireshark-druby-as-example"
-  video_provider: "youtube"
-  video_id: "71oVELdmR8U"
-  description: |-
-    Wireshark is a very popular network traffic analyzer that supports not only many popular network protocols, but also custom protocols by adding an extension plugin called "dissector".'
-
-    Currently, Wireshark provides APIs to develop dissectors in Lua and C only. It’s a little disappointing for us Rubyists, we cannot write Ruby for developing Wireshark dissectors.
-
-    So I have created an extension for Wireshark that makes it possible to easily add dissector by writing a configuration file via Ruby DSL, allowing you to analyze any protocols.
-
-    It is accomplished by embedding mruby into Wireshark and wrapping Wireshark’s C API with Ruby.
-
-    This presentation will show its usage and implementation, and as an example, how to analyze dRuby (familiar to all Rubyists!) packets.
-
-    RubyKaigi 2022: https://rubykaigi.org/2022/presentations/coe401_.html
-  speakers:
-    - Misaki Shioi

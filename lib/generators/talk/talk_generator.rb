@@ -5,18 +5,22 @@ require "generators/event_base"
 # Generator for creating a new talk entry in the videos.yml file of a specific event.
 class TalkGenerator < Generators::EventBase
   source_root File.expand_path("templates", __dir__)
+  desc "Add a new talk entry to the videos.yml file of a specific event."
 
   class_option :id, type: :string, desc: "ID of an existing talk to update. New talks always get a generated id, so omit this to append one.", required: false, group: "Fields"
-  class_option :title, type: :string, desc: "Title of the talk", group: "Fields"
-  class_option :original_title, type: :string, desc: "Original title in native language (e.g., Japanese)", required: false, group: "Fields"
+  class_option :title, type: :string, desc: VideoSchema.properties[:title][:description], group: "Fields"
   class_option :speakers, type: :array, desc: "Speaker names", group: "Fields"
-  class_option :description, type: :string, desc: "Description of the talk", group: "Fields"
+  class_option :description, type: :string, desc: VideoSchema.properties[:description][:description], group: "Fields"
   class_option :kind, type: :string, enum: Talk.kinds.keys, desc: "Type of talk (#{Talk.kinds.keys.to_sentence(last_word_connector: " or ")}). Inferred from the title when omitted.", group: "Fields"
-  class_option :language, type: :string, desc: "Language of the talk (e.g., 'English', 'Japanese')", group: "Fields"
+  class_option :announced_at, type: :string, desc: VideoSchema.properties[:announced_at][:description], required: false, group: "Fields"
 
-  # dates
-  class_option :date, type: :string, desc: "Date of the talk (YYYY-MM-DD)", required: false, group: "Fields"
-  class_option :announced_at, type: :string, desc: "Date when the talk was announced (YYYY-MM-DD)", required: false, group: "Fields"
+  # Language talks
+  class_option :language, type: :string, desc: VideoSchema.properties[:language][:description], group: "Fields"
+  class_option :original_title, type: :string, desc: VideoSchema.properties[:original_title][:description], required: false, group: "Fields"
+
+  # Scheduling
+  class_option :date, type: :string, desc: VideoSchema.properties[:date][:description], required: false, group: "Fields"
+  class_option :time, type: :string, desc: VideoSchema.properties[:time][:description], required: false, group: "Fields"
 
   # Options
   class_option :lightning_talks, type: :boolean, default: false, desc: "Add empty group of lightning talks", group: "Options"
@@ -28,7 +32,7 @@ class TalkGenerator < Generators::EventBase
       "kind" => "lightning_talk"
     }.freeze
 
-    attr_accessor :event_slug, :event, :announced_at, :description, :original_title
+    attr_accessor :event_slug, :event, :announced_at, :description, :original_title, :time
     attr_writer :id, :date, :language, :speakers, :title, :kind, :existing_ids
 
     def initialize(**attributes)
