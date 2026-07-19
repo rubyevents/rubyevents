@@ -5,6 +5,7 @@ require "generators/event_base"
 # Generator for creating a new involvement entry in the involvements.yml file of a specific event.
 class InvolvementsGenerator < Generators::EventBase
   source_root File.expand_path("templates", __dir__)
+  TOOL_DESC = "Create or update a new involvement entry in the involvements.yml file of a given event."
 
   class_option :name, type: :string, desc: "Role or involvement type (e.g., 'Organizer', 'Program Committee member')", required: true, group: "Fields"
   class_option :users, type: :array, desc: "Person names involved in this role", required: false, group: "Fields"

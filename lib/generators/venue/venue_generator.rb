@@ -4,6 +4,7 @@ require "generators/event_base"
 
 class VenueGenerator < Generators::EventBase
   source_root File.expand_path("templates", __dir__)
+  TOOL_DESC = "Create a venue.yml file for a given event and update the event.yml file with the venue's coordinates."
 
   class_option :name, type: :string, desc: "Venue name", group: "Fields"
   class_option :address, type: :string, desc: "Venue address", group: "Fields"
