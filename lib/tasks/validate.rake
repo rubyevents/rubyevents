@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "gum"
+require "open3"
 require "parallel"
 
 namespace :validate do
@@ -292,13 +293,10 @@ namespace :validate do
   def reject_git_ignored(files)
     return files if files.empty?
 
-    ignored = IO.popen(["git", "check-ignore", "--stdin"], "r+") do |io|
-      io.write(files.join("\n"))
-      io.close_write
-      io.read.split("\n")
-    end.to_set
+    output, status = Open3.capture2("git", "check-ignore", "--stdin", stdin_data: files.join("\n"))
+    return files unless [0, 1].include?(status.exitstatus)
 
-    files.reject { |file| ignored.include?(file.to_s) }
+    files - output.split("\n")
   rescue
     files
   end
