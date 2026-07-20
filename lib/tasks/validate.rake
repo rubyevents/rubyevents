@@ -289,9 +289,25 @@ namespace :validate do
     exit 1 unless validate_speakerdeck_urls
   end
 
+  def reject_git_ignored(files)
+    return files if files.empty?
+
+    ignored = IO.popen(["git", "check-ignore", "--stdin"], "r+") do |io|
+      io.write(files.join("\n"))
+      io.close_write
+      io.read.split("\n")
+    end.to_set
+
+    files.reject { |file| ignored.include?(file.to_s) }
+  rescue
+    files
+  end
+
   def validate_data_files
+    files = Dir.glob(Rails.root.join("data/**/*"), File::FNM_DOTMATCH).select { |file| File.file?(file) }
+
     validate_files(
-      files: Dir.glob(Rails.root.join("data/**/*"), File::FNM_DOTMATCH).select { |file| File.file?(file) },
+      files: reject_git_ignored(files),
       validators: [
         Static::Validators::ExpectedDataFiles
       ],
