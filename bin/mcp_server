@@ -44,8 +44,13 @@ class MCPServer
       tools[tool_name(class_name)] = tool_class
     end
 
-    ToolGeneration.generate_tools.each.with_object(discovered_tools) do |klass, tools|
-      tools[klass.name] = klass
+    # Load all the generators, create a tool class associated with each one and
+    # then add them to the tools hash
+    Rails::Generators.sorted_groups
+    generators = Generators::EventBase.descendants
+    tool_classes = ToolGeneration.generate_tools(generators)
+    tool_classes.each.with_object(discovered_tools) do |klass, tools|
+      tools[tool_name(klass.name)] = klass
     end
   end
 
