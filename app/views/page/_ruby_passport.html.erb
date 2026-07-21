@@ -6,7 +6,7 @@
       <div class="absolute inset-0 opacity-5 overflow-hidden rounded-2xl">
         <% Stamp.country_stamps.sample(20).each_with_index do |stamp, i| %>
           <div class="absolute" style="top: <%= rand(0..90) %>%; left: <%= rand(0..90) %>%; transform: rotate(<%= rand(-30..30) %>deg); opacity: 0.4;">
-            <%= image_tag image_path("stamps/#{stamp.file_path}"), class: "w-16 h-16", loading: "lazy" %>
+            <%= image_tag image_path("stamps/#{stamp.file_path}"), alt: stamp.name, class: "w-16 h-16", loading: "lazy" %>
           </div>
         <% end %>
       </div>

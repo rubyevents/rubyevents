@@ -14,7 +14,7 @@
         </div>
       </div>
     <% elsif organization.organization_image_for("avatar.webp") %>
-      <%= image_tag image_path(organization.avatar_image_path), class: "size-8 rounded border border-[#D9DFE3]", loading: "lazy" %>
+      <%= image_tag image_path(organization.avatar_image_path), alt: organization.name, class: "size-8 rounded border border-[#D9DFE3]", loading: "lazy" %>
     <% else %>
       <div class="avatar placeholder">
         <div class="size-8 rounded bg-gray-100 text-gray-600 border border-[#D9DFE3] flex items-center justify-center">

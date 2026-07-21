@@ -11,7 +11,7 @@
     <% end %>
   ">
   <% if organization.organization_image_for("banner.webp") %>
-    <%= image_tag image_path(organization.banner_image_path), class: "w-full md:container object-cover" %>
+    <%= image_tag image_path(organization.banner_image_path), alt: organization.name, class: "w-full md:container object-cover" %>
   <% end %>
 </div>
 

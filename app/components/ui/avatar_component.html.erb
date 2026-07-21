@@ -6,7 +6,7 @@
       <% else %>
         <span class="<%= text_size %> <%= "hidden" if show_custom_avatar? %>"><%= initials %></span>
         <% if show_custom_avatar? %>
-          <%= image_tag avatar_url_for_size, loading: "lazy", onerror: "this.previousElementSibling.classList.remove('hidden'); this.remove()" %>
+          <%= image_tag avatar_url_for_size, loading: "lazy", alt: "#{avatarable.name} avatar", onerror: "this.previousElementSibling.classList.remove('hidden'); this.remove()" %>
         <% end %>
       <% end %>
     </div>

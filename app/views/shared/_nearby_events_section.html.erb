@@ -33,7 +33,7 @@
             <div class="flex gap-4 items-start">
               <% if event.avatar_image_path %>
                 <div class="w-16 h-16 flex-shrink-0 rounded-lg overflow-hidden">
-                  <%= image_tag event.avatar_image_path, class: "w-full h-full object-cover" %>
+                  <%= image_tag event.avatar_image_path, alt: event.name, class: "w-full h-full object-cover" %>
                 </div>
               <% end %>
 

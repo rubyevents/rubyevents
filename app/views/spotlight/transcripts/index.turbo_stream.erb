@@ -23,7 +23,7 @@
           <div class="rounded-lg p-2 hover:bg-base-200/50">
             <%= link_to talk_path(group[:talk_slug]), target: "_top", role: "option", class: "flex items-center gap-3 group" do %>
               <% if group[:thumbnail].present? %>
-                <%= image_tag group[:thumbnail], loading: "lazy", class: "w-20 aspect-video object-cover rounded-md shrink-0" %>
+                <%= image_tag group[:thumbnail], alt: group[:talk_title], loading: "lazy", class: "w-20 aspect-video object-cover rounded-md shrink-0" %>
               <% end %>
 
               <div class="min-w-0">

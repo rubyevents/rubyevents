@@ -12,7 +12,7 @@
       background: <%= event.static_metadata.banner_background %>;
     <% end %>
   ">
-  <%= image_tag image_path(event.banner_image_path), class: "w-full md:container" %>
+  <%= image_tag image_path(event.banner_image_path), alt: event.name, class: "w-full md:container" %>
 </div>
 
 <% if event.static_metadata.cancelled? %>

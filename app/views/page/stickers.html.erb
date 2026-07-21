@@ -15,7 +15,7 @@
                 <% event.stickers.each do |sticker| %>
                   <%= link_to event, class: "group relative bg-gray-800 rounded-lg p-4 hover:bg-gray-700 transition-colors" do %>
                     <div class="aspect-square flex items-center justify-center mb-2">
-                      <%= image_tag sticker.asset_path, class: "max-w-full max-h-full object-contain group-hover:scale-110 transition-transform" %>
+                      <%= image_tag sticker.asset_path, alt: sticker.name, class: "max-w-full max-h-full object-contain group-hover:scale-110 transition-transform" %>
                     </div>
                     <p class="text-xs text-gray-300 text-center truncate"><%= event.name %></p>
                   <% end %>

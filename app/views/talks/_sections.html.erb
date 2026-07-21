@@ -6,7 +6,7 @@
           <div class="flex justify-between">
             <div <% if child_talk == talk %> data-active <% end %> class="flex gap-3 text-gray-700 data-[active]:font-bold text-sm">
               <div class="flex aspect-video shrink-0 relative w-16 lg:w-24 xl:w-36">
-                <%= image_tag child_talk.thumbnail_sm, srcset: ["#{child_talk.thumbnail_sm} 2x"], id: dom_id(child_talk), class: "w-full h-auto aspect-video rounded #{child_talk.thumbnail_classes.presence || "object-cover"}", loading: :lazy %>
+                <%= image_tag child_talk.thumbnail_sm, srcset: ["#{child_talk.thumbnail_sm} 2x"], alt: "#{child_talk.title} thumbnail", id: dom_id(child_talk), class: "w-full h-auto aspect-video rounded #{child_talk.thumbnail_classes.presence || "object-cover"}", loading: :lazy %>
               </div>
 
               <div class="flex flex-col gap-0.5 justify-center">

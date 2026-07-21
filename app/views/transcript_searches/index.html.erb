@@ -25,7 +25,7 @@
           <div class="flex gap-4 p-4 rounded-xl bg-base-200/40">
             <% if group[:thumbnail].present? %>
               <%= link_to talk_path(group[:talk_slug]), class: "shrink-0", data: {turbo_frame: "_top"} do %>
-                <%= image_tag group[:thumbnail], loading: "lazy", class: "w-32 sm:w-44 aspect-video object-cover rounded-lg" %>
+                <%= image_tag group[:thumbnail], alt: "#{group[:talk_title]} thumbnail", loading: "lazy", class: "w-32 sm:w-44 aspect-video object-cover rounded-lg" %>
               <% end %>
             <% end %>
 

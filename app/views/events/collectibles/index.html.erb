@@ -31,7 +31,7 @@
             <% @stickers.each do |sticker| %>
               <div class="group relative bg-white/10 backdrop-blur-sm rounded-lg p-4 hover:bg-white/20 transition-colors border border-white/20">
                 <div class="aspect-square flex items-center justify-center mb-2">
-                  <%= image_tag sticker.asset_path, class: "max-w-full max-h-full object-contain group-hover:scale-110 transition-transform" %>
+                  <%= image_tag sticker.asset_path, class: "max-w-full max-h-full object-contain group-hover:scale-110 transition-transform", alt: sticker.name %>
                 </div>
                 <p class="text-xs text-white text-center truncate"><%= sticker.name %></p>
               </div>

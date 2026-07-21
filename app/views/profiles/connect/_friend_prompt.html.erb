@@ -2,7 +2,7 @@
   <!-- Icon -->
   <div class="flex items-center justify-center w-20 h-20 bg-success/10 rounded-full">
     <% if found_user.present? %>
-      <%= image_tag found_user.avatar_url, class: "w-full h-full rounded-full" %>
+      <%= image_tag found_user.avatar_url, alt: found_user.name, class: "w-full h-full rounded-full" %>
     <% else %>
       <%= fa "user-group", variant: :solid, class: "w-10 h-10 text-success" %>
     <% end %>

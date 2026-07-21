@@ -5,7 +5,7 @@
     <div class="avatar placeholder">
       <div class="w-12 rounded-full bg-primary text-neutral-content">
         <% if event.avatar_image_path.present? %>
-          <%= image_tag image_path(event.avatar_image_path) %>
+          <%= image_tag image_path(event.avatar_image_path), alt: event.name %>
         <% else %>
           <span class="text-lg"><%= event.name.split(" ").map(&:first).join %></span>
         <% end %>

@@ -28,7 +28,7 @@
 
               <div class="bg-white rounded-lg border shadow-sm overflow-hidden hover:shadow-md transition-shadow">
                 <div class="h-24 flex items-center justify-center overflow-hidden" style="<% if event.static_metadata.banner_background.start_with?('data:') %>background: url('<%= event.static_metadata.banner_background %>'); background-repeat: no-repeat; background-size: cover;<% else %>background: <%= event.static_metadata.banner_background %>;<% end %>">
-                  <%= image_tag image_path(event.banner_image_path), class: "h-full w-full object-cover" %>
+                  <%= image_tag image_path(event.banner_image_path), alt: event.name, class: "h-full w-full object-cover" %>
                 </div>
 
                 <div class="p-4">
