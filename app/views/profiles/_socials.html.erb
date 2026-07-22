@@ -1,7 +1,7 @@
 <%# locals: (user:, variant: :circle) %>
 
 <% inline = variant == :inline %>
-<% inline_class = "inline-flex items-center justify-center size-6 text-gray-400 hover:text-gray-900 rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary focus-visible:text-gray-900" %>
+<% inline_class = "inline-flex items-center justify-center size-6 box-content p-2 -m-2 text-gray-400 hover:text-gray-900 rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary focus-visible:text-gray-900" %>
 <% platforms = [] %>
 <% platforms << {label: "GitHub", url: "https://www.github.com/#{user.github_handle}", icon: "github", hover: "hover:bg-black hover:fill-white border-base-200"} if user.github_handle.present? %>
 <% platforms << {label: "X", url: "https://www.x.com/#{user.twitter}", icon: "x-twitter", hover: "hover:bg-black hover:fill-white border-base-200"} if user.twitter.present? %>
