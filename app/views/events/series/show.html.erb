@@ -12,6 +12,7 @@
 
       <div class="flex-col flex justify-center">
         <h1 class="mb-2 text-black font-bold"><%= @event_series.name %></h1>
+
         <h3 class="hidden md:block text-[#636B74]"><%= pluralize(@event_series.events.count, "event") %>
           <% if @event_series.static_metadata&.all_youtube_channels&.any? %>
             - <%= @event_series.static_metadata.all_youtube_channels.filter_map { |c| c["handle"].presence || c["name"].presence }.join(", ") %>
@@ -39,6 +40,10 @@
           <% end %>
         <% end %>
       </div>
+    <% end %>
+
+    <% if (yaml_link = data_file_link_for(@event_series)) %>
+      <div class="mt-4"><%= yaml_link %></div>
     <% end %>
   </div>
 

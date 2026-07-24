@@ -13,6 +13,10 @@
             <div><%= back_to_title %></div>
           </div>
         <% end %>
+
+        <% if (yaml_link = data_file_link_for(@talk)) %>
+          <%= yaml_link %>
+        <% end %>
       </div>
 
       <%= turbo_frame_tag "talk", target: "_top", data: {turbo_action: "advance"} do %>

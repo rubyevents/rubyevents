@@ -1,3 +1,7 @@
+<% if (yaml_link = data_file_link_for(event, file: current_event_data_file)) %>
+  <div class="flex justify-end mb-2"><%= yaml_link %></div>
+<% end %>
+
 <div role="tablist" class="mb-12 tabs tabs-bordered">
   <%= active_link_to "Overview", event_path(event), class: "tab", active_class: "tab-active", role: "tab" %>
 
