@@ -72,7 +72,8 @@ class Static::Validators::Validator
       Static::Validators::TalkPublishedAt,
       Static::Validators::TalkRenames,
       Static::Validators::TalkShortKind,
-      Static::Validators::UniqueTalkIds
+      Static::Validators::UniqueTalkIds,
+      Static::Validators::MissingThumbnails
     ]
   end
 end
