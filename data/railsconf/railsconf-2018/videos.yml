@@ -1187,16 +1187,21 @@
   video_id: "Ld414EypQzg"
   description: ""
   talks:
-    - id: "teck-mike-railsconf-2018"
-      title: "Lightning Talk: Teck & Mike"
+    - id: "tek-hudson-mike-virata-stone-railsconf-2018"
+      old_id: "teck-mike-railsconf-2018"
+      title: "Lightning Talk: StockAid"
       kind: "lightning_talk"
       start_cue: "00:00:00"
       end_cue: "00:01:00"
       video_provider: "parent"
-      video_id: "teck-mike-railsconf-2018"
+      video_id: "tek-hudson-mike-virata-stone-railsconf-2018"
       speakers:
-        - Teck # TODO: missing last name
-        - Mike # TODO: missing last name
+        - Tek Hudson
+        - Mike Virata-Stone
+      additional_resources:
+        - name: "GratefulGarmentProject/StockAid"
+          type: "repo"
+          url: "https://github.com/GratefulGarmentProject/StockAid"
 
     - id: "claudio-baccigalupo-lightning-talk-railsconf-2018"
       title: "Lightning Talk: LA Ruby Meetup"
