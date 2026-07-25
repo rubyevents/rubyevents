@@ -1,5 +1,5 @@
 <div class="container py-8 hotwire-native:mb-6">
-  <div class="flex items-center justify-between w-full hotwire-native:hidden">
+  <div class="hotwire-native:hidden">
     <h1 class="title">
       <%= title "Events Archive" %>
       <span class="text-base text-gray-500">
@@ -11,18 +11,15 @@
       </span>
     </h1>
 
-    <div class="flex gap-4 whitespace-nowrap">
-      <%= link_to "Upcoming Events", events_path, class: "link text-right w-full" %>
-      <%= link_to "Past Events", past_events_path, class: "link text-right w-full" %>
-    </div>
-  </div>
+    <div class="mt-2 flex flex-col gap-3 md:flex-row md:items-stretch md:justify-between md:gap-4 md:border-b md:border-gray-200">
+      <%= render "events/collections_navigation", active: :archive %>
 
-  <div class="flex flex-wrap w-full justify-end py-2 hotwire-native:hidden gap-1">
-    <div class="block md:flex items-center justify-between gap-2">
-      <div class="tabs tabs-boxed mt-4 md:mt-0">
-        <%= link_to "All", archive_events_path(kind: "all", letter: params[:letter]), class: "tab #{"tab-active" if params[:kind].blank? || params[:kind] == "all"}" %>
-        <%= link_to "Conferences", archive_events_path(kind: "conference", letter: params[:letter]), class: "tab #{"tab-active" if params[:kind] == "conference"}" %>
-        <%= link_to "Meetups", archive_events_path(kind: "meetup", letter: params[:letter]), class: "tab #{"tab-active" if params[:kind] == "meetup"}" %>
+      <div class="flex shrink-0 items-center overflow-x-auto pb-2 md:pb-1">
+        <div class="tabs tabs-boxed">
+          <%= link_to "All", archive_events_path(kind: "all", letter: params[:letter]), class: "tab #{"tab-active" if params[:kind].blank? || params[:kind] == "all"}" %>
+          <%= link_to "Conferences", archive_events_path(kind: "conference", letter: params[:letter]), class: "tab #{"tab-active" if params[:kind] == "conference"}" %>
+          <%= link_to "Meetups", archive_events_path(kind: "meetup", letter: params[:letter]), class: "tab #{"tab-active" if params[:kind] == "meetup"}" %>
+        </div>
       </div>
     </div>
   </div>

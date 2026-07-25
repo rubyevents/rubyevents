@@ -1,0 +1,18 @@
+<%# locals: (active:) %>
+<% collections = [
+     ["Upcoming", events_path, :upcoming],
+     ["Past", past_events_path, :past],
+     ["Calendar", year_events_path(year: Date.current.year), :calendar],
+     ["Archive", archive_events_path, :archive],
+     ["Meetups", meetups_events_path, :meetups]
+   ] %>
+
+<nav aria-label="Event collections" class="flex grow items-end gap-6 text-sm font-medium">
+  <% collections.each do |label, path, key| %>
+    <% if active == key %>
+      <span class="pb-3 border-b-2 border-primary text-primary whitespace-nowrap"><%= label %></span>
+    <% else %>
+      <%= link_to label, path, class: "pb-3 -mb-px border-b-2 border-transparent text-gray-500 hover:text-gray-900 whitespace-nowrap" %>
+    <% end %>
+  <% end %>
+</nav>

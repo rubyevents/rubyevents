@@ -1,54 +1,29 @@
 <header class="mb-8 md:mb-12">
-  <div class="flex items-center gap-2 text-gray-400 text-sm mb-4 md:mb-6 hotwire-native:hidden">
-    <%= link_to "Events", events_path, class: "hover:text-gray-900 transition-colors" %>
+  <h1 class="title shrink-0">
+    <%= title "#{year} Events Calendar" %>
+  </h1>
 
-    <span class="text-gray-300">/</span>
-    <span class="text-gray-600"><%= year %></span>
-  </div>
+  <div class="mt-2 flex flex-col gap-3 md:flex-row md:items-stretch md:justify-between md:gap-4 md:border-b md:border-gray-200 hotwire-native:hidden">
+    <%= render "events/collections_navigation", active: :calendar %>
 
-  <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-6">
-    <div>
-      <h1 class="text-5xl md:text-8xl font-black text-gray-900 tracking-tight">
-        <%= title year.to_s %>
-      </h1>
+    <nav aria-label="Calendar years" class="flex shrink-0 items-center gap-2 overflow-x-auto pb-2 md:pb-1">
+      <% if year != Date.current.year %>
+        <%= link_to "Today", year_events_path(year: Date.current.year), class: "inline-flex h-10 items-center rounded-full bg-red-500 px-3 text-sm font-medium text-white transition-all hover:bg-red-600 md:px-4" %>
+      <% end %>
 
-      <p class="text-gray-500 mt-1 md:mt-2 text-base md:text-lg">
-        Ruby Events Calendar •
-
-        <span class="text-gray-400">
-          <%= events.count %> events
-
-          <% if monthly_events.any? %>
-            across <%= events_by_month.keys.count %> months
-          <% end %>
-        </span>
-
-        <%= render "shared/subscribe_to_calendar", url: events_url(format: :ics), modal_id: "modal-middle" %>
-      </p>
-    </div>
-
-    <nav class="flex flex-col items-end gap-2 hotwire-native:hidden">
-      <% if year != Date.today.year %>
-        <%= link_to year_events_path(year: Date.today.year), class: "px-3 md:px-4 py-1.5 rounded-full bg-red-500 text-white text-sm font-medium hover:bg-red-600 transition-all" do %>
-          Today
+      <% if has_previous_year %>
+        <%= link_to year_events_path(year: year - 1), class: "flex h-10 items-center gap-2 rounded-full border border-gray-200 px-3 text-sm text-gray-500 transition-all hover:border-gray-900 hover:text-gray-900 md:px-4 md:text-base" do %>
+          <%= fa "arrow-left", class: "text-xs md:text-sm" %>
+          <span class="font-medium"><%= year - 1 %></span>
         <% end %>
       <% end %>
 
-      <div class="flex items-center gap-2">
-        <% if has_previous_year %>
-          <%= link_to year_events_path(year: year - 1), class: "flex items-center gap-2 px-3 md:px-4 py-2 rounded-full border border-gray-200 text-gray-500 hover:border-gray-900 hover:text-gray-900 transition-all text-sm md:text-base" do %>
-            <%= fa "arrow-left", class: "text-xs md:text-sm" %>
-            <span class="font-medium"><%= year - 1 %></span>
-          <% end %>
+      <% if has_next_year %>
+        <%= link_to year_events_path(year: year + 1), class: "flex h-10 items-center gap-2 rounded-full border border-gray-200 px-3 text-sm text-gray-500 transition-all hover:border-gray-900 hover:text-gray-900 md:px-4 md:text-base" do %>
+          <span class="font-medium"><%= year + 1 %></span>
+          <%= fa "arrow-right", class: "text-xs md:text-sm" %>
         <% end %>
-
-        <% if has_next_year %>
-          <%= link_to year_events_path(year: year + 1), class: "flex items-center gap-2 px-3 md:px-4 py-2 rounded-full border border-gray-200 text-gray-500 hover:border-gray-900 hover:text-gray-900 transition-all text-sm md:text-base" do %>
-            <span class="font-medium"><%= year + 1 %></span>
-            <%= fa "arrow-right", class: "text-xs md:text-sm" %>
-          <% end %>
-        <% end %>
-      </div>
+      <% end %>
     </nav>
   </div>
 </header>
