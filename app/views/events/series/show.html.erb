@@ -110,7 +110,7 @@
             </table>
             <% if @todos.size > 20 %>
               <p class="text-sm text-base-content/70 mt-2">
-                ... and <%= @todos.size - 20 %> more. <%= link_to "View all TODOs", todos_path(view: "by_event"), class: "link link-primary" %>
+                ... and <%= @todos.size - 20 %> more. <%= link_to "View all TODOs", data_todos_path(view: "by_event"), class: "link link-primary" %>
               </p>
             <% end %>
           </div>

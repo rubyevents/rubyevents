@@ -254,6 +254,12 @@ jobs:
           TYPESENSE_NODES: ${{ secrets.TYPESENSE_NODES }}
           TYPESENSE_NEAREST_NODE: ${{ secrets.TYPESENSE_NEAREST_NODE }}
 
+      - name: Seed changed data
+        run: bundle exec kamal seed
+        env:
+          KAMAL_RAILS_MASTER_KEY: ${{ secrets.KAMAL_RAILS_MASTER_KEY }}
+          KAMAL_REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Cleanup on cancellation
         if: always() && steps.deploy.conclusion == 'cancelled'
         run: bundle exec kamal lock release
