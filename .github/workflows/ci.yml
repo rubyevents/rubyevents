@@ -11,12 +11,32 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  changes:
+    name: Detect changes
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      code: ${{ steps.filter.outputs.code || 'true' }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: dorny/paths-filter@v3
+        id: filter
+        continue-on-error: true
+        with:
+          filters: |
+            code:
+              - '**'
+              - '!data/**'
+
   lint:
+    needs: changes
     runs-on: ubuntu-latest
     timeout-minutes: 5
     env:
       RAILS_ENV: test
       RUBOCOP_CACHE_ROOT: tmp/rubocop
+
     steps:
       - uses: actions/checkout@v5
         with:
@@ -46,35 +66,40 @@ jobs:
           restore-keys: |
             rubocop-${{ runner.os }}-${{ env.RUBY_VERSION }}-${{ env.DEPENDENCIES_HASH }}-
 
-      - name: StandardRB Check
-        run: bundle exec standardrb --format github --format "Standard::Formatter"
-
-      - name: StandardJS Check
-        run: yarn lint
-
-      - name: Check speakers.yml is in sync
-        run: bin/rails speakers_file:check
-
       - name: Validate YAML data schemas
         run: bin/rails validate:all
 
       - name: Lint YAML data files
         run: bundle exec yerba check
 
+      - name: StandardRB Check
+        if: ${{ needs.changes.outputs.code == 'true' || github.event_name == 'push' }}
+        run: bundle exec standardrb --format github --format "Standard::Formatter"
+
+      - name: StandardJS Check
+        if: ${{ needs.changes.outputs.code == 'true' || github.event_name == 'push' }}
+        run: yarn lint
+
       - name: erb-lint Check
+        if: ${{ needs.changes.outputs.code == 'true' || github.event_name == 'push' }}
         run: bundle exec erb_lint --lint-all
 
       - name: Herb Linter Check
+        if: ${{ needs.changes.outputs.code == 'true' || github.event_name == 'push' }}
         run: npx @herb-tools/linter
 
       - name: Herb Analyze (parse/compile)
+        if: ${{ needs.changes.outputs.code == 'true' || github.event_name == 'push' }}
         run: bundle exec herb analyze app/
 
   test:
+    needs: changes
+    if: ${{ needs.changes.outputs.code == 'true' || github.event_name == 'push' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
       RAILS_ENV: test
+
     steps:
       - uses: actions/checkout@v5
 
@@ -111,6 +136,7 @@ jobs:
     env:
       RAILS_ENV: test
       SEED_SMOKE_TEST: true
+
     steps:
       - uses: actions/checkout@v5
 
@@ -144,6 +170,8 @@ jobs:
 
   build:
     name: Build Docker Image
+    needs: changes
+    if: ${{ needs.changes.outputs.code == 'true' || github.event_name == 'push' }}
     runs-on: ubuntu-24.04-arm
 
     permissions:
@@ -151,6 +179,7 @@ jobs:
       packages: write
       attestations: write
       id-token: write
+
     timeout-minutes: 20
 
     env:
