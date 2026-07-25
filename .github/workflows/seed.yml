@@ -12,6 +12,9 @@ on:
           - staging
           - production
 
+permissions:
+  contents: read
+
 jobs:
   seed:
     name: Seed ${{ inputs.environment }}
