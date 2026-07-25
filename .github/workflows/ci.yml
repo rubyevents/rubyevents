@@ -30,6 +30,7 @@ jobs:
               - '!data/**'
 
   lint:
+    name: "Lint"
     needs: changes
     runs-on: ubuntu-latest
     timeout-minutes: 5
@@ -93,6 +94,7 @@ jobs:
         run: bundle exec herb analyze app/
 
   test:
+    name: "Test"
     needs: changes
     if: ${{ needs.changes.outputs.code == 'true' || github.event_name == 'push' }}
     runs-on: ubuntu-latest
@@ -131,6 +133,7 @@ jobs:
           bin/rails test:system
 
   seed_smoke_test:
+    name: "Data Smoke Test"
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
