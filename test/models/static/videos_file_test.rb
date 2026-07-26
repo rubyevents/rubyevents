@@ -15,18 +15,6 @@ class Static::VideosFileTest < ActiveSupport::TestCase
     {"id" => "jane-doe-testconf-2024", "title" => "Building Things"}
   ].freeze
 
-  test "video_pairs pairs every video with its nested talks" do
-    with_temp_video(VIDEOS) do |file|
-      pairs = file.video_pairs
-
-      assert_equal 2, pairs.size
-      assert_equal "lightning-talks-testconf-2024", pairs.first.first.value_at("id")
-      assert_equal ["one-testconf-2024", "two-testconf-2024"], pairs.first.last.map { |talk| talk.value_at("id") }
-      assert_equal "jane-doe-testconf-2024", pairs.last.first.value_at("id")
-      assert_empty pairs.last.last
-    end
-  end
-
   test "top_level_talks and sub_talks split the pairs" do
     with_temp_video(VIDEOS) do |file|
       assert_equal ["lightning-talks-testconf-2024", "jane-doe-testconf-2024"], file.top_level_talks.map { |node| node.value_at("id") }
@@ -43,15 +31,6 @@ class Static::VideosFileTest < ActiveSupport::TestCase
     end
   end
 
-  test "nodes follows each video with its own nested talks" do
-    with_temp_video(VIDEOS) do |file|
-      assert_equal(
-        ["lightning-talks-testconf-2024", "one-testconf-2024", "two-testconf-2024", "jane-doe-testconf-2024"],
-        file.nodes.map { |node| node.value_at("id") }
-      )
-    end
-  end
-
   test "ids and old_ids cover nested talks" do
     with_temp_video(VIDEOS) do |file|
       assert_equal(
@@ -62,18 +41,8 @@ class Static::VideosFileTest < ActiveSupport::TestCase
     end
   end
 
-  test "the node tree is walked once and shared between readers" do
-    with_temp_video(VIDEOS) do |file|
-      assert_same file.video_pairs, file.video_pairs
-      assert_same file.top_level_talks.first, file.nodes.first
-      assert_same file.sub_talks.first, file.video_pairs.first.last.first
-    end
-  end
-
   test "handles a file with an empty sequence" do
     with_temp_video([]) do |file|
-      assert_empty file.video_pairs
-      assert_empty file.nodes
       assert_empty file.talks
       assert_empty file.ids
     end
@@ -83,35 +52,23 @@ class Static::VideosFileTest < ActiveSupport::TestCase
     with_temp_file("") do |path|
       file = Static::VideosFile.new(path)
 
-      assert_empty file.video_pairs
-      assert_empty file.nodes
       assert_empty file.talks
+      assert_empty file.ids
     end
   end
 
-  test "wrap returns an existing VideosFile untouched" do
-    with_temp_video(VIDEOS) do |file|
-      assert_same file, Static::VideosFile.wrap(file.path, file)
-    end
-  end
-
-  test "wrap builds a VideosFile around a given document" do
+  test "from builds a VideosFile from an absolute or Rails-relative path" do
     with_temp_file(VIDEOS.to_yaml) do |path|
-      document = Yerba.parse_file(path)
-      file = Static::VideosFile.wrap(path, document)
+      file = Static::VideosFile.from(path)
 
       assert_instance_of Static::VideosFile, file
-      assert_same document, file.document
+      assert_equal path, file.path
+      assert_equal 2, file.count
     end
-  end
 
-  test "wrap parses the path when no document is given" do
-    with_temp_file(VIDEOS.to_yaml) do |path|
-      file = Static::VideosFile.wrap(path)
+    file = Static::VideosFile.from("data/rails-world/rails-world-2023/videos.yml")
 
-      assert_instance_of Static::VideosFile, file
-      assert_equal 2, file.video_pairs.size
-    end
+    assert_equal Rails.root.join("data/rails-world/rails-world-2023/videos.yml").to_s, file.path
   end
 
   test "at returns the file as it was committed at the given timestamp" do
@@ -168,13 +125,6 @@ class Static::VideosFileTest < ActiveSupport::TestCase
 
       assert_equal ["a-testconf-2024", "b-testconf-2024"], file.newly_watchable_videos(Time.utc(2024, 2, 1))
       assert_empty file.newly_watchable_videos(Time.utc(2023, 1, 1))
-    end
-  end
-
-  test "delegates unknown methods to the underlying document" do
-    with_temp_video(VIDEOS) do |file|
-      assert_equal 2, file.root.length
-      assert_equal "Lightning Talks", file.to_a.first["title"]
     end
   end
 

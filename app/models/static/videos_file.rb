@@ -17,6 +17,10 @@ module Static
       new(path, document: Yerba.parse(content))
     end
 
+    def self.from(path)
+      new(Rails.root.join(path.to_s).to_s)
+    end
+
     def self.all
       @all ||= Dir.glob(Rails.root.join(VIDEOS_GLOB)).filter_map do |path|
         new(path)
@@ -111,9 +115,7 @@ module Static
     end
 
     def top_level_talks
-      return [] unless document.root
-
-      document.root.each.to_a
+      sequence_items(document.root)
     end
 
     def sub_talks
