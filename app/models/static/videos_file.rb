@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "open3"
+
 module Static
   class VideosFile
     VIDEOS_GLOB = "data/**/videos.yml"
@@ -61,6 +63,14 @@ module Static
       end
 
       nil
+    end
+
+    def self.added_videos(since)
+      all.flat_map { |file| file.added_videos(since) }
+    end
+
+    def self.newly_watchable_videos(since)
+      all.flat_map { |file| file.newly_watchable_videos(since) }
     end
 
     def self.youtube_videos_missing_published_at
@@ -142,6 +152,85 @@ module Static
 
     def relative_path
       path.sub("#{Rails.root}/", "")
+    end
+
+    def at(timestamp)
+      return nil if path.blank?
+
+      revision, _, status = git("rev-list", "--max-count=1", "--before", timestamp.to_time.iso8601, "HEAD", "--", File.basename(path.to_s))
+      return nil unless status.success? && revision.strip.present?
+
+      content, _, status = git("show", "#{revision.strip}:./#{File.basename(path.to_s)}")
+      return nil unless status.success?
+
+      self.class.parse(content, path: path)
+    end
+
+    def changes(since)
+      snapshot = at(since)
+      return nil unless snapshot
+
+      current = talks_by_id
+      previous = snapshot.talks_by_id
+
+      modified = (current.keys & previous.keys).filter_map { |id|
+        diff = attribute_changes(previous[id].to_h, current[id].to_h)
+
+        [id, diff] if diff.any?
+      }.to_h
+
+      {
+        added: current.keys - previous.keys,
+        removed: previous.keys - current.keys,
+        modified: modified
+      }
+    end
+
+    def added_videos(since)
+      diff = changes(since)
+
+      diff ? diff[:added] : ids
+    end
+
+    def newly_watchable_videos(since)
+      diff = changes(since)
+      return [] unless diff
+
+      diff[:modified].filter_map { |id, attributes|
+        next unless attributes.key?("video_provider")
+
+        before, after = attributes["video_provider"]
+
+        id if !watchable_provider?(before) && watchable_provider?(after)
+      }
+    end
+
+    protected
+
+    def talks_by_id
+      talks.index_by { |talk| talk.value_at("id") }.except(nil)
+    end
+
+    private
+
+    def watchable_provider?(provider)
+      (provider || "youtube").in?(Talk::WATCHABLE_PROVIDERS)
+    end
+
+    def attribute_changes(before, after)
+      (before.keys | after.keys).filter_map do |key|
+        next if key == "talks"
+
+        [key, [before[key], after[key]]] if before[key] != after[key]
+      end.to_h
+    end
+
+    def git(*args)
+      Open3.capture3("git", "-C", File.dirname(path.to_s), *args)
+    end
+
+    def sequence_items(node)
+      node.is_a?(Yerba::Sequence) ? node.each.to_a : []
     end
   end
 end
