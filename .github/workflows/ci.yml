@@ -66,31 +66,32 @@ jobs:
           restore-keys: |
             rubocop-${{ runner.os }}-${{ env.RUBY_VERSION }}-${{ env.DEPENDENCIES_HASH }}-
 
-      - name: Validate YAML data schemas
-        run: bin/rails validate:all
+      - parallel:
+          - name: Validate YAML data schemas
+            run: bin/rails validate:all
 
-      - name: Lint YAML data files
-        run: bundle exec yerba check
+          - name: Lint YAML data files
+            run: bundle exec yerba check
 
-      - name: StandardRB Check
-        if: ${{ needs.changes.outputs.code == 'true' || github.event_name == 'push' }}
-        run: bundle exec standardrb --format github --format "Standard::Formatter"
+          - name: StandardRB Check
+            if: ${{ needs.changes.outputs.code == 'true' || github.event_name == 'push' }}
+            run: bundle exec standardrb --format github --format "Standard::Formatter"
 
-      - name: StandardJS Check
-        if: ${{ needs.changes.outputs.code == 'true' || github.event_name == 'push' }}
-        run: yarn lint
+          - name: StandardJS Check
+            if: ${{ needs.changes.outputs.code == 'true' || github.event_name == 'push' }}
+            run: yarn lint
 
-      - name: erb-lint Check
-        if: ${{ needs.changes.outputs.code == 'true' || github.event_name == 'push' }}
-        run: bundle exec erb_lint --lint-all
+          - name: erb-lint Check
+            if: ${{ needs.changes.outputs.code == 'true' || github.event_name == 'push' }}
+            run: bundle exec erb_lint --lint-all
 
-      - name: Herb Linter Check
-        if: ${{ needs.changes.outputs.code == 'true' || github.event_name == 'push' }}
-        run: npx @herb-tools/linter
+          - name: Herb Linter Check
+            if: ${{ needs.changes.outputs.code == 'true' || github.event_name == 'push' }}
+            run: npx @herb-tools/linter
 
-      - name: Herb Analyze (parse/compile)
-        if: ${{ needs.changes.outputs.code == 'true' || github.event_name == 'push' }}
-        run: bundle exec herb analyze app/
+          - name: Herb Analyze (parse/compile)
+            if: ${{ needs.changes.outputs.code == 'true' || github.event_name == 'push' }}
+            run: bundle exec herb analyze app/
 
   test:
     name: "Test"
