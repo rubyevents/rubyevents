@@ -19,8 +19,7 @@
   announced_at: "2026-07-03"
   video_provider: "scheduled"
   video_id: "yukihiro-matz-matsumoto-euruko-2026"
-  description: |-
-    Yukihiro "Matz" Matsumoto is the creator of the Ruby programming language. He designed Ruby with a focus on programmer happiness and productivity, guided by the principle of least surprise. Matz works at Heroku as a Ruby fellow, dedicating his time to Ruby's development and evolution. He has been shaping the Ruby community for over three decades and continues to drive the language forward.
+  description: ""
   speakers:
     - "Yukihiro \"Matz\" Matsumoto"
 
@@ -101,3 +100,59 @@
     JRuby on Rails is 20 years old! This talk will review the last 20 years of JRuby development, with a focus on the challenges of supporting Ruby and Rails year after year. We'll look at the state of the art features that make JRuby attractive and talk about the next generation of JRuby capabilities and applications. JRuby brings a whole new world of opportunities to Ruby — come learn how to use JRuby to Do More with Ruby!
   speakers:
     - Charles Oliver Nutter
+
+- id: "carmine-paolino-euruko-2026"
+  title: "RubyLLM 2.0: Beyond Agents"
+  date: "2026-09-17"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "carmine-paolino-euruko-2026"
+  description: |-
+    RubyLLM 1.x gave Rubyists a beautiful way to work with AI: one delightful DSL across major providers, easy Rails integration, a model registry for capabilities and costs, instrumentation, agents, workflows, and RAG. But in production a new set of problems appears — calls get expensive, providers have bad days, answers need provenance, and workflows need tracing. RubyLLM 2.0 crosses that line: caching and batch execution to cut costs, model fallbacks to keep answering, citations so users can see where answers came from, and workflow-aware tracing to understand complex flows. It also separates providers from protocols, so multi-protocol providers work natively and smaller providers can be added with a simple generator.
+  speakers:
+    - Carmine Paolino
+
+- id: "koichi-sasada-euruko-2026"
+  title: "Closing Keynote: Parallel Programming with Ractors"
+  kind: "keynote"
+  date: "2026-09-18"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "koichi-sasada-euruko-2026"
+  description: ""
+  speakers:
+    - Koichi Sasada
+
+- id: "greg-molnar-euruko-2026"
+  title: "Workshop by Greg Molnar"
+  kind: "workshop"
+  date: "2026-09-18"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "greg-molnar-euruko-2026"
+  description: ""
+  speakers:
+    - Greg Molnar
+
+- id: "kasper-timm-hansen-andre-arko-euruko-2026"
+  title: "Workshop by Kasper Timm Hansen and André Arko"
+  kind: "workshop"
+  date: "2026-09-18"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "kasper-timm-hansen-andre-arko-euruko-2026"
+  description: ""
+  speakers:
+    - Kasper Timm Hansen
+    - André Arko
+
+- id: "kyle-d-oliveira-euruko-2026"
+  title: "Workshop by Kyle d'Oliveira"
+  kind: "workshop"
+  date: "2026-09-18"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "kyle-d-oliveira-euruko-2026"
+  description: ""
+  speakers:
+    - "Kyle d'Oliveira"
