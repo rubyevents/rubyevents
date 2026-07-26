@@ -22,7 +22,9 @@ namespace :validate do
   def parse_document(file)
     return nil unless file.to_s.end_with?(".yml")
 
-    Yerba.parse_file(file)
+    document = Yerba.parse_file(file.to_s)
+
+    file.to_s.end_with?("videos.yml") ? Static::VideosFile.wrap(file.to_s, document) : document
   rescue
     nil
   end

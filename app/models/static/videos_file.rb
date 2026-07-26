@@ -6,13 +6,21 @@ module Static
 
     attr_reader :path, :document
 
+    delegate_missing_to :document
+
     def initialize(path, document: nil)
       @path = path
-      @document = document || Yerba.parse_file(path)
+      @document = document || Yerba.parse_file(path.to_s)
     end
 
     def self.parse(content, path: nil)
       new(path, document: Yerba.parse(content))
+    end
+
+    def self.wrap(path, document = nil)
+      return document if document.is_a?(self)
+
+      new(path.to_s, document: document)
     end
 
     def self.all
@@ -89,7 +97,17 @@ module Static
     end
 
     def talks
-      top_level_talks + sub_talks
+      @talks ||= top_level_talks + sub_talks
+    end
+
+    def video_pairs
+      @video_pairs ||= sequence_items(document.root).map do |video|
+        [video, sequence_items(video["talks"])]
+      end
+    end
+
+    def nodes
+      @nodes ||= video_pairs.flat_map { |video, nested| [video, *nested] }
     end
 
     def ids
@@ -101,18 +119,11 @@ module Static
     end
 
     def top_level_talks
-      return [] unless document.root
-
-      document.root.each.to_a
+      @top_level_talks ||= video_pairs.map(&:first)
     end
 
     def sub_talks
-      top_level_talks.flat_map do |video|
-        talks = video["talks"]
-        next [] unless talks
-
-        talks.each.to_a
-      end
+      @sub_talks ||= video_pairs.flat_map(&:last)
     end
 
     def each_video(&block)
@@ -122,11 +133,8 @@ module Static
     end
 
     def each_talk(&block)
-      top_level_talks.each do |video|
-        talks = video["talks"]
-        next unless talks
-
-        talks.each do |talk|
+      video_pairs.each do |video, nested|
+        nested.each do |talk|
           yield talk, video, self
         end
       end
@@ -142,6 +150,12 @@ module Static
 
     def relative_path
       path.sub("#{Rails.root}/", "")
+    end
+
+    private
+
+    def sequence_items(node)
+      node.is_a?(Yerba::Sequence) ? node.each.to_a : []
     end
   end
 end

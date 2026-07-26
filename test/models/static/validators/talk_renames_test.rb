@@ -129,7 +129,56 @@ class Static::Validators::TalkRenamesTest < ActiveSupport::TestCase
     end
   end
 
+  test "skips a file that git reports as unchanged against the baseline" do
+    with_temp_video(RENAMED) do |path|
+      with_changed_paths(Set.new) do
+        assert_empty Static::Validators::TalkRenames.new(file_path: path).errors
+      end
+    end
+  end
+
+  test "validates a file that git reports as changed against the baseline" do
+    with_temp_video(RENAMED) do |path|
+      with_changed_paths(Set[path]) do
+        errors = Static::Validators::TalkRenames.new(file_path: path).errors
+
+        assert_equal 1, errors.size
+        assert_includes errors.first.message, %(was renamed from "jane-doe-testconf-2024")
+      end
+    end
+  end
+
+  test "still validates when an explicit baseline is injected" do
+    with_temp_video(RENAMED) do |path|
+      with_changed_paths(Set.new) do
+        assert_equal 1, errors_for(path).size
+      end
+    end
+  end
+
+  test "checks every file when git cannot resolve a baseline" do
+    Static::Validators::TalkRenames.reset!
+
+    Static::Validators::TalkRenames.stub(:baseline_ref, nil) do
+      assert_nil Static::Validators::TalkRenames.changed_paths, "a missing baseline must mean check everything, not skip everything"
+    end
+  ensure
+    Static::Validators::TalkRenames.reset!
+  end
+
   private
+
+  RENAMED = [
+    {"id" => "jane-doe-keynote-testconf-2024", "title" => "Building Things", "video_provider" => "youtube", "video_id" => "abc12345678"}
+  ].freeze
+
+  def with_changed_paths(paths, &block)
+    baseline_file = Static::VideosFile.parse(BASELINE.to_yaml)
+
+    Static::Validators::TalkRenames.stub(:changed_paths, paths) do
+      Static::Validators::TalkRenames.stub(:baseline_file, baseline_file, &block)
+    end
+  end
 
   def errors_for(path, baseline: BASELINE)
     baseline_file = Static::VideosFile.parse(baseline.to_yaml)
