@@ -69,12 +69,12 @@ module Static
       nil
     end
 
-    def self.added_videos(since)
-      all.flat_map { |file| file.added_videos(since) }
+    def self.added_talks(since)
+      all.flat_map { |file| file.added_talks(since) }
     end
 
-    def self.newly_watchable_videos(since)
-      all.flat_map { |file| file.newly_watchable_videos(since) }
+    def self.newly_watchable_talks(since)
+      all.flat_map { |file| file.newly_watchable_talks(since) }
     end
 
     def self.youtube_videos_missing_published_at
@@ -188,13 +188,13 @@ module Static
       }
     end
 
-    def added_videos(since)
+    def added_talks(since)
       diff = changes(since)
 
       diff ? diff[:added] : ids
     end
 
-    def newly_watchable_videos(since)
+    def newly_watchable_talks(since)
       diff = changes(since)
       return [] unless diff
 

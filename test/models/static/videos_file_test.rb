@@ -100,12 +100,12 @@ class Static::VideosFileTest < ActiveSupport::TestCase
 
       assert_nil file.changes(Time.utc(2023, 1, 1))
 
-      assert_equal changes[:added], file.added_videos(Time.utc(2024, 2, 1))
-      assert_equal file.ids, file.added_videos(Time.utc(2023, 1, 1))
+      assert_equal changes[:added], file.added_talks(Time.utc(2024, 2, 1))
+      assert_equal file.ids, file.added_talks(Time.utc(2023, 1, 1))
     end
   end
 
-  test "newly_watchable_videos lists talks whose provider became watchable" do
+  test "newly_watchable_talks lists talks whose provider became watchable" do
     current = [
       {"id" => "a-testconf-2024", "title" => "A", "video_provider" => "youtube"},
       {"id" => "b-testconf-2024", "title" => "B"},
@@ -123,8 +123,8 @@ class Static::VideosFileTest < ActiveSupport::TestCase
     with_temp_video(current) do |file|
       with_history(file, "2024-01-15T12:00:00Z" => old_videos, "2024-03-15T12:00:00Z" => current)
 
-      assert_equal ["a-testconf-2024", "b-testconf-2024"], file.newly_watchable_videos(Time.utc(2024, 2, 1))
-      assert_empty file.newly_watchable_videos(Time.utc(2023, 1, 1))
+      assert_equal ["a-testconf-2024", "b-testconf-2024"], file.newly_watchable_talks(Time.utc(2024, 2, 1))
+      assert_empty file.newly_watchable_talks(Time.utc(2023, 1, 1))
     end
   end
 
