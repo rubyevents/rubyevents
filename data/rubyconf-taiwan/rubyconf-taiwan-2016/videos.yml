@@ -6,7 +6,8 @@
   published_at: "2017-01-17T10:17:51Z"
   video_provider: "youtube"
   video_id: "a8ycBvTzl3Y"
-  description: ""
+  description: |-
+    Matz talks about psychological phenomenon of programmers
   speakers:
     - Yukihiro Matsumoto
 
@@ -17,7 +18,12 @@
   published_at: "2017-01-16T06:01:05Z"
   video_provider: "youtube"
   video_id: "L9TkoFO1FhY"
-  description: ""
+  description: |-
+    This talk is based on a true horror story.
+
+    Imagine your work week ends after releasing a set of features to production. Your team is happy and you feel good about yourself. A call about a problem with payments wakes you up the next morning. You find out your most valuable users were charged hundreds of times, consuming their credit card limits, leaving others in overdraft. They're angry because they can't even buy milk at the store.
+
+    In this talk you'll learn how a "perfect bug storm" caused the problem, how our processes failed to catch it and how hard it was to gain our users and teammates trust back.
   speakers:
     - Sebastian Sogamoso
 
@@ -28,7 +34,8 @@
   published_at: "2017-01-16T05:56:03Z"
   video_provider: "youtube"
   video_id: "QlWG9NTIol4"
-  description: ""
+  description: |-
+    The goal of this talk is to introduce basic functional programming concepts. This will be achieved by demonstrating how to rebuild Redux, a popular Javascript library, using Ruby. For this purpose, I open-sourced a gem called Rubidux, which borrows the model from Redux.
   speakers:
     - Juin Chiu
 
@@ -39,7 +46,24 @@
   published_at: "2017-01-17T10:16:59Z"
   video_provider: "youtube"
   video_id: "WDmCteXwUtM"
-  description: ""
+  description: |-
+    GitLab is known in Ruby community for years. 2 years ago GitLab has made a huge leap forward by integrating CI system.
+
+    In this talk we’ll explore its functionality. The talk consists of two stories, where companies started from manual process, and step by step automated their it. Here’s what you will learn:
+
+    how to execute a single command?
+
+    how to run multiple commands in sequence?
+
+    how to run them in parallel?
+
+    how to pass artifacts between stages?
+
+    how to deploy with GitLab CI?
+
+    how to deploy to multiple environments?
+
+    You’ll be amazed how simple, yet powerful it is.
   speakers:
     - Ivan Nemytchenko
 
@@ -50,7 +74,8 @@
   published_at: "2017-01-17T10:14:35Z"
   video_provider: "youtube"
   video_id: "keJwE_eScyA"
-  description: ""
+  description: |-
+    I made ruby interpreter 10 times faster. Let me show you how.
   speakers:
     - Shyouhei Urabe
 
@@ -61,7 +86,10 @@
   published_at: "2017-01-17T10:20:18Z"
   video_provider: "youtube"
   video_id: "7tgADhpzZE8"
-  description: ""
+  description: |-
+    Come with us now on a journey through time and space. As we explore the world of analog/digital synthesis. From computer generated music to physical synthesisers and everything in between.
+
+    So you want to write music with code, but don’t know the difference between an LFO, ADSR, LMFAO, etc. Or a Sine wave, Saw wave, Google wave. We’ll explore what these mean, and how Ruby can be used to make awesome sounds. Ever wondered what Fizz Buzz sounds like, or which sounds better bubble sort or quick sort? So hey Ruby, let’s make music!
   speakers:
     - Julian Cheal
 
@@ -72,7 +100,12 @@
   published_at: "2017-01-17T10:21:10Z"
   video_provider: "youtube"
   video_id: "USkkZjqBR70"
-  description: ""
+  description: |-
+    We often write a code to build data pipelines, which include multiple ETL process,
+
+    summarize large size data, generate reports and so on. But it's not easy to write robust data pipelines in Ruby. Because there are many things to consider not only write a business logic but idempotence, dependency resolution, parallel execution, error handling and retry.
+
+    I'm working on it over 2 years, so I want to share how to write complex data pipelines in Ruby using tumugi, which is a gem I made.
   speakers:
     - Kazuyuki Honda
 
@@ -83,7 +116,8 @@
   published_at: "2017-01-17T10:24:47Z"
   video_provider: "youtube"
   video_id: "_faXu2sBzAM"
-  description: ""
+  description: |-
+    Ruby made programmers happy. I was no exception until I started to port original word2vec.c to Ruby. What was disappointing to me was the fact that large-scale scientific computation with CRuby is too time-consuming as the number of loops gets bigger. This experience led me to create VirtualModule, which lets you reduce execution time by running your arbitrary Ruby code on the other language VM process. In this talk, you will find out about when CRuby doesn't perform very well and what kind of bottlenecks you can workaround using VirtualModule.
   speakers:
     - Kei Sawada
 
@@ -94,7 +128,20 @@
   published_at: "2017-01-17T10:26:21Z"
   video_provider: "youtube"
   video_id: "402QbqtfVeY"
-  description: ""
+  description: |-
+    This presentation will show how to write middleware in Ruby.
+
+    Middleware are required:
+
+    * to work well on various environment/platform
+
+    * not to crash for unexpected data or unstability of network
+
+    * not to consume cpu/memory or other resources unexpectedly
+
+    * and many things
+
+    The presenter, a main developer of Fluentd, will show you many things to be considered, and many troubles/accidents we met.
   speakers:
     - Satoshi Tagomori
 
@@ -105,7 +152,10 @@
   published_at: "2017-01-18T05:13:23Z"
   video_provider: "youtube"
   video_id: "QIKBsdrTg84"
-  description: ""
+  description: |-
+    In 2014-2015 my team migrated a series of applications from Rails 2.3.5 to 4.2.1, and Ruby 1.8 to 2.1. Our goal was to add large features, while substantially refactoring the whole system. It was a big challenge!
+
+    This talk will cover the timeline of the project and talk about all the things a team performing a large migration of Ruby and Rails will need to do. Secondly, I'll talk about importance, hardness, and some techniques to keep Rails applications healthy and maintainable.
   speakers:
     - Yasuko Ohba
 
@@ -116,7 +166,12 @@
   published_at: "2017-01-18T05:17:36Z"
   video_provider: "youtube"
   video_id: "zJnFepGZWME"
-  description: ""
+  description: |-
+    Most Ruby on Rails application out there in the world deals with the manipulation and presentation of data. So the speed of our application has a relationship with how fast we work with data. Ruby on Rails, the swiss army knife of web development, is good with presenting data. But when it comes to crunching huge volumes of data, our rails application starts to slow down. Here we are not talking about joining a couple of rows from multiple tables, but about processing months of historical data and providing meaning full information.
+
+    Databases are good at processing data, but we sometimes make the mistake of just using it to as a file cabinet. The database is optimized to crunch GB's of data and return to us the results that we need.
+
+    So my talk would be about how to optimize your database so as to speed up your existing Ruby on Rails application.
   speakers:
     - Harisankar P S
 
@@ -127,7 +182,24 @@
   published_at: "2017-01-18T05:34:55Z"
   video_provider: "youtube"
   video_id: "1Qvs1e0RyIY"
-  description: ""
+  description: |-
+    For JavaScript, The method is available that is the isomorphic programming.
+
+    The isomorphic programming is the method exploiting the advantages obtained by same code running on both the server-side and client-side.
+
+    For examle, React is reducing the overhead of iniitial rendering in client side by server side rendering.
+
+    On the other hand, for the rubyists, We can also write ruby code on client side by using Opal.
+
+    This talk introduces a new framework for isomorphic programming with the Opal: Menilite.
+
+    Menilite shares model code between the server side and the client side by marshalling objects and storing them in the database automatically.
+
+    As a result, code duplication is reduced and APIs are no longer a necessity.
+
+    Isomorphic programming can significantly accelerate your progress on a project; I sincerely hope you find it helpful in developing web applications.
+
+    Menilite aims to expand the playing field for the Ruby language, a language optimized for developer happiness. I'm sure you will agree that we will find even more happiness by bringing Ruby to the front-end as well.
   speakers:
     - Yoh Osaki
 
@@ -138,7 +210,8 @@
   published_at: "2017-01-18T05:19:51Z"
   video_provider: "youtube"
   video_id: "dBPGCx2iMbg"
-  description: ""
+  description: |-
+    ActionCable is the new young prince of the Rails kingdom. He is young but powerful, en route to getting recognized for his skills? . ReactJS is the new princess of the JS kingdom. Recently, everyone has fallen head over heels in love with her. Together they are bound to create a powerful empire. Let’s watch the magic unveil as these two unite.
   speakers:
     - Yatish Mehta
 
@@ -149,7 +222,8 @@
   published_at: "2017-01-18T05:28:39Z"
   video_provider: "youtube"
   video_id: "-4eJzY5WMGI"
-  description: ""
+  description: |-
+    以過來人的經驗分享用 Ruby 每分鐘抓取 2000+ 頁面、維護上億筆紀錄資料庫的心路歷程，從單線程到多線程再到 Auto Scaling 讓大家一步一步體會撰寫爬蟲各階段可能遇到的瓶頸，期望能在未來為從事相關工作的朋友們帶來一點幫助。
   speakers:
     - Shi-Ken Don
 
@@ -160,7 +234,12 @@
   published_at: "2017-01-18T05:30:55Z"
   video_provider: "youtube"
   video_id: "8GP3mCxB5JA"
-  description: ""
+  description: |-
+    MRuby and mruby-cli makes it possible to ship single binary command-line tools that can be used without setup effort. How can we make these easy to write too?
+
+    Existing libraries for making command-line tools are built for experienced rubyists. This makes them a poor choice for porting to MRuby.
+
+    In this talk we'll explore how to build a command-line tool with mruby-cli along with a design and philosophy that makes it easy to create new commands and maintain existing commands even for unfamiliar developers.
   speakers:
     - Eric Hodel
 
@@ -171,7 +250,8 @@
   published_at: "2017-01-18T05:40:33Z"
   video_provider: "youtube"
   video_id: "AWVnCI-d4RQ"
-  description: ""
+  description: |-
+    隨著物聯網與雲端服務的盛行，傳統的 server class microprocessor 逐漸地從 general propose 轉變成為 workload specific；雲端服務採購 workload specific processor 的比重從 2010 年 9% 提升到今年至少 30%，比重逐年增加。為了因應 workload specific processor，許多程式語言都逐漸從 interpreter base、JIT base 轉向到 compiler base。Ruby language 的架構是採用純 interpreter base，致使 Skymizer 在針對客戶 workload 優化時，遭遇許多困難。 本篇 talk 會指出 Ruby langauge 現行 VM 上設計的問題，說明為何其無法針對客戶 workload 進行客製化，以期之後社群的努力與改進。
   speakers:
     - Luba Tang
 
@@ -182,7 +262,8 @@
   published_at: "2017-01-18T05:27:53Z"
   video_provider: "youtube"
   video_id: "QemOkwxmbYY"
-  description: ""
+  description: |-
+    Starting at a new company is hard. It's even harder when half the instructions and documentation to get you ready to code is out of date or missing key parts. We're Rubyists, not HR managers. Why don't we solve our issues through code instead of more Wikis and READMEs?
   speakers:
     - Layne McNish
 
@@ -193,7 +274,10 @@
   published_at: "2017-01-18T05:31:40Z"
   video_provider: "youtube"
   video_id: "8tDGHQddry4"
-  description: ""
+  description: |-
+    Phoenix 是根基於 Elixir 語言的 Web MVC 框架。除了 Elixir 與 Ruby 語法上的相似之外，這框架也從 Rails 「致敬」了許多概念及元件。這個講題會比較 Rails 與 Phoenix 在概念上相似及相異的部份，並告訴你用 Phoenix 開發時，哪些觀念及手法可以繼續使用，而哪些部份需要新的觀念，以及為什麼要這樣設計。
+
+    而對於正在使用 Rails 的開發者而言，也可以找一些 Rails 上的設計問題，及能適用於 Rails 的新手法及觀念。
   speakers:
     - TAI-AN SU
 
@@ -204,7 +288,14 @@
   published_at: "2017-01-18T05:33:52Z"
   video_provider: "youtube"
   video_id: "lUahszszZr8"
-  description: ""
+  description: |-
+    Rack Hijacking API
+
+    What is the Rack Hijacking API
+
+    How to use
+
+    Details of implementation
   speakers:
     - Kiyoshi Nomo
 
@@ -215,7 +306,8 @@
   published_at: "2017-01-18T05:36:47Z"
   video_provider: "youtube"
   video_id: "iNyfyD_33vQ"
-  description: ""
+  description: |-
+    在財報狗 (statementdog.com)，我們提供友善的介面與大量的財務數據輔助股票投資人進行投資決策。這些數據的背後是由大量的爬蟲與運算邏輯程式碼所建構而成。在我們的資料庫中，每一檔股票各自都有近千項數據要抓取與計算，在總計數千檔股票都有近千項數據要處理的情況下，如何做到穩定又快速的更新數據與資訊，是一項不容易的任務。在這次的 talk 中，我們將會分享我們在建構系統時所面臨的挑戰、以及我們如何利用 Sidekiq Enterprise 打造出一個高效率又可靠的爬蟲系統。(本talk不探討如何撰寫crawler的相關議題，例如Nokogiri或Mechanise等相關gem的使用方式)
   speakers:
     - Chien-Wei Chu
 
@@ -226,7 +318,8 @@
   published_at: "2017-01-18T05:35:21Z"
   video_provider: "youtube"
   video_id: "jHC7oxoZL_E"
-  description: ""
+  description: |-
+    A framework presented will demonstrate how to build user interface in pure ruby by using declarative and component-based approach.
   speakers:
     - David Chang
 
@@ -237,7 +330,12 @@
   published_at: "2017-01-18T05:39:38Z"
   video_provider: "youtube"
   video_id: "0EpgXNbC6x4"
-  description: ""
+  description: |-
+    There's big, and there's HUGE. Conventional wisdom says that huge teams with huge apps are slow and unresponsive. However, with great people, the right culture and diligent engineering, a team of 60 can perform like a team of 6.
+
+    Join us for a story of HUGE. Learn which tools, patterns and practices help you manage growth, and which don't. Hear how trust in your teammates trumps consistency of design, and how scale changes priorities.
+
+    Building a huge app takes focus and leadership, but if you prioritize people over process, you can stay fast, agile and bug free even when you're huge.
   speakers:
     - Brad Urani
 
@@ -248,7 +346,8 @@
   published_at: "2017-01-18T05:24:48Z"
   video_provider: "youtube"
   video_id: "mqxuM_5YgxE"
-  description: ""
+  description: |-
+    資訊安全是用來保障你我資料安全與個人隱私的技術，而密碼學扮演其中重要的角色，講題內容會以如何使用Ruby撰寫簡單的勒索軟體(Ransomeware)來探討如何安全的使用密碼系統。
   speakers:
     - Zong-Yu Wu
 
@@ -259,7 +358,8 @@
   published_at: "2017-01-18T06:03:26Z"
   video_provider: "youtube"
   video_id: "F6PaAloyp20"
-  description: ""
+  description: |-
+    Let's talk about salaries, diversity, career development, getting compensated in gold and silver, paying taxes in livestock and Ruby code. We at Travis CI have been working on a new salary system to determine how much we pay whom, when employees get raises and a whole range of other things. After lots of back and forth, we ended up with a Sinatra application to solve salary questions. Expect to explore the topic from many different angles and levels. We'll look at decisions, realisations and implications, as well as interesting parts of the implementation.
   speakers:
     - Konstantin Haase
 
@@ -270,7 +370,12 @@
   published_at: "2017-01-18T05:44:11Z"
   video_provider: "youtube"
   video_id: "vokjrQwTIQM"
-  description: ""
+  description: |-
+    Rails patterns are amazing for prototyping, but they are actually very bad practices for large scale production applications.
+
+    Also, Rails comes with lot of handy tools to break many barriers for web beginners while introducing tons of good practices. Again, those good practices are a good introduction, but they don't fit large scale production applications, especially when it comes to modern practices in front end world.
+
+    I will discuss why those patterns are not a fit, and how they can be replaced (completely dropped for another technology, or how to improve them). Delivering good practices that should be implemented as soon as your project is no more a prototype to scale your tests speed, your maintainability.
   speakers:
     - Florian Dutey
 
@@ -281,7 +386,12 @@
   published_at: "2017-01-18T05:42:56Z"
   video_provider: "youtube"
   video_id: "r1FLLLMDjYk"
-  description: ""
+  description: |-
+    在分析 DNA/RNA 資料上，已有許多工具可供使用，可透過不同工具的結合，可以找出可能導致疾病或癌症的變異點，但工具繁雜，每套工具所需要的參數及使用方法不同，控制每個步驟相當麻煩，必須精通各種分析工具的用法。
+
+    希望透過這個 talk 讓聽眾暸解，要串接 C 和 JAVA 等語言撰寫的分析工具時，可以利用 RUBY 的套件，撰寫簡單的 code 來處理複雜的分析流程．我們將工具與參數的使用，撰寫成 RUBY 模組，並利用 templete 系統組合出一個 robust 的資料分析流程(Cagnut)。
+
+    執行分析流程通常會花費相當大的資源與時間，我們將以 Cagnut 為核心，探討如何撰寫輔助套件(cagnut-cluster)，讓 Cagnut 可以運用不同 cluster 上的排程系統，如 LSF、SGE、Torque (PBS)，達到節省分析巨量資料的時間。
   speakers:
     - Shi-Gang Wang
 
@@ -292,7 +402,12 @@
   published_at: "2017-01-18T05:44:12Z"
   video_provider: "youtube"
   video_id: "Imol0joczlo"
-  description: ""
+  description: |-
+    HTTP/2 is here.
+
+    The first major revision since 1997 to Hypertext Transfer Protocol on which so much of the modern information transfer relies, HTTP/2 could have an enormous impact on the way we write applications.
+
+    Along with the history of HTTP and the current support status in the Ruby and Rails ecosystems, we will discuss how your web app can take advantage of HTTP/2.
   speakers:
     - Hiro Asari
 
@@ -303,6 +418,11 @@
   published_at: "2017-01-18T06:52:16Z"
   video_provider: "youtube"
   video_id: "tUW09NQEvfE"
-  description: ""
+  description: |-
+    Mastering the art of programming requires both the ability to rapidly understand specific problem domains, as well as comprehensive working knowledge of software development tools, from individual libraries, to programming languages, to the fundamental limits of computing hardware itself.
+
+    But what is often neglected is an understanding of the most heavily-used and relied-upon tool in the software developer's toolbox: the programmer's brain itself.
+
+    In this talk, we will combine the art of programming with the science of cognitive psychology, and emerge with a set of simple, proven techniques that we can use to craft software that is drastically less buggy, easier to understand, and more adaptive in the face of change.
   speakers:
     - Don Werve

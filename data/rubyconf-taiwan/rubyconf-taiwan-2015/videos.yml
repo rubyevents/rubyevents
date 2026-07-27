@@ -8,7 +8,10 @@
   published_at: "2015-11-22T15:54:16Z"
   video_provider: "youtube"
   video_id: "NtL54WD2oFk"
-  description: ""
+  description: |-
+    Let's make ruby the best language in the world by giving it the speed of C. Ruby's goal is maximize programmer happiness, not the happiness of computers. But sometimes we still need to give some sympathy to the poor machine, especially when our API requests timed out. There're multiple ways to speed up Ruby by running C under the hood. Among them, FFI (foreign function interface) is the one that give us the most pleasant experience.
+
+    With FFI, we can use C libraries without writing a single line of C code. Better yet, we also get cross platform/implementation support for free. We'll start from how FFI works, then calling a simple c function from ruby. Explore more by bridging C structs to ruby class and handing C pointers. Conclude with a FFI example.
   speakers:
     - John Lin
 
@@ -19,7 +22,12 @@
   published_at: "2015-11-22T15:59:55Z"
   video_provider: "youtube"
   video_id: "MqiG1Aza8DQ"
-  description: ""
+  description: |-
+    The attendee will learn about the basic development process Akatsuki uses to develop their mobile games using highly scalable Ruby on Rails servers.
+
+    This talk will not be only about Ruby or Ruby on Rails, but will also introduce various services that are used during our development, like JIRA, AWS, HoundCI, and many others.
+
+    By attending this talk you will get an idea of how developing for games might be different from your average website.
   speakers:
     - Rens Verstegen
 
@@ -30,7 +38,8 @@
   published_at: "2015-11-22T16:05:55Z"
   video_provider: "youtube"
   video_id: "cydW3bvUOKQ"
-  description: ""
+  description: |-
+    Matz will talk about three virtues of great programmers,
   speakers:
     - Yukihiro Matsumoto
 
@@ -41,29 +50,34 @@
   published_at: "2015-11-22T16:35:17Z"
   video_provider: "youtube"
   video_id: "tHbex4qMfPs"
-  description: ""
+  description: |-
+    Having internet available in almost any country, we, programmers, often believe that the applications we build are available for everyone. However by ignoring issues with encoding, censorship, and internet speed, we lose millions of potential users. Some of these problems are very tough and time-consuming, others, though, are very easy to fix.
   speakers:
     - Grzegorz Witek
 
-- id: "sheng-you-xie-rubyconf-taiwan-2015"
+- id: "adler-hsieh-rubyconf-taiwan-2015"
   title: "Automating our daily tasks with scripting"
   raw_title: "RubyConf Taiwan 2015 - Automating our daily tasks with scripting by 謝昇佑"
   date: "2015-09-11"
   published_at: "2015-11-23T02:12:41Z"
   video_provider: "youtube"
   video_id: "wkJ6Sc3627A"
-  description: ""
+  description: |-
+    This talk aims to go through basic scripting skills in Ruby. Participants will have a better understanding in managing their daily tasks with scripting. For example, we can setup automated scripts to delete old files on a daily basis instead of doing it manually. These can be done with Bash, Perl and many other scripting languages, but among of which Ruby is better known for its readability. It is easier to write, maintain, and reuse. It saves some time on system management and allows us to put more focus on the projects.
   speakers:
     - Adler Hsieh
 
-- id: "wei-hang-jian-rubyconf-taiwan-2015"
+- id: "weihang-jian-rubyconf-taiwan-2015"
   title: "Gulp on Rails - Return Front end back to Front end Developers"
   raw_title: "RubyConf Taiwan 2015 - Gulp on Rails - Return Front end back to Front end Developers by 簡煒航"
   date: "2015-09-11"
   published_at: "2015-11-23T08:33:53Z"
   video_provider: "youtube"
   video_id: "BLwBJfVQux0"
-  description: ""
+  description: |-
+    Rails sprockets is dated. It was an awesome tool in years since its inception. Although it's easy to use, when it starts having bugs (we know it had), front-end developers are helpless in what is supposed to be their own ecosystem, because they don't know Ruby. Why should a front-end developers knows how to use Sprockets/Ruby instead of using their tools like gulp, grunt, browserify, webpack, etc, that belongs to JS ecosystem?
+
+    Gulp, a modern approach to asset pipeline has become more popular and actively maintained by JS community. In this session, I'll share how and why I integrate Gulp and Rails.
   speakers:
     - Weihang Jian
 
@@ -74,7 +88,16 @@
   published_at: "2015-11-23T09:21:13Z"
   video_provider: "youtube"
   video_id: "MFafFUe_4r0"
-  description: ""
+  description: |-
+    有的時候客戶的環境不一定能夠支援 Ruby，
+
+    我們這時候除了想到 JRuby 和 JVM 還能做些什麼？
+
+    本透過本議程，我們將初略介紹如何利用 Warbler 這個套件打包 Rails 應用
+
+    在這個打包的過程中，除了 Rails App 之外，同時也加入 Rack Worker
+
+    讓你的應用能夠完整地在 JVM 中順利的部署和執行
   speakers:
     - Jason Lee
 
@@ -85,7 +108,8 @@
   published_at: "2015-11-23T09:50:42Z"
   video_provider: "youtube"
   video_id: "VVain__fKm8"
-  description: ""
+  description: |-
+    Being able to debug is an essential skill for every engineer, but learning effective debugging methods is difficult. In this talk, we will discuss basics to debugging and some useful tips for Rails app development. keywords: observing request parameters, cosmetics for rails console, built-in debug tools, email sending, "g" gem.Debugging occupies a large part of our development time. If only we could debug faster and more comfortably, our coding time would be more happier.
   speakers:
     - Kuniaki Igarashi
 
@@ -96,7 +120,8 @@
   published_at: "2015-11-23T10:01:38Z"
   video_provider: "youtube"
   video_id: "yXgkDNmKUmU"
-  description: ""
+  description: |-
+    Implementing e-commerce is complicated because there are several interconnected parts as: * Architectural Design and Patterns * Appropriate use of messaging, composition and inheritance * Balancing the transactions security and the user experience * Integration with 3rd-party services * Clear conversion funnel/workflow for ensuring business viability * Features management and implementation * I18n and localization * Continuos Integration and Deployment * Support and maintenance of e-commerce infrastructure We as a team focus in e-commerce implementation. Since several years ago, we have successfully implemented e-commerce for several customers, using Ruby, Ruby on Rails, Sinatra, Spreecommerce and other frameworks and platforms. We have learned many things in the process and we have identified common pitfalls and challenges. In this talk, those lessons learned will be presented, as well, how to implement a successful e-commerce.
   speakers:
     - Manuel Vidaurre
 
@@ -107,7 +132,8 @@
   published_at: "2015-11-23T10:31:35Z"
   video_provider: "youtube"
   video_id: "KgGA9PJL3TQ"
-  description: ""
+  description: |-
+    Rails has seen a lot of MVC’s for the V layer itself. May it be Ember or Angular, unless there’s some heavy groundwork, these don’t gel well with existing applications. React JS being framework Agnostic, blows out of these requirements, and being dead simple is far easier to add to existing / new projects. In this talk we’ll do walkthrough on using React JS and some of the new ES 6 features it brings, and integrating and using React in Rails. We’ll then take a look at various integration approaches with Rails- webpack/browserify and how to manage data and states using backbone, flux, GraphQL+Relay and more.
   speakers:
     - Vipul A M
 
@@ -118,7 +144,10 @@
   published_at: "2015-11-23T10:54:21Z"
   video_provider: "youtube"
   video_id: "IAGDBMaFEg0"
-  description: ""
+  description: |-
+    Rails goes to great lengths to convince us that we can get by with merely three different building blocks--the old, familiar models, views, and controllers. In early 2010, James Golick objected to this and proposed the (then controversial) idea of adding something called a Service Object, into the mix.
+
+    In this talk, we will look at the development in the 5 years that have since passed. We will take a walk outside the compound, and explore a new taxonomy of objects that we can use in our Rails applications to create a richer domain model.
   speakers:
     - Ted Johansson
 
@@ -129,7 +158,12 @@
   published_at: "2015-11-23T15:03:54Z"
   video_provider: "youtube"
   video_id: "vKPtLI0JCG4"
-  description: ""
+  description: |-
+    mruby is the lightweight implementation of the Ruby language and was released about a year ago. mruby has embeddable mechanism for middlewares like http server, search engine, etc.
+
+    Embedded mruby provides ruby runtime and syntax to middlewares. It’s so powerful programming environment for Rubyists. Even with mruby, we were able to create web services with tests and gems, and it also helped to solve some problems using Ruby code outside of a Rails application.
+
+    I will describe​ details of mruby in production service.
   speakers:
     - Hiroshi SHIBATA
 
@@ -140,7 +174,8 @@
   published_at: "2015-11-24T00:48:44Z"
   video_provider: "youtube"
   video_id: "-2_9WFtEvaA"
-  description: ""
+  description: |-
+    Transparency is a powerful means of making change. Ruby’s open source approach has spread across an ecosystem of libraries and whole companies. Open source increases the speed of software development and leads to higher quality code. These patterns of how we make software are changing how we do business and how our governments work. These aren’t just patterns of how we write code; these are patterns of how we interact with each other, teach and learn new skills, and experiment with new ideas. When we make our work visible, we expand its potential, and increase the chances of dramatic, unexpected impact.
   speakers:
     - Sarah Allen
 
@@ -151,7 +186,14 @@
   published_at: "2015-11-24T06:00:44Z"
   video_provider: "youtube"
   video_id: "ACXPGMu5kXU"
-  description: ""
+  description: |-
+    随着Mobile程序和Single Page Application的流行，编写RESTful API变得越来越常见和重要。
+
+    Swagger是一个简单而又十分强大的描述RESTful API的规范，允许开发者使用JSON描述API的元数据，结构和数据模型。Swagger的开发者社区在不断的成长。在规范以外，Swagger有多种实现，并提供丰富的工具套件，帮助API开发者生成交互性的文档（且与代码保持同步）和client SDK，大幅度地提高API的成功采用。
+
+    除了很多start-up公司采用Swagger外，很多领先的科技企业比如 Microsoft, IBM, Apigee, Getty Images, Intuit, LivingSocial, McKesson, Morningstar 和 PayPal 也使用 Swagger 打造更优秀的 RESTful API。
+
+    本次演讲主要介绍如何使用grape-swagger这个gem开发符合Swagger规范的API描述，减少代码和文档中的重复，并用Swagger UI展现文档和实时测试。
   speakers:
     - Jiang Wu
 
@@ -162,7 +204,32 @@
   published_at: "2015-11-24T04:22:45Z"
   video_provider: "youtube"
   video_id: "PnG5jgpsZOU"
-  description: ""
+  description: |-
+    Bitcoin is the final piece of the Internet protocol puzzle. As the technology of Bitcoin matures, it will reveal the next Internet revolution.
+
+    * When Matz met Satoshi?
+
+    * What’s Bitcoin?
+
+    * Do you really know what money is?
+
+    * Why Bitcoin?
+
+    * Let Ruby take you to the world of Bitcoin
+
+    * Blockchain
+
+    * What’s Blockchain?
+
+    * Hacking Blockchain by Ruby
+
+    * Applications
+
+    * Bitcoin accepted
+
+    * Rails & Bitcoin
+
+    * The future of Bitcoin
   speakers:
     - Joseph Ku
 
@@ -173,7 +240,8 @@
   published_at: "2015-11-24T06:02:06Z"
   video_provider: "youtube"
   video_id: "TjQmnxitMDs"
-  description: ""
+  description: |-
+    ruby 常常被人詬病效能不佳, 而 golang 1.5 提供了編譯成 shared library 讓其他程式呼叫的功能. 所以這個分享將會簡介 golang 1.5 的 shared library 功能以及如何<del>將 golang 偷渡到 ruby 專案</del>在 ruby 中借助 golang 來解決效能問題
   speakers:
     - tka
 
@@ -184,7 +252,8 @@
   published_at: "2015-11-24T06:59:49Z"
   video_provider: "youtube"
   video_id: "kg-lpyuTOGM"
-  description: ""
+  description: |-
+    RubyMotion is a toolchain to write cross-platform mobile apps for iOS and Android using the Ruby language. In this session we will cover how RubyMotion works, check out some of the high-level gems that can be used to speed up development, and have a sneak peek at new features of RubyMotion 4.0.
   speakers:
     - Laurent Sansonetti
 
@@ -195,7 +264,8 @@
   published_at: "2015-11-24T08:23:41Z"
   video_provider: "youtube"
   video_id: "AL2KtMo3oWE"
-  description: ""
+  description: |-
+    As an application grows in both complexity and number of contributors, how do we keep the development process easy and happy? At Airbnb's Developer Infrastructure, we user tools to streamline the development experience in place of rules and process. At this talk, I will talk about some of the tools we've built at Airbnb.
   speakers:
     - Ricky Pai
 
@@ -206,7 +276,12 @@
   published_at: "2015-11-24T08:15:01Z"
   video_provider: "youtube"
   video_id: "ecdb0DTpRa8"
-  description: ""
+  description: |-
+    For many back-end developers, the front-end is a pain. Dirty code within the application and even hard to test. So how can we use our experiences as Ruby developer to built a better front end?
+
+    Not every application developer (back-end or JavaScript) places importance on the details of front-end structure. Instead, they prefer simply to use APIs — mostly with a JSON interface. Instead of interference with the front-end developer’s work, this provides a structured API that only takes care of defined values.
+
+    CSS can’t live without HTML, and HTML almost can’t live without CSS. Let the front-end developer take care of both and consume the result as a well-tested API that takes nothing else than data as input.
   speakers:
     - Nico Hagenburger
 
@@ -217,7 +292,10 @@
   published_at: "2015-11-24T09:04:43Z"
   video_provider: "youtube"
   video_id: "HsfhdGF26a4"
-  description: ""
+  description: |-
+    幾年前我為了學習 Rails 而寫了一個類似 2ch 的貼圖版，但是找到工作後就忘了它的存在。幾年後我突然想知道要是能運用這幾年學到的經驗重寫的話，會發生什麼事。於是我重寫了。這裡我會整理自己在這次所得到的心得。
+
+    A few years ago I wrote a 2ch-like imageboard in order to learn Rails. After finding a job I abandoned it... until now. I decide to apply all the knowledge I have learnt over the years into rewriting this app. Here I'll talk about what I have done, what I have changed, and how I felt during the process.
   speakers:
     - lulalala
 
@@ -228,7 +306,18 @@
   published_at: "2015-11-24T09:25:15Z"
   video_provider: "youtube"
   video_id: "u5AaZRVhecI"
-  description: ""
+  description: |-
+    What goes in to a request and response in a Rails application? Where does the
+
+    application get its data, and how does that data get to the client when you are
+
+    done? In this talk we'll look at the request and response lifecycle in Rails.
+
+    We'll start with how a request and response are serviced today, then move on
+
+    to more exciting topics like adding HTTP2 support and what that means for
+
+    developing Rails applications.
   speakers:
     - Aaron Patterson
 
@@ -239,7 +328,16 @@
   published_at: "2015-11-24T10:33:16Z"
   video_provider: "youtube"
   video_id: "vbdVuEctCCQ"
-  description: ""
+  description: |-
+    好用的 Javascript Library 越來越多，前端程式越來越複雜，要引用到 Rails 專案的手續開始變得煩人。
+
+    Webpack 越來越強大，整合到 Rails 的方式各有偏好，網路教學看到頭昏，入手門檻無形中越墊越高。
+
+    將介紹自己的一個套件，能以 hybridization 或 replacement 的方式，整合 webpack 和 rails asset pipeline。
+
+    大量減低 webpack 入門的時間，並對日後的專案維護，達到一定的可靠性。
+
+    I will introduce a gem to integrate webpack with rails in hybridization or replacement way.
   speakers:
     - Tse-Ching Ho
 
@@ -250,7 +348,8 @@
   published_at: "2015-12-17T06:12:44Z"
   video_provider: "youtube"
   video_id: "InRCrvkyiX0"
-  description: ""
+  description: |-
+    Stepping into a management role is often the most difficult career transition for a working programmer, and can be a sharp and painful lesson in how to lose friends and alienate people, as the skills required to successfully manage people are very different than the skills required to successfully cut code. We will discuss what it takes to be an effective manager, learn how to avoid many of the traps that await engineers that start down the management path, and explore several battle-tested management techniques that you can deploy within your team to nurture a culture of engineering excellence. If you are a developer taking on a leadership role, a first-time CTO, or a technical cofounder, then this talk is for you.Stepping into a management role is often the most difficult career transition for a working programmer, and can be a sharp and painful lesson in how to lose friends and alienate people, as the skills required to successfully manage people are very different than the skills required to successfully cut code.
   speakers:
     - Don Werve
 
@@ -261,7 +360,10 @@
   published_at: "2015-10-16T06:16:02Z"
   video_provider: "youtube"
   video_id: "KCtiGybxWQI"
-  description: ""
+  description: |-
+    對軟體開發的成長過程而言；敏捷開發用迭代(iteration)式小週期循環的開發方式，克服了傳統開發對需求變更的無奈，成功克服了複雜專案的開發。但在這個 Mobile is eating the world的時代裡，任何開發作業的時間都嚴重的受到了挑戰，一切都越變越快，產品生命週期的長短就彷彿像手機App的安裝與移除一般的令人驚訝它的快速，此時能夠迅速交付產品的精實開發，
+
+    便成了大家的寵兒，因為它能盡快提供具有足夠價值的產物給客戶，這種稱不上是創新卻能整合開發與維運的架構方式，就稱之為DevOps。
   speakers:
     - Ruddy Lee
 
@@ -272,7 +374,8 @@
   published_at: "2015-10-16T08:37:52Z"
   video_provider: "youtube"
   video_id: "uatFCBHXJqU"
-  description: ""
+  description: |-
+    Everyone knows testing is so important. Everyone knows the pros and cons of testing. But there are thousands of excuses to prevent you from writing tests. There are thousands of barriers to block beginners from writing tests. I want to promote more people start writing tests. I want to make writing tests extremely easy. In this talk I will cover enough testing backgounds, types of tests. Introduce RSpec as the weapon to test our Ruby/Rails application. RSpec magic spells to start writing tests. Give practical examples of the most important tests they can write after this talk. How to be a mocking bird to fake everything for testing real world interactions. Then cover other types of tests for them to go even further.
   speakers:
     - Juanito Fatas
 
@@ -283,7 +386,8 @@
   published_at: "2015-10-16T08:42:40Z"
   video_provider: "youtube"
   video_id: "Q2zIL9V2VIw"
-  description: ""
+  description: |-
+    As a poker player, it is extremely important to analyze your decisions at the table and retrospectively all the time. Luckily for us, we can program so we can let Ruby do that for us! In this talk, we will explore why we need software in poker, what types of software can we use, and how to actually implement those tools in Ruby to make our decision making around the table much simpler, from basic statistical analysis of situations to understanding our opponents' strategy and tendencies. This talk will cover everything you need to become a better poker player with the help of Ruby as well as give you some general statistical analysis knowledge.
   speakers:
     - Assaf Gelber
 
@@ -294,18 +398,20 @@
   published_at: "2015-11-23T05:59:18Z"
   video_provider: "youtube"
   video_id: "9m4FzGPtGig"
-  description: ""
+  description: |-
+    Since its birth, GobiesVM has been focusing on parallelism in a Ruby implementation. In this talk, we'll illustrate how GobiesVM keeps on improving this aspect while bringing other new ideas to the table.
   speakers:
     - Szu Kai Hsu
 
-- id: "jian-xin-lin-rubyconf-taiwan-2015"
+- id: "lin-jen-shin-rubyconf-taiwan-2015"
   title: "Have you seen the Mock Muack yet"
   raw_title: "RubyConf Taiwan 2015 - Have you seen the Mock Muack yet by 林健欣"
   date: "2015-09-11"
   published_at: "2015-10-16T07:38:28Z"
   video_provider: "youtube"
   video_id: "7z_HTxxfvvo"
-  description: ""
+  description: |-
+    In this talk, I'll briefly introduce what is a test double, and why and when we should use it, and what's the trade of we'll make by using it. WITH GREAT POWER THERE MUST ALSO COME--GREAT RESPONSIBILITY! Examples will all be written with [Muack](https://github.com/godfat/muack).
   speakers:
     - Lin Jen-Shin
 
@@ -316,7 +422,8 @@
   published_at: "2015-12-17T08:01:26Z"
   video_provider: "youtube"
   video_id: "-mW2lzqkBEA"
-  description: ""
+  description: |-
+    WordPress 簡易的架設與強大的後台讓人愛不釋手，但其令人垢病的低落效能讓一個台灣百大的媒體網站，每每遇到重要時事新聞常因突然過大的龐大流量導致無法負荷。這次將分享將近一年時間，從 WordPress 前台＋Rails 後台，一步步到全站 Rails 過程的大小事，包含資料庫、程式與伺服器架構設計等。
   speakers:
     - Ronald Hsu
 
@@ -327,6 +434,135 @@
   published_at: "2015-12-17T08:21:16Z"
   video_provider: "youtube"
   video_id: "Mgtic-H_u-Y"
-  description: ""
+  description: |-
+    Angular delivers the kind of web app people expect: fast, single-page, and highly interactive; and for developers the framework is powerful and fun to use. Just as Rails can feel magical because of how quickly we can build new applications and Ruby’s flexibility gives us freedom, Angular’s two-way bindings update models effortlessly, and powerful directives support code reuse. I will talk about how we transformed Indiegogo’s Rails web app with a new Angular front-end. I will share practical tips for getting started with Angular in your Rails app, and how data is transferred from your database through Rails to the front-end and back again.
   speakers:
     - Judy Tuan
+
+- id: "ben-bai-rubyconf-taiwan-2015"
+  title: "Lightning Talk: Rails, Minitest and Selenium"
+  raw_title: "RubyConf Taiwan 2015-LT-01 白世銘 Ben：Rails, Minitest and Selenium"
+  kind: "lightning_talk"
+  date: "2015-09-11"
+  published_at: "2015-10-15T15:24:20Z"
+  video_provider: "youtube"
+  video_id: "W529CidA9B8"
+  description: |-
+    Share my project that describe how to write test case with Selenium in Rails, including visual testing and integrate rake test with Jenkins as a service.
+  speakers:
+    - Ben Bai
+
+- id: "hiroaki-iwase-rubyconf-taiwan-2015"
+  title: "Lightning Talk: Ruby based Distributed Key Value Store \\\"ROMA\\\""
+  raw_title: "RubyConf Taiwan 2015-LT-02 Hiroaki Iwase：Ruby based Distributed Key Value Store ROMA"
+  kind: "lightning_talk"
+  date: "2015-09-11"
+  published_at: "2015-10-15T15:24:25Z"
+  video_provider: "youtube"
+  video_id: "B3rzAoQ_UJk"
+  description: |-
+    I am going to introduce ROMA(Ruby/Rakuten On-Memory Architecture). ROMA is one of the data storing systems for distributed key-value stores. It is a completely decentralized distributed system that consists of multiple processes, called nodes, on several machines. It is based on pure P2P architecture like a distributed hash table, thus it provides high availability and scalability. This has been developed as an OSS product written in Ruby from 2007 with Matz. I will also share a GUI management tool named 'Gladiator', which is developed for Ruby on Rails, enabling developers to control ROMA more easily and intuitively.
+  speakers:
+    - Hiroaki Iwase
+
+- id: "jaime-cham-rubyconf-taiwan-2015"
+  title: "Lightning Talk: Using Redis to index ActiveRecord objects the easy way"
+  raw_title: "RubyConf Taiwan 2015-LT-03 Jaime Cham：Using Redis to index ActiveRecord objects the easy way"
+  kind: "lightning_talk"
+  date: "2015-09-11"
+  published_at: "2015-10-16T10:17:07Z"
+  video_provider: "youtube"
+  video_id: "cXpe61ZNz2w"
+  description: |-
+    We present the soon to be open-sourced "Series" (official gem name TBD) which makes it stupid easy to use traditional ActiveRecord + an SQL database in combination with the no-SQL Redis to store, index and have multiple views and collections of existing ActiveRecord objects, leveraging the strengths of each type of data store. The codebase has been in production at PicCollage for years handling up to 100K requests per minute.
+  speakers:
+    - Jaime Cham
+
+- id: "yuta-kurotaki-rubyconf-taiwan-2015"
+  title: "Lightning Talk: Enterprise Rails Application Tips"
+  raw_title: "RubyConf Taiwan 2015-LT-04 Yuta Kurotaki：Enterprise Rails Application Tips"
+  kind: "lightning_talk"
+  date: "2015-09-11"
+  published_at: "2015-11-23T14:56:29Z"
+  video_provider: "youtube"
+  video_id: "S6URFqYCL-I"
+  description: |-
+    I made a Enterprise Rails Application for the new business. Many people not only the developers are using the system. Sometimes the wrong data is sent to Rails Application in day-to-day operation. I will be talking about "How to protect the data by using the function of ActiveRecord".
+  speakers:
+    - Yuta Kurotaki
+
+- id: "jeddie-chuang-rubyconf-taiwan-2015"
+  title: "Lightning Talk: Auto scaling with Amazon Web Services"
+  raw_title: "RubyConf Taiwan 2015 LT 05 JeDDie：Auto scaling with Amazon Web Services"
+  kind: "lightning_talk"
+  date: "2015-09-11"
+  published_at: "2015-11-23T15:16:26Z"
+  video_provider: "youtube"
+  video_id: "V0FJRZ4O8zY"
+  description: |-
+    This is a basic tech experience to build auto scale with AWS shared from LIVEhouse.in. It also includes how we coordinate auto scaling and the release deployment.
+  speakers:
+    - Jeddie Chuang
+
+- id: "frozenfung-rubyconf-taiwan-2015"
+  title: "Lightning Talk: 五分鐘打造公司專屬的 Private Gem Storage"
+  raw_title: "RubyConf Taiwan 2015-LT-06 李俊鋒：五分鐘打造公司專屬的 Private Gem Storage"
+  kind: "lightning_talk"
+  date: "2015-09-11"
+  published_at: "2015-12-17T08:15:18Z"
+  video_provider: "youtube"
+  video_id: "iTDxDkaNajo"
+  description: |-
+    公司內部開發用的gem不想放在網路上分享，第三方的 private gem storage 服務又覺得太貴嗎? 透過 Heroku 配合 AWS S3 在五分鐘之內打造一個專屬於公司內部的 Private Gem Storage !
+  speakers:
+    - frozenfung
+
+- id: "stan-lo-rubyconf-taiwan-2015"
+  title: "Lightning Talk: 為什麼你應該練習寫 gem"
+  kind: "lightning_talk"
+  date: "2015-09-11"
+  video_provider: "not_published" # unpublished video: vCtuJWHQOIo
+  video_id: "stan-lo-rubyconf-taiwan-2015"
+  description: |-
+    除了寫 Rails 以外，我在學習 Ruby 第二個月時就照著書本的練習寫了一個 gem，而這個練習對於我之後開發網站，甚至貢獻開源專案都有很大的幫助，所以我想跟大家分享除了寫 Rails Application 之外，練習寫一個 gem 可以學到什麼東西
+  speakers:
+    - Stan Lo
+
+- id: "elvis-saravia-rubyconf-taiwan-2015"
+  title: "Lightning Talk: Venturing into Social E-Commerce Platforms"
+  raw_title: "RubyConf Taiwan 2015 LT 08 Elvis Saravia：Venturing into Social E Commerce Platforms"
+  kind: "lightning_talk"
+  date: "2015-09-11"
+  published_at: "2015-11-23T15:30:32Z"
+  video_provider: "youtube"
+  video_id: "53rHYs4_RoM"
+  description: |-
+    This talk focuses on the experiences, challenges, ideas and opportunities encountered while building your dream web platform project using Ruby on Rails. We take a curious look at how the student creator of Kuai List (kuailist.com), a social e-commerce platform, is doing just that. Everyday, we hear countless stories of new successful online platforms, their acquisitions, and their complexities. But few talk about what it takes to build one from the ground up. With the sudden rise of new programming technologies and easy-to-integrate services, online platforms have taken center stage and there is no better time to build your own. But even though it is important to get your ideas off the ground and seen, it is equally important to do it the right way and at the right time using the proper technology. Policies, standards, and security have never been more important to observe as they are now.
+  speakers:
+    - Elvis Saravia
+
+- id: "evadne-wu-rubyconf-taiwan-2015"
+  title: "Lightning Talk: Running with Sockets in Production"
+  raw_title: "RubyConf Taiwan 2015 LT 09 Evadne Wu：Running with Sockets in Production"
+  kind: "lightning_talk"
+  date: "2015-09-11"
+  published_at: "2015-11-23T15:37:54Z"
+  video_provider: "youtube"
+  video_id: "NKLV-qt5Uus"
+  description: |-
+    Since winter 2014 we’ve built and maintained a successful student coursework portfolio management application with server–client messaging capabilities and automatic content synchronization on the front-end. This talk discusses finer points of building such a web-client-facing synchronization layer and keeping it running in production without incurring infrastructural frustration or programmer headaches. I’ll briefly look at available solutions and explain the pros and cons of each approach when it comes to sending server-side updates to active client applications, and demonstrate a successful approach that has been proven in production by hundreds of thousands of users.
+  speakers:
+    - Evadne Wu
+
+- id: "michelle-leu-rubyconf-taiwan-2015"
+  title: "Lightning Talk: CodeMe - 工程師的遊戲化成就系統"
+  raw_title: "RubyConf Taiwan 2015 LT 10 Michelle Leu：CodeMe 工程師的遊戲化成就系統"
+  kind: "lightning_talk"
+  date: "2015-09-11"
+  published_at: "2015-11-23T15:41:57Z"
+  video_provider: "youtube"
+  video_id: "6pnhIa-vkn4"
+  description: |-
+    在這百花齊放的開源世界，每位工程師幾乎都要略懂數種語言，參加大大小小的研討會互相交流，泡在 Twitter、Github、stackoverflow 上面學習並成長。 CodeMe 想用遊戲化的方式將一切記錄下來，我們透過實體互動達成各種成就，一起打怪練功、開坑填坑。
+  speakers:
+    - Michelle Leu

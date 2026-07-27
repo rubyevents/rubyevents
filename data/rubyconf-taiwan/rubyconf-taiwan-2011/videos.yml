@@ -1,2 +1,210 @@
 ---
-[]
+
+- id: "geoffrey-grosenbach-rubyconf-taiwan-2011"
+  title: "Keynote: Code & Creativity"
+  kind: "keynote"
+  date: "2011-08-26"
+  video_provider: "vimeo"
+  video_id: "29438388"
+  description: |-
+    How does one start with nothing and make something? When we write computer programs, we start with only our thoughts. One can improve one's skills and write better programs by using techniques well known to creative artists: scratchpads, prototypes, thought streams, side projects.
+  speakers:
+    - Geoffrey Grosenbach
+
+- id: "qing-wang-rubyconf-taiwan-2011"
+  title: "Keynote: 從 Java Programmer 的觀點來看 Ruby"
+  kind: "keynote"
+  date: "2011-08-26"
+  slides_url: "http://www.slideshare.net/qingwang/java-programmer-ruby-9039273"
+  video_provider: "vimeo"
+  video_id: "29419017"
+  description: ""
+  speakers:
+    - Qing Wang
+
+- id: "yuki-sonoda-rubyconf-taiwan-2011"
+  title: "Ruby 1.9.3 and Ruby 1.9 development"
+  date: "2011-08-26"
+  slides_url: "http://www.slideshare.net/yugui/ruby-193-and-development-of-ruby"
+  video_provider: "vimeo"
+  video_id: "29438332"
+  description: |-
+    Ruby 1.9.3 is going to be released. Feature changes in Ruby 1.9.3 are
+    not so large but there are some interesting features. Also some
+    implementation in YARV has changed.
+    I would like to introduce this new stable release of Ruby 1.9 series.
+  speakers:
+    - Yuki Sonoda
+
+- id: "chris-eppstein-rubyconf-taiwan-2011"
+  title: "Sass: The Future of Stylesheets"
+  date: "2011-08-26"
+  video_provider: "vimeo"
+  video_id: "29434934"
+  description: |-
+    Let’s face it. CSS is dumb. There is no such thing as a DRY CSS file and stylesheets are often the biggest blemish in an otherwise beautifully coded app. Sass is the future of stylesheets. Rails 3.1 includes it by default and the W3C is adding concepts from Sass to CSS itself. This talk will cover the rationale behind Sass, the language features it provides, and best practices you can apply to start untangling your stylesheets. Chris Eppstein, the creator of Compass and Sass core team member will present.
+  speakers:
+    - Chris Eppstein
+
+- id: "wang-shen-lu-rubyconf-taiwan-2011"
+  title: "Compass.app: When someone hates command line"
+  date: "2011-08-26"
+  video_provider: "vimeo"
+  video_id: "29589431"
+  description: ""
+  speakers:
+    - Wang-Shen Lu
+
+- id: "lin-jen-shin-rubyconf-taiwan-2011"
+  title: "A modular Ruby REST client collection/infrastructure"
+  date: "2011-08-26"
+  slides_url: "http://www.godfat.org/slide/2011-08-27-rest-core.html"
+  video_provider: "vimeo"
+  video_id: "29590001"
+  description: |-
+    In this era of web services and mashups, we have seen a blooming of REST APIs. One might wonder, how do we use these APIs easily and elegantly? Since REST is very simple compared to SOAP, it is not hard to build a dedicated client ourselves.
+
+    We have developed rest-core with composable middlewares to build a REST client, based on the effort from rest-graph. In the cases of common APIs such as Facebook, Github, and Twitter, developers can simply use the built-in dedicated clients provided by rest-core, or do it yourself for any other REST APIs.
+  speakers:
+    - Lin Jen-Shin
+
+- id: "nick-sutterer-rubyconf-taiwan-2011"
+  title: "CRUD Is Not REST - Hypermedia For Y'All"
+  date: "2011-08-26"
+  video_provider: "vimeo"
+  video_id: "29471574"
+  description: |-
+    REST is an architectural style for distributed systems. However, many implementations forget about the distributed part of REST and simply map CRUD operations to HTTP verbs in a monolithic application. We're gonna go further and learn why hypermedia is the crucial part of REST architectures and how machines can browse resources just like humans using self-describing representations.
+
+    Monolithic applications are boring, so let's separate things and create a REST system as it is intended to be. Let's build a simple system using the Roar gem, Rails and Sinatra and discuss the benefits and drawbacks we get from distributed hypermedia systems.
+  speakers:
+    - Nick Sutterer
+
+- id: "sheng-zhe-lin-rubyconf-taiwan-2011"
+  title: "Rails SA Practice"
+  date: "2011-08-26"
+  slides_url: "https://v1nc3ntlaw.github.io/rubyconf-tw-2011-rails-sa/"
+  video_provider: "vimeo"
+  video_id: "29590825"
+  description: ""
+  speakers:
+    - Sheng-Zhe Lin
+
+- id: "allen-cheng-rubyconf-taiwan-2011"
+  title: "An Open CMS with MongoDB"
+  date: "2011-08-26"
+  video_provider: "not_published" # unpublished video: vimeo 30171784
+  video_id: "allen-cheng-rubyconf-taiwan-2011"
+  description: |-
+    It’s a disaster for a small company to maintain a self-developed CMS with thousands of clients. Each time the codes have been modified and we need to upgrade thousands of online websites, especially some websites have been customized, it’s a waste of customer service human resource. Now, we are using Rails and MongoDB to overcome the difficulty of upgrade. After the issue is solved, the bonus is that we can now open the system and invite other parties to join the development, create new functionalities and modules; meanwhile, we can still provide stable customer service of maintaining thousands and more online website.
+  speakers:
+    - Allen Cheng
+
+- id: "josh-moore-rubyconf-taiwan-2011"
+  title: "Writing custom DataMapper Adapters"
+  date: "2011-08-26"
+  slides_url: "http://www.slideshare.net/codingforrent/dm-adapter-rubyconftw"
+  video_provider: "not_published" # unpublished video: vimeo 30171873
+  video_id: "josh-moore-rubyconf-taiwan-2011"
+  description: |-
+    DataMapper is a storage engine agnostic ORM, it can work just as well with a RDMS as with any another type of storage engine such as, but not limited to: no sequel stores (redis, mongo...), XML or yaml data source, etc. While many adapters already exist to connect DataMapper to a miriad of storage engines, there may not be one for your preferred storage engine or you may need to communicate with data from a legacy system. If this is the case I will introduce you to the clean and simple API used to write your custom DataMapper adapter.
+  speakers:
+    - Josh Moore
+
+- id: "kun-kang-lee-rubyconf-taiwan-2011"
+  title: "Happy Programming - Next step after learning Rails CRUD"
+  date: "2011-08-26"
+  slides_url: "https://wildjcrt.github.io/happy_programming/"
+  video_provider: "not_published" # unpublished video: vimeo 29884753
+  video_id: "kun-kang-lee-rubyconf-taiwan-2011"
+  description: |-
+    參與過多次 Rails Tuesday之後，深覺許多有興趣撰寫 Rails 的程式設計師，在學完基本的 CRUD 以及一些基本的 plugin/gem 套用後，便茫然不知如何進行下一步。本演講以講者自身的經驗，配合幾個實用的工具，來讓新手可以繼續在 Rails Way 上前進。
+  speakers:
+    - Kun-Kang Lee
+
+- id: "manic-chuang-rubyconf-taiwan-2011"
+  title: "Rails 炸機實務 - 如何不要炸爛你家機器和你老闆的臉"
+  date: "2011-08-26"
+  slides_url: "http://www.slideshare.net/Manic/rails-9014355"
+  video_provider: "not_published" # unpublished video: vimeo 29884726
+  video_id: "manic-chuang-rubyconf-taiwan-2011"
+  description: ""
+  speakers:
+    - Manic Chuang
+
+- id: "jack-chen-rubyconf-taiwan-2011"
+  title: "Using Ruby in Social Media platform"
+  date: "2011-08-26"
+  slides_url: "http://www.slideshare.net/chensongyong/build-socialsiteinruby"
+  video_provider: "not_published" # unpublished video: vimeo 29818601
+  video_id: "jack-chen-rubyconf-taiwan-2011"
+  description: |-
+    The trends of social media in Internet industry
+
+    Benefit of using MongoDB, mongoid in storing social data
+
+    Streaming social data with AMQP
+
+    More tips for calling social network (Facebook, Twitter...) APIs
+  speakers:
+    - Jack Chen
+
+- id: "ryudo-awaru-rubyconf-taiwan-2011"
+  title: "用Sinatra建置高效能與高自訂性的系統"
+  date: "2011-08-26"
+  slides_url: "http://www.slideshare.net/ryudoawaru/sinatra-tutorialrubyconftw2011"
+  video_provider: "not_published" # unpublished video: vimeo 30127067
+  video_id: "ryudo-awaru-rubyconf-taiwan-2011"
+  description: |-
+    介紹Sinatra這套Ruby DSL Framework的基礎, 以及如何透過Sinatra輔助Rails
+  speakers:
+    - Ryudo Awaru
+
+- id: "yi-ting-cheng-rubyconf-taiwan-2011"
+  title: "Essential Rails Design Pattern"
+  date: "2011-08-26"
+  video_provider: "not_published" # unpublished video: vimeo 29887935
+  video_id: "yi-ting-cheng-rubyconf-taiwan-2011"
+  description: |-
+    在開發 Rails 網站 時，Rails Developer 因為有著來自四面八方的背景，在不瞭解 Rails Way 的情況下，常常實作出一些詭異的設計，或者是對於某一些功能不知如何下手實作。本場 talk 將整理一些常見的 Rails Design Pattern。
+
+    包括分別在 Model / View / Controller 內應該正確的怎樣設計包裝 method，對於網站上一些常見的功能，如何善用 Rails 本身的 built-in feature 實作，Ex. 善用 RESTful 與 Responder 減少 code 量。如何 Extract Code 降低 code 重複性，ex 包裝成 module 或者是使用 presenter 等實作技巧
+  speakers:
+    - Yi-Ting Cheng
+
+- id: "ho-tse-ching-rubyconf-taiwan-2011"
+  title: "善用 Devise 建置會員系統"
+  date: "2011-08-26"
+  slides_url: "http://www.slideshare.net/tsechingho/devise-tutorial-2011-rubyconf-taiwan"
+  video_provider: "not_published" # unpublished video: vimeo 29887954
+  video_id: "ho-tse-ching-rubyconf-taiwan-2011"
+  description: |-
+    開發網站，會員系統通常是必需的。如何快速建立一套自有機制，或串接其他系統（如 Facebook）無疑是基本技能。本教學課程將介紹會員系統的架構、運作方式，並利用 Devise 實作多套會員機制。
+
+    A membership system is required for an user oriented web site. How to quickly build a customized authentication system, including connected with Facebook like system, is a fundamental skill. This tutorial will introduce the architecture and mechanism of membership system, and use Devise to implement multi-authentication environment.
+  speakers:
+    - Ho Tse-Ching
+
+- id: "mason-chang-rubyconf-taiwan-2011"
+  title: "Ruby on Windows"
+  date: "2011-08-26"
+  slides_url: "http://www.slideshare.net/changmason/ruby-on-windows-for-rubyconftw-2011"
+  video_provider: "not_published" # unpublished video: vimeo 30169690
+  video_id: "mason-chang-rubyconf-taiwan-2011"
+  description: ""
+  speakers:
+    - Mason Chang
+
+- id: "wei-jen-lu-rubyconf-taiwan-2011"
+  title: "把鐵路開進視窗中，JRuby on Rails 在Windows 2008 R2中的配置方案"
+  date: "2011-08-26"
+  slides_url: "http://www.slideshare.net/weijenlu/ss-9030154"
+  video_provider: "not_published" # unpublished video: vimeo 30169695
+  video_id: "wei-jen-lu-rubyconf-taiwan-2011"
+  description: |-
+    Ruby on Rails的世界中，一直都只有Linux與Mac OS，可是根據IDC 2010的資料，Windows Server 的市佔率仍然高達75.3，沒有開窗，Ruby on Rails仍然是小眾。
+    隨著JRuby的逐漸穩定、成熟，開窗的時機來了，站在Java的肩膀上，Rails可以登高、開窗、望遠了。
+
+    在這次的分享中，我希望可以跟聽眾聊聊幾個題目：
+  speakers:
+    - Wei-Jen Lu
