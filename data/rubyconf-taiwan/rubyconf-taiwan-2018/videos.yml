@@ -17,7 +17,8 @@
   published_at: "2018-05-23T03:33:22Z"
   video_provider: "youtube"
   video_id: "01UB1DaX1Uc"
-  description: ""
+  description: |-
+    This talk will introduce developers to Elixir and the underlying Erlang VM and show how they provide a new vocabulary which shapes how developers design and build concurrent, distributed and fault-tolerant applications. The talk will also focus on the design goals behind Elixir and include some live demos.
   speakers:
     - José Valim
 
@@ -26,9 +27,17 @@
   raw_title: "RubyElixirConf Taiwan 2018 - Not familiar with Elixir? by PastLeo"
   date: "2018-04-27"
   published_at: "2018-05-23T03:35:56Z"
+  slides_url: "https://hackmd.io/@pastleo/H1boTfo08#/"
   video_provider: "youtube"
   video_id: "gdA9Sm1DuUE"
-  description: ""
+  description: |-
+    I am a new beginner in Elixir too, actually. I first came across Elixir in early 2017, after a short taste, some of its features immediately interested me :)
+
+    Then there comes a big refactor for the maintaining project and a document store migration is required. I had the chance use Elixir in action and play with all its key features for a few months.
+
+    I will introduce what I love about Elixir, different philosophy between Elixir and Ruby, and how to jump from the world of object-oriented to the functional world. Last but not least, I will also demonstrate some real-world example in this talk.
+
+    If you haven't give Elixir a try, I hope this talk will enlighten you with some new ideas!
   speakers:
     - PastLeo
 
@@ -39,7 +48,10 @@
   published_at: "2018-05-23T03:33:27Z"
   video_provider: "youtube"
   video_id: "y_tLPnTYGdE"
-  description: ""
+  description: |-
+    One of the Ruby 3 goals is "better concurrency support".
+
+    I will talk about the progress report of this goal. I had proposed new concurrency abstraction at RubyKaigi 2016, RubyConf 2016. Our new abstraction is safer than Thread and can run in parallel. This presentation will introduce concepts of our new abstraction and will show demonstration with preliminary implementation.
   speakers:
     - Koichi Sasada
 
@@ -48,9 +60,11 @@
   raw_title: "RubyElixirConf Taiwan 2018 - How the Rubyist use Blockchain by Aotoki Tsuruya"
   date: "2018-04-27"
   published_at: "2018-05-23T03:33:27Z"
+  slides_url: "https://speakerdeck.com/elct9620/2018-how-the-rubyist-use-blockchain"
   video_provider: "youtube"
   video_id: "cjjr-mDyhLI"
-  description: ""
+  description: |-
+    The cryptocurrency becomes popular in recent years. As a Rubyist, how can we deal with this technology? This talk will discuss blockchain, show an example using Ethereum's geth to direct operate blockchain and demo how to develop blockchain application.
   speakers:
     - Aotoki Tsuruya
 
@@ -61,7 +75,22 @@
   published_at: "2018-05-23T03:33:27Z"
   video_provider: "youtube"
   video_id: "QA8inhmAy9c"
-  description: ""
+  description: |-
+    How many times did you run ruby directly except ruby -v for checking version?
+
+    Ruby was the descendent of Perl, inherited many handy command line features.
+
+    Such as easy file reading, various global variables and executing directly without file.
+
+    Let's explore all sorts of little known Ruby Command Line features.
+
+    除了用 ruby -v 來檢查版本之外， 你曾經在 command line 直接執行過 Ruby 嗎?
+
+    Ruby 作為 Perl 的接班人，延續了許多好用的 command line 功能。
+
+    像是方便的讀取檔案，各種實用的預設變數，不用檔案直接執行程式碼。
+
+    讓我們一起來探索各種鮮為人知的 Ruby 功能。
   speakers:
     - John Lin
 
@@ -72,7 +101,14 @@
   published_at: "2018-05-23T03:33:27Z"
   video_provider: "youtube"
   video_id: "0444L6Vdkrw"
-  description: ""
+  description: |-
+    This topic is used to demonstrate that Elixir works fine on the raspberry pi. I develop a generalized player on raspberry named QBox, and use Elixir to build the web server, and then, any web browser can control the product remotely. This system works fine, and, therefore, I think it is helpful for a person who wants to develop applications alike. Because this application almost includes all features of raspberry interfaces (besides GPIO), such as wifi, Bluetooth, touch screen, USB, database, voice, HDMI, so, it is a good practice to demonstrate the abilities about Elixir on raspberry. My goals in this talk are:
+
+    (1) present it works,
+
+    (2) appreciate to the forum, it is very helpful to me in developing,
+
+    (3) announce a resource (me), I am glad to provide my experience to any person interested.
   speakers:
     - Faust Dehng
 
@@ -83,7 +119,8 @@
   published_at: "2018-05-23T03:33:27Z"
   video_provider: "youtube"
   video_id: "5143QsJ9saI"
-  description: ""
+  description: |-
+    Le Tote has been using Elixir in production for over 2 years. In this talk, I'll touch on the practical problems and suggestions resulting from integrating Ruby on Rails and Elixir/Phoenix. I'll focus primarily on the technology with a few notes on team dynamics and infrastructure. I'll speak from the perspective of a Ruby developer who is new to, but interested in Elixir, and also a team lead managing both Ruby and Elixir developers.
   speakers:
     - Kevin Kimball
 
@@ -92,9 +129,15 @@
   raw_title: "RubyElixirConf Taiwan 2018 - Moving millions of dollars daily by Sihui Huang"
   date: "2018-04-27"
   published_at: "2018-05-23T03:35:07Z"
+  slides_url: "http://www.sihui.io/millions-ruby/"
   video_provider: "youtube"
   video_id: "wzTyUhBh93Y"
-  description: ""
+  description: |-
+    It’s incredibly fulfilling to know your code makes a difference. But, when your code needs to move millions of dollars daily, it can be terrifying. Imagine how dreadful it is when you find a small bug that cost hundreds of millions of dollars.
+
+    I’m on the payment engineering team at Gusto. We build systems that move money for people’s payrolls: money people depend their lives on.
+
+    Come and hear me share how we build systems striving for correctness and robustness with Sidekiq and Slack bots. You will learn about best practices and engineering principles we distilled from past expensive lessons. They give us confidence in our code so we can sleep well at night.
   speakers:
     - Sihui Huang
 
@@ -105,7 +148,10 @@
   published_at: "2018-05-23T03:33:27Z"
   video_provider: "youtube"
   video_id: "Z8Ja6pkY8A8"
-  description: ""
+  description: |-
+    In Ruby 2.6, we're planning to merge JIT compiler to MRI experimentally.
+
+    In this talk, you'll see how it's going, and how it performs better.
   speakers:
     - Takashi Kokubun
 
@@ -116,7 +162,8 @@
   published_at: "2018-05-23T03:39:05Z"
   video_provider: "youtube"
   video_id: "jLf3SxF-7o4"
-  description: ""
+  description: |-
+    Its better to appologize to one user for the app being down for one request rather than to appologize to 100 user for the app being slow. Circuit breakers are an age old technology which we use to save our hour from burning down, even if we are inconvenienced about it breaking light to one part of the house, we are going to use the same concept to make sure that one faulty code or small instantaneous increase in load doesn't bring down the application.
   speakers:
     - Harisankar P S
 
@@ -127,7 +174,10 @@
   published_at: "2018-05-23T03:39:05Z"
   video_provider: "youtube"
   video_id: "yCKYxpgTnLg"
-  description: ""
+  description: |-
+    The Twelve-Factor App is a guideline for modern web app development. Kubernetes is an open-source project for container management that gives you great flexibility around application deployments. With containers and Kubernetes, you can deploy and rollback a version, scale out to hundreds of nodes, copy the same configuration to multiple prod, staging, and dev environments, manage deployments through API, and so on.
+
+    This talk will review each of the twelve factors using a simple Rails application as an example and see how Kubernetes helps you run your Rails application. Experience with containers is not required.
   speakers:
     - Emma Haruka Iwao
 
@@ -138,7 +188,10 @@
   published_at: "2018-05-23T03:39:05Z"
   video_provider: "youtube"
   video_id: "pd_9b38o_DQ"
-  description: ""
+  description: |-
+    RDoc has some steps for generating documents. First, lexical analysis for Ruby code. Second, parsing methods, classes, documentation comments and others from lexical items, and creating their objects. Third, building HTML and lexical analysis again for syntax highlighting of documented code. I'll introduce the internal steps of RDoc.
+
+    I'll introduce modern Ruby lexical analyzer and parser for documentation.
   speakers:
     - Sakura Itoyanagi
 
@@ -149,7 +202,12 @@
   published_at: "2018-05-23T03:39:05Z"
   video_provider: "youtube"
   video_id: "kJE-2y9PiUg"
-  description: ""
+  description: |-
+    Writing a system alone is hard. Building a system with other people is harder. Building many systems with many people is hardest.
+
+    As our company has grown, we have tried many approaches to user-friendly, shared development environments and learned what works and what doesn't. We incorporated what we learned into a tool called devly. Devly is used to develop products at Fastly that span many services written in different languages.
+
+    We learned that the design of our tools must be guided by how teams work and communicate. To respond to these needs, Devly allows self-service, control, and safety so that developers can focus on their work.
   speakers:
     - Eric Hodel
 
@@ -160,7 +218,12 @@
   published_at: "2018-05-23T03:39:05Z"
   video_provider: "youtube"
   video_id: "2-Dh7PchyS0"
-  description: ""
+  description: |-
+    Ruby has toolchains to parse Ruby code into abstract syntax trees (ASTs) and process. Software such as an IDE, a linter or a formatter) is buit on them.
+
+    But do you know these toolchains can be useful for your own daily development?
+
+    This talk will show you how to boost your development with AST toolchains.
   speakers:
     - vzvu3k6k
 
@@ -171,7 +234,12 @@
   published_at: "2018-05-23T03:39:05Z"
   video_provider: "youtube"
   video_id: "CiLlQiHPVKc"
-  description: ""
+  description: |-
+    I believe most of us love Ruby, but I also believe most of us don't think Ruby it's perfect. So what'd your own version of Ruby look like if you can create your own one?
+
+    As some of you may know, I created a language called Goby about a year ago. It's largely inspired by Ruby, and looks very similar to it. But it also have some design choices different than Ruby or have some unique features that Ruby doesn't have.
+
+    In this talk I'm going to discuss some important things we should focus on when designing a language. And I will also share the design choices made when developing Goby, as well as the philosophy behind these choices.
   speakers:
     - Stan Lo
 
@@ -182,7 +250,18 @@
   published_at: "2018-05-23T03:39:05Z"
   video_provider: "youtube"
   video_id: "Daon_WaBhSc"
-  description: ""
+  description: |-
+    In Rails 5.1, webpacker gem now directly supports Javascript front-end framework such as React and Angular.
+
+    However, I am running React on the Docker environment without webpacker gem.
+
+    React has many advantages for making dynamic views.
+
+    Especially, One way flow provided by React is similar structure with Rails data flow.
+
+    So It's easy to understanding for server side engineers.
+
+    In this session, I will explain the purpose of using React in View, Pros & Cons.
   speakers:
     - Yuichiro Masui
 
@@ -191,9 +270,19 @@
   raw_title: "RubyElixirConf Taiwan 2018 - How distribute Ruby to the world by Hiroshi SHIBATA"
   date: "2018-04-27"
   published_at: "2018-05-23T03:39:05Z"
+  slides_url: "https://www.slideshare.net/hsbt/how-to-distribute-ruby-to-the-world-95183374"
   video_provider: "youtube"
   video_id: "VxCxSyjwlcs"
-  description: ""
+  description: |-
+    How do you install Ruby using any tools? There are various solutions such as installing the binary and building from the source package. Did you know how do these Ruby packages come from the Ruby core team? Did you know that you are being delivered to your hands?
+
+    For example, if you are using macOS, you think that you are using third party tools like rvm, ruby-build, ruby-install. If you use Windows, You can choose RubyInstaller on Windows. Finally, If you use Linux, You didn’t need third party tool. You only use standard package manager on Linux.
+
+    As standpoint of Ruby's Core team infrastructure, I will show you how Ruby's package was created and released at the time of release. In addition, I will introduce your selections of new Ruby experiences.
+
+    Therefore, Ruby has a lot of build options for linking shared libraries, changing program name, and others. It’s a too complex thing. I will describe these details.
+
+    In finally, I will introduce what kind of things inside ruby-build as a famous build tool for Ruby. It has a mechanism of building. I will explain these mechanism. After that, You can choose a best environment and options for your ruby experiences used ruby-build and Ruby packages.
   speakers:
     - Hiroshi SHIBATA
 
@@ -204,7 +293,14 @@
   published_at: "2018-05-23T03:39:05Z"
   video_provider: "youtube"
   video_id: "urlijU9c_s8"
-  description: ""
+  description: |-
+    When DevOps team was established in 2016, development teams in Rakuten Travel were working in silos. Development teams had had separate development processes (build-automation tool, release-automation tool, site-operation tool). Also the development environment which all teams used together had infrastructure restrictions and development processes which slowed down the development in the organization level.
+
+    DevOps team talked with each development teams and found issues to solve. Then DevOps team standardised the development processes by delivering software in the topic of System/Application Data Centralisation, Multiple Development Environment, High Availability, Data Visualisation, Table Definition Management. Most of our software is written in Ruby. After 2 years of DevOps activity, all development teams follow the standardised development process. Also, operational processes such as release automation and site operation are now consolidated to 1 team. As a result the productivity of our organisation improved dramatically.
+
+    In the process of developing software, DevOps team faced many issues. As many members did not have a developer background, we did not write unit-test for our Rails application. So we learned how to write rspec testcases and also introduced guard to achive TDD. Then, as the number of our Rails application increased, many duplicated codes exist such as getting server related information from cross-company internal API. So we learned to package duplicated code into rubygems and store it in internal gem repositories. When we faced a performance issue in our program, we tried to solve it by using multi-threading function. However Ruby was unfit for it and we ended up using Java instead.
+
+    Another important part of this DevOps activity was to adapt the standardised software to each development team. Development teams had their own development processes which were already efficient for them. So when we tried to adapt the software, while most development teams were supportive, some were not. In the latter case, we had to do many of the heavy lifting such as making code changes to the product code and testing products on our own. The most difficult part was actually creating testcases and executing testcases which are normally responsible by other development teams. This is mentally tough but very challenging part of DevOps activity.
   speakers:
     - Tetsushi Awano
 
@@ -215,7 +311,10 @@
   published_at: "2018-05-23T03:39:05Z"
   video_provider: "youtube"
   video_id: "wAG8aIcz9B4"
-  description: ""
+  description: |-
+    Want to build a Bot without the hassle of provisioning and managing servers? Amazon’s got a service for that and it’s called AWS Lambda - it executes your code only when needed, scales automatically and you pay only for the compute time you consume.
+
+    There’s one problem with Lambda - it doesn’t support Ruby! Let’s checkout multiple options on how to build a Ruby Bot and package it into an executable which you can run on any machine without the need to actually have Ruby installed.
   speakers:
     - Damir Svrtan
 
@@ -226,7 +325,8 @@
   published_at: "2018-05-23T03:39:05Z"
   video_provider: "youtube"
   video_id: "7AkiaL6FE8I"
-  description: ""
+  description: |-
+    We all know what the acceptance testing is. However it is difficult to really adopt this into your real-life work. I want to show you how I introduce this technique and solve the problems.
   speakers:
     - Manic Chuang
 
@@ -237,7 +337,12 @@
   published_at: "2018-05-23T03:49:25Z"
   video_provider: "youtube"
   video_id: "NStJpUArVls"
-  description: ""
+  description: |-
+    Elixir has benefited from extensive prior art in the design of web application packages and frameworks, coming out of the rich ecosystems of both Erlang and Ruby. The benefits have been both direct and low-level in the case of Erlang (building on top of the Cowboy HTTP server), and indirect and high-level in the case of Ruby (drawing on Sinatra and Rails). All of these influenes have come together in the Phoenix Framework.
+
+    Although Phoenix touts itself as a MVC framework, it is not strictly limited to the Model-View-Controller pattern. In fact, MVC is a simplistic shorthand that elides rather than clarifies Phoenix's full potential.
+
+    This talk will peel back Phoenix's many layers and deconstruct its underlying asumptions. It will explore alternative patterns and architectural styles that can be used productively in Elixir web development.
   speakers:
     - Christopher Adams
 
@@ -248,7 +353,24 @@
   published_at: "2018-05-23T03:51:29Z"
   video_provider: "youtube"
   video_id: "7GN9aiuWy6A"
-  description: ""
+  description: |-
+    Practical software engineering involves much more than just a technical framework – it encompasses processes, company culture, and individual team members’ technical abilities. In that sense, every company is like a living organism that is constantly changing under influence of internal and external factors. Due to the small size of our team and limited resources as a technical co-founder, I was forced to look for an optimal architecture and workflow which will allow implementing features according to the CEO’s vision with minimum friction and will distract the team on fixing bugs later on as less as possible at the same time.
+
+    The journey began with using Trailblazer with Rails on the Ave88.com and continued with using DDD-Lite with the Phoenix on the Flowmail.com where it undergone a series of transformations.
+
+    Our experience made us recognize that:
+
+    - Any even moderate-size project can’t be based solely on MVC and Service Objects.
+
+    - It’s possible to implement the practical and reliable architecture in both Rails and Phoenix framework, though some Rails conventions make process a little more tedious.
+
+    - Having a right architecture is a long, time and resource consuming journey that will eventually pay off.
+
+    - Changes should be supported at the management level since the governance style may be severely affected in the software development companies.
+
+    The talk itself will consist of two parts: technical and non-technical both of which will underpin key points in implementing changes and will contain practical takeaways for a small-mid sized teams/projects.
+
+    Noteworthy, some technics and conclusions were recognized and now going through the implementation evaluation on the larger, 200 KLOC RoR codebase.
   speakers:
     - Yevhenii Kurtov
 
@@ -259,7 +381,8 @@
   published_at: "2018-05-23T03:53:16Z"
   video_provider: "youtube"
   video_id: "kvv0MP4DLcs"
-  description: ""
+  description: |-
+    There are many use cases where the ActiveModel::Errors interface is tedious to use, such as message formatting and testing. This talk presents these cases, and explains why the limitation can be simply solved by taking an object-oriented approach, which results in the AdequateErrors gem. The gem's implementation is explained, and the talk will showcase examples on how it can make your coding life easier.
   speakers:
     - lulalala
 
@@ -270,7 +393,10 @@
   published_at: "2018-05-23T03:53:47Z"
   video_provider: "youtube"
   video_id: "G_rk95uvBWY"
-  description: ""
+  description: |-
+    In software engineering, repeating things is usually considered harmful. We start our projects with a testing framework to keep running tests without repeating manually. Instead of copy and paste a code snippet, we define a method to make our code structured. When we find ourselves repeating a code review suggestion several times, we try some automation!
+
+    This talk will cover the design and implementation of our review assistant tool, comparison with other LINT tools, and how our reviewing workflow has been changed.
   speakers:
     - Soutaro Matsumoto
 
@@ -281,9 +407,10 @@
   published_at: "2018-05-23T03:54:17Z"
   video_provider: "youtube"
   video_id: "o3-9gkymA78"
-  description: ""
+  description: |-
+    Elixir is a functional programming, but if you want to build a strong foundation in it, you have to understand the recursion and pattern matching. The best way to do it is to practice again and again. Here comes the little schemer to practice all the recursion.
   speakers:
-    - Dung Nguyen
+    - Hsuan-Cheng Chen
 
 - id: "jake-morrison-rubyconf-taiwan-2018"
   title: "Incrementally migrating large apps to Phoenix"
@@ -292,7 +419,8 @@
   published_at: "2018-05-23T03:54:47Z"
   video_provider: "youtube"
   video_id: "d6syqHm0i2g"
-  description: ""
+  description: |-
+    This talk covers the process of incrementally migrating a large application to Phoenix, covering some specific issues that may come up when migrating from Ruby on Rails.
   speakers:
     - Jake Morrison
 
@@ -303,6 +431,19 @@
   published_at: "2018-05-23T03:55:37Z"
   video_provider: "youtube"
   video_id: "9fWuDkd78JQ"
-  description: ""
+  description: |-
+    We can build chat service with Phoenix PubSub easily.
+
+    However, can we build the large scale chat service in the same manner?
+
+    1,000,000++ of simultaneous connections?
+
+    PubSub of channels with 100,000++ subscribers?
+
+    Large scale chat service has many problems.
+
+    I’m developing game platform and large scale chat service with elixir/phoenix.
+
+    In this talk, I’ll talk about our huge scale pubsub architecture and some problems encountered and solutions.
   speakers:
     - ohr486
