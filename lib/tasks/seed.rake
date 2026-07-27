@@ -39,6 +39,13 @@ namespace :db do
       end
     end
 
+    desc "Seed all meetups"
+    task meetups: :environment do
+      Search::Backend.without_indexing do
+        Static::Event.import_meetups!
+      end
+    end
+
     desc "Seed all speakers"
     task speakers: :environment do
       Search::Backend.without_indexing do
