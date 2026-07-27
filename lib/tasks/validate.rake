@@ -10,7 +10,7 @@ namespace :validate do
 
     validators.each { |validator_class| validator_class.warmup if validator_class.respond_to?(:warmup) }
 
-    worker_count = [files.size, Parallel.processor_count].min
+    worker_count = [files.size, file_worker_count].min
 
     Parallel.map(files, in_processes: worker_count) do |file|
       document = parse_document(file)
@@ -19,10 +19,18 @@ namespace :validate do
     end.flatten.group_by(&:file_path)
   end
 
+  def file_worker_count
+    override = ENV["VALIDATE_FILE_WORKERS"].to_i
+
+    (override > 0) ? override : Parallel.processor_count
+  end
+
   def parse_document(file)
     return nil unless file.to_s.end_with?(".yml")
 
-    Yerba.parse_file(file)
+    document = Yerba.parse_file(file.to_s)
+
+    file.to_s.end_with?("videos.yml") ? Static::VideosFile.wrap(file.to_s, document) : document
   rescue
     nil
   end
@@ -401,6 +409,8 @@ namespace :validate do
 
   desc "Validate all YAML files"
   task all: :environment do
+    ENV["VALIDATE_FILE_WORKERS"] ||= [Parallel.processor_count / 2, 2].max.to_s
+
     sections = {
       "Running yerba check (schemas, formatting, uniqueness)" => -> { run_yerba_check },
       "Validating videos.yml files" => -> { validate_video_files.none? },

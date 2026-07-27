@@ -23,12 +23,11 @@ module Static
 
       def validate
         return [] unless applicable?
-        return [] unless document.root
 
-        document.root.each.flat_map do |video|
+        videos_file.video_pairs.flat_map do |video, talks|
           parent_id = video.value_at("id")
 
-          Array(video["talks"]&.each&.to_a).filter_map do |child|
+          talks.filter_map do |child|
             next unless speaker?(child)
             next unless usable_start_cue?(child)
 
@@ -50,8 +49,8 @@ module Static
         end
       end
 
-      def document
-        @document ||= Yerba.parse_file(@file_path)
+      def videos_file
+        @videos_file ||= Static::VideosFile.wrap(@file_path, @document)
       end
 
       private
