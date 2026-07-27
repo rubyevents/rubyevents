@@ -14,7 +14,10 @@
         <% if month_events.any? %>
           <% month_events.each do |event| %>
             <%= link_to event_path(event) do %>
-              <div class="h-10 w-10 overflow-hidden rounded-lg shadow-sm ring-2 ring-gray-100">
+              <div
+                class="h-10 w-10 overflow-hidden rounded-lg shadow-sm ring-2 ring-gray-100 <%= "opacity-50 grayscale" if event_cancelled?(event) %>"
+                title="<%= event_cancelled?(event) ? "#{event.name} (Cancelled)" : event.name %>"
+              >
                 <%= image_tag event.avatar_image_path, alt: event.name, class: "w-full h-full object-cover", loading: "lazy" %>
               </div>
             <% end %>

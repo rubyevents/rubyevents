@@ -1,4 +1,8 @@
 module EventsHelper
+  def event_cancelled?(event)
+    event.static_metadata.cancelled?
+  end
+
   def event_date_display(event, day_name: false)
     return "Date TBD" unless event.start_date.present?
 
