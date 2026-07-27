@@ -447,3 +447,63 @@
     In this talk, I’ll talk about our huge scale pubsub architecture and some problems encountered and solutions.
   speakers:
     - ohr486
+
+- id: "liang-chi-tseng-rubyconf-taiwan-2018"
+  title: "Never use Apartment gem on a large-scale project"
+  raw_title: "RubyElixirConfTaiwan 2018: Never use Apartment gem on a large-scale project by Liang-Chi Tseng"
+  date: "2018-04-27"
+  published_at: "2018-05-23T03:33:27Z"
+  video_provider: "youtube"
+  video_id: "D5P15G1C5L0"
+  description: |-
+    There are more and more web applications with multi-tenant features these days. Such as online forums and e-commerce stores. To accelerate the development, major web frameworks often have multi-tenant plugins for fast-developing prototypes. The gem "Apartment" is the most representative one for Rails applications. It provides fast and isolated multi-tenant environments by making use of PostgreSQL schema functionality. However, when the number of schemas is too large, the drawbacks of using multi-schema database often outweigh the advantages it brings. In this talk, I will share my experience on using Apartment in a production project with over 130000 database schemas, and how I save the system from being paralyzed by the huge number of schemas.
+  speakers:
+    - Liang-Chi Tseng
+
+- id: "akira-matsuda-rubyconf-taiwan-2018"
+  title: "Inspecting and Crafting Rails"
+  raw_title: "RubyElixirConfTaiwan 2018: Inspecting and Crafting Rails by Akira Matsuda"
+  date: "2018-04-27"
+  published_at: "2018-05-23T03:33:27Z"
+  video_provider: "youtube"
+  video_id: "n9AfKKhnBYk"
+  description: "" # TODO
+  speakers:
+    - Akira Matsuda
+
+- id: "delton-ding-rubyconf-taiwan-2018"
+  title: "High Concurrent Ruby Web Development Without Fear"
+  raw_title: "RubyElixirConfTaiwan 2018: High Concurrent Ruby Web Development Without Fear by Delton Ding"
+  date: "2018-04-27"
+  published_at: "2018-05-23T03:33:27Z"
+  video_provider: "youtube"
+  video_id: "cDT9L7xRn8Q"
+  description: |-
+    We've been debating on the concurrency solution of Ruby for several years. Numerous custom "evented" drivers have been built, but for most of these projects, developers are required to think in the "evented" way to get things work properly, which not only breaks the elegance of Ruby programming, but also greatly increases the complexity of the refactoring process.
+
+    We will then think in Ruby, looking for the solution to make your whole web application "evented" with great meta-programming features of Ruby language itself. So that, you could still concentrate on your business models while programming as usual, but the performance may boost to 5 times faster or more without any hesitation.
+  speakers:
+    - Delton Ding
+
+- id: "michael-kohl-rubyconf-taiwan-2018"
+  title: "Sanity on Rails (and more)"
+  raw_title: "RubyElixirConf Taiwan 2018 - Sanity on Rails (and more) by Michael Kohl"
+  date: "2018-04-27"
+  slides_url: "https://speakerdeck.com/citizen428/sanity-on-rails-1"
+  video_provider: "not_published" # unpublished video: sEqPC2NRryk
+  video_id: "michael-kohl-rubyconf-taiwan-2018"
+  description: |-
+    As web applications grow in scale and complexity, people start realizing that many parts of their domain-specific code do not fit neatly into Rails’ MVC structure. In recent years certain patterns emerged that try to rectify this situation and this talk tried to shed some light on them. Additionally it will explore some of the newer additions to the Ruby web development scene, like Hanami and dry-rb.
+  speakers:
+    - Michael Kohl
+
+- id: "kelsey-pedersen-rubyconf-taiwan-2018"
+  title: "Augmenting Human Decision Making with Data Science"
+  raw_title: "RubyElixirConf Taiwan 2018 - Augmenting Human Decision Making with Data Science by Kelsey Pedersen"
+  date: "2018-04-27"
+  video_provider: "not_published" # unpublished video: RS2Sp_fLlB4
+  video_id: "kelsey-pedersen-rubyconf-taiwan-2018"
+  description: |-
+    Humans and data science are flawed on their own. Humans lack the ability to process large volumes of information. Machines lack intuition, empathy, and nuance. You’ll learn how to guide users of expert-use systems by applying data science to their user experience. Layering data science within our systems allows us to take advantage of the human-touch while leveraging our large datasets. In this talk, you’ll learn the process for sprinkling data science into your applications, the challenges we have faced along the way, and how to measure the business impact.
+  speakers:
+    - Kelsey Pedersen

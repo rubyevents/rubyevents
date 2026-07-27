@@ -8,7 +8,8 @@
   published_at: "2019-08-11T07:44:43Z"
   video_provider: "youtube"
   video_id: "IWMotz5ZCFU"
-  description: ""
+  description: |-
+    Brief introduction of Ruby3 and further.
   speakers:
     - Yukihiro Matsumoto
 
@@ -19,7 +20,8 @@
   published_at: "2019-08-11T07:28:00Z"
   video_provider: "youtube"
   video_id: "Dtn9Uudw4Mo"
-  description: ""
+  description: |-
+    Modern servers are capable of supporting millions of clients, both in terms of requests per second, and simultaneous connections. However, unless scalability is a priority, it can be very difficult to utilise the available hardware efficiently. Overheads in the application code, frameworks and operating system can act as force multipliers which increase memory pressure, latency and resource utilisation. We discuss the challenges encountered when scaling Ruby to one million concurrent WebSocket connections, and investigate the changes required to make it possible.
   speakers:
     - Samuel Williams
 
@@ -30,7 +32,8 @@
   published_at: "2019-08-11T07:28:59Z"
   video_provider: "youtube"
   video_id: "0ypPiULlKfQ"
-  description: ""
+  description: |-
+    In this talk we will cover an implementation for a compacting GC in MRI.  MRI's implementation presents unique challenges for implementing a compacting GC.  In this talk, we will cover compactor implementation and algorithms, challenges presented by MRI's implementation, compaction reference verification, and results of compactor benchmarks.
   speakers:
     - Aaron Patterson
 
@@ -41,7 +44,10 @@
   published_at: "2019-08-11T07:36:06Z"
   video_provider: "youtube"
   video_id: "x6FrRQMF5tg"
-  description: ""
+  description: |-
+    Language-based virtual machines were designed and implemented from different backgrounds, concepts and thinking.
+
+    In this talk, we will peek into the implementation of some language VMs (especially CRuby) to understand the complex internal parts.
   speakers:
     - c9s
 
@@ -52,7 +58,16 @@
   published_at: "2019-08-11T07:22:35Z"
   video_provider: "youtube"
   video_id: "43lcyt9ATC0"
-  description: ""
+  description: |-
+    JRuby is the fastest and most scalable way to run web applications built with Ruby or Rails. This past year we've continued work on better database support, more Ruby optimizations, and tighter integration with recent JDK releases. In this talk, I'll cover:
+
+    Getting start with JRuby, building new applications or migrating existing ones
+
+    Things to know about scaling JRuby, including tuning flags and deployment patterns
+
+    Future plans for maintaining Ruby and Rails compatibility
+
+    A call-to-action for anyone who'd like to help keep JRuby moving forward
   speakers:
     - Charles Oliver Nutter
 
@@ -63,7 +78,10 @@
   published_at: "2019-08-11T07:26:41Z"
   video_provider: "youtube"
   video_id: "3aZCAs-3I9Y"
-  description: ""
+  description: |-
+    Debugging occupies a large part of our development time. If only we could debug faster and more comfortably, our coding time would be more happier.
+
+    In this talk, I'll introduce Ruby's deep functions for example TracePoint, AST, DTrace adopter and others, and talk about how to make great power for debugging applications from them. And I also talk about some gems using the techniques that I've published.
   speakers:
     - Kuniaki Igarashi
 
@@ -74,7 +92,12 @@
   published_at: "2019-08-11T07:30:05Z"
   video_provider: "youtube"
   video_id: "en7jZtT4fFc"
-  description: ""
+  description: |-
+    在 Ruby 中我們經常的會使用 #each 來遍歷陣列或者一些物件，不過我們卻很少思考他是怎麼運作的。尤其是在仔細探索之後，會發現 Ruby 的迭代器跟其他我們熟悉的語言有所不同。而且，在比較新版本的 Ruby 中還提供了 #lazy 方法，這是在其他語言相對少見的特型。
+
+    這些特性到底是怎麼運作的，我們是否可以用 Ruby 將其實作呢？讓我們從閱讀 Ruby 原始碼的過程中，一步步的了解這個我們最常使用的方法。
+
+    We often use #each to loop through array and friends in Ruby, but we seldom think about how it actually works. Ruby's iterator is quite different compared with other languages, for instance we have uncommon methods like #lazy. How exactly do they work and can we implement them in Ruby? Let's dive in Ruby source code and find out.
   speakers:
     - elct9620
 
@@ -85,7 +108,18 @@
   published_at: "2019-08-11T07:31:49Z"
   video_provider: "youtube"
   video_id: "fyuSUKfwwVM"
-  description: ""
+  description: |-
+    隨著 Rails 專案成長到一定規模，需要處理的商業邏輯也越來越複雜時，如果還是使用 Rails 原先的 MVC 架構或其提倡的一些模式，看著日漸膨脹的 model ，而同一時間，排山倒海的 validation / callback 拆分的需求不斷襲來、頁面顯示邏輯有越來越多的情境時，團隊很有機會遇到進退維谷的情境。
+
+    因此，想跟各位分享團隊在應用 Trailblazer 到 Rails 專案兩年多來的經驗，它所帶來的好處、地雷，以及團隊的成果與專案風貌的改變。在這個分享裡，會有 Trailblazer 框架簡介與相關主要幾個組成的說明，跟團隊選用它的理由，以及到目前為止導入過程遇到的問題與經驗分享，最後談談選用任何技術框架解決問題時，可能會為個人或團隊帶來的思維改變。
+
+    - What is Trailblazer really?
+
+    - Why we have Trailblazer in our project?
+
+    - Experience about adapting Trailblazer to our system
+
+    - Beyond Trailblazer
   speakers:
     - WenchuanLin
 
@@ -96,7 +130,14 @@
   published_at: "2019-08-11T07:32:51Z"
   video_provider: "youtube"
   video_id: "xmDSAvbR9cs"
-  description: ""
+  description: |-
+    對於開發講究 UI/UX 效果的網站，嫻熟前端框架是不可或缺的技能。採用 Rails 當作後端框架，使用 webpacker 協助架構前端環境後，該如何有效寫出好維護的 ruby 和 javascript 程式，會是網站重要的一步。
+
+    Ruby/Rails 這十幾年的發展，已累積不少好用的開發模型套件，諸如 Model, Value, Dispatch, Form, Presenter, Decorator, Validator, Job, Mailer, Uploader, Service, Spec, Auth, Police, Audit, Deploy 等，要將這些技巧融入後端程式，並銜接前端應用的需求，需要有彈性的配套，方便開發者應付隕石墜落式的開發需求。
+
+    此次將以後端 Ruby/Rails 為主軸，討論如何利用現有的套件，或自行開發的模組，架構出符合自己習慣的前後端整合開發配套。
+
+    This talk will tell how to use gems and self crafted modules to assemble a rails application suitable for frontend/backend separated development.
   speakers:
     - Tse-Ching Ho
 
@@ -107,7 +148,56 @@
   published_at: "2019-08-11T07:34:07Z"
   video_provider: "youtube"
   video_id: "tJIQvxryFW8"
-  description: ""
+  description: |-
+    The serverless framework is very popular for the last 5 years. AWS Lambda is the most important service in the Serverless framework.
+
+    AWS Lambda supports Ruby runtime on November 29, 2018. Now we can develop AWS lambda with Ruby. But what situation should we use AWS Lambda?
+
+    The key point in this talk is "Why we choose AWS Lambda as a solution on a large-scale system?".
+
+    The first question is "What are pain points when we want to implement a new feature on a large-scale system?".
+
+    And then let's think about "How AWS Lambda solve these pain points?".
+
+    I will share some experiences about developing features with AWS Lambda. Discussing what situation should we use AWS Lambda.
+
+    Here’s what you will learn:
+
+    - What is AWS Lambda?
+
+    - What is the serverless framework?
+
+    - What is event-driven programming?
+
+    - What are pain points when we develop features on large-scale system?
+
+    - How AWS Lambda solves these pain points?
+
+    - How to develop AWS Lambda with ruby?
+
+    無伺服器架構是最近幾年非常熱門的話題，同時也是 AWS 極力推廣的重點之一，而 AWS lambda 是實現無伺服器架構最重要的一環。
+
+    AWS Lambda 在去年的 11 月底宣布支援 Ruby，現在我們可以用 Ruby 來開發了，但是在怎麼樣的場景之下我們該使用 AWS Lambda 呢？
+
+    今天探討的軸心為「為什麼在大型系統中我們選擇使用 AWS Lambda 作為解決方案？」 從「大型架構會遇到哪些開發上的困難點」，引出「AWS Lambda 如何解決這些難點」。
+
+    接著分享使用 AWS Lambda 實際開發經驗。綜合評估 AWS Lambda 的優缺點，判斷 AWS Lambda 是不是值得使用。
+
+    這邊是你會學到的：
+
+    - AWS Lambda 是什麼東西？
+
+    - 什麼是無伺服器框架？
+
+    - 什麼是事件驅動程式設計？
+
+    - 了解大型架構的開發上的難點。
+
+    - AWS Lambda 如何解決難點？
+
+    - 如何開發 AWS Lambda？
+
+    - 開發 AWS Lambda 時需要注意哪些事項。
   speakers:
     - Luka Huang
 
@@ -118,7 +208,10 @@
   published_at: "2019-08-11T07:34:54Z"
   video_provider: "youtube"
   video_id: "9vXuG6ks0qU"
-  description: ""
+  description: |-
+    Rails 6 is shaping to be one of the biggest releases in some time for Rails. With tons of new stuff being added like Action Mailbox, Action Text, Multiple DBs support, Parallel Testing, Zietwerk, Webpacker as a default and more!
+
+    Lets take a look at all these exciting new things and how they improve your existing applications as well as how you can start using the new frameworks for different use cases in your applications.
   speakers:
     - Vipul A M
 
@@ -129,7 +222,8 @@
   published_at: "2019-08-11T07:43:55Z"
   video_provider: "youtube"
   video_id: "MGAs0QALAiM"
-  description: ""
+  description: |-
+    While most of Rails has evolved over time, the view layer hasn’t changed much. At GitHub, we are incorporating the lessons of the last decade into a new paradigm: components. This approach has enabled us to leverage traditional object-oriented techniques to test our views in isolation, avoid side-effects, refactor with confidence, and perhaps most importantly, make our views first-class citizens in Rails.
   speakers:
     - Joel Hawksley
 
@@ -140,7 +234,10 @@
   published_at: "2019-08-11T07:45:44Z"
   video_provider: "youtube"
   video_id: "KU1JM4NSKe8"
-  description: ""
+  description: |-
+    We have been working on a project to provide an option to type checker for Ruby3. The primary goal of the project had been to develop a type checker, but we finally found that the development of type checker is insufficient. We have to define a language to write type definition and a protocol to ship gems with their type definitions. We should provide everything users will need to start type checking.
+
+    In this talk, I will explain the overview of the project. I also will introduce my type checker called Steep and let you know how it can improve your Ruby programming experience.
   speakers:
     - Soutaro Matsumoto
 
@@ -151,7 +248,10 @@
   published_at: "2019-08-11T07:46:55Z"
   video_provider: "youtube"
   video_id: "sHZzo93GBLQ"
-  description: ""
+  description: |-
+    I did merge Bundler into Ruby core repository and shipped bundler as the standard library on Ruby 2.6. It helps to a preparation of the fresh Ruby install and easy to use gem and bundle commands.
+
+    I'm going to show the features of Bundler and RubyGems and the integration plan of RubyGems and Bundler. Also, I will show the issues of the current status. You can resolve them after my talk.
   speakers:
     - Hiroshi SHIBATA
 
@@ -162,7 +262,10 @@
   published_at: "2019-08-11T07:47:52Z"
   video_provider: "youtube"
   video_id: "O1zTYLWpmw4"
-  description: ""
+  description: |-
+    We know observing performance is tedious and tiresome. But what if we continue to write codes that poison the repo and later become legacy which somehow results in software regression? Because of the situation like this, we all want the code itself to be readable, explainable and performant by default, so others are able to benefit from reading it and leaning from the codebase.
+
+    By giving some real world examples, I hope it will help programmers to clearly understand the step by step procedure to structure their codes with more conventional ways of approaching modern software principles. Bringing the happiness to yourself, and also to others.
   speakers:
     - Bernie Chiu
 
@@ -173,7 +276,12 @@
   published_at: "2019-08-11T07:48:49Z"
   video_provider: "youtube"
   video_id: "5ztGdjy6q-c"
-  description: ""
+  description: |-
+    Cast your mind back to the year 1995. Gansta's Paradise is the top hit of the year. Friends is the hottest show on TV.
+
+    And just days after I turn nine, Matz releases Ruby publicly for the first time.
+
+    In this talk I go back to Ruby 0.95 and see what it takes to get it running on modern hardware.
   speakers:
     - Matias Korhonen
 
@@ -184,7 +292,8 @@
   published_at: "2019-08-11T07:54:43Z"
   video_provider: "youtube"
   video_id: "dQyq926L7e8"
-  description: ""
+  description: |-
+    In applications that persist data, getting the current state of the system is trivial. But often the question is not only where are we now, but how did we get here? This talk is a jargon-free introduction to the concept of event sourcing, using a Ruby application as an example.
   speakers:
     - Jenna
 
@@ -195,7 +304,26 @@
   published_at: "2019-08-11T07:55:20Z"
   video_provider: "youtube"
   video_id: "YvLNifNEPQ8"
-  description: ""
+  description: |-
+    What if you could use mruby to develop your own Dreamcast games? Well, now you can!
+
+    I have developed and released an "mruby on Dreamcast" environment and a simple game for it (in mruby, of course).
+
+    It is still at an ealry stage, but you can write simple games with it.
+
+    As I am no expert in C, mruby, or Dreamcast programming, I encounterd problems.
+
+    Those problems included, but were not limited to:
+
+    * Dreamcast library and mruby build errors
+
+    * Having no easy way of getting the binary to run on the hardware that gives me access to debug print statements
+
+    * A lot of information being obscure and hard to find, over the years
+
+    In this presentation, I would like to introduce you to developing mruby programs on Dreamcast, as well as share my story on how I solved and worked around problems.
+
+    I will try to get you interested in mruby and development on old game consoles, as well as give you some insight into what might happen if you attempt to revive an old platform for use with modern languages.
   speakers:
     - Yuji Yokoo
 
@@ -206,7 +334,10 @@
   published_at: "2019-08-11T08:14:18Z"
   video_provider: "youtube"
   video_id: "Drxa_DiLV3s"
-  description: ""
+  description: |-
+    Calculating gradient or differential is a very common task when working in Math heavy field like Machine Learning. But deriving gradient by hand is time-consuming and error-prone. Automatic Differentiation(AD) can calculate gradient of arbitrary function automatically. AD is efficient(for human) and correct(without human error).
+
+    Autodiff (johnlinvc/autodiff) brings AD to Ruby. Let's explore the magical world of Automatic Differentiation.
   speakers:
     - John Lin
 
@@ -217,7 +348,10 @@
   published_at: "2019-08-11T08:14:21Z"
   video_provider: "youtube"
   video_id: "9O_GC5Mc64Y"
-  description: ""
+  description: |-
+    I would like to introduce a new library “Charty” for visualization in Ruby.
+
+    I will talk about real-world use cases and how Charty can solve them.
   speakers:
     - Kazuma Furuhashi
 
@@ -228,7 +362,12 @@
   published_at: "2019-08-11T08:15:18Z"
   video_provider: "youtube"
   video_id: "GCoM6sJmU8A"
-  description: ""
+  description: |-
+    Kubernetes is becoming the new standard of infra and the emerging cloud platform GCP has integrated it as its powerful GKE.
+
+    When a Rails app comes to GKE and GCP, we need to have different approaches for deploying, running and observing it from what we used to.
+
+    The sharing will cover what we went from the VM fashion to the current GKE setup, and also the good and the challenge to run on GCP.
   speakers:
     - stackng
 
@@ -239,7 +378,14 @@
   published_at: "2019-08-11T08:14:24Z"
   video_provider: "youtube"
   video_id: "04zRoUUIzU8"
-  description: ""
+  description: |-
+    In our EC service called "Cookpad Mart", we develop Ruby x IoT system which not just works but works with reliability.
+
+    By the way, do you cook? Is it easy to get very fresh meats, fishes or vegetables around your home? Cookpad Mart makes it possible for customers to purchase fresh foods directly from farmers, meat shops and fish stores. We deliver ordered foods to pick-up points near your home, so you can pick them up anytime you like, without waiting for the delivery at your home or paying delivery fees.
+
+    To deliver fresh foods in the day of orders, we built a new distribution system consisting of several IoT devices: label printing devices, temperature sensors, location sensors and label readers.
+
+    In this talk, I explain our development of the label printing system. We set up label printing devices at all sellers’ shop and print labels for each food every day. We have to print the labels without any failures because they are for sellers, deliverers and customers to sort or to pick up foods, but it is difficult to monitor and to control many such edge devices like printers. Then, we solved it with a simple idea. I will talk about how to make the label printers reliable with Ruby and IoT technology.
   speakers:
     - Shinsuke IMAI
 
@@ -250,7 +396,8 @@
   published_at: "2019-08-11T08:00:14Z"
   video_provider: "youtube"
   video_id: "m9vWa0iXL4M"
-  description: ""
+  description: |-
+    Writing performant code is hard. Writing performant ruby code that does lots of stuff is really hard. CocoaPods got to be pretty slow “at scale”, and this is the story of how we made our pod install times bearable again.
   speakers:
     - Samuel Giddins
 
@@ -261,6 +408,7 @@
   published_at: "2019-08-11T07:24:58Z"
   video_provider: "youtube"
   video_id: "8umunkABF3E"
-  description: ""
+  description: |-
+    As all Interpreted Programming Languages, Ruby projects' source code can be easily viewed in distribution. If your project supports self-hosted deployment, it may be hard to protect your copyrights. This talk would summarize existing methods, and tries to introduce some tricks in protecting your copyrights.
   speakers:
     - Delton Ding
