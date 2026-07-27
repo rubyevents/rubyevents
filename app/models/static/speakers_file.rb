@@ -50,13 +50,17 @@ module Static
       @known_names ||= Set.new(names + aliases)
     end
 
+    def entries
+      @entries ||= Array(document.value_at(""))
+    end
+
     def index_by(field)
       @indexes ||= {}
 
       @indexes[field] ||= begin
         result = {}
 
-        document.value_at("").each_with_index do |entry, index|
+        entries.each_with_index do |entry, index|
           result[entry[field.to_s]] = index if entry.is_a?(Hash) && entry[field.to_s]
         end
 
@@ -65,11 +69,15 @@ module Static
     end
 
     def find_by(name: nil, slug: nil, github: nil)
-      index = (slug && index_by(:slug)[slug]) ||
-        (github && index_by(:github)[github]) ||
-        (name && index_by(:name)[name])
+      index = index_for(name:, slug:, github:)
 
       document[index] if index
+    end
+
+    def attributes_for(name: nil, slug: nil, github: nil)
+      index = index_for(name:, slug:, github:)
+
+      entries[index] if index
     end
 
     def where(**criteria)
@@ -83,6 +91,8 @@ module Static
       entry.merge!(attributes.reject { |_, value| value.nil? || value.to_s.empty? })
 
       document << entry
+
+      reset_cache
 
       entry
     end
@@ -212,8 +222,15 @@ module Static
 
     private
 
+    def index_for(name: nil, slug: nil, github: nil)
+      (slug && index_by(:slug)[slug]) ||
+        (github && index_by(:github)[github]) ||
+        (name && index_by(:name)[name])
+    end
+
     def reset_cache
       @known_names = nil
+      @entries = nil
       @indexes = nil
       @all_speaker_references = nil
       @all_referenced_names = nil

@@ -30,8 +30,9 @@ namespace :speakerdeck do
     end
 
     missing = candidates.select do |name, _handles|
-      speaker = speakers_file.find_by(name: name)
-      speaker && speaker.value_at("speakerdeck").nil?
+      speaker = speakers_file.attributes_for(name: name)
+
+      speaker && speaker["speakerdeck"].nil?
     end
 
     if missing.any?
