@@ -409,7 +409,7 @@ namespace :validate do
 
   desc "Validate all YAML files"
   task all: :environment do
-    ENV["VALIDATE_FILE_WORKERS"] ||= [Parallel.processor_count / 4, 2].max.to_s
+    ENV["VALIDATE_FILE_WORKERS"] ||= [Parallel.processor_count / 2, 2].max.to_s
 
     sections = {
       "Running yerba check (schemas, formatting, uniqueness)" => -> { run_yerba_check },
