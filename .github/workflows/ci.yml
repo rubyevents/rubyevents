@@ -79,7 +79,7 @@ jobs:
           restore-keys: |
             rubocop-${{ runner.os }}-${{ env.RUBY_VERSION }}-${{ env.DEPENDENCIES_HASH }}-
 
-      - name: Standard 
+      - name: Standard
         run: bundle exec standardrb --format github --format "Standard::Formatter"
 
       - name: erb-lint
