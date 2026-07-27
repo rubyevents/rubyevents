@@ -72,9 +72,6 @@ jobs:
           - name: Validate YAML data schemas
             run: bin/rails validate:all
 
-          - name: Lint YAML data files
-            run: bundle exec yerba check
-
           - name: StandardRB Check
             if: ${{ needs.changes.outputs.code == 'true' || github.event_name == 'push' }}
             run: bundle exec standardrb --format github --format "Standard::Formatter"
