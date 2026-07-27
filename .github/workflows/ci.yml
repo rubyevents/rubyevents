@@ -42,16 +42,17 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
+      - parallel:
+        - name: Setup Ruby
+          uses: ruby/setup-ruby@v1
+          with:
+            bundler-cache: true
 
-      - name: Setup Node
-        uses: actions/setup-node@v6
-        with:
-          node-version-file: ".node-version"
-          cache: yarn
+        - name: Setup Node
+          uses: actions/setup-node@v6
+          with:
+            node-version-file: ".node-version"
+            cache: yarn
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
