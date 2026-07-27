@@ -55,8 +55,13 @@ class Static::Validators::TalkPublishedAtTest < ActiveSupport::TestCase
     videos_path = File.join(dir, "data", "testconf", "2024", "videos.yml")
     FileUtils.mkdir_p(File.dirname(videos_path))
     File.write(videos_path, videos.to_yaml)
+
+    Static::Validators::TalkPublishedAt.reset!
+    Static::Validators::TalkPublishedAt.glob = File.join(dir, "data/**/videos.yml")
+
     yield videos_path
   ensure
+    Static::Validators::TalkPublishedAt.reset!
     FileUtils.rm_rf(dir)
   end
 end

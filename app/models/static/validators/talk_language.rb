@@ -27,10 +27,8 @@ module Static
       def validate
         return [] unless applicable?
 
-        return [] unless document.root
-
-        pairs = document.root.each.flat_map do |video|
-          [[video, nil]] + Array(video["talks"]&.each&.to_a).map { |talk| [talk, video] }
+        pairs = videos_file.video_pairs.flat_map do |video, nested|
+          [[video, nil]] + nested.map { |talk| [talk, video] }
         end
 
         with_language = pairs.map(&:first).select { |node| node.value_at("language").present? }
@@ -56,8 +54,8 @@ module Static
 
       private
 
-      def document
-        @document ||= Yerba.parse_file(@file_path.to_s)
+      def videos_file
+        @videos_file ||= Static::VideosFile.wrap(@file_path, @document)
       end
 
       def watchable?(node, parent)

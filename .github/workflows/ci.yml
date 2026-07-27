@@ -1,5 +1,8 @@
 name: CI
 
+permissions:
+  contents: read
+
 on:
   pull_request:
     branches: ["*"]
@@ -28,14 +31,12 @@ jobs:
             code:
               - '!data/**'
 
-  lint:
-    name: "Lint"
-    needs: changes
+  data:
+    name: "Data Check"
     runs-on: ubuntu-latest
     timeout-minutes: 5
     env:
       RAILS_ENV: test
-      RUBOCOP_CACHE_ROOT: tmp/rubocop
 
     steps:
       - uses: actions/checkout@v5
@@ -47,14 +48,26 @@ jobs:
         with:
           bundler-cache: true
 
-      - name: Setup Node
-        uses: actions/setup-node@v6
-        with:
-          node-version-file: ".node-version"
-          cache: yarn
+      - name: Validate YAML data schemas
+        run: bin/rails validate:all
 
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
+  lint:
+    name: "Lint Ruby"
+    needs: changes
+    if: ${{ needs.changes.outputs.code == 'true' || github.event_name == 'push' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      RAILS_ENV: test
+      RUBOCOP_CACHE_ROOT: tmp/rubocop
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
 
       - name: Prepare RuboCop cache
         uses: actions/cache@v4
@@ -66,31 +79,39 @@ jobs:
           restore-keys: |
             rubocop-${{ runner.os }}-${{ env.RUBY_VERSION }}-${{ env.DEPENDENCIES_HASH }}-
 
-      - name: Validate YAML data schemas
-        run: bin/rails validate:all
-
-      - name: Lint YAML data files
-        run: bundle exec yerba check
-
-      - name: StandardRB Check
-        if: ${{ needs.changes.outputs.code == 'true' || github.event_name == 'push' }}
+      - name: Standard
         run: bundle exec standardrb --format github --format "Standard::Formatter"
 
-      - name: StandardJS Check
-        if: ${{ needs.changes.outputs.code == 'true' || github.event_name == 'push' }}
-        run: yarn lint
-
-      - name: erb-lint Check
-        if: ${{ needs.changes.outputs.code == 'true' || github.event_name == 'push' }}
+      - name: erb-lint
         run: bundle exec erb_lint --lint-all
 
-      - name: Herb Linter Check
-        if: ${{ needs.changes.outputs.code == 'true' || github.event_name == 'push' }}
-        run: npx @herb-tools/linter
-
       - name: Herb Analyze (parse/compile)
-        if: ${{ needs.changes.outputs.code == 'true' || github.event_name == 'push' }}
         run: bundle exec herb analyze app/
+
+  lint_js:
+    name: "Lint JavaScript"
+    needs: changes
+    if: ${{ needs.changes.outputs.code == 'true' || github.event_name == 'push' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: ".node-version"
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: StandardJS
+        run: yarn lint
+
+      - name: Herb Linter
+        run: npx @herb-tools/linter
 
   test:
     name: "Test"
@@ -221,7 +242,7 @@ jobs:
           KAMAL_REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
 
   deploy:
-    needs: [lint, test, seed_smoke_test, build]
+    needs: [data, lint, lint_js, test, seed_smoke_test, build]
     name: Deploy
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest

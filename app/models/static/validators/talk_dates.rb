@@ -29,22 +29,18 @@ module Static
       def validate
         return [] unless applicable?
 
-        return [] unless document.root
-
         @start_date, @end_date, @timezone, pre_date = event_context
         @range_start = [pre_date, @start_date].compact.min
 
-        document.root.each.flat_map do |video|
-          nested = Array(video["talks"]&.each&.to_a)
-
+        videos_file.video_pairs.flat_map do |video, nested|
           talk_errors(video) + nested.flat_map { |talk| talk_errors(talk) }
         end
       end
 
       private
 
-      def document
-        @document ||= Yerba.parse_file(@file_path.to_s)
+      def videos_file
+        @videos_file ||= Static::VideosFile.wrap(@file_path, @document)
       end
 
       def event_context
