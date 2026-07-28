@@ -21,7 +21,7 @@ class VenueGenerator < Generators::EventBase
   class_option :spaces, type: :boolean, desc: "Include spaces section", default: false, group: "Fields"
 
   def apple_maps
-    "https://maps.apple.com/?q=#{options[:name].tr(" ", "+")}&ll=#{geocoded_address.latitude},#{geocoded_address.longitude}"
+    "https://maps.apple.com/?q=#{options[:name]&.tr(" ", "+")}&ll=#{geocoded_address.latitude},#{geocoded_address.longitude}"
   end
 
   def geocoded_address
@@ -29,7 +29,7 @@ class VenueGenerator < Generators::EventBase
   end
 
   def google_maps
-    "https://maps.google.com/?q=#{options[:name].tr(" ", "+")},#{geocoded_address.latitude},#{geocoded_address.longitude}"
+    "https://maps.google.com/?q=#{options[:name]&.tr(" ", "+")},#{geocoded_address.latitude},#{geocoded_address.longitude}"
   end
 
   def openstreetmap_maps
