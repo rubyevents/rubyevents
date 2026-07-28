@@ -20,7 +20,7 @@
           countries_with_events: @countries_with_events
         } %>
 
-    <div class="mt-6">
+    <div class="mt-0.5 md:mt-6">
       <% if @talks.any? %>
         <%= render partial: "profiles/talks", locals: {user: @user, talks: @talks, user_favorite_talks_ids: @user_favorite_talks_ids, talks_by_kind: @talks_by_kind} %>
       <% else %>

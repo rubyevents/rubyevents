@@ -12,11 +12,19 @@ module ApplicationHelper
     uri.to_s
   end
 
-  def active_link_to(text = nil, path = nil, active_class: "", **options, &)
+  # active: overrides current_page? for links that are current on a URL they don't point at
+  def active_link_to(text = nil, path = nil, active_class: "", active: nil, **options, &)
     path ||= text
 
-    classes = active_class.presence || "active"
-    options[:class] = class_names(options[:class], classes) if current_page?(path)
+    is_active = active.nil? ? current_page?(path) : active
+
+    options[:class] = class_names(options[:class], active_class.presence || "active") if is_active
+
+    # aria-current claims the link points at the current page, so an active: override is not enough
+    options["aria-current"] = "page" if is_active && current_page?(path)
+
+    # role="tab" is read through aria-selected, which ARIA requires on every tab
+    options["aria-selected"] = is_active.to_s if options[:role].to_s == "tab"
 
     return link_to(path, options, &) if block_given?
 
