@@ -1,0 +1,30 @@
+<% if Rails.env.development? || Current.user&.admin? %>
+  <% changes = Static::DataImporter.changes %>
+
+  <% if changes.any? %>
+    <div class="bg-warning/10 border-y border-warning/30">
+      <div class="container py-3 flex items-start justify-between gap-4">
+        <div class="text-sm">
+          <p>
+            <span class="mr-1">📝</span>
+            <strong><%= pluralize(changes.size, "data file") %></strong> changed and not yet imported.
+
+            Run <code class="px-1 rounded bg-base-200">bin/rails db:seed</code> to import <%= (changes.size == 1) ? "it" : "them" %>.
+          </p>
+
+          <ul class="mt-2 space-y-0.5 font-mono text-xs text-base-content/70">
+            <% changes.first(10).each do |change| %>
+              <li><span class="inline-block w-16 text-base-content/50"><%= change[:status] %></span><%= change[:path] %></li>
+            <% end %>
+
+            <% if changes.size > 10 %>
+              <li class="text-base-content/50">… and <%= changes.size - 10 %> more</li>
+            <% end %>
+          </ul>
+        </div>
+
+        <%= link_to "View changes", data_changes_path, class: "btn btn-primary flex-shrink-0" %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

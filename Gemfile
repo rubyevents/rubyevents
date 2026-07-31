@@ -244,8 +244,8 @@ group :development do
   # Use listen to watch files for changes [https://github.com/guard/listen]
   gem "listen", "~> 3.5"
 
-  # Guard for watching file changes and auto-importing [https://github.com/guard/guard]
-  gem "guard"
+  # Cruise for watching data/ file changes and auto-importing [https://github.com/marcoroth/cruise]
+  gem "cruise"
 
   gem "ruby-lsp-rails", require: false
   gem "standardrb", "~> 1.0", require: false

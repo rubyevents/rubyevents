@@ -1,0 +1,47 @@
+<div class="container py-8">
+  <div class="flex items-center gap-2 title text-primary">
+    <h1><%= title "Data Changes" %></h1>
+  </div>
+
+  <p class="py-4 text-gray-500">
+    Files under <code>data/</code> whose content differs from what has been imported into the database.
+    Run <code>bin/rails db:seed</code> to import them.
+  </p>
+
+  <% if @changes.empty? %>
+    <div class="rounded-lg border border-green-200 bg-green-50 p-6 text-green-800">
+      ✅ All data files are in sync — nothing to import.
+    </div>
+  <% else %>
+    <p class="pb-3 text-sm text-gray-500"><strong><%= pluralize(@changes.size, "file") %></strong> pending</p>
+
+    <div class="overflow-x-auto rounded-lg border">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>File</th>
+            <th class="w-32">Status</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @changes.each do |change| %>
+            <tr>
+              <td class="font-mono text-sm"><%= change[:path] %></td>
+              <td>
+                <% case change[:status] %>
+                <% when "new" %>
+                  <span class="badge badge-success badge-outline">new</span>
+                <% when "modified" %>
+                  <span class="badge badge-warning badge-outline">modified</span>
+                <% when "deleted" %>
+                  <span class="badge badge-error badge-outline">deleted</span>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+</div>

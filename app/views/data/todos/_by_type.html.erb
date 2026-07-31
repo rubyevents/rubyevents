@@ -13,6 +13,7 @@
           <div class="collapse-title py-2 min-h-0 font-medium">
             Show <%= todo_type[:count] %> <%= "occurrence".pluralize(todo_type[:count]) %>
           </div>
+
           <div class="collapse-content">
             <table class="table table-xs">
               <thead>
@@ -21,6 +22,7 @@
                   <th>Content</th>
                 </tr>
               </thead>
+
               <tbody>
                 <% todo_type[:matches].each do |todo| %>
                   <tr>
@@ -29,6 +31,7 @@
                         <code><%= todo.file %>:<%= todo.line %></code>
                       <% end %>
                     </td>
+
                     <td><code class="text-xs break-all"><%= todo.content %></code></td>
                   </tr>
                 <% end %>

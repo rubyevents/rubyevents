@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.2].define(version: 2026_07_05_130000) do
+ActiveRecord::Schema[8.2].define(version: 2026_07_20_120000) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -258,6 +258,14 @@ ActiveRecord::Schema[8.2].define(version: 2026_07_05_130000) do
     t.text "response_body", null: false
     t.datetime "updated_at", null: false
     t.index ["query"], name: "index_geocode_results_on_query", unique: true
+  end
+
+  create_table "imported_files", force: :cascade do |t|
+    t.string "file_path", null: false
+    t.string "fingerprint", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["file_path"], name: "index_imported_files_on_file_path", unique: true
   end
 
   create_table "llm_requests", force: :cascade do |t|
