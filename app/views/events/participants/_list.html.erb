@@ -38,7 +38,7 @@
       <% unless participants.size.zero? %>
         <% show_unclaimed = key == "Known Participants" && unclaimed_check_ins_count > 0 %>
         <h2 class="mb-6">
-          <%= "#{key} (#{participants.size})" %>
+          <%= key %> (<%= participants.size %>)
           <% if show_unclaimed %>
             <span class="text-base font-normal text-gray-400">+ <%= unclaimed_check_ins_count %> unclaimed</span>
           <% end %>
