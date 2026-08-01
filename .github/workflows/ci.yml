@@ -246,6 +246,11 @@ jobs:
     name: Deploy
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: read
+
     timeout-minutes: 20
 
     steps:
