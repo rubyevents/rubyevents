@@ -184,7 +184,7 @@
         <h3 class="font-bold mb-3">Conferences from RubyConferences.org without a video link (<%= pluralize(@without_video_link.count, "event") %>)</h3>
         <div id="missing-conferences-without-link" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 min-w-full mb-6">
           <% @without_video_link.each do |event| %>
-            <%= link_to event["url"], id: "#{event["name"]}-pending", class: "hover:bg-gray-100 p-4 rounded-lg border bg-white", target: :_blank do %>
+            <%= link_to event["url"], class: "hover:bg-gray-100 p-4 rounded-lg border bg-white", target: :_blank do %>
               <div class="flex flex-col">
                 <h3 class="line-clamp-1 font-semibold"><%= event["name"] %></h3>
 
