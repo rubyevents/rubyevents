@@ -6,7 +6,7 @@
 <% unique_slot_counts = day.dig("grid").map { |grid| grid["slots"] }.uniq %>
 
 <div id="attendance-day-<%= day_index %>" class="mt-4">
-  <h3 class="mb-2 text-center font-semibold text-sm text-gray-700"><%= day_string %></h3>
+  <h3 class="mb-2 text-center text-sm font-semibold text-gray-700"><%= day_string %></h3>
 
   <style>
     <% unique_slot_counts.each do |slot_count| %>
@@ -18,7 +18,7 @@
     <% end %>
   </style>
 
-  <div class="border rounded overflow-hidden divide-y">
+  <div class="divide-y overflow-hidden rounded border">
     <% day.dig("grid").each do |grid| %>
       <% start_time = grid["start_time"] %>
       <% end_time = grid["end_time"] %>
@@ -28,15 +28,15 @@
       <div class="flex flex-col md:flex-row">
         <div
           class="
-            w-full md:w-14 shrink-0 bg-gray-50 text-xs p-1 md:p-1.5 text-gray-500 text-center flex items-center
-            justify-center border-b md:border-b-0 md:border-r
+            flex w-full shrink-0 items-center justify-center border-b bg-gray-50 p-1 text-center text-xs
+            text-gray-500 md:w-14 md:border-b-0 md:border-r md:p-1.5
           "
         >
           <span class="md:hidden"><%= start_time %><%= " - #{end_time}" if end_time %></span>
           <span class="hidden md:inline"><%= start_time %></span>
         </div>
 
-        <div class="flex-1 grid grid-cols-1 md:divide-x" data-slots="<%= slots %>">
+        <div class="grid flex-1 grid-cols-1 md:divide-x" data-slots="<%= slots %>">
           <% slots.times do |i| %>
             <% talk = items.any? ? nil : talks[talk_count] %>
 
@@ -44,8 +44,8 @@
               <% item = items[i] %>
               <div
                 class="
-                  bg-gray-50 text-gray-400 text-xs p-1.5 flex items-center justify-center border-b md:border-b-0
-                  last:border-b-0
+                  flex items-center justify-center border-b bg-gray-50 p-1.5 text-xs text-gray-400 last:border-b-0
+                  md:border-b-0
                 "
               >
                 <%= item.is_a?(String) ? item : item&.fetch("title", "-") %>
@@ -54,7 +54,7 @@
               <% talk_track = talk.static_metadata&.track %>
               <% track = talk_track && tracks.find { |t| t["name"] == talk_track } %>
 
-              <div class="border-b md:border-b-0 last:border-b-0">
+              <div class="border-b last:border-b-0 md:border-b-0">
                 <%= render "events/my_attendance_talk",
                       talk: talk,
                       track: track,
@@ -67,8 +67,8 @@
             <% else %>
               <div
                 class="
-                  bg-gray-50 text-gray-400 text-xs p-1.5 flex items-center justify-center border-b md:border-b-0
-                  last:border-b-0
+                  flex items-center justify-center border-b bg-gray-50 p-1.5 text-xs text-gray-400 last:border-b-0
+                  md:border-b-0
                 "
               >
                 -

@@ -7,7 +7,7 @@
         <div class="mb-6">
           <% if events.upcoming.any? %>
             <div>
-              <h3 class="text-lg font-semibold mb-4">
+              <h3 class="mb-4 text-lg font-semibold">
                 Future Events <%= user.name %> and <%= Current.user.name %> are attending
               </h3>
 
@@ -19,7 +19,7 @@
 
           <% if events.past.any? %>
             <div>
-              <h3 class="text-lg font-semibold mb-4 mt-5">
+              <h3 class="mb-4 mt-5 text-lg font-semibold">
                 Past Events <%= user.name %> and <%= Current.user.name %> both attended
               </h3>
 

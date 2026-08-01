@@ -1,6 +1,6 @@
 <%# locals: (talk:) %>
 
-<div class="rounded-xl overflow-hidden bg-base-100 shadow-2xl ring-1 ring-black/10">
+<div class="overflow-hidden rounded-xl bg-base-100 shadow-2xl ring-1 ring-black/10">
   <% watched_talk = user_watched_talks.find { |wt| wt.talk_id == talk.id } %>
 
   <div class="relative aspect-video overflow-hidden">
@@ -14,7 +14,7 @@
     <% if default_watch_list %>
       <% bookmarked = user_favorite_talks_ids.include?(talk.id) %>
       <div
-        class="absolute top-2 right-2 z-10"
+        class="absolute right-2 top-2 z-10"
         data-controller="bookmark"
         data-bookmark-bookmarked-value="<%= bookmarked %>"
         data-bookmark-add-url-value="<%= watch_list_talks_path(default_watch_list, talk_id: talk.id) %>"
@@ -23,16 +23,16 @@
         <div
           data-bookmark-target="message"
           class="
-            hidden absolute top-full right-0 mt-2 whitespace-nowrap rounded-md bg-black/80 px-2 py-1 text-xs
-            font-medium text-white shadow-lg pointer-events-none opacity-0 -translate-y-1 transition duration-200
+            pointer-events-none absolute right-0 top-full mt-2 hidden -translate-y-1 whitespace-nowrap rounded-md
+            bg-black/80 px-2 py-1 text-xs font-medium text-white opacity-0 shadow-lg transition duration-200
           "
         ></div>
 
         <button
           type="button"
           class="
-            flex items-center justify-center size-8 rounded-full bg-black/50 backdrop-blur-sm hover:bg-black/70
-            transition-colors
+            flex size-8 items-center justify-center rounded-full bg-black/50 backdrop-blur-sm transition-colors
+            hover:bg-black/70
           "
           data-action="bookmark#toggle"
           aria-label="Toggle bookmark"
@@ -51,8 +51,8 @@
     <% if watched_talk&.watched? %>
       <div
         class="
-          absolute top-2 left-2 z-10 inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-black/60
-          backdrop-blur-sm text-white text-xs font-medium
+          absolute left-2 top-2 z-10 inline-flex items-center gap-1 rounded bg-black/60 px-1.5 py-0.5 text-xs
+          font-medium text-white backdrop-blur-sm
         "
       >
         <%= fa("circle-check", size: nil, class: "h-3 w-3 fill-current text-green-400") %> Watched
@@ -61,8 +61,8 @@
       <% remaining_minutes = ((talk.duration_in_seconds - watched_talk.progress_seconds) / 60.0).ceil %>
       <div
         class="
-          absolute bottom-2 left-2 z-10 px-1.5 py-0.5 rounded bg-black/70 backdrop-blur-sm text-white text-xs
-          font-medium
+          absolute bottom-2 left-2 z-10 rounded bg-black/70 px-1.5 py-0.5 text-xs font-medium text-white
+          backdrop-blur-sm
         "
       >
         <%= remaining_minutes %> min left
@@ -70,16 +70,16 @@
     <% end %>
 
     <% if watched_talk&.in_progress? %>
-      <div class="absolute bottom-0 inset-x-0 h-1 bg-white/30 z-10">
+      <div class="absolute inset-x-0 bottom-0 z-10 h-1 bg-white/30">
         <div class="h-full bg-primary" style="width: <%= watched_talk.progress_percentage %>%"></div>
       </div>
     <% end %>
   </div>
 
-  <div class="p-3.5 flex flex-col gap-3">
+  <div class="flex flex-col gap-3 p-3.5">
     <div class="flex items-center gap-2.5">
       <% if talk.speakers.present? %>
-        <div class="avatar-group -space-x-3 shrink-0 [&_.avatar]:border-2">
+        <div class="avatar-group shrink-0 -space-x-3 [&_.avatar]:border-2">
           <% talk.speakers.first(3).each do |speaker| %>
             <%= link_to profile_path(speaker), class: "block", data: {turbo_frame: "_top"} do %>
               <%= render Ui::AvatarComponent.new(speaker, size: :sm) %>
@@ -116,7 +116,7 @@
 
       <% if talk.published_at.present? && talk.published_at >= 1.week.ago %>
         <span
-          class="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-green-500/10 text-green-600 cursor-help"
+          class="inline-flex cursor-help items-center gap-1 rounded-md bg-green-500/10 px-2 py-1 text-green-600"
           data-controller="tooltip"
           data-tooltip-content-value="Published <%= time_ago_in_words(talk.published_at) %> ago"
         >
@@ -135,21 +135,21 @@
       <% end %>
 
       <% if talk.date.present? %>
-        <span class="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-base-200/80">
+        <span class="inline-flex items-center gap-1 rounded-md bg-base-200/80 px-2 py-1">
           <%= fa("calendar", size: nil, class: "h-3 w-3 fill-base-content/50") %>
           <%= talk.date.strftime("%b %-d, %Y") %>
         </span>
       <% end %>
 
       <% if talk.duration_in_seconds.present? %>
-        <span class="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-base-200/80">
+        <span class="inline-flex items-center gap-1 rounded-md bg-base-200/80 px-2 py-1">
           <%= fa("clock", size: nil, class: "h-3 w-3 fill-base-content/50") %>
           <%= seconds_to_formatted_duration(talk.duration_in_seconds) %>
         </span>
       <% end %>
 
       <% if talk.kind.present? && talk.kind != "talk" %>
-        <span class="inline-flex items-center px-2 py-1 rounded-md bg-base-200/80">
+        <span class="inline-flex items-center rounded-md bg-base-200/80 px-2 py-1">
           <%= Talk::KIND_LABELS[talk.kind] || talk.kind.titleize %>
         </span>
       <% end %>
@@ -167,7 +167,7 @@
       <% end %>
 
       <% if (status = talk_watch_status(talk)) %>
-        <span class="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-base-200/80">
+        <span class="inline-flex items-center gap-1 rounded-md bg-base-200/80 px-2 py-1">
           <%= fa(status[:icon], size: nil, class: "h-3 w-3 fill-base-content/50") %>
           <%= status[:label] %>
         </span>
@@ -185,7 +185,7 @@
         <div class="grid grid-cols-2 gap-x-3 gap-y-0.5">
           <% sections.first(8).each_with_index do |section, index| %>
             <%= link_to talk_path(section), class: "flex items-center gap-1.5 text-xs rounded px-1 -mx-1 py-0.5 hover:bg-base-200/60 min-w-0", data: {turbo_frame: "_top"} do %>
-              <span class="text-base-content/40 tabular-nums shrink-0"><%= index + 1 %>.</span>
+              <span class="shrink-0 tabular-nums text-base-content/40"><%= index + 1 %>.</span>
 
               <% if section.speakers.first %>
                 <%= render Ui::AvatarComponent.new(section.speakers.first, size: :xs) %>
@@ -201,7 +201,7 @@
         <% end %>
       </div>
     <% elsif talk.description.present? %>
-      <p class="text-xs leading-relaxed text-base-content/60 line-clamp-3 pt-1">
+      <p class="line-clamp-3 pt-1 text-xs leading-relaxed text-base-content/60">
         <%= talk.description %>
       </p>
     <% end %>

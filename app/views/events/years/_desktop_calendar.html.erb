@@ -1,6 +1,6 @@
 <% current_month = (year == Date.today.year) ? Date.today.month : nil %>
 
-<div class="hidden md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-px bg-gray-200 rounded-2xl shadow-sm relative z-0">
+<div class="relative z-0 hidden gap-px rounded-2xl bg-gray-200 shadow-sm md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
   <% (1..12).each do |month| %>
     <% month_events = events_by_month[month] || [] %>
     <% is_current_month = month == current_month %>
@@ -17,14 +17,14 @@
        else ""
        end %>
 
-    <div class="<%= is_current_month ? "bg-red-50 ring-2 ring-inset ring-red-200" : "bg-white" %> p-6 relative <%= corner_classes %>">
-      <div class="flex items-baseline justify-between mb-5">
+    <div class="relative p-6 <%= is_current_month ? "bg-red-50 ring-2 ring-inset ring-red-200" : "bg-white" %> <%= corner_classes %>">
+      <div class="mb-5 flex items-baseline justify-between">
         <h2 class="text-xl font-bold <%= is_current_month ? "text-red-600" : "text-gray-900" %>">
           <%= Date::MONTHNAMES[month] %>
         </h2>
 
         <% if month_events.any? %>
-          <span class="text-xs font-semibold px-2.5 py-1 rounded-full <%= is_current_month ? "bg-red-500 text-white" : "text-gray-500 bg-gray-100" %>">
+          <span class="rounded-full px-2.5 py-1 text-xs font-semibold <%= is_current_month ? "bg-red-500 text-white" : "text-gray-500 bg-gray-100" %>">
             <%= month_events.count %>
           </span>
         <% end %>
@@ -36,13 +36,13 @@
             <% month_events.each do |event| %>
               <% featured_bg = event.static_metadata.featured_background.presence || "#1f2937" %>
 
-              <div class="relative group/card" data-controller="hover-card" data-action="mouseenter->hover-card#reveal">
+              <div class="group/card relative" data-controller="hover-card" data-action="mouseenter->hover-card#reveal">
                 <%= link_to event_path(event) do %>
                   <div
                     class="
-                      w-20 h-20 rounded-xl overflow-hidden ring-2 ring-gray-100 group-hover/card:ring-4
-                      group-hover/card:ring-[--brand-color] transition-all duration-200 transform
-                      group-hover/card:scale-105 shadow-sm
+                      h-20 w-20 transform overflow-hidden rounded-xl shadow-sm ring-2 ring-gray-100 transition-all
+                      duration-200 group-hover/card:scale-105 group-hover/card:ring-4
+                      group-hover/card:ring-[--brand-color]
                     "
                     style="--brand-color: <%= featured_bg %>;"
                   >
@@ -55,8 +55,8 @@
             <% end %>
           </div>
         <% else %>
-          <div class="flex items-center justify-center h-full">
-            <span class="text-gray-300 text-sm">—</span>
+          <div class="flex h-full items-center justify-center">
+            <span class="text-sm text-gray-300">—</span>
           </div>
         <% end %>
       </div>

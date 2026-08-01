@@ -20,7 +20,7 @@
 
   <% if participants.any? %>
     <% if Current.user && participation.blank? %>
-      <div class="mb-6 border-2 border-dashed border-purple-300 rounded-lg bg-purple-50 p-4">
+      <div class="mb-6 rounded-lg border-2 border-dashed border-purple-300 bg-purple-50 p-4">
         <div class="flex items-center gap-4">
           <div class="text-3xl">👋</div>
 
@@ -48,10 +48,10 @@
 
         <div
           id="<%= dom_id(event, key) %>"
-          class="mb-12 min-w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 h-full"
+          class="mb-12 grid h-full min-w-full grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3"
         >
           <% participants.each do |participant| %>
-            <div class="border rounded-lg bg-white hover:bg-gray-200 transition-bg duration-300 ease-in-out">
+            <div class="transition-bg rounded-lg border bg-white duration-300 ease-in-out hover:bg-gray-200">
               <%= render partial: "users/card", locals: {user: participant, favorite_user: favorite_users[participant.id], checked_in: checked_in_participant_ids.include?(participant.id), stamp: event_stamp} %>
             </div>
           <% end %>
@@ -65,26 +65,26 @@
   <% end %>
 
   <% if participants.empty? %>
-    <div class="text-center py-12">
-      <div class="max-w-md mx-auto">
-        <div class="text-6xl mb-4">👥</div>
+    <div class="py-12 text-center">
+      <div class="mx-auto max-w-md">
+        <div class="mb-4 text-6xl">👥</div>
 
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">No Participants Yet</h2>
+        <h2 class="mb-4 text-2xl font-bold text-gray-900">No Participants Yet</h2>
 
-        <p class="text-gray-600 mb-6">
+        <p class="mb-6 text-gray-600">
           Be the first to mark yourself as a participant of <%= event.name %>!
         </p>
 
         <%= render partial: "events/participation_button", locals: {event: event, participation: participation} %>
 
-        <div class="bg-purple-50 border border-purple-200 rounded-lg p-4 text-left mt-6">
-          <h3 class="font-semibold text-purple-800 mb-2"><%= button_text %></h3>
+        <div class="mt-6 rounded-lg border border-purple-200 bg-purple-50 p-4 text-left">
+          <h3 class="mb-2 font-semibold text-purple-800"><%= button_text %></h3>
 
-          <p class="text-sm text-purple-700 mb-3">
+          <p class="mb-3 text-sm text-purple-700">
             Help build the community memory by marking your participation at this event.
           </p>
 
-          <ul class="text-sm text-purple-700 space-y-1">
+          <ul class="space-y-1 text-sm text-purple-700">
             <li>• Connect with fellow participants</li>
             <li>• Share your experience with the community</li>
             <li>• Build your conference history</li>

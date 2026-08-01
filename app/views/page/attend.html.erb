@@ -7,25 +7,25 @@
 
 <main>
   <div class="container">
-    <section class="py-12 text-center max-w-3xl mx-auto">
-      <h1 class="text-4xl font-bold text-primary mb-4">Attend a Ruby Event</h1>
+    <section class="mx-auto max-w-3xl py-12 text-center">
+      <h1 class="mb-4 text-4xl font-bold text-primary">Attend a Ruby Event</h1>
 
-      <p class="text-lg text-gray-600 mb-8">
+      <p class="mb-8 text-lg text-gray-600">
         Ruby events are where friendships are made, ideas are sparked, and careers are shaped. Whether you're looking
         for a multi-day conference or a casual evening meetup, there's an event for you.
       </p>
 
-      <div class="max-w-xl mx-auto">
+      <div class="mx-auto max-w-xl">
         <%= render "shared/location_search", compact: true %>
       </div>
     </section>
 
-    <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+    <section class="mb-12 grid grid-cols-1 gap-6 md:grid-cols-3">
       <%= link_to events_path(kind: "conference"), class: "group flex flex-col items-center gap-3 p-6 rounded-2xl border border-base-300 bg-white hover:border-primary hover:shadow-lg transition-all" do %>
         <div
           class="
-            w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20
-            transition-colors
+            flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 transition-colors
+            group-hover:bg-primary/20
           "
         >
           <%= fa("building-columns", size: :xl, class: "fill-primary") %>
@@ -33,7 +33,7 @@
 
         <h3 class="text-lg font-bold">Conferences</h3>
 
-        <p class="text-gray-500 text-center text-sm">
+        <p class="text-center text-sm text-gray-500">
           Multi-day events with talks, workshops, and hallway conversations
         </p>
       <% end %>
@@ -41,8 +41,8 @@
       <%= link_to events_path(kind: "meetup"), class: "group flex flex-col items-center gap-3 p-6 rounded-2xl border border-base-300 bg-white hover:border-primary hover:shadow-lg transition-all" do %>
         <div
           class="
-            w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20
-            transition-colors
+            flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 transition-colors
+            group-hover:bg-primary/20
           "
         >
           <%= fa("users", size: :xl, class: "fill-primary") %>
@@ -50,7 +50,7 @@
 
         <h3 class="text-lg font-bold">Meetups</h3>
 
-        <p class="text-gray-500 text-center text-sm">
+        <p class="text-center text-sm text-gray-500">
           Regular local gatherings to learn, share, and connect with fellow Rubyists
         </p>
       <% end %>
@@ -58,8 +58,8 @@
       <%= link_to talks_path, class: "group flex flex-col items-center gap-3 p-6 rounded-2xl border border-base-300 bg-white hover:border-primary hover:shadow-lg transition-all" do %>
         <div
           class="
-            w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20
-            transition-colors
+            flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 transition-colors
+            group-hover:bg-primary/20
           "
         >
           <%= fa("circle-play", size: :xl, class: "fill-primary") %>
@@ -67,7 +67,7 @@
 
         <h3 class="text-lg font-bold">Watch Online</h3>
 
-        <p class="text-gray-500 text-center text-sm">
+        <p class="text-center text-sm text-gray-500">
           Can't travel? Watch recorded talks from conferences around the world
         </p>
       <% end %>
@@ -79,7 +79,7 @@
       <% end %>
 
       <section>
-        <h2 class="text-2xl font-bold mb-6">Events by Region</h2>
+        <h2 class="mb-6 text-2xl font-bold">Events by Region</h2>
 
         <div class="flex flex-col gap-8">
           <%= turbo_frame_tag "browse-upcoming-events-europe", src: browse_path("upcoming_events_europe"), loading: :lazy do %>
@@ -109,9 +109,9 @@
       </section>
 
       <section>
-        <h2 class="text-2xl font-bold mb-6">Helpful Resources</h2>
+        <h2 class="mb-6 text-2xl font-bold">Helpful Resources</h2>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <%= link_to events_path, class: "flex items-center gap-3 p-4 rounded-xl border border-base-300 bg-white hover:border-primary hover:shadow transition-all" do %>
             <%= fa("calendar", size: :lg, class: "fill-primary shrink-0") %>
 

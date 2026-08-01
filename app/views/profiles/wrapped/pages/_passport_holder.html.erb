@@ -1,18 +1,18 @@
-<h2 class="text-2xl font-bold mb-2 text-center">Physical Passport</h2>
-<p class="text-gray-500 text-center mb-6">You have the real thing!</p>
+<h2 class="mb-2 text-center text-2xl font-bold">Physical Passport</h2>
+<p class="mb-6 text-center text-gray-500">You have the real thing!</p>
 
-<div class="flex-1 flex flex-col items-center justify-center">
+<div class="flex flex-1 flex-col items-center justify-center">
   <div class="relative mb-6">
     <div
       class="
-        w-40 h-56 bg-gradient-to-br from-red-700 to-red-900 rounded-lg shadow-xl transform rotate-3 border-4
-        border-red-800
+        h-56 w-40 rotate-3 transform rounded-lg border-4 border-red-800 bg-gradient-to-br from-red-700 to-red-900
+        shadow-xl
       "
     >
-      <div class="absolute inset-4 border border-yellow-500/50 rounded"></div>
+      <div class="absolute inset-4 rounded border border-yellow-500/50"></div>
 
       <div class="absolute inset-0 flex flex-col items-center justify-center text-yellow-400/90">
-        <svg class="w-12 h-12 mb-2" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg class="mb-2 h-12 w-12" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M2 25 L16 10 L64 10 L78 25 L40 70 Z" fill="currentColor" />
         </svg>
 
@@ -21,15 +21,15 @@
       </div>
     </div>
 
-    <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-32 h-4 bg-black/20 blur-md rounded-full"></div>
+    <div class="absolute -bottom-2 left-1/2 h-4 w-32 -translate-x-1/2 rounded-full bg-black/20 blur-md"></div>
   </div>
 
-  <div class="text-center mb-4">
-    <p class="text-3xl font-black text-red-600 mb-1">Passport Holder</p>
+  <div class="mb-4 text-center">
+    <p class="mb-1 text-3xl font-black text-red-600">Passport Holder</p>
     <p class="text-gray-600">Official Ruby Passport Holder</p>
   </div>
 
-  <div class="bg-red-50 rounded-xl p-4 w-full max-w-xs text-center">
+  <div class="w-full max-w-xs rounded-xl bg-red-50 p-4 text-center">
     <p class="text-sm text-gray-600">Claimed on</p>
     <p class="font-bold text-red-700"><%= passports.first.created_at.strftime("%B %d, %Y") %></p>
   </div>

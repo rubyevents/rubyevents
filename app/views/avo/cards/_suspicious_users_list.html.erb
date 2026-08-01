@@ -1,16 +1,16 @@
 <% suspicious_users = User.suspicious.includes(:connected_accounts).order(suspicion_marked_at: :desc).limit(50) %>
 
-<div class="p-4 overflow-y-auto h-full">
+<div class="h-full overflow-y-auto p-4">
   <% if suspicious_users.empty? %>
-    <p class="text-gray-500 text-center py-8">No suspicious users found.</p>
+    <p class="py-8 text-center text-gray-500">No suspicious users found.</p>
   <% else %>
     <table class="min-w-full divide-y divide-gray-200">
       <thead>
         <tr>
-          <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">User</th>
-          <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Signals</th>
-          <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Flagged</th>
-          <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+          <th class="px-3 py-2 text-left text-xs font-medium uppercase text-gray-500">User</th>
+          <th class="px-3 py-2 text-left text-xs font-medium uppercase text-gray-500">Signals</th>
+          <th class="px-3 py-2 text-left text-xs font-medium uppercase text-gray-500">Flagged</th>
+          <th class="px-3 py-2 text-left text-xs font-medium uppercase text-gray-500">Actions</th>
         </tr>
       </thead>
 
@@ -21,12 +21,12 @@
               <%= link_to user.name, avo.resources_user_path(user), class: "text-blue-600 hover:underline", data: {turbo_frame: "_top"} %>
 
               <% if user.github_handle.present? %>
-                <br><span class="text-gray-400 text-xs">@<%= user.github_handle %></span>
+                <br><span class="text-xs text-gray-400">@<%= user.github_handle %></span>
               <% end %>
             </td>
 
             <td class="px-3 py-2 text-sm">
-              <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium <%= (user.suspicion_detector.signal_count >= 4) ? "bg-red-100 text-red-800" : "bg-yellow-100 text-yellow-800" %>">
+              <span class="inline-flex items-center rounded px-2 py-0.5 text-xs font-medium <%= (user.suspicion_detector.signal_count >= 4) ? "bg-red-100 text-red-800" : "bg-yellow-100 text-yellow-800" %>">
                 <%= user.suspicion_detector.signal_count %> / 5
               </span>
             </td>
@@ -35,7 +35,7 @@
               <%= time_ago_in_words(user.suspicion_marked_at) %> ago
             </td>
 
-            <td class="px-3 py-2 text-sm space-x-2">
+            <td class="space-x-2 px-3 py-2 text-sm">
               <%= link_to "View", avo.resources_user_path(user), class: "text-blue-600 hover:underline text-xs", data: {turbo_frame: "_top"} %>
             </td>
           </tr>

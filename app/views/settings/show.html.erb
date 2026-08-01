@@ -1,14 +1,14 @@
 <div class="container py-8">
-  <div class="max-w-2xl mx-auto">
-    <h1 class="text-3xl font-bold mb-8"><%= title "Settings" %></h1>
+  <div class="mx-auto max-w-2xl">
+    <h1 class="mb-8 text-3xl font-bold"><%= title "Settings" %></h1>
 
     <%= form_with(model: Current.user, url: settings_path, method: :patch) do |form| %>
       <div class="space-y-8">
         <% if Current.user.talks_count > 0 %>
-          <div class="card bg-base-100 shadow-sm border">
+          <div class="card border bg-base-100 shadow-sm">
             <div class="card-body">
               <h2 class="card-title text-lg">Speaker Settings</h2>
-              <p class="text-sm text-gray-500 mb-4">Settings for speakers who have given talks at Ruby events.</p>
+              <p class="mb-4 text-sm text-gray-500">Settings for speakers who have given talks at Ruby events.</p>
 
               <div class="form-control">
                 <label class="label cursor-pointer justify-start gap-4">
@@ -28,11 +28,11 @@
           </div>
         <% end %>
 
-        <div class="card bg-base-100 shadow-sm border">
+        <div class="card border bg-base-100 shadow-sm">
           <div class="card-body">
             <h2 class="card-title text-lg">Privacy</h2>
 
-            <p class="text-sm text-gray-500 mb-4">Control what others can see on your profile.</p>
+            <p class="mb-4 text-sm text-gray-500">Control what others can see on your profile.</p>
 
             <div class="form-control">
               <label class="label cursor-pointer justify-start gap-4">
@@ -74,10 +74,10 @@
           </div>
         </div>
 
-        <div class="card bg-base-100 shadow-sm border">
+        <div class="card border bg-base-100 shadow-sm">
           <div class="card-body">
             <h2 class="card-title text-lg">Location</h2>
-            <p class="text-sm text-gray-500 mb-4">Configure how far away events can be to appear in your feed.</p>
+            <p class="mb-4 text-sm text-gray-500">Configure how far away events can be to appear in your feed.</p>
 
             <div class="form-control">
               <label class="label">
@@ -92,7 +92,7 @@
                     class: "range range-primary",
                     oninput: "document.getElementById('distance-value').textContent = this.value + ' km'" %>
 
-              <div class="flex justify-between text-xs text-gray-400 mt-1">
+              <div class="mt-1 flex justify-between text-xs text-gray-400">
                 <span>0 km</span>
                 <span>20,000 km</span>
               </div>

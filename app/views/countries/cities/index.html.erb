@@ -17,7 +17,7 @@
       show_stamps: true %>
 
 <div class="container py-8">
-  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+  <div class="mb-6 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
     <div class="flex items-center gap-3">
       <h2 class="text-xl font-bold text-gray-900">Cities in <%= @country.name %></h2>
       <%= ui_badge(@cities.size, kind: :secondary, outline: true) %>
@@ -35,11 +35,11 @@
   </div>
 
   <% if @cities.any? %>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       <% @cities.each do |city| %>
         <%= link_to city.path,
               class: "flex flex-col p-4 bg-white rounded-xl border hover:border-gray-400 transition-colors" do %>
-          <div class="flex items-center justify-between mb-2">
+          <div class="mb-2 flex items-center justify-between">
             <div class="flex items-center gap-2">
               <span class="font-semibold text-gray-900"><%= city.name %></span>
 
@@ -56,10 +56,10 @@
           </div>
 
           <% if city.events.any? %>
-            <div class="flex -space-x-2 mt-3">
+            <div class="mt-3 flex -space-x-2">
               <% city.events.first(4).each do |event| %>
                 <% if event.avatar_image_path %>
-                  <div class="w-8 h-8 rounded overflow-hidden ring-2 ring-white">
+                  <div class="h-8 w-8 overflow-hidden rounded ring-2 ring-white">
                     <%= image_tag event.avatar_image_path, alt: event.name, class: "w-full h-full object-cover", loading: "lazy" %>
                   </div>
                 <% end %>
@@ -70,6 +70,6 @@
       <% end %>
     </div>
   <% else %>
-    <p class="text-gray-500 py-8 text-center">No cities with events found in <%= @country.name %> yet.</p>
+    <p class="py-8 text-center text-gray-500">No cities with events found in <%= @country.name %> yet.</p>
   <% end %>
 </div>

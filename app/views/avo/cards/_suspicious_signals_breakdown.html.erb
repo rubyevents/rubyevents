@@ -10,7 +10,7 @@
 
 <div class="p-4">
   <% if suspicious_users.empty? %>
-    <p class="text-gray-500 text-center py-4">No suspicious users to analyze.</p>
+    <p class="py-4 text-center text-gray-500">No suspicious users to analyze.</p>
   <% else %>
     <div class="space-y-3">
       <% signals.each do |signal_name, count| %>
@@ -18,18 +18,18 @@
           <span class="text-sm text-gray-700"><%= signal_name %></span>
 
           <div class="flex items-center">
-            <div class="w-32 bg-gray-200 rounded-full h-2 mr-2">
+            <div class="mr-2 h-2 w-32 rounded-full bg-gray-200">
               <% percentage = suspicious_users.any? ? (count.to_f / suspicious_users.count * 100) : 0 %>
 
-              <div class="bg-red-500 h-2 rounded-full" style="width: <%= percentage %>%"></div>
+              <div class="h-2 rounded-full bg-red-500" style="width: <%= percentage %>%"></div>
             </div>
 
-            <span class="text-sm font-medium text-gray-900 w-12 text-right"><%= count %></span>
+            <span class="w-12 text-right text-sm font-medium text-gray-900"><%= count %></span>
           </div>
         </div>
       <% end %>
     </div>
-    <div class="mt-4 pt-4 border-t border-gray-200">
+    <div class="mt-4 border-t border-gray-200 pt-4">
       <p class="text-xs text-gray-500">
         Total suspicious users: <strong><%= suspicious_users.count %></strong>
         <br>

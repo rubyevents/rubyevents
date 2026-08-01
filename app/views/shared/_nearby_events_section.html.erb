@@ -1,7 +1,7 @@
 <%# locals: (title:, nearby_events:, fallback_text: nil, fallback_path: nil, limit: 8, dimmed: false) %>
 
 <div class="mb-12 <%= "opacity-60 hover:opacity-100 transition-opacity" if dimmed %>">
-  <div class="flex items-center justify-between mb-6">
+  <div class="mb-6 flex items-center justify-between">
     <h2 class="text-xl font-bold text-gray-900"><%= title %></h2>
   </div>
 
@@ -12,8 +12,8 @@
     <% first_event = date_nearby_events.first[:event] %>
 
     <div class="mb-8">
-      <div class="flex items-center gap-2 mb-4">
-        <span class="w-2 h-2 rounded-full bg-gray-400"></span>
+      <div class="mb-4 flex items-center gap-2">
+        <span class="h-2 w-2 rounded-full bg-gray-400"></span>
 
         <span class="text-lg font-semibold text-gray-800">
           <% if first_event.date_precision == "day" && first_event.start_date.present? %>
@@ -32,17 +32,17 @@
           <% event = nearby[:event] %>
 
           <%= link_to event_path(event), class: "block bg-white rounded-lg border p-4 hover:border-gray-400 transition-colors" do %>
-            <div class="flex gap-4 items-start">
+            <div class="flex items-start gap-4">
               <% if event.avatar_image_path %>
-                <div class="w-16 h-16 flex-shrink-0 rounded-lg overflow-hidden">
+                <div class="h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg">
                   <%= image_tag event.avatar_image_path, alt: event.name, class: "w-full h-full object-cover" %>
                 </div>
               <% end %>
 
-              <div class="flex-grow min-w-0">
-                <div class="font-semibold text-gray-900 truncate"><%= event.name %></div>
+              <div class="min-w-0 flex-grow">
+                <div class="truncate font-semibold text-gray-900"><%= event.name %></div>
 
-                <div class="text-sm text-gray-600 mt-1">
+                <div class="mt-1 text-sm text-gray-600">
                   <span class="inline-flex items-center gap-1">
                     <%= fa("map-marker-alt", size: :xs, class: "text-gray-400") %>
                     <%= event.location %>

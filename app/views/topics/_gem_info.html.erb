@@ -1,9 +1,9 @@
 <% topic.topic_gems.each do |topic_gem| %>
-  <div class="flex flex-col gap-4 p-5 bg-base-200 rounded-lg max-w-3xl">
+  <div class="flex max-w-3xl flex-col gap-4 rounded-lg bg-base-200 p-5">
     <div class="flex flex-wrap items-center justify-between gap-2">
       <%= link_to gem_path(gem_name: topic_gem.gem_name), class: "flex items-center gap-2 hover:opacity-80" do %>
         <%= fa("gem", size: :md, class: "fill-primary") %>
-        <code class="font-bold text-lg font-mono"><%= topic_gem.gem_name %></code>
+        <code class="font-mono text-lg font-bold"><%= topic_gem.gem_name %></code>
 
         <% if topic_gem.version.present? %>
           <span class="badge badge-primary badge-outline">v<%= topic_gem.version %></span>

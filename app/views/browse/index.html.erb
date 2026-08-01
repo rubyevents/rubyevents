@@ -1,6 +1,6 @@
 <%= turbo_refreshes_with method: :morph, scroll: :preserve %>
 
-<div class="container flex flex-col gap-8 my-8 hotwire-native:my-0 hotwire-native:mb-8">
+<div class="container my-8 flex flex-col gap-8 hotwire-native:my-0 hotwire-native:mb-8">
   <h1 class="title text-primary hotwire-native:hidden"><%= title "Browse" %></h1>
 
   <% if @featured_events.any? %>
@@ -130,7 +130,7 @@
     <%= render "browse/content_row_skeleton" %>
   <% end %>
 
-  <div class="flex justify-center mt-4">
+  <div class="mt-4 flex justify-center">
     <%= link_to talks_path(status: "all"), class: "btn btn-primary btn-lg" do %>
       <%= fa("video", class: "mr-2") %> Browse All Talks
     <% end %>

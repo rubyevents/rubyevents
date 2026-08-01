@@ -8,17 +8,17 @@
     <p>Copy the URL below and add it to your calendar application as an external calendar.</p>
 
     <div
-      class="flex justify-between items-center"
+      class="flex items-center justify-between"
       data-controller="copy-to-clipboard"
       data-copy-to-clipboard-success-class="scale-95"
     >
       <pre
-        class="text-sm font-mono text-gray-800 whitespace-pre-wrap break-words"
+        class="font-mono whitespace-pre-wrap break-words text-sm text-gray-800"
         data-copy-to-clipboard-target="source"
       ><%= url %></pre>
 
       <button
-        class="btn btn-sm btn-outline transition-transform duration-150 ease-in-out"
+        class="btn btn-outline btn-sm transition-transform duration-150 ease-in-out"
         data-action="click->copy-to-clipboard#copy"
         data-copy-to-clipboard-target="button"
       >

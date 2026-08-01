@@ -9,7 +9,7 @@
   >
     <button
       type="button"
-      class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-white font-medium transition-opacity"
+      class="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 font-medium text-white transition-opacity"
       data-bridge--live-activity-target="button"
       data-action="click->bridge--live-activity#start"
     >
@@ -24,37 +24,37 @@
     <%= render partial: "events/navigation", locals: {event: @event} %>
     <%= render Events::UpcomingEventBannerComponent.new(event: @event) %>
 
-    <div class="flex flex-col gap-12 mt-8">
-      <section class="bg-white rounded-lg border p-6 shadow-sm">
-        <div class="grid gap-6 items-center <%= (@event.start_date.present? && @event.start_date > Date.today && @event.date_precision == "day" || (@event.today? && !@event.meetup?)) ? "grid-cols-2 sm:grid-cols-4" : "grid-cols-3" %>">
+    <div class="mt-8 flex flex-col gap-12">
+      <section class="rounded-lg border bg-white p-6 shadow-sm">
+        <div class="grid items-center gap-6 <%= (@event.start_date.present? && @event.start_date > Date.today && @event.date_precision == "day" || (@event.today? && !@event.meetup?)) ? "grid-cols-2 sm:grid-cols-4" : "grid-cols-3" %>">
           <div class="text-center">
             <% if @event.retreat? %>
               <% duration = (@event.end_date - @event.start_date).to_i %>
 
-              <div class="text-3xl font-bold text-primary mb-1"><%= duration %></div>
+              <div class="mb-1 text-3xl font-bold text-primary"><%= duration %></div>
               <div class="text-sm font-medium text-gray-600"><%= "Day".pluralize(duration) %></div>
             <% else %>
-              <div class="text-3xl font-bold text-primary mb-1"><%= @event.talks.count %></div>
+              <div class="mb-1 text-3xl font-bold text-primary"><%= @event.talks.count %></div>
               <div class="text-sm font-medium text-gray-600">Talks</div>
             <% end %>
           </div>
 
           <div class="text-center">
             <% if @event.retreat? %>
-              <div class="text-3xl font-bold text-primary mb-1"><%= @event.participants.count %></div>
+              <div class="mb-1 text-3xl font-bold text-primary"><%= @event.participants.count %></div>
               <div class="text-sm font-medium text-gray-600">Known Participants</div>
             <% else %>
-              <div class="text-3xl font-bold text-primary mb-1"><%= @event.speakers.count %></div>
+              <div class="mb-1 text-3xl font-bold text-primary"><%= @event.speakers.count %></div>
               <div class="text-sm font-medium text-gray-600">Speakers</div>
             <% end %>
           </div>
 
           <div class="text-center">
             <% if @event.meetup? %>
-              <div class="text-3xl font-bold text-primary mb-1"><%= @event.talks.where(meta_talk: true).count %></div>
+              <div class="mb-1 text-3xl font-bold text-primary"><%= @event.talks.where(meta_talk: true).count %></div>
               <div class="text-sm font-medium text-gray-600">Events</div>
             <% else %>
-              <div class="text-3xl font-bold text-primary mb-1"><%= @event.sponsors.count %></div>
+              <div class="mb-1 text-3xl font-bold text-primary"><%= @event.sponsors.count %></div>
               <div class="text-sm font-medium text-gray-600">Sponsors</div>
             <% end %>
           </div>
@@ -62,24 +62,24 @@
           <% if @event.start_date.present? && @event.start_date > Date.today && @event.date_precision == "day" %>
             <% days_until = (@event.start_date - Date.today).to_i %>
             <div class="text-center">
-              <div class="flex justify-center gap-1 mb-2">
+              <div class="mb-2 flex justify-center gap-1">
                 <% days_str = days_until.to_s.rjust(2, "0") %>
 
                 <% days_str.chars.each do |digit| %>
-                  <div class="relative bg-gray-900 rounded w-8 h-12 flex items-center justify-center font-mono">
+                  <div class="font-mono relative flex h-12 w-8 items-center justify-center rounded bg-gray-900">
                     <div class="absolute inset-0 overflow-hidden rounded-t" style="clip-path: inset(0 0 50% 0);">
-                      <div class="text-xl font-bold text-white flex items-center justify-center h-full">
+                      <div class="flex h-full items-center justify-center text-xl font-bold text-white">
                         <%= digit %>
                       </div>
                     </div>
 
                     <div class="absolute inset-0 overflow-hidden rounded-b" style="clip-path: inset(50% 0 0 0);">
-                      <div class="text-xl font-bold text-white flex items-center justify-center h-full">
+                      <div class="flex h-full items-center justify-center text-xl font-bold text-white">
                         <%= digit %>
                       </div>
                     </div>
 
-                    <div class="absolute inset-x-0 top-1/2 h-px bg-black shadow-sm transform -translate-y-px z-10"></div>
+                    <div class="absolute inset-x-0 top-1/2 z-10 h-px -translate-y-px transform bg-black shadow-sm"></div>
                   </div>
                 <% end %>
               </div>
@@ -88,7 +88,7 @@
             </div>
           <% elsif @event.today? && !@event.meetup? %>
             <div class="text-center">
-              <div class="text-2xl font-bold text-green-600 mb-1 animate-pulse">
+              <div class="mb-1 animate-pulse text-2xl font-bold text-green-600">
                 LIVE
               </div>
 
@@ -100,13 +100,13 @@
 
       <% if @event.meetup? && (@upcoming_meetup_events&.any? || @recent_meetup_events&.any?) %>
         <% if @upcoming_meetup_events&.any? %>
-          <section class="flex flex-col w-full gap-4">
-            <div class="flex items-center justify-between w-full">
-              <h2 class="text-primary shrink-0">Upcoming Events</h2>
+          <section class="flex w-full flex-col gap-4">
+            <div class="flex w-full items-center justify-between">
+              <h2 class="shrink-0 text-primary">Upcoming Events</h2>
               <%= link_to "see all events", event_events_path(@event), class: "link text-right w-full" %>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
               <% @upcoming_meetup_events.each do |meta_talk| %>
                 <%= render "shared/meta_talk_card", meta_talk: meta_talk, compact_speakers: true, hide_date_sidebar: true %>
               <% end %>
@@ -115,13 +115,13 @@
         <% end %>
 
         <% if @recent_meetup_events&.any? %>
-          <section class="flex flex-col w-full gap-4">
-            <div class="flex items-center justify-between w-full">
-              <h2 class="text-primary shrink-0">Recent Events</h2>
+          <section class="flex w-full flex-col gap-4">
+            <div class="flex w-full items-center justify-between">
+              <h2 class="shrink-0 text-primary">Recent Events</h2>
               <%= link_to "see all events", event_events_path(@event), class: "link text-right w-full" %>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
               <% @recent_meetup_events.each do |meta_talk| %>
                 <%= render "shared/meta_talk_card", meta_talk: meta_talk, compact_speakers: true, hide_date_sidebar: true %>
               <% end %>
@@ -129,9 +129,9 @@
           </section>
         <% end %>
       <% elsif @keynotes&.any? %>
-        <section class="flex flex-col w-full gap-4">
-          <div class="flex items-center justify-between w-full">
-            <h2 class="text-primary shrink-0">Keynotes</h2>
+        <section class="flex w-full flex-col gap-4">
+          <div class="flex w-full items-center justify-between">
+            <h2 class="shrink-0 text-primary">Keynotes</h2>
             <%= link_to "see all talks", event_talks_path(@event), class: "link text-right w-full" %>
           </div>
 
@@ -151,9 +151,9 @@
       <% end %>
 
       <% if @recent_talks.any? %>
-        <section class="flex flex-col w-full gap-4">
-          <div class="flex items-center justify-between w-full">
-            <h2 class="text-primary shrink-0">Talks</h2>
+        <section class="flex w-full flex-col gap-4">
+          <div class="flex w-full items-center justify-between">
+            <h2 class="shrink-0 text-primary">Talks</h2>
             <%= link_to "see all talks", event_talks_path(@event), class: "link text-right w-full" %>
           </div>
 
@@ -173,19 +173,19 @@
       <% end %>
 
       <% if @featured_speakers.any? %>
-        <section class="flex flex-col w-full gap-4">
-          <div class="flex items-center justify-between w-full">
-            <h2 class="text-primary shrink-0">Speakers</h2>
+        <section class="flex w-full flex-col gap-4">
+          <div class="flex w-full items-center justify-between">
+            <h2 class="shrink-0 text-primary">Speakers</h2>
             <%= link_to "see all speakers", event_speakers_path(@event), class: "link text-right w-full" %>
           </div>
 
           <div class="relative" data-controller="scroll">
             <div
-              class="overflow-x-auto scroll-smooth snap-x snap-mandatory"
+              class="snap-x snap-mandatory overflow-x-auto scroll-smooth"
               data-scroll-target="container"
               data-action="scroll->scroll#checkScroll"
             >
-              <div class="flex pb-4 gap-4">
+              <div class="flex gap-4 pb-4">
                 <% @featured_speakers.each do |speaker| %>
                   <div class="snap-start" data-scroll-target="card">
                     <%= render partial: "speakers/card", locals: {speaker: speaker} %>
@@ -195,7 +195,7 @@
             </div>
 
             <div
-              class="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white to-transparent pointer-events-none"
+              class="pointer-events-none absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white to-transparent"
               data-scroll-target="gradient"
             ></div>
           </div>
@@ -203,19 +203,19 @@
       <% end %>
 
       <% if @sponsors.any? %>
-        <section class="flex flex-col w-full gap-4">
-          <div class="flex items-center justify-between w-full">
-            <h2 class="text-primary shrink-0">Sponsors</h2>
+        <section class="flex w-full flex-col gap-4">
+          <div class="flex w-full items-center justify-between">
+            <h2 class="shrink-0 text-primary">Sponsors</h2>
             <%= link_to "see all sponsors", event_sponsors_path(@event), class: "link text-right w-full" %>
           </div>
 
           <div class="relative" data-controller="scroll">
             <div
-              class="overflow-x-auto scroll-smooth snap-x snap-mandatory"
+              class="snap-x snap-mandatory overflow-x-auto scroll-smooth"
               data-scroll-target="container"
               data-action="scroll->scroll#checkScroll"
             >
-              <div class="flex pb-4 gap-4">
+              <div class="flex gap-4 pb-4">
                 <% @sponsors.each do |sponsor| %>
                   <div class="snap-start" data-scroll-target="card">
                     <%= render partial: "organizations/card", locals: {
@@ -230,7 +230,7 @@
             </div>
 
             <div
-              class="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white to-transparent pointer-events-none"
+              class="pointer-events-none absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white to-transparent"
               data-scroll-target="gradient"
             ></div>
           </div>
@@ -238,20 +238,20 @@
       <% end %>
 
       <% if @event.talks.empty? && @event.speakers.empty? && @sponsors.empty? && !@event.static_metadata.cancelled? %>
-        <div class="text-center py-12">
-          <div class="max-w-md mx-auto">
-            <div class="text-6xl mb-4">🎤</div>
-            <h2 class="text-2xl font-bold text-gray-900 mb-4">Coming Soon</h2>
+        <div class="py-12 text-center">
+          <div class="mx-auto max-w-md">
+            <div class="mb-4 text-6xl">🎤</div>
+            <h2 class="mb-4 text-2xl font-bold text-gray-900">Coming Soon</h2>
 
-            <p class="text-gray-600 mb-6">
+            <p class="mb-6 text-gray-600">
               Help us make this event complete! Do you have recordings, speaker info, or sponsor details for
               <%= @event.name %>?
             </p>
 
-            <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-left">
-              <h3 class="font-semibold text-amber-800 mb-2">How to contribute:</h3>
+            <div class="rounded-lg border border-amber-200 bg-amber-50 p-4 text-left">
+              <h3 class="mb-2 font-semibold text-amber-800">How to contribute:</h3>
 
-              <ul class="text-sm text-amber-700 space-y-1">
+              <ul class="space-y-1 text-sm text-amber-700">
                 <li>• Check the event website or program</li>
                 <li>• Look for recordings or speaker information</li>
 

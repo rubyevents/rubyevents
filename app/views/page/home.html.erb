@@ -69,11 +69,11 @@
     <% if @featured_events.any? %>
       <section class="splide w-full" aria-label="Featured Events" data-controller="splide">
         <div class="featured-stats w-full pt-8 lg:shrink-0">
-          <div class="container hotwire-native:hidden flex flex-col items-center text-center">
-            <h2 class="text-2xl font-bold tracking-tight mb-6">On a mission to index all Ruby events</h2>
+          <div class="container flex flex-col items-center text-center hotwire-native:hidden">
+            <h2 class="mb-6 text-2xl font-bold tracking-tight">On a mission to index all Ruby events</h2>
 
-            <div class="flex flex-wrap gap-4 justify-center items-center text-sm">
-              <div class="flex flex-wrap justify-center items-center gap-2 mb-12 lg:mb-6">
+            <div class="flex flex-wrap items-center justify-center gap-4 text-sm">
+              <div class="mb-12 flex flex-wrap items-center justify-center gap-2 lg:mb-6">
                 <span class="opacity-80">We have indexed</span>
 
                 <%= link_to events_path, class: "inline-flex items-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm font-semibold border hover:bg-white/30", style: "border-color: color-mix(in srgb, var(--featured-color) 25%, transparent);" do %>
@@ -96,7 +96,7 @@
           </div>
         </div>
 
-        <div class="splide__track lg:flex-1 lg:flex lg:flex-col lg:justify-center lg:min-h-0">
+        <div class="splide__track lg:flex lg:min-h-0 lg:flex-1 lg:flex-col lg:justify-center">
           <ul class="splide__list">
             <% @featured_events.each_with_index do |event, index| %>
               <li
@@ -114,7 +114,7 @@
 
         <a
           href="#more-content"
-          class="hidden lg:flex lg:shrink-0 justify-center pb-1"
+          class="hidden justify-center pb-1 lg:flex lg:shrink-0"
           aria-label="Scroll for more"
           style="color: var(--featured-color);"
         >
@@ -132,7 +132,7 @@
 
         <% if @featured_events.size > 1 %>
           <div
-            class="hidden lg:flex lg:shrink-0 justify-center items-center gap-2 py-4"
+            class="hidden items-center justify-center gap-2 py-4 lg:flex lg:shrink-0"
             style="color: var(--featured-color);"
           >
             <% @featured_events.each_with_index do |_featured_event, index| %>
@@ -150,7 +150,7 @@
 
         <% if @featured_events.size > 1 && false %>
           <div
-            class="hidden lg:grid lg:shrink-0 grid-cols-3 gap-px w-full border-t"
+            class="hidden w-full grid-cols-3 gap-px border-t lg:grid lg:shrink-0"
             style="border-color: color-mix(in srgb, var(--featured-color) 35%, transparent); background: color-mix(in srgb, var(--featured-color) 35%, transparent);"
           >
             <% @featured_events.each_with_index do |upcoming_event, index| %>
@@ -163,13 +163,13 @@
                     class: "flex items-center gap-3 p-4 w-full overflow-hidden hover:brightness-125 transition #{"hidden" unless index.between?(1, 3)}",
                     style: card_style,
                     data: {up_next_card: ""} do %>
-                <div class="shrink-0 w-16 h-12 flex items-center justify-center">
+                <div class="flex h-12 w-16 shrink-0 items-center justify-center">
                   <%= image_tag upcoming_event.featured_image_path, class: "max-h-12 max-w-full object-contain", loading: "lazy", alt: upcoming_event.name %>
                 </div>
 
                 <div class="min-w-0 flex-1">
-                  <div class="font-semibold text-sm truncate"><%= upcoming_event.name %></div>
-                  <div class="text-xs opacity-70 truncate"><%= upcoming_event.formatted_dates %></div>
+                  <div class="truncate text-sm font-semibold"><%= upcoming_event.name %></div>
+                  <div class="truncate text-xs opacity-70"><%= upcoming_event.formatted_dates %></div>
                 </div>
 
                 <%= render "events/featured_badge", event: upcoming_event, extra_class: "shrink-0" %>
@@ -182,7 +182,7 @@
   <% end %>
 
   <div class="container" id="more-content" style="scroll-margin-top: 5rem;">
-    <div class="flex flex-col gap-12 mt-12">
+    <div class="mt-12 flex flex-col gap-12">
       <%= turbo_frame_tag "browse-newest-talks", src: browse_path("newest_talks"), loading: :lazy do %>
         <%= render "browse/content_row_skeleton" %>
       <% end %>

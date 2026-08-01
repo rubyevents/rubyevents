@@ -1,15 +1,15 @@
 <%# locals: (talk:, video_provider:, video_id:, is_watched: false) %>
 
-<div class="relative w-full h-full block max-w-full">
+<div class="relative block h-full w-full max-w-full">
   <%= image_tag talk.thumbnail_xl, alt: "#{talk.title} thumbnail", class: "w-full h-full rounded-xl #{talk.thumbnail_classes.presence || "object-cover"}" %>
 
   <div
     class="
-      absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center text-white bg-gradient-to-t
-      from-black/80 via-black/50 to-black/30 rounded-xl
+      absolute inset-0 flex flex-col items-center justify-center gap-3 rounded-xl bg-gradient-to-t from-black/80
+      via-black/50 to-black/30 p-6 text-center text-white
     "
   >
-    <div class="p-4 bg-white/20 backdrop-blur-sm rounded-full">
+    <div class="rounded-full bg-white/20 p-4 backdrop-blur-sm">
       <%= fa("upload", size: :xl, class: "fill-white") %>
     </div>
 

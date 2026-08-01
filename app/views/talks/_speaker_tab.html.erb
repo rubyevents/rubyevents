@@ -1,15 +1,15 @@
 <%# locals: (talk:, favorite_users:) %>
 
-<div class="flex flex-col gap-6 overflow-hidden min-w-0">
+<div class="flex min-w-0 flex-col gap-6 overflow-hidden">
   <% talk.speakers.each do |speaker| %>
-    <div class="rounded-lg overflow-hidden min-w-0">
+    <div class="min-w-0 overflow-hidden rounded-lg">
       <div class="flex items-start gap-4">
         <%= link_to profile_path(speaker), class: "flex-shrink-0" do %>
           <%= ui_avatar speaker, size: :md, size_class: "w-16" %>
         <% end %>
 
-        <div class="flex-grow min-w-0">
-          <div class="flex items-center gap-2 flex-wrap">
+        <div class="min-w-0 flex-grow">
+          <div class="flex flex-wrap items-center gap-2">
             <%= link_to profile_path(speaker), class: "text-xl font-bold hover:underline" do %>
               <%= speaker.name %>
             <% end %>
@@ -23,7 +23,7 @@
             <% end %>
           </div>
 
-          <div class="flex items-center gap-3 text-sm text-gray-500 mt-1">
+          <div class="mt-1 flex items-center gap-3 text-sm text-gray-500">
             <% if speaker.location.present? %>
               <span><%= speaker.location %></span>
             <% end %>
@@ -62,16 +62,16 @@
       </div>
 
       <% if speaker.bio.present? %>
-        <p class="text-sm text-gray-600 mt-4 mb-3 line-clamp-2"><%= speaker.bio %></p>
+        <p class="mb-3 mt-4 line-clamp-2 text-sm text-gray-600"><%= speaker.bio %></p>
       <% end %>
 
       <% other_talks = speaker.kept_talks.watchable.where.not(id: talk.id).includes(:event, :speakers).order(date: :desc).limit(8) %>
       <% total_other_talks = speaker.kept_talks.watchable.where.not(id: talk.id).count %>
 
       <% if other_talks.any? %>
-        <div class="pt-3 border-t overflow-hidden min-w-0">
-          <div class="flex items-center justify-between mb-2">
-            <span class="text-sm font-medium text-gray-600 mb-3">
+        <div class="min-w-0 overflow-hidden border-t pt-3">
+          <div class="mb-2 flex items-center justify-between">
+            <span class="mb-3 text-sm font-medium text-gray-600">
               More from <%= speaker.name %> (<%= total_other_talks %>)
             </span>
 
@@ -81,11 +81,11 @@
           </div>
 
           <div
-            class="flex gap-3 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-2"
+            class="flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-smooth pb-2"
             style="contain: inline-size;"
           >
             <% other_talks.each do |other_talk| %>
-              <div class="snap-start flex-none w-[180px] sm:w-[220px]">
+              <div class="w-[180px] flex-none snap-start sm:w-[220px]">
                 <%= render "talks/card_thumbnail", talk: other_talk, exclude_speaker: speaker %>
               </div>
             <% end %>

@@ -2,19 +2,19 @@
   <div class="flex items-center justify-between">
     <div class="flex items-center gap-2">
       <%= fa("gem", size: :sm, class: "fill-primary") %>
-      <code class="font-semibold text-lg font-mono"><%= topic_gem.gem_name %></code>
+      <code class="font-mono text-lg font-semibold"><%= topic_gem.gem_name %></code>
     </div>
 
     <% if topic_gem.version.present? %>
-      <span class="badge badge-sm badge-primary badge-outline">v<%= topic_gem.version %></span>
+      <span class="badge badge-primary badge-outline badge-sm">v<%= topic_gem.version %></span>
     <% end %>
   </div>
 
   <% if topic_gem.summary.present? %>
-    <p class="text-sm text-gray-600 line-clamp-2"><%= topic_gem.summary %></p>
+    <p class="line-clamp-2 text-sm text-gray-600"><%= topic_gem.summary %></p>
   <% end %>
 
-  <div class="flex flex-wrap items-center gap-3 text-xs text-gray-500 mt-auto pt-1">
+  <div class="mt-auto flex flex-wrap items-center gap-3 pt-1 text-xs text-gray-500">
     <div class="flex items-center gap-1">
       <%= fa("video", size: :xs) %>
       <span><%= pluralize(topic_gem.talks_count, "talk") %></span>

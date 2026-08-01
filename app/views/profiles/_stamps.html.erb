@@ -11,7 +11,7 @@
         <%= link_to "View all stamps", stamps_path, class: "link text-sm", data: {turbo_frame: "_top"} %>
       </div>
 
-      <p class="text-[#636B74] mb-6">
+      <p class="mb-6 text-[#636B74]">
         <%= user.name %> has collected stamps from attending events in
         <%= pluralize(stamps.map(&:country).compact.uniq.size, "country") %>.
       </p>

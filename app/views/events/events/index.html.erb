@@ -5,14 +5,14 @@
     <%= render partial: "events/navigation", locals: {event: @event} %>
 
     <div class="w-full">
-      <div class="w-full flex flex-col gap-8" role="tablist" aria-orientation="vertical">
+      <div class="flex w-full flex-col gap-8" role="tablist" aria-orientation="vertical">
         <% @event.talks_in_running_order.where(meta_talk: true).reverse.each do |talk| %>
           <%= render "shared/meta_talk_card", meta_talk: talk %>
         <% end %>
 
         <% if @talks.empty? %>
           <div
-            class="flex justify-center border rounded"
+            class="flex justify-center rounded border"
             style="padding-top: 3rem; padding-bottom: 3rem; padding-right: 1rem; padding-left: 1rem"
           >
             <div class="text-center text-gray-600">

@@ -1,26 +1,26 @@
-<h2 class="text-2xl font-bold mb-2 text-center">Content Mix</h2>
+<h2 class="mb-2 text-center text-2xl font-bold">Content Mix</h2>
 
-<p class="text-gray-500 text-center mb-6">The types of talks you enjoyed</p>
+<p class="mb-6 text-center text-gray-500">The types of talks you enjoyed</p>
 
 <% if talk_kinds.any? %>
-  <div class="space-y-4 flex-1">
+  <div class="flex-1 space-y-4">
     <% talk_kinds.each do |kind, count| %>
       <% percentage = (total_talks_watched.positive? ? (count.to_f / total_talks_watched * 100).round : 0) %>
 
       <div>
-        <div class="flex justify-between mb-1">
+        <div class="mb-1 flex justify-between">
           <span class="font-medium"><%= Talk::KIND_LABELS[kind.to_s] || kind.to_s.humanize %></span>
           <span class="text-gray-500"><%= count %> (<%= percentage %>%)</span>
         </div>
 
-        <div class="bg-gray-100 rounded-full h-3">
+        <div class="h-3 rounded-full bg-gray-100">
           <div class="month-bar h-3" style="width: <%= percentage %>%"></div>
         </div>
       </div>
     <% end %>
   </div>
 <% else %>
-  <div class="flex-1 flex items-center justify-center">
-    <p class="text-gray-400 text-center">Watch talks to see your content preferences!</p>
+  <div class="flex flex-1 items-center justify-center">
+    <p class="text-center text-gray-400">Watch talks to see your content preferences!</p>
   </div>
 <% end %>

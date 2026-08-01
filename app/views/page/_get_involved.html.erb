@@ -1,15 +1,15 @@
 <%# locals: () %>
 
 <section class="py-12">
-  <h2 class="text-2xl font-bold text-center mb-2">Get involved in the Ruby community</h2>
-  <p class="text-gray-500 text-center mb-8">Whether you want to learn, share, or build, there's a place for you</p>
+  <h2 class="mb-2 text-center text-2xl font-bold">Get involved in the Ruby community</h2>
+  <p class="mb-8 text-center text-gray-500">Whether you want to learn, share, or build, there's a place for you</p>
 
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+  <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
     <%= link_to attend_path, class: "group flex flex-col items-center gap-4 p-8 rounded-2xl border border-base-300 bg-white hover:border-primary hover:shadow-lg transition-all" do %>
       <div
         class="
-          w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20
-          transition-colors
+          flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 transition-colors
+          group-hover:bg-primary/20
         "
       >
         <%= fa("ticket", size: :xl, class: "fill-current text-primary") %>
@@ -17,9 +17,9 @@
 
       <h3 class="text-xl font-bold">Attend</h3>
 
-      <p class="text-gray-500 text-center text-sm">Find upcoming Ruby conferences and meetups near you</p>
+      <p class="text-center text-sm text-gray-500">Find upcoming Ruby conferences and meetups near you</p>
 
-      <span class="text-primary text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
+      <span class="flex items-center gap-1 text-sm font-semibold text-primary transition-all group-hover:gap-2">
         Learn more <%= fa("arrow-right-long", size: :sm) %>
       </span>
     <% end %>
@@ -27,8 +27,8 @@
     <%= link_to speak_path, class: "group flex flex-col items-center gap-4 p-8 rounded-2xl border border-base-300 bg-white hover:border-primary hover:shadow-lg transition-all" do %>
       <div
         class="
-          w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20
-          transition-colors
+          flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 transition-colors
+          group-hover:bg-primary/20
         "
       >
         <%= fa("microphone", size: :xl, class: "fill-current text-primary") %>
@@ -36,9 +36,9 @@
 
       <h3 class="text-xl font-bold">Speak</h3>
 
-      <p class="text-gray-500 text-center text-sm">Submit a talk proposal to an open Call for Proposals</p>
+      <p class="text-center text-sm text-gray-500">Submit a talk proposal to an open Call for Proposals</p>
 
-      <span class="text-primary text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
+      <span class="flex items-center gap-1 text-sm font-semibold text-primary transition-all group-hover:gap-2">
         Learn more <%= fa("arrow-right-long", size: :sm) %>
       </span>
     <% end %>
@@ -46,8 +46,8 @@
     <%= link_to organize_path, class: "group flex flex-col items-center gap-4 p-8 rounded-2xl border border-base-300 bg-white hover:border-primary hover:shadow-lg transition-all" do %>
       <div
         class="
-          w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20
-          transition-colors
+          flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 transition-colors
+          group-hover:bg-primary/20
         "
       >
         <%= fa("people-group", size: :xl, class: "fill-current text-primary") %>
@@ -55,9 +55,9 @@
 
       <h3 class="text-xl font-bold">Organize</h3>
 
-      <p class="text-gray-500 text-center text-sm">Resources and guides for running your own Ruby event</p>
+      <p class="text-center text-sm text-gray-500">Resources and guides for running your own Ruby event</p>
 
-      <span class="text-primary text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
+      <span class="flex items-center gap-1 text-sm font-semibold text-primary transition-all group-hover:gap-2">
         Get started <%= fa("arrow-right-long", size: :sm) %>
       </span>
     <% end %>

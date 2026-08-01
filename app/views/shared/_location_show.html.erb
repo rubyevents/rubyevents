@@ -44,7 +44,7 @@
       show_stamps: location.stamps.any? %>
 
 <div class="container py-8">
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+  <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
     <div class="lg:col-span-2">
       <% upcoming_events = events.select(&:upcoming?) %>
       <% past_events = events.select(&:past?) %>

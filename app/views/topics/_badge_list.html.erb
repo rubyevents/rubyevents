@@ -16,15 +16,15 @@
       <% if toggle_style == :outline %>
         <div
           class="
-            inline-flex items-center rounded-full border-[1.5px] border-primary text-primary hover:bg-primary/10
-            px-2.5 py-1 text-xs font-semibold
+            inline-flex items-center rounded-full border-[1.5px] border-primary px-2.5 py-1 text-xs font-semibold
+            text-primary hover:bg-primary/10
           "
           data-toggable-target="toggle"
         >
           +<%= more_topics.count %> more
         </div>
       <% else %>
-        <div class="badge badge-ghost hover:bg-gray-300 px-2 py-3 text-xs" data-toggable-target="toggle">
+        <div class="badge badge-ghost px-2 py-3 text-xs hover:bg-gray-300" data-toggable-target="toggle">
           <%= more_topics.count %> more
         </div>
       <% end %>

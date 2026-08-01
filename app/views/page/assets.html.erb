@@ -1,74 +1,74 @@
 <div style="background-color: #F5F5F5;" class="min-h-screen py-8">
   <div class="container mx-auto px-4">
     <div class="mb-8">
-      <h1 class="text-4xl font-bold text-gray-900 mb-2">Event Assets Overview</h1>
+      <h1 class="mb-2 text-4xl font-bold text-gray-900">Event Assets Overview</h1>
 
       <p class="text-gray-600">View all event assets with their dimensions, similar to Sketch or Figma artboards</p>
 
-      <p class="text-gray-600 mt-2">
+      <p class="mt-2 text-gray-600">
         For information on how to add or manage visual assets, see the
         <%= link_to "Adding Visual Assets Guide", "https://github.com/rubyevents/rubyevents/blob/main/docs/ADDING_VISUAL_ASSETS.md", class: "text-blue-600 hover:text-blue-800 underline", target: "_blank", rel: "noopener" %>
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-      <div class="bg-white rounded-lg p-4" style="border: 1px solid #E5E5E5;">
-        <div class="text-gray-600 text-sm mb-1">Total Events</div>
+    <div class="mb-8 grid grid-cols-1 gap-4 md:grid-cols-4">
+      <div class="rounded-lg bg-white p-4" style="border: 1px solid #E5E5E5;">
+        <div class="mb-1 text-sm text-gray-600">Total Events</div>
         <div class="text-2xl font-bold text-gray-900"><%= @events_with_assets.count %></div>
       </div>
 
-      <div class="bg-white rounded-lg p-4" style="border: 1px solid #E5E5E5;">
-        <div class="text-gray-600 text-sm mb-1">With Assets</div>
+      <div class="rounded-lg bg-white p-4" style="border: 1px solid #E5E5E5;">
+        <div class="mb-1 text-sm text-gray-600">With Assets</div>
         <div class="text-2xl font-bold text-green-600"><%= @events_with_assets.count { |e| e[:has_any_assets] } %></div>
       </div>
 
-      <div class="bg-white rounded-lg p-4" style="border: 1px solid #E5E5E5;">
-        <div class="text-gray-600 text-sm mb-1">Without Assets</div>
+      <div class="rounded-lg bg-white p-4" style="border: 1px solid #E5E5E5;">
+        <div class="mb-1 text-sm text-gray-600">Without Assets</div>
         <div class="text-2xl font-bold text-red-600"><%= @events_with_assets.count { |e| !e[:has_any_assets] } %></div>
       </div>
 
-      <div class="bg-white rounded-lg p-4" style="border: 1px solid #E5E5E5;">
-        <div class="text-gray-600 text-sm mb-1">Asset Types</div>
+      <div class="rounded-lg bg-white p-4" style="border: 1px solid #E5E5E5;">
+        <div class="mb-1 text-sm text-gray-600">Asset Types</div>
         <div class="text-2xl font-bold text-blue-600"><%= @asset_types.count %></div>
       </div>
     </div>
 
     <div class="space-y-8">
       <% @events_with_assets.group_by { |e| e[:event].series }.sort_by { |series, _| series.name }.each do |series, series_events| %>
-        <div class="bg-white rounded-lg overflow-hidden" style="border: 1px solid #E5E5E5;">
+        <div class="overflow-hidden rounded-lg bg-white" style="border: 1px solid #E5E5E5;">
           <div class="bg-gray-50 px-6 py-4" style="border-bottom: 1px solid #E5E5E5;">
             <h2 class="text-2xl font-bold text-gray-900"><%= series.name %></h2>
 
-            <p class="text-gray-600 text-sm mt-1">
+            <p class="mt-1 text-sm text-gray-600">
               <%= series_events.count %> events • <%= series_events.count { |e| e[:has_any_assets] } %> with assets
             </p>
           </div>
 
-          <div class="p-6 space-y-6">
+          <div class="space-y-6 p-6">
             <% series_events.sort_by { |e| e[:event].end_date || e[:event].start_date || e[:event].date || Date.new(1900, 1, 1) }.reverse.each do |event_data| %>
               <% event = event_data[:event] %>
               <% assets = event_data[:assets] %>
               <% missing_assets = event_data[:missing_assets] %>
 
               <div
-                class="bg-white rounded-lg overflow-hidden"
+                class="overflow-hidden rounded-lg bg-white"
                 style="border: 1px solid <%= event_data[:has_any_assets] ? "#E5E5E5" : "#E74C3C" %>;"
               >
                 <div
-                  class="px-4 py-3 bg-gray-50 flex items-center justify-between"
+                  class="flex items-center justify-between bg-gray-50 px-4 py-3"
                   style="border-bottom: 1px solid #E5E5E5;"
                 >
                   <div class="flex items-center gap-3">
                     <h3 class="text-lg font-semibold text-gray-900"><%= event.name %></h3>
 
                     <% if !event_data[:has_any_assets] %>
-                      <span class="px-2 py-1 text-xs font-medium bg-red-100 text-red-800 rounded">No Assets</span>
+                      <span class="rounded bg-red-100 px-2 py-1 text-xs font-medium text-red-800">No Assets</span>
                     <% elsif missing_assets.any? %>
-                      <span class="px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-800 rounded">
+                      <span class="rounded bg-yellow-100 px-2 py-1 text-xs font-medium text-yellow-800">
                         <%= missing_assets.count %> Missing
                       </span>
                     <% else %>
-                      <span class="px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded">Complete</span>
+                      <span class="rounded bg-green-100 px-2 py-1 text-xs font-medium text-green-800">Complete</span>
                     <% end %>
                   </div>
 
@@ -83,7 +83,7 @@
                       <div class="flex justify-center">
                         <div style="width: 200px;">
                           <div
-                            class="relative bg-white overflow-hidden"
+                            class="relative overflow-hidden bg-white"
                             style="border: <%= has_asset ? "1px solid #E5E5E5" : "1px dashed #E5E5E5" %>;"
                           >
                             <div style="padding-bottom: 100%; position: relative; background-color: #FAFAFA;">
@@ -122,10 +122,10 @@
 
                           <div class="mt-2 flex items-center justify-center gap-2">
                             <% if has_asset %>
-                              <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                              <div class="h-2 w-2 rounded-full bg-green-500"></div>
                               <span class="text-xs text-gray-600">avatar.webp <%= specs[:width] %>×<%= specs[:height] %></span>
                             <% else %>
-                              <div class="w-2 h-2 rounded-full bg-red-400"></div>
+                              <div class="h-2 w-2 rounded-full bg-red-400"></div>
                               <span class="text-xs text-gray-400">avatar.webp <%= specs[:width] %>×<%= specs[:height] %></span>
                             <% end %>
                           </div>
@@ -139,7 +139,7 @@
                       <% banner_bg = event.static_metadata.banner_background.presence || "#FAFAFA" %>
                       <div>
                         <div
-                          class="relative bg-white overflow-hidden"
+                          class="relative overflow-hidden bg-white"
                           style="border: <%= has_asset ? "1px solid #E5E5E5" : "1px dashed #E5E5E5" %>;"
                         >
                           <div
@@ -180,17 +180,17 @@
 
                         <div class="mt-2 flex items-center justify-center gap-2">
                           <% if has_asset %>
-                            <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                            <div class="h-2 w-2 rounded-full bg-green-500"></div>
                             <span class="text-xs text-gray-600">banner.webp <%= specs[:width] %>×<%= specs[:height] %></span>
                           <% else %>
-                            <div class="w-2 h-2 rounded-full bg-red-400"></div>
+                            <div class="h-2 w-2 rounded-full bg-red-400"></div>
                             <span class="text-xs text-gray-400">banner.webp <%= specs[:width] %>×<%= specs[:height] %></span>
                           <% end %>
                         </div>
                       </div>
                     <% end %>
 
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
                       <% ["card", "featured", "poster"].each do |type| %>
                         <% if @asset_types[type] %>
                           <% specs = @asset_types[type] %>
@@ -198,7 +198,7 @@
                           <% bg_color = (type == "featured" && event.static_metadata.featured_background.present?) ? event.static_metadata.featured_background : "#FAFAFA" %>
                           <div>
                             <div
-                              class="relative bg-white overflow-hidden"
+                              class="relative overflow-hidden bg-white"
                               style="border: <%= has_asset ? "1px solid #E5E5E5" : "1px dashed #E5E5E5" %>;"
                             >
                               <div
@@ -239,10 +239,10 @@
 
                             <div class="mt-2 flex items-center justify-center gap-2">
                               <% if has_asset %>
-                                <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                                <div class="h-2 w-2 rounded-full bg-green-500"></div>
                                 <span class="text-xs text-gray-600"><%= type %>.webp <%= specs[:width] %>×<%= specs[:height] %></span>
                               <% else %>
-                                <div class="w-2 h-2 rounded-full bg-red-400"></div>
+                                <div class="h-2 w-2 rounded-full bg-red-400"></div>
                                 <span class="text-xs text-gray-400"><%= type %>.webp <%= specs[:width] %>×<%= specs[:height] %></span>
                               <% end %>
                             </div>
@@ -251,16 +251,16 @@
                       <% end %>
                     </div>
 
-                    <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
                       <div>
-                        <h4 class="text-sm font-semibold text-gray-700 mb-3">Stickers</h4>
+                        <h4 class="mb-3 text-sm font-semibold text-gray-700">Stickers</h4>
 
-                        <div class="flex gap-4 flex-wrap">
+                        <div class="flex flex-wrap gap-4">
                           <% if event_data[:sticker_paths].any? %>
                             <% event_data[:sticker_paths].each_with_index do |sticker_path, index| %>
                               <div>
                                 <div
-                                  class="relative bg-white overflow-hidden"
+                                  class="relative overflow-hidden bg-white"
                                   style="border: 1px solid #E5E5E5; width: 150px;"
                                 >
                                   <div style="padding-bottom: 100%; position: relative; background-color: #FAFAFA;">
@@ -274,7 +274,7 @@
                                 </div>
 
                                 <div class="mt-2 flex items-center justify-center gap-2">
-                                  <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                                  <div class="h-2 w-2 rounded-full bg-green-500"></div>
                                   <span class="text-xs text-gray-600"><%= File.basename(sticker_path) %> <%= @asset_types["sticker"][:width] %>×<%= @asset_types["sticker"][:height] %></span>
                                 </div>
                               </div>
@@ -282,7 +282,7 @@
                           <% else %>
                             <div>
                               <div
-                                class="relative bg-white overflow-hidden"
+                                class="relative overflow-hidden bg-white"
                                 style="border: 1px dashed #E5E5E5; width: 150px;"
                               >
                                 <div style="padding-bottom: 100%; position: relative; background-color: #FAFAFA;">
@@ -313,7 +313,7 @@
                               </div>
 
                               <div class="mt-2 flex items-center justify-center gap-2">
-                                <div class="w-2 h-2 rounded-full bg-red-400"></div>
+                                <div class="h-2 w-2 rounded-full bg-red-400"></div>
                                 <span class="text-xs text-gray-400">sticker.webp <%= @asset_types["sticker"][:width] %>×<%= @asset_types["sticker"][:height] %></span>
                               </div>
                             </div>
@@ -322,14 +322,14 @@
                       </div>
 
                       <div>
-                        <h4 class="text-sm font-semibold text-gray-700 mb-3">Stamps</h4>
+                        <h4 class="mb-3 text-sm font-semibold text-gray-700">Stamps</h4>
 
-                        <div class="flex gap-4 flex-wrap">
+                        <div class="flex flex-wrap gap-4">
                           <% if event_data[:stamp_paths].any? %>
                             <% event_data[:stamp_paths].each_with_index do |stamp_path, index| %>
                               <div>
                                 <div
-                                  class="relative bg-white overflow-hidden"
+                                  class="relative overflow-hidden bg-white"
                                   style="border: 1px solid #E5E5E5; width: 150px;"
                                 >
                                   <div style="padding-bottom: 100%; position: relative; background-color: #FAFAFA;">
@@ -343,7 +343,7 @@
                                 </div>
 
                                 <div class="mt-2 flex items-center justify-center gap-2">
-                                  <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                                  <div class="h-2 w-2 rounded-full bg-green-500"></div>
                                   <span class="text-xs text-gray-600"><%= File.basename(stamp_path) %> <%= @asset_types["stamp"][:width] %>×<%= @asset_types["stamp"][:height] %></span>
                                 </div>
                               </div>
@@ -351,7 +351,7 @@
                           <% else %>
                             <div>
                               <div
-                                class="relative bg-white overflow-hidden"
+                                class="relative overflow-hidden bg-white"
                                 style="border: 1px dashed #E5E5E5; width: 150px;"
                               >
                                 <div style="padding-bottom: 100%; position: relative; background-color: #FAFAFA;">
@@ -382,7 +382,7 @@
                               </div>
 
                               <div class="mt-2 flex items-center justify-center gap-2">
-                                <div class="w-2 h-2 rounded-full bg-red-400"></div>
+                                <div class="h-2 w-2 rounded-full bg-red-400"></div>
                                 <span class="text-xs text-gray-400">stamp.webp <%= @asset_types["stamp"][:width] %>×<%= @asset_types["stamp"][:height] %></span>
                               </div>
                             </div>
@@ -393,20 +393,20 @@
 
                     <% if event.static_metadata.featured_color.present? || event.static_metadata.featured_background.present? || event.static_metadata.banner_background.present? %>
                       <div class="mt-6 pt-6" style="border-top: 1px solid #E5E5E5;">
-                        <h4 class="text-sm font-semibold text-gray-700 mb-3">Event Colors</h4>
+                        <h4 class="mb-3 text-sm font-semibold text-gray-700">Event Colors</h4>
 
                         <div class="flex gap-4">
                           <% if event.static_metadata.banner_background.present? %>
                             <div>
                               <div
-                                class="w-20 h-20 mb-2"
+                                class="mb-2 h-20 w-20"
                                 style="background: <%= event.static_metadata.banner_background %>; border: 1px solid #E5E5E5;"
                               ></div>
 
                               <div class="text-xs text-gray-600">Banner BG</div>
 
                               <div
-                                class="text-xs font-mono text-gray-500 line-clamp-1"
+                                class="font-mono line-clamp-1 text-xs text-gray-500"
                                 style="width: 80px;"
                                 title="<%= event.static_metadata.banner_background %>"
                               >
@@ -418,13 +418,13 @@
                           <% if event.static_metadata.featured_background.present? %>
                             <div>
                               <div
-                                class="w-20 h-20 mb-2"
+                                class="mb-2 h-20 w-20"
                                 style="background-color: <%= event.static_metadata.featured_background %>; border: 1px solid #E5E5E5;"
                               ></div>
 
                               <div class="text-xs text-gray-600">Featured BG</div>
 
-                              <div class="text-xs font-mono text-gray-500">
+                              <div class="font-mono text-xs text-gray-500">
                                 <%= event.static_metadata.featured_background %>
                               </div>
                             </div>
@@ -433,13 +433,13 @@
                           <% if event.static_metadata.featured_color.present? %>
                             <div>
                               <div
-                                class="w-20 h-20 mb-2"
+                                class="mb-2 h-20 w-20"
                                 style="background-color: <%= event.static_metadata.featured_color %>; border: 1px solid #E5E5E5;"
                               ></div>
 
                               <div class="text-xs text-gray-600">Featured Color</div>
 
-                              <div class="text-xs font-mono text-gray-500">
+                              <div class="font-mono text-xs text-gray-500">
                                 <%= event.static_metadata.featured_color %>
                               </div>
                             </div>

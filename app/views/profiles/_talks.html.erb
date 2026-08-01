@@ -1,5 +1,5 @@
 <% if talks.length.positive? %>
-  <div class="md:hidden flex flex-col gap-4 px-4 pt-1.5">
+  <div class="flex flex-col gap-4 px-4 pt-1.5 md:hidden">
     <%= render partial: "talks/card_horizontal",
           collection: talks,
           as: :talk,
@@ -11,12 +11,12 @@
           } %>
   </div>
 
-  <div role="tablist" class="hidden md:flex tabs tabs-boxed bg-base-100 mt-2">
+  <div role="tablist" class="tabs-boxed tabs mt-2 hidden bg-base-100 md:flex">
     <input
       type="radio"
       name="talk_kinds"
       role="tab"
-      class="tab px-6 !rounded-lg"
+      class="tab !rounded-lg px-6"
       aria-label="All"
       <% if talks.size.positive? %>
         checked
@@ -43,7 +43,7 @@
         type="radio"
         name="talk_kinds"
         role="tab"
-        class="tab px-6 !rounded-lg"
+        class="tab !rounded-lg px-6"
         aria-label="<%= talks.first.formatted_kind.pluralize %> (<%= talks.size %>)"
       >
 

@@ -3,27 +3,27 @@
 <div class="space-y-8">
   <% if event_map_markers.present? && event_map_markers.any? %>
     <div>
-      <h3 class="font-bold text-gray-900 mb-4">Map</h3>
+      <h3 class="mb-4 font-bold text-gray-900">Map</h3>
 
       <div
         id="sidebar-map"
-        class="w-full h-48 rounded-xl overflow-hidden border"
+        class="h-48 w-full overflow-hidden rounded-xl border"
         data-controller="map"
         data-map-markers-value="<%= event_map_markers.to_json %>"
       ></div>
     </div>
   <% end %>
 
-  <div class="bg-gray-50 rounded-xl p-6 border">
-    <div class="flex items-center gap-3 mb-3">
-      <div class="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center">
+  <div class="rounded-xl border bg-gray-50 p-6">
+    <div class="mb-3 flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-red-100">
         <%= fa("city", class: "text-red-600") %>
       </div>
 
-      <span class="font-bold text-lg text-gray-900"><%= city_name %></span>
+      <span class="text-lg font-bold text-gray-900"><%= city_name %></span>
     </div>
 
-    <p class="text-gray-600 text-sm">
+    <p class="text-sm text-gray-600">
       Discover the hottest Ruby events in <%= city_name %>, and get notified of new events before they sell out.
     </p>
   </div>
@@ -44,10 +44,10 @@
 
   <% if country.present? %>
     <div>
-      <h3 class="font-bold text-gray-900 mb-4">Country</h3>
+      <h3 class="mb-4 font-bold text-gray-900">Country</h3>
 
       <%= link_to country.path, class: "flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors" do %>
-        <span class="fi fi-<%= country.alpha2.downcase %> border rounded w-8 text-[16pt]"></span>
+        <span class="fi w-8 rounded border text-[16pt] fi-<%= country.alpha2.downcase %>"></span>
         <span class="text-gray-700"><%= country.name %></span>
       <% end %>
     </div>

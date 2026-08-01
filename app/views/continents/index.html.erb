@@ -3,16 +3,16 @@
 <% title "Continents" %>
 
 <div class="container py-8">
-  <h1 class="text-3xl font-bold mb-8">Ruby Communities by Continent</h1>
+  <h1 class="mb-8 text-3xl font-bold">Ruby Communities by Continent</h1>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
     <% @continents.each do |continent| %>
       <% events_count = @events_by_continent[continent]&.count || 0 %>
       <% users_count = @users_by_continent[continent] || 0 %>
 
       <%= link_to continent_path(continent),
             class: "block bg-white rounded-xl border p-6 hover:border-gray-400 transition-colors" do %>
-        <div class="flex items-center gap-4 mb-4">
+        <div class="mb-4 flex items-center gap-4">
           <span class="text-4xl"><%= continent.emoji_flag %></span>
           <h2 class="text-xl font-bold text-gray-900"><%= continent.name %></h2>
         </div>

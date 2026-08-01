@@ -1,7 +1,7 @@
 <%# locals: (user:, check_ins:) %>
 
-<div class="max-w-2xl mx-auto">
-  <div class="flex items-center gap-3 mb-8">
+<div class="mx-auto max-w-2xl">
+  <div class="mb-8 flex items-center gap-3">
     <%= fa("passport", class: "fill-orange-800", size: :lg) %>
 
     <div>
@@ -22,7 +22,7 @@
   </div>
 
   <% if check_ins.any? %>
-    <ol class="relative border-s-2 border-gray-200 ms-3">
+    <ol class="relative ms-3 border-s-2 border-gray-200">
       <% check_ins.each do |check_in| %>
         <% event = check_in.event %>
         <% stamp = Stamp.for_event(event).first %>
@@ -32,7 +32,7 @@
         <li class="mb-8 ms-8">
           <span
             class="
-              absolute flex items-center justify-center w-8 h-8 bg-green-100 rounded-full -start-[1.05rem] ring-4
+              absolute -start-[1.05rem] flex h-8 w-8 items-center justify-center rounded-full bg-green-100 ring-4
               ring-white
             "
           >
@@ -46,31 +46,31 @@
               </div>
             <% end %>
 
-            <div class="relative z-10 flex items-center gap-4 min-w-0 flex-1">
+            <div class="relative z-10 flex min-w-0 flex-1 items-center gap-4">
               <%= image_tag image_path(event.card_image_path), class: "w-20 h-12 object-cover rounded border shrink-0", alt: event.name, width: 80, height: 48 %>
 
               <div class="min-w-0 flex-1">
-                <div class="font-semibold text-gray-900 line-clamp-1 group-hover:underline"><%= event.name %></div>
+                <div class="line-clamp-1 font-semibold text-gray-900 group-hover:underline"><%= event.name %></div>
 
-                <div class="text-sm text-gray-500 line-clamp-1">
+                <div class="line-clamp-1 text-sm text-gray-500">
                   <%= event.to_location.to_html(show_links: false) %> · <%= event.formatted_dates %>
                 </div>
               </div>
             </div>
           <% end %>
 
-          <time class="block mt-1.5 text-xs text-gray-400" datetime="<%= check_in.checked_in_at.iso8601 %>">
+          <time class="mt-1.5 block text-xs text-gray-400" datetime="<%= check_in.checked_in_at.iso8601 %>">
             Checked in <%= checked_in_at.strftime("%B %-d, %Y at %H:%M %Z") %>
           </time>
         </li>
       <% end %>
     </ol>
   <% else %>
-    <div class="text-center py-12">
-      <div class="text-6xl mb-4">🛂</div>
-      <h3 class="text-lg font-semibold text-gray-900 mb-2">No check-ins yet</h3>
+    <div class="py-12 text-center">
+      <div class="mb-4 text-6xl">🛂</div>
+      <h3 class="mb-2 text-lg font-semibold text-gray-900">No check-ins yet</h3>
 
-      <p class="text-gray-600 max-w-md mx-auto">
+      <p class="mx-auto max-w-md text-gray-600">
         Your Ruby Passport check-ins will appear here as you scan in at events.
       </p>
     </div>

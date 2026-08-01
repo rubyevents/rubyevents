@@ -8,7 +8,7 @@
     their speaker profiles with an avatar and automatically retrieve additional information.
   </article>
 
-  <div id="speakers" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 min-w-full mb-6">
+  <div id="speakers" class="mb-6 grid min-w-full gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
     <% speakers_without_github.each do |speaker| %>
       <%= content_tag :div, id: dom_id(speaker), class: "flex justify-between p-4 rounded-lg border bg-white" do %>
         <span><%= link_to speaker.name, profile_path(speaker), class: "underline link" %></span>

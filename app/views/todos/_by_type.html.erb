@@ -2,17 +2,17 @@
   <% todos_by_type.each do |todo_type| %>
     <div class="card bg-base-200">
       <div class="card-body p-4">
-        <div class="flex items-center gap-2 mb-2">
+        <div class="mb-2 flex items-center gap-2">
           <span class="badge badge-primary"><%= todo_type[:count] %></span>
           <span class="font-medium">TODO:</span>
 
-          <code class="bg-base-300 px-2 py-1 rounded text-sm"><%= todo_type[:normalized_content] %></code>
+          <code class="rounded bg-base-300 px-2 py-1 text-sm"><%= todo_type[:normalized_content] %></code>
         </div>
 
         <div class="collapse collapse-arrow bg-base-300">
           <input type="checkbox">
 
-          <div class="collapse-title py-2 min-h-0 font-medium">
+          <div class="collapse-title min-h-0 py-2 font-medium">
             Show <%= todo_type[:count] %> <%= "occurrence".pluralize(todo_type[:count]) %>
           </div>
 
@@ -34,7 +34,7 @@
                       <% end %>
                     </td>
 
-                    <td><code class="text-xs break-all"><%= todo.content %></code></td>
+                    <td><code class="break-all text-xs"><%= todo.content %></code></td>
                   </tr>
                 <% end %>
               </tbody>

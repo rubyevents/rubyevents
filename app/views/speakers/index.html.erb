@@ -7,7 +7,7 @@
     <% end %>
   </h1>
 
-  <div class="flex flex-wrap w-full justify-between py-8 hotwire-native:hidden gap-1">
+  <div class="flex w-full flex-wrap justify-between gap-1 py-8 hotwire-native:hidden">
     <% ("a".."z").each do |letter| %>
       <%= link_to speakers_path(letter: letter), class: class_names("flex items-center justify-center w-10 text-gray-500 rounded hover:bg-brand-lighter border", "bg-brand-lighter": letter == params[:letter]) do %>
         <%= letter.upcase %>
@@ -21,7 +21,7 @@
 
   <div
     id="speakers"
-    class="hotwire-native:mt-3 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 lg:gap-x-12 gap-y-2 min-w-full"
+    class="grid min-w-full gap-x-8 gap-y-2 hotwire-native:mt-3 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-12 xl:grid-cols-4"
   >
     <%# we need special cache key for speakers because @speakers is paginated %>
     <% cache [@speakers.except(:order).pluck(:id, :updated_at).hash] do %>

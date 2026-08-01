@@ -1,8 +1,8 @@
 <div class="container py-8">
-  <div class="max-w-2xl mx-auto">
-    <h1 class="text-3xl font-bold mb-8"><%= title "Account" %></h1>
+  <div class="mx-auto max-w-2xl">
+    <h1 class="mb-8 text-3xl font-bold"><%= title "Account" %></h1>
 
-    <div class="card bg-base-100 shadow-sm border">
+    <div class="card border bg-base-100 shadow-sm">
       <div class="card-body">
         <% if Current.session %>
           <h2 class="card-title text-lg">Account</h2>
@@ -10,7 +10,7 @@
         <% else %>
           <h2 class="card-title text-lg">Sign in</h2>
 
-          <p class="text-sm text-gray-500 mb-4">
+          <p class="mb-4 text-sm text-gray-500">
             <strong>Sign in</strong> to bookmark talks, create watch lists, mark your speaker page as verified and more
             to come.
           </p>

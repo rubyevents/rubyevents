@@ -4,16 +4,16 @@
   <div class="container py-8">
     <%= render partial: "events/navigation", locals: {event: @event} %>
 
-    <div class="flex items-start flex-wrap gap-8 sm:flex-nowrap w-full">
+    <div class="flex w-full flex-wrap items-start gap-8 sm:flex-nowrap">
       <div class="w-full">
         <% if @event.meetup? && @speakers_with_counts %>
           <h2 class="mb-6">Speakers (<%= @speakers_with_counts.size %>)</h2>
 
-          <div class="mb-12 min-w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 h-full">
+          <div class="mb-12 grid h-full min-w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <% @speakers_with_counts.each do |speaker| %>
-              <div class="border rounded-lg bg-white hover:bg-gray-200 transition-bg duration-300 ease-in-out relative">
+              <div class="transition-bg relative rounded-lg border bg-white duration-300 ease-in-out hover:bg-gray-200">
                 <% if speaker.meetup_talks_count > 1 %>
-                  <div class="absolute top-2 right-2 bg-primary text-white text-xs font-semibold px-2 py-1 rounded-full">
+                  <div class="absolute right-2 top-2 rounded-full bg-primary px-2 py-1 text-xs font-semibold text-white">
                     <%= speaker.meetup_talks_count %> talks
                   </div>
                 <% end %>
@@ -32,10 +32,10 @@
 
             <div
               id="keynote-speakers"
-              class="mb-12 min-w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 h-full"
+              class="mb-12 grid h-full min-w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
             >
               <% speakers.each do |kind, speaker| %>
-                <div class="border rounded-lg bg-white hover:bg-gray-200 transition-bg duration-300 ease-in-out">
+                <div class="transition-bg rounded-lg border bg-white duration-300 ease-in-out hover:bg-gray-200">
                   <%= render partial: "users/card", locals: {user: speaker} %>
                 </div>
               <% end %>

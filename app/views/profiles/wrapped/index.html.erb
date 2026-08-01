@@ -26,9 +26,9 @@
 <% pages << {partial: "closing", cover: true} %>
 
 <div data-controller="wrapped-stories" data-action="keydown@window->wrapped-stories#handleKeydown">
-  <div class="flex justify-center gap-3 mb-6 no-print">
+  <div class="no-print mb-6 flex justify-center gap-3">
     <%= link_to wrapped_path, class: "px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-full text-sm font-medium transition flex items-center gap-2" do %>
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
       </svg>
       <%= @year %> Wrapped
@@ -37,11 +37,11 @@
     <button
       data-action="wrapped-stories#toggleMode"
       class="
-        px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-full text-sm font-medium transition flex
-        items-center gap-2
+        flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white transition
+        hover:bg-white/20
       "
     >
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
       </svg>
 
@@ -50,7 +50,7 @@
 
     <% if !@is_owner && Current.user %>
       <%= link_to profile_wrapped_index_path(Current.user), class: "px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-full text-sm font-medium transition flex items-center gap-2" do %>
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             stroke-linecap="round"
             stroke-linejoin="round"
@@ -72,9 +72,9 @@
 
     <% if @is_owner %>
       <div class="wrapped-page">
-        <h2 class="text-2xl font-bold mb-2 text-center">Share Your Wrapped</h2>
+        <h2 class="mb-2 text-center text-2xl font-bold">Share Your Wrapped</h2>
 
-        <p class="text-gray-500 text-center mb-6">Let the Ruby community see your year!</p>
+        <p class="mb-6 text-center text-gray-500">Let the Ruby community see your year!</p>
         <%= render "profiles/wrapped/share", **@wrapped_locals %>
       </div>
     <% end %>
@@ -93,7 +93,7 @@
       </div>
 
       <div class="stories-close" data-action="click->wrapped-stories#toggleMode">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
         </svg>
       </div>
@@ -114,9 +114,9 @@
 
         <% if @is_owner %>
           <div class="stories-page" data-wrapped-stories-target="page" data-page-name="share">
-            <h2 class="text-2xl font-bold mb-2 text-center">Share Your Wrapped</h2>
+            <h2 class="mb-2 text-center text-2xl font-bold">Share Your Wrapped</h2>
 
-            <p class="text-gray-500 text-center mb-6">Let the Ruby community see your year!</p>
+            <p class="mb-6 text-center text-gray-500">Let the Ruby community see your year!</p>
             <%= render "profiles/wrapped/share", **@wrapped_locals %>
           </div>
         <% end %>

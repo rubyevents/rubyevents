@@ -18,11 +18,11 @@
         <% end %>
       </div>
     <% else %>
-      <div class="text-center py-12">
-        <div class="max-w-md mx-auto">
-          <h2 class="text-2xl font-bold text-gray-900 mb-4">Nothing in progress</h2>
+      <div class="py-12 text-center">
+        <div class="mx-auto max-w-md">
+          <h2 class="mb-4 text-2xl font-bold text-gray-900">Nothing in progress</h2>
 
-          <p class="text-gray-600 mb-6">
+          <p class="mb-6 text-gray-600">
             Start watching a talk and it will appear here so you can pick up where you left off.
           </p>
 
@@ -35,12 +35,12 @@
   <% else %>
     <% show_continue = @filter.blank? || @filter == "all" %>
 
-    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 min-h-[2.5rem]">
+    <div class="flex min-h-[2.5rem] flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
       <h1 class="title text-primary hotwire-native:hidden">
         <%= title "Watch History" %>
       </h1>
 
-      <div class="tabs tabs-boxed">
+      <div class="tabs-boxed tabs">
         <%= link_to watched_talks_path, class: "tab gap-1.5 #{"tab-active" if @filter.blank? || @filter == "all"}" do %>
           All <span class="text-xs opacity-60"><%= @watched_count %></span>
         <% end %>
@@ -103,21 +103,21 @@
     <% end %>
 
     <% if @watched_talks_by_date.blank? && !(show_continue && @in_progress_talks.any?) %>
-      <div class="text-center py-12">
-        <div class="max-w-md mx-auto">
+      <div class="py-12 text-center">
+        <div class="mx-auto max-w-md">
           <% if @filter == "in_person" %>
-            <h2 class="text-2xl font-bold text-gray-900 mb-4">No in-person talks yet</h2>
-            <p class="text-gray-600 mb-6">
+            <h2 class="mb-4 text-2xl font-bold text-gray-900">No in-person talks yet</h2>
+            <p class="mb-6 text-gray-600">
               Talks you mark as watched in-person will show up here.
             </p>
           <% elsif @filter == "online" %>
-            <h2 class="text-2xl font-bold text-gray-900 mb-4">No online talks yet</h2>
-            <p class="text-gray-600 mb-6">
+            <h2 class="mb-4 text-2xl font-bold text-gray-900">No online talks yet</h2>
+            <p class="mb-6 text-gray-600">
               Talks you watch online will show up here.
             </p>
           <% else %>
-            <h2 class="text-2xl font-bold text-gray-900 mb-4">No watched videos yet</h2>
-            <p class="text-gray-600 mb-6">
+            <h2 class="mb-4 text-2xl font-bold text-gray-900">No watched videos yet</h2>
+            <p class="mb-6 text-gray-600">
               Start watching talks to track your viewing history and pick up where you left off.
             </p>
           <% end %>

@@ -1,15 +1,15 @@
-<div id="event-list" class="relative group rounded-xl flex flex-col gap-2">
+<div id="event-list" class="group relative flex flex-col gap-2 rounded-xl">
   <% events.each do |event| %>
     <%= link_to event_cfp_index_path(event), class: "call-for-papers-item flex gap-4 group p-2 hover:bg-gray-200 rounded-md" do %>
-      <div class="flex flex-col lg:flex-row gap-8 items-center lg:justify-right text-center lg:text-left flex-shrink-0">
+      <div class="lg:justify-right flex flex-shrink-0 flex-col items-center gap-8 text-center lg:flex-row lg:text-left">
         <%= image_tag image_path(event.avatar_image_path),
               class: "rounded-xl border border-[#D9DFE3] size-16",
               alt: event.name.to_s,
               loading: :lazy %>
       </div>
 
-      <div class="flex-col flex justify-center relative overflow-hidden">
-        <div class="text-black group-hover:text-inherit font-bold text-xl">
+      <div class="relative flex flex-col justify-center overflow-hidden">
+        <div class="text-xl font-bold text-black group-hover:text-inherit">
           <%= event.name %>
         </div>
 
@@ -22,7 +22,7 @@
         </div>
 
         <% event.cfps.open.each do |cfp| %>
-          <div class="text-[#636B74] group-hover:text-inherit font-bold">
+          <div class="font-bold text-[#636B74] group-hover:text-inherit">
             <%= cfp.name.presence || "Call for Proposals" %>
 
             <% if cfp.close_date.present? && (cfp.open_date.blank? || cfp.open_date.past?) %>
@@ -36,7 +36,7 @@
         <% end %>
       </div>
 
-      <div class="hidden sm:flex gap-2 absolute right-2">
+      <div class="absolute right-2 hidden gap-2 sm:flex">
         <%= render "shared/cfp_countdown_badge", event: event %>
         <%= render "shared/event_countdown_badge", event: event %>
       </div>

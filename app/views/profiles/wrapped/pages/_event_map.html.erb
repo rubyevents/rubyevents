@@ -1,11 +1,11 @@
-<h2 class="text-2xl font-bold mb-2 text-center">Your Event Map</h2>
+<h2 class="mb-2 text-center text-2xl font-bold">Your Event Map</h2>
 
-<p class="text-gray-500 text-center mb-6">Where Ruby took you in <%= year %></p>
+<p class="mb-6 text-center text-gray-500">Where Ruby took you in <%= year %></p>
 
-<div class="flex-1 flex items-center">
+<div class="flex flex-1 items-center">
   <div
     id="wrapped-map"
-    class="w-full h-[400px] rounded-lg"
+    class="h-[400px] w-full rounded-lg"
     data-controller="map"
     data-map-markers-value="<%= event_map_markers.to_json %>"
   ></div>

@@ -143,7 +143,7 @@
 
         <div
           id="overdue-scheduled-talks"
-          class="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4 min-w-full mb-6"
+          class="mb-6 grid min-w-full gap-4 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2"
         >
           <% @overdue_scheduled_talks.group_by(&:event).each do |event, talks| %>
             <%= content_tag :div, id: dom_id(event), class: "p-4 rounded-lg border bg-white", target: :_blank do %>
@@ -184,7 +184,7 @@
 
         <div
           id="talks-without-speakers"
-          class="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4 min-w-full mb-6"
+          class="mb-6 grid min-w-full gap-4 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2"
         >
           <% @talks_without_speakers.group_by(&:event).sort_by { |_event, talks| talks.minimum(:date) }.each do |event, talks| %>
             <%= content_tag :div, id: dom_id(event), class: "p-4 rounded-lg border bg-white", target: :_blank do %>
@@ -193,7 +193,7 @@
                   <h3 class="line-clamp-1">Event: <%= event.name %></h3>
                 </div>
 
-                <h3 class="line-clamp-1 mt-3 mb-6">
+                <h3 class="mb-6 mt-3 line-clamp-1">
                   <pre>Data File: <%= talks.first.static_metadata&.__file_path.inspect %></pre>
                 </h3>
 
@@ -238,7 +238,7 @@
           If available, you can also provide the <code>slides_url</code> so we can show the slides next to the talk.
         </article>
 
-        <div id="not-published-talks" class="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4 min-w-full mb-6">
+        <div id="not-published-talks" class="mb-6 grid min-w-full gap-4 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2">
           <% @not_published_talks.group_by(&:event).sort_by { |_event, talks| talks.minimum(:date) }.each do |event, talks| %>
             <%= content_tag :div, id: dom_id(event), class: "p-4 rounded-lg border bg-white", target: :_blank do %>
               <article class="prose">
@@ -291,7 +291,7 @@
           </p>
         </article>
 
-        <h3 class="font-bold mb-3">Conferences from RubyConferences.org we already indexed</h3>
+        <h3 class="mb-3 font-bold">Conferences from RubyConferences.org we already indexed</h3>
 
         <article class="prose mb-6">
           <p>
@@ -305,13 +305,13 @@
           </p>
         </article>
 
-        <h3 class="font-bold mb-3">
+        <h3 class="mb-3 font-bold">
           Conferences from RubyConferences.org with a video link (<%= pluralize(@with_video_link.count, "event") %>)
         </h3>
 
         <div
           id="missing-conferences-with-link"
-          class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 min-w-full mb-6"
+          class="mb-6 grid min-w-full gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3"
         >
           <% @with_video_link.each do |event| %>
             <%= link_to event["video_link"], id: "#{event["name"]}-pending", class: "hover:bg-gray-100 p-4 rounded-lg border bg-white", target: :_blank do %>
@@ -324,14 +324,14 @@
           <% end %>
         </div>
 
-        <h3 class="font-bold mb-3">
+        <h3 class="mb-3 font-bold">
           Conferences from RubyConferences.org without a video link
           (<%= pluralize(@without_video_link.count, "event") %>)
         </h3>
 
         <div
           id="missing-conferences-without-link"
-          class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 min-w-full mb-6"
+          class="mb-6 grid min-w-full gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3"
         >
           <% @without_video_link.each do |event| %>
             <%= link_to event["url"], class: "hover:bg-gray-100 p-4 rounded-lg border bg-white", target: :_blank do %>
@@ -359,7 +359,7 @@
       style="width: 250px"
     >
 
-    <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
+    <div role="tabpanel" class="tab-content rounded-box border-base-300 bg-base-100 p-6">
       <div>
         <h2 class="mb-4">Events without schedule (<%= @conferences_with_missing_schedule_count %>)</h2>
 
@@ -372,7 +372,7 @@
 
         <div
           id="events-without-schedule"
-          class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 min-w-full mb-6"
+          class="mb-6 grid min-w-full gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3"
         >
           <% @conferences_with_missing_schedule.each do |series, events| %>
             <%= content_tag :div, id: dom_id(series, "without-schedule"), class: "p-4 rounded-lg border bg-white", target: :_blank do %>
@@ -381,7 +381,7 @@
                   <p>Event Series: <%= link_to series.name, series_path(series), class: "hover:underline" %></p>
                 </h3>
 
-                <b class="mt-4 mb-2">Events without schedule:</b>
+                <b class="mb-2 mt-4">Events without schedule:</b>
 
                 <% events.each do |event| %>
                   <span><%= link_to event.name, event, class: "hover:underline" %></span>
@@ -395,7 +395,7 @@
 
     <input type="radio" name="contribution-tabs" role="tab" class="tab" aria-label="Event Assets" style="width: 250px">
 
-    <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
+    <div role="tabpanel" class="tab-content rounded-box border-base-300 bg-base-100 p-6">
       <div>
         <h2 class="mb-4">Event Assets</h2>
 

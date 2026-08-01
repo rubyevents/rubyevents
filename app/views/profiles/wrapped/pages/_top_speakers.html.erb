@@ -1,17 +1,17 @@
-<h2 class="text-2xl font-bold mb-2 text-center">Your Favorite Speakers</h2>
+<h2 class="mb-2 text-center text-2xl font-bold">Your Favorite Speakers</h2>
 
-<p class="text-gray-500 text-center mb-6">The voices that inspired you this year</p>
+<p class="mb-6 text-center text-gray-500">The voices that inspired you this year</p>
 
 <% if top_speakers.any? %>
-  <div class="space-y-4 flex-1">
+  <div class="flex-1 space-y-4">
     <% top_speakers.each do |speaker, count| %>
-      <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-        <div class="w-12 h-12 rounded-full overflow-hidden bg-gray-200 flex-shrink-0">
+      <div class="flex items-center gap-3 rounded-lg bg-gray-50 p-3">
+        <div class="h-12 w-12 flex-shrink-0 overflow-hidden rounded-full bg-gray-200">
           <%= image_tag speaker.avatar_url(size: 80), class: "w-full h-full object-cover", alt: speaker.name %>
         </div>
 
-        <div class="flex-1 min-w-0">
-          <p class="font-semibold truncate"><%= speaker.name %></p>
+        <div class="min-w-0 flex-1">
+          <p class="truncate font-semibold"><%= speaker.name %></p>
           <p class="text-sm text-gray-500"><%= count %> <%= "talk".pluralize(count) %> watched</p>
         </div>
 
@@ -28,7 +28,7 @@
     <% end %>
   </div>
 <% else %>
-  <div class="flex-1 flex items-center justify-center">
-    <p class="text-gray-400 text-center">Watch more talks to discover your favorite speakers!</p>
+  <div class="flex flex-1 items-center justify-center">
+    <p class="text-center text-gray-400">Watch more talks to discover your favorite speakers!</p>
   </div>
 <% end %>

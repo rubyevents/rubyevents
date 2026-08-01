@@ -37,12 +37,12 @@
         data-map-bounds-value="<%= location.bounds.to_json %>"
       <% end %>
     >
-      <div class="flex flex-col gap-4 mb-6">
+      <div class="mb-6 flex flex-col gap-4">
         <div class="flex items-center justify-between">
           <h2 class="text-xl font-bold text-gray-900">Events Map</h2>
         </div>
 
-        <div class="flex flex-col sm:flex-row gap-4">
+        <div class="flex flex-col gap-4 sm:flex-row">
           <% if time_layers.size > 1 %>
             <div class="flex items-center gap-2">
               <span class="text-sm font-medium text-gray-600">Time:</span>
@@ -61,28 +61,28 @@
         </div>
       </div>
 
-      <div id="location-map" class="w-full h-[600px] rounded-xl overflow-hidden border" data-map-target="container"></div>
+      <div id="location-map" class="h-[600px] w-full overflow-hidden rounded-xl border" data-map-target="container"></div>
     </div>
 
     <% if online_events.any? %>
       <div class="mt-8">
-        <div class="flex items-center gap-2 mb-4">
+        <div class="mb-4 flex items-center gap-2">
           <span class="text-xl">🌐</span>
           <h3 class="text-lg font-semibold text-gray-900">Upcoming Online Events</h3>
           <span class="badge badge-ghost"><%= online_events.count %></span>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <% online_events.each do |event| %>
             <%= link_to event_path(event), class: "flex items-center gap-3 p-3 rounded-lg border hover:bg-gray-50 transition-colors" do %>
               <div class="avatar">
-                <div class="w-10 h-10 rounded-full">
+                <div class="h-10 w-10 rounded-full">
                   <%= image_tag event.avatar_image_path, alt: event.name %>
                 </div>
               </div>
 
-              <div class="flex-1 min-w-0">
-                <div class="font-medium text-gray-900 truncate"><%= event.name %></div>
+              <div class="min-w-0 flex-1">
+                <div class="truncate font-medium text-gray-900"><%= event.name %></div>
 
                 <% if event.start_date %>
                   <div class="text-sm text-gray-500"><%= event.start_date.strftime("%b %d, %Y") %></div>
@@ -94,10 +94,10 @@
       </div>
     <% end %>
   <% else %>
-    <div class="flex items-center justify-between mb-6">
+    <div class="mb-6 flex items-center justify-between">
       <h2 class="text-xl font-bold text-gray-900">Events Map</h2>
     </div>
 
-    <p class="text-gray-500 py-8 text-center">No events with location data in <%= location.name %>.</p>
+    <p class="py-8 text-center text-gray-500">No events with location data in <%= location.name %>.</p>
   <% end %>
 </div>

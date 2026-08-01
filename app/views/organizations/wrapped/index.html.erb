@@ -1,6 +1,6 @@
 <div class="min-h-screen bg-[linear-gradient(to_bottom,#991b1b_0%,#450a0a_30%,#081625_70%,#081625_100%)]">
-  <div class="max-w-4xl mx-auto px-4 py-12">
-    <div class="text-center text-white mb-12">
+  <div class="mx-auto max-w-4xl px-4 py-12">
+    <div class="mb-12 text-center text-white">
       <% if @organization.logo_url.present? %>
         <%= link_to organization_path(@organization), class: "block w-24 h-24 mx-auto mb-4 rounded-xl overflow-hidden bg-white p-2 hover:scale-105 transition" do %>
           <%= image_tag @organization.logo_url, class: "w-full h-full object-contain", alt: @organization.name %>
@@ -12,27 +12,27 @@
       <% end %>
 
       <p
-        class="text-red-300/60 text-sm mt-1"
+        class="mt-1 text-sm text-red-300/60"
         style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;"
       >
         RubyEvents.org
       </p>
 
       <h1
-        class="text-6xl font-black text-white mt-2"
+        class="mt-2 text-6xl font-black text-white"
         style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;"
       >
         <%= @year %>
       </h1>
 
       <p
-        class="text-3xl font-bold text-red-200 mt-1"
+        class="mt-1 text-3xl font-bold text-red-200"
         style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;"
       >
         Wrapped
       </p>
 
-      <p class="text-xl text-red-100 max-w-lg mx-auto mt-6">
+      <p class="mx-auto mt-6 max-w-lg text-xl text-red-100">
         <% if @years_supporting > 1 %>
           <%= @years_supporting %> years of supporting the Ruby community
         <% else %>
@@ -42,43 +42,43 @@
     </div>
 
     <% if @total_events_sponsored.positive? %>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-        <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center">
+      <div class="mb-8 grid grid-cols-2 gap-4 md:grid-cols-4">
+        <div class="rounded-xl bg-white/10 p-6 text-center backdrop-blur">
           <p class="text-4xl font-black text-white"><%= @total_events_sponsored %></p>
-          <p class="text-red-200 text-sm mt-1">Events Supported</p>
+          <p class="mt-1 text-sm text-red-200">Events Supported</p>
         </div>
 
-        <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center">
+        <div class="rounded-xl bg-white/10 p-6 text-center backdrop-blur">
           <p class="text-4xl font-black text-white"><%= number_with_delimiter(@talks_at_sponsored_events) %></p>
-          <p class="text-red-200 text-sm mt-1">Talks Supported</p>
+          <p class="mt-1 text-sm text-red-200">Talks Supported</p>
         </div>
 
-        <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center">
+        <div class="rounded-xl bg-white/10 p-6 text-center backdrop-blur">
           <p class="text-4xl font-black text-white"><%= number_with_delimiter(@speakers_at_sponsored_events) %></p>
-          <p class="text-red-200 text-sm mt-1">Speakers Supported</p>
+          <p class="mt-1 text-sm text-red-200">Speakers Supported</p>
         </div>
 
-        <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center">
+        <div class="rounded-xl bg-white/10 p-6 text-center backdrop-blur">
           <p class="text-4xl font-black text-white"><%= @countries_sponsored.count %></p>
-          <p class="text-red-200 text-sm mt-1">Countries Reached</p>
+          <p class="mt-1 text-sm text-red-200">Countries Reached</p>
         </div>
       </div>
 
-      <div class="bg-white/10 backdrop-blur rounded-xl p-6 mb-8">
-        <h3 class="text-lg font-bold text-white mb-4">🎪 Events Supported</h3>
+      <div class="mb-8 rounded-xl bg-white/10 p-6 backdrop-blur">
+        <h3 class="mb-4 text-lg font-bold text-white">🎪 Events Supported</h3>
 
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
           <% @sponsored_events.each do |event| %>
             <%= link_to event_path(event), class: "group" do %>
-              <div class="aspect-video rounded-lg overflow-hidden mb-2">
+              <div class="mb-2 aspect-video overflow-hidden rounded-lg">
                 <%= image_tag event.card_image_path, class: "w-full h-full object-cover group-hover:scale-105 transition", alt: event.name %>
               </div>
 
-              <p class="text-white font-medium text-sm group-hover:text-red-200 transition truncate">
+              <p class="truncate text-sm font-medium text-white transition group-hover:text-red-200">
                 <%= event.name %>
               </p>
 
-              <p class="text-red-300 text-xs">
+              <p class="text-xs text-red-300">
                 <%= event.start_date&.strftime("%B") %>
 
                 <% if event.country.present? %>
@@ -91,12 +91,12 @@
       </div>
 
       <% if @sponsor_tiers.any? %>
-        <div class="bg-white/10 backdrop-blur rounded-xl p-6 mb-8">
-          <h3 class="text-lg font-bold text-white mb-4">🏆 Sponsorship Tiers</h3>
+        <div class="mb-8 rounded-xl bg-white/10 p-6 backdrop-blur">
+          <h3 class="mb-4 text-lg font-bold text-white">🏆 Sponsorship Tiers</h3>
 
           <div class="flex flex-wrap gap-3">
             <% @sponsor_tiers.each do |tier, count| %>
-              <span class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full text-white">
+              <span class="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-white">
                 <span class="font-medium capitalize"><%= tier %></span>
                 <span class="text-red-300"><%= count %></span>
               </span>
@@ -106,8 +106,8 @@
       <% end %>
 
       <% if @countries_sponsored.any? %>
-        <div class="bg-white/10 backdrop-blur rounded-xl p-6 mb-8">
-          <h3 class="text-lg font-bold text-white mb-4">🌍 Global Reach</h3>
+        <div class="mb-8 rounded-xl bg-white/10 p-6 backdrop-blur">
+          <h3 class="mb-4 text-lg font-bold text-white">🌍 Global Reach</h3>
 
           <div class="flex flex-wrap gap-2">
             <% @countries_sponsored.sort_by(&:name).each do |country| %>
@@ -119,19 +119,19 @@
         </div>
       <% end %>
     <% else %>
-      <div class="bg-white/10 backdrop-blur rounded-xl p-8 text-center">
+      <div class="rounded-xl bg-white/10 p-8 text-center backdrop-blur">
         <p class="text-red-200">No sponsorship data for <%= @year %> yet.</p>
       </div>
     <% end %>
 
     <% if @involvements.any? %>
-      <div class="bg-white/10 backdrop-blur rounded-xl p-6 mb-8">
-        <h3 class="text-lg font-bold text-white mb-4">🤝 Community Involvement</h3>
+      <div class="mb-8 rounded-xl bg-white/10 p-6 backdrop-blur">
+        <h3 class="mb-4 text-lg font-bold text-white">🤝 Community Involvement</h3>
 
         <div class="space-y-4">
           <% @involvements_by_role.each do |role, involvements| %>
             <div>
-              <p class="text-red-300 text-sm font-medium mb-2 capitalize"><%= role %></p>
+              <p class="mb-2 text-sm font-medium capitalize text-red-300"><%= role %></p>
 
               <div class="flex flex-wrap gap-2">
                 <% involvements.each do |involvement| %>
@@ -146,14 +146,14 @@
       </div>
     <% end %>
 
-    <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center">
-      <h3 class="text-lg font-bold text-white mb-4">Share Your Impact</h3>
+    <div class="rounded-xl bg-white/10 p-6 text-center backdrop-blur">
+      <h3 class="mb-4 text-lg font-bold text-white">Share Your Impact</h3>
 
-      <div class="space-y-3 max-w-xs mx-auto">
+      <div class="mx-auto max-w-xs space-y-3">
         <%= link_to og_image_organization_wrapped_index_path(organization_slug: @organization.slug, download: 1),
               data: {turbo: false},
               class: "flex items-center justify-center gap-3 w-full p-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition cursor-pointer" do %>
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -172,11 +172,11 @@
             data-action="copy-to-clipboard#copy"
             data-copy-to-clipboard-target="button"
             class="
-              flex items-center justify-center gap-3 w-full p-3 bg-gray-100 text-gray-700 rounded-lg
-              hover:bg-gray-200 transition
+              flex w-full items-center justify-center gap-3 rounded-lg bg-gray-100 p-3 text-gray-700 transition
+              hover:bg-gray-200
             "
           >
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -191,13 +191,13 @@
       </div>
     </div>
 
-    <div class="text-center mt-12">
-      <p class="text-red-200 text-sm mb-4">
+    <div class="mt-12 text-center">
+      <p class="mb-4 text-sm text-red-200">
         Thank you, <%= @organization.name %>, for supporting the Ruby community! 💎
       </p>
 
       <%= link_to wrapped_path, class: "inline-flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-full font-medium transition" do %>
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             stroke-linecap="round"
             stroke-linejoin="round"

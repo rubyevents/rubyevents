@@ -13,7 +13,7 @@
     </div>
 
     <div>
-      <div class="text-xs text-gray-500 line-clamp-1">
+      <div class="line-clamp-1 text-xs text-gray-500">
         <% if video_provider == "scheduled" && event.date&.future? %>
           Scheduled for
         <% elsif video_provider == "not_recorded" || (video_provider == "scheduled" && event.date&.past?) %>
@@ -23,7 +23,7 @@
         <% end %>
       </div>
 
-      <div class="font-semibold text-base line-clamp-1 flex items-center gap-1">
+      <div class="line-clamp-1 flex items-center gap-1 text-base font-semibold">
         <span><%= event.name %></span>
       </div>
     </div>

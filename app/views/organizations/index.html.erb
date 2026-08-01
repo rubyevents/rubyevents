@@ -3,14 +3,14 @@
     <%= title "Organizations" %>
   </h1>
 
-  <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-8 mt-6 hotwire-native:hidden">
+  <div class="mb-8 mt-6 rounded-lg border border-amber-200 bg-amber-50 p-4 hotwire-native:hidden">
     <div class="flex items-start">
       <%= fa("question-circle", size: :sm, class: "fill-amber-600 mt-0.5 mr-3 flex-shrink-0") %>
 
       <div>
-        <h3 class="font-semibold text-amber-800 mb-1">Organization data is incomplete</h3>
+        <h3 class="mb-1 font-semibold text-amber-800">Organization data is incomplete</h3>
 
-        <p class="text-sm text-amber-700 mb-2">
+        <p class="mb-2 text-sm text-amber-700">
           Many conferences are still missing sponsor information. Help us complete the database!
         </p>
 
@@ -24,11 +24,11 @@
       <div class="my-8 hotwire-native:hidden">
         <div class="relative" data-controller="scroll">
           <div
-            class="overflow-x-auto scroll-smooth snap-x snap-mandatory"
+            class="snap-x snap-mandatory overflow-x-auto scroll-smooth"
             data-scroll-target="container"
             data-action="scroll->scroll#checkScroll"
           >
-            <div class="flex pb-4 gap-4">
+            <div class="flex gap-4 pb-4">
               <% @featured_organizations.each do |organization| %>
                 <div class="snap-start" data-scroll-target="card">
                   <%= render partial: "organizations/card", locals: {organization: organization}, cached: true %>
@@ -38,7 +38,7 @@
           </div>
 
           <div
-            class="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white to-transparent pointer-events-none"
+            class="pointer-events-none absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white to-transparent"
             data-scroll-target="gradient"
           ></div>
         </div>
@@ -46,7 +46,7 @@
     <% end %>
   <% end %>
 
-  <div class="flex flex-wrap w-full justify-between py-8 hotwire-native:hidden gap-1">
+  <div class="flex w-full flex-wrap justify-between gap-1 py-8 hotwire-native:hidden">
     <% ("a".."z").each do |letter| %>
       <%= link_to organizations_path(letter: letter), class: class_names("flex items-center justify-center w-10 text-gray-500 rounded hover:bg-brand-lighter border", "bg-brand-lighter": letter == params[:letter]) do %>
         <%= letter.upcase %>
@@ -56,7 +56,7 @@
 
   <div
     id="organizations"
-    class="hotwire-native:mt-3 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 lg:gap-x-12 gap-y-2 min-w-full"
+    class="grid min-w-full gap-x-8 gap-y-2 hotwire-native:mt-3 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-12 xl:grid-cols-4"
   >
     <% cache @organizations do %>
       <%= render partial: "organizations/organization", collection: @organizations, as: :organization, cached: true %>

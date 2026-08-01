@@ -7,8 +7,8 @@
 
 <main>
   <div class="container">
-    <section class="py-12 text-center max-w-3xl mx-auto">
-      <h1 class="text-4xl font-bold text-primary mb-4">Organize a Ruby Event</h1>
+    <section class="mx-auto max-w-3xl py-12 text-center">
+      <h1 class="mb-4 text-4xl font-bold text-primary">Organize a Ruby Event</h1>
 
       <p class="text-lg text-gray-600">
         Every great community event started with someone deciding to bring people together. That someone could be you.
@@ -17,8 +17,8 @@
     </section>
 
     <div class="flex flex-col gap-12">
-      <section class="max-w-3xl mx-auto">
-        <h2 class="text-2xl font-bold mb-4">It's Simpler Than You Think</h2>
+      <section class="mx-auto max-w-3xl">
+        <h2 class="mb-4 text-2xl font-bold">It's Simpler Than You Think</h2>
 
         <div class="prose-lg text-gray-600">
           <p>
@@ -43,19 +43,19 @@
       </section>
 
       <section>
-        <h2 class="text-2xl font-bold mb-2">Event Format Ideas</h2>
+        <h2 class="mb-2 text-2xl font-bold">Event Format Ideas</h2>
 
-        <p class="text-gray-500 mb-6">
+        <p class="mb-6 text-gray-500">
           Not every event needs a stage and a projector. Here are some formats that work great.
         </p>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div class="p-6 rounded-2xl bg-white border border-base-300">
-            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-3">
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div class="rounded-2xl border border-base-300 bg-white p-6">
+            <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
               <%= fa("utensils", size: :lg, class: "fill-primary") %>
             </div>
 
-            <h3 class="font-bold mb-2">Dinner Meetup</h3>
+            <h3 class="mb-2 font-bold">Dinner Meetup</h3>
 
             <p class="text-sm text-gray-500">
               Reserve a table at a restaurant, pick a topic, and invite local Rubyists. Great food and great
@@ -63,12 +63,12 @@
             </p>
           </div>
 
-          <div class="p-6 rounded-2xl bg-white border border-base-300">
-            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-3">
+          <div class="rounded-2xl border border-base-300 bg-white p-6">
+            <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
               <%= fa("beer-mug-empty", size: :lg, class: "fill-primary") %>
             </div>
 
-            <h3 class="font-bold mb-2">Pub Night</h3>
+            <h3 class="mb-2 font-bold">Pub Night</h3>
 
             <p class="text-sm text-gray-500">
               The most casual format. Meet at a bar, chat about code (or not), and build friendships. Zero pressure,
@@ -76,12 +76,12 @@
             </p>
           </div>
 
-          <div class="p-6 rounded-2xl bg-white border border-base-300">
-            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-3">
+          <div class="rounded-2xl border border-base-300 bg-white p-6">
+            <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
               <%= fa("laptop-code", size: :lg, class: "fill-primary") %>
             </div>
 
-            <h3 class="font-bold mb-2">Hack Night</h3>
+            <h3 class="mb-2 font-bold">Hack Night</h3>
 
             <p class="text-sm text-gray-500">
               Bring laptops, pick an open source project or a coding challenge, and hack together. Pair programming
@@ -89,12 +89,12 @@
             </p>
           </div>
 
-          <div class="p-6 rounded-2xl bg-white border border-base-300">
-            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-3">
+          <div class="rounded-2xl border border-base-300 bg-white p-6">
+            <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
               <%= fa("bolt", size: :lg, class: "fill-primary") %>
             </div>
 
-            <h3 class="font-bold mb-2">Lightning Talks</h3>
+            <h3 class="mb-2 font-bold">Lightning Talks</h3>
 
             <p class="text-sm text-gray-500">
               5-minute talks on any topic. Low pressure for speakers, high variety for attendees. A great way to
@@ -102,12 +102,12 @@
             </p>
           </div>
 
-          <div class="p-6 rounded-2xl bg-white border border-base-300">
-            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-3">
+          <div class="rounded-2xl border border-base-300 bg-white p-6">
+            <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
               <%= fa("book-open", size: :lg, class: "fill-primary") %>
             </div>
 
-            <h3 class="font-bold mb-2">Study Group</h3>
+            <h3 class="mb-2 font-bold">Study Group</h3>
 
             <p class="text-sm text-gray-500">
               Pick a book, a gem, or a Ruby feature. Read a chapter each week and discuss it together. Works great for
@@ -115,12 +115,12 @@
             </p>
           </div>
 
-          <div class="p-6 rounded-2xl bg-white border border-base-300">
-            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-3">
+          <div class="rounded-2xl border border-base-300 bg-white p-6">
+            <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
               <%= fa("building-columns", size: :lg, class: "fill-primary") %>
             </div>
 
-            <h3 class="font-bold mb-2">Conference</h3>
+            <h3 class="mb-2 font-bold">Conference</h3>
 
             <p class="text-sm text-gray-500">
               The big one. Multi-day, multiple tracks, sponsors, and a CFP. Start small. A single-day, single-track
@@ -131,13 +131,13 @@
       </section>
 
       <section class="rounded-2xl border-2 border-primary/20 bg-primary/5 p-8 text-center">
-        <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+        <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
           <%= fa("book", size: :xl, class: "fill-primary") %>
         </div>
 
-        <h2 class="text-2xl font-bold mb-2">The RubyEvents Organizer Guide</h2>
+        <h2 class="mb-2 text-2xl font-bold">The RubyEvents Organizer Guide</h2>
 
-        <p class="text-gray-600 mb-4 max-w-xl mx-auto">
+        <p class="mx-auto mb-4 max-w-xl text-gray-600">
           A comprehensive guide covering everything from finding a venue to managing speakers, handling sponsors, and
           building a community around your event.
         </p>
@@ -148,9 +148,9 @@
       </section>
 
       <section>
-        <h2 class="text-2xl font-bold mb-6">Resources for Organizers</h2>
+        <h2 class="mb-6 text-2xl font-bold">Resources for Organizers</h2>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <%= link_to "https://evilmartians.com/chronicles/lets-have-more-tech-meetups-a-quick-start-guide-to-holding-your-own", target: "_blank", rel: "noopener noreferrer", class: "flex items-center gap-3 p-4 rounded-xl border border-base-300 bg-white hover:border-primary hover:shadow transition-all" do %>
             <%= fa("newspaper", size: :lg, class: "fill-primary shrink-0") %>
 

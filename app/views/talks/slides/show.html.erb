@@ -17,7 +17,7 @@
         <%= slides_external_link(@talk.slides_url) %>
       <% elsif (embed_url = google_slides_embed_url(@talk.slides_url)) %>
         <div data-controller="slides-embed">
-          <div data-slides-embed-target="loading" class="w-full rounded bg-base-300 animate-pulse aspect-video"></div>
+          <div data-slides-embed-target="loading" class="aspect-video w-full animate-pulse rounded bg-base-300"></div>
 
           <div class="responsive-iframe-container">
             <iframe

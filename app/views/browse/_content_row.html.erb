@@ -4,7 +4,7 @@
 
 <% content = capture do %>
   <% if talks.present? %>
-    <section class="flex flex-col gap-4 group/row" data-section="<%= data_section %>">
+    <section class="group/row flex flex-col gap-4" data-section="<%= data_section %>">
       <div class="flex items-end justify-between">
         <div>
           <h2 class="text-xl font-bold"><%= title %></h2>
@@ -24,8 +24,8 @@
       <div class="relative" data-controller="content-row">
         <button
           class="
-            hidden lg:flex absolute -left-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white shadow-lg
-            hover:bg-gray-100 transition-all opacity-0 group-hover/row:opacity-100 disabled:opacity-0
+            absolute -left-4 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-white p-2 opacity-0 shadow-lg
+            transition-all hover:bg-gray-100 disabled:opacity-0 group-hover/row:opacity-100 lg:flex
           "
           data-content-row-target="prevButton"
           data-action="click->content-row#scrollLeft"
@@ -34,7 +34,7 @@
         </button>
 
         <div
-          class="overflow-x-auto scroll-smooth snap-x snap-mandatory"
+          class="snap-x snap-mandatory overflow-x-auto scroll-smooth"
           style="-ms-overflow-style: none; scrollbar-width: none;"
           data-content-row-target="container"
           data-action="scroll->content-row#handleScroll"
@@ -43,7 +43,7 @@
             <% talks.each do |talk| %>
               <% watched_talk = (watched_talks.presence || user_watched_talks).find { |wt| wt.talk_id == talk.id } %>
 
-              <div class="snap-start shrink-0 w-[200px] sm:w-[300px] lg:w-[320px]">
+              <div class="w-[200px] shrink-0 snap-start sm:w-[300px] lg:w-[320px]">
                 <%= render "talks/card_thumbnail", talk: talk, watched_talk: watched_talk %>
               </div>
             <% end %>
@@ -52,8 +52,8 @@
 
         <button
           class="
-            hidden lg:flex absolute -right-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white shadow-lg
-            hover:bg-gray-100 transition-all opacity-0 group-hover/row:opacity-100 disabled:opacity-0
+            absolute -right-4 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-white p-2 opacity-0 shadow-lg
+            transition-all hover:bg-gray-100 disabled:opacity-0 group-hover/row:opacity-100 lg:flex
           "
           data-content-row-target="nextButton"
           data-action="click->content-row#scrollRight"
@@ -62,7 +62,7 @@
         </button>
 
         <div
-          class="absolute right-0 top-0 bottom-2 w-64 pointer-events-none opacity-0 sm:opacity-50 transition-opacity"
+          class="pointer-events-none absolute bottom-2 right-0 top-0 w-64 opacity-0 transition-opacity sm:opacity-50"
           style="background: linear-gradient(to left, var(--fallback-b1,oklch(var(--b1)/1)), transparent);"
           data-content-row-target="gradient"
         ></div>

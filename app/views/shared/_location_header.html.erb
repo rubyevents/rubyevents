@@ -1,15 +1,15 @@
 <%# locals: (name:, subtitle:, flag_code: nil, emoji: nil, stats: nil, location: nil) %>
 
 <div class="container py-8">
-  <div class="flex flex-col lg:flex-row gap-6 lg:gap-8 items-center lg:items-start">
+  <div class="flex flex-col items-center gap-6 lg:flex-row lg:items-start lg:gap-8">
     <% if emoji.present? %>
-      <span class="text-[80pt] lg:text-[100pt] leading-none flex-shrink-0"><%= emoji %></span>
+      <span class="flex-shrink-0 text-[80pt] leading-none lg:text-[100pt]"><%= emoji %></span>
     <% elsif flag_code.present? %>
-      <span class="fi fi-<%= flag_code.to_s.downcase %> border rounded w-28 lg:w-36 text-[60pt] lg:text-[80pt] flex-shrink-0"></span>
+      <span class="fi w-28 flex-shrink-0 rounded border text-[60pt] lg:w-36 lg:text-[80pt] fi-<%= flag_code.to_s.downcase %>"></span>
     <% end %>
 
-    <div class="flex flex-col justify-center text-center lg:text-left flex-grow">
-      <h1 class="mb-2 text-black font-bold text-3xl lg:text-4xl">
+    <div class="flex flex-grow flex-col justify-center text-center lg:text-left">
+      <h1 class="mb-2 text-3xl font-bold text-black lg:text-4xl">
         <% if location.is_a?(OnlineLocation) %>
           Online Ruby Community
         <% elsif location.is_a?(CoordinateLocation) %>
@@ -19,7 +19,7 @@
         <% end %>
       </h1>
 
-      <h3 class="text-[#636B74] text-lg">
+      <h3 class="text-lg text-[#636B74]">
         <%= subtitle %>
       </h3>
 
@@ -31,7 +31,7 @@
     </div>
 
     <% if location.present? %>
-      <div class="flex flex-col gap-2 text-sm text-right flex-shrink-0">
+      <div class="flex flex-shrink-0 flex-col gap-2 text-right text-sm">
         <% case location %>
         <% when Continent %>
           <%= link_to continents_path, class: "link flex items-center gap-1 justify-end" do %>
@@ -95,7 +95,7 @@
           <% end %>
 
           <% if Current.user&.admin? %>
-            <div class="mt-2 pt-2 border-t border-gray-200">
+            <div class="mt-2 border-t border-gray-200 pt-2">
               <% if location.is_a?(City) %>
                 <%= button_to "Feature this city",
                       featured_cities_path(country_code: location.country_code, state_code: location.state_code, city_slug: location.slug),

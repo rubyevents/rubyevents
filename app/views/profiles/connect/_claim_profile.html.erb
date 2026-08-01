@@ -1,4 +1,4 @@
-<div class="flex flex-col items-center justify-center text-center space-y-8 py-12 px-6">
+<div class="flex flex-col items-center justify-center space-y-8 px-6 py-12 text-center">
   <div class="text-4xl">
     🎉 🎉 🎉
   </div>
@@ -8,7 +8,7 @@
       Passsport <span class="text-primary"><%= connect_id.upcase %></span> is available to Claim!
     </h2>
 
-    <p class="text-base-content/70 max-w-md">
+    <p class="max-w-md text-base-content/70">
       <% if Current.user %>
         This Ruby passport is waiting for you! Claim it and start building your Ruby community presence.
       <% else %>
@@ -18,7 +18,7 @@
     </p>
   </div>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md text-sm">
+  <div class="grid max-w-md grid-cols-1 gap-4 text-sm sm:grid-cols-2">
     <div class="flex items-center space-x-2 text-base-content/80">
       <%= fa :calendar, variant: :solid, class: "w-5 h-5 text-success flex-shrink-0" %>
       <span>Track your conferences</span>
@@ -52,7 +52,7 @@
     <% end %>
   </div>
 
-  <div class="text-xs text-base-content/50 flex items-center space-x-1">
+  <div class="flex items-center space-x-1 text-xs text-base-content/50">
     <%= fa "shield-check", variant: :solid, class: "w-4 h-4" %>
     <span>Secure GitHub authentication</span>
   </div>

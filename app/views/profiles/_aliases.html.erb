@@ -9,7 +9,7 @@
         </h3>
       </div>
 
-      <p class="text-[#636B74] mb-6">
+      <p class="mb-6 text-[#636B74]">
         These are alternative names and slugs that have been merged into <%= user.name %>'s profile.
       </p>
 
@@ -27,7 +27,7 @@
             <% aliases.each do |alias_record| %>
               <tr>
                 <td><%= alias_record.name %></td>
-                <td><code class="text-sm bg-base-200 px-2 py-1 rounded"><%= alias_record.slug %></code></td>
+                <td><code class="rounded bg-base-200 px-2 py-1 text-sm"><%= alias_record.slug %></code></td>
                 <td><%= alias_record.created_at.strftime("%b %d, %Y") %></td>
               </tr>
             <% end %>
@@ -37,7 +37,7 @@
     </div>
   </div>
 <% else %>
-  <div class="text-center py-12">
+  <div class="py-12 text-center">
     <p class="text-[#636B74]">No known aliases for this user.</p>
   </div>
 <% end %>

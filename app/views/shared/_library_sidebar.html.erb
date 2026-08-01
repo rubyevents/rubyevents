@@ -22,13 +22,13 @@
 
 <nav
   class="
-    hidden lg:flex flex-col gap-6 sticky top-20 max-h-[calc(100vh-6rem)] overflow-y-auto pb-8
-    [mask-image:linear-gradient(to_bottom,black_calc(100%-3rem),transparent)]
+    sticky top-20 hidden max-h-[calc(100vh-6rem)] flex-col gap-6 overflow-y-auto pb-8
+    [mask-image:linear-gradient(to_bottom,black_calc(100%-3rem),transparent)] lg:flex
   "
   style="-ms-overflow-style: none; scrollbar-width: none;"
 >
   <div>
-    <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 mb-2">My Library</h3>
+    <h3 class="mb-2 px-3 text-xs font-semibold uppercase tracking-wider text-gray-400">My Library</h3>
 
     <div class="flex flex-col gap-0.5">
       <%= library_link.call("Watch History", watched_talks_path, icon: "clock-rotate-left", active: request.path == watched_talks_path && params[:filter].blank?, count: Current.user&.watched_talks_count) %>

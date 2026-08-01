@@ -1,16 +1,16 @@
 <% unavailable_talks = Talk.video_unavailable.includes(:event).order(video_unavailable_at: :desc).limit(50) %>
 
-<div class="p-4 overflow-y-auto h-full">
+<div class="h-full overflow-y-auto p-4">
   <% if unavailable_talks.empty? %>
-    <p class="text-gray-500 text-center py-8">No unavailable videos found.</p>
+    <p class="py-8 text-center text-gray-500">No unavailable videos found.</p>
   <% else %>
     <table class="min-w-full divide-y divide-gray-200">
       <thead>
         <tr>
-          <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Talk</th>
-          <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Event</th>
-          <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Unavailable Since</th>
-          <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+          <th class="px-3 py-2 text-left text-xs font-medium uppercase text-gray-500">Talk</th>
+          <th class="px-3 py-2 text-left text-xs font-medium uppercase text-gray-500">Event</th>
+          <th class="px-3 py-2 text-left text-xs font-medium uppercase text-gray-500">Unavailable Since</th>
+          <th class="px-3 py-2 text-left text-xs font-medium uppercase text-gray-500">Actions</th>
         </tr>
       </thead>
 
@@ -21,7 +21,7 @@
               <%= link_to talk.title.truncate(40), avo.resources_talk_path(talk), class: "text-blue-600 hover:underline", data: {turbo_frame: "_top"} %>
 
               <% if talk.video_provider.present? %>
-                <br><span class="text-gray-400 text-xs"><%= talk.video_provider %></span>
+                <br><span class="text-xs text-gray-400"><%= talk.video_provider %></span>
               <% end %>
             </td>
 
@@ -37,7 +37,7 @@
               <%= time_ago_in_words(talk.video_unavailable_at) %> ago
             </td>
 
-            <td class="px-3 py-2 text-sm space-x-2">
+            <td class="space-x-2 px-3 py-2 text-sm">
               <% if talk.video_id.present? %>
                 <%= link_to "YouTube", "https://youtube.com/watch?v=#{talk.video_id}", target: "_blank", class: "text-blue-600 hover:underline text-xs", data: {turbo_frame: "_top"} %>
               <% end %>

@@ -1,8 +1,8 @@
 <% unless hotwire_native_app? %>
   <div
     class="
-      relative isolate flex items-center gap-x-6 overflow-hidden bg-gray-50 px-6 py-2.5 sm:px-3.5 sm:before:flex-1
-      hidden
+      relative isolate flex hidden items-center gap-x-6 overflow-hidden bg-gray-50 px-6 py-2.5 sm:px-3.5
+      sm:before:flex-1
     "
     data-controller="top-banner"
   >
@@ -33,7 +33,7 @@
     <div class="flex flex-1 justify-end">
       <button
         type="button"
-        class="-m-3 p-3 focus-visible:outline-offset-[-4px] tertiary"
+        class="tertiary -m-3 p-3 focus-visible:outline-offset-[-4px]"
         data-action="click->top-banner#dismiss"
       >
         <span class="sr-only">Dismiss</span>

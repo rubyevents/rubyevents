@@ -1,16 +1,16 @@
 <div class="container py-8">
-  <div class="flex items-center gap-2 title text-primary">
+  <div class="title flex items-center gap-2 text-primary">
     <h1 class="flex items-center gap-2">
       <%= fa("gem", size: :md, class: "fill-primary") %>
       <%= title "Ruby Gems" %>
     </h1>
   </div>
 
-  <p class="text-gray-600 mt-2 mb-6">
+  <p class="mb-6 mt-2 text-gray-600">
     Browse Ruby gems featured in <%= pluralize(TopicGem.joins(:topic).sum("topics.talks_count"), "conference talk") %>.
   </p>
 
-  <div class="flex flex-wrap w-full justify-between hotwire-native:hidden py-4 gap-1">
+  <div class="flex w-full flex-wrap justify-between gap-1 py-4 hotwire-native:hidden">
     <% ("a".."z").each do |letter| %>
       <%= link_to gems_path(letter: letter), class: class_names("flex items-center justify-center w-10 text-gray-500 rounded hover:bg-brand-lighter border", "bg-brand-lighter": letter == params[:letter]) do %>
         <%= letter.upcase %>
@@ -22,7 +22,7 @@
     <% end %>
   </div>
 
-  <div id="gems" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 min-w-full">
+  <div id="gems" class="grid min-w-full gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
     <% @gems.each do |topic_gem| %>
       <%= render partial: "gem_card", locals: {topic_gem: topic_gem} %>
     <% end %>

@@ -5,12 +5,12 @@
 <% has_watched_on = watched_talk&.watched_on.present? %>
 
 <div
-  class="mt-4 p-4 bg-base-200/50 rounded-xl"
+  class="mt-4 rounded-xl bg-base-200/50 p-4"
   data-controller="collapsible collapsible-feedback"
   data-collapsible-open-value="<%= !has_watched_on %>"
   data-collapsible-feedback-open-value="<%= form_open %>"
 >
-  <div class="flex items-center justify-between flex-wrap gap-2">
+  <div class="flex flex-wrap items-center justify-between gap-2">
     <div class="flex items-center gap-2">
       <%= fa("circle-check", size: :sm, style: :solid, class: "text-green-600") %>
       <span class="font-medium"><% if watched_talk&.watched_on == "another_version" %>You watched another version of this talk!<% elsif watched_talk&.watched_on == "in_person" %>You watched this talk in-person<% if watched_talk&.watched_at %>on<%= watched_talk.watched_at.strftime("%B %-d, %Y") %><% end %>!<% else %>You watched this talk<% if watched_talk&.watched_on.present? && watched_talk.watched_on != "other" %>on<%= WatchedTalk::WATCHED_ON_OPTIONS.dig(watched_talk.watched_on, :label) || watched_talk.watched_on.titleize %><% end %><% if watched_talk&.watched_at %>on<%= watched_talk.watched_at.strftime("%B %-d, %Y") %><% end %>!<% end %></span>
@@ -20,7 +20,7 @@
       <% if has_watched_on %>
         <button
           type="button"
-          class="btn btn-sm bg-white border border-gray-300 hover:bg-gray-100"
+          class="btn btn-sm border border-gray-300 bg-white hover:bg-gray-100"
           data-action="click->collapsible#toggle click->collapsible-feedback#close"
           data-collapsible-target="trigger"
         >
@@ -31,7 +31,7 @@
       <% if feedback_allowed %>
         <button
           type="button"
-          class="btn btn-sm btn-primary"
+          class="btn btn-primary btn-sm"
           data-action="click->collapsible#close click->collapsible-feedback#toggle"
           data-collapsible-feedback-target="trigger"
         >

@@ -20,8 +20,8 @@
       } do %>
   <div
     class="
-      relative overflow-hidden bg-gray-300 aspect-video banner-img card-horizontal-img rounded-xl outline outline-1
-      outline-gray-300 w-full max-w-full
+      banner-img card-horizontal-img relative aspect-video w-full max-w-full overflow-hidden rounded-xl bg-gray-300
+      outline outline-1 outline-gray-300
     "
   >
     <% if talk.external_player %>
@@ -30,8 +30,8 @@
 
         <div
           class="
-            absolute inset-0 flex flex-col items-center justify-center gap-6 p-6 text-xl font-bold text-center
-            text-white bg-black/80 rounded-xl
+            absolute inset-0 flex flex-col items-center justify-center gap-6 rounded-xl bg-black/80 p-6 text-center
+            text-xl font-bold text-white
           "
         >
           This talk is available to watch on <%= URI.parse(talk.external_player_url).host %>
@@ -60,26 +60,26 @@
 
       <% if current_user_watched_talk&.in_progress? && !is_watched && talk.video_available? %>
         <div
-          class="absolute inset-0 cursor-pointer group/resume"
+          class="group/resume absolute inset-0 cursor-pointer"
           data-video-player-target="resumeOverlay"
           data-action="click->video-player#resumePlayback"
         >
           <%= image_tag talk.thumbnail_xl, alt: "#{talk.title} thumbnail", class: "absolute inset-0 w-full h-full object-cover rounded-xl", style: "view-transition-name: #{dom_id(talk, :image)}" %>
 
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 rounded-xl"></div>
+          <div class="absolute inset-0 rounded-xl bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
 
           <div
             class="
-              absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent rounded-xl opacity-0
-              group-hover/resume:opacity-100 transition-opacity duration-300
+              absolute inset-0 rounded-xl bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0
+              transition-opacity duration-300 group-hover/resume:opacity-100
             "
           ></div>
 
           <div class="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center text-white">
             <div
               class="
-                p-4 bg-white/20 backdrop-blur-sm rounded-full group-hover/resume:bg-white/30
-                group-hover/resume:scale-105 transition-all duration-300
+                rounded-full bg-white/20 p-4 backdrop-blur-sm transition-all duration-300
+                group-hover/resume:scale-105 group-hover/resume:bg-white/30
               "
             >
               <%= fa("play", size: :xl, class: "fill-white ml-1") %>
@@ -97,26 +97,26 @@
         </div>
       <% elsif video_provider.in?(["mp4", "youtube", "vimeo"]) && !is_watched && talk.video_available? %>
         <div
-          class="absolute inset-0 cursor-pointer group/play"
+          class="group/play absolute inset-0 cursor-pointer"
           data-video-player-target="playOverlay"
           data-action="click->video-player#startPlayback"
         >
           <%= image_tag talk.thumbnail_xl, alt: "#{talk.title} thumbnail", class: "absolute inset-0 w-full h-full object-cover rounded-xl", style: "view-transition-name: #{dom_id(talk, :image)}" %>
 
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 rounded-xl"></div>
+          <div class="absolute inset-0 rounded-xl bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
 
           <div
             class="
-              absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent rounded-xl opacity-0
-              group-hover/play:opacity-100 transition-opacity duration-300
+              absolute inset-0 rounded-xl bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0
+              transition-opacity duration-300 group-hover/play:opacity-100
             "
           ></div>
 
           <div class="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center text-white">
             <div
               class="
-                p-4 bg-white/20 backdrop-blur-sm rounded-full group-hover/play:bg-white/30
-                group-hover/play:scale-105 transition-all duration-300
+                rounded-full bg-white/20 p-4 backdrop-blur-sm transition-all duration-300 group-hover/play:scale-105
+                group-hover/play:bg-white/30
               "
             >
               <%= fa("play", size: :xl, class: "fill-white ml-1") %>

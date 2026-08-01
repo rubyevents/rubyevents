@@ -5,7 +5,7 @@
     data-spotlight-search-target="locationsSearchResults"
   >
     <% if @locations.any? %>
-      <div class="flex items-center flex-wrap gap-2 py-2">
+      <div class="flex flex-wrap items-center gap-2 py-2">
         <span class="text-sm font-medium text-gray-600">Locations</span>
         <span class="text-xs text-gray-400">(<%= total_count %>)</span>
       </div>
@@ -43,7 +43,7 @@
         <% end %>
       </div>
     <% elsif @geocoded_locations.present? && @geocoded_locations.any? %>
-      <div class="flex items-center flex-wrap gap-2 py-2">
+      <div class="flex flex-wrap items-center gap-2 py-2">
         <span class="text-sm font-medium text-gray-600">Locations</span>
       </div>
 

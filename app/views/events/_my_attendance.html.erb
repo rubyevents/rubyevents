@@ -4,8 +4,8 @@
 <% attended_count = in_person_talk_ids.size %>
 <% has_schedule = days.present? && days.any? %>
 
-<section id="my-attendance" class="bg-white rounded-lg border p-4 shadow-sm">
-  <div class="flex items-center justify-between mb-3">
+<section id="my-attendance" class="rounded-lg border bg-white p-4 shadow-sm">
+  <div class="mb-3 flex items-center justify-between">
     <div>
       <h2 class="text-lg font-bold text-primary">My Attendance</h2>
       <p class="text-xs text-gray-500">Tap talks you attended in person</p>
@@ -20,11 +20,11 @@
   <div id="attendance-schedule">
     <% if has_schedule %>
       <% if days.size > 1 %>
-        <div id="attendance-navigation" class="flex gap-1 justify-center flex-wrap mb-2">
+        <div id="attendance-navigation" class="mb-2 flex flex-wrap justify-center gap-1">
           <% days.each_with_index do |day, index| %>
             <% date_string = Date.parse(day.dig("date")).strftime("%a %d") %>
 
-            <a href="#attendance-day-<%= index %>" class="btn btn-xs btn-outline">
+            <a href="#attendance-day-<%= index %>" class="btn btn-outline btn-xs">
               <%= day.dig("name") || date_string %>
             </a>
           <% end %>

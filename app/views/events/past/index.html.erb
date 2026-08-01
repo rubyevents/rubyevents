@@ -17,7 +17,7 @@
       <%= render "events/collections_navigation", active: :past %>
 
       <div class="flex shrink-0 items-center overflow-x-auto pb-2 md:pb-1">
-        <div class="tabs tabs-boxed">
+        <div class="tabs-boxed tabs">
           <button
             type="button"
             class="tab tab-active"
@@ -46,7 +46,7 @@
     <%= render partial: "events/featured_card_list", locals: {events: @events} %>
   </div>
 
-  <div class="hidden mt-6" data-events-view-switcher-target="view" data-events-view-switcher-view-param="list">
+  <div class="mt-6 hidden" data-events-view-switcher-target="view" data-events-view-switcher-view-param="list">
     <%= render partial: "events/plain_list", locals: {events: @events} %>
   </div>
 </div>
