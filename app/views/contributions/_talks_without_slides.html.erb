@@ -3,7 +3,11 @@
 <%= turbo_frame_tag "talks_without_slides" do %>
   <h2 class="mb-4">Talks without slides (<%= talks_without_slides.count %>)</h2>
 
-  <article class="prose mb-6">These talks currently do not have slides attached. However, we know that the speaker has an account on Speakerdeck where they usually upload their slides. Feel free to explore if these talks have associated slidedecks on Speakerdeck.com.</article>
+  <article class="prose mb-6">
+    These talks currently do not have slides attached. However, we know that the speaker has an account on Speakerdeck
+    where they usually upload their slides. Feel free to explore if these talks have associated slidedecks on
+    Speakerdeck.com.
+  </article>
 
   <div id="speakers" class="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4 min-w-full mb-6">
     <% talks_without_slides.each do |talk| %>

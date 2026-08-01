@@ -18,10 +18,12 @@
         <p class="text-xl font-bold"><%= @total_talks_watched %></p>
         <p class="text-[10px] text-red-200">Talks Watched</p>
       </div>
+
       <div class="text-center p-2 bg-white/10 rounded-lg">
         <p class="text-xl font-bold"><%= @total_watch_time_hours %>h</p>
         <p class="text-[10px] text-red-200">Watch Time</p>
       </div>
+
       <div class="text-center p-2 bg-white/10 rounded-lg">
         <p class="text-xl font-bold"><%= @events_attended_in_year.count %></p>
         <p class="text-[10px] text-red-200">Events</p>
@@ -33,6 +35,7 @@
         <p class="text-xl font-bold"><%= @countries_visited.count %></p>
         <p class="text-[10px] text-red-200">Countries Visited</p>
       </div>
+
       <% if @talks_given_in_year.any? %>
         <div class="text-center p-2 bg-white/20 rounded-lg">
           <p class="text-xl font-bold"><%= @talks_given_in_year.count %></p>

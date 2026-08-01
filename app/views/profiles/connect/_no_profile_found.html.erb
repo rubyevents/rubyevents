@@ -9,8 +9,10 @@
     <h2 class="text-2xl font-bold text-base-content">
       🤷‍♂️ No Profile Found Here
     </h2>
+
     <p class="text-base-content/70 max-w-md">
-      This page doesn't have an associated profile yet. But don't worry - there's still plenty to explore in the Ruby community!
+      This page doesn't have an associated profile yet. But don't worry - there's still plenty to explore in the Ruby
+      community!
     </p>
   </div>
 
@@ -20,14 +22,17 @@
       <%= fa "video", variant: :solid, class: "w-5 h-5 text-neutral flex-shrink-0" %>
       <span>Browse talks</span>
     </a>
+
     <a href="<%= events_path %>" class="flex items-center space-x-2 text-base-content/80">
       <%= fa "calendar-days", variant: :solid, class: "w-5 h-5 text-neutral flex-shrink-0" %>
       <span>Discover events</span>
     </a>
+
     <a href="<%= speakers_path %>" class="flex items-center space-x-2 text-base-content/80">
       <%= fa :users, variant: :solid, class: "w-5 h-5 text-neutral flex-shrink-0" %>
       <span>Meet speakers</span>
     </a>
+
     <a href="<%= topics_path %>" class="flex items-center space-x-2 text-base-content/80">
       <%= fa :hashtag, variant: :solid, class: "w-5 h-5 text-neutral flex-shrink-0" %>
       <span>Explore topics</span>
@@ -37,13 +42,11 @@
   <!-- CTA Buttons -->
   <div class="flex flex-col sm:flex-row gap-3 pt-4">
     <%= ui_button url: talks_path, kind: :primary, size: :lg, class: "px-6 shadow-lg" do %>
-      <%= fa :play, variant: :solid, class: "w-5 h-5 mr-2" %>
-      Browse Talks
+      <%= fa :play, variant: :solid, class: "w-5 h-5 mr-2" %> Browse Talks
     <% end %>
 
     <%= ui_button url: events_path, kind: :secondary, size: :lg, class: "px-6" do %>
-      <%= fa :calendar, variant: :solid, class: "w-5 h-5 mr-2" %>
-      View Events
+      <%= fa :calendar, variant: :solid, class: "w-5 h-5 mr-2" %> View Events
     <% end %>
   </div>
 

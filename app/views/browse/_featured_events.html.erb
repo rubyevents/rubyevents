@@ -25,8 +25,7 @@
             <%= event.talks_count %> talks
 
             <% if (published_date = event.static_metadata&.published_date) %>
-              <span class="mx-1">&middot;</span>
-              <%= time_ago_in_words(published_date) %> ago
+              <span class="mx-1">&middot;</span> <%= time_ago_in_words(published_date) %> ago
             <% end %>
           </p>
         </div>

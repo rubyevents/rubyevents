@@ -1,27 +1,55 @@
-<div class="container py-8 hotwire-native:py-3" data-controller="events-view-switcher" data-events-view-switcher-storage-key-value="meetups-view-preference">
+<div
+  class="container py-8 hotwire-native:py-3"
+  data-controller="events-view-switcher"
+  data-events-view-switcher-storage-key-value="meetups-view-preference"
+>
   <div class="hotwire-native:hidden">
     <h1 class="title shrink-0">
       <%= title "Meetups" %>
+
       <span class="text-base text-gray-500">
         (<%= pluralize(Event.upcoming_meetups.count, "upcoming meetup") %>,
         <%= pluralize(Event.past_meetups.count, "past meetup") %>)
       </span>
     </h1>
 
-    <div class="mt-2 flex flex-col gap-3 md:flex-row md:items-stretch md:justify-between md:gap-4 md:border-b md:border-gray-200">
+    <div
+      class="
+        mt-2 flex flex-col gap-3 md:flex-row md:items-stretch md:justify-between md:gap-4 md:border-b
+        md:border-gray-200
+      "
+    >
       <%= render "events/collections_navigation", active: :meetups %>
 
       <div class="flex shrink-0 items-center overflow-x-auto pb-2 md:pb-1">
         <div class="tabs tabs-boxed">
-          <button type="button" class="tab tab-active" data-events-view-switcher-target="button" data-events-view-switcher-view-param="preview" data-action="click->events-view-switcher#show">
+          <button
+            type="button"
+            class="tab tab-active"
+            data-events-view-switcher-target="button"
+            data-events-view-switcher-view-param="preview"
+            data-action="click->events-view-switcher#show"
+          >
             Preview
           </button>
 
-          <button type="button" class="tab" data-events-view-switcher-target="button" data-events-view-switcher-view-param="list" data-action="click->events-view-switcher#show">
+          <button
+            type="button"
+            class="tab"
+            data-events-view-switcher-target="button"
+            data-events-view-switcher-view-param="list"
+            data-action="click->events-view-switcher#show"
+          >
             List
           </button>
 
-          <button type="button" class="tab" data-events-view-switcher-target="button" data-events-view-switcher-view-param="country" data-action="click->events-view-switcher#show">
+          <button
+            type="button"
+            class="tab"
+            data-events-view-switcher-target="button"
+            data-events-view-switcher-view-param="country"
+            data-action="click->events-view-switcher#show"
+          >
             By Country
           </button>
         </div>
@@ -41,9 +69,7 @@
     <p class="mb-4">
       Explore Ruby meetups from around the world, or find all events by
       <%= link_to "continent", continents_path, class: "link" %>,
-      <%= link_to "country", countries_path, class: "link" %>
-      or
-      <%= link_to "city", cities_path, class: "link" %>.
+      <%= link_to "country", countries_path, class: "link" %> or <%= link_to "city", cities_path, class: "link" %>.
     </p>
 
     <% @countries_by_continent.each do |continent, countries| %>
@@ -55,16 +81,17 @@
           class="
             grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-x-8 lg:gap-x-12 gap-y-2
             min-w-full pt-4 pb-8
-          ">
+          "
+        >
           <% countries.sort_by(&:iso_short_name).each do |country| %>
             <% events = @events_by_country[country] %>
             <% next if events.nil? %>
 
             <%= link_to location_meetups_path(country), id: "country-#{country.alpha2}", class: "event flex justify-between items-center" do %>
               <div class="flex items-center gap-2">
-                <span class="event-name"><%= country.emoji_flag %>
-                  <%= country.name %></span>
+                <span class="event-name"><%= country.emoji_flag %> <%= country.name %></span>
               </div>
+
               <div class="flex gap-2 items-center">
                 <%= ui_badge(
                       events.count,
@@ -84,12 +111,18 @@
   <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-8 mt-6 hotwire-native:hidden">
     <div class="flex items-start">
       <%= fa("question-circle", size: :sm, class: "fill-amber-600 mt-0.5 mr-3 flex-shrink-0") %>
+
       <div>
         <h3 class="font-semibold text-amber-800 mb-1">Meetup data is incomplete</h3>
+
         <p class="text-sm text-amber-700 mb-2">
-          We are looking for more meetups to add to the database. If you know of a Ruby meetup that is not listed, please let us know by <%= link_to "creating an issue", "https://github.com/rubyevents/rubyevents/issues/new", class: "link", target: "_blank", rel: "noopener" %> or contributing the data.
+          We are looking for more meetups to add to the database. If you know of a Ruby meetup that is not listed,
+          please let us know by
+          <%= link_to "creating an issue", "https://github.com/rubyevents/rubyevents/issues/new", class: "link", target: "_blank", rel: "noopener" %>
+          or contributing the data.
         </p>
-      <%= link_to "Documentation on adding a meetup", "https://github.com/rubyevents/rubyevents/blob/main/docs/ADDING_MEETUPS.md", class: "text-sm font-medium text-amber-800 underline hover:text-amber-900", target: "_blank", rel: "noopener" %>
+
+        <%= link_to "Documentation on adding a meetup", "https://github.com/rubyevents/rubyevents/blob/main/docs/ADDING_MEETUPS.md", class: "text-sm font-medium text-amber-800 underline hover:text-amber-900", target: "_blank", rel: "noopener" %>
       </div>
     </div>
   </div>

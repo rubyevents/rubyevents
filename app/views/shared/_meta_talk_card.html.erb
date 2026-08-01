@@ -8,6 +8,7 @@
           <%= l(meta_talk.date, format: :medium, default: "unknown") %>
         <% end %>
       </time>
+
       <div class="text-gray-400 font-normal">
         <%= meta_talk.date.strftime("%A") %>
       </div>
@@ -29,6 +30,7 @@
               class: "w-full rounded-xl #{meta_talk.thumbnail_classes.presence || "object-cover"}"
             ) %>
       </div>
+
       <div class="min-w-0">
         <div class="font-mono text-xl font-medium text-black">
           <%= meta_talk.title %>

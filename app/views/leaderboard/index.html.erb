@@ -21,6 +21,7 @@
           <th class="text-left">Talks</th>
         </tr>
       </thead>
+
       <tbody>
         <% cache [@ranked_speakers, @filter] do %>
           <%= render partial: "leaderboard/speaker", collection: @ranked_speakers, as: :speaker, locals: {filter: @filter} %>

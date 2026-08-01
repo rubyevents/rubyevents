@@ -5,8 +5,11 @@
         <%= image_tag organization.logo_url, class: "w-full h-full object-contain", alt: organization.name %>
       </div>
     <% end %>
+
     <p class="text-red-300 text-lg"><%= organization.name %></p>
+
     <h1 class="text-6xl font-black text-white mt-2"><%= year %></h1>
+
     <p class="text-3xl font-bold text-red-200 mt-1">Wrapped</p>
     <p class="text-red-300/80 text-sm mt-4">RubyEvents.org/Wrapped</p>
   </div>
@@ -16,14 +19,17 @@
       <p class="text-6xl font-black text-white"><%= total_events_sponsored %></p>
       <p class="text-red-200 text-lg mt-2">Events Supported</p>
     </div>
+
     <div class="bg-white/10 backdrop-blur rounded-2xl p-8 text-center">
       <p class="text-6xl font-black text-white"><%= number_with_delimiter(talks_at_sponsored_events) %></p>
       <p class="text-red-200 text-lg mt-2">Talks Supported</p>
     </div>
+
     <div class="bg-white/10 backdrop-blur rounded-2xl p-8 text-center">
       <p class="text-6xl font-black text-white"><%= number_with_delimiter(speakers_at_sponsored_events) %></p>
       <p class="text-red-200 text-lg mt-2">Speakers Supported</p>
     </div>
+
     <div class="bg-white/10 backdrop-blur rounded-2xl p-8 text-center">
       <p class="text-6xl font-black text-white"><%= countries_sponsored.count %></p>
       <p class="text-red-200 text-lg mt-2">Countries Reached</p>

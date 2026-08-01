@@ -10,7 +10,9 @@
       <span class="<%= class_names("w-4 [&>svg]:w-4 [&>svg]:h-4", "text-primary": active, "text-gray-400": !active) %>">
         <%= fa(icon, size: :sm, class: "fill-current") %>
       </span>
+
       <span class="flex-1 truncate"><%= label %></span>
+
       <% if count && count > 0 %>
         <span class="text-xs text-gray-400"><%= number_with_delimiter(count) %></span>
       <% end %>
@@ -18,7 +20,13 @@
   <% end %>
 <% end %>
 
-<nav class="hidden lg:flex flex-col gap-6 sticky top-20 max-h-[calc(100vh-6rem)] overflow-y-auto pb-8 [mask-image:linear-gradient(to_bottom,black_calc(100%-3rem),transparent)]" style="-ms-overflow-style: none; scrollbar-width: none;">
+<nav
+  class="
+    hidden lg:flex flex-col gap-6 sticky top-20 max-h-[calc(100vh-6rem)] overflow-y-auto pb-8
+    [mask-image:linear-gradient(to_bottom,black_calc(100%-3rem),transparent)]
+  "
+  style="-ms-overflow-style: none; scrollbar-width: none;"
+>
   <div>
     <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 mb-2">My Library</h3>
 

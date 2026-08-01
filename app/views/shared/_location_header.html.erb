@@ -35,8 +35,7 @@
         <% case location %>
         <% when Continent %>
           <%= link_to continents_path, class: "link flex items-center gap-1 justify-end" do %>
-            <%= fa("globe", size: :sm, class: "text-gray-400") %>
-            All Continents
+            <%= fa("globe", size: :sm, class: "text-gray-400") %> All Continents
           <% end %>
         <% when Country %>
           <% continent = location.continent %>
@@ -49,8 +48,7 @@
           <% end %>
 
           <%= link_to countries_path, class: "link flex items-center gap-1 justify-end" do %>
-            <%= fa("globe", size: :sm, class: "text-gray-400") %>
-            All Countries
+            <%= fa("globe", size: :sm, class: "text-gray-400") %> All Countries
           <% end %>
         <% when UKNation %>
           <% parent_country = location.parent_country %>
@@ -61,8 +59,7 @@
           <% end %>
 
           <%= link_to countries_path, class: "link flex items-center gap-1 justify-end" do %>
-            <%= fa("globe", size: :sm, class: "text-gray-400") %>
-            All Countries
+            <%= fa("globe", size: :sm, class: "text-gray-400") %> All Countries
           <% end %>
         <% when State %>
           <% country = location.country %>
@@ -73,8 +70,7 @@
           <% end %>
 
           <%= link_to country_states_path(alpha2: country.code), class: "link flex items-center gap-1 justify-end" do %>
-            <%= fa("map", size: :sm, class: "text-gray-400") %>
-            All States in <%= country.name %>
+            <%= fa("map", size: :sm, class: "text-gray-400") %> All States in <%= country.name %>
           <% end %>
         <% when City %>
           <% country = Country.find_by(country_code: location.country_code) %>
@@ -94,8 +90,7 @@
 
           <% if country %>
             <%= link_to country_cities_path(country), class: "link flex items-center gap-1 justify-end" do %>
-              <%= fa("city", size: :sm, class: "text-gray-400") %>
-              All Cities in <%= country.name %>
+              <%= fa("city", size: :sm, class: "text-gray-400") %> All Cities in <%= country.name %>
             <% end %>
           <% end %>
 
@@ -117,13 +112,11 @@
           <% end %>
         <% when OnlineLocation %>
           <%= link_to continents_path, class: "link flex items-center gap-1 justify-end" do %>
-            <%= fa("globe", size: :sm, class: "text-gray-400") %>
-            Browse by Location
+            <%= fa("globe", size: :sm, class: "text-gray-400") %> Browse by Location
           <% end %>
 
           <%= link_to cities_path, class: "link flex items-center gap-1 justify-end" do %>
-            <%= fa("city", size: :sm, class: "text-gray-400") %>
-            All Cities
+            <%= fa("city", size: :sm, class: "text-gray-400") %> All Cities
           <% end %>
         <% when CoordinateLocation %>
           <% country = location.country %>
@@ -135,13 +128,11 @@
           <% end %>
 
           <%= link_to continents_path, class: "link flex items-center gap-1 justify-end" do %>
-            <%= fa("globe", size: :sm, class: "text-gray-400") %>
-            Browse by Location
+            <%= fa("globe", size: :sm, class: "text-gray-400") %> Browse by Location
           <% end %>
 
           <%= link_to cities_path, class: "link flex items-center gap-1 justify-end" do %>
-            <%= fa("city", size: :sm, class: "text-gray-400") %>
-            All Cities
+            <%= fa("city", size: :sm, class: "text-gray-400") %> All Cities
           <% end %>
         <% end %>
       </div>

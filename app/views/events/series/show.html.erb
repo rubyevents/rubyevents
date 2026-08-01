@@ -13,9 +13,12 @@
       <div class="flex-col flex justify-center">
         <h1 class="mb-2 text-black font-bold"><%= @event_series.name %></h1>
 
-        <h3 class="hidden md:block text-[#636B74]"><%= pluralize(@event_series.events.count, "event") %>
+        <h3 class="hidden md:block text-[#636B74]">
+          <%= pluralize(@event_series.events.count, "event") %>
+
           <% if @event_series.static_metadata&.all_youtube_channels&.any? %>
-            - <%= @event_series.static_metadata.all_youtube_channels.filter_map { |c| c["handle"].presence || c["name"].presence }.join(", ") %>
+            -
+            <%= @event_series.static_metadata.all_youtube_channels.filter_map { |c| c["handle"].presence || c["name"].presence }.join(", ") %>
           <% end %>
         </h3>
       </div>
@@ -24,16 +27,19 @@
     <% if Current.user&.admin? %>
       <div class="flex items-center gap-2 mt-4 pt-4 border-t border-gray-200">
         <span class="text-xs text-gray-400 uppercase tracking-wide">Admin</span>
+
         <%= ui_tooltip "Reimport Series" do %>
           <%= ui_button url: reimport_series_path(@event_series), method: :post, kind: :neutral, size: :sm do %>
             <%= fa "download", size: :sm %>
           <% end %>
         <% end %>
+
         <%= ui_tooltip "Reindex Series" do %>
           <%= ui_button url: reindex_series_path(@event_series), method: :post, kind: :neutral, size: :sm do %>
             <%= fa "arrows-rotate", size: :sm %>
           <% end %>
         <% end %>
+
         <%= ui_tooltip "Open in Avo" do %>
           <%= ui_button url: avo.resources_event_series_path(@event_series), target: :_blank, kind: :neutral, size: :sm do %>
             <%= fa :avocado, size: :sm %>
@@ -70,6 +76,7 @@
         <div class="flex items-center justify-between w-full">
           <h2 class="text-primary shrink-0">Events</h2>
         </div>
+
         <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           <%= cache @events do %>
             <%= render partial: "events/card", collection: @events, as: :event, cached: true %>
@@ -86,6 +93,7 @@
           <h2 class="text-primary shrink-0">TODOs</h2>
           <span class="badge badge-primary"><%= @todos.size %></span>
         </div>
+
         <div class="card bg-base-200">
           <div class="card-body p-4">
             <table class="table table-sm">
@@ -95,6 +103,7 @@
                   <th>Content</th>
                 </tr>
               </thead>
+
               <tbody>
                 <% @todos.first(20).each do |todo| %>
                   <tr>
@@ -103,14 +112,17 @@
                         <%= todo.file.split("/").last(2).join("/") %>:<%= todo.line %>
                       <% end %>
                     </td>
+
                     <td><code class="text-xs break-all"><%= todo.content %></code></td>
                   </tr>
                 <% end %>
               </tbody>
             </table>
+
             <% if @todos.size > 20 %>
               <p class="text-sm text-base-content/70 mt-2">
-                ... and <%= @todos.size - 20 %> more. <%= link_to "View all TODOs", todos_path(view: "by_event"), class: "link link-primary" %>
+                ... and <%= @todos.size - 20 %> more.
+                <%= link_to "View all TODOs", todos_path(view: "by_event"), class: "link link-primary" %>
               </p>
             <% end %>
           </div>

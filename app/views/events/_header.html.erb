@@ -1,7 +1,10 @@
 <%# locals: (event:, participation: nil) %>
 
 <div
-  class="w-full md:h-[198px] lg:h-[267px] xl:h-[336px] 2xl:h-[405px] justify-center align-center flex mt-3 border-t border-b hotwire-native:hidden"
+  class="
+    w-full md:h-[198px] lg:h-[267px] xl:h-[336px] 2xl:h-[405px] justify-center align-center flex mt-3 border-t
+    border-b hotwire-native:hidden
+  "
   style="
     view-transition-name: hero;
     <% if event.static_metadata.banner_background.start_with?("data:") %>
@@ -11,7 +14,8 @@
     <% else %>
       background: <%= event.static_metadata.banner_background %>;
     <% end %>
-  ">
+  "
+>
   <%= image_tag image_path(event.banner_image_path), alt: event.name, class: "w-full md:container" %>
 </div>
 
@@ -32,10 +36,11 @@
 
       <div class="flex-col flex justify-center">
         <h1 class="mb-2 text-black font-bold"><%= title event.name %></h1>
+
         <h3 class="text-[#636B74]">
-          <%= event.to_location.to_html %>
-          • <%= event.formatted_dates %>
+          <%= event.to_location.to_html %> • <%= event.formatted_dates %>
         </h3>
+
         <%= external_link_to event.website.gsub(%r{^https?://}, "").gsub(%r{/$}, ""), event.website, class: "break-all" %>
       </div>
     </div>
@@ -51,16 +56,19 @@
       <% if Current.user&.admin? %>
         <div class="flex items-center gap-2 mt-4 pt-4 border-t border-gray-200">
           <span class="text-xs text-gray-400 uppercase tracking-wide">Admin</span>
+
           <%= ui_tooltip "Reimport Event" do %>
             <%= ui_button url: reimport_event_path(event), method: :post, kind: :neutral, size: :sm do %>
               <%= fa "download", size: :sm %>
             <% end %>
           <% end %>
+
           <%= ui_tooltip "Reindex Event" do %>
             <%= ui_button url: reindex_event_path(event), method: :post, kind: :neutral, size: :sm do %>
               <%= fa "arrows-rotate", size: :sm %>
             <% end %>
           <% end %>
+
           <%= ui_tooltip "Open in Avo" do %>
             <%= ui_button url: avo.resources_event_path(event), target: :_blank, kind: :neutral, size: :sm do %>
               <%= fa :avocado, size: :sm %>

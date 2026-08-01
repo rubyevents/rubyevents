@@ -13,9 +13,14 @@
               <div class="form-control">
                 <label class="label cursor-pointer justify-start gap-4">
                   <%= form.check_box :feedback_enabled, class: "toggle toggle-primary" %>
+
                   <div>
                     <span class="label-text font-medium">Allow feedback on your talks</span>
-                    <p class="text-sm text-gray-500">When enabled, viewers can share feedback about your talks (liked it, would recommend, beginner-friendly, etc.). The "Where did you watch?" option will still be available regardless.</p>
+
+                    <p class="text-sm text-gray-500">
+                      When enabled, viewers can share feedback about your talks (liked it, would recommend,
+                      beginner-friendly, etc.). The "Where did you watch?" option will still be available regardless.
+                    </p>
                   </div>
                 </label>
               </div>
@@ -26,14 +31,19 @@
         <div class="card bg-base-100 shadow-sm border">
           <div class="card-body">
             <h2 class="card-title text-lg">Privacy</h2>
+
             <p class="text-sm text-gray-500 mb-4">Control what others can see on your profile.</p>
 
             <div class="form-control">
               <label class="label cursor-pointer justify-start gap-4">
                 <%= form.check_box :wrapped_public, class: "toggle toggle-primary" %>
+
                 <div>
                   <span class="label-text font-medium">Make Wrapped public</span>
-                  <p class="text-sm text-gray-500">Allow others to view your year in review (Wrapped) on your profile.</p>
+
+                  <p class="text-sm text-gray-500">
+                    Allow others to view your year in review (Wrapped) on your profile.
+                  </p>
                 </div>
               </label>
             </div>
@@ -42,6 +52,7 @@
               <div class="form-control opacity-50">
                 <label class="label cursor-not-allowed justify-start gap-4">
                   <input type="checkbox" class="toggle toggle-primary" disabled checked>
+
                   <div>
                     <span class="label-text font-medium">Profile shows up in global search</span>
                     <p class="text-sm text-gray-500">As a speaker, your profile is always searchable.</p>
@@ -52,6 +63,7 @@
               <div class="form-control">
                 <label class="label cursor-pointer justify-start gap-4">
                   <%= form.check_box :searchable, class: "toggle toggle-primary" %>
+
                   <div>
                     <span class="label-text font-medium">Profile shows up in global search</span>
                     <p class="text-sm text-gray-500">Allow your profile to appear in search results.</p>
@@ -72,12 +84,14 @@
                 <span class="label-text font-medium">Event distance</span>
                 <span class="label-text-alt" id="distance-value"><%= Current.user.distance %> km</span>
               </label>
+
               <%= form.range_field :distance,
                     min: 0,
                     max: 20_000,
                     step: 250,
                     class: "range range-primary",
                     oninput: "document.getElementById('distance-value').textContent = this.value + ' km'" %>
+
               <div class="flex justify-between text-xs text-gray-400 mt-1">
                 <span>0 km</span>
                 <span>20,000 km</span>

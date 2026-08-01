@@ -59,7 +59,10 @@
                 <% track = talk_track && tracks.find { |track| track["name"] == talk_track } %>
 
                 <% if track && talk_track %>
-                  <span class="py-1 px-2 mb-4 rounded flex-inline justify-center" style="background: <%= track["color"] %>; color: <%= track["text_color"] %>">
+                  <span
+                    class="py-1 px-2 mb-4 rounded flex-inline justify-center"
+                    style="background: <%= track["color"] %>; color: <%= track["text_color"] %>"
+                  >
                     <%= talk_track %>
                   </span>
 
@@ -72,7 +75,9 @@
                 <% end %>
 
                 <div class="flex-col">
-                  <div class="text-md font-bold"><%= talk.title %></div><br>
+                  <div class="text-md font-bold"><%= talk.title %></div>
+                  <br>
+
                   <div class="text-gray-500 group-hover:text-white inline-flex flex-wrap gap-2 justify-center">
                     <% talk.speakers.each do |speaker| %>
                       <%= ui_avatar(speaker, outline: true, size: :sm) %>

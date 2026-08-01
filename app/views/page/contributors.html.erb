@@ -3,12 +3,17 @@
     <h1 class="text-4xl font-bold">Contributors</h1>
 
     <div class="flex gap-2">
-      <button onclick="document.getElementById('detailed-view').classList.remove('hidden'); document.getElementById('compact-view').classList.add('hidden'); this.classList.add('btn-primary'); this.classList.remove('btn-outline'); this.nextElementSibling.classList.remove('btn-primary'); this.nextElementSibling.classList.add('btn-outline');"
-              class="btn btn-sm btn-primary">
+      <button
+        onclick="document.getElementById('detailed-view').classList.remove('hidden'); document.getElementById('compact-view').classList.add('hidden'); this.classList.add('btn-primary'); this.classList.remove('btn-outline'); this.nextElementSibling.classList.remove('btn-primary'); this.nextElementSibling.classList.add('btn-outline');"
+        class="btn btn-sm btn-primary"
+      >
         Detailed
       </button>
-      <button onclick="document.getElementById('compact-view').classList.remove('hidden'); document.getElementById('detailed-view').classList.add('hidden'); this.classList.add('btn-primary'); this.classList.remove('btn-outline'); this.previousElementSibling.classList.remove('btn-primary'); this.previousElementSibling.classList.add('btn-outline');"
-              class="btn btn-sm btn-outline">
+
+      <button
+        onclick="document.getElementById('compact-view').classList.remove('hidden'); document.getElementById('detailed-view').classList.add('hidden'); this.classList.add('btn-primary'); this.classList.remove('btn-outline'); this.previousElementSibling.classList.remove('btn-primary'); this.previousElementSibling.classList.add('btn-outline');"
+        class="btn btn-sm btn-outline"
+      >
         Compact
       </button>
     </div>
@@ -16,8 +21,9 @@
 
   <article class="prose mb-8">
     <p>
-      Thank you to all <%= pluralize(@contributors.count, "contributor") %> who have helped make RubyEvents.org possible!
-      Every contribution, big or small, helps improve the Ruby community's access to quality educational content.
+      Thank you to all <%= pluralize(@contributors.count, "contributor") %> who have helped make RubyEvents.org
+      possible! Every contribution, big or small, helps improve the Ruby community's access to quality educational
+      content.
     </p>
   </article>
 
@@ -38,6 +44,7 @@
             <% if contributor.name.present? %>
               <div class="font-semibold text-sm break-words mb-1 flex items-center justify-center gap-1">
                 <span><%= contributor.name %></span>
+
                 <% if contributor.user %>
                   <%= fa("circle-user", class: "fill-gray-500", size: :xs, title: "Has a RubyVideo profile") %>
                 <% end %>
@@ -48,6 +55,7 @@
             <% else %>
               <div class="font-semibold text-sm break-words flex items-center justify-center gap-1">
                 <span>@<%= contributor.login %></span>
+
                 <% if contributor.user %>
                   <%= fa("circle-user", class: "fill-gray-500", size: :xs, title: "Has a RubyVideo profile") %>
                 <% end %>
@@ -72,7 +80,12 @@
                   rel: contributor.user ? nil : "noopener noreferrer",
                   title: "#{contributor.name.present? ? contributor.name : "@#{contributor.login}"} (@#{contributor.login})#{" - Has a RubyVideo profile" if contributor.user}",
                   class: "group aspect-square" do %>
-              <div class="w-full h-full rounded-full overflow-hidden border-2 border-gray-200 hover:scale-110 transition-transform">
+              <div
+                class="
+                  w-full h-full rounded-full overflow-hidden border-2 border-gray-200 hover:scale-110
+                  transition-transform
+                "
+              >
                 <%= image_tag contributor.avatar_url,
                       alt: contributor.login,
                       class: "w-full h-full object-cover" %>
@@ -88,7 +101,15 @@
     </div>
   <% else %>
     <div class="alert alert-info">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+        ></path>
+      </svg>
+
       <span>Unable to load contributors at this time. Please try again later.</span>
     </div>
   <% end %>

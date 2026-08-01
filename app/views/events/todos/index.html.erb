@@ -19,6 +19,7 @@
                 <th>Content</th>
               </tr>
             </thead>
+
             <tbody>
               <% @todos.each do |todo| %>
                 <tr>
@@ -27,6 +28,7 @@
                       <%= File.basename(todo.file) %>:<%= todo.line %>
                     <% end %>
                   </td>
+
                   <td><code class="text-xs break-all"><%= todo.content %></code></td>
                 </tr>
               <% end %>

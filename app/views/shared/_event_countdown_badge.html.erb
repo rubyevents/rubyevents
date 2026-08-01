@@ -1,6 +1,11 @@
 <% if event.static_metadata.cancelled? %>
   <div class="flex flex-col justify-center">
-    <div class="self-end w-16 h-16 bg-red-600 text-white rounded-xl flex flex-col items-center justify-center text-xs leading-none">
+    <div
+      class="
+        self-end w-16 h-16 bg-red-600 text-white rounded-xl flex flex-col items-center justify-center text-xs
+        leading-none
+      "
+    >
       <div class="text-[11px] font-bold">Cancelled</div>
     </div>
   </div>
@@ -10,19 +15,34 @@
 
   <% if days == 0 || today %>
     <div class="flex flex-col justify-center">
-      <div class="self-end w-16 h-16 bg-[#636B74] text-white rounded-xl flex flex-col items-center justify-center text-xs leading-none">
+      <div
+        class="
+          self-end w-16 h-16 bg-[#636B74] text-white rounded-xl flex flex-col items-center justify-center text-xs
+          leading-none
+        "
+      >
         <div class="text-[12px]">Today</div>
       </div>
     </div>
   <% elsif days == 1 %>
     <div class="flex flex-col justify-center">
-      <div class="self-end w-16 h-16 bg-[#636B74] text-white rounded-xl flex flex-col items-center justify-center text-xs leading-none">
+      <div
+        class="
+          self-end w-16 h-16 bg-[#636B74] text-white rounded-xl flex flex-col items-center justify-center text-xs
+          leading-none
+        "
+      >
         <div class="text-[12px]">Tomorrow</div>
       </div>
     </div>
   <% elsif days >= 0 %>
     <div class="flex flex-col justify-center">
-      <div class="self-end w-16 h-16 bg-[#636B74] text-white rounded-xl flex flex-col items-center justify-center text-xs leading-none">
+      <div
+        class="
+          self-end w-16 h-16 bg-[#636B74] text-white rounded-xl flex flex-col items-center justify-center text-xs
+          leading-none
+        "
+      >
         <div class="text-lg font-bold"><%= days %></div>
         <div class="mt-1 text-[13px]"><%= "day".pluralize(days) %></div>
       </div>

@@ -2,7 +2,8 @@
   <div
     id="transcripts_search_results"
     class="<%= @groups.any? ? "py-4 border-t" : "hidden" %>"
-    data-spotlight-search-target="transcriptsSearchResults">
+    data-spotlight-search-target="transcriptsSearchResults"
+  >
     <% if @groups.any? %>
       <div class="flex items-center flex-wrap gap-2 py-2">
         <span class="text-sm font-medium text-gray-600">In Transcripts</span>
@@ -30,7 +31,11 @@
                 <div class="text-sm font-semibold line-clamp-1 group-hover:underline"><%= group[:talk_title] %></div>
 
                 <div class="text-xs text-gray-500 line-clamp-1">
-                  <%= group[:speaker_names] %><% if group[:event_name].present? %> &bull; <%= group[:event_name] %><% end %>
+                  <%= group[:speaker_names] %>
+
+                  <% if group[:event_name].present? %>
+                    &bull; <%= group[:event_name] %>
+                  <% end %>
                 </div>
               </div>
             <% end %>
@@ -39,7 +44,15 @@
               <% group[:moments].each do |moment| %>
                 <%= link_to talk_path(group[:talk_slug], t: moment[:start_seconds]), target: "_top", role: "option", class: "flex items-baseline gap-2 rounded px-1.5 py-1 text-xs hover:bg-base-200" do %>
                   <span class="font-mono tabular-nums text-primary shrink-0"><%= seconds_to_formatted_duration(moment[:start_seconds]) %></span>
-                  <span class="line-clamp-1 text-base-content/70 [&_mark]:bg-info/20 [&_mark]:text-info [&_mark]:rounded [&_mark]:px-0.5 [&_mark]:font-medium"><%= sanitize(moment[:snippet], tags: ["mark"]) %></span>
+
+                  <span
+                    class="
+                      line-clamp-1 text-base-content/70 [&_mark]:bg-info/20 [&_mark]:text-info [&_mark]:rounded
+                      [&_mark]:px-0.5 [&_mark]:font-medium
+                    "
+                  >
+                    <%= sanitize(moment[:snippet], tags: ["mark"]) %>
+                  </span>
                 <% end %>
               <% end %>
             </div>

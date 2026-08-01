@@ -4,11 +4,13 @@
 <div class="space-y-4 flex-1">
   <% languages_watched.each do |language, count| %>
     <% percentage = (total_talks_watched.positive? ? (count.to_f / total_talks_watched * 100).round : 0) %>
+
     <div>
       <div class="flex justify-between mb-1">
         <span class="font-medium"><%= language %></span>
         <span class="text-gray-500"><%= count %> (<%= percentage %>%)</span>
       </div>
+
       <div class="bg-gray-100 rounded-full h-3">
         <div class="month-bar h-3" style="width: <%= percentage %>%"></div>
       </div>

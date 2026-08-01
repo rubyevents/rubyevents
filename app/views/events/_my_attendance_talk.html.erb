@@ -59,13 +59,17 @@
       <div class="text-xs font-medium <%= text_class %> truncate">
         <%= talk.title %>
       </div>
+
       <div class="text-xs text-gray-400 truncate">
         <%= talk.speakers.map(&:name).join(", ") %>
       </div>
     </div>
 
     <% if track %>
-      <span class="shrink-0 py-0.5 px-1.5 rounded text-[10px]" style="background: <%= track["color"] %>; color: <%= track["text_color"] %>">
+      <span
+        class="shrink-0 py-0.5 px-1.5 rounded text-[10px]"
+        style="background: <%= track["color"] %>; color: <%= track["text_color"] %>"
+      >
         <%= track["name"] %>
       </span>
     <% end %>

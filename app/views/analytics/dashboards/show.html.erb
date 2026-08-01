@@ -1,4 +1,3 @@
-
 <% content_for :head do %>
   <%= vite_javascript_tag "chartkick" %>
 <% end %>
@@ -11,14 +10,17 @@
       <h2 class="text-center mb-4">Daily visits</h2>
       <div class="bg-gray-300 rounded-lg animate-pulse h-[300px]"></div>
     <% end %>
+
     <%= turbo_frame_tag "daily_page_views", src: daily_page_views_analytics_dashboards_path, lazy: true do %>
       <h2 class="text-center mb-4">Daily page views</h2>
       <div class="bg-gray-300 rounded-lg animate-pulse h-[300px]"></div>
     <% end %>
+
     <%= turbo_frame_tag "monthly_visits", src: monthly_visits_analytics_dashboards_path, lazy: true do %>
       <h2 class="text-center mb-4">Monthly visits</h2>
       <div class="bg-gray-300 rounded-lg animate-pulse h-[300px]"></div>
     <% end %>
+
     <%= turbo_frame_tag "monthly_page_views", src: monthly_page_views_analytics_dashboards_path, lazy: true do %>
       <h2 class="text-center mb-4">Monthly page views</h2>
       <div class="bg-gray-300 rounded-lg animate-pulse h-[300px]"></div>

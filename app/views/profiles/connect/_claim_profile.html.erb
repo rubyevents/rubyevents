@@ -12,7 +12,8 @@
       <% if Current.user %>
         This Ruby passport is waiting for you! Claim it and start building your Ruby community presence.
       <% else %>
-        This Ruby passport is waiting for you! Sign in with your GitHub account to claim it and start building your Ruby community presence.
+        This Ruby passport is waiting for you! Sign in with your GitHub account to claim it and start building your Ruby
+        community presence.
       <% end %>
     </p>
   </div>
@@ -42,13 +43,11 @@
   <div class="pt-4">
     <% if Current.user %>
       <%= ui_button url: profiles_claims_path(id: params[:id]), kind: :primary, size: :lg, class: "px-8 shadow-lg", data: {turbo_method: :post} do %>
-        <%= fa "arrow-right", variant: :solid, class: "w-5 h-5 mr-2" %>
-        Claim my Passport
+        <%= fa "arrow-right", variant: :solid, class: "w-5 h-5 mr-2" %> Claim my Passport
       <% end %>
     <% else %>
       <%= ui_button url: new_session_path(connect_id: params[:id]), kind: :primary, size: :lg, class: "px-8 shadow-lg", data: {turbo_frame: "modal"} do %>
-        <%= fa "arrow-right", variant: :solid, class: "w-5 h-5 mr-2" %>
-        Claim my Passport
+        <%= fa "arrow-right", variant: :solid, class: "w-5 h-5 mr-2" %> Claim my Passport
       <% end %>
     <% end %>
   </div>

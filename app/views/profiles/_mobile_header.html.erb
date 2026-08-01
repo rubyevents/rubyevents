@@ -10,7 +10,13 @@
       <div class="flex justify-center gap-1 mt-1">
         <% understood_languages.each do |code| %>
           <%= ui_tooltip("Understands #{Language.by_code(code) || code}") do %>
-            <span class="text-sm leading-none" role="img" aria-label="Understands <%= Language.by_code(code) || code %>"><%= Language.emoji_flag(code) %></span>
+            <span
+              class="text-sm leading-none"
+              role="img"
+              aria-label="Understands <%= Language.by_code(code) || code %>"
+            >
+              <%= Language.emoji_flag(code) %>
+            </span>
           <% end %>
         <% end %>
       </div>

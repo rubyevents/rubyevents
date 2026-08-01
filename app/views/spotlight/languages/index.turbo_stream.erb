@@ -2,7 +2,8 @@
   <div
     id="languages_search_results"
     class="<%= @languages.any? ? 'py-4 border-t' : 'hidden' %>"
-    data-spotlight-search-target="languagesSearchResults">
+    data-spotlight-search-target="languagesSearchResults"
+  >
     <% if @languages.any? %>
       <div class="flex items-center flex-wrap gap-2 py-2">
         <span class="text-sm font-medium text-gray-600">Languages</span>
@@ -15,6 +16,7 @@
               <span class="text-lg"><%= language[:emoji_flag] %></span>
               <span class="font-medium"><%= language[:name] %></span>
             </div>
+
             <div class="flex items-center gap-4 text-sm text-gray-500">
               <span class="text-xs">(<%= pluralize(language[:talk_count], "talk") %>)</span>
             </div>

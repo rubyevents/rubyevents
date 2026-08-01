@@ -4,6 +4,7 @@
   <% if location.is_a?(OnlineLocation) %>
     <div>
       <h3 class="font-bold text-gray-900 mb-4">About Online Events</h3>
+
       <p class="text-gray-600 text-sm">
         Online events are virtual conferences, meetups, and workshops that you can attend from anywhere in the world.
       </p>
@@ -40,7 +41,8 @@
       <% end %>
       <% if location.bounds.present? %>
         data-map-bounds-value="<%= location.bounds.to_json %>"
-      <% end %>>
+      <% end %>
+    >
       <div class="flex items-center justify-between mb-4">
         <h3 class="font-bold text-gray-900"><%= map_title %></h3>
       </div>
@@ -51,10 +53,7 @@
         </div>
       <% end %>
 
-      <div
-        id="sidebar-map"
-        class="w-full h-96 rounded-xl overflow-hidden border"
-        data-map-target="container"></div>
+      <div id="sidebar-map" class="w-full h-96 rounded-xl overflow-hidden border" data-map-target="container"></div>
     </div>
   <% end %>
 
@@ -145,7 +144,11 @@
         <% cities.first(12).each do |city| %>
           <%= link_to city.path, class: "flex justify-between items-center py-0.5 rounded-lg hover:bg-gray-50 transition-colors" do %>
             <span class="text-gray-700">
-              <%= city.name %><% if city.state.present? %><span class="text-gray-400">, <%= city.state.code %></span><% end %>
+              <%= city.name %>
+
+              <% if city.state.present? %>
+                <span class="text-gray-400">, <%= city.state.code %></span>
+              <% end %>
             </span>
 
             <%= ui_badge(city.events_count, kind: :secondary, outline: true, size: :sm) %>

@@ -21,10 +21,13 @@
       <div class="text-center py-12">
         <div class="max-w-md mx-auto">
           <h2 class="text-2xl font-bold text-gray-900 mb-4">Nothing in progress</h2>
-          <p class="text-gray-600 mb-6">Start watching a talk and it will appear here so you can pick up where you left off.</p>
+
+          <p class="text-gray-600 mb-6">
+            Start watching a talk and it will appear here so you can pick up where you left off.
+          </p>
+
           <%= link_to talks_path, class: "btn btn-primary" do %>
-            <%= fa("video", size: :sm, class: "mr-2") %>
-            Browse Talks
+            <%= fa("video", size: :sm, class: "mr-2") %> Browse Talks
           <% end %>
         </div>
       </div>
@@ -62,6 +65,7 @@
             <div class="text-sm text-gray-500"><%= pluralize(@in_progress_talks.size, "talk") %> in progress</div>
           </div>
         </div>
+
         <%= fa("arrow-right-long", size: :sm, class: "fill-gray-400") %>
       <% end %>
     <% end %>
@@ -119,8 +123,7 @@
           <% end %>
 
           <%= link_to talks_path, class: "btn btn-primary" do %>
-            <%= fa("video", size: :sm, class: "mr-2") %>
-            Browse Talks
+            <%= fa("video", size: :sm, class: "mr-2") %> Browse Talks
           <% end %>
         </div>
       </div>

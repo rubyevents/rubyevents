@@ -14,19 +14,21 @@
         </div>
 
         <div class="text-[#636B74] group-hover:text-inherit">
-          <% if event.formatted_dates != "unknown" %><%= event.formatted_dates %> • <% end %>
+          <% if event.formatted_dates != "unknown" %>
+            <%= event.formatted_dates %> •
+          <% end %>
+
           <%= event.to_location.to_html(show_links: false) %>
         </div>
 
         <% event.cfps.open.each do |cfp| %>
           <div class="text-[#636B74] group-hover:text-inherit font-bold">
             <%= cfp.name.presence || "Call for Proposals" %>
+
             <% if cfp.close_date.present? && (cfp.open_date.blank? || cfp.open_date.past?) %>
-              - closes on
-              <%= cfp.formatted_close_date %>
+              - closes on <%= cfp.formatted_close_date %>
             <% elsif cfp.open_date.present? && cfp.open_date.future? %>
-              - opens on
-              <%= cfp.formatted_open_date %>
+              - opens on <%= cfp.formatted_open_date %>
             <% elsif cfp.open_ended? %>
               - always open
             <% end %>

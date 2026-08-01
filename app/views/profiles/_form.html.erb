@@ -47,6 +47,7 @@
 
     <div>
       <%= form.label :pronouns %>
+
       <div data-controller="pronouns-select">
         <%= form.select :pronouns_type, User::PRONOUNS, {}, class: "select select-bordered w-full", data: {action: "pronouns-select#change", pronouns_select_target: "type"} %>
         <%= form.text_field :pronouns, placeholder: "Custom pronouns", class: "hidden mt-3 input input-bordered w-full", data: {pronouns_select_target: "input"} %>
@@ -60,9 +61,11 @@
 
     <div class="col-span-2">
       <%= form.label :languages, "Languages" %>
+
       <p class="text-sm text-base-content/60 mb-2">This helps us recommend talks in languages you understand.</p>
 
       <% watched_counts = user.languages.watched_counts %>
+
       <% grouped_languages = Language.used.group_by do |code, _name|
            if user.languages.understands?(code)
              :understands
@@ -79,7 +82,9 @@
           <% next if languages.blank? %>
 
           <div>
-            <h4 class="text-xs font-semibold text-base-content/50 uppercase tracking-wider mb-1"><%= heading %> (<%= languages.size %>)</h4>
+            <h4 class="text-xs font-semibold text-base-content/50 uppercase tracking-wider mb-1">
+              <%= heading %> (<%= languages.size %>)
+            </h4>
 
             <div class="flex flex-col gap-1">
               <% languages.each do |code, name| %>
@@ -88,9 +93,11 @@
                    else
                      (user.languages.does_not_understand?(code) ? "does_not_understand" : "unset")
                    end %>
+
                 <div class="flex flex-wrap items-center justify-between gap-2 py-1">
                   <span class="flex items-center gap-2">
                     <span><%= Language.emoji_flag(code) %> <%= name %></span>
+
                     <% if (watched = watched_counts[code].to_i) > 0 %>
                       <span class="text-xs text-base-content/50">You've watched <%= pluralize(watched, "talk") %></span>
                     <% end %>

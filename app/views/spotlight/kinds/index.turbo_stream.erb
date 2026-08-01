@@ -2,8 +2,8 @@
   <div
     id="kinds_search_results"
     class="<%= @kinds.any? ? 'py-4 border-t' : 'hidden' %>"
-    data-spotlight-search-target="kindsSearchResults">
-
+    data-spotlight-search-target="kindsSearchResults"
+  >
     <% if @kinds.any? %>
       <% talk_kinds = @kinds.select { |k| k[:category] == "talk" } %>
       <% event_kinds = @kinds.select { |k| k[:category] == "event" } %>

@@ -10,6 +10,7 @@
       <h2 class="text-lg font-bold text-primary">My Attendance</h2>
       <p class="text-xs text-gray-500">Tap talks you attended in person</p>
     </div>
+
     <div id="attendance-counter" class="text-right">
       <div class="text-xl font-bold text-primary"><%= attended_count %>/<%= total_talks %></div>
       <div class="text-xs text-gray-500">in-person</div>
@@ -22,6 +23,7 @@
         <div id="attendance-navigation" class="flex gap-1 justify-center flex-wrap mb-2">
           <% days.each_with_index do |day, index| %>
             <% date_string = Date.parse(day.dig("date")).strftime("%a %d") %>
+
             <a href="#attendance-day-<%= index %>" class="btn btn-xs btn-outline">
               <%= day.dig("name") || date_string %>
             </a>

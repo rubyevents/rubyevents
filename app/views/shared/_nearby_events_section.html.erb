@@ -10,9 +10,11 @@
 
   <% events_by_date.each do |_, date_nearby_events| %>
     <% first_event = date_nearby_events.first[:event] %>
+
     <div class="mb-8">
       <div class="flex items-center gap-2 mb-4">
         <span class="w-2 h-2 rounded-full bg-gray-400"></span>
+
         <span class="text-lg font-semibold text-gray-800">
           <% if first_event.date_precision == "day" && first_event.start_date.present? %>
             <%= first_event.start_date.strftime("%b %-d") %>

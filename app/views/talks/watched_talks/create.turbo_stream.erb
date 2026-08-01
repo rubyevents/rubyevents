@@ -1,13 +1,11 @@
-<%
-  video_provider = case @talk.video_provider
+<% video_provider = case @talk.video_provider
   when "mp4" then "mp4"
   when "parent" then @talk.parent_talk.video_provider
   else @talk.video_provider
   end
 
   video_provider = @talk.video_provider if @talk.parent_talk&.video_provider == "children"
-  video_id = (@talk.video_provider == "parent") ? @talk.parent_talk.video_id : @talk.video_id
-%>
+  video_id = (@talk.video_provider == "parent") ? @talk.parent_talk.video_id : @talk.video_id %>
 
 <%= turbo_stream.update "modal" %>
 

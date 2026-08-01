@@ -13,6 +13,7 @@
     <h2 class="text-2xl font-bold text-base-content">
       🎉 Awesome! You Discovered a Friend
     </h2>
+
     <p class="text-base-content/70 max-w-md">
       Connect with <%= found_user.name %> to expand your network and discover new opportunities together.
     </p>
@@ -24,14 +25,17 @@
       <%= fa "comments", variant: :solid, class: "w-5 h-5 text-success flex-shrink-0" %>
       <span>Start conversations</span>
     </div>
+
     <div class="flex items-center space-x-2 text-base-content/80">
       <%= fa :calendar, variant: :solid, class: "w-5 h-5 text-success flex-shrink-0" %>
       <span>Share events</span>
     </div>
+
     <div class="flex items-center space-x-2 text-base-content/80">
       <%= fa "graduation-cap", variant: :solid, class: "w-5 h-5 text-success flex-shrink-0" %>
       <span>Exchange knowledge</span>
     </div>
+
     <div class="flex items-center space-x-2 text-base-content/80">
       <%= fa :sparkles, variant: :solid, class: "w-5 h-5 text-success flex-shrink-0" %>
       <span>Collaborate on projects</span>
@@ -43,14 +47,12 @@
     <% if Current.user.present? %>
       <% if false # enable this when we have a way to connect to other users %>
         <%= ui_button url: "#", kind: :primary, size: :lg, class: "px-8 shadow-lg btn-disabled hidden" do %>
-          <%= fa :plus, variant: :solid, class: "w-5 h-5 mr-2" %>
-          Connect
+          <%= fa :plus, variant: :solid, class: "w-5 h-5 mr-2" %> Connect
         <% end %>
       <% end %>
     <% else %>
       <%= ui_button url: new_session_path(connect_to: params[:id]), kind: :primary, size: :lg, class: "px-8 shadow-lg", data: {turbo_frame: "modal"} do %>
-        <%= fa "arrow-right", variant: :solid, class: "w-5 h-5 mr-2" %>
-        Sign In and Connect
+        <%= fa "arrow-right", variant: :solid, class: "w-5 h-5 mr-2" %> Sign In and Connect
       <% end %>
 
       <!-- Network indicator -->

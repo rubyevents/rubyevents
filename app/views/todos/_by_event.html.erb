@@ -17,6 +17,7 @@
         <% series_data[:events].each do |event_data| %>
           <div class="collapse collapse-arrow bg-base-300 mb-1">
             <input type="checkbox">
+
             <div class="collapse-title py-2 min-h-0 font-medium flex items-center gap-2">
               <span class="badge badge-sm badge-secondary"><%= event_data[:total_count] %></span>
 
@@ -31,6 +32,7 @@
                 <span><%= event_data[:event_slug] %></span>
               <% end %>
             </div>
+
             <div class="collapse-content">
               <table class="table table-xs">
                 <thead>
@@ -39,6 +41,7 @@
                     <th>Content</th>
                   </tr>
                 </thead>
+
                 <tbody>
                   <% event_data[:files].each do |file, todos| %>
                     <% todos.each do |todo| %>
@@ -48,6 +51,7 @@
                             <%= File.basename(todo.file) %>:<%= todo.line %>
                           <% end %>
                         </td>
+
                         <td><code class="text-xs break-all"><%= todo.content %></code></td>
                       </tr>
                     <% end %>

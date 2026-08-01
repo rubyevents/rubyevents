@@ -5,7 +5,10 @@
     <section class="py-12 px-8 rounded-2xl bg-gradient-to-br from-stone-800 to-stone-950 text-white overflow-visible relative">
       <div class="absolute inset-0 opacity-5 overflow-hidden rounded-2xl">
         <% Stamp.country_stamps.sample(20).each_with_index do |stamp, i| %>
-          <div class="absolute" style="top: <%= rand(0..90) %>%; left: <%= rand(0..90) %>%; transform: rotate(<%= rand(-30..30) %>deg); opacity: 0.4;">
+          <div
+            class="absolute"
+            style="top: <%= rand(0..90) %>%; left: <%= rand(0..90) %>%; transform: rotate(<%= rand(-30..30) %>deg); opacity: 0.4;"
+          >
             <%= image_tag image_path("stamps/#{stamp.file_path}"), alt: stamp.name, class: "w-16 h-16", loading: "lazy" %>
           </div>
         <% end %>
@@ -19,7 +22,11 @@
         <div class="flex-1 flex flex-col gap-4 text-center lg:text-left">
           <div>
             <h2 class="text-2xl font-bold mb-2">Get Your Ruby Passport</h2>
-            <p class="text-white/80">Collect stamps from Ruby events around the world. Every conference and meetup you attend adds a stamp to your passport.</p>
+
+            <p class="text-white/80">
+              Collect stamps from Ruby events around the world. Every conference and meetup you attend adds a stamp to
+              your passport.
+            </p>
           </div>
 
           <div class="flex flex-wrap justify-center lg:justify-start gap-3">

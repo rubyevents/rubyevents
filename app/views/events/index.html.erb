@@ -4,19 +4,35 @@
       <%= title "Upcoming Events" %>
     </h1>
 
-    <div class="mt-2 flex flex-col gap-3 md:flex-row md:items-stretch md:justify-between md:gap-4 md:border-b md:border-gray-200">
+    <div
+      class="
+        mt-2 flex flex-col gap-3 md:flex-row md:items-stretch md:justify-between md:gap-4 md:border-b
+        md:border-gray-200
+      "
+    >
       <%= render "events/collections_navigation", active: :upcoming %>
 
       <div class="flex shrink-0 items-center overflow-x-auto pb-2 md:pb-1">
         <div class="tabs tabs-boxed">
-          <button type="button" class="tab tab-active" data-events-view-switcher-target="button" data-events-view-switcher-view-param="preview" data-action="click->events-view-switcher#show">
+          <button
+            type="button"
+            class="tab tab-active"
+            data-events-view-switcher-target="button"
+            data-events-view-switcher-view-param="preview"
+            data-action="click->events-view-switcher#show"
+          >
             Preview
           </button>
 
-          <button type="button" class="tab" data-events-view-switcher-target="button" data-events-view-switcher-view-param="list" data-action="click->events-view-switcher#show">
+          <button
+            type="button"
+            class="tab"
+            data-events-view-switcher-target="button"
+            data-events-view-switcher-view-param="list"
+            data-action="click->events-view-switcher#show"
+          >
             List
           </button>
-
         </div>
       </div>
     </div>

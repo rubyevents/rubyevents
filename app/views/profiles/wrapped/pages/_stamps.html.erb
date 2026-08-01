@@ -5,6 +5,7 @@
   <% if country_stamps.any? %>
     <div>
       <p class="text-sm font-semibold mb-2 text-gray-600">🌍 Countries Visited</p>
+
       <div class="stamp-grid">
         <% country_stamps.first(6).each do |stamp| %>
           <div class="stamp-item">
@@ -12,6 +13,7 @@
           </div>
         <% end %>
       </div>
+
       <% if country_stamps.count > 6 %>
         <p class="text-xs text-gray-500 mt-2 text-center">+ <%= country_stamps.count - 6 %> more</p>
       <% end %>
@@ -21,6 +23,7 @@
   <% if event_stamps.any? %>
     <div>
       <p class="text-sm font-semibold mb-2 text-gray-600">🎪 Event Stamps</p>
+
       <div class="stamp-grid">
         <% event_stamps.first(6).each do |stamp| %>
           <div class="stamp-item">
@@ -28,6 +31,7 @@
           </div>
         <% end %>
       </div>
+
       <% if event_stamps.count > 6 %>
         <p class="text-xs text-gray-500 mt-2 text-center">+ <%= event_stamps.count - 6 %> more</p>
       <% end %>
@@ -37,6 +41,7 @@
   <% if achievement_stamps.any? %>
     <div>
       <p class="text-sm font-semibold mb-2 text-gray-600">🏆 Achievements</p>
+
       <div class="stamp-grid">
         <% achievement_stamps.each do |stamp| %>
           <div class="stamp-item">

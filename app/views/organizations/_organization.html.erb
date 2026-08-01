@@ -7,6 +7,7 @@
               alt: "#{organization.name} Logo",
               loading: "lazy",
               onerror: "this.style.display='none'; this.nextElementSibling.style.display='flex';" %>
+
         <div class="avatar placeholder hidden">
           <div class="w-full h-full bg-gray-100 text-gray-600 flex items-center justify-center">
             <span class="text-sm font-bold"><%= organization.name.split(" ").map(&:first).join.first(2) %></span>

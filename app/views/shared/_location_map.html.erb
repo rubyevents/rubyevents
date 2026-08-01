@@ -35,7 +35,8 @@
       data-map-layers-value="<%= all_layers.to_json %>"
       <% if location.bounds.present? %>
         data-map-bounds-value="<%= location.bounds.to_json %>"
-      <% end %>>
+      <% end %>
+    >
       <div class="flex flex-col gap-4 mb-6">
         <div class="flex items-center justify-between">
           <h2 class="text-xl font-bold text-gray-900">Events Map</h2>
@@ -60,10 +61,7 @@
         </div>
       </div>
 
-      <div
-        id="location-map"
-        class="w-full h-[600px] rounded-xl overflow-hidden border"
-        data-map-target="container"></div>
+      <div id="location-map" class="w-full h-[600px] rounded-xl overflow-hidden border" data-map-target="container"></div>
     </div>
 
     <% if online_events.any? %>
@@ -85,6 +83,7 @@
 
               <div class="flex-1 min-w-0">
                 <div class="font-medium text-gray-900 truncate"><%= event.name %></div>
+
                 <% if event.start_date %>
                   <div class="text-sm text-gray-500"><%= event.start_date.strftime("%b %d, %Y") %></div>
                 <% end %>

@@ -1,4 +1,5 @@
 <h2 class="text-2xl font-bold mb-2 text-center">Your Watching Calendar</h2>
+
 <p class="text-gray-500 text-center mb-6">When you tuned in throughout the year</p>
 
 <% if monthly_breakdown.any? %>
@@ -7,11 +8,14 @@
     <% (1..12).each do |month| %>
       <% count = monthly_breakdown[month] || 0 %>
       <% width = count.positive? ? (count.to_f / max_count * 100).round : 0 %>
+
       <div class="flex items-center gap-3">
         <span class="text-sm text-gray-500 w-8"><%= Date::ABBR_MONTHNAMES[month] %></span>
+
         <div class="flex-1 bg-gray-100 rounded-full h-2">
           <div class="month-bar" style="width: <%= width %>%"></div>
         </div>
+
         <span class="text-sm text-gray-600 w-8 text-right"><%= count %></span>
       </div>
     <% end %>
@@ -22,6 +26,7 @@
       <p class="font-semibold text-red-700">
         <%= Date::MONTHNAMES[most_active_month] %> was your most active month!
       </p>
+
       <p class="text-sm text-gray-600">
         You watched <%= monthly_breakdown[most_active_month] %> talks
       </p>

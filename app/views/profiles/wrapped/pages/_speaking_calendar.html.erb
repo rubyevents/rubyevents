@@ -1,4 +1,5 @@
 <h2 class="text-2xl font-bold mb-2 text-center">Your Speaking Calendar</h2>
+
 <p class="text-gray-500 text-center mb-6">When you took the stage in <%= year %></p>
 
 <% talks_by_month = talks_given_in_year.group_by { |t| t.date&.month }
@@ -9,6 +10,7 @@
     <% (1..12).each do |month| %>
       <div class="text-center">
         <p class="text-xs text-gray-400 mb-1"><%= month_names[month - 1] %></p>
+
         <div class="min-h-[48px] bg-gray-50 rounded-lg p-1 flex flex-wrap items-center justify-center gap-1">
           <% if talks_by_month[month] %>
             <% talks_by_month[month].each do |talk| %>
@@ -27,6 +29,7 @@
 
 <div class="mt-auto pt-4 text-center">
   <p class="text-sm text-gray-500">
-    <%= talks_given_in_year.count %> <%= (talks_given_in_year.count == 1) ? "talk" : "talks" %> across <%= talks_by_month.keys.count %> <%= (talks_by_month.keys.count == 1) ? "month" : "months" %>
+    <%= talks_given_in_year.count %> <%= (talks_given_in_year.count == 1) ? "talk" : "talks" %> across
+    <%= talks_by_month.keys.count %> <%= (talks_by_month.keys.count == 1) ? "month" : "months" %>
   </p>
 </div>

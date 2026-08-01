@@ -9,8 +9,11 @@
         </div>
       <% end %>
     </div>
+
     <p class="text-red-300 text-lg"><%= user.name %></p>
+
     <h1 class="text-6xl font-black text-white mt-2"><%= year %></h1>
+
     <p class="text-3xl font-bold text-red-200 mt-1">Wrapped</p>
     <p class="text-red-300/80 text-sm mt-4">RubyEvents.org/Wrapped</p>
   </div>
@@ -20,14 +23,17 @@
       <p class="text-6xl font-black text-white"><%= total_talks_watched %></p>
       <p class="text-red-200 text-lg mt-2">Talks Watched</p>
     </div>
+
     <div class="bg-white/10 backdrop-blur rounded-2xl p-8 text-center">
       <p class="text-6xl font-black text-white"><%= total_watch_time_hours %>h</p>
       <p class="text-red-200 text-lg mt-2">Watch Time</p>
     </div>
+
     <div class="bg-white/10 backdrop-blur rounded-2xl p-8 text-center">
       <p class="text-6xl font-black text-white"><%= events_attended_in_year.count %></p>
       <p class="text-red-200 text-lg mt-2">Events Attended</p>
     </div>
+
     <div class="bg-white/10 backdrop-blur rounded-2xl p-8 text-center">
       <p class="text-6xl font-black text-white"><%= countries_visited.count %></p>
       <p class="text-red-200 text-lg mt-2">Countries Visited</p>

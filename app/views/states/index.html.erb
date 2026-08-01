@@ -20,6 +20,7 @@
       <%= link_to country_states_path(alpha2: country.code), class: "card bg-white border hover:shadow-md transition-shadow" do %>
         <div class="card-body flex-row items-center gap-4">
           <span class="fi fi-<%= country.code %> text-4xl rounded"></span>
+
           <div>
             <h2 class="card-title text-lg"><%= country.name %></h2>
             <p class="text-sm text-gray-500"><%= country.states.count %> states/territories</p>

@@ -52,8 +52,8 @@
           </span>
         <% elsif user.events.any? %>
           <span class="flex items-center gap-1">
-            <%= fa "calendar", size: :xs, class: "text-gray-400" %>
-            <%= pluralize(user.events.count, "event") %> attended
+            <%= fa "calendar", size: :xs, class: "text-gray-400" %> <%= pluralize(user.events.count, "event") %>
+            attended
           </span>
         <% end %>
       </div>

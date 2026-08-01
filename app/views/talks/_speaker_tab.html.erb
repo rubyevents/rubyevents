@@ -80,7 +80,10 @@
             <% end %>
           </div>
 
-          <div class="flex gap-3 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-2" style="contain: inline-size;">
+          <div
+            class="flex gap-3 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-2"
+            style="contain: inline-size;"
+          >
             <% other_talks.each do |other_talk| %>
               <div class="snap-start flex-none w-[180px] sm:w-[220px]">
                 <%= render "talks/card_thumbnail", talk: other_talk, exclude_speaker: speaker %>

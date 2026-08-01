@@ -5,14 +5,17 @@
         <div class="flex items-center gap-2 mb-2">
           <span class="badge badge-primary"><%= todo_type[:count] %></span>
           <span class="font-medium">TODO:</span>
+
           <code class="bg-base-300 px-2 py-1 rounded text-sm"><%= todo_type[:normalized_content] %></code>
         </div>
 
         <div class="collapse collapse-arrow bg-base-300">
           <input type="checkbox">
+
           <div class="collapse-title py-2 min-h-0 font-medium">
             Show <%= todo_type[:count] %> <%= "occurrence".pluralize(todo_type[:count]) %>
           </div>
+
           <div class="collapse-content">
             <table class="table table-xs">
               <thead>
@@ -21,6 +24,7 @@
                   <th>Content</th>
                 </tr>
               </thead>
+
               <tbody>
                 <% todo_type[:matches].each do |todo| %>
                   <tr>
@@ -29,6 +33,7 @@
                         <code><%= todo.file %>:<%= todo.line %></code>
                       <% end %>
                     </td>
+
                     <td><code class="text-xs break-all"><%= todo.content %></code></td>
                   </tr>
                 <% end %>

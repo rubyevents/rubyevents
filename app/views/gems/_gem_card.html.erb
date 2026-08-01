@@ -4,6 +4,7 @@
       <%= fa("gem", size: :sm, class: "fill-primary") %>
       <code class="font-semibold text-lg font-mono"><%= topic_gem.gem_name %></code>
     </div>
+
     <% if topic_gem.version.present? %>
       <span class="badge badge-sm badge-primary badge-outline">v<%= topic_gem.version %></span>
     <% end %>

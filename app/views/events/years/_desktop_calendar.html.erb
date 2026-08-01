@@ -19,7 +19,9 @@
 
     <div class="<%= is_current_month ? "bg-red-50 ring-2 ring-inset ring-red-200" : "bg-white" %> p-6 relative <%= corner_classes %>">
       <div class="flex items-baseline justify-between mb-5">
-        <h2 class="text-xl font-bold <%= is_current_month ? "text-red-600" : "text-gray-900" %>"><%= Date::MONTHNAMES[month] %></h2>
+        <h2 class="text-xl font-bold <%= is_current_month ? "text-red-600" : "text-gray-900" %>">
+          <%= Date::MONTHNAMES[month] %>
+        </h2>
 
         <% if month_events.any? %>
           <span class="text-xs font-semibold px-2.5 py-1 rounded-full <%= is_current_month ? "bg-red-500 text-white" : "text-gray-500 bg-gray-100" %>">
@@ -36,10 +38,18 @@
 
               <div class="relative group/card" data-controller="hover-card" data-action="mouseenter->hover-card#reveal">
                 <%= link_to event_path(event) do %>
-                  <div class="w-20 h-20 rounded-xl overflow-hidden ring-2 ring-gray-100 group-hover/card:ring-4 group-hover/card:ring-[--brand-color] transition-all duration-200 transform group-hover/card:scale-105 shadow-sm" style="--brand-color: <%= featured_bg %>;">
+                  <div
+                    class="
+                      w-20 h-20 rounded-xl overflow-hidden ring-2 ring-gray-100 group-hover/card:ring-4
+                      group-hover/card:ring-[--brand-color] transition-all duration-200 transform
+                      group-hover/card:scale-105 shadow-sm
+                    "
+                    style="--brand-color: <%= featured_bg %>;"
+                  >
                     <%= image_tag event.avatar_image_path, alt: event.name, class: "w-full h-full object-cover", loading: "lazy" %>
                   </div>
                 <% end %>
+
                 <%= render HoverCard::EventComponent.new(record: event) %>
               </div>
             <% end %>

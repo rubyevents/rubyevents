@@ -1,5 +1,5 @@
 <%= content_tag :div, id: "flashes", class: "toast", data: {"turbo-temporary": true} do %>
   <% flash.each_with_index do |(key, content), ind| %>
-      <%= render "shared/toast", text: content, type: key %>
+    <%= render "shared/toast", text: content, type: key %>
   <% end %>
 <% end %>

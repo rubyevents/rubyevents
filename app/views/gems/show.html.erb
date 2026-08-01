@@ -2,6 +2,7 @@
   <%= link_to gems_path, class: "hotwire-native:hidden" do %>
     <div class="flex items-center gap-2 title text-primary">
       <%= fa("arrow-left-long", class: "transition-arrow fill-primary", size: :xs) %>
+
       <div>Gems</div>
     </div>
   <% end %>
@@ -132,19 +133,18 @@
   <% end %>
 
   <div class="flex items-center justify-between mt-4">
-    <h2 class="text-xl font-semibold">Latest talks about <code class="font-mono bg-base-200 px-1.5 py-0.5 rounded text-lg"><%= @gem.gem_name %></code></h2>
+    <h2 class="text-xl font-semibold">
+      Latest talks about <code class="font-mono bg-base-200 px-1.5 py-0.5 rounded text-lg"><%= @gem.gem_name %></code>
+    </h2>
 
     <% if @topic.talks_count.to_i > 8 %>
       <%= link_to talks_gem_path(gem_name: @gem.gem_name), class: "link text-primary flex items-center gap-1" do %>
-        View all <%= @topic.talks_count %> talks
-        <%= fa("arrow-right", size: :xs) %>
+        View all <%= @topic.talks_count %> talks <%= fa("arrow-right", size: :xs) %>
       <% end %>
     <% end %>
   </div>
 
-  <div
-    id="gem-talks"
-    class="grid min-w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 gallery">
+  <div id="gem-talks" class="grid min-w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 gallery">
     <%= render partial: "talks/card",
           collection: @talks,
           as: :talk,

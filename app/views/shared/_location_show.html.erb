@@ -56,7 +56,6 @@
               events: upcoming_events,
               limit: upcoming_events.size,
               empty_message: "No upcoming events." %>
-
       <% elsif upcoming_nearby_events.any? %>
         <%= render "shared/events_section",
               title: "Upcoming Events",
@@ -64,7 +63,6 @@
               empty_message: "No upcoming events in #{location.name}.",
               fallback_text: past_events.any? ? "View #{pluralize(past_events.count, "past event")} in #{location.name} →" : nil,
               fallback_path: past_events.any? ? location_past_path(location) : nil %>
-
       <% else %>
         <%= render "shared/events_section",
               title: "Upcoming Events",
@@ -72,7 +70,6 @@
               empty_message: "No upcoming events in #{location.name} yet.",
               fallback_text: past_events.any? ? "View #{pluralize(past_events.count, "past event")} →" : nil,
               fallback_path: past_events.any? ? location_past_path(location) : nil %>
-
       <% end %>
 
       <% if upcoming_nearby_events.any? %>

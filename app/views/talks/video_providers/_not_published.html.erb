@@ -3,14 +3,22 @@
 <div class="relative w-full h-full block max-w-full">
   <%= image_tag talk.thumbnail_xl, alt: "#{talk.title} thumbnail", class: "w-full h-full rounded-xl #{talk.thumbnail_classes.presence || "object-cover"}" %>
 
-  <div class="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center text-white bg-gradient-to-t from-black/80 via-black/50 to-black/30 rounded-xl">
+  <div
+    class="
+      absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center text-white bg-gradient-to-t
+      from-black/80 via-black/50 to-black/30 rounded-xl
+    "
+  >
     <div class="p-4 bg-white/20 backdrop-blur-sm rounded-full">
       <%= fa("upload", size: :xl, class: "fill-white") %>
     </div>
 
     <div class="flex flex-col gap-1">
       <div class="text-lg font-semibold">Not Published Yet</div>
-      <div class="text-sm text-white/80">This <%= talk.kind.humanize.downcase %> was recorded but hasn't been released</div>
+
+      <div class="text-sm text-white/80">
+        This <%= talk.kind.humanize.downcase %> was recorded but hasn't been released
+      </div>
     </div>
   </div>
 </div>

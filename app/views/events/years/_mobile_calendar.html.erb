@@ -4,6 +4,7 @@
   <% (1..12).each do |month| %>
     <% month_events = events_by_month[month] || [] %>
     <% is_current_month = month == current_month %>
+
     <div class="flex gap-4 p-3 <%= "bg-red-50" if is_current_month %>">
       <div class="w-8 shrink-0 pt-1">
         <span class="text-sm font-bold <%= is_current_month ? "text-red-600" : "text-gray-900" %>"><%= Date::ABBR_MONTHNAMES[month] %></span>

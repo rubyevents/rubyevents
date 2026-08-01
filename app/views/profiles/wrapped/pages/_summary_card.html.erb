@@ -28,6 +28,7 @@
       <p class="text-xl font-bold"><%= total_talks_watched %></p>
       <p class="text-[10px] text-red-200">Talks Watched</p>
     </div>
+
     <div class="text-center p-2 bg-white/10 rounded-lg">
       <p class="text-xl font-bold"><%= total_watch_time_hours %>h</p>
       <p class="text-[10px] text-red-200">Watch Time</p>
@@ -39,6 +40,7 @@
       <p class="text-xl font-bold"><%= events_attended_in_year.count %></p>
       <p class="text-[10px] text-red-200">Events Attended</p>
     </div>
+
     <div class="text-center p-2 bg-white/10 rounded-lg">
       <p class="text-xl font-bold"><%= countries_visited.count %></p>
       <p class="text-[10px] text-red-200">Countries Visited</p>
@@ -51,8 +53,12 @@
         <p class="text-xl font-bold"><%= talks_given_in_year.count %></p>
         <p class="text-[10px] text-red-200">Talks Given</p>
       </div>
+
       <div class="text-center p-2 bg-white/20 rounded-lg">
-        <p class="text-xl font-bold"><%= number_to_human(total_views_on_talks, units: {thousand: "K", million: "M"}, format: "%n%u") %></p>
+        <p class="text-xl font-bold">
+          <%= number_to_human(total_views_on_talks, units: {thousand: "K", million: "M"}, format: "%n%u") %>
+        </p>
+
         <p class="text-[10px] text-red-200">Views on YouTube</p>
       </div>
     </div>
@@ -84,5 +90,6 @@
 
 <div class="mt-auto pt-4 flex flex-col items-center">
   <%= image_tag "logo.png", class: "w-8 h-8 mb-1", alt: "RubyEvents.org" %>
+
   <p class="text-xs text-red-200 font-bold">RubyEvents.org/Wrapped</p>
 </div>

@@ -25,8 +25,10 @@
 
     <div class="flex items-center gap-2">
       <span class="text-sm text-gray-500">Sort:</span>
+
       <%= link_to "Events", country_cities_path(@country, sort: "events"),
             class: "btn btn-sm #{(@sort == "events") ? "btn-primary" : "btn-ghost"}" %>
+
       <%= link_to "A-Z", country_cities_path(@country, sort: "name"),
             class: "btn btn-sm #{(@sort == "name") ? "btn-primary" : "btn-ghost"}" %>
     </div>
@@ -40,10 +42,12 @@
           <div class="flex items-center justify-between mb-2">
             <div class="flex items-center gap-2">
               <span class="font-semibold text-gray-900"><%= city.name %></span>
+
               <% if @show_states && city.state_code.present? %>
                 <span class="text-sm text-gray-400"><%= city.state_code %></span>
               <% end %>
             </div>
+
             <%= ui_badge(city.events_count, kind: :secondary, outline: true, size: :sm) %>
           </div>
 

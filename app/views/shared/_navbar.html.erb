@@ -19,7 +19,6 @@
 
     <div class="flex justify-end items-center">
       <ul class="hidden lg:flex items-center gap-4 h-full">
-
         <div class="flex items-center gap-2">
           <ul class="desktop-menu">
             <% signed_in do %>
@@ -54,11 +53,13 @@
 
       <div class="flex lg:hidden gap-2 items-center">
         <%= render "shared/navbar/search_bar", id: "magnifying-glass-mobile" %>
+
         <% signed_in do %>
           <%= link_to profile_path(Current.user), class: "hover:opacity-80 flex items-center", title: "My Ruby Events Profile" do %>
             <%= render Ui::AvatarComponent.new(Current.user, size: :sm, size_class: "w-7", outline: true) %>
           <% end %>
         <% end %>
+
         <%= render "shared/user_mobile_dropdown" %>
       </div>
     </div>

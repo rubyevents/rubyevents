@@ -4,6 +4,7 @@
   <div class="block lg:flex gap-8 align-center justify-between">
     <div class="flex flex-col lg:flex-row gap-8 items-center lg:justify-right text-center lg:text-left mb-6 lg:mb-0">
       <span class="fi fi-<%= @country.alpha2.downcase %> border rounded w-36 text-[80pt]"></span>
+
       <div class="flex-col flex justify-center">
         <h1 class="mb-2 text-black font-bold">
           <%= title "Ruby Community in #{@state.name}" %>
@@ -21,7 +22,8 @@
   </div>
 
   <p class="mt-3 md:mt-9 mb-6 text-[#636B74] max-w-[700px]">
-    We have indexed <%= pluralize(@users.count, "Rubyist") %> and <%= pluralize(@events.count, "event") %> in <%= @state.name %>.
+    We have indexed <%= pluralize(@users.count, "Rubyist") %> and <%= pluralize(@events.count, "event") %> in
+    <%= @state.name %>.
   </p>
 
   <% if @users.any? %>

@@ -10,6 +10,7 @@
 
 <% location_preposition = location.is_a?(CoordinateLocation) ? "near" : "in" %>
 <% stats_count = location.is_a?(CoordinateLocation) ? nearby_users.count : users.count %>
+
 <%= render "shared/location_header",
       name: location.name,
       subtitle: location.to_location.to_text,

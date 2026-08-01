@@ -11,11 +11,15 @@
         <% end %>
 
         <% if @talks.empty? %>
-          <div class="flex justify-center border rounded" style="padding-top: 3rem; padding-bottom: 3rem; padding-right: 1rem; padding-left: 1rem">
+          <div
+            class="flex justify-center border rounded"
+            style="padding-top: 3rem; padding-bottom: 3rem; padding-right: 1rem; padding-left: 1rem"
+          >
             <div class="text-center text-gray-600">
               <p>
                 <b>No events found for this meetup.</b>
               </p>
+
               <p class="mt-2">
                 Feel free to contribute events and talks to this meetup if you know how to access the details.
               </p>
@@ -24,6 +28,5 @@
         <% end %>
       </div>
     </div>
-
   </div>
 <% end %>

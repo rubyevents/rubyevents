@@ -13,12 +13,16 @@
         <div class="text-sm">
           <p>
             <span class="mr-1"><%= Language.emoji_flag(code) %></span>
+
             <% if given %>
-              You've given <strong><%= pluralize(prompt[:count], "talk") %></strong> in <strong><%= language_name %></strong>. Want to add it to your profile?
+              You've given <strong><%= pluralize(prompt[:count], "talk") %></strong> in
+              <strong><%= language_name %></strong>. Want to add it to your profile?
             <% else %>
-              You've watched <strong><%= pluralize(prompt[:count], "talk") %></strong> in <strong><%= language_name %></strong>. Do you understand it?
+              You've watched <strong><%= pluralize(prompt[:count], "talk") %></strong> in
+              <strong><%= language_name %></strong>. Do you understand it?
             <% end %>
           </p>
+
           <p class="text-base-content/60">We'll use this to recommend talks.</p>
         </div>
 

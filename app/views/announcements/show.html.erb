@@ -18,16 +18,19 @@
           <% if @announcement.author_user %>
             <div class="flex items-center gap-2">
               <span>By</span>
+
               <%= link_to profile_path(@announcement.author_user), class: "flex items-center gap-2 hover:underline" do %>
                 <% if @announcement.author_user.github_handle.present? %>
                   <%= ui_avatar(@announcement.author_user, size: :xs) %>
                 <% end %>
+
                 <span>@<%= @announcement.author %></span>
               <% end %>
             </div>
           <% elsif @announcement.author.present? %>
             <div>By <%= @announcement.author %></div>
           <% end %>
+
           <% if !@announcement.published? %>
             <span class="badge badge-warning">Draft</span>
           <% end %>

@@ -1,14 +1,18 @@
 <%= render partial: "events/header", locals: {event: @event, participation: @participation} %>
 
 <% if hotwire_native_app? && @event.live? %>
-  <div class="container pt-4"
-       data-controller="bridge--live-activity"
-       data-bridge--live-activity-slug-value="<%= @event.slug %>"
-       data-bridge--live-activity-name-value="<%= @event.name %>">
-    <button type="button"
-            class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-white font-medium transition-opacity"
-            data-bridge--live-activity-target="button"
-            data-action="click->bridge--live-activity#start">
+  <div
+    class="container pt-4"
+    data-controller="bridge--live-activity"
+    data-bridge--live-activity-slug-value="<%= @event.slug %>"
+    data-bridge--live-activity-name-value="<%= @event.name %>"
+  >
+    <button
+      type="button"
+      class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-white font-medium transition-opacity"
+      data-bridge--live-activity-target="button"
+      data-action="click->bridge--live-activity#start"
+    >
       <span data-bridge--live-activity-target="icon"><%= fa("circle-dot") %></span>
       <span data-bridge--live-activity-target="label">Follow live schedule</span>
     </button>
@@ -34,6 +38,7 @@
               <div class="text-sm font-medium text-gray-600">Talks</div>
             <% end %>
           </div>
+
           <div class="text-center">
             <% if @event.retreat? %>
               <div class="text-3xl font-bold text-primary mb-1"><%= @event.participants.count %></div>
@@ -43,6 +48,7 @@
               <div class="text-sm font-medium text-gray-600">Speakers</div>
             <% end %>
           </div>
+
           <div class="text-center">
             <% if @event.meetup? %>
               <div class="text-3xl font-bold text-primary mb-1"><%= @event.talks.where(meta_talk: true).count %></div>
@@ -58,6 +64,7 @@
             <div class="text-center">
               <div class="flex justify-center gap-1 mb-2">
                 <% days_str = days_until.to_s.rjust(2, "0") %>
+
                 <% days_str.chars.each do |digit| %>
                   <div class="relative bg-gray-900 rounded w-8 h-12 flex items-center justify-center font-mono">
                     <div class="absolute inset-0 overflow-hidden rounded-t" style="clip-path: inset(0 0 50% 0);">
@@ -76,6 +83,7 @@
                   </div>
                 <% end %>
               </div>
+
               <div class="text-sm font-medium text-gray-600">Days Until</div>
             </div>
           <% elsif @event.today? && !@event.meetup? %>
@@ -83,6 +91,7 @@
               <div class="text-2xl font-bold text-green-600 mb-1 animate-pulse">
                 LIVE
               </div>
+
               <div class="text-sm font-medium text-gray-600">Happening Now</div>
             </div>
           <% end %>
@@ -90,13 +99,13 @@
       </section>
 
       <% if @event.meetup? && (@upcoming_meetup_events&.any? || @recent_meetup_events&.any?) %>
-
         <% if @upcoming_meetup_events&.any? %>
           <section class="flex flex-col w-full gap-4">
             <div class="flex items-center justify-between w-full">
               <h2 class="text-primary shrink-0">Upcoming Events</h2>
               <%= link_to "see all events", event_events_path(@event), class: "link text-right w-full" %>
             </div>
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <% @upcoming_meetup_events.each do |meta_talk| %>
                 <%= render "shared/meta_talk_card", meta_talk: meta_talk, compact_speakers: true, hide_date_sidebar: true %>
@@ -111,6 +120,7 @@
               <h2 class="text-primary shrink-0">Recent Events</h2>
               <%= link_to "see all events", event_events_path(@event), class: "link text-right w-full" %>
             </div>
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <% @recent_meetup_events.each do |meta_talk| %>
                 <%= render "shared/meta_talk_card", meta_talk: meta_talk, compact_speakers: true, hide_date_sidebar: true %>
@@ -124,6 +134,7 @@
             <h2 class="text-primary shrink-0">Keynotes</h2>
             <%= link_to "see all talks", event_talks_path(@event), class: "link text-right w-full" %>
           </div>
+
           <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
             <%= render partial: "talks/card",
                   collection: @keynotes,
@@ -145,6 +156,7 @@
             <h2 class="text-primary shrink-0">Talks</h2>
             <%= link_to "see all talks", event_talks_path(@event), class: "link text-right w-full" %>
           </div>
+
           <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             <%= render partial: "talks/card",
                   collection: @recent_talks,
@@ -166,10 +178,13 @@
             <h2 class="text-primary shrink-0">Speakers</h2>
             <%= link_to "see all speakers", event_speakers_path(@event), class: "link text-right w-full" %>
           </div>
+
           <div class="relative" data-controller="scroll">
-            <div class="overflow-x-auto scroll-smooth snap-x snap-mandatory"
-                 data-scroll-target="container"
-                 data-action="scroll->scroll#checkScroll">
+            <div
+              class="overflow-x-auto scroll-smooth snap-x snap-mandatory"
+              data-scroll-target="container"
+              data-action="scroll->scroll#checkScroll"
+            >
               <div class="flex pb-4 gap-4">
                 <% @featured_speakers.each do |speaker| %>
                   <div class="snap-start" data-scroll-target="card">
@@ -178,8 +193,11 @@
                 <% end %>
               </div>
             </div>
-            <div class="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white to-transparent pointer-events-none"
-                 data-scroll-target="gradient"></div>
+
+            <div
+              class="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white to-transparent pointer-events-none"
+              data-scroll-target="gradient"
+            ></div>
           </div>
         </section>
       <% end %>
@@ -190,10 +208,13 @@
             <h2 class="text-primary shrink-0">Sponsors</h2>
             <%= link_to "see all sponsors", event_sponsors_path(@event), class: "link text-right w-full" %>
           </div>
+
           <div class="relative" data-controller="scroll">
-            <div class="overflow-x-auto scroll-smooth snap-x snap-mandatory"
-                 data-scroll-target="container"
-                 data-action="scroll->scroll#checkScroll">
+            <div
+              class="overflow-x-auto scroll-smooth snap-x snap-mandatory"
+              data-scroll-target="container"
+              data-action="scroll->scroll#checkScroll"
+            >
               <div class="flex pb-4 gap-4">
                 <% @sponsors.each do |sponsor| %>
                   <div class="snap-start" data-scroll-target="card">
@@ -207,8 +228,11 @@
                 <% end %>
               </div>
             </div>
-            <div class="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white to-transparent pointer-events-none"
-                 data-scroll-target="gradient"></div>
+
+            <div
+              class="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white to-transparent pointer-events-none"
+              data-scroll-target="gradient"
+            ></div>
           </div>
         </section>
       <% end %>
@@ -218,16 +242,28 @@
           <div class="max-w-md mx-auto">
             <div class="text-6xl mb-4">🎤</div>
             <h2 class="text-2xl font-bold text-gray-900 mb-4">Coming Soon</h2>
+
             <p class="text-gray-600 mb-6">
-              Help us make this event complete! Do you have recordings, speaker info, or sponsor details for <%= @event.name %>?
+              Help us make this event complete! Do you have recordings, speaker info, or sponsor details for
+              <%= @event.name %>?
             </p>
+
             <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-left">
               <h3 class="font-semibold text-amber-800 mb-2">How to contribute:</h3>
+
               <ul class="text-sm text-amber-700 space-y-1">
                 <li>• Check the event website or program</li>
                 <li>• Look for recordings or speaker information</li>
-                <li>• <a href="https://github.com/rubyevents/rubyevents/issues/new?title=<%= CGI.escape("#{@event.name} Content") %>&body=<%= CGI.escape("<!-- Your Content Here -->\n\nIssue opened from event page: #{event_url(@event)}") %>" class="underline hover:text-amber-900" target="_blank">Open an issue on GitHub</a></li>
-                <li>• <a href="https://github.com/rubyevents/rubyevents/blob/main/CONTRIBUTING.md" class="underline hover:text-amber-900" target="_blank">Submit data via GitHub</a></li>
+
+                <li>
+                  •
+                  <a href="https://github.com/rubyevents/rubyevents/issues/new?title=<%= CGI.escape("#{@event.name} Content") %>&body=<%= CGI.escape("<!-- Your Content Here -->\n\nIssue opened from event page: #{event_url(@event)}") %>" class="underline hover:text-amber-900" target="_blank">Open an issue on GitHub</a>
+                </li>
+
+                <li>
+                  •
+                  <a href="https://github.com/rubyevents/rubyevents/blob/main/CONTRIBUTING.md" class="underline hover:text-amber-900" target="_blank">Submit data via GitHub</a>
+                </li>
               </ul>
             </div>
           </div>
