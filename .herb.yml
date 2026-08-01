@@ -20,8 +20,10 @@ linter:
   rules:
     erb-no-interpolated-class-names:
       enabled: false
+
     erb-no-unused-expressions:
       enabled: false
+
     html-require-script-nonce:
       enabled: false
 
@@ -30,4 +32,12 @@ linter:
         - public/**
 
 formatter:
-  enabled: false
+  enabled: true
+  indentWidth: 2
+  maxLineLength: 120
+
+  rewriter:
+    pre:
+      - tailwind-class-sorter
+
+    post: []
