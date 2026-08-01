@@ -22,14 +22,12 @@ linter:
       enabled: false
     erb-no-unused-expressions:
       enabled: false
-    erb-prefer-direct-output:
-      enabled: false
-    html-no-unescaped-entities:
-      enabled: false
-    html-no-space-in-tag:
-      enabled: false
     html-require-script-nonce:
       enabled: false
+
+    html-no-space-in-tag:
+      exclude:
+        - public/**
 
 formatter:
   enabled: false

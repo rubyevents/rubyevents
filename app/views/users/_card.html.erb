@@ -32,11 +32,11 @@
           <% if defined?(content) && content.present? %>
             <%= content %>
           <% elsif user.github_handle.present? %>
-            <%= "@#{user.github_handle}" %>
+            @<%= user.github_handle %>
           <% elsif user.bsky.present? %>
-            <%= "@#{user.bsky}" %>
+            @<%= user.bsky %>
           <% else %>
-            <%= "@#{user.slug}" %>
+            @<%= user.slug %>
           <% end %>
         </div>
       </div>

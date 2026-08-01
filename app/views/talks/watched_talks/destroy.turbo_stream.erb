@@ -13,8 +13,7 @@
   <%= render partial: "talks/video_player", locals: {talk: @talk, current_user_watched_talk: nil, is_watched: false, video_provider: video_provider, video_id: video_id} %>
 <% end %>
 
-<%= turbo_stream.update dom_id(@talk, :feedback_banner) do %>
-<% end %>
+<%= turbo_stream.update dom_id(@talk, :feedback_banner) %>
 
 <%= turbo_stream.update dom_id(@talk, :watched_button) do %>
   <%= render partial: "talks/watched_talks/button", locals: {talk: @talk, is_watched: false} %>
