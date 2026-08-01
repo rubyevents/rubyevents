@@ -111,10 +111,10 @@ jobs:
         run: yarn lint
 
       - name: Herb Linter
-        run: npx herb-lint
+        run: npx @herb-tools/linter
 
       - name: Herb Formatter
-        run: npx https://pkg.pr.new/@herb-tools/formatter@1955 --check
+        run: npx @herb-tools/formatter --check
 
   test:
     name: "Test"
