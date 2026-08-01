@@ -113,6 +113,9 @@ jobs:
       - name: Herb Linter
         run: npx @herb-tools/linter
 
+      - name: Herb Formatter
+        run: npx @herb-tools/formatter --check
+
   test:
     name: "Test"
     needs: changes
