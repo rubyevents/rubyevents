@@ -114,7 +114,7 @@ jobs:
         run: npx herb-lint
 
       - name: Herb Formatter
-        run: npx herb-format --check
+        run: npx https://pkg.pr.new/@herb-tools/formatter@1955 --check
 
   test:
     name: "Test"
