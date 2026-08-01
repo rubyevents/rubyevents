@@ -11,7 +11,8 @@
 # GitHub Repo: https://github.com/marcoroth/herb
 #
 
-version: 0.9.2
+version: 0.10.3
+framework: actionview
 
 linter:
   enabled: true
@@ -19,7 +20,16 @@ linter:
   rules:
     erb-no-interpolated-class-names:
       enabled: false
-
+    erb-no-unused-expressions:
+      enabled: false
+    erb-prefer-direct-output:
+      enabled: false
+    html-no-unescaped-entities:
+      enabled: false
+    html-no-space-in-tag:
+      enabled: false
+    html-require-script-nonce:
+      enabled: false
 
 formatter:
   enabled: false
