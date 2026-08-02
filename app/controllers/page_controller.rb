@@ -64,16 +64,6 @@ class PageController < ApplicationController
   def featured
   end
 
-  def og_image
-    image = OpenGraphImage.instance.image
-
-    if image.attached?
-      redirect_to rails_blob_url(image), allow_other_host: true
-    else
-      redirect_to view_context.image_url("logo_og_image.png"), allow_other_host: true
-    end
-  end
-
   def components
   end
 

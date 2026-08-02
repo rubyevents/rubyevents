@@ -25,13 +25,13 @@ module Metadata
         description: DEFAULT_DESC,
         site_name: SITE_NAME,
         type: "website",
-        image: open_graph_image_url
+        image: view_context.image_url("logo_og_image.png")
       },
       twitter: {
         title: DEFAULT_TITLE,
         description: DEFAULT_DESC,
         card: "summary_large_image",
-        image: open_graph_image_url
+        image: view_context.image_url("logo_og_image.png")
       }
     })
   end

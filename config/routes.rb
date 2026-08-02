@@ -18,7 +18,6 @@ Rails.application.routes.draw do
   get "/wrapped", to: "wrapped#index"
   get "/pages/assets", to: "page#assets"
   get "/featured" => "page#featured"
-  get "/og_image", to: "page#og_image", as: :open_graph_image
 
   # announcements/blog
   resources :announcements, only: [:index, :show], param: :slug do

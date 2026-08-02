@@ -19,38 +19,19 @@ class PageControllerTest < ActionDispatch::IntegrationTest
     assert_select "meta[name=description][content=?]", Metadata::DEFAULT_DESC
     assert_select "link[rel='canonical'][href=?]", request.original_url
 
+    expected_logo_url = @controller.view_context.image_url("logo_og_image.png")
+
     assert_select "meta[property='og:title'][content=?]", Metadata::DEFAULT_TITLE
     assert_select "meta[property='og:description'][content=?]", Metadata::DEFAULT_DESC
     assert_select "meta[property='og:site_name'][content=?]", Metadata::SITE_NAME
     assert_select "meta[property='og:url'][content=?]", request.original_url
     assert_select "meta[property='og:type'][content=website]"
-    assert_select "meta[property='og:image'][content=?]", open_graph_image_url
+    assert_select "meta[property='og:image'][content=?]", expected_logo_url
 
     assert_select "meta[name='twitter:title'][content=?]", Metadata::DEFAULT_TITLE
     assert_select "meta[name='twitter:description'][content=?]", Metadata::DEFAULT_DESC
     assert_select "meta[name='twitter:card'][content=summary_large_image]"
-    assert_select "meta[name='twitter:image'][content=?]", open_graph_image_url
-  end
-
-  test "open graph image redirects to the static fallback without a generated image" do
-    OpenGraphImage.instance.image.purge
-
-    get open_graph_image_path
-
-    assert_redirected_to @controller.view_context.image_url("logo_og_image.png")
-  end
-
-  test "open graph image redirects to the generated image" do
-    open_graph_image = OpenGraphImage.instance
-    open_graph_image.image.attach(
-      io: StringIO.new("generated image"),
-      filename: "home-og.png",
-      content_type: "image/png"
-    )
-
-    get open_graph_image_path
-
-    assert_redirected_to rails_blob_url(open_graph_image.image)
+    assert_select "meta[name='twitter:image'][content=?]", expected_logo_url
   end
 
   test "home page should render featured events" do

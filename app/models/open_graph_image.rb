@@ -1,18 +1,9 @@
-# == Schema Information
-#
-# Table name: open_graph_images
-# Database name: primary
-#
-#  id         :integer          not null, primary key
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#
-
 require "ferrum"
 
-class OpenGraphImage < ApplicationRecord
+class OpenGraphImage
   WIDTH = 1200
   HEIGHT = 630
+  OUTPUT_PATH = Rails.root.join("app/assets/images/logo_og_image.png")
   SLOTS = [
     {cx: 78, cy: 84, size: 94, rotation: -9, opacity: 0.95},
     {cx: 252, cy: 58, size: 70, rotation: 6, opacity: 0.82},
@@ -36,44 +27,23 @@ class OpenGraphImage < ApplicationRecord
     {cx: 1124, cy: 544, size: 90, rotation: 9, opacity: 0.95}
   ].freeze
 
-  has_one_attached :image
+  attr_reader :output_path
 
-  def self.instance
-    first || create!
-  end
-
-  def self.generate!
-    instance.generate!
+  def initialize(output_path: OUTPUT_PATH)
+    @output_path = Pathname(output_path)
   end
 
   def generate!(browser: Ferrum::Browser.new(**browser_options))
-    screenshot_data = screenshot(browser)
-    return unless screenshot_data
-
-    image.attach(
-      io: StringIO.new(Base64.decode64(screenshot_data)),
-      filename: "home-og.png",
-      content_type: "image/png"
-    )
-
-    image
+    browser.go_to("data:text/html;base64,#{Base64.strict_encode64(render_html)}")
+    sleep 1.5
+    screenshot_data = browser.screenshot(format: :png, full: true)
+    output_path.binwrite(Base64.decode64(screenshot_data))
+    output_path
+  ensure
+    browser&.quit
   end
 
   private
-
-  def screenshot(browser)
-    begin
-      browser.go_to("data:text/html;base64,#{Base64.strict_encode64(render_html)}")
-      sleep 1.5
-      browser.screenshot(format: :png, full: true)
-    ensure
-      browser.quit
-    end
-  rescue => error
-    Rails.logger.error("OpenGraphImage generation failed: #{error.message}")
-    Rails.logger.error(error.backtrace.first(10).join("\n"))
-    nil
-  end
 
   def render_html
     ApplicationController.render(
@@ -109,30 +79,15 @@ class OpenGraphImage < ApplicationRecord
   end
 
   def browser_options
-    options = {
+    {
       headless: true,
       window_size: [WIDTH, HEIGHT],
-      timeout: 30
-    }
-
-    if chrome_ws_url
-      options[:url] = chrome_ws_url
-    else
-      options[:browser_options] = {
+      timeout: 30,
+      browser_options: {
         "no-sandbox": true,
         "disable-gpu": true,
         "disable-dev-shm-usage": true
       }
-    end
-
-    options
-  end
-
-  def chrome_ws_url
-    return ENV["CHROME_WS_URL"] if ENV["CHROME_WS_URL"].present?
-    return if Rails.env.local?
-
-    service_name = Rails.env.staging? ? "rubyvideo_staging" : "rubyvideo"
-    "ws://#{service_name}-chrome:3000"
+    }
   end
 end

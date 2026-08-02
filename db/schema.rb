@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.2].define(version: 2026_07_11_000001) do
+ActiveRecord::Schema[8.2].define(version: 2026_07_05_130000) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -273,11 +273,6 @@ ActiveRecord::Schema[8.2].define(version: 2026_07_11_000001) do
     t.index ["request_hash"], name: "index_llm_requests_on_request_hash", unique: true
     t.index ["resource_type", "resource_id"], name: "index_llm_requests_on_resource"
     t.index ["task_name"], name: "index_llm_requests_on_task_name"
-  end
-
-  create_table "open_graph_images", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "organizations", force: :cascade do |t|
