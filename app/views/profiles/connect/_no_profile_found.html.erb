@@ -1,6 +1,6 @@
-<div class="flex flex-col items-center justify-center text-center space-y-6 py-12 px-6">
+<div class="flex flex-col items-center justify-center space-y-6 px-6 py-12 text-center">
   <!-- Icon -->
-  <div class="flex items-center justify-center w-20 h-20 bg-neutral/10 rounded-full">
+  <div class="flex h-20 w-20 items-center justify-center rounded-full bg-neutral/10">
     <%= fa "magnifying-glass", variant: :solid, class: "w-10 h-10 text-neutral" %>
   </div>
 
@@ -9,25 +9,30 @@
     <h2 class="text-2xl font-bold text-base-content">
       🤷‍♂️ No Profile Found Here
     </h2>
-    <p class="text-base-content/70 max-w-md">
-      This page doesn't have an associated profile yet. But don't worry - there's still plenty to explore in the Ruby community!
+
+    <p class="max-w-md text-base-content/70">
+      This page doesn't have an associated profile yet. But don't worry - there's still plenty to explore in the Ruby
+      community!
     </p>
   </div>
 
   <!-- Suggestions list -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md text-sm">
+  <div class="grid max-w-md grid-cols-1 gap-4 text-sm sm:grid-cols-2">
     <a href="<%= talks_path %>" class="flex items-center space-x-2 text-base-content/80">
       <%= fa "video", variant: :solid, class: "w-5 h-5 text-neutral flex-shrink-0" %>
       <span>Browse talks</span>
     </a>
+
     <a href="<%= events_path %>" class="flex items-center space-x-2 text-base-content/80">
       <%= fa "calendar-days", variant: :solid, class: "w-5 h-5 text-neutral flex-shrink-0" %>
       <span>Discover events</span>
     </a>
+
     <a href="<%= speakers_path %>" class="flex items-center space-x-2 text-base-content/80">
       <%= fa :users, variant: :solid, class: "w-5 h-5 text-neutral flex-shrink-0" %>
       <span>Meet speakers</span>
     </a>
+
     <a href="<%= topics_path %>" class="flex items-center space-x-2 text-base-content/80">
       <%= fa :hashtag, variant: :solid, class: "w-5 h-5 text-neutral flex-shrink-0" %>
       <span>Explore topics</span>
@@ -35,20 +40,18 @@
   </div>
 
   <!-- CTA Buttons -->
-  <div class="flex flex-col sm:flex-row gap-3 pt-4">
+  <div class="flex flex-col gap-3 pt-4 sm:flex-row">
     <%= ui_button url: talks_path, kind: :primary, size: :lg, class: "px-6 shadow-lg" do %>
-      <%= fa :play, variant: :solid, class: "w-5 h-5 mr-2" %>
-      Browse Talks
+      <%= fa :play, variant: :solid, class: "w-5 h-5 mr-2" %> Browse Talks
     <% end %>
 
     <%= ui_button url: events_path, kind: :secondary, size: :lg, class: "px-6" do %>
-      <%= fa :calendar, variant: :solid, class: "w-5 h-5 mr-2" %>
-      View Events
+      <%= fa :calendar, variant: :solid, class: "w-5 h-5 mr-2" %> View Events
     <% end %>
   </div>
 
   <!-- Community indicator -->
-  <div class="text-xs text-base-content/50 flex items-center space-x-1">
+  <div class="flex items-center space-x-1 text-xs text-base-content/50">
     <%= fa :heart, variant: :solid, class: "w-4 h-4" %>
     <span>Explore the Ruby community</span>
   </div>

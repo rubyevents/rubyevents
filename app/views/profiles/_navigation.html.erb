@@ -1,15 +1,13 @@
 <%# locals: (user:, favorite_user:, talks:, events:, mutual_events:, stamps:, stickers:, involvements_by_role:, countries_with_events:) %>
 
-<%# the profile root renders Talks (or Events) inline, so current_page? alone matches no tab there %>
 <% on_profile_root = current_page?(profile_path(user)) %>
 <% talks_active = current_page?(profile_talks_path(user)) || (on_profile_root && talks.length.positive?) %>
 <% events_active = current_page?(profile_events_path(user)) || (on_profile_root && talks.length.zero?) %>
 
-<%# max-md: leaves desktop on daisyUI's .tab metrics; min-h-6 holds the 24px tap target %>
 <% tab_class = "tab whitespace-nowrap max-md:text-xs max-md:px-2.5 max-md:py-1 max-md:h-auto max-md:min-h-6 max-md:leading-tight max-md:rounded-lg" %>
 
-<div class="pt-3 pb-3.5 md:pt-0 md:pb-0">
-  <div role="tablist" class="tabs tabs-boxed inline-flex flex-wrap gap-1 max-md:p-1.5 max-md:rounded-xl">
+<div class="pb-3.5 pt-3 md:pb-0 md:pt-0">
+  <div role="tablist" class="tabs-boxed tabs inline-flex flex-wrap gap-1 max-md:rounded-xl max-md:p-1.5">
     <% if talks.length.positive? %>
       <%= active_link_to "Talks (#{talks.size})", profile_talks_path(user), active: talks_active, class: tab_class, active_class: "tab-active", role: "tab" %>
     <% end %>

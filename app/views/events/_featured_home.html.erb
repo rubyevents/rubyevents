@@ -1,7 +1,7 @@
 <%# locals: (event:) %>
 
 <div
-  class="w-full pt-4 lg:pt-6 pb-4 lg:pb-12 relative"
+  class="relative w-full pb-4 pt-4 lg:pb-12 lg:pt-6"
   style="
     color: <%= event.static_metadata.featured_color %>;
     <% if event.static_metadata.featured_background.start_with?("data:") %>
@@ -11,23 +11,27 @@
     <% else %>
       background: <%= event.static_metadata.featured_background %>;
     <% end %>
-  ">
+  "
+>
   <a href="<%= event_path(event) %>" class="absolute inset-0 z-10" aria-label="<%= event.name %>"></a>
 
-  <div class="container h-full relative z-20 pointer-events-none">
-    <div class="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-6 lg:gap-12 items-center h-full">
+  <div class="container pointer-events-none relative z-20 h-full">
+    <div class="grid h-full grid-cols-1 items-center gap-6 lg:grid-cols-[1fr_2fr] lg:gap-12">
       <div class="flex flex-col gap-4">
-        <div class="flex justify-center lg:justify-start mb-4">
+        <div class="mb-4 flex justify-center lg:justify-start">
           <%= image_tag event.featured_image_path, class: "w-1/2 lg:w-full", loading: "lazy", alt: event.name %>
         </div>
 
         <div class="flex flex-col gap-3 text-center lg:text-left">
           <%= render "events/featured_badge", event: event, extra_class: "self-center lg:self-start" %>
 
-          <h1 class="text-inherit font-bold text-xl line-clamp-1 lg:line-clamp-2"><%= event.name %></h1>
-          <h2 class="text-inherit opacity-60 text-sm line-clamp-1"><%= event.to_location.to_html(show_links: false) %> • <%= event.formatted_dates %></h2>
+          <h1 class="line-clamp-1 text-xl font-bold text-inherit lg:line-clamp-2"><%= event.name %></h1>
 
-          <h2 class="text-inherit font-medium text-sm line-clamp-3 hidden lg:block">
+          <h2 class="line-clamp-1 text-sm text-inherit opacity-60">
+            <%= event.to_location.to_html(show_links: false) %> • <%= event.formatted_dates %>
+          </h2>
+
+          <h2 class="line-clamp-3 hidden text-sm font-medium text-inherit lg:block">
             <%= event.description %>
           </h2>
         </div>
@@ -57,8 +61,8 @@
         <% end %>
       </div>
 
-      <div class="hidden lg:flex flex-col justify-end items-end gap-6">
-        <div class="flex flex-col gap-6 items-center px-12">
+      <div class="hidden flex-col items-end justify-end gap-6 lg:flex">
+        <div class="flex flex-col items-center gap-6 px-12">
           <div class="avatar-group -space-x-6 rtl:space-x-reverse">
             <% shown_speakers = [] %>
             <% all_speakers = event.speakers.to_a %>

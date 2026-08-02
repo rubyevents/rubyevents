@@ -1,12 +1,14 @@
-<h2 class="text-2xl font-bold mb-2 text-center">Events You Attended</h2>
-<p class="text-gray-500 text-center mb-6">Your in-person Ruby adventures</p>
+<h2 class="mb-2 text-center text-2xl font-bold">Events You Attended</h2>
+
+<p class="mb-6 text-center text-gray-500">Your in-person Ruby adventures</p>
 
 <% if events_attended_in_year.any? %>
-  <div class="grid grid-cols-2 gap-4 mb-6">
+  <div class="mb-6 grid grid-cols-2 gap-4">
     <div class="stat-card">
       <div class="stat-number text-2xl"><%= events_attended_in_year.count %></div>
       <div class="stat-label">Conferences</div>
     </div>
+
     <div class="stat-card">
       <div class="stat-number text-2xl"><%= countries_visited.count %></div>
       <div class="stat-label">Countries</div>
@@ -15,15 +17,17 @@
 
   <% if events_as_speaker.positive? || events_as_visitor.positive? %>
     <div class="mb-4">
-      <p class="text-sm text-gray-500 mb-2">How you participated:</p>
-      <div class="flex gap-4 flex-wrap">
+      <p class="mb-2 text-sm text-gray-500">How you participated:</p>
+
+      <div class="flex flex-wrap gap-4">
         <% if events_as_speaker.positive? %>
-          <span class="px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm">
+          <span class="rounded-full bg-red-100 px-3 py-1 text-sm text-red-700">
             🎤 Speaker at <%= events_as_speaker %>
           </span>
         <% end %>
+
         <% if events_as_visitor.positive? %>
-          <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">
+          <span class="rounded-full bg-blue-100 px-3 py-1 text-sm text-blue-700">
             👤 Attendee at <%= events_as_visitor %>
           </span>
         <% end %>
@@ -37,12 +41,13 @@
     <div class="grid grid-cols-4 gap-2">
       <% (1..12).each do |month| %>
         <div class="text-center">
-          <p class="text-xs text-gray-400 mb-1"><%= month_names[month - 1] %></p>
-          <div class="min-h-[48px] bg-gray-50 rounded-lg p-1 flex flex-wrap items-center justify-center gap-1">
+          <p class="mb-1 text-xs text-gray-400"><%= month_names[month - 1] %></p>
+
+          <div class="flex min-h-[48px] flex-wrap items-center justify-center gap-1 rounded-lg bg-gray-50 p-1">
             <% if events_by_month[month] %>
               <% events_by_month[month].each do |event| %>
                 <div class="tooltip tooltip-top" data-tip="<%= event.name %>">
-                  <div class="w-8 h-8 rounded-md overflow-hidden border border-gray-200">
+                  <div class="h-8 w-8 overflow-hidden rounded-md border border-gray-200">
                     <%= image_tag event.avatar_image_path, alt: event.name, class: "w-full h-full object-cover" %>
                   </div>
                 </div>
@@ -54,7 +59,7 @@
     </div>
   </div>
 <% else %>
-  <div class="flex-1 flex items-center justify-center">
-    <p class="text-gray-400 text-center">Mark events as attended to track your conference journey!</p>
+  <div class="flex flex-1 items-center justify-center">
+    <p class="text-center text-gray-400">Mark events as attended to track your conference journey!</p>
   </div>
 <% end %>

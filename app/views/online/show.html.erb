@@ -22,12 +22,12 @@
 </div>
 
 <div class="container py-8">
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+  <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
     <div class="lg:col-span-2">
       <% if @events.any? %>
         <%= render "shared/date_grouped_events", events: @events, empty_message: "No upcoming online events." %>
       <% else %>
-        <div class="text-gray-500 py-8 text-center bg-gray-50 rounded-xl">
+        <div class="rounded-xl bg-gray-50 py-8 text-center text-gray-500">
           <p class="mb-2">No upcoming online events scheduled.</p>
           <%= link_to "View past events →", online_past_index_path, class: "link text-sm" %>
         </div>
@@ -37,14 +37,16 @@
     <div class="lg:col-span-1">
       <div class="space-y-8">
         <div>
-          <h3 class="font-bold text-gray-900 mb-4">About Online Events</h3>
-          <p class="text-gray-600 text-sm">
-            Online events are virtual conferences, meetups, and workshops that you can attend from anywhere in the world.
+          <h3 class="mb-4 font-bold text-gray-900">About Online Events</h3>
+
+          <p class="text-sm text-gray-600">
+            Online events are virtual conferences, meetups, and workshops that you can attend from anywhere in the
+            world.
           </p>
         </div>
 
         <div>
-          <h3 class="font-bold text-gray-900 mb-4">Browse by Location</h3>
+          <h3 class="mb-4 font-bold text-gray-900">Browse by Location</h3>
 
           <div class="space-y-1">
             <%= link_to continents_path, class: "flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors" do %>

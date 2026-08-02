@@ -1,4 +1,4 @@
-<div class="avatar-group <%= overlap %> rtl:space-x-reverse">
+<div class="avatar-group rtl:space-x-reverse <%= overlap %>">
   <% visible_avatarables.each do |avatarable| %>
     <%= render Ui::AvatarComponent.new(avatarable, size: size, hover_card: hover_card, linked: linked) %>
   <% end %>

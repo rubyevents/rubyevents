@@ -9,6 +9,7 @@
 
   <% c.with_menu_item_link_to "Leaderboard", leaderboard_path %>
   <% c.with_menu_item_link_to "Countries", countries_path %>
+
   <% if Current.user %>
     <% c.with_menu_item_divider %>
 
@@ -17,6 +18,7 @@
     <% c.with_menu_item_link_to watched_talks_path do %>
       <div class="flex items-center gap-2">
         <span>Recently Watched</span>
+
         <% if Current.user.watched_talks_count.positive? %>
           <div class="badge badge-secondary"><%= Current.user.watched_talks_count %></div>
         <% end %>
@@ -26,6 +28,7 @@
     <% c.with_menu_item_link_to watch_lists_path do %>
       <div class="flex items-center gap-2">
         <span>Bookmarks</span>
+
         <% if Current.user.default_watch_list.talks_count.positive? %>
           <div class="badge badge-secondary"><%= Current.user.default_watch_list.talks_count %></div>
         <% end %>

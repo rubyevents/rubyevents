@@ -4,9 +4,9 @@
   <div class="container py-8">
     <%= render partial: "events/navigation", locals: {event: @event} %>
 
-    <div class="flex items-start flex-wrap gap-8 sm:flex-nowrap w-full">
+    <div class="flex w-full flex-wrap items-start gap-8 sm:flex-nowrap">
       <div class="w-full">
-        <div id="talks" class="min-w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 h-full">
+        <div id="talks" class="grid h-full min-w-full grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           <%= render partial: "talks/card",
                 collection: @talks,
                 locals: {
@@ -20,11 +20,15 @@
         </div>
 
         <% if @talks.empty? %>
-          <div class="flex justify-center border rounded" style="padding-top: 3rem; padding-bottom: 3rem; padding-right: 1rem; padding-left: 1rem">
+          <div
+            class="flex justify-center rounded border"
+            style="padding-top: 3rem; padding-bottom: 3rem; padding-right: 1rem; padding-left: 1rem"
+          >
             <div class="text-center text-gray-600">
               <p>
                 <b>No talks found for this event.</b>
               </p>
+
               <p class="mt-2">
                 Please
                 <a href="https://github.com/rubyevents/rubyevents/issues/new?title=<%= CGI.escape("#{@event.name} Recordings") %>&body=<%= CGI.escape("<!-- Your Content Here -->\n\nIssue opened from event page: #{event_url(@event)}") %>" class="text-primary" target="_blank">open an issue on GitHub</a>

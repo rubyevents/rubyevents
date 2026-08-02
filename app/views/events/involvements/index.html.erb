@@ -3,7 +3,8 @@
 <%= turbo_frame_tag dom_id(@event), data: {turbo_action: "advance", turbo_frame: "_top"} do %>
   <div class="container py-8">
     <%= render partial: "events/navigation", locals: {event: @event} %>
-    <div class="flex items-start flex-wrap gap-8 sm:flex-nowrap w-full">
+
+    <div class="flex w-full flex-wrap items-start gap-8 sm:flex-nowrap">
       <div class="w-full">
         <%= render partial: "events/involvements/list", locals: {event: @event, involvements_by_role: @involvements_by_role} %>
       </div>
