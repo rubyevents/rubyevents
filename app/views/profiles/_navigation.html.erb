@@ -1,7 +1,7 @@
 <%# locals: (user:, favorite_user:, talks:, events:, mutual_events:, stamps:, stickers:, involvements_by_role:, countries_with_events:) %>
 
 <div class="px-4 md:px-0">
-  <div role="tablist" class="tabs tabs-boxed inline-flex flex-wrap gap-1">
+  <div role="tablist" class="tabs-boxed tabs inline-flex flex-wrap gap-1">
     <% if talks.length.positive? %>
       <%= active_link_to "Talks (#{talks.size})", profile_talks_path(user), class: "tab", active_class: "tab-active", role: "tab" %>
     <% end %>

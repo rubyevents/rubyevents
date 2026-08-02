@@ -27,51 +27,75 @@
         tooltip_content_value: talk.title
       }
     ) do %>
-
-  <div class="flex aspect-video shrink-0 relative <%= thumb_width_class %>">
+  <div class="relative flex aspect-video shrink-0 <%= thumb_width_class %>">
     <% if show_upcoming_placeholder %>
-      <div class="w-full h-full aspect-video rounded flex items-center justify-center bg-[repeating-linear-gradient(45deg,#e7e5e4_0_8px,#efedeb_8px_16px)]">
-        <span class="font-mono text-[10px] text-gray-500 bg-white rounded px-1.5 py-0.5">upcoming</span>
+      <div
+        class="
+          flex aspect-video h-full w-full items-center justify-center rounded
+          bg-[repeating-linear-gradient(45deg,#e7e5e4_0_8px,#efedeb_8px_16px)]
+        "
+      >
+        <span class="font-mono rounded bg-white px-1.5 py-0.5 text-[10px] text-gray-500">upcoming</span>
       </div>
     <% else %>
       <%= image_tag talk.thumbnail_sm, srcset: ["#{talk.thumbnail_sm} 2x"], alt: "#{talk.title} thumbnail", id: dom_id(talk, :card_horizontal_thumb), class: "w-full h-auto aspect-video border rounded #{talk.thumbnail_classes.presence || "object-cover"}", loading: :lazy %>
       <% if profile && talk.duration_in_seconds.to_i > 0 %>
-        <span class="absolute right-1 bottom-1 bg-black/75 text-white text-[10px] font-semibold px-1.5 py-px rounded"><%= seconds_to_formatted_duration(talk.duration_in_seconds) %></span>
+        <span class="absolute bottom-1 right-1 rounded bg-black/75 px-1.5 py-px text-[10px] font-semibold text-white"><%= seconds_to_formatted_duration(talk.duration_in_seconds) %></span>
       <% end %>
     <% end %>
 
-    <div class="absolute inset-0 bg-black/50 justify-center items-center rounded hidden group-[.active]:flex">
+    <div class="absolute inset-0 hidden items-center justify-center rounded bg-black/50 group-[.active]:flex">
       <%= fa("play", size: :sm, class: "fill-white") %>
     </div>
 
-    <div class="absolute inset-0 bg-black/50 justify-center items-center rounded hidden group-[.watched]:flex group-[.active]:hidden">
+    <div
+      class="
+        absolute inset-0 hidden items-center justify-center rounded bg-black/50 group-[.watched]:flex
+        group-[.active]:hidden
+      "
+    >
       <%= fa("circle-check", size: :sm, class: "fill-white") %>
     </div>
 
-    <div class="absolute inset-0 bg-black/50 justify-center items-center rounded hidden group-[.not\_recorded]:flex group-[.watched]:hidden group-[.active]:hidden">
+    <div
+      class="
+        absolute inset-0 hidden items-center justify-center rounded bg-black/50 group-[.not\_recorded]:flex
+        group-[.active]:hidden group-[.watched]:hidden
+      "
+    >
       <%= fa("video-slash", size: :sm, class: "fill-white") %>
     </div>
 
-    <div class="absolute inset-0 bg-black/50 justify-center items-center rounded hidden group-[.not\_published]:flex group-[.watched]:hidden group-[.active]:hidden">
+    <div
+      class="
+        absolute inset-0 hidden items-center justify-center rounded bg-black/50 group-[.not\_published]:flex
+        group-[.active]:hidden group-[.watched]:hidden
+      "
+    >
       <%= fa("upload", size: :sm, class: "fill-white") %>
     </div>
 
     <% unless show_upcoming_placeholder %>
-      <div class="absolute inset-0 bg-black/50 justify-center items-center rounded hidden group-[.scheduled]:flex group-[.active]:hidden">
+      <div
+        class="
+          absolute inset-0 hidden items-center justify-center rounded bg-black/50 group-[.scheduled]:flex
+          group-[.active]:hidden
+        "
+      >
         <%= fa("clock", size: :sm, class: "fill-white") %>
       </div>
     <% end %>
 
     <% if watched_talk&.in_progress? %>
       <div class="absolute bottom-0 left-0 right-0 z-10">
-        <div class="w-full h-1 bg-white/40">
+        <div class="h-1 w-full bg-white/40">
           <div class="h-1 bg-primary" style="width: <%= watched_talk.progress_percentage.to_s %>%"></div>
         </div>
       </div>
     <% end %>
   </div>
 
-  <div class="flex flex-col gap-1 text-sm flex-grow min-w-0">
+  <div class="flex min-w-0 flex-grow flex-col gap-1 text-sm">
     <%= content_tag :div do %>
       <%= content_tag :div, talk.title, class: title_class %>
     <% end %>
@@ -81,6 +105,7 @@
        else
          "#{talk.speakers.map(&:name).to_sentence}#{" • #{talk.event.name}" if show_event_name && talk.event}"
        end %>
+
     <% if meta.present? %>
       <div class="flex items-start gap-2 font-light">
         <div class="<%= class_names("line-clamp-1", "text-gray-500", "text-xs" => profile, "mt-[3px]" => profile) %>">
@@ -91,7 +116,7 @@
   </div>
 
   <% if show_remove_from_watched && watched_talk&.watched? %>
-    <div class="flex items-center gap-1 shrink-0">
+    <div class="flex shrink-0 items-center gap-1">
       <%= button_to new_talk_watched_talk_path(talk),
             method: :get,
             form: {data: {turbo_frame: "modal"}},
@@ -99,6 +124,7 @@
             class: "btn btn-ghost btn-sm p-1" do %>
         <%= fa("star", size: :sm, class: "text-gray-600 shrink-0") %>
       <% end %>
+
       <%= button_to watched_talk_path(watched_talk),
             method: :delete,
             form_class: "contents",

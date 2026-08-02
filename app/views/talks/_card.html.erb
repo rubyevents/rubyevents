@@ -4,69 +4,47 @@
 <% watched_talk = watched_talks.find { |wt| wt.talk_id == talk.id } || user_watched_talks.find { |wt| wt.talk_id == talk.id } %>
 
 <div
-  class="relative w-full bg-white border card card-compact talk-all talk-kind-all talk-kind-<%= talk.kind %> talk-language-all talk-language-<%= talk.language %>"
+  class="talk-all talk-kind-all talk-language-all card card-compact relative w-full border bg-white talk-kind-<%= talk.kind %> talk-language-<%= talk.language %>"
   id="<%= dom_id talk %>"
-  data-watched="<%= watched_talk&.watched? ? "true" : "false" %>">
+  data-watched="<%= watched_talk&.watched? ? "true" : "false" %>"
+>
   <% if talk.child_talks.size.positive? %>
-    <div
-      class="
-        absolute w-[calc(100%-20px)] ml-[10px] bg-gray-300 rounded-xl -mt-4
-      ">&nbsp;</div>
-    <div class="absolute w-[calc(100%-10px)] ml-[5px] bg-gray-500 rounded-xl -mt-2">&nbsp;</div>
+    <div class="absolute -mt-4 ml-[10px] w-[calc(100%-20px)] rounded-xl bg-gray-300">&nbsp;</div>
+    <div class="absolute -mt-2 ml-[5px] w-[calc(100%-10px)] rounded-xl bg-gray-500">&nbsp;</div>
   <% end %>
 
   <%= link_to talk_path(talk, back_to: back_to, back_to_title: back_to_title), class: "flex aspect-video overflow-hidden relative group", data: {action: "mouseover->preserve-scroll#updateLinkBackToWithScrollPosition", turbo_frame: "_top"} do %>
     <% if language && language != "English" %>
-      <div
-        class="
-          absolute top-0 left-0 z-20 flex p-1 px-2 m-3 rounded-full bg-black/15
-          backdrop-blur-md
-        ">
+      <div class="absolute left-0 top-0 z-20 m-3 flex rounded-full bg-black/15 p-1 px-2 backdrop-blur-md">
         <span><%= language_to_emoji(language) %></span>
-        <span class="items-center hidden ml-1 text-sm text-white lg:group-hover:flex"><%= language %></span>
+        <span class="ml-1 hidden items-center text-sm text-white lg:group-hover:flex"><%= language %></span>
       </div>
     <% end %>
 
     <% if talk.scheduled? || talk.parent_talk&.scheduled? %>
-      <div
-        class="
-          absolute top-0 right-0 z-20 flex gap-2 p-2 m-3 rounded-full bg-black/15
-          backdrop-blur-md
-        ">
-        <span class="items-center hidden ml-1 text-sm text-white lg:group-hover:flex">Scheduled</span>
+      <div class="absolute right-0 top-0 z-20 m-3 flex gap-2 rounded-full bg-black/15 p-2 backdrop-blur-md">
+        <span class="ml-1 hidden items-center text-sm text-white lg:group-hover:flex">Scheduled</span>
         <span><%= fa("clock", size: :sm, class: "fill-white") %></span>
       </div>
     <% end %>
 
     <% if talk.not_published? || talk.parent_talk&.not_published? %>
-      <div
-        class="
-          absolute top-0 right-0 z-20 flex gap-2 p-2 m-3 rounded-full bg-black/15
-          backdrop-blur-md
-        ">
-        <span class="items-center hidden ml-1 text-sm text-white lg:group-hover:flex">Not published</span>
+      <div class="absolute right-0 top-0 z-20 m-3 flex gap-2 rounded-full bg-black/15 p-2 backdrop-blur-md">
+        <span class="ml-1 hidden items-center text-sm text-white lg:group-hover:flex">Not published</span>
         <span><%= fa("upload", size: :sm, class: "fill-white") %></span>
       </div>
     <% end %>
 
     <% if talk.not_recorded? || talk.parent_talk&.not_recorded? %>
-      <div
-        class="
-          absolute top-0 right-0 z-20 flex gap-2 p-2 m-3 rounded-full bg-black/15
-          backdrop-blur-md
-        ">
-        <span class="items-center hidden ml-1 text-sm text-white lg:group-hover:flex">Not recorded</span>
+      <div class="absolute right-0 top-0 z-20 m-3 flex gap-2 rounded-full bg-black/15 p-2 backdrop-blur-md">
+        <span class="ml-1 hidden items-center text-sm text-white lg:group-hover:flex">Not recorded</span>
         <span><%= fa("video-slash", size: :sm, class: "fill-white") %></span>
       </div>
     <% end %>
 
     <% if talk.video_unavailable? %>
-      <div
-        class="
-          absolute top-0 right-0 z-20 flex gap-2 p-2 m-3 rounded-full bg-black/15
-          backdrop-blur-md
-        ">
-        <span class="items-center hidden ml-1 text-sm text-white lg:group-hover:flex">Unavailable</span>
+      <div class="absolute right-0 top-0 z-20 m-3 flex gap-2 rounded-full bg-black/15 p-2 backdrop-blur-md">
+        <span class="ml-1 hidden items-center text-sm text-white lg:group-hover:flex">Unavailable</span>
         <span><%= fa("video-slash", size: :sm, class: "fill-white") %></span>
       </div>
     <% end %>
@@ -74,12 +52,14 @@
     <% if talk.duration_in_seconds.present? || watched_talk&.watched? %>
       <div
         class="
-          flex gap-1.5 items-center absolute bottom-0 right-0 z-20 m-3 px-1.5 py-1 bg-black
-          backdrop-blur-md rounded-md text-white text-xs font-normal
-        ">
+          absolute bottom-0 right-0 z-20 m-3 flex items-center gap-1.5 rounded-md bg-black px-1.5 py-1 text-xs
+          font-normal text-white backdrop-blur-md
+        "
+      >
         <% if watched_talk&.watched? %>
           <%= fa("circle-check", size: :xs, style: :solid, class: "fill-green-400") %>
         <% end %>
+
         <% if talk.duration_in_seconds.present? %>
           <%= seconds_to_formatted_duration(talk.duration_in_seconds) %>
         <% end %>
@@ -87,28 +67,22 @@
     <% end %>
 
     <% if talk.parent_talk %>
-      <div
-        class="
-          absolute bottom-0 left-0 z-20 flex content-center gap-2 p-2 m-3 rounded-full
-          bg-black/15 backdrop-blur-md
-        ">
+      <div class="absolute bottom-0 left-0 z-20 m-3 flex content-center gap-2 rounded-full bg-black/15 p-2 backdrop-blur-md">
         <span><%= fa("rectangle-history", size: :sm, class: "fill-white") %></span>
-        <span
-          class="
-            items-center hidden gap-1 ml-1 text-xs font-normal text-white
-            lg:group-hover:inline-flex line-clamp-1
-          ">
+
+        <span class="ml-1 line-clamp-1 hidden items-center gap-1 text-xs font-normal text-white lg:group-hover:inline-flex">
           <span class="text-nowrap">Part of</span>
-          <span class="text-gray-300 line-clamp-1"><%= talk.parent_talk.title %></span>
+          <span class="line-clamp-1 text-gray-300"><%= talk.parent_talk.title %></span>
         </span>
       </div>
 
       <% if talk.duration && talk.formatted_duration != "00:00" %>
         <div
           class="
-            flex gap-2 absolute bottom-0 right-0 z-20 m-3 px-1.5 py-1 bg-black
-            backdrop-blur-md rounded-md text-white text-xs font-normal
-          ">
+            absolute bottom-0 right-0 z-20 m-3 flex gap-2 rounded-md bg-black px-1.5 py-1 text-xs font-normal
+            text-white backdrop-blur-md
+          "
+        >
           <span><%= talk.formatted_duration %></span>
         </div>
       <% end %>
@@ -117,29 +91,25 @@
     <% if talk.child_talks.size.positive? %>
       <div
         class="
-          flex gap-2 absolute bottom-0 right-0 z-20 m-3 px-1.5 py-1 bg-black
-          backdrop-blur-md rounded-md text-white text-xs font-normal
-        ">
-        <span>contains
-          <%= pluralize(talk.child_talks.size, "talk") %></span>
+          absolute bottom-0 right-0 z-20 m-3 flex gap-2 rounded-md bg-black px-1.5 py-1 text-xs font-normal
+          text-white backdrop-blur-md
+        "
+      >
+        <span>contains <%= pluralize(talk.child_talks.size, "talk") %></span>
       </div>
     <% end %>
 
     <% if watched_talk&.in_progress? %>
       <div class="absolute bottom-0 left-0 right-0 z-10">
-        <div class="w-full h-1 bg-white/40">
+        <div class="h-1 w-full bg-white/40">
           <div class="h-1 bg-primary" style="width: <%= watched_talk.progress_percentage.to_s %>%"></div>
         </div>
       </div>
     <% end %>
 
     <% if talk.published? && !watched_talk&.watched? && talk.video_available? %>
-      <div
-        class="
-          absolute inset-0 z-10 items-center justify-center hidden lg:group-hover:flex
-          bg-black/30 rounded-t-xl
-        ">
-        <div class="p-3 bg-gray-500 rounded-full hover:bg-primary">
+      <div class="absolute inset-0 z-10 hidden items-center justify-center rounded-t-xl bg-black/30 lg:group-hover:flex">
+        <div class="rounded-full bg-gray-500 p-3 hover:bg-primary">
           <%= fa("play", size: :md, class: "fill-white") %>
         </div>
       </div>
@@ -162,19 +132,22 @@
           )
         ) %>
   <% end %>
-  <div class="flex flex-row items-start justify-between gap-2 card-body">
-    <div class="flex flex-col items-start justify-between w-full h-full gap-2">
-      <div class="flex items-start justify-between w-full gap-2">
+
+  <div class="card-body flex flex-row items-start justify-between gap-2">
+    <div class="flex h-full w-full flex-col items-start justify-between gap-2">
+      <div class="flex w-full items-start justify-between gap-2">
         <%= link_to talk_path(talk, back_to: back_to, back_to_title: back_to_title), data: {action: "mouseover->preserve-scroll#updateLinkBackToWithScrollPosition", turbo_frame: "_top"} do %>
           <%= content_tag :h2, class: "text-sm font-sans font-medium" do %>
             <%= sanitize(talk.title_with_snippet, tags: ["mark"]) %>
           <% end %>
         <% end %>
       </div>
-      <div class="flex items-end justify-between w-full gap-2">
-        <div class="flex flex-col flex-grow w-full text-sm">
+
+      <div class="flex w-full items-end justify-between gap-2">
+        <div class="flex w-full flex-grow flex-col text-sm">
           <div class="flex items-center gap-2 font-light">
             <% speakers_count = talk.speakers.size %>
+
             <% if speakers_count > 1 %>
               <%= fa("users", size: :sm, style: :light, class: "shrink-0 grow-0 my-1") %>
             <% elsif speakers_count == 1 %>
@@ -188,14 +161,19 @@
                       class: "link link-ghost",
                       data: {
                         turbo_frame: "_top"
-                      } %><% if talk.speakers.last != speaker %>,
+                      } %>
+
+                <% if talk.speakers.last != speaker %>
+                  ,
                 <% end %>
               <% end %>
             </div>
           </div>
+
           <% if talk.event %>
             <div class="flex items-center gap-2 font-light">
               <%= fa("location-dot", size: :sm, style: :light, class: "shrink-0 grow-0") %>
+
               <%= link_to talk.event_name,
                     talk.event,
                     class: "link link-ghost line-clamp-1",
@@ -216,6 +194,7 @@
                 ) %>
           <% end %>
         <% end %>
+
         <% if favoritable %>
           <div class="self-end hotwire-native:hidden">
             <% if default_watch_list %>

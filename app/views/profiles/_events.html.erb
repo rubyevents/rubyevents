@@ -12,7 +12,7 @@
 
     <% if future_events.any? %>
       <div data-events-filter-target="group">
-        <h3 class="text-lg font-semibold mb-4">Future Events</h3>
+        <h3 class="mb-4 text-lg font-semibold">Future Events</h3>
 
         <div>
           <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -30,7 +30,7 @@
 
     <% if past_events.any? %>
       <div data-events-filter-target="group">
-        <h3 class="text-lg font-semibold mb-4">Past Events</h3>
+        <h3 class="mb-4 text-lg font-semibold">Past Events</h3>
 
         <div>
           <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -46,13 +46,16 @@
       </div>
     <% end %>
 
-    <div class="text-center py-12 hidden only:block">
+    <div class="hidden py-12 text-center only:block">
       <div class="mb-6">
-        <h3 class="text-lg font-semibold text-gray-900 mb-2">No participated events yet</h3>
+        <h3 class="mb-2 text-lg font-semibold text-gray-900">No participated events yet</h3>
 
-        <p class="text-gray-600 mb-6 max-w-xl mx-auto">
+        <p class="mx-auto mb-6 max-w-xl text-gray-600">
           <% if Current.user == user %>
-            You haven't marked your participation in any events yet. Visit <%= link_to "event pages", events_path, class: "link link-primary link-ghost" %> or search events with <kbd class="kbd kbd-sm text-base-content">⌘ k</kbd> and click "Add to My Events" to start building your event history.
+            You haven't marked your participation in any events yet. Visit
+            <%= link_to "event pages", events_path, class: "link link-primary link-ghost" %> or search events with
+            <kbd class="kbd kbd-sm text-base-content">⌘ k</kbd> and click "Add to My Events" to start building your
+            event history.
           <% elsif Current.user %>
             This user hasn't marked their participation in any events yet.
           <% else %>
@@ -64,8 +67,7 @@
       <% if Current.user && Current.user == user %>
         <div class="space-y-3">
           <%= link_to events_path, class: "btn btn-primary", data: {turbo_frame: "_top"} do %>
-            <%= fa("magnifying-glass", style: :regular) %>
-            Browse Events
+            <%= fa("magnifying-glass", style: :regular) %> Browse Events
           <% end %>
         </div>
       <% elsif !Current.user %>

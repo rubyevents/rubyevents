@@ -1,11 +1,12 @@
 <% count = User::DuplicateDetector.all_duplicate_ids.count %>
 
-<div class="p-6 h-full flex flex-col justify-between">
+<div class="flex h-full flex-col justify-between p-6">
   <div class="text-center">
     <div class="text-4xl font-bold <%= (count > 0) ? "text-yellow-600" : "text-green-600" %>">
       <%= count %>
     </div>
-    <div class="text-sm text-gray-500 mt-1">users with potential duplicates</div>
+
+    <div class="mt-1 text-sm text-gray-500">users with potential duplicates</div>
   </div>
 
   <div class="mt-4 text-center">

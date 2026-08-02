@@ -2,24 +2,30 @@
 
 <% understood_languages = user.languages.understood %>
 
-<div class="md:hidden flex flex-row items-start gap-3 px-4 pt-4 pb-2.5">
+<div class="flex flex-row items-start gap-3 px-4 pb-2.5 pt-4 md:hidden">
   <div class="relative shrink-0">
     <%= ui_avatar(user, size_class: "size-16", size: :md) %>
 
     <% if understood_languages.any? %>
-      <div class="flex justify-center gap-1 mt-1">
+      <div class="mt-1 flex justify-center gap-1">
         <% understood_languages.each do |code| %>
           <%= ui_tooltip("Understands #{Language.by_code(code) || code}") do %>
-            <span class="text-sm leading-none" role="img" aria-label="Understands <%= Language.by_code(code) || code %>"><%= Language.emoji_flag(code) %></span>
+            <span
+              class="text-sm leading-none"
+              role="img"
+              aria-label="Understands <%= Language.by_code(code) || code %>"
+            >
+              <%= Language.emoji_flag(code) %>
+            </span>
           <% end %>
         <% end %>
       </div>
     <% end %>
   </div>
 
-  <div class="flex-1 min-w-0">
-    <div class="flex flex-row items-center flex-wrap gap-x-2 gap-y-1 text-black font-bold">
-      <h1 class="text-[20px] font-extrabold text-primary leading-none">
+  <div class="min-w-0 flex-1">
+    <div class="flex flex-row flex-wrap items-center gap-x-2 gap-y-1 font-bold text-black">
+      <h1 class="text-[20px] font-extrabold leading-none text-primary">
         <%= user.suspicious? ? truncate(user.name, length: 10) : user.name %>
       </h1>
 
@@ -42,7 +48,7 @@
       <% if user.contributor? %>
         <%= link_to contributors_path, class: "inline-flex items-center" do %>
           <%= ui_tooltip "#{user.name} contributed to RubyEvents.org" do %>
-            <span class="flex items-center justify-center size-5 bg-green-500 rounded-full">
+            <span class="flex size-5 items-center justify-center rounded-full bg-green-500">
               <span style="transform: scale(0.6);"><%= fa("code-pull-request", class: "fill-white") %></span>
             </span>
           <% end %>
