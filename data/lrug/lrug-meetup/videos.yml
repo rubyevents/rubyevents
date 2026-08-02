@@ -3993,8 +3993,8 @@
       event_name: "LRUG May 2026"
       date: "2026-05-11"
       announced_at: "2026-04-20 06:00:00 +0000"
-      video_provider: "not_published"
-      video_id: "lrug-2026-05-11-ruby-in-parallel-fibers-ractors-and-ruby-4"
+      video_provider: "mp4"
+      video_id: "https://assets.lrug.org/videos/2026/may/sam-burns-ruby-in-parallel-fibers-ractors-and-ruby-4-may-2026.mp4"
       description: |-
         Ruby 4 builds on Ruby 3's concurrency features, introducing refinements to Fibers and Ractors.
         This milestone in the language's evolution transforms concurrency from an experimental
@@ -4013,8 +4013,8 @@
       event_name: "LRUG May 2026"
       date: "2026-05-11"
       announced_at: "2026-04-20 06:00:00 +0000"
-      video_provider: "not_published"
-      video_id: "lrug-2026-05-11-p-rs-without-code-review-building-a-risk-classification-pipeline-in-ruby"
+      video_provider: "mp4"
+      video_id: "https://assets.lrug.org/videos/2026/may/adrian-booth-prs-without-code-review-building-a-risk-classification-pipeline-in-ruby-may-2026.mp4"
       description: |-
         Agents are shifting the bottleneck from implementation to verification.
 
@@ -4074,21 +4074,26 @@
       event_name: "LRUG July 2026"
       date: "2026-07-13"
       announced_at: "2026-06-21 19:00:00 +0000"
-      video_provider: "not_published"
-      video_id: "lrug-2026-07-13-reactive-command-oriented-apps-in-ruby"
+      video_provider: "mp4"
+      video_id: "https://assets.lrug.org/videos/2026/july/ismael-celis-reactive-command-oriented-apps-in-ruby-lrug-july-2026.mp4"
       description: |-
         How the command pattern, CQRS and simple interfaces can build reactive,
         collaborative Ruby apps with very few building blocks.
       speakers:
         - Ismael Celis
+      additional_resources:
+        - name: "Link"
+          type: "link"
+          title: "Ismael Celis - My WIP Ruby stack"
+          url: "https://ismaelcelis.com/posts/2026-05-wip/"
 
     - id: "fritz-meissner-lrug-july-2026"
       title: "AI fixed our flaky tests overnight (with two weeks of help)"
       event_name: "LRUG July 2026"
       date: "2026-07-13"
       announced_at: "2026-06-21 19:00:00 +0000"
-      video_provider: "not_published"
-      video_id: "lrug-2026-07-13-ai-fixed-our-flaky-tests-overnight"
+      video_provider: "mp4"
+      video_id: "https://assets.lrug.org/videos/2026/july/fritz-meissner-ai-fixed-our-tests-overnight-with-two-weeks-of-help-lrug-july-2026.mp4"
       description: |-
         We tolerated intermittent failures in our hotwire test suite for three
         years before Claude Code found a solution one night. It only took two
@@ -4099,3 +4104,9 @@
         reflect on how to be discerning in the face of AI hype and pessimism.
       speakers:
         - Fritz Meissner
+      additional_resources:
+        - name: "Write-Up"
+          type: "write-up"
+          title: "If The Shoe Fritz - AI's \"overnight\" solution for our flaky tests took
+            two weeks to adopt"
+          url: "https://iftheshoefritz.com/process/ai/artificial%20intelligence/technical%20debt/testing/2026/06/19/ai-overnight-flaky-tests-two-weeks.html"
