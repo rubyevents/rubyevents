@@ -81,10 +81,7 @@ Slides belong to a specific talk, not to your speaker profile. Add them as an `a
 - id: "jane-doe-example-conf-2026"
   title: "My Great Talk"
   # ...
-  additional_resources:
-    - name: "Slides"
-      type: "presentation"
-      url: "https://speakerdeck.com/janedoe/my-great-talk"
+  slides_url: "https://speakerdeck.com/janedoe/my-great-talk"
 ```
 
 If you use Speakerdeck consistently, adding your `speakerdeck` username to `speakers.yml` is also worthwhile — it's used to surface your decks across the site.
