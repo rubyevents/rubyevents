@@ -1,8 +1,13 @@
 <% limit ||= 8 %>
 <% toggle_style ||= :ghost %>
 <% more_topics = topics.to_a.from(limit) %>
+<% gap_class = (toggle_style == :soft) ? "gap-[9px]" : "gap-2" %>
 
-<div class="flex flex-wrap gap-2" data-controller="toggable" data-toggable-hide-text-value="show less topics">
+<div
+  class="flex flex-wrap <%= gap_class %>"
+  data-controller="toggable"
+  data-toggable-hide-text-value="show less topics"
+>
   <%= render partial: "topics/badge", collection: topics.first(limit), as: :topic, locals: {back_to_url: back_to_url, back_to_title: back_to_title} %>
 
   <% more_topics.each do |topic| %>
@@ -13,7 +18,17 @@
 
   <% if more_topics.any? %>
     <button type="button" data-action="click->toggable#toggle">
-      <% if toggle_style == :outline %>
+      <% if toggle_style == :soft %>
+        <div
+          class="
+            inline-flex items-center rounded-full bg-base-200 px-3 py-[5px] text-xs font-semibold text-[#B3123A]
+            hover:bg-gray-300
+          "
+          data-toggable-target="toggle"
+        >
+          +<%= more_topics.count %> more
+        </div>
+      <% elsif toggle_style == :outline %>
         <div
           class="
             inline-flex items-center rounded-full border-[1.5px] border-primary px-2.5 py-1 text-xs font-semibold

@@ -2,7 +2,7 @@
 
 <% understood_languages = user.languages.understood %>
 
-<div class="flex flex-row items-start gap-3 px-4 pb-2.5 pt-4 md:hidden">
+<div class="flex flex-row items-start gap-3 pt-4 md:hidden">
   <div class="relative shrink-0">
     <%= ui_avatar(user, size_class: "size-16", size: :md) %>
 
@@ -24,7 +24,7 @@
   </div>
 
   <div class="min-w-0 flex-1">
-    <div class="flex flex-row flex-wrap items-center gap-x-2 gap-y-1 font-bold text-black">
+    <div class="flex flex-row flex-wrap items-center gap-[7px] font-bold text-black">
       <h1 class="text-[20px] font-extrabold leading-none text-primary">
         <%= user.suspicious? ? truncate(user.name, length: 10) : user.name %>
       </h1>
@@ -34,22 +34,23 @@
       <% end %>
 
       <% if user.verified? %>
-        <%= ui_tooltip "#{user.name} is a verified Rubyist" do %>
-          <%= fa("badge-check", class: "fill-blue-500", size: :sm) %>
+        <%= ui_tooltip "#{user.name} is a verified Rubyist", role: "img", aria: {label: "#{user.name} is a verified Rubyist"} do %>
+          <%= fa("badge-check", class: "fill-blue-500 !size-[18px]", size: :sm) %>
         <% end %>
       <% end %>
 
       <% if user.ruby_passport_claimed? %>
-        <%= ui_tooltip "#{user.name} claimed #{user.possessive_pronoun} Ruby Passport" do %>
-          <%= fa("passport", class: "fill-orange-800") %>
+        <%= ui_tooltip "#{user.name} claimed #{user.possessive_pronoun} Ruby Passport", role: "img", aria: {label: "#{user.name} claimed #{user.possessive_pronoun} Ruby Passport"} do %>
+          <%= fa("passport", class: "fill-orange-800 !size-[18px]") %>
         <% end %>
       <% end %>
 
       <% if user.contributor? %>
-        <%= link_to contributors_path, class: "inline-flex items-center" do %>
+        <%# padding brings the tap target to 24px without changing the 18px visual %>
+        <%= link_to contributors_path, class: "inline-flex items-center p-[3px] -m-[3px]", aria: {label: "#{user.name} contributed to RubyEvents.org"} do %>
           <%= ui_tooltip "#{user.name} contributed to RubyEvents.org" do %>
-            <span class="flex size-5 items-center justify-center rounded-full bg-green-500">
-              <span style="transform: scale(0.6);"><%= fa("code-pull-request", class: "fill-white") %></span>
+            <span class="flex size-[18px] items-center justify-center rounded-full bg-green-500">
+              <span style="transform: scale(0.55);"><%= fa("code-pull-request", class: "fill-white") %></span>
             </span>
           <% end %>
         <% end %>
@@ -59,19 +60,19 @@
     </div>
 
     <% if user.to_location.present? %>
-      <div class="mt-0.5 text-[13px] text-gray-500">
+      <div class="mt-[3px] text-[13px] text-gray-500">
         <%= user.to_location.to_html %>
       </div>
     <% end %>
 
     <% unless user.suspicious? %>
       <% if user.website.present? %>
-        <div class="mt-1 text-[13px]">
+        <div class="mt-px text-[13px]">
           <%= external_link_to user.website.gsub(%r{^https?://}, ""), user.website, class: "text-black" %>
         </div>
       <% end %>
 
-      <div class="mt-2">
+      <div class="mt-[9px]">
         <%= render "profiles/socials", user: user, variant: :inline %>
       </div>
     <% end %>

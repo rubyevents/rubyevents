@@ -3,7 +3,11 @@
 <div class="align-center block justify-between gap-8 lg:flex" id="<%= dom_id(user, :header) %>">
   <%= render "profiles/header_content", user:, favorite_user: %>
 
-  <div class="flex flex-col items-start gap-2 px-4 py-3 md:px-0 md:py-0 lg:max-w-[250px]">
-    <%= render "profiles/actions", user: user %>
-  </div>
+  <% actions = capture { render "profiles/actions", user: user } %>
+
+  <% if actions.strip.present? %>
+    <div class="flex flex-col items-start gap-2 py-3 md:py-0 lg:max-w-[250px]">
+      <%= actions %>
+    </div>
+  <% end %>
 </div>

@@ -10,12 +10,13 @@
 <% profile = variant == :profile %>
 <% thumb_width_class = profile ? "w-[132px]" : "w-20" %>
 <% title_class = profile ? "font-bold text-[15px] leading-[1.3] line-clamp-2 [text-wrap:pretty]" : "font-regular line-clamp-1" %>
-<% show_upcoming_placeholder = profile && scheduled %>
+<% thumbnail_classes = talk.thumbnail_classes.to_s %>
+<% fit_class = thumbnail_classes.match?(/(?:\A|\s)object-(?:contain|cover|fill|none|scale-down)\b/) ? nil : "object-cover" %>
 
 <%= content_tag(
       tag,
       href: talk_path(talk),
-      class: class_names("w-full flex items-center gap-4 p-2 rounded-lg hover:bg-gray-200 group", active: active, watched: watched_talk&.watched?, not_recorded: not_recorded, scheduled: scheduled, not_published: not_published),
+      class: class_names("w-full flex rounded-lg hover:bg-gray-200 group", (profile ? "items-start gap-3 p-0" : "items-center gap-4 p-2"), active: active, watched: watched_talk&.watched?, not_recorded: not_recorded, scheduled: scheduled, not_published: not_published),
       id: dom_id(talk, :card_horizontal),
       data: {
         talk_horizontal_card: true,
@@ -27,21 +28,11 @@
         tooltip_content_value: talk.title
       }
     ) do %>
-  <div class="relative flex aspect-video shrink-0 <%= thumb_width_class %>">
-    <% if show_upcoming_placeholder %>
-      <div
-        class="
-          flex aspect-video h-full w-full items-center justify-center rounded
-          bg-[repeating-linear-gradient(45deg,#e7e5e4_0_8px,#efedeb_8px_16px)]
-        "
-      >
-        <span class="font-mono rounded bg-white px-1.5 py-0.5 text-[10px] text-gray-500">upcoming</span>
-      </div>
-    <% else %>
-      <%= image_tag talk.thumbnail_sm, srcset: ["#{talk.thumbnail_sm} 2x"], alt: "#{talk.title} thumbnail", id: dom_id(talk, :card_horizontal_thumb), class: "w-full h-auto aspect-video border rounded #{talk.thumbnail_classes.presence || "object-cover"}", loading: :lazy %>
-      <% if profile && talk.duration_in_seconds.to_i > 0 %>
-        <span class="absolute bottom-1 right-1 rounded bg-black/75 px-1.5 py-px text-[10px] font-semibold text-white"><%= seconds_to_formatted_duration(talk.duration_in_seconds) %></span>
-      <% end %>
+  <div class="relative flex aspect-video shrink-0 <%= thumb_width_class %> <%= "bg-[#eceae8] rounded" if profile %>">
+    <%= image_tag talk.thumbnail_sm, srcset: ["#{talk.thumbnail_sm} 2x"], alt: "#{talk.title} thumbnail", id: dom_id(talk, :card_horizontal_thumb), class: class_names("w-full aspect-video border rounded", (profile ? "h-full" : "h-auto"), fit_class, thumbnail_classes.presence), loading: :lazy %>
+
+    <% if profile && talk.duration_in_seconds.to_i > 0 %>
+      <span class="absolute bottom-1 right-1 rounded bg-black/75 px-1.5 py-px text-[10px] font-semibold text-white"><%= seconds_to_formatted_duration(talk.duration_in_seconds) %></span>
     <% end %>
 
     <div class="absolute inset-0 hidden items-center justify-center rounded bg-black/50 group-[.active]:flex">
@@ -75,16 +66,14 @@
       <%= fa("upload", size: :sm, class: "fill-white") %>
     </div>
 
-    <% unless show_upcoming_placeholder %>
-      <div
-        class="
-          absolute inset-0 hidden items-center justify-center rounded bg-black/50 group-[.scheduled]:flex
-          group-[.active]:hidden
-        "
-      >
-        <%= fa("clock", size: :sm, class: "fill-white") %>
-      </div>
-    <% end %>
+    <div
+      class="
+        absolute inset-0 hidden items-center justify-center rounded bg-black/50 group-[.scheduled]:flex
+        group-[.active]:hidden
+      "
+    >
+      <%= fa("clock", size: :sm, class: "fill-white") %>
+    </div>
 
     <% if watched_talk&.in_progress? %>
       <div class="absolute bottom-0 left-0 right-0 z-10">

@@ -1,8 +1,12 @@
 <%# locals: (user:, topics: [], talks: []) %>
 
 <% if topics.any? && talks.length.positive? %>
-  <% cache [topics, back_to_from_request, user.name, :outline] do %>
-    <div class="px-4 pb-3.5 pt-0.5 md:mb-3 md:mt-9 md:px-0 md:pb-0 md:pt-0">
+  <% cache [topics, back_to_from_request, user.name] do %>
+    <div class="pb-4 pt-3.5 md:hidden">
+      <%= render partial: "topics/badge_list", locals: {topics: topics, back_to_url: back_to_from_request, back_to_title: user.name, toggle_style: :soft, limit: 4} %>
+    </div>
+
+    <div class="hidden md:mb-3 md:mt-9 md:block">
       <%= render partial: "topics/badge_list", locals: {topics: topics, back_to_url: back_to_from_request, back_to_title: user.name, toggle_style: :outline} %>
     </div>
   <% end %>
