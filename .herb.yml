@@ -16,6 +16,8 @@ framework: actionview
 
 linter:
   enabled: true
+  failLevel: warning
+  logLevel: warning
 
   rules:
     erb-no-interpolated-class-names:
