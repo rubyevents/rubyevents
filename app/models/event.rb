@@ -209,6 +209,28 @@ class Event < ApplicationRecord
     end
   end
 
+  def self.featured(limit: 15, today: Date.today)
+    base = distinct.not_meetup.featurable.where.not(home_sort_date: nil)
+
+    ids = (
+      base.where.not(recordings_published_date: nil).pluck(:id) +
+      base.where(start_date: ..today, end_date: today..).pluck(:id) +
+      base.where(end_date: (today - FEATURED_RECENTLY_ENDED_WINDOW)..today.prev_day).pluck(:id) +
+      base.where(start_date: today.next_day..(today + FEATURED_UPCOMING_WINDOW)).pluck(:id) +
+      base.joins(:cfps).where(cfps: {close_date: today..(today + FEATURED_CFP_CLOSING_WINDOW)}).where.not(cfps: {link: nil}).pluck(:id)
+    ).uniq
+
+    ordered_ids = where(id: ids)
+      .includes(:cfps)
+      .sort_by { |event| event.featured_distance(today: today) }
+      .first(limit)
+      .map(&:id)
+
+    where(id: ordered_ids)
+      .includes(:series, :keynote_speakers, :speakers, :cfps)
+      .in_order_of(:id, ordered_ids)
+  end
+
   def self.find_by_name_or_alias(name)
     return nil if name.blank?
 
