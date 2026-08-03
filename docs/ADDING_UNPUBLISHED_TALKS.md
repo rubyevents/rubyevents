@@ -82,6 +82,7 @@ Check if the speaker exists in [speakers.yml](/data/speakers.yml).
 If they do, no further action is necessary.
 If they don't, create a new record for them, and try to include a GitHub handle.
 The other fields are nice, but GitHub is how we deduplicate, auth, and populate the profile, so try to populate that one if you can find it.
+See [ADDING_SPEAKERS.md](ADDING_SPEAKERS.md) for the full speaker profile fields, and how to add slides/blog posts/other resources to a talk.
 
 ## Troubleshooting
 

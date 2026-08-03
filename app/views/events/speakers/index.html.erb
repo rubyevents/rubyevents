@@ -30,10 +30,7 @@
           <% grouped.each do |kind, speakers| %>
             <h2 class="mb-6"><%= titles[kind.to_sym].pluralize(speakers.count) %></h2>
 
-            <div
-              id="keynote-speakers"
-              class="mb-12 grid h-full min-w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
-            >
+            <div class="mb-12 grid h-full min-w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
               <% speakers.each do |kind, speaker| %>
                 <div class="transition-bg rounded-lg border bg-white duration-300 ease-in-out hover:bg-gray-200">
                   <%= render partial: "users/card", locals: {user: speaker} %>

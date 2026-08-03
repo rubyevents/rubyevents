@@ -44,7 +44,7 @@
 
   <% if (groups = @events.group_by(&:kind)).any? %>
     <% groups.each do |kind, events| %>
-      <div id="events" class="mt-12">
+      <div class="mt-12">
         <section class="flex w-full flex-col gap-4">
           <div class="flex w-full items-center justify-between">
             <h2 class="shrink-0 text-primary"><%= kind.humanize.pluralize %></h2>
