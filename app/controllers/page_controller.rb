@@ -28,6 +28,7 @@ class PageController < ApplicationController
     featured_ids = Event.where(id: featured_ids)
       .includes(:cfps)
       .sort_by { |event| event.featured_distance(today: today) }
+      .reject { |event| event.static_metadata.cancelled? }
       .first(15)
       .map(&:id)
 
@@ -82,6 +83,9 @@ class PageController < ApplicationController
   end
 
   def featured
+    @events = Event.featurable
+      .order(date: :desc)
+      .reject { |event| event.static_metadata.cancelled? }
   end
 
   def components

@@ -39,12 +39,9 @@
               <div class="group/card relative" data-controller="hover-card" data-action="mouseenter->hover-card#reveal">
                 <%= link_to event_path(event) do %>
                   <div
-                    class="
-                      h-20 w-20 transform overflow-hidden rounded-xl shadow-sm ring-2 ring-gray-100 transition-all
-                      duration-200 group-hover/card:scale-105 group-hover/card:ring-4
-                      group-hover/card:ring-[--brand-color]
-                    "
-                    style="--brand-color: <%= featured_bg %>;"
+                    class="h-20 w-20 transform overflow-hidden rounded-xl shadow-sm ring-2 ring-gray-100 transition-all duration-200 group-hover/card:scale-105 group-hover/card:ring-4 group-hover/card:ring-[--brand-color] <%= "opacity-50 grayscale" if event_cancelled?(event) %>"
+                    style="--brand-color: <%= featured_bg %>; <%= featured_bg %>;"
+                    title="<%= event_cancelled?(event) ? "#{event.name} (Cancelled)" : event.name %>"
                   >
                     <%= image_tag event.avatar_image_path, alt: event.name, class: "w-full h-full object-cover", loading: "lazy" %>
                   </div>
