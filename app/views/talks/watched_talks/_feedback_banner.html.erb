@@ -13,7 +13,7 @@
   <div class="flex flex-wrap items-center justify-between gap-2">
     <div class="flex items-center gap-2">
       <%= fa("circle-check", size: :sm, style: :solid, class: "text-green-600") %>
-      <span class="font-medium"><% if watched_talk&.watched_on == "another_version" %>You watched another version of this talk!<% elsif watched_talk&.watched_on == "in_person" %>You watched this talk in-person<% if watched_talk&.watched_at %>on<%= watched_talk.watched_at.strftime("%B %-d, %Y") %><% end %>!<% else %>You watched this talk<% if watched_talk&.watched_on.present? && watched_talk.watched_on != "other" %>on<%= WatchedTalk::WATCHED_ON_OPTIONS.dig(watched_talk.watched_on, :label) || watched_talk.watched_on.titleize %><% end %><% if watched_talk&.watched_at %>on<%= watched_talk.watched_at.strftime("%B %-d, %Y") %><% end %>!<% end %></span>
+      <span class="font-medium"><% if watched_talk&.watched_on == "another_version" %>You watched another version of this talk!<% elsif watched_talk&.watched_on == "in_person" %>You watched this talk in-person<% if watched_talk&.watched_at %> on <%= watched_talk.watched_at.strftime("%B %-d, %Y") %><% end %>!<% else %>You watched this talk<% if watched_talk&.watched_on.present? && watched_talk.watched_on != "other" %> on <%= WatchedTalk::WATCHED_ON_OPTIONS.dig(watched_talk.watched_on, :label) || watched_talk.watched_on.titleize %><% end %><% if watched_talk&.watched_at %> on <%= watched_talk.watched_at.strftime("%B %-d, %Y") %><% end %>!<% end %></span>
     </div>
 
     <div class="flex items-center gap-2">
