@@ -358,7 +358,7 @@
             </div>
 
             <% transcripts.each do |talk_transcript| %>
-              <%= tag.div hidden: talk_transcript.language != default_language, class: "relative overflow-y-auto max-h-[32rem] pr-1", data: {language: talk_transcript.language, transcript_target: "panel", transcript_scroll: ""} do %>
+              <%= tag.div hidden: talk_transcript.language != default_language, class: "relative overflow-y-auto max-h-[32rem] pr-1", data: {language: talk_transcript.language, transcript_target: "panel", transcript_scroll: "true"} do %>
                 <%= render partial: "talks/transcript", locals: {transcript: talk_transcript.raw_transcript} %>
               <% end %>
             <% end %>
