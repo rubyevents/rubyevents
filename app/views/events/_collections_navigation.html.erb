@@ -1,8 +1,9 @@
 <%# locals: (active:) %>
+<% continent = params[:continent] %>
 <% collections = [
-     ["Upcoming", events_path, :upcoming],
-     ["Past", past_events_path, :past],
-     ["Calendar", year_events_path(year: Date.current.year), :calendar],
+     ["Upcoming", events_path(continent:), :upcoming],
+     ["Past", past_events_path(continent:), :past],
+     ["Calendar", year_events_path(year: Date.current.year, continent:), :calendar],
      ["Archive", archive_events_path, :archive],
      ["Meetups", meetups_events_path, :meetups]
    ] %>

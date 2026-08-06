@@ -1,0 +1,9 @@
+<%# locals: (label:, path:, active: false) %>
+<%= link_to label,
+      path,
+      class: class_names(
+        "flex items-center justify-center whitespace-nowrap rounded border px-4 py-2 text-sm",
+        "border-primary/30 bg-primary/10 font-semibold text-primary" => active,
+        "text-gray-500 hover:bg-base-200" => !active
+      ),
+      aria: {current: active ? "page" : nil} %>
