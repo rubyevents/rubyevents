@@ -1,4 +1,4 @@
-<%# locals: (extra_params: {}, anchor_ids: false) %>
+<%# locals: (extra_params: {}) %>
 
 <% current_letter = params[:letter].to_s.downcase.presence %>
 
@@ -8,7 +8,6 @@
 
     <%= link_to letter&.upcase || "All",
           url_for(extra_params.merge(letter: letter).compact),
-          id: (letter if anchor_ids),
           class: class_names(
             "flex w-10 items-center justify-center rounded border transition-colors",
             "bg-primary/10 text-primary border-primary/20 font-semibold": active,

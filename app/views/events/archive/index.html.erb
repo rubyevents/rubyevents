@@ -30,7 +30,7 @@
     </div>
   </div>
 
-  <%= render "shared/alphabet_filter", extra_params: {kind: params[:kind]}, anchor_ids: true %>
+  <%= render "shared/alphabet_filter", extra_params: {kind: params[:kind]} %>
 
   <% if params[:letter].present? %>
     <div class="mb-12 font-medium">

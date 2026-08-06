@@ -15,7 +15,7 @@ class EventsTest < ApplicationSystemTestCase
     click_on "Archive"
     assert_selector "h1", text: "Events Archive"
 
-    find("a#t", text: "T").click
+    click_on "T", exact_text: true
     assert_selector "span", text: "Tropical Ruby"
   end
 
