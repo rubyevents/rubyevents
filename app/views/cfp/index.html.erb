@@ -5,7 +5,7 @@
     </h1>
 
     <div class="mt-4 flex items-center gap-4 md:mt-0">
-      <div class="tab tabs-boxed">
+      <div class="tabs-boxed tabs">
         <%= link_to "All", cfp_index_path(kind: "all"), class: "tab #{"tab-active" if params[:kind].blank? || params[:kind] == "all"}" %>
         <%= link_to "Conferences", cfp_index_path(kind: "conference"), class: "tab #{"tab-active" if params[:kind] == "conference"}" %>
         <%= link_to "Meetups", cfp_index_path(kind: "meetup"), class: "tab #{"tab-active" if params[:kind] == "meetup"}" %>
