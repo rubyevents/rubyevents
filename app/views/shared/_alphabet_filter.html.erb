@@ -1,0 +1,18 @@
+<%# locals: (extra_params: {}, anchor_ids: false) %>
+
+<% current_letter = params[:letter].to_s.downcase.presence %>
+
+<div class="flex w-full flex-wrap justify-between gap-1 py-8 hotwire-native:hidden">
+  <% [nil, *("a".."z")].each do |letter| %>
+    <% active = letter == current_letter %>
+
+    <%= link_to letter&.upcase || "All",
+          url_for(extra_params.merge(letter: letter).compact),
+          id: (letter if anchor_ids),
+          class: class_names(
+            "flex w-10 items-center justify-center rounded border transition-colors",
+            "bg-primary/10 text-primary border-primary/20 font-semibold": active,
+            "text-gray-500 hover:bg-base-200": !active
+          ) %>
+  <% end %>
+</div>
