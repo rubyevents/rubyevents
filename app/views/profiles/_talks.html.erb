@@ -13,6 +13,7 @@
 
   <div class="hidden md:block mt-2" data-controller="events-filter" data-events-filter-current-value="all">
     <% talk_kinds = talks.map(&:kind).uniq.sort %>
+
     <% if talk_kinds.any? %>
       <%= render "shared/filter_buttons", kinds: talk_kinds, current_filter: "all" %>
     <% end %>
