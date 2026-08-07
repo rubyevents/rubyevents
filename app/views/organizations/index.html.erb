@@ -46,13 +46,7 @@
     <% end %>
   <% end %>
 
-  <div class="flex w-full flex-wrap justify-between gap-1 py-8 hotwire-native:hidden">
-    <% ("a".."z").each do |letter| %>
-      <%= link_to organizations_path(letter: letter), class: class_names("flex items-center justify-center w-10 text-gray-500 rounded hover:bg-brand-lighter border", "bg-brand-lighter": letter == params[:letter]) do %>
-        <%= letter.upcase %>
-      <% end %>
-    <% end %>
-  </div>
+  <%= render "shared/alphabet_filter" %>
 
   <div
     id="organizations"

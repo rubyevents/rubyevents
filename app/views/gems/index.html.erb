@@ -10,17 +10,7 @@
     Browse Ruby gems featured in <%= pluralize(TopicGem.joins(:topic).sum("topics.talks_count"), "conference talk") %>.
   </p>
 
-  <div class="flex w-full flex-wrap justify-between gap-1 py-4 hotwire-native:hidden">
-    <% ("a".."z").each do |letter| %>
-      <%= link_to gems_path(letter: letter), class: class_names("flex items-center justify-center w-10 text-gray-500 rounded hover:bg-brand-lighter border", "bg-brand-lighter": letter == params[:letter]) do %>
-        <%= letter.upcase %>
-      <% end %>
-    <% end %>
-
-    <%= link_to gems_path, class: class_names("flex items-center justify-center w-10 text-gray-500 rounded hover:bg-brand-lighter border", "bg-brand-lighter": params[:letter].blank?) do %>
-      all
-    <% end %>
-  </div>
+  <%= render "shared/alphabet_filter" %>
 
   <div id="gems" class="grid min-w-full gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
     <% @gems.each do |topic_gem| %>
