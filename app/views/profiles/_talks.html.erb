@@ -11,48 +11,18 @@
           } %>
   </div>
 
-  <div role="tablist" class="tabs-boxed tabs mt-2 hidden bg-base-100 md:flex">
-    <input
-      type="radio"
-      name="talk_kinds"
-      role="tab"
-      class="tab !rounded-lg px-6"
-      aria-label="All"
-      <% if talks.size.positive? %>
-        checked
-      <% end %>
-    >
+  <div data-controller="events-filter" data-events-filter-current-value="all" class="mt-2 hidden md:block">
+    <% talk_kinds = talks.map(&:kind).uniq.sort %>
+    <% if talk_kinds.any? %>
+      <%= render "shared/filter_buttons", kinds: talk_kinds, current_filter: "all" %>
+    <% end %>
 
-    <div role="tabpanel" class="tab-content mt-6">
-      <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        <%= render partial: "talks/card",
-              collection: talks,
-              as: :talk,
-              locals: {
-                favoritable: true,
-                user_favorite_talks_ids: user_favorite_talks_ids,
-                user_watched_talks: user_watched_talks,
-                back_to: back_to_from_request,
-                back_to_title: user.name
-              } %>
-      </div>
-    </div>
-
-    <% talks_by_kind.each do |kind, talks| %>
-      <input
-        type="radio"
-        name="talk_kinds"
-        role="tab"
-        class="tab !rounded-lg px-6"
-        aria-label="<%= talks.first.formatted_kind.pluralize %> (<%= talks.size %>)"
-      >
-
-      <div role="tabpanel" class="tab-content mt-6">
-        <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <% talks.each do |talk| %>
+        <div data-events-filter-target="event" data-kind="<%= talk.kind %>">
           <%= render partial: "talks/card",
-                collection: talks,
-                as: :talk,
                 locals: {
+                  talk: talk,
                   favoritable: true,
                   user_favorite_talks_ids: user_favorite_talks_ids,
                   user_watched_talks: user_watched_talks,
@@ -60,7 +30,7 @@
                   back_to_title: user.name
                 } %>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 <% end %>
