@@ -1,14 +1,16 @@
 <%# locals: (selected: nil) %>
-<nav
-  aria-label="Filter events by continent"
-  class="flex w-full flex-wrap gap-1 py-8 hotwire-native:hidden"
->
-  <%= render "events/continent_filter", label: "All", path: continent_filter_path(nil), active: selected.nil? %>
+<div class="py-6 hotwire-native:hidden">
+  <nav
+    aria-label="Filter events by continent"
+    class="tabs-boxed tabs inline-flex flex-wrap gap-1 max-md:rounded-xl max-md:p-1.5"
+  >
+    <%= render "events/continent_filter", label: "All", path: continent_filter_path(nil), active: selected.nil? %>
 
-  <% Continent.populated.each do |continent| %>
-    <%= render "events/continent_filter",
-          label: continent.name,
-          path: continent_filter_path(continent),
-          active: selected == continent %>
-  <% end %>
-</nav>
+    <% Continent.populated.each do |continent| %>
+      <%= render "events/continent_filter",
+            label: continent.name,
+            path: continent_filter_path(continent),
+            active: selected == continent %>
+    <% end %>
+  </nav>
+</div>

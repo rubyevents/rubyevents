@@ -2,8 +2,7 @@
 <%= link_to label,
       path,
       class: class_names(
-        "flex items-center justify-center whitespace-nowrap rounded border px-4 py-2 text-sm",
-        "border-primary/30 bg-primary/10 font-semibold text-primary" => active,
-        "text-gray-500 hover:bg-base-200" => !active
+        "tab whitespace-nowrap max-md:h-auto max-md:min-h-6 max-md:rounded-lg max-md:px-2.5 max-md:py-1 max-md:text-xs max-md:leading-tight",
+        "tab-active" => active
       ),
       aria: {current: active ? "page" : nil} %>
