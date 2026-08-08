@@ -1,5 +1,8 @@
 name: CI
 
+permissions:
+  contents: read
+
 on:
   pull_request:
     branches: ["*"]
@@ -11,12 +14,30 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  lint:
+  changes:
+    name: Detect changes
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      code: ${{ steps.filter.outputs.code || 'true' }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: dorny/paths-filter@v3
+        id: filter
+        continue-on-error: true
+        with:
+          filters: |
+            code:
+              - '!{data,app/assets/images/events}/**'
+
+  data:
+    name: "Data Check"
     runs-on: ubuntu-latest
     timeout-minutes: 5
     env:
       RAILS_ENV: test
-      RUBOCOP_CACHE_ROOT: tmp/rubocop
+
     steps:
       - uses: actions/checkout@v5
         with:
@@ -27,14 +48,26 @@ jobs:
         with:
           bundler-cache: true
 
-      - name: Setup Node
-        uses: actions/setup-node@v6
-        with:
-          node-version-file: ".node-version"
-          cache: yarn
+      - name: Validate YAML data schemas
+        run: bin/rails validate:all
 
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
+  lint:
+    name: "Lint Ruby"
+    needs: changes
+    if: ${{ needs.changes.outputs.code == 'true' || github.event_name == 'push' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      RAILS_ENV: test
+      RUBOCOP_CACHE_ROOT: tmp/rubocop
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
 
       - name: Prepare RuboCop cache
         uses: actions/cache@v4
@@ -46,35 +79,52 @@ jobs:
           restore-keys: |
             rubocop-${{ runner.os }}-${{ env.RUBY_VERSION }}-${{ env.DEPENDENCIES_HASH }}-
 
-      - name: StandardRB Check
+      - name: Standard
         run: bundle exec standardrb --format github --format "Standard::Formatter"
 
-      - name: StandardJS Check
-        run: yarn lint
-
-      - name: Check speakers.yml is in sync
-        run: bin/rails speakers_file:check
-
-      - name: Validate YAML data schemas
-        run: bin/rails validate:all
-
-      - name: Lint YAML data files
-        run: bundle exec yerba check
-
-      - name: erb-lint Check
+      - name: erb-lint
         run: bundle exec erb_lint --lint-all
-
-      - name: Herb Linter Check
-        run: npx @herb-tools/linter
 
       - name: Herb Analyze (parse/compile)
         run: bundle exec herb analyze app/
 
+  lint_js:
+    name: "Lint JavaScript"
+    needs: changes
+    if: ${{ needs.changes.outputs.code == 'true' || github.event_name == 'push' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: ".node-version"
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: StandardJS
+        run: yarn lint
+
+      - name: Herb Linter
+        run: npx herb-lint
+
+      - name: Herb Formatter
+        run: npx herb-format --check
+
   test:
+    name: "Test"
+    needs: changes
+    if: ${{ needs.changes.outputs.code == 'true' || github.event_name == 'push' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
       RAILS_ENV: test
+
     steps:
       - uses: actions/checkout@v5
 
@@ -106,11 +156,13 @@ jobs:
           bin/rails test:system
 
   seed_smoke_test:
+    name: "Data Smoke Test"
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
       RAILS_ENV: test
       SEED_SMOKE_TEST: true
+
     steps:
       - uses: actions/checkout@v5
 
@@ -139,11 +191,10 @@ jobs:
       - name: Run Seed Smoke Test
         run: bin/rails test test/tasks/seed_test.rb
 
-      - name: Verify all thumbnails for child talks are present
-        run: bin/rails verify_thumbnails
-
   build:
     name: Build Docker Image
+    needs: changes
+    if: ${{ needs.changes.outputs.code == 'true' || github.event_name == 'push' }}
     runs-on: ubuntu-24.04-arm
 
     permissions:
@@ -151,6 +202,7 @@ jobs:
       packages: write
       attestations: write
       id-token: write
+
     timeout-minutes: 20
 
     env:
@@ -193,10 +245,15 @@ jobs:
           KAMAL_REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
 
   deploy:
-    needs: [lint, test, seed_smoke_test, build]
+    needs: [data, lint, lint_js, test, seed_smoke_test, build]
     name: Deploy
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: read
+
     timeout-minutes: 20
 
     steps:
@@ -221,6 +278,7 @@ jobs:
           GEOLOCATE_API_KEY: ${{ secrets.GEOLOCATE_API_KEY }}
           MAPBOX_ACCESS_TOKEN: ${{ secrets.MAPBOX_ACCESS_TOKEN }}
           TYPESENSE_API_KEY: ${{ secrets.TYPESENSE_API_KEY }}
+          TYPESENSE_SEARCH_ONLY_API_KEY: ${{ secrets.TYPESENSE_SEARCH_ONLY_API_KEY }}
           TYPESENSE_NODES: ${{ secrets.TYPESENSE_NODES }}
           TYPESENSE_NEAREST_NODE: ${{ secrets.TYPESENSE_NEAREST_NODE }}
 

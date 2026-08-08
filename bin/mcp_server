@@ -5,6 +5,7 @@
 # Run with: bin/mcp_server
 
 require_relative "../config/environment"
+require_relative "../lib/generators/tool_generation"
 require "json"
 
 class MCPServer
@@ -36,11 +37,20 @@ class MCPServer
   private
 
   def discover_tools
-    Dir[Rails.root.join("app/tools/**/*_tool.rb")].each_with_object({}) do |file, tools|
+    discovered_tools = Dir[Rails.root.join("app/tools/**/*_tool.rb")].each_with_object({}) do |file, tools|
       require file
       class_name = File.basename(file, ".rb").camelize
       tool_class = class_name.constantize
       tools[tool_name(class_name)] = tool_class
+    end
+
+    # Load all the generators, create a tool class associated with each one and
+    # then add them to the tools hash
+    Rails::Generators.sorted_groups
+    generators = Generators::EventBase.descendants
+    tool_classes = ToolGeneration.generate_tools(generators)
+    tool_classes.each.with_object(discovered_tools) do |klass, tools|
+      tools[tool_name(klass.name)] = klass
     end
   end
 
@@ -131,7 +141,7 @@ class MCPServer
     if tool_class.respond_to?(:parameters)
       tool_class.parameters.each do |name, param|
         schema[:properties][name.to_s] = {
-          type: param.type || "string",
+          type: map_type(param.type) || "string",
           description: param.description
         }
         schema[:required] << name.to_s if param.required
@@ -139,6 +149,17 @@ class MCPServer
     end
 
     schema
+  end
+
+  def map_type(type)
+    case type.to_s
+    when "numeric", "number", "float", "double" then "number"
+    when "integer", "int" then "integer"
+    when "boolean" then "boolean"
+    when "array" then "array"
+    when "object" then "object"
+    when "string" then "string"
+    end
   end
 
   def send_response(response)

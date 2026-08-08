@@ -16,8 +16,9 @@ module Static
         sorted[[rank - 1, 0].max]
       end
 
-      def initialize(file_path:)
+      def initialize(file_path:, document: nil)
         @file_path = file_path
+        @document = document
       end
 
       PATTERNS = [
@@ -39,7 +40,7 @@ module Static
       def validate
         return [] unless applicable?
 
-        @event_document = Yerba.parse_file(@file_path)
+        @event_document = @document || Yerba.parse_file(@file_path)
 
         return validate_absence_for_meetup if meetup?
 

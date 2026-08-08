@@ -16,6 +16,9 @@ application.register("bookmark", BookmarkController)
 import Bridge__ButtonController from "./bridge/button_controller"
 application.register("bridge--button", Bridge__ButtonController)
 
+import Bridge__LiveActivityController from "./bridge/live_activity_controller"
+application.register("bridge--live-activity", Bridge__LiveActivityController)
+
 import Bridge__OauthController from "./bridge/oauth_controller"
 application.register("bridge--oauth", Bridge__OauthController)
 

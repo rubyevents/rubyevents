@@ -1,12 +1,12 @@
 # Website: https://brightonruby.com
-# Videos: -
+# Videos: https://www.youtube.com/playlist?list=PLG4Kzg-MIgJw
 ---
 - id: "andy-croll-brightonruby-2026"
   title: "Welcome"
   kind: "intro"
   date: "2026-06-25"
   language: "English"
-  video_provider: "scheduled"
+  video_provider: "not_recorded"
   video_id: "andy-croll-brightonruby-2026"
   description: |-
     Welcome to Brighton Ruby 2026.
@@ -14,11 +14,13 @@
     - Andy Croll
 
 - id: "brian-casel-brightonruby-2026"
-  title: "Your experience is your (AI) advantage"
+  title: "The Model Doesn't Matter"
+  raw_title: "The model doesn't matter - Brian Casel at Brighton Ruby 2026"
   date: "2026-06-25"
+  published_at: "2026-07-12T22:00:33Z"
   language: "English"
-  video_provider: "scheduled"
-  video_id: "brian-casel-brightonruby-2026"
+  video_provider: "youtube"
+  video_id: "lSMOo3N4FoQ"
   description: |-
     Everyone's seen AI spin up a fresh app from scratch. But what about your well-established codebase, with years of decisions, conventions, and real users? Brian Casel argues that experienced developers have the biggest advantage in the AI era, and shows why the best teams are blurring the lines between developer, designer, and product manager—and what that means for us as builders.
   speakers:
@@ -26,11 +28,13 @@
 
 - id: "elena-tanasoiu-emma-gabriel-brightonruby-2026"
   title: "Performance Engineering for Everyone"
+  raw_title: "Performance Engineering for Everyone, Elena Tanasoiu & Emma Gabriel at Brighton Ruby 2026"
   date: "2026-06-25"
+  published_at: "2026-07-12T22:00:32Z"
   language: "English"
   slides_url: "https://speakerdeck.com/elenatanasoiu/performance-engineering-for-everyone"
-  video_provider: "scheduled"
-  video_id: "elena-tanasoiu-emma-gabriel-brightonruby-2026"
+  video_provider: "youtube"
+  video_id: "CwZCvyj_Qgw"
   description: |-
     Your app has a slow endpoint. You've added a database index, turned on caching, reached for larger instances — and you're still guessing. This talk teaches you how to read flamegraphs: the visualization that shows exactly where your code spends time, no guesswork required. We'll demonstrate the technique through a real production story from GitHub, where profiling a single page cut CPU consumption by 13% and rebuilt developer trust in the merge button on the Pull Request page.
   speakers:
@@ -39,10 +43,12 @@
 
 - id: "craig-norford-brightonruby-2026"
   title: "Scaling Sidekiq: Managing Multi Tenancy"
+  raw_title: "Scaling Sidekiq, Managing Multi Tenancy, Craig Norford at Brighton Ruby 2026"
   date: "2026-06-25"
+  published_at: "2026-07-12T22:00:38Z"
   language: "English"
-  video_provider: "scheduled"
-  video_id: "craig-norford-brightonruby-2026"
+  video_provider: "youtube"
+  video_id: "xQ2334zPzug"
   description: |-
     Different strategies for managing multi tenancy in Sidekiq and different strategies based on your business needs. Especially looking at balancing cost and compute with shuffle sharding.
   speakers:
@@ -50,23 +56,26 @@
 
 - id: "remy-hannequin-brightonruby-2026"
   title: "Time is a Lie (and How to Deal With It in Ruby)"
+  raw_title: "Time is a Lie and How to Deal With It in Ruby, Rémy Hannequin at Brighton Ruby 2026"
   date: "2026-06-25"
+  published_at: "2026-07-12T22:00:16Z"
   language: "English"
-  video_provider: "scheduled"
-  video_id: "remy-hannequin-brightonruby-2026"
+  video_provider: "youtube"
+  video_id: "w5JPLjSUY8U"
   description: |-
     Time seems simple until a background job vanishes during the DST switch or an API silently shifts dates because it assumed UTC. We'll look at why time is genuinely weird, and then work through practical patterns for handling it safely in Ruby and Rails.
   speakers:
     - Rémy Hannequin
 
 - id: "tekin-sueleyman-brightonruby-2026"
-  old_id: "tekin-suleyman-brightonruby-2026"
   title: "Lightning Talk: 10 Cool Things You Probably Didn't Know About Internationalisation"
+  raw_title: "10 Cool Things You Probably Didn't Know About Internationalisation, Tekin Süleyman at Brighton 2026"
   kind: "lightning_talk"
   date: "2026-06-25"
+  published_at: "2026-07-12T22:00:27Z"
   language: "English"
-  video_provider: "scheduled"
-  video_id: "tekin-sueleyman-brightonruby-2026"
+  video_provider: "youtube"
+  video_id: "X1u8ZWCSuA0"
   description: |-
     10 cool things you probably didn't know about internationalisation.
   speakers:
@@ -74,11 +83,13 @@
 
 - id: "tijmen-brommet-brightonruby-2026"
   title: "Lightning Talk: Woodworking for Rubyists"
+  raw_title: "Woodworking for Rubyists, Tijmen Brommet at Brighton Ruby 2026"
   kind: "lightning_talk"
   date: "2026-06-25"
+  published_at: "2026-07-12T22:00:14Z"
   language: "English"
-  video_provider: "scheduled"
-  video_id: "tijmen-brommet-brightonruby-2026"
+  video_provider: "youtube"
+  video_id: "e8-us3PvNbk"
   description: |-
     What woodworking can teach us about software development. From jigs to joints, the parallels between crafting with wood and crafting with code.
   speakers:
@@ -86,11 +97,13 @@
 
 - id: "jennie-evans-brightonruby-2026"
   title: "Lightning Talk: Kindness is a Superpower"
+  raw_title: "Kindness is a Superpower, Jennie Evans at Brighton Ruby 2026"
   kind: "lightning_talk"
   date: "2026-06-25"
+  published_at: "2026-07-12T22:00:15Z"
   language: "English"
-  video_provider: "scheduled"
-  video_id: "jennie-evans-brightonruby-2026"
+  video_provider: "youtube"
+  video_id: "aQ0XxxXuaCg"
   description: |-
     How kindness shows up in development teams and why it matters. A look at the small acts that make teams stronger.
   speakers:
@@ -98,10 +111,12 @@
 
 - id: "maria-yudina-brightonruby-2026"
   title: "Code, Prompts, and Stories"
+  raw_title: "Code, Prompts, and Stories, Maria Yudina at Brighton Ruby 2026"
   date: "2026-06-25"
+  published_at: "2026-07-12T22:00:04Z"
   language: "English"
-  video_provider: "scheduled"
-  video_id: "maria-yudina-brightonruby-2026"
+  video_provider: "youtube"
+  video_id: "xy7CmdmJy1Y"
   description: |-
     What screenwriting can teach us about writing code and prompts. The same craft principles that make stories work — clarity, structure, naming — apply across code, prompts, and communication.
   speakers:
@@ -109,10 +124,12 @@
 
 - id: "iliana-hadzhiatanasova-brightonruby-2026"
   title: "From Rails 3.0 to Rails Edge: 15 years of upgrades in a 3 million line monolith"
+  raw_title: "From Rails 3 0 to Rails Edge, Iliana Hadzhiatanasova at Brighton Ruby 2026"
   date: "2026-06-25"
+  published_at: "2026-07-12T22:00:06Z"
   language: "English"
-  video_provider: "scheduled"
-  video_id: "iliana-hadzhiatanasova-brightonruby-2026"
+  video_provider: "youtube"
+  video_id: "AJhHXU99ZFs"
   description: |-
     Intercom has been running on Rails since 2011. Starting from Rails 3.0, today our 3 million line monolith is running on the main branch of Rails. This talk covers our Rails upgrade journey over the last 15 years - the things that broke, the monkey patches keeping it all together, and what it takes to get 300 engineers comfortable shipping on unreleased Rails versions.
   speakers:
@@ -120,10 +137,12 @@
 
 - id: "alex-watt-brightonruby-2026"
   title: "Ethiopia on Rails"
+  raw_title: "Ethiopia on Rails, Alex Watt at Brighton Ruby 2026"
   date: "2026-06-25"
+  published_at: "2026-07-12T22:00:19Z"
   language: "English"
-  video_provider: "scheduled"
-  video_id: "alex-watt-brightonruby-2026"
+  video_provider: "youtube"
+  video_id: "-PpU3xc7JJw"
   description: |-
     Improving healthcare in Addis Ababa, Ethiopia, with a Rails app for mobile medical clinics.
   speakers:

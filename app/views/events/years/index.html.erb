@@ -1,9 +1,6 @@
-<div class="container py-6 md:py-12 hotwire-native:py-3">
+<div class="container py-8 hotwire-native:py-3">
   <%= render partial: "header", locals: {
         year: @year,
-        events: @events,
-        monthly_events: @monthly_events,
-        events_by_month: @events_by_month,
         has_previous_year: @has_previous_year,
         has_next_year: @has_next_year
       } %>
@@ -14,4 +11,17 @@
   <% if @yearly_events.any? %>
     <%= render partial: "yearly_events", locals: {year: @year, events: @yearly_events} %>
   <% end %>
+
+  <div class="mt-6 flex flex-wrap items-center gap-x-2 gap-y-3">
+    <p class="text-sm text-gray-500">
+      <%= pluralize(@monthly_events.count, "event") %>
+
+      <% if @monthly_events.any? %>
+        across <%= pluralize(@events_by_month.keys.count, "month") %>
+      <% end %>
+    </p>
+
+    <span aria-hidden="true" class="text-gray-300">·</span>
+    <%= render "shared/subscribe_to_calendar", url: events_url(format: :ics), modal_id: "modal-middle" %>
+  </div>
 </div>

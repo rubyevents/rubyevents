@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class FeaturedCitySchema < ApplicationSchema
+  data_file "**/featured_cities.yml", selector: "[]"
+
   string :name, description: "Full city name"
   string :slug, description: "URL-friendly slug for the city"
   string :state_code, description: "State or province code", required: false

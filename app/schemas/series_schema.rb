@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class SeriesSchema < ApplicationSchema
+  data_file "**/series.yml"
+
+  string :id, description: "Unique identifier for the event series, matches the series folder name"
   string :name, description: "Name of the event series (e.g., 'RailsConf')"
   string :description, description: "Description of the event series", required: false
 

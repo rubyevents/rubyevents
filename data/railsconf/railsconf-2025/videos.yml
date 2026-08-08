@@ -2,7 +2,6 @@
 # Playlist: https://www.youtube.com/playlist?list=PLbHJudTY1K0fOQPBF0uTwFIGuMVEKnV1p (RubyCentral)
 ---
 - id: "opening-ceremony-railsconf-2025"
-  old_id: "shan-cureton-railsconf-2025"
   title: "Opening Ceremony"
   raw_title: "Opening Ceremony with Shan Cureton"
   event_name: "RailsConf 2025"
@@ -34,7 +33,6 @@
       video_id: "mGSB8L8I95A"
 
 - id: "john-dewsnap-railsconf-2025"
-  old_id: "keynote-day-1-railsconf-2025"
   title: "Keynote: 365 Days Later: Moving From Java To RoR And How It Changed Everything"
   raw_title: "365 Days Later: Moving From Java To RoR And How It Changed Everything"
   kind: "keynote"
@@ -448,7 +446,6 @@
       video_id: "pbztEjDyp8s"
 
 - id: "david-heinemeier-hansson-elise-shaffer-railsconf-2025"
-  old_id: "closing-keynote-day-1-railsconf-2025"
   title: "Fireside Chat With David Heinemeier Hansson"
   raw_title: "Fireside Chat With David Heinemeier Hansson"
   kind: "fireside_chat"
@@ -469,7 +466,6 @@
       video_id: "eD4188ifEWE"
 
 - id: "panel-rails-then-now-and-next-a-conversation-with-our-community-railsconf-2025"
-  old_id: "keynote-day-2-railsconf-2025"
   title: "Panel: Rails Then, Now, And Next: A Conversation With Our Community"
   raw_title: "Rails Then, Now, And Next: A Conversation With Our Community"
   kind: "panel"
@@ -588,7 +584,6 @@
       video_id: "E_rKGBN_caQ"
 
 - id: "panel-ruby-podcast-railsconf-2025"
-  old_id: "ruby-podcast-panel-railsconf-2025"
   title: "Panel: Ruby Podcast"
   raw_title: "Ruby Podcast Panel"
   kind: "panel"
@@ -611,7 +606,6 @@
       video_id: "w-ZmM1juEtU"
 
 - id: "panel-the-past-present-and-future-of-background-jobs-railsconf-2025"
-  old_id: "background-jobs-panel-railsconf-2025"
   title: "Panel: The Past, Present and Future of Background Jobs"
   raw_title: "The Past, Present and Future of Background Jobs according to Mike, Rosa, Maciej, and Ben"
   kind: "panel"
@@ -805,7 +799,6 @@
       video_id: "Rf8K9bk5DTU"
 
 - id: "edigleysson-silva-railsconf-2025"
-  old_id: "edy-silva-railsconf-2025"
   title: "The Future of: PWAs on Rails"
   raw_title: "The Future of: PWAs on Rails"
   event_name: "RailsConf 2025"
@@ -948,6 +941,7 @@
   date: "2025-07-10"
   published_at: "2025-07-24T12:30:38Z"
   track: "Breakout 2 - Freedom"
+  slides_url: "https://docs.google.com/presentation/d/1af1OBGRspid7n1K9WIF6egs6lD6ow1eXj58pDnl0-Ak/edit?usp=sharing"
   video_provider: "youtube"
   video_id: "4JiNCgPn5HY"
   description: |-
@@ -958,6 +952,11 @@
     Whether you want to validate a JSON field in a model, ensure that an incoming API request is properly formatted, check for valid events in an event-sourced application or run a validator against a class from a third-party library without monkey-patching, this talk will help you use some of Rails’ most classic features in a new and powerful way.
   speakers:
     - Andy Andrea
+  additional_resources:
+    - name: "Companion repo"
+      title: "The flexible validator source code with various branches representing different working states"
+      type: "repo"
+      url: "https://github.com/andycandrea/flexible_validator"
   alternative_recordings:
     - note: "Confreaks upload"
       video_provider: "youtube"
@@ -1035,7 +1034,6 @@
       video_id: "pngWE18P32Q"
 
 - id: "chris-oliver-ufuk-kayserilioglu-railsconf-2025"
-  old_id: "chris-oliver-railsconf-2025"
   title: "The Closing of RailsConf"
   raw_title: "RailsConf 2025 - The Closing of RailsConf with Chris Oliver and Ufuk Kayserilioglu"
   event_name: "RailsConf 2025"
@@ -1054,7 +1052,6 @@
       video_id: "YbZbhvt-Zto"
 
 - id: "aaron-patterson-railsconf-2025"
-  old_id: "closing-keynote-day-3-railsconf-2025"
   title: "Closing Keynote: Why is Aaron Patterson?"
   raw_title: "Keynote"
   kind: "keynote"
@@ -1087,7 +1084,6 @@
     Rapid fire talks in under 5 minutes from the community. So much to inspire in so little time!
   talks:
     - id: "noel-rappin-railsconf-2025"
-      old_id: "noel-rappin-lightning-talks-railsconf-2025"
       title: "Lightning Talks Intro"
       kind: "lightning_talk"
       event_name: "RailsConf 2025"
@@ -1100,7 +1096,6 @@
         - Noel Rappin
 
     - id: "zoe-steinkamp-railsconf-2025"
-      old_id: "zoe-steinkamp-lightning-talks-railsconf-2025"
       title: "Lightning Talk: Open source Ruby gem analytics with ClickHouse"
       kind: "lightning_talk"
       event_name: "RailsConf 2025"
@@ -1113,7 +1108,6 @@
         - Zoe Steinkamp
 
     - id: "jeremy-smith-railsconf-2025"
-      old_id: "jeremy-smith-lightning-talks-railsconf-2025"
       title: "Lightning Talk: Programming in the Low Memory Environment of Your Brain"
       kind: "lightning_talk"
       event_name: "RailsConf 2025"
@@ -1126,7 +1120,6 @@
         - Jeremy Smith
 
     - id: "sam-poder-railsconf-2025"
-      old_id: "sam-poder-lightning-talks-railsconf-2025"
       title: "Lightning Talk: A crash course in Linguistics w/ Ruby & Rails"
       kind: "lightning_talk"
       event_name: "RailsConf 2025"
@@ -1139,7 +1132,6 @@
         - Sam Poder
 
     - id: "brooke-kuhlmann-railsconf-2025"
-      old_id: "brook-kuhlmann-lightning-talks-railsconf-2025"
       title: "Lightning Talk: Terminus: A Hanami application for e-ink displays"
       kind: "lightning_talk"
       event_name: "RailsConf 2025"
@@ -1152,7 +1144,6 @@
         - Brooke Kuhlmann
 
     - id: "kelly-popko-railsconf-2025"
-      old_id: "kelly-popko-lightning-talks-railsconf-2025"
       title: "Lightning Talk: What is `Data` class?"
       kind: "lightning_talk"
       event_name: "RailsConf 2025"
@@ -1165,7 +1156,6 @@
         - Kelly Popko
 
     - id: "tia-anderson-railsconf-2025"
-      old_id: "tia-anderson-lightning-talks-railsconf-2025"
       title: "Lightning Talk: Peace, Love, and CRUD: A Rails Journey to Calm"
       kind: "lightning_talk"
       event_name: "RailsConf 2025"
@@ -1178,7 +1168,6 @@
         - Tia Anderson
 
     - id: "justin-bowen-railsconf-2025"
-      old_id: "justin-bowen-lightning-talks-railsconf-2025"
       title: "Lightning Talk: Build AI in Rails: Now Agents are Controller; Makes Code Tons of Fun!"
       kind: "lightning_talk"
       event_name: "RailsConf 2025"
@@ -1191,7 +1180,6 @@
         - Justin Bowen
 
     - id: "debora-fernandes-railsconf-2025"
-      old_id: "debora-fernandes-lightning-talks-railsconf-2025"
       title: "Lightning Talk: 10 years of Rails Girls São Paulo"
       kind: "lightning_talk"
       event_name: "RailsConf 2025"
@@ -1204,7 +1192,6 @@
         - Débora Fernandes
 
     - id: "shardly-romelus-railsconf-2025"
-      old_id: "shardly-romelus-lightning-talks-railsconf-2025"
       title: "Lightning Talk: Playing with Memory: Manual Management in C"
       kind: "lightning_talk"
       event_name: "RailsConf 2025"
@@ -1217,7 +1204,6 @@
         - Shardly Romelus
 
     - id: "rachael-wright-munn-railsconf-2025"
-      old_id: "rachael-wright-munn-lightning-talks-railsconf-2025"
       title: "Lightning Talk: Gamified Developer Experiences"
       kind: "lightning_talk"
       event_name: "RailsConf 2025"
@@ -1230,7 +1216,6 @@
         - Rachael Wright-Munn
 
     - id: "lucy-chen-railsconf-2025"
-      old_id: "lucy-chen-lightning-talks-railsconf-2025"
       title: "Lightning Talk: Ugly Colors: How I Built a Web App to Rank Ugly Colors"
       kind: "lightning_talk"
       event_name: "RailsConf 2025"
@@ -1243,7 +1228,6 @@
         - Lucy Chen
 
     - id: "alan-ridlehoover-railsconf-2025"
-      old_id: "alan-ridlehoover-lightning-talks-railsconf-2025"
       title: "Lightning Talk: The Other Side of Fear"
       kind: "lightning_talk"
       event_name: "RailsConf 2025"
@@ -1257,7 +1241,6 @@
         - Alan Ridlehoover
 
     - id: "yasar-celep-railsconf-2025"
-      old_id: "yasar-celep-lightning-talks-railsconf-2025"
       title: "Lightning Talk: Save your coffee money: Jemalloc in 5 minutes"
       kind: "lightning_talk"
       event_name: "RailsConf 2025"
@@ -1270,7 +1253,6 @@
         - Yaşar Celep
 
     - id: "cirdes-henrique-railsconf-2025"
-      old_id: "cirdes-henrique-lightning-talks-railsconf-2025"
       title: "Lightning Talk: Ruby UI - From React to Hotwire"
       kind: "lightning_talk"
       event_name: "RailsConf 2025"
@@ -1307,7 +1289,6 @@
       video_id: "DY1BIiqeGIE"
 
 - id: "lightning-talks-new-and-improved-features-in-rails-8-1-railsconf-2025"
-  old_id: "lightning-talks-new-and-improved-features-in-rails-81-railsconf-2025"
   title: "Lightning Talks: New and Improved Features in Rails 8.1"
   raw_title: "New and Improved Features in Rails 8.1"
   kind: "lightning_talk"
@@ -1323,7 +1304,6 @@
     Join us for a series of lightning talks about new features that we have added to Rails over the last year, to be released as part of Rails 8.1.
   talks:
     - id: "andrew-novoselac-intro-railsconf-2025"
-      old_id: "andrew-novoselac-intro-lightning-talks-railsconf-2025"
       title: "Shopify Lightning Talks Intro"
       kind: "intro"
       event_name: "RailsConf 2025"
@@ -1336,7 +1316,6 @@
         - Andrew Novoselac
 
     - id: "jenny-shen-railsconf-2025"
-      old_id: "jenny-shen-lightning-talks-railsconf-2025"
       title: "Lightning Talk: A Story of Eliminating Postgres Not Null Violations"
       kind: "lightning_talk"
       event_name: "RailsConf 2025"
@@ -1349,7 +1328,6 @@
         - Jenny Shen
 
     - id: "george-ma-railsconf-2025"
-      old_id: "george-ma-lightning-talks-railsconf-2025"
       title: "Lightning Talk: Structured Event Reporter"
       kind: "lightning_talk"
       event_name: "RailsConf 2025"
@@ -1362,7 +1340,6 @@
         - George Ma
 
     - id: "jill-klang-railsconf-2025"
-      old_id: "jill-klang-lightning-talks-railsconf-2025"
       title: "Lightning Talk: When Logs Betray Sensitive Secrets"
       kind: "lightning_talk"
       event_name: "RailsConf 2025"
@@ -1375,7 +1352,6 @@
         - Jill Klang
 
     - id: "nikita-vasilevsky-railsconf-2025"
-      old_id: "nikita-vasilevsky-lightning-talks-railsconf-2025"
       title: "Lightning Talk: Do you test your tests?"
       kind: "lightning_talk"
       event_name: "RailsConf 2025"
@@ -1388,7 +1364,6 @@
         - Nikita Vasilevsky
 
     - id: "andrew-novoselac-lightning-talk-railsconf-2025"
-      old_id: "andrew-novoselac-lightning-talks-railsconf-2025"
       title: "Lightning Talk: Rails Error Reporter Middleware"
       kind: "lightning_talk"
       event_name: "RailsConf 2025"
@@ -1428,7 +1403,6 @@
       video_id: "ozA4kkUZdx8"
 
 - id: "justin-wienckowski-jake-gribschaw-railsconf-2025"
-  old_id: "justin-wienckowski-railsconf-2025"
   title: "Chime Presents: Getting More Out of LLMs for Ruby Developers"
   raw_title: "Chime Presents: Getting More Out of LLMs for Ruby Developers"
   event_name: "RailsConf 2025"

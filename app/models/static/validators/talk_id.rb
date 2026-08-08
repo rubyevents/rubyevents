@@ -7,8 +7,9 @@ module Static
         "**/videos.yml"
       ].freeze
 
-      def initialize(file_path:)
+      def initialize(file_path:, document: nil)
         @file_path = file_path
+        @document = document
       end
 
       def applicable?
@@ -42,12 +43,11 @@ module Static
         end
       end
 
-      def document
-        @document ||= Yerba.parse_file(@file_path)
+      def videos_file
+        @videos_file ||= Static::VideosFile.wrap(@file_path, @document)
       end
 
       def expected_ids
-        return {} unless document.root
         return {} if meetup_event?
 
         @expected_ids ||= nodes.group_by { |node| speaker_id(node) }.each_with_object({}) do |(id, group), result|
@@ -76,9 +76,7 @@ module Static
       private
 
       def nodes
-        @nodes ||= document.root.each.flat_map do |video|
-          [video] + Array(video["talks"]&.each&.to_a)
-        end
+        @nodes ||= videos_file.nodes
       end
 
       def event_slug

@@ -3,7 +3,6 @@
 # Day 1 - Tuesday, July 14, 2026
 
 - id: "yukihiro-matz-matsumoto-rubyconf-2026"
-  old_id: "yukihiro-matsumoto-keynote-rubyconf-2026"
   title: 'Keynote by Yukihiro "Matz" Matsumoto'
   kind: "keynote"
   event_name: "RubyConf 2026"
@@ -43,12 +42,12 @@
     - Michael Toppa
 
 - id: "chris-fung-rubyconf-2026"
-  old_id: "sponsor-session-1-rubyconf-2026"
   title: "Stop Fighting Ruby I18n: Message Format Is All You Need"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
   language: "English"
   track: "Breakout 2 - Red Rock G&H"
+  slides_url: "https://speakerdeck.com/aergonaut/stop-fighting-ruby-i18n-message-format-is-all-you-need"
   video_provider: "scheduled"
   video_id: "chris-fung-rubyconf-2026"
   description: |-
@@ -63,7 +62,7 @@
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
-  video_id: "jeremy-events-rubyconf-2026"
+  video_id: "jeremy-evans-rubyconf-2026"
   description: |-
     Historically, Ruby's Set class was in the standard library. Starting in Ruby 3.2, the Set standard library was autoloaded by default. In Ruby 4.0, Set is now implemented as one of the core classes. In this presentation, I'll go over the history of Set, why and how it was implemented as a core class, interesting implementation issues, and how it led to a decrease in memory usage for some embedded RTypedData objects (and what RTypedData objects are).
   speakers:
@@ -83,7 +82,6 @@
     - David Gillis
 
 - id: "jon-rizzo-dave-currie-rubyconf-2026"
-  old_id: "jon-rizzo-rubyconf-2026"
   title: "Teaching Ruby to Rank: A Search Pipeline Story"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
@@ -103,6 +101,7 @@
   date: "2026-07-14"
   language: "English"
   track: "Main Stage - Red Rock"
+  slides_url: "https://speakerdeck.com/nehaabraham/blastoff-rails-powerful-data"
   video_provider: "scheduled"
   video_id: "neha-abraham-rubyconf-2026"
   description: |-
@@ -123,18 +122,18 @@
   speakers:
     - Nery Campusano
 
-- id: "aaron-patterson-rubyconf-2026"
-  title: "Faster FFI For Ruby"
+- id: "ifat-ribon-rubyconf-2026"
+  title: "Yes, &…: Ruby's Secret Talent for Improvisation"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
   language: "English"
   track: "Breakout 2 - Red Rock G&H"
   video_provider: "scheduled"
-  video_id: "aaron-patterson-rubyconf-2026"
+  video_id: "ifat-ribon-rubyconf-2026"
   description: |-
-    What makes FFI slow, and how can we build a faster implementation? In this talk we'll look at Ruby's calling convention, why FFI is slow, and what we can do about it. We'll look at Ruby internals, and how we connect Ruby code with native code with and without the JIT compiler. See you there!
+    Did you know Ruby is an improviser? With its ability to take blocks at will, Ruby lets methods pass the conversation to blocks that happily accept what's given and add to it. This talk explores blocks, procs, and lambdas as Ruby's way of saying "Yes, and…"
   speakers:
-    - Aaron Patterson
+    - Ifat Ribon
 
 - id: "keith-bennett-rubyconf-2026"
   title: "Command-Line Applications in Ruby: Design Patterns and Best Practices"
@@ -150,7 +149,7 @@
     - Keith Bennett
 
 - id: "dalma-boros-rubyconf-2026"
-  title: "Makeover Monday: How a Weekly Ritual Transformed Our Codebase and Culture"
+  title: "Makeover Monday 💅✨: How a Weekly Ritual Transformed Our Codebase and Culture"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
   language: "English"
@@ -158,23 +157,22 @@
   video_provider: "scheduled"
   video_id: "dalma-boros-rubyconf-2026"
   description: |-
-    Whenever I'm asked why I like Ruby, my answer is always simple and always the same: because she's cute. That's my tongue-in-cheek nod to the community's shared sentiment that Ruby's elegance makes her a joy to work with. But beauty requires maintenance. This talk is a case study on how I turned my anxiety around mounting tech debt into Makeover Monday, a weekly refactoring ritual. I didn't set out to be a leader, I just wanted our TODOs to stop piling up. What started as a casual, weekly tech debt session transformed our codebase and our culture and became our fully remote team's most appreciated (and only) dev-only space. Attendees will leave with: - An understanding of why beauty in code is a functional requirement, not a luxury - An understanding of how collective code cleanup is a way to level up all devs in a safe, collaborative environment - A practical blueprint for starting their own refactoring rituals with the confidence to lead from wherever they are in the org chart.
+    Whenever I’m asked why I like Ruby, my answer is always simple and always the same: because she’s cute. That's my tongue-in-cheek nod to the community's shared sentiment that Ruby's elegance makes her a joy to work with. But beauty requires maintenance. This talk is a case study on how I turned my anxiety around mounting tech debt into Makeover Monday 💅✨, a weekly refactoring ritual. I didn’t set out to be a leader, I just wanted our TODOs to stop piling up. What started as a casual, weekly tech debt session transformed our codebase and our culture and became our fully remote team’s most appreciated (and only) dev-only space. Attendees will leave with: - An understanding of why beauty in code is a functional requirement, not a luxury - An understanding of how collective code cleanup is a way to level up all devs in a safe, collaborative environment - A practical blueprint for starting their own refactoring rituals with the confidence to lead from wherever they are in the org chart.
   speakers:
     - Dalma Boros
 
-- id: "ran-craycraft-rubyconf-2026"
-  old_id: "ruby-alliance-panel-rubyconf-2026"
-  title: "Panel: Ruby Alliance"
-  kind: "panel"
+- id: "aaron-patterson-rubyconf-2026"
+  title: "Faster FFI For Ruby"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
   language: "English"
   track: "Breakout 2 - Red Rock G&H"
   video_provider: "scheduled"
-  video_id: "ran-craycraft-rubyconf-2026"
-  description: ""
+  video_id: "aaron-patterson-rubyconf-2026"
+  description: |-
+    What makes FFI slow, and how can we build a faster implementation? In this talk we'll look at Ruby's calling convention, why FFI is slow, and what we can do about it. We'll look at Ruby internals, and how we connect Ruby code with native code with and without the JIT compiler. See you there!
   speakers:
-    - Ran Craycraft
+    - Aaron Patterson
 
 - id: "ziggy-the-hamster-rubyconf-2026"
   title: "Weird and Wacky Machines Running Ruby"
@@ -237,7 +235,7 @@
   video_provider: "scheduled"
   video_id: "gabriel-quaresma-rubyconf-2026"
   description: |-
-    Large Language Models have quickly become one of the most exciting tools in modern software development. With their ability to generate code, answer questions, and interact with natural language, it's easy to start thinking of them as universal problem solvers. But in reality, not every problem is best solved by an LLM. In this talk, we explore a practical example: estimating the price of a property. At first glance, it might seem like the perfect task for an LLM. However, accurate price prediction depends on structured data and statistical learning techniques and as we'll show with actual benchmark experiments, the difference is dramatic. Using a real example built in Ruby, we will train a Random Forest model that provides reliable predictions based on structured datasets, then put it head-to-head against an LLM across four dimensions: accuracy, latency, consistency, and real-world usability. We'll then show how LLMs can still play a critical role by acting as an interface that converts natural language into structured inputs creating a hybrid system that gets the best of both worlds. Rather than replacing traditional machine learning, LLMs can complement it. The goal of this talk is to show developers how to think critically about AI architecture and choose the right tool for the right problem.
+    LLMs are the new duct tape of software development. Need to generate code? LLM. Summarize a PDF? LLM. Predict the price of a house? Also LLM, apparently because at some point we collectively decided that every problem is a nail and GPT is the hammer. Spoiler: it's not. And reaching for an LLM by default can quietly cost you accuracy, speed, predictability, and an embarrassing line item on your OpenAI or Anthropic bill. This talk takes a concrete example that looks tailor-made for an LLM but absolutely isn't: estimating house prices. We'll see how train a Random Forest model in Ruby with Rumale, then throw it into the ring against an LLM across four rounds: accuracy, latency, consistency, and real-world usability. You'll see the actual numbers not vibes, not intuition, not a tweet from someone who "felt" the LLM did better. Then we'll flip the script and show where LLMs genuinely shine and how combining them with traditional ML gives you a system that's smarter, faster, and dramatically cheaper than asking a 400-billion-parameter model to do basic math. This talk is for developers integrating AI into their products who want to think critically about architecture instead of defaulting to "just use an LLM and pray." You'll leave with a clear mental model for picking the right tool and combining tools for the right problem.
   speakers:
     - Gabriel Quaresma
 
@@ -263,7 +261,7 @@
   video_provider: "scheduled"
   video_id: "edy-silva-rubyconf-2026"
   description: |-
-    Concurrency in Ruby has always been a compromise. Threads are error-prone. Fibers are complex. The Global Interpreter Lock limits true parallelism. We accepted that concurrent Ruby is hard. I came from Erlang and Elixir, where concurrency is the default. The Actor Model - message passing, isolated processes, no shared state - is how you build reliable distributed systems. When Ruby introduced Ractors in 3.0, I was skeptical. The API was clunky. The limitations were severe. It felt like Ruby trying to be something it wasn't. Ruby 4.0 changed my mind. `Ractor::Port` (the mailbox concept), shareable procs and lambdas, and the removal of awkward APIs like `Ractor.yield` make Ractors ergonomic now. You can write a parallel map in 10 lines of Ruby that would have taken 50 lines of fragile thread code. You can spawn isolated workers that communicate through message passing without worrying about mutexes or race conditions. This talk is for Rubyists who are tired of concurrency being hard. I'll show you what Ruby 4.0 got right, what it still gets wrong, and the patterns I borrowed from Elixir that make Ractors useful in production.
+    I was playing with Ractors, trying to see if they could replace Process.fork for the kind of work Puma does. Wrote a benchmark, ran it: Ractors came back 3.6× slower than forks. Shocking numbers, something must be wrong with my benchmarks.. Turns out I was running an older Ruby version. Change it to Ruby 4 and the numbers flipped: 5.6×faster, matching forks, beating them at small workloads. That accident is why this talk exists. For a decade, "concurrent Ruby" has meant picking your poison: threads that share state and corrupt it, fibers that need to cooperate, a GVL that pins "parallel" code to one core, and Process.fork as the heavy escape hatch. Ruby 4.0 rewrote that tradeoff. We'll map Ruby's four concurrency primitives — Threads, Fibers, Processes, Ractors — show where each belongs (including how Puma and Falcon combine them in production), walk the structural fixes that closed the gap, and look at the API that finally feels ergonomic: Ractor::Port, shareable procs and lambdas, native exception transport. Plus a few Actor Model patterns from Elixir (worker pools, mailboxes, pipelines) that work in Ruby 4.0 today. You'll leave with a clear answer to "which primitive when?" and a frank read on what Ractors can (and can't) do in production in 2026.
   speakers:
     - Edy Silva
 
@@ -273,6 +271,7 @@
   date: "2026-07-14"
   language: "English"
   track: "Breakout 1 - Red Rock A&D"
+  slides_url: "https://docs.google.com/presentation/d/1-TeW8ryAJZ9c0FYHbL9_vckVINDy6b6GlFxInNo2VNs/edit?usp=sharing"
   video_provider: "scheduled"
   video_id: "andy-andrea-rubyconf-2026"
   description: |-
@@ -288,6 +287,11 @@
       - AI tooling including auto-generating tools for your AI applications to call and ways to improve the efficacy of dev tooling like BugBot and Cursor. We'll be making things DRYer than the Sahara and doing away with tons of boilerplate along the way.
   speakers:
     - Andy Andrea
+  additional_resources:
+    - name: "Companion repo"
+      title: "Working and documented code for all the examples shown in the talk"
+      type: "repo"
+      url: "https://github.com/andycandrea/rubyconf-2026"
 
 - id: "gannon-mcgibbon-rubyconf-2026"
   title: "Overengineering Ruby with Native Extensions"
@@ -302,9 +306,21 @@
   speakers:
     - Gannon McGibbon
 
+- id: "ben-greenberg-award-rubyconf-2026"
+  title: "Ruby Awards"
+  kind: "award"
+  date: "2026-07-14"
+  language: "English"
+  track: "Main Stage - Red Rock"
+  video_provider: "scheduled"
+  video_id: "ben-greenberg-award-rubyconf-2026"
+  description: |-
+    The Ruby Awards ceremony, hosted by Ben Greenberg.
+  speakers:
+    - Ben Greenberg
+
 - id: "jessica-kerr-rubyconf-2026"
-  old_id: "jessica-kerr-keynote-rubyconf-2026"
-  title: "Keynote by Jessica Kerr"
+  title: "Keynote: Who are we Now?"
   kind: "keynote"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
@@ -312,14 +328,14 @@
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
   video_id: "jessica-kerr-rubyconf-2026"
-  description: ""
+  description: |-
+    As developers, who are we now that agents can do the coding? I loved the feeling of knowing the code intimately because I wrote or changed it, like the software is an extension of myself. That confidence that comes from deep understanding. How do we get that feeling from agent-written code? How do we have the right amount of confidence in it? And what is our role now--are we still important? Yes.
   speakers:
     - Jessica Kerr
 
 # Day 2 - Wednesday, July 15, 2026 (Community Day)
 
 - id: "keynote-rubyconf-2026"
-  old_id: "allison-pike-keynote-rubyconf-2026"
   title: "Panel: Once a Maintainer"
   kind: "keynote"
   event_name: "RubyConf 2026"
@@ -336,8 +352,8 @@
     - Jeremy Evans
     - Colby Swandale
 
-- id: "marty-haught-colby-swandale-rubyconf-2026"
-  old_id: "marty-haught-rubyconf-2026"
+- id: "workshop-rubyconf-2026"
+  old_id: "marty-haught-colby-swandale-rubyconf-2026"
   title: "From Scan to Fix: A Maintainer's Guide to Gem Security"
   kind: "workshop"
   event_name: "RubyConf 2026"
@@ -345,12 +361,14 @@
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
-  video_id: "marty-haught-colby-swandale-rubyconf-2026"
+  video_id: "workshop-rubyconf-2026"
   description: |-
     The gems you maintain could be foundational infrastructure for the Ruby community and that makes their security everyone's concern. But most maintainers aren't security engineers, and the path from "I think my gem might have a vulnerability" to "I've fixed it and shipped a release" can feel daunting. This hands-on workshop, led by the RubyGems team will incorporate lessons learned from Project Glasswing, Ruby Central's Alpha-Omega-funded security initiative for the Ruby ecosystem, and it will give maintainers the tools and confidence to take ownership of their gem's security posture. We'll walk through the full lifecycle: what good security looks like for a gem, how to run a scan against your own project, how to read and interpret the resulting report, and how to triage and address what you find. No prior security experience is assumed. By the end of the session, you'll have run a real scan, reviewed real findings, and left with practical strategies for fixing vulnerabilities and hardening your gem against future ones. What we'll cover: * An overview of Project Glasswing and how the gem scanning program works * What a strong security posture looks like for a Ruby gem * Running a scan and understanding the prompt-driven process * Reading and interpreting a scan report * Walking through an example scan together * Strategies for addressing vulnerabilities — from quick fixes to longer-term hardening Who should attend: Maintainers of Ruby gems of any size, from weekend projects to widely depended-on libraries. If you ship a gem, this workshop is for you.
   speakers:
     - Marty Haught
     - Colby Swandale
+    - Andrew Nesbitt
+    - Patrick Linnane
 
 - id: "amir-rajan-rubyconf-2026"
   title: "Workshop: DragonRuby Game Toolkit - Soup to Nuts"
@@ -381,17 +399,16 @@
     - Joe Masilotti
 
 - id: "panel-rubyconf-2026"
-  old_id: "future-of-ruby-panel-rubyconf-2026"
-  title: "Future of Ruby Panel"
+  title: "Panel: Future of Ruby"
   kind: "panel"
   event_name: "RubyConf 2026"
   date: "2026-07-15"
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
-  video_id: "panel-rubyconf-2026"
+  video_id: "future-of-ruby-panel-rubyconf-2026"
   description: |-
-    Matz, Jessica Kerr, Obie Fernandez, Dave Thomas, Rich Kilmer, Chad Fowler, and Chad Pytel — all on one stage. On Community Day (July 15th), they're coming together to talk about where Ruby goes from here. Don't miss it.
+    AI is changing everything, such as how we write code, how we think about our tools, and what it even means to be a programmer. This panel, moderated by Rich Kilmer, brings together influential voices in Ruby's history: Matz, Jessica Kerr, Obie Fernandez, Dave Thomas, Chad Fowler, and Chad Pytel. Together, they will dig into what that shift means for a language and community built on joy, expressiveness, and craft. Expect a candid conversation about where Ruby goes from here, and what it takes to keep that spirit alive as the ground shifts beneath us.
   speakers:
     - "Yukihiro \"Matz\" Matsumoto"
     - Jessica Kerr
@@ -443,8 +460,28 @@
   speakers:
     - Noel Rappin
 
+- id: "demo-rubyconf-2026"
+  title: "Ruby Runway Finals"
+  kind: "demo"
+  date: "2026-07-15"
+  language: "English"
+  track: "Main Stage - Red Rock"
+  video_provider: "scheduled"
+  video_id: "demo-rubyconf-2026"
+  description: |-
+    The Ruby Runway startup pitch competition finals, featuring Ruby Native (Joe Masilotti), Stowzilla (Adam Dalton & Andy Davis), Coolhand Labs (Michael Carroll), Bugbop (John Sherwood), Ductwork (Tyler Ewing), Viveture (Paresh Sharma), Meridian Semantic, and BrandoInc. (Chap-Long Lau & Jia Hou).
+  speakers:
+    - Joe Masilotti
+    - Adam Dalton
+    - Andy Davis
+    - Michael Carroll
+    - John Sherwood
+    - Tyler Ewing
+    - Paresh Sharma
+    - Chap-Long Lau
+    - Jia Hou
+
 - id: "lightning-talk-rubyconf-2026"
-  old_id: "lightning-talks-rubyconf-2026"
   title: "Lightning Talks"
   kind: "lightning_talk"
   event_name: "RubyConf 2026"
@@ -452,11 +489,10 @@
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "scheduled"
-  video_id: "lightning-talk-rubyconf-2026"
+  video_id: "lightning-talks-rubyconf-2026"
   description: ""
   talks:
     - id: "keshia-coriolan-rubyconf-2026"
-      old_id: "keshia-coriolan-lightning-talk-rubyconf-2026"
       title: "Lightning Talk: From Ruby Objects to Salsa Moves 💃🏽"
       kind: "lightning_talk"
       event_name: "RubyConf 2026"
@@ -473,7 +509,6 @@
         - Keshia Coriolan
 
     - id: "kj-loving-rubyconf-2026"
-      old_id: "kj-loving-lightning-talk-rubyconf-2026"
       title: "Lightning Talk: Love Scales"
       kind: "lightning_talk"
       event_name: "RubyConf 2026"
@@ -486,7 +521,6 @@
         - KJ Loving
 
     - id: "mohammad-arjamand-ali-rubyconf-2026"
-      old_id: "mohammad-arjamand-ali-lightning-talk-rubyconf-2026"
       title: "Lightning Talk: Mohammad Arjamand Ali"
       kind: "lightning_talk"
       event_name: "RubyConf 2026"
@@ -512,7 +546,6 @@
         - Alan Ridlehoover
 
     - id: "adam-mccrea-rubyconf-2026"
-      old_id: "adam-mccrea-lightning-talk-rubyconf-2026"
       title: "Lightning Talk: 5 Steps to Resilient Job Queues"
       kind: "lightning_talk"
       event_name: "RubyConf 2026"
@@ -524,14 +557,14 @@
       speakers:
         - Adam McCrea
 
-    - id: "ben-greenberg-rubyconf-2026"
-      old_id: "ben-greenberg-lightning-talk-rubyconf-2026"
+    - id: "ben-greenberg-lightning-talk-rubyconf-2026"
+      old_id: "ben-greenberg-rubyconf-2026"
       title: "Lightning Talk: The Missing Gem in HTTP: x402 Payments with Ruby"
       kind: "lightning_talk"
       event_name: "RubyConf 2026"
       date: "2026-07-15"
       video_provider: "scheduled"
-      video_id: "ben-greenberg-rubyconf-2026"
+      video_id: "ben-greenberg-lightning-talk-rubyconf-2026"
       description: |-
         HTTP 402 has been sitting unused for decades, but x402 gives it a practical job: letting APIs request and verify payments directly through standard HTTP flows. In this lightning talk, I’ll briefly explain how x402 works and show what it can look like from Ruby, turning “Payment Required” into something developers can actually build with.
       speakers:
@@ -564,7 +597,6 @@
         - Cameron Dutro
 
     - id: "irina-nazarova-rubyconf-2026"
-      old_id: "irina-nazarova-lightning-talk-rubyconf-2026"
       title: "Lightning Talk: San Francisco Ruby Startup Conference 2026"
       kind: "lightning_talk"
       event_name: "RubyConf 2026"
@@ -577,7 +609,6 @@
         - Irina Nazarova
 
     - id: "shuveksha-tuladhar-rubyconf-2026"
-      old_id: "shuveksha-tuladhar-lightning-talk-rubyconf-2026"
       title: "Lightning Talk: Ruby as the Glue for AI: Planning Fun Activities for My Kids"
       kind: "lightning_talk"
       event_name: "RubyConf 2026"
@@ -592,7 +623,6 @@
         - Shuveksha Tuladhar
 
     - id: "stefan-taitano-rubyconf-2026"
-      old_id: "stefan-taitano-lightning-talk-rubyconf-2026"
       title: "Lightning Talk: Volunteering at RubyConf Before Becoming a Ruby Developer"
       kind: "lightning_talk"
       event_name: "RubyConf 2026"
@@ -605,7 +635,6 @@
         - Stefan Taitano
 
     - id: "rachael-wright-munn-rubyconf-2026"
-      old_id: "rachael-wright-munn-lightning-talk-rubyconf-2026"
       title: "Lightning Talk: RubyEvents.org - on a mission to index all Ruby events!"
       kind: "lightning_talk"
       event_name: "RubyConf 2026"
@@ -620,7 +649,6 @@
 # Day 3 - Thursday, July 16, 2026
 
 - id: "obie-fernandez-rubyconf-2026"
-  old_id: "obie-fernandez-keynote-rubyconf-2026"
   title: "Keynote by Obie Fernandez"
   kind: "keynote"
   event_name: "RubyConf 2026"
@@ -668,7 +696,7 @@
   video_provider: "scheduled"
   video_id: "miles-georgi-rubyconf-2026"
   description: |-
-    I was bored so, as one does, I decided to goof-about with Ractors! First thing I decided to do was a Ractor versus Thread benchmark of some CPU-bound code. After writing a Ractor to multiply a ton of numbers together, I wanted an apples-to-apples comparison with Thread. So how could I do it? Well I wound up just giving each Thread a Queue to receive each number to multiply to simulate sending the numbers to the Ractor instances. So then I was thinking… "well I'm combining a Thread with a Queue. That's just an actor. Wait a minute… 'actor'... 'ractor'... whaaaaat??" One other aspect of an actor is that they should only share immutable data. Ruby does a ton of stuff to try to give that effect. So I wrote a ton of scripts to see what I could or couldn't get away with! It could be fun/interesting to share code and things I discovered while playing with it.
+    I was bored so, as one does, I decided to goof-about with ractors! I built a game server that makes heavy use of ractors and learned a ton of interesting things about ractors the hard way. Come discuss what you can and cannot do with ractors and other forms of Ruby concurrency!
   speakers:
     - Miles Georgi
 
@@ -695,7 +723,7 @@
   video_provider: "scheduled"
   video_id: "mike-dalton-rubyconf-2026"
   description: |-
-    Technology has made our lives better in many ways. But despite all of these advances we're still juggling authentication methods. Enter a password, click a push notification, enter a code. It feels never ending... But what if it actually was never ending? Introducing "Welcome to Authentication Hell", a browser-based game written in Ruby. You play a developer trying to escape Authentication Hell. At each level you must authenticate with increasingly more frustrating authentication methods. Will you reach the surface or collapse under the weight of push notifications and passkeys? Along the way, we'll learn about implementing various methods of authentication in Ruby. Passwords, passkeys, biometrics, and more.
+    Every morning, millions of people start their work day by entering passwords and answering push notifications to gain access to the tools they need for their job. In this talk, I will answer the question that no one is asking: what would a video game be like if all the mechanics revolved around authentication. Authentication Hell is a browser-based game built around one of the most hated aspects of our daily lives: re-authentication. Each time you take damage during the game you lose more than just your health, you will have to re-authenticate. This talk will cover the development of the game using DragonRuby, how to implement popular authentication mechanisms like passkeys and one time passwords, and will include a demo of the game. You can check out the game in advance at authenticationhell.com
   speakers:
     - Mike Dalton
 
@@ -752,7 +780,6 @@
     - Hilary Stohs-Krause
 
 - id: "yukihiro-matz-matsumoto-aaron-patterson-rubyconf-2026"
-  old_id: "q-and-a-with-matz-rubyconf-2026"
   title: "Q&A with Matz"
   kind: "q_and_a"
   event_name: "RubyConf 2026"
@@ -780,7 +807,6 @@
     - Alicia Rojas
 
 - id: "kyle-d-oliveira-rubyconf-2026"
-  old_id: "kyle-doliveira-rubyconf-2026"
   title: "Fibonacci Funhouse"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
@@ -815,7 +841,7 @@
   video_provider: "scheduled"
   video_id: "alan-ridlehoover-rubyconf-2026"
   description: |-
-    No one told them what to expect, but the machine was coming. Dozens were reassigned in NASA's transition from human to digital computing. Because the machine could calculate, generalists were expendable. But it could not formulate. So, those who embraced the change (learned to program), knew the domain (orbital mechanics), and could verify the results became indispensable. Now it's our turn as Rubyists: to embrace change, to leverage our expertise, and to verify the results. That's how we become indispensable.
+    Code used to be something we cultivated by hand. Now machines write it for us, and a quarter of a million tech workers have been laid off in less than a year. If you've been quietly grieving your relationship with code, you're not alone. And you're not the first. In 1958, NASA began replacing its human computers with IBM mainframes. Three women from the segregated West Area Computing Unit — Dorothy Vaughan, Mary Jackson, and Katherine Johnson — made themselves indispensable to the mission anyway. Each chose a different strategy: retool, transform, or specify. Now it's our turn as Rubyists. The mission is still here. The role is not. This talk borrows their strategies, with gratitude, for the transition we're living through now — and shows how to stay indispensable.
   speakers:
     - Alan Ridlehoover
 
@@ -840,12 +866,12 @@
   track: "Breakout 2 - Red Rock G&H"
   video_provider: "scheduled"
   video_id: "phil-crissman-rubyconf-2026"
-  description: ""
+  description: |-
+    Alexander Stepanov, creator of the C++ STL, spent decades arguing that programming should be as rigorous as mathematics. "Elements of Programming" (EoP), which Stepanov wrote with Paul McJones, starts from first principles, and builds to algorithms that are fast, correct, and general. In this talk I'll explore some of the ideas from EoP in Ruby. We'll implement fast exponentiation that works for any associative operation, and build stable sort from the ground up in terms of simpler algorithms. Stepanov is known for bringing generic programming to C++: in Ruby, we already do something like generic programming, but we call it duck-typing.
   speakers:
     - Phil Crissman
 
 - id: "dave-thomas-rubyconf-2026"
-  old_id: "dave-thomas-keynote-rubyconf-2026"
   title: "Keynote by Dave Thomas"
   kind: "keynote"
   event_name: "RubyConf 2026"

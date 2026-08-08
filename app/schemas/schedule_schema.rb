@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ScheduleSchema < ApplicationSchema
+  data_file "**/schedule.yml"
+
   array :days, description: "List of conference days" do
     object do
       string :name, description: "Name of the day (e.g., 'Day 1', 'Workshop Day')"
@@ -20,9 +22,6 @@ class ScheduleSchema < ApplicationSchema
               object do
                 string :title, description: "Title of the session"
                 string :description, description: "Description of the session", required: false
-                array :speakers, of: :string, description: "List of speaker names", required: false
-                string :track, description: "Track name", required: false
-                string :room, description: "Room name/number", required: false
               end
             end
           end

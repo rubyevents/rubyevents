@@ -4,6 +4,7 @@ require "generators/event_base"
 
 class ScheduleGenerator < Generators::EventBase
   source_root File.expand_path("templates", __dir__)
+  TOOL_DESC = "Create a schedule via schedule.yml for a given event, based on the event's start and end dates, and the number of videos to schedule."
 
   class_option :break_duration, type: :numeric, desc: "The duration of breaks between talks in minutes", default: 15, group: "Fields"
   class_option :days, type: :array, desc: "The days of the event in YYYY-MM-DD format (e.g. 2024-09-01) - calculated from event start and end dates if not provided", group: "Fields"

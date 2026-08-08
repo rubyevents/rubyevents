@@ -5,6 +5,7 @@ require "generators/event_base"
 # Generator for creating a new talk entry in the videos.yml file of a specific event.
 class TalkGenerator < Generators::EventBase
   source_root File.expand_path("templates", __dir__)
+  TOOL_DESC = "Create or update a new talk entry in the videos.yml file of a given event."
 
   class_option :id, type: :string, desc: "ID of an existing talk to update. New talks always get a generated id, so omit this to append one.", required: false, group: "Fields"
   class_option :title, type: :string, desc: "Title of the talk", group: "Fields"

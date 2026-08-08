@@ -159,6 +159,10 @@ class Event < ApplicationRecord
     start_date.present? && end_date.present? && (start_date..end_date).cover?(Date.today)
   end
 
+  def live?
+    happening? && schedule.exist?
+  end
+
   def happening_tomorrow?
     start_date.present? && start_date == Date.today + 1
   end
@@ -219,6 +223,7 @@ class Event < ApplicationRecord
     ordered_ids = where(id: ids)
       .includes(:cfps)
       .sort_by { |event| event.featured_distance(today: today) }
+      .reject { |event| event.static_metadata.cancelled? }
       .first(limit)
       .map(&:id)
 
@@ -419,6 +424,7 @@ class Event < ApplicationRecord
         host: "#{request.protocol}#{request.host}:#{request.port}"),
       featured_background: static_metadata.featured_background,
       featured_color: static_metadata.featured_color,
+      live: live?,
       url: Router.event_url(self, host: "#{request.protocol}#{request.host}:#{request.port}")
     }
   end

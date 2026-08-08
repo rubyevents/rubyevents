@@ -4,6 +4,7 @@ require "generators/event_base"
 
 class CfpGenerator < Generators::EventBase
   source_root File.expand_path("templates", __dir__)
+  TOOL_DESC = "Create or update a new cfp entry in the cfp.yml file of a given event."
 
   class_option :name, type: :string, desc: "CFP name", group: "Fields"
   class_option :link, type: :string, desc: "CFP link", group: "Fields"

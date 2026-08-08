@@ -1,13 +1,14 @@
-<div class="container flex flex-col w-full gap-4 my-8">
+<div class="container my-8 flex w-full flex-col gap-4">
   <%= link_to gems_path, class: "hotwire-native:hidden" do %>
-    <div class="flex items-center gap-2 title text-primary">
+    <div class="title flex items-center gap-2 text-primary">
       <%= fa("arrow-left-long", class: "transition-arrow fill-primary", size: :xs) %>
+
       <div>Gems</div>
     </div>
   <% end %>
 
   <div class="flex flex-col gap-4 hotwire-native:hidden">
-    <div class="flex flex-wrap items-center gap-3 title text-primary">
+    <div class="title flex flex-wrap items-center gap-3 text-primary">
       <h1 class="flex items-center gap-2">
         <%= fa("gem", size: :md, class: "fill-primary") %>
         <code class="font-mono"><%= title @gem.gem_name %></code>
@@ -18,7 +19,7 @@
       <% end %>
     </div>
 
-    <div class="flex flex-col gap-4 p-5 bg-base-200 rounded-lg max-w-3xl">
+    <div class="flex max-w-3xl flex-col gap-4 rounded-lg bg-base-200 p-5">
       <% if @gem.summary.present? %>
         <p class="text-gray-700"><%= @gem.summary %></p>
       <% end %>
@@ -109,7 +110,7 @@
   <% maintainers = @gem.maintainers %>
 
   <% if maintainers.any? %>
-    <section class="flex flex-col w-full gap-4 mt-4">
+    <section class="mt-4 flex w-full flex-col gap-4">
       <h2 class="text-xl font-semibold">Gem Authors on RubyEvents.org</h2>
 
       <div class="flex flex-wrap gap-4">
@@ -120,7 +121,7 @@
                 <%= ui_avatar(user, size_class: "w-32 sm:w-40", size: :lg) %>
               </figure>
 
-              <div class="card-body items-center text-center pt-4 px-0 justify-center">
+              <div class="card-body items-center justify-center px-0 pt-4 text-center">
                 <h3 class="text-xl font-semibold text-slate-700"><%= user.name %></h3>
                 <div class="text-slate-600"><%= pluralize(user.talks_count, "talk") %></div>
               </div>
@@ -131,20 +132,19 @@
     </section>
   <% end %>
 
-  <div class="flex items-center justify-between mt-4">
-    <h2 class="text-xl font-semibold">Latest talks about <code class="font-mono bg-base-200 px-1.5 py-0.5 rounded text-lg"><%= @gem.gem_name %></code></h2>
+  <div class="mt-4 flex items-center justify-between">
+    <h2 class="text-xl font-semibold">
+      Latest talks about <code class="font-mono rounded bg-base-200 px-1.5 py-0.5 text-lg"><%= @gem.gem_name %></code>
+    </h2>
 
     <% if @topic.talks_count.to_i > 8 %>
       <%= link_to talks_gem_path(gem_name: @gem.gem_name), class: "link text-primary flex items-center gap-1" do %>
-        View all <%= @topic.talks_count %> talks
-        <%= fa("arrow-right", size: :xs) %>
+        View all <%= @topic.talks_count %> talks <%= fa("arrow-right", size: :xs) %>
       <% end %>
     <% end %>
   </div>
 
-  <div
-    id="gem-talks"
-    class="grid min-w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 gallery">
+  <div id="gem-talks" class="gallery grid min-w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
     <%= render partial: "talks/card",
           collection: @talks,
           as: :talk,
@@ -158,7 +158,7 @@
   </div>
 
   <% if @topic.talks_count.to_i > 8 %>
-    <div class="flex justify-center mt-4">
+    <div class="mt-4 flex justify-center">
       <%= link_to talks_gem_path(gem_name: @gem.gem_name), class: "btn btn-primary btn-outline" do %>
         View all <%= @topic.talks_count %> talks about <code class="font-mono"><%= @gem.gem_name %></code>
       <% end %>

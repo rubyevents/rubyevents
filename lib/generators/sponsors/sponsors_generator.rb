@@ -5,6 +5,7 @@ require "generators/event_base"
 # Add or update a Sponsor entry in the sponsors.yml file for a given event.
 class SponsorsGenerator < Generators::EventBase
   source_root File.expand_path("templates", __dir__)
+  TOOL_DESC = "Add or update a Sponsor entry in the sponsors.yml file for a given event."
 
   class_option :name, type: :string, desc: "Sponsor name", required: false, group: "Fields"
   class_option :website, type: :string, desc: "Sponsor website", required: false, group: "Fields"

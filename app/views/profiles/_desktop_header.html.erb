@@ -1,0 +1,87 @@
+<%# locals: (user:, favorite_user: nil) %>
+
+<% understood_languages = user.languages.understood %>
+
+<div class="lg:justify-right mb-6 hidden flex-col items-center gap-8 text-center md:flex lg:mb-0 lg:flex-row lg:text-left">
+  <div class="relative w-fit">
+    <%= ui_avatar(user, size_class: "size-24 md:size-36", size: :lg) %>
+
+    <% if understood_languages.any? %>
+      <div class="flex justify-center gap-1.5">
+        <% understood_languages.each do |code| %>
+          <%= ui_tooltip("Understands #{Language.by_code(code) || code}") do %>
+            <span
+              class="text-lg leading-none"
+              role="img"
+              aria-label="Understands <%= Language.by_code(code) || code %>"
+            >
+              <%= Language.emoji_flag(code) %>
+            </span>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="title flex flex-col items-center justify-center gap-2 lg:items-start">
+    <div class="flex flex-col flex-nowrap items-center justify-center gap-2 font-bold text-black lg:flex-row lg:justify-start">
+      <h1 class="flex items-center gap-2">
+        <%= user.suspicious? ? truncate(user.name, length: 10) : user.name %>
+
+        <% if user.pronouns.present? && ["dont_specify", "not_specified"].exclude?(user.pronouns_type) %>
+          <span class="content-center text-sm text-[#737373]">(<%= user.pronouns %>)</span>
+        <% end %>
+
+        <% if user.verified? %>
+          <%= ui_tooltip "#{user.name} is a verified Rubyist" do %>
+            <%= fa("badge-check", class: "fill-blue-500", size: :sm) %>
+          <% end %>
+        <% end %>
+
+        <% if user.ruby_passport_claimed? %>
+          <%= ui_tooltip "#{user.name} claimed #{user.possessive_pronoun} Ruby Passport" do %>
+            <%= fa("passport", class: "fill-orange-800") %>
+          <% end %>
+        <% end %>
+
+        <% if user.contributor? %>
+          <%= link_to contributors_path, class: "inline-flex items-center" do %>
+            <%= ui_tooltip "#{user.name} contributed to RubyEvents.org" do %>
+              <span class="flex size-5 items-center justify-center rounded-full bg-green-500">
+                <span style="transform: scale(0.6);"><%= fa("code-pull-request", class: "fill-white") %></span>
+              </span>
+            <% end %>
+          <% end %>
+        <% end %>
+
+        <%= render "favorite_users/favorite_user", favorite_user: favorite_user, id: "desktop_header_favorite_user" %>
+      </h1>
+    </div>
+
+    <% if user.bio.present? && !user.suspicious? %>
+      <p class="max-w-[700px] text-[#636B74]">
+        <%= user.bio %>
+      </p>
+    <% end %>
+
+    <% if user.to_location.present? %>
+      <p class="flex max-w-[700px] flex-row items-center justify-center gap-2">
+        <%= fa("location-dot", size: :xs, style: :regular) %>
+        <span><%= user.to_location.to_html %></span>
+      </p>
+    <% end %>
+
+    <% if user.website.present? && !user.suspicious? %>
+      <div class="link inline-flex flex-nowrap items-center gap-2">
+        <%= fa("website-brands", size: :xs) %>
+        <%= external_link_to user.website.gsub(%r{^https?://}, ""), user.website, class: "link inline-flex items-center gap-2 flex-nowrap" %>
+      </div>
+    <% end %>
+
+    <% unless user.suspicious? %>
+      <div class="mt-2 flex justify-center lg:justify-start">
+        <%= render "profiles/socials", user: user %>
+      </div>
+    <% end %>
+  </div>
+</div>

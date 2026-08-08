@@ -1,7 +1,7 @@
 <%# locals: (users:, title:, view_all_path: nil, total_count: nil, users_path: nil) %>
 
 <div>
-  <div class="flex justify-between items-center mb-4">
+  <div class="mb-4 flex items-center justify-between">
     <h3 class="font-bold text-gray-900"><%= title %></h3>
 
     <% if view_all_path.present? %>
@@ -10,12 +10,12 @@
   </div>
 
   <% if users.any? %>
-    <div class="grid grid-cols-[repeat(auto-fill,3rem)] gap-2 justify-between">
+    <div class="grid grid-cols-[repeat(auto-fill,3rem)] justify-between gap-2">
       <% users.first(24).each do |user| %>
         <%= render Ui::AvatarComponent.new(user, size: :md, hover_card: true) %>
       <% end %>
     </div>
   <% else %>
-    <p class="text-gray-500 text-sm">No Rubyists found yet.</p>
+    <p class="text-sm text-gray-500">No Rubyists found yet.</p>
   <% end %>
 </div>

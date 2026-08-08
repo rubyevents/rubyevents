@@ -15,6 +15,11 @@ pipeline:
       key_style: plain
       value_style: double
 
+  - escapes: {}
+
+  - final_newline:
+      count: 1
+
 rules:
   - files: "data/**/event.yml"
     pipeline:
@@ -185,6 +190,7 @@ rules:
 
       - sort_keys:
           order:
+            - id
             - name
             - website
             - kind

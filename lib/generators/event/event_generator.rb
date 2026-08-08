@@ -4,6 +4,8 @@ require "generators/event_base"
 
 class EventGenerator < Generators::EventBase
   source_root File.expand_path("templates", __dir__)
+  TOOL_DESC = "Create an event.yml file for an event series, and optionally generate a venue.yml file for the venue."
+
   class_option :title, type: :string, desc: "Event name", group: "Fields", required: true
   class_option :description, type: :string, desc: "Event description", group: "Fields"
   class_option :kind, type: :string, enum: Event.kinds.keys, desc: "Event kind (e.g. conference, meetup, workshop)", default: "conference", group: "Fields"

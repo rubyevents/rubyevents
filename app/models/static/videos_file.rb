@@ -1,18 +1,32 @@
 # frozen_string_literal: true
 
+require "open3"
+
 module Static
   class VideosFile
     VIDEOS_GLOB = "data/**/videos.yml"
 
     attr_reader :path, :document
 
+    delegate_missing_to :document
+
     def initialize(path, document: nil)
       @path = path
-      @document = document || Yerba.parse_file(path)
+      @document = document || Yerba.parse_file(path.to_s)
     end
 
     def self.parse(content, path: nil)
       new(path, document: Yerba.parse(content))
+    end
+
+    def self.wrap(path, document = nil)
+      return document if document.is_a?(self)
+
+      new(path.to_s, document: document)
+    end
+
+    def self.from(path)
+      new(Rails.root.join(path.to_s).to_s)
     end
 
     def self.all
@@ -63,6 +77,14 @@ module Static
       nil
     end
 
+    def self.added_talks(since)
+      all.flat_map { |file| file.added_talks(since) }
+    end
+
+    def self.newly_watchable_talks(since)
+      all.flat_map { |file| file.newly_watchable_talks(since) }
+    end
+
     def self.youtube_videos_missing_published_at
       glob = Rails.root.join(VIDEOS_GLOB).to_s
 
@@ -89,7 +111,17 @@ module Static
     end
 
     def talks
-      top_level_talks + sub_talks
+      @talks ||= top_level_talks + sub_talks
+    end
+
+    def video_pairs
+      @video_pairs ||= sequence_items(document.root).map do |video|
+        [video, sequence_items(video["talks"])]
+      end
+    end
+
+    def nodes
+      @nodes ||= video_pairs.flat_map { |video, nested| [video, *nested] }
     end
 
     def ids
@@ -101,18 +133,11 @@ module Static
     end
 
     def top_level_talks
-      return [] unless document.root
-
-      document.root.each.to_a
+      @top_level_talks ||= video_pairs.map(&:first)
     end
 
     def sub_talks
-      top_level_talks.flat_map do |video|
-        talks = video["talks"]
-        next [] unless talks
-
-        talks.each.to_a
-      end
+      @sub_talks ||= video_pairs.flat_map(&:last)
     end
 
     def each_video(&block)
@@ -122,11 +147,8 @@ module Static
     end
 
     def each_talk(&block)
-      top_level_talks.each do |video|
-        talks = video["talks"]
-        next unless talks
-
-        talks.each do |talk|
+      video_pairs.each do |video, nested|
+        nested.each do |talk|
           yield talk, video, self
         end
       end
@@ -142,6 +164,85 @@ module Static
 
     def relative_path
       path.sub("#{Rails.root}/", "")
+    end
+
+    def at(timestamp)
+      return nil if path.blank?
+
+      revision, _, status = git("rev-list", "--max-count=1", "--before", timestamp.to_time.iso8601, "HEAD", "--", File.basename(path.to_s))
+      return nil unless status.success? && revision.strip.present?
+
+      content, _, status = git("show", "#{revision.strip}:./#{File.basename(path.to_s)}")
+      return nil unless status.success?
+
+      self.class.parse(content, path: path)
+    end
+
+    def changes(since)
+      snapshot = at(since)
+      return nil unless snapshot
+
+      current = talks_by_id
+      previous = snapshot.talks_by_id
+
+      modified = (current.keys & previous.keys).filter_map { |id|
+        diff = attribute_changes(previous[id].to_h, current[id].to_h)
+
+        [id, diff] if diff.any?
+      }.to_h
+
+      {
+        added: current.keys - previous.keys,
+        removed: previous.keys - current.keys,
+        modified: modified
+      }
+    end
+
+    def added_talks(since)
+      diff = changes(since)
+
+      diff ? diff[:added] : ids
+    end
+
+    def newly_watchable_talks(since)
+      diff = changes(since)
+      return [] unless diff
+
+      diff[:modified].filter_map { |id, attributes|
+        next unless attributes.key?("video_provider")
+
+        before, after = attributes["video_provider"]
+
+        id if !watchable_provider?(before) && watchable_provider?(after)
+      }
+    end
+
+    protected
+
+    def talks_by_id
+      talks.index_by { |talk| talk.value_at("id") }.except(nil)
+    end
+
+    private
+
+    def watchable_provider?(provider)
+      (provider || "youtube").in?(Talk::WATCHABLE_PROVIDERS)
+    end
+
+    def attribute_changes(before, after)
+      (before.keys | after.keys).filter_map do |key|
+        next if key == "talks"
+
+        [key, [before[key], after[key]]] if before[key] != after[key]
+      end.to_h
+    end
+
+    def git(*args)
+      Open3.capture3("git", "-C", File.dirname(path.to_s), *args)
+    end
+
+    def sequence_items(node)
+      node.is_a?(Yerba::Sequence) ? node.each.to_a : []
     end
   end
 end

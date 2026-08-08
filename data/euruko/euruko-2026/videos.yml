@@ -31,6 +31,128 @@
   video_provider: "scheduled"
   video_id: "hana-harencarova-euruko-2026"
   description: |-
-    Ever wondered what it takes to ship thousands of commits every day while working on one of the world's largest Rails monoliths? Hana will share insights from her experience at GitHub and take us behind the scenes of developing Rails at scale.
+    Rails allows us to move quickly during development, but true speed comes from being able to deliver those changes to customers just as fast. At GitHub, we've built a deployment process that enables us to ship hundreds of commits to our Rails monolith every day — reliably, safely, and without unnecessary friction. In this talk, we'll walk through the practical strategies and tooling we use to make this possible: from encouraging small, incremental changes to automating validation, testing, and deployment.
   speakers:
-    - Hana Harencarova
+    - Hana Harenčárová
+
+- id: "chris-hasinski-euruko-2026"
+  title: "From C to Ruby: Porting Doom"
+  date: "2026-09-16"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "chris-hasinski-euruko-2026"
+  description: |-
+    Doom is a 3D engine operating on 2D maps, with dynamic lighting, sprites, and variable floor heights — a rich real-time, CPU-bound workload. This talk shows how to port a large C codebase to Ruby, validating correctness via frame comparison and measuring performance.
+  speakers:
+    - Chris Hasiński
+
+- id: "ivo-anjo-euruko-2026"
+  title: "What lies beneath your Ruby app"
+  date: "2026-09-16"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "ivo-anjo-euruko-2026"
+  description: |-
+    In this talk, we're going to look inside the Ruby VM to reveal the answer: We'll journey from text file to running program, uncovering how Ruby parses your code, compiles it to bytecode, interprets it step by step, and even uses a Just-In-Time (JIT) compiler for extra speed. By the end, you won't (yet) be a Ruby core developer, but this black box we call "ruby" will look a lot more transparent.
+  speakers:
+    - Ivo Anjo
+
+- id: "satoshi-tagomori-euruko-2026"
+  title: "Stacking Boxes"
+  date: "2026-09-16"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "satoshi-tagomori-euruko-2026"
+  description: |-
+    Ruby Box is a new feature introduced in Ruby 4.0, and also being developed recently. The separation/isolation realized by Ruby Box is useful for development, deployment and testing. I will explain what Ruby Box is, when we can use it, and why Ruby developers should try this feature.
+  speakers:
+    - Satoshi Tagomori
+
+- id: "tim-kaechele-euruko-2026"
+  title: "Parsing: it's more than a regex"
+  date: "2026-09-16"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "tim-kaechele-euruko-2026"
+  description: |-
+    Whether it is that pesky RuboCop rule you don't like or great developer tools, you encounter parsers everywhere. While parsers always appear to be mythical pieces of software brought to you by computer science gods, I can assure you they are easier to write than you think. Let's build our own little parser and learn the basics of parsing along the way.
+  speakers:
+    - Tim Kächele
+
+- id: "benoit-daloze-euruko-2026"
+  title: "Running Native Extensions and Ruby Code in Parallel Threads"
+  date: "2026-09-16"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "benoit-daloze-euruko-2026"
+  description: |-
+    In this talk we show how we are running native extensions in threads running in parallel, what conditions are needed for that and how to make your own native extension compatible with parallel execution. We also look at what it takes to run Ruby code in parallel, including making Hash parallel, thread-safe and fast. This is using Threads and not Ractors, so it's compatible with most gems without changing the programming model.
+  speakers:
+    - Benoit Daloze
+
+- id: "charles-oliver-nutter-euruko-2026"
+  title: "JRuby Past, Present, and Future"
+  date: "2026-09-16"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "charles-oliver-nutter-euruko-2026"
+  description: |-
+    JRuby on Rails is 20 years old! This talk will review the last 20 years of JRuby development, with a focus on the challenges of supporting Ruby and Rails year after year. We'll look at the state of the art features that make JRuby attractive and talk about the next generation of JRuby capabilities and applications. JRuby brings a whole new world of opportunities to Ruby — come learn how to use JRuby to Do More with Ruby!
+  speakers:
+    - Charles Oliver Nutter
+
+- id: "carmine-paolino-euruko-2026"
+  title: "RubyLLM 2.0: Beyond Agents"
+  date: "2026-09-17"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "carmine-paolino-euruko-2026"
+  description: |-
+    RubyLLM 1.x gave Rubyists a beautiful way to work with AI: one delightful DSL across major providers, easy Rails integration, a model registry for capabilities and costs, instrumentation, agents, workflows, and RAG. But in production a new set of problems appears — calls get expensive, providers have bad days, answers need provenance, and workflows need tracing. RubyLLM 2.0 crosses that line: caching and batch execution to cut costs, model fallbacks to keep answering, citations so users can see where answers came from, and workflow-aware tracing to understand complex flows. It also separates providers from protocols, so multi-protocol providers work natively and smaller providers can be added with a simple generator.
+  speakers:
+    - Carmine Paolino
+
+- id: "koichi-sasada-euruko-2026"
+  title: "Closing Keynote: Parallel Programming with Ractors"
+  kind: "keynote"
+  date: "2026-09-18"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "koichi-sasada-euruko-2026"
+  description: ""
+  speakers:
+    - Koichi Sasada
+
+- id: "greg-molnar-euruko-2026"
+  title: "Workshop by Greg Molnar"
+  kind: "workshop"
+  date: "2026-09-18"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "greg-molnar-euruko-2026"
+  description: ""
+  speakers:
+    - Greg Molnar
+
+- id: "kasper-timm-hansen-andre-arko-euruko-2026"
+  title: "Workshop by Kasper Timm Hansen and André Arko"
+  kind: "workshop"
+  date: "2026-09-18"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "kasper-timm-hansen-andre-arko-euruko-2026"
+  description: ""
+  speakers:
+    - Kasper Timm Hansen
+    - André Arko
+
+- id: "kyle-d-oliveira-euruko-2026"
+  title: "Workshop by Kyle d'Oliveira"
+  kind: "workshop"
+  date: "2026-09-18"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "kyle-d-oliveira-euruko-2026"
+  description: ""
+  speakers:
+    - "Kyle d'Oliveira"

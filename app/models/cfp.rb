@@ -25,6 +25,7 @@ class CFP < ApplicationRecord
 
   scope :open, -> { where("close_date IS NULL OR close_date >= ?", Date.today) }
   scope :closed, -> { where("close_date < ?", Date.today) }
+  scope :with_dates, -> { where.not(open_date: nil).where.not(close_date: nil) }
 
   def open?
     return false if closed?
@@ -92,5 +93,16 @@ class CFP < ApplicationRecord
 
   def formatted_close_date
     I18n.l(close_date, default: "unknown")
+  end
+
+  def to_ical
+    Icalendar::Event.new.tap do |cal_event|
+      cal_event.uid = "RUBYEVENTS-CFP-#{id}"
+      cal_event.last_modified = updated_at
+      cal_event.dtstart = Icalendar::Values::Date.new(open_date)
+      cal_event.dtend = Icalendar::Values::Date.new(close_date + 1.day)
+      cal_event.summary = "#{event.name} - #{name.presence || "Call for Proposals"}"
+      cal_event.url = link
+    end
   end
 end

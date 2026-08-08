@@ -18,22 +18,22 @@
       <% items = grid.fetch("items", []) %>
       <% colspan = (slots != max_cols) ? (max_cols / slots) : 1 %>
 
-      <div class="mt-6 border bg-white rounded">
+      <div class="mt-6 rounded border bg-white">
         <div class="border-b">
-          <div class="text-xs p-2" colspan="<%= max_cols %>">
+          <div class="p-2 text-xs" colspan="<%= max_cols %>">
             <%= [start_time, end_time].uniq.join(" - ") %>
           </div>
         </div>
 
         <% if description %>
           <div class="border-b">
-            <div class="text-xs p-2">
+            <div class="p-2 text-xs">
               <%= description %>
             </div>
           </div>
         <% end %>
 
-        <div class="grid grid-cols-<%= slots %> divide-x">
+        <div class="grid divide-x grid-cols-<%= slots %>">
           <% slots.times do |i| %>
             <% talk = items.any? ? nil : talks[talk_count] %>
             <% talk_tag = items.any? ? :div : :a %>
@@ -44,12 +44,12 @@
               <% if items.any? %>
                 <% item = items[i] %>
 
-                <div class="w-full flex flex-col text-left items-center">
+                <div class="flex w-full flex-col items-center text-left">
                   <% if item.is_a?(String) %>
                     <span class="text-center"><%= item %></span>
                   <% else %>
                     <b class="text-center"><%= item&.fetch("title").presence || "no title" %></b>
-                    <div class="prose text-sm mt-3">
+                    <div class="prose mt-3 text-sm">
                       <%= markdown_to_html(item&.fetch("description").presence || "-") %>
                     </div>
                   <% end %>
@@ -59,7 +59,10 @@
                 <% track = talk_track && tracks.find { |track| track["name"] == talk_track } %>
 
                 <% if track && talk_track %>
-                  <span class="py-1 px-2 mb-4 rounded flex-inline justify-center" style="background: <%= track["color"] %>; color: <%= track["text_color"] %>">
+                  <span
+                    class="flex-inline mb-4 justify-center rounded px-2 py-1"
+                    style="background: <%= track["color"] %>; color: <%= track["text_color"] %>"
+                  >
                     <%= talk_track %>
                   </span>
 
@@ -67,19 +70,21 @@
                     <div class="h-4">&nbsp;</div>
                   <% end %>
                 <% elsif slots == max_cols && multi_track %>
-                  <span class="py-1 px-2 mb-4">&nbsp;</span>
+                  <span class="mb-4 px-2 py-1">&nbsp;</span>
                   <div class="h-4">&nbsp;</div>
                 <% end %>
 
                 <div class="flex-col">
-                  <div class="text-md font-bold"><%= talk.title %></div><br>
-                  <div class="text-gray-500 group-hover:text-white inline-flex flex-wrap gap-2 justify-center">
+                  <div class="text-md font-bold"><%= talk.title %></div>
+                  <br>
+
+                  <div class="inline-flex flex-wrap justify-center gap-2 text-gray-500 group-hover:text-white">
                     <% talk.speakers.each do |speaker| %>
                       <%= ui_avatar(speaker, outline: true, size: :sm) %>
                     <% end %>
                   </div>
 
-                  <div class="text-gray-500 group-hover:text-white mt-2">
+                  <div class="mt-2 text-gray-500 group-hover:text-white">
                     <%= talk.speakers.map(&:name).join(", ") %>
                   </div>
                 </div>

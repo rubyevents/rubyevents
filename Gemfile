@@ -39,8 +39,8 @@ gem "turbo-rails"
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 gem "bcrypt", "~> 3.1.7"
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[windows jruby]
+# Bundle tzinfo-data on all platforms, so TZInfo::Timezone.all_identifiers is deterministic
+gem "tzinfo-data"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
@@ -76,10 +76,10 @@ gem "yt"
 gem "rss", "~> 0.3.1"
 
 # YAML Editing and Refactoring with Better Accuracy
-gem "yerba", "~> 0.7.5"
+gem "yerba", "~> 0.9.0"
 
 # Powerful and seamless HTML-aware ERB parsing and tooling.
-gem "herb", "~> 0.9"
+gem "herb", "~> 0.10.3"
 
 # An ActionView-compatible ERB engine with modern DX - re-imagined with Herb.
 gem "reactionview", "~> 0.3"
@@ -197,7 +197,10 @@ gem "geocoder", github: "alexreisner/geocoder" # Use latest geocoder with Nomina
 gem "gems"
 
 # A glamorous CLI toolkit for Ruby
-gem "gum", "~> 0.3.1"
+gem "charm", require: false
+
+# Run blocks in parallel processes
+gem "parallel"
 
 # Regex pattern searching in files
 gem "grepfruit"
@@ -220,7 +223,7 @@ gem "fastimage", "~> 2.4"
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "bundler-audit", require: false
-  gem "debug", platforms: %i[mri windows]
+  gem "debug", platforms: %i[mri windows], require: "debug/prelude"
   gem "minitest-difftastic", "~> 0.2"
   gem "minitest-mock", "~> 5.27"
 end

@@ -645,3 +645,109 @@
         Traditional CI/CD pipelines often waste significant resources re-validating unchanged code, creating a bottleneck in the development lifecycle. This session explores the results of my attempts to shift from exhaustive execution to smart omission. I'll discuss how doing nothing turns into a technical strategic advantage while maintaining confidence.
       speakers:
         - Christoph Lipautz
+
+- id: "vienna-rb-september-2026"
+  title: "Vienna.rb September 2026"
+  event_name: "Vienna.rb September 2026"
+  date: "2026-09-03"
+  announced_at: "2026-08-06"
+  video_provider: "children"
+  video_id: "vienna-rb-september-2026"
+  thumbnail_xs: "https://secure.meetupstatic.com/photos/event/6/7/a/2/highres_535526530.webp?w=750"
+  thumbnail_sm: "https://secure.meetupstatic.com/photos/event/6/7/a/2/highres_535526530.webp?w=750"
+  thumbnail_md: "https://secure.meetupstatic.com/photos/event/6/7/a/2/highres_535526530.webp?w=750"
+  thumbnail_lg: "https://secure.meetupstatic.com/photos/event/6/7/a/2/highres_535526530.webp?w=750"
+  thumbnail_xl: "https://secure.meetupstatic.com/photos/event/6/7/a/2/highres_535526530.webp?w=750"
+  description: |-
+    Summer break is over and we're back in action! ⭐️
+
+    Are you interested in the Ruby language or Ruby on Rails? Join us. We have great talks, good vibes, and yummy snacks! 😋
+
+    Talks
+    ~~~~~~~~~~~~~~~~~~~~~~~
+
+    🗣️ Aaron Cruz
+    ▶️ If You Didn't Record It, It Didn't Happen - Practical Observability for Rails
+    🗒️ Your Rails app is in production. A user says it’s slow. Another says a feature just broke. You need answers fast.
+    This talk shows how to make your app observable: capturing metrics, logs, and traces, then feeding them into open source monitoring tools. You’ll see what’s worth recording, how to avoid drowning in noise, and how to set alerts that lead straight to the cause.
+    Walk away ready to see inside your app when it matters most and fix problems before everything is on fire.
+
+    🗣️ Grzegorz Jakubiak
+    ▶️ Retro, Ruby and Frontend
+    🗒️ A short story of what nostalgia taught me about WebAssembly in Ruby. When I was 8 years old I got my first cell phone, it was Nokia 3310 and i couldn’t stop playing snake. After seeing Euruko 2024 presentation about WebAssembly in Ruby I decided to rebuild my nostalgic memory in the browser using the language that brings me joy.
+
+    🗣️ Jan Grodowski
+    ▶️ Rails Migrations at Scale: How Shopify Moved from Trigger-Based Online Schema Changes to gh-ost
+    🗒️ Shopify runs thousands of schema changes per year across a 1.5 PB sharded MySQL database. In this talk, we’ll look at how we preserve the Rails migration experience while executing schema changes safely across many databases. We’ll cover how Shopify moved from trigger-based migrations with LHM to trigger-less migrations with gh-ost, and how we turn Rails migrations into a controlled, observable, and recoverable production workflow. You’ll leave with practical ideas for keeping Rails migrations simple for developers while making production execution safer as your database grows.
+
+    Location
+    ~~~~~~~~
+
+    Platogo Interactive Entertainment GmbH
+    Sechskrügelgasse 10/17
+    1030 Wien
+
+    Sponsors
+    ~~~~~~~~~
+
+    ⭐ Platogo
+
+    Platogo is an international team based in Vienna, dedicated to creating innovative, multi-platform games enjoyed by millions of players worldwide. With a focus on creativity, collaboration, and fun, we develop top-ranking apps available in over 13 languages. What began as a small group of passionate friends has grown into a team of 20+ extraordinary people, united by curiosity and a shared love for gaming and cutting-edge technology, all while fostering a friendly and supportive workplace.
+
+    Huge thanks to Platogo for hosting and providing us with refreshments and snacks! 🙌
+
+    ~~~
+
+    ⭐ Looking to sponsor or give a talk?
+
+    We are looking for sponsors and speakers. If you are interested, contact us at organizers@ruby.wien!
+
+    https://www.meetup.com/vienna-rb/events/315835559
+  talks:
+    - id: "aaron-cruz-vienna-rb-september-2026"
+      title: "If You Didn't Record It, It Didn't Happen - Practical Observability for Rails"
+      event_name: "Vienna.rb September 2026"
+      date: "2026-09-03"
+      announced_at: "2026-08-06"
+      video_provider: "scheduled"
+      video_id: "aaron-cruz-vienna-rb-september-2026"
+      description: |-
+        Your Rails app is in production. A user says it’s slow. Another says a feature just broke. You need answers fast.
+        This talk shows how to make your app observable: capturing metrics, logs, and traces, then feeding them into open source monitoring tools. You’ll see what’s worth recording, how to avoid drowning in noise, and how to set alerts that lead straight to the cause.
+        Walk away ready to see inside your app when it matters most and fix problems before everything is on fire.
+      speakers:
+        - Aaron Cruz
+
+    - id: "grzegorz-jakubiak-vienna-rb-september-2026"
+      title: "Retro, Ruby and Frontend"
+      event_name: "Vienna.rb September 2026"
+      date: "2026-09-03"
+      announced_at: "2026-08-06"
+      video_provider: "scheduled"
+      video_id: "grzegorz-jakubiak-vienna-rb-september-2026"
+      description: |-
+        A short story of what nostalgia taught me about WebAssembly in Ruby. When I was 8 years old I got my first cell phone, it was Nokia 3310 and i couldn’t stop playing snake. After seeing Euruko 2024 presentation about WebAssembly in Ruby I decided to rebuild my nostalgic memory in the browser using the language that brings me joy.
+      speakers:
+        - Grzegorz Jakubiak
+
+    - id: "jan-grodowski-vienna-rb-september-2026"
+      title: "Rails Migrations at Scale: How Shopify Moved from Trigger-Based Online Schema Changes to gh-ost"
+      event_name: "Vienna.rb September 2026"
+      date: "2026-09-03"
+      announced_at: "2026-08-06"
+      video_provider: "scheduled"
+      video_id: "jan-grodowski-vienna-rb-september-2026"
+      description: |-
+        Shopify runs thousands of schema changes per year across a 1.5 PB sharded MySQL database. In this talk, we’ll look at how we preserve the Rails migration experience while executing schema changes safely across many databases. We’ll cover how Shopify moved from trigger-based migrations with LHM to trigger-less migrations with gh-ost, and how we turn Rails migrations into a controlled, observable, and recoverable production workflow. You’ll leave with practical ideas for keeping Rails migrations simple for developers while making production execution safer as your database grows.
+      speakers:
+        - Jan Grodowski
+  additional_resources:
+    - name: "Meetup"
+      title: "RSVP on Meetup"
+      url: "https://www.meetup.com/vienna-rb/events/315835559"
+      type: "link"
+
+    - name: "Luma"
+      title: "RSVP on Luma"
+      url: "https://luma.com/7r06r2tg"
+      type: "link"

@@ -9,8 +9,9 @@ module Static
 
       SHORT_DURATION_THRESHOLD = 10.minutes.to_i
 
-      def initialize(file_path:)
+      def initialize(file_path:, document: nil)
         @file_path = file_path
+        @document = document
       end
 
       def applicable?
@@ -28,17 +29,16 @@ module Static
       def validate
         return [] unless applicable?
 
-        document = Yerba.parse_file(@file_path)
-        return [] unless document.root
-
-        document.root.each.flat_map do |video|
-          nested = Array(video["talks"]&.each&.to_a)
-
+        videos_file.video_pairs.flat_map do |video, nested|
           talk_errors(video) + nested.flat_map { |talk| talk_errors(talk) }
         end
       end
 
       private
+
+      def videos_file
+        @videos_file ||= Static::VideosFile.wrap(@file_path, @document)
+      end
 
       def talk_errors(node)
         return [] unless node.value_at("kind").to_s.strip.empty?

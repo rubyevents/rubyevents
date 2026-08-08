@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "shellwords"
+require "open3"
 
 module Static
   module Validators
@@ -9,9 +9,10 @@ module Static
         "**/videos.yml"
       ].freeze
 
-      def initialize(file_path:, baseline: nil)
+      def initialize(file_path:, baseline: nil, document: nil)
         @file_path = file_path
         @baseline = baseline
+        @document = document
       end
 
       def applicable?
@@ -28,12 +29,13 @@ module Static
 
       def validate
         return [] unless applicable?
+        return [] unless changed_since_baseline?
 
         renamed_errors + disappeared_errors
       end
 
       def current
-        @current ||= Static::VideosFile.new(@file_path)
+        @current ||= Static::VideosFile.wrap(@file_path, @document)
       end
 
       def renamed_talks
@@ -52,8 +54,8 @@ module Static
       def self.baseline_file(relative_path)
         return nil unless baseline_ref
 
-        content = `git show #{baseline_ref}:#{relative_path.shellescape} 2>/dev/null`
-        return nil unless $?.success?
+        content, success = git("show", "#{baseline_ref}:#{relative_path}")
+        return nil unless success
 
         Static::VideosFile.parse(content, path: relative_path)
       end
@@ -62,16 +64,45 @@ module Static
         return @baseline_ref if defined?(@baseline_ref)
 
         @baseline_ref = %w[origin/main main].filter_map { |branch|
-          merge_base = `git merge-base HEAD #{branch} 2>/dev/null`.strip
-          merge_base.presence if $?.success?
+          merge_base, success = git("merge-base", "HEAD", branch)
+          merge_base.strip.presence if success
         }.first
+      end
+
+      def self.changed_paths
+        return @changed_paths if defined?(@changed_paths)
+
+        @changed_paths = if baseline_ref
+          output, success = git("diff", "--name-only", baseline_ref, "--", "data")
+
+          output.split("\n").select { |path| File.basename(path) == "videos.yml" }.to_set if success
+        end
+      end
+
+      def self.git(*arguments)
+        output, _stderr, status = Open3.capture3("git", *arguments)
+
+        [output, status.success?]
+      rescue Errno::ENOENT
+        ["", false]
+      end
+
+      def self.warmup
+        changed_paths
       end
 
       def self.reset!
         remove_instance_variable(:@baseline_ref) if defined?(@baseline_ref)
+        remove_instance_variable(:@changed_paths) if defined?(@changed_paths)
       end
 
       private
+
+      def changed_since_baseline?
+        return true if @baseline
+
+        self.class.changed_paths.nil? || self.class.changed_paths.include?(relative_path)
+      end
 
       def baseline
         @baseline ||= self.class.baseline_file(relative_path)

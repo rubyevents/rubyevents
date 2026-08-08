@@ -1,5 +1,5 @@
 <div class="container mx-auto px-4 py-8">
-  <h1 class="text-3xl font-bold mb-6"><%= title "Speaker Leaderboard" %></h1>
+  <h1 class="mb-6 text-3xl font-bold"><%= title "Speaker Leaderboard" %></h1>
 
   <div class="mb-6">
     <%= link_to "All Time", leaderboard_path(filter: "all_time"), class: "btn btn-sm #{(@filter == "all_time") ? "btn-primary" : "btn-outline"} mr-2" %>
@@ -13,7 +13,7 @@
   </div>
 
   <div class="overflow-x-auto">
-    <table class="table w-full table-pin-rows">
+    <table class="table table-pin-rows w-full">
       <thead>
         <tr>
           <th class="text-left">Rank</th>
@@ -21,6 +21,7 @@
           <th class="text-left">Talks</th>
         </tr>
       </thead>
+
       <tbody>
         <% cache [@ranked_speakers, @filter] do %>
           <%= render partial: "leaderboard/speaker", collection: @ranked_speakers, as: :speaker, locals: {filter: @filter} %>

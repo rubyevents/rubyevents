@@ -1,8 +1,6 @@
 <main class="container">
-  <% events = Event.featurable.order(date: :desc) %>
-
   <div>
-    <% events.each do |event| %>
+    <% @events.each do |event| %>
       <%= render partial: "events/featured", locals: {event: event} %>
     <% end %>
   </div>

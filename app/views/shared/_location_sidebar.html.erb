@@ -3,14 +3,15 @@
 <div class="space-y-8">
   <% if location.is_a?(OnlineLocation) %>
     <div>
-      <h3 class="font-bold text-gray-900 mb-4">About Online Events</h3>
-      <p class="text-gray-600 text-sm">
+      <h3 class="mb-4 font-bold text-gray-900">About Online Events</h3>
+
+      <p class="text-sm text-gray-600">
         Online events are virtual conferences, meetups, and workshops that you can attend from anywhere in the world.
       </p>
     </div>
 
     <div>
-      <h3 class="font-bold text-gray-900 mb-4">Browse by Location</h3>
+      <h3 class="mb-4 font-bold text-gray-900">Browse by Location</h3>
 
       <div class="space-y-1">
         <%= link_to continents_path, class: "flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors" do %>
@@ -40,21 +41,19 @@
       <% end %>
       <% if location.bounds.present? %>
         data-map-bounds-value="<%= location.bounds.to_json %>"
-      <% end %>>
-      <div class="flex items-center justify-between mb-4">
+      <% end %>
+    >
+      <div class="mb-4 flex items-center justify-between">
         <h3 class="font-bold text-gray-900"><%= map_title %></h3>
       </div>
 
       <% if geo_layers.size >= 1 %>
-        <div class="flex flex-wrap items-center gap-2 mb-4">
+        <div class="mb-4 flex flex-wrap items-center gap-2">
           <%= render "shared/map_layer_controls", layers: geo_layers, selection: "radio", use_emoji: true %>
         </div>
       <% end %>
 
-      <div
-        id="sidebar-map"
-        class="w-full h-96 rounded-xl overflow-hidden border"
-        data-map-target="container"></div>
+      <div id="sidebar-map" class="h-96 w-full overflow-hidden rounded-xl border" data-map-target="container"></div>
     </div>
   <% end %>
 
@@ -68,7 +67,7 @@
 
   <% if nearby_users.present? && nearby_users.any? %>
     <div>
-      <div class="flex justify-between items-center mb-4">
+      <div class="mb-4 flex items-center justify-between">
         <h3 class="font-bold text-gray-900">Rubyists near <%= location.name %></h3>
 
         <%= link_to location_users_path(location), class: "link text-sm" do %>
@@ -76,16 +75,16 @@
         <% end %>
       </div>
 
-      <div class="grid grid-cols-[repeat(auto-fill,3rem)] gap-2 justify-between">
+      <div class="grid grid-cols-[repeat(auto-fill,3rem)] justify-between gap-2">
         <% nearby_users.first(24).each do |nearby| %>
           <% user = nearby.is_a?(Hash) ? nearby[:user] : nearby %>
           <% distance_km = nearby.is_a?(Hash) ? nearby[:distance_km] : nil %>
 
-          <div class="relative group">
+          <div class="group relative">
             <%= render Ui::AvatarComponent.new(user, size: :md, hover_card: true) %>
 
             <% if distance_km %>
-              <div class="absolute -bottom-1 -right-1 bg-gray-700 text-white text-[10px] px-1 rounded-full leading-tight">
+              <div class="absolute -bottom-1 -right-1 rounded-full bg-gray-700 px-1 text-[10px] leading-tight text-white">
                 <%= distance_km %>km
               </div>
             <% end %>
@@ -104,7 +103,7 @@
 
   <% if show_countries && countries.present? && countries.any? %>
     <div id="countries">
-      <div class="flex justify-between items-center mb-4">
+      <div class="mb-4 flex items-center justify-between">
         <h3 class="font-bold text-gray-900">Countries</h3>
 
         <% if countries.size > 12 %>
@@ -117,7 +116,7 @@
           <% next unless country %>
 
           <%= link_to country_path(country), class: "flex justify-between items-center py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors" do %>
-            <span class="text-gray-700 flex items-center gap-2">
+            <span class="flex items-center gap-2 text-gray-700">
               <span class="fi fi-<%= country.alpha2.downcase %>"></span>
               <%= country.name %>
             </span>
@@ -131,7 +130,7 @@
 
   <% if show_cities && cities.present? && cities.any? %>
     <div id="cities">
-      <div class="flex justify-between items-center mb-4">
+      <div class="mb-4 flex items-center justify-between">
         <h3 class="font-bold text-gray-900">Cities</h3>
 
         <% if location_cities_path(location).present? %>
@@ -145,7 +144,11 @@
         <% cities.first(12).each do |city| %>
           <%= link_to city.path, class: "flex justify-between items-center py-0.5 rounded-lg hover:bg-gray-50 transition-colors" do %>
             <span class="text-gray-700">
-              <%= city.name %><% if city.state.present? %><span class="text-gray-400">, <%= city.state.code %></span><% end %>
+              <%= city.name %>
+
+              <% if city.state.present? %>
+                <span class="text-gray-400">, <%= city.state.code %></span>
+              <% end %>
             </span>
 
             <%= ui_badge(city.events_count, kind: :secondary, outline: true, size: :sm) %>

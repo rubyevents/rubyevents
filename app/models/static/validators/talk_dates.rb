@@ -9,8 +9,9 @@ module Static
 
       IGNORE_PUBLISHED_AT_BEFORE_DATE = "validator:disable published_at_before_date"
 
-      def initialize(file_path:)
+      def initialize(file_path:, document: nil)
         @file_path = file_path
+        @document = document
       end
 
       def applicable?
@@ -28,21 +29,19 @@ module Static
       def validate
         return [] unless applicable?
 
-        document = Yerba.parse_file(@file_path)
-
-        return [] unless document.root
-
         @start_date, @end_date, @timezone, pre_date = event_context
         @range_start = [pre_date, @start_date].compact.min
 
-        document.root.each.flat_map do |video|
-          nested = Array(video["talks"]&.each&.to_a)
-
+        videos_file.video_pairs.flat_map do |video, nested|
           talk_errors(video) + nested.flat_map { |talk| talk_errors(talk) }
         end
       end
 
       private
+
+      def videos_file
+        @videos_file ||= Static::VideosFile.wrap(@file_path, @document)
+      end
 
       def event_context
         event_path = File.join(File.dirname(@file_path), "event.yml")
