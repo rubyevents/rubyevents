@@ -13,6 +13,8 @@ class Continent
     "south-america" => {name: "South America", alpha2: "SA", emoji: "🌎"}
   }.freeze
 
+  UNPOPULATED = %w[antarctica].freeze # Very unlikely to have an event here ;)
+
   BOUNDS = {
     "africa" => {southwest: [-25.0, -35.0], northeast: [60.0, 40.0]},
     "antarctica" => {southwest: [-180.0, -90.0], northeast: [180.0, -60.0]},
@@ -129,7 +131,11 @@ class Continent
 
   class << self
     def all
-      @all ||= CONTINENT_DATA.keys.map { |slug| new(slug) }
+      @all ||= slugs.map { |slug| new(slug) }
+    end
+
+    def populated
+      @populated ||= (slugs - UNPOPULATED).map { |slug| new(slug) }
     end
 
     def find(term)
