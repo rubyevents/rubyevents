@@ -21,7 +21,6 @@ class PageControllerTest < ActionDispatch::IntegrationTest
 
     expected_logo_url = @controller.view_context.image_url("logo_og_image.png")
 
-    # OpenGraph
     assert_select "meta[property='og:title'][content=?]", Metadata::DEFAULT_TITLE
     assert_select "meta[property='og:description'][content=?]", Metadata::DEFAULT_DESC
     assert_select "meta[property='og:site_name'][content=?]", Metadata::SITE_NAME
@@ -29,7 +28,6 @@ class PageControllerTest < ActionDispatch::IntegrationTest
     assert_select "meta[property='og:type'][content=website]"
     assert_select "meta[property='og:image'][content=?]", expected_logo_url
 
-    # Twitter
     assert_select "meta[name='twitter:title'][content=?]", Metadata::DEFAULT_TITLE
     assert_select "meta[name='twitter:description'][content=?]", Metadata::DEFAULT_DESC
     assert_select "meta[name='twitter:card'][content=summary_large_image]"
