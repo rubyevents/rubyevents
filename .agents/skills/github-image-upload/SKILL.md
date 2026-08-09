@@ -53,6 +53,12 @@ Run these checks; only act on the ones that fail.
    > ⚠️ A `user_session` cookie grants **full account access** (it is not scoped
    > like a PAT). Treat it like a password; in CI use a dedicated bot account.
 
+   > 💡 The user may hand you the session token directly (e.g. "you can use the
+   > user session token … to call it"). Pass it with the `--token` flag — do not
+   > echo it, print it, write it to a file, or commit it. Keep it out of command
+   > output by referencing it via a shell variable. It expires, so if an upload
+   > fails later, ask the user for a fresh one.
+
 ## Step 1 — Normalize the file path
 
 Use an **absolute path**. If a glob is given, resolve it first. Paths with spaces
@@ -64,6 +70,10 @@ or Unicode (e.g. CleanShot's narrow spaces) work, but quote them.
 # One or more files (images or PDF/zip/log/…); --repo is optional inside a repo
 # working dir (inferred from the remote).
 gh image "/abs/path/screenshot.png" --repo <owner>/<repo>
+
+# With a user-provided session token (see note in Prerequisites):
+TOKEN="<session-token>"  # keep this secret — don't echo or commit it
+gh image "/abs/path/screenshot.png" --repo <owner>/<repo> --token "$TOKEN"
 ```
 
 `gh image` prints the reference to **stdout** — an image embed for images, a bare
