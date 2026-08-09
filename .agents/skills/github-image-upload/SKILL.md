@@ -54,10 +54,19 @@ Run these checks; only act on the ones that fail.
    > like a PAT). Treat it like a password; in CI use a dedicated bot account.
 
    > 💡 The user may hand you the session token directly (e.g. "you can use the
-   > user session token … to call it"). Pass it with the `--token` flag — do not
-   > echo it, print it, write it to a file, or commit it. Keep it out of command
-   > output by referencing it via a shell variable. It expires, so if an upload
-   > fails later, ask the user for a fresh one.
+   > user session token … to call it"). Do not echo it, print it, write it to a
+   > file, or commit it. When they do, `export GH_SESSION_TOKEN` for the current
+   > shell session so subsequent uploads work without re-passing the token:
+   >
+   > ```bash
+   > export GH_SESSION_TOKEN="<session-token>"
+   > ```
+   >
+   > Note the export only persists for that shell session — it is lost when a new
+   > terminal/session starts, so re-export or pass `--token` on later runs. (Do not
+   > append it to `~/.bashrc` or similar; storing session cookies there is
+   > discouraged.) It expires, so if an upload fails later, ask the user for a
+   > fresh one.
 
 ## Step 1 — Normalize the file path
 
@@ -71,9 +80,10 @@ or Unicode (e.g. CleanShot's narrow spaces) work, but quote them.
 # working dir (inferred from the remote).
 gh image "/abs/path/screenshot.png" --repo <owner>/<repo>
 
-# With a user-provided session token (see note in Prerequisites):
-TOKEN="<session-token>"  # keep this secret — don't echo or commit it
-gh image "/abs/path/screenshot.png" --repo <owner>/<repo> --token "$TOKEN"
+# With a user-provided session token (see note in Prerequisites). If you already
+# exported GH_SESSION_TOKEN for the session, no --token/--repo is needed here:
+export GH_SESSION_TOKEN="<session-token>"
+gh image "/abs/path/screenshot.png" --repo <owner>/<repo>
 ```
 
 `gh image` prints the reference to **stdout** — an image embed for images, a bare
