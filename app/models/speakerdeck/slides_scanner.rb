@@ -12,6 +12,7 @@ module Speakerdeck
       "gurzu",
       "linkers_tech",
       "plataformatec",
+      "railsware",
       "techouse"
     ].freeze
 
