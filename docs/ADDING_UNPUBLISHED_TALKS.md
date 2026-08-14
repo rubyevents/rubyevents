@@ -98,14 +98,14 @@ See [ADDING_SPEAKERS.md](ADDING_SPEAKERS.md) for the full speaker profile fields
 <details><summary>How do I handle talks that are not in English?</summary>
   For talks that are not in English, we prefer English descriptions and titles if provided by the event.
   If those are not provided, use the original language for the description, translate the title to English, and store the title in its original language in original_title.
-  The language field should be the 2 letter language code.
+  The language field takes the English name of the language.
   This will make it easier for people to find talks in their native language!
 
   ```yaml
   - id: "name-talk-type-event-name-year"
     title: "Talk title in English"
-    language: "ja"
     original_title: "Talk title in original language"
+    language: "Japanese"
     description: "Description in original language"
   ```
 </details>
