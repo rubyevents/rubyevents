@@ -8,5 +8,16 @@
       ],
       "enabled": true
     }
+  },
+  "lsp": {
+    "herb": {
+      "command": [
+        "herb-language-server",
+        "--stdio"
+      ],
+      "extensions": [
+        ".erb"
+      ]
+    }
   }
 }
