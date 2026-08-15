@@ -73,7 +73,7 @@
           <%= @contributors.count %> Contributors
         </h2>
 
-        <div class="md:grid-cols-16 lg:grid-cols-20 mb-6 grid grid-cols-10 gap-3 sm:grid-cols-12">
+        <div class="grid grid-cols-10 sm:grid-cols-12 md:grid-cols-16 lg:grid-cols-25 gap-3 mb-6">
           <% @contributors.each do |contributor| %>
             <%= link_to contributor.user ? profile_path(contributor.user) : contributor.html_url,
                   target: contributor.user ? nil : "_blank",
