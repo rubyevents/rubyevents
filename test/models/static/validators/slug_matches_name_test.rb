@@ -40,8 +40,8 @@ class Static::Validators::SlugMatchesNameTest < ActiveSupport::TestCase
       errors = validator.errors
       error = errors.first.to_h
       assert_equal "Slug must be the name parameterized, expected: rachael-wright-munn", error["message"]
-      assert_equal 4, error["line"], "Line number 4 does not equal #{error["line"]}."
-      assert_equal 4, error["end_line"], "End line number 4 does not equal #{error["end_line"]}."
+      assert_equal 4, error["line"], "Line number #{error["line"]} does not match line number 4."
+      assert_equal 4, error["end_line"], "End line number #{error["end_line"]} does not match line number 4."
     end
   end
 
@@ -53,10 +53,11 @@ class Static::Validators::SlugMatchesNameTest < ActiveSupport::TestCase
     YAML
     with_temp_speakers_yaml(yaml) do |path|
       validator = Static::Validators::SlugMatchesName.new(file_path: path)
-      error = validator.errors.first
-      assert_equal "Slug must be the name parameterized, expected: rachael-wright-munn", error.to_h["message"]
-      assert_equal 2, error.to_h["line"]
-      assert_equal 3, error.to_h["end_line"]
+      errors = validator.errors
+      error = errors.first.to_h
+      assert_equal "Slug must be the name parameterized, expected: rachael-wright-munn", error["message"]
+      assert_equal 3, error["line"], "Line number #{error["line"]} does not match line number 3."
+      assert_equal 3, error["end_line"], "End line number #{error["end_line"]} does not match line number 3."
     end
   end
 
@@ -119,10 +120,11 @@ class Static::Validators::SlugMatchesNameTest < ActiveSupport::TestCase
     YAML
     with_temp_speakers_yaml(yaml) do |path|
       validator = Static::Validators::SlugMatchesName.new(file_path: path)
-      error = validator.errors.first
-      assert_equal "Slug must be the name parameterized, expected: matz", error.to_h["message"]
-      assert_equal 10, error.to_h["line"]
-      assert_equal 11, error.to_h["end_line"]
+      errors = validator.errors
+      error = errors.first.to_h
+      assert_equal "Slug must be the name parameterized, expected: matz", error["message"]
+      assert_equal 11, error["line"], "Line number #{error["line"]} does not match line number 11."
+      assert_equal 11, error["end_line"], "End line number #{error["end_line"]} does not match line number 11."
     end
   end
 
