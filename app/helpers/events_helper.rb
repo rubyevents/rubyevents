@@ -1,4 +1,8 @@
 module EventsHelper
+  def event_cancelled?(event)
+    event.static_metadata.cancelled?
+  end
+
   def event_date_display(event, day_name: false)
     return "Date TBD" unless event.start_date.present?
 
@@ -43,6 +47,16 @@ module EventsHelper
 
         [display_info, group_events]
       end
+  end
+
+  def featured_cta_path(event)
+    if event.featured_reason == :cfp_closing
+      event_cfp_index_path(event)
+    elsif event.tickets.available?
+      event_tickets_path(event)
+    else
+      event_path(event)
+    end
   end
 
   def home_updated_text(event)

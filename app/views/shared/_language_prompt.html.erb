@@ -1,0 +1,55 @@
+<div id="language-prompt">
+  <% prompt = Current.user&.languages&.pending_prompt %>
+
+  <% if prompt %>
+    <% code = prompt[:code] %>
+    <% language_name = Language.by_code(code) || code.upcase %>
+    <% given = prompt[:source] == :given %>
+    <% yes_label = given ? "Yes, add #{language_name}" : Language.understands_confirmation(code) %>
+    <% no_label = given ? "No thanks" : "No, I don't understand #{language_name}" %>
+
+    <div class="border-y border-base-300 bg-base-200">
+      <div class="container flex flex-wrap items-center justify-between gap-3 py-3">
+        <div class="text-sm">
+          <p>
+            <span class="mr-1"><%= Language.emoji_flag(code) %></span>
+
+            <% if given %>
+              You've given <strong><%= pluralize(prompt[:count], "talk") %></strong> in
+              <strong><%= language_name %></strong>. Want to add it to your profile?
+            <% else %>
+              You've watched <strong><%= pluralize(prompt[:count], "talk") %></strong> in
+              <strong><%= language_name %></strong>. Do you understand it?
+            <% end %>
+          </p>
+
+          <p class="text-base-content/60">We'll use this to recommend talks.</p>
+        </div>
+
+        <div class="flex w-full flex-col items-stretch gap-2 sm:w-auto sm:flex-row sm:items-center">
+          <%= button_to yes_label,
+                language_preference_path(language_code: code, answer: "understands"),
+                method: :patch,
+                class: "btn btn-sm btn-primary w-full sm:w-auto" %>
+
+          <%= button_to no_label,
+                language_preference_path(language_code: code, answer: "does_not_understand"),
+                method: :patch,
+                class: "btn btn-sm btn-outline w-full sm:w-auto" %>
+        </div>
+      </div>
+    </div>
+  <% elsif local_assigns[:just_completed] %>
+    <div class="border-y border-base-300 bg-base-200">
+      <div class="container flex flex-wrap items-center justify-between gap-3 py-3">
+        <p class="text-sm">
+          Thanks for the information! You can always update your language preferences in your profile.
+        </p>
+
+        <%= ui_button url: edit_profile_path(Current.user), kind: :neutral, size: :sm, data: {turbo_frame: "modal"} do %>
+          Update language preferences
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

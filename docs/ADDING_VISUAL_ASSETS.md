@@ -61,7 +61,7 @@ featured_color: "#FFFFFF"         # Text color for featured display
 ```
 
 These colors support:
-- Hex colors (e.g., `#FF0000`)
+- Hex colors (e.g., `#FF0000`) - don't forget the `#`
 - RGB/RGBA colors (e.g., `rgb(255, 0, 0)`)
 - CSS gradients (e.g., `linear-gradient(90deg, #FF0000, #0000FF)`)
 

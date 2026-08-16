@@ -3,6 +3,9 @@
 module Talk::TypesenseSearchable
   extend ActiveSupport::Concern
 
+  SEARCH_QUERY_BY = "title,slug,summary,description,kind,speaker_names,speaker_alias_names,speaker_github_handles,speaker_twitter_handles,event_name,event_alias_names,series_name,series_alias_names,topic_names,resource_names,city,country_name,state_name,continent,location,transcript_text"
+  SEARCH_QUERY_BY_WEIGHTS = "10,9,5,3,3,8,7,9,9,4,4,4,4,6,7,3,3,2,2,2,1"
+
   included do
     include ::Typesense
 
@@ -33,6 +36,11 @@ module Talk::TypesenseSearchable
       end
 
       attribute :video_provider
+
+      attribute :watchable do
+        published? || false
+      end
+
       attribute :video_id
       attribute :duration_in_seconds
       attribute :view_count
@@ -162,7 +170,7 @@ module Talk::TypesenseSearchable
       end
 
       attribute :transcript_text do
-        talk_transcript&.transcript&.to_text&.truncate(100_000)
+        talk_transcripts.filter_map { |transcript| transcript.transcript&.to_text }.join("\n\n").presence&.truncate(100_000)
       end
 
       attribute :has_slides do
@@ -172,7 +180,7 @@ module Talk::TypesenseSearchable
       attribute :slides_url
 
       attribute :has_transcript do
-        talk_transcript&.raw_transcript.present?
+        talk_transcripts.any? { |transcript| transcript.raw_transcript.present? }
       end
 
       attribute :resource_names do
@@ -221,6 +229,7 @@ module Talk::TypesenseSearchable
         {"name" => "language", "type" => "string", "facet" => true},
         {"name" => "year", "type" => "int32", "optional" => true, "facet" => true},
         {"name" => "video_provider", "type" => "string", "facet" => true},
+        {"name" => "watchable", "type" => "bool"},
         {"name" => "country_code", "type" => "string", "optional" => true, "facet" => true},
         {"name" => "country_name", "type" => "string", "optional" => true, "facet" => true},
         {"name" => "state", "type" => "string", "optional" => true, "facet" => true},
@@ -308,11 +317,15 @@ module Talk::TypesenseSearchable
       TypesenseIndexJob.perform_later(record, remove ? "typesense_remove_from_index!" : "typesense_index!")
     end
 
+    def typesense_multi_search_config
+      {collection: "Talk", query_by: SEARCH_QUERY_BY, query_by_weights: SEARCH_QUERY_BY_WEIGHTS, filter_by: "watchable:=true"}
+    end
+
     def typesense_search_talks(query, options = {})
-      query_by_fields = "title,slug,summary,description,kind,speaker_names,speaker_alias_names,speaker_github_handles,speaker_twitter_handles,event_name,event_alias_names,series_name,series_alias_names,topic_names,resource_names,city,country_name,state_name,continent,location,transcript_text"
+      query_by_fields = SEARCH_QUERY_BY
 
       search_options = {
-        query_by_weights: "10,9,5,3,3,8,7,9,9,4,4,4,4,6,7,3,3,2,2,2,1",
+        query_by_weights: SEARCH_QUERY_BY_WEIGHTS,
         per_page: options[:per_page] || 20,
         page: options[:page] || 1,
         highlight_full_fields: "title,summary",
@@ -337,10 +350,12 @@ module Talk::TypesenseSearchable
       case options[:status]
       when "scheduled"
         filters << "video_provider:=scheduled"
+      when "no_video"
+        filters << "watchable:=false"
       when "all"
         # Show all talks
       else
-        filters << "video_provider:=[youtube,mp4,vimeo]" unless options[:include_unwatchable]
+        filters << "watchable:=true" unless options[:include_unwatchable]
       end
 
       search_options[:filter_by] = filters.join(" && ") if filters.any?

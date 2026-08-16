@@ -10,6 +10,12 @@
       Past Events
     <% end %>
 
+    <% if location_meetups_path(location).present? %>
+      <%= link_to location_meetups_path(location), role: "tab", class: "tab whitespace-nowrap #{"tab-active" if current_tab == "meetups"}" do %>
+        Meetups
+      <% end %>
+    <% end %>
+
     <% if location_users_path(location).present? %>
       <%= link_to location_users_path(location), role: "tab", class: "tab whitespace-nowrap #{"tab-active" if current_tab == "users"}" do %>
         Rubyists

@@ -37,6 +37,7 @@ FileUtils.chdir APP_ROOT do
   end
 
   puts "\n== Installing node dependencies =="
+  system! "corepack enable"
   system! "yarn install"
 
   puts "\n== Preparing database =="

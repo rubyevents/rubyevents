@@ -1,6 +1,60 @@
 require "test_helper"
 
 class Static::EventTest < ActiveSupport::TestCase
+  SLUG = "helveticruby-2025"
+
+  test "import!" do
+    Static::EventSeries.find_by_slug("helveticruby").import_series!
+    event = Static::Event.find_by_slug(SLUG)
+    ENV["SEED_SMOKE_TEST"] = "true"
+    result = event.import!
+    assert_equal "Helvetic Ruby 2025", result.name
+  ensure
+    ENV.delete("SEED_SMOKE_TEST")
+  end
+
+  test "import_event!" do
+    Static::EventSeries.find_by_slug("helveticruby").import_series!
+    event = Static::Event.find_by_slug(SLUG)
+    result = event.import_event!
+    assert_equal "Helvetic Ruby 2025", result.name
+  end
+
+  test "import_cfps!" do
+    Static::EventSeries.find_by_slug("helveticruby").import_series!
+    event = Static::Event.find_by_slug(SLUG)
+    event_record = event.import_event!
+    event.import_cfps!(event_record)
+    assert event_record.cfps.exists?
+  end
+
+  test "import_videos!" do
+    Static::EventSeries.find_by_slug("helveticruby").import_series!
+    event = Static::Event.find_by_slug(SLUG)
+    event_record = event.import_event!
+    event.import_videos!(event_record)
+    assert event_record.talks.exists?
+  end
+
+  test "import_sponsors!" do
+    Static::EventSeries.find_by_slug("helveticruby").import_series!
+    event = Static::Event.find_by_slug(SLUG)
+    event_record = event.import_event!
+    event.import_sponsors!(event_record)
+    assert event_record.sponsors.exists?
+  end
+
+  test "import_sponsors! imports sponsor attributes" do
+    Static::EventSeries.find_by_slug("balkanruby").import_series!
+    event = Static::Event.find_by_slug("balkanruby-2025")
+    event_record = event.import_event!
+    event.import_sponsors!(event_record)
+    assert event_record.sponsors.exists?
+    avo = Organization.find_by(name: "Avo")
+    avo_sponsor = event_record.sponsors.find_by(organization: avo)
+    assert_equal "Party Sponsor", avo_sponsor.badge
+  end
+
   test "import_involvements!" do
     event = Static::Event.find_by_slug("xoruby-portland-2025")
     event.import_event!
@@ -9,11 +63,26 @@ class Static::EventTest < ActiveSupport::TestCase
     involvements = event_record.reload.event_involvements.pluck(:id)
     event.import_involvements!(event_record)
     assert_equal involvements, event_record.reload.event_involvements.pluck(:id)
-    assert_equal 6, event_record.event_involvements.count
+    assert_equal 7, event_record.event_involvements.count
   end
 
   test "today? returns false if event is in the past" do
     event = Static::Event.find_by_slug("railsconf-2025")
     assert_not event.today?
+  end
+
+  test "home_sort_date uses the event's own dates for non-conference, non-meetup events" do
+    event = Static::Event.find_by_slug("ceru-camp-2009")
+    stub_record = Event.new(start_date: Date.new(2000, 1, 1))
+
+    assert_equal "retreat", event.kind
+    assert_equal event.end_date, event.home_sort_date(event_record: stub_record)
+  end
+
+  test "home_sort_date prefers recordings_published_date when present" do
+    event = Static::Event.find_by_slug("brightonruby-2025")
+    stub_record = Event.new(start_date: Date.new(2000, 1, 1))
+
+    assert_equal event.published_date, event.home_sort_date(event_record: stub_record)
   end
 end

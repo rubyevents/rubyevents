@@ -1,6 +1,6 @@
 class Talk::Thumbnails < ActiveRecord::AssociatedObject
   def path
-    directory / "#{talk.video_id}.webp"
+    directory.join(*[talk.event.slug, talk.parent_talk&.static_id, "#{talk.video_id}.webp"].compact)
   end
 
   def extractable?
@@ -56,6 +56,8 @@ class Talk::Thumbnails < ActiveRecord::AssociatedObject
   end
 
   def extract_thumbnail(timestamp, input_file, output_file)
+    output_file.dirname.mkpath
+
     Command.run(%(ffmpeg -y -ss #{timestamp} -i "#{input_file}" -map 0:v:0 -frames:v 1 -q:v 50 -vf scale=1080:-1 "#{output_file}"))
   end
 

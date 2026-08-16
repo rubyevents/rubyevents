@@ -30,6 +30,7 @@
 #  thumbnail_xl                  :string           default(""), not null
 #  thumbnail_xs                  :string           default(""), not null
 #  title                         :string           default(""), not null, indexed
+#  transcript_checked_at         :datetime
 #  video_availability_checked_at :datetime
 #  video_provider                :string           default("youtube"), not null, indexed => [date]
 #  video_unavailable_at          :datetime
@@ -63,9 +64,9 @@
 class Talk < ApplicationRecord
   include Rollupable
   include Sluggable
-  include Suggestable
   include Watchable
 
+  include Talk::Queries
   include Talk::SQLiteFTSSearchable
   include Talk::TypesenseSearchable
 
@@ -97,15 +98,15 @@ class Talk < ApplicationRecord
 
   has_many :aliases, as: :aliasable, dependent: :destroy
 
-  has_one :talk_transcript, class_name: "Talk::Transcript", dependent: :destroy
-  accepts_nested_attributes_for :talk_transcript
-  delegate :transcript, :raw_transcript, :enhanced_transcript, to: :talk_transcript, allow_nil: true
+  has_many :talk_transcripts, class_name: "Talk::Transcript", dependent: :destroy
+  accepts_nested_attributes_for :talk_transcripts
 
   # associated objects
   has_object :agents
   has_object :downloader
   has_object :thumbnails
   has_object :similar_recommender
+  has_object :youtube_transcript
 
   # validations
   validates :title, presence: true
@@ -119,15 +120,19 @@ class Talk < ApplicationRecord
   # delegates
   delegate :name, to: :event, prefix: true, allow_nil: true
 
-  # callbacks
-  before_validation :set_kind, if: -> { !kind_changed? }
-
   WATCHABLE_PROVIDERS = ["youtube", "mp4", "vimeo"]
+  UNPUBLISHED_PROVIDERS = ["not_recorded", "scheduled", "not_published"]
+  SUPPLEMENTARY_KINDS = ["trailer", "recap", "aftermovie"]
+  NON_RECOMMENDABLE_KINDS = SUPPLEMENTARY_KINDS + ["intro", "outro", "trailer", "recap", "aftermovie"]
+  TRANSCRIPT_RECHECK_AFTER = 3.months
 
   KIND_LABELS = {
     "keynote" => "Keynote",
     "talk" => "Talk",
     "lightning_talk" => "Lightning Talk",
+    "open_mic" => "Open Mic",
+    "announcement" => "Announcement",
+    "city_pitch" => "City Pitch",
     "panel" => "Panel",
     "workshop" => "Workshop",
     "gameshow" => "Gameshow",
@@ -137,7 +142,12 @@ class Talk < ApplicationRecord
     "fireside_chat" => "Fireside Chat",
     "interview" => "Interview",
     "award" => "Award",
-    "demo" => "Demo"
+    "demo" => "Demo",
+    "trailer" => "Trailer",
+    "recap" => "Recap",
+    "aftermovie" => "Aftermovie",
+    "intro" => "Intro",
+    "outro" => "Outro"
   }.freeze
 
   # enums
@@ -145,14 +155,17 @@ class Talk < ApplicationRecord
 
   attribute :kind, :string
   enum :kind,
-    %w[keynote talk lightning_talk panel workshop gameshow podcast q_and_a discussion fireside_chat
-      interview award demo].index_by(&:itself)
+    %w[keynote talk lightning_talk open_mic announcement city_pitch panel workshop gameshow podcast
+      q_and_a discussion fireside_chat interview award demo trailer recap aftermovie intro outro].index_by(&:itself)
 
   def self.speaker_role_titles
     {
       keynote: "Keynote Speaker",
       talk: "Speaker",
       lightning_talk: "Lightning Talk Speaker",
+      open_mic: "Open Mic Speaker",
+      announcement: "Presenter",
+      city_pitch: "City Pitcher",
       panel: "Panelist",
       discussion: "Panelist",
       gameshow: "Game Show Host",
@@ -162,7 +175,12 @@ class Talk < ApplicationRecord
       fireside_chat: "Fireside Chat Host/Participant",
       interview: "Interviewer/Interviewee",
       award: "Award Presenter/Winner",
-      demo: "Demo Speaker"
+      demo: "Demo Speaker",
+      trailer: "Featured",
+      recap: "Featured",
+      aftermovie: "Featured",
+      intro: "Host",
+      outro: "Host"
     }
   end
 
@@ -185,7 +203,6 @@ class Talk < ApplicationRecord
 
   # jobs
   performs :update_from_yml_metadata!
-  performs :fetch_and_update_raw_transcript!, retries: 3
   performs :fetch_duration_from_youtube!
 
   # normalization
@@ -195,36 +212,51 @@ class Talk < ApplicationRecord
 
   # ensure that during the reindex process the associated records are eager loaded
   scope :without_raw_transcript, -> {
-    joins(:talk_transcript)
+    joins(:talk_transcripts)
       .where(%(
         talk_transcripts.raw_transcript IS NULL
         OR talk_transcripts.raw_transcript = ''
         OR talk_transcripts.raw_transcript = '[]'
       ))
+      .distinct
   }
+
   scope :with_raw_transcript, -> {
-    joins(:talk_transcript)
+    joins(:talk_transcripts)
       .where(%(
         talk_transcripts.raw_transcript IS NOT NULL
         AND talk_transcripts.raw_transcript != '[]'
       ))
+      .distinct
   }
+
   scope :without_enhanced_transcript,
     -> {
-      joins(:talk_transcript)
+      joins(:talk_transcripts)
         .where(%(
           talk_transcripts.enhanced_transcript IS NULL
           OR talk_transcripts.enhanced_transcript = ''
           OR talk_transcripts.enhanced_transcript = '[]'
         ))
+        .distinct
     }
+
   scope :with_enhanced_transcript, -> {
-    joins(:talk_transcript)
+    joins(:talk_transcripts)
       .where(%(
         talk_transcripts.enhanced_transcript IS NOT NULL
         AND talk_transcripts.enhanced_transcript != '[]'
       ))
+      .distinct
   }
+
+  scope :pending_transcript, -> {
+    youtube
+      .left_joins(:talk_transcripts)
+      .where(talk_transcripts: {id: nil})
+      .where("transcript_checked_at IS NULL OR transcript_checked_at < ?", TRANSCRIPT_RECHECK_AFTER.ago)
+  }
+
   scope :with_summary, -> { where("summary IS NOT NULL AND summary != ''") }
   scope :without_summary, -> { where("summary IS NULL OR summary = ''") }
   scope :with_duration, -> { where.not(duration_in_seconds: nil) }
@@ -244,11 +276,51 @@ class Talk < ApplicationRecord
   scope :today, -> { where(date: Date.today) }
   scope :past, -> { where(date: ...Date.today) }
 
-  def managed_by?(visiting_user)
-    return false unless visiting_user.present?
-    return true if visiting_user.admin?
+  scope :orphaned, -> {
+    static_ids = all_static_ids
+    where.not(static_id: static_ids).or(where(static_id: [nil, ""]))
+  }
 
-    users.exists?(id: visiting_user.id)
+  scope :not_orphaned, -> {
+    static_ids = all_static_ids
+    where(static_id: static_ids)
+  }
+
+  def self.all_static_ids
+    @all_static_ids ||= begin
+      collection = Yerba::Collection.new("data/**/videos.yml")
+      parent_ids = collection.pluck(:id).compact
+      child_ids = collection.pluck(:talks).compact.flatten.map { |t| t["id"] }
+      parent_ids + child_ids
+    end
+  end
+
+  def orphaned?
+    static_id.blank? || self.class.all_static_ids.exclude?(static_id)
+  end
+
+  def transcript_languages
+    talk_transcripts.map(&:language)
+  end
+
+  def talk_transcript(language: self.language)
+    transcripts = talk_transcripts.to_a
+    transcripts.find { |transcript| transcript.language == language } ||
+      transcripts.find { |transcript| transcript.language == self.language } ||
+      transcripts.find { |transcript| transcript.language == "en" } ||
+      transcripts.first
+  end
+
+  def transcript(language: self.language)
+    talk_transcript(language:)&.transcript
+  end
+
+  def raw_transcript(language: self.language)
+    talk_transcript(language:)&.raw_transcript
+  end
+
+  def enhanced_transcript(language: self.language)
+    talk_transcript(language:)&.enhanced_transcript
   end
 
   def published?
@@ -363,7 +435,7 @@ class Talk < ApplicationRecord
       return url
     end
 
-    "#{request.protocol}#{request.host}:#{request.port}/#{url}"
+    "#{request.protocol}#{request.host}:#{request.port}#{url}"
   end
 
   def thumbnail(size = :thumbnail_lg)
@@ -375,8 +447,12 @@ class Talk < ApplicationRecord
       end
     end
 
-    if Rails.application.assets.load_path.find("thumbnails/#{video_id}.webp")
-      return Router.image_path("thumbnails/#{video_id}.webp")
+    if event
+      asset_path = ["thumbnails", event.slug, parent_talk&.static_id, "#{video_id}.webp"].compact.join("/")
+
+      if Rails.application.assets.load_path.find(asset_path)
+        return Router.image_path(asset_path)
+      end
     end
 
     if vimeo?
@@ -564,15 +640,6 @@ class Talk < ApplicationRecord
     static_metadata.try("event_name") || event.name
   end
 
-  def fetch_and_update_raw_transcript!
-    youtube_transcript = YouTube::Transcript.get(video_id)
-    transcript = talk_transcript || Talk::Transcript.new(talk: self)
-
-    if youtube_transcript.present?
-      transcript.update!(raw_transcript: ::Transcript.create_from_youtube_transcript(youtube_transcript))
-    end
-  end
-
   def fetch_duration_from_youtube!
     return unless youtube?
 
@@ -625,7 +692,7 @@ class Talk < ApplicationRecord
       end_seconds: static_metadata.end_cue_in_seconds
     )
 
-    self.kind = static_metadata.kind if static_metadata.try(:kind).present?
+    self.kind = static_metadata.kind
 
     self.speakers = Array.wrap(static_metadata.speakers).reject(&:blank?).map { |speaker_name|
       User.find_by_name_or_alias(speaker_name.strip) ||
@@ -641,61 +708,11 @@ class Talk < ApplicationRecord
 
     self.slug = new_slug
 
-    save!
+    save! if changed? || new_record?
   end
 
   def static_metadata
     @static_metadata ||= Static::Video.find_by_static_id(static_id)
-  end
-
-  def suggestion_summary
-    <<~HEREDOC
-      Talk: #{title} (#{date})
-      by #{speakers.map(&:name).to_sentence}
-      at #{event.name}
-    HEREDOC
-  end
-
-  def set_kind
-    if static_metadata && static_metadata.kind.present?
-      unless static_metadata.kind.in?(Talk.kinds.keys)
-        puts %(WARN: "#{title}" has an unknown talk kind defined in #{static_metadata.__file_path})
-      end
-
-      self.kind = static_metadata.kind
-      return
-    end
-
-    self.kind = case title
-    when /^(keynote:|keynote|opening\ keynote:|opening\ keynote|closing\ keynote:|closing\ keynote).*/i
-      :keynote
-    when /^(lightning\ talk:|lightning\ talk|lightning\ talks|micro\ talk:|micro\ talk).*/i
-      :lightning_talk
-    when /.*(panel:|panel).*/i
-      :panel
-    when /^(workshop:|workshop).*/i
-      :workshop
-    when /^(gameshow|game\ show|gameshow:|game\ show:).*/i
-      :gameshow
-    when /^(podcast:|podcast\ recording:|live\ podcast:).*/i
-      :podcast
-    when /.*(q&a|q&a:|q&a\ with|ruby\ committers\ vs\ the\ world|ruby\ committers\ and\ the\ world).*/i,
-        /.*(AMA)$/,
-        /^(AMA:)/
-      :q_and_a
-    when /^(fishbowl:|fishbowl\ discussion:|discussion:|discussion).*/i
-      :discussion
-    when /^(fireside\ chat:|fireside\ chat).*/i
-      :fireside_chat
-    when /^(award:|award\ show|ruby\ heroes\ awards|ruby\ heroes\ award|rails\ luminary).*/i
-      :award
-    when /^(interview:|interview\ with).*/i
-      :interview
-    when /^(demo:|demo\ |Startup\ Demo:).*/i, /.*(demo)$/i
-      :demo
-    else
-      :talk
-    end
   end
 
   def to_mobile_json(request)
@@ -707,7 +724,9 @@ class Talk < ApplicationRecord
       event_name: event_name,
       thumbnail_url: thumbnail_url(size: :thumbnail_sm, request: request),
       speakers: speakers.map { |speaker| speaker.to_mobile_json(request) },
-      url: Router.talk_url(self, host: "#{request.protocol}#{request.host}:#{request.port}")
+      url: Router.talk_url(self, host: "#{request.protocol}#{request.host}:#{request.port}"),
+      video_provider: video_provider,
+      video_url: provider_url
     }
   end
 

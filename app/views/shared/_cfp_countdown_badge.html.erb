@@ -1,19 +1,30 @@
+<% return if event.static_metadata.cancelled? %>
+
 <% event.cfps.each do |cfp| %>
   <% if cfp.future? %>
     <% cfp_open_days = cfp.days_until_open %>
 
     <div class="flex flex-col justify-center">
-      <div class="self-end w-16 h-16 bg-blue-500 text-white rounded-xl flex flex-col items-center justify-center text-xs leading-none">
+      <div
+        class="
+          flex h-16 w-16 flex-col items-center justify-center self-end rounded-xl bg-blue-500 text-xs leading-none
+          text-white
+        "
+      >
         <div class="text-[10px]">CFP in</div>
         <div class="text-lg font-bold"><%= cfp_open_days %></div>
         <div class="text-[10px]"><%= "day".pluralize(cfp_open_days) %></div>
       </div>
     </div>
-
   <% elsif cfp.open? %>
     <% if cfp.open_ended? %>
       <div class="flex flex-col justify-center">
-        <div class="self-end w-16 h-16 bg-green-500 text-white rounded-xl flex flex-col items-center justify-center text-xs leading-none">
+        <div
+          class="
+            flex h-16 w-16 flex-col items-center justify-center self-end rounded-xl bg-green-500 text-xs
+            leading-none text-white
+          "
+        >
           <div class="text-lg font-bold">CFP</div>
           <div class="text-[10px]">Always</div>
           <div class="text-[10px]">Open</div>
@@ -24,8 +35,12 @@
 
       <% if cfp_days %>
         <div class="flex flex-col justify-center">
-          <div class="self-end w-16 h-16 bg-green-500 text-white rounded-xl flex flex-col items-center justify-center text-xs leading-none">
-
+          <div
+            class="
+              flex h-16 w-16 flex-col items-center justify-center self-end rounded-xl bg-green-500 text-xs
+              leading-none text-white
+            "
+          >
             <% if cfp_days == 0 %>
               <div class="text-lg font-bold">CFP</div>
               <div class="text-[10px]">Last day!</div>

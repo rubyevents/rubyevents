@@ -1,0 +1,26 @@
+
+- id: "<%= @talk.id %>"
+  title: "<%= @talk.title %>"<%= options[:title] ? "" : " # TODO" %>
+<%- if @talk.original_title.present? -%>
+  original_title: "<%= @talk.original_title %>"
+<%- end -%>
+<%- if @talk.write_kind? -%>
+  kind: "<%= @talk.kind %>"
+<%- end -%>
+  date: "<%= @talk.date %>"
+  language: "<%= @talk.language %>"
+<%- if options[:announced_at] -%>
+  announced_at: "<%= @talk.announced_at %>"
+<%- end -%>
+  video_provider: "scheduled"
+  video_id: "<%= @talk.id %>"
+<%- if @talk.description.blank? -%>
+  description: "" # TODO
+<%- else -%>
+  description: |-
+<%= optimize_indentation(@talk.description, 4) %>
+<%- end -%>
+  speakers:
+  <%- @talk.speakers.each do |speaker| -%>
+    - <%= speaker %>
+  <%- end -%>

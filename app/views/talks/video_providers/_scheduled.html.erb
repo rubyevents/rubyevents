@@ -1,10 +1,15 @@
 <%# locals: (talk:, video_provider:, video_id:, is_watched: false) %>
 
-<div class="relative w-full h-full block max-w-full">
-  <%= image_tag talk.thumbnail_xl, class: "w-full h-full object-cover rounded-xl #{talk.thumbnail_classes}" %>
+<div class="relative block h-full w-full max-w-full">
+  <%= image_tag talk.thumbnail_xl, alt: "#{talk.title} thumbnail", class: "w-full h-full rounded-xl #{talk.thumbnail_classes.presence || "object-cover"}" %>
 
-  <div class="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center text-white bg-gradient-to-t from-black/80 via-black/50 to-black/30 rounded-xl">
-    <div class="p-4 bg-white/20 backdrop-blur-sm rounded-full">
+  <div
+    class="
+      absolute inset-0 flex flex-col items-center justify-center gap-3 rounded-xl bg-gradient-to-t from-black/80
+      via-black/50 to-black/30 p-6 text-center text-white
+    "
+  >
+    <div class="rounded-full bg-white/20 p-4 backdrop-blur-sm">
       <%= fa("clock", size: :xl, class: "fill-white") %>
     </div>
 
@@ -16,6 +21,7 @@
           Scheduled
         <% end %>
       </div>
+
       <div class="text-sm text-white/80">
         <%= talk.event.name %>
         <% if talk.to_location.present? && !talk.location.in?(["Earth", "online", "Online"]) %>

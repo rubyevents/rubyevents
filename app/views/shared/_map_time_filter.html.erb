@@ -4,11 +4,15 @@
   <% options.each do |option| %>
     <label class="btn btn-sm <%= option[:visible] ? "btn-primary text-primary-content" : "btn-ghost" %>">
       <input
-        type="radio" name="map_time_filter"
+        type="radio"
+        name="map_time_filter"
         class="hidden"
         data-action="change->map#filterByTime"
         data-time-filter="<%= option[:id] %>"
-        <% if option[:visible] %> checked <% end %>>
+        <% if option[:visible] %>
+          checked
+        <% end %>
+      >
 
       <%= option[:label] %>
     </label>

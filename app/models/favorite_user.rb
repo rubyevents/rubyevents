@@ -4,6 +4,7 @@
 # Database name: primary
 #
 #  id               :integer          not null, primary key
+#  notes            :text
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  favorite_user_id :integer          not null, indexed
@@ -28,20 +29,24 @@ class FavoriteUser < ApplicationRecord
 
   has_one :mutual_favorite_user, class_name: "FavoriteUser", primary_key: [:user_id, :favorite_user_id], foreign_key: [:favorite_user_id, :user_id]
 
+  def ruby_friend?
+    persisted? && mutual_favorite_user&.persisted?
+  end
+
   # Suggest favorite users based on talks the user has watched
   # No check for existing favorite users
   def self.recommendations_for(user)
+    existing_favorite_ids = where(user: user).pluck(:favorite_user_id)
+
     recommended_user_ids = user
       .watched_talks.joins(talk: :speakers)
-      .where.not(users: {id: user.id})
+      .where.not(users: {id: [user.id, *existing_favorite_ids]})
       .distinct
-      .limit(6)
+      .limit(9)
       .pluck("users.id")
 
-    recommended_users = User.where(id: recommended_user_ids)
-    recommended_users
-      .map do |recommended_user|
-        FavoriteUser.new(user: user, favorite_user: recommended_user)
-      end
+    User.where(id: recommended_user_ids).map do |recommended_user|
+      FavoriteUser.new(user: user, favorite_user: recommended_user)
+    end
   end
 end

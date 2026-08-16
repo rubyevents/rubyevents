@@ -5,10 +5,9 @@
       events: @events,
       mutual_events: @mutual_events,
       stamps: @stamps,
-      events_with_stickers: @events_with_stickers,
+      stickers: @stickers,
       involvements_by_role: @involvements_by_role,
       countries_with_events: @countries_with_events,
-      aliases: @aliases,
       favorite_user: @favorite_user
     } do %>
   <%= render partial: "profiles/aliases", locals: {user: @user, aliases: @aliases} %>

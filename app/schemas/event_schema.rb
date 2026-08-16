@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
-class EventSchema < RubyLLM::Schema
-  string :id, description: "Unique identifier for the event (YouTube playlist ID or custom slug)"
+class EventSchema < ApplicationSchema
+  data_file "**/event.yml"
+
+  string :id, description: "Unique identifier for the event, matches the event folder name"
 
   string :title, description: "Full name of the event (e.g., 'RailsConf 2024')"
   string :description, description: "Description of the event", required: false
@@ -15,9 +17,10 @@ class EventSchema < RubyLLM::Schema
     required: false
   boolean :last_edition, description: "Whether this is the last edition of the event", required: false
 
+  string :pre_date, description: "Date of pre-conference activities (workshops, pre-party) held before start_date (YYYY-MM-DD format)", required: false
   string :start_date, description: "Start date of the event (YYYY-MM-DD format)", required: false
   string :end_date, description: "End date of the event (YYYY-MM-DD format)", required: false
-  string :published_at, description: "Date when videos were published (YYYY-MM-DD format)", required: false
+  string :recordings_published_date, description: "Date when the event's recordings were published (YYYY-MM-DD format)", required: false
   string :announced_on, description: "Date when the event was announced (YYYY-MM-DD format)", required: false
   integer :year, description: "Year of the event", required: false
   string :date_precision,
@@ -27,19 +30,20 @@ class EventSchema < RubyLLM::Schema
   string :frequency, description: "How often the event occurs (for recurring meetups)", required: false
 
   string :location, description: "Location in 'City, Country' format (e.g., 'Detroit, MI' or 'Tokyo, Japan')"
+  string :timezone, description: "IANA time zone identifier, e.g. America/New_York", enum: TZInfo::Timezone.all_identifiers
   string :venue, description: "Name of the venue", required: false
 
-  string :channel_id, description: "YouTube channel ID (starts with UC...)", required: false
+  array :youtube_channels, of: YouTubeChannelSchema, description: "YouTube channels associated with this event", required: false
   string :playlist, description: "YouTube playlist/Vimeo showcase link", required: false
 
   string :website, description: "Official event website URL", required: false
   string :original_website, description: "Original/archived website URL", required: false
   string :twitter, description: "Twitter/X handle (without @)", required: false
+  string :facebook, description: "Facebook Page URL", required: false
   string :mastodon, description: "Full Mastodon profile URL", required: false
   string :github, description: "GitHub organization or repository URL", required: false
   string :meetup, description: "Meetup.com group URL", required: false
   string :luma, description: "Luma event URL", required: false
-  string :youtube, description: "YouTube channel or video URL", required: false
   string :tickets_url, description: "URL to purchase tickets (e.g., Tito, Eventbrite, Luma)", required: false
 
   string :banner_background,

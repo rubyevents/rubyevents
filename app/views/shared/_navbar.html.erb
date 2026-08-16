@@ -1,9 +1,9 @@
 <div class="navbar relative z-50 bg-transparent">
-  <div class="container grid grid-cols-2 lg:grid-cols-[1fr_auto_1fr] justify-between items-center">
-    <div class="items-center gap-6 hidden lg:flex">
+  <div class="container grid grid-cols-2 items-center justify-between lg:grid-cols-[1fr_auto_1fr]">
+    <div class="hidden items-center gap-6 lg:flex">
       <ul class="desktop-menu">
         <%= render "shared/navbar/link", link_title: "Events", path: events_path %>
-        <%= render "shared/navbar/link", link_title: "Videos", path: browse_index_path %>
+        <%= render "shared/navbar/link", link_title: "Talks", path: talks_path %>
         <%= render "shared/navbar/link", link_title: "Speakers", path: speakers_path %>
         <%= render "shared/navbar/link", link_title: "Organizations", path: organizations_path %>
         <%= render "shared/navbar/link", link_title: "Topics", path: topics_path %>
@@ -11,21 +11,22 @@
       </ul>
     </div>
 
-    <div class="flex justify-start lg:justify-center items-center">
+    <div class="flex items-center justify-start lg:justify-center">
       <%= link_to root_path do %>
-        <%= image_tag image_path("logo.png"), class: "size-10 hover:opacity-80" %>
+        <%= image_tag image_path("logo.png"), class: "size-10 hover:opacity-80", alt: "RubyEvents.org" %>
       <% end %>
     </div>
 
-    <div class="flex justify-end items-center">
-      <ul class="hidden lg:flex items-center gap-4 h-full">
-
+    <div class="flex items-center justify-end">
+      <ul class="hidden h-full items-center gap-4 lg:flex">
         <div class="flex items-center gap-2">
           <ul class="desktop-menu">
             <% signed_in do %>
-              <%= render "shared/navbar/link", link_title: "Favorite Rubyists", path: favorite_users_path %>
+              <%= render "shared/navbar/link", link_title: "Library", path: watched_talks_path %>
             <% end %>
+
             <%= render "shared/navbar/link", link_title: "Contribute", path: contributions_path %>
+            <%= render "shared/navbar/link", link_title: "News", path: announcements_path %>
           </ul>
         </div>
 
@@ -37,9 +38,6 @@
               <%= render Ui::AvatarComponent.new(Current.user, size: :sm, size_class: "w-7", outline: true) %>
             <% end %>
           </li>
-          <li class="flex items-center">
-            <%= render "shared/user_dropdown" %>
-          </li>
         <% end %>
 
         <% signed_out do %>
@@ -47,15 +45,21 @@
             <%= link_to "Sign in", new_session_path(redirect_to: request.fullpath), data: {turbo_frame: "modal"}, class: "btn btn-primary" %>
           </li>
         <% end %>
+
+        <li class="flex items-center">
+          <%= render "shared/user_dropdown" %>
+        </li>
       </ul>
 
-      <div class="flex lg:hidden gap-2 items-center">
+      <div class="flex items-center gap-2 lg:hidden">
         <%= render "shared/navbar/search_bar", id: "magnifying-glass-mobile" %>
+
         <% signed_in do %>
           <%= link_to profile_path(Current.user), class: "hover:opacity-80 flex items-center", title: "My Ruby Events Profile" do %>
             <%= render Ui::AvatarComponent.new(Current.user, size: :sm, size_class: "w-7", outline: true) %>
           <% end %>
         <% end %>
+
         <%= render "shared/user_mobile_dropdown" %>
       </div>
     </div>

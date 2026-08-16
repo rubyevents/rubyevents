@@ -1,27 +1,17 @@
 <div class="container py-8">
   <div class="flex items-center justify-between">
-    <div class="flex items-center gap-2 title text-primary">
-      <h1>Topics</h1>
+    <div class="title flex items-center gap-2 text-primary">
+      <h1><%= title "Topics" %></h1>
     </div>
 
     <%= link_to gems_path, class: "btn btn-sm btn-outline btn-primary" do %>
-      <%= inline_svg_tag "icons/fontawesome/gem-solid.svg", class: "size-4" %>
-      View Gems
+      <%= inline_svg_tag "icons/fontawesome/gem-solid.svg", class: "size-4" %> View Gems
     <% end %>
   </div>
 
-  <div class="flex flex-wrap w-full justify-between hotwire-native:hidden py-8 gap-1">
-    <% ("a".."z").each do |letter| %>
-      <%= link_to topics_path(letter: letter), class: class_names("flex items-center justify-center w-10 text-gray-500 rounded hover:bg-brand-lighter border", "bg-brand-lighter": letter == params[:letter]) do %>
-        <%= letter.upcase %>
-      <% end %>
-    <% end %>
-    <%= link_to topics_path, class: class_names("flex items-center justify-center w-10 text-gray-500 rounded hover:bg-brand-lighter border", "bg-brand-lighter": params[:letter].blank?) do %>
-        all
-      <% end %>
-  </div>
+  <%= render "shared/alphabet_filter" %>
 
-  <div id="topics" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 lg:gap-x-12 gap-y-2 min-w-full">
+  <div id="topics" class="grid min-w-full gap-x-8 gap-y-2 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-12 xl:grid-cols-4">
     <%= render partial: "topic", collection: @topics, as: :topic %>
   </div>
 

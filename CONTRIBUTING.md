@@ -23,6 +23,15 @@ All file changes will be present locally when you close the container.
 
 - Clone RubyEvents with https, it tends to behave better, and new `gh auth login` commands won't generate new ssh keys.
 - If you cannot fetch or push, use `gh auth login` to auth with GitHub.
+- If you cannot push and get this error:
+
+  ```
+  /opt/homebrew/bin/gh auth git-credential erase: 1: /opt/homebrew/bin/gh: not found
+  remote: Invalid username or token. Password authentication is not supported for Git operations.
+  ```
+
+  use `gh auth setup-git`.
+
 - After the container is set up, run `bin/dev` in the terminal to start the development server. The application will be forwarded to [localhost:3000](localhost:3000).
 - To run system tests, use `HEADLESS=true bin/rails test`. The HEADLESS=true environment variable ensures Chrome runs in headless mode, which is required in the container environment.
 
@@ -32,8 +41,19 @@ If the ruby version is updated, or you start running into issues, feel free to t
 
 #### Requirements
 
-- Ruby 4.0.1
+- Ruby 4.0.6
 - Node.js 22.15.1
+- Yarn >= 1.22.22 (`npm install -g yarn`)
+
+##### Debian
+
+Dependencies of the application will require some operating system development packages to be installed.
+
+On Debian, you can install these packages by running the following command:
+
+```shell
+apt-get install -y libssl-dev libyaml-dev
+```
 
 #### Setup
 
@@ -71,11 +91,9 @@ The CI performs these checks:
 - erblint
 - standardrb
 - standard (js)
-- prettier (yaml)
+- yerba (yaml)
 
 Before committing your code you can run `bin/lint` to detect and potentially autocorrect lint errors and validate schemas.
-
-To follow Tailwind CSS's recommended order of classes, you can use [Prettier](https://prettier.io/) along with the [prettier-plugin-tailwindcss](https://github.com/tailwindlabs/prettier-plugin-tailwindcss), both of which are included as devDependencies. This formatting is not yet enforced by the CI.
 
 ### Typesense (Optional)
 
@@ -278,6 +296,7 @@ There are additional guides for adding optional information:
 - [schedules](/docs/ADDING_SCHEDULES.md)
 - [sponsors](/docs/ADDING_SPONSORS.md)
 - [venues](/docs/ADDING_VENUES.md)
+- [speakers](/docs/ADDING_SPEAKERS.md)
 
 If you have questions about contributing events:
 

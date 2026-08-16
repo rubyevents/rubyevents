@@ -12,11 +12,14 @@ module ApplicationHelper
     uri.to_s
   end
 
-  def active_link_to(text = nil, path = nil, active_class: "", **options, &)
+  def active_link_to(text = nil, path = nil, active_class: "", active: nil, **options, &)
     path ||= text
 
-    classes = active_class.presence || "active"
-    options[:class] = class_names(options[:class], classes) if current_page?(path)
+    is_active = active.nil? ? current_page?(path) : active
+
+    options[:class] = class_names(options[:class], active_class.presence || "active") if is_active
+    options["aria-current"] = "page" if is_active && current_page?(path)
+    options["aria-selected"] = is_active.to_s if options[:role].to_s == "tab"
 
     return link_to(path, options, &) if block_given?
 
@@ -42,5 +45,13 @@ module ApplicationHelper
 
   def canonical_url
     content_for?(:canonical_url) ? content_for(:canonical_url) : "https://www.rubyevents.org#{request.path}"
+  end
+
+  def sanitize_url(url, fallback: "")
+    if Rails::HTML::Sanitizer.allowed_uri?(url)
+      url
+    else
+      fallback
+    end
   end
 end

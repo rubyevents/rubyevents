@@ -1,0 +1,27 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "rubyevents": {
+      "type": "local",
+      "command": [
+        "bin/mcp_server"
+      ],
+      "enabled": true
+    }
+  },
+  "permission": {
+    "bash": {
+      "gh *": "ask",
+      "git *": "ask",
+      "git add*": "allow",
+      "git diff*": "allow",
+      "git log*": "allow",
+      "git show*": "allow",
+      "git status*": "allow",
+      "gh pr diff*": "allow",
+      "gh pr view*": "allow",
+      "gh issue view*": "allow",
+      "gh repo view*": "allow"
+    }
+  }
+}

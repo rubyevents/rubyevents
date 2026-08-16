@@ -87,6 +87,104 @@ class EventTest < ActiveSupport::TestCase
     assert_nil Event.find_by_name_or_alias("")
   end
 
+  test "featured_reason is :happening while the event is running" do
+    event = Event.new(name: "test", series: @series, start_date: Date.today - 1, end_date: Date.today + 1)
+
+    assert event.happening?
+    assert_equal :happening, event.featured_reason
+  end
+
+  test "featured_reason is :upcoming before the event starts" do
+    event = Event.new(name: "test", series: @series, start_date: Date.today + 5, end_date: Date.today + 6)
+
+    assert_equal :upcoming, event.featured_reason
+  end
+
+  test "featured_reason is :recently_published for a past event sorted recently" do
+    event = Event.new(name: "test", series: @series, start_date: Date.today - 40, end_date: Date.today - 40, home_sort_date: Date.today - 3)
+
+    assert_equal :recently_published, event.featured_reason
+  end
+
+  test "featured_reason is :available for an older past event" do
+    event = Event.new(name: "test", series: @series, start_date: Date.today - 400, end_date: Date.today - 400, home_sort_date: Date.today - 400)
+
+    assert_equal :available, event.featured_reason
+  end
+
+  test "featured_distance is zero while happening, days-until when upcoming, days-since when past" do
+    happening = Event.new(name: "test", series: @series, start_date: Date.today - 1, end_date: Date.today + 1)
+    upcoming = Event.new(name: "test", series: @series, start_date: Date.today + 5, end_date: Date.today + 6)
+    past = Event.new(name: "test", series: @series, start_date: Date.today - 40, end_date: Date.today - 40, home_sort_date: Date.today - 10)
+
+    assert_equal 0, happening.featured_distance
+    assert_equal 5, upcoming.featured_distance
+    assert_equal 10, past.featured_distance
+  end
+
+  test "featured_reason is :cfp_closing when a CFP closes within the window, even for a far-off event" do
+    event = events(:future_conference)
+    event.cfps.destroy_all
+    event.cfps.create!(close_date: Date.today + 2, link: "https://cfp.example.com")
+    event.cfps.reload
+
+    assert_equal :cfp_closing, event.featured_reason
+    assert_equal 2, event.featured_distance
+  end
+
+  test "featured_reason ignores a CFP closing beyond the window" do
+    event = events(:future_conference)
+    event.cfps.destroy_all
+    event.cfps.create!(close_date: Date.today + 10, link: "https://cfp.example.com")
+    event.cfps.reload
+
+    assert_nil event.featured_cfp
+    assert_equal :upcoming, event.featured_reason
+  end
+
+  test "featured_reason ignores a closing CFP without a submission link" do
+    event = events(:future_conference)
+    event.cfps.destroy_all
+    event.cfps.create!(close_date: Date.today + 2, link: nil)
+    event.cfps.reload
+
+    assert_nil event.featured_cfp
+    assert_equal :upcoming, event.featured_reason
+  end
+
+  test "featured_distance interleaves soon-upcoming and freshly-published events" do
+    upcoming_soon = Event.new(name: "test", series: @series, start_date: Date.today + 2, end_date: Date.today + 3)
+    just_published = Event.new(name: "test", series: @series, start_date: Date.today - 30, end_date: Date.today - 30, home_sort_date: Date.today - 5)
+
+    assert_operator upcoming_soon.featured_distance, :<, just_published.featured_distance
+  end
+
+  test "featured returns eligible events in priority order up to the limit" do
+    today = Date.today
+    Event.update_all(featured_background: nil, featured_color: nil, home_sort_date: nil, recordings_published_date: nil)
+
+    happening = events(:rails_world_2023)
+    happening.update!(
+      start_date: today.prev_day,
+      end_date: today.next_day,
+      home_sort_date: today,
+      featured_background: "#000000",
+      featured_color: "#ffffff"
+    )
+
+    upcoming = events(:future_conference)
+    upcoming.update!(
+      start_date: today + 2.days,
+      end_date: today + 3.days,
+      home_sort_date: today,
+      featured_background: "#000000",
+      featured_color: "#ffffff"
+    )
+
+    assert_equal [happening], Event.featured(limit: 1, today: today).to_a
+    assert_equal [happening, upcoming], Event.featured(limit: 2, today: today).to_a
+  end
+
   test "sync_aliases_from_list creates aliases from array" do
     event = events(:rails_world_2023)
     aliases = ["RW 2023", "Rails World Amsterdam", "RailsWorld23"]
@@ -242,5 +340,67 @@ class EventTest < ActiveSupport::TestCase
 
     assert_equal "Amsterdam", event.city_record.name
     assert event.city_record.events.include?(event)
+  end
+
+  test "today? conference is not today" do
+    event = Event.new(start_date: 3.days.ago, end_date: 2.days.ago, kind: :conference)
+    assert !event.today?
+  end
+
+  test "today? conference is today" do
+    event = Event.new(start_date: 1.day.ago, end_date: 2.days.from_now, kind: :conference)
+    assert event.today?
+  end
+
+  test "today? meetup is not today" do
+    event = events(:wnb_rb_meetup)
+    talk = talks(:non_english_talk_one)
+    talk.update!(date: 3.days.ago, event: event)
+
+    assert !event.today?
+  end
+
+  test "today? meetup is today" do
+    event = events(:wnb_rb_meetup)
+    talk = talks(:non_english_talk_one)
+    talk.update!(date: Date.today, event: event)
+
+    assert event.today?
+  end
+
+  test "to_ical returns a Icalendar::Event" do
+    event = events(:rails_world_2023)
+
+    assert_kind_of Icalendar::Event, event.to_ical
+  end
+
+  test "to_ical serializes to a ical formatted string with the event details" do
+    travel_to DateTime.new(2026, 1, 1) do
+      event = events(:rails_world_2023)
+      event.updated_at = Time.now
+
+      assert_equal <<~ICAL.gsub("\n", "\r\n"), event.to_ical.to_ical
+        BEGIN:VEVENT
+        DTSTAMP:20260101T000000Z
+        UID:RUBYEVENTS-#{event.id}
+        DTSTART;VALUE=DATE:20231026
+        DESCRIPTION:RailsWorld is a yearly conference held in Netherlands.
+        LAST-MODIFIED:20260101T000000
+        LOCATION:Amsterdam\\, Netherlands
+        STATUS:CONFIRMED
+        SUMMARY:Rails World 2023
+        URL;VALUE=URI:https://rubyonrails.org/world
+        END:VEVENT
+      ICAL
+    end
+  end
+
+  test "to_ical sets an inclusive DTEND for multi-day events" do
+    event = events(:railsconf_2025)
+
+    ical = event.to_ical.to_ical
+
+    assert_includes ical, "DTSTART;VALUE=DATE:20250708"
+    assert_includes ical, "DTEND;VALUE=DATE:20250711"
   end
 end

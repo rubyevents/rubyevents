@@ -31,12 +31,12 @@ class ContinentsController < ApplicationController
 
     @events = @continent.events.includes(:series).order(start_date: :desc)
     @countries = @continent.countries.sort_by(&:name)
-    @events_by_country = @events.group_by(&:country).compact.sort_by { |country, _| country&.name.to_s }.to_h
     @users = @continent.users
     @stamps = @continent.stamps
     @location = @continent
 
     upcoming_events = @events.upcoming.to_a
+    @events_by_country = upcoming_events.group_by(&:country).compact.sort_by { |country, _| country&.name.to_s }.to_h
     @event_map_markers = event_map_markers(upcoming_events.select(&:geocoded?))
     @geo_layers = build_sidebar_geo_layers(upcoming_events)
   end

@@ -1,4 +1,7 @@
-<h2 class="text-2xl font-bold mb-4">Stamp</h2>
+<h2 id="stamp" class="group mb-4 text-2xl font-bold">
+  <a href="#stamp" class="mr-1 text-gray-400 no-underline opacity-0 group-hover:opacity-100" aria-label="Link to Stamp">#</a>
+  Stamp
+</h2>
 
 <% country_stamp = Stamp.country_stamps.sample %>
 
@@ -17,52 +20,53 @@
 <% online_stamp = Stamp.online_stamp %>
 
 <h3>Types</h3>
-<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-8 mt-4 mb-8">
-  <div class="flex flex-col gap-2 items-center text-center">
-    <%= ui_stamp(country_stamp, size: :xl) %>
-    Country Stamp
+
+<div class="mb-8 mt-4 grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
+  <div class="flex flex-col items-center gap-2 text-center">
+    <%= ui_stamp(country_stamp, size: :xl) %> Country Stamp
   </div>
-  <div class="flex flex-col gap-2 items-center text-center">
-    <%= ui_stamp(contributor_stamp, size: :xl) %>
-    Contributor Stamp
+
+  <div class="flex flex-col items-center gap-2 text-center">
+    <%= ui_stamp(contributor_stamp, size: :xl) %> Contributor Stamp
   </div>
-  <div class="flex flex-col gap-2 items-center text-center">
-    <%= ui_stamp(passport_stamp, size: :xl) %>
-    Passport Stamp
+
+  <div class="flex flex-col items-center gap-2 text-center">
+    <%= ui_stamp(passport_stamp, size: :xl) %> Passport Stamp
   </div>
-  <div class="flex flex-col gap-2 items-center text-center">
-    <%= ui_stamp(triathlon_2025_stamp, size: :xl) %>
-    Triathlon 2025 Stamp
+
+  <div class="flex flex-col items-center gap-2 text-center">
+    <%= ui_stamp(triathlon_2025_stamp, size: :xl) %> Triathlon 2025 Stamp
   </div>
-  <div class="flex flex-col gap-2 items-center text-center">
-    <%= ui_stamp(conference_speaker_stamp, size: :xl) %>
-    Conference Speaker Stamp
+
+  <div class="flex flex-col items-center gap-2 text-center">
+    <%= ui_stamp(conference_speaker_stamp, size: :xl) %> Conference Speaker Stamp
   </div>
-  <div class="flex flex-col gap-2 items-center text-center">
-    <%= ui_stamp(meetup_speaker_stamp, size: :xl) %>
-    Meetup Speaker Stamp
+
+  <div class="flex flex-col items-center gap-2 text-center">
+    <%= ui_stamp(meetup_speaker_stamp, size: :xl) %> Meetup Speaker Stamp
   </div>
-  <div class="flex flex-col gap-2 items-center text-center">
-    <%= ui_stamp(attend_one_event_stamp, size: :xl) %>
-    Attend One Event Stamp
+
+  <div class="flex flex-col items-center gap-2 text-center">
+    <%= ui_stamp(attend_one_event_stamp, size: :xl) %> Attend One Event Stamp
   </div>
-  <div class="flex flex-col gap-2 items-center text-center">
-    <%= ui_stamp(online_stamp, size: :xl) %>
-    Online Stamp
+
+  <div class="flex flex-col items-center gap-2 text-center">
+    <%= ui_stamp(online_stamp, size: :xl) %> Online Stamp
   </div>
 </div>
 
 <h3>Sizes</h3>
-<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-8 mt-4 mb-8">
+
+<div class="mb-8 mt-4 grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
   <% [:sm, :md, :lg, :xl].each do |size| %>
-    <div class="flex flex-col gap-2 items-center text-center">
+    <div class="flex flex-col items-center gap-2 text-center">
       <%= size %>
       <%= ui_stamp(country_stamp, size: size) %><br>
     </div>
   <% end %>
 
   <% [:sm, :md, :lg, :xl].each do |size| %>
-    <div class="flex flex-col gap-2 items-center text-center">
+    <div class="flex flex-col items-center gap-2 text-center">
       <%= size %> (with rotate and zoom effect)
       <%= ui_stamp(country_stamp, size: size, rotate: true, zoom_effect: true) %><br>
     </div>
@@ -70,32 +74,38 @@
 </div>
 
 <p>Interactive vs Static</p>
-<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-8 mt-4 mb-8">
-  <div class="flex flex-col gap-2 items-center text-center">
+
+<div class="mb-8 mt-4 grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
+  <div class="flex flex-col items-center gap-2 text-center">
     <%= ui_stamp(country_stamp, interactive: true, size: :xl) %><br>
     Interactive
   </div>
-  <div class="flex flex-col gap-2 items-center text-center">
+
+  <div class="flex flex-col items-center gap-2 text-center">
     <%= ui_stamp(country_stamp, interactive: false, size: :xl) %><br>
     Static
   </div>
 </div>
 
 <p>Custom Rotation</p>
-<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-8 mt-4 mb-8">
-  <div class="flex flex-col gap-2 items-center text-center">
+
+<div class="mb-8 mt-4 grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
+  <div class="flex flex-col items-center gap-2 text-center">
     <%= ui_stamp(country_stamp, rotate: true, size: :xl) %><br>
     Rotated
   </div>
-  <div class="flex flex-col gap-2 items-center text-center">
+
+  <div class="flex flex-col items-center gap-2 text-center">
     <%= ui_stamp(country_stamp, rotate: false, size: :xl) %><br>
     Straight
   </div>
-  <div class="flex flex-col gap-2 items-center text-center">
+
+  <div class="flex flex-col items-center gap-2 text-center">
     <%= ui_stamp(country_stamp, rotate: true, size: :xl, zoom_effect: true) %><br>
     Rotated with zoom effect
   </div>
-  <div class="flex flex-col gap-2 items-center text-center">
+
+  <div class="flex flex-col items-center gap-2 text-center">
     <%= ui_stamp(country_stamp, rotate: false, size: :xl, zoom_effect: true) %><br>
     Straight with zoom effect
   </div>

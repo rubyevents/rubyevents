@@ -29,8 +29,16 @@ module Static
       all_talks_map[id]
     end
 
+    def self.where_event_slug(event_slug)
+      all.select { |video| video.__file_path&.include?("/#{event_slug}/") }
+    end
+
     def self.import_all!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
       all.each { |video| video.import!(index: index) }
+    end
+
+    def old_id
+      self["old_id"]
     end
 
     def raw_title
@@ -39,6 +47,10 @@ module Static
 
     def description
       super || ""
+    end
+
+    def kind
+      self["kind"].presence || ::Talk::Kind.from_title(title).to_s
     end
 
     def start_cue
@@ -117,7 +129,7 @@ module Static
 
       raise "Event not found for video #{id}" unless event
 
-      talk = ::Talk.find_or_initialize_by(static_id: id)
+      talk = find_or_initialize_talk
       talk.parent_talk = parent_talk if parent_talk
       talk.update_from_yml_metadata!(event: event)
 
@@ -131,6 +143,14 @@ module Static
     rescue ActiveRecord::RecordInvalid => e
       puts "Couldn't save: #{title} (#{id}), error: #{e.message}"
       nil
+    end
+
+    def find_or_initialize_talk
+      talk = ::Talk.find_by(static_id: id)
+      talk ||= ::Talk.find_by(static_id: old_id) if old_id.present?
+      talk ||= ::Talk.new
+      talk.static_id = id
+      talk
     end
 
     def find_event

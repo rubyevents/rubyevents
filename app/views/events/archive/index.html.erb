@@ -1,7 +1,8 @@
 <div class="container py-8 hotwire-native:mb-6">
-  <div class="flex items-center justify-between w-full hotwire-native:hidden">
+  <div class="hotwire-native:hidden">
     <h1 class="title">
       <%= title "Events Archive" %>
+
       <span class="text-base text-gray-500">
         (<%= pluralize(@events.includes(:series).where(series: {kind: "conference"}).count, "conference") %>,
         <%= pluralize(@events.includes(:series).where(series: {kind: "meetup"}).count, "meetup") %>,
@@ -11,32 +12,34 @@
       </span>
     </h1>
 
-    <div class="flex gap-4 whitespace-nowrap">
-      <%= link_to "Upcoming Events", events_path, class: "link text-right w-full" %>
-      <%= link_to "Past Events", past_events_path, class: "link text-right w-full" %>
+    <div
+      class="
+        mt-2 flex flex-col gap-3 md:flex-row md:items-stretch md:justify-between md:gap-4 md:border-b
+        md:border-gray-200
+      "
+    >
+      <%= render "events/collections_navigation", active: :archive %>
+
+      <div class="flex shrink-0 items-center overflow-x-auto pb-2 md:pb-1">
+        <div class="tabs-boxed tabs">
+          <%= link_to "All", archive_events_path(kind: "all", letter: params[:letter]), class: "tab #{"tab-active" if params[:kind].blank? || params[:kind] == "all"}" %>
+          <%= link_to "Conferences", archive_events_path(kind: "conference", letter: params[:letter]), class: "tab #{"tab-active" if params[:kind] == "conference"}" %>
+          <%= link_to "Meetups", archive_events_path(kind: "meetup", letter: params[:letter]), class: "tab #{"tab-active" if params[:kind] == "meetup"}" %>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="flex flex-wrap w-full justify-between py-8 hotwire-native:hidden gap-1">
-    <%= link_to archive_events_path, class: class_names("flex items-center justify-center w-10 text-gray-500 rounded hover:bg-brand-lighter border", "bg-brand-lighter": params[:letter].blank?) do %>
-        all
-    <% end %>
-
-    <% ("a".."z").each do |letter| %>
-      <%= link_to archive_events_path(letter: letter), id: letter, class: class_names("flex items-center justify-center w-10 text-gray-500 rounded hover:bg-brand-lighter border", "bg-brand-lighter": letter == params[:letter]) do %>
-        <%= letter.upcase %>
-      <% end %>
-    <% end %>
-  </div>
+  <%= render "shared/alphabet_filter", extra_params: {kind: params[:kind]} %>
 
   <% if params[:letter].present? %>
-    <div class="font-medium mb-12">
+    <div class="mb-12 font-medium">
       Events starting with "<%= params[:letter].upcase %>"
     </div>
   <% end %>
 
   <% if params[:s].present? %>
-    <div class="font-medium mb-12">
+    <div class="mb-12 font-medium">
       search results for "<%= params[:s] %>"
     </div>
   <% end %>
@@ -44,7 +47,11 @@
   <% if @events.any? %>
     <% @events.group_by(&:series).each do |series, events| %>
       <h2><%= link_to series.name, series_path(series) %></h2>
-      <div id="<%= dom_id(series, "events") %>" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 lg:gap-x-12 gap-y-2 min-w-full pt-4 pb-8">
+
+      <div
+        id="<%= dom_id(series, "events") %>"
+        class="grid min-w-full gap-x-8 gap-y-2 pb-8 pt-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-12 xl:grid-cols-4"
+      >
         <%= render partial: "events/event", collection: events %>
       </div>
     <% end %>

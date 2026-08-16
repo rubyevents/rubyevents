@@ -1,0 +1,79 @@
+<%# locals: (events:) %>
+
+<%= turbo_frame_tag "browse-always-open-cfps" do %>
+  <% if events&.any? %>
+    <section class="group/row flex flex-col gap-4" data-section="always-open-cfps">
+      <div class="flex items-end justify-between">
+        <div>
+          <h2 class="text-xl font-bold">Always Open for Proposals</h2>
+          <p class="text-sm text-gray-500">Meetups accepting talk proposals year-round</p>
+        </div>
+
+        <%= link_to cfp_index_path(kind: "meetup"), class: "link text-sm shrink-0 flex items-center gap-1 hover:gap-2 transition-all", data: {turbo_frame: "_top"} do %>
+          View All <%= fa("arrow-right-long", size: :sm) %>
+        <% end %>
+      </div>
+
+      <div class="relative" data-controller="content-row">
+        <button
+          class="
+            absolute -left-4 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-white p-2 opacity-0 transition-all
+            hover:bg-gray-100 disabled:opacity-0 group-hover/row:opacity-100 lg:flex
+          "
+          data-content-row-target="prevButton"
+          data-action="click->content-row#scrollLeft"
+        >
+          <%= fa("chevron-left", size: :md, class: "text-gray-700") %>
+        </button>
+
+        <div
+          class="snap-x snap-mandatory overflow-x-auto scroll-smooth"
+          style="-ms-overflow-style: none; scrollbar-width: none;"
+          data-content-row-target="container"
+          data-action="scroll->content-row#handleScroll"
+        >
+          <div class="flex gap-4 sm:pb-2" data-content-row-target="track">
+            <% events.each do |event| %>
+              <div class="w-72 shrink-0 snap-start sm:w-80">
+                <%= link_to event_cfp_index_path(event), class: "block p-4 rounded-xl bg-white border border-base-300 hover:shadow-md transition-all h-full", data: {turbo_frame: "_top"} do %>
+                  <div class="mb-3 flex items-center gap-3">
+                    <%= image_tag image_path(event.avatar_image_path), class: "rounded-lg border border-base-200 size-10", alt: event.name, loading: :lazy %>
+
+                    <div class="min-w-0">
+                      <div class="truncate text-sm font-bold"><%= event.name %></div>
+                      <div class="truncate text-xs text-gray-500"><%= event.location %></div>
+                    </div>
+                  </div>
+
+                  <% event.cfps.open.where(close_date: nil).each do |cfp| %>
+                    <div class="flex items-center justify-between gap-2">
+                      <div class="truncate text-xs text-gray-600"><%= cfp.name.presence || "Call for Proposals" %></div>
+                      <span class="badge badge-ghost badge-sm">Always open</span>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <button
+          class="
+            absolute -right-4 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-white p-2 opacity-0
+            transition-all hover:bg-gray-100 disabled:opacity-0 group-hover/row:opacity-100 lg:flex
+          "
+          data-content-row-target="nextButton"
+          data-action="click->content-row#scrollRight"
+        >
+          <%= fa("chevron-right", size: :md, class: "text-gray-700") %>
+        </button>
+
+        <div
+          class="pointer-events-none absolute bottom-2 right-0 top-0 w-64 opacity-0 transition-opacity sm:opacity-50"
+          style="background: linear-gradient(to left, var(--fallback-b1,oklch(var(--b1)/1)), transparent);"
+          data-content-row-target="gradient"
+        ></div>
+      </div>
+    </section>
+  <% end %>
+<% end %>

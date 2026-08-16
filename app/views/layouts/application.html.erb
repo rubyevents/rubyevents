@@ -1,7 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="en" <% if hotwire_native_app? %> data-hotwire-native-app <% end %>>
   <head>
-    <meta name="viewport" content="width=device-width,initial-scale=1<%= ",maximum-scale=1,user-scalable=0" if hotwire_native_app? %>">
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1<%= ",maximum-scale=1,user-scalable=0" if hotwire_native_app? %>"
+    >
 
     <% if Rails.env.production? || Rails.env.staging? %>
       <link rel="canonical" href="<%= canonical_url %>">
@@ -14,10 +18,9 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= display_meta_tags site: "" %>
+    <%= display_meta_tags site: "RubyEvents.org", reverse: true %>
 
     <%= vite_client_tag %>
-    <%= combobox_style_tag %>
     <%= vite_javascript_tag "application", media: "all", "data-turbo-track": "reload" %>
     <%= vite_stylesheet_tag "application.css", media: "all", "data-turbo-track": "reload" %>
 
@@ -32,12 +35,14 @@
 
     <link rel="preconnect" href="https://rsms.me/">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+
     <%= yield :head %>
   </head>
 
   <body data-controller="preserve-scroll" class="<%= yield(:body_class) %>">
     <div class="hotwire-native:hidden">
       <%= render "shared/navbar" %>
+      <%= render "shared/language_prompt" unless controller_name == "page" && action_name == "home" %>
     </div>
 
     <div class="min-h-screen">

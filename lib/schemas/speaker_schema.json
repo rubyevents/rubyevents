@@ -1,0 +1,78 @@
+{
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Full name of the speaker"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-friendly slug for the speaker"
+    },
+    "github": {
+      "type": "string",
+      "description": "GitHub username (not a URL)",
+      "pattern": "^([^/:\\s]+)?$"
+    },
+    "twitter": {
+      "type": "string",
+      "description": "Twitter/X handle (without @, not a URL)",
+      "pattern": "^([^/:\\s]+)?$"
+    },
+    "website": {
+      "type": "string",
+      "description": "Personal website URL"
+    },
+    "mastodon": {
+      "type": "string",
+      "description": "Full Mastodon profile URL (e.g. https://ruby.social/@username)",
+      "pattern": "^(https?://[^/]+/@[^/\\s]+)?$"
+    },
+    "bluesky": {
+      "type": "string",
+      "description": "Bluesky handle (not a URL)",
+      "pattern": "^([^/:\\s]+)?$"
+    },
+    "linkedin": {
+      "type": "string",
+      "description": "LinkedIn username (the part after /in/, not a URL)",
+      "pattern": "^([^/:\\s]+)?$"
+    },
+    "speakerdeck": {
+      "type": "string",
+      "description": "Speakerdeck username (not a URL)",
+      "pattern": "^([^/:\\s]+)?$"
+    },
+    "aliases": {
+      "type": "array",
+      "description": "Alternative names for the speaker",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "slug"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "canonical_slug": {
+      "type": "string",
+      "description": "Slug of the canonical speaker profile (for deduplication)"
+    }
+  },
+  "required": [
+    "name",
+    "slug",
+    "github"
+  ],
+  "additionalProperties": false,
+  "strict": true
+}

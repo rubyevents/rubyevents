@@ -1,5 +1,8 @@
 name: CI
 
+permissions:
+  contents: read
+
 on:
   pull_request:
     branches: ["*"]
@@ -11,11 +14,53 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  lint:
+  changes:
+    name: Detect changes
     runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      code: ${{ steps.filter.outputs.code || 'true' }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: dorny/paths-filter@v3
+        id: filter
+        continue-on-error: true
+        with:
+          filters: |
+            code:
+              - '!{data,app/assets/images/events}/**'
+
+  data:
+    name: "Data Check"
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      RAILS_ENV: test
+
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Validate YAML data schemas
+        run: bin/rails validate:all
+
+  lint:
+    name: "Lint Ruby"
+    needs: changes
+    if: ${{ needs.changes.outputs.code == 'true' || github.event_name == 'push' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
     env:
       RAILS_ENV: test
       RUBOCOP_CACHE_ROOT: tmp/rubocop
+
     steps:
       - uses: actions/checkout@v5
 
@@ -23,15 +68,6 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-
-      - name: Setup Node
-        uses: actions/setup-node@v6
-        with:
-          node-version-file: ".node-version"
-          cache: yarn
-
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
 
       - name: Prepare RuboCop cache
         uses: actions/cache@v4
@@ -43,36 +79,54 @@ jobs:
           restore-keys: |
             rubocop-${{ runner.os }}-${{ env.RUBY_VERSION }}-${{ env.DEPENDENCIES_HASH }}-
 
-      - name: StandardRB Check
+      - name: Standard
         run: bundle exec standardrb --format github --format "Standard::Formatter"
 
-      - name: StandardJS Check
-        run: yarn lint
-
-      - name: Lint YAML data files
-        run: yarn lint:yml
-
-      - name: Validate YAML data schemas
-        run: bin/rails validate:all
-
-      - name: erb-lint Check
+      - name: erb-lint
         run: bundle exec erb_lint --lint-all
-
-      - name: Herb Linter Check
-        run: npx @herb-tools/linter
 
       - name: Herb Analyze (parse/compile)
         run: bundle exec herb analyze app/
 
-  test:
+  lint_js:
+    name: "Lint JavaScript"
+    needs: changes
+    if: ${{ needs.changes.outputs.code == 'true' || github.event_name == 'push' }}
     runs-on: ubuntu-latest
-    env:
-      RAILS_ENV: test
+    timeout-minutes: 5
+
     steps:
       - uses: actions/checkout@v5
 
-      - name: Install ImageMagick
-        run: sudo apt-get update && sudo apt-get install -y imagemagick
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: ".node-version"
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: StandardJS
+        run: yarn lint
+
+      - name: Herb Linter
+        run: npx herb-lint
+
+      - name: Herb Formatter
+        run: npx herb-format --check
+
+  test:
+    name: "Test"
+    needs: changes
+    if: ${{ needs.changes.outputs.code == 'true' || github.event_name == 'push' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      RAILS_ENV: test
+
+    steps:
+      - uses: actions/checkout@v5
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
@@ -102,10 +156,13 @@ jobs:
           bin/rails test:system
 
   seed_smoke_test:
+    name: "Data Smoke Test"
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     env:
       RAILS_ENV: test
       SEED_SMOKE_TEST: true
+
     steps:
       - uses: actions/checkout@v5
 
@@ -134,21 +191,18 @@ jobs:
       - name: Run Seed Smoke Test
         run: bin/rails test test/tasks/seed_test.rb
 
-      - name: Verify all thumbnails for child talks are present
-        run: bin/rails verify_thumbnails
-
-      - name: Validate no duplicated speakers in database
-        run: bin/rails validate:speaker_duplicates
-
   build:
     name: Build Docker Image
-    runs-on: ubuntu-latest
+    needs: changes
+    if: ${{ needs.changes.outputs.code == 'true' || github.event_name == 'push' }}
+    runs-on: ubuntu-24.04-arm
 
     permissions:
       contents: read
       packages: write
       attestations: write
       id-token: write
+
     timeout-minutes: 20
 
     env:
@@ -165,16 +219,17 @@ jobs:
       - name: Expose GitHub Runtime for cache
         uses: crazy-max/ghaction-github-runtime@v3
 
-      - name: Setup SSH
-        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-        uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Docker image (PR)
         if: ${{ github.event_name == 'pull_request' }}
@@ -187,14 +242,19 @@ jobs:
         run: bundle exec kamal build push
         env:
           KAMAL_RAILS_MASTER_KEY: ${{ secrets.KAMAL_RAILS_MASTER_KEY }}
-          KAMAL_REGISTRY_PASSWORD: ${{ secrets.KAMAL_REGISTRY_PASSWORD }}
+          KAMAL_REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
 
   deploy:
-    needs: [lint, test, seed_smoke_test, build]
+    needs: [data, lint, lint_js, test, seed_smoke_test, build]
     name: Deploy
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+
+    permissions:
+      contents: read
+      packages: read
+
+    timeout-minutes: 20
 
     steps:
       - name: Checkout code
@@ -214,10 +274,11 @@ jobs:
         run: bundle exec kamal deploy --skip-push
         env:
           KAMAL_RAILS_MASTER_KEY: ${{ secrets.KAMAL_RAILS_MASTER_KEY }}
-          KAMAL_REGISTRY_PASSWORD: ${{ secrets.KAMAL_REGISTRY_PASSWORD }}
+          KAMAL_REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
           GEOLOCATE_API_KEY: ${{ secrets.GEOLOCATE_API_KEY }}
           MAPBOX_ACCESS_TOKEN: ${{ secrets.MAPBOX_ACCESS_TOKEN }}
           TYPESENSE_API_KEY: ${{ secrets.TYPESENSE_API_KEY }}
+          TYPESENSE_SEARCH_ONLY_API_KEY: ${{ secrets.TYPESENSE_SEARCH_ONLY_API_KEY }}
           TYPESENSE_NODES: ${{ secrets.TYPESENSE_NODES }}
           TYPESENSE_NEAREST_NODE: ${{ secrets.TYPESENSE_NEAREST_NODE }}
 

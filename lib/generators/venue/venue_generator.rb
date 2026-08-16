@@ -4,45 +4,55 @@ require "generators/event_base"
 
 class VenueGenerator < Generators::EventBase
   source_root File.expand_path("templates", __dir__)
+  TOOL_DESC = "Create a venue.yml file for a given event and update the event.yml file with the venue's coordinates."
 
-  class_option :name, type: :string, desc: "Venue name", default: "Venue name", group: "Fields"
-  class_option :address, type: :string, desc: "Venue address", default: "123 Main St, City, State, ZIP, Country", group: "Fields"
-  class_option :accessibility, type: :boolean, desc: "Include accessibility information section", default: true, group: "Fields"
+  class_option :name, type: :string, desc: "Venue name", group: "Fields"
+  class_option :address, type: :string, desc: "Venue address", group: "Fields"
+  class_option :description, type: :string, desc: "Description of venue", group: "Fields"
+  class_option :instructions, type: :string, desc: "Instructions for getting to the venue", group: "Fields"
+  class_option :url, type: :string, desc: "Hotel website", group: "Fields"
+
+  # Add Section
+  class_option :accessibility, type: :boolean, desc: "Include accessibility information section", default: false, group: "Fields"
   class_option :hotels, type: :boolean, desc: "Include hotel information section", default: false, group: "Fields"
-  class_option :nearby, type: :boolean, desc: "Include nearby amenities section", default: false, group: "Fields"
   class_option :locations, type: :boolean, desc: "Include additional locations section", default: false, group: "Fields"
+  class_option :nearby, type: :boolean, desc: "Include nearby amenities section", default: false, group: "Fields"
   class_option :rooms, type: :boolean, desc: "Include rooms section", default: false, group: "Fields"
   class_option :spaces, type: :boolean, desc: "Include spaces section", default: false, group: "Fields"
 
-  GeocodedAddress = Struct.new(:street_address, :city, :state, :postal_code, :country, :country_code, :latitude, :longitude)
-
-  def copy_venue_file
-    geocode_address
-    template "venue.yml.tt", File.join(["data", options[:event_series], options[:event], "venue.yml"])
+  def apple_maps
+    return unless geocoded_address
+    "https://maps.apple.com/?q=#{options[:name]&.tr(" ", "+")}&ll=#{geocoded_address.latitude},#{geocoded_address.longitude}"
   end
 
-  def geocode_address
-    if options[:address] != "123 Main St, City, State, ZIP, Country" || options[:name] != "Venue name"
-      # Combine venue name and address for better accuracy
-      search = [options[:name], options[:address]].compact.join(", ")
-      geocode_results = Geocoder.search(search)
-      # Nominatim works better with separate queries - doesn't find the combined one
-      geocode_results = Geocoder.search(options[:address]) if geocode_results.empty?
-      geocode_results = Geocoder.search(options[:name]) if geocode_results.empty?
-      # Nominatim works better with just the street address
-      geocode_results = Geocoder.search(options[:address].split(",")[0]) if geocode_results.empty?
-    end
+  def geocoded_address
+    @geocoded_address ||= geocode_address(name: options[:name], address: options[:address])
+  end
 
-    @geocoded_address = geocode_results&.first ||
-      GeocodedAddress.new(
-        street_address: "123 Main St",
-        city: "City",
-        state: "State",
-        postal_code: "ZIP",
-        country: "Country",
-        country_code: "CC",
-        latitude: 0.0,
-        longitude: 0.0
-      )
+  def google_maps
+    return unless geocoded_address
+    "https://maps.google.com/?q=#{options[:name]&.tr(" ", "+")},#{geocoded_address.latitude},#{geocoded_address.longitude}"
+  end
+
+  def openstreetmap_maps
+    return unless geocoded_address
+    "https://www.openstreetmap.org/?mlat=#{geocoded_address.latitude}&mlon=#{geocoded_address.longitude}"
+  end
+
+  def copy_venue_file
+    venue_file = File.join([event_directory, "venue.yml"])
+    template "venue.yml.tt", venue_file
+  end
+
+  def update_event_file
+    return unless @geocoded_address
+    event_file = File.join([event_directory, "event.yml"])
+    return unless File.exist?(event_file)
+    @coordinates = {latitude: geocoded_address.latitude, longitude: geocoded_address.longitude}
+
+    event_document = Yerba.parse_file(event_file)
+    event_document["coordinates.latitude"] = @coordinates[:latitude]
+    event_document["coordinates.longitude"] = @coordinates[:longitude]
+    event_document.save!
   end
 end

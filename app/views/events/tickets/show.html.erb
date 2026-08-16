@@ -4,14 +4,16 @@
   <div class="container py-8">
     <%= render partial: "events/navigation", locals: {event: @event} %>
 
-    <div class="flex flex-col gap-8 mt-8">
-      <section class="bg-white rounded-lg border p-6 shadow-sm">
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Tickets</h2>
+    <div class="mt-8 flex flex-col gap-8">
+      <section class="rounded-lg border bg-white p-6 shadow-sm">
+        <h2 class="mb-4 text-2xl font-bold text-gray-900">Tickets</h2>
 
-        <p class="text-gray-600 mb-6">
-          Tickets for <%= @event.name %> are sold directly by the event organizer<% if @event.tickets.provider_name %> via <%= link_to @event.tickets.provider_name, @event.tickets.url, target: "_blank", rel: "noopener", class: "link" %><% end %>.
-          RubyEvents is not responsible for ticket sales, refunds, or any issues related to your purchase.
-          For more information, check out the <%= link_to "ticket details", @event.tickets.url, target: "_blank", rel: "noopener", class: "link" %><% if @event.website.present? %> or the <%= link_to "conference website", @event.website, target: "_blank", rel: "noopener", class: "link" %><% end %>.
+        <p class="mb-6 text-gray-600">
+          Tickets for <%= @event.name %> are sold directly by the event
+          organizer<% if @event.tickets.provider_name %> via <%= link_to @event.tickets.provider_name, @event.tickets.url, target: "_blank", rel: "noopener", class: "link" %><% end %>.
+          RubyEvents is not responsible for ticket sales, refunds, or any issues related to your purchase. For more
+          information, check out the
+          <%= link_to "ticket details", @event.tickets.url, target: "_blank", rel: "noopener", class: "link" %><% if @event.website.present? %> or the <%= link_to "conference website", @event.website, target: "_blank", rel: "noopener", class: "link" %><% end %>.
         </p>
 
         <% if @event.tickets.tito? %>

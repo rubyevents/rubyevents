@@ -1,0 +1,18 @@
+<%# locals: (min_height: "372px", card_height: "h-40") %>
+
+<section class="flex animate-pulse flex-col gap-4" style="min-height: <%= min_height %>">
+  <div class="flex items-end justify-between">
+    <div>
+      <div class="h-6 w-48 rounded bg-base-300"></div>
+      <div class="mt-2 h-4 w-32 rounded bg-base-300"></div>
+    </div>
+  </div>
+
+  <div class="flex gap-4 overflow-hidden">
+    <% 5.times do %>
+      <div class="w-64 shrink-0 sm:w-72">
+        <div class="rounded-lg bg-base-300 <%= card_height %>"></div>
+      </div>
+    <% end %>
+  </div>
+</section>

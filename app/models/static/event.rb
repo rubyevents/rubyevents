@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Static
   class Event < FrozenRecord::Base
     include ActionView::Helpers::DateHelper
@@ -39,14 +41,14 @@ module Static
         last_edition: nil,
         start_date: nil,
         end_date: nil,
-        published_at: nil,
+        recordings_published_date: nil,
         announced_on: nil,
         year: nil,
         date_precision: nil,
         frequency: nil,
         location: nil,
         venue: nil,
-        channel_id: nil,
+        youtube_channels: nil,
         playlist: nil,
         website: nil,
         original_website: nil,
@@ -56,6 +58,8 @@ module Static
         meetup: nil,
         luma: nil,
         youtube: nil,
+        coordinates: nil,
+        tickets_url: nil,
         banner_background: nil,
         featured_background: nil,
         featured_color: nil
@@ -73,9 +77,11 @@ module Static
           raise ArgumentError, "Event '#{slug}' already exists at #{event_file}"
         end
 
-        data = {"title" => title, "kind" => kind}
+        if id.present? && id != slug
+          raise ArgumentError, "id must match the event folder name ('#{slug}'), got '#{id}'"
+        end
 
-        data["id"] = id if id.present?
+        data = {"id" => slug, "title" => title, "kind" => kind}
         data["description"] = description if description.present?
         data["aliases"] = Array(aliases) if aliases.present?
         data["hybrid"] = hybrid unless hybrid.nil?
@@ -83,14 +89,14 @@ module Static
         data["last_edition"] = last_edition unless last_edition.nil?
         data["start_date"] = start_date if start_date.present?
         data["end_date"] = end_date if end_date.present?
-        data["published_at"] = published_at if published_at.present?
+        data["recordings_published_date"] = recordings_published_date if recordings_published_date.present?
         data["announced_on"] = announced_on if announced_on.present?
         data["year"] = year if year.present?
-        data["date_precision"] = date_precision if date_precision.present?
+        data["date_precision"] = date_precision if defined?(date_precision) && date_precision.present?
         data["frequency"] = frequency if frequency.present?
         data["location"] = location if location.present?
         data["venue"] = venue if venue.present?
-        data["channel_id"] = channel_id if channel_id.present?
+        data["youtube_channels"] = youtube_channels if youtube_channels.present?
         data["playlist"] = playlist if playlist.present?
         data["website"] = website if website.present?
         data["original_website"] = original_website if original_website.present?
@@ -100,21 +106,21 @@ module Static
         data["meetup"] = meetup if meetup.present?
         data["luma"] = luma if luma.present?
         data["youtube"] = youtube if youtube.present?
+        data["coordinates"] = coordinates if coordinates.present?
+        data["tickets_url"] = tickets_url if tickets_url.present?
         data["banner_background"] = banner_background if banner_background.present?
         data["featured_background"] = featured_background if featured_background.present?
         data["featured_color"] = featured_color if featured_color.present?
 
-        schema = JSON.parse(EventSchema.new.to_json_schema[:schema].to_json)
-        schemer = JSONSchemer.schema(schema)
-        errors = schemer.validate(data).to_a
+        errors = Yerba.parse(data.to_yaml).validate(EventSchema.json_schema)
 
         if errors.any?
-          error_messages = errors.map { |e| "#{e["error"]} at #{e["data_pointer"]}" }
+          error_messages = errors.map { |error| "#{error["message"]} at #{error["path"]}" }
           raise ArgumentError, "Validation failed: #{error_messages.join(", ")}"
         end
 
         FileUtils.mkdir_p(event_dir)
-        File.write(event_file, data.to_yaml)
+        File.write(event_file, content)
 
         videos_file = event_dir.join("videos.yml")
         File.write(videos_file, "[]\n") unless videos_file.exist?
@@ -199,11 +205,7 @@ module Static
     end
 
     def slug
-      @slug ||= begin
-        return attributes["slug"] if attributes["slug"].present?
-
-        File.basename(File.dirname(__file_path))
-      end
+      @slug ||= attributes["id"]
     end
 
     def imported?
@@ -227,7 +229,7 @@ module Static
     end
 
     def published_date
-      Date.parse(published_at)
+      Date.parse(recordings_published_date)
     rescue TypeError, Date::Error
       nil
     end
@@ -236,6 +238,12 @@ module Static
       return nil if location.blank?
 
       Country.find(location.to_s.split(",").last&.strip)
+    end
+
+    def time_zone
+      return nil if attributes["timezone"].blank?
+
+      ActiveSupport::TimeZone[attributes["timezone"]]
     end
 
     def city
@@ -252,15 +260,17 @@ module Static
         return published_date
       end
 
-      if conference? && end_date.present?
+      if meetup?
+        return event_record.end_date if event_record.present?
+
+        return Time.at(0)
+      end
+
+      if end_date.present?
         return end_date
       end
 
-      if meetup? && event_record.present?
-        return event_record.end_date
-      end
-
-      if conference? && start_date.present?
+      if start_date.present?
         return start_date
       end
 
@@ -284,7 +294,6 @@ module Static
       import_videos!(event, index: index)
       import_sponsors!(event)
       import_involvements!(event)
-      import_transcripts!(event)
 
       Search::Backend.index(event) if index
 
@@ -292,12 +301,12 @@ module Static
     end
 
     def import_event!
-      event = ::Event.find_or_create_by(slug: slug)
+      event = ::Event.find_or_initialize_by(slug: slug)
 
-      event.update!(
+      event.assign_attributes(
         name: title,
-        date: attributes["date"] || published_at,
-        date_precision: date_precision || "day",
+        date: attributes["date"],
+        date_precision: attributes["date_precision"] || "day",
         series: static_series.event_series_record,
         website: website,
         country_code: country&.alpha2,
@@ -305,20 +314,27 @@ module Static
         location: location,
         start_date: start_date,
         end_date: end_date,
-        kind: kind
+        kind: kind,
+        featured_background: featured_background,
+        featured_color: featured_color,
+        banner_background: banner_background,
+        recordings_published_date: published_date,
+        home_sort_date: home_sort_date(event_record: event)
       )
 
       if event.venue.exist?
-        event.update!(
+        event.assign_attributes(
           latitude: event.venue.latitude,
           longitude: event.venue.longitude
         )
       else
-        event.update!(
+        event.assign_attributes(
           latitude: coordinates.is_a?(Hash) ? coordinates.dig("latitude") : nil,
           longitude: coordinates.is_a?(Hash) ? coordinates.dig("longitude") : nil
         )
       end
+
+      event.save! if event.changed? || event.new_record?
 
       event.sync_aliases_from_list(aliases) if aliases.present?
 
@@ -336,16 +352,19 @@ module Static
 
       return unless File.exist?(cfp_file_path)
 
-      cfps = YAML.load_file(cfp_file_path)
+      cfps = Yerba.parse_file(cfp_file_path.to_s).to_a
 
       cfps.each do |cfp_data|
-        event.cfps.find_or_create_by(
+        cfp = event.cfps.find_or_initialize_by(
           link: cfp_data["link"],
           open_date: cfp_data["open_date"]
-        ).update(
+        )
+        cfp.assign_attributes(
           name: cfp_data["name"],
           close_date: cfp_data["close_date"]
         )
+
+        cfp.save! if cfp.changed? || cfp.new_record?
       end
     end
 
@@ -353,24 +372,13 @@ module Static
       return unless imported?
       return unless event.videos_file.exist?
 
-      event.videos_file.entries.each do |talk_data|
-        talk = ::Talk.find_or_initialize_by(static_id: talk_data["id"])
-        talk.update_from_yml_metadata!(event: event)
-        Search::Backend.index(talk) if index
-
-        child_talks = talk_data["talks"]
-
-        next unless child_talks
-
-        Array.wrap(child_talks).each do |child_talk_data|
-          child_talk = ::Talk.find_or_initialize_by(static_id: child_talk_data["id"])
-          child_talk.parent_talk = talk
-          child_talk.update_from_yml_metadata!(event: event)
-          Search::Backend.index(child_talk) if index
-        end
-      rescue ActiveRecord::RecordInvalid => e
-        puts "Couldn't save: #{talk_data["title"]} (#{talk_data["id"]}), error: #{e.message}"
+      Static::Video.where_event_slug(slug).each do |video|
+        video.import!(event: event, index: index)
       end
+    rescue ActiveRecord::RecordInvalid => e
+      puts "Couldn't save: #{talk_data["title"]} (#{talk_data["id"]}), error: #{e.message}"
+      error_location = ActiveSupport::BacktraceCleaner.new.clean_locations(e.backtrace_locations).first
+      puts "::error file=#{error_location&.path},line=#{error_location&.lineno}::#{e.record.class} (#{e.record&.to_param}) - #{e.detailed_message}"
     end
 
     def import_sponsors!(event)
@@ -383,7 +391,7 @@ module Static
       event.sponsors_file.file.each do |sponsors|
         sponsors["tiers"].each do |tier|
           tier["sponsors"].each do |sponsor|
-            s = nil
+            organization = nil
             domain = nil
 
             if sponsor["website"].present?
@@ -393,35 +401,41 @@ module Static
                 parsed = PublicSuffix.parse(host)
                 domain = parsed.domain
 
-                s = ::Organization.find_by(domain: domain) if domain.present?
+                organization = ::Organization.find_by(domain: domain) if domain.present?
               rescue PublicSuffix::Error, URI::InvalidURIError
                 # If parsing fails, continue with other matching methods
               end
             end
 
-            s ||= ::Organization.find_by_name_or_alias(sponsor["name"]) || ::Organization.find_by_slug_or_alias(sponsor["slug"]&.downcase)
-            s ||= ::Organization.find_or_initialize_by(name: sponsor["name"])
+            organization ||= ::Organization.find_by_name_or_alias(sponsor["name"]) || ::Organization.find_by_slug_or_alias(sponsor["slug"]&.downcase)
+            organization ||= ::Organization.find_or_initialize_by(name: sponsor["name"])
 
-            s.update(
+            organization.update(
               website: sponsor["website"],
               description: sponsor["description"],
               domain: domain
             )
 
-            s.add_logo_url(sponsor["logo_url"]) if sponsor["logo_url"].present?
-            s.logo_url = sponsor["logo_url"] if sponsor["logo_url"].present? && s.logo_url.blank?
+            organization.add_logo_url(sponsor["logo_url"]) if sponsor["logo_url"].present?
+            organization.logo_url = sponsor["logo_url"] if sponsor["logo_url"].present? && organization.logo_url.blank?
 
-            s = ::Organization.find_by_slug_or_alias(s.slug) || ::Organization.find_by_name_or_alias(s.name) unless s.persisted?
+            organization = ::Organization.find_by_slug_or_alias(organization.slug) || ::Organization.find_by_name_or_alias(organization.name) unless organization.persisted?
 
-            s.save!
+            organization.save! if organization.changed? || organization.new_record?
 
-            organisation_ids << s.id
+            organisation_ids << organization.id
 
-            event.sponsors.find_or_create_by!(organization: s, event: event).update!(tier: tier["name"], badge: sponsor["badge"])
+            sponsor_record = event.sponsors.find_or_initialize_by(organization:, event:)
+            sponsor_record.assign_attributes(tier: tier["name"], badge: sponsor["badge"], level: tier["level"])
+            sponsor_record.save! if sponsor_record.changed? || sponsor_record.new_record?
           end
         end
       end
       event.sponsors.where.not(organization_id: organisation_ids).destroy_all
+    rescue ActiveRecord::RecordInvalid => e
+      error_location = ActiveSupport::BacktraceCleaner.new.clean_locations(e.backtrace_locations).first
+      puts "::error file=#{error_location&.path},line=#{error_location&.lineno}::#{e.record.class} (#{e.record&.to_param}) - #{e.detailed_message}"
+      raise e
     end
 
     def import_involvements!(event)
@@ -501,38 +515,6 @@ module Static
         end
       end
       event.update!(event_involvements_attributes: event_involvements_attributes)
-    end
-
-    def import_transcripts!(event)
-      return unless imported?
-      return unless event.transcripts_file.exist?
-
-      transcripts = event.transcripts_file.entries
-      return if transcripts.blank?
-
-      transcripts.each do |transcript_data|
-        video_id = transcript_data["video_id"]
-        cues = transcript_data["cues"]
-
-        next if video_id.blank? || cues.blank?
-
-        talk = event.talks.find_by(video_id: video_id)
-        next unless talk
-
-        transcript = ::Transcript.new
-        cues.each do |cue_data|
-          transcript.add_cue(
-            Cue.new(
-              start_time: cue_data["start_time"],
-              end_time: cue_data["end_time"],
-              text: cue_data["text"]
-            )
-          )
-        end
-
-        transcript_record = talk.talk_transcript || ::Talk::Transcript.new(talk: talk)
-        transcript_record.update!(raw_transcript: transcript)
-      end
     end
 
     def series_slug

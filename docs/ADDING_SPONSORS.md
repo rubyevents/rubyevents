@@ -9,11 +9,13 @@ Sponsor data is stored in YAML files within the conference/event directories. Ea
 ## File Structure
 
 Sponsors are stored in YAML files at:
-```
+
+```yaml
 data/{series-name}/{event-name}/sponsors.yml
 ```
 
 For example:
+
 - [`data/rubykaigi/rubykaigi-2025/sponsors.yml`](https://github.com/rubyevents/rubyevents/blob/main/data/rubykaigi/rubykaigi-2025/sponsors.yml)
 - [`data/railsconf/railsconf-2025/sponsors.yml`](https://github.com/rubyevents/rubyevents/blob/main/data/railsconf/railsconf-2025/sponsors.yml)
 
@@ -53,8 +55,12 @@ Pass multiple sponsors at once, and list the sponsor tier.
 If there is no tier, it will default to "Sponsors".
 
 ```bash
-bin/rails g sponsors typesense:Platinum AppSignal:Gold JetRockets:Gold "Planet Argon:Silver" --event-series tropicalrb --event tropical-on-rails-2026
+bin/rails g sponsors typesense|Platinum AppSignal|Gold JetRockets|Gold "Planet Argon|Silver" --event-series tropicalrb --event tropical-on-rails-2026
 ```
+
+If you are adding a new sponsor to an existing file, you can list all the sponsors as arguments and then use the merge tool when there's a conflict.
+It'll feel very similar to resolving merge conflicts in git, but for different versions of the generated file.
+Expect improvements to the generator for changes soon!
 
 Check the usage instructions using help.
 
@@ -83,6 +89,7 @@ bin/rails g sponsors --event-series tropicalrb --event tropical-on-rails-2026
 ### 3. Gather Sponsor Information
 
 For each sponsor, collect:
+
 - Official company name
 - Company website URL
 - Logo image URL (preferably high-resolution)
@@ -136,6 +143,7 @@ bin/dev
 - **Invalid YAML syntax**: Check indentation (use spaces, not tabs)
 - **Missing required fields**: Ensure all required properties are present
 - **Old sponsor logos**: All sponsor logos listed in any sponsors file are associated with a sponsor, and the first logo stored is displayed
+- **Sponsors out of order**: Enter sponsors in the correct order in the file, which may not be how they are displayed
 
 ## Submission Process
 
@@ -150,6 +158,7 @@ bin/dev
 ## Need Help?
 
 If you have questions about contributing sponsors:
+
 - Open an issue on GitHub
 - Check existing sponsors files for examples
 - Reference this documentation

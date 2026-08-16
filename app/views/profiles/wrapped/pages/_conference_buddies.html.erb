@@ -1,18 +1,22 @@
-<h2 class="text-2xl font-bold mb-2 text-center">Your Conference Buddies</h2>
-<p class="text-gray-500 text-center mb-6">People you crossed paths with at events</p>
+<h2 class="mb-2 text-center text-2xl font-bold">Your Conference Buddies</h2>
 
-<div class="space-y-4 flex-1">
+<p class="mb-6 text-center text-gray-500">People you crossed paths with at events</p>
+
+<div class="flex-1 space-y-4">
   <% conference_buddies.first(6).each do |buddy| %>
-    <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-      <div class="w-12 h-12 rounded-full overflow-hidden bg-gray-200 flex-shrink-0">
+    <div class="flex items-center gap-3 rounded-lg bg-gray-50 p-3">
+      <div class="h-12 w-12 flex-shrink-0 overflow-hidden rounded-full bg-gray-200">
         <%= image_tag buddy.user.avatar_url(size: 80), class: "w-full h-full object-cover", alt: buddy.user.name %>
       </div>
-      <div class="flex-1 min-w-0">
-        <p class="font-semibold truncate"><%= buddy.user.name %></p>
+
+      <div class="min-w-0 flex-1">
+        <p class="truncate font-semibold"><%= buddy.user.name %></p>
+
         <p class="text-sm text-gray-500">
           <%= buddy.shared_count %> <%= "event".pluralize(buddy.shared_count) %> together
         </p>
       </div>
+
       <div class="text-2xl">
         <% if buddy.shared_count >= 3 %>
           🤝

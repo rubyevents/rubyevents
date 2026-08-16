@@ -1,0 +1,51 @@
+{
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Display name for the resource"
+    },
+    "url": {
+      "type": "string",
+      "description": "URL to the resource"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "write-up",
+        "blog",
+        "article",
+        "source-code",
+        "code",
+        "repo",
+        "github",
+        "documentation",
+        "docs",
+        "presentation",
+        "video",
+        "podcast",
+        "audio",
+        "gem",
+        "library",
+        "transcript",
+        "handout",
+        "notes",
+        "photos",
+        "link",
+        "book"
+      ],
+      "description": "Type of resource"
+    },
+    "title": {
+      "type": "string",
+      "description": "Full title of the resource"
+    }
+  },
+  "required": [
+    "name",
+    "url",
+    "type"
+  ],
+  "additionalProperties": false,
+  "strict": true
+}

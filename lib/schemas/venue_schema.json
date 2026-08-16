@@ -1,0 +1,431 @@
+{
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the venue"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the venue"
+    },
+    "instructions": {
+      "type": "string",
+      "description": "Instructions for getting to the venue"
+    },
+    "url": {
+      "type": "string",
+      "description": "Venue website URL"
+    },
+    "address": {
+      "type": "object",
+      "properties": {
+        "street": {
+          "type": "string",
+          "description": "Street address"
+        },
+        "city": {
+          "type": "string",
+          "description": "City name"
+        },
+        "region": {
+          "type": "string",
+          "description": "State/Province/Region"
+        },
+        "postal_code": {
+          "type": "string",
+          "description": "Postal/ZIP code"
+        },
+        "country": {
+          "type": "string",
+          "description": "Country name"
+        },
+        "country_code": {
+          "type": "string",
+          "description": "ISO country code (e.g., 'US', 'CA', 'JP')"
+        },
+        "display": {
+          "type": "string",
+          "description": "Full formatted address for display"
+        }
+      },
+      "required": [
+        "street",
+        "city",
+        "country",
+        "country_code",
+        "display"
+      ],
+      "additionalProperties": false,
+      "description": "Physical address of the venue"
+    },
+    "coordinates": {
+      "type": "object",
+      "properties": {
+        "latitude": {
+          "type": "number",
+          "description": "Latitude coordinate"
+        },
+        "longitude": {
+          "type": "number",
+          "description": "Longitude coordinate"
+        }
+      },
+      "required": [
+        "latitude",
+        "longitude"
+      ],
+      "additionalProperties": false,
+      "description": "Geographic coordinates"
+    },
+    "maps": {
+      "type": "object",
+      "properties": {
+        "google": {
+          "type": "string",
+          "description": "Google Maps URL"
+        },
+        "apple": {
+          "type": "string",
+          "description": "Apple Maps URL"
+        },
+        "openstreetmap": {
+          "type": "string",
+          "description": "OpenStreetMap URL"
+        }
+      },
+      "required": [],
+      "additionalProperties": false,
+      "description": "Links to various map services"
+    },
+    "locations": {
+      "type": "array",
+      "description": "Additional event locations",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Location name"
+          },
+          "kind": {
+            "type": "string",
+            "description": "Type of location (e.g., 'After Party Location')"
+          },
+          "description": {
+            "type": "string",
+            "description": "Location description"
+          },
+          "address": {
+            "type": "object",
+            "properties": {
+              "street": {
+                "type": "string",
+                "description": "Street address"
+              },
+              "city": {
+                "type": "string",
+                "description": "City name"
+              },
+              "region": {
+                "type": "string",
+                "description": "State/Province/Region"
+              },
+              "postal_code": {
+                "type": "string",
+                "description": "Postal/ZIP code"
+              },
+              "country": {
+                "type": "string",
+                "description": "Country name"
+              },
+              "country_code": {
+                "type": "string",
+                "description": "ISO country code (e.g., 'US', 'CA', 'JP')"
+              },
+              "display": {
+                "type": "string",
+                "description": "Full formatted address for display"
+              }
+            },
+            "required": [
+              "street",
+              "city",
+              "country",
+              "country_code",
+              "display"
+            ],
+            "additionalProperties": false,
+            "description": "Location address"
+          },
+          "distance": {
+            "type": "string",
+            "description": "Distance from main venue"
+          },
+          "url": {
+            "type": "string",
+            "description": "Location website URL"
+          },
+          "coordinates": {
+            "type": "object",
+            "properties": {
+              "latitude": {
+                "type": "number",
+                "description": "Latitude coordinate"
+              },
+              "longitude": {
+                "type": "number",
+                "description": "Longitude coordinate"
+              }
+            },
+            "required": [
+              "latitude",
+              "longitude"
+            ],
+            "additionalProperties": false
+          },
+          "maps": {
+            "type": "object",
+            "properties": {
+              "google": {
+                "type": "string",
+                "description": "Google Maps URL"
+              },
+              "apple": {
+                "type": "string",
+                "description": "Apple Maps URL"
+              },
+              "openstreetmap": {
+                "type": "string",
+                "description": "OpenStreetMap URL"
+              }
+            },
+            "required": [],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "name",
+          "kind",
+          "coordinates"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "hotels": {
+      "type": "array",
+      "description": "Recommended hotels near the venue",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Hotel name"
+          },
+          "kind": {
+            "type": "string",
+            "description": "Type of hotel (e.g., 'Speaker Hotel')"
+          },
+          "description": {
+            "type": "string",
+            "description": "Hotel description"
+          },
+          "address": {
+            "type": "object",
+            "properties": {
+              "street": {
+                "type": "string",
+                "description": "Street address"
+              },
+              "city": {
+                "type": "string",
+                "description": "City name"
+              },
+              "region": {
+                "type": "string",
+                "description": "State/Province/Region"
+              },
+              "postal_code": {
+                "type": "string",
+                "description": "Postal/ZIP code"
+              },
+              "country": {
+                "type": "string",
+                "description": "Country name"
+              },
+              "country_code": {
+                "type": "string",
+                "description": "ISO country code (e.g., 'US', 'CA', 'JP')"
+              },
+              "display": {
+                "type": "string",
+                "description": "Full formatted address for display"
+              }
+            },
+            "required": [
+              "street",
+              "city",
+              "country",
+              "country_code",
+              "display"
+            ],
+            "additionalProperties": false,
+            "description": "Hotel address"
+          },
+          "url": {
+            "type": "string",
+            "description": "Hotel website URL"
+          },
+          "distance": {
+            "type": "string",
+            "description": "Distance from venue"
+          },
+          "coordinates": {
+            "type": "object",
+            "properties": {
+              "latitude": {
+                "type": "number",
+                "description": "Latitude coordinate"
+              },
+              "longitude": {
+                "type": "number",
+                "description": "Longitude coordinate"
+              }
+            },
+            "required": [
+              "latitude",
+              "longitude"
+            ],
+            "additionalProperties": false
+          },
+          "maps": {
+            "type": "object",
+            "properties": {
+              "google": {
+                "type": "string",
+                "description": "Google Maps URL"
+              },
+              "apple": {
+                "type": "string",
+                "description": "Apple Maps URL"
+              },
+              "openstreetmap": {
+                "type": "string",
+                "description": "OpenStreetMap URL"
+              }
+            },
+            "required": [],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "name",
+          "address",
+          "coordinates"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "rooms": {
+      "type": "array",
+      "description": "Rooms within the venue",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Room name"
+          },
+          "floor": {
+            "type": "string",
+            "description": "Floor location"
+          },
+          "capacity": {
+            "type": "integer",
+            "description": "Room capacity"
+          },
+          "instructions": {
+            "type": "string",
+            "description": "Instructions for finding the room"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "spaces": {
+      "type": "array",
+      "description": "Other spaces within the venue",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Space name"
+          },
+          "floor": {
+            "type": "string",
+            "description": "Floor location"
+          },
+          "instructions": {
+            "type": "string",
+            "description": "Instructions for finding the space"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "accessibility": {
+      "type": "object",
+      "properties": {
+        "wheelchair": {
+          "type": "boolean",
+          "description": "Wheelchair accessible"
+        },
+        "elevators": {
+          "type": "boolean",
+          "description": "Elevators available"
+        },
+        "accessible_restrooms": {
+          "type": "boolean",
+          "description": "Accessible restrooms available"
+        },
+        "notes": {
+          "type": "string",
+          "description": "Additional accessibility notes"
+        }
+      },
+      "required": [],
+      "additionalProperties": false,
+      "description": "Accessibility information"
+    },
+    "nearby": {
+      "type": "object",
+      "properties": {
+        "public_transport": {
+          "type": "string",
+          "description": "Public transportation options"
+        },
+        "parking": {
+          "type": "string",
+          "description": "Parking information"
+        }
+      },
+      "required": [],
+      "additionalProperties": false,
+      "description": "Nearby amenities and transportation"
+    }
+  },
+  "required": [
+    "name",
+    "address",
+    "coordinates"
+  ],
+  "additionalProperties": false,
+  "strict": true
+}
