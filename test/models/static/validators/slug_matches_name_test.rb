@@ -1,0 +1,135 @@
+# frozen_string_literal: true
+
+require "test_helper"
+
+class Static::Validators::SlugMatchesNameTest < ActiveSupport::TestCase
+  SPEAKERS_FILE = Rails.root.join("data/speakers.yml").to_s
+
+  test "applicable? returns true for speakers.yml" do
+    validator = Static::Validators::SlugMatchesName.new(file_path: SPEAKERS_FILE)
+    assert validator.applicable?
+  end
+
+  test "applicable? returns false for a non-speakers file" do
+    file = Dir.glob(Rails.root.join("data/**/event.yml")).first
+    validator = Static::Validators::SlugMatchesName.new(file_path: file)
+    assert_not validator.applicable?
+  end
+
+  test "applicable? returns false for a non-existent file" do
+    validator = Static::Validators::SlugMatchesName.new(file_path: "/nonexistent/speakers.yml")
+    assert_not validator.applicable?
+  end
+
+  test "returns empty errors for the real speakers.yml" do
+    validator = Static::Validators::SlugMatchesName.new(file_path: SPEAKERS_FILE)
+    errors = validator.errors
+    assert errors.all? { |e| e.is_a?(Static::Validators::Error) }
+  end
+
+  test "returns error for GitHub profile instead of slug" do
+    yaml = [
+      {
+        "name" => "Rachael Wright-Munn",
+        "github" => "chaelcodes",
+        "slug" => "chaelcodes"
+      }
+    ].to_yaml
+    with_temp_speakers_yaml(yaml) do |path|
+      validator = Static::Validators::SlugMatchesName.new(file_path: path)
+      errors = validator.errors
+      assert errors.any? { |e| e.to_h["message"].include?("Slug must be the name parameterized, eg. first-lastname") }
+    end
+  end
+
+  test "returns error for non-slug slug" do
+    yaml = [
+      {"name" => "Rachael Wright-Munn", "slug" => "RachaelWrightMunn"}
+    ].to_yaml
+    with_temp_speakers_yaml(yaml) do |path|
+      validator = Static::Validators::SlugMatchesName.new(file_path: path)
+      errors = validator.errors
+      assert errors.any? { |e| e.to_h["message"].include?("Slug must be the name parameterized, eg. first-lastname") }
+    end
+  end
+
+  test "returns no error for valid slug" do
+    yaml = [
+      {"name" => "Rachael Wright-Munn", "github" => "chaelcodes", "slug" => "rachael-wright-munn"}
+    ].to_yaml
+    with_temp_speakers_yaml(yaml) do |path|
+      validator = Static::Validators::SlugMatchesName.new(file_path: path)
+      assert_empty validator.errors
+    end
+  end
+
+  test "no errors for alias slugs that are parameterized names" do
+    yaml = [
+      {
+        "name" => 'Yukihiro "Matz" Matsumoto',
+        "github" => "matz",
+        "twitter" => "yukihiro_matz",
+        "bluesky" => "matz.bsky.social",
+        "website" => "https://matz.rubyist.net",
+        "speakerdeck" => "matz",
+        "slug" => "yukihiro-matz-matsumoto",
+        "aliases" => [
+          {"name" => "Matz", "slug" => "matz"},
+          {"name" => "Yukihiro 'Matz' Matsumoto", "slug" => "yukihiro-matz-matsumoto"},
+          {"name" => "Yukihiro Matsumoto", "slug" => "yukihiro-matsumoto"},
+          {"name" => "Yukihiro Matz Matsumoto", "slug" => "yukihiro-matz-matsumoto"},
+          {"name" => "Yukihiro Matzumoto", "slug" => "yukihiro-matzumoto"},
+          {"name" => "まつもとゆきひろ", "slug" => "yukihiro-matsumoto"}
+        ]
+      }
+    ].to_yaml
+    with_temp_speakers_yaml(yaml) do |path|
+      validator = Static::Validators::SlugMatchesName.new(file_path: path)
+      assert_empty validator.errors
+    end
+  end
+
+  test "errors for alias not being a parameterized name" do
+    yaml = [
+      {
+        "name" => 'Yukihiro "Matz" Matsumoto',
+        "github" => "matz",
+        "twitter" => "yukihiro_matz",
+        "bluesky" => "matz.bsky.social",
+        "website" => "https://matz.rubyist.net",
+        "speakerdeck" => "matz",
+        "slug" => "yukihiro-matz-matsumoto",
+        "aliases" => [
+          {"name" => "Matz", "slug" => "Matz"}
+        ]
+      }
+    ].to_yaml
+    with_temp_speakers_yaml(yaml) do |path|
+      validator = Static::Validators::SlugMatchesName.new(file_path: path)
+      errors = validator.errors
+      assert errors.any? { |e| e.to_h["message"].include?("Slug must be the name parameterized, eg. first-lastname") }
+    end
+  end
+
+  test "errors are Static::Validators::Error objects" do
+    yaml = [
+      {"name" => "Rachael Wright-Munn", "slug" => "RachaelWrightMunn"}
+    ].to_yaml
+    with_temp_speakers_yaml(yaml) do |path|
+      validator = Static::Validators::SlugMatchesName.new(file_path: path)
+      assert validator.errors.all? { |e| e.is_a?(Static::Validators::Error) }
+    end
+  end
+
+  private
+
+  def with_temp_speakers_yaml(yaml_content)
+    dir = Dir.mktmpdir
+    path = File.join(dir, "data", "speakers.yml")
+    FileUtils.mkdir_p(File.dirname(path))
+    File.write(path, yaml_content)
+    yield path
+  ensure
+    FileUtils.rm_rf(dir)
+  end
+end
