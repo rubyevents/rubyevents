@@ -27,69 +27,37 @@ module Static
       def validate
         return [] unless applicable?
 
+        errors = []
+
         @document ||= Yerba.parse_file(@file_path)
-        @document.root.filter_map do |speaker|
-          errors = []
+        name_slug_pairs = @document.pluck(:name).zip(@document.pluck(:slug))
+        errors.concat(find_errors_for_name_slug_pairs(name_slug_pairs) do |name|
+          @document.find_by(name: name)
+        end)
 
-          if speaker["name"].to_s.parameterize != speaker["slug"].to_s.parameterize
-            errors << Static::Validators::Error.new(
-              "Slug must be the name parameterized, eg. first-lastname",
-              file_path: @file_path,
-              line: speaker.location&.start_line,
-              end_line: speaker.location&.end_line
-            )
-          end
-
-          speaker["aliases"]&.each do |alias_entry|
-            next if alias_entry["name"].to_s.parameterize == alias_entry["slug"].to_s.parameterize
-            errors << Static::Validators::Error.new(
-              "Slug must be the name parameterized, eg. first-lastname",
-              file_path: @file_path,
-              line: alias_entry.location&.start_line,
-              end_line: alias_entry.location&.end_line
-            )
-          end
-
-          errors
-        end.flatten
+        alias_name_slug_pairs = @document.value_at("[].aliases[].name").compact
+          .zip(@document.value_at("[].aliases[].slug").compact)
+        errors.concat(find_errors_for_name_slug_pairs(alias_name_slug_pairs) do |name|
+          @document.find_by(aliases: {name: name})
+        end)
+        errors
       end
 
       private
 
-      def validate_same_name_duplicates(speakers)
-        errors = []
-
-        speakers.same_name_duplicates.each do |name, count|
-          location = speakers.document.find_by(name: name)&.location
-          location ||= speakers.document.find_by("aliases[].name" => name)&.location
-
-          errors << Static::Validators::Error.new(
-            "Same name duplicate: #{name} (#{count} occurrences)",
+      def find_errors_for_name_slug_pairs(name_slug_pairs, &block)
+        name_slug_pairs.filter_map do |name, slug|
+          expected_slug = name.parameterize
+          next if slug == expected_slug
+          next if expected_slug.empty?
+          location = block.call(name)&.location
+          Static::Validators::Error.new(
+            "Slug must be the name parameterized, expected: #{name.to_s.parameterize}",
             file_path: @file_path,
             line: location&.start_line || 1,
             end_line: location&.end_line
           )
         end
-
-        errors
-      end
-
-      def validate_reversed_name_duplicates(speakers)
-        errors = []
-
-        speakers.reversed_name_duplicates.each do |pair|
-          location = speakers.document.find_by(name: pair[0])&.location
-          location ||= speakers.document.find_by("aliases[].name" => pair[0])&.location
-
-          errors << Static::Validators::Error.new(
-            "Reversed name duplicate: #{pair[0]} ↔ #{pair[1]}",
-            file_path: @file_path,
-            line: location&.start_line || 1,
-            end_line: location&.end_line
-          )
-        end
-
-        errors
       end
     end
   end
