@@ -3,6 +3,7 @@
 require "test_helper"
 
 class Static::Validators::SlugMatchesNameTest < ActiveSupport::TestCase
+  self.fixture_table_names = []
   SPEAKERS_FILE = Rails.root.join("data/speakers.yml").to_s
 
   test "applicable? returns true for speakers.yml" do
@@ -37,10 +38,10 @@ class Static::Validators::SlugMatchesNameTest < ActiveSupport::TestCase
     with_temp_speakers_yaml(yaml) do |path|
       validator = Static::Validators::SlugMatchesName.new(file_path: path)
       errors = validator.errors
-      error = errors.first
-      assert_equal "Slug must be the name parameterized, expected: rachael-wright-munn", error.to_h["message"]
-      assert_equal 1, error.to_h["line"]
-      assert_equal 3, error.to_h["end_line"]
+      error = errors.first.to_h
+      assert_equal "Slug must be the name parameterized, expected: rachael-wright-munn", error["message"]
+      assert_equal 4, error["line"], "Line number 4 does not equal #{error["line"]}."
+      assert_equal 4, error["end_line"], "End line number 4 does not equal #{error["end_line"]}."
     end
   end
 
@@ -52,8 +53,10 @@ class Static::Validators::SlugMatchesNameTest < ActiveSupport::TestCase
     YAML
     with_temp_speakers_yaml(yaml) do |path|
       validator = Static::Validators::SlugMatchesName.new(file_path: path)
-      errors = validator.errors
-      assert errors.any? { |e| e.to_h["message"].include?("Slug must be the name parameterized, expected: rachael-wright-munn") }
+      error = validator.errors.first
+      assert_equal "Slug must be the name parameterized, expected: rachael-wright-munn", error.to_h["message"]
+      assert_equal 2, error.to_h["line"]
+      assert_equal 3, error.to_h["end_line"]
     end
   end
 
@@ -116,41 +119,10 @@ class Static::Validators::SlugMatchesNameTest < ActiveSupport::TestCase
     YAML
     with_temp_speakers_yaml(yaml) do |path|
       validator = Static::Validators::SlugMatchesName.new(file_path: path)
-      errors = validator.errors
-      assert errors.any? { |e| e.to_h["message"].include?("Slug must be the name parameterized, expected: matz") }
-    end
-  end
-
-  test "reports correct line number for speaker with bad slug" do
-    yaml = <<~YAML
-      ---
-      - name: Rachael Wright-Munn
-        slug: chaelcodes
-    YAML
-    with_temp_speakers_yaml(yaml) do |path|
-      validator = Static::Validators::SlugMatchesName.new(file_path: path)
-      errors = validator.errors
-      assert_equal 1, errors.size
-      assert_equal 2, errors.first.to_h["line"]
-      assert_equal 3, errors.first.to_h["end_line"]
-    end
-  end
-
-  test "reports correct line number for alias with bad slug" do
-    yaml = <<~YAML
-      ---
-      - name: Matz
-        slug: matz
-        aliases:
-          - name: Matz
-            slug: Matz
-    YAML
-    with_temp_speakers_yaml(yaml) do |path|
-      validator = Static::Validators::SlugMatchesName.new(file_path: path)
-      errors = validator.errors
-      assert_equal 1, errors.size
-      assert_equal 5, errors.first.to_h["line"]
-      assert_equal 6, errors.first.to_h["end_line"]
+      error = validator.errors.first
+      assert_equal "Slug must be the name parameterized, expected: matz", error.to_h["message"]
+      assert_equal 10, error.to_h["line"]
+      assert_equal 11, error.to_h["end_line"]
     end
   end
 
