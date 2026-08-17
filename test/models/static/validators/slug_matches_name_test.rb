@@ -24,8 +24,7 @@ class Static::Validators::SlugMatchesNameTest < ActiveSupport::TestCase
 
   test "returns empty errors for the real speakers.yml" do
     validator = Static::Validators::SlugMatchesName.new(file_path: SPEAKERS_FILE)
-    errors = validator.errors
-    assert errors.all? { |e| e.is_a?(Static::Validators::Error) }
+    assert_empty validator.errors
   end
 
   test "returns error for GitHub profile instead of slug" do
