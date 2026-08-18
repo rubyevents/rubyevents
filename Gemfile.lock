@@ -269,6 +269,13 @@ GEM
       bigdecimal
       rexml
     crass (1.0.7)
+    cruise (0.2.0)
+    cruise (0.2.0-aarch64-linux-gnu)
+    cruise (0.2.0-aarch64-linux-musl)
+    cruise (0.2.0-arm-linux-gnu)
+    cruise (0.2.0-arm64-darwin)
+    cruise (0.2.0-x86_64-linux-gnu)
+    cruise (0.2.0-x86_64-linux-musl)
     csv (3.3.5)
     date (3.5.1)
     debug (1.11.1)
@@ -652,9 +659,10 @@ GEM
       erb
       psych (>= 4.0.0)
       tsort
-    reactionview (0.3.0)
+    reactionview (0.4.0)
       actionview (>= 7.0)
-      herb (>= 0.9.0, < 1.0.0)
+      cruise
+      herb (>= 0.10.0, < 0.11.0)
     redcarpet (3.6.1)
     regexp_parser (2.12.0)
     reline (0.6.3)
@@ -913,7 +921,7 @@ DEPENDENCIES
   rails-controller-testing
   rails-i18n (~> 8.0)
   rails_autolink (~> 1.1)
-  reactionview (~> 0.3)
+  reactionview (~> 0.4.0)
   redcarpet (~> 3.6)
   rouge (~> 4.4)
   rss (~> 0.3.1)
