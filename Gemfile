@@ -82,7 +82,7 @@ gem "yerba", "~> 0.9.0"
 gem "herb", "~> 0.10.3"
 
 # An ActionView-compatible ERB engine with modern DX - re-imagined with Herb.
-gem "reactionview", "~> 0.3"
+gem "reactionview", "~> 0.4.0"
 
 # Agnostic pagination in plain ruby.
 gem "pagy"
