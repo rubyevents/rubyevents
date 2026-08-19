@@ -18,9 +18,15 @@ recordings_published_date: "<%= options[:recordings_published_date] %>"
 <%- if options[:announced_on] -%>
 announced_on: "<%= options[:announced_on] %>"
 <%- end -%>
+<%- if options[:start_date] -%>
 start_date: "<%= options[:start_date] %>"
+<%- end -%>
+<%- if options[:end_date] -%>
 end_date: "<%= options[:end_date] %>"
+<%- end -%>
+<%- if @year -%>
 year: <%= @year %>
+<%- end -%>
 <%- if options[:date_precision] -%>
 date_precision: "<%= options[:date_precision] %>"
 <%- end -%>
@@ -28,7 +34,9 @@ website: "<%= options[:website] %>"<%= " # TODO" if options[:website].blank? %>
 <%- if options[:original_website] -%>
 original_website: "<%= options[:original_website] %>"
 <%- end -%>
-tickets_url: "<%= options[:tickets_url] %>"<%= " # TODO" if options[:tickets_url].blank? %>
+<%- if options[:tickets_url].present? -%>
+tickets_url: "<%= options[:tickets_url] %>"
+<%- end -%>
 <%- if options[:last_edition] -%>
 last_edition: true
 <%- end -%>
