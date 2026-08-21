@@ -51,7 +51,8 @@ class Static::Validators::Validator
 
   def self.sponsor_validator_classes
     @sponsor_validators ||= [
-      Static::Validators::Schema
+      Static::Validators::Schema,
+      Static::Validators::SponsorSlug
     ]
   end
 
