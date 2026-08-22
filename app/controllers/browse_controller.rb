@@ -176,7 +176,7 @@ class BrowseController < ApplicationController
   def load_events_attended
     return unless Current.user
 
-    attended_event_ids = Current.user.participated_events.pluck(:id)
+    attended_event_ids = Current.user.attended_events.pluck(:id)
     return unless attended_event_ids.any?
 
     watched_talk_ids = Current.user.watched_talks.pluck(:talk_id)
@@ -194,7 +194,7 @@ class BrowseController < ApplicationController
   def load_unwatched_attended
     return unless Current.user
 
-    attended_event_ids = Current.user.participated_events.pluck(:id)
+    attended_event_ids = Current.user.attended_events.pluck(:id)
     return unless attended_event_ids.any?
 
     watched_talk_ids = Current.user.watched_talks.pluck(:talk_id)
