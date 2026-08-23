@@ -2,7 +2,7 @@
 
 module Static
   module Validators
-    class SlugMatchesName
+    class SpeakerSlugMatchesName
       def initialize(file_path:, document: nil)
         @file_path = file_path
         @document = document

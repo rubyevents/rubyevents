@@ -43,7 +43,7 @@ class Static::Validators::Validator
     @speaker_validators ||= [
       Static::Validators::Schema,
       Static::Validators::SimilarSpeakerNames,
-      Static::Validators::SlugMatchesName,
+      Static::Validators::SpeakerSlugMatchesName,
       Static::Validators::UniqueSpeakerFields,
       Static::Validators::UniqueSpeakers
     ]
