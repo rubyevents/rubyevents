@@ -73,6 +73,64 @@ class Static::Validators::SpeakerSlugMatchesNameTest < ActiveSupport::TestCase
     end
   end
 
+  test "no errors when name cannot be parameterized and slug matches github handle" do
+    yaml = <<~YAML
+      ---
+      - name: まつもとゆきひろ
+        github: matz
+        slug: matz
+    YAML
+    with_temp_speakers_yaml(yaml) do |path|
+      validator = Static::Validators::SpeakerSlugMatchesName.new(file_path: path)
+      assert_empty validator.errors
+    end
+  end
+
+  test "errors for github handle slug when name cannot be parameterized" do
+    yaml = <<~YAML
+      ---
+      - name: まつもとゆきひろ
+        github: matz
+        slug: ruby
+    YAML
+    with_temp_speakers_yaml(yaml) do |path|
+      validator = Static::Validators::SpeakerSlugMatchesName.new(file_path: path)
+      errors = validator.errors
+      error = errors.first.to_h
+      assert_equal "Name cannot be parameterized. Slug must be the GitHub handle, expected: matz.", error["message"]
+      assert_equal 4, error["line"], "Line number #{error["line"]} does not match line number 4."
+      assert_equal 4, error["end_line"], "End line number #{error["end_line"]} does not match line number 4."
+    end
+  end
+
+  test "no errors for any slug when name cannot be parameterized and no github handle" do
+    yaml = <<~YAML
+      ---
+      - name: まつもとゆきひろ
+        slug: yukihiro-matsumoto
+    YAML
+    with_temp_speakers_yaml(yaml) do |path|
+      validator = Static::Validators::SpeakerSlugMatchesName.new(file_path: path)
+      assert_empty validator.errors
+    end
+  end
+
+  test "no errors for alias with unparameterizable name not matching speaker github handle" do
+    yaml = <<~YAML
+      ---
+      - name: NARUSE Yui
+        github: nurse
+        slug: naruse-yui
+        aliases:
+          - name: 成瀬ゆい
+            slug: naruse-yui
+    YAML
+    with_temp_speakers_yaml(yaml) do |path|
+      validator = Static::Validators::SpeakerSlugMatchesName.new(file_path: path)
+      assert_empty validator.errors
+    end
+  end
+
   test "no errors for alias slugs that are parameterized names" do
     yaml = <<~YAML
       ---
