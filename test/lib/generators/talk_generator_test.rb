@@ -10,6 +10,7 @@ class TalkGeneratorTest < Rails::Generators::TestCase
   teardown { FileUtils.remove_entry(destination_root) }
 
   test "creates minimum videos.yml with valid yaml" do
+    seed_speakers_file
     videos_file_path = File.join(destination_root, "data/rubyconf/2024/videos.yml")
     run_generator [
       "--event-series", "rubyconf",
@@ -26,6 +27,8 @@ class TalkGeneratorTest < Rails::Generators::TestCase
   end
 
   test "creates maximum videos.yml with valid yaml" do
+    seed_speakers_file
+
     videos_file_path = File.join(destination_root, "data/rubyconf/2025/videos.yml")
     run_generator [
       "--event-series", "rubyconf",
@@ -49,6 +52,8 @@ class TalkGeneratorTest < Rails::Generators::TestCase
   end
 
   test "infers a non-default kind from the title when --kind is omitted" do
+    seed_speakers_file
+
     videos_file_path = File.join(destination_root, "data/rubyconf/2030/videos.yml")
     run_generator [
       "--event-series", "rubyconf",
@@ -63,6 +68,8 @@ class TalkGeneratorTest < Rails::Generators::TestCase
   end
 
   test "does not write a kind when the title classifies as the default talk" do
+    seed_speakers_file
+
     videos_file_path = File.join(destination_root, "data/rubyconf/2031/videos.yml")
     run_generator [
       "--event-series", "rubyconf",
@@ -78,6 +85,8 @@ class TalkGeneratorTest < Rails::Generators::TestCase
   end
 
   test "an explicit --kind wins over the title inference" do
+    seed_speakers_file
+
     videos_file_path = File.join(destination_root, "data/rubyconf/2032/videos.yml")
 
     run_generator [
@@ -94,6 +103,8 @@ class TalkGeneratorTest < Rails::Generators::TestCase
   end
 
   test "writes an explicit --kind talk that overrides a non-default classification" do
+    seed_speakers_file
+
     videos_file_path = File.join(destination_root, "data/rubyconf/2033/videos.yml")
     run_generator [
       "--event-series", "rubyconf",
@@ -110,6 +121,8 @@ class TalkGeneratorTest < Rails::Generators::TestCase
   end
 
   test "update videos.yml if called twice" do
+    seed_speakers_file
+
     videos_file_path = File.join(destination_root, "data/rubyconf/2026/videos.yml")
     run_generator [
       "--event-series", "rubyconf",
@@ -133,6 +146,8 @@ class TalkGeneratorTest < Rails::Generators::TestCase
   end
 
   test "append to videos.yml if called with a different details" do
+    seed_speakers_file
+
     videos_file_path = File.join(destination_root, "data/rubyconf/2027/videos.yml")
     run_generator ["--event-series", "rubyconf", "--event", "2027", "--title", "Keynote: Jane Doe", "--speakers", "Jane Doe", "--kind", "keynote"]
     run_generator ["--event-series", "rubyconf", "--event", "2027", "--title", "RubyEvents is great", "--speakers", "Rachael Wright-Munn", "Marco Roth"]
@@ -152,6 +167,8 @@ class TalkGeneratorTest < Rails::Generators::TestCase
   end
 
   test "fails when --id does not match an existing talk and lists the available ids" do
+    seed_speakers_file
+
     File.join(destination_root, "data/rubyconf/2035/videos.yml")
     run_generator ["--event-series", "rubyconf", "--event", "2035", "--title", "Keynote: Jane Doe", "--speakers", "Jane Doe"]
 
@@ -164,6 +181,8 @@ class TalkGeneratorTest < Rails::Generators::TestCase
   end
 
   test "updating with --id does not append a new entry" do
+    seed_speakers_file
+
     videos_file_path = File.join(destination_root, "data/rubyconf/2036/videos.yml")
     run_generator ["--event-series", "rubyconf", "--event", "2036", "--title", "Building Better APIs", "--speakers", "Jane Doe"]
     run_generator ["--event-series", "rubyconf", "--event", "2036", "--id", "jane-doe-2036", "--description", "Updated description."]
@@ -176,6 +195,8 @@ class TalkGeneratorTest < Rails::Generators::TestCase
   end
 
   test "fails when --id is an old_id" do
+    seed_speakers_file
+
     videos_file_path = File.join(destination_root, "data/rubyconf/2037/videos.yml")
     run_generator ["--event-series", "rubyconf", "--event", "2037", "--title", "Building Better APIs", "--speakers", "Jane Doe"]
 
@@ -192,6 +213,8 @@ class TalkGeneratorTest < Rails::Generators::TestCase
   end
 
   test "adds the kind to the id when the speaker already has a talk in the file" do
+    seed_speakers_file
+
     videos_file_path = File.join(destination_root, "data/rubyconf/2034/videos.yml")
     run_generator ["--event-series", "rubyconf", "--event", "2034", "--title", "Building Better APIs", "--speakers", "Jane Doe"]
     run_generator ["--event-series", "rubyconf", "--event", "2034", "--title", "Keynote: Jane Doe", "--kind", "keynote", "--speakers", "Jane Doe"]
@@ -203,6 +226,8 @@ class TalkGeneratorTest < Rails::Generators::TestCase
   end
 
   test "finds event series from static event if not provided" do
+    seed_speakers_file
+
     videos_file_path = File.join(destination_root, "data/tropicalrb/tropical-on-rails-2026/videos.yml")
     run_generator ["--event", "tropical-on-rails-2026", "--title", "Keynote: Marco Roth", "--speakers", "Marco Roth"]
 
@@ -212,6 +237,8 @@ class TalkGeneratorTest < Rails::Generators::TestCase
   end
 
   test "creates minimum lightning talk entry when lightning_talks option is true" do
+    seed_speakers_file
+
     videos_file_path = File.join(destination_root, "data/rubyconf/2028/videos.yml")
     run_generator ["--event-series", "rubyconf",
       "--event", "2028",
@@ -227,6 +254,8 @@ class TalkGeneratorTest < Rails::Generators::TestCase
   end
 
   test "creates maximum lightning talk entry when lightning_talks option is true" do
+    seed_speakers_file
+
     videos_file_path = File.join(destination_root, "data/rubyconf/2029/videos.yml")
     run_generator ["--event-series", "rubyconf",
       "--event", "2029",
@@ -243,6 +272,73 @@ class TalkGeneratorTest < Rails::Generators::TestCase
       assert_match(/language: "English"/, content)
       assert_match(/talks: \[\]/, content)
     end
+  end
+
+  test "adds unknown speakers to data/speakers.yml with generated slugs" do
+    seed_speakers_file
+
+    run_generator ["--event-series", "rubyconf", "--event", "2040", "--title", "Keynote: Jane Doe", "--speakers", "Jane Doe", "John Smith"]
+
+    speakers = read_speakers_file
+    assert_equal [
+      {"name" => "Jane Doe", "github" => "", "slug" => "jane-doe"},
+      {"name" => "John Smith", "github" => "", "slug" => "john-smith"}
+    ], speakers
+  end
+
+  test "only adds speakers that don't exist in data/speakers.yml" do
+    seed_speakers_file(<<~YAML)
+      ---
+      - name: Jane Doe
+        slug: jane-doe
+    YAML
+
+    run_generator ["--event-series", "rubyconf", "--event", "2041", "--title", "Keynote: Jane Doe", "--speakers", "Jane Doe", "New Person"]
+
+    speakers = read_speakers_file
+    assert_equal 2, speakers.size
+    assert_equal "Jane Doe", speakers.first["name"]
+    assert_equal({"name" => "New Person", "github" => "", "slug" => "new-person"}, speakers.last)
+  end
+
+  test "does not add speakers that are known from their alias" do
+    seed_speakers_file(<<~YAML)
+      ---
+      - name: Jane Doe
+        slug: jane-doe
+        aliases:
+          - name: JD
+            slug: jane-doe
+    YAML
+
+    run_generator ["--event-series", "rubyconf", "--event", "2042", "--title", "Keynote by JD", "--speakers", "JD"]
+
+    speakers = read_speakers_file
+    assert_equal 1, speakers.size
+    assert_equal "Jane Doe", speakers.first["name"]
+  end
+
+  test "adds a speaker listed twice only once" do
+    seed_speakers_file
+
+    run_generator ["--event-series", "rubyconf", "--event", "2044", "--title", "Double Trouble", "--speakers", "Jane Doe", "Jane Doe"]
+
+    assert_equal [
+      {"name" => "Jane Doe", "github" => "", "slug" => "jane-doe"}
+    ], read_speakers_file
+  end
+
+  def seed_speakers_file(content = "--- []\n")
+    FileUtils.mkdir_p(File.dirname(speakers_file_path))
+    File.write(speakers_file_path, content)
+  end
+
+  def read_speakers_file
+    Yerba.parse_file(speakers_file_path).to_a
+  end
+
+  def speakers_file_path
+    File.join(destination_root, "data", "speakers.yml")
   end
 
   def assert_valid_file(file_path, msg = nil, &block)

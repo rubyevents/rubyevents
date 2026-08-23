@@ -22,6 +22,8 @@ module Static
     ].freeze
 
     class StaleFileError < StandardError; end
+    class InvalidSpeakerError < StandardError; end
+    class DuplicateSpeakerError < StandardError; end
 
     def initialize(path = Rails.root.join(SPEAKERS_PATH).to_s, document: nil)
       @path = path
@@ -84,17 +86,48 @@ module Static
       document.where(**criteria)
     end
 
+    def upsert(name:, github: "", **attributes)
+      raise InvalidSpeakerError, "Speaker name cannot be blank" if name.blank?
+
+      index = index_for(name: name, github: github)
+
+      if index
+        update_entry(document[index], github: github, attributes: attributes)
+      else
+        add(name: name, github: github, **attributes)
+      end
+    end
+
     def add(name:, github: "", slug: nil, **attributes)
+      name = name.strip
+      github = github.strip
+      slug = slug&.strip
+
+      raise InvalidSpeakerError, "Speaker name cannot be blank" if name.blank?
+      raise DuplicateSpeakerError, "Speaker '#{name}' already exists" if known_names.include?(name)
+      raise DuplicateSpeakerError, "A speaker with GitHub handle '#{github}' already exists" if github.present? && index_by(:github)[github]
+
       slug ||= name.parameterize
 
-      entry = {name: name, github: github, slug: slug}
-      entry.merge!(attributes.reject { |_, value| value.nil? || value.to_s.empty? })
+      entry = {name: name, github: github, slug: slug}.merge!(clean_attributes(attributes))
 
       document << entry
 
       reset_cache
 
       entry
+    end
+
+    def update_entry(entry, github:, attributes:)
+      updates = clean_attributes({"github" => github}.merge!(attributes))
+
+      updates.each do |key, value|
+        entry[key] = value
+      end
+
+      reset_cache
+
+      entry.to_h
     end
 
     def all_speaker_references
@@ -136,7 +169,7 @@ module Static
       missing = missing_speakers
 
       entries = missing.map do |name|
-        {name: name, github: "", slug: name.parameterize}
+        {name:, github: "", slug: name.parameterize}
       end
 
       document.concat(entries) if entries.any?
@@ -223,15 +256,43 @@ module Static
     private
 
     def index_for(name: nil, slug: nil, github: nil)
-      (slug && index_by(:slug)[slug]) ||
-        (github && index_by(:github)[github]) ||
-        (name && index_by(:name)[name])
+      name = name&.strip
+      slug = slug&.strip
+      github = github&.strip
+
+      (slug.present? && index_by(:slug)[slug]) ||
+        (github.present? && index_by(:github)[github]) ||
+        (name.present? && index_by(:name)[name]) ||
+        (name.present? && index_aliases[name])
+    end
+
+    def index_aliases
+      @index_aliases ||= begin
+        result = {}
+
+        entries.each_with_index do |entry, index|
+          next unless entry.is_a?(Hash)
+
+          Array(entry["aliases"]).each do |alias_entry|
+            result[alias_entry["name"]] = index if alias_entry.is_a?(Hash) && alias_entry["name"]
+          end
+        end
+
+        result
+      end
+    end
+
+    def clean_attributes(attributes)
+      attributes
+        .reject { |_, value| value.nil? || value.to_s.empty? }
+        .transform_values { |value| value.is_a?(String) ? value.strip : value }
     end
 
     def reset_cache
       @known_names = nil
       @entries = nil
       @indexes = nil
+      @index_aliases = nil
       @all_speaker_references = nil
       @all_referenced_names = nil
       @near_duplicate_names = nil

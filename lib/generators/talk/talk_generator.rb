@@ -97,6 +97,10 @@ class TalkGenerator < Generators::EventBase
     @videos_file_path ||= File.join(event_directory, "videos.yml")
   end
 
+  def speakers_file_path
+    @speakers_file_path ||= File.join(destination_root, "data", "speakers.yml")
+  end
+
   def ensure_file_exists
     template "videos.yml.tt", videos_file_path unless File.exist?(videos_file_path)
   end
@@ -114,6 +118,19 @@ class TalkGenerator < Generators::EventBase
       say("Appending new talk with id:'#{@talk.id}'...", :green)
       append_to_file videos_file_path, template_content(talk_template)
     end
+  end
+
+  def maybe_add_speaker_to_file
+    speakers = @talk.speakers
+    return if speakers.empty?
+
+    speakers_file = Static::SpeakersFile.new(speakers_file_path)
+    speakers.each { |name| speakers_file.upsert(name: name) }
+
+    return unless speakers_file.changed?
+
+    speakers_file.save!
+    say("Added or updated #{speakers.to_sentence} in #{speakers_file_path}.", :green)
   end
 
   private
