@@ -99,8 +99,8 @@ module Static
     end
 
     def add(name:, github: "", slug: nil, **attributes)
-      name = name.strip
-      github = github.strip
+      name = name.to_s.strip
+      github = github.to_s.strip
       slug = slug&.strip
 
       raise InvalidSpeakerError, "Speaker name cannot be blank" if name.blank?
@@ -284,7 +284,7 @@ module Static
 
     def clean_attributes(attributes)
       attributes
-        .reject { |_, value| value.nil? || value.to_s.empty? }
+        .reject { |_, value| value.blank? }
         .transform_values { |value| value.is_a?(String) ? value.strip : value }
     end
 

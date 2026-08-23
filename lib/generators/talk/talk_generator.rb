@@ -131,6 +131,10 @@ class TalkGenerator < Generators::EventBase
 
     speakers_file.save!
     say("Added or updated #{speakers.to_sentence} in #{speakers_file_path}.", :green)
+  rescue Static::SpeakersFile::InvalidSpeakerError,
+    Static::SpeakersFile::DuplicateSpeakerError,
+    Static::SpeakersFile::StaleFileError => e
+    say_error("Could not sync speakers to #{speakers_file_path}: #{e.message}", :red)
   end
 
   private

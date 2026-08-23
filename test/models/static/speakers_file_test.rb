@@ -208,6 +208,15 @@ class Static::SpeakersFileTest < ActiveSupport::TestCase
     assert_equal 1, speakers_file.count
   end
 
+  test "upsert does not overwrite attributes with whitespace-only values" do
+    speakers_file = Static::SpeakersFile.new(@tmp_file.path)
+
+    entry = speakers_file.upsert(name: "Matz", github: "   ", twitter: "   ")
+
+    assert_equal "matz", entry["github"]
+    assert_nil entry["twitter"]
+  end
+
   test "upsert raises InvalidSpeakerError when the name is blank" do
     speakers_file = Static::SpeakersFile.new(@tmp_file.path)
 

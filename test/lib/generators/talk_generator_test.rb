@@ -328,6 +328,23 @@ class TalkGeneratorTest < Rails::Generators::TestCase
     ], read_speakers_file
   end
 
+  test "reports a red message and continues when speaker sync fails" do
+    seed_speakers_file
+
+    videos_file_path = File.join(destination_root, "data/rubyconf/2045/videos.yml")
+    stderr = capture(:stderr) do
+      run_generator ["--event-series", "rubyconf", "--event", "2045", "--title", "Broken Speaker", "--speakers", ""]
+    end
+
+    assert_includes stderr, "Could not sync speakers"
+    assert_includes stderr, "Speaker name cannot be blank"
+
+    assert_file videos_file_path do |content|
+      assert_match(/id: "/, content)
+    end
+    assert_empty read_speakers_file
+  end
+
   def seed_speakers_file(content = "--- []\n")
     FileUtils.mkdir_p(File.dirname(speakers_file_path))
     File.write(speakers_file_path, content)
