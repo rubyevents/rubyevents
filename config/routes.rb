@@ -254,6 +254,7 @@ Rails.application.routes.draw do
           post :reimport, on: :member
           post :reindex, on: :member
         end
+        resources :conferences, only: [:index], defaults: {format: :rss}
         resources :attendances, only: [:index, :show], param: :event_slug
       end
 

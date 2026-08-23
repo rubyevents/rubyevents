@@ -147,6 +147,18 @@ class Event < ApplicationRecord
     joins(:talks).where(kind: :meetup, talks: {date: Date.today..}).distinct
   }
 
+  def self.for_conference_feed(today: Date.current, limit: 20)
+    latest_start_date = today.next_month
+    latest_start_date = latest_start_date.end_of_month if today == today.end_of_month
+
+    conference
+      .canonical
+      .where(date_precision: :day, start_date: ..latest_start_date)
+      .order(start_date: :desc)
+      .includes(:series, :keynote_speakers)
+      .limit(limit)
+  end
+
   def upcoming?
     start_date.present? && start_date >= Date.today
   end
