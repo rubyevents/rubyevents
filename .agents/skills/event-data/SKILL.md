@@ -110,21 +110,24 @@ When updating speakers.yml, the structure is:
 ```yaml
 - name: "Speaker Name"
   github: "github_handle"
-  slug: "speaker-slug"
+  slug: "speaker-name"
 ```
 
 Other fields are permitted, but these are the fields I want you to focus on.
 The GitHub handle is how we deduplicate speakers, and populate their profile, so the key should always be present.
 These speakers are used for talks and involvements, so if a speaker is missing, you need to create a new record for them here.
 
-**Slug convention:** Prefer the speaker's GitHub handle as the slug (e.g., `slug: "tenderlove"` for `github: "tenderlove"`). Only transliterate or generate a slug from the name when the speaker has no GitHub handle.
+**Slug convention:**
+1. Prefer the speaker's parameterized name as the slug (e.g., `slug: "chris-hasinski"` for `name: "Chris Hasiński"`).
+2. If the name cannot be parameterized cleanly, use the speaker's GitHub handle as the slug (most common with Japanese names, eg. "河野十行", slug: "jugyo").
+3. Only transliterate when the speaker has no GitHub handle.
 
 If the GitHub is unknown:
 
 ```yaml
 - name: "Speaker Name"
   github: ""
-  slug: "speaker-slug"
+  slug: "speaker-name"
 ```
 
 If the speaker has multiple aliases, they'll be included as aliases.
@@ -132,14 +135,14 @@ If the speaker has multiple aliases, they'll be included as aliases.
 ```yaml
 - name: "Speaker Name"
   github: "github_handle"
-  slug: "speaker-slug"
+  slug: "speaker-name"
   aliases:
     - name: "Other Name"
-      slug: "other-slug"
+      slug: "other-name"
 ```
 
 To update a speaker programmatically, use `Static::SpeakersFile` with a rails runner:
 
 ```bash
-bin/rails runner 'file = Static::SpeakersFile.new; speaker = file.find_by(github: "handle"); speaker["slug"] = "new-slug"; file.save!'
+bin/rails runner 'file = Static::SpeakersFile.new; speaker = file.find_by(name: "Speaker Name"); speaker["github"] = "github-handle"; file.save!'
 ```

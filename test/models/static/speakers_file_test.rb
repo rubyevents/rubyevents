@@ -112,6 +112,121 @@ class Static::SpeakersFileTest < ActiveSupport::TestCase
     assert_empty file.near_duplicate_names(threshold: 0.99)
   end
 
+  test "add raises InvalidSpeakerError when the name is blank" do
+    speakers_file = Static::SpeakersFile.new(@tmp_file.path)
+
+    [nil, "", "   "].each do |blank_name|
+      error = assert_raises(Static::SpeakersFile::InvalidSpeakerError) do
+        speakers_file.add(name: blank_name)
+      end
+
+      assert_equal "Speaker name cannot be blank", error.message
+    end
+
+    assert_equal 1, speakers_file.count
+  end
+
+  test "add raises DuplicateSpeakerError when the name already exists" do
+    speakers_file = Static::SpeakersFile.new(@tmp_file.path)
+
+    error = assert_raises(Static::SpeakersFile::DuplicateSpeakerError) do
+      speakers_file.add(name: "Matz")
+    end
+
+    assert_equal "Speaker 'Matz' already exists", error.message
+    assert_equal 1, speakers_file.count
+  end
+
+  test "add strips whitespace" do
+    speakers_file = Static::SpeakersFile.new(@tmp_file.path)
+
+    entry = speakers_file.add(name: "  Aaron Patterson  ", github: "  tenderlove  ")
+
+    assert_equal "Aaron Patterson", entry[:name]
+    assert_equal "tenderlove", entry[:github]
+    assert_equal "aaron-patterson", entry[:slug]
+  end
+
+  test "upsert adds a new speaker with a generated slug" do
+    speakers_file = Static::SpeakersFile.new(@tmp_file.path)
+
+    entry = speakers_file.upsert(name: "Jane Doe")
+
+    assert_equal({name: "Jane Doe", github: "", slug: "jane-doe"}, entry.to_h)
+    assert_equal 2, speakers_file.count
+  end
+
+  test "upsert updates attributes of an existing speaker found by name" do
+    speakers_file = Static::SpeakersFile.new(@tmp_file.path)
+
+    entry = speakers_file.upsert(name: "Matz", github: "", twitter: " yukihiro_matz ")
+
+    assert_equal "matz", entry["github"]
+    assert_equal "yukihiro_matz", entry["twitter"]
+  end
+
+  test "upsert finds an existing speaker by github handle and keeps their name" do
+    file = speakers_file_with(<<~YAML)
+      ---
+      - name: Yukihiro Matsumoto
+        github: matz
+        slug: yukihiro-matsumoto
+    YAML
+
+    entry = file.upsert(name: "Matz", github: "matz", website: "https://matz.rubyist.net")
+
+    assert_equal "Yukihiro Matsumoto", entry["name"]
+    assert_equal "https://matz.rubyist.net", entry["website"]
+    assert_equal 1, file.count
+  end
+
+  test "upsert matches an alias without renaming the canonical speaker" do
+    file = speakers_file_with(<<~YAML)
+      ---
+      - name: Jane Doe
+        slug: jane-doe
+        aliases:
+          - name: JD
+            slug: jane-doe
+    YAML
+
+    entry = file.upsert(name: "JD", github: "janedoe")
+
+    assert_equal "Jane Doe", entry["name"]
+    assert_equal "janedoe", entry["github"]
+    assert_equal 1, file.count
+  end
+
+  test "add raises DuplicateSpeakerError when the github handle already exists" do
+    speakers_file = Static::SpeakersFile.new(@tmp_file.path)
+
+    error = assert_raises(Static::SpeakersFile::DuplicateSpeakerError) do
+      speakers_file.add(name: "Yukihiro Matsumoto", github: "matz")
+    end
+
+    assert_equal "A speaker with GitHub handle 'matz' already exists", error.message
+    assert_equal 1, speakers_file.count
+  end
+
+  test "upsert does not overwrite attributes with whitespace-only values" do
+    speakers_file = Static::SpeakersFile.new(@tmp_file.path)
+
+    entry = speakers_file.upsert(name: "Matz", github: "   ", twitter: "   ")
+
+    assert_equal "matz", entry["github"]
+    assert_nil entry["twitter"]
+  end
+
+  test "upsert raises InvalidSpeakerError when the name is blank" do
+    speakers_file = Static::SpeakersFile.new(@tmp_file.path)
+
+    assert_raises(Static::SpeakersFile::InvalidSpeakerError) do
+      speakers_file.upsert(name: "")
+    end
+
+    assert_equal 1, speakers_file.count
+  end
+
   private
 
   def speakers_file_with(yaml)

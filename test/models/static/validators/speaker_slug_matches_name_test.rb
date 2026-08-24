@@ -2,28 +2,28 @@
 
 require "test_helper"
 
-class Static::Validators::SlugMatchesNameTest < ActiveSupport::TestCase
+class Static::Validators::SpeakerSlugMatchesNameTest < ActiveSupport::TestCase
   self.fixture_table_names = []
   SPEAKERS_FILE = Rails.root.join("data/speakers.yml").to_s
 
   test "applicable? returns true for speakers.yml" do
-    validator = Static::Validators::SlugMatchesName.new(file_path: SPEAKERS_FILE)
+    validator = Static::Validators::SpeakerSlugMatchesName.new(file_path: SPEAKERS_FILE)
     assert validator.applicable?
   end
 
   test "applicable? returns false for a non-speakers file" do
     file = Dir.glob(Rails.root.join("data/**/event.yml")).first
-    validator = Static::Validators::SlugMatchesName.new(file_path: file)
+    validator = Static::Validators::SpeakerSlugMatchesName.new(file_path: file)
     assert_not validator.applicable?
   end
 
   test "applicable? returns false for a non-existent file" do
-    validator = Static::Validators::SlugMatchesName.new(file_path: "/nonexistent/speakers.yml")
+    validator = Static::Validators::SpeakerSlugMatchesName.new(file_path: "/nonexistent/speakers.yml")
     assert_not validator.applicable?
   end
 
   test "returns empty errors for the real speakers.yml" do
-    validator = Static::Validators::SlugMatchesName.new(file_path: SPEAKERS_FILE)
+    validator = Static::Validators::SpeakerSlugMatchesName.new(file_path: SPEAKERS_FILE)
     assert_empty validator.errors
   end
 
@@ -35,7 +35,7 @@ class Static::Validators::SlugMatchesNameTest < ActiveSupport::TestCase
         slug: chaelcodes
     YAML
     with_temp_speakers_yaml(yaml) do |path|
-      validator = Static::Validators::SlugMatchesName.new(file_path: path)
+      validator = Static::Validators::SpeakerSlugMatchesName.new(file_path: path)
       errors = validator.errors
       error = errors.first.to_h
       assert_equal "Slug must be the name parameterized, expected: rachael-wright-munn", error["message"]
@@ -51,7 +51,7 @@ class Static::Validators::SlugMatchesNameTest < ActiveSupport::TestCase
         slug: RachaelWrightMunn
     YAML
     with_temp_speakers_yaml(yaml) do |path|
-      validator = Static::Validators::SlugMatchesName.new(file_path: path)
+      validator = Static::Validators::SpeakerSlugMatchesName.new(file_path: path)
       errors = validator.errors
       error = errors.first.to_h
       assert_equal "Slug must be the name parameterized, expected: rachael-wright-munn", error["message"]
@@ -68,7 +68,65 @@ class Static::Validators::SlugMatchesNameTest < ActiveSupport::TestCase
         slug: rachael-wright-munn
     YAML
     with_temp_speakers_yaml(yaml) do |path|
-      validator = Static::Validators::SlugMatchesName.new(file_path: path)
+      validator = Static::Validators::SpeakerSlugMatchesName.new(file_path: path)
+      assert_empty validator.errors
+    end
+  end
+
+  test "no errors when name cannot be parameterized and slug matches github handle" do
+    yaml = <<~YAML
+      ---
+      - name: まつもとゆきひろ
+        github: matz
+        slug: matz
+    YAML
+    with_temp_speakers_yaml(yaml) do |path|
+      validator = Static::Validators::SpeakerSlugMatchesName.new(file_path: path)
+      assert_empty validator.errors
+    end
+  end
+
+  test "errors for github handle slug when name cannot be parameterized" do
+    yaml = <<~YAML
+      ---
+      - name: まつもとゆきひろ
+        github: matz
+        slug: ruby
+    YAML
+    with_temp_speakers_yaml(yaml) do |path|
+      validator = Static::Validators::SpeakerSlugMatchesName.new(file_path: path)
+      errors = validator.errors
+      error = errors.first.to_h
+      assert_equal "Name cannot be parameterized. Slug must be the GitHub handle, expected: matz.", error["message"]
+      assert_equal 4, error["line"], "Line number #{error["line"]} does not match line number 4."
+      assert_equal 4, error["end_line"], "End line number #{error["end_line"]} does not match line number 4."
+    end
+  end
+
+  test "no errors for any slug when name cannot be parameterized and no github handle" do
+    yaml = <<~YAML
+      ---
+      - name: まつもとゆきひろ
+        slug: yukihiro-matsumoto
+    YAML
+    with_temp_speakers_yaml(yaml) do |path|
+      validator = Static::Validators::SpeakerSlugMatchesName.new(file_path: path)
+      assert_empty validator.errors
+    end
+  end
+
+  test "no errors for alias with unparameterizable name not matching speaker github handle" do
+    yaml = <<~YAML
+      ---
+      - name: NARUSE Yui
+        github: nurse
+        slug: naruse-yui
+        aliases:
+          - name: 成瀬ゆい
+            slug: naruse-yui
+    YAML
+    with_temp_speakers_yaml(yaml) do |path|
+      validator = Static::Validators::SpeakerSlugMatchesName.new(file_path: path)
       assert_empty validator.errors
     end
   end
@@ -98,7 +156,7 @@ class Static::Validators::SlugMatchesNameTest < ActiveSupport::TestCase
             slug: yukihiro-matsumoto
     YAML
     with_temp_speakers_yaml(yaml) do |path|
-      validator = Static::Validators::SlugMatchesName.new(file_path: path)
+      validator = Static::Validators::SpeakerSlugMatchesName.new(file_path: path)
       assert_empty validator.errors
     end
   end
@@ -118,7 +176,7 @@ class Static::Validators::SlugMatchesNameTest < ActiveSupport::TestCase
             slug: Matz
     YAML
     with_temp_speakers_yaml(yaml) do |path|
-      validator = Static::Validators::SlugMatchesName.new(file_path: path)
+      validator = Static::Validators::SpeakerSlugMatchesName.new(file_path: path)
       errors = validator.errors
       error = errors.first.to_h
       assert_equal "Slug must be the name parameterized, expected: matz", error["message"]
@@ -134,7 +192,7 @@ class Static::Validators::SlugMatchesNameTest < ActiveSupport::TestCase
         slug: RachaelWrightMunn
     YAML
     with_temp_speakers_yaml(yaml) do |path|
-      validator = Static::Validators::SlugMatchesName.new(file_path: path)
+      validator = Static::Validators::SpeakerSlugMatchesName.new(file_path: path)
       assert validator.errors.all? { |e| e.is_a?(Static::Validators::Error) }
     end
   end
