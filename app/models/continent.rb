@@ -7,7 +7,8 @@ class Continent
     "africa" => {name: "Africa", alpha2: "AF", emoji: "🌍"},
     "antarctica" => {name: "Antarctica", alpha2: "AN", emoji: "🌎"},
     "asia" => {name: "Asia", alpha2: "AS", emoji: "🌏"},
-    "australia" => {name: "Australia", alpha2: "OC", emoji: "🌏"},
+    # ISO3166 (countries gem) still labels this region "Australia"; keep as alias for lookups.
+    "oceania" => {name: "Oceania", alpha2: "OC", emoji: "🌏", aliases: ["Australia"]},
     "europe" => {name: "Europe", alpha2: "EU", emoji: "🌍"},
     "north-america" => {name: "North America", alpha2: "NA", emoji: "🌎"},
     "south-america" => {name: "South America", alpha2: "SA", emoji: "🌎"}
@@ -17,7 +18,7 @@ class Continent
     "africa" => {southwest: [-25.0, -35.0], northeast: [60.0, 40.0]},
     "antarctica" => {southwest: [-180.0, -90.0], northeast: [180.0, -60.0]},
     "asia" => {southwest: [25.0, -10.0], northeast: [180.0, 80.0]},
-    "australia" => {southwest: [110.0, -50.0], northeast: [180.0, 0.0]},
+    "oceania" => {southwest: [110.0, -50.0], northeast: [180.0, 0.0]},
     "europe" => {southwest: [-25.0, 35.0], northeast: [60.0, 72.0]},
     "north-america" => {southwest: [-170.0, 7.0], northeast: [-50.0, 85.0]},
     "south-america" => {southwest: [-82.0, -56.0], northeast: [-34.0, 13.0]}
@@ -92,7 +93,7 @@ class Continent
   end
 
   def countries
-    @countries ||= Country.all.select { |country| country.continent_name == name }
+    @countries ||= Country.all.select { |country| country.continent == self }
   end
 
   def country_codes
@@ -144,7 +145,7 @@ class Continent
     def find_by_name(name)
       return nil if name.blank?
 
-      slug = CONTINENT_DATA.find { |_, data| data[:name] == name }&.first
+      slug = CONTINENT_DATA.find { |_, data| data[:name] == name || Array(data[:aliases]).include?(name) }&.first
       return nil unless slug
 
       new(slug)
@@ -157,7 +158,7 @@ class Continent
     def africa = new("africa")
     def antarctica = new("antarctica")
     def asia = new("asia")
-    def australia = new("australia")
+    def oceania = new("oceania")
     def europe = new("europe")
     def north_america = new("north-america")
     def south_america = new("south-america")
