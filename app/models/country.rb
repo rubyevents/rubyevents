@@ -13,11 +13,11 @@ class Country
   delegate :alpha2, :alpha3, :emoji_flag, :subdivisions, :iso_short_name, :common_name, :translations, to: :record
 
   def continent_name
-    record.continent
+    continent&.name || record.continent
   end
 
   def continent
-    @continent ||= Continent.find_by_name(continent_name)
+    @continent ||= Continent.find_by_name(record.continent)
   end
 
   def initialize(record)
