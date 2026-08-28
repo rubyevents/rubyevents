@@ -132,6 +132,20 @@ module Static
       talks.filter_map { |talk| talk.value_at("old_id") }
     end
 
+    def removed_ids
+      @removed_ids ||= if event_file_path && File.exist?(event_file_path)
+        Array(Yerba.parse_file(event_file_path).value_at("removed_talk_ids"))
+      else
+        []
+      end
+    end
+
+    def event_file_path
+      return nil if path.blank?
+
+      @event_file_path ||= File.join(File.dirname(path.to_s), "event.yml")
+    end
+
     def top_level_talks
       @top_level_talks ||= video_pairs.map(&:first)
     end

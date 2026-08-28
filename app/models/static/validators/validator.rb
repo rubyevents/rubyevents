@@ -15,6 +15,7 @@ class Static::Validators::Validator
       Static::Validators::EventDates,
       Static::Validators::EventRecordingsPublishedDate,
       Static::Validators::IdMatchesFolder,
+      Static::Validators::RemovedTalkIds,
       Static::Validators::SeriesDefaultColors
     ]
   end

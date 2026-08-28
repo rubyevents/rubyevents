@@ -81,6 +81,22 @@ class Static::Validators::TalkRenamesTest < ActiveSupport::TestCase
     end
   end
 
+  test "does not flag an id listed under removed_talk_ids in event.yml" do
+    with_temp_video([{"id" => "someone-else-testconf-2024", "title" => "Another Talk"}], removed_talk_ids: ["jane-doe-testconf-2024"]) do |path|
+      assert_empty errors_for(path)
+    end
+  end
+
+  test "still flags a disappeared id when a different id is listed under removed_talk_ids" do
+    with_temp_video([{"id" => "someone-else-testconf-2024", "title" => "Another Talk"}], removed_talk_ids: ["somebody-else-testconf-2024"]) do |path|
+      errors = errors_for(path)
+
+      assert_equal 1, errors.size
+      assert_includes errors.first.message, %(id "jane-doe-testconf-2024" disappeared from this file)
+      assert_includes errors.first.message, "`removed_talk_ids` in event.yml"
+    end
+  end
+
   test "checks nested talks" do
     baseline = [
       {
@@ -186,13 +202,21 @@ class Static::Validators::TalkRenamesTest < ActiveSupport::TestCase
     Static::Validators::TalkRenames.new(file_path: path, baseline: baseline_file).errors
   end
 
-  def with_temp_video(videos)
+  def with_temp_video(videos, removed_talk_ids: nil)
     dir = Dir.mktmpdir
     videos_path = File.join(dir, "data", "testconf", "testconf-2024", "videos.yml")
     FileUtils.mkdir_p(File.dirname(videos_path))
     File.write(videos_path, videos.to_yaml)
+    write_event_file(File.dirname(videos_path), removed_talk_ids) if removed_talk_ids
     yield videos_path
   ensure
     FileUtils.rm_rf(dir)
+  end
+
+  def write_event_file(dir, removed_talk_ids)
+    lines = ["---", %(id: "testconf-2024"), %(title: "TestConf 2024"), "removed_talk_ids:"]
+    lines += removed_talk_ids.map { |id| %(  - "#{id}") }
+
+    File.write(File.join(dir, "event.yml"), lines.join("\n") + "\n")
   end
 end
