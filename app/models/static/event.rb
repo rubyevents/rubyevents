@@ -375,10 +375,23 @@ module Static
       Static::Video.where_event_slug(slug).each do |video|
         video.import!(event: event, index: index)
       end
+
+      destroy_removed_talks!(event)
     rescue ActiveRecord::RecordInvalid => e
       puts "Couldn't save: #{talk_data["title"]} (#{talk_data["id"]}), error: #{e.message}"
       error_location = ActiveSupport::BacktraceCleaner.new.clean_locations(e.backtrace_locations).first
       puts "::error file=#{error_location&.path},line=#{error_location&.lineno}::#{e.record.class} (#{e.record&.to_param}) - #{e.detailed_message}"
+    end
+
+    def destroy_removed_talks!(event)
+      ids = Array(attributes["removed_talk_ids"])
+      return if ids.empty?
+
+      event.talks.where(static_id: ids).find_each do |talk|
+        puts "Removing talk #{talk.static_id}" unless Rails.env.test?
+
+        talk.destroy!
+      end
     end
 
     def import_sponsors!(event)

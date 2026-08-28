@@ -111,7 +111,7 @@ module Static
       def missing_ids
         return [] if baseline.nil?
 
-        baseline.ids - current.ids - current.old_ids
+        baseline.ids - current.ids - current.old_ids - current.removed_ids
       end
 
       def renamed_errors
@@ -130,7 +130,7 @@ module Static
       def disappeared_errors
         disappeared_ids.map do |id|
           Static::Validators::Error.new(
-            %(id "#{id}" disappeared from this file without being kept as an old_id. If the talk was renamed, please add `old_id: "#{id}"` to the renamed entry so its production record can be migrated on the next seed. If the talk was removed on purpose, this is fine.),
+            %(id "#{id}" disappeared from this file without being kept as an old_id. If the talk was renamed, please add `old_id: "#{id}"` to the renamed entry so its production record can be migrated on the next seed. If the talk was removed on purpose, list it under `removed_talk_ids` in event.yml.),
             file_path: @file_path,
             line: 1
           )

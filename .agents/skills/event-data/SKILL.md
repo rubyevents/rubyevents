@@ -61,6 +61,22 @@ Do not pass `--id` when adding a new talk. Talk ids follow the "firstname-lastna
 
 If you create talks, capture a screenshot from http://localhost:3000/events/<event-slug>/talks after the changes are seeded.
 
+## Removing a talk
+
+`bin/rails validate:videos` fails when a talk id disappears from a `videos.yml`, because a vanished id
+is usually an unrecorded rename and production still knows the talk under the old id.
+
+- **Renamed?** Keep the previous id on the renamed entry as `old_id` so its record is migrated on the
+  next seed. `bin/rails talk_ids:backfill_old_ids` writes it for you.
+- **Removed on purpose?** List the id under `removed_talk_ids` in the event's `event.yml` (it lives
+  there because `videos.yml` has a sequence root and cannot hold a top-level key):
+
+```yaml
+# data/kaigi-on-rails/kaigi-on-rails-2026/event.yml
+removed_talk_ids:
+  - "dave-thomas-kaigi-on-rails-2026"
+```
+
 ## Generating a Schedule
 
 Load Documentation from docs/ADDING_SCHEDULES.md into context.

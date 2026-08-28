@@ -36,6 +36,35 @@ class Static::EventTest < ActiveSupport::TestCase
     assert event_record.talks.exists?
   end
 
+  test "import_videos! destroys talks listed under removed_talk_ids" do
+    Static::EventSeries.find_by_slug("helveticruby").import_series!
+    event = Static::Event.find_by_slug(SLUG)
+    event_record = event.import_event!
+    event.import_videos!(event_record)
+
+    removed_id = event_record.talks.first.static_id
+    kept_count = event_record.talks.count - 1
+
+    event.stub(:attributes, event.attributes.merge("removed_talk_ids" => [removed_id])) do
+      event.import_videos!(event_record)
+    end
+
+    assert_nil ::Talk.find_by(static_id: removed_id)
+    assert_equal kept_count, event_record.talks.reload.count
+  end
+
+  test "import_videos! leaves talks alone when removed_talk_ids is empty" do
+    Static::EventSeries.find_by_slug("helveticruby").import_series!
+    event = Static::Event.find_by_slug(SLUG)
+    event_record = event.import_event!
+    event.import_videos!(event_record)
+
+    count = event_record.talks.count
+    event.import_videos!(event_record)
+
+    assert_equal count, event_record.talks.reload.count
+  end
+
   test "import_sponsors!" do
     Static::EventSeries.find_by_slug("helveticruby").import_series!
     event = Static::Event.find_by_slug(SLUG)

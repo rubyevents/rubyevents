@@ -729,6 +729,13 @@
         "additionalProperties": false
       }
     },
+    "removed_talk_ids": {
+      "type": "array",
+      "description": "Ids of talks that were intentionally removed from videos.yml, so the removal is not mistaken for an unrecorded rename",
+      "items": {
+        "type": "string"
+      }
+    },
     "playlist": {
       "type": "string",
       "description": "YouTube playlist/Vimeo showcase link"
