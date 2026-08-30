@@ -63,6 +63,6 @@ This month, we merged [<%= @pr_count %> PRs from <%= @contributors_count %> cont
 
 ### Thank You to All <%= @contributors_count %> Contributors ❤️
 
-<%- @contributors.each do |author, prs| -%><%= author["login"] == "app/copilot-swe-agent" ? "🤖" : "#{author["name"]}(@#{author["login"]})" %> <%= prs.size  %> PRs<%- end -%>
+<%= @contributor_list %>
 
 > Looking to join this list in <%= @next_month %>? Check out our [contributions page](https://www.rubyevents.org/contributions) or the [CONTRIBUTING.md](https://github.com/rubyevents/rubyevents/blob/main/CONTRIBUTING.md) on GitHub.
