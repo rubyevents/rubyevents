@@ -355,12 +355,10 @@ module Static
       cfps = Yerba.parse_file(cfp_file_path.to_s).to_a
 
       cfps.each do |cfp_data|
-        cfp = event.cfps.find_or_initialize_by(
-          link: cfp_data["link"],
-          open_date: cfp_data["open_date"]
-        )
+        cfp = event.cfps.find_or_initialize_by(link: cfp_data["link"])
         cfp.assign_attributes(
           name: cfp_data["name"],
+          open_date: cfp_data["open_date"],
           close_date: cfp_data["close_date"]
         )
 
