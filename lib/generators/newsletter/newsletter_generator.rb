@@ -24,8 +24,13 @@ class NewsletterGenerator < Rails::Generators::NamedBase
         --json author,number,url,labels
     ))
     @pr_count = @pull_requests.size
-    @contributors = @pull_requests.group_by { |pr| pr["author"] }
-    @contributors_count = @contributors.size
+    contributors = @pull_requests.group_by { |pr| pr["author"] }
+      .sort_by { |author, prs| prs.size }
+      .reverse
+    @contributor_list = contributors.map do |author, prs|
+      (author["login"] == "app/copilot-swe-agent") ? "🤖" : "#{author["name"]}(@#{author["login"]})"
+    end.to_sentence
+    @contributors_count = contributors.size
     @content_pr_count = @pull_requests.count { |pr| pr["labels"]&.any? { |label| label["name"] == "content" } }
   end
 
