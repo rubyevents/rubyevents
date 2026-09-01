@@ -9,17 +9,17 @@ class WatchListTalksController < ApplicationController
   end
 
   def destroy
-    @watch_list.watch_list_talks.find_by(talk_id: params[:id])&.destroy
+    @talk = Talk.find(params[:id])
+    @watch_list.watch_list_talks.find_by(talk: @talk)&.destroy
     respond_to_toggle
   end
 
   private
 
   def respond_to_toggle
-    if request.format.turbo_stream?
-      redirect_back fallback_location: @watch_list
-    else
-      head :no_content
+    respond_to do |format|
+      format.turbo_stream
+      format.html { request.xhr? ? head(:no_content) : redirect_back(fallback_location: @watch_list) }
     end
   end
 
