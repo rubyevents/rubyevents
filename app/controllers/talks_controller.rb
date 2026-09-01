@@ -127,7 +127,7 @@ class TalksController < ApplicationController
         .order(date: :desc)
         .distinct
     when "events_attended"
-      attended_event_ids = Current.user.participated_events.pluck(:id)
+      attended_event_ids = Current.user.attended_events.pluck(:id)
       return Talk.none if attended_event_ids.empty?
 
       watched_talk_ids = Current.user.watched_talks.pluck(:talk_id)
