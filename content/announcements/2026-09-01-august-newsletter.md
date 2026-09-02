@@ -5,7 +5,7 @@ date: 2026-09-01
 author: chaelcodes
 published: true
 excerpt: |-
-  TODO - excerpt
+  At RubyEvents.org we love events, which is why we're now producing guides for organizers at https://guides.rubyevents.org — an initiative led by Hans Schnedlitz, who we're excited to welcome to the RubyEvents.org team! Balkan Ruby and Rubyconf videos have been released and are available on the site.  XO Ruby's CFPs are the last of this year's conference CFPs until the 2027 CFPs are released. Next month, September, has Rails Camp West, EuRuKo, Rails World, and Rocky Mountain Ruby.
 tags:
   - newsletter
   - august
@@ -13,11 +13,7 @@ tags:
 featured_image:
 ---
 
-At Ruby Events, we love events! Which is why we're now producing guides for organizers at https://guides.rubyevents.org. This initiative is being lead by Hans Schendlitz.
-* Hans Schnedlitz joins the RubyEvents.org team. Organizer of Vienna.rb, and long-time contributor with 33 PRs.
-* Rubyconf videos have been released.
-* XO Ruby's CFPs are the last of this year's conference CFPs until the 2027 CFPs are released.
-
+At RubyEvents.org we love events, which is why we're now producing guides for organizers at https://guides.rubyevents.org — an initiative led by Hans Schnedlitz, who we're excited to welcome to the RubyEvents.org team! Balkan Ruby and RubyConf videos have been released and are available on the site.  XO Ruby's CFPs are the last of this year's conference CFPs until the 2027 CFPs are released. Next month, September, has Rails Camp West, EuRuKo, Rails World, and Rocky Mountain Ruby.
 
 ## Open CFPs
 
@@ -45,30 +41,31 @@ These XO Ruby CFPs are the last ones of the year until the 2027 CFPs are release
 📆 [EuRuKo](/events/euruko-2026) (September 16-18 in Brno, Czechia) - The BRUG meetup is on the 16th and they're hosting a city tour on the 19th! 🎤 Check out the 16 scheduled [talks](/events/euruko-2026/talks)! 🎟️[Tickets](https://2026.euruko.org/register.html) are available for €350.
 📆 [Rails at Scale Summit](/events/rails-at-scale-summit-2026) (September 22 in Austin, TX) is an invite-only 150-attendee event focused on scaling Rails the day before Rails World.
 📆 [Rails World](/events/rails-world-2026) (September 23-24 in Austin, TX) - 1200+ Rubyists brought together for a two-day, two track conference organized by the Rails Foundation. 🎤 Check out the 24 scheduled [talks](/events/rails-world-2026/talks)! 🎟️[Tickets](https://luma.com/rails-world-2026) are available for $700 for community members and $1300 for corporations. This is the first year Rails World tickets haven't sold out in under an hour. _Say hi to RubyEvents team members Rachael Wright-Munn and Marco Roth!_
-📆 [Rocky Mountain Ruby](/events/rocky-mountain-ruby-2026) (September 28-29, 2026 in Boulder, Colorado) - A well-regarded community conference running since 2011. 🎤 Check out the 15 scheduled [talks](/events/rocky-mountain-ruby-2026/talks)! 🎟️[Tickets](https://ti.to/rocky-mountain-ruby/2026) are available for $225. _Say hi to RubyEvents team members Rachael Wright-Munn and Marco Roth!_
+📆 [Rocky Mountain Ruby](/events/rocky-mountain-ruby-2026) (September 28-29, 2026 in Boulder, Colorado) - A well-regarded community conference running since 2011. 🎤 Check out the 15 scheduled [talks](/events/rocky-mountain-ruby-2026/talks)! 🎟️[Tickets](https://ti.to/rocky-mountain-ruby/2026) are available for $225. _Say hi to RubyEvents team members Marco Roth and Rachael Wright-Munn!_
 
 > Prepare more than a few months ahead by checking out our [calendar](https://www.rubyevents.org/events/2026) or the full [list of events](https://www.rubyevents.org/events).
 
 ## Uploaded videos
 
 📺 The [Balkan Ruby 2026 talks](/events/balkanruby-2026/talks) have been released!
+📺 The [RubyConf 2026 talks](/events/rubyconf-2026/talks) have been released!
 📺 PR [2077](https://github.com/rubyevents/rubyevents/pull/2077) added 17 videos to [Ruby En Rails 2009](/events/rubyenrails-2009/talks)
 📺 PR [2047](https://github.com/rubyevents/rubyevents/pull/2047) added 17 videos to [EuRuKo 2012](/events/euruko-2012/talks)
 📺 PR [2024](https://github.com/rubyevents/rubyevents/pull/2024) restructured Ruby Australia to divide it into individual meetups and added several missing videos.
-  [/events/adelaide-rb-meetup/talks](/events/adelaide-rb-meetup/talks)
-  [/events/auckland-ruby-meetup/talks](/events/auckland-ruby-meetup/talks)
-  [/events/brisrails-meetup/talks](/events/brisrails-meetup/talks)
-  [/events/christchurch-ruby-meetup/talks](/events/christchurch-ruby-meetup/talks)
-  [/events/ruby-melbourne-meetup/talks](/events/ruby-melbourne-meetup/talks)
-  [/events/ruby-perth-meetup/talks](/events/ruby-perth-meetup/talks)
-  [/events/ruby-sydney-meetup/talks](/events/ruby-sydney-meetup/talks)
-  [/events/ruby-wellington-meetup/talks](/events/ruby-wellington-meetup/talks)
+  [Ruby and Rails Adelaide Meetup](/events/adelaide-rb-meetup/talks) - 2 events/0 talks
+  [Auckland Ruby Meetup](/events/auckland-ruby-meetup/talks) - 15 events/3 talks
+  [BrisRails Meetup](/events/brisrails-meetup/talks) - 19 events/0 talks/1 video
+  [Christchurch Ruby Meetup](/events/christchurch-ruby-meetup/talks) - 19 events/1 video
+  [Ruby Melbourne Meetup](/events/ruby-melbourne-meetup/talks) - 20+ events/139 talks
+  [Ruby Perth Meetup](/events/ruby-perth-meetup/talks) - 6 events/0 talks
+  [Ruby Sydney Meetup](/events/ruby-sydney-meetup/talks) - 20+ events/59 talks
+  [Ruby Wellington Meetup](/events/ruby-wellington-meetup/talks) - 20+ events/25 talks
 📺 [ChicagoRuby's](/events/chicagoruby/talks) April, May, and June 2026 meetup videos were added!
 📺 [LRUG's](/events/lrug-meetup/talks) May and July 2026 meetup videos were added!
 
 ## Contributions
 
-This month, we merged [70 PRs from 22 contributors!](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A2026-08-01..2026-08-31). 47 PRs were [new event data and videos](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A2026-08-01..2026-08-31+label%3Acontent)!
+This month, we merged [70 PRs from 22 contributors!](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A2026-08-01..2026-08-31) 47 PRs were [new event data and videos](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A2026-08-01..2026-08-31+label%3Acontent).
 
 ### Thank You to All 22 Contributors ❤️
 
