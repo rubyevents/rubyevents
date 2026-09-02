@@ -29,8 +29,9 @@ module ApplicationHelper
   def footer_credits
     maintainers = [
       link_to("@adrienpoly", "https://www.rubyevents.org/profiles/adrienpoly", class: "link", alt: "Adrien Poly"),
+      link_to("@marcoroth", "https://www.rubyevents.org/profiles/marcoroth", class: "link", alt: "Marco Roth"),
       link_to("@chaelcodes", "https://www.rubyevents.org/profiles/chaelcodes", class: "link", alt: "Rachael Wright-Munn"),
-      link_to("@marcoroth", "https://www.rubyevents.org/profiles/marcoroth", class: "link", alt: "Marco Roth")
+      link_to("@hschne", "https://www.rubyevents.org/profiles/hschne", class: "link", alt: "Hans Schnedlitz")
     ].shuffle.join(", ")
 
     output = ["Made with"]
