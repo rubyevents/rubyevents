@@ -1,44 +1,5 @@
-# TODO: Add all talks - docs/ADDING_UNPUBLISHED_TALKS.md
-# TODO: Reorder talks for schedule - docs/ADDING_SCHEDULES.md
 # TODO: Add recordings - docs/ADDING_VIDEOS.md
 ---
-- id: "christine-seeman-rocky-mountain-ruby-2026"
-  title: "Optimize Your Mindset (Without Overclocking)"
-  date: "2026-09-28"
-  language: "English"
-  video_provider: "scheduled"
-  video_id: "christine-seeman-rocky-mountain-ruby-2026"
-  description: |-
-    As developers, we're always optimizing our workflows, but why don't we optimize our thoughts? Your career isn't 100% code, and in the age of AI tools, constant notifications, and information overload, the skills that matter most aren't technical. Everyone struggles with focus, managing stress, accepting feedback, or finding time for what matters. But you don't have to stay stuck.
-
-    This talk tells the story of four people and four research-backed techniques to level up your work and life: mindfulness for breaking thought loops and managing stress, growth mindset for embracing challenges and continuous learning, habit building for sustainable change, and deep work strategies for maintaining focus in a distracted world. Whether you're new to the field, a seasoned developer, or someone who's never explored human skills talks, these practical strategies will help you grow, improve, and actually stick with new habits.
-  speakers:
-    - Christine Seeman
-
-- id: "giovanni-panasiti-rocky-mountain-ruby-2026"
-  title: "Building an Agentic RAG in the Rails Way with RubyLLM"
-  date: "2026-09-28"
-  language: "English"
-  video_provider: "scheduled"
-  video_id: "giovanni-panasiti-rocky-mountain-ruby-2026"
-  description: |-
-    When my company needed an AI assistant over our documents, we did the sensible corporate thing first: we handed the project to one of Italy's best-known consultancies. They delivered a working system spread across six services in four languages plus two databases. It worked. But I'm a Rails developer, and I couldn't accept that answering a question required a whole microservice fleet. I was sure there was a better way. So I studied to find a way and rebuilt the whole system the Rails' way. The result is an simple RAG application with agents running entirely in Rails.
-    I don't want this to either be an hype talk neither a framework demo. I want to show, with production code, that the boring version is the better one and we, as Ruby developers, have so many tools in our hands that we can really do everything we want without the need to move to other languages. What I want to state is that Rails developers are not second-class citizens in the AI conversation.
-  speakers:
-    - Giovanni Panasiti
-
-- id: "drew-bragg-rocky-mountain-ruby-2026"
-  title: "Your own AI Agent in ~400 lines of Ruby"
-  date: "2026-09-28"
-  language: "English"
-  video_provider: "scheduled"
-  video_id: "drew-bragg-rocky-mountain-ruby-2026"
-  description: |-
-    AI coding agents feel like magic. They autocomplete your thoughts, refactor your code, and sometimes hallucinate with alarming confidence. But we've all had that moment where you bundle open a gem and go "oh, that's all it is?" AI agents deserve that same moment. Turns out they're just an API call, a conversation history, a system prompt, some optional tools, in a loop (of course). In this talk we'll build one together but in Ruby. Starting from 15 lines and iterating through until we have a full agent. About 400 lines, start to finish.
-    Right now most agent frameworks are written in TypeScript or Python, we deserve to see an agent written in the language we love. You'll leave this talk with a clear mental model of how these tools actually work, and the code to prove Ruby belongs in this space.
-  speakers:
-    - Drew Bragg
-
 - id: "kevin-murphy-rocky-mountain-ruby-2026"
   title: "InstiLLMent of Successful Practices in an Agentic World"
   date: "2026-09-28"
@@ -50,41 +11,20 @@
   speakers:
     - Kevin Murphy
 
-- id: "fernando-perales-rocky-mountain-ruby-2026"
-  title: "Slowly We Rot: signs of a Rails app’s decay"
+- id: "sonja-peterson-rocky-mountain-ruby-2026"
+  title: "Confident On-Call: Building Incident Response Skills as a Ruby Engineer"
   date: "2026-09-28"
   language: "English"
   video_provider: "scheduled"
-  video_id: "fernando-perales-rocky-mountain-ruby-2026"
+  video_id: "sonja-peterson-rocky-mountain-ruby-2026"
   description: |-
-    Rails apps rarely collapse all at once. What starts as a TODO comment quietly becomes code you're afraid to touch: hard to understand, harder to change, and worse with every workaround. You might be eyeing a rewrite but, do you actually know how it got there?
+    Your phone starts blaring with an alert: something is broken in production! If imagining that fills you with anxiety, you’re not alone. But it is possible to go from panicking every time you get paged to responding with confidence - and I can show you how.
 
-    After 13 years consulting on Rails apps, I've seen the same patterns of rot show up again and again. This talk is about those patterns: how they start, why they compound, and what you can actually do about them before they become someone else's problem (or yours, six months from now).
-  speakers:
-    - Fernando Perales
+    In this talk, I’ll share a training plan for Ruby engineers looking to improve their incident response skills. No need to wait until the next incident to begin learning - you can start now by observing your system’s normal state so you can better spot anomalies later, brushing up on the computer science topics (like memory, CPU, and I/O) behind the graphs in your monitoring tools, and fixing elusive bugs and performance problems when you aren’t under pressure. I’ll also talk about specific strategies to lean on during incidents, like developing theories and disproving them until you can narrow in on a root cause. Throughout, I’ll illustrate with examples relevant to typical Ruby web applications.
 
-- id: "ben-reubenstein-rocky-mountain-ruby-2026"
-  title: "Commit for Good"
-  date: "2026-09-28"
-  language: "English"
-  video_provider: "scheduled"
-  video_id: "ben-reubenstein-rocky-mountain-ruby-2026"
-  description: |-
-    I’ve built software for charities pro bono since 2006 — from scrappy early experiments to a three-year commitment building for Fully Liberated Youth. What I’ve found is that the need is enormous, the work is some of the most rewarding you’ll do, and the barrier to entry is lower than you think. Nonprofits are sitting on problems that a single motivated developer can meaningfully solve.
-    This is a practical guide to getting involved: how to find the right organizations, what skills actually matter (most of them aren’t technical), and how to build something that genuinely lasts. Whether you’ve got a weekend or you’re ready for a longer commitment, I’ll show you how to put your Ruby to work for a cause — and why you’ll probably get more out of it than you give.
+    You’ll leave feeling ready for your next on-call shift, and on your way to becoming known as the person who can resolve even the trickiest incidents with ease.
   speakers:
-    - Ben Reubenstein
-
-- id: "ifat-ribon-rocky-mountain-ruby-2026"
-  title: "Fewer Tests, More Confidence: A Rails Testing Philosophy for the AI Era"
-  date: "2026-09-28"
-  language: "English"
-  video_provider: "scheduled"
-  video_id: "ifat-ribon-rocky-mountain-ruby-2026"
-  description: |-
-    AI can generate tests at incredible speed, but all that code is not free. Every test adds cost: slower feedback loops, heavier CI usage, and increased cognitive load for the developers who have to understand, maintain, and trust the suite.
-  speakers:
-    - Ifat Ribon
+    - Sonja Peterson
 
 - id: "joel-hawksley-rocky-mountain-ruby-2026"
   title: "Beyond Senior: Consider the staff path!"
@@ -116,24 +56,42 @@
   speakers:
     - Nicolas Erlichman
 
-- id: "marco-roth-rocky-mountain-ruby-2026"
-  title: "Herb in Rails 8.2: Your ERB views, now HTML-aware"
+- id: "fernando-perales-rocky-mountain-ruby-2026"
+  title: "Slowly We Rot: signs of a Rails app’s decay"
   date: "2026-09-28"
   language: "English"
   video_provider: "scheduled"
-  video_id: "marco-roth-rocky-mountain-ruby-2026"
+  video_id: "fernando-perales-rocky-mountain-ruby-2026"
   description: |-
-    With teams, companies, and open source projects adopting Herb in their daily workflows, the foundation is proving itself at scale and is on track to become an opt-in view engine in Rails 8.2.
+    Rails apps rarely collapse all at once. What starts as a TODO comment quietly becomes code you're afraid to touch: hard to understand, harder to change, and worse with every workaround. You might be eyeing a rewrite but, do you actually know how it got there?
 
-    This talk explores what Herb brings to Rails: how it integrates with ActionView and the tooling and developer experience every Rails developer gains as a result.
-
-    But that's only the beginning. To complete the Hotwire story, Rails needs reactivity.
-
-    Herb's understanding of HTML and ERB makes this possible. I'll introduce the first production-ready version of ReActionView, bringing Phoenix LiveView-like fine-grained reactivity to standard Rails templates. Fully optional. Gradual to adopt. No JavaScript framework. No new file format.
-
-    Your HTML+ERB templates, now reactive.
+    After 13 years consulting on Rails apps, I've seen the same patterns of rot show up again and again. This talk is about those patterns: how they start, why they compound, and what you can actually do about them before they become someone else's problem (or yours, six months from now).
   speakers:
-    - Marco Roth
+    - Fernando Perales
+
+- id: "ben-reubenstein-rocky-mountain-ruby-2026"
+  title: "Commit for Good"
+  date: "2026-09-28"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "ben-reubenstein-rocky-mountain-ruby-2026"
+  description: |-
+    I’ve built software for charities pro bono since 2006 — from scrappy early experiments to a three-year commitment building for Fully Liberated Youth. What I’ve found is that the need is enormous, the work is some of the most rewarding you’ll do, and the barrier to entry is lower than you think. Nonprofits are sitting on problems that a single motivated developer can meaningfully solve.
+    This is a practical guide to getting involved: how to find the right organizations, what skills actually matter (most of them aren’t technical), and how to build something that genuinely lasts. Whether you’ve got a weekend or you’re ready for a longer commitment, I’ll show you how to put your Ruby to work for a cause — and why you’ll probably get more out of it than you give.
+  speakers:
+    - Ben Reubenstein
+
+- id: "drew-bragg-rocky-mountain-ruby-2026"
+  title: "Your own AI Agent in ~400 lines of Ruby"
+  date: "2026-09-28"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "drew-bragg-rocky-mountain-ruby-2026"
+  description: |-
+    AI coding agents feel like magic. They autocomplete your thoughts, refactor your code, and sometimes hallucinate with alarming confidence. But we've all had that moment where you bundle open a gem and go "oh, that's all it is?" AI agents deserve that same moment. Turns out they're just an API call, a conversation history, a system prompt, some optional tools, in a loop (of course). In this talk we'll build one together but in Ruby. Starting from 15 lines and iterating through until we have a full agent. About 400 lines, start to finish.
+    Right now most agent frameworks are written in TypeScript or Python, we deserve to see an agent written in the language we love. You'll leave this talk with a clear mental model of how these tools actually work, and the code to prove Ruby belongs in this space.
+  speakers:
+    - Drew Bragg
 
 - id: "travis-turner-rocky-mountain-ruby-2026"
   title: "Got AI ontological shock? No worries: UFOs, Theology, and Psychedelics with Ruby-Colored Reverence"
@@ -156,24 +114,28 @@
   speakers:
     - Travis Turner
 
-- id: "sonja-peterson-rocky-mountain-ruby-2026"
-  title: "Confident On-Call: Building Incident Response Skills as a Ruby Engineer"
-  date: "2026-09-28"
+- id: "marco-roth-rocky-mountain-ruby-2026"
+  title: "Herb in Rails 8.2: Your ERB views, now HTML-aware"
+  date: "2026-09-29"
   language: "English"
   video_provider: "scheduled"
-  video_id: "sonja-peterson-rocky-mountain-ruby-2026"
+  video_id: "marco-roth-rocky-mountain-ruby-2026"
   description: |-
-    Your phone starts blaring with an alert: something is broken in production! If imagining that fills you with anxiety, you’re not alone. But it is possible to go from panicking every time you get paged to responding with confidence - and I can show you how.
+    With teams, companies, and open source projects adopting Herb in their daily workflows, the foundation is proving itself at scale and is on track to become an opt-in view engine in Rails 8.2.
 
-    In this talk, I’ll share a training plan for Ruby engineers looking to improve their incident response skills. No need to wait until the next incident to begin learning - you can start now by observing your system’s normal state so you can better spot anomalies later, brushing up on the computer science topics (like memory, CPU, and I/O) behind the graphs in your monitoring tools, and fixing elusive bugs and performance problems when you aren’t under pressure. I’ll also talk about specific strategies to lean on during incidents, like developing theories and disproving them until you can narrow in on a root cause. Throughout, I’ll illustrate with examples relevant to typical Ruby web applications.
+    This talk explores what Herb brings to Rails: how it integrates with ActionView and the tooling and developer experience every Rails developer gains as a result.
 
-    You’ll leave feeling ready for your next on-call shift, and on your way to becoming known as the person who can resolve even the trickiest incidents with ease.
+    But that's only the beginning. To complete the Hotwire story, Rails needs reactivity.
+
+    Herb's understanding of HTML and ERB makes this possible. I'll introduce the first production-ready version of ReActionView, bringing Phoenix LiveView-like fine-grained reactivity to standard Rails templates. Fully optional. Gradual to adopt. No JavaScript framework. No new file format.
+
+    Your HTML+ERB templates, now reactive.
   speakers:
-    - Sonja Peterson
+    - Marco Roth
 
 - id: "andrea-fomera-rocky-mountain-ruby-2026"
   title: "High-Octane Onboarding: Ramping into a Rails Codebase with AI Agents"
-  date: "2026-09-28"
+  date: "2026-09-29"
   language: "English"
   video_provider: "scheduled"
   video_id: "andrea-fomera-rocky-mountain-ruby-2026"
@@ -185,3 +147,59 @@
     You'll leave with a playbook you can actually use, plus the honest gotchas, because the agents will lie to you with full confidence.
   speakers:
     - Andrea Fomera
+
+- id: "christine-seeman-rocky-mountain-ruby-2026"
+  title: "Optimize Your Mindset (Without Overclocking)"
+  date: "2026-09-29"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "christine-seeman-rocky-mountain-ruby-2026"
+  description: |-
+    As developers, we're always optimizing our workflows, but why don't we optimize our thoughts? Your career isn't 100% code, and in the age of AI tools, constant notifications, and information overload, the skills that matter most aren't technical. Everyone struggles with focus, managing stress, accepting feedback, or finding time for what matters. But you don't have to stay stuck.
+
+    This talk tells the story of four people and four research-backed techniques to level up your work and life: mindfulness for breaking thought loops and managing stress, growth mindset for embracing challenges and continuous learning, habit building for sustainable change, and deep work strategies for maintaining focus in a distracted world. Whether you're new to the field, a seasoned developer, or someone who's never explored human skills talks, these practical strategies will help you grow, improve, and actually stick with new habits.
+  speakers:
+    - Christine Seeman
+
+- id: "giovanni-panasiti-rocky-mountain-ruby-2026"
+  title: "Building an Agentic RAG in the Rails Way with RubyLLM"
+  date: "2026-09-29"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "giovanni-panasiti-rocky-mountain-ruby-2026"
+  description: |-
+    When my company needed an AI assistant over our documents, we did the sensible corporate thing first: we handed the project to one of Italy's best-known consultancies. They delivered a working system spread across six services in four languages plus two databases. It worked. But I'm a Rails developer, and I couldn't accept that answering a question required a whole microservice fleet. I was sure there was a better way. So I studied to find a way and rebuilt the whole system the Rails' way. The result is an simple RAG application with agents running entirely in Rails.
+    I don't want this to either be an hype talk neither a framework demo. I want to show, with production code, that the boring version is the better one and we, as Ruby developers, have so many tools in our hands that we can really do everything we want without the need to move to other languages. What I want to state is that Rails developers are not second-class citizens in the AI conversation.
+  speakers:
+    - Giovanni Panasiti
+
+- id: "ifat-ribon-rocky-mountain-ruby-2026"
+  title: "Fewer Tests, More Confidence: A Rails Testing Philosophy for the AI Era"
+  date: "2026-09-29"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "ifat-ribon-rocky-mountain-ruby-2026"
+  description: |-
+    AI can generate tests at incredible speed, but all that code is not free. Every test adds cost: slower feedback loops, heavier CI usage, and increased cognitive load for the developers who have to understand, maintain, and trust the suite.
+  speakers:
+    - Ifat Ribon
+
+- id: "lightning-talk-rocky-mountain-ruby-2026"
+  title: "Lightning Talks"
+  kind: "lightning_talk"
+  date: "2026-09-29"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "lightning-talk-rocky-mountain-ruby-2026"
+  description: |-
+  talks: []
+
+- id: "alan-ridlehoover-rocky-mountain-ruby-2026"
+  title: "Indispensable: What Human Programmers Can Learn from Human Computers"
+  date: "2026-09-29"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "alan-ridlehoover-rocky-mountain-ruby-2026"
+  description: "" # TODO
+  speakers:
+    - Alan Ridlehoover
