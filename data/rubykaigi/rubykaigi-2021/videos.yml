@@ -303,28 +303,6 @@
   speakers:
     - yamori813
 
-- id: "why-ruby-s-jit-was-slow-2-rubykaigi-2021"
-  title: "Why Ruby's JIT was slow"
-  raw_title: "[JA] Why Ruby's JIT was slow / Takashi Kokubun @k0kubun"
-  event_name: "RubyKaigi Takeout 2021"
-  date: "2021-09-09"
-  published_at: "2021-09-11T12:17:23Z"
-  language: "Japanese"
-  track: "#rubykaigiA"
-  slides_url: "https://speakerdeck.com/k0kubun/rubykaigi-takeout-2021"
-  video_provider: "youtube"
-  video_id: "rE5OucBHm18"
-  description: |-
-    English: https://youtu.be/db3GHHllRyQ
-
-    In Ruby 2.6, we started to use a JIT compiler architecture called "MJIT", which uses a C compiler to generate native code. While it achieved Ruby 3x3 in one benchmark, we had struggled to optimize web application workloads like Rails with MJIT. The good news is we recently figured out why.
-
-    In this talk, you will hear how JIT architectures impact various benchmarks differently, and why it matters for you. You may or may not benefit from Ruby's JIT, depending on what JIT architecture we'll choose beyond the current MJIT. Let's discuss which direction we'd like to go.
-
-    https://rubykaigi.org/2021-takeout/presentations/k0kubun.html
-  speakers:
-    - Takashi Kokubun
-
 - id: "chris-seaton-rubykaigi-2021"
   title: "Keynote: The Future Shape of Ruby Objects"
   raw_title: "[EN][Keynote] The Future Shape of Ruby Objects / Chris Seaton @chrisseaton"
@@ -787,3 +765,25 @@
     RubyKaigi Takeout 2021: https://rubykaigi.org/2021-takeout/presentations/yukihiro_matz.html
   speakers:
     - "Yukihiro \"Matz\" Matsumoto"
+
+- id: "why-ruby-s-jit-was-slow-2-rubykaigi-2021"
+  title: "Why Ruby's JIT was slow"
+  raw_title: "[JA] Why Ruby's JIT was slow / Takashi Kokubun @k0kubun"
+  event_name: "RubyKaigi Takeout 2021"
+  date: "2021-09-11" # TODO - make this an alternate recording - originally recorded on 2021-09-09
+  published_at: "2021-09-11T12:17:23Z"
+  language: "Japanese" # TODO - make this an alternate recording
+  track: "#rubykaigiA"
+  slides_url: "https://speakerdeck.com/k0kubun/rubykaigi-takeout-2021"
+  video_provider: "youtube"
+  video_id: "rE5OucBHm18"
+  description: |-
+    English: https://youtu.be/db3GHHllRyQ
+
+    In Ruby 2.6, we started to use a JIT compiler architecture called "MJIT", which uses a C compiler to generate native code. While it achieved Ruby 3x3 in one benchmark, we had struggled to optimize web application workloads like Rails with MJIT. The good news is we recently figured out why.
+
+    In this talk, you will hear how JIT architectures impact various benchmarks differently, and why it matters for you. You may or may not benefit from Ruby's JIT, depending on what JIT architecture we'll choose beyond the current MJIT. Let's discuss which direction we'd like to go.
+
+    https://rubykaigi.org/2021-takeout/presentations/k0kubun.html
+  speakers:
+    - Takashi Kokubun
