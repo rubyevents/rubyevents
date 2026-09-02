@@ -124,25 +124,27 @@
   speakers:
     - Tim Kächele
 
-- id: "koichi-sasada-euruko-2026"
+- id: "koichi-sasada-keynote-euruko-2026"
+  old_id: "koichi-sasada-euruko-2026"
   title: "Closing Keynote: Parallel Programming with Ractors"
   kind: "keynote"
   date: "2026-09-18"
   language: "English"
   video_provider: "scheduled"
-  video_id: "koichi-sasada-euruko-2026"
+  video_id: "koichi-sasada-keynote-euruko-2026"
   description: ""
   speakers:
     - Koichi Sasada
 
 - id: "kasper-timm-hansen-andre-arko-euruko-2026"
-  title: "Workshop: jj, or what if git made sense"
+  title: "Workshop: Go beyond git with jj"
   kind: "workshop"
   date: "2026-09-18"
   language: "English"
   video_provider: "scheduled"
   video_id: "kasper-timm-hansen-andre-arko-euruko-2026"
-  description: ""
+  description: |-
+    jj is a newer version control system that's gaining traction. Come see how it's both simpler and more powerful than git — while being fully compatible with git and GitHub. We'll give you hands-on experience with using jj, explain how it's conceptually different from git, and how you can use it on an existing team.
   speakers:
     - Kasper Timm Hansen
     - André Arko
@@ -168,7 +170,10 @@
   language: "English"
   video_provider: "scheduled"
   video_id: "hasumi-hitoshi-euruko-2026"
-  description: "" # TODO
+  description: |-
+    In this workshop, we'll write BLE apps in Ruby — yes, Bluetooth on a microcontroller, in the language you already love. If you've ever wanted your gadgets to talk to each other (wirelessly, and without much fuss), this is your chance.
+
+    Come with low energy; leave with a wireless Ruby app you built yourself.
   speakers:
     - HASUMI Hitoshi
 
@@ -184,3 +189,34 @@
   speakers:
     - Sarah Lima
     - Rémy Hannequin
+
+- id: "lucian-ghinda-stanislav-katkov-euruko-2026"
+  title: "Workshop: Good Enough Agents: How Coding Agents Actually Work"
+  kind: "workshop"
+  date: "2026-09-18"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "lucian-ghinda-stanislav-katkov-euruko-2026"
+  description: |-
+    Your agent is not an assistant. It is a loop over a stateless function with a fixed context budget, and once you can see that loop, you can debug it, verify it, and trust what it ships. Knowing all of this helps you use LLMs as a successful companion in producing high quality code while maintaining reliability.
+  speakers:
+    - Lucian Ghinda
+    - Stanislav Katkov
+
+- id: "koichi-sasada-workshop-euruko-2026"
+  title: "Workshop: Ruby Hack Challenge"
+  kind: "workshop"
+  date: "2026-09-18"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "koichi-sasada-workshop-euruko-2026"
+  description: |-
+    This is a self-paced hands-on workshop for participants who want to try recent Ruby features on their own laptops. The main goal is to build the latest Ruby HEAD and try features such as Ractor, Box, and other recent additions to Ruby.
+
+    There will be no formal lecture. Participants can choose topics that interest them and work through the materials at their own pace. I will be there to help with setup, answer questions, and discuss the features or Ruby internals when needed.
+
+    If participants are interested, they can also try making small changes to the Ruby source code and rebuilding it.
+
+    No prior experience with Ruby internals is required. Basic Ruby programming experience and familiarity with using a terminal should be enough.
+  speakers:
+    - Koichi Sasada
