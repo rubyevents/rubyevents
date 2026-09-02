@@ -345,6 +345,33 @@ class TalkGeneratorTest < Rails::Generators::TestCase
     assert_empty read_speakers_file
   end
 
+  test "schedule an existing talk with a date and time" do
+    seed_speakers_file
+    videos_file_path = File.join(destination_root, "data/rubyconf/2026/videos.yml")
+    run_generator [
+      "--event-series", "rubyconf",
+      "--event", "2026",
+      "--title", "The little schema that could (...but should it?)",
+      "--speakers", "Andy Andrea"
+    ]
+
+    run_generator [
+      "--event-series", "rubyconf",
+      "--event", "2026",
+      "--id", "andy-andrea-2026",
+      "--date", "2026-07-14",
+      "--start-time", "16:15",
+      "--end-time", "17:00"
+    ]
+
+    assert_valid_file videos_file_path do |content|
+      assert_match(/id: "andy-andrea-2026"/, content)
+      assert_match(/date: "2026-07-14"/, content)
+      assert_match(/start_time: 16:15/, content)
+      assert_match(/end_time: 17:00/, content)
+    end
+  end
+
   def seed_speakers_file(content = "--- []\n")
     FileUtils.mkdir_p(File.dirname(speakers_file_path))
     File.write(speakers_file_path, content)

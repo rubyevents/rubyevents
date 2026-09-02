@@ -1,6 +1,6 @@
+---
 # Website: https://rubykaigi.org/2026/schedule/
 # Videos: -
----
 - id: "satoshi-tagomori-rubykaigi-2026"
   title: "Keynote: The Journey of Box Building"
   kind: "keynote"
@@ -345,147 +345,6 @@
     I will dive into the implementation of its graphics engine featuring real-time 640x480 output and text/shape rendering, as well as a Ruby shell with USB keyboard input and serial communication with external R2P2 devices. By showing how every component runs on the mruby VM, I will demonstrate that it is powerful enough to build a complete computing experience from scratch on a tiny microcontroller.
   speakers:
     - Shunsuke Michii
-
-- id: "lightning-talk-rubykaigi-2026"
-  title: "Lightning Talks"
-  kind: "lightning_talk"
-  event_name: "RubyKaigi 2026"
-  date: "2026-04-24"
-  language: "Japanese"
-  track: "Large Hall #rubykaigiA"
-  video_provider: "scheduled"
-  video_id: "lightning-talk-rubykaigi-2026"
-  description: ""
-  talks:
-    - id: "joker1007-rubykaigi-2026"
-      title: "Lightning Talk: Do Ruby::Box Dream of Modular Monolith"
-      kind: "lightning_talk"
-      language: "Japanese"
-      slides_url: "https://speakerdeck.com/joker1007/do-ruby-box-dream-of-modular-monolith"
-      video_provider: "parent"
-      video_id: "joker1007-rubykaigi-2026"
-      description: |-
-        Demonstrates running Ruby::Box on Rails to establish boundaries for a modular monolith architecture, including implementation hacks and live demo.
-      speakers:
-        - joker1007
-
-    - id: "weihang-jian-rubykaigi-2026"
-      title: "Lightning Talk: cover_rage - a coverage tool for production environment"
-      kind: "lightning_talk"
-      language: "English"
-      video_provider: "parent"
-      video_id: "weihang-jian-rubykaigi-2026"
-      description: |-
-        A straightforward code coverage tool for identifying unused or stale code in production services, featuring zero dependencies and support for Redis, SQLite, and PStore storage.
-      speakers:
-        - Weihang Jian
-
-    - id: "makicamel-rubykaigi-2026"
-      title: "Lightning Talk: Road to RubyKaigi: Play Hard(ware)"
-      kind: "lightning_talk"
-      language: "Japanese"
-      slides_url: "https://speakerdeck.com/makicamel/road-to-rubykaigi-play-hard-ware"
-      video_provider: "parent"
-      video_id: "makicamel-rubykaigi-2026"
-      description: |-
-        A terminal-based side-scrolling action game written in Ruby, now controllable via Raspberry Pi Pico 2W hardware integration.
-      speakers:
-        - makicamel
-
-    - id: "s-h-gamelinks-rubykaigi-2026"
-      title: "Lightning Talk: Ruby on Bare Metal"
-      kind: "lightning_talk"
-      language: "Japanese"
-      slides_url: "https://speakerdeck.com/gamelinks007/ruby-on-bare-metal"
-      video_provider: "parent"
-      video_id: "s-h-gamelinks-rubykaigi-2026"
-      description: |-
-        Explores running CRuby directly on custom kernel without an operating system, revealing hidden dependencies and initialization requirements.
-      speakers:
-        - S-H-GAMELINKS
-
-    - id: "yuji-teshima-rubykaigi-2026"
-      title: "Lightning Talk: mruby-gpu: The Joy of Talking to Hardware in Ruby"
-      kind: "lightning_talk"
-      language: "Japanese"
-      video_provider: "parent"
-      video_id: "yuji-teshima-rubykaigi-2026"
-      description: |-
-        Implements Vulkan Compute Shaders on Raspberry Pi 5 using mruby, progressing from basic vector operations to MNIST training and real-time face detection.
-      speakers:
-        - Yuji Teshima
-
-    - id: "mari-imaizumi-rubykaigi-2026"
-      title: "Lightning Talk: Is Ruby's Multi-Encoding Overhead Heavy?"
-      kind: "lightning_talk"
-      language: "Japanese"
-      slides_url: "https://speakerdeck.com/ima1zumi/is-rubys-multi-encoding-overhead-heavy"
-      video_provider: "parent"
-      video_id: "mari-imaizumi-rubykaigi-2026"
-      description: |-
-        Benchmarks performance impact of Ruby's per-string encoding design by progressively removing encoding-related components from CRuby.
-      speakers:
-        - Mari Imaizumi
-
-    - id: "yuhi-sato-rubykaigi-2026"
-      title: "Lightning Talk: Ruby YARV Challenge: Build Your Own Bytecode VM in 7 Steps"
-      kind: "lightning_talk"
-      language: "Japanese"
-      slides_url: "https://speakerdeck.com/yuhisatoxxx/ruby-yarv-challenge-build-your-own-bytecode-vm-in-7-steps"
-      video_provider: "parent"
-      video_id: "yuhi-sato-rubykaigi-2026"
-      description: |-
-        Browser-based workshop implementing a simplified YARV bytecode VM and compiler in Ruby, culminating in running recursive Fibonacci on a custom VM.
-      speakers:
-        - Yuhi Sato
-
-    - id: "sangyong-shia-sim-lightning-talk-rubykaigi-2026"
-      title: "Lightning Talk: Class.new is all you need"
-      kind: "lightning_talk"
-      language: "English"
-      slides_url: "https://speakerdeck.com/riseshia/class-dot-new-is-all-you-need"
-      video_provider: "parent"
-      video_id: "sangyong-shia-sim-lightning-talk-rubykaigi-2026"
-      description: |-
-        Demonstrates significant performance improvements in TypeGuessr by replacing complex IR node definitions with plain Class instances.
-      speakers:
-        - "Sangyong \"Shia\" Sim"
-
-    - id: "tomoya-kuwayama-rubykaigi-2026"
-      title: "Lightning Talk: A Concurrent HTTP/2 Server with Ractor"
-      kind: "lightning_talk"
-      language: "Japanese"
-      slides_url: "https://speakerdeck.com/thekuwayama/2-server-with-ractor"
-      video_provider: "parent"
-      video_id: "tomoya-kuwayama-rubykaigi-2026"
-      description: |-
-        Introduces "biryani," an HTTP/2 server implementation leveraging Ractor for handling concurrent streams and multiplexing with strict state management.
-      speakers:
-        - Tomoya Kuwayama
-
-    - id: "ryudo-awaru-rubykaigi-2026"
-      title: "Lightning Talk: Your ruby.wasm Doesn't Work on Mobile. Here's Why."
-      kind: "lightning_talk"
-      language: "English"
-      slides_url: "https://speakerdeck.com/ryudoawaru/your-ruby-dot-wasm-doesnt-work-on-mobile-heres-why-number-rubykaigi-2026-lt"
-      video_provider: "parent"
-      video_id: "ryudo-awaru-rubykaigi-2026"
-      description: |-
-        Identifies and resolves three mobile compatibility issues encountered when deploying ruby.wasm applications to iOS and Android platforms.
-      speakers:
-        - Ryudo Awaru
-
-    - id: "haruna-tsujita-rubykaigi-2026"
-      title: "Lightning Talk: Rebuilding Turbo Streams with ruby.wasm and Ruby Sockets"
-      kind: "lightning_talk"
-      language: "Japanese"
-      slides_url: "https://speakerdeck.com/harunatsujita/rebuilding-turbo-streams-with-ruby-dot-wasm-and-ruby-sockets"
-      video_provider: "parent"
-      video_id: "haruna-tsujita-rubykaigi-2026"
-      description: |-
-        Reimplements Turbo Streams functionality using ruby.wasm and Ruby's Socket library with minimal JavaScript dependency.
-      speakers:
-        - Haruna Tsujita
 
 - id: "charles-oliver-nutter-rubykaigi-2026"
   title: "Keynote: Twenty Years of JRuby"
@@ -914,6 +773,147 @@
     In practice, there are several hurdles to achieving this integration. In this session, I will discuss the work I have been doing toward this integration.
   speakers:
     - Hayao Kimura
+
+- id: "lightning-talk-rubykaigi-2026"
+  title: "Lightning Talks"
+  kind: "lightning_talk"
+  event_name: "RubyKaigi 2026"
+  date: "2026-04-24"
+  language: "Japanese"
+  track: "Large Hall #rubykaigiA"
+  video_provider: "scheduled"
+  video_id: "lightning-talk-rubykaigi-2026"
+  description: ""
+  talks:
+    - id: "joker1007-rubykaigi-2026"
+      title: "Lightning Talk: Do Ruby::Box Dream of Modular Monolith"
+      kind: "lightning_talk"
+      language: "Japanese"
+      slides_url: "https://speakerdeck.com/joker1007/do-ruby-box-dream-of-modular-monolith"
+      video_provider: "parent"
+      video_id: "joker1007-rubykaigi-2026"
+      description: |-
+        Demonstrates running Ruby::Box on Rails to establish boundaries for a modular monolith architecture, including implementation hacks and live demo.
+      speakers:
+        - joker1007
+
+    - id: "weihang-jian-rubykaigi-2026"
+      title: "Lightning Talk: cover_rage - a coverage tool for production environment"
+      kind: "lightning_talk"
+      language: "English"
+      video_provider: "parent"
+      video_id: "weihang-jian-rubykaigi-2026"
+      description: |-
+        A straightforward code coverage tool for identifying unused or stale code in production services, featuring zero dependencies and support for Redis, SQLite, and PStore storage.
+      speakers:
+        - Weihang Jian
+
+    - id: "makicamel-rubykaigi-2026"
+      title: "Lightning Talk: Road to RubyKaigi: Play Hard(ware)"
+      kind: "lightning_talk"
+      language: "Japanese"
+      slides_url: "https://speakerdeck.com/makicamel/road-to-rubykaigi-play-hard-ware"
+      video_provider: "parent"
+      video_id: "makicamel-rubykaigi-2026"
+      description: |-
+        A terminal-based side-scrolling action game written in Ruby, now controllable via Raspberry Pi Pico 2W hardware integration.
+      speakers:
+        - makicamel
+
+    - id: "s-h-gamelinks-rubykaigi-2026"
+      title: "Lightning Talk: Ruby on Bare Metal"
+      kind: "lightning_talk"
+      language: "Japanese"
+      slides_url: "https://speakerdeck.com/gamelinks007/ruby-on-bare-metal"
+      video_provider: "parent"
+      video_id: "s-h-gamelinks-rubykaigi-2026"
+      description: |-
+        Explores running CRuby directly on custom kernel without an operating system, revealing hidden dependencies and initialization requirements.
+      speakers:
+        - S-H-GAMELINKS
+
+    - id: "yuji-teshima-rubykaigi-2026"
+      title: "Lightning Talk: mruby-gpu: The Joy of Talking to Hardware in Ruby"
+      kind: "lightning_talk"
+      language: "Japanese"
+      video_provider: "parent"
+      video_id: "yuji-teshima-rubykaigi-2026"
+      description: |-
+        Implements Vulkan Compute Shaders on Raspberry Pi 5 using mruby, progressing from basic vector operations to MNIST training and real-time face detection.
+      speakers:
+        - Yuji Teshima
+
+    - id: "mari-imaizumi-rubykaigi-2026"
+      title: "Lightning Talk: Is Ruby's Multi-Encoding Overhead Heavy?"
+      kind: "lightning_talk"
+      language: "Japanese"
+      slides_url: "https://speakerdeck.com/ima1zumi/is-rubys-multi-encoding-overhead-heavy"
+      video_provider: "parent"
+      video_id: "mari-imaizumi-rubykaigi-2026"
+      description: |-
+        Benchmarks performance impact of Ruby's per-string encoding design by progressively removing encoding-related components from CRuby.
+      speakers:
+        - Mari Imaizumi
+
+    - id: "yuhi-sato-rubykaigi-2026"
+      title: "Lightning Talk: Ruby YARV Challenge: Build Your Own Bytecode VM in 7 Steps"
+      kind: "lightning_talk"
+      language: "Japanese"
+      slides_url: "https://speakerdeck.com/yuhisatoxxx/ruby-yarv-challenge-build-your-own-bytecode-vm-in-7-steps"
+      video_provider: "parent"
+      video_id: "yuhi-sato-rubykaigi-2026"
+      description: |-
+        Browser-based workshop implementing a simplified YARV bytecode VM and compiler in Ruby, culminating in running recursive Fibonacci on a custom VM.
+      speakers:
+        - Yuhi Sato
+
+    - id: "sangyong-shia-sim-lightning-talk-rubykaigi-2026"
+      title: "Lightning Talk: Class.new is all you need"
+      kind: "lightning_talk"
+      language: "English"
+      slides_url: "https://speakerdeck.com/riseshia/class-dot-new-is-all-you-need"
+      video_provider: "parent"
+      video_id: "sangyong-shia-sim-lightning-talk-rubykaigi-2026"
+      description: |-
+        Demonstrates significant performance improvements in TypeGuessr by replacing complex IR node definitions with plain Class instances.
+      speakers:
+        - "Sangyong \"Shia\" Sim"
+
+    - id: "tomoya-kuwayama-rubykaigi-2026"
+      title: "Lightning Talk: A Concurrent HTTP/2 Server with Ractor"
+      kind: "lightning_talk"
+      language: "Japanese"
+      slides_url: "https://speakerdeck.com/thekuwayama/2-server-with-ractor"
+      video_provider: "parent"
+      video_id: "tomoya-kuwayama-rubykaigi-2026"
+      description: |-
+        Introduces "biryani," an HTTP/2 server implementation leveraging Ractor for handling concurrent streams and multiplexing with strict state management.
+      speakers:
+        - Tomoya Kuwayama
+
+    - id: "ryudo-awaru-rubykaigi-2026"
+      title: "Lightning Talk: Your ruby.wasm Doesn't Work on Mobile. Here's Why."
+      kind: "lightning_talk"
+      language: "English"
+      slides_url: "https://speakerdeck.com/ryudoawaru/your-ruby-dot-wasm-doesnt-work-on-mobile-heres-why-number-rubykaigi-2026-lt"
+      video_provider: "parent"
+      video_id: "ryudo-awaru-rubykaigi-2026"
+      description: |-
+        Identifies and resolves three mobile compatibility issues encountered when deploying ruby.wasm applications to iOS and Android platforms.
+      speakers:
+        - Ryudo Awaru
+
+    - id: "haruna-tsujita-rubykaigi-2026"
+      title: "Lightning Talk: Rebuilding Turbo Streams with ruby.wasm and Ruby Sockets"
+      kind: "lightning_talk"
+      language: "Japanese"
+      slides_url: "https://speakerdeck.com/harunatsujita/rebuilding-turbo-streams-with-ruby-dot-wasm-and-ruby-sockets"
+      video_provider: "parent"
+      video_id: "haruna-tsujita-rubykaigi-2026"
+      description: |-
+        Reimplements Turbo Streams functionality using ruby.wasm and Ruby's Socket library with minimal JavaScript dependency.
+      speakers:
+        - Haruna Tsujita
 
 - id: "q-and-a-rubykaigi-2026"
   title: "Ruby Committers and the World"
