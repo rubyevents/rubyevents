@@ -276,7 +276,8 @@ rules:
             - kind
             - event_name
             - date
-            - time
+            - start_time
+            - end_time
             - published_at
             - announced_at
             - status
@@ -329,7 +330,8 @@ rules:
             - kind
             - event_name
             - date
-            - time
+            - start_time
+            - end_time
             - start_cue
             - end_cue
             - thumbnail_cue
@@ -355,7 +357,7 @@ rules:
             - alternative_recordings
 
       - sort:
-          by: ".date .time"
+          by: ".date .start_time .end_time"
 
   - files: "data/speakers.yml"
     pipeline:
