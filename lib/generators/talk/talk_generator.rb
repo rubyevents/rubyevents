@@ -20,7 +20,8 @@ class TalkGenerator < Generators::EventBase
 
   # Scheduling
   class_option :date, type: :string, desc: VideoSchema.properties[:date][:description], required: false, group: "Fields"
-  class_option :time, type: :string, desc: VideoSchema.properties[:time][:description], required: false, group: "Fields"
+  class_option :start_time, type: :string, desc: VideoSchema.properties[:start_time][:description], required: false, group: "Fields"
+  class_option :end_time, type: :string, desc: VideoSchema.properties[:end_time][:description], required: false, group: "Fields"
 
   # Options
   class_option :lightning_talks, type: :boolean, default: false, desc: "Add empty group of lightning talks", group: "Options"
@@ -32,7 +33,7 @@ class TalkGenerator < Generators::EventBase
       "kind" => "lightning_talk"
     }.freeze
 
-    attr_accessor :event_slug, :event, :announced_at, :description, :original_title, :time
+    attr_accessor :event_slug, :event, :announced_at, :description, :original_title, :start_time, :end_time
     attr_writer :id, :date, :language, :speakers, :title, :kind, :existing_ids
 
     def initialize(**attributes)

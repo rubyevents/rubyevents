@@ -9,8 +9,11 @@
 <%- end -%>
   date: "<%= @talk.date %>"
   language: "<%= @talk.language %>"
-<%- if @talk.time.present? -%>
-  time: <%= quote @talk.time %>
+<%- if @talk.start_time.present? -%>
+  start_time: <%= quote @talk.start_time %>
+<%- end -%>
+<%- if @talk.end_time.present? -%>
+  end_time: <%= quote @talk.end_time %>
 <%- end -%>
 <%- if options[:announced_at] -%>
   announced_at: "<%= @talk.announced_at %>"
