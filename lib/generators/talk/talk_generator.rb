@@ -8,6 +8,7 @@ class TalkGenerator < Generators::EventBase
   TOOL_DESC = "Create or update a new talk entry in the videos.yml file of a given event."
 
   class_option :id, type: :string, desc: "ID of an existing talk to update. New talks always get a generated id, so omit this to append one.", required: false, group: "Fields"
+  # New talks released
   class_option :title, type: :string, desc: VideoSchema.properties[:title][:description], group: "Fields"
   class_option :speakers, type: :array, desc: "Speaker names", group: "Fields"
   class_option :description, type: :string, desc: VideoSchema.properties[:description][:description], group: "Fields"
@@ -22,6 +23,8 @@ class TalkGenerator < Generators::EventBase
   class_option :date, type: :string, desc: VideoSchema.properties[:date][:description], required: false, group: "Fields"
   class_option :start_time, type: :string, desc: VideoSchema.properties[:start_time][:description], required: false, group: "Fields"
   class_option :end_time, type: :string, desc: VideoSchema.properties[:end_time][:description], required: false, group: "Fields"
+  class_option :track, type: :string, desc: VideoSchema.properties[:track][:description], required: false, group: "Fields"
+  class_option :slides_url, type: :string, desc: VideoSchema.properties[:slides_url][:description], required: false, group: "Fields"
 
   # Options
   class_option :lightning_talks, type: :boolean, default: false, desc: "Add empty group of lightning talks", group: "Options"
@@ -33,7 +36,7 @@ class TalkGenerator < Generators::EventBase
       "kind" => "lightning_talk"
     }.freeze
 
-    attr_accessor :event_slug, :event, :announced_at, :description, :original_title, :start_time, :end_time
+    attr_accessor :event_slug, :event, :announced_at, :description, :original_title, :start_time, :end_time, :track, :slides_url
     attr_writer :id, :date, :language, :speakers, :title, :kind, :existing_ids
 
     def initialize(**attributes)
@@ -73,9 +76,11 @@ class TalkGenerator < Generators::EventBase
     end
 
     def generate_talk_id
-      candidates = ::Talk::StaticID.new(event_slug: event_slug, title: title, speakers: speakers, kind: kind).candidates
+      @generated_talk_id ||= begin
+        candidates = ::Talk::StaticID.new(event_slug: event_slug, title: title, speakers: speakers, kind: kind).candidates
 
-      candidates.find { |candidate| existing_ids.exclude?(candidate) } || candidates.last
+        candidates.find { |candidate| existing_ids.exclude?(candidate) } || candidates.last
+      end
     end
 
     def existing_ids

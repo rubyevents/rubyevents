@@ -18,6 +18,12 @@
 <%- if options[:announced_at] -%>
   announced_at: "<%= @talk.announced_at %>"
 <%- end -%>
+<%- if @talk.track.present? -%>
+  track: "<%= @talk.track %>"
+<%- end -%>
+<%- if @talk.slides_url.present? -%>
+  slides_url: "<%= @talk.slides_url %>"
+<%- end -%>
   video_provider: "scheduled"
   video_id: "<%= @talk.id %>"
 <%- if @talk.description.blank? -%>

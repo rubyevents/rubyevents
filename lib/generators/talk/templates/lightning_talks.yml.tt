@@ -6,6 +6,9 @@
   kind: "lightning_talk"
   language: "<%= @talk.language %>"
   date: "<%= @talk.date %>"
+<%- if @talk.track.present? -%>
+  track: "<%= @talk.track %>"
+<%- end -%>
   talks: []
   video_provider: "scheduled"
   video_id: "<%= @talk.id %>"
