@@ -22,6 +22,6 @@
     </p>
 
     <span aria-hidden="true" class="text-gray-300">·</span>
-    <%= render "shared/subscribe_to_calendar", url: events_url(format: :ics), modal_id: "modal-middle" %>
+    <%= render "shared/subscribe_to_calendar", url: events_url(format: :ics, continent: params[:continent]), modal_id: "modal-middle" %>
   </div>
 </div>
