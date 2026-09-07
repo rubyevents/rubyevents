@@ -76,9 +76,11 @@ class TalkGenerator < Generators::EventBase
     end
 
     def generate_talk_id
-      candidates = ::Talk::StaticID.new(event_slug: event_slug, title: title, speakers: speakers, kind: kind).candidates
+      @generated_talk_id ||= begin
+        candidates = ::Talk::StaticID.new(event_slug: event_slug, title: title, speakers: speakers, kind: kind).candidates
 
-      candidates.find { |candidate| existing_ids.exclude?(candidate) } || candidates.last
+        candidates.find { |candidate| existing_ids.exclude?(candidate) } || candidates.last
+      end
     end
 
     def existing_ids
