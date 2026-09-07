@@ -185,7 +185,7 @@ class TalkGeneratorTest < Rails::Generators::TestCase
     ]
 
     assert_valid_file videos_file_path do |content|
-      assert_equal 1, content.scan(/- id:/).size
+      assert_equal 1, content.scan("- id:").size
       assert_match(/id: "jane-doe-john-smith-2025"/, content)
       assert_match(/title: "Workshop: Jane Doe"/, content)
       assert_match(/description: "A workshop about Ruby!"/, content)
