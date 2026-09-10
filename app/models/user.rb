@@ -112,11 +112,17 @@ class User < ApplicationRecord
   # Event participation associations
   has_many :event_participations, dependent: :destroy
   has_many :participated_events, -> { distinct }, through: :event_participations, source: :event
+  has_many :attended_events, -> {
+    where(event_participations: {attended_as: EventParticipation::ATTENDING_ROLES}).distinct
+  },
+    through: :event_participations, source: :event
   has_many :speaker_events, -> { where(event_participations: {attended_as: :speaker}) },
     through: :event_participations, source: :event
   has_many :keynote_speaker_events, -> { where(event_participations: {attended_as: :keynote_speaker}) },
     through: :event_participations, source: :event
   has_many :visitor_events, -> { where(event_participations: {attended_as: :visitor}) },
+    through: :event_participations, source: :event
+  has_many :interested_events, -> { where(event_participations: {attended_as: :interested}) },
     through: :event_participations, source: :event
 
   def checked_in_events
@@ -124,7 +130,7 @@ class User < ApplicationRecord
   end
 
   def all_attended_events
-    Event.where(id: (participated_events.pluck(:id) + checked_in_events.pluck(:id)).uniq)
+    Event.where(id: (attended_events.pluck(:id) + checked_in_events.pluck(:id)).uniq)
   end
 
   def checked_in_event_ids

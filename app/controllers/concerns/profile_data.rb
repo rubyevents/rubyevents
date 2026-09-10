@@ -17,7 +17,7 @@ module ProfileData
     @talks = @user.kept_talks
     @events = @user.participated_events
     @stamps = Stamp.for_user(@user)
-    @stickers = Sticker.for_user(@user, events: @events)
+    @stickers = Sticker.for_user(@user, events: @user.attended_events)
     @involvements_by_role = @user.event_involvements.group_by(&:role).transform_values(&:any?)
     @countries_with_events = @events.group_by(&:country_code).any? ? [true] : []
     @topics = @user.topics.approved.tally.sort_by(&:last).reverse.map(&:first)
@@ -52,7 +52,7 @@ module ProfileData
 
   def set_mutual_events
     @mutual_events = if Current.user
-      @user.participated_events.where(id: Current.user.participated_events).order(start_date: :desc)
+      @user.attended_events.where(id: Current.user.attended_events).order(start_date: :desc)
     else
       Event.none
     end
