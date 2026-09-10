@@ -1,0 +1,21 @@
+<%# locals: (event:) %>
+<%= link_to event,
+      class: "absolute inset-x-4 bottom-4 hidden rounded-2xl bg-base-100/90 p-4 shadow-lg backdrop-blur lg:inset-x-8 lg:bottom-8",
+      data: {event_list_target: "caption", event_id: event.slug} do %>
+  <div class="flex items-center gap-4 <%= "opacity-50 grayscale" if event_cancelled?(event) %>">
+    <%= image_tag image_path(event.avatar_image_path),
+          class: "size-14 shrink-0 rounded-xl border border-[#D9DFE3]",
+          alt: event.name.to_s,
+          loading: :lazy %>
+
+    <div class="min-w-0">
+      <div class="truncate text-lg font-bold text-black <%= "text-red-500 line-through" if event_cancelled?(event) %>">
+        <%= event.name %>
+      </div>
+
+      <div class="truncate text-sm text-[#636B74] <%= "line-through" if event_cancelled?(event) %>">
+        <%= event.formatted_dates %> • <%= event.to_location.to_html(show_links: false) %>
+      </div>
+    </div>
+  </div>
+<% end %>

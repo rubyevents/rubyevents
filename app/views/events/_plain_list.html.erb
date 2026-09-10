@@ -1,4 +1,8 @@
 <div id="event-plain-list" class="group relative flex flex-col gap-2 rounded-xl">
+  <% if events.empty? %>
+    <%= render "events/no_events" %>
+  <% end %>
+
   <% events.each do |event| %>
     <%= link_to event, class: "event-item flex gap-4 group p-2 hover:bg-gray-200 rounded-md" do %>
       <div class="lg:justify-right flex flex-shrink-0 flex-col items-center gap-8 text-center lg:flex-row lg:text-left <%= "opacity-50 grayscale" if event_cancelled?(event) %>">

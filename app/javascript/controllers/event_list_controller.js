@@ -2,18 +2,13 @@ import { Controller } from '@hotwired/stimulus'
 import { useMatchMedia } from 'stimulus-use'
 
 export default class extends Controller {
-  static targets = ['item', 'poster', 'list', 'topGradient', 'bottomGradient']
+  static targets = ['item', 'caption', 'list', 'topGradient', 'bottomGradient']
+  static outlets = ['globe']
 
   connect () {
     useMatchMedia(this, {
       mediaQueries: { desktop: '(min-width: 768px)' }
     })
-
-    const firstEvent = this.itemTargets[0]
-
-    if (firstEvent) {
-      this.posterTargetFor(firstEvent.dataset.eventId)?.classList.remove('hidden')
-    }
 
     this.updateGradients()
   }
@@ -31,16 +26,45 @@ export default class extends Controller {
   reveal (event) {
     const eventId = event.target.closest('.event-item').dataset.eventId
 
-    this.hidePosters()
-    this.posterTargetFor(eventId)?.classList.remove('hidden')
+    this.showCaption(eventId)
+
+    if (this.hasGlobeOutlet) {
+      this.globeOutlet.focus(eventId)
+    }
   }
 
-  hidePosters () {
-    this.posterTargets.forEach(poster => poster.classList.add('hidden'))
+  release (event) {
+    // Moving between events in the list keeps the focus
+    if (event.relatedTarget && this.listTarget.contains(event.relatedTarget)) return
+
+    this.hideCaptions()
+
+    if (this.hasGlobeOutlet) {
+      this.globeOutlet.unfocus()
+    }
   }
 
-  posterTargetFor (eventId) {
-    return this.posterTargets.find(poster => poster.dataset.eventId === eventId)
+  hideCaptions () {
+    this.captionTargets.forEach(caption => caption.classList.add('hidden'))
+  }
+
+  hoverMarker (event) {
+    this.showCaption(event.detail.slug)
+  }
+
+  selectMarker (event) {
+    const eventId = event.detail.slug
+
+    this.showCaption(eventId)
+    this.itemTargets
+      .find(item => item.dataset.eventId === eventId)
+      ?.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
+  }
+
+  showCaption (eventId) {
+    this.captionTargets.forEach(caption => {
+      caption.classList.toggle('hidden', caption.dataset.eventId !== eventId)
+    })
   }
 
   updateGradients () {

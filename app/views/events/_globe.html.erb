@@ -1,0 +1,75 @@
+<%# locals: (events:, markers:, center: nil) %>
+<div
+  id="events-globe"
+  class="relative h-96 w-full overflow-hidden rounded-[25px] bg-base-200 md:h-[75vh] lg:rounded-[50px]"
+  data-controller="globe"
+  data-globe-markers-value="<%= markers.to_json %>"
+  data-globe-center-value="<%= (center || []).to_json %>"
+  data-action="
+    pointerdown->globe#grab pointermove->globe#move pointerup->globe#drop pointercancel->globe#drop
+    pointerenter->globe#pause pointerleave->globe#leave turbo:morph@document->globe#morphed
+  "
+>
+  <div
+    class="relative h-full w-full cursor-grab touch-pan-y active:cursor-grabbing"
+    data-globe-target="frame"
+    data-action="turbo:before-morph-element->globe#skipMorph"
+  >
+    <canvas class="block h-full w-full opacity-0 transition-opacity duration-500" data-globe-target="canvas"></canvas>
+  </div>
+
+  <%#
+    cobe anchors each marker id at its projected spot and only defines --cobe-visible-* while it faces the camera. The
+    anchors must sit inside the markers' containing block, and nothing absolutely positioned may sit in between.
+  %>
+  <div class="hidden supports-[anchor-name:--x]:contents">
+    <% markers.each_with_index do |marker, index| %>
+      <% events_here = marker[:events] %>
+      <div
+        class="
+          group pointer-events-auto absolute left-[anchor(center)] top-[anchor(center)] -translate-x-1/2 -translate-y-1/2
+          cursor-pointer transition-[transform,opacity,visibility] duration-300 data-[highlighted]:z-10
+          data-[highlighted]:scale-[2]
+        "
+        style="
+          position-anchor: --cobe-marker-<%= index %>; opacity: var(--cobe-visible-marker-<%= index %>, 0);
+          visibility: var(--cobe-visible-marker-<%= index %>, hidden)
+        "
+        data-globe-target="marker"
+        data-globe-index-param="<%= index %>"
+        data-action="pointerenter->globe#hover pointerleave->globe#unhover click->globe#select"
+      >
+        <span
+          class="
+            absolute inset-0 hidden rounded-full bg-white/40 motion-safe:animate-ping group-data-[highlighted]:block
+          "
+        ></span>
+
+        <div class="relative flex -space-x-2">
+          <% events_here.first(3).each do |event| %>
+            <%= image_tag event[:avatar],
+                  alt: event[:name],
+                  class: "size-5 rounded-full bg-white shadow ring-1 ring-white/80 data-[current]:z-10 data-[current]:ring-2",
+                  loading: "lazy",
+                  data: {slug: event[:slug]} %>
+          <% end %>
+
+          <% if events_here.size > 3 %>
+            <span
+              class="
+                flex size-5 items-center justify-center rounded-full bg-neutral text-[9px] font-bold text-white ring-1
+                ring-white/80
+              "
+            >
+              +<%= events_here.size - 3 %>
+            </span>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <% events.each do |event| %>
+    <%= render partial: "events/globe_caption", locals: {event: event} %>
+  <% end %>
+</div>

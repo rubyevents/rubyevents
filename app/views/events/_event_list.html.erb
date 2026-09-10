@@ -14,10 +14,10 @@
       md:hover:border-gray-200
     "
     data-event-list-target="list"
-    data-action="scroll->event-list#updateGradients"
+    data-action="scroll->event-list#updateGradients mouseleave->event-list#release focusout->event-list#release"
   >
     <% events.each do |event| %>
-      <%= link_to event, class: "event-item flex gap-4 group p-2 hover:bg-gray-200 rounded-md relative", data: {action: "mouseover->event-list#reveal", event_list_target: "item", event_id: event.slug} do %>
+      <%= link_to event, class: "event-item flex gap-4 group p-2 hover:bg-gray-200 rounded-md relative", data: {action: "mouseover->event-list#reveal focusin->event-list#reveal", event_list_target: "item", event_id: event.slug} do %>
         <div class="lg:justify-right flex flex-shrink-0 flex-col items-center gap-8 text-center lg:flex-row lg:text-left <%= "opacity-50 grayscale" if event_cancelled?(event) %>">
           <%= image_tag image_path(event.avatar_image_path),
                 class: "rounded-xl border border-[#D9DFE3] size-16",
