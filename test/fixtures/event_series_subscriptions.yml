@@ -1,0 +1,23 @@
+# empty
+# == Schema Information
+#
+# Table name: event_series_subscriptions
+# Database name: primary
+#
+#  id              :integer          not null, primary key
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  event_series_id :integer          not null, uniquely indexed => [user_id], indexed
+#  user_id         :integer          not null, uniquely indexed => [event_series_id], indexed
+#
+# Indexes
+#
+#  idx_on_user_id_event_series_id_68ec03d2be            (user_id,event_series_id) UNIQUE
+#  index_event_series_subscriptions_on_event_series_id  (event_series_id)
+#  index_event_series_subscriptions_on_user_id          (user_id)
+#
+# Foreign Keys
+#
+#  event_series_id  (event_series_id => event_series.id)
+#  user_id          (user_id => users.id)
+#
