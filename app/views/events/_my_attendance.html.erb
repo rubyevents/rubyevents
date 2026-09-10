@@ -1,7 +1,7 @@
 <%# locals: (event:, days:, tracks:, talks:, in_person_talk_ids:, online_talk_ids:, feedback_talk_ids:) %>
 
 <% total_talks = talks.size %>
-<% attended_count = in_person_talk_ids.size %>
+<% attended_count = talks.count { |talk| in_person_talk_ids.include?(talk.id) } %>
 <% has_schedule = days.present? && days.any? %>
 
 <section id="my-attendance" class="rounded-lg border bg-white p-4 shadow-sm">
@@ -11,10 +11,7 @@
       <p class="text-xs text-gray-500">Tap talks you attended in person</p>
     </div>
 
-    <div id="attendance-counter" class="text-right">
-      <div class="text-xl font-bold text-primary"><%= attended_count %>/<%= total_talks %></div>
-      <div class="text-xs text-gray-500">in-person</div>
-    </div>
+    <%= render "events/attendance_counter", attended_count: attended_count, total_talks: total_talks %>
   </div>
 
   <div id="attendance-schedule">
