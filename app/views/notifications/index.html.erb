@@ -1,0 +1,36 @@
+<div class="container mx-auto py-8 px-4">
+  <h1 class="text-3xl font-bold mb-8">Notifications</h1>
+
+  <% if @notifications.any? %>
+    <div class="space-y-4">
+      <% @notifications.each do |notification_user| %>
+        <div class="card bg-base-100 shadow-md hover:shadow-lg transition-shadow">
+          <div class="card-body">
+            <h3 class="card-title text-lg">
+              <%= link_to redirect_notification_path(notification_user) do %>
+                <%= notification_user.title %>
+              <% end %>
+            </h3>
+            <p class="text-sm text-gray-500">
+              <%= time_ago_in_words(notification_user.created_at) %> ago
+            </p>
+            <div class="card-actions justify-end mt-4">
+              <% if notification_user.read %>
+                <span class="badge badge-ghost">Read</span>
+              <% else %>
+                <span class="badge badge-primary">New</span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="alert alert-info">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-6 h-6 stroke-current">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+      <span>You don't have any notifications at the moment.</span>
+    </div>
+  <% end %>
+</div>

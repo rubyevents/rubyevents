@@ -23,9 +23,13 @@
 #
 # rubocop:enable Layout/LineLength
 class WatchListTalk < ApplicationRecord
+  include Notifications::TalkPublished
+
   belongs_to :watch_list, counter_cache: :talks_count
   belongs_to :talk
   has_one :user, through: :watch_list, touch: true
+  after_create :create_user_notification_subscription, if: -> { talk.scheduled? }
+  after_destroy :destroy_user_notification_subscription, if: -> { talk.scheduled? }
 
   validates :watch_list_id, uniqueness: {scope: :talk_id}
 
