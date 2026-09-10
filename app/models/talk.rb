@@ -272,6 +272,7 @@ class Talk < ApplicationRecord
   scope :youtube, -> { where(video_provider: "youtube") }
   scope :video_available, -> { watchable.where(video_unavailable_at: nil) }
   scope :video_unavailable, -> { watchable.where.not(video_unavailable_at: nil) }
+  scope :top_level, -> { where(parent_talk_id: nil) }
   scope :upcoming, -> { where(date: Date.today...) }
   scope :today, -> { where(date: Date.today) }
   scope :past, -> { where(date: ...Date.today) }
