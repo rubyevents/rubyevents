@@ -61,6 +61,7 @@ class Event < ApplicationRecord
   # associations
   belongs_to :series, class_name: "EventSeries", foreign_key: :event_series_id, strict_loading: false
   has_many :talks, dependent: :destroy, inverse_of: :event, foreign_key: :event_id
+  has_many :top_level_talks, -> { top_level }, class_name: "Talk", inverse_of: :event, foreign_key: :event_id
   has_many :watchable_talks, -> { watchable }, class_name: "Talk"
   has_many :speakers, -> { distinct }, through: :talks, class_name: "User"
   has_many :keynote_talks, -> { where(kind: "keynote") }, class_name: "Talk", foreign_key: :event_id, inverse_of: :event
