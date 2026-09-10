@@ -7,10 +7,16 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
+    @event.update!(latitude: 52.37, longitude: 4.9)
+
     get events_url
     assert_response :success
     assert_select "h1", /Upcoming Events/i
     assert_select "[data-event-id=#{@event.slug}]", 2
+    assert_select "#event-list .event-item[data-event-id=?]", @event.slug
+    assert_select "#events-globe a[data-event-list-target=caption][data-event-id=?]", @event.slug
+    assert_select "#events-globe[data-globe-markers-value*=?]", @event.slug
+    assert_select "#events-globe [data-globe-target=marker] img[alt=?]", @event.name, 1
   end
 
   test "should get index as ics" do
@@ -45,6 +51,17 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     assert_select "nav[aria-label=?] a[aria-current=page]", "Filter events by continent", text: "Europe"
   end
 
+  test "should center the globe on the selected continent" do
+    upcoming_events_on_two_continents
+    continent = Continent.find("europe")
+
+    get events_url
+    assert_select "#events-globe[data-globe-center-value=?]", "[]"
+
+    get events_url(continent: "europe")
+    assert_select "#events-globe[data-globe-center-value=?]", [continent.latitude, continent.longitude].to_json
+  end
+
   test "should ignore an unknown continent" do
     get events_url(continent: "not-a-continent")
 
@@ -54,11 +71,15 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should show the empty state for a continent without events" do
+    africa = Continent.find("africa")
+
     get events_url(continent: "africa")
 
     assert_response :success
     assert_select "h2", text: "No events found"
     assert_select "[data-event-id=#{@event.slug}]", false
+    assert_select "#events-globe[data-globe-markers-value=?]", "[]"
+    assert_select "#events-globe[data-globe-center-value=?]", [africa.latitude, africa.longitude].to_json
   end
 
   test "should filter the ics feed by continent" do
