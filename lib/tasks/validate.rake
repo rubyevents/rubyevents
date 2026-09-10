@@ -94,6 +94,30 @@ namespace :validate do
     exit 1 if validate_series_files.any?
   end
 
+  def validate_sponsor_files
+    files = Dir.glob(Rails.root.join("data/**/sponsors.yml"))
+    validators = Static::Validators::Validator.sponsor_validator_classes
+
+    file_errors = files.each_with_object({}) do |file, errors|
+      document = parse_document(file)
+      file_errs = validators.flat_map { |v| v.new(file_path: file, document: document).errors }
+      errors[file_errs.first.file_path] = file_errs if file_errs.any?
+    end
+
+    if file_errors.empty?
+      puts Gum.style("✓ All sponsors.yml files passed validations!", foreground: "2")
+    else
+      print_validator_errors(file_errors)
+    end
+
+    file_errors.values.flatten
+  end
+
+  desc "Validate sponsors.yml files"
+  task sponsors: :environment do
+    exit 1 if validate_sponsor_files.any?
+  end
+
   def validate_venue_files
     validate_files(
       files: Dir.glob(Rails.root.join("data/**/venue.yml")),
@@ -416,6 +440,7 @@ namespace :validate do
       "Validating videos.yml files" => -> { validate_video_files.none? },
       "Validating event.yml files" => -> { validate_event_files.none? },
       "Validating series.yml files" => -> { validate_series_files.none? },
+      "Validating sponsors.yml files" => -> { validate_sponsor_files.none? },
       "Validating venue.yml files" => -> { validate_venue_files.none? },
       "Validating speakers.yml file" => -> { validate_speakers_file.none? },
       "Validating involvements.yml file" => -> { validate_involvements_file.none? },
