@@ -134,6 +134,7 @@
               <%= ui_button kind: :pill, class: "hidden lg:inline-flex", aria: {pressed: "false"}, data: {theater_button: "", action: "theater#toggle"} do %>
                 <%= fa("expand", size: :xs, data: {theater_icon: "inactive"}) %>
                 <%= fa("compress", size: :xs, class: "hidden", data: {theater_icon: "active"}) %>
+
                 <span class="text-xs" data-theater-label>Theater</span>
               <% end %>
             <% end %>
