@@ -11,7 +11,10 @@ export default class extends Controller {
 
     const firstEvent = this.itemTargets[0]
 
-    this.posterTargetFor(firstEvent.dataset.eventId)?.classList.remove('hidden')
+    if (firstEvent) {
+      this.posterTargetFor(firstEvent.dataset.eventId)?.classList.remove('hidden')
+    }
+
     this.updateGradients()
   }
 

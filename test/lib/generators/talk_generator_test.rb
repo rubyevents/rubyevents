@@ -38,6 +38,8 @@ class TalkGeneratorTest < Rails::Generators::TestCase
       "--kind", "keynote",
       "--language", "Japanese",
       "--date", "2025-09-15",
+      "--track", "Main Stage",
+      "--slides-url", "https://speakerdeck.com/jane/doe",
       "--speakers", "Jane Doe"
     ]
 
@@ -47,6 +49,8 @@ class TalkGeneratorTest < Rails::Generators::TestCase
       assert_match(/kind: "keynote"/, content)
       assert_match(/language: "Japanese"/, content)
       assert_match(/date: "2025-09-15"/, content)
+      assert_match(/track: "Main Stage"/, content)
+      assert_match(/slides_url: "https:\/\/speakerdeck.com\/jane\/doe"/, content)
       assert_match(/- Jane Doe/, content)
     end
   end
@@ -142,6 +146,61 @@ class TalkGeneratorTest < Rails::Generators::TestCase
       assert_match(/title: "Keynote: Talks about Talks"/, content)
       assert_match(/id: "jane-doe-2026"/, content)
       assert_match(/- Jane Doe/, content)
+    end
+  end
+
+  test "update maximum videos.yml entry" do
+    seed_speakers_file
+
+    videos_file_path = File.join(destination_root, "data/rubyconf/2025/videos.yml")
+    run_generator [
+      "--event-series", "rubyconf",
+      "--event", "2025",
+      "--title", "Keynote: Jane Doe",
+      "--description", "An insightful talk about Ruby and its future.",
+      "--kind", "keynote",
+      "--language", "Japanese",
+      "--date", "2025-09-15",
+      "--start-time", "09:00",
+      "--end_time", "10:00",
+      "--track", "Main Stage",
+      "--slides-url", "https://speakerdeck.com/jane/doe",
+      "--speakers", "Jane Doe", "John Smith"
+    ]
+
+    run_generator [
+      "--event-series", "rubyconf",
+      "--event", "2025",
+      "--id", "jane-doe-john-smith-2025",
+      "--title", "Workshop: Jane Doe",
+      "--description", "A workshop about Ruby!",
+      "--kind", "workshop",
+      "--language", "English",
+      "--date", "2025-09-16",
+      "--start-time", "13:30",
+      "--end_time", "15:00",
+      "--track", "Workshop",
+      "--slides-url", "https://speakerdeck.com/jane/doe/workshop",
+      "--speakers", "Jane Doe", "John Smith"
+    ]
+
+    assert_valid_file videos_file_path do |content|
+      assert_equal 1, content.scan("- id:").size
+      assert_match(/id: "jane-doe-john-smith-2025"/, content)
+      assert_match(/title: "Workshop: Jane Doe"/, content)
+      assert_match(/description: "A workshop about Ruby!"/, content)
+      assert_match(/kind: "workshop"/, content)
+      assert_match(/language: "English"/, content)
+      assert_match(/date: "2025-09-16"/, content)
+      assert_match(/start_time: "13:30"/, content)
+      assert_match(/end_time: "15:00"/, content)
+      assert_match(/track: "Workshop"/, content)
+      assert_match(%r{slides_url: "https://speakerdeck.com/jane/doe/workshop"}, content)
+      assert_no_match(/Keynote/, content)
+      assert_no_match(/Japanese/, content)
+      assert_no_match(/Main Stage/, content)
+      assert_match(/- Jane Doe/, content)
+      assert_match(/- John Smith/, content)
     end
   end
 
@@ -343,6 +402,35 @@ class TalkGeneratorTest < Rails::Generators::TestCase
       assert_match(/id: "/, content)
     end
     assert_empty read_speakers_file
+  end
+
+  test "schedule an existing talk with a date and time" do
+    seed_speakers_file
+    videos_file_path = File.join(destination_root, "data/rubyconf/2026/videos.yml")
+    run_generator [
+      "--event-series", "rubyconf",
+      "--event", "2026",
+      "--title", "The little schema that could (...but should it?)",
+      "--speakers", "Andy Andrea"
+    ]
+
+    run_generator [
+      "--event-series", "rubyconf",
+      "--event", "2026",
+      "--id", "andy-andrea-2026",
+      "--date", "2026-07-14",
+      "--start-time", "16:15",
+      "--end-time", "17:00",
+      "--track", "Workshop Studio"
+    ]
+
+    assert_valid_file videos_file_path do |content|
+      assert_match(/id: "andy-andrea-2026"/, content)
+      assert_match(/date: "2026-07-14"/, content)
+      assert_match(/start_time: 16:15/, content)
+      assert_match(/end_time: 17:00/, content)
+      assert_match(/track: Workshop Studio/, content)
+    end
   end
 
   def seed_speakers_file(content = "--- []\n")
