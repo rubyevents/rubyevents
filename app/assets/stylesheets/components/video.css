@@ -32,4 +32,38 @@
       @apply rounded-xl;
     }
   }
+
+  .theater-mode {
+    @apply lg:!max-w-none lg:!px-0;
+  }
+
+  .theater-available {
+    --theater-enabled: 0;
+
+    @apply lg:[--theater-enabled:1];
+  }
+
+  .theater-mode .theater-contained {
+    @apply lg:mx-auto lg:w-full lg:max-w-screen-2xl lg:px-4;
+  }
+
+  .theater-mode .theater-main {
+    @apply lg:overflow-visible;
+  }
+
+  .theater-mode .theater-sidebar {
+    @apply lg:!hidden;
+  }
+
+  .theater-mode .theater-player {
+    @apply lg:w-full lg:bg-black;
+  }
+
+  .theater-mode .theater-player .theater-stage {
+    @apply lg:mx-auto lg:h-auto lg:max-h-[calc(100vh-5rem)] lg:w-auto lg:max-w-full lg:rounded-none lg:outline-none;
+  }
+
+  .theater-mode .theater-player .theater-stage :is(img, .absolute, .v-video) {
+    @apply lg:rounded-none;
+  }
 }
