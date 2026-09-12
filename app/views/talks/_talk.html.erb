@@ -18,17 +18,17 @@
 <% language = Language.by_code(talk.language) %>
 
 <%= content_tag :div, id: dom_id(talk) do %>
-  <%= turbo_frame_tag dom_id(talk, :video_player) do %>
+  <%= turbo_frame_tag dom_id(talk, :video_player), class: "theater-player block" do %>
     <%= render partial: "talks/video_player", locals: {talk: talk, current_user_watched_talk: current_user_watched_talk, is_watched: is_watched, video_provider: video_provider, video_id: video_id} %>
   <% end %>
 
-  <div id="<%= dom_id(talk, :feedback_banner) %>">
+  <div class="theater-contained" id="<%= dom_id(talk, :feedback_banner) %>">
     <% if is_watched %>
       <%= render partial: "talks/watched_talks/feedback_banner", locals: {talk: talk, watched_talk: current_user_watched_talk} %>
     <% end %>
   </div>
 
-  <div class="flex flex-col">
+  <div class="theater-contained flex flex-col">
     <% if talk.meta_talk? %>
       <div class="badge badge-ghost my-3 flex gap-1 px-3 py-3 hover:bg-gray-300">
         <%= fa("rectangle-history", size: :xs, class: "fill-gray-700 mr-2") %>
@@ -125,6 +125,16 @@
               <%= ui_button url: player_url, kind: :pill, target: "_blank", data: {action: "click->video-player#pause"} do %>
                 <%= fa("website-brands", size: :xs, style: :solid) %>
                 <span class="text-xs">Play on Website</span>
+              <% end %>
+            <% end %>
+          <% end %>
+
+          <% if talk.video_available? %>
+            <%= ui_tooltip "Toggle theater mode" do %>
+              <%= ui_button kind: :pill, class: "hidden lg:inline-flex", aria: {pressed: "false"}, data: {theater_button: "", action: "theater#toggle"} do %>
+                <%= fa("expand", size: :xs, data: {theater_icon: "inactive"}) %>
+                <%= fa("compress", size: :xs, class: "hidden", data: {theater_icon: "active"}) %>
+                <span class="text-xs" data-theater-label>Theater</span>
               <% end %>
             <% end %>
           <% end %>
