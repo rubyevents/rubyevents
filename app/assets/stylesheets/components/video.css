@@ -62,4 +62,8 @@
   .theater-mode .theater-player .theater-stage {
     @apply lg:mx-auto lg:h-auto lg:max-h-[calc(100vh-5rem)] lg:w-auto lg:max-w-full lg:rounded-none lg:outline-none;
   }
+
+  .theater-mode .theater-player .theater-stage :is(img, .absolute, .v-video) {
+    @apply lg:rounded-none;
+  }
 }
