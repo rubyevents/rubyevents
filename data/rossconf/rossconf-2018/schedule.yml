@@ -1,0 +1,74 @@
+---
+days:
+  - name: "Day 1"
+    date: "2018-05-11"
+    grid:
+      - start_time: "18:00"
+        end_time: "19:00"
+        slots: 1
+        items:
+          - "Start pre-event"
+
+      # "Host, maintainer talks" on the event site: the six 15 minute project
+      # introductions, run back to back in one block.
+
+      - start_time: "19:00"
+        end_time: "20:30"
+        slots: 6
+
+      - start_time: "20:30"
+        end_time: "21:00"
+        slots: 1
+        items:
+          - "Q&A, Drinks & Networking"
+
+  - name: "Day 2"
+    date: "2018-05-12"
+    grid:
+      - start_time: "10:00"
+        end_time: "10:30"
+        slots: 1
+        items:
+          - "Start & coffee"
+
+      - start_time: "10:30"
+        end_time: "12:00"
+        slots: 1
+        items:
+          - "Break out in groups"
+
+      - start_time: "12:00"
+        end_time: "13:00"
+        slots: 1
+        items:
+          - "Lunch"
+
+      - start_time: "13:00"
+        end_time: "15:00"
+        slots: 1
+        items:
+          - "Break out in groups"
+
+      - start_time: "15:00"
+        end_time: "15:30"
+        slots: 1
+        items:
+          - "Snacks"
+
+      - start_time: "15:30"
+        end_time: "18:30"
+        slots: 1
+        items:
+          - "Break out in groups"
+
+      - start_time: "18:30"
+        end_time: "19:30"
+        slots: 1
+        items:
+          - "Dinner"
+
+      - start_time: "19:30"
+        end_time: "20:30"
+        slots: 1
+        items:
+          - "Maintainer presentations, closing notes"

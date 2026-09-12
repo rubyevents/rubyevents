@@ -49,6 +49,10 @@ module EventsHelper
       end
   end
 
+  def continent_filter_path(continent)
+    url_for(continent: continent&.slug)
+  end
+
   def featured_cta_path(event)
     if event.featured_reason == :cfp_closing
       event_cfp_index_path(event)

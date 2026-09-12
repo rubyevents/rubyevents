@@ -71,6 +71,61 @@
   speakers:
     - Daniel Acton
 
+- id: "daniel-schierbeck-rubyfuza-2014"
+  title: "Curly - Refactoring the View Layer"
+  raw_title: "Curly — Refactoring the view layer - Daniel Schierbeck"
+  event_name: "Rubyfuza 2014"
+  date: "2014-02-06"
+  published_at: "2014-05-18T09:00:13Z"
+  video_provider: "youtube"
+  video_id: "L-5clZcxK4k"
+  description: |-
+    While most parts of Rails have been thoroughly overhauled during the past few years, one part has stubbornly refused improvement. The view layer is still by default using ERB to transform your app's objects into HTML. Though HAML has gained a lot of traction, it is not a fundamental shift away from ERB, but rather a preference for putting HTML in your Ruby rather than the other way around.
+
+    More recent efforts in the realm of JavaScript have produced Mustache and its ambitious younger brother, Handlebars. While these are more radical in their attempt to separate structure and logic, they still do not feel like native Rails code.
+
+    While trying to solve a seemingly unrelated problem we discovered a design that suddenly enabled us to move past the limitations of ERB. Though different only in subtle ways, it struck just the right balance between integration with Rails and separation of concerns. We called it Curly.
+
+    I will show how we use the same old OO techniques that you already know to clean up our views, making them less prone to bugs, more readable, and more reusable.
+
+    I'll also show how a seemingly small change of our conceptual model enabled us to add advanced behavior to our view layer without ending with an unmaintainable mess.
+
+    Curly is open source and available at http://github.com/zendesk/curly
+  speakers:
+    - Daniel Schierbeck
+  additional_resources:
+    - name: "zendesk/curly"
+      type: "repo"
+      url: "http://github.com/zendesk/curly"
+
+- id: "lance-gleason-rubyfuza-2014"
+  title: "Analytics for the Busy Ruby Developer"
+  event_name: "Rubyfuza 2014"
+  date: "2014-02-06"
+  video_provider: "not_published"
+  video_id: "lance-gleason-rubyfuza-2014"
+  description: |-
+    Our applications have the potential to produce a lot of data. Every time a user clicks a button, buys something, or our application does any number of things we have the opportunity to gain useful insights. But where do you begin? Should I gather every data point I can think of? What tools work the best? There is a lot of talk and hype about analytics. In this session, let's take a look at what goes into mining data and analyzing the insights. We'll discuss different approaches to gathering, storing, and querying data, how to determine the KPIs to focus on, and how to interpret and use information in meaningful ways. While you may not be a statistician, see how some basic statistics can help you to start to wrangle your data.
+  speakers:
+    - Lance Gleason
+
+- id: "zachary-scott-rubyfuza-2014"
+  title: "Contributing to Ruby"
+  raw_title: "Contributing to Ruby - Zachary Scott"
+  event_name: "Rubyfuza 2014"
+  date: "2014-02-06"
+  published_at: "2015-01-11T18:39:28Z"
+  video_provider: "youtube"
+  video_id: "gvZFzSOlqBQ"
+  description: |-
+    Newcomer or seasoned veteran looking to get involved with Ruby documentation?
+
+    The path to eternal gratification can seem like a scary one, but we'll show you it's alot easier than you thought. Writing documentation is a great way to give back to the open source community and build your Ruby skills and fundamentals.
+
+    This talk will teach you the value of open-source, the benefits of contributing, and a little bit about how ruby-core works. You will learn what to look for when spotting documentation bugs in the CRuby source code. We will cover the guidelines to writing CRuby documentation, and how to submit a patch.
+  speakers:
+    - Zachary Scott
+
 - id: "sally-lehman-rubyfuza-2014"
   title: "Email Delivery for Rails Folks"
   raw_title: "Email Delivery for Rails Folks - Sally Lehman"
@@ -133,89 +188,6 @@
   speakers:
     - Matthew Mongeau
 
-- id: "andre-arko-rubyfuza-2014"
-  title: "Extreme Makeover: Rubygems Edition"
-  raw_title: "Extreme Makeover: Rubygems Edition - Andre Arko"
-  event_name: "Rubyfuza 2014"
-  date: "2014-02-08"
-  published_at: "2015-01-11T18:03:23Z"
-  video_provider: "youtube"
-  video_id: "awLBvYoeUSI"
-  description: |-
-    Rubygems.org provides every Rubyist with an amazing service: all the libraries in the Ruby world. As amazing as that is, installing gems can be a time-consuming and even error-prone process. In this talk, you'll learn about the recent dramatic changes in Rubygems and Bundler to improve speed and reliability by rewriting the Rubygems client/server architecture. I'll show how the new system caches more information, makes fewer requests, and takes less time to install gems. Finally, I'll cover how the changes allow worldwide mirrors of rubygems.org, improving things for Rubyists around the globe.
-  speakers:
-    - André Arko
-
-- id: "nelson-pascoal-rubyfuza-2014"
-  title: "RubyMotion - iOS and OSX Development from a Ruby Developer's Perspective"
-  raw_title: "Rubymotion - iOS and OSX development from a Ruby developer's perspective - Nelson Pascoal"
-  event_name: "Rubyfuza 2014"
-  date: "2014-02-08"
-  published_at: "2015-01-11T18:18:17Z"
-  video_provider: "youtube"
-  video_id: "cVK4-OBOv8U"
-  description: |-
-    Rubymotion provides a unique opportunity for those developers looking for an alternative to Objective-C. Start building native applications for the Apple eco-system! This sounds great from a high-level perspective, but there are some caveats that you have to be aware of.
-
-    This talk will be a high level view of: What is Rubymotion? Comparing Objective-C code to Ruby, with respect to accessing the various iOS and OSX SDKs. The on-going efforts to make Rubymotion development more "Ruby-like". The advantages and disadvantages of the various tools available for developing Rubymotion apps. Various small demos to show the power of building native iOS apps.
-  speakers:
-    - Nelson Pascoal
-
-- id: "daniel-schierbeck-rubyfuza-2014"
-  title: "Curly - Refactoring the View Layer"
-  raw_title: "Curly — Refactoring the view layer - Daniel Schierbeck"
-  event_name: "Rubyfuza 2014"
-  date: "2014-02-06"
-  published_at: "2014-05-18T09:00:13Z"
-  video_provider: "youtube"
-  video_id: "L-5clZcxK4k"
-  description: |-
-    While most parts of Rails have been thoroughly overhauled during the past few years, one part has stubbornly refused improvement. The view layer is still by default using ERB to transform your app's objects into HTML. Though HAML has gained a lot of traction, it is not a fundamental shift away from ERB, but rather a preference for putting HTML in your Ruby rather than the other way around.
-
-    More recent efforts in the realm of JavaScript have produced Mustache and its ambitious younger brother, Handlebars. While these are more radical in their attempt to separate structure and logic, they still do not feel like native Rails code.
-
-    While trying to solve a seemingly unrelated problem we discovered a design that suddenly enabled us to move past the limitations of ERB. Though different only in subtle ways, it struck just the right balance between integration with Rails and separation of concerns. We called it Curly.
-
-    I will show how we use the same old OO techniques that you already know to clean up our views, making them less prone to bugs, more readable, and more reusable.
-
-    I'll also show how a seemingly small change of our conceptual model enabled us to add advanced behavior to our view layer without ending with an unmaintainable mess.
-
-    Curly is open source and available at http://github.com/zendesk/curly
-  speakers:
-    - Daniel Schierbeck
-  additional_resources:
-    - name: "zendesk/curly"
-      type: "repo"
-      url: "http://github.com/zendesk/curly"
-
-- id: "lance-gleason-rubyfuza-2014"
-  title: "Analytics for the Busy Ruby Developer"
-  event_name: "Rubyfuza 2014"
-  date: "2014-02-06"
-  video_provider: "not_published"
-  video_id: "lance-gleason-rubyfuza-2014"
-  description: |-
-    Our applications have the potential to produce a lot of data. Every time a user clicks a button, buys something, or our application does any number of things we have the opportunity to gain useful insights. But where do you begin? Should I gather every data point I can think of? What tools work the best? There is a lot of talk and hype about analytics. In this session, let's take a look at what goes into mining data and analyzing the insights. We'll discuss different approaches to gathering, storing, and querying data, how to determine the KPIs to focus on, and how to interpret and use information in meaningful ways. While you may not be a statistician, see how some basic statistics can help you to start to wrangle your data.
-  speakers:
-    - Lance Gleason
-
-- id: "zachary-scott-rubyfuza-2014"
-  title: "Contributing to Ruby"
-  raw_title: "Contributing to Ruby - Zachary Scott"
-  event_name: "Rubyfuza 2014"
-  date: "2014-02-06"
-  published_at: "2015-01-11T18:39:28Z"
-  video_provider: "youtube"
-  video_id: "gvZFzSOlqBQ"
-  description: |-
-    Newcomer or seasoned veteran looking to get involved with Ruby documentation?
-
-    The path to eternal gratification can seem like a scary one, but we'll show you it's alot easier than you thought. Writing documentation is a great way to give back to the open source community and build your Ruby skills and fundamentals.
-
-    This talk will teach you the value of open-source, the benefits of contributing, and a little bit about how ruby-core works. You will learn what to look for when spotting documentation bugs in the CRuby source code. We will cover the guidelines to writing CRuby documentation, and how to submit a patch.
-  speakers:
-    - Zachary Scott
-
 - id: "simon-van-dyk-rubyfuza-2014"
   title: "The Birds & The Bees"
   raw_title: "The Birds & The Bees - Simon Van Dyk"
@@ -271,6 +243,34 @@
     And we come out with battle scars on our faces and a sense of accomplishment in our hearts.
   speakers:
     - Murtuza Kutub
+
+- id: "andre-arko-rubyfuza-2014"
+  title: "Extreme Makeover: Rubygems Edition"
+  raw_title: "Extreme Makeover: Rubygems Edition - Andre Arko"
+  event_name: "Rubyfuza 2014"
+  date: "2014-02-08"
+  published_at: "2015-01-11T18:03:23Z"
+  video_provider: "youtube"
+  video_id: "awLBvYoeUSI"
+  description: |-
+    Rubygems.org provides every Rubyist with an amazing service: all the libraries in the Ruby world. As amazing as that is, installing gems can be a time-consuming and even error-prone process. In this talk, you'll learn about the recent dramatic changes in Rubygems and Bundler to improve speed and reliability by rewriting the Rubygems client/server architecture. I'll show how the new system caches more information, makes fewer requests, and takes less time to install gems. Finally, I'll cover how the changes allow worldwide mirrors of rubygems.org, improving things for Rubyists around the globe.
+  speakers:
+    - André Arko
+
+- id: "nelson-pascoal-rubyfuza-2014"
+  title: "RubyMotion - iOS and OSX Development from a Ruby Developer's Perspective"
+  raw_title: "Rubymotion - iOS and OSX development from a Ruby developer's perspective - Nelson Pascoal"
+  event_name: "Rubyfuza 2014"
+  date: "2014-02-08"
+  published_at: "2015-01-11T18:18:17Z"
+  video_provider: "youtube"
+  video_id: "cVK4-OBOv8U"
+  description: |-
+    Rubymotion provides a unique opportunity for those developers looking for an alternative to Objective-C. Start building native applications for the Apple eco-system! This sounds great from a high-level perspective, but there are some caveats that you have to be aware of.
+
+    This talk will be a high level view of: What is Rubymotion? Comparing Objective-C code to Ruby, with respect to accessing the various iOS and OSX SDKs. The on-going efforts to make Rubymotion development more "Ruby-like". The advantages and disadvantages of the various tools available for developing Rubymotion apps. Various small demos to show the power of building native iOS apps.
+  speakers:
+    - Nelson Pascoal
 
 - id: "tania-van-wyk-de-vries-rubyfuza-2014"
   title: "Ruby on Microsoft Azure"

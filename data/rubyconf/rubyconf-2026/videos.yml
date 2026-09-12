@@ -8,11 +8,11 @@
   kind: "intro"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
-  published_at: "2026-09-01T20:00:33Z"
+  published_at: "2026-09-07T00:10:24Z"
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "youtube"
-  video_id: "F6LX-NzxOGc"
+  video_id: "mNpGEIneDY0"
   description: |-
     Opening remarks for RubyConf 2026 with conference co-chairs Ran Craycraft and Jason Swett.
   speakers:
@@ -25,11 +25,11 @@
   kind: "keynote"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
-  published_at: "2026-09-01T20:00:15Z"
+  published_at: "2026-09-07T00:13:28Z"
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "youtube"
-  video_id: "8XdrhSjrToc"
+  video_id: "FOg0bL3auFk"
   description: ""
   speakers:
     - "Yukihiro \"Matz\" Matsumoto"
@@ -39,11 +39,11 @@
   raw_title: "RubyConf 2026 - The Anatomy of an ERB Rendering Engine by Marco Roth"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
-  published_at: "2026-09-01T20:00:10Z"
+  published_at: "2026-09-07T00:14:47Z"
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "youtube"
-  video_id: "VN6wlnxWBhE"
+  video_id: "HrYfr_k2iAU"
   description: |-
     ERB is one of Ruby's oldest and most widely used technologies, yet many Ruby developers only have a vague mental model of how it actually works. In this talk, we take a deep dive into the internals of ERB rendering engines. We start by examining how ERB templates are compiled and executed today, and the design and trade-offs behind traditional engines such as `erb` and `erubi`, especially in context with rendering HTML. We then explore where this string-based approach breaks down, particularly when it comes to tooling, diagnostics, and more advanced rendering techniques in HTML+ERB templates. Finally, we look at a different approach: building an HTML-aware ERB engine on top of a syntax tree. Using `Herb::Engine` as a concrete example, we show how adding structural understanding changes what is possible, and what it unlocks next, including better tooling and the foundations for efficient, reactive rendering.
   speakers:
@@ -83,11 +83,11 @@
   raw_title: "RubyConf 2026 - Implementing Core Set by Jeremy Evans"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
-  published_at: "2026-09-01T20:00:17Z"
+  published_at: "2026-09-07T00:16:28Z"
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "youtube"
-  video_id: "EbHsIPrmcp8"
+  video_id: "2vPK9D_SUOc"
   description: |-
     Historically, Ruby's Set class was in the standard library. Starting in Ruby 3.2, the Set standard library was autoloaded by default. In Ruby 4.0, Set is now implemented as one of the core classes. In this presentation, I'll go over the history of Set, why and how it was implemented as a core class, interesting implementation issues, and how it led to a decrease in memory usage for some embedded RTypedData objects (and what RTypedData objects are).
   speakers:
@@ -110,12 +110,14 @@
 
 - id: "jon-rizzo-dave-currie-rubyconf-2026"
   title: "Teaching Ruby to Rank: A Search Pipeline Story"
+  raw_title: "RubyConf 2026 - Teaching Ruby to Rank: A Search Pipeline Story by Jon Rizzo & Dave Currie"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
+  published_at: "2026-09-02T02:11:10Z"
   language: "English"
   track: "Breakout 2 - Red Rock G&H"
-  video_provider: "scheduled"
-  video_id: "jon-rizzo-dave-currie-rubyconf-2026"
+  video_provider: "youtube"
+  video_id: "1P-182qLIPs"
   description: |-
     "Search sucks." It's the feedback every team building search has heard, and for good reason — keyword and vector matching alone isn't sufficient, leading to negative feedback. Our users couldn't find products they knew existed and irrelevant results were being highly ranked. As a Ruby shop that wanted to make our search retrieval pipeline smarter with machine learning, we asked ourselves: how far can Ruby actually take us? This talk is the answer. We'll walk through the full Learning to Rank pipeline we built — click and impression collection, automated feature engineering, model training and deployment, and the reranker model that sits between the search engine and the user. We'll share the relevance metrics that moved, the qualitative feedback that changed, and how the same framework now backs four different search engines at Fullscript. From this talk, you'll leave with a concrete pattern for collecting search data, a sense of what "good" looks like, and a framework you can use to start measuring and ranking your own ecommerce search results.
   speakers:
@@ -127,12 +129,12 @@
   raw_title: "RubyConf 2026 - Powerful Data: Making Rails Apps Faster with Aggregation by Neha Abraham"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
-  published_at: "2026-09-01T20:00:11Z"
+  published_at: "2026-09-07T00:18:04Z"
   language: "English"
   track: "Main Stage - Red Rock"
   slides_url: "https://speakerdeck.com/nehaabraham/blastoff-rails-powerful-data"
   video_provider: "youtube"
-  video_id: "eaDzod6XrZU"
+  video_id: "qvbQze4VqAM"
   description: |-
     Dashboards and reports are often where Rails apps go to slow down. What starts as a "simple" count or sum quietly turns into expensive queries, background job pileups, and unhappy users staring at a spinner. This talk is about taking back control by using smart aggregation strategies to make Rails dashboards fast, predictable, and easier to maintain. We'll look at how letting the database do the work it was designed for leads to cleaner Ruby, simpler application logic, and systems that don't collapse under their own weight. We'll explore: - When aggregation actually helps, and when it's overkill - Designing aggregation tables and indices that scale without drama - Keeping aggregated data fresh with background jobs that stay boring - Knowing when to lean on ActiveRecord, and when raw SQL is simply the right tool The focus is on real-world Rails systems, not theoretical optimizations. You'll leave with practical patterns, honest trade-offs, and concrete examples you can apply immediately whether you're inheriting a slow legacy app or building something new and want to get ahead of the problem. If you've ever looked at a slow dashboard and thought, "this should be faster," this talk is for you.
   speakers:
@@ -173,11 +175,11 @@
   raw_title: "RubyConf 2026 - Command-Line Applications in Ruby: Design Patterns and Best... by Keith Bennett"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
-  published_at: "2026-09-01T20:00:12Z"
+  published_at: "2026-09-07T00:20:06Z"
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "youtube"
-  video_id: "KsJ-CNlZBbM"
+  video_id: "J22k-xYqHJ0"
   description: |-
     Command-line applications are ubiquitous in modern development workflows, powering tools for cloud services, developer automation, and AI-assisted development. Ruby's expressive syntax, flexible object model, and strong testing culture make it well suited for building command-line applications whose implementations remain concise, maintainable, and easy to extend as they grow into larger systems. This talk presents practical techniques and design patterns for building high-quality command-line applications in Ruby. Topics will include: - organizing command-line application codebases for clarity, maintainability, and extensibility - producing clear help output, logs, and error messages that help users diagnose and resolve problems - achieving a high functionality-to-complexity ratio through careful interface and architecture design - designing tools that behave well in pipelines and scripts through predictable output, multiple output formats, and proper exit codes - structuring applications so the same functionality can be used as a command-line tool, library API, interactive shell (REPL), or backend server (MCP, HTTP, etc.) - using Ruby's flexible syntax to enable lightweight DSL-style interaction in REPL environments and command scripts Examples will draw from real-world Ruby tools including cov-loupe, a coverage analysis command-line application, library, and MCP server, and wifi-wand, a Wi-Fi management command-line application, library, and interactive shell. Attendees will leave with practical patterns they can apply immediately to build command-line applications that are easier to use, easier to maintain, and more powerful and flexible.
   speakers:
@@ -188,11 +190,11 @@
   raw_title: "RubyConf 2026 - Makeover Monday 💅✨: How a Weekly Ritual Transformed... by Dalma Boros"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
-  published_at: "2026-09-01T20:00:35Z"
+  published_at: "2026-09-06T23:13:04Z"
   language: "English"
   track: "Breakout 1 - Red Rock A&D"
   video_provider: "youtube"
-  video_id: "LrhmOdhWM0A"
+  video_id: "14WHTl3W0ps"
   description: |-
     Whenever I’m asked why I like Ruby, my answer is always simple and always the same: because she’s cute. That's my tongue-in-cheek nod to the community's shared sentiment that Ruby's elegance makes her a joy to work with. But beauty requires maintenance. This talk is a case study on how I turned my anxiety around mounting tech debt into Makeover Monday 💅✨, a weekly refactoring ritual. I didn’t set out to be a leader, I just wanted our TODOs to stop piling up. What started as a casual, weekly tech debt session transformed our codebase and our culture and became our fully remote team’s most appreciated (and only) dev-only space. Attendees will leave with: - An understanding of why beauty in code is a functional requirement, not a luxury - An understanding of how collective code cleanup is a way to level up all devs in a safe, collaborative environment - A practical blueprint for starting their own refactoring rituals with the confidence to lead from wherever they are in the org chart.
   speakers:
@@ -215,14 +217,14 @@
 
 - id: "ziggy-the-hamster-rubyconf-2026"
   title: "Weird and Wacky Machines Running Ruby"
-  raw_title: "RubyConf 2026 - Weird and Wacky Machines Running Ruby by Ziggy the Hamster"
+  raw_title: "RubyConf 2026 Weird and Wacky Machines Running Ruby by Ziggy the Hamster"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
-  published_at: "2026-09-01T20:00:06Z"
+  published_at: "2026-09-07T00:25:41Z"
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "youtube"
-  video_id: "a1E6IOfGNXE"
+  video_id: "QVg1cmY7Pzs"
   description: |-
     We all have some notion of the platforms that Ruby currently supports, but considering Ruby is now over 30 years old, have you ever thought about all of the weird and wacky places that Ruby can or has ever run? From Japanese-exclusive systems that you might not have ever heard of to long forgotten systems that were once ubiquitous, I will cover the history of the most interesting of these platforms, try to get Ruby running on them, and experimentally test the question: What operating systems support Ruby?
   speakers:
@@ -233,11 +235,11 @@
   raw_title: "RubyConf 2026 - Garnet.js: Implementing the YARV Virtual Machine by Cameron Dutro"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
-  published_at: "2026-09-01T20:00:20Z"
+  published_at: "2026-09-06T23:18:47Z"
   language: "English"
   track: "Breakout 1 - Red Rock A&D"
   video_provider: "youtube"
-  video_id: "i0SUvf21xE8"
+  video_id: "cRYydZvwAvA"
   description: |-
     At the hack day at RubyConf 2023 in San Diego, Kevin Newton and I put together an extremely basic Ruby interpreter in JavaScript. It was so fun and inspiring that I hacked on it for months afterwards, eventually getting it to run the entire Phlex test suite (and more). Ruby in the browser isn't exactly new. Opal is incredible, and recently ruby.wasm has been making a splash. So why do we need a new Ruby interpreter for the web? We don't! This talk isn't about making a better Opal, production use-cases, or other Serious Business®. It's about having fun building an interpreter for your favorite language and how much you can learn about Ruby along the way. Garnet.js is an implementation of Ruby's YARV (Yet Another Ruby VM) in TypeScript. It uses the new Prism parser and can already run the test suites for some pretty complex projects. I'd like to explain how YARV works and how contributing to Garnet helped me answer almost all of Drew Bragg's Ruby game show questions. When I started writing Ruby back in 2010, I never thought I would have the skills to write an interpreter. That stuff was just too hard for an average guy like me. A few years into my career though, I realized something: you can just do things. I might have heard it first from DHH, but it really stuck with me. If you want something to exist, you can just… do it. You can even do really really big things that seem impossible. Just take it one step at a time, and before you know it, you've made something substantial. That's how Garnet started. It seemed impossible, but then without any warning I'm sitting next to Kevin Newton hacking away at a Ruby interpreter in JavaScript. We only produced maybe 50 lines of code, but I slowly added to it over the next 2 years and Garnet is now quite capable. YARV isn't magic. It's made up of a few entirely understandable components wired together to run Ruby code. I hope to give an overview of those components, demonstrating how Ruby translates raw source code into an AST, then into YARV instructions, and eventually how it executes those instructions. My hope is that explaining YARV via TypeScript will make the concepts more accessible to a Ruby audience than C would, although there should be plenty of Ruby in the talk as well. Of course, building a Ruby interpreter has had its challenges (more to come I'm sure). Here are a few I'm hoping to share with the audience: Lambdas and methods are invoked differently than blocks and procs. How does the interpreter know when to enforce arity, etc? Ruby's argument handling is extremely complex. How do the parser and interpreter work together to handle all the various combinations? (eg. positional, splat, trailing positional, positional with default, keyword, keyword with default, keyword rest, blocks, anonymous splats and keyword splats, forwarding) Regular expression handling via Onigmo. Compiling C projects to WASM and exposing them to Ruby. My goal here is twofold: to spread the knowledge I've gained to more Rubyists, but also to hopefully inspire someone else to work on something big and ambitious.
   speakers:
@@ -263,11 +265,11 @@
   raw_title: "RubyConf 2026 - Talking Shit About AI Agents by Scott Werner"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
-  published_at: "2026-09-01T20:00:09Z"
+  published_at: "2026-09-07T00:28:48Z"
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "youtube"
-  video_id: "4iSk2xU99AI"
+  video_id: "_-pDDyO4GcE"
   description: |-
     Ask seven people what an "AI agent" is and you'll get nine answers. One person will change their mind twice. When we can't name something, it usually means we're looking at something genuinely new. I'll argue that what we're calling "agents" is actually a new programming paradigm hiding in plain sight. Think about what makes up an agent: an LLM, a prompt, a loop, some tools, a way to talk to it. That's a little computer that receives messages and interprets them. That's suspiciously close to what Alan Kay actually meant by "objects" and "Object Oriented Programming". Closer to what we have with Ruby, not what C++ and Java turned it into. We'll take a detour through Xerox PARC circa 1972, explore what Kay meant by message passing and late binding, and discover how LLMs accidentally achieved something he was reaching for: semantic late binding, where the meaning of a message is negotiated at the moment of receipt. Then I'll demo prompt_objects, a Ruby gem where markdown files are the program and Ruby is the environment. You'll see objects interpret messages, modify themselves, create new objects at runtime, and solve ARC-AGI intelligence puzzles on a small, cheap model all with a solver you can read in minutes.
   speakers:
@@ -308,11 +310,11 @@
   raw_title: "RubyConf 2026 - Ractors in Ruby 4.0: Message Passing Without the Pain by Edy Silva"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
-  published_at: "2026-09-01T20:00:01Z"
+  published_at: "2026-09-07T00:39:41Z"
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "youtube"
-  video_id: "QgAqhwgC8FY"
+  video_id: "u7f-s_AJnXA"
   description: |-
     I was playing with Ractors, trying to see if they could replace Process.fork for the kind of work Puma does. Wrote a benchmark, ran it: Ractors came back 3.6× slower than forks. Shocking numbers, something must be wrong with my benchmarks.. Turns out I was running an older Ruby version. Change it to Ruby 4 and the numbers flipped: 5.6×faster, matching forks, beating them at small workloads. That accident is why this talk exists. For a decade, "concurrent Ruby" has meant picking your poison: threads that share state and corrupt it, fibers that need to cooperate, a GVL that pins "parallel" code to one core, and Process.fork as the heavy escape hatch. Ruby 4.0 rewrote that tradeoff. We'll map Ruby's four concurrency primitives — Threads, Fibers, Processes, Ractors — show where each belongs (including how Puma and Falcon combine them in production), walk the structural fixes that closed the gap, and look at the API that finally feels ergonomic: Ractor::Port, shareable procs and lambdas, native exception transport. Plus a few Actor Model patterns from Elixir (worker pools, mailboxes, pipelines) that work in Ruby 4.0 today. You'll leave with a clear answer to "which primitive when?" and a frank read on what Ractors can (and can't) do in production in 2026.
   speakers:
@@ -323,12 +325,12 @@
   raw_title: "RubyConf 2026 - The little schema that could (...but should it?) by Andy Andrea"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
-  published_at: "2026-09-01T20:00:29Z"
+  published_at: "2026-09-06T23:21:54Z"
   language: "English"
   track: "Breakout 1 - Red Rock A&D"
   slides_url: "https://docs.google.com/presentation/d/1-TeW8ryAJZ9c0FYHbL9_vckVINDy6b6GlFxInNo2VNs/edit?usp=sharing"
   video_provider: "youtube"
-  video_id: "xcg-mtE_H1c"
+  video_id: "1ptPDphukkA"
   description: |-
     Even in a duck-typed language like Ruby, we often work with structured data that adheres to particular schemas. For anyone that's worked in a Rails app, a schema.rb or structure.sql file is an inherent part of our apps, and many Ruby devs have worked with JSON Schema or OpenAPI in various applications. In many of those cases, though, we have a lot of duplication especially when we're dealing with CRUD. A `create` endpoint, for example, might accept incoming parameters that look very similar to what's returned by a `show` endpoint, and both will likely have a lot in common with a corresponding table's schema. This duplication is not a major problem--it can often be the best choice--but what would it look like if we tried to DRY things up a little...or a lot? If we're willing to get a little weird, how far can we possibly take a single schema? In this talk, we'll have a single schema and show how it can be applied to (or shoe-horned into):
       - Database management - Model generation;
@@ -368,11 +370,11 @@
   raw_title: "RubyConf 2026 - Ruby Awards & Ruby Fellows with Ben Greenberg"
   kind: "award"
   date: "2026-07-14"
-  published_at: "2026-09-01T20:00:26Z"
+  published_at: "2026-09-07T00:41:57Z"
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "youtube"
-  video_id: "r2kFA3a29xU"
+  video_id: "o9UW4njR-Oc"
   description: |-
     The Ruby Awards ceremony, hosted by Ben Greenberg.
   speakers:
@@ -384,11 +386,11 @@
   kind: "keynote"
   event_name: "RubyConf 2026"
   date: "2026-07-14"
-  published_at: "2026-09-01T20:00:16Z"
+  published_at: "2026-09-07T02:06:21Z"
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "youtube"
-  video_id: "Nvr0klVxw5c"
+  video_id: "_kN8PbAJfUM"
   description: |-
     As developers, who are we now that agents can do the coding? I loved the feeling of knowing the code intimately because I wrote or changed it, like the software is an extension of myself. That confidence that comes from deep understanding. How do we get that feeling from agent-written code? How do we have the right amount of confidence in it? And what is our role now--are we still important? Yes.
   speakers:
@@ -402,11 +404,11 @@
   kind: "keynote"
   event_name: "RubyConf 2026"
   date: "2026-07-15"
-  published_at: "2026-09-01T20:00:06Z"
+  published_at: "2026-09-07T02:08:47Z"
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "youtube"
-  video_id: "9gUjETIzp_Q"
+  video_id: "S9-zUiTkPDY"
   description: |-
     Once a Maintainer will be a live roundtable discussion based on the popular Once a Maintainer newsletter which celebrates the people behind Open Source in the Ruby community. We're thrilled to have Richard Schneeman, Jeremy Evans, and Colby Swandale join us for the panel.
   speakers:
@@ -467,11 +469,11 @@
   kind: "panel"
   event_name: "RubyConf 2026"
   date: "2026-07-15"
-  published_at: "2026-09-01T20:00:32Z"
+  published_at: "2026-09-07T02:12:25Z"
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "youtube"
-  video_id: "jO2aIwkcgz8"
+  video_id: "qQ0756NorzY"
   description: |-
     AI is changing everything, such as how we write code, how we think about our tools, and what it even means to be a programmer. This panel, moderated by Rich Kilmer, brings together influential voices in Ruby's history: Matz, Jessica Kerr, Obie Fernandez, Dave Thomas, Chad Fowler, and Chad Pytel. Together, they will dig into what that shift means for a language and community built on joy, expressiveness, and craft. Expect a candid conversation about where Ruby goes from here, and what it takes to keep that spirit alive as the ground shifts beneath us.
   speakers:
@@ -530,11 +532,11 @@
   raw_title: "RubyConf 2026 - Ruby Runway Finals"
   kind: "demo"
   date: "2026-07-15"
-  published_at: "2026-09-01T20:00:01Z"
+  published_at: "2026-09-07T02:15:46Z"
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "youtube"
-  video_id: "OyOoyKXDgxk"
+  video_id: "Rs5nMCQLcw4"
   description: |-
     The Ruby Runway startup pitch competition finals, featuring Ruby Native (Joe Masilotti), Stowzilla (Adam Dalton & Andy Davis), Coolhand Labs (Michael Carroll), Bugbop (John Sherwood), Ductwork (Tyler Ewing), Viveture (Paresh Sharma), Meridian Semantic, and BrandoInc. (Chap-Long Lau & Jia Hou).
   speakers:
@@ -556,11 +558,11 @@
   kind: "lightning_talk"
   event_name: "RubyConf 2026"
   date: "2026-07-15"
-  published_at: "2026-09-01T20:00:27Z"
+  published_at: "2026-09-07T02:21:55Z"
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "youtube"
-  video_id: "ChwOqCmaTyY"
+  video_id: "XGA0kCOuDLE"
   description: ""
   talks:
     - id: "keshia-coriolan-rubyconf-2026"
@@ -737,11 +739,11 @@
   kind: "intro"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
-  published_at: "2026-09-01T20:00:15Z"
+  published_at: "2026-09-07T02:25:27Z"
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "youtube"
-  video_id: "gxIUWQQdXaI"
+  video_id: "_4PCo7Ne5TE"
   description: |-
     Opening remarks for day 3 of RubyConf 2026 with conference co-chairs Ran Craycraft and Jason Swett.
   speakers:
@@ -754,11 +756,11 @@
   kind: "keynote"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
-  published_at: "2026-09-01T20:00:32Z"
+  published_at: "2026-09-07T02:27:39Z"
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "youtube"
-  video_id: "0OIgAWr9vuQ"
+  video_id: "YM73OJYipj4"
   description: ""
   speakers:
     - Obie Fernandez
@@ -768,11 +770,11 @@
   raw_title: "RubyConf 2026 - We Who Remember Magic by Brandon Weaver"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
-  published_at: "2026-09-01T20:00:13Z"
+  published_at: "2026-09-07T02:32:48Z"
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "youtube"
-  video_id: "RRhmvBtq6WY"
+  video_id: "m9HYRArm6P4"
   description: |-
     There was a time when Ruby felt like magic. It gave an entire generation of developers wings; tools to ship fast, dream big, and start companies from anywhere. It wasn't just code; it was a movement built on empathy, simplicity, and joy. Ruby taught us that developer happiness wasn't a luxury; it was a revolution. Now, a new kind of magic is emerging: AI. It's promising, powerful, and most importantly it's perilous. As the world rushes to automate, optimize, and amplify, we in the Ruby community have a chance to pause and ask better questions—not just *can we*, but *should we*? This talk isn't a demo reel. It's a conversation about responsibility, creativity, and care. About how we bring our whole selves to this moment, with wonder and with skepticism. We'll reflect on what AI means not just for our tools, but for our teams, our values, and the future we're quietly writing together. Ruby taught us to be kind and to focus on people over technology, and that lesson is more important today than ever.
   speakers:
@@ -783,11 +785,11 @@
   raw_title: "RubyConf 2026 - Legacy Rails and the AI That Couldn't by Madison Sites"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
-  published_at: "2026-09-01T20:00:38Z"
+  published_at: "2026-09-06T23:33:00Z"
   language: "English"
   track: "Breakout 1 - Red Rock A&D"
   video_provider: "youtube"
-  video_id: "l2bdzwG4DoQ"
+  video_id: "JCPe_7GoxZ8"
   description: |-
     Ruby and AI are supposedly a perfect match. In less-than-ideal legacy codebases, the reality is messier. Agents stumbled on the same things I had during onboarding: unnecessary complexity, conflicting patterns, and conventions that actively fought Rails. My PR review queue grew while I made the same corrections over and over - in my editor and then again on GitHub. I hit a breaking point, unsure if this career was still for me. My coworker's advice seemed like a joke: "The antidote to too much AI is more AI." I didn't have time to become an AI expert; I would drown before I could get department consensus on strategy, so I ran a small experiment, changing only how I communicated with AI in my workflow. What started as survival evolved into a flywheel. Whether you're skeptical, curious, or drowning in AI-generated code, you'll see how small experiments compound into real leverage — and how capturing your team's knowledge where both humans and agents can find it changes everything. No special title or pristine codebase required.
   speakers:
@@ -798,11 +800,11 @@
   raw_title: "RubyConf 2026 - Come Discuss Ractors and Concurrency with 'The Dude'! by Miles Georgi"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
-  published_at: "2026-09-01T20:00:28Z"
+  published_at: "2026-09-06T23:48:42Z"
   language: "English"
   track: "Breakout 2 - Red Rock G&H"
   video_provider: "youtube"
-  video_id: "FUlvw8IUlUY"
+  video_id: "JUyJ4uuSMjU"
   description: |-
     I was bored so, as one does, I decided to goof-about with ractors! I built a game server that makes heavy use of ractors and learned a ton of interesting things about ractors the hard way. Come discuss what you can and cannot do with ractors and other forms of Ruby concurrency!
   speakers:
@@ -813,11 +815,11 @@
   raw_title: "RubyConf 2026 - Fair by design: orchestrating background jobs in Ruby by Alexander Baygeldin"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
-  published_at: "2026-09-01T20:00:34Z"
+  published_at: "2026-09-07T02:44:24Z"
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "youtube"
-  video_id: "v_JM-4sMm-4"
+  video_id: "zAn6ISHFVIU"
   description: |-
     Processing background jobs can often have challenges—especially at scale. For example, multi-tenant applications often struggle with fair prioritization of background tasks: a single large client may enqueue tons of jobs, monopolize available resources, and block smaller client tasks. In fact, this was my story just recently, so in this talk, we'll learn if it's time for you to take background job prioritization seriously–and how to design your system in a way that makes it fair for everyone (regardless of their size or billing plan). First, I'll demonstrate an unfair scenario and show how to spot it in a production environment. We'll look at its root causes and define what "fairness" means in the context of background job processing. We'll then recall how background processing works in Rails (and Ruby in general), using Sidekiq, GoodJob, and SolidQueue. We'll also touch on how GVL factors into the problem, and whether using Async can help mitigate it in certain cases. I'll next explore strategies for introducing fairness while staying in the constraints imposed by our background job processors. These strategies include shuffle shards, throttling (based on leaky buckets), and interruptible iteration. We'll discuss the pros and cons of each, and see cases where they may fall short. In the last part, I'll explore an alternative approach that relies on virtual per-tenant queues and dedicated schedulers instead of the background job processors' built-in capabilities. I'll show why this approach achieves the most fairness, at what cost, when it's worth implementing, and how to do so–in almost any setup.
   speakers:
@@ -829,11 +831,11 @@
   kind: "talk"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
-  published_at: "2026-09-01T20:00:08Z"
+  published_at: "2026-09-06T23:38:53Z"
   language: "English"
   track: "Breakout 1 - Red Rock A&D"
   video_provider: "youtube"
-  video_id: "3aefqpE40lY"
+  video_id: "qGcnBOro_JE"
   description: |-
     Every morning, millions of people start their work day by entering passwords and answering push notifications to gain access to the tools they need for their job. In this talk, I will answer the question that no one is asking: what would a video game be like if all the mechanics revolved around authentication. Authentication Hell is a browser-based game built around one of the most hated aspects of our daily lives: re-authentication. Each time you take damage during the game you lose more than just your health, you will have to re-authenticate. This talk will cover the development of the game using DragonRuby, how to implement popular authentication mechanisms like passkeys and one time passwords, and will include a demo of the game. You can check out the game in advance at authenticationhell.com
   speakers:
@@ -844,11 +846,11 @@
   raw_title: "RubyConf 2026 - Building the Next-Generation Garbage Collector in Ruby by Peter Zhu"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
-  published_at: "2026-09-01T20:00:19Z"
+  published_at: "2026-09-06T23:50:37Z"
   language: "English"
   track: "Breakout 2 - Red Rock G&H"
   video_provider: "youtube"
-  video_id: "bxhDUk5gh00"
+  video_id: "0t6cLIk1B5Y"
   description: |-
     Last year, the Modular Garbage Collector feature in Ruby was introduced. With this feature, we shipped an alternative garbage collector using the Memory Management Toolkit (MMTk) framework. At the time, however, MMTk was significantly slower than the default garbage collector in Ruby. Over the past year, the MMTk Ruby integration has been significantly improved and the performance is now on par with the default garbage collector. It now supports the Moving Immix garbage collection strategy, improved parallelism, and numerous optimizations. In this talk, we will go over the Modular Garbage Collector feature and its differences with the default garbage collector, examine the techniques used to speed up the Ruby MMTk integration, and discuss how it can be improved further in the future.
   speakers:
@@ -859,11 +861,11 @@
   raw_title: "RubyConf 2026 - There Is No Server by Sam Ruby"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
-  published_at: "2026-09-01T20:00:11Z"
+  published_at: "2026-09-07T02:38:10Z"
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "youtube"
-  video_id: "33SaUwmuwiI"
+  video_id: "Qwz1j6px2po"
   description: |-
     Rails is the fastest way to go from idea to working application. JavaScript has the broadest reach — browser, edge, mobile, desktop. Choosing one means giving up the other. Unless you don't choose. Open two browser windows pointing at a GitHub Pages URL. Create a blog article in one. Watch it appear in the other. Close the browser. Come back. The data is still there. Open developer tools. Find `app/controllers/articles_controller.rb` in Sources. Set a breakpoint. It hits. There is no server. There is no Ruby runtime. Just static files on GitHub Pages. This is a standard Rails blog tutorial — RESTful controllers, Active Record models with associations and validations, ERB views, Turbo Streams — transpiled to JavaScript and running entirely in the browser. And it gets weirder from there: an in-browser editor with hot reload, a transpiler that transpiled itself, system tests that run in 75ms without a browser, production deployments where every user gets their own SQLite database, and a future where the write pattern — not the framework — determines the architecture. You'll leave knowing which Rails patterns survive transpilation, which ones don't, and why "develop a monolith, deploy a mesh" might be the future of Rails applications.
   speakers:
@@ -874,11 +876,11 @@
   raw_title: "RubyConf 2026 - Defying Gravity: Teaching AI to Write Better Ruby by Fito von Zastrow"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
-  published_at: "2026-09-01T20:00:27Z"
+  published_at: "2026-09-06T23:34:56Z"
   language: "English"
   track: "Breakout 1 - Red Rock A&D"
   video_provider: "youtube"
-  video_id: "Q0i6bMPRkZY"
+  video_id: "TrVHskmx0lM"
   description: |-
     Code reviews got slower after we introduced AI into our Ruby on Rails monolith. AI-generated code was making the legacy problems worse, not better. Technical debt, fat controllers, tests coupled to implementation. AI reproduced all of it, faster than ever. It's as if legacy code has gravity. In this talk, you'll learn the concrete techniques we use in production: how to specify what you want, how to provide architectural guidance to agents, and how to use skills to put guardrails in place so feature work incrementally improves the codebase instead of reinforcing legacy patterns. Leave with everything you need to defy Legacy Gravity.
   speakers:
@@ -886,14 +888,14 @@
 
 - id: "hilary-stohs-krause-rubyconf-2026"
   title: "How to Accessibility if You're Mostly Back-End"
-  raw_title: "RubyConf 2026 - How to Accessibility if You're Mostly Back-End by Hilary Stohs-Krause"
+  raw_title: "RubyConf 2026 - How to Accessibility if You’re Mostly Back-End by Hilary Stohs-Krause"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
-  published_at: "2026-09-01T20:00:32Z"
+  published_at: "2026-09-06T23:54:03Z"
   language: "English"
   track: "Breakout 2 - Red Rock G&H"
   video_provider: "youtube"
-  video_id: "PfgXuwi0tck"
+  video_id: "Q7qc4uIswbk"
   description: |-
     If you work mostly on the back-end of the tech stack, it's easy to assume that your role is disengaged from accessibility concerns. After all, that's the front-end's job! However, there are multiple, specific ways back-end devs can impact accessibility - not just for users, but also for colleagues.
   speakers:
@@ -905,11 +907,11 @@
   kind: "q_and_a"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
-  published_at: "2026-09-01T20:00:39Z"
+  published_at: "2026-09-07T02:42:58Z"
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "youtube"
-  video_id: "F-IDXH0mpdw"
+  video_id: "GZ8gzi_6VDc"
   description: ""
   speakers:
     - "Yukihiro \"Matz\" Matsumoto"
@@ -920,11 +922,11 @@
   raw_title: "RubyConf 2026 - Convention Over Hallucination: Harness Engineering for AI-Powered... by Alicia Rojas"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
-  published_at: "2026-09-01T20:00:18Z"
+  published_at: "2026-09-07T02:39:48Z"
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "youtube"
-  video_id: "lCVY3NEMf4M"
+  video_id: "Ek2BLd1fLIk"
   description: |-
     Rails succeeded because it replaced thousands of micro-decisions with conventions. AI coding agents face the same problem at a different scale: they can write working code, but without structure, they produce inconsistent, insecure, non-idiomatic output that your team won't ship. The bottleneck in AI-assisted development is no longer writing code: it's verifying it. If your senior engineers spend their time reviewing AI-generated pull requests line by line, you've traded one bottleneck for another. The teams that will win are the ones that design systems to make AI output trustworthy by default. Harness engineering is that system design. Think of it this way: someone just invented a super-fertilizer that makes your plants grow seedling-to-oak-in-six-hours fast. Without a structure to make them grow the way you want, you get a jungle, not a garden. The harness is the garden architecture. And just as Rails gave Ruby structure, the harness gives structure to the AI writing your Rails code. In this talk, I'll walk through the progression from "spicy autocompletion" to agentic engineering and the production harness our consultancy built along the way, organized around four pillars: - Instruct. A layered documentation system (global standards + project-specific context) that acts as onboarding for the AI. - Constrain. Custom RuboCop cops (rubocop-harness) whose error messages are written for the AI agent, not just for humans. - Workflow. Structured commands that encode your development process as repeatable, agent-executable steps. - Verify. AI-powered end-to-end testing (agent_e2e) where a separate agent drives a real browser against your running app, executing plain-English test cases. You will leave knowing where you are on the progression, what the next shift looks like, and concrete patterns you can implement on Monday.
   speakers:
@@ -935,11 +937,11 @@
   raw_title: "RubyConf 2026 - Fibonacci Funhouse by Kyle d'Oliveira"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
-  published_at: "2026-09-01T20:00:02Z"
+  published_at: "2026-09-06T23:41:56Z"
   language: "English"
   track: "Breakout 1 - Red Rock A&D"
   video_provider: "youtube"
-  video_id: "4hhjlHpTys4"
+  video_id: "dmlDcbPT-jI"
   description: |-
     Are you ready to journey into the weird side of Ruby? Join us as we dive deep into the Fibonacci sequence—beyond the simple and into the spectacular. Forget the first, tenth, or even the thousandth Fibonacci number; we're setting our sights on the billionth! In this unusual talk, we'll unravel eleven ways, from simple to downright mind-bending, to compute Fibonacci numbers in Ruby. From straightforward iterations, to tail call optimization, to complex matrix operations. Discover some secret techniques and bizarre quirks of Ruby that make calculating the billionth Fibonacci number not just possible, but fast too. Whether you're a Ruby newbie or a seasoned vet, you'll leave with a toolkit full of Fibonacci hacks and a newfound appreciation for the playful power of Ruby.
   speakers:
@@ -978,11 +980,11 @@
   raw_title: "RubyConf 2026 - Artisanal Computing: Handcrafted Ruby Execution for the Modern Age by Joé Dupuis"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
-  published_at: "2026-09-01T20:00:33Z"
+  published_at: "2026-09-06T23:46:18Z"
   language: "English"
   track: "Breakout 1 - Red Rock A&D"
   video_provider: "youtube"
-  video_id: "NLARt-vKZO4"
+  video_id: "R7oHw5x6-h0"
   description: |-
     AI is coming for our jobs! It's time to fight back! Ruby is fast. Mass produced. Impersonal. What if it wasn't? What if we could return to a simpler time, when every computation was handcrafted by a real human being? In this talk, I fire the CPU and hire real people to run Ruby instead. I built a human-powered virtual machine out of duct tape and Amazon Mechanical Turk. Every instruction lovingly performed by hand, while AWS burns a hole in my finances I'll never recover from! I lied to the program committee that you'd learn about: - What happens after Ruby parses your code - Where to start if you want to contribute to Ruby itself - How to use LLMs to learn the internals of complex projects - The economics of micro-labor - Cursed uses of Google Sheets - ...and much more! And you just might! But we all know you're here to see a Cronenberg abomination. "Why?," "Is this tax deductible?," and "Are you okay?" are some of the many questions you'll be asking yourself after this talk.
   speakers:
@@ -993,11 +995,11 @@
   raw_title: "RubyConf 2026 - Elements of Programming, In Ruby by Phil Crissman"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
-  published_at: "2026-09-01T20:00:14Z"
+  published_at: "2026-09-07T00:07:44Z"
   language: "English"
   track: "Breakout 2 - Red Rock G&H"
   video_provider: "youtube"
-  video_id: "bPRZgxmA7w4"
+  video_id: "717yqotq2F0"
   description: |-
     Alexander Stepanov, creator of the C++ STL, spent decades arguing that programming should be as rigorous as mathematics. "Elements of Programming" (EoP), which Stepanov wrote with Paul McJones, starts from first principles, and builds to algorithms that are fast, correct, and general. In this talk I'll explore some of the ideas from EoP in Ruby. We'll implement fast exponentiation that works for any associative operation, and build stable sort from the ground up in terms of simpler algorithms. Stepanov is known for bringing generic programming to C++: in Ruby, we already do something like generic programming, but we call it duck-typing.
   speakers:
@@ -1009,11 +1011,11 @@
   kind: "keynote"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
-  published_at: "2026-09-01T20:00:13Z"
+  published_at: "2026-09-07T02:36:28Z"
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "youtube"
-  video_id: "HY3MUx6mr6Q"
+  video_id: "dd2dLP6YzJ0"
   description: ""
   speakers:
     - Dave Thomas
@@ -1024,11 +1026,11 @@
   kind: "intro"
   event_name: "RubyConf 2026"
   date: "2026-07-16"
-  published_at: "2026-09-01T20:00:26Z"
+  published_at: "2026-09-07T02:41:23Z"
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "youtube"
-  video_id: "o0lVyWi39oQ"
+  video_id: "tVLPDytnGwk"
   description: |-
     Closing remarks for RubyConf 2026 with conference co-chairs Ran Craycraft and Jason Swett.
   speakers:
