@@ -77,7 +77,6 @@ class Static::Validators::TalkIdTest < ActiveSupport::TestCase
 
     with_temp_video(videos) do |path|
       errors = Static::Validators::TalkId.new(file_path: path).errors
-
       assert_equal 1, errors.size
       assert_includes errors.first.message, %(expected id "jane-doe-keynote-testconf-2024")
     end
@@ -196,9 +195,26 @@ class Static::Validators::TalkIdTest < ActiveSupport::TestCase
     ]
 
     with_temp_video(videos) do |path|
-      expected = Static::Validators::TalkId.new(file_path: path).expected_ids
+      expected = Static::Validators::TalkId.new(file_path: path).send(:expected_ids)
 
       assert_equal ["jane-doe-testconf-2024"], expected.values
+    end
+  end
+
+  test "fixes bad ids by renaming them and adding old_id" do
+    videos = [
+      {"id" => "wrong", "title" => "Fixing in Validators", "speakers" => ["Rachael Wright-Munn"]},
+      {"id" => "f8-testconf-2024", "title" => "Tharax", "speakers" => ["f8"]}
+    ]
+
+    with_temp_video(videos) do |path|
+      validator = Static::Validators::TalkId.new(file_path: path)
+      validator.fix
+
+      document = Yerba.parse_file(path)
+      node = document.find_by("id" => "rachael-wright-munn-testconf-2024")
+
+      assert_equal "wrong", node.value_at("old_id")
     end
   end
 

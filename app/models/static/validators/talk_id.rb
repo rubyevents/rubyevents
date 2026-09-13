@@ -9,7 +9,7 @@ module Static
 
       def initialize(file_path:, document: nil)
         @file_path = file_path
-        @document = document
+        @document = document || Yerba.parse_file(@file_path)
       end
 
       def applicable?
@@ -27,11 +27,8 @@ module Static
       def validate
         return [] unless applicable?
 
-        expected_ids.filter_map do |node, expected|
+        map_unexpected_ids do |node, expected|
           actual = node.value_at("id").to_s
-
-          next if actual == expected
-
           location = node["id"]&.location
 
           Static::Validators::Error.new(
@@ -40,6 +37,25 @@ module Static
             line: location&.start_line || 1,
             end_line: location&.end_line
           )
+        end.compact
+      end
+
+      def fix
+        map_unexpected_ids do |node, expected|
+          current = node.value_at("id").to_s
+          node["old_id"] = current
+          node["id"] = expected
+        end
+
+        @document.save!(apply: true)
+      end
+
+      private
+
+      def map_unexpected_ids
+        expected_ids.map do |node, expected|
+          actual = node.value_at("id").to_s
+          yield(node, expected) if actual != expected
         end
       end
 
