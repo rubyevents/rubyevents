@@ -44,16 +44,19 @@ module Static
       end
 
       def fix
-        map_unexpected_ids do |node, expected|
+        changes = map_unexpected_ids do |node, expected|
           current = node.value_at("id").to_s
           node["old_id"] = current if node.value_at("old_id").blank? && id_in_baseline?(current)
+          node.delete("old_id") if node.value_at("old_id") == expected
+          if node.value_at("video_id") == current && !watchable_video?(node)
+            node["video_id"] = expected
+          end
+          rename_thumbnails(current, expected)
           node["id"] = expected
         end
-
         @document.save!(apply: true)
+        {changed: changes.compact.size, file_path: @file_path}
       end
-
-      private
 
       def map_unexpected_ids
         expected_ids.map do |node, expected|
@@ -145,6 +148,23 @@ module Static
 
       def title_id(node)
         id_for(node).title_id
+      end
+
+      def watchable_video?(node)
+        node.value_at("video_provider").in?(Talk::WATCHABLE_PROVIDERS)
+      end
+
+      def rename_thumbnails(from, to)
+        event_thumbnails = Rails.root.join("app/assets/images/thumbnails", event_slug)
+
+        Dir.glob(event_thumbnails.join("**/#{from}.webp")).each do |thumbnail|
+          renamed_thumbnail = File.join(File.dirname(thumbnail), "#{to}.webp")
+          FileUtils.mv(thumbnail, renamed_thumbnail) unless File.exist?(renamed_thumbnail)
+        end
+
+        directory = event_thumbnails.join(from)
+        renamed_directory = event_thumbnails.join(to)
+        FileUtils.mv(directory, renamed_directory) if Dir.exist?(directory) && !Dir.exist?(renamed_directory)
       end
 
       def numbered(node, id, index)
