@@ -3,13 +3,16 @@
 module Static
   module Validators
     class TalkId
+      include GitBaseline
+
       PATTERNS = [
         "**/videos.yml"
       ].freeze
 
-      def initialize(file_path:, document: nil)
+      def initialize(file_path:, document: nil, baseline: nil)
         @file_path = file_path
         @document = document || Yerba.parse_file(@file_path)
+        @baseline = baseline
       end
 
       def applicable?
@@ -43,7 +46,7 @@ module Static
       def fix
         map_unexpected_ids do |node, expected|
           current = node.value_at("id").to_s
-          node["old_id"] = current
+          node["old_id"] = current if node.value_at("old_id").blank? && id_in_baseline?(current)
           node["id"] = expected
         end
 
@@ -56,6 +59,21 @@ module Static
         expected_ids.map do |node, expected|
           actual = node.value_at("id").to_s
           yield(node, expected) if actual != expected
+        end
+      end
+
+      def id_in_baseline?(id)
+        baseline_ids.include?(id)
+      end
+
+      def baseline_ids
+        @baseline_ids ||= baseline ? baseline.ids : []
+      end
+
+      def baseline
+        @baseline ||= begin
+          document = self.class.baseline_file(relative_path)
+          Static::VideosFile.wrap(relative_path, document) if document
         end
       end
 

@@ -201,7 +201,7 @@ class Static::Validators::TalkIdTest < ActiveSupport::TestCase
     end
   end
 
-  test "fixes bad ids by renaming them and adding old_id" do
+  test "fixes bad ids by renaming them without old_id when they were never committed" do
     videos = [
       {"id" => "wrong", "title" => "Fixing in Validators", "speakers" => ["Rachael Wright-Munn"]},
       {"id" => "f8-testconf-2024", "title" => "Tharax", "speakers" => ["f8"]}
@@ -214,7 +214,50 @@ class Static::Validators::TalkIdTest < ActiveSupport::TestCase
       document = Yerba.parse_file(path)
       node = document.find_by("id" => "rachael-wright-munn-testconf-2024")
 
+      assert node
+      assert_nil node.value_at("old_id")
+    end
+  end
+
+  test "adds old_id when fixing an id that was committed" do
+    videos = [
+      {"id" => "wrong", "title" => "Fixing in Validators", "speakers" => ["Rachael Wright-Munn"]}
+    ]
+    baseline = [
+      {"id" => "wrong", "title" => "Fixing in Validators", "speakers" => ["Rachael Wright-Munn"]}
+    ]
+
+    with_temp_video(videos) do |path|
+      validator = Static::Validators::TalkId.new(
+        file_path: path,
+        baseline: Static::VideosFile.parse(baseline.to_yaml)
+      )
+      validator.fix
+
+      node = Yerba.parse_file(path).find_by("id" => "rachael-wright-munn-testconf-2024")
+
       assert_equal "wrong", node.value_at("old_id")
+    end
+  end
+
+  test "keeps an existing old_id when fixing an id" do
+    videos = [
+      {"id" => "wrong", "old_id" => "some-legacy-id", "title" => "Fixing in Validators", "speakers" => ["Rachael Wright-Munn"]}
+    ]
+    baseline = [
+      {"id" => "wrong", "old_id" => "some-legacy-id", "title" => "Fixing in Validators", "speakers" => ["Rachael Wright-Munn"]}
+    ]
+
+    with_temp_video(videos) do |path|
+      validator = Static::Validators::TalkId.new(
+        file_path: path,
+        baseline: Static::VideosFile.parse(baseline.to_yaml)
+      )
+      validator.fix
+
+      node = Yerba.parse_file(path).find_by("id" => "rachael-wright-munn-testconf-2024")
+
+      assert_equal "some-legacy-id", node.value_at("old_id")
     end
   end
 
