@@ -265,7 +265,6 @@ class TalkGeneratorTest < Rails::Generators::TestCase
   test "fails when --id does not match an existing talk and lists the available ids" do
     seed_speakers_file
 
-    File.join(destination_root, "data/rubyconf/2035/videos.yml")
     run_generator ["--event-series", "rubyconf", "--event", "2035", "--title", "Keynote: Jane Doe", "--speakers", "Jane Doe"]
 
     stderr = capture(:stderr) do
@@ -274,6 +273,41 @@ class TalkGeneratorTest < Rails::Generators::TestCase
 
     assert_includes stderr, "No talk with id 'john-smith-2035' found"
     assert_includes stderr, "Available ids:\n  jane-doe-2035"
+  end
+
+  test "updates id properly when title changed" do
+    skip "Will work one day, but not today"
+    seed_speakers_file
+
+    videos_file_path = File.join(destination_root, "data/rubyconf/2036/videos.yml")
+    run_generator [
+      "--event-series", "rubyconf",
+      "--event", "2036",
+      "--title", "Building Better APIs",
+      "--speakers", "TODO"
+    ]
+
+    run_generator [
+      "--event-series", "rubyconf",
+      "--event", "2036",
+      "--id", "building-better-apis-2036",
+      "--title", "Revenge of the APIs: ACT II"
+    ]
+
+    assert_valid_file videos_file_path do |content|
+      assert_equal 1, content.scan(/^- id:/).size
+      assert_match(/id: "jane-doe-2036"/, content)
+    end
+  end
+
+  test "updates id properly when kind changed" do
+    skip "Will work one day, but not today"
+    seed_speakers_file
+  end
+
+  test "updates id properly when speakers changed" do
+    skip "Will work one day, but not today"
+    seed_speakers_file
   end
 
   test "append to videos.yml if called with a different details" do
