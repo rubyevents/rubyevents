@@ -53,12 +53,17 @@ module Static
           end
           rename_thumbnails(current, expected)
           node["id"] = expected
-        end
-        @document.save!(apply: true)
-        {changed: changes.compact.size, file_path: @file_path}
+        end.compact
+        return unless changes.any?
+        save_document
+        {changed: changes.size, file_path: @file_path}
       end
 
       private
+
+      def save_document
+        Static::VideosFile.wrap(@file_path, @document).save!
+      end
 
       def map_unexpected_ids
         expected_ids.map do |node, expected|

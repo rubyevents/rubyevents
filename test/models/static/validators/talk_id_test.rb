@@ -303,6 +303,22 @@ class Static::Validators::TalkIdTest < ActiveSupport::TestCase
     end
   end
 
+  test "does not save the file when no ids need fixing" do
+    videos = [
+      {"id" => "jane-doe-testconf-2024", "title" => "Building Things", "speakers" => ["Jane Doe"]}
+    ]
+
+    with_temp_video(videos) do |path|
+      validator = Static::Validators::TalkId.new(file_path: path)
+
+      result = validator.stub(:save_document, -> { flunk "should not save without changes" }) do
+        validator.fix
+      end
+
+      assert_nil result
+    end
+  end
+
   test "renames thumbnail files when fixing an id" do
     videos = [
       {"id" => "wrong", "title" => "Fixing in Validators", "speakers" => ["Rachael Wright-Munn"]}

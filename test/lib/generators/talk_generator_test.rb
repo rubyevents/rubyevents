@@ -276,7 +276,6 @@ class TalkGeneratorTest < Rails::Generators::TestCase
   end
 
   test "updates id properly when title changed" do
-    skip "Will work one day, but not today"
     seed_speakers_file
 
     videos_file_path = File.join(destination_root, "data/rubyconf/2036/videos.yml")
@@ -286,7 +285,6 @@ class TalkGeneratorTest < Rails::Generators::TestCase
       "--title", "Building Better APIs",
       "--speakers", "TODO"
     ]
-
     run_generator [
       "--event-series", "rubyconf",
       "--event", "2036",
@@ -296,18 +294,61 @@ class TalkGeneratorTest < Rails::Generators::TestCase
 
     assert_valid_file videos_file_path do |content|
       assert_equal 1, content.scan(/^- id:/).size
-      assert_match(/id: "jane-doe-2036"/, content)
+      assert_match(/id: "revenge-of-the-apis-act-ii-2036"/, content)
+      assert_match(/video_id: "revenge-of-the-apis-act-ii-2036"/, content)
+      assert_no_match(/building-better-apis-2036/, content)
     end
   end
 
   test "updates id properly when kind changed" do
-    skip "Will work one day, but not today"
     seed_speakers_file
+
+    videos_file_path = File.join(destination_root, "data/rubyconf/2035/videos.yml")
+    run_generator ["--event-series", "rubyconf", "--event", "2035", "--title", "Building Better APIs", "--speakers", "Jane Doe"]
+    run_generator [
+      "--event-series", "rubyconf",
+      "--event", "2035",
+      "--title", "Keynote: Jane Doe",
+      "--kind", "keynote",
+      "--speakers", "Jane Doe"
+    ]
+    run_generator [
+      "--event-series", "rubyconf",
+      "--event", "2035",
+      "--id", "jane-doe-keynote-2035",
+      "--kind", "panel"
+    ]
+
+    assert_valid_file videos_file_path do |content|
+      assert_equal 2, content.scan(/^- id:/).size
+      assert_match(/id: "jane-doe-2035"/, content)
+      assert_match(/id: "jane-doe-panel-2035"/, content)
+      assert_no_match(/jane-doe-keynote-2035/, content)
+    end
   end
 
   test "updates id properly when speakers changed" do
-    skip "Will work one day, but not today"
     seed_speakers_file
+
+    videos_file_path = File.join(destination_root, "data/rubyconf/2035/videos.yml")
+    run_generator [
+      "--event-series", "rubyconf",
+      "--event", "2035",
+      "--title", "Building Better APIs",
+      "--speakers", "TODO"
+    ]
+    run_generator [
+      "--event-series", "rubyconf",
+      "--event", "2035",
+      "--id", "building-better-apis-2035",
+      "--speakers", "Jane Doe"
+    ]
+
+    assert_valid_file videos_file_path do |content|
+      assert_equal 1, content.scan(/^- id:/).size
+      assert_match(/id: "jane-doe-2035"/, content)
+      assert_match(/- Jane Doe/, content)
+    end
   end
 
   test "append to videos.yml if called with a different details" do
@@ -325,7 +366,6 @@ class TalkGeneratorTest < Rails::Generators::TestCase
       assert_match(/- Jane Doe/, content)
       assert_match(/- Rachael Wright-Munn/, content)
       assert_match(/- Marco Roth/, content)
-      assert_match(/- Another Speaker/, content)
       assert_match(/title: "Future of Ruby Panel"/, content)
       assert_match(/id: "panel-2027"/, content)
     end

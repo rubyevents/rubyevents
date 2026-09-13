@@ -173,8 +173,8 @@ class TalkGenerator < Generators::EventBase
     @attributes.each do |key, value|
       @existing_talk[key] = value
     end
-
-    document.save!
+    Static::Validators::TalkId.new(file_path: videos_file_path, document: document).fix
+    document.save! if document.changed?
 
     say("#{@attributes.keys.to_sentence} updated.", :green)
   end
