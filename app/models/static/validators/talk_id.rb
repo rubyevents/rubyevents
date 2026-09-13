@@ -58,6 +58,8 @@ module Static
         {changed: changes.compact.size, file_path: @file_path}
       end
 
+      private
+
       def map_unexpected_ids
         expected_ids.map do |node, expected|
           actual = node.value_at("id").to_s
@@ -109,8 +111,6 @@ module Static
           end
         end
       end
-
-      private
 
       def nodes
         @nodes ||= videos_file.nodes
