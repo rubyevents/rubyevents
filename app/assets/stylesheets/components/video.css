@@ -63,7 +63,12 @@
     @apply lg:mx-auto lg:h-auto lg:max-h-[calc(100vh-5rem)] lg:w-auto lg:max-w-full lg:rounded-none lg:outline-none;
   }
 
-  .theater-mode .theater-player .theater-stage .rounded-xl {
+  /* Layers that fill the stage keep their own corners once it goes square, so
+     their rounding shows through. Scoped to inset-0 so nested UI that is meant
+     to be round (the play button) is left alone. */
+  .theater-mode .theater-player .theater-stage > *,
+  .theater-mode .theater-player .theater-stage .inset-0,
+  .theater-mode .theater-player .theater-stage .image {
     @apply lg:rounded-none;
   }
 }
