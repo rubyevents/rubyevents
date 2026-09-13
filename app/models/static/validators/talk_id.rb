@@ -55,15 +55,11 @@ module Static
           node["id"] = expected
         end.compact
         return unless changes.any?
-        save_document
+        videos_file.save!
         {changed: changes.size, file_path: @file_path}
       end
 
       private
-
-      def save_document
-        Static::VideosFile.wrap(@file_path, @document).save!
-      end
 
       def map_unexpected_ids
         expected_ids.map do |node, expected|
