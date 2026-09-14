@@ -310,12 +310,13 @@ class Static::Validators::TalkIdTest < ActiveSupport::TestCase
 
     with_temp_video(videos) do |path|
       validator = Static::Validators::TalkId.new(file_path: path)
+      original_content = File.read(path)
 
-      result = validator.stub(:save_document, -> { flunk "should not save without changes" }) do
-        validator.fix
-      end
+      assert_empty validator.errors
 
-      assert_nil result
+      assert_nil validator.fix
+
+      assert_equal original_content, File.read(path), "fix should not write a file it has nothing to fix"
     end
   end
 
