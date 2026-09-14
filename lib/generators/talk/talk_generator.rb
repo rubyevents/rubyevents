@@ -115,14 +115,13 @@ class TalkGenerator < Generators::EventBase
   end
 
   def add_talk_to_file
-    gsub_file videos_file_path, /---\s*\[\]\n/, "---\n"
-
     if File.read(videos_file_path).match?(/- id: "#{Regexp.escape(@talk.id)}"/)
       say("Existing talk with id:'#{@talk.id}' found. Updating...", :yellow)
       update_talk
     elsif options[:id]
       raise Thor::Error, missing_talk_message
     else
+      gsub_file videos_file_path, /---\s*\[\]\n/, "---\n"
       talk_template = options[:lightning_talks] ? "lightning_talks.yml.tt" : "talk.yml.tt"
       say("Appending new talk with id:'#{@talk.id}'...", :green)
       append_to_file videos_file_path, template_content(talk_template)
@@ -149,7 +148,7 @@ class TalkGenerator < Generators::EventBase
   private
 
   def videos_file
-    Static::VideosFile.new(videos_file_path) if File.exist?(videos_file_path)
+    @videos_file ||= Static::VideosFile.new(videos_file_path) if File.exist?(videos_file_path)
   end
 
   def existing_ids
@@ -167,14 +166,13 @@ class TalkGenerator < Generators::EventBase
   end
 
   def update_talk
-    document = Static::VideosFile.new(videos_file_path)
-    @existing_talk = document.find_by(id: @talk.id)
+    @existing_talk = videos_file.find_by(id: @talk.id)
 
     @attributes.each do |key, value|
       @existing_talk[key] = value
     end
-
-    document.save!
+    videos_file.save!
+    Static::Validators::TalkId.new(file_path: videos_file_path, document: videos_file).fix
 
     say("#{@attributes.keys.to_sentence} updated.", :green)
   end

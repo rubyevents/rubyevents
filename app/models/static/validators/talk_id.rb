@@ -3,13 +3,16 @@
 module Static
   module Validators
     class TalkId
+      include GitBaseline
+
       PATTERNS = [
         "**/videos.yml"
       ].freeze
 
-      def initialize(file_path:, document: nil)
+      def initialize(file_path:, document: nil, baseline: nil)
         @file_path = file_path
-        @document = document
+        @document = document || Yerba.parse_file(@file_path)
+        @baseline = baseline
       end
 
       def applicable?
@@ -27,11 +30,8 @@ module Static
       def validate
         return [] unless applicable?
 
-        expected_ids.filter_map do |node, expected|
+        map_unexpected_ids do |node, expected|
           actual = node.value_at("id").to_s
-
-          next if actual == expected
-
           location = node["id"]&.location
 
           Static::Validators::Error.new(
@@ -40,6 +40,46 @@ module Static
             line: location&.start_line || 1,
             end_line: location&.end_line
           )
+        end.compact
+      end
+
+      def fix
+        changes = map_unexpected_ids do |node, expected|
+          current = node.value_at("id").to_s
+          node["old_id"] = current if node.value_at("old_id").blank? && id_in_baseline?(current)
+          node.delete("old_id") if node.value_at("old_id") == expected
+          if node.value_at("video_id") == current && !watchable_video?(node)
+            node["video_id"] = expected
+          end
+          rename_thumbnails(current, expected)
+          node["id"] = expected
+        end.compact
+        return unless changes.any?
+        videos_file.save!
+        {changed: changes.size, file_path: @file_path}
+      end
+
+      private
+
+      def map_unexpected_ids
+        expected_ids.map do |node, expected|
+          actual = node.value_at("id").to_s
+          yield(node, expected) if actual != expected
+        end
+      end
+
+      def id_in_baseline?(id)
+        baseline_ids.include?(id)
+      end
+
+      def baseline_ids
+        @baseline_ids ||= baseline ? baseline.ids : []
+      end
+
+      def baseline
+        @baseline ||= begin
+          document = self.class.baseline_file(relative_path)
+          Static::VideosFile.wrap(relative_path, document) if document
         end
       end
 
@@ -72,8 +112,6 @@ module Static
           end
         end
       end
-
-      private
 
       def nodes
         @nodes ||= videos_file.nodes
@@ -111,6 +149,23 @@ module Static
 
       def title_id(node)
         id_for(node).title_id
+      end
+
+      def watchable_video?(node)
+        node.value_at("video_provider").in?(Talk::WATCHABLE_PROVIDERS)
+      end
+
+      def rename_thumbnails(from, to)
+        event_thumbnails = Rails.root.join("app/assets/images/thumbnails", event_slug)
+
+        Dir.glob(event_thumbnails.join("**/#{from}.webp")).each do |thumbnail|
+          renamed_thumbnail = File.join(File.dirname(thumbnail), "#{to}.webp")
+          FileUtils.mv(thumbnail, renamed_thumbnail) unless File.exist?(renamed_thumbnail)
+        end
+
+        directory = event_thumbnails.join(from)
+        renamed_directory = event_thumbnails.join(to)
+        FileUtils.mv(directory, renamed_directory) if Dir.exist?(directory) && !Dir.exist?(renamed_directory)
       end
 
       def numbered(node, id, index)

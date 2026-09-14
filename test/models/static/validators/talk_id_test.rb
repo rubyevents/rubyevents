@@ -77,7 +77,6 @@ class Static::Validators::TalkIdTest < ActiveSupport::TestCase
 
     with_temp_video(videos) do |path|
       errors = Static::Validators::TalkId.new(file_path: path).errors
-
       assert_equal 1, errors.size
       assert_includes errors.first.message, %(expected id "jane-doe-keynote-testconf-2024")
     end
@@ -196,9 +195,193 @@ class Static::Validators::TalkIdTest < ActiveSupport::TestCase
     ]
 
     with_temp_video(videos) do |path|
-      expected = Static::Validators::TalkId.new(file_path: path).expected_ids
+      expected = Static::Validators::TalkId.new(file_path: path).send(:expected_ids)
 
       assert_equal ["jane-doe-testconf-2024"], expected.values
+    end
+  end
+
+  test "fixes bad ids by renaming them without old_id when they were never committed" do
+    videos = [
+      {"id" => "wrong", "title" => "Fixing in Validators", "speakers" => ["Rachael Wright-Munn"]},
+      {"id" => "f8-testconf-2024", "title" => "Tharax", "speakers" => ["f8"]}
+    ]
+
+    with_temp_video(videos) do |path|
+      validator = Static::Validators::TalkId.new(file_path: path)
+      validator.fix
+
+      document = Yerba.parse_file(path)
+      node = document.find_by("id" => "rachael-wright-munn-testconf-2024")
+
+      assert node
+      assert_nil node.value_at("old_id")
+    end
+  end
+
+  test "adds old_id when fixing an id that was committed" do
+    videos = [
+      {"id" => "wrong", "title" => "Fixing in Validators", "speakers" => ["Rachael Wright-Munn"]}
+    ]
+    baseline = [
+      {"id" => "wrong", "title" => "Fixing in Validators", "speakers" => ["Rachael Wright-Munn"]}
+    ]
+
+    with_temp_video(videos) do |path|
+      validator = Static::Validators::TalkId.new(
+        file_path: path,
+        baseline: Static::VideosFile.parse(baseline.to_yaml)
+      )
+      validator.fix
+
+      node = Yerba.parse_file(path).find_by("id" => "rachael-wright-munn-testconf-2024")
+
+      assert_equal "wrong", node.value_at("old_id")
+    end
+  end
+
+  test "keeps an existing old_id when fixing an id" do
+    videos = [
+      {"id" => "wrong", "old_id" => "some-legacy-id", "title" => "Fixing in Validators", "speakers" => ["Rachael Wright-Munn"]}
+    ]
+    baseline = [
+      {"id" => "wrong", "old_id" => "some-legacy-id", "title" => "Fixing in Validators", "speakers" => ["Rachael Wright-Munn"]}
+    ]
+
+    with_temp_video(videos) do |path|
+      validator = Static::Validators::TalkId.new(
+        file_path: path,
+        baseline: Static::VideosFile.parse(baseline.to_yaml)
+      )
+      validator.fix
+
+      node = Yerba.parse_file(path).find_by("id" => "rachael-wright-munn-testconf-2024")
+
+      assert_equal "some-legacy-id", node.value_at("old_id")
+    end
+  end
+
+  test "removes old_id when it matches the id the talk is being fixed to" do
+    videos = [
+      {"id" => "wrong", "old_id" => "rachael-wright-munn-testconf-2024", "title" => "Fixing in Validators", "speakers" => ["Rachael Wright-Munn"]}
+    ]
+    baseline = [
+      {"id" => "other-talk", "title" => "Other", "speakers" => ["Other Person"]}
+    ]
+
+    with_temp_video(videos) do |path|
+      validator = Static::Validators::TalkId.new(
+        file_path: path,
+        baseline: Static::VideosFile.parse(baseline.to_yaml)
+      )
+      validator.fix
+
+      node = Yerba.parse_file(path).find_by("id" => "rachael-wright-munn-testconf-2024")
+
+      assert_nil node.value_at("old_id")
+      assert_not node.to_h.key?("old_id"), "old_id should be removed, not left as null"
+    end
+  end
+
+  test "fixes the video_id of a non-watchable talk when it matches the renamed id" do
+    videos = [
+      {
+        "id" => "wrong",
+        "video_id" => "wrong",
+        "video_provider" => "scheduled",
+        "title" => "Fixing in Validators",
+        "speakers" => ["Rachael Wright-Munn"]
+      }
+    ]
+
+    with_temp_video(videos) do |path|
+      result = Static::Validators::TalkId.new(file_path: path).fix
+      node = Yerba.parse_file(path).find_by("id" => "rachael-wright-munn-testconf-2024")
+
+      assert_equal "rachael-wright-munn-testconf-2024", node.value_at("video_id")
+      assert_equal({changed: 1, file_path: path}, result)
+    end
+  end
+
+  test "does not save the file when no ids need fixing" do
+    videos = [
+      {"id" => "jane-doe-testconf-2024", "title" => "Building Things", "speakers" => ["Jane Doe"]}
+    ]
+
+    with_temp_video(videos) do |path|
+      validator = Static::Validators::TalkId.new(file_path: path)
+      original_content = File.read(path)
+
+      assert_empty validator.errors
+
+      assert_nil validator.fix
+
+      assert_equal original_content, File.read(path), "fix should not write a file it has nothing to fix"
+    end
+  end
+
+  test "renames thumbnail files when fixing an id" do
+    videos = [
+      {"id" => "wrong", "title" => "Fixing in Validators", "speakers" => ["Rachael Wright-Munn"]}
+    ]
+
+    with_temp_video(videos) do |path|
+      with_temp_thumbnails do |thumbnails|
+        File.write(File.join(thumbnails, "wrong.webp"), "webp")
+
+        Rails.stub(:root, Pathname.new(File.dirname(thumbnails, 5))) do
+          Static::Validators::TalkId.new(file_path: path).fix
+        end
+
+        assert File.exist?(File.join(thumbnails, "rachael-wright-munn-testconf-2024.webp"))
+        assert_not File.exist?(File.join(thumbnails, "wrong.webp"))
+      end
+    end
+  end
+
+  test "renames a thumbnail directory when fixing an id" do
+    videos = [
+      {"id" => "wrong", "title" => "Fixing in Validators", "speakers" => ["Rachael Wright-Munn"]}
+    ]
+
+    with_temp_video(videos) do |path|
+      with_temp_thumbnails do |thumbnails|
+        FileUtils.mkdir_p(File.join(thumbnails, "wrong"))
+        File.write(File.join(thumbnails, "wrong", "lightning.webp"), "webp")
+
+        Rails.stub(:root, Pathname.new(File.dirname(thumbnails, 5))) do
+          Static::Validators::TalkId.new(file_path: path).fix
+        end
+
+        renamed = File.join(thumbnails, "rachael-wright-munn-testconf-2024", "lightning.webp")
+        assert File.exist?(renamed)
+        assert_not Dir.exist?(File.join(thumbnails, "wrong"))
+      end
+    end
+  end
+
+  test "does not clobber an existing thumbnail or directory when fixing an id" do
+    videos = [
+      {"id" => "wrong", "title" => "Fixing in Validators", "speakers" => ["Rachael Wright-Munn"]}
+    ]
+
+    with_temp_video(videos) do |path|
+      with_temp_thumbnails do |thumbnails|
+        File.write(File.join(thumbnails, "wrong.webp"), "new")
+        FileUtils.mkdir_p(File.join(thumbnails, "wrong"))
+        File.write(File.join(thumbnails, "rachael-wright-munn-testconf-2024.webp"), "keep-file")
+        FileUtils.mkdir_p(File.join(thumbnails, "rachael-wright-munn-testconf-2024"))
+        File.write(File.join(thumbnails, "rachael-wright-munn-testconf-2024", "talk.webp"), "keep-dir")
+
+        Rails.stub(:root, Pathname.new(File.dirname(thumbnails, 5))) do
+          Static::Validators::TalkId.new(file_path: path).fix
+        end
+
+        assert_equal "keep-file", File.read(File.join(thumbnails, "rachael-wright-munn-testconf-2024.webp"))
+        assert_equal "keep-dir", File.read(File.join(thumbnails, "rachael-wright-munn-testconf-2024", "talk.webp"))
+        assert File.exist?(File.join(thumbnails, "wrong.webp")), "a file whose target exists stays behind"
+        assert Dir.exist?(File.join(thumbnails, "wrong")), "a directory whose target exists stays behind"
+      end
     end
   end
 
@@ -211,6 +394,15 @@ class Static::Validators::TalkIdTest < ActiveSupport::TestCase
     File.write(videos_path, videos.to_yaml)
     File.write(File.join(File.dirname(videos_path), "event.yml"), event.to_yaml) if event
     yield videos_path
+  ensure
+    FileUtils.rm_rf(dir)
+  end
+
+  def with_temp_thumbnails
+    dir = Dir.mktmpdir
+    thumbnails = File.join(dir, "app", "assets", "images", "thumbnails", "testconf-2024")
+    FileUtils.mkdir_p(thumbnails)
+    yield thumbnails
   ensure
     FileUtils.rm_rf(dir)
   end

@@ -9,41 +9,12 @@ namespace :talk_ids do
     Dir.glob(Rails.root.join("data/**/videos.yml")).sort.each do |path|
       validator = Static::Validators::TalkId.new(file_path: path)
       next unless validator.applicable?
+      next unless validator.errors.any?
 
-      renames = validator.expected_ids.reject { |node, expected| node.value_at("id") == expected }
-      event_slug = File.basename(File.dirname(path))
-
-      renames.each do |node, expected|
-        current = node.value_at("id")
-        placeholder_video_id = node.value_at("video_id") == current &&
-          !node.value_at("video_provider").in?(%w[youtube vimeo mp4])
-
-        node["old_id"] = current if node.value_at("old_id").blank?
-        node["id"] = expected
-        node["video_id"] = expected if placeholder_video_id
-
-        event_thumbnails = Rails.root.join("app/assets/images/thumbnails", event_slug)
-
-        Dir.glob(event_thumbnails.join("**/#{current}.webp")).each do |thumbnail|
-          renamed_thumbnail = File.join(File.dirname(thumbnail), "#{expected}.webp")
-          FileUtils.mv(thumbnail, renamed_thumbnail) unless File.exist?(renamed_thumbnail)
-        end
-
-        directory = event_thumbnails.join(current)
-        renamed_directory = event_thumbnails.join(expected)
-        FileUtils.mv(directory, renamed_directory) if Dir.exist?(directory) && !Dir.exist?(renamed_directory)
-      end
-
-      redundant = validator.expected_ids.keys.select { |node| node.value_at("old_id") == node.value_at("id") }
-      redundant.each { |node| node.delete("old_id") }
-
-      next if renames.empty? && redundant.empty?
-
-      validator.document.save!(apply: true)
-
-      renamed += renames.size
+      result = validator.fix
+      renamed += result[:changed]
       files += 1
-      puts "#{path.to_s.sub("#{Rails.root}/", "")}: renamed #{renames.size} id(s)"
+      puts "#{path.to_s.sub("#{Rails.root}/", "")}: renamed #{result[:changed]} id(s)"
     end
 
     puts

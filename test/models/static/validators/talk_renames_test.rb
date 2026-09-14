@@ -189,7 +189,7 @@ class Static::Validators::TalkRenamesTest < ActiveSupport::TestCase
   ].freeze
 
   def with_changed_paths(paths, &block)
-    baseline_file = Static::VideosFile.parse(BASELINE.to_yaml)
+    baseline_file = Yerba.parse(BASELINE.to_yaml)
 
     Static::Validators::TalkRenames.stub(:changed_paths, paths) do
       Static::Validators::TalkRenames.stub(:baseline_file, baseline_file, &block)
