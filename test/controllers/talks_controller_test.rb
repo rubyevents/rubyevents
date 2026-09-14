@@ -61,6 +61,22 @@ class TalksControllerTest < ActionDispatch::IntegrationTest
     assert_select "button[data-language=?]", "ja", text: "Japanese"
   end
 
+  test "renders the theater mode toggle for a playable talk" do
+    get talk_url(@talk)
+
+    assert_response :success
+    assert_select "[data-theater-button]"
+  end
+
+  test "does not render the theater mode toggle when the talk has no video" do
+    @talk.update(video_provider: :not_recorded)
+
+    get talk_url(@talk)
+
+    assert_response :success
+    assert_select "[data-theater-button]", false
+  end
+
   test "should redirect to talks for wrong slugs" do
     get talk_url("wrong-slug")
     assert_response :moved_permanently
