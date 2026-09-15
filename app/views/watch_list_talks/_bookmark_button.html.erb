@@ -1,0 +1,26 @@
+<%# locals: (talk:, default_watch_list:, is_bookmarked:) %>
+
+<% if default_watch_list %>
+  <% if is_bookmarked %>
+    <%= ui_tooltip "Remove from your watch list" do %>
+      <%= ui_button url: watch_list_talk_path(default_watch_list, talk.id), method: :delete, kind: :pill do %>
+        <%= fa("bookmark", size: :xs, style: :solid, class: "text-primary") %>
+        <span class="text-xs">Bookmark</span>
+      <% end %>
+    <% end %>
+  <% else %>
+    <%= ui_tooltip "Add talk to your watch list" do %>
+      <%= ui_button url: watch_list_talks_path(default_watch_list, talk_id: talk.id), method: :post, kind: :pill do %>
+        <%= fa("bookmark", size: :xs, style: :regular) %>
+        <span class="text-xs">Bookmark</span>
+      <% end %>
+    <% end %>
+  <% end %>
+<% else %>
+  <%= ui_tooltip "Add talk to your watch list" do %>
+    <%= ui_button url: new_session_path(redirect_to: request.fullpath), data: {turbo_frame: "modal"}, kind: :pill do %>
+      <%= fa("bookmark", size: :xs, style: :regular) %>
+      <span class="text-xs">Bookmark</span>
+    <% end %>
+  <% end %>
+<% end %>
