@@ -24,6 +24,10 @@
       </div>
     </div>
 
+    <div class="flex items-center gap-2 mb-6 lg:mb-0">
+      <%= render partial: "events/series/follow_button", locals: {event_series: @event_series, subscription: @subscription} %>
+    </div>
+
     <% if Current.user&.admin? %>
       <div class="mt-4 flex items-center gap-2 border-t border-gray-200 pt-4">
         <span class="text-xs uppercase tracking-wide text-gray-400">Admin</span>
