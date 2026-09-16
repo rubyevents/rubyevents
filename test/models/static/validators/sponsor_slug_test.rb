@@ -54,6 +54,14 @@ class Static::Validators::SponsorSlugTest < ActiveSupport::TestCase
     end
   end
 
+  test "skips sponsors whose name parameterizes to an empty slug" do
+    with_temp_sponsors([
+      {"name" => "株式会社スマートバンク", "slug" => "kabushikigaishisuma-tobank", "website" => "https://example.com"}
+    ]) do |path|
+      assert_empty Static::Validators::SponsorSlug.new(file_path: path).errors
+    end
+  end
+
   private
 
   def with_temp_sponsors(sponsors)

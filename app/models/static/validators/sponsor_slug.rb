@@ -30,7 +30,7 @@ module Static
           slug = sponsor.value_at("slug").to_s
           expected = name.parameterize
 
-          next [] if name.blank? || slug == expected
+          next [] if name.blank? || expected.blank? || slug == expected
 
           location = sponsor["slug"]&.location || sponsor["name"]&.location
 
