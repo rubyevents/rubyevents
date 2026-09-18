@@ -59,4 +59,35 @@ class Ui::SocialLinksComponentTest < ViewComponent::TestCase
     assert_equal "https://lu.ma/railsconf", urls["luma"]
     assert_equal "https://facebook.com/railsconf", urls["facebook"]
   end
+
+  # Rendering tests
+
+  def test_renders_links_with_correct_hrefs
+    source = OpenStruct.new(twitter: "railsconf", github: "rails")
+    render_inline(Ui::SocialLinksComponent.new(source))
+
+    assert_selector("a[href='https://x.com/railsconf'][target='_blank']")
+    assert_selector("a[href='https://github.com/rails'][target='_blank']")
+  end
+
+  def test_inline_variant_renders_inline_styles
+    source = OpenStruct.new(twitter: "railsconf")
+    render_inline(Ui::SocialLinksComponent.new(source, variant: :inline))
+
+    assert_selector("a.inline-flex")
+  end
+
+  def test_circle_variant_renders_button_styles
+    source = OpenStruct.new(twitter: "railsconf")
+    render_inline(Ui::SocialLinksComponent.new(source, variant: :circle))
+
+    refute_selector("a.inline-flex")
+  end
+
+  def test_renders_nothing_when_no_social_fields_present
+    source = OpenStruct.new(twitter: "", github: nil)
+    render_inline(Ui::SocialLinksComponent.new(source))
+
+    assert_no_selector("a")
+  end
 end
