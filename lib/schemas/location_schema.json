@@ -1,4 +1,6 @@
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LocationSchema",
   "type": "object",
   "properties": {
     "name": {
@@ -106,6 +108,5 @@
     "kind",
     "coordinates"
   ],
-  "additionalProperties": false,
-  "strict": true
+  "additionalProperties": false
 }

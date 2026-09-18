@@ -1,4 +1,6 @@
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AdditionalResourceSchema",
   "type": "object",
   "properties": {
     "name": {
@@ -46,6 +48,5 @@
     "url",
     "type"
   ],
-  "additionalProperties": false,
-  "strict": true
+  "additionalProperties": false
 }
