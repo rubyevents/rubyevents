@@ -48,7 +48,6 @@ class Ui::SocialLinksComponentTest < ViewComponent::TestCase
     source = OpenStruct.new(
       mastodon: "https://ruby.social/@railsconf",
       meetup: "https://www.meetup.com/railsconf",
-      luma: "https://lu.ma/railsconf",
       facebook: "https://facebook.com/railsconf"
     )
     component = Ui::SocialLinksComponent.new(source)
@@ -56,7 +55,6 @@ class Ui::SocialLinksComponentTest < ViewComponent::TestCase
     urls = component.platforms.each_with_object({}) { |p, h| h[p.field] = p.url }
     assert_equal "https://ruby.social/@railsconf", urls["mastodon"]
     assert_equal "https://www.meetup.com/railsconf", urls["meetup"]
-    assert_equal "https://lu.ma/railsconf", urls["luma"]
     assert_equal "https://facebook.com/railsconf", urls["facebook"]
   end
 
