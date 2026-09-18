@@ -1,4 +1,6 @@
 class Events::MeetupsController < ApplicationController
+  include EventMapMarkers
+
   skip_before_action :authenticate_user!, only: :index
 
   # GET /events/meetups
@@ -9,6 +11,8 @@ class Events::MeetupsController < ApplicationController
       .includes(:series)
       .group("events.id")
       .order("max(talks.date) DESC")
+
+    @globe_markers = event_map_markers(@meetups)
 
     @countries_by_continent = Event.distinct
       .where(kind: :meetup)

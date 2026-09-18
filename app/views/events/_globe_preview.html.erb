@@ -1,0 +1,22 @@
+<%# locals: (events:, markers:, center: nil) %>
+<div
+  class="mt-6 block gap-8 overflow-scroll md:grid xl:grid-cols-2"
+  data-controller="event-list"
+  data-event-list-globe-outlet="#events-globe"
+  data-action="
+    globe:hover->event-list#hoverMarker globe:select->event-list#selectMarker globe:leave->event-list#hideCaptions
+    turbo:morph@document->event-list#updateGradients
+  "
+>
+  <% if events.any? %>
+    <%= render partial: "events/event_list", locals: {events: events} %>
+  <% else %>
+    <div class="flex items-center justify-center md:h-[75vh]">
+      <%= render "events/no_events" %>
+    </div>
+  <% end %>
+
+  <div class="hidden md:block">
+    <%= render partial: "events/globe", locals: {events: events, markers: markers, center: center} %>
+  </div>
+</div>

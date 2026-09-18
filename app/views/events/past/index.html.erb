@@ -1,7 +1,10 @@
+<%= turbo_refreshes_with method: :morph, scroll: :preserve %>
+
 <div
   class="container py-8 hotwire-native:py-3"
   data-controller="events-view-switcher"
   data-events-view-switcher-storage-key-value="past-view"
+  data-action="turbo:morph@document->events-view-switcher#restore"
 >
   <div class="hotwire-native:hidden">
     <h1 class="title shrink-0">
@@ -16,45 +19,39 @@
     >
       <%= render "events/collections_navigation", active: :past %>
 
-      <% if @events.any? %>
-        <div class="flex shrink-0 items-center overflow-x-auto pb-2 md:pb-1">
-          <div class="tabs-boxed tabs">
-            <button
-              type="button"
-              class="tab tab-active"
-              data-events-view-switcher-target="button"
-              data-events-view-switcher-view-param="preview"
-              data-action="click->events-view-switcher#show"
-            >
-              Preview
-            </button>
+      <div class="flex shrink-0 items-center overflow-x-auto pb-2 md:pb-1">
+        <div class="tabs-boxed tabs">
+          <button
+            type="button"
+            class="tab tab-active"
+            data-events-view-switcher-target="button"
+            data-events-view-switcher-view-param="preview"
+            data-action="click->events-view-switcher#show"
+          >
+            Preview
+          </button>
 
-            <button
-              type="button"
-              class="tab"
-              data-events-view-switcher-target="button"
-              data-events-view-switcher-view-param="list"
-              data-action="click->events-view-switcher#show"
-            >
-              List
-            </button>
-          </div>
+          <button
+            type="button"
+            class="tab"
+            data-events-view-switcher-target="button"
+            data-events-view-switcher-view-param="list"
+            data-action="click->events-view-switcher#show"
+          >
+            List
+          </button>
         </div>
-      <% end %>
+      </div>
     </div>
   </div>
 
   <%= render "events/continent_filters", selected: selected_continent %>
 
-  <% if @events.any? %>
-    <div data-events-view-switcher-target="view" data-events-view-switcher-view-param="preview">
-      <%= render partial: "events/featured_card_list", locals: {events: @events} %>
-    </div>
+  <div data-events-view-switcher-target="view" data-events-view-switcher-view-param="preview">
+    <%= render partial: "events/globe_preview", locals: {events: @events, markers: @globe_markers, center: selected_continent&.to_coordinates} %>
+  </div>
 
-    <div class="mt-6 hidden" data-events-view-switcher-target="view" data-events-view-switcher-view-param="list">
-      <%= render partial: "events/plain_list", locals: {events: @events} %>
-    </div>
-  <% else %>
-    <%= render "events/no_events" %>
-  <% end %>
+  <div class="mt-6 hidden" data-events-view-switcher-target="view" data-events-view-switcher-view-param="list">
+    <%= render partial: "events/plain_list", locals: {events: @events} %>
+  </div>
 </div>
