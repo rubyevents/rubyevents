@@ -301,13 +301,31 @@ class Event < ApplicationRecord
   end
 
   def location_and_country_code
-    default_country = series&.static_metadata&.default_country_code
+    return location if location.blank?
+    return location if location_includes_country?
 
+    default_country = series&.static_metadata&.default_country_code
     [location, default_country].compact.join(", ")
   end
 
   def location_and_country_code_previously_changed?
     location_previously_changed?
+  end
+
+  # True when the location string already names a country. Ignores Country.find's
+  # US-subdivision fallback (e.g. "NY" => US) so short state codes still get the
+  # series default_country_code appended for geocoding.
+  def location_includes_country?
+    term = location.to_s.split(",").last&.strip
+    return false if term.blank?
+    return false if term.downcase.in?(%w[online earth unknown])
+
+    if term.length == 2
+      iso = ISO3166::Country.new(term.upcase)
+      return iso&.alpha2.present?
+    end
+
+    Country.find(term).present?
   end
 
   def today?

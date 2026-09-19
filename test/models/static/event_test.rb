@@ -114,4 +114,29 @@ class Static::EventTest < ActiveSupport::TestCase
 
     assert_equal event.published_date, event.home_sort_date(event_record: stub_record)
   end
+
+  test "state_code is parsed from location on import" do
+    Static::EventSeries.find_by_slug("xoruby").import_series!
+    Static::City.all.detect { |city| city.slug == "montreal" }.import!
+
+    event = Static::Event.find_by_slug("xoruby-montreal-2026")
+    record = event.import_event!
+
+    assert_equal "Montréal", record.city
+    assert_equal "QC", record.state_code
+    assert_equal "CA", record.country_code
+    assert_includes City.find_by!(slug: "montreal").events, record
+  end
+
+  test "state_code falls back to featured city when location omits state" do
+    Static::EventSeries.find_by_slug("montreal-rb").import_series!
+    Static::City.all.detect { |city| city.slug == "montreal" }.import!
+
+    event = Static::Event.find_by_slug("montreal-rb-meetup")
+    record = event.import_event!
+
+    assert_equal "Montréal", record.city
+    assert_equal "QC", record.state_code
+    assert_equal "CA", record.country_code
+  end
 end
