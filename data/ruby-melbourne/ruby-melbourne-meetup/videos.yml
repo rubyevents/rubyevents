@@ -1953,12 +1953,29 @@
   title: "Ruby Melbourne Meetup October 2025"
   event_name: "Ruby Melbourne Meetup October 2025"
   date: "2025-10-30"
-  video_provider: "not_recorded"
+  video_provider: "children"
   video_id: "ruby-melbourne-meetup-october-2025"
   description: |-
     Hosted at Ferocia, Level 7/271 Collins Street, Melbourne.
     https://www.meetup.com/ruby-melbourne/events/305601923/
-  talks: []
+  talks:
+    - id: "david-barrell-ruby-melbourne-meetup-october-2025"
+      title: "How Buildkite Broke Up (With) Its 56 TiB Database"
+      raw_title: "How Buildkite Broke Up (With) Its 56 TiB Database - David Barrell"
+      event_name: "Ruby Melbourne Meetup October 2025"
+      date: "2025-10-30"
+      published_at: "2025-11-04T09:22:34Z"
+      video_provider: "youtube"
+      video_id: "G2xZTVUFfgM"
+      thumbnail_xs: "https://img.youtube.com/vi/G2xZTVUFfgM/default.jpg"
+      thumbnail_sm: "https://img.youtube.com/vi/G2xZTVUFfgM/mqdefault.jpg"
+      thumbnail_md: "https://img.youtube.com/vi/G2xZTVUFfgM/mqdefault.jpg"
+      thumbnail_lg: "https://img.youtube.com/vi/G2xZTVUFfgM/hqdefault.jpg"
+      thumbnail_xl: "https://img.youtube.com/vi/G2xZTVUFfgM/hqdefault.jpg"
+      description: |-
+        Ever wondered what happens when your production PostgreSQL hits the tens of terabytes mark? David will share how Buildkite tackled scaling challenges at extreme size — and what lessons you can take away before your own database gets that big.
+      speakers:
+        - David Barrell
 
 - id: "ruby-melbourne-meetup-november-2025"
   title: "Ruby Melbourne Meetup November 2025"
@@ -1975,89 +1992,376 @@
   title: "Ruby Melbourne Meetup February 2026"
   event_name: "Ruby Melbourne Meetup February 2026"
   date: "2026-02-26"
-  video_provider: "not_recorded"
+  video_provider: "children"
   video_id: "ruby-melbourne-meetup-february-2026"
   description: |-
     Hosted at Ferocia, Level 7/271 Collins Street, Melbourne.
     https://www.meetup.com/ruby-melbourne/events/313408208/
-  talks: []
+  talks:
+    - id: "colby-swandale-ruby-melbourne-meetup-february-2026"
+      title: "The Ruby Gameboy Emulator — 10 Years Later"
+      raw_title: "The Ruby Gameboy Emulator — 10 Years Later - Colby Swandale"
+      event_name: "Ruby Melbourne Meetup February 2026"
+      date: "2026-02-26"
+      published_at: "2026-03-04T11:25:35Z"
+      video_provider: "youtube"
+      video_id: "ML8o19OeeRo"
+      thumbnail_xs: "https://img.youtube.com/vi/ML8o19OeeRo/default.jpg"
+      thumbnail_sm: "https://img.youtube.com/vi/ML8o19OeeRo/mqdefault.jpg"
+      thumbnail_md: "https://img.youtube.com/vi/ML8o19OeeRo/mqdefault.jpg"
+      thumbnail_lg: "https://img.youtube.com/vi/ML8o19OeeRo/hqdefault.jpg"
+      thumbnail_xl: "https://img.youtube.com/vi/ML8o19OeeRo/hqdefault.jpg"
+      description: |-
+        A decade-old Ruby Game Boy emulator revived and finished using modern Ruby improvements and AI tooling.
+      speakers:
+        - Colby Swandale
+
+    - id: "alex-finkel-ruby-melbourne-meetup-february-2026"
+      title: "Moving from RSpec to Minitest for an AI-Friendly Codebase"
+      raw_title: "Moving from RSpec to Minitest for an AI-Friendly Codebase - Alex Finkel"
+      event_name: "Ruby Melbourne Meetup February 2026"
+      date: "2026-02-26"
+      published_at: "2026-03-04T11:27:30Z"
+      video_provider: "youtube"
+      video_id: "VCJOHznLqbo"
+      thumbnail_xs: "https://img.youtube.com/vi/VCJOHznLqbo/default.jpg"
+      thumbnail_sm: "https://img.youtube.com/vi/VCJOHznLqbo/mqdefault.jpg"
+      thumbnail_md: "https://img.youtube.com/vi/VCJOHznLqbo/mqdefault.jpg"
+      thumbnail_lg: "https://img.youtube.com/vi/VCJOHznLqbo/hqdefault.jpg"
+      thumbnail_xl: "https://img.youtube.com/vi/VCJOHznLqbo/hqdefault.jpg"
+      description: |-
+        Rewriting a production test suite to be cleaner, more discoverable, and better suited for AI-assisted development.
+      speakers:
+        - Alex Finkel
+
+    - id: "julian-pinzon-eslava-ruby-melbourne-meetup-february-2026"
+      title: "Hotwire 101: Building modern user experiences with Turbo and Stimulus"
+      raw_title: "Hotwire 101: Building modern user experiences with Turbo and Stimulus - Julian Pinzon Eslava"
+      kind: "workshop"
+      event_name: "Ruby Melbourne Meetup February 2026"
+      date: "2026-02-26"
+      published_at: "2026-03-04T11:34:29Z"
+      video_provider: "youtube"
+      video_id: "po4BcSCogsA"
+      thumbnail_xs: "https://img.youtube.com/vi/po4BcSCogsA/default.jpg"
+      thumbnail_sm: "https://img.youtube.com/vi/po4BcSCogsA/mqdefault.jpg"
+      thumbnail_md: "https://img.youtube.com/vi/po4BcSCogsA/mqdefault.jpg"
+      thumbnail_lg: "https://img.youtube.com/vi/po4BcSCogsA/hqdefault.jpg"
+      thumbnail_xl: "https://img.youtube.com/vi/po4BcSCogsA/hqdefault.jpg"
+      description: |-
+        Turbo and Hotwire can be some of the most effective tools to build user interfaces for the web, specially when used with Rails. However, shifting paradigms from Javascript-first frameworks like React back to server-side rendered HTML is not simple. The mental models, tools and techniques are different.
+
+        In this workshop, we'll go back to the basics and revisit all the building blocks needed to create modern, interactive user experiences with Ruby on Rails using Turbo and Stimulus.
+
+        We'll build an example application that will be progressively enhanced using different tools. To do that, we'll learn how to navigate Turbo and Stimulus' documentation, as well as the codebase for turbo-rails, which provides extra documentation and insights into how some pieces work.
+      speakers:
+        - Julián Pinzón Eslava
 
 - id: "ruby-melbourne-meetup-march-2026"
   title: "Ruby Melbourne Meetup March 2026"
   event_name: "Ruby Melbourne Meetup March 2026"
   date: "2026-03-26"
-  video_provider: "not_recorded"
+  video_provider: "children"
   video_id: "ruby-melbourne-meetup-march-2026"
   description: |-
     Hosted at Ferocia, Level 7/271 Collins Street, Melbourne.
     https://www.meetup.com/ruby-melbourne/events/313408409/
-  talks: []
+  talks:
+    - id: "siddharth-bhatt-ruby-melbourne-meetup-march-2026"
+      title: "Ruby Workspace Manager"
+      raw_title: "Ruby Workspace Manager - Siddharth Bhatt"
+      event_name: "Ruby Melbourne Meetup March 2026"
+      date: "2026-03-26"
+      published_at: "2026-05-17T05:12:13Z"
+      video_provider: "youtube"
+      video_id: "8XCp5kyuqaU"
+      thumbnail_xs: "https://img.youtube.com/vi/8XCp5kyuqaU/default.jpg"
+      thumbnail_sm: "https://img.youtube.com/vi/8XCp5kyuqaU/mqdefault.jpg"
+      thumbnail_md: "https://img.youtube.com/vi/8XCp5kyuqaU/mqdefault.jpg"
+      thumbnail_lg: "https://img.youtube.com/vi/8XCp5kyuqaU/hqdefault.jpg"
+      thumbnail_xl: "https://img.youtube.com/vi/8XCp5kyuqaU/hqdefault.jpg"
+      description: |-
+        Sid has cooked up the most useless, vibe-coded Ruby project for fun…
+        Expect something quirky, experimental, and very Ruby.
+      speakers:
+        - Siddharth Bhatt
+
+    - id: "john-sherwood-ruby-melbourne-meetup-march-2026"
+      title: "Exploring Fizzy inside and out"
+      raw_title: "Exploring Fizzy inside and out - John Sherwood"
+      event_name: "Ruby Melbourne Meetup March 2026"
+      date: "2026-03-26"
+      published_at: "2026-05-17T05:12:06Z"
+      video_provider: "youtube"
+      video_id: "LyRLdgL1CvY"
+      thumbnail_xs: "https://img.youtube.com/vi/LyRLdgL1CvY/default.jpg"
+      thumbnail_sm: "https://img.youtube.com/vi/LyRLdgL1CvY/mqdefault.jpg"
+      thumbnail_md: "https://img.youtube.com/vi/LyRLdgL1CvY/mqdefault.jpg"
+      thumbnail_lg: "https://img.youtube.com/vi/LyRLdgL1CvY/hqdefault.jpg"
+      thumbnail_xl: "https://img.youtube.com/vi/LyRLdgL1CvY/hqdefault.jpg"
+      description: |-
+        Basecamp recently released Fizzy (open source-ish), and we'll dig into how it's built using Ruby & Rails.
+      speakers:
+        - John Sherwood
 
 - id: "ruby-melbourne-meetup-april-2026"
   title: "Ruby Melbourne Meetup April 2026"
   event_name: "Ruby Melbourne Meetup April 2026"
   date: "2026-04-30"
-  video_provider: "not_recorded"
+  video_provider: "children"
   video_id: "ruby-melbourne-meetup-april-2026"
   description: |-
     Hosted at Ferocia, Level 7/271 Collins Street, Melbourne.
     https://www.meetup.com/ruby-melbourne/events/313408448/
-  talks: []
+  talks:
+    - id: "celia-king-ruby-melbourne-meetup-april-2026"
+      title: "Ruby is my favourite LISP?"
+      raw_title: "Ruby is my favourite LISP? - Celia King"
+      event_name: "Ruby Melbourne Meetup April 2026"
+      date: "2026-04-30"
+      published_at: "2026-05-17T05:13:45Z"
+      video_provider: "youtube"
+      video_id: "21MJJ07SFTM"
+      thumbnail_xs: "https://img.youtube.com/vi/21MJJ07SFTM/default.jpg"
+      thumbnail_sm: "https://img.youtube.com/vi/21MJJ07SFTM/mqdefault.jpg"
+      thumbnail_md: "https://img.youtube.com/vi/21MJJ07SFTM/mqdefault.jpg"
+      thumbnail_lg: "https://img.youtube.com/vi/21MJJ07SFTM/hqdefault.jpg"
+      thumbnail_xl: "https://img.youtube.com/vi/21MJJ07SFTM/hqdefault.jpg"
+      description: |-
+        Exploring Ruby through the lens of LISP — connecting ideas across SQL, Clojure, and functional paradigms.
+      speakers:
+        - Celia King
+
+    - id: "nick-spain-ruby-melbourne-meetup-april-2026"
+      title: "Writing Ruby Native Extensions in Rust"
+      raw_title: "Lightning Talk: Writing Ruby Native Extensions in Rust - Nick Spain"
+      kind: "lightning_talk"
+      event_name: "Ruby Melbourne Meetup April 2026"
+      date: "2026-04-30"
+      published_at: "2026-05-17T05:14:32Z"
+      video_provider: "youtube"
+      video_id: "vxrp4ggeTzg"
+      thumbnail_xs: "https://img.youtube.com/vi/vxrp4ggeTzg/default.jpg"
+      thumbnail_sm: "https://img.youtube.com/vi/vxrp4ggeTzg/mqdefault.jpg"
+      thumbnail_md: "https://img.youtube.com/vi/vxrp4ggeTzg/mqdefault.jpg"
+      thumbnail_lg: "https://img.youtube.com/vi/vxrp4ggeTzg/hqdefault.jpg"
+      thumbnail_xl: "https://img.youtube.com/vi/vxrp4ggeTzg/hqdefault.jpg"
+      description: |-
+        Replacing a C-based dependency with Rust to achieve native speeds — without the pain of maintaining C.
+      speakers:
+        - Nick Spain
 
 - id: "ruby-melbourne-meetup-may-2026"
   title: "Ruby Melbourne Meetup May 2026"
   event_name: "Ruby Melbourne Meetup May 2026"
   date: "2026-05-28"
-  video_provider: "not_recorded"
+  video_provider: "children"
   video_id: "ruby-melbourne-meetup-may-2026"
   description: |-
     Hosted at Ferocia, Level 7/271 Collins Street, Melbourne.
     https://www.meetup.com/ruby-melbourne/events/313408450/
-  talks: []
+  talks:
+    - id: "jerome-paul-ruby-melbourne-meetup-may-2026"
+      title: "Ruby, the stuff I've never used (a completely biased opinion)"
+      raw_title: "Ruby, the stuff I've never used (a completely biased opinion) - Jerome Paul"
+      event_name: "Ruby Melbourne Meetup May 2026"
+      date: "2026-05-28"
+      published_at: "2026-06-12T06:53:14Z"
+      video_provider: "youtube"
+      video_id: "qop6F8zdtF0"
+      thumbnail_xs: "https://img.youtube.com/vi/qop6F8zdtF0/default.jpg"
+      thumbnail_sm: "https://img.youtube.com/vi/qop6F8zdtF0/mqdefault.jpg"
+      thumbnail_md: "https://img.youtube.com/vi/qop6F8zdtF0/mqdefault.jpg"
+      thumbnail_lg: "https://img.youtube.com/vi/qop6F8zdtF0/hqdefault.jpg"
+      thumbnail_xl: "https://img.youtube.com/vi/qop6F8zdtF0/hqdefault.jpg"
+      description: |-
+        A fun and interactive look through parts of Ruby that somehow never made it into day-to-day work.
+      speakers:
+        - Jerome Paul
+
+    - id: "david-carlin-ruby-melbourne-meetup-may-2026"
+      title: "AI Side Projects"
+      raw_title: "AI Side Projects - David Carlin"
+      event_name: "Ruby Melbourne Meetup May 2026"
+      date: "2026-05-28"
+      published_at: "2026-06-12T06:54:01Z"
+      video_provider: "youtube"
+      video_id: "zGzVN99q3J8"
+      thumbnail_xs: "https://img.youtube.com/vi/zGzVN99q3J8/default.jpg"
+      thumbnail_sm: "https://img.youtube.com/vi/zGzVN99q3J8/mqdefault.jpg"
+      thumbnail_md: "https://img.youtube.com/vi/zGzVN99q3J8/mqdefault.jpg"
+      thumbnail_lg: "https://img.youtube.com/vi/zGzVN99q3J8/hqdefault.jpg"
+      thumbnail_xl: "https://img.youtube.com/vi/zGzVN99q3J8/hqdefault.jpg"
+      description: |-
+        Walking through AI-assisted side projects, how they work, and lessons learned building them.
+      speakers:
+        - David Carlin
 
 - id: "ruby-melbourne-meetup-june-2026"
   title: "Ruby Melbourne Meetup June 2026"
   event_name: "Ruby Melbourne Meetup June 2026"
   date: "2026-06-25"
-  video_provider: "not_recorded"
+  video_provider: "children"
   video_id: "ruby-melbourne-meetup-june-2026"
   description: |-
     Hosted at Ferocia, Level 7/271 Collins Street, Melbourne.
     https://www.meetup.com/ruby-melbourne/events/313408452/
-  talks: []
+  talks:
+    - id: "pat-allan-ruby-melbourne-meetup-june-2026"
+      title: "Music Services and UPnP with Ruby"
+      raw_title: "Music Services and UPnP with Ruby - Pat Allan"
+      event_name: "Ruby Melbourne Meetup June 2026"
+      date: "2026-06-25"
+      published_at: "2026-07-17T06:38:17Z"
+      video_provider: "youtube"
+      video_id: "61ZxS68y1OQ"
+      thumbnail_xs: "https://img.youtube.com/vi/61ZxS68y1OQ/default.jpg"
+      thumbnail_sm: "https://img.youtube.com/vi/61ZxS68y1OQ/mqdefault.jpg"
+      thumbnail_md: "https://img.youtube.com/vi/61ZxS68y1OQ/mqdefault.jpg"
+      thumbnail_lg: "https://img.youtube.com/vi/61ZxS68y1OQ/hqdefault.jpg"
+      thumbnail_xl: "https://img.youtube.com/vi/61ZxS68y1OQ/hqdefault.jpg"
+      description: |-
+        A bit of a recap on what I've learnt from using Ruby to interact with Sonos speakers and music service APIs.
+      speakers:
+        - Pat Allan
+
+    - id: "adam-rice-ruby-melbourne-meetup-june-2026"
+      title: "In Praise of Throwing Information Away"
+      raw_title: "In Praise of Throwing Information Away - Adam Rice"
+      event_name: "Ruby Melbourne Meetup June 2026"
+      date: "2026-06-25"
+      published_at: "2026-07-17T06:33:50Z"
+      video_provider: "youtube"
+      video_id: "nKgcnSwq6Jc"
+      thumbnail_xs: "https://img.youtube.com/vi/nKgcnSwq6Jc/default.jpg"
+      thumbnail_sm: "https://img.youtube.com/vi/nKgcnSwq6Jc/mqdefault.jpg"
+      thumbnail_md: "https://img.youtube.com/vi/nKgcnSwq6Jc/mqdefault.jpg"
+      thumbnail_lg: "https://img.youtube.com/vi/nKgcnSwq6Jc/hqdefault.jpg"
+      thumbnail_xl: "https://img.youtube.com/vi/nKgcnSwq6Jc/hqdefault.jpg"
+      description: |-
+        Your cleverest code is probably overfitting. A simple rule that ignores almost everything routinely beats a sophisticated model that uses all the data — and it's not a fluke, it's a theorem. We'll trace the same maths that explains overfitting in machine learning straight back to how minds make good decisions, and figure out what it says about every premature abstraction you've ever written. A talk about why throwing information away is sometimes the smartest thing you can do.
+      speakers:
+        - Adam Rice
+
+    - id: "michael-milewski-ruby-melbourne-meetup-june-2026"
+      title: "I Became the Agent — AI as Master Controller"
+      raw_title: "I Became the Agent — AI as Master Controller - Michael Milewski"
+      event_name: "Ruby Melbourne Meetup June 2026"
+      date: "2026-06-25"
+      published_at: "2026-07-17T06:35:34Z"
+      video_provider: "youtube"
+      video_id: "Bmpg_K7UO1Q"
+      thumbnail_xs: "https://img.youtube.com/vi/Bmpg_K7UO1Q/default.jpg"
+      thumbnail_sm: "https://img.youtube.com/vi/Bmpg_K7UO1Q/mqdefault.jpg"
+      thumbnail_md: "https://img.youtube.com/vi/Bmpg_K7UO1Q/mqdefault.jpg"
+      thumbnail_lg: "https://img.youtube.com/vi/Bmpg_K7UO1Q/hqdefault.jpg"
+      thumbnail_xl: "https://img.youtube.com/vi/Bmpg_K7UO1Q/hqdefault.jpg"
+      description: |-
+        Most of us have used AI to write code. This talk is about what happens when you go further — when AI stops being a coding assistant and starts being the orchestrator of your life.
+      speakers:
+        - Michael Milewski
 
 - id: "ruby-melbourne-meetup-july-2026"
   title: "Ruby Melbourne Meetup July 2026"
   event_name: "Ruby Melbourne Meetup July 2026"
   date: "2026-07-30"
-  video_provider: "not_recorded"
+  video_provider: "children"
   video_id: "ruby-melbourne-meetup-july-2026"
   description: |-
     Hosted at Ferocia, Level 7/271 Collins Street, Melbourne.
     https://www.meetup.com/ruby-melbourne/events/313408456/
-  talks: []
+  talks:
+    - id: "anton-katunin-ruby-melbourne-meetup-july-2026"
+      title: "Packing the Modern Toolbelt: Staying Competitive in the AI Era"
+      raw_title: "Packing the Modern Toolbelt: Staying Competitive in the AI Era - Anton Katunin"
+      event_name: "Ruby Melbourne Meetup July 2026"
+      date: "2026-07-30"
+      published_at: "2026-08-19T11:58:01Z"
+      video_provider: "youtube"
+      video_id: "FDr44zAQL9g"
+      thumbnail_xs: "https://img.youtube.com/vi/FDr44zAQL9g/default.jpg"
+      thumbnail_sm: "https://img.youtube.com/vi/FDr44zAQL9g/mqdefault.jpg"
+      thumbnail_md: "https://img.youtube.com/vi/FDr44zAQL9g/mqdefault.jpg"
+      thumbnail_lg: "https://img.youtube.com/vi/FDr44zAQL9g/hqdefault.jpg"
+      thumbnail_xl: "https://img.youtube.com/vi/FDr44zAQL9g/hqdefault.jpg"
+      description: |-
+        A practical look at the modern AI developer toolkit, the latest Ruby ecosystem, and how to stay ahead as AI reshapes software development.
+      speakers:
+        - Anton Katunin
+
+    - id: "dan-milne-ruby-melbourne-meetup-july-2026"
+      title: "Give Your Coding Agent Production Access"
+      raw_title: "Give Your Coding Agent Production Access - Dan Milne"
+      event_name: "Ruby Melbourne Meetup July 2026"
+      date: "2026-07-30"
+      published_at: "2026-08-19T12:01:20Z"
+      video_provider: "youtube"
+      video_id: "S-EpuNx20v8"
+      thumbnail_xs: "https://img.youtube.com/vi/S-EpuNx20v8/default.jpg"
+      thumbnail_sm: "https://img.youtube.com/vi/S-EpuNx20v8/mqdefault.jpg"
+      thumbnail_md: "https://img.youtube.com/vi/S-EpuNx20v8/mqdefault.jpg"
+      thumbnail_lg: "https://img.youtube.com/vi/S-EpuNx20v8/hqdefault.jpg"
+      thumbnail_xl: "https://img.youtube.com/vi/S-EpuNx20v8/hqdefault.jpg"
+      description: |-
+        How a read-only MCP endpoint, backed by traces, events, and logs, gives coding agents the production context they need to actually fix bugs. Built and battle-tested on a real production application.
+      speakers:
+        - Dan Milne
 
 - id: "ruby-melbourne-meetup-august-2026"
   title: "Ruby Melbourne Meetup August 2026"
   event_name: "Ruby Melbourne Meetup August 2026"
   date: "2026-08-27"
-  video_provider: "scheduled"
+  video_provider: "children"
   video_id: "ruby-melbourne-meetup-august-2026"
   description: |-
     Hosted at Ferocia, Level 7/271 Collins Street, Melbourne.
     https://www.meetup.com/ruby-melbourne/events/313408459/
-  talks: []
+  talks:
+    - id: "kevin-garcia-fernandez-ruby-melbourne-meetup-august-2026"
+      title: "TUI like it's 2026"
+      event_name: "Ruby Melbourne Meetup August 2026"
+      date: "2026-08-27"
+      video_provider: "not_published"
+      video_id: "kevin-garcia-fernandez-ruby-melbourne-meetup-august-2026"
+      speakers:
+        - Kevin Garcia-Fernandez
+
+    - id: "siddharth-bhatt-ruby-melbourne-meetup-august-2026"
+      title: "Sum Types in Ruby"
+      event_name: "Ruby Melbourne Meetup August 2026"
+      date: "2026-08-27"
+      video_provider: "not_published"
+      video_id: "siddharth-bhatt-ruby-melbourne-meetup-august-2026"
+      speakers:
+        - Siddharth Bhatt
+
+    - id: "matt-hood-ruby-melbourne-meetup-august-2026"
+      title: "Making the most of Mise"
+      event_name: "Ruby Melbourne Meetup August 2026"
+      date: "2026-08-27"
+      video_provider: "not_published"
+      video_id: "matt-hood-ruby-melbourne-meetup-august-2026"
+      speakers:
+        - Matt Hood
 
 - id: "ruby-melbourne-meetup-september-2026"
   title: "Ruby Melbourne Meetup September 2026"
   event_name: "Ruby Melbourne Meetup September 2026"
   date: "2026-09-24"
-  video_provider: "scheduled"
+  video_provider: "children"
   video_id: "ruby-melbourne-meetup-september-2026"
   description: |-
     Hosted at Ferocia, Level 7/271 Collins Street, Melbourne.
     https://www.meetup.com/ruby-melbourne/events/313408461/
-  talks: []
+  talks:
+    - id: "ben-taylor-ruby-melbourne-meetup-september-2026"
+      title: "Experiments in Engineering without reading code"
+      event_name: "Ruby Melbourne Meetup September 2026"
+      date: "2026-09-24"
+      video_provider: "scheduled"
+      video_id: "ben-taylor-ruby-melbourne-meetup-september-2026"
+      speakers:
+        - Ben Taylor
 
 - id: "ruby-melbourne-meetup-october-2026"
   title: "Ruby Melbourne Meetup October 2026"
