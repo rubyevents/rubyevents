@@ -58,6 +58,20 @@ class Ui::SocialLinksComponentTest < ViewComponent::TestCase
     assert_equal "https://facebook.com/railsconf", urls["facebook"]
   end
 
+  def test_url_building_passes_through_full_urls
+    source = OpenStruct.new(
+      github: "https://github.com/amsrb",
+      linkedin: "https://www.linkedin.com/company/berlinrb",
+      twitter: "https://x.com/rubyfloripa"
+    )
+    component = Ui::SocialLinksComponent.new(source)
+
+    urls = component.platforms.each_with_object({}) { |p, h| h[p.field] = p.url }
+    assert_equal "https://github.com/amsrb", urls["github"]
+    assert_equal "https://www.linkedin.com/company/berlinrb", urls["linkedin"]
+    assert_equal "https://x.com/rubyfloripa", urls["twitter"]
+  end
+
   # Rendering tests
 
   def test_renders_links_with_correct_hrefs
