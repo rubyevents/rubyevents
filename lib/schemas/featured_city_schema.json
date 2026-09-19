@@ -1,4 +1,6 @@
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FeaturedCitySchema",
   "type": "object",
   "properties": {
     "name": {
@@ -43,6 +45,5 @@
     "latitude",
     "longitude"
   ],
-  "additionalProperties": false,
-  "strict": true
+  "additionalProperties": false
 }

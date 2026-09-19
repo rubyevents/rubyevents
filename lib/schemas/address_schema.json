@@ -1,4 +1,6 @@
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AddressSchema",
   "type": "object",
   "properties": {
     "street": {
@@ -37,6 +39,5 @@
     "country_code",
     "display"
   ],
-  "additionalProperties": false,
-  "strict": true
+  "additionalProperties": false
 }
