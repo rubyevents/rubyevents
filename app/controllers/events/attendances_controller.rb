@@ -4,7 +4,7 @@ class Events::AttendancesController < ApplicationController
   before_action :set_event, only: [:show]
 
   def index
-    @events = Current.user.participated_events
+    @events = Current.user.attended_events
       .includes(:series, :talks)
       .where.not(end_date: nil)
       .where(end_date: ..Date.today)
@@ -31,7 +31,7 @@ class Events::AttendancesController < ApplicationController
     event_is_past = @event.end_date.present? && @event.end_date < Date.today
     @participation = Current.user.main_participation_to(@event)
 
-    unless @participation.present? && event_is_past && @event.talks.any?
+    unless @participation.present? && @participation.attending? && event_is_past && @event.talks.any?
       redirect_to event_path(@event), alert: "You can only mark attendance for past events you participated in"
       return
     end

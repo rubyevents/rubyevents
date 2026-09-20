@@ -94,7 +94,7 @@ class User::WrappedScreenshotGenerator
     total_watch_time_seconds = watched_talks_in_year.sum(&:progress_seconds)
     total_watch_time_hours = (total_watch_time_seconds / 3600.0).round(1)
 
-    events_attended_in_year = user.participated_events.where(start_date: year_range)
+    events_attended_in_year = user.attended_events.where(start_date: year_range)
     talks_given_in_year = user.kept_talks.where(date: year_range)
     countries_visited = events_attended_in_year.map(&:country).compact.uniq
 
