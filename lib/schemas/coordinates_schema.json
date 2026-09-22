@@ -1,4 +1,6 @@
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CoordinatesSchema",
   "type": "object",
   "properties": {
     "latitude": {
@@ -14,6 +16,5 @@
     "latitude",
     "longitude"
   ],
-  "additionalProperties": false,
-  "strict": true
+  "additionalProperties": false
 }

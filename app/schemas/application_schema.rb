@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ApplicationSchema < RubyLLM::Schema
+class ApplicationSchema < Schematist::Schema
   def self.schemas
     Rails.autoloaders.main.eager_load_dir(Rails.root.join("app/schemas"))
 
@@ -36,7 +36,7 @@ class ApplicationSchema < RubyLLM::Schema
   end
 
   def self.json_schema
-    new.to_json_schema[:schema].as_json
+    new.to_json_schema.as_json
   end
 
   def self.export!
