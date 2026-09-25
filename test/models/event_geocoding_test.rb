@@ -237,6 +237,24 @@ class EventGeocodingTest < ActiveSupport::TestCase
     assert_in_delta(-122.4194, event.longitude.to_f, 0.01)
   end
 
+  test "location_and_country_code appends series default when location has no country" do
+    event = Event.new(name: "Test", series: @series, location: "New York, NY")
+    event.define_singleton_method(:series) do
+      OpenStruct.new(static_metadata: OpenStruct.new(default_country_code: "US"))
+    end
+
+    assert_equal "New York, NY, US", event.location_and_country_code
+  end
+
+  test "location_and_country_code does not append default when location already has a country" do
+    event = Event.new(name: "Test", series: @series, location: "Montréal, QC, Canada")
+    event.define_singleton_method(:series) do
+      OpenStruct.new(static_metadata: OpenStruct.new(default_country_code: "US"))
+    end
+
+    assert_equal "Montréal, QC, Canada", event.location_and_country_code
+  end
+
   test "geocode preserves venue coordinates on regeocode" do
     event = Event.create!(
       name: "Test Conf 2024",
