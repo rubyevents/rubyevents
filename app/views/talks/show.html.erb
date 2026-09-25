@@ -1,12 +1,17 @@
 <%= turbo_refreshes_with method: :morph, scroll: :preserve %>
 
-<div class="container my-8 flex w-full flex-col gap-4">
+<div
+  class="theater-available container my-8 flex w-full flex-col gap-4"
+  data-controller="theater"
+  data-theater-active-class="theater-mode"
+  data-action="theater:toggle@window->theater#toggle turbo:morph@document->theater#restore"
+>
   <% back_path = params[:back_to].presence || talks_path %>
   <% back_to_title = params[:back_to_title].presence || "Talks" %>
 
   <div class="flex w-full">
-    <div class="min-w-0 flex-grow overflow-hidden">
-      <div class="flex w-full items-center justify-between hotwire-native:hidden">
+    <div class="theater-main min-w-0 flex-grow overflow-hidden">
+      <div class="theater-contained flex w-full items-center justify-between hotwire-native:hidden">
         <%= link_to sanitize_url(back_path, fallback: talks_path) do %>
           <div class="title mb-4 flex items-center gap-2 text-base text-primary">
             <%= fa("arrow-left-long", class: "transition-arrow fill-primary", size: :xs) %>
@@ -26,15 +31,17 @@
         <% end %>
       <% end %>
 
-      <% cache @talk.event do %>
-        <%= render partial: "talks/explore_event", locals: {event: @talk.event} %>
-      <% end %>
+      <div class="theater-contained">
+        <% cache @talk.event do %>
+          <%= render partial: "talks/explore_event", locals: {event: @talk.event} %>
+        <% end %>
+      </div>
     </div>
 
     <%= turbo_stream_from [@talk.event, :talks] %>
 
     <div
-      class="hidden w-96 flex-shrink-0 gap-4 px-4 lg:flex lg:flex-col"
+      class="theater-sidebar hidden w-96 flex-shrink-0 gap-4 px-4 lg:flex lg:flex-col"
       data-turbo-permanent="true"
       id="<%= dom_id(@talk.event, :talks_wrapper) %>"
     >
