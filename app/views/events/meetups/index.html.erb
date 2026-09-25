@@ -58,7 +58,7 @@
   </div>
 
   <div data-events-view-switcher-target="view" data-events-view-switcher-view-param="preview">
-    <%= render partial: "events/featured_card_list", locals: {events: @meetups} %>
+    <%= render partial: "events/globe_preview", locals: {events: @meetups, markers: @globe_markers} %>
   </div>
 
   <div class="mt-6 hidden" data-events-view-switcher-target="view" data-events-view-switcher-view-param="list">

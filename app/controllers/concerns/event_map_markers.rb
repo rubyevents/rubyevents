@@ -23,6 +23,7 @@ module EventMapMarkers
 
   def event_marker_data(event)
     {
+      slug: event.slug,
       name: event.name,
       url: Router.event_path(event),
       avatar: Router.image_path(event.avatar_image_path),

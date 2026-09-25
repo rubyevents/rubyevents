@@ -94,6 +94,12 @@ class Continent
     [longitude, latitude]
   end
 
+  def to_coordinates
+    return nil unless latitude && longitude
+
+    [latitude, longitude]
+  end
+
   def countries
     @countries ||= Country.all.select { |country| country.continent == self }
   end
