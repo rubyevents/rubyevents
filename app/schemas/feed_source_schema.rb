@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class FeedSourceSchema < RubyLLM::Schema
+class FeedSourceSchema < Schematist::Schema
   string :type, description: "Feed type (ical, rss, bluesky, mastodon, twitter, linkedin)"
   string :url, description: "Feed URL", required: false
   string :name, description: "Display name for this feed", required: false
